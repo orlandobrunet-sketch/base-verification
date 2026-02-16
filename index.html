@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NefroQuest Pro | Flashcards RPG de Nefrologia</title>
+  <style>
+    :root {
+      --bg-1: #050816;
+      --bg-2: #0d1b3d;
+      --card: rgba(15, 23, 42, 0.9);
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #22d3ee;
+      --accent-2: #6366f1;
+      --ok: #22c55e;
+      --bad: #ef4444;
+      --warn: #f59e0b;
+      --glass: rgba(148, 163, 184, 0.12);
+      --border: rgba(148, 163, 184, 0.25);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(34, 211, 238, 0.2), transparent 35%),
+        radial-gradient(circle at 85% 0%, rgba(99, 102, 241, 0.2), transparent 40%),
+        linear-gradient(140deg, var(--bg-1), var(--bg-2));
+      display: grid;
+      place-items: center;
+      padding: 20px;
+    }
+
+    .app {
+      width: min(920px, 100%);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, .45);
+      overflow: hidden;
+    }
+
+    .top {
+      padding: 28px 28px 16px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(110deg, rgba(34,211,238,.12), rgba(99,102,241,.08));
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+      letter-spacing: .2px;
+      background: linear-gradient(90deg, #67e8f9, #a5b4fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      margin: 8px 0 0;
+      color: #cbd5e1;
+      line-height: 1.5;
+      font-size: .98rem;
+    }
+
+    .content { padding: 20px 28px 28px; }
+
+    .hud {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(120px, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .tile {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      text-align: center;
+      padding: 11px;
+    }
+
+    .tile span { display: block; color: var(--muted); font-size: .78rem; }
+    .tile strong { font-size: 1.1rem; }
+
+    #questionBox {
+      background: rgba(2, 6, 23, .6);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+
+    #question {
+      margin: 0;
+      line-height: 1.55;
+      font-size: 1.07rem;
+      min-height: 70px;
+    }
+
+    .options { display: grid; gap: 10px; }
+
+    .option {
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, .7);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 12px 14px;
+      cursor: pointer;
+      text-align: left;
+      font-size: .98rem;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .option:hover:not(:disabled) {
+      transform: translateY(-1px);
+      border-color: rgba(34, 211, 238, .7);
+      background: rgba(30, 41, 59, .85);
+    }
+
+    .option.correct { border-color: var(--ok); background: rgba(34, 197, 94, .16); }
+    .option.wrong { border-color: var(--bad); background: rgba(239, 68, 68, .14); }
+
+    .feedback {
+      margin-top: 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(2, 6, 23, .7);
+      padding: 14px;
+      line-height: 1.45;
+    }
+    .feedback.good { border-color: rgba(34, 197, 94, .55); }
+    .feedback.bad { border-color: rgba(239, 68, 68, .55); }
+
+    .sourceBox {
+      margin-top: 8px;
+      color: #cbd5e1;
+      font-size: .93rem;
+    }
+
+    .sourceBox ul {
+      margin: 8px 0 0;
+      padding-left: 18px;
+    }
+
+    .sourceBox a {
+      color: #67e8f9;
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(103, 232, 249, .45);
+    }
+
+    .sourceBox a:hover { color: #a5f3fc; }
+
+    .controls {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 12px;
+      padding: 11px 15px;
+      font-weight: 700;
+      color: #f8fafc;
+      cursor: pointer;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      box-shadow: 0 10px 24px rgba(34, 211, 238, .25);
+    }
+
+    .btn.secondary {
+      background: #334155;
+      box-shadow: none;
+    }
+
+    .howto {
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px dashed rgba(148, 163, 184, .4);
+      color: #dbeafe;
+      font-size: .9rem;
+    }
+
+    .hidden { display: none; }
+
+    @media (max-width: 700px) {
+      .content, .top { padding: 18px; }
+      .hud { grid-template-columns: repeat(2, minmax(120px, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <h1>NefroQuest Pro</h1>
+      <p class="subtitle">Flashcards RPG para nefrologia (PT-BR). Dificuldade sobe conforme você acerta; o jogo termina ao gastar 3 erros. Ao final, seu recorde fica salvo no navegador.</p>
+    </header>
+
+    <section class="content">
+      <div class="hud">
+        <div class="tile"><span>Nível</span><strong id="level">1</strong></div>
+        <div class="tile"><span>Pontos</span><strong id="score">0</strong></div>
+        <div class="tile"><span>Recorde</span><strong id="record">0</strong></div>
+        <div class="tile"><span>Vidas</span><strong id="lives">❤❤❤</strong></div>
+      </div>
+
+      <article id="questionBox">
+        <p id="question"></p>
+      </article>
+
+      <div id="options" class="options"></div>
+
+      <div id="feedback" class="feedback">Escolha uma alternativa para iniciar.</div>
+      <div id="sourceBox" class="sourceBox"></div>
+
+      <div class="controls">
+        <button id="nextBtn" class="btn hidden">Próxima pergunta</button>
+        <button id="restartBtn" class="btn secondary hidden">Jogar novamente</button>
+      </div>
+
+      <div class="howto">
+        <strong>Como acessar:</strong> abra este arquivo <code>index.html</code> com dois cliques no seu computador
+        <em>ou</em> rode um servidor simples com <code>python3 -m http.server 8000</code> e acesse <code>http://localhost:8000</code>.
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const questions = [
+      {
+        difficulty: 1,
+        question: "Em DRC estável, qual teste é preferível para rastrear albuminúria?",
+        options: ["Relação albumina/creatinina urinária (amostra isolada)", "Urocultura", "Proteinúria de 24h para todos", "Somente creatinina sérica"],
+        answer: 0,
+        explanation: "A ACR em amostra urinária isolada é prática e recomendada para triagem e seguimento da albuminúria.",
+        refs: [{ label: "KDIGO CKD 2024", url: "https://kdigo.org/guidelines/ckd-evaluation-and-management/" }]
+      },
+      {
+        difficulty: 1,
+        question: "Qual estratégia farmacológica de primeira linha reduz progressão da DRC albuminúrica?",
+        options: ["AINE contínuo", "Bloqueio do SRAA (IECA/BRA)", "Antibiótico profilático", "Corticoterapia universal"],
+        answer: 1,
+        explanation: "IECA/BRA diminuem pressão intraglomerular e albuminúria, reduzindo desfechos renais em pacientes selecionados.",
+        refs: [{ label: "KDIGO CKD 2024", url: "https://kdigo.org/guidelines/ckd-evaluation-and-management/" }]
+      },
+      {
+        difficulty: 2,
+        question: "Na hipercalemia grave com ECG alterado, qual ação imediata é prioritária?",
+        options: ["Resina via oral", "Gluconato de cálcio IV", "Furosemida oral", "Restrição hídrica"],
+        answer: 1,
+        explanation: "Cálcio IV estabiliza a membrana miocárdica rapidamente, reduzindo risco de arritmia fatal.",
+        refs: [{ label: "KDIGO AKI Guideline", url: "https://kdigo.org/guidelines/acute-kidney-injury/" }]
+      },
+      {
+        difficulty: 2,
+        question: "A classificação KDIGO de DRC integra quais componentes?",
+        options: ["Apenas TFG", "Apenas albuminúria", "TFG + albuminúria", "Sódio + potássio"],
+        answer: 2,
+        explanation: "O risco é estratificado em grade combinando categoria G (TFG) e A (albuminúria).",
+        refs: [{ label: "KDIGO CKD 2024", url: "https://kdigo.org/guidelines/ckd-evaluation-and-management/" }]
+      },
+      {
+        difficulty: 3,
+        question: "Qual achado de sedimento urinário sugere glomerulonefrite ativa?",
+        options: ["Cilindro hemático", "Células escamosas", "Bacteriúria isolada", "Cristal de oxalato"],
+        answer: 0,
+        explanation: "Cilindros hemáticos tipicamente indicam origem glomerular do sangramento e atividade inflamatória.",
+        refs: [{ label: "KDIGO Glomerular Diseases", url: "https://kdigo.org/guidelines/glomerular-diseases/" }]
+      },
+      {
+        difficulty: 4,
+        question: "Em diabético com DRC e albuminúria persistente apesar de IECA/BRA, qual opção tem boa evidência nefroprotetora adicional?",
+        options: ["iSGLT2 (se elegível)", "Aumentar proteína da dieta", "AINE diário", "Suspender bloqueio do SRAA"],
+        answer: 0,
+        explanation: "Ensaios como DAPA-CKD/EMPA-KIDNEY demonstraram redução de progressão renal com iSGLT2 em cenários apropriados.",
+        refs: [
+          { label: "DAPA-CKD (NEJM)", url: "https://www.nejm.org/doi/full/10.1056/NEJMoa2024816" },
+          { label: "EMPA-KIDNEY (NEJM)", url: "https://www.nejm.org/doi/full/10.1056/NEJMoa2204233" }
+        ]
+      },
+      {
+        difficulty: 5,
+        question: "No manejo da acidose metabólica da DRC, alvo frequente de bicarbonato sérico é aproximadamente:",
+        options: ["<18 mEq/L", "22–26 mEq/L", "30–34 mEq/L", "36 mEq/L"],
+        answer: 1,
+        explanation: "Geralmente busca-se manter bicarbonato em faixa normal/normal-baixa para reduzir complicações metabólicas.",
+        refs: [{ label: "KDIGO CKD 2024", url: "https://kdigo.org/guidelines/ckd-evaluation-and-management/" }]
+      },
+      {
+        difficulty: 6,
+        question: "Qual indicação clássica de diálise de urgência na IRA?",
+        options: ["Creatinina isoladamente aumentada", "Edema agudo de pulmão refratário", "Anemia normocítica", "Hiponatremia leve"],
+        answer: 1,
+        explanation: "Sobrecarga volêmica com falência respiratória refratária é indicação clássica de terapia renal substitutiva emergente.",
+        refs: [{ label: "KDIGO AKI Guideline", url: "https://kdigo.org/guidelines/acute-kidney-injury/" }]
+      },
+      {
+        difficulty: 7,
+        question: "No diferencial de hiponatremia, por que checar osmolaridade plasmática?",
+        options: ["Confirma SIADH sozinho", "Distingue hipo/iso/hipertônica", "Substitui avaliação clínica", "Não altera conduta"],
+        answer: 1,
+        explanation: "É etapa essencial para identificar mecanismo fisiopatológico e evitar pseudo-hiponatremia.",
+        refs: [{ label: "European Hyponatraemia Guideline", url: "https://academic.oup.com/ndt/article/29/suppl_2/i1/1843686" }]
+      },
+      {
+        difficulty: 8,
+        question: "Após transplante renal, conduta importante para reduzir nefrotoxicidade por inibidor de calcineurina é:",
+        options: ["Evitar monitorização", "Ajustar dose por níveis séricos", "Introduzir AINE contínuo", "Não controlar pressão"],
+        answer: 1,
+        explanation: "Monitorização terapêutica de níveis e ajuste posológico equilibram eficácia imunossupressora e segurança renal.",
+        refs: [{ label: "KDIGO Transplant Care", url: "https://kdigo.org/guidelines/transplant-recipient-care/" }]
+      }
+    ];
+
+    const state = {
+      level: 1,
+      score: 0,
+      lives: 3,
+      used: new Set(),
+      current: null,
+      answered: false
+    };
+
+    const $ = (id) => document.getElementById(id);
+    const levelEl = $("level");
+    const scoreEl = $("score");
+    const recordEl = $("record");
+    const livesEl = $("lives");
+    const questionEl = $("question");
+    const optionsEl = $("options");
+    const feedbackEl = $("feedback");
+    const sourceBoxEl = $("sourceBox");
+    const nextBtn = $("nextBtn");
+    const restartBtn = $("restartBtn");
+
+    const getRecord = () => Number(localStorage.getItem("nefroquest-record") || 0);
+    const setRecord = (v) => localStorage.setItem("nefroquest-record", String(v));
+
+    function updateHUD() {
+      levelEl.textContent = state.level;
+      scoreEl.textContent = state.score;
+      livesEl.textContent = "❤".repeat(state.lives) + "♡".repeat(3 - state.lives);
+      recordEl.textContent = getRecord();
+    }
+
+    function pickQuestion() {
+      const maxDifficulty = Math.min(8, state.level);
+      let pool = questions
+        .map((q, idx) => ({ ...q, idx }))
+        .filter((q) => q.difficulty <= maxDifficulty && !state.used.has(q.idx));
+
+      if (!pool.length) {
+        state.used.clear();
+        pool = questions
+          .map((q, idx) => ({ ...q, idx }))
+          .filter((q) => q.difficulty <= maxDifficulty);
+      }
+
+      const selected = pool[Math.floor(Math.random() * pool.length)];
+      state.used.add(selected.idx);
+      return selected;
+    }
+
+    function renderReferences(refs = []) {
+      if (!refs.length) {
+        sourceBoxEl.innerHTML = "";
+        return;
+      }
+
+      const list = refs
+        .map((r) => `<li><a href="${r.url}" target="_blank" rel="noopener noreferrer">${r.label}</a></li>`)
+        .join("");
+      sourceBoxEl.innerHTML = `<strong>Referências (link ao final da explicação):</strong><ul>${list}</ul>`;
+    }
+
+    function renderQuestion() {
+      state.answered = false;
+      state.current = pickQuestion();
+
+      questionEl.textContent = `[Nível ${state.level} | Dificuldade ${state.current.difficulty}] ${state.current.question}`;
+      optionsEl.innerHTML = "";
+      feedbackEl.className = "feedback";
+      feedbackEl.textContent = "Escolha uma alternativa.";
+      renderReferences(state.current.refs);
+
+      nextBtn.classList.add("hidden");
+      restartBtn.classList.add("hidden");
+
+      state.current.options.forEach((opt, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "option";
+        btn.type = "button";
+        btn.textContent = `${String.fromCharCode(65 + idx)}) ${opt}`;
+        btn.addEventListener("click", () => answer(idx, btn));
+        optionsEl.appendChild(btn);
+      });
+    }
+
+    function answer(index, clickedButton) {
+      if (state.answered) return;
+      state.answered = true;
+
+      const buttons = [...document.querySelectorAll(".option")];
+      buttons.forEach((b) => (b.disabled = true));
+
+      const correct = state.current.answer;
+      buttons[correct].classList.add("correct");
+
+      if (index === correct) {
+        state.score += 120 + state.current.difficulty * 25;
+        state.level += 1;
+        feedbackEl.className = "feedback good";
+        feedbackEl.textContent = `✅ Correto! ${state.current.explanation}`;
+      } else {
+        state.lives -= 1;
+        clickedButton.classList.add("wrong");
+        feedbackEl.className = "feedback bad";
+        feedbackEl.textContent = `❌ Não foi dessa vez. ${state.current.explanation}`;
+      }
+
+      updateHUD();
+
+      if (state.lives <= 0) {
+        finish();
+      } else {
+        nextBtn.classList.remove("hidden");
+      }
+    }
+
+    function finish() {
+      const best = getRecord();
+      if (state.score > best) setRecord(state.score);
+
+      questionEl.textContent = `Fim de jogo! Você chegou ao nível ${state.level} com ${state.score} pontos.`;
+      optionsEl.innerHTML = "";
+      feedbackEl.className = "feedback";
+      feedbackEl.textContent = "Você usou as 3 chances de erro. Clique em 'Jogar novamente' para tentar bater seu recorde.";
+
+      renderReferences([
+        { label: "KDIGO Guidelines (portal)", url: "https://kdigo.org/guidelines/" },
+        { label: "NEJM - DAPA-CKD", url: "https://www.nejm.org/doi/full/10.1056/NEJMoa2024816" },
+        { label: "NEJM - EMPA-KIDNEY", url: "https://www.nejm.org/doi/full/10.1056/NEJMoa2204233" }
+      ]);
+
+      nextBtn.classList.add("hidden");
+      restartBtn.classList.remove("hidden");
+      updateHUD();
+    }
+
+    nextBtn.addEventListener("click", renderQuestion);
+    restartBtn.addEventListener("click", () => {
+      state.level = 1;
+      state.score = 0;
+      state.lives = 3;
+      state.used.clear();
+      renderQuestion();
+      updateHUD();
+    });
+
+    updateHUD();
+    renderQuestion();
+  </script>
+</body>
+</html>
