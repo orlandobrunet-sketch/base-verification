@@ -3,468 +3,628 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NefroQuest Pro | Flashcards RPG de Nefrologia</title>
+  <title>NefroQuest Ascension</title>
   <style>
     :root {
-      --bg-1: #050816;
-      --bg-2: #0d1b3d;
-      --card: rgba(15, 23, 42, 0.9);
+      --bg1: #070b1f;
+      --bg2: #132046;
+      --card: rgba(15, 23, 42, .86);
+      --line: rgba(148, 163, 184, .25);
       --text: #e2e8f0;
       --muted: #94a3b8;
-      --accent: #22d3ee;
-      --accent-2: #6366f1;
-      --ok: #22c55e;
+      --cyan: #22d3ee;
+      --violet: #818cf8;
+      --good: #22c55e;
       --bad: #ef4444;
-      --warn: #f59e0b;
-      --glass: rgba(148, 163, 184, 0.12);
-      --border: rgba(148, 163, 184, 0.25);
+      --legendary: #f59e0b;
     }
-
     * { box-sizing: border-box; }
-
     body {
       margin: 0;
       min-height: 100vh;
       color: var(--text);
-      font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+      font-family: Inter, Segoe UI, Roboto, sans-serif;
       background:
-        radial-gradient(circle at 15% 10%, rgba(34, 211, 238, 0.2), transparent 35%),
-        radial-gradient(circle at 85% 0%, rgba(99, 102, 241, 0.2), transparent 40%),
-        linear-gradient(140deg, var(--bg-1), var(--bg-2));
-      display: grid;
-      place-items: center;
+        radial-gradient(circle at 10% 8%, rgba(34, 211, 238, .2), transparent 36%),
+        radial-gradient(circle at 85% 5%, rgba(129, 140, 248, .2), transparent 40%),
+        linear-gradient(140deg, var(--bg1), var(--bg2));
       padding: 20px;
     }
-
-    .app {
-      width: min(920px, 100%);
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 16px;
+    }
+    .panel {
       background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 25px 70px rgba(0, 0, 0, .45);
-      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 18px 42px rgba(0,0,0,.35);
     }
-
-    .top {
-      padding: 28px 28px 16px;
-      border-bottom: 1px solid var(--border);
-      background: linear-gradient(110deg, rgba(34,211,238,.12), rgba(99,102,241,.08));
-    }
-
+    .left { padding: 16px; }
+    .right { padding: 20px; }
     h1 {
-      margin: 0;
-      font-size: clamp(1.5rem, 2.8vw, 2.2rem);
-      letter-spacing: .2px;
+      margin: 0 0 4px;
+      font-size: 1.5rem;
       background: linear-gradient(90deg, #67e8f9, #a5b4fc);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-
-    .subtitle {
-      margin: 8px 0 0;
-      color: #cbd5e1;
-      line-height: 1.5;
-      font-size: .98rem;
-    }
-
-    .content { padding: 20px 28px 28px; }
+    .subtitle { margin: 0 0 14px; color: #cbd5e1; font-size: .9rem; }
 
     .hud {
       display: grid;
-      grid-template-columns: repeat(4, minmax(120px, 1fr));
-      gap: 12px;
-      margin-bottom: 18px;
-    }
-
-    .tile {
-      background: var(--glass);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      text-align: center;
-      padding: 11px;
-    }
-
-    .tile span { display: block; color: var(--muted); font-size: .78rem; }
-    .tile strong { font-size: 1.1rem; }
-
-    #questionBox {
-      background: rgba(2, 6, 23, .6);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 16px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
       margin-bottom: 12px;
     }
+    .tile {
+      background: rgba(15,23,42,.65);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 8px;
+      text-align: center;
+    }
+    .tile span { display: block; color: var(--muted); font-size: .72rem; }
+    .tile strong { font-size: 1rem; }
 
-    #question {
-      margin: 0;
-      line-height: 1.55;
-      font-size: 1.07rem;
-      min-height: 70px;
+    .avatar-card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(2,6,23,.5);
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+    .avatar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .avatar {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 2rem;
+      border: 2px solid rgba(103,232,249,.6);
+      background: radial-gradient(circle at 30% 20%, rgba(103,232,249,.35), rgba(15,23,42,.3) 60%);
+      box-shadow: 0 0 20px rgba(103,232,249,.25);
+    }
+    .avatar.legendary {
+      border-color: rgba(245,158,11,.8);
+      box-shadow: 0 0 24px rgba(245,158,11,.35);
+    }
+    .xp-track {
+      margin-top: 8px;
+      background: #0b1221;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      height: 10px;
+      overflow: hidden;
+    }
+    .xp-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--cyan), var(--violet));
+      transition: width .25s ease;
     }
 
-    .options { display: grid; gap: 10px; }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .stat { font-size: .82rem; color: #dbeafe; }
 
+    .equip {
+      margin-top: 12px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(15,23,42,.55);
+      padding: 10px;
+    }
+    .equip-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .slot {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 8px;
+      background: rgba(2,6,23,.6);
+      font-size: .82rem;
+    }
+    .rarity-common { color: #cbd5e1; }
+    .rarity-rare { color: #93c5fd; }
+    .rarity-epic { color: #c4b5fd; }
+    .rarity-legendary { color: #fbbf24; }
+
+    .log {
+      margin-top: 10px;
+      border: 1px dashed var(--line);
+      border-radius: 10px;
+      padding: 8px;
+      min-height: 84px;
+      font-size: .8rem;
+      color: #cbd5e1;
+    }
+
+    #questionBox {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(2,6,23,.6);
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+    #question { margin: 0; line-height: 1.5; font-size: 1.08rem; }
+    .options { display: grid; gap: 10px; }
     .option {
-      border: 1px solid var(--border);
-      background: rgba(15, 23, 42, .7);
+      border: 1px solid var(--line);
+      background: rgba(15,23,42,.65);
       color: var(--text);
       border-radius: 12px;
-      padding: 12px 14px;
-      cursor: pointer;
+      padding: 12px;
       text-align: left;
-      font-size: .98rem;
-      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      cursor: pointer;
+      transition: .18s ease;
+      font-size: .96rem;
     }
-
-    .option:hover:not(:disabled) {
-      transform: translateY(-1px);
-      border-color: rgba(34, 211, 238, .7);
-      background: rgba(30, 41, 59, .85);
-    }
-
-    .option.correct { border-color: var(--ok); background: rgba(34, 197, 94, .16); }
-    .option.wrong { border-color: var(--bad); background: rgba(239, 68, 68, .14); }
+    .option:hover:not(:disabled) { border-color: rgba(34,211,238,.8); transform: translateY(-1px); }
+    .option.correct { border-color: var(--good); background: rgba(34,197,94,.16); }
+    .option.wrong { border-color: var(--bad); background: rgba(239,68,68,.16); }
 
     .feedback {
       margin-top: 12px;
+      border: 1px solid var(--line);
       border-radius: 12px;
-      border: 1px solid var(--border);
-      background: rgba(2, 6, 23, .7);
-      padding: 14px;
-      line-height: 1.45;
-    }
-    .feedback.good { border-color: rgba(34, 197, 94, .55); }
-    .feedback.bad { border-color: rgba(239, 68, 68, .55); }
-
-    .sourceBox {
-      margin-top: 8px;
-      color: #cbd5e1;
-      font-size: .93rem;
-    }
-
-    .sourceBox ul {
-      margin: 8px 0 0;
-      padding-left: 18px;
-    }
-
-    .sourceBox a {
-      color: #67e8f9;
-      text-decoration: none;
-      border-bottom: 1px dashed rgba(103, 232, 249, .45);
-    }
-
-    .sourceBox a:hover { color: #a5f3fc; }
-
-    .controls {
-      margin-top: 14px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .btn {
-      border: none;
-      border-radius: 12px;
-      padding: 11px 15px;
-      font-weight: 700;
-      color: #f8fafc;
-      cursor: pointer;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      box-shadow: 0 10px 24px rgba(34, 211, 238, .25);
-    }
-
-    .btn.secondary {
-      background: #334155;
-      box-shadow: none;
-    }
-
-    .howto {
-      margin-top: 16px;
+      background: rgba(2,6,23,.65);
       padding: 12px;
-      border-radius: 10px;
-      border: 1px dashed rgba(148, 163, 184, .4);
-      color: #dbeafe;
-      font-size: .9rem;
+      line-height: 1.45;
+      min-height: 72px;
     }
+    .feedback.good { border-color: rgba(34,197,94,.55); }
+    .feedback.bad { border-color: rgba(239,68,68,.55); }
 
+    .refs {
+      margin-top: 8px;
+      font-size: .9rem;
+      color: #cbd5e1;
+    }
+    .refs ul { margin: 8px 0 0; padding-left: 18px; }
+    .refs a { color: #67e8f9; text-decoration: none; }
+    .refs a:hover { text-decoration: underline; }
+
+    .controls { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn {
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-weight: 700;
+      color: white;
+      background: linear-gradient(90deg, var(--cyan), var(--violet));
+      cursor: pointer;
+    }
+    .btn.secondary { background: #334155; }
     .hidden { display: none; }
 
-    @media (max-width: 700px) {
-      .content, .top { padding: 18px; }
-      .hud { grid-template-columns: repeat(2, minmax(120px, 1fr)); }
+    @media (max-width: 980px) {
+      .container { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-  <main class="app">
-    <header class="top">
-      <h1>NefroQuest Pro</h1>
-      <p class="subtitle">Flashcards RPG para nefrologia (PT-BR). Dificuldade sobe conforme você acerta; o jogo termina ao gastar 3 erros. Ao final, seu recorde fica salvo no navegador.</p>
-    </header>
+  <main class="container">
+    <section class="panel left">
+      <h1>NefroQuest Ascension</h1>
+      <p class="subtitle">RPG de nefrologia com loot, equipamentos e progressão visual.</p>
 
-    <section class="content">
       <div class="hud">
         <div class="tile"><span>Nível</span><strong id="level">1</strong></div>
-        <div class="tile"><span>Pontos</span><strong id="score">0</strong></div>
         <div class="tile"><span>Recorde</span><strong id="record">0</strong></div>
+        <div class="tile"><span>Pontos</span><strong id="score">0</strong></div>
         <div class="tile"><span>Vidas</span><strong id="lives">❤❤❤</strong></div>
       </div>
 
-      <article id="questionBox">
-        <p id="question"></p>
-      </article>
+      <div class="avatar-card">
+        <div class="avatar-wrap">
+          <div id="avatar" class="avatar">🧙</div>
+          <div>
+            <strong id="heroName">Guardião Glomerular</strong><br />
+            <small id="heroTitle" style="color:#94a3b8;">Aprendiz do Néfron</small>
+          </div>
+        </div>
+        <div class="xp-track"><div id="xpFill" class="xp-fill"></div></div>
+        <small id="xpText" style="color:#94a3b8;">XP 0 / 120</small>
 
-      <div id="options" class="options"></div>
-
-      <div id="feedback" class="feedback">Escolha uma alternativa para iniciar.</div>
-      <div id="sourceBox" class="sourceBox"></div>
-
-      <div class="controls">
-        <button id="nextBtn" class="btn hidden">Próxima pergunta</button>
-        <button id="restartBtn" class="btn secondary hidden">Jogar novamente</button>
+        <div class="stats">
+          <div class="stat">⚔️ Ataque: <strong id="statAtk">0</strong></div>
+          <div class="stat">🛡️ Defesa: <strong id="statDef">0</strong></div>
+          <div class="stat">🧠 Conhecimento: <strong id="statKno">0</strong></div>
+          <div class="stat">🍀 Sorte: <strong id="statLuck">0</strong></div>
+          <div class="stat">💰 Ouro: <strong id="gold">0</strong></div>
+          <div class="stat">🔥 Streak: <strong id="streak">0</strong></div>
+        </div>
       </div>
 
-      <div class="howto">
-        <strong>Como acessar:</strong> abra este arquivo <code>index.html</code> com dois cliques no seu computador
-        <em>ou</em> rode um servidor simples com <code>python3 -m http.server 8000</code> e acesse <code>http://localhost:8000</code>.
+      <div class="equip">
+        <strong>Equipamentos</strong>
+        <div id="equipGrid" class="equip-grid"></div>
+      </div>
+
+      <div class="log" id="lootLog">Nenhum loot ainda. Acerte para dropar itens.</div>
+    </section>
+
+    <section class="panel right">
+      <div id="questionBox">
+        <p id="question"></p>
+      </div>
+      <div id="options" class="options"></div>
+      <div id="feedback" class="feedback">Escolha uma alternativa para iniciar.</div>
+      <div id="refs" class="refs"></div>
+      <div class="controls">
+        <button id="nextBtn" class="btn hidden">Próxima batalha</button>
+        <button id="restartBtn" class="btn secondary hidden">Recomeçar jornada</button>
       </div>
     </section>
   </main>
 
   <script>
+    const referenceMap = {
+      kdigo_ckd: { label: "KDIGO CKD 2024", url: "https://kdigo.org/guidelines/ckd-evaluation-and-management/" },
+      kdigo_aki: { label: "KDIGO AKI", url: "https://kdigo.org/guidelines/acute-kidney-injury/" },
+      kdigo_gn: { label: "KDIGO Glomerular Diseases", url: "https://kdigo.org/guidelines/glomerular-diseases/" },
+      kdigo_mbd: { label: "KDIGO CKD-MBD", url: "https://kdigo.org/guidelines/ckd-mineral-and-bone-disorder/" },
+      dapa: { label: "DAPA-CKD (NEJM)", url: "https://www.nejm.org/doi/full/10.1056/NEJMoa2024816" },
+      empa: { label: "EMPA-KIDNEY (NEJM)", url: "https://www.nejm.org/doi/full/10.1056/NEJMoa2204233" },
+      hypona: { label: "European Hyponatraemia Guideline", url: "https://academic.oup.com/ndt/article/29/suppl_2/i1/1843686" },
+      kdoqi: { label: "KDOQI Nutrition in CKD", url: "https://www.kidney.org/professionals/guidelines/guidelines_commentaries" },
+      transplant: { label: "KDIGO Transplant Recipient Care", url: "https://kdigo.org/guidelines/transplant-recipient-care/" }
+    };
+
     const questions = [
-      {
-        difficulty: 1,
-        question: "Em DRC estável, qual teste é preferível para rastrear albuminúria?",
-        options: ["Relação albumina/creatinina urinária (amostra isolada)", "Urocultura", "Proteinúria de 24h para todos", "Somente creatinina sérica"],
-        answer: 0,
-        explanation: "A ACR em amostra urinária isolada é prática e recomendada para triagem e seguimento da albuminúria.",
-        refs: [{ label: "KDIGO CKD 2024", url: "https://kdigo.org/guidelines/ckd-evaluation-and-management/" }]
-      },
-      {
-        difficulty: 1,
-        question: "Qual estratégia farmacológica de primeira linha reduz progressão da DRC albuminúrica?",
-        options: ["AINE contínuo", "Bloqueio do SRAA (IECA/BRA)", "Antibiótico profilático", "Corticoterapia universal"],
-        answer: 1,
-        explanation: "IECA/BRA diminuem pressão intraglomerular e albuminúria, reduzindo desfechos renais em pacientes selecionados.",
-        refs: [{ label: "KDIGO CKD 2024", url: "https://kdigo.org/guidelines/ckd-evaluation-and-management/" }]
-      },
-      {
-        difficulty: 2,
-        question: "Na hipercalemia grave com ECG alterado, qual ação imediata é prioritária?",
-        options: ["Resina via oral", "Gluconato de cálcio IV", "Furosemida oral", "Restrição hídrica"],
-        answer: 1,
-        explanation: "Cálcio IV estabiliza a membrana miocárdica rapidamente, reduzindo risco de arritmia fatal.",
-        refs: [{ label: "KDIGO AKI Guideline", url: "https://kdigo.org/guidelines/acute-kidney-injury/" }]
-      },
-      {
-        difficulty: 2,
-        question: "A classificação KDIGO de DRC integra quais componentes?",
-        options: ["Apenas TFG", "Apenas albuminúria", "TFG + albuminúria", "Sódio + potássio"],
-        answer: 2,
-        explanation: "O risco é estratificado em grade combinando categoria G (TFG) e A (albuminúria).",
-        refs: [{ label: "KDIGO CKD 2024", url: "https://kdigo.org/guidelines/ckd-evaluation-and-management/" }]
-      },
-      {
-        difficulty: 3,
-        question: "Qual achado de sedimento urinário sugere glomerulonefrite ativa?",
-        options: ["Cilindro hemático", "Células escamosas", "Bacteriúria isolada", "Cristal de oxalato"],
-        answer: 0,
-        explanation: "Cilindros hemáticos tipicamente indicam origem glomerular do sangramento e atividade inflamatória.",
-        refs: [{ label: "KDIGO Glomerular Diseases", url: "https://kdigo.org/guidelines/glomerular-diseases/" }]
-      },
-      {
-        difficulty: 4,
-        question: "Em diabético com DRC e albuminúria persistente apesar de IECA/BRA, qual opção tem boa evidência nefroprotetora adicional?",
-        options: ["iSGLT2 (se elegível)", "Aumentar proteína da dieta", "AINE diário", "Suspender bloqueio do SRAA"],
-        answer: 0,
-        explanation: "Ensaios como DAPA-CKD/EMPA-KIDNEY demonstraram redução de progressão renal com iSGLT2 em cenários apropriados.",
-        refs: [
-          { label: "DAPA-CKD (NEJM)", url: "https://www.nejm.org/doi/full/10.1056/NEJMoa2024816" },
-          { label: "EMPA-KIDNEY (NEJM)", url: "https://www.nejm.org/doi/full/10.1056/NEJMoa2204233" }
-        ]
-      },
-      {
-        difficulty: 5,
-        question: "No manejo da acidose metabólica da DRC, alvo frequente de bicarbonato sérico é aproximadamente:",
-        options: ["<18 mEq/L", "22–26 mEq/L", "30–34 mEq/L", "36 mEq/L"],
-        answer: 1,
-        explanation: "Geralmente busca-se manter bicarbonato em faixa normal/normal-baixa para reduzir complicações metabólicas.",
-        refs: [{ label: "KDIGO CKD 2024", url: "https://kdigo.org/guidelines/ckd-evaluation-and-management/" }]
-      },
-      {
-        difficulty: 6,
-        question: "Qual indicação clássica de diálise de urgência na IRA?",
-        options: ["Creatinina isoladamente aumentada", "Edema agudo de pulmão refratário", "Anemia normocítica", "Hiponatremia leve"],
-        answer: 1,
-        explanation: "Sobrecarga volêmica com falência respiratória refratária é indicação clássica de terapia renal substitutiva emergente.",
-        refs: [{ label: "KDIGO AKI Guideline", url: "https://kdigo.org/guidelines/acute-kidney-injury/" }]
-      },
-      {
-        difficulty: 7,
-        question: "No diferencial de hiponatremia, por que checar osmolaridade plasmática?",
-        options: ["Confirma SIADH sozinho", "Distingue hipo/iso/hipertônica", "Substitui avaliação clínica", "Não altera conduta"],
-        answer: 1,
-        explanation: "É etapa essencial para identificar mecanismo fisiopatológico e evitar pseudo-hiponatremia.",
-        refs: [{ label: "European Hyponatraemia Guideline", url: "https://academic.oup.com/ndt/article/29/suppl_2/i1/1843686" }]
-      },
-      {
-        difficulty: 8,
-        question: "Após transplante renal, conduta importante para reduzir nefrotoxicidade por inibidor de calcineurina é:",
-        options: ["Evitar monitorização", "Ajustar dose por níveis séricos", "Introduzir AINE contínuo", "Não controlar pressão"],
-        answer: 1,
-        explanation: "Monitorização terapêutica de níveis e ajuste posológico equilibram eficácia imunossupressora e segurança renal.",
-        refs: [{ label: "KDIGO Transplant Care", url: "https://kdigo.org/guidelines/transplant-recipient-care/" }]
-      }
+      { d:1, q:"Em DRC estável, exame inicial para rastrear albuminúria?", o:["ACR urinária em amostra isolada","Urocultura seriada","Urina de 24h para todos","Apenas creatinina"], a:0, e:"A relação albumina/creatinina em amostra isolada é método prático e recomendado.", r:["kdigo_ckd"] },
+      { d:1, q:"Classe de fármacos base para DRC albuminúrica?", o:["AINE","IECA/BRA","Macrolídeo","Benzodiazepínico"], a:1, e:"Bloqueio do SRAA reduz albuminúria e desacelera progressão em pacientes elegíveis.", r:["kdigo_ckd"] },
+      { d:1, q:"No estadiamento de DRC, KDIGO combina:", o:["Só TFG","Só proteinúria","TFG + albuminúria","Sódio + ureia"], a:2, e:"A estratificação de risco integra categoria G (TFG) e A (albuminúria).", r:["kdigo_ckd"] },
+      { d:2, q:"Hipercalemia grave com ECG alterado: primeira conduta?", o:["Bicarbonato oral","Gluconato de cálcio IV","Diurético oral","Resina isolada"], a:1, e:"Cálcio IV estabiliza membrana miocárdica e reduz risco de arritmia imediata.", r:["kdigo_aki"] },
+      { d:2, q:"Achado clássico de IRA pré-renal (sem diurético)?", o:["FENa >2%","FENa <1%","Urina isostenúrica fixa","Na urinário sempre >40"], a:1, e:"Na hipoperfusão pré-renal, o rim retém sódio e a FENa tende a ser baixa.", r:["kdigo_aki"] },
+      { d:2, q:"Indicação de iniciar iSGLT2 em DRC diabética visa principalmente:", o:["Aumentar apetite","Nefroproteção e redução CV","Substituir IECA universalmente","Elevar potássio"], a:1, e:"Estudos robustos mostram redução de progressão renal e eventos cardiovasculares.", r:["dapa","empa"] },
+      { d:2, q:"Na síndrome nefrítica ativa, sedimento sugestivo:", o:["Células escamosas","Cilindros hemáticos","Piúria isolada","Cristais de cistina"], a:1, e:"Cilindros hemáticos sugerem origem glomerular do sangramento.", r:["kdigo_gn"] },
+      { d:3, q:"Acidose metabólica crônica da DRC: alvo de bicarbonato geralmente:", o:["<18 mEq/L","22–26 mEq/L","30–35 mEq/L","~40 mEq/L"], a:1, e:"Manter bicarbonato na faixa normal/normal-baixa é prática usual.", r:["kdigo_ckd"] },
+      { d:3, q:"Complicação metabólica óssea comum na DRC avançada:", o:["PTH reduzido persistente","Fósforo e PTH elevados","Calcitriol espontaneamente alto","Hipofosfatemia universal"], a:1, e:"Retenção de fósforo e queda de calcitriol favorecem hiperparatireoidismo secundário.", r:["kdigo_mbd"] },
+      { d:3, q:"Na síndrome nefrótica, risco trombótico cresce quando:", o:["Albumina sérica muito baixa","Ureia levemente alta","pH urinário alcalino","IECA em uso"], a:0, e:"Hipoalbuminemia importante associa-se a hipercoagulabilidade em síndromes nefróticas.", r:["kdigo_gn"] },
+      { d:3, q:"No diferencial da hiponatremia, a osmolaridade plasmática serve para:", o:["Confirmar SIADH sozinha","Separar hipo/iso/hipertônica","Substituir exame clínico","Indicar diálise imediata"], a:1, e:"A osmolaridade ajuda a identificar mecanismo e evitar pseudo-hiponatremia.", r:["hypona"] },
+      { d:4, q:"Indicação clássica de diálise urgente na IRA:", o:["Creatinina 1,8 sem sintomas","Ureia discretamente alta","Edema agudo de pulmão refratário","Anemia normocítica"], a:2, e:"Sobrecarga volêmica com insuficiência respiratória refratária é indicação clássica.", r:["kdigo_aki"] },
+      { d:4, q:"Em anti-MBG rapidamente progressiva, manejo típico inclui:", o:["Apenas observação","Corticoterapia + imunossupressão ± plasmaférese","Só diurético","Antibiótico isolado"], a:1, e:"Conduta precoce agressiva pode preservar função renal em doença anti-MBG.", r:["kdigo_gn"] },
+      { d:4, q:"Qual medida reduz nefrotoxicidade de inibidor de calcineurina pós-transplante?", o:["Evitar monitorização","Ajustar dose por níveis séricos","AINE crônico","Suspender anti-hipertensivo"], a:1, e:"Monitorização farmacológica é essencial para equilíbrio entre eficácia e segurança.", r:["transplant"] },
+      { d:4, q:"Na DRC avançada, estratégia nutricional mais alinhada a diretrizes:", o:["Hiperproteica irrestrita","Proteína individualizada com suporte nutricional","Sem controle de sódio","Fósforo liberado"], a:1, e:"Planejamento nutricional individualizado melhora controle metabólico e uremia.", r:["kdoqi"] },
+      { d:5, q:"Em IRA intrínseca por necrose tubular aguda, padrão mais comum:", o:["FENa frequentemente >2%","FENa sempre <1%","Urina sem cilindros granulosos","Na urinário invariavelmente baixo"], a:0, e:"Na NTA, há perda de capacidade tubular de reabsorção de sódio em muitos casos.", r:["kdigo_aki"] },
+      { d:5, q:"Na DRC com albuminúria persistente apesar de IECA/BRA, estratégia adicional com evidência:", o:["iSGLT2 se elegível","AINE diário","Suspender todo anti-hipertensivo","Hiperproteína"], a:0, e:"Ensaios DAPA-CKD e EMPA-KIDNEY suportam benefício renal adicional.", r:["dapa","empa"] },
+      { d:5, q:"Na avaliação de DRC, tendência da TFG deve ser:", o:["Avaliou uma vez, basta","Monitorada longitudinalmente","Substituída por ureia","Ignorada se sem edema"], a:1, e:"A trajetória da TFG orienta risco e decisões terapêuticas.", r:["kdigo_ckd"] },
+      { d:5, q:"Qual critério favorece glomerulopatia membranosa primária sobre secundária?", o:["Ausência de anti-PLA2R sempre","Anti-PLA2R positivo + contexto compatível","Hemocultura positiva","Bacteriúria maciça"], a:1, e:"Anti-PLA2R positivo pode apoiar etiologia primária em cenário clínico adequado.", r:["kdigo_gn"] },
+      { d:5, q:"Meta pressórica em DRC deve ser definida:", o:["Sem relação com albuminúria","Pelo risco global e diretrizes","Apenas pela idade","Só pela ureia"], a:1, e:"Controle pressórico individualizado é pilar da nefroproteção.", r:["kdigo_ckd"] },
+      { d:6, q:"Paciente com DRC e hipercalemia recorrente em IECA/BRA: conduta geral moderna tende a:", o:["Suspender definitivamente em todos","Tentar manter benefício com estratégias de controle do K","Ignorar K elevado","Trocar por AINE"], a:1, e:"Quando possível, busca-se manter terapias nefroprotetoras com manejo da hipercalemia.", r:["kdigo_ckd"] },
+      { d:6, q:"Em SIADH, achado típico (após exclusões):", o:["Urina muito diluída persistente","Osm urinária inapropriadamente elevada","Hiperosmolaridade plasmática","Poliúria osmótica por glicose"], a:1, e:"SIADH costuma cursar com urina inadequadamente concentrada apesar de hiponatremia.", r:["hypona"] },
+      { d:6, q:"No transplante renal, monitorar função do enxerto inclui:", o:["Só pressão arterial","Creatinina/tendência + contexto clínico","Apenas peso","Somente urina 1 vez ao ano"], a:1, e:"Acompanhamento integrado detecta rejeição, toxicidade e complicações precoces.", r:["transplant"] },
+      { d:6, q:"Em DRC estágio avançado, vacinação é:", o:["Dispensável","Parte importante do cuidado global","Contraindicada por padrão","Feita só após diálise"], a:1, e:"Prevenção infecciosa integra cuidado longitudinal em doença renal crônica.", r:["kdigo_ckd"] },
+      { d:6, q:"Em suspeita de GN rapidamente progressiva, tempo para investigação/tratamento:", o:["Pode aguardar meses","É crítico e geralmente urgente","Apenas após diálise","Sem impacto prognóstico"], a:1, e:"Atraso pode levar à perda renal irreversível.", r:["kdigo_gn"] },
+      { d:7, q:"No DRC-MBD, monitorização laboratorial deve considerar:", o:["Só cálcio anual","Cálcio, fósforo, PTH e tendência clínica","Apenas vitamina C","Somente magnésio"], a:1, e:"O conjunto de marcadores orienta manejo individualizado do metabolismo mineral.", r:["kdigo_mbd"] },
+      { d:7, q:"A interpretação da albuminúria isolada deve considerar:", o:["Exercício, febre e contexto clínico","Somente sexo biológico","Somente idade","Nenhum fator transitório"], a:0, e:"Condições transitórias podem alterar albuminúria e exigir confirmação.", r:["kdigo_ckd"] },
+      { d:7, q:"Na DRC diabética, associação de iSGLT2 e bloqueio SRAA em elegíveis visa:", o:["Perda de massa óssea","Proteção cardiorrenal adicional","Eliminar monitorização","Substituir toda terapia"], a:1, e:"Estratégias combinadas podem trazer benefício incremental de desfechos.", r:["kdigo_ckd","dapa","empa"] },
+      { d:7, q:"Em hiponatremia crônica, correção rápida excessiva pode causar:", o:["Hipertensão pulmonar","Síndrome de desmielinização osmótica","Glomeruloesclerose imediata","Nefrocalcinose"], a:1, e:"A correção deve ser cautelosa para reduzir risco neurológico grave.", r:["hypona"] },
+      { d:7, q:"Em paciente com edema e proteinúria importante, abordagem inicial inclui:", o:["Apenas repouso","Avaliação etiológica + controle hemodinâmico e proteinúria","Somente antibiótico","AINE de rotina"], a:1, e:"É essencial tratar risco, causa e manifestações da síndrome glomerular.", r:["kdigo_gn"] },
+      { d:8, q:"Biópsia renal em DRC é indicada quando:", o:["Nunca é necessária","Achados mudam conduta/diagnóstico","Sempre em TFG <60","Somente por dor lombar"], a:1, e:"A biópsia é útil quando o resultado impacta tratamento e prognóstico.", r:["kdigo_gn"] },
+      { d:8, q:"No cuidado pré-diálise, decisão de iniciar TRS deve considerar:", o:["Apenas creatinina","Sintomas urêmicos, volume, eletrólitos e contexto global","Somente idade","Só hematócrito"], a:1, e:"Indicação é clínica e laboratorial integrada, não apenas um número isolado.", r:["kdigo_ckd"] },
+      { d:8, q:"Em proteinúria persistente, intervenção não farmacológica relevante:", o:["Sem restrição de sódio","Controle de sódio e estilo de vida","Aumentar ultraprocessados","Suspender atividade física para sempre"], a:1, e:"Medidas de estilo de vida e sódio potencializam tratamento farmacológico.", r:["kdoqi"] },
+      { d:8, q:"Em potássio elevado recorrente, além de fármacos, revisar:", o:["Apenas vitaminas","Dieta, substitutos de sal e medicamentos contribuintes","Somente ingestão hídrica","Apenas glicemia"], a:1, e:"Manejo multifatorial ajuda a manter terapias nefroprotetoras.", r:["kdigo_ckd"] },
+      { d:8, q:"No enxerto renal, queda aguda da função pede:", o:["Esperar resolução espontânea","Avaliação imediata de causas pré/intra/pós-renais e rejeição","Apenas diurético","Suspender toda imunossupressão"], a:1, e:"A avaliação precoce pode evitar dano irreversível ao enxerto.", r:["transplant"] },
+      { d:9, q:"Na DRC com doença cardiovascular, benefício de tratamento integrado ocorre por:", o:["Ação isolada em um fator","Controle simultâneo de PA, albuminúria, glicemia e estilo de vida","Somente redução de peso","Somente diurético"], a:1, e:"Abordagem multifatorial é central na redução de risco global.", r:["kdigo_ckd"] },
+      { d:9, q:"Em GN com crescentes, atraso terapêutico tende a:", o:["Não alterar desfecho","Aumentar risco de perda de função renal","Melhorar espontaneamente","Reduzir necessidade de monitorização"], a:1, e:"O tempo é determinante em doenças glomerulares agressivas.", r:["kdigo_gn"] },
+      { d:9, q:"Na avaliação da hiponatremia, volume extracelular é importante porque:", o:["Nunca muda conduta","Orienta etiologia e tratamento","Só importa no idoso","Substitui osmolaridade"], a:1, e:"A análise de volume orienta algoritmo diagnóstico e terapêutico.", r:["hypona"] },
+      { d:9, q:"No acompanhamento da DRC, educação do paciente é relevante para:", o:["Apenas adesão medicamentosa","Autocuidado, adesão e reconhecimento precoce de sinais de alarme","Evitar consultas","Reduzir hidratação"], a:1, e:"Educação melhora desfechos e engajamento no tratamento longitudinal.", r:["kdigo_ckd"] },
+      { d:10, q:"Na decisão de imunossupressão em glomerulopatias, deve-se ponderar:", o:["Só proteinúria do dia","Risco-benefício individual e perfil de atividade da doença","Somente idade","Apenas ultrassom"], a:1, e:"Estratificação individual evita sobretratamento e subtratamento.", r:["kdigo_gn"] },
+      { d:10, q:"Em DRC avançada, planejamento de TRS idealmente ocorre:", o:["Apenas em urgência dialítica","De forma antecipada e compartilhada","Somente após internação","Nunca antes de eGFR <5"], a:1, e:"Planejamento prévio melhora preparo, acesso e escolha informada.", r:["kdigo_ckd"] },
+      { d:10, q:"Uso de calcineurínico pós-transplante exige vigilância por risco de:", o:["Apenas tosse seca","Nefrotoxicidade e ajuste terapêutico fino","Hipoglicemia grave universal","Anúria fisiológica"], a:1, e:"Janela terapêutica estreita requer monitorização laboratorial regular.", r:["transplant"] },
+      { d:10, q:"Em DRC, descontinuidade de seguimento está associada a:", o:["Menor risco","Pior controle de fatores de progressão","Indiferença clínica","Curva estável obrigatória"], a:1, e:"Seguimento estruturado é crucial para retardar progressão e complicações.", r:["kdigo_ckd"] },
+      { d:11, q:"Correção de hiponatremia com alvo excessivo em 24h aumenta risco de:", o:["Hipotireoidismo","Lesão osmótica neurológica","Nefrite intersticial","Rabdomiólise renal específica"], a:1, e:"A velocidade de correção é determinante para segurança neurológica.", r:["hypona"] },
+      { d:11, q:"No manejo avançado de DRC, integração nefro-cardio-endócrino é útil por:", o:["Duplicar exames sem ganho","Sinergia terapêutica em risco cardiorrenal","Eliminar necessidade de nefrologista","Substituir diretrizes"], a:1, e:"Convergência de terapias melhora desfechos em múltiplos eixos.", r:["kdigo_ckd"] },
+      { d:11, q:"Em suspeita de recorrência de doença glomerular no enxerto, conduta:", o:["Ignorar biópsia","Investigar precocemente com abordagem dirigida","Tratar empiricamente sem avaliação","Suspender toda terapia de base"], a:1, e:"Diagnóstico etiológico precoce orienta intervenção e preservação do enxerto.", r:["transplant","kdigo_gn"] },
+      { d:11, q:"Monitorização de albuminúria após intervenção terapêutica serve para:", o:["Sem valor prognóstico","Avaliar resposta e risco residual","Apenas confirmar coleta","Excluir DRC"], a:1, e:"Mudanças na albuminúria podem refletir resposta terapêutica e prognóstico.", r:["kdigo_ckd"] },
+      { d:12, q:"Na abordagem personalizada da DRC, o conceito-chave é:", o:["Tratamento único para todos","Estratificação de risco e terapia individualizada","Sem necessidade de metas","Foco exclusivo em ureia"], a:1, e:"Individualizar conforme risco, comorbidades e preferências melhora resultados.", r:["kdigo_ckd"] },
+      { d:12, q:"Diante de IRA complexa em paciente crítico, estratégia adequada inclui:", o:["Decisão isolada sem contexto","Reavaliação dinâmica hemodinâmica/metabólica e timing de TRS","Só repetir creatinina","Aguardar anúria completa"], a:1, e:"A IRA crítica exige avaliação contínua e decisões adaptativas.", r:["kdigo_aki"] },
+      { d:12, q:"Meta central do cuidado nefrológico moderno:", o:["Tratar laboratório isolado","Reduzir progressão, eventos CV e melhorar qualidade de vida","Aumentar intervenções sem alvo","Evitar educação do paciente"], a:1, e:"O foco é desfecho clínico significativo e cuidado centrado no paciente.", r:["kdigo_ckd"] },
+      { d:12, q:"Em glomerulopatias raras, decisão terapêutica ideal combina:", o:["Apenas opinião isolada","Diretriz, evidência, biópsia e contexto clínico individual","Exclusivamente creatinina","Somente sintoma de edema"], a:1, e:"Integração de dados aumenta precisão diagnóstica e terapêutica.", r:["kdigo_gn"] }
     ];
+
+    const itemTable = {
+      weapon: [
+        { n:"Bisturi Basal", rar:"common", atk:2, def:0, kno:1, luck:0 },
+        { n:"Lâmina Glomerular", rar:"rare", atk:5, def:1, kno:2, luck:1 },
+        { n:"Espada da Filtração", rar:"epic", atk:9, def:2, kno:3, luck:1 },
+        { n:"Excalibur Nefrônica", rar:"legendary", atk:14, def:3, kno:5, luck:3 }
+      ],
+      armor: [
+        { n:"Avental de Residência", rar:"common", atk:0, def:2, kno:1, luck:0 },
+        { n:"Peitoral Renocortical", rar:"rare", atk:1, def:5, kno:2, luck:0 },
+        { n:"Armadura da Alça de Henle", rar:"epic", atk:2, def:8, kno:2, luck:1 },
+        { n:"Égide do Néfron", rar:"legendary", atk:3, def:12, kno:3, luck:2 }
+      ],
+      artifact: [
+        { n:"Anel de Creatinina", rar:"common", atk:0, def:0, kno:2, luck:1 },
+        { n:"Amuleto de KDIGO", rar:"rare", atk:1, def:1, kno:4, luck:1 },
+        { n:"Orbe da Albuminúria", rar:"epic", atk:2, def:2, kno:6, luck:2 },
+        { n:"Relíquia da Nefroproteção", rar:"legendary", atk:3, def:3, kno:9, luck:4 }
+      ]
+    };
+
+    const rarityWeight = ["common","common","common","rare","rare","epic","legendary"];
+    const rarityOrder = { common:1, rare:2, epic:3, legendary:4 };
 
     const state = {
       level: 1,
+      xp: 0,
+      xpToNext: 120,
       score: 0,
       lives: 3,
+      streak: 0,
+      gold: 0,
       used: new Set(),
       current: null,
-      answered: false
+      answered: false,
+      equipment: {
+        weapon: { n:"Punhos Clínicos", rar:"common", atk:0, def:0, kno:0, luck:0 },
+        armor: { n:"Jaleco Básico", rar:"common", atk:0, def:1, kno:0, luck:0 },
+        artifact: { n:"Crachá de Interno", rar:"common", atk:0, def:0, kno:1, luck:0 }
+      }
     };
 
     const $ = (id) => document.getElementById(id);
-    const levelEl = $("level");
-    const scoreEl = $("score");
-    const recordEl = $("record");
-    const livesEl = $("lives");
-    const questionEl = $("question");
-    const optionsEl = $("options");
-    const feedbackEl = $("feedback");
-    const sourceBoxEl = $("sourceBox");
-    const nextBtn = $("nextBtn");
-    const restartBtn = $("restartBtn");
+    const ui = {
+      level: $("level"), record: $("record"), score: $("score"), lives: $("lives"),
+      heroTitle: $("heroTitle"), avatar: $("avatar"), xpFill: $("xpFill"), xpText: $("xpText"),
+      atk: $("statAtk"), def: $("statDef"), kno: $("statKno"), luck: $("statLuck"),
+      gold: $("gold"), streak: $("streak"), equipGrid: $("equipGrid"), lootLog: $("lootLog"),
+      question: $("question"), options: $("options"), feedback: $("feedback"), refs: $("refs"),
+      nextBtn: $("nextBtn"), restartBtn: $("restartBtn")
+    };
 
     const getRecord = () => Number(localStorage.getItem("nefroquest-record") || 0);
     const setRecord = (v) => localStorage.setItem("nefroquest-record", String(v));
 
-    function updateHUD() {
-      levelEl.textContent = state.level;
-      scoreEl.textContent = state.score;
-      livesEl.textContent = "❤".repeat(state.lives) + "♡".repeat(3 - state.lives);
-      recordEl.textContent = getRecord();
+    function totalStats() {
+      return Object.values(state.equipment).reduce((acc, it) => {
+        acc.atk += it.atk; acc.def += it.def; acc.kno += it.kno; acc.luck += it.luck;
+        return acc;
+      }, { atk:0, def:0, kno:0, luck:0 });
     }
 
-    function pickQuestion() {
-      const maxDifficulty = Math.min(8, state.level);
-      let pool = questions
-        .map((q, idx) => ({ ...q, idx }))
-        .filter((q) => q.difficulty <= maxDifficulty && !state.used.has(q.idx));
+    function heroRank() {
+      if (state.level >= 18) return "Arqui-Mestre dos Néfrons";
+      if (state.level >= 14) return "Lorde da Filtração";
+      if (state.level >= 10) return "Especialista Glomerular";
+      if (state.level >= 6) return "Residente Renal";
+      return "Aprendiz do Néfron";
+    }
 
+    function avatarEmoji() {
+      if (state.level >= 16) return "🛡️";
+      if (state.level >= 11) return "⚡";
+      if (state.level >= 7) return "🧪";
+      return "🧙";
+    }
+
+    function renderEquipment() {
+      const slots = [
+        ["weapon", "⚔️ Arma"],
+        ["armor", "🛡️ Armadura"],
+        ["artifact", "🔮 Artefato"]
+      ];
+      ui.equipGrid.innerHTML = slots.map(([k, title]) => {
+        const it = state.equipment[k];
+        return `<div class="slot"><strong>${title}:</strong> <span class="rarity-${it.rar}">${it.n}</span><br><small>ATK ${it.atk} | DEF ${it.def} | CONH ${it.kno} | SORTE ${it.luck}</small></div>`;
+      }).join("");
+    }
+
+    function renderHUD() {
+      const st = totalStats();
+      ui.level.textContent = state.level;
+      ui.record.textContent = getRecord();
+      ui.score.textContent = state.score;
+      ui.lives.textContent = "❤".repeat(Math.max(0, state.lives)) + "♡".repeat(3 - Math.max(0, state.lives));
+      ui.heroTitle.textContent = heroRank();
+      ui.avatar.textContent = avatarEmoji();
+      ui.avatar.classList.toggle("legendary", state.level >= 14);
+      ui.xpFill.style.width = `${Math.min(100, (state.xp / state.xpToNext) * 100)}%`;
+      ui.xpText.textContent = `XP ${state.xp} / ${state.xpToNext}`;
+      ui.atk.textContent = st.atk;
+      ui.def.textContent = st.def;
+      ui.kno.textContent = st.kno;
+      ui.luck.textContent = st.luck;
+      ui.gold.textContent = state.gold;
+      ui.streak.textContent = state.streak;
+      renderEquipment();
+    }
+
+    function chooseQuestion() {
+      const cap = Math.min(12, Math.ceil(state.level / 1.5) + 1);
+      let pool = questions.map((q, idx) => ({ ...q, idx })).filter(q => q.d <= cap && !state.used.has(q.idx));
       if (!pool.length) {
         state.used.clear();
-        pool = questions
-          .map((q, idx) => ({ ...q, idx }))
-          .filter((q) => q.difficulty <= maxDifficulty);
+        pool = questions.map((q, idx) => ({ ...q, idx })).filter(q => q.d <= cap);
       }
-
       const selected = pool[Math.floor(Math.random() * pool.length)];
       state.used.add(selected.idx);
       return selected;
     }
 
-    function renderReferences(refs = []) {
-      if (!refs.length) {
-        sourceBoxEl.innerHTML = "";
+    function renderRefs(refKeys = []) {
+      if (!refKeys.length) {
+        ui.refs.innerHTML = "";
         return;
       }
-
-      const list = refs
-        .map((r) => `<li><a href="${r.url}" target="_blank" rel="noopener noreferrer">${r.label}</a></li>`)
-        .join("");
-      sourceBoxEl.innerHTML = `<strong>Referências (link ao final da explicação):</strong><ul>${list}</ul>`;
+      const list = refKeys.map((k) => {
+        const ref = referenceMap[k];
+        return `<li><a href="${ref.url}" target="_blank" rel="noopener noreferrer">${ref.label}</a></li>`;
+      }).join("");
+      ui.refs.innerHTML = `<strong>Referências (links ao final da explicação):</strong><ul>${list}</ul>`;
     }
 
     function renderQuestion() {
       state.answered = false;
-      state.current = pickQuestion();
+      state.current = chooseQuestion();
+      ui.question.textContent = `[Nível ${state.level} | Dificuldade ${state.current.d}] ${state.current.q}`;
+      ui.options.innerHTML = "";
+      ui.feedback.className = "feedback";
+      ui.feedback.textContent = "Escolha sua resposta para ganhar XP, ouro e loot.";
+      renderRefs(state.current.r);
+      ui.nextBtn.classList.add("hidden");
+      ui.restartBtn.classList.add("hidden");
 
-      questionEl.textContent = `[Nível ${state.level} | Dificuldade ${state.current.difficulty}] ${state.current.question}`;
-      optionsEl.innerHTML = "";
-      feedbackEl.className = "feedback";
-      feedbackEl.textContent = "Escolha uma alternativa.";
-      renderReferences(state.current.refs);
-
-      nextBtn.classList.add("hidden");
-      restartBtn.classList.add("hidden");
-
-      state.current.options.forEach((opt, idx) => {
+      state.current.o.forEach((opt, idx) => {
         const btn = document.createElement("button");
         btn.className = "option";
         btn.type = "button";
         btn.textContent = `${String.fromCharCode(65 + idx)}) ${opt}`;
         btn.addEventListener("click", () => answer(idx, btn));
-        optionsEl.appendChild(btn);
+        ui.options.appendChild(btn);
       });
     }
 
-    function answer(index, clickedButton) {
+    function rollRarity(luckBonus = 0) {
+      const extra = Math.min(2, Math.floor(luckBonus / 6));
+      const pool = [...rarityWeight, ...(extra ? ["rare","epic"].slice(0, extra) : [])];
+      return pool[Math.floor(Math.random() * pool.length)];
+    }
+
+    function rollItem(diff, luck) {
+      const slotKeys = Object.keys(itemTable);
+      const slot = slotKeys[Math.floor(Math.random() * slotKeys.length)];
+      let items = itemTable[slot];
+      const rar = rollRarity(luck + diff);
+      items = items.filter(it => it.rar === rar);
+      return { slot, item: items[Math.floor(Math.random() * items.length)] };
+    }
+
+    function tryEquip(slot, newItem) {
+      const old = state.equipment[slot];
+      const oldPower = old.atk + old.def + old.kno + old.luck + rarityOrder[old.rar];
+      const newPower = newItem.atk + newItem.def + newItem.kno + newItem.luck + rarityOrder[newItem.rar];
+      if (newPower > oldPower) {
+        state.equipment[slot] = newItem;
+        return `⬆️ Equipado: ${newItem.n} (${slot})`;
+      }
+      const salvage = 20 + newPower * 3;
+      state.gold += salvage;
+      return `💰 Item ${newItem.n} convertido em ${salvage} ouro.`;
+    }
+
+    function gainXP(amount) {
+      state.xp += amount;
+      let ups = 0;
+      while (state.xp >= state.xpToNext) {
+        state.xp -= state.xpToNext;
+        state.level += 1;
+        state.xpToNext = Math.floor(state.xpToNext * 1.16);
+        ups += 1;
+        if (state.level % 5 === 0 && state.lives < 3) state.lives += 1;
+      }
+      return ups;
+    }
+
+    function answer(index, clicked) {
       if (state.answered) return;
       state.answered = true;
+      const st = totalStats();
 
       const buttons = [...document.querySelectorAll(".option")];
-      buttons.forEach((b) => (b.disabled = true));
+      buttons.forEach(b => b.disabled = true);
 
-      const correct = state.current.answer;
+      const correct = state.current.a;
       buttons[correct].classList.add("correct");
 
       if (index === correct) {
-        state.score += 120 + state.current.difficulty * 25;
-        state.level += 1;
-        feedbackEl.className = "feedback good";
-        feedbackEl.textContent = `✅ Correto! ${state.current.explanation}`;
+        state.streak += 1;
+        const xpGain = 35 + state.current.d * 12 + state.streak * 4 + st.kno * 2;
+        const goldGain = 14 + state.current.d * 5 + Math.floor(st.luck / 2);
+        state.score += 120 + state.current.d * 24 + st.atk + state.streak * 8;
+        state.gold += goldGain;
+
+        const lvlUps = gainXP(xpGain);
+        let lootMsg = "";
+        const dropChance = Math.min(0.9, 0.38 + state.current.d * 0.04 + st.luck * 0.01);
+        if (Math.random() < dropChance) {
+          const drop = rollItem(state.current.d, st.luck);
+          lootMsg = tryEquip(drop.slot, drop.item);
+          ui.lootLog.textContent = `Drop: ${drop.item.n} [${drop.item.rar}] • ${lootMsg}`;
+        } else {
+          ui.lootLog.textContent = `Sem drop desta vez. Continue a streak para melhorar chances.`;
+        }
+
+        ui.feedback.className = "feedback good";
+        ui.feedback.textContent = `✅ Correto! ${state.current.e} +${xpGain} XP, +${goldGain} ouro.${lvlUps ? ` Level Up x${lvlUps}!` : ""} ${lootMsg}`;
       } else {
-        state.lives -= 1;
-        clickedButton.classList.add("wrong");
-        feedbackEl.className = "feedback bad";
-        feedbackEl.textContent = `❌ Não foi dessa vez. ${state.current.explanation}`;
+        state.streak = 0;
+        const blockChance = Math.min(0.4, st.def * 0.015);
+        const blocked = Math.random() < blockChance;
+        clicked.classList.add("wrong");
+        if (!blocked) state.lives -= 1;
+        state.score = Math.max(0, state.score - (35 - Math.min(25, st.def)));
+
+        ui.feedback.className = "feedback bad";
+        ui.feedback.textContent = blocked
+          ? `🛡️ Errou, mas sua defesa absorveu o dano! ${state.current.e}`
+          : `❌ Errou. ${state.current.e}`;
       }
 
-      updateHUD();
-
+      renderHUD();
       if (state.lives <= 0) {
-        finish();
+        finishGame();
       } else {
-        nextBtn.classList.remove("hidden");
+        ui.nextBtn.classList.remove("hidden");
       }
     }
 
-    function finish() {
-      const best = getRecord();
-      if (state.score > best) setRecord(state.score);
-
-      questionEl.textContent = `Fim de jogo! Você chegou ao nível ${state.level} com ${state.score} pontos.`;
-      optionsEl.innerHTML = "";
-      feedbackEl.className = "feedback";
-      feedbackEl.textContent = "Você usou as 3 chances de erro. Clique em 'Jogar novamente' para tentar bater seu recorde.";
-
-      renderReferences([
-        { label: "KDIGO Guidelines (portal)", url: "https://kdigo.org/guidelines/" },
-        { label: "NEJM - DAPA-CKD", url: "https://www.nejm.org/doi/full/10.1056/NEJMoa2024816" },
-        { label: "NEJM - EMPA-KIDNEY", url: "https://www.nejm.org/doi/full/10.1056/NEJMoa2204233" }
-      ]);
-
-      nextBtn.classList.add("hidden");
-      restartBtn.classList.remove("hidden");
-      updateHUD();
+    function finishGame() {
+      if (state.score > getRecord()) setRecord(state.score);
+      ui.question.textContent = `Fim da jornada! Você chegou ao nível ${state.level} com ${state.score} pontos e ${state.gold} ouro.`;
+      ui.options.innerHTML = "";
+      ui.feedback.className = "feedback";
+      ui.feedback.textContent = "Suas 3 vidas acabaram. Recomece para montar um set lendário ainda melhor.";
+      renderRefs(["kdigo_ckd","kdigo_aki","kdigo_gn","dapa","empa","transplant"]);
+      ui.nextBtn.classList.add("hidden");
+      ui.restartBtn.classList.remove("hidden");
+      renderHUD();
     }
 
-    nextBtn.addEventListener("click", renderQuestion);
-    restartBtn.addEventListener("click", () => {
+    function resetGame() {
       state.level = 1;
+      state.xp = 0;
+      state.xpToNext = 120;
       state.score = 0;
       state.lives = 3;
+      state.streak = 0;
+      state.gold = 0;
       state.used.clear();
+      state.equipment = {
+        weapon: { n:"Punhos Clínicos", rar:"common", atk:0, def:0, kno:0, luck:0 },
+        armor: { n:"Jaleco Básico", rar:"common", atk:0, def:1, kno:0, luck:0 },
+        artifact: { n:"Crachá de Interno", rar:"common", atk:0, def:0, kno:1, luck:0 }
+      };
+      ui.lootLog.textContent = "Nenhum loot ainda. Acerte para dropar itens.";
+      renderHUD();
       renderQuestion();
-      updateHUD();
-    });
+    }
 
-    updateHUD();
+    ui.nextBtn.addEventListener("click", renderQuestion);
+    ui.restartBtn.addEventListener("click", resetGame);
+
+    renderHUD();
     renderQuestion();
   </script>
 </body>
