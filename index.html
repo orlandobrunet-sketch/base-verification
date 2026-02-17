@@ -199,6 +199,10 @@
     .stat-badge .stat-tip { display:none; position:fixed; background:linear-gradient(180deg,#1a2a4a,#0e1830); border:1px solid var(--gold); border-radius:8px; padding:10px 14px; font-size:0.75rem; color:#d5e2ff; white-space:nowrap; z-index:9999; box-shadow:0 6px 24px rgba(0,0,0,0.8); pointer-events:none; max-width:300px; white-space:normal; line-height:1.4; }
     .stat-badge:hover .stat-tip { display:block; }
     .stat-tip strong { color:var(--gold); display:block; margin-bottom:4px; font-size:0.82rem; }
+    /* Tooltip de item */
+    .item-with-tooltip { cursor:help; position:relative; }
+    .item-tooltip { display:none; position:fixed; background:linear-gradient(180deg,#1a2a4a,#0e1830); border:2px solid var(--gold); border-radius:10px; padding:12px 16px; font-size:0.8rem; color:#d5e2ff; z-index:9999; box-shadow:0 8px 32px rgba(0,0,0,0.9); pointer-events:none; max-width:280px; line-height:1.5; }
+    .item-tooltip strong { color:var(--gold); display:block; margin-bottom:6px; font-size:0.9rem; font-family:'Cinzel',serif; }
     /* Botão desabilitado */
     .btn.disabled { opacity:0.4; cursor:not-allowed; filter:grayscale(0.6); pointer-events:none; }
     /* Popup de forja */
@@ -1095,6 +1099,23 @@
       "Orbe da Cistatina": "assets/items/orbe_cistatina.jpg",
       "Relíquia do Título": "assets/items/reliquia_titulo.jpg"
     };
+    const itemDescriptions = {
+      "Caneta do Interno": "A humilde caneta de um interno iniciante. Suas anotações são a primeira linha de defesa contra o caos renal.",
+      "Lâmina da Alça": "Forjada na Alça de Henle, esta arma canaliza o poder da concentração urinária para atacar os males renais.",
+      "Lança Glomerular": "Imbuída com a força dos glomérulos, perfura as barreiras da doença com precisão cirúrgica.",
+      "Espada Nefroprotetora": "Uma lâmina lendária que corta através da fibrose e protege os néfrons da destruição.",
+      "Excalibur do Néfron": "A arma suprema dos guardiões renais. Apenas os mais sábios podem empunhar seu poder de cura absoluta.",
+      "Túnica de Residência": "O manto básico de todo residente. Oferece proteção mínima, mas representa o início da jornada.",
+      "Jaleco de Plantão": "Testado em incontáveis plantões, absorve o cansaço e protege contra os golpes da exaustão.",
+      "Manto Renocortical": "Tecido com fibras do córtex renal, oferece defesa contra toxinas e agressões metabólicas.",
+      "Égide Dialítica": "Armadura forjada nas chamas da diálise. Purifica ataques tóxicos antes que atinjam seu portador.",
+      "Armadura Primeva": "A armadura ancestral dos Nefromantes. Concede imunidade contra todas as formas de injúria renal aguda.",
+      "Insígnia do Plantão": "Um símbolo de dedicação médica. Aumenta o conhecimento através da experiência clínica diária.",
+      "Anel Albuminúrico": "Detecta a presença de proteinúria no ar. Quanto maior a albuminúria, mais brilha sua gema.",
+      "Sigilo KDIGO": "Selo sagrado das diretrizes KDIGO. Concede sabedoria ancestral sobre manejo de doença renal crônica.",
+      "Orbe da Cistatina": "Uma esfera cristalina que mede a verdadeira filtração glomerular. Revela segredos ocultos da função renal.",
+      "Relíquia do Título": "O cálice sagrado dos nefrologistas titulados. Concede maestria absoluta sobre todos os mistérios renais."
+    };
     const slotLabels = {weapon:'Arma', armor:'Armadura', relic:'Relíquia'};
     const defaultIcons = {weapon:'assets/items/caneta_interno.jpg', armor:'assets/items/tunica_residencia.jpg', relic:'assets/items/insignia_plantao.jpg'};
 
@@ -1108,8 +1129,9 @@
       const st=total();
       ui.equipList.innerHTML=Object.entries(state.equipment).map(([k,v])=>{
         const icon = itemIcons[v.n] || defaultIcons[k];
+        const desc = itemDescriptions[v.n] || '';
         return `<div class='slot'>
-          <img class='slot-icon' src='${icon}' alt='${v.n}'/>
+          <img class='slot-icon item-with-tooltip' src='${icon}' alt='${v.n}' data-item-name='${v.n}' data-item-desc='${desc}'/>
           <div class='slot-info'>
             <div class='slot-name'><span class='rar-${v.rar}'>${v.n}</span></div>
             <div class='slot-stats'>
@@ -1618,6 +1640,29 @@
       // Se não cabe acima, coloca abaixo
       if(rect.top - tip.offsetHeight - 8 < 10){
         tip.style.top = (rect.bottom + 8) + 'px';
+      }
+    });
+
+    // Tooltip de item ao passar mouse
+    let itemTooltip = null;
+    document.addEventListener('mousemove', function(e){
+      const item = e.target.closest('.item-with-tooltip');
+      if(item){
+        if(!itemTooltip){
+          itemTooltip = document.createElement('div');
+          itemTooltip.className = 'item-tooltip';
+          document.body.appendChild(itemTooltip);
+        }
+        const name = item.getAttribute('data-item-name');
+        const desc = item.getAttribute('data-item-desc');
+        itemTooltip.innerHTML = `<strong>${name}</strong>${desc}`;
+        itemTooltip.style.display = 'block';
+        const x = Math.min(e.clientX + 15, window.innerWidth - 290);
+        const y = Math.max(10, e.clientY - 60);
+        itemTooltip.style.left = x + 'px';
+        itemTooltip.style.top = y + 'px';
+      } else if(itemTooltip){
+        itemTooltip.style.display = 'none';
       }
     });
   </script>
