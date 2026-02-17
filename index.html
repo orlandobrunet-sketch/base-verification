@@ -109,7 +109,7 @@
       position: relative; width: 88px; height: 88px; flex-shrink: 0;
     }
     .portrait {
-      width: 88px; height: 88px; border-radius: 50%;
+      width: 88px; height: 88px; border-radius: 12px;
       object-fit: cover; object-position: center 25%;
       border: 3px solid var(--gold-dark);
       background: #070d1d; transition: all 0.3s;
@@ -484,7 +484,7 @@
       <div class="hero">
         <div class="hero-wrap">
           <div class="portrait-frame">
-            <img id="heroImg" class="portrait" src="assets/classes/clerigo_renal_nivel_1.png" alt="Herói" />
+            <img id="heroImg" class="portrait" src="assets/classes/clerigo_renal/nivel_01.jpg" alt="Herói" />
           </div>
           <div class="hero-info">
             <div id="heroClass" class="class">Noviço da Filtração</div>
@@ -551,28 +551,22 @@
       <h2>Escolha seu Personagem</h2>
       <div class="char-grid">
         <div class="char-card" onclick="selectCharacter('nephros')">
-          <img src="assets/classes/clerigo_renal_nivel_1.png" alt="Dr. Nephros">
+          <img src="assets/classes/clerigo_renal/nivel_01.jpg" alt="Dr. Nephros">
           <h3>Dr. Nephros</h3>
           <p class="char-subtitle">Guardião dos Néfrons</p>
           <p class="char-desc">Equilíbrio e sabedoria. Bônus: +2 Conhecimento</p>
         </div>
         <div class="char-card" onclick="selectCharacter('aquaria')">
-          <img src="assets/classes/curadora_hidrica_nivel_1.png" alt="Dra. Aquaria">
+          <img src="assets/classes/maga_metabolica/nivel_01.jpg" alt="Dra. Aquaria">
           <h3>Dra. Aquaria</h3>
           <p class="char-subtitle">Mestra das Águas</p>
           <p class="char-desc">Cura e regeneração. Bônus: +2 Defesa</p>
         </div>
         <div class="char-card" onclick="selectCharacter('glomerulus')">
-          <img src="assets/classes/biologo_nefrologico_nivel_1.png" alt="Dr. Glomerulus">
+          <img src="assets/classes/guerreiro_glomerular/nivel_01.jpg" alt="Dr. Glomerulus">
           <h3>Dr. Glomerulus</h3>
           <p class="char-subtitle">Cientista Renal</p>
-          <p class="char-desc">Conhecimento e precisão. Bônus: +3 Conhecimento</p>
-        </div>
-        <div class="char-card" onclick="selectCharacter('homeostasis')">
-          <img src="assets/classes/guardia_equilibrio_nivel_1.png" alt="Dra. Homeostasis">
-          <h3>Dra. Homeostasis</h3>
-          <p class="char-subtitle">A Equilibrista</p>
-          <p class="char-desc">Harmonia total. Bônus: +1 ATK, +1 DEF, +1 Sorte</p>
+          <p class="char-desc">Força e precisão. Bônus: +2 Ataque, +1 Conhecimento</p>
         </div>
       </div>
     </div>
@@ -1012,22 +1006,15 @@
         id: 'aquaria',
         name: 'Dra. Aquaria',
         title: 'Mestra das Águas',
-        folder: 'curadora_hidrica',
+        folder: 'maga_metabolica',
         bonusAtk: 0, bonusDef: 2, bonusKno: 0, bonusLuck: 0
       },
       glomerulus: {
         id: 'glomerulus',
         name: 'Dr. Glomerulus',
         title: 'Cientista Renal',
-        folder: 'biologo_nefrologico',
-        bonusAtk: 0, bonusDef: 0, bonusKno: 3, bonusLuck: 0
-      },
-      homeostasis: {
-        id: 'homeostasis',
-        name: 'Dra. Homeostasis',
-        title: 'A Equilibrista',
-        folder: 'guardia_equilibrio',
-        bonusAtk: 1, bonusDef: 1, bonusKno: 0, bonusLuck: 1
+        folder: 'guerreiro_glomerular',
+        bonusAtk: 2, bonusDef: 0, bonusKno: 1, bonusLuck: 0
       }
     };
 
@@ -1064,15 +1051,25 @@
 
     function heroMeta(){
       const titles = {
-        16: ["Arquimago do Néfron", 'assets/hero-tier5.svg', 'l5', "O Soberano da Homeostase"],
-        12: ["Lenda Cardiorrenal", 'assets/hero-tier4.svg', 'l4', "O Mestre do Equilíbrio Vital"],
-        8: ["Mestre das Glomerulopatias", 'assets/hero-tier3.svg', 'l3', "O Guardador dos Glomérulos"],
-        5: ["Guardião da Nefroproteção", 'assets/hero-tier2.svg', 'l2', "O Defensor dos Néfrons"],
-        1: ["Noviço da Filtração", 'assets/hero-tier1.svg', '', "O Iniciante das Águas"]
+        16: ["Arquimago do Néfron", '', 'l5', "O Soberano da Homeostase"],
+        12: ["Lenda Cardiorrenal", '', 'l4', "O Mestre do Equilíbrio Vital"],
+        8: ["Mestre das Glomerulopatias", '', 'l3', "O Guardador dos Glomérulos"],
+        5: ["Guardião da Nefroprotecção", '', 'l2', "O Defensor dos Néfrons"],
+        1: ["Noviço da Filtração", '', '', "O Iniciante das Águas"]
       };
+      
+      // Calcular imagem de evolução baseada no nível (1-10)
+      const char = characters[state.character];
+      const evolutionLevel = Math.min(10, Math.max(1, state.level));
+      const charImg = `assets/classes/${char.folder}/nivel_${evolutionLevel.toString().padStart(2,'0')}.jpg`;
+      
       for(const [lv, data] of Object.entries(titles).sort((a,b) => b[0]-a[0])) {
-        if(state.level >= parseInt(lv)) return data;
+        if(state.level >= parseInt(lv)) {
+          data[1] = charImg; // Substituir imagem pelo avatar evoluído
+          return data;
+        }
       }
+      titles[1][1] = charImg;
       return titles[1];
     }
 
