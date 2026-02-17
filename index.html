@@ -144,15 +144,12 @@
   <main class="app">
     <section class="panel left">
       <h1>NefroQuest: Ascencion</h1>
-      <p class="sub">Capítulos, equipamentos e decisões clínicas de alta complexidade.</p>
-
-      <div class="hero">
+            <div class="hero">
         <div class="hero-wrap">
           <img id="heroImg" class="portrait" src="assets/hero-tier1.svg" alt="Herói" />
           <div>
             <div id="heroClass" class="class">Noviço da Filtração</div>
-            <small id="heroFlavor">"Cada néfron salvo é uma vitória."</small>
-          </div>
+                      </div>
         </div>
         <div class="xp"><div id="xpFill"></div></div>
         <small id="xpTxt">XP 0 / 120</small>
@@ -231,6 +228,7 @@
     const topics = [
       {t:"confirmação de DRC com eGFR limítrofe",c:"dosar cistatina C e considerar equação combinada",d:["usar apenas ureia para estadiar","clearance 24h como padrão ouro em todo ambulatório","indicar biópsia sem critérios"],e:"A cistatina C combinada à creatinina melhora acurácia em cenários limítrofes.",r:["kdigo_ckd"]},
       {t:"uso de Cockcroft-Gault",c:"reconhecer desuso para estadiamento, mantendo utilidade para dose de alguns fármacos",d:["substituir CKD-EPI em todo paciente","usar para classificar albuminúria","descartar totalmente em qualquer contexto"],e:"Ainda há utilidade pontual para ajuste de dose de algumas medicações.",r:["kdigo_ckd"]},
+      {t:"interpretação de cistatina C",c:"integrar com creatinina e contexto inflamatório/tireoidiano",d:["usar exclusivamente em urina 24h","assumir independência de fatores extra-renais","substituir avaliação clínica"],e:"Cistatina C é útil, porém sofre influências clínicas relevantes.",r:["kdigo_ckd"]},
       {t:"DRC diabética com proteinúria",c:"manter IECA/BRA se tolerado",d:["AINE contínuo","suspender anti-hipertensivos para perfusão renal","corticosteroide rotineiro"],e:"Bloqueio SRAA é pilar em proteinúria diabética.",r:["kdigo_ckd"]},
       {t:"monitorização de iSGLT2",c:"vigiar infecções genitais e cetoacidose euglicêmica",d:["foco principal em hipercalcemia","ausência de efeitos adversos relevantes","suspender em todo dip inicial"],e:"Benefício cardiorrenal robusto com perfil de segurança conhecido.",r:["dapa","empa"]},
       {t:"finerenona na DRC diabética",c:"considerar em DM2 com albuminúria residual apesar de IECA/BRA",d:["usar em albuminúria sem DM indiscriminadamente","evitar sempre com SRAA","iniciar sem monitorar potássio"],e:"Evidências centrais em DM2 albuminúrico com vigilância de K.",r:["kdigo_ckd"]},
@@ -238,8 +236,17 @@
       {t:"diferencial de hiponatremia",c:"avaliar osmolaridade plasmática e estado volêmico",d:["diagnosticar SIADH sem osmolaridade","corrigir antes de investigar","usar apenas sódio urinário"],e:"Avaliação estruturada evita erro diagnóstico e terapêutico.",r:["hypona"]},
       {t:"correção de hiponatremia crônica",c:"evitar sobrecorreção para reduzir desmielinização osmótica",d:["normalizar em poucas horas","usar só solução hipotônica","ignorar meta diária"],e:"Velocidade de correção é determinante de segurança.",r:["hypona"]},
       {t:"cilindros hemáticos no sedimento",c:"suspeitar glomerulopatia ativa",d:["atribuir contaminação sem contexto","fechar pielonefrite automaticamente","antibiótico empírico isolado"],e:"Cilindros hemáticos sugerem origem glomerular do sangramento.",r:["kdigo_gn"]},
-      {t:"queda aguda da função do enxerto",c:"investigar pré/intra/pós-renal, rejeição e nefrotoxicidade",d:["presumir desidratação em todos","aumentar imunossupressão sem investigação","aguardar resolução espontânea"],e:"Avaliação precoce preserva função do enxerto.",r:["kdigo_tx"]}
-    ];
+      {t:"queda aguda da função do enxerto",c:"investigar pré/intra/pós-renal, rejeição e nefrotoxicidade",d:["presumir desidratação em todos","aumentar imunossupressão sem investigação","aguardar resolução espontânea"],e:"Avaliação precoce preserva função do enxerto.",r:["kdigo_tx"]},
+      {t:"acidose metabólica da DRC",c:"corrigir para faixa de bicarbonato normal-baixa",d:["manter bicarbonato <18 sem intervenção","corrigir para supranormalidade sempre","tratar só com dieta sem monitorar"],e:"Correção prudente melhora estabilidade metabólica.",r:["kdigo_ckd"]},
+      {t:"hipercalemia recorrente sob nefroproteção",c:"manter terapias de benefício com medidas de controle de K",d:["suspender SRAA para todos","ignorar fármacos contribuintes","evitar manejo crônico de potássio"],e:"Abordagem moderna busca preservar terapias efetivas.",r:["kdigo_ckd"]},
+      {t:"interpretação de albuminúria",c:"confirmar persistência e excluir causas transitórias",d:["diagnosticar com coleta única","ignorar variabilidade biológica","usar fita isolada como seguimento"],e:"Persistência e contexto definem estratificação adequada.",r:["kdigo_ckd"]},
+      {t:"doença anti-MBG rapidamente progressiva",c:"considerar imunossupressão e plasmaférese conforme gravidade",d:["observar sem tratar","usar apenas diurético","iniciar AINE alta dose"],e:"Intervenção precoce reduz risco de perda renal irreversível.",r:["kdigo_gn"]},
+      {t:"síndrome nefrótica e trombose",c:"estratificar risco trombótico com albumina e contexto",d:["anticoagular todos automaticamente","ignorar hipoalbuminemia","dispensar monitorização"],e:"A decisão é individualizada por risco e etiologia.",r:["kdigo_gn"]},
+      {t:"controle pressórico na DRC albuminúrica",c:"individualizar alvo e priorizar terapias nefroprotetoras",d:["tratar só PA >180/110","desconsiderar albuminúria","vasodilatador isolado sem estratégia"],e:"PA e albuminúria orientam risco e conduta longitudinal.",r:["kdigo_ckd"]},
+      {t:"CKD-MBD na prática",c:"avaliar tendência de cálcio, fósforo e PTH",d:["usar exame único como definitivo","ignorar PTH avançado","tratar só fósforo"],e:"Tendência seriada orienta decisões melhores que pontos isolados.",r:["kdigo_ckd"]},
+      {t:"planejamento pré-diálise",c:"discutir modalidade de forma antecipada e compartilhada",d:["definir apenas em urgência","adiar até eGFR muito baixo em todos","escolher sem educação do paciente"],e:"Planejamento precoce melhora acesso, adesão e segurança.",r:["kdigo_ckd"]},
+      {t:"peritonite em diálise peritoneal",c:"reforçar técnica asséptica e resposta precoce a sintomas",d:["dispensar treinamento","ignorar dor abdominal inicial","monitorar apenas mensalmente"],e:"Programa estruturado reduz falha de técnica e infecção.",r:["kdigo_ckd"]}
+    ];];
 
     const chapters = [
       { lv:1, title:"Prólogo — As Criptas da Creatinina", goal:"Estude os fundamentos e sobreviva às primeiras cartas." },
@@ -286,7 +293,7 @@
 
     const $=id=>document.getElementById(id);
     const ui={
-      heroImg:$("heroImg"),heroClass:$("heroClass"),heroFlavor:$("heroFlavor"),xpFill:$("xpFill"),xpTxt:$("xpTxt"),
+      heroImg:$("heroImg"),heroClass:$("heroClass"),xpFill:$("xpFill"),xpTxt:$("xpTxt"),
       storyTitle:$("storyTitle"),storyGoal:$("storyGoal"),
       level:$("level"),score:$("score"),lives:$("lives"),record:$("record"),gold:$("gold"),streak:$("streak"),
       equipList:$("equipList"),journal:$("journal"),question:$("question"),options:$("options"),feedback:$("feedback"),refs:$("refs"),
@@ -304,11 +311,11 @@
     function legendaryCount(){return Object.values(state.equipment).filter(i=>i.rar==='legendary').length;}
 
     function heroMeta(){
-      if(state.level>=16) return ["Arquimago do Néfron","\"Você domina o conselho sombrio dos rins.\"",'assets/hero-tier5.svg','l5'];
-      if(state.level>=12) return ["Lenda Cardiorrenal","\"Integração e precisão em nível épico.\"",'assets/hero-tier4.svg','l4'];
-      if(state.level>=8) return ["Mestre das Glomerulopatias","\"Cada detalhe muda o destino.\"",'assets/hero-tier3.svg','l3'];
-      if(state.level>=5) return ["Guardião da Nefroproteção","\"Você segura a linha entre risco e desfecho.\"",'assets/hero-tier2.svg','l2'];
-      return ["Noviço da Filtração","\"Cada néfron salvo é uma vitória.\"",'assets/hero-tier1.svg',''];
+      if(state.level>=16) return ["Arquimago do Néfron",'assets/hero-tier5.svg','l5'];
+      if(state.level>=12) return ["Lenda Cardiorrenal",'assets/hero-tier4.svg','l4'];
+      if(state.level>=8) return ["Mestre das Glomerulopatias",'assets/hero-tier3.svg','l3'];
+      if(state.level>=5) return ["Guardião da Nefroproteção",'assets/hero-tier2.svg','l2'];
+      return ["Noviço da Filtração",'assets/hero-tier1.svg',''];
     }
 
     function chapterMeta(){
@@ -323,9 +330,9 @@
     }
 
     function renderHUD(){
-      const [c,f,img,cls]=heroMeta();
+      const [c,img,cls]=heroMeta();
       const chapter=chapterMeta();
-      ui.heroClass.textContent=c; ui.heroFlavor.textContent=f;
+      ui.heroClass.textContent=c;
       ui.heroImg.src=img; ui.heroImg.className=`portrait ${cls}`;
       ui.storyTitle.textContent=chapter.title;
       ui.storyGoal.textContent=`Objetivo: ${chapter.goal} Lendários equipados: ${legendaryCount()}/2.`;
