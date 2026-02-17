@@ -192,7 +192,25 @@
     }
     .slot-info { flex: 1; }
     .slot-name { font-size: 0.78rem; font-weight: 600; }
-    .slot-stats { font-size: 0.62rem; color: var(--txt-dim); margin-top: 1px; }
+    .slot-stats { font-size: 0.62rem; color: var(--txt-dim); margin-top: 1px; display:flex; gap:6px; flex-wrap:wrap; }
+    .stat-badge { position:relative; cursor:help; padding:1px 4px; border-radius:3px; background:rgba(42,74,122,0.3); transition:all 0.2s; }
+    .stat-badge:hover { background:rgba(42,74,122,0.6); color:#fff; }
+    .stat-badge .stat-tip { display:none; position:absolute; bottom:calc(100% + 8px); left:50%; transform:translateX(-50%); background:linear-gradient(180deg,#1a2a4a,#0e1830); border:1px solid var(--gold); border-radius:8px; padding:8px 12px; font-size:0.72rem; color:#d5e2ff; white-space:nowrap; z-index:100; box-shadow:0 4px 16px rgba(0,0,0,0.6); pointer-events:none; }
+    .stat-badge .stat-tip::after { content:''; position:absolute; top:100%; left:50%; transform:translateX(-50%); border:6px solid transparent; border-top-color:var(--gold); }
+    .stat-badge:hover .stat-tip { display:block; }
+    .stat-tip strong { color:var(--gold); }
+    /* Botão desabilitado */
+    .btn.disabled { opacity:0.4; cursor:not-allowed; filter:grayscale(0.6); pointer-events:none; }
+    /* Popup de forja */
+    .forge-popup { position:fixed; inset:0; z-index:9999; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.7); animation:fadeIn 0.3s; }
+    .forge-card { background:linear-gradient(135deg,#1a1040,#0e1830); border:2px solid var(--gold); border-radius:16px; padding:24px; text-align:center; max-width:340px; box-shadow:0 0 40px rgba(255,215,0,0.2); animation:scaleIn 0.4s; }
+    .forge-card img { width:80px; height:80px; border-radius:10px; border:2px solid var(--gold); margin-bottom:12px; }
+    .forge-card h3 { color:var(--gold); font-family:'Cinzel',serif; margin-bottom:6px; }
+    .forge-card p { color:#b0c4e8; font-size:0.85rem; margin-bottom:4px; }
+    .forge-card .forge-stats { color:var(--txt-dim); font-size:0.8rem; margin:8px 0; }
+    .forge-card button { margin-top:12px; }
+    @keyframes scaleIn { from{transform:scale(0.5);opacity:0} to{transform:scale(1);opacity:1} }
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
     .rar-common { color: #8a9cc0; }
     .rar-rare { color: #60a5fa; }
     .rar-epic { color: #c084fc; }
@@ -610,26 +628,26 @@
     ];
     // Artigos de nefrologia para os baús
     const nefroArticles = [
-      {titulo:"🔬 Rabdomiólise e LRA (1941)",resumo:"Bywaters & Beall descreveram pela primeira vez a insuficiência renal aguda após rabdomiólise por esmagamento na Segunda Guerra. Estabeleceram a necrose tubular aguda pigmentária como mecanismo central.",curiosidade:"Este estudo nasceu durante a Segunda Guerra Mundial, observando vítimas de bombardeios. Mortalidade >50%!",ano:1941,impacto:"Definiu a base fisiopatológica da LRA isquêmica/tóxica moderna"},
-      {titulo:"💉 Hemodiálise Crônica (1960)",resumo:"Scribner criou o shunt arteriovenoso externo permanente, permitindo hemodiálise crônica intermitente. Transformou DRC terminal de condição fatal em doença tratável!",curiosidade:"O primeiro paciente foi Clyde Shields, que viveu 11 anos após o procedimento - um marco histórico!",ano:1960,impacto:"Marco fundador da terapia renal substitutiva crônica"},
-      {titulo:"🔍 Nefropatia Membranosa (1966)",resumo:"Ehrenreich identificou depósitos subepiteliais imunocomplexos na MBG com microscopia eletrônica, correlacionando com síndrome nefrótica em adultos.",curiosidade:"Base para futura identificação de antígenos como PLA2R, revolucionando o diagnóstico!",ano:1966,impacto:"Definiu entidade clinicopatológica distinta"},
-      {titulo:"🩸 Nefropatia por IgA (1969)",resumo:"Berger descreveu a nefropatia por IgA com depósitos mesangiais, frequentemente associada a hematúria recorrente pós-infecção.",curiosidade:"É a glomerulonefrite primária mais comum no mundo! Risco de progressão para DRC em 30-40%.",ano:1969,impacto:"Glomerulonefrite primária mais prevalente globalmente"},
-      {titulo:"⚡ Ciclosporina no Transplante (1979)",resumo:"Calne usou ciclosporina pioneiramente em transplantes renais com incompatibilidade HLA, reduzindo rejeição aguda vs controles históricos.",curiosidade:"Inaugurou a era moderna da imunossupressão! Mas atenção: nefrotoxicidade e HAS como efeitos adversos.",ano:1979,impacto:"Revolucionou a imunossupressão em transplantes"},
-      {titulo:"🛡️ Nefroproteção com IECA (1988)",resumo:"Brenner demonstrou que redução da pressão intraglomerular via bloqueio do SRAA limitou esclerose e proteinúria independentemente da PA sistêmica.",curiosidade:"Base conceitual da nefroproteção moderna! IECA/BRA não são apenas anti-hipertensivos.",ano:1988,impacto:"Fundamento da nefroproteção farmacológica"},
-      {titulo:"💊 Captopril em DM1 (1993)",resumo:"Lewis et al. - captopril vs placebo em DM1 com proteinúria ≥500mg/dia reduziu risco de DRET ou morte (RR 0,50). Benefício independente da redução pressórica!",curiosidade:"Primeiro estudo a comprovar nefroproteção farmacológica específica. Um divisor de águas!",ano:1993,impacto:"Primeira evidência robusta de nefroproteção"},
-      {titulo:"🎯 MDRD Study (1994)",resumo:"Levey et al. compararam metas pressóricas e dieta proteica em DRC. Subgrupos com proteinúria >1g/dia mostraram benefício com PA mais baixa.",curiosidade:"Fundamentou metas pressóricas individualizadas em DRC. A proteinúria importa!",ano:1994,impacto:"Estratificação de risco por proteinúria"},
-      {titulo:"🔄 RALES (1999)",resumo:"Espironolactona 25mg/dia em IC grave (FE ≤35%) reduziu mortalidade em 30% (RR 0,70). Hipercalemia aumentada, porém manejável.",curiosidade:"Redefiniu bloqueio neuro-hormonal e abriu caminho para ARM na síndrome cardiorrenal!",ano:1999,impacto:"Antagonistas mineralocorticoides na cardiorrenal"},
-      {titulo:"🏆 RENAAL (2001)",resumo:"Brenner et al. - losartana vs placebo em DM2 com nefropatia reduziu DRET ou duplicação de creatinina em 16% (HR 0,84). Benefício independente da PA!",curiosidade:"Estabeleceu BRA como padrão-ouro na nefropatia diabética!",ano:2001,impacto:"BRA como pilar em nefropatia diabética"},
-      {titulo:"📊 KDIGO CKD 2012",resumo:"Diretriz que consolidou classificação CKD por TFG (G1-G5) e albuminúria (A1-A3), incorporando risco CV e de progressão.",curiosidade:"Redefiniu a linguagem e estratificação global da DRC. Todos falam a mesma língua agora!",ano:2012,impacto:"Padronização mundial da classificação de DRC"},
-      {titulo:"🧬 APOL1 e DRC (2014)",resumo:"Genovese identificou alelos de risco APOL1 (G1/G2) fortemente associados a FSGS e DRC terminal em pessoas com ancestralidade africana.",curiosidade:"Explica disparidades raciais na DRC e abre campo de medicina de precisão!",ano:2014,impacto:"Genética e disparidades em nefrologia"},
-      {titulo:"💧 SGLT2i - CANVAS (2017)",resumo:"Canagliflozina vs placebo em DM2 reduziu MACE (HR 0,86) e mostrou benefício renal robusto (HR ~0,60 no composto renal).",curiosidade:"'Dip' inicial de TFG seguido de estabilização - sinal de nefroproteção!",ano:2017,impacto:"SGLT2i como virada cardiorrenal"},
-      {titulo:"❤️ DAPA-HF (2019)",resumo:"Dapagliflozina em IC com FE reduzida (com/sem DM) reduziu piora de IC ou morte CV em 26% (HR 0,74). Benefício independente de diabetes!",curiosidade:"Redefiniu SGLT2i como terapia central em IC e cardiorrenal, não apenas para diabetes!",ano:2019,impacto:"SGLT2i além do diabetes"},
-      {titulo:"🌟 DAPA-CKD (2020)",resumo:"Heerspink et al. - dapagliflozina em DRC (TFG 25-75) reduziu desfecho composto em 39% (HR 0,61) e mortalidade em 31% (HR 0,69)!",curiosidade:"Estudo 'paradigma' para DRC! Benefício consistente mesmo SEM diabetes.",ano:2020,impacto:"Mudou a prática clínica em DRC globalmente"},
-      {titulo:"🎯 FIDELIO-DKD (2021)",resumo:"Bakris et al. - finerenona vs placebo em DM2 com DRC reduziu desfecho renal composto em 18% (HR 0,82) e eventos CV.",curiosidade:"Estabeleceu ARM não esteroidal como nefroproteção adicional. A tríade: SRAA + SGLT2i + ARM!",ano:2021,impacto:"Finerenona na nefroproteção"},
-      {titulo:"🚀 EMPA-KIDNEY (2022)",resumo:"Empagliflozina vs placebo reduziu progressão renal ou morte CV em 28% (HR 0,72). Benefício em pacientes com E sem diabetes!",curiosidade:"Consolidou SGLT2i como terapia padrão em DRC ampla, independente de albuminúria!",ano:2022,impacto:"Universalização do SGLT2i em DRC"},
-      {titulo:"🧪 Complemento em IgAN (2023)",resumo:"Barratt et al. - inibidores de complemento (iptacopan) e budesonida alvo-entérica (Nefecon) reduziram proteinúria ~20-30% em IgAN de alto risco.",curiosidade:"Inaugurou era de terapias específicas além do suporte! O futuro chegou!",ano:2023,impacto:"Terapias-alvo em glomerulopatias"},
-      {titulo:"📖 KDIGO 2024 Update",resumo:"Atualização com estratificação contínua de risco (TFG + albuminúria), foco em prevenção CV, e recomendação ampliada de SGLT2i/finerenona.",curiosidade:"CKD como 'síndrome de risco', não só estágios por TFG. Mudança de paradigma!",ano:2024,impacto:"Operacionalização do risco cardiorrenal"},
-      {titulo:"🐷 Xenotransplante (2024)",resumo:"Riella et al. - avanços em xenotransplante (rim suíno geneticamente editado), barreiras imunológicas e transição para aplicação clínica.",curiosidade:"O futuro está aqui! Pode reduzir drasticamente a fila de transplante.",ano:2024,impacto:"Futuro do transplante renal"}
+      {titulo:"Rabdomiólise e LRA",autores:"Bywaters EGL, Beall D",jornal:"BMJ 1941;1(4185):427-432",resumo:"Primeira descrição da insuficiência renal aguda após rabdomiólise por esmagamento na Segunda Guerra Mundial. Estabeleceram a necrose tubular aguda pigmentária como mecanismo central da lesão renal por mioglobina.",conclusao:"A mioglobinúria causa obstrução tubular e toxicidade direta, sendo a hidratação agressiva precoce o pilar da prevenção.",curiosidade:"Estudo nasceu observando vítimas de bombardeios em Londres. Mortalidade >50% na época!",ano:1941,impacto:"Definiu a base fisiopatológica da LRA isquêmica/tóxica moderna"},
+      {titulo:"Hemodiálise Crônica",autores:"Scribner BH, Buri R, Caner JEZ et al.",jornal:"Trans Am Soc Artif Intern Organs 1960;6:88-103",resumo:"Criação do shunt arteriovenoso externo permanente (shunt de Scribner), permitindo hemodiálise crônica intermitente. Transformou DRC terminal de condição fatal em doença tratável.",conclusao:"O acesso vascular permanente viabilizou a terapia dialítica de longo prazo, inaugurando a nefrologia moderna.",curiosidade:"O primeiro paciente foi Clyde Shields, que viveu 11 anos após o procedimento - um marco histórico!",ano:1960,impacto:"Marco fundador da terapia renal substitutiva crônica"},
+      {titulo:"Nefropatia Membranosa",autores:"Ehrenreich T, Churg J",jornal:"Pathol Annu 1968;3:145-186",resumo:"Identificação de depósitos subepiteliais imunocomplexos na membrana basal glomerular com microscopia eletrônica, correlacionando com síndrome nefrótica em adultos.",conclusao:"A nefropatia membranosa é uma entidade imunomediada distinta, com padrão ultraestrutural patognomônico.",curiosidade:"Base para futura identificação de antígenos como PLA2R (2009), revolucionando o diagnóstico!",ano:1968,impacto:"Definiu entidade clinicopatológica distinta"},
+      {titulo:"Nefropatia por IgA",autores:"Berger J, Hinglais N",jornal:"J Urol Nephrol (Paris) 1968;74(9):694-695",resumo:"Descrição da nefropatia por IgA com depósitos mesangiais de IgA, frequentemente associada a hematúria macroscópica recorrente pós-infecção de vias aéreas superiores.",conclusao:"A deposição mesangial de IgA define uma glomerulonefrite primária com espectro clínico variável, de hematúria benigna a DRC progressiva.",curiosidade:"É a glomerulonefrite primária mais comum no mundo! Risco de progressão para DRC em 30-40% dos casos.",ano:1968,impacto:"Glomerulonefrite primária mais prevalente globalmente"},
+      {titulo:"Ciclosporina no Transplante",autores:"Calne RY, White DJG, Thiru S et al.",jornal:"Lancet 1978;2(8104-5):1323-1327",resumo:"Uso pioneiro de ciclosporina em transplantes renais com incompatibilidade HLA, demonstrando redução significativa da rejeição aguda comparado a controles históricos.",conclusao:"A ciclosporina revolucionou a imunossupressão, mas requer monitoramento por nefrotoxicidade crônica e HAS.",curiosidade:"Inaugurou a era moderna da imunossupressão! A sobrevida do enxerto em 1 ano saltou de ~50% para >80%.",ano:1978,impacto:"Revolucionou a imunossupressão em transplantes"},
+      {titulo:"Nefroproteção com IECA",autores:"Anderson S, Rennke HG, Brenner BM",jornal:"J Clin Invest 1986;77(6):1993-2000",resumo:"Demonstração experimental de que a redução da pressão intraglomerular via bloqueio do SRAA limitou esclerose glomerular e proteinúria independentemente da PA sistêmica.",conclusao:"A hemodinâmica glomerular é alvo terapêutico independente. IECA protegem o rim além do efeito anti-hipertensivo.",curiosidade:"Base conceitual da nefroproteção moderna! IECA/BRA não são apenas anti-hipertensivos, são nefroprotetores.",ano:1986,impacto:"Fundamento da nefroproteção farmacológica"},
+      {titulo:"Captopril na Nefropatia Diabética Tipo 1",autores:"Lewis EJ, Hunsicker LG, Bain RP, Rohde RD",jornal:"N Engl J Med 1993;329(20):1456-1462",resumo:"Captopril vs placebo em DM1 com proteinúria ≥500mg/dia reduziu risco de DRET ou morte em 50% (RR 0,50). Benefício independente da redução pressórica.",conclusao:"O bloqueio do SRAA com captopril confere nefroproteção específica na nefropatia diabética tipo 1, além do controle pressórico.",curiosidade:"Primeiro RCT a comprovar nefroproteção farmacológica específica. Um divisor de águas na nefrologia!",ano:1993,impacto:"Primeira evidência robusta de nefroproteção"},
+      {titulo:"MDRD Study",autores:"Klahr S, Levey AS, Beck GJ et al.",jornal:"N Engl J Med 1994;330(13):877-884",resumo:"Comparação de metas pressóricas (MAP 92 vs 107 mmHg) e dieta proteica em DRC. Subgrupos com proteinúria >1g/dia mostraram benefício com PA mais baixa.",conclusao:"A proteinúria é marcador de risco e alvo terapêutico. Metas pressóricas devem ser individualizadas conforme o grau de proteinúria.",curiosidade:"Além dos resultados clínicos, gerou a famosa equação MDRD para estimar TFG, usada mundialmente!",ano:1994,impacto:"Estratificação de risco por proteinúria e equação de TFG"},
+      {titulo:"RALES - Espironolactona na IC",autores:"Pitt B, Zannad F, Remme WJ et al.",jornal:"N Engl J Med 1999;341(10):709-717",resumo:"Espironolactona 25mg/dia em IC grave (FE ≤35%) reduziu mortalidade por todas as causas em 30% (RR 0,70). Hipercalemia aumentada, porém manejável com monitoramento.",conclusao:"O bloqueio mineralocorticoide adicional ao IECA reduz mortalidade na IC grave. Monitorar K+ e função renal.",curiosidade:"Redefiniu o bloqueio neuro-hormonal e abriu caminho para ARM na síndrome cardiorrenal!",ano:1999,impacto:"Antagonistas mineralocorticoides na cardiorrenal"},
+      {titulo:"RENAAL - Losartana na Nefropatia Diabética",autores:"Brenner BM, Cooper ME, de Zeeuw D et al.",jornal:"N Engl J Med 2001;345(12):861-869",resumo:"Losartana vs placebo em DM2 com nefropatia reduziu DRET ou duplicação de creatinina em 16% (HR 0,84). Benefício independente da redução da PA.",conclusao:"BRA são eficazes na nefroproteção da nefropatia diabética tipo 2, com benefício além do controle pressórico.",curiosidade:"Junto com o IDNT, estabeleceu BRA como padrão-ouro na nefropatia diabética tipo 2!",ano:2001,impacto:"BRA como pilar em nefropatia diabética"},
+      {titulo:"KDIGO CKD Classification 2012",autores:"Kidney Disease: Improving Global Outcomes (KDIGO) CKD Work Group",jornal:"Kidney Int Suppl 2013;3(1):1-150",resumo:"Diretriz que consolidou classificação CKD por TFG (G1-G5) e albuminúria (A1-A3), incorporando risco CV e de progressão em mapa de calor prognóstico.",conclusao:"A classificação bidimensional (TFG + albuminúria) permite estratificação de risco individualizada e guia decisões terapêuticas.",curiosidade:"Redefiniu a linguagem global da DRC. O mapa de calor verde-amarelo-vermelho é usado em todo o mundo!",ano:2012,impacto:"Padronização mundial da classificação de DRC"},
+      {titulo:"APOL1 e Risco de DRC",autores:"Genovese G, Friedman DJ, Ross MD et al.",jornal:"Science 2010;329(5993):841-845",resumo:"Identificação de alelos de risco APOL1 (G1/G2) fortemente associados a FSGS e DRC terminal em pessoas com ancestralidade africana. Variantes conferem proteção contra Trypanosoma brucei.",conclusao:"Variantes APOL1 explicam parte significativa das disparidades raciais na DRC e abrem campo para medicina de precisão em nefrologia.",curiosidade:"Seleção natural: os alelos G1/G2 protegem contra doença do sono na África, mas aumentam risco renal!",ano:2010,impacto:"Genética e disparidades em nefrologia"},
+      {titulo:"CANVAS - Canagliflozina",autores:"Neal B, Perkovic V, Mahaffey KW et al.",jornal:"N Engl J Med 2017;377(7):644-657",resumo:"Canagliflozina vs placebo em DM2 com alto risco CV reduziu MACE em 14% (HR 0,86) e mostrou benefício renal robusto (HR ~0,60 no composto renal).",conclusao:"SGLT2i conferem proteção cardiorrenal significativa em DM2, com 'dip' inicial de TFG seguido de estabilização como marcador de nefroproteção.",curiosidade:"O 'dip and recovery' da TFG com SGLT2i reflete redução da hiperfiltração - sinal de proteção, não de dano!",ano:2017,impacto:"SGLT2i como virada cardiorrenal"},
+      {titulo:"DAPA-HF - Dapagliflozina na IC",autores:"McMurray JJV, Solomon SD, Inzucchi SE et al.",jornal:"N Engl J Med 2019;381(21):1995-2008",resumo:"Dapagliflozina em IC com FE reduzida (com/sem DM) reduziu piora de IC ou morte CV em 26% (HR 0,74). Benefício independente da presença de diabetes.",conclusao:"SGLT2i são terapia fundamental na IC com FE reduzida, independentemente do status diabético. Mecanismo vai além do controle glicêmico.",curiosidade:"Redefiniu SGLT2i como terapia central em IC e cardiorrenal, não apenas para diabetes!",ano:2019,impacto:"SGLT2i além do diabetes"},
+      {titulo:"DAPA-CKD",autores:"Heerspink HJL, Stefánsson BV, Correa-Rotter R et al.",jornal:"N Engl J Med 2020;383(15):1436-1446",resumo:"Dapagliflozina em DRC (TFG 25-75, albuminúria 200-5000) reduziu desfecho composto renal em 39% (HR 0,61) e mortalidade por todas as causas em 31% (HR 0,69). Estudo interrompido precocemente por eficácia.",conclusao:"Dapagliflozina é nefroprotetora em DRC com e sem diabetes. Benefício consistente em subgrupos, incluindo etiologias não-diabéticas.",curiosidade:"Estudo 'paradigma' para DRC! Interrompido precocemente por benefício esmagador. NNT de 19 para desfecho renal em 2,4 anos.",ano:2020,impacto:"Mudou a prática clínica em DRC globalmente"},
+      {titulo:"FIDELIO-DKD - Finerenona",autores:"Bakris GL, Agarwal R, Anker SD et al.",jornal:"N Engl J Med 2020;383(23):2219-2229",resumo:"Finerenona (ARM não esteroidal) vs placebo em DM2 com DRC reduziu desfecho renal composto em 18% (HR 0,82) e eventos CV em 14% (HR 0,86).",conclusao:"Finerenona oferece nefroproteção adicional ao bloqueio do SRAA e SGLT2i, completando a tríade terapêutica moderna para DRC diabética.",curiosidade:"Estabeleceu a tríade nefroprotetora moderna: IECA/BRA + SGLT2i + Finerenona!",ano:2020,impacto:"Finerenona na nefroproteção"},
+      {titulo:"EMPA-KIDNEY",autores:"The EMPA-KIDNEY Collaborative Group",jornal:"N Engl J Med 2023;388(2):117-127",resumo:"Empagliflozina vs placebo reduziu progressão renal ou morte CV em 28% (HR 0,72) em ampla população com DRC, incluindo pacientes com e sem diabetes e com albuminúria variável.",conclusao:"SGLT2i são terapia padrão em DRC ampla, com benefício independente de diabetes e grau de albuminúria.",curiosidade:"Consolidou SGLT2i como terapia universal em DRC! Incluiu pacientes com TFG até 20 mL/min.",ano:2023,impacto:"Universalização do SGLT2i em DRC"},
+      {titulo:"Terapias-Alvo em Nefropatia por IgA",autores:"Barratt J, Lafayette RA, Leung N et al.",jornal:"N Engl J Med 2023;389(2):162-174 (PROTECT); Lancet 2023;401:1584-94 (NefIgArd)",resumo:"Inibidores de complemento (iptacopan) e budesonida alvo-entérica (Nefecon/Tarpeyo) reduziram proteinúria em 20-30% em IgAN de alto risco, com estabilização da TFG.",conclusao:"Terapias direcionadas ao complemento e à mucosa intestinal representam nova era no tratamento da IgAN, além do suporte com SRAA.",curiosidade:"Inaugurou era de terapias específicas para IgAN! O futuro das glomerulopatias é a medicina de precisão.",ano:2023,impacto:"Terapias-alvo em glomerulopatias"},
+      {titulo:"KDIGO 2024 CKD Update",autores:"Kidney Disease: Improving Global Outcomes (KDIGO)",jornal:"Kidney Int 2024;105(4S):S117-S314",resumo:"Atualização com estratificação contínua de risco (TFG + albuminúria), foco em prevenção CV integrada, e recomendação ampliada de SGLT2i e finerenona como terapias de primeira linha.",conclusao:"DRC é reconhecida como 'síndrome de risco cardiorrenal', não apenas estágios por TFG. Abordagem multifatorial é mandatória.",curiosidade:"CKD como 'síndrome de risco' integrada, não só estágios. Mudança de paradigma na nefrologia!",ano:2024,impacto:"Operacionalização do risco cardiorrenal"},
+      {titulo:"Xenotransplante Renal",autores:"Montgomery RA, Stern JM, Lonze BE et al.",jornal:"N Engl J Med 2022;386(21):1889-1898; Riella LV et al. Nat Rev Nephrol 2024",resumo:"Avanços em xenotransplante com rim suíno geneticamente editado (10 modificações genéticas), superando barreiras imunológicas hiperagudas e demonstrando função renal em receptores humanos.",conclusao:"O xenotransplante renal está em transição para aplicação clínica, com potencial de resolver a escassez crônica de órgãos.",curiosidade:"O futuro está aqui! Rim suíno funcionou por >2 meses em receptor humano. Pode revolucionar a fila de transplante.",ano:2024,impacto:"Futuro do transplante renal"}
     ];
     
     // Estado dos baús desbloqueados
@@ -1069,17 +1087,36 @@
     const slotLabels = {weapon:'Arma', armor:'Armadura', relic:'Relíquia'};
     const defaultIcons = {weapon:'assets/items/caneta_interno.png', armor:'assets/items/tunica_residencia.png', relic:'assets/items/insignia_plantao.png'};
 
+    const statTips = {
+      atk: {icon:'⚔️', name:'Ataque', desc:'Aumenta pontos ganhos por acerto. Quanto maior, mais pontos por questão correta.'},
+      def: {icon:'🛡️', name:'Defesa', desc:'Chance de bloquear perda de vida ao errar. DEF × 1.4% de chance de absorver o golpe.'},
+      kno: {icon:'📚', name:'Conhecimento', desc:'Aumenta XP ganho por acerto. +2 XP extra por ponto de conhecimento.'},
+      luck: {icon:'🍀', name:'Sorte', desc:'Aumenta ouro ganho e chance de itens raros na forja e drops.'}
+    };
     function renderEquip(){
+      const st=total();
       ui.equipList.innerHTML=Object.entries(state.equipment).map(([k,v])=>{
         const icon = itemIcons[v.n] || defaultIcons[k];
         return `<div class='slot'>
           <img class='slot-icon' src='${icon}' alt='${v.n}'/>
           <div class='slot-info'>
             <div class='slot-name'><span class='rar-${v.rar}'>${v.n}</span></div>
-            <div class='slot-stats'>ATK ${v.atk} · DEF ${v.def} · CONH ${v.kno} · SORTE ${v.luck}</div>
+            <div class='slot-stats'>
+              <span class='stat-badge'>⚔️${v.atk}<span class='stat-tip'><strong>${statTips.atk.icon} ${statTips.atk.name}</strong><br>${statTips.atk.desc}</span></span>
+              <span class='stat-badge'>🛡️${v.def}<span class='stat-tip'><strong>${statTips.def.icon} ${statTips.def.name}</strong><br>${statTips.def.desc}</span></span>
+              <span class='stat-badge'>📚${v.kno}<span class='stat-tip'><strong>${statTips.kno.icon} ${statTips.kno.name}</strong><br>${statTips.kno.desc}</span></span>
+              <span class='stat-badge'>🍀${v.luck}<span class='stat-tip'><strong>${statTips.luck.icon} ${statTips.luck.name}</strong><br>${statTips.luck.desc}</span></span>
+            </div>
           </div>
         </div>`;
       }).join('');
+      ui.equipList.innerHTML+=`<div style='text-align:center;margin-top:8px;padding:6px 10px;background:rgba(42,74,122,0.2);border-radius:8px;border:1px solid rgba(42,74,122,0.4);font-size:0.75rem;color:#b0c4e8'>
+        <strong style='color:var(--gold)'>Atributos Totais:</strong>
+        <span class='stat-badge'>⚔️${st.atk}<span class='stat-tip'><strong>${statTips.atk.icon} ${statTips.atk.name}</strong><br>${statTips.atk.desc}</span></span>
+        <span class='stat-badge'>🛡️${st.def}<span class='stat-tip'><strong>${statTips.def.icon} ${statTips.def.name}</strong><br>${statTips.def.desc}</span></span>
+        <span class='stat-badge'>📚${st.kno}<span class='stat-tip'><strong>${statTips.kno.icon} ${statTips.kno.name}</strong><br>${statTips.kno.desc}</span></span>
+        <span class='stat-badge'>🍀${st.luck}<span class='stat-tip'><strong>${statTips.luck.icon} ${statTips.luck.name}</strong><br>${statTips.luck.desc}</span></span>
+      </div>`;
     }
 
     function renderHUD(){
@@ -1096,6 +1133,11 @@
       ui.xpFill.style.width=`${Math.min(100,(state.xp/state.xpToNext)*100)}%`;
       ui.xpTxt.textContent=`XP ${state.xp} / ${state.xpToNext} • Cartas restantes: ${state.queue.length-state.idx}`;
       renderEquip();
+      // Desabilitar botões sem ouro suficiente
+      const forgeBtn=document.getElementById('forgeBtn');
+      const chestBtn=document.getElementById('chestBtn');
+      if(forgeBtn){ if(state.gold<90){forgeBtn.classList.add('disabled');forgeBtn.title='Ouro insuficiente (precisa 90)'}else{forgeBtn.classList.remove('disabled');forgeBtn.title='Forjar um equipamento'} }
+      if(chestBtn){ if(state.gold<chestCost){chestBtn.classList.add('disabled');chestBtn.title=`Ouro insuficiente (precisa ${chestCost})`}else{chestBtn.classList.remove('disabled');chestBtn.title='Abrir baú de artigo'} }
     }
 
     function shuffleQueue(){
@@ -1133,6 +1175,20 @@
         b.addEventListener('click',()=>answer(i,b));
         ui.options.appendChild(b);
       });
+      // Efeito de CONH: chance de eliminar 1 opção errada
+      const st=total();
+      const knoChance=Math.min(0.50, st.kno*0.04);
+      if(Math.random()<knoChance){
+        const wrongIdxs=q.o.map((_,i)=>i).filter(i=>i!==q.a);
+        const elim=wrongIdxs[Math.floor(Math.random()*wrongIdxs.length)];
+        const btns=[...document.querySelectorAll('.option')];
+        if(btns[elim]){
+          btns[elim].style.opacity='0.3';
+          btns[elim].style.textDecoration='line-through';
+          btns[elim].disabled=true;
+          log('📚 Seu conhecimento eliminou uma alternativa incorreta!');
+        }
+      }
     }
 
     function gainXP(x){
@@ -1249,12 +1305,40 @@
       const keys=Object.keys(state.equipment);
       const slot=keys[Math.floor(Math.random()*keys.length)];
       const it=state.equipment[slot];
+      const oldStats={atk:it.atk,def:it.def,kno:it.kno,luck:it.luck};
       it.atk += Math.random()<0.5?1:0;
       it.def += Math.random()<0.5?1:0;
       it.kno += Math.random()<0.5?1:0;
       it.luck += Math.random()<0.35?1:0;
-      log(`🔨 Forja concluída: ${it.n} ficou mais poderoso.`);
+      const gains=[];
+      if(it.atk>oldStats.atk) gains.push(`⚔️ ATK +${it.atk-oldStats.atk}`);
+      if(it.def>oldStats.def) gains.push(`🛡️ DEF +${it.def-oldStats.def}`);
+      if(it.kno>oldStats.kno) gains.push(`📚 CONH +${it.kno-oldStats.kno}`);
+      if(it.luck>oldStats.luck) gains.push(`🍀 SORTE +${it.luck-oldStats.luck}`);
+      showForgePopup(it, slot, gains);
+      log(`🔨 Forja concluída: ${it.n} ficou mais poderoso!`);
       renderHUD();
+    }
+
+    function showForgePopup(item, slot, gains){
+      const icon = itemIcons[item.n] || defaultIcons[slot];
+      const popup = document.createElement('div');
+      popup.className='forge-popup';
+      popup.innerHTML=`
+        <div class='forge-card'>
+          <h3>🔨 Forja Concluída!</h3>
+          <img src='${icon}' alt='${item.n}'/>
+          <p class='rar-${item.rar}' style='font-size:1.1rem;font-weight:700'>${item.n}</p>
+          <p style='font-size:0.75rem;color:var(--txt-dim)'>${slotLabels[slot]}</p>
+          <div class='forge-stats'>
+            ${gains.length>0 ? gains.join(' &nbsp;·&nbsp; ') : '🔄 Nenhum atributo melhorou desta vez...'}
+          </div>
+          <p style='font-size:0.75rem;color:var(--txt-dim);margin-top:6px'>⚔️${item.atk} · 🛡️${item.def} · 📚${item.kno} · 🍀${item.luck}</p>
+          <button class='btn gold' onclick='this.closest(".forge-popup").remove()'>Continuar</button>
+        </div>
+      `;
+      document.body.appendChild(popup);
+      popup.addEventListener('click',(e)=>{if(e.target===popup) popup.remove();});
     }
 
     function renderBoard(){
@@ -1390,11 +1474,13 @@
       
       articleDiv.innerHTML = `
         <div class="article-card">
-          <h3>${article.titulo}</h3>
+          <h3>📜 ${article.titulo} (${article.ano})</h3>
+          <p style="font-size:0.78rem;color:var(--gold);margin-bottom:4px">✍️ <em>${article.autores}</em></p>
+          <p style="font-size:0.72rem;color:var(--txt-dim);margin-bottom:10px">📖 ${article.jornal}</p>
           <p><span class="label">📚 Resumo:</span><br>${article.resumo}</p>
+          <p><span class="label">🎯 Conclusão Principal:</span><br>${article.conclusao}</p>
           <p><span class="label">💡 Curiosidade:</span><br>${article.curiosidade}</p>
-          <p><span class="label">🎯 Impacto:</span><br>${article.impacto}</p>
-          <p><span class="label">📅 Ano:</span> ${article.ano}</p>
+          <p><span class="label">⭐ Impacto na Nefrologia:</span><br>${article.impacto}</p>
         </div>
       `;
       
@@ -1427,17 +1513,14 @@
       const chestBtn = document.getElementById('chestBtn');
       if (chestBtn) {
         chestBtn.textContent = `Abrir Baú (${chestCost} ouro)`;
-        chestBtn.disabled = state.gold < chestCost;
         
         const remaining = nefroArticles.length - unlockedArticles.length;
         if (remaining === 0) {
           chestBtn.textContent = '✅ Todos os artigos desbloqueados!';
-          chestBtn.disabled = true;
+          chestBtn.classList.add('disabled');
         }
       }
     };
-
-    resetGame();
 
     resetGame();
   </script>
