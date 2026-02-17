@@ -957,14 +957,10 @@
 
     function buildDeck() {
       const deck=[];
-      for(let i=0;i<300;i++){
-        const t=topics[i%topics.length];
-        const w=scenarioWrappers[Math.floor(i/topics.length)%scenarioWrappers.length];
-        const d=Math.min(12,4+Math.floor(i/25));
-        const opts=[t.c,...t.d];
-        const rot=i%4;
-        const o=opts.map((_,x)=>opts[(x+rot)%4]);
-        deck.push({id:i+1,d,q:`${w} ${t.t}?`,o,a:(4-rot)%4,e:t.e,r:t.r});
+      for(let i=0;i<topics.length;i++){
+        const t=topics[i];
+        const d=t.d==='hard'?Math.min(12,8+Math.floor(i/30)):Math.min(12,4+Math.floor(i/25));
+        deck.push({id:i+1,d,q:t.q,o:t.o,a:t.a,e:t.e,r:t.refs||t.r||[]});
       }
       return deck;
     }
