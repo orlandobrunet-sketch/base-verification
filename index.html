@@ -1050,27 +1050,51 @@
     function legendaryCount(){return Object.values(state.equipment).filter(i=>i.rar==='legendary').length;}
 
     function heroMeta(){
-      const titles = {
-        16: ["Arquimago do Néfron", '', 'l5', "O Soberano da Homeostase"],
-        12: ["Lenda Cardiorrenal", '', 'l4', "O Mestre do Equilíbrio Vital"],
-        8: ["Mestre das Glomerulopatias", '', 'l3', "O Guardador dos Glomérulos"],
-        5: ["Guardião da Nefroprotecção", '', 'l2', "O Defensor dos Néfrons"],
-        1: ["Noviço da Filtração", '', '', "O Iniciante das Águas"]
+      // Títulos personalizados por personagem com gênero correto
+      const charTitles = {
+        nephros: {
+          16: ["Arquimago do Néfron", '', 'l5', "O Soberano da Homeostase"],
+          12: ["Lenda Cardiorrenal", '', 'l4', "O Mestre do Equilíbrio Vital"],
+          8:  ["Mestre das Glomerulopatias", '', 'l3', "O Guardador dos Glomérulos"],
+          5:  ["Guardião da Nefroproteção", '', 'l2', "O Defensor dos Néfrons"],
+          3:  ["Sacerdote Renal", '', 'l1', "O Curandeiro dos Túbulos"],
+          1:  ["Noviço da Filtração", '', '', "O Iniciante das Águas"]
+        },
+        aquaria: {
+          16: ["Arquimaga do Néfron", '', 'l5', "A Soberana da Homeostase"],
+          12: ["Lenda Cardiorrenal", '', 'l4', "A Mestra do Equilíbrio Vital"],
+          8:  ["Mestra das Glomerulopatias", '', 'l3', "A Guardiã dos Glomérulos"],
+          5:  ["Guardiã da Nefroproteção", '', 'l2', "A Defensora dos Néfrons"],
+          3:  ["Sacerdotisa das Águas", '', 'l1', "A Curandeira dos Túbulos"],
+          1:  ["Noviça da Filtração", '', '', "A Iniciante das Águas"]
+        },
+        glomerulus: {
+          16: ["Arquicientista do Néfron", '', 'l5', "O Soberano da Ciência Renal"],
+          12: ["Lenda da Pesquisa Renal", '', 'l4', "O Mestre da Análise Vital"],
+          8:  ["Doutor das Glomerulopatias", '', 'l3', "O Decodificador dos Glomérulos"],
+          5:  ["Pesquisador da Nefroproteção", '', 'l2', "O Investigador dos Néfrons"],
+          3:  ["Cientista Renal Júnior", '', 'l1', "O Analista dos Túbulos"],
+          1:  ["Estudante de Nefrologia", '', '', "O Aprendiz da Ciência Renal"]
+        }
       };
       
+      const charId = state.character || 'nephros';
+      const titles = charTitles[charId] || charTitles.nephros;
+      
       // Calcular imagem de evolução baseada no nível (1-10)
-      const char = characters[state.character];
+      const char = characters[charId];
       const evolutionLevel = Math.min(10, Math.max(1, state.level));
       const charImg = `assets/classes/${char.folder}/nivel_${evolutionLevel.toString().padStart(2,'0')}.jpg`;
       
       for(const [lv, data] of Object.entries(titles).sort((a,b) => b[0]-a[0])) {
         if(state.level >= parseInt(lv)) {
-          data[1] = charImg; // Substituir imagem pelo avatar evoluído
+          data[1] = charImg;
           return data;
         }
       }
-      titles[1][1] = charImg;
-      return titles[1];
+      const fallback = titles[1];
+      fallback[1] = charImg;
+      return fallback;
     }
 
     function chapterMeta(){
@@ -1592,36 +1616,7 @@
       document.getElementById('chestModal').classList.remove('show');
     }
     
-    // Evolução visual do personagem
-    function getCharacterImage(level) {
-      if (!state.character) return 'assets/classes/clerigo_renal_nivel_1.png';
-      
-      const char = characters[state.character];
-      const charLevel = Math.min(10, Math.max(1, Math.ceil(level / 2)));
-      return `assets/classes/${char.folder}_nivel_${charLevel}.png`;
-    }
-    
-    // Atualizar renderHUD para incluir evolução visual e botão de baú
-    const originalRenderHUD = renderHUD;
-    renderHUD = function() {
-      originalRenderHUD();
-      
-      const portrait = document.querySelector('.portrait');
-      if (portrait) {
-        portrait.src = getCharacterImage(state.level);
-      }
-      
-      const chestBtn = document.getElementById('chestBtn');
-      if (chestBtn) {
-        chestBtn.textContent = `Abrir Baú (${chestCost} ouro)`;
-        
-        const remaining = nefroArticles.length - unlockedArticles.length;
-        if (remaining === 0) {
-          chestBtn.textContent = '✅ Todos os artigos desbloqueados!';
-          chestBtn.classList.add('disabled');
-        }
-      }
-    };
+
 
     resetGame();
 
