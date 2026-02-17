@@ -193,12 +193,11 @@
     .slot-info { flex: 1; }
     .slot-name { font-size: 0.78rem; font-weight: 600; }
     .slot-stats { font-size: 0.62rem; color: var(--txt-dim); margin-top: 1px; display:flex; gap:6px; flex-wrap:wrap; }
-    .stat-badge { position:relative; cursor:help; padding:1px 4px; border-radius:3px; background:rgba(42,74,122,0.3); transition:all 0.2s; }
-    .stat-badge:hover { background:rgba(42,74,122,0.6); color:#fff; }
-    .stat-badge .stat-tip { display:none; position:absolute; bottom:calc(100% + 8px); left:50%; transform:translateX(-50%); background:linear-gradient(180deg,#1a2a4a,#0e1830); border:1px solid var(--gold); border-radius:8px; padding:8px 12px; font-size:0.72rem; color:#d5e2ff; white-space:nowrap; z-index:100; box-shadow:0 4px 16px rgba(0,0,0,0.6); pointer-events:none; }
-    .stat-badge .stat-tip::after { content:''; position:absolute; top:100%; left:50%; transform:translateX(-50%); border:6px solid transparent; border-top-color:var(--gold); }
+    .stat-badge { position:relative; cursor:help; padding:1px 4px; border-radius:3px; background:rgba(42,74,122,0.3); transition:all 0.2s; display:inline-block; }
+    .stat-badge:hover { background:rgba(42,74,122,0.6); color:#fff; z-index:9000; }
+    .stat-badge .stat-tip { display:none; position:fixed; background:linear-gradient(180deg,#1a2a4a,#0e1830); border:1px solid var(--gold); border-radius:8px; padding:10px 14px; font-size:0.75rem; color:#d5e2ff; white-space:nowrap; z-index:9999; box-shadow:0 6px 24px rgba(0,0,0,0.8); pointer-events:none; max-width:300px; white-space:normal; line-height:1.4; }
     .stat-badge:hover .stat-tip { display:block; }
-    .stat-tip strong { color:var(--gold); }
+    .stat-tip strong { color:var(--gold); display:block; margin-bottom:4px; font-size:0.82rem; }
     /* Botão desabilitado */
     .btn.disabled { opacity:0.4; cursor:not-allowed; filter:grayscale(0.6); pointer-events:none; }
     /* Popup de forja */
@@ -211,6 +210,15 @@
     .forge-card button { margin-top:12px; }
     @keyframes scaleIn { from{transform:scale(0.5);opacity:0} to{transform:scale(1);opacity:1} }
     @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+    /* Popup de narrativa */
+    .narrative-popup { position:fixed; inset:0; z-index:9999; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.8); animation:fadeIn 0.4s; }
+    .narrative-card { background:linear-gradient(135deg,#0e1830 0%,#1a1040 40%,#2a1050 100%); border:2px solid var(--gold); border-radius:16px; padding:28px 24px; text-align:center; max-width:420px; width:90%; box-shadow:0 0 60px rgba(255,215,0,0.15), inset 0 0 40px rgba(255,215,0,0.03); animation:scaleIn 0.5s; }
+    .narrative-card .narr-chapter { color:var(--gold); font-family:'Cinzel',serif; font-size:0.75rem; letter-spacing:3px; text-transform:uppercase; margin-bottom:8px; opacity:0.8; }
+    .narrative-card h3 { color:var(--gold); font-family:'Cinzel',serif; font-size:1.2rem; margin-bottom:14px; text-shadow:0 0 12px rgba(255,215,0,0.3); }
+    .narrative-card .narr-text { color:#c8d8f0; font-size:0.88rem; line-height:1.65; margin-bottom:16px; font-family:'Philosopher',serif; font-style:italic; }
+    .narrative-card .narr-progress { color:var(--txt-dim); font-size:0.72rem; margin-bottom:14px; }
+    .narrative-card .narr-progress strong { color:var(--gold); }
+    .narrative-card button { margin-top:6px; }
     .rar-common { color: #8a9cc0; }
     .rar-rare { color: #60a5fa; }
     .rar-epic { color: #c084fc; }
@@ -1020,6 +1028,7 @@
     const state={
       level:1,xp:0,xpToNext:120,score:0,lives:3,streak:0,gold:0,
       current:null,answered:false,queue:[],idx:0,bonusUses:0,
+      correctTotal:0, narrativeShown:0,
       character: null,
       equipment:{
         weapon:{n:"Caneta do Interno",rar:"common",atk:0,def:0,kno:1,luck:0},
@@ -1090,7 +1099,7 @@
     const statTips = {
       atk: {icon:'⚔️', name:'Ataque', desc:'Aumenta pontos ganhos por acerto. Quanto maior, mais pontos por questão correta.'},
       def: {icon:'🛡️', name:'Defesa', desc:'Chance de bloquear perda de vida ao errar. DEF × 1.4% de chance de absorver o golpe.'},
-      kno: {icon:'📚', name:'Conhecimento', desc:'Aumenta XP ganho por acerto. +2 XP extra por ponto de conhecimento.'},
+      kno: {icon:'📚', name:'Conhecimento', desc:'Aumenta XP ganho por acerto. +1 XP extra por ponto de conhecimento.'},
       luck: {icon:'🍀', name:'Sorte', desc:'Aumenta ouro ganho e chance de itens raros na forja e drops.'}
     };
     function renderEquip(){
@@ -1137,7 +1146,16 @@
       const forgeBtn=document.getElementById('forgeBtn');
       const chestBtn=document.getElementById('chestBtn');
       if(forgeBtn){ if(state.gold<90){forgeBtn.classList.add('disabled');forgeBtn.title='Ouro insuficiente (precisa 90)'}else{forgeBtn.classList.remove('disabled');forgeBtn.title='Forjar um equipamento'} }
-      if(chestBtn){ if(state.gold<chestCost){chestBtn.classList.add('disabled');chestBtn.title=`Ouro insuficiente (precisa ${chestCost})`}else{chestBtn.classList.remove('disabled');chestBtn.title='Abrir baú de artigo'} }
+      if(chestBtn){
+        const chestLocked = state.gold<chestCost || state.correctTotal<CHEST_MIN_CORRECT;
+        if(chestLocked){
+          chestBtn.classList.add('disabled');
+          chestBtn.title = state.correctTotal<CHEST_MIN_CORRECT ? `Precisa de ${CHEST_MIN_CORRECT} acertos (atual: ${state.correctTotal})` : `Ouro insuficiente (precisa ${chestCost})`;
+        } else {
+          chestBtn.classList.remove('disabled');
+          chestBtn.title='Abrir baú de artigo';
+        }
+      }
     }
 
     function shuffleQueue(){
@@ -1175,20 +1193,6 @@
         b.addEventListener('click',()=>answer(i,b));
         ui.options.appendChild(b);
       });
-      // Efeito de CONH: chance de eliminar 1 opção errada
-      const st=total();
-      const knoChance=Math.min(0.50, st.kno*0.04);
-      if(Math.random()<knoChance){
-        const wrongIdxs=q.o.map((_,i)=>i).filter(i=>i!==q.a);
-        const elim=wrongIdxs[Math.floor(Math.random()*wrongIdxs.length)];
-        const btns=[...document.querySelectorAll('.option')];
-        if(btns[elim]){
-          btns[elim].style.opacity='0.3';
-          btns[elim].style.textDecoration='line-through';
-          btns[elim].disabled=true;
-          log('📚 Seu conhecimento eliminou uma alternativa incorreta!');
-        }
-      }
     }
 
     function gainXP(x){
@@ -1228,7 +1232,8 @@
 
       if(i===c){
         state.streak++;
-        const xp=28+state.current.d*10+state.streak*3+st.kno*2;
+        state.correctTotal++;
+        const xp=28+state.current.d*10+state.streak*3+st.kno;
         const g=10+state.current.d*4+Math.floor(st.luck/2);
         state.score+=95+state.current.d*20+state.streak*7+st.atk;
         state.gold+=g;
@@ -1242,6 +1247,8 @@
         }
         ui.feedback.className='feedback good';
         ui.feedback.textContent=`✅ Correto! ${state.current.e} +${xp} XP, +${g} ouro.${lv?` Level up x${lv}!`:''}`;
+        // Verificar narrativa a cada 5 acertos
+        checkNarrative();
       } else {
         state.streak=0;
         btn.classList.add('wrong');
@@ -1341,6 +1348,61 @@
       popup.addEventListener('click',(e)=>{if(e.target===popup) popup.remove();});
     }
 
+    // ============ SISTEMA DE NARRATIVA PROGRESSIVA ============
+    const narrativeStages = [
+      {at:5, ch:"Capítulo I", title:"O Chamado das Águas", text:"Nos corredores sombrios do Hospital dos Néfrons Perdidos, um pergaminho antigo cai em suas mãos. Nele, um alerta: o Arqui-Nefromante está corrompendo os rins do reino, transformando néfrons saudáveis em pedra. Apenas um médico corajoso pode impedi-lo. Sua jornada começa agora."},
+      {at:10, ch:"Capítulo II", title:"As Criptas da Creatinina", text:"Você desce às Criptas da Creatinina, onde os primeiros sinais da corrupção são visíveis. Túbulos proximais enegrecidos, glomérulos encolhidos... O Arqui-Nefromante deixou rastros de ureia cristalizada. Cada questão que você domina purifica um néfron. Continue — os rins precisam de você."},
+      {at:15, ch:"Capítulo III", title:"A Floresta dos Eletrólitos", text:"A Floresta dos Eletrólitos é um lugar traiçoeiro. Sódio e potássio flutuam como espíritos desequilibrados. Você encontra um velho mestre nefrologista que sussurra: 'O equilíbrio ácido-base é a chave. Sem ele, nenhum rim sobrevive.' Suas respostas corretas restauram a harmonia iônica."},
+      {at:20, ch:"Capítulo IV", title:"O Lago da Filtração", text:"No Lago da Filtração, a água cristalina está turva. A barreira glomerular foi danificada — proteínas escapam para a urina como ouro derramado. Você precisa reconstruir os podócitos, um por um. Cada acerto é um passo para restaurar a membrana basal. A proteinúria diminui."},
+      {at:25, ch:"Capítulo V", title:"As Montanhas do SRAA", text:"As Montanhas do Sistema Renina-Angiotensina-Aldosterona são imponentes. No topo, a angiotensina II sopra ventos de vasoconstrição sobre o reino. Você empunha o Escudo do IECA e avança. Com cada resposta certa, a pressão intraglomerular cede. Os néfrons respiram aliviados."},
+      {at:30, ch:"Capítulo VI", title:"O Deserto da Diálise", text:"O Deserto da Diálise é árido e implacável. Aqui vivem os pacientes que perderam a batalha contra a DRC. Mas há esperança: as máquinas de hemodiálise brilham como oásis. Você aprende seus segredos — clearance, Kt/V, ultrafiltração. Cada conhecimento salva uma vida."},
+      {at:35, ch:"Capítulo VII", title:"A Caverna dos Imunocomplexos", text:"Nas profundezas da Caverna dos Imunocomplexos, depósitos de IgA e complemento brilham nas paredes como cristais malignos. Glomerulonefrites se escondem em cada sombra. Você identifica padrões — mesangial, membranoso, crescêntico. Seu conhecimento é sua arma mais poderosa."},
+      {at:40, ch:"Capítulo VIII", title:"A Torre do Transplante", text:"A Torre do Transplante se ergue no horizonte, brilhante e cheia de promessas. Mas o caminho é guardado por rejeições hiperagudas e crises de ciclosporina. Você estuda compatibilidade HLA, imunossupressão, e infecções oportunistas. Um rim novo aguarda quem provar ser digno."},
+      {at:45, ch:"Capítulo IX", title:"O Labirinto Cardiorrenal", text:"O Labirinto Cardiorrenal é onde coração e rim se entrelaçam em destino compartilhado. SGLT2i, finerenona, ARM — as armas modernas estão ao seu alcance. Cada corredor revela uma síndrome diferente. Tipo 1, tipo 2, tipo 3... Você navega com precisão. A tríade terapêutica se completa."},
+      {at:50, ch:"Capítulo X", title:"O Vulcão da Rabdomiólise", text:"O Vulcão da Rabdomiólise entra em erupção! Mioglobina incandescente desce pelas encostas, obstruindo túbulos e destruindo néfrons. Você ordena hidratação agressiva, alcalinização da urina, e monitoramento de CPK. A lava esfria. Os rins sobrevivem — por enquanto."},
+      {at:55, ch:"Capítulo XI", title:"O Pântano da Acidose", text:"O Pântano da Acidose Tubular é traiçoeiro. pH urinário que não baixa, hipocalemia persistente, nefrocalcinose... Você diferencia tipo 1, tipo 2 e tipo 4 com maestria. Citrato de potássio na mão, bicarbonato no bolso. O equilíbrio ácido-base é restaurado, néfron por néfron."},
+      {at:60, ch:"Capítulo XII", title:"As Muralhas de KDIGO", text:"As Muralhas de KDIGO protegem o conhecimento acumulado de gerações de nefrologistas. TFG, albuminúria, mapa de calor de risco — tudo se conecta. Você estuda as diretrizes como um guerreiro estuda mapas de batalha. G1 a G5, A1 a A3. A estratificação é sua bússola."},
+      {at:65, ch:"Capítulo XIII", title:"O Templo dos SGLT2i", text:"No Templo dos SGLT2i, os pergaminhos sagrados do DAPA-CKD e EMPA-KIDNEY revelam verdades revolucionárias. Nefroproteção independente de diabetes! O 'dip' inicial da TFG não é dano — é proteção. Você empunha a dapagliflozina como uma espada de luz contra a progressão renal."},
+      {at:70, ch:"Capítulo XIV", title:"A Ponte dos Podócitos", text:"A Ponte dos Podócitos conecta o mundo glomerular ao tubular. Cada podócito é um guardião da barreira de filtração. FSGS, nefropatia membranosa, GESF... Você aprende a reconhecer padrões na microscopia eletrônica. PLA2R brilha como um farol diagnóstico. A ponte se fortalece."},
+      {at:75, ch:"Capítulo XV", title:"O Abismo da Hipercalemia", text:"O Abismo da Hipercalemia se abre sob seus pés! Ondas T apiculadas, QRS alargado — o coração do reino está em perigo. Gluconato de cálcio para estabilizar, insulina com glicose para redistribuir, resina para eliminar. Você age rápido. O ECG normaliza. O reino respira."},
+      {at:80, ch:"Capítulo XVI", title:"A Fortaleza da Finerenona", text:"A Fortaleza da Finerenona é a última adição ao arsenal nefroprotetor. ARM não esteroidal, sem a ginecomastia da espironolactona. FIDELIO-DKD e FIGARO-DKD provam seu valor. A tríade está completa: IECA/BRA + SGLT2i + Finerenona. O Arqui-Nefromante treme."},
+      {at:85, ch:"Capítulo XVII", title:"O Santuário da Peritoneal", text:"No Santuário da Diálise Peritoneal, o peritônio é a membrana sagrada. Você aprende sobre trocas osmóticas, icodextrina, peritonite e esclerose encapsulante. Cada paciente é único — adequação, clearance, ultrafiltração. O santuário brilha com conhecimento aplicado."},
+      {at:90, ch:"Capítulo XVIII", title:"O Portal do Xenotransplante", text:"Um portal brilhante se abre: o futuro do transplante renal! Rins suínos geneticamente editados, 10 modificações genéticas para vencer a rejeição hiperaguda. Montgomery e Riella mostram o caminho. A fila de transplante pode ter seus dias contados. O futuro é agora."},
+      {at:95, ch:"Capítulo XIX", title:"O Confronto com o Arqui-Nefromante", text:"Finalmente, você chega ao Trono da Uremia, onde o Arqui-Nefromante aguarda. Ele lança feitiços de azotemia, hiperfiltração maligna e nefrotoxicidade. Mas você está preparado — cada questão respondida foi um feitiço aprendido. A batalha final começa!"},
+      {at:100, ch:"Epílogo", title:"Os Rins Foram Salvos!", text:"Com um último golpe de conhecimento puro, o Arqui-Nefromante é derrotado! Os néfrons do reino voltam a filtrar com perfeição. A creatinina normaliza, a proteinúria desaparece, o equilíbrio hidroeletrolítico é restaurado. Você é coroado(a) como o(a) Grande Guardião(ã) dos Rins. A nefrologia está salva — graças a você!"}
+    ];
+
+    function checkNarrative(){
+      const stage = narrativeStages.find(s => s.at === state.correctTotal && state.narrativeShown < s.at);
+      if(!stage) return;
+      state.narrativeShown = stage.at;
+      showNarrativePopup(stage);
+    }
+
+    function showNarrativePopup(stage){
+      const popup = document.createElement('div');
+      popup.className='narrative-popup';
+      const isFinale = stage.at >= 100;
+      popup.innerHTML=`
+        <div class='narrative-card'>
+          <div class='narr-chapter'>${stage.ch}</div>
+          <h3>${isFinale ? '🏆 ' : '📖 '}${stage.title}</h3>
+          <div class='narr-text'>${stage.text}</div>
+          <div class='narr-progress'>
+            <strong>${state.correctTotal}</strong> acertos · Nível <strong>${state.level}</strong> · ${state.queue.length - state.idx} cartas restantes
+          </div>
+          <button class='btn gold' onclick='this.closest(".narrative-popup").remove()'>${isFinale ? '🏆 Glória Eterna!' : 'Continuar a Jornada'}</button>
+        </div>
+      `;
+      document.body.appendChild(popup);
+      popup.addEventListener('click',(e)=>{if(e.target===popup) popup.remove();});
+      if(isFinale){
+        log('🏆 VITÓRIA! Você derrotou o Arqui-Nefromante e salvou os rins do reino!');
+      } else {
+        log(`📖 ${stage.ch}: ${stage.title}`);
+      }
+    }
+
     function renderBoard(){
       const b=boardGet().slice(0,10);
       ui.boardBody.innerHTML=b.length
@@ -1349,7 +1411,7 @@
     }
 
     function resetGame(){
-      Object.assign(state,{level:1,xp:0,xpToNext:120,score:0,lives:3,streak:0,gold:0,current:null,answered:false,bonusUses:0});
+      Object.assign(state,{level:1,xp:0,xpToNext:120,score:0,lives:3,streak:0,gold:0,current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0});
       state.equipment={
         weapon:{n:"Caneta do Interno",rar:"common",atk:0,def:0,kno:1,luck:0},
         armor:{n:"Túnica de Residência",rar:"common",atk:0,def:1,kno:0,luck:0},
@@ -1425,7 +1487,7 @@
     function startGameWithCharacter() {
       const char = characters[state.character];
       
-      Object.assign(state,{level:1,xp:0,xpToNext:120,score:0,lives:3,streak:0,gold:0,current:null,answered:false,bonusUses:0});
+      Object.assign(state,{level:1,xp:0,xpToNext:120,score:0,lives:3,streak:0,gold:0,current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0});
       state.equipment={
         weapon:{n:"Caneta do Interno",rar:"common",atk:char.bonusAtk,def:0,kno:char.bonusKno,luck:0},
         armor:{n:"Túnica de Residência",rar:"common",atk:0,def:char.bonusDef,kno:0,luck:0},
@@ -1439,9 +1501,14 @@
     }
 
     // Sistema de Baús
-    let chestCost = 50;
+    let chestCost = 60;
+    const CHEST_MIN_CORRECT = 3;
     
     function openChest() {
+      if (state.correctTotal < CHEST_MIN_CORRECT) {
+        log(`📚 Você precisa de pelo menos ${CHEST_MIN_CORRECT} acertos para abrir um baú! (Atual: ${state.correctTotal})`);
+        return;
+      }
       if (state.gold < chestCost) {
         log('💰 Ouro insuficiente! Você precisa de ' + chestCost + ' ouro.');
         return;
@@ -1523,6 +1590,21 @@
     };
 
     resetGame();
+
+    // Posicionar tooltips via JS para evitar corte
+    document.addEventListener('mouseover', function(e){
+      const badge = e.target.closest('.stat-badge');
+      if(!badge) return;
+      const tip = badge.querySelector('.stat-tip');
+      if(!tip) return;
+      const rect = badge.getBoundingClientRect();
+      tip.style.left = Math.max(10, Math.min(rect.left, window.innerWidth - 310)) + 'px';
+      tip.style.top = Math.max(10, rect.top - tip.offsetHeight - 8) + 'px';
+      // Se não cabe acima, coloca abaixo
+      if(rect.top - tip.offsetHeight - 8 < 10){
+        tip.style.top = (rect.bottom + 8) + 'px';
+      }
+    });
   </script>
 </body>
 </html>
