@@ -5,34 +5,146 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NefroQuest: Ascencion</title>
   <style>
-    :root{--bg:#05070f;--card:#0d1426;--card2:#131f39;--line:#2a3f67;--txt:#e8efff;--mut:#9eb0d7;--ok:#34d399;--bad:#fb7185}
-    *{box-sizing:border-box} body{margin:0;color:var(--txt);font-family:Inter,system-ui;background:radial-gradient(circle at 20% -10%,#1e2e56,transparent 40%),radial-gradient(circle at 90% 0,#2f1c4f,transparent 30%),#05070f;min-height:100vh;padding:16px}
-    .app{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:420px 1fr;gap:14px}
-    .panel{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:18px;box-shadow:0 20px 60px #0008}
-    .left{padding:14px}.right{padding:18px}
-    h1{margin:0;font-size:1.7rem;background:linear-gradient(90deg,#c7d2fe,#f9d67a);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-    .sub{margin:6px 0 12px;color:var(--mut);font-size:.9rem}
-    .hero,.hud,.equip,.log,.qbox,.feedback,.refs,.ctrl{background:#0d1831cf;border:1px solid var(--line);border-radius:12px}
-    .hero{padding:10px;margin-bottom:10px}.hero-wrap{display:flex;gap:10px;align-items:center}.portrait{width:92px;height:92px;border-radius:14px;border:1px solid #4f6798;background:#070d1d;object-fit:cover;transition:.2s}.portrait.tier-5{box-shadow:0 0 22px #f59e0b66}.portrait.tier-4{box-shadow:0 0 18px #c084fc55}.portrait.tier-3{box-shadow:0 0 16px #34d39955}.portrait.tier-2{box-shadow:0 0 14px #60a5fa55}
-    .class{font-weight:700}.xp{height:10px;border-radius:999px;overflow:hidden;border:1px solid #34517f;background:#0b1329;margin-top:8px}.xp>div{height:100%;width:0;background:linear-gradient(90deg,#60a5fa,#a78bfa);transition:width .25s}
-    .hud{padding:10px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}.tile{padding:8px;border:1px solid #2f4a78;border-radius:10px;background:#0b1329;text-align:center}.tile span{display:block;color:var(--mut);font-size:.72rem}
-    .equip{padding:10px;margin-bottom:10px}.slot{font-size:.82rem;padding:8px;border:1px solid #2f4a78;border-radius:10px;background:#0b1329;margin-bottom:6px}.slot-head{display:flex;gap:8px;align-items:center}.slot img{width:24px;height:24px;border-radius:6px}.rar-common{color:#cbd5e1}.rar-rare{color:#93c5fd}.rar-epic{color:#c4b5fd}.rar-legendary{color:#fbbf24;font-weight:700}
-    .log{padding:10px;min-height:138px;font-size:.84rem}.log p{margin:0 0 6px}
-    .qbox{padding:14px;min-height:120px;margin-bottom:10px}#question{margin:0;line-height:1.5;font-size:1.06rem}
-    .options{display:grid;gap:8px}.option{padding:11px;border:1px solid #334f81;border-radius:10px;background:#0b1329;color:var(--txt);text-align:left;cursor:pointer}.option:hover:not(:disabled){border-color:#6ea7ff}.option.correct{border-color:var(--ok);background:#123126}.option.wrong{border-color:var(--bad);background:#3a1721}
-    .feedback{padding:11px;min-height:78px;margin-top:10px}.feedback.good{border-color:#1f7b63}.feedback.bad{border-color:#9f3f54}
-    .refs{padding:10px;margin-top:8px;font-size:.88rem}.refs ul{margin:6px 0 0;padding-left:18px}.refs a{color:#93c5fd;text-decoration:none}.refs a:hover{text-decoration:underline}
-    .ctrl{padding:10px;margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid #4c6da5;background:linear-gradient(180deg,#72abff,#416ab1);color:#fff;border-radius:9px;padding:9px 12px;font-weight:700;cursor:pointer}.btn.sec{background:#263c5c}.hidden{display:none}
-    .modalWrap.hidden{display:none}.modalWrap{position:fixed;inset:0;background:#0008;display:grid;place-items:center}.modal{width:min(700px,92vw);background:linear-gradient(180deg,#111d37,#0b1428);border:1px solid var(--line);border-radius:14px;padding:14px}
-    table{width:100%;border-collapse:collapse;margin-top:8px}th,td{border-bottom:1px solid #34507f;padding:7px;text-align:left;font-size:.88rem}
-    @media(max-width:1060px){.app{grid-template-columns:1fr}}
+    :root {
+      --bg: #060910;
+      --card: #0d1426;
+      --card2: #131f39;
+      --line: #2a3f67;
+      --txt: #e8efff;
+      --mut: #9eb0d7;
+      --ok: #34d399;
+      --bad: #fb7185;
+      --gold: #fbbf24;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--txt);
+      font-family: Inter, system-ui, sans-serif;
+      background:
+        radial-gradient(circle at 20% -10%, #1e2e56, transparent 40%),
+        radial-gradient(circle at 90% 0, #2f1c4f, transparent 30%),
+        var(--bg);
+      min-height: 100vh;
+      padding: 16px;
+    }
+    .app {
+      max-width: 1420px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 430px 1fr;
+      gap: 14px;
+    }
+    .panel {
+      background: linear-gradient(180deg, var(--card2), var(--card));
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 20px 60px #0008;
+    }
+    .left { padding: 14px; }
+    .right { padding: 18px; }
+    h1 {
+      margin: 0;
+      font-size: 1.7rem;
+      background: linear-gradient(90deg, #c7d2fe, #f9d67a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .sub { margin: 6px 0 12px; color: var(--mut); font-size: .9rem; }
+    .hero,.hud,.equip,.log,.story,.qbox,.feedback,.refs,.ctrl {
+      background: #0d1831cf;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .hero { padding: 10px; margin-bottom: 10px; }
+    .hero-wrap { display: flex; gap: 10px; align-items: center; }
+    .portrait {
+      width: 92px; height: 92px; border-radius: 14px; object-fit: cover;
+      border: 1px solid #4f6798; background: #070d1d; transition: .2s;
+    }
+    .portrait.l5 { box-shadow: 0 0 22px #f59e0b66; }
+    .portrait.l4 { box-shadow: 0 0 18px #c084fc55; }
+    .portrait.l3 { box-shadow: 0 0 16px #34d39955; }
+    .portrait.l2 { box-shadow: 0 0 14px #60a5fa55; }
+    .class { font-weight: 700; }
+    .xp {
+      height: 10px; border-radius: 999px; overflow: hidden;
+      border: 1px solid #34517f; background: #0b1329; margin-top: 8px;
+    }
+    .xp > div {
+      height: 100%; width: 0;
+      background: linear-gradient(90deg, #60a5fa, #a78bfa);
+      transition: width .25s;
+    }
+    .hud {
+      padding: 10px; display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 8px; margin-bottom: 10px;
+    }
+    .tile {
+      padding: 8px; border: 1px solid #2f4a78; border-radius: 10px;
+      background: #0b1329; text-align: center;
+    }
+    .tile span { display: block; color: var(--mut); font-size: .72rem; }
+    .equip,.story,.log { padding: 10px; margin-bottom: 10px; }
+    .slot {
+      font-size: .82rem; padding: 8px; border: 1px solid #2f4a78;
+      border-radius: 10px; background: #0b1329; margin-bottom: 6px;
+    }
+    .slot-head { display: flex; gap: 8px; align-items: center; }
+    .slot img { width: 24px; height: 24px; border-radius: 6px; }
+    .rar-common { color: #cbd5e1; }
+    .rar-rare { color: #93c5fd; }
+    .rar-epic { color: #c4b5fd; }
+    .rar-legendary { color: var(--gold); font-weight: 700; }
+    .story h3,.equip h3,.log h3 { margin: 0 0 6px; font-size: .92rem; }
+    .story p,.log p { margin: 0 0 6px; font-size: .84rem; color: #d5e2ff; }
+
+    .qbox { padding: 14px; min-height: 120px; margin-bottom: 10px; }
+    #question { margin: 0; line-height: 1.5; font-size: 1.06rem; }
+    .options { display: grid; gap: 8px; }
+    .option {
+      padding: 11px; border: 1px solid #334f81; border-radius: 10px;
+      background: #0b1329; color: var(--txt); text-align: left; cursor: pointer;
+    }
+    .option:hover:not(:disabled) { border-color: #6ea7ff; }
+    .option.correct { border-color: var(--ok); background: #123126; }
+    .option.wrong { border-color: var(--bad); background: #3a1721; }
+
+    .feedback { padding: 11px; min-height: 78px; margin-top: 10px; }
+    .feedback.good { border-color: #1f7b63; }
+    .feedback.bad { border-color: #9f3f54; }
+    .refs { padding: 10px; margin-top: 8px; font-size: .88rem; }
+    .refs ul { margin: 6px 0 0; padding-left: 18px; }
+    .refs a { color: #93c5fd; text-decoration: none; }
+    .refs a:hover { text-decoration: underline; }
+
+    .ctrl { padding: 10px; margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn {
+      border: 1px solid #4c6da5; background: linear-gradient(180deg, #72abff, #416ab1);
+      color: #fff; border-radius: 9px; padding: 9px 12px; font-weight: 700; cursor: pointer;
+    }
+    .btn.sec { background: #263c5c; }
+    .btn.gold { background: linear-gradient(180deg, #facc15, #ca8a04); border-color: #eab308; color: #1f2937; }
+    .hidden { display: none; }
+
+    .modalWrap.hidden { display:none; }
+    .modalWrap {
+      position: fixed; inset: 0; background:#0008; display:grid; place-items:center; z-index:30;
+    }
+    .modal {
+      width:min(700px,92vw); background:linear-gradient(180deg,#111d37,#0b1428);
+      border:1px solid var(--line); border-radius:14px; padding:14px;
+    }
+    table { width:100%; border-collapse:collapse; margin-top:8px; }
+    th,td { border-bottom:1px solid #34507f; padding:7px; text-align:left; font-size:.88rem; }
+    @media(max-width:1060px){ .app{grid-template-columns:1fr;} }
   </style>
 </head>
 <body>
   <main class="app">
     <section class="panel left">
       <h1>NefroQuest: Ascencion</h1>
-      <p class="sub">Modo RPG para prova de título — cartas randomizadas sem repetição até o fim do baralho.</p>
+      <p class="sub">Capítulos, equipamentos e decisões clínicas de alta complexidade.</p>
 
       <div class="hero">
         <div class="hero-wrap">
@@ -46,6 +158,12 @@
         <small id="xpTxt">XP 0 / 120</small>
       </div>
 
+      <div class="story">
+        <h3>Capítulo da Narrativa</h3>
+        <p id="storyTitle">Prólogo — As Criptas da Creatinina</p>
+        <p id="storyGoal">Objetivo: alcançar nível 15 e equipar 2 itens lendários para enfrentar o Arqui-Nefromante.</p>
+      </div>
+
       <div class="hud">
         <div class="tile"><span>Nível</span><strong id="level">1</strong></div>
         <div class="tile"><span>Pontos</span><strong id="score">0</strong></div>
@@ -56,11 +174,11 @@
       </div>
 
       <div class="equip">
-        <strong>Equipamentos</strong>
+        <h3>Equipamentos</h3>
         <div id="equipList"></div>
       </div>
 
-      <div class="log"><strong>Jornada</strong><div id="journal"></div></div>
+      <div class="log"><h3>Jornada</h3><div id="journal"></div></div>
     </section>
 
     <section class="panel right">
@@ -71,6 +189,8 @@
       <div class="ctrl">
         <button id="nextBtn" class="btn hidden">Próxima carta</button>
         <button id="newBtn" class="btn sec">Novo jogo</button>
+        <button id="forgeBtn" class="btn gold">Forjar item (90 ouro)</button>
+        <button id="bonusBtn" class="btn gold hidden">Pergunta bônus (120 ouro)</button>
         <button id="boardBtn" class="btn sec">Leaderboard</button>
       </div>
     </section>
@@ -85,9 +205,30 @@
   </div>
 
   <script>
-    const refsDB={kdigo_ckd:{label:"KDIGO CKD 2024",url:"https://kdigo.org/guidelines/ckd-evaluation-and-management/"},kdigo_aki:{label:"KDIGO AKI",url:"https://kdigo.org/guidelines/acute-kidney-injury/"},kdigo_gn:{label:"KDIGO Glomerular Diseases",url:"https://kdigo.org/guidelines/glomerular-diseases/"},kdigo_tx:{label:"KDIGO Transplant",url:"https://kdigo.org/guidelines/transplant-recipient-care/"},dapa:{label:"DAPA-CKD",url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2024816"},empa:{label:"EMPA-KIDNEY",url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2204233"},hypona:{label:"Guideline Hyponatremia",url:"https://academic.oup.com/ndt/article/29/suppl_2/i1/1843686"}};
-    const scenarioWrappers=["Qual conduta está mais alinhada às diretrizes para","Em caso desafiador, qual alternativa melhor interpreta","Na avaliação de alta complexidade, qual decisão evita erro em","Diante de situação limítrofe, qual abordagem correta em","No contexto de estratificação de risco, qual opção representa","Em paciente com múltiplas comorbidades, qual atitude é mais adequada para","Sob medicina baseada em evidências, qual estratégia é preferível para","Em questão de pegadinha conceitual, qual resposta correta sobre","Na integração nefro-cardio-metabólica, qual conduta é superior para","Em cenário crítico com progressão renal, qual decisão técnica é melhor para"];
-    const topics=[
+    const refsDB = {
+      kdigo_ckd:{label:"KDIGO CKD 2024",url:"https://kdigo.org/guidelines/ckd-evaluation-and-management/"},
+      kdigo_aki:{label:"KDIGO AKI",url:"https://kdigo.org/guidelines/acute-kidney-injury/"},
+      kdigo_gn:{label:"KDIGO Glomerular Diseases",url:"https://kdigo.org/guidelines/glomerular-diseases/"},
+      kdigo_tx:{label:"KDIGO Transplant",url:"https://kdigo.org/guidelines/transplant-recipient-care/"},
+      dapa:{label:"DAPA-CKD",url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2024816"},
+      empa:{label:"EMPA-KIDNEY",url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2204233"},
+      hypona:{label:"Guideline Hyponatremia",url:"https://academic.oup.com/ndt/article/29/suppl_2/i1/1843686"}
+    };
+
+    const scenarioWrappers = [
+      "Qual conduta está mais alinhada às diretrizes para",
+      "Em caso desafiador, qual alternativa melhor interpreta",
+      "Na avaliação de alta complexidade, qual decisão evita erro em",
+      "Diante de situação limítrofe, qual abordagem correta em",
+      "No contexto de estratificação de risco, qual opção representa",
+      "Em paciente com múltiplas comorbidades, qual atitude é mais adequada para",
+      "Sob medicina baseada em evidências, qual estratégia é preferível para",
+      "Em questão de pegadinha conceitual, qual resposta correta sobre",
+      "Na integração nefro-cardio-metabólica, qual conduta é superior para",
+      "Em cenário crítico com progressão renal, qual decisão técnica é melhor para"
+    ];
+
+    const topics = [
       {t:"confirmação de DRC com eGFR limítrofe",c:"dosar cistatina C e considerar equação combinada",d:["usar apenas ureia para estadiar","clearance 24h como padrão ouro em todo ambulatório","indicar biópsia sem critérios"],e:"A cistatina C combinada à creatinina melhora acurácia em cenários limítrofes.",r:["kdigo_ckd"]},
       {t:"uso de Cockcroft-Gault",c:"reconhecer desuso para estadiamento, mantendo utilidade para dose de alguns fármacos",d:["substituir CKD-EPI em todo paciente","usar para classificar albuminúria","descartar totalmente em qualquer contexto"],e:"Ainda há utilidade pontual para ajuste de dose de algumas medicações.",r:["kdigo_ckd"]},
       {t:"DRC diabética com proteinúria",c:"manter IECA/BRA se tolerado",d:["AINE contínuo","suspender anti-hipertensivos para perfusão renal","corticosteroide rotineiro"],e:"Bloqueio SRAA é pilar em proteinúria diabética.",r:["kdigo_ckd"]},
@@ -100,48 +241,291 @@
       {t:"queda aguda da função do enxerto",c:"investigar pré/intra/pós-renal, rejeição e nefrotoxicidade",d:["presumir desidratação em todos","aumentar imunossupressão sem investigação","aguardar resolução espontânea"],e:"Avaliação precoce preserva função do enxerto.",r:["kdigo_tx"]}
     ];
 
-    const items={
+    const chapters = [
+      { lv:1, title:"Prólogo — As Criptas da Creatinina", goal:"Estude os fundamentos e sobreviva às primeiras cartas." },
+      { lv:4, title:"Capítulo II — O Vale da Albuminúria", goal:"Consolide estratificação de risco e terapia nefroprotetora." },
+      { lv:8, title:"Capítulo III — Torre das Glomerulopatias", goal:"Domine sinais de gravidade e decisões de intervenção precoce." },
+      { lv:12, title:"Capítulo IV — Trono Cardiorrenal", goal:"Integre terapias complexas e mantenha consistência clínica." },
+      { lv:15, title:"Capítulo Final — O Arqui-Nefromante", goal:"Equipe 2 lendários e alcance a vitória clínica suprema." }
+    ];
+
+    const items = {
       weapon:[{n:"Lâmina da Alça",rar:"common",atk:2,def:0,kno:1,luck:0},{n:"Lança Glomerular",rar:"rare",atk:4,def:1,kno:2,luck:1},{n:"Espada Nefroprotetora",rar:"epic",atk:7,def:2,kno:3,luck:2},{n:"Excalibur do Néfron",rar:"legendary",atk:11,def:3,kno:4,luck:3}],
       armor:[{n:"Jaleco de Plantão",rar:"common",atk:0,def:2,kno:1,luck:0},{n:"Manto Renocortical",rar:"rare",atk:1,def:4,kno:2,luck:1},{n:"Égide Dialítica",rar:"epic",atk:2,def:7,kno:3,luck:1},{n:"Armadura Primeva",rar:"legendary",atk:3,def:11,kno:4,luck:2}],
       relic:[{n:"Anel Albuminúrico",rar:"common",atk:0,def:0,kno:2,luck:1},{n:"Sigilo KDIGO",rar:"rare",atk:1,def:1,kno:4,luck:1},{n:"Orbe da Cistatina",rar:"epic",atk:2,def:2,kno:6,luck:2},{n:"Relíquia do Título",rar:"legendary",atk:3,def:3,kno:8,luck:4}]
     };
-    const rarityWeight=["common","common","common","rare","rare","epic","legendary"],rarityPower={common:1,rare:2,epic:3,legendary:4};
 
-    function buildDeck(){const deck=[];for(let i=0;i<300;i++){const t=topics[i%topics.length],w=scenarioWrappers[Math.floor(i/topics.length)%scenarioWrappers.length],d=Math.min(12,4+Math.floor(i/25));const opts=[t.c,...t.d],rot=i%4,o=opts.map((_,x)=>opts[(x+rot)%4]);deck.push({id:i+1,d,q:`${w} ${t.t}?`,o,a:(4-rot)%4,e:t.e,r:t.r});}return deck;}
+    const rarityWeight=["common","common","common","rare","rare","epic","legendary"];
+    const rarityPower={common:1,rare:2,epic:3,legendary:4};
+
+    function buildDeck() {
+      const deck=[];
+      for(let i=0;i<300;i++){
+        const t=topics[i%topics.length];
+        const w=scenarioWrappers[Math.floor(i/topics.length)%scenarioWrappers.length];
+        const d=Math.min(12,4+Math.floor(i/25));
+        const opts=[t.c,...t.d];
+        const rot=i%4;
+        const o=opts.map((_,x)=>opts[(x+rot)%4]);
+        deck.push({id:i+1,d,q:`${w} ${t.t}?`,o,a:(4-rot)%4,e:t.e,r:t.r});
+      }
+      return deck;
+    }
+
     const questionBank=buildDeck();
 
-    const state={level:1,xp:0,xpToNext:120,score:0,lives:3,streak:0,gold:0,current:null,answered:false,queue:[],idx:0,equipment:{weapon:{n:"Caneta do Interno",rar:"common",atk:0,def:0,kno:1,luck:0},armor:{n:"Túnica de Residência",rar:"common",atk:0,def:1,kno:0,luck:0},relic:{n:"Insígnia do Plantão",rar:"common",atk:0,def:0,kno:1,luck:0}},milestone:new Set()};
+    const state={
+      level:1,xp:0,xpToNext:120,score:0,lives:3,streak:0,gold:0,
+      current:null,answered:false,queue:[],idx:0,bonusUses:0,
+      equipment:{
+        weapon:{n:"Caneta do Interno",rar:"common",atk:0,def:0,kno:1,luck:0},
+        armor:{n:"Túnica de Residência",rar:"common",atk:0,def:1,kno:0,luck:0},
+        relic:{n:"Insígnia do Plantão",rar:"common",atk:0,def:0,kno:1,luck:0}
+      }
+    };
 
-    const $=id=>document.getElementById(id),ui={heroImg:$("heroImg"),heroClass:$("heroClass"),heroFlavor:$("heroFlavor"),xpFill:$("xpFill"),xpTxt:$("xpTxt"),level:$("level"),score:$("score"),lives:$("lives"),record:$("record"),gold:$("gold"),streak:$("streak"),equipList:$("equipList"),journal:$("journal"),question:$("question"),options:$("options"),feedback:$("feedback"),refs:$("refs"),nextBtn:$("nextBtn"),newBtn:$("newBtn"),boardBtn:$("boardBtn"),boardModal:$("boardModal"),boardBody:$("boardBody"),closeBoard:$("closeBoard")};
+    const $=id=>document.getElementById(id);
+    const ui={
+      heroImg:$("heroImg"),heroClass:$("heroClass"),heroFlavor:$("heroFlavor"),xpFill:$("xpFill"),xpTxt:$("xpTxt"),
+      storyTitle:$("storyTitle"),storyGoal:$("storyGoal"),
+      level:$("level"),score:$("score"),lives:$("lives"),record:$("record"),gold:$("gold"),streak:$("streak"),
+      equipList:$("equipList"),journal:$("journal"),question:$("question"),options:$("options"),feedback:$("feedback"),refs:$("refs"),
+      nextBtn:$("nextBtn"),newBtn:$("newBtn"),forgeBtn:$("forgeBtn"),bonusBtn:$("bonusBtn"),boardBtn:$("boardBtn"),
+      boardModal:$("boardModal"),boardBody:$("boardBody"),closeBoard:$("closeBoard")
+    };
 
     const boardGet=()=>JSON.parse(localStorage.getItem('nefroquest-board')||'[]');
     const boardSave=(x)=>localStorage.setItem('nefroquest-board',JSON.stringify(x.slice(0,20)));
     function boardPush(score,level){const b=boardGet();b.push({score,level,date:new Date().toLocaleString('pt-BR')});b.sort((a,c)=>c.score-a.score||c.level-a.level);boardSave(b)}
     const best=()=>{const b=boardGet();return b.length?b[0].score:0};
+
     function log(m){const p=document.createElement('p');p.textContent=m;ui.journal.prepend(p);while(ui.journal.children.length>7)ui.journal.lastChild.remove()}
     function total(){return Object.values(state.equipment).reduce((a,i)=>(a.atk+=i.atk,a.def+=i.def,a.kno+=i.kno,a.luck+=i.luck,a),{atk:0,def:0,kno:0,luck:0})}
-    function heroMeta(){if(state.level>=16)return["Arquimago do Néfron","\"Você domina o conselho sombrio dos rins.\"",'assets/hero-tier5.svg',5];if(state.level>=12)return["Lenda Cardiorrenal","\"Integração e precisão em nível épico.\"",'assets/hero-tier4.svg',4];if(state.level>=8)return["Mestre das Glomerulopatias","\"Cada detalhe muda o destino.\"",'assets/hero-tier3.svg',3];if(state.level>=5)return["Guardião da Nefroproteção","\"Você segura a linha entre risco e desfecho.\"",'assets/hero-tier2.svg',2];return["Noviço da Filtração","\"Cada néfron salvo é uma vitória.\"",'assets/hero-tier1.svg',1];}
-    function renderEquip(){const map={weapon:['⚔️ Arma','assets/weapon-spear.svg'],armor:['🛡️ Armadura','assets/armor-aegis.svg'],relic:['🔮 Relíquia','assets/relic-orb.svg']};ui.equipList.innerHTML=Object.entries(state.equipment).map(([k,v])=>`<div class='slot'><div class='slot-head'><img src='${map[k][1]}' alt='${k}'/><strong>${map[k][0]}:</strong> <span class='rar-${v.rar}'>${v.n}</span></div><small>ATK ${v.atk} • DEF ${v.def} • CONH ${v.kno} • SORTE ${v.luck}</small></div>`).join('');}
-    function renderHUD(){const [c,f,img,t]=heroMeta();ui.heroClass.textContent=c;ui.heroFlavor.textContent=f;ui.heroImg.src=img;ui.heroImg.className=`portrait tier-${t}`;ui.level.textContent=state.level;ui.score.textContent=state.score;ui.lives.textContent='❤'.repeat(Math.max(0,state.lives))+'♡'.repeat(3-Math.max(0,state.lives));ui.record.textContent=best();ui.gold.textContent=state.gold;ui.streak.textContent=state.streak;ui.xpFill.style.width=`${Math.min(100,(state.xp/state.xpToNext)*100)}%`;ui.xpTxt.textContent=`XP ${state.xp} / ${state.xpToNext} • Cartas: ${questionBank.length}`;renderEquip();}
+    function legendaryCount(){return Object.values(state.equipment).filter(i=>i.rar==='legendary').length;}
 
-    function shuffleQueue(){state.queue=[...questionBank];for(let i=state.queue.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[state.queue[i],state.queue[j]]=[state.queue[j],state.queue[i]];}state.idx=0;}
-    function drawQuestion(){if(state.idx>=state.queue.length){finishDeck();return null;}return state.queue[state.idx++];}
-    function renderRefs(keys){const list=keys.map(k=>refsDB[k]).filter(Boolean);ui.refs.innerHTML=`<strong>Referências:</strong><ul>${list.map(i=>`<li><a href='${i.url}' target='_blank' rel='noopener noreferrer'>${i.label}</a></li>`).join('')}</ul>`}
-    function renderQuestion(){state.answered=false;const q=drawQuestion();if(!q)return;state.current=q;ui.question.textContent=q.q;ui.options.innerHTML='';ui.feedback.className='feedback';ui.feedback.textContent='Escolha a melhor alternativa clínica.';renderRefs(q.r);ui.nextBtn.classList.add('hidden');q.o.forEach((opt,i)=>{const b=document.createElement('button');b.className='option';b.type='button';b.textContent=`${String.fromCharCode(65+i)}) ${opt}`;b.addEventListener('click',()=>answer(i,b));ui.options.appendChild(b);});}
+    function heroMeta(){
+      if(state.level>=16) return ["Arquimago do Néfron","\"Você domina o conselho sombrio dos rins.\"",'assets/hero-tier5.svg','l5'];
+      if(state.level>=12) return ["Lenda Cardiorrenal","\"Integração e precisão em nível épico.\"",'assets/hero-tier4.svg','l4'];
+      if(state.level>=8) return ["Mestre das Glomerulopatias","\"Cada detalhe muda o destino.\"",'assets/hero-tier3.svg','l3'];
+      if(state.level>=5) return ["Guardião da Nefroproteção","\"Você segura a linha entre risco e desfecho.\"",'assets/hero-tier2.svg','l2'];
+      return ["Noviço da Filtração","\"Cada néfron salvo é uma vitória.\"",'assets/hero-tier1.svg',''];
+    }
 
-    function gainXP(x){state.xp+=x;let up=0;while(state.xp>=state.xpToNext){state.xp-=state.xpToNext;state.level++;state.xpToNext=Math.floor(state.xpToNext*1.17);up++;if(state.level%6===0&&state.lives<3)state.lives++;}return up;}
-    function rollItem(diff,luck){const slots=Object.keys(items),slot=slots[Math.floor(Math.random()*slots.length)],bonus=Math.min(2,Math.floor((luck+diff)/8)),pool=[...rarityWeight,...(bonus?["rare","epic"].slice(0,bonus):[])],rar=pool[Math.floor(Math.random()*pool.length)],cand=items[slot].filter(i=>i.rar===rar);return{slot,item:cand[Math.floor(Math.random()*cand.length)]};}
-    function equipOrSell(slot,item){const old=state.equipment[slot],p1=old.atk+old.def+old.kno+old.luck+rarityPower[old.rar],p2=item.atk+item.def+item.kno+item.luck+rarityPower[item.rar];if(p2>p1){state.equipment[slot]=item;return `⬆️ Equipou ${item.n}.`;}const val=15+p2*3;state.gold+=val;return `💰 ${item.n} virou ${val} ouro.`;}
+    function chapterMeta(){
+      let current=chapters[0];
+      for(const c of chapters){ if(state.level>=c.lv) current=c; }
+      return current;
+    }
 
-    function answer(i,btn){if(state.answered)return;state.answered=true;const st=total();const all=[...document.querySelectorAll('.option')];all.forEach(b=>b.disabled=true);const c=state.current.a;all[c].classList.add('correct');if(i===c){state.streak++;const xp=28+state.current.d*10+state.streak*3+st.kno*2,g=10+state.current.d*4+Math.floor(st.luck/2);state.score+=95+state.current.d*20+state.streak*7+st.atk;state.gold+=g;const lv=gainXP(xp);if(Math.random()<Math.min(.88,.34+state.current.d*.03+st.luck*.01)){const d=rollItem(state.current.d,st.luck);log(`🎁 ${equipOrSell(d.slot,d.item)}`);}ui.feedback.className='feedback good';ui.feedback.textContent=`✅ Correto! ${state.current.e} +${xp} XP, +${g} ouro.${lv?` Level up x${lv}!`:''}`;}else{state.streak=0;btn.classList.add('wrong');const shield=Math.min(.35,st.def*.014),blocked=Math.random()<shield;if(!blocked)state.lives--;state.score=Math.max(0,state.score-(28-Math.min(20,st.def)));ui.feedback.className='feedback bad';ui.feedback.textContent=blocked?`🛡️ Errou, mas sua defesa absorveu. Dificuldade da carta errada: ${state.current.d}. ${state.current.e}`:`❌ Incorreta. Dificuldade da carta errada: ${state.current.d}. ${state.current.e}`;log(`⚠️ Carta falhada (dificuldade ${state.current.d}).`);}renderHUD();if(state.lives<=0)finishGame();else ui.nextBtn.classList.remove('hidden');}
+    function renderEquip(){
+      const map={weapon:['⚔️ Arma','assets/weapon-spear.svg'],armor:['🛡️ Armadura','assets/armor-aegis.svg'],relic:['🔮 Relíquia','assets/relic-orb.svg']};
+      ui.equipList.innerHTML=Object.entries(state.equipment).map(([k,v])=>`<div class='slot'><div class='slot-head'><img src='${map[k][1]}' alt='${k}'/><strong>${map[k][0]}:</strong> <span class='rar-${v.rar}'>${v.n}</span></div><small>ATK ${v.atk} • DEF ${v.def} • CONH ${v.kno} • SORTE ${v.luck}</small></div>`).join('');
+    }
 
-    function finishDeck(){ui.question.textContent='Você concluiu TODO o baralho sem repetição. Jornada completa!';ui.options.innerHTML='';ui.feedback.className='feedback good';ui.feedback.textContent='Parabéns! Clique em Novo jogo para embaralhar novamente 300 cartas inéditas na ordem.';}
-    function finishGame(){boardPush(state.score,state.level);ui.question.textContent=`Fim da jornada! Pontos: ${state.score} • Nível: ${state.level}.`;ui.options.innerHTML='';ui.feedback.className='feedback';ui.feedback.textContent='As 3 vidas acabaram. Clique em Novo jogo para recomeçar.';renderRefs(["kdigo_ckd","kdigo_aki","kdigo_gn","kdigo_tx","dapa","empa"]);renderHUD();renderBoard();}
+    function renderHUD(){
+      const [c,f,img,cls]=heroMeta();
+      const chapter=chapterMeta();
+      ui.heroClass.textContent=c; ui.heroFlavor.textContent=f;
+      ui.heroImg.src=img; ui.heroImg.className=`portrait ${cls}`;
+      ui.storyTitle.textContent=chapter.title;
+      ui.storyGoal.textContent=`Objetivo: ${chapter.goal} Lendários equipados: ${legendaryCount()}/2.`;
+      ui.level.textContent=state.level; ui.score.textContent=state.score;
+      ui.lives.textContent='❤'.repeat(Math.max(0,state.lives))+'♡'.repeat(3-Math.max(0,state.lives));
+      ui.record.textContent=best(); ui.gold.textContent=state.gold; ui.streak.textContent=state.streak;
+      ui.xpFill.style.width=`${Math.min(100,(state.xp/state.xpToNext)*100)}%`;
+      ui.xpTxt.textContent=`XP ${state.xp} / ${state.xpToNext} • Cartas restantes: ${state.queue.length-state.idx}`;
+      renderEquip();
+    }
 
-    function renderBoard(){const b=boardGet().slice(0,10);ui.boardBody.innerHTML=b.length?b.map((r,i)=>`<tr><td>${i+1}</td><td>${r.score}</td><td>${r.level}</td><td>${r.date}</td></tr>`).join(''):'<tr><td colspan="4">Sem registros ainda.</td></tr>';}
-    function resetGame(){Object.assign(state,{level:1,xp:0,xpToNext:120,score:0,lives:3,streak:0,gold:0,current:null,answered:false});state.equipment={weapon:{n:"Caneta do Interno",rar:"common",atk:0,def:0,kno:1,luck:0},armor:{n:"Túnica de Residência",rar:"common",atk:0,def:1,kno:0,luck:0},relic:{n:"Insígnia do Plantão",rar:"common",atk:0,def:0,kno:1,luck:0}};ui.journal.innerHTML='';log('📖 Novo ciclo iniciado no Reino Sombrio do Néfron.');shuffleQueue();renderHUD();renderQuestion();}
+    function shuffleQueue(){
+      state.queue=[...questionBank];
+      for(let i=state.queue.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[state.queue[i],state.queue[j]]=[state.queue[j],state.queue[i]];}
+      state.idx=0;
+    }
 
-    ui.nextBtn.addEventListener('click',renderQuestion);ui.newBtn.addEventListener('click',resetGame);ui.boardBtn.addEventListener('click',()=>{renderBoard();ui.boardModal.classList.remove('hidden');});ui.closeBoard.addEventListener('click',()=>ui.boardModal.classList.add('hidden'));
+    function drawQuestion(){
+      if(state.idx>=state.queue.length){ finishDeck(); return null; }
+      return state.queue[state.idx++];
+    }
+
+    function renderRefs(keys){
+      const list=keys.map(k=>refsDB[k]).filter(Boolean);
+      ui.refs.innerHTML=`<strong>Referências:</strong><ul>${list.map(i=>`<li><a href='${i.url}' target='_blank' rel='noopener noreferrer'>${i.label}</a></li>`).join('')}</ul>`;
+    }
+
+    function renderQuestion(){
+      state.answered=false;
+      const q=drawQuestion();
+      if(!q) return;
+      state.current=q;
+      ui.question.textContent=q.q;
+      ui.options.innerHTML='';
+      ui.feedback.className='feedback';
+      ui.feedback.textContent='Escolha a melhor alternativa clínica.';
+      renderRefs(q.r);
+      ui.nextBtn.classList.add('hidden');
+      ui.bonusBtn.classList.add('hidden');
+      q.o.forEach((opt,i)=>{
+        const b=document.createElement('button');
+        b.className='option'; b.type='button';
+        b.textContent=`${String.fromCharCode(65+i)}) ${opt}`;
+        b.addEventListener('click',()=>answer(i,b));
+        ui.options.appendChild(b);
+      });
+    }
+
+    function gainXP(x){
+      state.xp+=x; let up=0;
+      while(state.xp>=state.xpToNext){
+        state.xp-=state.xpToNext; state.level++; state.xpToNext=Math.floor(state.xpToNext*1.17); up++;
+        if(state.level%6===0&&state.lives<3) state.lives++;
+      }
+      return up;
+    }
+
+    function rollItem(diff,luck){
+      const slots=Object.keys(items),slot=slots[Math.floor(Math.random()*slots.length)];
+      const bonus=Math.min(2,Math.floor((luck+diff)/8));
+      const pool=[...rarityWeight,...(bonus?["rare","epic"].slice(0,bonus):[])];
+      const rar=pool[Math.floor(Math.random()*pool.length)];
+      const cand=items[slot].filter(i=>i.rar===rar);
+      return{slot,item:cand[Math.floor(Math.random()*cand.length)]};
+    }
+
+    function equipOrSell(slot,item){
+      const old=state.equipment[slot];
+      const p1=old.atk+old.def+old.kno+old.luck+rarityPower[old.rar];
+      const p2=item.atk+item.def+item.kno+item.luck+rarityPower[item.rar];
+      if(p2>p1){ state.equipment[slot]=item; return `⬆️ Equipou ${item.n}.`; }
+      const val=15+p2*3; state.gold+=val; return `💰 ${item.n} virou ${val} ouro.`;
+    }
+
+    function answer(i,btn){
+      if(state.answered) return;
+      state.answered=true;
+      const st=total();
+      const all=[...document.querySelectorAll('.option')];
+      all.forEach(b=>b.disabled=true);
+      const c=state.current.a;
+      all[c].classList.add('correct');
+
+      if(i===c){
+        state.streak++;
+        const xp=28+state.current.d*10+state.streak*3+st.kno*2;
+        const g=10+state.current.d*4+Math.floor(st.luck/2);
+        state.score+=95+state.current.d*20+state.streak*7+st.atk;
+        state.gold+=g;
+        const lv=gainXP(xp);
+        if(Math.random()<Math.min(.88,.34+state.current.d*.03+st.luck*.01)){
+          const d=rollItem(state.current.d,st.luck);
+          log(`🎁 ${equipOrSell(d.slot,d.item)}`);
+        }
+        if(state.level>=15&&legendaryCount()>=2){
+          log('👑 Objetivo final desbloqueado! Você está pronto para vencer o Arqui-Nefromante.');
+        }
+        ui.feedback.className='feedback good';
+        ui.feedback.textContent=`✅ Correto! ${state.current.e} +${xp} XP, +${g} ouro.${lv?` Level up x${lv}!`:''}`;
+      } else {
+        state.streak=0;
+        btn.classList.add('wrong');
+        const shield=Math.min(.35,st.def*.014);
+        const blocked=Math.random()<shield;
+        if(!blocked) state.lives--;
+        state.score=Math.max(0,state.score-(28-Math.min(20,st.def)));
+        ui.feedback.className='feedback bad';
+        ui.feedback.textContent=blocked
+          ? `🛡️ Errou, mas sua defesa absorveu. ${state.current.e}`
+          : `❌ Incorreta. ${state.current.e}`;
+        log('⚠️ Você falhou nessa carta. Ajuste a estratégia e continue.');
+      }
+
+      renderHUD();
+      if(state.lives<=0) finishGame(); else ui.nextBtn.classList.remove('hidden');
+    }
+
+    function finishDeck(){
+      ui.question.textContent='Você concluiu TODO o baralho sem repetição. Jornada completa!';
+      ui.options.innerHTML='';
+      ui.feedback.className='feedback good';
+      ui.feedback.textContent='Parabéns! Clique em Novo jogo para embaralhar novamente 300 cartas.';
+      ui.bonusBtn.classList.add('hidden');
+    }
+
+    function bonusCost(){ return 120 + state.bonusUses*80; }
+
+    function finishGame(){
+      boardPush(state.score,state.level);
+      ui.question.textContent=`Fim da jornada! Pontos: ${state.score} • Nível: ${state.level}.`;
+      ui.options.innerHTML='';
+      const cost=bonusCost();
+      if(state.gold>=cost){
+        ui.feedback.className='feedback';
+        ui.feedback.textContent=`Você pode gastar ${cost} ouro para comprar 1 Pergunta Bônus e continuar a jornada com 1 vida.`;
+        ui.bonusBtn.textContent=`Pergunta bônus (${cost} ouro)`;
+        ui.bonusBtn.classList.remove('hidden');
+      } else {
+        ui.feedback.className='feedback';
+        ui.feedback.textContent='As 3 vidas acabaram. Junte mais ouro em outra corrida para comprar Perguntas Bônus.';
+        ui.bonusBtn.classList.add('hidden');
+      }
+      renderRefs(["kdigo_ckd","kdigo_aki","kdigo_gn","kdigo_tx","dapa","empa"]);
+      renderHUD(); renderBoard();
+    }
+
+    function buyBonusQuestion(){
+      const cost=bonusCost();
+      if(state.gold<cost||state.lives>0) return;
+      state.gold-=cost;
+      state.bonusUses++;
+      state.lives=1;
+      log(`✨ Pergunta Bônus comprada por ${cost} ouro. A jornada continua.`);
+      renderHUD();
+      renderQuestion();
+    }
+
+    function forgeItem(){
+      const cost=90;
+      if(state.gold<cost){ log('🧱 Ouro insuficiente para forjar item.'); return; }
+      state.gold-=cost;
+      const keys=Object.keys(state.equipment);
+      const slot=keys[Math.floor(Math.random()*keys.length)];
+      const it=state.equipment[slot];
+      it.atk += Math.random()<0.5?1:0;
+      it.def += Math.random()<0.5?1:0;
+      it.kno += Math.random()<0.5?1:0;
+      it.luck += Math.random()<0.35?1:0;
+      log(`🔨 Forja concluída: ${it.n} ficou mais poderoso.`);
+      renderHUD();
+    }
+
+    function renderBoard(){
+      const b=boardGet().slice(0,10);
+      ui.boardBody.innerHTML=b.length
+        ? b.map((r,i)=>`<tr><td>${i+1}</td><td>${r.score}</td><td>${r.level}</td><td>${r.date}</td></tr>`).join('')
+        : '<tr><td colspan="4">Sem registros ainda.</td></tr>';
+    }
+
+    function resetGame(){
+      Object.assign(state,{level:1,xp:0,xpToNext:120,score:0,lives:3,streak:0,gold:0,current:null,answered:false,bonusUses:0});
+      state.equipment={
+        weapon:{n:"Caneta do Interno",rar:"common",atk:0,def:0,kno:1,luck:0},
+        armor:{n:"Túnica de Residência",rar:"common",atk:0,def:1,kno:0,luck:0},
+        relic:{n:"Insígnia do Plantão",rar:"common",atk:0,def:0,kno:1,luck:0}
+      };
+      ui.journal.innerHTML='';
+      log('📖 Novo ciclo iniciado no Reino Sombrio do Néfron.');
+      shuffleQueue();
+      renderHUD();
+      renderQuestion();
+    }
+
+    ui.nextBtn.addEventListener('click',renderQuestion);
+    ui.newBtn.addEventListener('click',resetGame);
+    ui.forgeBtn.addEventListener('click',forgeItem);
+    ui.bonusBtn.addEventListener('click',buyBonusQuestion);
+    ui.boardBtn.addEventListener('click',()=>{renderBoard();ui.boardModal.classList.remove('hidden');});
+    ui.closeBoard.addEventListener('click',()=>ui.boardModal.classList.add('hidden'));
+
     resetGame();
   </script>
 </body>
