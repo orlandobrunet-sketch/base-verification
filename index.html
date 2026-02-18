@@ -563,7 +563,7 @@
           <p class="char-desc">Cura e regeneração. Bônus: +2 Defesa</p>
         </div>
         <div class="char-card" onclick="selectCharacter('glomerulus')">
-          <img src="assets/classes/guerreiro_glomerular/nivel_01.jpg" alt="Dr. Glomerulus">
+          <img src="assets/classes/guerreiro_glomerular/nivel_01.png" alt="Dr. Glomerulus">
           <h3>Dr. Glomerulus</h3>
           <p class="char-subtitle">Cientista Renal</p>
           <p class="char-desc">Força e precisão. Bônus: +2 Ataque, +1 Conhecimento</p>
@@ -1085,7 +1085,8 @@
       // Calcular imagem de evolução baseada no nível (1-10)
       const char = characters[charId];
       const evolutionLevel = Math.min(10, Math.max(1, state.level));
-      const charImg = `assets/classes/${char.folder}/nivel_${evolutionLevel.toString().padStart(2,'0')}.jpg`;
+      const ext = charId === 'glomerulus' ? 'png' : 'jpg';
+      const charImg = `assets/classes/${char.folder}/nivel_${evolutionLevel.toString().padStart(2,'0')}.${ext}`;
       
       for(const [lv, data] of Object.entries(titles).sort((a,b) => b[0]-a[0])) {
         if(state.level >= parseInt(lv)) {
