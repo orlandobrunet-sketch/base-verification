@@ -1200,15 +1200,38 @@
         if(forgeBtn){ forgeBtn.classList.add('disabled'); forgeBtn.title='Jornada encerrada'; }
         if(chestBtn){ chestBtn.classList.add('disabled'); chestBtn.title='Jornada encerrada'; }
       } else {
-        if(forgeBtn){ if(state.gold<90){forgeBtn.classList.add('disabled');forgeBtn.title='Ouro insuficiente (precisa 90)'}else{forgeBtn.classList.remove('disabled');forgeBtn.title='Forjar um equipamento'} }
-        if(chestBtn){
-          const chestLocked = state.gold<chestCost || state.correctTotal<CHEST_MIN_CORRECT;
-          if(chestLocked){
-            chestBtn.classList.add('disabled');
-            chestBtn.title = state.correctTotal<CHEST_MIN_CORRECT ? `Precisa de ${CHEST_MIN_CORRECT} acertos (atual: ${state.correctTotal})` : `Ouro insuficiente (precisa ${chestCost})`;
+        const maxed = allItemsMaxed();
+        if(forgeBtn){
+          if(maxed){
+            forgeBtn.classList.add('disabled');
+            forgeBtn.textContent='Equipamento Completo';
+            forgeBtn.title='Você já possui todos os equipamentos lendários!';
+          } else if(state.gold<90){
+            forgeBtn.classList.add('disabled');
+            forgeBtn.textContent='Forjar Item (90 ouro)';
+            forgeBtn.title='Ouro insuficiente (precisa 90)';
           } else {
-            chestBtn.classList.remove('disabled');
-            chestBtn.title='Abrir baú de artigo';
+            forgeBtn.classList.remove('disabled');
+            forgeBtn.textContent='Forjar Item (90 ouro)';
+            forgeBtn.title='Forjar um equipamento';
+          }
+        }
+        if(chestBtn){
+          if(maxed){
+            chestBtn.classList.add('disabled');
+            chestBtn.textContent='Sem novos baús';
+            chestBtn.title='Você já possui todos os equipamentos lendários!';
+          } else {
+            const chestLocked = state.gold<chestCost || state.correctTotal<CHEST_MIN_CORRECT;
+            if(chestLocked){
+              chestBtn.classList.add('disabled');
+              chestBtn.textContent=`Abrir Baú (${chestCost} ouro)`;
+              chestBtn.title = state.correctTotal<CHEST_MIN_CORRECT ? `Precisa de ${CHEST_MIN_CORRECT} acertos (atual: ${state.correctTotal})` : `Ouro insuficiente (precisa ${chestCost})`;
+            } else {
+              chestBtn.classList.remove('disabled');
+              chestBtn.textContent=`Abrir Baú (${chestCost} ouro)`;
+              chestBtn.title='Abrir baú de artigo';
+            }
           }
         }
       }
@@ -1258,6 +1281,16 @@
         if(state.level%6===0&&state.lives<3) state.lives++;
       }
       return up;
+    }
+
+    function allItemsMaxed(){
+      // Verifica se todos os 3 slots têm o item legendary (melhor possível)
+      const legendaryNames = {};
+      for(const [slot, list] of Object.entries(items)){
+        const leg = list.find(i=>i.rar==='legendary');
+        if(leg) legendaryNames[slot] = leg.n;
+      }
+      return Object.entries(legendaryNames).every(([slot, name]) => state.equipment[slot] && state.equipment[slot].n === name);
     }
 
      function rollItem(diff,luck){
@@ -1375,6 +1408,7 @@
 
     function forgeItem(){
       if(state.gameOver){ log('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
+      if(allItemsMaxed()){ log('🏆 Você já possui todos os equipamentos lendários!'); return; }
       const cost=90;
       if(state.gold<cost){ log('🧱 Ouro insuficiente para forjar item.'); return; }
       state.gold-=cost;
@@ -1582,6 +1616,7 @@
     
     function openChest() {
       if(state.gameOver){ log('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
+      if(allItemsMaxed()){ log('🏆 Sem novos baús! Você já possui todos os equipamentos lendários!'); return; }
       if (state.correctTotal < CHEST_MIN_CORRECT) {
         log(`📚 Você precisa de pelo menos ${CHEST_MIN_CORRECT} acertos para abrir um baú! (Atual: ${state.correctTotal})`);
         return;
