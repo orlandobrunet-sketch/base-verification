@@ -1837,10 +1837,8 @@
       const sm = getStreakMultiplier(state.streak);
       const streakTile = ui.streak.closest('.tile');
       if(streakTile) {
-        streakTile.className = 'tile tile-streak ' + sm.css;
-        ui.streak.innerHTML = sm.fire 
-          ? `${state.streak}<span class="streak-fire">${sm.fire}</span>${sm.label ? '<span class="streak-mult">'+sm.label+'</span>' : ''}`
-          : String(state.streak);
+        streakTile.className = 'tile tile-streak';
+        ui.streak.textContent = state.streak;
       } else {
         ui.streak.textContent = state.streak;
       }
