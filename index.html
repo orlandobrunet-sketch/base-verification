@@ -672,8 +672,9 @@
       <div class="ctrl">
         <button id="nextBtn" class="btn hidden">Próxima Carta</button>
         <button id="newBtn" class="btn sec">Novo Jogo</button>
-        <button id="forgeBtn" class="btn gold">Forjar Item (90 ouro)</button>
+        <button id="forgeBtn" class="btn gold">Forjar Item (500 ouro)</button>
         <button id="bonusBtn" class="btn gold hidden">Pergunta Bônus</button>
+        <button id="legendaryForgeBtn" class="btn gold" onclick="forgeLegendary()">Forjar Lendário (1000 ouro)</button>
         <button id="chestBtn" class="btn gold" onclick="openChest()">Abrir Baú (50 ouro)</button>
         <button id="boardBtn" class="btn sec">Leaderboard</button>
       </div>
@@ -1409,7 +1410,7 @@
 {"t": "Nefropatia por IgA: Efeito da Tonsilectomia", "q": "Segundo estudos japoneses, a tonsilectomia associada a pulsoterapia com corticoide pode induzir remissão na NIgA por:", "o": ["Remover uma fonte importante de produção de IgA1 galacto-deficiente ativada por infecções orofaringeas", "Reduzir os níveis de creatinina sérica diretamente", "Aumentar a volemia do paciente", "Não há base racional para este procedimento"], "a": 0, "e": "A alternativa A é a correta.", "d": "hard", "refs": ["kdigo_gn"]},
 {"t": "Glomerulonefrite Membranoproliferativa e Complemento C4", "q": "Na GNMP mediada por imunocomplexos, o consumo de C4 indica:", "o": ["Ativação da via clássica do complemento (frequentemente por infecções crônicas como Hepatite C)", "Ativação exclusiva da via alternativa", ". B) Ativação exclusiva da via alternativa. C) Deficiência genética de C1q", "Ausência de inflamação glomerular"], "a": 0, "e": "A alternativa A é a correta.", "d": "hard", "refs": ["kdigo_gn"]},
 {"t": "Transplante Renal: Inibidores de mTOR e Cicatrização", "q": "Por que o Sirolimus (inibidor de mTOR) deve ser evitado no período pós-operatório imediato do transplante?", "o": ["Por estar associado a atraso na cicatrização cirúrgica e maior risco de deiscência de ferida e linfoceles", "Por causar hipertensão arterial maligna", "Por induzir hipocalemia profunda", "Por ser ineficaz na prevenção de rejeição"], "a": 0, "e": "A alternativa A é a correta.", "d": "hard", "refs": ["kdigo_tx"]},
-{"t": "Estudo DAPA-CKD: Redução de LRA", "q": "No estudo DAPA-CKD, o uso de dapagliflozina reduziu o risco de episódios de Lesão Renal Aguda (LRA) grave?", "o": ["grave? A) Sim, houve uma redução de aproximadamente 32% no risco de LRA severa", "Não, a droga aumentou os casos de LRA", "O impacto foi neutro", "A LRA não foi avaliada no estudo"], "a": 0, "e": "A alternativa A é a correta.", "d": "hard", "refs": ["kdigo_ckd", "kdigo_aki", "dapa"]},
+{"t": "Estudo DAPA-CKD: Redução de LRA", "q": "No estudo DAPA-CKD, o uso de dapagliflozina reduziu o risco de episódios de Lesão Renal Aguda (LRA) grave?", "o": ["Sim, houve uma redução de aproximadamente 32% no risco de LRA severa", "Não, a droga aumentou os casos de LRA", "O impacto foi neutro", "A LRA não foi avaliada no estudo"], "a": 0, "e": "A alternativa A é a correta.", "d": "hard", "refs": ["kdigo_ckd", "kdigo_aki", "dapa"]},
 {"t": "Hipernatremia: Diabetes Insipidus por Gestação", "q": "Qual o mecanismo do Diabetes Insipidus que ocorre na gestação?", "o": ["Degradação excessiva do ADH endógeno pela enzima vasopressinase produzida pela placenta", "Rejeição imunológica da hipófise pela placenta", "Consumo excessivo de água pela gestante", "Resistência à ocitocina"], "a": 0, "e": "A alternativa A é a correta.", "d": "hard", "refs": ["kdigo_tx"]},
 {"t": "Nefropatia por Cristais: Aciclovir", "q": "Qual a medida preventiva mais eficaz para evitar a LRA por cristais em pacientes recebendo Aciclovir IV em altas doses?", "o": ["Hidratação venosa vigorosa para manter o fluxo tubular e evitar a supersaturação da droga", "Alcalinização urinária", "Uso de probenecida", "Redução da oferta de potássio"], "a": 0, "e": "A alternativa A é a correta.", "d": "hard", "refs": ["kdigo_aki"]},
 {"t": "Estudo BPROAD: Faixa de HbA1c", "q": "Os pacientes incluídos no BPROAD tinham qual perfil de controle glicêmico (HbA1c)?", "o": ["Variada, mas a maioria apresentava DM2 de longa data com risco cardiovascular estabelecido", "Apenas diabéticos recém-diagnosticados", "Somente pacientes com HbA1c < 6.0%", "Apenas pacientes com DM Tipo 1"], "a": 0, "e": "A alternativa A é a correta.", "d": "hard", "refs": ["bproad"]},
@@ -1485,9 +1486,35 @@
     ];
 
     const items = {
-      weapon:[{n:"Lâmina da Alça",rar:"common",atk:2,def:0,kno:1,luck:0},{n:"Lança Glomerular",rar:"rare",atk:4,def:1,kno:2,luck:1},{n:"Espada Nefroprotetora",rar:"epic",atk:7,def:2,kno:3,luck:2},{n:"Excalibur do Néfron",rar:"legendary",atk:11,def:3,kno:4,luck:3}],
-      armor:[{n:"Jaleco de Plantão",rar:"common",atk:0,def:2,kno:1,luck:0},{n:"Manto Renocortical",rar:"rare",atk:1,def:4,kno:2,luck:1},{n:"Égide Dialítica",rar:"epic",atk:2,def:7,kno:3,luck:1},{n:"Armadura Primeva",rar:"legendary",atk:3,def:11,kno:4,luck:2}],
-      relic:[{n:"Anel Albuminúrico",rar:"common",atk:0,def:0,kno:2,luck:1},{n:"Sigilo KDIGO",rar:"rare",atk:1,def:1,kno:4,luck:1},{n:"Orbe da Cistatina",rar:"epic",atk:2,def:2,kno:6,luck:2},{n:"Relíquia do Título",rar:"legendary",atk:3,def:3,kno:8,luck:4}]
+      weapon:[
+        {n:"Bisturi de Plantão",rar:"common",atk:1,def:0,kno:1,luck:0},
+        {n:"Lâmina da Alça",rar:"common",atk:2,def:0,kno:1,luck:0},
+        {n:"Estilete Tubular",rar:"common",atk:2,def:1,kno:0,luck:0},
+        {n:"Lança Glomerular",rar:"rare",atk:4,def:1,kno:2,luck:1},
+        {n:"Espada Nefroprotetora",rar:"epic",atk:7,def:2,kno:3,luck:2},
+        {n:"Excalibur do Néfron",rar:"legendary",atk:11,def:3,kno:4,luck:3},
+        {n:"Cetro do Néfron Eterno",rar:"legendary",atk:12,def:2,kno:5,luck:4}
+      ],
+      armor:[
+        {n:"Jaleco de Plantão",rar:"common",atk:0,def:2,kno:1,luck:0},
+        {n:"Avental Protetor",rar:"common",atk:0,def:1,kno:1,luck:1},
+        {n:"Luvas de Látex Reforçadas",rar:"common",atk:1,def:2,kno:0,luck:0},
+        {n:"Manto Renocortical",rar:"rare",atk:1,def:4,kno:2,luck:1},
+        {n:"Égide Dialítica",rar:"epic",atk:2,def:7,kno:3,luck:1},
+        {n:"Armadura Primeva",rar:"legendary",atk:3,def:11,kno:4,luck:2},
+        {n:"Armadura da Homeostase Perfeita",rar:"legendary",atk:4,def:12,kno:5,luck:3}
+      ],
+      relic:[
+        {n:"Anel Albuminúrico",rar:"common",atk:0,def:0,kno:2,luck:1},
+        {n:"Estetoscópio Básico",rar:"common",atk:0,def:1,kno:2,luck:0},
+        {n:"Prancheta Clínica",rar:"common",atk:1,def:0,kno:2,luck:0},
+        {n:"Termômetro Digital",rar:"common",atk:0,def:0,kno:1,luck:2},
+        {n:"Sigilo KDIGO",rar:"rare",atk:1,def:1,kno:4,luck:1},
+        {n:"Orbe da Cistatina",rar:"epic",atk:2,def:2,kno:6,luck:2},
+        {n:"Relíquia do Título",rar:"legendary",atk:3,def:3,kno:8,luck:4},
+        {n:"Amuleto do Rim Imortal",rar:"legendary",atk:4,def:4,kno:9,luck:5},
+        {n:"Elmo do Filtrador Supremo",rar:"legendary",atk:5,def:5,kno:10,luck:3}
+      ]
     };
 
     const rarityWeight=["common","common","common","rare","rare","epic","legendary"];
@@ -1531,7 +1558,7 @@
     };
 
     const state={
-      level:1,xp:0,xpToNext:120,score:0,lives:3,streak:0,gold:0,
+      level:1,xp:0,xpToNext:210,score:0,lives:3,streak:0,gold:0,
       current:null,answered:false,queue:[],idx:0,bonusUses:0,
       correctTotal:0, narrativeShown:0, gameOver:false,
       gameStarted: false,
@@ -1718,13 +1745,13 @@
             forgeBtn.classList.add('disabled');
             forgeBtn.textContent='Equipamento Completo';
             forgeBtn.title='Você já possui todos os equipamentos lendários!';
-          } else if(state.gold<90){
+          } else if(state.gold<500){
             forgeBtn.classList.add('disabled');
-            forgeBtn.textContent='Forjar Item (90 ouro)';
-            forgeBtn.title='Ouro insuficiente (precisa 90)';
+            forgeBtn.textContent='Forjar Item (500 ouro)';
+            forgeBtn.title='Ouro insuficiente (precisa 500)';
           } else {
             forgeBtn.classList.remove('disabled');
-            forgeBtn.textContent='Forjar Item (90 ouro)';
+            forgeBtn.textContent='Forjar Item (500 ouro)';
             forgeBtn.title='Forjar um equipamento';
           }
         }
@@ -1899,7 +1926,7 @@
       ui.bonusBtn.classList.add('hidden');
     }
 
-    function bonusCost(){ return 120 + state.bonusUses*80; }
+    function bonusCost(){ return 1500; }
 
     // Variável temporária para guardar score ao final
     let pendingScore = null;
@@ -1922,6 +1949,7 @@
     }
 
     function buyBonusQuestion(){
+      if(state.bonusUses >= 1){ log('🚫 Você já usou sua pergunta bônus nesta jornada!'); return; }
       const cost=bonusCost();
       if(state.gold<cost||state.lives>0) return;
       state.gold-=cost;
@@ -1936,7 +1964,7 @@
     function forgeItem(){
       if(state.gameOver){ log('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
       if(allItemsMaxed()){ log('🏆 Você já possui todos os equipamentos lendários!'); return; }
-      const cost=90;
+      const cost=500;
       if(state.gold<cost){ log('🧱 Ouro insuficiente para forjar item.'); return; }
       state.gold-=cost;
       const keys=Object.keys(state.equipment);
@@ -1957,6 +1985,29 @@
       log(`🔨 Forja concluída: ${it.n} ficou mais poderoso!`);
       renderHUD();
       updateBadges();
+    }
+
+
+    function forgeLegendary(){
+      if(state.gameOver){ log('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
+      if(allItemsMaxed()){ log('🏆 Você já possui todos os equipamentos lendários!'); return; }
+      const cost=1000;
+      if(state.gold<cost){ log('🧱 Ouro insuficiente! Precisa de 1000 ouro para forjar lendário.'); return; }
+      state.gold-=cost;
+      const keys=Object.keys(state.equipment);
+      const slot=keys[Math.floor(Math.random()*keys.length)];
+      // Find legendary item for this slot
+      const legendaryItems = items[slot].filter(i => i.rar === 'legendary');
+      if(legendaryItems.length === 0){ log('Sem itens lendários para este slot.'); state.gold+=cost; return; }
+      const legendaryItem = legendaryItems[Math.floor(Math.random()*legendaryItems.length)];
+      state.equipment[slot] = {...legendaryItem};
+      const gains = [`⚔️ ATK ${legendaryItem.atk}`, `🛡️ DEF ${legendaryItem.def}`, `📚 CONH ${legendaryItem.kno}`, `🍀 SORTE ${legendaryItem.luck}`];
+      showForgePopup(state.equipment[slot], slot, gains);
+      playSound('forge');
+      log(`🔨 Forja Lendária! ${legendaryItem.n} equipado!`);
+      renderHUD();
+      updateBadges();
+      autoSave();
     }
 
     function showForgePopup(item, slot, gains){
@@ -2043,7 +2094,7 @@
     }
 
     function resetGame(){
-      Object.assign(state,{level:1,xp:0,xpToNext:200,score:0,lives:3,streak:0,gold:0,current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,gameOver:false,gameStarted:false,extraLifeGiven:false,gameCompleted:false,completedGame:false});
+      Object.assign(state,{level:1,xp:0,xpToNext:210,score:0,lives:3,streak:0,gold:0,current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,gameOver:false,gameStarted:false,extraLifeGiven:false,gameCompleted:false,completedGame:false});
       state.character=null;
       state.equipment={
         weapon:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
@@ -2110,6 +2161,8 @@
       const chestBtn=document.getElementById('chestBtn');
       if(forgeBtn){ forgeBtn.classList.add('disabled'); forgeBtn.title='Jornada encerrada'; }
       if(chestBtn){ chestBtn.classList.add('disabled'); chestBtn.title='Jornada encerrada'; }
+      const legBtn=document.getElementById('legendaryForgeBtn');
+      if(legBtn){ legBtn.classList.add('disabled'); legBtn.title='Jornada encerrada'; }
       state.gameOver=true;
       renderRefs(["kdigo_ckd","kdigo_aki","kdigo_gn","kdigo_tx","dapa","empa"]);
       renderHUD();
@@ -2129,7 +2182,7 @@
     function startGameWithCharacter() {
       const char = characters[state.character];
       
-      Object.assign(state,{level:1,xp:0,xpToNext:200,score:0,lives:3,streak:0,gold:0,current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,gameOver:false,gameStarted:true,extraLifeGiven:false,gameCompleted:false,completedGame:false});
+      Object.assign(state,{level:1,xp:0,xpToNext:210,score:0,lives:3,streak:0,gold:0,current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,gameOver:false,gameStarted:true,extraLifeGiven:false,gameCompleted:false,completedGame:false});
       state.equipment={
         weapon:{n:"Vazio",rar:"common",atk:char.bonusAtk,def:0,kno:char.bonusKno,luck:0},
         armor:{n:"Vazio",rar:"common",atk:0,def:char.bonusDef,kno:0,luck:0},
