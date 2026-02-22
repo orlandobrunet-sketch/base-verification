@@ -828,9 +828,9 @@
     Object.values(SFX).forEach(a => { a.load(); a.volume = 0.5; });
     
     // Background Music - Double-buffer crossfade loop
-    const MUSIC_URL = 'assets/sounds/bgmusic.wav?v=4';
-    const MUSIC_VOL = 0.12;
-    const XFADE_TIME = 1.5; // segundos de crossfade
+    const MUSIC_URL = 'assets/sounds/bgmusic.wav?v=5';
+    const MUSIC_VOL = 0.14;
+    const XFADE_TIME = 1.5; // crossfade equal-power
     
     const bgA = new Audio(MUSIC_URL);
     const bgB = new Audio(MUSIC_URL);
