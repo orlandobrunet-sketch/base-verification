@@ -502,12 +502,15 @@
       box-shadow: 0 4px 0 #064e3b, 0 6px 16px rgba(52,211,153,0.5);
     }
 
-    /* SOUND TOGGLE */
-    .sound-toggle {
+    /* SOUND CONTROLS */
+    .sound-controls {
       position: fixed; top: 12px; right: 12px; z-index: 9999;
+      display: flex; gap: 6px; align-items: center;
+    }
+    .sound-toggle {
       background: rgba(15,20,40,1); border: 2px solid #2a4a7a; border-radius: 8px;
-      padding: 8px 12px; cursor: pointer; color: var(--txt-dim); font-size: 0.75rem;
-      transition: all 0.2s; display: flex; align-items: center; gap: 5px;
+      padding: 6px 10px; cursor: pointer; color: var(--txt-dim); font-size: 0.7rem;
+      transition: all 0.2s; display: flex; align-items: center; gap: 4px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
     .sound-toggle:hover { border-color: var(--gold); color: var(--gold); }
@@ -622,9 +625,14 @@
     </div>
   </div>
 
-  <!-- SOUND TOGGLE -->
-  <div id="soundToggle" class="sound-toggle" onclick="toggleSound()">
-    <span id="soundIcon">🔊</span> <span id="soundLabel">Som</span>
+  <!-- SOUND CONTROLS -->
+  <div class="sound-controls">
+    <div id="musicToggle" class="sound-toggle" onclick="toggleMusic()">
+      <span id="musicIcon">🎵</span> <span id="musicLabel">Música</span>
+    </div>
+    <div id="soundToggle" class="sound-toggle" onclick="toggleSound()">
+      <span id="soundIcon">🔊</span> <span id="soundLabel">SFX</span>
+    </div>
   </div>
 
   <main class="app hidden" id="mainApp">
@@ -722,7 +730,7 @@
       <p>
         Desenvolvedor: <a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a>
         &nbsp;•&nbsp;
-        <span style="color:var(--gold);">v 2.1 (beta)</span>
+        <span style="color:var(--gold);">v 2.2</span>
       </p>
     </div>
   </main>
@@ -804,7 +812,7 @@
     })();
 
 
-    // ============ SISTEMA DE SOM ============
+    // ============ SISTEMA DE SOM RPG/MEDIEVAL ============
     const SFX = {
       correct: new Audio('assets/sounds/correct.wav'),
       wrong: new Audio('assets/sounds/wrong.wav'),
@@ -812,18 +820,39 @@
       forge: new Audio('assets/sounds/forge.wav'),
       chest: new Audio('assets/sounds/chest.wav'),
       streak: new Audio('assets/sounds/streak.wav'),
-      click: new Audio('assets/sounds/click.wav')
+      click: new Audio('assets/sounds/click.wav'),
+      boss: new Audio('assets/sounds/boss.wav'),
+      victory: new Audio('assets/sounds/victory.wav')
     };
-    // Pre-load all sounds
+    // Pre-load all SFX
     Object.values(SFX).forEach(a => { a.load(); a.volume = 0.5; });
     
+    // Background Music
+    const bgMusic = new Audio('assets/sounds/bgmusic.wav');
+    bgMusic.loop = true;
+    bgMusic.volume = 0.12;
+    bgMusic.load();
+    
     let soundEnabled = localStorage.getItem('nefroquest-sound') !== 'off';
+    let musicEnabled = localStorage.getItem('nefroquest-music') !== 'off';
+    let musicStarted = false;
     
     function playSound(name) {
       if (!soundEnabled || !SFX[name]) return;
       const s = SFX[name];
       s.currentTime = 0;
       s.play().catch(() => {});
+    }
+    
+    function startBgMusic() {
+      if (!musicEnabled || musicStarted) return;
+      bgMusic.play().then(() => { musicStarted = true; }).catch(() => {});
+    }
+    
+    function stopBgMusic() {
+      bgMusic.pause();
+      bgMusic.currentTime = 0;
+      musicStarted = false;
     }
     
     function toggleSound() {
@@ -833,14 +862,29 @@
       const label = document.getElementById('soundLabel');
       const toggle = document.getElementById('soundToggle');
       if (soundEnabled) {
-        icon.textContent = '🔊'; label.textContent = 'Som'; toggle.classList.remove('muted');
+        icon.textContent = '🔊'; label.textContent = 'SFX'; toggle.classList.remove('muted');
         playSound('click');
       } else {
         icon.textContent = '🔇'; label.textContent = 'Mudo'; toggle.classList.add('muted');
       }
     }
     
-    // Initialize sound UI
+    function toggleMusic() {
+      musicEnabled = !musicEnabled;
+      localStorage.setItem('nefroquest-music', musicEnabled ? 'on' : 'off');
+      const icon = document.getElementById('musicIcon');
+      const label = document.getElementById('musicLabel');
+      const toggle = document.getElementById('musicToggle');
+      if (musicEnabled) {
+        icon.textContent = '🎵'; label.textContent = 'Música'; toggle.classList.remove('muted');
+        startBgMusic();
+      } else {
+        icon.textContent = '🎵'; label.textContent = 'Mudo'; toggle.classList.add('muted');
+        stopBgMusic();
+      }
+    }
+    
+    // Initialize sound/music UI
     (function() {
       if (!soundEnabled) {
         const icon = document.getElementById('soundIcon');
@@ -850,6 +894,22 @@
         if (label) label.textContent = 'Mudo';
         if (toggle) toggle.classList.add('muted');
       }
+      if (!musicEnabled) {
+        const icon = document.getElementById('musicIcon');
+        const label = document.getElementById('musicLabel');
+        const toggle = document.getElementById('musicToggle');
+        if (icon) icon.textContent = '🎵';
+        if (label) label.textContent = 'Mudo';
+        if (toggle) toggle.classList.add('muted');
+      }
+      // Start music on first user interaction
+      const startMusicOnInteraction = () => {
+        if (musicEnabled) startBgMusic();
+        document.removeEventListener('click', startMusicOnInteraction);
+        document.removeEventListener('touchstart', startMusicOnInteraction);
+      };
+      document.addEventListener('click', startMusicOnInteraction);
+      document.addEventListener('touchstart', startMusicOnInteraction);
     })();
 
     // ============ SISTEMA DE STREAK MULTIPLICADOR ============
@@ -937,7 +997,7 @@
         </div>
       `;
       document.body.appendChild(modal);
-      playSound('levelup');
+      playSound('victory');
     }
 
     function shareVictory() {
@@ -1216,7 +1276,10 @@
       kdigo_tx:{label:"KDIGO Transplant",url:"https://kdigo.org/guidelines/transplant-recipient-care/"},
       dapa:{label:"DAPA-CKD",url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2024816"},
       empa:{label:"EMPA-KIDNEY",url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2204233"},
-      hypona:{label:"Guideline Hyponatremia",url:"https://academic.oup.com/ndt/article/29/suppl_2/i1/1843686"}
+      hypona:{label:"Guideline Hyponatremia",url:"https://academic.oup.com/ndt/article/29/suppl_2/i1/1843686"},
+      bproad:{label:"BPROAD Trial",url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2410766"},
+      fidelio:{label:"FIDELIO-DKD",url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2025845"},
+      flow_study:{label:"FLOW Trial (Semaglutida)",url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2311324"}
     };
 
     const scenarioWrappers = [
@@ -1271,14 +1334,15 @@
 {"t": "Hiperparatireoidismo Secundário na DRC", "q": "Qual o evento fisiopatológico central que desencadeia o aumento compensatório do FGF23 e a subsequente supressão do calcitriol na DRC?", "o": ["Hipercalcemia aguda", "Deficiência de Klotho renal gerando resistência ao FGF23", "Inibição direta do PTH pelo fósforo sérico", "Aumento da 1-alfa-hidroxilação por macrófagos ativados"], "a": 1, "e": "O rim doente perde expressão de Klotho, ficando \"surdo\" ao FGF23. Isso gera níveis compensatórios altíssimos de FGF23, que inibem a produção de calcitriol. ", "d": "medium", "refs": ["kdigo_ckd"]},
 {"t": "Estudo EMPA-KIDNEY e TFG Baixa", "q": "Com base nos resultados do estudo EMPA-KIDNEY, qual a conduta em relação ao uso de Empagliflozina em pacientes com DRC e taxa de filtração glomerular (TFG) entre 20-30 mL/min/1,73m²?", "o": ["Iniciar ou manter a medicação, pois o benefício na redução de progressão da DRC e morte cardiovascular foi demonstrado até TFG de 20 mL/min", "Suspender imediatamente, pelo risco aumentado de lesão renal aguda (LRA)", "Utilizar apenas se houver proteinúria acima de 1g/dia, conforme bula original", "Associar obrigatoriamente a um análogo de GLP-1 para proteção tubular"], "a": 0, "e": "O EMPA-KIDNEY incluiu pacientes com TFG até 20 mL/min, demonstrando segurança e eficácia renal persistente mesmo em estágios avançados.", "d": "medium", "refs": ["kdigo_ckd", "kdigo_aki", "kdigo_gn", "empa", "flow_study"]},
 {"t": "Glomerulopatia por C3 (C3G) e Eculizumabe", "q": "No manejo da Glomerulopatia por C3 com evidência de ativação da via alternativa do complemento, qual o papel do Eculizumabe?", "o": ["É a primeira linha absoluta para todos os casos de C3G", "Não possui eficácia demonstrada, sendo preferível o uso de Ciclofosfamida", "Pode ser considerado em casos refratários com evidência de ativação terminal do complemento (C5b-9 solúvel elevado), embora a resposta seja variável", "É contraindicado se a biópsia mostrar depósitos predominantes de C3"], "a": 2, "e": "A resposta ao bloqueio do C5 na C3G é inconsistente, sendo reservada para casos graves onde o bloqueio da via terminal parece justificado bioquimicamente.", "d": "medium", "refs": ["kdigo_gn"]},
-{"t": "Nefropatia por IgA (NIgA) e Corticoterapia (Estudo TESTING)", "q": "Segundo o estudo TESTING, qual a recomendação atual sobre o uso de corticosteroides em pacientes com NIgA e alto risco de progressão (proteinúria > 1g/dia)?", "o": ["e Corticoterapia (Estudo TESTING)", "Devem ser usados em dose plena (1mg/kg) por 12 meses sem desmame", "O uso de doses reduzidas de metilprednisolona apresentou eficácia na proteção renal com perfil de segurança superior à dose plena", "O corticosteroide só deve ser iniciado se a TFG for superior a 90 mL/min"], "a": 2, "e": "O estudo TESTING demonstrou que doses menores de corticoide reduzem o risco de desfechos renais com menos eventos adversos graves em comparação ao esquema de dose alta original.", "d": "medium", "refs": ["kdigo_gn"]},
+{"t": "Nefropatia por IgA (NIgA) e Corticoterapia (Estudo TESTING)", "q": "Segundo o estudo TESTING, qual a recomendação atual sobre o uso de corticosteroides em pacientes com NIgA e alto risco de progressão (proteinúria > 1g/dia)?", "o": ["Corticosteroides estão contraindicados em todas as formas de NIgA", "Devem ser usados em dose plena (1mg/kg) por 12 meses sem desmame", "O uso de doses reduzidas de metilprednisolona apresentou eficácia na proteção renal com perfil de segurança superior à dose plena", "O corticosteroide só deve ser iniciado se a TFG for superior a 90 mL/min"], "a": 2, "e": "O estudo TESTING demonstrou que doses menores de corticoide reduzem o risco de desfechos renais com menos eventos adversos graves em comparação ao esquema de dose alta original.", "d": "medium", "refs": ["kdigo_gn"]},
 {"t": "Nefrolitíase e Diuréticos Tiazídicos (Estudo NOSTONE)", "q": "O estudo NOSTONE (2023) avaliou a Hidroclorotiazida na prevenção de recorrência de cálculos de cálcio. Qual foi a conclusão principal?", "o": ["Não houve diferença significativa na recorrência de cálculos entre as doses de tiazídicos e o placebo", "A dose de 50mg foi superior à de 12,5mg na prevenção de novos eventos", "Os tiazídicos reduziram a formação de cálculos em 50%, independentemente da dose", "A Hidroclorotiazida só funciona se associada ao Citrato de Potássio"], "a": 0, "e": "Surpreendentemente, o NOSTONE não mostrou benefício claro da Hidroclorotiazida na prevenção de recorrência radiológica ou clínica de cálculos, desafiando condutas antigas.", "d": "medium", "refs": ["kdigo_ckd"]},
 {"t": "Vasculite ANCA e Rituximabe (Estudo RITUXVAS)", "q": "No tratamento de indução da vasculite associada ao ANCA com envolvimento renal grave, o uso de Rituximabe em comparação à Ciclofosfamida:", "o": ["É inferior em pacientes com TFG < 30 mL/min", "Apresentou taxas de remissão e sobrevida semelhantes, sendo uma alternativa eficaz", "Aumenta o risco de recidiva em 50% no primeiro ano", "Deve ser evitado se houver hemorragia alveolar associada"], "a": 1, "e": "Estudos como RITUXVAS e RAVE estabeleceram o Rituximabe como não-inferior à ciclofosfamida para indução de remissão.", "d": "medium", "refs": ["kdigo_ckd"]},
 {"t": "Hipercalemia e Quelantes de Potássio (Patiromer/ZS-9)", "q": "Qual a principal vantagem do uso de novos quelantes de potássio (como o Ciclosilicato de Zircônio Sódico) em pacientes com DRC e IC?", "o": ["Permitem a suspensão definitiva de diuréticos de alça", "Permitem a otimização e manutenção de doses plenas de iSRAA (IECA/BRA/ARM) mesmo em pacientes com tendência à hipercalemia", "Possuem efeito imediato (em 15 minutos), substituindo o gluconato de cálcio na emergência", "Reduzem a absorção de fósforo simultaneamente"], "a": 1, "e": "O grande valor clínico desses quelantes é evitar a suspensão de drogas que reduzem a mortalidade (iSRAA) por causa do potássio elevado.", "d": "medium", "refs": ["kdigo_ckd"]},
 {"t": "Doença de Fabry e Triagem Renal", "q": "Em qual cenário clínico a triagem para Doença de Fabry deve ser fortemente considerada no setor de nefrologia?", "o": ["Apenas em mulheres com proteinúria maciça", "Homens com hipertrofia ventricular esquerda inexplicada e doença renal crônica de etiologia indeterminada", "Pacientes com diabetes tipo 1 e hematúria micro", "Somente se houver presença de angioqueratomas cutâneos"], "a": 1, "e": "A tríade de doença renal inexplicada, HVE e neuropatia/alterações cutâneas deve levantar a suspeita de Fabry.", "d": "medium", "refs": ["kdigo_ckd"]},
 {"t": "Peritonite na DP e Contagem de Células", "q": "Para o diagnóstico de peritonite em Diálise Peritoneal (DP), qual o critério citológico do efluente (com pelo menos 2h de permanência)?", "o": ["> 50 leucócitos/µL com pelo menos 10% de neutrófilos", "> 100 leucócitos/µL com pelo menos 50% de neutrófilos", "> 500 leucócitos/µL independentemente do diferencial", "Presença de qualquer quantidade de bactérias no Gram, mesmo com citometria normal"], "a": 1, "e": "Este é o critério clássico da ISPD para diagnóstico de peritonite.", "d": "medium", "refs": ["kdigo_ckd"]},
 {"t": "Bioimpedância na Hemodiálise", "q": "Qual o principal parâmetro fornecido pela bioimpedância multifrequencial que auxilia na predição de mortalidade e estado nutricional em pacientes dialíticos?", "o": ["Água intracelular total", "Resistência elétrica tecidual", "Ângulo de Fase", "Índice de massa gorda isolado"], "a": 2, "e": "O ângulo de fase baixo está correlacionado com pior estado nutricional e maior mortalidade em pacientes em HD.", "d": "medium", "refs": ["kdigo_ckd"]},
-{"t": "Intoxicação por Lítio e Diálise", "q": "Qual a indicação clássica de hemodiálise de emergência na intoxicação por Lítio, independentemente do nível sérico?", "o": ["Presença de tremores finos em extremidades", "Poliúria e polidipsia", "Alteração do nível de consciência, convulsões ou instabilidade hemodinâmica", "Litemia de 0,8 mEq/L em paciente assintomático"], "a": 2, "e": "Sintomas neurológicos graves são indicações de diálise, já que o lítio é altamente dialisável, mas sua toxicidade intracelular é lenta para reverter.  Qual a fisiopatologia da SDD e a melhor conduta preventiva?", "o": ["Queda rápida da pressão arterial; infusão de solução salina isotônica", "Edema cerebral por gradiente osmótico reverso (queda rápida da ureia plasmática); redução do fluxo de sangue (Qb) e tempo de sessão reduzido na primeira diálise", "Hipercalcemia aguda; ajuste do banho de diálise para cálcio 2.5 mEq/L", "Embolia gasosa; posicionamento em decúbito lateral esquerdo (Trendelenburg)"], "a": 1, "e": "A remoção rápida de solutos do plasma cria um gradiente que desloca água para o meio intracelular cerebral.", "d": "medium", "refs": ["kdigo_ckd"]},
+{"t": "Intoxicação por Lítio e Diálise", "q": "Qual a indicação clássica de hemodiálise de emergência na intoxicação por Lítio, independentemente do nível sérico?", "o": ["Presença de tremores finos em extremidades", "Poliúria e polidipsia", "Alteração do nível de consciência, convulsões ou instabilidade hemodinâmica", "Litemia de 0,8 mEq/L em paciente assintomático"], "a": 2, "e": "Sintomas neurológicos graves são indicações de diálise, já que o lítio é altamente dialisável, mas sua toxicidade intracelular é lenta para reverter.", "d": "medium", "refs": ["kdigo_ckd"]},
+{"t": "Síndrome do Desequilíbrio da Diálise (SDD)", "q": "Paciente urêmico grave inicia hemodiálise pela primeira vez e desenvolve cefaleia, náuseas e confusão mental durante a sessão. Qual a fisiopatologia da SDD e a melhor conduta preventiva?", "o": ["Queda rápida da pressão arterial; infusão de solução salina isotônica", "Edema cerebral por gradiente osmótico reverso (queda rápida da ureia plasmática); redução do fluxo de sangue (Qb) e tempo de sessão reduzido na primeira diálise", "Hipercalcemia aguda; ajuste do banho de diálise para cálcio 2.5 mEq/L", "Embolia gasosa; posicionamento em decúbito lateral esquerdo (Trendelenburg)"], "a": 1, "e": "A remoção rápida de solutos do plasma cria um gradiente que desloca água para o meio intracelular cerebral.", "d": "medium", "refs": ["kdigo_ckd"]},
 {"t": "Nefropatia por Contraste Iodado", "q": "Paciente com TFG de 35 mL/min necessita realizar cineangiocoronariografia de urgência. Qual a medida com maior evidência de eficácia na prevenção de Lesão Renal Aguda induzida por contraste?", "o": ["Administração de N-acetilcisteína 1200mg 12/12h", "Uso de bicarbonato de sódio isotônico em bólus", "Expansão volêmica com solução salina isotônica (0,9%) antes e após o procedimento", "Furosemida profilática para forçar a diurese do contraste"], "a": 2, "e": "A hidratação venosa com salina 0,9% permanece como a intervenção padrão-ouro com melhor evidência (Estudo PRESERVE).", "d": "medium", "refs": ["kdigo_aki"]},
 {"t": "Diabetes Insipidus Nefrogênico por Lítio", "q": "Paciente em uso crônico de carbonato de lítio apresenta poliúria (4 litros/dia) e polidipsia. O teste de restrição hídrica mostra urina hiposmolar que não se concentra após administração de desmopressina (DDAVP). Qual o tratamento de escolha para reduzir o volume urinário?", "o": ["Restrição hídrica rigorosa", "Amilorida", "Tolvaptan", "Reposição de sódio"], "a": 1, "e": "A amilorida bloqueia os canais ENaC no ducto coletor, impedindo a entrada de lítio nas células e melhorando a resposta ao ADH.", "d": "medium", "refs": ["kdigo_ckd"]},
 {"t": "Proteinúria de Bence-Jones e Mieloma Múltiplo", "q": "No rastreio de Mieloma Múltiplo em paciente com insuficiência renal inexplicada, por que o sumário de urina (fita reagente) pode ser falsamente negativo para proteinúria?", "o": ["A fita só detecta proteínas de baixo peso molecular", "A fita reagente é sensível predominantemente à albumina, não detectando cadeias leves (proteínas de Bence-Jones)", "As cadeias leves são reabsorvidas totalmente pelo túbulo proximal", "O pH urinário ácido inibe a reação química da fita"], "a": 1, "e": "Para detectar cadeias leves, é necessário o teste de ácido sulfossalicílico ou a eletroforese de proteínas urinárias.", "d": "medium", "refs": ["kdigo_ckd"]},
@@ -1287,11 +1351,11 @@
 {"t": "Doença Renal Policística Autossômica Dominante (DRPAD)", "q": "Qual o critério de Ravine modificado para diagnóstico de DRPAD ao ultrassom em pacientes entre 15 e 39 anos com história familiar positiva?", "o": ["Pelo menos 1 cisto em cada rim", "Pelo menos 3 cistos (unilaterais ou bilaterais)", "Pelo menos 10 cistos em cada rim", "Presença de cistos hepáticos associados"], "a": 1, "e": "Para esta faixa etária, a presença de 3 ou mais cistos renais totais é suficiente para o diagnóstico em quem tem parente de primeiro grau afetado.", "d": "medium", "refs": ["kdigo_ckd"]},
 {"t": "Nefropatia Membranosa Primária", "q": "Qual biomarcador é altamente específico para o diagnóstico e monitorização de atividade na Nefropatia Membranosa primária?", "o": ["Anti-dsDNA", "C-ANCA", "Anti-PLA2R (Anticorpo contra o receptor de fosfolipase A2)", "Crioglobulinas"], "a": 2, "e": "Presente em cerca de 70-80% dos casos primários, correlacionando-se com a resposta ao tratamento.", "d": "medium", "refs": ["kdigo_gn"]},
 {"t": "Toxicidade por Inibidores da Calcineurina (Tacrolimus)", "q": "No pós-transplante renal, o uso de Tacrolimus pode causar lesão renal aguda por qual mecanismo hemodinâmico?", "o": ["Vasodilatação da arteríola eferente", "Vasoconstrição da arteríola aferente mediada por endotelina", "Necrose tubular aguda por toxicidade direta mitocondrial", "Obstrução intratubular por cristais"], "a": 1, "e": "O efeito vasoconstritor agudo reduz o fluxo sanguíneo renal e a pressão de filtração.", "d": "medium", "refs": ["kdigo_aki", "kdigo_tx"]},
-{"t": "Síndrome Urêmica Hemolítica (SHU) Típica", "q": "Qual o agente etiológico mais comum da SHU associada à diarreia em crianças e qual a tríade diagnóstica?", "o": ["E. coli produtora de toxina Shiga (STEC); Anemia hemolítica microangiopática, trombocitopenia e lesão renal aguda", "Staphylococcus aureus; Febre, exantema e hematúria", "; Anemia hemolítica microangiopática, trombocitopenia e lesão renal aguda. B) Staphylococcus aureus; Febre, exantema e hematúria. C) Streptococcus pneumoniae; Meningite, sepse e LRA", "Klebsiella pneumoniae; Proteinúria, edema e HVE"], "a": 0, "e": "A toxina Shiga causa dano endotelial glomerular, levando à formação de microtrombos.", "d": "medium", "refs": ["kdigo_aki", "kdigo_gn"]},
+{"t": "Síndrome Urêmica Hemolítica (SHU) Típica", "q": "Qual o agente etiológico mais comum da SHU associada à diarreia em crianças e qual a tríade diagnóstica?", "o": ["E. coli produtora de toxina Shiga (STEC); Anemia hemolítica microangiopática, trombocitopenia e lesão renal aguda", "Staphylococcus aureus; Febre, exantema e hematúria", "Streptococcus pneumoniae; Meningite, sepse e LRA", "Klebsiella pneumoniae; Proteinúria, edema e HVE"], "a": 0, "e": "A toxina Shiga causa dano endotelial glomerular, levando à formação de microtrombos.", "d": "medium", "refs": ["kdigo_aki", "kdigo_gn"]},
 {"t": "Hiponatremia Hipovolêmica e Reposição", "q": "Paciente com hiponatremia grave (Na+ 118 mEq/L) e sinais de desidratação. Qual o limite máximo de correção do sódio nas primeiras 24 horas para evitar a Síndrome de Desmielinização Osmótica?", "o": ["15 a 18 mEq/L", "4 a 6 mEq/L", "8 a 10 mEq/L (não excedendo 18 mEq/L em 48 horas)", "Não há limite, desde que o paciente esteja sintomático"], "a": 2, "e": "A correção excessiva em pacientes crônicos pode levar à ponte mielinolítica; em casos de alto risco (desnutrição, alcoolismo), o limite pode ser ainda menor (4-6 mEq/L).", "d": "medium", "refs": ["kdigo_ckd"]},
 {"t": "Distúrbio do Magnésio e Hipocalcemia", "q": "Por que pacientes com hipomagnesemia grave frequentemente apresentam hipocalcemia refratária à reposição de cálcio isolada?", "o": ["A deficiência de magnésio causa resistência periférica ao PTH e inibe a secreção deste hormônio pela paratireoide", "O magnésio compete com o cálcio pelo transportador no túbulo proximal", "A falta de magnésio estimula a excreção renal de cálcio via alça de Henle", "O magnésio é um cofator obrigatório para a absorção intestinal de Vitamina D"], "a": 0, "e": "Sem a correção do magnésio, o PTH não consegue exercer sua função, mantendo os níveis de cálcio baixos.", "d": "medium", "refs": ["kdigo_ckd"]},
 {"t": "Critérios KDIGO para Lesão Renal Aguda (LRA)", "q": "Segundo o critério KDIGO, um aumento de quanto no valor da creatinina sérica basal dentro de 48 horas define o Estágio 1 de LRA?", "o": ["Aumento de 0,1 mg/dL em 24 horas", "Aumento ≥ 0,3 mg/dL", "Aumento de 1,5 a 1,9 vezes o valor basal em 24 horas", "Qualquer redução no débito urinário por 2 horas"], "a": 1, "e": "Além do aumento absoluto de 0,3 mg/dL em 48h, o aumento relativo de 1,5x o basal em 7 dias ou débito urinário < 0,5 mL/kg/h por 6h também definem o estágio 1.", "d": "medium", "refs": ["kdigo_aki"]},
-{"t": "Diálise Peritoneal (DP): Teste de Equilíbrio Peritoneal (PET)", "q": "Um paciente em DP classificado como \"Transportador Rápido\" (High Transporter) no teste PET apresenta qual característica clínica e qual a conduta preferencial?", "o": ["Excelente ultrafiltração em trocas longas; prescrição de CAPD", "Absorção rápida de glicose e perda do gradiente osmótico; prescrição de trocas curtas e frequentes (APD)", "Baixa remoção de solutos; necessidade de aumentar o volume das trocas", ". C) Baixa remoção de solutos; necessidade de aumentar o volume das trocas. D) Risco aumentado de peritonite bacteriana"], "a": 1, "e": "Transportadores rápidos equilibram solutos rápido, mas perdem o poder de tirar água em permanências longas.", "d": "medium", "refs": ["kdigo_ckd"]},
+{"t": "Diálise Peritoneal (DP): Teste de Equilíbrio Peritoneal (PET)", "q": "Um paciente em DP classificado como \"Transportador Rápido\" (High Transporter) no teste PET apresenta qual característica clínica e qual a conduta preferencial?", "o": ["Excelente ultrafiltração em trocas longas; prescrição de CAPD", "Absorção rápida de glicose e perda do gradiente osmótico; prescrição de trocas curtas e frequentes (APD)", "Baixa remoção de solutos; necessidade de aumentar o volume das trocas", "Risco aumentado de peritonite bacteriana"], "a": 1, "e": "Transportadores rápidos equilibram solutos rápido, mas perdem o poder de tirar água em permanências longas.", "d": "medium", "refs": ["kdigo_ckd"]},
 {"t": "Síndrome de Bartter vs. Síndrome de Gitelman", "q": "Qual alteração na excreção urinária de cálcio ajuda a diferenciar clinicamente a Síndrome de Gitelman da Síndrome de Bartter?", "o": ["Bartter apresenta hipocalciúria; Gitelman apresenta hipercalciúria", "Gitelman apresenta hipocalciúria; Bartter apresenta hipercalciúria (ou normocalciúria)", "Ambas apresentam hipercalciúria grave", "Gitelman cursa com acidose metabólica, facilitando o diagnóstico"], "a": 1, "e": "Gitelman mimetiza o uso de tiazídicos (que poupam cálcio na urina), enquanto Bartter mimetiza o uso de diuréticos de alça.", "d": "medium", "refs": ["kdigo_ckd"]},
 {"t": "Nefropatia por BK Vírus no Transplante", "q": "Qual a conduta inicial recomendada ao detectar viremia por BK vírus (PCR elevado) em um paciente transplantado renal com aumento de creatinina?", "o": ["Iniciar Cidofovir em dose máxima", "Redução da carga de imunossupressão (geralmente do antimetabólito ou inibidor de calcineurina)", "Realizar pulsoterapia com Metilprednisolona", "Indicar nefrectomia do enxerto imediatamente"], "a": 1, "e": "A primeira linha é reduzir a imunossupressão para permitir que o corpo controle a replicação viral.", "d": "medium", "refs": ["kdigo_tx"]},
 {"t": "Estudo BPROAD (2024): Metas de PA", "q": "No estudo BPROAD, em pacientes com DM2, o grupo de controle intensivo buscou uma meta de PAS de:", "o": ["< 135 mmHg", "< 120 mmHg", "< 110 mmHg", "< 140 mmHg"], "a": 1, "e": "O estudo reforçou que metas mais baixas protegem o rim e o coração nesse perfil de paciente.", "d": "medium", "refs": ["bproad"]},
@@ -1300,7 +1364,7 @@
 {"t": "Síndrome de Lise Tumoral (SLT)", "q": "Qual a alteração metabólica típica da SLT e qual a droga de escolha para pacientes de alto risco com ácido úrico muito elevado?", "o": ["Hiperuricemia, hipercalemia, hiperfosfatemia e hipocalcemia; Rasburicase", "Hipouricemia e hipercalcemia; Alopurinol", "Hipernatremia e acidose respiratória; Bicarbonato de sódio", "Hipocalemia e hipofosfatemia; Hidratação apenas"], "a": 0, "e": "A Rasburicase converte o ácido úrico em alantoína (muito solúvel), agindo mais rápido que o Alopurinol.", "d": "medium", "refs": ["kdigo_ckd"]},
 {"t": "Inibidores de SGLT2 e Efeito \"Dip\" Inicial", "q": "Ao iniciar um iSGLT2, é comum observar uma queda inicial na TFG (efeito \"dip\"). Qual a explicação fisiológica e a conduta recomendada?", "o": ["Vasoconstrição da arteríola aferente por feedback tubuloglomerular; manter a medicação se a queda for < 30%", "Toxicidade tubular direta; suspender a medicação imediatamente", "Vasodilatação da arteríola eferente; reduzir a dose pela metade", "Desidratação sistêmica; aumentar a oferta de sódio na dieta"], "a": 0, "e": "Essa queda reflete a redução da hiperfiltração glomerular, o que é protetor a longo prazo.", "d": "medium", "refs": ["kdigo_gn", "dapa"]},
 {"t": "Doença de Fabry: Achado na Microscopia Eletrônica", "q": "Na biópsia renal de um paciente com Doença de Fabry, o que se espera encontrar na microscopia eletrônica (ME)?", "o": ["Fusão pedicular difusa", "Inclusões lamelares citoplasmáticas (corpos em \"casca de cebola\" ou figuras de mielina) nos podócitos", "Rupturas da membrana basal glomerular", "Depósitos densos intramembranosos"], "a": 1, "e": "Essas inclusões representam o acúmulo de globotriaosilceramida (Gb3) devido à deficiência da enzima alfa-galactosidase A.", "d": "medium", "refs": ["kdigo_gn"]},
-{"t": "Nefropatia por IgA (NIgA): Classificação de Oxford (MEST-C)", "q": "Na classificação de Oxford para NIgA, qual parâmetro está mais fortemente associado a um pior prognóstico e não responde bem à imunossupressão isolada?", "o": ["Classificação de Oxford (MEST-C)", "Hipercelularidade endocapilar (E)", "Crescentes celulares (C1/C2) — associadas a pior prognóstico e necessidade de imunossupressão", "Crescentes (C)"], "a": 2, "e": "O escore T reflete dano crônico e irreversível, sendo o preditor mais forte de progressão para falência renal.", "d": "medium", "refs": ["kdigo_gn", "kdigo_tx"]},
+{"t": "Nefropatia por IgA (NIgA): Classificação de Oxford (MEST-C)", "q": "Na classificação de Oxford para NIgA, qual parâmetro está mais fortemente associado a um pior prognóstico e não responde bem à imunossupressão isolada?", "o": ["Esclerose tubular (T) \u2014 reflete dano crônico irreversível", "Hipercelularidade endocapilar (E)", "Crescentes celulares (C1/C2) \u2014 associadas a pior prognóstico e necessidade de imunossupressão", "Hipercelularidade mesangial (M)"], "a": 0, "e": "O escore T reflete dano crônico e irreversível, sendo o preditor mais forte de progressão para falência renal.", "d": "medium", "refs": ["kdigo_gn", "kdigo_tx"]},
 {"t": "Glomerulonefrite Membranoproliferativa (GNMP): Classificação Atual", "q": "Como é classificada a GNMP com base nos achados de imunofluorescência (IF)?", "o": ["Primária e Secundária", "Mediada por Imunocomplexos (IF positiva para Ig e Complemento) ou Mediada pelo Complemento (IF positiva apenas para C3)", "Tipo I, II e III", "Proliferativa e Esclerosante"], "a": 1, "e": "Essa classificação moderna foca na via fisiopatológica (ativação da via clássica vs. via alternativa).", "d": "medium", "refs": ["kdigo_gn"]},
 {"t": "Estudo EMPA-KIDNEY (2023): População Incluída", "q": "Qual foi o diferencial do estudo EMPA-KIDNEY em relação aos estudos anteriores (DAPA-CKD) com inibidores de SGLT2?", "o": ["Incluiu pacientes com TFG tão baixa quanto 20 mL/min e pacientes sem albuminúria significativa", "Avaliou apenas pacientes com insuficiência cardíaca", "Testou a medicação em pacientes transplantados", "Focou exclusivamente em pacientes com Diabetes Tipo 1"], "a": 0, "e": "Isso expandiu a indicação da droga para nefropatias não-albuminúricas e estágios mais avançados de DRC.", "d": "medium", "refs": ["kdigo_ckd", "dapa", "empa"]},
 {"t": "Vasculite ANCA: Indução de Remissão (Estudo ADVOCATE)", "q": "O estudo ADVOCATE testou o Avacopan em pacientes com vasculite ANCA. Qual a vantagem desta droga em relação ao tratamento padrão?", "o": ["Substitui a necessidade de Rituximabe", "Permite a redução ou eliminação do uso de corticosteroides, com eficácia superior na recuperação renal", "Reduz o risco de infecções fúngicas", "É administrada por via intramuscular trimestral"], "a": 1, "e": "O Avacopan é um antagonista do receptor de C5a, agindo na inflamação sem os efeitos sistêmicos devastadores dos corticoides.", "d": "medium", "refs": ["kdigo_ckd"]},
@@ -1353,7 +1417,7 @@
 {"t": "Transplante Renal: Indução Imunológica", "q": "Qual o mecanismo de ação da Timoglobulina (ATG) utilizada na indução do transplante renal de alto risco?", "o": ["Bloqueio seletivo do receptor de IL-2 (CD25)", "Depleção profunda de linfócitos T circulantes por citólise mediada por complemento e opsonização", "Inibição da síntese de purinas", "Bloqueio da via da calcineurina"], "a": 1, "e": "A alternativa B é a correta.", "d": "medium", "refs": ["kdigo_tx"]},
 {"t": "Proteinúria Ortostática: Diagnóstico", "q": "Paciente jovem apresenta proteinúria de 1,2g em amostra coletada durante o dia, mas < 150mg em amostra coletada imediatamente após o repouso noturno. Qual a conduta?", "o": ["Iniciar IECA imediatamente", "Realizar biópsia renal para excluir GESF", "Diagnosticar proteinúria ortostática e manter apenas seguimento conservador, dado o prognóstico benigno", "Solicitar eletroforese de proteínas urinárias"], "a": 2, "e": "A alternativa C é a correta.", "d": "medium", "refs": ["kdigo_gn"]},
 {"t": "IECA e Estenose de Artéria Renal Bilateral", "q": "Por que o uso de Enalapril pode causar queda aguda da função renal em pacientes com estenose bilateral de artéria renal?", "o": ["Causa vasoconstrição da arteríola aferente", "Causa vasodilatação da arteríola eferente, reduzindo a pressão intraglomerular de filtração", "Induz necrose tubular aguda tóxica direta", "Promove a formação de microtrombos nas artérias renais"], "a": 1, "e": "A alternativa B é a correta.", "d": "medium", "refs": ["kdigo_gn"]},
-{"t": "Síndrome de Liddle: Fisiopatologia", "q": "A Síndrome de Liddle é caracterizada por uma mutação que causa:", "o": ["Perda de função do transportador NKCC2", "Ganho de função (hiperatividade) dos canais de sódio epiteliais (ENaC) no túbulo coletor", "no túbulo coletor. C) Resistência periférica à aldosterona", "Deficiência na produção de renina"], "a": 1, "e": "A alternativa B é a correta.", "d": "medium", "refs": ["kdigo_ckd"]},
+{"t": "Síndrome de Liddle: Fisiopatologia", "q": "A Síndrome de Liddle é caracterizada por uma mutação que causa:", "o": ["Perda de função do transportador NKCC2", "Ganho de função (hiperatividade) dos canais de sódio epiteliais (ENaC) no túbulo coletor", "Resistência periférica à aldosterona", "Deficiência na produção de renina"], "a": 1, "e": "A alternativa B é a correta.", "d": "medium", "refs": ["kdigo_ckd"]},
 {"t": "Manejo do Rim de Mieloma", "q": "Além do tratamento da neoplasia de base, qual a medida de suporte renal mais importante na fase aguda da Nefropatia por Cilindros?", "o": ["Restrição hídrica rigorosa para evitar edema", "Hidratação vigorosa e manutenção de débito urinário elevado para prevenir a precipitação de cadeias leves", "Uso de diuréticos de alça em altas doses", "Diálise peritoneal imediata"], "a": 1, "e": "A alternativa B é a correta.", "d": "medium", "refs": ["kdigo_ckd"]},
 {"t": "Hiperoxalúria Primária Tipo 1: Defeito Enzimático", "q": "A Hiperoxalúria Primária Tipo 1 é causada pela deficiência de qual enzima hepática?", "o": ["Alanina-glioxilato aminotransferase (AGT)", "Glioxilato redutase", "Xantina oxidase", "Glucuroniltransferase"], "a": 0, "e": "A alternativa A é a correta.", "d": "medium", "refs": ["kdigo_ckd"]},
 {"t": "Metformina e Contraste em DRC Estágio 4", "q": "Qual a recomendação para um paciente com TFG de 25 mL/min que realizará TC com contraste iodado em relação à Metformina?", "o": ["Manter o uso normal se a glicemia estiver controlada", "Suspender a metformina no dia do exame e reiniciar apenas 48h depois, após confirmar estabilidade da função renal", "Substituir por insulina 24h antes", "Não há risco de acidose lática se o contraste for hipoosmolar"], "a": 1, "e": "A alternativa B é a correta.", "d": "medium", "refs": ["kdigo_ckd"]},
@@ -1365,7 +1429,7 @@
 {"t": "Síndrome de Goodpasture: Anticorpo Alvo", "q": "O anticorpo Anti-MBG (Membrana Basal Glomerular) ataca especificamente qual estrutura?", "o": ["O domínio não colagenoso 1 (NC1) da cadeia alfa-3 do colagénio tipo IV", "A laminina-521", "O receptor de fosfolipase A2", "A podocina"], "a": 0, "e": "A alternativa A é a correta.", "d": "medium", "refs": ["kdigo_gn"]},
 {"t": "Citrato de Potássio e Cálculos de Ácido Úrico", "q": "Qual o efeito do citrato de potássio que favorece a dissolução de cálculos de ácido úrico?", "o": ["Acidificação da urina", "Alcalinização urinária, aumentando a solubilidade do ácido úrico (pKa 5.5)", "Quelação direta do oxalato", "Redução da excreção urinária de magnésio"], "a": 1, "e": "A alternativa B é a correta.", "d": "medium", "refs": ["kdigo_ckd"]},
 {"t": "Anemia na DRC: Toxicidade por Alumínio", "q": "Historicamente, a intoxicação por alumínio em pacientes dialíticos causava anemia do tipo:", "o": ["Microcítica, hipocrómica e resistente à eritropoietina", "Macrocítica megaloblástica", "Normocítica regenerativa", "Hemolítica autoimune"], "a": 0, "e": "A alternativa A é a correta.", "d": "medium", "refs": ["kdigo_ckd"]},
-{"t": "Vasculite de Churg-Strauss (EGPA): Marcador Sorológico", "q": "Qual o padrão de ANCA mais frequentemente associado à Granulomatose com Poliangiite Eosinofílica (EGPA)?", "o": ["Marcador Sorológico", "P-ANCA (anti-MPO), presente em cerca de 40% dos casos", "ANCA atípico", "Anti-dsDNA"], "a": 1, "e": "A alternativa B é a correta.", "d": "medium", "refs": ["kdigo_ckd"]},
+{"t": "Vasculite de Churg-Strauss (EGPA): Marcador Sorológico", "q": "Qual o padrão de ANCA mais frequentemente associado à Granulomatose com Poliangiite Eosinofílica (EGPA)?", "o": ["C-ANCA (anti-PR3), presente em 90% dos casos", "P-ANCA (anti-MPO), presente em cerca de 40% dos casos", "ANCA atípico", "Anti-dsDNA"], "a": 1, "e": "A alternativa B é a correta.", "d": "medium", "refs": ["kdigo_ckd"]},
 {"t": "Creatinina Sérica e Consumo de Carne", "q": "Por que o consumo excessivo de carne cozida pode elevar a creatinina sérica sem indicar perda de função renal?", "o": ["A creatina da carne é convertida em creatinina pelo calor da cozedura e absorvida pelo trato gastrointestinal", "A carne estimula a produção muscular de creatina", "As proteínas da carne inibem a secreção tubular de creatinina", "Ocorre uma lesão renal aguda transitória pela carga de purinas"], "a": 0, "e": "A alternativa A é a correta.", "d": "medium", "refs": ["kdigo_aki"]},
 {"t": "Tenofovir (TDF) e Toxicidade Tubular", "q": "O Tenofovir causa disfunção renal por lesão em qual estrutura celular do túbulo proximal?", "o": ["Membrana basal", "Mitocôndrias (depleção de DNA mitocondrial e edema mitocondrial)", "Lisossomas", "Ribossomas"], "a": 1, "e": "A alternativa B é a correta.", "d": "medium", "refs": ["kdigo_ckd"]},
 {"t": "Classificação de Mayo para DRPAD", "q": "A classificação de Mayo para Doença Renal Policística baseia-se primordialmente em qual parâmetro?", "o": ["Número de cistos por rim", "Volume Renal Total (HtTKV) ajustado pela altura e idade", "Níveis de creatinina sérica no momento do diagnóstico", "Presença de cistos extra-renais"], "a": 1, "e": "A alternativa B é a correta.", "d": "medium", "refs": ["kdigo_ckd"]},
@@ -1491,7 +1555,7 @@
 {"t": "Fisiologia: O efeito do PTH no Túbulo Proximal", "q": "Além de estimular a produção de calcitriol, o PTH atua no túbulo proximal promovendo:", "o": ["Inibição da reabsorção de fosfato (efeito fosfatúrico) via internalização dos transportadores NaPi-IIa", "Aumento da reabsorção de glicose", "Secreção de magnésio", "Reabsorção de bicarbonato"], "a": 0, "e": "A alternativa A é a correta.", "d": "hard", "refs": ["kdigo_ckd"]},
 {"t": "Estudo FLOW: População com TFG Muito Baixa", "q": "O estudo FLOW permitiu a inclusão de pacientes com TFG até:", "o": ["15 mL/min", "25 mL/min", "30 mL/min", "45 mL/min"], "a": 1, "e": "A alternativa B é a correta.", "d": "hard", "refs": ["flow_study"]},
 {"t": "Nefropatia por IgA: Efeito da Tonsilectomia", "q": "Segundo estudos japoneses, a tonsilectomia associada a pulsoterapia com corticoide pode induzir remissão na NIgA por:", "o": ["Remover uma fonte importante de produção de IgA1 galacto-deficiente ativada por infecções orofaringeas", "Reduzir os níveis de creatinina sérica diretamente", "Aumentar a volemia do paciente", "Não há base racional para este procedimento"], "a": 0, "e": "A alternativa A é a correta.", "d": "hard", "refs": ["kdigo_gn"]},
-{"t": "Glomerulonefrite Membranoproliferativa e Complemento C4", "q": "Na GNMP mediada por imunocomplexos, o consumo de C4 indica:", "o": ["Ativação da via clássica do complemento (frequentemente por infecções crônicas como Hepatite C)", "Ativação exclusiva da via alternativa", ". B) Ativação exclusiva da via alternativa. C) Deficiência genética de C1q", "Ausência de inflamação glomerular"], "a": 0, "e": "A alternativa A é a correta.", "d": "hard", "refs": ["kdigo_gn"]},
+{"t": "Glomerulonefrite Membranoproliferativa e Complemento C4", "q": "Na GNMP mediada por imunocomplexos, o consumo de C4 indica:", "o": ["Ativação da via clássica do complemento (frequentemente por infecções crônicas como Hepatite C)", "Ativação exclusiva da via alternativa", "Deficiência genética de C1q", "Ausência de inflamação glomerular"], "a": 0, "e": "A alternativa A é a correta.", "d": "hard", "refs": ["kdigo_gn"]},
 {"t": "Transplante Renal: Inibidores de mTOR e Cicatrização", "q": "Por que o Sirolimus (inibidor de mTOR) deve ser evitado no período pós-operatório imediato do transplante?", "o": ["Por estar associado a atraso na cicatrização cirúrgica e maior risco de deiscência de ferida e linfoceles", "Por causar hipertensão arterial maligna", "Por induzir hipocalemia profunda", "Por ser ineficaz na prevenção de rejeição"], "a": 0, "e": "A alternativa A é a correta.", "d": "hard", "refs": ["kdigo_tx"]},
 {"t": "Estudo DAPA-CKD: Redução de LRA", "q": "No estudo DAPA-CKD, o uso de dapagliflozina reduziu o risco de episódios de Lesão Renal Aguda (LRA) grave?", "o": ["Sim, houve uma redução de aproximadamente 32% no risco de LRA severa", "Não, a droga aumentou os casos de LRA", "O impacto foi neutro", "A LRA não foi avaliada no estudo"], "a": 0, "e": "A alternativa A é a correta.", "d": "hard", "refs": ["kdigo_ckd", "kdigo_aki", "dapa"]},
 {"t": "Hipernatremia: Diabetes Insipidus por Gestação", "q": "Qual o mecanismo do Diabetes Insipidus que ocorre na gestação?", "o": ["Degradação excessiva do ADH endógeno pela enzima vasopressinase produzida pela placenta", "Rejeição imunológica da hipófise pela placenta", "Consumo excessivo de água pela gestante", "Resistência à ocitocina"], "a": 0, "e": "A alternativa A é a correta.", "d": "hard", "refs": ["kdigo_tx"]},
@@ -1507,7 +1571,7 @@
 {"t": "Nefropatia por IgA: Efeito do Inibidor de SGLT2 na Hematúria", "q": "O uso de iSGLT2 em pacientes com NIgA (como visto no DAPA-CKD) tem qual impacto na hematúria microscópica?", "o": ["Aumenta o risco de hematúria macroscópica", "Reduz a frequência e a intensidade da hematúria, possivelmente por reduzir a inflamação glomerular", "Não altera a hematúria", "Torna a hematúria dismórfica em isomórfica"], "a": 1, "e": "A alternativa B é a correta.", "d": "hard", "refs": ["kdigo_ckd", "kdigo_gn", "dapa"]},
 {"t": "Estudo DAPA-CKD: Proteção Contra Morte Renal", "q": "Qual foi a redução do risco relativo de morte por causas renais no estudo DAPA-CKD?", "o": ["Redução significativa (embora o número absoluto de eventos tenha sido baixo devido à eficácia da droga)", "Não houve proteção contra morte renal", "Aumento da mortalidade", "O estudo só avaliou morte cardiovascular"], "a": 0, "e": "A alternativa A é a correta.", "d": "hard", "refs": ["kdigo_ckd", "dapa"]},
 {"t": "Hipernatremia: Uso de Solução Salina 0,45%", "q": "Em que situação a solução salina hipotónica (0,45%) é preferível à água livre (SG 5%) no tratamento da hipernatremia?", "o": ["Pacientes com hipernatremia e depleção de volume extracelular (hipovolémicos)", "Pacientes com edema agudo de pulmão", "Hipernatremia por excesso de sal (iatrogénica)", "Pacientes com diabetes insipidus puro"], "a": 0, "e": "A alternativa A é a correta.", "d": "hard", "refs": ["kdigo_ckd"]},
-{"t": "Transplante Renal: Nefropatia Crónica do Enxerto", "q": "O termo \"Fibrose Intersticial e Atrofia Tubular\" (IF/TA) sem causa específica na biópsia de transplante é hoje entendido como:", "o": ["sem causa específica na biópsia de transplante é hoje entendido como: A) Um marcador inespecífico de dano acumulado (imunológico, isquémico ou tóxico), e não uma doença isolada", "Um sinal de infecção bacteriana crónica", "Consequência exclusiva do uso de corticoides", "Reversível com o uso de plasmaferese"], "a": 0, "e": "A alternativa A é a correta.", "d": "hard", "refs": ["kdigo_tx"]},
+{"t": "Transplante Renal: Nefropatia Crónica do Enxerto", "q": "O termo \"Fibrose Intersticial e Atrofia Tubular\" (IF/TA) sem causa específica na biópsia de transplante é hoje entendido como:", "o": ["Um marcador inespecífico de dano acumulado (imunológico, isquémico ou tóxico), e não uma doença isolada", "Um sinal de infecção bacteriana crónica", "Consequência exclusiva do uso de corticoides", "Reversível com o uso de plasmaferese"], "a": 0, "e": "A alternativa A é a correta.", "d": "hard", "refs": ["kdigo_tx"]},
 {"t": "Estudo EMPA-KIDNEY: Custos de Saúde", "q": "O tratamento com empagliflozina no EMPA-KIDNEY mostrou-se custo-efetivo principalmente por:", "o": ["Reduzir a necessidade de hospitalizações e retardar o início de terapias de substituição renal dispendiosas", "Ser uma droga produzida localmente em todos os países", "Eliminar a necessidade de outras medicações para PA", "Reduzir o número de consultas nefrológicas"], "a": 0, "e": "A alternativa A é a correta.", "d": "hard", "refs": ["empa"]},
 {"t": "Síndrome de Bartter Tipo 3: Fenótipo", "q": "A Síndrome de Bartter Tipo 3 (mutações no CLCNKB) é muitas vezes chamada de \"forma clássica\" porque:", "o": ["Apresenta um fenótipo intermediário, podendo manifestar-se desde o período neonatal até à infância, sem a gravidade extrema do Tipo 1", "É a única forma que se manifesta exclusivamente no período neonatal", "Causa apenas hipertensão", "Está associada a cancro renal"], "a": 0, "e": "A alternativa A é a correta.", "d": "hard", "refs": ["kdigo_ckd"]},
 {"t": "Glomerulonefrite Membranosa: Anticorpo Anti-THSD7A", "q": "Além do Anti-PLA2R, qual outro anticorpo é marcador de Nefropatia Membranosa primária e está mais associado a neoplasias malignas?", "o": ["Anti-dsDNA", "Anti-THSD7A (Trombospondina do tipo 1 com domínio 7A)", "Anti-Ro/SSA", "Anti-MPO"], "a": 1, "e": "A alternativa B é a correta.", "d": "hard", "refs": ["kdigo_gn"]},
@@ -2151,7 +2215,7 @@
       log(`🔨 Forja concluída! ${msg}`);
       renderHUD();
       updateBadges();
-      autoSave();
+      saveGame();
     }
 
 
@@ -2174,7 +2238,7 @@
       log(`🔨 Forja Lendária! ${legendaryItem.n} equipado!`);
       renderHUD();
       updateBadges();
-      autoSave();
+      saveGame();
     }
 
     function showForgePopup(item, slot, gains){
@@ -2258,6 +2322,9 @@
       popup.addEventListener('click',(e)=>{if(e.target===popup) popup.remove();});
       if(isFinale){
         log('🏆 VITÓRIA! Você derrotou o Arqui-Nefromante e salvou os rins do reino!');
+      } else if(isBoss){
+        playSound('boss');
+        log(`💀 ${stage.ch}: ${stage.title}`);
       } else {
         log(`📖 ${stage.ch}: ${stage.title}`);
       }
@@ -2322,7 +2389,7 @@
     }
     
     function finishGameUI() {
-      ui.question.textContent=`Fim da jornada! Pontos: ${pendingScore?pendingScore.score:state.score} • Nível: ${pendingScore?pendingScore.level:state.level}.`;
+      ui.question.textContent=`Fim da jornada! Pontos: ${state.score} • Nível: ${state.level}.`;
       ui.options.innerHTML='';
       const cost=bonusCost();
       if(state.gold>=cost && state.bonusUses < 1){
