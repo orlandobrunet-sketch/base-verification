@@ -823,17 +823,7 @@
       return { mult: 1, label: '', css: '', fire: '' };
     }
     
-    ;
-      // Find the best message for this streak
-      let msg = '';
-      for (const [threshold, text] of Object.entries(msgs).sort((a,b) => b[0]-a[0])) {
-        if (streak >= parseInt(threshold)) { msg = text; break; }
-      }
-      if (!msg) return;
-      banner.innerHTML = `${sm.fire} ${msg} ${sm.label} ${sm.fire}`;
-      document.body.appendChild(banner);
-      setTimeout(() => banner.remove(), 1300);
-    }
+
 
 
     // ============ SISTEMA DE BADGES ============
