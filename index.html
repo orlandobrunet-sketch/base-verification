@@ -650,6 +650,33 @@
         </div>
       </div>
 
+      <!-- Badges de Progressão -->
+      <div style="margin-top:8px;padding:6px 10px;background:rgba(0,0,0,0.3);border-radius:8px;border:1px solid #1a3a5a;">
+        <div style="font-size:0.65rem;color:var(--txt-dim);margin-bottom:4px;text-align:center;">Conquistas</div>
+        <div class="badges-row" style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px;">
+          <div class="badge-slot" data-badge="1" title="Mestre da Filtração (20 acertos)">
+            <img src="assets/badges/badge1.jpg" alt="Badge 1">
+            <div class="badge-lock">🔒</div>
+          </div>
+          <div class="badge-slot" data-badge="2" title="Guardião do Equilíbrio (40 acertos)">
+            <img src="assets/badges/badge2.jpg" alt="Badge 2">
+            <div class="badge-lock">🔒</div>
+          </div>
+          <div class="badge-slot" data-badge="3" title="Senhor das Águas (60 acertos)">
+            <img src="assets/badges/badge3.jpg" alt="Badge 3">
+            <div class="badge-lock">🔒</div>
+          </div>
+          <div class="badge-slot" data-badge="4" title="Biólogo Visionário (80 acertos)">
+            <img src="assets/badges/badge4.jpg" alt="Badge 4">
+            <div class="badge-lock">🔒</div>
+          </div>
+          <div class="badge-slot" data-badge="5" title="Herói do NefroQuest (100 acertos)">
+            <img src="assets/badges/badge5.jpg" alt="Badge 5">
+            <div class="badge-lock">🔒</div>
+          </div>
+        </div>
+      </div>
+
       <div class="story">
         <h3>Capítulo da Narrativa</h3>
         <p id="storyTitle">Prólogo — As Criptas da Creatinina</p>
@@ -682,7 +709,7 @@
       <div class="ctrl">
         <button id="nextBtn" class="btn hidden">Próxima Carta</button>
         <button id="newBtn" class="btn sec">Novo Jogo</button>
-        <button id="forgeBtn" class="btn gold">Forjar Item (500 ouro)</button>
+        <button id="forgeBtn" class="btn gold">Forjar Item (300 ouro)</button>
         <button id="bonusBtn" class="btn gold hidden">Pergunta Bônus</button>
         <button id="legendaryForgeBtn" class="btn gold" onclick="forgeLegendary()">Forjar Lendário (1000 ouro)</button>
         <button id="chestBtn" class="btn gold" onclick="openChest()">Abrir Baú (50 ouro)</button>
@@ -870,9 +897,9 @@
     function showGameCompletionModal() {
       const modal = document.createElement('div');
       modal.className = 'modal show';
-      modal.style.zIndex = '1000';
+      modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.7);display:grid;place-items:center;z-index:1000;backdrop-filter:blur(4px);';
       modal.innerHTML = `
-        <div class="modal-content" style="max-width:500px;text-align:center;">
+        <div class="modal-content" style="max-width:500px;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid #2a4a7a;border-radius:14px;padding:24px;">
           <h2 style="color:var(--gold);margin-bottom:16px;">🎉 PARABÉNS! 🎉</h2>
           <p style="font-size:1.1rem;line-height:1.6;margin-bottom:20px;">
             Você derrotou o Arqui-Nefromante e completou o NefroQuest!<br>
@@ -919,9 +946,9 @@
     function showExtraLifeModal() {
       const modal = document.createElement('div');
       modal.className = 'modal show';
-      modal.style.zIndex = '1000';
+      modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.7);display:grid;place-items:center;z-index:1000;backdrop-filter:blur(4px);';
       modal.innerHTML = `
-        <div class="modal-content" style="max-width:450px;text-align:center;">
+        <div class="modal-content" style="max-width:450px;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid #2a4a7a;border-radius:14px;padding:24px;">
           <h2 style="color:var(--ok);margin-bottom:16px;">💚 VIDA EXTRA! 💚</h2>
           <p style="font-size:1.05rem;line-height:1.6;margin-bottom:20px;">
             Os Deuses do Néfron reconhecem sua dedicação!<br>
@@ -940,6 +967,8 @@
 
     // ============ POPUP DE EVOLUÇÃO DO PERSONAGEM ============
     function showEvolutionPopup(newLevel, newTitle, newImage) {
+      // Remover popup anterior se existir
+      document.querySelectorAll('.evolution-popup').forEach(el => el.remove());
       const evolutionTexts = {
         3: "Suas células começam a brilhar com conhecimento. Você sente o poder da filtração fluindo em suas veias!",
         5: "Os néfrons reconhecem sua maestria! Você transcende para um novo patamar de sabedoria renal.",
@@ -952,10 +981,10 @@
       const text = evolutionTexts[newLevel] || "Você evoluiu! Continue sua jornada rumo à maestria nefrológica.";
       
       const modal = document.createElement('div');
-      modal.className = 'modal show';
-      modal.style.zIndex = '1000';
+      modal.className = 'modal show evolution-popup';
+      modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.7);display:grid;place-items:center;z-index:1000;backdrop-filter:blur(4px);';
       modal.innerHTML = `
-        <div class="modal-content" style="max-width:500px;text-align:center;">
+        <div class="modal-content" style="max-width:500px;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid #2a4a7a;border-radius:14px;padding:24px;">
           <h2 style="color:var(--gold);margin-bottom:12px;">⚡ EVOLUÇÃO! ⚡</h2>
           <div style="margin:20px auto;width:120px;height:120px;border-radius:50%;overflow:hidden;border:3px solid var(--gold);box-shadow:0 0 20px rgba(255,215,0,0.5);">
             <img src="${newImage}" style="width:100%;height:100%;object-fit:cover;" alt="${newTitle}">
@@ -1774,14 +1803,37 @@
             forgeBtn.classList.add('disabled');
             forgeBtn.textContent='Equipamento Completo';
             forgeBtn.title='Você já possui todos os equipamentos lendários!';
-          } else if(state.gold<500){
+          } else if(state.gold<300){
             forgeBtn.classList.add('disabled');
-            forgeBtn.textContent='Forjar Item (500 ouro)';
-            forgeBtn.title='Ouro insuficiente (precisa 500)';
+            forgeBtn.textContent='Forjar Item (300 ouro)';
+            forgeBtn.title='Ouro insuficiente (precisa 300)';
           } else {
             forgeBtn.classList.remove('disabled');
-            forgeBtn.textContent='Forjar Item (500 ouro)';
+            forgeBtn.textContent='Forjar Item (300 ouro)';
             forgeBtn.title='Forjar um equipamento';
+          }
+        }
+        // Botão Forjar Lendário
+        const legBtn=document.getElementById('legendaryForgeBtn');
+        if(legBtn){
+          if(maxed){
+            legBtn.classList.add('disabled');
+            legBtn.textContent='Equipamento Completo';
+            legBtn.title='Todos os lendários equipados!';
+            legBtn.style.pointerEvents='none';
+            legBtn.style.opacity='0.4';
+          } else if(state.gold<1000){
+            legBtn.classList.add('disabled');
+            legBtn.textContent='Forjar Lendário (1000 ouro)';
+            legBtn.title='Ouro insuficiente (precisa 1000)';
+            legBtn.style.pointerEvents='none';
+            legBtn.style.opacity='0.4';
+          } else {
+            legBtn.classList.remove('disabled');
+            legBtn.textContent='Forjar Lendário (1000 ouro)';
+            legBtn.title='Forjar um equipamento lendário!';
+            legBtn.style.pointerEvents='auto';
+            legBtn.style.opacity='1';
           }
         }
         if(chestBtn){
@@ -2010,8 +2062,8 @@
     function forgeItem(){
       if(state.gameOver){ log('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
       if(allItemsMaxed()){ log('🏆 Você já possui todos os equipamentos lendários!'); return; }
-      const cost=500;
-      if(state.gold<cost){ log('🧱 Ouro insuficiente! Precisa de 500 ouro para forjar.'); return; }
+      const cost=300;
+      if(state.gold<cost){ log('🧱 Ouro insuficiente! Precisa de 300 ouro para forjar.'); return; }
       state.gold-=cost;
       const st=total();
       const rolled=rollItem(state.level, st.luck);
