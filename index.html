@@ -451,6 +451,94 @@
     .btn-group { display: flex; gap: 10px; margin-top: 12px; }
     .btn-group button { flex: 1; }
 
+
+    /* WELCOME SCREEN */
+    .welcome-screen {
+      position: fixed; inset: 0; z-index: 500;
+      background: radial-gradient(ellipse at center, #0e1830 0%, #060a18 70%);
+      display: flex; align-items: center; justify-content: center;
+      animation: fadeIn 0.5s;
+    }
+    .welcome-screen.hidden { display: none; }
+    .welcome-content {
+      text-align: center; max-width: 520px; width: 90%; padding: 40px 30px;
+      background: linear-gradient(180deg, rgba(20,30,60,0.9), rgba(10,15,35,0.95));
+      border: 2px solid var(--gold); border-radius: 20px;
+      box-shadow: 0 0 80px rgba(255,215,0,0.15), inset 0 0 40px rgba(0,0,0,0.3);
+      animation: scaleIn 0.6s;
+    }
+    .welcome-content h1 {
+      font-family: 'MedievalSharp', 'Cinzel', serif;
+      font-size: 2.2rem; letter-spacing: 4px;
+      background: linear-gradient(180deg, #fff8dc 0%, #ffd700 30%, #daa520 60%, #b8860b 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 2px 10px rgba(255,215,0,0.5));
+      margin-bottom: 6px;
+    }
+    .welcome-content .welcome-sub {
+      font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 5px;
+      color: var(--gold); opacity: 0.7; text-transform: uppercase; margin-bottom: 24px;
+    }
+    .welcome-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+      margin: 20px 0;
+    }
+    .welcome-stat {
+      background: rgba(10,15,30,0.8); border: 1px solid #2a4a7a; border-radius: 10px;
+      padding: 12px 8px;
+    }
+    .welcome-stat .ws-val { font-size: 1.4rem; font-weight: 700; color: var(--gold); display: block; }
+    .welcome-stat .ws-lbl { font-size: 0.68rem; color: var(--txt-dim); text-transform: uppercase; letter-spacing: 1px; }
+    .welcome-buttons { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+    .welcome-buttons .btn { font-size: 0.85rem; padding: 12px 20px; }
+    .welcome-buttons .btn.continue-btn {
+      background: linear-gradient(180deg, #34d399 0%, #059669 50%, #047857 100%);
+      border-color: #065f46; color: #fff;
+      box-shadow: 0 3px 0 #064e3b, 0 4px 10px rgba(52,211,153,0.3);
+    }
+    .welcome-buttons .btn.continue-btn:hover {
+      box-shadow: 0 4px 0 #064e3b, 0 6px 16px rgba(52,211,153,0.5);
+    }
+
+    /* SOUND TOGGLE */
+    .sound-toggle {
+      position: fixed; top: 12px; right: 12px; z-index: 400;
+      background: rgba(15,20,40,0.9); border: 1px solid #2a4a7a; border-radius: 8px;
+      padding: 6px 10px; cursor: pointer; color: var(--txt-dim); font-size: 0.75rem;
+      transition: all 0.2s; display: flex; align-items: center; gap: 5px;
+    }
+    .sound-toggle:hover { border-color: var(--gold); color: var(--gold); }
+    .sound-toggle.muted { opacity: 0.5; }
+
+    /* STREAK MULTIPLIER VISUAL */
+    .streak-fire { display: inline; }
+    .streak-multiplier {
+      display: inline-block; font-size: 0.65rem; font-weight: 700;
+      padding: 1px 5px; border-radius: 4px; margin-left: 4px;
+      animation: pulse 1s ease-in-out infinite;
+    }
+    .streak-x2 { background: linear-gradient(180deg, #f59e0b, #d97706); color: #1a0e00; }
+    .streak-x3 { background: linear-gradient(180deg, #ef4444, #dc2626); color: #fff; }
+    .streak-x4 { background: linear-gradient(180deg, #8b5cf6, #7c3aed); color: #fff; }
+    .streak-x5 { background: linear-gradient(180deg, #ffd700, #ff6b00); color: #1a0e00; text-shadow: 0 0 4px rgba(255,255,255,0.5); }
+    @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
+
+    /* STREAK BANNER */
+    .streak-banner {
+      position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      z-index: 800; pointer-events: none;
+      font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 900;
+      color: var(--gold); text-shadow: 0 0 20px rgba(255,215,0,0.8), 0 0 40px rgba(255,215,0,0.4);
+      animation: streakBannerAnim 1.2s ease-out forwards;
+      white-space: nowrap;
+    }
+    @keyframes streakBannerAnim {
+      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+      20% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+      40% { transform: translate(-50%, -50%) scale(1); }
+      100% { opacity: 0; transform: translate(-50%, -70%) scale(1); }
+    }
+
     /* SCROLLBAR */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
@@ -471,6 +559,38 @@
   <div class="bg-layer"></div>
   <div class="bg-overlay"></div>
   <div class="particles" id="particles"></div>
+
+
+  <!-- WELCOME SCREEN -->
+  <div id="welcomeScreen" class="welcome-screen">
+    <div class="welcome-content">
+      <h1>NefroQuest</h1>
+      <div class="welcome-sub">— Ascension —</div>
+      <p style="color:#b0c4e8;font-size:0.9rem;line-height:1.6;margin-bottom:16px;">
+        Embarque numa jornada RPG pelo Reino Sombrio do Néfron.<br>
+        Responda questões de nefrologia, evolua seu personagem e derrote o Arqui-Nefromante!
+      </p>
+      <div id="welcomeStats" class="welcome-stats" style="display:none;">
+        <div class="welcome-stat"><span class="ws-val" id="wsBestScore">0</span><span class="ws-lbl">Recorde</span></div>
+        <div class="welcome-stat"><span class="ws-val" id="wsGamesPlayed">0</span><span class="ws-lbl">Partidas</span></div>
+        <div class="welcome-stat"><span class="ws-val" id="wsBestLevel">0</span><span class="ws-lbl">Maior Nível</span></div>
+      </div>
+      <div id="welcomeSavedInfo" style="display:none;margin:12px 0;padding:12px;background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.3);border-radius:10px;">
+        <p style="color:#34d399;font-size:0.85rem;font-weight:600;margin-bottom:4px;">Jornada em andamento encontrada!</p>
+        <p id="wsSavedDetails" style="color:var(--txt-dim);font-size:0.78rem;"></p>
+      </div>
+      <div class="welcome-buttons">
+        <button id="welcomeContinueBtn" class="btn continue-btn" style="display:none;" onclick="continueGame()">Continuar Jornada</button>
+        <button class="btn gold" onclick="startNewFromWelcome()">Nova Jornada</button>
+        <button class="btn sec" onclick="showLeaderboardFromWelcome()">Leaderboard</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOUND TOGGLE -->
+  <div id="soundToggle" class="sound-toggle" onclick="toggleSound()">
+    <span id="soundIcon">🔊</span> <span id="soundLabel">Som</span>
+  </div>
 
   <main class="app">
     <!-- Title -->
@@ -611,6 +731,250 @@
         c.appendChild(p);
       }
     })();
+
+
+    // ============ SISTEMA DE SOM ============
+    const SFX = {
+      correct: new Audio('assets/sounds/correct.wav'),
+      wrong: new Audio('assets/sounds/wrong.wav'),
+      levelup: new Audio('assets/sounds/levelup.wav'),
+      forge: new Audio('assets/sounds/forge.wav'),
+      chest: new Audio('assets/sounds/chest.wav'),
+      streak: new Audio('assets/sounds/streak.wav'),
+      click: new Audio('assets/sounds/click.wav')
+    };
+    // Pre-load all sounds
+    Object.values(SFX).forEach(a => { a.load(); a.volume = 0.5; });
+    
+    let soundEnabled = localStorage.getItem('nefroquest-sound') !== 'off';
+    
+    function playSound(name) {
+      if (!soundEnabled || !SFX[name]) return;
+      const s = SFX[name];
+      s.currentTime = 0;
+      s.play().catch(() => {});
+    }
+    
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+      localStorage.setItem('nefroquest-sound', soundEnabled ? 'on' : 'off');
+      const icon = document.getElementById('soundIcon');
+      const label = document.getElementById('soundLabel');
+      const toggle = document.getElementById('soundToggle');
+      if (soundEnabled) {
+        icon.textContent = '🔊'; label.textContent = 'Som'; toggle.classList.remove('muted');
+        playSound('click');
+      } else {
+        icon.textContent = '🔇'; label.textContent = 'Mudo'; toggle.classList.add('muted');
+      }
+    }
+    
+    // Initialize sound UI
+    (function() {
+      if (!soundEnabled) {
+        const icon = document.getElementById('soundIcon');
+        const label = document.getElementById('soundLabel');
+        const toggle = document.getElementById('soundToggle');
+        if (icon) icon.textContent = '🔇';
+        if (label) label.textContent = 'Mudo';
+        if (toggle) toggle.classList.add('muted');
+      }
+    })();
+
+    // ============ SISTEMA DE STREAK MULTIPLICADOR ============
+    function getStreakMultiplier(streak) {
+      if (streak >= 15) return { mult: 2.5, label: 'x2.5', css: 'streak-x5', fire: '🔥🔥🔥' };
+      if (streak >= 10) return { mult: 2.0, label: 'x2', css: 'streak-x4', fire: '🔥🔥' };
+      if (streak >= 7) return { mult: 1.75, label: 'x1.75', css: 'streak-x3', fire: '🔥' };
+      if (streak >= 5) return { mult: 1.5, label: 'x1.5', css: 'streak-x2', fire: '🔥' };
+      if (streak >= 3) return { mult: 1.25, label: 'x1.25', css: 'streak-x2', fire: '' };
+      return { mult: 1, label: '', css: '', fire: '' };
+    }
+    
+    function showStreakBanner(streak) {
+      const sm = getStreakMultiplier(streak);
+      if (!sm.label) return;
+      const banner = document.createElement('div');
+      banner.className = 'streak-banner';
+      const msgs = {
+        3: 'Boa sequência!',
+        5: 'Excelente!',
+        7: 'Incrível!',
+        10: 'Dominando!',
+        15: 'LENDÁRIO!',
+        20: 'IMPARÁVEL!'
+      };
+      // Find the best message for this streak
+      let msg = '';
+      for (const [threshold, text] of Object.entries(msgs).sort((a,b) => b[0]-a[0])) {
+        if (streak >= parseInt(threshold)) { msg = text; break; }
+      }
+      if (!msg) return;
+      banner.innerHTML = `${sm.fire} ${msg} ${sm.label} ${sm.fire}`;
+      document.body.appendChild(banner);
+      setTimeout(() => banner.remove(), 1300);
+    }
+
+    // ============ SISTEMA DE SAVE/LOAD (localStorage) ============
+    const SAVE_KEY = 'nefroquest-save';
+    const STATS_KEY = 'nefroquest-stats';
+    
+    function getGameStats() {
+      return JSON.parse(localStorage.getItem(STATS_KEY) || '{"gamesPlayed":0,"bestLevel":0,"bestScore":0}');
+    }
+    
+    function updateGameStats() {
+      const stats = getGameStats();
+      stats.gamesPlayed++;
+      if (state.level > stats.bestLevel) stats.bestLevel = state.level;
+      if (state.score > stats.bestScore) stats.bestScore = state.score;
+      localStorage.setItem(STATS_KEY, JSON.stringify(stats));
+    }
+    
+    function saveGame() {
+      if (!state.gameStarted || state.gameOver) return;
+      const saveData = {
+        level: state.level,
+        xp: state.xp,
+        xpToNext: state.xpToNext,
+        score: state.score,
+        lives: state.lives,
+        streak: state.streak,
+        gold: state.gold,
+        bonusUses: state.bonusUses,
+        correctTotal: state.correctTotal,
+        narrativeShown: state.narrativeShown,
+        character: state.character,
+        equipment: JSON.parse(JSON.stringify(state.equipment)),
+        idx: state.idx,
+        queueIds: state.queue.map(q => q.id),
+        timestamp: Date.now()
+      };
+      localStorage.setItem(SAVE_KEY, JSON.stringify(saveData));
+    }
+    
+    function loadGame() {
+      const raw = localStorage.getItem(SAVE_KEY);
+      if (!raw) return null;
+      try { return JSON.parse(raw); } catch(e) { return null; }
+    }
+    
+    function deleteSave() {
+      localStorage.removeItem(SAVE_KEY);
+    }
+    
+    function restoreGame(save) {
+      if (!save || !save.character) return false;
+      
+      state.character = save.character;
+      state.level = save.level || 1;
+      state.xp = save.xp || 0;
+      state.xpToNext = save.xpToNext || 120;
+      state.score = save.score || 0;
+      state.lives = save.lives || 3;
+      state.streak = save.streak || 0;
+      state.gold = save.gold || 0;
+      state.bonusUses = save.bonusUses || 0;
+      state.correctTotal = save.correctTotal || 0;
+      state.narrativeShown = save.narrativeShown || 0;
+      state.gameOver = false;
+      state.gameStarted = true;
+      state.answered = false;
+      state.current = null;
+      
+      if (save.equipment) {
+        state.equipment = save.equipment;
+      }
+      
+      // Restore queue order
+      if (save.queueIds && save.queueIds.length > 0) {
+        const bankMap = {};
+        questionBank.forEach(q => bankMap[q.id] = q);
+        state.queue = save.queueIds.map(id => bankMap[id]).filter(Boolean);
+        state.idx = save.idx || 0;
+      } else {
+        shuffleQueue();
+      }
+      
+      return true;
+    }
+    
+    // Auto-save every 30 seconds
+    setInterval(() => { saveGame(); }, 30000);
+
+    // ============ WELCOME SCREEN LOGIC ============
+    function initWelcomeScreen() {
+      const save = loadGame();
+      const stats = getGameStats();
+      const board = boardGet();
+      
+      // Show stats if player has history
+      if (stats.gamesPlayed > 0 || board.length > 0) {
+        document.getElementById('welcomeStats').style.display = 'grid';
+        document.getElementById('wsBestScore').textContent = stats.bestScore || (board.length ? board[0].score : 0);
+        document.getElementById('wsGamesPlayed').textContent = stats.gamesPlayed;
+        document.getElementById('wsBestLevel').textContent = stats.bestLevel;
+      }
+      
+      // Show continue button if save exists
+      if (save && save.character && save.lives > 0) {
+        document.getElementById('welcomeContinueBtn').style.display = 'block';
+        document.getElementById('welcomeSavedInfo').style.display = 'block';
+        const charName = characters[save.character] ? characters[save.character].name : 'Desconhecido';
+        const timeAgo = getTimeAgo(save.timestamp);
+        document.getElementById('wsSavedDetails').textContent = 
+          `${charName} · Nível ${save.level} · ${save.score} pts · ${save.lives} vidas · ${timeAgo}`;
+      }
+    }
+    
+    function getTimeAgo(ts) {
+      if (!ts) return '';
+      const diff = Date.now() - ts;
+      const mins = Math.floor(diff / 60000);
+      if (mins < 1) return 'agora mesmo';
+      if (mins < 60) return `há ${mins} min`;
+      const hours = Math.floor(mins / 60);
+      if (hours < 24) return `há ${hours}h`;
+      const days = Math.floor(hours / 24);
+      return `há ${days} dia${days > 1 ? 's' : ''}`;
+    }
+    
+    function dismissWelcome() {
+      const ws = document.getElementById('welcomeScreen');
+      ws.style.opacity = '0';
+      ws.style.transition = 'opacity 0.3s';
+      setTimeout(() => ws.classList.add('hidden'), 300);
+    }
+    
+    function continueGame() {
+      const save = loadGame();
+      if (!save) { startNewFromWelcome(); return; }
+      
+      if (restoreGame(save)) {
+        dismissWelcome();
+        ui.journal.innerHTML = '';
+        log(`🔄 Jornada restaurada! ${characters[state.character].name}, Nível ${state.level}.`);
+        renderHUD();
+        renderQuestion();
+        playSound('click');
+      } else {
+        startNewFromWelcome();
+      }
+    }
+    
+    function startNewFromWelcome() {
+      deleteSave();
+      dismissWelcome();
+      playSound('click');
+      document.getElementById('charSelectModal').classList.add('show');
+    }
+    
+    function showLeaderboardFromWelcome() {
+      dismissWelcome();
+      playSound('click');
+      renderBoard();
+      ui.boardModal.classList.remove('hidden');
+    }
 
     const refsDB = {
       kdigo_ckd:{label:"KDIGO CKD 2024",url:"https://kdigo.org/guidelines/ckd-evaluation-and-management/"},
@@ -1189,7 +1553,10 @@
       ui.storyGoal.textContent=`Objetivo: ${chapter.goal} Lendários equipados: ${legendaryCount()}/2.`;
       ui.level.textContent=state.level; ui.score.textContent=state.score;
       ui.lives.textContent='❤'.repeat(Math.max(0,state.lives))+'♡'.repeat(3-Math.max(0,state.lives));
-      ui.record.textContent=best(); ui.gold.textContent=state.gold; ui.streak.textContent=state.streak;
+      ui.record.textContent=best(); ui.gold.textContent=state.gold; const sm=getStreakMultiplier(state.streak);
+      const fireHtml=sm.fire?`<span class='streak-fire'>${sm.fire}</span>`:'';
+      const multHtml=sm.label?`<span class='streak-multiplier ${sm.css}'>${sm.label}</span>`:'';
+      ui.streak.innerHTML=`${fireHtml}${state.streak}${multHtml}`;
       ui.xpFill.style.width=`${Math.min(100,(state.xp/state.xpToNext)*100)}%`;
       ui.xpTxt.textContent=`XP ${state.xp} / ${state.xpToNext} • Cartas restantes: ${state.queue.length-state.idx}`;
       renderEquip();
@@ -1334,9 +1701,13 @@
       if(i===c){
         state.streak++;
         state.correctTotal++;
-        const xp=28+state.current.d*10+state.streak*3+st.kno;
-        const g=10+state.current.d*4+Math.floor(st.luck/2);
-        state.score+=95+state.current.d*20+state.streak*7+st.atk;
+        const sm = getStreakMultiplier(state.streak);
+        const baseXp=28+state.current.d*10+state.streak*3+st.kno;
+        const xp=Math.floor(baseXp * sm.mult);
+        const baseG=10+state.current.d*4+Math.floor(st.luck/2);
+        const g=Math.floor(baseG * sm.mult);
+        const baseScore=95+state.current.d*20+state.streak*7+st.atk;
+        state.score+=Math.floor(baseScore * sm.mult);
         state.gold+=g;
         const lv=gainXP(xp);
         if(Math.random()<Math.min(.88,.34+state.current.d*.03+st.luck*.01)){
@@ -1347,9 +1718,15 @@
           log('👑 Objetivo final desbloqueado! Você está pronto para vencer o Arqui-Nefromante.');
         }
         ui.feedback.className='feedback good';
-        ui.feedback.textContent=`✅ Correto! ${state.current.e} +${xp} XP, +${g} ouro.${lv?` Level up x${lv}!`:''}`;
+        const multText = sm.label ? ` (${sm.label})` : '';
+        ui.feedback.textContent=`✅ Correto! ${state.current.e} +${xp} XP${multText}, +${g} ouro.${lv?` Level up x${lv}!`:''}`;
+        // Sons
+        if(lv) { playSound('levelup'); } else { playSound('correct'); }
+        if(state.streak >= 3) { showStreakBanner(state.streak); if(state.streak >= 5) playSound('streak'); }
         // Verificar narrativa a cada 5 acertos
         checkNarrative();
+        // Auto-save após acerto
+        saveGame();
       } else {
         state.streak=0;
         btn.classList.add('wrong');
@@ -1362,6 +1739,8 @@
           ? `🛡️ Errou, mas sua defesa absorveu. ${state.current.e}`
           : `❌ Incorreta. ${state.current.e}`;
         log('⚠️ Você falhou nessa carta. Ajuste a estratégia e continue.');
+        playSound('wrong');
+        saveGame();
       }
 
       renderHUD();
@@ -1382,6 +1761,9 @@
     let pendingScore = null;
     
     function finishGame(){
+      // Atualizar estatísticas e limpar save
+      updateGameStats();
+      deleteSave();
       // Guardar score e abrir modal de nome
       pendingScore = {score: state.score, level: state.level};
       document.getElementById('nameModal').classList.add('show');
@@ -1426,6 +1808,7 @@
       if(it.kno>oldStats.kno) gains.push(`📚 CONH +${it.kno-oldStats.kno}`);
       if(it.luck>oldStats.luck) gains.push(`🍀 SORTE +${it.luck-oldStats.luck}`);
       showForgePopup(it, slot, gains);
+      playSound('forge');
       log(`🔨 Forja concluída: ${it.n} ficou mais poderoso!`);
       renderHUD();
     }
@@ -1530,6 +1913,7 @@
 
     ui.nextBtn.addEventListener('click',renderQuestion);
     ui.newBtn.addEventListener('click',()=>{
+      deleteSave();
       document.getElementById('charSelectModal').classList.add('show');
     });
     ui.forgeBtn.addEventListener('click',forgeItem);
@@ -1608,6 +1992,7 @@
       shuffleQueue();
       renderHUD();
       renderQuestion();
+      saveGame();
     }
 
     // Sistema de Baús
@@ -1641,6 +2026,7 @@
       localStorage.setItem('unlockedArticles', JSON.stringify(unlockedArticles));
       
       showChestModal(randomArticle);
+      playSound('chest');
       chestCost = Math.min(chestCost + 10, 200);
       
       log('📦 Baú aberto! Artigo desbloqueado: ' + randomArticle.titulo);
@@ -1673,6 +2059,7 @@
 
 
     resetGame();
+    initWelcomeScreen();
 
     // Posicionar tooltips via JS para evitar corte
     document.addEventListener('mouseover', function(e){
