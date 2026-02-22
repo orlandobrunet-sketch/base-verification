@@ -57,7 +57,6 @@
       display: grid; grid-template-columns: 380px 1fr; gap: 14px;
       min-height: 100vh; align-content: start;
     }
-    .app.hidden { display: none; }
 
     /* TITLE */
     .game-title {
@@ -452,117 +451,6 @@
     .btn-group { display: flex; gap: 10px; margin-top: 12px; }
     .btn-group button { flex: 1; }
 
-
-    /* WELCOME SCREEN */
-    .welcome-screen {
-      position: fixed; inset: 0; z-index: 500;
-      background: radial-gradient(ellipse at center, #0e1830 0%, #060a18 70%);
-      display: flex; align-items: center; justify-content: center;
-      animation: fadeIn 0.5s;
-    }
-    .welcome-screen.hidden { display: none; }
-    .welcome-content {
-      text-align: center; max-width: 520px; width: 90%; padding: 40px 30px;
-      background: linear-gradient(180deg, rgba(20,30,60,0.9), rgba(10,15,35,0.95));
-      border: 2px solid var(--gold); border-radius: 20px;
-      box-shadow: 0 0 80px rgba(255,215,0,0.15), inset 0 0 40px rgba(0,0,0,0.3);
-      animation: scaleIn 0.6s;
-    }
-    .welcome-content h1 {
-      font-family: 'MedievalSharp', 'Cinzel', serif;
-      font-size: 2.2rem; letter-spacing: 4px;
-      background: linear-gradient(180deg, #fff8dc 0%, #ffd700 30%, #daa520 60%, #b8860b 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 2px 10px rgba(255,215,0,0.5));
-      margin-bottom: 6px;
-    }
-    .welcome-content .welcome-sub {
-      font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 5px;
-      color: var(--gold); opacity: 0.7; text-transform: uppercase; margin-bottom: 24px;
-    }
-    .welcome-stats {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
-      margin: 20px 0;
-    }
-    .welcome-stat {
-      background: rgba(10,15,30,0.8); border: 1px solid #2a4a7a; border-radius: 10px;
-      padding: 12px 8px;
-    }
-    .welcome-stat .ws-val { font-size: 1.4rem; font-weight: 700; color: var(--gold); display: block; }
-    .welcome-stat .ws-lbl { font-size: 0.68rem; color: var(--txt-dim); text-transform: uppercase; letter-spacing: 1px; }
-    .welcome-buttons { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
-    .welcome-buttons .btn { font-size: 0.85rem; padding: 12px 20px; }
-    .welcome-buttons .btn.continue-btn {
-      background: linear-gradient(180deg, #34d399 0%, #059669 50%, #047857 100%);
-      border-color: #065f46; color: #fff;
-      box-shadow: 0 3px 0 #064e3b, 0 4px 10px rgba(52,211,153,0.3);
-    }
-    .welcome-buttons .btn.continue-btn:hover {
-      box-shadow: 0 4px 0 #064e3b, 0 6px 16px rgba(52,211,153,0.5);
-    }
-
-    /* SOUND TOGGLE */
-    .sound-toggle {
-      position: fixed; top: 12px; right: 12px; z-index: 9999;
-      background: rgba(15,20,40,1); border: 2px solid #2a4a7a; border-radius: 8px;
-      padding: 8px 12px; cursor: pointer; color: var(--txt-dim); font-size: 0.75rem;
-      transition: all 0.2s; display: flex; align-items: center; gap: 5px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-    }
-    .sound-toggle:hover { border-color: var(--gold); color: var(--gold); }
-    .sound-toggle.muted { opacity: 0.5; }
-
-    /* STREAK MULTIPLIER VISUAL */
-
-
-
-
-    /* BADGES DE PROGRESSÃO */
-    .badges-container {
-      margin-top: 10px; padding: 8px; background: rgba(10,15,30,0.6);
-      border: 1px solid #2a4a7a; border-radius: 8px;
-    }
-    .badges-title {
-      font-size: 0.7rem; color: var(--gold); text-transform: uppercase;
-      letter-spacing: 1px; margin-bottom: 6px; text-align: center;
-    }
-    .badges-grid {
-      display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px;
-    }
-    .badge-slot {
-      aspect-ratio: 1; border-radius: 6px; overflow: hidden;
-      border: 2px solid #2a4a7a; background: rgba(0,0,0,0.5);
-      position: relative; transition: all 0.3s;
-    }
-    .badge-slot.unlocked {
-      border-color: var(--gold); box-shadow: 0 0 10px rgba(255,215,0,0.3);
-    }
-    .badge-slot img {
-      width: 100%; height: 100%; object-fit: cover;
-      filter: grayscale(100%) brightness(0.3);
-      transition: filter 0.3s;
-    }
-    .badge-slot.unlocked img {
-      filter: grayscale(0%) brightness(1);
-    }
-    .badge-slot .badge-lock {
-      position: absolute; inset: 0; display: flex; align-items: center;
-      justify-content: center; font-size: 1.2rem; color: #555;
-    }
-    .badge-slot.unlocked .badge-lock { display: none; }
-
-
-    /* FOOTER */
-    .game-footer {
-      grid-column: 1 / -1; text-align: center; padding: 20px 0 10px;
-      font-size: 0.65rem; color: var(--txt-dim); opacity: 0.5;
-    }
-    .game-footer a {
-      color: var(--gold); text-decoration: none; opacity: 0.7;
-      transition: opacity 0.2s;
-    }
-    .game-footer a:hover { opacity: 1; }
-
     /* SCROLLBAR */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
@@ -584,39 +472,7 @@
   <div class="bg-overlay"></div>
   <div class="particles" id="particles"></div>
 
-
-  <!-- WELCOME SCREEN -->
-  <div id="welcomeScreen" class="welcome-screen">
-    <div class="welcome-content">
-      <h1>NefroQuest</h1>
-      <div class="welcome-sub">— Ascension —</div>
-      <p style="color:#b0c4e8;font-size:0.9rem;line-height:1.6;margin-bottom:16px;">
-        Embarque numa jornada RPG pelo Reino Sombrio do Néfron.<br>
-        Responda questões de nefrologia, evolua seu personagem e derrote o Arqui-Nefromante!
-      </p>
-      <div id="welcomeStats" class="welcome-stats" style="display:none;">
-        <div class="welcome-stat"><span class="ws-val" id="wsBestScore">0</span><span class="ws-lbl">Recorde</span></div>
-        <div class="welcome-stat"><span class="ws-val" id="wsGamesPlayed">0</span><span class="ws-lbl">Partidas</span></div>
-        <div class="welcome-stat"><span class="ws-val" id="wsBestLevel">0</span><span class="ws-lbl">Maior Nível</span></div>
-      </div>
-      <div id="welcomeSavedInfo" style="display:none;margin:12px 0;padding:12px;background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.3);border-radius:10px;">
-        <p style="color:#34d399;font-size:0.85rem;font-weight:600;margin-bottom:4px;">Jornada em andamento encontrada!</p>
-        <p id="wsSavedDetails" style="color:var(--txt-dim);font-size:0.78rem;"></p>
-      </div>
-      <div class="welcome-buttons">
-        <button id="welcomeContinueBtn" class="btn continue-btn" style="display:none;" onclick="continueGame()">Continuar Jornada</button>
-        <button class="btn gold" onclick="startNewFromWelcome()">Nova Jornada</button>
-        <button class="btn sec" onclick="showLeaderboardFromWelcome()">Leaderboard</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- SOUND TOGGLE -->
-  <div id="soundToggle" class="sound-toggle" onclick="toggleSound()">
-    <span id="soundIcon">🔊</span> <span id="soundLabel">Som</span>
-  </div>
-
-  <main class="app hidden" id="mainApp">
+  <main class="app">
     <!-- Title -->
     <div class="game-title">
       <h1>NefroQuest</h1>
@@ -678,14 +534,6 @@
         <button id="boardBtn" class="btn sec">Leaderboard</button>
       </div>
     </section>
-
-    <div class="game-footer">
-      <p>
-        Desenvolvedor: <a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a>
-        &nbsp;•&nbsp;
-        <span style="color:var(--gold);">v 2.1 (beta)</span>
-      </p>
-    </div>
   </main>
 
   <!-- LEADERBOARD MODAL -->
@@ -764,377 +612,6 @@
       }
     })();
 
-
-    // ============ SISTEMA DE SOM ============
-    const SFX = {
-      correct: new Audio('assets/sounds/correct.wav'),
-      wrong: new Audio('assets/sounds/wrong.wav'),
-      levelup: new Audio('assets/sounds/levelup.wav'),
-      forge: new Audio('assets/sounds/forge.wav'),
-      chest: new Audio('assets/sounds/chest.wav'),
-      streak: new Audio('assets/sounds/streak.wav'),
-      click: new Audio('assets/sounds/click.wav')
-    };
-    // Pre-load all sounds
-    Object.values(SFX).forEach(a => { a.load(); a.volume = 0.5; });
-    
-    let soundEnabled = localStorage.getItem('nefroquest-sound') !== 'off';
-    
-    function playSound(name) {
-      if (!soundEnabled || !SFX[name]) return;
-      const s = SFX[name];
-      s.currentTime = 0;
-      s.play().catch(() => {});
-    }
-    
-    function toggleSound() {
-      soundEnabled = !soundEnabled;
-      localStorage.setItem('nefroquest-sound', soundEnabled ? 'on' : 'off');
-      const icon = document.getElementById('soundIcon');
-      const label = document.getElementById('soundLabel');
-      const toggle = document.getElementById('soundToggle');
-      if (soundEnabled) {
-        icon.textContent = '🔊'; label.textContent = 'Som'; toggle.classList.remove('muted');
-        playSound('click');
-      } else {
-        icon.textContent = '🔇'; label.textContent = 'Mudo'; toggle.classList.add('muted');
-      }
-    }
-    
-    // Initialize sound UI
-    (function() {
-      if (!soundEnabled) {
-        const icon = document.getElementById('soundIcon');
-        const label = document.getElementById('soundLabel');
-        const toggle = document.getElementById('soundToggle');
-        if (icon) icon.textContent = '🔇';
-        if (label) label.textContent = 'Mudo';
-        if (toggle) toggle.classList.add('muted');
-      }
-    })();
-
-    // ============ SISTEMA DE STREAK MULTIPLICADOR ============
-    function getStreakMultiplier(streak) {
-      if (streak >= 15) return { mult: 2.5, label: 'x2.5', css: 'streak-x5', fire: '🔥🔥🔥' };
-      if (streak >= 10) return { mult: 2.0, label: 'x2', css: 'streak-x4', fire: '🔥🔥' };
-      if (streak >= 7) return { mult: 1.75, label: 'x1.75', css: 'streak-x3', fire: '🔥' };
-      if (streak >= 5) return { mult: 1.5, label: 'x1.5', css: 'streak-x2', fire: '🔥' };
-      if (streak >= 3) return { mult: 1.25, label: 'x1.25', css: 'streak-x2', fire: '' };
-      return { mult: 1, label: '', css: '', fire: '' };
-    }
-    
-    ;
-      // Find the best message for this streak
-      let msg = '';
-      for (const [threshold, text] of Object.entries(msgs).sort((a,b) => b[0]-a[0])) {
-        if (streak >= parseInt(threshold)) { msg = text; break; }
-      }
-      if (!msg) return;
-      banner.innerHTML = `${sm.fire} ${msg} ${sm.label} ${sm.fire}`;
-      document.body.appendChild(banner);
-      setTimeout(() => banner.remove(), 1300);
-    }
-
-
-    // ============ SISTEMA DE BADGES ============
-    const BADGES = [
-      {id: 1, name: 'Mestre da Filtração', required: 20},
-      {id: 2, name: 'Guardião do Equilíbrio', required: 40},
-      {id: 3, name: 'Senhor das Águas', required: 60},
-      {id: 4, name: 'Biólogo Visionário', required: 80},
-      {id: 5, name: 'Herói do NefroQuest', required: 100}
-    ];
-    
-    function updateBadges() {
-      BADGES.forEach(badge => {
-        const slot = document.querySelector(`.badge-slot[data-badge="${badge.id}"]`);
-        if (!slot) return;
-        if (state.correctTotal >= badge.required) {
-          if (!slot.classList.contains('unlocked')) {
-            slot.classList.add('unlocked');
-            log(`🏆 Badge desbloqueado: ${badge.name}!`);
-            playSound('chest');
-          }
-        }
-      });
-    }
-    
-    function checkGameCompletion() {
-      if (state.correctTotal >= 100 && !state.gameCompleted) {
-        state.gameCompleted = true;
-        showGameCompletionModal();
-      }
-    }
-    
-    function showGameCompletionModal() {
-      const modal = document.createElement('div');
-      modal.className = 'modal show';
-      modal.style.zIndex = '1000';
-      modal.innerHTML = `
-        <div class="modal-content" style="max-width:500px;text-align:center;">
-          <h2 style="color:var(--gold);margin-bottom:16px;">🎉 PARABÉNS! 🎉</h2>
-          <p style="font-size:1.1rem;line-height:1.6;margin-bottom:20px;">
-            Você derrotou o Arqui-Nefromante e completou o NefroQuest!<br>
-            <strong>100 questões corretas!</strong>
-          </p>
-          <p style="color:var(--txt-dim);margin-bottom:24px;">
-            Você pode encerrar sua jornada ou continuar respondendo perguntas para aumentar sua pontuação.
-          </p>
-          <div style="display:flex;gap:10px;justify-content:center;">
-            <button class="btn gold" onclick="finishGameCompletely()">Encerrar Jornada</button>
-            <button class="btn sec" onclick="continueAfterCompletion()">Continuar Jogando</button>
-          </div>
-        </div>
-      `;
-      document.body.appendChild(modal);
-    }
-    
-    function finishGameCompletely() {
-      state.completedGame = true;
-      saveGame();
-      document.querySelector('.modal.show')?.remove();
-      finishGame();
-    }
-    
-    function continueAfterCompletion() {
-      document.querySelector('.modal.show')?.remove();
-      log('🎮 Você decidiu continuar sua jornada! Boa sorte!');
-    }
-
-
-
-    // ============ SISTEMA DE VIDA EXTRA ============
-    function checkExtraLife() {
-      // Ganha vida extra a cada 5 níveis (5, 10, 15, 20...)
-      if (state.level % 5 === 0 && state.lives < 3 && !state.extraLifeGiven) {
-        state.lives++;
-        state.extraLifeGiven = true;
-        showExtraLifeModal();
-      } else if (state.level % 5 !== 0) {
-        state.extraLifeGiven = false;
-      }
-    }
-    
-    function showExtraLifeModal() {
-      const modal = document.createElement('div');
-      modal.className = 'modal show';
-      modal.style.zIndex = '1000';
-      modal.innerHTML = `
-        <div class="modal-content" style="max-width:450px;text-align:center;">
-          <h2 style="color:var(--ok);margin-bottom:16px;">💚 VIDA EXTRA! 💚</h2>
-          <p style="font-size:1.05rem;line-height:1.6;margin-bottom:20px;">
-            Os Deuses do Néfron reconhecem sua dedicação!<br>
-            <strong>Você ganhou +1 vida!</strong>
-          </p>
-          <p style="color:var(--txt-dim);margin-bottom:24px;">
-            Continue sua jornada com renovada energia e sabedoria.
-          </p>
-          <button class="btn gold" onclick="this.closest('.modal').remove()">Continuar</button>
-        </div>
-      `;
-      document.body.appendChild(modal);
-      playSound('levelup');
-    }
-
-
-    // ============ POPUP DE EVOLUÇÃO DO PERSONAGEM ============
-    function showEvolutionPopup(newLevel, newTitle, newImage) {
-      const evolutionTexts = {
-        3: "Suas células começam a brilhar com conhecimento. Você sente o poder da filtração fluindo em suas veias!",
-        5: "Os néfrons reconhecem sua maestria! Você transcende para um novo patamar de sabedoria renal.",
-        7: "As forças da homeostase se curvam diante de você. Seu domínio sobre o equilíbrio é inegável!",
-        10: "Você alcança a harmonia perfeita entre reabsorção e secreção. Os Deuses do Néfron sorriem para você!",
-        12: "Seu conhecimento sobre diálise e transplante é incomparável. Você é uma lenda viva!",
-        15: "O Arqui-Nefromante treme! Você está pronto para o confronto final. Sua ascensão está completa!"
-      };
-      
-      const text = evolutionTexts[newLevel] || "Você evoluiu! Continue sua jornada rumo à maestria nefrológica.";
-      
-      const modal = document.createElement('div');
-      modal.className = 'modal show';
-      modal.style.zIndex = '1000';
-      modal.innerHTML = `
-        <div class="modal-content" style="max-width:500px;text-align:center;">
-          <h2 style="color:var(--gold);margin-bottom:12px;">⚡ EVOLUÇÃO! ⚡</h2>
-          <div style="margin:20px auto;width:120px;height:120px;border-radius:50%;overflow:hidden;border:3px solid var(--gold);box-shadow:0 0 20px rgba(255,215,0,0.5);">
-            <img src="${newImage}" style="width:100%;height:100%;object-fit:cover;" alt="${newTitle}">
-          </div>
-          <h3 style="color:var(--ok);margin-bottom:8px;font-size:1.3rem;">${newTitle}</h3>
-          <p style="font-size:0.95rem;line-height:1.6;color:var(--txt);margin-bottom:20px;padding:0 20px;">
-            ${text}
-          </p>
-          <button class="btn gold" onclick="this.closest('.modal').remove()">Continuar Jornada</button>
-        </div>
-      `;
-      document.body.appendChild(modal);
-      playSound('levelup');
-    }
-
-    // ============ SISTEMA DE SAVE/LOAD (localStorage) ============
-    const SAVE_KEY = 'nefroquest-save';
-    const STATS_KEY = 'nefroquest-stats';
-    
-    function getGameStats() {
-      return JSON.parse(localStorage.getItem(STATS_KEY) || '{"gamesPlayed":0,"bestLevel":0,"bestScore":0}');
-    }
-    
-    function updateGameStats() {
-      const stats = getGameStats();
-      stats.gamesPlayed++;
-      if (state.level > stats.bestLevel) stats.bestLevel = state.level;
-      if (state.score > stats.bestScore) stats.bestScore = state.score;
-      localStorage.setItem(STATS_KEY, JSON.stringify(stats));
-    }
-    
-    function saveGame() {
-      if (!state.gameStarted || state.gameOver) return;
-      const saveData = {
-        level: state.level,
-        xp: state.xp,
-        xpToNext: state.xpToNext,
-        score: state.score,
-        lives: state.lives,
-        streak: state.streak,
-        gold: state.gold,
-        bonusUses: state.bonusUses,
-        correctTotal: state.correctTotal,
-        narrativeShown: state.narrativeShown,
-        character: state.character,
-        equipment: JSON.parse(JSON.stringify(state.equipment)),
-        idx: state.idx,
-        queueIds: state.queue.map(q => q.id),
-        timestamp: Date.now()
-      };
-      localStorage.setItem(SAVE_KEY, JSON.stringify(saveData));
-    }
-    
-    function loadGame() {
-      const raw = localStorage.getItem(SAVE_KEY);
-      if (!raw) return null;
-      try { return JSON.parse(raw); } catch(e) { return null; }
-    }
-    
-    function deleteSave() {
-      localStorage.removeItem(SAVE_KEY);
-    }
-    
-    function restoreGame(save) {
-      if (!save || !save.character) return false;
-      
-      state.character = save.character;
-      state.level = save.level || 1;
-      state.xp = save.xp || 0;
-      state.xpToNext = save.xpToNext || 120;
-      state.score = save.score || 0;
-      state.lives = save.lives || 3;
-      state.streak = save.streak || 0;
-      state.gold = save.gold || 0;
-      state.bonusUses = save.bonusUses || 0;
-      state.correctTotal = save.correctTotal || 0;
-      state.narrativeShown = save.narrativeShown || 0;
-      state.gameOver = false;
-      state.gameStarted = true;
-      state.answered = false;
-      state.current = null;
-      
-      if (save.equipment) {
-        state.equipment = save.equipment;
-      }
-      
-      // Restore queue order
-      if (save.queueIds && save.queueIds.length > 0) {
-        const bankMap = {};
-        questionBank.forEach(q => bankMap[q.id] = q);
-        state.queue = save.queueIds.map(id => bankMap[id]).filter(Boolean);
-        state.idx = save.idx || 0;
-      } else {
-        shuffleQueue();
-      }
-      
-      return true;
-    }
-    
-    // Auto-save every 30 seconds
-    setInterval(() => { saveGame(); }, 30000);
-
-    // ============ WELCOME SCREEN LOGIC ============
-    function initWelcomeScreen() {
-      const save = loadGame();
-      const stats = getGameStats();
-      const board = boardGet();
-      
-      // Show stats if player has history
-      if (stats.gamesPlayed > 0 || board.length > 0) {
-        document.getElementById('welcomeStats').style.display = 'grid';
-        document.getElementById('wsBestScore').textContent = stats.bestScore || (board.length ? board[0].score : 0);
-        document.getElementById('wsGamesPlayed').textContent = stats.gamesPlayed;
-        document.getElementById('wsBestLevel').textContent = stats.bestLevel;
-      }
-      
-      // Show continue button if save exists
-      if (save && save.character && save.lives > 0) {
-        document.getElementById('welcomeContinueBtn').style.display = 'block';
-        document.getElementById('welcomeSavedInfo').style.display = 'block';
-        const charName = characters[save.character] ? characters[save.character].name : 'Desconhecido';
-        const timeAgo = getTimeAgo(save.timestamp);
-        document.getElementById('wsSavedDetails').textContent = 
-          `${charName} · Nível ${save.level} · ${save.score} pts · ${save.lives} vidas · ${timeAgo}`;
-      }
-    }
-    
-    function getTimeAgo(ts) {
-      if (!ts) return '';
-      const diff = Date.now() - ts;
-      const mins = Math.floor(diff / 60000);
-      if (mins < 1) return 'agora mesmo';
-      if (mins < 60) return `há ${mins} min`;
-      const hours = Math.floor(mins / 60);
-      if (hours < 24) return `há ${hours}h`;
-      const days = Math.floor(hours / 24);
-      return `há ${days} dia${days > 1 ? 's' : ''}`;
-    }
-    
-    function dismissWelcome() {
-      const ws = document.getElementById('welcomeScreen');
-      ws.style.opacity = '0';
-      ws.style.transition = 'opacity 0.3s';
-      setTimeout(() => {
-        ws.classList.add('hidden');
-        document.getElementById('mainApp').classList.remove('hidden');
-      }, 300);
-    }
-    
-    function continueGame() {
-      const save = loadGame();
-      if (!save) { startNewFromWelcome(); return; }
-      
-      if (restoreGame(save)) {
-        dismissWelcome();
-        ui.journal.innerHTML = '';
-        log(`🔄 Jornada restaurada! ${characters[state.character].name}, Nível ${state.level}.`);
-        renderHUD();
-      updateBadges();
-        renderQuestion();
-        playSound('click');
-      } else {
-        startNewFromWelcome();
-      }
-    }
-    
-    function startNewFromWelcome() {
-      deleteSave();
-      dismissWelcome();
-      playSound('click');
-      document.getElementById('charSelectModal').classList.add('show');
-    }
-    
-    function showLeaderboardFromWelcome() {
-      dismissWelcome();
-      playSound('click');
-      renderBoard();
-      ui.boardModal.classList.remove('hidden');
-    }
-
     const refsDB = {
       kdigo_ckd:{label:"KDIGO CKD 2024",url:"https://kdigo.org/guidelines/ckd-evaluation-and-management/"},
       kdigo_aki:{label:"KDIGO AKI",url:"https://kdigo.org/guidelines/acute-kidney-injury/"},
@@ -1204,7 +681,8 @@
 {"t": "Doença de Fabry e Triagem Renal", "q": "Em qual cenário clínico a triagem para Doença de Fabry deve ser fortemente considerada no setor de nefrologia?", "o": ["Apenas em mulheres com proteinúria maciça", "Homens com hipertrofia ventricular esquerda inexplicada e doença renal crônica de etiologia indeterminada", "Pacientes com diabetes tipo 1 e hematúria micro", "Somente se houver presença de angioqueratomas cutâneos"], "a": 1, "e": "A tríade de doença renal inexplicada, HVE e neuropatia/alterações cutâneas deve levantar a suspeita de Fabry.", "d": "medium", "refs": ["kdigo_ckd"]},
 {"t": "Peritonite na DP e Contagem de Células", "q": "Para o diagnóstico de peritonite em Diálise Peritoneal (DP), qual o critério citológico do efluente (com pelo menos 2h de permanência)?", "o": ["> 50 leucócitos/µL com pelo menos 10% de neutrófilos", "> 100 leucócitos/µL com pelo menos 50% de neutrófilos", "> 500 leucócitos/µL independentemente do diferencial", "Presença de qualquer quantidade de bactérias no Gram, mesmo com citometria normal"], "a": 1, "e": "Este é o critério clássico da ISPD para diagnóstico de peritonite.", "d": "medium", "refs": ["kdigo_ckd"]},
 {"t": "Bioimpedância na Hemodiálise", "q": "Qual o principal parâmetro fornecido pela bioimpedância multifrequencial que auxilia na predição de mortalidade e estado nutricional em pacientes dialíticos?", "o": ["Água intracelular total", "Resistência elétrica tecidual", "Ângulo de Fase", "Índice de massa gorda isolado"], "a": 2, "e": "O ângulo de fase baixo está correlacionado com pior estado nutricional e maior mortalidade em pacientes em HD.", "d": "medium", "refs": ["kdigo_ckd"]},
-{"t": "Intoxicação por Lítio e Diálise", "q": "Qual a indicação clássica de hemodiálise de emergência na intoxicação por Lítio, independentemente do nível sérico?", "o": ["Presença de tremores finos em extremidades", "Poliúria e polidipsia", "Alteração do nível de consciência, convulsões ou instabilidade hemodinâmica", "Litemia de 0,8 mEq/L em paciente assintomático"], "a": 2, "e": "Sintomas neurológicos graves são indicações de diálise, já que o lítio é altamente dialisável, mas sua toxicidade intracelular é lenta para reverter.  Qual a fisiopatologia da SDD e a melhor conduta preventiva?", "o": ["Queda rápida da pressão arterial; infusão de solução salina isotônica", "Edema cerebral por gradiente osmótico reverso (queda rápida da ureia plasmática); redução do fluxo de sangue (Qb) e tempo de sessão reduzido na primeira diálise", "Hipercalcemia aguda; ajuste do banho de diálise para cálcio 2.5 mEq/L", "Embolia gasosa; posicionamento em decúbito lateral esquerdo (Trendelenburg)"], "a": 1, "e": "A remoção rápida de solutos do plasma cria um gradiente que desloca água para o meio intracelular cerebral.", "d": "medium", "refs": ["kdigo_ckd"]},
+{"t": "Intoxicação por Lítio e Diálise", "q": "Qual a indicação clássica de hemodiálise de emergência na intoxicação por Lítio, independentemente do nível sérico?", "o": ["Presença de tremores finos em extremidades", "Poliúria e polidipsia", "Alteração do nível de consciência, convulsões ou instabilidade hemodinâmica", "Litemia de 0,8 mEq/L em paciente assintomático"], "a": 2, "e": "Sintomas neurológicos graves são indicações de diálise, já que o lítio é altamente dialisável, mas sua toxicidade intracelular é lenta para reverter. Peço desculpas pela confusão no salto da numeração. Como estou a processar os blocos para garantir que o conteúdo seja revisado com o máximo de rigor técnico, acabei por avançar na contagem interna. Para manter a coerência e a sequência lógica do seu banco de dados de 300 questões, vou retomar exatamente de onde parámos (questão 21) e seguir em blocos de 40 questões para acelerar o processo. Aqui está o Bloco 04 (Questões 21 a 60) devidamente corrigido e organizado: Bloco 04: Clínica, Diálise e Distúrbios Eletrolíticos (Questões 21 a 60)", "d": "medium", "refs": ["kdigo_ckd"]},
+{"t": "Síndrome de Desequilíbrio da Diálise (SDD)", "q": "Um paciente em sua primeira sessão de hemodiálise, com ureia pré-dialítica de 210 mg/dL, apresenta cefaleia, náuseas e agitação psicomotora após 2 horas de tratamento. Qual a fisiopatologia da SDD e a melhor conduta preventiva?", "o": ["Queda rápida da pressão arterial; infusão de solução salina isotônica", "Edema cerebral por gradiente osmótico reverso (queda rápida da ureia plasmática); redução do fluxo de sangue (Qb) e tempo de sessão reduzido na primeira diálise", "Hipercalcemia aguda; ajuste do banho de diálise para cálcio 2.5 mEq/L", "Embolia gasosa; posicionamento em decúbito lateral esquerdo (Trendelenburg)"], "a": 1, "e": "A remoção rápida de solutos do plasma cria um gradiente que desloca água para o meio intracelular cerebral.", "d": "medium", "refs": ["kdigo_ckd"]},
 {"t": "Nefropatia por Contraste Iodado", "q": "Paciente com TFG de 35 mL/min necessita realizar cineangiocoronariografia de urgência. Qual a medida com maior evidência de eficácia na prevenção de Lesão Renal Aguda induzida por contraste?", "o": ["Administração de N-acetilcisteína 1200mg 12/12h", "Uso de bicarbonato de sódio isotônico em bólus", "Expansão volêmica com solução salina isotônica (0,9%) antes e após o procedimento", "Furosemida profilática para forçar a diurese do contraste"], "a": 2, "e": "A hidratação venosa com salina 0,9% permanece como a intervenção padrão-ouro com melhor evidência (Estudo PRESERVE).", "d": "medium", "refs": ["kdigo_aki"]},
 {"t": "Diabetes Insipidus Nefrogênico por Lítio", "q": "Paciente em uso crônico de carbonato de lítio apresenta poliúria (4 litros/dia) e polidipsia. O teste de restrição hídrica mostra urina hiposmolar que não se concentra após administração de desmopressina (DDAVP). Qual o tratamento de escolha para reduzir o volume urinário?", "o": ["Restrição hídrica rigorosa", "Amilorida", "Tolvaptan", "Reposição de sódio"], "a": 1, "e": "A amilorida bloqueia os canais ENaC no ducto coletor, impedindo a entrada de lítio nas células e melhorando a resposta ao ADH.", "d": "medium", "refs": ["kdigo_ckd"]},
 {"t": "Proteinúria de Bence-Jones e Mieloma Múltiplo", "q": "No rastreio de Mieloma Múltiplo em paciente com insuficiência renal inexplicada, por que o sumário de urina (fita reagente) pode ser falsamente negativo para proteinúria?", "o": ["A fita só detecta proteínas de baixo peso molecular", "A fita reagente é sensível predominantemente à albumina, não detectando cadeias leves (proteínas de Bence-Jones)", "As cadeias leves são reabsorvidas totalmente pelo túbulo proximal", "O pH urinário ácido inibe a reação química da fita"], "a": 1, "e": "Para detectar cadeias leves, é necessário o teste de ácido sulfossalicílico ou a eletroforese de proteínas urinárias.", "d": "medium", "refs": ["kdigo_ckd"]},
@@ -1254,7 +732,7 @@
 {"t": "Nefropatia Associada ao HIV (HIVAN)", "q": "Qual o padrão histológico mais comum da HIVAN e qual a população mais afetada?", "o": ["GESF variante colapsante; Pacientes de ascendência africana (devido ao gene APOL1)", "Doença de Lesões Mínimas; Crianças", "Glomerulonefrite Membranosa; Homens brancos", "Nefropatia por IgA; Usuários de drogas injetáveis"], "a": 0, "e": "A variante colapsante é extremamente agressiva e leva à perda rápida da função renal se não tratada com TARV.", "d": "medium", "refs": ["kdigo_gn"]},
 {"t": "Diálise em UTI: Indicação de Modalidade Contínua (CRRT)", "q": "Qual a principal vantagem da Diálise Contínua (CVVHDF) sobre a Hemodiálise Intermitente em pacientes críticos com LRA?", "o": ["Maior remoção de potássio em curto tempo", "Estabilidade hemodinâmica superior em pacientes chocados com uso de drogas vasoativas", "Menor necessidade de anticoagulação", "Custo significativamente reduzido para o hospital"], "a": 1, "e": "Como a remoção de fluidos é lenta e constante (24h/dia), o paciente tolera melhor a retirada de volume.", "d": "medium", "refs": ["kdigo_aki"]},
 {"t": "Síndrome de Nutcracker (Quebra-Nozes)", "q": "O que define a Síndrome de Nutcracker e qual o sintoma clínico mais comum?", "o": ["Compressão da veia renal esquerda entre a aorta e a artéria mesentérica superior; Hematúria macroscópica e dor no flanco esquerdo", "Estenose da artéria renal por placa aterosclerótica; Hipertensão grave", "Compressão do ureter por artéria ilíaca; Hidronefrose", "Torção do pedículo renal pós-trauma; Anúria súbita"], "a": 0, "e": "A compressão aumenta a pressão na veia renal, causando o rompimento de pequenos vasos nos fórnices calicinais.", "d": "medium", "refs": ["kdigo_ckd"]},
-{"t": "Nefrite Lúpica e Gestação", "q": "Uma paciente com diagnóstico de Nefrite Lúpica Classe IV planeja engravidar. Qual a recomendação atual sobre o tratamento e o tempo de remissão antes da concepção?", "o": ["Pode engravidar em atividade de doença, desde que use Ciclofosfamida", "A doença deve estar em remissão completa por pelo menos 6 meses; trocar Micofenolato por Azatioprina antes da concepção", "O uso de Inibidores da Enzima de Conversão da Angiotensina (IECA) deve ser mantido durante toda a gestação para proteção renal", "A gestação é contraindicada de forma absoluta em pacientes com classe IV"], "a": 1, "e": "O Micofenolato é teratogénico e deve ser suspenso 3 meses antes da tentativa. A Azatioprina é o substituto seguro.", "d": "medium", "refs": ["kdigo_gn"]},
+{"t": "Nefrite Lúpica e Gestação", "q": "Uma paciente com diagnóstico de Nefrite Lúpica Classe IV planeia engravidar. Qual a recomendação atual sobre o tratamento e o tempo de remissão antes da concepção?", "o": ["Pode engravidar em atividade de doença, desde que use Ciclofosfamida", "A doença deve estar em remissão completa por pelo menos 6 meses; trocar Micofenolato por Azatioprina antes da concepção", "O uso de Inibidores da Enzima de Conversão da Angiotensina (IECA) deve ser mantido durante toda a gestação para proteção renal", "A gestação é contraindicada de forma absoluta em pacientes com classe IV"], "a": 1, "e": "O Micofenolato é teratogénico e deve ser suspenso 3 meses antes da tentativa. A Azatioprina é o substituto seguro.", "d": "medium", "refs": ["kdigo_gn"]},
 {"t": "Síndrome de Gitelman e Magnésio", "q": "Qual a alteração laboratorial clássica da Síndrome de Gitelman que a diferencia da maioria das causas de perda renal de sal?", "o": ["Hipercalciúria e hipermagnesemia", "Hipomagnesemia profunda e hipocalciúria", "Acidose metabólica hiperclorêmica", "Hipercalemia persistente"], "a": 1, "e": "A Síndrome de Gitelman mimetiza o uso crónico de tiazídicos, resultando em alcalose metabólica hipocalémica com baixa excreção urinária de cálcio.", "d": "medium", "refs": ["kdigo_ckd"]},
 {"t": "Nefropatia por Oxalato e Absorção Entérica", "q": "Paciente com história de ressecção ileal (Doença de Crohn) apresenta LRA com cristais de oxalato de cálcio na biópsia. Por que a má absorção de gorduras aumenta o risco de oxalose renal?", "o": ["A gordura não absorvida liga-se ao cálcio intestinal (saponificação), deixando o oxalato livre para ser absorvido pelo cólon", "O oxalato é produzido pelas bactérias que digerem a gordura", "A falta de gordura estimula a síntese hepática de oxalato", "A gordura protege o epitélio renal da precipitação de cristais"], "a": 0, "e": "Em condições normais, o cálcio liga-se ao oxalato no intestino, impedindo a sua absorção. Na má absorção de gordura, o cálcio fica \"preso\" aos ácidos gordos.", "d": "medium", "refs": ["kdigo_aki"]},
 {"t": "Estudo EMPA-KIDNEY e Albuminúria", "q": "O estudo EMPA-KIDNEY (2023) trouxe uma evidência disruptiva sobre o uso de empagliflozina em quais pacientes renais?", "o": ["Apenas naqueles com albuminúria acima de 3000 mg/g", "Pacientes com DRC e TFG baixa (até 20 mL/min), independentemente da presença ou nível de albuminúria", "Exclusivamente em pacientes com Doença Renal Policística", "Apenas em pacientes diabéticos com TFG > 60 mL/min"], "a": 1, "e": "Diferente dos estudos anteriores, o EMPA-KIDNEY incluiu e demonstrou benefício em pacientes não-proteinúricos.", "d": "medium", "refs": ["kdigo_ckd", "empa"]},
@@ -1446,7 +924,7 @@
 {"t": "Síndrome de Fanconi e Osteomalácia: Marcador Bioquímico", "q": "Qual o achado na fosfatase alcalina em um paciente com Síndrome de Fanconi e dor óssea crónica?", "o": ["Fosfatase alcalina total e óssea elevada", "Fosfatase alcalina muito baixa", "Fosfatase alcalina normal com cálcio muito alto", "Fosfatase alcalina normal com fósforo muito alto"], "a": 0, "e": "A alternativa A é a correta.", "d": "hard", "refs": ["kdigo_ckd"]},
 {"t": "Hipercalemia: Uso de Espironolactona em Estágio 4/5", "q": "Segundo as diretrizes atuais, o uso de espironolactona em pacientes com TFG < 30 mL/min deve ser:", "o": ["Realizado com extrema cautela, monitorização frequente do potássio e preferencialmente em doses baixas (12.5mg-25mg)", "Incentivado em doses altas (100mg) para proteção renal", "Contraindicado de forma absoluta", "Utilizado apenas se o paciente for hipocalémico"], "a": 0, "e": "A alternativa A é a correta.", "d": "hard", "refs": ["kdigo_ckd"]},
 {"t": "Estudo FLOW: Progressão para Diálise vs. Morte Cardiovascular", "q": "No estudo FLOW, qual evento ocorreu com maior frequência nos pacientes com DM2 e DRC: início de diálise ou morte cardiovascular?", "o": ["Morte cardiovascular foi mais frequente, sublinhando o alto risco competitivo de morte nestes pacientes", "Início de diálise foi 10 vezes mais comum", "Ambos ocorreram na mesma proporção", "Nenhum paciente morreu ou dialisou no estudo"], "a": 0, "e": "A alternativa A é a correta.", "d": "hard", "refs": ["kdigo_ckd", "flow_study"]},
-{"t": "Nefropatia Membranosa: Classificação de Ehrenreich e Churg", "q": "Na Nefropatia Membranosa, o Estágio II desta classificação histológica caracteriza-se por:", "o": ["Membrana basal normal", "Formação de \"espículas\" (spikes) de membrana basal entre os depósitos subepiteliais", "Incorporação total dos depósitos na membrana basal (aspecto em \"corrente\")", "Esclerose global do glomérulo"], "a": 1, "e": "A alternativa B é a correta.", "d": "hard", "refs": ["kdigo_gn"]},
+{"t": "Nefropatia Membranosa: Classificação de Ehrenreich e Churg", "q": "O Estágio II desta classificação histológica caracteriza-se por:", "o": ["Membrana basal normal", "Formação de \"espículas\" (spikes) de membrana basal entre os depósitos subepiteliais", "Incorporação total dos depósitos na membrana basal (aspecto em \"corrente\")", "Esclerose global do glomérulo"], "a": 1, "e": "A alternativa B é a correta.", "d": "hard", "refs": ["kdigo_gn"]},
 {"t": "Transplante Renal: Rejeição Tardia Mediada por Linfócitos T", "q": "A causa mais comum de rejeição celular aguda tardia (> 1 ano) no transplante renal é:", "o": ["Má adesão ao tratamento imunossupressor", "Infeção urinária recorrente", "Uso de antibióticos", "Ingestão excessiva de sódio"], "a": 0, "e": "A alternativa A é a correta.", "d": "hard", "refs": ["kdigo_tx"]},
 {"t": "Estudo EMPA-KIDNEY: Diferença entre Sexos", "q": "O benefício da empagliflozina no EMPA-KIDNEY foi diferente entre homens e mulheres?", "o": ["Não, o benefício foi consistente em ambos os sexos", "Apenas homens se beneficiaram", "Mulheres tiveram maior risco de amputação", "O estudo não incluiu mulheres"], "a": 0, "e": "A alternativa A é a correta.", "d": "hard", "refs": ["empa"]},
 {"t": "Hipercalemia: Uso de Poliestirenossulfonato e Sódio", "q": "Qual o risco potencial do uso crónico de poliestirenossulfonato de sódio em pacientes com insuficiência cardíaca e DRC?", "o": ["Sobrecarga de volume e edema, devido à troca de potássio por sódio na resina", "Hiponatremia severa", "Perda de peso excessiva", "Hipocalcemia"], "a": 0, "e": "A alternativa A é a correta.", "d": "hard", "refs": ["kdigo_ckd"]},
@@ -1856,30 +1334,22 @@
       if(i===c){
         state.streak++;
         state.correctTotal++;
-        const sm = getStreakMultiplier(state.streak);
-        const baseXp=28+state.current.d*10+state.streak*3+st.kno;
-        const xp=Math.floor(baseXp * sm.mult);
-        const baseG=10+state.current.d*4+Math.floor(st.luck/2);
-        const g=Math.floor(baseG * sm.mult);
-        const baseScore=95+state.current.d*20+state.streak*7+st.atk;
-        state.score+=Math.floor(baseScore * sm.mult);
+        const xp=28+state.current.d*10+state.streak*3+st.kno;
+        const g=10+state.current.d*4+Math.floor(st.luck/2);
+        state.score+=95+state.current.d*20+state.streak*7+st.atk;
         state.gold+=g;
         const lv=gainXP(xp);
-
+        if(Math.random()<Math.min(.88,.34+state.current.d*.03+st.luck*.01)){
+          const d=rollItem(state.current.d,st.luck);
+          log(`🎁 ${equipOrSell(d.slot,d.item)}`);
+        }
         if(state.level>=15&&legendaryCount()>=2){
           log('👑 Objetivo final desbloqueado! Você está pronto para vencer o Arqui-Nefromante.');
         }
         ui.feedback.className='feedback good';
-        const multText = sm.label ? ` (${sm.label})` : '';
-        ui.feedback.textContent=`✅ Correto! ${state.current.e} +${xp} XP${multText}, +${g} ouro.${lv?` Level up x${lv}!`:''}`;
-        // Sons
-        if(lv) { playSound('levelup'); } else { playSound('correct'); }
-        if(state.streak >= 5) playSound('streak');
+        ui.feedback.textContent=`✅ Correto! ${state.current.e} +${xp} XP, +${g} ouro.${lv?` Level up x${lv}!`:''}`;
         // Verificar narrativa a cada 5 acertos
         checkNarrative();
-        // Auto-save após acerto
-        saveGame();
-        checkGameCompletion();
       } else {
         state.streak=0;
         btn.classList.add('wrong');
@@ -1892,12 +1362,9 @@
           ? `🛡️ Errou, mas sua defesa absorveu. ${state.current.e}`
           : `❌ Incorreta. ${state.current.e}`;
         log('⚠️ Você falhou nessa carta. Ajuste a estratégia e continue.');
-        playSound('wrong');
-        saveGame();
       }
 
       renderHUD();
-      updateBadges();
       if(state.lives<=0) finishGame(); else ui.nextBtn.classList.remove('hidden');
     }
 
@@ -1915,9 +1382,6 @@
     let pendingScore = null;
     
     function finishGame(){
-      // Atualizar estatísticas e limpar save
-      updateGameStats();
-      deleteSave();
       // Guardar score e abrir modal de nome
       pendingScore = {score: state.score, level: state.level};
       document.getElementById('nameModal').classList.add('show');
@@ -1939,7 +1403,6 @@
       state.lives=1;
       log(`✨ Pergunta Bônus comprada por ${cost} ouro. A jornada continua.`);
       renderHUD();
-      updateBadges();
       renderQuestion();
     }
 
@@ -1963,10 +1426,8 @@
       if(it.kno>oldStats.kno) gains.push(`📚 CONH +${it.kno-oldStats.kno}`);
       if(it.luck>oldStats.luck) gains.push(`🍀 SORTE +${it.luck-oldStats.luck}`);
       showForgePopup(it, slot, gains);
-      playSound('forge');
       log(`🔨 Forja concluída: ${it.n} ficou mais poderoso!`);
       renderHUD();
-      updateBadges();
     }
 
     function showForgePopup(item, slot, gains){
@@ -2048,12 +1509,12 @@
     function renderBoard(){
       const b=boardGet().slice(0,10);
       ui.boardBody.innerHTML=b.length
-        ? b.map((r,i)=>`<tr><td>${i+1}</td><td>${r.player||'Anônimo'}${r.completed?' 🏆':''}</td><td>${r.character||'Desconhecido'}</td><td>${r.score}</td><td>${r.level}</td><td>${r.date}</td></tr>`).join('')
+        ? b.map((r,i)=>`<tr><td>${i+1}</td><td>${r.player||'Anônimo'}</td><td>${r.character||'Desconhecido'}</td><td>${r.score}</td><td>${r.level}</td><td>${r.date}</td></tr>`).join('')
         : '<tr><td colspan="6">Sem registros ainda.</td></tr>';
     }
 
     function resetGame(){
-      Object.assign(state,{level:1,xp:0,xpToNext:200,score:0,lives:3,streak:0,gold:0,current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,gameOver:false,gameStarted:false,extraLifeGiven:false,gameCompleted:false,completedGame:false});
+      Object.assign(state,{level:1,xp:0,xpToNext:120,score:0,lives:3,streak:0,gold:0,current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,gameOver:false,gameStarted:false});
       state.character=null;
       state.equipment={
         weapon:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
@@ -2064,13 +1525,11 @@
       log('📖 Clique em NOVO JOGO para iniciar sua jornada!');
       shuffleQueue();
       renderHUD();
-      updateBadges();
       renderQuestion();
     }
 
     ui.nextBtn.addEventListener('click',renderQuestion);
     ui.newBtn.addEventListener('click',()=>{
-      deleteSave();
       document.getElementById('charSelectModal').classList.add('show');
     });
     ui.forgeBtn.addEventListener('click',forgeItem);
@@ -2105,7 +1564,7 @@
       ui.question.textContent=`Fim da jornada! Pontos: ${pendingScore?pendingScore.score:state.score} • Nível: ${pendingScore?pendingScore.level:state.level}.`;
       ui.options.innerHTML='';
       const cost=bonusCost();
-      if(state.gold>=cost && state.bonusUses < 1){
+      if(state.gold>=cost){
         ui.feedback.className='feedback';
         ui.feedback.textContent=`Você pode gastar ${cost} ouro para comprar 1 Pergunta Bônus e continuar a jornada com 1 vida.`;
         ui.bonusBtn.textContent=`Pergunta bônus (${cost} ouro)`;
@@ -2122,8 +1581,7 @@
       if(chestBtn){ chestBtn.classList.add('disabled'); chestBtn.title='Jornada encerrada'; }
       state.gameOver=true;
       renderRefs(["kdigo_ckd","kdigo_aki","kdigo_gn","kdigo_tx","dapa","empa"]);
-      renderHUD();
-      updateBadges(); renderBoard();
+      renderHUD(); renderBoard();
     }
     function selectCharacter(charId) {
       state.character = charId;
@@ -2139,7 +1597,7 @@
     function startGameWithCharacter() {
       const char = characters[state.character];
       
-      Object.assign(state,{level:1,xp:0,xpToNext:200,score:0,lives:3,streak:0,gold:0,current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,gameOver:false,gameStarted:true,extraLifeGiven:false,gameCompleted:false,completedGame:false});
+      Object.assign(state,{level:1,xp:0,xpToNext:120,score:0,lives:3,streak:0,gold:0,current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,gameOver:false,gameStarted:true});
       state.equipment={
         weapon:{n:"Vazio",rar:"common",atk:char.bonusAtk,def:0,kno:char.bonusKno,luck:0},
         armor:{n:"Vazio",rar:"common",atk:0,def:char.bonusDef,kno:0,luck:0},
@@ -2149,9 +1607,7 @@
       log(`🎭 ${char.name}, ${char.title}, inicia sua jornada no Reino Sombrio do Néfron!`);
       shuffleQueue();
       renderHUD();
-      updateBadges();
       renderQuestion();
-      saveGame();
     }
 
     // Sistema de Baús
@@ -2184,18 +1640,11 @@
       unlockedArticles.push(articleIndex);
       localStorage.setItem('unlockedArticles', JSON.stringify(unlockedArticles));
       
-      // +1 Conhecimento ao abrir baú
-      const slots = ['weapon','armor','relic'];
-      slots.forEach(s => { if(state.equipment[s]) state.equipment[s].kno = (state.equipment[s].kno || 0) + 1; });
-      
       showChestModal(randomArticle);
-      playSound('chest');
-      log('📚 +1 Conhecimento adicionado aos seus equipamentos!');
       chestCost = Math.min(chestCost + 10, 200);
       
       log('📦 Baú aberto! Artigo desbloqueado: ' + randomArticle.titulo);
       renderHUD();
-      updateBadges();
     }
     
     function showChestModal(article) {
@@ -2224,7 +1673,6 @@
 
 
     resetGame();
-    initWelcomeScreen();
 
     // Posicionar tooltips via JS para evitar corte
     document.addEventListener('mouseover', function(e){
