@@ -897,7 +897,7 @@
     function showGameCompletionModal() {
       const modal = document.createElement('div');
       modal.className = 'modal show';
-      modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.7);display:grid;place-items:center;z-index:1000;backdrop-filter:blur(4px);';
+      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(6px);';
       modal.innerHTML = `
         <div class="modal-content" style="max-width:500px;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid #2a4a7a;border-radius:14px;padding:24px;">
           <h2 style="color:var(--gold);margin-bottom:16px;">🎉 PARABÉNS! 🎉</h2>
@@ -946,7 +946,7 @@
     function showExtraLifeModal() {
       const modal = document.createElement('div');
       modal.className = 'modal show';
-      modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.7);display:grid;place-items:center;z-index:1000;backdrop-filter:blur(4px);';
+      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(6px);';
       modal.innerHTML = `
         <div class="modal-content" style="max-width:450px;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid #2a4a7a;border-radius:14px;padding:24px;">
           <h2 style="color:var(--ok);margin-bottom:16px;">💚 VIDA EXTRA! 💚</h2>
@@ -982,7 +982,7 @@
       
       const modal = document.createElement('div');
       modal.className = 'modal show evolution-popup';
-      modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.7);display:grid;place-items:center;z-index:1000;backdrop-filter:blur(4px);';
+      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(6px);';
       modal.innerHTML = `
         <div class="modal-content" style="max-width:500px;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid #2a4a7a;border-radius:14px;padding:24px;">
           <h2 style="color:var(--gold);margin-bottom:12px;">⚡ EVOLUÇÃO! ⚡</h2>
@@ -1033,6 +1033,7 @@
         equipment: JSON.parse(JSON.stringify(state.equipment)),
         idx: state.idx,
         queueIds: state.queue.map(q => q.id),
+        chestsOpened: state.chestsOpened,
         timestamp: Date.now()
       };
       localStorage.setItem(SAVE_KEY, JSON.stringify(saveData));
@@ -1062,6 +1063,7 @@
       state.bonusUses = save.bonusUses || 0;
       state.correctTotal = save.correctTotal || 0;
       state.narrativeShown = save.narrativeShown || 0;
+      state.chestsOpened = save.chestsOpened || 0;
       state.gameOver = false;
       state.gameStarted = true;
       state.answered = false;
@@ -1600,7 +1602,7 @@
       level:1,xp:0,xpToNext:350,score:0,lives:3,streak:0,gold:0,
       current:null,answered:false,queue:[],idx:0,bonusUses:0,
       correctTotal:0, narrativeShown:0, gameOver:false,
-      gameStarted: false,
+      gameStarted: false, chestsOpened:0,
       character: null,
       equipment:{
         weapon:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
@@ -1907,7 +1909,7 @@
     function gainXP(x){
       state.xp+=x; let up=0;
       while(state.xp>=state.xpToNext){
-        state.xp-=state.xpToNext; state.level++; state.xpToNext=Math.floor(state.xpToNext*1.18); up++;
+        state.xp-=state.xpToNext; state.level++; state.xpToNext=Math.floor(state.xpToNext*1.15); up++;
       }
       return up;
     }
@@ -1964,11 +1966,11 @@
         state.streak++;
         state.correctTotal++;
         const sm = getStreakMultiplier(state.streak);
-        const baseXp=28+state.current.d*10+state.streak*3+st.kno;
+        const baseXp=22+state.current.d*6+Math.min(state.streak,5)*2+Math.floor(st.kno/2);
         const xp=Math.floor(baseXp * sm.mult);
-        const baseG=10+state.current.d*4+Math.floor(st.luck/2);
+        const baseG=8+state.current.d*3+Math.floor(st.luck/3);
         const g=Math.floor(baseG * sm.mult);
-        const baseScore=95+state.current.d*20+state.streak*7+st.atk;
+        const baseScore=80+state.current.d*15+state.streak*5+st.atk;
         state.score+=Math.floor(baseScore * sm.mult);
         state.gold+=g;
         const prevLevel = state.level;
@@ -2184,7 +2186,7 @@
     }
 
     function resetGame(){
-      Object.assign(state,{level:1,xp:0,xpToNext:350,score:0,lives:3,streak:0,gold:0,current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,gameOver:false,gameStarted:false,extraLifeGiven:false,gameCompleted:false,completedGame:false});
+      Object.assign(state,{level:1,xp:0,xpToNext:350,score:0,lives:3,streak:0,gold:0,current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,gameOver:false,gameStarted:false,extraLifeGiven:false,gameCompleted:false,completedGame:false,chestsOpened:0});
       state.character=null;
       state.equipment={
         weapon:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
@@ -2274,7 +2276,7 @@
     function startGameWithCharacter() {
       const char = characters[state.character];
       
-      Object.assign(state,{level:1,xp:0,xpToNext:350,score:0,lives:3,streak:0,gold:0,current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,gameOver:false,gameStarted:true,extraLifeGiven:false,gameCompleted:false,completedGame:false});
+      Object.assign(state,{level:1,xp:0,xpToNext:350,score:0,lives:3,streak:0,gold:0,current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,gameOver:false,gameStarted:true,extraLifeGiven:false,gameCompleted:false,completedGame:false,chestsOpened:0});
       state.equipment={
         weapon:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
         armor:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
@@ -2319,25 +2321,33 @@
       unlockedArticles.push(articleIndex);
       localStorage.setItem('unlockedArticles', JSON.stringify(unlockedArticles));
       
-      // +1 Conhecimento ao abrir baú
-      // +1 Conhecimento: adiciona ao slot de relíquia
-      if(state.equipment.relic) state.equipment.relic.kno = (state.equipment.relic.kno || 0) + 1;
+      // Conhecimento progressivo: baú N dá +N conhecimento
+      state.chestsOpened++;
+      const knoGain = state.chestsOpened;
+      if(state.equipment.relic) state.equipment.relic.kno = (state.equipment.relic.kno || 0) + knoGain;
       
-      showChestModal(randomArticle);
+      showChestModal(randomArticle, knoGain);
       playSound('chest');
-      log('📚 +1 Conhecimento adicionado aos seus equipamentos!');
-      chestCost = Math.min(chestCost + 10, 200);
+      log(`📚 Baú #${state.chestsOpened}: +${knoGain} Conhecimento adicionado!`);
+      chestCost = Math.min(chestCost + 15, 250);
       
-      log('📦 Baú aberto! Artigo desbloqueado: ' + randomArticle.titulo);
+      log('📦 Artigo desbloqueado: ' + randomArticle.titulo);
       renderHUD();
       updateBadges();
+      saveGame();
     }
     
-    function showChestModal(article) {
+    function showChestModal(article, knoGain) {
+      knoGain = knoGain || 1;
       const modal = document.getElementById('chestModal');
       const articleDiv = document.getElementById('chestArticle');
       
       articleDiv.innerHTML = `
+        <div style="text-align:center;margin-bottom:12px;padding:10px;background:rgba(0,255,100,0.1);border:1px solid rgba(0,255,100,0.3);border-radius:8px;">
+          <span style="font-size:1.3rem;">📚</span>
+          <span style="color:#4ade80;font-weight:bold;font-size:1.1rem;"> +${knoGain} Conhecimento!</span>
+          <span style="color:var(--txt-dim);font-size:0.85rem;"> (Baú #${state.chestsOpened})</span>
+        </div>
         <div class="article-card">
           <h3>📜 ${article.titulo} (${article.ano})</h3>
           <p style="font-size:0.78rem;color:var(--gold);margin-bottom:4px">✍️ <em>${article.autores}</em></p>
