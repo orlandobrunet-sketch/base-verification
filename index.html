@@ -827,15 +827,63 @@
     // Pre-load all SFX
     Object.values(SFX).forEach(a => { a.load(); a.volume = 0.5; });
     
-    // Background Music
-    const bgMusic = new Audio('assets/sounds/bgmusic.wav?v=3');
-    bgMusic.loop = true;
-    bgMusic.volume = 0.12;
-    bgMusic.load();
+    // Background Music - Double-buffer crossfade loop
+    const MUSIC_URL = 'assets/sounds/bgmusic.wav?v=4';
+    const MUSIC_VOL = 0.12;
+    const XFADE_TIME = 1.5; // segundos de crossfade
+    
+    const bgA = new Audio(MUSIC_URL);
+    const bgB = new Audio(MUSIC_URL);
+    bgA.volume = MUSIC_VOL; bgB.volume = 0;
+    bgA.load(); bgB.load();
     
     let soundEnabled = localStorage.getItem('nefroquest-sound') !== 'off';
     let musicEnabled = localStorage.getItem('nefroquest-music') !== 'off';
     let musicStarted = false;
+    let activeTrack = bgA;
+    let xfadeInterval = null;
+    
+    function scheduleXfade(track) {
+      // Quando faltam XFADE_TIME segundos, iniciar crossfade para o outro track
+      const checkInterval = setInterval(() => {
+        if (!musicStarted || !musicEnabled) { clearInterval(checkInterval); return; }
+        const remaining = track.duration - track.currentTime;
+        if (remaining <= XFADE_TIME && remaining > 0) {
+          clearInterval(checkInterval);
+          crossfadeTo(track === bgA ? bgB : bgA);
+        }
+      }, 100);
+      xfadeInterval = checkInterval;
+    }
+    
+    function crossfadeTo(nextTrack) {
+      const prevTrack = activeTrack;
+      nextTrack.currentTime = 0;
+      nextTrack.volume = 0;
+      nextTrack.play().catch(() => {});
+      
+      const steps = 30;
+      const stepTime = (XFADE_TIME * 1000) / steps;
+      let step = 0;
+      
+      const fadeInterval = setInterval(() => {
+        step++;
+        const progress = step / steps;
+        // Equal-power crossfade
+        prevTrack.volume = MUSIC_VOL * Math.cos(progress * Math.PI / 2);
+        nextTrack.volume = MUSIC_VOL * Math.sin(progress * Math.PI / 2);
+        
+        if (step >= steps) {
+          clearInterval(fadeInterval);
+          prevTrack.pause();
+          prevTrack.currentTime = 0;
+          prevTrack.volume = MUSIC_VOL;
+          nextTrack.volume = MUSIC_VOL;
+          activeTrack = nextTrack;
+          scheduleXfade(nextTrack);
+        }
+      }, stepTime);
+    }
     
     function playSound(name) {
       if (!soundEnabled || !SFX[name]) return;
@@ -846,12 +894,19 @@
     
     function startBgMusic() {
       if (!musicEnabled || musicStarted) return;
-      bgMusic.play().then(() => { musicStarted = true; }).catch(() => {});
+      activeTrack = bgA;
+      bgA.currentTime = 0;
+      bgA.volume = MUSIC_VOL;
+      bgA.play().then(() => {
+        musicStarted = true;
+        scheduleXfade(bgA);
+      }).catch(() => {});
     }
     
     function stopBgMusic() {
-      bgMusic.pause();
-      bgMusic.currentTime = 0;
+      bgA.pause(); bgB.pause();
+      bgA.currentTime = 0; bgB.currentTime = 0;
+      if (xfadeInterval) clearInterval(xfadeInterval);
       musicStarted = false;
     }
     
