@@ -2144,6 +2144,7 @@
       {at:85, ch:"Capítulo XVII", title:"O Santuário da Peritoneal", text:"No Santuário da Diálise Peritoneal, o peritônio é a membrana sagrada. Você aprende sobre trocas osmóticas, icodextrina, peritonite e esclerose encapsulante. Cada paciente é único — adequação, clearance, ultrafiltração. O santuário brilha com conhecimento aplicado."},
       {at:90, ch:"Capítulo XVIII", title:"O Portal do Xenotransplante", text:"Um portal brilhante se abre: o futuro do transplante renal! Rins suínos geneticamente editados, 10 modificações genéticas para vencer a rejeição hiperaguda. Montgomery e Riella mostram o caminho. A fila de transplante pode ter seus dias contados. O futuro é agora."},
       {at:95, ch:"Capítulo XIX", title:"O Confronto com o Arqui-Nefromante", text:"Finalmente, você chega ao Trono da Uremia, onde o Arqui-Nefromante aguarda. Ele lança feitiços de azotemia, hiperfiltração maligna e nefrotoxicidade. Mas você está preparado — cada questão respondida foi um feitiço aprendido. A batalha final começa!"},
+      {at:99, ch:"Capítulo XX", title:"A Última Prova", text:"O Arqui-Nefromante ergue seu cajado sombrio. Rins corrompidos orbitam ao seu redor como satélites de pura destruição renal. Seus golens de uremia avançam. Ele ri: 'Você acha que pode me derrotar? Eu sou a Insuficiência Renal Eterna!' Mas você sente o poder de todo o conhecimento acumulado pulsando em suas veias. Uma última questão. Uma última resposta. O destino dos rins do reino depende de você.", boss:true},
       {at:100, ch:"Epílogo", title:"Os Rins Foram Salvos!", text:"Com um último golpe de conhecimento puro, o Arqui-Nefromante é derrotado! Os néfrons do reino voltam a filtrar com perfeição. A creatinina normaliza, a proteinúria desaparece, o equilíbrio hidroeletrolítico é restaurado. Você é coroado(a) como o(a) Grande Guardião(ã) dos Rins. A nefrologia está salva — graças a você!"}
     ];
 
@@ -2158,15 +2159,24 @@
       const popup = document.createElement('div');
       popup.className='narrative-popup';
       const isFinale = stage.at >= 100;
+      const isBoss = stage.boss === true;
+      const bossImgHtml = isBoss ? `
+        <div style="text-align:center;margin:15px 0;">
+          <img src="assets/nefromancer.png" alt="Arqui-Nefromante" style="width:100%;max-width:500px;border-radius:12px;border:3px solid #a855f7;box-shadow:0 0 30px rgba(168,85,247,0.6),0 0 60px rgba(168,85,247,0.3);">
+        </div>
+        <div style="text-align:center;margin-bottom:10px;">
+          <span style="font-size:1.5rem;color:#a855f7;font-weight:900;text-shadow:0 0 20px rgba(168,85,247,0.8);letter-spacing:2px;">ARQUI-NEFROMANTE</span>
+        </div>` : '';
       popup.innerHTML=`
-        <div class='narrative-card'>
-          <div class='narr-chapter'>${stage.ch}</div>
-          <h3>${isFinale ? '🏆 ' : '📖 '}${stage.title}</h3>
-          <div class='narr-text'>${stage.text}</div>
+        <div class='narrative-card' ${isBoss ? 'style="border-color:#a855f7;box-shadow:0 0 40px rgba(168,85,247,0.4);"' : ''}>
+          <div class='narr-chapter' ${isBoss ? 'style="color:#a855f7;"' : ''}>${stage.ch}</div>
+          <h3>${isFinale ? '🏆 ' : isBoss ? '💀 ' : '📖 '}${stage.title}</h3>
+          ${bossImgHtml}
+          <div class='narr-text' ${isBoss ? 'style="color:#e9d5ff;font-style:italic;"' : ''}>${stage.text}</div>
           <div class='narr-progress'>
             <strong>${state.correctTotal}</strong> acertos · Nível <strong>${state.level}</strong> · ${state.queue.length - state.idx} cartas restantes
           </div>
-          <button class='btn gold' onclick='this.closest(".narrative-popup").remove()'>${isFinale ? '🏆 Glória Eterna!' : 'Continuar a Jornada'}</button>
+          <button class='btn ${isBoss ? 'sec' : 'gold'}' onclick='this.closest(".narrative-popup").remove()' ${isBoss ? 'style="background:linear-gradient(180deg,#a855f7,#7c3aed);border-color:#6d28d9;color:#fff;text-shadow:0 0 10px rgba(168,85,247,0.5);"' : ''}>${isFinale ? '🏆 Glória Eterna!' : isBoss ? '⚔️ Enfrentar o Arqui-Nefromante!' : 'Continuar a Jornada'}</button>
         </div>
       `;
       document.body.appendChild(popup);
