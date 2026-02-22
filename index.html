@@ -1996,13 +1996,34 @@
     }
 
     function equipOrSell(slot,item){
-      const old=state.equipment[slot];
-      // Se slot está vazio, sempre equipar
-      if(old.n === 'Vazio'){ state.equipment[slot]=item; return `⬆️ Equipou ${item.n}.`; }
-      const p1=old.atk+old.def+old.kno+old.luck+rarityPower[old.rar];
-      const p2=item.atk+item.def+item.kno+item.luck+rarityPower[item.rar];
-      if(p2>p1){ state.equipment[slot]=item; return `⬆️ Equipou ${item.n}.`; }
-      const val=15+p2*3; state.gold+=val; return `💰 ${item.n} virou ${val} ouro.`;
+      const rarityPowerLocal={common:0,uncommon:2,rare:5,epic:10,legendary:20};
+      function itemPower(it){ return it.atk+it.def+it.kno+it.luck+(rarityPowerLocal[it.rar]||0); }
+      const newPow = itemPower(item);
+      // 1. Procurar slot vazio primeiro
+      const slots = Object.keys(state.equipment);
+      for(const s of slots){
+        if(state.equipment[s].n === 'Vazio'){
+          state.equipment[s] = item;
+          return `⬆️ Equipou ${item.n} no slot ${s}.`;
+        }
+      }
+      // 2. Todos ocupados: encontrar o mais fraco
+      let weakestSlot = null, weakestPow = Infinity;
+      for(const s of slots){
+        const pow = itemPower(state.equipment[s]);
+        if(pow < weakestPow){ weakestPow = pow; weakestSlot = s; }
+      }
+      // 3. Substituir se novo for mais forte que o mais fraco
+      if(newPow > weakestPow){
+        const oldItem = state.equipment[weakestSlot];
+        const val = 15 + Math.floor(itemPower(oldItem)) * 3;
+        state.gold += val;
+        state.equipment[weakestSlot] = item;
+        return `⬆️ Equipou ${item.n}. ${oldItem.n} virou ${val} ouro.`;
+      }
+      // 4. Novo é pior: vender
+      const val = 15 + newPow * 3; state.gold += val;
+      return `💰 ${item.n} virou ${val} ouro.`;
     }
 
     function answer(i,btn){
