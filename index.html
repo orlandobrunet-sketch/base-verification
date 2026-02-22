@@ -513,6 +513,16 @@
     .sound-toggle.muted { opacity: 0.5; }
 
     /* STREAK MULTIPLIER VISUAL */
+    .tile-streak { position: relative; }
+    .streak-fire { font-size: 0.7rem; display: block; margin-top: 2px; }
+    .streak-mult { 
+      display: inline-block; font-size: 0.6rem; font-weight: 700; padding: 1px 5px; 
+      border-radius: 4px; margin-top: 2px; 
+    }
+    .streak-x2 .streak-mult { background: rgba(234,179,8,0.3); color: #fbbf24; border: 1px solid rgba(234,179,8,0.5); }
+    .streak-x3 .streak-mult { background: rgba(239,68,68,0.3); color: #f87171; border: 1px solid rgba(239,68,68,0.5); }
+    .streak-x4 .streak-mult { background: rgba(168,85,247,0.3); color: #c084fc; border: 1px solid rgba(168,85,247,0.5); }
+    .streak-x5 .streak-mult { background: rgba(255,215,0,0.3); color: #ffd700; border: 1px solid rgba(255,215,0,0.5); text-shadow: 0 0 6px rgba(255,215,0,0.5); }
 
 
 
@@ -1015,7 +1025,7 @@
       state.character = save.character;
       state.level = save.level || 1;
       state.xp = save.xp || 0;
-      state.xpToNext = save.xpToNext || 120;
+      state.xpToNext = save.xpToNext || 350;
       state.score = save.score || 0;
       state.lives = save.lives || 3;
       state.streak = save.streak || 0;
@@ -1185,7 +1195,7 @@
 {"t": "Biópsia Renal e Glomeruloesclerose Segmentar e Focal (GESF)", "q": "Na avaliação histopatológica de uma biópsia renal com suspeita de GESF, qual região é crucial para uma detecção ótima e qual técnica visualiza melhor as espículas da membrana basal?", "o": ["Região justacapsular; coloração de PAS", "Glomérulos justamedulares; coloração de Prata Metamina de Jones", "Medular profunda; coloração de H&E", "Córtex superficial; microscopia eletrônica isolada"], "a": 1, "e": "Glomérulos justamedulares são os primeiros afetados na GESF. A prata visualiza espículas e contornos da membrana basal.", "d": "medium", "refs": ["kdigo_gn"]},
 {"t": "Inibidores de SGLT2 e Risco de Infecção Urinária (ITU)", "q": "Paciente diabético com DRC estágio 4 apresenta histórico de ITUs recorrentes. Sobre o uso de iSGLT2 (Dapagliflozina/Empagliflozina), o que as evidências atuais demonstram?", "o": ["Devem ser suspensos, pois aumentam em 50% o risco de pielonefrite", "Não aumentam significativamente o risco de ITU, mas elevam o risco de infecções genitais micóticas", "Reduzem a proteinúria apenas se a TFG for superior a 60 mL/min", "São contraindicados em pacientes com ITUs prévias devido ao risco de sepse"], "a": 1, "e": "Metanálises de estudos como CANVAS e DAPA-CKD confirmam que o risco de ITU é semelhante ao placebo, com aumento real apenas para infecções genitais.", "d": "medium", "refs": ["kdigo_ckd", "dapa", "empa"]},
 {"t": "Complicações do Transplante: Linfocele", "q": "Dois meses após transplante renal, o paciente apresenta coleção anecoica septada ao ultrassom adjacente ao enxerto. A análise do líquido mostra relação creatinina e potássio de 1:1 com os valores séricos. Qual a hipótese diagnóstica?", "o": ["Fístula urinária", "Linfocele", "Abscesso perienxerto", "Hematoma agudo"], "a": 1, "e": "A relação de creatinina e potássio similar ao soro (1:1) confirma linfocele. Na fístula urinária, a creatinina no líquido seria muito superior à sérica.", "d": "medium", "refs": ["kdigo_tx"]},
-{"t": "Hiperparatireoidismo Secundário na DRC", "q": "Qual o evento fisiopatológico central que desencadeia o aumento compensatório do FGF23 e a subsequente supressão do calcitriol na DRC?", "o": ["Hipercalcemia aguda", "Deficiência de Klotho renal gerando resistência ao FGF23", "Inibição direta do PTH pelo fósforo sérico", "Aumento da 1-alfa-hidroxilação por macrófagos ativados"], "a": 1, "e": "O rim doente perde expressão de Klotho, ficando \"surdo\" ao FGF23. Isso gera níveis compensatórios altíssimos de FGF23, que inibem a produção de calcitriol. Entendo perfeitamente. Para agilizar o processo e garantir que você tenha o material completo sem precisar de dezenas de interações, eu consigo processar e entregar cerca de 30 a 50 questões por vez com alta qualidade. Embora eu consiga ler as 300 de uma vez, o limite de caracteres da resposta me impede de exibir todas em uma única mensagem. Para resolvermos isso rapidamente, vamos trabalhar em blocos grandes. Aqui está o segundo bloco (Questões 11 a 40), revisado com foco em clareza técnica e prontidão para uso: Bloco 02: Nefrologia Clínica e Intervenção (Questões 11 a 40)", "d": "medium", "refs": ["kdigo_ckd"]},
+{"t": "Hiperparatireoidismo Secundário na DRC", "q": "Qual o evento fisiopatológico central que desencadeia o aumento compensatório do FGF23 e a subsequente supressão do calcitriol na DRC?", "o": ["Hipercalcemia aguda", "Deficiência de Klotho renal gerando resistência ao FGF23", "Inibição direta do PTH pelo fósforo sérico", "Aumento da 1-alfa-hidroxilação por macrófagos ativados"], "a": 1, "e": "O rim doente perde expressão de Klotho, ficando \"surdo\" ao FGF23. Isso gera níveis compensatórios altíssimos de FGF23, que inibem a produção de calcitriol. ", "d": "medium", "refs": ["kdigo_ckd"]},
 {"t": "Estudo EMPA-KIDNEY e TFG Baixa", "q": "Com base nos resultados do estudo EMPA-KIDNEY, qual a conduta em relação ao uso de Empagliflozina em pacientes com DRC e taxa de filtração glomerular (TFG) entre 20-30 mL/min/1,73m²?", "o": ["Iniciar ou manter a medicação, pois o benefício na redução de progressão da DRC e morte cardiovascular foi demonstrado até TFG de 20 mL/min", "Suspender imediatamente, pelo risco aumentado de lesão renal aguda (LRA)", "Utilizar apenas se houver proteinúria acima de 1g/dia, conforme bula original", "Associar obrigatoriamente a um análogo de GLP-1 para proteção tubular"], "a": 0, "e": "O EMPA-KIDNEY incluiu pacientes com TFG até 20 mL/min, demonstrando segurança e eficácia renal persistente mesmo em estágios avançados.", "d": "medium", "refs": ["kdigo_ckd", "kdigo_aki", "kdigo_gn", "empa", "flow_study"]},
 {"t": "Glomerulopatia por C3 (C3G) e Eculizumabe", "q": "No manejo da Glomerulopatia por C3 com evidência de ativação da via alternativa do complemento, qual o papel do Eculizumabe?", "o": ["É a primeira linha absoluta para todos os casos de C3G", "Não possui eficácia demonstrada, sendo preferível o uso de Ciclofosfamida", "Pode ser considerado em casos refratários com evidência de ativação terminal do complemento (C5b-9 solúvel elevado), embora a resposta seja variável", "É contraindicado se a biópsia mostrar depósitos predominantes de C3"], "a": 2, "e": "A resposta ao bloqueio do C5 na C3G é inconsistente, sendo reservada para casos graves onde o bloqueio da via terminal parece justificado bioquimicamente.", "d": "medium", "refs": ["kdigo_gn"]},
 {"t": "Nefropatia por IgA (NIgA) e Corticoterapia (Estudo TESTING)", "q": "Segundo o estudo TESTING, qual a recomendação atual sobre o uso de corticosteroides em pacientes com NIgA e alto risco de progressão (proteinúria > 1g/dia)?", "o": ["e Corticoterapia (Estudo TESTING)", "Devem ser usados em dose plena (1mg/kg) por 12 meses sem desmame", "O uso de doses reduzidas de metilprednisolona apresentou eficácia na proteção renal com perfil de segurança superior à dose plena", "O corticosteroide só deve ser iniciado se a TFG for superior a 90 mL/min"], "a": 2, "e": "O estudo TESTING demonstrou que doses menores de corticoide reduzem o risco de desfechos renais com menos eventos adversos graves em comparação ao esquema de dose alta original.", "d": "medium", "refs": ["kdigo_gn"]},
@@ -1558,7 +1568,7 @@
     };
 
     const state={
-      level:1,xp:0,xpToNext:210,score:0,lives:3,streak:0,gold:0,
+      level:1,xp:0,xpToNext:350,score:0,lives:3,streak:0,gold:0,
       current:null,answered:false,queue:[],idx:0,bonusUses:0,
       correctTotal:0, narrativeShown:0, gameOver:false,
       gameStarted: false,
@@ -1586,7 +1596,15 @@
     const best=()=>{const b=boardGet();return b.length?b[0].score:0};
 
     function log(m){const p=document.createElement('p');p.textContent=m;ui.journal.prepend(p);while(ui.journal.children.length>7)ui.journal.lastChild.remove()}
-    function total(){return Object.values(state.equipment).reduce((a,i)=>(a.atk+=i.atk,a.def+=i.def,a.kno+=i.kno,a.luck+=i.luck,a),{atk:0,def:0,kno:0,luck:0})}
+    function total(){
+      const base=Object.values(state.equipment).reduce((a,i)=>(a.atk+=i.atk,a.def+=i.def,a.kno+=i.kno,a.luck+=i.luck,a),{atk:0,def:0,kno:0,luck:0});
+      if(state.character && characters[state.character]){
+        const c=characters[state.character];
+        base.atk+=c.bonusAtk||0; base.def+=c.bonusDef||0;
+        base.kno+=c.bonusKno||0; base.luck+=c.bonusLuck||0;
+      }
+      return base;
+    }
     function legendaryCount(){return Object.values(state.equipment).filter(i=>i.rar==='legendary').length;}
 
     function heroMeta(){
@@ -1728,7 +1746,18 @@
       ui.storyGoal.textContent=`Objetivo: ${chapter.goal} Lendários equipados: ${legendaryCount()}/2.`;
       ui.level.textContent=state.level; ui.score.textContent=state.score;
       ui.lives.textContent='❤'.repeat(Math.max(0,state.lives))+'♡'.repeat(3-Math.max(0,state.lives));
-      ui.record.textContent=best(); ui.gold.textContent=state.gold; ui.streak.textContent=state.streak;
+      ui.record.textContent=best(); ui.gold.textContent=state.gold;
+      // Streak visual com multiplicador
+      const sm = getStreakMultiplier(state.streak);
+      const streakTile = ui.streak.closest('.tile');
+      if(streakTile) {
+        streakTile.className = 'tile tile-streak ' + sm.css;
+        ui.streak.innerHTML = sm.fire 
+          ? `${state.streak}<span class="streak-fire">${sm.fire}</span>${sm.label ? '<span class="streak-mult">'+sm.label+'</span>' : ''}`
+          : String(state.streak);
+      } else {
+        ui.streak.textContent = state.streak;
+      }
       ui.xpFill.style.width=`${Math.min(100,(state.xp/state.xpToNext)*100)}%`;
       ui.xpTxt.textContent=`XP ${state.xp} / ${state.xpToNext} • Cartas restantes: ${state.queue.length-state.idx}`;
       renderEquip();
@@ -1777,8 +1806,18 @@
     }
 
     function shuffleQueue(){
-      state.queue=[...questionBank];
-      for(let i=state.queue.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[state.queue[i],state.queue[j]]=[state.queue[j],state.queue[i]];}
+      // Separar por dificuldade (valores numéricos: 4-6=fácil, 7-8=médio, 9-12=difícil)
+      const easy = questionBank.filter(q => q.d <= 6);
+      const medium = questionBank.filter(q => q.d >= 7 && q.d <= 8);
+      const hard = questionBank.filter(q => q.d >= 9);
+      // Shuffle cada grupo
+      function shuffle(arr) {
+        const a = [...arr];
+        for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+        return a;
+      }
+      // Montar queue: fácil primeiro, depois médio, depois difícil
+      state.queue = [...shuffle(easy), ...shuffle(medium), ...shuffle(hard)];
       state.idx=0;
     }
 
@@ -1816,8 +1855,7 @@
     function gainXP(x){
       state.xp+=x; let up=0;
       while(state.xp>=state.xpToNext){
-        state.xp-=state.xpToNext; state.level++; state.xpToNext=Math.floor(state.xpToNext*1.17); up++;
-        if(state.level%6===0&&state.lives<3) state.lives++;
+        state.xp-=state.xpToNext; state.level++; state.xpToNext=Math.floor(state.xpToNext*1.18); up++;
       }
       return up;
     }
@@ -1881,6 +1919,7 @@
         const baseScore=95+state.current.d*20+state.streak*7+st.atk;
         state.score+=Math.floor(baseScore * sm.mult);
         state.gold+=g;
+        const prevLevel = state.level;
         const lv=gainXP(xp);
 
         if(state.level>=15&&legendaryCount()>=2){
@@ -1889,8 +1928,15 @@
         ui.feedback.className='feedback good';
         const multText = sm.label ? ` (${sm.label})` : '';
         ui.feedback.textContent=`✅ Correto! ${state.current.e} +${xp} XP${multText}, +${g} ouro.${lv?` Level up x${lv}!`:''}`;
-        // Sons
-        if(lv) { playSound('levelup'); } else { playSound('correct'); }
+        // Sons e popup de evolução
+        if(lv) {
+          playSound('levelup');
+          // Verificar se houve mudança de imagem/título
+          const [newClass, newImg, newCls, newTitle] = heroMeta();
+          setTimeout(() => showEvolutionPopup(state.level, newTitle, newImg), 600);
+          // Verificar vida extra
+          checkExtraLife();
+        } else { playSound('correct'); }
         if(state.streak >= 5) playSound('streak');
         // Verificar narrativa a cada 5 acertos
         checkNarrative();
@@ -1965,26 +2011,18 @@
       if(state.gameOver){ log('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
       if(allItemsMaxed()){ log('🏆 Você já possui todos os equipamentos lendários!'); return; }
       const cost=500;
-      if(state.gold<cost){ log('🧱 Ouro insuficiente para forjar item.'); return; }
+      if(state.gold<cost){ log('🧱 Ouro insuficiente! Precisa de 500 ouro para forjar.'); return; }
       state.gold-=cost;
-      const keys=Object.keys(state.equipment);
-      const slot=keys[Math.floor(Math.random()*keys.length)];
-      const it=state.equipment[slot];
-      const oldStats={atk:it.atk,def:it.def,kno:it.kno,luck:it.luck};
-      it.atk += Math.random()<0.5?1:0;
-      it.def += Math.random()<0.5?1:0;
-      it.kno += Math.random()<0.5?1:0;
-      it.luck += Math.random()<0.35?1:0;
-      const gains=[];
-      if(it.atk>oldStats.atk) gains.push(`⚔️ ATK +${it.atk-oldStats.atk}`);
-      if(it.def>oldStats.def) gains.push(`🛡️ DEF +${it.def-oldStats.def}`);
-      if(it.kno>oldStats.kno) gains.push(`📚 CONH +${it.kno-oldStats.kno}`);
-      if(it.luck>oldStats.luck) gains.push(`🍀 SORTE +${it.luck-oldStats.luck}`);
-      showForgePopup(it, slot, gains);
+      const st=total();
+      const rolled=rollItem(state.level, st.luck);
+      const msg=equipOrSell(rolled.slot, rolled.item);
+      const gains=[`⚔️ ATK ${rolled.item.atk}`, `🛡️ DEF ${rolled.item.def}`, `📚 CONH ${rolled.item.kno}`, `🍀 SORTE ${rolled.item.luck}`];
+      showForgePopup(rolled.item, rolled.slot, gains);
       playSound('forge');
-      log(`🔨 Forja concluída: ${it.n} ficou mais poderoso!`);
+      log(`🔨 Forja concluída! ${msg}`);
       renderHUD();
       updateBadges();
+      autoSave();
     }
 
 
@@ -2094,7 +2132,7 @@
     }
 
     function resetGame(){
-      Object.assign(state,{level:1,xp:0,xpToNext:210,score:0,lives:3,streak:0,gold:0,current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,gameOver:false,gameStarted:false,extraLifeGiven:false,gameCompleted:false,completedGame:false});
+      Object.assign(state,{level:1,xp:0,xpToNext:350,score:0,lives:3,streak:0,gold:0,current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,gameOver:false,gameStarted:false,extraLifeGiven:false,gameCompleted:false,completedGame:false});
       state.character=null;
       state.equipment={
         weapon:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
@@ -2106,7 +2144,9 @@
       shuffleQueue();
       renderHUD();
       updateBadges();
-      renderQuestion();
+      // Não renderizar questão quando jogo não foi iniciado
+      if(state.gameStarted) renderQuestion();
+      else { ui.question.textContent=''; ui.options.innerHTML=''; ui.feedback.textContent=''; ui.feedback.className='feedback'; ui.refs.innerHTML=''; ui.nextBtn.classList.add('hidden'); }
     }
 
     ui.nextBtn.addEventListener('click',renderQuestion);
@@ -2182,11 +2222,11 @@
     function startGameWithCharacter() {
       const char = characters[state.character];
       
-      Object.assign(state,{level:1,xp:0,xpToNext:210,score:0,lives:3,streak:0,gold:0,current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,gameOver:false,gameStarted:true,extraLifeGiven:false,gameCompleted:false,completedGame:false});
+      Object.assign(state,{level:1,xp:0,xpToNext:350,score:0,lives:3,streak:0,gold:0,current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,gameOver:false,gameStarted:true,extraLifeGiven:false,gameCompleted:false,completedGame:false});
       state.equipment={
-        weapon:{n:"Vazio",rar:"common",atk:char.bonusAtk,def:0,kno:char.bonusKno,luck:0},
-        armor:{n:"Vazio",rar:"common",atk:0,def:char.bonusDef,kno:0,luck:0},
-        relic:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:char.bonusLuck}
+        weapon:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
+        armor:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
+        relic:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0}
       };
       ui.journal.innerHTML='';
       log(`🎭 ${char.name}, ${char.title}, inicia sua jornada no Reino Sombrio do Néfron!`);
@@ -2228,8 +2268,8 @@
       localStorage.setItem('unlockedArticles', JSON.stringify(unlockedArticles));
       
       // +1 Conhecimento ao abrir baú
-      const slots = ['weapon','armor','relic'];
-      slots.forEach(s => { if(state.equipment[s]) state.equipment[s].kno = (state.equipment[s].kno || 0) + 1; });
+      // +1 Conhecimento: adiciona ao slot de relíquia
+      if(state.equipment.relic) state.equipment.relic.kno = (state.equipment.relic.kno || 0) + 1;
       
       showChestModal(randomArticle);
       playSound('chest');
