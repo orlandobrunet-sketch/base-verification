@@ -473,8 +473,14 @@
     .welcome-screen.hidden { display: none; }
     .welcome-bg {
       position: absolute; inset: 0;
-      background: url('assets/images/welcome-bg.png') center top / cover no-repeat;
+      background: url('assets/images/welcome-bg.jpg') center top / cover no-repeat;
       animation: welcomeBgZoom 20s ease-in-out infinite alternate;
+    }
+    @media (max-aspect-ratio: 1/1) {
+      .welcome-bg {
+        background-image: url('assets/images/welcome-bg-portrait.jpg');
+        background-position: center top;
+      }
     }
     .welcome-bg::after {
       content: ''; position: absolute; bottom: 0; left: 0; right: 0;
