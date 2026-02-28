@@ -976,6 +976,51 @@
     // Pre-load all SFX
     Object.values(SFX).forEach(a => { a.load(); a.volume = 0.5; });
     
+    // ============ MÚSICA DA TELA DE BOAS-VINDAS ============
+    const WELCOME_MUSIC_URL = 'assets/audio/welcome-theme.mp3';
+    const WELCOME_MUSIC_VOL = 0.30;
+    const welcomeMusic = new Audio(WELCOME_MUSIC_URL);
+    welcomeMusic.loop = true;
+    welcomeMusic.volume = WELCOME_MUSIC_VOL;
+    welcomeMusic.preload = 'auto';
+    welcomeMusic.load();
+    let welcomeMusicStarted = false;
+
+    function startWelcomeMusic() {
+      if (!musicEnabled || welcomeMusicStarted) return;
+      welcomeMusic.currentTime = 0;
+      welcomeMusic.volume = WELCOME_MUSIC_VOL;
+      welcomeMusic.play().then(() => {
+        welcomeMusicStarted = true;
+      }).catch(() => {});
+    }
+
+    function stopWelcomeMusic(fadeOut) {
+      if (!welcomeMusicStarted) return;
+      if (!fadeOut) {
+        welcomeMusic.pause();
+        welcomeMusic.currentTime = 0;
+        welcomeMusicStarted = false;
+        return;
+      }
+      // Fade-out suave em 600ms
+      const startVol = welcomeMusic.volume;
+      const steps = 20;
+      const stepTime = 600 / steps;
+      let step = 0;
+      const fadeInterval = setInterval(() => {
+        step++;
+        welcomeMusic.volume = Math.max(0, startVol * (1 - step / steps));
+        if (step >= steps) {
+          clearInterval(fadeInterval);
+          welcomeMusic.pause();
+          welcomeMusic.currentTime = 0;
+          welcomeMusic.volume = WELCOME_MUSIC_VOL;
+          welcomeMusicStarted = false;
+        }
+      }, stepTime);
+    }
+
     // Background Music - Double-buffer crossfade loop
     const MUSIC_URL = 'assets/sounds/bgmusic.mp3?v=2';
     const MUSIC_VOL = 0.14;
@@ -1081,9 +1126,16 @@
       const toggle = document.getElementById('musicToggle');
       if (musicEnabled) {
         icon.textContent = '🎵'; label.textContent = 'Música'; toggle.classList.remove('muted');
-        startBgMusic();
+        // Tocar música correta conforme a tela ativa
+        const ws = document.getElementById('welcomeScreen');
+        if (ws && !ws.classList.contains('hidden')) {
+          startWelcomeMusic();
+        } else {
+          startBgMusic();
+        }
       } else {
         icon.textContent = '🎵'; label.textContent = 'Mudo'; toggle.classList.add('muted');
+        stopWelcomeMusic(false);
         stopBgMusic();
       }
     }
@@ -1108,7 +1160,10 @@
       }
       // Start music on first user interaction
       const startMusicOnInteraction = () => {
-        if (musicEnabled) startBgMusic();
+        if (musicEnabled) {
+          // Na primeira interação, tocar música da welcome screen
+          startWelcomeMusic();
+        }
         document.removeEventListener('click', startMusicOnInteraction);
         document.removeEventListener('touchstart', startMusicOnInteraction);
       };
@@ -1455,13 +1510,17 @@
     }
     
     function dismissWelcome() {
+      // Parar música da welcome screen com fade-out
+      stopWelcomeMusic(true);
       const ws = document.getElementById('welcomeScreen');
       ws.style.opacity = '0';
-      ws.style.transition = 'opacity 0.3s';
+      ws.style.transition = 'opacity 0.5s';
       setTimeout(() => {
         ws.classList.add('hidden');
         document.getElementById('mainApp').classList.remove('hidden');
-      }, 300);
+        // Iniciar música do jogo após a transição
+        if (musicEnabled) startBgMusic();
+      }, 500);
     }
     
     function continueGame() {
