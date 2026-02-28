@@ -31,6 +31,41 @@
             max-height: 90vh;
             overflow-y: auto;
         }
+        .question-card {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .question-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .page-btn {
+            min-width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #d1d5db;
+            background: white;
+            color: #374151;
+            font-weight: 500;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .page-btn:hover:not(:disabled) {
+            background: #f3f4f6;
+            border-color: #9ca3af;
+        }
+        .page-btn.active {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+        .page-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -78,15 +113,28 @@
                     <span class="text-gray-700 font-semibold">Total: <span id="totalCount">0</span> perguntas</span>
                     <span class="text-gray-500">|</span>
                     <span class="text-gray-700">Exibindo: <span id="filteredCount">0</span></span>
+                    <span class="text-gray-500">|</span>
+                    <span class="text-gray-700">Página: <span id="currentPageDisplay">1</span> de <span id="totalPagesDisplay">1</span></span>
                 </div>
             </div>
         </div>
 
         <!-- Lista de Perguntas -->
-        <div id="questionsList" class="space-y-4">
+        <div id="questionsList" class="space-y-4 mb-6">
             <div class="bg-white rounded-lg shadow p-6 text-center text-gray-500">
                 Clique em "Carregar Perguntas" para começar
             </div>
+        </div>
+
+        <!-- Paginação -->
+        <div id="paginationContainer" class="bg-white rounded-lg shadow-lg p-4 flex justify-center items-center gap-2 flex-wrap" style="display: none;">
+            <button id="prevBtn" onclick="goToPage(currentPage - 1)" class="page-btn">
+                ← Anterior
+            </button>
+            <div id="pageNumbers" class="flex gap-2 flex-wrap justify-center"></div>
+            <button id="nextBtn" onclick="goToPage(currentPage + 1)" class="page-btn">
+                Próxima →
+            </button>
         </div>
     </div>
 
@@ -166,6 +214,8 @@
         let questions = [];
         let filteredQuestions = [];
         let originalIndexHTML = '';
+        let currentPage = 1;
+        const questionsPerPage = 50;
 
         async function loadQuestions() {
             try {
@@ -178,8 +228,10 @@
                 if (match) {
                     questions = JSON.parse(match[1]);
                     filteredQuestions = [...questions];
+                    currentPage = 1;
                     updateCounts();
                     renderQuestions();
+                    renderPagination();
                     alert(`✅ ${questions.length} perguntas carregadas com sucesso!`);
                 } else {
                     alert('❌ Erro: Não foi possível encontrar o array de perguntas no index.html');
@@ -189,15 +241,28 @@
             }
         }
 
+        function getTotalPages() {
+            return Math.ceil(filteredQuestions.length / questionsPerPage);
+        }
+
+        function getCurrentPageQuestions() {
+            const startIndex = (currentPage - 1) * questionsPerPage;
+            const endIndex = startIndex + questionsPerPage;
+            return filteredQuestions.slice(startIndex, endIndex);
+        }
+
         function renderQuestions() {
             const container = document.getElementById('questionsList');
             
             if (filteredQuestions.length === 0) {
                 container.innerHTML = '<div class="bg-white rounded-lg shadow p-6 text-center text-gray-500">Nenhuma pergunta encontrada</div>';
+                document.getElementById('paginationContainer').style.display = 'none';
                 return;
             }
 
-            container.innerHTML = filteredQuestions.map((q, index) => {
+            const pageQuestions = getCurrentPageQuestions();
+            
+            container.innerHTML = pageQuestions.map((q) => {
                 const originalIndex = questions.indexOf(q);
                 const difficultyColors = {
                     easy: 'bg-green-100 text-green-800',
@@ -211,8 +276,8 @@
                 };
                 
                 return `
-                    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
-                        <div class="flex justify-between items-start mb-4">
+                    <div class="question-card bg-white rounded-lg shadow-lg p-6" onclick="editQuestion(${originalIndex})">
+                        <div class="flex justify-between items-start">
                             <div class="flex-1">
                                 <div class="flex items-center gap-2 mb-2">
                                     <span class="text-sm font-bold text-gray-500">#${originalIndex + 1}</span>
@@ -250,10 +315,7 @@
                             </div>
                             
                             <div class="flex flex-col gap-2 ml-4">
-                                <button onclick="editQuestion(${originalIndex})" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded text-sm font-semibold">
-                                    ✏️ Editar
-                                </button>
-                                <button onclick="deleteQuestion(${originalIndex})" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm font-semibold">
+                                <button onclick="event.stopPropagation(); deleteQuestion(${originalIndex})" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm font-semibold">
                                     🗑️ Deletar
                                 </button>
                             </div>
@@ -261,6 +323,68 @@
                     </div>
                 `;
             }).join('');
+
+            document.getElementById('paginationContainer').style.display = 'flex';
+        }
+
+        function renderPagination() {
+            const totalPages = getTotalPages();
+            const pageNumbersContainer = document.getElementById('pageNumbers');
+            
+            if (totalPages <= 1) {
+                document.getElementById('paginationContainer').style.display = 'none';
+                return;
+            }
+
+            // Atualizar displays
+            document.getElementById('currentPageDisplay').textContent = currentPage;
+            document.getElementById('totalPagesDisplay').textContent = totalPages;
+
+            // Atualizar botões anterior/próximo
+            document.getElementById('prevBtn').disabled = currentPage === 1;
+            document.getElementById('nextBtn').disabled = currentPage === totalPages;
+
+            // Gerar botões de número de página
+            let pageButtons = '';
+            
+            // Lógica para mostrar páginas relevantes
+            let startPage = Math.max(1, currentPage - 2);
+            let endPage = Math.min(totalPages, currentPage + 2);
+            
+            // Sempre mostrar primeira página
+            if (startPage > 1) {
+                pageButtons += `<button class="page-btn" onclick="goToPage(1)">1</button>`;
+                if (startPage > 2) {
+                    pageButtons += `<span class="px-2 text-gray-500">...</span>`;
+                }
+            }
+            
+            // Páginas do meio
+            for (let i = startPage; i <= endPage; i++) {
+                pageButtons += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+            }
+            
+            // Sempre mostrar última página
+            if (endPage < totalPages) {
+                if (endPage < totalPages - 1) {
+                    pageButtons += `<span class="px-2 text-gray-500">...</span>`;
+                }
+                pageButtons += `<button class="page-btn" onclick="goToPage(${totalPages})">${totalPages}</button>`;
+            }
+            
+            pageNumbersContainer.innerHTML = pageButtons;
+        }
+
+        function goToPage(page) {
+            const totalPages = getTotalPages();
+            if (page < 1 || page > totalPages) return;
+            
+            currentPage = page;
+            renderQuestions();
+            renderPagination();
+            
+            // Scroll suave para o topo
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function filterQuestions() {
@@ -279,8 +403,10 @@
                 return matchesSearch && matchesDifficulty;
             });
             
+            currentPage = 1; // Reset para primeira página ao filtrar
             updateCounts();
             renderQuestions();
+            renderPagination();
         }
 
         function updateCounts() {
