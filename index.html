@@ -473,8 +473,10 @@
     .welcome-screen.hidden { display: none; }
     .welcome-bg {
       position: absolute; inset: 0;
-      background: url('assets/images/welcome-bg.jpg') center top / cover no-repeat;
+      background: url('assets/images/welcome-bg-hd.jpg') center top / cover no-repeat;
       animation: welcomeBgZoom 20s ease-in-out infinite alternate;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
     }
     @media (max-aspect-ratio: 1/1) {
       .welcome-bg {
@@ -489,7 +491,49 @@
     }
     @keyframes welcomeBgZoom {
       0% { transform: scale(1); }
-      100% { transform: scale(1.05); }
+      100% { transform: scale(1.06); }
+    }
+    /* Partículas animadas na tela de início */
+    .welcome-particles {
+      position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 1;
+    }
+    .wp {
+      position: absolute;
+      border-radius: 50%;
+      animation: wpFloat linear infinite;
+      opacity: 0;
+    }
+    .wp.gold { background: radial-gradient(circle, #ffd700 0%, rgba(255,215,0,0) 70%); }
+    .wp.blue { background: radial-gradient(circle, #60c8ff 0%, rgba(96,200,255,0) 70%); }
+    .wp.white { background: radial-gradient(circle, #ffffff 0%, rgba(255,255,255,0) 70%); }
+    .wp.purple { background: radial-gradient(circle, #c084fc 0%, rgba(192,132,252,0) 70%); }
+    @keyframes wpFloat {
+      0%   { transform: translateY(0) translateX(0) scale(0.5); opacity: 0; }
+      10%  { opacity: 0.9; }
+      80%  { opacity: 0.6; }
+      100% { transform: translateY(-120vh) translateX(var(--drift)) scale(1.2); opacity: 0; }
+    }
+    /* Cristais flutuantes */
+    .welcome-crystal {
+      position: absolute; pointer-events: none; z-index: 1;
+      animation: crystalBob ease-in-out infinite alternate;
+      filter: drop-shadow(0 0 8px rgba(96,200,255,0.8));
+    }
+    @keyframes crystalBob {
+      0%   { transform: translateY(0) rotate(-3deg); }
+      100% { transform: translateY(-18px) rotate(3deg); }
+    }
+    /* Brilho pulsante no centro */
+    .welcome-glow {
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 60%; height: 55%;
+      background: radial-gradient(ellipse at 50% 30%, rgba(255,220,100,0.12) 0%, rgba(180,100,255,0.06) 50%, transparent 80%);
+      animation: glowPulse 3s ease-in-out infinite alternate;
+      pointer-events: none; z-index: 1;
+    }
+    @keyframes glowPulse {
+      0%   { opacity: 0.6; transform: translateX(-50%) scale(1); }
+      100% { opacity: 1; transform: translateX(-50%) scale(1.08); }
     }
     .welcome-content {
       position: relative; z-index: 2;
@@ -678,6 +722,15 @@
   <!-- WELCOME SCREEN -->
   <div id="welcomeScreen" class="welcome-screen">
     <div class="welcome-bg"></div>
+    <div class="welcome-glow"></div>
+    <div class="welcome-particles" id="welcomeParticles"></div>
+    <!-- Cristais flutuantes decorativos -->
+    <div class="welcome-crystal" style="left:4%;top:18%;font-size:2.2rem;animation-duration:3.1s;animation-delay:0s;">💎</div>
+    <div class="welcome-crystal" style="left:8%;top:45%;font-size:1.6rem;animation-duration:2.7s;animation-delay:0.5s;">🔷</div>
+    <div class="welcome-crystal" style="right:5%;top:22%;font-size:2rem;animation-duration:3.4s;animation-delay:0.8s;">💠</div>
+    <div class="welcome-crystal" style="right:9%;top:50%;font-size:1.5rem;animation-duration:2.5s;animation-delay:1.2s;">💎</div>
+    <div class="welcome-crystal" style="left:15%;top:8%;font-size:1.2rem;animation-duration:4s;animation-delay:0.3s;">✨</div>
+    <div class="welcome-crystal" style="right:16%;top:10%;font-size:1.1rem;animation-duration:3.8s;animation-delay:0.9s;">⭐</div>
     <div class="welcome-content">
       <h1>NefroQuest</h1>
       <div class="welcome-sub">— Ascension —</div>
@@ -1325,6 +1378,28 @@
 
     // ============ WELCOME SCREEN LOGIC ============
     function initWelcomeScreen() {
+      // Gerar partículas flutuantes animadas
+      (function spawnParticles() {
+        const container = document.getElementById('welcomeParticles');
+        if (!container) return;
+        const colors = ['gold','blue','white','purple'];
+        const sizes = [6,8,10,12,16,20];
+        const count = 28;
+        for (let i = 0; i < count; i++) {
+          const p = document.createElement('div');
+          const color = colors[Math.floor(Math.random()*colors.length)];
+          const size = sizes[Math.floor(Math.random()*sizes.length)];
+          const left = Math.random()*100;
+          const delay = Math.random()*12;
+          const duration = 6 + Math.random()*10;
+          const drift = (Math.random()-0.5)*120;
+          p.className = `wp ${color}`;
+          p.style.cssText = `width:${size}px;height:${size}px;left:${left}%;bottom:-${size}px;` +
+            `--drift:${drift}px;animation-duration:${duration}s;animation-delay:${delay}s;`;
+          container.appendChild(p);
+        }
+      })();
+
       const save = loadGame();
       const stats = getGameStats();
       const board = boardGet();
@@ -2504,7 +2579,8 @@
       for(let i=0;i<topics.length;i++){
         const t=topics[i];
         const d=t.d==='hard'?Math.min(12,8+Math.floor(i/30)):Math.min(12,4+Math.floor(i/25));
-        deck.push({id:i+1,d,q:t.q,o:t.o,a:t.a,e:t.e,r:t.refs||t.r||[]});
+        // _d preserva a dificuldade original ('medium' ou 'hard') para o shuffleQueue
+        deck.push({id:i+1,d,_d:t.d||'medium',q:t.q,o:t.o,a:t.a,e:t.e,r:t.refs||t.r||[]});
       }
       return deck;
     }
@@ -2812,8 +2888,7 @@
     }
 
     function shuffleQueue(){
-      // Embaralhar todas as questões de forma verdadeiramente aleatória (Fisher-Yates)
-      // Sem agrupamento por dificuldade para evitar repetição de padrões
+      // Fisher-Yates shuffle
       function shuffle(arr) {
         const a = [...arr];
         for(let i=a.length-1;i>0;i--){
@@ -2822,8 +2897,13 @@
         }
         return a;
       }
-      // Embaralhar todas as 1000 questões juntas
-      state.queue = shuffle(questionBank);
+      // Separar por dificuldade (usando o campo 'd' original da questão)
+      const medium = questionBank.filter(q => q._d === 'medium');
+      const hard   = questionBank.filter(q => q._d === 'hard');
+      // Embaralhar cada grupo separadamente (aleatoriedade dentro da faixa)
+      // Montar queue: medium primeiro (mais fácil), depois hard (mais difícil)
+      // Isso garante dificuldade crescente com aleatoriedade total dentro de cada faixa
+      state.queue = [...shuffle(medium), ...shuffle(hard)];
       state.idx=0;
     }
 
