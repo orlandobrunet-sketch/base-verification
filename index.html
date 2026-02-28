@@ -2812,18 +2812,18 @@
     }
 
     function shuffleQueue(){
-      // Separar por dificuldade (valores numéricos: 4-6=fácil, 7-8=médio, 9-12=difícil)
-      const easy = questionBank.filter(q => q.d <= 6);
-      const medium = questionBank.filter(q => q.d >= 7 && q.d <= 8);
-      const hard = questionBank.filter(q => q.d >= 9);
-      // Shuffle cada grupo
+      // Embaralhar todas as questões de forma verdadeiramente aleatória (Fisher-Yates)
+      // Sem agrupamento por dificuldade para evitar repetição de padrões
       function shuffle(arr) {
         const a = [...arr];
-        for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+        for(let i=a.length-1;i>0;i--){
+          const j=Math.floor(Math.random()*(i+1));
+          [a[i],a[j]]=[a[j],a[i]];
+        }
         return a;
       }
-      // Montar queue: fácil primeiro, depois médio, depois difícil
-      state.queue = [...shuffle(easy), ...shuffle(medium), ...shuffle(hard)];
+      // Embaralhar todas as 1000 questões juntas
+      state.queue = shuffle(questionBank);
       state.idx=0;
     }
 
