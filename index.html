@@ -465,50 +465,42 @@
     /* WELCOME SCREEN */
     .welcome-screen {
       position: fixed; inset: 0; z-index: 500;
-      background: #060a18;
-      display: flex; align-items: flex-end; justify-content: center;
-      animation: fadeIn 0.5s;
+      background: radial-gradient(ellipse at 50% 0%, #0d1a3a 0%, #060a18 60%, #030610 100%);
+      display: flex; align-items: center; justify-content: center;
+      animation: fadeIn 0.8s;
       overflow: hidden;
     }
     .welcome-screen.hidden { display: none; }
+
+    /* Fundo sem imagem — apenas gradiente e efeitos */
     .welcome-bg {
-      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-      background: url('assets/images/welcome-bg-opt.jpg') center top / cover no-repeat;
-      animation: welcomeBgZoom 20s ease-in-out infinite alternate;
-      transform-origin: center center;
-      will-change: transform;
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(100,60,180,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 20% 80%, rgba(30,80,160,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(30,80,160,0.10) 0%, transparent 60%);
+      pointer-events: none;
     }
-    @media (max-aspect-ratio: 1/1) {
-      .welcome-bg {
-        background-image: url('assets/images/welcome-bg-portrait-opt.jpg');
-        background-position: center top;
-      }
-    }
-    .welcome-bg::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-      height: 28%;
-      background: linear-gradient(to top,
-        rgba(6,10,24,1) 0%,
-        rgba(6,10,24,0.9) 40%,
-        rgba(6,10,24,0.4) 75%,
-        rgba(6,10,24,0.0) 100%
-      );
-    }
-    /* Gradiente superior suave para escurecer topo */
+
+    /* Grade sutil no fundo — estilo mapa medieval */
     .welcome-bg::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0;
-      height: 18%;
-      background: linear-gradient(to bottom,
-        rgba(6,10,24,0.35) 0%,
-        rgba(6,10,24,0.0) 100%
-      );
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(60,100,180,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(60,100,180,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
     }
-    @keyframes welcomeBgZoom {
-      0%   { transform: scale(1.0) translateY(0px); }
-      50%  { transform: scale(1.05) translateY(-8px); }
-      100% { transform: scale(1.08) translateY(4px); }
+
+    /* Linha decorativa horizontal */
+    .welcome-bg::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(180,150,60,0.3), rgba(255,215,0,0.5), rgba(180,150,60,0.3), transparent);
     }
-    /* Partículas animadas na tela de início */
+
+    /* Partículas — pontos de luz flutuantes discretos */
     .welcome-particles {
       position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 1;
     }
@@ -518,57 +510,104 @@
       animation: wpFloat linear infinite;
       opacity: 0;
     }
-    .wp.gold { background: radial-gradient(circle, #ffd700 0%, rgba(255,215,0,0) 70%); }
-    .wp.blue { background: radial-gradient(circle, #60c8ff 0%, rgba(96,200,255,0) 70%); }
-    .wp.white { background: radial-gradient(circle, #ffffff 0%, rgba(255,255,255,0) 70%); }
-    .wp.purple { background: radial-gradient(circle, #c084fc 0%, rgba(192,132,252,0) 70%); }
+    .wp.gold  { background: radial-gradient(circle, rgba(255,215,0,0.9) 0%, rgba(255,215,0,0) 70%); }
+    .wp.blue  { background: radial-gradient(circle, rgba(96,168,255,0.8) 0%, rgba(96,168,255,0) 70%); }
+    .wp.white { background: radial-gradient(circle, rgba(220,230,255,0.7) 0%, rgba(220,230,255,0) 70%); }
     @keyframes wpFloat {
-      0%   { transform: translateY(0) translateX(0) scale(0.5); opacity: 0; }
-      10%  { opacity: 0.9; }
-      80%  { opacity: 0.6; }
-      100% { transform: translateY(-120vh) translateX(var(--drift)) scale(1.2); opacity: 0; }
+      0%   { transform: translateY(0) translateX(0); opacity: 0; }
+      8%   { opacity: 0.7; }
+      85%  { opacity: 0.3; }
+      100% { transform: translateY(-100vh) translateX(var(--drift)); opacity: 0; }
     }
-    /* Cristais flutuantes */
-    .welcome-crystal {
-      position: absolute; pointer-events: none; z-index: 1;
-      animation: crystalBob ease-in-out infinite alternate;
-      filter: drop-shadow(0 0 8px rgba(96,200,255,0.8));
-    }
-    @keyframes crystalBob {
-      0%   { transform: translateY(0) rotate(-3deg); }
-      100% { transform: translateY(-18px) rotate(3deg); }
-    }
-    /* Brilho pulsante no centro */
+
+    /* Brilho central suave pulsante */
     .welcome-glow {
-      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-      width: 60%; height: 55%;
-      background: radial-gradient(ellipse at 50% 30%, rgba(255,220,100,0.12) 0%, rgba(180,100,255,0.06) 50%, transparent 80%);
-      animation: glowPulse 3s ease-in-out infinite alternate;
+      position: absolute; top: 15%; left: 50%; transform: translateX(-50%);
+      width: 50%; height: 40%;
+      background: radial-gradient(ellipse at 50% 40%, rgba(200,170,80,0.08) 0%, rgba(100,60,200,0.04) 50%, transparent 75%);
+      animation: glowPulse 4s ease-in-out infinite alternate;
       pointer-events: none; z-index: 1;
     }
     @keyframes glowPulse {
-      0%   { opacity: 0.6; transform: translateX(-50%) scale(1); }
-      100% { opacity: 1; transform: translateX(-50%) scale(1.08); }
+      0%   { opacity: 0.5; transform: translateX(-50%) scale(0.95); }
+      100% { opacity: 1;   transform: translateX(-50%) scale(1.05); }
     }
+
+    /* Cristais removidos — sem elemento .welcome-crystal */
+
+    /* TÍTULO PRINCIPAL */
     .welcome-content {
-      position: absolute; z-index: 2;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center; max-width: 520px; width: 92%; padding: 16px 24px 28px;
-      background: transparent;
-      border-radius: 0;
+      position: relative; z-index: 2;
+      text-align: center;
+      max-width: 560px; width: 94%;
+      padding: 0 20px;
+      display: flex; flex-direction: column; align-items: center; gap: 0;
     }
-    /* Animação removida para evitar delay no posicionamento dos botões */
+
+    /* Ornamento superior */
+    .welcome-ornament {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 10px; opacity: 0.7;
+    }
+    .welcome-ornament::before,
+    .welcome-ornament::after {
+      content: '';
+      flex: 1; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(180,150,60,0.6), transparent);
+      min-width: 40px;
+    }
+    .welcome-ornament span {
+      color: rgba(180,150,60,0.8); font-size: 0.7rem;
+      font-family: 'Cinzel', serif; letter-spacing: 4px; text-transform: uppercase;
+    }
+
+    /* Título NefroQuest */
     .welcome-content h1 {
-      display: none;
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1;
+      margin: 0 0 4px;
+      letter-spacing: 0.02em;
+      background: linear-gradient(180deg,
+        #fff8dc 0%,
+        #ffd700 20%,
+        #daa520 45%,
+        #b8860b 65%,
+        #ffd700 80%,
+        #fff8dc 100%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 18px rgba(255,215,0,0.45)) drop-shadow(0 2px 4px rgba(0,0,0,0.8));
+      animation: titleShimmer 4s ease-in-out infinite alternate, titleAppear 1s ease-out;
+      position: relative;
     }
+    @keyframes titleShimmer {
+      0%   { filter: drop-shadow(0 0 14px rgba(255,215,0,0.35)) drop-shadow(0 2px 4px rgba(0,0,0,0.8)); }
+      50%  { filter: drop-shadow(0 0 28px rgba(255,215,0,0.65)) drop-shadow(0 0 50px rgba(255,200,50,0.25)) drop-shadow(0 2px 4px rgba(0,0,0,0.8)); }
+      100% { filter: drop-shadow(0 0 18px rgba(255,215,0,0.45)) drop-shadow(0 2px 4px rgba(0,0,0,0.8)); }
+    }
+    @keyframes titleAppear {
+      0%   { opacity: 0; transform: translateY(-12px) scale(0.96); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Subtítulo Ascension */
     .welcome-content .welcome-sub {
-      display: none;
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.75rem, 2.2vw, 1.05rem);
+      letter-spacing: 0.55em;
+      text-transform: uppercase;
+      color: rgba(200,180,120,0.75);
+      margin: 0 0 20px;
+      animation: titleAppear 1.2s ease-out;
     }
-    .welcome-content .welcome-desc {
-      display: none;
-    }
+
+    .welcome-content .welcome-desc { display: none; }
     .welcome-stats {
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
       margin: 0 0 12px 0;
@@ -589,47 +628,72 @@
     .welcome-saved-info p:first-child {
       color: var(--gold) !important;
     }
-    .welcome-buttons { display: flex; flex-direction: row; gap: 10px; margin-top: 12px; justify-content: center; flex-wrap: wrap; }
-    .welcome-buttons .btn {
-      font-family: 'MedievalSharp', 'Cinzel', serif;
-      font-size: 0.9rem; padding: 13px 28px; letter-spacing: 2px;
-      text-transform: uppercase; min-width: 150px;
-      border-radius: 8px; position: relative;
-      transition: all 0.4s ease;
+    /* Botões da welcome screen — estilo consistente com tela de perguntas */
+    .welcome-buttons {
+      display: flex; flex-direction: row; gap: 8px;
+      margin-top: 14px; justify-content: center; flex-wrap: wrap;
+      width: 100%;
     }
+    .welcome-buttons .btn {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem; padding: 11px 20px;
+      letter-spacing: 1px; text-transform: uppercase;
+      min-width: 130px; border-radius: 8px;
+      position: relative; transition: all 0.2s;
+      /* Mesmo estilo base do .btn da tela de perguntas */
+      border: 2px solid #2a4a7a;
+      background: linear-gradient(180deg, #1e3a5e 0%, #152a48 50%, #0e1e38 100%);
+      color: #c8d8f0; font-weight: 700;
+      box-shadow: 0 3px 0 #0a1020, 0 4px 10px rgba(0,0,0,0.4);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+    }
+    .welcome-buttons .btn:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 0 #0a1020, 0 6px 16px rgba(255,215,0,0.15);
+      color: #fff;
+    }
+    .welcome-buttons .btn:active { transform: translateY(1px); box-shadow: 0 1px 0 #0a1020; }
+
+    /* Botão Continuar — destaque verde esmeralda */
     .welcome-buttons .btn.continue-btn {
-      background: linear-gradient(180deg, #5bc4a0 0%, #2a9d6e 40%, #1a7a52 100%);
-      border: 2px solid #b8a050;
-      color: #fff; font-weight: 700;
-      box-shadow: 0 3px 0 #0f5a3a, 0 4px 12px rgba(52,211,153,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
-      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+      background: linear-gradient(180deg, #1a5c42 0%, #124433 50%, #0c3026 100%);
+      border-color: #1f7b63;
+      color: #6ee7b7;
     }
     .welcome-buttons .btn.continue-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 0 #0f5a3a, 0 8px 20px rgba(52,211,153,0.4), inset 0 1px 0 rgba(255,255,255,0.3);
+      border-color: #34d399;
+      box-shadow: 0 5px 0 #061a12, 0 6px 16px rgba(52,211,153,0.2);
+      color: #a7f3d0;
     }
+
+    /* Botão Nova Jornada — dourado (destaque principal) */
     .welcome-buttons .btn.gold {
-      background: linear-gradient(180deg, #6db8e6 0%, #3a8fd4 40%, #2670a8 100%) !important;
-      border: 2px solid #b8a050 !important;
-      color: #fff !important; font-weight: 700;
-      box-shadow: 0 3px 0 #1a4f7a, 0 4px 12px rgba(58,143,212,0.3), inset 0 1px 0 rgba(255,255,255,0.2) !important;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+      background: linear-gradient(180deg, #ffd700 0%, #daa520 50%, #b8860b 100%) !important;
+      border: 2px solid #8b6914 !important;
+      color: #1a0e00 !important;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.25) !important;
+      box-shadow: 0 3px 0 #7a5a00, 0 4px 10px rgba(218,165,32,0.35) !important;
     }
     .welcome-buttons .btn.gold:hover {
+      box-shadow: 0 5px 0 #7a5a00, 0 6px 18px rgba(255,215,0,0.45) !important;
       transform: translateY(-2px);
-      box-shadow: 0 5px 0 #1a4f7a, 0 8px 20px rgba(58,143,212,0.4), inset 0 1px 0 rgba(255,255,255,0.3) !important;
     }
+
+    /* Botões secundários — igual ao .btn base */
     .welcome-buttons .btn.sec {
-      background: linear-gradient(180deg, #6db8e6 0%, #3a8fd4 40%, #2670a8 100%) !important;
-      border: 2px solid #b8a050 !important;
-      color: #fff !important; font-weight: 700;
-      box-shadow: 0 3px 0 #1a4f7a, 0 4px 12px rgba(58,143,212,0.3), inset 0 1px 0 rgba(255,255,255,0.2) !important;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+      background: linear-gradient(180deg, #1a2a45 0%, #121e35 50%, #0c1628 100%) !important;
+      border-color: #243858 !important;
+      color: #8aa8cc !important;
+      box-shadow: 0 2px 0 #060c18, 0 3px 8px rgba(0,0,0,0.35) !important;
     }
     .welcome-buttons .btn.sec:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 0 #1a4f7a, 0 8px 20px rgba(58,143,212,0.4), inset 0 1px 0 rgba(255,255,255,0.3) !important;
+      border-color: var(--gold) !important;
+      color: #c8d8f0 !important;
+      transform: translateY(-1px);
+      box-shadow: 0 3px 0 #060c18, 0 5px 14px rgba(255,215,0,0.12) !important;
     }
+
     @media (max-width: 500px) {
       .welcome-buttons { flex-direction: column; }
       .welcome-buttons .btn { min-width: unset; width: 100%; }
@@ -742,20 +806,11 @@
     <div class="welcome-bg"></div>
     <div class="welcome-glow"></div>
     <div class="welcome-particles" id="welcomeParticles"></div>
-    <!-- Cristais flutuantes decorativos -->
-    <div class="welcome-crystal" style="left:4%;top:18%;font-size:2.2rem;animation-duration:3.1s;animation-delay:0s;">💎</div>
-    <div class="welcome-crystal" style="left:8%;top:45%;font-size:1.6rem;animation-duration:2.7s;animation-delay:0.5s;">🔷</div>
-    <div class="welcome-crystal" style="right:5%;top:22%;font-size:2rem;animation-duration:3.4s;animation-delay:0.8s;">💠</div>
-    <div class="welcome-crystal" style="right:9%;top:50%;font-size:1.5rem;animation-duration:2.5s;animation-delay:1.2s;">💎</div>
-    <div class="welcome-crystal" style="left:15%;top:8%;font-size:1.2rem;animation-duration:4s;animation-delay:0.3s;">✨</div>
-    <div class="welcome-crystal" style="right:16%;top:10%;font-size:1.1rem;animation-duration:3.8s;animation-delay:0.9s;">⭐</div>
     <div class="welcome-content">
+      <!-- Ornamento superior -->
+      <div class="welcome-ornament"><span>&#10022; Reino dos Néfrons &#10022;</span></div>
       <h1>NefroQuest</h1>
-      <div class="welcome-sub">— Ascension —</div>
-      <p class="welcome-desc" style="color:#b0c4e8;font-size:0.9rem;line-height:1.6;margin-bottom:16px;">
-        Embarque numa jornada RPG pelo Reino Sombrio do Néfron.<br>
-        Responda questões de nefrologia, evolua seu personagem e derrote o Arqui-Nefromante!
-      </p>
+      <div class="welcome-sub">Ascension</div>
       <div id="welcomeStats" class="welcome-stats">
         <div class="welcome-stat"><span class="ws-val" id="wsBestScore">0</span><span class="ws-lbl">Recorde</span></div>
         <div class="welcome-stat"><span class="ws-val" id="wsGamesPlayed">0</span><span class="ws-lbl">Partidas</span></div>
@@ -998,46 +1053,94 @@
     // Pre-load all SFX
     Object.values(SFX).forEach(a => { a.load(); a.volume = 0.5; });
     
-    // ============ MÚSICA DA TELA DE BOAS-VINDAS ============
+    // ============ MÚSICA DA TELA DE BOAS-VINDAS (crossfade duplo-buffer) ============
     const WELCOME_MUSIC_URL = 'assets/audio/welcome-theme.mp3';
     const WELCOME_MUSIC_VOL = 0.30;
-    const welcomeMusic = new Audio(WELCOME_MUSIC_URL);
-    welcomeMusic.loop = true;
-    welcomeMusic.volume = WELCOME_MUSIC_VOL;
-    welcomeMusic.preload = 'auto';
-    welcomeMusic.load();
+    const WELCOME_XFADE = 2.5; // segundos de crossfade
+    const WELCOME_DURATION = 30.77; // duração real do arquivo em segundos
+
+    // Dois buffers para crossfade sem corte
+    const wmA = new Audio(WELCOME_MUSIC_URL);
+    const wmB = new Audio(WELCOME_MUSIC_URL);
+    wmA.preload = 'auto'; wmB.preload = 'auto';
+    wmA.volume = WELCOME_MUSIC_VOL; wmB.volume = 0;
+    wmA.load(); wmB.load();
+
     let welcomeMusicStarted = false;
+    let wmActive = wmA; // buffer ativo
+    let wmNext   = wmB; // buffer em espera
+    let wmXfadeTimer = null;
+    let wmXfadeRAF = null;
+
+    function wmScheduleXfade() {
+      // Agenda o crossfade para WELCOME_XFADE segundos antes do fim
+      const remaining = WELCOME_DURATION - wmActive.currentTime - WELCOME_XFADE;
+      if (wmXfadeTimer) clearTimeout(wmXfadeTimer);
+      wmXfadeTimer = setTimeout(() => {
+        if (!welcomeMusicStarted || !musicEnabled) return;
+        // Prepara o próximo buffer
+        wmNext.currentTime = 0;
+        wmNext.volume = 0;
+        wmNext.play().catch(() => {});
+        // Crossfade equal-power
+        const steps = 60;
+        const stepMs = (WELCOME_XFADE * 1000) / steps;
+        let s = 0;
+        if (wmXfadeRAF) clearInterval(wmXfadeRAF);
+        wmXfadeRAF = setInterval(() => {
+          s++;
+          const t = s / steps;
+          const volOut = WELCOME_MUSIC_VOL * Math.cos(t * Math.PI / 2);
+          const volIn  = WELCOME_MUSIC_VOL * Math.sin(t * Math.PI / 2);
+          wmActive.volume = Math.max(0, volOut);
+          wmNext.volume   = Math.min(WELCOME_MUSIC_VOL, volIn);
+          if (s >= steps) {
+            clearInterval(wmXfadeRAF);
+            wmActive.pause();
+            wmActive.currentTime = 0;
+            wmActive.volume = WELCOME_MUSIC_VOL;
+            // Troca os buffers
+            const tmp = wmActive; wmActive = wmNext; wmNext = tmp;
+            // Agenda o próximo crossfade
+            wmScheduleXfade();
+          }
+        }, stepMs);
+      }, Math.max(0, remaining * 1000));
+    }
 
     function startWelcomeMusic() {
       if (!musicEnabled || welcomeMusicStarted) return;
-      welcomeMusic.currentTime = 0;
-      welcomeMusic.volume = WELCOME_MUSIC_VOL;
-      welcomeMusic.play().then(() => {
+      wmActive.currentTime = 0;
+      wmActive.volume = WELCOME_MUSIC_VOL;
+      wmActive.play().then(() => {
         welcomeMusicStarted = true;
+        wmScheduleXfade();
       }).catch(() => {});
     }
 
     function stopWelcomeMusic(fadeOut) {
       if (!welcomeMusicStarted) return;
+      if (wmXfadeTimer) { clearTimeout(wmXfadeTimer); wmXfadeTimer = null; }
+      if (wmXfadeRAF)   { clearInterval(wmXfadeRAF);  wmXfadeRAF = null; }
       if (!fadeOut) {
-        welcomeMusic.pause();
-        welcomeMusic.currentTime = 0;
+        wmA.pause(); wmA.currentTime = 0; wmA.volume = WELCOME_MUSIC_VOL;
+        wmB.pause(); wmB.currentTime = 0; wmB.volume = 0;
         welcomeMusicStarted = false;
         return;
       }
       // Fade-out suave em 600ms
-      const startVol = welcomeMusic.volume;
+      const startVol = wmActive.volume;
       const steps = 20;
       const stepTime = 600 / steps;
       let step = 0;
       const fadeInterval = setInterval(() => {
         step++;
-        welcomeMusic.volume = Math.max(0, startVol * (1 - step / steps));
+        wmActive.volume = Math.max(0, startVol * (1 - step / steps));
+        wmNext.volume   = Math.max(0, wmNext.volume * (1 - step / steps));
         if (step >= steps) {
           clearInterval(fadeInterval);
-          welcomeMusic.pause();
-          welcomeMusic.currentTime = 0;
-          welcomeMusic.volume = WELCOME_MUSIC_VOL;
+          wmA.pause(); wmA.currentTime = 0; wmA.volume = WELCOME_MUSIC_VOL;
+          wmB.pause(); wmB.currentTime = 0; wmB.volume = 0;
           welcomeMusicStarted = false;
         }
       }, stepTime);
@@ -1425,10 +1528,7 @@
             <img src="${newImage}" style="width:100%;height:100%;object-fit:cover;" alt="${newTitle}">
           </div>
           <h3 style="color:var(--ok);margin-bottom:8px;font-size:1.3rem;">${newTitle}</h3>
-          <p style="font-size:0.95rem;line-height:1.6;color:var(--txt);margin-bottom:8px;padding:0 20px;">
-            ${text}
-          </p>
-          ${loreText}
+          ${loreText || `<em style="color:#a0aec0;font-size:0.85rem;display:block;margin:12px 20px;font-style:italic;">${text}</em>`}
           <button class="btn gold" onclick="this.closest('.modal').remove()">Continuar Jornada</button>
         </div>
       `;
@@ -1864,17 +1964,33 @@
     }
 
     const itemIcons = {
-            'Estetoscópio Básico': 'assets/images/estetoscopio_basico.png',
-            'Luvas de Látex': 'assets/images/luvas_latex.png',
-            'Termômetro Digital': 'assets/images/termometro_digital.png',
-            'Prancheta Clínica': 'assets/images/prancheta_clinica.png',
-            'Avental Protetor': 'assets/images/avental_protetor.png',
-            'Bisturi do Plantão': 'assets/images/bisturi_plantao.png',
-            'Estilete Tubular': 'assets/images/estilete_tubular.png',
-            'Elmo do Filtrador': 'assets/images/elmo_filtrador.png',
-            'Cetro do Néfron': 'assets/images/cetro_nefron.png',
-            'Amuleto do Rim': 'assets/images/amuleto_rim.png'
-        };
+      // Armas
+      'Bisturi de Plantão':            'assets/items/caneta_interno.jpg',
+      'Lâmina da Alça':                'assets/items/lamina_alca.jpg',
+      'Estilete Tubular':              'assets/images/estilete_tubular.png',
+      'Lança Glomerular':              'assets/items/lanca_glomerular.jpg',
+      'Espada Nefroprotetora':         'assets/items/espada_nefroprotetora.jpg',
+      'Excalibur do Néfron':           'assets/items/excalibur_nefron.jpg',
+      'Cetro do Néfron Eterno':        'assets/images/cetro_nefron.png',
+      // Armaduras
+      'Jaleco de Plantão':             'assets/items/jaleco_plantao.jpg',
+      'Avental Protetor':              'assets/images/avental_protetor.png',
+      'Luvas de Látex Reforçadas':     'assets/images/luvas_latex.png',
+      'Manto Renocortical':            'assets/items/manto_renocortical.jpg',
+      'Égide Dialítica':               'assets/items/egide_dialitica.jpg',
+      'Armadura Primeva':              'assets/items/armadura_primeva.jpg',
+      'Armadura da Homeostase Perfeita':'assets/items/armadura_homeostase_perfeita.jpg',
+      // Relíquias
+      'Anel Albuminúrico':             'assets/items/anel_albuminurico.jpg',
+      'Estetoscópio Básico':           'assets/images/estetoscopio_basico.png',
+      'Prancheta Clínica':             'assets/images/prancheta_clinica.png',
+      'Termômetro Digital':            'assets/images/termometro_digital.png',
+      'Sigilo KDIGO':                  'assets/items/sigilo_kdigo.jpg',
+      'Orbe da Cistatina':             'assets/items/orbe_cistatina.jpg',
+      'Relíquia do Título':            'assets/items/reliquia_titulo.jpg',
+      'Amuleto do Rim Imortal':        'assets/images/amuleto_rim.png',
+      'Elmo do Filtrador Supremo':     'assets/images/elmo_filtrador.png'
+    };
     const itemDescriptions = {
       "Caneta do Interno": "A humilde caneta de um interno iniciante. Suas anotações são a primeira linha de defesa contra o caos renal.",
       "Lâmina da Alça": "Forjada na Alça de Henle, esta arma canaliza o poder da concentração urinária para atacar os males renais.",
@@ -3459,6 +3575,33 @@
             <div style="color:var(--txt-dim);font-size:0.85rem;margin-top:8px;">Desbloqueadas</div>
           </div>
           
+          <!-- Badges de Progressão -->
+          <div style="margin-bottom:20px;">
+            <div style="font-size:0.75rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Badges de Progressão</div>
+            <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;max-width:320px;margin:0 auto;">
+              ${BADGES.map(badge => {
+                const isUnlocked = state.correctTotal >= badge.required;
+                return `
+                  <div title="${badge.name} (${badge.required} acertos)" style="
+                    position:relative;aspect-ratio:1;border-radius:8px;overflow:hidden;
+                    border:2px solid ${isUnlocked ? 'var(--gold)' : '#2a4a7a'};
+                    box-shadow:${isUnlocked ? '0 0 12px rgba(255,215,0,0.4)' : 'none'};
+                  ">
+                    <img src="assets/badges/badge${badge.id}.jpg" alt="${badge.name}"
+                      style="width:100%;height:100%;object-fit:cover;
+                        filter:${isUnlocked ? 'none' : 'grayscale(60%) brightness(0.7)'};
+                        opacity:${isUnlocked ? '1' : '0.7'};
+                    ">
+                    ${!isUnlocked ? `<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.1rem;background:rgba(0,0,0,0.15);">🔒</div>` : ''}
+                  </div>
+                `;
+              }).join('')}
+            </div>
+            <div style="font-size:0.7rem;color:var(--txt-dim);margin-top:8px;">
+              ${BADGES.filter(b => state.correctTotal >= b.required).length}/${BADGES.length} badges desbloqueados
+            </div>
+          </div>
+
           <div style="display:grid;gap:10px;max-height:350px;overflow-y:auto;padding:4px;">
             ${ACHIEVEMENTS_LIST.map(ach => {
               const isUnlocked = unlocked.includes(ach.id);
