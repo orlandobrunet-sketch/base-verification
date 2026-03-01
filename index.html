@@ -1174,20 +1174,10 @@
     ::-webkit-scrollbar-thumb { background: #2a4a7a; border-radius: 3px; }
     ::-webkit-scrollbar-thumb:hover { background: #3a6a9a; }
 
-    /* Padding-right no painel direito somente no PC: reserva espaço para o dock fixo */
-    @media(min-width: 769px) {
+    /* ============ PC ONLY (min-width: 769px) ============ */
+    @media (min-width: 769px) {
+      /* Reserva espaço para o dock fixo (80px) + margem */
       .right { padding-right: 96px; }
-    }
-
-    /* RESPONSIVE */
-    @media(max-width: 1060px) {
-      .app { grid-template-columns: 1fr; }
-    }
-    @media(max-width: 768px) {
-      .app { grid-template-columns: 1fr; }
-      .char-grid { grid-template-columns: 1fr; }
-      .game-title h1 { font-size: 1.3rem; }
-      .hud { grid-template-columns: repeat(3, 1fr); }
     }
 
     /* ============ MOBILE RESPONSIVO ============ */
@@ -2223,43 +2213,31 @@
         if (toggle) toggle.classList.add('muted');
       }
 
-      // Tentar autoplay direto (funciona em alguns navegadores)
-      if (musicEnabled) {
+      // Música de boas-vindas: somente no PC (telas >= 769px)
+      const _isMobile = window.innerWidth < 769;
+
+      if (!_isMobile && musicEnabled) {
+        // Tentar autoplay direto (funciona em alguns navegadores desktop)
         startWelcomeMusic();
+
+        // Fallback: registrar listener de primeira interação para desbloquear autoplay
+        // Usa evento 'playing' para confirmar que a música realmente tocou antes de remover
+        const unlockAudio = () => {
+          if (!musicEnabled) { _removeUnlockListeners(); return; }
+          if (!welcomeMusicStarted) startWelcomeMusic();
+        };
+
+        const _removeUnlockListeners = () => {
+          document.removeEventListener('click', unlockAudio, true);
+          document.removeEventListener('keydown', unlockAudio, true);
+          wmTrack.removeEventListener('playing', _removeUnlockListeners);
+        };
+
+        wmTrack.addEventListener('playing', _removeUnlockListeners);
+        document.addEventListener('click', unlockAudio, true);
+        document.addEventListener('keydown', unlockAudio, true);
+        // NÃO registrar touchend — evita disparar no mobile
       }
-
-      // Fallback robusto: qualquer interação do usuário desbloqueia o autoplay.
-      // IMPORTANTE: NÃO verificar welcomeMusicStarted sincronamente após startWelcomeMusic()
-      // pois o catch() do play() é assíncrono - a variável fica true temporariamente mesmo
-      // quando o autoplay é bloqueado, causando remoção prematura dos listeners.
-      // Solução: usar o evento 'playing' do audio element para confirmar que a música tocou.
-
-      // Declarar unlockAudio ANTES de _removeUnlockListeners para evitar erro de hoisting
-      const unlockAudio = (e) => {
-        if (!musicEnabled) {
-          _removeUnlockListeners();
-          return;
-        }
-        // Tentar iniciar a música na primeira interação do usuário
-        // (startWelcomeMusic retorna cedo se já estiver tocando)
-        if (!welcomeMusicStarted) {
-          startWelcomeMusic();
-        }
-      };
-
-      const _removeUnlockListeners = () => {
-        document.removeEventListener('click', unlockAudio, true);
-        document.removeEventListener('touchend', unlockAudio, true);
-        document.removeEventListener('keydown', unlockAudio, true);
-        wmTrack.removeEventListener('playing', _removeUnlockListeners);
-      };
-
-      // Remover listeners quando a música REALMENTE começar a tocar (evento 'playing')
-      wmTrack.addEventListener('playing', _removeUnlockListeners);
-
-      document.addEventListener('click', unlockAudio, true);
-      document.addEventListener('touchend', unlockAudio, true);
-      document.addEventListener('keydown', unlockAudio, true);
     })();
 
     // ============ SISTEMA DE STREAK MULTIPLICADOR ============
@@ -5175,7 +5153,7 @@
             </div>
           </div>
 
-          <div style="display:grid;gap:10px;max-height:350px;overflow-y:auto;padding:4px;">
+          <div style="display:grid;gap:10px;padding:4px;">
             ${ACHIEVEMENTS_LIST.map(ach => {
               const isUnlocked = unlocked.includes(ach.id);
               return `
