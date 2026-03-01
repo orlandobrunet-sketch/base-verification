@@ -111,7 +111,7 @@
     }
 
     .left { padding: 14px; }
-    .right { padding: 16px; }
+    .right { padding: 16px; padding-right: 22px; /* compensa scrollbar */ }
 
     /* HERO SECTION */
     .hero {
@@ -532,19 +532,20 @@
       flex-direction: column;
       align-items: center;
       gap: 0;
-      /* Painel de vidro medieval */
+      /* Painel medieval — visual mais rico e contrastado */
       background: linear-gradient(180deg,
-        rgba(8,14,30,0.92) 0%,
-        rgba(12,20,42,0.96) 40%,
-        rgba(8,14,30,0.92) 100%);
-      border: 1px solid rgba(255,215,0,0.22);
-      border-radius: 22px;
-      padding: 10px 6px;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      box-shadow: 0 8px 40px rgba(0,0,0,0.7),
-                  0 0 0 1px rgba(255,255,255,0.04) inset,
-                  inset 0 1px 0 rgba(255,215,0,0.1);
+        rgba(6,10,24,0.97) 0%,
+        rgba(10,16,36,0.99) 50%,
+        rgba(6,10,24,0.97) 100%);
+      border: 1.5px solid rgba(255,215,0,0.45);
+      border-radius: 18px;
+      padding: 12px 8px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow:
+        0 0 0 1px rgba(255,215,0,0.12) inset,
+        0 12px 40px rgba(0,0,0,0.85),
+        0 0 24px rgba(255,215,0,0.08);
       animation: dockGlow 4s ease-in-out infinite;
     }
     .action-dock.hidden { display: none; }
@@ -577,29 +578,32 @@
       position: relative;
       width: 64px;
       height: 62px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.03);
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: linear-gradient(145deg, rgba(20,28,55,0.9), rgba(12,18,40,0.95));
       cursor: pointer;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 3px;
-      margin: 3px 0;
-      transition: transform 0.2s cubic-bezier(.34,1.56,.64,1),
-                  background 0.2s,
-                  border-color 0.2s,
-                  box-shadow 0.2s;
+      margin: 2px 0;
+      transition: transform 0.18s cubic-bezier(.34,1.56,.64,1),
+                  background 0.18s,
+                  border-color 0.18s,
+                  box-shadow 0.18s;
       overflow: visible;
       will-change: transform;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06);
     }
     .dock-btn:hover {
-      transform: scale(1.08);
-      background: rgba(255,255,255,0.07);
+      transform: scale(1.1);
+      background: linear-gradient(145deg, rgba(30,42,80,0.95), rgba(18,28,60,0.98));
+      border-color: rgba(255,215,0,0.5);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.7), 0 0 12px rgba(255,215,0,0.15);
       z-index: 1;
     }
-    .dock-btn:active { transform: translateX(0) scale(0.95); }
+    .dock-btn:active { transform: scale(0.94); }
     .dock-btn.disabled {
       opacity: 0.3;
       cursor: not-allowed;
@@ -656,51 +660,57 @@
     /* ── Variantes de cor por função ── */
 
     /* Forjar Item — bronze/cobre */
-    .dock-btn.forge-item svg { color: #f59e5a; filter: drop-shadow(0 0 5px rgba(245,158,90,0.6)); }
-    .dock-btn.forge-item .dock-label { color: #f59e5a; }
+    .dock-btn.forge-item { border-color: rgba(245,158,90,0.3); }
+    .dock-btn.forge-item svg { color: #fb923c; filter: drop-shadow(0 0 6px rgba(251,146,60,0.8)); }
+    .dock-btn.forge-item .dock-label { color: #fb923c; }
     .dock-btn.forge-item:hover {
-      border-color: rgba(245,158,90,0.5);
-      box-shadow: 0 0 16px rgba(245,158,90,0.25), inset 0 0 12px rgba(245,158,90,0.06);
+      border-color: rgba(251,146,60,0.7);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.7), 0 0 16px rgba(251,146,60,0.3);
     }
 
     /* Forjar Lendário — roxo épico */
-    .dock-btn.forge-legendary svg { color: #c084fc; filter: drop-shadow(0 0 6px rgba(192,132,252,0.7)); }
-    .dock-btn.forge-legendary .dock-label { color: #c084fc; }
+    .dock-btn.forge-legendary { border-color: rgba(192,132,252,0.3); }
+    .dock-btn.forge-legendary svg { color: #d8b4fe; filter: drop-shadow(0 0 7px rgba(216,180,254,0.9)); }
+    .dock-btn.forge-legendary .dock-label { color: #d8b4fe; }
     .dock-btn.forge-legendary:hover {
-      border-color: rgba(192,132,252,0.5);
-      box-shadow: 0 0 18px rgba(192,132,252,0.3), inset 0 0 12px rgba(192,132,252,0.07);
+      border-color: rgba(216,180,254,0.7);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.7), 0 0 18px rgba(192,132,252,0.4);
     }
 
     /* Abrir Baú — dourado */
-    .dock-btn.open-chest svg { color: #ffd700; filter: drop-shadow(0 0 7px rgba(255,215,0,0.8)); }
-    .dock-btn.open-chest .dock-label { color: #fbbf24; }
+    .dock-btn.open-chest { border-color: rgba(255,215,0,0.3); }
+    .dock-btn.open-chest svg { color: #ffd700; filter: drop-shadow(0 0 8px rgba(255,215,0,1)); }
+    .dock-btn.open-chest .dock-label { color: #fcd34d; }
     .dock-btn.open-chest:hover {
-      border-color: rgba(255,215,0,0.5);
-      box-shadow: 0 0 22px rgba(255,215,0,0.35), inset 0 0 14px rgba(255,215,0,0.08);
+      border-color: rgba(255,215,0,0.7);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.7), 0 0 22px rgba(255,215,0,0.45);
     }
 
     /* Leaderboard — azul safira */
-    .dock-btn.leaderboard svg { color: #60a5fa; filter: drop-shadow(0 0 5px rgba(96,165,250,0.6)); }
-    .dock-btn.leaderboard .dock-label { color: #60a5fa; }
+    .dock-btn.leaderboard { border-color: rgba(96,165,250,0.3); }
+    .dock-btn.leaderboard svg { color: #93c5fd; filter: drop-shadow(0 0 6px rgba(147,197,253,0.8)); }
+    .dock-btn.leaderboard .dock-label { color: #93c5fd; }
     .dock-btn.leaderboard:hover {
       border-color: rgba(96,165,250,0.5);
       box-shadow: 0 0 16px rgba(96,165,250,0.25), inset 0 0 12px rgba(96,165,250,0.06);
     }
 
     /* Stats — ciano */
-    .dock-btn.stats-btn svg { color: #22d3ee; filter: drop-shadow(0 0 5px rgba(34,211,238,0.6)); }
-    .dock-btn.stats-btn .dock-label { color: #22d3ee; }
+    .dock-btn.stats-btn { border-color: rgba(34,211,238,0.3); }
+    .dock-btn.stats-btn svg { color: #67e8f9; filter: drop-shadow(0 0 6px rgba(103,232,249,0.9)); }
+    .dock-btn.stats-btn .dock-label { color: #67e8f9; }
     .dock-btn.stats-btn:hover {
-      border-color: rgba(34,211,238,0.5);
-      box-shadow: 0 0 16px rgba(34,211,238,0.25), inset 0 0 12px rgba(34,211,238,0.06);
+      border-color: rgba(103,232,249,0.7);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.7), 0 0 16px rgba(34,211,238,0.35);
     }
 
     /* Conquistas — dourado troféu */
-    .dock-btn.achievements-btn svg { color: #ffd700; filter: drop-shadow(0 0 7px rgba(255,215,0,0.8)); }
-    .dock-btn.achievements-btn .dock-label { color: #fbbf24; }
+    .dock-btn.achievements-btn { border-color: rgba(255,215,0,0.3); }
+    .dock-btn.achievements-btn svg { color: #ffd700; filter: drop-shadow(0 0 8px rgba(255,215,0,1)); }
+    .dock-btn.achievements-btn .dock-label { color: #fcd34d; }
     .dock-btn.achievements-btn:hover {
-      border-color: rgba(255,215,0,0.5);
-      box-shadow: 0 0 22px rgba(255,215,0,0.35), inset 0 0 14px rgba(255,215,0,0.08);
+      border-color: rgba(255,215,0,0.7);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.7), 0 0 22px rgba(255,215,0,0.45);
     }
 
     /* Badge de custo */
@@ -1083,9 +1093,15 @@
 
     /* SOUND CONTROLS */
     .sound-controls {
-      position: fixed; top: 12px; right: 12px; z-index: 9999;
+      /* Fixo no topo direito do grid — não flutuante */
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 200;
       display: flex; flex-direction: row; gap: 4px; align-items: center;
     }
+    /* game-title precisa de position relative para o absolute funcionar */
+    .game-title { position: relative; }
     .sound-toggle {
       background: rgba(15,20,40,1); border: 2px solid #2a4a7a; border-radius: 8px;
       width: 30px; height: 30px; cursor: pointer; color: var(--txt-dim); font-size: 0.85rem;
@@ -1448,7 +1464,7 @@
         <div id="wsSavedTable" style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;">
           <div style="background:rgba(20,30,50,0.8);border:1px solid #2a4a7a;border-radius:8px;padding:7px 4px;text-align:center;">
             <span style="display:block;font-size:0.58rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:3px;">Personagem</span>
-            <strong id="wsSavedChar" style="display:block;color:var(--gold);font-size:0.78rem;line-height:1.2;">-</strong>
+            <strong id="wsSavedChar" style="display:block;color:var(--gold);font-size:0.68rem;line-height:1.2;">-</strong>
           </div>
           <div style="background:rgba(20,30,50,0.8);border:1px solid #2a4a7a;border-radius:8px;padding:7px 4px;text-align:center;">
             <span style="display:block;font-size:0.58rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:3px;">Nível</span>
@@ -1477,21 +1493,20 @@
     </div>
   </div>
 
-  <!-- SOUND CONTROLS -->
-  <div class="sound-controls">
-    <div id="musicToggle" class="sound-toggle" onclick="toggleMusic()" title="Música">
-      <span id="musicIcon">🎵</span>
-    </div>
-    <div id="soundToggle" class="sound-toggle" onclick="toggleSound()" title="SFX">
-      <span id="soundIcon">🔊</span>
-    </div>
-  </div>
-
   <main class="app hidden" id="mainApp">
     <!-- Title -->
     <div class="game-title">
       <h1>NefroQuest</h1>
       <div class="subtitle">— Ascension —</div>
+      <!-- SOUND CONTROLS — fixos no topo direito do game-title -->
+      <div class="sound-controls">
+        <div id="musicToggle" class="sound-toggle" onclick="toggleMusic()">
+          <span id="musicIcon">🎵</span>
+        </div>
+        <div id="soundToggle" class="sound-toggle" onclick="toggleSound()">
+          <span id="soundIcon">🔊</span>
+        </div>
+      </div>
     </div>
 
     <!-- LEFT PANEL -->
@@ -1583,8 +1598,7 @@
     <!-- Forjar Item -->
     <button id="forgeBtn"
       class="dock-btn forge-item"
-      data-tip="Forjar Item — 300 💰"
-      title="Forjar um equipamento (300 ouro)">
+      data-tip="Forjar Item — 300 💰">
       <span class="dock-cost" id="forgeCostBadge">300💰</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <path d="M14.5 2.5c0 1.5-1.5 3-1.5 3s-1.5-1.5-1.5-3a1.5 1.5 0 0 1 3 0z"/>
@@ -1600,8 +1614,7 @@
     <button id="legendaryForgeBtn"
       class="dock-btn forge-legendary"
       onclick="forgeLegendary()"
-      data-tip="Forjar Lendário — 1000 💰"
-      title="Forjar equipamento lendário (1000 ouro)">
+      data-tip="Forjar Lendário — 1000 💰">
       <span class="dock-cost purple" id="forgeLegCostBadge">1000💰</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
@@ -1617,8 +1630,7 @@
     <button id="chestBtn"
       class="dock-btn open-chest"
       onclick="openChest()"
-      data-tip="Abrir Baú de Artigos"
-      title="Abrir baú e desbloquear artigo">
+      data-tip="Abrir Baú de Artigos">
       <span class="dock-cost" id="chestCostBadge">50💰</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <path d="M5 8h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2z"/>
@@ -1635,8 +1647,7 @@
     <!-- Leaderboard -->
     <button id="boardBtn"
       class="dock-btn leaderboard"
-      data-tip="Leaderboard"
-      title="Ver ranking de jogadores">
+      data-tip="Leaderboard">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <rect x="2" y="14" width="5" height="8" rx="1"/>
         <rect x="9.5" y="9" width="5" height="13" rx="1"/>
@@ -1650,8 +1661,7 @@
     <button
       class="dock-btn stats-btn"
       onclick="showStatsModal()"
-      data-tip="Estatísticas"
-      title="Ver estatísticas de desempenho">
+      data-tip="Estatísticas">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <line x1="18" y1="20" x2="18" y2="10"/>
         <line x1="12" y1="20" x2="12" y2="4"/>
@@ -1665,8 +1675,7 @@
     <button
       class="dock-btn achievements-btn"
       onclick="showAchievementsModal()"
-      data-tip="Conquistas"
-      title="Ver conquistas e badges">
+      data-tip="Conquistas">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <path d="M6 9H3.5a2.5 2.5 0 0 0 0 5H6"/>
         <path d="M18 9h2.5a2.5 2.5 0 0 1 0 5H18"/>
@@ -1898,11 +1907,11 @@
     const WM_FADEOUT_MS  = 4000;  // fade-out de 4 segundos antes do fim
     const WM_LOOP_GAP_MS = 800;   // pausa mínima entre loops após fade-out
 
-    const wmTrack = new Audio(WELCOME_MUSIC_URL);
-    wmTrack.preload = 'auto';
+    const wmTrack = new Audio();
+    wmTrack.preload = 'none';  // não pré-carrega — evita buffer com volume errado
     wmTrack.loop = false;
-    wmTrack.volume = 0;
-    wmTrack.load();
+    wmTrack.volume = 0;        // volume 0 antes de qualquer coisa
+    wmTrack.src = WELCOME_MUSIC_URL; // src após volume=0 para garantir ordem
 
     let welcomeMusicStarted = false;
     let _wmFadeInterval = null;
@@ -1912,7 +1921,7 @@
     let _wmStopRequested = false;
 
     function _wmClearTimers() {
-      if (_wmFadeInterval)    { clearInterval(_wmFadeInterval);    _wmFadeInterval = null; }
+      if (_wmFadeInterval)    { if (_wmFadeInterval.cancel) _wmFadeInterval.cancel(); else clearInterval(_wmFadeInterval); _wmFadeInterval = null; }
       if (_wmFadeOutInterval) { clearInterval(_wmFadeOutInterval); _wmFadeOutInterval = null; }
       if (_wmLoopTimeout)     { clearTimeout(_wmLoopTimeout);      _wmLoopTimeout = null; }
       if (_wmFadeOutTimeout)  { clearTimeout(_wmFadeOutTimeout);   _wmFadeOutTimeout = null; }
@@ -1921,19 +1930,25 @@
     // Fade-in suave usando curva ease-out (raiz quadrada) para soar natural
     function _wmFadeIn(onDone) {
       wmTrack.volume = 0;
-      const steps = Math.round(WM_FADEIN_MS / 30);
-      let step = 0;
-      _wmFadeInterval = setInterval(() => {
-        step++;
-        const t = step / steps;
-        // curva ease-out: sobe rápido no início, desacelera no fim
-        wmTrack.volume = Math.min(WELCOME_MUSIC_VOL, WELCOME_MUSIC_VOL * Math.sqrt(t));
-        if (step >= steps) {
-          clearInterval(_wmFadeInterval); _wmFadeInterval = null;
+      const startTime = performance.now();
+      let rafId = null;
+      function tick(now) {
+        if (_wmStopRequested) { if (rafId) cancelAnimationFrame(rafId); _wmFadeInterval = null; return; }
+        const elapsed = now - startTime;
+        const t = Math.min(1, elapsed / WM_FADEIN_MS);
+        // curva ease-out sqrt: sobe rápido no início, desacelera no fim
+        wmTrack.volume = WELCOME_MUSIC_VOL * Math.sqrt(t);
+        if (t < 1) {
+          rafId = requestAnimationFrame(tick);
+          _wmFadeInterval = { cancel: () => cancelAnimationFrame(rafId) };
+        } else {
           wmTrack.volume = WELCOME_MUSIC_VOL;
+          _wmFadeInterval = null;
           if (onDone) onDone();
         }
-      }, 30);
+      }
+      rafId = requestAnimationFrame(tick);
+      _wmFadeInterval = { cancel: () => cancelAnimationFrame(rafId) };
     }
 
     // Fade-out suave usando curva ease-in (quadrática) para soar natural
@@ -1994,28 +2009,35 @@
 
     function _wmPlayOnce() {
       if (_wmStopRequested) return;
+      // Garantir volume 0 ANTES do play — aplicar duas vezes para contornar quirks de navegador
       wmTrack.volume = 0;
       wmTrack.currentTime = 0;
-      const playPromise = wmTrack.play();
-      if (playPromise !== undefined) {
-        playPromise.then(() => {
+      // Pequeno delay para garantir que o volume 0 seja respeitado antes do play
+      setTimeout(() => {
+        if (_wmStopRequested) return;
+        wmTrack.volume = 0; // reafirmar volume 0
+        const playPromise = wmTrack.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            wmTrack.volume = 0; // reafirmar após play() resolver
+            if (!_wmStopRequested) {
+              _wmFadeIn(() => {
+                if (!_wmStopRequested) _wmScheduleFadeOut();
+              });
+            }
+          }).catch(() => {
+            welcomeMusicStarted = false;
+            _wmStopRequested = false;
+          });
+        } else {
+          wmTrack.volume = 0;
           if (!_wmStopRequested) {
             _wmFadeIn(() => {
-              // Após fade-in completo, agendar o fade-out automático
               if (!_wmStopRequested) _wmScheduleFadeOut();
             });
           }
-        }).catch(() => {
-          welcomeMusicStarted = false;
-          _wmStopRequested = false;
-        });
-      } else {
-        if (!_wmStopRequested) {
-          _wmFadeIn(() => {
-            if (!_wmStopRequested) _wmScheduleFadeOut();
-          });
         }
-      }
+      }, 50);
     }
 
     // Evento 'ended' como safety net (caso o fade-out não tenha pausado a tempo)
