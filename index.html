@@ -65,7 +65,7 @@
       position: relative; z-index: 10;
       max-width: 1460px; margin: 0 auto; padding: 12px;
       display: grid; grid-template-columns: 380px 1fr 80px; gap: 14px;
-      min-height: 100vh; align-content: start;
+      align-content: start;
     }
     .app.hidden { display: none; }
 
@@ -1189,7 +1189,7 @@
         overflow-x: hidden;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
-        padding-bottom: 90px; /* espaço para o bottom dock */
+        padding-bottom: 72px; /* espaço para o bottom dock */
       }
 
       /* Layout principal: cresce conforme o conteúdo */
@@ -1470,6 +1470,16 @@
   <div class="bg-overlay"></div>
   <div class="particles" id="particles"></div>
 
+  <!-- SOUND CONTROLS — fora do main, sempre visível em PC -->
+  <div class="sound-controls" id="soundControlsBar">
+    <div id="musicToggle" class="sound-toggle" onclick="toggleMusic()">
+      <span id="musicIcon">🎵</span>
+    </div>
+    <div id="soundToggle" class="sound-toggle" onclick="toggleSound()">
+      <span id="soundIcon">🔊</span>
+    </div>
+  </div>
+
   <!-- WELCOME SCREEN -->
   <div id="welcomeScreen" class="welcome-screen">
     <div class="welcome-bg"></div>
@@ -1524,15 +1534,7 @@
     <div class="game-title">
       <h1>NefroQuest</h1>
       <div class="subtitle">— Ascension —</div>
-      <!-- SOUND CONTROLS — fixos no topo direito do game-title -->
-      <div class="sound-controls">
-        <div id="musicToggle" class="sound-toggle" onclick="toggleMusic()">
-          <span id="musicIcon">🎵</span>
-        </div>
-        <div id="soundToggle" class="sound-toggle" onclick="toggleSound()">
-          <span id="soundIcon">🔊</span>
-        </div>
-      </div>
+      <!-- sound-controls movido para fora do main -->
     </div>
 
     <!-- LEFT PANEL -->
@@ -1797,6 +1799,12 @@
         <path d="M12 18v3"/>
       </svg>
       <span class="mdock-label">Conquistas</span>
+    </button>
+
+    <!-- Música (mobile) -->
+    <button class="mdock-btn musica" id="mobileMusToggle" onclick="toggleMusic()" title="Música">
+      <span id="mobileMusIcon" style="font-size:1.2rem;line-height:1;">&#127925;</span>
+      <span class="mdock-label">Música</span>
     </button>
 
   </div><!-- /mobile-bottom-dock -->
@@ -2215,8 +2223,10 @@
       const icon = document.getElementById('musicIcon');
       const label = document.getElementById('musicLabel');
       const toggle = document.getElementById('musicToggle');
+      const mobileIcon = document.getElementById('mobileMusIcon');
       if (musicEnabled) {
-        icon.textContent = '🎵'; if(label) label.textContent = 'Música'; toggle.classList.remove('muted');
+        if(icon) icon.textContent = '🎵'; if(label) label.textContent = 'Música'; if(toggle) toggle.classList.remove('muted');
+        if(mobileIcon) mobileIcon.textContent = '🎵';
         // Tocar música correta conforme a tela ativa
         const ws = document.getElementById('welcomeScreen');
         if (ws && !ws.classList.contains('hidden')) {
@@ -2225,7 +2235,8 @@
           startBgMusic();
         }
       } else {
-        icon.textContent = '🔇'; if(label) label.textContent = 'Mudo'; toggle.classList.add('muted');
+        if(icon) icon.textContent = '🔇'; if(label) label.textContent = 'Mudo'; if(toggle) toggle.classList.add('muted');
+        if(mobileIcon) mobileIcon.textContent = '🔇';
         stopWelcomeMusic(false);
         stopBgMusic();
       }
