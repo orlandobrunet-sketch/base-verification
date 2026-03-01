@@ -1262,13 +1262,13 @@
       }
       .mobile-overlay.active { display: block; }
       .drawer-close-btn {
-        display: flex; align-items: center; justify-content: center; gap: 6px;
-        width: 100%; padding: 10px 14px;
+        display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+        width: auto; align-self: flex-start; padding: 7px 14px;
         background: linear-gradient(180deg, #ffd700 0%, #daa520 50%, #b8860b 100%);
         border: 2px solid #8b6914;
         border-radius: 8px;
         color: #1a0e00; font-family: 'Cinzel', serif;
-        font-size: 0.78rem; letter-spacing: 1px; font-weight: 700;
+        font-size: 0.75rem; letter-spacing: 1px; font-weight: 700;
         cursor: pointer; text-align: center; text-transform: uppercase;
         box-shadow: 0 3px 0 #7a5a00, 0 4px 10px rgba(218,165,32,0.4);
         margin-bottom: 8px;
@@ -4561,7 +4561,7 @@
       const modal = document.createElement('div');
       modal.className = 'modal show study-mode-popup';
       const _isMobile = window.innerWidth <= 768;
-      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;align-items:' + (_isMobile ? 'flex-start' : 'center') + ';justify-content:center;z-index:9999;backdrop-filter:blur(6px);overflow-y:' + (_isMobile ? 'auto' : 'hidden') + ';padding:' + (_isMobile ? '16px 12px 120px' : '0') + ';box-sizing:border-box;';
+modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;align-items:' + (_isMobile ? 'flex-start' : 'center') + ';justify-content:center;z-index:9999;backdrop-filter:blur(6px);overflow-y:auto;padding:' + (_isMobile ? '16px 12px 120px' : '20px 0') + ';box-sizing:border-box;';
 
       function renderAxesHTML() {
         return NEFRO_AXES.map(axis => {
@@ -4572,7 +4572,7 @@
           const color = axisData ? (axisData.accuracy >= 70 ? '#34d399' : axisData.accuracy >= 50 ? '#fbbf24' : '#fb7185') : 'var(--txt-dim)';
           return `
             <div onclick="_studyToggleAxis('${axis.id}')" id="axis-card-${axis.id}"
-              style="cursor:pointer;padding:12px 14px;border-radius:10px;border:2px solid ${sel ? '#8b5cf6' : 'rgba(255,255,255,0.1)'};background:${sel ? 'rgba(139,92,246,0.15)' : 'rgba(255,255,255,0.03)'};transition:all 0.2s;display:flex;align-items:center;gap:12px;">
+              style="cursor:pointer;padding:8px 10px;border-radius:10px;border:2px solid ${sel ? '#8b5cf6' : 'rgba(255,255,255,0.1)'};background:${sel ? 'rgba(139,92,246,0.15)' : 'rgba(255,255,255,0.03)'};transition:all 0.2s;display:flex;align-items:center;gap:10px;">
               <span style="font-size:1.4rem;">${axis.icon}</span>
               <div style="flex:1;text-align:left;">
                 <div style="color:var(--txt);font-weight:600;font-size:0.9rem;">${axis.label}</div>
@@ -4591,11 +4591,11 @@
       }
 
       modal.innerHTML = `
-        <div class="modal-content" style="max-width:520px;width:100%;max-height:none;overflow-y:visible;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid #2a4a7a;border-radius:14px;padding:24px;box-shadow:0 0 40px rgba(139,92,246,0.3);">
+        <div class="modal-content" style="max-width:460px;width:100%;max-height:none;overflow-y:visible;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid #2a4a7a;border-radius:14px;padding:18px 20px;box-shadow:0 0 40px rgba(139,92,246,0.3);">
           <h2 style="color:var(--gold);margin-bottom:6px;font-family:'Cinzel',serif;">📖 MODO DE ESTUDO</h2>
           <p style="color:var(--txt-dim);font-size:0.82rem;margin-bottom:18px;">Selecione os eixos que deseja praticar</p>
 
-          <div id="axisCardList" style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;">
+          <div id="axisCardList" style="display:flex;flex-direction:column;gap:5px;margin-bottom:14px;">
             ${renderAxesHTML()}
           </div>
 
@@ -4736,26 +4736,22 @@
       page.innerHTML = `
         <div style="max-width:900px;margin:0 auto;padding:20px;min-height:100%;padding-bottom:100px;">
           <!-- Header -->
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
-            <button class="btn sec" onclick="exitStudyMode()" style="font-size:0.85rem;flex-shrink:0;">
-              ← Voltar ao Jogo
-            </button>
-            <div style="text-align:center;flex:1;">
-              <h1 style="font-family:'MedievalSharp','Cinzel',serif;color:var(--gold);font-size:1.3rem;margin-bottom:10px;">📖 Modo de Estudo</h1>
-              <!-- Contadores centralizados abaixo do título -->
-              <div style="display:inline-flex;gap:12px;align-items:center;background:rgba(10,15,30,0.6);border:1px solid rgba(255,215,0,0.15);border-radius:20px;padding:6px 16px;">
-                <div style="display:flex;align-items:center;gap:6px;">
-                  <span style="color:#34d399;font-weight:bold;font-size:1.1rem;" id="studyCorrect">${studyModeCorrect}</span>
-                  <span style="color:#34d399;font-size:0.85rem;">✓</span>
-                </div>
-                <span style="color:rgba(255,215,0,0.2);font-size:1rem;">|</span>
-                <div style="display:flex;align-items:center;gap:6px;">
-                  <span style="color:#fb7185;font-weight:bold;font-size:1.1rem;" id="studyWrong">${studyModeWrong}</span>
-                  <span style="color:#fb7185;font-size:0.85rem;">✗</span>
-                </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;gap:8px;flex-wrap:nowrap;">
+            <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+              <button class="btn sec" onclick="exitStudyMode()" style="font-size:0.78rem;padding:6px 12px;white-space:nowrap;">
+                ← Voltar
+              </button>
+              <!-- Contadores ao lado do botão Voltar -->
+              <div style="display:inline-flex;gap:8px;align-items:center;background:rgba(10,15,30,0.6);border:1px solid rgba(255,215,0,0.15);border-radius:16px;padding:4px 10px;white-space:nowrap;">
+                <span style="color:#34d399;font-weight:bold;font-size:0.9rem;" id="studyCorrect">${studyModeCorrect}</span><span style="color:#34d399;font-size:0.75rem;">✓</span>
+                <span style="color:rgba(255,215,0,0.2);font-size:0.85rem;">|</span>
+                <span style="color:#fb7185;font-weight:bold;font-size:0.9rem;" id="studyWrong">${studyModeWrong}</span><span style="color:#fb7185;font-size:0.75rem;">✗</span>
               </div>
             </div>
-            <div style="color:var(--txt-dim);font-size:0.85rem;flex-shrink:0;padding-top:4px;">
+            <div style="text-align:center;flex:1;">
+              <h1 style="font-family:'MedievalSharp','Cinzel',serif;color:var(--gold);font-size:1.1rem;margin:0;">📖 Modo de Estudo</h1>
+            </div>
+            <div style="color:var(--txt-dim);font-size:0.85rem;flex-shrink:0;">
               <span id="studyProgress">${studyModeIndex + 1}</span>/${studyModeQuestions.length}
             </div>
           </div>
@@ -4898,7 +4894,7 @@
           </div>
           
           <div style="display:flex;gap:12px;justify-content:center;">
-            <button class="btn sec" onclick="exitStudyMode()">Voltar ao Jogo</button>
+            <button class="btn sec" onclick="exitStudyMode()">← Voltar</button>
             <button class="btn gold" onclick="restartStudyMode()">Estudar Novamente</button>
           </div>
         </div>
