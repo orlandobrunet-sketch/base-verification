@@ -473,13 +473,13 @@
     .welcome-screen.hidden { display: none; }
     .welcome-bg {
       position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: url('assets/images/welcome-bg-new.jpg') center top / cover no-repeat;
+      background: url('assets/images/welcome-gemini-bg.png') center top / cover no-repeat;
       animation: welcomeBgZoom 20s ease-in-out infinite alternate;
       transform-origin: center top;
     }
     @media (max-aspect-ratio: 1/1) {
       .welcome-bg {
-        background-image: url('assets/images/welcome-bg-portrait-new.jpg');
+        background-image: url('assets/images/welcome-gemini-bg.png');
         background-position: center top;
         transform-origin: center top;
       }
@@ -560,12 +560,8 @@
       text-align: center; max-width: 520px; width: 92%; padding: 16px 24px 28px;
       background: transparent;
       border-radius: 0;
-      animation: slideUpWelcome 0.8s ease-out;
     }
-    @keyframes slideUpWelcome {
-      0% { transform: translateY(60px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
-    }
+    /* Animação removida para evitar delay no posicionamento dos botões */
     .welcome-content h1 {
       display: none;
     }
@@ -762,9 +758,27 @@
         <div class="welcome-stat"><span class="ws-val" id="wsGamesPlayed">0</span><span class="ws-lbl">Partidas</span></div>
         <div class="welcome-stat"><span class="ws-val" id="wsBestLevel">0</span><span class="ws-lbl">Maior Nível</span></div>
       </div>
-      <div id="welcomeSavedInfo" class="welcome-saved-info" style="display:none;margin:12px 0;padding:12px;background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.3);border-radius:10px;">
-        <p style="color:#34d399;font-size:0.85rem;font-weight:600;margin-bottom:4px;">Jornada em andamento encontrada!</p>
-        <p id="wsSavedDetails" style="color:var(--txt-dim);font-size:0.78rem;"></p>
+      <div id="welcomeSavedInfo" class="welcome-saved-info" style="display:none;margin:12px 0;padding:14px;background:rgba(10,15,30,0.9);border:2px solid rgba(52,211,153,0.5);border-radius:12px;backdrop-filter:blur(4px);">
+        <p style="color:#34d399;font-size:0.9rem;font-weight:700;margin-bottom:10px;text-align:center;">⚔️ Jornada em Andamento ⚔️</p>
+        <div id="wsSavedTable" style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;">
+          <div style="background:rgba(20,30,50,0.8);border:1px solid #2a4a7a;border-radius:8px;padding:8px;text-align:center;">
+            <span style="display:block;font-size:0.65rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:1px;">Personagem</span>
+            <strong id="wsSavedChar" style="display:block;color:var(--gold);font-size:0.9rem;margin-top:2px;">-</strong>
+          </div>
+          <div style="background:rgba(20,30,50,0.8);border:1px solid #2a4a7a;border-radius:8px;padding:8px;text-align:center;">
+            <span style="display:block;font-size:0.65rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:1px;">Nível</span>
+            <strong id="wsSavedLevel" style="display:block;color:#60a5fa;font-size:1rem;margin-top:2px;">-</strong>
+          </div>
+          <div style="background:rgba(20,30,50,0.8);border:1px solid #2a4a7a;border-radius:8px;padding:8px;text-align:center;">
+            <span style="display:block;font-size:0.65rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:1px;">Vidas</span>
+            <strong id="wsSavedLives" style="display:block;color:#fb7185;font-size:1rem;margin-top:2px;">-</strong>
+          </div>
+          <div style="background:rgba(20,30,50,0.8);border:1px solid #2a4a7a;border-radius:8px;padding:8px;text-align:center;">
+            <span style="display:block;font-size:0.65rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:1px;">Pontos</span>
+            <strong id="wsSavedScore" style="display:block;color:#34d399;font-size:1rem;margin-top:2px;">-</strong>
+          </div>
+        </div>
+        <p id="wsSavedTime" style="color:var(--txt-dim);font-size:0.72rem;text-align:center;margin-top:8px;font-style:italic;"></p>
       </div>
       <div class="welcome-buttons">
         <button id="welcomeContinueBtn" class="btn continue-btn" style="display:none;" onclick="continueGame()">Continuar Jornada</button>
@@ -884,7 +898,7 @@
       <p>
         Desenvolvedor: <a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a>
         &nbsp;•&nbsp;
-        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" onclick="showChangelog()">v3.0</span>
+        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" onclick="showChangelog()">v3.0.1</span>
       </p>
     </div>
   </main>
@@ -1541,8 +1555,12 @@
         document.getElementById('welcomeSavedInfo').style.display = 'block';
         const charName = characters[save.character] ? characters[save.character].name : 'Desconhecido';
         const timeAgo = getTimeAgo(save.timestamp);
-        document.getElementById('wsSavedDetails').textContent = 
-          `${charName} · Nível ${save.level} · ${save.score} pts · ${save.lives} vidas · ${timeAgo}`;
+        // Preencher tabela de jornada em andamento
+        document.getElementById('wsSavedChar').textContent = charName;
+        document.getElementById('wsSavedLevel').textContent = save.level || 1;
+        document.getElementById('wsSavedLives').textContent = '❤'.repeat(save.lives || 0);
+        document.getElementById('wsSavedScore').textContent = save.score || 0;
+        document.getElementById('wsSavedTime').textContent = timeAgo ? `Última sessão: ${timeAgo}` : '';
       }
     }
     
