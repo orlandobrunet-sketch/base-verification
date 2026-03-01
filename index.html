@@ -105,8 +105,9 @@
       color: var(--gold); opacity: 0.3; font-size: 0.7rem;
     }
 
-    /* No PC: painel esquerdo com altura fixa e scroll interno para não estourar a viewport */
-    .left { padding: 14px; align-self: start; height: calc(100vh - 80px); overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(255,215,0,0.2) transparent; }
+    /* No PC: painel esquerdo com altura fixa e scroll interno para não estourar a viewport.
+       Cálculo: 100vh - padding do .app (12px top + 12px bottom) - gap (14px) - altura do título (~56px) = 100vh - 94px */
+    .left { padding: 14px; align-self: start; height: calc(100vh - 100px); overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(255,215,0,0.2) transparent; }
     .right { padding: 16px; align-self: start; }
 
     /* HERO SECTION */
