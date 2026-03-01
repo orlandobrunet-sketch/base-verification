@@ -465,50 +465,48 @@
     /* WELCOME SCREEN */
     .welcome-screen {
       position: fixed; inset: 0; z-index: 500;
-      background: url("assets/images/welcome-bg.png") no-repeat center/cover fixed, #060a18;
+      background: #060a18;
       display: flex; align-items: flex-end; justify-content: center;
       animation: fadeIn 0.5s;
       overflow: hidden;
     }
     .welcome-screen.hidden { display: none; }
     .welcome-bg {
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(180deg, #0a0e1a 0%, #12192e 50%, #0a0e1a 100%);
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: url('assets/images/welcome-bg-opt.jpg') center top / cover no-repeat;
       animation: welcomeBgZoom 20s ease-in-out infinite alternate;
-      transform-origin: center top;
+      transform-origin: center center;
+      will-change: transform;
     }
     @media (max-aspect-ratio: 1/1) {
       .welcome-bg {
-        background: linear-gradient(180deg, #0a0e1a 0%, #12192e 50%, #0a0e1a 100%);
+        background-image: url('assets/images/welcome-bg-portrait-opt.jpg');
         background-position: center top;
-        transform-origin: center top;
       }
     }
     .welcome-bg::after {
       content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-      height: 70%;
+      height: 28%;
       background: linear-gradient(to top,
         rgba(6,10,24,1) 0%,
-        rgba(6,10,24,1) 30%,
-        rgba(6,10,24,0.9) 50%,
-        rgba(6,10,24,0.5) 70%,
+        rgba(6,10,24,0.9) 40%,
+        rgba(6,10,24,0.4) 75%,
         rgba(6,10,24,0.0) 100%
       );
     }
-    /* Gradiente extra cobrindo a faixa central onde o texto da imagem aparece */
+    /* Gradiente superior suave para escurecer topo */
     .welcome-bg::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 18%;
       background: linear-gradient(to bottom,
-        rgba(6,10,24,0.0) 0%,
-        rgba(6,10,24,0.0) 30%,
-        rgba(6,10,24,0.5) 45%,
-        rgba(6,10,24,0.85) 55%,
-        rgba(6,10,24,1) 65%
+        rgba(6,10,24,0.35) 0%,
+        rgba(6,10,24,0.0) 100%
       );
     }
     @keyframes welcomeBgZoom {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.06); }
+      0%   { transform: scale(1.0) translateY(0px); }
+      50%  { transform: scale(1.05) translateY(-8px); }
+      100% { transform: scale(1.08) translateY(4px); }
     }
     /* Partículas animadas na tela de início */
     .welcome-particles {
@@ -688,15 +686,20 @@
     }
     .badge-slot img {
       width: 100%; height: 100%; object-fit: cover;
-      filter: grayscale(100%) brightness(0.3);
-      transition: filter 0.3s;
+      filter: grayscale(60%) brightness(0.7) saturate(0.6);
+      opacity: 0.7;
+      transition: filter 0.3s, opacity 0.3s;
     }
     .badge-slot.unlocked img {
-      filter: grayscale(0%) brightness(1);
+      filter: grayscale(0%) brightness(1) saturate(1);
+      opacity: 1;
     }
     .badge-slot .badge-lock {
       position: absolute; inset: 0; display: flex; align-items: center;
-      justify-content: center; font-size: 1.2rem; color: #555;
+      justify-content: center; font-size: 1.3rem;
+      color: rgba(255,255,255,0.85);
+      text-shadow: 0 1px 6px rgba(0,0,0,0.9), 0 0 10px rgba(0,0,0,0.7);
+      background: rgba(0,0,0,0.15);
     }
     .badge-slot.unlocked .badge-lock { display: none; }
 
