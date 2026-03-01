@@ -1181,7 +1181,7 @@
         border-radius: 0;
         box-shadow: 4px 0 30px rgba(0,0,0,0.8);
         padding-bottom: 80px;
-        background: linear-gradient(180deg, #1a1228 0%, #12192e 50%, #0e1525 100%) !important;
+        background: linear-gradient(180deg, #1c2545 0%, #162038 50%, #111c30 100%) !important;
         border: 2px solid #2a4a7a;
         isolation: isolate;
       }
@@ -1310,10 +1310,20 @@
       .ref-title { font-size: 0.82rem; }
       .ref-meta { font-size: 0.7rem; }
 
-      /* Welcome screen: ajustes */
-      .welcome-content { padding: 20px 16px; }
-      .welcome-stats { gap: 8px; }
-      .welcome-stat { padding: 8px 12px; }
+      /* Welcome screen: ajustes para caber sem scroll */
+      .welcome-screen { align-items: flex-start; overflow-y: auto; padding-top: 0; }
+      .welcome-content { padding: 10px 12px; gap: 0; width: 100%; max-width: 100%; }
+      .welcome-ornament { margin-bottom: 4px; }
+      .welcome-ornament span { font-size: 0.6rem; letter-spacing: 2px; }
+      .welcome-screen h1 { font-size: 2.2rem !important; }
+      .welcome-sub { font-size: 0.65rem !important; letter-spacing: 4px !important; margin-bottom: 4px !important; }
+      .welcome-credit { font-size: 0.62rem; margin: 2px 0 6px; }
+      .welcome-stats { gap: 6px; margin: 0 0 6px; }
+      .welcome-stat { padding: 6px 8px; }
+      .ws-val { font-size: 1.1rem !important; }
+      .ws-lbl { font-size: 0.58rem !important; }
+      .welcome-buttons { margin-top: 8px; gap: 6px; }
+      .welcome-buttons .btn { padding: 9px 14px; font-size: 0.68rem; min-width: 110px; }
 
       /* Footer oculto no mobile para economizar espaço */
       .game-footer { display: none; }
@@ -1397,13 +1407,13 @@
       <div class="welcome-ornament"><span>&#10022; Reino dos Néfrons &#10022;</span></div>
       <h1>NefroQuest</h1>
       <div class="welcome-sub">Ascension</div>
-      <div class="welcome-credit">Desenvolvimento: <a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a></div>
+      <div class="welcome-credit">Desenvolvimento: <a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;">v3.3.6</span></div>
       <div id="welcomeStats" class="welcome-stats">
         <div class="welcome-stat"><span class="ws-val" id="wsBestScore">0</span><span class="ws-lbl">Recorde</span></div>
         <div class="welcome-stat"><span class="ws-val" id="wsGamesPlayed">0</span><span class="ws-lbl">Partidas</span></div>
         <div class="welcome-stat"><span class="ws-val" id="wsBestLevel">0</span><span class="ws-lbl">Maior Nível</span></div>
       </div>
-      <div id="welcomeSavedInfo" class="welcome-saved-info" style="visibility:hidden;opacity:0;margin:12px 0;padding:12px 14px;background:rgba(10,15,30,0.9);border:2px solid rgba(52,211,153,0.4);border-radius:12px;backdrop-filter:blur(4px);transition:opacity 0.4s ease;">
+      <div id="welcomeSavedInfo" class="welcome-saved-info" style="display:none;margin:12px 0;padding:12px 14px;background:rgba(10,15,30,0.9);border:2px solid rgba(52,211,153,0.4);border-radius:12px;backdrop-filter:blur(4px);transition:opacity 0.4s ease;">
         <p style="color:#34d399;font-size:0.82rem;font-weight:700;margin-bottom:8px;text-align:center;letter-spacing:1px;">⚔ Jornada em Andamento ⚔</p>
         <div id="wsSavedTable" style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;">
           <div style="background:rgba(20,30,50,0.8);border:1px solid #2a4a7a;border-radius:8px;padding:7px 4px;text-align:center;">
@@ -2509,8 +2519,9 @@
         document.getElementById('wsSavedTime').textContent = timeAgo ? `Última sessão: ${timeAgo}` : '';
         // Mostrar com fade-in suave após preencher os dados (sem salto visual)
         const savedInfoEl = document.getElementById('welcomeSavedInfo');
-        savedInfoEl.style.visibility = 'visible';
-        requestAnimationFrame(() => { savedInfoEl.style.opacity = '1'; });
+        savedInfoEl.style.display = 'block';
+        savedInfoEl.style.opacity = '0';
+        requestAnimationFrame(() => { savedInfoEl.style.transition = 'opacity 0.4s'; savedInfoEl.style.opacity = '1'; });
       }
     }
     
