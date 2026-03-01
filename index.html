@@ -533,15 +533,13 @@
         rgba(6,10,24,0.97) 0%,
         rgba(10,16,36,0.99) 50%,
         rgba(6,10,24,0.97) 100%);
-      border: 1.5px solid rgba(255,215,0,0.45);
+      border: 2px solid #2a4a7a;
       border-radius: 12px; /* igual ao .panel */
       padding: 12px 8px;
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       box-shadow:
-        0 0 0 1px rgba(255,215,0,0.12) inset,
-        0 12px 40px rgba(0,0,0,0.85),
-        0 0 24px rgba(255,215,0,0.08);
+        0 12px 40px rgba(0,0,0,0.85);
       animation: dockGlow 4s ease-in-out infinite;
     }
     .action-dock.hidden { display: none; }
@@ -1264,16 +1262,18 @@
       }
       .mobile-overlay.active { display: block; }
       .drawer-close-btn {
-        display: flex; align-items: center; gap: 6px;
+        display: flex; align-items: center; justify-content: center; gap: 6px;
         width: 100%; padding: 10px 14px;
-        background: rgba(255,215,0,0.08); border: none;
-        border-bottom: 1px solid rgba(42,74,122,0.5);
-        color: var(--gold); font-family: 'Cinzel', serif;
-        font-size: 0.78rem; letter-spacing: 1px;
-        cursor: pointer; text-align: left;
+        background: linear-gradient(180deg, #ffd700 0%, #daa520 50%, #b8860b 100%);
+        border: 2px solid #8b6914;
+        border-radius: 8px;
+        color: #1a0e00; font-family: 'Cinzel', serif;
+        font-size: 0.78rem; letter-spacing: 1px; font-weight: 700;
+        cursor: pointer; text-align: center; text-transform: uppercase;
+        box-shadow: 0 3px 0 #7a5a00, 0 4px 10px rgba(218,165,32,0.4);
         margin-bottom: 8px;
       }
-      .drawer-close-btn:hover { background: rgba(255,215,0,0.15); }
+      .drawer-close-btn:hover { background: linear-gradient(180deg, #ffe44d 0%, #f0b800 50%, #c8930a 100%); }
 
       /* Painel direito: tela cheia, scroll próprio como fallback */
       .panel.right {
@@ -4561,7 +4561,7 @@
       const modal = document.createElement('div');
       modal.className = 'modal show study-mode-popup';
       const _isMobile = window.innerWidth <= 768;
-      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;align-items:' + (_isMobile ? 'flex-start' : 'center') + ';justify-content:center;z-index:9999;backdrop-filter:blur(6px);overflow-y:' + (_isMobile ? 'auto' : 'hidden') + ';padding:' + (_isMobile ? '16px 12px 100px' : '0') + ';box-sizing:border-box;';
+      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;align-items:' + (_isMobile ? 'flex-start' : 'center') + ';justify-content:center;z-index:9999;backdrop-filter:blur(6px);overflow-y:' + (_isMobile ? 'auto' : 'hidden') + ';padding:' + (_isMobile ? '16px 12px 120px' : '0') + ';box-sizing:border-box;';
 
       function renderAxesHTML() {
         return NEFRO_AXES.map(axis => {
@@ -4591,7 +4591,7 @@
       }
 
       modal.innerHTML = `
-        <div class="modal-content" style="max-width:520px;max-height:88vh;overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid #2a4a7a;border-radius:14px;padding:24px;box-shadow:0 0 40px rgba(139,92,246,0.3);">
+        <div class="modal-content" style="max-width:520px;width:100%;max-height:none;overflow-y:visible;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid #2a4a7a;border-radius:14px;padding:24px;box-shadow:0 0 40px rgba(139,92,246,0.3);">
           <h2 style="color:var(--gold);margin-bottom:6px;font-family:'Cinzel',serif;">📖 MODO DE ESTUDO</h2>
           <p style="color:var(--txt-dim);font-size:0.82rem;margin-bottom:18px;">Selecione os eixos que deseja praticar</p>
 
