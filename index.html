@@ -1182,21 +1182,22 @@
 
     /* ============ MOBILE RESPONSIVO ============ */
     @media (max-width: 768px) {
-      /* Fix scroll bug: garantir que o background cubra toda a área scrollável */
-      html { background: var(--bg); }
-      html { overflow: hidden; height: 100%; }
+      /* Fix scroll: html/body fixos, scroll acontece no .app */
+      html { background: var(--bg); overflow: hidden; height: 100%; }
       body { background: var(--bg); overflow: hidden; height: 100%; }
 
-      /* Layout principal: painel esquerdo oculto por padrão */
+      /* Layout principal: scroll no .app */
       .app {
         grid-template-columns: 1fr;
         padding: 8px;
         gap: 8px;
         padding-bottom: 90px; /* espaço para bottom dock */
-        height: 100%;
+        height: 100dvh; /* usa dvh para respeitar barra do navegador mobile */
         overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch; /* scroll suave iOS */
         align-content: start;
-        background: var(--bg); /* cobre o bg-layer durante scroll */
+        background: var(--bg);
       }
 
       /* Painel esquerdo: drawer deslizante */
@@ -1240,11 +1241,12 @@
       }
       .drawer-close-btn:hover { background: rgba(255,215,0,0.15); }
 
-      /* Painel direito: tela cheia */
+      /* Painel direito: tela cheia, scroll próprio como fallback */
       .panel.right {
         padding: 12px;
-        padding-right: 12px; /* sem espaço para dock lateral */
+        padding-right: 12px;
         min-height: auto;
+        overflow-y: visible; /* deixa o .app controlar o scroll */
       }
 
       /* Título menor */
@@ -1367,7 +1369,9 @@
       /* Compactar modal de seleção de personagem no mobile */
       #charSelectModal .chest-content { padding: 12px; }
       #charSelectModal .chest-content h2 { font-size: 1.0rem; margin-bottom: 8px; }
-      #charSelectModal .char-grid { gap: 6px; margin-top: 6px; }
+      /* Seleção de personagens: uma coluna no mobile (um acima do outro) */
+      #charSelectModal .char-grid { gap: 6px; margin-top: 6px; grid-template-columns: 1fr; }
+      .char-grid { grid-template-columns: 1fr; }
       #charSelectModal .char-card { padding: 8px; }
       #charSelectModal .char-card img { width: 56px; height: 56px; margin-bottom: 5px; }
       #charSelectModal .char-card h3 { font-size: 0.85rem; margin: 0 0 2px; }
