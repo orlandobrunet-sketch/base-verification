@@ -696,9 +696,15 @@
     }
     .badge-slot .badge-lock {
       position: absolute; inset: 0; display: flex; align-items: center;
-      justify-content: center; font-size: 1.2rem; color: #555;
+      justify-content: center; font-size: 1.5rem; color: #888;
+      background: rgba(15, 20, 35, 0.85);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+      z-index: 10;
     }
     .badge-slot.unlocked .badge-lock { display: none; }
+    .badge-slot:not(.unlocked) img {
+      opacity: 0.3;
+    }
 
 
     /* FOOTER */
@@ -898,7 +904,7 @@
       <p>
         Desenvolvedor: <a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a>
         &nbsp;•&nbsp;
-        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" onclick="showChangelog()">v3.0.1</span>
+        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" onclick="showChangelog()">v3.0.2</span>
       </p>
     </div>
   </main>
