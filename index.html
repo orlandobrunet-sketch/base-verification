@@ -1213,8 +1213,8 @@
         border-radius: 0;
         box-shadow: 4px 0 30px rgba(0,0,0,0.8);
         padding-bottom: 80px;
-        background: linear-gradient(180deg, #1e3a5f 0%, #162d4a 50%, #0f2035 100%) !important;
-        border: 2px solid #3a6a9a;
+        background: linear-gradient(180deg, #0c1e35 0%, #091626 50%, #060f1e 100%) !important;
+        border: 2px solid #2a4a7a;
         isolation: isolate;
       }
       .panel.left.mobile-open {
@@ -1331,6 +1331,35 @@
       .mobile-bottom-dock .mdock-btn.personagem .mdock-label { color: #a78bfa; }
       .mobile-bottom-dock .mdock-btn.menu svg { color: #94a3b8; }
       .mobile-bottom-dock .mdock-btn.menu .mdock-label { color: #94a3b8; }
+
+      /* Badge ! de disponibilidade nos botões de forja/baú */
+      .mobile-bottom-dock .mdock-btn { position: relative; }
+      .mdock-available-badge {
+        position: absolute;
+        top: 2px; right: 2px;
+        width: 14px; height: 14px;
+        background: #ffd700;
+        color: #0a0f1e;
+        border-radius: 50%;
+        font-size: 0.55rem;
+        font-weight: 900;
+        display: flex; align-items: center; justify-content: center;
+        line-height: 1;
+        box-shadow: 0 0 6px rgba(255,215,0,0.8);
+        pointer-events: none;
+        z-index: 2;
+        animation: mdock-badge-pulse 1.5s ease-in-out infinite;
+      }
+      @keyframes mdock-badge-pulse {
+        0%, 100% { transform: scale(1); box-shadow: 0 0 6px rgba(255,215,0,0.8); }
+        50% { transform: scale(1.15); box-shadow: 0 0 10px rgba(255,215,0,1); }
+      }
+
+      /* Estado desabilitado nos botões mobile */
+      .mobile-bottom-dock .mdock-btn.mdock-disabled {
+        opacity: 0.35;
+        pointer-events: none;
+      }
 
       /* Botão hambúrguer: removido por ora */
       .mobile-menu-btn { display: none !important; }
@@ -3489,6 +3518,37 @@
           }
         }
       }
+
+      // === BADGES ! NO BOTTOM DOCK MOBILE ===
+      // Mostra badge dourado ! quando o ouro é suficiente para forjar/baú
+      // e desabilita visualmente quando insuficiente
+      function _updateMdockBadge(selector, available) {
+        const btn = document.querySelector('.mobile-bottom-dock .' + selector);
+        if (!btn) return;
+        // Estado desabilitado
+        if (available) {
+          btn.classList.remove('mdock-disabled');
+        } else {
+          btn.classList.add('mdock-disabled');
+        }
+        // Badge !
+        let badge = btn.querySelector('.mdock-available-badge');
+        if (available) {
+          if (!badge) {
+            badge = document.createElement('span');
+            badge.className = 'mdock-available-badge';
+            badge.textContent = '!';
+            btn.appendChild(badge);
+          }
+        } else {
+          if (badge) badge.remove();
+        }
+      }
+
+      const _maxed = allItemsMaxed();
+      _updateMdockBadge('forge-item',    !_maxed && !state.gameOver && state.gold >= 300);
+      _updateMdockBadge('forge-legendary', !_maxed && !state.gameOver && state.gold >= 1000);
+      _updateMdockBadge('open-chest',    !_maxed && !state.gameOver && state.gold >= chestCost && state.correctTotal >= CHEST_MIN_CORRECT);
     }
 
     // Última questão apresentada (para evitar repetição na virada de ciclo)
