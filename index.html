@@ -105,7 +105,7 @@
       color: var(--gold); opacity: 0.3; font-size: 0.7rem;
     }
 
-    .left { padding: 14px; align-self: start; max-height: calc(100vh - 80px); overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(255,215,0,0.3) transparent; }
+    .left { padding: 14px; align-self: start; }
     .right { padding: 16px; align-self: start; }
 
     /* HERO SECTION */
@@ -518,13 +518,11 @@
     }
 
     .action-dock {
-      /* Terceira coluna do grid — sticky para acompanhar o scroll */
-      position: sticky;
-      top: 20px;
+      /* Terceira coluna do grid — estático no grid */
       grid-column: 3;
       grid-row: 2 / span 10;
       align-self: start;
-      z-index: 9000;
+      z-index: 10;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -1088,13 +1086,9 @@
       .welcome-buttons .btn { min-width: unset; width: 100%; }
     }
 
-    /* SOUND CONTROLS */
+    /* SOUND CONTROLS — estático dentro do game-title no PC */
     .sound-controls {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      z-index: 9100;
-      display: flex; flex-direction: row; gap: 4px; align-items: center;
+      display: none; /* oculto por padrão; o PC mostra via media query */
     }
     .sound-toggle {
       background: rgba(15,20,40,1); border: 2px solid #2a4a7a; border-radius: 8px;
@@ -1176,7 +1170,17 @@
 
     /* ============ PC ONLY (min-width: 769px) ============ */
     @media (min-width: 769px) {
-      /* Dock agora é coluna do grid, sem padding-right necessário */
+      /* Sound controls: estático no canto direito do game-title */
+      .sound-controls {
+        display: flex;
+        flex-direction: row;
+        gap: 4px;
+        align-items: center;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+      }
     }
 
     /* ============ MOBILE RESPONSIVO ============ */
@@ -1203,13 +1207,12 @@
         background: transparent;
       }
 
-      /* Painel esquerdo: drawer deslizante — reset do max-height do PC */
+      /* Painel esquerdo: drawer deslizante */
       .panel.left {
         position: fixed;
         top: 0; left: 0;
         width: 100vw;
         height: 100vh;
-        max-height: none; /* reset do max-height do PC */
         z-index: 8500;
         transform: translateX(-100%);
         transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
@@ -1472,16 +1475,6 @@
   <div class="bg-overlay"></div>
   <div class="particles" id="particles"></div>
 
-  <!-- SOUND CONTROLS — fora do main, sempre visível em PC -->
-  <div class="sound-controls" id="soundControlsBar">
-    <div id="musicToggle" class="sound-toggle" onclick="toggleMusic()">
-      <span id="musicIcon">🎵</span>
-    </div>
-    <div id="soundToggle" class="sound-toggle" onclick="toggleSound()">
-      <span id="soundIcon">🔊</span>
-    </div>
-  </div>
-
   <!-- WELCOME SCREEN -->
   <div id="welcomeScreen" class="welcome-screen">
     <div class="welcome-bg"></div>
@@ -1536,7 +1529,15 @@
     <div class="game-title">
       <h1>NefroQuest</h1>
       <div class="subtitle">— Ascension —</div>
-      <!-- sound-controls movido para fora do main -->
+      <!-- Sound controls estáticos dentro do título (PC only) -->
+      <div class="sound-controls" id="soundControlsBar">
+        <div id="musicToggle" class="sound-toggle" onclick="toggleMusic()">
+          <span id="musicIcon">🎵</span>
+        </div>
+        <div id="soundToggle" class="sound-toggle" onclick="toggleSound()">
+          <span id="soundIcon">🔊</span>
+        </div>
+      </div>
     </div>
 
     <!-- LEFT PANEL -->
