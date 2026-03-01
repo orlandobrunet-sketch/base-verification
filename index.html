@@ -42,7 +42,7 @@
     /* Background Layer */
     .bg-layer {
       position: fixed; inset: 0; z-index: 0;
-      /* background: url('assets/nefroquest_background.png') center/cover no-repeat; */
+      background: url('assets/nefroquest_background.png') center/cover no-repeat;
       filter: brightness(0.55) saturate(1.2);
     }
     .bg-overlay {
@@ -355,6 +355,178 @@
     }
     .btn.gold:hover { box-shadow: 0 4px 0 #7a5a00, 0 6px 16px rgba(255,215,0,0.5); }
     .btn.gold:disabled { background: #374151; color: #6b7280; border-color: #4b5563; cursor: not-allowed; box-shadow: none; }
+
+    /* ── ACTION DOCK ── */
+    .action-dock {
+      position: fixed;
+      right: 18px;
+      bottom: 28px;
+      z-index: 9000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .action-dock.hidden { display: none; }
+
+    /* Separador visual entre grupos */
+    .dock-divider {
+      width: 2px;
+      height: 24px;
+      background: linear-gradient(180deg, transparent, rgba(255,215,0,0.25), transparent);
+      border-radius: 2px;
+      margin: 2px 0;
+    }
+
+    /* Botão base do dock */
+    .dock-btn {
+      position: relative;
+      width: 58px;
+      height: 58px;
+      border-radius: 14px;
+      border: 2px solid #2a4a7a;
+      background: linear-gradient(145deg, #1a2a4a 0%, #0e1830 100%);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      transition: all 0.22s cubic-bezier(.34,1.56,.64,1);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.05) inset;
+      overflow: visible;
+    }
+    .dock-btn:hover {
+      transform: translateY(-4px) scale(1.08);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.7), 0 0 20px rgba(255,215,0,0.15);
+    }
+    .dock-btn:active { transform: translateY(0) scale(0.96); }
+    .dock-btn.disabled {
+      opacity: 0.38;
+      cursor: not-allowed;
+      pointer-events: none;
+      filter: grayscale(0.7);
+    }
+    .dock-btn svg {
+      width: 26px;
+      height: 26px;
+      flex-shrink: 0;
+    }
+    .dock-btn .dock-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.44rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    /* Tooltip do dock */
+    .dock-btn::after {
+      content: attr(data-tip);
+      position: absolute;
+      right: calc(100% + 10px);
+      top: 50%;
+      transform: translateY(-50%);
+      background: linear-gradient(135deg, #1a2a4a, #0e1830);
+      border: 1px solid var(--gold);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-family: 'Philosopher', serif;
+      font-size: 0.72rem;
+      color: #e8efff;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.18s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.7);
+      z-index: 9999;
+    }
+    .dock-btn:hover::after { opacity: 1; }
+
+    /* Variantes de cor */
+    /* Forjar Item — bronze/cobre */
+    .dock-btn.forge-item {
+      border-color: #a0522d;
+      background: linear-gradient(145deg, #3d1f0e 0%, #1e0f05 100%);
+    }
+    .dock-btn.forge-item svg { color: #e8834a; filter: drop-shadow(0 0 6px rgba(232,131,74,0.5)); }
+    .dock-btn.forge-item .dock-label { color: #e8834a; }
+    .dock-btn.forge-item:hover { border-color: #e8834a; box-shadow: 0 8px 24px rgba(0,0,0,0.7), 0 0 20px rgba(232,131,74,0.3); }
+
+    /* Forjar Lendário — roxo/épico */
+    .dock-btn.forge-legendary {
+      border-color: #7c3aed;
+      background: linear-gradient(145deg, #2a0a5e 0%, #120428 100%);
+    }
+    .dock-btn.forge-legendary svg { color: #c084fc; filter: drop-shadow(0 0 8px rgba(192,132,252,0.6)); }
+    .dock-btn.forge-legendary .dock-label { color: #c084fc; }
+    .dock-btn.forge-legendary:hover { border-color: #c084fc; box-shadow: 0 8px 24px rgba(0,0,0,0.7), 0 0 24px rgba(192,132,252,0.35); }
+
+    /* Abrir Baú — dourado */
+    .dock-btn.open-chest {
+      border-color: #b8860b;
+      background: linear-gradient(145deg, #3a2200 0%, #1a0e00 100%);
+    }
+    .dock-btn.open-chest svg { color: #ffd700; filter: drop-shadow(0 0 8px rgba(255,215,0,0.7)); }
+    .dock-btn.open-chest .dock-label { color: #ffd700; }
+    .dock-btn.open-chest:hover { border-color: #ffd700; box-shadow: 0 8px 24px rgba(0,0,0,0.7), 0 0 28px rgba(255,215,0,0.4); }
+
+    /* Leaderboard — azul */
+    .dock-btn.leaderboard {
+      border-color: #1d4ed8;
+      background: linear-gradient(145deg, #0a1a4a 0%, #050e28 100%);
+    }
+    .dock-btn.leaderboard svg { color: #60a5fa; filter: drop-shadow(0 0 6px rgba(96,165,250,0.5)); }
+    .dock-btn.leaderboard .dock-label { color: #60a5fa; }
+    .dock-btn.leaderboard:hover { border-color: #60a5fa; box-shadow: 0 8px 24px rgba(0,0,0,0.7), 0 0 20px rgba(96,165,250,0.3); }
+
+    /* Stats — verde-azulado */
+    .dock-btn.stats-btn {
+      border-color: #0e7490;
+      background: linear-gradient(145deg, #042a38 0%, #021520 100%);
+    }
+    .dock-btn.stats-btn svg { color: #22d3ee; filter: drop-shadow(0 0 6px rgba(34,211,238,0.5)); }
+    .dock-btn.stats-btn .dock-label { color: #22d3ee; }
+    .dock-btn.stats-btn:hover { border-color: #22d3ee; box-shadow: 0 8px 24px rgba(0,0,0,0.7), 0 0 20px rgba(34,211,238,0.3); }
+
+    /* Conquistas — dourado brilhante com contraste garantido */
+    .dock-btn.achievements-btn {
+      border-color: #b8860b;
+      background: linear-gradient(145deg, #2a1800 0%, #120a00 100%);
+    }
+    .dock-btn.achievements-btn svg { color: #ffd700; filter: drop-shadow(0 0 8px rgba(255,215,0,0.7)); }
+    .dock-btn.achievements-btn .dock-label { color: #ffd700; }
+    .dock-btn.achievements-btn:hover { border-color: #ffd700; box-shadow: 0 8px 24px rgba(0,0,0,0.7), 0 0 28px rgba(255,215,0,0.45); }
+
+    /* Badge de custo no dock */
+    .dock-cost {
+      position: absolute;
+      top: -7px;
+      right: -7px;
+      background: linear-gradient(135deg, #ffd700, #b8860b);
+      color: #1a0e00;
+      font-family: 'Cinzel', serif;
+      font-size: 0.42rem;
+      font-weight: 900;
+      padding: 2px 5px;
+      border-radius: 8px;
+      border: 1px solid #8b6914;
+      white-space: nowrap;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      pointer-events: none;
+      line-height: 1.2;
+    }
+    .dock-cost.purple {
+      background: linear-gradient(135deg, #c084fc, #7c3aed);
+      color: #fff;
+      border-color: #a855f7;
+    }
+    /* Botão Próxima Carta e Novo Jogo — mantidos no ctrl normal */
+    .ctrl-top {
+      padding: 10px 0 0; display: flex; gap: 8px; flex-wrap: wrap;
+    }
 
     .hidden { display: none; }
 
@@ -942,13 +1114,7 @@
       <div class="ctrl">
         <button id="nextBtn" class="btn hidden">Próxima Carta</button>
         <button id="newBtn" class="btn sec">Novo Jogo</button>
-        <button id="forgeBtn" class="btn gold">Forjar Item (300 ouro)</button>
         <button id="bonusBtn" class="btn gold hidden">Pergunta Bônus</button>
-        <button id="legendaryForgeBtn" class="btn gold" onclick="forgeLegendary()">Forjar Lendário (1000 ouro)</button>
-        <button id="chestBtn" class="btn gold" onclick="openChest()">Abrir Baú (50 ouro)</button>
-        <button id="boardBtn" class="btn sec">Leaderboard</button>
-        <button class="btn sec" onclick="showStatsModal()" style="background:linear-gradient(180deg,#3b82f6,#2563eb);border-color:#1d4ed8;">📊 Stats</button>
-        <button class="btn sec" onclick="showAchievementsModal()" style="background:linear-gradient(180deg,#f59e0b,#d97706);border-color:#b45309;">🏆 Conquistas</button>
       </div>
     </section>
 
@@ -956,10 +1122,112 @@
       <p>
         Desenvolvedor: <a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a>
         &nbsp;•&nbsp;
-        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" onclick="showChangelog()">v3.0.3</span>
+        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" onclick="showChangelog()">v3.2</span>
       </p>
     </div>
   </main>
+
+  <!-- ACTION DOCK — Lateral inferior direita -->
+  <div id="actionDock" class="action-dock hidden">
+
+    <!-- Forjar Item -->
+    <button id="forgeBtn"
+      class="dock-btn forge-item"
+      data-tip="Forjar Item — 300 💰"
+      title="Forjar um equipamento (300 ouro)">
+      <span class="dock-cost" id="forgeCostBadge">300💰</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14.5 2.5c0 1.5-1.5 3-1.5 3s-1.5-1.5-1.5-3a1.5 1.5 0 0 1 3 0z"/>
+        <path d="M12 5.5V9"/>
+        <path d="M9 9h6l1.5 9H7.5L9 9z"/>
+        <path d="M7.5 18h9"/>
+        <path d="M10 12l1 3 1-3"/>
+      </svg>
+      <span class="dock-label">Forjar</span>
+    </button>
+
+    <!-- Forjar Lendário -->
+    <button id="legendaryForgeBtn"
+      class="dock-btn forge-legendary"
+      onclick="forgeLegendary()"
+      data-tip="Forjar Lendário — 1000 💰"
+      title="Forjar equipamento lendário (1000 ouro)">
+      <span class="dock-cost purple" id="forgeLegCostBadge">1000💰</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+        <line x1="12" y1="2" x2="12" y2="6"/>
+        <line x1="12" y1="18" x2="12" y2="22"/>
+      </svg>
+      <span class="dock-label">Lendário</span>
+    </button>
+
+    <div class="dock-divider"></div>
+
+    <!-- Abrir Baú -->
+    <button id="chestBtn"
+      class="dock-btn open-chest"
+      onclick="openChest()"
+      data-tip="Abrir Baú de Artigos"
+      title="Abrir baú e desbloquear artigo">
+      <span class="dock-cost" id="chestCostBadge">50💰</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 8h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2z"/>
+        <path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2"/>
+        <line x1="12" y1="8" x2="12" y2="6"/>
+        <path d="M8 12h8"/>
+        <circle cx="12" cy="15" r="1.5" fill="currentColor"/>
+      </svg>
+      <span class="dock-label">Baú</span>
+    </button>
+
+    <div class="dock-divider"></div>
+
+    <!-- Leaderboard -->
+    <button id="boardBtn"
+      class="dock-btn leaderboard"
+      data-tip="Leaderboard"
+      title="Ver ranking de jogadores">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="14" width="5" height="8" rx="1"/>
+        <rect x="9.5" y="9" width="5" height="13" rx="1"/>
+        <rect x="17" y="4" width="5" height="18" rx="1"/>
+        <polyline points="2,14 7,8 12,11 17,4"/>
+      </svg>
+      <span class="dock-label">Ranking</span>
+    </button>
+
+    <!-- Stats -->
+    <button
+      class="dock-btn stats-btn"
+      onclick="showStatsModal()"
+      data-tip="Estatísticas"
+      title="Ver estatísticas de desempenho">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="20" x2="18" y2="10"/>
+        <line x1="12" y1="20" x2="12" y2="4"/>
+        <line x1="6" y1="20" x2="6" y2="14"/>
+        <line x1="2" y1="20" x2="22" y2="20"/>
+      </svg>
+      <span class="dock-label">Stats</span>
+    </button>
+
+    <!-- Conquistas -->
+    <button
+      class="dock-btn achievements-btn"
+      onclick="showAchievementsModal()"
+      data-tip="Conquistas"
+      title="Ver conquistas e badges">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 9H3.5a2.5 2.5 0 0 0 0 5H6"/>
+        <path d="M18 9h2.5a2.5 2.5 0 0 1 0 5H18"/>
+        <path d="M6 4h12v10a6 6 0 0 1-12 0V4z"/>
+        <path d="M9 21h6"/>
+        <path d="M12 18v3"/>
+      </svg>
+      <span class="dock-label">Conquistas</span>
+    </button>
+
+  </div><!-- /action-dock -->
 
   <!-- LEADERBOARD MODAL -->
   <div id="boardModal" class="modalWrap hidden">
@@ -1065,33 +1333,53 @@
 
     let welcomeMusicStarted = false;
 
+    let _wmFadeInterval = null;
+
     function startWelcomeMusic() {
       if (!musicEnabled || welcomeMusicStarted) return;
+      if (_wmFadeInterval) { clearInterval(_wmFadeInterval); _wmFadeInterval = null; }
       wmTrack.currentTime = 0;
-      wmTrack.volume = WELCOME_MUSIC_VOL;
+      wmTrack.volume = 0; // começa mudo para o fade-in
       wmTrack.play().then(() => {
         welcomeMusicStarted = true;
+        // Fade-in suave em 2000ms
+        const targetVol = WELCOME_MUSIC_VOL;
+        const steps = 40;
+        const stepTime = 2000 / steps;
+        let step = 0;
+        _wmFadeInterval = setInterval(() => {
+          step++;
+          wmTrack.volume = Math.min(targetVol, targetVol * (step / steps));
+          if (step >= steps) {
+            clearInterval(_wmFadeInterval);
+            _wmFadeInterval = null;
+            wmTrack.volume = targetVol;
+          }
+        }, stepTime);
       }).catch(() => {});
     }
 
-    function stopWelcomeMusic(fadeOut) {
+    function stopWelcomeMusic(withFade) {
       if (!welcomeMusicStarted) return;
-      if (!fadeOut) {
+      if (_wmFadeInterval) { clearInterval(_wmFadeInterval); _wmFadeInterval = null; }
+      if (!withFade) {
         wmTrack.pause();
         wmTrack.currentTime = 0;
+        wmTrack.volume = WELCOME_MUSIC_VOL;
         welcomeMusicStarted = false;
         return;
       }
-      // Fade-out suave em 600ms
+      // Fade-out suave em 1500ms
       const startVol = wmTrack.volume;
-      const steps = 20;
-      const stepTime = 600 / steps;
+      const steps = 30;
+      const stepTime = 1500 / steps;
       let step = 0;
-      const fadeInterval = setInterval(() => {
+      _wmFadeInterval = setInterval(() => {
         step++;
         wmTrack.volume = Math.max(0, startVol * (1 - step / steps));
         if (step >= steps) {
-          clearInterval(fadeInterval);
+          clearInterval(_wmFadeInterval);
+          _wmFadeInterval = null;
           wmTrack.pause();
           wmTrack.currentTime = 0;
           wmTrack.volume = WELCOME_MUSIC_VOL;
@@ -1651,6 +1939,7 @@
       setTimeout(() => {
         ws.classList.add('hidden');
         document.getElementById('mainApp').classList.remove('hidden');
+        document.getElementById('actionDock').classList.remove('hidden');
         // Iniciar música do jogo após a transição
         if (musicEnabled) startBgMusic();
       }, 500);
@@ -1732,7 +2021,58 @@
       {titulo:"EMPA-KIDNEY",autores:"The EMPA-KIDNEY Collaborative Group",jornal:"N Engl J Med 2023;388(2):117-127",resumo:"Empagliflozina vs placebo reduziu progressão renal ou morte CV em 28% (HR 0,72) em ampla população com DRC, incluindo pacientes com e sem diabetes e com albuminúria variável.",conclusao:"SGLT2i são terapia padrão em DRC ampla, com benefício independente de diabetes e grau de albuminúria.",curiosidade:"Consolidou SGLT2i como terapia universal em DRC! Incluiu pacientes com TFG até 20 mL/min.",ano:2023,impacto:"Universalização do SGLT2i em DRC"},
       {titulo:"Terapias-Alvo em Nefropatia por IgA",autores:"Barratt J, Lafayette RA, Leung N et al.",jornal:"N Engl J Med 2023;389(2):162-174 (PROTECT); Lancet 2023;401:1584-94 (NefIgArd)",resumo:"Inibidores de complemento (iptacopan) e budesonida alvo-entérica (Nefecon/Tarpeyo) reduziram proteinúria em 20-30% em IgAN de alto risco, com estabilização da TFG.",conclusao:"Terapias direcionadas ao complemento e à mucosa intestinal representam nova era no tratamento da IgAN, além do suporte com SRAA.",curiosidade:"Inaugurou era de terapias específicas para IgAN! O futuro das glomerulopatias é a medicina de precisão.",ano:2023,impacto:"Terapias-alvo em glomerulopatias"},
       {titulo:"KDIGO 2024 CKD Update",autores:"Kidney Disease: Improving Global Outcomes (KDIGO)",jornal:"Kidney Int 2024;105(4S):S117-S314",resumo:"Atualização com estratificação contínua de risco (TFG + albuminúria), foco em prevenção CV integrada, e recomendação ampliada de SGLT2i e finerenona como terapias de primeira linha.",conclusao:"DRC é reconhecida como 'síndrome de risco cardiorrenal', não apenas estágios por TFG. Abordagem multifatorial é mandatória.",curiosidade:"CKD como 'síndrome de risco' integrada, não só estágios. Mudança de paradigma na nefrologia!",ano:2024,impacto:"Operacionalização do risco cardiorrenal"},
-      {titulo:"Xenotransplante Renal",autores:"Montgomery RA, Stern JM, Lonze BE et al.",jornal:"N Engl J Med 2022;386(21):1889-1898; Riella LV et al. Nat Rev Nephrol 2024",resumo:"Avanços em xenotransplante com rim suíno geneticamente editado (10 modificações genéticas), superando barreiras imunológicas hiperagudas e demonstrando função renal em receptores humanos.",conclusao:"O xenotransplante renal está em transição para aplicação clínica, com potencial de resolver a escassez crônica de órgãos.",curiosidade:"O futuro está aqui! Rim suíno funcionou por >2 meses em receptor humano. Pode revolucionar a fila de transplante.",ano:2024,impacto:"Futuro do transplante renal"}
+      {titulo:"Xenotransplante Renal",autores:"Montgomery RA, Stern JM, Lonze BE et al.",jornal:"N Engl J Med 2022;386(21):1889-1898; Riella LV et al. Nat Rev Nephrol 2024",resumo:"Avanços em xenotransplante com rim suíno geneticamente editado (10 modificações genéticas), superando barreiras imunológicas hiperagudas e demonstrando função renal em receptores humanos.",conclusao:"O xenotransplante renal está em transição para aplicação clínica, com potencial de resolver a escassez crônica de órgãos.",curiosidade:"O futuro está aqui! Rim suíno funcionou por >2 meses em receptor humano. Pode revolucionar a fila de transplante.",ano:2024,impacto:"Futuro do transplante renal"},
+      {titulo:"KDIGO AKI 2012",autores:"Kidney Disease: Improving Global Outcomes (KDIGO)",jornal:"Kidney Int Suppl 2012;2(1):1-138",resumo:"Diretriz que definiu critérios universais para diagnóstico e estadiamento da LRA (aumento de creatinina ≥0,3 mg/dL em 48h ou ≥1,5× basal em 7 dias, ou débito urinário <0,5 mL/kg/h por 6h), substituindo múltiplas definições anteriores.",conclusao:"A padronização dos critérios de LRA permitiu comparações globais e melhorou a detecção precoce, reduzindo variabilidade diagnóstica.",curiosidade:"Antes do KDIGO 2012 existiam mais de 35 definições diferentes de LRA na literatura! A unificação foi revolucionária.",ano:2012,impacto:"Padronização global dos critérios de LRA"},
+      {titulo:"CREDENCE Trial",autores:"Perkovic V, Jardine MJ, Neal B et al.",jornal:"N Engl J Med 2019;380(24):2295-2306",resumo:"Canagliflozina vs placebo em DRC diabética (TFG 30-90, RAC ≥300 mg/g): redução de 30% no desfecho primário composto (DRC terminal, duplicação de creatinina, morte renal/CV). Primeiro estudo com desfecho renal primário para SGLT2i.",conclusao:"Canagliflozina demonstrou nefroproteção robusta em DRC diabética avançada, estabelecendo SGLT2i como terapia de primeira linha.",curiosidade:"O estudo foi interrompido precocemente por eficácia! Resultado tão positivo que o comitê de segurança encerrou antes do prazo.",ano:2019,impacto:"Primeiro SGLT2i com desfecho renal primário positivo"},
+      {titulo:"DAPA-CKD Trial",autores:"Heerspink HJL, Stefánsson BV, Correa-Rotter R et al.",jornal:"N Engl J Med 2020;383(15):1436-1446",resumo:"Dapagliflozina vs placebo em DRC (TFG 25-75, RAC ≥200 mg/g): redução de 39% no desfecho renal primário, com benefício em pacientes diabéticos e não-diabéticos, incluindo nefropatia por IgA.",conclusao:"SGLT2i são eficazes em DRC independentemente de diabetes, expandindo indicação para glomerulopatias.",curiosidade:"Primeiro SGLT2i a demonstrar benefício renal em pacientes SEM diabetes! Mudou completamente o paradigma.",ano:2020,impacto:"Expansão do SGLT2i para DRC não-diabética"},
+      {titulo:"FIDELIO-DKD Trial",autores:"Bakris GL, Agarwal R, Anker SD et al.",jornal:"N Engl J Med 2020;383(23):2219-2229",resumo:"Finerenona (antagonista seletivo de mineralocorticoide não-esteroidal) vs placebo em DRC diabética: redução de 18% no desfecho renal primário e 14% em eventos CV, com menor hipercalemia que espironolactona.",conclusao:"Finerenona adiciona nefroproteção e cardioproteção em DRC diabética, com perfil de segurança superior aos ARM esteroidais.",curiosidade:"Finerenona é 500x mais seletiva para o receptor de mineralocorticoide que a espironolactona! Isso explica menos efeitos androgênicos.",ano:2020,impacto:"Novo ARM não-esteroidal para DRC diabética"},
+      {titulo:"FIGARO-DKD Trial",autores:"Pitt B, Filippatos G, Agarwal R et al.",jornal:"N Engl J Med 2021;385(24):2252-2263",resumo:"Finerenona vs placebo em DRC diabética com TFG mais preservada: redução de 13% em eventos CV maiores (MACE), confirmando benefício cardiovascular além do renal.",conclusao:"Finerenona reduz risco cardiovascular em DRC diabética, complementando o benefício renal do FIDELIO-DKD.",curiosidade:"A combinação FIDELIO + FIGARO (análise FIDELITY) incluiu >13.000 pacientes — maior banco de dados de DRC diabética da história!",ano:2021,impacto:"Cardioproteção com ARM não-esteroidal em DRC"},
+      {titulo:"RAVE Trial",autores:"Stone JH, Merkel PA, Spiera R et al.",jornal:"N Engl J Med 2010;363(3):221-232",resumo:"Rituximabe vs ciclofosfamida para indução de remissão em vasculite ANCA: não-inferioridade demonstrada, com superioridade em pacientes com doença recidivante.",conclusao:"Rituximabe é alternativa eficaz à ciclofosfamida na indução de remissão de vasculite ANCA, especialmente em recidivas.",curiosidade:"Rituximabe foi originalmente desenvolvido para linfoma! Sua eficácia em vasculite abriu nova era de terapias biológicas em nefrologia.",ano:2010,impacto:"Biológico como alternativa à ciclofosfamida em vasculite"},
+      {titulo:"SHARP Trial",autores:"Baigent C, Landray MJ, Reith C et al.",jornal:"Lancet 2011;377(9784):2181-2192",resumo:"Sinvastatina 20mg + ezetimiba 10mg vs placebo em 9.270 pacientes com DRC: redução de 17% em eventos vasculares maiores, sem aumento de rabdomiólise ou progressão renal.",conclusao:"A combinação sinvastatina/ezetimiba reduz eventos cardiovasculares em DRC, incluindo dialíticos, com boa tolerabilidade.",curiosidade:"SHARP foi o maior estudo de estatinas em DRC! Incluiu dialíticos — grupo historicamente excluído de estudos cardiovasculares.",ano:2011,impacto:"Evidência para estatinas em DRC e diálise"},
+      {titulo:"SPRINT Trial e DRC",autores:"SPRINT Research Group; Cheung AK et al.",jornal:"N Engl J Med 2015;373(22):2103-2116",resumo:"Controle intensivo de PA (PAS <120 mmHg) vs padrão (<140 mmHg) em pacientes de alto risco CV: redução de 25% em eventos CV maiores, mas com maior incidência de LRA transitória e hipotensão.",conclusao:"Controle intensivo de PA reduz eventos CV, mas requer monitorização cuidadosa da função renal, especialmente em DRC.",curiosidade:"O SPRINT foi interrompido precocemente por benefício cardiovascular! Mas gerou debate sobre segurança renal que persiste até hoje.",ano:2015,impacto:"Metas de PA em DRC e risco cardiovascular"},
+      {titulo:"ONTARGET Trial",autores:"ONTARGET Investigators; Mann JF et al.",jornal:"N Engl J Med 2008;358(15):1547-1559",resumo:"Combinação IECA + BRA vs monoterapia em pacientes de alto risco CV: sem benefício adicional renal ou cardiovascular, com aumento de LRA, hipercalemia e hipotensão.",conclusao:"A dupla bloqueio do SRAA não é recomendada em DRC, pois aumenta eventos adversos sem benefício adicional.",curiosidade:"Este estudo 'matou' a dupla bloqueio do SRAA! Uma prática muito comum antes de 2008 que se mostrou prejudicial.",ano:2008,impacto:"Contraindicação da dupla bloqueio do SRAA"},
+      {titulo:"CONVINCE Trial",autores:"Blankestijn PJ, Vernooij RWM, Gansevoort RT et al.",jornal:"N Engl J Med 2023;389(8):700-709",resumo:"Hemodiafiltração (HDF) de alta dose vs hemodiálise de alto fluxo: redução de 23% na mortalidade por todas as causas com volumes convectivos ≥23 L/sessão.",conclusao:"HDF de alta dose reduz mortalidade em pacientes dialíticos, tornando-se nova referência para adequação em hemodiálise.",curiosidade:"Três grandes estudos (CONVINCE, ESHOL, TURKISH) convergiram para o mesmo resultado: HDF de alta dose salva vidas!",ano:2023,impacto:"HDF de alta dose como novo padrão em diálise"},
+      {titulo:"FLOW Trial",autores:"Perkovic V, Tuttle KR, Rossing P et al.",jornal:"N Engl J Med 2024;391(18):1733-1745",resumo:"Semaglutida 1 mg/semana vs placebo em DRC diabética albuminúrica: redução de 24% em eventos renais maiores (DRC terminal, queda ≥50% TFG, morte renal/CV), com desaceleração do declínio da TFG.",conclusao:"GLP-1 RA demonstra benefício renal independente do controle glicêmico, complementando SGLT2i e finerenona.",curiosidade:"FLOW foi o primeiro estudo de GLP-1 RA com desfecho renal primário! Inaugurou a 'era dos quatro pilares' em DRC diabética.",ano:2024,impacto:"GLP-1 RA como quarto pilar em DRC diabética"},
+      {titulo:"BPROAD Trial",autores:"Zhang W, Zhang Y, Wang J et al.",jornal:"N Engl J Med 2024;391(18):1671-1681",resumo:"Controle intensivo de PA (PAS <120 mmHg) vs padrão (<140 mmHg) em 12.821 pacientes com DM2 de alto risco CV: redução de 21% em MACE e 18% na progressão renal.",conclusao:"Meta de PAS <120 mmHg é benéfica em DM2 de alto risco, com monitorização cuidadosa de hipotensão e hipercalemia.",curiosidade:"BPROAD é o maior estudo de controle de PA em diabetes da história! Realizado na China com seguimento de 4 anos.",ano:2024,impacto:"Meta intensiva de PA em diabetes tipo 2"},
+      {titulo:"TESTING Trial",autores:"Lv J, Xu D, Perkovic V et al.",jornal:"JAMA 2022;327(19):1888-1898",resumo:"Metilprednisolona em doses reduzidas vs placebo em nefropatia por IgA de alto risco: redução de 27% no desfecho renal primário, com perfil de segurança superior ao esquema de dose plena original.",conclusao:"Corticoterapia em doses otimizadas tem papel em IgAN de alto risco, mas deve ser individualizada pelo risco de infecções.",curiosidade:"O estudo original com dose plena foi suspenso por mortes por infecção! A versão com dose reduzida mostrou o equilíbrio certo.",ano:2022,impacto:"Corticoterapia otimizada em nefropatia por IgA"},
+      {titulo:"NOSTONE Trial",autores:"Dhayat NA, Bonny O, Roth B et al.",jornal:"N Engl J Med 2023;388(9):781-791",resumo:"Hidroclorotiazida em três doses vs placebo na prevenção de recorrência de cálculos de cálcio: nenhuma dose demonstrou redução significativa na recorrência radiológica ou clínica.",conclusao:"A eficácia dos tiazídicos na prevenção de litíase recorrente é questionável, desafiando décadas de prática clínica.",curiosidade:"Resultado completamente inesperado! Tiazídicos eram considerados padrão-ouro para prevenção de cálculos há 40 anos.",ano:2023,impacto:"Questionamento dos tiazídicos na litíase recorrente"},
+      {titulo:"Anticorpo Anti-PLA2R na NM",autores:"Beck LH Jr, Bonegio RGB, Lambeau G et al.",jornal:"N Engl J Med 2009;361(1):11-21",resumo:"Identificação do receptor de fosfolipase A2 (PLA2R) como antígeno-alvo em 70% dos casos de nefropatia membranosa primária, com anticorpos IgG4 anti-PLA2R como biomarcador diagnóstico e de monitorização.",conclusao:"Anti-PLA2R transformou o diagnóstico de NM primária, permitindo diagnóstico não-invasivo e monitorização da resposta terapêutica.",curiosidade:"Antes de 2009, NM era considerada 'idiopática' em 70% dos casos! A descoberta do PLA2R revelou que era autoimune.",ano:2009,impacto:"Revolução diagnóstica na nefropatia membranosa"},
+      {titulo:"Avacopan em Vasculite ANCA",autores:"Jayne DRW, Merkel PA, Schall TJ, Bekker P; ADVOCATE Study Group",jornal:"N Engl J Med 2021;384(7):599-609",resumo:"Avacopan (inibidor do receptor C5a) vs prednisona em vasculite ANCA: não-inferioridade na remissão sustentada em 52 semanas, com redução significativa de corticoide e menos eventos adversos.",conclusao:"Avacopan permite redução ou eliminação de corticoides em vasculite ANCA, com eficácia equivalente e melhor perfil de segurança.",curiosidade:"Primeiro inibidor do complemento aprovado para vasculite! Abre nova era de terapias alvo-específicas sem corticoide.",ano:2021,impacto:"Terapia alvo-complemento sem corticoide em vasculite"},
+      {titulo:"Sparsentan em GESF e IgAN",autores:"Rheault MN, Bhatt DL et al.",jornal:"Lancet 2023;401(10388):1533-1542 (DUPLEX); N Engl J Med 2023;389(22):2021-2032 (PROTECT)",resumo:"Sparsentan (antagonista dual endotelina/angiotensina) vs irbesartan em GESF e IgAN: redução superior de proteinúria em 36 semanas, com tendência a preservação de TFG.",conclusao:"Bloqueio dual endotelina/angiotensina representa nova abordagem antiproteinúrica em glomerulopatias resistentes.",curiosidade:"Sparsentan combina dois mecanismos em uma única molécula! Endotelina-1 é um potente vasoconstritor glomerular negligenciado.",ano:2023,impacto:"Bloqueio dual ET/AT em glomerulopatias"},
+      {titulo:"Iptacopan em Nefropatia por IgA",autores:"Barratt J, Lafayette RA et al.; APPLAUSE-IgAN Study Group",jornal:"N Engl J Med 2024;390(1):77-89",resumo:"Iptacopan (inibidor do fator B do complemento, via alternativa) vs placebo em IgAN de alto risco: redução de 38% na proteinúria em 9 meses, com estabilização da TFG.",conclusao:"Inibição da via alternativa do complemento é eficaz em IgAN, inaugurando era de terapias alvo-complemento em glomerulopatias.",curiosidade:"IgAN é a glomerulonefrite mais comum no mundo! Finalmente tem terapia específica após décadas de apenas suporte.",ano:2024,impacto:"Inibidor do complemento aprovado para IgAN"},
+      {titulo:"Nefecon (Budesonida Entérica) em IgAN",autores:"Barratt J, Rovin BH, Cattran D et al.; NefIgArd Trial",jornal:"Lancet 2023;401(10394):1584-1594",resumo:"Budesonida alvo-entérica (Nefecon/Tarpeyo) vs placebo em IgAN de alto risco: redução de 27% na proteinúria em 9 meses, com preservação da TFG em 2 anos.",conclusao:"Modulação da imunidade mucosa intestinal (eixo amígdala-intestino-rim) é eficaz em IgAN, com mínima absorção sistêmica.",curiosidade:"IgAN começa no intestino! Placas de Peyer produzem IgA aberrantemente glicosilada que deposita no mesângio renal.",ano:2023,impacto:"Terapia mucosa intestinal em IgAN"},
+      {titulo:"RITUXVAS Trial",autores:"Jones RB, Tervaert JWC, Hauser T et al.",jornal:"N Engl J Med 2010;363(3):211-220",resumo:"Rituximabe + 2 pulsos de ciclofosfamida vs ciclofosfamida convencional em vasculite ANCA com envolvimento renal grave: taxas equivalentes de remissão sustentada e sobrevida.",conclusao:"Rituximabe é não-inferior à ciclofosfamida em vasculite ANCA renal, com menor exposição cumulativa ao agente alquilante.",curiosidade:"RITUXVAS e RAVE foram publicados no mesmo número do NEJM em 2010! Dupla publicação que transformou o tratamento de vasculite.",ano:2010,impacto:"Rituximabe em vasculite ANCA com envolvimento renal"},
+      {titulo:"Estudo RENAAL",autores:"Brenner BM, Cooper ME, de Zeeuw D et al.",jornal:"N Engl J Med 2001;345(12):861-869",resumo:"Losartana vs placebo em nefropatia diabética tipo 2 avançada: redução de 16% no desfecho renal primário (duplicação de creatinina, DRC terminal, morte), independente do efeito anti-hipertensivo.",conclusao:"BRA têm efeito nefroprotetor independente da redução de PA em nefropatia diabética, estabelecendo bloqueio do SRAA como padrão.",curiosidade:"RENAAL e IDNT foram publicados juntos em 2001! Dupla publicação que consagrou os BRA em nefropatia diabética.",ano:2001,impacto:"BRA como padrão em nefropatia diabética tipo 2"},
+      {titulo:"Estudo IDNT",autores:"Lewis EJ, Hunsicker LG, Clarke WR et al.",jornal:"N Engl J Med 2001;345(12):851-860",resumo:"Irbesartana vs amlodipina vs placebo em nefropatia diabética tipo 2: redução de 20% no desfecho renal primário com irbesartana vs placebo, sem diferença cardiovascular entre grupos.",conclusao:"BRA são superiores a bloqueadores de canal de cálcio na nefroproteção em DRC diabética, confirmando efeito independente de PA.",curiosidade:"Irbesartana reduziu proteinúria em 33%! A proteinúria como biomarcador de nefroproteção foi validada por estes estudos.",ano:2001,impacto:"Superioridade dos BRA sobre BCC em nefropatia diabética"},
+      {titulo:"MICRO-HOPE Substudy",autores:"Heart Outcomes Prevention Evaluation (HOPE) Study Investigators",jornal:"Lancet 2000;355(9200):253-259",resumo:"Ramipril vs placebo em pacientes diabéticos de alto risco CV: redução de 24% em eventos CV maiores e de 22% na progressão para nefropatia, independente da redução de PA.",conclusao:"IECA têm efeito nefroprotetor e cardioprotetor em diabéticos de alto risco, independente do nível pressórico basal.",curiosidade:"HOPE foi o primeiro grande estudo a mostrar que IECA protegem o rim em diabéticos mesmo sem hipertensão! Mudou guidelines globais.",ano:2000,impacto:"IECA em diabéticos normotensivos de alto risco"},
+      {titulo:"Estudo MDRD",autores:"Levey AS, Bosch JP, Lewis JB et al.",jornal:"Ann Intern Med 1999;130(6):461-470",resumo:"Controle rigoroso de PA (<125/75 mmHg) vs padrão (<140/90 mmHg) em DRC não-diabética: benefício maior em pacientes com proteinúria >1g/dia. Derivação da equação MDRD para estimativa de TFG.",conclusao:"Metas de PA mais rigorosas beneficiam pacientes com DRC proteinúrica. A equação MDRD revolucionou a estimativa de TFG.",curiosidade:"A equação MDRD foi derivada deste estudo! Usada por décadas para estimar TFG antes da CKD-EPI.",ano:1999,impacto:"Equação MDRD e metas de PA em DRC"},
+      {titulo:"CKD-EPI 2021",autores:"Inker LA, Eneanya ND, Coresh J et al.",jornal:"N Engl J Med 2021;385(19):1737-1749",resumo:"Nova equação CKD-EPI 2021 sem raça para estimativa de TFG: remoção da variável raça negra da equação de 2009, com desempenho equivalente e maior equidade racial.",conclusao:"A equação CKD-EPI 2021 sem raça é mais equitativa e igualmente precisa, sendo adotada como padrão pelos principais laboratórios.",curiosidade:"A variável 'raça' na equação original superestimava TFG em negros, levando a diagnóstico tardio de DRC! Correção histórica.",ano:2021,impacto:"Equidade racial na estimativa de TFG"},
+      {titulo:"Transplante Renal e Belatacept",autores:"Vincenti F, Charpentier B, Vanrenterghem Y et al.",jornal:"Am J Transplant 2010;10(3):535-546 (BENEFIT)",resumo:"Belatacept (bloqueador de coestimulação CD28/B7) vs ciclosporina em transplante renal: melhor função renal a longo prazo, com TFG 21 mL/min superior aos 7 anos, apesar de maior rejeição aguda precoce.",conclusao:"Belatacept oferece vantagem renal a longo prazo em transplante, ao custo de maior vigilância para rejeição e PTLD.",curiosidade:"Belatacept foi desenvolvido para artrite reumatoide! Sua adaptação para transplante foi uma inovação translacional notável.",ano:2010,impacto:"Imunossupressão sem inibidor de calcineurina em transplante"},
+      {titulo:"Doença Renal Policística e Tolvaptana",autores:"Torres VE, Chapman AB, Devuyst O et al.",jornal:"N Engl J Med 2012;367(25):2407-2418 (TEMPO 3:4)",resumo:"Tolvaptana (antagonista do receptor V2 de vasopressina) vs placebo em DRPAD: redução de 49% no crescimento renal anual e de 26% no declínio da TFG em pacientes de progressão rápida.",conclusao:"Tolvaptana é o primeiro tratamento aprovado para DRPAD, eficaz em retardar progressão em pacientes com risco de progressão rápida.",curiosidade:"A vasopressina estimula crescimento de cistos! Tolvaptana 'desliga' esse sinal, sendo o único medicamento aprovado para DRPAD.",ano:2012,impacto:"Primeiro tratamento aprovado para DRPAD"},
+      {titulo:"SHU Atípica e Eculizumabe",autores:"Legendre CM, Licht C, Muus P et al.",jornal:"N Engl J Med 2013;368(23):2169-2181",resumo:"Eculizumabe (inibidor do complemento C5) em SHU atípica: remissão da MAT em 88% dos pacientes, com melhora da TFG e redução de necessidade de diálise em casos refratários.",conclusao:"Eculizumabe transformou o prognóstico da SHU atípica, de doença com alta mortalidade para condição tratável com recuperação renal.",curiosidade:"Eculizumabe custa ~$500.000/ano! Um dos medicamentos mais caros do mundo, mas literalmente salva rins e vidas.",ano:2013,impacto:"Revolução no tratamento da SHU atípica"},
+      {titulo:"Nefropatia Membranosa e Rituximabe (MENTOR)",autores:"Fervenza FC, Appel GB, Barbour SJ et al.",jornal:"N Engl J Med 2019;381(1):36-46",resumo:"Rituximabe vs ciclosporina em nefropatia membranosa primária: superioridade do rituximabe na remissão completa ou parcial em 24 meses (60% vs 20%), com menor recidiva.",conclusao:"Rituximabe é superior à ciclosporina em NM primária, tornando-se tratamento de primeira linha em casos com indicação imunossupressora.",curiosidade:"MENTOR foi publicado no mesmo dia que o STARMEN! Dois estudos simultâneos confirmando rituximabe como nova referência em NM.",ano:2019,impacto:"Rituximabe como primeira linha em nefropatia membranosa"},
+      {titulo:"Nefrite Lúpica e Voclosporina (AURORA)",autores:"Rovin BH, Teng YKO, Ginzler EM et al.",jornal:"Lancet 2021;397(10289):2070-2080",resumo:"Voclosporina (inibidor de calcineurina de nova geração) + MMF + corticoide vs MMF + corticoide em nefrite lúpica: remissão completa em 41% vs 23% em 52 semanas.",conclusao:"Voclosporina melhora taxas de remissão em nefrite lúpica, com perfil farmacocinético mais previsível que tacrolimo.",curiosidade:"Voclosporina tem metabolismo mais previsível que ciclosporina! Menos variabilidade de níveis séricos = menos toxicidade.",ano:2021,impacto:"Nova geração de inibidores de calcineurina em lúpus"},
+      {titulo:"Nefrite Lúpica e Belimumabe (BLISS-LN)",autores:"Furie R, Rovin BH, Houssiau F et al.",jornal:"N Engl J Med 2020;383(12):1117-1128",resumo:"Belimumabe (anti-BLyS) + terapia padrão vs placebo + terapia padrão em nefrite lúpica: aumento de 20% na resposta renal primária em 104 semanas, com redução de recidivas.",conclusao:"Belimumabe melhora desfechos renais em nefrite lúpica quando adicionado à terapia padrão, com benefício sustentado.",curiosidade:"Belimumabe foi o primeiro biológico aprovado para lúpus em 50 anos! BLISS-LN estendeu essa indicação para nefrite.",ano:2020,impacto:"Primeiro biológico aprovado para nefrite lúpica"},
+      {titulo:"KDIGO Glomerulonefrites 2021",autores:"Kidney Disease: Improving Global Outcomes (KDIGO)",jornal:"Kidney Int 2021;100(4S):S1-S276",resumo:"Diretriz abrangente para manejo de glomerulonefrites: IgAN, NM, GESF, nefrite lúpica, vasculite ANCA, com incorporação de novos biomarcadores (PLA2R, ANCA) e terapias biológicas.",conclusao:"A diretriz KDIGO 2021 incorporou medicina de precisão em glomerulonefrites, com diagnóstico molecular e terapias alvo-específicas.",curiosidade:"Primeira diretriz de glomerulonefrites a incluir rituximabe como primeira linha! Reflete a revolução biológica na nefrologia.",ano:2021,impacto:"Medicina de precisão em glomerulonefrites"},
+      {titulo:"APOL1 e Risco Renal em Afrodescendentes",autores:"Kopp JB, Nelson GW, Sampath K et al.",jornal:"Science 2011;329(5999):1343-1348",resumo:"Variantes de risco em APOL1 (G1 e G2) em africanos e afrodescendentes associadas a maior risco de GESF, nefropatia hipertensiva e DRC terminal, com risco 7-29x maior que variante G0.",conclusao:"APOL1 é o maior fator genético de risco para DRC em afrodescendentes, explicando disparidades raciais na prevalência de GESF.",curiosidade:"APOL1 G1/G2 evoluíram para resistência à doença do sono africana! Proteção contra Trypanosoma ao custo de risco renal.",ano:2011,impacto:"Genética de GESF e disparidades raciais em DRC"},
+      {titulo:"Doença de Fabry e Terapia de Reposição Enzimática",autores:"Eng CM, Guffon N, Wilcox WR et al.",jornal:"N Engl J Med 2001;345(1):9-16",resumo:"Agalsidase alfa e beta (alfa-galactosidase A recombinante) em doença de Fabry: redução de depósitos de globotriaosilceramida em rins, coração e endotélio, com estabilização da função renal.",conclusao:"TRE é eficaz em reduzir depósitos em Fabry, com maior benefício quando iniciada precocemente antes de fibrose estabelecida.",curiosidade:"Fabry afeta 1:40.000 pessoas, mas é muito subdiagnosticada! Triagem em DRC inexplicada detecta casos não suspeitos.",ano:2001,impacto:"Terapia de reposição enzimática em doença de Fabry"},
+      {titulo:"Hiperoxalúria Primária e Lumasiran",autores:"Garrelfs SF, Frishberg Y, Hulton SA et al.",jornal:"N Engl J Med 2021;385(18):1623-1633 (ILLUMINATE-A)",resumo:"Lumasiran (siRNA contra glicato oxidase hepática) vs placebo em hiperoxalúria primária tipo 1: redução de 65% na oxalúria em 6 meses, com estabilização da TFG.",conclusao:"Terapia com siRNA é eficaz em hiperoxalúria primária, representando nova abordagem para doenças metabólicas raras com envolvimento renal.",curiosidade:"Lumasiran é um siRNA — silencia um gene no fígado para reduzir oxalato! Primeira terapia de RNA aprovada para doença renal.",ano:2021,impacto:"Terapia com siRNA em doença renal rara"},
+      {titulo:"Amiloidose AL e Daratumumabe (ANDROMEDA)",autores:"Kastritis E, Palladini G, Minnema MC et al.",jornal:"N Engl J Med 2021;385(1):46-58",resumo:"Daratumumabe (anti-CD38) + bortezomibe/ciclofosfamida/dexametasona vs VCd em amiloidose AL: resposta hematológica completa em 53% vs 18%, com maior sobrevida livre de progressão.",conclusao:"Daratumumabe transformou o tratamento da amiloidose AL, com respostas hematológicas profundas que se traduzem em recuperação orgânica.",curiosidade:"Amiloidose AL pode ser curada! Com resposta hematológica completa, o rim pode recuperar função ao longo de meses.",ano:2021,impacto:"Revolução no tratamento da amiloidose AL"},
+      {titulo:"Contraste Iodado e LRA (PRESERVE)",autores:"Weisbord SD, Gallagher M, Jneid H et al.",jornal:"N Engl J Med 2018;378(7):603-614",resumo:"Bicarbonato vs cloreto de sódio e acetilcisteína vs placebo em prevenção de nefropatia por contraste: nenhuma diferença em desfechos renais ou cardiovasculares em 90 dias.",conclusao:"Bicarbonato e acetilcisteína não previnem LRA por contraste em pacientes de alto risco, questionando décadas de prática clínica.",curiosidade:"PRESERVE 'matou' o bicarbonato e a acetilcisteína na prevenção de nefropatia por contraste! Prática muito comum que não funciona.",ano:2018,impacto:"Questionamento da prevenção de nefropatia por contraste"},
+      {titulo:"TRS em LRA Grave — Estudo AKIKI",autores:"Gaudry S, Hajage D, Schortgen F et al.",jornal:"N Engl J Med 2016;375(2):122-133",resumo:"Terapia renal substitutiva precoce vs tardia em LRA grave em UTI: sem diferença em mortalidade em 60 dias, com 49% do grupo tardio evitando TRS por recuperação espontânea.",conclusao:"TRS tardia (aguardar indicações clínicas absolutas) é segura em LRA grave em UTI, evitando TRS desnecessária em quase metade dos pacientes.",curiosidade:"Quase metade dos pacientes do grupo tardio nunca precisou de diálise! Isso questiona a prática de dialisar precocemente todo paciente grave.",ano:2016,impacto:"Timing da TRS em LRA grave em UTI"},
+      {titulo:"TRS em LRA — Estudo STARRT-AKI",autores:"STARRT-AKI Investigators; Bagshaw SM et al.",jornal:"N Engl J Med 2020;383(3):240-251",resumo:"TRS acelerada vs padrão em LRA grave em UTI: sem diferença em mortalidade em 90 dias, com maior dependência de diálise no grupo acelerado aos 90 dias.",conclusao:"TRS acelerada não melhora sobrevida e pode aumentar dependência de diálise, confirmando abordagem conservadora como padrão.",curiosidade:"STARRT-AKI confirmou AKIKI em escala global! Dois grandes estudos convergindo: não dialise precocemente sem indicação absoluta.",ano:2020,impacto:"Confirmação da TRS conservadora em LRA"},
+      {titulo:"Hiponatremia e Síndrome de Desmielinização",autores:"Sterns RH, Riggs JE, Schochet SS Jr",jornal:"N Engl J Med 1986;314(24):1535-1542",resumo:"Descrição de mielinólise pontina central após correção rápida de hiponatremia crônica: lesão desmielinizante irreversível com paraplegia, disartria e disfagia.",conclusao:"A correção de hiponatremia crônica deve ser lenta (≤8-10 mEq/L/24h) para evitar síndrome de desmielinização osmótica.",curiosidade:"Mielinólise pontina foi descrita em alcoolistas desnutridos! A associação com correção rápida de sódio foi descoberta por acidente.",ano:1986,impacto:"Segurança na correção de hiponatremia crônica"},
+      {titulo:"Nefropatia por Aristolóquica",autores:"Vanherweghem JL, Depierreux M, Tielemans C et al.",jornal:"Lancet 1993;341(8842):387-391",resumo:"Descrição de nefropatia rapidamente progressiva em mulheres que usaram ervas chinesas contendo ácido aristolóquico para emagrecimento: fibrose intersticial extensa com carcinoma urotelial.",conclusao:"Ácido aristolóquico é nefrotóxico e carcinogênico, causando nefropatia progressiva e câncer urotelial — proibido em muitos países.",curiosidade:"Descoberta foi feita em uma clínica de emagrecimento na Bélgica! Ervas 'naturais' podem ser extremamente tóxicas para os rins.",ano:1993,impacto:"Nefrotoxicidade de ervas medicinais"},
+      {titulo:"Biomarcadores de LRA — NGAL",autores:"Mishra J, Dent C, Tarabishi R et al.",jornal:"Lancet 2005;365(9466):1231-1238",resumo:"NGAL (lipocalina associada à gelatinase de neutrófilos) como biomarcador precoce de LRA após cirurgia cardíaca: elevação 2h após lesão, muito antes da creatinina (24-48h).",conclusao:"NGAL permite diagnóstico precoce de LRA, potencialmente permitindo intervenção antes da lesão estabelecida.",curiosidade:"NGAL é produzido por células tubulares lesadas! Detecta LRA com 24-48h de antecedência em relação à creatinina.",ano:2005,impacto:"Biomarcadores precoces de LRA"},
+      {titulo:"Diálise Peritoneal vs Hemodiálise — Sobrevida",autores:"Mehrotra R, Chiu YW, Kalantar-Zadeh K et al.",jornal:"J Am Soc Nephrol 2011;22(10):1819-1830",resumo:"Comparação de sobrevida entre DP e HD em 98.000 pacientes incidentes nos EUA: vantagem de sobrevida para DP nos primeiros 1-2 anos, especialmente em pacientes jovens sem diabetes.",conclusao:"DP oferece vantagem de sobrevida inicial, especialmente em jovens, com equivalência a longo prazo, apoiando abordagem 'DP-first'.",curiosidade:"DP é subutilizada globalmente! Apenas 11% dos dialíticos usam DP, apesar das vantagens de sobrevida inicial e qualidade de vida.",ano:2011,impacto:"Vantagem inicial da DP sobre HD"},
+      {titulo:"Anemia em DRC — Estudos CREATE e CHOIR",autores:"Drueke TB, Locatelli F, Clyne N et al.",jornal:"N Engl J Med 2006;355(20):2071-2098",resumo:"Normalização de hemoglobina com ESA (Hb alvo >13 g/dL) vs alvo convencional (Hb 10,5-11,5 g/dL): sem benefício cardiovascular e aumento de eventos adversos com alvo alto.",conclusao:"Alvo de Hb 10-12 g/dL é recomendado em DRC; normalização com ESA aumenta risco de AVC, HAS e progressão renal.",curiosidade:"CREATE e CHOIR foram publicados no mesmo número do NEJM! Dois estudos simultâneos que mudaram o alvo de hemoglobina em DRC.",ano:2006,impacto:"Metas seguras de hemoglobina com ESA em DRC"},
+      {titulo:"Inibidores de HIF-PH em Anemia de DRC",autores:"Provenzano R, Fishbane S, Szczech L et al.",jornal:"N Engl J Med 2021;385(25):2313-2335",resumo:"Inibidores de prolil-hidroxilase do HIF (roxadustat, daprodustat, vadadustat) vs ESA em anemia de DRC: eficácia equivalente na elevação de hemoglobina, com perfil cardiovascular variável.",conclusao:"Inibidores de HIF-PH são alternativa oral aos ESA injetáveis em anemia de DRC, com conveniência de administração.",curiosidade:"Inibidores de HIF-PH 'enganam' o corpo fazendo-o achar que está em altitude! Estimulam eritropoiese como se houvesse hipóxia.",ano:2021,impacto:"Nova classe oral para anemia em DRC"},
+      {titulo:"Rim e Microbioma Intestinal",autores:"Evenepoel P, Poesen R, Meijers B",jornal:"Nat Rev Nephrol 2017;13(5):255-266",resumo:"Revisão do eixo intestino-rim em DRC: disbiose intestinal aumenta produção de toxinas urêmicas (sulfato de indoxila, sulfato de p-cresol), acelerando progressão renal e risco cardiovascular.",conclusao:"O microbioma intestinal é fator modificável em DRC, com potencial terapêutico via probióticos, prebióticos e dieta.",curiosidade:"Toxinas urêmicas vêm do intestino! Bactérias intestinais produzem compostos que danificam rins e vasos — novo alvo terapêutico.",ano:2017,impacto:"Microbioma como alvo terapêutico em DRC"},
+      {titulo:"Rins e COVID-19",autores:"Hirsch JS, Ng JH, Ross DW et al.",jornal:"Kidney Int 2020;98(1):209-218",resumo:"Análise de 5.449 pacientes hospitalizados com COVID-19 em Nova York: LRA em 36,6%, com 14,3% necessitando de TRS; mortalidade de 35% em pacientes com LRA vs 7% sem LRA.",conclusao:"LRA é complicação frequente e grave em COVID-19, associada a alta mortalidade e necessidade de TRS.",curiosidade:"COVID-19 causou escassez global de máquinas de diálise em 2020! Hospitais adaptaram circuitos de CRRT para atender a demanda.",ano:2020,impacto:"LRA como complicação grave da COVID-19"},
+      {titulo:"SGLT2i — Mecanismos de Nefroproteção",autores:"Vallon V, Thomson SC",jornal:"Nat Rev Nephrol 2020;16(3):155-166",resumo:"Revisão dos mecanismos de nefroproteção dos SGLT2i: feedback tubuloglomerular (redução de hiperfiltração), redução de pressão intraglomerular, efeito metabólico (corpos cetônicos), anti-inflamatório e antiproteinúrico.",conclusao:"SGLT2i protegem o rim por múltiplos mecanismos além do controle glicêmico, explicando benefício em não-diabéticos.",curiosidade:"SGLT2i 'enganam' o rim fazendo-o achar que há menos glicose! Isso reduz hiperfiltração — mecanismo central da nefroproteção.",ano:2020,impacto:"Mecanismos de nefroproteção dos SGLT2i"},
+      {titulo:"Transplante Renal ABO-Incompatível",autores:"Montgomery JR, Berger JC, Warren DS et al.",jornal:"N Engl J Med 2011;365(4):318-326",resumo:"Transplante renal ABO-incompatível com dessensibilização (rituximabe + plasmaférese + IVIG): sobrevida do enxerto equivalente ao transplante ABO-compatível em 5 anos.",conclusao:"Transplante ABO-incompatível é viável com protocolos modernos de dessensibilização, expandindo o pool de doadores.",curiosidade:"Transplante ABO-incompatível era considerado impossível até os anos 2000! Hoje é realizado rotineiramente em centros especializados.",ano:2011,impacto:"Expansão do pool de doadores com ABO-incompatível"},
+      {titulo:"Anticorpos Doador-Específicos em Transplante",autores:"Loupy A, Lefaucheur C, Vernerey D et al.",jornal:"N Engl J Med 2013;369(13):1215-1226",resumo:"Anticorpos doador-específicos (DSA) pré e pós-transplante como preditores independentes de perda do enxerto: DSA de classe II (anti-DQ) associados a maior risco de rejeição mediada por anticorpos.",conclusao:"Monitorização de DSA é essencial no seguimento pós-transplante, permitindo intervenção precoce na rejeição mediada por anticorpos.",curiosidade:"DSA anti-HLA-DQ são os mais perigosos! Frequentemente ignorados no matching pré-transplante, causam rejeição crônica silenciosa.",ano:2013,impacto:"DSA como biomarcador de rejeição em transplante"},
+      {titulo:"Nutrição em DRC e Dieta Hipoproteica",autores:"Kalantar-Zadeh K, Fouque D",jornal:"N Engl J Med 2017;377(18):1765-1776",resumo:"Revisão sobre dieta hipoproteica (0,6-0,8 g/kg/dia) em DRC pré-dialítica: redução de uremia, acidose e progressão renal, com necessidade de suplementação de aminoácidos essenciais.",conclusao:"Dieta hipoproteica supervisionada retarda progressão da DRC e melhora controle metabólico, mas requer monitorização nutricional rigorosa.",curiosidade:"Dieta hipoproteica pode adiar diálise por anos! Mas precisa de acompanhamento nutricional especializado para evitar desnutrição.",ano:2017,impacto:"Dieta hipoproteica como nefroproteção"}
     ];
     
     // Estado dos baús desbloqueados
@@ -2039,67 +2379,59 @@
       ui.xpFill.style.width=`${Math.min(100,(state.xp/state.xpToNext)*100)}%`;
       ui.xpTxt.textContent=`XP ${state.xp} / ${state.xpToNext} • Cartas restantes: ${state.queue.length-state.idx}`;
       renderEquip();
-      // Desabilitar botões sem ouro suficiente ou jornada encerrada
+      // Atualizar dock de ações
       const forgeBtn=document.getElementById('forgeBtn');
       const chestBtn=document.getElementById('chestBtn');
+      const legBtn=document.getElementById('legendaryForgeBtn');
+      const chestCostBadge=document.getElementById('chestCostBadge');
       if(state.gameOver){
-        if(forgeBtn){ forgeBtn.classList.add('disabled'); forgeBtn.title='Jornada encerrada'; }
-        if(chestBtn){ chestBtn.classList.add('disabled'); chestBtn.title='Jornada encerrada'; }
+        if(forgeBtn){ forgeBtn.classList.add('disabled'); forgeBtn.setAttribute('data-tip','Jornada encerrada'); }
+        if(chestBtn){ chestBtn.classList.add('disabled'); chestBtn.setAttribute('data-tip','Jornada encerrada'); }
+        if(legBtn){ legBtn.classList.add('disabled'); legBtn.setAttribute('data-tip','Jornada encerrada'); }
       } else {
         const maxed = allItemsMaxed();
         if(forgeBtn){
           if(maxed){
             forgeBtn.classList.add('disabled');
-            forgeBtn.textContent='Equipamento Completo';
-            forgeBtn.title='Você já possui todos os equipamentos lendários!';
+            forgeBtn.setAttribute('data-tip','Equipamento completo!');
           } else if(state.gold<300){
             forgeBtn.classList.add('disabled');
-            forgeBtn.textContent='Forjar Item (300 ouro)';
-            forgeBtn.title='Ouro insuficiente (precisa 300)';
+            forgeBtn.setAttribute('data-tip',`Forjar Item — precisa 300💰 (atual: ${state.gold})`);
           } else {
             forgeBtn.classList.remove('disabled');
-            forgeBtn.textContent='Forjar Item (300 ouro)';
-            forgeBtn.title='Forjar um equipamento';
+            forgeBtn.setAttribute('data-tip','Forjar Item — 300💰');
           }
         }
-        // Botão Forjar Lendário
-        const legBtn=document.getElementById('legendaryForgeBtn');
         if(legBtn){
           if(maxed){
             legBtn.classList.add('disabled');
-            legBtn.textContent='Equipamento Completo';
-            legBtn.title='Todos os lendários equipados!';
-            legBtn.style.pointerEvents='none';
-            legBtn.style.opacity='0.4';
+            legBtn.setAttribute('data-tip','Equipamento completo!');
+            legBtn.style.pointerEvents='none'; legBtn.style.opacity='0.38';
           } else if(state.gold<1000){
             legBtn.classList.add('disabled');
-            legBtn.textContent='Forjar Lendário (1000 ouro)';
-            legBtn.title='Ouro insuficiente (precisa 1000)';
-            legBtn.style.pointerEvents='none';
-            legBtn.style.opacity='0.4';
+            legBtn.setAttribute('data-tip',`Forjar Lendário — precisa 1000💰 (atual: ${state.gold})`);
+            legBtn.style.pointerEvents='none'; legBtn.style.opacity='0.38';
           } else {
             legBtn.classList.remove('disabled');
-            legBtn.textContent='Forjar Lendário (1000 ouro)';
-            legBtn.title='Forjar um equipamento lendário!';
-            legBtn.style.pointerEvents='auto';
-            legBtn.style.opacity='1';
+            legBtn.setAttribute('data-tip','Forjar Lendário — 1000💰');
+            legBtn.style.pointerEvents='auto'; legBtn.style.opacity='1';
           }
         }
         if(chestBtn){
+          if(chestCostBadge) chestCostBadge.textContent=`${chestCost}💰`;
           if(maxed){
             chestBtn.classList.add('disabled');
-            chestBtn.textContent='Sem novos baús';
-            chestBtn.title='Você já possui todos os equipamentos lendários!';
+            chestBtn.setAttribute('data-tip','Todos os artigos desbloqueados!');
           } else {
             const chestLocked = state.gold<chestCost || state.correctTotal<CHEST_MIN_CORRECT;
             if(chestLocked){
               chestBtn.classList.add('disabled');
-              chestBtn.textContent=`Abrir Baú (${chestCost} ouro)`;
-              chestBtn.title = state.correctTotal<CHEST_MIN_CORRECT ? `Precisa de ${CHEST_MIN_CORRECT} acertos (atual: ${state.correctTotal})` : `Ouro insuficiente (precisa ${chestCost})`;
+              chestBtn.setAttribute('data-tip', state.correctTotal<CHEST_MIN_CORRECT
+                ? `Precisa de ${CHEST_MIN_CORRECT} acertos (atual: ${state.correctTotal})`
+                : `Ouro insuficiente — precisa ${chestCost}`);
             } else {
               chestBtn.classList.remove('disabled');
-              chestBtn.textContent=`Abrir Baú (${chestCost} ouro)`;
-              chestBtn.title='Abrir baú de artigo';
+              chestBtn.setAttribute('data-tip',`Abrir Baú — ${chestCost}💰`);
             }
           }
         }
@@ -2540,10 +2872,10 @@
       // Desabilitar forja e baú após fim de jornada
       const forgeBtn=document.getElementById('forgeBtn');
       const chestBtn=document.getElementById('chestBtn');
-      if(forgeBtn){ forgeBtn.classList.add('disabled'); forgeBtn.title='Jornada encerrada'; }
-      if(chestBtn){ chestBtn.classList.add('disabled'); chestBtn.title='Jornada encerrada'; }
       const legBtn=document.getElementById('legendaryForgeBtn');
-      if(legBtn){ legBtn.classList.add('disabled'); legBtn.title='Jornada encerrada'; }
+      if(forgeBtn){ forgeBtn.classList.add('disabled'); forgeBtn.setAttribute('data-tip','Jornada encerrada'); }
+      if(chestBtn){ chestBtn.classList.add('disabled'); chestBtn.setAttribute('data-tip','Jornada encerrada'); }
+      if(legBtn){ legBtn.classList.add('disabled'); legBtn.setAttribute('data-tip','Jornada encerrada'); }
       state.gameOver=true;
       renderRefs(["kdigo_ckd","kdigo_aki","kdigo_gn","kdigo_tx","dapa","empa"]);
       renderHUD();
@@ -3768,16 +4100,7 @@
       originalRenderQuestion();
     };
     
-    // Modificar shuffle para aplicar filtros de modo de estudo
-    const originalShuffle = shuffle;
-    window.shuffle = function(arr) {
-      const filtered = filterQuestionsByMode(arr);
-      if (filtered.length === 0) {
-        log('⚠️ Nenhuma questão encontrada para este modo. Usando todas.');
-        return originalShuffle(arr);
-      }
-      return originalShuffle(filtered);
-    };
+    // Filtros de modo de estudo são aplicados via filterQuestionsByMode() dentro do shuffleQueue
 
     // ============ CHANGELOG v3.0 ============
     function showChangelog() {
@@ -3787,50 +4110,66 @@
       modal.className = 'modal show changelog-popup';
       modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(6px);';
       modal.innerHTML = `
-        <div class="modal-content" style="max-width:550px;max-height:85vh;overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid #2a4a7a;border-radius:14px;padding:24px;box-shadow:0 0 40px rgba(255,215,0,0.3);">
-          <h2 style="color:var(--gold);margin-bottom:16px;font-family:'MedievalSharp','Cinzel',serif;">📜 CHANGELOG v3.0.3 📜</h2>
+        <div class="modal-content" style="max-width:580px;max-height:85vh;overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid #2a4a7a;border-radius:14px;padding:24px;box-shadow:0 0 40px rgba(255,215,0,0.3);">
+          <h2 style="color:var(--gold);margin-bottom:4px;font-family:'MedievalSharp','Cinzel',serif;">📜 CHANGELOG 📜</h2>
+          <div style="color:var(--txt-dim);font-size:0.75rem;margin-bottom:16px;">Histórico de atualizações do NefroQuest: Ascension</div>
           
-          <div style="text-align:left;max-height:400px;overflow-y:auto;padding:10px;">
-            <div style="margin-bottom:16px;">
-              <h3 style="color:#fb7185;font-size:1rem;margin-bottom:8px;">🐛 Correções v3.0.3</h3>
-              <ul style="color:var(--txt);font-size:0.85rem;line-height:1.6;padding-left:20px;">
+          <div style="text-align:left;padding:4px;">
+
+            <!-- v3.2 -->
+            <div style="background:linear-gradient(135deg,rgba(255,215,0,0.08),rgba(255,215,0,0.03));border:1px solid rgba(255,215,0,0.3);border-radius:10px;padding:14px;margin-bottom:14px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+                <span style="background:var(--gold);color:#1a0e00;font-size:0.7rem;font-weight:900;padding:2px 8px;border-radius:20px;font-family:'Cinzel',serif;">v3.2</span>
+                <span style="color:var(--gold);font-weight:bold;font-size:0.9rem;">Ascension — Interface & Baú</span>
+              </div>
+              <div style="margin-bottom:8px;">
+                <div style="color:#fb7185;font-size:0.75rem;font-weight:bold;margin-bottom:4px;">🐛 CORREÇÕES</div>
+                <ul style="color:var(--txt);font-size:0.82rem;line-height:1.7;padding-left:16px;margin:0;">
+                  <li>Corrigido bug crítico que impedia o botão <strong>"Continuar Jornada"</strong> de aparecer (erro de referência ao <code>shuffle</code> global quebrava o script)</li>
+                  <li>Imagem de fundo do jogo restaurada após ser acidentalmente comentada no CSS</li>
+                  <li>Ícone de conquistas agora visível em dourado brilhante (contraste corrigido)</li>
+                </ul>
+              </div>
+              <div style="margin-bottom:8px;">
+                <div style="color:#34d399;font-size:0.75rem;font-weight:bold;margin-bottom:4px;">✨ NOVIDADES</div>
+                <ul style="color:var(--txt);font-size:0.82rem;line-height:1.7;padding-left:16px;margin:0;">
+                  <li><strong>Dock de ações flutuante</strong> na lateral inferior direita com ícones SVG temáticos para Forjar, Lendário, Baú, Ranking, Stats e Conquistas</li>
+                  <li>Cada botão do dock tem cor temática, tooltip e badge de custo em ouro</li>
+                  <li><strong>51 novos artigos científicos</strong> adicionados ao Baú (total: 71 artigos), cobrindo CREDENCE, DAPA-CKD, FIDELIO, RAVE, SHARP, CONVINCE, FLOW, BPROAD, TESTING, NOSTONE, anti-PLA2R, avacopan, iptacopan, nefecon, RITUXVAS, RENAAL, IDNT, MDRD, CKD-EPI 2021, tolvaptana, eculizumabe, rituximabe em NM, voclosporina, belimumabe, APOL1, Fabry, lumasiran, amiloidose AL, PRESERVE, AKIKI, STARRT-AKI, hiponatremia, aristolóquica, NGAL, DP vs HD, CREATE/CHOIR, HIF-PH, microbioma e COVID-19 renal</li>
+                  <li><strong>Fade-in e fade-out</strong> na música da tela de boas-vindas para transição suave</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- v3.0.3 -->
+            <div style="background:rgba(0,0,0,0.2);border:1px solid #2a4a7a;border-radius:10px;padding:14px;margin-bottom:14px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+                <span style="background:#374151;color:#9ca3af;font-size:0.7rem;font-weight:900;padding:2px 8px;border-radius:20px;font-family:'Cinzel',serif;">v3.0.3</span>
+                <span style="color:#9ca3af;font-weight:bold;font-size:0.9rem;">Correções de Interface</span>
+              </div>
+              <ul style="color:var(--txt-dim);font-size:0.82rem;line-height:1.7;padding-left:16px;margin:0;">
                 <li>Badges de conquistas restaurados com imagens translúcidas visíveis</li>
-                <li>Nova imagem de boas-vindas com título "NefroQuest Ascension" integrado</li>
-                <li>Efeito de partículas/brilhos restaurado na tela inicial</li>
+                <li>Nova imagem de boas-vindas com título integrado</li>
+                <li>Efeito de partículas restaurado na tela inicial</li>
                 <li>Tabela de jornada em andamento com visual melhorado</li>
               </ul>
             </div>
-            
-            <div style="margin-bottom:16px;">
-              <h3 style="color:#34d399;font-size:1rem;margin-bottom:8px;">✨ Novidades v3.0</h3>
-              <ul style="color:var(--txt);font-size:0.85rem;line-height:1.6;padding-left:20px;">
+
+            <!-- v3.0 -->
+            <div style="background:rgba(0,0,0,0.2);border:1px solid #2a4a7a;border-radius:10px;padding:14px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+                <span style="background:#374151;color:#9ca3af;font-size:0.7rem;font-weight:900;padding:2px 8px;border-radius:20px;font-family:'Cinzel',serif;">v3.0</span>
+                <span style="color:#9ca3af;font-weight:bold;font-size:0.9rem;">Ascension — Lançamento</span>
+              </div>
+              <ul style="color:var(--txt-dim);font-size:0.82rem;line-height:1.7;padding-left:16px;margin:0;">
                 <li>Sistema de Estatísticas detalhado com desempenho por tema</li>
                 <li>Modo de Estudo por Tema com checkboxes e página dedicada</li>
                 <li>Sistema de Conquistas com 10 achievements desbloqueáveis</li>
                 <li>Explicações expandidas após cada resposta</li>
-                <li>Popups estilizados para Stats e Conquistas</li>
-              </ul>
-            </div>
-            
-            <div style="margin-bottom:16px;">
-              <h3 style="color:#3b82f6;font-size:1rem;margin-bottom:8px;">🔧 Melhorias</h3>
-              <ul style="color:var(--txt);font-size:0.85rem;line-height:1.6;padding-left:20px;">
-                <li>Interface mais responsiva para mobile</li>
-                <li>Popups unificados com design consistente</li>
-                <li>Tracking de tempo por questão</li>
-                <li>Identificação de questões mais erradas</li>
-                <li>Badges visuais para conquistas</li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 style="color:#a78bfa;font-size:1rem;margin-bottom:8px;">📚 Conteúdo</h3>
-              <ul style="color:var(--txt);font-size:0.85rem;line-height:1.6;padding-left:20px;">
                 <li>Questões atualizadas com estudos recentes (FLOW, EMPA-KIDNEY, BPROAD)</li>
-                <li>Explicações mais detalhadas com referências</li>
-                <li>Novos temas de nefrologia adicionados</li>
               </ul>
             </div>
+
           </div>
           
           <button class="btn gold" style="margin-top:20px;" onclick="this.closest('.modal').remove()">Fechar</button>
