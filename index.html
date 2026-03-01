@@ -473,13 +473,13 @@
     .welcome-screen.hidden { display: none; }
     .welcome-bg {
       position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: url('assets/images/welcome-nefroquest-title.png') center top / cover no-repeat;
+      background: linear-gradient(180deg, #0a0e1a 0%, #12192e 50%, #0a0e1a 100%);
       animation: welcomeBgZoom 20s ease-in-out infinite alternate;
       transform-origin: center top;
     }
     @media (max-aspect-ratio: 1/1) {
       .welcome-bg {
-        background-image: url('assets/images/welcome-nefroquest-title.png');
+        background: linear-gradient(180deg, #0a0e1a 0%, #12192e 50%, #0a0e1a 100%);
         background-position: center top;
         transform-origin: center top;
       }
@@ -753,7 +753,7 @@
         Embarque numa jornada RPG pelo Reino Sombrio do Néfron.<br>
         Responda questões de nefrologia, evolua seu personagem e derrote o Arqui-Nefromante!
       </p>
-      <div id="welcomeStats" class="welcome-stats" style="display:none;">
+      <div id="welcomeStats" class="welcome-stats">
         <div class="welcome-stat"><span class="ws-val" id="wsBestScore">0</span><span class="ws-lbl">Recorde</span></div>
         <div class="welcome-stat"><span class="ws-val" id="wsGamesPlayed">0</span><span class="ws-lbl">Partidas</span></div>
         <div class="welcome-stat"><span class="ws-val" id="wsBestLevel">0</span><span class="ws-lbl">Maior Nível</span></div>
@@ -1177,23 +1177,32 @@
         if (label) label.textContent = 'Mudo';
         if (toggle) toggle.classList.add('muted');
       }
-      // Start music on first user interaction
+      // Tentar autoplay imediato (funciona em alguns navegadores)
+      if (musicEnabled) {
+        // Tentativa 1: imediata
+        startWelcomeMusic();
+        // Tentativa 2: após pequeno delay
+        setTimeout(() => startWelcomeMusic(), 100);
+        // Tentativa 3: após DOM ready
+        setTimeout(() => startWelcomeMusic(), 500);
+      }
+      
+      // Fallback: Start music on first user interaction (para navegadores que bloqueiam autoplay)
       const startMusicOnInteraction = () => {
-        if (musicEnabled) {
-          // Na primeira interação, tocar música da welcome screen
+        if (musicEnabled && !welcomeMusicStarted) {
           startWelcomeMusic();
         }
         document.removeEventListener('click', startMusicOnInteraction);
         document.removeEventListener('touchstart', startMusicOnInteraction);
+        document.removeEventListener('keydown', startMusicOnInteraction);
+        document.removeEventListener('mousemove', startMusicOnInteraction);
+        document.removeEventListener('scroll', startMusicOnInteraction);
       };
       document.addEventListener('click', startMusicOnInteraction, { once: true });
       document.addEventListener('touchstart', startMusicOnInteraction, { once: true });
       document.addEventListener('keydown', startMusicOnInteraction, { once: true });
-      
-      // Tentar autoplay imediato (funciona em alguns navegadores)
-      if (musicEnabled) {
-        startWelcomeMusic();
-      }
+      document.addEventListener('mousemove', startMusicOnInteraction, { once: true });
+      document.addEventListener('scroll', startMusicOnInteraction, { once: true });
     })();
 
     // ============ SISTEMA DE STREAK MULTIPLICADOR ============
