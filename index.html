@@ -769,6 +769,9 @@
       <div class="welcome-buttons">
         <button id="welcomeContinueBtn" class="btn continue-btn" style="display:none;" onclick="continueGame()">Continuar Jornada</button>
         <button class="btn gold" onclick="startNewFromWelcome()">Nova Jornada</button>
+        <button class="btn sec" onclick="showTopicSelector()">📖 Modo de Estudo</button>
+        <button class="btn sec" onclick="showStatsModal()">📊 Estatísticas</button>
+        <button class="btn sec" onclick="showAchievementsModal()">🏆 Conquistas</button>
         <button class="btn sec" onclick="showLeaderboardFromWelcome()">Leaderboard</button>
       </div>
     </div>
@@ -872,6 +875,8 @@
         <button id="legendaryForgeBtn" class="btn gold" onclick="forgeLegendary()">Forjar Lendário (1000 ouro)</button>
         <button id="chestBtn" class="btn gold" onclick="openChest()">Abrir Baú (50 ouro)</button>
         <button id="boardBtn" class="btn sec">Leaderboard</button>
+        <button class="btn sec" onclick="showStatsModal()" style="background:linear-gradient(180deg,#3b82f6,#2563eb);border-color:#1d4ed8;">📊 Stats</button>
+        <button class="btn sec" onclick="showAchievementsModal()" style="background:linear-gradient(180deg,#f59e0b,#d97706);border-color:#b45309;">🏆 Conquistas</button>
       </div>
     </section>
 
@@ -2556,6 +2561,722 @@
     }
     
 
+
+    // ============ SISTEMA DE ESTATÍSTICAS E DESEMPENHO ============
+    const STATS_STORAGE_KEY = 'nefroquest-detailed-stats';
+    
+    function getDetailedStats() {
+      const raw = localStorage.getItem(STATS_STORAGE_KEY);
+      if (!raw) {
+        return {
+          totalQuestions: 0,
+          totalCorrect: 0,
+          totalWrong: 0,
+          byTopic: {},
+          questionHistory: [],
+          timeStats: {
+            totalTime: 0,
+            questionCount: 0
+          },
+          mostMissed: {}
+        };
+      }
+      return JSON.parse(raw);
+    }
+    
+    function saveDetailedStats(stats) {
+      localStorage.setItem(STATS_STORAGE_KEY, JSON.stringify(stats));
+    }
+    
+    function trackQuestionAnswer(question, isCorrect, timeSpent) {
+      const stats = getDetailedStats();
+      const topic = question.t || 'Geral';
+      
+      // Atualizar totais
+      stats.totalQuestions++;
+      if (isCorrect) {
+        stats.totalCorrect++;
+      } else {
+        stats.totalWrong++;
+      }
+      
+      // Atualizar por tema
+      if (!stats.byTopic[topic]) {
+        stats.byTopic[topic] = { correct: 0, wrong: 0, total: 0 };
+      }
+      stats.byTopic[topic].total++;
+      if (isCorrect) {
+        stats.byTopic[topic].correct++;
+      } else {
+        stats.byTopic[topic].wrong++;
+      }
+      
+      // Atualizar questões mais erradas
+      if (!isCorrect) {
+        const qKey = question.q.substring(0, 50);
+        if (!stats.mostMissed[qKey]) {
+          stats.mostMissed[qKey] = { question: question.q, topic: topic, count: 0 };
+        }
+        stats.mostMissed[qKey].count++;
+      }
+      
+      // Atualizar tempo
+      if (timeSpent > 0) {
+        stats.timeStats.totalTime += timeSpent;
+        stats.timeStats.questionCount++;
+      }
+      
+      // Histórico (últimas 100)
+      stats.questionHistory.unshift({
+        topic: topic,
+        correct: isCorrect,
+        time: timeSpent,
+        date: new Date().toISOString()
+      });
+      if (stats.questionHistory.length > 100) {
+        stats.questionHistory = stats.questionHistory.slice(0, 100);
+      }
+      
+      saveDetailedStats(stats);
+    }
+    
+    function showStatsModal() {
+      const stats = getDetailedStats();
+      const avgTime = stats.timeStats.questionCount > 0 
+        ? (stats.timeStats.totalTime / stats.timeStats.questionCount).toFixed(1) 
+        : 0;
+      const accuracy = stats.totalQuestions > 0 
+        ? ((stats.totalCorrect / stats.totalQuestions) * 100).toFixed(1) 
+        : 0;
+      
+      // Preparar dados por tema
+      const topicData = Object.entries(stats.byTopic).map(([topic, data]) => ({
+        topic,
+        accuracy: data.total > 0 ? ((data.correct / data.total) * 100).toFixed(1) : 0,
+        total: data.total,
+        correct: data.correct,
+        wrong: data.wrong
+      })).sort((a, b) => b.total - a.total);
+      
+      // Top 5 questões mais erradas
+      const topMissed = Object.values(stats.mostMissed)
+        .sort((a, b) => b.count - a.count)
+        .slice(0, 5);
+      
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.style.zIndex = '10000';
+      modal.innerHTML = `
+        <div class="modal-content" style="max-width:900px;max-height:90vh;overflow-y:auto;">
+          <h2 style="font-family:'MedievalSharp','Cinzel',serif;color:var(--gold);text-align:center;margin-bottom:20px;">
+            📊 Estatísticas de Desempenho
+          </h2>
+          
+          <!-- Estatísticas Gerais -->
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:24px;">
+            <div style="background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.3);border-radius:8px;padding:12px;text-align:center;">
+              <div style="font-size:2rem;color:#34d399;font-weight:bold;">${stats.totalQuestions}</div>
+              <div style="font-size:0.8rem;color:var(--txt-dim);">Total de Questões</div>
+            </div>
+            <div style="background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.3);border-radius:8px;padding:12px;text-align:center;">
+              <div style="font-size:2rem;color:#34d399;font-weight:bold;">${accuracy}%</div>
+              <div style="font-size:0.8rem;color:var(--txt-dim);">Taxa de Acerto</div>
+            </div>
+            <div style="background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.3);border-radius:8px;padding:12px;text-align:center;">
+              <div style="font-size:2rem;color:#3b82f6;font-weight:bold;">${avgTime}s</div>
+              <div style="font-size:0.8rem;color:var(--txt-dim);">Tempo Médio</div>
+            </div>
+            <div style="background:rgba(251,113,133,0.1);border:1px solid rgba(251,113,133,0.3);border-radius:8px;padding:12px;text-align:center;">
+              <div style="font-size:2rem;color:#fb7185;font-weight:bold;">${stats.totalWrong}</div>
+              <div style="font-size:0.8rem;color:var(--txt-dim);">Erros Totais</div>
+            </div>
+          </div>
+          
+          <!-- Desempenho por Tema -->
+          <div style="margin-bottom:24px;">
+            <h3 style="color:var(--gold);margin-bottom:12px;font-size:1.1rem;">📚 Desempenho por Tema</h3>
+            <div style="max-height:300px;overflow-y:auto;background:rgba(0,0,0,0.3);border-radius:8px;padding:12px;">
+              ${topicData.length > 0 ? topicData.map(t => `
+                <div style="margin-bottom:12px;padding:10px;background:rgba(255,255,255,0.05);border-radius:6px;">
+                  <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+                    <span style="color:var(--txt);font-weight:600;font-size:0.9rem;">${t.topic}</span>
+                    <span style="color:${t.accuracy >= 70 ? '#34d399' : t.accuracy >= 50 ? '#fbbf24' : '#fb7185'};font-weight:bold;">${t.accuracy}%</span>
+                  </div>
+                  <div style="background:rgba(0,0,0,0.3);height:8px;border-radius:4px;overflow:hidden;">
+                    <div style="background:linear-gradient(90deg,#34d399,#10b981);height:100%;width:${t.accuracy}%;transition:width 0.3s;"></div>
+                  </div>
+                  <div style="font-size:0.75rem;color:var(--txt-dim);margin-top:4px;">
+                    ${t.correct} acertos / ${t.wrong} erros (${t.total} total)
+                  </div>
+                </div>
+              `).join('') : '<p style="color:var(--txt-dim);text-align:center;padding:20px;">Nenhum dado ainda</p>'}
+            </div>
+          </div>
+          
+          <!-- Questões Mais Erradas -->
+          <div style="margin-bottom:20px;">
+            <h3 style="color:var(--gold);margin-bottom:12px;font-size:1.1rem;">❌ Top 5 Questões Mais Erradas</h3>
+            <div style="background:rgba(0,0,0,0.3);border-radius:8px;padding:12px;">
+              ${topMissed.length > 0 ? topMissed.map((m, i) => `
+                <div style="margin-bottom:10px;padding:8px;background:rgba(251,113,133,0.1);border-left:3px solid #fb7185;border-radius:4px;">
+                  <div style="font-size:0.85rem;color:var(--txt);margin-bottom:4px;">
+                    <strong>${i + 1}.</strong> ${m.question.substring(0, 100)}${m.question.length > 100 ? '...' : ''}
+                  </div>
+                  <div style="font-size:0.75rem;color:var(--txt-dim);">
+                    Tema: ${m.topic} • Erros: ${m.count}x
+                  </div>
+                </div>
+              `).join('') : '<p style="color:var(--txt-dim);text-align:center;padding:20px;">Nenhum erro registrado ainda</p>'}
+            </div>
+          </div>
+          
+          <div style="text-align:center;">
+            <button class="btn gold" onclick="this.closest('.modal').remove()">Fechar</button>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+    }
+
+    // ============ MODO DE ESTUDO POR TEMA ============
+    let selectedTopic = 'all';
+    let studyMode = 'all'; // 'all', 'topic', 'review'
+    
+    function extractTopics() {
+      const topicsSet = new Set();
+      topics.forEach(q => {
+        if (q.t) topicsSet.add(q.t);
+      });
+      return Array.from(topicsSet).sort();
+    }
+    
+    function showTopicSelector() {
+      const allTopics = extractTopics();
+      const stats = getDetailedStats();
+      
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.style.zIndex = '10000';
+      modal.innerHTML = `
+        <div class="modal-content" style="max-width:700px;">
+          <h2 style="font-family:'MedievalSharp','Cinzel',serif;color:var(--gold);text-align:center;margin-bottom:20px;">
+            📖 Modo de Estudo
+          </h2>
+          
+          <div style="margin-bottom:20px;">
+            <h3 style="color:var(--txt);margin-bottom:12px;font-size:1rem;">Selecione o Modo:</h3>
+            
+            <div style="display:grid;gap:10px;margin-bottom:20px;">
+              <button class="btn gold" onclick="setStudyMode('all');this.closest('.modal').remove();" style="text-align:left;padding:12px;">
+                <div style="font-weight:bold;margin-bottom:4px;">🎲 Todas as Questões</div>
+                <div style="font-size:0.8rem;opacity:0.8;">Modo padrão - questões aleatórias de todos os temas</div>
+              </button>
+              
+              <button class="btn sec" onclick="setStudyMode('review');this.closest('.modal').remove();" style="text-align:left;padding:12px;">
+                <div style="font-weight:bold;margin-bottom:4px;">🔄 Revisão de Erros</div>
+                <div style="font-size:0.8rem;opacity:0.8;">Revisar apenas questões que você errou anteriormente</div>
+              </button>
+            </div>
+            
+            <h3 style="color:var(--txt);margin-bottom:12px;font-size:1rem;">Ou escolha um Tema Específico:</h3>
+            <div style="max-height:400px;overflow-y:auto;background:rgba(0,0,0,0.3);border-radius:8px;padding:12px;">
+              ${allTopics.map(topic => {
+                const topicStats = stats.byTopic[topic];
+                const accuracy = topicStats ? ((topicStats.correct / topicStats.total) * 100).toFixed(0) : 'N/A';
+                const total = topicStats ? topicStats.total : 0;
+                return `
+                  <button class="btn sec" onclick="setStudyMode('topic', '${topic.replace(/'/g, "\\'")}');this.closest('.modal').remove();" 
+                    style="width:100%;text-align:left;margin-bottom:8px;padding:10px;display:flex;justify-content:space-between;align-items:center;">
+                    <span style="flex:1;">${topic}</span>
+                    <span style="font-size:0.75rem;opacity:0.7;margin-left:10px;">
+                      ${total > 0 ? `${accuracy}% (${total} questões)` : 'Não praticado'}
+                    </span>
+                  </button>
+                `;
+              }).join('')}
+            </div>
+          </div>
+          
+          <div style="text-align:center;margin-top:20px;">
+            <button class="btn sec" onclick="this.closest('.modal').remove()">Cancelar</button>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+    }
+    
+    function setStudyMode(mode, topic = null) {
+      studyMode = mode;
+      selectedTopic = topic || 'all';
+      
+      let message = '';
+      if (mode === 'all') {
+        message = '🎲 Modo: Todas as questões';
+      } else if (mode === 'review') {
+        message = '🔄 Modo: Revisão de erros';
+      } else if (mode === 'topic') {
+        message = `📖 Modo: ${topic}`;
+      }
+      
+      log(message);
+      
+      // Reiniciar jogo com novo modo
+      if (state.gameStarted) {
+        if (confirm('Deseja reiniciar o jogo com o novo modo de estudo?')) {
+          startNewFromWelcome();
+        }
+      }
+    }
+    
+    function filterQuestionsByMode(allQuestions) {
+      if (studyMode === 'all') {
+        return allQuestions;
+      } else if (studyMode === 'review') {
+        const stats = getDetailedStats();
+        const missedTopics = Object.keys(stats.mostMissed).map(k => stats.mostMissed[k].topic);
+        return allQuestions.filter(q => missedTopics.includes(q.t));
+      } else if (studyMode === 'topic' && selectedTopic !== 'all') {
+        return allQuestions.filter(q => q.t === selectedTopic);
+      }
+      return allQuestions;
+    }
+
+    // ============ SISTEMA DE EXPLICAÇÕES EXPANDIDAS ============
+    function showExpandedExplanation(question, selectedIndex, correctIndex) {
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.style.zIndex = '10000';
+      
+      const isCorrect = selectedIndex === correctIndex;
+      
+      // Gerar explicações para cada alternativa
+      const optionsExplanation = question.o.map((option, idx) => {
+        if (idx === correctIndex) {
+          return `
+            <div style="background:rgba(52,211,153,0.1);border-left:4px solid #34d399;padding:12px;border-radius:6px;margin-bottom:10px;">
+              <div style="display:flex;align-items:start;gap:8px;">
+                <span style="color:#34d399;font-size:1.2rem;flex-shrink:0;">✓</span>
+                <div style="flex:1;">
+                  <div style="color:#34d399;font-weight:bold;margin-bottom:6px;">Resposta Correta:</div>
+                  <div style="color:var(--txt);margin-bottom:8px;">${option}</div>
+                  <div style="color:var(--txt-dim);font-size:0.85rem;line-height:1.5;">
+                    <strong>Por que está correta:</strong> ${question.e || 'Esta é a resposta mais adequada baseada nas evidências científicas atuais.'}
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+        } else {
+          // Gerar explicação do por que está incorreta (baseado no contexto)
+          let wrongReason = 'Esta alternativa não representa a melhor conduta ou está em desacordo com as diretrizes atuais.';
+          
+          // Tentar gerar razão mais específica baseada no padrão da questão
+          if (option.includes('contraindicado') || option.includes('evitar')) {
+            wrongReason = 'Esta conduta pode ser prejudicial ou não é recomendada pelas diretrizes atuais.';
+          } else if (option.includes('apenas') || option.includes('exclusivamente')) {
+            wrongReason = 'Esta abordagem é muito restritiva e não contempla o manejo completo do caso.';
+          } else if (option.includes('sempre') || option.includes('nunca')) {
+            wrongReason = 'Afirmações absolutas geralmente não se aplicam na prática clínica baseada em evidências.';
+          }
+          
+          return `
+            <div style="background:rgba(251,113,133,0.05);border-left:4px solid #fb7185;padding:12px;border-radius:6px;margin-bottom:10px;">
+              <div style="display:flex;align-items:start;gap:8px;">
+                <span style="color:#fb7185;font-size:1.2rem;flex-shrink:0;">✗</span>
+                <div style="flex:1;">
+                  <div style="color:#fb7185;font-weight:bold;margin-bottom:6px;">Alternativa Incorreta:</div>
+                  <div style="color:var(--txt);margin-bottom:8px;">${option}</div>
+                  <div style="color:var(--txt-dim);font-size:0.85rem;line-height:1.5;">
+                    <strong>Por que está incorreta:</strong> ${wrongReason}
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+      }).join('');
+      
+      // Referências
+      const references = question.refs && question.refs.length > 0 
+        ? question.refs.map(ref => {
+            const refMap = {
+              'kdigo_ckd': 'KDIGO Clinical Practice Guideline for CKD',
+              'kdigo_aki': 'KDIGO Clinical Practice Guideline for AKI',
+              'kdigo_gn': 'KDIGO Clinical Practice Guideline for Glomerulonephritis',
+              'kdigo_tx': 'KDIGO Clinical Practice Guideline for Transplantation',
+              'dapa': 'DAPA-CKD Trial',
+              'empa': 'EMPA-KIDNEY Trial',
+              'flow_study': 'FLOW Study (Semaglutide)',
+              'bproad': 'BPROAD Study',
+              'convince_study': 'CONVINCE Study (HDF)',
+              'sharp_study': 'SHARP Study',
+              'testing_study': 'TESTING Study (IgA Nephropathy)',
+              'nostone_study': 'NOSTONE Study',
+              'rituxvas_study': 'RITUXVAS Study',
+              'rave_study': 'RAVE Study',
+              'advocate_study': 'ADVOCATE Study',
+              'nobility_study': 'NOBILITY Study',
+              'aurora_study': 'AURORA Study',
+              'valor_cdk_study': 'VALOR-CKD Study',
+              'preserve_study': 'PRESERVE Study',
+              'canvas_study': 'CANVAS Study'
+            };
+            return refMap[ref] || ref;
+          }).join(', ')
+        : 'Diretrizes de Nefrologia';
+      
+      modal.innerHTML = `
+        <div class="modal-content" style="max-width:800px;max-height:90vh;overflow-y:auto;">
+          <div style="text-align:center;margin-bottom:20px;">
+            <div style="font-size:3rem;margin-bottom:10px;">${isCorrect ? '✅' : '❌'}</div>
+            <h2 style="font-family:'MedievalSharp','Cinzel',serif;color:${isCorrect ? '#34d399' : '#fb7185'};margin-bottom:8px;">
+              ${isCorrect ? 'Resposta Correta!' : 'Resposta Incorreta'}
+            </h2>
+            <p style="color:var(--txt-dim);font-size:0.9rem;">${question.t || 'Nefrologia'}</p>
+          </div>
+          
+          <div style="background:rgba(0,0,0,0.3);padding:16px;border-radius:8px;margin-bottom:20px;">
+            <div style="color:var(--txt-dim);font-size:0.8rem;margin-bottom:8px;font-weight:600;">QUESTÃO:</div>
+            <div style="color:var(--txt);line-height:1.6;">${question.q}</div>
+          </div>
+          
+          <div style="margin-bottom:20px;">
+            <h3 style="color:var(--gold);margin-bottom:12px;font-size:1rem;">📝 Análise das Alternativas</h3>
+            ${optionsExplanation}
+          </div>
+          
+          <div style="background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.3);border-radius:8px;padding:14px;margin-bottom:20px;">
+            <div style="color:#3b82f6;font-weight:bold;margin-bottom:8px;display:flex;align-items:center;gap:8px;">
+              <span>📚</span> Referências para Estudo
+            </div>
+            <div style="color:var(--txt);font-size:0.85rem;line-height:1.5;">
+              ${references}
+            </div>
+          </div>
+          
+          <div style="text-align:center;">
+            <button class="btn gold" onclick="this.closest('.modal').remove()">Continuar</button>
+          </div>
+        </div>
+      `;
+      
+      document.body.appendChild(modal);
+    }
+
+    // ============ SISTEMA DE CONQUISTAS/ACHIEVEMENTS ============
+    const ACHIEVEMENTS_KEY = 'nefroquest-achievements';
+    
+    const ACHIEVEMENTS_LIST = [
+      {
+        id: 'hd_master',
+        name: 'Mestre da Hemodiálise',
+        description: 'Acerte 50 questões sobre Hemodiálise',
+        icon: '💉',
+        condition: (stats) => {
+          const hdTopics = Object.keys(stats.byTopic).filter(t => 
+            t.toLowerCase().includes('hemodiálise') || t.toLowerCase().includes('hd')
+          );
+          return hdTopics.reduce((sum, t) => sum + (stats.byTopic[t]?.correct || 0), 0) >= 50;
+        }
+      },
+      {
+        id: 'nephron_guardian',
+        name: 'Guardião dos Néfrons',
+        description: 'Acerte 100 questões consecutivas sem errar',
+        icon: '🛡️',
+        condition: (stats) => {
+          // Verificar streak máximo no histórico
+          let maxStreak = 0;
+          let currentStreak = 0;
+          stats.questionHistory.slice().reverse().forEach(q => {
+            if (q.correct) {
+              currentStreak++;
+              maxStreak = Math.max(maxStreak, currentStreak);
+            } else {
+              currentStreak = 0;
+            }
+          });
+          return maxStreak >= 100;
+        }
+      },
+      {
+        id: 'speed_demon',
+        name: 'Raio X',
+        description: 'Responda 10 questões em menos de 30 segundos cada',
+        icon: '⚡',
+        condition: (stats) => {
+          const fastAnswers = stats.questionHistory.filter(q => q.time > 0 && q.time < 30);
+          return fastAnswers.length >= 10;
+        }
+      },
+      {
+        id: 'perfectionist_drc',
+        name: 'Perfeccionista da DRC',
+        description: 'Acerte todas as questões do tema DRC (mínimo 20)',
+        icon: '💎',
+        condition: (stats) => {
+          const drcTopics = Object.keys(stats.byTopic).filter(t => 
+            t.toLowerCase().includes('drc') || t.toLowerCase().includes('doença renal crônica')
+          );
+          return drcTopics.some(t => {
+            const data = stats.byTopic[t];
+            return data.total >= 20 && data.wrong === 0;
+          });
+        }
+      },
+      {
+        id: 'transplant_expert',
+        name: 'Expert em Transplante',
+        description: 'Acerte 30 questões sobre Transplante Renal',
+        icon: '🏥',
+        condition: (stats) => {
+          const txTopics = Object.keys(stats.byTopic).filter(t => 
+            t.toLowerCase().includes('transplante')
+          );
+          return txTopics.reduce((sum, t) => sum + (stats.byTopic[t]?.correct || 0), 0) >= 30;
+        }
+      },
+      {
+        id: 'glomerulo_sage',
+        name: 'Sábio das Glomerulopatias',
+        description: 'Acerte 40 questões sobre Glomerulopatias',
+        icon: '🔬',
+        condition: (stats) => {
+          const glomTopics = Object.keys(stats.byTopic).filter(t => 
+            t.toLowerCase().includes('glomerul') || t.toLowerCase().includes('nefrite')
+          );
+          return glomTopics.reduce((sum, t) => sum + (stats.byTopic[t]?.correct || 0), 0) >= 40;
+        }
+      },
+      {
+        id: 'century_club',
+        name: 'Clube dos 100',
+        description: 'Responda 100 questões (certas ou erradas)',
+        icon: '💯',
+        condition: (stats) => stats.totalQuestions >= 100
+      },
+      {
+        id: 'accuracy_master',
+        name: 'Mestre da Precisão',
+        description: 'Mantenha 90% de acerto em pelo menos 50 questões',
+        icon: '🎯',
+        condition: (stats) => {
+          return stats.totalQuestions >= 50 && 
+                 (stats.totalCorrect / stats.totalQuestions) >= 0.9;
+        }
+      },
+      {
+        id: 'night_scholar',
+        name: 'Estudioso Noturno',
+        description: 'Responda 20 questões entre 22h e 6h',
+        icon: '🌙',
+        condition: (stats) => {
+          const nightQuestions = stats.questionHistory.filter(q => {
+            const hour = new Date(q.date).getHours();
+            return hour >= 22 || hour < 6;
+          });
+          return nightQuestions.length >= 20;
+        }
+      },
+      {
+        id: 'marathon_runner',
+        name: 'Maratonista do Conhecimento',
+        description: 'Responda 50 questões em um único dia',
+        icon: '🏃',
+        condition: (stats) => {
+          const today = new Date().toDateString();
+          const todayQuestions = stats.questionHistory.filter(q => 
+            new Date(q.date).toDateString() === today
+          );
+          return todayQuestions.length >= 50;
+        }
+      }
+    ];
+    
+    function getUnlockedAchievements() {
+      const raw = localStorage.getItem(ACHIEVEMENTS_KEY);
+      return raw ? JSON.parse(raw) : [];
+    }
+    
+    function saveUnlockedAchievements(unlocked) {
+      localStorage.setItem(ACHIEVEMENTS_KEY, JSON.stringify(unlocked));
+    }
+    
+    function checkAchievements() {
+      const stats = getDetailedStats();
+      const unlocked = getUnlockedAchievements();
+      const newUnlocked = [];
+      
+      ACHIEVEMENTS_LIST.forEach(achievement => {
+        if (!unlocked.includes(achievement.id) && achievement.condition(stats)) {
+          unlocked.push(achievement.id);
+          newUnlocked.push(achievement);
+        }
+      });
+      
+      if (newUnlocked.length > 0) {
+        saveUnlockedAchievements(unlocked);
+        newUnlocked.forEach(ach => showAchievementNotification(ach));
+      }
+    }
+    
+    function showAchievementNotification(achievement) {
+      playSound('levelup');
+      
+      const notification = document.createElement('div');
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #1a1228 0%, #2a1a3a 100%);
+        border: 2px solid var(--gold);
+        border-radius: 12px;
+        padding: 20px;
+        max-width: 350px;
+        z-index: 20000;
+        box-shadow: 0 10px 40px rgba(255,215,0,0.3), 0 0 20px rgba(255,215,0,0.2);
+        animation: slideInRight 0.5s ease-out, pulse 2s ease-in-out infinite;
+      `;
+      
+      notification.innerHTML = `
+        <div style="text-align:center;">
+          <div style="font-size:3rem;margin-bottom:10px;animation:bounce 1s ease-in-out infinite;">${achievement.icon}</div>
+          <div style="color:var(--gold);font-weight:bold;font-size:1.1rem;margin-bottom:8px;font-family:'Cinzel',serif;">
+            🏆 Conquista Desbloqueada!
+          </div>
+          <div style="color:var(--txt);font-weight:bold;margin-bottom:6px;">${achievement.name}</div>
+          <div style="color:var(--txt-dim);font-size:0.85rem;line-height:1.4;">${achievement.description}</div>
+        </div>
+      `;
+      
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.style.animation = 'slideOutRight 0.5s ease-in';
+        setTimeout(() => notification.remove(), 500);
+      }, 5000);
+    }
+    
+    function showAchievementsModal() {
+      const unlocked = getUnlockedAchievements();
+      
+      const modal = document.createElement('div');
+      modal.className = 'modal show';
+      modal.style.zIndex = '10000';
+      modal.innerHTML = `
+        <div class="modal-content" style="max-width:800px;max-height:90vh;overflow-y:auto;">
+          <h2 style="font-family:'MedievalSharp','Cinzel',serif;color:var(--gold);text-align:center;margin-bottom:20px;">
+            🏆 Conquistas
+          </h2>
+          
+          <div style="text-align:center;margin-bottom:24px;">
+            <div style="font-size:2rem;color:var(--gold);font-weight:bold;">${unlocked.length} / ${ACHIEVEMENTS_LIST.length}</div>
+            <div style="color:var(--txt-dim);font-size:0.9rem;">Conquistas Desbloqueadas</div>
+          </div>
+          
+          <div style="display:grid;gap:12px;">
+            ${ACHIEVEMENTS_LIST.map(ach => {
+              const isUnlocked = unlocked.includes(ach.id);
+              return `
+                <div style="
+                  background:${isUnlocked ? 'rgba(52,211,153,0.1)' : 'rgba(0,0,0,0.3)'};
+                  border:2px solid ${isUnlocked ? '#34d399' : '#374151'};
+                  border-radius:10px;
+                  padding:16px;
+                  display:flex;
+                  align-items:center;
+                  gap:16px;
+                  ${!isUnlocked ? 'opacity:0.5;' : ''}
+                ">
+                  <div style="font-size:3rem;flex-shrink:0;${!isUnlocked ? 'filter:grayscale(1);' : ''}">${ach.icon}</div>
+                  <div style="flex:1;">
+                    <div style="color:${isUnlocked ? '#34d399' : 'var(--txt)'};font-weight:bold;margin-bottom:4px;display:flex;align-items:center;gap:8px;">
+                      ${ach.name}
+                      ${isUnlocked ? '<span style="color:#34d399;">✓</span>' : '<span style="color:#6b7280;">🔒</span>'}
+                    </div>
+                    <div style="color:var(--txt-dim);font-size:0.85rem;">${ach.description}</div>
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+          
+          <div style="text-align:center;margin-top:24px;">
+            <button class="btn gold" onclick="this.closest('.modal').remove()">Fechar</button>
+          </div>
+        </div>
+      `;
+      
+      document.body.appendChild(modal);
+    }
+    
+    // Adicionar animações CSS
+    const achievementStyles = document.createElement('style');
+    achievementStyles.textContent = `
+      @keyframes slideInRight {
+        from { transform: translateX(400px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+      }
+      @keyframes slideOutRight {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(400px); opacity: 0; }
+      }
+      @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+      }
+      @keyframes pulse {
+        0%, 100% { box-shadow: 0 10px 40px rgba(255,215,0,0.3), 0 0 20px rgba(255,215,0,0.2); }
+        50% { box-shadow: 0 10px 40px rgba(255,215,0,0.5), 0 0 30px rgba(255,215,0,0.4); }
+      }
+    `;
+    document.head.appendChild(achievementStyles);
+
+    // ============ INTEGRAÇÃO COM O SISTEMA EXISTENTE ============
+    
+    // Variável para tracking de tempo
+    let questionStartTime = 0;
+    
+    // Modificar a função answer original para incluir tracking
+    const originalAnswer = answer;
+    window.answer = function(i, btn) {
+      if (!state.gameStarted || state.answered) return;
+      
+      const timeSpent = questionStartTime > 0 ? Math.floor((Date.now() - questionStartTime) / 1000) : 0;
+      const isCorrect = i === state.current.a;
+      
+      // Tracking de estatísticas
+      trackQuestionAnswer(state.current, isCorrect, timeSpent);
+      
+      // Chamar função original
+      originalAnswer(i, btn);
+      
+      // Mostrar explicação expandida após um delay
+      setTimeout(() => {
+        showExpandedExplanation(state.current, i, state.current.a);
+      }, 800);
+      
+      // Verificar conquistas
+      checkAchievements();
+    };
+    
+    // Modificar renderQuestion para iniciar timer
+    const originalRenderQuestion = renderQuestion;
+    window.renderQuestion = function() {
+      questionStartTime = Date.now();
+      originalRenderQuestion();
+    };
+    
+    // Modificar shuffle para aplicar filtros de modo de estudo
+    const originalShuffle = shuffle;
+    window.shuffle = function(arr) {
+      const filtered = filterQuestionsByMode(arr);
+      if (filtered.length === 0) {
+        log('⚠️ Nenhuma questão encontrada para este modo. Usando todas.');
+        return originalShuffle(arr);
+      }
+      return originalShuffle(filtered);
+    };
 
     resetGame();
     initWelcomeScreen();
