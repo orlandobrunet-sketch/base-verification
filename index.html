@@ -1296,11 +1296,17 @@
         width: 22px; height: 22px;
       }
       .mobile-bottom-dock .mdock-btn .mdock-label {
-        font-size: 0.55rem;
+        font-size: 0.48rem;
         font-family: 'Cinzel', serif;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.2px;
         text-transform: uppercase;
         opacity: 0.8;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 56px;
+        display: block;
+        text-align: center;
       }
       .mobile-bottom-dock .mdock-btn.forge-item svg { color: #f59e5a; }
       .mobile-bottom-dock .mdock-btn.forge-item .mdock-label { color: #f59e5a; }
