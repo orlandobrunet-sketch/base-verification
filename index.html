@@ -1171,7 +1171,12 @@
 
     /* FOOTER */
     .game-footer {
-      display: none; /* oculto no PC — evita linha extra no grid que causa scroll */
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 8px 0 4px;
+      font-size: 0.72rem;
+      color: var(--txt-dim);
+      opacity: 0.7;
     }
     .game-footer a {
       color: var(--gold); text-decoration: none; opacity: 0.7;
@@ -1418,8 +1423,8 @@
       .welcome-buttons { margin-top: 8px; gap: 6px; }
       .welcome-buttons .btn { padding: 9px 14px; font-size: 0.68rem; min-width: 110px; }
 
-      /* Footer oculto no mobile para economizar espaço */
-      .game-footer { display: none; }
+      /* Footer no mobile: bloco centralizado no final */
+      .game-footer { display: block; text-align: center; padding: 8px 0 4px; font-size: 0.72rem; }
     
       /* Compactar modal de seleção de personagem no mobile */
       #charSelectModal .chest-content { padding: 12px; }
