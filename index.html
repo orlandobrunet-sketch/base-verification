@@ -63,8 +63,8 @@
     /* MAIN LAYOUT */
     .app {
       position: relative; z-index: 10;
-      max-width: 1380px; margin: 0 auto; padding: 12px;
-      display: grid; grid-template-columns: 380px 1fr; gap: 14px;
+      max-width: 1440px; margin: 0 auto; padding: 12px;
+      display: grid; grid-template-columns: 380px 1fr auto; gap: 14px;
       min-height: 100vh; align-content: start;
     }
     .app.hidden { display: none; }
@@ -72,6 +72,11 @@
     /* TITLE */
     .game-title {
       grid-column: 1 / -1; text-align: center; padding: 8px 0 4px;
+    }
+    /* Dock ocupa coluna 3, linha 2 em diante, sticky */
+    .action-dock {
+      grid-column: 3;
+      grid-row: 2 / span 20;
     }
     .game-title h1 {
       font-family: 'MedievalSharp', 'Cinzel', serif;
@@ -106,7 +111,7 @@
     }
 
     .left { padding: 14px; }
-    .right { padding: 16px; padding-right: 80px; }
+    .right { padding: 16px; }
 
     /* HERO SECTION */
     .hero {
@@ -518,11 +523,11 @@
     }
 
     .action-dock {
-      position: fixed;
-      right: 14px;
-      bottom: 50%;
-      transform: translateY(50%);
-      z-index: 9000;
+      /* Coluna fixa no grid — alinhada ao painel direito */
+      position: sticky;
+      top: 12px;
+      align-self: start;
+      z-index: 100;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -534,7 +539,7 @@
         rgba(8,14,30,0.92) 100%);
       border: 1px solid rgba(255,215,0,0.22);
       border-radius: 22px;
-      padding: 10px 8px;
+      padding: 10px 6px;
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       box-shadow: 0 8px 40px rgba(0,0,0,0.7),
@@ -570,8 +575,8 @@
     /* Botão base */
     .dock-btn {
       position: relative;
-      width: 60px;
-      height: 58px;
+      width: 64px;
+      height: 62px;
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.08);
       background: rgba(255,255,255,0.03);
@@ -586,11 +591,11 @@
                   background 0.2s,
                   border-color 0.2s,
                   box-shadow 0.2s;
-      overflow: hidden;
+      overflow: visible;
       will-change: transform;
     }
     .dock-btn:hover {
-      transform: translateX(-5px) scale(1.1);
+      transform: scale(1.08);
       background: rgba(255,255,255,0.07);
       z-index: 1;
     }
@@ -603,8 +608,8 @@
 
     /* Ícone SVG */
     .dock-btn svg {
-      width: 24px;
-      height: 24px;
+      width: 30px;
+      height: 30px;
       flex-shrink: 0;
       transition: filter 0.2s;
     }
@@ -612,15 +617,14 @@
     /* Label minúscula */
     .dock-btn .dock-label {
       font-family: 'Cinzel', serif;
-      font-size: 0.38rem;
+      font-size: 0.4rem;
       font-weight: 700;
       letter-spacing: 0.3px;
       text-transform: uppercase;
       line-height: 1;
       white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 56px;
+      overflow: visible;
+      max-width: none;
       opacity: 0.85;
     }
 
@@ -702,20 +706,21 @@
     /* Badge de custo */
     .dock-cost {
       position: absolute;
-      top: -6px;
-      right: -6px;
+      top: -8px;
+      right: -10px;
       background: linear-gradient(135deg, #ffd700, #b8860b);
       color: #1a0e00;
       font-family: 'Cinzel', serif;
-      font-size: 0.4rem;
+      font-size: 0.42rem;
       font-weight: 900;
-      padding: 2px 5px;
+      padding: 2px 6px;
       border-radius: 7px;
       border: 1px solid rgba(255,215,0,0.4);
       white-space: nowrap;
       box-shadow: 0 2px 8px rgba(0,0,0,0.6);
       pointer-events: none;
       line-height: 1.3;
+      z-index: 2;
     }
     .dock-cost.purple {
       background: linear-gradient(135deg, #c084fc, #7c3aed);
@@ -866,12 +871,7 @@
       mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
     }
 
-    /* Linha decorativa horizontal */
-    .welcome-bg::after {
-      content: '';
-      position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(180,150,60,0.3), rgba(255,215,0,0.5), rgba(180,150,60,0.3), transparent);
-    }
+    /* Linha decorativa horizontal removida */
 
     /* Partículas — pontos de luz flutuantes discretos */
     .welcome-particles {
@@ -1165,8 +1165,11 @@
     ::-webkit-scrollbar-thumb:hover { background: #3a6a9a; }
 
     /* RESPONSIVE */
-    @media(max-width: 1060px) { .app { grid-template-columns: 1fr; } }
+    @media(max-width: 1060px) {
+      .app { grid-template-columns: 380px 1fr auto; }
+    }
     @media(max-width: 768px) {
+      .app { grid-template-columns: 1fr; }
       .char-grid { grid-template-columns: 1fr; }
       .game-title h1 { font-size: 1.3rem; }
       .hud { grid-template-columns: repeat(3, 1fr); }
@@ -1251,6 +1254,8 @@
       /* Dock lateral: oculto no mobile */
       .action-dock {
         display: none !important;
+        grid-column: unset;
+        grid-row: unset;
       }
 
       /* Bottom dock mobile */
@@ -1427,7 +1432,6 @@
       <div class="welcome-ornament"><span>&#10022; Reino dos Néfrons &#10022;</span></div>
       <h1>NefroQuest</h1>
       <div class="welcome-sub">Ascension</div>
-      <div class="welcome-credit"><a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;">v3.3.6</span></div>
       <div id="welcomeStats" class="welcome-stats">
         <div class="welcome-stat"><span class="ws-val" id="wsBestScore">0</span><span class="ws-lbl">Recorde</span></div>
         <div class="welcome-stat"><span class="ws-val" id="wsGamesPlayed">0</span><span class="ws-lbl">Partidas</span></div>
@@ -1463,6 +1467,7 @@
         <button class="btn sec" onclick="showAchievementsModal()">🏆 Conquistas</button>
         <button class="btn sec" onclick="showLeaderboardFromWelcome()">Leaderboard</button>
       </div>
+      <div class="welcome-credit" style="margin-top:14px;"><a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;">v3.3.6</span></div>
     </div>
   </div>
 
@@ -1566,17 +1571,8 @@
       </div>
     </section>
 
-    <div class="game-footer">
-      <p>
-        <a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a>
-        &nbsp;•&nbsp;
-        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" onclick="showChangelog()">v3.3.3</span>
-      </p>
-    </div>
-  </main>
-
-  <!-- ACTION DOCK — Lateral inferior direita -->
-  <div id="actionDock" class="action-dock hidden">
+    <!-- ACTION DOCK — Coluna fixa no grid -->
+    <div id="actionDock" class="action-dock hidden">
 
     <!-- Forjar Item -->
     <button id="forgeBtn"
@@ -1675,7 +1671,16 @@
       <span class="dock-label">Conquistas</span>
     </button>
 
-  </div><!-- /action-dock -->
+    </div><!-- /action-dock -->
+
+    <div class="game-footer">
+      <p>
+        <a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a>
+        &nbsp;•&nbsp;
+        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" onclick="showChangelog()">v3.3.6</span>
+      </p>
+    </div>
+  </main>
 
   <!-- MOBILE: Overlay escuro quando drawer aberto -->
   <div class="mobile-overlay" id="mobileOverlay"></div>
@@ -1880,42 +1885,105 @@
     Object.values(SFX).forEach(a => { a.load(); a.volume = 0.5; });
     
     // ============ MÚSICA DA TELA DE BOAS-VINDAS ============
-    // Loop manual com 4s de silêncio entre repetições + fade-in em cada início
+    // Loop suave: fade-in 3s no início, fade-out automático 4s antes do fim, reinicia com fade-in
     const WELCOME_MUSIC_URL = 'assets/audio/welcome-theme.mp3';
     const WELCOME_MUSIC_VOL = 0.30;
-    const WM_SILENCE_MS = 4000;  // silêncio entre loops
-    const WM_FADEIN_MS  = 1500;  // duração do fade-in
-    const WM_FADEOUT_MS = 1500;  // duração do fade-out
+    const WM_FADEIN_MS   = 3000;  // fade-in de 3 segundos
+    const WM_FADEOUT_MS  = 4000;  // fade-out de 4 segundos antes do fim
+    const WM_LOOP_GAP_MS = 800;   // pausa mínima entre loops após fade-out
 
     const wmTrack = new Audio(WELCOME_MUSIC_URL);
     wmTrack.preload = 'auto';
-    wmTrack.loop = false;  // loop manual para inserir silêncio
+    wmTrack.loop = false;
     wmTrack.volume = 0;
     wmTrack.load();
 
     let welcomeMusicStarted = false;
     let _wmFadeInterval = null;
-    let _wmSilenceTimeout = null;
+    let _wmFadeOutInterval = null;
+    let _wmLoopTimeout = null;
+    let _wmFadeOutTimeout = null;
     let _wmStopRequested = false;
 
     function _wmClearTimers() {
-      if (_wmFadeInterval)    { clearInterval(_wmFadeInterval);  _wmFadeInterval = null; }
-      if (_wmSilenceTimeout)  { clearTimeout(_wmSilenceTimeout); _wmSilenceTimeout = null; }
+      if (_wmFadeInterval)    { clearInterval(_wmFadeInterval);    _wmFadeInterval = null; }
+      if (_wmFadeOutInterval) { clearInterval(_wmFadeOutInterval); _wmFadeOutInterval = null; }
+      if (_wmLoopTimeout)     { clearTimeout(_wmLoopTimeout);      _wmLoopTimeout = null; }
+      if (_wmFadeOutTimeout)  { clearTimeout(_wmFadeOutTimeout);   _wmFadeOutTimeout = null; }
     }
 
+    // Fade-in suave usando curva ease-out (raiz quadrada) para soar natural
     function _wmFadeIn(onDone) {
       wmTrack.volume = 0;
-      const steps = Math.round(WM_FADEIN_MS / 50);
+      const steps = Math.round(WM_FADEIN_MS / 30);
       let step = 0;
       _wmFadeInterval = setInterval(() => {
         step++;
-        wmTrack.volume = Math.min(WELCOME_MUSIC_VOL, WELCOME_MUSIC_VOL * (step / steps));
+        const t = step / steps;
+        // curva ease-out: sobe rápido no início, desacelera no fim
+        wmTrack.volume = Math.min(WELCOME_MUSIC_VOL, WELCOME_MUSIC_VOL * Math.sqrt(t));
         if (step >= steps) {
           clearInterval(_wmFadeInterval); _wmFadeInterval = null;
           wmTrack.volume = WELCOME_MUSIC_VOL;
           if (onDone) onDone();
         }
-      }, 50);
+      }, 30);
+    }
+
+    // Fade-out suave usando curva ease-in (quadrática) para soar natural
+    function _wmFadeOut(onDone) {
+      const startVol = wmTrack.volume;
+      const steps = Math.round(WM_FADEOUT_MS / 30);
+      let step = 0;
+      _wmFadeOutInterval = setInterval(() => {
+        step++;
+        const t = step / steps;
+        // curva ease-in: desce devagar no início, acelera no fim
+        wmTrack.volume = Math.max(0, startVol * (1 - t * t));
+        if (step >= steps) {
+          clearInterval(_wmFadeOutInterval); _wmFadeOutInterval = null;
+          wmTrack.volume = 0;
+          wmTrack.pause();
+          if (onDone) onDone();
+        }
+      }, 30);
+    }
+
+    // Agenda o fade-out automático quando a faixa estiver tocando
+    function _wmScheduleFadeOut() {
+      if (_wmFadeOutTimeout) { clearTimeout(_wmFadeOutTimeout); _wmFadeOutTimeout = null; }
+      // Aguarda a duração ficar disponível
+      const trySchedule = () => {
+        if (_wmStopRequested || !welcomeMusicStarted) return;
+        const dur = wmTrack.duration;
+        if (!dur || !isFinite(dur)) {
+          // Tenta novamente em 200ms
+          _wmFadeOutTimeout = setTimeout(trySchedule, 200);
+          return;
+        }
+        const remaining = dur - wmTrack.currentTime;
+        const fadeStart = remaining - (WM_FADEOUT_MS / 1000);
+        if (fadeStart <= 0) {
+          // Já está na zona de fade-out
+          _wmStartFadeOutAndLoop();
+        } else {
+          _wmFadeOutTimeout = setTimeout(() => {
+            if (!_wmStopRequested && welcomeMusicStarted) _wmStartFadeOutAndLoop();
+          }, fadeStart * 1000);
+        }
+      };
+      trySchedule();
+    }
+
+    function _wmStartFadeOutAndLoop() {
+      _wmClearTimers();
+      _wmFadeOut(() => {
+        if (_wmStopRequested || !welcomeMusicStarted) return;
+        // Pequena pausa antes de reiniciar
+        _wmLoopTimeout = setTimeout(() => {
+          if (!_wmStopRequested && welcomeMusicStarted) _wmPlayOnce();
+        }, WM_LOOP_GAP_MS);
+      });
     }
 
     function _wmPlayOnce() {
@@ -1925,31 +1993,32 @@
       const playPromise = wmTrack.play();
       if (playPromise !== undefined) {
         playPromise.then(() => {
-          // Música iniciou com sucesso - disparar fade-in
           if (!_wmStopRequested) {
-            _wmClearTimers();
-            _wmFadeIn();
+            _wmFadeIn(() => {
+              // Após fade-in completo, agendar o fade-out automático
+              if (!_wmStopRequested) _wmScheduleFadeOut();
+            });
           }
         }).catch(() => {
-          // Autoplay bloqueado pelo navegador - resetar estado para o fallback tentar novamente
           welcomeMusicStarted = false;
           _wmStopRequested = false;
         });
       } else {
-        // API legada sem Promise - iniciar fade-in diretamente
         if (!_wmStopRequested) {
-          _wmClearTimers();
-          _wmFadeIn();
+          _wmFadeIn(() => {
+            if (!_wmStopRequested) _wmScheduleFadeOut();
+          });
         }
       }
     }
 
-    // Quando a faixa termina, aguarda silêncio e reinicia com fade-in
+    // Evento 'ended' como safety net (caso o fade-out não tenha pausado a tempo)
     wmTrack.addEventListener('ended', () => {
       if (_wmStopRequested || !welcomeMusicStarted) return;
-      _wmSilenceTimeout = setTimeout(() => {
+      _wmClearTimers();
+      _wmLoopTimeout = setTimeout(() => {
         if (!_wmStopRequested && welcomeMusicStarted) _wmPlayOnce();
-      }, WM_SILENCE_MS);
+      }, WM_LOOP_GAP_MS);
     });
 
     function startWelcomeMusic() {
