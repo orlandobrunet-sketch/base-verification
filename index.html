@@ -62,8 +62,8 @@
     /* MAIN LAYOUT */
     .app {
       position: relative; z-index: 10;
-      max-width: 1460px; margin: 0 auto; padding: 12px;
-      display: grid; grid-template-columns: 380px 1fr 80px; gap: 14px;
+      max-width: 1460px; margin: 0 auto; padding: 8px;
+      display: grid; grid-template-columns: 380px 1fr 80px; gap: 8px;
       align-content: start;
       min-height: 100vh; /* garante que o fundo não aparece abaixo quando o conteúdo é menor que a viewport */
     }
@@ -534,7 +534,7 @@
         rgba(10,16,36,0.99) 50%,
         rgba(6,10,24,0.97) 100%);
       border: 1.5px solid rgba(255,215,0,0.45);
-      border-radius: 18px;
+      border-radius: 12px; /* igual ao .panel */
       padding: 12px 8px;
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
@@ -855,6 +855,23 @@
       padding-bottom: 24px;
     }
     .welcome-screen.hidden { display: none; }
+
+    /* Botões de som na welcome screen — PC only, canto superior direito */
+    .welcome-sound-controls {
+      display: none; /* oculto por padrão; PC ativa via media query */
+    }
+    @media (min-width: 769px) {
+      .welcome-sound-controls {
+        display: flex;
+        flex-direction: row;
+        gap: 4px;
+        align-items: center;
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        z-index: 600;
+      }
+    }
 
     /* Fundo sem imagem — apenas gradiente e efeitos */
     .welcome-bg {
@@ -1480,6 +1497,15 @@
     <div class="welcome-bg"></div>
     <div class="welcome-glow"></div>
     <div class="welcome-particles" id="welcomeParticles"></div>
+    <!-- Botões de som na welcome screen (PC only) -->
+    <div class="welcome-sound-controls" id="welcomeSoundControls">
+      <div class="sound-toggle" onclick="toggleMusic()">
+        <span id="welcomeMusicIcon">🎵</span>
+      </div>
+      <div class="sound-toggle" onclick="toggleSound()">
+        <span id="welcomeSoundIcon">🔊</span>
+      </div>
+    </div>
     <div class="welcome-content">
       <!-- Ornamento superior -->
       <div class="welcome-ornament"><span>&#10022; Reino dos Néfrons &#10022;</span></div>
@@ -2219,13 +2245,16 @@
       soundEnabled = !soundEnabled;
       localStorage.setItem('nefroquest-sound', soundEnabled ? 'on' : 'off');
       const icon = document.getElementById('soundIcon');
+      const wIcon = document.getElementById('welcomeSoundIcon');
       const label = document.getElementById('soundLabel');
       const toggle = document.getElementById('soundToggle');
       if (soundEnabled) {
-        icon.textContent = '🔊'; label.textContent = 'SFX'; toggle.classList.remove('muted');
+        if(icon) icon.textContent = '🔊'; if(label) label.textContent = 'SFX'; if(toggle) toggle.classList.remove('muted');
+        if(wIcon) wIcon.textContent = '🔊';
         playSound('click');
       } else {
-        icon.textContent = '🔇'; label.textContent = 'Mudo'; toggle.classList.add('muted');
+        if(icon) icon.textContent = '🔇'; if(label) label.textContent = 'Mudo'; if(toggle) toggle.classList.add('muted');
+        if(wIcon) wIcon.textContent = '🔇';
       }
     }
     
@@ -2236,9 +2265,11 @@
       const label = document.getElementById('musicLabel');
       const toggle = document.getElementById('musicToggle');
       const mobileIcon = document.getElementById('mobileMusIcon');
+      const wMusicIcon = document.getElementById('welcomeMusicIcon');
       if (musicEnabled) {
         if(icon) icon.textContent = '🎵'; if(label) label.textContent = 'Música'; if(toggle) toggle.classList.remove('muted');
         if(mobileIcon) mobileIcon.textContent = '🎵';
+        if(wMusicIcon) wMusicIcon.textContent = '🎵';
         // Tocar música correta conforme a tela ativa
         const ws = document.getElementById('welcomeScreen');
         if (ws && !ws.classList.contains('hidden')) {
@@ -2249,6 +2280,7 @@
       } else {
         if(icon) icon.textContent = '🔇'; if(label) label.textContent = 'Mudo'; if(toggle) toggle.classList.add('muted');
         if(mobileIcon) mobileIcon.textContent = '🔇';
+        if(wMusicIcon) wMusicIcon.textContent = '🔇';
         stopWelcomeMusic(false);
         stopBgMusic();
       }
@@ -2258,18 +2290,22 @@
     (function() {
       if (!soundEnabled) {
         const icon = document.getElementById('soundIcon');
+        const wSoundIcon = document.getElementById('welcomeSoundIcon');
         const label = document.getElementById('soundLabel');
         const toggle = document.getElementById('soundToggle');
         if (icon) icon.textContent = '🔇';
+        if (wSoundIcon) wSoundIcon.textContent = '🔇';
         if (label) label.textContent = 'Mudo';
         if (toggle) toggle.classList.add('muted');
       }
       if (!musicEnabled) {
         const icon = document.getElementById('musicIcon');
+        const wMusicIcon = document.getElementById('welcomeMusicIcon');
         const label = document.getElementById('musicLabel');
         const toggle = document.getElementById('musicToggle');
         const mobileIcon = document.getElementById('mobileMusIcon');
         if (icon) icon.textContent = '🔇';
+        if (wMusicIcon) wMusicIcon.textContent = '🔇';
         if (label) label.textContent = 'Mudo';
         if (toggle) toggle.classList.add('muted');
         if (mobileIcon) mobileIcon.textContent = '🔇';
