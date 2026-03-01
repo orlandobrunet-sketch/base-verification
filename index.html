@@ -36,7 +36,7 @@
       color: var(--txt);
       font-family: 'Philosopher', 'Georgia', serif;
       background: var(--bg);
-      overflow-x: hidden;
+      overflow: hidden; /* PC: sem scroll de página — o conteúdo que ultrapassar a viewport é cortado */
       position: relative;
     }
     /* Background Layer */
@@ -105,9 +105,7 @@
       color: var(--gold); opacity: 0.3; font-size: 0.7rem;
     }
 
-    /* No PC: painel esquerdo com altura fixa e scroll interno para não estourar a viewport.
-       Cálculo: 100vh - padding do .app (12px top + 12px bottom) - gap (14px) - altura do título (~56px) = 100vh - 94px */
-    .left { padding: 14px; align-self: start; height: calc(100vh - 100px); overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(255,215,0,0.2) transparent; }
+    .left { padding: 14px; align-self: start; }
     .right { padding: 16px; align-self: start; }
 
     /* HERO SECTION */
