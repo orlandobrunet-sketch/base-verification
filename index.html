@@ -258,16 +258,16 @@
       position: relative;
     }
     .flag-btn {
-      position: absolute; top: 6px; left: 8px;
+      position: absolute; bottom: 6px; right: 8px; top: auto; left: auto;
       background: none; border: none; cursor: pointer;
-      font-size: 1rem; opacity: 0.35; padding: 2px 4px;
+      font-size: 0.9rem; opacity: 0.3; padding: 2px 4px;
       border-radius: 4px; transition: opacity 0.2s, transform 0.15s;
       line-height: 1; z-index: 2;
     }
-    .flag-btn:hover { opacity: 0.85; transform: scale(1.15); }
+    .flag-btn:hover { opacity: 0.8; transform: scale(1.15); }
     .flag-btn[title]:hover::after {
       content: attr(title);
-      position: absolute; left: 110%; top: 50%; transform: translateY(-50%);
+      position: absolute; right: 110%; bottom: 0; top: auto; left: auto; transform: none;
       background: rgba(10,15,30,0.95); border: 1px solid rgba(180,160,100,0.4);
       color: #d5e2ff; font-size: 0.7rem; white-space: nowrap;
       padding: 3px 8px; border-radius: 5px; pointer-events: none;
@@ -534,7 +534,7 @@
         rgba(8,14,30,0.92) 100%);
       border: 1px solid rgba(255,215,0,0.22);
       border-radius: 22px;
-      padding: 10px 6px;
+      padding: 10px 8px;
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       box-shadow: 0 8px 40px rgba(0,0,0,0.7),
@@ -570,8 +570,8 @@
     /* Botão base */
     .dock-btn {
       position: relative;
-      width: 52px;
-      height: 52px;
+      width: 60px;
+      height: 58px;
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.08);
       background: rgba(255,255,255,0.03);
@@ -580,13 +580,13 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 4px;
+      gap: 3px;
       margin: 3px 0;
       transition: transform 0.2s cubic-bezier(.34,1.56,.64,1),
                   background 0.2s,
                   border-color 0.2s,
                   box-shadow 0.2s;
-      overflow: visible;
+      overflow: hidden;
       will-change: transform;
     }
     .dock-btn:hover {
@@ -612,12 +612,15 @@
     /* Label minúscula */
     .dock-btn .dock-label {
       font-family: 'Cinzel', serif;
-      font-size: 0.42rem;
+      font-size: 0.38rem;
       font-weight: 700;
-      letter-spacing: 0.6px;
+      letter-spacing: 0.3px;
       text-transform: uppercase;
       line-height: 1;
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 56px;
       opacity: 0.85;
     }
 
@@ -834,9 +837,11 @@
     .welcome-screen {
       position: fixed; inset: 0; z-index: 500;
       background: radial-gradient(ellipse at 50% 0%, #0d1a3a 0%, #060a18 60%, #030610 100%);
-      display: flex; align-items: center; justify-content: center;
+      display: flex; align-items: flex-start; justify-content: center;
       animation: fadeIn 0.8s;
-      overflow: hidden;
+      overflow-y: auto;
+      padding-top: clamp(24px, 5vh, 60px);
+      padding-bottom: 24px;
     }
     .welcome-screen.hidden { display: none; }
 
@@ -912,6 +917,7 @@
       max-width: 560px; width: 94%;
       padding: 0 20px;
       display: flex; flex-direction: column; align-items: center; gap: 0;
+      flex-shrink: 0;
     }
 
     /* Ornamento superior */
@@ -1327,8 +1333,8 @@
       .ref-title { font-size: 0.82rem; }
       .ref-meta { font-size: 0.7rem; }
 
-      /* Welcome screen: ajustes para caber sem scroll */
-      .welcome-screen { align-items: flex-start; overflow-y: auto; padding-top: 0; }
+      /* Welcome screen: mobile — sem padding-top extra, compacto */
+      .welcome-screen { align-items: flex-start; overflow-y: auto; padding-top: 0 !important; padding-bottom: 0 !important; }
       .welcome-content { padding: 10px 12px; gap: 0; width: 100%; max-width: 100%; }
       .welcome-ornament { margin-bottom: 4px; }
       .welcome-ornament span { font-size: 0.6rem; letter-spacing: 2px; }
@@ -1881,7 +1887,7 @@
     const WELCOME_MUSIC_URL = 'assets/audio/welcome-theme.mp3';
     const WELCOME_MUSIC_VOL = 0.30;
     const WM_SILENCE_MS = 4000;  // silêncio entre loops
-    const WM_FADEIN_MS  = 300;   // duração do fade-in
+    const WM_FADEIN_MS  = 1500;  // duração do fade-in
     const WM_FADEOUT_MS = 1500;  // duração do fade-out
 
     const wmTrack = new Audio(WELCOME_MUSIC_URL);
