@@ -1898,12 +1898,17 @@
 
     function _wmPlayOnce() {
       if (_wmStopRequested) return;
-      wmTrack.volume = 0;  // garantir volume zero ANTES do play
+      wmTrack.volume = 0;
       wmTrack.currentTime = 0;
-      wmTrack.play().then(() => {
-        // Pequeno delay para garantir que o áudio começou antes do fade
-        setTimeout(() => _wmFadeIn(), 50);
-      }).catch(() => {});
+      const playPromise = wmTrack.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          _wmFadeIn();  // fade-in imediato, sem delay
+        }).catch(() => {
+          // Autoplay bloqueado - aguardar interação
+          welcomeMusicStarted = false;
+        });
+      }
     }
 
     // Quando a faixa termina, aguarda silêncio e reinicia com fade-in
@@ -2055,7 +2060,7 @@
       const label = document.getElementById('musicLabel');
       const toggle = document.getElementById('musicToggle');
       if (musicEnabled) {
-        icon.textContent = '🎵'; label.textContent = 'Música'; toggle.classList.remove('muted');
+        icon.textContent = '🎵'; if(label) label.textContent = 'Música'; toggle.classList.remove('muted');
         // Tocar música correta conforme a tela ativa
         const ws = document.getElementById('welcomeScreen');
         if (ws && !ws.classList.contains('hidden')) {
@@ -2064,7 +2069,7 @@
           startBgMusic();
         }
       } else {
-        icon.textContent = '🎵'; label.textContent = 'Mudo'; toggle.classList.add('muted');
+        icon.textContent = '🔇'; if(label) label.textContent = 'Mudo'; toggle.classList.add('muted');
         stopWelcomeMusic(false);
         stopBgMusic();
       }
@@ -2084,31 +2089,38 @@
         const icon = document.getElementById('musicIcon');
         const label = document.getElementById('musicLabel');
         const toggle = document.getElementById('musicToggle');
-        if (icon) icon.textContent = '🎵';
+        if (icon) icon.textContent = '🔇';
         if (label) label.textContent = 'Mudo';
         if (toggle) toggle.classList.add('muted');
       }
-      // Tentar autoplay após DOM pronto (única tentativa para evitar race conditions)
+
+      // Tentar autoplay direto (funciona em alguns navegadores)
       if (musicEnabled) {
         startWelcomeMusic();
       }
-      
-      // Fallback: iniciar música no primeiro clique/toque (navegadores que bloqueiam autoplay)
-      // Listener persistente que se auto-remove quando a música iniciar com sucesso
-      const startMusicOnInteraction = () => {
-        if (musicEnabled && !welcomeMusicStarted) {
-          startWelcomeMusic();
+
+      // Fallback robusto: qualquer interação do usuário desbloqueia o autoplay.
+      // O listener fica ativo até a música iniciar com sucesso.
+      // Usar 'capture: true' para capturar antes de qualquer stopPropagation.
+      const unlockAudio = (e) => {
+        if (!musicEnabled || welcomeMusicStarted) {
+          // Limpar se música já tocando ou desativada
+          document.removeEventListener('click', unlockAudio, true);
+          document.removeEventListener('touchend', unlockAudio, true);
+          document.removeEventListener('keydown', unlockAudio, true);
+          return;
         }
-        // Remover apenas após a música ter iniciado
+        startWelcomeMusic();
+        // Se iniciou, remover listeners
         if (welcomeMusicStarted) {
-          document.removeEventListener('click', startMusicOnInteraction);
-          document.removeEventListener('touchstart', startMusicOnInteraction);
-          document.removeEventListener('pointerdown', startMusicOnInteraction);
+          document.removeEventListener('click', unlockAudio, true);
+          document.removeEventListener('touchend', unlockAudio, true);
+          document.removeEventListener('keydown', unlockAudio, true);
         }
       };
-      document.addEventListener('click', startMusicOnInteraction);
-      document.addEventListener('touchstart', startMusicOnInteraction);
-      document.addEventListener('pointerdown', startMusicOnInteraction);
+      document.addEventListener('click', unlockAudio, true);
+      document.addEventListener('touchend', unlockAudio, true);
+      document.addEventListener('keydown', unlockAudio, true);
     })();
 
     // ============ SISTEMA DE STREAK MULTIPLICADOR ============
