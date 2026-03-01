@@ -1177,6 +1177,8 @@
         border-radius: 0 12px 12px 0;
         box-shadow: 4px 0 30px rgba(0,0,0,0.8);
         padding-bottom: 80px;
+        background: linear-gradient(180deg, #1a1228 0%, #12192e 50%, #0e1525 100%);
+        border: 2px solid #2a4a7a;
       }
       .panel.left.mobile-open {
         transform: translateX(0);
@@ -1300,6 +1302,16 @@
 
       /* Footer oculto no mobile para economizar espaço */
       .game-footer { display: none; }
+    
+      /* Compactar modal de seleção de personagem no mobile */
+      #charSelectModal .chest-content { padding: 12px; }
+      #charSelectModal .chest-content h2 { font-size: 1.0rem; margin-bottom: 8px; }
+      #charSelectModal .char-grid { gap: 6px; margin-top: 6px; }
+      #charSelectModal .char-card { padding: 8px; }
+      #charSelectModal .char-card img { width: 56px; height: 56px; margin-bottom: 5px; }
+      #charSelectModal .char-card h3 { font-size: 0.85rem; margin: 0 0 2px; }
+      #charSelectModal .char-subtitle { font-size: 0.72rem; margin: 0 0 3px; }
+      #charSelectModal .char-desc { font-size: 0.72rem; margin: 0; }
     }
 
     /* Elementos mobile ocultos no desktop */
