@@ -988,27 +988,27 @@
         <div class="welcome-stat"><span class="ws-val" id="wsGamesPlayed">0</span><span class="ws-lbl">Partidas</span></div>
         <div class="welcome-stat"><span class="ws-val" id="wsBestLevel">0</span><span class="ws-lbl">Maior Nível</span></div>
       </div>
-      <div id="welcomeSavedInfo" class="welcome-saved-info" style="display:none;margin:12px 0;padding:14px;background:rgba(10,15,30,0.9);border:2px solid rgba(52,211,153,0.5);border-radius:12px;backdrop-filter:blur(4px);">
-        <p style="color:#34d399;font-size:0.9rem;font-weight:700;margin-bottom:10px;text-align:center;">⚔️ Jornada em Andamento ⚔️</p>
-        <div id="wsSavedTable" style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;">
-          <div style="background:rgba(20,30,50,0.8);border:1px solid #2a4a7a;border-radius:8px;padding:8px;text-align:center;">
-            <span style="display:block;font-size:0.65rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:1px;">Personagem</span>
-            <strong id="wsSavedChar" style="display:block;color:var(--gold);font-size:0.9rem;margin-top:2px;">-</strong>
+      <div id="welcomeSavedInfo" class="welcome-saved-info" style="visibility:hidden;opacity:0;margin:12px 0;padding:12px 14px;background:rgba(10,15,30,0.9);border:2px solid rgba(52,211,153,0.4);border-radius:12px;backdrop-filter:blur(4px);transition:opacity 0.4s ease;">
+        <p style="color:#34d399;font-size:0.82rem;font-weight:700;margin-bottom:8px;text-align:center;letter-spacing:1px;">⚔ Jornada em Andamento ⚔</p>
+        <div id="wsSavedTable" style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;">
+          <div style="background:rgba(20,30,50,0.8);border:1px solid #2a4a7a;border-radius:8px;padding:7px 4px;text-align:center;">
+            <span style="display:block;font-size:0.58rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:3px;">Personagem</span>
+            <strong id="wsSavedChar" style="display:block;color:var(--gold);font-size:0.78rem;line-height:1.2;">-</strong>
           </div>
-          <div style="background:rgba(20,30,50,0.8);border:1px solid #2a4a7a;border-radius:8px;padding:8px;text-align:center;">
-            <span style="display:block;font-size:0.65rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:1px;">Nível</span>
-            <strong id="wsSavedLevel" style="display:block;color:#60a5fa;font-size:1rem;margin-top:2px;">-</strong>
+          <div style="background:rgba(20,30,50,0.8);border:1px solid #2a4a7a;border-radius:8px;padding:7px 4px;text-align:center;">
+            <span style="display:block;font-size:0.58rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:3px;">Nível</span>
+            <strong id="wsSavedLevel" style="display:block;color:#60a5fa;font-size:1rem;">-</strong>
           </div>
-          <div style="background:rgba(20,30,50,0.8);border:1px solid #2a4a7a;border-radius:8px;padding:8px;text-align:center;">
-            <span style="display:block;font-size:0.65rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:1px;">Vidas</span>
-            <strong id="wsSavedLives" style="display:block;color:#fb7185;font-size:1rem;margin-top:2px;">-</strong>
+          <div style="background:rgba(20,30,50,0.8);border:1px solid #2a4a7a;border-radius:8px;padding:7px 4px;text-align:center;">
+            <span style="display:block;font-size:0.58rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:3px;">Vidas</span>
+            <strong id="wsSavedLives" style="display:block;color:#fb7185;font-size:1rem;">-</strong>
           </div>
-          <div style="background:rgba(20,30,50,0.8);border:1px solid #2a4a7a;border-radius:8px;padding:8px;text-align:center;">
-            <span style="display:block;font-size:0.65rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:1px;">Pontos</span>
-            <strong id="wsSavedScore" style="display:block;color:#34d399;font-size:1rem;margin-top:2px;">-</strong>
+          <div style="background:rgba(20,30,50,0.8);border:1px solid #2a4a7a;border-radius:8px;padding:7px 4px;text-align:center;">
+            <span style="display:block;font-size:0.58rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:3px;">Pontos</span>
+            <strong id="wsSavedScore" style="display:block;color:#34d399;font-size:1rem;">-</strong>
           </div>
         </div>
-        <p id="wsSavedTime" style="color:var(--txt-dim);font-size:0.72rem;text-align:center;margin-top:8px;font-style:italic;"></p>
+        <p id="wsSavedTime" style="color:var(--txt-dim);font-size:0.68rem;text-align:center;margin-top:6px;font-style:italic;"></p>
       </div>
       <div class="welcome-buttons">
         <button id="welcomeContinueBtn" class="btn continue-btn" style="display:none;" onclick="continueGame()">Continuar Jornada</button>
@@ -1321,71 +1321,96 @@
     // Pre-load all SFX
     Object.values(SFX).forEach(a => { a.load(); a.volume = 0.5; });
     
-    // ============ MÚSICA DA TELA DE BOAS-VINDAS (loop nativo — arquivo preparado para loopear sem corte) ============
+    // ============ MÚSICA DA TELA DE BOAS-VINDAS ============
+    // Loop manual com 4s de silêncio entre repetições + fade-in em cada início
     const WELCOME_MUSIC_URL = 'assets/audio/welcome-theme.mp3';
     const WELCOME_MUSIC_VOL = 0.30;
+    const WM_SILENCE_MS = 4000;  // silêncio entre loops
+    const WM_FADEIN_MS  = 2000;  // duração do fade-in
+    const WM_FADEOUT_MS = 1500;  // duração do fade-out
 
     const wmTrack = new Audio(WELCOME_MUSIC_URL);
     wmTrack.preload = 'auto';
-    wmTrack.loop = true;
-    wmTrack.volume = WELCOME_MUSIC_VOL;
+    wmTrack.loop = false;  // loop manual para inserir silêncio
+    wmTrack.volume = 0;
     wmTrack.load();
 
     let welcomeMusicStarted = false;
-
     let _wmFadeInterval = null;
+    let _wmSilenceTimeout = null;
+    let _wmStopRequested = false;
 
-    function startWelcomeMusic() {
-      if (!musicEnabled || welcomeMusicStarted) return;
-      if (_wmFadeInterval) { clearInterval(_wmFadeInterval); _wmFadeInterval = null; }
+    function _wmClearTimers() {
+      if (_wmFadeInterval)    { clearInterval(_wmFadeInterval);  _wmFadeInterval = null; }
+      if (_wmSilenceTimeout)  { clearTimeout(_wmSilenceTimeout); _wmSilenceTimeout = null; }
+    }
+
+    function _wmFadeIn(onDone) {
+      wmTrack.volume = 0;
+      const steps = Math.round(WM_FADEIN_MS / 50);
+      let step = 0;
+      _wmFadeInterval = setInterval(() => {
+        step++;
+        wmTrack.volume = Math.min(WELCOME_MUSIC_VOL, WELCOME_MUSIC_VOL * (step / steps));
+        if (step >= steps) {
+          clearInterval(_wmFadeInterval); _wmFadeInterval = null;
+          wmTrack.volume = WELCOME_MUSIC_VOL;
+          if (onDone) onDone();
+        }
+      }, 50);
+    }
+
+    function _wmPlayOnce() {
+      if (_wmStopRequested) return;
       wmTrack.currentTime = 0;
-      wmTrack.volume = 0; // começa mudo para o fade-in
       wmTrack.play().then(() => {
-        welcomeMusicStarted = true;
-        // Fade-in suave em 2000ms
-        const targetVol = WELCOME_MUSIC_VOL;
-        const steps = 40;
-        const stepTime = 2000 / steps;
-        let step = 0;
-        _wmFadeInterval = setInterval(() => {
-          step++;
-          wmTrack.volume = Math.min(targetVol, targetVol * (step / steps));
-          if (step >= steps) {
-            clearInterval(_wmFadeInterval);
-            _wmFadeInterval = null;
-            wmTrack.volume = targetVol;
-          }
-        }, stepTime);
+        _wmFadeIn();
       }).catch(() => {});
     }
 
-    function stopWelcomeMusic(withFade) {
-      if (!welcomeMusicStarted) return;
-      if (_wmFadeInterval) { clearInterval(_wmFadeInterval); _wmFadeInterval = null; }
+    // Quando a faixa termina, aguarda silêncio e reinicia com fade-in
+    wmTrack.addEventListener('ended', () => {
+      if (_wmStopRequested || !welcomeMusicStarted) return;
+      _wmSilenceTimeout = setTimeout(() => {
+        if (!_wmStopRequested && welcomeMusicStarted) _wmPlayOnce();
+      }, WM_SILENCE_MS);
+    });
+
+    function startWelcomeMusic() {
+      if (!musicEnabled || welcomeMusicStarted) return;
+      _wmStopRequested = false;
+      welcomeMusicStarted = true;
+      _wmPlayOnce();
+    }
+
+    function stopWelcomeMusic(withFade, onComplete) {
+      if (!welcomeMusicStarted) { if (onComplete) onComplete(); return; }
+      _wmStopRequested = true;
+      _wmClearTimers();
       if (!withFade) {
         wmTrack.pause();
         wmTrack.currentTime = 0;
-        wmTrack.volume = WELCOME_MUSIC_VOL;
+        wmTrack.volume = 0;
         welcomeMusicStarted = false;
+        if (onComplete) onComplete();
         return;
       }
-      // Fade-out suave em 1500ms
+      // Fade-out suave
       const startVol = wmTrack.volume;
-      const steps = 30;
-      const stepTime = 1500 / steps;
+      const steps = Math.round(WM_FADEOUT_MS / 50);
       let step = 0;
       _wmFadeInterval = setInterval(() => {
         step++;
         wmTrack.volume = Math.max(0, startVol * (1 - step / steps));
         if (step >= steps) {
-          clearInterval(_wmFadeInterval);
-          _wmFadeInterval = null;
+          clearInterval(_wmFadeInterval); _wmFadeInterval = null;
           wmTrack.pause();
           wmTrack.currentTime = 0;
-          wmTrack.volume = WELCOME_MUSIC_VOL;
+          wmTrack.volume = 0;
           welcomeMusicStarted = false;
+          if (onComplete) onComplete();
         }
-      }, stepTime);
+      }, 50);
     }
 
     // Background Music - Double-buffer crossfade loop
@@ -1906,15 +1931,18 @@
       // Show continue button if save exists
       if (save && save.character && save.lives > 0) {
         document.getElementById('welcomeContinueBtn').style.display = 'block';
-        document.getElementById('welcomeSavedInfo').style.display = 'block';
         const charName = characters[save.character] ? characters[save.character].name : 'Desconhecido';
         const timeAgo = getTimeAgo(save.timestamp);
-        // Preencher tabela de jornada em andamento
+        // Preencher tabela de jornada em andamento ANTES de tornar visível (evita salto)
         document.getElementById('wsSavedChar').textContent = charName;
         document.getElementById('wsSavedLevel').textContent = save.level || 1;
         document.getElementById('wsSavedLives').textContent = '❤'.repeat(save.lives || 0);
         document.getElementById('wsSavedScore').textContent = save.score || 0;
         document.getElementById('wsSavedTime').textContent = timeAgo ? `Última sessão: ${timeAgo}` : '';
+        // Mostrar com fade-in suave após preencher os dados (sem salto visual)
+        const savedInfoEl = document.getElementById('welcomeSavedInfo');
+        savedInfoEl.style.visibility = 'visible';
+        requestAnimationFrame(() => { savedInfoEl.style.opacity = '1'; });
       }
     }
     
@@ -1931,18 +1959,19 @@
     }
     
     function dismissWelcome() {
-      // Parar música da welcome screen com fade-out
-      stopWelcomeMusic(true);
       const ws = document.getElementById('welcomeScreen');
       ws.style.opacity = '0';
       ws.style.transition = 'opacity 0.5s';
+      // Esconder welcome screen após 500ms (transição visual)
       setTimeout(() => {
         ws.classList.add('hidden');
         document.getElementById('mainApp').classList.remove('hidden');
         document.getElementById('actionDock').classList.remove('hidden');
-        // Iniciar música do jogo após a transição
-        if (musicEnabled) startBgMusic();
       }, 500);
+      // Fade-out da welcome music; só inicia bgMusic após o fade-out COMPLETO
+      stopWelcomeMusic(true, () => {
+        if (musicEnabled) startBgMusic();
+      });
     }
     
     function continueGame() {
