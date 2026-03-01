@@ -1053,94 +1053,48 @@
     // Pre-load all SFX
     Object.values(SFX).forEach(a => { a.load(); a.volume = 0.5; });
     
-    // ============ MÚSICA DA TELA DE BOAS-VINDAS (crossfade duplo-buffer) ============
+    // ============ MÚSICA DA TELA DE BOAS-VINDAS (loop nativo — arquivo preparado para loopear sem corte) ============
     const WELCOME_MUSIC_URL = 'assets/audio/welcome-theme.mp3';
     const WELCOME_MUSIC_VOL = 0.30;
-    const WELCOME_XFADE = 2.5; // segundos de crossfade
-    const WELCOME_DURATION = 30.77; // duração real do arquivo em segundos
 
-    // Dois buffers para crossfade sem corte
-    const wmA = new Audio(WELCOME_MUSIC_URL);
-    const wmB = new Audio(WELCOME_MUSIC_URL);
-    wmA.preload = 'auto'; wmB.preload = 'auto';
-    wmA.volume = WELCOME_MUSIC_VOL; wmB.volume = 0;
-    wmA.load(); wmB.load();
+    const wmTrack = new Audio(WELCOME_MUSIC_URL);
+    wmTrack.preload = 'auto';
+    wmTrack.loop = true;
+    wmTrack.volume = WELCOME_MUSIC_VOL;
+    wmTrack.load();
 
     let welcomeMusicStarted = false;
-    let wmActive = wmA; // buffer ativo
-    let wmNext   = wmB; // buffer em espera
-    let wmXfadeTimer = null;
-    let wmXfadeRAF = null;
-
-    function wmScheduleXfade() {
-      // Agenda o crossfade para WELCOME_XFADE segundos antes do fim
-      const remaining = WELCOME_DURATION - wmActive.currentTime - WELCOME_XFADE;
-      if (wmXfadeTimer) clearTimeout(wmXfadeTimer);
-      wmXfadeTimer = setTimeout(() => {
-        if (!welcomeMusicStarted || !musicEnabled) return;
-        // Prepara o próximo buffer
-        wmNext.currentTime = 0;
-        wmNext.volume = 0;
-        wmNext.play().catch(() => {});
-        // Crossfade equal-power
-        const steps = 60;
-        const stepMs = (WELCOME_XFADE * 1000) / steps;
-        let s = 0;
-        if (wmXfadeRAF) clearInterval(wmXfadeRAF);
-        wmXfadeRAF = setInterval(() => {
-          s++;
-          const t = s / steps;
-          const volOut = WELCOME_MUSIC_VOL * Math.cos(t * Math.PI / 2);
-          const volIn  = WELCOME_MUSIC_VOL * Math.sin(t * Math.PI / 2);
-          wmActive.volume = Math.max(0, volOut);
-          wmNext.volume   = Math.min(WELCOME_MUSIC_VOL, volIn);
-          if (s >= steps) {
-            clearInterval(wmXfadeRAF);
-            wmActive.pause();
-            wmActive.currentTime = 0;
-            wmActive.volume = WELCOME_MUSIC_VOL;
-            // Troca os buffers
-            const tmp = wmActive; wmActive = wmNext; wmNext = tmp;
-            // Agenda o próximo crossfade
-            wmScheduleXfade();
-          }
-        }, stepMs);
-      }, Math.max(0, remaining * 1000));
-    }
 
     function startWelcomeMusic() {
       if (!musicEnabled || welcomeMusicStarted) return;
-      wmActive.currentTime = 0;
-      wmActive.volume = WELCOME_MUSIC_VOL;
-      wmActive.play().then(() => {
+      wmTrack.currentTime = 0;
+      wmTrack.volume = WELCOME_MUSIC_VOL;
+      wmTrack.play().then(() => {
         welcomeMusicStarted = true;
-        wmScheduleXfade();
       }).catch(() => {});
     }
 
     function stopWelcomeMusic(fadeOut) {
       if (!welcomeMusicStarted) return;
-      if (wmXfadeTimer) { clearTimeout(wmXfadeTimer); wmXfadeTimer = null; }
-      if (wmXfadeRAF)   { clearInterval(wmXfadeRAF);  wmXfadeRAF = null; }
       if (!fadeOut) {
-        wmA.pause(); wmA.currentTime = 0; wmA.volume = WELCOME_MUSIC_VOL;
-        wmB.pause(); wmB.currentTime = 0; wmB.volume = 0;
+        wmTrack.pause();
+        wmTrack.currentTime = 0;
         welcomeMusicStarted = false;
         return;
       }
       // Fade-out suave em 600ms
-      const startVol = wmActive.volume;
+      const startVol = wmTrack.volume;
       const steps = 20;
       const stepTime = 600 / steps;
       let step = 0;
       const fadeInterval = setInterval(() => {
         step++;
-        wmActive.volume = Math.max(0, startVol * (1 - step / steps));
-        wmNext.volume   = Math.max(0, wmNext.volume * (1 - step / steps));
+        wmTrack.volume = Math.max(0, startVol * (1 - step / steps));
         if (step >= steps) {
           clearInterval(fadeInterval);
-          wmA.pause(); wmA.currentTime = 0; wmA.volume = WELCOME_MUSIC_VOL;
-          wmB.pause(); wmB.currentTime = 0; wmB.volume = 0;
+          wmTrack.pause();
+          wmTrack.currentTime = 0;
+          wmTrack.volume = WELCOME_MUSIC_VOL;
           welcomeMusicStarted = false;
         }
       }, stepTime);
