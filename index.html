@@ -522,7 +522,7 @@
     .action-dock {
       /* Terceira coluna do grid — estático no grid */
       grid-column: 3;
-      grid-row: 2 / span 10;
+      grid-row: 2 / 3; /* era span 10 — causava 9 linhas extras de 0px com gap de 14px cada = 126px extras */
       align-self: start;
       z-index: 10;
       display: flex;
