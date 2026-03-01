@@ -36,7 +36,6 @@
       color: var(--txt);
       font-family: 'Philosopher', 'Georgia', serif;
       background: var(--bg);
-      min-height: 100vh;
       overflow-x: hidden;
       position: relative;
     }
@@ -106,8 +105,8 @@
       color: var(--gold); opacity: 0.3; font-size: 0.7rem;
     }
 
-    .left { padding: 14px; }
-    .right { padding: 16px; }
+    .left { padding: 14px; align-self: start; }
+    .right { padding: 16px; align-self: start; }
 
     /* HERO SECTION */
     .hero {
@@ -1335,6 +1334,8 @@
       .mobile-bottom-dock .mdock-btn.personagem .mdock-label { color: #a78bfa; }
       .mobile-bottom-dock .mdock-btn.menu svg { color: #94a3b8; }
       .mobile-bottom-dock .mdock-btn.menu .mdock-label { color: #94a3b8; }
+      .mobile-bottom-dock .mdock-btn.musica { color: #a78bfa; }
+      .mobile-bottom-dock .mdock-btn.musica .mdock-label { color: #a78bfa; }
 
       /* Badge ! de disponibilidade nos botões de forja/baú */
       .mobile-bottom-dock .mdock-btn { position: relative; }
@@ -2043,35 +2044,43 @@
 
     function _wmPlayOnce() {
       if (_wmStopRequested) return;
-      // Garantir volume 0 ANTES do play — aplicar duas vezes para contornar quirks de navegador
+      // Garantir volume 0 ANTES do play
       wmTrack.volume = 0;
       wmTrack.currentTime = 0;
-      // Pequeno delay para garantir que o volume 0 seja respeitado antes do play
+      // Delay maior para garantir que o volume 0 seja respeitado antes do play
       setTimeout(() => {
         if (_wmStopRequested) return;
         wmTrack.volume = 0; // reafirmar volume 0
+        // Usar muted=true como fallback para garantir que o browser não ignore volume=0
+        wmTrack.muted = true;
         const playPromise = wmTrack.play();
         if (playPromise !== undefined) {
           playPromise.then(() => {
-            wmTrack.volume = 0; // reafirmar após play() resolver
-            if (!_wmStopRequested) {
+            // Após play resolver: desmutar e iniciar fade-in
+            setTimeout(() => {
+              if (_wmStopRequested) { wmTrack.pause(); wmTrack.muted = false; return; }
+              wmTrack.muted = false;
+              wmTrack.volume = 0;
               _wmFadeIn(() => {
                 if (!_wmStopRequested) _wmScheduleFadeOut();
               });
-            }
+            }, 30);
           }).catch(() => {
+            wmTrack.muted = false;
             welcomeMusicStarted = false;
             _wmStopRequested = false;
           });
         } else {
-          wmTrack.volume = 0;
-          if (!_wmStopRequested) {
+          setTimeout(() => {
+            if (_wmStopRequested) { wmTrack.pause(); wmTrack.muted = false; return; }
+            wmTrack.muted = false;
+            wmTrack.volume = 0;
             _wmFadeIn(() => {
               if (!_wmStopRequested) _wmScheduleFadeOut();
             });
-          }
+          }, 30);
         }
-      }, 50);
+      }, 80);
     }
 
     // Evento 'ended' como safety net (caso o fade-out não tenha pausado a tempo)
@@ -2094,6 +2103,7 @@
       if (!welcomeMusicStarted) { if (onComplete) onComplete(); return; }
       _wmStopRequested = true;
       _wmClearTimers();
+      wmTrack.muted = false; // garantir desmutado ao parar
       if (!withFade) {
         wmTrack.pause();
         wmTrack.currentTime = 0;
@@ -2256,9 +2266,11 @@
         const icon = document.getElementById('musicIcon');
         const label = document.getElementById('musicLabel');
         const toggle = document.getElementById('musicToggle');
+        const mobileIcon = document.getElementById('mobileMusIcon');
         if (icon) icon.textContent = '🔇';
         if (label) label.textContent = 'Mudo';
         if (toggle) toggle.classList.add('muted');
+        if (mobileIcon) mobileIcon.textContent = '🔇';
       }
 
       // Música de boas-vindas: somente no PC (telas >= 769px)
