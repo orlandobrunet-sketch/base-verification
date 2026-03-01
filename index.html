@@ -1152,7 +1152,8 @@
     @media (max-width: 768px) {
       /* Fix scroll bug: garantir que o background cubra toda a área scrollável */
       html { background: var(--bg); }
-      body { background: var(--bg); }
+      html { overflow: hidden; height: 100%; }
+      body { background: var(--bg); overflow: hidden; height: 100%; }
 
       /* Layout principal: painel esquerdo oculto por padrão */
       .app {
@@ -1160,8 +1161,10 @@
         padding: 8px;
         gap: 8px;
         padding-bottom: 90px; /* espaço para bottom dock */
-        min-height: 100vh;
+        height: 100%;
+        overflow-y: auto;
         align-content: start;
+        background: var(--bg); /* cobre o bg-layer durante scroll */
       }
 
       /* Painel esquerdo: drawer deslizante */
@@ -1177,8 +1180,9 @@
         border-radius: 0 12px 12px 0;
         box-shadow: 4px 0 30px rgba(0,0,0,0.8);
         padding-bottom: 80px;
-        background: linear-gradient(180deg, #1a1228 0%, #12192e 50%, #0e1525 100%);
+        background: linear-gradient(180deg, #1a1228 0%, #12192e 50%, #0e1525 100%) !important;
         border: 2px solid #2a4a7a;
+        isolation: isolate;
       }
       .panel.left.mobile-open {
         transform: translateX(0);
@@ -1188,9 +1192,8 @@
       .mobile-overlay {
         display: none;
         position: fixed; inset: 0;
-        background: rgba(0,0,0,0.6);
+        background: rgba(0,0,0,0.65);
         z-index: 8400;
-        backdrop-filter: blur(2px);
       }
       .mobile-overlay.active { display: block; }
 
