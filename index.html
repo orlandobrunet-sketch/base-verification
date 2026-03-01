@@ -1903,11 +1903,22 @@
       const playPromise = wmTrack.play();
       if (playPromise !== undefined) {
         playPromise.then(() => {
-          _wmFadeIn();  // fade-in imediato, sem delay
+          // Música iniciou com sucesso - disparar fade-in
+          if (!_wmStopRequested) {
+            _wmClearTimers();
+            _wmFadeIn();
+          }
         }).catch(() => {
-          // Autoplay bloqueado - aguardar interação
+          // Autoplay bloqueado pelo navegador - resetar estado para o fallback tentar novamente
           welcomeMusicStarted = false;
+          _wmStopRequested = false;
         });
+      } else {
+        // API legada sem Promise - iniciar fade-in diretamente
+        if (!_wmStopRequested) {
+          _wmClearTimers();
+          _wmFadeIn();
+        }
       }
     }
 
@@ -2100,24 +2111,34 @@
       }
 
       // Fallback robusto: qualquer interação do usuário desbloqueia o autoplay.
-      // O listener fica ativo até a música iniciar com sucesso.
-      // Usar 'capture: true' para capturar antes de qualquer stopPropagation.
+      // IMPORTANTE: NÃO verificar welcomeMusicStarted sincronamente após startWelcomeMusic()
+      // pois o catch() do play() é assíncrono - a variável fica true temporariamente mesmo
+      // quando o autoplay é bloqueado, causando remoção prematura dos listeners.
+      // Solução: usar o evento 'playing' do audio element para confirmar que a música tocou.
+
+      // Declarar unlockAudio ANTES de _removeUnlockListeners para evitar erro de hoisting
       const unlockAudio = (e) => {
-        if (!musicEnabled || welcomeMusicStarted) {
-          // Limpar se música já tocando ou desativada
-          document.removeEventListener('click', unlockAudio, true);
-          document.removeEventListener('touchend', unlockAudio, true);
-          document.removeEventListener('keydown', unlockAudio, true);
+        if (!musicEnabled) {
+          _removeUnlockListeners();
           return;
         }
-        startWelcomeMusic();
-        // Se iniciou, remover listeners
-        if (welcomeMusicStarted) {
-          document.removeEventListener('click', unlockAudio, true);
-          document.removeEventListener('touchend', unlockAudio, true);
-          document.removeEventListener('keydown', unlockAudio, true);
+        // Tentar iniciar a música na primeira interação do usuário
+        // (startWelcomeMusic retorna cedo se já estiver tocando)
+        if (!welcomeMusicStarted) {
+          startWelcomeMusic();
         }
       };
+
+      const _removeUnlockListeners = () => {
+        document.removeEventListener('click', unlockAudio, true);
+        document.removeEventListener('touchend', unlockAudio, true);
+        document.removeEventListener('keydown', unlockAudio, true);
+        wmTrack.removeEventListener('playing', _removeUnlockListeners);
+      };
+
+      // Remover listeners quando a música REALMENTE começar a tocar (evento 'playing')
+      wmTrack.addEventListener('playing', _removeUnlockListeners);
+
       document.addEventListener('click', unlockAudio, true);
       document.addEventListener('touchend', unlockAudio, true);
       document.addEventListener('keydown', unlockAudio, true);
