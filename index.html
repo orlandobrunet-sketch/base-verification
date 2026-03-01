@@ -1181,8 +1181,8 @@
         border-radius: 0;
         box-shadow: 4px 0 30px rgba(0,0,0,0.8);
         padding-bottom: 80px;
-        background: linear-gradient(180deg, #1c2545 0%, #162038 50%, #111c30 100%) !important;
-        border: 2px solid #2a4a7a;
+        background: linear-gradient(180deg, #1e3a5f 0%, #162d4a 50%, #0f2035 100%) !important;
+        border: 2px solid #3a6a9a;
         isolation: isolate;
       }
       .panel.left.mobile-open {
@@ -5257,6 +5257,28 @@
       const bottomDock = document.getElementById('mobileBottomDock');
       function isMobile() { return window.innerWidth <= 768; }
       function openDrawer() {
+        // Mover o panel.left para o body para escapar do stacking context do .app (display:none)
+        if (leftPanel.parentElement !== document.body) {
+          leftPanel._originalParent = leftPanel.parentElement;
+          leftPanel._originalNextSibling = leftPanel.nextSibling;
+          document.body.appendChild(leftPanel);
+        }
+        // Aplicar estilos inline para garantir visibilidade independente do media query
+        leftPanel.style.cssText = [
+          'position: fixed',
+          'top: 0',
+          'left: 0',
+          'width: 100vw',
+          'height: 100vh',
+          'z-index: 9600',
+          'overflow-y: auto',
+          'border-radius: 0',
+          'padding-bottom: 80px',
+          'background: linear-gradient(180deg, #1e3a5f 0%, #162d4a 50%, #0f2035 100%)',
+          'border: 2px solid #3a6a9a',
+          'transform: translateX(0)',
+          'display: block'
+        ].join(';');
         leftPanel.classList.add('mobile-open');
         overlay.classList.add('active');
         document.body.style.overflow = 'hidden';
@@ -5272,6 +5294,18 @@
         leftPanel.classList.remove('mobile-open');
         overlay.classList.remove('active');
         document.body.style.overflow = '';
+        // Remover estilos inline
+        leftPanel.style.cssText = '';
+        // Devolver o panel.left ao seu pai original
+        if (leftPanel._originalParent) {
+          if (leftPanel._originalNextSibling) {
+            leftPanel._originalParent.insertBefore(leftPanel, leftPanel._originalNextSibling);
+          } else {
+            leftPanel._originalParent.appendChild(leftPanel);
+          }
+          leftPanel._originalParent = null;
+          leftPanel._originalNextSibling = null;
+        }
       }
       // Expor globalmente para o botão do bottom dock
       window.openMobileDrawer = openDrawer;
