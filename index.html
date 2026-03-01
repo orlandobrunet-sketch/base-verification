@@ -63,8 +63,8 @@
     /* MAIN LAYOUT */
     .app {
       position: relative; z-index: 10;
-      max-width: 1440px; margin: 0 auto; padding: 12px;
-      display: grid; grid-template-columns: 380px 1fr auto; gap: 14px;
+      max-width: 1380px; margin: 0 auto; padding: 12px;
+      display: grid; grid-template-columns: 380px 1fr; gap: 14px;
       min-height: 100vh; align-content: start;
     }
     .app.hidden { display: none; }
@@ -73,11 +73,7 @@
     .game-title {
       grid-column: 1 / -1; text-align: center; padding: 8px 0 4px;
     }
-    /* Dock ocupa coluna 3, linha 2 em diante, sticky */
-    .action-dock {
-      grid-column: 3;
-      grid-row: 2 / span 20;
-    }
+
     .game-title h1 {
       font-family: 'MedievalSharp', 'Cinzel', serif;
       font-size: 1.6rem; letter-spacing: 3px;
@@ -111,7 +107,7 @@
     }
 
     .left { padding: 14px; }
-    .right { padding: 16px; padding-right: 22px; /* compensa scrollbar */ }
+    .right { padding: 16px; }
 
     /* HERO SECTION */
     .hero {
@@ -523,11 +519,12 @@
     }
 
     .action-dock {
-      /* Coluna fixa no grid — alinhada ao painel direito */
-      position: sticky;
-      top: 12px;
-      align-self: start;
-      z-index: 100;
+      /* Fixo na borda direita da tela, centralizado verticalmente */
+      position: fixed;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 9000;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -1093,15 +1090,12 @@
 
     /* SOUND CONTROLS */
     .sound-controls {
-      /* Fixo no topo direito do grid — não flutuante */
-      position: absolute;
+      position: fixed;
       top: 10px;
-      right: 10px;
-      z-index: 200;
+      right: 96px; /* ao lado do dock, não sobrepostos */
+      z-index: 9100;
       display: flex; flex-direction: row; gap: 4px; align-items: center;
     }
-    /* game-title precisa de position relative para o absolute funcionar */
-    .game-title { position: relative; }
     .sound-toggle {
       background: rgba(15,20,40,1); border: 2px solid #2a4a7a; border-radius: 8px;
       width: 30px; height: 30px; cursor: pointer; color: var(--txt-dim); font-size: 0.85rem;
@@ -1180,9 +1174,14 @@
     ::-webkit-scrollbar-thumb { background: #2a4a7a; border-radius: 3px; }
     ::-webkit-scrollbar-thumb:hover { background: #3a6a9a; }
 
+    /* Padding-right no painel direito somente no PC: reserva espaço para o dock fixo */
+    @media(min-width: 769px) {
+      .right { padding-right: 96px; }
+    }
+
     /* RESPONSIVE */
     @media(max-width: 1060px) {
-      .app { grid-template-columns: 380px 1fr auto; }
+      .app { grid-template-columns: 1fr; }
     }
     @media(max-width: 768px) {
       .app { grid-template-columns: 1fr; }
