@@ -1581,7 +1581,7 @@
         <button class="btn sec" onclick="showAchievementsModal()">🏆 Conquistas</button>
         <button class="btn sec" onclick="showLeaderboardFromWelcome()">Leaderboard</button>
       </div>
-      <div class="welcome-credit" style="margin-top:14px;"><a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;">v3.3.6</span></div>
+      <div class="welcome-credit" style="margin-top:14px;"><a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;">v4.0</span></div>
     </div>
   </div>
 
@@ -1784,7 +1784,7 @@
       <p>
         <a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a>
         &nbsp;•&nbsp;
-        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" onclick="showChangelog()">v3.3.6</span>
+        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" onclick="showChangelog()">v4.0</span>
       </p>
     </div>
   </main>
@@ -5424,106 +5424,33 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
     
     // Filtros de modo de estudo são aplicados via filterQuestionsByMode() dentro do shuffleQueue
 
-    // ============ CHANGELOG v3.0 ============
+    // ============ CHANGELOG v4.0 ============
     function showChangelog() {
       document.querySelectorAll('.changelog-popup').forEach(el => el.remove());
       const modal = document.createElement('div');
       modal.className = 'modal show changelog-popup';
-      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(6px);';
+      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(6px);overflow-y:auto;padding:20px 0;box-sizing:border-box;';
       modal.innerHTML = `
-        <div class="modal-content" style="max-width:560px;max-height:85vh;overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid #2a4a7a;border-radius:14px;padding:24px;box-shadow:0 0 40px rgba(255,215,0,0.3);">
+        <div class="modal-content" style="max-width:540px;width:calc(100% - 32px);max-height:none;overflow-y:visible;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid #2a4a7a;border-radius:14px;padding:24px;box-shadow:0 0 40px rgba(255,215,0,0.3);">
           <h2 style="color:var(--gold);margin-bottom:4px;font-family:'MedievalSharp','Cinzel',serif;">📜 NOVIDADES 📜</h2>
           <div style="color:var(--txt-dim);font-size:0.75rem;margin-bottom:20px;">O que há de novo no NefroQuest: Ascension</div>
 
           <div style="text-align:left;padding:4px;">
 
-            <!-- v3.3.3 -->
-            <div style="background:linear-gradient(135deg,rgba(100,200,255,0.12),rgba(100,200,255,0.04));border:1px solid rgba(100,200,255,0.4);border-radius:10px;padding:14px;margin-bottom:14px;">
-              <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-                <span style="background:#64c8ff;color:#001a2e;font-size:0.7rem;font-weight:900;padding:2px 8px;border-radius:20px;font-family:'Cinzel',serif;">v3.3.3</span>
-                <span style="color:var(--txt-dim);font-size:0.75rem;">Correções & Qualidade</span>
+            <!-- v4.0 -->
+            <div style="background:linear-gradient(135deg,rgba(255,215,0,0.15),rgba(255,215,0,0.05));border:2px solid rgba(255,215,0,0.6);border-radius:10px;padding:16px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                <span style="background:var(--gold);color:#1a0e00;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v4.0</span>
+                <span style="color:var(--gold);font-weight:bold;font-size:0.95rem;">Interface Renovada & Experiência Aprimorada</span>
               </div>
-              <ul style="color:var(--txt);font-size:0.82rem;line-height:1.7;padding-left:18px;margin:0;">
-                <li>8 questões com texto duplicado corrigidas no banco</li>
-                <li>Questão 429 (Sevelamer) com resposta correta ajustada</li>
-                <li>Recorde no painel exibe o melhor score local do jogador</li>
-                <li>Estatísticas sem casas decimais em % e tempo</li>
-                <li>Crédito de desenvolvimento na tela inicial</li>
-                <li>Fade-in da música de abertura mais rápido</li>
-                <li>Modal de seleção de personagem com scroll no mobile</li>
-                <li>Botão Ranking do dock mobile corrigido</li>
-              </ul>
-            </div>
-            <!-- v3.3 -->
-            <div style="background:linear-gradient(135deg,rgba(255,215,0,0.12),rgba(255,215,0,0.04));border:1px solid rgba(255,215,0,0.5);border-radius:10px;padding:14px;margin-bottom:14px;">
-              <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-                <span style="background:var(--gold);color:#1a0e00;font-size:0.7rem;font-weight:900;padding:2px 8px;border-radius:20px;font-family:'Cinzel',serif;">v3.3</span>
-                <span style="color:var(--gold);font-weight:bold;font-size:0.9rem;">Ranking Global & Expansão do Banco</span>
-              </div>
-              <ul style="color:var(--txt);font-size:0.83rem;line-height:1.8;padding-left:18px;margin:0;">
-                <li><strong>Ranking Global real</strong> — leaderboard online com dados persistentes, avatares por personagem, posição em tempo real e botão de atualização</li>
-                <li><strong>90 novas questões</strong> adicionadas ao banco (total: 457), cobrindo APOL1, GN C3, CRRT com citrato, Fabry, Iptacopan, Ganciclovir, TTKG, SDO, Imunotactoide, Litíase, Kimmelstiel-Wilson, Nefroesclerose Maligna, DAPA-CKD avançado, C4d, hipóxia medular, Vaptanos, Etilenoglicol, Acantócitos, Finerenona, GPA vs PAM e muito mais</li>
-                <li><strong>Cards de referência científica premium</strong> — cada questão exibe journal, ano, tipo de estudo e impacto clínico do trial com design visual rico</li>
-                <li><strong>Modo mobile responsivo</strong> — painel lateral colapsável com botão de menu e dock de ações na barra inferior para jogar no celular</li>
-                <li><strong>Dock de ações redesenhado</strong> com visual glassmorphism medieval e ícones temáticos</li>
-              </ul>
-            </div>
-
-            <!-- v3.2.3 -->
-            <div style="background:linear-gradient(135deg,rgba(255,215,0,0.08),rgba(255,215,0,0.03));border:1px solid rgba(255,215,0,0.3);border-radius:10px;padding:14px;margin-bottom:14px;">
-              <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-                <span style="background:var(--gold);color:#1a0e00;font-size:0.7rem;font-weight:900;padding:2px 8px;border-radius:20px;font-family:'Cinzel',serif;">v3.2.3</span>
-                <span style="color:var(--gold);font-weight:bold;font-size:0.9rem;">Referências, Lore & Qualidade</span>
-              </div>
-              <ul style="color:var(--txt);font-size:0.83rem;line-height:1.8;padding-left:18px;margin:0;">
-                <li><strong>Referências científicas redesenhadas</strong> — cada questão agora exibe um card rico com journal, ano de publicação, tipo de estudo e o impacto clínico do trial</li>
-                <li><strong>22 estudos catalogados</strong> com metadados completos: KDIGO, DAPA-CKD, EMPA-KIDNEY, FIDELIO, FLOW, BPROAD, SHARP, CANVAS, TESTING, NOSTONE, RITUXVAS, RAVE, ADVOCATE, NOBILITY, TEMPO 3:4 e outros</li>
-                <li><strong>Lore narrativo para todos os níveis</strong> — cada evolução de nível agora traz um texto único por personagem, aprofundando a história do Reino dos Néfrons</li>
-                <li><strong>Alternativas mais equilibradas</strong> — as opções corretas e incorretas agora têm comprimentos similares, tornando as questões genuinamente desafiadoras</li>
-                <li><strong>Jogo mais fluido</strong> — animações otimizadas e carregamento mais rápido em toda a interface</li>
-              </ul>
-            </div>
-
-            <!-- v3.2.2 -->
-            <div style="background:linear-gradient(135deg,rgba(255,215,0,0.06),rgba(255,215,0,0.02));border:1px solid rgba(255,215,0,0.2);border-radius:10px;padding:14px;margin-bottom:14px;">
-              <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-                <span style="background:var(--gold);color:#1a0e00;font-size:0.7rem;font-weight:900;padding:2px 8px;border-radius:20px;font-family:'Cinzel',serif;">v3.2.2</span>
-                <span style="color:var(--gold);font-weight:bold;font-size:0.9rem;">Banco de Questões & Música</span>
-              </div>
-              <ul style="color:var(--txt);font-size:0.83rem;line-height:1.8;padding-left:18px;margin:0;">
-                <li><strong>Banco de questões purificado</strong> — 367 questões únicas e verificadas, sem repetições indevidas</li>
-                <li><strong>Dock de ações</strong> na lateral direita com ícones para Forjar, Lendário, Baú, Ranking, Stats e Conquistas</li>
-                <li><strong>51 novos artigos científicos</strong> no Baú (total: 71), cobrindo os grandes trials de nefrologia</li>
-                <li><strong>Música da tela inicial</strong> com fade-in suave e loop com pausa entre repetições</li>
-                <li><strong>Baralho infinito</strong> — ao concluir todas as questões, o jogo re-embaralha automaticamente com nova ordem</li>
-              </ul>
-            </div>
-
-            <!-- v3.2 -->
-            <div style="background:rgba(0,0,0,0.2);border:1px solid #2a4a7a;border-radius:10px;padding:14px;margin-bottom:14px;">
-              <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-                <span style="background:#374151;color:#9ca3af;font-size:0.7rem;font-weight:900;padding:2px 8px;border-radius:20px;font-family:'Cinzel',serif;">v3.2</span>
-                <span style="color:#9ca3af;font-weight:bold;font-size:0.9rem;">Ascension — Expansão</span>
-              </div>
-              <ul style="color:var(--txt-dim);font-size:0.83rem;line-height:1.8;padding-left:18px;margin:0;">
-                <li>Jornada salva automaticamente — retome de onde parou a qualquer momento</li>
-                <li>Imagem de fundo épica do Reino dos Néfrons</li>
-                <li>Ícone de conquistas redesenhado em dourado</li>
-              </ul>
-            </div>
-
-            <!-- v3.0 -->
-            <div style="background:rgba(0,0,0,0.2);border:1px solid #2a4a7a;border-radius:10px;padding:14px;">
-              <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-                <span style="background:#374151;color:#9ca3af;font-size:0.7rem;font-weight:900;padding:2px 8px;border-radius:20px;font-family:'Cinzel',serif;">v3.0</span>
-                <span style="color:#9ca3af;font-weight:bold;font-size:0.9rem;">Ascension — Lançamento</span>
-              </div>
-              <ul style="color:var(--txt-dim);font-size:0.83rem;line-height:1.8;padding-left:18px;margin:0;">
-                <li>Estatísticas detalhadas com desempenho por tema clínico</li>
-                <li>Modo de Estudo por Tema com seleção livre de conteúdo</li>
-                <li>Sistema de Conquistas com 10 achievements desbloqueáveis</li>
-                <li>Explicações expandidas após cada resposta</li>
-                <li>Questões baseadas nos estudos mais recentes: FLOW, EMPA-KIDNEY, BPROAD</li>
+              <ul style="color:var(--txt);font-size:0.83rem;line-height:1.9;padding-left:18px;margin:0;">
+                <li><strong>Layout PC completamente refeito</strong> — 3 painéis lado a lado (personagem · perguntas · ações) com espaçamento uniforme, bordas padronizadas e sem scroll de página</li>
+                <li><strong>Botões de música e SFX em todas as telas</strong> — visíveis na tela inicial e na tela de perguntas, tanto no PC quanto no celular</li>
+                <li><strong>Controles de áudio fixos no topo do celular</strong> — sempre acessíveis sem precisar rolar a tela</li>
+                <li><strong>Modo de Estudo renovado</strong> — popup redimensionado para caber na tela, botão "← Voltar" com marcador de acertos e erros ao lado, sem quebrar linha no celular</li>
+                <li><strong>Painel do herói no celular</strong> — botão de fechar com estilo dourado padrão do jogo</li>
+                <li><strong>Dock lateral (PC)</strong> com bordas e arredondamento uniformes, igual aos demais painéis</li>
+                <li><strong>Rodapé com versão e contato</strong> visível em todas as telas — clique na versão para ver as novidades</li>
               </ul>
             </div>
 
