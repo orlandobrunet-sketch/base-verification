@@ -873,6 +873,11 @@
       }
     }
 
+    /* Botões de som fixos no topo direito — MOBILE ONLY */
+    .mobile-sound-controls {
+      display: none; /* oculto por padrão; mobile ativa via media query */
+    }
+
     /* Fundo sem imagem — apenas gradiente e efeitos */
     .welcome-bg {
       position: absolute; inset: 0;
@@ -1425,6 +1430,21 @@
 
       /* Footer no mobile: bloco centralizado no final */
       .game-footer { display: block; text-align: center; padding: 8px 0 4px; font-size: 0.72rem; }
+
+      /* Botões de som fixos no topo direito — mobile only */
+      .mobile-sound-controls {
+        display: flex;
+        flex-direction: row;
+        gap: 4px;
+        align-items: center;
+        position: fixed;
+        top: 8px;
+        right: 8px;
+        z-index: 9000;
+      }
+
+      /* Ocultar botão de música da barra inferior no mobile */
+      #mobileMusToggle { display: none !important; }
     
       /* Compactar modal de seleção de personagem no mobile */
       #charSelectModal .chest-content { padding: 12px; }
@@ -1496,6 +1516,16 @@
   <div class="bg-layer"></div>
   <div class="bg-overlay"></div>
   <div class="particles" id="particles"></div>
+
+  <!-- Botões de som fixos no topo direito (MOBILE ONLY) -->
+  <div class="mobile-sound-controls" id="mobileSoundControls">
+    <div class="sound-toggle" onclick="toggleMusic()">
+      <span id="mobileSoundMusicIcon">🎵</span>
+    </div>
+    <div class="sound-toggle" onclick="toggleSound()">
+      <span id="mobileSoundSfxIcon">🔊</span>
+    </div>
+  </div>
 
   <!-- WELCOME SCREEN -->
   <div id="welcomeScreen" class="welcome-screen">
@@ -2251,15 +2281,18 @@
       localStorage.setItem('nefroquest-sound', soundEnabled ? 'on' : 'off');
       const icon = document.getElementById('soundIcon');
       const wIcon = document.getElementById('welcomeSoundIcon');
+      const mSfxIcon = document.getElementById('mobileSoundSfxIcon');
       const label = document.getElementById('soundLabel');
       const toggle = document.getElementById('soundToggle');
       if (soundEnabled) {
         if(icon) icon.textContent = '🔊'; if(label) label.textContent = 'SFX'; if(toggle) toggle.classList.remove('muted');
         if(wIcon) wIcon.textContent = '🔊';
+        if(mSfxIcon) mSfxIcon.textContent = '🔊';
         playSound('click');
       } else {
         if(icon) icon.textContent = '🔇'; if(label) label.textContent = 'Mudo'; if(toggle) toggle.classList.add('muted');
         if(wIcon) wIcon.textContent = '🔇';
+        if(mSfxIcon) mSfxIcon.textContent = '🔇';
       }
     }
     
@@ -2271,10 +2304,12 @@
       const toggle = document.getElementById('musicToggle');
       const mobileIcon = document.getElementById('mobileMusIcon');
       const wMusicIcon = document.getElementById('welcomeMusicIcon');
+      const mMusicIcon = document.getElementById('mobileSoundMusicIcon');
       if (musicEnabled) {
         if(icon) icon.textContent = '🎵'; if(label) label.textContent = 'Música'; if(toggle) toggle.classList.remove('muted');
         if(mobileIcon) mobileIcon.textContent = '🎵';
         if(wMusicIcon) wMusicIcon.textContent = '🎵';
+        if(mMusicIcon) mMusicIcon.textContent = '🎵';
         // Tocar música correta conforme a tela ativa
         const ws = document.getElementById('welcomeScreen');
         if (ws && !ws.classList.contains('hidden')) {
@@ -2286,6 +2321,7 @@
         if(icon) icon.textContent = '🔇'; if(label) label.textContent = 'Mudo'; if(toggle) toggle.classList.add('muted');
         if(mobileIcon) mobileIcon.textContent = '🔇';
         if(wMusicIcon) wMusicIcon.textContent = '🔇';
+        if(mMusicIcon) mMusicIcon.textContent = '🔇';
         stopWelcomeMusic(false);
         stopBgMusic();
       }
@@ -2296,21 +2332,25 @@
       if (!soundEnabled) {
         const icon = document.getElementById('soundIcon');
         const wSoundIcon = document.getElementById('welcomeSoundIcon');
+        const mSfxIcon = document.getElementById('mobileSoundSfxIcon');
         const label = document.getElementById('soundLabel');
         const toggle = document.getElementById('soundToggle');
         if (icon) icon.textContent = '🔇';
         if (wSoundIcon) wSoundIcon.textContent = '🔇';
+        if (mSfxIcon) mSfxIcon.textContent = '🔇';
         if (label) label.textContent = 'Mudo';
         if (toggle) toggle.classList.add('muted');
       }
       if (!musicEnabled) {
         const icon = document.getElementById('musicIcon');
         const wMusicIcon = document.getElementById('welcomeMusicIcon');
+        const mMusicIcon = document.getElementById('mobileSoundMusicIcon');
         const label = document.getElementById('musicLabel');
         const toggle = document.getElementById('musicToggle');
         const mobileIcon = document.getElementById('mobileMusIcon');
         if (icon) icon.textContent = '🔇';
         if (wMusicIcon) wMusicIcon.textContent = '🔇';
+        if (mMusicIcon) mMusicIcon.textContent = '🔇';
         if (label) label.textContent = 'Mudo';
         if (toggle) toggle.classList.add('muted');
         if (mobileIcon) mobileIcon.textContent = '🔇';
