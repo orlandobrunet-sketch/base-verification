@@ -12,6 +12,7 @@
   <link rel="icon" type="image/png" sizes="512x512" href="assets/images/favicon-512x512.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
   <meta name="theme-color" content="#0a0e1a">
+  <link rel="preload" href="assets/audio/welcome-theme.mp3" as="audio" type="audio/mpeg">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Philosopher:wght@400;700&family=MedievalSharp&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -1171,13 +1172,13 @@
       .panel.left {
         position: fixed;
         top: 0; left: 0;
-        width: min(340px, 88vw);
+        width: 100vw;
         height: 100vh;
         z-index: 8500;
         transform: translateX(-100%);
         transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
         overflow-y: auto;
-        border-radius: 0 12px 12px 0;
+        border-radius: 0;
         box-shadow: 4px 0 30px rgba(0,0,0,0.8);
         padding-bottom: 80px;
         background: linear-gradient(180deg, #1a1228 0%, #12192e 50%, #0e1525 100%) !important;
@@ -1196,6 +1197,17 @@
         z-index: 8400;
       }
       .mobile-overlay.active { display: block; }
+      .drawer-close-btn {
+        display: flex; align-items: center; gap: 6px;
+        width: 100%; padding: 10px 14px;
+        background: rgba(255,215,0,0.08); border: none;
+        border-bottom: 1px solid rgba(42,74,122,0.5);
+        color: var(--gold); font-family: 'Cinzel', serif;
+        font-size: 0.78rem; letter-spacing: 1px;
+        cursor: pointer; text-align: left;
+        margin-bottom: 8px;
+      }
+      .drawer-close-btn:hover { background: rgba(255,215,0,0.15); }
 
       /* Painel direito: tela cheia */
       .panel.right {
@@ -1839,7 +1851,7 @@
     const WELCOME_MUSIC_URL = 'assets/audio/welcome-theme.mp3';
     const WELCOME_MUSIC_VOL = 0.30;
     const WM_SILENCE_MS = 4000;  // silêncio entre loops
-    const WM_FADEIN_MS  = 800;   // duração do fade-in
+    const WM_FADEIN_MS  = 300;   // duração do fade-in
     const WM_FADEOUT_MS = 1500;  // duração do fade-out
 
     const wmTrack = new Audio(WELCOME_MUSIC_URL);
@@ -2067,7 +2079,7 @@
       }
       // Tentar autoplay após DOM pronto (única tentativa para evitar race conditions)
       if (musicEnabled) {
-        setTimeout(() => startWelcomeMusic(), 100);
+        startWelcomeMusic();
       }
       
       // Fallback: iniciar música no primeiro clique/toque (navegadores que bloqueiam autoplay)
@@ -5237,6 +5249,13 @@
         leftPanel.classList.add('mobile-open');
         overlay.classList.add('active');
         document.body.style.overflow = 'hidden';
+        if (!leftPanel.querySelector('.drawer-close-btn')) {
+          const closeBtn = document.createElement('button');
+          closeBtn.className = 'drawer-close-btn';
+          closeBtn.innerHTML = '&#10005; Fechar';
+          closeBtn.onclick = closeDrawer;
+          leftPanel.insertBefore(closeBtn, leftPanel.firstChild);
+        }
       }
       function closeDrawer() {
         leftPanel.classList.remove('mobile-open');
