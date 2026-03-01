@@ -712,7 +712,7 @@
     /* MODALS */
     .modalWrap {
       position: fixed; inset: 0; background: rgba(0,0,0,0.7);
-      display: grid; place-items: center; z-index: 600;
+      display: grid; place-items: center; z-index: 9500;
       backdrop-filter: blur(4px);
     }
     .modalWrap.hidden { display: none !important; }
@@ -729,7 +729,7 @@
     /* CHEST MODAL */
     .chest-modal {
       display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,0.8); z-index: 200;
+      background: rgba(0,0,0,0.8); z-index: 9500;
       align-items: center; justify-content: center;
       backdrop-filter: blur(6px);
     }
@@ -1232,7 +1232,7 @@
         padding: 7px 6px 5px;
         cursor: pointer;
         flex: 1;
-        max-width: 68px;
+        max-width: 60px;
         transition: background 0.2s, border-color 0.2s;
         -webkit-tap-highlight-color: transparent;
       }
@@ -1262,6 +1262,8 @@
       .mobile-bottom-dock .mdock-btn.stats .mdock-label { color: #60a5fa; }
       .mobile-bottom-dock .mdock-btn.conquistas svg { color: #ffd700; }
       .mobile-bottom-dock .mdock-btn.conquistas .mdock-label { color: #ffd700; }
+      .mobile-bottom-dock .mdock-btn.personagem svg { color: #a78bfa; }
+      .mobile-bottom-dock .mdock-btn.personagem .mdock-label { color: #a78bfa; }
       .mobile-bottom-dock .mdock-btn.menu svg { color: #94a3b8; }
       .mobile-bottom-dock .mdock-btn.menu .mdock-label { color: #94a3b8; }
 
@@ -1613,6 +1615,14 @@
   <!-- MOBILE: Bottom dock (visível apenas em mobile) -->
   <div class="mobile-bottom-dock" id="mobileBottomDock" style="display:none;">
 
+    <!-- Personagem / Painel Esquerdo -->
+    <button class="mdock-btn personagem" onclick="openMobileDrawer()" title="Personagem, Badges e Equipamentos">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
+        <circle cx="12" cy="8" r="4"/>
+        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+      </svg>
+      <span class="mdock-label">Herói</span>
+    </button>
     <!-- Forjar Item -->
     <button class="mdock-btn forge-item" onclick="forgeItem()" title="Forjar Item (300 ouro)">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
@@ -5182,11 +5192,18 @@
       const leftPanel  = document.querySelector('.panel.left');
       const bottomDock = document.getElementById('mobileBottomDock');
       function isMobile() { return window.innerWidth <= 768; }
+      function openDrawer() {
+        leftPanel.classList.add('mobile-open');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
       function closeDrawer() {
         leftPanel.classList.remove('mobile-open');
         overlay.classList.remove('active');
         document.body.style.overflow = '';
       }
+      // Expor globalmente para o botão do bottom dock
+      window.openMobileDrawer = openDrawer;
       function applyMobileState() {
         if (isMobile()) {
           const appVisible = !document.querySelector('.app').classList.contains('hidden');
@@ -5197,12 +5214,19 @@
         }
       }
       overlay.addEventListener('click', closeDrawer);
+      // Fechar drawer ao clicar em botão dentro do painel esquerdo
+      leftPanel.addEventListener('click', function(e) {
+        if (isMobile() && e.target.closest('button') && !e.target.closest('.forge-popup') && !e.target.closest('.narrative-popup')) {
+          setTimeout(closeDrawer, 200);
+        }
+      });
       window.addEventListener('resize', applyMobileState);
       const appEl = document.querySelector('.app');
       const observer = new MutationObserver(function() {
         if (isMobile()) {
           const appVisible = !appEl.classList.contains('hidden');
           bottomDock.style.display = appVisible ? 'flex' : 'none';
+          if (appVisible) closeDrawer();
         }
       });
       observer.observe(appEl, { attributes: true, attributeFilter: ['class'] });
