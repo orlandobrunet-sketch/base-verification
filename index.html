@@ -887,24 +887,24 @@
       <div style="margin-top:8px;padding:6px 10px;background:rgba(0,0,0,0.3);border-radius:8px;border:1px solid #1a3a5a;">
         <div style="font-size:0.65rem;color:var(--txt-dim);margin-bottom:4px;text-align:center;">Conquistas</div>
         <div class="badges-row" style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px;">
-          <div class="badge-slot" data-badge="1" title="Mestre da Filtração (20 acertos)">
-            <img src="assets/badges/badge1.jpg" alt="Badge 1">
+          <div class="badge-slot" data-badge="1" title="Vórtice do Néfron (20 acertos)">
+            <img src="assets/badges/badge1.png" alt="Vórtice do Néfron">
             <div class="badge-lock">🔒</div>
           </div>
-          <div class="badge-slot" data-badge="2" title="Guardião do Equilíbrio (40 acertos)">
-            <img src="assets/badges/badge2.jpg" alt="Badge 2">
+          <div class="badge-slot" data-badge="2" title="Sábio do Microscópio (40 acertos)">
+            <img src="assets/badges/badge2.png" alt="Sábio do Microscópio">
             <div class="badge-lock">🔒</div>
           </div>
-          <div class="badge-slot" data-badge="3" title="Senhor das Águas (60 acertos)">
-            <img src="assets/badges/badge3.jpg" alt="Badge 3">
+          <div class="badge-slot" data-badge="3" title="Guardião das Águas (60 acertos)">
+            <img src="assets/badges/badge3.png" alt="Guardião das Águas">
             <div class="badge-lock">🔒</div>
           </div>
-          <div class="badge-slot" data-badge="4" title="Biólogo Visionário (80 acertos)">
-            <img src="assets/badges/badge4.jpg" alt="Badge 4">
+          <div class="badge-slot" data-badge="4" title="Árbitro dos Rins (80 acertos)">
+            <img src="assets/badges/badge4.png" alt="Árbitro dos Rins">
             <div class="badge-lock">🔒</div>
           </div>
-          <div class="badge-slot" data-badge="5" title="Herói do NefroQuest (100 acertos)">
-            <img src="assets/badges/badge5.jpg" alt="Badge 5">
+          <div class="badge-slot" data-badge="5" title="Ascendido do NefroQuest (100 acertos)">
+            <img src="assets/badges/badge5.png" alt="Ascendido do NefroQuest">
             <div class="badge-lock">🔒</div>
           </div>
         </div>
@@ -1280,11 +1280,11 @@
 
     // ============ SISTEMA DE BADGES ============
     const BADGES = [
-      {id: 1, name: 'Mestre da Filtração', required: 20},
-      {id: 2, name: 'Guardião do Equilíbrio', required: 40},
-      {id: 3, name: 'Senhor das Águas', required: 60},
-      {id: 4, name: 'Biólogo Visionário', required: 80},
-      {id: 5, name: 'Herói do NefroQuest', required: 100}
+      {id: 1, name: 'Vórtice do Néfron', required: 20},
+      {id: 2, name: 'Sábio do Microscópio', required: 40},
+      {id: 3, name: 'Guardião das Águas', required: 60},
+      {id: 4, name: 'Árbitro dos Rins', required: 80},
+      {id: 5, name: 'Ascendido do NefroQuest', required: 100}
     ];
     
     function updateBadges() {
@@ -3660,7 +3660,7 @@
                     border:2px solid ${isUnlocked ? 'var(--gold)' : '#2a4a7a'};
                     box-shadow:${isUnlocked ? '0 0 12px rgba(255,215,0,0.4)' : 'none'};
                   ">
-                    <img src="assets/badges/badge${badge.id}.jpg" alt="${badge.name}"
+                    <img src="assets/badges/badge${badge.id}.png" alt="${badge.name}"
                       style="width:100%;height:100%;object-fit:cover;
                         filter:${isUnlocked ? 'none' : 'grayscale(60%) brightness(0.7)'};
                         opacity:${isUnlocked ? '1' : '0.7'};
