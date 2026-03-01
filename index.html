@@ -1182,22 +1182,26 @@
 
     /* ============ MOBILE RESPONSIVO ============ */
     @media (max-width: 768px) {
-      /* Fix scroll: html/body fixos, scroll acontece no .app */
-      html { background: var(--bg); overflow: hidden; height: 100%; }
-      body { background: var(--bg); overflow: hidden; height: 100%; }
+      /* Scroll mobile: body é o container de scroll principal */
+      html { background: var(--bg); overflow-x: hidden; }
+      body {
+        background: var(--bg);
+        overflow-x: hidden;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 90px; /* espaço para o bottom dock */
+      }
 
-      /* Layout principal: scroll no .app */
+      /* Layout principal: cresce conforme o conteúdo */
       .app {
         grid-template-columns: 1fr;
         padding: 8px;
         gap: 8px;
-        padding-bottom: 90px; /* espaço para bottom dock */
-        height: 100dvh; /* usa dvh para respeitar barra do navegador mobile */
-        overflow-y: auto;
-        overflow-x: hidden;
-        -webkit-overflow-scrolling: touch; /* scroll suave iOS */
+        min-height: auto;
+        height: auto;
+        overflow: visible;
         align-content: start;
-        background: var(--bg);
+        background: transparent;
       }
 
       /* Painel esquerdo: drawer deslizante */
