@@ -1299,6 +1299,54 @@
         grid-row: unset;
       }
 
+      /* Barra de status mobile (ouro/streak/vidas) acima do dock */
+      .mobile-status-bar {
+        display: none;
+      }
+      @media (max-width: 768px) {
+        .mobile-status-bar {
+          display: flex;
+          position: fixed;
+          bottom: 72px; /* logo acima do bottom dock */
+          left: 0; right: 0;
+          z-index: 7999;
+          background: linear-gradient(0deg, rgba(8,14,30,0.97) 0%, rgba(12,20,42,0.92) 100%);
+          border-top: 1px solid rgba(255,215,0,0.15);
+          padding: 5px 12px;
+          gap: 0;
+          align-items: center;
+          justify-content: space-around;
+          box-shadow: 0 -2px 12px rgba(0,0,0,0.5);
+        }
+        .mobile-status-bar .msb-item {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 5px;
+          flex: 1;
+          justify-content: center;
+        }
+        .mobile-status-bar .msb-item:not(:last-child) {
+          border-right: 1px solid rgba(255,255,255,0.08);
+        }
+        .mobile-status-bar .msb-icon {
+          font-size: 0.95rem;
+          line-height: 1;
+        }
+        .mobile-status-bar .msb-value {
+          font-family: 'Cinzel', serif;
+          font-size: 0.78rem;
+          font-weight: 700;
+          color: #e2e8f0;
+          line-height: 1;
+        }
+        .mobile-status-bar .msb-gold .msb-value { color: #ffd700; }
+        .mobile-status-bar .msb-streak .msb-value { color: #fb923c; }
+        .mobile-status-bar .msb-lives .msb-value { color: #ef4444; }
+        /* Ajustar padding-bottom do conteúdo para acomodar barra + dock */
+        body { padding-bottom: 120px !important; }
+      }
+
       /* Bottom dock mobile */
       .mobile-bottom-dock {
         display: flex !important;
@@ -1389,6 +1437,92 @@
       @keyframes mdock-badge-pulse {
         0%, 100% { transform: scale(1); box-shadow: 0 0 6px rgba(255,215,0,0.8); }
         50% { transform: scale(1.15); box-shadow: 0 0 10px rgba(255,215,0,1); }
+      }
+
+      /* Popup de confirmação de ação mobile */
+      .mobile-action-confirm {
+        position: fixed;
+        bottom: 140px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9500;
+        background: linear-gradient(160deg, #0f1d3a 0%, #0a1428 100%);
+        border: 1px solid rgba(255,215,0,0.35);
+        border-radius: 16px;
+        padding: 16px 20px;
+        min-width: 280px;
+        max-width: 340px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.8), 0 0 20px rgba(255,215,0,0.1);
+        animation: confirmPopupIn 0.2s ease-out;
+      }
+      @keyframes confirmPopupIn {
+        from { opacity: 0; transform: translateX(-50%) translateY(12px); }
+        to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+      }
+      .mobile-action-confirm .mac-title {
+        font-family: 'Cinzel', serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #ffd700;
+        text-align: center;
+        margin-bottom: 6px;
+        letter-spacing: 0.5px;
+      }
+      .mobile-action-confirm .mac-desc {
+        font-size: 0.75rem;
+        color: #94a3b8;
+        text-align: center;
+        margin-bottom: 12px;
+        line-height: 1.4;
+      }
+      .mobile-action-confirm .mac-cost {
+        font-family: 'Cinzel', serif;
+        font-size: 1rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 14px;
+      }
+      .mobile-action-confirm .mac-gold-avail {
+        font-size: 0.72rem;
+        color: #64748b;
+        text-align: center;
+        margin-bottom: 14px;
+      }
+      .mobile-action-confirm .mac-btns {
+        display: flex;
+        gap: 10px;
+      }
+      .mobile-action-confirm .mac-btn {
+        flex: 1;
+        padding: 9px 0;
+        border-radius: 10px;
+        border: none;
+        font-family: 'Cinzel', serif;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        transition: opacity 0.15s;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .mobile-action-confirm .mac-btn:active { opacity: 0.7; }
+      .mobile-action-confirm .mac-btn.mac-cancel {
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.12);
+        color: #94a3b8;
+      }
+      .mobile-action-confirm .mac-btn.mac-confirm {
+        background: linear-gradient(135deg, #d97706, #b45309);
+        color: #fff;
+        box-shadow: 0 2px 10px rgba(217,119,6,0.4);
+      }
+      .mobile-action-confirm .mac-btn.mac-confirm.legendary {
+        background: linear-gradient(135deg, #7c3aed, #5b21b6);
+        box-shadow: 0 2px 10px rgba(124,58,237,0.5);
+      }
+      .mobile-action-confirm .mac-btn.mac-confirm.chest {
+        background: linear-gradient(135deg, #ca8a04, #92400e);
+        box-shadow: 0 2px 10px rgba(202,138,4,0.5);
       }
 
       /* Estado desabilitado nos botões mobile */
@@ -1792,6 +1926,21 @@
   <!-- MOBILE: Overlay escuro quando drawer aberto -->
   <div class="mobile-overlay" id="mobileOverlay"></div>
 
+  <!-- MOBILE: Barra de status (ouro/streak/vidas) acima do dock -->
+  <div class="mobile-status-bar" id="mobileStatusBar">
+    <div class="msb-item msb-gold">
+      <span class="msb-icon">💰</span>
+      <span class="msb-value" id="msbGold">0</span>
+    </div>
+    <div class="msb-item msb-streak">
+      <span class="msb-icon">🔥</span>
+      <span class="msb-value" id="msbStreak">0</span>
+    </div>
+    <div class="msb-item msb-lives">
+      <span class="msb-icon" id="msbLivesIcons">❤❤❤</span>
+    </div>
+  </div>
+
   <!-- MOBILE: Bottom dock (visível apenas em mobile) -->
   <div class="mobile-bottom-dock" id="mobileBottomDock" style="display:none;">
 
@@ -1804,7 +1953,7 @@
       <span class="mdock-label">Herói</span>
     </button>
     <!-- Forjar Item -->
-    <button class="mdock-btn forge-item" onclick="forgeItem()" title="Forjar Item (300 ouro)">
+    <button class="mdock-btn forge-item" onclick="showActionConfirmPopup('forge')" title="Forjar Item (300 ouro)">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
         <path d="M14.5 2.5c0 1.5-1.5 3-1.5 3s-1.5-1.5-1.5-3a1.5 1.5 0 0 1 3 0z"/>
         <path d="M12 5.5V9"/>
@@ -1815,7 +1964,7 @@
     </button>
 
     <!-- Forjar Lendário -->
-    <button class="mdock-btn forge-legendary" onclick="forgeLegendary()" title="Forjar Lendário (1000 ouro)">
+    <button class="mdock-btn forge-legendary" onclick="showActionConfirmPopup('legendary')" title="Forjar Lendário (1000 ouro)">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
         <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
       </svg>
@@ -1823,7 +1972,7 @@
     </button>
 
     <!-- Baú -->
-    <button class="mdock-btn open-chest" onclick="openChest()" title="Abrir Baú">
+    <button class="mdock-btn open-chest" onclick="showActionConfirmPopup('chest')" title="Abrir Baú">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
         <path d="M5 8h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2z"/>
         <path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2"/>
@@ -3714,6 +3863,20 @@
       _updateMdockBadge('forge-item',    !_maxed && !state.gameOver && state.gold >= 300);
       _updateMdockBadge('forge-legendary', !_maxed && !state.gameOver && state.gold >= 1000);
       _updateMdockBadge('open-chest',    !_maxed && !state.gameOver && state.gold >= chestCost && state.correctTotal >= CHEST_MIN_CORRECT);
+
+      // === BARRA DE STATUS MOBILE (ouro/streak/vidas) ===
+      const msbGoldEl = document.getElementById('msbGold');
+      const msbStreakEl = document.getElementById('msbStreak');
+      const msbLivesEl = document.getElementById('msbLivesIcons');
+      if(msbGoldEl) msbGoldEl.textContent = state.gold;
+      if(msbStreakEl) msbStreakEl.textContent = state.streak;
+      if(msbLivesEl) {
+        const lives = Math.max(0, state.lives);
+        const maxLives = 3;
+        msbLivesEl.innerHTML =
+          '<span style="color:#ef4444">❤</span>'.repeat(Math.min(lives, maxLives)) +
+          '<span style="color:#555">♡</span>'.repeat(Math.max(0, maxLives - lives));
+      }
     }
 
     // Última questão apresentada (para evitar repetição na virada de ciclo)
@@ -4004,6 +4167,159 @@
       renderHUD();
       updateBadges();
       renderQuestion();
+    }
+
+    // === POPUP DE CONFIRMAÇÃO MOBILE (Forjar / Lendário / Baú) ===
+    function showActionConfirmPopup(type) {
+      // Remove popup anterior se existir
+      const existing = document.getElementById('mobileActionConfirm');
+      if(existing) existing.remove();
+
+      const configs = {
+        forge: {
+          title: '🔨 Forjar Item',
+          desc: 'Forja um item aleatório para seu equipamento. A raridade depende do seu nível e sorte.',
+          cost: 300,
+          costColor: '#fb923c',
+          btnClass: '',
+          btnLabel: 'FORJAR AGORA',
+          action: () => _forgeItemDirect()
+        },
+        legendary: {
+          title: '⭐ Forjar Lendário',
+          desc: 'Garante um item lendário para um slot aleatório. Poder máximo!',
+          cost: 1000,
+          costColor: '#d8b4fe',
+          btnClass: 'legendary',
+          btnLabel: 'FORJAR LENDÁRIO',
+          action: () => _forgeLegendaryDirect()
+        },
+        chest: {
+          title: '📦 Abrir Baú',
+          desc: 'Desbloqueia um artigo científico de nefrologia e ganha +Conhecimento.',
+          cost: chestCost,
+          costColor: '#fbbf24',
+          btnClass: 'chest',
+          btnLabel: 'ABRIR BAÚ',
+          action: () => _openChestDirect()
+        }
+      };
+
+      const cfg = configs[type];
+      if(!cfg) return;
+
+      const canAfford = state.gold >= cfg.cost;
+      const popup = document.createElement('div');
+      popup.id = 'mobileActionConfirm';
+      popup.className = 'mobile-action-confirm';
+      popup.innerHTML = `
+        <div class="mac-title">${cfg.title}</div>
+        <div class="mac-desc">${cfg.desc}</div>
+        <div class="mac-cost" style="color:${cfg.costColor}">💰 ${cfg.cost} ouro</div>
+        <div class="mac-gold-avail">Seu ouro: <strong style="color:${canAfford?'#ffd700':'#ef4444'}">${state.gold}</strong>${canAfford ? ' ✓' : ' — insuficiente'}</div>
+        <div class="mac-btns">
+          <button class="mac-btn mac-cancel" onclick="document.getElementById('mobileActionConfirm')?.remove()">CANCELAR</button>
+          <button class="mac-btn mac-confirm ${cfg.btnClass}" ${canAfford?'':'disabled style="opacity:0.4;pointer-events:none;"'}
+            onclick="document.getElementById('mobileActionConfirm')?.remove(); _mobileActionCallbacks['${type}']();">
+            ${cfg.btnLabel}
+          </button>
+        </div>
+      `;
+
+      // Fechar ao clicar fora
+      setTimeout(() => {
+        document.addEventListener('click', function closeConfirm(e) {
+          if(!popup.contains(e.target)) {
+            popup.remove();
+            document.removeEventListener('click', closeConfirm);
+          }
+        });
+      }, 100);
+
+      document.body.appendChild(popup);
+    }
+
+    // Callbacks das ações (chamados pelo popup)
+    window._mobileActionCallbacks = {
+      forge: () => _forgeItemDirect(),
+      legendary: () => _forgeLegendaryDirect(),
+      chest: () => _openChestDirect()
+    };
+
+    // Funções internas diretas (sem interceptação)
+    function _forgeItemDirect(){
+      if(state.gameOver){ log('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
+      if(allItemsMaxed()){ log('🏆 Você já possui todos os equipamentos lendários!'); return; }
+      const cost=300;
+      if(state.gold<cost){ log('🧱 Ouro insuficiente! Precisa de 300 ouro para forjar.'); return; }
+      state.gold-=cost;
+      const st=total();
+      const rolled=rollItem(state.level, st.luck);
+      const msg=equipOrSell(rolled.slot, rolled.item);
+      const gains=[`⚔️ ATK ${rolled.item.atk}`, `🛡️ DEF ${rolled.item.def}`, `📚 CONH ${rolled.item.kno}`, `🍀 SORTE ${rolled.item.luck}`];
+      showForgePopup(rolled.item, rolled.slot, gains);
+      playSound('forge');
+      log(`🔨 Forja concluída! ${msg}`);
+      renderHUD();
+      updateBadges();
+      saveGame();
+    }
+
+    function _forgeLegendaryDirect(){
+      if(state.gameOver){ log('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
+      if(allItemsMaxed()){ log('🏆 Você já possui todos os equipamentos lendários!'); return; }
+      const cost=1000;
+      if(state.gold<cost){ log('🧱 Ouro insuficiente! Precisa de 1000 ouro para forjar lendário.'); return; }
+      state.gold-=cost;
+      const keys=Object.keys(state.equipment);
+      const slot=keys[Math.floor(Math.random()*keys.length)];
+      const legendaryItems = items[slot].filter(i => i.rar === 'legendary');
+      if(legendaryItems.length === 0){ log('Sem itens lendários para este slot.'); state.gold+=cost; return; }
+      const legendaryItem = legendaryItems[Math.floor(Math.random()*legendaryItems.length)];
+      state.equipment[slot] = {...legendaryItem};
+      const gains = [`⚔️ ATK ${legendaryItem.atk}`, `🛡️ DEF ${legendaryItem.def}`, `📚 CONH ${legendaryItem.kno}`, `🍀 SORTE ${legendaryItem.luck}`];
+      showForgePopup(state.equipment[slot], slot, gains);
+      playSound('forge');
+      log(`🔨 Forja Lendária! ${legendaryItem.n} equipado!`);
+      renderHUD();
+      updateBadges();
+      saveGame();
+    }
+
+    function _openChestDirect(){
+      if(state.gameOver){ log('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
+      if(allItemsMaxed()){ log('🏆 Sem novos baús! Você já possui todos os equipamentos lendários!'); return; }
+      if (state.correctTotal < CHEST_MIN_CORRECT) {
+        log(`📚 Você precisa de pelo menos ${CHEST_MIN_CORRECT} acertos para abrir um baú! (Atual: ${state.correctTotal})`);
+        return;
+      }
+      if (state.gold < chestCost) {
+        log('💰 Ouro insuficiente! Você precisa de ' + chestCost + ' ouro.');
+        return;
+      }
+      const availableArticles = nefroArticles.filter((_, idx) => !unlockedArticles.includes(idx));
+      if (availableArticles.length === 0) {
+        log('🎉 Você já desbloqueou todos os artigos!');
+        return;
+      }
+      state.gold -= chestCost;
+      const randomArticle = availableArticles[Math.floor(Math.random() * availableArticles.length)];
+      const articleIndex = nefroArticles.indexOf(randomArticle);
+      unlockedArticles.push(articleIndex);
+      localStorage.setItem('unlockedArticles', JSON.stringify(unlockedArticles));
+      state.chestsOpened++;
+      const knoGain = state.chestsOpened;
+      if(state.equipment.relic) state.equipment.relic.kno = (state.equipment.relic.kno || 0) + knoGain;
+      const chestPoints = 30 + state.chestsOpened * 10;
+      state.score += chestPoints;
+      showChestModal(randomArticle, knoGain, chestPoints);
+      playSound('chest');
+      log(`📚 Baús abertos: ${state.chestsOpened} — +${knoGain} Conhecimento, +${chestPoints} pontos!`);
+      chestCost = Math.min(chestCost + 15, 250);
+      log('📦 Artigo desbloqueado: ' + randomArticle.titulo);
+      renderHUD();
+      updateBadges();
+      saveGame();
     }
 
     function forgeItem(){
