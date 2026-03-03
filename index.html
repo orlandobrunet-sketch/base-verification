@@ -1332,20 +1332,17 @@
       }
       .mobile-overlay.active { display: block; }
       .drawer-close-btn {
-        display: flex; align-items: center; justify-content: center; gap: 6px;
-        width: 100%; padding: 10px 14px;
-        background: linear-gradient(180deg, #ffd700 0%, #daa520 50%, #b8860b 100%);
-        border: none; border-bottom: 2px solid #8b6914;
-        border-radius: 0;
-        color: #1a0e00; font-family: 'Cinzel', serif;
-        font-size: 0.78rem; letter-spacing: 1px; font-weight: 700;
+        display: flex; align-items: center; justify-content: center; gap: 5px;
+        width: calc(100% - 32px); margin: 12px 16px 20px;
+        padding: 8px 12px;
+        background: rgba(255,215,0,0.12);
+        border: 1px solid rgba(255,215,0,0.35);
+        border-radius: 8px;
+        color: #ffd700; font-family: 'Cinzel', serif;
+        font-size: 0.68rem; letter-spacing: 1px; font-weight: 700;
         cursor: pointer; text-align: center; text-transform: uppercase;
-        box-shadow: 0 3px 10px rgba(218,165,32,0.35);
-        margin-bottom: 0;
-        /* Sticky: sempre visível no topo do drawer ao rolar */
-        position: sticky;
-        top: 0;
-        z-index: 10;
+        box-shadow: none;
+        margin-top: 12px;
       }
       .drawer-close-btn:hover { background: linear-gradient(180deg, #ffe44d 0%, #f0b800 50%, #c8930a 100%); }
 
@@ -5907,7 +5904,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
           closeBtn.className = 'drawer-close-btn';
           closeBtn.innerHTML = '&#10005; Fechar';
           closeBtn.onclick = closeDrawer;
-          leftPanel.insertBefore(closeBtn, leftPanel.firstChild);
+          leftPanel.appendChild(closeBtn);
         }
       }
       function closeDrawer() {
