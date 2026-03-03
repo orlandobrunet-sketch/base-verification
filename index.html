@@ -1812,7 +1812,7 @@
         <p style="color:#34d399;font-size:0.82rem;font-weight:700;margin-bottom:8px;text-align:center;letter-spacing:1px;">⚔ Jornada em Andamento ⚔</p>
         <div id="wsSavedTable" style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;">
           <div style="background:rgba(20,30,50,0.8);border:1px solid #2a4a7a;border-radius:8px;padding:7px 4px;text-align:center;">
-            <span style="display:block;font-size:0.58rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:3px;">Personagem</span>
+            <span style="display:block;font-size:0.58rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:3px;">Her&oacute;i</span>
             <strong id="wsSavedChar" style="display:block;color:var(--gold);font-size:0.68rem;line-height:1.2;">-</strong>
           </div>
           <div style="background:rgba(20,30,50,0.8);border:1px solid #2a4a7a;border-radius:8px;padding:7px 4px;text-align:center;">
@@ -5931,8 +5931,9 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
       window.openMobileDrawer = openDrawer;
       function applyMobileState() {
         if (isMobile()) {
-          const appVisible = !document.querySelector('.app').classList.contains('hidden');
-          bottomDock.style.display = appVisible ? 'flex' : 'none';
+          const mainAppVisible = !document.getElementById('mainApp').classList.contains('hidden');
+          const welcomeVisible = !document.getElementById('welcomeScreen').classList.contains('hidden');
+          bottomDock.style.display = (mainAppVisible || welcomeVisible) ? 'flex' : 'none';
         } else {
           bottomDock.style.display = 'none';
           closeDrawer();
@@ -5946,15 +5947,18 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
         }
       });
       window.addEventListener('resize', applyMobileState);
-      const appEl = document.querySelector('.app');
+      const mainAppEl = document.getElementById('mainApp');
+      const welcomeEl = document.getElementById('welcomeScreen');
       const observer = new MutationObserver(function() {
         if (isMobile()) {
-          const appVisible = !appEl.classList.contains('hidden');
-          bottomDock.style.display = appVisible ? 'flex' : 'none';
-          if (appVisible) closeDrawer();
+          const mainAppVisible = !mainAppEl.classList.contains('hidden');
+          const welcomeVisible = !welcomeEl.classList.contains('hidden');
+          bottomDock.style.display = (mainAppVisible || welcomeVisible) ? 'flex' : 'none';
+          if (mainAppVisible) closeDrawer();
         }
       });
-      observer.observe(appEl, { attributes: true, attributeFilter: ['class'] });
+      observer.observe(mainAppEl, { attributes: true, attributeFilter: ['class'] });
+      observer.observe(welcomeEl, { attributes: true, attributeFilter: ['class'] });
       applyMobileState();
     })();
 
