@@ -5929,6 +5929,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
       }
       // Expor globalmente para o botão do bottom dock
       window.openMobileDrawer = openDrawer;
+      window._applyMobileState = function() { applyMobileState(); };
       function applyMobileState() {
         if (isMobile()) {
           const mainAppVisible = !document.getElementById('mainApp').classList.contains('hidden');
@@ -5960,6 +5961,9 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
       observer.observe(mainAppEl, { attributes: true, attributeFilter: ['class'] });
       observer.observe(welcomeEl, { attributes: true, attributeFilter: ['class'] });
       applyMobileState();
+      // Garantir que o dock apareça mesmo se innerWidth ainda não estava calculado
+      setTimeout(applyMobileState, 100);
+      setTimeout(applyMobileState, 500);
     })();
 
     // === LORE DO PERSONAGEM (clique no retrato) ===
