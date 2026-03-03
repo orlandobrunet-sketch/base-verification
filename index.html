@@ -5934,7 +5934,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
         if (isMobile()) {
           const mainAppVisible = !document.getElementById('mainApp').classList.contains('hidden');
           const welcomeVisible = !document.getElementById('welcomeScreen').classList.contains('hidden');
-          bottomDock.style.display = (mainAppVisible || welcomeVisible) ? 'flex' : 'none';
+          bottomDock.style.display = mainAppVisible ? 'flex' : 'none';
         } else {
           bottomDock.style.display = 'none';
           closeDrawer();
@@ -5954,7 +5954,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
         if (isMobile()) {
           const mainAppVisible = !mainAppEl.classList.contains('hidden');
           const welcomeVisible = !welcomeEl.classList.contains('hidden');
-          bottomDock.style.display = (mainAppVisible || welcomeVisible) ? 'flex' : 'none';
+          bottomDock.style.display = mainAppVisible ? 'flex' : 'none';
           if (mainAppVisible) closeDrawer();
         }
       });
