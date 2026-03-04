@@ -1936,8 +1936,8 @@
     <!-- Forjar Item -->
     <button id="forgeBtn"
       class="dock-btn forge-item"
-      data-tip="Forjar Item — 300 💰">
-      <span class="dock-cost" id="forgeCostBadge">300💰</span>
+      onclick="showMobileActionConfirm('forge')"
+      data-tip="Forjar Item">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <path d="M14.5 2.5c0 1.5-1.5 3-1.5 3s-1.5-1.5-1.5-3a1.5 1.5 0 0 1 3 0z"/>
         <path d="M12 5.5V9"/>
@@ -1951,9 +1951,8 @@
     <!-- Forjar Lendário -->
     <button id="legendaryForgeBtn"
       class="dock-btn forge-legendary"
-      onclick="forgeLegendary()"
-      data-tip="Forjar Lendário — 1000 💰">
-      <span class="dock-cost purple" id="forgeLegCostBadge">1000💰</span>
+      onclick="showMobileActionConfirm('legendary')"
+      data-tip="Forjar Item Lendário">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
         <line x1="12" y1="2" x2="12" y2="6"/>
@@ -1967,9 +1966,8 @@
     <!-- Abrir Baú -->
     <button id="chestBtn"
       class="dock-btn open-chest"
-      onclick="openChest()"
-      data-tip="Abrir Baú de Artigos">
-      <span class="dock-cost" id="chestCostBadge">50💰</span>
+      onclick="showMobileActionConfirm('chest')"
+      data-tip="Abrir Baú">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <path d="M5 8h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2z"/>
         <path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2"/>
@@ -3898,58 +3896,10 @@
       renderEquip();
       // Atualizar dock de ações (usando elementos cacheados no objeto ui)
       const {dockForgeBtn:forgeBtn, dockChestBtn:chestBtn, dockLegBtn:legBtn, dockChestCost:chestCostBadge} = ui;
-      if(state.gameOver){
-        if(forgeBtn){ forgeBtn.classList.add('disabled'); forgeBtn.setAttribute('data-tip','Jornada encerrada'); }
-        if(chestBtn){ chestBtn.classList.add('disabled'); chestBtn.setAttribute('data-tip','Jornada encerrada'); }
-        if(legBtn){ legBtn.classList.add('disabled'); legBtn.setAttribute('data-tip','Jornada encerrada'); }
-      } else {
-        const maxed = allItemsMaxed();
-        if(forgeBtn){
-          if(maxed){
-            forgeBtn.classList.add('disabled');
-            forgeBtn.setAttribute('data-tip','Equipamento completo!');
-          } else if(state.gold<300){
-            forgeBtn.classList.add('disabled');
-            forgeBtn.setAttribute('data-tip',`Forjar Item — precisa 300💰 (atual: ${state.gold})`);
-          } else {
-            forgeBtn.classList.remove('disabled');
-            forgeBtn.setAttribute('data-tip','Forjar Item — 300💰');
-          }
-        }
-        if(legBtn){
-          if(maxed){
-            legBtn.classList.add('disabled');
-            legBtn.setAttribute('data-tip','Equipamento completo!');
-            legBtn.style.pointerEvents='none'; legBtn.style.opacity='0.38';
-          } else if(state.gold<1000){
-            legBtn.classList.add('disabled');
-            legBtn.setAttribute('data-tip',`Forjar Lendário — precisa 1000💰 (atual: ${state.gold})`);
-            legBtn.style.pointerEvents='none'; legBtn.style.opacity='0.38';
-          } else {
-            legBtn.classList.remove('disabled');
-            legBtn.setAttribute('data-tip','Forjar Lendário — 1000💰');
-            legBtn.style.pointerEvents='auto'; legBtn.style.opacity='1';
-          }
-        }
-        if(chestBtn){
-          if(chestCostBadge) chestCostBadge.textContent=`${chestCost}💰`;
-          if(maxed){
-            chestBtn.classList.add('disabled');
-            chestBtn.setAttribute('data-tip','Todos os artigos desbloqueados!');
-          } else {
-            const chestLocked = state.gold<chestCost || state.correctTotal<CHEST_MIN_CORRECT;
-            if(chestLocked){
-              chestBtn.classList.add('disabled');
-              chestBtn.setAttribute('data-tip', state.correctTotal<CHEST_MIN_CORRECT
-                ? `Precisa de ${CHEST_MIN_CORRECT} acertos (atual: ${state.correctTotal})`
-                : `Ouro insuficiente — precisa ${chestCost}`);
-            } else {
-              chestBtn.classList.remove('disabled');
-              chestBtn.setAttribute('data-tip',`Abrir Baú — ${chestCost}💰`);
-            }
-          }
-        }
-      }
+      // Botões sempre ativos — popup de confirmação informa custo e disponibilidade
+      if(forgeBtn){ forgeBtn.classList.remove('disabled'); forgeBtn.style.pointerEvents='auto'; forgeBtn.style.opacity='1'; }
+      if(legBtn){ legBtn.classList.remove('disabled'); legBtn.style.pointerEvents='auto'; legBtn.style.opacity='1'; }
+      if(chestBtn){ chestBtn.classList.remove('disabled'); chestBtn.style.pointerEvents='auto'; chestBtn.style.opacity='1'; }
 
       // Badges ! removidos — popup de confirmação já informa custo e disponibilidade
 
@@ -4608,7 +4558,7 @@
       deleteSave();
       document.getElementById('charSelectModal').classList.add('show');
     });
-    ui.forgeBtn.addEventListener('click',forgeItem);
+    // forgeBtn agora usa onclick="showMobileActionConfirm('forge')" no HTML
     ui.bonusBtn.addEventListener('click',buyBonusQuestion);
     ui.boardBtn.addEventListener('click',()=>{ renderBoard(); ui.boardModal.classList.remove('hidden'); });
     ui.closeBoard.addEventListener('click',()=>ui.boardModal.classList.add('hidden'));
@@ -4653,13 +4603,7 @@
         ui.feedback.textContent='As 3 vidas acabaram. Junte mais ouro em outra corrida para comprar Perguntas Bônus.';
         ui.bonusBtn.classList.add('hidden');
       }
-      // Desabilitar forja e baú após fim de jornada
-      const forgeBtn=document.getElementById('forgeBtn');
-      const chestBtn=document.getElementById('chestBtn');
-      const legBtn=document.getElementById('legendaryForgeBtn');
-      if(forgeBtn){ forgeBtn.classList.add('disabled'); forgeBtn.setAttribute('data-tip','Jornada encerrada'); }
-      if(chestBtn){ chestBtn.classList.add('disabled'); chestBtn.setAttribute('data-tip','Jornada encerrada'); }
-      if(legBtn){ legBtn.classList.add('disabled'); legBtn.setAttribute('data-tip','Jornada encerrada'); }
+      // Botões permanecem ativos após fim de jornada — popup informa o estado
       state.gameOver=true;
       // Esconder barra de status mobile quando jogo termina
       const _msbGO = document.getElementById('mobileStatusBar');
