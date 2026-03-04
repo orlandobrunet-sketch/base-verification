@@ -4128,14 +4128,17 @@
 
     function equipOrSell(slot,item){
       const rarityPowerLocal={common:0,uncommon:2,rare:5,epic:10,legendary:20};
+      // Valor de venda = metade do custo de forja baseado na raridade
+      const raritySellValue={common:20,uncommon:40,rare:80,epic:150,legendary:300};
       function itemPower(it){ return it.atk+it.def+it.kno+it.luck+(rarityPowerLocal[it.rar]||0); }
+      function itemSellVal(it){ return raritySellValue[it.rar] || 20; }
       const newPow = itemPower(item);
       // 1. Procurar slot vazio primeiro
       const slots = Object.keys(state.equipment);
       for(const s of slots){
         if(state.equipment[s].n === 'Vazio'){
           state.equipment[s] = item;
-          return `⬆️ Equipou ${item.n} no slot ${s}.`;
+          return `⬆️ Equipou **${item.n}** (${item.rar}) no slot ${s}.`;
         }
       }
       // 2. Todos ocupados: encontrar o mais fraco
@@ -4147,14 +4150,14 @@
       // 3. Substituir se novo for mais forte que o mais fraco
       if(newPow > weakestPow){
         const oldItem = state.equipment[weakestSlot];
-        const val = 15 + Math.floor(itemPower(oldItem)) * 3;
+        const val = itemSellVal(oldItem);
         state.gold += val;
         state.equipment[weakestSlot] = item;
-        return `⬆️ Equipou ${item.n}. ${oldItem.n} virou ${val} ouro.`;
+        return `⬆️ Slot ${weakestSlot}: **${oldItem.n}** (${oldItem.rar}) → **${item.n}** (${item.rar}). ${oldItem.n} convertido em ${val}💰.`;
       }
-      // 4. Novo é pior: vender
-      const val = 15 + newPow * 3; state.gold += val;
-      return `💰 ${item.n} virou ${val} ouro.`;
+      // 4. Novo é pior ou igual: vender
+      const val = itemSellVal(item); state.gold += val;
+      return `💰 ${item.n} (${item.rar}) vendido por ${val}💰 — equipamento atual é superior.`;
     }
 
     function answer(i,btn){
@@ -4383,11 +4386,22 @@
       const legendaryItems = items[slot].filter(i => i.rar === 'legendary');
       if(legendaryItems.length === 0){ log('Sem itens lendários para este slot.'); state.gold+=cost; return; }
       const legendaryItem = legendaryItems[Math.floor(Math.random()*legendaryItems.length)];
+      // Converter item descartado em ouro (metade do valor de forja por raridade)
+      const raritySellValue={common:20,uncommon:40,rare:80,epic:150,legendary:300};
+      const oldItem = state.equipment[slot];
+      let swapMsg = '';
+      if(oldItem && oldItem.n !== 'Vazio'){
+        const sellVal = raritySellValue[oldItem.rar] || 20;
+        state.gold += sellVal;
+        swapMsg = ` Slot ${slot}: **${oldItem.n}** (${oldItem.rar}) → **${legendaryItem.n}** (lendário). ${oldItem.n} convertido em ${sellVal}💰.`;
+      } else {
+        swapMsg = ` Slot ${slot}: **${legendaryItem.n}** (lendário) equipado.`;
+      }
       state.equipment[slot] = {...legendaryItem};
       const gains = [`⚔️ ATK ${legendaryItem.atk}`, `🛡️ DEF ${legendaryItem.def}`, `📚 CONH ${legendaryItem.kno}`, `🍀 SORTE ${legendaryItem.luck}`];
       showForgePopup(state.equipment[slot], slot, gains);
       playSound('forge');
-      log(`🔨 Forja Lendária! ${legendaryItem.n} equipado!`);
+      log(`🔨 Forja Lendária!${swapMsg}`);
       renderHUD();
       updateBadges();
       saveGame();
@@ -4459,11 +4473,22 @@
       const legendaryItems = items[slot].filter(i => i.rar === 'legendary');
       if(legendaryItems.length === 0){ log('Sem itens lendários para este slot.'); state.gold+=cost; return; }
       const legendaryItem = legendaryItems[Math.floor(Math.random()*legendaryItems.length)];
+      // Converter item descartado em ouro (metade do valor de forja por raridade)
+      const raritySellValueL={common:20,uncommon:40,rare:80,epic:150,legendary:300};
+      const oldItemL = state.equipment[slot];
+      let swapMsgL = '';
+      if(oldItemL && oldItemL.n !== 'Vazio'){
+        const sellValL = raritySellValueL[oldItemL.rar] || 20;
+        state.gold += sellValL;
+        swapMsgL = ` Slot ${slot}: **${oldItemL.n}** (${oldItemL.rar}) → **${legendaryItem.n}** (lendário). ${oldItemL.n} convertido em ${sellValL}💰.`;
+      } else {
+        swapMsgL = ` Slot ${slot}: **${legendaryItem.n}** (lendário) equipado.`;
+      }
       state.equipment[slot] = {...legendaryItem};
       const gains = [`⚔️ ATK ${legendaryItem.atk}`, `🛡️ DEF ${legendaryItem.def}`, `📚 CONH ${legendaryItem.kno}`, `🍀 SORTE ${legendaryItem.luck}`];
       showForgePopup(state.equipment[slot], slot, gains);
       playSound('forge');
-      log(`🔨 Forja Lendária! ${legendaryItem.n} equipado!`);
+      log(`🔨 Forja Lendária!${swapMsgL}`);
       renderHUD();
       updateBadges();
       saveGame();
