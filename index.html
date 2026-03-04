@@ -6015,29 +6015,50 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
     // === SWIPE PARA PRÓXIMA QUESTÃO (mobile) ===
     (function initSwipe() {
       var sx = 0, sy = 0, locked = false;
+
+      // Toast de debug — mostra mensagem temporária na tela
+      function dbg(msg) {
+        var t = document.createElement('div');
+        t.textContent = msg;
+        t.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.85);color:#fff;padding:8px 16px;border-radius:8px;font-size:14px;z-index:99999;pointer-events:none;';
+        document.body.appendChild(t);
+        setTimeout(function(){ t.remove(); }, 2500);
+      }
+
       document.addEventListener('touchstart', function(e) {
         sx = e.touches[0].clientX;
         sy = e.touches[0].clientY;
         locked = false;
       }, { passive: true });
+
       document.addEventListener('touchmove', function(e) {
         if (locked) return;
         var dx = Math.abs(e.touches[0].clientX - sx);
         var dy = Math.abs(e.touches[0].clientY - sy);
         if (dy > 15 && dy > dx) locked = true;
       }, { passive: true });
+
       document.addEventListener('touchend', function(e) {
-        if (locked) return;
         var dx = e.changedTouches[0].clientX - sx;
         var dy = e.changedTouches[0].clientY - sy;
-        // Swipe horizontal mínimo de 50px, mais horizontal que vertical
+
+        // Só mostrar debug se for um movimento razoável
+        if (Math.abs(dx) > 20 || Math.abs(dy) > 20) {
+          var btn = document.getElementById('nextBtn');
+          var btnHidden = !btn || btn.classList.contains('hidden');
+          dbg('dx:' + Math.round(dx) + ' dy:' + Math.round(dy) + ' locked:' + locked + ' btnOk:' + !btnHidden);
+        }
+
+        if (locked) return;
         if (Math.abs(dx) < 50) return;
         if (Math.abs(dy) >= Math.abs(dx) * 0.7) return;
         if (dx > 0) {
-          // Swipe para direita → simular click no botão Próxima Carta
           var btn = document.getElementById('nextBtn');
           if (btn && !btn.classList.contains('hidden')) {
+            dbg('✅ CLICANDO nextBtn!');
             btn.click();
+          } else {
+            dbg('❌ nextBtn hidden ou ausente');
           }
         }
       }, { passive: true });
