@@ -3596,10 +3596,10 @@
 
     const chapters = [
       { lv:1, title:"Prólogo — As Criptas da Creatinina", goal:"Estude os fundamentos e sobreviva às primeiras cartas." },
-      { lv:4, title:"Capítulo II — O Vale da Albuminúria", goal:"Consolide estratificação de risco e terapia nefroprotetora." },
-      { lv:8, title:"Capítulo III — Torre das Glomerulopatias", goal:"Domine sinais de gravidade e decisões de intervenção precoce." },
-      { lv:12, title:"Capítulo IV — Trono Cardiorrenal", goal:"Integre terapias complexas e mantenha consistência clínica." },
-      { lv:15, title:"Capítulo Final — O Arqui-Nefromante", goal:"Equipe 2 lendários e alcance a vitória clínica suprema." }
+      { lv:3, title:"Capítulo II — O Vale da Albuminúria", goal:"Consolide estratificação de risco e terapia nefroprotetora." },
+      { lv:5, title:"Capítulo III — Torre das Glomerulopatias", goal:"Domine sinais de gravidade e decisões de intervenção precoce." },
+      { lv:7, title:"Capítulo IV — Trono Cardiorrenal", goal:"Integre terapias complexas e mantenha consistência clínica." },
+      { lv:10, title:"Capítulo Final — O Arqui-Nefromante", goal:"Equipe 2 lendários e alcance a vitória clínica suprema." }
     ];
 
     const items = {
@@ -4099,9 +4099,12 @@
 
     function gainXP(x){
       state.xp+=x; let up=0;
-      while(state.xp>=state.xpToNext){
-        state.xp-=state.xpToNext; state.level++; state.xpToNext=Math.floor(state.xpToNext*1.12); up++;
+      while(state.xp>=state.xpToNext && state.level<10){
+        state.xp-=state.xpToNext; state.level++; up++;
+        // xpToNext permanece fixo em 100
       }
+      // Nível máximo é 10
+      if(state.level>=10){ state.level=10; state.xp=Math.min(state.xp, state.xpToNext-1); }
       return up;
     }
 
@@ -4181,8 +4184,8 @@
         state.streak++;
         state.correctTotal++;
         const sm = getStreakMultiplier(state.streak);
-        const baseXp=22+state.current.d*6+Math.min(state.streak,5)*2+Math.floor(st.kno/2);
-        const xp=Math.floor(baseXp * sm.mult);
+        // XP fixo: 10 por acerto (10 acertos = 1 nível, 100 acertos = nível 10)
+        const xp=10;
         const baseG=8+state.current.d*3+Math.floor(st.luck/3);
         const g=Math.floor(baseG * sm.mult);
         const baseScore=80+state.current.d*15+state.streak*5+st.atk;
@@ -4191,7 +4194,7 @@
         const prevLevel = state.level;
         const lv=gainXP(xp);
 
-        if(state.level>=15&&legendaryCount()>=2){
+        if(state.level>=10&&legendaryCount()>=2){
           log('👑 Objetivo final desbloqueado! Você está pronto para vencer o Arqui-Nefromante.');
         }
         ui.feedback.className='feedback good';
