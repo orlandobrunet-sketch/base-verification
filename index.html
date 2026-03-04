@@ -524,42 +524,28 @@
     .action-dock {
       /* Terceira coluna do grid — estático no grid */
       grid-column: 3;
-      grid-row: 2 / 3; /* era span 10 — causava 9 linhas extras de 0px com gap de 14px cada = 126px extras */
+      grid-row: 2 / 3;
       align-self: start;
       z-index: 10;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0;
-      /* Painel medieval — visual mais rico e contrastado */
-      background: linear-gradient(180deg,
-        rgba(6,10,24,0.97) 0%,
-        rgba(10,16,36,0.99) 50%,
-        rgba(6,10,24,0.97) 100%);
-      border: 2px solid #2a4a7a;
-      border-radius: 12px; /* igual ao .panel */
-      padding: 12px 8px;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      box-shadow:
-        0 12px 40px rgba(0,0,0,0.85);
-      animation: dockGlow 4s ease-in-out infinite;
+      gap: 8px;
+      /* Sem box: fundo, borda e sombra removidos */
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      padding: 8px 0;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      box-shadow: none;
+      animation: none;
     }
     .action-dock.hidden { display: none; }
 
-    /* Ornamento topo e base do painel */
+    /* Ornamentos removidos (sem box) */
     .action-dock::before,
-    .action-dock::after {
-      content: '';
-      display: block;
-      width: 28px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(255,215,0,0.5), transparent);
-      border-radius: 2px;
-      flex-shrink: 0;
-    }
-    .action-dock::before { margin-bottom: 8px; }
-    .action-dock::after  { margin-top: 8px; }
+    .action-dock::after { display: none; }
 
     /* Separador entre grupos */
     .dock-divider {
@@ -573,25 +559,25 @@
     /* Botão base */
     .dock-btn {
       position: relative;
-      width: 64px;
-      height: 62px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.14);
+      width: 80px;
+      height: 76px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.18);
       background: linear-gradient(145deg, rgba(20,28,55,0.9), rgba(12,18,40,0.95));
       cursor: pointer;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 3px;
-      margin: 2px 0;
+      gap: 4px;
+      margin: 0;
       transition: transform 0.18s cubic-bezier(.34,1.56,.64,1),
                   background 0.18s,
                   border-color 0.18s,
                   box-shadow 0.18s;
       overflow: visible;
       will-change: transform;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06);
+      box-shadow: 0 3px 12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08);
     }
     .dock-btn:hover {
       transform: scale(1.1);
@@ -609,16 +595,16 @@
 
     /* Ícone SVG */
     .dock-btn svg {
-      width: 30px;
-      height: 30px;
+      width: 36px;
+      height: 36px;
       flex-shrink: 0;
       transition: filter 0.2s;
     }
 
-    /* Label minúscula */
+    /* Label */
     .dock-btn .dock-label {
       font-family: 'Cinzel', serif;
-      font-size: 0.4rem;
+      font-size: 0.5rem;
       font-weight: 700;
       letter-spacing: 0.3px;
       text-transform: uppercase;
@@ -626,7 +612,7 @@
       white-space: nowrap;
       overflow: visible;
       max-width: none;
-      opacity: 0.85;
+      opacity: 0.9;
     }
 
     /* Tooltip — aparece à esquerda */
