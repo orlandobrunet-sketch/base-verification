@@ -6052,7 +6052,8 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
         if (locked) return;
         if (Math.abs(dx) < 50) return;
         if (Math.abs(dy) >= Math.abs(dx) * 0.7) return;
-        if (dx > 0) {
+        if (dx < 0) {
+          // Swipe para esquerda → próxima questão
           var btn = document.getElementById('nextBtn');
           if (btn && !btn.classList.contains('hidden')) {
             dbg('✅ CLICANDO nextBtn!');
