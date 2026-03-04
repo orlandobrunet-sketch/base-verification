@@ -291,6 +291,58 @@
       color: #d5e2ff; padding-top: 4px;
     }
 
+    /* CRONÔMETRO */
+    #timerWidget {
+      position: absolute;
+      top: -10px;
+      left: 10px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: linear-gradient(135deg, rgba(15,20,40,0.95), rgba(20,28,55,0.95));
+      border: 1px solid rgba(99,102,241,0.45);
+      border-radius: 20px;
+      padding: 3px 8px 3px 6px;
+      box-shadow: 0 0 10px rgba(99,102,241,0.2), 0 2px 6px rgba(0,0,0,0.4);
+      z-index: 3;
+      user-select: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    #timerWidget:hover {
+      border-color: rgba(139,92,246,0.7);
+      box-shadow: 0 0 14px rgba(139,92,246,0.35), 0 2px 8px rgba(0,0,0,0.5);
+    }
+    #timerDisplay {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #a5b4fc;
+      letter-spacing: 0.08em;
+      min-width: 34px;
+      text-align: center;
+      line-height: 1;
+    }
+    #timerWidget.running #timerDisplay {
+      color: #c4b5fd;
+    }
+    #timerPlayPause {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.75;
+      transition: opacity 0.15s, transform 0.15s;
+      flex-shrink: 0;
+    }
+    #timerPlayPause:hover { opacity: 1; transform: scale(1.15); }
+    #timerPlayPause svg { width: 14px; height: 14px; fill: #a5b4fc; }
+    #timerWidget.running #timerPlayPause svg { fill: #c4b5fd; }
+
     /* OPTIONS */
     .options { display: grid; gap: 8px; }
     .option {
@@ -1917,6 +1969,16 @@
     <!-- RIGHT PANEL -->
     <section class="panel right">
       <div class="qbox">
+        <!-- CRONÔMETRO -->
+        <div id="timerWidget">
+          <button id="timerPlayPause" title="Play/Pause cronômetro" onclick="timerToggle()">
+            <svg id="timerIcon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <!-- ícone play -->
+              <polygon points="5,3 19,12 5,21" />
+            </svg>
+          </button>
+          <span id="timerDisplay">00:00</span>
+        </div>
         <button class="flag-btn" id="flagBtn" title="Sinalizar pergunta" onclick="flagQuestion()">🚩</button>
         <p id="question"></p>
       </div>
@@ -5976,6 +6038,87 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
           }
         }
       }, { passive: true });
+    })();
+
+    // ============ CRONÔMETRO ============
+    (function() {
+      var _timerSec = 0;
+      var _timerRunning = false;
+      var _timerInterval = null;
+      var _timerEnabled = false; // desligado por padrão
+
+      var PLAY_SVG  = '<polygon points="5,3 19,12 5,21"/>';
+      var PAUSE_SVG = '<rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/>';
+
+      function _pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+      function _updateDisplay() {
+        var el = document.getElementById('timerDisplay');
+        if (!el) return;
+        var m = Math.floor(_timerSec / 60);
+        var s = _timerSec % 60;
+        el.textContent = _pad(m) + ':' + _pad(s);
+      }
+
+      function _setIcon(running) {
+        var icon = document.getElementById('timerIcon');
+        if (!icon) return;
+        icon.innerHTML = running ? PAUSE_SVG : PLAY_SVG;
+      }
+
+      function _start() {
+        if (_timerRunning) return;
+        _timerRunning = true;
+        _timerEnabled = true;
+        var widget = document.getElementById('timerWidget');
+        if (widget) widget.classList.add('running');
+        _setIcon(true);
+        _timerInterval = setInterval(function() {
+          _timerSec++;
+          _updateDisplay();
+        }, 1000);
+      }
+
+      function _pause() {
+        if (!_timerRunning) return;
+        _timerRunning = false;
+        clearInterval(_timerInterval);
+        _timerInterval = null;
+        var widget = document.getElementById('timerWidget');
+        if (widget) widget.classList.remove('running');
+        _setIcon(false);
+      }
+
+      function _reset() {
+        _pause();
+        _timerSec = 0;
+        _updateDisplay();
+        // Se o timer estava habilitado, reinicia automaticamente
+        if (_timerEnabled) {
+          setTimeout(_start, 50);
+        }
+      }
+
+      // Expor toggle no escopo global
+      window.timerToggle = function() {
+        if (_timerRunning) {
+          _pause();
+          _timerEnabled = false;
+        } else {
+          _timerEnabled = true;
+          _start();
+        }
+      };
+
+      // Resetar e iniciar o timer a cada nova questão (se habilitado)
+      var _origRQ = window.renderQuestion;
+      window.renderQuestion = function() {
+        _reset();
+        if (_origRQ) _origRQ();
+      };
+
+      // Inicializar display
+      _updateDisplay();
     })();
   </script>
 </body>
