@@ -4281,6 +4281,9 @@
       document.body.appendChild(popup);
     }
 
+    // Expor popup no escopo global para uso via onclick no HTML
+    window.showMobileActionConfirm = showActionConfirmPopup;
+
     // Callbacks das ações (chamados pelo popup)
     window._mobileActionCallbacks = {
       forge: () => _forgeItemDirect(),
