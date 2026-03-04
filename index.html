@@ -6011,6 +6011,32 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
       });
       document.body.appendChild(modal);
     }
+
+    // === SWIPE PARA PRÓXIMA QUESTÃO (mobile) ===
+    (function initSwipe() {
+      if (window.innerWidth > 768 && !('ontouchstart' in window)) return;
+      var swipeStartX = 0, swipeStartY = 0;
+      var swipeTarget = document.getElementById('mainApp');
+      if (!swipeTarget) return;
+      swipeTarget.addEventListener('touchstart', function(e) {
+        swipeStartX = e.touches[0].clientX;
+        swipeStartY = e.touches[0].clientY;
+      }, { passive: true });
+      swipeTarget.addEventListener('touchend', function(e) {
+        if (!state.answered) return; // só funciona após responder
+        var dx = e.changedTouches[0].clientX - swipeStartX;
+        var dy = e.changedTouches[0].clientY - swipeStartY;
+        if (Math.abs(dx) < 60) return;       // swipe muito curto
+        if (Math.abs(dy) > Math.abs(dx)) return; // swipe mais vertical que horizontal
+        if (dx > 0) {
+          // Swipe para direita → próxima questão
+          var nextBtn = document.getElementById('nextBtn');
+          if (nextBtn && !nextBtn.classList.contains('hidden')) {
+            renderQuestion();
+          }
+        }
+      }, { passive: true });
+    })();
   </script>
 </body>
 </html>
