@@ -3022,6 +3022,7 @@
         equipment: JSON.parse(JSON.stringify(state.equipment)),
         idx: state.idx,
         queueIds: state.queue.map(q => q.id),
+        recentIds: _recentIds,
         chestsOpened: state.chestsOpened,
         timestamp: Date.now()
       };
@@ -3068,6 +3069,7 @@
         questionBank.forEach(q => bankMap[q.id] = q);
         state.queue = save.queueIds.map(id => bankMap[id]).filter(Boolean);
         state.idx = save.idx || 0;
+        if (save.recentIds) _recentIds = save.recentIds.slice(-HISTORY_SIZE);
       } else {
         shuffleQueue();
       }
@@ -3987,41 +3989,50 @@
       }
     }
 
-    // Última questão apresentada (para evitar repetição na virada de ciclo)
-    let _lastQuestionId = null;
+     // ── Sistema de randomização com histórico ──────────────────────────────
+    // Mantém os IDs das últimas N questões vistas para impedir repetição
+    // mesmo na virada de ciclo. Tamanho do histórico = 20% do banco.
+    const HISTORY_SIZE = Math.max(30, Math.floor(questionBank.length * 0.20));
+    let _recentIds = []; // fila circular dos últimos IDs vistos
 
-    function shuffleQueue(avoidId){
-      // Fisher-Yates shuffle
-      function shuffle(arr) {
-        const a = [...arr];
-        for(let i=a.length-1;i>0;i--){
-          const j=Math.floor(Math.random()*(i+1));
-          [a[i],a[j]]=[a[j],a[i]];
-        }
-        return a;
+    function shuffle(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
       }
-      // Separar por dificuldade (usando o campo '_d' original da questão)
-      const medium = questionBank.filter(q => q._d === 'medium');
-      const hard   = questionBank.filter(q => q._d === 'hard');
-      // Embaralhar cada grupo separadamente e concatenar
-      let newQueue = [...shuffle(medium), ...shuffle(hard)];
-      // Anti-repetição: se a primeira questão do novo ciclo for igual à última do ciclo anterior,
-      // trocar com a segunda questão para evitar repetição imediata
-      const skipId = avoidId || _lastQuestionId;
-      if (skipId && newQueue.length > 1 && newQueue[0].id === skipId) {
-        [newQueue[0], newQueue[1]] = [newQueue[1], newQueue[0]];
+      return a;
+    }
+
+    function shuffleQueue() {
+      // Separar por dificuldade e embaralhar cada grupo
+      const medium = shuffle(questionBank.filter(q => q._d === 'medium'));
+      const hard   = shuffle(questionBank.filter(q => q._d === 'hard'));
+      // Intercalar: 1 medium, 1 hard, 1 medium, 1 hard...
+      // para distribuir dificuldade ao longo de todo o ciclo
+      const interleaved = [];
+      const mi = [...medium], hi = [...hard];
+      while (mi.length || hi.length) {
+        if (mi.length) interleaved.push(mi.shift());
+        if (hi.length) interleaved.push(hi.shift());
       }
-      state.queue = newQueue;
+      // Mover para o final qualquer questão que esteja no histórico recente
+      // (evita repetição imediata na virada de ciclo)
+      const blocked = new Set(_recentIds);
+      const front = interleaved.filter(q => !blocked.has(q.id));
+      const back  = shuffle(interleaved.filter(q =>  blocked.has(q.id)));
+      state.queue = [...front, ...back];
       state.idx = 0;
     }
 
-    function drawQuestion(){
-      if(state.idx >= state.queue.length){ finishDeck(); return null; }
+    function drawQuestion() {
+      if (state.idx >= state.queue.length) { finishDeck(); return null; }
       const q = state.queue[state.idx++];
-      _lastQuestionId = q.id;
+      // Registrar no histórico recente
+      _recentIds.push(q.id);
+      if (_recentIds.length > HISTORY_SIZE) _recentIds.shift();
       return q;
     }
-
     function renderRefs(keys){
       const list = keys.map(k => refsDB[k]).filter(Boolean);
       if(!list.length){ ui.refs.innerHTML=''; return; }
@@ -4236,7 +4247,7 @@
     function finishDeck(){
       // Re-embaralhar automaticamente o baralho com nova ordem aleatória
       // (evitando repetir a última questão do ciclo anterior)
-      shuffleQueue(_lastQuestionId);
+      shuffleQueue();
       // Notificar o jogador com mensagem temporária no feedback
       ui.feedback.className = 'feedback good';
       ui.feedback.textContent = '✅ Baralho completo! Embaralhando novamente...';
