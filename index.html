@@ -1500,13 +1500,12 @@
         z-index: 8000;
         background: linear-gradient(0deg, rgba(8,14,30,0.98) 0%, rgba(12,20,42,0.95) 100%);
         border-top: 1px solid rgba(255,215,0,0.2);
-        padding: 8px 4px;
+        padding: 8px 2px;
         gap: 2px;
         align-items: center;
-        justify-content: flex-start;
-        overflow-x: auto;
+        justify-content: space-evenly;
+        overflow-x: hidden;
         overflow-y: hidden;
-        -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
         box-shadow: 0 -4px 20px rgba(0,0,0,0.6);
       }
@@ -1520,10 +1519,11 @@
         background: rgba(255,255,255,0.04);
         border: 1px solid rgba(255,255,255,0.08);
         border-radius: 10px;
-        padding: 7px 8px 5px;
+        padding: 7px 4px 5px;
         cursor: pointer;
-        flex: 0 0 auto;
-        min-width: 52px;
+        flex: 1 1 0;
+        min-width: 0;
+        max-width: 70px;
         transition: background 0.2s, border-color 0.2s;
         -webkit-tap-highlight-color: transparent;
       }
@@ -1648,6 +1648,34 @@
         top: 8px;
         right: 8px;
         z-index: 9000;
+      }
+      /* Botão herói no canto superior esquerdo (mobile) */
+      .mobile-hero-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        position: fixed;
+        top: 8px;
+        left: 8px;
+        z-index: 9000;
+        background: rgba(167,139,250,0.12);
+        border: 1px solid rgba(167,139,250,0.35);
+        border-radius: 10px;
+        padding: 6px 10px 4px;
+        cursor: pointer;
+        color: #a78bfa;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .mobile-hero-btn:active { background: rgba(167,139,250,0.25); transform: scale(0.95); }
+      .mobile-hero-btn svg { width: 20px; height: 20px; }
+      .mobile-hero-btn .hero-btn-label {
+        font-size: 0.42rem;
+        font-family: 'Cinzel', serif;
+        letter-spacing: 0.3px;
+        text-transform: uppercase;
+        opacity: 0.85;
+        white-space: nowrap;
       }
 
       /* Ocultar botão de música da barra inferior no mobile */
@@ -1823,6 +1851,14 @@
   <div class="particles" id="particles"></div>
 
   <!-- Botões de som fixos no topo direito (MOBILE ONLY) -->
+  <!-- Botão herói no canto superior esquerdo (mobile) -->
+  <button class="mobile-hero-btn" id="mobileHeroBtn" onclick="openMobileDrawer()" style="display:none;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+      <circle cx="12" cy="8" r="4"/>
+      <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+    </svg>
+    <span class="hero-btn-label">Herói</span>
+  </button>
   <div class="mobile-sound-controls" id="mobileSoundControls">
     <div class="sound-toggle" onclick="toggleMusic()">
       <span id="mobileSoundMusicIcon">🎵</span>
@@ -2126,13 +2162,6 @@
   <div class="mobile-bottom-dock" id="mobileBottomDock" style="display:none;">
 
     <!-- Personagem / Painel Esquerdo -->
-    <button class="mdock-btn personagem" onclick="openMobileDrawer()" title="Personagem, Badges e Equipamentos">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
-        <circle cx="12" cy="8" r="4"/>
-        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
-      </svg>
-      <span class="mdock-label">Herói</span>
-    </button>
     <!-- Forjar Item -->
     <button class="mdock-btn forge-item" onclick="showActionConfirmPopup('forge')" title="Forjar Item (300 ouro)">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
@@ -6016,12 +6045,15 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
       window.openMobileDrawer = openDrawer;
       window._applyMobileState = function() { applyMobileState(); };
       function applyMobileState() {
+        const heroBtn = document.getElementById('mobileHeroBtn');
         if (isMobile()) {
           const mainAppVisible = !document.getElementById('mainApp').classList.contains('hidden');
           const welcomeVisible = !document.getElementById('welcomeScreen').classList.contains('hidden');
           bottomDock.style.display = mainAppVisible ? 'flex' : 'none';
+          if (heroBtn) heroBtn.style.display = mainAppVisible ? 'flex' : 'none';
         } else {
           bottomDock.style.display = 'none';
+          if (heroBtn) heroBtn.style.display = 'none';
           closeDrawer();
         }
       }
