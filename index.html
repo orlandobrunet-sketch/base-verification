@@ -6094,9 +6094,14 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
       document.body.appendChild(modal);
     }
 
-    // === SWIPE PARA PRÓXIMA QUESTÃO (mobile) ===
+     // === SWIPE PARA PRÓXIMA QUESTÃO + NAVEGAÇÃO HERÓI (mobile) ===
     (function initSwipe() {
       var sx = 0, sy = 0, locked = false;
+
+      function isDrawerOpen() {
+        var lp = document.querySelector('.panel.left');
+        return lp && lp.classList.contains('mobile-open');
+      }
 
       document.addEventListener('touchstart', function(e) {
         sx = e.touches[0].clientX;
@@ -6117,11 +6122,30 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
         if (locked) return;
         if (Math.abs(dx) < 50) return;
         if (Math.abs(dy) >= Math.abs(dx) * 0.7) return;
+
+        if (isDrawerOpen()) {
+          // Drawer do herói aberto: swipe para esquerda fecha
+          if (dx < 0) {
+            var overlay = document.getElementById('mobileOverlay');
+            if (overlay) overlay.click();
+          }
+          return;
+        }
+
+        // Drawer fechado
         if (dx < 0) {
           // Swipe para esquerda → próxima questão
           var btn = document.getElementById('nextBtn');
           if (btn && !btn.classList.contains('hidden')) {
             setTimeout(function() { btn.click(); }, 200);
+          }
+        } else if (dx > 0) {
+          // Swipe para direita → abrir painel do herói
+          var mainApp = document.getElementById('mainApp');
+          if (mainApp && !mainApp.classList.contains('hidden')) {
+            if (typeof window.openMobileDrawer === 'function') {
+              window.openMobileDrawer();
+            }
           }
         }
       }, { passive: true });
