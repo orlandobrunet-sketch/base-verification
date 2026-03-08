@@ -1246,13 +1246,14 @@
     /* ============ MOBILE RESPONSIVO ============ */
     @media (max-width: 768px) {
       /* Scroll mobile: body é o container de scroll principal */
-      html { background: var(--bg); overflow-x: hidden; }
+      html { background: var(--bg); overflow-x: hidden; touch-action: pan-y; }
       body {
         background: var(--bg);
         overflow-x: hidden;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
         padding-bottom: 72px; /* espaço para o bottom dock */
+        touch-action: pan-y; /* permite swipe horizontal via JS */
       }
 
       /* Layout principal: cresce conforme o conteúdo */
@@ -1400,6 +1401,7 @@
         padding-right: 12px;
         min-height: auto;
         overflow-y: visible; /* deixa o .app controlar o scroll */
+        touch-action: pan-y; /* permite swipe horizontal via JS */
       }
 
       /* Título menor */
