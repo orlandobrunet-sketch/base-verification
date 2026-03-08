@@ -5961,7 +5961,6 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
       const bottomDock = document.getElementById('mobileBottomDock');
       function isMobile() { return window.innerWidth <= 768; }
       function openDrawer() {
-        if (!isMobile()) return; // Só abre no mobile
         // Mover o panel.left para o body para escapar do stacking context do .app (display:none)
         if (leftPanel.parentElement !== document.body) {
           leftPanel._originalParent = leftPanel.parentElement;
@@ -6143,8 +6142,8 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
             setTimeout(function() { btn.click(); }, 200);
           }
         } else if (dx > 0) {
-          // Swipe para direita → abrir painel do herói
-          if (typeof window.openMobileDrawer === 'function') {
+          // Swipe para direita → abrir painel do herói (só no mobile)
+          if (window.innerWidth <= 900 && typeof window.openMobileDrawer === 'function') {
             window.openMobileDrawer();
           }
         }
