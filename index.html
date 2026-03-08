@@ -6098,6 +6098,15 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
 
      // === SWIPE PARA PRÓXIMA QUESTÃO + NAVEGAÇÃO HERÓI (mobile) ===
     (function initSwipe() {
+      // DEBUG TEMPORARIO
+      function dbg(msg) {
+        var d = document.createElement('div');
+        d.textContent = msg;
+        d.style.cssText = 'position:fixed;top:50px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.85);color:#ffd700;padding:8px 16px;border-radius:8px;z-index:99999;font-size:14px;pointer-events:none;max-width:90vw;text-align:center;';
+        document.body.appendChild(d);
+        setTimeout(function(){d.remove();}, 3000);
+      }
+      window._swipeDbg = dbg;
       var sx = 0, sy = 0, locked = false;
 
       function isDrawerOpen() {
@@ -6124,6 +6133,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
         if (locked) return;
         if (Math.abs(dx) < 50) return;
         if (Math.abs(dy) >= Math.abs(dx) * 0.7) return;
+        dbg('SWIPE dx='+Math.round(dx)+' w='+window.innerWidth+' drawer='+isDrawerOpen());
 
         if (isDrawerOpen()) {
           // Drawer do herói aberto: swipe para esquerda fecha
