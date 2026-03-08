@@ -6098,66 +6098,76 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
 
      // === SWIPE PARA PRÓXIMA QUESTÃO + NAVEGAÇÃO HERÓI (mobile) ===
     (function initSwipe() {
-      // DEBUG TEMPORARIO
-      function dbg(msg) {
-        var d = document.createElement('div');
-        d.textContent = msg;
-        d.style.cssText = 'position:fixed;top:50px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.85);color:#ffd700;padding:8px 16px;border-radius:8px;z-index:99999;font-size:14px;pointer-events:none;max-width:90vw;text-align:center;';
-        document.body.appendChild(d);
-        setTimeout(function(){d.remove();}, 3000);
-      }
-      window._swipeDbg = dbg;
-      var sx = 0, sy = 0, locked = false;
+      var sx = 0, sy = 0, tracking = false;
 
       function isDrawerOpen() {
         var lp = document.querySelector('.panel.left');
         return lp && lp.classList.contains('mobile-open');
       }
 
-      document.addEventListener('touchstart', function(e) {
+      // Usar o elemento de conteúdo principal como alvo do swipe
+      function getSwipeTarget() {
+        return document.querySelector('.panel.right') || document.body;
+      }
+
+      function onTouchStart(e) {
+        if (e.touches.length !== 1) return;
         sx = e.touches[0].clientX;
         sy = e.touches[0].clientY;
-        locked = false;
-      }, { passive: true });
+        tracking = true;
+      }
 
-      document.addEventListener('touchmove', function(e) {
-        if (locked) return;
-        var dx = Math.abs(e.touches[0].clientX - sx);
-        var dy = Math.abs(e.touches[0].clientY - sy);
-        if (dy > 15 && dy > dx) locked = true;
-      }, { passive: true });
-
-      document.addEventListener('touchend', function(e) {
-        var dx = e.changedTouches[0].clientX - sx;
-        var dy = e.changedTouches[0].clientY - sy;
-        if (locked) return;
-        if (Math.abs(dx) < 50) return;
-        if (Math.abs(dy) >= Math.abs(dx) * 0.7) return;
-        dbg('SWIPE dx='+Math.round(dx)+' w='+window.innerWidth+' drawer='+isDrawerOpen());
+      function onTouchEnd(e) {
+        if (!tracking) return;
+        tracking = false;
+        var t = e.changedTouches[0];
+        var dx = t.clientX - sx;
+        var dy = t.clientY - sy;
+        var adx = Math.abs(dx), ady = Math.abs(dy);
+        // Ignorar movimentos pequenos ou predominantemente verticais
+        if (adx < 40) return;
+        if (ady > adx * 0.8) return;
 
         if (isDrawerOpen()) {
-          // Drawer do herói aberto: swipe para esquerda fecha
+          // Drawer aberto: swipe esquerda fecha
           if (dx < 0) {
-            var overlay = document.getElementById('mobileOverlay');
-            if (overlay) overlay.click();
+            var ov = document.getElementById('mobileOverlay');
+            if (ov) ov.click();
           }
           return;
         }
 
-        // Drawer fechado
         if (dx < 0) {
-          // Swipe para esquerda → próxima questão
+          // Swipe esquerda → próxima questão
           var btn = document.getElementById('nextBtn');
           if (btn && !btn.classList.contains('hidden')) {
-            setTimeout(function() { btn.click(); }, 200);
+            setTimeout(function() { btn.click(); }, 150);
           }
-        } else if (dx > 0) {
-          // Swipe para direita → abrir painel do herói (só no mobile)
-          if (window.innerWidth <= 900 && typeof window.openMobileDrawer === 'function') {
+        } else {
+          // Swipe direita → abrir herói
+          if (typeof window.openMobileDrawer === 'function') {
             window.openMobileDrawer();
           }
         }
-      }, { passive: true });
+      }
+
+      // Registrar no document E no panel.right para máxima compatibilidade
+      document.addEventListener('touchstart', onTouchStart, { passive: true });
+      document.addEventListener('touchend', onTouchEnd, { passive: true });
+
+      // Também registrar no panel.right quando disponível
+      function attachToPanel() {
+        var panel = document.querySelector('.panel.right');
+        if (panel) {
+          panel.addEventListener('touchstart', onTouchStart, { passive: true });
+          panel.addEventListener('touchend', onTouchEnd, { passive: true });
+        }
+      }
+      if (document.readyState === 'complete') {
+        attachToPanel();
+      } else {
+        window.addEventListener('load', attachToPanel);
+      }
     })();
 
     // ============ CRONÔMETRO ============
