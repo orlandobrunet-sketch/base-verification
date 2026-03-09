@@ -1922,7 +1922,7 @@
         <button class="btn sec" onclick="showAchievementsModal()">🏆 Conquistas</button>
         <button class="btn sec" onclick="showLeaderboardFromWelcome()">Leaderboard</button>
       </div>
-      <div class="welcome-credit" style="margin-top:14px;"><a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;">v4.0</span></div>
+      <div class="welcome-credit" style="margin-top:14px;"><a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;">v4.1</span></div>
     </div>
   </div>
 
@@ -2135,7 +2135,7 @@
       <p>
         <a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a>
         &nbsp;•&nbsp;
-        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" onclick="showChangelog()">v4.0</span>
+        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" onclick="showChangelog()">v4.1</span>
       </p>
     </div>
   </main>
@@ -5903,7 +5903,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
     
     // Filtros de modo de estudo são aplicados via filterQuestionsByMode() dentro do shuffleQueue
 
-    // ============ CHANGELOG v4.0 ============
+    // ============ CHANGELOG v4.1 ============
     function showChangelog() {
       document.querySelectorAll('.changelog-popup').forEach(el => el.remove());
       const modal = document.createElement('div');
@@ -5916,10 +5916,26 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
 
           <div style="text-align:left;padding:4px;">
 
-            <!-- v4.0 -->
-            <div style="background:linear-gradient(135deg,rgba(255,215,0,0.15),rgba(255,215,0,0.05));border:2px solid rgba(255,215,0,0.6);border-radius:10px;padding:16px;">
+            <!-- v4.1 -->
+            <div style="background:linear-gradient(135deg,rgba(255,215,0,0.15),rgba(255,215,0,0.05));border:2px solid rgba(255,215,0,0.6);border-radius:10px;padding:16px;margin-bottom:12px;">
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
-                <span style="background:var(--gold);color:#1a0e00;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v4.0</span>
+                <span style="background:var(--gold);color:#1a0e00;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v4.1</span>
+                <span style="color:var(--gold);font-weight:bold;font-size:0.95rem;">Mobile Aprimorado & Banco Expandido</span>
+              </div>
+              <ul style="color:var(--txt);font-size:0.83rem;line-height:1.9;padding-left:18px;margin:0;">
+                <li><strong>Botão Herói no canto superior esquerdo (mobile)</strong> — acesso rápido ao painel do personagem sem ocupar espaço no dock</li>
+                <li><strong>Bottom dock reformulado</strong> — 6 botões distribuídos uniformemente por toda a largura (space-evenly), sem scroll horizontal</li>
+                <li><strong>Swipe para a direita abre o painel do herói</strong> — gesto nativo no mobile para abrir o drawer do personagem</li>
+                <li><strong>Banco de questões expandido para 594</strong> — 90 novas questões adicionadas cobrindo DRC-MBD, síndrome cardiorrenal, transplante e mais</li>
+                <li><strong>504 questões com explicações aprimoradas</strong> — mecanismos fisiopatológicos detalhados e referências específicas (RCTs, guidelines)</li>
+                <li><strong>Sistema anti-repetição</strong> — bloqueia as últimas 101 questões de reaparecer imediatamente após o ciclo</li>
+                <li><strong>Modal de confirmação para Novo Jogo</strong> — previne perda acidental de progresso</li>
+              </ul>
+            </div>
+            <!-- v4.0 -->
+            <div style="background:linear-gradient(135deg,rgba(255,215,0,0.08),rgba(255,215,0,0.02));border:1px solid rgba(255,215,0,0.3);border-radius:10px;padding:16px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                <span style="background:rgba(255,215,0,0.3);color:var(--gold);font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v4.0</span>
                 <span style="color:var(--gold);font-weight:bold;font-size:0.95rem;">Interface Renovada & Experiência Aprimorada</span>
               </div>
               <ul style="color:var(--txt);font-size:0.83rem;line-height:1.9;padding-left:18px;margin:0;">
