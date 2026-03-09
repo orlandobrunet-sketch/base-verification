@@ -6071,7 +6071,9 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
         if (isMobile()) {
           const mainAppVisible = !mainAppEl.classList.contains('hidden');
           const welcomeVisible = !welcomeEl.classList.contains('hidden');
+          const _heroBtn = document.getElementById('mobileHeroBtn');
           bottomDock.style.display = mainAppVisible ? 'flex' : 'none';
+          if (_heroBtn) _heroBtn.style.display = mainAppVisible ? 'flex' : 'none';
           if (mainAppVisible) closeDrawer();
         }
       });
