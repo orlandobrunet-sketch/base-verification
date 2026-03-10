@@ -3076,7 +3076,7 @@
       state.character = save.character;
       state.level = save.level || 1;
       state.xp = save.xp || 0;
-      state.xpToNext = save.xpToNext || 100;
+      state.xpToNext = save.xpToNext || 200;
       state.score = save.score || 0;
       state.lives = save.lives || 3;
       state.streak = save.streak || 0;
@@ -3720,7 +3720,7 @@
     };
 
     const state={
-      level:1,xp:0,xpToNext:100,score:0,lives:3,streak:0,gold:0,
+      level:1,xp:0,xpToNext:200,score:0,lives:3,streak:0,gold:0,
       current:null,answered:false,queue:[],idx:0,bonusUses:0,
       correctTotal:0, narrativeShown:0, gameOver:false,
       gameStarted: false, chestsOpened:0,
@@ -4142,7 +4142,7 @@
     function gainXP(x){
       state.xp+=x; let up=0;
       while(state.xp>=state.xpToNext){
-        state.xp-=state.xpToNext; state.level++; state.xpToNext=Math.floor(state.xpToNext*1.12); up++;
+        state.xp-=state.xpToNext; state.level++; state.xpToNext=Math.floor(state.xpToNext*1.15); up++;
       }
       return up;
     }
@@ -4223,7 +4223,7 @@
         state.streak++;
         state.correctTotal++;
         const sm = getStreakMultiplier(state.streak);
-        const baseXp=22+state.current.d*6+Math.min(state.streak,5)*2+Math.floor(st.kno/2);
+        const baseXp=5+state.current.d*2+Math.min(state.streak,5)*1+Math.floor(st.kno/3);
         const xp=Math.floor(baseXp * sm.mult);
         const baseG=8+state.current.d*3+Math.floor(st.luck/3);
         const g=Math.floor(baseG * sm.mult);
@@ -4675,7 +4675,7 @@
     window.renderBoard = renderBoard;
 
     function resetGame(){
-      Object.assign(state,{level:1,xp:0,xpToNext:100,score:0,lives:3,streak:0,gold:0,current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,gameOver:false,gameStarted:false,extraLifeGiven:false,gameCompleted:false,completedGame:false,chestsOpened:0});
+      Object.assign(state,{level:1,xp:0,xpToNext:200,score:0,lives:3,streak:0,gold:0,current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,gameOver:false,gameStarted:false,extraLifeGiven:false,gameCompleted:false,completedGame:false,chestsOpened:0});
       state.character=null;
       state.equipment={
         weapon:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
@@ -4809,7 +4809,7 @@
     function startGameWithCharacter() {
       const char = characters[state.character];
       
-      Object.assign(state,{level:1,xp:0,xpToNext:100,score:0,lives:3,streak:0,gold:0,current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,gameOver:false,gameStarted:true,extraLifeGiven:false,gameCompleted:false,completedGame:false,chestsOpened:0});
+      Object.assign(state,{level:1,xp:0,xpToNext:200,score:0,lives:3,streak:0,gold:0,current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,gameOver:false,gameStarted:true,extraLifeGiven:false,gameCompleted:false,completedGame:false,chestsOpened:0});
       state.equipment={
         weapon:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
         armor:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
