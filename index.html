@@ -3076,7 +3076,7 @@
       state.character = save.character;
       state.level = save.level || 1;
       state.xp = save.xp || 0;
-      state.xpToNext = save.xpToNext || 200;
+      state.xpToNext = xpForLevel(save.level || 1); // sempre recalculado pelo nível, ignora valor salvo
       state.score = save.score || 0;
       state.lives = save.lives || 3;
       state.streak = save.streak || 0;
@@ -4139,10 +4139,14 @@
       window.open(`mailto:orlandobrunet@gmail.com?subject=${subject}&body=${body}`);
     }
 
+    function xpForLevel(lv) {
+      // xpToNext = 200 * 1.15^(lv-1), garante ~10 questões no nível 1
+      return Math.floor(200 * Math.pow(1.15, lv - 1));
+    }
     function gainXP(x){
       state.xp+=x; let up=0;
       while(state.xp>=state.xpToNext){
-        state.xp-=state.xpToNext; state.level++; state.xpToNext=Math.floor(state.xpToNext*1.15); up++;
+        state.xp-=state.xpToNext; state.level++; state.xpToNext=xpForLevel(state.level); up++;
       }
       return up;
     }
