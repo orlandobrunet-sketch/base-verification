@@ -4353,7 +4353,9 @@
         const g=Math.floor(baseG * sm.mult);
         const baseScore=80+state.current.d*15+state.streak*5+st.atk;
         state.score+=Math.floor(baseScore * sm.mult);
+        const prevGold = state.gold;
         state.gold+=g;
+        checkGoldMilestone(prevGold);
         const prevLevel = state.level;
         const lv=gainXP(xp);
 
@@ -4946,6 +4948,57 @@
       updateBadges();
       renderQuestion();
       saveGame();
+    }
+
+    // ============ MILESTONE DE OURO ============
+    const GOLD_MILESTONE = 300;
+    let _goldMilestoneShown = false;
+
+    function checkGoldMilestone(prevGold) {
+      if (_goldMilestoneShown) return;
+      if (prevGold < GOLD_MILESTONE && state.gold >= GOLD_MILESTONE) {
+        _goldMilestoneShown = true;
+        setTimeout(showGoldMilestonePopup, 600);
+      }
+    }
+
+    function showGoldMilestonePopup() {
+      document.getElementById('goldMilestonePopup')?.remove();
+      const popup = document.createElement('div');
+      popup.id = 'goldMilestonePopup';
+      popup.style.cssText = 'position:fixed;inset:0;z-index:9998;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.7);padding:16px;';
+      popup.innerHTML = `
+        <div style="background:linear-gradient(160deg,#1a2a0a,#0e1830,#2a1a00);border:2px solid #ffd700;border-radius:16px;padding:26px 24px;max-width:420px;width:100%;box-shadow:0 0 50px rgba(255,215,0,0.25);text-align:center;animation:scaleIn 0.35s;">
+          <div style="font-size:2.4rem;margin-bottom:8px;">💰</div>
+          <h3 style="color:#ffd700;font-family:'Cinzel',serif;font-size:1.05rem;letter-spacing:1px;margin-bottom:6px;">300 de Ouro!</h3>
+          <p style="color:#c8d8f0;font-size:0.85rem;line-height:1.6;margin-bottom:18px;">
+            Você já acumulou ouro suficiente para agir! Escolha seu próximo passo:
+          </p>
+          <div style="display:flex;flex-direction:column;gap:10px;text-align:left;">
+            <div style="background:rgba(255,215,0,0.08);border:1px solid rgba(255,215,0,0.3);border-radius:10px;padding:12px 14px;">
+              <span style="color:#ffd700;font-weight:700;">🪙 Abrir Baú</span>
+              <span style="color:#94a3b8;font-size:0.8rem;"> — ${chestCost} ouro</span>
+              <p style="color:#cbd5e1;font-size:0.78rem;margin:4px 0 0;">Obtenha um artigo ou item aleatório agora mesmo.</p>
+            </div>
+            <div style="background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.35);border-radius:10px;padding:12px 14px;">
+              <span style="color:#a5b4fc;font-weight:700;">⚒️ Forjar Item Comum</span>
+              <span style="color:#94a3b8;font-size:0.8rem;"> — 300 ouro</span>
+              <p style="color:#cbd5e1;font-size:0.78rem;margin:4px 0 0;">Forge um novo equipamento para fortalecer seu herói.</p>
+            </div>
+            <div style="background:rgba(234,179,8,0.08);border:1px solid rgba(234,179,8,0.3);border-radius:10px;padding:12px 14px;">
+              <span style="color:#fbbf24;font-weight:700;">👑 Forjar Item Lendário</span>
+              <span style="color:#94a3b8;font-size:0.8rem;"> — 1000 ouro</span>
+              <p style="color:#cbd5e1;font-size:0.78rem;margin:4px 0 0;">Continue acumulando <strong style="color:#fbbf24;">+700 ouro</strong> para forjar o mais poderoso.</p>
+            </div>
+          </div>
+          <button onclick="document.getElementById('goldMilestonePopup').remove()"
+            style="margin-top:20px;width:100%;background:linear-gradient(180deg,#b8860b,#7a5a00);border:2px solid #ffd700;color:#fff8dc;border-radius:8px;padding:11px;font-family:'Cinzel',serif;font-size:0.82rem;font-weight:700;letter-spacing:1px;cursor:pointer;text-transform:uppercase;">
+            Entendido!
+          </button>
+        </div>`;
+      document.body.appendChild(popup);
+      popup.addEventListener('click', e => { if (e.target === popup) popup.remove(); });
+      playSound('chest');
     }
 
     // Sistema de Baús
