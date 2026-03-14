@@ -1843,6 +1843,7 @@
       .board-table-wrap { max-height: 300px; }
     }
   </style>
+  <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
 </head>
 <body>
   <!-- Background layers -->
@@ -1918,11 +1919,12 @@
         <button id="welcomeContinueBtn" class="btn continue-btn" style="display:none;" onclick="continueGame()">Continuar Jornada</button>
         <button class="btn gold" onclick="startNewFromWelcome()">Nova Jornada</button>
         <button class="btn sec" onclick="showTopicSelector()">📖 Modo de Estudo</button>
+        <button class="btn sec" onclick="startExamMode()">📝 Prova Simulada</button>
         <button class="btn sec" onclick="showStatsModal()">📊 Estatísticas</button>
         <button class="btn sec" onclick="showAchievementsModal()">🏆 Conquistas</button>
         <button class="btn sec" onclick="showLeaderboardFromWelcome()">Leaderboard</button>
       </div>
-      <div class="welcome-credit" style="margin-top:14px;"><a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;">v4.1</span></div>
+      <div class="welcome-credit" style="margin-top:14px;"><a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;" onclick="showChangelog()" style="cursor:pointer;">v5.0</span></div>
     </div>
   </div>
 
@@ -3013,6 +3015,8 @@
     // ============ SISTEMA DE SAVE/LOAD (localStorage) ============
     const SAVE_KEY = 'nefroquest-save';
     const STATS_KEY = 'nefroquest-stats';
+    // Chave Web3Forms — obtenha grátis em https://web3forms.com (cadastre orlandobrunet@gmail.com)
+    const FLAG_API_KEY = 'd88c1c48-5d9c-48f2-b506-53ac0ac71396';
     
     function getGameStats() {
       try { return JSON.parse(localStorage.getItem(STATS_KEY) || '{"gamesPlayed":0,"bestLevel":0,"bestScore":0}'); } catch(e) { return {gamesPlayed:0,bestLevel:0,bestScore:0}; }
@@ -3587,6 +3591,147 @@
         badgeColor:"#6366f1",
         impacto:"Manejo do receptor de transplante renal — imunossupressão, infecções e complicações",
         icon:"📋"
+      },
+      // ===== ARTIGOS FUNDAMENTAIS ADICIONADOS v5.0 =====
+      idsa_uti_guideline:{
+        label:"IDSA — Guia UTI 2011",
+        url:"https://academic.oup.com/cid/article/52/5/e103/388285",
+        journal:"Clin Infect Dis 2011;52(5):e103-e120",
+        ano:2011,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
+        impacto:"Diagnóstico e tratamento de ITU não complicada, complicada e em populações especiais",icon:"📋"
+      },
+      hooton_uti_nejm:{
+        label:"Hooton TM — Uncomplicated UTI (NEJM 2012)",
+        url:"https://www.nejm.org/doi/full/10.1056/NEJMcp1104429",
+        journal:"N Engl J Med 2012;366(11):1028-1037",
+        ano:2012,tipo:"Revisão Clínica",badge:"REVIEW",badgeColor:"#0ea5e9",
+        impacto:"Fisiopatologia, diagnóstico e manejo de ITU não complicada em mulheres",icon:"📖"
+      },
+      sbn_pbe_guideline:{
+        label:"SBN — Consenso Peritonite na DP",
+        url:"https://www.bjnephrology.org/article/peritoneal-dialysis-related-peritonitis-treatment-recommendations/",
+        journal:"Brazilian Journal of Nephrology",
+        ano:2019,tipo:"Consenso Nacional",badge:"GUIDELINE",badgeColor:"#6366f1",
+        impacto:"Diagnóstico, tratamento e prevenção de peritonite em diálise peritoneal",icon:"📋"
+      },
+      ispd_peritonitis_guideline:{
+        label:"ISPD — Peritonitis Guideline 2022",
+        url:"https://journals.sagepub.com/doi/10.1177/08968608221096963",
+        journal:"Peritoneal Dialysis International 2022;42(2):110-153",
+        ano:2022,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
+        impacto:"Padrão ouro para diagnóstico e tratamento de peritonite na diálise peritoneal",icon:"📋"
+      },
+      cmv_kdigo_tx:{
+        label:"KDIGO CMV in Transplant 2022",
+        url:"https://kdigo.org/guidelines/transplant-recipient-care/",
+        journal:"American Journal of Transplantation 2022",
+        ano:2022,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
+        impacto:"Profilaxia, diagnóstico e tratamento de CMV em receptores de transplante renal",icon:"📋"
+      },
+      bk_virus_review:{
+        label:"Hirsch HH et al. — BK Polyomavirus (NEJM 2016)",
+        url:"https://www.nejm.org/doi/full/10.1056/NEJMra1507440",
+        journal:"N Engl J Med 2016;374(19):1851-1862",
+        ano:2016,tipo:"Revisão Clínica",badge:"REVIEW",badgeColor:"#0ea5e9",
+        impacto:"Fisiopatologia, diagnóstico (virúria/viremia) e manejo da nefropatia por vírus BK",icon:"📖"
+      },
+      sepsis3_jama:{
+        label:"Singer M et al. — Sepsis-3 (JAMA 2016)",
+        url:"https://jamanetwork.com/journals/jama/fullarticle/2492881",
+        journal:"JAMA 2016;315(8):801-810",
+        ano:2016,tipo:"Consenso/Definição",badge:"CONSENSO",badgeColor:"#f59e0b",
+        impacto:"Nova definição de sepse (disfunção orgânica ameaçadora à vida por resposta desregulada à infecção) e choque séptico",icon:"⚠️"
+      },
+      pediatric_nephrotic_syndrome:{
+        label:"KDIGO — Pediatric GN 2012",
+        url:"https://kdigo.org/guidelines/gn/",
+        journal:"Kidney International Supplements 2012;2(2):139-274",
+        ano:2012,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
+        impacto:"Diagnóstico e tratamento da síndrome nefrótica pediátrica, incluindo LESM e GEFS",icon:"📋"
+      },
+      tarshish_nephrotic_ISKDC:{
+        label:"ISKDC — Primary Nephrotic Syndrome in Children (1978)",
+        url:"https://pubmed.ncbi.nlm.nih.gov/357069/",
+        journal:"Kidney Int 1978;14(5):583-599",
+        ano:1978,tipo:"Estudo Clínico",badge:"RCT",badgeColor:"#10b981",
+        impacto:"Estudo seminal: 93% de remissão com prednisona em LESM; base para classificação corticoide-sensível vs resistente",icon:"🔬"
+      },
+      shu_nejm_karpman:{
+        label:"Karpman D et al. — HUS (NEJM 2017)",
+        url:"https://www.nejm.org/doi/full/10.1056/NEJMra1510916",
+        journal:"N Engl J Med 2017;377(16):1570-1580",
+        ano:2017,tipo:"Revisão Clínica",badge:"REVIEW",badgeColor:"#0ea5e9",
+        impacto:"Fisiopatologia da SHU (Shiga toxina, complemento), diagnóstico diferencial e manejo",icon:"📖"
+      },
+      alport_syndrome_review:{
+        label:"Kashtan CE et al. — Alport Syndrome (CJASN 2013)",
+        url:"https://cjasn.asnjournals.org/content/8/3/461",
+        journal:"Clin J Am Soc Nephrol 2013;8(3):461-470",
+        ano:2013,tipo:"Revisão Clínica",badge:"REVIEW",badgeColor:"#0ea5e9",
+        impacto:"Revisão da síndrome de Alport: herança ligada ao X, colágeno tipo IV, prognóstico e tratamento com IECA",icon:"📖"
+      },
+      dose_adjustment_ckd_aronoff:{
+        label:"Aronoff GR et al. — Drug Prescribing in Renal Failure (5ª ed.)",
+        url:"https://www.acponline.org/clinical-information/publications-and-products/acp-press/drug-prescribing-in-renal-failure",
+        journal:"American College of Physicians Press",
+        ano:2007,tipo:"Livro Didático",badge:"LIVRO",badgeColor:"#8b5cf6",
+        impacto:"Referência padrão para ajuste de dose de medicamentos em insuficiência renal e diálise",icon:"📚"
+      },
+      nsaid_nephrotoxicity_whelton:{
+        label:"Whelton A — Nephrotoxicity of NSAIDs (Am J Med 1999)",
+        url:"https://www.amjmed.com/article/S0002-9343(99)00072-9/fulltext",
+        journal:"Am J Med 1999;106(5B):13S-24S",
+        ano:1999,tipo:"Revisão Clínica",badge:"REVIEW",badgeColor:"#0ea5e9",
+        impacto:"Mecanismos de nefrotoxicidade dos AINEs: redução de PGE2, vasoconstricção aferente, NTI",icon:"📖"
+      },
+      vancomycin_monitoring_ashp:{
+        label:"Rybak MJ et al. — Vancomycin TDM (ASHP/IDSA/SIDP 2020)",
+        url:"https://academic.oup.com/ajhp/article/77/11/835/5810200",
+        journal:"Am J Health-Syst Pharm 2020;77(11):835-864",
+        ano:2020,tipo:"Consenso Clínico",badge:"CONSENSO",badgeColor:"#f59e0b",
+        impacto:"Monitoramento de vancomicina por AUC/MIC em vez de vale sérico — reduz nefrotoxicidade sem perda de eficácia",icon:"⚠️"
+      },
+      acid_base_adroguenejm:{
+        label:"Adrogue HJ, Madias NE — Acid-Base Disorders (NEJM 1998)",
+        url:"https://www.nejm.org/doi/full/10.1056/NEJM199803053381007",
+        journal:"N Engl J Med 1998;338(10):656-664",
+        ano:1998,tipo:"Revisão Clínica",badge:"REVIEW",badgeColor:"#0ea5e9",
+        impacto:"Abordagem diagnóstica e terapêutica dos distúrbios ácido-base — referência didática clássica",icon:"📖"
+      },
+      dka_management_kitabchi:{
+        label:"Kitabchi AE et al. — DKA & HHS (Diabetes Care 2009)",
+        url:"https://diabetesjournals.org/care/article/32/7/1335/28555",
+        journal:"Diabetes Care 2009;32(7):1335-1343",
+        ano:2009,tipo:"Revisão/Diretriz",badge:"GUIDELINE",badgeColor:"#6366f1",
+        impacto:"Critérios diagnósticos, tratamento com insulina/hidratação e prevenção de cetoacidose diabética",icon:"📋"
+      },
+      atr_rodriguez_soriano:{
+        label:"Rodriguez-Soriano J — Renal Tubular Acidosis (Pediatr Nephrol 2002)",
+        url:"https://link.springer.com/article/10.1007/s004670100721",
+        journal:"Pediatr Nephrol 2002;17(3):181-188",
+        ano:2002,tipo:"Revisão Clínica",badge:"REVIEW",badgeColor:"#0ea5e9",
+        impacto:"Classificação, fisiopatologia e tratamento das acidoses tubulares renais tipos 1, 2 e 4",icon:"📖"
+      },
+      rituximab_mn_mentor:{
+        label:"Fervenza FC et al. — MENTOR Trial (NEJM 2019)",
+        url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1900100",
+        journal:"N Engl J Med 2019;381(1):36-46",
+        ano:2019,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
+        impacto:"Rituximabe superior à ciclosporina em remissão sustentada da nefropatia membranosa — nova primeira linha",icon:"🔬"
+      },
+      rituximab_gesf_review:{
+        label:"Basu B et al. — Rituximab in FSGS (Pediatr Nephrol 2015)",
+        url:"https://link.springer.com/article/10.1007/s00467-014-2892-1",
+        journal:"Pediatr Nephrol 2015;30(11):1831-1840",
+        ano:2015,tipo:"Revisão Clínica",badge:"REVIEW",badgeColor:"#0ea5e9",
+        impacto:"Uso de rituximabe em GEFS pediátrica refratária — mecanismos e resultados clínicos",icon:"📖"
+      },
+      cyclophosphamide_anca_rave:{
+        label:"Jones RB et al. — RAVE Trial (NEJM 2010)",
+        url:"https://www.nejm.org/doi/full/10.1056/NEJMoa0909905",
+        journal:"N Engl J Med 2010;363(3):221-232",
+        ano:2010,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
+        impacto:"Rituximabe não inferior a ciclofosfamida na indução de remissão em vasculite ANCA",icon:"🔬"
       }
     };
 
@@ -3742,7 +3887,7 @@
         }
         const shuffledOpts = indices.map(idx => opts[idx]);
         const newAns = indices.indexOf(ans);
-        deck.push({id:i+1,d,_d:t.diff||t.d||'medium',q:t.q,o:shuffledOpts,a:newAns,e:exp,r:t.refs||t.r||[]});
+        deck.push({id:i+1,d,_d:t.diff||t.d||'medium',q:t.q,o:shuffledOpts,a:newAns,e:exp,r:t.refs||t.r||[],c:t.cat||t.c||'geral'});
       }
       return deck;
     }
@@ -4183,7 +4328,6 @@
     function flagQuestion() {
       const q = state.current;
       if (!q) return;
-      // Remove popup anterior
       document.getElementById('flagPopup')?.remove();
       const qNum = q.id || '?';
       const qText = (q.q || '').substring(0, 300);
@@ -4200,50 +4344,62 @@
           <p style="font-size:0.82rem;color:#94a3b8;background:rgba(30,40,70,0.5);border-radius:8px;padding:10px;margin-bottom:14px;font-style:italic;line-height:1.5;">"${qText.replace(/"/g,'&quot;')}"</p>
           <label style="font-size:0.82rem;color:#93b4e8;display:block;margin-bottom:6px;">Descreva o problema:</label>
           <textarea id="flagComment" rows="3" placeholder="Ex: A alternativa B está incorreta pois... / O gabarito deveria ser..."
-            style="width:100%;background:rgba(10,20,40,0.8);border:1px solid #2a4a7a;border-radius:8px;color:#d5e2ff;font-size:0.85rem;padding:10px;resize:vertical;font-family:'Philosopher',serif;outline:none;"></textarea>
-          <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;">
-            <button onclick="sendFlagEmail(${qNum})" 
-              style="flex:1;min-width:140px;background:linear-gradient(180deg,#4f46e5,#3730a3);border:2px solid #6366f1;color:#fff;border-radius:8px;padding:10px;font-family:'Cinzel',serif;font-size:0.78rem;font-weight:700;letter-spacing:1px;cursor:pointer;text-transform:uppercase;">
-              📧 Enviar por Gmail
-            </button>
-            <button onclick="copyFlagToClipboard(${qNum})"
-              style="flex:1;min-width:120px;background:linear-gradient(180deg,#1e3a5e,#152a48);border:2px solid #2a4a7a;color:#c8d8f0;border-radius:8px;padding:10px;font-family:'Cinzel',serif;font-size:0.78rem;font-weight:700;letter-spacing:1px;cursor:pointer;text-transform:uppercase;">
-              📋 Copiar
-            </button>
-          </div>
-          <p style="font-size:0.7rem;color:#475569;margin-top:10px;text-align:center;">Gmail será aberto no navegador • não precisa de cliente de e-mail instalado</p>
+            style="width:100%;background:rgba(10,20,40,0.8);border:1px solid #2a4a7a;border-radius:8px;color:#d5e2ff;font-size:0.85rem;padding:10px;resize:vertical;font-family:'Philosopher',serif;outline:none;box-sizing:border-box;"></textarea>
+          <div id="flagStatus" style="min-height:20px;margin-top:8px;font-size:0.78rem;text-align:center;"></div>
+          <button onclick="submitFlag(${qNum})" id="flagSendBtn"
+            style="width:100%;margin-top:10px;background:linear-gradient(180deg,#4f46e5,#3730a3);border:2px solid #6366f1;color:#fff;border-radius:8px;padding:12px;font-family:'Cinzel',serif;font-size:0.82rem;font-weight:700;letter-spacing:1px;cursor:pointer;text-transform:uppercase;">
+            📧 Enviar
+          </button>
         </div>`;
       document.body.appendChild(popup);
       popup.addEventListener('click', e => { if(e.target===popup) popup.remove(); });
       setTimeout(() => document.getElementById('flagComment')?.focus(), 100);
     }
 
-    function sendFlagEmail(qNum) {
+    async function submitFlag(qNum) {
       const comment = (document.getElementById('flagComment')?.value || '').trim();
       const q = state.current;
-      const qText = (q?.q || '').substring(0, 300);
-      const subject = encodeURIComponent(`[NefroQuest] Erro sinalizado — Questão #${qNum}`);
-      const body = encodeURIComponent(
-        `Olá Orlando,\n\n` +
-        `Foi sinalizado um possível erro na Questão #${qNum} do NefroQuest.\n\n` +
-        `QUESTÃO:\n"${qText}"\n\n` +
-        `COMENTÁRIO DO JOGADOR:\n${comment || '(sem comentário adicional)'}\n\n` +
-        `---\nEnviado pelo botão de sinalização do NefroQuest`
-      );
-      window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=orlandobrunet%40gmail.com&su=${subject}&body=${body}`, '_blank');
-      document.getElementById('flagPopup')?.remove();
-      log('🚩 Obrigado por sinalizar! Seu feedback é enviado ao desenvolvedor.');
-    }
+      const qText = (q?.q || '').substring(0, 500);
+      const btn = document.getElementById('flagSendBtn');
+      const status = document.getElementById('flagStatus');
 
-    function copyFlagToClipboard(qNum) {
-      const comment = (document.getElementById('flagComment')?.value || '').trim();
-      const q = state.current;
-      const qText = (q?.q || '').substring(0, 300);
-      const text = `[NefroQuest] Erro Q#${qNum}\n${qText}\n\nComentário: ${comment || '-'}`;
-      navigator.clipboard.writeText(text).then(() => {
-        document.getElementById('flagPopup')?.remove();
-        log('📋 Copiado! Cole no e-mail para orlandobrunet@gmail.com');
-      }).catch(() => alert('Cole manualmente: ' + text));
+      btn.disabled = true;
+      btn.textContent = 'Enviando...';
+      status.style.color = '#93b4e8';
+      status.textContent = '';
+
+      const body = {
+        access_key: FLAG_API_KEY,
+        subject: `[NefroQuest] Erro sinalizado — Questão #${qNum}`,
+        from_name: 'NefroQuest — Sinalização de Erro',
+        message:
+          `Questão #${qNum}\n\n` +
+          `ENUNCIADO:\n"${qText}"\n\n` +
+          `COMENTÁRIO DO JOGADOR:\n${comment || '(sem comentário adicional)'}`,
+      };
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(body),
+        });
+        const data = await res.json();
+        if (data.success) {
+          status.style.color = '#4ade80';
+          status.textContent = '✅ Erro enviado! Obrigado pelo feedback.';
+          setTimeout(() => document.getElementById('flagPopup')?.remove(), 2000);
+          log('🚩 Erro na questão #' + qNum + ' sinalizado com sucesso!');
+        } else {
+          throw new Error(data.message || 'Falha no envio');
+        }
+      } catch (err) {
+        status.style.color = '#f87171';
+        status.textContent = '❌ Falha ao enviar. Verifique a chave da API.';
+        btn.disabled = false;
+        btn.textContent = '📧 Enviar';
+        console.error('[Flag]', err);
+      }
     }
 
     function xpForLevel(lv) {
@@ -4340,7 +4496,9 @@
         const g=Math.floor(baseG * sm.mult);
         const baseScore=80+state.current.d*15+state.streak*5+st.atk;
         state.score+=Math.floor(baseScore * sm.mult);
+        const prevGold = state.gold;
         state.gold+=g;
+        checkGoldMilestone(prevGold);
         const prevLevel = state.level;
         const lv=gainXP(xp);
 
@@ -4935,8 +5093,59 @@
       saveGame();
     }
 
+    // ============ MILESTONE DE OURO ============
+    const GOLD_MILESTONE = 100;
+    let _goldMilestoneShown = false;
+
+    function checkGoldMilestone(prevGold) {
+      if (_goldMilestoneShown) return;
+      if (prevGold < GOLD_MILESTONE && state.gold >= GOLD_MILESTONE) {
+        _goldMilestoneShown = true;
+        setTimeout(showGoldMilestonePopup, 600);
+      }
+    }
+
+    function showGoldMilestonePopup() {
+      document.getElementById('goldMilestonePopup')?.remove();
+      const popup = document.createElement('div');
+      popup.id = 'goldMilestonePopup';
+      popup.style.cssText = 'position:fixed;inset:0;z-index:9998;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.7);padding:16px;';
+      popup.innerHTML = `
+        <div style="background:linear-gradient(160deg,#1a2a0a,#0e1830,#2a1a00);border:2px solid #ffd700;border-radius:16px;padding:26px 24px;max-width:420px;width:100%;box-shadow:0 0 50px rgba(255,215,0,0.25);text-align:center;animation:scaleIn 0.35s;">
+          <div style="font-size:2.4rem;margin-bottom:8px;">💰</div>
+          <h3 style="color:#ffd700;font-family:'Cinzel',serif;font-size:1.05rem;letter-spacing:1px;margin-bottom:6px;">300 de Ouro!</h3>
+          <p style="color:#c8d8f0;font-size:0.85rem;line-height:1.6;margin-bottom:18px;">
+            Você já pode abrir um baú! Ou continue acumulando ouro para forjar itens poderosos:
+          </p>
+          <div style="display:flex;flex-direction:column;gap:10px;text-align:left;">
+            <div style="background:rgba(255,215,0,0.1);border:2px solid rgba(255,215,0,0.5);border-radius:10px;padding:12px 14px;">
+              <span style="color:#ffd700;font-weight:700;">🪙 Abrir Baú</span>
+              <span style="color:#94a3b8;font-size:0.8rem;"> — ${chestCost} ouro</span>
+              <p style="color:#cbd5e1;font-size:0.78rem;margin:4px 0 0;">✅ Disponível agora! Obtenha um artigo ou item aleatório.</p>
+            </div>
+            <div style="background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.25);border-radius:10px;padding:12px 14px;">
+              <span style="color:#a5b4fc;font-weight:700;">⚒️ Forjar Item Comum</span>
+              <span style="color:#94a3b8;font-size:0.8rem;"> — 300 ouro</span>
+              <p style="color:#cbd5e1;font-size:0.78rem;margin:4px 0 0;">Acumule mais <strong style="color:#a5b4fc;">+200 ouro</strong> para forjar um equipamento.</p>
+            </div>
+            <div style="background:rgba(234,179,8,0.06);border:1px solid rgba(234,179,8,0.2);border-radius:10px;padding:12px 14px;">
+              <span style="color:#fbbf24;font-weight:700;">👑 Forjar Item Lendário</span>
+              <span style="color:#94a3b8;font-size:0.8rem;"> — 1000 ouro</span>
+              <p style="color:#cbd5e1;font-size:0.78rem;margin:4px 0 0;">Acumule mais <strong style="color:#fbbf24;">+900 ouro</strong> para o item mais poderoso.</p>
+            </div>
+          </div>
+          <button onclick="document.getElementById('goldMilestonePopup').remove()"
+            style="margin-top:20px;width:100%;background:linear-gradient(180deg,#b8860b,#7a5a00);border:2px solid #ffd700;color:#fff8dc;border-radius:8px;padding:11px;font-family:'Cinzel',serif;font-size:0.82rem;font-weight:700;letter-spacing:1px;cursor:pointer;text-transform:uppercase;">
+            Entendido!
+          </button>
+        </div>`;
+      document.body.appendChild(popup);
+      popup.addEventListener('click', e => { if (e.target === popup) popup.remove(); });
+      playSound('chest');
+    }
+
     // Sistema de Baús
-    let chestCost = 60;
+    let chestCost = 100;
     const CHEST_MIN_CORRECT = 3;
     
     function openChest() {
@@ -5028,6 +5237,7 @@
           totalCorrect: 0,
           totalWrong: 0,
           byTopic: {},
+          byCategory: {},
           questionHistory: [],
           timeStats: {
             totalTime: 0,
@@ -5045,7 +5255,9 @@
     
     function trackQuestionAnswer(question, isCorrect, timeSpent) {
       const stats = getDetailedStats();
+      if (!stats.byCategory) stats.byCategory = {};
       const topic = question.t || 'Geral';
+      const cat = question.c || question.cat || 'geral';
       
       // Atualizar totais
       stats.totalQuestions++;
@@ -5060,11 +5272,16 @@
         stats.byTopic[topic] = { correct: 0, wrong: 0, total: 0 };
       }
       stats.byTopic[topic].total++;
-      if (isCorrect) {
-        stats.byTopic[topic].correct++;
-      } else {
-        stats.byTopic[topic].wrong++;
+      if (isCorrect) stats.byTopic[topic].correct++;
+      else stats.byTopic[topic].wrong++;
+
+      // Atualizar por categoria
+      if (!stats.byCategory[cat]) {
+        stats.byCategory[cat] = { correct: 0, wrong: 0, total: 0 };
       }
+      stats.byCategory[cat].total++;
+      if (isCorrect) stats.byCategory[cat].correct++;
+      else stats.byCategory[cat].wrong++;
       
       // Atualizar questões mais erradas
       if (!isCorrect) {
@@ -5234,6 +5451,49 @@
           </div>
           ` : ''}
           
+          <!-- Desempenho por Categoria -->
+          ${(() => {
+            const catData = Object.entries(stats.byCategory || {})
+              .map(([cat, d]) => ({
+                cat,
+                accuracy: d.total > 0 ? (d.correct / d.total) * 100 : null,
+                total: d.total, correct: d.correct
+              }))
+              .filter(c => c.total > 0)
+              .sort((a, b) => (a.accuracy ?? 100) - (b.accuracy ?? 100));
+            const catLabels = {
+              glomerular:'Glomerulopatias', nefrologia_geral:'Nefrologia Geral',
+              'eletrólitos':'Eletrólitos', lra:'LRA', drc:'DRC',
+              nefropatia_diabetica:'Nefropatia Diabética', dialise:'Diálise',
+              transplante:'Transplante', hipertensao:'Hipertensão',
+              acido_base:'Ácido-Base', 'litíase':'Litíase', infeccao:'Infecção',
+              farmacologia:'Farmacologia', pediatria:'Pediatria',
+              patologia:'Patologia', especial:'Especial', genetica:'Genética',
+              oncologia_renal:'Oncologia Renal', imunologia:'Imunologia'
+            };
+            if (!catData.length) return '';
+            return `
+            <div style="text-align:left;margin-bottom:16px;">
+              <h3 style="color:var(--gold);margin-bottom:10px;font-size:0.9rem;font-family:'Cinzel',serif;letter-spacing:1px;">DESEMPENHO POR CATEGORIA</h3>
+              <div style="display:flex;flex-direction:column;gap:6px;max-height:200px;overflow-y:auto;">
+                ${catData.map(c => {
+                  const pct = c.accuracy !== null ? c.accuracy.toFixed(0) : 0;
+                  const color = c.accuracy >= 70 ? '#34d399' : c.accuracy >= 50 ? '#fbbf24' : '#fb7185';
+                  const label = catLabels[c.cat] || c.cat;
+                  return `
+                    <div style="display:flex;align-items:center;gap:8px;padding:7px 10px;background:rgba(255,255,255,0.04);border-radius:6px;">
+                      <span style="color:var(--txt);font-size:0.78rem;flex:1;">${label}</span>
+                      <div style="width:70px;background:rgba(0,0,0,0.4);height:4px;border-radius:2px;overflow:hidden;flex-shrink:0;">
+                        <div style="background:${color};height:100%;width:${pct}%;"></div>
+                      </div>
+                      <span style="color:${color};font-weight:bold;font-size:0.78rem;min-width:36px;text-align:right;">${pct}%</span>
+                      <span style="color:var(--txt-dim);font-size:0.7rem;min-width:28px;text-align:right;">${c.correct}/${c.total}</span>
+                    </div>`;
+                }).join('')}
+              </div>
+            </div>`;
+          })()}
+
           <button class="btn gold" onclick="this.closest('.modal').remove()">Fechar</button>
         </div>
       `;
@@ -6014,7 +6274,218 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
     
     // Filtros de modo de estudo são aplicados via filterQuestionsByMode() dentro do shuffleQueue
 
-    // ============ CHANGELOG v4.1 ============
+    // ============ MODO PROVA SIMULADA ============
+    const EXAM_QUESTION_COUNT = 60;
+    const EXAM_DURATION_SEC   = 90 * 60; // 90 minutos
+
+    let _examState = null; // {questions, idx, answers, startTime, timerInterval}
+
+    function startExamMode() {
+      if (_examState) { showExamQuestion(); return; }
+
+      // Sortear 60 questões únicas do banco
+      const pool = shuffle([...questionBank]);
+      const questions = pool.slice(0, EXAM_QUESTION_COUNT);
+
+      _examState = {
+        questions,
+        idx: 0,
+        answers: [],   // {qId, correct, cat, answered}
+        startTime: Date.now(),
+        timerInterval: null
+      };
+
+      document.getElementById('welcomeScreen')?.classList.add('hidden');
+      _renderExamUI();
+    }
+
+    function _renderExamUI() {
+      document.querySelectorAll('.exam-overlay').forEach(e => e.remove());
+      const overlay = document.createElement('div');
+      overlay.className = 'exam-overlay';
+      overlay.style.cssText = 'position:fixed;inset:0;z-index:9990;background:#0a0e1a;overflow-y:auto;display:flex;flex-direction:column;';
+      overlay.id = 'examOverlay';
+      document.body.appendChild(overlay);
+      _examState.timerInterval = setInterval(_updateExamTimer, 1000);
+      showExamQuestion();
+    }
+
+    function _updateExamTimer() {
+      const elapsed = Math.floor((Date.now() - _examState.startTime) / 1000);
+      const remaining = EXAM_DURATION_SEC - elapsed;
+      const el = document.getElementById('examTimer');
+      if (!el) return;
+      if (remaining <= 0) {
+        clearInterval(_examState.timerInterval);
+        // Marcar questões restantes como não respondidas
+        while (_examState.answers.length < _examState.questions.length) {
+          _examState.answers.push({ qId: _examState.questions[_examState.answers.length].id, correct: false, cat: _examState.questions[_examState.answers.length].c || 'geral', answered: false });
+        }
+        showExamResults();
+        return;
+      }
+      const m = Math.floor(remaining / 60);
+      const s = remaining % 60;
+      const urgent = remaining < 600;
+      el.textContent = `⏱ ${m}:${s.toString().padStart(2,'0')}`;
+      el.style.color = urgent ? '#fb7185' : '#34d399';
+    }
+
+    function showExamQuestion() {
+      const overlay = document.getElementById('examOverlay');
+      if (!overlay) return;
+      const {questions, idx, answers} = _examState;
+      if (idx >= questions.length) { showExamResults(); return; }
+      const q = questions[idx];
+      const answered = answers[idx];
+      const elapsed = Math.floor((Date.now() - _examState.startTime) / 1000);
+      const remaining = EXAM_DURATION_SEC - elapsed;
+      const m = Math.floor(remaining / 60), s = remaining % 60;
+
+      overlay.innerHTML = `
+        <div style="max-width:700px;width:100%;margin:0 auto;padding:20px 16px 100px;box-sizing:border-box;">
+          <!-- Header -->
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;background:rgba(20,30,50,0.9);border-radius:12px;padding:12px 16px;border:1px solid #2a4a7a;">
+            <div style="font-family:'Cinzel',serif;color:var(--gold);font-size:0.9rem;">📝 Prova Simulada</div>
+            <div style="display:flex;gap:16px;align-items:center;">
+              <div id="examTimer" style="font-weight:bold;color:#34d399;">⏱ ${m}:${s.toString().padStart(2,'0')}</div>
+              <div style="color:var(--txt-dim);font-size:0.85rem;">${idx+1} / ${questions.length}</div>
+            </div>
+          </div>
+          <!-- Barra de progresso -->
+          <div style="background:rgba(0,0,0,0.4);height:4px;border-radius:2px;margin-bottom:16px;overflow:hidden;">
+            <div style="background:var(--gold);height:100%;width:${((idx)/questions.length*100).toFixed(1)}%;transition:width 0.3s;"></div>
+          </div>
+          <!-- Questão -->
+          <div style="background:rgba(20,30,50,0.8);border:1px solid #2a4a7a;border-radius:12px;padding:18px;margin-bottom:14px;">
+            <div style="color:var(--txt-dim);font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Questão ${idx+1}</div>
+            <p style="color:var(--txt);font-size:0.92rem;line-height:1.7;margin:0;">${q.q}</p>
+          </div>
+          <!-- Opções -->
+          <div id="examOpts" style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;">
+            ${q.o.map((opt, i) => {
+              let bg = 'rgba(20,30,50,0.7)', border = '1px solid #2a4a7a', color = 'var(--txt)';
+              if (answered) {
+                if (i === q.a) { bg='rgba(52,211,153,0.15)'; border='1px solid #34d399'; color='#34d399'; }
+                else if (i === answered.chosen) { bg='rgba(251,113,133,0.15)'; border='1px solid #fb7185'; color='#fb7185'; }
+              }
+              return `<button onclick="_examAnswer(${i})" ${answered?'disabled':''} style="text-align:left;background:${bg};border:${border};border-radius:10px;padding:12px 14px;color:${color};font-size:0.87rem;cursor:${answered?'default':'pointer'};transition:all 0.15s;line-height:1.5;">${opt}</button>`;
+            }).join('')}
+          </div>
+          ${answered ? `
+            <div style="background:rgba(20,30,50,0.8);border:1px solid #2a4a7a;border-radius:10px;padding:14px;margin-bottom:14px;font-size:0.82rem;color:#94a3b8;line-height:1.6;">
+              <strong style="color:${answered.correct?'#34d399':'#fb7185'};">${answered.correct?'✅ Correto':'❌ Incorreto'}</strong><br>
+              ${q.e}
+            </div>
+            <button onclick="_examNext()" style="width:100%;background:linear-gradient(180deg,#4f46e5,#3730a3);border:2px solid #6366f1;color:#fff;border-radius:10px;padding:13px;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:700;cursor:pointer;letter-spacing:1px;">
+              ${idx+1 < questions.length ? 'PRÓXIMA →' : 'VER RESULTADO'}
+            </button>` : ''}
+          <!-- Botão sair -->
+          <button onclick="_exitExam()" style="margin-top:10px;width:100%;background:none;border:1px solid #374151;color:#64748b;border-radius:8px;padding:8px;font-size:0.78rem;cursor:pointer;">Encerrar prova</button>
+        </div>`;
+    }
+
+    function _examAnswer(chosen) {
+      const {questions, idx} = _examState;
+      const q = questions[idx];
+      const correct = chosen === q.a;
+      _examState.answers[idx] = { qId: q.id, correct, cat: q.c || 'geral', chosen, answered: true };
+      showExamQuestion();
+    }
+
+    function _examNext() {
+      _examState.idx++;
+      if (_examState.idx >= _examState.questions.length) { showExamResults(); }
+      else { showExamQuestion(); }
+    }
+
+    function _exitExam() {
+      if (!confirm('Encerrar a prova? O progresso será perdido.')) return;
+      clearInterval(_examState.timerInterval);
+      _examState = null;
+      document.querySelectorAll('.exam-overlay').forEach(e => e.remove());
+      document.getElementById('welcomeScreen')?.classList.remove('hidden');
+    }
+
+    function showExamResults() {
+      clearInterval(_examState.timerInterval);
+      const {questions, answers, startTime} = _examState;
+      const elapsed = Math.floor((Date.now() - startTime) / 1000);
+      const totalAnswered = answers.filter(a => a.answered).length;
+      const totalCorrect  = answers.filter(a => a.correct).length;
+      const pct = totalAnswered > 0 ? Math.round(totalCorrect / totalAnswered * 100) : 0;
+      const elMin = Math.floor(elapsed / 60), elSec = elapsed % 60;
+
+      // Desempenho por categoria
+      const byCat = {};
+      answers.forEach(a => {
+        if (!a.answered) return;
+        if (!byCat[a.cat]) byCat[a.cat] = {correct:0,total:0};
+        byCat[a.cat].total++;
+        if (a.correct) byCat[a.cat].correct++;
+      });
+      const catLabels = {
+        glomerular:'Glomerulopatias',nefrologia_geral:'Nefrologia Geral',
+        'eletrólitos':'Eletrólitos',lra:'LRA',drc:'DRC',
+        nefropatia_diabetica:'Nefropatia Diabética',dialise:'Diálise',
+        transplante:'Transplante',hipertensao:'Hipertensão',
+        acido_base:'Ácido-Base','litíase':'Litíase',infeccao:'Infecção',
+        farmacologia:'Farmacologia',pediatria:'Pediatria',geral:'Geral'
+      };
+      const catRows = Object.entries(byCat)
+        .sort((a,b) => (a[1].correct/a[1].total) - (b[1].correct/b[1].total))
+        .map(([cat,d]) => {
+          const p = Math.round(d.correct/d.total*100);
+          const c = p>=70?'#34d399':p>=50?'#fbbf24':'#fb7185';
+          return `<div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:rgba(255,255,255,0.04);border-radius:6px;">
+            <span style="flex:1;font-size:0.8rem;color:var(--txt);">${catLabels[cat]||cat}</span>
+            <div style="width:60px;background:rgba(0,0,0,0.4);height:4px;border-radius:2px;overflow:hidden;flex-shrink:0;"><div style="background:${c};height:100%;width:${p}%;"></div></div>
+            <span style="color:${c};font-weight:bold;font-size:0.78rem;min-width:36px;text-align:right;">${p}% (${d.correct}/${d.total})</span>
+          </div>`;
+        }).join('');
+
+      const overlay = document.getElementById('examOverlay');
+      if (!overlay) return;
+      overlay.innerHTML = `
+        <div style="max-width:600px;width:100%;margin:0 auto;padding:24px 16px 40px;box-sizing:border-box;">
+          <h2 style="color:var(--gold);font-family:'Cinzel',serif;text-align:center;margin-bottom:20px;">📋 Resultado da Prova</h2>
+          <!-- Placar geral -->
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;">
+            <div style="background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.35);border-radius:10px;padding:14px;text-align:center;">
+              <div style="font-size:1.8rem;font-weight:bold;color:${pct>=60?'#34d399':pct>=40?'#fbbf24':'#fb7185'};">${pct}%</div>
+              <div style="font-size:0.68rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:0.5px;">Acerto</div>
+            </div>
+            <div style="background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.35);border-radius:10px;padding:14px;text-align:center;">
+              <div style="font-size:1.8rem;font-weight:bold;color:#60a5fa;">${totalCorrect}/${totalAnswered}</div>
+              <div style="font-size:0.68rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:0.5px;">Corretas</div>
+            </div>
+            <div style="background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.35);border-radius:10px;padding:14px;text-align:center;">
+              <div style="font-size:1.8rem;font-weight:bold;color:#fbbf24;">${elMin}m${elSec}s</div>
+              <div style="font-size:0.68rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:0.5px;">Tempo</div>
+            </div>
+          </div>
+          <!-- Mensagem -->
+          <div style="background:rgba(20,30,50,0.8);border:1px solid #2a4a7a;border-radius:10px;padding:14px;text-align:center;margin-bottom:20px;">
+            <p style="color:var(--txt);font-size:0.9rem;margin:0;">
+              ${pct>=70?'🏆 Excelente! Aprovado com distinção.':pct>=60?'✅ Aprovado! Continue estudando para aperfeiçoar.':pct>=40?'⚠️ Abaixo da média. Revise os tópicos em vermelho.':'❌ Resultado insuficiente. Use o Modo de Estudo para reforçar.'}
+            </p>
+          </div>
+          <!-- Por categoria -->
+          <div style="text-align:left;margin-bottom:20px;">
+            <h3 style="color:var(--gold);font-family:'Cinzel',serif;font-size:0.9rem;letter-spacing:1px;margin-bottom:10px;">DESEMPENHO POR CATEGORIA</h3>
+            <div style="display:flex;flex-direction:column;gap:6px;">${catRows}</div>
+          </div>
+          <button onclick="_finishExam()" style="width:100%;background:linear-gradient(180deg,#b8860b,#7a5a00);border:2px solid var(--gold);color:#fff8dc;border-radius:10px;padding:13px;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:700;cursor:pointer;letter-spacing:1px;">VOLTAR AO MENU</button>
+        </div>`;
+    }
+
+    function _finishExam() {
+      _examState = null;
+      document.querySelectorAll('.exam-overlay').forEach(e => e.remove());
+      document.getElementById('welcomeScreen')?.classList.remove('hidden');
+    }
+
+    // ============ CHANGELOG v5.0 ============
     function showChangelog() {
       document.querySelectorAll('.changelog-popup').forEach(el => el.remove());
       const modal = document.createElement('div');
@@ -6027,36 +6498,46 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
 
           <div style="text-align:left;padding:4px;">
 
-            <!-- v4.1 -->
+            <!-- v5.0 -->
             <div style="background:linear-gradient(135deg,rgba(255,215,0,0.15),rgba(255,215,0,0.05));border:2px solid rgba(255,215,0,0.6);border-radius:10px;padding:16px;margin-bottom:12px;">
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
-                <span style="background:var(--gold);color:#1a0e00;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v4.1</span>
-                <span style="color:var(--gold);font-weight:bold;font-size:0.95rem;">Mobile Aprimorado & Banco Expandido</span>
+                <span style="background:var(--gold);color:#1a0e00;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v5.0</span>
+                <span style="color:var(--gold);font-weight:bold;font-size:0.95rem;">Prova Simulada, Estatísticas & Offline</span>
               </div>
               <ul style="color:var(--txt);font-size:0.83rem;line-height:1.9;padding-left:18px;margin:0;">
-                <li><strong>Botão Herói no canto superior esquerdo (mobile)</strong> — acesso rápido ao painel do personagem sem ocupar espaço no dock</li>
-                <li><strong>Bottom dock reformulado</strong> — 6 botões distribuídos uniformemente por toda a largura (space-evenly), sem scroll horizontal</li>
-                <li><strong>Swipe para a direita abre o painel do herói</strong> — gesto nativo no mobile para abrir o drawer do personagem</li>
-                <li><strong>Banco de questões expandido para 594</strong> — 90 novas questões adicionadas cobrindo DRC-MBD, síndrome cardiorrenal, transplante e mais</li>
-                <li><strong>504 questões com explicações aprimoradas</strong> — mecanismos fisiopatológicos detalhados e referências específicas (RCTs, guidelines)</li>
-                <li><strong>Sistema anti-repetição</strong> — bloqueia as últimas 101 questões de reaparecer imediatamente após o ciclo</li>
-                <li><strong>Modal de confirmação para Novo Jogo</strong> — previne perda acidental de progresso</li>
+                <li><strong>Modo Prova Simulada</strong> — 60 questões aleatórias cronometradas (90 min) com relatório completo de desempenho por categoria ao final, simulando provas de residência e título</li>
+                <li><strong>Estatísticas por Categoria</strong> — painel de desempenho no modal de Estatísticas mostrando % de acerto em cada área (Glomerulopatias, LRA, Eletrólitos, etc.) para focar no ponto fraco</li>
+                <li><strong>Modo Offline (PWA)</strong> — Service Worker instalado: após a primeira visita, o jogo funciona 100% sem internet, ideal para uso em plantão</li>
+                <li><strong>Banco expandido para ~648 questões</strong> — novas questões em categorias subrepresentadas: Infecção (ITU, peritonite DP, CMV/BK transplante, sepse), Pediatria (síndrome nefrótica, SHU, Alport, ATR), Farmacologia (ajuste de dose, nefrotóxicos, rituximabe) e Ácido-Base (ABG, cetoacidose, ATR, alcalose)</li>
+                <li><strong>Referências ampliadas</strong> — 20 novos artigos fundamentais adicionados ao banco de referências: RAVE, MENTOR, Sepsis-3, ISKDC, IDSA UTI, ISPD Peritonitis, Adrogue ácido-base, Kitabchi DKA e outros clássicos da nefrologia</li>
+                <li><strong>Popup de sinalização reformulado</strong> — envio direto ao desenvolvedor via Web3Forms sem abrir cliente de e-mail</li>
+                <li><strong>Popup de ouro</strong> — notificação ao atingir 100 ouro informando opções de baú, forja e lendário</li>
+                <li><strong>Custo do baú ajustado</strong> — 100 ouro (antes 60) para melhor equilíbrio da economia do jogo</li>
               </ul>
             </div>
-            <!-- v4.0 -->
-            <div style="background:linear-gradient(135deg,rgba(255,215,0,0.08),rgba(255,215,0,0.02));border:1px solid rgba(255,215,0,0.3);border-radius:10px;padding:16px;">
-              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
-                <span style="background:rgba(255,215,0,0.3);color:var(--gold);font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v4.0</span>
-                <span style="color:var(--gold);font-weight:bold;font-size:0.95rem;">Interface Renovada & Experiência Aprimorada</span>
+
+            <!-- v4.1 -->
+            <div style="background:linear-gradient(135deg,rgba(255,215,0,0.06),rgba(255,215,0,0.02));border:1px solid rgba(255,215,0,0.25);border-radius:10px;padding:16px;margin-bottom:12px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+                <span style="background:rgba(255,215,0,0.2);color:var(--gold);font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v4.1</span>
+                <span style="color:#c8d8f0;font-weight:bold;font-size:0.88rem;">Mobile Aprimorado & Banco Expandido</span>
               </div>
-              <ul style="color:var(--txt);font-size:0.83rem;line-height:1.9;padding-left:18px;margin:0;">
-                <li><strong>Layout PC completamente refeito</strong> — 3 painéis lado a lado (personagem · perguntas · ações) com espaçamento uniforme, bordas padronizadas e sem scroll de página</li>
-                <li><strong>Botões de música e SFX em todas as telas</strong> — visíveis na tela inicial e na tela de perguntas, tanto no PC quanto no celular</li>
-                <li><strong>Controles de áudio fixos no topo do celular</strong> — sempre acessíveis sem precisar rolar a tela</li>
-                <li><strong>Modo de Estudo renovado</strong> — popup redimensionado para caber na tela, botão "← Voltar" com marcador de acertos e erros ao lado, sem quebrar linha no celular</li>
-                <li><strong>Painel do herói no celular</strong> — botão de fechar com estilo dourado padrão do jogo</li>
-                <li><strong>Dock lateral (PC)</strong> com bordas e arredondamento uniformes, igual aos demais painéis</li>
-                <li><strong>Rodapé com versão e contato</strong> visível em todas as telas — clique na versão para ver as novidades</li>
+              <ul style="color:var(--txt-dim);font-size:0.8rem;line-height:1.7;padding-left:18px;margin:0;">
+                <li>Botão Herói mobile, dock reformulado, swipe para abrir painel</li>
+                <li>Banco expandido para 594 questões com explicações aprimoradas</li>
+                <li>Sistema anti-repetição (últimas 101 questões bloqueadas)</li>
+              </ul>
+            </div>
+
+            <!-- v4.0 -->
+            <div style="background:linear-gradient(135deg,rgba(255,215,0,0.04),rgba(255,215,0,0.01));border:1px solid rgba(255,215,0,0.15);border-radius:10px;padding:16px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+                <span style="background:rgba(255,215,0,0.12);color:var(--gold);font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v4.0</span>
+                <span style="color:#94a3b8;font-weight:bold;font-size:0.88rem;">Interface Renovada</span>
+              </div>
+              <ul style="color:var(--txt-dim);font-size:0.8rem;line-height:1.7;padding-left:18px;margin:0;">
+                <li>Layout PC com 3 painéis, dock lateral, modo de estudo renovado</li>
+                <li>Controles de áudio em todas as telas, rodapé com versão</li>
               </ul>
             </div>
 
