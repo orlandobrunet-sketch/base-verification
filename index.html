@@ -2569,6 +2569,125 @@
       box-shadow: 0 0 20px rgba(168,85,247,0.5);
       transform: translateY(-1px);
     }
+
+    /* ============================================================
+       BOSS BATTLE — REDESIGN ÉPICO v3 (layout épico corrigido)
+       ============================================================ */
+
+    /* 1. Options: grade 2×2 em vez de lista vertical */
+    .boss-battle-mode #options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .boss-battle-mode .option {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      padding: 11px 12px 11px 48px;
+    }
+
+    /* 2. Cena de batalha: muito mais alta e atmosférica */
+    #bossBattleScene {
+      height: 270px;
+      background:
+        radial-gradient(ellipse at 12% 60%, rgba(220,50,0,0.45) 0%, transparent 45%),
+        radial-gradient(ellipse at 88% 50%, rgba(100,0,180,0.55) 0%, transparent 45%),
+        radial-gradient(ellipse at 50% 100%, rgba(180,40,0,0.35) 0%, transparent 40%),
+        linear-gradient(180deg, rgba(4,0,12,1) 0%, rgba(18,2,4,0.98) 100%);
+    }
+
+    /* 3. Heróis da batalha: maiores e mais imponentes */
+    .battle-hero-mini {
+      width: 66px;
+      height: 66px;
+      border-radius: 8px;
+    }
+    .battle-heroes-side {
+      gap: 4px;
+      padding: 8px 6px 8px 10px;
+    }
+
+    /* 4. Boss: mais alto e imponente */
+    .battle-boss-side {
+      width: 195px;
+    }
+    .battle-boss-side img {
+      height: 268px;
+      max-width: 195px;
+    }
+
+    /* 5. Texto da questão: Cinzel dourado maiúsculo — épico */
+    .boss-battle-mode .qbox p#question {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      color: #fde68a;
+      font-size: 0.84rem;
+      letter-spacing: 0.5px;
+      line-height: 1.6;
+      text-transform: uppercase;
+      text-shadow: 0 0 12px rgba(255,215,0,0.35), 0 0 25px rgba(200,150,0,0.15);
+    }
+
+    /* 6. qbox: painel de cristal sombrio */
+    .boss-battle-mode .qbox {
+      background: linear-gradient(180deg, rgba(14,3,38,0.97), rgba(7,2,18,0.99));
+      border: 1px solid rgba(168,85,247,0.55);
+      border-top: 2px solid rgba(255,215,0,0.25);
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin-bottom: 10px;
+      box-shadow:
+        0 0 20px rgba(88,28,135,0.22),
+        inset 0 0 18px rgba(0,0,0,0.55);
+    }
+
+    /* 7. Temporizador no boss mode: styling sutil */
+    .boss-battle-mode #timerWidget {
+      opacity: 0.7;
+    }
+
+    /* 8. Feedback no boss mode: texto roxo-ouro */
+    .boss-battle-mode #feedback.good {
+      color: #34d399;
+      text-shadow: 0 0 10px rgba(52,211,153,0.5);
+    }
+    .boss-battle-mode #feedback.bad {
+      color: #fb7185;
+      text-shadow: 0 0 10px rgba(251,113,133,0.5);
+    }
+
+    /* 9. finalMeterContainer: visível em boss mode */
+    .boss-battle-mode #finalMeterContainer {
+      display: block !important;
+    }
+
+    /* 10. Área ctrl em boss mode: separação limpa */
+    .boss-battle-mode .ctrl {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .boss-battle-mode .ctrl #newBtn {
+      display: none !important;
+    }
+    .boss-battle-mode .ctrl #bonusBtn {
+      display: none !important;
+    }
+
+    /* 11. Badge de letra: padding ajustado para grade 2×2 */
+    .boss-battle-mode .option .boss-letter-badge {
+      left: 9px;
+      width: 28px;
+      height: 28px;
+      font-size: 0.72rem;
+    }
+
+    /* 12. Sombra no painel direito em boss mode: mais dramática */
+    .boss-battle-mode .panel.right {
+      border-width: 2px;
+    }
   </style>
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
 </head>
@@ -2858,6 +2977,16 @@
         <div id="golpeFinalHint" style="display:none;">Ativado após selecionar a resposta correta</div>
         <button id="newBtn" class="btn sec">Novo Jogo</button>
         <button id="bonusBtn" class="btn gold hidden">Pergunta Bônus</button>
+      </div>
+
+      <!-- MEDIDOR DE FINALIZAÇÃO — boss mode (fundo do painel) -->
+      <div id="finalMeterContainer" style="display:none;">
+        <div id="finalMeterLabel">Medidor de Finalização</div>
+        <div id="finalMeterStars"></div>
+        <div id="finalMeterFooter">
+          <span id="finalMeterHint">Ativado após a resposta correta</span>
+          <span id="finalMeterResult"></span>
+        </div>
       </div>
 
     </section>
@@ -6274,9 +6403,7 @@
 
       // ── Botão Próxima (Golpe Final) ──
       const nextBtn = document.getElementById('nextBtn');
-      if (nextBtn && !nextBtn.classList.contains('hidden')) {
-        nextBtn.textContent = 'GOLPE FINAL';
-      }
+      if (nextBtn) nextBtn.textContent = 'GOLPE FINAL';
 
       // ── Hint do botão ──
       if (elHint) {
@@ -6287,8 +6414,9 @@
       }
 
       // ── Medidor de estrelas (topo da página) ──
-      if (elStarsTop) {
-        elStarsTop.innerHTML = '';
+      const buildStars = (container) => {
+        if (!container) return;
+        container.innerHTML = '';
         for (let i = 0; i < 10; i++) {
           const s = document.createElement('span');
           const isLastAndFilled = (i === 9 && progress >= 10);
@@ -6300,9 +6428,31 @@
             s.className = 'final-star';
           }
           s.textContent = '★';
-          elStarsTop.appendChild(s);
+          container.appendChild(s);
+        }
+      };
+      buildStars(elStarsTop);
+
+      // ── Medidor de estrelas (fundo do painel direito) ──
+      const elStarsBottom = document.getElementById('finalMeterStars');
+      const elMeterContainer = document.getElementById('finalMeterContainer');
+      show(elMeterContainer, inBoss);
+      buildStars(elStarsBottom);
+
+      const meterResult = document.getElementById('finalMeterResult');
+      if (meterResult) {
+        if (progress >= 10) {
+          meterResult.textContent = 'FINALIZADO';
+          meterResult.style.color = '#ffd700';
+        } else if (hp <= 10) {
+          meterResult.textContent = 'VITÓRIA GARANTIDA';
+          meterResult.style.color = '#ffd700';
+        } else {
+          meterResult.textContent = '';
         }
       }
+      const meterHint = document.getElementById('finalMeterHint');
+      if (meterHint) meterHint.textContent = 'ATIVADO APÓS A RESPOSTA CORRETA';
 
       // ── Heróis na party panel e battle scene ──
       const heroData = {
@@ -6365,15 +6515,17 @@
     function animateLastBossStar() {
       if (!isBossBattle()) return;
       const progress = getBossProgress();   // já foi incrementado
-      const starsEl  = document.getElementById('finalMeterStarsTop');
-      if (!starsEl) return;
-      const stars = starsEl.querySelectorAll('.final-star');
-      // A estrela que acabou de ser preenchida é a (progress-1) (0-indexed)
       const idx = progress - 1;
-      if (stars[idx]) {
-        stars[idx].classList.add('pop');
-        setTimeout(() => stars[idx]?.classList.remove('pop'), 600);
-      }
+      // Anima nas duas barras (topo e fundo)
+      ['finalMeterStarsTop', 'finalMeterStars'].forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const stars = el.querySelectorAll('.final-star');
+        if (stars[idx]) {
+          stars[idx].classList.add('pop');
+          setTimeout(() => stars[idx]?.classList.remove('pop'), 600);
+        }
+      });
     }
 
     // ── Demo / Preview mode ─────────────────────────────────────
