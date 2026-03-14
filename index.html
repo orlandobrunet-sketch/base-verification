@@ -1860,6 +1860,371 @@
       .col-char, .col-chests, .col-date { display: none; }
       .board-table-wrap { max-height: 300px; }
     }
+
+    /* ===================================================
+       CONFRONTO FINAL — BOSS BATTLE MODE (last 10 questions)
+       Ativa quando correctTotal >= 90
+       =================================================== */
+
+    /* Background mais sombrio e intenso no modo boss */
+    .boss-battle-mode .bg-layer {
+      filter: brightness(0.38) saturate(2) hue-rotate(-15deg);
+      transition: filter 1.2s ease;
+    }
+
+    /* ---- Barra de título do confronto ---- */
+    #bossTitleBar {
+      display: none;
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.85rem, 2.2vw, 1.25rem);
+      font-weight: 900;
+      color: #c084fc;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      text-align: center;
+      text-shadow: 0 0 20px rgba(192,132,252,0.9), 0 0 40px rgba(168,85,247,0.5);
+      padding: 4px 0 2px;
+      animation: bossTitleGlow 2.5s ease-in-out infinite alternate;
+      grid-column: 1 / -1;
+    }
+    @keyframes bossTitleGlow {
+      from { text-shadow: 0 0 15px rgba(192,132,252,0.7), 0 0 30px rgba(168,85,247,0.4); color: #c084fc; }
+      to   { text-shadow: 0 0 30px rgba(220,180,255,1),   0 0 60px rgba(168,85,247,0.8), 0 0 90px rgba(139,92,246,0.4); color: #e9d5ff; }
+    }
+    .boss-battle-mode #bossTitleBar { display: block; }
+    .boss-battle-mode .game-title h1,
+    .boss-battle-mode .game-title .subtitle { display: none; }
+    .boss-battle-mode .game-title { padding: 4px 0 0; }
+
+    /* ---- HP Bar do boss ---- */
+    #bossHpContainer {
+      margin-bottom: 10px;
+      background: linear-gradient(180deg, rgba(30,5,60,0.95), rgba(15,2,30,0.98));
+      border: 2px solid #7c3aed;
+      border-radius: 10px;
+      padding: 8px 14px 10px;
+      box-shadow: 0 0 20px rgba(124,58,237,0.4), inset 0 0 20px rgba(0,0,0,0.5);
+    }
+    #bossHpLabel {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      color: #a78bfa;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 7px;
+      text-shadow: 0 0 10px rgba(167,139,250,0.6);
+    }
+    #bossHpTrack {
+      height: 16px;
+      background: rgba(10,0,25,0.8);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #4c1d95;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.7);
+      position: relative;
+    }
+    #bossHpFill {
+      height: 100%;
+      background: linear-gradient(90deg, #4c1d95, #7c3aed, #a855f7, #c084fc);
+      border-radius: 8px;
+      transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 12px rgba(168,85,247,0.8);
+      position: relative;
+      overflow: hidden;
+    }
+    #bossHpFill::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%; width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+      animation: hpShimmer 2s ease-in-out infinite;
+    }
+    @keyframes hpShimmer {
+      0%   { left: -60%; }
+      100% { left: 120%; }
+    }
+
+    /* ---- Contador de questão final ---- */
+    #bossQuestionNum {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      color: #d8b4fe;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 5px 0 7px;
+      border-bottom: 1px solid rgba(168,85,247,0.25);
+      margin-bottom: 8px;
+      text-shadow: 0 0 8px rgba(192,132,252,0.5);
+    }
+
+    /* ---- Imagem de batalha ---- */
+    #bossBattleImage {
+      text-align: center;
+      margin: 10px 0 8px;
+      position: relative;
+    }
+    #bossBattleImage img {
+      max-height: 110px;
+      max-width: 100%;
+      border-radius: 10px;
+      border: 2px solid #7c3aed;
+      box-shadow: 0 0 25px rgba(168,85,247,0.6), 0 0 50px rgba(168,85,247,0.2);
+      animation: battlePulse 3s ease-in-out infinite;
+    }
+    @keyframes battlePulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(168,85,247,0.5), 0 0 40px rgba(168,85,247,0.15); }
+      50%       { box-shadow: 0 0 35px rgba(192,132,252,0.9), 0 0 65px rgba(168,85,247,0.4); }
+    }
+
+    /* ---- Painel do boss (right panel) ---- */
+    .boss-battle-mode .panel.right {
+      border-color: #7c3aed;
+      background: linear-gradient(160deg, rgba(20,5,45,0.93), rgba(10,3,28,0.97));
+      box-shadow: 0 0 35px rgba(124,58,237,0.35), inset 0 0 50px rgba(88,28,135,0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Colunas rúnicas — decoração lateral esquerda e direita do painel */
+    #runeColLeft, #runeColRight {
+      display: none;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 22px;
+      z-index: 1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    #runeColLeft  { left: 0; }
+    #runeColRight { right: 0; }
+    .boss-battle-mode #runeColLeft,
+    .boss-battle-mode #runeColRight { display: block; }
+
+    .rune-track {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 0;
+      animation: runeScroll 12s linear infinite;
+    }
+    #runeColRight .rune-track { animation-direction: reverse; }
+    @keyframes runeScroll {
+      0%   { transform: translateY(0); }
+      100% { transform: translateY(-50%); }
+    }
+    .rune-glyph {
+      font-size: 0.85rem;
+      color: rgba(168,85,247,0.55);
+      text-shadow: 0 0 6px rgba(168,85,247,0.5);
+      line-height: 1;
+      user-select: none;
+    }
+    .rune-glyph.bright {
+      color: rgba(220,180,255,0.8);
+      text-shadow: 0 0 10px rgba(192,132,252,0.8);
+    }
+
+    /* Garantir que o conteúdo do painel fique acima das colunas */
+    .boss-battle-mode .panel.right > *:not(#runeColLeft):not(#runeColRight) {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ---- Opções no modo boss ---- */
+    .boss-battle-mode .option {
+      background: linear-gradient(135deg, rgba(35,10,70,0.92), rgba(18,5,40,0.96));
+      border: 2px solid #6d28d9;
+      border-radius: 10px;
+      color: #e9d5ff;
+      padding: 11px 12px 11px 50px;
+      position: relative;
+      font-size: 0.82rem;
+      letter-spacing: 0.3px;
+      text-shadow: 0 0 6px rgba(192,132,252,0.2);
+      transition: all 0.2s ease;
+      text-align: left;
+    }
+    .boss-battle-mode .option .boss-letter-badge {
+      position: absolute;
+      left: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 30px;
+      background: radial-gradient(circle at 40% 35%, #9333ea, #4c1d95);
+      border-radius: 50%;
+      border: 2px solid #a855f7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      font-weight: 900;
+      color: #f3e8ff;
+      box-shadow: 0 0 8px rgba(168,85,247,0.6), inset 0 1px 2px rgba(255,255,255,0.15);
+    }
+    .boss-battle-mode .option:hover:not(:disabled) {
+      background: linear-gradient(135deg, rgba(70,20,120,0.93), rgba(45,10,80,0.97));
+      border-color: #a855f7;
+      box-shadow: 0 0 18px rgba(168,85,247,0.35), inset 0 0 8px rgba(168,85,247,0.08);
+      transform: translateX(3px);
+    }
+    .boss-battle-mode .option.correct {
+      background: linear-gradient(135deg, rgba(5,45,25,0.92), rgba(3,30,18,0.96));
+      border-color: #34d399;
+    }
+    .boss-battle-mode .option.wrong {
+      background: linear-gradient(135deg, rgba(60,5,15,0.92), rgba(40,3,10,0.96));
+      border-color: #fb7185;
+    }
+
+    /* ---- Botão Golpe Final ---- */
+    .boss-battle-mode #nextBtn:not(.hidden) {
+      background: linear-gradient(180deg, #d4a017 0%, #b8860b 40%, #8b6510 100%);
+      border: 3px solid #ffd700;
+      border-radius: 14px;
+      color: #1a0a00;
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 13px 28px;
+      box-shadow: 0 0 25px rgba(255,215,0,0.5), 0 5px 15px rgba(0,0,0,0.6),
+                  inset 0 1px 2px rgba(255,255,255,0.2);
+      animation: golpeGlow 1.8s ease-in-out infinite alternate;
+      text-shadow: 0 1px 1px rgba(255,255,255,0.3);
+      width: 100%;
+      position: relative;
+    }
+    .boss-battle-mode #nextBtn:not(.hidden)::after {
+      content: 'CONFIRMAR RESPOSTA';
+      display: block;
+      font-size: 0.55rem;
+      letter-spacing: 3px;
+      color: rgba(30,10,0,0.75);
+      margin-top: 2px;
+      font-weight: 700;
+    }
+    @keyframes golpeGlow {
+      from { box-shadow: 0 0 20px rgba(255,215,0,0.45), 0 5px 12px rgba(0,0,0,0.6); }
+      to   { box-shadow: 0 0 40px rgba(255,215,0,0.75), 0 5px 20px rgba(0,0,0,0.6), 0 0 60px rgba(255,180,0,0.25); }
+    }
+
+    /* Hint embaixo do botão */
+    #golpeFinalHint {
+      font-family: 'Cinzel', serif;
+      font-size: 0.58rem;
+      color: #7c6aa0;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-align: center;
+      margin-top: 5px;
+    }
+
+    /* ---- Medidor de Finalização ---- */
+    #finalMeterContainer {
+      margin-top: 12px;
+      padding: 10px 14px 12px;
+      background: linear-gradient(180deg, rgba(20,5,40,0.94), rgba(10,2,22,0.97));
+      border: 1px solid rgba(88,28,135,0.6);
+      border-top: 2px solid rgba(124,58,237,0.5);
+      border-radius: 0 0 10px 10px;
+      box-shadow: 0 0 20px rgba(88,28,135,0.25), inset 0 0 15px rgba(0,0,0,0.4);
+    }
+    #finalMeterLabel {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      color: #9d79c4;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 9px;
+      opacity: 0.9;
+    }
+    #finalMeterStars {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      align-items: center;
+    }
+    .final-star {
+      font-size: 1.3rem;
+      color: #2e1254;
+      line-height: 1;
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      filter: drop-shadow(0 0 3px rgba(88,28,135,0.4));
+    }
+    .final-star.filled {
+      color: #a855f7;
+      filter: drop-shadow(0 0 8px rgba(168,85,247,0.9)) drop-shadow(0 0 15px rgba(168,85,247,0.5));
+    }
+    .final-star.star-last-gold {
+      color: #ffd700;
+      filter: drop-shadow(0 0 8px rgba(255,215,0,0.9)) drop-shadow(0 0 16px rgba(255,180,0,0.5));
+    }
+    .final-star.pop {
+      animation: starPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes starPop {
+      0%   { transform: scale(1); }
+      50%  { transform: scale(1.7) rotate(-10deg); }
+      100% { transform: scale(1); }
+    }
+    #finalMeterFooter {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-top: 8px;
+      gap: 8px;
+    }
+    #finalMeterHint {
+      font-size: 0.55rem;
+      color: #5c4a80;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      flex: 1;
+      line-height: 1.4;
+    }
+    #finalMeterResult {
+      font-size: 0.6rem;
+      color: #ffd700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-family: 'Cinzel', serif;
+      text-align: right;
+      text-shadow: 0 0 8px rgba(255,215,0,0.5);
+      flex-shrink: 0;
+    }
+
+    /* ---- Botão de preview (welcome screen) ---- */
+    .btn-boss-preview {
+      background: linear-gradient(160deg, rgba(60,10,100,0.85), rgba(30,5,60,0.9));
+      border: 2px solid #7c3aed;
+      color: #e9d5ff;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-family: 'Cinzel', serif;
+      text-transform: uppercase;
+      transition: all 0.2s ease;
+      box-shadow: 0 0 12px rgba(124,58,237,0.3);
+      width: 100%;
+      margin-top: 6px;
+    }
+    .btn-boss-preview:hover {
+      background: linear-gradient(160deg, rgba(88,28,135,0.9), rgba(50,10,90,0.95));
+      border-color: #a855f7;
+      box-shadow: 0 0 20px rgba(168,85,247,0.5);
+      transform: translateY(-1px);
+    }
   </style>
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
 </head>
@@ -1941,6 +2306,7 @@
         <button class="btn sec" onclick="showStatsModal()">📊 Estatísticas</button>
         <button class="btn sec" onclick="showAchievementsModal()">🏆 Conquistas</button>
         <button class="btn sec" onclick="showLeaderboardFromWelcome()">Leaderboard</button>
+        <button class="btn-boss-preview" onclick="startBossPreview()" title="Pula direto para o Confronto Final — útil para desenvolvimento e revisão">⚔️ Preview: Confronto Final</button>
       </div>
       <div class="welcome-credit" style="margin-top:14px;"><a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;" onclick="showChangelog()" style="cursor:pointer;">v5.0</span></div>
     </div>
@@ -1949,6 +2315,8 @@
   <main class="app hidden" id="mainApp">
     <!-- Title -->
     <div class="game-title">
+      <!-- Boss battle title (shown when correctTotal >= 90) -->
+      <div id="bossTitleBar">&#9760; Confronto Final: Arqui-Nefromante &#9760;</div>
       <h1>NefroQuest</h1>
       <div class="subtitle">— Ascension —</div>
       <!-- Sound controls estáticos dentro do título (PC only) -->
@@ -2033,7 +2401,61 @@
 
     <!-- RIGHT PANEL -->
     <section class="panel right">
+
+      <!-- RUNIC COLUMNS (boss mode decoration) -->
+      <div id="runeColLeft" aria-hidden="true">
+        <div class="rune-track">
+          <span class="rune-glyph bright">ᚠ</span><span class="rune-glyph">ᚢ</span><span class="rune-glyph">ᚦ</span>
+          <span class="rune-glyph bright">ᚨ</span><span class="rune-glyph">ᚱ</span><span class="rune-glyph">ᚲ</span>
+          <span class="rune-glyph">ᚷ</span><span class="rune-glyph bright">ᚹ</span><span class="rune-glyph">ᚾ</span>
+          <span class="rune-glyph">ᛁ</span><span class="rune-glyph bright">ᛃ</span><span class="rune-glyph">ᛈ</span>
+          <span class="rune-glyph">ᛉ</span><span class="rune-glyph bright">ᛊ</span><span class="rune-glyph">ᛏ</span>
+          <span class="rune-glyph">ᛒ</span><span class="rune-glyph bright">ᛖ</span><span class="rune-glyph">ᛗ</span>
+          <span class="rune-glyph">ᛚ</span><span class="rune-glyph bright">ᛟ</span>
+          <!-- repeat for seamless scroll -->
+          <span class="rune-glyph bright">ᚠ</span><span class="rune-glyph">ᚢ</span><span class="rune-glyph">ᚦ</span>
+          <span class="rune-glyph bright">ᚨ</span><span class="rune-glyph">ᚱ</span><span class="rune-glyph">ᚲ</span>
+          <span class="rune-glyph">ᚷ</span><span class="rune-glyph bright">ᚹ</span><span class="rune-glyph">ᚾ</span>
+          <span class="rune-glyph">ᛁ</span><span class="rune-glyph bright">ᛃ</span><span class="rune-glyph">ᛈ</span>
+          <span class="rune-glyph">ᛉ</span><span class="rune-glyph bright">ᛊ</span><span class="rune-glyph">ᛏ</span>
+          <span class="rune-glyph">ᛒ</span><span class="rune-glyph bright">ᛖ</span><span class="rune-glyph">ᛗ</span>
+          <span class="rune-glyph">ᛚ</span><span class="rune-glyph bright">ᛟ</span>
+        </div>
+      </div>
+      <div id="runeColRight" aria-hidden="true">
+        <div class="rune-track">
+          <span class="rune-glyph">ᛟ</span><span class="rune-glyph bright">ᛚ</span><span class="rune-glyph">ᛗ</span>
+          <span class="rune-glyph">ᛖ</span><span class="rune-glyph bright">ᛒ</span><span class="rune-glyph">ᛏ</span>
+          <span class="rune-glyph bright">ᛊ</span><span class="rune-glyph">ᛉ</span><span class="rune-glyph">ᛈ</span>
+          <span class="rune-glyph bright">ᛃ</span><span class="rune-glyph">ᛁ</span><span class="rune-glyph">ᚾ</span>
+          <span class="rune-glyph bright">ᚹ</span><span class="rune-glyph">ᚷ</span><span class="rune-glyph">ᚲ</span>
+          <span class="rune-glyph">ᚱ</span><span class="rune-glyph bright">ᚨ</span><span class="rune-glyph">ᚦ</span>
+          <span class="rune-glyph">ᚢ</span><span class="rune-glyph bright">ᚠ</span>
+          <!-- repeat -->
+          <span class="rune-glyph">ᛟ</span><span class="rune-glyph bright">ᛚ</span><span class="rune-glyph">ᛗ</span>
+          <span class="rune-glyph">ᛖ</span><span class="rune-glyph bright">ᛒ</span><span class="rune-glyph">ᛏ</span>
+          <span class="rune-glyph bright">ᛊ</span><span class="rune-glyph">ᛉ</span><span class="rune-glyph">ᛈ</span>
+          <span class="rune-glyph bright">ᛃ</span><span class="rune-glyph">ᛁ</span><span class="rune-glyph">ᚾ</span>
+          <span class="rune-glyph bright">ᚹ</span><span class="rune-glyph">ᚷ</span><span class="rune-glyph">ᚲ</span>
+          <span class="rune-glyph">ᚱ</span><span class="rune-glyph bright">ᚨ</span><span class="rune-glyph">ᚦ</span>
+          <span class="rune-glyph">ᚢ</span><span class="rune-glyph bright">ᚠ</span>
+        </div>
+      </div>
+
+      <!-- BOSS HP BAR (hidden until boss mode activates) -->
+      <div id="bossHpContainer" style="display:none;">
+        <div id="bossHpLabel">ARQUI-NEFROMANTE (HP: 100%)</div>
+        <div id="bossHpTrack"><div id="bossHpFill" style="width:100%;"></div></div>
+      </div>
+
+      <!-- BOSS QUESTION COUNTER -->
+      <div id="bossQuestionNum" style="display:none;">QUESTÃO FINAL 1/10</div>
+
       <div class="qbox">
+        <!-- BOSS BATTLE IMAGE (shown in boss mode) -->
+        <div id="bossBattleImage" style="display:none;">
+          <img src="assets/nefromancer.png" alt="Arqui-Nefromante — O confronto final" loading="lazy" />
+        </div>
         <!-- CRONÔMETRO -->
         <div id="timerWidget">
           <button id="timerPlayPause" title="Play/Pause cronômetro" onclick="timerToggle()">
@@ -2052,9 +2474,21 @@
       <div id="refs" class="refs"></div>
       <div class="ctrl">
         <button id="nextBtn" class="btn hidden">Próxima Carta</button>
+        <div id="golpeFinalHint" style="display:none;">Ativado após selecionar a resposta correta</div>
         <button id="newBtn" class="btn sec">Novo Jogo</button>
         <button id="bonusBtn" class="btn gold hidden">Pergunta Bônus</button>
       </div>
+
+      <!-- MEDIDOR DE FINALIZAÇÃO (boss mode) -->
+      <div id="finalMeterContainer" style="display:none;">
+        <div id="finalMeterLabel">Medidor de Finalização</div>
+        <div id="finalMeterStars"></div>
+        <div id="finalMeterFooter">
+          <div id="finalMeterHint">Ativado após selecionar a resposta correta</div>
+          <div id="finalMeterResult">Finalizado</div>
+        </div>
+      </div>
+
     </section>
 
     <!-- ACTION DOCK — Coluna fixa no grid -->
@@ -3214,8 +3648,11 @@
         ui.journal.innerHTML = '';
         log(`🔄 Jornada restaurada! ${characters[state.character].name}, Nível ${state.level}.`);
         renderHUD();
-      updateBadges();
+        updateBadges();
         renderQuestion();
+        // Se retomou no Confronto Final, ativa o modo boss imediatamente
+        updateBossUI();
+        applyBossOptionBadges();
         playSound('click');
       } else {
         startNewFromWelcome();
@@ -4777,6 +5214,9 @@
         b.addEventListener('click',()=>answer(i,b));
         ui.options.appendChild(b);
       });
+      // ── Confronto Final: atualiza UI do boss e injeta badges ──
+      updateBossUI();
+      applyBossOptionBadges();
     }
 
     function flagQuestion() {
@@ -4995,7 +5435,14 @@
 
       renderHUD();
       updateBadges();
-      if(state.lives<=0) finishGame(); else ui.nextBtn.classList.remove('hidden');
+      if(state.lives<=0) finishGame(); else {
+        ui.nextBtn.classList.remove('hidden');
+        // ── Confronto Final: atualiza barra de HP, estrelas e botão ──
+        updateBossUI();
+        animateLastBossStar();
+        // Muda texto do botão Próxima para "GOLPE FINAL" em boss mode
+        if(isBossBattle()) ui.nextBtn.textContent = 'GOLPE FINAL';
+      }
     }
 
     function finishDeck(){
@@ -5376,6 +5823,211 @@
       popup.addEventListener('click',(e)=>{if(e.target===popup) popup.remove();});
     }
 
+    // ============================================================
+    //  CONFRONTO FINAL — BOSS BATTLE MODE
+    //  Ativa quando o jogador tem >= 90 acertos corretos
+    //  As últimas 10 questões certas derrotam o Arqui-Nefromante
+    // ============================================================
+
+    const BOSS_START_CORRECT = 90;   // a partir deste acerto começa a batalha
+    const BOSS_END_CORRECT   = 100;  // total de acertos para vencer
+
+    /** Verifica se estamos na fase de Confronto Final */
+    function isBossBattle() {
+      return state.gameStarted &&
+             state.correctTotal >= BOSS_START_CORRECT &&
+             !state.gameCompleted;
+    }
+
+    /** Quantos ataques foram desferidos no boss (0-10) */
+    function getBossProgress() {
+      return Math.max(0, Math.min(10, state.correctTotal - BOSS_START_CORRECT));
+    }
+
+    /** HP do boss em % (100% → 0%) */
+    function getBossHP() {
+      return Math.max(0, 100 - getBossProgress() * 10);
+    }
+
+    /**
+     * Atualiza TODA a UI do Confronto Final.
+     * Chamada após renderQuestion() e após cada resposta.
+     */
+    function updateBossUI() {
+      const inBoss = isBossBattle();
+
+      // ── Modo no body ──
+      document.body.classList.toggle('boss-battle-mode', inBoss);
+
+      // ── Elementos boss ──
+      const elHpBox    = document.getElementById('bossHpContainer');
+      const elQNum     = document.getElementById('bossQuestionNum');
+      const elBattleImg= document.getElementById('bossBattleImage');
+      const elMeter    = document.getElementById('finalMeterContainer');
+      const elHint     = document.getElementById('golpeFinalHint');
+      const show = (el, v) => { if(el) el.style.display = v ? '' : 'none'; };
+
+      show(elHpBox,    inBoss);
+      show(elQNum,     inBoss);
+      show(elBattleImg,inBoss);
+      show(elMeter,    inBoss);
+      show(elHint,     inBoss);
+
+      if (!inBoss) return;
+
+      const progress = getBossProgress();
+      const hp       = getBossHP();
+
+      // ── HP Bar ──
+      const hpFill  = document.getElementById('bossHpFill');
+      const hpLabel = document.getElementById('bossHpLabel');
+      if (hpFill)  hpFill.style.width = hp + '%';
+      if (hpLabel) hpLabel.textContent = `ARQUI-NEFROMANTE (HP: ${hp}%)`;
+
+      // Muda cor da barra conforme HP diminui
+      if (hpFill) {
+        if (hp > 60)      hpFill.style.background = 'linear-gradient(90deg,#4c1d95,#7c3aed,#a855f7,#c084fc)';
+        else if (hp > 30) hpFill.style.background = 'linear-gradient(90deg,#831843,#be185d,#ec4899)';
+        else              hpFill.style.background = 'linear-gradient(90deg,#7f1d1d,#dc2626,#f87171)';
+      }
+
+      // ── Contador de questão ──
+      const qNum = progress + 1;
+      if (elQNum) {
+        elQNum.textContent = progress >= 10
+          ? 'QUESTÃO FINAL 10/10 — VITÓRIA!'
+          : `QUESTÃO FINAL ${qNum}/10`;
+      }
+
+      // ── Botão Próxima (Golpe Final) ──
+      const nextBtn = document.getElementById('nextBtn');
+      if (nextBtn && !nextBtn.classList.contains('hidden')) {
+        nextBtn.textContent = 'GOLPE FINAL';
+      }
+
+      // ── Hint do botão ──
+      if (elHint) {
+        elHint.textContent = hp <= 10
+          ? 'VITÓRIA GARANTIDA COM RESPOSTA CORRETA'
+          : 'ATIVADO APÓS SELECIONAR A RESPOSTA CORRETA';
+        elHint.style.color = hp <= 10 ? '#ffd700' : '';
+      }
+
+      // ── Medidor de estrelas ──
+      const starsEl = document.getElementById('finalMeterStars');
+      if (starsEl) {
+        starsEl.innerHTML = '';
+        for (let i = 0; i < 10; i++) {
+          const s = document.createElement('span');
+          const isLastAndFilled = (i === 9 && progress >= 10);
+          if (isLastAndFilled) {
+            s.className = 'final-star star-last-gold';
+          } else if (i < progress) {
+            s.className = 'final-star filled';
+          } else {
+            s.className = 'final-star';
+          }
+          s.textContent = '★';
+          starsEl.appendChild(s);
+        }
+      }
+
+      // Hint / result no rodapé do medidor
+      const meterHint   = document.getElementById('finalMeterHint');
+      const meterResult = document.getElementById('finalMeterResult');
+      if (meterHint)   meterHint.textContent   = hp <= 10 ? 'Vitória garantida com resposta correta' : 'Ativado após selecionar a resposta correta';
+      if (meterResult) meterResult.style.display = progress >= 10 ? '' : 'none';
+    }
+
+    /**
+     * Injeta os ícones de letra (A/B/C/D) nas opções em boss mode.
+     * Deve ser chamada APÓS renderQuestion() preencher as options.
+     */
+    function applyBossOptionBadges() {
+      if (!isBossBattle()) return;
+      const opts = document.querySelectorAll('#options .option');
+      const letters = ['A','B','C','D'];
+      opts.forEach((btn, i) => {
+        // Evitar duplicar badge
+        if (btn.querySelector('.boss-letter-badge')) return;
+        const badge = document.createElement('span');
+        badge.className = 'boss-letter-badge';
+        badge.textContent = letters[i] || String.fromCharCode(65+i);
+        btn.prepend(badge);
+        // Remover o prefixo de letra que a renderQuestion já colocou no texto
+        // O texto ficará: "A) texto" → limpar para só "texto"
+        const textNode = [...btn.childNodes].find(n => n.nodeType === 3);
+        if (textNode) {
+          textNode.textContent = textNode.textContent.replace(/^[A-D]\)\s*/, '');
+        }
+      });
+    }
+
+    /**
+     * Anima a estrela recém-conquistada com efeito "pop".
+     * Chamado após acerto correto em boss mode.
+     */
+    function animateLastBossStar() {
+      if (!isBossBattle()) return;
+      const progress = getBossProgress();   // já foi incrementado
+      const starsEl  = document.getElementById('finalMeterStars');
+      if (!starsEl) return;
+      const stars = starsEl.querySelectorAll('.final-star');
+      // A estrela que acabou de ser preenchida é a (progress-1) (0-indexed)
+      const idx = progress - 1;
+      if (stars[idx]) {
+        stars[idx].classList.add('pop');
+        setTimeout(() => stars[idx]?.classList.remove('pop'), 600);
+      }
+    }
+
+    // ── Demo / Preview mode ─────────────────────────────────────
+
+    /**
+     * Inicia diretamente o Confronto Final para revisão rápida.
+     * Usa o primeiro personagem, seta correctTotal=90 e salta para o jogo.
+     */
+    function startBossPreview() {
+      // Escolhe Dr. Nephros como personagem padrão
+      state.character = 'nephros';
+      // Inicializa estado
+      Object.assign(state, {
+        level: 12, xp: 0, xpToNext: 500,
+        score: 24970, lives: 3, streak: 0, gold: 500,
+        current: null, answered: false, bonusUses: 0,
+        correctTotal: 90, narrativeShown: 90,
+        gameOver: false, gameStarted: true,
+        extraLifeGiven: false, gameCompleted: false,
+        completedGame: false, chestsOpened: 3
+      });
+      state.equipment = {
+        weapon: { n:'Lança do Néfron', rar:'epic',  atk:8, def:3, kno:6, luck:4 },
+        armor:  { n:'Armadura Renal',  rar:'rare',  atk:2, def:9, kno:4, luck:2 },
+        relic:  { n:'Orbe da Filtração', rar:'epic', atk:3, def:3, kno:9, luck:5 }
+      };
+      state.heroName = 'Previewer';
+
+      // Fecha welcome
+      document.getElementById('welcomeScreen')?.classList.add('hidden');
+      document.getElementById('mainApp')?.classList.remove('hidden');
+      document.getElementById('actionDock')?.classList.remove('hidden');
+
+      ui.journal.innerHTML = '';
+      log('⚔️ [PREVIEW] Confronto Final iniciado — correctTotal=90.');
+
+      shuffleQueue();
+      renderHUD();
+      updateBadges();
+      renderQuestion();
+      updateBossUI();
+      applyBossOptionBadges();
+      saveGame();
+
+      // Toca som de boss
+      setTimeout(() => playSound('boss'), 400);
+    }
+
+    // ============================================================
     // ============ SISTEMA DE NARRATIVA PROGRESSIVA ============
     const narrativeStages = [
       {at:5, ch:"Capítulo I", title:"O Chamado das Águas", text:"Nos corredores sombrios do Hospital dos Néfrons Perdidos, um pergaminho antigo cai em suas mãos. Nele, um alerta: o Arqui-Nefromante está corrompendo os rins do reino, transformando néfrons saudáveis em pedra. Apenas um médico corajoso pode impedi-lo. Sua jornada começa agora."},
