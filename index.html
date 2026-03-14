@@ -2597,24 +2597,20 @@
         linear-gradient(180deg, rgba(4,0,12,1) 0%, rgba(18,2,4,0.98) 100%);
     }
 
-    /* 3. Heróis da batalha: maiores e mais imponentes */
-    .battle-hero-mini {
-      width: 66px;
-      height: 66px;
-      border-radius: 8px;
-    }
-    .battle-heroes-side {
-      gap: 4px;
-      padding: 8px 6px 8px 10px;
+    /* 3. Ocultar heróis e centro de colisão — só o Nefromante */
+    .boss-battle-mode .battle-heroes-side,
+    .boss-battle-mode .battle-clash-center {
+      display: none !important;
     }
 
-    /* 4. Boss: mais alto e imponente */
+    /* 4. Boss: ocupa toda a cena centralizado e imponente */
     .battle-boss-side {
-      width: 195px;
+      width: 100%;
+      justify-content: center;
     }
     .battle-boss-side img {
       height: 268px;
-      max-width: 195px;
+      max-width: 260px;
     }
 
     /* 5. Texto da questão: Cinzel dourado maiúsculo — épico */
