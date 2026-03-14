@@ -1900,10 +1900,10 @@
     #bossHpContainer {
       margin-bottom: 10px;
       background: linear-gradient(180deg, rgba(30,5,60,0.95), rgba(15,2,30,0.98));
-      border: 2px solid #7c3aed;
+      border: 2px solid #ffd700;
       border-radius: 10px;
       padding: 8px 14px 10px;
-      box-shadow: 0 0 20px rgba(124,58,237,0.4), inset 0 0 20px rgba(0,0,0,0.5);
+      box-shadow: 0 0 20px rgba(124,58,237,0.4), 0 0 10px rgba(255,215,0,0.2), inset 0 0 20px rgba(0,0,0,0.5);
     }
     #bossHpLabel {
       font-family: 'Cinzel', serif;
@@ -1949,41 +1949,51 @@
     /* ---- Contador de questão final ---- */
     #bossQuestionNum {
       font-family: 'Cinzel', serif;
-      font-size: 0.7rem;
-      color: #d8b4fe;
+      font-size: 0.72rem;
+      color: #ffd700;
       letter-spacing: 3px;
       text-transform: uppercase;
       text-align: center;
       padding: 5px 0 7px;
-      border-bottom: 1px solid rgba(168,85,247,0.25);
+      border-bottom: 1px solid rgba(255,215,0,0.2);
       margin-bottom: 8px;
-      text-shadow: 0 0 8px rgba(192,132,252,0.5);
+      text-shadow: 0 0 10px rgba(255,215,0,0.6), 0 0 20px rgba(255,180,0,0.3);
     }
 
     /* ---- Imagem de batalha ---- */
     #bossBattleImage {
       text-align: center;
-      margin: 10px 0 8px;
+      margin: 12px 0 10px;
       position: relative;
     }
     #bossBattleImage img {
-      max-height: 110px;
-      max-width: 100%;
-      border-radius: 10px;
-      border: 2px solid #7c3aed;
-      box-shadow: 0 0 25px rgba(168,85,247,0.6), 0 0 50px rgba(168,85,247,0.2);
+      max-height: 160px;
+      max-width: 92%;
+      border-radius: 12px;
+      border: 2px solid #ffd700;
+      box-shadow:
+        0 0 25px rgba(168,85,247,0.7),
+        0 0 55px rgba(168,85,247,0.3),
+        0 0 12px rgba(255,215,0,0.5),
+        0 4px 20px rgba(0,0,0,0.7);
       animation: battlePulse 3s ease-in-out infinite;
     }
     @keyframes battlePulse {
-      0%, 100% { box-shadow: 0 0 20px rgba(168,85,247,0.5), 0 0 40px rgba(168,85,247,0.15); }
-      50%       { box-shadow: 0 0 35px rgba(192,132,252,0.9), 0 0 65px rgba(168,85,247,0.4); }
+      0%, 100% {
+        box-shadow: 0 0 20px rgba(168,85,247,0.6), 0 0 40px rgba(168,85,247,0.2),
+                    0 0 10px rgba(255,215,0,0.4), 0 4px 16px rgba(0,0,0,0.7);
+      }
+      50% {
+        box-shadow: 0 0 40px rgba(192,132,252,0.9), 0 0 70px rgba(168,85,247,0.45),
+                    0 0 20px rgba(255,215,0,0.7), 0 4px 20px rgba(0,0,0,0.7);
+      }
     }
 
     /* ---- Painel do boss (right panel) ---- */
     .boss-battle-mode .panel.right {
-      border-color: #7c3aed;
+      border-color: #ffd700;
       background: linear-gradient(160deg, rgba(20,5,45,0.93), rgba(10,3,28,0.97));
-      box-shadow: 0 0 35px rgba(124,58,237,0.35), inset 0 0 50px rgba(88,28,135,0.12);
+      box-shadow: 0 0 35px rgba(124,58,237,0.35), 0 0 15px rgba(255,215,0,0.15), inset 0 0 50px rgba(88,28,135,0.12);
       position: relative;
       overflow: hidden;
     }
@@ -2058,15 +2068,16 @@
       height: 30px;
       background: radial-gradient(circle at 40% 35%, #9333ea, #4c1d95);
       border-radius: 50%;
-      border: 2px solid #a855f7;
+      border: 2px solid #ffd700;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: 'Cinzel', serif;
       font-size: 0.78rem;
       font-weight: 900;
-      color: #f3e8ff;
-      box-shadow: 0 0 8px rgba(168,85,247,0.6), inset 0 1px 2px rgba(255,255,255,0.15);
+      color: #ffd700;
+      box-shadow: 0 0 8px rgba(168,85,247,0.5), 0 0 5px rgba(255,215,0,0.4), inset 0 1px 2px rgba(255,255,255,0.1);
+      text-shadow: 0 0 6px rgba(255,215,0,0.5);
     }
     .boss-battle-mode .option:hover:not(:disabled) {
       background: linear-gradient(135deg, rgba(70,20,120,0.93), rgba(45,10,80,0.97));
@@ -2306,7 +2317,7 @@
         <button class="btn sec" onclick="showStatsModal()">📊 Estatísticas</button>
         <button class="btn sec" onclick="showAchievementsModal()">🏆 Conquistas</button>
         <button class="btn sec" onclick="showLeaderboardFromWelcome()">Leaderboard</button>
-        <button class="btn-boss-preview" onclick="startBossPreview()" title="Pula direto para o Confronto Final — útil para desenvolvimento e revisão">⚔️ Preview: Confronto Final</button>
+        <button id="bossPreviewBtn" class="btn-boss-preview" onclick="startBossPreview()" title="Preview do Confronto Final" style="display:none;">⚔️ Preview: Confronto Final</button>
       </div>
       <div class="welcome-credit" style="margin-top:14px;"><a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;" onclick="showChangelog()" style="cursor:pointer;">v5.0</span></div>
     </div>
@@ -2319,6 +2330,8 @@
       <div id="bossTitleBar">&#9760; Confronto Final: Arqui-Nefromante &#9760;</div>
       <h1>NefroQuest</h1>
       <div class="subtitle">— Ascension —</div>
+      <!-- Medidor de estrelas do boss — aparece no topo em boss mode -->
+      <div id="finalMeterStarsTop" style="display:none;justify-content:center;gap:6px;align-items:center;padding:4px 0 2px;"></div>
       <!-- Sound controls estáticos dentro do título (PC only) -->
       <div class="sound-controls" id="soundControlsBar">
         <div id="musicToggle" class="sound-toggle" onclick="toggleMusic()">
@@ -2477,16 +2490,6 @@
         <div id="golpeFinalHint" style="display:none;">Ativado após selecionar a resposta correta</div>
         <button id="newBtn" class="btn sec">Novo Jogo</button>
         <button id="bonusBtn" class="btn gold hidden">Pergunta Bônus</button>
-      </div>
-
-      <!-- MEDIDOR DE FINALIZAÇÃO (boss mode) -->
-      <div id="finalMeterContainer" style="display:none;">
-        <div id="finalMeterLabel">Medidor de Finalização</div>
-        <div id="finalMeterStars"></div>
-        <div id="finalMeterFooter">
-          <div id="finalMeterHint">Ativado após selecionar a resposta correta</div>
-          <div id="finalMeterResult">Finalizado</div>
-        </div>
       </div>
 
     </section>
@@ -5863,15 +5866,15 @@
       const elHpBox    = document.getElementById('bossHpContainer');
       const elQNum     = document.getElementById('bossQuestionNum');
       const elBattleImg= document.getElementById('bossBattleImage');
-      const elMeter    = document.getElementById('finalMeterContainer');
       const elHint     = document.getElementById('golpeFinalHint');
-      const show = (el, v) => { if(el) el.style.display = v ? '' : 'none'; };
+      const elStarsTop = document.getElementById('finalMeterStarsTop');
+      const show = (el, v, disp) => { if(el) el.style.display = v ? (disp||'') : 'none'; };
 
-      show(elHpBox,    inBoss);
-      show(elQNum,     inBoss);
-      show(elBattleImg,inBoss);
-      show(elMeter,    inBoss);
-      show(elHint,     inBoss);
+      show(elHpBox,     inBoss);
+      show(elQNum,      inBoss);
+      show(elBattleImg, inBoss);
+      show(elHint,      inBoss);
+      show(elStarsTop,  inBoss, 'flex');
 
       if (!inBoss) return;
 
@@ -5913,10 +5916,9 @@
         elHint.style.color = hp <= 10 ? '#ffd700' : '';
       }
 
-      // ── Medidor de estrelas ──
-      const starsEl = document.getElementById('finalMeterStars');
-      if (starsEl) {
-        starsEl.innerHTML = '';
+      // ── Medidor de estrelas (topo da página) ──
+      if (elStarsTop) {
+        elStarsTop.innerHTML = '';
         for (let i = 0; i < 10; i++) {
           const s = document.createElement('span');
           const isLastAndFilled = (i === 9 && progress >= 10);
@@ -5928,15 +5930,9 @@
             s.className = 'final-star';
           }
           s.textContent = '★';
-          starsEl.appendChild(s);
+          elStarsTop.appendChild(s);
         }
       }
-
-      // Hint / result no rodapé do medidor
-      const meterHint   = document.getElementById('finalMeterHint');
-      const meterResult = document.getElementById('finalMeterResult');
-      if (meterHint)   meterHint.textContent   = hp <= 10 ? 'Vitória garantida com resposta correta' : 'Ativado após selecionar a resposta correta';
-      if (meterResult) meterResult.style.display = progress >= 10 ? '' : 'none';
     }
 
     /**
@@ -5970,7 +5966,7 @@
     function animateLastBossStar() {
       if (!isBossBattle()) return;
       const progress = getBossProgress();   // já foi incrementado
-      const starsEl  = document.getElementById('finalMeterStars');
+      const starsEl  = document.getElementById('finalMeterStarsTop');
       if (!starsEl) return;
       const stars = starsEl.querySelectorAll('.final-star');
       // A estrela que acabou de ser preenchida é a (progress-1) (0-indexed)
@@ -6001,9 +5997,9 @@
         completedGame: false, chestsOpened: 3
       });
       state.equipment = {
-        weapon: { n:'Lança do Néfron', rar:'epic',  atk:8, def:3, kno:6, luck:4 },
-        armor:  { n:'Armadura Renal',  rar:'rare',  atk:2, def:9, kno:4, luck:2 },
-        relic:  { n:'Orbe da Filtração', rar:'epic', atk:3, def:3, kno:9, luck:5 }
+        weapon: { n:'Lança Glomerular',  rar:'epic',  atk:8, def:3, kno:6, luck:4 },
+        armor:  { n:'Égide Dialítica',   rar:'epic',  atk:2, def:7, kno:3, luck:1 },
+        relic:  { n:'Orbe da Cistatina', rar:'epic',  atk:2, def:2, kno:6, luck:2 }
       };
       state.heroName = 'Previewer';
 
@@ -7744,6 +7740,12 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
 
     resetGame();
     initWelcomeScreen();
+
+    // Botão de preview só visível para desenvolvimento (?dev=1)
+    if (new URLSearchParams(window.location.search).get('dev') === '1') {
+      const previewBtn = document.getElementById('bossPreviewBtn');
+      if (previewBtn) previewBtn.style.display = '';
+    }
 
     // Posicionar tooltips via JS para evitar corte
     document.addEventListener('mouseover', function(e){
