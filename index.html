@@ -4951,7 +4951,7 @@
     }
 
     // ============ MILESTONE DE OURO ============
-    const GOLD_MILESTONE = 300;
+    const GOLD_MILESTONE = 100;
     let _goldMilestoneShown = false;
 
     function checkGoldMilestone(prevGold) {
@@ -4972,23 +4972,23 @@
           <div style="font-size:2.4rem;margin-bottom:8px;">💰</div>
           <h3 style="color:#ffd700;font-family:'Cinzel',serif;font-size:1.05rem;letter-spacing:1px;margin-bottom:6px;">300 de Ouro!</h3>
           <p style="color:#c8d8f0;font-size:0.85rem;line-height:1.6;margin-bottom:18px;">
-            Você já acumulou ouro suficiente para agir! Escolha seu próximo passo:
+            Você já pode abrir um baú! Ou continue acumulando ouro para forjar itens poderosos:
           </p>
           <div style="display:flex;flex-direction:column;gap:10px;text-align:left;">
-            <div style="background:rgba(255,215,0,0.08);border:1px solid rgba(255,215,0,0.3);border-radius:10px;padding:12px 14px;">
+            <div style="background:rgba(255,215,0,0.1);border:2px solid rgba(255,215,0,0.5);border-radius:10px;padding:12px 14px;">
               <span style="color:#ffd700;font-weight:700;">🪙 Abrir Baú</span>
               <span style="color:#94a3b8;font-size:0.8rem;"> — ${chestCost} ouro</span>
-              <p style="color:#cbd5e1;font-size:0.78rem;margin:4px 0 0;">Obtenha um artigo ou item aleatório agora mesmo.</p>
+              <p style="color:#cbd5e1;font-size:0.78rem;margin:4px 0 0;">✅ Disponível agora! Obtenha um artigo ou item aleatório.</p>
             </div>
-            <div style="background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.35);border-radius:10px;padding:12px 14px;">
+            <div style="background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.25);border-radius:10px;padding:12px 14px;">
               <span style="color:#a5b4fc;font-weight:700;">⚒️ Forjar Item Comum</span>
               <span style="color:#94a3b8;font-size:0.8rem;"> — 300 ouro</span>
-              <p style="color:#cbd5e1;font-size:0.78rem;margin:4px 0 0;">Forge um novo equipamento para fortalecer seu herói.</p>
+              <p style="color:#cbd5e1;font-size:0.78rem;margin:4px 0 0;">Acumule mais <strong style="color:#a5b4fc;">+200 ouro</strong> para forjar um equipamento.</p>
             </div>
-            <div style="background:rgba(234,179,8,0.08);border:1px solid rgba(234,179,8,0.3);border-radius:10px;padding:12px 14px;">
+            <div style="background:rgba(234,179,8,0.06);border:1px solid rgba(234,179,8,0.2);border-radius:10px;padding:12px 14px;">
               <span style="color:#fbbf24;font-weight:700;">👑 Forjar Item Lendário</span>
               <span style="color:#94a3b8;font-size:0.8rem;"> — 1000 ouro</span>
-              <p style="color:#cbd5e1;font-size:0.78rem;margin:4px 0 0;">Continue acumulando <strong style="color:#fbbf24;">+700 ouro</strong> para forjar o mais poderoso.</p>
+              <p style="color:#cbd5e1;font-size:0.78rem;margin:4px 0 0;">Acumule mais <strong style="color:#fbbf24;">+900 ouro</strong> para o item mais poderoso.</p>
             </div>
           </div>
           <button onclick="document.getElementById('goldMilestonePopup').remove()"
@@ -5002,7 +5002,7 @@
     }
 
     // Sistema de Baús
-    let chestCost = 60;
+    let chestCost = 100;
     const CHEST_MIN_CORRECT = 3;
     
     function openChest() {
