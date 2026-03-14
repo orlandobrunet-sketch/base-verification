@@ -3,138 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciamento de Perguntas - Base Verification</title>
+    <title>Gerenciamento de Perguntas — NefroQuest</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4);
-        }
-        .modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .modal-content {
-            background-color: #fefefe;
-            padding: 20px;
-            border-radius: 8px;
-            max-width: 800px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-        .question-card {
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .question-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-        .page-btn {
-            min-width: 40px;
-            height: 40px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid #d1d5db;
-            background: white;
-            color: #374151;
-            font-weight: 500;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .page-btn:hover:not(:disabled) {
-            background: #f3f4f6;
-            border-color: #9ca3af;
-        }
-        .page-btn.active {
-            background: #2563eb;
-            color: white;
-            border-color: #2563eb;
-        }
-        .page-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
+        .modal { display:none; position:fixed; z-index:1000; inset:0; background:rgba(0,0,0,0.4); }
+        .modal.active { display:flex; align-items:center; justify-content:center; }
+        .modal-content { background:#fefefe; padding:20px; border-radius:8px; max-width:800px; width:90%; max-height:90vh; overflow-y:auto; }
+        .question-card { cursor:pointer; transition:all 0.2s ease; }
+        .question-card:hover { transform:translateY(-2px); box-shadow:0 10px 25px rgba(0,0,0,0.15); }
+        .page-btn { min-width:40px; height:40px; display:inline-flex; align-items:center; justify-content:center; border:1px solid #d1d5db; background:white; color:#374151; font-weight:500; border-radius:6px; cursor:pointer; transition:all 0.2s; }
+        .page-btn:hover:not(:disabled) { background:#f3f4f6; border-color:#9ca3af; }
+        .page-btn.active { background:#2563eb; color:white; border-color:#2563eb; }
+        .page-btn:disabled { opacity:0.5; cursor:not-allowed; }
     </style>
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto px-4 py-8">
         <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
-            <h1 class="text-3xl font-bold text-gray-800 mb-4">🔧 Gerenciamento de Perguntas</h1>
-            <p class="text-gray-600 mb-4">Interface de administração para o quiz Base Verification</p>
-            
-            <!-- Controles -->
-            <div class="flex flex-wrap gap-4 mb-6">
-                <button onclick="loadQuestions()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
-                    📥 Carregar Perguntas
-                </button>
-                <button onclick="addNewQuestion()" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded">
-                    ➕ Nova Pergunta
-                </button>
-                <button onclick="exportIndexHTML()" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded">
-                    💾 Exportar index.html
-                </button>
-                <button onclick="exportJSON()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded">
-                    📄 Exportar JSON
-                </button>
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">🔧 Gerenciamento de Perguntas</h1>
+            <p class="text-gray-500 text-sm mb-4">NefroQuest — Editor de questões. Carregue, edite e exporte de volta para o index.html.</p>
+
+            <div class="flex flex-wrap gap-3 mb-6">
+                <button onclick="loadQuestions()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">📥 Carregar Perguntas</button>
+                <button onclick="addNewQuestion()" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded">➕ Nova Pergunta</button>
+                <button onclick="exportIndexHTML()" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded">💾 Exportar index.html</button>
+                <button onclick="exportJSON()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded">📄 Exportar JSON</button>
             </div>
 
-            <!-- Busca e Filtros -->
-            <div class="mb-6">
-                <input 
-                    type="text" 
-                    id="searchInput" 
-                    placeholder="🔍 Buscar por pergunta, tema ou referência..." 
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    oninput="filterQuestions()"
-                >
-            </div>
-
-            <div class="flex flex-wrap gap-4 mb-6">
+            <div class="flex flex-wrap gap-4 mb-4">
+                <input type="text" id="searchInput" placeholder="🔍 Buscar por pergunta, tema, categoria ou referência..."
+                    class="flex-1 min-w-[200px] px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    oninput="filterQuestions()">
                 <select id="difficultyFilter" onchange="filterQuestions()" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <option value="">Todas as Dificuldades</option>
-                    <option value="easy">Fácil</option>
                     <option value="medium">Médio</option>
                     <option value="hard">Difícil</option>
                 </select>
-                
-                <div class="flex items-center gap-2">
-                    <span class="text-gray-700 font-semibold">Total: <span id="totalCount">0</span> perguntas</span>
-                    <span class="text-gray-500">|</span>
-                    <span class="text-gray-700">Exibindo: <span id="filteredCount">0</span></span>
-                    <span class="text-gray-500">|</span>
-                    <span class="text-gray-700">Página: <span id="currentPageDisplay">1</span> de <span id="totalPagesDisplay">1</span></span>
-                </div>
+                <select id="catFilter" onchange="filterQuestions()" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="">Todas as Categorias</option>
+                </select>
+            </div>
+            <div class="text-sm text-gray-500 flex gap-4">
+                <span>Total: <strong id="totalCount">0</strong></span>
+                <span>Exibindo: <strong id="filteredCount">0</strong></span>
+                <span>Página: <strong id="currentPageDisplay">1</strong> / <strong id="totalPagesDisplay">1</strong></span>
             </div>
         </div>
 
-        <!-- Lista de Perguntas -->
         <div id="questionsList" class="space-y-4 mb-6">
-            <div class="bg-white rounded-lg shadow p-6 text-center text-gray-500">
-                Clique em "Carregar Perguntas" para começar
-            </div>
+            <div class="bg-white rounded-lg shadow p-6 text-center text-gray-400">Clique em "Carregar Perguntas" para começar</div>
         </div>
 
-        <!-- Paginação -->
-        <div id="paginationContainer" class="bg-white rounded-lg shadow-lg p-4 flex justify-center items-center gap-2 flex-wrap" style="display: none;">
-            <button id="prevBtn" onclick="goToPage(currentPage - 1)" class="page-btn">
-                ← Anterior
-            </button>
+        <div id="paginationContainer" class="bg-white rounded-lg shadow-lg p-4 flex justify-center items-center gap-2 flex-wrap" style="display:none;">
+            <button id="prevBtn" onclick="goToPage(currentPage-1)" class="page-btn">← Anterior</button>
             <div id="pageNumbers" class="flex gap-2 flex-wrap justify-center"></div>
-            <button id="nextBtn" onclick="goToPage(currentPage + 1)" class="page-btn">
-                Próxima →
-            </button>
+            <button id="nextBtn" onclick="goToPage(currentPage+1)" class="page-btn">Próxima →</button>
         </div>
     </div>
 
@@ -143,68 +66,72 @@
         <div class="modal-content">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-2xl font-bold text-gray-800" id="modalTitle">Editar Pergunta</h2>
-                <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 text-3xl leading-none">&times;</button>
             </div>
-            
             <form id="questionForm" class="space-y-4">
                 <input type="hidden" id="editIndex">
-                
                 <div>
-                    <label class="block text-gray-700 font-semibold mb-2">Tema:</label>
+                    <label class="block text-gray-700 font-semibold mb-1">Tema:</label>
                     <input type="text" id="editTheme" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                 </div>
-
                 <div>
-                    <label class="block text-gray-700 font-semibold mb-2">Pergunta:</label>
+                    <label class="block text-gray-700 font-semibold mb-1">Pergunta:</label>
                     <textarea id="editQuestion" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
                 </div>
-
                 <div>
-                    <label class="block text-gray-700 font-semibold mb-2">Alternativas:</label>
+                    <label class="block text-gray-700 font-semibold mb-1">Alternativas (A–D):</label>
                     <div class="space-y-2">
-                        <input type="text" id="editOption0" placeholder="Alternativa A" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                        <input type="text" id="editOption1" placeholder="Alternativa B" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                        <input type="text" id="editOption2" placeholder="Alternativa C" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                        <input type="text" id="editOption3" placeholder="Alternativa D" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        <div class="flex items-center gap-2">
+                            <span class="w-6 text-gray-500 font-bold">A</span>
+                            <input type="text" id="editOption0" placeholder="Alternativa A" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-6 text-gray-500 font-bold">B</span>
+                            <input type="text" id="editOption1" placeholder="Alternativa B" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-6 text-gray-500 font-bold">C</span>
+                            <input type="text" id="editOption2" placeholder="Alternativa C" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-6 text-gray-500 font-bold">D</span>
+                            <input type="text" id="editOption3" placeholder="Alternativa D" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
                     </div>
                 </div>
-
-                <div>
-                    <label class="block text-gray-700 font-semibold mb-2">Resposta Correta:</label>
-                    <select id="editAnswer" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                        <option value="0">A (primeira alternativa)</option>
-                        <option value="1">B (segunda alternativa)</option>
-                        <option value="2">C (terceira alternativa)</option>
-                        <option value="3">D (quarta alternativa)</option>
-                    </select>
+                <div class="flex gap-4">
+                    <div class="flex-1">
+                        <label class="block text-gray-700 font-semibold mb-1">Resposta Correta:</label>
+                        <select id="editAnswer" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <option value="0">A</option>
+                            <option value="1">B</option>
+                            <option value="2">C</option>
+                            <option value="3">D</option>
+                        </select>
+                    </div>
+                    <div class="flex-1">
+                        <label class="block text-gray-700 font-semibold mb-1">Dificuldade:</label>
+                        <select id="editDifficulty" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <option value="medium">Médio</option>
+                            <option value="hard">Difícil</option>
+                        </select>
+                    </div>
+                    <div class="flex-1">
+                        <label class="block text-gray-700 font-semibold mb-1">Categoria:</label>
+                        <input type="text" id="editCat" placeholder="ex: glomerular" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
                 </div>
-
                 <div>
-                    <label class="block text-gray-700 font-semibold mb-2">Explicação:</label>
-                    <textarea id="editExplanation" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+                    <label class="block text-gray-700 font-semibold mb-1">Explicação:</label>
+                    <textarea id="editExplanation" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
                 </div>
-
                 <div>
-                    <label class="block text-gray-700 font-semibold mb-2">Dificuldade:</label>
-                    <select id="editDifficulty" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                        <option value="easy">Fácil</option>
-                        <option value="medium">Médio</option>
-                        <option value="hard">Difícil</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="block text-gray-700 font-semibold mb-2">Referências (separadas por vírgula):</label>
+                    <label class="block text-gray-700 font-semibold mb-1">Referências (chaves separadas por vírgula):</label>
                     <input type="text" id="editRefs" placeholder="kdigo_ckd, kdigo_aki" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
-
-                <div class="flex gap-4 pt-4">
-                    <button type="submit" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
-                        💾 Salvar
-                    </button>
-                    <button type="button" onclick="closeModal()" class="flex-1 bg-gray-400 hover:bg-gray-500 text-white font-semibold py-2 px-4 rounded">
-                        ❌ Cancelar
-                    </button>
+                <div class="flex gap-4 pt-2">
+                    <button type="submit" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">💾 Salvar</button>
+                    <button type="button" onclick="closeModal()" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded">Cancelar</button>
                 </div>
             </form>
         </div>
@@ -222,188 +149,118 @@
                 const response = await fetch('index.html');
                 const html = await response.text();
                 originalIndexHTML = html;
-                
-                // Extrair o array topics do HTML
                 const match = html.match(/const topics = (\[[\s\S]*?\]);/);
-                if (match) {
-                    questions = JSON.parse(match[1]);
-                    filteredQuestions = [...questions];
-                    currentPage = 1;
-                    updateCounts();
-                    renderQuestions();
-                    renderPagination();
-                    alert(`✅ ${questions.length} perguntas carregadas com sucesso!`);
-                } else {
-                    alert('❌ Erro: Não foi possível encontrar o array de perguntas no index.html');
-                }
-            } catch (error) {
-                alert('❌ Erro ao carregar perguntas: ' + error.message);
+                if (!match) { alert('❌ Não foi possível encontrar o array de perguntas no index.html'); return; }
+                questions = JSON.parse(match[1]);
+                filteredQuestions = [...questions];
+                currentPage = 1;
+                populateCatFilter();
+                updateCounts();
+                renderQuestions();
+                renderPagination();
+                alert(`✅ ${questions.length} perguntas carregadas!`);
+            } catch (e) {
+                alert('❌ Erro ao carregar: ' + e.message);
             }
         }
 
-        function getTotalPages() {
-            return Math.ceil(filteredQuestions.length / questionsPerPage);
+        function populateCatFilter() {
+            const cats = [...new Set(questions.map(q => q.cat).filter(Boolean))].sort();
+            const sel = document.getElementById('catFilter');
+            sel.innerHTML = '<option value="">Todas as Categorias</option>' +
+                cats.map(c => `<option value="${c}">${c}</option>`).join('');
         }
 
+        function getTotalPages() { return Math.ceil(filteredQuestions.length / questionsPerPage); }
         function getCurrentPageQuestions() {
-            const startIndex = (currentPage - 1) * questionsPerPage;
-            const endIndex = startIndex + questionsPerPage;
-            return filteredQuestions.slice(startIndex, endIndex);
+            const s = (currentPage - 1) * questionsPerPage;
+            return filteredQuestions.slice(s, s + questionsPerPage);
         }
 
         function renderQuestions() {
             const container = document.getElementById('questionsList');
-            
-            if (filteredQuestions.length === 0) {
-                container.innerHTML = '<div class="bg-white rounded-lg shadow p-6 text-center text-gray-500">Nenhuma pergunta encontrada</div>';
+            if (!filteredQuestions.length) {
+                container.innerHTML = '<div class="bg-white rounded-lg shadow p-6 text-center text-gray-400">Nenhuma pergunta encontrada</div>';
                 document.getElementById('paginationContainer').style.display = 'none';
                 return;
             }
+            const diffColors = { medium: 'bg-yellow-100 text-yellow-800', hard: 'bg-red-100 text-red-800' };
+            const diffLabels = { medium: 'Médio', hard: 'Difícil' };
 
-            const pageQuestions = getCurrentPageQuestions();
-            
-            container.innerHTML = pageQuestions.map((q) => {
-                const originalIndex = questions.indexOf(q);
-                const difficultyColors = {
-                    easy: 'bg-green-100 text-green-800',
-                    medium: 'bg-yellow-100 text-yellow-800',
-                    hard: 'bg-red-100 text-red-800'
-                };
-                const difficultyLabels = {
-                    easy: 'Fácil',
-                    medium: 'Médio',
-                    hard: 'Difícil'
-                };
-                
+            container.innerHTML = getCurrentPageQuestions().map(q => {
+                const idx = questions.indexOf(q);
+                const opts = q.opts || q.o || [];
+                const ans = q.ans !== undefined ? q.ans : (q.a !== undefined ? q.a : 0);
+                const exp = q.exp || q.e || '';
+                const diff = q.diff || q.d || 'medium';
+                const refs = q.refs || q.r || [];
                 return `
-                    <div class="question-card bg-white rounded-lg shadow-lg p-6" onclick="editQuestion(${originalIndex})">
-                        <div class="flex justify-between items-start">
-                            <div class="flex-1">
-                                <div class="flex items-center gap-2 mb-2">
-                                    <span class="text-sm font-bold text-gray-500">#${originalIndex + 1}</span>
-                                    <span class="px-3 py-1 rounded-full text-xs font-semibold ${difficultyColors[q.d] || 'bg-gray-100 text-gray-800'}">
-                                        ${difficultyLabels[q.d] || q.d}
-                                    </span>
-                                </div>
-                                <h3 class="text-lg font-bold text-gray-800 mb-2">${q.t}</h3>
-                                <p class="text-gray-700 mb-3">${q.q}</p>
-                                
-                                <div class="space-y-1 mb-3">
-                                    ${q.o.map((opt, i) => `
-                                        <div class="flex items-start gap-2">
-                                            <span class="font-semibold ${i === q.a ? 'text-green-600' : 'text-gray-600'}">
-                                                ${String.fromCharCode(65 + i)})
-                                            </span>
-                                            <span class="${i === q.a ? 'text-green-700 font-semibold' : 'text-gray-600'}">
-                                                ${opt} ${i === q.a ? '✓' : ''}
-                                            </span>
-                                        </div>
-                                    `).join('')}
-                                </div>
-                                
-                                <div class="bg-blue-50 border-l-4 border-blue-500 p-3 mb-3">
-                                    <p class="text-sm text-gray-700"><strong>Explicação:</strong> ${q.e}</p>
-                                </div>
-                                
-                                ${q.refs && q.refs.length > 0 ? `
-                                    <div class="flex flex-wrap gap-2">
-                                        ${q.refs.map(ref => `
-                                            <span class="px-2 py-1 bg-gray-200 text-gray-700 text-xs rounded">📚 ${ref}</span>
-                                        `).join('')}
-                                    </div>
-                                ` : ''}
+                <div class="question-card bg-white rounded-lg shadow-lg p-5" onclick="editQuestion(${idx})">
+                    <div class="flex justify-between items-start gap-4">
+                        <div class="flex-1 min-w-0">
+                            <div class="flex flex-wrap items-center gap-2 mb-2">
+                                <span class="text-xs font-bold text-gray-400">#${idx + 1}</span>
+                                <span class="px-2 py-0.5 rounded-full text-xs font-semibold ${diffColors[diff] || 'bg-gray-100 text-gray-700'}">${diffLabels[diff] || diff}</span>
+                                ${q.cat ? `<span class="px-2 py-0.5 rounded-full text-xs bg-blue-50 text-blue-700">${q.cat}</span>` : ''}
                             </div>
-                            
-                            <div class="flex flex-col gap-2 ml-4">
-                                <button onclick="event.stopPropagation(); deleteQuestion(${originalIndex})" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm font-semibold">
-                                    🗑️ Deletar
-                                </button>
+                            <h3 class="font-bold text-gray-800 mb-1">${q.t || ''}</h3>
+                            <p class="text-gray-700 text-sm mb-3">${q.q || ''}</p>
+                            <div class="space-y-1 mb-3 text-sm">
+                                ${opts.map((opt, i) => `
+                                    <div class="flex gap-2">
+                                        <span class="font-bold ${i === ans ? 'text-green-600' : 'text-gray-400'} flex-shrink-0">${String.fromCharCode(65+i)})</span>
+                                        <span class="${i === ans ? 'text-green-700 font-semibold' : 'text-gray-600'}">${opt}${i === ans ? ' ✓' : ''}</span>
+                                    </div>`).join('')}
                             </div>
+                            <div class="bg-blue-50 border-l-4 border-blue-400 p-3 text-sm text-gray-700 mb-2">
+                                <strong>Explicação:</strong> ${exp}
+                            </div>
+                            ${refs.length ? `<div class="flex flex-wrap gap-1">${refs.map(r => `<span class="px-2 py-0.5 bg-gray-100 text-gray-600 text-xs rounded">📚 ${r}</span>`).join('')}</div>` : ''}
                         </div>
+                        <button onclick="event.stopPropagation(); deleteQuestion(${idx})"
+                            class="flex-shrink-0 bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded text-xs font-semibold">🗑️</button>
                     </div>
-                `;
+                </div>`;
             }).join('');
-
             document.getElementById('paginationContainer').style.display = 'flex';
         }
 
         function renderPagination() {
-            const totalPages = getTotalPages();
-            const pageNumbersContainer = document.getElementById('pageNumbers');
-            
-            if (totalPages <= 1) {
-                document.getElementById('paginationContainer').style.display = 'none';
-                return;
-            }
-
-            // Atualizar displays
+            const total = getTotalPages();
             document.getElementById('currentPageDisplay').textContent = currentPage;
-            document.getElementById('totalPagesDisplay').textContent = totalPages;
-
-            // Atualizar botões anterior/próximo
+            document.getElementById('totalPagesDisplay').textContent = total;
             document.getElementById('prevBtn').disabled = currentPage === 1;
-            document.getElementById('nextBtn').disabled = currentPage === totalPages;
-
-            // Gerar botões de número de página
-            let pageButtons = '';
-            
-            // Lógica para mostrar páginas relevantes
-            let startPage = Math.max(1, currentPage - 2);
-            let endPage = Math.min(totalPages, currentPage + 2);
-            
-            // Sempre mostrar primeira página
-            if (startPage > 1) {
-                pageButtons += `<button class="page-btn" onclick="goToPage(1)">1</button>`;
-                if (startPage > 2) {
-                    pageButtons += `<span class="px-2 text-gray-500">...</span>`;
-                }
-            }
-            
-            // Páginas do meio
-            for (let i = startPage; i <= endPage; i++) {
-                pageButtons += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
-            }
-            
-            // Sempre mostrar última página
-            if (endPage < totalPages) {
-                if (endPage < totalPages - 1) {
-                    pageButtons += `<span class="px-2 text-gray-500">...</span>`;
-                }
-                pageButtons += `<button class="page-btn" onclick="goToPage(${totalPages})">${totalPages}</button>`;
-            }
-            
-            pageNumbersContainer.innerHTML = pageButtons;
+            document.getElementById('nextBtn').disabled = currentPage === total;
+            if (total <= 1) { document.getElementById('paginationContainer').style.display = 'none'; return; }
+            let s = Math.max(1, currentPage - 2), e = Math.min(total, currentPage + 2), html = '';
+            if (s > 1) { html += `<button class="page-btn" onclick="goToPage(1)">1</button>`; if (s > 2) html += `<span class="px-2 text-gray-400">…</span>`; }
+            for (let i = s; i <= e; i++) html += `<button class="page-btn ${i===currentPage?'active':''}" onclick="goToPage(${i})">${i}</button>`;
+            if (e < total) { if (e < total-1) html += `<span class="px-2 text-gray-400">…</span>`; html += `<button class="page-btn" onclick="goToPage(${total})">${total}</button>`; }
+            document.getElementById('pageNumbers').innerHTML = html;
         }
 
         function goToPage(page) {
-            const totalPages = getTotalPages();
-            if (page < 1 || page > totalPages) return;
-            
+            if (page < 1 || page > getTotalPages()) return;
             currentPage = page;
             renderQuestions();
             renderPagination();
-            
-            // Scroll suave para o topo
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function filterQuestions() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const difficultyFilter = document.getElementById('difficultyFilter').value;
-            
+            const s = document.getElementById('searchInput').value.toLowerCase();
+            const diff = document.getElementById('difficultyFilter').value;
+            const cat = document.getElementById('catFilter').value;
             filteredQuestions = questions.filter(q => {
-                const matchesSearch = !searchTerm || 
-                    q.t.toLowerCase().includes(searchTerm) ||
-                    q.q.toLowerCase().includes(searchTerm) ||
-                    q.e.toLowerCase().includes(searchTerm) ||
-                    (q.refs && q.refs.some(ref => ref.toLowerCase().includes(searchTerm)));
-                
-                const matchesDifficulty = !difficultyFilter || q.d === difficultyFilter;
-                
-                return matchesSearch && matchesDifficulty;
+                const qDiff = q.diff || q.d || '';
+                const qCat = q.cat || '';
+                const refs = q.refs || q.r || [];
+                const matchS = !s || (q.t||'').toLowerCase().includes(s) || (q.q||'').toLowerCase().includes(s)
+                    || (q.exp||q.e||'').toLowerCase().includes(s) || qCat.toLowerCase().includes(s)
+                    || refs.some(r => r.toLowerCase().includes(s));
+                return matchS && (!diff || qDiff === diff) && (!cat || qCat === cat);
             });
-            
-            currentPage = 1; // Reset para primeira página ao filtrar
+            currentPage = 1;
             updateCounts();
             renderQuestions();
             renderPagination();
@@ -416,20 +273,21 @@
 
         function editQuestion(index) {
             const q = questions[index];
+            const opts = q.opts || q.o || ['','','',''];
+            const ans = q.ans !== undefined ? q.ans : (q.a !== undefined ? q.a : 0);
             document.getElementById('editIndex').value = index;
             document.getElementById('modalTitle').textContent = `Editar Pergunta #${index + 1}`;
-            
-            document.getElementById('editTheme').value = q.t;
-            document.getElementById('editQuestion').value = q.q;
-            document.getElementById('editOption0').value = q.o[0] || '';
-            document.getElementById('editOption1').value = q.o[1] || '';
-            document.getElementById('editOption2').value = q.o[2] || '';
-            document.getElementById('editOption3').value = q.o[3] || '';
-            document.getElementById('editAnswer').value = q.a;
-            document.getElementById('editExplanation').value = q.e;
-            document.getElementById('editDifficulty').value = q.d;
-            document.getElementById('editRefs').value = q.refs ? q.refs.join(', ') : '';
-            
+            document.getElementById('editTheme').value = q.t || '';
+            document.getElementById('editQuestion').value = q.q || '';
+            document.getElementById('editOption0').value = opts[0] || '';
+            document.getElementById('editOption1').value = opts[1] || '';
+            document.getElementById('editOption2').value = opts[2] || '';
+            document.getElementById('editOption3').value = opts[3] || '';
+            document.getElementById('editAnswer').value = ans;
+            document.getElementById('editExplanation').value = q.exp || q.e || '';
+            document.getElementById('editDifficulty').value = q.diff || q.d || 'medium';
+            document.getElementById('editCat').value = q.cat || '';
+            document.getElementById('editRefs').value = (q.refs || q.r || []).join(', ');
             document.getElementById('editModal').classList.add('active');
         }
 
@@ -440,99 +298,56 @@
             document.getElementById('editModal').classList.add('active');
         }
 
-        function closeModal() {
-            document.getElementById('editModal').classList.remove('active');
-        }
+        function closeModal() { document.getElementById('editModal').classList.remove('active'); }
 
         document.getElementById('questionForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
             const index = parseInt(document.getElementById('editIndex').value);
-            const refs = document.getElementById('editRefs').value
-                .split(',')
-                .map(r => r.trim())
-                .filter(r => r.length > 0);
-            
-            const questionData = {
+            const refs = document.getElementById('editRefs').value.split(',').map(r=>r.trim()).filter(Boolean);
+            const qData = {
                 t: document.getElementById('editTheme').value,
                 q: document.getElementById('editQuestion').value,
-                o: [
+                opts: [
                     document.getElementById('editOption0').value,
                     document.getElementById('editOption1').value,
                     document.getElementById('editOption2').value,
                     document.getElementById('editOption3').value
                 ],
-                a: parseInt(document.getElementById('editAnswer').value),
-                e: document.getElementById('editExplanation').value,
-                d: document.getElementById('editDifficulty').value,
-                refs: refs
+                ans: parseInt(document.getElementById('editAnswer').value),
+                exp: document.getElementById('editExplanation').value,
+                diff: document.getElementById('editDifficulty').value,
+                cat: document.getElementById('editCat').value || 'nefrologia_geral',
+                refs
             };
-            
-            if (index === -1) {
-                questions.push(questionData);
-                alert('✅ Pergunta adicionada com sucesso!');
-            } else {
-                questions[index] = questionData;
-                alert('✅ Pergunta atualizada com sucesso!');
-            }
-            
+            if (index === -1) { questions.push(qData); alert('✅ Pergunta adicionada!'); }
+            else { questions[index] = qData; alert('✅ Pergunta atualizada!'); }
             filterQuestions();
             closeModal();
         });
 
         function deleteQuestion(index) {
-            if (confirm(`Tem certeza que deseja deletar a pergunta #${index + 1}?\n\n"${questions[index].t}"`)) {
+            if (confirm(`Deletar pergunta #${index+1}?\n\n"${questions[index].t}"`)) {
                 questions.splice(index, 1);
                 filterQuestions();
-                alert('✅ Pergunta deletada com sucesso!');
             }
         }
 
         function exportJSON() {
-            const dataStr = JSON.stringify(questions, null, 2);
-            const dataBlob = new Blob([dataStr], { type: 'application/json' });
-            const url = URL.createObjectURL(dataBlob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = `perguntas_${new Date().toISOString().split('T')[0]}.json`;
-            link.click();
-            URL.revokeObjectURL(url);
+            const blob = new Blob([JSON.stringify(questions, null, 2)], {type:'application/json'});
+            const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: `perguntas_${new Date().toISOString().split('T')[0]}.json` });
+            a.click(); URL.revokeObjectURL(a.href);
         }
 
         function exportIndexHTML() {
-            if (!originalIndexHTML) {
-                alert('❌ Erro: Carregue as perguntas primeiro!');
-                return;
-            }
-            
-            // Criar o novo array de perguntas formatado
-            const newTopicsArray = JSON.stringify(questions);
-            
-            // Substituir o array antigo pelo novo no HTML
-            const updatedHTML = originalIndexHTML.replace(
-                /const topics = \[[\s\S]*?\];/,
-                `const topics = ${newTopicsArray};`
-            );
-            
-            // Criar e baixar o arquivo
-            const blob = new Blob([updatedHTML], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = `index_${new Date().toISOString().split('T')[0]}.html`;
-            link.click();
-            URL.revokeObjectURL(url);
-            
-            alert(`✅ index.html exportado com sucesso!\n\nTotal de perguntas: ${questions.length}\n\nSubstitua o arquivo index.html original por este arquivo baixado.`);
+            if (!originalIndexHTML) { alert('❌ Carregue as perguntas primeiro!'); return; }
+            const updated = originalIndexHTML.replace(/const topics = \[[\s\S]*?\];/, `const topics = ${JSON.stringify(questions)};`);
+            const blob = new Blob([updated], {type:'text/html'});
+            const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: `index_${new Date().toISOString().split('T')[0]}.html` });
+            a.click(); URL.revokeObjectURL(a.href);
+            alert(`✅ index.html exportado! (${questions.length} perguntas)\n\nSubstitua o index.html original pelo arquivo baixado.`);
         }
 
-        // Fechar modal ao clicar fora
-        window.onclick = function(event) {
-            const modal = document.getElementById('editModal');
-            if (event.target === modal) {
-                closeModal();
-            }
-        }
+        window.onclick = e => { if (e.target === document.getElementById('editModal')) closeModal(); };
     </script>
 </body>
 </html>
