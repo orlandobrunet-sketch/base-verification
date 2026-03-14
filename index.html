@@ -3013,6 +3013,8 @@
     // ============ SISTEMA DE SAVE/LOAD (localStorage) ============
     const SAVE_KEY = 'nefroquest-save';
     const STATS_KEY = 'nefroquest-stats';
+    // Chave Web3Forms — obtenha grátis em https://web3forms.com (cadastre orlandobrunet@gmail.com)
+    const FLAG_API_KEY = 'YOUR_WEB3FORMS_KEY';
     
     function getGameStats() {
       try { return JSON.parse(localStorage.getItem(STATS_KEY) || '{"gamesPlayed":0,"bestLevel":0,"bestScore":0}'); } catch(e) { return {gamesPlayed:0,bestLevel:0,bestScore:0}; }
@@ -4183,7 +4185,6 @@
     function flagQuestion() {
       const q = state.current;
       if (!q) return;
-      // Remove popup anterior
       document.getElementById('flagPopup')?.remove();
       const qNum = q.id || '?';
       const qText = (q.q || '').substring(0, 300);
@@ -4200,50 +4201,62 @@
           <p style="font-size:0.82rem;color:#94a3b8;background:rgba(30,40,70,0.5);border-radius:8px;padding:10px;margin-bottom:14px;font-style:italic;line-height:1.5;">"${qText.replace(/"/g,'&quot;')}"</p>
           <label style="font-size:0.82rem;color:#93b4e8;display:block;margin-bottom:6px;">Descreva o problema:</label>
           <textarea id="flagComment" rows="3" placeholder="Ex: A alternativa B está incorreta pois... / O gabarito deveria ser..."
-            style="width:100%;background:rgba(10,20,40,0.8);border:1px solid #2a4a7a;border-radius:8px;color:#d5e2ff;font-size:0.85rem;padding:10px;resize:vertical;font-family:'Philosopher',serif;outline:none;"></textarea>
-          <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;">
-            <button onclick="sendFlagEmail(${qNum})" 
-              style="flex:1;min-width:140px;background:linear-gradient(180deg,#4f46e5,#3730a3);border:2px solid #6366f1;color:#fff;border-radius:8px;padding:10px;font-family:'Cinzel',serif;font-size:0.78rem;font-weight:700;letter-spacing:1px;cursor:pointer;text-transform:uppercase;">
-              📧 Enviar por Gmail
-            </button>
-            <button onclick="copyFlagToClipboard(${qNum})"
-              style="flex:1;min-width:120px;background:linear-gradient(180deg,#1e3a5e,#152a48);border:2px solid #2a4a7a;color:#c8d8f0;border-radius:8px;padding:10px;font-family:'Cinzel',serif;font-size:0.78rem;font-weight:700;letter-spacing:1px;cursor:pointer;text-transform:uppercase;">
-              📋 Copiar
-            </button>
-          </div>
-          <p style="font-size:0.7rem;color:#475569;margin-top:10px;text-align:center;">Gmail será aberto no navegador • não precisa de cliente de e-mail instalado</p>
+            style="width:100%;background:rgba(10,20,40,0.8);border:1px solid #2a4a7a;border-radius:8px;color:#d5e2ff;font-size:0.85rem;padding:10px;resize:vertical;font-family:'Philosopher',serif;outline:none;box-sizing:border-box;"></textarea>
+          <div id="flagStatus" style="min-height:20px;margin-top:8px;font-size:0.78rem;text-align:center;"></div>
+          <button onclick="submitFlag(${qNum})" id="flagSendBtn"
+            style="width:100%;margin-top:10px;background:linear-gradient(180deg,#4f46e5,#3730a3);border:2px solid #6366f1;color:#fff;border-radius:8px;padding:12px;font-family:'Cinzel',serif;font-size:0.82rem;font-weight:700;letter-spacing:1px;cursor:pointer;text-transform:uppercase;">
+            📧 Enviar
+          </button>
         </div>`;
       document.body.appendChild(popup);
       popup.addEventListener('click', e => { if(e.target===popup) popup.remove(); });
       setTimeout(() => document.getElementById('flagComment')?.focus(), 100);
     }
 
-    function sendFlagEmail(qNum) {
+    async function submitFlag(qNum) {
       const comment = (document.getElementById('flagComment')?.value || '').trim();
       const q = state.current;
-      const qText = (q?.q || '').substring(0, 300);
-      const subject = encodeURIComponent(`[NefroQuest] Erro sinalizado — Questão #${qNum}`);
-      const body = encodeURIComponent(
-        `Olá Orlando,\n\n` +
-        `Foi sinalizado um possível erro na Questão #${qNum} do NefroQuest.\n\n` +
-        `QUESTÃO:\n"${qText}"\n\n` +
-        `COMENTÁRIO DO JOGADOR:\n${comment || '(sem comentário adicional)'}\n\n` +
-        `---\nEnviado pelo botão de sinalização do NefroQuest`
-      );
-      window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=orlandobrunet%40gmail.com&su=${subject}&body=${body}`, '_blank');
-      document.getElementById('flagPopup')?.remove();
-      log('🚩 Obrigado por sinalizar! Seu feedback é enviado ao desenvolvedor.');
-    }
+      const qText = (q?.q || '').substring(0, 500);
+      const btn = document.getElementById('flagSendBtn');
+      const status = document.getElementById('flagStatus');
 
-    function copyFlagToClipboard(qNum) {
-      const comment = (document.getElementById('flagComment')?.value || '').trim();
-      const q = state.current;
-      const qText = (q?.q || '').substring(0, 300);
-      const text = `[NefroQuest] Erro Q#${qNum}\n${qText}\n\nComentário: ${comment || '-'}`;
-      navigator.clipboard.writeText(text).then(() => {
-        document.getElementById('flagPopup')?.remove();
-        log('📋 Copiado! Cole no e-mail para orlandobrunet@gmail.com');
-      }).catch(() => alert('Cole manualmente: ' + text));
+      btn.disabled = true;
+      btn.textContent = 'Enviando...';
+      status.style.color = '#93b4e8';
+      status.textContent = '';
+
+      const body = {
+        access_key: FLAG_API_KEY,
+        subject: `[NefroQuest] Erro sinalizado — Questão #${qNum}`,
+        from_name: 'NefroQuest — Sinalização de Erro',
+        message:
+          `Questão #${qNum}\n\n` +
+          `ENUNCIADO:\n"${qText}"\n\n` +
+          `COMENTÁRIO DO JOGADOR:\n${comment || '(sem comentário adicional)'}`,
+      };
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(body),
+        });
+        const data = await res.json();
+        if (data.success) {
+          status.style.color = '#4ade80';
+          status.textContent = '✅ Erro enviado! Obrigado pelo feedback.';
+          setTimeout(() => document.getElementById('flagPopup')?.remove(), 2000);
+          log('🚩 Erro na questão #' + qNum + ' sinalizado com sucesso!');
+        } else {
+          throw new Error(data.message || 'Falha no envio');
+        }
+      } catch (err) {
+        status.style.color = '#f87171';
+        status.textContent = '❌ Falha ao enviar. Verifique a chave da API.';
+        btn.disabled = false;
+        btn.textContent = '📧 Enviar';
+        console.error('[Flag]', err);
+      }
     }
 
     function xpForLevel(lv) {
