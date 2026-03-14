@@ -605,17 +605,18 @@
     /* Botão base */
     .dock-btn {
       position: relative;
-      width: 80px;
-      height: 76px;
+      width: 84px;
+      height: 100px;
       border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: linear-gradient(145deg, rgba(20,28,55,0.9), rgba(12,18,40,0.95));
+      border: 2px solid rgba(255,255,255,0.18);
+      background: linear-gradient(180deg, rgba(20,28,55,0.95) 0%, rgba(10,16,38,0.98) 100%);
       cursor: pointer;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 4px;
+      justify-content: flex-start;
+      padding-top: 18px;
+      gap: 0;
       margin: 0;
       transition: transform 0.18s cubic-bezier(.34,1.56,.64,1),
                   background 0.18s,
@@ -623,13 +624,13 @@
                   box-shadow 0.18s;
       overflow: visible;
       will-change: transform;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.08);
     }
     .dock-btn:hover {
-      transform: scale(1.1);
-      background: linear-gradient(145deg, rgba(30,42,80,0.95), rgba(18,28,60,0.98));
-      border-color: rgba(255,215,0,0.5);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.7), 0 0 12px rgba(255,215,0,0.15);
+      transform: scale(1.08);
+      background: linear-gradient(180deg, rgba(28,40,78,0.97) 0%, rgba(16,24,54,0.99) 100%);
+      border-color: rgba(255,215,0,0.55);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.75), 0 0 14px rgba(255,215,0,0.18);
       z-index: 1;
     }
     .dock-btn:active { transform: scale(0.94); }
@@ -641,24 +642,32 @@
 
     /* Ícone SVG */
     .dock-btn svg {
-      width: 36px;
-      height: 36px;
+      width: 44px;
+      height: 44px;
       flex-shrink: 0;
       transition: filter 0.2s;
     }
 
-    /* Label */
+    /* Label — banda colorida na base do botão */
     .dock-btn .dock-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 26px;
+      border-radius: 0 0 12px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-family: 'Cinzel', serif;
-      font-size: 0.5rem;
+      font-size: 0.46rem;
       font-weight: 700;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.5px;
       text-transform: uppercase;
       line-height: 1;
       white-space: nowrap;
-      overflow: visible;
-      max-width: none;
-      opacity: 0.9;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.45);
     }
 
     /* Tooltip — aparece à esquerda */
@@ -688,19 +697,28 @@
 
     /* ── Variantes de cor por função ── */
 
-    /* Forjar Item — bronze/cobre */
+    /* Forja — laranja brasa (combina forjar item + lendário) */
+    .dock-btn.forge-btn { border-color: rgba(245,158,90,0.4); }
+    .dock-btn.forge-btn svg { color: #fb923c; filter: drop-shadow(0 0 7px rgba(251,146,60,0.9)); }
+    .dock-btn.forge-btn .dock-label { color: #fb923c; background: rgba(251,146,60,0.3); }
+    .dock-btn.forge-btn:hover {
+      border-color: rgba(251,146,60,0.75);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.7), 0 0 18px rgba(251,146,60,0.35);
+    }
+
+    /* Forjar Item — bronze/cobre (legado) */
     .dock-btn.forge-item { border-color: rgba(245,158,90,0.3); }
     .dock-btn.forge-item svg { color: #fb923c; filter: drop-shadow(0 0 6px rgba(251,146,60,0.8)); }
-    .dock-btn.forge-item .dock-label { color: #fb923c; }
+    .dock-btn.forge-item .dock-label { color: #fb923c; background: rgba(251,146,60,0.28); }
     .dock-btn.forge-item:hover {
       border-color: rgba(251,146,60,0.7);
       box-shadow: 0 4px 20px rgba(0,0,0,0.7), 0 0 16px rgba(251,146,60,0.3);
     }
 
-    /* Forjar Lendário — roxo épico */
+    /* Forjar Lendário — roxo épico (legado) */
     .dock-btn.forge-legendary { border-color: rgba(192,132,252,0.3); }
     .dock-btn.forge-legendary svg { color: #d8b4fe; filter: drop-shadow(0 0 7px rgba(216,180,254,0.9)); }
-    .dock-btn.forge-legendary .dock-label { color: #d8b4fe; }
+    .dock-btn.forge-legendary .dock-label { color: #d8b4fe; background: rgba(192,132,252,0.25); }
     .dock-btn.forge-legendary:hover {
       border-color: rgba(216,180,254,0.7);
       box-shadow: 0 4px 20px rgba(0,0,0,0.7), 0 0 18px rgba(192,132,252,0.4);
@@ -709,7 +727,7 @@
     /* Abrir Baú — dourado */
     .dock-btn.open-chest { border-color: rgba(255,215,0,0.3); }
     .dock-btn.open-chest svg { color: #ffd700; filter: drop-shadow(0 0 8px rgba(255,215,0,1)); }
-    .dock-btn.open-chest .dock-label { color: #fcd34d; }
+    .dock-btn.open-chest .dock-label { color: #fcd34d; background: rgba(255,215,0,0.22); }
     .dock-btn.open-chest:hover {
       border-color: rgba(255,215,0,0.7);
       box-shadow: 0 4px 20px rgba(0,0,0,0.7), 0 0 22px rgba(255,215,0,0.45);
@@ -718,7 +736,7 @@
     /* Leaderboard — azul safira */
     .dock-btn.leaderboard { border-color: rgba(96,165,250,0.3); }
     .dock-btn.leaderboard svg { color: #93c5fd; filter: drop-shadow(0 0 6px rgba(147,197,253,0.8)); }
-    .dock-btn.leaderboard .dock-label { color: #93c5fd; }
+    .dock-btn.leaderboard .dock-label { color: #93c5fd; background: rgba(96,165,250,0.22); }
     .dock-btn.leaderboard:hover {
       border-color: rgba(96,165,250,0.5);
       box-shadow: 0 0 16px rgba(96,165,250,0.25), inset 0 0 12px rgba(96,165,250,0.06);
@@ -727,7 +745,7 @@
     /* Stats — ciano */
     .dock-btn.stats-btn { border-color: rgba(34,211,238,0.3); }
     .dock-btn.stats-btn svg { color: #67e8f9; filter: drop-shadow(0 0 6px rgba(103,232,249,0.9)); }
-    .dock-btn.stats-btn .dock-label { color: #67e8f9; }
+    .dock-btn.stats-btn .dock-label { color: #67e8f9; background: rgba(34,211,238,0.2); }
     .dock-btn.stats-btn:hover {
       border-color: rgba(103,232,249,0.7);
       box-shadow: 0 4px 20px rgba(0,0,0,0.7), 0 0 16px rgba(34,211,238,0.35);
@@ -736,7 +754,7 @@
     /* Conquistas — dourado troféu */
     .dock-btn.achievements-btn { border-color: rgba(255,215,0,0.3); }
     .dock-btn.achievements-btn svg { color: #ffd700; filter: drop-shadow(0 0 8px rgba(255,215,0,1)); }
-    .dock-btn.achievements-btn .dock-label { color: #fcd34d; }
+    .dock-btn.achievements-btn .dock-label { color: #fcd34d; background: rgba(255,215,0,0.22); }
     .dock-btn.achievements-btn:hover {
       border-color: rgba(255,215,0,0.7);
       box-shadow: 0 4px 20px rgba(0,0,0,0.7), 0 0 22px rgba(255,215,0,0.45);
@@ -2042,32 +2060,21 @@
     <!-- ACTION DOCK — Coluna fixa no grid -->
     <div id="actionDock" class="action-dock hidden">
 
-    <!-- Forjar Item -->
+    <!-- Forja (item comum + lendário em popup) -->
     <button id="forgeBtn"
-      class="dock-btn forge-item"
-      onclick="showMobileActionConfirm('forge')"
-      data-tip="Forjar Item">
+      class="dock-btn forge-btn"
+      onclick="showForjaModal()"
+      data-tip="Forja">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <path d="M14.5 2.5c0 1.5-1.5 3-1.5 3s-1.5-1.5-1.5-3a1.5 1.5 0 0 1 3 0z"/>
         <path d="M12 5.5V9"/>
         <path d="M9 9h6l1.5 9H7.5L9 9z"/>
         <path d="M7.5 18h9"/>
-        <path d="M10 12l1 3 1-3"/>
+        <path d="M3 21h18"/>
+        <line x1="7" y1="21" x2="7" y2="18"/>
+        <line x1="17" y1="21" x2="17" y2="18"/>
       </svg>
-      <span class="dock-label">Forjar</span>
-    </button>
-
-    <!-- Forjar Lendário -->
-    <button id="legendaryForgeBtn"
-      class="dock-btn forge-legendary"
-      onclick="showMobileActionConfirm('legendary')"
-      data-tip="Forjar Item Lendário">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
-        <line x1="12" y1="2" x2="12" y2="6"/>
-        <line x1="12" y1="18" x2="12" y2="22"/>
-      </svg>
-      <span class="dock-label">Lendário</span>
+      <span class="dock-label">Forja</span>
     </button>
 
     <div class="dock-divider"></div>
@@ -5113,6 +5120,92 @@
 
     // Expor popup no escopo global para uso via onclick no HTML
     window.showMobileActionConfirm = showActionConfirmPopup;
+
+    // Modal da Forja — duas opções: item comum e lendário
+    function showForjaModal() {
+      const existing = document.getElementById('forjaModal');
+      if(existing) existing.remove();
+
+      const goldForge = 300, goldLeg = 1000;
+      const canForge = state.gold >= goldForge;
+      const canLeg   = state.gold >= goldLeg;
+
+      const modal = document.createElement('div');
+      modal.id = 'forjaModal';
+      modal.style.cssText = 'position:fixed;inset:0;z-index:9100;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.72);';
+      modal.innerHTML = `
+        <div style="
+          background:linear-gradient(160deg,rgba(18,26,54,0.99),rgba(10,16,38,0.99));
+          border:1px solid rgba(255,215,0,0.35);border-radius:18px;
+          padding:28px 24px 20px;min-width:310px;max-width:380px;width:90%;
+          box-shadow:0 8px 48px rgba(0,0,0,0.9),0 0 0 1px rgba(255,215,0,0.08) inset;
+        ">
+          <h3 style="color:#fb923c;font-family:'Cinzel',serif;font-size:1.15rem;text-align:center;margin:0 0 6px;letter-spacing:1px;">🔥 FORJA</h3>
+          <p style="color:#6b7db8;font-family:'Philosopher',serif;font-size:0.78rem;text-align:center;margin:0 0 20px;">Escolha o tipo de forjamento</p>
+
+          <div style="display:flex;flex-direction:column;gap:12px;">
+
+            <!-- Forjar Item Comum -->
+            <div style="
+              background:rgba(251,146,60,0.08);border:1px solid rgba(251,146,60,${canForge?'0.4':'0.18'});
+              border-radius:12px;padding:14px 16px;
+              ${!canForge?'opacity:0.5;':''}
+            ">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                <span style="color:#fb923c;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:700;">⚒️ Item Comum</span>
+                <span style="color:#ffd700;font-family:'Cinzel',serif;font-size:0.75rem;">💰 300</span>
+              </div>
+              <p style="color:#9aabcc;font-family:'Philosopher',serif;font-size:0.73rem;margin:0 0 10px;line-height:1.4;">Forja um item aleatório. A raridade depende do seu nível e sorte.</p>
+              <button onclick="document.getElementById('forjaModal')?.remove(); _mobileActionCallbacks.forge();"
+                ${canForge?'':'disabled'}
+                style="width:100%;padding:8px;background:${canForge?'linear-gradient(135deg,rgba(251,146,60,0.35),rgba(200,100,30,0.3))':'rgba(255,255,255,0.04)'};
+                border:1px solid rgba(251,146,60,${canForge?'0.6':'0.2'});border-radius:8px;
+                color:${canForge?'#fb923c':'#555'};font-family:'Cinzel',serif;font-size:0.7rem;
+                font-weight:700;letter-spacing:1px;cursor:${canForge?'pointer':'not-allowed'};">
+                FORJAR AGORA
+              </button>
+            </div>
+
+            <!-- Forjar Lendário -->
+            <div style="
+              background:rgba(192,132,252,0.08);border:1px solid rgba(192,132,252,${canLeg?'0.4':'0.18'});
+              border-radius:12px;padding:14px 16px;
+              ${!canLeg?'opacity:0.5;':''}
+            ">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                <span style="color:#d8b4fe;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:700;">⭐ Item Lendário</span>
+                <span style="color:#ffd700;font-family:'Cinzel',serif;font-size:0.75rem;">💰 1000</span>
+              </div>
+              <p style="color:#9aabcc;font-family:'Philosopher',serif;font-size:0.73rem;margin:0 0 10px;line-height:1.4;">Garante um item lendário para um slot aleatório. Poder máximo!</p>
+              <button onclick="document.getElementById('forjaModal')?.remove(); _mobileActionCallbacks.legendary();"
+                ${canLeg?'':'disabled'}
+                style="width:100%;padding:8px;background:${canLeg?'linear-gradient(135deg,rgba(192,132,252,0.3),rgba(140,80,220,0.25))':'rgba(255,255,255,0.04)'};
+                border:1px solid rgba(192,132,252,${canLeg?'0.6':'0.2'});border-radius:8px;
+                color:${canLeg?'#d8b4fe':'#555'};font-family:'Cinzel',serif;font-size:0.7rem;
+                font-weight:700;letter-spacing:1px;cursor:${canLeg?'pointer':'not-allowed'};">
+                FORJAR LENDÁRIO
+              </button>
+            </div>
+
+          </div>
+
+          <div style="color:#4a5878;font-family:'Philosopher',serif;font-size:0.72rem;text-align:center;margin-top:14px;">
+            Ouro disponível: <strong style="color:#ffd700;">${state.gold}</strong>
+          </div>
+
+          <button onclick="document.getElementById('forjaModal')?.remove()"
+            style="margin-top:14px;width:100%;padding:7px;background:rgba(255,255,255,0.04);
+            border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:#5a6888;
+            font-family:'Cinzel',serif;font-size:0.68rem;cursor:pointer;letter-spacing:1px;">
+            FECHAR
+          </button>
+        </div>
+      `;
+
+      modal.addEventListener('click', e => { if(e.target === modal) modal.remove(); });
+      document.body.appendChild(modal);
+    }
+    window.showForjaModal = showForjaModal;
 
     // Callbacks das ações (chamados pelo popup)
     window._mobileActionCallbacks = {
