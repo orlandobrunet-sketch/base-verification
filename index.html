@@ -3129,11 +3129,87 @@
         line-height: 1.55 !important;
       }
 
-      /* Botão Golpe Final: compacto */
+      /* Botão Golpe Final: compacto no mobile */
       .arqui-nefromante-final #nextBtn:not(.hidden) {
         font-size: 0.88rem !important;
         padding: 12px 20px !important;
         letter-spacing: 3px !important;
+      }
+      /* CORREÇÃO 1: Remover o subtítulo "CONFIRMAR RESPOSTA" no mobile (parecia 2 botões) */
+      .arqui-nefromante-final #nextBtn:not(.hidden)::after {
+        display: none !important;
+      }
+
+      /* CORREÇÃO 2: Logo NefroQuest visível no topo mobile; título vai para dentro do painel */
+      .arqui-nefromante-final .game-title h1,
+      .arqui-nefromante-final .game-title .subtitle {
+        display: block !important;
+      }
+      .arqui-nefromante-final .game-title h1 {
+        font-size: 1.1rem !important;
+        letter-spacing: 2px !important;
+        color: #c084fc !important;
+        text-shadow: 0 0 15px rgba(192,132,252,0.8), 0 0 30px rgba(168,85,247,0.5) !important;
+      }
+      .arqui-nefromante-final .game-title .subtitle {
+        font-size: 0.55rem !important;
+        color: rgba(192,132,252,0.6) !important;
+        letter-spacing: 4px !important;
+      }
+      /* Título "CONFRONTO FINAL" sai do game-title e vai acima da HP bar */
+      .arqui-nefromante-final #bossTitleBar {
+        display: none !important; /* ocultado no topo — será mostrado dentro do painel right */
+      }
+      /* Título inline acima da HP bar (mobile) */
+      .arqui-nefromante-final #arquiBossTitleMobile {
+        display: block !important;
+        font-family: 'Cinzel', serif;
+        font-size: clamp(0.7rem, 3.2vw, 0.95rem);
+        font-weight: 900;
+        letter-spacing: 3px;
+        text-align: center;
+        color: #e9d5ff;
+        text-shadow: 0 0 20px rgba(216,180,254,0.95), 0 0 40px rgba(168,85,247,0.7);
+        animation: arquiTitleGlow 2.5s ease-in-out infinite alternate;
+        margin-bottom: 6px;
+        text-transform: uppercase;
+        padding: 0 4px;
+      }
+      /* Estrelas top: ocultar no mobile (usamos o container mobile dedicado) */
+      .arqui-nefromante-final #finalMeterStarsTop {
+        display: none !important;
+      }
+      /* Container de estrelas mobile: abaixo da HP bar */
+      .arqui-nefromante-final #arquiStarsMobile {
+        display: flex !important;
+      }
+      .arqui-nefromante-final #arquiStarsMobile .final-star {
+        font-size: 1.05rem;
+        color: rgba(192,132,252,0.35);
+      }
+      .arqui-nefromante-final #arquiStarsMobile .final-star.filled {
+        color: #c084fc;
+        filter: drop-shadow(0 0 8px rgba(192,132,252,0.9)) drop-shadow(0 0 16px rgba(168,85,247,0.6));
+      }
+
+      /* CORREÇÃO 3: Colunas rúnicas menores no mobile para não sobrepor botões */
+      .arqui-nefromante-final #runeColLeft,
+      .arqui-nefromante-final #runeColRight {
+        width: 12px !important;
+      }
+      .arqui-nefromante-final .rune-glyph {
+        font-size: 0.55rem !important;
+      }
+
+      /* CORREÇÃO 2b: Contorno roxo no thumb do Arqui-Nefromante + zoom no rosto */
+      .arqui-strip-boss img {
+        border: 2px solid rgba(168,85,247,0.85) !important;
+        border-radius: 8px !important;
+        box-shadow: 0 0 14px rgba(168,85,247,0.7), 0 0 28px rgba(88,28,135,0.5) !important;
+        object-position: top center !important;
+        object-fit: cover !important;
+        transform: scale(1.15) !important;
+        transform-origin: top center !important;
       }
 
       /* Medidor de estrelas: menor gap */
@@ -3498,11 +3574,17 @@
         </div>
       </div>
 
+      <!-- TÍTULO MOBILE DO BOSS (acima da HP bar, visível só no mobile arqui-nefromante-final) -->
+      <div id="arquiBossTitleMobile" style="display:none;">&#9760; Confronto Final: Arqui-Nefromante &#9760;</div>
+
       <!-- BOSS HP BAR (hidden until boss mode activates) -->
       <div id="bossHpContainer" style="display:none;">
         <div id="bossHpLabel">ARQUI-NEFROMANTE (HP: 100%)</div>
         <div id="bossHpTrack"><div id="bossHpFill" style="width:100%;"></div></div>
       </div>
+
+      <!-- ESTRELAS MOBILE (abaixo da HP bar, visível só no mobile arqui-nefromante-final) -->
+      <div id="arquiStarsMobile" style="display:none;justify-content:center;gap:4px;align-items:center;padding:4px 0 2px;"></div>
 
       <!-- BOSS QUESTION COUNTER -->
       <div id="bossQuestionNum" style="display:none;">QUESTÃO FINAL 1/10</div>
@@ -6935,21 +7017,27 @@
       document.body.classList.toggle('arqui-nefromante-final', inBoss);
 
       // ── Elementos boss ──
-      const elHpBox       = document.getElementById('bossHpContainer');
-      const elQNum        = document.getElementById('bossQuestionNum');
-      const elBattleScene = document.getElementById('bossBattleScene');
-      const elPartyPanel  = document.getElementById('bossPartyPanel');
-      const elHint        = document.getElementById('golpeFinalHint');
-      const elStarsTop    = document.getElementById('finalMeterStarsTop');
+      const elHpBox          = document.getElementById('bossHpContainer');
+      const elQNum           = document.getElementById('bossQuestionNum');
+      const elBattleScene    = document.getElementById('bossBattleScene');
+      const elPartyPanel     = document.getElementById('bossPartyPanel');
+      const elHint           = document.getElementById('golpeFinalHint');
+      const elStarsTop       = document.getElementById('finalMeterStarsTop');
+      const elTitleMobile    = document.getElementById('arquiBossTitleMobile');
+      const isMobile         = window.innerWidth <= 768;
+      const isArqui          = document.body.classList.contains('arqui-nefromante-final');
       const show = (el, v, disp) => { if(el) el.style.display = v ? (disp||'') : 'none'; };
 
       show(elHpBox,       inBoss);
       show(elQNum,        inBoss);
       // No modo arqui-nefromante-final, a cena de batalha fica oculta (heróis no painel esquerdo)
-      show(elBattleScene, inBoss && !document.body.classList.contains('arqui-nefromante-final'), 'flex');
+      show(elBattleScene, inBoss && !isArqui, 'flex');
       show(elPartyPanel,  inBoss, 'flex');
       show(elHint,        inBoss);
+      // Estrelas no topo: no mobile arqui-nefromante-final ficam abaixo da HP bar (via CSS order)
       show(elStarsTop,    inBoss, 'flex');
+      // Título mobile: visível apenas no mobile em modo arqui-nefromante-final
+      show(elTitleMobile, inBoss && isArqui && isMobile);
 
       if (!inBoss) return;
 
@@ -7008,6 +7096,13 @@
         }
       };
       buildStars(elStarsTop);
+
+      // ── Medidor de estrelas mobile (abaixo da HP bar) ──
+      const elStarsMobile = document.getElementById('arquiStarsMobile');
+      if (elStarsMobile) {
+        show(elStarsMobile, inBoss && isArqui && isMobile, 'flex');
+        buildStars(elStarsMobile);
+      }
 
       // ── Medidor de estrelas (fundo do painel direito) ──
       const elStarsBottom = document.getElementById('finalMeterStars');
@@ -7097,8 +7192,8 @@
       if (!isBossBattle()) return;
       const progress = getBossProgress();   // já foi incrementado
       const idx = progress - 1;
-      // Anima nas duas barras (topo e fundo)
-      ['finalMeterStarsTop', 'finalMeterStars'].forEach(id => {
+      // Anima nas três barras (topo, fundo e mobile)
+      ['finalMeterStarsTop', 'finalMeterStars', 'arquiStarsMobile'].forEach(id => {
         const el = document.getElementById(id);
         if (!el) return;
         const stars = el.querySelectorAll('.final-star');
