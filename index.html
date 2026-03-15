@@ -3219,6 +3219,14 @@
       .arqui-nefromante-final .final-star {
         font-size: 1.1rem !important;
       }
+
+      /* REMOVER no mobile: hint "ATIVADO APÓS SELECIONAR..." e bloco "MEDIDOR DE FINALIZAÇÃO" */
+      .arqui-nefromante-final #golpeFinalHint {
+        display: none !important;
+      }
+      .arqui-nefromante-final #finalMeterContainer {
+        display: none !important;
+      }
     }
 
     /* ================================================================
@@ -3733,7 +3741,7 @@
       <p>
         <a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a>
         &nbsp;•&nbsp;
-        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" onclick="showChangelog()">v4.1</span>
+        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" onclick="showChangelog()">v5.1</span>
       </p>
     </div>
   </main>
@@ -8912,6 +8920,21 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
           <div style="color:var(--txt-dim);font-size:0.75rem;margin-bottom:20px;">O que há de novo no NefroQuest: Ascension</div>
 
           <div style="text-align:left;padding:4px;">
+
+            <!-- v5.1 -->
+            <div style="background:linear-gradient(135deg,rgba(168,85,247,0.18),rgba(168,85,247,0.06));border:2px solid rgba(168,85,247,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                <span style="background:rgba(168,85,247,0.85);color:#fff;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v5.1</span>
+                <span style="color:#e9d5ff;font-weight:bold;font-size:0.95rem;">Confronto Final: Arqui-Nefromante</span>
+              </div>
+              <ul style="color:var(--txt);font-size:0.83rem;line-height:1.9;padding-left:18px;margin:0;">
+                <li><strong>Nova tela especial para as últimas 10 questões</strong> — layout completamente redesenhado com tema roxo/violeta, cristais mágicos e atmósfera épica de confronto final</li>
+                <li><strong>Batalão da Resistência</strong> — os 3 heróis (Dr. Nephros, Dra. Aquaria, Dr. Glomerulus) se unem em destaque no painel esquerdo contra o Arqui-Nefromante</li>
+                <li><strong>Layout responsivo desktop/mobile</strong> — versão PC com painel de heróis lateral; versão mobile com faixa de heróis no topo, logo NefroQuest visível, título acima da barra de HP e estrelas abaixo</li>
+                <li><strong>Colunas rúnicas</strong> — letras rúnicas animadas nas laterais com tema roxo; redimensionadas no mobile para não sobrepor os botões</li>
+                <li><strong>Link de acesso rápido</strong> — parâmetro <code>?boss=1</code> na URL abre diretamente a questão 91 para testes sem jogar o jogo inteiro</li>
+              </ul>
+            </div>
 
             <!-- v5.0 -->
             <div style="background:linear-gradient(135deg,rgba(255,215,0,0.15),rgba(255,215,0,0.05));border:2px solid rgba(255,215,0,0.6);border-radius:10px;padding:16px;margin-bottom:12px;">
