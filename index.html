@@ -2684,6 +2684,309 @@
     .boss-battle-mode .panel.right {
       border-width: 2px;
     }
+
+    /* ============================================================
+       ARQUI-NEFROMANTE FINAL — LAYOUT ÉPICO (questões 91-100)
+       Ativa quando body tem a classe arqui-nefromante-final
+       Sobrepõe o boss-battle-mode com tema roxo/violeta e cristais
+       ============================================================ */
+
+    /* 1. Background: tom roxo profundo com névoa mágica */
+    .arqui-nefromante-final .bg-layer {
+      filter: brightness(0.32) saturate(2.2) hue-rotate(200deg) !important;
+    }
+
+    /* 2. Painel esquerdo: tema roxo/violeta */
+    .arqui-nefromante-final .panel.left {
+      background: linear-gradient(180deg, #0e0520 0%, #08021a 50%, #050112 100%) !important;
+      border-color: #7c3aed !important;
+      box-shadow: 0 0 35px rgba(124,58,237,0.45), inset 0 0 50px rgba(88,28,135,0.2) !important;
+    }
+
+    /* 3. HUD tiles: tema roxo */
+    .arqui-nefromante-final .panel.left .hud .tile {
+      background: linear-gradient(135deg, rgba(20,5,50,0.92), rgba(12,2,35,0.96)) !important;
+      border-color: rgba(124,58,237,0.45) !important;
+    }
+    .arqui-nefromante-final .panel.left .hud .tile span {
+      color: rgba(192,132,252,0.85) !important;
+    }
+    .arqui-nefromante-final .panel.left .hud .tile strong {
+      color: #e9d5ff !important;
+    }
+
+    /* 4. Party panel: tema roxo com cristais */
+    .arqui-nefromante-final #bossPartyPanel {
+      background: linear-gradient(180deg, rgba(30,5,70,0.98), rgba(10,2,30,0.99)) !important;
+      border: 2px solid rgba(168,85,247,0.7) !important;
+      box-shadow: 0 0 30px rgba(168,85,247,0.3), inset 0 0 20px rgba(0,0,0,0.6) !important;
+    }
+    .arqui-nefromante-final #bossPartyPanel::before {
+      background: linear-gradient(90deg, transparent, #a855f7, #c084fc, #a855f7, transparent) !important;
+      animation: panelCrystalLine 2s ease-in-out infinite alternate !important;
+    }
+    @keyframes panelCrystalLine {
+      from { opacity: 0.5; }
+      to   { opacity: 1; box-shadow: 0 0 14px rgba(168,85,247,0.9); }
+    }
+
+    /* 5. Banner da party: roxo brilhante */
+    .arqui-nefromante-final .boss-party-banner {
+      color: #c084fc !important;
+      text-shadow: 0 0 15px rgba(192,132,252,0.9), 0 0 30px rgba(168,85,247,0.5) !important;
+      border-bottom: 1px solid rgba(168,85,247,0.4) !important;
+      animation: bannerCrystalGlow 2.5s ease-in-out infinite alternate !important;
+    }
+    @keyframes bannerCrystalGlow {
+      from { text-shadow: 0 0 10px rgba(192,132,252,0.7); color: #c084fc; }
+      to   { text-shadow: 0 0 25px rgba(216,180,254,1), 0 0 50px rgba(168,85,247,0.6); color: #e9d5ff; }
+    }
+
+    /* 6. Heróis na party: borda roxa brilhante */
+    .arqui-nefromante-final .boss-party-hero img {
+      border: 2px solid rgba(168,85,247,0.9) !important;
+      box-shadow: 0 0 14px rgba(168,85,247,0.6), 0 2px 8px rgba(0,0,0,0.7) !important;
+      animation: heroCrystalGlow 2.8s ease-in-out infinite alternate !important;
+    }
+    @keyframes heroCrystalGlow {
+      from { box-shadow: 0 0 10px rgba(168,85,247,0.5), 0 2px 6px rgba(0,0,0,0.6); }
+      to   { box-shadow: 0 0 22px rgba(192,132,252,0.9), 0 2px 10px rgba(0,0,0,0.7); }
+    }
+
+    /* 7. Party hero images: tamanho maior para destaque */
+    .arqui-nefromante-final .boss-party-hero img {
+      width: 80px !important;
+      height: 80px !important;
+    }
+
+    /* 8. Motto da party: roxo */
+    .arqui-nefromante-final .boss-party-motto {
+      color: #c084fc !important;
+      animation: mottoFadePurple 3s ease-in-out infinite alternate !important;
+    }
+    @keyframes mottoFadePurple {
+      from { opacity: 0.6; color: #a855f7; }
+      to   { opacity: 1; color: #e9d5ff; text-shadow: 0 0 10px rgba(192,132,252,0.5); }
+    }
+
+    /* 9. Cena de batalha: tema roxo com cristais */
+    .arqui-nefromante-final #bossBattleScene {
+      background:
+        radial-gradient(ellipse at 75% 50%, rgba(60,5,120,0.95) 0%, rgba(20,3,50,0.99) 55%, rgba(5,0,15,1) 100%) !important;
+      border: 2px solid rgba(168,85,247,0.6) !important;
+      box-shadow:
+        0 0 40px rgba(124,58,237,0.35),
+        0 0 80px rgba(88,28,135,0.15),
+        inset 0 0 40px rgba(0,0,0,0.7) !important;
+      height: 210px !important;
+    }
+    /* Chão de cristais (substitui lava) */
+    .arqui-nefromante-final #bossBattleScene::before {
+      background: linear-gradient(180deg, transparent, rgba(124,58,237,0.25)) !important;
+    }
+    /* Partículas de cristal (substitui brasas) */
+    .arqui-nefromante-final #bossBattleScene::after {
+      background-image:
+        radial-gradient(1.5px 1.5px at 18% 25%, rgba(168,85,247,0.8), transparent),
+        radial-gradient(1px 1px   at 32% 70%, rgba(192,132,252,0.7), transparent),
+        radial-gradient(2px 2px   at 55% 18%, rgba(216,180,254,0.75), transparent),
+        radial-gradient(1px 1px   at 72% 55%, rgba(139,92,246,0.6), transparent),
+        radial-gradient(1.5px 1.5px at 85% 30%, rgba(124,58,237,0.8), transparent),
+        radial-gradient(1px 1px   at 10% 80%, rgba(167,139,250,0.6), transparent) !important;
+      animation: crystalSparkle 3.5s ease-in-out infinite alternate !important;
+    }
+    @keyframes crystalSparkle {
+      0%   { opacity: 0.4; transform: translateY(0); }
+      50%  { opacity: 0.95; transform: translateY(-5px); }
+      100% { opacity: 0.5; transform: translateY(-8px); }
+    }
+
+    /* 10. Mostrar heróis na cena de batalha (ao contrário do boss mode normal) */
+    .arqui-nefromante-final .battle-heroes-side,
+    .arqui-nefromante-final .battle-clash-center {
+      display: flex !important;
+    }
+
+    /* 11. Heróis na cena: disposição horizontal lado a lado */
+    .arqui-nefromante-final .battle-heroes-side {
+      flex-direction: row !important;
+      align-items: flex-end !important;
+      gap: 4px !important;
+      padding: 10px 6px 10px 8px !important;
+    }
+
+    /* 12. Heróis mini: tamanho maior e borda roxa */
+    .arqui-nefromante-final .battle-hero-mini {
+      width: 58px !important;
+      height: 72px !important;
+      border: 2px solid rgba(192,132,252,0.85) !important;
+      box-shadow: 0 0 12px rgba(168,85,247,0.6), 0 2px 6px rgba(0,0,0,0.7) !important;
+      object-position: top !important;
+      animation: heroUniteAnim 2.5s ease-in-out infinite !important;
+    }
+    .arqui-nefromante-final .battle-hero-mini:nth-child(1) { animation-delay: 0s !important; }
+    .arqui-nefromante-final .battle-hero-mini:nth-child(2) {
+      animation-delay: 0.4s !important;
+      transform: translateY(-8px);
+    }
+    .arqui-nefromante-final .battle-hero-mini:nth-child(3) { animation-delay: 0.8s !important; }
+    @keyframes heroUniteAnim {
+      0%, 75%, 100% { transform: translateX(0) scale(1); filter: brightness(1); }
+      85%           { transform: translateX(8px) scale(1.06); filter: brightness(1.2) drop-shadow(0 0 8px rgba(192,132,252,0.9)); }
+    }
+    .arqui-nefromante-final .battle-hero-mini:nth-child(2) {
+      animation-delay: 0.4s !important;
+    }
+
+    /* 13. Centro de colisão: raios roxos/violeta */
+    .arqui-nefromante-final .battle-clash-center::before {
+      background: linear-gradient(180deg,
+        transparent 0%, rgba(192,132,252,0.95) 30%,
+        rgba(255,255,255,1) 50%, rgba(192,132,252,0.95) 70%, transparent 100%) !important;
+    }
+    .arqui-nefromante-final .battle-clash-center::after {
+      background: linear-gradient(180deg,
+        transparent 0%, rgba(139,92,246,0.9) 30%,
+        rgba(216,180,254,1) 50%, rgba(139,92,246,0.9) 70%, transparent 100%) !important;
+    }
+
+    /* 14. Orbe de colisão: roxo */
+    .arqui-nefromante-final .battle-clash-orb {
+      background: radial-gradient(circle at 40% 35%,
+        rgba(255,255,255,0.95) 0%, rgba(216,180,254,0.9) 30%,
+        rgba(124,58,237,0.7) 65%, transparent 100%) !important;
+      box-shadow:
+        0 0 20px rgba(168,85,247,0.9),
+        0 0 40px rgba(124,58,237,0.7),
+        0 0 60px rgba(192,132,252,0.4) !important;
+    }
+
+    /* 15. Boss side: aura roxa mais intensa */
+    .arqui-nefromante-final .battle-boss-side {
+      width: 130px !important;
+    }
+    .arqui-nefromante-final .battle-boss-side img {
+      height: 200px !important;
+      filter:
+        drop-shadow(0 0 22px rgba(168,85,247,1))
+        drop-shadow(0 0 50px rgba(88,28,135,0.8))
+        brightness(1.12) contrast(1.15) !important;
+    }
+    .arqui-nefromante-final .battle-boss-side::before {
+      background: radial-gradient(ellipse at 50% 90%, rgba(120,0,220,0.8) 0%, rgba(80,0,160,0.4) 45%, transparent 70%) !important;
+    }
+
+    /* 16. Painel direito: tema roxo profundo */
+    .arqui-nefromante-final .panel.right {
+      border-color: #a855f7 !important;
+      background: linear-gradient(160deg, rgba(15,3,40,0.95), rgba(8,2,25,0.98)) !important;
+      box-shadow: 0 0 40px rgba(124,58,237,0.4), 0 0 15px rgba(168,85,247,0.2), inset 0 0 50px rgba(88,28,135,0.15) !important;
+    }
+
+    /* 17. Título do boss: roxo brilhante */
+    .arqui-nefromante-final #bossTitleBar {
+      color: #c084fc !important;
+      text-shadow:
+        0 0 20px rgba(192,132,252,0.95),
+        0 0 40px rgba(168,85,247,0.7),
+        0 0 80px rgba(124,58,237,0.4) !important;
+      animation: arquiTitleGlow 2.2s ease-in-out infinite alternate !important;
+    }
+    @keyframes arquiTitleGlow {
+      from { text-shadow: 0 0 15px rgba(192,132,252,0.8), 0 0 30px rgba(168,85,247,0.5); color: #c084fc; }
+      to   { text-shadow: 0 0 30px rgba(216,180,254,1), 0 0 60px rgba(192,132,252,0.9), 0 0 100px rgba(124,58,237,0.5); color: #e9d5ff; }
+    }
+
+    /* 18. HP Container: linha roxa no topo */
+    .arqui-nefromante-final #bossHpContainer::before {
+      background: linear-gradient(90deg, transparent, #a855f7, #c084fc, #a855f7, transparent) !important;
+      animation: hpCrystalLine 2s ease-in-out infinite alternate !important;
+    }
+    @keyframes hpCrystalLine {
+      from { opacity: 0.5; }
+      to   { opacity: 1; box-shadow: 0 0 12px rgba(168,85,247,0.8); }
+    }
+
+    /* 19. Colunas rúnicas: roxo mais intenso */
+    .arqui-nefromante-final .rune-glyph {
+      color: rgba(192,132,252,0.7) !important;
+      text-shadow: 0 0 8px rgba(168,85,247,0.7) !important;
+    }
+    .arqui-nefromante-final .rune-glyph.bright {
+      color: rgba(216,180,254,0.95) !important;
+      text-shadow: 0 0 12px rgba(192,132,252,1) !important;
+    }
+
+    /* 20. Cristais decorativos nos cantos da cena de batalha */
+    .arqui-nefromante-final #bossBattleScene .crystal-corner {
+      position: absolute;
+      bottom: 0;
+      font-size: 1.8rem;
+      opacity: 0.7;
+      animation: crystalPulse 3s ease-in-out infinite alternate;
+      z-index: 3;
+      filter: drop-shadow(0 0 8px rgba(168,85,247,0.9));
+      pointer-events: none;
+    }
+    .arqui-nefromante-final #bossBattleScene .crystal-corner.left {
+      left: 4px;
+    }
+    .arqui-nefromante-final #bossBattleScene .crystal-corner.right {
+      right: 4px;
+    }
+    @keyframes crystalPulse {
+      from { opacity: 0.5; transform: translateY(0) scale(1); }
+      to   { opacity: 0.9; transform: translateY(-4px) scale(1.05); filter: drop-shadow(0 0 14px rgba(192,132,252,1)); }
+    }
+
+    /* 21. Estado crítico de HP no modo arqui: tremor roxo */
+    .arqui-nefromante-final.boss-hp-critical .battle-boss-side img {
+      filter: drop-shadow(0 0 28px rgba(255,50,255,1)) drop-shadow(0 0 55px rgba(200,0,200,0.8)) brightness(1.25) !important;
+    }
+
+    /* 22. Estrelas do medidor: roxo mais vibrante */
+    .arqui-nefromante-final .final-star.filled {
+      color: #c084fc !important;
+      filter: drop-shadow(0 0 10px rgba(192,132,252,1)) drop-shadow(0 0 18px rgba(168,85,247,0.7)) !important;
+    }
+
+    /* 23. Medidor de finalização: borda roxa */
+    .arqui-nefromante-final #finalMeterContainer {
+      border-color: rgba(168,85,247,0.7) !important;
+      border-top-color: rgba(192,132,252,0.6) !important;
+      background: linear-gradient(180deg, rgba(15,3,40,0.96), rgba(8,2,22,0.98)) !important;
+    }
+
+    /* 24. Botão Golpe Final: roxo dourado */
+    .arqui-nefromante-final #nextBtn:not(.hidden) {
+      background: linear-gradient(180deg, #7c3aed 0%, #5b21b6 40%, #3b0764 100%) !important;
+      border: 3px solid #c084fc !important;
+      color: #fff !important;
+      text-shadow: 0 0 10px rgba(216,180,254,0.6) !important;
+      box-shadow: 0 0 25px rgba(168,85,247,0.6), 0 5px 15px rgba(0,0,0,0.6),
+                  inset 0 1px 2px rgba(255,255,255,0.15) !important;
+      animation: golpeCrystalGlow 1.8s ease-in-out infinite alternate !important;
+    }
+    @keyframes golpeCrystalGlow {
+      from { box-shadow: 0 0 20px rgba(168,85,247,0.5), 0 5px 12px rgba(0,0,0,0.6); }
+      to   { box-shadow: 0 0 40px rgba(192,132,252,0.85), 0 5px 20px rgba(0,0,0,0.6), 0 0 60px rgba(124,58,237,0.35); }
+    }
+    .arqui-nefromante-final #nextBtn:not(.hidden)::after {
+      color: rgba(216,180,254,0.8) !important;
+    }
+
+    /* 25. qbox: painel mais escuro com borda roxa */
+    .arqui-nefromante-final .qbox {
+      background: linear-gradient(180deg, rgba(10,2,30,0.98), rgba(5,1,18,0.99)) !important;
+      border: 1px solid rgba(192,132,252,0.6) !important;
+      border-top: 2px solid rgba(168,85,247,0.4) !important;
+    }
+
+    /* 26. Texto da questão: roxo/branco épico */
+    .arqui-nefromante-final .qbox p#question {
+      color: #e9d5ff !important;
+      text-shadow: 0 0 12px rgba(192,132,252,0.3), 0 0 25px rgba(168,85,247,0.15) !important;
+    }
   </style>
   <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
 </head>
@@ -2935,6 +3238,9 @@
 
       <!-- CENA DE BATALHA ÉPICA (mostrada no boss mode, fora do qbox) -->
       <div id="bossBattleScene" style="display:none;">
+        <!-- Cristais decorativos (visíveis no modo arqui-nefromante-final) -->
+        <span class="crystal-corner left" aria-hidden="true">🔮</span>
+        <span class="crystal-corner right" aria-hidden="true">🔮</span>
         <!-- Heróis (esquerda) -->
         <div class="battle-heroes-side">
           <img id="battleHero1" class="battle-hero-mini" src="assets/classes/clerigo_renal/nivel_01.jpg" alt="Dr. Nephros">
@@ -6354,6 +6660,8 @@
 
       // ── Modo no body ──
       document.body.classList.toggle('boss-battle-mode', inBoss);
+      // Classe especial para as últimas 10 questões (arqui-nefromante-final)
+      document.body.classList.toggle('arqui-nefromante-final', inBoss);
 
       // ── Elementos boss ──
       const elHpBox       = document.getElementById('bossHpContainer');
@@ -8292,6 +8600,14 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
     if (new URLSearchParams(window.location.search).get('dev') === '1') {
       const previewBtn = document.getElementById('bossPreviewBtn');
       if (previewBtn) previewBtn.style.display = '';
+    }
+
+    // Acesso direto ao Confronto Final via ?boss=1 (link de teste)
+    if (new URLSearchParams(window.location.search).get('boss') === '1') {
+      // Aguarda o DOM estar pronto e inicia o boss preview automaticamente
+      setTimeout(() => {
+        startBossPreview();
+      }, 300);
     }
 
     // Posicionar tooltips via JS para evitar corte
