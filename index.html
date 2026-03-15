@@ -6943,7 +6943,8 @@
 
       show(elHpBox,       inBoss);
       show(elQNum,        inBoss);
-      show(elBattleScene, inBoss, 'flex');
+      // No modo arqui-nefromante-final, a cena de batalha fica oculta (heróis no painel esquerdo)
+      show(elBattleScene, inBoss && !document.body.classList.contains('arqui-nefromante-final'), 'flex');
       show(elPartyPanel,  inBoss, 'flex');
       show(elHint,        inBoss);
       show(elStarsTop,    inBoss, 'flex');
