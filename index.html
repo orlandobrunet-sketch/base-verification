@@ -7024,7 +7024,7 @@
       const elHint           = document.getElementById('golpeFinalHint');
       const elStarsTop       = document.getElementById('finalMeterStarsTop');
       const elTitleMobile    = document.getElementById('arquiBossTitleMobile');
-      const isMobile         = window.innerWidth <= 768;
+      const isMobile         = window.matchMedia('(max-width: 768px)').matches;
       const isArqui          = document.body.classList.contains('arqui-nefromante-final');
       const show = (el, v, disp) => { if(el) el.style.display = v ? (disp||'') : 'none'; };
 
