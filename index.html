@@ -2874,16 +2874,12 @@
       display: block !important;
     }
 
-    /* AJUSTE 2 DESKTOP: Estrelas abaixo da HP bar (via #arquiStarsDesktop) */
+    /* AJUSTE 2 DESKTOP: Estrelas abaixo da HP bar — REMOVIDAS conforme solicitado */
     #arquiStarsDesktop {
-      display: none;
-      justify-content: center;
-      gap: 5px;
-      align-items: center;
-      padding: 5px 0 2px;
+      display: none !important;
     }
     .arqui-nefromante-final #arquiStarsDesktop {
-      display: flex !important;
+      display: none !important;
     }
     .arqui-nefromante-final #arquiStarsDesktop .final-star {
       font-size: 1.1rem;
@@ -2996,7 +2992,7 @@
         inset 0 0 18px rgba(0,0,0,0.55) !important;
     }
 
-    /* Texto da questão: Cinzel dourado brilhante */
+    /* Texto da questão: Cinzel dourado brilhante, capitalização normal */
     .arqui-nefromante-final .qbox p#question {
       font-family: 'Cinzel', serif !important;
       font-weight: 700 !important;
@@ -3004,10 +3000,15 @@
       font-size: 0.86rem !important;
       letter-spacing: 0.5px !important;
       line-height: 1.6 !important;
-      text-transform: uppercase !important;
+      text-transform: none !important;
       text-shadow:
         0 0 12px rgba(255,215,0,0.4),
         0 0 25px rgba(200,150,0,0.2) !important;
+    }
+
+    /* Cronômetro: oculto nas últimas 10 questões (PC) */
+    .arqui-nefromante-final #timerWidget {
+      display: none !important;
     }
 
     /* Opções: grade 2x2, borda de cristal */
@@ -3697,7 +3698,7 @@
       <div id="arquiBossTitleMobile" style="display:none;">&#9760; Confronto Final: Arqui-Nefromante &#9760;</div>
 
       <!-- TÍTULO DESKTOP DO BOSS (acima da HP bar, visível só no desktop arqui-nefromante-final) -->
-      <div id="arquiBossTitleDesktop">&#9760; Confronto Final: Arqui-Nefromante &#9760;</div>
+      <div id="arquiBossTitleDesktop">Confronto Final</div>
 
       <!-- BOSS HP BAR (hidden until boss mode activates) -->
       <div id="bossHpContainer" style="display:none;">
