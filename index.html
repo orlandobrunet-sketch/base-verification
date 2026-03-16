@@ -2842,7 +2842,76 @@
         inset 0 0 55px rgba(88,28,135,0.12) !important;
     }
 
-    /* Título do boss: "CONFRONTO FINAL: ARQUI-NEFROMANTE" */
+    /* AJUSTE 2 DESKTOP: Logo visível no topo (mostrar h1 e subtitle, ocultar bossTitleBar no game-title) */
+    .arqui-nefromante-final.boss-battle-mode .game-title h1,
+    .arqui-nefromante-final.boss-battle-mode .game-title .subtitle {
+      display: block !important;
+    }
+    .arqui-nefromante-final.boss-battle-mode .game-title #bossTitleBar {
+      display: none !important;
+    }
+
+    /* AJUSTE 2 DESKTOP: Título do boss movido para acima da HP bar (via #arquiBossTitleDesktop) */
+    #arquiBossTitleDesktop {
+      display: none;
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.85rem, 2vw, 1.25rem);
+      font-weight: 900;
+      color: #e9d5ff;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      text-align: center;
+      text-shadow:
+        0 0 20px rgba(216,180,254,0.95),
+        0 0 40px rgba(168,85,247,0.7),
+        0 0 80px rgba(124,58,237,0.4);
+      animation: arquiTitleGlow 2.5s ease-in-out infinite alternate;
+      padding: 6px 0 8px;
+      border-bottom: 1px solid rgba(168,85,247,0.3);
+      margin-bottom: 8px;
+    }
+    .arqui-nefromante-final #arquiBossTitleDesktop {
+      display: block !important;
+    }
+
+    /* AJUSTE 2 DESKTOP: Estrelas abaixo da HP bar (via #arquiStarsDesktop) */
+    #arquiStarsDesktop {
+      display: none;
+      justify-content: center;
+      gap: 5px;
+      align-items: center;
+      padding: 5px 0 2px;
+    }
+    .arqui-nefromante-final #arquiStarsDesktop {
+      display: flex !important;
+    }
+    .arqui-nefromante-final #arquiStarsDesktop .final-star {
+      font-size: 1.1rem;
+    }
+
+    /* AJUSTE 2 DESKTOP: Imagem do boss retangular acima da questão (via #arquiBossImageDesktop) */
+    #arquiBossImageDesktop {
+      display: none;
+      width: 100%;
+      height: 180px;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 10px;
+      border: 2px solid rgba(168,85,247,0.55);
+      box-shadow: 0 0 25px rgba(124,58,237,0.4), inset 0 0 20px rgba(0,0,0,0.5);
+      position: relative;
+    }
+    .arqui-nefromante-final #arquiBossImageDesktop {
+      display: block !important;
+    }
+    #arquiBossImageDesktop img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+    }
+
+    /* Título do boss: "CONFRONTO FINAL: ARQUI-NEFROMANTE" (mantido para boss mode normal) */
     .arqui-nefromante-final #bossTitleBar {
       color: #e9d5ff !important;
       font-size: clamp(0.9rem, 2.2vw, 1.35rem) !important;
@@ -2878,14 +2947,26 @@
       to   { opacity: 1; box-shadow: 0 0 14px rgba(192,132,252,0.9); }
     }
 
-    /* Colunas rúnicas: roxo intenso */
+    /* Colunas rúnicas: roxo intenso + AJUSTE 3: menores para não colar nos botões */
+    .arqui-nefromante-final #runeColLeft,
+    .arqui-nefromante-final #runeColRight {
+      width: 12px !important;
+    }
+    /* AJUSTE 3 DESKTOP: Colunas rúnicas menores para não colar nos botões */
+    .arqui-nefromante-final #runeColLeft,
+    .arqui-nefromante-final #runeColRight {
+      width: 12px !important;
+    }
     .arqui-nefromante-final .rune-glyph {
-      color: rgba(192,132,252,0.65) !important;
-      text-shadow: 0 0 7px rgba(168,85,247,0.6) !important;
+      font-size: 0.42rem !important;
+      color: rgba(192,132,252,0.55) !important;
+      text-shadow: 0 0 4px rgba(168,85,247,0.4) !important;
+      letter-spacing: 0px !important;
     }
     .arqui-nefromante-final .rune-glyph.bright {
-      color: rgba(216,180,254,0.92) !important;
-      text-shadow: 0 0 14px rgba(216,180,254,1), 0 0 28px rgba(168,85,247,0.5) !important;
+      font-size: 0.42rem !important;
+      color: rgba(216,180,254,0.75) !important;
+      text-shadow: 0 0 8px rgba(216,180,254,0.8), 0 0 15px rgba(168,85,247,0.3) !important;
     }
 
     /* ================================================================
@@ -2972,9 +3053,10 @@
     }
 
     /* Badge de letra (A/B/C/D): cristal roxo */
+    /* AJUSTE 4 DESKTOP: Badge de letra mais à direita para não grudar na borda */
     .arqui-nefromante-final .option .boss-letter-badge {
       position: absolute !important;
-      left: 9px !important;
+      left: 16px !important;
       top: 50% !important;
       transform: translateY(-50%) !important;
       width: 32px !important;
@@ -3037,6 +3119,14 @@
     }
     .arqui-nefromante-final #golpeFinalHint[style*='color: rgb(255, 215, 0)'] {
       color: #ffd700 !important;
+    }
+
+    /* AJUSTE 1 DESKTOP: Ocultar hint e medidor de finalização abaixo do botão */
+    .arqui-nefromante-final #golpeFinalHint {
+      display: none !important;
+    }
+    .arqui-nefromante-final #finalMeterContainer {
+      display: none !important;
     }
 
     /* Medidor de estrelas: roxo vibrante */
@@ -3606,6 +3696,9 @@
       <!-- TÍTULO MOBILE DO BOSS (acima da HP bar, visível só no mobile arqui-nefromante-final) -->
       <div id="arquiBossTitleMobile" style="display:none;">&#9760; Confronto Final: Arqui-Nefromante &#9760;</div>
 
+      <!-- TÍTULO DESKTOP DO BOSS (acima da HP bar, visível só no desktop arqui-nefromante-final) -->
+      <div id="arquiBossTitleDesktop">&#9760; Confronto Final: Arqui-Nefromante &#9760;</div>
+
       <!-- BOSS HP BAR (hidden until boss mode activates) -->
       <div id="bossHpContainer" style="display:none;">
         <div id="bossHpLabel">ARQUI-NEFROMANTE (HP: 100%)</div>
@@ -3615,8 +3708,25 @@
       <!-- ESTRELAS MOBILE (abaixo da HP bar, visível só no mobile arqui-nefromante-final) -->
       <div id="arquiStarsMobile" style="display:none;justify-content:center;gap:4px;align-items:center;padding:4px 0 2px;"></div>
 
+      <!-- ESTRELAS DESKTOP (abaixo da HP bar, visível só no desktop arqui-nefromante-final) -->
+      <div id="arquiStarsDesktop"></div>
+
       <!-- BOSS QUESTION COUNTER -->
       <div id="bossQuestionNum" style="display:none;">QUESTÃO FINAL 1/10</div>
+
+      <!-- IMAGEM BOSS RETANGULAR DESKTOP (acima da questão, visível só no desktop arqui-nefromante-final) -->
+      <div id="arquiBossImageDesktop">
+        <img id="arquiBossImgEl" src="assets/nefromancer.png" alt="Arqui-Nefromante">
+      </div>
+
+      <!-- POPUP NARRATIVO QUESTÃO 9 (mobile: popup fullscreen; PC: troca imagem) -->
+      <div id="arquiQ9Popup" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.92);display:none;flex-direction:column;align-items:center;justify-content:center;padding:20px;">
+        <div style="max-width:420px;width:100%;text-align:center;">
+          <img src="assets/battle_final.png" alt="Batalha Final" style="width:100%;border-radius:12px;border:2px solid rgba(168,85,247,0.7);box-shadow:0 0 30px rgba(124,58,237,0.6);margin-bottom:16px;">
+          <p style="font-family:'Cinzel',serif;color:#e9d5ff;font-size:1rem;letter-spacing:2px;text-shadow:0 0 15px rgba(216,180,254,0.8);line-height:1.6;margin-bottom:20px;">&#9760; O Arqui-Nefromante está de joelhos! O Batalhão da Resistência une suas forças para o golpe definitivo. Uma última resposta separa a vitória da derrota! &#9760;</p>
+          <button onclick="document.getElementById('arquiQ9Popup').style.display='none'" style="font-family:'Cinzel',serif;background:linear-gradient(180deg,#c8960c,#7a5a06);border:2px solid #ffd700;color:#1a0a00;padding:12px 32px;border-radius:10px;font-size:0.9rem;font-weight:900;letter-spacing:3px;cursor:pointer;text-transform:uppercase;box-shadow:0 0 20px rgba(255,215,0,0.5);">Partir para o Ataque!</button>
+        </div>
+      </div>
 
       <!-- CENA DE BATALHA ÉPICA (mostrada no boss mode, fora do qbox) -->
       <div id="bossBattleScene" style="display:none;">
@@ -7133,6 +7243,12 @@
         buildStars(elStarsMobile);
       }
 
+      // ── Medidor de estrelas desktop (abaixo da HP bar) ──
+      const elStarsDesktop = document.getElementById('arquiStarsDesktop');
+      if (elStarsDesktop) {
+        buildStars(elStarsDesktop);
+      }
+
       // ── Medidor de estrelas (fundo do painel direito) ──
       const elStarsBottom = document.getElementById('finalMeterStars');
       const elMeterContainer = document.getElementById('finalMeterContainer');
@@ -7187,6 +7303,27 @@
 
       // Estado crítico de HP
       document.body.classList.toggle('boss-hp-critical', hp <= 30);
+
+      // ── Imagem boss retangular desktop: troca para batalha na questão 9 (progress === 8) ──
+      const arquiBossImgEl = document.getElementById('arquiBossImgEl');
+      if (arquiBossImgEl && isArqui) {
+        if (progress >= 9) {
+          arquiBossImgEl.src = 'assets/battle_final.png';
+          arquiBossImgEl.style.objectPosition = 'center center';
+        } else {
+          arquiBossImgEl.src = 'assets/nefromancer.png';
+          arquiBossImgEl.style.objectPosition = 'center 30%';
+        }
+      }
+
+      // ── Popup narrativo na questão 9 (progress === 8 = 9ª questão) ──
+      if (progress === 8 && isArqui && isMobile) {
+        const popup = document.getElementById('arquiQ9Popup');
+        if (popup && !popup._shown) {
+          popup._shown = true;
+          popup.style.display = 'flex';
+        }
+      }
     }
 
     /**
@@ -7222,7 +7359,7 @@
       const progress = getBossProgress();   // já foi incrementado
       const idx = progress - 1;
       // Anima nas três barras (topo, fundo e mobile)
-      ['finalMeterStarsTop', 'finalMeterStars', 'arquiStarsMobile'].forEach(id => {
+      ['finalMeterStarsTop', 'finalMeterStars', 'arquiStarsMobile', 'arquiStarsDesktop'].forEach(id => {
         const el = document.getElementById(id);
         if (!el) return;
         const stars = el.querySelectorAll('.final-star');
