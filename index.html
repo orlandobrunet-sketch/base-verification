@@ -3327,9 +3327,9 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: 50% 20%; /* zoom no rosto: centro horizontal, ~20% do topo */
-        transform: scale(2.2);
-        transform-origin: 50% 20%;
+        object-position: 50% 22%; /* zoom no rosto: centro horizontal, ~22% do topo */
+        transform: scale(3.5);
+        transform-origin: 50% 22%;
         display: block;
       }
       .arqui-strip-boss-name {
@@ -6624,8 +6624,8 @@
         // ── Confronto Final: atualiza barra de HP, estrelas e botão ──
         updateBossUI();
         animateLastBossStar();
-        // Muda texto do botão Próxima para "GOLPE FINAL" em boss mode
-        if(isBossBattle()) ui.nextBtn.textContent = 'GOLPE FINAL';
+        // Muda texto do botão Próxima: "ATACAR" nas questões 91-99, "GOLPE FINAL" na última
+        if(isBossBattle()) ui.nextBtn.textContent = getBossProgress() >= 9 ? 'GOLPE FINAL' : 'ATACAR';
       }
     }
 
@@ -7094,9 +7094,9 @@
           : `QUESTÃO FINAL ${qNum}/10`;
       }
 
-      // ── Botão Próxima (Golpe Final) ──
+      // ── Botão Próxima: "ATACAR" nas questões 91-99, "GOLPE FINAL" apenas na última (100ª) ──
       const nextBtn = document.getElementById('nextBtn');
-      if (nextBtn) nextBtn.textContent = 'GOLPE FINAL';
+      if (nextBtn) nextBtn.textContent = progress >= 9 ? 'GOLPE FINAL' : 'ATACAR';
 
       // ── Hint do botão ──
       if (elHint) {
