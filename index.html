@@ -2613,7 +2613,7 @@
       max-width: 260px;
     }
 
-    /* 5. Texto da questão: Cinzel dourado maiúsculo — épico */
+    /* 5. Texto da questão: Cinzel dourado — capitalização normal */
     .boss-battle-mode .qbox p#question {
       font-family: 'Cinzel', serif;
       font-weight: 700;
@@ -2621,7 +2621,7 @@
       font-size: 0.84rem;
       letter-spacing: 0.5px;
       line-height: 1.6;
-      text-transform: uppercase;
+      text-transform: none;
       text-shadow: 0 0 12px rgba(255,215,0,0.35), 0 0 25px rgba(200,150,0,0.15);
     }
 
@@ -3093,18 +3093,9 @@
         inset 0 0 18px rgba(0,0,0,0.55) !important;
     }
 
-    /* Texto da questão: Cinzel dourado brilhante, capitalização normal no PC */
+    /* Texto da questão: capitalização normal no PC (sobrescreve boss-battle-mode) */
     .arqui-nefromante-final .qbox p#question {
-      font-family: 'Cinzel', serif !important;
-      font-weight: 700 !important;
-      color: #fde68a !important;
-      font-size: 0.86rem !important;
-      letter-spacing: 0.5px !important;
-      line-height: 1.6 !important;
       text-transform: none !important;
-      text-shadow:
-        0 0 12px rgba(255,215,0,0.4),
-        0 0 25px rgba(200,150,0,0.2) !important;
     }
 
     /* Cronômetro: oculto nas últimas 10 questões (PC) */
@@ -3122,7 +3113,7 @@
       display: none !important;
     }
 
-    /* Ajuste PC: barra HP vira container das estrelas (esvaziando roxo, acendendo dourado) */
+    /* Ajuste PC: barra HP discreta e elegante com estrelas + valor HP */
     .arqui-nefromante-final #bossHpFill {
       display: none !important;
     }
@@ -3130,14 +3121,14 @@
       display: flex !important;
       align-items: center;
       justify-content: space-around;
-      padding: 0 10px;
-      height: 36px !important;
+      padding: 0 12px;
+      height: 32px !important;
       overflow: visible !important;
-      background: rgba(5,0,15,0.9) !important;
-      border: 2px solid #ffd700 !important;
-      border-radius: 10px !important;
+      background: rgba(5,0,15,0.75) !important;
+      border: 1px solid rgba(168,85,247,0.4) !important;
+      border-radius: 8px !important;
       position: relative;
-      box-shadow: 0 0 10px rgba(255,215,0,0.4), 0 0 20px rgba(255,215,0,0.15) !important;
+      box-shadow: 0 0 8px rgba(124,58,237,0.25) !important;
     }
     /* Fundo roxo que vai esvaziando da direita para a esquerda */
     .arqui-nefromante-final #bossHpTrack::before {
@@ -3253,38 +3244,31 @@
       text-shadow: 0 0 6px rgba(216,180,254,0.7) !important;
     }
 
-    /* Botão Golpe Final: dourado com brilho */
+    /* Botão Atacar/Golpe Final: dourado discreto */
     .arqui-nefromante-final #nextBtn:not(.hidden) {
       background: linear-gradient(180deg,
-        #c8960c 0%, #a07808 35%, #7a5a06 70%, #5a4004 100%) !important;
-      border: 3px solid #ffd700 !important;
-      border-radius: 14px !important;
-      color: #1a0a00 !important;
+        #b8860b 0%, #8a6508 50%, #5a4004 100%) !important;
+      border: 2px solid rgba(255,215,0,0.7) !important;
+      border-radius: 10px !important;
+      color: #fff8dc !important;
       font-family: 'Cinzel', serif !important;
-      font-size: 1rem !important;
-      font-weight: 900 !important;
-      letter-spacing: 4px !important;
+      font-size: 0.8rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 2px !important;
       text-transform: uppercase !important;
-      padding: 14px 28px !important;
-      text-shadow: 0 1px 1px rgba(255,255,255,0.25) !important;
+      padding: 9px 20px !important;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5) !important;
       box-shadow:
-        0 0 28px rgba(255,215,0,0.55),
-        0 5px 18px rgba(0,0,0,0.65),
-        inset 0 1px 2px rgba(255,255,255,0.2) !important;
-      animation: arquiGolpeGlow 1.8s ease-in-out infinite alternate !important;
+        0 0 14px rgba(255,215,0,0.3),
+        0 3px 10px rgba(0,0,0,0.5) !important;
+      animation: arquiGolpeGlow 2.5s ease-in-out infinite alternate !important;
     }
     @keyframes arquiGolpeGlow {
-      from { box-shadow: 0 0 20px rgba(255,215,0,0.45), 0 5px 14px rgba(0,0,0,0.6); }
-      to   { box-shadow: 0 0 45px rgba(255,215,0,0.8), 0 5px 22px rgba(0,0,0,0.65), 0 0 70px rgba(255,180,0,0.3); }
+      from { box-shadow: 0 0 10px rgba(255,215,0,0.25), 0 3px 8px rgba(0,0,0,0.5); }
+      to   { box-shadow: 0 0 22px rgba(255,215,0,0.55), 0 3px 12px rgba(0,0,0,0.55); }
     }
     .arqui-nefromante-final #nextBtn:not(.hidden)::after {
-      content: 'CONFIRMAR RESPOSTA' !important;
-      display: block !important;
-      font-size: 0.52rem !important;
-      letter-spacing: 3px !important;
-      color: rgba(30,10,0,0.7) !important;
-      margin-top: 2px !important;
-      font-weight: 700 !important;
+      content: none !important;
     }
 
     /* Hint do botão */
@@ -7407,9 +7391,9 @@
           : `QUESTÃO FINAL ${qNum}/10`;
       }
 
-      // ── Botão Próxima: "ATACAR" nas questões 91-99, "GOLPE FINAL" apenas na última (100ª) ──
+      // ── Botão Próxima: "ATACAR (responder)" nas questões 91-99, "GOLPE FINAL" apenas na última (100ª) ──
       const nextBtn = document.getElementById('nextBtn');
-      if (nextBtn) nextBtn.textContent = progress >= 9 ? 'GOLPE FINAL' : 'ATACAR';
+      if (nextBtn) nextBtn.textContent = progress >= 9 ? 'GOLPE FINAL' : 'ATACAR (responder)';
 
       // ── Hint do botão ──
       if (elHint) {
@@ -7459,8 +7443,14 @@
         // Atualiza a largura do fundo roxo via CSS custom property (100% → 0% conforme progress)
         const hpWidthPct = Math.max(0, 100 - (progress * 10));
         if (elHpTrack) elHpTrack.style.setProperty('--hp-width', hpWidthPct + '%');
-        // Renderiza as 10 estrelas dentro da barra
+        // Renderiza as 10 estrelas + label HP dentro da barra
         elHpStarsDesktop.innerHTML = '';
+        // Label HP à esquerda
+        const hpLbl = document.createElement('span');
+        hpLbl.style.cssText = 'font-family:"Cinzel",serif;font-size:0.6rem;font-weight:700;color:rgba(216,180,254,0.7);letter-spacing:1px;position:relative;z-index:1;white-space:nowrap;margin-right:4px;';
+        hpLbl.textContent = 'HP ' + hpWidthPct + '%';
+        elHpStarsDesktop.appendChild(hpLbl);
+        // Estrelas
         for (let i = 0; i < 10; i++) {
           const s = document.createElement('span');
           s.className = 'arqui-hp-star';
