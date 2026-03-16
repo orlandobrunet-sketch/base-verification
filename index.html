@@ -2614,14 +2614,15 @@
     }
 
     /* 5. Texto da questão: Cinzel dourado — capitalização normal */
-    .boss-battle-mode .qbox p#question {
+    .boss-battle-mode .qbox p#question,
+    .arqui-nefromante-final .qbox p#question {
       font-family: 'Cinzel', serif;
       font-weight: 700;
       color: #fde68a;
       font-size: 0.84rem;
       letter-spacing: 0.5px;
       line-height: 1.6;
-      text-transform: none;
+      text-transform: none !important;
       text-shadow: 0 0 12px rgba(255,215,0,0.35), 0 0 25px rgba(200,150,0,0.15);
     }
 
@@ -2918,6 +2919,7 @@
       height: 100%;
       object-fit: cover;
       object-position: center 30%;
+      border-radius: 10px;
       animation: bossImgFloat 6s ease-in-out infinite;
     }
     @keyframes bossImgFloat {
@@ -3024,14 +3026,13 @@
       to   { color: #f3e8ff; text-shadow: 0 0 30px rgba(216,180,254,1), 0 0 60px rgba(192,132,252,0.8), 0 0 100px rgba(124,58,237,0.4); }
     }
 
-    /* HP bar: linha roxa no topo */
+    /* HP bar: compacta no modo arqui */
     .arqui-nefromante-final #bossHpContainer {
-      background: linear-gradient(180deg, rgba(25,4,60,0.98), rgba(12,2,35,1)) !important;
-      border: 2px solid rgba(168,85,247,0.6) !important;
-      box-shadow:
-        0 0 30px rgba(124,58,237,0.4),
-        0 0 12px rgba(255,215,0,0.15),
-        inset 0 0 25px rgba(0,0,0,0.6) !important;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 0 4px !important;
+      margin-bottom: 4px !important;
     }
     .arqui-nefromante-final #bossHpContainer::before {
       background: linear-gradient(90deg,
