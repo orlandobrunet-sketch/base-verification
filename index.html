@@ -3218,6 +3218,25 @@
       .arqui-nefromante-final #finalMeterContainer {
         display: none !important;
       }
+
+      /* AJUSTE 1: Espaçamento entre botão herói e o quadro abaixo */
+      .arqui-nefromante-final .panel.right {
+        margin-top: 14px !important;
+      }
+
+      /* AJUSTE 3: Ocultar cronômetro no mobile durante as últimas 10 questões */
+      .arqui-nefromante-final #timerWidget {
+        display: none !important;
+      }
+
+      /* AJUSTE 4: Questões em capitalização normal (não caixa alta) */
+      .arqui-nefromante-final .qbox p#question {
+        text-transform: none !important;
+        font-family: 'Philosopher', serif !important;
+        font-weight: 600 !important;
+        font-size: 0.88rem !important;
+        letter-spacing: 0.2px !important;
+      }
     }
 
     /* ================================================================
@@ -3580,7 +3599,7 @@
           <div class="arqui-strip-boss-thumb">
             <img src="assets/nefromancer.png" alt="Arqui-Nefromante">
           </div>
-          <span class="arqui-strip-boss-name">Arqui-Nefromante</span>
+          <!-- nome removido: já aparece no título acima da HP bar -->
         </div>
       </div>
 
