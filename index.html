@@ -3038,43 +3038,65 @@
       display: none !important;
     }
 
-    /* Ajuste PC: ocultar barra HP original e mostrar estrelas */
-    .arqui-nefromante-final #bossHpTrack {
+    /* Ajuste PC: barra HP vira container das estrelas (esvaziando roxo, acendendo dourado) */
+    .arqui-nefromante-final #bossHpFill {
       display: none !important;
+    }
+    .arqui-nefromante-final #bossHpTrack {
+      display: flex !important;
+      align-items: center;
+      justify-content: space-around;
+      padding: 0 10px;
+      height: 36px !important;
+      overflow: visible !important;
+      background: rgba(5,0,15,0.9) !important;
+      border: 1px solid rgba(88,28,135,0.7) !important;
+      border-radius: 10px !important;
+      position: relative;
+    }
+    /* Fundo roxo que vai esvaziando da direita para a esquerda */
+    .arqui-nefromante-final #bossHpTrack::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: var(--hp-width, 100%);
+      background: linear-gradient(90deg, #4c1d95, #7c3aed, #a855f7, #c084fc);
+      border-radius: 10px;
+      transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
+      box-shadow: 0 0 16px rgba(168,85,247,0.9), 0 0 30px rgba(168,85,247,0.4);
+      z-index: 0;
     }
     #arquiHpStarsDesktop {
       display: none;
     }
     .arqui-nefromante-final #arquiHpStarsDesktop {
-      display: flex !important;
-      justify-content: center;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 4px 4px;
+      display: contents !important;
     }
     .arqui-hp-star {
-      font-size: 1.5rem;
-      color: rgba(88,28,135,0.35);
+      font-size: 1.4rem;
+      color: rgba(255,255,255,0.18);
       text-shadow: none;
       transition: all 0.5s cubic-bezier(0.34,1.56,0.64,1);
-      filter: drop-shadow(0 0 0px transparent);
+      position: relative;
+      z-index: 1;
+      line-height: 1;
     }
     .arqui-hp-star.filled {
       color: #fbbf24;
       text-shadow:
-        0 0 8px rgba(251,191,36,0.9),
-        0 0 16px rgba(251,191,36,0.6),
-        0 0 30px rgba(245,158,11,0.4);
-      filter: drop-shadow(0 0 6px rgba(251,191,36,0.8));
-      transform: scale(1.15);
+        0 0 8px rgba(251,191,36,1),
+        0 0 18px rgba(251,191,36,0.7),
+        0 0 32px rgba(245,158,11,0.5);
+      filter: drop-shadow(0 0 5px rgba(251,191,36,0.9));
+      transform: scale(1.25);
     }
     .arqui-hp-star.filled.last-filled {
       animation: starPop 0.6s cubic-bezier(0.34,1.56,0.64,1);
     }
     @keyframes starPop {
       0%   { transform: scale(0.5) rotate(-20deg); opacity: 0.3; }
-      60%  { transform: scale(1.4) rotate(5deg); }
-      100% { transform: scale(1.15) rotate(0deg); opacity: 1; }
+      60%  { transform: scale(1.45) rotate(5deg); }
+      100% { transform: scale(1.25) rotate(0deg); opacity: 1; }
     }
 
     /* Opções: grade 2x2, borda de cristal */
@@ -3754,7 +3776,7 @@
         <div class="arqui-strip-vs">VS</div>
         <div class="arqui-strip-boss">
           <div class="arqui-strip-boss-thumb">
-            <img src="assets/nefromancer.png" alt="Arqui-Nefromante">
+            <img src="assets/nefromancer_mobile.png" alt="Arqui-Nefromante">
           </div>
           <!-- nome removido: já aparece no título acima da HP bar -->
         </div>
@@ -3769,11 +3791,12 @@
       <!-- BOSS HP BAR (hidden until boss mode activates) -->
       <div id="bossHpContainer" style="display:none;">
         <div id="bossHpLabel">ARQUI-NEFROMANTE (HP: 100%)</div>
-        <div id="bossHpTrack"><div id="bossHpFill" style="width:100%;"></div></div>
+        <div id="bossHpTrack">
+          <div id="bossHpFill" style="width:100%;"></div>
+          <!-- ESTRELAS HP DESKTOP: ficam dentro da barra, acendem conforme progressão -->
+          <div id="arquiHpStarsDesktop"></div>
+        </div>
       </div>
-
-      <!-- ESTRELAS HP DESKTOP (substitui barra HP no desktop arqui-nefromante-final) -->
-      <div id="arquiHpStarsDesktop"></div>
 
       <!-- ESTRELAS MOBILE (abaixo da HP bar, visível só no mobile arqui-nefromante-final) -->
       <div id="arquiStarsMobile" style="display:none;justify-content:center;gap:4px;align-items:center;padding:4px 0 2px;"></div>
@@ -7322,9 +7345,14 @@
         buildStars(elStarsDesktop);
       }
 
-      // ── Estrelas HP Desktop (substitui barra HP no PC arqui-nefromante-final) ──
+      // ── Estrelas HP Desktop (dentro da barra, que esvazia enquanto estrelas acendem) ──
       const elHpStarsDesktop = document.getElementById('arquiHpStarsDesktop');
+      const elHpTrack = document.getElementById('bossHpTrack');
       if (elHpStarsDesktop && isArqui && !isMobile) {
+        // Atualiza a largura do fundo roxo via CSS custom property (100% → 0% conforme progress)
+        const hpWidthPct = Math.max(0, 100 - (progress * 10));
+        if (elHpTrack) elHpTrack.style.setProperty('--hp-width', hpWidthPct + '%');
+        // Renderiza as 10 estrelas dentro da barra
         elHpStarsDesktop.innerHTML = '';
         for (let i = 0; i < 10; i++) {
           const s = document.createElement('span');
