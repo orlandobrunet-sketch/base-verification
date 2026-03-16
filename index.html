@@ -3327,9 +3327,9 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: 50% 22%; /* zoom no rosto: centro horizontal, ~22% do topo */
-        transform: scale(3.5);
-        transform-origin: 50% 22%;
+        object-position: 50% 18%; /* zoom no rosto: centro horizontal, ~18% do topo */
+        transform: scale(5);
+        transform-origin: 50% 18%;
         display: block;
       }
       .arqui-strip-boss-name {
@@ -9081,14 +9081,14 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
         const equipSection = leftPanel.querySelector('.equip');
         const badgesSection = leftPanel.querySelector('.badges-container');
         if (isArquiFinal) {
-          // Mostrar elementos normais do herói e ocultar o painel de party
-          if (heroSection)   heroSection.style.removeProperty('display');
-          if (hudSection)    hudSection.style.removeProperty('display');
-          if (storySection)  storySection.style.removeProperty('display');
-          if (logSection)    logSection.style.removeProperty('display');
-          if (equipSection)  equipSection.style.removeProperty('display');
-          if (badgesSection) badgesSection.style.removeProperty('display');
-          if (partyPanel)    partyPanel.style.display = 'none';
+          // Forçar display nos elementos normais do herói (sobrescreve o !important do boss mode)
+          if (heroSection)   heroSection.setAttribute('style', 'display:block!important');
+          if (hudSection)    hudSection.setAttribute('style', 'display:block!important');
+          if (storySection)  storySection.setAttribute('style', 'display:block!important');
+          if (logSection)    logSection.setAttribute('style', 'display:block!important');
+          if (equipSection)  equipSection.setAttribute('style', 'display:block!important');
+          if (badgesSection) badgesSection.setAttribute('style', 'display:block!important');
+          if (partyPanel)    partyPanel.setAttribute('style', 'display:none!important');
           // Marcar para restaurar ao fechar
           leftPanel._arquiDrawerOpen = true;
         }
@@ -9142,7 +9142,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
           leftPanel._originalParent = null;
           leftPanel._originalNextSibling = null;
         }
-        // Restaurar estado do boss mode: ocultar herói individual e mostrar party panel
+        // Restaurar estado do boss mode: remover estilos inline e deixar CSS tomar conta
         if (leftPanel._arquiDrawerOpen) {
           leftPanel._arquiDrawerOpen = false;
           const heroSection   = leftPanel.querySelector('.hero');
@@ -9152,13 +9152,14 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
           const equipSection  = leftPanel.querySelector('.equip');
           const badgesSection = leftPanel.querySelector('.badges-container');
           const partyPanel    = document.getElementById('bossPartyPanel');
-          if (heroSection)   heroSection.style.display = 'none';
-          if (hudSection)    hudSection.style.display = 'none';
-          if (storySection)  storySection.style.display = 'none';
-          if (logSection)    logSection.style.display = 'none';
-          if (equipSection)  equipSection.style.display = 'none';
-          if (badgesSection) badgesSection.style.display = 'none';
-          if (partyPanel)    partyPanel.style.display = 'flex';
+          // Remover atributos style inline para que o CSS do boss mode volte a controlar
+          if (heroSection)   heroSection.removeAttribute('style');
+          if (hudSection)    hudSection.removeAttribute('style');
+          if (storySection)  storySection.removeAttribute('style');
+          if (logSection)    logSection.removeAttribute('style');
+          if (equipSection)  equipSection.removeAttribute('style');
+          if (badgesSection) badgesSection.removeAttribute('style');
+          if (partyPanel)    partyPanel.removeAttribute('style');
         }
       }
       // Expor globalmente para o botão do bottom dock
