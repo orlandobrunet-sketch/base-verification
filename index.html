@@ -4977,6 +4977,7 @@
         bonusUses: state.bonusUses,
         correctTotal: state.correctTotal,
         narrativeShown: state.narrativeShown,
+        bossIntroShown: state.bossIntroShown || false,
         character: state.character,
         equipment: JSON.parse(JSON.stringify(state.equipment)),
         idx: state.idx,
@@ -5012,6 +5013,7 @@
       state.bonusUses = save.bonusUses || 0;
       state.correctTotal = save.correctTotal || 0;
       state.narrativeShown = save.narrativeShown || 0;
+      state.bossIntroShown = save.bossIntroShown || false;
       state.chestsOpened = save.chestsOpened || 0;
       state.gameOver = false;
       state.gameStarted = true;
@@ -6296,7 +6298,7 @@
     const state={
       level:1,xp:0,xpToNext:200,score:0,lives:3,streak:0,gold:0,
       current:null,answered:false,queue:[],idx:0,bonusUses:0,
-      correctTotal:0, narrativeShown:0, gameOver:false,
+      correctTotal:0, narrativeShown:0, bossIntroShown:false, gameOver:false,
       gameStarted: false, chestsOpened:0,
       character: null,
       equipment:{
@@ -7600,7 +7602,7 @@
         level: 12, xp: 0, xpToNext: 500,
         score: 24970, lives: 3, streak: 0, gold: 500,
         current: null, answered: false, bonusUses: 0,
-        correctTotal: 90, narrativeShown: 90,
+        correctTotal: 90, narrativeShown: 90, bossIntroShown: true,
         gameOver: false, gameStarted: true,
         extraLifeGiven: false, gameCompleted: false,
         completedGame: false, chestsOpened: 3
@@ -7659,10 +7661,106 @@
     ];
 
     function checkNarrative(){
+      // Popup especial de intro do boss ao atingir 90 acertos
+      if (state.correctTotal === BOSS_START_CORRECT && !state.bossIntroShown) {
+        state.bossIntroShown = true;
+        showBossIntroPopup();
+        return; // não mostra narrativa comum ao mesmo tempo
+      }
       const stage = narrativeStages.find(s => s.at === state.correctTotal && state.narrativeShown < s.at);
       if(!stage) return;
       state.narrativeShown = stage.at;
       showNarrativePopup(stage);
+    }
+
+    function showBossIntroPopup() {
+      playSound('boss');
+      const popup = document.createElement('div');
+      popup.id = 'bossIntroPopup';
+      popup.style.cssText = `
+        position: fixed; inset: 0; z-index: 99999;
+        background: rgba(0,0,0,0.92);
+        display: flex; align-items: center; justify-content: center;
+        animation: fadeIn 0.6s ease;
+        padding: 16px;
+      `;
+      popup.innerHTML = `
+        <div style="
+          max-width: 540px; width: 100%;
+          background: linear-gradient(160deg, #0a0118 0%, #120230 50%, #0a0118 100%);
+          border: 2px solid rgba(168,85,247,0.7);
+          border-radius: 18px;
+          padding: 28px 24px 24px;
+          text-align: center;
+          box-shadow: 0 0 60px rgba(168,85,247,0.4), 0 0 120px rgba(88,28,135,0.2), inset 0 0 60px rgba(0,0,0,0.6);
+          position: relative;
+          overflow: hidden;
+        ">
+          <!-- Linha de cristal no topo -->
+          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.8),rgba(216,180,254,1),rgba(168,85,247,0.8),transparent);"></div>
+          <!-- Capítulo -->
+          <div style="font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:4px;color:rgba(192,132,252,0.7);text-transform:uppercase;margin-bottom:6px;">Capítulo Final</div>
+          <!-- Título -->
+          <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.1rem,4vw,1.6rem);font-weight:900;letter-spacing:3px;color:#e9d5ff;text-shadow:0 0 20px rgba(216,180,254,0.9),0 0 40px rgba(168,85,247,0.6);margin:0 0 16px;">
+            &#9760; O Confronto Final &#9760;
+          </h2>
+          <!-- Imagem do Nefromante -->
+          <div style="margin:0 0 16px;border-radius:12px;overflow:hidden;border:2px solid rgba(168,85,247,0.6);box-shadow:0 0 30px rgba(168,85,247,0.5),0 0 60px rgba(88,28,135,0.3);">
+            <img src="assets/nefromancer.png" alt="Arqui-Nefromante" style="width:100%;display:block;object-fit:cover;max-height:220px;object-position:center 20%;">
+          </div>
+          <!-- Nome do boss -->
+          <div style="font-family:'Cinzel',serif;font-size:1.1rem;font-weight:900;letter-spacing:4px;color:#a855f7;text-shadow:0 0 20px rgba(168,85,247,0.9),0 0 40px rgba(168,85,247,0.5);margin-bottom:14px;">ARQUI-NEFROMANTE</div>
+          <!-- Texto de lore -->
+          <div style="font-family:'Philosopher',serif;font-size:0.88rem;color:#c4b5fd;line-height:1.75;font-style:italic;margin-bottom:20px;padding:0 4px;">
+            Após noventa batalhas, você finalmente chega ao <strong style="color:#e9d5ff;">Trono da Uremia</strong> — o coração sombrio do reino corrompido. Diante de você ergue-se o <strong style="color:#e9d5ff;">Arqui-Nefromante</strong>, senhor da insuficiência renal eterna, cujos feitiços de azotemia e hiperfiltração maligna destruíram milhares de néfrons.
+            <br><br>
+            Ele sorri com desprezo: <em style="color:#f3e8ff;">"Você chegou longe demais para um simples médico. Mas o conhecimento que carrega não é suficiente para me derrotar."</em>
+            <br><br>
+            O Batalhão da Resistência une suas forças ao seu lado. <strong style="color:#fbbf24;">Dez questões</strong> separam a vitória da derrota eterna. Cada resposta correta é um golpe que enfraquece o Arqui-Nefromante. Cada erro, uma abertura para sua magia sombria.
+            <br><br>
+            <strong style="color:#ffd700;">O destino dos rins do reino está em suas mãos.</strong>
+          </div>
+          <!-- Estatísticas do jogador -->
+          <div style="display:flex;gap:10px;justify-content:center;margin-bottom:20px;flex-wrap:wrap;">
+            <div style="background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.3);border-radius:8px;padding:8px 14px;">
+              <div style="font-size:1.2rem;font-weight:700;color:#e9d5ff;">${state.correctTotal}</div>
+              <div style="font-size:0.6rem;color:rgba(192,132,252,0.7);text-transform:uppercase;letter-spacing:1px;">Acertos</div>
+            </div>
+            <div style="background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.3);border-radius:8px;padding:8px 14px;">
+              <div style="font-size:1.2rem;font-weight:700;color:#e9d5ff;">${state.level}</div>
+              <div style="font-size:0.6rem;color:rgba(192,132,252,0.7);text-transform:uppercase;letter-spacing:1px;">Nível</div>
+            </div>
+            <div style="background:rgba(255,215,0,0.1);border:1px solid rgba(255,215,0,0.3);border-radius:8px;padding:8px 14px;">
+              <div style="font-size:1.2rem;font-weight:700;color:#ffd700;">${state.score.toLocaleString('pt-BR')}</div>
+              <div style="font-size:0.6rem;color:rgba(255,215,0,0.6);text-transform:uppercase;letter-spacing:1px;">Pontos</div>
+            </div>
+          </div>
+          <!-- Botão -->
+          <button onclick="document.getElementById('bossIntroPopup').remove()" style="
+            font-family:'Cinzel',serif;
+            background: linear-gradient(180deg, #7c3aed 0%, #5b21b6 50%, #3b0764 100%);
+            border: 2px solid #a855f7;
+            border-radius: 12px;
+            color: #f3e8ff;
+            font-size: 0.95rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 14px 32px;
+            cursor: pointer;
+            box-shadow: 0 0 25px rgba(168,85,247,0.6), 0 4px 15px rgba(0,0,0,0.5);
+            transition: all 0.2s;
+            width: 100%;
+            animation: arquiGolpeGlow 2s ease-in-out infinite alternate;
+          ">&#9876; Iniciar Batalha Final</button>
+          <!-- Linha de cristal no fundo -->
+          <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.8),rgba(216,180,254,1),rgba(168,85,247,0.8),transparent);"></div>
+        </div>
+      `;
+      document.body.appendChild(popup);
+      // Fechar ao clicar fora
+      popup.addEventListener('click', (e) => { if (e.target === popup) popup.remove(); });
+      log('💀 O Arqui-Nefromante aguarda no Trono da Uremia. A batalha final começa!');
     }
 
     function showNarrativePopup(stage){
