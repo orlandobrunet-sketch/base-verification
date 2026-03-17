@@ -3100,6 +3100,12 @@
       text-transform: none !important;
     }
 
+    /* Botão de sinalizar (flag): oculto no modo boss */
+    .arqui-nefromante-final #flagBtn,
+    .boss-battle-mode #flagBtn {
+      display: none !important;
+    }
+
     /* Cronômetro: oculto nas últimas 10 questões (PC) */
     .arqui-nefromante-final #timerWidget {
       display: none !important;
@@ -7365,7 +7371,8 @@
       show(elPartyPanel,  inBoss, 'flex');
       show(elHint,        inBoss);
       // Estrelas no topo: no mobile arqui-nefromante-final ficam abaixo da HP bar (via CSS order)
-      show(elStarsTop,    inBoss, 'flex');
+      // Estrelas no topo: ocultar no desktop arqui-nefromante-final (as estrelas ficam dentro da barra HP)
+      show(elStarsTop,    inBoss && !(isArqui && !isMobile), 'flex');
       // Título mobile: visível apenas no mobile em modo arqui-nefromante-final
       show(elTitleMobile, inBoss && isArqui && isMobile);
 
@@ -7451,7 +7458,7 @@
         elHpStarsDesktop.innerHTML = '';
         // Label HP à esquerda
         const hpLbl = document.createElement('span');
-        hpLbl.style.cssText = 'font-family:"Cinzel",serif;font-size:0.6rem;font-weight:700;color:rgba(216,180,254,0.7);letter-spacing:1px;position:relative;z-index:1;white-space:nowrap;margin-right:4px;';
+        hpLbl.style.cssText = 'font-family:"Philosopher",sans-serif;font-size:0.72rem;font-weight:700;color:#e9d5ff;letter-spacing:1.5px;position:relative;z-index:2;white-space:nowrap;margin-right:6px;text-shadow:0 0 8px rgba(216,180,254,0.9),0 0 16px rgba(168,85,247,0.6);';
         hpLbl.textContent = 'HP ' + hpWidthPct + '%';
         elHpStarsDesktop.appendChild(hpLbl);
         // Estrelas
