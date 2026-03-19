@@ -21,11 +21,21 @@
     <div class="container mx-auto px-4 py-8">
         <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
             <h1 class="text-3xl font-bold text-gray-800 mb-2">🔧 Gerenciamento de Perguntas</h1>
-            <p class="text-gray-500 text-sm mb-4">NefroQuest — Editor de questões. Carregue, edite e exporte de volta para o index.html.</p>
+            <p class="text-gray-500 text-sm mb-4">NefroQuest — Editor de questões. Carregue, edite e salve direto no GitHub.</p>
+
+            <!-- GitHub Token Config -->
+            <div id="tokenBar" class="flex items-center gap-2 mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                <span class="text-yellow-700 text-sm font-semibold whitespace-nowrap">🔑 GitHub Token:</span>
+                <input type="password" id="tokenInput" placeholder="ghp_... ou github_pat_..."
+                    class="flex-1 px-3 py-1.5 border border-yellow-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                    oninput="saveToken()">
+                <span id="tokenStatus" class="text-xs whitespace-nowrap text-gray-500"></span>
+            </div>
 
             <div class="flex flex-wrap gap-3 mb-6">
                 <button onclick="loadQuestions()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">📥 Carregar Perguntas</button>
                 <button onclick="addNewQuestion()" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded">➕ Nova Pergunta</button>
+                <button onclick="publishToGitHub()" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">🚀 Publicar no GitHub</button>
                 <button onclick="exportIndexHTML()" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded">💾 Exportar index.html</button>
                 <button onclick="exportJSON()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded">📄 Exportar JSON</button>
             </div>
@@ -143,6 +153,69 @@
         let originalIndexHTML = '';
         let currentPage = 1;
         const questionsPerPage = 50;
+
+        const GITHUB_REPO = 'orlandobrunet-sketch/base-verification';
+        const GITHUB_BRANCH = 'main';
+        const GITHUB_FILE = 'index.html';
+
+        function saveToken() {
+            const t = document.getElementById('tokenInput').value.trim();
+            if (t) { localStorage.setItem('gh_token', t); document.getElementById('tokenStatus').textContent = '✅ salvo'; }
+            else { localStorage.removeItem('gh_token'); document.getElementById('tokenStatus').textContent = ''; }
+        }
+
+        function getToken() { return localStorage.getItem('gh_token') || ''; }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const t = getToken();
+            if (t) { document.getElementById('tokenInput').value = t; document.getElementById('tokenStatus').textContent = '✅ salvo'; }
+        });
+
+        async function publishToGitHub() {
+            const token = getToken();
+            if (!token) { alert('❌ Configure o GitHub Token primeiro!'); return; }
+            if (!originalIndexHTML) { alert('❌ Carregue as perguntas primeiro!'); return; }
+            if (!confirm(`Publicar ${questions.length} perguntas direto no GitHub?\n\nIsso vai atualizar o index.html no branch main e o site será republicado em ~1 minuto.`)) return;
+
+            const oldJson = extractTopicsJSON(originalIndexHTML);
+            if (!oldJson) { alert('❌ Não foi possível localizar o array de perguntas no HTML original!'); return; }
+            const updatedHTML = originalIndexHTML.replace('const topics = ' + oldJson, `const topics = ${JSON.stringify(questions)}`);
+
+            try {
+                // Get current file SHA (required by GitHub API)
+                const metaRes = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}?ref=${GITHUB_BRANCH}`, {
+                    headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json' }
+                });
+                if (!metaRes.ok) { const e = await metaRes.json(); alert('❌ Erro ao acessar GitHub API: ' + (e.message || metaRes.status)); return; }
+                const meta = await metaRes.json();
+
+                // Encode content to base64
+                const encoded = btoa(unescape(encodeURIComponent(updatedHTML)));
+
+                // Commit via API
+                const putRes = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`, {
+                    method: 'PUT',
+                    headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: `feat: atualizar banco de perguntas (${questions.length} questões) via editor`,
+                        content: encoded,
+                        sha: meta.sha,
+                        branch: GITHUB_BRANCH
+                    })
+                });
+
+                if (putRes.ok) {
+                    const result = await putRes.json();
+                    originalIndexHTML = updatedHTML;
+                    alert(`✅ Publicado com sucesso!\n\n${questions.length} perguntas salvas.\nCommit: ${result.commit.sha.slice(0,7)}\n\nO site será atualizado em ~1 minuto.`);
+                } else {
+                    const e = await putRes.json();
+                    alert('❌ Erro ao publicar: ' + (e.message || putRes.status));
+                }
+            } catch(err) {
+                alert('❌ Erro de rede: ' + err.message);
+            }
+        }
 
         function extractTopicsJSON(html) {
             const marker = 'const topics = [';
