@@ -144,14 +144,33 @@
         let currentPage = 1;
         const questionsPerPage = 50;
 
+        function extractTopicsJSON(html) {
+            const marker = 'const topics = [';
+            const start = html.indexOf(marker);
+            if (start === -1) return null;
+            const arrStart = start + marker.length - 1;
+            let depth = 0, inStr = false, escape = false;
+            for (let i = arrStart; i < html.length; i++) {
+                const c = html[i];
+                if (escape) { escape = false; continue; }
+                if (c === '\\' && inStr) { escape = true; continue; }
+                if (c === '"') { inStr = !inStr; continue; }
+                if (!inStr) {
+                    if (c === '[') depth++;
+                    else if (c === ']') { depth--; if (depth === 0) return html.substring(arrStart, i + 1); }
+                }
+            }
+            return null;
+        }
+
         async function loadQuestions() {
             try {
                 const response = await fetch('index.html');
                 const html = await response.text();
                 originalIndexHTML = html;
-                const match = html.match(/const topics = (\[[\s\S]*?\]);/);
-                if (!match) { alert('❌ Não foi possível encontrar o array de perguntas no index.html'); return; }
-                questions = JSON.parse(match[1]);
+                const jsonStr = extractTopicsJSON(html);
+                if (!jsonStr) { alert('❌ Não foi possível encontrar o array de perguntas no index.html'); return; }
+                questions = JSON.parse(jsonStr);
                 filteredQuestions = [...questions];
                 currentPage = 1;
                 populateCatFilter();
@@ -340,7 +359,9 @@
 
         function exportIndexHTML() {
             if (!originalIndexHTML) { alert('❌ Carregue as perguntas primeiro!'); return; }
-            const updated = originalIndexHTML.replace(/const topics = \[[\s\S]*?\];/, `const topics = ${JSON.stringify(questions)};`);
+            const oldJson = extractTopicsJSON(originalIndexHTML);
+            if (!oldJson) { alert('❌ Não foi possível localizar o array de perguntas no HTML original!'); return; }
+            const updated = originalIndexHTML.replace('const topics = ' + oldJson, `const topics = ${JSON.stringify(questions)}`);
             const blob = new Blob([updated], {type:'text/html'});
             const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: `index_${new Date().toISOString().split('T')[0]}.html` });
             a.click(); URL.revokeObjectURL(a.href);
