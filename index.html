@@ -6499,6 +6499,14 @@
       return fallback;
     }
 
+    const chapters = [
+      { lv:1,  title:"Prólogo — As Criptas da Creatinina",       goal:"Estude os fundamentos e sobreviva às primeiras cartas." },
+      { lv:4,  title:"Capítulo II — O Vale da Albuminúria",       goal:"Consolide estratificação de risco e terapia nefroprotetora." },
+      { lv:8,  title:"Capítulo III — Torre das Glomerulopatias",  goal:"Domine sinais de gravidade e decisões de intervenção precoce." },
+      { lv:12, title:"Capítulo IV — Trono Cardiorrenal",          goal:"Integre terapias complexas e mantenha consistência clínica." },
+      { lv:15, title:"Capítulo Final — O Arqui-Nefromante",       goal:"Equipe 2 lendários e alcance a vitória clínica suprema." }
+    ];
+
     function chapterMeta(){
       let current=chapters[0];
       for(const c of chapters){ if(state.level>=c.lv) current=c; }
