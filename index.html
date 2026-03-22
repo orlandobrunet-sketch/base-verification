@@ -4947,6 +4947,7 @@
     // ============ SISTEMA DE SAVE/LOAD (localStorage) ============
     const SAVE_KEY = 'nefroquest-save';
     const STATS_KEY = 'nefroquest-stats';
+    const MASTERED_KEY = 'nefroquest-mastered';
     // Chave Web3Forms — obtenha grátis em https://web3forms.com (cadastre orlandobrunet@gmail.com)
     const FLAG_API_KEY = 'd88c1c48-5d9c-48f2-b506-53ac0ac71396';
     
@@ -6601,6 +6602,7 @@
     // mesmo na virada de ciclo. Tamanho do histórico = 20% do banco.
     const HISTORY_SIZE = Math.max(30, Math.floor(questionBank.length * 0.20));
     let _recentIds = []; // fila circular dos últimos IDs vistos
+    let _masteredSet = new Set(JSON.parse(localStorage.getItem(MASTERED_KEY) || '[]'));
 
     function shuffle(arr) {
       const a = [...arr];
@@ -6613,9 +6615,15 @@
 
     function shuffleQueue() {
       // Separar por dificuldade e embaralhar cada grupo
-      const easy   = shuffle(questionBank.filter(q => q._d === 'easy'));
-      const medium = shuffle(questionBank.filter(q => q._d === 'medium'));
-      const hard   = shuffle(questionBank.filter(q => q._d === 'hard'));
+      // Dentro de cada grupo: não-dominadas primeiro, dominadas por último
+      function splitMastered(arr) {
+        const fresh    = shuffle(arr.filter(q => !_masteredSet.has(q.id)));
+        const mastered = shuffle(arr.filter(q =>  _masteredSet.has(q.id)));
+        return [...fresh, ...mastered];
+      }
+      const easy   = splitMastered(questionBank.filter(q => q._d === 'easy'));
+      const medium = splitMastered(questionBank.filter(q => q._d === 'medium'));
+      const hard   = splitMastered(questionBank.filter(q => q._d === 'hard'));
       // Intercalar: 1 easy, 2 medium, 2 hard, repetindo...
       // para distribuir dificuldade ao longo de todo o ciclo
       const interleaved = [];
@@ -8366,9 +8374,8 @@
               nefropatia_diabetica:'Nefropatia Diabética', dialise:'Diálise',
               transplante:'Transplante', hipertensao:'Hipertensão',
               acido_base:'Ácido-Base', 'litíase':'Litíase', infeccao:'Infecção',
-              farmacologia:'Farmacologia', pediatria:'Pediatria',
-              patologia:'Patologia', especial:'Especial', genetica:'Genética',
-              oncologia_renal:'Oncologia Renal', imunologia:'Imunologia'
+              farmacologia:'Farmacologia', genetica:'Genética', uti:'UTI / Crítico',
+              patologia:'Patologia', oncologia_renal:'Oncologia Renal'
             };
             if (!catData.length) return '';
             return `
@@ -9174,7 +9181,13 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
       
       // Tracking de estatísticas
       trackQuestionAnswer(state.current, isCorrect, timeSpent);
-      
+
+      // Marcar questão como dominada após resposta correta
+      if (isCorrect && state.current && state.current.id) {
+        _masteredSet.add(state.current.id);
+        try { localStorage.setItem(MASTERED_KEY, JSON.stringify([..._masteredSet])); } catch(e) {}
+      }
+
       // Chamar função original
       originalAnswer(i, btn);
       
