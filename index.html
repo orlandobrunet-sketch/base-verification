@@ -4796,7 +4796,7 @@
             <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
               <button class="btn sec" onclick="continueAfterCompletion()" style="flex:1;min-width:120px;">Continuar Jogando</button>
               <button class="btn gold" onclick="finishGameCompletely()" style="flex:1;min-width:120px;">Encerrar Jornada</button>
-              <button class="btn sec" onclick="shareVictory()" style="flex:1;min-width:120px;background:linear-gradient(180deg,#3b82f6,#2563eb);border-color:#1d4ed8;color:#fff;">📤 Compartilhar</button>
+              <button class="btn sec" onclick="shareVictory(this)" style="flex:1;min-width:120px;background:linear-gradient(180deg,#3b82f6,#2563eb);border-color:#1d4ed8;color:#fff;">📤 Compartilhar</button>
             </div>
           </div>
         </div>
@@ -4805,13 +4805,12 @@
       playSound('victory');
     }
 
-    function shareVictory() {
+    function shareVictory(btn) {
       const text = `🏆 Completei o NefroQuest: Ascension!\n\n✅ 100 questões de nefrologia respondidas\n📊 ${state.score} pontos · Nível ${state.level}\n🎮 Derrotei o Arqui-Nefromante!\n\nTeste seus conhecimentos: https://orlandobrunet-sketch.github.io/base-verification/`;
       if (navigator.share) {
         navigator.share({ title: 'NefroQuest: Ascension - Vitória!', text: text, url: 'https://orlandobrunet-sketch.github.io/base-verification/' }).catch(()=>{});
       } else {
         navigator.clipboard.writeText(text).then(() => {
-          const btn = event.target;
           btn.textContent = '✅ Copiado!';
           setTimeout(() => { btn.textContent = '📤 Compartilhar'; }, 2000);
         }).catch(() => {
@@ -6565,7 +6564,7 @@
         const desc = isEmpty ? 'Slot vazio. Forje itens para equipar!' : (itemDescriptions[v.n] || '');
         const imgHtml = isEmpty 
           ? `<div class='slot-icon' style='display:flex;align-items:center;justify-content:center;background:rgba(10,15,30,0.8);border:2px dashed #2a4a7a;color:#3a5a8a;font-size:1.5rem'>?</div>`
-          : `<img class='slot-icon item-with-tooltip' loading='lazy' src='${icon}' alt='${v.n}' data-item-name='${v.n}' data-item-desc='${desc}'/>`;  
+          : `<img class='slot-icon item-with-tooltip' loading='lazy' src='${icon}' alt="${v.n.replace(/"/g,'&quot;')}" data-item-name="${v.n.replace(/"/g,'&quot;')}" data-item-desc="${desc.replace(/"/g,'&quot;')}"/>`;
         return `<div class='slot'>
           ${imgHtml}
           <div class='slot-info'>
