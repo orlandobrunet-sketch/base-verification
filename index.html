@@ -3959,7 +3959,7 @@
       <!-- POPUP NARRATIVO QUESTÃO 9 (mobile: popup fullscreen; PC: troca imagem) -->
       <div id="arquiQ9Popup" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.92);display:none;flex-direction:column;align-items:center;justify-content:center;padding:20px;">
         <div style="max-width:420px;width:100%;text-align:center;">
-          <img src="assets/battle_final.png" alt="Batalha Final" style="width:100%;border-radius:12px;border:2px solid rgba(168,85,247,0.7);box-shadow:0 0 30px rgba(124,58,237,0.6);margin-bottom:16px;">
+          <img src="assets/battle_final.png" alt="Batalha Final" style="width:100%;border-radius:12px;border:2px solid rgba(168,85,247,0.7);box-shadow:0 0 30px rgba(124,58,237,0.6);margin-bottom:16px;clip-path:inset(0 0 9% 0 round 12px);">
           <p style="font-family:'Cinzel',serif;color:#e9d5ff;font-size:1rem;letter-spacing:2px;text-shadow:0 0 15px rgba(216,180,254,0.8);line-height:1.6;margin-bottom:20px;">&#9760; O Arqui-Nefromante está de joelhos! O Batalhão da Resistência une suas forças para o golpe definitivo. Uma última resposta separa a vitória da derrota! &#9760;</p>
           <button onclick="document.getElementById('arquiQ9Popup').style.display='none'" style="font-family:'Cinzel',serif;background:linear-gradient(180deg,#c8960c,#7a5a06);border:2px solid #ffd700;color:#1a0a00;padding:12px 32px;border-radius:10px;font-size:0.9rem;font-weight:900;letter-spacing:3px;cursor:pointer;text-transform:uppercase;box-shadow:0 0 20px rgba(255,215,0,0.5);">Partir para o Ataque!</button>
         </div>
@@ -7607,7 +7607,8 @@
       if (arquiBossImgEl && isArqui) {
         if (progress >= 9) {
           arquiBossImgEl.src = 'assets/battle_final.png';
-          arquiBossImgEl.style.objectPosition = 'center center';
+          arquiBossImgEl.style.objectPosition = 'center top';
+          arquiBossImgEl.style.clipPath = 'inset(0 0 9% 0)';
         } else {
           arquiBossImgEl.src = 'assets/nefromancer.png';
           arquiBossImgEl.style.objectPosition = 'center 30%';
@@ -8095,7 +8096,7 @@
     const CHARACTER_INTROS = {
       nephros:   { ch: 'Dr. Nephros · Guardião dos Néfrons',   text: 'O Reino dos Néfrons está sob ameaça. O Arqui-Nefromante corrompe cada túbulo com ignorância clínica — hipercalemia subestimada, DRC diagnosticada tarde, néfrons perdidos para sempre. Você enxerga o que outros ignoram: cada questão correta é um néfron preservado. A jornada começa agora.' },
       aquaria:   { ch: 'Dra. Aquaria · Mestra das Águas',      text: 'Onde outros veem números, você vê correntes. O Arqui-Nefromante semeia desequilíbrio — hiponatremia que destrói neurônios, acidose que afoga tecidos. Seu domínio é o equilíbrio hidroeletrolítico. Cada resposta certa é uma maré controlada. O reino aguarda sua maestria.' },
-      glomerulus:{ ch: 'Dr. Glomerulus · Lâmina dos Glomérulos', text: 'A guerra acontece no nível celular. IgA se deposita, podócitos são apagados, glomérulos perdidos não se regeneram. O Arqui-Nefromante conta com a ignorância dos clínicos. Seu bisturi é o saber, sua armadura são as diretrizes. Cada questão correta é um glomérulo preservado.' }
+      glomerulus:{ ch: 'Dr. Glomerulus · Lâmina dos Glomérulos', text: 'A guerra acontece no nível celular. IgA se deposita, podócitos são apagados, glomérulos perdidos não se regeneram. O Arqui-Nefromante conta com a ignorância dos clínicos. Seu raciocínio é sua arma, as diretrizes são sua armadura. Cada questão correta é um glomérulo preservado.' }
     };
 
     function selectCharacter(charId) {
