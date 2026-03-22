@@ -1,12 +1,13 @@
-// NefroQuest Service Worker — v5.0
-const CACHE = 'nefroquest-v5';
+// NefroQuest Service Worker — v7.0
+const CACHE = 'nefroquest-v7';
 const ASSETS = [
   '/',
   '/index.html',
   '/perguntas.html',
+  '/manifest.json',
   '/favicon.ico',
-  '/assets/images/welcome-bg-opt.jpg',
-  '/assets/images/welcome-bg-portrait-opt.jpg',
+  '/assets/images/welcome-bg.png',
+  '/assets/images/welcome-bg-portrait.jpg',
   '/assets/nefromancer.png',
   '/assets/sounds/bgmusic.mp3',
   '/assets/sounds/correct.wav',
@@ -35,11 +36,18 @@ self.addEventListener('activate', e => {
   );
 });
 
+self.addEventListener('message', e => {
+  if (e.data && e.data.type === 'SKIP_WAITING') self.skipWaiting();
+});
+
 self.addEventListener('fetch', e => {
   // Apenas GET, mesma origem
   if (e.request.method !== 'GET') return;
   const url = new URL(e.request.url);
   if (url.origin !== location.origin) return;
+
+  // Nunca cachear a página de limpeza de cache
+  if (url.pathname === '/clear-cache.html') return;
 
   e.respondWith(
     caches.match(e.request).then(cached => {
