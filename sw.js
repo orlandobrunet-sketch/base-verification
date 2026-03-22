@@ -46,6 +46,9 @@ self.addEventListener('fetch', e => {
   const url = new URL(e.request.url);
   if (url.origin !== location.origin) return;
 
+  // Nunca cachear a página de limpeza de cache
+  if (url.pathname === '/clear-cache.html') return;
+
   e.respondWith(
     caches.match(e.request).then(cached => {
       if (cached) return cached;

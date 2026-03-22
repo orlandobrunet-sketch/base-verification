@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NefroQuest — Limpando cache...</title>
+  <style>
+    body { background: #0a0e1a; color: #fff; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; text-align: center; padding: 20px; box-sizing: border-box; }
+    h2 { color: #fbbf24; margin-bottom: 16px; }
+    p { color: #94a3b8; margin-bottom: 8px; }
+    #status { color: #34d399; font-size: 1.1rem; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h2>⚔️ NefroQuest</h2>
+  <p>Limpando cache antigo e atualizando o jogo...</p>
+  <div id="status">Aguarde...</div>
+  <script>
+    async function clearAll() {
+      const s = document.getElementById('status');
+      try {
+        // 1. Remover todos os service workers
+        if ('serviceWorker' in navigator) {
+          const regs = await navigator.serviceWorker.getRegistrations();
+          for (const reg of regs) await reg.unregister();
+          s.textContent = 'Service workers removidos ✓';
+        }
+        // 2. Limpar todos os caches
+        if ('caches' in window) {
+          const keys = await caches.keys();
+          for (const key of keys) await caches.delete(key);
+          s.textContent = 'Caches limpos ✓';
+        }
+        s.textContent = '✅ Pronto! Redirecionando...';
+        setTimeout(() => { window.location.replace('/'); }, 1500);
+      } catch(e) {
+        s.textContent = 'Erro: ' + e.message + ' — tente recarregar manualmente.';
+      }
+    }
+    clearAll();
+  </script>
+</body>
+</html>
