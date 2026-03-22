@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v6.0
-const CACHE = 'nefroquest-v6';
+// NefroQuest Service Worker — v7.0
+const CACHE = 'nefroquest-v7';
 const ASSETS = [
   '/',
   '/index.html',

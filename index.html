@@ -8053,7 +8053,7 @@
       _shareBtn.className = 'btn sec';
       _shareBtn.style.cssText = 'margin-top:8px;width:100%;';
       _shareBtn.textContent = '📤 Compartilhar Resultado';
-      _shareBtn.onclick = () => _shareResult('campanha', { score: state.score, level: state.level, pct: state.correctTotal > 0 ? Math.round((state.correctTotal/(state.correctTotal+(state.score>0?0:0)+_sessionWrongAnswers.length))*100) : 0 });
+      _shareBtn.onclick = () => _shareResult('campanha', { score: state.score, level: state.level, correct: state.correctTotal, total: state.correctTotal + _sessionWrongAnswers.length, pct: state.correctTotal > 0 ? Math.round((state.correctTotal/(state.correctTotal+_sessionWrongAnswers.length))*100) : 0 });
       ui.options.appendChild(_shareBtn);
       // Botões permanecem ativos após fim de jornada — popup informa o estado
       state.gameOver=true;
@@ -10373,7 +10373,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
       const lines = [
         '🏆 NefroQuest: Ascension',
         tipo === 'campanha' ? `⚔️ Campanha — Nível ${data.level || '?'}` : `📝 Prova Simulada`,
-        `📊 Acerto: ${data.pct}%  |  ${data.correct}/${data.total} corretas`,
+        data.correct !== undefined ? `📊 Acerto: ${data.pct}%  |  ${data.correct}/${data.total} corretas` : `📊 Acerto: ${data.pct}%`,
         data.level ? `🎖️ Nível ${data.level}  |  ${data.score} pontos` : `⏱️ ${data.time}`,
         '',
         'Treine nefrologia em: nefroquest.vercel.app'
