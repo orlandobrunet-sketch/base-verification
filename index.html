@@ -3721,15 +3721,8 @@
         <button class="btn sec" onclick="showStatsModal()">📊 Estatísticas</button>
         <button class="btn sec" onclick="showAchievementsModal()">🏆 Conquistas</button>
         <button class="btn sec" onclick="showLeaderboardFromWelcome()">Leaderboard</button>
+        <button id="dailyQCard" class="btn sec" style="display:none;" onclick="showDailyQuestionModal()">✨ Questão do Dia <span id="dailyStreak" style="color:#fbbf24;font-weight:bold;margin-left:4px;"></span></button>
         <button id="bossPreviewBtn" class="btn-boss-preview" onclick="startBossPreview()" title="Preview do Confronto Final" style="display:none;">⚔️ Preview: Confronto Final</button>
-      </div>
-      <div id="dailyQCard" style="display:none;margin:14px 0 4px;padding:14px 16px;background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.35);border-radius:12px;text-align:left;cursor:pointer;max-width:400px;" onclick="showDailyQuestionModal()">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
-          <span style="color:var(--gold);font-size:0.75rem;font-weight:700;letter-spacing:1px;font-family:'Cinzel',serif;">✨ QUESTÃO DO DIA</span>
-          <span id="dailyStreak" style="color:#fbbf24;font-size:0.8rem;font-weight:bold;"></span>
-        </div>
-        <p id="dailyQPreview" style="color:var(--txt);font-size:0.82rem;line-height:1.5;margin:0;"></p>
-        <span style="color:var(--txt-dim);font-size:0.72rem;margin-top:6px;display:block;">Toque para responder →</span>
       </div>
       <div class="welcome-credit" style="margin-top:14px;"><a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;" onclick="showChangelog()" style="cursor:pointer;">v5.6</span></div>
     </div>
@@ -10223,17 +10216,14 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
       const idx = parseInt(seed.slice(-6)) % questionBank.length;
       const q = questionBank[idx];
       const card = document.getElementById('dailyQCard');
-      const preview = document.getElementById('dailyQPreview');
       const streakEl = document.getElementById('dailyStreak');
-      if (!card || !preview) return;
-      preview.textContent = q.q.length > 90 ? q.q.slice(0,90)+'…' : q.q;
-      streakEl.textContent = streak > 1 ? `🔥 ${streak} dias` : '';
-      card.style.display = 'block';
+      if (!card) return;
+      streakEl.textContent = streak > 1 ? `🔥 ${streak}` : '';
+      card.style.display = 'inline-flex';
       card._dailyData = { q, today, streak, answered: stored.date === today, wasCorrect: stored.correct };
       if (stored.date === today) {
-        card.style.background = stored.correct ? 'rgba(52,211,153,0.08)' : 'rgba(251,113,133,0.08)';
-        card.style.borderColor = stored.correct ? 'rgba(52,211,153,0.35)' : 'rgba(251,113,133,0.35)';
-        card.querySelector('span:last-child').textContent = stored.correct ? '✅ Respondida corretamente hoje!' : '❌ Respondida hoje — revise!';
+        card.style.borderColor = stored.correct ? 'rgba(52,211,153,0.6)' : 'rgba(251,113,133,0.6)';
+        card.style.color = stored.correct ? '#34d399' : '#fb7185';
       }
     }
 
@@ -10288,13 +10278,11 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
       modal.querySelector('#dailyOpts').after(exp);
       // Persistir
       localStorage.setItem(DAILY_KEY, JSON.stringify({ date: today, lastAnswered: today, streak, correct }));
-      // Atualizar card
+      // Atualizar botão
       const card = document.getElementById('dailyQCard');
       if (card) {
-        card.style.background = correct ? 'rgba(52,211,153,0.08)' : 'rgba(251,113,133,0.08)';
-        card.style.borderColor = correct ? 'rgba(52,211,153,0.35)' : 'rgba(251,113,133,0.35)';
-        const lbl = card.querySelector('span:last-child');
-        if (lbl) lbl.textContent = correct ? '✅ Respondida corretamente hoje!' : '❌ Respondida hoje — revise!';
+        card.style.borderColor = correct ? 'rgba(52,211,153,0.6)' : 'rgba(251,113,133,0.6)';
+        card.style.color = correct ? '#34d399' : '#fb7185';
       }
       playSound(correct ? 'correct' : 'wrong');
     }
