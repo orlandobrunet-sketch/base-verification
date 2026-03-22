@@ -8612,15 +8612,15 @@
             const polyline = pts.map((p,i) => `${(i*w).toFixed(1)},${(h2 - p.pct/max*h2).toFixed(1)}`).join(' ');
             const dots = pts.map((p,i) => `<circle cx="${(i*w).toFixed(1)}" cy="${(h2 - p.pct/max*h2).toFixed(1)}" r="3" fill="${p.pct>=70?'#34d399':p.pct>=50?'#fbbf24':'#fb7185'}" />`).join('');
             const labels = pts.map((p,i) => `<text x="${(i*w).toFixed(1)}" y="${h2+14}" text-anchor="middle" fill="#64748b" font-size="8">${p.d.slice(5)}</text><text x="${(i*w).toFixed(1)}" y="${(h2 - p.pct/max*h2 - 5).toFixed(1)}" text-anchor="middle" fill="${p.pct>=70?'#34d399':p.pct>=50?'#fbbf24':'#fb7185'}" font-size="8">${p.pct}%</text>`).join('');
-            return \`<div style="text-align:left;margin-bottom:16px;">
-              <h3 style="color:var(--gold);margin-bottom:8px;font-size:0.9rem;font-family:'Cinzel',serif;letter-spacing:1px;">EVOLUÇÃO (ÚLTIMOS 7 DIAS)</h3>
-              <div style="background:rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px 12px;">
-                <svg viewBox="-4 -4 108 62" style="width:100%;overflow:visible;">
-                  <polyline points="\${polyline}" fill="none" stroke="#6366f1" stroke-width="2" stroke-linejoin="round"/>
-                  \${dots}\${labels}
-                </svg>
-              </div>
-            </div>\`;
+            return '<div style="text-align:left;margin-bottom:16px;">'
+              + '<h3 style="color:var(--gold);margin-bottom:8px;font-size:0.9rem;font-family:\'Cinzel\',serif;letter-spacing:1px;">EVOLUÇÃO (ÚLTIMOS 7 DIAS)</h3>'
+              + '<div style="background:rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px 12px;">'
+              + '<svg viewBox="-4 -4 108 62" style="width:100%;overflow:visible;">'
+              + '<polyline points="' + polyline + '" fill="none" stroke="#6366f1" stroke-width="2" stroke-linejoin="round"/>'
+              + dots + labels
+              + '</svg>'
+              + '</div>'
+              + '</div>';
           })()}
           <button class="btn sec" onclick="confirmResetProgress()"  style="margin-right:8px;background:rgba(251,113,133,0.15);border-color:rgba(251,113,133,0.4);color:#fb7185;font-size:0.78rem;">🗑️ Resetar Progresso</button>
           <button class="btn gold" onclick="this.closest('.modal').remove()">Fechar</button>
