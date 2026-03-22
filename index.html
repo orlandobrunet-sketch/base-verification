@@ -3601,7 +3601,34 @@
       }
     }
   </style>
-  <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}</script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' })
+          .then(reg => {
+            // Forçar verificação de atualização imediata
+            reg.update();
+            // Se há um SW esperando, ativá-lo imediatamente
+            if (reg.waiting) reg.waiting.postMessage({ type: 'SKIP_WAITING' });
+            reg.addEventListener('updatefound', () => {
+              const newSW = reg.installing;
+              if (newSW) {
+                newSW.addEventListener('statechange', () => {
+                  if (newSW.state === 'installed' && navigator.serviceWorker.controller) {
+                    newSW.postMessage({ type: 'SKIP_WAITING' });
+                  }
+                });
+              }
+            });
+          }).catch(() => {});
+        // Quando o SW assumir o controle, recarregar para servir novos arquivos
+        let refreshing = false;
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+          if (!refreshing) { refreshing = true; window.location.reload(); }
+        });
+      });
+    }
+  </script>
 </head>
 <body>
   <!-- Offline badge -->
