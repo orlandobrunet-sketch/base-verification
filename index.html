@@ -4009,7 +4009,6 @@
         <div id="cycleProgressBar" style="margin-top:6px;height:3px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;">
           <div id="cycleProgressFill" style="height:100%;background:linear-gradient(90deg,#6366f1,#8b5cf6);width:0%;transition:width 0.4s;"></div>
         </div>
-        <div id="cycleProgressTxt" style="text-align:right;color:var(--txt-dim);font-size:0.68rem;margin-top:2px;"></div>
       </div>
       <div id="options" class="options"></div>
       <div id="feedback" class="feedback">Escolha a melhor resposta.</div>
@@ -6642,7 +6641,7 @@
       ui.xpFill.style.width=`${Math.min(100,(state.xp/state.xpToNext)*100)}%`;
       const _qDone = state.idx;
       const _qTotal = state.queue.length;
-      ui.xpTxt.textContent=`XP ${state.xp}/${state.xpToNext} • Q ${_qDone}/${_qTotal}`;
+      ui.xpTxt.textContent=`XP ${state.xp}/${state.xpToNext}`;
       // Barra de progresso do ciclo
       const _cpf = document.getElementById('cycleProgressFill');
       const _cpt = document.getElementById('cycleProgressTxt');
@@ -8101,36 +8100,9 @@
     }
     // ============ NARRATIVAS DE INÍCIO POR PERSONAGEM ============
     const CHARACTER_INTROS = {
-      nephros: {
-        epithet: 'O Último Guardião dos Néfrons',
-        color: '#60a5fa',
-        glow: 'rgba(96,165,250,0.35)',
-        paragraphs: [
-          'Desde o primeiro dia de medicina você sentiu o peso da chamada. Enquanto outros viam apenas túbulos e glomérulos, você enxergava um reino vivo — frágil, preciso, capaz de filtrar o caos do sangue e devolver a ordem ao organismo.',
-          'O Arqui-Nefromante surgiu das profundezas da ignorância clínica. Sua arma é simples: cada médico que erra uma conduta renal alimenta sua força. Hipervolemia ignorada. Hipercalemia subestimada. DRC diagnosticada tarde demais. Cada erro é um néfron perdido para sempre.',
-          'Você é Dr. Nephros, Guardião dos Néfrons. Sua missão não é apenas responder questões — é preservar cada unidade funcional do reino. A jornada começa agora. O Reino Sombrio aguarda seu curador.'
-        ]
-      },
-      aquaria: {
-        epithet: 'Senhora das Marés Metabólicas',
-        color: '#34d399',
-        glow: 'rgba(52,211,153,0.35)',
-        paragraphs: [
-          'As outras especialidades veem o paciente em órgãos. Você vê equilíbrios. Cada sódio fora do limite é uma maré invadindo territórios que não lhe pertencem. Cada bicarbonato em queda é uma tempestade ácida varrendo as células do organismo.',
-          'O Arqui-Nefromante semeia o caos nos fluidos: hiponatremia que destrói neurônios, hipercalemia que para corações, acidose metabólica que afoga os tecidos. Seu maior poder é que médicos despreparados não reconhecem o desequilíbrio até que seja tarde.',
-          'Você é Dra. Aquaria, Mestra das Águas e Senhora das Marés Metabólicas. Onde outros veem números em exames, você vê correntes a dominar. Cada questão respondida é uma maré controlada. Prove que o equilíbrio é seu domínio.'
-        ]
-      },
-      glomerulus: {
-        epithet: 'Lâmina dos Glomérulos',
-        color: '#a78bfa',
-        glow: 'rgba(167,139,250,0.35)',
-        paragraphs: [
-          'A biópsia revelou sua verdade. Enquanto a microscopia eletrônica mostrava os capilares glomerulares destruídos pela doença, você sentiu não horror, mas determinação. Esse castelo microscópico seria defendido.',
-          'O Arqui-Nefromante age no nível celular: IgA depositando-se nas mesângio, anticorpos anti-MBG rasgando a barreira de filtração, podócitos apagados pela síndrome nefrótica. Cada glômérulo perdido é permanente. Não há regeneração — apenas prevenção e conhecimento.',
-          'Você é Dr. Glomerulus, Cientista Renal e Lâmina dos Glomérulos. Seu bisturi é o saber; sua armadura, as diretrizes. A guerra microscópica começa agora. Cada questão correta é um glomérulo preservado contra o colapso do reino.'
-        ]
-      }
+      nephros:   { ch: 'Dr. Nephros · Guardião dos Néfrons',   text: 'O Reino dos Néfrons está sob ameaça. O Arqui-Nefromante corrompe cada túbulo com ignorância clínica — hipercalemia subestimada, DRC diagnosticada tarde, néfrons perdidos para sempre. Você enxerga o que outros ignoram: cada questão correta é um néfron preservado. A jornada começa agora.' },
+      aquaria:   { ch: 'Dra. Aquaria · Mestra das Águas',      text: 'Onde outros veem números, você vê correntes. O Arqui-Nefromante semeia desequilíbrio — hiponatremia que destrói neurônios, acidose que afoga tecidos. Seu domínio é o equilíbrio hidroeletrolítico. Cada resposta certa é uma maré controlada. O reino aguarda sua maestria.' },
+      glomerulus:{ ch: 'Dr. Glomerulus · Lâmina dos Glomérulos', text: 'A guerra acontece no nível celular. IgA se deposita, podócitos são apagados, glomérulos perdidos não se regeneram. O Arqui-Nefromante conta com a ignorância dos clínicos. Seu bisturi é o saber, sua armadura são as diretrizes. Cada questão correta é um glomérulo preservado.' }
     };
 
     function selectCharacter(charId) {
@@ -8140,71 +8112,25 @@
     }
 
     function showCharacterIntroModal(charId) {
-      const char = characters[charId];
       const intro = CHARACTER_INTROS[charId];
-      const imgSrc = `assets/classes/${char.folder}/nivel_01.${char.folder === 'guerreiro_glomerular' ? 'png' : 'jpg'}`;
-
-      const overlay = document.createElement('div');
-      overlay.id = 'charIntroOverlay';
-      overlay.style.cssText = `position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.95);display:flex;align-items:center;justify-content:center;padding:16px;box-sizing:border-box;backdrop-filter:blur(8px);`;
-
-      overlay.innerHTML = `
-        <div style="max-width:540px;width:100%;text-align:center;animation:fadeInUp 0.5s ease;">
-          <!-- Retrato -->
-          <div style="position:relative;display:inline-block;margin-bottom:20px;">
-            <div style="width:110px;height:110px;border-radius:50%;overflow:hidden;border:3px solid ${intro.color};box-shadow:0 0 30px ${intro.glow},0 0 60px ${intro.glow};margin:0 auto;">
-              <img src="${imgSrc}" style="width:100%;height:100%;object-fit:cover;object-position:center top;" alt="${char.name}">
-            </div>
-            <div style="position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);background:${intro.color};color:#0a0e1a;font-size:0.62rem;font-weight:900;padding:2px 10px;border-radius:10px;white-space:nowrap;font-family:'Cinzel',serif;letter-spacing:1px;">NÍVEL 1</div>
-          </div>
-
-          <!-- Nome e título -->
-          <h2 style="color:${intro.color};font-family:'Cinzel',serif;font-size:1.3rem;margin-bottom:4px;text-shadow:0 0 20px ${intro.glow};">${char.name}</h2>
-          <div style="color:var(--txt-dim);font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;">${char.title}</div>
-          <div style="color:${intro.color};font-size:0.72rem;font-style:italic;margin-bottom:22px;opacity:0.8;">"${intro.epithet}"</div>
-
-          <!-- Separador ornamental -->
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;justify-content:center;">
-            <div style="height:1px;width:60px;background:linear-gradient(90deg,transparent,${intro.color});"></div>
-            <span style="color:${intro.color};font-size:0.9rem;">⚔</span>
-            <div style="height:1px;width:60px;background:linear-gradient(90deg,${intro.color},transparent);"></div>
-          </div>
-
-          <!-- Narrativa com typewriter -->
-          <div id="introNarrative" style="text-align:left;margin-bottom:24px;min-height:140px;">
-            ${intro.paragraphs.map((p, i) => `
-              <p class="intro-para" data-idx="${i}" style="color:var(--txt);font-size:0.88rem;line-height:1.8;margin-bottom:12px;opacity:0;transition:opacity 0.6s ease;font-family:'Philosopher','Georgia',serif;">${p}</p>
-            `).join('')}
-          </div>
-
-          <!-- Botão -->
-          <button id="introStartBtn" onclick="closeIntroAndStart()" style="opacity:0;transition:opacity 0.6s ease;width:100%;background:linear-gradient(180deg,#b8860b,#7a5a00);border:2px solid var(--gold);color:#fff8dc;border-radius:12px;padding:14px;font-family:'Cinzel',serif;font-size:0.95rem;font-weight:700;cursor:pointer;letter-spacing:2px;text-transform:uppercase;box-shadow:0 0 20px rgba(255,215,0,0.3);">
-            ⚔️ Iniciar Jornada
-          </button>
-        </div>
-      `;
-
-      document.body.appendChild(overlay);
+      const popup = document.createElement('div');
+      popup.className = 'narrative-popup';
+      popup.id = 'charIntroOverlay';
+      popup.innerHTML = `
+        <div class='narrative-card'>
+          <div class='narr-chapter'>⚔️ Início da Jornada</div>
+          <h3>📖 ${intro.ch}</h3>
+          <div class='narr-text'>${intro.text}</div>
+          <button class='btn gold' onclick='closeIntroAndStart()'>⚔️ Iniciar Jornada</button>
+        </div>`;
+      document.body.appendChild(popup);
       playSound('click');
-
-      // Animar parágrafos em sequência
-      const paras = overlay.querySelectorAll('.intro-para');
-      paras.forEach((p, i) => {
-        setTimeout(() => { p.style.opacity = '1'; }, 400 + i * 700);
-      });
-      // Mostrar botão após todos os parágrafos
-      setTimeout(() => {
-        const btn = document.getElementById('introStartBtn');
-        if (btn) btn.style.opacity = '1';
-      }, 400 + paras.length * 700 + 200);
     }
 
     function closeIntroAndStart() {
       const overlay = document.getElementById('charIntroOverlay');
       if (overlay) {
-        overlay.style.transition = 'opacity 0.4s ease';
-        overlay.style.opacity = '0';
-        setTimeout(() => { overlay.remove(); startGameWithCharacter(); }, 400);
+        overlay.remove(); startGameWithCharacter();
       } else {
         startGameWithCharacter();
       }
