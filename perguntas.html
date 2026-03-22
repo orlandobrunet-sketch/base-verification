@@ -160,6 +160,7 @@
         const GITHUB_REPO = 'orlandobrunet-sketch/base-verification';
         const GITHUB_BRANCH = 'main';
         const GITHUB_FILE = 'index.html';
+        const GITHUB_JSON_FILE = 'assets/artigos_nefro.json';
 
         function saveToken() {
             const t = document.getElementById('tokenInput').value.trim();
@@ -210,7 +211,29 @@
                 if (putRes.ok) {
                     const result = await putRes.json();
                     originalIndexHTML = updatedHTML;
-                    alert(`✅ Publicado com sucesso!\n\n${questions.length} perguntas salvas.\nCommit: ${result.commit.sha.slice(0,7)}\n\nO site será atualizado em ~1 minuto.`);
+
+                    // Também sincronizar artigos_nefro.json
+                    try {
+                        const jsonMetaRes = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_JSON_FILE}?ref=${GITHUB_BRANCH}`, {
+                            headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json' }
+                        });
+                        if (jsonMetaRes.ok) {
+                            const jsonMeta = await jsonMetaRes.json();
+                            const jsonContent = btoa(unescape(encodeURIComponent(JSON.stringify(questions, null, 2))));
+                            await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_JSON_FILE}`, {
+                                method: 'PUT',
+                                headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    message: `feat: sincronizar artigos_nefro.json (${questions.length} questões) via editor`,
+                                    content: jsonContent,
+                                    sha: jsonMeta.sha,
+                                    branch: GITHUB_BRANCH
+                                })
+                            });
+                        }
+                    } catch(jsonErr) { /* falha silenciosa — index.html já foi salvo */ }
+
+                    alert(`✅ Publicado com sucesso!\n\n${questions.length} perguntas salvas no index.html e artigos_nefro.json.\nCommit: ${result.commit.sha.slice(0,7)}\n\nO site será atualizado em ~1 minuto.`);
                 } else {
                     const e = await putRes.json();
                     alert('❌ Erro ao publicar: ' + (e.message || putRes.status));

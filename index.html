@@ -14,6 +14,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicon-192x192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="assets/images/favicon-512x512.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#0a0e1a">
   <link rel="preload" href="assets/audio/welcome-theme.mp3" as="audio" type="audio/mpeg">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Philosopher:wght@400;700&family=MedievalSharp&display=swap" rel="stylesheet">
@@ -6326,6 +6327,7 @@
     let _boardCache = null;
     let _boardCacheTime = 0;
     const BOARD_CACHE_TTL = 30000; // 30s
+    const BOARD_LOCAL_KEY = 'nefroquest-leaderboard';
 
     async function boardFetch(forceRefresh = false) {
       const now = Date.now();
@@ -6338,10 +6340,16 @@
         const data = await res.json();
         _boardCache = data;
         _boardCacheTime = now;
+        try { localStorage.setItem(BOARD_LOCAL_KEY, JSON.stringify(data)); } catch(e) {}
         return data;
       } catch(e) {
         console.warn('Leaderboard fetch error:', e);
-        return _boardCache || [];
+        if (_boardCache) return _boardCache;
+        try {
+          const local = localStorage.getItem(BOARD_LOCAL_KEY);
+          if (local) return JSON.parse(local);
+        } catch(e2) {}
+        return [];
       }
     }
 
@@ -8286,19 +8294,19 @@
           <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px;">
             <div style="background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.35);border-radius:10px;padding:12px 6px;">
               <div style="font-size:1.5rem;color:#34d399;font-weight:bold;">${stats.totalQuestions}</div>
-              <div style="font-size:0.65rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:0.5px;">Questões</div>
+              <div style="font-size:0.75rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:0.5px;">Questões</div>
             </div>
             <div style="background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.35);border-radius:10px;padding:12px 6px;">
               <div style="font-size:1.5rem;color:#34d399;font-weight:bold;">${accuracy}%</div>
-              <div style="font-size:0.65rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:0.5px;">Acerto</div>
+              <div style="font-size:0.75rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:0.5px;">Acerto</div>
             </div>
             <div style="background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.35);border-radius:10px;padding:12px 6px;">
               <div style="font-size:1.5rem;color:#60a5fa;font-weight:bold;">${avgTime}s</div>
-              <div style="font-size:0.65rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:0.5px;">T. Médio</div>
+              <div style="font-size:0.75rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:0.5px;">T. Médio</div>
             </div>
             <div style="background:rgba(251,113,133,0.12);border:1px solid rgba(251,113,133,0.35);border-radius:10px;padding:12px 6px;">
               <div style="font-size:1.5rem;color:#fb7185;font-weight:bold;">${stats.totalWrong}</div>
-              <div style="font-size:0.65rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:0.5px;">Erros</div>
+              <div style="font-size:0.75rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:0.5px;">Erros</div>
             </div>
           </div>
 
@@ -8400,11 +8408,23 @@
             </div>`;
           })()}
 
+          <button class="btn sec" onclick="confirmResetProgress()" style="margin-right:8px;background:rgba(251,113,133,0.15);border-color:rgba(251,113,133,0.4);color:#fb7185;font-size:0.78rem;">🗑️ Resetar Progresso</button>
           <button class="btn gold" onclick="this.closest('.modal').remove()">Fechar</button>
         </div>
       `;
       document.body.appendChild(modal);
       playSound('click');
+    }
+
+    function confirmResetProgress() {
+      if (!confirm('⚠️ Apagar todo o histórico de estatísticas, questões dominadas e save atual?\n\nEsta ação não pode ser desfeita.')) return;
+      localStorage.removeItem(STATS_STORAGE_KEY);
+      localStorage.removeItem(MASTERED_KEY);
+      localStorage.removeItem(SAVE_KEY);
+      localStorage.removeItem(STATS_KEY);
+      _masteredSet = new Set();
+      document.querySelectorAll('.stats-popup').forEach(el => el.remove());
+      alert('✅ Progresso resetado. Começando do zero!');
     }
 
     // ============ MODO DE ESTUDO POR TEMA ============
@@ -9360,7 +9380,8 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
         nefropatia_diabetica:'Nefropatia Diabética',dialise:'Diálise',
         transplante:'Transplante',hipertensao:'Hipertensão',
         acido_base:'Ácido-Base','litíase':'Litíase',infeccao:'Infecção',
-        farmacologia:'Farmacologia',pediatria:'Pediatria',geral:'Geral'
+        farmacologia:'Farmacologia',genetica:'Genética',uti:'UTI / Crítico',
+        patologia:'Patologia',oncologia_renal:'Oncologia Renal',geral:'Geral'
       };
       const catRows = Object.entries(byCat)
         .sort((a,b) => (a[1].correct/a[1].total) - (b[1].correct/b[1].total))
@@ -9405,6 +9426,38 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
             <h3 style="color:var(--gold);font-family:'Cinzel',serif;font-size:0.9rem;letter-spacing:1px;margin-bottom:10px;">DESEMPENHO POR CATEGORIA</h3>
             <div style="display:flex;flex-direction:column;gap:6px;">${catRows}</div>
           </div>
+          <!-- Revisão de erros -->
+          ${(() => {
+            const wrongItems = questions.map((q, i) => ({q, ans: answers[i]})).filter(({ans}) => ans && ans.answered && !ans.correct);
+            if (!wrongItems.length) return '<div style="text-align:center;color:#34d399;margin-bottom:20px;font-size:0.85rem;">🎉 Sem erros para revisar!</div>';
+            const optLetters = ['A','B','C','D'];
+            return `
+            <div style="text-align:left;margin-bottom:20px;">
+              <h3 style="color:#fb7185;font-family:'Cinzel',serif;font-size:0.9rem;letter-spacing:1px;margin-bottom:4px;">📋 REVISÃO DE ERROS (${wrongItems.length})</h3>
+              <button onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'flex':'none';this.textContent=this.textContent.includes('▼')?'▲ Ocultar erros':'▼ Ver erros'"
+                style="background:none;border:1px solid rgba(251,113,133,0.4);color:#fb7185;border-radius:6px;padding:6px 14px;font-size:0.78rem;cursor:pointer;margin-bottom:10px;">▼ Ver erros</button>
+              <div style="display:none;flex-direction:column;gap:10px;">
+                ${wrongItems.map(({q, ans}) => {
+                  const opts = q.o || [];
+                  return `<div style="background:rgba(251,113,133,0.08);border:1px solid rgba(251,113,133,0.3);border-radius:10px;padding:14px;">
+                    <p style="color:var(--txt);font-size:0.85rem;line-height:1.6;margin-bottom:10px;">${q.q}</p>
+                    <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:10px;">
+                      ${opts.map((o, i) => {
+                        const isCorrect = i === q.a;
+                        const isChosen  = i === ans.chosen;
+                        const bg    = isCorrect ? 'rgba(52,211,153,0.15)' : isChosen ? 'rgba(251,113,133,0.15)' : 'transparent';
+                        const border= isCorrect ? '1px solid #34d399' : isChosen ? '1px solid #fb7185' : '1px solid rgba(255,255,255,0.1)';
+                        const color = isCorrect ? '#34d399' : isChosen ? '#fb7185' : 'var(--txt-dim)';
+                        const mark  = isCorrect ? ' ✓' : isChosen ? ' ✗' : '';
+                        return `<div style="background:${bg};border:${border};border-radius:6px;padding:7px 10px;font-size:0.8rem;color:${color};">${optLetters[i]}. ${o}${mark}</div>`;
+                      }).join('')}
+                    </div>
+                    <div style="font-size:0.78rem;color:#94a3b8;line-height:1.6;border-top:1px solid rgba(255,255,255,0.08);padding-top:8px;">${q.e || ''}</div>
+                  </div>`;
+                }).join('')}
+              </div>
+            </div>`;
+          })()}
           <button onclick="_finishExam()" style="width:100%;background:linear-gradient(180deg,#b8860b,#7a5a00);border:2px solid var(--gold);color:#fff8dc;border-radius:10px;padding:13px;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:700;cursor:pointer;letter-spacing:1px;">VOLTAR AO MENU</button>
         </div>`;
     }
