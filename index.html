@@ -1161,7 +1161,59 @@
     @media (max-width: 500px) {
       .welcome-buttons { flex-direction: column; }
       .welcome-buttons .btn { min-width: unset; width: 100%; }
+      .game-mode-btns-group { display: none !important; }
+      .btn-game-modes { display: block !important; }
     }
+
+    /* Botão MODOS DE JOGO — visível apenas mobile */
+    .btn-game-modes { display: none; }
+
+    /* Overlay do popup MODOS DE JOGO */
+    .game-modes-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.82); z-index: 9600;
+      align-items: center; justify-content: center;
+      backdrop-filter: blur(6px);
+    }
+    .game-modes-overlay.show { display: flex; }
+    .game-modes-box {
+      background: linear-gradient(180deg, #1a2744, #0d1426);
+      border: 2px solid var(--gold); border-radius: 16px;
+      max-width: 340px; width: 92%; padding: 28px 20px 22px;
+      box-shadow: 0 0 60px rgba(255,215,0,0.18);
+      animation: modalIn 0.35s ease-out;
+      position: relative;
+    }
+    .game-modes-box h3 {
+      text-align: center; font-family: 'Cinzel', serif;
+      color: var(--gold); font-size: 1.05rem; letter-spacing: 0.06em;
+      margin: 0 0 18px; text-shadow: 0 0 12px rgba(255,215,0,0.35);
+    }
+    .game-modes-box .gm-btn {
+      display: flex; align-items: center; gap: 12px;
+      width: 100%; background: rgba(255,255,255,0.04);
+      border: 1px solid #2a4a7a; border-radius: 10px;
+      padding: 13px 16px; margin-bottom: 10px;
+      cursor: pointer; color: #c8d8f0; font-size: 0.88rem;
+      font-family: 'Philosopher', serif; transition: background 0.2s, border-color 0.2s;
+      text-align: left;
+    }
+    .game-modes-box .gm-btn:last-of-type { margin-bottom: 0; }
+    .game-modes-box .gm-btn:hover { background: rgba(255,215,0,0.08); border-color: var(--gold); }
+    .game-modes-box .gm-btn .gm-icon { font-size: 1.3rem; flex-shrink: 0; }
+    .game-modes-box .gm-btn .gm-label { display: flex; flex-direction: column; gap: 2px; }
+    .game-modes-box .gm-btn .gm-title { font-weight: bold; font-size: 0.92rem; }
+    .game-modes-box .gm-btn .gm-desc { font-size: 0.72rem; color: var(--txt-dim); }
+    .game-modes-box .gm-btn.weak-btn { border-color: rgba(251,113,133,0.35); }
+    .game-modes-box .gm-btn.weak-btn .gm-title { color: #fb7185; }
+    .game-modes-box .gm-btn.weak-btn:hover { background: rgba(251,113,133,0.1); border-color: #fb7185; }
+    .game-modes-close {
+      position: absolute; top: 10px; right: 12px;
+      background: none; border: none; color: var(--txt-dim);
+      font-size: 1.3rem; cursor: pointer; line-height: 1;
+      padding: 4px; transition: color 0.2s;
+    }
+    .game-modes-close:hover { color: var(--gold); }
 
     /* SOUND CONTROLS — estático dentro do game-title no PC */
     .sound-controls {
@@ -3715,9 +3767,12 @@
       <div class="welcome-buttons">
         <button id="welcomeContinueBtn" class="btn continue-btn" style="display:none;" onclick="continueGame()">Continuar Jornada</button>
         <button class="btn gold" onclick="startNewFromWelcome()">Nova Jornada</button>
-        <button class="btn sec" onclick="showTopicSelector()">📖 Modo de Estudo</button>
-        <button class="btn sec" onclick="startWeakPointStudy()" id="weakPointBtn" style="background:rgba(251,113,133,0.12);border-color:rgba(251,113,133,0.35);color:#fb7185;">📍 Ponto Fraco</button>
-        <button class="btn sec" onclick="startExamMode()">📝 Prova Simulada</button>
+        <div class="game-mode-btns-group">
+          <button class="btn sec" onclick="showTopicSelector()">📖 Modo de Estudo</button>
+          <button class="btn sec" onclick="startWeakPointStudy()" id="weakPointBtn" style="background:rgba(251,113,133,0.12);border-color:rgba(251,113,133,0.35);color:#fb7185;">📍 Ponto Fraco</button>
+          <button class="btn sec" onclick="startExamMode()">📝 Prova Simulada</button>
+        </div>
+        <button class="btn sec btn-game-modes" onclick="openGameModesPopup()">🎮 Modos de Jogo</button>
         <button class="btn sec" onclick="showStatsModal()">📊 Estatísticas</button>
         <button class="btn sec" onclick="showAchievementsModal()">🏆 Conquistas</button>
         <button class="btn sec" onclick="showLeaderboardFromWelcome()">Leaderboard</button>
@@ -4295,6 +4350,35 @@
   </div>
 
   <!-- CHEST MODAL -->
+  <!-- Popup MODOS DE JOGO (mobile only) -->
+  <div id="gameModesOverlay" class="game-modes-overlay" onclick="closeGameModesPopupOutside(event)">
+    <div class="game-modes-box">
+      <button class="game-modes-close" onclick="closeGameModesPopup()" aria-label="Fechar">✕</button>
+      <h3>⚔️ Modos de Jogo</h3>
+      <button class="gm-btn" onclick="closeGameModesPopup(); showTopicSelector()">
+        <span class="gm-icon">📖</span>
+        <span class="gm-label">
+          <span class="gm-title">Modo de Estudo</span>
+          <span class="gm-desc">Escolha um tema e estude no seu ritmo</span>
+        </span>
+      </button>
+      <button class="gm-btn weak-btn" onclick="closeGameModesPopup(); startWeakPointStudy()">
+        <span class="gm-icon">📍</span>
+        <span class="gm-label">
+          <span class="gm-title">Ponto Fraco</span>
+          <span class="gm-desc">Foque nos temas com menor acerto</span>
+        </span>
+      </button>
+      <button class="gm-btn" onclick="closeGameModesPopup(); startExamMode()">
+        <span class="gm-icon">📝</span>
+        <span class="gm-label">
+          <span class="gm-title">Prova Simulada</span>
+          <span class="gm-desc">60 questões em 90 minutos</span>
+        </span>
+      </button>
+    </div>
+  </div>
+
   <div id="chestModal" class="chest-modal">
     <div class="chest-content">
       <h2 id="chestTitle">Baú Desbloqueado!</h2>
@@ -10377,6 +10461,19 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
 
     // Inicializar questão do dia quando o banco estiver pronto
     try { initDailyQuestion(); } catch(e) {}
+
+    // ============ POPUP MODOS DE JOGO (mobile) ============
+    function openGameModesPopup() {
+      const el = document.getElementById('gameModesOverlay');
+      if (el) el.classList.add('show');
+    }
+    function closeGameModesPopup() {
+      const el = document.getElementById('gameModesOverlay');
+      if (el) el.classList.remove('show');
+    }
+    function closeGameModesPopupOutside(e) {
+      if (e.target === document.getElementById('gameModesOverlay')) closeGameModesPopup();
+    }
 
   </script>
 </body>
