@@ -22,7 +22,7 @@
         <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
             <h1 class="text-3xl font-bold text-gray-800 mb-2">🔧 Gerenciamento de Perguntas</h1>
             <p class="text-gray-500 text-sm mb-1">NefroQuest — Editor de questões. Carregue, edite e salve direto no GitHub.</p>
-            <p class="text-xs text-green-700 bg-green-50 border border-green-200 rounded px-3 py-1 inline-block mb-4"><strong>v5.3</strong> — 49 questões easy adicionadas · 72 enunciados com contexto clínico · 389 questões com 2ª referência · categorias unificadas · <strong>879 questões</strong></p>
+            <p class="text-xs text-green-700 bg-green-50 border border-green-200 rounded px-3 py-1 inline-block mb-4"><strong>v5.3</strong> — 49 questões easy adicionadas · 72 enunciados com contexto clínico · 389 questões com 2ª referência · categorias unificadas · <strong>878 questões</strong></p>
 
             <!-- GitHub Token Config -->
             <div id="tokenBar" class="flex items-center gap-2 mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
@@ -47,6 +47,7 @@
                     oninput="filterQuestions()">
                 <select id="difficultyFilter" onchange="filterQuestions()" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <option value="">Todas as Dificuldades</option>
+                    <option value="easy">Fácil</option>
                     <option value="medium">Médio</option>
                     <option value="hard">Difícil</option>
                 </select>
@@ -123,6 +124,7 @@
                     <div class="flex-1">
                         <label class="block text-gray-700 font-semibold mb-1">Dificuldade:</label>
                         <select id="editDifficulty" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <option value="easy">Fácil</option>
                             <option value="medium">Médio</option>
                             <option value="hard">Difícil</option>
                         </select>
@@ -277,8 +279,8 @@
                 document.getElementById('paginationContainer').style.display = 'none';
                 return;
             }
-            const diffColors = { medium: 'bg-yellow-100 text-yellow-800', hard: 'bg-red-100 text-red-800' };
-            const diffLabels = { medium: 'Médio', hard: 'Difícil' };
+            const diffColors = { easy: 'bg-green-100 text-green-800', medium: 'bg-yellow-100 text-yellow-800', hard: 'bg-red-100 text-red-800' };
+            const diffLabels = { easy: 'Fácil', medium: 'Médio', hard: 'Difícil' };
 
             container.innerHTML = getCurrentPageQuestions().map(q => {
                 const idx = questions.indexOf(q);

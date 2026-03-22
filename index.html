@@ -6613,13 +6613,17 @@
 
     function shuffleQueue() {
       // Separar por dificuldade e embaralhar cada grupo
+      const easy   = shuffle(questionBank.filter(q => q._d === 'easy'));
       const medium = shuffle(questionBank.filter(q => q._d === 'medium'));
       const hard   = shuffle(questionBank.filter(q => q._d === 'hard'));
-      // Intercalar: 1 medium, 1 hard, 1 medium, 1 hard...
+      // Intercalar: 1 easy, 2 medium, 2 hard, repetindo...
       // para distribuir dificuldade ao longo de todo o ciclo
       const interleaved = [];
-      const mi = [...medium], hi = [...hard];
-      while (mi.length || hi.length) {
+      const ei = [...easy], mi = [...medium], hi = [...hard];
+      while (ei.length || mi.length || hi.length) {
+        if (ei.length) interleaved.push(ei.shift());
+        if (mi.length) interleaved.push(mi.shift());
+        if (hi.length) interleaved.push(hi.shift());
         if (mi.length) interleaved.push(mi.shift());
         if (hi.length) interleaved.push(hi.shift());
       }
@@ -9419,9 +9423,9 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
               </div>
               <ul style="color:var(--txt);font-size:0.83rem;line-height:1.9;padding-left:18px;margin:0;">
                 <li><strong>5 erros factuais de alta severidade corrigidos</strong> — dados numéricos incorretos nos estudos NOBILITY, BPROAD (×2), BLISS-LN e DAPA-CKD substituídos pelos valores publicados nos trials originais</li>
-                <li><strong>Viés de gabarito eliminado</strong> — a opção B era gabarito em 47,5% das questões (quase 2× o esperado); distribuição uniformizada para ~25% por opção em todas as 830 questões</li>
+                <li><strong>Viés de gabarito eliminado</strong> — a opção B era gabarito em 47,5% das questões (quase 2× o esperado); distribuição uniformizada para ~25% por opção em todas as questões</li>
                 <li><strong>Explicações aprimoradas</strong> — 48 questões com explicações de apenas 1 frase expandidas com fisiopatologia detalhada e referências clínicas; Q429 e Q446 receberam contexto de evidência (ASTRAL/CORAL, KDIGO 2021/ACR 2020)</li>
-                <li><strong>Análise de ambiguidade</strong> — revisão sistemática das 830 questões identificou 11 casos com potencial de dupla interpretação; prioridades corrigidas ou sinalizadas para próxima revisão</li>
+                <li><strong>Análise de ambiguidade</strong> — revisão sistemática das questões identificou 11 casos com potencial de dupla interpretação; prioridades corrigidas ou sinalizadas para próxima revisão</li>
               </ul>
             </div>
 
