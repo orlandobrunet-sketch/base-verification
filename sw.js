@@ -36,6 +36,10 @@ self.addEventListener('activate', e => {
   );
 });
 
+self.addEventListener('message', e => {
+  if (e.data && e.data.type === 'SKIP_WAITING') self.skipWaiting();
+});
+
 self.addEventListener('fetch', e => {
   // Apenas GET, mesma origem
   if (e.request.method !== 'GET') return;
