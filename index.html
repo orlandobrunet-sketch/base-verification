@@ -6766,37 +6766,18 @@
     }
 
     function updateWelcomeUserBadge() {
-      const badge = document.getElementById('welcomeUserBadge');
-      const loginBtn = document.getElementById('welcomeLoginBtn');
-      if (!badge || !loginBtn) return;
       if (authUser) {
-        const name = _authDisplayName();
         const email = authUser.email || '';
-        const avatarUrl = authUser.user_metadata?.avatar_url;
-        badge.style.display = 'none';
-        loginBtn.style.display = 'none';
-        document.getElementById('welcomeUserName').textContent = name;
-        const img = document.getElementById('welcomeUserAvatarImg');
-        const placeholder = document.getElementById('welcomeUserAvatarPlaceholder');
-        if (avatarUrl) {
-          img.src = avatarUrl; img.style.display = 'block';
-          if (placeholder) placeholder.style.display = 'none';
-        } else {
-          img.style.display = 'none';
-          if (placeholder) placeholder.style.display = 'flex';
-        }
-        // Show profile buttons and update email
+        const loginBtn = document.getElementById('welcomeLoginBtn');
+        if (loginBtn) loginBtn.style.display = 'none';
         document.querySelectorAll('.profile-btn').forEach(b => b.classList.add('visible'));
         document.querySelectorAll('[id$="ProfileEmail"]').forEach(el => { el.textContent = email; });
-        // Navigate from landing to welcome if landing is visible
         const landing = document.getElementById('landingScreen');
         if (landing && !landing.classList.contains('hidden')) {
           landing.classList.add('hidden');
           document.getElementById('welcomeScreen').classList.remove('hidden');
         }
       } else {
-        badge.style.display = 'none';
-        // Hide profile buttons
         document.querySelectorAll('.profile-btn').forEach(b => b.classList.remove('visible'));
       }
     }
