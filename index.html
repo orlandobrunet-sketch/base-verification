@@ -3966,13 +3966,6 @@
       <div class="welcome-ornament"><span>&#10022; Reino dos Néfrons &#10022;</span></div>
       <h1>NefroQuest</h1>
       <div class="welcome-sub">Ascension</div>
-      <!-- User auth badge (shown when logged in) -->
-      <div id="welcomeUserBadge" class="welcome-user-badge">
-        <div class="welcome-user-avatar-placeholder" id="welcomeUserAvatarPlaceholder">⚔</div>
-        <img id="welcomeUserAvatarImg" src="" alt="" style="display:none;width:28px;height:28px;border-radius:50%;object-fit:cover;">
-        <span class="welcome-user-name" id="welcomeUserName"></span>
-        <button class="welcome-logout-btn" onclick="authLogout()">Sair</button>
-      </div>
 
       <div id="welcomeStats" class="welcome-stats">
         <div class="welcome-stat"><span class="ws-val" id="wsBestScore">0</span><span class="ws-lbl">Recorde</span></div>
@@ -6773,37 +6766,18 @@
     }
 
     function updateWelcomeUserBadge() {
-      const badge = document.getElementById('welcomeUserBadge');
-      const loginBtn = document.getElementById('welcomeLoginBtn');
-      if (!badge || !loginBtn) return;
       if (authUser) {
-        const name = _authDisplayName();
         const email = authUser.email || '';
-        const avatarUrl = authUser.user_metadata?.avatar_url;
-        badge.style.display = 'flex';
-        loginBtn.style.display = 'none';
-        document.getElementById('welcomeUserName').textContent = name;
-        const img = document.getElementById('welcomeUserAvatarImg');
-        const placeholder = document.getElementById('welcomeUserAvatarPlaceholder');
-        if (avatarUrl) {
-          img.src = avatarUrl; img.style.display = 'block';
-          if (placeholder) placeholder.style.display = 'none';
-        } else {
-          img.style.display = 'none';
-          if (placeholder) placeholder.style.display = 'flex';
-        }
-        // Show profile buttons and update email
+        const loginBtn = document.getElementById('welcomeLoginBtn');
+        if (loginBtn) loginBtn.style.display = 'none';
         document.querySelectorAll('.profile-btn').forEach(b => b.classList.add('visible'));
         document.querySelectorAll('[id$="ProfileEmail"]').forEach(el => { el.textContent = email; });
-        // Navigate from landing to welcome if landing is visible
         const landing = document.getElementById('landingScreen');
         if (landing && !landing.classList.contains('hidden')) {
           landing.classList.add('hidden');
           document.getElementById('welcomeScreen').classList.remove('hidden');
         }
       } else {
-        badge.style.display = 'none';
-        // Hide profile buttons
         document.querySelectorAll('.profile-btn').forEach(b => b.classList.remove('visible'));
       }
     }
