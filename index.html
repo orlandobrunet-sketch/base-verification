@@ -3920,6 +3920,14 @@
   <!-- LANDING / LOGIN SCREEN -->
   <div id="landingScreen">
     <div class="landing-bg"></div>
+    <!-- Profile button (top-right, shown when already logged in) -->
+    <div class="profile-btn" id="landingProfileBtn" onclick="toggleProfilePopup('landing')" style="position:absolute;top:14px;right:14px;z-index:10;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      <div class="profile-popup" id="landingProfilePopup">
+        <div class="profile-popup-email"><strong>Conta</strong><span id="landingProfileEmail"></span></div>
+        <button class="profile-popup-logout" onclick="authLogout();event.stopPropagation()">Sair</button>
+      </div>
+    </div>
     <div class="landing-content">
       <div class="landing-ornament">&#10022; Reino dos Néfrons &#10022;</div>
       <h1 class="landing-title">NefroQuest</h1>
@@ -6905,7 +6913,8 @@
 
     // ===== PROFILE POPUP =====
     function toggleProfilePopup(ctx) {
-      const popup = document.getElementById(ctx === 'game' ? 'gameProfilePopup' : 'welcomeProfilePopup');
+      const ids = { game: 'gameProfilePopup', welcome: 'welcomeProfilePopup', landing: 'landingProfilePopup', mobile: 'mobileProfilePopup' };
+      const popup = document.getElementById(ids[ctx] || 'welcomeProfilePopup');
       if (!popup) return;
       const isOpen = popup.classList.contains('open');
       // Close all popups first
