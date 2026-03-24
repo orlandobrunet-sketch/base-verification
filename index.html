@@ -1161,8 +1161,11 @@
     @media (max-width: 500px) {
       .welcome-buttons { flex-direction: column; }
       .welcome-buttons .btn { min-width: unset; width: 100%; }
-      #dailyQCard { display: flex !important; width: 100%; justify-content: center; align-items: center; text-align: center; }
+      #dailyQCard { display: flex !important; width: 100%; }
     }
+
+    /* Questão do Dia — centrar conteúdo sempre que visível */
+    #dailyQCard { justify-content: center; align-items: center; text-align: center; }
 
     /* Botão MODOS DE JOGO — sempre visível, grupo individual escondido */
     .btn-game-modes { display: block; }
