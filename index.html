@@ -3998,7 +3998,7 @@
         <p id="wsSavedTime" style="color:var(--txt-dim);font-size:0.68rem;text-align:center;margin-top:6px;font-style:italic;"></p>
       </div>
       <div class="welcome-buttons">
-        <button id="welcomeLoginBtn" class="btn sec" style="border-color:rgba(52,211,153,0.4);color:#34d399;" onclick="openAuthModal()">🔐 Entrar / Criar Conta</button>
+        <button id="welcomeLoginBtn" class="btn gold" onclick="startNewFromWelcome()" style="display:none;">Nova Jornada</button>
         <button id="welcomeContinueBtn" class="btn continue-btn" style="display:none;" onclick="continueGame()">Continuar Jornada</button>
         <button class="btn gold" onclick="startNewFromWelcome()">Nova Jornada</button>
         <div class="game-mode-btns-group">
@@ -6800,7 +6800,6 @@
         }
       } else {
         badge.style.display = 'none';
-        loginBtn.style.display = '';
         // Hide profile buttons
         document.querySelectorAll('.profile-btn').forEach(b => b.classList.remove('visible'));
       }
