@@ -1161,7 +1161,7 @@
     @media (max-width: 500px) {
       .welcome-buttons { flex-direction: column; }
       .welcome-buttons .btn { min-width: unset; width: 100%; }
-      #dailyQCard { display: flex !important; width: 100%; justify-content: center; align-items: center; }
+      #dailyQCard { display: flex !important; width: 100%; justify-content: center; align-items: center; text-align: center; }
     }
 
     /* Botão MODOS DE JOGO — sempre visível, grupo individual escondido */
@@ -10783,7 +10783,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
       const streakEl = document.getElementById('dailyStreak');
       if (!card) return;
       streakEl.textContent = streak > 1 ? `🔥 ${streak}` : '';
-      card.style.display = 'inline-flex';
+      card.style.display = 'flex';
       card._dailyData = { q, today, streak, answered: stored.date === today, wasCorrect: stored.correct };
       if (stored.date === today) {
         card.style.borderColor = stored.correct ? 'rgba(52,211,153,0.6)' : 'rgba(251,113,133,0.6)';
