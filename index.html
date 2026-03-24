@@ -6780,7 +6780,7 @@
         const name = _authDisplayName();
         const email = authUser.email || '';
         const avatarUrl = authUser.user_metadata?.avatar_url;
-        badge.style.display = 'flex';
+        badge.style.display = 'none';
         loginBtn.style.display = 'none';
         document.getElementById('welcomeUserName').textContent = name;
         const img = document.getElementById('welcomeUserAvatarImg');
