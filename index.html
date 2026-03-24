@@ -3656,7 +3656,73 @@
         text-align: center;
       }
     }
+
+    /* ========== AUTH MODAL ========== */
+    .auth-modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 10000;
+      background: rgba(0,0,0,0.88); backdrop-filter: blur(8px);
+      align-items: center; justify-content: center;
+    }
+    .auth-modal-overlay.show { display: flex; }
+    .auth-box {
+      background: linear-gradient(180deg, #0f1a2e, #080d1a);
+      border: 2px solid rgba(58,90,138,0.8); border-radius: 16px;
+      padding: 32px 28px; width: 100%; max-width: 400px;
+      box-shadow: 0 0 60px rgba(0,80,160,0.3); position: relative;
+    }
+    .auth-title { font-family: 'Cinzel', serif; color: var(--gold); text-align: center; font-size: 1.2rem; margin-bottom: 4px; }
+    .auth-subtitle { color: var(--txt-dim); text-align: center; font-size: 0.82rem; margin-bottom: 24px; }
+    .auth-tabs { display: flex; gap: 4px; margin-bottom: 20px; background: rgba(255,255,255,0.05); border-radius: 8px; padding: 3px; }
+    .auth-tab {
+      flex: 1; padding: 8px; border: none; background: transparent;
+      color: var(--txt-dim); font-family: 'Philosopher', serif; font-size: 0.9rem;
+      border-radius: 6px; cursor: pointer; transition: all 0.2s;
+    }
+    .auth-tab.active { background: rgba(58,90,138,0.5); color: var(--txt); }
+    .auth-google-btn {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      width: 100%; padding: 12px; background: #fff; color: #333;
+      border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 600;
+      cursor: pointer; transition: opacity 0.2s; margin-bottom: 16px;
+    }
+    .auth-google-btn:hover { opacity: 0.9; }
+    .auth-divider { display: flex; align-items: center; gap: 10px; color: var(--txt-dim); font-size: 0.8rem; margin-bottom: 16px; }
+    .auth-divider::before, .auth-divider::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.1); }
+    .auth-field { margin-bottom: 14px; }
+    .auth-field label { display: block; color: var(--txt-dim); font-size: 0.8rem; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.8px; }
+    .auth-field input {
+      width: 100%; background: rgba(255,255,255,0.07); border: 1px solid rgba(58,90,138,0.6);
+      border-radius: 8px; padding: 10px 12px; color: var(--txt);
+      font-family: 'Philosopher', serif; font-size: 0.95rem; outline: none; transition: border-color 0.2s;
+    }
+    .auth-field input:focus { border-color: var(--gold); }
+    .auth-submit-btn {
+      width: 100%; padding: 12px; background: linear-gradient(135deg, #1a3a6a, #0d2040);
+      border: 1px solid rgba(58,90,138,0.7); border-radius: 10px; color: var(--gold);
+      font-family: 'Cinzel', serif; font-size: 0.95rem; cursor: pointer; transition: all 0.2s; margin-bottom: 12px;
+    }
+    .auth-submit-btn:hover { background: linear-gradient(135deg, #1e4a80, #122a50); border-color: var(--gold); }
+    .auth-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    .auth-guest-link { text-align: center; color: var(--txt-dim); font-size: 0.82rem; cursor: pointer; text-decoration: underline; }
+    .auth-guest-link:hover { color: var(--txt); }
+    .auth-msg {
+      border-radius: 8px; padding: 8px 12px; font-size: 0.82rem; margin-bottom: 12px; display: none;
+    }
+    .auth-msg.error { background: rgba(251,113,133,0.15); border: 1px solid rgba(251,113,133,0.3); color: #fb7185; }
+    .auth-msg.success { background: rgba(52,211,153,0.15); border: 1px solid rgba(52,211,153,0.3); color: #34d399; }
+    .auth-close-btn { position: absolute; top: 12px; right: 16px; background: none; border: none; color: var(--txt-dim); font-size: 1.2rem; cursor: pointer; }
+    /* Welcome user badge */
+    .welcome-user-badge {
+      display: none; align-items: center; gap: 10px;
+      background: rgba(10,15,30,0.9); border: 1px solid rgba(52,211,153,0.4);
+      border-radius: 10px; padding: 8px 14px; margin: 10px 0;
+    }
+    .welcome-user-badge img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; }
+    .welcome-user-avatar-placeholder { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg,#1a3a6a,#0d2040); border: 1px solid rgba(58,90,138,0.6); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: var(--gold); flex-shrink: 0; }
+    .welcome-user-name { color: #34d399; font-weight: 700; flex: 1; font-size: 0.85rem; }
+    .welcome-logout-btn { background: none; border: 1px solid rgba(251,113,133,0.4); border-radius: 6px; color: #fb7185; padding: 3px 8px; font-size: 0.75rem; cursor: pointer; font-family: 'Philosopher', serif; }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
@@ -3741,6 +3807,14 @@
       <div class="welcome-ornament"><span>&#10022; Reino dos Néfrons &#10022;</span></div>
       <h1>NefroQuest</h1>
       <div class="welcome-sub">Ascension</div>
+      <!-- User auth badge (shown when logged in) -->
+      <div id="welcomeUserBadge" class="welcome-user-badge">
+        <div class="welcome-user-avatar-placeholder" id="welcomeUserAvatarPlaceholder">⚔</div>
+        <img id="welcomeUserAvatarImg" src="" alt="" style="display:none;width:28px;height:28px;border-radius:50%;object-fit:cover;">
+        <span class="welcome-user-name" id="welcomeUserName"></span>
+        <button class="welcome-logout-btn" onclick="authLogout()">Sair</button>
+      </div>
+
       <div id="welcomeStats" class="welcome-stats">
         <div class="welcome-stat"><span class="ws-val" id="wsBestScore">0</span><span class="ws-lbl">Recorde</span></div>
         <div class="welcome-stat"><span class="ws-val" id="wsGamesPlayed">0</span><span class="ws-lbl">Partidas</span></div>
@@ -3769,6 +3843,7 @@
         <p id="wsSavedTime" style="color:var(--txt-dim);font-size:0.68rem;text-align:center;margin-top:6px;font-style:italic;"></p>
       </div>
       <div class="welcome-buttons">
+        <button id="welcomeLoginBtn" class="btn sec" style="border-color:rgba(52,211,153,0.4);color:#34d399;" onclick="openAuthModal()">🔐 Entrar / Criar Conta</button>
         <button id="welcomeContinueBtn" class="btn continue-btn" style="display:none;" onclick="continueGame()">Continuar Jornada</button>
         <button class="btn gold" onclick="startNewFromWelcome()">Nova Jornada</button>
         <div class="game-mode-btns-group">
@@ -4350,6 +4425,57 @@
         <button class="close-chest" onclick="saveScore()">Salvar</button>
         <button class="close-chest" style="background:linear-gradient(180deg,#374151,#1f2937);color:#9ca3af;border-color:#4b5563;" onclick="skipSaveScore()">Pular</button>
       </div>
+    </div>
+  </div>
+
+  <!-- AUTH MODAL -->
+  <div id="authModal" class="auth-modal-overlay" onclick="closeAuthOutside(event)">
+    <div class="auth-box" id="authBox">
+      <button class="auth-close-btn" onclick="closeAuthModal()">✕</button>
+      <div class="auth-title">⚔ NefroQuest</div>
+      <div class="auth-subtitle">Salve seu progresso e apareça no leaderboard</div>
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tabEntrar" onclick="switchAuthTab('entrar')">Entrar</button>
+        <button class="auth-tab" id="tabCadastrar" onclick="switchAuthTab('cadastrar')">Criar conta</button>
+      </div>
+      <div id="authMsg" class="auth-msg"></div>
+      <button class="auth-google-btn" onclick="loginWithGoogle()">
+        <svg width="20" height="20" viewBox="0 0 48 48">
+          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+          <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+        </svg>
+        Continuar com Google
+      </button>
+      <div class="auth-divider">ou</div>
+      <div id="authFormEntrar">
+        <div class="auth-field">
+          <label>Email</label>
+          <input type="email" id="authEmail" placeholder="seu@email.com" />
+        </div>
+        <div class="auth-field">
+          <label>Senha</label>
+          <input type="password" id="authPassword" placeholder="••••••••" onkeypress="authKeyPress(event)" />
+        </div>
+        <button class="auth-submit-btn" id="authLoginBtn" onclick="authEmailLogin()">Entrar na Jornada</button>
+      </div>
+      <div id="authFormCadastrar" style="display:none;">
+        <div class="auth-field">
+          <label>Nome de Aventureiro</label>
+          <input type="text" id="authDisplayName" placeholder="Dr. Nephros" maxlength="30" />
+        </div>
+        <div class="auth-field">
+          <label>Email</label>
+          <input type="email" id="authEmailReg" placeholder="seu@email.com" />
+        </div>
+        <div class="auth-field">
+          <label>Senha</label>
+          <input type="password" id="authPasswordReg" placeholder="mín. 6 caracteres" onkeypress="authKeyPress(event)" />
+        </div>
+        <button class="auth-submit-btn" id="authRegBtn" onclick="authEmailRegister()">Criar Conta</button>
+      </div>
+      <div class="auth-guest-link" onclick="closeAuthModal()">Continuar como convidado →</div>
     </div>
   </div>
 
@@ -6453,6 +6579,133 @@
     // === SUPABASE LEADERBOARD ===
     const SUPA_URL = 'https://wviutasgroltjuyxpevc.supabase.co';
     const SUPA_KEY = 'sb_publishable_kUxWMU36-PEaNuhEqTy3Zw_-A5ep67_';
+
+    // ===== SUPABASE AUTH =====
+    let _supaClient = null;
+    let authUser = null;
+
+    (function initSupaAuth() {
+      if (typeof supabase === 'undefined') { console.warn('Supabase SDK não carregado'); return; }
+      _supaClient = supabase.createClient(SUPA_URL, SUPA_KEY);
+
+      _supaClient.auth.onAuthStateChange((event, session) => {
+        authUser = session?.user ?? null;
+        updateWelcomeUserBadge();
+      });
+
+      _supaClient.auth.getSession().then(({ data: { session } }) => {
+        authUser = session?.user ?? null;
+        updateWelcomeUserBadge();
+      });
+    })();
+
+    function _authDisplayName() {
+      if (!authUser) return null;
+      return authUser.user_metadata?.full_name
+        || authUser.user_metadata?.name
+        || authUser.email?.split('@')[0]
+        || 'Aventureiro';
+    }
+
+    function updateWelcomeUserBadge() {
+      const badge = document.getElementById('welcomeUserBadge');
+      const loginBtn = document.getElementById('welcomeLoginBtn');
+      if (!badge || !loginBtn) return;
+      if (authUser) {
+        const name = _authDisplayName();
+        const avatarUrl = authUser.user_metadata?.avatar_url;
+        badge.style.display = 'flex';
+        loginBtn.style.display = 'none';
+        document.getElementById('welcomeUserName').textContent = name;
+        const img = document.getElementById('welcomeUserAvatarImg');
+        const placeholder = document.getElementById('welcomeUserAvatarPlaceholder');
+        if (avatarUrl) {
+          img.src = avatarUrl; img.style.display = 'block';
+          if (placeholder) placeholder.style.display = 'none';
+        } else {
+          img.style.display = 'none';
+          if (placeholder) placeholder.style.display = 'flex';
+        }
+      } else {
+        badge.style.display = 'none';
+        loginBtn.style.display = '';
+      }
+    }
+
+    function openAuthModal() {
+      document.getElementById('authModal').classList.add('show');
+      _setAuthMsg('', '');
+    }
+    function closeAuthModal() {
+      document.getElementById('authModal').classList.remove('show');
+    }
+    function closeAuthOutside(e) {
+      if (e.target.id === 'authModal') closeAuthModal();
+    }
+    function switchAuthTab(tab) {
+      const isEntrar = tab === 'entrar';
+      document.getElementById('tabEntrar').classList.toggle('active', isEntrar);
+      document.getElementById('tabCadastrar').classList.toggle('active', !isEntrar);
+      document.getElementById('authFormEntrar').style.display = isEntrar ? 'block' : 'none';
+      document.getElementById('authFormCadastrar').style.display = isEntrar ? 'none' : 'block';
+      _setAuthMsg('', '');
+    }
+    function authKeyPress(e) {
+      if (e.key !== 'Enter') return;
+      const entrarVisible = document.getElementById('authFormEntrar').style.display !== 'none';
+      entrarVisible ? authEmailLogin() : authEmailRegister();
+    }
+    function _setAuthMsg(msg, type) {
+      const el = document.getElementById('authMsg');
+      el.textContent = msg;
+      el.className = 'auth-msg' + (type ? ' ' + type : '');
+      el.style.display = msg ? 'block' : 'none';
+    }
+    async function loginWithGoogle() {
+      if (!_supaClient) return;
+      const { error } = await _supaClient.auth.signInWithOAuth({
+        provider: 'google',
+        options: { redirectTo: window.location.origin }
+      });
+      if (error) _setAuthMsg(error.message, 'error');
+    }
+    async function authEmailLogin() {
+      if (!_supaClient) return;
+      const email = document.getElementById('authEmail').value.trim();
+      const password = document.getElementById('authPassword').value;
+      if (!email || !password) { _setAuthMsg('Preencha email e senha.', 'error'); return; }
+      const btn = document.getElementById('authLoginBtn');
+      btn.disabled = true; btn.textContent = 'Entrando...';
+      const { error } = await _supaClient.auth.signInWithPassword({ email, password });
+      btn.disabled = false; btn.textContent = 'Entrar na Jornada';
+      if (error) {
+        _setAuthMsg(error.message === 'Invalid login credentials' ? 'Email ou senha incorretos.' : error.message, 'error');
+      } else { closeAuthModal(); }
+    }
+    async function authEmailRegister() {
+      if (!_supaClient) return;
+      const name = document.getElementById('authDisplayName').value.trim();
+      const email = document.getElementById('authEmailReg').value.trim();
+      const password = document.getElementById('authPasswordReg').value;
+      if (!name || !email || !password) { _setAuthMsg('Preencha todos os campos.', 'error'); return; }
+      if (password.length < 6) { _setAuthMsg('Senha deve ter pelo menos 6 caracteres.', 'error'); return; }
+      const btn = document.getElementById('authRegBtn');
+      btn.disabled = true; btn.textContent = 'Criando conta...';
+      const { error } = await _supaClient.auth.signUp({
+        email, password,
+        options: { data: { full_name: name } }
+      });
+      btn.disabled = false; btn.textContent = 'Criar Conta';
+      if (error) { _setAuthMsg(error.message, 'error'); }
+      else { _setAuthMsg('Conta criada! Verifique seu email para confirmar.', 'success'); }
+    }
+    async function authLogout() {
+      if (!_supaClient) return;
+      await _supaClient.auth.signOut();
+      authUser = null;
+      updateWelcomeUserBadge();
+    }
+
     let _boardCache = null;
     let _boardCacheTime = 0;
     const BOARD_CACHE_TTL = 30000; // 30s
@@ -7118,14 +7371,22 @@
       // Atualizar estatísticas e limpar save
       updateGameStats();
       deleteSave();
-      // Guardar score e abrir modal de nome
       pendingScore = {score: state.score, level: state.level};
+
+      // Se usuário autenticado, pular modal de nome
+      if (authUser) {
+        const name = _authDisplayName();
+        boardPush(pendingScore.score, pendingScore.level, name);
+        pendingScore = null;
+        finishGameUI();
+        return;
+      }
+
+      // Guardar score e abrir modal de nome (convidado)
       document.getElementById('nameModal').classList.add('show');
       const input = document.getElementById('playerName');
-      input.value = '';
+      input.value = state.lastSubmittedName || '';
       input.focus();
-      
-      // Permitir Enter para salvar
       input.onkeypress = (e) => {
         if (e.key === 'Enter') saveScore();
       };
