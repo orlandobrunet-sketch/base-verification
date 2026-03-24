@@ -1233,6 +1233,128 @@
     .sound-toggle:hover { border-color: var(--gold); color: var(--gold); }
     .sound-toggle.muted { opacity: 0.5; }
 
+    /* ===== LANDING SCREEN ===== */
+    #landingScreen {
+      position: fixed; inset: 0; z-index: 9000;
+      background: #080d1a;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 0;
+    }
+    #landingScreen.hidden { display: none; }
+    .landing-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(90,50,160,0.22) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 20% 90%, rgba(30,70,150,0.13) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 90%, rgba(30,70,150,0.10) 0%, transparent 60%);
+    }
+    .landing-bg::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(60,100,180,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(60,100,180,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+    }
+    .landing-content {
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      width: 100%; max-width: 360px; padding: 0 20px;
+    }
+    .landing-ornament {
+      font-size: 0.68rem; color: var(--gold); letter-spacing: 3px;
+      text-transform: uppercase; opacity: 0.8; margin-bottom: 2px;
+    }
+    .landing-title {
+      font-family: var(--font-title, 'Cinzel', serif);
+      font-size: clamp(2.2rem, 8vw, 3.2rem);
+      color: var(--gold, #ffd700); margin: 0;
+      text-shadow: 0 0 30px rgba(255,215,0,0.35), 0 2px 4px rgba(0,0,0,0.8);
+      letter-spacing: 2px;
+    }
+    .landing-sub {
+      font-family: var(--font-title, 'Cinzel', serif);
+      font-size: 0.95rem; color: rgba(255,215,0,0.55);
+      letter-spacing: 6px; text-transform: uppercase; margin-bottom: 8px;
+    }
+    .landing-tagline {
+      font-size: 0.82rem; color: var(--txt-dim, #7e9ec8);
+      text-align: center; letter-spacing: 0.5px; margin-bottom: 18px;
+      line-height: 1.5;
+    }
+    .landing-divider {
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,215,0,0.25), transparent);
+      margin: 4px 0 16px;
+    }
+    .landing-btn-google {
+      width: 100%; padding: 12px 20px;
+      background: #fff; color: #1a1a2e;
+      border: none; border-radius: 10px;
+      font-size: 0.95rem; font-weight: 700;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    }
+    .landing-btn-google:hover { background: #f0f0f0; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,0.5); }
+    .landing-btn-google:active { transform: translateY(0); }
+    .landing-btn-email {
+      width: 100%; padding: 11px 20px;
+      background: rgba(42,74,122,0.35); color: #90b4e0;
+      border: 2px solid rgba(42,74,122,0.6); border-radius: 10px;
+      font-size: 0.9rem; font-weight: 600;
+      cursor: pointer; transition: border-color 0.2s, background 0.2s, transform 0.1s;
+    }
+    .landing-btn-email:hover { border-color: rgba(96,165,250,0.7); background: rgba(42,74,122,0.5); transform: translateY(-1px); }
+    .landing-guest-link {
+      font-size: 0.78rem; color: rgba(126,158,200,0.6);
+      cursor: pointer; text-decoration: underline; text-underline-offset: 3px;
+      transition: color 0.2s; margin-top: 4px;
+      background: none; border: none; padding: 0;
+    }
+    .landing-guest-link:hover { color: rgba(126,158,200,0.9); }
+    .landing-msg {
+      font-size: 0.8rem; color: #fb7185; text-align: center; display: none;
+      background: rgba(251,113,133,0.1); border: 1px solid rgba(251,113,133,0.3);
+      border-radius: 8px; padding: 8px 12px; width: 100%;
+    }
+
+    /* ===== PROFILE ICON + POPUP ===== */
+    .profile-btn {
+      background: rgba(15,20,40,1); border: 2px solid #2a4a7a; border-radius: 8px;
+      width: 30px; height: 30px; cursor: pointer; color: var(--txt-dim); font-size: 0.85rem;
+      transition: border-color 0.2s, color 0.2s;
+      display: none; align-items: center; justify-content: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      position: relative;
+    }
+    .profile-btn.visible { display: flex; }
+    .profile-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .profile-popup {
+      position: absolute; top: calc(100% + 8px); right: 0;
+      background: rgba(10,15,35,0.98); border: 1px solid rgba(42,74,122,0.8);
+      border-radius: 10px; padding: 12px 14px; min-width: 200px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.7);
+      display: none; flex-direction: column; gap: 10px;
+      z-index: 10000;
+    }
+    .profile-popup.open { display: flex; }
+    .profile-popup-email {
+      font-size: 0.78rem; color: #90b4e0;
+      word-break: break-all; padding-bottom: 8px;
+      border-bottom: 1px solid rgba(42,74,122,0.5);
+    }
+    .profile-popup-email strong { display: block; color: var(--txt-dim); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
+    .profile-popup-logout {
+      background: rgba(251,113,133,0.12); color: #fb7185;
+      border: 1px solid rgba(251,113,133,0.35); border-radius: 7px;
+      padding: 7px 12px; font-size: 0.82rem; font-weight: 600;
+      cursor: pointer; transition: background 0.2s;
+      text-align: center;
+    }
+    .profile-popup-logout:hover { background: rgba(251,113,133,0.22); }
+
     /* STREAK MULTIPLIER VISUAL */
     .tile-streak { position: relative; }
     .streak-fire { font-size: 0.7rem; display: block; margin-top: 2px; }
@@ -3786,10 +3908,36 @@
     <div class="sound-toggle" onclick="toggleSound()">
       <span id="mobileSoundSfxIcon">🔊</span>
     </div>
+    <div class="profile-btn" id="mobileProfileBtn" onclick="toggleProfilePopup('mobile')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      <div class="profile-popup" id="mobileProfilePopup">
+        <div class="profile-popup-email"><strong>Conta</strong><span id="mobileProfileEmail"></span></div>
+        <button class="profile-popup-logout" onclick="authLogout();event.stopPropagation()">Sair</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LANDING / LOGIN SCREEN -->
+  <div id="landingScreen">
+    <div class="landing-bg"></div>
+    <div class="landing-content">
+      <div class="landing-ornament">&#10022; Reino dos Néfrons &#10022;</div>
+      <h1 class="landing-title">NefroQuest</h1>
+      <div class="landing-sub">Ascension</div>
+      <div class="landing-tagline">Domine a Nefrologia.<br>Conquiste o reino dos néfrons.</div>
+      <div class="landing-divider"></div>
+      <div id="landingMsg" class="landing-msg"></div>
+      <button class="landing-btn-google" onclick="landingLoginGoogle()">
+        <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.1 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.6-13.47-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+        Entrar com Google
+      </button>
+      <button class="landing-btn-email" onclick="landingLoginEmail()">&#9993; Entrar com Email</button>
+      <button class="landing-guest-link" onclick="landingPlayGuest()">Jogar sem conta</button>
+    </div>
   </div>
 
   <!-- WELCOME SCREEN -->
-  <div id="welcomeScreen" class="welcome-screen">
+  <div id="welcomeScreen" class="welcome-screen hidden">
     <div class="welcome-bg"></div>
     <div class="welcome-glow"></div>
     <div class="welcome-particles" id="welcomeParticles"></div>
@@ -3800,6 +3948,13 @@
       </div>
       <div class="sound-toggle" onclick="toggleSound()">
         <span id="welcomeSoundIcon">🔊</span>
+      </div>
+      <div class="profile-btn" id="welcomeProfileBtn" onclick="toggleProfilePopup('welcome')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        <div class="profile-popup" id="welcomeProfilePopup">
+          <div class="profile-popup-email"><strong>Conta</strong><span id="welcomeProfileEmail"></span></div>
+          <button class="profile-popup-logout" onclick="authLogout();event.stopPropagation()">Sair</button>
+        </div>
       </div>
     </div>
     <div class="welcome-content">
@@ -3878,6 +4033,13 @@
         </div>
         <div id="soundToggle" class="sound-toggle" onclick="toggleSound()">
           <span id="soundIcon">🔊</span>
+        </div>
+        <div class="profile-btn" id="gameProfileBtn" onclick="toggleProfilePopup('game')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          <div class="profile-popup" id="gameProfilePopup">
+            <div class="profile-popup-email"><strong>Conta</strong><span id="gameProfileEmail"></span></div>
+            <button class="profile-popup-logout" onclick="authLogout();event.stopPropagation()">Sair</button>
+          </div>
         </div>
       </div>
     </div>
@@ -6613,6 +6775,7 @@
       if (!badge || !loginBtn) return;
       if (authUser) {
         const name = _authDisplayName();
+        const email = authUser.email || '';
         const avatarUrl = authUser.user_metadata?.avatar_url;
         badge.style.display = 'flex';
         loginBtn.style.display = 'none';
@@ -6626,9 +6789,20 @@
           img.style.display = 'none';
           if (placeholder) placeholder.style.display = 'flex';
         }
+        // Show profile buttons and update email
+        document.querySelectorAll('.profile-btn').forEach(b => b.classList.add('visible'));
+        document.querySelectorAll('[id$="ProfileEmail"]').forEach(el => { el.textContent = email; });
+        // Navigate from landing to welcome if landing is visible
+        const landing = document.getElementById('landingScreen');
+        if (landing && !landing.classList.contains('hidden')) {
+          landing.classList.add('hidden');
+          document.getElementById('welcomeScreen').classList.remove('hidden');
+        }
       } else {
         badge.style.display = 'none';
         loginBtn.style.display = '';
+        // Hide profile buttons
+        document.querySelectorAll('.profile-btn').forEach(b => b.classList.remove('visible'));
       }
     }
 
@@ -6704,7 +6878,47 @@
       await _supaClient.auth.signOut();
       authUser = null;
       updateWelcomeUserBadge();
+      // Return to landing screen
+      document.getElementById('welcomeScreen').classList.add('hidden');
+      document.getElementById('landingScreen').classList.remove('hidden');
+      document.getElementById('mainApp')?.classList.add('hidden');
     }
+
+    // ===== LANDING SCREEN =====
+    function landingLoginGoogle() {
+      loginWithGoogle();
+    }
+    function landingLoginEmail() {
+      document.getElementById('landingScreen').classList.add('hidden');
+      document.getElementById('welcomeScreen').classList.remove('hidden');
+      openAuthModal();
+    }
+    function landingPlayGuest() {
+      document.getElementById('landingScreen').classList.add('hidden');
+      document.getElementById('welcomeScreen').classList.remove('hidden');
+    }
+    function showLandingMsg(msg) {
+      const el = document.getElementById('landingMsg');
+      if (!el) return;
+      el.textContent = msg;
+      el.style.display = 'block';
+    }
+
+    // ===== PROFILE POPUP =====
+    function toggleProfilePopup(ctx) {
+      const popup = document.getElementById(ctx === 'game' ? 'gameProfilePopup' : 'welcomeProfilePopup');
+      if (!popup) return;
+      const isOpen = popup.classList.contains('open');
+      // Close all popups first
+      document.querySelectorAll('.profile-popup.open').forEach(p => p.classList.remove('open'));
+      if (!isOpen) popup.classList.add('open');
+    }
+    // Close profile popup when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.profile-btn')) {
+        document.querySelectorAll('.profile-popup.open').forEach(p => p.classList.remove('open'));
+      }
+    });
 
     let _boardCache = null;
     let _boardCacheTime = 0;
