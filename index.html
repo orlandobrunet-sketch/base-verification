@@ -16,7 +16,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#0a0e1a">
-  <link rel="preload" href="assets/audio/welcome-theme.mp3" as="fetch" crossorigin="anonymous">
+  <link rel="prefetch" href="assets/audio/welcome-theme.mp3">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=Philosopher:wght@400;700&family=MedievalSharp&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -3984,7 +3984,7 @@
     📵 Offline — usando cache local
   </div>
   <!-- PWA install banner -->
-  <div id="pwaBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9998;background:linear-gradient(180deg,rgba(18,25,46,0.97),rgba(11,20,40,0.98));border-top:1px solid rgba(99,102,241,0.4);padding:10px 16px;display:none;align-items:center;justify-content:space-between;gap:10px;backdrop-filter:blur(8px);">
+  <div id="pwaBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9998;background:linear-gradient(180deg,rgba(18,25,46,0.97),rgba(11,20,40,0.98));border-top:1px solid rgba(99,102,241,0.4);padding:10px 16px;align-items:center;justify-content:space-between;gap:10px;backdrop-filter:blur(8px);">
     <span style="color:var(--txt);font-size:0.83rem;">📱 Instalar NefroQuest para uso offline</span>
     <div style="display:flex;gap:8px;flex-shrink:0;">
       <button onclick="_installPWA()" style="background:linear-gradient(180deg,#4f46e5,#3730a3);border:none;color:#fff;padding:6px 14px;border-radius:8px;font-size:0.8rem;font-weight:700;cursor:pointer;">Instalar</button>
@@ -4080,7 +4080,7 @@
         <div class="welcome-stat"><span class="ws-val" id="wsGamesPlayed">0</span><span class="ws-lbl">Partidas</span></div>
         <div class="welcome-stat"><span class="ws-val" id="wsBestLevel">0</span><span class="ws-lbl">Maior Nível</span></div>
       </div>
-      <img id="wsSavedAvatar" src="" alt="" style="display:none;">
+      <img id="wsSavedAvatar" alt="" style="display:none;">
       <div id="welcomeSavedInfo" class="welcome-saved-info" style="display:none;margin:8px 0;transition:opacity 0.4s ease;">
         <div class="wsaved-top">
           <span class="wsaved-label">⚔ Jornada em Andamento</span>
@@ -4122,7 +4122,7 @@
         <button class="btn sec" onclick="showLeaderboardFromWelcome()">Leaderboard</button>
         <button id="bossPreviewBtn" class="btn-boss-preview" onclick="startBossPreview()" title="Preview do Confronto Final" style="display:none;">⚔️ Preview: Confronto Final</button>
       </div>
-      <div class="welcome-credit" style="margin-top:14px;"><a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;" onclick="showChangelog()" style="cursor:pointer;">v5.7</span></div>
+      <div class="welcome-credit" style="margin-top:14px;"><a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;cursor:pointer;" onclick="showChangelog()">v5.7</span></div>
     </div>
   </div>
 
@@ -4362,7 +4362,7 @@
       </div>
 
       <!-- POPUP NARRATIVO QUESTÃO 9 (mobile: popup fullscreen; PC: troca imagem) -->
-      <div id="arquiQ9Popup" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.92);display:none;flex-direction:column;align-items:center;justify-content:center;padding:20px;">
+      <div id="arquiQ9Popup" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.92);flex-direction:column;align-items:center;justify-content:center;padding:20px;">
         <div style="max-width:420px;width:100%;text-align:center;">
           <img src="assets/battle_final.png" alt="Batalha Final" style="width:100%;border-radius:12px;border:2px solid rgba(168,85,247,0.7);box-shadow:0 0 30px rgba(124,58,237,0.6);margin-bottom:16px;clip-path:inset(0 0 9% 0 round 12px);">
           <p style="font-family:'Cinzel',serif;color:#e9d5ff;font-size:1rem;letter-spacing:2px;text-shadow:0 0 15px rgba(216,180,254,0.8);line-height:1.6;margin-bottom:20px;">&#9760; O Arqui-Nefromante está de joelhos! O Batalhão da Resistência une suas forças para o golpe definitivo. Uma última resposta separa a vitória da derrota! &#9760;</p>
