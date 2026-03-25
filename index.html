@@ -5591,33 +5591,39 @@
         document.getElementById('wsBestLevel').textContent = stats.bestLevel;
       }
       
-      // Show continue button if save exists
+      refreshWelcomeSave();
+    }
+
+    function refreshWelcomeSave() {
+      const save = loadGame();
+      const savedInfoEl = document.getElementById('welcomeSavedInfo');
+      const continueBtn = document.getElementById('welcomeContinueBtn');
       if (save && save.character && save.lives > 0) {
-        document.getElementById('welcomeContinueBtn').style.display = 'block';
+        if (continueBtn) continueBtn.style.display = 'block';
         const charData = characters[save.character];
         const charName = charData ? charData.name : 'Desconhecido';
-        const timeAgo = getTimeAgo(save.timestamp);
-        // Preencher dados da jornada ANTES de tornar visível (evita salto)
         document.getElementById('wsSavedChar').textContent = charName;
         document.getElementById('wsSavedLevel').textContent = save.level || 1;
         document.getElementById('wsSavedLives').textContent = '❤'.repeat(save.lives || 0);
         document.getElementById('wsSavedScore').textContent = save.score || 0;
-        document.getElementById('wsSavedTime').textContent = timeAgo || '';
-        // Avatar do personagem baseado no nível salvo
+        document.getElementById('wsSavedTime').textContent = getTimeAgo(save.timestamp) || '';
         if (charData) {
           const ext = save.character === 'glomerulus' ? 'png' : 'jpg';
           const lvNum = Math.min(10, Math.max(1, save.level || 1));
           document.getElementById('wsSavedAvatar').src = `assets/classes/${charData.folder}/nivel_${String(lvNum).padStart(2,'0')}.${ext}`;
           document.getElementById('wsSavedAvatar').alt = charName;
         }
-        // Mostrar com fade-in suave após preencher os dados (sem salto visual)
-        const savedInfoEl = document.getElementById('welcomeSavedInfo');
-        savedInfoEl.style.display = 'block';
-        savedInfoEl.style.opacity = '0';
-        requestAnimationFrame(() => { savedInfoEl.style.transition = 'opacity 0.4s'; savedInfoEl.style.opacity = '1'; });
+        if (savedInfoEl) {
+          savedInfoEl.style.display = 'block';
+          savedInfoEl.style.opacity = '0';
+          requestAnimationFrame(() => { savedInfoEl.style.transition = 'opacity 0.4s'; savedInfoEl.style.opacity = '1'; });
+        }
+      } else {
+        if (savedInfoEl) savedInfoEl.style.display = 'none';
+        if (continueBtn) continueBtn.style.display = 'none';
       }
     }
-    
+
     function getTimeAgo(ts) {
       if (!ts) return '';
       const diff = Date.now() - ts;
@@ -6875,6 +6881,7 @@
         if (landing && !landing.classList.contains('hidden')) {
           landing.classList.add('hidden');
           document.getElementById('welcomeScreen').classList.remove('hidden');
+          refreshWelcomeSave();
         }
       } else {
         document.querySelectorAll('.profile-btn').forEach(b => b.classList.remove('visible'));
@@ -6966,11 +6973,13 @@
     function landingLoginEmail() {
       document.getElementById('landingScreen').classList.add('hidden');
       document.getElementById('welcomeScreen').classList.remove('hidden');
+      refreshWelcomeSave();
       openAuthModal();
     }
     function landingPlayGuest() {
       document.getElementById('landingScreen').classList.add('hidden');
       document.getElementById('welcomeScreen').classList.remove('hidden');
+      refreshWelcomeSave();
     }
     function showLandingMsg(msg) {
       const el = document.getElementById('landingMsg');
@@ -9612,6 +9621,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
       // Se não tinha jogo iniciado, mostrar welcome
       if (!state.gameStarted) {
         document.querySelector('.welcome-screen')?.classList.remove('hidden');
+        refreshWelcomeSave();
       }
     }
     
@@ -10163,6 +10173,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
       _examState = null;
       document.querySelectorAll('.exam-overlay').forEach(e => e.remove());
       document.getElementById('welcomeScreen')?.classList.remove('hidden');
+      refreshWelcomeSave();
     }
 
     function showExamResults() {
@@ -10277,6 +10288,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
       _examState = null;
       document.querySelectorAll('.exam-overlay').forEach(e => e.remove());
       document.getElementById('welcomeScreen')?.classList.remove('hidden');
+      refreshWelcomeSave();
     }
 
     // ============ CHANGELOG v5.0 ============
