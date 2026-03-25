@@ -10949,6 +10949,18 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
       if (e.target === document.getElementById('gameModesOverlay')) closeGameModesPopup();
     }
 
+    // Atualiza o box da jornada ao voltar à aba (mobile bfcache / visibilidade)
+    window.addEventListener('pageshow', function(e) {
+      const ws = document.getElementById('welcomeScreen');
+      if (ws && !ws.classList.contains('hidden')) refreshWelcomeSave();
+    });
+    document.addEventListener('visibilitychange', function() {
+      if (!document.hidden) {
+        const ws = document.getElementById('welcomeScreen');
+        if (ws && !ws.classList.contains('hidden')) refreshWelcomeSave();
+      }
+    });
+
   </script>
 </body>
 </html>
