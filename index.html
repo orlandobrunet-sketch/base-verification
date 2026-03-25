@@ -17,7 +17,7 @@
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#0a0e1a">
   <link rel="preload" href="assets/audio/welcome-theme.mp3" as="fetch" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=Philosopher:wght@400;700&family=MedievalSharp&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=Philosopher:wght@400;700&family=MedievalSharp&display=optional" rel="stylesheet">
   <style>
     :root {
       --bg: #0a0e1a;
@@ -4610,12 +4610,6 @@
     <button class="mdock-btn musica" id="mobileMusToggle" onclick="toggleMusic()" title="Música">
       <span id="mobileMusIcon" style="font-size:1.2rem;line-height:1;">&#127925;</span>
       <span class="mdock-label">Música</span>
-    </button>
-
-    <!-- Menu / Voltar ao Welcome -->
-    <button class="mdock-btn" onclick="goToWelcomeScreen()" title="Menu Principal">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      <span class="mdock-label">Menu</span>
     </button>
 
   </div><!-- /mobile-bottom-dock -->
@@ -10992,19 +10986,6 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
       if (e.target === document.getElementById('gameModesOverlay')) closeGameModesPopup();
     }
 
-    function goToWelcomeScreen() {
-      saveGame();
-      const mainApp = document.getElementById('mainApp');
-      const actionDock = document.getElementById('actionDock');
-      const ws = document.getElementById('welcomeScreen');
-      if (mainApp) mainApp.classList.add('hidden');
-      if (actionDock) actionDock.classList.add('hidden');
-      if (ws) {
-        ws.classList.remove('hidden');
-        ws.style.opacity = '1';
-      }
-      refreshWelcomeSave();
-    }
 
     // Atualiza o box da jornada ao voltar à aba (mobile bfcache / visibilidade)
     window.addEventListener('pageshow', function(e) {
