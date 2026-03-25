@@ -1,14 +1,8 @@
-// NefroQuest Service Worker — v8.0
-const CACHE = 'nefroquest-v8';
-const ASSETS = [
-  '/',
-  '/index.html',
-  '/perguntas.html',
-  '/manifest.json',
-  '/favicon.ico',
-  '/assets/images/welcome-bg.png',
-  '/assets/images/welcome-bg-portrait.jpg',
-  '/assets/nefromancer.png',
+// NefroQuest Service Worker — v9.0
+const CACHE = 'nefroquest-v9';
+
+// Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
+const STATIC_ASSETS = [
   '/assets/sounds/bgmusic.mp3',
   '/assets/sounds/correct.wav',
   '/assets/sounds/wrong.wav',
@@ -18,48 +12,63 @@ const ASSETS = [
   '/assets/sounds/chest.wav',
   '/assets/sounds/click.wav',
   '/assets/audio/welcome-theme.mp3',
+  '/assets/images/welcome-bg.png',
+  '/assets/images/welcome-bg-portrait.jpg',
+  '/assets/nefromancer.png',
+  '/manifest.json',
+  '/favicon.ico',
 ];
 
 self.addEventListener('install', e => {
+  // CRÍTICO: skipWaiting() chamado IMEDIATAMENTE — não bloqueia no precache
+  self.skipWaiting();
+
+  // Precache em background; falhas individuais são ignoradas
   e.waitUntil(
-    caches.open(CACHE)
-      .then(c => c.addAll(ASSETS.filter(Boolean)))
-      .then(() => self.skipWaiting())
+    caches.open(CACHE).then(cache =>
+      Promise.allSettled(
+        STATIC_ASSETS.map(url =>
+          fetch(url, { cache: 'no-store' })
+            .then(res => { if (res.ok) cache.put(url, res.clone()); })
+            .catch(() => {})
+        )
+      )
+    )
   );
 });
 
 self.addEventListener('activate', e => {
   e.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
-    ).then(() => self.clients.claim())
+    caches.keys()
+      .then(keys => Promise.all(
+        keys.filter(k => k !== CACHE).map(k => caches.delete(k))
+      ))
+      .then(() => self.clients.claim())
   );
 });
 
 self.addEventListener('message', e => {
-  if (e.data && e.data.type === 'SKIP_WAITING') self.skipWaiting();
+  if (e.data?.type === 'SKIP_WAITING') self.skipWaiting();
 });
 
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
+
   const url = new URL(e.request.url);
   if (url.origin !== location.origin) return;
-
-  // Nunca cachear a página de limpeza de cache
   if (url.pathname === '/clear-cache.html') return;
 
-  // Páginas HTML → network-first (sempre busca a versão mais recente)
-  const isHTML = e.request.mode === 'navigate'
+  // HTML e navegação → network-first com cache: no-store para bypassar CDN/HTTP cache
+  const isNav = e.request.mode === 'navigate'
     || url.pathname.endsWith('.html')
     || url.pathname === '/';
 
-  if (isHTML) {
+  if (isNav) {
     e.respondWith(
-      fetch(e.request)
+      fetch(e.request, { cache: 'no-store' })
         .then(res => {
-          if (res && res.status === 200) {
-            const clone = res.clone();
-            caches.open(CACHE).then(c => c.put(e.request, clone));
+          if (res.ok) {
+            caches.open(CACHE).then(c => c.put(e.request, res.clone()));
           }
           return res;
         })
@@ -68,16 +77,16 @@ self.addEventListener('fetch', e => {
     return;
   }
 
-  // Assets estáticos → cache-first (performance)
+  // Assets estáticos → cache-first (sons, imagens, fontes)
   e.respondWith(
     caches.match(e.request).then(cached => {
       if (cached) return cached;
       return fetch(e.request).then(res => {
-        if (!res || res.status !== 200) return res;
-        const clone = res.clone();
-        caches.open(CACHE).then(c => c.put(e.request, clone));
+        if (res.ok) {
+          caches.open(CACHE).then(c => c.put(e.request, res.clone()));
+        }
         return res;
-      }).catch(() => cached);
+      }).catch(() => caches.match(e.request));
     })
   );
 });
