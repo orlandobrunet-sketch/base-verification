@@ -5615,8 +5615,7 @@
         }
         if (savedInfoEl) {
           savedInfoEl.style.display = 'block';
-          savedInfoEl.style.opacity = '0';
-          requestAnimationFrame(() => { savedInfoEl.style.transition = 'opacity 0.4s'; savedInfoEl.style.opacity = '1'; });
+          savedInfoEl.style.opacity = '1';
         }
       } else {
         if (savedInfoEl) savedInfoEl.style.display = 'none';
@@ -10635,6 +10634,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
           bottomDock.style.display = mainAppVisible ? 'flex' : 'none';
           if (_heroBtn) _heroBtn.style.display = mainAppVisible ? 'flex' : 'none';
           if (mainAppVisible) closeDrawer();
+          if (welcomeVisible) refreshWelcomeSave();
         }
       });
       observer.observe(mainAppEl, { attributes: true, attributeFilter: ['class'] });
