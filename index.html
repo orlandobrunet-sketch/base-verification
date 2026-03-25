@@ -3928,6 +3928,21 @@
     .welcome-user-name { color: #34d399; font-weight: 700; flex: 1; font-size: 0.85rem; }
     .welcome-logout-btn { background: none; border: 1px solid rgba(251,113,133,0.4); border-radius: 6px; color: #fb7185; padding: 3px 8px; font-size: 0.75rem; cursor: pointer; font-family: 'Philosopher', serif; }
   </style>
+  <script>
+    // Verificação de versão — bypassa o Service Worker via no-store
+    // Se a versão do servidor for diferente da carregada, limpa tudo e recarrega
+    (function() {
+      const LOADED_VERSION = '5.7';
+      fetch('/version.json', { cache: 'no-store' })
+        .then(r => r.json())
+        .then(data => {
+          if (data.version && data.version !== LOADED_VERSION) {
+            window.location.replace('/clear-cache.html');
+          }
+        })
+        .catch(() => {});
+    })();
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
@@ -4109,7 +4124,7 @@
         <button class="btn sec" onclick="showLeaderboardFromWelcome()">Leaderboard</button>
         <button id="bossPreviewBtn" class="btn-boss-preview" onclick="startBossPreview()" title="Preview do Confronto Final" style="display:none;">⚔️ Preview: Confronto Final</button>
       </div>
-      <div class="welcome-credit" style="margin-top:14px;"><a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;" onclick="showChangelog()" style="cursor:pointer;">v5.6</span></div>
+      <div class="welcome-credit" style="margin-top:14px;"><a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;" onclick="showChangelog()" style="cursor:pointer;">v5.7</span></div>
     </div>
   </div>
 

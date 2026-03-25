@@ -57,6 +57,7 @@ self.addEventListener('fetch', e => {
   const url = new URL(e.request.url);
   if (url.origin !== location.origin) return;
   if (url.pathname === '/clear-cache.html') return;
+  if (url.pathname === '/version.json') return;
 
   // HTML e navegação → network-first com cache: no-store para bypassar CDN/HTTP cache
   const isNav = e.request.mode === 'navigate'
