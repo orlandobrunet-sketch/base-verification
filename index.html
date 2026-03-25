@@ -1085,7 +1085,7 @@
     .welcome-stat .ws-lbl { font-size: 0.62rem; color: var(--txt-dim); text-transform: uppercase; letter-spacing: 1px; }
     .welcome-saved-info {
       background: rgba(10,15,30,0.85) !important;
-      border: 1px solid rgba(180,160,100,0.5) !important;
+      border: 2px solid rgba(139,92,246,0.45) !important;
       backdrop-filter: blur(4px);
       border-radius: 10px;
     }
@@ -1325,7 +1325,7 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.5);
       position: relative;
     }
-    .profile-btn.visible { display: flex; border-color: #34d399; color: #34d399; }
+    .profile-btn.visible { display: flex; border-color: #60a5fa; color: #60a5fa; }
     .profile-btn:hover { border-color: var(--gold); color: var(--gold); }
     .profile-popup {
       position: absolute; top: calc(100% + 8px); right: 0;
@@ -1855,15 +1855,16 @@
         top: 8px;
         left: 8px;
         z-index: 9000;
-        background: rgba(167,139,250,0.12);
-        border: 1px solid rgba(167,139,250,0.35);
+        background: rgba(139,92,246,0.22);
+        border: 2px solid rgba(139,92,246,0.72);
         border-radius: 10px;
         padding: 6px 10px 4px;
         cursor: pointer;
-        color: #a78bfa;
+        color: #c084fc;
+        box-shadow: 0 0 10px rgba(139,92,246,0.25);
         -webkit-tap-highlight-color: transparent;
       }
-      .mobile-hero-btn:active { background: rgba(167,139,250,0.25); transform: scale(0.95); }
+      .mobile-hero-btn:active { background: rgba(139,92,246,0.38); transform: scale(0.95); }
       .mobile-hero-btn svg { width: 20px; height: 20px; }
       .mobile-hero-btn .hero-btn-label {
         font-size: 0.42rem;
@@ -3906,7 +3907,7 @@
       <span id="mobileSoundSfxIcon">🔊</span>
     </div>
     <div class="profile-btn" id="mobileProfileBtn" onclick="toggleProfilePopup('mobile')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
       <div class="profile-popup" id="mobileProfilePopup">
         <div class="profile-popup-email"><strong>Conta</strong><span id="mobileProfileEmail"></span></div>
         <button class="profile-popup-logout" onclick="authLogout();event.stopPropagation()">Sair</button>
@@ -3919,7 +3920,7 @@
     <div class="landing-bg"></div>
     <!-- Profile button (top-right, shown when already logged in) -->
     <div class="profile-btn" id="landingProfileBtn" onclick="toggleProfilePopup('landing')" style="position:absolute;top:14px;right:14px;z-index:10;">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
       <div class="profile-popup" id="landingProfilePopup">
         <div class="profile-popup-email"><strong>Conta</strong><span id="landingProfileEmail"></span></div>
         <button class="profile-popup-logout" onclick="authLogout();event.stopPropagation()">Sair</button>
@@ -3955,7 +3956,7 @@
         <span id="welcomeSoundIcon">🔊</span>
       </div>
       <div class="profile-btn" id="welcomeProfileBtn" onclick="toggleProfilePopup('welcome')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
         <div class="profile-popup" id="welcomeProfilePopup">
           <div class="profile-popup-email"><strong>Conta</strong><span id="welcomeProfileEmail"></span></div>
           <button class="profile-popup-logout" onclick="authLogout();event.stopPropagation()">Sair</button>
@@ -3973,24 +3974,25 @@
         <div class="welcome-stat"><span class="ws-val" id="wsGamesPlayed">0</span><span class="ws-lbl">Partidas</span></div>
         <div class="welcome-stat"><span class="ws-val" id="wsBestLevel">0</span><span class="ws-lbl">Maior Nível</span></div>
       </div>
-      <div id="welcomeSavedInfo" class="welcome-saved-info" style="display:none;margin:12px 0;padding:12px 14px;background:rgba(10,15,30,0.9);border:2px solid rgba(52,211,153,0.4);border-radius:12px;backdrop-filter:blur(4px);transition:opacity 0.4s ease;">
-        <p style="color:#34d399;font-size:0.82rem;font-weight:700;margin-bottom:8px;text-align:center;letter-spacing:1px;">⚔ Jornada em Andamento ⚔</p>
-        <div id="wsSavedTable" style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;">
-          <div style="background:rgba(20,30,50,0.8);border:1px solid #2a4a7a;border-radius:8px;padding:7px 4px;text-align:center;">
-            <span style="display:block;font-size:0.58rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:3px;">Her&oacute;i</span>
-            <strong id="wsSavedChar" style="display:block;color:var(--gold);font-size:0.68rem;line-height:1.2;">-</strong>
-          </div>
-          <div style="background:rgba(20,30,50,0.8);border:1px solid #2a4a7a;border-radius:8px;padding:7px 4px;text-align:center;">
+      <div id="welcomeSavedInfo" class="welcome-saved-info" style="display:none;margin:12px 0;padding:12px 14px;transition:opacity 0.4s ease;">
+        <p style="font-size:0.82rem;font-weight:700;margin-bottom:10px;text-align:center;letter-spacing:1px;">⚔ Jornada em Andamento ⚔</p>
+        <!-- Herói: botão retangular destacado -->
+        <div style="background:linear-gradient(135deg,rgba(88,28,135,0.5),rgba(67,20,107,0.4));border:2px solid rgba(168,85,247,0.65);border-radius:10px;padding:10px 16px;text-align:center;margin-bottom:8px;box-shadow:0 0 14px rgba(139,92,246,0.2);">
+          <strong id="wsSavedChar" style="display:block;color:#e9d5ff;font-size:1.1rem;font-family:'Cinzel',serif;letter-spacing:0.5px;line-height:1.3;">-</strong>
+        </div>
+        <!-- Nível, Vidas, Pontos -->
+        <div id="wsSavedTable" style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;">
+          <div style="background:rgba(20,30,50,0.8);border:1px solid #2a4a7a;border-radius:8px;padding:9px 4px;text-align:center;">
             <span style="display:block;font-size:0.58rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:3px;">Nível</span>
-            <strong id="wsSavedLevel" style="display:block;color:#60a5fa;font-size:1rem;">-</strong>
+            <strong id="wsSavedLevel" style="display:block;color:#60a5fa;font-size:1.05rem;">-</strong>
           </div>
-          <div style="background:rgba(20,30,50,0.8);border:1px solid #2a4a7a;border-radius:8px;padding:7px 4px;text-align:center;">
+          <div style="background:rgba(20,30,50,0.8);border:1px solid #2a4a7a;border-radius:8px;padding:9px 4px;text-align:center;">
             <span style="display:block;font-size:0.58rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:3px;">Vidas</span>
-            <strong id="wsSavedLives" style="display:block;color:#fb7185;font-size:1rem;">-</strong>
+            <strong id="wsSavedLives" style="display:block;color:#fb7185;font-size:1.05rem;">-</strong>
           </div>
-          <div style="background:rgba(20,30,50,0.8);border:1px solid #2a4a7a;border-radius:8px;padding:7px 4px;text-align:center;">
+          <div style="background:rgba(20,30,50,0.8);border:1px solid #2a4a7a;border-radius:8px;padding:9px 4px;text-align:center;">
             <span style="display:block;font-size:0.58rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:3px;">Pontos</span>
-            <strong id="wsSavedScore" style="display:block;color:#34d399;font-size:1rem;">-</strong>
+            <strong id="wsSavedScore" style="display:block;color:#34d399;font-size:1.05rem;">-</strong>
           </div>
         </div>
         <p id="wsSavedTime" style="color:var(--txt-dim);font-size:0.68rem;text-align:center;margin-top:6px;font-style:italic;"></p>
@@ -4032,7 +4034,7 @@
           <span id="soundIcon">🔊</span>
         </div>
         <div class="profile-btn" id="gameProfileBtn" onclick="toggleProfilePopup('game')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
           <div class="profile-popup" id="gameProfilePopup">
             <div class="profile-popup-email"><strong>Conta</strong><span id="gameProfileEmail"></span></div>
             <button class="profile-popup-logout" onclick="authLogout();event.stopPropagation()">Sair</button>
