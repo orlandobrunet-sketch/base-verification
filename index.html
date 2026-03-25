@@ -1128,40 +1128,40 @@
     }
     .welcome-primary-btns .btn {
       font-family: 'Cinzel', serif;
-      font-size: 0.72rem; padding: 11px 20px;
-      letter-spacing: 1px; text-transform: uppercase;
-      flex: 1; border-radius: 8px;
-      position: relative; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s, color 0.2s;
-      border: 2px solid #2a4a7a;
-      background: linear-gradient(180deg, #1e3a5e 0%, #152a48 50%, #0e1e38 100%);
-      color: #c8d8f0; font-weight: 700;
-      box-shadow: 0 3px 0 #0a1020, 0 4px 10px rgba(0,0,0,0.4);
-      text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+      font-size: 0.72rem; padding: 12px 20px;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      flex: 1; border-radius: 10px; font-weight: 700; cursor: pointer;
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s, color 0.2s;
+      background: rgba(15,22,45,0.8);
+      border: 1px solid rgba(180,150,60,0.4);
+      color: rgba(220,195,120,0.85);
+      box-shadow: inset 0 1px 0 rgba(255,215,0,0.06), 0 2px 8px rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
     }
     .welcome-primary-btns .btn:hover {
-      border-color: var(--gold); transform: translateY(-2px);
-      box-shadow: 0 5px 0 #0a1020, 0 6px 16px rgba(255,215,0,0.15); color: #fff;
+      border-color: rgba(255,215,0,0.7); color: #ffd700;
+      background: rgba(20,30,60,0.9);
+      box-shadow: inset 0 1px 0 rgba(255,215,0,0.1), 0 0 16px rgba(255,215,0,0.12), 0 4px 12px rgba(0,0,0,0.5);
     }
-    .welcome-primary-btns .btn:active { transform: translateY(1px); box-shadow: 0 1px 0 #0a1020; }
+    .welcome-primary-btns .btn:active { transform: translateY(1px); }
     .welcome-primary-btns .btn.gold {
-      background: linear-gradient(180deg, #ffd700 0%, #daa520 50%, #b8860b 100%) !important;
-      border: 2px solid #8b6914 !important;
-      color: #1a0e00 !important;
-      text-shadow: 0 1px 0 rgba(255,255,255,0.25) !important;
-      box-shadow: 0 3px 0 #7a5a00, 0 4px 10px rgba(218,165,32,0.35) !important;
+      border-color: rgba(180,150,60,0.4) !important;
+      color: rgba(220,195,120,0.85) !important;
+      background: rgba(15,22,45,0.8) !important;
+      box-shadow: inset 0 1px 0 rgba(255,215,0,0.06), 0 2px 8px rgba(0,0,0,0.5) !important;
     }
     .welcome-primary-btns .btn.gold:hover {
-      box-shadow: 0 5px 0 #7a5a00, 0 6px 18px rgba(255,215,0,0.45) !important;
-      transform: translateY(-2px);
+      border-color: rgba(255,215,0,0.7) !important; color: #ffd700 !important;
+      background: rgba(20,30,60,0.9) !important;
+      box-shadow: inset 0 1px 0 rgba(255,215,0,0.1), 0 0 16px rgba(255,215,0,0.12), 0 4px 12px rgba(0,0,0,0.5) !important;
     }
     .welcome-primary-btns .btn.continue-btn {
-      background: linear-gradient(180deg, #1a5c42 0%, #124433 50%, #0c3026 100%);
-      border-color: #1f7b63; color: #6ee7b7;
+      border-color: rgba(52,200,120,0.45);
+      color: rgba(100,235,170,0.9);
     }
     .welcome-primary-btns .btn.continue-btn:hover {
-      border-color: #34d399;
-      box-shadow: 0 5px 0 #061a12, 0 6px 16px rgba(52,211,153,0.2);
-      color: #a7f3d0;
+      border-color: rgba(52,211,153,0.8); color: #6ee7b7;
+      box-shadow: inset 0 1px 0 rgba(52,211,153,0.06), 0 0 16px rgba(52,211,153,0.15), 0 4px 12px rgba(0,0,0,0.5);
     }
     /* Botões da welcome screen — estilo consistente com tela de perguntas */
     .welcome-buttons {
@@ -1173,63 +1173,44 @@
     }
     .welcome-buttons .btn {
       font-family: 'Cinzel', serif;
-      font-size: 0.72rem; padding: 11px 20px;
-      letter-spacing: 1px; text-transform: uppercase;
-      min-width: 130px; border-radius: 8px;
-      position: relative; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s, color 0.2s;
-      /* Mesmo estilo base do .btn da tela de perguntas */
-      border: 2px solid #2a4a7a;
-      background: linear-gradient(180deg, #1e3a5e 0%, #152a48 50%, #0e1e38 100%);
-      color: #c8d8f0; font-weight: 700;
-      box-shadow: 0 3px 0 #0a1020, 0 4px 10px rgba(0,0,0,0.4);
-      text-shadow: 0 1px 2px rgba(0,0,0,0.6);
-    }
-    .welcome-buttons .btn:hover {
-      border-color: var(--gold);
-      transform: translateY(-2px);
-      box-shadow: 0 5px 0 #0a1020, 0 6px 16px rgba(255,215,0,0.15);
-      color: #fff;
-    }
-    .welcome-buttons .btn:active { transform: translateY(1px); box-shadow: 0 1px 0 #0a1020; }
-
-    /* Botão Continuar — destaque verde esmeralda */
-    .welcome-buttons .btn.continue-btn {
-      background: linear-gradient(180deg, #1a5c42 0%, #124433 50%, #0c3026 100%);
-      border-color: #1f7b63;
-      color: #6ee7b7;
-    }
-    .welcome-buttons .btn.continue-btn:hover {
-      border-color: #34d399;
-      box-shadow: 0 5px 0 #061a12, 0 6px 16px rgba(52,211,153,0.2);
-      color: #a7f3d0;
-    }
-
-    /* Botão Nova Jornada — dourado (destaque principal) */
-    .welcome-buttons .btn.gold {
-      background: linear-gradient(180deg, #ffd700 0%, #daa520 50%, #b8860b 100%) !important;
-      border: 2px solid #8b6914 !important;
-      color: #1a0e00 !important;
-      text-shadow: 0 1px 0 rgba(255,255,255,0.25) !important;
-      box-shadow: 0 3px 0 #7a5a00, 0 4px 10px rgba(218,165,32,0.35) !important;
-    }
-    .welcome-buttons .btn.gold:hover {
-      box-shadow: 0 5px 0 #7a5a00, 0 6px 18px rgba(255,215,0,0.45) !important;
-      transform: translateY(-2px);
-    }
-
-    /* Botões secundários — igual ao .btn base */
-    .welcome-buttons .btn.sec {
-      background: linear-gradient(180deg, #1a2a45 0%, #121e35 50%, #0c1628 100%) !important;
-      border-color: #243858 !important;
-      color: #8aa8cc !important;
-      box-shadow: 0 2px 0 #060c18, 0 3px 8px rgba(0,0,0,0.35) !important;
+      font-size: 0.65rem; padding: 10px 14px;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      border-radius: 10px; font-weight: 700; cursor: pointer;
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s, color 0.2s;
+      background: rgba(15,22,45,0.8);
+      border: 1px solid rgba(60,90,140,0.45);
+      color: rgba(130,160,200,0.75);
+      box-shadow: inset 0 1px 0 rgba(100,140,220,0.04), 0 2px 8px rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
       flex: 1 1 calc(50% - 8px);
     }
+    .welcome-buttons .btn:hover {
+      border-color: rgba(100,140,220,0.6); color: #a0c0e8;
+      background: rgba(18,28,55,0.9);
+      box-shadow: 0 0 12px rgba(80,120,220,0.1), 0 4px 12px rgba(0,0,0,0.5);
+    }
+    .welcome-buttons .btn:active { transform: translateY(1px); }
+
+    /* Continuar / Nova (fallback se aparecerem aqui) */
+    .welcome-buttons .btn.continue-btn {
+      border-color: rgba(52,200,120,0.45) !important;
+      color: rgba(100,235,170,0.9) !important;
+    }
+    .welcome-buttons .btn.gold {
+      border-color: rgba(180,150,60,0.4) !important;
+      color: rgba(220,195,120,0.85) !important;
+    }
+
+    /* Botões secundários */
+    .welcome-buttons .btn.sec {
+      border-color: rgba(60,90,140,0.45) !important;
+      color: rgba(130,160,200,0.75) !important;
+      background: rgba(15,22,45,0.8) !important;
+      box-shadow: inset 0 1px 0 rgba(100,140,220,0.04), 0 2px 8px rgba(0,0,0,0.5) !important;
+    }
     .welcome-buttons .btn.sec:hover {
-      border-color: var(--gold) !important;
-      color: #c8d8f0 !important;
-      transform: translateY(-1px);
-      box-shadow: 0 3px 0 #060c18, 0 5px 14px rgba(255,215,0,0.12) !important;
+      border-color: rgba(100,140,220,0.6) !important; color: #a0c0e8 !important;
+      box-shadow: 0 0 12px rgba(80,120,220,0.1), 0 4px 12px rgba(0,0,0,0.5) !important;
     }
 
     @media (max-width: 500px) {

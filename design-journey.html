@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NefroQuest — Opções Box Jornada</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=Philosopher:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #05080f;
+  font-family: 'Philosopher', serif;
+  color: #c8d8f0;
+  padding: 40px 20px 60px;
+}
+h2 {
+  text-align: center; font-family: 'Cinzel', serif;
+  color: rgba(180,150,60,0.7); font-size: 0.7rem;
+  letter-spacing: 5px; text-transform: uppercase; margin-bottom: 48px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 400px);
+  gap: 36px 28px;
+  justify-content: center;
+}
+.card { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.card-label {
+  font-family: 'Cinzel', serif; font-size: 0.63rem; letter-spacing: 4px;
+  text-transform: uppercase; color: rgba(180,150,60,0.65);
+}
+.card-desc {
+  font-size: 0.62rem; color: rgba(150,170,200,0.5);
+  text-align: center; max-width: 320px; line-height: 1.55;
+}
+
+/* FRAME */
+.frame {
+  width: 400px;
+  background: radial-gradient(ellipse at 50% 0%, #0d1a3a 0%, #060a18 60%, #030610 100%);
+  border: 1px solid rgba(60,80,120,0.2);
+  border-radius: 14px; padding: 28px 24px 22px;
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+}
+.frame::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(100,60,180,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+.frame-title {
+  font-family: 'Cinzel Decorative', 'Cinzel', serif; font-weight: 900; font-size: 2.2rem;
+  background: linear-gradient(180deg, #fff8dc 0%, #ffd700 20%, #daa520 45%, #b8860b 65%, #ffd700 80%, #fff8dc 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  filter: drop-shadow(0 0 10px rgba(255,215,0,0.35)); line-height: 1;
+}
+.frame-sub {
+  font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.5em;
+  text-transform: uppercase; color: rgba(200,180,120,0.55); margin-top: -4px;
+}
+
+/* STATS */
+.stats {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; width: 100%;
+}
+.stat {
+  background: rgba(10,15,30,0.85); border: 1px solid rgba(180,160,100,0.28);
+  border-radius: 8px; padding: 7px 5px; text-align: center;
+}
+.stat .sv { font-size: 1rem; font-weight: 700; color: #ffd700; display: block; }
+.stat .sl { font-size: 0.54rem; color: rgba(140,160,190,0.55); text-transform: uppercase; letter-spacing: 1px; }
+
+/* BUTTONS (opção D aplicada) */
+.btns-primary { display: flex; gap: 8px; width: 100%; }
+.btn-primary {
+  font-family: 'Cinzel', serif; font-size: 0.68rem; padding: 11px 14px;
+  letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700;
+  border-radius: 10px; flex: 1; cursor: default;
+  background: rgba(15,22,45,0.8);
+  border: 1px solid rgba(180,150,60,0.4); color: rgba(220,195,120,0.85);
+  box-shadow: inset 0 1px 0 rgba(255,215,0,0.06), 0 2px 8px rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px);
+}
+.btn-green { border-color: rgba(52,200,120,0.45) !important; color: rgba(100,235,170,0.9) !important; }
+
+.divider { width: 100%; height: 1px; background: linear-gradient(90deg,transparent,rgba(100,130,200,0.18),transparent); }
+
+.btns-sec { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; width: 100%; }
+.btn-sec {
+  font-family: 'Cinzel', serif; font-size: 0.6rem; padding: 9px 10px;
+  letter-spacing: 1.2px; text-transform: uppercase; font-weight: 700;
+  border-radius: 10px; cursor: default;
+  background: rgba(15,22,45,0.8);
+  border: 1px solid rgba(60,90,140,0.45); color: rgba(130,160,200,0.7);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+}
+
+/* ============================================================
+   OPÇÃO 1 — Atual (linha inline, avatar circular)
+   ============================================================ */
+.j1 {
+  width: 100%; background: rgba(10,15,30,0.7);
+  border: 1px solid rgba(60,80,120,0.3); border-radius: 10px;
+  padding: 10px 12px; display: flex; align-items: center; gap: 12px;
+}
+.j1-avatar {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: url('assets/classes/clerigo_renal/nivel_01.jpg') center/cover;
+  border: 1px solid rgba(100,130,200,0.3); flex-shrink: 0;
+}
+.j1-info { flex: 1; }
+.j1-name { font-family:'Cinzel',serif; font-size:0.82rem; color:#d4c0f0; font-weight:600; margin-bottom:4px; }
+.j1-stats { display:flex; gap:10px; margin-bottom:4px; font-size:0.6rem; color:rgba(140,160,190,0.65); }
+.j1-stats strong { color:#c8d8f0; margin-left:2px; }
+.j1-badge { font-size:0.53rem; letter-spacing:1px; text-transform:uppercase; color:rgba(150,130,65,0.5); font-family:'Cinzel',serif; border-top:1px solid rgba(60,80,120,0.18); padding-top:4px; }
+
+/* ============================================================
+   OPÇÃO 2 — Banner horizontal com faixa de cor, sem avatar
+   ============================================================ */
+.j2 {
+  width: 100%; border-radius: 10px; overflow: hidden;
+  border: 1px solid rgba(60,80,120,0.3);
+}
+.j2-top {
+  background: linear-gradient(90deg, rgba(20,10,40,0.95) 0%, rgba(10,6,25,0.95) 100%);
+  border-bottom: 1px solid rgba(100,70,180,0.2);
+  padding: 8px 14px; display: flex; align-items: center; justify-content: space-between;
+}
+.j2-label { font-family:'Cinzel',serif; font-size:0.56rem; letter-spacing:2px; text-transform:uppercase; color:rgba(140,110,200,0.5); }
+.j2-time { font-size:0.58rem; color:rgba(120,140,170,0.45); font-style:italic; }
+.j2-bottom { background: rgba(10,15,30,0.7); padding: 10px 14px; display:flex; align-items:center; gap:14px; }
+.j2-name { font-family:'Cinzel',serif; font-size:0.9rem; color:#d0c0f0; font-weight:700; flex:1; }
+.j2-stats { display:flex; gap:8px; }
+.j2-stat { text-align:center; }
+.j2-stat .v { font-size:0.88rem; font-weight:700; display:block; }
+.j2-stat .l { font-size:0.52rem; color:rgba(130,150,180,0.55); text-transform:uppercase; letter-spacing:0.7px; }
+
+/* ============================================================
+   OPÇÃO 3 — Card com avatar grande lateral e barra de progresso
+   ============================================================ */
+.j3 {
+  width: 100%; border-radius: 10px; overflow: hidden;
+  border: 1px solid rgba(60,80,120,0.3); display: flex;
+}
+.j3-left {
+  width: 68px; flex-shrink: 0;
+  background: url('assets/classes/clerigo_renal/nivel_01.jpg') center top/cover;
+  position: relative;
+}
+.j3-left::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent 60%, rgba(10,15,30,0.8) 100%);
+}
+.j3-right {
+  flex: 1; background: rgba(10,15,30,0.75); padding: 10px 12px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.j3-badge { font-family:'Cinzel',serif; font-size:0.52rem; letter-spacing:2px; text-transform:uppercase; color:rgba(140,110,200,0.5); }
+.j3-name { font-family:'Cinzel',serif; font-size:0.85rem; color:#d4c0f0; font-weight:600; }
+.j3-stats { display:flex; gap:8px; font-size:0.6rem; color:rgba(140,160,190,0.65); }
+.j3-stats strong { color:#c8d8f0; margin-left:2px; }
+.j3-bar-wrap { background:rgba(20,30,50,0.8); border-radius:4px; height:4px; overflow:hidden; margin-top:3px; }
+.j3-bar { height:100%; background:linear-gradient(90deg,#1a5c42,#34d399); border-radius:4px; width:30%; }
+.j3-time { font-size:0.54rem; color:rgba(120,140,170,0.4); font-style:italic; }
+
+/* ============================================================
+   OPÇÃO 4 — Minimalista: só texto, sem box, linha ornamental
+   ============================================================ */
+.j4 {
+  width: 100%; text-align: center; padding: 8px 0;
+}
+.j4-orn { display:flex; align-items:center; gap:10px; margin-bottom:7px; }
+.j4-orn::before,.j4-orn::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,transparent,rgba(100,80,160,0.3),transparent); }
+.j4-orn span { font-family:'Cinzel',serif; font-size:0.52rem; letter-spacing:2px; text-transform:uppercase; color:rgba(140,110,200,0.45); white-space:nowrap; }
+.j4-name { font-family:'Cinzel',serif; font-size:0.92rem; color:#d4c0f0; font-weight:600; margin-bottom:5px; }
+.j4-stats { display:flex; gap:16px; justify-content:center; font-size:0.62rem; color:rgba(140,160,190,0.65); margin-bottom:6px; }
+.j4-stats strong { color:#c8d8f0; margin-left:2px; }
+.j4-time { font-size:0.56rem; color:rgba(130,110,80,0.45); font-style:italic; }
+
+/* ============================================================
+   OPÇÃO 5 — Card com avatar + dados em grid 3 colunas
+   ============================================================ */
+.j5 {
+  width: 100%; border-radius: 10px; overflow: hidden;
+  border: 1px solid rgba(60,80,120,0.28); background: rgba(10,15,30,0.7);
+}
+.j5-head { padding: 8px 12px 0; display:flex; align-items:center; gap:10px; }
+.j5-avatar {
+  width: 40px; height: 40px; border-radius: 8px; flex-shrink: 0;
+  background: url('assets/classes/clerigo_renal/nivel_01.jpg') center top/cover;
+  border: 1px solid rgba(100,130,200,0.25);
+}
+.j5-head-info { flex:1; }
+.j5-badge { font-family:'Cinzel',serif; font-size:0.5rem; letter-spacing:2px; text-transform:uppercase; color:rgba(140,110,200,0.45); }
+.j5-name { font-family:'Cinzel',serif; font-size:0.84rem; color:#d4c0f0; font-weight:600; }
+.j5-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-top:1px solid rgba(60,80,120,0.2); margin-top:8px; }
+.j5-cell { padding:7px 5px; text-align:center; border-right:1px solid rgba(60,80,120,0.15); }
+.j5-cell:last-child { border-right:none; }
+.j5-cell .v { font-size:0.88rem; font-weight:700; display:block; }
+.j5-cell .l { font-size:0.52rem; color:rgba(130,150,180,0.55); text-transform:uppercase; letter-spacing:0.7px; }
+.j5-footer { padding:5px 12px 7px; text-align:center; }
+.j5-time { font-size:0.54rem; color:rgba(120,140,170,0.4); font-style:italic; }
+
+/* ============================================================
+   OPÇÃO 6 — Spotlight: avatar em destaque, infos em colunas
+   ============================================================ */
+.j6 {
+  width: 100%; border-radius: 10px;
+  border: 1px solid rgba(80,55,140,0.25);
+  background: linear-gradient(135deg, rgba(12,8,28,0.9) 0%, rgba(8,12,25,0.95) 100%);
+  padding: 12px 14px; display: flex; gap: 14px; align-items: center;
+  position: relative; overflow: hidden;
+}
+.j6::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:1px;
+  background:linear-gradient(90deg,transparent,rgba(120,80,200,0.35),transparent);
+}
+.j6-portrait {
+  width: 54px; height: 64px; border-radius: 8px; flex-shrink: 0;
+  background: url('assets/classes/clerigo_renal/nivel_01.jpg') center top/cover;
+  border: 1px solid rgba(100,70,180,0.3);
+  box-shadow: 0 0 14px rgba(80,40,160,0.2);
+}
+.j6-body { flex:1; display:flex; flex-direction:column; gap:5px; }
+.j6-title-row { display:flex; align-items:baseline; gap:8px; }
+.j6-name { font-family:'Cinzel',serif; font-size:0.88rem; color:#d8c8f8; font-weight:700; }
+.j6-sub { font-size:0.56rem; color:rgba(140,110,200,0.5); font-family:'Cinzel',serif; letter-spacing:1px; text-transform:uppercase; }
+.j6-cols { display:flex; gap:0; }
+.j6-col { flex:1; text-align:center; border-right:1px solid rgba(60,80,120,0.15); padding: 0 4px; }
+.j6-col:last-child { border-right:none; }
+.j6-col .v { font-size:0.9rem; font-weight:700; display:block; }
+.j6-col .l { font-size:0.52rem; color:rgba(130,150,180,0.5); text-transform:uppercase; letter-spacing:0.7px; }
+.j6-footer { display:flex; align-items:center; gap:6px; }
+.j6-badge { font-family:'Cinzel',serif; font-size:0.5rem; letter-spacing:1.5px; text-transform:uppercase; color:rgba(140,110,200,0.4); }
+.j6-dot { width:3px; height:3px; border-radius:50%; background:rgba(100,80,160,0.4); }
+.j6-time { font-size:0.54rem; color:rgba(120,140,170,0.4); font-style:italic; }
+</style>
+</head>
+<body>
+
+<h2>&#10022; Opções de Box — Jornada em Andamento &#10022;</h2>
+
+<div class="grid">
+
+  <!-- ===== OPÇÃO 1 ===== -->
+  <div class="card">
+    <div class="card-label">Opção 1 — Atual</div>
+    <div class="card-desc">Avatar circular + inline · referência de como está hoje</div>
+    <div class="frame">
+      <div class="frame-title">NefroQuest</div>
+      <div class="frame-sub">Ascension</div>
+      <div class="stats">
+        <div class="stat"><span class="sv">0</span><span class="sl">Recorde</span></div>
+        <div class="stat"><span class="sv">1</span><span class="sl">Partidas</span></div>
+        <div class="stat"><span class="sv">1</span><span class="sl">Maior Nível</span></div>
+      </div>
+      <div class="j1">
+        <div class="j1-avatar"></div>
+        <div class="j1-info">
+          <div class="j1-name">Dr. Nephros</div>
+          <div class="j1-stats">Nv <strong>1</strong> &nbsp; Vidas <strong>❤❤❤</strong> &nbsp; Pts <strong>0</strong></div>
+          <div class="j1-badge">⚔ jornada em andamento · há 7 min ⚔</div>
+        </div>
+      </div>
+      <div class="btns-primary">
+        <button class="btn-primary btn-green">Continuar Jornada</button>
+        <button class="btn-primary">Nova Jornada</button>
+      </div>
+      <div class="divider"></div>
+      <div class="btns-sec">
+        <button class="btn-sec">🎮 Modos de Jogo</button>
+        <button class="btn-sec">📊 Estatísticas</button>
+        <button class="btn-sec">🏆 Conquistas</button>
+        <button class="btn-sec">Leaderboard</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== OPÇÃO 2 ===== -->
+  <div class="card">
+    <div class="card-label">Opção 2 — Banner sem avatar</div>
+    <div class="card-desc">Faixa superior com rótulo + linha de dados · sem imagem</div>
+    <div class="frame">
+      <div class="frame-title">NefroQuest</div>
+      <div class="frame-sub">Ascension</div>
+      <div class="stats">
+        <div class="stat"><span class="sv">0</span><span class="sl">Recorde</span></div>
+        <div class="stat"><span class="sv">1</span><span class="sl">Partidas</span></div>
+        <div class="stat"><span class="sv">1</span><span class="sl">Maior Nível</span></div>
+      </div>
+      <div class="j2">
+        <div class="j2-top">
+          <span class="j2-label">⚔ Jornada em Andamento</span>
+          <span class="j2-time">há 7 min</span>
+        </div>
+        <div class="j2-bottom">
+          <div class="j2-name">Dr. Nephros</div>
+          <div class="j2-stats">
+            <div class="j2-stat"><span class="v" style="color:#60a5fa">1</span><span class="l">Nível</span></div>
+            <div class="j2-stat"><span class="v" style="color:#fb7185">❤❤❤</span><span class="l">Vidas</span></div>
+            <div class="j2-stat"><span class="v" style="color:#34d399">0</span><span class="l">Pts</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="btns-primary">
+        <button class="btn-primary btn-green">Continuar Jornada</button>
+        <button class="btn-primary">Nova Jornada</button>
+      </div>
+      <div class="divider"></div>
+      <div class="btns-sec">
+        <button class="btn-sec">🎮 Modos de Jogo</button>
+        <button class="btn-sec">📊 Estatísticas</button>
+        <button class="btn-sec">🏆 Conquistas</button>
+        <button class="btn-sec">Leaderboard</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== OPÇÃO 3 ===== -->
+  <div class="card">
+    <div class="card-label">Opção 3 — Avatar lateral grande</div>
+    <div class="card-desc">Imagem ocupando lado esquerdo · dados à direita + barra de progresso</div>
+    <div class="frame">
+      <div class="frame-title">NefroQuest</div>
+      <div class="frame-sub">Ascension</div>
+      <div class="stats">
+        <div class="stat"><span class="sv">0</span><span class="sl">Recorde</span></div>
+        <div class="stat"><span class="sv">1</span><span class="sl">Partidas</span></div>
+        <div class="stat"><span class="sv">1</span><span class="sl">Maior Nível</span></div>
+      </div>
+      <div class="j3">
+        <div class="j3-left"></div>
+        <div class="j3-right">
+          <div class="j3-badge">⚔ jornada em andamento</div>
+          <div class="j3-name">Dr. Nephros</div>
+          <div class="j3-stats">Nv <strong>1</strong> &nbsp; Vidas <strong>❤❤❤</strong> &nbsp; Pts <strong>0</strong></div>
+          <div class="j3-bar-wrap"><div class="j3-bar"></div></div>
+          <div class="j3-time">Última sessão: há 7 min</div>
+        </div>
+      </div>
+      <div class="btns-primary">
+        <button class="btn-primary btn-green">Continuar Jornada</button>
+        <button class="btn-primary">Nova Jornada</button>
+      </div>
+      <div class="divider"></div>
+      <div class="btns-sec">
+        <button class="btn-sec">🎮 Modos de Jogo</button>
+        <button class="btn-sec">📊 Estatísticas</button>
+        <button class="btn-sec">🏆 Conquistas</button>
+        <button class="btn-sec">Leaderboard</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== OPÇÃO 4 ===== -->
+  <div class="card">
+    <div class="card-label">Opção 4 — Minimalista sem box</div>
+    <div class="card-desc">Sem container, só texto com linha ornamental · máxima leveza visual</div>
+    <div class="frame">
+      <div class="frame-title">NefroQuest</div>
+      <div class="frame-sub">Ascension</div>
+      <div class="stats">
+        <div class="stat"><span class="sv">0</span><span class="sl">Recorde</span></div>
+        <div class="stat"><span class="sv">1</span><span class="sl">Partidas</span></div>
+        <div class="stat"><span class="sv">1</span><span class="sl">Maior Nível</span></div>
+      </div>
+      <div class="j4">
+        <div class="j4-orn"><span>⚔ Jornada em Andamento ⚔</span></div>
+        <div class="j4-name">Dr. Nephros</div>
+        <div class="j4-stats">Nv <strong>1</strong> <span style="opacity:0.3">·</span> Vidas <strong>❤❤❤</strong> <span style="opacity:0.3">·</span> Pts <strong>0</strong></div>
+        <div class="j4-time">Última sessão: há 7 min</div>
+      </div>
+      <div class="btns-primary">
+        <button class="btn-primary btn-green">Continuar Jornada</button>
+        <button class="btn-primary">Nova Jornada</button>
+      </div>
+      <div class="divider"></div>
+      <div class="btns-sec">
+        <button class="btn-sec">🎮 Modos de Jogo</button>
+        <button class="btn-sec">📊 Estatísticas</button>
+        <button class="btn-sec">🏆 Conquistas</button>
+        <button class="btn-sec">Leaderboard</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== OPÇÃO 5 ===== -->
+  <div class="card">
+    <div class="card-label">Opção 5 — Avatar quadrado + grid</div>
+    <div class="card-desc">Avatar com cantos arredondados · Nível / Vidas / Pts em células separadas</div>
+    <div class="frame">
+      <div class="frame-title">NefroQuest</div>
+      <div class="frame-sub">Ascension</div>
+      <div class="stats">
+        <div class="stat"><span class="sv">0</span><span class="sl">Recorde</span></div>
+        <div class="stat"><span class="sv">1</span><span class="sl">Partidas</span></div>
+        <div class="stat"><span class="sv">1</span><span class="sl">Maior Nível</span></div>
+      </div>
+      <div class="j5">
+        <div class="j5-head">
+          <div class="j5-avatar"></div>
+          <div class="j5-head-info">
+            <div class="j5-badge">⚔ Jornada em Andamento</div>
+            <div class="j5-name">Dr. Nephros</div>
+          </div>
+        </div>
+        <div class="j5-grid">
+          <div class="j5-cell"><span class="v" style="color:#60a5fa">1</span><span class="l">Nível</span></div>
+          <div class="j5-cell"><span class="v" style="color:#fb7185">❤❤❤</span><span class="l">Vidas</span></div>
+          <div class="j5-cell"><span class="v" style="color:#34d399">0</span><span class="l">Pontos</span></div>
+        </div>
+        <div class="j5-footer"><span class="j5-time">Última sessão: há 7 min</span></div>
+      </div>
+      <div class="btns-primary">
+        <button class="btn-primary btn-green">Continuar Jornada</button>
+        <button class="btn-primary">Nova Jornada</button>
+      </div>
+      <div class="divider"></div>
+      <div class="btns-sec">
+        <button class="btn-sec">🎮 Modos de Jogo</button>
+        <button class="btn-sec">📊 Estatísticas</button>
+        <button class="btn-sec">🏆 Conquistas</button>
+        <button class="btn-sec">Leaderboard</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== OPÇÃO 6 ===== -->
+  <div class="card">
+    <div class="card-label">Opção 6 — Spotlight retrô RPG</div>
+    <div class="card-desc">Portrait retangular com brilho · borda roxa sutil · visual de ficha de personagem</div>
+    <div class="frame">
+      <div class="frame-title">NefroQuest</div>
+      <div class="frame-sub">Ascension</div>
+      <div class="stats">
+        <div class="stat"><span class="sv">0</span><span class="sl">Recorde</span></div>
+        <div class="stat"><span class="sv">1</span><span class="sl">Partidas</span></div>
+        <div class="stat"><span class="sv">1</span><span class="sl">Maior Nível</span></div>
+      </div>
+      <div class="j6">
+        <div class="j6-portrait"></div>
+        <div class="j6-body">
+          <div class="j6-title-row">
+            <div class="j6-name">Dr. Nephros</div>
+          </div>
+          <div class="j6-cols">
+            <div class="j6-col"><span class="v" style="color:#60a5fa">1</span><span class="l">Nível</span></div>
+            <div class="j6-col"><span class="v" style="color:#fb7185">❤❤❤</span><span class="l">Vidas</span></div>
+            <div class="j6-col"><span class="v" style="color:#34d399">0</span><span class="l">Pts</span></div>
+          </div>
+          <div class="j6-footer">
+            <span class="j6-badge">⚔ jornada em andamento</span>
+            <div class="j6-dot"></div>
+            <span class="j6-time">há 7 min</span>
+          </div>
+        </div>
+      </div>
+      <div class="btns-primary">
+        <button class="btn-primary btn-green">Continuar Jornada</button>
+        <button class="btn-primary">Nova Jornada</button>
+      </div>
+      <div class="divider"></div>
+      <div class="btns-sec">
+        <button class="btn-sec">🎮 Modos de Jogo</button>
+        <button class="btn-sec">📊 Estatísticas</button>
+        <button class="btn-sec">🏆 Conquistas</button>
+        <button class="btn-sec">Leaderboard</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p style="text-align:center;margin-top:44px;font-size:0.58rem;color:rgba(100,120,160,0.32);letter-spacing:2px;text-transform:uppercase;">
+  As imagens do personagem aparecem corretamente quando servidas pelo servidor · escolha 1–6
+</p>
+</body>
+</html>
