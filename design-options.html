@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NefroQuest — Opções de Design</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Philosopher:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #05080f;
+  font-family: 'Philosopher', serif;
+  color: #c8d8f0;
+  padding: 40px 20px;
+}
+h2 {
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  color: rgba(180,150,60,0.8);
+  font-size: 0.75rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  opacity: 0.7;
+}
+
+.options-row {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.option-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.option-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(180,150,60,0.7);
+  text-align: center;
+}
+.option-desc {
+  font-size: 0.65rem;
+  color: rgba(150,170,200,0.6);
+  text-align: center;
+  max-width: 280px;
+  line-height: 1.5;
+}
+
+/* ===== MOCKUP FRAME ===== */
+.mock {
+  width: 440px;
+  min-height: 580px;
+  background: radial-gradient(ellipse at 50% 0%, #0d1a3a 0%, #060a18 60%, #030610 100%);
+  border: 1px solid rgba(60,80,120,0.3);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 36px 28px 28px;
+  position: relative;
+  overflow: hidden;
+}
+.mock::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(100,60,180,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* TITLE */
+.mock-title {
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 4px;
+  background: linear-gradient(180deg, #fff8dc 0%, #ffd700 20%, #daa520 45%, #b8860b 65%, #ffd700 80%, #fff8dc 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  filter: drop-shadow(0 0 14px rgba(255,215,0,0.4));
+}
+.mock-sub {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.55em;
+  text-transform: uppercase;
+  color: rgba(200,180,120,0.7);
+}
+
+/* STATS */
+.mock-stats {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 7px;
+  width: 100%;
+}
+.mock-stat {
+  background: rgba(10,15,30,0.85); border: 1px solid rgba(180,160,100,0.35); border-radius: 9px;
+  padding: 9px 6px; text-align: center;
+}
+.mock-stat .sv { font-size: 1.15rem; font-weight: 700; color: #ffd700; display: block; }
+.mock-stat .sl { font-size: 0.58rem; color: rgba(140,160,190,0.7); text-transform: uppercase; letter-spacing: 1px; }
+
+/* BUTTONS shared */
+.btn {
+  font-family: 'Cinzel', serif; font-size: 0.72rem; padding: 11px 16px;
+  letter-spacing: 1px; text-transform: uppercase; border-radius: 8px; cursor: pointer;
+  font-weight: 700; transition: all 0.2s; border: 2px solid #2a4a7a;
+  background: linear-gradient(180deg, #1e3a5e 0%, #152a48 50%, #0e1e38 100%);
+  color: #c8d8f0; box-shadow: 0 3px 0 #0a1020; text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+}
+.btn-gold {
+  background: linear-gradient(180deg, #ffd700 0%, #daa520 50%, #b8860b 100%);
+  border: 2px solid #8b6914; color: #1a0e00;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+  box-shadow: 0 3px 0 #7a5a00, 0 4px 10px rgba(218,165,32,0.3);
+}
+.btn-green {
+  background: linear-gradient(180deg, #1a5c42 0%, #124433 50%, #0c3026 100%);
+  border-color: #1f7b63; color: #6ee7b7;
+  box-shadow: 0 3px 0 #061a12;
+}
+.btn-sec {
+  background: linear-gradient(180deg, #1a2a45 0%, #121e35 50%, #0c1628 100%);
+  border-color: #243858; color: #8aa8cc;
+  box-shadow: 0 2px 0 #060c18;
+}
+.btn-sec-red {
+  background: rgba(251,113,133,0.1); border-color: rgba(251,113,133,0.3); color: #fb7185;
+  box-shadow: 0 2px 0 #060c18;
+}
+
+/* ================================================
+   OPÇÃO A — "Herói inline, layout respirado"
+   ================================================ */
+
+.a-journey {
+  width: 100%;
+  background: rgba(10,15,30,0.7);
+  border: 1px solid rgba(60,80,120,0.35);
+  border-radius: 10px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.a-hero-avatar {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: linear-gradient(135deg, #1a3060, #0d1a40);
+  border: 1px solid rgba(100,130,200,0.35);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; flex-shrink: 0;
+}
+.a-hero-info { flex: 1; }
+.a-hero-name {
+  font-family: 'Cinzel', serif; font-size: 0.82rem;
+  color: #d4c0f0; font-weight: 600; letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+.a-hero-stats {
+  display: flex; gap: 10px;
+}
+.a-hero-stat { font-size: 0.62rem; color: rgba(140,160,190,0.7); }
+.a-hero-stat strong { color: #c8d8f0; margin-left: 2px; }
+.a-badge {
+  font-size: 0.58rem; letter-spacing: 1.5px; text-transform: uppercase;
+  color: rgba(160,140,80,0.6); font-family: 'Cinzel', serif;
+  border-top: 1px solid rgba(60,80,120,0.2);
+  padding-top: 6px; margin-top: 6px; width: 100%; text-align: center;
+}
+.a-primary { display: flex; gap: 8px; width: 100%; }
+.a-primary .btn { flex: 1; }
+.a-secondary { display: flex; flex-direction: column; gap: 7px; width: 100%; }
+.a-sec-row { display: flex; gap: 7px; }
+.a-sec-row .btn { flex: 1; }
+
+/* ================================================
+   OPÇÃO B — "Card estilo cristal, mais premium"
+   ================================================ */
+
+.b-journey {
+  width: 100%;
+  background: linear-gradient(160deg, rgba(15,10,35,0.9) 0%, rgba(8,6,20,0.95) 100%);
+  border: 1px solid rgba(100,70,180,0.3);
+  border-radius: 12px;
+  padding: 12px 16px;
+  position: relative;
+  overflow: hidden;
+}
+.b-journey::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(150,100,255,0.4), transparent);
+}
+.b-journey-title {
+  font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(150,120,220,0.55); text-align: center; margin-bottom: 8px;
+  font-family: 'Cinzel', serif;
+}
+.b-hero-row {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 8px;
+}
+.b-hero-icon {
+  font-size: 1.4rem; opacity: 0.85;
+}
+.b-hero-name {
+  font-family: 'Cinzel', serif; font-size: 0.9rem;
+  color: #c8b8e8; font-weight: 700; letter-spacing: 0.5px;
+}
+.b-hero-title-text { font-size: 0.6rem; color: rgba(130,110,180,0.6); }
+.b-stats-row { display: flex; gap: 6px; }
+.b-stat {
+  flex: 1; background: rgba(20,12,40,0.7); border: 1px solid rgba(80,50,130,0.3);
+  border-radius: 7px; padding: 5px 4px; text-align: center;
+}
+.b-stat .bv { font-size: 0.88rem; font-weight: 700; display: block; }
+.b-stat .bl { font-size: 0.54rem; color: rgba(130,150,180,0.6); text-transform: uppercase; letter-spacing: 0.7px; }
+.b-time { font-size: 0.6rem; color: rgba(120,140,170,0.5); text-align: right; margin-top: 6px; font-style: italic; }
+
+.b-primary { display: flex; gap: 8px; width: 100%; }
+.b-primary .btn { flex: 1; padding: 13px 16px; font-size: 0.74rem; }
+.b-secondary { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; width: 100%; }
+
+/* ================================================
+   OPÇÃO C — "Minimalista, foco no conteúdo"
+   ================================================ */
+
+.c-divider {
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(100,130,200,0.25), transparent);
+}
+
+.c-journey {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border: 1px solid rgba(60,80,120,0.3);
+  border-radius: 9px;
+  overflow: hidden;
+}
+.c-hero-side {
+  background: rgba(15,10,30,0.7);
+  padding: 10px 14px;
+  border-right: 1px solid rgba(60,80,120,0.25);
+  flex-shrink: 0;
+  text-align: center;
+  min-width: 110px;
+}
+.c-hero-label { font-size: 0.54rem; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(130,110,180,0.5); margin-bottom: 4px; }
+.c-hero-name { font-family: 'Cinzel', serif; font-size: 0.82rem; color: #c0aee0; font-weight: 600; }
+.c-stats-side {
+  flex: 1; background: rgba(10,15,30,0.5);
+  display: flex; gap: 0;
+}
+.c-stat {
+  flex: 1; padding: 9px 6px; text-align: center;
+  border-right: 1px solid rgba(60,80,120,0.2);
+}
+.c-stat:last-child { border-right: none; }
+.c-stat .cv { font-size: 0.9rem; font-weight: 700; display: block; }
+.c-stat .cl { font-size: 0.54rem; color: rgba(130,150,180,0.55); text-transform: uppercase; letter-spacing: 0.7px; }
+.c-time { font-size: 0.58rem; color: rgba(120,140,170,0.45); text-align: center; margin-top: 2px; font-style: italic; }
+
+.c-primary { display: flex; gap: 8px; width: 100%; }
+.c-primary .btn { flex: 1; }
+.c-secondary { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; width: 100%; }
+
+.mock-credit {
+  font-size: 0.6rem; color: rgba(150,130,80,0.4);
+  margin-top: auto; padding-top: 14px;
+}
+</style>
+</head>
+<body>
+
+<h2>&#10022; Opções de Design — Welcome Screen &#10022;</h2>
+
+<div class="options-row">
+
+  <!-- ===== OPÇÃO A ===== -->
+  <div class="option-card">
+    <div class="option-label">Opção A</div>
+    <div class="option-desc">Herói inline com avatar circular · layout mais respirado · hierarquia clara</div>
+    <div class="mock">
+      <!-- Title -->
+      <div class="mock-title" style="font-size:3.2rem;">NefroQuest</div>
+      <div class="mock-sub" style="font-size:0.72rem;margin-bottom:18px;">Ascension</div>
+
+      <!-- Stats -->
+      <div class="mock-stats" style="margin-bottom:14px;">
+        <div class="mock-stat"><span class="sv">0</span><span class="sl">Recorde</span></div>
+        <div class="mock-stat"><span class="sv">1</span><span class="sl">Partidas</span></div>
+        <div class="mock-stat"><span class="sv">1</span><span class="sl">Maior Nível</span></div>
+      </div>
+
+      <!-- Journey inline -->
+      <div class="a-journey" style="margin-bottom:10px;">
+        <div class="a-hero-avatar">⚕</div>
+        <div class="a-hero-info">
+          <div class="a-hero-name">Dr. Nephros</div>
+          <div class="a-hero-stats">
+            <div class="a-hero-stat">Nível <strong>1</strong></div>
+            <div class="a-hero-stat">Vidas <strong>❤❤❤</strong></div>
+            <div class="a-hero-stat">Pts <strong>0</strong></div>
+          </div>
+          <div class="a-badge">⚔ Jornada em andamento · há 7 min ⚔</div>
+        </div>
+      </div>
+
+      <!-- Primary buttons -->
+      <div class="a-primary" style="margin-bottom:10px;">
+        <button class="btn btn-green">Continuar<br>Jornada</button>
+        <button class="btn btn-gold">Nova<br>Jornada</button>
+      </div>
+
+      <!-- Divider -->
+      <div style="width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(100,130,200,0.2),transparent);margin-bottom:10px;"></div>
+
+      <!-- Secondary -->
+      <div class="a-secondary">
+        <div class="a-sec-row">
+          <button class="btn btn-sec">🎮 Modos de Jogo</button>
+          <button class="btn btn-sec">📊 Estatísticas</button>
+        </div>
+        <div class="a-sec-row">
+          <button class="btn btn-sec">🏆 Conquistas</button>
+          <button class="btn btn-sec">Leaderboard</button>
+        </div>
+      </div>
+
+      <div class="mock-credit">orlandobrunet@gmail.com · v5.6</div>
+    </div>
+  </div>
+
+  <!-- ===== OPÇÃO B ===== -->
+  <div class="option-card">
+    <div class="option-label">Opção B</div>
+    <div class="option-desc">Card cristal premium · linha top brilhante · botões primários maiores e mais espaçados</div>
+    <div class="mock">
+      <!-- Title -->
+      <div class="mock-title" style="font-size:3.2rem;">NefroQuest</div>
+      <div class="mock-sub" style="font-size:0.72rem;margin-bottom:18px;">Ascension</div>
+
+      <!-- Stats -->
+      <div class="mock-stats" style="margin-bottom:14px;">
+        <div class="mock-stat"><span class="sv">0</span><span class="sl">Recorde</span></div>
+        <div class="mock-stat"><span class="sv">1</span><span class="sl">Partidas</span></div>
+        <div class="mock-stat"><span class="sv">1</span><span class="sl">Maior Nível</span></div>
+      </div>
+
+      <!-- Journey card crystal -->
+      <div class="b-journey" style="margin-bottom:12px;">
+        <div class="b-journey-title">⚔ Jornada em Andamento ⚔</div>
+        <div class="b-hero-row">
+          <div class="b-hero-icon">⚕️</div>
+          <div>
+            <div class="b-hero-name">Dr. Nephros</div>
+            <div class="b-hero-title-text">Aprendiz de Nefrologia</div>
+          </div>
+        </div>
+        <div class="b-stats-row">
+          <div class="b-stat"><span class="bv" style="color:#60a5fa;">1</span><span class="bl">Nível</span></div>
+          <div class="b-stat"><span class="bv" style="color:#fb7185;">❤❤❤</span><span class="bl">Vidas</span></div>
+          <div class="b-stat"><span class="bv" style="color:#34d399;">0</span><span class="bl">Pontos</span></div>
+        </div>
+        <div class="b-time">Última sessão: há 7 min</div>
+      </div>
+
+      <!-- Primary buttons bigger -->
+      <div class="b-primary" style="margin-bottom:12px;">
+        <button class="btn btn-green">Continuar Jornada</button>
+        <button class="btn btn-gold">Nova Jornada</button>
+      </div>
+
+      <!-- Divider -->
+      <div style="width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(100,130,200,0.2),transparent);margin-bottom:12px;"></div>
+
+      <!-- Secondary grid -->
+      <div class="b-secondary">
+        <button class="btn btn-sec">🎮 Modos de Jogo</button>
+        <button class="btn btn-sec">📊 Estatísticas</button>
+        <button class="btn btn-sec">🏆 Conquistas</button>
+        <button class="btn btn-sec">Leaderboard</button>
+      </div>
+
+      <div class="mock-credit">orlandobrunet@gmail.com · v5.6</div>
+    </div>
+  </div>
+
+  <!-- ===== OPÇÃO C ===== -->
+  <div class="option-card">
+    <div class="option-label">Opção C</div>
+    <div class="option-desc">Minimalista · herói e stats numa única linha compacta · máximo foco no título</div>
+    <div class="mock">
+      <!-- Title maior, mais destaque -->
+      <div class="mock-title" style="font-size:3.4rem;">NefroQuest</div>
+      <div class="mock-sub" style="font-size:0.72rem;margin-bottom:20px;">Ascension</div>
+
+      <!-- Stats -->
+      <div class="mock-stats" style="margin-bottom:16px;">
+        <div class="mock-stat"><span class="sv">0</span><span class="sl">Recorde</span></div>
+        <div class="mock-stat"><span class="sv">1</span><span class="sl">Partidas</span></div>
+        <div class="mock-stat"><span class="sv">1</span><span class="sl">Maior Nível</span></div>
+      </div>
+
+      <!-- Journey row compacta -->
+      <div class="c-journey" style="margin-bottom:12px;">
+        <div class="c-hero-side">
+          <div class="c-hero-label">Herói</div>
+          <div class="c-hero-name">Dr. Nephros</div>
+        </div>
+        <div class="c-stats-side">
+          <div class="c-stat"><span class="cv" style="color:#60a5fa;">1</span><span class="cl">Nível</span></div>
+          <div class="c-stat"><span class="cv" style="color:#fb7185;">❤❤❤</span><span class="cl">Vidas</span></div>
+          <div class="c-stat"><span class="cv" style="color:#34d399;">0</span><span class="cl">Pts</span></div>
+        </div>
+      </div>
+      <div class="c-time" style="margin-bottom:12px;">⚔ Jornada em andamento · há 7 min</div>
+
+      <!-- Primary buttons -->
+      <div class="c-primary" style="margin-bottom:14px;">
+        <button class="btn btn-green" style="padding:13px 16px;font-size:0.74rem;">Continuar Jornada</button>
+        <button class="btn btn-gold" style="padding:13px 16px;font-size:0.74rem;">Nova Jornada</button>
+      </div>
+
+      <!-- Divider -->
+      <div style="width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(100,130,200,0.2),transparent);margin-bottom:12px;"></div>
+
+      <!-- Secondary grid -->
+      <div class="c-secondary">
+        <button class="btn btn-sec">🎮 Modos de Jogo</button>
+        <button class="btn btn-sec">📊 Estatísticas</button>
+        <button class="btn btn-sec">🏆 Conquistas</button>
+        <button class="btn btn-sec">Leaderboard</button>
+      </div>
+
+      <div class="mock-credit">orlandobrunet@gmail.com · v5.6</div>
+    </div>
+  </div>
+
+</div>
+
+<p style="text-align:center;margin-top:40px;font-size:0.62rem;color:rgba(100,120,160,0.4);letter-spacing:2px;text-transform:uppercase;">
+  Abra este arquivo no browser · escolha A, B ou C
+</p>
+
+</body>
+</html>
