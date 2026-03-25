@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NefroQuest — Opções de Botões</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=Philosopher:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #05080f;
+  font-family: 'Philosopher', serif;
+  color: #c8d8f0;
+  padding: 40px 20px 60px;
+}
+h2 {
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  color: rgba(180,150,60,0.7);
+  font-size: 0.7rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin-bottom: 48px;
+}
+
+.options-row {
+  display: flex;
+  gap: 36px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.option-card {
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+}
+.option-label {
+  font-family: 'Cinzel', serif; font-size: 0.65rem;
+  letter-spacing: 4px; text-transform: uppercase;
+  color: rgba(180,150,60,0.65); text-align: center;
+}
+.option-desc {
+  font-size: 0.63rem; color: rgba(150,170,200,0.55);
+  text-align: center; max-width: 260px; line-height: 1.55;
+}
+
+/* FRAME */
+.mock {
+  width: 400px;
+  background: radial-gradient(ellipse at 50% 0%, #0d1a3a 0%, #060a18 60%, #030610 100%);
+  border: 1px solid rgba(60,80,120,0.25);
+  border-radius: 14px;
+  display: flex; flex-direction: column; align-items: center;
+  padding: 36px 28px 28px;
+  position: relative; overflow: hidden; gap: 14px;
+}
+.mock::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(100,60,180,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* TITLE BLOCK */
+.mock-head { text-align: center; }
+.mock-title {
+  font-family: 'Cinzel Decorative', 'Cinzel', serif; font-weight: 900;
+  line-height: 1; margin-bottom: 4px;
+  background: linear-gradient(180deg, #fff8dc 0%, #ffd700 20%, #daa520 45%, #b8860b 65%, #ffd700 80%, #fff8dc 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  filter: drop-shadow(0 0 14px rgba(255,215,0,0.4));
+  font-size: 2.6rem;
+}
+.mock-sub {
+  font-family: 'Cinzel', serif; letter-spacing: 0.5em;
+  text-transform: uppercase; color: rgba(200,180,120,0.6);
+  font-size: 0.62rem;
+}
+
+/* STATS */
+.mock-stats {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 7px; width: 100%;
+}
+.mock-stat {
+  background: rgba(10,15,30,0.85); border: 1px solid rgba(180,160,100,0.3);
+  border-radius: 9px; padding: 8px 6px; text-align: center;
+}
+.mock-stat .sv { font-size: 1.1rem; font-weight: 700; color: #ffd700; display: block; }
+.mock-stat .sl { font-size: 0.56rem; color: rgba(140,160,190,0.6); text-transform: uppercase; letter-spacing: 1px; }
+
+/* JOURNEY CARD */
+.mock-journey {
+  width: 100%; background: rgba(10,15,30,0.7);
+  border: 1px solid rgba(60,80,120,0.3); border-radius: 10px;
+  padding: 10px 12px; display: flex; align-items: center; gap: 12px;
+}
+.mock-avatar {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: linear-gradient(135deg,#1a3060,#0d1a40);
+  border: 1px solid rgba(100,130,200,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; flex-shrink: 0;
+}
+.mock-hero-info { flex: 1; }
+.mock-hero-name {
+  font-family: 'Cinzel', serif; font-size: 0.82rem;
+  color: #d4c0f0; font-weight: 600; margin-bottom: 4px;
+}
+.mock-hero-stats { display: flex; gap: 10px; margin-bottom: 4px; }
+.mock-hero-stat { font-size: 0.6rem; color: rgba(140,160,190,0.65); }
+.mock-hero-stat strong { color: #c8d8f0; margin-left: 2px; }
+.mock-badge {
+  font-size: 0.54rem; letter-spacing: 1px; text-transform: uppercase;
+  color: rgba(150,130,65,0.5); font-family: 'Cinzel', serif;
+  border-top: 1px solid rgba(60,80,120,0.18); padding-top: 4px;
+}
+
+/* DIVIDER */
+.mock-divider {
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(100,130,200,0.2), transparent);
+}
+.mock-credit {
+  font-size: 0.58rem; color: rgba(140,120,70,0.35); margin-top: 4px;
+}
+
+/* ==============================
+   OPÇÃO D — "Vidro Escuro + Borda Dourada Suave"
+   Botões com fundo glass, borda dourada fina, hover com glow
+   ============================== */
+.d-primary { display: flex; gap: 10px; width: 100%; }
+.d-secondary { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; }
+
+.d-btn {
+  font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 1.5px;
+  text-transform: uppercase; font-weight: 700; padding: 12px 16px;
+  border-radius: 10px; cursor: pointer;
+  background: rgba(15,22,45,0.8);
+  border: 1px solid rgba(180,150,60,0.4);
+  color: rgba(220,195,120,0.85);
+  box-shadow: inset 0 1px 0 rgba(255,215,0,0.06), 0 2px 8px rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px);
+  transition: all 0.2s;
+  flex: 1;
+}
+.d-btn:hover {
+  border-color: rgba(255,215,0,0.7);
+  color: #ffd700;
+  background: rgba(20,30,60,0.9);
+  box-shadow: inset 0 1px 0 rgba(255,215,0,0.1), 0 0 16px rgba(255,215,0,0.12), 0 4px 12px rgba(0,0,0,0.5);
+}
+.d-btn.primary-green {
+  border-color: rgba(52,200,120,0.45);
+  color: rgba(100,235,170,0.9);
+  box-shadow: inset 0 1px 0 rgba(52,211,153,0.06), 0 2px 8px rgba(0,0,0,0.5);
+}
+.d-btn.primary-green:hover {
+  border-color: rgba(52,211,153,0.8);
+  color: #6ee7b7;
+  box-shadow: 0 0 16px rgba(52,211,153,0.15), 0 4px 12px rgba(0,0,0,0.5);
+}
+.d-btn.sec {
+  font-size: 0.65rem; padding: 10px 12px;
+  border-color: rgba(60,90,140,0.45); color: rgba(130,160,200,0.75);
+}
+.d-btn.sec:hover {
+  border-color: rgba(100,140,220,0.6); color: #a0c0e8;
+  box-shadow: 0 0 12px rgba(80,120,220,0.1);
+}
+
+
+/* ==============================
+   OPÇÃO E — "Sólido com Textura, Estilo Taverna"
+   Botões sólidos com borda dupla fina, visual medieval premium
+   ============================== */
+.e-primary { display: flex; gap: 10px; width: 100%; }
+.e-secondary { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; }
+
+.e-btn {
+  font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 1.5px;
+  text-transform: uppercase; font-weight: 700; padding: 12px 16px;
+  border-radius: 6px; cursor: pointer; flex: 1;
+  background: linear-gradient(180deg, #1c2e50 0%, #111e38 100%);
+  border: 1px solid #2d4878;
+  outline: 1px solid rgba(30,60,110,0.5);
+  outline-offset: 2px;
+  color: #8aafd8;
+  box-shadow: 0 4px 0 #080f20, 0 5px 12px rgba(0,0,0,0.5);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+  transition: all 0.15s;
+}
+.e-btn:hover {
+  background: linear-gradient(180deg, #243860 0%, #172848 100%);
+  border-color: rgba(200,170,80,0.6);
+  color: #d4b870;
+  box-shadow: 0 4px 0 #080f20, 0 5px 18px rgba(200,160,40,0.12);
+}
+.e-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #080f20; }
+.e-btn.primary-gold {
+  background: linear-gradient(180deg, #c8a020 0%, #a07818 50%, #805e10 100%);
+  border: 1px solid #6a4e0c;
+  outline-color: rgba(200,160,30,0.3);
+  color: #fff8e0;
+  box-shadow: 0 4px 0 #4a3608, 0 5px 14px rgba(180,130,20,0.3);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+}
+.e-btn.primary-gold:hover {
+  background: linear-gradient(180deg, #d8b030 0%, #b08828 50%, #906818 100%);
+  box-shadow: 0 4px 0 #4a3608, 0 5px 20px rgba(220,170,30,0.4);
+  outline-color: rgba(255,200,60,0.4);
+}
+.e-btn.primary-green {
+  background: linear-gradient(180deg, #165c3a 0%, #0e3e28 50%, #0a2e1e 100%);
+  border: 1px solid #1a6040;
+  outline-color: rgba(30,180,100,0.2);
+  color: #7de0b0;
+  box-shadow: 0 4px 0 #061812, 0 5px 14px rgba(20,150,80,0.2);
+}
+.e-btn.sec {
+  font-size: 0.65rem; padding: 9px 12px;
+  background: linear-gradient(180deg, #141e32 0%, #0e1628 100%);
+  border-color: #1e3050; color: #6888b0;
+  box-shadow: 0 3px 0 #060c1a;
+}
+
+
+/* ==============================
+   OPÇÃO F — "Flat Moderno com Accent Colorido"
+   Botões flat clean, sem gradiente pesado, accent color no hover
+   ============================== */
+.f-primary { display: flex; gap: 10px; width: 100%; }
+.f-secondary { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; }
+
+.f-btn {
+  font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 1.5px;
+  text-transform: uppercase; font-weight: 700; padding: 13px 16px;
+  border-radius: 8px; cursor: pointer; flex: 1;
+  background: rgba(18,28,52,0.95);
+  border: 1.5px solid rgba(50,80,130,0.6);
+  color: rgba(140,170,210,0.85);
+  box-shadow: none;
+  transition: all 0.2s;
+  position: relative; overflow: hidden;
+}
+.f-btn::before {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: rgba(80,120,220,0.4);
+  transition: background 0.2s;
+}
+.f-btn:hover { border-color: rgba(100,150,255,0.5); color: #c8d8f0; background: rgba(22,35,65,0.98); }
+.f-btn:hover::before { background: rgba(100,150,255,0.6); }
+
+.f-btn.primary-gold {
+  background: rgba(28,20,8,0.95);
+  border-color: rgba(180,140,30,0.6);
+  color: #d4a820;
+}
+.f-btn.primary-gold::before { background: rgba(220,170,30,0.5); }
+.f-btn.primary-gold:hover {
+  border-color: rgba(255,200,50,0.7); color: #ffd700; background: rgba(35,25,8,0.98);
+}
+.f-btn.primary-gold:hover::before { background: #ffd700; }
+
+.f-btn.primary-green {
+  background: rgba(8,22,16,0.95);
+  border-color: rgba(30,160,90,0.5);
+  color: #4ec898;
+}
+.f-btn.primary-green::before { background: rgba(40,200,110,0.4); }
+.f-btn.primary-green:hover {
+  border-color: rgba(52,211,153,0.7); color: #6ee7b7;
+}
+.f-btn.primary-green:hover::before { background: #34d399; }
+
+.f-btn.sec {
+  font-size: 0.65rem; padding: 10px 12px;
+  background: rgba(14,20,38,0.9);
+  border-color: rgba(40,65,110,0.5); color: rgba(110,140,185,0.7);
+}
+.f-btn.sec::before { background: rgba(60,90,160,0.3); }
+</style>
+</head>
+<body>
+
+<h2>&#10022; Opções de Botões — Página Inicial &#10022;</h2>
+
+<div class="options-row">
+
+  <!-- ===== OPÇÃO D ===== -->
+  <div class="option-card">
+    <div class="option-label">Opção D</div>
+    <div class="option-desc">Vidro escuro · borda dourada fina · glow suave no hover</div>
+    <div class="mock">
+      <div class="mock-head">
+        <div class="mock-title">NefroQuest</div>
+        <div class="mock-sub">Ascension</div>
+      </div>
+      <div class="mock-stats">
+        <div class="mock-stat"><span class="sv">0</span><span class="sl">Recorde</span></div>
+        <div class="mock-stat"><span class="sv">1</span><span class="sl">Partidas</span></div>
+        <div class="mock-stat"><span class="sv">1</span><span class="sl">Maior Nível</span></div>
+      </div>
+      <div class="mock-journey">
+        <div class="mock-avatar">🧙</div>
+        <div class="mock-hero-info">
+          <div class="mock-hero-name">Dr. Nephros</div>
+          <div class="mock-hero-stats">
+            <span class="mock-hero-stat">Nv <strong>1</strong></span>
+            <span class="mock-hero-stat">Vidas <strong>❤❤❤</strong></span>
+            <span class="mock-hero-stat">Pts <strong>0</strong></span>
+          </div>
+          <div class="mock-badge">⚔ jornada em andamento · há 7 min ⚔</div>
+        </div>
+      </div>
+      <div class="d-primary">
+        <button class="d-btn primary-green">Continuar Jornada</button>
+        <button class="d-btn">Nova Jornada</button>
+      </div>
+      <div class="mock-divider"></div>
+      <div class="d-secondary">
+        <button class="d-btn sec">🎮 Modos de Jogo</button>
+        <button class="d-btn sec">📊 Estatísticas</button>
+        <button class="d-btn sec">🏆 Conquistas</button>
+        <button class="d-btn sec">Leaderboard</button>
+      </div>
+      <div class="mock-credit">orlandobrunet@gmail.com · v5.6</div>
+    </div>
+  </div>
+
+  <!-- ===== OPÇÃO E ===== -->
+  <div class="option-card">
+    <div class="option-label">Opção E</div>
+    <div class="option-desc">Sólido com borda dupla · visual medieval premium · sombra 3D</div>
+    <div class="mock">
+      <div class="mock-head">
+        <div class="mock-title">NefroQuest</div>
+        <div class="mock-sub">Ascension</div>
+      </div>
+      <div class="mock-stats">
+        <div class="mock-stat"><span class="sv">0</span><span class="sl">Recorde</span></div>
+        <div class="mock-stat"><span class="sv">1</span><span class="sl">Partidas</span></div>
+        <div class="mock-stat"><span class="sv">1</span><span class="sl">Maior Nível</span></div>
+      </div>
+      <div class="mock-journey">
+        <div class="mock-avatar">🧙</div>
+        <div class="mock-hero-info">
+          <div class="mock-hero-name">Dr. Nephros</div>
+          <div class="mock-hero-stats">
+            <span class="mock-hero-stat">Nv <strong>1</strong></span>
+            <span class="mock-hero-stat">Vidas <strong>❤❤❤</strong></span>
+            <span class="mock-hero-stat">Pts <strong>0</strong></span>
+          </div>
+          <div class="mock-badge">⚔ jornada em andamento · há 7 min ⚔</div>
+        </div>
+      </div>
+      <div class="e-primary">
+        <button class="e-btn primary-green">Continuar Jornada</button>
+        <button class="e-btn primary-gold">Nova Jornada</button>
+      </div>
+      <div class="mock-divider"></div>
+      <div class="e-secondary">
+        <button class="e-btn sec">🎮 Modos de Jogo</button>
+        <button class="e-btn sec">📊 Estatísticas</button>
+        <button class="e-btn sec">🏆 Conquistas</button>
+        <button class="e-btn sec">Leaderboard</button>
+      </div>
+      <div class="mock-credit">orlandobrunet@gmail.com · v5.6</div>
+    </div>
+  </div>
+
+  <!-- ===== OPÇÃO F ===== -->
+  <div class="option-card">
+    <div class="option-label">Opção F</div>
+    <div class="option-desc">Flat moderno · linha accent colorida na base · sem sombra pesada</div>
+    <div class="mock">
+      <div class="mock-head">
+        <div class="mock-title">NefroQuest</div>
+        <div class="mock-sub">Ascension</div>
+      </div>
+      <div class="mock-stats">
+        <div class="mock-stat"><span class="sv">0</span><span class="sl">Recorde</span></div>
+        <div class="mock-stat"><span class="sv">1</span><span class="sl">Partidas</span></div>
+        <div class="mock-stat"><span class="sv">1</span><span class="sl">Maior Nível</span></div>
+      </div>
+      <div class="mock-journey">
+        <div class="mock-avatar">🧙</div>
+        <div class="mock-hero-info">
+          <div class="mock-hero-name">Dr. Nephros</div>
+          <div class="mock-hero-stats">
+            <span class="mock-hero-stat">Nv <strong>1</strong></span>
+            <span class="mock-hero-stat">Vidas <strong>❤❤❤</strong></span>
+            <span class="mock-hero-stat">Pts <strong>0</strong></span>
+          </div>
+          <div class="mock-badge">⚔ jornada em andamento · há 7 min ⚔</div>
+        </div>
+      </div>
+      <div class="f-primary">
+        <button class="f-btn primary-green">Continuar Jornada</button>
+        <button class="f-btn primary-gold">Nova Jornada</button>
+      </div>
+      <div class="mock-divider"></div>
+      <div class="f-secondary">
+        <button class="f-btn sec">🎮 Modos de Jogo</button>
+        <button class="f-btn sec">📊 Estatísticas</button>
+        <button class="f-btn sec">🏆 Conquistas</button>
+        <button class="f-btn sec">Leaderboard</button>
+      </div>
+      <div class="mock-credit">orlandobrunet@gmail.com · v5.6</div>
+    </div>
+  </div>
+
+</div>
+
+<p style="text-align:center;margin-top:44px;font-size:0.6rem;color:rgba(100,120,160,0.35);letter-spacing:2px;text-transform:uppercase;">
+  Passe o mouse sobre os botões para ver o hover · escolha D, E ou F
+</p>
+
+</body>
+</html>
