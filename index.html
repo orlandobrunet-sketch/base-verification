@@ -81,7 +81,7 @@
     }
 
     .game-title h1 {
-      font-family: 'Cinzel Decorative', 'Cinzel', serif;
+      font-family: 'Cinzel', serif;
       font-size: 1.944rem; letter-spacing: 3px;
       background: linear-gradient(180deg, #fff8dc 0%, #ffd700 30%, #daa520 60%, #b8860b 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
@@ -1674,7 +1674,7 @@
       }
 
       /* Título menor — padding-top para não ficar sob os botões fixos do topo */
-      .game-title { padding: 52px 0 2px; }
+      .game-title { padding: 40px 0 2px; }
       .game-title h1 { font-size: 1.58rem; letter-spacing: 2px; }
       .game-title .subtitle { font-size: 0.6rem; letter-spacing: 4px; }
 
@@ -4497,7 +4497,7 @@
       <p>
         <a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a>
         &nbsp;•&nbsp;
-        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" onclick="showChangelog()">v5.6</span>
+        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" onclick="showChangelog()">v5.7</span>
       </p>
     </div>
   </main>
@@ -10310,6 +10310,21 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
           <div style="color:var(--txt-dim);font-size:0.75rem;margin-bottom:20px;">O que há de novo no NefroQuest: Ascension</div>
 
           <div style="text-align:left;padding:4px;">
+
+            <!-- v5.7 -->
+            <div style="background:linear-gradient(135deg,rgba(52,211,153,0.18),rgba(52,211,153,0.06));border:2px solid rgba(52,211,153,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                <span style="background:rgba(52,211,153,0.85);color:#fff;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v5.7</span>
+                <span style="color:#d1fae5;font-weight:bold;font-size:0.95rem;">Mobile Refinado & Cache Inteligente</span>
+              </div>
+              <ul style="color:var(--txt);font-size:0.83rem;line-height:1.9;padding-left:18px;margin:0;">
+                <li><strong>Box da Jornada na tela inicial mobile</strong> — salvo ativo exibido no welcome screen com personagem, nível, vidas e pontos</li>
+                <li><strong>Botões de boas-vindas largura total</strong> — todos os botões do welcome screen empilhados verticalmente em largura máxima no mobile</li>
+                <li><strong>Botão Menu no dock mobile</strong> — ícone de casa no dock inferior retorna ao welcome screen salvando o progresso automaticamente</li>
+                <li><strong>Cache inteligente (SW v8)</strong> — páginas HTML agora usam estratégia network-first, garantindo que atualizações cheguem imediatamente sem precisar de force-refresh</li>
+                <li><strong>Logo NefroQuest</strong> — grafia padronizada para "NefroQuest" com fonte Cinzel em todo o projeto</li>
+              </ul>
+            </div>
 
             <!-- v5.6 -->
             <div style="background:linear-gradient(135deg,rgba(167,139,250,0.18),rgba(167,139,250,0.06));border:2px solid rgba(167,139,250,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
