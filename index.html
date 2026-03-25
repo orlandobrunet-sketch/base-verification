@@ -1231,8 +1231,10 @@
     }
 
     @media (max-width: 500px) {
+      .welcome-primary-btns { flex-direction: column; }
+      .welcome-primary-btns .btn { width: 100%; flex: 1 1 100%; }
       .welcome-buttons { flex-direction: column; }
-      .welcome-buttons .btn { min-width: unset; width: 100%; }
+      .welcome-buttons .btn { min-width: unset; width: 100%; flex: 1 1 100%; max-width: 100%; }
     }
 
     /* Botão MODOS DE JOGO — sempre visível, grupo individual escondido */
@@ -1899,10 +1901,10 @@
       .welcome-stat { padding: 6px 8px; }
       .ws-val { font-size: 1.1rem !important; }
       .ws-lbl { font-size: 0.58rem !important; }
-      .welcome-primary-btns { max-width: 100%; margin: 6px auto 0; }
-      .welcome-primary-btns .btn { padding: 9px 14px; font-size: 0.68rem; }
-      .welcome-buttons { margin-top: 8px; gap: 6px; }
-      .welcome-buttons .btn { padding: 9px 14px; font-size: 0.68rem; min-width: 110px; }
+      .welcome-primary-btns { max-width: 100%; margin: 6px auto 0; flex-direction: column; gap: 8px; }
+      .welcome-primary-btns .btn { padding: 12px 16px; font-size: 0.72rem; width: 100%; flex: 1 1 100%; }
+      .welcome-buttons { margin-top: 8px; gap: 8px; flex-direction: column; width: 100%; }
+      .welcome-buttons .btn { padding: 12px 16px; font-size: 0.72rem; min-width: unset; width: 100%; flex: 1 1 100%; max-width: 100%; }
 
       /* Box da jornada — mobile */
       .welcome-saved-info { max-width: 100%; margin: 6px 0 8px; }
