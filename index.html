@@ -1088,33 +1088,50 @@
       max-width: 340px;
       margin-left: auto !important;
       margin-right: auto !important;
-      background: rgba(10,15,30,0.85) !important;
-      border: 1px solid rgba(80,50,140,0.32) !important;
-      backdrop-filter: blur(4px);
       border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(60,80,120,0.3) !important;
     }
-    .wsaved-inner {
-      display: flex; align-items: center; gap: 12px;
+    /* Faixa superior — label + tempo */
+    .wsaved-top {
+      background: linear-gradient(90deg, rgba(20,10,40,0.95) 0%, rgba(10,6,25,0.95) 100%);
+      border-bottom: 1px solid rgba(100,70,180,0.2);
+      padding: 7px 14px;
+      display: flex; align-items: center; justify-content: space-between;
     }
-    .wsaved-avatar {
-      width: 54px; height: 54px; border-radius: 50%;
-      object-fit: cover; object-position: top center;
-      border: 1px solid rgba(100,130,200,0.35); flex-shrink: 0;
-      background: rgba(15,20,40,0.8);
+    .wsaved-label {
+      font-family: 'Cinzel', serif; font-size: 0.58rem;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: rgba(185,160,240,0.85);
     }
-    .wsaved-details { flex: 1; min-width: 0; }
+    .wsaved-time-lbl {
+      font-size: 0.62rem; color: rgba(170,190,220,0.75); font-style: italic;
+    }
+    /* Linha inferior — nome + stats */
+    .wsaved-bottom {
+      background: rgba(10,15,30,0.7);
+      padding: 10px 14px;
+      display: flex; align-items: center; gap: 14px;
+    }
     .wsaved-charname {
-      font-family: 'Cinzel', serif; font-size: 0.84rem;
-      color: #d4c0f0; font-weight: 600; letter-spacing: 0.5px;
-      margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      font-family: 'Cinzel', serif; font-size: 0.88rem;
+      color: #d0c0f0; font-weight: 700; flex: 1;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
-    .wsaved-stats { display: flex; gap: 10px; margin-bottom: 5px; flex-wrap: wrap; }
-    .wsaved-stat { font-size: 0.62rem; color: rgba(140,160,190,0.65); }
-    .wsaved-stat strong { color: #c8d8f0; margin-left: 2px; }
-    .wsaved-badge {
-      font-size: 0.56rem; letter-spacing: 1.2px; text-transform: uppercase;
-      color: rgba(150,130,70,0.55); font-family: 'Cinzel', serif;
-      border-top: 1px solid rgba(60,80,120,0.2); padding-top: 5px;
+    .wsaved-stats {
+      display: flex; gap: 22px; align-items: flex-end;
+    }
+    .wsaved-stat {
+      text-align: center; display: flex; flex-direction: column;
+      align-items: center; gap: 3px;
+    }
+    .wsaved-stat .ws-v {
+      font-size: 0.92rem; font-weight: 700;
+      display: flex; align-items: center; min-height: 1.25rem;
+    }
+    .wsaved-stat .ws-l {
+      font-size: 0.52rem; color: rgba(155,175,210,0.75);
+      text-transform: uppercase; letter-spacing: 1px; line-height: 1;
     }
     /* Botões primários (Nova Jornada + Continuar) — entre o quadro e os secundários */
     .welcome-primary-btns {
@@ -4030,17 +4047,26 @@
         <div class="welcome-stat"><span class="ws-val" id="wsGamesPlayed">0</span><span class="ws-lbl">Partidas</span></div>
         <div class="welcome-stat"><span class="ws-val" id="wsBestLevel">0</span><span class="ws-lbl">Maior Nível</span></div>
       </div>
-      <div id="welcomeSavedInfo" class="welcome-saved-info" style="display:none;margin:8px 0;padding:10px 12px;transition:opacity 0.4s ease;">
-        <div class="wsaved-inner">
-          <img id="wsSavedAvatar" src="" alt="" class="wsaved-avatar">
-          <div class="wsaved-details">
-            <div class="wsaved-charname" id="wsSavedChar">-</div>
-            <div class="wsaved-stats">
-              <span class="wsaved-stat">Nv <strong id="wsSavedLevel">-</strong></span>
-              <span class="wsaved-stat">Vidas <strong id="wsSavedLives">-</strong></span>
-              <span class="wsaved-stat">Pts <strong id="wsSavedScore">-</strong></span>
+      <div id="welcomeSavedInfo" class="welcome-saved-info" style="display:none;margin:8px 0;transition:opacity 0.4s ease;">
+        <div class="wsaved-top">
+          <span class="wsaved-label">⚔ Jornada em Andamento</span>
+          <span class="wsaved-time-lbl" id="wsSavedTime"></span>
+        </div>
+        <div class="wsaved-bottom">
+          <div class="wsaved-charname" id="wsSavedChar">-</div>
+          <div class="wsaved-stats">
+            <div class="wsaved-stat">
+              <span class="ws-v" style="color:#60a5fa" id="wsSavedLevel">-</span>
+              <span class="ws-l">Nível</span>
             </div>
-            <div class="wsaved-badge">⚔ Jornada em andamento · <span id="wsSavedTime"></span> ⚔</div>
+            <div class="wsaved-stat">
+              <span class="ws-v" style="color:#fb7185" id="wsSavedLives">-</span>
+              <span class="ws-l">Vidas</span>
+            </div>
+            <div class="wsaved-stat">
+              <span class="ws-v" style="color:#34d399" id="wsSavedScore">-</span>
+              <span class="ws-l">Pts</span>
+            </div>
           </div>
         </div>
       </div>
