@@ -3934,22 +3934,29 @@
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' })
           .then(reg => {
-            // Forçar verificação de atualização imediata
-            reg.update();
-            // Se há um SW esperando, ativá-lo imediatamente
+            // Ativar SW em espera imediatamente
             if (reg.waiting) reg.waiting.postMessage({ type: 'SKIP_WAITING' });
+
             reg.addEventListener('updatefound', () => {
               const newSW = reg.installing;
-              if (newSW) {
-                newSW.addEventListener('statechange', () => {
-                  if (newSW.state === 'installed' && navigator.serviceWorker.controller) {
-                    newSW.postMessage({ type: 'SKIP_WAITING' });
-                  }
-                });
-              }
+              if (!newSW) return;
+              newSW.addEventListener('statechange', () => {
+                if (newSW.state === 'installed') {
+                  newSW.postMessage({ type: 'SKIP_WAITING' });
+                }
+              });
+            });
+
+            // Verificar atualizações a cada 2 minutos
+            setInterval(() => reg.update(), 2 * 60 * 1000);
+
+            // Verificar quando aba volta ao foco
+            document.addEventListener('visibilitychange', () => {
+              if (document.visibilityState === 'visible') reg.update();
             });
           }).catch(() => {});
-        // Quando o SW assumir o controle, recarregar para servir novos arquivos
+
+        // Recarregar quando novo SW assumir controle
         let refreshing = false;
         navigator.serviceWorker.addEventListener('controllerchange', () => {
           if (!refreshing) { refreshing = true; window.location.reload(); }
