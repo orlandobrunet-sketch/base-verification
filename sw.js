@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v7.0
-const CACHE = 'nefroquest-v7';
+// NefroQuest Service Worker — v8.0
+const CACHE = 'nefroquest-v8';
 const ASSETS = [
   '/',
   '/index.html',
@@ -41,7 +41,6 @@ self.addEventListener('message', e => {
 });
 
 self.addEventListener('fetch', e => {
-  // Apenas GET, mesma origem
   if (e.request.method !== 'GET') return;
   const url = new URL(e.request.url);
   if (url.origin !== location.origin) return;
@@ -49,6 +48,27 @@ self.addEventListener('fetch', e => {
   // Nunca cachear a página de limpeza de cache
   if (url.pathname === '/clear-cache.html') return;
 
+  // Páginas HTML → network-first (sempre busca a versão mais recente)
+  const isHTML = e.request.mode === 'navigate'
+    || url.pathname.endsWith('.html')
+    || url.pathname === '/';
+
+  if (isHTML) {
+    e.respondWith(
+      fetch(e.request)
+        .then(res => {
+          if (res && res.status === 200) {
+            const clone = res.clone();
+            caches.open(CACHE).then(c => c.put(e.request, clone));
+          }
+          return res;
+        })
+        .catch(() => caches.match(e.request))
+    );
+    return;
+  }
+
+  // Assets estáticos → cache-first (performance)
   e.respondWith(
     caches.match(e.request).then(cached => {
       if (cached) return cached;
