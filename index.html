@@ -856,6 +856,40 @@
     }
     .close-chest:hover { box-shadow: 0 0 20px rgba(255,215,0,0.4); }
 
+    /* PAYWALL MODAL */
+    #paywallModal {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.88); z-index: 9999;
+      align-items: center; justify-content: center;
+      backdrop-filter: blur(8px); padding: 16px;
+    }
+    #paywallModal.show { display: flex; }
+    .paywall-content {
+      background: linear-gradient(160deg, #0f1e08, #0e1830, #1e1000);
+      border: 2px solid #ffd700; border-radius: 20px;
+      max-width: 440px; width: 100%; padding: 32px 28px;
+      box-shadow: 0 0 60px rgba(255,215,0,0.18);
+      text-align: center; animation: scaleIn 0.35s ease-out;
+    }
+    .paywall-content h2 {
+      color: #ffd700; font-family: 'Cinzel', serif;
+      font-size: 1.15rem; margin: 0 0 12px; letter-spacing: 1px;
+    }
+    .paywall-content p {
+      color: #c8d8f0; font-size: 0.88rem;
+      line-height: 1.65; margin-bottom: 20px;
+    }
+    .paywall-price {
+      background: rgba(255,215,0,0.08);
+      border: 1px solid rgba(255,215,0,0.45);
+      border-radius: 12px; padding: 14px 20px; margin-bottom: 22px;
+    }
+    .price-amount {
+      color: #ffd700; font-size: 1.7rem;
+      font-family: 'Cinzel', serif; font-weight: 700;
+    }
+    .price-desc { color: #a0b8d0; font-size: 0.78rem; margin-top: 4px; }
+
     /* CHARACTER SELECT */
     .char-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
@@ -5450,9 +5484,15 @@
     const MASTERED_KEY = 'nefroquest-mastered';
     // Chave Web3Forms — obtenha grátis em https://web3forms.com (cadastre orlandobrunet@gmail.com)
     const FLAG_API_KEY = 'd88c1c48-5d9c-48f2-b506-53ac0ac71396';
+
+    // ============ FREEMIUM ============
+    const ADMIN_EMAIL = 'orlandobrunet@gmail.com';
+    const FREE_QUESTIONS_LIMIT = 50;
+    const PREMIUM_KEY = 'nefroquest-premium';
     
     function getGameStats() {
-      try { return JSON.parse(localStorage.getItem(STATS_KEY) || '{"gamesPlayed":0,"bestLevel":0,"bestScore":0}'); } catch(e) { return {gamesPlayed:0,bestLevel:0,bestScore:0}; }
+      const def = {gamesPlayed:0,bestLevel:0,bestScore:0,questionsAnsweredAllTime:0};
+      try { return Object.assign({}, def, JSON.parse(localStorage.getItem(STATS_KEY) || '{}')); } catch(e) { return def; }
     }
     
     function updateGameStats() {
@@ -5461,6 +5501,32 @@
       if (state.level > stats.bestLevel) stats.bestLevel = state.level;
       if (state.score > stats.bestScore) stats.bestScore = state.score;
       localStorage.setItem(STATS_KEY, JSON.stringify(stats));
+    }
+
+    function isPremium() {
+      if (authUser?.email === ADMIN_EMAIL) return true;
+      if (localStorage.getItem(PREMIUM_KEY) === '1') return true;
+      return false;
+    }
+
+    async function _loadPremiumFromDB() {
+      if (!_supaClient || !authUser) return;
+      if (authUser.email === ADMIN_EMAIL) return;
+      try {
+        const { data } = await _supaClient
+          .from('profiles')
+          .select('is_premium')
+          .eq('id', authUser.id)
+          .single();
+        if (data?.is_premium) localStorage.setItem(PREMIUM_KEY, '1');
+        else localStorage.removeItem(PREMIUM_KEY);
+      } catch(e) {}
+    }
+
+    function _incrementQuestionsAnswered() {
+      const stats = getGameStats();
+      stats.questionsAnsweredAllTime = (stats.questionsAnsweredAllTime || 0) + 1;
+      try { localStorage.setItem(STATS_KEY, JSON.stringify(stats)); } catch(e) {}
     }
     
     // Debounce do saveGame para evitar escritas excessivas no localStorage
@@ -6847,11 +6913,15 @@
 
       _supaClient.auth.onAuthStateChange((event, session) => {
         authUser = session?.user ?? null;
+        if (authUser) _loadPremiumFromDB();
+        else localStorage.removeItem(PREMIUM_KEY);
         updateWelcomeUserBadge();
       });
 
       _supaClient.auth.getSession().then(({ data: { session } }) => {
         authUser = session?.user ?? null;
+        if (authUser) _loadPremiumFromDB();
+        else localStorage.removeItem(PREMIUM_KEY);
         updateWelcomeUserBadge();
       });
     })();
@@ -6930,7 +7000,12 @@
       const { error } = await _supaClient.auth.signInWithPassword({ email, password });
       btn.disabled = false; btn.textContent = 'Entrar na Jornada';
       if (error) {
-        _setAuthMsg(error.message === 'Invalid login credentials' ? 'Email ou senha incorretos.' : error.message, 'error');
+        const msg = error.message === 'Invalid login credentials'
+          ? 'Email ou senha incorretos.'
+          : error.message === 'Email not confirmed'
+            ? 'Email não confirmado. Verifique sua caixa de entrada e clique no link de ativação.'
+            : error.message;
+        _setAuthMsg(msg, 'error');
       } else { closeAuthModal(); }
     }
     async function authEmailRegister() {
@@ -6954,6 +7029,7 @@
       if (!_supaClient) return;
       await _supaClient.auth.signOut();
       authUser = null;
+      localStorage.removeItem(PREMIUM_KEY);
       updateWelcomeUserBadge();
       // Return to landing screen
       document.getElementById('welcomeScreen').classList.add('hidden');
@@ -7568,6 +7644,44 @@
       return `💰 ${item.n} (${item.rar}) vendido por ${val}💰 — equipamento atual é superior.`;
     }
 
+    // ============ PAYWALL ============
+    function showPaywallModal() {
+      let modal = document.getElementById('paywallModal');
+      if (modal) { modal.classList.add('show'); return; }
+      modal = document.createElement('div');
+      modal.id = 'paywallModal';
+      modal.className = 'show';
+      const loginBtn = !authUser
+        ? `<button class="btn" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2)" onclick="paywallLogin()">Já tenho conta — Entrar</button>`
+        : '';
+      modal.innerHTML = `
+        <div class="paywall-content">
+          <div style="font-size:2.6rem;margin-bottom:12px;">🏰</div>
+          <h2>Jornada Gratuita Concluída</h2>
+          <p>Você respondeu <strong style="color:#ffd700">${FREE_QUESTIONS_LIMIT} questões gratuitas</strong>.<br>
+          Desbloqueie o acesso completo para continuar sua jornada nefrológica!</p>
+          <div class="paywall-price">
+            <div class="price-amount">R$ 49,90</div>
+            <div class="price-desc">Acesso vitalício · Todas as questões · Futuras atualizações</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <button class="btn gold" onclick="paywallUpgrade()">✨ Desbloquear Acesso Premium</button>
+            ${loginBtn}
+            <button class="btn" style="background:transparent;border:1px solid rgba(255,255,255,0.1);color:#708090;font-size:0.8rem;margin-top:4px" onclick="document.getElementById('paywallModal').classList.remove('show')">Fechar</button>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+    }
+    function paywallUpgrade() {
+      // TODO: integrar com gateway de pagamento (Stripe/PagSeguro)
+      alert('Em breve! Para adquirir o acesso premium, entre em contato: orlandobrunet@gmail.com');
+    }
+    function paywallLogin() {
+      document.getElementById('paywallModal')?.classList.remove('show');
+      openAuthModal();
+    }
+
     function answer(i,btn){
       if(!state.gameStarted) return;
       if(state.answered) return;
@@ -7631,9 +7745,14 @@
         saveGame();
       }
 
+      _incrementQuestionsAnswered();
       renderHUD();
       updateBadges();
-      if(state.lives<=0) finishGame(); else {
+      if(state.lives<=0) {
+        finishGame();
+      } else if (!isPremium() && getGameStats().questionsAnsweredAllTime >= FREE_QUESTIONS_LIMIT) {
+        showPaywallModal();
+      } else {
         ui.nextBtn.classList.remove('hidden');
         // ── Confronto Final: atualiza barra de HP, estrelas e botão ──
         updateBossUI();
@@ -8772,8 +8891,12 @@
     }
     
     function startGameWithCharacter() {
+      if (!isPremium() && getGameStats().questionsAnsweredAllTime >= FREE_QUESTIONS_LIMIT) {
+        showPaywallModal();
+        return;
+      }
       const char = characters[state.character];
-      
+
       _sessionWrongAnswers = [];
       Object.assign(state,{level:1,xp:0,xpToNext:200,score:0,lives:3,streak:0,gold:0,current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,gameOver:false,gameStarted:true,extraLifeGiven:false,gameCompleted:false,completedGame:false,chestsOpened:0});
       state.equipment={
