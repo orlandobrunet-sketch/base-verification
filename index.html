@@ -4973,12 +4973,7 @@
       wmTrack.play().then(() => {
         welcomeMusicStarted = true;
         _wmFadeIn(() => { if (!_wmStopRequested) _wmScheduleFadeOut(); });
-      }).catch(() => {
-        wmTrack.load();
-        const retry = () => { if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic(); };
-        document.addEventListener('click',      retry, { once: true, capture: true });
-        document.addEventListener('touchstart', retry, { once: true, capture: true });
-      });
+      }).catch(() => {});
     }
 
     function stopWelcomeMusic(withFade, onComplete) {
@@ -5173,6 +5168,18 @@
         if (label) label.textContent = 'Mudo';
         if (toggle) toggle.classList.add('muted');
         if (mobileIcon) mobileIcon.textContent = '🔇';
+      }
+
+      // Iniciar música automaticamente ao carregar a página
+      // Aguarda áudio estar carregado para evitar AbortError
+      if (musicEnabled) {
+        if (wmTrack.readyState >= 4) {
+          startWelcomeMusic();
+        } else {
+          wmTrack.addEventListener('canplaythrough', function() {
+            if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
+          }, { once: true });
+        }
       }
     })();
 
