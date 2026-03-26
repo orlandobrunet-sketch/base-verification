@@ -84,7 +84,7 @@
 
     .game-title h1 {
       font-family: 'Cinzel Decorative', 'Cinzel', serif;
-      font-size: 1.944rem; letter-spacing: 3px;
+      font-size: 1.36rem; letter-spacing: 3px;
       background: linear-gradient(180deg, #fff8dc 0%, #ffd700 30%, #daa520 60%, #b8860b 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       filter: drop-shadow(0 2px 8px rgba(255,215,0,0.5));
@@ -3929,7 +3929,25 @@
     .welcome-user-avatar-placeholder { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg,#1a3a6a,#0d2040); border: 1px solid rgba(58,90,138,0.6); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: var(--gold); flex-shrink: 0; }
     .welcome-user-name { color: #34d399; font-weight: 700; flex: 1; font-size: 0.85rem; }
     .welcome-logout-btn { background: none; border: 1px solid rgba(251,113,133,0.4); border-radius: 6px; color: #fb7185; padding: 3px 8px; font-size: 0.75rem; cursor: pointer; font-family: 'Philosopher', serif; }
+    /* Prevent FOUT: hide Cinzel Decorative titles until font loads */
+    .landing-title, .welcome-content h1, .game-title h1 { opacity: 0; }
+    .fonts-loaded .landing-title, .fonts-loaded .welcome-content h1, .fonts-loaded .game-title h1 { opacity: 1; transition: opacity 0.15s ease; }
   </style>
+  <script>
+    // Font loading — prevents FOUT by hiding titles until Cinzel Decorative is ready
+    (function() {
+      var timeout = setTimeout(function() {
+        document.documentElement.classList.add('fonts-loaded');
+      }, 2500);
+      document.fonts.load('900 1em "Cinzel Decorative"').then(function() {
+        clearTimeout(timeout);
+        document.documentElement.classList.add('fonts-loaded');
+      }).catch(function() {
+        clearTimeout(timeout);
+        document.documentElement.classList.add('fonts-loaded');
+      });
+    })();
+  </script>
   <script>
     // Verificação de versão — bypassa o Service Worker via no-store
     // Se a versão do servidor for diferente da carregada, limpa tudo e recarrega
