@@ -5174,6 +5174,18 @@
         if (toggle) toggle.classList.add('muted');
         if (mobileIcon) mobileIcon.textContent = '🔇';
       }
+
+      // Iniciar música no primeiro gesto do usuário (qualquer click/touch na página)
+      if (musicEnabled) {
+        startWelcomeMusic(); // tenta autoplay imediato (browsers permissivos)
+      }
+      const _startOnGesture = () => {
+        if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
+        document.removeEventListener('click', _startOnGesture, true);
+        document.removeEventListener('touchstart', _startOnGesture, true);
+      };
+      document.addEventListener('click', _startOnGesture, true);
+      document.addEventListener('touchstart', _startOnGesture, true);
     })();
 
     // ============ SISTEMA DE STREAK MULTIPLICADOR ============
