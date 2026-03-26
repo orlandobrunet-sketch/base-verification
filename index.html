@@ -4930,41 +4930,26 @@
 
     function _wmPlayOnce() {
       if (_wmStopRequested) return;
-      // Garantir volume 0 ANTES do play
       wmTrack.volume = 0;
       wmTrack.currentTime = 0;
-      // Delay maior para garantir que o volume 0 seja respeitado antes do play
+      wmTrack.muted = false;
       setTimeout(() => {
         if (_wmStopRequested) return;
-        wmTrack.volume = 0; // reafirmar volume 0
-        // Usar muted=true como fallback para garantir que o browser não ignore volume=0
-        wmTrack.muted = true;
         const playPromise = wmTrack.play();
         if (playPromise !== undefined) {
           playPromise.then(() => {
-            // Após play resolver: desmutar e iniciar fade-in
-            setTimeout(() => {
-              if (_wmStopRequested) { wmTrack.pause(); wmTrack.muted = false; return; }
-              wmTrack.muted = false;
-              wmTrack.volume = 0;
-              _wmFadeIn(() => {
-                if (!_wmStopRequested) _wmScheduleFadeOut();
-              });
-            }, 30);
+            if (_wmStopRequested) { wmTrack.pause(); return; }
+            _wmFadeIn(() => {
+              if (!_wmStopRequested) _wmScheduleFadeOut();
+            });
           }).catch(() => {
-            wmTrack.muted = false;
             welcomeMusicStarted = false;
             _wmStopRequested = false;
           });
         } else {
-          setTimeout(() => {
-            if (_wmStopRequested) { wmTrack.pause(); wmTrack.muted = false; return; }
-            wmTrack.muted = false;
-            wmTrack.volume = 0;
-            _wmFadeIn(() => {
-              if (!_wmStopRequested) _wmScheduleFadeOut();
-            });
-          }, 30);
+          _wmFadeIn(() => {
+            if (!_wmStopRequested) _wmScheduleFadeOut();
+          });
         }
       }, 80);
     }
@@ -6905,6 +6890,7 @@
           landing.classList.add('hidden');
           document.getElementById('welcomeScreen').classList.remove('hidden');
           refreshWelcomeSave();
+          if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
         }
       } else {
         document.querySelectorAll('.profile-btn').forEach(b => b.classList.remove('visible'));
@@ -6997,12 +6983,14 @@
       document.getElementById('landingScreen').classList.add('hidden');
       document.getElementById('welcomeScreen').classList.remove('hidden');
       refreshWelcomeSave();
+      if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
       openAuthModal();
     }
     function landingPlayGuest() {
       document.getElementById('landingScreen').classList.add('hidden');
       document.getElementById('welcomeScreen').classList.remove('hidden');
       refreshWelcomeSave();
+      if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
     }
     function showLandingMsg(msg) {
       const el = document.getElementById('landingMsg');
