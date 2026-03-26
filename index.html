@@ -4846,6 +4846,7 @@
     wmTrack.loop = false;
     wmTrack.volume = 0;        // volume 0 antes de qualquer coisa
     wmTrack.src = WELCOME_MUSIC_URL; // src após volume=0 para garantir ordem
+    wmTrack.load();            // força início do carregamento (como bgA.load())
 
     let welcomeMusicStarted = false;
     let _wmFadeInterval = null;
@@ -4956,6 +4957,10 @@
         }).catch(() => {
           welcomeMusicStarted = false;
           _wmStopRequested = false;
+          // Autoplay bloqueado: reagendar para o próximo gesto do usuário
+          const retry = () => { if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic(); };
+          document.addEventListener('click',      retry, { once: true, capture: true });
+          document.addEventListener('touchstart', retry, { once: true, capture: true });
         });
       } else {
         _wmFadeIn(() => {
@@ -10192,6 +10197,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
       document.querySelectorAll('.exam-overlay').forEach(e => e.remove());
       document.getElementById('welcomeScreen')?.classList.remove('hidden');
       refreshWelcomeSave();
+      if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
     }
 
     function showExamResults() {
@@ -10307,6 +10313,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
       document.querySelectorAll('.exam-overlay').forEach(e => e.remove());
       document.getElementById('welcomeScreen')?.classList.remove('hidden');
       refreshWelcomeSave();
+      if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
     }
 
     // ============ CHANGELOG v5.0 ============
