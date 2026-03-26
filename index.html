@@ -4973,12 +4973,7 @@
       wmTrack.play().then(() => {
         welcomeMusicStarted = true;
         _wmFadeIn(() => { if (!_wmStopRequested) _wmScheduleFadeOut(); });
-      }).catch(() => {
-        wmTrack.load();
-        const retry = () => { if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic(); };
-        document.addEventListener('click',      retry, { once: true, capture: true });
-        document.addEventListener('touchstart', retry, { once: true, capture: true });
-      });
+      }).catch(() => {});
     }
 
     function stopWelcomeMusic(withFade, onComplete) {
@@ -5175,17 +5170,10 @@
         if (mobileIcon) mobileIcon.textContent = '🔇';
       }
 
-      // Iniciar música no primeiro gesto do usuário (qualquer click/touch na página)
+      // Iniciar música automaticamente ao carregar a página
       if (musicEnabled) {
-        startWelcomeMusic(); // tenta autoplay imediato (browsers permissivos)
+        startWelcomeMusic();
       }
-      const _startOnGesture = () => {
-        if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
-        document.removeEventListener('click', _startOnGesture, true);
-        document.removeEventListener('touchstart', _startOnGesture, true);
-      };
-      document.addEventListener('click', _startOnGesture, true);
-      document.addEventListener('touchstart', _startOnGesture, true);
     })();
 
     // ============ SISTEMA DE STREAK MULTIPLICADOR ============
