@@ -3307,12 +3307,7 @@
       to   { opacity: 1; box-shadow: 0 0 14px rgba(192,132,252,0.9); }
     }
 
-    /* Colunas rúnicas: roxo intenso + AJUSTE 3: menores para não colar nos botões */
-    .arqui-nefromante-final #runeColLeft,
-    .arqui-nefromante-final #runeColRight {
-      width: 12px !important;
-    }
-    /* AJUSTE 3 DESKTOP: Colunas rúnicas menores para não colar nos botões */
+    /* Colunas rúnicas: roxo intenso + menores para não colar nos botões */
     .arqui-nefromante-final #runeColLeft,
     .arqui-nefromante-final #runeColRight {
       width: 12px !important;
@@ -3947,7 +3942,7 @@
     // Verificação de versão — bypassa o Service Worker via no-store
     // Se a versão do servidor for diferente da carregada, limpa tudo e recarrega
     (function() {
-      const LOADED_VERSION = '5.7';
+      const LOADED_VERSION = '5.8';
       fetch('/version.json', { cache: 'no-store' })
         .then(r => r.json())
         .then(data => {
@@ -4137,7 +4132,7 @@
         <button class="btn sec" onclick="showLeaderboardFromWelcome()">Leaderboard</button>
         <button id="bossPreviewBtn" class="btn-boss-preview" onclick="startBossPreview()" title="Preview do Confronto Final" style="display:none;">⚔️ Preview: Confronto Final</button>
       </div>
-      <div class="welcome-credit" style="margin-top:14px;"><a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;cursor:pointer;" onclick="showChangelog()">v5.7</span></div>
+      <div class="welcome-credit" style="margin-top:14px;"><a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;cursor:pointer;" onclick="showChangelog()">v5.8</span></div>
     </div>
   </div>
 
@@ -4532,7 +4527,7 @@
       <p>
         <a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a>
         &nbsp;•&nbsp;
-        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" onclick="showChangelog()">v5.7</span>
+        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" onclick="showChangelog()">v5.8</span>
       </p>
     </div>
   </main>
@@ -5043,7 +5038,6 @@
       nextTrack.play().catch(() => {});
       
       const steps = 30;
-      const stepTime = (XFADE_TIME * 1000) / steps;
       let step = 0;
       
       const fadeInterval = setInterval(() => {
@@ -9510,6 +9504,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
     }
     
     function answerStudyQuestion(selectedIdx) {
+      if (studyModeIndex >= studyModeQuestions.length) return;
       const q = studyModeQuestions[studyModeIndex];
       const isCorrect = selectedIdx === q.ans;
       
@@ -10309,6 +10304,22 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
 
           <div style="text-align:left;padding:4px;">
 
+            <!-- v5.8 -->
+            <div style="background:linear-gradient(135deg,rgba(244,114,182,0.18),rgba(244,114,182,0.06));border:2px solid rgba(244,114,182,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                <span style="background:rgba(244,114,182,0.85);color:#fff;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v5.8</span>
+                <span style="color:#fce7f3;font-weight:bold;font-size:0.95rem;">Música & Polimento</span>
+              </div>
+              <ul style="color:var(--txt);font-size:0.83rem;line-height:1.9;padding-left:18px;margin:0;">
+                <li><strong>Música de boas-vindas corrigida</strong> — autoplay ao carregar, fade-in suave de 1.2s, transição perfeita para música de perguntas</li>
+                <li><strong>Anti-FOUT</strong> — títulos ficam invisíveis até Cinzel Decorative carregar, eliminando flash de fonte genérica</li>
+                <li><strong>Logo 30% menor na página de perguntas (web)</strong> — melhor proporção visual no desktop</li>
+                <li><strong>Sombra suavizada</strong> — título NefroQuest na tela de boas-vindas com drop-shadow mais leve</li>
+                <li><strong>Correção de changelog</strong> — badges de versão v5.2/v5.4/v5.5 exibiam número errado</li>
+                <li><strong>Código limpo</strong> — CSS duplicado removido, variáveis mortas excluídas, guard clauses adicionadas</li>
+              </ul>
+            </div>
+
             <!-- v5.7 -->
             <div style="background:linear-gradient(135deg,rgba(52,211,153,0.18),rgba(52,211,153,0.06));border:2px solid rgba(52,211,153,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
@@ -10342,7 +10353,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
             <!-- v5.5 -->
             <div style="background:linear-gradient(135deg,rgba(251,191,36,0.18),rgba(251,191,36,0.06));border:2px solid rgba(251,191,36,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
-                <span style="background:rgba(251,191,36,0.85);color:#1a1200;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v5.6</span>
+                <span style="background:rgba(251,191,36,0.85);color:#1a1200;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v5.5</span>
                 <span style="color:#fef3c7;font-weight:bold;font-size:0.95rem;">Engajamento, Progresso & PWA</span>
               </div>
               <ul style="color:var(--txt);font-size:0.83rem;line-height:1.9;padding-left:18px;margin:0;">
@@ -10360,7 +10371,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
             <!-- v5.4 -->
             <div style="background:linear-gradient(135deg,rgba(96,165,250,0.18),rgba(96,165,250,0.06));border:2px solid rgba(96,165,250,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
-                <span style="background:rgba(96,165,250,0.85);color:#fff;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v5.6</span>
+                <span style="background:rgba(96,165,250,0.85);color:#fff;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v5.4</span>
                 <span style="color:#bfdbfe;font-weight:bold;font-size:0.95rem;">Progresso Persistente & Melhorias de Jogabilidade</span>
               </div>
               <ul style="color:var(--txt);font-size:0.83rem;line-height:1.9;padding-left:18px;margin:0;">
@@ -10373,7 +10384,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
             <!-- v5.2 -->
             <div style="background:linear-gradient(135deg,rgba(34,197,94,0.18),rgba(34,197,94,0.06));border:2px solid rgba(34,197,94,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
-                <span style="background:rgba(34,197,94,0.85);color:#fff;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v5.3</span>
+                <span style="background:rgba(34,197,94,0.85);color:#fff;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v5.2</span>
                 <span style="color:#bbf7d0;font-weight:bold;font-size:0.95rem;">Revisão Científica Completa do Banco</span>
               </div>
               <ul style="color:var(--txt);font-size:0.83rem;line-height:1.9;padding-left:18px;margin:0;">
