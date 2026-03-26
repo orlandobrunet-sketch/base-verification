@@ -4864,7 +4864,7 @@
 
     // Fade-in suave usando curva ease-out (raiz quadrada) para soar natural
     function _wmFadeIn(onDone) {
-      wmTrack.volume = 0;
+      wmTrack.volume = 0.01;
       const startTime = performance.now();
       let rafId = null;
       function tick(now) {
@@ -4944,29 +4944,22 @@
 
     function _wmPlayOnce() {
       if (_wmStopRequested) return;
-      wmTrack.volume = 0;
-      wmTrack.currentTime = 0;
+      wmTrack.volume = 0.01;
+      if (wmTrack.readyState >= 1) wmTrack.currentTime = 0;
       wmTrack.muted = false;
-      const playPromise = wmTrack.play();
-      if (playPromise !== undefined) {
-        playPromise.then(() => {
-          if (_wmStopRequested) { wmTrack.pause(); return; }
-          _wmFadeIn(() => {
-            if (!_wmStopRequested) _wmScheduleFadeOut();
-          });
-        }).catch(() => {
-          welcomeMusicStarted = false;
-          _wmStopRequested = false;
-          // Autoplay bloqueado: reagendar para o próximo gesto do usuário
-          const retry = () => { if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic(); };
-          document.addEventListener('click',      retry, { once: true, capture: true });
-          document.addEventListener('touchstart', retry, { once: true, capture: true });
-        });
-      } else {
+      wmTrack.play().then(() => {
+        if (_wmStopRequested) { wmTrack.pause(); return; }
         _wmFadeIn(() => {
           if (!_wmStopRequested) _wmScheduleFadeOut();
         });
-      }
+      }).catch(() => {
+        wmTrack.load();
+        welcomeMusicStarted = false;
+        _wmStopRequested = false;
+        const retry = () => { if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic(); };
+        document.addEventListener('click',      retry, { once: true, capture: true });
+        document.addEventListener('touchstart', retry, { once: true, capture: true });
+      });
     }
 
     // Evento 'ended' como safety net (caso o fade-out não tenha pausado a tempo)
@@ -5178,29 +5171,6 @@
         if (toggle) toggle.classList.add('muted');
         if (mobileIcon) mobileIcon.textContent = '🔇';
       }
-
-      // Tentar autoplay direto ao carregar a página
-      if (musicEnabled) {
-        startWelcomeMusic();
-      }
-
-      // Fallback: listener persistente de interação para desbloquear áudio em qualquer device
-      const unlockAudio = () => {
-        if (!musicEnabled) { _removeUnlockListeners(); return; }
-        if (!welcomeMusicStarted) startWelcomeMusic();
-      };
-
-      const _removeUnlockListeners = () => {
-        document.removeEventListener('click', unlockAudio, true);
-        document.removeEventListener('touchstart', unlockAudio, true);
-        document.removeEventListener('keydown', unlockAudio, true);
-        wmTrack.removeEventListener('playing', _removeUnlockListeners);
-      };
-
-      wmTrack.addEventListener('playing', _removeUnlockListeners);
-      document.addEventListener('click', unlockAudio, true);
-      document.addEventListener('touchstart', unlockAudio, true);
-      document.addEventListener('keydown', unlockAudio, true);
     })();
 
     // ============ SISTEMA DE STREAK MULTIPLICADOR ============
