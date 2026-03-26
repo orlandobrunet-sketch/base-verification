@@ -4980,33 +4980,6 @@
       _wmPlayOnce();
     }
 
-    // Tenta autoplay imediato; se bloqueado pelo browser, dispara no primeiro gesto do usuário
-    (function() {
-      let _wmAutoStarted = false;
-      function _tryAutoStart() {
-        if (_wmAutoStarted) return;
-        _wmAutoStarted = true;
-        if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
-      }
-      // Tentativa imediata (funciona em alguns browsers com política permissiva)
-      setTimeout(() => {
-        if (!_wmAutoStarted && musicEnabled && !welcomeMusicStarted) {
-          wmTrack.volume = 0;
-          wmTrack.play().then(() => {
-            wmTrack.pause();
-            wmTrack.currentTime = 0;
-          }).catch(() => {});
-        }
-      }, 100);
-      // Dispara no primeiro gesto do usuário (click, touch, tecla)
-      ['click','touchstart','keydown','mousedown'].forEach(evt => {
-        document.addEventListener(evt, function handler() {
-          _tryAutoStart();
-          document.removeEventListener(evt, handler, true);
-        }, { once: true, capture: true });
-      });
-    })();
-
     function stopWelcomeMusic(withFade, onComplete) {
       if (!welcomeMusicStarted) { if (onComplete) onComplete(); return; }
       _wmStopRequested = true;
@@ -5201,31 +5174,28 @@
         if (mobileIcon) mobileIcon.textContent = '🔇';
       }
 
-      // Música de boas-vindas: somente no PC (telas >= 769px)
-      const _isMobile = window.innerWidth < 769;
-
-      if (!_isMobile && musicEnabled) {
-        // Tentar autoplay direto (funciona em alguns navegadores desktop)
+      // Tentar autoplay direto ao carregar a página
+      if (musicEnabled) {
         startWelcomeMusic();
-
-        // Fallback: registrar listener de primeira interação para desbloquear autoplay
-        // Usa evento 'playing' para confirmar que a música realmente tocou antes de remover
-        const unlockAudio = () => {
-          if (!musicEnabled) { _removeUnlockListeners(); return; }
-          if (!welcomeMusicStarted) startWelcomeMusic();
-        };
-
-        const _removeUnlockListeners = () => {
-          document.removeEventListener('click', unlockAudio, true);
-          document.removeEventListener('keydown', unlockAudio, true);
-          wmTrack.removeEventListener('playing', _removeUnlockListeners);
-        };
-
-        wmTrack.addEventListener('playing', _removeUnlockListeners);
-        document.addEventListener('click', unlockAudio, true);
-        document.addEventListener('keydown', unlockAudio, true);
-        // NÃO registrar touchend — evita disparar no mobile
       }
+
+      // Fallback: listener persistente de interação para desbloquear áudio em qualquer device
+      const unlockAudio = () => {
+        if (!musicEnabled) { _removeUnlockListeners(); return; }
+        if (!welcomeMusicStarted) startWelcomeMusic();
+      };
+
+      const _removeUnlockListeners = () => {
+        document.removeEventListener('click', unlockAudio, true);
+        document.removeEventListener('touchstart', unlockAudio, true);
+        document.removeEventListener('keydown', unlockAudio, true);
+        wmTrack.removeEventListener('playing', _removeUnlockListeners);
+      };
+
+      wmTrack.addEventListener('playing', _removeUnlockListeners);
+      document.addEventListener('click', unlockAudio, true);
+      document.addEventListener('touchstart', unlockAudio, true);
+      document.addEventListener('keydown', unlockAudio, true);
     })();
 
     // ============ SISTEMA DE STREAK MULTIPLICADOR ============
