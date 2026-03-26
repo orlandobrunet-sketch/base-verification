@@ -5171,8 +5171,15 @@
       }
 
       // Iniciar música automaticamente ao carregar a página
+      // Aguarda áudio estar carregado para evitar AbortError
       if (musicEnabled) {
-        startWelcomeMusic();
+        if (wmTrack.readyState >= 4) {
+          startWelcomeMusic();
+        } else {
+          wmTrack.addEventListener('canplaythrough', function() {
+            if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
+          }, { once: true });
+        }
       }
     })();
 
