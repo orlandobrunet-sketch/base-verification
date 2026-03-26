@@ -4943,7 +4943,7 @@
     }
 
     function _wmPlayOnce() {
-      if (_wmStopRequested) return;
+      if (_wmStopRequested || !welcomeMusicStarted) return;
       wmTrack.volume = 0.01;
       if (wmTrack.readyState >= 1) wmTrack.currentTime = 0;
       wmTrack.muted = false;
@@ -4952,14 +4952,7 @@
         _wmFadeIn(() => {
           if (!_wmStopRequested) _wmScheduleFadeOut();
         });
-      }).catch(() => {
-        wmTrack.load();
-        welcomeMusicStarted = false;
-        _wmStopRequested = false;
-        const retry = () => { if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic(); };
-        document.addEventListener('click',      retry, { once: true, capture: true });
-        document.addEventListener('touchstart', retry, { once: true, capture: true });
-      });
+      }).catch(() => {});
     }
 
     // Evento 'ended' como safety net (caso o fade-out não tenha pausado a tempo)
@@ -4974,8 +4967,18 @@
     function startWelcomeMusic() {
       if (!musicEnabled || welcomeMusicStarted) return;
       _wmStopRequested = false;
-      welcomeMusicStarted = true;
-      _wmPlayOnce();
+      wmTrack.volume = WELCOME_MUSIC_VOL;
+      wmTrack.muted = false;
+      if (wmTrack.readyState >= 1) wmTrack.currentTime = 0;
+      wmTrack.play().then(() => {
+        welcomeMusicStarted = true;
+        _wmScheduleFadeOut();
+      }).catch(() => {
+        wmTrack.load();
+        const retry = () => { if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic(); };
+        document.addEventListener('click',      retry, { once: true, capture: true });
+        document.addEventListener('touchstart', retry, { once: true, capture: true });
+      });
     }
 
     function stopWelcomeMusic(withFade, onComplete) {
