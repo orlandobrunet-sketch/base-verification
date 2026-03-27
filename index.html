@@ -856,6 +856,40 @@
     }
     .close-chest:hover { box-shadow: 0 0 20px rgba(255,215,0,0.4); }
 
+    /* PAYWALL MODAL */
+    #paywallModal {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.88); z-index: 9999;
+      align-items: center; justify-content: center;
+      backdrop-filter: blur(8px); padding: 16px;
+    }
+    #paywallModal.show { display: flex; }
+    .paywall-content {
+      background: linear-gradient(160deg, #0f1e08, #0e1830, #1e1000);
+      border: 2px solid #ffd700; border-radius: 20px;
+      max-width: 440px; width: 100%; padding: 32px 28px;
+      box-shadow: 0 0 60px rgba(255,215,0,0.18);
+      text-align: center; animation: scaleIn 0.35s ease-out;
+    }
+    .paywall-content h2 {
+      color: #ffd700; font-family: 'Cinzel', serif;
+      font-size: 1.15rem; margin: 0 0 12px; letter-spacing: 1px;
+    }
+    .paywall-content p {
+      color: #c8d8f0; font-size: 0.88rem;
+      line-height: 1.65; margin-bottom: 20px;
+    }
+    .paywall-price {
+      background: rgba(255,215,0,0.08);
+      border: 1px solid rgba(255,215,0,0.45);
+      border-radius: 12px; padding: 14px 20px; margin-bottom: 22px;
+    }
+    .price-amount {
+      color: #ffd700; font-size: 1.7rem;
+      font-family: 'Cinzel', serif; font-weight: 700;
+    }
+    .price-desc { color: #a0b8d0; font-size: 0.78rem; margin-top: 4px; }
+
     /* CHARACTER SELECT */
     .char-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
@@ -1420,6 +1454,150 @@
       text-align: center;
     }
     .profile-popup-logout:hover { background: rgba(251,113,133,0.22); }
+    .profile-popup-item {
+      background: rgba(255,255,255,0.04); color: #c8d8f0;
+      border: 1px solid rgba(42,74,122,0.45); border-radius: 7px;
+      padding: 7px 12px; font-size: 0.82rem; cursor: pointer;
+      transition: background 0.2s; text-align: left; width: 100%;
+    }
+    .profile-popup-item:hover { background: rgba(255,255,255,0.09); }
+    .profile-popup-item.admin-item {
+      background: rgba(255,215,0,0.06); border-color: rgba(255,215,0,0.25);
+      color: #ffd700; display: none;
+    }
+    .profile-popup-item.admin-item.visible { display: block; }
+    .profile-popup-divider {
+      border: none; border-top: 1px solid rgba(42,74,122,0.4); margin: 2px 0;
+    }
+
+    /* PRICING MODAL */
+    #pricingModal {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.92); z-index: 9998;
+      align-items: center; justify-content: center;
+      backdrop-filter: blur(10px); padding: 16px; overflow-y: auto;
+    }
+    #pricingModal.show { display: flex; }
+    .pricing-wrap {
+      max-width: 520px; width: 100%; text-align: center;
+      animation: scaleIn 0.35s ease-out;
+    }
+    .pricing-wrap h2 {
+      color: #ffd700; font-family: 'Cinzel', serif;
+      font-size: 1.2rem; margin-bottom: 6px; letter-spacing: 1px;
+    }
+    .pricing-wrap > p {
+      color: #a0b8d0; font-size: 0.85rem; margin-bottom: 22px;
+    }
+    .pricing-cards {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px; margin-bottom: 20px;
+    }
+    @media (max-width: 480px) { .pricing-cards { grid-template-columns: 1fr; } }
+    .pricing-card {
+      background: rgba(15,25,50,0.95);
+      border: 2px solid #2a4a7a; border-radius: 16px;
+      padding: 20px 16px; cursor: pointer;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      position: relative; text-align: center;
+    }
+    .pricing-card:hover { border-color: #60a5fa; box-shadow: 0 0 20px rgba(96,165,250,0.15); }
+    .pricing-card.featured {
+      border-color: #ffd700;
+      box-shadow: 0 0 24px rgba(255,215,0,0.15);
+    }
+    .pricing-card.featured:hover { box-shadow: 0 0 32px rgba(255,215,0,0.25); }
+    .pricing-badge {
+      position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+      background: #ffd700; color: #1a0e00;
+      font-size: 0.65rem; font-weight: 700; padding: 2px 10px;
+      border-radius: 20px; white-space: nowrap; font-family: 'Cinzel', serif;
+    }
+    .pricing-icon { font-size: 1.8rem; margin-bottom: 8px; }
+    .pricing-card h3 {
+      color: #e0f0ff; font-family: 'Cinzel', serif;
+      font-size: 0.82rem; letter-spacing: 1px; margin-bottom: 8px;
+    }
+    .pricing-amount {
+      color: #ffd700; font-size: 1.4rem;
+      font-family: 'Cinzel', serif; font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .pricing-period { color: #708090; font-size: 0.72rem; margin-bottom: 10px; }
+    .pricing-features { list-style: none; padding: 0; margin: 0; text-align: left; }
+    .pricing-features li {
+      color: #a0c0e0; font-size: 0.75rem; padding: 3px 0;
+    }
+    .pricing-features li::before { content: '✓ '; color: #4ade80; }
+    .pricing-choose-btn {
+      margin-top: 14px; width: 100%; padding: 9px;
+      border-radius: 8px; font-size: 0.82rem; font-weight: 700;
+      cursor: pointer; transition: opacity 0.2s;
+      font-family: 'Cinzel', serif; text-transform: uppercase;
+    }
+    .pricing-choose-btn:hover { opacity: 0.85; }
+    .btn-free { background: rgba(96,165,250,0.15); color: #60a5fa; border: 2px solid #60a5fa; }
+    .btn-monthly { background: rgba(168,85,247,0.2); color: #c084fc; border: 2px solid #c084fc; }
+    .btn-lifetime { background: linear-gradient(135deg,#b8860b,#ffd700); color: #1a0e00; border: none; }
+    .pricing-login-link {
+      color: #708090; font-size: 0.8rem; cursor: pointer;
+      text-decoration: underline; background: none; border: none;
+    }
+    .pricing-login-link:hover { color: #90b4e0; }
+
+    /* ACCOUNT MODAL */
+    #accountModal, #planModal, #adminModal {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.88); z-index: 9998;
+      align-items: center; justify-content: center;
+      backdrop-filter: blur(8px); padding: 16px;
+    }
+    #accountModal.show, #planModal.show, #adminModal.show { display: flex; }
+    .modal-panel {
+      background: linear-gradient(160deg, #0d1428, #12192e);
+      border: 2px solid #2a4a7a; border-radius: 20px;
+      max-width: 420px; width: 100%; padding: 28px 24px;
+      box-shadow: 0 0 40px rgba(30,60,120,0.4);
+      animation: scaleIn 0.3s ease-out;
+    }
+    .modal-panel h2 {
+      color: #ffd700; font-family: 'Cinzel', serif;
+      font-size: 1.05rem; letter-spacing: 1px;
+      margin: 0 0 18px; text-align: center;
+    }
+    .modal-panel .form-group { margin-bottom: 12px; }
+    .modal-panel label { display: block; color: #708090; font-size: 0.75rem; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .modal-panel input, .modal-panel select {
+      width: 100%; box-sizing: border-box;
+      background: rgba(255,255,255,0.06); border: 1px solid #2a4a7a;
+      border-radius: 8px; padding: 9px 12px; color: #e0f0ff;
+      font-size: 0.85rem; outline: none;
+    }
+    .modal-panel input:focus, .modal-panel select:focus { border-color: #60a5fa; }
+    .modal-panel .modal-actions { display: flex; gap: 10px; margin-top: 18px; }
+    .modal-panel .modal-actions button { flex: 1; padding: 10px; border-radius: 8px; font-size: 0.85rem; font-weight: 700; cursor: pointer; font-family: 'Cinzel', serif; }
+    .plan-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 18px; border-radius: 12px;
+      font-family: 'Cinzel', serif; font-size: 0.95rem;
+      margin: 0 auto 20px; font-weight: 700;
+    }
+    .plan-badge.free { background: rgba(96,165,250,0.12); color: #60a5fa; border: 2px solid rgba(96,165,250,0.4); }
+    .plan-badge.premium { background: rgba(255,215,0,0.1); color: #ffd700; border: 2px solid rgba(255,215,0,0.4); }
+    .plan-badge.admin { background: rgba(167,139,250,0.12); color: #a78bfa; border: 2px solid rgba(167,139,250,0.4); }
+    .plan-stat { color: #a0b8d0; font-size: 0.85rem; margin-bottom: 8px; text-align: center; }
+    .plan-bar-wrap { background: rgba(255,255,255,0.08); border-radius: 6px; height: 8px; margin: 10px 0 20px; overflow: hidden; }
+    .plan-bar { height: 100%; border-radius: 6px; background: linear-gradient(90deg,#60a5fa,#a78bfa); transition: width 0.5s; }
+    .whitelist-input-row { display: flex; gap: 8px; margin-bottom: 14px; }
+    .whitelist-input-row input { flex: 1; }
+    .whitelist-list { max-height: 200px; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; }
+    .whitelist-item {
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.04); border: 1px solid #2a4a7a;
+      border-radius: 8px; padding: 7px 12px; font-size: 0.8rem; color: #90b4e0;
+    }
+    .whitelist-item button { background: rgba(251,113,133,0.15); color: #fb7185; border: 1px solid rgba(251,113,133,0.3); border-radius: 5px; padding: 3px 8px; font-size: 0.75rem; cursor: pointer; }
+    .whitelist-empty { color: #708090; font-size: 0.82rem; text-align: center; padding: 16px; }
 
     /* STREAK MULTIPLIER VISUAL */
     .tile-streak { position: relative; }
@@ -4026,6 +4204,10 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
       <div class="profile-popup" id="mobileProfilePopup">
         <div class="profile-popup-email"><strong>Conta</strong><span id="mobileProfileEmail"></span></div>
+        <button class="profile-popup-item" onclick="openAccountModal();event.stopPropagation()">👤 Minha Conta</button>
+        <button class="profile-popup-item" onclick="openPlanModal();event.stopPropagation()">⭐ Seu Plano</button>
+        <button class="profile-popup-item admin-item" onclick="openAdminPanel();event.stopPropagation()">🛡 Administração</button>
+        <hr class="profile-popup-divider">
         <button class="profile-popup-logout" onclick="authLogout();event.stopPropagation()">Sair</button>
       </div>
     </div>
@@ -4039,6 +4221,10 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
       <div class="profile-popup" id="landingProfilePopup">
         <div class="profile-popup-email"><strong>Conta</strong><span id="landingProfileEmail"></span></div>
+        <button class="profile-popup-item" onclick="openAccountModal();event.stopPropagation()">👤 Minha Conta</button>
+        <button class="profile-popup-item" onclick="openPlanModal();event.stopPropagation()">⭐ Seu Plano</button>
+        <button class="profile-popup-item admin-item" onclick="openAdminPanel();event.stopPropagation()">🛡 Administração</button>
+        <hr class="profile-popup-divider">
         <button class="profile-popup-logout" onclick="authLogout();event.stopPropagation()">Sair</button>
       </div>
     </div>
@@ -4054,7 +4240,6 @@
         Entrar com Google
       </button>
       <button class="landing-btn-email" onclick="landingLoginEmail()">&#9993; Entrar com Email</button>
-      <button class="landing-guest-link" onclick="landingPlayGuest()">Jogar sem conta</button>
     </div>
   </div>
 
@@ -4075,6 +4260,10 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
         <div class="profile-popup" id="welcomeProfilePopup">
           <div class="profile-popup-email"><strong>Conta</strong><span id="welcomeProfileEmail"></span></div>
+          <button class="profile-popup-item" onclick="openAccountModal();event.stopPropagation()">👤 Minha Conta</button>
+          <button class="profile-popup-item" onclick="openPlanModal();event.stopPropagation()">⭐ Seu Plano</button>
+          <button class="profile-popup-item admin-item" onclick="openAdminPanel();event.stopPropagation()">🛡 Administração</button>
+          <hr class="profile-popup-divider">
           <button class="profile-popup-logout" onclick="authLogout();event.stopPropagation()">Sair</button>
         </div>
       </div>
@@ -4157,6 +4346,10 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
           <div class="profile-popup" id="gameProfilePopup">
             <div class="profile-popup-email"><strong>Conta</strong><span id="gameProfileEmail"></span></div>
+            <button class="profile-popup-item" onclick="openAccountModal();event.stopPropagation()">👤 Minha Conta</button>
+            <button class="profile-popup-item" onclick="openPlanModal();event.stopPropagation()">⭐ Seu Plano</button>
+            <button class="profile-popup-item admin-item" onclick="openAdminPanel();event.stopPropagation()">🛡 Administração</button>
+            <hr class="profile-popup-divider">
             <button class="profile-popup-logout" onclick="authLogout();event.stopPropagation()">Sair</button>
           </div>
         </div>
@@ -5450,9 +5643,19 @@
     const MASTERED_KEY = 'nefroquest-mastered';
     // Chave Web3Forms — obtenha grátis em https://web3forms.com (cadastre orlandobrunet@gmail.com)
     const FLAG_API_KEY = 'd88c1c48-5d9c-48f2-b506-53ac0ac71396';
+
+    // ============ FREEMIUM ============
+    const ADMIN_EMAIL = 'orlandobrunet@gmail.com';
+    const FREE_QUESTIONS_LIMIT = 50;
+    const PREMIUM_KEY = 'nefroquest-premium';
+    const WHITELIST_KEY = 'nefroquest-whitelist';
+    const _lang = (navigator.language || 'pt').startsWith('pt') ? 'pt' : 'en';
+    const PRICE_MONTHLY  = _lang === 'pt' ? 'R$9,90'  : 'US$9.90';
+    const PRICE_LIFETIME = _lang === 'pt' ? 'R$89,00' : 'US$89.90';
     
     function getGameStats() {
-      try { return JSON.parse(localStorage.getItem(STATS_KEY) || '{"gamesPlayed":0,"bestLevel":0,"bestScore":0}'); } catch(e) { return {gamesPlayed:0,bestLevel:0,bestScore:0}; }
+      const def = {gamesPlayed:0,bestLevel:0,bestScore:0,questionsAnsweredAllTime:0};
+      try { return Object.assign({}, def, JSON.parse(localStorage.getItem(STATS_KEY) || '{}')); } catch(e) { return def; }
     }
     
     function updateGameStats() {
@@ -5461,6 +5664,46 @@
       if (state.level > stats.bestLevel) stats.bestLevel = state.level;
       if (state.score > stats.bestScore) stats.bestScore = state.score;
       localStorage.setItem(STATS_KEY, JSON.stringify(stats));
+    }
+
+    function isPremium() {
+      if (authUser?.email === ADMIN_EMAIL) return true;
+      if (localStorage.getItem(PREMIUM_KEY) === '1') return true;
+      if (localStorage.getItem(WHITELIST_KEY) === '1') return true;
+      return false;
+    }
+
+    async function _loadPremiumFromDB() {
+      if (!_supaClient || !authUser) return;
+      if (authUser.email === ADMIN_EMAIL) return;
+      try {
+        const { data: profile } = await _supaClient
+          .from('profiles')
+          .select('is_premium')
+          .eq('id', authUser.id)
+          .single();
+        if (profile?.is_premium) {
+          localStorage.setItem(PREMIUM_KEY, '1');
+          localStorage.removeItem(WHITELIST_KEY);
+          return;
+        } else {
+          localStorage.removeItem(PREMIUM_KEY);
+        }
+        // Check whitelist
+        const { data: wl } = await _supaClient
+          .from('access_whitelist')
+          .select('email')
+          .eq('email', authUser.email)
+          .maybeSingle();
+        if (wl?.email) localStorage.setItem(WHITELIST_KEY, '1');
+        else localStorage.removeItem(WHITELIST_KEY);
+      } catch(e) {}
+    }
+
+    function _incrementQuestionsAnswered() {
+      const stats = getGameStats();
+      stats.questionsAnsweredAllTime = (stats.questionsAnsweredAllTime || 0) + 1;
+      try { localStorage.setItem(STATS_KEY, JSON.stringify(stats)); } catch(e) {}
     }
     
     // Debounce do saveGame para evitar escritas excessivas no localStorage
@@ -6847,11 +7090,15 @@
 
       _supaClient.auth.onAuthStateChange((event, session) => {
         authUser = session?.user ?? null;
+        if (authUser) _loadPremiumFromDB();
+        else localStorage.removeItem(PREMIUM_KEY);
         updateWelcomeUserBadge();
       });
 
       _supaClient.auth.getSession().then(({ data: { session } }) => {
         authUser = session?.user ?? null;
+        if (authUser) _loadPremiumFromDB();
+        else localStorage.removeItem(PREMIUM_KEY);
         updateWelcomeUserBadge();
       });
     })();
@@ -6871,6 +7118,8 @@
         if (loginBtn) loginBtn.style.display = 'none';
         document.querySelectorAll('.profile-btn').forEach(b => b.classList.add('visible'));
         document.querySelectorAll('[id$="ProfileEmail"]').forEach(el => { el.textContent = email; });
+        const isAdmin = email === ADMIN_EMAIL;
+        document.querySelectorAll('.admin-item').forEach(el => el.classList.toggle('visible', isAdmin));
         const landing = document.getElementById('landingScreen');
         if (landing && !landing.classList.contains('hidden')) {
           landing.classList.add('hidden');
@@ -6930,7 +7179,12 @@
       const { error } = await _supaClient.auth.signInWithPassword({ email, password });
       btn.disabled = false; btn.textContent = 'Entrar na Jornada';
       if (error) {
-        _setAuthMsg(error.message === 'Invalid login credentials' ? 'Email ou senha incorretos.' : error.message, 'error');
+        const msg = error.message === 'Invalid login credentials'
+          ? 'Email ou senha incorretos.'
+          : error.message === 'Email not confirmed'
+            ? 'Email não confirmado. Verifique sua caixa de entrada e clique no link de ativação.'
+            : error.message;
+        _setAuthMsg(msg, 'error');
       } else { closeAuthModal(); }
     }
     async function authEmailRegister() {
@@ -6954,6 +7208,8 @@
       if (!_supaClient) return;
       await _supaClient.auth.signOut();
       authUser = null;
+      localStorage.removeItem(PREMIUM_KEY);
+      localStorage.removeItem(WHITELIST_KEY);
       updateWelcomeUserBadge();
       // Return to landing screen
       document.getElementById('welcomeScreen').classList.add('hidden');
@@ -6970,7 +7226,7 @@
       document.getElementById('welcomeScreen').classList.remove('hidden');
       refreshWelcomeSave();
       if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
-      openAuthModal();
+      showPricingModal();
     }
     function landingPlayGuest() {
       document.getElementById('landingScreen').classList.add('hidden');
@@ -7568,6 +7824,322 @@
       return `💰 ${item.n} (${item.rar}) vendido por ${val}💰 — equipamento atual é superior.`;
     }
 
+    // ============ PAYWALL ============
+    function showPaywallModal() {
+      let modal = document.getElementById('paywallModal');
+      if (modal) { modal.classList.add('show'); return; }
+      modal = document.createElement('div');
+      modal.id = 'paywallModal';
+      modal.className = 'show';
+      const guestBtns = !authUser ? `
+        <button class="btn" style="background:rgba(96,165,250,0.12);border:2px solid rgba(96,165,250,0.5);color:#60a5fa" onclick="paywallRegister()">📝 Criar conta gratuita</button>
+        <button class="btn" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.2)" onclick="paywallLogin()">Já tenho conta — Entrar</button>
+      ` : '';
+      modal.innerHTML = `
+        <div class="paywall-content">
+          <div style="font-size:2.6rem;margin-bottom:12px;">🏰</div>
+          <h2>Jornada Gratuita Concluída</h2>
+          <p>Você respondeu <strong style="color:#ffd700">${FREE_QUESTIONS_LIMIT} questões gratuitas</strong>.<br>
+          Desbloqueie o acesso completo para continuar sua jornada nefrológica!</p>
+          <div class="paywall-price">
+            <div class="price-amount">${PRICE_LIFETIME}</div>
+            <div class="price-desc">Acesso vitalício · Todas as questões · Futuras atualizações</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <button class="btn gold" onclick="paywallUpgrade()">✨ Desbloquear Acesso Premium</button>
+            ${guestBtns}
+          </div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+    }
+    function paywallUpgrade() {
+      // TODO: integrar com gateway de pagamento (Stripe/PagSeguro)
+      alert('Em breve! Para adquirir o acesso premium, entre em contato: orlandobrunet@gmail.com');
+    }
+    function paywallLogin() {
+      document.getElementById('paywallModal')?.classList.remove('show');
+      openAuthModal();
+      switchAuthTab('entrar');
+    }
+    function paywallRegister() {
+      document.getElementById('paywallModal')?.classList.remove('show');
+      openAuthModal();
+      switchAuthTab('cadastrar');
+    }
+
+    // ============ PRICING MODAL ============
+    function showPricingModal() {
+      let modal = document.getElementById('pricingModal');
+      if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'pricingModal';
+        const curr = _lang === 'pt' ? 'BRL' : 'USD';
+        modal.innerHTML = `
+          <div class="pricing-wrap">
+            <h2>Escolha seu Plano</h2>
+            <p>Comece gratuitamente e desbloqueie o acesso completo quando quiser.</p>
+            <div class="pricing-cards">
+              <div class="pricing-card">
+                <div class="pricing-icon">🎓</div>
+                <h3>Gratuito</h3>
+                <div class="pricing-amount">R$0</div>
+                <div class="pricing-period">para sempre</div>
+                <ul class="pricing-features">
+                  <li>${FREE_QUESTIONS_LIMIT} questões</li>
+                  <li>Todos os personagens</li>
+                  <li>Ranking global</li>
+                </ul>
+                <button class="pricing-choose-btn btn-free" onclick="pricingChoose('free')">Começar Grátis</button>
+              </div>
+              <div class="pricing-card featured">
+                <div class="pricing-badge">POPULAR</div>
+                <div class="pricing-icon">⚡</div>
+                <h3>Mensal</h3>
+                <div class="pricing-amount">${PRICE_MONTHLY}</div>
+                <div class="pricing-period">por mês · cancele quando quiser</div>
+                <ul class="pricing-features">
+                  <li>Questões ilimitadas</li>
+                  <li>Conteúdo premium</li>
+                  <li>Suporte prioritário</li>
+                </ul>
+                <button class="pricing-choose-btn btn-monthly" onclick="pricingChoose('monthly')">Assinar Agora</button>
+              </div>
+              <div class="pricing-card">
+                <div class="pricing-icon">👑</div>
+                <h3>Vitalício</h3>
+                <div class="pricing-amount">${PRICE_LIFETIME}</div>
+                <div class="pricing-period">pagamento único · forever</div>
+                <ul class="pricing-features">
+                  <li>Tudo do mensal</li>
+                  <li>Atualizações vitalícias</li>
+                  <li>Melhor custo-benefício</li>
+                </ul>
+                <button class="pricing-choose-btn btn-lifetime" onclick="pricingChoose('lifetime')">Compra Única</button>
+              </div>
+            </div>
+            <button class="pricing-login-link" onclick="closePricingModal();openAuthModal();switchAuthTab('entrar')">Já tenho conta — Entrar</button>
+          </div>
+        `;
+        document.body.appendChild(modal);
+      }
+      modal.className = 'show';
+      modal.style.cssText = 'display:flex;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9998;align-items:center;justify-content:center;backdrop-filter:blur(10px);padding:16px;overflow-y:auto;';
+    }
+    function closePricingModal() {
+      const m = document.getElementById('pricingModal');
+      if (m) m.style.display = 'none';
+    }
+    function pricingChoose(tier) {
+      closePricingModal();
+      if (tier === 'free') {
+        openAuthModal();
+        switchAuthTab('cadastrar');
+      } else {
+        // TODO: integrar pagamento antes do cadastro
+        openAuthModal();
+        switchAuthTab('cadastrar');
+        _setAuthMsg('Crie sua conta e em seguida finalize o pagamento.', 'success');
+      }
+    }
+
+    // ============ ACCOUNT MODAL ============
+    const ACCT_KEY = 'nefroquest-account';
+    function openAccountModal() {
+      document.querySelectorAll('.profile-popup.open').forEach(p => p.classList.remove('open'));
+      let modal = document.getElementById('accountModal');
+      if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'accountModal';
+        modal.style.cssText = 'display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9998;align-items:center;justify-content:center;backdrop-filter:blur(8px);padding:16px;';
+        modal.innerHTML = `
+          <div class="modal-panel">
+            <h2>👤 Minha Conta</h2>
+            <div class="form-group">
+              <label>Nome completo</label>
+              <input id="acctName" type="text" placeholder="Seu nome">
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input id="acctEmail" type="email" placeholder="seu@email.com" disabled style="opacity:0.5">
+            </div>
+            <div class="form-group">
+              <label>Telefone / WhatsApp</label>
+              <input id="acctPhone" type="tel" placeholder="+55 (11) 99999-9999">
+            </div>
+            <div class="form-group">
+              <label>Especialidade</label>
+              <input id="acctSpec" type="text" placeholder="ex: Nefrologia, Clínica Médica...">
+            </div>
+            <div class="form-group">
+              <label>Cidade</label>
+              <input id="acctCity" type="text" placeholder="Sua cidade">
+            </div>
+            <div class="modal-actions">
+              <button onclick="closeAccountModal()" style="background:rgba(255,255,255,0.06);color:#c8d8f0;border:1px solid #2a4a7a;">Cancelar</button>
+              <button onclick="saveAccountData()" style="background:linear-gradient(135deg,#1a4080,#2a5fa0);color:#e0f0ff;border:none;">Salvar</button>
+            </div>
+          </div>
+        `;
+        document.body.appendChild(modal);
+      }
+      // Populate
+      const saved = (() => { try { return JSON.parse(localStorage.getItem(ACCT_KEY) || '{}'); } catch(e) { return {}; } })();
+      document.getElementById('acctName').value  = authUser?.user_metadata?.full_name || saved.name || '';
+      document.getElementById('acctEmail').value = authUser?.email || '';
+      document.getElementById('acctPhone').value = saved.phone || '';
+      document.getElementById('acctSpec').value  = saved.spec  || '';
+      document.getElementById('acctCity').value  = saved.city  || '';
+      modal.style.display = 'flex';
+    }
+    function closeAccountModal() {
+      const m = document.getElementById('accountModal');
+      if (m) m.style.display = 'none';
+    }
+    function saveAccountData() {
+      const data = {
+        name:  document.getElementById('acctName').value.trim(),
+        phone: document.getElementById('acctPhone').value.trim(),
+        spec:  document.getElementById('acctSpec').value.trim(),
+        city:  document.getElementById('acctCity').value.trim(),
+      };
+      try { localStorage.setItem(ACCT_KEY, JSON.stringify(data)); } catch(e) {}
+      closeAccountModal();
+    }
+
+    // ============ PLAN MODAL ============
+    function openPlanModal() {
+      document.querySelectorAll('.profile-popup.open').forEach(p => p.classList.remove('open'));
+      let modal = document.getElementById('planModal');
+      if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'planModal';
+        modal.style.cssText = 'display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9998;align-items:center;justify-content:center;backdrop-filter:blur(8px);padding:16px;';
+        modal.innerHTML = `<div class="modal-panel" id="planModalContent"></div>`;
+        document.body.appendChild(modal);
+      }
+      const stats = getGameStats();
+      const answered = stats.questionsAnsweredAllTime || 0;
+      let badgeClass = 'free', badgeLabel = '🎓 Plano Gratuito', detailHtml = '';
+      if (authUser?.email === ADMIN_EMAIL) {
+        badgeClass = 'admin'; badgeLabel = '🛡 Admin — Acesso Total';
+        detailHtml = `<p class="plan-stat">Conta de administrador com acesso irrestrito.</p>`;
+      } else if (isPremium()) {
+        badgeClass = 'premium'; badgeLabel = '👑 Premium';
+        detailHtml = `<p class="plan-stat">Acesso completo a todas as questões.</p>`;
+      } else {
+        const pct = Math.min(100, Math.round(answered / FREE_QUESTIONS_LIMIT * 100));
+        const remaining = Math.max(0, FREE_QUESTIONS_LIMIT - answered);
+        detailHtml = `
+          <p class="plan-stat">${answered} de ${FREE_QUESTIONS_LIMIT} questões gratuitas respondidas.</p>
+          <div class="plan-bar-wrap"><div class="plan-bar" style="width:${pct}%"></div></div>
+          <p class="plan-stat" style="font-size:0.78rem;color:#708090">${remaining} questões restantes no plano gratuito.</p>
+          <button class="btn gold" style="width:100%;margin-top:4px" onclick="closePlanModal();showPaywallModal()">✨ Fazer Upgrade</button>
+        `;
+      }
+      document.getElementById('planModalContent').innerHTML = `
+        <h2>⭐ Seu Plano</h2>
+        <div style="text-align:center">
+          <div class="plan-badge ${badgeClass}">${badgeLabel}</div>
+        </div>
+        ${detailHtml}
+        <div class="modal-actions" style="margin-top:14px">
+          <button onclick="closePlanModal()" style="background:rgba(255,255,255,0.06);color:#c8d8f0;border:1px solid #2a4a7a;">Fechar</button>
+        </div>
+      `;
+      modal.style.display = 'flex';
+    }
+    function closePlanModal() {
+      const m = document.getElementById('planModal');
+      if (m) m.style.display = 'none';
+    }
+
+    // ============ ADMIN PANEL ============
+    function openAdminPanel() {
+      document.querySelectorAll('.profile-popup.open').forEach(p => p.classList.remove('open'));
+      let modal = document.getElementById('adminModal');
+      if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'adminModal';
+        modal.style.cssText = 'display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9998;align-items:center;justify-content:center;backdrop-filter:blur(8px);padding:16px;';
+        modal.innerHTML = `
+          <div class="modal-panel" style="max-width:500px">
+            <h2>🛡 Administração — Lista de Acesso</h2>
+            <p style="color:#a0b8d0;font-size:0.82rem;margin-bottom:14px">Emails com acesso completo (lista de amigos / convidados).</p>
+            <div class="whitelist-input-row">
+              <input id="wlEmailInput" type="email" placeholder="email@exemplo.com">
+              <button class="btn gold" style="white-space:nowrap;padding:8px 16px" onclick="adminAddWhitelist()">+ Adicionar</button>
+            </div>
+            <div id="wlList" class="whitelist-list"><div class="whitelist-empty">Carregando...</div></div>
+            <div class="modal-actions" style="margin-top:16px">
+              <button onclick="closeAdminPanel()" style="background:rgba(255,255,255,0.06);color:#c8d8f0;border:1px solid #2a4a7a;">Fechar</button>
+            </div>
+          </div>
+        `;
+        document.body.appendChild(modal);
+      }
+      modal.style.display = 'flex';
+      adminLoadWhitelist();
+    }
+    function closeAdminPanel() {
+      const m = document.getElementById('adminModal');
+      if (m) m.style.display = 'none';
+    }
+    async function adminLoadWhitelist() {
+      const list = document.getElementById('wlList');
+      if (!list || !_supaClient) return;
+      list.innerHTML = '<div class="whitelist-empty">Carregando...</div>';
+      try {
+        const { data, error } = await _supaClient
+          .from('access_whitelist')
+          .select('email, added_at')
+          .order('added_at', { ascending: false });
+        if (error) throw error;
+        if (!data || data.length === 0) {
+          list.innerHTML = '<div class="whitelist-empty">Nenhum email na lista ainda.</div>';
+          return;
+        }
+        list.innerHTML = data.map(r => `
+          <div class="whitelist-item">
+            <span>${r.email}</span>
+            <button onclick="adminRemoveWhitelist('${r.email.replace(/'/g, "\\'")}')">Remover</button>
+          </div>
+        `).join('');
+      } catch(e) {
+        list.innerHTML = '<div class="whitelist-empty" style="color:#fb7185">Erro ao carregar. Verifique a tabela no Supabase.</div>';
+      }
+    }
+    async function adminAddWhitelist() {
+      const input = document.getElementById('wlEmailInput');
+      const email = input?.value.trim().toLowerCase();
+      if (!email || !email.includes('@')) { alert('Digite um email válido.'); return; }
+      if (!_supaClient) return;
+      try {
+        const { error } = await _supaClient
+          .from('access_whitelist')
+          .upsert({ email, added_at: new Date().toISOString() });
+        if (error) throw error;
+        if (input) input.value = '';
+        adminLoadWhitelist();
+      } catch(e) {
+        alert('Erro ao adicionar: ' + (e.message || e));
+      }
+    }
+    async function adminRemoveWhitelist(email) {
+      if (!_supaClient) return;
+      if (!confirm(`Remover acesso de ${email}?`)) return;
+      try {
+        const { error } = await _supaClient
+          .from('access_whitelist')
+          .delete()
+          .eq('email', email);
+        if (error) throw error;
+        adminLoadWhitelist();
+      } catch(e) {
+        alert('Erro ao remover: ' + (e.message || e));
+      }
+    }
+
     function answer(i,btn){
       if(!state.gameStarted) return;
       if(state.answered) return;
@@ -7631,9 +8203,14 @@
         saveGame();
       }
 
+      _incrementQuestionsAnswered();
       renderHUD();
       updateBadges();
-      if(state.lives<=0) finishGame(); else {
+      if(state.lives<=0) {
+        finishGame();
+      } else if (!isPremium() && getGameStats().questionsAnsweredAllTime >= FREE_QUESTIONS_LIMIT) {
+        showPaywallModal();
+      } else {
         ui.nextBtn.classList.remove('hidden');
         // ── Confronto Final: atualiza barra de HP, estrelas e botão ──
         updateBossUI();
@@ -8772,8 +9349,12 @@
     }
     
     function startGameWithCharacter() {
+      if (!isPremium() && getGameStats().questionsAnsweredAllTime >= FREE_QUESTIONS_LIMIT) {
+        showPaywallModal();
+        return;
+      }
       const char = characters[state.character];
-      
+
       _sessionWrongAnswers = [];
       Object.assign(state,{level:1,xp:0,xpToNext:200,score:0,lives:3,streak:0,gold:0,current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,gameOver:false,gameStarted:true,extraLifeGiven:false,gameCompleted:false,completedGame:false,chestsOpened:0});
       state.equipment={
