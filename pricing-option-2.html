@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Opção 2 — Pricing NefroQuest</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:radial-gradient(ellipse at top,#0e1a30 0%,#0a0e1a 70%); color:#c8d8f0; font-family:'Georgia',serif; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:32px 16px; }
+.wrap { max-width:760px; width:100%; text-align:center; }
+.ornament { color:#a08040; font-size:0.75rem; letter-spacing:3px; text-transform:uppercase; margin-bottom:10px; }
+h1 { font-family:'Cinzel Decorative',serif; color:#ffd700; font-size:2rem; margin-bottom:4px; filter:drop-shadow(0 0 20px rgba(255,215,0,0.3)); }
+.sub { color:#8090a0; font-size:0.78rem; letter-spacing:4px; text-transform:uppercase; margin-bottom:8px; }
+.tagline { color:#a0b8d0; font-size:0.88rem; margin-bottom:14px; }
+/* Toggle mensal/anual */
+.toggle-wrap { display:inline-flex; background:rgba(255,255,255,0.05); border:1px solid #2a4a7a; border-radius:30px; padding:4px; margin-bottom:36px; }
+.toggle-btn { padding:6px 20px; border-radius:24px; font-size:0.78rem; cursor:pointer; border:none; background:none; color:#708090; font-family:'Cinzel',serif; }
+.toggle-btn.active { background:#ffd700; color:#1a0e00; font-weight:700; }
+/* Feature comparison table style */
+.featured-card {
+  background:linear-gradient(160deg,#1a2a10,#0e1830,#1a1000);
+  border:2px solid #ffd700; border-radius:24px;
+  padding:36px 32px; margin-bottom:20px;
+  box-shadow:0 0 60px rgba(255,215,0,0.1);
+  position:relative;
+}
+.badge { position:absolute; top:-14px; left:50%; transform:translateX(-50%); background:linear-gradient(90deg,#b8860b,#ffd700); color:#1a0e00; font-family:'Cinzel',serif; font-size:0.68rem; font-weight:900; padding:4px 18px; border-radius:20px; white-space:nowrap; letter-spacing:1px; }
+.fc-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:24px; }
+.fc-title { text-align:left; }
+.fc-icon { font-size:2.8rem; margin-bottom:4px; }
+.fc-plan { font-family:'Cinzel',serif; color:#ffd700; font-size:1.1rem; letter-spacing:2px; }
+.fc-desc { color:#a0b8d0; font-size:0.8rem; margin-top:4px; }
+.fc-price { text-align:right; }
+.fc-amount { font-family:'Cinzel',serif; color:#ffd700; font-size:2.8rem; font-weight:900; line-height:1; }
+.fc-period { color:#708090; font-size:0.75rem; }
+.features-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:24px; text-align:left; }
+.feat { background:rgba(255,255,255,0.04); border:1px solid rgba(255,215,0,0.15); border-radius:10px; padding:10px 14px; display:flex; align-items:center; gap:10px; }
+.feat-icon { font-size:1.1rem; }
+.feat-text { color:#c8d8f0; font-size:0.8rem; }
+.btn-main { width:100%; padding:14px; border-radius:12px; font-family:'Cinzel',serif; font-size:0.9rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; cursor:pointer; border:none; background:linear-gradient(135deg,#b8860b,#ffd700); color:#1a0e00; margin-bottom:10px; }
+.btn-main:hover { opacity:0.9; }
+/* Other plans row */
+.other-plans { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:24px; }
+.mini-card { background:rgba(15,25,50,0.8); border:1px solid #2a4a7a; border-radius:16px; padding:20px 18px; text-align:left; cursor:pointer; transition:border-color 0.2s; }
+.mini-card:hover { border-color:#60a5fa; }
+.mini-header { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+.mini-icon { font-size:1.4rem; }
+.mini-plan { font-family:'Cinzel',serif; color:#c0d8f0; font-size:0.8rem; letter-spacing:1px; }
+.mini-price { font-family:'Cinzel',serif; color:#a0b8d0; font-size:1.3rem; font-weight:700; margin-bottom:4px; }
+.mini-desc { color:#506070; font-size:0.72rem; }
+.mini-btn { width:100%; padding:8px; border-radius:8px; font-size:0.75rem; font-weight:700; cursor:pointer; margin-top:12px; font-family:'Cinzel',serif; }
+.btn-free { background:rgba(96,165,250,0.1); color:#60a5fa; border:1px solid rgba(96,165,250,0.4); }
+.btn-monthly { background:rgba(168,85,247,0.12); color:#c084fc; border:1px solid rgba(168,85,247,0.35); }
+.login-link { color:#506070; font-size:0.8rem; cursor:pointer; background:none; border:none; text-decoration:underline; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="ornament">✦ Reino dos Néfrons ✦</div>
+  <h1>NefroQuest</h1>
+  <div class="sub">Ascension</div>
+  <p class="tagline">Domine a Nefrologia. Escolha seu plano.</p>
+  <div class="toggle-wrap">
+    <button class="toggle-btn">Mensal</button>
+    <button class="toggle-btn active">Vitalício ✦ Melhor valor</button>
+  </div>
+
+  <!-- Featured: Lifetime -->
+  <div class="featured-card">
+    <div class="badge">👑 MELHOR CUSTO-BENEFÍCIO</div>
+    <div class="fc-top">
+      <div class="fc-title">
+        <div class="fc-icon">👑</div>
+        <div class="fc-plan">Acesso Vitalício</div>
+        <div class="fc-desc">Pague uma vez. Jogue para sempre.</div>
+      </div>
+      <div class="fc-price">
+        <div class="fc-amount">R$89</div>
+        <div class="fc-period">pagamento único</div>
+      </div>
+    </div>
+    <div class="features-grid">
+      <div class="feat"><span class="feat-icon">♾️</span><span class="feat-text">Questões ilimitadas</span></div>
+      <div class="feat"><span class="feat-icon">🏆</span><span class="feat-text">Ranking global</span></div>
+      <div class="feat"><span class="feat-icon">🎭</span><span class="feat-text">Todos os personagens</span></div>
+      <div class="feat"><span class="feat-icon">🔄</span><span class="feat-text">Atualizações incluídas</span></div>
+      <div class="feat"><span class="feat-icon">⚔️</span><span class="feat-text">Boss final desbloqueado</span></div>
+      <div class="feat"><span class="feat-icon">💎</span><span class="feat-text">Conteúdo premium</span></div>
+    </div>
+    <button class="btn-main">✦ Desbloquear Acesso Total</button>
+  </div>
+
+  <!-- Other plans -->
+  <div class="other-plans">
+    <div class="mini-card">
+      <div class="mini-header"><span class="mini-icon">🎓</span><span class="mini-plan">GRATUITO</span></div>
+      <div class="mini-price">R$0</div>
+      <div class="mini-desc">50 questões para experimentar</div>
+      <button class="mini-btn btn-free">Começar Grátis</button>
+    </div>
+    <div class="mini-card">
+      <div class="mini-header"><span class="mini-icon">⚡</span><span class="mini-plan">MENSAL</span></div>
+      <div class="mini-price">R$9,90<span style="font-size:0.7rem;color:#708090">/mês</span></div>
+      <div class="mini-desc">Cancele quando quiser</div>
+      <button class="mini-btn btn-monthly">Assinar</button>
+    </div>
+  </div>
+  <button class="login-link">Já tenho conta — Entrar</button>
+</div>
+</body>
+</html>
