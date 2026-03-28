@@ -8294,7 +8294,7 @@
         const token = session.data.session?.access_token;
         if (!token) throw new Error('Sessão inválida');
 
-        const res = await fetch(`${SUPA_URL}/functions/v1/create-mp-preference`, {
+        const res = await fetch(`${SUPA_URL}/functions/v1/swift-function`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
