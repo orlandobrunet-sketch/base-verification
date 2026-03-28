@@ -452,10 +452,10 @@
       border: 1px solid rgba(99,102,241,0.25);
       border-left: 3px solid var(--ref-accent, #6366f1);
       border-radius: 8px;
-      padding: 9px 12px;
+      padding: 9px 12px 30px;
       text-decoration: none;
       display: block;
-      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+      transition: border-color 0.2s, background 0.2s;
       position: relative;
       overflow: hidden;
     }
@@ -537,18 +537,23 @@
     }
     .ref-impacto.green { color: #6ee7b7; }
     .ref-impacto.amber { color: #fcd34d; }
-    .ref-cta {
-      display: inline-flex;
+    .ref-copy-btn {
+      position: absolute;
+      bottom: 7px;
+      right: 10px;
+      background: none;
+      border: 1px solid rgba(99,102,241,0.35);
+      border-radius: 5px;
+      color: #8b9ccc;
+      font-size: 0.62rem;
+      padding: 2px 7px;
+      cursor: pointer;
+      display: flex;
       align-items: center;
       gap: 4px;
-      margin-top: 6px;
-      color: var(--ref-accent, #6366f1);
-      font-size: 0.69rem;
-      font-weight: 600;
-      opacity: 0.8;
-      transition: opacity 0.15s;
+      transition: border-color 0.15s, color 0.15s;
     }
-    .ref-card:hover .ref-cta { opacity: 1; }
+    .ref-copy-btn:hover { border-color: #6366f1; color: #a5b4fc; }
 
     /* CONTROL BUTTONS */
     .ctrl {
@@ -7774,14 +7779,13 @@
       const hasRCT = list.some(r => r.badge === 'RCT');
       const accentColor = hasRCT ? '#10b981' : '#6366f1';
 
-      const cardsHTML = list.map(ref => {
+      const cardsHTML = list.map((ref, i) => {
         const accent = ref.badgeColor || '#6366f1';
-        // Cor do impacto: verde para benefício, âmbar para neutro/negativo
         const impactoClass = (ref.impacto && (ref.impacto.includes('↓') || ref.impacto.includes('superior') || ref.impacto.includes('reduz'))) ? 'green' :
                              (ref.impacto && (ref.impacto.includes('não') || ref.impacto.includes('n\u00e3o'))) ? 'amber' : '';
+        const copyText = [ref.label, ref.journal, ref.ano].filter(Boolean).join('. ');
         return `
-          <a class="ref-card" href="${ref.url}" target="_blank" rel="noopener noreferrer"
-             style="--ref-accent:${accent}">
+          <div class="ref-card" style="--ref-accent:${accent}">
             <div class="ref-card-top">
               <span class="ref-icon">${ref.icon || '📄'}</span>
               <span class="ref-title">${ref.label}</span>
@@ -7793,14 +7797,30 @@
               ${ref.tipo ? `<span class="ref-tipo">${ref.tipo}</span>` : ''}
             </div>
             ${ref.impacto ? `<div class="ref-impacto ${impactoClass}">${ref.impacto}</div>` : ''}
-            <div class="ref-cta">Ver estudo completo →</div>
-          </a>`;
+            <button class="ref-copy-btn" onclick="_copyRef(this,'${copyText.replace(/'/g,"\\'")}')">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              copiar referência
+            </button>
+          </div>`;
       }).join('');
 
       ui.refs.innerHTML = `
         <div class="refs-header">Evidência Científica</div>
         <div class="ref-cards">${cardsHTML}</div>
       `;
+    }
+
+    function _copyRef(btn, text) {
+      navigator.clipboard.writeText(text).then(() => {
+        btn.innerHTML = '✓ copiado';
+        btn.style.color = '#6ee7b7';
+        btn.style.borderColor = 'rgba(110,231,183,0.4)';
+        setTimeout(() => {
+          btn.innerHTML = '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> copiar referência';
+          btn.style.color = '';
+          btn.style.borderColor = '';
+        }, 2000);
+      }).catch(() => {});
     }
 
     function renderQuestion(){
@@ -10532,7 +10552,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
       {
         id: 'arqui_nefromante_slayer',
         name: 'Campeão da Nefrologia',
-        description: 'Derrote o Arqui-Nefromante e vença o jogo.',
+        description: 'Derrote o Arqui-Nefromante e vença o jogo',
         icon: '🏆',
         imgIcon: 'assets/titulodecampeao.png',
         condition: (stats) => {
