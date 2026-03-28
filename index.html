@@ -7210,8 +7210,12 @@
           showUpdatePasswordModal();
           return;
         }
-        if (authUser) { _loadPremiumFromDB(); checkFirstTimeOnboarding(); }
-        else { localStorage.removeItem(PREMIUM_KEY); localStorage.removeItem(WHITELIST_KEY); }
+        if (authUser) {
+          _loadPremiumFromDB();
+          checkFirstTimeOnboarding();
+          // Se havia plano pendente (usuário clicou em pagar antes de fazer login)
+          _resumePendingPayment();
+        } else { localStorage.removeItem(PREMIUM_KEY); localStorage.removeItem(WHITELIST_KEY); }
         updateWelcomeUserBadge();
       });
 
@@ -8251,17 +8255,159 @@
       setTimeout(() => document.getElementById('promoBannerOverlay')?.remove(), 12000);
     }
 
+    // ── Mercado Pago checkout ──
+    let _pendingPaymentPlan = null; // plan pendente enquanto user faz login/cadastro
+
     function pricingChoose(tier) {
       closePricingModal();
       if (tier === 'free') {
-        openAuthModal();
-        switchAuthTab('cadastrar');
-      } else {
-        // TODO: integrar pagamento antes do cadastro
-        openAuthModal();
-        switchAuthTab('cadastrar');
-        _setAuthMsg('Crie sua conta e em seguida finalize o pagamento.', 'success');
+        if (!authUser) { openAuthModal(); switchAuthTab('cadastrar'); }
+        return;
       }
+      // Plano pago: requer login
+      if (!authUser) {
+        _pendingPaymentPlan = tier;
+        openAuthModal();
+        switchAuthTab('cadastrar');
+        _setAuthMsg('Crie sua conta para continuar para o pagamento.', 'success');
+        return;
+      }
+      _initPayment(tier);
+    }
+
+    function _resumePendingPayment() {
+      if (!_pendingPaymentPlan) return;
+      const plan = _pendingPaymentPlan;
+      _pendingPaymentPlan = null;
+      // Pequeno delay para fechar modal de auth antes de redirecionar
+      setTimeout(() => _initPayment(plan), 400);
+    }
+
+    async function _initPayment(plan) {
+      if (!authUser) { showPricingModal(); return; }
+
+      // Mostrar loading
+      const loadingEl = _showPaymentLoading(plan);
+
+      try {
+        const session = await _supaClient.auth.getSession();
+        const token = session.data.session?.access_token;
+        if (!token) throw new Error('Sessão inválida');
+
+        const res = await fetch(`${SUPA_URL}/functions/v1/create-mp-preference`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+            'apikey': SUPA_KEY,
+          },
+          body: JSON.stringify({ plan }),
+        });
+
+        const data = await res.json();
+
+        if (!res.ok || !data.checkout_url) {
+          throw new Error(data.error || 'Erro ao criar checkout');
+        }
+
+        loadingEl?.remove();
+        // Redirecionar para Mercado Pago
+        window.location.href = data.checkout_url;
+
+      } catch (err) {
+        loadingEl?.remove();
+        _showPaymentError(err.message || 'Erro ao iniciar pagamento. Tente novamente.');
+      }
+    }
+
+    function _showPaymentLoading(plan) {
+      const el = document.createElement('div');
+      el.id = 'paymentLoadingOverlay';
+      el.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:10000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;';
+      const label = plan === 'lifetime' ? 'Plano Vitalício' : 'Plano Mensal';
+      el.innerHTML = `
+        <div style="width:48px;height:48px;border:3px solid rgba(255,215,0,0.2);border-top-color:#ffd700;border-radius:50%;animation:spin 0.8s linear infinite;"></div>
+        <div style="font-family:'Cinzel',serif;color:#ffd700;font-size:0.9rem;letter-spacing:1px;">Preparando ${label}…</div>
+        <div style="color:#6080a0;font-size:0.78rem;">Você será redirecionado para o Mercado Pago</div>`;
+      document.body.appendChild(el);
+      return el;
+    }
+
+    function _showPaymentError(msg) {
+      const el = document.createElement('div');
+      el.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1a0a0a;border:1px solid rgba(220,50,50,0.5);color:#ff8080;padding:14px 24px;border-radius:10px;font-size:0.85rem;z-index:10001;max-width:340px;text-align:center;';
+      el.textContent = msg;
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 5000);
+    }
+
+    // Detecta retorno do Mercado Pago e exibe feedback
+    (function _checkPaymentReturn() {
+      const params = new URLSearchParams(window.location.search);
+      const status = params.get('payment');
+      const plan   = params.get('plan');
+      if (!status) return;
+
+      // Limpar params da URL sem recarregar
+      const clean = window.location.pathname;
+      window.history.replaceState({}, '', clean);
+
+      if (status === 'approved') {
+        _showPaymentSuccess(plan);
+      } else if (status === 'pending') {
+        _showPaymentPending();
+      }
+      // failed: não mostra nada, usuário já viu a tela do MP
+    })();
+
+    function _showPaymentSuccess(plan) {
+      const el = document.createElement('div');
+      el.id = 'paymentSuccessOverlay';
+      el.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:10000;display:flex;align-items:center;justify-content:center;padding:32px 16px;';
+      const label = plan === 'lifetime' ? 'Vitalício' : 'Mensal';
+      el.innerHTML = `
+        <div style="text-align:center;max-width:420px;">
+          <div style="font-size:3rem;margin-bottom:16px;">👑</div>
+          <h2 style="font-family:'Cinzel Decorative',serif;color:#ffd700;font-size:1.6rem;margin-bottom:8px;">Pagamento Confirmado!</h2>
+          <p style="color:#a0c8e0;font-size:0.9rem;line-height:1.6;margin-bottom:24px;">
+            Bem-vindo ao Plano ${label}!<br>
+            Seu acesso a <strong style="color:#ffd700">1.000+ questões</strong> foi ativado.<br>
+            Aguarde alguns instantes enquanto sincronizamos seu acesso.
+          </p>
+          <button onclick="document.getElementById('paymentSuccessOverlay')?.remove();_pollPremiumActivation();"
+            style="background:linear-gradient(135deg,#b8860b,#ffd700);color:#1a0e00;border:none;padding:14px 32px;border-radius:10px;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:700;letter-spacing:1px;cursor:pointer;">
+            ⚔ Começar Jornada Premium
+          </button>
+        </div>`;
+      document.body.appendChild(el);
+      // Inicia polling automaticamente após 2s
+      setTimeout(_pollPremiumActivation, 2000);
+    }
+
+    function _showPaymentPending() {
+      const el = document.createElement('div');
+      el.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0d1a2e;border:1px solid rgba(255,200,0,0.4);color:#ffd060;padding:16px 24px;border-radius:10px;font-size:0.85rem;z-index:10001;max-width:360px;text-align:center;line-height:1.5;';
+      el.innerHTML = '⏳ <strong>Pagamento em processamento.</strong><br>Assim que aprovado seu acesso será ativado automaticamente.';
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 8000);
+    }
+
+    let _premiumPollCount = 0;
+    async function _pollPremiumActivation() {
+      if (!authUser || !_supaClient) return;
+      if (_premiumPollCount++ > 10) return; // máx 10 tentativas
+      const { data: profile } = await _supaClient
+        .from('profiles')
+        .select('is_premium')
+        .eq('id', authUser.id)
+        .single();
+      if (profile?.is_premium) {
+        localStorage.setItem(PREMIUM_KEY, '1');
+        document.getElementById('paymentSuccessOverlay')?.remove();
+        updateWelcomeUserBadge();
+        return;
+      }
+      setTimeout(_pollPremiumActivation, 3000);
     }
 
     // ============ ACCOUNT MODAL ============
