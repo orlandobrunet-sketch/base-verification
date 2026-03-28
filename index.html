@@ -4932,12 +4932,40 @@
           <label>Senha</label>
           <input type="password" id="authPassword" placeholder="••••••••" onkeypress="authKeyPress(event)" />
         </div>
+        <div style="text-align:right;margin:-4px 0 10px;">
+          <button onclick="showForgotPassword()" style="background:none;border:none;color:#708090;font-size:0.78rem;cursor:pointer;text-decoration:underline;padding:0;">Esqueci minha senha</button>
+        </div>
         <button class="auth-submit-btn" id="authLoginBtn" onclick="authEmailLogin()">Entrar na Jornada</button>
+      </div>
+      <div id="authFormForgot" style="display:none;">
+        <p style="color:#a0b8d0;font-size:0.85rem;margin-bottom:14px;line-height:1.6;">Digite seu email e enviaremos um link para redefinir sua senha.</p>
+        <div class="auth-field">
+          <label>Email</label>
+          <input type="email" id="authForgotEmail" placeholder="seu@email.com" />
+        </div>
+        <button class="auth-submit-btn" id="authForgotBtn" onclick="authForgotPassword()">Enviar Link de Redefinição</button>
+        <div style="text-align:center;margin-top:10px;">
+          <button onclick="switchAuthTab('entrar')" style="background:none;border:none;color:#708090;font-size:0.8rem;cursor:pointer;">← Voltar ao login</button>
+        </div>
       </div>
       <div id="authFormCadastrar" style="display:none;">
         <div class="auth-field">
           <label>Nome de Aventureiro</label>
           <input type="text" id="authDisplayName" placeholder="Dr. Nephros" maxlength="30" />
+        </div>
+        <div class="auth-field">
+          <label>Especialidade</label>
+          <select id="authSpecialty" style="width:100%;background:rgba(255,255,255,0.06);border:1px solid #2a4a7a;border-radius:8px;padding:10px 12px;color:#e0f0ff;font-size:0.88rem;outline:none;">
+            <option value="">Selecione sua área...</option>
+            <option value="Nefrologia">Nefrologia</option>
+            <option value="Clínica Médica">Clínica Médica</option>
+            <option value="Medicina Interna">Medicina Interna</option>
+            <option value="Residência Médica">Residência Médica</option>
+            <option value="Estudante de Medicina">Estudante de Medicina</option>
+            <option value="Enfermagem">Enfermagem</option>
+            <option value="Farmácia">Farmácia</option>
+            <option value="Outro">Outro</option>
+          </select>
         </div>
         <div class="auth-field">
           <label>Email</label>
@@ -4949,7 +4977,6 @@
         </div>
         <button class="auth-submit-btn" id="authRegBtn" onclick="authEmailRegister()">Criar Conta</button>
       </div>
-      <div class="auth-guest-link" onclick="closeAuthModal()">Continuar como convidado →</div>
     </div>
   </div>
 
@@ -7148,7 +7175,27 @@
       document.getElementById('tabCadastrar').classList.toggle('active', !isEntrar);
       document.getElementById('authFormEntrar').style.display = isEntrar ? 'block' : 'none';
       document.getElementById('authFormCadastrar').style.display = isEntrar ? 'none' : 'block';
+      document.getElementById('authFormForgot').style.display = 'none';
       _setAuthMsg('', '');
+    }
+    function showForgotPassword() {
+      document.getElementById('authFormEntrar').style.display = 'none';
+      document.getElementById('authFormCadastrar').style.display = 'none';
+      document.getElementById('authFormForgot').style.display = 'block';
+      _setAuthMsg('', '');
+    }
+    async function authForgotPassword() {
+      if (!_supaClient) return;
+      const email = document.getElementById('authForgotEmail').value.trim();
+      if (!email) { _setAuthMsg('Digite seu email.', 'error'); return; }
+      const btn = document.getElementById('authForgotBtn');
+      btn.disabled = true; btn.textContent = 'Enviando...';
+      const { error } = await _supaClient.auth.resetPasswordForEmail(email, {
+        redirectTo: 'https://nefroquest.com'
+      });
+      btn.disabled = false; btn.textContent = 'Enviar Link de Redefinição';
+      if (error) { _setAuthMsg(error.message, 'error'); }
+      else { _setAuthMsg('Link enviado! Verifique seu email.', 'success'); }
     }
     function authKeyPress(e) {
       if (e.key !== 'Enter') return;
@@ -7190,6 +7237,7 @@
     async function authEmailRegister() {
       if (!_supaClient) return;
       const name = document.getElementById('authDisplayName').value.trim();
+      const specialty = document.getElementById('authSpecialty').value;
       const email = document.getElementById('authEmailReg').value.trim();
       const password = document.getElementById('authPasswordReg').value;
       if (!name || !email || !password) { _setAuthMsg('Preencha todos os campos.', 'error'); return; }
@@ -7198,7 +7246,7 @@
       btn.disabled = true; btn.textContent = 'Criando conta...';
       const { error } = await _supaClient.auth.signUp({
         email, password,
-        options: { data: { full_name: name } }
+        options: { data: { full_name: name, specialty } }
       });
       btn.disabled = false; btn.textContent = 'Criar Conta';
       if (error) { _setAuthMsg(error.message, 'error'); }
