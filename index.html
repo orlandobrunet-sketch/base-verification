@@ -1501,71 +1501,114 @@
     }
     #pricingModal.show { display: flex; }
     .pricing-wrap {
-      max-width: 520px; width: 100%; text-align: center;
+      max-width: 880px; width: 100%; text-align: center;
       animation: scaleIn 0.35s ease-out;
     }
+    .pricing-ornament { color: #a08040; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
     .pricing-wrap h2 {
-      color: #ffd700; font-family: 'Cinzel', serif;
-      font-size: 1.2rem; margin-bottom: 6px; letter-spacing: 1px;
+      color: #ffd700; font-family: 'Cinzel Decorative', 'Cinzel', serif;
+      font-size: clamp(1.4rem, 4vw, 2rem); margin-bottom: 2px; letter-spacing: 1px;
     }
+    .pricing-sub-title { color: #6080a0; font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 8px; }
     .pricing-wrap > p {
-      color: #a0b8d0; font-size: 0.85rem; margin-bottom: 22px;
+      color: #a0b8d0; font-size: 0.88rem; margin-bottom: 18px;
     }
+    .pricing-stats-row {
+      display: flex; justify-content: center; gap: 24px;
+      margin-bottom: 24px; flex-wrap: wrap;
+    }
+    .pricing-stat-pill {
+      background: rgba(255,215,0,0.07); border: 1px solid rgba(255,215,0,0.2);
+      border-radius: 20px; padding: 6px 16px; font-size: 0.78rem; color: #d4af60;
+    }
+    .pricing-stat-pill strong { color: #ffd700; }
     .pricing-cards {
       display: grid; grid-template-columns: 1fr 1fr 1fr;
-      gap: 12px; margin-bottom: 20px;
+      gap: 16px; margin-bottom: 20px;
     }
-    @media (max-width: 480px) { .pricing-cards { grid-template-columns: 1fr; } }
+    @media (max-width: 640px) { .pricing-cards { grid-template-columns: 1fr; } }
     .pricing-card {
-      background: rgba(15,25,50,0.95);
-      border: 2px solid #2a4a7a; border-radius: 16px;
-      padding: 20px 16px; cursor: pointer;
-      transition: border-color 0.25s, box-shadow 0.25s;
+      background: linear-gradient(160deg,#0f1e30,#0b1428);
+      border: 1px solid #2a4a7a; border-radius: 20px;
+      padding: 26px 20px 20px; cursor: pointer;
+      transition: transform 0.2s, border-color 0.25s, box-shadow 0.25s;
       position: relative; text-align: center;
     }
-    .pricing-card:hover { border-color: #60a5fa; box-shadow: 0 0 20px rgba(96,165,250,0.15); }
+    .pricing-card:hover { transform: translateY(-3px); }
+    .pricing-card:hover { border-color: #60a5fa; box-shadow: 0 0 20px rgba(96,165,250,0.12); }
     .pricing-card.featured {
       border-color: #ffd700;
-      box-shadow: 0 0 24px rgba(255,215,0,0.15);
+      box-shadow: 0 0 32px rgba(255,215,0,0.14);
     }
-    .pricing-card.featured:hover { box-shadow: 0 0 32px rgba(255,215,0,0.25); }
+    .pricing-card.featured:hover { box-shadow: 0 0 44px rgba(255,215,0,0.22); }
     .pricing-badge {
-      position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
       background: #ffd700; color: #1a0e00;
-      font-size: 0.65rem; font-weight: 700; padding: 2px 10px;
-      border-radius: 20px; white-space: nowrap; font-family: 'Cinzel', serif;
+      font-size: 0.62rem; font-weight: 900; padding: 3px 14px;
+      border-radius: 20px; white-space: nowrap; font-family: 'Cinzel', serif; letter-spacing: 1px;
     }
-    .pricing-icon { font-size: 1.8rem; margin-bottom: 8px; }
+    .pricing-icon { font-size: 2.2rem; margin-bottom: 12px; }
     .pricing-card h3 {
       color: #e0f0ff; font-family: 'Cinzel', serif;
-      font-size: 0.82rem; letter-spacing: 1px; margin-bottom: 8px;
+      font-size: 0.82rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px;
     }
     .pricing-amount {
-      color: #ffd700; font-size: 1.4rem;
-      font-family: 'Cinzel', serif; font-weight: 700;
-      margin-bottom: 4px;
+      color: #ffd700; font-size: clamp(1.6rem, 5vw, 2.1rem);
+      font-family: 'Cinzel', serif; font-weight: 900; line-height: 1;
+      margin-bottom: 3px;
     }
-    .pricing-period { color: #708090; font-size: 0.72rem; margin-bottom: 10px; }
-    .pricing-features { list-style: none; padding: 0; margin: 0; text-align: left; }
+    .pricing-period { color: #708090; font-size: 0.72rem; margin-bottom: 14px; }
+    .pricing-divider { border: none; border-top: 1px solid rgba(42,74,122,0.4); margin-bottom: 14px; }
+    .pricing-features { list-style: none; padding: 0; margin: 0 0 16px; text-align: left; display: flex; flex-direction: column; gap: 6px; }
     .pricing-features li {
-      color: #a0c0e0; font-size: 0.75rem; padding: 3px 0;
+      color: #a0c0e0; font-size: 0.78rem; display: flex; align-items: flex-start; gap: 7px;
     }
-    .pricing-features li::before { content: '✓ '; color: #4ade80; }
+    .pricing-features li::before { content: '✓'; color: #4ade80; font-weight: 700; flex-shrink: 0; }
+    .pricing-features li.pf-no { color: #506070; }
+    .pricing-features li.pf-no::before { content: '✕'; color: #506070; }
     .pricing-choose-btn {
-      margin-top: 14px; width: 100%; padding: 9px;
-      border-radius: 8px; font-size: 0.82rem; font-weight: 700;
+      width: 100%; padding: 11px;
+      border-radius: 10px; font-size: 0.8rem; font-weight: 700;
       cursor: pointer; transition: opacity 0.2s;
-      font-family: 'Cinzel', serif; text-transform: uppercase;
+      font-family: 'Cinzel', serif; text-transform: uppercase; letter-spacing: 1px;
     }
     .pricing-choose-btn:hover { opacity: 0.85; }
-    .btn-free { background: rgba(96,165,250,0.15); color: #60a5fa; border: 2px solid #60a5fa; }
-    .btn-monthly { background: rgba(168,85,247,0.2); color: #c084fc; border: 2px solid #c084fc; }
-    .btn-lifetime { background: linear-gradient(135deg,#b8860b,#ffd700); color: #1a0e00; border: none; }
+    .btn-free { background: rgba(96,165,250,0.1); color: #60a5fa; border: 2px solid rgba(96,165,250,0.45) !important; }
+    .btn-monthly { background: rgba(168,85,247,0.15); color: #c084fc; border: 2px solid rgba(168,85,247,0.4) !important; }
+    .btn-lifetime { background: linear-gradient(135deg,#b8860b,#ffd700); color: #1a0e00; border: none !important; }
     .pricing-login-link {
-      color: #708090; font-size: 0.8rem; cursor: pointer;
+      color: #506070; font-size: 0.8rem; cursor: pointer;
       text-decoration: underline; background: none; border: none;
     }
     .pricing-login-link:hover { color: #90b4e0; }
+    .pricing-close-btn {
+      position: absolute; top: 14px; right: 18px;
+      background: none; border: none; color: #4a6088;
+      font-size: 1.4rem; cursor: pointer; line-height: 1;
+    }
+    .pricing-close-btn:hover { color: #90b4e0; }
+    /* Banner promocional a cada 10 questões */
+    .promo-banner-overlay {
+      position: fixed; inset: 0; z-index: 9995;
+      display: flex; align-items: flex-end; justify-content: center;
+      padding: 0 16px 24px; pointer-events: none;
+    }
+    .promo-banner {
+      background: linear-gradient(135deg,#0f1e30,#0b1428);
+      border: 1px solid rgba(255,215,0,0.4); border-radius: 16px;
+      padding: 16px 20px; max-width: 520px; width: 100%;
+      display: flex; align-items: center; gap: 14px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.8), 0 0 20px rgba(255,215,0,0.08);
+      animation: slideUpBanner 0.4s ease-out; pointer-events: all;
+    }
+    @keyframes slideUpBanner { from{transform:translateY(40px);opacity:0} to{transform:translateY(0);opacity:1} }
+    .promo-banner-icon { font-size: 2rem; flex-shrink: 0; }
+    .promo-banner-body { flex: 1; text-align: left; }
+    .promo-banner-title { color: #ffd700; font-family: 'Cinzel',serif; font-size: 0.85rem; font-weight: 700; margin-bottom: 3px; }
+    .promo-banner-text { color: #8090b0; font-size: 0.74rem; line-height: 1.4; }
+    .promo-banner-cta { background: linear-gradient(135deg,#b8860b,#ffd700); color: #1a0e00; border: none; border-radius: 8px; padding: 8px 14px; font-family: 'Cinzel',serif; font-size: 0.72rem; font-weight: 700; cursor: pointer; white-space: nowrap; flex-shrink: 0; letter-spacing: 0.5px; }
+    .promo-banner-close { background: none; border: none; color: #4a6088; font-size: 1.1rem; cursor: pointer; padding: 0 0 0 8px; flex-shrink: 0; }
+    .promo-banner-close:hover { color: #90b4e0; }
 
     /* ACCOUNT MODAL */
     #accountModal, #planModal, #adminModal {
@@ -8048,66 +8091,121 @@
 
     // ============ PRICING MODAL ============
     function showPricingModal() {
-      let modal = document.getElementById('pricingModal');
-      if (!modal) {
-        modal = document.createElement('div');
-        modal.id = 'pricingModal';
-        const curr = _lang === 'pt' ? 'BRL' : 'USD';
-        modal.innerHTML = `
-          <div class="pricing-wrap">
-            <h2>Escolha seu Plano</h2>
-            <p>Comece gratuitamente e desbloqueie o acesso completo quando quiser.</p>
-            <div class="pricing-cards">
-              <div class="pricing-card">
-                <div class="pricing-icon">🎓</div>
-                <h3>Gratuito</h3>
-                <div class="pricing-amount">R$0</div>
-                <div class="pricing-period">para sempre</div>
-                <ul class="pricing-features">
-                  <li>${FREE_QUESTIONS_LIMIT} questões</li>
-                  <li>Todos os personagens</li>
-                  <li>Ranking global</li>
-                </ul>
-                <button class="pricing-choose-btn btn-free" onclick="pricingChoose('free')">Começar Grátis</button>
-              </div>
-              <div class="pricing-card featured">
-                <div class="pricing-badge">POPULAR</div>
-                <div class="pricing-icon">⚡</div>
-                <h3>Mensal</h3>
-                <div class="pricing-amount">${PRICE_MONTHLY}</div>
-                <div class="pricing-period">por mês · cancele quando quiser</div>
-                <ul class="pricing-features">
-                  <li>Questões ilimitadas</li>
-                  <li>Conteúdo premium</li>
-                  <li>Suporte prioritário</li>
-                </ul>
-                <button class="pricing-choose-btn btn-monthly" onclick="pricingChoose('monthly')">Assinar Agora</button>
-              </div>
-              <div class="pricing-card">
-                <div class="pricing-icon">👑</div>
-                <h3>Vitalício</h3>
-                <div class="pricing-amount">${PRICE_LIFETIME}</div>
-                <div class="pricing-period">pagamento único · forever</div>
-                <ul class="pricing-features">
-                  <li>Tudo do mensal</li>
-                  <li>Atualizações vitalícias</li>
-                  <li>Melhor custo-benefício</li>
-                </ul>
-                <button class="pricing-choose-btn btn-lifetime" onclick="pricingChoose('lifetime')">Compra Única</button>
-              </div>
-            </div>
-            <button class="pricing-login-link" onclick="closePricingModal();openAuthModal();switchAuthTab('entrar')">Já tenho conta — Entrar</button>
+      document.getElementById('pricingModal')?.remove();
+      const modal = document.createElement('div');
+      modal.id = 'pricingModal';
+      modal.style.cssText = 'display:flex;position:fixed;inset:0;background:rgba(0,0,0,0.94);z-index:9998;align-items:center;justify-content:center;backdrop-filter:blur(10px);padding:24px 16px;overflow-y:auto;';
+      const isPt = _lang === 'pt';
+      const tagline = isPt
+        ? 'Domine a Nefrologia com o método que funciona — questões clínicas reais, RPG e ciência de ponta.'
+        : 'Master Nephrology with a method that works — real clinical questions, RPG & cutting-edge science.';
+      modal.innerHTML = `
+        <div class="pricing-wrap" style="position:relative;">
+          <button class="pricing-close-btn" onclick="closePricingModal()">✕</button>
+          <div class="pricing-ornament">✦ Reino dos Néfrons ✦</div>
+          <h2>NefroQuest</h2>
+          <div class="pricing-sub-title">Ascension</div>
+          <p>${tagline}</p>
+          <div class="pricing-stats-row">
+            <div class="pricing-stat-pill">🧠 <strong>1.000+</strong> questões de nefrologia</div>
+            <div class="pricing-stat-pill">🔄 Atualizado <strong>constantemente</strong></div>
+            <div class="pricing-stat-pill">🏥 Foco em <strong>residência &amp; título</strong></div>
           </div>
-        `;
-        document.body.appendChild(modal);
-      }
-      modal.className = 'show';
-      modal.style.cssText = 'display:flex;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9998;align-items:center;justify-content:center;backdrop-filter:blur(10px);padding:16px;overflow-y:auto;';
+          <div class="pricing-cards">
+            <div class="pricing-card">
+              <div class="pricing-icon">🎓</div>
+              <h3>Gratuito</h3>
+              <div class="pricing-amount">${isPt ? 'R$0' : 'US$0'}</div>
+              <div class="pricing-period">${isPt ? 'para sempre' : 'forever'}</div>
+              <hr class="pricing-divider">
+              <ul class="pricing-features">
+                <li>${FREE_QUESTIONS_LIMIT} questões de nefrologia</li>
+                <li>Todos os personagens</li>
+                <li>Ranking global</li>
+                <li class="pf-no">Modo de Estudo por tema</li>
+                <li class="pf-no">1.000+ questões completas</li>
+                <li class="pf-no">Atualizações e novos conteúdos</li>
+              </ul>
+              <button class="pricing-choose-btn btn-free" onclick="pricingChoose('free')">${isPt ? 'Começar Grátis' : 'Start Free'}</button>
+            </div>
+            <div class="pricing-card featured">
+              <div class="pricing-badge">⭐ ${isPt ? 'MAIS POPULAR' : 'MOST POPULAR'}</div>
+              <div class="pricing-icon">⚡</div>
+              <h3>${isPt ? 'Mensal' : 'Monthly'}</h3>
+              <div class="pricing-amount">${PRICE_MONTHLY}</div>
+              <div class="pricing-period">${isPt ? 'por mês · cancele quando quiser' : 'per month · cancel anytime'}</div>
+              <hr class="pricing-divider">
+              <ul class="pricing-features">
+                <li>1.000+ questões de nefrologia</li>
+                <li>Modo de Estudo por tema</li>
+                <li>Jornada RPG completa</li>
+                <li>Ranking global</li>
+                <li>Novos conteúdos todo mês</li>
+                <li>Apoia o desenvolvimento da ferramenta</li>
+              </ul>
+              <button class="pricing-choose-btn btn-monthly" onclick="pricingChoose('monthly')">${isPt ? 'Assinar Agora' : 'Subscribe Now'}</button>
+            </div>
+            <div class="pricing-card">
+              <div class="pricing-icon">👑</div>
+              <h3>${isPt ? 'Vitalício' : 'Lifetime'}</h3>
+              <div class="pricing-amount">${PRICE_LIFETIME}</div>
+              <div class="pricing-period">${isPt ? 'pagamento único · acesso forever' : 'one-time payment · access forever'}</div>
+              <hr class="pricing-divider">
+              <ul class="pricing-features">
+                <li>Tudo do plano Mensal</li>
+                <li>Todas as futuras atualizações</li>
+                <li>Melhor custo-benefício</li>
+                <li>Acesso vitalício garantido</li>
+                <li>Maior contribuição ao projeto</li>
+                <li>Formação de nefrologistas para sempre</li>
+              </ul>
+              <button class="pricing-choose-btn btn-lifetime" onclick="pricingChoose('lifetime')">${isPt ? 'Compra Única' : 'Buy Once'}</button>
+            </div>
+          </div>
+          <button class="pricing-login-link" onclick="closePricingModal();openAuthModal();switchAuthTab('entrar')">${isPt ? 'Já tenho conta — Entrar' : 'I have an account — Sign in'}</button>
+        </div>`;
+      document.body.appendChild(modal);
     }
     function closePricingModal() {
-      const m = document.getElementById('pricingModal');
-      if (m) m.style.display = 'none';
+      document.getElementById('pricingModal')?.remove();
     }
+
+    // ── Banner promocional a cada 10 questões (free) ──
+    let _lastPromoBannerAt = 0;
+    function _checkPromoBanner() {
+      if (isPremium()) return;
+      const total = getGameStats().questionsAnsweredAllTime || 0;
+      if (total < 10) return;
+      if (total >= FREE_QUESTIONS_LIMIT) return; // paywall já cuida disso
+      if (total % 10 !== 0) return;
+      if (total === _lastPromoBannerAt) return;
+      _lastPromoBannerAt = total;
+      _showPromoBanner(total);
+    }
+    function _showPromoBanner(count) {
+      document.getElementById('promoBannerOverlay')?.remove();
+      const remaining = FREE_QUESTIONS_LIMIT - count;
+      const overlay = document.createElement('div');
+      overlay.id = 'promoBannerOverlay';
+      overlay.className = 'promo-banner-overlay';
+      overlay.innerHTML = `
+        <div class="promo-banner">
+          <div class="promo-banner-icon">🧠</div>
+          <div class="promo-banner-body">
+            <div class="promo-banner-title">Você está dominando a Nefrologia!</div>
+            <div class="promo-banner-text">
+              Restam <strong style="color:#ffd700">${remaining} questões</strong> gratuitas.
+              Desbloqueie <strong style="color:#c8d8f0">1.000+ questões</strong>, modo de estudo por tema
+              e atualizações constantes — por menos de um café por mês.
+            </div>
+          </div>
+          <button class="promo-banner-cta" onclick="document.getElementById('promoBannerOverlay')?.remove();showPricingModal()">Ver Planos</button>
+          <button class="promo-banner-close" onclick="document.getElementById('promoBannerOverlay')?.remove()">✕</button>
+        </div>`;
+      document.body.appendChild(overlay);
+      setTimeout(() => document.getElementById('promoBannerOverlay')?.remove(), 12000);
+    }
+
     function pricingChoose(tier) {
       closePricingModal();
       if (tier === 'free') {
@@ -8382,6 +8480,7 @@
       }
 
       _incrementQuestionsAnswered();
+      _checkPromoBanner();
       renderHUD();
       updateBadges();
       if(state.lives<=0) {
