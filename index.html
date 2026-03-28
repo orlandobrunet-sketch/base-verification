@@ -5043,13 +5043,13 @@
         </div>
         <div class="auth-field">
           <label>Especialidade</label>
-          <select id="authSpecialty" style="width:100%;background:rgba(255,255,255,0.06);border:1px solid #2a4a7a;border-radius:8px;padding:10px 12px;color:#e0f0ff;font-size:0.88rem;outline:none;">
-            <option value="">Selecione sua área...</option>
-            <option value="Nefrologia">Nefrologia</option>
-            <option value="Clínica Médica">Clínica Médica</option>
-            <option value="Medicina Interna">Medicina Interna</option>
-            <option value="Estudante de Medicina">Estudante de Medicina</option>
-            <option value="Outro">Outro</option>
+          <select id="authSpecialty" style="width:100%;background:#0f1a2e;border:1px solid #2a4a7a;border-radius:8px;padding:10px 12px;color:#e0f0ff;font-size:0.88rem;outline:none;cursor:pointer;">
+            <option value="" style="background:#0f1a2e;color:#6080a0;">Selecione sua área...</option>
+            <option value="Nefrologia" style="background:#0f1a2e;color:#e0f0ff;">Nefrologia</option>
+            <option value="Clínica Médica" style="background:#0f1a2e;color:#e0f0ff;">Clínica Médica</option>
+            <option value="Medicina Interna" style="background:#0f1a2e;color:#e0f0ff;">Medicina Interna</option>
+            <option value="Estudante de Medicina" style="background:#0f1a2e;color:#e0f0ff;">Estudante de Medicina</option>
+            <option value="Outro" style="background:#0f1a2e;color:#e0f0ff;">Outro</option>
           </select>
         </div>
         <div class="auth-field">
@@ -8202,6 +8202,11 @@
     }
     function closePricingModal() {
       document.getElementById('pricingModal')?.remove();
+      // Se não autenticado, volta para a landing — sem opção de jogar sem conta
+      if (!authUser) {
+        document.getElementById('welcomeScreen')?.classList.add('hidden');
+        document.getElementById('landingScreen')?.classList.remove('hidden');
+      }
     }
 
     // ── Banner promocional a cada 10 questões (free) ──
