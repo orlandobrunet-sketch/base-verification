@@ -16,6 +16,23 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#0a0e1a">
+  <!-- SEO & Open Graph -->
+  <meta name="description" content="Domine a Nefrologia através de um RPG épico de perguntas. Suba de nível, colete equipamentos e derrote o Arqui-Nefromante!">
+  <meta name="keywords" content="nefrologia, questões, medicina, RPG, educação médica, rim, diálise, nefrologia quiz">
+  <meta name="author" content="NefroQuest">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nefroquest.com">
+  <meta property="og:title" content="NefroQuest: Ascension — Domine a Nefrologia">
+  <meta property="og:description" content="Aprenda nefrologia jogando um RPG épico. +878 questões, personagens únicos e ranking global.">
+  <meta property="og:image" content="https://nefroquest.com/assets/images/favicon-512x512.png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="NefroQuest">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="NefroQuest: Ascension">
+  <meta name="twitter:description" content="Aprenda nefrologia jogando um RPG épico. +878 questões.">
+  <meta name="twitter:image" content="https://nefroquest.com/assets/images/favicon-512x512.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=Philosopher:wght@400;700&family=MedievalSharp&display=block" rel="stylesheet">
@@ -7114,8 +7131,12 @@
 
       _supaClient.auth.onAuthStateChange((event, session) => {
         authUser = session?.user ?? null;
-        if (authUser) _loadPremiumFromDB();
-        else localStorage.removeItem(PREMIUM_KEY);
+        if (event === 'PASSWORD_RECOVERY') {
+          showUpdatePasswordModal();
+          return;
+        }
+        if (authUser) { _loadPremiumFromDB(); checkFirstTimeOnboarding(); }
+        else { localStorage.removeItem(PREMIUM_KEY); localStorage.removeItem(WHITELIST_KEY); }
         updateWelcomeUserBadge();
       });
 
@@ -7260,6 +7281,89 @@
       document.getElementById('welcomeScreen').classList.add('hidden');
       document.getElementById('landingScreen').classList.remove('hidden');
       document.getElementById('mainApp')?.classList.add('hidden');
+    }
+
+    // ===== REDEFINIÇÃO DE SENHA =====
+    function showUpdatePasswordModal() {
+      let modal = document.getElementById('updatePasswordModal');
+      if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'updatePasswordModal';
+        modal.style.cssText = 'display:flex;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:10000;align-items:center;justify-content:center;backdrop-filter:blur(10px);padding:16px;';
+        modal.innerHTML = `
+          <div class="modal-panel" style="max-width:400px">
+            <h2>🔑 Nova Senha</h2>
+            <p style="color:#a0b8d0;font-size:0.85rem;margin-bottom:16px;text-align:center;line-height:1.6">Digite sua nova senha para retomar a jornada.</p>
+            <div class="form-group">
+              <label>Nova Senha</label>
+              <input id="newPassword" type="password" placeholder="mín. 6 caracteres">
+            </div>
+            <div class="form-group">
+              <label>Confirmar Senha</label>
+              <input id="newPasswordConfirm" type="password" placeholder="repita a senha">
+            </div>
+            <div id="updatePwMsg" style="display:none;margin-bottom:12px;font-size:0.83rem;border-radius:6px;padding:8px 12px;"></div>
+            <div class="modal-actions">
+              <button onclick="saveNewPassword()" style="background:linear-gradient(135deg,#c8960b,#ffd700);color:#1a0e00;border:none;font-weight:700;font-family:'Cinzel',serif;">Salvar Nova Senha</button>
+            </div>
+          </div>
+        `;
+        document.body.appendChild(modal);
+      } else { modal.style.display = 'flex'; }
+    }
+    async function saveNewPassword() {
+      const pwd = document.getElementById('newPassword').value;
+      const confirm = document.getElementById('newPasswordConfirm').value;
+      const msg = document.getElementById('updatePwMsg');
+      const showMsg = (text, ok) => {
+        msg.style.display = 'block';
+        msg.style.background = ok ? 'rgba(74,222,128,0.15)' : 'rgba(251,113,133,0.15)';
+        msg.style.color = ok ? '#4ade80' : '#fb7185';
+        msg.textContent = text;
+      };
+      if (pwd.length < 6) { showMsg('Senha deve ter pelo menos 6 caracteres.', false); return; }
+      if (pwd !== confirm) { showMsg('As senhas não coincidem.', false); return; }
+      const { error } = await _supaClient.auth.updateUser({ password: pwd });
+      if (error) { showMsg(error.message, false); }
+      else {
+        showMsg('Senha atualizada com sucesso!', true);
+        setTimeout(() => { document.getElementById('updatePasswordModal').style.display = 'none'; }, 1500);
+      }
+    }
+
+    // ===== ONBOARDING =====
+    const ONBOARDED_KEY = 'nefroquest-onboarded';
+    function checkFirstTimeOnboarding() {
+      if (localStorage.getItem(ONBOARDED_KEY) || !authUser) return;
+      localStorage.setItem(ONBOARDED_KEY, '1');
+      setTimeout(showOnboardingModal, 900);
+    }
+    function showOnboardingModal() {
+      const modal = document.createElement('div');
+      modal.id = 'onboardingModal';
+      modal.style.cssText = 'display:flex;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9997;align-items:center;justify-content:center;backdrop-filter:blur(8px);padding:16px;';
+      modal.innerHTML = `
+        <div class="modal-panel" style="max-width:460px;text-align:center;animation:scaleIn 0.35s ease-out">
+          <div style="font-size:2.5rem;margin-bottom:12px">⚔️</div>
+          <h2>Bem-vindo(a) ao NefroQuest!</h2>
+          <div style="text-align:left;margin:18px 0;display:flex;flex-direction:column;gap:10px;">
+            <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(42,74,122,0.5);border-radius:10px;padding:12px 14px;">
+              <span style="color:#ffd700;font-weight:700">🎓 Como funciona</span>
+              <p style="color:#a0b8d0;font-size:0.82rem;margin:4px 0 0;line-height:1.5">Responda questões de nefrologia para ganhar XP, ouro e subir de nível. Derrote o Arqui-Nefromante no nível 15!</p>
+            </div>
+            <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(42,74,122,0.5);border-radius:10px;padding:12px 14px;">
+              <span style="color:#60a5fa;font-weight:700">🎁 Plano Gratuito</span>
+              <p style="color:#a0b8d0;font-size:0.82rem;margin:4px 0 0;line-height:1.5">Você tem <strong style="color:#ffd700">${FREE_QUESTIONS_LIMIT} questões gratuitas</strong> para explorar. Faça upgrade para acesso ilimitado.</p>
+            </div>
+            <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(42,74,122,0.5);border-radius:10px;padding:12px 14px;">
+              <span style="color:#4ade80;font-weight:700">🏆 Ranking Global</span>
+              <p style="color:#a0b8d0;font-size:0.82rem;margin:4px 0 0;line-height:1.5">Compete com outros jogadores no leaderboard. Sua pontuação é salva automaticamente.</p>
+            </div>
+          </div>
+          <button class="btn gold" style="width:100%" onclick="document.getElementById('onboardingModal').remove()">⚔ Iniciar Jornada!</button>
+        </div>
+      `;
+      document.body.appendChild(modal);
     }
 
     // ===== LANDING SCREEN =====
