@@ -4120,7 +4120,7 @@
     // Verificação de versão — bypassa o Service Worker via no-store
     // Se a versão do servidor for diferente da carregada, limpa tudo e recarrega
     (function() {
-      const LOADED_VERSION = '5.8';
+      const LOADED_VERSION = '5.9';
       fetch('/version.json', { cache: 'no-store' })
         .then(r => r.json())
         .then(data => {
@@ -4321,7 +4321,7 @@
         <button class="btn sec" onclick="showLeaderboardFromWelcome()">Leaderboard</button>
         <button id="bossPreviewBtn" class="btn-boss-preview" onclick="startBossPreview()" title="Preview do Confronto Final" style="display:none;">⚔️ Preview: Confronto Final</button>
       </div>
-      <div class="welcome-credit" style="margin-top:14px;"><a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;cursor:pointer;" onclick="showChangelog()">v5.8</span></div>
+      <div class="welcome-credit" style="margin-top:14px;"><a href="https://nefroquest.com">nefroquest.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;cursor:pointer;" onclick="showChangelog()">v5.9</span></div>
     </div>
   </div>
 
@@ -4718,9 +4718,9 @@
 
     <div class="game-footer">
       <p>
-        <a href="mailto:orlandobrunet@gmail.com">orlandobrunet@gmail.com</a>
+        <a href="https://nefroquest.com">nefroquest.com</a>
         &nbsp;•&nbsp;
-        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" onclick="showChangelog()">v5.8</span>
+        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" onclick="showChangelog()">v5.9</span>
       </p>
     </div>
   </main>
@@ -5457,9 +5457,9 @@
     }
 
     function shareVictory(btn) {
-      const text = `🏆 Completei o NefroQuest: Ascension!\n\n✅ 100 questões de nefrologia respondidas\n📊 ${state.score} pontos · Nível ${state.level}\n🎮 Derrotei o Arqui-Nefromante!\n\nTeste seus conhecimentos: https://orlandobrunet-sketch.github.io/base-verification/`;
+      const text = `🏆 Completei o NefroQuest: Ascension!\n\n✅ 100 questões de nefrologia respondidas\n📊 ${state.score} pontos · Nível ${state.level}\n🎮 Derrotei o Arqui-Nefromante!\n\nTeste seus conhecimentos: https://nefroquest.com`;
       if (navigator.share) {
-        navigator.share({ title: 'NefroQuest: Ascension - Vitória!', text: text, url: 'https://orlandobrunet-sketch.github.io/base-verification/' }).catch(()=>{});
+        navigator.share({ title: 'NefroQuest: Ascension - Vitória!', text: text, url: 'https://nefroquest.com' }).catch(()=>{});
       } else {
         navigator.clipboard.writeText(text).then(() => {
           btn.textContent = '✅ Copiado!';
@@ -7854,8 +7854,9 @@
       document.body.appendChild(modal);
     }
     function paywallUpgrade() {
-      // TODO: integrar com gateway de pagamento (Stripe/PagSeguro)
-      alert('Em breve! Para adquirir o acesso premium, entre em contato: orlandobrunet@gmail.com');
+      // Abre modal de escolha de plano para upgrade
+      document.getElementById('paywallModal')?.classList.remove('show');
+      showPricingModal();
     }
     function paywallLogin() {
       document.getElementById('paywallModal')?.classList.remove('show');
@@ -10884,6 +10885,23 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
           <div style="color:var(--txt-dim);font-size:0.75rem;margin-bottom:20px;">O que há de novo no NefroQuest: Ascension</div>
 
           <div style="text-align:left;padding:4px;">
+
+            <!-- v5.9 -->
+            <div style="background:linear-gradient(135deg,rgba(99,202,183,0.18),rgba(99,202,183,0.06));border:2px solid rgba(99,202,183,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                <span style="background:rgba(99,202,183,0.85);color:#fff;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v5.9</span>
+                <span style="color:#ccfbf1;font-weight:bold;font-size:0.95rem;">Lançamento & Freemium</span>
+              </div>
+              <ul style="margin:0;padding-left:18px;color:#c8d8f0;font-size:0.82rem;line-height:1.8;">
+                <li><strong>Domínio próprio</strong> — app disponível em <a href="https://nefroquest.com" style="color:#63cab7;">nefroquest.com</a></li>
+                <li><strong>Sistema freemium</strong> — 50 questões gratuitas, acesso premium desbloqueável</li>
+                <li><strong>Tela de preços</strong> — planos Gratuito, Mensal e Vitalício com preços regionais</li>
+                <li><strong>Painel admin</strong> — lista de acesso para convidados via whitelist</li>
+                <li><strong>Minha Conta & Seu Plano</strong> — novos menus no perfil do usuário</li>
+                <li><strong>Email de confirmação</strong> — cadastro requer validação por link</li>
+                <li><strong>Google OAuth atualizado</strong> — domínio nefroquest.com autorizado</li>
+              </ul>
+            </div>
 
             <!-- v5.8 -->
             <div style="background:linear-gradient(135deg,rgba(244,114,182,0.18),rgba(244,114,182,0.06));border:2px solid rgba(244,114,182,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
