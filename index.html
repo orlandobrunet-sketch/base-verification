@@ -4313,6 +4313,17 @@
         Entrar com Google
       </button>
       <button class="landing-btn-email" onclick="landingLoginEmail()">&#9993; Entrar com Email</button>
+      <div style="margin-top:28px;border-top:1px solid rgba(255,215,0,0.1);padding-top:20px;display:flex;flex-direction:column;gap:8px;align-items:center;">
+        <div style="font-family:'Cinzel',serif;color:#b8860b;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;">O que é o NefroQuest?</div>
+        <p style="color:#5070a0;font-size:0.76rem;line-height:1.6;max-width:320px;text-align:center;">
+          Mais de <strong style="color:#8090b0;">1.000 questões comentadas</strong> de Nefrologia — organizadas por tema, baseadas em KDIGO, DOQI e SBN. Estude de forma gamificada, identifique seus pontos fracos e evolua com um método feito para residência e título.
+        </p>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:4px;">
+          <span style="color:#405060;font-size:0.7rem;">⚡ Casos clínicos reais</span>
+          <span style="color:#405060;font-size:0.7rem;">🔄 Atualizado constantemente</span>
+          <span style="color:#405060;font-size:0.7rem;">🏥 Residência &amp; Título</span>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -7397,30 +7408,45 @@
     function showOnboardingModal() {
       const modal = document.createElement('div');
       modal.id = 'onboardingModal';
-      modal.style.cssText = 'display:flex;position:fixed;inset:0;background:rgba(0,0,0,0.90);z-index:9997;align-items:center;justify-content:center;backdrop-filter:blur(8px);padding:16px;overflow-y:auto;';
+      modal.style.cssText = 'display:flex;position:fixed;inset:0;background:rgba(0,0,0,0.90);z-index:9997;align-items:center;justify-content:center;backdrop-filter:blur(8px);padding:40px 20px;overflow-y:auto;';
       modal.innerHTML = `
-        <div class="modal-panel" style="max-width:480px;width:100%;text-align:center;animation:scaleIn 0.35s ease-out;padding:28px 24px;">
-          <div style="font-size:2.8rem;margin-bottom:10px">🧬</div>
-          <h2 style="font-family:'Cinzel',serif;color:#ffd700;font-size:1.15rem;letter-spacing:1px;margin-bottom:4px;">Bem-vindo(a) ao NefroQuest!</h2>
-          <p style="color:#7090b0;font-size:0.78rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:18px;">Ascension</p>
-          <p style="color:#a0b8d0;font-size:0.85rem;line-height:1.6;margin-bottom:20px;">
-            Um ambiente de estudo gamificado para você dominar a Nefrologia —<br>com casos clínicos reais, progressão e ciência de ponta.
-          </p>
-          <div style="text-align:left;display:flex;flex-direction:column;gap:10px;margin-bottom:22px;">
-            <div style="background:rgba(255,215,0,0.06);border:1px solid rgba(255,215,0,0.2);border-radius:10px;padding:12px 14px;">
-              <span style="color:#ffd700;font-weight:700;font-size:0.9rem;">⚔️ Jornada RPG</span>
-              <p style="color:#a0b8d0;font-size:0.8rem;margin:4px 0 0;line-height:1.5">Escolha seu herói, ganhe XP e ouro respondendo questões, suba de nível e derrote o Arqui-Nefromante no confronto final.</p>
+        <div style="max-width:460px;width:100%;animation:scaleIn 0.35s ease-out;background:linear-gradient(160deg,#0d1428,#12192e);border:1px solid rgba(255,215,0,0.25);border-radius:20px;padding:32px 28px;box-shadow:0 0 60px rgba(0,0,0,0.8),0 0 20px rgba(255,215,0,0.05) inset;text-align:center;">
+
+          <!-- Hero stat -->
+          <div style="margin-bottom:6px;font-size:0.7rem;letter-spacing:3px;color:#6080a0;text-transform:uppercase;">✦ Reino dos Néfrons ✦</div>
+          <div style="font-family:'Cinzel',serif;font-size:clamp(2.8rem,10vw,4rem);font-weight:900;color:#ffd700;line-height:1;margin-bottom:0;">1.000<span style="font-size:60%;vertical-align:super;color:#b8860b;">+</span></div>
+          <div style="font-family:'Cinzel',serif;font-size:0.78rem;letter-spacing:2px;color:#c8a030;text-transform:uppercase;margin-bottom:4px;">questões comentadas</div>
+          <div style="color:#6080a0;font-size:0.72rem;letter-spacing:1px;margin-bottom:20px;">de Nefrologia — atualizadas constantemente</div>
+
+          <!-- Divisor -->
+          <div style="border-top:1px solid rgba(255,215,0,0.12);margin-bottom:20px;"></div>
+
+          <!-- 3 features compactas -->
+          <div style="display:flex;flex-direction:column;gap:9px;text-align:left;margin-bottom:24px;">
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <span style="font-size:1.3rem;flex-shrink:0;margin-top:1px;">⚔️</span>
+              <div>
+                <span style="color:#e2e8f0;font-size:0.83rem;font-weight:600;">Jornada RPG gamificada</span>
+                <p style="color:#6080a0;font-size:0.75rem;margin:2px 0 0;line-height:1.45;">Escolha seu herói, ganhe XP, colete equipamentos e derrote o Arqui-Nefromante — aprendendo enquanto evolui.</p>
+              </div>
             </div>
-            <div style="background:rgba(96,165,250,0.05);border:1px solid rgba(96,165,250,0.18);border-radius:10px;padding:12px 14px;">
-              <span style="color:#60a5fa;font-weight:700;font-size:0.9rem;">📚 Modo de Estudo</span>
-              <p style="color:#a0b8d0;font-size:0.8rem;margin:4px 0 0;line-height:1.5">Mais de <strong style="color:#c8d8f0">1.000 questões</strong> organizadas por tema — Glomerulonefrites, LRA, Diálise, Transplante e muito mais. Estude pelo seu ponto fraco.</p>
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <span style="font-size:1.3rem;flex-shrink:0;margin-top:1px;">🎯</span>
+              <div>
+                <span style="color:#e2e8f0;font-size:0.83rem;font-weight:600;">Estude pelo seu ponto fraco</span>
+                <p style="color:#6080a0;font-size:0.75rem;margin:2px 0 0;line-height:1.45;">Modo de Estudo por tema identifica suas lacunas — Glomerulopatias, LRA, Diálise, Transplante, Eletrólitos e mais.</p>
+              </div>
             </div>
-            <div style="background:rgba(74,222,128,0.05);border:1px solid rgba(74,222,128,0.15);border-radius:10px;padding:12px 14px;">
-              <span style="color:#4ade80;font-weight:700;font-size:0.9rem;">📈 Evolução Real</span>
-              <p style="color:#a0b8d0;font-size:0.8rem;margin:4px 0 0;line-height:1.5">Acompanhe seu desempenho por categoria, identifique lacunas e veja sua evolução. Atualizado constantemente com novos conteúdos baseados em evidências.</p>
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <span style="font-size:1.3rem;flex-shrink:0;margin-top:1px;">📋</span>
+              <div>
+                <span style="color:#e2e8f0;font-size:0.83rem;font-weight:600;">Baseado nas melhores evidências</span>
+                <p style="color:#6080a0;font-size:0.75rem;margin:2px 0 0;line-height:1.45;">Questões com explicações detalhadas e referências — KDIGO, DOQI, SBN e os principais RCTs da nefrologia.</p>
+              </div>
             </div>
           </div>
-          <button class="btn gold" style="width:100%;font-size:0.9rem;padding:13px;" onclick="document.getElementById('onboardingModal').remove()">⚔ Começar minha Jornada!</button>
+
+          <button class="btn gold" style="width:100%;font-size:0.88rem;padding:13px;letter-spacing:1px;" onclick="document.getElementById('onboardingModal').remove()">⚔ Começar minha Jornada!</button>
         </div>
       `;
       document.body.appendChild(modal);
