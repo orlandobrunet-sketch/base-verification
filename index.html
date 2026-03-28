@@ -5058,7 +5058,11 @@
         </div>
         <div class="auth-field">
           <label>Senha</label>
-          <input type="password" id="authPasswordReg" placeholder="mín. 6 caracteres" onkeypress="authKeyPress(event)" />
+          <input type="password" id="authPasswordReg" placeholder="mín. 6 caracteres" />
+        </div>
+        <div class="auth-field">
+          <label>Confirmar Senha</label>
+          <input type="password" id="authPasswordConfirm" placeholder="repita a senha" onkeypress="authKeyPress(event)" />
         </div>
         <button class="auth-submit-btn" id="authRegBtn" onclick="authEmailRegister()">Criar Conta</button>
       </div>
@@ -7329,8 +7333,10 @@
       const specialty = document.getElementById('authSpecialty').value;
       const email = document.getElementById('authEmailReg').value.trim();
       const password = document.getElementById('authPasswordReg').value;
-      if (!name || !email || !password) { _setAuthMsg('Preencha todos os campos.', 'error'); return; }
+      const passwordConfirm = document.getElementById('authPasswordConfirm').value;
+      if (!name || !email || !password || !passwordConfirm) { _setAuthMsg('Preencha todos os campos.', 'error'); return; }
       if (password.length < 6) { _setAuthMsg('Senha deve ter pelo menos 6 caracteres.', 'error'); return; }
+      if (password !== passwordConfirm) { _setAuthMsg('As senhas não coincidem.', 'error'); return; }
       const btn = document.getElementById('authRegBtn');
       btn.disabled = true; btn.textContent = 'Criando conta...';
       const { error } = await _supaClient.auth.signUp({
