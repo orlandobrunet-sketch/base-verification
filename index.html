@@ -9550,7 +9550,7 @@
       popup.innerHTML = `
         <div style="background:linear-gradient(160deg,#1a2a0a,#0e1830,#2a1a00);border:2px solid #ffd700;border-radius:16px;padding:26px 24px;max-width:420px;width:100%;box-shadow:0 0 50px rgba(255,215,0,0.25);text-align:center;animation:scaleIn 0.35s;">
           <div style="font-size:2.4rem;margin-bottom:8px;">💰</div>
-          <h3 style="color:#ffd700;font-family:'Cinzel',serif;font-size:1.05rem;letter-spacing:1px;margin-bottom:6px;">300 de Ouro!</h3>
+          <h3 style="color:#ffd700;font-family:'Cinzel',serif;font-size:1.05rem;letter-spacing:1px;margin-bottom:6px;">${GOLD_MILESTONE} de Ouro!</h3>
           <p style="color:#c8d8f0;font-size:0.85rem;line-height:1.6;margin-bottom:18px;">
             Você já pode abrir um baú! Ou continue acumulando ouro para forjar itens poderosos:
           </p>
@@ -9563,12 +9563,12 @@
             <div style="background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.25);border-radius:10px;padding:12px 14px;">
               <span style="color:#a5b4fc;font-weight:700;">⚒️ Forjar Item Comum</span>
               <span style="color:#94a3b8;font-size:0.8rem;"> — 300 ouro</span>
-              <p style="color:#cbd5e1;font-size:0.78rem;margin:4px 0 0;">Acumule mais <strong style="color:#a5b4fc;">+200 ouro</strong> para forjar um equipamento.</p>
+              <p style="color:#cbd5e1;font-size:0.78rem;margin:4px 0 0;">Acumule mais <strong style="color:#a5b4fc;">+${300 - GOLD_MILESTONE} ouro</strong> para forjar um equipamento.</p>
             </div>
             <div style="background:rgba(234,179,8,0.06);border:1px solid rgba(234,179,8,0.2);border-radius:10px;padding:12px 14px;">
               <span style="color:#fbbf24;font-weight:700;">👑 Forjar Item Lendário</span>
               <span style="color:#94a3b8;font-size:0.8rem;"> — 1000 ouro</span>
-              <p style="color:#cbd5e1;font-size:0.78rem;margin:4px 0 0;">Acumule mais <strong style="color:#fbbf24;">+900 ouro</strong> para o item mais poderoso.</p>
+              <p style="color:#cbd5e1;font-size:0.78rem;margin:4px 0 0;">Acumule mais <strong style="color:#fbbf24;">+${1000 - GOLD_MILESTONE} ouro</strong> para o item mais poderoso.</p>
             </div>
           </div>
           <button onclick="document.getElementById('goldMilestonePopup').remove()"
@@ -10031,7 +10031,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
       }
 
       modal.innerHTML = `
-        <div class="modal-content" style="max-width:460px;width:100%;max-height:none;overflow-y:visible;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid #2a4a7a;border-radius:14px;padding:18px 20px;box-shadow:0 0 40px rgba(139,92,246,0.3);">
+        <div class="modal-content" style="max-width:460px;width:100%;max-height:calc(100vh - 48px);overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid #2a4a7a;border-radius:14px;padding:18px 20px;box-shadow:0 0 40px rgba(139,92,246,0.3);">
           <h2 style="color:var(--gold);margin-bottom:6px;font-family:'Cinzel',serif;">📖 MODO DE ESTUDO</h2>
           <p style="color:var(--txt-dim);font-size:0.82rem;margin-bottom:18px;">Selecione os eixos que deseja praticar</p>
 
@@ -10155,7 +10155,10 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
       
       // Fechar popup de seleção
       document.querySelectorAll('.study-mode-popup').forEach(el => el.remove());
-      
+
+      // Transição de música: para welcome music e inicia bgmusic
+      stopWelcomeMusic(false, () => { if (musicEnabled) startBgMusic(); });
+
       // Abrir página de estudo
       showStudyModePage();
     }
