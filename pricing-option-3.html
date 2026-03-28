@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Opção 3 — Pricing NefroQuest</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0a0e1a; color:#c8d8f0; font-family:'Georgia',serif; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:32px 16px; }
+.wrap { max-width:560px; width:100%; }
+/* Header */
+.header { text-align:center; margin-bottom:32px; }
+.ornament { color:#a08040; font-size:0.75rem; letter-spacing:3px; text-transform:uppercase; margin-bottom:8px; }
+h1 { font-family:'Cinzel Decorative',serif; color:#ffd700; font-size:2rem; filter:drop-shadow(0 0 16px rgba(255,215,0,0.25)); }
+.sub { color:#8090a0; font-size:0.78rem; letter-spacing:4px; text-transform:uppercase; margin:4px 0 10px; }
+.tagline { color:#a0b8d0; font-size:0.85rem; }
+/* Vertical cards */
+.plans { display:flex; flex-direction:column; gap:12px; margin-bottom:24px; }
+.plan-row {
+  display:flex; align-items:center; justify-content:space-between;
+  background:rgba(15,25,50,0.9); border:1px solid #2a4a7a;
+  border-radius:16px; padding:18px 20px; cursor:pointer;
+  transition:border-color 0.2s, box-shadow 0.2s; position:relative;
+}
+.plan-row:hover { border-color:#60a5fa; }
+.plan-row.featured { border-color:#ffd700; box-shadow:0 0 30px rgba(255,215,0,0.1); background:linear-gradient(135deg,rgba(255,215,0,0.06),rgba(15,25,50,0.95)); }
+.badge { position:absolute; top:-11px; right:16px; background:#ffd700; color:#1a0e00; font-family:'Cinzel',serif; font-size:0.62rem; font-weight:900; padding:2px 12px; border-radius:20px; }
+.plan-left { display:flex; align-items:center; gap:14px; }
+.plan-icon { font-size:1.8rem; }
+.plan-name { font-family:'Cinzel',serif; color:#e0f0ff; font-size:0.88rem; letter-spacing:1px; margin-bottom:4px; }
+.plan-desc { color:#708090; font-size:0.75rem; }
+.plan-right { text-align:right; }
+.plan-price { font-family:'Cinzel',serif; color:#ffd700; font-size:1.5rem; font-weight:900; line-height:1; }
+.plan-period { color:#506070; font-size:0.7rem; margin-top:2px; }
+.plan-btn { margin-top:8px; padding:6px 16px; border-radius:8px; font-size:0.72rem; font-weight:700; cursor:pointer; font-family:'Cinzel',serif; white-space:nowrap; }
+.btn-free { background:rgba(96,165,250,0.1); color:#60a5fa; border:1px solid rgba(96,165,250,0.4); }
+.btn-monthly { background:rgba(168,85,247,0.12); color:#c084fc; border:1px solid rgba(168,85,247,0.35); }
+.btn-lifetime { background:linear-gradient(135deg,#b8860b,#ffd700); color:#1a0e00; border:none; }
+/* Feature comparison */
+.compare { background:rgba(255,255,255,0.02); border:1px solid rgba(42,74,122,0.3); border-radius:14px; overflow:hidden; margin-bottom:20px; }
+.compare-header { display:grid; grid-template-columns:1fr repeat(3,80px); padding:10px 16px; background:rgba(255,255,255,0.03); }
+.compare-header span { font-family:'Cinzel',serif; font-size:0.65rem; color:#708090; text-align:center; text-transform:uppercase; letter-spacing:1px; }
+.compare-header span:first-child { text-align:left; }
+.compare-row { display:grid; grid-template-columns:1fr repeat(3,80px); padding:10px 16px; border-top:1px solid rgba(42,74,122,0.2); align-items:center; }
+.compare-row span:first-child { color:#a0b8d0; font-size:0.78rem; }
+.compare-row span { text-align:center; font-size:0.85rem; }
+.check { color:#4ade80; }
+.cross { color:#374151; }
+.partial { color:#fbbf24; font-size:0.7rem; }
+.login-link { display:block; text-align:center; color:#506070; font-size:0.8rem; cursor:pointer; background:none; border:none; text-decoration:underline; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <div class="ornament">✦ Reino dos Néfrons ✦</div>
+    <h1>NefroQuest</h1>
+    <div class="sub">Ascension</div>
+    <p class="tagline">Escolha o plano ideal para sua jornada.</p>
+  </div>
+
+  <div class="plans">
+    <div class="plan-row">
+      <div class="plan-left">
+        <div class="plan-icon">🎓</div>
+        <div>
+          <div class="plan-name">Gratuito</div>
+          <div class="plan-desc">Experimente sem compromisso</div>
+        </div>
+      </div>
+      <div class="plan-right">
+        <div class="plan-price">R$0</div>
+        <div class="plan-period">para sempre</div>
+        <button class="plan-btn btn-free">Começar</button>
+      </div>
+    </div>
+
+    <div class="plan-row">
+      <div class="plan-left">
+        <div class="plan-icon">⚡</div>
+        <div>
+          <div class="plan-name">Mensal</div>
+          <div class="plan-desc">Flexibilidade total</div>
+        </div>
+      </div>
+      <div class="plan-right">
+        <div class="plan-price">R$9,90</div>
+        <div class="plan-period">por mês</div>
+        <button class="plan-btn btn-monthly">Assinar</button>
+      </div>
+    </div>
+
+    <div class="plan-row featured">
+      <div class="badge">MELHOR VALOR</div>
+      <div class="plan-left">
+        <div class="plan-icon">👑</div>
+        <div>
+          <div class="plan-name">Vitalício</div>
+          <div class="plan-desc">Pague uma vez, acesse forever</div>
+        </div>
+      </div>
+      <div class="plan-right">
+        <div class="plan-price">R$89</div>
+        <div class="plan-period">único</div>
+        <button class="plan-btn btn-lifetime">Comprar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comparison table -->
+  <div class="compare">
+    <div class="compare-header">
+      <span>Recurso</span>
+      <span>Grátis</span>
+      <span>Mensal</span>
+      <span>Vitalício</span>
+    </div>
+    <div class="compare-row">
+      <span>Questões</span>
+      <span class="partial">50</span>
+      <span class="check">∞</span>
+      <span class="check">∞</span>
+    </div>
+    <div class="compare-row">
+      <span>Personagens</span>
+      <span class="check">✓</span>
+      <span class="check">✓</span>
+      <span class="check">✓</span>
+    </div>
+    <div class="compare-row">
+      <span>Ranking global</span>
+      <span class="check">✓</span>
+      <span class="check">✓</span>
+      <span class="check">✓</span>
+    </div>
+    <div class="compare-row">
+      <span>Conteúdo premium</span>
+      <span class="cross">✕</span>
+      <span class="check">✓</span>
+      <span class="check">✓</span>
+    </div>
+    <div class="compare-row">
+      <span>Atualizações futuras</span>
+      <span class="cross">✕</span>
+      <span class="cross">✕</span>
+      <span class="check">✓</span>
+    </div>
+  </div>
+
+  <button class="login-link">Já tenho conta — Entrar</button>
+</div>
+</body>
+</html>
