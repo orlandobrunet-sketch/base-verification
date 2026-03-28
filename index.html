@@ -5074,7 +5074,7 @@
     // Loop suave: fade-in 3s no início, fade-out automático 4s antes do fim, reinicia com fade-in
     const WELCOME_MUSIC_URL = 'assets/audio/welcome-theme.mp3';
     const WELCOME_MUSIC_VOL = 0.30;
-    const WM_FADEIN_MS   = 1200;  // fade-in de 1.2 segundos
+    const WM_FADEIN_MS   = 3500;  // fade-in de 3.5 segundos — sobe suavemente
     const WM_FADEOUT_MS  = 4000;  // fade-out de 4 segundos antes do fim
     const WM_LOOP_GAP_MS = 800;   // pausa mínima entre loops após fade-out
 
@@ -9528,6 +9528,8 @@
       updateBadges();
       renderQuestion();
       saveGame();
+      // Garantir que a música da jornada está tocando (fallback caso dismissWelcome não tenha iniciado)
+      if (musicEnabled && !musicStarted) startBgMusic();
     }
 
     // ============ MILESTONE DE OURO ============
@@ -10156,10 +10158,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
       // Fechar popup de seleção
       document.querySelectorAll('.study-mode-popup').forEach(el => el.remove());
 
-      // Transição de música: para welcome music e inicia bgmusic
-      stopWelcomeMusic(false, () => { if (musicEnabled) startBgMusic(); });
-
-      // Abrir página de estudo
+      // Abrir página de estudo (sem música — modo de estudo é silencioso)
       showStudyModePage();
     }
     
@@ -10533,7 +10532,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
       {
         id: 'arqui_nefromante_slayer',
         name: 'Campeão da Nefrologia',
-        description: 'Derrotou o Arqui-Nefromante! Completou as 10 questões finais do confronto épico.',
+        description: 'Derrote o Arqui-Nefromante e vença o jogo.',
         icon: '🏆',
         imgIcon: 'assets/titulodecampeao.png',
         condition: (stats) => {
