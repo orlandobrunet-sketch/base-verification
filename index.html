@@ -8465,7 +8465,7 @@
       const m = document.getElementById('accountModal');
       if (m) m.style.display = 'none';
     }
-    function saveAccountData() {
+    async function saveAccountData() {
       const data = {
         name:  document.getElementById('acctName').value.trim(),
         phone: document.getElementById('acctPhone').value.trim(),
@@ -8473,6 +8473,18 @@
         city:  document.getElementById('acctCity').value.trim(),
       };
       try { localStorage.setItem(ACCT_KEY, JSON.stringify(data)); } catch(e) {}
+      // Salvar no Supabase
+      if (_supaClient && authUser) {
+        await _supaClient.from('profiles').upsert({
+          id:         authUser.id,
+          full_name:  data.name,
+          phone:      data.phone,
+          specialty:  data.spec,
+          city:       data.city,
+        });
+        // Atualizar também o user_metadata do auth
+        await _supaClient.auth.updateUser({ data: { full_name: data.name, specialty: data.spec } });
+      }
       closeAccountModal();
     }
 
