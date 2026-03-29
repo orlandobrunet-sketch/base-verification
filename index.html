@@ -8299,7 +8299,6 @@
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
-            'apikey': SUPA_KEY,
           },
           body: JSON.stringify({ plan }),
         });
@@ -8501,7 +8500,7 @@
           <p class="plan-stat">${answered} de ${FREE_QUESTIONS_LIMIT} questões gratuitas respondidas.</p>
           <div class="plan-bar-wrap"><div class="plan-bar" style="width:${pct}%"></div></div>
           <p class="plan-stat" style="font-size:0.78rem;color:#708090">${remaining} questões restantes no plano gratuito.</p>
-          <button class="btn gold" style="width:100%;margin-top:4px" onclick="closePlanModal();showPaywallModal()">✨ Fazer Upgrade</button>
+          <button class="btn gold" style="width:100%;margin-top:4px" onclick="closePlanModal();showPricingModal()">✨ Fazer Upgrade</button>
         `;
       }
       document.getElementById('planModalContent').innerHTML = `
