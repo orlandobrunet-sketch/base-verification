@@ -18,8 +18,8 @@ const corsHeaders = {
 };
 
 const PRICES: Record<string, { title: string; amount: number }> = {
-  monthly:  { title: 'NefroQuest — Plano Mensal',   amount: 9.90 },
-  lifetime: { title: 'NefroQuest — Acesso Vitalício', amount: 89.00 },
+  monthly:  { title: 'NefroQuest — Plano Mensal',   amount: 14.90 },
+  lifetime: { title: 'NefroQuest — Acesso Vitalício', amount: 199.00 },
 };
 
 Deno.serve(async (req) => {
