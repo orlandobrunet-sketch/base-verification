@@ -8676,7 +8676,7 @@
       if(state.lives<=0) {
         finishGame();
       } else if (!isPremium() && getGameStats().questionsAnsweredAllTime >= FREE_QUESTIONS_LIMIT) {
-        showPaywallModal();
+        showPricingModal();
       } else {
         ui.nextBtn.classList.remove('hidden');
         // ── Confronto Final: atualiza barra de HP, estrelas e botão ──
@@ -9818,7 +9818,7 @@
     
     function startGameWithCharacter() {
       if (!isPremium() && getGameStats().questionsAnsweredAllTime >= FREE_QUESTIONS_LIMIT) {
-        showPaywallModal();
+        showPricingModal();
         return;
       }
       const char = characters[state.character];
