@@ -4284,6 +4284,7 @@
         <button class="profile-popup-item" onclick="openAccountModal();event.stopPropagation()">👤 Minha Conta</button>
         <button class="profile-popup-item" onclick="openPlanModal();event.stopPropagation()">⭐ Seu Plano</button>
         <button class="profile-popup-item admin-item" onclick="openAdminPanel();event.stopPropagation()">🛡 Administração</button>
+        <button class="profile-popup-item admin-item" onclick="adminJumpToBoss();event.stopPropagation()">⚔ Fase Final</button>
         <hr class="profile-popup-divider">
         <button class="profile-popup-logout" onclick="authLogout();event.stopPropagation()">Sair</button>
       </div>
@@ -4301,6 +4302,7 @@
         <button class="profile-popup-item" onclick="openAccountModal();event.stopPropagation()">👤 Minha Conta</button>
         <button class="profile-popup-item" onclick="openPlanModal();event.stopPropagation()">⭐ Seu Plano</button>
         <button class="profile-popup-item admin-item" onclick="openAdminPanel();event.stopPropagation()">🛡 Administração</button>
+        <button class="profile-popup-item admin-item" onclick="adminJumpToBoss();event.stopPropagation()">⚔ Fase Final</button>
         <hr class="profile-popup-divider">
         <button class="profile-popup-logout" onclick="authLogout();event.stopPropagation()">Sair</button>
       </div>
@@ -4437,6 +4439,7 @@
             <button class="profile-popup-item" onclick="openAccountModal();event.stopPropagation()">👤 Minha Conta</button>
             <button class="profile-popup-item" onclick="openPlanModal();event.stopPropagation()">⭐ Seu Plano</button>
             <button class="profile-popup-item admin-item" onclick="openAdminPanel();event.stopPropagation()">🛡 Administração</button>
+            <button class="profile-popup-item admin-item" onclick="adminJumpToBoss();event.stopPropagation()">⚔ Fase Final</button>
             <hr class="profile-popup-divider">
             <button class="profile-popup-logout" onclick="authLogout();event.stopPropagation()">Sair</button>
           </div>
@@ -8521,6 +8524,20 @@
     }
 
     // ============ ADMIN PANEL ============
+    function adminJumpToBoss() {
+      document.querySelectorAll('.profile-popup.open').forEach(p => p.classList.remove('open'));
+      // Garante que o jogo está iniciado com um personagem
+      if (!state.gameStarted) {
+        if (!state.selectedCharacter) state.selectedCharacter = 'guerreiro';
+        state.gameStarted = true;
+        document.getElementById('welcomeScreen')?.classList.add('hidden');
+        document.getElementById('mainApp')?.classList.remove('hidden');
+      }
+      state.correctTotal = BOSS_START_CORRECT;
+      state.hp = state.maxHp;
+      renderQuestion();
+    }
+
     function openAdminPanel() {
       document.querySelectorAll('.profile-popup.open').forEach(p => p.classList.remove('open'));
       let modal = document.getElementById('adminModal');
