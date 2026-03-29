@@ -5773,25 +5773,35 @@
     const PRICE_MONTHLY  = _lang === 'pt' ? 'R$14,90' : 'US$14.90';
     const PRICE_LIFETIME = _lang === 'pt' ? 'R$199,00' : 'US$199.00';
     
+    // ── Cache de stats (evita JSON.parse a cada resposta) ──
+    let _statsCache = null;
     function getGameStats() {
+      if (_statsCache) return Object.assign({}, _statsCache);
       const def = {gamesPlayed:0,bestLevel:0,bestScore:0,questionsAnsweredAllTime:0};
-      try { return Object.assign({}, def, JSON.parse(localStorage.getItem(STATS_KEY) || '{}')); } catch(e) { return def; }
+      try { _statsCache = Object.assign({}, def, JSON.parse(localStorage.getItem(STATS_KEY) || '{}')); }
+      catch(e) { _statsCache = def; }
+      return Object.assign({}, _statsCache);
     }
-    
+    function _invalidateStatsCache() { _statsCache = null; }
+
     function updateGameStats() {
       const stats = getGameStats();
       stats.gamesPlayed++;
       if (state.level > stats.bestLevel) stats.bestLevel = state.level;
       if (state.score > stats.bestScore) stats.bestScore = state.score;
       localStorage.setItem(STATS_KEY, JSON.stringify(stats));
+      _invalidateStatsCache();
     }
 
+    // ── Cache de isPremium (evita 2x localStorage por resposta) ──
+    let _isPremiumCache = null;
     function isPremium() {
       if (authUser?.email === ADMIN_EMAIL) return true;
-      if (localStorage.getItem(PREMIUM_KEY) === '1') return true;
-      if (localStorage.getItem(WHITELIST_KEY) === '1') return true;
-      return false;
+      if (_isPremiumCache !== null) return _isPremiumCache;
+      _isPremiumCache = localStorage.getItem(PREMIUM_KEY) === '1' || localStorage.getItem(WHITELIST_KEY) === '1';
+      return _isPremiumCache;
     }
+    function _invalidatePremiumCache() { _isPremiumCache = null; }
 
     async function _loadPremiumFromDB() {
       if (!_supaClient || !authUser) return;
@@ -5805,6 +5815,7 @@
         if (profile?.is_premium) {
           localStorage.setItem(PREMIUM_KEY, '1');
           localStorage.removeItem(WHITELIST_KEY);
+          _invalidatePremiumCache();
           return;
         } else {
           localStorage.removeItem(PREMIUM_KEY);
@@ -5817,6 +5828,7 @@
           .maybeSingle();
         if (wl?.email) localStorage.setItem(WHITELIST_KEY, '1');
         else localStorage.removeItem(WHITELIST_KEY);
+        _invalidatePremiumCache();
       } catch(e) {}
     }
 
@@ -5824,6 +5836,7 @@
       const stats = getGameStats();
       stats.questionsAnsweredAllTime = (stats.questionsAnsweredAllTime || 0) + 1;
       try { localStorage.setItem(STATS_KEY, JSON.stringify(stats)); } catch(e) {}
+      _invalidateStatsCache();
     }
     
     // Debounce do saveGame para evitar escritas excessivas no localStorage
@@ -7219,14 +7232,14 @@
           checkFirstTimeOnboarding();
           // Se havia plano pendente (usuário clicou em pagar antes de fazer login)
           _resumePendingPayment();
-        } else { localStorage.removeItem(PREMIUM_KEY); localStorage.removeItem(WHITELIST_KEY); }
+        } else { localStorage.removeItem(PREMIUM_KEY); localStorage.removeItem(WHITELIST_KEY); _invalidatePremiumCache(); }
         updateWelcomeUserBadge();
       });
 
       _supaClient.auth.getSession().then(({ data: { session } }) => {
         authUser = session?.user ?? null;
         if (authUser) _loadPremiumFromDB();
-        else localStorage.removeItem(PREMIUM_KEY);
+        else { localStorage.removeItem(PREMIUM_KEY); _invalidatePremiumCache(); }
         updateWelcomeUserBadge();
       });
     })();
@@ -7364,6 +7377,7 @@
       authUser = null;
       localStorage.removeItem(PREMIUM_KEY);
       localStorage.removeItem(WHITELIST_KEY);
+      _invalidatePremiumCache(); _invalidateStatsCache();
       updateWelcomeUserBadge();
       // Return to landing screen
       document.getElementById('welcomeScreen').classList.add('hidden');
@@ -7935,8 +7949,8 @@
       q.o.forEach((opt,i)=>{
         const b=document.createElement('button');
         b.className='option'; b.type='button';
+        b.dataset.idx=i;
         b.textContent=`${String.fromCharCode(65+i)}) ${opt}`;
-        b.addEventListener('click',()=>answer(i,b));
         ui.options.appendChild(b);
       });
       // ── Confronto Final: atualiza UI do boss e injeta badges ──
@@ -8409,6 +8423,7 @@
         .single();
       if (profile?.is_premium) {
         localStorage.setItem(PREMIUM_KEY, '1');
+        _invalidatePremiumCache();
         document.getElementById('paymentSuccessOverlay')?.remove();
         updateWelcomeUserBadge();
         return;
@@ -9599,7 +9614,11 @@
       }
     }
 
+    let _lastBoardFetch = 0;
     async function renderBoard(forceRefresh = false){
+      const now = Date.now();
+      if (!forceRefresh && now - _lastBoardFetch < 5000) return;
+      _lastBoardFetch = now;
       const loading = document.getElementById('boardLoading');
       const updateEl = document.getElementById('boardLastUpdate');
       if (loading) loading.classList.remove('hidden');
@@ -9657,6 +9676,12 @@
     }
 
     ui.nextBtn.addEventListener('click',renderQuestion);
+    // Event delegation para opções — 1 listener reutilizado em vez de 4 por pergunta
+    ui.options.addEventListener('click', (e) => {
+      const btn = e.target.closest('button.option');
+      if (!btn || btn.dataset.idx === undefined) return;
+      answer(parseInt(btn.dataset.idx), btn);
+    });
     ui.newBtn.addEventListener('click',()=>{
       showNewGameConfirm();
     });
