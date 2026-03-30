@@ -8172,7 +8172,7 @@
           <div class="pricing-sub-title">Ascension</div>
           <p>${tagline}</p>
           <div class="pricing-stats-row">
-            <div class="pricing-stat-pill">🧠 <strong>1.000+</strong> questões de nefrologia</div>
+            <div class="pricing-stat-pill">🧠 <strong>${questionBank.length}</strong> questões de nefrologia</div>
             <div class="pricing-stat-pill">🔄 Atualizado <strong>constantemente</strong></div>
             <div class="pricing-stat-pill">🏥 Foco em <strong>residência &amp; título</strong></div>
           </div>
@@ -8188,7 +8188,7 @@
                 <li>Todos os personagens</li>
                 <li>Ranking global</li>
                 <li class="pf-no">Modo de Estudo por tema</li>
-                <li class="pf-no">1.000+ questões completas</li>
+                <li class="pf-no">${questionBank.length} questões completas</li>
                 <li class="pf-no">Atualizações e novos conteúdos</li>
               </ul>
               <button class="pricing-choose-btn btn-free" onclick="pricingChoose('free')">${isPt ? 'Começar Grátis' : 'Start Free'}</button>
@@ -8201,7 +8201,7 @@
               <div class="pricing-period">${isPt ? 'por mês · cancele quando quiser' : 'per month · cancel anytime'}</div>
               <hr class="pricing-divider">
               <ul class="pricing-features">
-                <li>1.000+ questões de nefrologia</li>
+                <li>${questionBank.length} questões de nefrologia</li>
                 <li>Modo de Estudo por tema</li>
                 <li>Jornada RPG completa</li>
                 <li>Ranking global</li>
@@ -8265,7 +8265,7 @@
             <div class="promo-banner-title">Você está dominando a Nefrologia!</div>
             <div class="promo-banner-text">
               Restam <strong style="color:#ffd700">${remaining} questões</strong> gratuitas.
-              Desbloqueie <strong style="color:#c8d8f0">1.000+ questões</strong>, modo de estudo por tema
+              Desbloqueie <strong style="color:#c8d8f0">${questionBank.length} questões</strong>, modo de estudo por tema
               e atualizações constantes — por menos de um café por mês.
             </div>
           </div>
@@ -8391,7 +8391,7 @@
           <h2 style="font-family:'Cinzel Decorative',serif;color:#ffd700;font-size:1.6rem;margin-bottom:8px;">Pagamento Confirmado!</h2>
           <p style="color:#a0c8e0;font-size:0.9rem;line-height:1.6;margin-bottom:24px;">
             Bem-vindo ao Plano ${label}!<br>
-            Seu acesso a <strong style="color:#ffd700">1.000+ questões</strong> foi ativado.<br>
+            Seu acesso a <strong style="color:#ffd700">${questionBank.length} questões</strong> foi ativado.<br>
             Aguarde alguns instantes enquanto sincronizamos seu acesso.
           </p>
           <button onclick="document.getElementById('paymentSuccessOverlay')?.remove();_pollPremiumActivation();"
