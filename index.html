@@ -2075,11 +2075,20 @@
       .mobile-bottom-dock .mdock-btn.menu svg { color: #94a3b8; }
       .mobile-bottom-dock .mdock-btn.menu .mdock-label { color: #94a3b8; }
       /* Popup do menu abre para CIMA no dock mobile */
+      /* Botão menu no dock usa div em vez de button (popup não pode ficar dentro de button) */
+      .mobile-bottom-dock .mdock-btn.menu {
+        background: none;
+        border: none;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+      }
       .mobile-bottom-dock .mdock-btn.menu .profile-popup {
+        position: fixed !important;
         top: auto !important;
-        bottom: calc(100% + 8px);
-        right: 0;
+        bottom: 72px;
+        right: 8px;
         left: auto;
+        z-index: 99999;
       }
       .mobile-bottom-dock .mdock-btn.musica { color: #a78bfa; }
       .mobile-bottom-dock .mdock-btn.musica .mdock-label { color: #a78bfa; }
@@ -4895,7 +4904,7 @@
     </button>
 
     <!-- Menu (conta / configurações) -->
-    <button class="mdock-btn menu profile-btn" id="mobileProfileBtn" onclick="toggleProfilePopup('mobile')" title="Menu">
+    <div class="mdock-btn menu profile-btn" id="mobileProfileBtn" onclick="toggleProfilePopup('mobile')" title="Menu" role="button" tabindex="0">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
         <line x1="3" y1="6" x2="21" y2="6"/>
         <line x1="3" y1="12" x2="21" y2="12"/>
@@ -4911,7 +4920,7 @@
         <hr class="profile-popup-divider">
         <button class="profile-popup-logout" onclick="authLogout();event.stopPropagation()">Sair</button>
       </div>
-    </button>
+    </div>
 
   </div><!-- /mobile-bottom-dock -->
 
