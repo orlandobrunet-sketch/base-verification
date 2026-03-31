@@ -2074,6 +2074,13 @@
       .mobile-bottom-dock .mdock-btn.personagem .mdock-label { color: #a78bfa; }
       .mobile-bottom-dock .mdock-btn.menu svg { color: #94a3b8; }
       .mobile-bottom-dock .mdock-btn.menu .mdock-label { color: #94a3b8; }
+      /* Popup do menu abre para CIMA no dock mobile */
+      .mobile-bottom-dock .mdock-btn.menu .profile-popup {
+        top: auto !important;
+        bottom: calc(100% + 8px);
+        right: 0;
+        left: auto;
+      }
       .mobile-bottom-dock .mdock-btn.musica { color: #a78bfa; }
       .mobile-bottom-dock .mdock-btn.musica .mdock-label { color: #a78bfa; }
 
@@ -4277,18 +4284,7 @@
     <div class="sound-toggle" onclick="toggleSound()">
       <span id="mobileSoundSfxIcon">🔊</span>
     </div>
-    <div class="profile-btn" id="mobileProfileBtn" onclick="toggleProfilePopup('mobile')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
-      <div class="profile-popup" id="mobileProfilePopup">
-        <div class="profile-popup-email"><strong>Conta</strong><span id="mobileProfileEmail"></span></div>
-        <button class="profile-popup-item" onclick="openAccountModal();event.stopPropagation()">👤 Minha Conta</button>
-        <button class="profile-popup-item" onclick="openPlanModal();event.stopPropagation()">⭐ Seu Plano</button>
-        <button class="profile-popup-item admin-item" onclick="openAdminPanel();event.stopPropagation()">🛡 Administração</button>
-        <button class="profile-popup-item admin-item" onclick="adminJumpToBoss();event.stopPropagation()">⚔ Fase Final</button>
-        <hr class="profile-popup-divider">
-        <button class="profile-popup-logout" onclick="authLogout();event.stopPropagation()">Sair</button>
-      </div>
-    </div>
+
   </div>
 
   <!-- LANDING / LOGIN SCREEN -->
@@ -4838,24 +4834,15 @@
   <!-- MOBILE: Bottom dock (visível apenas em mobile) -->
   <div class="mobile-bottom-dock" id="mobileBottomDock" style="display:none;">
 
-    <!-- Personagem / Painel Esquerdo -->
-    <!-- Forjar Item -->
-    <button class="mdock-btn forge-item" onclick="showActionConfirmPopup('forge')" title="Forjar Item (300 ouro)">
+    <!-- Forja (item comum + lendário via modal igual web) -->
+    <button class="mdock-btn forge-item" onclick="showForjaModal()" title="Forja">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
         <path d="M14.5 2.5c0 1.5-1.5 3-1.5 3s-1.5-1.5-1.5-3a1.5 1.5 0 0 1 3 0z"/>
         <path d="M12 5.5V9"/>
         <path d="M9 9h6l1.5 9H7.5L9 9z"/>
         <path d="M7.5 18h9"/>
       </svg>
-      <span class="mdock-label">Forjar</span>
-    </button>
-
-    <!-- Forjar Lendário -->
-    <button class="mdock-btn forge-legendary" onclick="showActionConfirmPopup('legendary')" title="Forjar Lendário (1000 ouro)">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
-        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
-      </svg>
-      <span class="mdock-label">Lendário</span>
+      <span class="mdock-label">Forja</span>
     </button>
 
     <!-- Baú -->
@@ -4905,6 +4892,25 @@
     <button class="mdock-btn musica" id="mobileMusToggle" onclick="toggleMusic()" title="Música">
       <span id="mobileMusIcon" style="font-size:1.2rem;line-height:1;">&#127925;</span>
       <span class="mdock-label">Música</span>
+    </button>
+
+    <!-- Menu (conta / configurações) -->
+    <button class="mdock-btn menu profile-btn" id="mobileProfileBtn" onclick="toggleProfilePopup('mobile')" title="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+      <span class="mdock-label">Menu</span>
+      <div class="profile-popup" id="mobileProfilePopup">
+        <div class="profile-popup-email"><strong>Conta</strong><span id="mobileProfileEmail"></span></div>
+        <button class="profile-popup-item" onclick="openAccountModal();event.stopPropagation()">👤 Minha Conta</button>
+        <button class="profile-popup-item" onclick="openPlanModal();event.stopPropagation()">⭐ Seu Plano</button>
+        <button class="profile-popup-item admin-item" onclick="openAdminPanel();event.stopPropagation()">🛡 Administração</button>
+        <button class="profile-popup-item admin-item" onclick="adminJumpToBoss();event.stopPropagation()">⚔ Fase Final</button>
+        <hr class="profile-popup-divider">
+        <button class="profile-popup-logout" onclick="authLogout();event.stopPropagation()">Sair</button>
+      </div>
     </button>
 
   </div><!-- /mobile-bottom-dock -->
