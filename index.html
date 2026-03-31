@@ -2075,14 +2075,8 @@
       .mobile-bottom-dock .mdock-btn.menu svg { color: #94a3b8; }
       .mobile-bottom-dock .mdock-btn.menu .mdock-label { color: #94a3b8; }
       /* Popup do menu abre para CIMA no dock mobile */
-      /* Botão menu no dock usa div em vez de button (popup não pode ficar dentro de button) */
-      .mobile-bottom-dock .mdock-btn.menu {
-        background: none;
-        border: none;
-        cursor: pointer;
-        -webkit-tap-highlight-color: transparent;
-      }
-      .mobile-bottom-dock .mdock-btn.menu .profile-popup {
+      /* Popup do menu mobile — fixo, fora do dock */
+      .mobile-dock-popup {
         position: fixed !important;
         top: auto !important;
         bottom: 72px;
@@ -4904,25 +4898,27 @@
     </button>
 
     <!-- Menu (conta / configurações) -->
-    <div class="mdock-btn menu profile-btn" id="mobileProfileBtn" onclick="toggleProfilePopup('mobile')" title="Menu" role="button" tabindex="0">
+    <button class="mdock-btn menu" id="mobileMenuBtn" onclick="toggleProfilePopup('mobile')" title="Menu">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
         <line x1="3" y1="6" x2="21" y2="6"/>
         <line x1="3" y1="12" x2="21" y2="12"/>
         <line x1="3" y1="18" x2="21" y2="18"/>
       </svg>
       <span class="mdock-label">Menu</span>
-      <div class="profile-popup" id="mobileProfilePopup">
-        <div class="profile-popup-email"><strong>Conta</strong><span id="mobileProfileEmail"></span></div>
-        <button class="profile-popup-item" onclick="openAccountModal();event.stopPropagation()">👤 Minha Conta</button>
-        <button class="profile-popup-item" onclick="openPlanModal();event.stopPropagation()">⭐ Seu Plano</button>
-        <button class="profile-popup-item admin-item" onclick="openAdminPanel();event.stopPropagation()">🛡 Administração</button>
-        <button class="profile-popup-item admin-item" onclick="adminJumpToBoss();event.stopPropagation()">⚔ Fase Final</button>
-        <hr class="profile-popup-divider">
-        <button class="profile-popup-logout" onclick="authLogout();event.stopPropagation()">Sair</button>
-      </div>
-    </div>
+    </button>
 
   </div><!-- /mobile-bottom-dock -->
+
+  <!-- Popup do menu mobile — fora do dock para evitar overflow:hidden e garantir cliques -->
+  <div class="profile-popup mobile-dock-popup" id="mobileProfilePopup">
+    <div class="profile-popup-email"><strong>Conta</strong><span id="mobileProfileEmail"></span></div>
+    <button class="profile-popup-item" onclick="openAccountModal()">👤 Minha Conta</button>
+    <button class="profile-popup-item" onclick="openPlanModal()">⭐ Seu Plano</button>
+    <button class="profile-popup-item admin-item" onclick="openAdminPanel()">🛡 Administração</button>
+    <button class="profile-popup-item admin-item" onclick="adminJumpToBoss()">⚔ Fase Final</button>
+    <hr class="profile-popup-divider">
+    <button class="profile-popup-logout" onclick="authLogout()">Sair</button>
+  </div>
 
   <!-- LEADERBOARD MODAL -->
   <div id="boardModal" class="modalWrap hidden">
@@ -7538,7 +7534,7 @@
     }
     // Close profile popup when clicking outside
     document.addEventListener('click', function(e) {
-      if (!e.target.closest('.profile-btn')) {
+      if (!e.target.closest('.profile-btn') && !e.target.closest('#mobileMenuBtn') && !e.target.closest('#mobileProfilePopup')) {
         document.querySelectorAll('.profile-popup.open').forEach(p => p.classList.remove('open'));
       }
     });
