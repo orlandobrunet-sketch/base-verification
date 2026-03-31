@@ -246,6 +246,85 @@
     /* Popup de forja */
     .forge-popup { position:fixed; inset:0; z-index:9999; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.7); animation:fadeIn 0.3s; padding:32px 16px; }
     .forge-card { background:linear-gradient(135deg,#1a1040,#0e1830); border:2px solid var(--gold); border-radius:16px; padding:24px; text-align:center; max-width:340px; box-shadow:0 0 40px rgba(255,215,0,0.2); animation:scaleIn 0.4s; }
+    /* Equipment comparison popup */
+    .equip-compare-overlay {
+      position: fixed; inset: 0; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.82); backdrop-filter: blur(6px);
+      animation: fadeIn 0.25s; padding: 16px;
+    }
+    .equip-compare-card {
+      background: linear-gradient(135deg, #0e1830, #1a1040);
+      border: 2px solid var(--gold, #ffd700); border-radius: 16px;
+      padding: 20px; max-width: 600px; width: 100%;
+      box-shadow: 0 0 50px rgba(255,215,0,0.18);
+      animation: scaleIn 0.3s;
+    }
+    .equip-compare-title {
+      color: var(--gold, #ffd700); font-family: 'Cinzel', serif;
+      font-size: 0.9rem; letter-spacing: 1px; text-align: center;
+      margin-bottom: 16px;
+    }
+    .equip-compare-body {
+      display: flex; flex-direction: row; align-items: center; gap: 12px;
+    }
+    .equip-compare-slot {
+      flex: 1; background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(99,102,241,0.3); border-radius: 12px;
+      padding: 14px 12px; text-align: center;
+    }
+    .equip-compare-slot img {
+      width: 72px; height: 72px; object-fit: cover; border-radius: 8px;
+      border: 2px solid rgba(255,255,255,0.12); margin-bottom: 8px;
+    }
+    .equip-compare-slot .ecp-name {
+      color: #e2e8f0; font-weight: 700; font-size: 0.8rem;
+      margin-bottom: 4px; line-height: 1.3;
+    }
+    .equip-compare-slot .ecp-rar {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em;
+      padding: 2px 8px; border-radius: 20px; color: #fff; display: inline-block;
+      margin-bottom: 8px;
+    }
+    .equip-compare-slot .ecp-stats {
+      display: flex; flex-direction: column; gap: 3px; font-size: 0.72rem; color: #94a3b8;
+    }
+    .equip-compare-slot .ecp-stats span { display: flex; justify-content: space-between; gap: 8px; }
+    .equip-compare-slot .ecp-stats .pos { color: #6ee7b7; }
+    .equip-compare-slot .ecp-stats .neg { color: #fb7185; }
+    .equip-compare-arrow {
+      color: var(--gold, #ffd700); font-size: 1.6rem; flex-shrink: 0; line-height: 1;
+    }
+    .equip-compare-label {
+      font-size: 0.62rem; color: #64748b; text-transform: uppercase;
+      letter-spacing: 1px; margin-bottom: 6px;
+    }
+    .equip-compare-actions {
+      display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap;
+    }
+    .equip-compare-actions button { flex: 1; min-width: 120px; padding: 10px 14px;
+      border-radius: 8px; font-size: 0.82rem; font-weight: 700;
+      cursor: pointer; font-family: 'Cinzel', serif; border: none;
+    }
+    .equip-compare-replace {
+      background: linear-gradient(135deg, #1a4080, #2a5fa0); color: #e0f0ff;
+    }
+    .equip-compare-keep {
+      background: rgba(255,255,255,0.06); color: #94a3b8;
+      border: 1px solid rgba(255,255,255,0.15) !important;
+    }
+    @media (max-width: 640px) {
+      .equip-compare-body { flex-direction: column; gap: 8px; }
+      .equip-compare-arrow { transform: rotate(90deg); }
+      .equip-compare-slot img { width: 56px; height: 56px; }
+    }
+    /* Rarity colors for compare */
+    .ecp-rar.common { background: rgba(100,116,139,0.5); }
+    .ecp-rar.uncommon { background: rgba(34,197,94,0.35); color: #86efac; }
+    .ecp-rar.rare { background: rgba(99,102,241,0.4); }
+    .ecp-rar.epic { background: rgba(168,85,247,0.4); }
+    .ecp-rar.legendary { background: linear-gradient(135deg,rgba(255,215,0,0.4),rgba(255,140,0,0.4)); color: #ffd700; }
+
     .forge-card img { width:80px; height:80px; border-radius:10px; border:2px solid var(--gold); margin-bottom:12px; object-fit:contain; background:#0a0e1a; }
     .forge-card h3 { color:var(--gold); font-family:'Cinzel',serif; margin-bottom:6px; }
     .forge-card p { color:#b0c4e8; font-size:0.85rem; margin-bottom:4px; }
@@ -1626,7 +1705,19 @@
       max-height: calc(100vh - 64px); overflow-y: auto;
       box-shadow: 0 0 40px rgba(30,60,120,0.4);
       animation: scaleIn 0.3s ease-out;
+      position: relative;
     }
+    .modal-panel-x {
+      position: sticky; top: -28px; float: right;
+      margin: -20px -16px 4px 0;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50%; width: 28px; height: 28px;
+      display: flex; align-items: center; justify-content: center;
+      color: #a0b8d0; font-size: 1.1rem; cursor: pointer;
+      transition: background 0.15s, color 0.15s; z-index: 10;
+      flex-shrink: 0; line-height: 1;
+    }
+    .modal-panel-x:hover { background: rgba(255,80,80,0.2); color: #fff; border-color: rgba(255,80,80,0.4); }
     .modal-panel h2 {
       color: #ffd700; font-family: 'Cinzel', serif;
       font-size: 1.05rem; letter-spacing: 1px;
@@ -25955,7 +26046,7 @@
 
     const itemIcons = {
       // Armas
-      'Bisturi de Plantão':            'assets/items/caneta_interno.jpg',
+      'Bisturi de Plantão':            'assets/images/bisturi_plantao.png',
       'Lâmina da Alça':                'assets/items/lamina_alca.jpg',
       'Estilete Tubular':              'assets/images/estilete_tubular.png',
       'Lança Glomerular':              'assets/items/lanca_glomerular.jpg',
@@ -25982,7 +26073,7 @@
       'Elmo do Filtrador Supremo':     'assets/images/elmo_filtrador.png'
     };
     const itemDescriptions = {
-      "Caneta do Interno": "A humilde caneta de um interno iniciante. Suas anotações são a primeira linha de defesa contra o caos renal.",
+      "Bisturi de Plantão": "O bisturi básico de todo interno. Com ele, você corta através da confusão clínica e inicia sua jornada na nefrologia.",
       "Lâmina da Alça": "Forjada na Alça de Henle, esta arma canaliza o poder da concentração urinária para atacar os males renais.",
       "Lança Glomerular": "Imbuída com a força dos glomérulos, perfura as barreiras da doença com precisão cirúrgica.",
       "Espada Nefroprotetora": "Uma lâmina lendária que corta através da fibrose e protege os néfrons da destruição.",
@@ -26364,38 +26455,99 @@
       return{slot,item:allItems[Math.floor(Math.random()*allItems.length)]};
     }
 
-    function equipOrSell(slot,item){
-      const rarityPowerLocal={common:0,uncommon:2,rare:5,epic:10,legendary:20};
-      // Valor de venda = metade do custo de forja baseado na raridade
-      const raritySellValue={common:20,uncommon:40,rare:80,epic:150,legendary:300};
-      function itemPower(it){ return it.atk+it.def+it.kno+it.luck+(rarityPowerLocal[it.rar]||0); }
-      function itemSellVal(it){ return raritySellValue[it.rar] || 20; }
-      const newPow = itemPower(item);
-      // 1. Procurar slot vazio primeiro
-      const slots = Object.keys(state.equipment);
-      for(const s of slots){
-        if(state.equipment[s].n === 'Vazio'){
-          state.equipment[s] = item;
-          return `⬆️ Equipou **${item.n}** (${item.rar}) no slot ${s}.`;
+    const _rarSellVal = {common:20,uncommon:40,rare:80,epic:150,legendary:300};
+    const _rarLabel = {common:'Comum',uncommon:'Incomum',rare:'Raro',epic:'Épico',legendary:'Lendário'};
+    function _itemSellVal(it){ return _rarSellVal[it.rar]||20; }
+
+    function showEquipComparePopup(slot, oldItem, newItem, onReplace, onKeep) {
+      const def = defaultIcons[slot] || '';
+      function _statRow(label, oldV, newV) {
+        const diff = newV - oldV;
+        const diffStr = diff > 0 ? `<span class="pos">+${diff}</span>` : diff < 0 ? `<span class="neg">${diff}</span>` : `<span>—</span>`;
+        return `<span>${label} <b>${oldV}</b></span><span>${label} <b>${newV}</b> ${diffStr}</span>`;
+      }
+      const ov = el => `
+        <div class="equip-compare-slot">
+          <div class="equip-compare-label">Equipado</div>
+          <img src="${itemIcons[el.n]||def}" onerror="this.src='${def}'" alt="${el.n}">
+          <div class="ecp-name">${el.n}</div>
+          <div class="ecp-rar ${el.rar}">${_rarLabel[el.rar]||el.rar}</div>
+          <div class="ecp-stats">
+            <span>⚔️ ATK <b>${el.atk}</b></span>
+            <span>🛡️ DEF <b>${el.def}</b></span>
+            <span>📚 CONH <b>${el.kno}</b></span>
+            <span>🍀 SORTE <b>${el.luck}</b></span>
+          </div>
+        </div>`;
+      const nv = el => `
+        <div class="equip-compare-slot" style="border-color:rgba(255,215,0,0.4)">
+          <div class="equip-compare-label" style="color:#ffd700">Novo item</div>
+          <img src="${itemIcons[el.n]||def}" onerror="this.src='${def}'" alt="${el.n}">
+          <div class="ecp-name">${el.n}</div>
+          <div class="ecp-rar ${el.rar}">${_rarLabel[el.rar]||el.rar}</div>
+          <div class="ecp-stats">
+            ${['atk','def','kno','luck'].map(s => {
+              const icons = {atk:'⚔️',def:'🛡️',kno:'📚',luck:'🍀'};
+              const diff = el[s] - oldItem[s];
+              const cls = diff>0?'pos':diff<0?'neg':'';
+              const diffStr = diff>0?`+${diff}`:diff<0?`${diff}`:'';
+              return `<span>${icons[s]} <b>${el[s]}</b>${diffStr?` <span class="${cls}">(${diffStr})</span>`:''}`;
+            }).join('
+            ')}
+          </div>
+        </div>`;
+      const sellVal = _itemSellVal(newItem);
+      const overlay = document.createElement('div');
+      overlay.className = 'equip-compare-overlay';
+      overlay.id = 'equipCompareOverlay';
+      overlay.innerHTML = `
+        <div class="equip-compare-card">
+          <div class="equip-compare-title">⚔️ Substituir ${slotLabels[slot]||slot}?</div>
+          <div class="equip-compare-body">
+            ${ov(oldItem)}
+            <div class="equip-compare-arrow">→</div>
+            ${nv(newItem)}
+          </div>
+          <div class="equip-compare-actions">
+            <button class="equip-compare-replace" id="ecpReplace">⬆️ Substituir</button>
+            <button class="equip-compare-keep" id="ecpKeep">💰 Manter atual (vender por ${sellVal}🪙)</button>
+          </div>
+        </div>`;
+      document.body.appendChild(overlay);
+      overlay.querySelector('#ecpReplace').onclick = () => { overlay.remove(); onReplace(); };
+      overlay.querySelector('#ecpKeep').onclick   = () => { overlay.remove(); onKeep(); };
+    }
+
+    function equipOrSell(slot, item, onDone) {
+      // Items always go into their designated slot type
+      const currentItem = state.equipment[slot];
+      if (!currentItem || currentItem.n === 'Vazio') {
+        // Slot empty — equip directly
+        state.equipment[slot] = item;
+        const msg = `⬆️ Equipou **${item.n}** (${item.rar}) no slot ${slotLabels[slot]||slot}.`;
+        if (onDone) onDone(msg); else return msg;
+        return;
+      }
+      // Slot occupied — show comparison popup
+      showEquipComparePopup(slot, currentItem, item,
+        () => {
+          // Replace: sell old
+          const val = _itemSellVal(currentItem);
+          state.gold += val;
+          state.equipment[slot] = item;
+          const msg = `⬆️ ${slotLabels[slot]}: **${currentItem.n}** → **${item.n}**. ${currentItem.n} convertido em ${val}💰.`;
+          if (onDone) onDone(msg);
+          renderHUD(); updateBadges(); saveGame();
+        },
+        () => {
+          // Keep old: sell new
+          const val = _itemSellVal(item);
+          state.gold += val;
+          const msg = `💰 ${item.n} (${item.rar}) vendido por ${val}💰 — ${slotLabels[slot]} atual mantida.`;
+          if (onDone) onDone(msg);
+          renderHUD(); updateBadges(); saveGame();
         }
-      }
-      // 2. Todos ocupados: encontrar o mais fraco
-      let weakestSlot = null, weakestPow = Infinity;
-      for(const s of slots){
-        const pow = itemPower(state.equipment[s]);
-        if(pow < weakestPow){ weakestPow = pow; weakestSlot = s; }
-      }
-      // 3. Substituir se novo for mais forte que o mais fraco
-      if(newPow > weakestPow){
-        const oldItem = state.equipment[weakestSlot];
-        const val = itemSellVal(oldItem);
-        state.gold += val;
-        state.equipment[weakestSlot] = item;
-        return `⬆️ Slot ${weakestSlot}: **${oldItem.n}** (${oldItem.rar}) → **${item.n}** (${item.rar}). ${oldItem.n} convertido em ${val}💰.`;
-      }
-      // 4. Novo é pior ou igual: vender
-      const val = itemSellVal(item); state.gold += val;
-      return `💰 ${item.n} (${item.rar}) vendido por ${val}💰 — equipamento atual é superior.`;
+      );
     }
 
     // ============ PAYWALL ============
@@ -26731,6 +26883,7 @@
         modal.style.cssText = 'display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9998;align-items:center;justify-content:center;backdrop-filter:blur(8px);padding:32px 16px;';
         modal.innerHTML = `
           <div class="modal-panel">
+            <button class="modal-panel-x" onclick="closeAccountModal()" aria-label="Fechar">&times;</button>
             <h2>👤 Minha Conta</h2>
             <div class="form-group">
               <label>Nome completo</label>
@@ -26827,6 +26980,7 @@
         `;
       }
       document.getElementById('planModalContent').innerHTML = `
+        <button class="modal-panel-x" onclick="closePlanModal()" aria-label="Fechar">&times;</button>
         <h2>⭐ Seu Plano</h2>
         <div style="text-align:center">
           <div class="plan-badge ${badgeClass}">${badgeLabel}</div>
@@ -26867,6 +27021,7 @@
         modal.style.cssText = 'display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9998;align-items:center;justify-content:center;backdrop-filter:blur(8px);padding:32px 16px;';
         modal.innerHTML = `
           <div class="modal-panel" style="max-width:500px">
+            <button class="modal-panel-x" onclick="closeAdminPanel()" aria-label="Fechar">&times;</button>
             <h2>🛡 Administração — Lista de Acesso</h2>
             <p style="color:#a0b8d0;font-size:0.82rem;margin-bottom:14px">Emails com acesso completo (lista de amigos / convidados).</p>
             <div class="whitelist-input-row">
@@ -27279,25 +27434,14 @@
       const legendaryItems = items[slot].filter(i => i.rar === 'legendary');
       if(legendaryItems.length === 0){ log('Sem itens lendários para este slot.'); state.gold+=cost; return; }
       const legendaryItem = legendaryItems[Math.floor(Math.random()*legendaryItems.length)];
-      // Converter item descartado em ouro (metade do valor de forja por raridade)
-      const raritySellValue={common:20,uncommon:40,rare:80,epic:150,legendary:300};
-      const oldItem = state.equipment[slot];
-      let swapMsg = '';
-      if(oldItem && oldItem.n !== 'Vazio'){
-        const sellVal = raritySellValue[oldItem.rar] || 20;
-        state.gold += sellVal;
-        swapMsg = ` Slot ${slot}: **${oldItem.n}** (${oldItem.rar}) → **${legendaryItem.n}** (lendário). ${oldItem.n} convertido em ${sellVal}💰.`;
-      } else {
-        swapMsg = ` Slot ${slot}: **${legendaryItem.n}** (lendário) equipado.`;
-      }
-      state.equipment[slot] = {...legendaryItem};
       const gains = [`⚔️ ATK ${legendaryItem.atk}`, `🛡️ DEF ${legendaryItem.def}`, `📚 CONH ${legendaryItem.kno}`, `🍀 SORTE ${legendaryItem.luck}`];
-      showForgePopup(state.equipment[slot], slot, gains);
       playSound('forge');
-      log(`🔨 Forja Lendária!${swapMsg}`);
       renderHUD();
-      updateBadges();
-      saveGame();
+      equipOrSell(slot, {...legendaryItem}, (msg) => {
+        showForgePopup(state.equipment[slot], slot, gains);
+        log(`🔨 Forja Lendária! ${msg}`);
+        renderHUD(); updateBadges(); saveGame();
+      });
     }
 
     function _openChestDirect(){
@@ -27344,14 +27488,14 @@
       state.gold-=cost;
       const st=total();
       const rolled=rollItem(state.level, st.luck);
-      const msg=equipOrSell(rolled.slot, rolled.item);
       const gains=[`⚔️ ATK ${rolled.item.atk}`, `🛡️ DEF ${rolled.item.def}`, `📚 CONH ${rolled.item.kno}`, `🍀 SORTE ${rolled.item.luck}`];
-      showForgePopup(rolled.item, rolled.slot, gains);
       playSound('forge');
-      log(`🔨 Forja concluída! ${msg}`);
       renderHUD();
-      updateBadges();
-      saveGame();
+      equipOrSell(rolled.slot, rolled.item, (msg) => {
+        showForgePopup(rolled.item, rolled.slot, gains);
+        log(`🔨 Forja concluída! ${msg}`);
+        renderHUD(); updateBadges(); saveGame();
+      });
     }
 
     function forgeLegendary(){
@@ -27362,29 +27506,17 @@
       state.gold-=cost;
       const keys=Object.keys(state.equipment);
       const slot=keys[Math.floor(Math.random()*keys.length)];
-      // Find legendary item for this slot
       const legendaryItems = items[slot].filter(i => i.rar === 'legendary');
       if(legendaryItems.length === 0){ log('Sem itens lendários para este slot.'); state.gold+=cost; return; }
       const legendaryItem = legendaryItems[Math.floor(Math.random()*legendaryItems.length)];
-      // Converter item descartado em ouro (metade do valor de forja por raridade)
-      const raritySellValueL={common:20,uncommon:40,rare:80,epic:150,legendary:300};
-      const oldItemL = state.equipment[slot];
-      let swapMsgL = '';
-      if(oldItemL && oldItemL.n !== 'Vazio'){
-        const sellValL = raritySellValueL[oldItemL.rar] || 20;
-        state.gold += sellValL;
-        swapMsgL = ` Slot ${slot}: **${oldItemL.n}** (${oldItemL.rar}) → **${legendaryItem.n}** (lendário). ${oldItemL.n} convertido em ${sellValL}💰.`;
-      } else {
-        swapMsgL = ` Slot ${slot}: **${legendaryItem.n}** (lendário) equipado.`;
-      }
-      state.equipment[slot] = {...legendaryItem};
       const gains = [`⚔️ ATK ${legendaryItem.atk}`, `🛡️ DEF ${legendaryItem.def}`, `📚 CONH ${legendaryItem.kno}`, `🍀 SORTE ${legendaryItem.luck}`];
-      showForgePopup(state.equipment[slot], slot, gains);
       playSound('forge');
-      log(`🔨 Forja Lendária!${swapMsgL}`);
       renderHUD();
-      updateBadges();
-      saveGame();
+      equipOrSell(slot, {...legendaryItem}, (msg) => {
+        showForgePopup(state.equipment[slot], slot, gains);
+        log(`🔨 Forja Lendária! ${msg}`);
+        renderHUD(); updateBadges(); saveGame();
+      });
     }
 
     function showForgePopup(item, slot, gains){
