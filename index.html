@@ -26492,8 +26492,7 @@
               const cls = diff>0?'pos':diff<0?'neg':'';
               const diffStr = diff>0?`+${diff}`:diff<0?`${diff}`:'';
               return `<span>${icons[s]} <b>${el[s]}</b>${diffStr?` <span class="${cls}">(${diffStr})</span>`:''}`;
-            }).join('
-            ')}
+            }).join('')}
           </div>
         </div>`;
       const sellVal = _itemSellVal(newItem);
