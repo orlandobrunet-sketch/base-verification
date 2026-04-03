@@ -324,6 +324,127 @@
     .ecp-rar.rare { background: rgba(99,102,241,0.4); }
     .ecp-rar.epic { background: rgba(168,85,247,0.4); }
     .ecp-rar.legendary { background: linear-gradient(135deg,rgba(255,215,0,0.4),rgba(255,140,0,0.4)); color: #ffd700; }
+    /* ===== DIFFICULTY SELECTOR ===== */
+    .diff-selector-overlay {
+      position: fixed; inset: 0; z-index: 9500; display: flex; align-items: center;
+      justify-content: center; background: rgba(0,0,0,0.85); backdrop-filter: blur(6px);
+      padding: 20px 16px; animation: fadeIn 0.25s;
+    }
+    .diff-selector-card {
+      background: linear-gradient(160deg, #0d1428, #12192e, #0e1022);
+      border: 2px solid var(--gold, #ffd700); border-radius: 20px;
+      padding: 24px; max-width: 520px; width: 100%;
+      box-shadow: 0 0 60px rgba(255,215,0,0.15); animation: scaleIn 0.3s;
+    }
+    .diff-selector-title {
+      color: var(--gold); font-family: 'Cinzel', serif; font-size: 1.05rem;
+      letter-spacing: 1.5px; text-align: center; margin-bottom: 18px;
+    }
+    .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+    @media (max-width: 500px) { .diff-grid { grid-template-columns: 1fr; } }
+    .diff-card {
+      background: rgba(255,255,255,0.04); border: 2px solid rgba(99,102,241,0.25);
+      border-radius: 12px; padding: 14px 12px; cursor: pointer; text-align: center;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    }
+    .diff-card:hover { border-color: rgba(255,215,0,0.5); background: rgba(255,215,0,0.07); transform: translateY(-2px); }
+    .diff-card.selected { border-color: var(--gold); background: rgba(255,215,0,0.12); box-shadow: 0 0 16px rgba(255,215,0,0.2); }
+    .diff-card.hardcore { border-color: rgba(239,68,68,0.35); }
+    .diff-card.hardcore:hover { border-color: rgba(239,68,68,0.7); background: rgba(239,68,68,0.07); }
+    .diff-card.hardcore.selected { border-color: #ef4444; background: rgba(239,68,68,0.12); box-shadow: 0 0 16px rgba(239,68,68,0.25); }
+    .diff-icon { font-size: 1.8rem; margin-bottom: 4px; }
+    .diff-name { color: #e2e8f0; font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; }
+    .diff-lives { font-size: 0.85rem; margin-bottom: 6px; }
+    .diff-desc { color: #94a3b8; font-size: 0.68rem; line-height: 1.4; }
+    .diff-hardcore-badge { display: inline-block; background: linear-gradient(135deg,rgba(239,68,68,0.3),rgba(180,0,0,0.3)); border: 1px solid rgba(239,68,68,0.5); color: #fca5a5; font-size: 0.62rem; border-radius: 20px; padding: 2px 8px; margin-top: 4px; font-weight: 700; letter-spacing: 0.5px; }
+    .diff-confirm-btn {
+      width: 100%; padding: 12px; border-radius: 10px; border: none; cursor: pointer;
+      background: linear-gradient(135deg, #1a4080, #2a5fa0); color: #e0f0ff;
+      font-family: 'Cinzel', serif; font-size: 0.88rem; font-weight: 700; letter-spacing: 1px;
+      transition: opacity 0.2s;
+    }
+    .diff-confirm-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .diff-cancel-btn {
+      width: 100%; padding: 9px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.05); color: #708090; cursor: pointer;
+      font-size: 0.8rem; margin-top: 6px; transition: background 0.15s;
+    }
+    .diff-cancel-btn:hover { background: rgba(255,255,255,0.1); color: #c8d8f0; }
+
+    /* ===== LEGENDARY GLOW ANIMATIONS ===== */
+    @keyframes legendaryPulse {
+      0%   { box-shadow: 0 0 6px 2px rgba(255,215,0,0.5),  0 0 14px 4px rgba(255,165,0,0.25); }
+      50%  { box-shadow: 0 0 14px 5px rgba(255,215,0,0.8), 0 0 28px 8px rgba(255,165,0,0.4); }
+      100% { box-shadow: 0 0 6px 2px rgba(255,215,0,0.5),  0 0 14px 4px rgba(255,165,0,0.25); }
+    }
+    @keyframes legendaryPassiveGlow {
+      0%   { box-shadow: 0 0 4px 1px rgba(255,215,0,0.3); }
+      50%  { box-shadow: 0 0 8px 3px rgba(255,215,0,0.5); }
+      100% { box-shadow: 0 0 4px 1px rgba(255,215,0,0.3); }
+    }
+    .slot-icon.legendary-active {
+      border: 2px solid var(--gold) !important; border-radius: 8px;
+      animation: legendaryPulse 2s ease-in-out infinite;
+    }
+    .slot-icon.legendary-passive {
+      border: 2px solid rgba(255,215,0,0.5) !important; border-radius: 8px;
+      animation: legendaryPassiveGlow 3s ease-in-out infinite;
+    }
+    .slot-icon.legendary-used {
+      border: 2px solid rgba(255,215,0,0.2) !important; border-radius: 8px;
+      filter: saturate(0.4) brightness(0.7);
+    }
+    /* Ability label badge on item */
+    .slot.has-active-ability .slot-name::after {
+      content: " ✨"; color: var(--gold); font-size: 0.8em;
+    }
+    .slot.has-used-ability .slot-name::after {
+      content: " (usada)"; color: #64748b; font-size: 0.68em;
+    }
+
+    /* ===== PULAR QUESTÃO BUTTON ===== */
+    .skip-question-btn {
+      display: none; background: rgba(255,215,0,0.08); border: 1px solid rgba(255,215,0,0.35);
+      color: #ffd700; border-radius: 8px; padding: 6px 14px; cursor: pointer;
+      font-size: 0.75rem; font-family: 'Cinzel', serif; letter-spacing: 0.5px;
+      transition: background 0.15s; margin-top: 8px; white-space: nowrap;
+    }
+    .skip-question-btn:hover { background: rgba(255,215,0,0.15); }
+    .skip-question-btn.visible { display: inline-block; }
+
+    /* ===== MINIGAME POPUP ===== */
+    .minigame-overlay {
+      position: fixed; inset: 0; z-index: 9800; display: flex; align-items: center;
+      justify-content: center; background: rgba(0,0,0,0.9); backdrop-filter: blur(8px);
+      animation: fadeIn 0.3s; padding: 16px;
+    }
+    .minigame-card {
+      background: linear-gradient(135deg, #0a1220, #12192e, #0e1022);
+      border: 2px solid #4ade80; border-radius: 18px; padding: 22px 20px;
+      max-width: 420px; width: 100%; text-align: center; animation: scaleIn 0.35s;
+    }
+    .minigame-title { color: #4ade80; font-family: 'Cinzel', serif; font-size: 0.95rem; margin-bottom: 4px; }
+    .minigame-subtitle { color: #94a3b8; font-size: 0.75rem; margin-bottom: 16px; }
+    .minigame-stmt {
+      background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.25);
+      border-radius: 10px; padding: 14px 12px; font-size: 0.85rem; color: #e2e8f0;
+      line-height: 1.5; margin-bottom: 12px; min-height: 70px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .minigame-tf-btns { display: flex; gap: 10px; margin-bottom: 10px; }
+    .minigame-tf-btns button { flex: 1; padding: 12px; border-radius: 10px; border: none; cursor: pointer; font-size: 0.9rem; font-weight: 700; transition: transform 0.1s; }
+    .minigame-tf-btns button:active { transform: scale(0.96); }
+    .minigame-true-btn { background: linear-gradient(135deg, #065f46, #059669); color: #ecfdf5; }
+    .minigame-false-btn { background: linear-gradient(135deg, #7f1d1d, #dc2626); color: #fef2f2; }
+    .minigame-timer {
+      height: 4px; background: rgba(74,222,128,0.15); border-radius: 2px; overflow: hidden;
+      margin-bottom: 14px;
+    }
+    .minigame-timer-fill { height: 100%; background: #4ade80; transition: width 0.1s linear; }
+    .minigame-progress { color: #64748b; font-size: 0.72rem; margin-bottom: 8px; }
+    .minigame-result { font-size: 1.1rem; margin-bottom: 6px; }
+    .minigame-reward { color: #ffd700; font-size: 0.85rem; font-weight: 700; margin-bottom: 14px; }
+
 
     .forge-card img { width:80px; height:80px; border-radius:10px; border:2px solid var(--gold); margin-bottom:12px; object-fit:contain; background:#0a0e1a; }
     .forge-card h3 { color:var(--gold); font-family:'Cinzel',serif; margin-bottom:6px; }
@@ -5426,6 +5547,9 @@
     const bgB = new Audio(MUSIC_URL);
     bgA.volume = MUSIC_VOL; bgB.volume = 0;
     bgA.load(); bgB.load();
+    // Fallback: se crossfade não disparar, 'ended' garante o loop
+    bgA.addEventListener('ended', () => { if(musicEnabled && musicStarted) { bgA.currentTime=0; bgA.play().catch(()=>{}); scheduleXfade(bgA); } });
+    bgB.addEventListener('ended', () => { if(musicEnabled && musicStarted) { bgB.currentTime=0; bgB.play().catch(()=>{}); scheduleXfade(bgB); } });
     
     let soundEnabled = localStorage.getItem('nefroquest-sound') !== 'off';
     let musicEnabled = localStorage.getItem('nefroquest-music') !== 'off';
@@ -5435,15 +5559,21 @@
     
     function scheduleXfade(track) {
       // Quando faltam XFADE_TIME segundos, iniciar crossfade para o outro track
-      const checkInterval = setInterval(() => {
-        if (!musicStarted || !musicEnabled) { clearInterval(checkInterval); return; }
-        const remaining = track.duration - track.currentTime;
-        if (remaining <= XFADE_TIME && remaining > 0) {
-          clearInterval(checkInterval);
-          crossfadeTo(track === bgA ? bgB : bgA);
-        }
-      }, 100);
-      xfadeInterval = checkInterval;
+      if (xfadeInterval) clearInterval(xfadeInterval);
+      function _startCheck() {
+        const checkInterval = setInterval(() => {
+          if (!musicStarted || !musicEnabled) { clearInterval(checkInterval); return; }
+          if (!isFinite(track.duration)) return;
+          const remaining = track.duration - track.currentTime;
+          if (remaining <= XFADE_TIME && remaining > 0) {
+            clearInterval(checkInterval);
+            crossfadeTo(track === bgA ? bgB : bgA);
+          }
+        }, 100);
+        xfadeInterval = checkInterval;
+      }
+      if (isFinite(track.duration)) { _startCheck(); }
+      else { track.addEventListener('durationchange', function _onDur() { if(isFinite(track.duration)){ track.removeEventListener('durationchange',_onDur); _startCheck(); } }); }
     }
     
     function crossfadeTo(nextTrack) {
@@ -5629,8 +5759,10 @@
     function checkGameCompletion() {
       if (state.correctTotal >= 100 && !state.gameCompleted) {
         state.gameCompleted = true;
-        // Desbloquear conquista Campeão da Nefrologia (derrotou o Arqui-Nefromante)
         localStorage.setItem('nefroquest-arqui-defeated', '1');
+        if (state.difficulty === 'hardcore') {
+          localStorage.setItem('nefroquest-hardcore-completed', '1');
+        }
         checkAchievements();
         showGameCompletionModal();
       }
@@ -25566,7 +25698,7 @@
     };
 
     const state={
-      level:1,xp:0,xpToNext:200,score:0,lives:3,streak:0,gold:0,
+      level:1,xp:0,xpToNext:200,score:0,lives:3,maxLives:3,streak:0,gold:0,difficulty:"normal",legendaryAbilityUsed:{},
       current:null,answered:false,queue:[],idx:0,bonusUses:0,
       correctTotal:0, narrativeShown:0, bossIntroShown:false, gameOver:false,
       gameStarted: false, chestsOpened:0,
@@ -26099,19 +26231,37 @@
       kno: {icon:'📚', name:'Conhecimento', desc:'Aumenta XP ganho por acerto. +1 XP extra por ponto de conhecimento.'},
       luck: {icon:'🍀', name:'Sorte', desc:'Aumenta ouro ganho e chance de itens raros na forja e drops.'}
     };
+    const _ACTIVE_LEGS = new Set(['Excalibur do N\u00e9fron','Armadura Primeva','Amuleto do Rim Imortal','Rel\u00edquia do T\u00edtulo']);
+    const _PASSIVE_LEGS = new Set(['Cetro do N\u00e9fron Eterno','Armadura da Homeostase Perfeita','Elmo do Filtrador Supremo']);
+    const _LEG_LABELS = {
+      'Excalibur do N\u00e9fron':'\u2694\ufe0f Anula 1 dano',
+      'Armadura Primeva':'\ud83d\udee1\ufe0f Salva \u00faltima vida',
+      'Amuleto do Rim Imortal':'\ud83d\udc9c Revive 1\u00d7',
+      'Rel\u00edquia do T\u00edtulo':'\ud83d\udcd6 Pular 1 quest\u00e3o',
+      'Cetro do N\u00e9fron Eterno':'\ud83d\udcb0 +30 ouro (streak\u22655)',
+      'Armadura da Homeostase Perfeita':'\ud83d\udee1\ufe0f DEF amplificado',
+      'Elmo do Filtrador Supremo':'\u2728 +25% ouro sempre',
+    };
+
     function renderEquip(){
       const st=total();
       ui.equipList.innerHTML=Object.entries(state.equipment).map(([k,v])=>{
         const isEmpty = v.n === 'Vazio';
         const icon = isEmpty ? '' : (itemIcons[v.n] || defaultIcons[k]);
         const desc = isEmpty ? 'Slot vazio. Forje itens para equipar!' : (itemDescriptions[v.n] || '');
+        const isActive = _ACTIVE_LEGS.has(v.n);
+        const isPassive = _PASSIVE_LEGS.has(v.n);
+        const wasUsed = !!(state.legendaryAbilityUsed && state.legendaryAbilityUsed[v.n]);
+        const glowCls = (v.rar==='legendary') ? (isPassive ? 'legendary-passive' : (wasUsed ? 'legendary-used' : 'legendary-active')) : '';
+        const slotCls = (isActive && !wasUsed) ? 'slot has-active-ability' : (isActive && wasUsed) ? 'slot has-used-ability' : 'slot';
+        const abilityBadge = (isActive||isPassive) ? `<div style="font-size:0.6rem;color:${wasUsed?'#64748b':isPassive?'rgba(255,215,0,0.7)':'#ffd700'};margin-top:2px">${wasUsed?'\u2713 usada':_LEG_LABELS[v.n]||''}</div>` : '';
         const imgHtml = isEmpty 
           ? `<div class='slot-icon' style='display:flex;align-items:center;justify-content:center;background:rgba(10,15,30,0.8);border:2px dashed #2a4a7a;color:#3a5a8a;font-size:1.5rem'>?</div>`
-          : `<img class='slot-icon item-with-tooltip' loading='lazy' src='${icon}' alt="${v.n.replace(/"/g,'&quot;')}" data-item-name="${v.n.replace(/"/g,'&quot;')}" data-item-desc="${desc.replace(/"/g,'&quot;')}"/>`;
-        return `<div class='slot'>
+          : `<img class='slot-icon ${glowCls} item-with-tooltip' loading='lazy' src='${icon}' alt="${v.n.replace(/"/g,'&quot;')}" data-item-name="${v.n.replace(/"/g,'&quot;')}" data-item-desc="${desc.replace(/"/g,'&quot;')}"/>`;
+        return `<div class='${slotCls}'>
           ${imgHtml}
           <div class='slot-info'>
-            <div class='slot-name'><span class='rar-${v.rar}'>${v.n}</span></div>
+            <div class='slot-name'><span class='rar-${v.rar}'>${v.n}</span>${abilityBadge}</div>
             <div class='slot-stats'>
               <span class='stat-badge'>⚔️${v.atk}<span class='stat-tip'><strong>${statTips.atk.icon} ${statTips.atk.name}</strong><br>${statTips.atk.desc}</span></span>
               <span class='stat-badge'>🛡️${v.def}<span class='stat-tip'><strong>${statTips.def.icon} ${statTips.def.name}</strong><br>${statTips.def.desc}</span></span>
@@ -26159,7 +26309,7 @@
       ui.storyTitle.textContent=chapter.title;
       ui.storyGoal.textContent=`Objetivo: ${chapter.goal} Lendários equipados: ${legendaryCount()}/2.`;
       ui.level.textContent=state.level; ui.score.textContent=state.score;
-      ui.lives.innerHTML='<span style="color:#ef4444">❤</span>'.repeat(Math.max(0,state.lives))+'<span style="color:#555">♡</span>'.repeat(Math.max(0,3-Math.max(0,state.lives)));
+      const _ml=state.maxLives||3; ui.lives.innerHTML='<span style="color:#ef4444">❤</span>'.repeat(Math.max(0,state.lives))+'<span style="color:#555">♡</span>'.repeat(Math.max(0,_ml-Math.max(0,state.lives)));
       ui.record.textContent=best(); ui.gold.textContent=state.gold;
       // Streak visual com multiplicador
       const sm = getStreakMultiplier(state.streak);
@@ -26197,7 +26347,7 @@
       if(msbStreakEl) msbStreakEl.textContent = state.streak;
       if(msbLivesEl) {
         const lives = Math.max(0, state.lives);
-        const maxLives = 3;
+        const maxLives = state.maxLives || 3;
         msbLivesEl.innerHTML =
           '<span style="color:#ef4444">❤</span>'.repeat(Math.min(lives, maxLives)) +
           '<span style="color:#555">♡</span>'.repeat(Math.max(0, maxLives - lives));
@@ -26231,16 +26381,45 @@
       const easy   = splitMastered(questionBank.filter(q => q._d === 'easy'));
       const medium = splitMastered(questionBank.filter(q => q._d === 'medium'));
       const hard   = splitMastered(questionBank.filter(q => q._d === 'hard'));
-      // Intercalar: 1 easy, 2 medium, 2 hard, repetindo...
-      // para distribuir dificuldade ao longo de todo o ciclo
+      // Proporção por dificuldade do modo de jogo
+      // easy:     2e:2m:1h | normal: 1e:2m:2h | hard: 0e:1m:3h | hardcore: somente hard
+      const diff = state.difficulty || 'normal';
       const interleaved = [];
       const ei = [...easy], mi = [...medium], hi = [...hard];
-      while (ei.length || mi.length || hi.length) {
-        if (ei.length) interleaved.push(ei.shift());
-        if (mi.length) interleaved.push(mi.shift());
-        if (hi.length) interleaved.push(hi.shift());
-        if (mi.length) interleaved.push(mi.shift());
-        if (hi.length) interleaved.push(hi.shift());
+      if (diff === 'hardcore') {
+        // Somente questões difíceis
+        interleaved.push(...hi);
+      } else {
+        // Padrão de repetição por dificuldade
+        const patterns = {
+          easy:   (e,m,h) => [e.shift(),e.shift(),m.shift(),m.shift(),h.shift()],
+          normal: (e,m,h) => [e.shift(),m.shift(),h.shift(),m.shift(),h.shift()],
+          hard:   (e,m,h) => [m.shift(),h.shift(),h.shift(),h.shift(),null],
+        };
+        const pat = patterns[diff] || patterns.normal;
+        while (ei.length || mi.length || hi.length) {
+          const chunk = pat([...ei],[...mi],[...hi]); // peek lengths
+          // advance the real arrays
+          if (diff === 'easy') {
+            if (ei.length) interleaved.push(ei.shift());
+            if (ei.length) interleaved.push(ei.shift());
+            if (mi.length) interleaved.push(mi.shift());
+            if (mi.length) interleaved.push(mi.shift());
+            if (hi.length) interleaved.push(hi.shift());
+          } else if (diff === 'hard') {
+            if (mi.length) interleaved.push(mi.shift());
+            if (hi.length) interleaved.push(hi.shift());
+            if (hi.length) interleaved.push(hi.shift());
+            if (hi.length) interleaved.push(hi.shift());
+          } else {
+            // normal
+            if (ei.length) interleaved.push(ei.shift());
+            if (mi.length) interleaved.push(mi.shift());
+            if (hi.length) interleaved.push(hi.shift());
+            if (mi.length) interleaved.push(mi.shift());
+            if (hi.length) interleaved.push(hi.shift());
+          }
+        }
       }
       // Mover para o final qualquer questão que esteja no histórico recente
       // (evita repetição imediata na virada de ciclo)
@@ -26333,6 +26512,28 @@
         b.textContent=`${String.fromCharCode(65+i)}) ${opt}`;
         ui.options.appendChild(b);
       });
+      // Relíquia do Título: botão de pular questão (1× por jogo)
+      const _skipBtn = document.getElementById('skipQuestionBtn');
+      if(state.equipment?.relic?.n === 'Relíquia do Título' && !state.legendaryAbilityUsed?.['Relíquia do Título']) {
+        if(!_skipBtn) {
+          const sb = document.createElement('button');
+          sb.id = 'skipQuestionBtn';
+          sb.className = 'skip-question-btn visible';
+          sb.innerHTML = '📖 Pular esta questão (Relíquia do Título — 1×)';
+          sb.onclick = () => {
+            state.legendaryAbilityUsed['Relíquia do Título'] = true;
+            sb.remove();
+            log('📖 Relíquia do Título usada — questão pulada sem penalidade.');
+            renderEquip();
+            renderQuestion();
+          };
+          ui.options.parentElement.insertBefore(sb, ui.options.nextSibling);
+        } else {
+          _skipBtn.classList.add('visible');
+        }
+      } else if(_skipBtn) {
+        _skipBtn.remove();
+      }
       // ── Confronto Final: atualiza UI do boss e injeta badges ──
       updateBossUI();
       applyBossOptionBadges();
@@ -26491,8 +26692,8 @@
               const diff = el[s] - oldItem[s];
               const cls = diff>0?'pos':diff<0?'neg':'';
               const diffStr = diff>0?`+${diff}`:diff<0?`${diff}`:'';
-              return `<span>${icons[s]} <b>${el[s]}</b>${diffStr?` <span class="${cls}">(${diffStr})</span>`:''}`;
-            }).join('')}
+              return `<span>${icons[s]} <b>${el[s]}</b>${diffStr?' <span class="'+cls+'">('+diffStr+')</span>':''}</span>`;
+            }).join(' ')}
           </div>
         </div>`;
       const sellVal = _itemSellVal(newItem);
@@ -27114,7 +27315,11 @@
         const baseXp=5+state.current.d*2+Math.min(state.streak,5)*1+Math.floor(st.kno/3);
         const xp=Math.floor(baseXp * sm.mult);
         const baseG=8+state.current.d*3+Math.floor(st.luck/3);
-        const g=Math.floor(baseG * sm.mult);
+        let g=Math.floor(baseG * sm.mult);
+        // Legendary passive: Elmo do Filtrador Supremo +25% gold
+        if(state.equipment?.relic?.n==='Elmo do Filtrador Supremo') g=Math.floor(g*1.25);
+        // Legendary passive: Cetro do Néfron Eterno - streak bonus gold
+        if(state.equipment?.weapon?.n==='Cetro do Néfron Eterno' && state.streak>=5) g+=30;
         const baseScore=80+state.current.d*15+state.streak*5+st.atk;
         state.score+=Math.floor(baseScore * sm.mult);
         const prevGold = state.gold;
@@ -27147,14 +27352,35 @@
       } else {
         state.streak=0;
         btn.classList.add('wrong');
-        const shield=Math.min(.35,st.def*.014);
-        const blocked=Math.random()<shield;
+        // Legendary passive: Armadura da Homeostase Perfeita: DEF 2.0% vs 1.4%
+        const defMult = (state.equipment?.armor?.n==='Armadura da Homeostase Perfeita') ? 0.020 : 0.014;
+        const shield=Math.min(.50, st.def * defMult);
+        let blocked=Math.random()<shield;
+        let legendaryBlockMsg = '';
+        // Legendary active: Excalibur do Néfron (auto-blocks 1st life loss)
+        if(!blocked && state.equipment?.weapon?.n==='Excalibur do Néfron' && !state.legendaryAbilityUsed['Excalibur do Néfron']) {
+          state.legendaryAbilityUsed['Excalibur do Néfron'] = true;
+          blocked = true;
+          legendaryBlockMsg = '⚔️ Excalibur do Néfron anulou o dano! (1× por jogo)';
+          renderEquip();
+        }
+        // Legendary active: Armadura Primeva (blocks hit when on last life)
+        if(!blocked && state.lives<=1 && state.equipment?.armor?.n==='Armadura Primeva' && !state.legendaryAbilityUsed['Armadura Primeva']) {
+          state.legendaryAbilityUsed['Armadura Primeva'] = true;
+          blocked = true;
+          legendaryBlockMsg = '🛡️ Armadura Primeva salvou sua última vida! (1× por jogo)';
+          renderEquip();
+        }
         if(!blocked) state.lives--;
         state.score=Math.max(0,state.score-(28-Math.min(20,st.def)));
         ui.feedback.className='feedback bad';
-        ui.feedback.textContent=blocked
-          ? `🛡️ Errou, mas sua defesa absorveu. ${state.current.e}`
-          : `❌ Incorreta. ${state.current.e}`;
+        if(legendaryBlockMsg) {
+          ui.feedback.textContent = legendaryBlockMsg + ' ' + state.current.e;
+        } else {
+          ui.feedback.textContent=blocked
+            ? `🛡️ Errou, mas sua defesa absorveu. ${state.current.e}`
+            : `❌ Incorreta. ${state.current.e}`;
+        }
         log('⚠️ Você falhou nessa carta. Ajuste a estratégia e continue.');
         playSound('wrong');
         saveGame();
@@ -27165,6 +27391,19 @@
       renderHUD();
       updateBadges();
       if(state.lives<=0) {
+        // Legendary active: Amuleto do Rim Imortal - revive once
+        if(state.equipment?.relic?.n==='Amuleto do Rim Imortal' && !state.legendaryAbilityUsed['Amuleto do Rim Imortal']) {
+          state.legendaryAbilityUsed['Amuleto do Rim Imortal'] = true;
+          state.lives = 1;
+          state.legendaryAbilityUsed['Amuleto do Rim Imortal'] = true;
+          renderEquip();
+          const revNotif = document.createElement('div');
+          revNotif.style.cssText='position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9990;background:linear-gradient(135deg,#1a0a2a,#2a1040);border:2px solid var(--gold);border-radius:16px;padding:24px 28px;text-align:center;animation:scaleIn 0.4s;box-shadow:0 0 50px rgba(255,215,0,0.3);';
+          revNotif.innerHTML='<div style="font-size:2rem;margin-bottom:8px">💜</div><div style="color:var(--gold);font-family:Cinzel,serif;font-size:1rem;margin-bottom:6px">Amuleto do Rim Imortal</div><div style="color:#c8d8f0;font-size:0.82rem">Você foi revivido com 1 vida!<br><span style="color:#64748b;font-size:0.72rem">(1× por jogo)</span></div>';
+          document.body.appendChild(revNotif);
+          setTimeout(()=>revNotif.remove(), 3000);
+          renderHUD(); saveGame(); return;
+        }
         finishGame();
       } else if (!isPremium() && getGameStats().questionsAnsweredAllTime >= FREE_QUESTIONS_LIMIT) {
         showPricingModal();
@@ -27895,6 +28134,137 @@
       {at:100, ch:"Epílogo", title:"Os Rins Foram Salvos!", text:"Com um último golpe de conhecimento puro, o Arqui-Nefromante é derrotado! Os néfrons do reino voltam a filtrar com perfeição. A creatinina normaliza, a proteinúria desaparece, o equilíbrio hidroeletrolítico é restaurado. Você é coroado(a) como o(a) Grande Guardião(ã) dos Rins. A nefrologia está salva — graças a você!"}
     ];
 
+
+    // ===== MINIGAME: JULGAMENTO RÁPIDO =====
+    const RAPID_QUIZ_QUESTIONS = [
+      {q:"IECA e BRA nunca devem ser usados juntos em DRC — risco de hipercalemia e IRA.",ans:true,exp:"ONTARGET: combinação aumenta eventos adversos sem benefício renal adicional."},
+      {q:"O 'dip' inicial de TFG com SGLT2i é sinal de nefrotoxicidade direta.",ans:false,exp:"É efeito hemodinâmico protetor — reduz hiperfiltração intraglomerular. Reversível."},
+      {q:"Na hemodiálise, Kt/V alvo mínimo recomendado pelo KDIGO é 1.2 por sessão.",ans:true,exp:"Kt/V ≥ 1.2 por sessão em diálise 3×/semana é o padrão mínimo de adequação."},
+      {q:"Hiato aniônico normal na acidose metabólica sugere causa renal ou gastrointestinal.",ans:true,exp:"NAGMA: acidose tubular renal, diarreia, fístulas digestivas — perda de bicarbonato."},
+      {q:"Anti-PLA2R positivo indica nefropatia membranosa de causa secundária (ex: lúpus).",ans:false,exp:"Anti-PLA2R positivo = nefropatia membranosa primária. Causas secundárias costumam ser anti-PLA2R negativas."},
+      {q:"Icodextrina na diálise peritoneal melhora ultrafiltração na troca longa noturna.",ans:true,exp:"Polímero de alto PM — mantém osmose por período prolongado sem absorção sistêmica."},
+      {q:"Clearance de creatinina superestima a TFG real por incluir secreção tubular ativa.",ans:true,exp:"Secreção proximal de creatinina → ClCr > TFGe real em até 20%, especialmente com TFG baixa."},
+      {q:"Cistatina C é marcador mais preciso que creatinina em pacientes com baixa massa muscular.",ans:true,exp:"Cistatina C independe de massa muscular e etnia — superior em idosos, amputados e desnutridos."},
+      {q:"Na ATR tipo 1 (distal), o pH urinário permanece > 5.5 mesmo com acidemia sistêmica grave.",ans:true,exp:"Defeito na bomba H-ATPase tubular distal — incapacidade de acidificar urina abaixo de pH 5.5."},
+      {q:"Hidratação com bicarbonato de sódio é superior ao soro fisiológico para prevenir nefropatia por contraste.",ans:false,exp:"Estudos randomizados não mostraram superioridade do bicarbonato — soro fisiológico isotônico é padrão."},
+      {q:"Finerenona é um ARM não esteroidal com menos ginecomastia que espironolactona.",ans:true,exp:"Finerenona (FIDELIO-DKD, FIGARO-DKD): seletiva para MR, sem efeitos androgênicos/estrogênicos."},
+      {q:"Dapagliflozina reduz progressão de DRC independentemente da presença de diabetes tipo 2.",ans:true,exp:"DAPA-CKD incluiu pacientes sem DM2 e demonstrou benefício nefroprotetor consistente."},
+      {q:"Hipercalemia com ECG alterado exige gluconato de cálcio IV imediato para estabilizar o miocárdio.",ans:true,exp:"Gluconato de cálcio: efeito em 1-3 min, sem alterar a calemia — protege o coração enquanto aguarda depuração."},
+      {q:"Na peritonite em diálise peritoneal, a cultura do efluente deve ser positiva para fechar o diagnóstico.",ans:false,exp:"Diagnóstico: efluente turvo + leucócitos > 100/mm³ — cultura pode ser negativa em até 20% dos casos."},
+      {q:"IgA nefropatia é a causa mais comum de glomerulonefrite primária no mundo.",ans:true,exp:"Representa 30-40% das GN primárias globalmente; mais prevalente em asiáticos e caucasianos jovens."},
+      {q:"Síndrome de Alport resulta de mutação no colágeno tipo IV da membrana basal glomerular.",ans:true,exp:"Mutações em COL4A3/A4/A5 → hematúria, surdez neurossensorial progressiva, DRC."},
+      {q:"PTH elevado cronicamente na DRC pode causar osteíte fibrosa cística pelo hiperparatireoidismo secundário.",ans:true,exp:"Hipocalcemia + hiperfosfatemia → estimulação crônica de PTH → turnover ósseo excessivo."},
+      {q:"Calcitriol (1,25-OH-D3) é produzido principalmente no fígado.",ans:false,exp:"1α-hidroxilação ocorre no rim (túbulo proximal) — DRC avançada leva a deficiência de calcitriol."},
+      {q:"Acidose metabólica crônica na DRC pode acelerar a progressão da doença renal.",ans:true,exp:"Acidose ativa vias de fibrose (TGF-β, endotelina) — bicarbonato oral pode desacelerar progressão."},
+      {q:"Furosemida tem eficácia reduzida como diurético quando TFGe < 30 mL/min.",ans:false,exp:"Furosemida mantém eficácia em TFG baixa (precisa de doses maiores) — tiazídicos é que perdem eficácia < 30."},
+      {q:"SHR tipo 1 (síndrome hepatorrenal aguda) tem progressão rápida em menos de 2 semanas.",ans:true,exp:"SHR tipo 1 (agora 'SHR-IRA'): progressão em < 2 semanas, mortalidade > 80% sem tratamento."},
+      {q:"O escore de Banff é usado para classificar o grau de rejeição em biópsias renais pós-transplante.",ans:true,exp:"Critérios de Banff (desde 1991): classifica rejeição celular e mediada por anticorpos."},
+      {q:"Ciclosporina pode causar nefrotoxicidade aguda (vasoconstrição) E crônica (fibrose intersticial).",ans:true,exp:"Toxicidade aguda: vasoconstrição aferente (reversível). Crônica: fibrose e arteriolopatia (irreversível)."},
+      {q:"Rabdomiólise induz IRA principalmente por obstrução tubular com cilindros de mioglobina.",ans:true,exp:"Mioglobina é nefrotóxica: vasoconstrição, estresse oxidativo e obstrução tubular direta."},
+      {q:"O transplante renal de doador vivo tem melhor sobrevida de enxerto que o de doador falecido.",ans:true,exp:"Menor isquemia fria, melhor função imediata do enxerto, melhor match imunológico possível."},
+      {q:"SGLT2i estão contraindicados em qualquer paciente com TFGe < 45 mL/min.",ans:false,exp:"Dapagliflozina/empagliflozina são usadas para nefroproteção mesmo em TFGe 25-45 — mudança recente de bula."},
+      {q:"A albumina sérica baixa na síndrome nefrótica é consequência direta da proteinúria maciça.",ans:true,exp:"Perda renal de albumina supera capacidade hepática de síntese → hipoalbuminemia e edema."},
+      {q:"Bicarbonato de sódio oral está indicado em DRC com bicarbonato sérico < 22 mEq/L.",ans:true,exp:"KDIGO 2024: suplementação de bicarbonato para manter HCO3 > 22 mEq/L pode retardar progressão."},
+      {q:"AINE em DRC avançada pode precipitar IRA por bloquear prostaglandinas vasodilatadoras renais.",ans:true,exp:"Em estados de baixo fluxo, rins dependem de prostaglandinas para vasodilatação aferente — AINE bloqueia."},
+      {q:"Nefropatia por IgA pode ser tratada com inibidores de SGLT2 para reduzir proteinúria.",ans:true,exp:"DAPA-CKD e estudos específicos de IgAN mostram redução de proteinúria com SGLT2i."},
+    ];
+
+    let _minigameTriggerCount = 0;
+    const MINIGAME_TRIGGER_AT = [20, 40, 60, 80]; // após narrativa nesses pontos
+    const MINIGAME_MAX_TRIGGERS = 2; // máx. 2 minigames por partida
+
+    function maybeTriggerMinigame(atCorrectTotal) {
+      if (!MINIGAME_TRIGGER_AT.includes(atCorrectTotal)) return;
+      if (_minigameTriggerCount >= MINIGAME_MAX_TRIGGERS) return;
+      if (Math.random() > 0.55) return; // 55% de chance
+      _minigameTriggerCount++;
+      setTimeout(() => showRapidQuizMinigame(), 600);
+    }
+
+    function showRapidQuizMinigame() {
+      const pool = [...RAPID_QUIZ_QUESTIONS].sort(() => Math.random() - 0.5).slice(0, 5);
+      let currentIdx = 0;
+      let correctCount = 0;
+      let timerInterval = null;
+      const TIME_PER_Q = 7; // seconds per question
+
+      const overlay = document.createElement('div');
+      overlay.className = 'minigame-overlay';
+      overlay.id = 'rapidQuizOverlay';
+      document.body.appendChild(overlay);
+
+      function renderQuestion() {
+        if (currentIdx >= pool.length) { showResults(); return; }
+        const q = pool[currentIdx];
+        let timeLeft = TIME_PER_Q;
+        if (timerInterval) clearInterval(timerInterval);
+
+        overlay.innerHTML = `
+          <div class="minigame-card">
+            <div class="minigame-title">⚡ Julgamento Rápido</div>
+            <div class="minigame-subtitle">Verdadeiro ou Falso? ${TIME_PER_Q}s por afirmação</div>
+            <div class="minigame-progress">${currentIdx + 1} / ${pool.length}</div>
+            <div class="minigame-timer"><div class="minigame-timer-fill" id="mgTimerFill" style="width:100%"></div></div>
+            <div class="minigame-stmt" id="mgStmt">${q.q}</div>
+            <div class="minigame-tf-btns">
+              <button class="minigame-true-btn" id="mgTrue" onclick="mgAnswer(true)">✓ VERDADEIRO</button>
+              <button class="minigame-false-btn" id="mgFalse" onclick="mgAnswer(false)">✗ FALSO</button>
+            </div>
+            <div id="mgFeedback" style="min-height:32px;font-size:0.75rem;color:#94a3b8;text-align:center;line-height:1.4;"></div>
+          </div>`;
+
+        timerInterval = setInterval(() => {
+          timeLeft -= 0.1;
+          const fill = document.getElementById('mgTimerFill');
+          if (fill) fill.style.width = Math.max(0, (timeLeft / TIME_PER_Q * 100)) + '%';
+          if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            mgAnswer(null); // timeout = wrong
+          }
+        }, 100);
+      }
+
+      window.mgAnswer = function(userAns) {
+        if (timerInterval) clearInterval(timerInterval);
+        const q = pool[currentIdx];
+        const isCorrect = userAns === q.ans;
+        if (isCorrect) correctCount++;
+        const fb = document.getElementById('mgFeedback');
+        const trueBtn = document.getElementById('mgTrue');
+        const falseBtn = document.getElementById('mgFalse');
+        if (trueBtn) trueBtn.disabled = true;
+        if (falseBtn) falseBtn.disabled = true;
+        if (fb) {
+          fb.style.color = isCorrect ? '#4ade80' : '#fb7185';
+          fb.textContent = (userAns === null ? '⏱️ Tempo esgotado! ' : (isCorrect ? '✓ Correto! ' : '✗ Incorreto! ')) + q.exp;
+        }
+        currentIdx++;
+        setTimeout(renderQuestion, 1800);
+      };
+
+      function showResults() {
+        const goldReward = correctCount * 25;
+        const xpReward = correctCount * 10;
+        state.gold += goldReward;
+        const prevLevel = state.level;
+        gainXP(xpReward);
+        overlay.innerHTML = `
+          <div class="minigame-card">
+            <div class="minigame-title">⚡ Resultado</div>
+            <div class="minigame-result">${['😓','🤔','🙂','😊','🌟','🏆'][correctCount]} ${correctCount}/${pool.length} corretas</div>
+            <div class="minigame-reward">+${goldReward} 🪙  +${xpReward} XP</div>
+            <p style="color:#94a3b8;font-size:0.75rem;text-align:center;margin-bottom:16px">
+              ${correctCount >= 4 ? 'Excelente! Conhecimento de mestre!' : correctCount >= 2 ? 'Bom! Continue estudando.' : 'Revise os conceitos. Você chega lá!'}
+            </p>
+            <button class="diff-confirm-btn" onclick="document.getElementById('rapidQuizOverlay')?.remove();renderHUD();updateBadges();saveGame();">Continuar a Jornada</button>
+          </div>`;
+        log('⚡ Julgamento Rápido: ' + correctCount + '/' + pool.length + ' corretas → +' + goldReward + ' ouro +' + xpReward + ' XP');
+      }
+
+      renderQuestion();
+    }
+    window.showRapidQuizMinigame = showRapidQuizMinigame;
+
     function checkNarrative(){
       // Popup especial de intro do boss ao atingir 90 acertos
       if (state.correctTotal === BOSS_START_CORRECT && !state.bossIntroShown) {
@@ -27906,6 +28276,8 @@
       if(!stage) return;
       state.narrativeShown = stage.at;
       showNarrativePopup(stage);
+      // Chance de minigame após narrativa em checkpoints específicos
+      maybeTriggerMinigame(stage.at);
     }
 
     function showBossIntroPopup() {
@@ -28078,7 +28450,7 @@
     window.renderBoard = renderBoard;
 
     function resetGame(){
-      Object.assign(state,{level:1,xp:0,xpToNext:200,score:0,lives:3,streak:0,gold:0,current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,gameOver:false,gameStarted:false,extraLifeGiven:false,gameCompleted:false,completedGame:false,chestsOpened:0});
+      Object.assign(state,{level:1,xp:0,xpToNext:200,score:0,lives:3,maxLives:3,streak:0,gold:0,difficulty:"normal",legendaryAbilityUsed:{},current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,gameOver:false,gameStarted:false,extraLifeGiven:false,gameCompleted:false,completedGame:false,chestsOpened:0});
       state.character=null;
       state.equipment={
         weapon:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
@@ -28107,48 +28479,62 @@
     });
 
     function showNewGameConfirm() {
-      // Remove overlay anterior se existir
-      const existingOverlay = document.getElementById('newGameConfirmOverlay');
-      if(existingOverlay) existingOverlay.remove();
-      const existingPopup = document.getElementById('newGameConfirmPopup');
-      if(existingPopup) existingPopup.remove();
-
-      // Criar overlay escuro
+      document.getElementById('diffSelectorOverlay')?.remove();
       const overlay = document.createElement('div');
-      overlay.id = 'newGameConfirmOverlay';
-      overlay.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.75);z-index:9400;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:32px 16px;';
+      overlay.id = 'diffSelectorOverlay';
+      overlay.className = 'diff-selector-overlay';
+      let selectedDiff = state.difficulty || 'normal';
 
-      // Criar popup reutilizando o estilo mac
-      const popup = document.createElement('div');
-      popup.id = 'newGameConfirmPopup';
-      popup.className = 'mobile-action-confirm';
-      popup.style.zIndex = '9450';
-      popup.innerHTML = `
-        <div class="mac-title">⚠️ Novo Jogo</div>
-        <div class="mac-desc" style="margin-bottom:16px;font-size:0.8rem;line-height:1.5;">
-          Todo o seu progresso atual será perdido permanentemente:<br>
-          <span style="color:#ef4444;">XP, ouro, itens, streak e histórico.</span><br><br>
-          Tem certeza que deseja começar do zero?
-        </div>
-        <div class="mac-btns">
-          <button class="mac-btn mac-cancel" onclick="document.getElementById('newGameConfirmOverlay')?.remove();document.getElementById('newGameConfirmPopup')?.remove();">CANCELAR</button>
-          <button class="mac-btn mac-confirm" style="background:linear-gradient(135deg,#dc2626,#991b1b);box-shadow:0 2px 10px rgba(220,38,38,0.4);"
-            onclick="document.getElementById('newGameConfirmOverlay')?.remove();document.getElementById('newGameConfirmPopup')?.remove();deleteSave();document.getElementById('charSelectModal').classList.add('show');">
-            CONFIRMAR
-          </button>
-        </div>
-      `;
+      function renderDiff() {
+        const defs = {
+          easy:     { icon:'🌊', name:'Fácil',    lives:5, label:'❤❤❤❤❤', desc:'5 vidas · Questões equilibradas · Ideal para começar', hc: false },
+          normal:   { icon:'⚕️', name:'Médio',    lives:4, label:'❤❤❤❤',  desc:'4 vidas · Distribuição mista · Residência médica', hc: false },
+          hard:     { icon:'⚔️', name:'Difícil',  lives:3, label:'❤❤❤',   desc:'3 vidas · Questões difíceis priorizadas · Prova de título', hc: false },
+          hardcore: { icon:'💀', name:'Hardcore', lives:1, label:'❤',      desc:'1 vida · Somente questões difíceis · Badge exclusivo', hc: true }
+        };
+        overlay.innerHTML = `
+          <div class="diff-selector-card">
+            <div class="diff-selector-title">⚔️ Escolha a Dificuldade</div>
+            <div class="diff-warning" style="text-align:center;color:#ef4444;font-size:0.72rem;margin-bottom:12px">
+              ⚠️ Todo o progresso atual será perdido.
+            </div>
+            <div class="diff-grid">
+              ${Object.entries(defs).map(([k,d]) => `
+                <div class="diff-card${d.hc?' hardcore':''}${selectedDiff===k?' selected':''}" onclick="(function(){
+                  document.querySelectorAll('.diff-card').forEach(c=>c.classList.remove('selected'));
+                  this.classList.add('selected');
+                  document.getElementById('diffConfirmBtn').disabled=false;
+                  window._pendingDiff='${k}';
+                }).call(this)">
+                  <div class="diff-icon">${d.icon}</div>
+                  <div class="diff-name">${d.name}</div>
+                  <div class="diff-lives">${d.label}</div>
+                  <div class="diff-desc">${d.desc}</div>
+                  ${d.hc ? '<div class="diff-hardcore-badge">🏆 BADGE EXCLUSIVO</div>' : ''}
+                </div>`).join('')}
+            </div>
+            <button class="diff-confirm-btn" id="diffConfirmBtn" onclick="
+              const diff = window._pendingDiff || '${selectedDiff}';
+              document.getElementById('diffSelectorOverlay')?.remove();
+              state.difficulty = diff;
+              deleteSave();
+              document.getElementById('charSelectModal').classList.add('show');
+            ">CONFIRMAR DIFICULDADE</button>
+            <button class="diff-cancel-btn" onclick="document.getElementById('diffSelectorOverlay')?.remove()">CANCELAR</button>
+          </div>`;
+        window._pendingDiff = selectedDiff;
+        // Mark current selection
+        setTimeout(() => {
+          overlay.querySelectorAll('.diff-card').forEach((c, idx) => {
+            const k = Object.keys(defs)[idx];
+            if(k === selectedDiff) c.classList.add('selected');
+          });
+        }, 0);
+      }
 
-      // Fechar ao clicar no overlay (mas não no popup)
-      overlay.addEventListener('click', (e) => {
-        if(e.target === overlay) {
-          overlay.remove();
-          popup.remove();
-        }
-      });
-
+      overlay.addEventListener('click', e => { if(e.target===overlay) overlay.remove(); });
       document.body.appendChild(overlay);
-      document.body.appendChild(popup);
+      renderDiff();
     }
     // forgeBtn agora usa onclick="showMobileActionConfirm('forge')" no HTML
     ui.bonusBtn.addEventListener('click',buyBonusQuestion);
@@ -28302,7 +28688,11 @@
       const char = characters[state.character];
 
       _sessionWrongAnswers = [];
-      Object.assign(state,{level:1,xp:0,xpToNext:200,score:0,lives:3,streak:0,gold:0,current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,gameOver:false,gameStarted:true,extraLifeGiven:false,gameCompleted:false,completedGame:false,chestsOpened:0});
+      _minigameTriggerCount = 0;
+      const _diffLives = {easy:5, normal:4, hard:3, hardcore:1};
+      const _chosenDiff = state.difficulty || 'normal';
+      const _startLives = _diffLives[_chosenDiff] || 3;
+      Object.assign(state,{level:1,xp:0,xpToNext:200,score:0,lives:_startLives,maxLives:_startLives,streak:0,gold:0,difficulty:_chosenDiff,legendaryAbilityUsed:{},current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,gameOver:false,gameStarted:true,extraLifeGiven:false,gameCompleted:false,completedGame:false,chestsOpened:0});
       state.equipment={
         weapon:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
         armor:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
@@ -29324,6 +29714,15 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
         imgIcon: 'assets/titulodecampeao.png',
         condition: (stats) => {
           return !!localStorage.getItem('nefroquest-arqui-defeated');
+        }
+      },
+      {
+        id: 'hardcore_champion',
+        name: 'Lenda Hardcore',
+        description: 'Vença o jogo no modo Hardcore (1 vida, somente difíceis)',
+        icon: '💀',
+        condition: (stats) => {
+          return !!localStorage.getItem('nefroquest-hardcore-completed');
         }
       }
     ];
