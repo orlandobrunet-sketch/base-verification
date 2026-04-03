@@ -5759,8 +5759,10 @@
     function checkGameCompletion() {
       if (state.correctTotal >= 100 && !state.gameCompleted) {
         state.gameCompleted = true;
-        // Desbloquear conquista Campeão da Nefrologia (derrotou o Arqui-Nefromante)
         localStorage.setItem('nefroquest-arqui-defeated', '1');
+        if (state.difficulty === 'hardcore') {
+          localStorage.setItem('nefroquest-hardcore-completed', '1');
+        }
         checkAchievements();
         showGameCompletionModal();
       }
@@ -26510,6 +26512,28 @@
         b.textContent=`${String.fromCharCode(65+i)}) ${opt}`;
         ui.options.appendChild(b);
       });
+      // Relíquia do Título: botão de pular questão (1× por jogo)
+      const _skipBtn = document.getElementById('skipQuestionBtn');
+      if(state.equipment?.relic?.n === 'Relíquia do Título' && !state.legendaryAbilityUsed?.['Relíquia do Título']) {
+        if(!_skipBtn) {
+          const sb = document.createElement('button');
+          sb.id = 'skipQuestionBtn';
+          sb.className = 'skip-question-btn visible';
+          sb.innerHTML = '📖 Pular esta questão (Relíquia do Título — 1×)';
+          sb.onclick = () => {
+            state.legendaryAbilityUsed['Relíquia do Título'] = true;
+            sb.remove();
+            log('📖 Relíquia do Título usada — questão pulada sem penalidade.');
+            renderEquip();
+            renderQuestion();
+          };
+          ui.options.parentElement.insertBefore(sb, ui.options.nextSibling);
+        } else {
+          _skipBtn.classList.add('visible');
+        }
+      } else if(_skipBtn) {
+        _skipBtn.remove();
+      }
       // ── Confronto Final: atualiza UI do boss e injeta badges ──
       updateBossUI();
       applyBossOptionBadges();
@@ -28110,6 +28134,137 @@
       {at:100, ch:"Epílogo", title:"Os Rins Foram Salvos!", text:"Com um último golpe de conhecimento puro, o Arqui-Nefromante é derrotado! Os néfrons do reino voltam a filtrar com perfeição. A creatinina normaliza, a proteinúria desaparece, o equilíbrio hidroeletrolítico é restaurado. Você é coroado(a) como o(a) Grande Guardião(ã) dos Rins. A nefrologia está salva — graças a você!"}
     ];
 
+
+    // ===== MINIGAME: JULGAMENTO RÁPIDO =====
+    const RAPID_QUIZ_QUESTIONS = [
+      {q:"IECA e BRA nunca devem ser usados juntos em DRC — risco de hipercalemia e IRA.",ans:true,exp:"ONTARGET: combinação aumenta eventos adversos sem benefício renal adicional."},
+      {q:"O 'dip' inicial de TFG com SGLT2i é sinal de nefrotoxicidade direta.",ans:false,exp:"É efeito hemodinâmico protetor — reduz hiperfiltração intraglomerular. Reversível."},
+      {q:"Na hemodiálise, Kt/V alvo mínimo recomendado pelo KDIGO é 1.2 por sessão.",ans:true,exp:"Kt/V ≥ 1.2 por sessão em diálise 3×/semana é o padrão mínimo de adequação."},
+      {q:"Hiato aniônico normal na acidose metabólica sugere causa renal ou gastrointestinal.",ans:true,exp:"NAGMA: acidose tubular renal, diarreia, fístulas digestivas — perda de bicarbonato."},
+      {q:"Anti-PLA2R positivo indica nefropatia membranosa de causa secundária (ex: lúpus).",ans:false,exp:"Anti-PLA2R positivo = nefropatia membranosa primária. Causas secundárias costumam ser anti-PLA2R negativas."},
+      {q:"Icodextrina na diálise peritoneal melhora ultrafiltração na troca longa noturna.",ans:true,exp:"Polímero de alto PM — mantém osmose por período prolongado sem absorção sistêmica."},
+      {q:"Clearance de creatinina superestima a TFG real por incluir secreção tubular ativa.",ans:true,exp:"Secreção proximal de creatinina → ClCr > TFGe real em até 20%, especialmente com TFG baixa."},
+      {q:"Cistatina C é marcador mais preciso que creatinina em pacientes com baixa massa muscular.",ans:true,exp:"Cistatina C independe de massa muscular e etnia — superior em idosos, amputados e desnutridos."},
+      {q:"Na ATR tipo 1 (distal), o pH urinário permanece > 5.5 mesmo com acidemia sistêmica grave.",ans:true,exp:"Defeito na bomba H-ATPase tubular distal — incapacidade de acidificar urina abaixo de pH 5.5."},
+      {q:"Hidratação com bicarbonato de sódio é superior ao soro fisiológico para prevenir nefropatia por contraste.",ans:false,exp:"Estudos randomizados não mostraram superioridade do bicarbonato — soro fisiológico isotônico é padrão."},
+      {q:"Finerenona é um ARM não esteroidal com menos ginecomastia que espironolactona.",ans:true,exp:"Finerenona (FIDELIO-DKD, FIGARO-DKD): seletiva para MR, sem efeitos androgênicos/estrogênicos."},
+      {q:"Dapagliflozina reduz progressão de DRC independentemente da presença de diabetes tipo 2.",ans:true,exp:"DAPA-CKD incluiu pacientes sem DM2 e demonstrou benefício nefroprotetor consistente."},
+      {q:"Hipercalemia com ECG alterado exige gluconato de cálcio IV imediato para estabilizar o miocárdio.",ans:true,exp:"Gluconato de cálcio: efeito em 1-3 min, sem alterar a calemia — protege o coração enquanto aguarda depuração."},
+      {q:"Na peritonite em diálise peritoneal, a cultura do efluente deve ser positiva para fechar o diagnóstico.",ans:false,exp:"Diagnóstico: efluente turvo + leucócitos > 100/mm³ — cultura pode ser negativa em até 20% dos casos."},
+      {q:"IgA nefropatia é a causa mais comum de glomerulonefrite primária no mundo.",ans:true,exp:"Representa 30-40% das GN primárias globalmente; mais prevalente em asiáticos e caucasianos jovens."},
+      {q:"Síndrome de Alport resulta de mutação no colágeno tipo IV da membrana basal glomerular.",ans:true,exp:"Mutações em COL4A3/A4/A5 → hematúria, surdez neurossensorial progressiva, DRC."},
+      {q:"PTH elevado cronicamente na DRC pode causar osteíte fibrosa cística pelo hiperparatireoidismo secundário.",ans:true,exp:"Hipocalcemia + hiperfosfatemia → estimulação crônica de PTH → turnover ósseo excessivo."},
+      {q:"Calcitriol (1,25-OH-D3) é produzido principalmente no fígado.",ans:false,exp:"1α-hidroxilação ocorre no rim (túbulo proximal) — DRC avançada leva a deficiência de calcitriol."},
+      {q:"Acidose metabólica crônica na DRC pode acelerar a progressão da doença renal.",ans:true,exp:"Acidose ativa vias de fibrose (TGF-β, endotelina) — bicarbonato oral pode desacelerar progressão."},
+      {q:"Furosemida tem eficácia reduzida como diurético quando TFGe < 30 mL/min.",ans:false,exp:"Furosemida mantém eficácia em TFG baixa (precisa de doses maiores) — tiazídicos é que perdem eficácia < 30."},
+      {q:"SHR tipo 1 (síndrome hepatorrenal aguda) tem progressão rápida em menos de 2 semanas.",ans:true,exp:"SHR tipo 1 (agora 'SHR-IRA'): progressão em < 2 semanas, mortalidade > 80% sem tratamento."},
+      {q:"O escore de Banff é usado para classificar o grau de rejeição em biópsias renais pós-transplante.",ans:true,exp:"Critérios de Banff (desde 1991): classifica rejeição celular e mediada por anticorpos."},
+      {q:"Ciclosporina pode causar nefrotoxicidade aguda (vasoconstrição) E crônica (fibrose intersticial).",ans:true,exp:"Toxicidade aguda: vasoconstrição aferente (reversível). Crônica: fibrose e arteriolopatia (irreversível)."},
+      {q:"Rabdomiólise induz IRA principalmente por obstrução tubular com cilindros de mioglobina.",ans:true,exp:"Mioglobina é nefrotóxica: vasoconstrição, estresse oxidativo e obstrução tubular direta."},
+      {q:"O transplante renal de doador vivo tem melhor sobrevida de enxerto que o de doador falecido.",ans:true,exp:"Menor isquemia fria, melhor função imediata do enxerto, melhor match imunológico possível."},
+      {q:"SGLT2i estão contraindicados em qualquer paciente com TFGe < 45 mL/min.",ans:false,exp:"Dapagliflozina/empagliflozina são usadas para nefroproteção mesmo em TFGe 25-45 — mudança recente de bula."},
+      {q:"A albumina sérica baixa na síndrome nefrótica é consequência direta da proteinúria maciça.",ans:true,exp:"Perda renal de albumina supera capacidade hepática de síntese → hipoalbuminemia e edema."},
+      {q:"Bicarbonato de sódio oral está indicado em DRC com bicarbonato sérico < 22 mEq/L.",ans:true,exp:"KDIGO 2024: suplementação de bicarbonato para manter HCO3 > 22 mEq/L pode retardar progressão."},
+      {q:"AINE em DRC avançada pode precipitar IRA por bloquear prostaglandinas vasodilatadoras renais.",ans:true,exp:"Em estados de baixo fluxo, rins dependem de prostaglandinas para vasodilatação aferente — AINE bloqueia."},
+      {q:"Nefropatia por IgA pode ser tratada com inibidores de SGLT2 para reduzir proteinúria.",ans:true,exp:"DAPA-CKD e estudos específicos de IgAN mostram redução de proteinúria com SGLT2i."},
+    ];
+
+    let _minigameTriggerCount = 0;
+    const MINIGAME_TRIGGER_AT = [20, 40, 60, 80]; // após narrativa nesses pontos
+    const MINIGAME_MAX_TRIGGERS = 2; // máx. 2 minigames por partida
+
+    function maybeTriggerMinigame(atCorrectTotal) {
+      if (!MINIGAME_TRIGGER_AT.includes(atCorrectTotal)) return;
+      if (_minigameTriggerCount >= MINIGAME_MAX_TRIGGERS) return;
+      if (Math.random() > 0.55) return; // 55% de chance
+      _minigameTriggerCount++;
+      setTimeout(() => showRapidQuizMinigame(), 600);
+    }
+
+    function showRapidQuizMinigame() {
+      const pool = [...RAPID_QUIZ_QUESTIONS].sort(() => Math.random() - 0.5).slice(0, 5);
+      let currentIdx = 0;
+      let correctCount = 0;
+      let timerInterval = null;
+      const TIME_PER_Q = 7; // seconds per question
+
+      const overlay = document.createElement('div');
+      overlay.className = 'minigame-overlay';
+      overlay.id = 'rapidQuizOverlay';
+      document.body.appendChild(overlay);
+
+      function renderQuestion() {
+        if (currentIdx >= pool.length) { showResults(); return; }
+        const q = pool[currentIdx];
+        let timeLeft = TIME_PER_Q;
+        if (timerInterval) clearInterval(timerInterval);
+
+        overlay.innerHTML = `
+          <div class="minigame-card">
+            <div class="minigame-title">⚡ Julgamento Rápido</div>
+            <div class="minigame-subtitle">Verdadeiro ou Falso? ${TIME_PER_Q}s por afirmação</div>
+            <div class="minigame-progress">${currentIdx + 1} / ${pool.length}</div>
+            <div class="minigame-timer"><div class="minigame-timer-fill" id="mgTimerFill" style="width:100%"></div></div>
+            <div class="minigame-stmt" id="mgStmt">${q.q}</div>
+            <div class="minigame-tf-btns">
+              <button class="minigame-true-btn" id="mgTrue" onclick="mgAnswer(true)">✓ VERDADEIRO</button>
+              <button class="minigame-false-btn" id="mgFalse" onclick="mgAnswer(false)">✗ FALSO</button>
+            </div>
+            <div id="mgFeedback" style="min-height:32px;font-size:0.75rem;color:#94a3b8;text-align:center;line-height:1.4;"></div>
+          </div>`;
+
+        timerInterval = setInterval(() => {
+          timeLeft -= 0.1;
+          const fill = document.getElementById('mgTimerFill');
+          if (fill) fill.style.width = Math.max(0, (timeLeft / TIME_PER_Q * 100)) + '%';
+          if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            mgAnswer(null); // timeout = wrong
+          }
+        }, 100);
+      }
+
+      window.mgAnswer = function(userAns) {
+        if (timerInterval) clearInterval(timerInterval);
+        const q = pool[currentIdx];
+        const isCorrect = userAns === q.ans;
+        if (isCorrect) correctCount++;
+        const fb = document.getElementById('mgFeedback');
+        const trueBtn = document.getElementById('mgTrue');
+        const falseBtn = document.getElementById('mgFalse');
+        if (trueBtn) trueBtn.disabled = true;
+        if (falseBtn) falseBtn.disabled = true;
+        if (fb) {
+          fb.style.color = isCorrect ? '#4ade80' : '#fb7185';
+          fb.textContent = (userAns === null ? '⏱️ Tempo esgotado! ' : (isCorrect ? '✓ Correto! ' : '✗ Incorreto! ')) + q.exp;
+        }
+        currentIdx++;
+        setTimeout(renderQuestion, 1800);
+      };
+
+      function showResults() {
+        const goldReward = correctCount * 25;
+        const xpReward = correctCount * 10;
+        state.gold += goldReward;
+        const prevLevel = state.level;
+        gainXP(xpReward);
+        overlay.innerHTML = `
+          <div class="minigame-card">
+            <div class="minigame-title">⚡ Resultado</div>
+            <div class="minigame-result">${['😓','🤔','🙂','😊','🌟','🏆'][correctCount]} ${correctCount}/${pool.length} corretas</div>
+            <div class="minigame-reward">+${goldReward} 🪙  +${xpReward} XP</div>
+            <p style="color:#94a3b8;font-size:0.75rem;text-align:center;margin-bottom:16px">
+              ${correctCount >= 4 ? 'Excelente! Conhecimento de mestre!' : correctCount >= 2 ? 'Bom! Continue estudando.' : 'Revise os conceitos. Você chega lá!'}
+            </p>
+            <button class="diff-confirm-btn" onclick="document.getElementById('rapidQuizOverlay')?.remove();renderHUD();updateBadges();saveGame();">Continuar a Jornada</button>
+          </div>`;
+        log('⚡ Julgamento Rápido: ' + correctCount + '/' + pool.length + ' corretas → +' + goldReward + ' ouro +' + xpReward + ' XP');
+      }
+
+      renderQuestion();
+    }
+    window.showRapidQuizMinigame = showRapidQuizMinigame;
+
     function checkNarrative(){
       // Popup especial de intro do boss ao atingir 90 acertos
       if (state.correctTotal === BOSS_START_CORRECT && !state.bossIntroShown) {
@@ -28121,6 +28276,8 @@
       if(!stage) return;
       state.narrativeShown = stage.at;
       showNarrativePopup(stage);
+      // Chance de minigame após narrativa em checkpoints específicos
+      maybeTriggerMinigame(stage.at);
     }
 
     function showBossIntroPopup() {
@@ -28531,6 +28688,7 @@
       const char = characters[state.character];
 
       _sessionWrongAnswers = [];
+      _minigameTriggerCount = 0;
       const _diffLives = {easy:5, normal:4, hard:3, hardcore:1};
       const _chosenDiff = state.difficulty || 'normal';
       const _startLives = _diffLives[_chosenDiff] || 3;
@@ -29556,6 +29714,15 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
         imgIcon: 'assets/titulodecampeao.png',
         condition: (stats) => {
           return !!localStorage.getItem('nefroquest-arqui-defeated');
+        }
+      },
+      {
+        id: 'hardcore_champion',
+        name: 'Lenda Hardcore',
+        description: 'Vença o jogo no modo Hardcore (1 vida, somente difíceis)',
+        icon: '💀',
+        condition: (stats) => {
+          return !!localStorage.getItem('nefroquest-hardcore-completed');
         }
       }
     ];
