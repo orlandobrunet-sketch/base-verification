@@ -226,8 +226,10 @@
     .slot:hover { border-color: #3a6a9a; }
     .slot-icon {
       width: 36px; height: 36px; border-radius: 6px;
-      border: 1px solid #2a4a7a; object-fit: contain;
+      border: 1px solid #2a4a7a; object-fit: cover;
       background: #0a0e1a;
+      /* Unifica o estilo visual entre JPEGs (assets/items) e PNGs (assets/images) */
+      filter: saturate(1.25) contrast(1.05) brightness(1.0);
     }
     .slot-info { flex: 1; }
     .slot-name { font-size: 0.78rem; font-weight: 600; }
@@ -276,6 +278,7 @@
     .equip-compare-slot img {
       width: 72px; height: 72px; object-fit: cover; border-radius: 8px;
       border: 2px solid rgba(255,255,255,0.12); margin-bottom: 8px;
+      filter: saturate(1.25) contrast(1.05);
     }
     .equip-compare-slot .ecp-name {
       color: #e2e8f0; font-weight: 700; font-size: 0.8rem;
@@ -392,7 +395,7 @@
     }
     .slot-icon.legendary-used {
       border: 2px solid rgba(255,215,0,0.2) !important; border-radius: 8px;
-      filter: saturate(0.4) brightness(0.7);
+      filter: saturate(0.35) brightness(0.65) contrast(1.05);
     }
     /* Ability label badge on item */
     .slot.has-active-ability .slot-name::after {
@@ -446,7 +449,7 @@
     .minigame-reward { color: #ffd700; font-size: 0.85rem; font-weight: 700; margin-bottom: 14px; }
 
 
-    .forge-card img { width:80px; height:80px; border-radius:10px; border:2px solid var(--gold); margin-bottom:12px; object-fit:contain; background:#0a0e1a; }
+    .forge-card img { width:80px; height:80px; border-radius:10px; border:2px solid var(--gold); margin-bottom:12px; object-fit:cover; background:#0a0e1a; filter:saturate(1.25) contrast(1.05); }
     .forge-card h3 { color:var(--gold); font-family:'Cinzel',serif; margin-bottom:6px; }
     .forge-card p { color:#b0c4e8; font-size:0.85rem; margin-bottom:4px; }
     .forge-card .forge-stats { color:var(--txt-dim); font-size:0.8rem; margin:8px 0; }
@@ -26276,8 +26279,13 @@
         <span class='stat-badge'>🛡️${st.def}<span class='stat-tip'><strong>${statTips.def.icon} ${statTips.def.name}</strong><br>${statTips.def.desc}</span></span>
         <span class='stat-badge'>📚${st.kno}<span class='stat-tip'><strong>${statTips.kno.icon} ${statTips.kno.name}</strong><br>${statTips.kno.desc}</span></span>
         <span class='stat-badge'>🍀${st.luck}<span class='stat-tip'><strong>${statTips.luck.icon} ${statTips.luck.name}</strong><br>${statTips.luck.desc}</span></span>`;
+      // Synergy banner when all 3 slots are legendary
+      const _synergyActive = legendaryCount()===3;
+      const synergyBanner = _synergyActive
+        ? `<div style='text-align:center;margin-top:6px;padding:5px 10px;background:linear-gradient(135deg,rgba(255,215,0,0.15),rgba(255,140,0,0.1));border-radius:8px;border:1px solid rgba(255,215,0,0.5);font-size:0.7rem;color:#ffd700;animation:legendaryPassiveGlow 3s ease-in-out infinite'>✨ Sinergia Lendária — +20% XP</div>`
+        : '';
       // Desktop: no final da lista de equipamentos
-      ui.equipList.innerHTML+=`<div style='text-align:center;margin-top:8px;padding:6px 10px;background:rgba(42,74,122,0.2);border-radius:8px;border:1px solid rgba(42,74,122,0.4);font-size:0.75rem;color:#b0c4e8'>${totalHTML}</div>`;
+      ui.equipList.innerHTML+=`<div style='text-align:center;margin-top:8px;padding:6px 10px;background:rgba(42,74,122,0.2);border-radius:8px;border:1px solid rgba(42,74,122,0.4);font-size:0.75rem;color:#b0c4e8'>${totalHTML}</div>${synergyBanner}`;
       // Mobile: logo abaixo do herói
       const equipTotalMobile = document.getElementById('equipTotalMobile');
       if(equipTotalMobile) {
@@ -27313,13 +27321,16 @@
         state.correctTotal++;
         const sm = getStreakMultiplier(state.streak);
         const baseXp=5+state.current.d*2+Math.min(state.streak,5)*1+Math.floor(st.kno/3);
-        const xp=Math.floor(baseXp * sm.mult);
+        let xp=Math.floor(baseXp * sm.mult);
         const baseG=8+state.current.d*3+Math.floor(st.luck/3);
         let g=Math.floor(baseG * sm.mult);
         // Legendary passive: Elmo do Filtrador Supremo +25% gold
         if(state.equipment?.relic?.n==='Elmo do Filtrador Supremo') g=Math.floor(g*1.25);
         // Legendary passive: Cetro do Néfron Eterno - streak bonus gold
         if(state.equipment?.weapon?.n==='Cetro do Néfron Eterno' && state.streak>=5) g+=30;
+        // Legendary synergy: all 3 slots legendary = +20% XP
+        const _synergy = legendaryCount()===3;
+        if(_synergy) xp=Math.floor(xp*1.2);
         const baseScore=80+state.current.d*15+state.streak*5+st.atk;
         state.score+=Math.floor(baseScore * sm.mult);
         const prevGold = state.gold;
@@ -27333,7 +27344,8 @@
         }
         ui.feedback.className='feedback good';
         const multText = sm.label ? ` (${sm.label})` : '';
-        ui.feedback.textContent=`✅ Correto! ${state.current.e} +${xp} XP${multText}, +${g} ouro.${lv?` Level up x${lv}!`:''}`;
+        const synergyText = _synergy ? ' ✨+20% sinergia' : '';
+        ui.feedback.textContent=`✅ Correto! ${state.current.e} +${xp} XP${multText}${synergyText}, +${g} ouro.${lv?` Level up x${lv}!`:''}`;
         // Sons e popup de evolução
         if(lv) {
           playSound('levelup');
