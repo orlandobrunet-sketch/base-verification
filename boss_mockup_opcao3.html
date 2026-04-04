@@ -3,331 +3,315 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NefroQuest — Boss Mockup: Opção 3 · Dano Real</title>
+<title>NefroQuest · Boss Opção 3 — Dano Real</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Philosopher:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-  :root{--gold:#ffd700;--purple:#a855f7;--bg:#070b18;}
-  *{box-sizing:border-box;margin:0;padding:0;}
-  body{background:var(--bg);color:#e2e8f0;font-family:'Philosopher',serif;min-height:100vh;}
-  .option-label{text-align:center;padding:14px 0 6px;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:4px;color:rgba(168,85,247,.6);text-transform:uppercase;}
-  .option-title{text-align:center;font-family:'Cinzel',serif;font-size:clamp(1.1rem,3vw,1.5rem);font-weight:900;color:#e9d5ff;letter-spacing:2px;margin-bottom:12px;text-shadow:0 0 20px rgba(168,85,247,.6);}
+:root{--gold:#ffd700;--bg:#070b18;--border:rgba(42,74,122,.5);}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:#e2e8f0;font-family:'Philosopher',serif;height:100vh;overflow:hidden;}
 
-  .layout{display:grid;grid-template-columns:240px 1fr 220px;gap:0;height:calc(100vh - 80px);max-width:1080px;margin:0 auto;}
-  @media(max-width:768px){.layout{grid-template-columns:1fr;}}
+.top-bar{display:flex;align-items:center;justify-content:space-between;padding:6px 16px;background:rgba(0,0,0,.4);border-bottom:1px solid var(--border);gap:8px;}
+.lives{font-size:1.1rem;letter-spacing:1px;}
+.xp-bar{width:80px;height:5px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden;}
+.xp-fill{height:100%;background:linear-gradient(90deg,#3b82f6,#60a5fa);width:62%;}
 
-  .panel-left{background:linear-gradient(180deg,#0d0520,#120830);border-right:1px solid rgba(168,85,247,.2);padding:14px 12px;display:flex;flex-direction:column;gap:10px;overflow-y:auto;}
-  .panel-center{background:linear-gradient(180deg,#08031a,#0e0525);padding:14px;display:flex;flex-direction:column;gap:10px;overflow-y:auto;}
-  .panel-right{background:linear-gradient(180deg,#06010f,#0d0420);border-left:1px solid rgba(168,85,247,.15);padding:12px;display:flex;flex-direction:column;gap:8px;overflow-y:auto;}
+/* Dual HP bars */
+.hp-section{padding:6px 16px;background:rgba(0,0,0,.3);border-bottom:1px solid rgba(168,85,247,.2);display:flex;flex-direction:column;gap:5px;}
+.hp-row{display:flex;align-items:center;gap:8px;}
+.hp-label{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:2px;white-space:nowrap;min-width:110px;}
+.hp-label.boss{color:#c084fc;}
+.hp-label.player{color:#6ee7b7;}
+.hp-track{flex:1;height:11px;background:rgba(0,0,0,.5);border-radius:5px;overflow:hidden;border:1px solid rgba(168,85,247,.25);}
+.hp-fill-boss{height:100%;border-radius:5px;background:linear-gradient(90deg,#4c1d95,#7c3aed,#a855f7);transition:width .5s;}
+.hp-fill-player{height:100%;border-radius:5px;background:linear-gradient(90deg,#065f46,#059669,#34d399);transition:width .5s;}
+.hp-num{font-family:'Cinzel',serif;font-size:.58rem;min-width:80px;text-align:right;color:#94a3b8;}
+.stars-row{display:flex;justify-content:center;gap:3px;}
+.st{font-size:.85rem;color:rgba(255,255,255,.12);}
+.st.on{color:var(--gold);text-shadow:0 0 6px rgba(255,215,0,.9);}
 
-  .stat-chip{background:rgba(42,74,122,.3);border:1px solid rgba(42,74,122,.5);border-radius:5px;padding:3px 7px;font-size:.72rem;color:#93c5fd;}
-  .stat-row{display:flex;gap:5px;flex-wrap:wrap;}
-  .lives{font-size:1.3rem;letter-spacing:2px;}
+/* Shield indicator */
+.shield-active{background:rgba(30,58,138,.2);border-bottom:1px solid rgba(59,130,246,.3);padding:3px 16px;font-size:.67rem;color:#93c5fd;display:none;}
 
-  /* Dual HP bars */
-  .hp-section{display:flex;flex-direction:column;gap:8px;}
-  .hp-block{}
-  .hp-label{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:2px;margin-bottom:3px;display:flex;justify-content:space-between;}
-  .hp-label.boss-lbl{color:#c084fc;}
-  .hp-label.player-lbl{color:#6ee7b7;}
-  .hp-track{height:12px;background:rgba(0,0,0,.4);border-radius:6px;border:1px solid rgba(168,85,247,.3);overflow:hidden;position:relative;}
-  .hp-fill-boss{height:100%;border-radius:6px;background:linear-gradient(90deg,#4c1d95,#7c3aed,#a855f7);transition:width .5s;}
-  .hp-fill-player{height:100%;border-radius:6px;background:linear-gradient(90deg,#065f46,#059669,#34d399);transition:width .5s;}
-  .hp-track.shield-active::after{content:'🔮';position:absolute;right:4px;top:50%;transform:translateY(-50%);font-size:.75rem;}
+.main{display:grid;grid-template-columns:200px 1fr 220px;height:calc(100vh - 122px);}
 
-  /* Damage flash */
-  .damage-toast{
-    position:fixed;left:50%;transform:translateX(-50%);
-    font-family:'Cinzel',serif;font-weight:900;font-size:1.4rem;
-    pointer-events:none;animation:dmgFloat 1.2s ease-out forwards;
-    z-index:9999;text-shadow:0 0 10px currentColor;
-  }
-  @keyframes dmgFloat{0%{opacity:1;top:50%;}100%{opacity:0;top:35%;}}
+/* LEFT */
+.panel-left{background:linear-gradient(180deg,#0c1020,#0a0d1a);border-right:1px solid var(--border);padding:10px;display:flex;flex-direction:column;gap:8px;overflow-y:auto;}
+.hero-img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;border:2px solid rgba(168,85,247,.4);box-shadow:0 0 20px rgba(168,85,247,.2);}
+.hero-name{font-family:'Cinzel',serif;font-size:.72rem;color:#d8b4fe;text-align:center;}
+.stat-row{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;}
+.sc{background:rgba(42,74,122,.3);border:1px solid rgba(42,74,122,.5);border-radius:4px;padding:2px 6px;font-size:.68rem;color:#93c5fd;}
+.equip-section{border-top:1px solid rgba(42,74,122,.3);padding-top:6px;}
+.eq-label{font-size:.58rem;color:rgba(192,132,252,.4);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+.eq-item{font-size:.7rem;color:#c4b5fd;padding:2px 0;}
+.gs{color:var(--gold);font-size:.58rem;}
+.synergy{font-size:.6rem;color:var(--gold);text-align:center;margin-top:4px;}
 
-  /* Legendary active buttons */
-  .leg-actions{display:flex;flex-direction:column;gap:6px;}
-  .leg-btn{
-    background:linear-gradient(135deg,rgba(255,215,0,.12),rgba(255,140,0,.08));
-    border:1px solid rgba(255,215,0,.4);border-radius:8px;padding:8px 10px;
-    font-size:.72rem;color:#fde68a;cursor:pointer;text-align:left;
-    display:flex;align-items:center;gap:8px;transition:all .2s;
-  }
-  .leg-btn:hover{background:linear-gradient(135deg,rgba(255,215,0,.25),rgba(255,140,0,.15));border-color:var(--gold);}
-  .leg-btn.used{opacity:.3;pointer-events:none;filter:grayscale(.8);}
-  .leg-btn-icon{font-size:1.2rem;}
-  .leg-btn-text{display:flex;flex-direction:column;gap:2px;}
-  .leg-btn-name{font-family:'Cinzel',serif;font-size:.65rem;font-weight:700;letter-spacing:1px;}
-  .leg-btn-effect{font-size:.6rem;color:rgba(253,230,138,.6);}
+/* Damage preview */
+.dmg-preview{border-top:1px solid rgba(42,74,122,.3);padding-top:6px;}
+.dmg-label{font-size:.58rem;color:rgba(192,132,252,.4);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+.dmg-row{display:flex;justify-content:space-between;font-size:.68rem;color:#94a3b8;margin-bottom:2px;}
+.dmg-val{font-family:'Cinzel',serif;font-weight:700;}
+.dmg-val.red{color:#f87171;}
+.dmg-val.gold{color:var(--gold);}
+.dmg-total-row{display:flex;justify-content:space-between;font-size:.78rem;margin-top:4px;padding-top:4px;border-top:1px solid rgba(168,85,247,.2);}
+.dmg-total{font-family:'Cinzel',serif;font-weight:700;color:#e9d5ff;}
 
-  /* Question */
-  .question-counter{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:3px;color:rgba(192,132,252,.7);text-align:center;}
-  .question-box{background:rgba(255,255,255,.03);border:1px solid rgba(168,85,247,.2);border-radius:10px;padding:14px;font-size:.86rem;line-height:1.6;color:#e2e8f0;}
+/* CENTER */
+.panel-center{background:linear-gradient(180deg,#080315,#0d0520);padding:10px;display:flex;flex-direction:column;gap:8px;overflow-y:auto;}
+.boss-battle-img-wrap{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.boss-img-box{border-radius:8px;overflow:hidden;border:2px solid rgba(168,85,247,.4);aspect-ratio:1;background:#0d0118;}
+.boss-img-box img{width:100%;height:100%;object-fit:cover;object-position:center 20%;}
+.duel-img-box{border-radius:8px;overflow:hidden;border:2px solid rgba(100,149,237,.35);aspect-ratio:1;background:#080318;}
+.duel-img-box img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+.q-counter{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:3px;color:rgba(192,132,252,.7);text-align:center;}
+.q-box{background:rgba(255,255,255,.03);border:1px solid rgba(168,85,247,.2);border-radius:8px;padding:12px;font-size:.85rem;line-height:1.6;}
+.opts{display:flex;flex-direction:column;gap:6px;}
+.opt{background:rgba(168,85,247,.08);border:1.5px solid rgba(168,85,247,.2);border-radius:7px;padding:9px 12px;cursor:pointer;display:flex;align-items:center;gap:9px;font-size:.82rem;transition:all .2s;}
+.opt:hover{background:rgba(168,85,247,.18);border-color:#a855f7;}
+.opt.correct{background:rgba(34,197,94,.15);border-color:#22c55e;color:#86efac;}
+.opt.wrong{background:rgba(239,68,68,.15);border-color:#ef4444;color:#fca5a5;}
+.ob{min-width:24px;height:24px;border-radius:50%;background:rgba(168,85,247,.3);border:1px solid rgba(168,85,247,.5);display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:.68rem;font-weight:700;color:#d8b4fe;}
+.opt.correct .ob{background:rgba(34,197,94,.3);border-color:#22c55e;color:#86efac;}
+.opt.wrong .ob{background:rgba(239,68,68,.3);border-color:#ef4444;color:#fca5a5;}
+.attack-btn{font-family:'Cinzel',serif;background:linear-gradient(180deg,#7c3aed,#4c1d95);border:2px solid #a855f7;border-radius:9px;color:#f3e8ff;font-size:.85rem;font-weight:900;letter-spacing:2px;padding:11px;cursor:pointer;animation:atkGlow 2s ease-in-out infinite alternate;}
+@keyframes atkGlow{from{box-shadow:0 0 8px rgba(168,85,247,.3);}to{box-shadow:0 0 22px rgba(168,85,247,.8);}}
 
-  /* Options */
-  .options{display:flex;flex-direction:column;gap:7px;}
-  .opt{background:rgba(168,85,247,.08);border:1.5px solid rgba(168,85,247,.25);border-radius:8px;padding:9px 13px;cursor:pointer;display:flex;align-items:center;gap:10px;font-size:.84rem;transition:all .2s;}
-  .opt:hover{background:rgba(168,85,247,.2);border-color:#a855f7;}
-  .opt.correct{background:rgba(34,197,94,.15);border-color:#22c55e;color:#86efac;}
-  .opt.wrong{background:rgba(239,68,68,.15);border-color:#ef4444;color:#fca5a5;}
-  .opt-badge{min-width:24px;height:24px;border-radius:50%;background:rgba(168,85,247,.3);border:1px solid rgba(168,85,247,.5);display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:.68rem;font-weight:700;color:#d8b4fe;}
-  .opt.correct .opt-badge{background:rgba(34,197,94,.3);border-color:#22c55e;color:#86efac;}
-  .opt.wrong .opt-badge{background:rgba(239,68,68,.3);border-color:#ef4444;color:#fca5a5;}
+/* RIGHT */
+.panel-right{background:linear-gradient(180deg,#06010f,#0c0420);border-left:1px solid rgba(168,85,247,.15);padding:10px;display:flex;flex-direction:column;gap:6px;overflow-y:auto;}
+.log-title{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:3px;color:rgba(168,85,247,.5);text-transform:uppercase;border-bottom:1px solid rgba(168,85,247,.1);padding-bottom:4px;margin-bottom:2px;}
+.log-e{font-size:.7rem;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.03);line-height:1.45;}
+.log-e.pa{color:#86efac;}
+.log-e.ba{color:#f9a8d4;}
+.log-e.wa{color:#fbbf24;}
+.log-e.la{color:var(--gold);}
+.log-e.na{color:#c4b5fd;font-size:.67rem;font-style:italic;}
 
-  /* Shield indicator */
-  .shield-badge{background:rgba(30,58,138,.25);border:1px solid rgba(59,130,246,.5);border-radius:6px;padding:5px 10px;font-size:.7rem;color:#93c5fd;text-align:center;}
+/* Scene bar */
+.scene-bar{display:flex;gap:6px;padding:6px 16px 0;flex-wrap:wrap;background:rgba(0,0,0,.3);}
+.stab{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:1px;padding:5px 9px;border-radius:5px;cursor:pointer;border:1px solid rgba(168,85,247,.3);background:rgba(168,85,247,.07);color:#c084fc;transition:all .2s;}
+.stab.active,.stab:hover{background:rgba(168,85,247,.22);border-color:#a855f7;color:#e9d5ff;}
+.option-label-bar{text-align:center;padding:6px;font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:3px;color:rgba(168,85,247,.5);background:rgba(0,0,0,.5);}
 
-  /* Log */
-  .log-title{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:3px;color:rgba(168,85,247,.5);text-transform:uppercase;border-bottom:1px solid rgba(168,85,247,.1);padding-bottom:5px;}
-  .log-entry{font-size:.7rem;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.03);line-height:1.4;}
-  .log-entry.p{color:#86efac;}
-  .log-entry.b{color:#f9a8d4;}
-  .log-entry.w{color:#fbbf24;}
-  .log-entry.l{color:var(--gold);}
-
-  /* Damage preview */
-  .dmg-preview{background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);border-radius:8px;padding:8px 10px;font-size:.72rem;color:#d8b4fe;}
-  .dmg-row{display:flex;justify-content:space-between;margin-bottom:3px;}
-  .dmg-val{font-family:'Cinzel',serif;font-weight:700;}
-  .dmg-val.atk{color:#f87171;}
-  .dmg-val.bonus{color:var(--gold);}
-  .dmg-val.total{color:#e9d5ff;font-size:.9rem;}
-
-  /* Att btn */
-  .btn-attack{font-family:'Cinzel',serif;background:linear-gradient(180deg,#7c3aed,#4c1d95);border:2px solid #a855f7;border-radius:10px;color:#f3e8ff;font-size:.88rem;font-weight:900;letter-spacing:2px;padding:11px;cursor:pointer;animation:attackGlow 2s ease-in-out infinite alternate;}
-  @keyframes attackGlow{from{box-shadow:0 0 10px rgba(168,85,247,.3);}to{box-shadow:0 0 25px rgba(168,85,247,.7);}}
-
-  /* Boss image */
-  .boss-img-frame{width:100%;aspect-ratio:21/9;border-radius:8px;overflow:hidden;border:2px solid rgba(168,85,247,.4);background:linear-gradient(135deg,#0d0118,#1a0535);display:flex;align-items:center;justify-content:center;font-size:3.5rem;position:relative;}
-  .boss-img-frame::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.6) 0%,transparent 60%);}
-  .boss-name-plate{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);font-family:'Cinzel',serif;font-size:.7rem;font-weight:900;letter-spacing:3px;color:#e9d5ff;text-shadow:0 0 15px rgba(168,85,247,.9);white-space:nowrap;z-index:2;}
-
-  /* Tab bar */
-  .tab-bar{display:flex;gap:8px;padding:10px 16px 0;max-width:1080px;margin:0 auto;flex-wrap:wrap;}
-  .tab{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:1.5px;padding:7px 12px;border-radius:6px;cursor:pointer;border:1px solid rgba(168,85,247,.3);background:rgba(168,85,247,.08);color:#c084fc;transition:all .2s;}
-  .tab.active{background:rgba(168,85,247,.25);border-color:#a855f7;color:#e9d5ff;}
-  .tab:hover{background:rgba(168,85,247,.2);}
+/* Damage flash */
+@keyframes dmgFloat{0%{opacity:1;transform:translateY(0);}100%{opacity:0;transform:translateY(-60px);}}
+.dmg-float{position:fixed;font-family:'Cinzel',serif;font-weight:900;font-size:1.6rem;pointer-events:none;animation:dmgFloat 1.2s ease-out forwards;z-index:9999;}
 </style>
 </head>
 <body>
-
-<div class="option-label">Opção 3 de 3</div>
-<div class="option-title">⚔️ Dano Real — Turn-Based com HP Numérico</div>
-
-<div class="tab-bar">
-  <div class="tab active" onclick="setScene('mid',this)">HP médio (Q5) — acerto</div>
-  <div class="tab" onclick="setScene('crit',this)">HP crítico — boss ataca</div>
-  <div class="tab" onclick="setScene('leg',this)">Lendário ativo — Excalibur</div>
-  <div class="tab" onclick="setScene('shield',this)">🔮 Escudo do boss ativo</div>
+<div class="option-label-bar">OPÇÃO 3 DE 3 — DANO REAL (HP numérico, turn-based)</div>
+<div class="scene-bar">
+  <div class="stab active" onclick="setScene('mid',this)">Meio da batalha (Q5)</div>
+  <div class="stab" onclick="setScene('crit',this)">Boss em HP crítico</div>
+  <div class="stab" onclick="setScene('err',this)">Jogador errou — boss ataca</div>
+  <div class="stab" onclick="setScene('shield',this)">🔮 Escudo do boss ativo</div>
 </div>
 
-<div class="layout">
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="lives" id="livesEl">❤❤❤</div>
+    <div>
+      <div class="xp-bar"><div class="xp-fill"></div></div>
+      <div style="font-size:.55rem;color:#6b7fb8;margin-top:1px">Nv 12 · 620/800 XP</div>
+    </div>
+    <div style="font-family:'Cinzel',serif;font-size:.7rem;color:var(--gold);">24.970 pts</div>
+  </div>
+  <div style="font-size:.62rem;color:#6b7fb8">🪙 480 ouro</div>
+</div>
 
+<!-- DUAL HP BARS -->
+<div class="hp-section">
+  <div class="hp-row">
+    <div class="hp-label boss">ARQUI-NEFROMANTE</div>
+    <div class="hp-track"><div class="hp-fill-boss" id="bossHpFill" style="width:58%"></div></div>
+    <div class="hp-num" id="bossHpNum">580 / 1.000</div>
+  </div>
+  <div class="hp-row">
+    <div class="hp-label player">DR. NEPHROS</div>
+    <div class="hp-track"><div class="hp-fill-player" id="playerHpFill" style="width:93%"></div></div>
+    <div class="hp-num" id="playerHpNum">280 / 300</div>
+  </div>
+  <div class="stars-row">
+    <span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span>
+    <span class="st">★</span><span class="st">★</span><span class="st">★</span><span class="st">★</span><span class="st">★</span><span class="st">★</span>
+  </div>
+</div>
+<div class="shield-active" id="shieldBanner">🔮 Escudo Mágico ativo — próximo acerto não causará dano!</div>
+
+<div class="main">
   <!-- LEFT -->
   <div class="panel-left">
-    <div style="text-align:center;font-size:3.2rem">🧙‍♂️</div>
-    <div style="text-align:center">
-      <div style="font-family:'Cinzel',serif;font-size:.78rem;color:#d8b4fe;margin-bottom:4px">Dr. Nephros · Nv 12</div>
-      <div class="lives" id="livesEl">❤❤❤</div>
-    </div>
+    <img class="hero-img" id="heroImg" src="assets/classes/clerigo_renal/nivel_06.jpg" alt="Dr. Nephros">
+    <div class="hero-name">Dr. Nephros · Nv 12</div>
     <div class="stat-row">
-      <span class="stat-chip">⚔️ ATK 24</span>
-      <span class="stat-chip">🛡️ DEF 18</span>
-      <span class="stat-chip">📚 KNO 22</span>
-      <span class="stat-chip">🍀 14</span>
+      <span class="sc">⚔️24</span><span class="sc">🛡️18</span><span class="sc">📚22</span><span class="sc">🍀14</span>
     </div>
-
-    <div style="border-top:1px solid rgba(168,85,247,.15);padding-top:8px;">
-      <div style="font-size:.65rem;color:rgba(192,132,252,.5);letter-spacing:2px;text-transform:uppercase;margin-bottom:5px;">Habilidades Lendárias</div>
-      <div class="leg-actions" id="legActions">
-        <div class="leg-btn" id="excaliburBtn" onclick="useLegendary('excalibur')">
-          <div class="leg-btn-icon">⚔️</div>
-          <div class="leg-btn-text">
-            <div class="leg-btn-name">Excalibur do Néfron</div>
-            <div class="leg-btn-effect">+150 dano nesta questão (1×)</div>
-          </div>
-        </div>
-        <div class="leg-btn" id="amuletoBtn" onclick="useLegendary('amuleto')">
-          <div class="leg-btn-icon">💎</div>
-          <div class="leg-btn-text">
-            <div class="leg-btn-name">Amuleto do Rim Imortal</div>
-            <div class="leg-btn-effect">Absorve 1 ataque do boss (1×)</div>
-          </div>
-        </div>
-        <div class="leg-btn" id="armaduraBtn" onclick="useLegendary('armadura')">
-          <div class="leg-btn-icon">🛡️</div>
-          <div class="leg-btn-text">
-            <div class="leg-btn-name">Armadura Primeva</div>
-            <div class="leg-btn-effect">Salva última vida (auto)</div>
-          </div>
-        </div>
+    <div class="equip-section">
+      <div class="eq-label">Equipamentos</div>
+      <div class="eq-item">⚔️ Excalibur do Néfron <span class="gs">✨</span></div>
+      <div class="eq-item">🛡️ Armadura Primeva <span class="gs">✨</span></div>
+      <div class="eq-item">💎 Amuleto do Rim Imortal <span class="gs">✨</span></div>
+      <div class="synergy">✨ Sinergia Lendária +20% XP</div>
+    </div>
+    <div class="dmg-preview">
+      <div class="dmg-label">Dano se acertar</div>
+      <div class="dmg-row"><span>⚔️ ATK×8</span><span class="dmg-val red" id="dAtk">192</span></div>
+      <div class="dmg-row"><span>📚 KNO×5</span><span class="dmg-val red" id="dKno">+110</span></div>
+      <div class="dmg-row" id="dStreakRow"><span>🔥 Streak ×4</span><span class="dmg-val gold">+80</span></div>
+      <div class="dmg-total-row">
+        <span>💥 Total</span>
+        <span class="dmg-total" id="dTotal">382</span>
       </div>
-      <div style="font-size:.6rem;color:var(--gold);text-align:center;margin-top:6px;">✨ Sinergia +20% XP ativa</div>
     </div>
   </div>
 
   <!-- CENTER -->
   <div class="panel-center">
-
-    <!-- Dual HP Bars -->
-    <div class="hp-section">
-      <div class="hp-block">
-        <div class="hp-label boss-lbl"><span>ARQUI-NEFROMANTE</span><span id="bossHpNum">580 / 1.000 HP</span></div>
-        <div class="hp-track" id="bossHpTrack"><div class="hp-fill-boss" id="bossHpFill" style="width:58%"></div></div>
+    <div class="boss-battle-img-wrap">
+      <div class="boss-img-box" id="bossImgBox">
+        <img src="assets/nefromancer.png" alt="Arqui-Nefromante">
       </div>
-      <div class="hp-block">
-        <div class="hp-label player-lbl"><span>DR. NEPHROS</span><span id="playerHpNum">280 / 300 HP</span></div>
-        <div class="hp-track"><div class="hp-fill-player" id="playerHpFill" style="width:93%"></div></div>
+      <div class="duel-img-box">
+        <img src="assets/battle_final.png" alt="Duelo Final">
       </div>
     </div>
 
-    <!-- Shield badge -->
-    <div id="shieldBadge" style="display:none" class="shield-badge">🔮 Escudo Mágico ativo — próximo acerto não causará dano!</div>
-
-    <!-- Boss img -->
-    <div class="boss-img-frame">
-      <span style="position:relative;z-index:1;font-size:3.5rem;filter:drop-shadow(0 0 20px rgba(168,85,247,.7))">🧿</span>
-      <div class="boss-name-plate">ARQUI-NEFROMANTE</div>
-    </div>
-
-    <!-- Damage preview -->
-    <div class="dmg-preview" id="dmgPreview">
-      <div class="dmg-row"><span>⚔️ Dano base (ATK 24 × 8)</span><span class="dmg-val atk">192</span></div>
-      <div class="dmg-row"><span>📚 Bônus KNO (22 × 5)</span><span class="dmg-val atk">+110</span></div>
-      <div class="dmg-row" id="streakRow"><span>🔥 Bônus streak (×3)</span><span class="dmg-val bonus">+60</span></div>
-      <div class="dmg-row" id="legRow" style="display:none"><span>⚔️ Excalibur do Néfron</span><span class="dmg-val bonus">+150</span></div>
-      <div style="border-top:1px solid rgba(168,85,247,.15);margin-top:4px;padding-top:4px;" class="dmg-row">
-        <span>💥 Dano total se acertar</span><span class="dmg-val total" id="totalDmg">362</span>
-      </div>
-    </div>
-
-    <!-- Question -->
-    <div class="question-counter">QUESTÃO FINAL · VARIÁVEL</div>
-    <div class="question-box">
+    <div class="q-counter">QUESTÃO FINAL · VARIÁVEL</div>
+    <div class="q-box">
       Qual é a complicação mais temida do tratamento com ciclofosfamida em pacientes com vasculite ANCA com envolvimento renal?
     </div>
 
-    <!-- Options -->
-    <div class="options" id="opts">
-      <div class="opt" onclick="selectOpt(this,false)"><div class="opt-badge">A</div>Nefrotoxicidade direta com progressão para DRT</div>
-      <div class="opt" onclick="selectOpt(this,false)"><div class="opt-badge">B</div>Hiperglicemia grave por ação sobre células beta</div>
-      <div class="opt correct" onclick="selectOpt(this,true)"><div class="opt-badge">C</div>Cistite hemorrágica por metabolito acroleína e mielossupressão</div>
-      <div class="opt" onclick="selectOpt(this,false)"><div class="opt-badge">D</div>Cardiotoxicidade com miocardiopatia dilatada</div>
+    <div class="opts">
+      <div class="opt" onclick="sel(this,false)"><div class="ob">A</div>Nefrotoxicidade direta com progressão para DRT</div>
+      <div class="opt" onclick="sel(this,false)"><div class="ob">B</div>Hiperglicemia grave por ação sobre células beta</div>
+      <div class="opt correct" onclick="sel(this,true)"><div class="ob">C</div>Cistite hemorrágica por metabolito acroleína e mielossupressão</div>
+      <div class="opt" onclick="sel(this,false)"><div class="ob">D</div>Cardiotoxicidade com miocardiopatia dilatada</div>
     </div>
 
-    <button class="btn-attack" id="attackBtn" onclick="simAttack()">⚔ ATACAR (responder)</button>
+    <button class="attack-btn" onclick="showDmgFloat()">⚔ ATACAR (responder)</button>
   </div>
 
-  <!-- RIGHT: Log -->
+  <!-- RIGHT -->
   <div class="panel-right">
     <div class="log-title">Log de Batalha</div>
     <div id="logEntries">
-      <div class="log-entry l">⚔️ Você causou <strong>362 de dano!</strong></div>
-      <div class="log-entry p">HP: 942 → 580</div>
-      <div class="log-entry b">😤 "Você ousou ferir-me com o conhecimento... Mas seu fim se aproxima!"</div>
-      <div class="log-entry b">💥 Nefromante atacou por <strong>82 de dano!</strong></div>
-      <div class="log-entry w">❤️ DEF 18 absorveu 37 — dano real: 45</div>
-      <div class="log-entry p">HP jogador: 325 → 280</div>
+      <div class="log-e pa">⚔️ Você causou <strong>382 de dano!</strong></div>
+      <div class="log-e pa">HP: 962 → 580</div>
+      <div class="log-e ba">😤 "Você ousou ferir-me com o conhecimento... Mas seu fim se aproxima!"</div>
+      <div class="log-e pa">⚔️ Você causou <strong>310 de dano!</strong></div>
+      <div class="log-e pa">HP: 1.000 → 620</div>
+      <div class="log-e ba">😠 "Impossível! Como conhece os néfrons assim?"</div>
     </div>
 
-    <div style="border-top:1px solid rgba(168,85,247,.15);padding-top:8px;margin-top:4px;">
-      <div class="log-title" style="margin-bottom:6px;">Estatísticas</div>
-      <div style="font-size:.7rem;color:#c4b5fd;display:flex;flex-direction:column;gap:4px;">
-        <div style="display:flex;justify-content:space-between;"><span>Questões respondidas</span><span>5</span></div>
-        <div style="display:flex;justify-content:space-between;"><span>Dano total causado</span><span style="color:#f87171">420</span></div>
-        <div style="display:flex;justify-content:space-between;"><span>Dano recebido</span><span style="color:#fca5a5">45</span></div>
-        <div style="display:flex;justify-content:space-between;"><span>Streak atual</span><span style="color:var(--gold)">3🔥</span></div>
-        <div style="display:flex;justify-content:space-between;"><span>Questões restantes (est.)</span><span>~6</span></div>
+    <div style="border-top:1px solid rgba(168,85,247,.15);padding-top:6px;">
+      <div class="log-title" style="margin-bottom:5px">Estatísticas</div>
+      <div style="font-size:.68rem;color:#c4b5fd;display:flex;flex-direction:column;gap:3px;" id="statsZone">
+        <div style="display:flex;justify-content:space-between"><span>Questões respondidas</span><span>5</span></div>
+        <div style="display:flex;justify-content:space-between"><span>Dano total causado</span><span style="color:#f87171" id="statDmg">692</span></div>
+        <div style="display:flex;justify-content:space-between"><span>Dano recebido</span><span style="color:#fca5a5" id="statRcv">0</span></div>
+        <div style="display:flex;justify-content:space-between"><span>Streak</span><span style="color:var(--gold)">4🔥</span></div>
+        <div style="display:flex;justify-content:space-between"><span>Questões est. restantes</span><span id="statRem">~2</span></div>
       </div>
     </div>
 
-    <div style="border-top:1px solid rgba(168,85,247,.15);padding-top:8px;margin-top:4px;">
-      <div class="log-title" style="margin-bottom:6px;">Escudo do Boss</div>
-      <div style="font-size:.68rem;color:rgba(192,132,252,.5);text-align:center" id="shieldStatus">Próximo escudo em 1 questão</div>
-      <div style="display:flex;gap:4px;margin-top:6px;justify-content:center;">
-        <div style="width:12px;height:12px;border-radius:50%;background:rgba(168,85,247,.5);border:1px solid #a855f7;"></div>
-        <div style="width:12px;height:12px;border-radius:50%;background:rgba(0,0,0,.3);border:1px dashed rgba(168,85,247,.3);"></div>
-        <div style="width:12px;height:12px;border-radius:50%;background:rgba(0,0,0,.3);border:1px dashed rgba(168,85,247,.3);"></div>
-      </div>
+    <div style="border-top:1px solid rgba(168,85,247,.15);padding-top:6px;">
+      <div class="log-title" style="margin-bottom:5px">Escudo do Boss</div>
+      <div style="font-size:.68rem;color:rgba(192,132,252,.4);text-align:center" id="shieldStatus">Próximo escudo em 1 questão</div>
     </div>
   </div>
-
 </div>
 
 <script>
-let legUsed = {excalibur:false, amuleto:false};
-let shieldActive = false;
-
 const scenes = {
   mid: {
-    bossHp: 58, playerHp: 93, bossNum: '580 / 1.000 HP', playerNum: '280 / 300 HP',
-    lives: '❤❤❤', shield: false, legBonusRow: false,
-    totalDmg: '362', shieldStatus: 'Próximo escudo em 1 questão',
+    bossHp:58, playerHp:93, bossNum:'580 / 1.000', playerNum:'280 / 300',
+    lives:'❤❤❤', shield:false,
+    log: [
+      {cls:'pa', t:'⚔️ Você causou <strong>382 de dano!</strong>'},
+      {cls:'pa', t:'HP: 962 → 580'},
+      {cls:'ba', t:'😤 "Você ousou ferir-me com o conhecimento... Mas seu fim se aproxima!"'},
+      {cls:'pa', t:'⚔️ Você causou <strong>310 de dano!</strong>'},
+      {cls:'pa', t:'HP: 1.000 → 620'},
+    ],
+    statDmg:'692', statRcv:'0', statRem:'~2', shieldStatus:'Próximo escudo em 1 questão',
   },
   crit: {
-    bossHp: 15, playerHp: 33, bossNum: '150 / 1.000 HP', playerNum: '100 / 300 HP',
-    lives: '❤', shield: false, legBonusRow: false,
-    totalDmg: '362', shieldStatus: 'Próximo escudo em 2 questões',
+    bossHp:8, playerHp:87, bossNum:'80 / 1.000', playerNum:'260 / 300',
+    lives:'❤❤❤', shield:false,
+    log: [
+      {cls:'pa', t:'⚔️ Você causou <strong>380 de dano!</strong>'},
+      {cls:'pa', t:'HP: 460 → 80'},
+      {cls:'ba', t:'💀 "N-não... meu poder... está... acabando..."'},
+      {cls:'la', t:'⚡ HP do boss crítico — <strong>próxima resposta correta vence!</strong>'},
+    ],
+    statDmg:'920', statRcv:'20', statRem:'1', shieldStatus:'Sem escudo restante',
   },
-  leg: {
-    bossHp: 40, playerHp: 87, bossNum: '400 / 1.000 HP', playerNum: '260 / 300 HP',
-    lives: '❤❤❤', shield: false, legBonusRow: true,
-    totalDmg: '512', shieldStatus: 'Próximo escudo em 1 questão',
+  err: {
+    bossHp:45, playerHp:60, bossNum:'450 / 1.000', playerNum:'180 / 300',
+    lives:'❤❤', shield:false,
+    log: [
+      {cls:'wa', t:'❌ Resposta incorreta!'},
+      {cls:'ba', t:'😈 Arqui-Nefromante contra-atacou por <strong>100 de dano!</strong>'},
+      {cls:'wa', t:'🛡️ DEF 18 absorveu 25% — dano real: 75'},
+      {cls:'pa', t:'HP jogador: 255 → 180'},
+      {cls:'na', t:'"Seu conhecimento tem limites, mortal."'},
+    ],
+    statDmg:'550', statRcv:'75', statRem:'~2', shieldStatus:'Próximo escudo em 2 questões',
   },
   shield: {
-    bossHp: 50, playerHp: 80, bossNum: '500 / 1.000 HP', playerNum: '240 / 300 HP',
-    lives: '❤❤❤', shield: true, legBonusRow: false,
-    totalDmg: '362 (bloqueado)', shieldStatus: '🔮 Escudo ATIVO agora!',
-  },
+    bossHp:30, playerHp:80, bossNum:'300 / 1.000', playerNum:'240 / 300',
+    lives:'❤❤❤', shield:true,
+    log: [
+      {cls:'ba', t:'🔮 Arqui-Nefromante ativou Escudo Mágico!'},
+      {cls:'wa', t:'⚠️ Próximo acerto não causará dano'},
+      {cls:'pa', t:'⚔️ Você causou 0 de dano (escudo absorveu)'},
+      {cls:'pa', t:'HP: 300 → 300 (bloqueado)'},
+      {cls:'na', t:'"Tolo. Seu poder nada faz contra meu escudo arcano."'},
+    ],
+    statDmg:'700', statRcv:'0', statRem:'~1', shieldStatus:'🔮 Escudo ATIVO agora!',
+  }
 };
 
-function setScene(name, tabEl) {
-  if (tabEl) {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    tabEl.classList.add('active');
-  }
-  const s = scenes[name];
+function setScene(k, tab) {
+  document.querySelectorAll('.stab').forEach(t=>t.classList.remove('active'));
+  if(tab) tab.classList.add('active');
+  const s = scenes[k];
   document.getElementById('bossHpFill').style.width = s.bossHp + '%';
   document.getElementById('playerHpFill').style.width = s.playerHp + '%';
   document.getElementById('bossHpNum').textContent = s.bossNum;
   document.getElementById('playerHpNum').textContent = s.playerNum;
   document.getElementById('livesEl').textContent = s.lives;
-  document.getElementById('shieldBadge').style.display = s.shield ? 'block' : 'none';
-  document.getElementById('bossHpTrack').className = 'hp-track' + (s.shield ? ' shield-active' : '');
-  document.getElementById('legRow').style.display = s.legBonusRow ? 'flex' : 'none';
-  document.getElementById('totalDmg').textContent = s.totalDmg;
+  const sh = document.getElementById('shieldBanner');
+  sh.style.display = s.shield ? 'block' : 'none';
+  // Log
+  const le = document.getElementById('logEntries');
+  le.innerHTML = s.log.map(e=>`<div class="log-e ${e.cls}">${e.t}</div>`).join('');
+  document.getElementById('statDmg').textContent = s.statDmg;
+  document.getElementById('statRcv').textContent = s.statRcv;
+  document.getElementById('statRem').textContent = s.statRem;
   document.getElementById('shieldStatus').textContent = s.shieldStatus;
+  // Boss img shake on error
+  const bi = document.getElementById('bossImgBox');
+  bi.style.animation = k === 'err' ? 'bossShake .4s ease' : '';
 }
 
-function useLegendary(name) {
-  if (legUsed[name]) return;
-  legUsed[name] = true;
-  document.getElementById(name + 'Btn').classList.add('used');
-  if (name === 'excalibur') {
-    document.getElementById('legRow').style.display = 'flex';
-    document.getElementById('totalDmg').textContent = '512';
-    showDmgToast('+150 ⚔️', '#ffd700');
-  }
-  if (name === 'amuleto') {
-    showDmgToast('🛡️ Absorção ativa!', '#93c5fd');
-  }
-}
-
-function showDmgToast(txt, color) {
+function showDmgFloat() {
   const el = document.createElement('div');
-  el.className = 'damage-toast';
-  el.style.color = color;
-  el.textContent = txt;
+  el.className = 'dmg-float';
+  el.style.cssText = 'left:50%;transform:translateX(-50%);top:55%;color:#f87171;text-shadow:0 0 12px rgba(248,113,113,.8);';
+  el.textContent = '−382 HP';
   document.body.appendChild(el);
-  setTimeout(() => el.remove(), 1200);
+  setTimeout(()=>el.remove(), 1200);
 }
 
-function simAttack() {
-  showDmgToast('−362 HP', '#f87171');
-}
-
-function selectOpt(el, correct) {
-  document.querySelectorAll('.opt').forEach(o => { o.classList.remove('correct','wrong'); });
+function sel(el, correct) {
+  document.querySelectorAll('.opt').forEach(o=>o.classList.remove('correct','wrong'));
   el.classList.add(correct ? 'correct' : 'wrong');
 }
+
+const style = document.createElement('style');
+style.textContent = '@keyframes bossShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}';
+document.head.appendChild(style);
 </script>
 </body>
 </html>
