@@ -3,303 +3,308 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NefroQuest — Boss Mockup: Opção 2 · Habilidades Sombrias</title>
+<title>NefroQuest · Boss Opção 2 — Habilidades Sombrias</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Philosopher:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-  :root{--gold:#ffd700;--purple:#a855f7;--bg:#070b18;}
-  *{box-sizing:border-box;margin:0;padding:0;}
-  body{background:var(--bg);color:#e2e8f0;font-family:'Philosopher',serif;min-height:100vh;}
-  .option-label{text-align:center;padding:14px 0 6px;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:4px;color:rgba(168,85,247,.6);text-transform:uppercase;}
-  .option-title{text-align:center;font-family:'Cinzel',serif;font-size:clamp(1.1rem,3vw,1.5rem);font-weight:900;color:#e9d5ff;letter-spacing:2px;margin-bottom:12px;text-shadow:0 0 20px rgba(168,85,247,.6);}
+:root{--gold:#ffd700;--bg:#070b18;--border:rgba(42,74,122,.5);}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:#e2e8f0;font-family:'Philosopher',serif;height:100vh;overflow:hidden;}
 
-  .layout{display:grid;grid-template-columns:260px 1fr 200px;gap:0;height:calc(100vh - 80px);max-width:1080px;margin:0 auto;}
-  @media(max-width:768px){.layout{grid-template-columns:1fr;}}
+.top-bar{display:flex;align-items:center;justify-content:space-between;padding:6px 16px;background:rgba(0,0,0,.4);border-bottom:1px solid var(--border);gap:8px;}
+.lives{font-size:1.1rem;letter-spacing:1px;}
+.xp-bar{width:80px;height:5px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden;}
+.xp-fill{height:100%;background:linear-gradient(90deg,#3b82f6,#60a5fa);width:62%;}
 
-  /* LEFT */
-  .panel-left{background:linear-gradient(180deg,#0d0520,#120830);border-right:1px solid rgba(168,85,247,.2);padding:14px 12px;display:flex;flex-direction:column;gap:10px;overflow-y:auto;}
-  .stat-chip{background:rgba(42,74,122,.3);border:1px solid rgba(42,74,122,.5);border-radius:5px;padding:3px 7px;font-size:.72rem;color:#93c5fd;}
-  .stat-row{display:flex;gap:5px;flex-wrap:wrap;}
-  .lives{font-size:1.3rem;letter-spacing:2px;}
+/* HP bar */
+.boss-hp-section{padding:6px 16px;background:rgba(0,0,0,.3);border-bottom:1px solid rgba(168,85,247,.2);}
+.boss-hp-meta{display:flex;justify-content:space-between;margin-bottom:3px;}
+.boss-hp-name{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:3px;color:#c084fc;}
+.boss-hp-pct{font-family:'Cinzel',serif;font-size:.62rem;color:#c084fc;}
+.boss-hp-track{height:12px;background:rgba(0,0,0,.5);border-radius:6px;overflow:hidden;border:1px solid rgba(168,85,247,.3);}
+.boss-hp-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,#4c1d95,#7c3aed,#a855f7);transition:width .6s;}
+.stars-row{display:flex;justify-content:center;gap:3px;margin-top:4px;}
+.st{font-size:.88rem;color:rgba(255,255,255,.12);}
+.st.on{color:var(--gold);text-shadow:0 0 6px rgba(255,215,0,.9);}
 
-  /* CENTER */
-  .panel-center{background:linear-gradient(180deg,#08031a,#0e0525);padding:14px;display:flex;flex-direction:column;gap:10px;overflow-y:auto;}
+/* Active ability ribbon */
+.ability-ribbon{
+  display:flex;align-items:center;gap:10px;padding:5px 16px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  transition:background .4s;
+}
+.ability-ribbon.fog{background:rgba(88,28,135,.25);}
+.ability-ribbon.timer{background:rgba(120,53,15,.25);}
+.ability-ribbon.drain{background:rgba(127,29,29,.25);}
+.ability-ribbon.shield{background:rgba(30,58,138,.2);}
+.ability-ribbon.none{background:rgba(0,0,0,.15);}
+.ab-icon{font-size:1.2rem;min-width:28px;text-align:center;}
+.ab-text{flex:1;}
+.ab-name{font-family:'Cinzel',serif;font-size:.62rem;font-weight:700;letter-spacing:1px;color:#e2e8f0;}
+.ab-desc{font-size:.64rem;color:rgba(192,132,252,.7);margin-top:1px;}
+.ab-synergy{font-size:.6rem;color:var(--gold);margin-left:auto;white-space:nowrap;}
 
-  /* RIGHT — Battle log + Ability */
-  .panel-right{background:linear-gradient(180deg,#06010f,#0d0420);border-left:1px solid rgba(168,85,247,.15);padding:12px;display:flex;flex-direction:column;gap:10px;overflow-y:auto;}
-  .log-title{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:3px;color:rgba(168,85,247,.5);text-transform:uppercase;border-bottom:1px solid rgba(168,85,247,.1);padding-bottom:5px;}
-  .log-entry{font-size:.72rem;color:#c4b5fd;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);line-height:1.4;}
-  .log-entry.boss-act{color:#f9a8d4;}
-  .log-entry.player-act{color:#86efac;}
-  .log-entry.warn{color:#fbbf24;}
+/* Timer bar */
+.timer-wrap{padding:3px 16px 0;display:none;}
+.timer-meta{display:flex;justify-content:space-between;font-size:.64rem;color:#f59e0b;margin-bottom:2px;}
+.timer-track{height:5px;background:rgba(0,0,0,.4);border-radius:3px;overflow:hidden;}
+.timer-fill{height:100%;background:linear-gradient(90deg,#d97706,#f59e0b);border-radius:3px;animation:tDrain 20s linear forwards;}
+@keyframes tDrain{from{width:100%}to{width:0}}
 
-  /* HP Bar */
-  .hp-label{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:2px;color:#c084fc;margin-bottom:4px;display:flex;justify-content:space-between;}
-  .hp-track{height:14px;background:rgba(0,0,0,.4);border-radius:7px;border:1px solid rgba(168,85,247,.3);overflow:hidden;}
-  .hp-fill{height:100%;border-radius:7px;background:linear-gradient(90deg,#4c1d95,#7c3aed,#a855f7);transition:width .8s;}
+.main{display:grid;grid-template-columns:200px 1fr 220px;height:calc(100vh - 130px);}
 
-  /* Active Ability card */
-  .ability-card{
-    border-radius:10px;padding:10px 12px;text-align:center;
-    animation:abilityPulse 1.5s ease-in-out infinite alternate;
-  }
-  .ability-fog{background:rgba(88,28,135,.25);border:2px solid rgba(139,92,246,.6);}
-  .ability-timer{background:rgba(120,53,15,.25);border:2px solid rgba(245,158,11,.6);}
-  .ability-drain{background:rgba(127,29,29,.25);border:2px solid rgba(239,68,68,.6);}
-  .ability-shield{background:rgba(30,58,138,.25);border:2px solid rgba(59,130,246,.6);}
-  .ability-none{background:rgba(0,0,0,.2);border:1px dashed rgba(255,255,255,.08);}
-  @keyframes abilityPulse{from{box-shadow:0 0 6px rgba(168,85,247,.2);}to{box-shadow:0 0 20px rgba(168,85,247,.6);}}
-  .ability-icon{font-size:2rem;margin-bottom:4px;}
-  .ability-name{font-family:'Cinzel',serif;font-size:.7rem;font-weight:700;letter-spacing:1px;margin-bottom:4px;}
-  .ability-desc{font-size:.68rem;line-height:1.4;color:#c4b5fd;}
+/* LEFT */
+.panel-left{background:linear-gradient(180deg,#0c1020,#0a0d1a);border-right:1px solid var(--border);padding:10px;display:flex;flex-direction:column;gap:8px;overflow-y:auto;}
+.hero-img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;border:2px solid rgba(168,85,247,.4);box-shadow:0 0 20px rgba(168,85,247,.2);}
+.hero-name{font-family:'Cinzel',serif;font-size:.72rem;color:#d8b4fe;text-align:center;}
+.stat-row{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;}
+.sc{background:rgba(42,74,122,.3);border:1px solid rgba(42,74,122,.5);border-radius:4px;padding:2px 6px;font-size:.68rem;color:#93c5fd;}
+.equip-section{border-top:1px solid rgba(42,74,122,.3);padding-top:6px;}
+.eq-label{font-size:.58rem;color:rgba(192,132,252,.4);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+.eq-item{font-size:.7rem;color:#c4b5fd;padding:2px 0;}
+.eq-item .gs{color:var(--gold);font-size:.58rem;}
+.synergy{font-size:.6rem;color:var(--gold);text-align:center;margin-top:4px;}
 
-  /* Synergy shield */
-  .synergy-note{font-size:.64rem;color:var(--gold);text-align:center;margin-top:4px;}
+/* Cooldown tracker */
+.cd-section{border-top:1px solid rgba(42,74,122,.3);padding-top:6px;}
+.cd-label{font-size:.58rem;color:rgba(192,132,252,.4);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+.cd-pips{display:flex;gap:4px;justify-content:center;}
+.pip{width:12px;height:12px;border-radius:50%;border:1px solid rgba(168,85,247,.3);background:rgba(0,0,0,.3);}
+.pip.on{background:rgba(168,85,247,.5);border-color:#a855f7;}
+.cd-hint{font-size:.6rem;color:rgba(192,132,252,.4);text-align:center;margin-top:3px;}
 
-  /* Question */
-  .question-counter{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:3px;color:rgba(192,132,252,.7);text-align:center;}
-  .question-box{background:rgba(255,255,255,.03);border:1px solid rgba(168,85,247,.2);border-radius:10px;padding:14px;font-size:.88rem;line-height:1.6;color:#e2e8f0;}
+/* CENTER */
+.panel-center{background:linear-gradient(180deg,#080315,#0d0520);padding:10px;display:flex;flex-direction:column;gap:8px;overflow-y:auto;}
+.boss-battle-img-wrap{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.boss-img-box{border-radius:8px;overflow:hidden;border:2px solid rgba(168,85,247,.4);aspect-ratio:1;background:#0d0118;}
+.boss-img-box img{width:100%;height:100%;object-fit:cover;object-position:center 20%;}
+.duel-img-box{border-radius:8px;overflow:hidden;border:2px solid rgba(100,149,237,.35);aspect-ratio:1;background:#080318;}
+.duel-img-box img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+.q-counter{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:3px;color:rgba(192,132,252,.7);text-align:center;}
+.q-box{background:rgba(255,255,255,.03);border:1px solid rgba(168,85,247,.2);border-radius:8px;padding:12px;font-size:.85rem;line-height:1.6;}
+.opts{display:flex;flex-direction:column;gap:6px;}
+.opt{background:rgba(168,85,247,.08);border:1.5px solid rgba(168,85,247,.2);border-radius:7px;padding:9px 12px;cursor:pointer;display:flex;align-items:center;gap:9px;font-size:.82rem;transition:all .2s;}
+.opt:hover{background:rgba(168,85,247,.18);border-color:#a855f7;}
+.opt.correct{background:rgba(34,197,94,.15);border-color:#22c55e;color:#86efac;}
+.opt.wrong{background:rgba(239,68,68,.15);border-color:#ef4444;color:#fca5a5;}
+.opt.blur-opt{filter:blur(5px);pointer-events:none;opacity:.4;}
+.ob{min-width:24px;height:24px;border-radius:50%;background:rgba(168,85,247,.3);border:1px solid rgba(168,85,247,.5);display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:.68rem;font-weight:700;color:#d8b4fe;}
+.opt.correct .ob{background:rgba(34,197,94,.3);border-color:#22c55e;color:#86efac;}
+.opt.wrong .ob{background:rgba(239,68,68,.3);border-color:#ef4444;color:#fca5a5;}
+.attack-btn{font-family:'Cinzel',serif;background:linear-gradient(180deg,#7c3aed,#4c1d95);border:2px solid #a855f7;border-radius:9px;color:#f3e8ff;font-size:.85rem;font-weight:900;letter-spacing:2px;padding:11px;cursor:pointer;animation:atkGlow 2s ease-in-out infinite alternate;}
+@keyframes atkGlow{from{box-shadow:0 0 8px rgba(168,85,247,.3);}to{box-shadow:0 0 22px rgba(168,85,247,.8);}}
 
-  /* Options */
-  .options{display:flex;flex-direction:column;gap:8px;}
-  .opt{background:rgba(168,85,247,.08);border:1.5px solid rgba(168,85,247,.25);border-radius:8px;padding:10px 14px;cursor:pointer;display:flex;align-items:center;gap:10px;font-size:.85rem;transition:all .2s;}
-  .opt:hover{background:rgba(168,85,247,.2);border-color:#a855f7;}
-  .opt.correct{background:rgba(34,197,94,.15);border-color:#22c55e;color:#86efac;}
-  .opt.wrong{background:rgba(239,68,68,.15);border-color:#ef4444;color:#fca5a5;}
-  .opt-badge{min-width:26px;height:26px;border-radius:50%;background:rgba(168,85,247,.3);border:1px solid rgba(168,85,247,.5);display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:.7rem;font-weight:700;color:#d8b4fe;}
-  .opt.correct .opt-badge{background:rgba(34,197,94,.3);border-color:#22c55e;color:#86efac;}
-  .opt.wrong .opt-badge{background:rgba(239,68,68,.3);border-color:#ef4444;color:#fca5a5;}
+/* RIGHT */
+.panel-right{background:linear-gradient(180deg,#06010f,#0c0420);border-left:1px solid rgba(168,85,247,.15);padding:10px;display:flex;flex-direction:column;gap:6px;overflow-y:auto;}
+.log-title{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:3px;color:rgba(168,85,247,.5);text-transform:uppercase;border-bottom:1px solid rgba(168,85,247,.1);padding-bottom:4px;margin-bottom:2px;}
+.log-e{font-size:.7rem;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.03);line-height:1.45;}
+.log-e.pa{color:#86efac;}
+.log-e.ba{color:#f9a8d4;}
+.log-e.wa{color:#fbbf24;}
+.log-e.ab{color:#c4b5fd;font-size:.67rem;}
 
-  /* Obscured options (Névoa Urêmica) */
-  .opt.obscured{filter:blur(5px);pointer-events:none;opacity:.5;}
+/* Upcoming ability preview */
+.next-ability{font-size:.66rem;text-align:center;padding:5px;border-radius:5px;background:rgba(0,0,0,.2);border:1px dashed rgba(168,85,247,.2);color:rgba(192,132,252,.5);}
 
-  /* Timer bar */
-  .timer-bar-wrap{height:6px;background:rgba(0,0,0,.3);border-radius:3px;overflow:hidden;}
-  .timer-bar{height:100%;background:linear-gradient(90deg,#d97706,#f59e0b);border-radius:3px;animation:timerDrain 20s linear forwards;}
-  @keyframes timerDrain{from{width:100%;}to{width:0%;}}
-
-  /* Stars */
-  .stars-row{display:flex;justify-content:center;gap:4px;margin:2px 0;}
-  .star{font-size:1.1rem;color:rgba(255,255,255,.12);}
-  .star.on{color:var(--gold);text-shadow:0 0 8px rgba(255,215,0,.8);}
-
-  /* Button */
-  .btn-attack{font-family:'Cinzel',serif;background:linear-gradient(180deg,#7c3aed,#4c1d95);border:2px solid #a855f7;border-radius:10px;color:#f3e8ff;font-size:.9rem;font-weight:900;letter-spacing:2px;padding:12px;cursor:pointer;box-shadow:0 0 20px rgba(168,85,247,.4);animation:attackGlow 2s ease-in-out infinite alternate;}
-  @keyframes attackGlow{from{box-shadow:0 0 10px rgba(168,85,247,.3);}to{box-shadow:0 0 25px rgba(168,85,247,.7);}}
-
-  /* HP boss img */
-  .boss-img-frame{width:100%;aspect-ratio:21/9;border-radius:8px;overflow:hidden;border:2px solid rgba(168,85,247,.4);background:linear-gradient(135deg,#0d0118,#1a0535);display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;}
-  .boss-img-frame::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.6) 0%,transparent 60%);}
-  .boss-name-plate{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);font-family:'Cinzel',serif;font-size:.7rem;font-weight:900;letter-spacing:3px;color:#e9d5ff;text-shadow:0 0 15px rgba(168,85,247,.9);white-space:nowrap;z-index:2;}
-
-  /* Tab bar */
-  .tab-bar{display:flex;gap:8px;padding:10px 16px 0;max-width:1080px;margin:0 auto;flex-wrap:wrap;}
-  .tab{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:1.5px;padding:7px 12px;border-radius:6px;cursor:pointer;border:1px solid rgba(168,85,247,.3);background:rgba(168,85,247,.08);color:#c084fc;transition:all .2s;}
-  .tab.active{background:rgba(168,85,247,.25);border-color:#a855f7;color:#e9d5ff;}
-  .tab:hover{background:rgba(168,85,247,.2);}
+/* Scene bar */
+.scene-bar{display:flex;gap:6px;padding:6px 16px 0;flex-wrap:wrap;background:rgba(0,0,0,.3);}
+.stab{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:1px;padding:5px 9px;border-radius:5px;cursor:pointer;border:1px solid rgba(168,85,247,.3);background:rgba(168,85,247,.07);color:#c084fc;transition:all .2s;}
+.stab.active,.stab:hover{background:rgba(168,85,247,.22);border-color:#a855f7;color:#e9d5ff;}
+.option-label-bar{text-align:center;padding:6px;font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:3px;color:rgba(168,85,247,.5);background:rgba(0,0,0,.5);}
 </style>
 </head>
 <body>
-
-<div class="option-label">Opção 2 de 3</div>
-<div class="option-title">🔮 Habilidades Sombrias do Boss</div>
-
-<div class="tab-bar">
-  <div class="tab active" onclick="setScene('normal',this)">Questão normal (sem habilidade)</div>
-  <div class="tab" onclick="setScene('fog',this)">🌫️ Névoa Urêmica ativa</div>
-  <div class="tab" onclick="setScene('timer',this)">⏳ Maldição da Azotemia</div>
-  <div class="tab" onclick="setScene('drain',this)">💀 Drenar Néfrons</div>
-  <div class="tab" onclick="setScene('shield',this)">🔮 Escudo Mágico</div>
+<div class="option-label-bar">OPÇÃO 2 DE 3 — HABILIDADES SOMBRIAS DO BOSS (counter-moves)</div>
+<div class="scene-bar">
+  <div class="stab active" onclick="setScene('none',this)">Questão normal</div>
+  <div class="stab" onclick="setScene('fog',this)">🌫️ Névoa Urêmica</div>
+  <div class="stab" onclick="setScene('timer',this)">⏳ Maldição da Azotemia</div>
+  <div class="stab" onclick="setScene('drain',this)">💀 Drenar Néfrons</div>
+  <div class="stab" onclick="setScene('shield',this)">🔮 Escudo Mágico</div>
 </div>
 
-<div class="layout">
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="lives" id="livesEl">❤❤❤</div>
+    <div>
+      <div class="xp-bar"><div class="xp-fill"></div></div>
+      <div style="font-size:.55rem;color:#6b7fb8;margin-top:1px">Nv 12 · 620/800 XP</div>
+    </div>
+    <div style="font-family:'Cinzel',serif;font-size:.7rem;color:var(--gold);">24.970 pts</div>
+  </div>
+  <div style="font-size:.62rem;color:#6b7fb8">🪙 480 ouro</div>
+</div>
 
+<!-- BOSS HP -->
+<div class="boss-hp-section">
+  <div class="boss-hp-meta">
+    <div class="boss-hp-name">ARQUI-NEFROMANTE</div>
+    <div class="boss-hp-pct">HP 60%</div>
+  </div>
+  <div class="boss-hp-track"><div class="boss-hp-fill" style="width:60%"></div></div>
+  <div class="stars-row">
+    <span class="st on">★</span><span class="st on">★</span><span class="st on">★</span><span class="st on">★</span>
+    <span class="st">★</span><span class="st">★</span><span class="st">★</span><span class="st">★</span><span class="st">★</span><span class="st">★</span>
+  </div>
+</div>
+
+<!-- Active ability ribbon -->
+<div class="ability-ribbon none" id="abilityRibbon">
+  <div class="ab-icon" id="abIcon">💤</div>
+  <div class="ab-text">
+    <div class="ab-name" id="abName">NENHUMA HABILIDADE ATIVA</div>
+    <div class="ab-desc" id="abDesc">Próxima habilidade em 1 questão</div>
+  </div>
+  <div class="ab-synergy" id="abSynergy" style="display:none">🛡️ Sinergia −50%</div>
+</div>
+
+<!-- Timer bar -->
+<div class="timer-wrap" id="timerWrap">
+  <div class="timer-meta"><span>⏳ Tempo restante</span><span id="timerNum">20s</span></div>
+  <div class="timer-track"><div class="timer-fill" id="timerFill"></div></div>
+</div>
+
+<div class="main">
   <!-- LEFT -->
   <div class="panel-left">
-    <div style="text-align:center;font-size:3.5rem">🧙‍♂️</div>
-    <div style="text-align:center">
-      <div style="font-family:'Cinzel',serif;font-size:.78rem;color:#d8b4fe;margin-bottom:4px">Dr. Nephros · Nv 12</div>
-      <div class="lives" id="livesEl">❤❤❤</div>
-    </div>
+    <img class="hero-img" src="assets/classes/clerigo_renal/nivel_06.jpg" alt="Dr. Nephros">
+    <div class="hero-name">Dr. Nephros · Nv 12</div>
     <div class="stat-row">
-      <span class="stat-chip">⚔️ 24</span>
-      <span class="stat-chip">🛡️ 18</span>
-      <span class="stat-chip">📚 22</span>
-      <span class="stat-chip">🍀 14</span>
+      <span class="sc">⚔️24</span><span class="sc">🛡️18</span><span class="sc">📚22</span><span class="sc">🍀14</span>
     </div>
-    <div style="border-top:1px solid rgba(168,85,247,.15);padding-top:8px;">
-      <div style="font-size:.65rem;color:rgba(192,132,252,.5);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;">Equipamentos</div>
-      <div style="font-size:.73rem;color:#c4b5fd;display:flex;flex-direction:column;gap:3px;">
-        <div>⚔️ Excalibur do Néfron <span style="color:var(--gold);font-size:.58rem">✨</span></div>
-        <div>🛡️ Armadura Primeva <span style="color:var(--gold);font-size:.58rem">✨</span></div>
-        <div>💎 Amuleto do Rim Imortal <span style="color:var(--gold);font-size:.58rem">✨</span></div>
-      </div>
-      <div style="margin-top:6px;font-size:.6rem;color:var(--gold);text-align:center;">✨ Sinergia Lendária +20% XP</div>
+    <div class="equip-section">
+      <div class="eq-label">Equipamentos</div>
+      <div class="eq-item">⚔️ Excalibur do Néfron <span class="gs">✨</span></div>
+      <div class="eq-item">🛡️ Armadura Primeva <span class="gs">✨</span></div>
+      <div class="eq-item">💎 Amuleto do Rim Imortal <span class="gs">✨</span></div>
+      <div class="synergy">✨ Sinergia: habilidades −50%</div>
     </div>
-
-    <!-- Ability cooldown tracker -->
-    <div style="border-top:1px solid rgba(168,85,247,.15);padding-top:8px;">
-      <div style="font-size:.6rem;color:rgba(192,132,252,.5);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;">Próx. ataque do boss</div>
-      <div style="font-size:.72rem;color:#d8b4fe;text-align:center;">
-        <span id="nextAbilityLabel">A cada 2 questões</span>
+    <div class="cd-section">
+      <div class="cd-label">Cooldown do boss</div>
+      <div class="cd-pips">
+        <div class="pip on" id="pip1"></div>
+        <div class="pip" id="pip2"></div>
       </div>
-      <div style="display:flex;gap:4px;margin-top:6px;justify-content:center;">
-        <div style="width:14px;height:14px;border-radius:50%;background:rgba(168,85,247,.5);border:1px solid #a855f7;"></div>
-        <div style="width:14px;height:14px;border-radius:50%;background:rgba(0,0,0,.3);border:1px dashed rgba(168,85,247,.3);"></div>
-        <div style="width:14px;height:14px;border-radius:50%;background:rgba(0,0,0,.3);border:1px dashed rgba(168,85,247,.3);"></div>
-      </div>
-      <div style="font-size:.58rem;color:rgba(192,132,252,.4);text-align:center;margin-top:4px;">1/2 questões</div>
+      <div class="cd-hint" id="cdHint">Habilidade em 1 questão</div>
     </div>
-
-    <div id="synergyNote" class="synergy-note" style="display:none">🛡️ Sinergia: habilidades do boss −50%</div>
   </div>
 
   <!-- CENTER -->
   <div class="panel-center">
-    <!-- HP -->
-    <div>
-      <div class="hp-label"><span>ARQUI-NEFROMANTE</span><span id="hpPct">HP 60%</span></div>
-      <div class="hp-track"><div class="hp-fill" id="hpFill" style="width:60%"></div></div>
+    <div class="boss-battle-img-wrap">
+      <div class="boss-img-box"><img src="assets/nefromancer.png" alt="Arqui-Nefromante"></div>
+      <div class="duel-img-box"><img src="assets/battle_final.png" alt="Duelo"></div>
     </div>
-    <div class="stars-row">
-      <span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span>
-      <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-    </div>
-
-    <!-- Boss img -->
-    <div class="boss-img-frame">
-      <span style="position:relative;z-index:1;font-size:4rem;filter:drop-shadow(0 0 20px rgba(168,85,247,.7))">🧿</span>
-      <div class="boss-name-plate">ARQUI-NEFROMANTE</div>
-    </div>
-
-    <!-- Timer bar (only shown in timer scene) -->
-    <div id="timerWrap" style="display:none">
-      <div style="display:flex;justify-content:space-between;font-size:.68rem;color:#f59e0b;margin-bottom:3px;">
-        <span>⏳ Maldição da Azotemia</span><span id="timerCount">20s</span>
-      </div>
-      <div class="timer-bar-wrap"><div class="timer-bar" id="timerBar"></div></div>
-    </div>
-
-    <!-- Question -->
-    <div class="question-counter">QUESTÃO FINAL 5/10</div>
-    <div class="question-box">
+    <div class="q-counter">QUESTÃO FINAL 5/10</div>
+    <div class="q-box">
       Na síndrome nefrótica, qual mecanismo explica principalmente a hipercoagulabilidade observada nesses pacientes?
     </div>
-
-    <!-- Options -->
-    <div class="options" id="opts">
-      <div class="opt" onclick="selectOpt(this,false)"><div class="opt-badge">A</div>Aumento de proteínas pró-coagulantes pela síntese hepática compensatória</div>
-      <div class="opt correct" onclick="selectOpt(this,true)"><div class="opt-badge">B</div>Perda urinária de anticoagulantes naturais (antitrombina III, proteína C e S)</div>
-      <div class="opt" id="optC" onclick="selectOpt(this,false)"><div class="opt-badge">C</div>Hiperviscosidade sanguínea por hiperalbuminemia</div>
-      <div class="opt" id="optD" onclick="selectOpt(this,false)"><div class="opt-badge">D</div>Ativação direta do complemento pela proteinúria</div>
+    <div class="opts" id="opts">
+      <div class="opt" onclick="sel(this,false)"><div class="ob">A</div>Aumento de proteínas pró-coagulantes pela síntese hepática compensatória</div>
+      <div class="opt correct" onclick="sel(this,true)"><div class="ob">B</div>Perda urinária de anticoagulantes naturais (antitrombina III, proteína C e S)</div>
+      <div class="opt" id="optC" onclick="sel(this,false)"><div class="ob">C</div>Hiperviscosidade sanguínea por hiperalbuminemia</div>
+      <div class="opt" id="optD" onclick="sel(this,false)"><div class="ob">D</div>Ativação direta do complemento pela proteinúria</div>
     </div>
-
-    <button class="btn-attack">⚔ ATACAR (responder)</button>
+    <button class="attack-btn">⚔ ATACAR (responder)</button>
   </div>
 
-  <!-- RIGHT: Log + Ability -->
+  <!-- RIGHT -->
   <div class="panel-right">
     <div class="log-title">Log de Batalha</div>
     <div id="logEntries">
-      <div class="log-entry player-act">✅ Você respondeu corretamente — −10% HP</div>
-      <div class="log-entry boss-act" id="abilityEntry">💀 Arqui-Nefromante conjurou <strong>Névoa Urêmica!</strong></div>
-      <div class="log-entry warn" id="warnEntry">⚠️ 2 opções ficaram ocultas por 6s</div>
-      <div class="log-entry player-act">✅ Você respondeu corretamente — −10% HP</div>
-      <div class="log-entry boss-act">⏳ Arqui-Nefromante lançou <strong>Maldição da Azotemia!</strong></div>
-      <div class="log-entry warn">⚠️ Próxima questão: 20s de limite</div>
+      <div class="log-e pa">⚔️ Você causou <strong>310 de dano!</strong></div>
+      <div class="log-e pa">HP: 710 → 400</div>
+      <div class="log-e ba">😤 "Você ousou ferir-me com o conhecimento!"</div>
+      <div class="log-e ab" id="abLog">💤 Nenhuma habilidade ativa</div>
+      <div class="log-e wa" id="abWarn" style="display:none"></div>
     </div>
-
-    <div style="border-top:1px solid rgba(168,85,247,.15);padding-top:10px;margin-top:4px;">
-      <div class="log-title" style="margin-bottom:8px;">Habilidade Ativa</div>
-      <div class="ability-card ability-none" id="abilityCard">
-        <div class="ability-icon">💤</div>
-        <div class="ability-name" style="color:rgba(192,132,252,.4);">NENHUMA</div>
-        <div class="ability-desc" style="color:rgba(192,132,252,.3);">Próxima habilidade em 1 questão</div>
+    <div style="border-top:1px solid rgba(168,85,247,.15);padding-top:6px;">
+      <div class="log-title" style="margin-bottom:5px">Próxima habilidade</div>
+      <div class="next-ability" id="nextAbText">Sem habilidade em fila</div>
+    </div>
+    <div style="border-top:1px solid rgba(168,85,247,.15);padding-top:6px;">
+      <div class="log-title" style="margin-bottom:5px">Estatísticas</div>
+      <div style="font-size:.68rem;color:#c4b5fd;display:flex;flex-direction:column;gap:3px;">
+        <div style="display:flex;justify-content:space-between"><span>Questões</span><span>5</span></div>
+        <div style="display:flex;justify-content:space-between"><span>Acertos</span><span style="color:#86efac">4</span></div>
+        <div style="display:flex;justify-content:space-between"><span>Habilidades bloqueadas</span><span style="color:var(--gold)">2</span></div>
       </div>
-      <div class="synergy-note" id="synergyRight" style="display:none;margin-top:6px;">🛡️ Sinergia Lendária:<br>efeito reduzido em 50%</div>
     </div>
   </div>
 </div>
 
 <script>
 const scenes = {
-  normal: {
-    fogOpts: false, timer: false,
-    abilityCard: {cls:'ability-none', icon:'💤', name:'NENHUMA', desc:'Boss não possui habilidade ativa no momento'},
-    logBoss: null, logWarn: null,
-    synergy: false, lives: '❤❤❤',
-  },
-  fog: {
-    fogOpts: true, timer: false,
-    abilityCard: {cls:'ability-fog', icon:'🌫️', name:'NÉVOA URÊMICA', desc:'2 opções ficam invisíveis por 6 segundos'},
-    logBoss: '🌫️ Arqui-Nefromante conjurou <strong>Névoa Urêmica!</strong>',
-    logWarn: '⚠️ 2 opções ficaram ocultas por 6s',
-    synergy: true, lives: '❤❤❤',
-  },
-  timer: {
-    fogOpts: false, timer: true,
-    abilityCard: {cls:'ability-timer', icon:'⏳', name:'MALDIÇÃO DA AZOTEMIA', desc:'Timer de 20s — responda antes que acabe!'},
-    logBoss: '⏳ Arqui-Nefromante lançou <strong>Maldição da Azotemia!</strong>',
-    logWarn: '⚠️ Você tem 20 segundos para responder',
-    synergy: false, lives: '❤❤❤',
-  },
-  drain: {
-    fogOpts: false, timer: false,
-    abilityCard: {cls:'ability-drain', icon:'💀', name:'DRENAR NÉFRONS', desc:'Próximo erro = −2 vidas ao invés de −1'},
-    logBoss: '💀 Arqui-Nefromante preparou <strong>Drenar Néfrons!</strong>',
-    logWarn: '⚠️ Próximo erro custará 2 vidas!',
-    synergy: false, lives: '❤❤',
-  },
-  shield: {
-    fogOpts: false, timer: false,
-    abilityCard: {cls:'ability-shield', icon:'🔮', name:'ESCUDO MÁGICO', desc:'Próximo acerto não reduz HP do boss'},
-    logBoss: '🔮 Arqui-Nefromante ativou <strong>Escudo Mágico!</strong>',
-    logWarn: '⚠️ Próximo acerto não causará dano',
-    synergy: false, lives: '❤❤❤',
-  },
+  none:  { ribbonCls:'none', icon:'💤', name:'NENHUMA HABILIDADE ATIVA', desc:'Próxima habilidade em 1 questão',
+           synergy:false, blur:[], timer:false, lives:'❤❤❤',
+           log:'💤 Nenhuma habilidade ativa', warn:null,
+           pip1:true, pip2:false, cdHint:'Habilidade em 1 questão',
+           next:'🌫️ Névoa Urêmica na próxima questão' },
+  fog:   { ribbonCls:'fog', icon:'🌫️', name:'NÉVOA URÊMICA', desc:'2 opções ficam invisíveis por 6 segundos',
+           synergy:true, blur:['optC','optD'], timer:false, lives:'❤❤❤',
+           log:'🌫️ Arqui-Nefromante conjurou Névoa Urêmica!', warn:'⚠️ 2 opções ocultas por 6s (sinergia: reduzido de 12s)',
+           pip1:true, pip2:true, cdHint:'Habilidade ativa agora!',
+           next:'⏳ Maldição da Azotemia na 7ª questão' },
+  timer: { ribbonCls:'timer', icon:'⏳', name:'MALDIÇÃO DA AZOTEMIA', desc:'Timer de 20s — responda antes que acabe!',
+           synergy:false, blur:[], timer:true, lives:'❤❤❤',
+           log:'⏳ Arqui-Nefromante lançou Maldição da Azotemia!', warn:'⚠️ Você tem 20 segundos para responder!',
+           pip1:true, pip2:true, cdHint:'Habilidade ativa agora!',
+           next:'💀 Drenar Néfrons na 9ª questão' },
+  drain: { ribbonCls:'drain', icon:'💀', name:'DRENAR NÉFRONS', desc:'Próximo erro = −2 vidas ao invés de −1',
+           synergy:false, blur:[], timer:false, lives:'❤❤',
+           log:'💀 Arqui-Nefromante preparou Drenar Néfrons!', warn:'⚠️ Próximo erro custará 2 vidas!',
+           pip1:true, pip2:true, cdHint:'Habilidade ativa agora!',
+           next:'🔮 Escudo Mágico na 10ª questão' },
+  shield:{ ribbonCls:'shield', icon:'🔮', name:'ESCUDO MÁGICO', desc:'Próximo acerto não reduz HP do boss',
+           synergy:true, blur:[], timer:false, lives:'❤❤❤',
+           log:'🔮 Arqui-Nefromante ativou Escudo Mágico!', warn:'⚠️ Próximo acerto não causará dano (sinergia: 1 turno, vs 2)',
+           pip1:true, pip2:true, cdHint:'Habilidade ativa agora!',
+           next:'Sem habilidade em fila' }
 };
 
-function setScene(name, tabEl) {
-  if (tabEl) {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    tabEl.classList.add('active');
-  }
-  const s = scenes[name];
-  // Fog
-  document.getElementById('optC').className = 'opt' + (s.fogOpts ? ' obscured' : '');
-  document.getElementById('optD').className = 'opt' + (s.fogOpts ? ' obscured' : '');
+let timerInt = null;
+
+function setScene(k, tab) {
+  document.querySelectorAll('.stab').forEach(t=>t.classList.remove('active'));
+  if(tab) tab.classList.add('active');
+  const s = scenes[k];
+  // Ribbon
+  document.getElementById('abilityRibbon').className = 'ability-ribbon ' + s.ribbonCls;
+  document.getElementById('abIcon').textContent = s.icon;
+  document.getElementById('abName').textContent = s.name;
+  document.getElementById('abDesc').textContent = s.desc;
+  document.getElementById('abSynergy').style.display = s.synergy ? 'block' : 'none';
+  // Blur
+  ['optC','optD'].forEach(id => {
+    document.getElementById(id).className = 'opt' + (s.blur.includes(id) ? ' blur-opt' : '');
+  });
   // Timer
   const tw = document.getElementById('timerWrap');
   tw.style.display = s.timer ? 'block' : 'none';
   if (s.timer) {
-    // Reset animation
-    const bar = document.getElementById('timerBar');
-    bar.style.animation = 'none';
-    bar.offsetHeight;
-    bar.style.animation = '';
+    clearInterval(timerInt);
+    const fill = document.getElementById('timerFill');
+    fill.style.animation = 'none'; fill.offsetHeight; fill.style.animation = '';
     let t = 20;
-    clearInterval(window._timerInt);
-    document.getElementById('timerCount').textContent = t + 's';
-    window._timerInt = setInterval(() => {
-      t--; document.getElementById('timerCount').textContent = t + 's';
-      if (t <= 0) clearInterval(window._timerInt);
-    }, 1000);
+    document.getElementById('timerNum').textContent = t + 's';
+    timerInt = setInterval(() => { t--; document.getElementById('timerNum').textContent = t + 's'; if(t<=0) clearInterval(timerInt); }, 1000);
   }
-  // Ability card
-  const ac = document.getElementById('abilityCard');
-  ac.className = 'ability-card ' + s.abilityCard.cls;
-  ac.innerHTML = `<div class="ability-icon">${s.abilityCard.icon}</div><div class="ability-name">${s.abilityCard.name}</div><div class="ability-desc">${s.abilityCard.desc}</div>`;
-  // Log
-  document.getElementById('abilityEntry').innerHTML = s.logBoss || '✅ Você respondeu corretamente — −10% HP';
-  document.getElementById('warnEntry').innerHTML = s.logWarn || '';
-  document.getElementById('warnEntry').style.display = s.logWarn ? 'block' : 'none';
-  // Synergy
-  document.getElementById('synergyRight').style.display = s.synergy ? 'block' : 'none';
   // Lives
   document.getElementById('livesEl').textContent = s.lives;
+  // Log
+  document.getElementById('abLog').textContent = s.log;
+  const warnEl = document.getElementById('abWarn');
+  warnEl.style.display = s.warn ? 'block' : 'none';
+  if(s.warn) warnEl.textContent = s.warn;
+  // Cooldown
+  document.getElementById('pip1').className = 'pip' + (s.pip1 ? ' on' : '');
+  document.getElementById('pip2').className = 'pip' + (s.pip2 ? ' on' : '');
+  document.getElementById('cdHint').textContent = s.cdHint;
+  document.getElementById('nextAbText').textContent = s.next;
 }
 
-function selectOpt(el, correct) {
-  document.querySelectorAll('.opt').forEach(o => { o.classList.remove('correct','wrong'); });
+function sel(el, correct) {
+  document.querySelectorAll('.opt').forEach(o=>o.classList.remove('correct','wrong'));
   el.classList.add(correct ? 'correct' : 'wrong');
 }
 </script>

@@ -3,372 +3,286 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NefroQuest — Boss Mockup: Opção 1 · Três Formas</title>
+<title>NefroQuest · Boss Opção 1 — Três Formas</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Philosopher:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-  :root{--gold:#ffd700;--purple:#a855f7;--bg:#070b18;}
-  *{box-sizing:border-box;margin:0;padding:0;}
-  body{background:var(--bg);color:#e2e8f0;font-family:'Philosopher',serif;min-height:100vh;}
+:root{--gold:#ffd700;--bg:#070b18;--panel:#0a0e1a;--border:rgba(42,74,122,.5);}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:#e2e8f0;font-family:'Philosopher',serif;height:100vh;overflow:hidden;}
 
-  /* ── Label de opção ── */
-  .option-label{
-    text-align:center;padding:14px 0 6px;
-    font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:4px;
-    color:rgba(168,85,247,.6);text-transform:uppercase;
-  }
-  .option-title{
-    text-align:center;font-family:'Cinzel',serif;
-    font-size:clamp(1.1rem,3vw,1.5rem);font-weight:900;
-    color:#e9d5ff;letter-spacing:2px;margin-bottom:20px;
-    text-shadow:0 0 20px rgba(168,85,247,.6);
-  }
+/* ── Header ── */
+.top-bar{display:flex;align-items:center;justify-content:space-between;padding:6px 16px;background:rgba(0,0,0,.4);border-bottom:1px solid var(--border);gap:8px;flex-wrap:wrap;}
+.top-bar-left{display:flex;align-items:center;gap:12px;}
+.lives{font-size:1.1rem;letter-spacing:1px;}
+.score-chip{font-family:'Cinzel',serif;font-size:.7rem;color:var(--gold);letter-spacing:1px;}
+.xp-bar{width:80px;height:5px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden;}
+.xp-fill{height:100%;background:linear-gradient(90deg,#3b82f6,#60a5fa);width:62%;}
 
-  /* ── Layout de duas colunas ── */
-  .layout{display:grid;grid-template-columns:260px 1fr;gap:0;height:calc(100vh - 80px);max-width:960px;margin:0 auto;}
-  @media(max-width:640px){.layout{grid-template-columns:1fr;}}
+/* ── Boss HP bar (full width below top) ── */
+.boss-hp-section{padding:6px 16px;background:rgba(0,0,0,.3);border-bottom:1px solid rgba(168,85,247,.2);}
+.boss-hp-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;}
+.boss-hp-name{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:3px;color:#c084fc;}
+.boss-hp-pct{font-family:'Cinzel',serif;font-size:.62rem;color:#c084fc;}
+.boss-hp-track{height:12px;background:rgba(0,0,0,.5);border-radius:6px;overflow:hidden;border:1px solid rgba(168,85,247,.3);position:relative;}
+.boss-hp-fill{height:100%;border-radius:6px;transition:width .6s;}
+.phase1-fill{background:linear-gradient(90deg,#4c1d95,#7c3aed,#a855f7);}
+.phase2-fill{background:linear-gradient(90deg,#831843,#be185d,#ec4899);}
+.phase3-fill{background:linear-gradient(90deg,#1c0a00,#78350f,#f59e0b);}
+/* Phase segments */
+.boss-hp-segs{position:absolute;inset:0;display:flex;}
+.boss-hp-seg{flex:1;border-right:2px solid rgba(0,0,0,.5);}
+.boss-hp-seg:last-child{border-right:none;}
 
-  /* ── Painel esquerdo ── */
-  .panel-left{
-    background:linear-gradient(180deg,#0d0520 0%,#120830 100%);
-    border-right:1px solid rgba(168,85,247,.25);
-    padding:16px 12px;display:flex;flex-direction:column;gap:12px;overflow-y:auto;
-  }
-  .hero-portrait{width:100%;border-radius:10px;border:2px solid rgba(168,85,247,.4);object-fit:cover;aspect-ratio:1;background:#1a0a30;display:flex;align-items:center;justify-content:center;font-size:4rem;}
-  .stat-row{display:flex;gap:6px;flex-wrap:wrap;}
-  .stat-chip{background:rgba(42,74,122,.3);border:1px solid rgba(42,74,122,.5);border-radius:5px;padding:3px 7px;font-size:.72rem;color:#93c5fd;}
-  .lives{font-size:1.3rem;letter-spacing:2px;}
+/* Phase badge row */
+.phase-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:4px;}
+.phase-badge{font-family:'Cinzel',serif;font-size:.58rem;font-weight:700;letter-spacing:2px;padding:3px 10px;border-radius:12px;}
+.pb1{background:rgba(88,28,135,.35);border:1px solid #a855f7;color:#d8b4fe;}
+.pb2{background:rgba(131,24,67,.35);border:1px solid #ec4899;color:#fbcfe8;animation:pbPulse 1.2s ease-in-out infinite alternate;}
+.pb3{background:rgba(120,53,15,.4);border:1px solid var(--gold);color:var(--gold);animation:pbPulse3 .8s ease-in-out infinite alternate;}
+@keyframes pbPulse{from{box-shadow:none;}to{box-shadow:0 0 12px rgba(236,72,153,.7);}}
+@keyframes pbPulse3{from{box-shadow:none;}to{box-shadow:0 0 16px rgba(255,215,0,.8);}}
+.stars-row{display:flex;gap:3px;}
+.st{font-size:.9rem;color:rgba(255,255,255,.12);}
+.st.on{color:var(--gold);text-shadow:0 0 6px rgba(255,215,0,.9);}
+.st.pop{animation:stPop .35s ease-out;}
+@keyframes stPop{0%{transform:scale(2);}100%{transform:scale(1);}}
 
-  /* ── HP Bar ── */
-  .boss-hp-wrap{padding:10px 12px 0;}
-  .hp-label{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:2px;color:#c084fc;margin-bottom:4px;display:flex;justify-content:space-between;}
-  .hp-track{height:14px;background:rgba(0,0,0,.4);border-radius:7px;border:1px solid rgba(168,85,247,.3);overflow:hidden;position:relative;}
-  .hp-fill{height:100%;border-radius:7px;transition:width .8s;}
-  .hp-phase1{background:linear-gradient(90deg,#4c1d95,#7c3aed,#a855f7);}
-  .hp-phase2{background:linear-gradient(90deg,#831843,#be185d,#ec4899);}
-  .hp-phase3{background:linear-gradient(90deg,#1a0a00,#78350f,#fbbf24);}
+/* ── Main layout ── */
+.main{display:grid;grid-template-columns:200px 1fr 220px;height:calc(100vh - 115px);}
 
-  /* ── Fase badge ── */
-  .phase-badge{
-    display:inline-block;font-family:'Cinzel',serif;font-size:.6rem;font-weight:700;
-    letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:20px;
-    margin:0 auto;text-align:center;
-  }
-  .phase1-badge{background:rgba(88,28,135,.4);border:1px solid #a855f7;color:#d8b4fe;}
-  .phase2-badge{background:rgba(131,24,67,.4);border:1px solid #ec4899;color:#fbcfe8;animation:pulse2 1.2s ease-in-out infinite alternate;}
-  .phase3-badge{background:rgba(120,53,15,.5);border:1px solid var(--gold);color:var(--gold);animation:pulse3 .8s ease-in-out infinite alternate;}
-  @keyframes pulse2{from{box-shadow:0 0 4px rgba(236,72,153,.3);}to{box-shadow:0 0 14px rgba(236,72,153,.8);}}
-  @keyframes pulse3{from{box-shadow:0 0 6px rgba(255,215,0,.4);}to{box-shadow:0 0 20px rgba(255,215,0,.9);}}
+/* ── Left panel (mirrors game) ── */
+.panel-left{background:linear-gradient(180deg,#0c1020,#0a0d1a);border-right:1px solid var(--border);padding:10px;display:flex;flex-direction:column;gap:8px;overflow-y:auto;}
+.hero-img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;border:2px solid rgba(168,85,247,.4);box-shadow:0 0 20px rgba(168,85,247,.2);}
+.hero-name{font-family:'Cinzel',serif;font-size:.72rem;color:#d8b4fe;text-align:center;}
+.stat-row{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;}
+.sc{background:rgba(42,74,122,.3);border:1px solid rgba(42,74,122,.5);border-radius:4px;padding:2px 6px;font-size:.68rem;color:#93c5fd;}
+.equip-section{border-top:1px solid rgba(42,74,122,.3);padding-top:6px;}
+.eq-label{font-size:.58rem;color:rgba(192,132,252,.4);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+.eq-item{font-size:.7rem;color:#c4b5fd;padding:2px 0;}
+.eq-item .gold-star{color:var(--gold);font-size:.58rem;}
+.synergy{font-size:.6rem;color:var(--gold);text-align:center;margin-top:4px;animation:pbPulse3 2s ease-in-out infinite alternate;}
 
-  /* ── Boss image ── */
-  .boss-img-wrap{position:relative;text-align:center;padding:8px 12px;}
-  .boss-img-frame{
-    width:100%;aspect-ratio:16/9;border-radius:10px;overflow:hidden;
-    border:2px solid rgba(168,85,247,.5);
-    box-shadow:0 0 30px rgba(168,85,247,.3);
-    background:linear-gradient(135deg,#0d0118,#1a0535,#0d0118);
-    display:flex;align-items:center;justify-content:center;
-    font-size:5rem;position:relative;
-  }
-  .boss-img-frame::after{
-    content:'';position:absolute;inset:0;
-    background:linear-gradient(0deg,rgba(0,0,0,.5) 0%,transparent 60%);
-  }
-  .boss-name-plate{
-    position:absolute;bottom:10px;left:50%;transform:translateX(-50%);
-    font-family:'Cinzel',serif;font-size:.75rem;font-weight:900;letter-spacing:3px;
-    color:#e9d5ff;text-shadow:0 0 15px rgba(168,85,247,.9);white-space:nowrap;
-    z-index:2;
-  }
+/* ── Center panel ── */
+.panel-center{background:linear-gradient(180deg,#080315,#0d0520);padding:10px;display:flex;flex-direction:column;gap:8px;overflow-y:auto;}
 
-  /* ── Panel direito ── */
-  .panel-right{
-    background:linear-gradient(180deg,#08031a 0%,#0e0525 100%);
-    padding:16px;display:flex;flex-direction:column;gap:12px;overflow-y:auto;
-  }
+/* Boss + battle images */
+.boss-battle-img-wrap{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.boss-img-box{border-radius:8px;overflow:hidden;border:2px solid rgba(168,85,247,.4);box-shadow:0 0 20px rgba(168,85,247,.25);aspect-ratio:1;background:#0d0118;}
+.boss-img-box img{width:100%;height:100%;object-fit:cover;object-position:center 20%;}
+.duel-img-box{border-radius:8px;overflow:hidden;border:2px solid rgba(100,149,237,.4);box-shadow:0 0 20px rgba(100,149,237,.15);aspect-ratio:1;background:#080318;}
+.duel-img-box img{width:100%;height:100%;object-fit:cover;object-position:center top;}
 
-  /* ── Questão ── */
-  .question-counter{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:3px;color:rgba(192,132,252,.7);text-align:center;}
-  .question-box{
-    background:rgba(255,255,255,.03);border:1px solid rgba(168,85,247,.2);
-    border-radius:10px;padding:14px;font-size:.88rem;line-height:1.6;color:#e2e8f0;
-  }
+.q-counter{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:3px;color:rgba(192,132,252,.7);text-align:center;}
+.q-box{background:rgba(255,255,255,.03);border:1px solid rgba(168,85,247,.2);border-radius:8px;padding:12px;font-size:.85rem;line-height:1.6;}
+.opts{display:flex;flex-direction:column;gap:6px;}
+.opt{background:rgba(168,85,247,.08);border:1.5px solid rgba(168,85,247,.2);border-radius:7px;padding:9px 12px;cursor:pointer;display:flex;align-items:center;gap:9px;font-size:.82rem;transition:all .2s;}
+.opt:hover{background:rgba(168,85,247,.18);border-color:#a855f7;}
+.opt.correct{background:rgba(34,197,94,.15);border-color:#22c55e;color:#86efac;}
+.opt.wrong{background:rgba(239,68,68,.15);border-color:#ef4444;color:#fca5a5;}
+.ob{min-width:24px;height:24px;border-radius:50%;background:rgba(168,85,247,.3);border:1px solid rgba(168,85,247,.5);display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:.68rem;font-weight:700;color:#d8b4fe;}
+.opt.correct .ob{background:rgba(34,197,94,.3);border-color:#22c55e;color:#86efac;}
+.opt.wrong .ob{background:rgba(239,68,68,.3);border-color:#ef4444;color:#fca5a5;}
 
-  /* ── Opções ── */
-  .options{display:flex;flex-direction:column;gap:8px;}
-  .opt{
-    background:rgba(168,85,247,.08);border:1.5px solid rgba(168,85,247,.25);
-    border-radius:8px;padding:10px 14px;cursor:pointer;
-    display:flex;align-items:center;gap:10px;font-size:.85rem;
-    transition:all .2s;
-  }
-  .opt:hover{background:rgba(168,85,247,.2);border-color:#a855f7;}
-  .opt.correct{background:rgba(34,197,94,.15);border-color:#22c55e;color:#86efac;}
-  .opt.wrong{background:rgba(239,68,68,.15);border-color:#ef4444;color:#fca5a5;}
-  .opt-badge{
-    min-width:26px;height:26px;border-radius:50%;
-    background:rgba(168,85,247,.3);border:1px solid rgba(168,85,247,.5);
-    display:flex;align-items:center;justify-content:center;
-    font-family:'Cinzel',serif;font-size:.7rem;font-weight:700;color:#d8b4fe;
-  }
-  .opt.correct .opt-badge{background:rgba(34,197,94,.3);border-color:#22c55e;color:#86efac;}
-  .opt.wrong .opt-badge{background:rgba(239,68,68,.3);border-color:#ef4444;color:#fca5a5;}
+.attack-btn{font-family:'Cinzel',serif;background:linear-gradient(180deg,#7c3aed,#4c1d95);border:2px solid #a855f7;border-radius:9px;color:#f3e8ff;font-size:.85rem;font-weight:900;letter-spacing:2px;padding:11px;cursor:pointer;animation:atkGlow 2s ease-in-out infinite alternate;}
+@keyframes atkGlow{from{box-shadow:0 0 8px rgba(168,85,247,.3);}to{box-shadow:0 0 22px rgba(168,85,247,.8);}}
 
-  /* ── Fase transition popup ── */
-  .phase-transition{
-    position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.88);
-    display:flex;align-items:center;justify-content:center;padding:16px;
-  }
-  .phase-card{
-    max-width:460px;width:100%;
-    background:linear-gradient(160deg,#0a0118,#1a0535,#0a0118);
-    border:2px solid rgba(236,72,153,.7);border-radius:16px;
-    padding:28px 24px;text-align:center;
-    box-shadow:0 0 60px rgba(236,72,153,.4);
-  }
-  .phase-card h2{font-family:'Cinzel',serif;font-size:1.3rem;color:#fbcfe8;letter-spacing:3px;margin-bottom:12px;text-shadow:0 0 20px rgba(236,72,153,.8);}
-  .phase-card p{color:#f9a8d4;font-size:.88rem;line-height:1.7;margin-bottom:20px;font-style:italic;}
-  .phase-reward{
-    display:inline-block;background:rgba(255,215,0,.12);
-    border:1px solid rgba(255,215,0,.4);border-radius:8px;
-    padding:6px 16px;font-size:.8rem;color:var(--gold);margin-bottom:18px;
-  }
-  .btn-continue{
-    font-family:'Cinzel',serif;background:linear-gradient(180deg,#be185d,#831843);
-    border:2px solid #ec4899;border-radius:10px;color:#fce7f3;
-    font-size:.9rem;font-weight:900;letter-spacing:2px;padding:12px 28px;
-    cursor:pointer;width:100%;
-  }
+/* Counter-attack warning (phase 3) */
+.counter-warn{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.4);border-radius:6px;padding:5px 10px;font-size:.7rem;color:#fca5a5;text-align:center;display:none;}
 
-  /* ── Stars ── */
-  .stars-row{display:flex;justify-content:center;gap:4px;margin:4px 0;}
-  .star{font-size:1.1rem;color:rgba(255,255,255,.15);transition:all .3s;}
-  .star.on{color:var(--gold);text-shadow:0 0 8px rgba(255,215,0,.8);}
-  .star.last{animation:starPop .4s ease-out;}
-  @keyframes starPop{0%{transform:scale(1.8);}100%{transform:scale(1);}}
+/* ── Right panel — Battle Log ── */
+.panel-right{background:linear-gradient(180deg,#06010f,#0c0420);border-left:1px solid rgba(168,85,247,.15);padding:10px;display:flex;flex-direction:column;gap:6px;overflow-y:auto;}
+.log-title{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:3px;color:rgba(168,85,247,.5);text-transform:uppercase;border-bottom:1px solid rgba(168,85,247,.1);padding-bottom:4px;margin-bottom:2px;}
+.log-e{font-size:.7rem;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.03);line-height:1.45;}
+.log-e.pa{color:#86efac;}
+.log-e.ba{color:#f9a8d4;}
+.log-e.warn{color:#fbbf24;}
+.log-e.loot{color:var(--gold);}
+.log-e.phase{color:#e9d5ff;font-family:'Cinzel',serif;font-size:.66rem;border:1px solid rgba(168,85,247,.3);border-radius:4px;padding:3px 6px;margin:2px 0;background:rgba(168,85,247,.07);}
 
-  /* ── Counter reward popup ── */
-  .reward-toast{
-    position:fixed;top:20px;left:50%;transform:translateX(-50%);
-    background:rgba(0,0,0,.85);border:1px solid var(--gold);
-    border-radius:10px;padding:10px 20px;font-family:'Cinzel',serif;
-    font-size:.8rem;color:var(--gold);letter-spacing:2px;
-    box-shadow:0 0 20px rgba(255,215,0,.4);z-index:1000;
-    animation:slideDown .4s ease;
-  }
-  @keyframes slideDown{from{opacity:0;top:0;}to{opacity:1;top:20px;}}
+/* Phase reward toast */
+.phase-reward-toast{font-size:.68rem;color:var(--gold);text-align:center;background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.3);border-radius:6px;padding:5px 8px;}
 
-  /* ── Tab selector ── */
-  .tab-bar{display:flex;gap:8px;padding:12px 16px 0;max-width:960px;margin:0 auto;flex-wrap:wrap;}
-  .tab{
-    font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:2px;
-    padding:7px 14px;border-radius:6px;cursor:pointer;border:1px solid rgba(168,85,247,.3);
-    background:rgba(168,85,247,.08);color:#c084fc;transition:all .2s;
-  }
-  .tab.active{background:rgba(168,85,247,.25);border-color:#a855f7;color:#e9d5ff;}
-  .tab:hover{background:rgba(168,85,247,.2);}
-
-  /* ── Counter attack badge ── */
-  .counter-badge{
-    background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.4);
-    border-radius:8px;padding:6px 12px;font-size:.72rem;color:#fca5a5;
-    text-align:center;
-  }
-  .counter-badge strong{color:#f87171;}
-
-  /* ── Next btn ── */
-  .btn-attack{
-    font-family:'Cinzel',serif;
-    background:linear-gradient(180deg,#7c3aed,#4c1d95);
-    border:2px solid #a855f7;border-radius:10px;
-    color:#f3e8ff;font-size:.9rem;font-weight:900;
-    letter-spacing:2px;padding:12px;cursor:pointer;
-    box-shadow:0 0 20px rgba(168,85,247,.4);
-    animation:attackGlow 2s ease-in-out infinite alternate;
-  }
-  @keyframes attackGlow{from{box-shadow:0 0 10px rgba(168,85,247,.3);}to{box-shadow:0 0 25px rgba(168,85,247,.7);}}
+/* ── Scene controls ── */
+.scene-bar{display:flex;gap:6px;padding:8px 16px 0;flex-wrap:wrap;background:rgba(0,0,0,.3);}
+.stab{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:1px;padding:5px 10px;border-radius:5px;cursor:pointer;border:1px solid rgba(168,85,247,.3);background:rgba(168,85,247,.07);color:#c084fc;transition:all .2s;}
+.stab.active,.stab:hover{background:rgba(168,85,247,.22);border-color:#a855f7;color:#e9d5ff;}
+.option-label-bar{text-align:center;padding:6px;font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:3px;color:rgba(168,85,247,.5);background:rgba(0,0,0,.5);}
 </style>
 </head>
 <body>
-
-<div class="option-label">Opção 1 de 3</div>
-<div class="option-title">⚔ Três Formas do Nefromante</div>
-
-<!-- Tab selector to preview each phase -->
-<div class="tab-bar">
-  <div class="tab active" onclick="setPhase(1,this)">Fase 1 — Nefromante (Q1–3)</div>
-  <div class="tab" onclick="setPhase(2,this)">Fase 2 — Lorde da Uremia (Q4–7)</div>
-  <div class="tab" onclick="setPhase(3,this)">Fase 3 — Azotemia Absoluta (Q8–10)</div>
-  <div class="tab" onclick="setPhase(4,this)">Transição de Fase (popup)</div>
+<div class="option-label-bar">OPÇÃO 1 DE 3 — TRÊS FORMAS DO NEFROMANTE (fases progressivas)</div>
+<div class="scene-bar">
+  <div class="stab active" onclick="setPhase(1,this)">Fase 1 — Nefromante (Q1–3)</div>
+  <div class="stab" onclick="setPhase(2,this)">Fase 2 — Lorde da Uremia (Q4–7)</div>
+  <div class="stab" onclick="setPhase(3,this)">Fase 3 — Azotemia Absoluta (Q8–10)</div>
+  <div class="stab" onclick="setPhase('reward',this)">Recompensa de fase (log)</div>
 </div>
 
-<!-- Reward toast -->
-<div class="reward-toast" id="rewardToast" style="display:none">+100 🪙 Recompensa de Fase!</div>
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="top-bar-left">
+    <div class="lives" id="livesEl">❤❤❤</div>
+    <div>
+      <div class="xp-bar"><div class="xp-fill"></div></div>
+      <div style="font-size:.55rem;color:#6b7fb8;margin-top:1px">Nv 12 · 620/800 XP</div>
+    </div>
+    <div class="score-chip">24.970 pts</div>
+  </div>
+  <div style="font-size:.62rem;color:#6b7fb8">🪙 480 ouro &nbsp;|&nbsp; 90 acertos</div>
+</div>
 
-<!-- Phase transition popup -->
-<div class="phase-transition" id="phasePopup" style="display:none">
-  <div class="phase-card">
-    <div style="font-size:3rem;margin-bottom:10px">💀</div>
-    <h2>FORMA 2 DESBLOQUEADA</h2>
-    <p>"Impossível... Um mero clínico me feriu? Revele-se, então — o verdadeiro poder da Uremia Eterna!"</p>
-    <div class="phase-reward">+100 🪙 ouro · +80 XP de bônus de fase</div>
-    <button class="btn-continue" onclick="document.getElementById('phasePopup').style.display='none';setPhase(2,null)">► Continuar para a Fase 2</button>
+<!-- BOSS HP -->
+<div class="boss-hp-section">
+  <div class="boss-hp-meta">
+    <div class="boss-hp-name" id="bossHpName">ARQUI-NEFROMANTE</div>
+    <div class="boss-hp-pct" id="bossHpPct">HP 100%</div>
+  </div>
+  <div class="boss-hp-track">
+    <div class="boss-hp-fill phase1-fill" id="hpFill" style="width:100%"></div>
+    <!-- 3 segmentos visuais -->
+    <div class="boss-hp-segs">
+      <div class="boss-hp-seg"></div>
+      <div class="boss-hp-seg"></div>
+      <div class="boss-hp-seg"></div>
+    </div>
+  </div>
+  <div class="phase-row">
+    <div class="phase-badge pb1" id="phaseBadge">FORMA 1 — NEFROMANTE</div>
+    <div class="stars-row" id="starsRow">
+      <span class="st">★</span><span class="st">★</span><span class="st">★</span>
+      <span class="st">★</span><span class="st">★</span><span class="st">★</span>
+      <span class="st">★</span><span class="st">★</span><span class="st">★</span><span class="st">★</span>
+    </div>
   </div>
 </div>
 
-<div class="layout" id="mainLayout">
-
-  <!-- LEFT PANEL -->
+<div class="main">
+  <!-- LEFT -->
   <div class="panel-left">
-    <div class="hero-portrait">🧙‍♂️</div>
-    <div style="text-align:center">
-      <div style="font-family:'Cinzel',serif;font-size:.78rem;color:#d8b4fe;margin-bottom:4px">Dr. Nephros · Nv 12</div>
-      <div class="lives" id="livesEl">❤❤❤</div>
-    </div>
+    <img class="hero-img" id="heroImg" src="assets/classes/clerigo_renal/nivel_06.jpg" alt="Dr. Nephros">
+    <div class="hero-name">Dr. Nephros · Nv 12</div>
     <div class="stat-row">
-      <span class="stat-chip">⚔️ ATK 24</span>
-      <span class="stat-chip">🛡️ DEF 18</span>
-      <span class="stat-chip">📚 KNO 22</span>
-      <span class="stat-chip">🍀 LUCK 14</span>
+      <span class="sc">⚔️24</span><span class="sc">🛡️18</span><span class="sc">📚22</span><span class="sc">🍀14</span>
     </div>
-    <div style="border-top:1px solid rgba(168,85,247,.15);padding-top:10px;">
-      <div style="font-size:.65rem;color:rgba(192,132,252,.5);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;">Equipamentos</div>
-      <div style="font-size:.75rem;color:#c4b5fd;display:flex;flex-direction:column;gap:4px;">
-        <div>⚔️ Excalibur do Néfron <span style="color:var(--gold);font-size:.6rem">✨</span></div>
-        <div>🛡️ Armadura Primeva <span style="color:var(--gold);font-size:.6rem">✨</span></div>
-        <div>💎 Amuleto do Rim Imortal <span style="color:var(--gold);font-size:.6rem">✨</span></div>
-      </div>
-      <div style="margin-top:6px;font-size:.62rem;color:var(--gold);text-align:center;animation:pulse3 .8s ease-in-out infinite alternate;">✨ Sinergia Lendária +20% XP</div>
+    <div class="equip-section">
+      <div class="eq-label">Equipamentos</div>
+      <div class="eq-item">⚔️ Excalibur do Néfron <span class="gold-star">✨</span></div>
+      <div class="eq-item">🛡️ Armadura Primeva <span class="gold-star">✨</span></div>
+      <div class="eq-item">💎 Amuleto do Rim Imortal <span class="gold-star">✨</span></div>
+      <div class="synergy">✨ Sinergia Lendária +20% XP</div>
     </div>
-
-    <div id="counterPanel" style="display:none">
-      <div class="counter-badge">
-        ⚠️ Fase 3: erro = <strong>−2 vidas</strong>
-      </div>
-    </div>
+    <div class="counter-warn" id="counterWarn">⚠️ Fase 3: erro = −2 vidas</div>
   </div>
 
-  <!-- RIGHT PANEL -->
+  <!-- CENTER -->
+  <div class="panel-center">
+    <div class="boss-battle-img-wrap">
+      <div class="boss-img-box">
+        <img id="bossImg" src="assets/nefromancer.png" alt="Arqui-Nefromante">
+      </div>
+      <div class="duel-img-box">
+        <img src="assets/battle_final.png" alt="Duelo Final">
+      </div>
+    </div>
+
+    <div class="q-counter" id="qCounter">QUESTÃO FINAL 1/10</div>
+    <div class="q-box">
+      Na glomeruloesclerose segmentar e focal (GESF) primária, qual achado de microscopia eletrônica é patognomônico e orienta o diagnóstico diferencial com GESF secundária?
+    </div>
+
+    <div class="opts">
+      <div class="opt" onclick="sel(this,false)"><div class="ob">A</div>Depósitos eletrondensos subepiteliais difusos</div>
+      <div class="opt" onclick="sel(this,false)"><div class="ob">B</div>Duplicação da membrana basal glomerular</div>
+      <div class="opt correct" onclick="sel(this,true)"><div class="ob">C</div>Fusão difusa dos processos podocitários (&gt;80% de extensão)</div>
+      <div class="opt" onclick="sel(this,false)"><div class="ob">D</div>Depósitos mesangiais de IgA e C3</div>
+    </div>
+
+    <button class="attack-btn" id="attackBtn">⚔ ATACAR (responder)</button>
+  </div>
+
+  <!-- RIGHT — Battle Log -->
   <div class="panel-right">
-
-    <!-- HP Bar -->
-    <div class="boss-hp-wrap" style="padding:0 0 4px;">
-      <div class="hp-label">
-        <span id="bossName">ARQUI-NEFROMANTE</span>
-        <span id="hpPct">HP 100%</span>
-      </div>
-      <div class="hp-track">
-        <div class="hp-fill hp-phase1" id="hpFill" style="width:100%"></div>
-      </div>
+    <div class="log-title">Log de Batalha</div>
+    <div id="logEntries">
+      <div class="log-e pa">⚔️ Você causou <strong>285 de dano!</strong></div>
+      <div class="log-e pa">HP: 1.000 → 715</div>
+      <div class="log-e ba">😤 "Fraco demais para derrotar a Azotemia Eterna!"</div>
+      <div class="log-e pa">⚔️ Você causou <strong>310 de dano!</strong></div>
+      <div class="log-e pa">HP: 715 → 405</div>
+      <div class="log-e ba">😡 "Impossível... como você conhece os néfrons tão bem?"</div>
+      <div class="log-e pa">⚔️ Você causou <strong>295 de dano!</strong></div>
+      <div class="log-e pa">HP: 405 → 110</div>
     </div>
 
-    <!-- Phase badge + Stars -->
-    <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
-      <div class="phase-badge phase1-badge" id="phaseBadge">FORMA 1 — NEFROMANTE</div>
-      <div class="stars-row" id="starsRow">
-        <span class="star">★</span><span class="star">★</span><span class="star">★</span>
-        <span class="star">★</span><span class="star">★</span><span class="star">★</span>
-        <span class="star">★</span><span class="star">★</span><span class="star">★</span>
-        <span class="star" style="color:rgba(255,215,0,.3)">★</span>
+    <div style="border-top:1px solid rgba(168,85,247,.15);padding-top:6px;">
+      <div class="log-title" style="margin-bottom:5px">Recompensas de Fase</div>
+      <div id="rewardZone">
+        <div style="font-size:.66rem;color:rgba(192,132,252,.35);text-align:center">Derrote cada forma para ganhar recompensas</div>
       </div>
     </div>
 
-    <!-- Boss image -->
-    <div class="boss-img-frame" id="bossImgFrame">
-      <span id="bossEmoji" style="position:relative;z-index:1;font-size:5rem;filter:drop-shadow(0 0 20px rgba(168,85,247,.7))">🧿</span>
-      <div class="boss-name-plate" id="bossNamePlate">ARQUI-NEFROMANTE</div>
+    <div style="border-top:1px solid rgba(168,85,247,.15);padding-top:6px;">
+      <div class="log-title" style="margin-bottom:5px">Estatísticas</div>
+      <div style="font-size:.68rem;color:#c4b5fd;display:flex;flex-direction:column;gap:3px;">
+        <div style="display:flex;justify-content:space-between"><span>Questões respondidas</span><span id="statQ">3</span></div>
+        <div style="display:flex;justify-content:space-between"><span>Acertos</span><span style="color:#86efac" id="statA">3</span></div>
+        <div style="display:flex;justify-content:space-between"><span>Dano total causado</span><span style="color:#f87171" id="statD">890</span></div>
+      </div>
     </div>
-
-    <!-- Question -->
-    <div class="question-counter" id="qCounter">QUESTÃO FINAL 1/10</div>
-    <div class="question-box">
-      Qual é a principal causa de hipercalemia na doença renal crônica avançada (TFG &lt; 15 mL/min)?
-    </div>
-
-    <!-- Options -->
-    <div class="options" id="opts">
-      <div class="opt" onclick="selectOpt(this,false)"><div class="opt-badge">A</div>Aumento da excreção tubular de potássio</div>
-      <div class="opt correct" onclick="selectOpt(this,true)"><div class="opt-badge">B</div>Redução da capacidade de excreção renal de K⁺</div>
-      <div class="opt" onclick="selectOpt(this,false)"><div class="opt-badge">C</div>Hiperaldosteronismo primário associado</div>
-      <div class="opt" onclick="selectOpt(this,false)"><div class="opt-badge">D</div>Uso obrigatório de diuréticos poupadores de K⁺</div>
-    </div>
-
-    <button class="btn-attack" id="attackBtn">⚔ ATACAR (responder)</button>
-
   </div>
 </div>
 
 <script>
-let currentPhase = 1;
-let progress = 0;
-
-const phaseConfig = {
-  1: {
-    hp: 100, hpClass: 'hp-phase1',
-    badge: 'FORMA 1 — NEFROMANTE', badgeClass: 'phase1-badge',
-    emoji: '🧿', bossNamePlate: 'ARQUI-NEFROMANTE',
-    bossName: 'ARQUI-NEFROMANTE', counter: false,
-    btnText: '⚔ ATACAR (responder)',
-  },
-  2: {
-    hp: 70, hpClass: 'hp-phase2',
-    badge: 'FORMA 2 — LORDE DA UREMIA', badgeClass: 'phase2-badge',
-    emoji: '💀', bossNamePlate: 'LORDE DA UREMIA',
-    bossName: 'LORDE DA UREMIA', counter: false,
-    btnText: '⚔ ATACAR (responder)',
-  },
-  3: {
-    hp: 30, hpClass: 'hp-phase3',
-    badge: '🔥 FORMA 3 — AZOTEMIA ABSOLUTA 🔥', badgeClass: 'phase3-badge',
-    emoji: '☠️', bossNamePlate: 'AZOTEMIA ABSOLUTA',
-    bossName: 'AZOTEMIA ABSOLUTA', counter: true,
-    btnText: '💀 GOLPE FINAL',
-  },
-  4: { popup: true }
+const phases = {
+  1: { hp:100, fill:'phase1-fill', badge:'FORMA 1 — NEFROMANTE', badgeCls:'pb1',
+       lives:'❤❤❤', stars:0, q:'1/10', btn:'⚔ ATACAR (responder)',
+       bossImg:'assets/nefromancer.png', name:'ARQUI-NEFROMANTE', counter:false },
+  2: { hp:67, fill:'phase2-fill', badge:'FORMA 2 — LORDE DA UREMIA', badgeCls:'pb2',
+       lives:'❤❤❤', stars:3, q:'4/10', btn:'⚔ ATACAR (responder)',
+       bossImg:'assets/nefromancer.png', name:'LORDE DA UREMIA', counter:false },
+  3: { hp:30, fill:'phase3-fill', badge:'🔥 FORMA 3 — AZOTEMIA ABSOLUTA 🔥', badgeCls:'pb3',
+       lives:'❤❤', stars:7, q:'8/10', btn:'💀 GOLPE FINAL',
+       bossImg:'assets/nefromancer.png', name:'AZOTEMIA ABSOLUTA', counter:true },
+  reward: { hp:67, fill:'phase1-fill', badge:'FORMA 1 DERROTADA!', badgeCls:'pb1',
+       lives:'❤❤❤', stars:3, q:'4/10', btn:'► CONTINUAR PARA FASE 2',
+       bossImg:'assets/nefromancer.png', name:'ARQUI-NEFROMANTE', counter:false, reward:true }
 };
 
-function setPhase(n, tabEl) {
-  if (tabEl) {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    tabEl.classList.add('active');
-  }
-  if (n === 4) {
-    document.getElementById('phasePopup').style.display = 'flex';
-    return;
-  }
-  currentPhase = n;
-  const cfg = phaseConfig[n];
-  // HP
-  const fill = document.getElementById('hpFill');
-  fill.style.width = cfg.hp + '%';
-  fill.className = 'hp-fill ' + cfg.hpClass;
-  document.getElementById('hpPct').textContent = 'HP ' + cfg.hp + '%';
-  document.getElementById('bossName').textContent = cfg.bossName;
-  // Badge
-  const badge = document.getElementById('phaseBadge');
-  badge.textContent = cfg.badge;
-  badge.className = 'phase-badge ' + cfg.badgeClass;
-  // Boss emoji
-  document.getElementById('bossEmoji').textContent = cfg.emoji;
-  document.getElementById('bossNamePlate').textContent = cfg.bossNamePlate;
-  // Counter
-  document.getElementById('counterPanel').style.display = cfg.counter ? 'block' : 'none';
+function setPhase(k, tab) {
+  document.querySelectorAll('.stab').forEach(t=>t.classList.remove('active'));
+  if(tab) tab.classList.add('active');
+  const p = phases[k];
+  document.getElementById('hpFill').style.width = p.hp + '%';
+  document.getElementById('hpFill').className = 'boss-hp-fill ' + p.fill;
+  document.getElementById('bossHpPct').textContent = 'HP ' + p.hp + '%';
+  document.getElementById('bossHpName').textContent = p.name;
+  document.getElementById('phaseBadge').textContent = p.badge;
+  document.getElementById('phaseBadge').className = 'phase-badge ' + p.badgeCls;
+  document.getElementById('livesEl').textContent = p.lives;
+  document.getElementById('qCounter').textContent = 'QUESTÃO FINAL ' + p.q;
+  document.getElementById('attackBtn').textContent = p.btn;
+  document.getElementById('bossImg').src = p.bossImg;
+  document.getElementById('counterWarn').style.display = p.counter ? 'block' : 'none';
   // Stars
-  const stars = document.querySelectorAll('.star');
-  const filled = n === 1 ? 0 : n === 2 ? 3 : 7;
-  stars.forEach((s, i) => {
-    s.className = 'star' + (i < filled ? ' on' : '');
-  });
-  // Button
-  document.getElementById('attackBtn').textContent = cfg.btnText;
-  // Q counter
-  const qn = n === 1 ? 1 : n === 2 ? 4 : 8;
-  document.getElementById('qCounter').textContent = 'QUESTÃO FINAL ' + qn + '/10';
-  // Lives
-  document.getElementById('livesEl').textContent = n === 3 ? '❤❤' : '❤❤❤';
+  const stars = document.querySelectorAll('#starsRow .st');
+  stars.forEach((s,i)=>{ s.className = 'st' + (i < p.stars ? ' on' : ''); });
+  // Reward log
+  const rz = document.getElementById('rewardZone');
+  if (p.reward) {
+    rz.innerHTML = `<div class="phase-reward-toast">🏆 Fase 1 derrotada!<br>+100 🪙 ouro · +80 XP</div>`;
+    document.getElementById('logEntries').innerHTML = `
+      <div class="log-e phase">🔔 FORMA 1 DERROTADA!</div>
+      <div class="log-e loot">+100 🪙 ouro de recompensa</div>
+      <div class="log-e loot">+80 XP de bônus</div>
+      <div class="log-e ba">😠 "Você não conhece meu verdadeiro poder... prepare-se para a Uremia Eterna!"</div>
+      <div class="log-e phase">🔔 FORMA 2 DESBLOQUEADA — LORDE DA UREMIA</div>`;
+  } else {
+    rz.innerHTML = `<div style="font-size:.66rem;color:rgba(192,132,252,.35);text-align:center">Derrote cada forma para ganhar recompensas</div>`;
+  }
 }
 
-function selectOpt(el, correct) {
-  document.querySelectorAll('.opt').forEach(o => o.classList.remove('correct','wrong'));
+function sel(el, correct) {
+  document.querySelectorAll('.opt').forEach(o=>o.classList.remove('correct','wrong'));
   el.classList.add(correct ? 'correct' : 'wrong');
 }
 </script>
