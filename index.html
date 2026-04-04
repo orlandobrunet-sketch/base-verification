@@ -6280,10 +6280,10 @@
     }
     
     function startNewFromWelcome() {
-      deleteSave();
-      dismissWelcome();
       playSound('click');
-      document.getElementById('charSelectModal').classList.add('show');
+      // Mostra seletor de dificuldade sem fechar a welcome ainda
+      // O confirm button do overlay faz dismissWelcome + deleteSave
+      showNewGameConfirm(true /* fromWelcome */);
     }
     
     function showLeaderboardFromWelcome() {
@@ -28490,7 +28490,7 @@
       showNewGameConfirm();
     });
 
-    function showNewGameConfirm() {
+    function showNewGameConfirm(fromWelcome) {
       document.getElementById('diffSelectorOverlay')?.remove();
       const overlay = document.createElement('div');
       overlay.id = 'diffSelectorOverlay';
@@ -28530,6 +28530,7 @@
               document.getElementById('diffSelectorOverlay')?.remove();
               state.difficulty = diff;
               deleteSave();
+              ${fromWelcome ? "dismissWelcome();" : ""}
               document.getElementById('charSelectModal').classList.add('show');
             ">CONFIRMAR DIFICULDADE</button>
             <button class="diff-cancel-btn" onclick="document.getElementById('diffSelectorOverlay')?.remove()">CANCELAR</button>
