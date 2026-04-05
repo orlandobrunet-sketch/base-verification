@@ -2,289 +2,364 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NefroQuest · Boss Opção 1 — Três Formas</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NefroQuest — Boss Fight: Três Formas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Philosopher:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-:root{--gold:#ffd700;--bg:#070b18;--panel:#0a0e1a;--border:rgba(42,74,122,.5);}
+:root {
+  --gold: #ffd700;
+  --txt: #d5e2ff;
+  --txt-dim: #7a90b8;
+  --ok: #34d399;
+  --err: #f87171;
+  --bg: #070b18;
+  --panel-border: #2a4a7a;
+}
 *{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:#e2e8f0;font-family:'Philosopher',serif;height:100vh;overflow:hidden;}
+body{background:#070b18;color:var(--txt);font-family:'Philosopher','Georgia',serif;min-height:100vh;overflow-x:hidden;}
 
-/* ── Header ── */
-.top-bar{display:flex;align-items:center;justify-content:space-between;padding:6px 16px;background:rgba(0,0,0,.4);border-bottom:1px solid var(--border);gap:8px;flex-wrap:wrap;}
-.top-bar-left{display:flex;align-items:center;gap:12px;}
-.lives{font-size:1.1rem;letter-spacing:1px;}
-.score-chip{font-family:'Cinzel',serif;font-size:.7rem;color:var(--gold);letter-spacing:1px;}
-.xp-bar{width:80px;height:5px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden;}
-.xp-fill{height:100%;background:linear-gradient(90deg,#3b82f6,#60a5fa);width:62%;}
+/* SCENE TABS */
+.scene-tabs{display:flex;gap:6px;padding:8px 12px;background:rgba(5,8,20,0.95);border-bottom:1px solid #1a2a4a;flex-wrap:wrap;align-items:center;}
+.scene-tabs span{font-family:'Cinzel',serif;font-size:.6rem;color:#4a6a8a;text-transform:uppercase;letter-spacing:1px;margin-right:4px;}
+.stab{padding:4px 12px;border:1px solid #1e3a5e;border-radius:20px;background:rgba(10,15,30,0.8);color:#7a90b8;font-size:.68rem;font-family:'Cinzel',serif;cursor:pointer;transition:all .2s;}
+.stab:hover{border-color:#3a6a9a;color:#c8d8f0;}
+.stab.active{background:linear-gradient(135deg,#2a1060,#1a0840);border-color:#7c3aed;color:#c084fc;box-shadow:0 0 10px rgba(124,58,237,.3);}
 
-/* ── Boss HP bar (full width below top) ── */
-.boss-hp-section{padding:6px 16px;background:rgba(0,0,0,.3);border-bottom:1px solid rgba(168,85,247,.2);}
-.boss-hp-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;}
-.boss-hp-name{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:3px;color:#c084fc;}
-.boss-hp-pct{font-family:'Cinzel',serif;font-size:.62rem;color:#c084fc;}
-.boss-hp-track{height:12px;background:rgba(0,0,0,.5);border-radius:6px;overflow:hidden;border:1px solid rgba(168,85,247,.3);position:relative;}
-.boss-hp-fill{height:100%;border-radius:6px;transition:width .6s;}
-.phase1-fill{background:linear-gradient(90deg,#4c1d95,#7c3aed,#a855f7);}
-.phase2-fill{background:linear-gradient(90deg,#831843,#be185d,#ec4899);}
-.phase3-fill{background:linear-gradient(90deg,#1c0a00,#78350f,#f59e0b);}
-/* Phase segments */
-.boss-hp-segs{position:absolute;inset:0;display:flex;}
-.boss-hp-seg{flex:1;border-right:2px solid rgba(0,0,0,.5);}
-.boss-hp-seg:last-child{border-right:none;}
+/* LAYOUT */
+.app{display:grid;grid-template-columns:380px 1fr;gap:8px;padding:8px;max-width:1460px;margin:0 auto;}
 
-/* Phase badge row */
-.phase-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:4px;}
-.phase-badge{font-family:'Cinzel',serif;font-size:.58rem;font-weight:700;letter-spacing:2px;padding:3px 10px;border-radius:12px;}
-.pb1{background:rgba(88,28,135,.35);border:1px solid #a855f7;color:#d8b4fe;}
-.pb2{background:rgba(131,24,67,.35);border:1px solid #ec4899;color:#fbcfe8;animation:pbPulse 1.2s ease-in-out infinite alternate;}
-.pb3{background:rgba(120,53,15,.4);border:1px solid var(--gold);color:var(--gold);animation:pbPulse3 .8s ease-in-out infinite alternate;}
-@keyframes pbPulse{from{box-shadow:none;}to{box-shadow:0 0 12px rgba(236,72,153,.7);}}
-@keyframes pbPulse3{from{box-shadow:none;}to{box-shadow:0 0 16px rgba(255,215,0,.8);}}
-.stars-row{display:flex;gap:3px;}
-.st{font-size:.9rem;color:rgba(255,255,255,.12);}
-.st.on{color:var(--gold);text-shadow:0 0 6px rgba(255,215,0,.9);}
-.st.pop{animation:stPop .35s ease-out;}
-@keyframes stPop{0%{transform:scale(2);}100%{transform:scale(1);}}
+/* PANELS */
+.panel{background:linear-gradient(180deg,#1a1228 0%,#12192e 50%,#0e1525 100%);border:2px solid #2a4a7a;border-radius:12px;position:relative;overflow:hidden;box-shadow:0 0 30px rgba(30,60,120,.3);}
+.panel::before{content:'';position:absolute;inset:3px;border:1px solid rgba(100,140,200,.12);border-radius:10px;pointer-events:none;z-index:1;}
+.panel::after{content:'✦';position:absolute;top:6px;right:10px;color:var(--gold);opacity:.3;font-size:.7rem;}
+.left{padding:14px;align-self:start;}
+.right{padding:16px;align-self:start;}
 
-/* ── Main layout ── */
-.main{display:grid;grid-template-columns:200px 1fr 220px;height:calc(100vh - 115px);}
+/* HERO */
+.hero{background:linear-gradient(135deg,rgba(20,15,40,.9),rgba(15,25,50,.9));border:1px solid #2a4a7a;border-radius:10px;padding:12px;margin-bottom:10px;}
+.hero-wrap{display:flex;gap:12px;align-items:center;}
+.portrait{width:88px;height:88px;border-radius:12px;object-fit:cover;border:3px solid #ffd700;box-shadow:0 0 25px rgba(255,215,0,.6);}
+.hero-info{flex:1;}
+.class{font-family:'Cinzel',serif;font-weight:700;color:var(--gold);font-size:.85rem;}
+.hero-title{font-size:.72rem;color:#93b4e8;font-style:italic;margin-top:2px;opacity:.85;}
+.hero-name{font-size:.75rem;color:var(--txt-dim);margin-top:3px;}
+.xp-bar{height:8px;border-radius:99px;overflow:hidden;border:1px solid #2a4a7a;background:#0b1329;margin-top:8px;}
 
-/* ── Left panel (mirrors game) ── */
-.panel-left{background:linear-gradient(180deg,#0c1020,#0a0d1a);border-right:1px solid var(--border);padding:10px;display:flex;flex-direction:column;gap:8px;overflow-y:auto;}
-.hero-img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;border:2px solid rgba(168,85,247,.4);box-shadow:0 0 20px rgba(168,85,247,.2);}
-.hero-name{font-family:'Cinzel',serif;font-size:.72rem;color:#d8b4fe;text-align:center;}
-.stat-row{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;}
-.sc{background:rgba(42,74,122,.3);border:1px solid rgba(42,74,122,.5);border-radius:4px;padding:2px 6px;font-size:.68rem;color:#93c5fd;}
-.equip-section{border-top:1px solid rgba(42,74,122,.3);padding-top:6px;}
-.eq-label{font-size:.58rem;color:rgba(192,132,252,.4);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
-.eq-item{font-size:.7rem;color:#c4b5fd;padding:2px 0;}
-.eq-item .gold-star{color:var(--gold);font-size:.58rem;}
-.synergy{font-size:.6rem;color:var(--gold);text-align:center;margin-top:4px;animation:pbPulse3 2s ease-in-out infinite alternate;}
+/* HUD */
+.hud{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px;}
+.tile{background:linear-gradient(180deg,rgba(15,20,40,.9),rgba(10,15,30,.9));border:1px solid #2a4a7a;border-radius:8px;padding:6px;text-align:center;}
+.tile span{display:block;color:var(--txt-dim);font-size:.62rem;text-transform:uppercase;letter-spacing:1px;}
+.tile strong{font-size:1rem;color:var(--txt);display:block;margin-top:2px;}
 
-/* ── Center panel ── */
-.panel-center{background:linear-gradient(180deg,#080315,#0d0520);padding:10px;display:flex;flex-direction:column;gap:8px;overflow-y:auto;}
+/* EQUIP */
+.equip{background:linear-gradient(135deg,rgba(20,15,40,.8),rgba(15,25,50,.8));border:1px solid #2a4a7a;border-radius:10px;padding:10px;margin-bottom:10px;}
+.equip h3,.log-battle h3{font-family:'Cinzel',serif;font-size:.82rem;color:var(--gold);margin-bottom:8px;}
+.slot{display:flex;align-items:center;gap:8px;padding:6px 8px;border:1px solid #1e3a5e;border-radius:8px;background:rgba(10,15,30,.8);margin-bottom:5px;}
+.slot-icon{width:36px;height:36px;border-radius:6px;border:1px solid #2a4a7a;object-fit:cover;background:#0a0e1a;}
+.slot-info{flex:1;}
+.slot-name{font-size:.78rem;font-weight:600;}
+.slot-stats{font-size:.62rem;color:var(--txt-dim);margin-top:1px;}
 
-/* Boss + battle images */
-.boss-battle-img-wrap{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
-.boss-img-box{border-radius:8px;overflow:hidden;border:2px solid rgba(168,85,247,.4);box-shadow:0 0 20px rgba(168,85,247,.25);aspect-ratio:1;background:#0d0118;}
-.boss-img-box img{width:100%;height:100%;object-fit:cover;object-position:center 20%;}
-.duel-img-box{border-radius:8px;overflow:hidden;border:2px solid rgba(100,149,237,.4);box-shadow:0 0 20px rgba(100,149,237,.15);aspect-ratio:1;background:#080318;}
-.duel-img-box img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+/* BATTLE LOG */
+.log-battle{background:linear-gradient(135deg,rgba(20,15,40,.8),rgba(15,25,50,.8));border:1px solid #2a4a7a;border-radius:10px;padding:8px 10px;max-height:180px;overflow-y:auto;}
+.log-entry{font-size:.72rem;color:#8a9cc0;margin-bottom:4px;padding-bottom:4px;border-bottom:1px solid rgba(42,74,122,.2);}
+.log-entry.good{color:#5db89c;}
+.log-entry.bad{color:#d07070;}
+.log-entry.phase{color:#c084fc;font-weight:700;}
+.log-entry.reward{color:#ffd700;}
 
-.q-counter{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:3px;color:rgba(192,132,252,.7);text-align:center;}
-.q-box{background:rgba(255,255,255,.03);border:1px solid rgba(168,85,247,.2);border-radius:8px;padding:12px;font-size:.85rem;line-height:1.6;}
-.opts{display:flex;flex-direction:column;gap:6px;}
-.opt{background:rgba(168,85,247,.08);border:1.5px solid rgba(168,85,247,.2);border-radius:7px;padding:9px 12px;cursor:pointer;display:flex;align-items:center;gap:9px;font-size:.82rem;transition:all .2s;}
-.opt:hover{background:rgba(168,85,247,.18);border-color:#a855f7;}
-.opt.correct{background:rgba(34,197,94,.15);border-color:#22c55e;color:#86efac;}
-.opt.wrong{background:rgba(239,68,68,.15);border-color:#ef4444;color:#fca5a5;}
-.ob{min-width:24px;height:24px;border-radius:50%;background:rgba(168,85,247,.3);border:1px solid rgba(168,85,247,.5);display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:.68rem;font-weight:700;color:#d8b4fe;}
-.opt.correct .ob{background:rgba(34,197,94,.3);border-color:#22c55e;color:#86efac;}
-.opt.wrong .ob{background:rgba(239,68,68,.3);border-color:#ef4444;color:#fca5a5;}
+/* PHASE WARNING */
+.phase3-warning{background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.4);border-radius:8px;padding:6px 10px;margin-bottom:8px;font-size:.75rem;color:#f87171;}
 
-.attack-btn{font-family:'Cinzel',serif;background:linear-gradient(180deg,#7c3aed,#4c1d95);border:2px solid #a855f7;border-radius:9px;color:#f3e8ff;font-size:.85rem;font-weight:900;letter-spacing:2px;padding:11px;cursor:pointer;animation:atkGlow 2s ease-in-out infinite alternate;}
-@keyframes atkGlow{from{box-shadow:0 0 8px rgba(168,85,247,.3);}to{box-shadow:0 0 22px rgba(168,85,247,.8);}}
+/* BOSS ZONE */
+.boss-zone{margin-bottom:12px;}
 
-/* Counter-attack warning (phase 3) */
-.counter-warn{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.4);border-radius:6px;padding:5px 10px;font-size:.7rem;color:#fca5a5;text-align:center;display:none;}
+/* BOSS HP BAR */
+.boss-hp-wrap{margin-bottom:6px;}
+.boss-hp-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;}
+.boss-hp-label .name{font-family:'Cinzel',serif;font-size:.8rem;color:#c084fc;}
+.boss-hp-label .val{font-size:.75rem;color:var(--txt-dim);}
+.boss-hp-track{height:18px;border-radius:6px;background:#0b1020;border:1px solid #2a4a7a;overflow:hidden;position:relative;display:flex;}
+/* three phase segments */
+.hp-seg{height:100%;transition:width .4s;}
+.hp-seg-1{background:linear-gradient(90deg,#6b21a8,#9333ea);flex:0 0 calc(33.3% * 0.85);}/* phase1 nearly full */
+.hp-seg-2{background:linear-gradient(90deg,#9d174d,#ec4899);flex:0 0 calc(33.3% * 1);}/* phase2 full */
+.hp-seg-3{background:linear-gradient(90deg,#92400e,#ffd700);flex:0 0 calc(33.3% * 0.4);}/* phase3 partial */
+.hp-divider{width:2px;background:#070b18;flex-shrink:0;align-self:stretch;}
+.hp-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:rgba(255,255,255,.9);text-shadow:0 1px 3px rgba(0,0,0,.8);font-family:'Cinzel',serif;}
 
-/* ── Right panel — Battle Log ── */
-.panel-right{background:linear-gradient(180deg,#06010f,#0c0420);border-left:1px solid rgba(168,85,247,.15);padding:10px;display:flex;flex-direction:column;gap:6px;overflow-y:auto;}
-.log-title{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:3px;color:rgba(168,85,247,.5);text-transform:uppercase;border-bottom:1px solid rgba(168,85,247,.1);padding-bottom:4px;margin-bottom:2px;}
-.log-e{font-size:.7rem;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.03);line-height:1.45;}
-.log-e.pa{color:#86efac;}
-.log-e.ba{color:#f9a8d4;}
-.log-e.warn{color:#fbbf24;}
-.log-e.loot{color:var(--gold);}
-.log-e.phase{color:#e9d5ff;font-family:'Cinzel',serif;font-size:.66rem;border:1px solid rgba(168,85,247,.3);border-radius:4px;padding:3px 6px;margin:2px 0;background:rgba(168,85,247,.07);}
+/* PHASE BADGE */
+.phase-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:20px;margin:6px 0;font-family:'Cinzel',serif;font-size:.72rem;font-weight:700;letter-spacing:.5px;}
+.phase-badge.p1{background:rgba(107,33,168,.25);border:1px solid #9333ea;color:#c084fc;}
+.phase-badge.p2{background:rgba(157,23,77,.25);border:1px solid #ec4899;color:#f9a8d4;}
+.phase-badge.p3{background:rgba(180,130,0,.2);border:1px solid #ffd700;color:#ffd700;animation:phasePulse 1.5s ease-in-out infinite;}
+@keyframes phasePulse{0%,100%{box-shadow:0 0 6px rgba(255,215,0,.3);}50%{box-shadow:0 0 18px rgba(255,215,0,.7),0 0 30px rgba(255,215,0,.3);}}
 
-/* Phase reward toast */
-.phase-reward-toast{font-size:.68rem;color:var(--gold);text-align:center;background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.3);border-radius:6px;padding:5px 8px;}
+/* BOSS IMAGE */
+.boss-img-wrap{border-radius:10px;overflow:hidden;border:2px solid #4a1a7a;margin-bottom:8px;position:relative;background:#070b18;}
+.boss-img-wrap img{width:100%;display:block;max-height:180px;object-fit:cover;object-position:center 20%;}
+.boss-img-wrap .battle-secondary{width:100%;display:block;max-height:150px;object-fit:cover;margin-top:2px;opacity:.9;}
+.q-counter{text-align:center;font-family:'Cinzel',serif;font-size:.72rem;color:var(--txt-dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+.q-counter strong{color:#c084fc;}
 
-/* ── Scene controls ── */
-.scene-bar{display:flex;gap:6px;padding:8px 16px 0;flex-wrap:wrap;background:rgba(0,0,0,.3);}
-.stab{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:1px;padding:5px 10px;border-radius:5px;cursor:pointer;border:1px solid rgba(168,85,247,.3);background:rgba(168,85,247,.07);color:#c084fc;transition:all .2s;}
-.stab.active,.stab:hover{background:rgba(168,85,247,.22);border-color:#a855f7;color:#e9d5ff;}
-.option-label-bar{text-align:center;padding:6px;font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:3px;color:rgba(168,85,247,.5);background:rgba(0,0,0,.5);}
+/* QBOX */
+.qbox{background:rgba(10,20,45,.9);border:2px solid #2a4a7a;border-radius:10px;padding:14px;margin-bottom:10px;position:relative;}
+.qbox::before{content:'?';position:absolute;top:-10px;right:14px;width:28px;height:28px;border-radius:50%;background:linear-gradient(180deg,#7c3aed,#4c1d95);color:#fff;font-family:'Cinzel',serif;font-weight:900;font-size:.9rem;display:flex;align-items:center;justify-content:center;border:2px solid #a78bfa;box-shadow:0 0 12px rgba(124,58,237,.5);}
+#question{margin:0;line-height:1.6;font-size:.95rem;color:#d5e2ff;padding-top:4px;}
+
+/* OPTIONS */
+.options{display:grid;gap:8px;margin-bottom:10px;}
+.option{padding:12px 16px;border:2px solid #2a4a7a;border-radius:10px;background:linear-gradient(180deg,rgba(20,30,55,.95),rgba(12,20,40,.95));color:#c8d8f0;text-align:left;cursor:pointer;font-family:'Philosopher',serif;font-size:.9rem;position:relative;transition:all .2s;}
+.option::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,#3a5a8a,#2a4a7a);border-radius:10px 0 0 10px;}
+.option:hover{border-color:var(--gold);transform:translateX(4px);}
+.option.correct{border-color:#34d399;background:linear-gradient(180deg,rgba(16,50,40,.95),rgba(10,35,28,.95));}
+.option.correct::before{background:#34d399;}
+.option.wrong{border-color:#f87171;background:linear-gradient(180deg,rgba(50,16,16,.95),rgba(35,10,10,.95));}
+.option.wrong::before{background:#f87171;}
+
+/* FEEDBACK */
+.feedback{background:linear-gradient(135deg,rgba(20,15,40,.85),rgba(15,25,50,.85));border:1px solid #2a4a7a;border-radius:10px;padding:12px;font-size:.85rem;line-height:1.5;color:#b0c4e8;margin-bottom:10px;}
+.feedback.good{border-color:#1f7b63;background:linear-gradient(135deg,rgba(10,40,30,.85),rgba(8,30,22,.85));}
+
+/* CTRL */
+.ctrl{padding:6px 0;display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+.btn{border:2px solid #2a4a7a;background:linear-gradient(180deg,#1e3a5e,#0e1e38);color:#c8d8f0;border-radius:8px;padding:10px 16px;font-weight:700;font-family:'Cinzel',serif;font-size:.75rem;cursor:pointer;text-transform:uppercase;letter-spacing:1px;box-shadow:0 3px 0 #0a1020;transition:all .2s;}
+.btn:hover{border-color:#4a7aaa;transform:translateY(-1px);}
+.btn.attack{background:linear-gradient(180deg,#4a1d8a,#2d0d6a);border-color:#7c3aed;color:#e0d0ff;box-shadow:0 0 16px rgba(124,58,237,.4),0 3px 0 #1a0840;animation:attackGlow 2s ease-in-out infinite;}
+@keyframes attackGlow{0%,100%{box-shadow:0 0 12px rgba(124,58,237,.4),0 3px 0 #1a0840;}50%{box-shadow:0 0 24px rgba(124,58,237,.7),0 0 40px rgba(124,58,237,.2),0 3px 0 #1a0840;}}
+.btn.sec{background:linear-gradient(180deg,#2d3748,#1a202c);border-color:#374151;color:#8a9cc0;}
+.btn.disabled-boss{opacity:.3;cursor:not-allowed;pointer-events:none;filter:grayscale(.7);}
+
+/* PHASE REWARD POPUP in log */
+.phase-reward{background:linear-gradient(135deg,rgba(107,33,168,.2),rgba(50,20,80,.2));border:1px solid #9333ea;border-radius:8px;padding:8px 10px;margin-bottom:6px;}
+.phase-reward .title{font-family:'Cinzel',serif;font-size:.75rem;color:#c084fc;margin-bottom:4px;}
+.phase-reward .reward-line{font-size:.72rem;color:#ffd700;}
+
+/* scrollbar */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:rgba(10,15,30,.5);}
+::-webkit-scrollbar-thumb{background:#2a4a7a;border-radius:2px;}
 </style>
 </head>
 <body>
-<div class="option-label-bar">OPÇÃO 1 DE 3 — TRÊS FORMAS DO NEFROMANTE (fases progressivas)</div>
-<div class="scene-bar">
-  <div class="stab active" onclick="setPhase(1,this)">Fase 1 — Nefromante (Q1–3)</div>
-  <div class="stab" onclick="setPhase(2,this)">Fase 2 — Lorde da Uremia (Q4–7)</div>
-  <div class="stab" onclick="setPhase(3,this)">Fase 3 — Azotemia Absoluta (Q8–10)</div>
-  <div class="stab" onclick="setPhase('reward',this)">Recompensa de fase (log)</div>
+
+<!-- SCENE SELECTOR TABS -->
+<div class="scene-tabs">
+  <span>Cena:</span>
+  <button class="stab" onclick="showScene('fase1')">Fase 1</button>
+  <button class="stab" onclick="showScene('fase2')">Fase 2</button>
+  <button class="stab active" onclick="showScene('fase3')">Fase 3 — Ativa</button>
+  <button class="stab" onclick="showScene('transition')">Transição de Fase</button>
 </div>
 
-<!-- TOP BAR -->
-<div class="top-bar">
-  <div class="top-bar-left">
-    <div class="lives" id="livesEl">❤❤❤</div>
-    <div>
-      <div class="xp-bar"><div class="xp-fill"></div></div>
-      <div style="font-size:.55rem;color:#6b7fb8;margin-top:1px">Nv 12 · 620/800 XP</div>
-    </div>
-    <div class="score-chip">24.970 pts</div>
-  </div>
-  <div style="font-size:.62rem;color:#6b7fb8">🪙 480 ouro &nbsp;|&nbsp; 90 acertos</div>
-</div>
+<div class="app">
 
-<!-- BOSS HP -->
-<div class="boss-hp-section">
-  <div class="boss-hp-meta">
-    <div class="boss-hp-name" id="bossHpName">ARQUI-NEFROMANTE</div>
-    <div class="boss-hp-pct" id="bossHpPct">HP 100%</div>
-  </div>
-  <div class="boss-hp-track">
-    <div class="boss-hp-fill phase1-fill" id="hpFill" style="width:100%"></div>
-    <!-- 3 segmentos visuais -->
-    <div class="boss-hp-segs">
-      <div class="boss-hp-seg"></div>
-      <div class="boss-hp-seg"></div>
-      <div class="boss-hp-seg"></div>
-    </div>
-  </div>
-  <div class="phase-row">
-    <div class="phase-badge pb1" id="phaseBadge">FORMA 1 — NEFROMANTE</div>
-    <div class="stars-row" id="starsRow">
-      <span class="st">★</span><span class="st">★</span><span class="st">★</span>
-      <span class="st">★</span><span class="st">★</span><span class="st">★</span>
-      <span class="st">★</span><span class="st">★</span><span class="st">★</span><span class="st">★</span>
-    </div>
-  </div>
-</div>
+  <!-- ═══════════════════ LEFT PANEL ═══════════════════ -->
+  <div class="panel left" id="left-panel">
 
-<div class="main">
-  <!-- LEFT -->
-  <div class="panel-left">
-    <img class="hero-img" id="heroImg" src="assets/classes/clerigo_renal/nivel_06.jpg" alt="Dr. Nephros">
-    <div class="hero-name">Dr. Nephros · Nv 12</div>
-    <div class="stat-row">
-      <span class="sc">⚔️24</span><span class="sc">🛡️18</span><span class="sc">📚22</span><span class="sc">🍀14</span>
-    </div>
-    <div class="equip-section">
-      <div class="eq-label">Equipamentos</div>
-      <div class="eq-item">⚔️ Excalibur do Néfron <span class="gold-star">✨</span></div>
-      <div class="eq-item">🛡️ Armadura Primeva <span class="gold-star">✨</span></div>
-      <div class="eq-item">💎 Amuleto do Rim Imortal <span class="gold-star">✨</span></div>
-      <div class="synergy">✨ Sinergia Lendária +20% XP</div>
-    </div>
-    <div class="counter-warn" id="counterWarn">⚠️ Fase 3: erro = −2 vidas</div>
-  </div>
-
-  <!-- CENTER -->
-  <div class="panel-center">
-    <div class="boss-battle-img-wrap">
-      <div class="boss-img-box">
-        <img id="bossImg" src="assets/nefromancer.png" alt="Arqui-Nefromante">
-      </div>
-      <div class="duel-img-box">
-        <img src="assets/battle_final.png" alt="Duelo Final">
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-wrap">
+        <img class="portrait" src="assets/classes/clerigo_renal/nivel_06.jpg" alt="portrait" onerror="this.style.background='#1a1228';this.removeAttribute('src')">
+        <div class="hero-info">
+          <div class="class">Mestre da Filtração</div>
+          <div class="hero-title">O Guardião dos Néfrons</div>
+          <div class="hero-name">Dr. Silva</div>
+          <div class="xp-bar"><div style="width:62%;height:100%;background:linear-gradient(90deg,#3b82f6,#60a5fa);border-radius:99px;box-shadow:0 0 6px rgba(96,165,250,.5);"></div></div>
+          <small style="font-size:.65rem;color:#6b7fb8">XP 620 / 800 · Nv 12</small>
+        </div>
       </div>
     </div>
 
-    <div class="q-counter" id="qCounter">QUESTÃO FINAL 1/10</div>
-    <div class="q-box">
-      Na glomeruloesclerose segmentar e focal (GESF) primária, qual achado de microscopia eletrônica é patognomônico e orienta o diagnóstico diferencial com GESF secundária?
+    <!-- HUD Tiles -->
+    <div class="hud">
+      <div class="tile"><span>Nível</span><strong>12</strong></div>
+      <div class="tile"><span>Pontos</span><strong>24.970</strong></div>
+      <div class="tile"><span>Vidas</span><strong style="font-size:1rem">❤❤❤</strong></div>
+      <div class="tile"><span>Recorde</span><strong>24.970</strong></div>
+      <div class="tile"><span>Ouro</span><strong style="color:#ffd700">480</strong></div>
+      <div class="tile"><span>Streak</span><strong>4🔥</strong></div>
     </div>
 
-    <div class="opts">
-      <div class="opt" onclick="sel(this,false)"><div class="ob">A</div>Depósitos eletrondensos subepiteliais difusos</div>
-      <div class="opt" onclick="sel(this,false)"><div class="ob">B</div>Duplicação da membrana basal glomerular</div>
-      <div class="opt correct" onclick="sel(this,true)"><div class="ob">C</div>Fusão difusa dos processos podocitários (&gt;80% de extensão)</div>
-      <div class="opt" onclick="sel(this,false)"><div class="ob">D</div>Depósitos mesangiais de IgA e C3</div>
-    </div>
+    <!-- Equipment -->
+    <div class="equip" id="equip-section">
+      <h3>Equipamento</h3>
 
-    <button class="attack-btn" id="attackBtn">⚔ ATACAR (responder)</button>
-  </div>
+      <!-- Phase 3 Warning (shown in phase 3 scene) -->
+      <div class="phase3-warning" id="phase3-warn">
+        ⚠️ Fase 3: erro = −2 vidas
+      </div>
 
-  <!-- RIGHT — Battle Log -->
-  <div class="panel-right">
-    <div class="log-title">Log de Batalha</div>
-    <div id="logEntries">
-      <div class="log-e pa">⚔️ Você causou <strong>285 de dano!</strong></div>
-      <div class="log-e pa">HP: 1.000 → 715</div>
-      <div class="log-e ba">😤 "Fraco demais para derrotar a Azotemia Eterna!"</div>
-      <div class="log-e pa">⚔️ Você causou <strong>310 de dano!</strong></div>
-      <div class="log-e pa">HP: 715 → 405</div>
-      <div class="log-e ba">😡 "Impossível... como você conhece os néfrons tão bem?"</div>
-      <div class="log-e pa">⚔️ Você causou <strong>295 de dano!</strong></div>
-      <div class="log-e pa">HP: 405 → 110</div>
-    </div>
-
-    <div style="border-top:1px solid rgba(168,85,247,.15);padding-top:6px;">
-      <div class="log-title" style="margin-bottom:5px">Recompensas de Fase</div>
-      <div id="rewardZone">
-        <div style="font-size:.66rem;color:rgba(192,132,252,.35);text-align:center">Derrote cada forma para ganhar recompensas</div>
+      <div class="slot">
+        <img class="slot-icon" src="assets/items/excalibur_nefron.jpg" alt="Excalibur" onerror="this.style.background='#1a1228';this.removeAttribute('src')">
+        <div class="slot-info">
+          <div class="slot-name" style="color:#ffd700">Excalibur do Néfron</div>
+          <div class="slot-stats">ATK +85 · KNO +40</div>
+        </div>
+      </div>
+      <div class="slot">
+        <img class="slot-icon" src="assets/items/armadura_primeva.jpg" alt="Armadura" onerror="this.style.background='#1a1228';this.removeAttribute('src')">
+        <div class="slot-info">
+          <div class="slot-name" style="color:#c084fc">Armadura Primeva</div>
+          <div class="slot-stats">DEF +60 · HP +120</div>
+        </div>
+      </div>
+      <div class="slot">
+        <img class="slot-icon" src="assets/items/reliquia_titulo.jpg" alt="Relíquia" onerror="this.style.background='#1a1228';this.removeAttribute('src')">
+        <div class="slot-info">
+          <div class="slot-name" style="color:#60a5fa">Relíquia do Título</div>
+          <div class="slot-stats">KNO +25 · XP +15%</div>
+        </div>
       </div>
     </div>
 
-    <div style="border-top:1px solid rgba(168,85,247,.15);padding-top:6px;">
-      <div class="log-title" style="margin-bottom:5px">Estatísticas</div>
-      <div style="font-size:.68rem;color:#c4b5fd;display:flex;flex-direction:column;gap:3px;">
-        <div style="display:flex;justify-content:space-between"><span>Questões respondidas</span><span id="statQ">3</span></div>
-        <div style="display:flex;justify-content:space-between"><span>Acertos</span><span style="color:#86efac" id="statA">3</span></div>
-        <div style="display:flex;justify-content:space-between"><span>Dano total causado</span><span style="color:#f87171" id="statD">890</span></div>
+    <!-- Battle Log (replaces Jornada in boss mode) -->
+    <div class="log-battle">
+      <h3>Log de Batalha</h3>
+
+      <!-- Phase reward popup entries -->
+      <div class="phase-reward">
+        <div class="title">✦ Fase 2 Concluída!</div>
+        <div class="reward-line">+500 XP · +120 Ouro · Fragmento de Poder</div>
       </div>
+
+      <div class="log-entry phase">⚡ FORMA 3 ATIVADA — AZOTEMIA ABSOLUTA</div>
+      <div class="log-entry good">✔ Questão 8 certa — +280 XP</div>
+      <div class="log-entry bad">✘ Questão 7 errada — −1 vida</div>
+      <div class="log-entry good">✔ Questão 6 certa — +260 XP</div>
+      <div class="log-entry phase">⚡ FORMA 2 CONCLUÍDA</div>
+      <div class="log-entry good">✔ Questão 5 certa — Streak ×3</div>
+      <div class="log-entry reward">🏆 Recompensa Fase 1: +300 XP</div>
     </div>
-  </div>
-</div>
+
+  </div><!-- /left -->
+
+  <!-- ═══════════════════ RIGHT PANEL ═══════════════════ -->
+  <div class="panel right">
+
+    <!-- BOSS ZONE -->
+    <div class="boss-zone">
+
+      <!-- Boss HP Bar (3 segments) -->
+      <div class="boss-hp-wrap">
+        <div class="boss-hp-label">
+          <span class="name">☠ Nefromante das Sombras</span>
+          <span class="val">HP: 1.150 / 3.000</span>
+        </div>
+        <div class="boss-hp-track">
+          <div class="hp-seg hp-seg-1"></div>
+          <div class="hp-divider"></div>
+          <div class="hp-seg hp-seg-2"></div>
+          <div class="hp-divider"></div>
+          <div class="hp-seg hp-seg-3"></div>
+          <div class="hp-text">1.150 / 3.000</div>
+        </div>
+      </div>
+
+      <!-- Phase Badge -->
+      <div id="phase-badge-display">
+        <!-- Active badge shown per scene — default fase3 -->
+        <span class="phase-badge p3" id="badge-p3">⚡ FORMA 3 — AZOTEMIA ABSOLUTA</span>
+      </div>
+
+      <!-- Boss Image -->
+      <div class="boss-img-wrap">
+        <img src="assets/nefromancer.png" alt="Nefromante" onerror="this.style.background='#1a0840';this.style.minHeight='120px';this.removeAttribute('src')">
+        <img class="battle-secondary" src="assets/battle_final.png" alt="Batalha Final" onerror="this.style.display='none'">
+      </div>
+
+      <!-- Question Counter -->
+      <div class="q-counter">QUESTÃO FINAL <strong>9</strong> / 10</div>
+    </div>
+
+    <!-- Question Box -->
+    <div class="qbox">
+      <p id="question">Na síndrome urêmica avançada, qual das seguintes alterações eletrolíticas é considerada a mais ameaçadora à vida e requer diálise de urgência?</p>
+    </div>
+
+    <!-- Options -->
+    <div class="options">
+      <button class="option correct">A) Hipercalemia grave (K⁺ &gt; 6,5 mEq/L) com alterações eletrocardiográficas</button>
+      <button class="option">B) Hiponatremia dilucional assintomática (Na⁺ 128 mEq/L)</button>
+      <button class="option wrong">C) Acidose metabólica leve (pH 7,32, bicarbonato 18)</button>
+      <button class="option">D) Hiperfosfatemia isolada (P 6,2 mg/dL) sem hipocalcemia</button>
+    </div>
+
+    <!-- Feedback -->
+    <div class="feedback good">
+      ✔ <strong>Correto!</strong> A hipercalemia grave é a principal indicação de urgência dialítica. O potássio elevado pode causar arritmias fatais. Alterações no ECG (ondas T apiculadas, alargamento QRS) indicam toxicidade cardíaca imediata.
+      <br><br><em style="color:#7a90b8;font-size:.8rem">Referência: KDIGO AKI Guidelines 2012 · KDIGO CKD 2024</em>
+    </div>
+
+    <!-- Controls -->
+    <div class="ctrl">
+      <button class="btn attack">⚔ Atacar (Responder)</button>
+      <button class="btn sec">Novo Jogo</button>
+      <button class="btn disabled-boss">🔨 Forjar</button>
+      <button class="btn disabled-boss">🎁 Baú</button>
+    </div>
+
+  </div><!-- /right -->
+</div><!-- /app -->
 
 <script>
-const phases = {
-  1: { hp:100, fill:'phase1-fill', badge:'FORMA 1 — NEFROMANTE', badgeCls:'pb1',
-       lives:'❤❤❤', stars:0, q:'1/10', btn:'⚔ ATACAR (responder)',
-       bossImg:'assets/nefromancer.png', name:'ARQUI-NEFROMANTE', counter:false },
-  2: { hp:67, fill:'phase2-fill', badge:'FORMA 2 — LORDE DA UREMIA', badgeCls:'pb2',
-       lives:'❤❤❤', stars:3, q:'4/10', btn:'⚔ ATACAR (responder)',
-       bossImg:'assets/nefromancer.png', name:'LORDE DA UREMIA', counter:false },
-  3: { hp:30, fill:'phase3-fill', badge:'🔥 FORMA 3 — AZOTEMIA ABSOLUTA 🔥', badgeCls:'pb3',
-       lives:'❤❤', stars:7, q:'8/10', btn:'💀 GOLPE FINAL',
-       bossImg:'assets/nefromancer.png', name:'AZOTEMIA ABSOLUTA', counter:true },
-  reward: { hp:67, fill:'phase1-fill', badge:'FORMA 1 DERROTADA!', badgeCls:'pb1',
-       lives:'❤❤❤', stars:3, q:'4/10', btn:'► CONTINUAR PARA FASE 2',
-       bossImg:'assets/nefromancer.png', name:'ARQUI-NEFROMANTE', counter:false, reward:true }
+const scenes = {
+  fase1: {
+    badge: '<span class="phase-badge p1">🔮 FORMA 1 — NEFROMANTE</span>',
+    hpSegs: ['calc(33.3% * 0.85)','calc(33.3% * 0)','calc(33.3% * 0)'],
+    hpText: '2.550 / 3.000',
+    hpVal: 'HP: 2.550 / 3.000',
+    qNum: '3',
+    showPhase3Warn: false,
+  },
+  fase2: {
+    badge: '<span class="phase-badge p2">💀 FORMA 2 — LORDE DA UREMIA</span>',
+    hpSegs: ['calc(33.3% * 1)','calc(33.3% * 0.6)','calc(33.3% * 0)'],
+    hpText: '1.800 / 3.000',
+    hpVal: 'HP: 1.800 / 3.000',
+    qNum: '6',
+    showPhase3Warn: false,
+  },
+  fase3: {
+    badge: '<span class="phase-badge p3">⚡ FORMA 3 — AZOTEMIA ABSOLUTA</span>',
+    hpSegs: ['calc(33.3% * 1)','calc(33.3% * 1)','calc(33.3% * 0.4)'],
+    hpText: '1.150 / 3.000',
+    hpVal: 'HP: 1.150 / 3.000',
+    qNum: '9',
+    showPhase3Warn: true,
+  },
+  transition: {
+    badge: '<span class="phase-badge p2" style="animation:phasePulse 0.6s ease-in-out infinite">⚡ FORMA 2 → FORMA 3</span>',
+    hpSegs: ['calc(33.3% * 1)','calc(33.3% * 1)','calc(33.3% * 0.02)'],
+    hpText: '1.000 / 3.000',
+    hpVal: 'HP: 1.000 / 3.000',
+    qNum: '7',
+    showPhase3Warn: false,
+  }
 };
 
-function setPhase(k, tab) {
+function showScene(s){
   document.querySelectorAll('.stab').forEach(t=>t.classList.remove('active'));
-  if(tab) tab.classList.add('active');
-  const p = phases[k];
-  document.getElementById('hpFill').style.width = p.hp + '%';
-  document.getElementById('hpFill').className = 'boss-hp-fill ' + p.fill;
-  document.getElementById('bossHpPct').textContent = 'HP ' + p.hp + '%';
-  document.getElementById('bossHpName').textContent = p.name;
-  document.getElementById('phaseBadge').textContent = p.badge;
-  document.getElementById('phaseBadge').className = 'phase-badge ' + p.badgeCls;
-  document.getElementById('livesEl').textContent = p.lives;
-  document.getElementById('qCounter').textContent = 'QUESTÃO FINAL ' + p.q;
-  document.getElementById('attackBtn').textContent = p.btn;
-  document.getElementById('bossImg').src = p.bossImg;
-  document.getElementById('counterWarn').style.display = p.counter ? 'block' : 'none';
-  // Stars
-  const stars = document.querySelectorAll('#starsRow .st');
-  stars.forEach((s,i)=>{ s.className = 'st' + (i < p.stars ? ' on' : ''); });
-  // Reward log
-  const rz = document.getElementById('rewardZone');
-  if (p.reward) {
-    rz.innerHTML = `<div class="phase-reward-toast">🏆 Fase 1 derrotada!<br>+100 🪙 ouro · +80 XP</div>`;
-    document.getElementById('logEntries').innerHTML = `
-      <div class="log-e phase">🔔 FORMA 1 DERROTADA!</div>
-      <div class="log-e loot">+100 🪙 ouro de recompensa</div>
-      <div class="log-e loot">+80 XP de bônus</div>
-      <div class="log-e ba">😠 "Você não conhece meu verdadeiro poder... prepare-se para a Uremia Eterna!"</div>
-      <div class="log-e phase">🔔 FORMA 2 DESBLOQUEADA — LORDE DA UREMIA</div>`;
-  } else {
-    rz.innerHTML = `<div style="font-size:.66rem;color:rgba(192,132,252,.35);text-align:center">Derrote cada forma para ganhar recompensas</div>`;
-  }
+  event.target.classList.add('active');
+  const sc = scenes[s];
+  if(!sc) return;
+  // badge
+  document.getElementById('phase-badge-display').innerHTML = sc.badge;
+  // hp segs
+  const segs = document.querySelectorAll('.hp-seg');
+  segs[0].style.flex = '0 0 ' + sc.hpSegs[0];
+  segs[1].style.flex = '0 0 ' + sc.hpSegs[1];
+  segs[2].style.flex = '0 0 ' + sc.hpSegs[2];
+  document.querySelector('.hp-text').textContent = sc.hpText;
+  document.querySelector('.boss-hp-label .val').textContent = sc.hpVal;
+  document.querySelector('.q-counter').innerHTML = 'QUESTÃO FINAL <strong>' + sc.qNum + '</strong> / 10';
+  document.getElementById('phase3-warn').style.display = sc.showPhase3Warn ? 'block' : 'none';
 }
 
-function sel(el, correct) {
-  document.querySelectorAll('.opt').forEach(o=>o.classList.remove('correct','wrong'));
-  el.classList.add(correct ? 'correct' : 'wrong');
-}
+// Init
+document.getElementById('phase3-warn').style.display = 'block';
 </script>
 </body>
 </html>
