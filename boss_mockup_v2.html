@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NefroQuest — Boss Mode Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Philosopher:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ─── EXATO do jogo ─── */
+:root{--gold:#ffd700;--txt:#d5e2ff;--txt-dim:#7a90b8;--ok:#34d399;--err:#f87171;--bg:#070b18;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--txt);font-family:'Philosopher',serif;min-height:100vh;}
+.app{display:grid;grid-template-columns:380px 1fr;gap:8px;padding:8px;max-width:1200px;margin:0 auto;}
+.panel{background:linear-gradient(180deg,#1a1228 0%,#12192e 50%,#0e1525 100%);border:2px solid #2a4a7a;border-radius:12px;position:relative;overflow:hidden;box-shadow:0 0 30px rgba(30,60,120,.3);}
+.panel::before{content:'';position:absolute;inset:3px;border:1px solid rgba(100,140,200,.12);border-radius:10px;pointer-events:none;z-index:1;}
+.panel::after{content:'✦';position:absolute;top:6px;right:10px;color:var(--gold);opacity:.3;font-size:.7rem;}
+.left{padding:14px;align-self:start;}
+.right{padding:16px;align-self:start;}
+
+/* hero */
+.hero{background:linear-gradient(135deg,rgba(20,15,40,.9),rgba(15,25,50,.9));border:1px solid #2a4a7a;border-radius:10px;padding:12px;margin-bottom:10px;}
+.hero-wrap{display:flex;gap:12px;align-items:center;}
+.portrait{width:88px;height:88px;border-radius:12px;object-fit:cover;object-position:center 25%;border:3px solid var(--gold);box-shadow:0 0 25px rgba(255,215,0,.6);}
+.hero-info{flex:1;}
+.class{font-family:'Cinzel',serif;font-weight:700;color:var(--gold);font-size:.85rem;}
+.hero-title{font-size:.72rem;color:#93b4e8;font-style:italic;margin-top:2px;}
+.xp-bar{height:8px;border-radius:99px;overflow:hidden;border:1px solid #2a4a7a;background:#0b1329;margin-top:8px;}
+.xp-fill{height:100%;background:linear-gradient(90deg,#3b82f6,#60a5fa);width:62%;}
+
+/* hud */
+.hud{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px;}
+.tile{background:linear-gradient(180deg,rgba(15,20,40,.9),rgba(10,15,30,.9));border:1px solid #2a4a7a;border-radius:8px;padding:6px;text-align:center;}
+.tile span{display:block;color:var(--txt-dim);font-size:.62rem;text-transform:uppercase;letter-spacing:1px;}
+.tile strong{font-size:1rem;color:var(--txt);display:block;margin-top:2px;}
+
+/* story */
+.story{background:linear-gradient(135deg,rgba(20,15,40,.8),rgba(15,25,50,.8));border:1px solid #2a4a7a;border-radius:10px;padding:10px;margin-bottom:10px;}
+.story h3,.equip h3,.log h3{font-family:'Cinzel',serif;font-size:.82rem;color:var(--gold);margin-bottom:6px;}
+.story p{font-size:.78rem;color:var(--txt-dim);line-height:1.5;}
+
+/* equip */
+.equip{background:linear-gradient(135deg,rgba(20,15,40,.8),rgba(15,25,50,.8));border:1px solid #2a4a7a;border-radius:10px;padding:10px;margin-bottom:10px;}
+.slot{display:flex;align-items:center;gap:8px;padding:6px 8px;border:1px solid #1e3a5e;border-radius:8px;background:rgba(10,15,30,.8);margin-bottom:5px;}
+.slot-icon{width:36px;height:36px;border-radius:6px;border:1px solid #2a4a7a;object-fit:cover;background:#0a0e1a;filter:saturate(1.2) contrast(1.05);}
+.slot-info{flex:1;}
+.slot-name{font-size:.78rem;font-weight:600;color:var(--gold);}
+.slot-stats{font-size:.62rem;color:var(--txt-dim);margin-top:1px;}
+
+/* log */
+.log{background:linear-gradient(135deg,rgba(20,15,40,.8),rgba(15,25,50,.8));border:1px solid #2a4a7a;border-radius:10px;padding:10px;}
+.log-entry{font-size:.72rem;color:#8a9cc0;padding:3px 0;border-bottom:1px solid rgba(42,74,122,.15);}
+.log-entry.g{color:#5db89c;}
+.log-entry.r{color:#d07070;}
+.log-entry.q{color:#c4b5fd;font-style:italic;}
+
+/* qbox */
+.qbox{background:rgba(10,20,45,.9);border:2px solid #2a4a7a;border-radius:10px;padding:14px;margin-bottom:10px;}
+#question{line-height:1.65;font-size:.95rem;color:var(--txt);}
+.options{display:grid;gap:8px;margin-bottom:10px;}
+.option{padding:12px 16px;border:2px solid #2a4a7a;border-radius:10px;background:linear-gradient(180deg,rgba(20,30,55,.95),rgba(12,20,40,.95));color:#c8d8f0;text-align:left;cursor:pointer;font-size:.9rem;font-family:'Philosopher',serif;transition:border-color .2s;}
+.option:hover{border-color:var(--gold);}
+.option.correct{border-color:var(--ok);background:linear-gradient(180deg,rgba(16,50,40,.95),rgba(10,35,28,.95));}
+.option.wrong{border-color:var(--err);background:linear-gradient(180deg,rgba(50,16,16,.95),rgba(35,10,10,.95));}
+.ctrl{display:flex;gap:8px;}
+.btn{font-family:'Cinzel',serif;border-radius:8px;padding:10px 18px;cursor:pointer;font-weight:700;font-size:.82rem;letter-spacing:1px;border:2px solid;}
+.btn-next{background:linear-gradient(180deg,#7c3aed,#4c1d95);border-color:#a855f7;color:#f3e8ff;flex:1;animation:glow 2s ease-in-out infinite alternate;}
+.btn-new{background:rgba(10,15,30,.8);border-color:#2a4a7a;color:var(--txt-dim);opacity:.6;}
+@keyframes glow{from{box-shadow:0 0 8px rgba(168,85,247,.3);}to{box-shadow:0 0 20px rgba(168,85,247,.8);}}
+
+/* ─── ADIÇÕES DO BOSS (comuns a todas as variantes) ─── */
+
+/* Escurecimento do painel direito em boss mode */
+.boss .panel.right{background:linear-gradient(180deg,#120820 0%,#0d0f24 50%,#0a0a1e 100%);border-color:#4a1a7a;}
+.boss .panel.left{border-color:#3a1a5a;}
+body.boss{background:#050810;}
+
+/* HP bar do boss */
+.boss-hp-bar{margin-bottom:10px;}
+.boss-hp-label{display:flex;justify-content:space-between;margin-bottom:4px;}
+.boss-hp-label .name{font-family:'Cinzel',serif;font-size:.75rem;color:#c084fc;letter-spacing:1px;}
+.boss-hp-label .pct{font-size:.72rem;color:var(--txt-dim);}
+.boss-hp-track{height:14px;border-radius:7px;background:#0b1020;border:1px solid #4a1a7a;overflow:hidden;}
+.boss-hp-fill{height:100%;border-radius:7px;transition:width .6s;}
+.hp-purple{background:linear-gradient(90deg,#4c1d95,#7c3aed,#a855f7);}
+.hp-red{background:linear-gradient(90deg,#7f1d1d,#dc2626,#f87171);}
+
+/* Imagem do nefromante */
+.boss-img{width:100%;border-radius:8px;object-fit:cover;object-position:center 20%;display:block;margin-bottom:10px;}
+.boss-img-frame{border-radius:8px;overflow:hidden;border:2px solid rgba(168,85,247,.5);box-shadow:0 0 20px rgba(168,85,247,.3);margin-bottom:10px;position:relative;}
+.boss-img-frame::after{content:'☠ ARQUI-NEFROMANTE ☠';position:absolute;bottom:0;left:0;right:0;padding:6px;background:linear-gradient(0deg,rgba(0,0,0,.85),transparent);font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:2px;color:#c084fc;text-align:center;}
+
+/* Box narrativa (substitui .story no boss mode) */
+.boss-narrative{background:linear-gradient(135deg,rgba(40,10,60,.85),rgba(20,5,40,.85));border:1px solid rgba(168,85,247,.4);border-radius:10px;padding:10px;margin-bottom:10px;}
+.boss-narrative h3{font-family:'Cinzel',serif;font-size:.78rem;color:#c084fc;margin-bottom:6px;letter-spacing:1px;}
+.boss-narrative p{font-size:.78rem;color:#c4b5fd;line-height:1.55;font-style:italic;}
+
+/* Contador de questão boss */
+.boss-q-counter{text-align:center;font-family:'Cinzel',serif;font-size:.68rem;color:#9f7aea;letter-spacing:2px;margin-bottom:8px;}
+
+/* qbox com borda roxa em boss mode */
+.boss .qbox{border-color:#4a1a7a;background:rgba(8,5,25,.92);}
+.boss .option{border-color:#2d1a5a;background:linear-gradient(180deg,rgba(20,10,45,.95),rgba(12,5,30,.95));}
+.boss .option:hover{border-color:#7c3aed;}
+
+/* ─── TABS ─── */
+.tabs{display:flex;gap:0;background:#040810;border-bottom:1px solid #1a2a4a;padding:0 8px;}
+.tab{padding:8px 16px;font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:1.5px;color:#4a6a8a;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;}
+.tab:hover{color:#8a9cc0;}
+.tab.active{color:#c084fc;border-bottom-color:#7c3aed;}
+.tab-hint{margin-left:auto;padding:8px 12px;font-size:.6rem;color:#2a3a5a;font-style:italic;}
+
+/* ─── Variante A: HP bar acima do qbox, imagem pequena/lateral ─── */
+/* (default) */
+
+/* ─── Variante B: faixa do boss no topo do painel direito ─── */
+.var-b .boss-img-frame{max-height:120px;overflow:hidden;}
+.var-b .boss-img{max-height:116px;}
+
+/* ─── Variante C: imagem full-width, HP bar mais proeminente ─── */
+.var-c .boss-hp-track{height:20px;}
+.var-c .boss-hp-fill{border-radius:10px;}
+.var-c .boss-img{max-height:160px;}
+</style>
+</head>
+<body class="boss" id="pageBody">
+
+<div class="tabs">
+  <div class="tab active" onclick="setVar('a',this)">Variante A — imagem + HP + narrativa</div>
+  <div class="tab" onclick="setVar('b',this)">Variante B — imagem menor, mais compacto</div>
+  <div class="tab" onclick="setVar('c',this)">Variante C — HP bar em destaque, imagem maior</div>
+  <div class="tab-hint">Página de perguntas com boss mode ativado</div>
+</div>
+
+<div class="app boss" id="appRoot">
+
+  <!-- ════ PAINEL ESQUERDO (idêntico ao jogo) ════ -->
+  <section class="panel left">
+
+    <!-- Herói -->
+    <div class="hero">
+      <div class="hero-wrap">
+        <img class="portrait" src="assets/classes/clerigo_renal/nivel_06.jpg" alt="Dr. Nephros">
+        <div class="hero-info">
+          <div class="class">Mestre da Filtração</div>
+          <div class="hero-title">O Guardião dos Néfrons</div>
+          <div style="font-size:.75rem;color:var(--txt-dim);margin-top:3px">Dr. Silva</div>
+          <div class="xp-bar"><div class="xp-fill"></div></div>
+          <small style="font-size:.65rem;color:#6b7fb8">XP 620 / 800 · Nv 12</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- HUD tiles -->
+    <div class="hud">
+      <div class="tile"><span>Nível</span><strong>12</strong></div>
+      <div class="tile"><span>Pontos</span><strong>24.970</strong></div>
+      <div class="tile"><span>Vidas</span><strong>❤❤❤</strong></div>
+      <div class="tile"><span>Recorde</span><strong>24.970</strong></div>
+      <div class="tile"><span>Ouro</span><strong style="color:var(--gold)">480</strong></div>
+      <div class="tile"><span>Streak</span><strong>4🔥</strong></div>
+    </div>
+
+    <!-- Narrativa boss (substitui .story) -->
+    <div class="boss-narrative">
+      <h3>☠ Confronto Final</h3>
+      <p>"Após noventa batalhas, você chega ao <strong style="color:#e9d5ff">Trono da Uremia</strong>. O Arqui-Nefromante ergue-se diante de você. Dez questões separam a vitória da derrota eterna."</p>
+    </div>
+
+    <!-- Equipamento -->
+    <div class="equip">
+      <h3>Equipamento</h3>
+      <div class="slot">
+        <img class="slot-icon" src="assets/items/excalibur_nefron.jpg" alt="Excalibur">
+        <div class="slot-info">
+          <div class="slot-name">Excalibur do Néfron ✨</div>
+          <div class="slot-stats">⚔️11 🛡️3 📚4 🍀3</div>
+        </div>
+      </div>
+      <div class="slot">
+        <img class="slot-icon" src="assets/items/armadura_primeva.jpg" alt="Armadura">
+        <div class="slot-info">
+          <div class="slot-name">Armadura Primeva ✨</div>
+          <div class="slot-stats">⚔️3 🛡️11 📚4 🍀2</div>
+        </div>
+      </div>
+      <div class="slot">
+        <img class="slot-icon" src="assets/items/reliquia_titulo.jpg" alt="Relíquia">
+        <div class="slot-info">
+          <div class="slot-name">Relíquia do Título ✨</div>
+          <div class="slot-stats">⚔️3 🛡️3 📚8 🍀4</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Log de batalha (substitui Jornada) -->
+    <div class="log">
+      <h3>⚔ Log de Batalha</h3>
+      <div class="log-entry g">⚔️ Você causou <strong>285 de dano!</strong></div>
+      <div class="log-entry">HP: 1.000 → 715</div>
+      <div class="log-entry q">"Fraco demais para derrotar a Azotemia Eterna!"</div>
+      <div class="log-entry g">⚔️ Você causou <strong>310 de dano!</strong></div>
+      <div class="log-entry">HP: 715 → 405</div>
+      <div class="log-entry q">"Impossível... como você conhece os néfrons?"</div>
+    </div>
+
+  </section>
+
+  <!-- ════ PAINEL DIREITO (boss mode) ════ -->
+  <section class="panel right" id="rightPanel">
+
+    <!-- HP bar do boss -->
+    <div class="boss-hp-bar">
+      <div class="boss-hp-label">
+        <span class="name">☠ ARQUI-NEFROMANTE</span>
+        <span class="pct" id="hpPct">HP 40%</span>
+      </div>
+      <div class="boss-hp-track">
+        <div class="boss-hp-fill hp-purple" id="hpFill" style="width:40%"></div>
+      </div>
+    </div>
+
+    <!-- Imagem do nefromante -->
+    <div class="boss-img-frame" id="bossImgFrame">
+      <img class="boss-img" src="assets/nefromancer.png" alt="Arqui-Nefromante" id="bossImg">
+    </div>
+
+    <!-- Contador de questão -->
+    <div class="boss-q-counter">QUESTÃO FINAL <strong id="qNum">4</strong> / 10</div>
+
+    <!-- Questão (qbox idêntico ao jogo) -->
+    <div class="qbox">
+      <p id="question">Na glomeruloesclerose segmentar e focal primária (GESF), qual achado de microscopia eletrônica é patognomônico e orienta o diagnóstico diferencial com a forma secundária?</p>
+    </div>
+
+    <!-- Opções -->
+    <div class="options">
+      <button class="option" onclick="sel(this,false)">A) Depósitos eletrondensos subepiteliais difusos</button>
+      <button class="option" onclick="sel(this,false)">B) Duplicação da membrana basal glomerular</button>
+      <button class="option correct" onclick="sel(this,true)">C) Fusão difusa dos processos podocitários (&gt;80% de extensão)</button>
+      <button class="option" onclick="sel(this,false)">D) Depósitos mesangiais de IgA e C3</button>
+    </div>
+
+    <!-- Controles -->
+    <div class="ctrl">
+      <button class="btn btn-next">⚔ ATACAR (responder)</button>
+      <button class="btn btn-new">Novo Jogo</button>
+    </div>
+
+  </section>
+</div>
+
+<script>
+function setVar(v, tab) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+
+  const app = document.getElementById('appRoot');
+  app.className = 'app boss var-' + v;
+
+  // Variante B: imagem mais compacta
+  const frame = document.getElementById('bossImgFrame');
+  if (v === 'b') {
+    frame.style.maxHeight = '110px';
+    frame.style.overflow = 'hidden';
+  } else if (v === 'c') {
+    frame.style.maxHeight = '180px';
+    frame.style.overflow = 'hidden';
+  } else {
+    frame.style.maxHeight = '150px';
+    frame.style.overflow = 'hidden';
+  }
+
+  // Variante C: HP bar maior
+  const hpTrack = document.querySelector('.boss-hp-track');
+  hpTrack.style.height = v === 'c' ? '22px' : '14px';
+
+  // HP vermelho quando < 30%
+  const fill = document.getElementById('hpFill');
+  fill.className = 'boss-hp-fill ' + (v === 'c' ? 'hp-red' : 'hp-purple');
+  if (v === 'c') {
+    document.getElementById('hpPct').textContent = 'HP 15%';
+    fill.style.width = '15%';
+    document.getElementById('qNum').textContent = '9';
+    document.querySelector('.btn-next').textContent = '💀 GOLPE FINAL';
+  } else {
+    document.getElementById('hpPct').textContent = 'HP 40%';
+    fill.style.width = '40%';
+    document.getElementById('qNum').textContent = '4';
+    document.querySelector('.btn-next').textContent = '⚔ ATACAR (responder)';
+  }
+}
+
+function sel(el, correct) {
+  document.querySelectorAll('.option').forEach(o => o.classList.remove('correct','wrong'));
+  el.classList.add(correct ? 'correct' : 'wrong');
+}
+
+// init
+document.getElementById('bossImgFrame').style.maxHeight = '150px';
+document.getElementById('bossImgFrame').style.overflow = 'hidden';
+</script>
+</body>
+</html>
