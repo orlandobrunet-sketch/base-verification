@@ -2952,14 +2952,42 @@
     }
 
     /* Ocultar elementos normais do painel esquerdo em boss mode */
-    .boss-battle-mode .panel.left .hero,
     .boss-battle-mode .panel.left .story,
     .boss-battle-mode .panel.left .log,
-    .boss-battle-mode .panel.left .equip,
     .boss-battle-mode .panel.left .badges-container {
       display: none !important;
     }
-    .boss-battle-mode #bossPartyPanel { display: flex !important; }
+    /* Mostrar herói e equip em boss mode (continuidade natural) */
+    .boss-battle-mode .panel.left .hero { display: block !important; }
+    .boss-battle-mode .panel.left .equip { display: block !important; }
+    /* Mostrar elementos exclusivos do boss mode */
+    .boss-battle-mode #bossNarrativeBox { display: block !important; }
+    .boss-battle-mode #bossLogSection { display: block !important; }
+    /* Ocultar bossPartyPanel — não é mais usado */
+    .boss-battle-mode #bossPartyPanel { display: none !important; }
+
+    /* Boss narrative box */
+    #bossNarrativeBox {
+      background: linear-gradient(135deg, rgba(40,10,60,.85), rgba(20,5,40,.85));
+      border: 1px solid rgba(168,85,247,.4); border-radius: 10px;
+      padding: 10px; margin-bottom: 10px;
+    }
+    #bossNarrativeBox h3 {
+      font-family: 'Cinzel', serif; font-size: .78rem; color: #c084fc;
+      margin-bottom: 6px; letter-spacing: 1px;
+    }
+    #bossNarrativeBox p { font-size: .78rem; color: #c4b5fd; line-height: 1.55; font-style: italic; }
+
+    /* Boss battle log */
+    #bossLogSection {
+      background: linear-gradient(135deg, rgba(20,15,40,.8), rgba(15,25,50,.8));
+      border: 1px solid rgba(168,85,247,.3); border-radius: 10px;
+      padding: 10px; max-height: 200px; overflow-y: auto;
+    }
+    .boss-log-entry { font-size: .72rem; padding: 3px 0; border-bottom: 1px solid rgba(168,85,247,.1); color: #8a9cc0; }
+    .boss-log-entry.hit  { color: #5db89c; }
+    .boss-log-entry.miss { color: #d07070; }
+    .boss-log-entry.lore { color: #c4b5fd; font-style: italic; }
 
     /* === PAINEL DE PARTY (left panel) === */
     #bossPartyPanel {
@@ -4750,6 +4778,14 @@
       </div>
 
       <div class="log"><h3>Jornada</h3><div id="journal"></div></div>
+
+      <!-- BOSS MODE: narrative box (substitui story) -->
+      <div id="bossNarrativeBox" style="display:none;"></div>
+      <!-- BOSS MODE: battle log (substitui Jornada) -->
+      <div id="bossLogSection" style="display:none;">
+        <h3 style="font-family:'Cinzel',serif;font-size:.82rem;color:#c084fc;margin-bottom:8px;">⚔ Log de Batalha</h3>
+        <div id="bossLogEntries"></div>
+      </div>
     </section>
 
     <!-- RIGHT PANEL -->
@@ -25703,7 +25739,7 @@
     const state={
       level:1,xp:0,xpToNext:200,score:0,lives:3,maxLives:3,streak:0,gold:0,difficulty:"normal",legendaryAbilityUsed:{},
       current:null,answered:false,queue:[],idx:0,bonusUses:0,
-      correctTotal:0, narrativeShown:0, bossIntroShown:false, gameOver:false,
+      correctTotal:0, narrativeShown:0, bossIntroShown:false, gameOver:false, bossLog:[],
       gameStarted: false, chestsOpened:0,
       character: null,
       equipment:{
@@ -27346,6 +27382,17 @@
         const multText = sm.label ? ` (${sm.label})` : '';
         const synergyText = _synergy ? ' ✨+20% sinergia' : '';
         ui.feedback.textContent=`✅ Correto! ${state.current.e} +${xp} XP${multText}${synergyText}, +${g} ouro.${lv?` Level up x${lv}!`:''}`;
+        // Boss log
+        if (isBossBattle()) {
+          const dmg = Math.floor(st.atk * 8 + st.kno * 5 + state.streak * 5);
+          const hpBefore = Math.min(100, getBossHP() + 10);
+          const hpAfter  = getBossHP();
+          state.bossLog = state.bossLog || [];
+          state.bossLog.push({cls:'hit', txt:`⚔️ Você causou <strong>${dmg} de dano!</strong>`});
+          state.bossLog.push({cls:'', txt:`HP: ${hpBefore}% → ${hpAfter}%`});
+          const loreLines = ['😤 "Fraco demais para derrotar a Azotemia Eterna!"','😠 "Impossível... como você conhece os néfrons?"','😡 "Sua sabedoria me enfraquece... mas não me vencerá!"','😰 "N-não... meu poder está se dissipando!"','💀 "Você... venceu. Mas a Uremia... sempre volta..."'];
+          if (state.bossLog.length % 4 === 0) state.bossLog.push({cls:'lore', txt: loreLines[Math.floor(state.bossLog.length/4) % loreLines.length]});
+        }
         // Sons e popup de evolução
         if(lv) {
           playSound('levelup');
@@ -27395,6 +27442,14 @@
         }
         log('⚠️ Você falhou nessa carta. Ajuste a estratégia e continue.');
         playSound('wrong');
+        // Boss log para erro
+        if (isBossBattle()) {
+          state.bossLog = state.bossLog || [];
+          state.bossLog.push({cls:'miss', txt:`❌ Resposta errada!`});
+          if (!blocked) {
+            state.bossLog.push({cls:'miss', txt:`💥 O Nefromante contra-atacou!`});
+          }
+        }
         saveGame();
       }
 
@@ -27819,6 +27874,13 @@
       return Math.max(0, 100 - getBossProgress() * 10);
     }
 
+    function _getBossNarrText(progress) {
+      if (progress >= 9) return '"Não... é impossível! Você vai acabar comigo!"';
+      if (progress >= 6) return '"Sua sabedoria me corrói... mas a Uremia Eterna não será derrotada!"';
+      if (progress >= 3) return '"Você ousou ferir-me com o conhecimento... Mas seu fim se aproxima!"';
+      return '"Após noventa batalhas, você chega ao Trono da Uremia. O Arqui-Nefromante ergue-se diante de você."';
+    }
+
     /**
      * Atualiza TODA a UI do Confronto Final.
      * Chamada após renderQuestion() e após cada resposta.
@@ -27847,7 +27909,7 @@
       show(elQNum,        inBoss);
       // No modo arqui-nefromante-final, a cena de batalha fica oculta (heróis no painel esquerdo)
       show(elBattleScene, inBoss && !isArqui, 'flex');
-      show(elPartyPanel,  inBoss, 'flex');
+      show(elPartyPanel,  false); // oculto — substituído por hero+equip+log no painel esquerdo
       show(elHint,        inBoss);
       // Estrelas no topo: no mobile arqui-nefromante-final ficam abaixo da HP bar (via CSS order)
       // Estrelas no topo: ocultar no desktop arqui-nefromante-final (as estrelas ficam dentro da barra HP)
@@ -27855,10 +27917,34 @@
       // Título mobile: visível apenas no mobile em modo arqui-nefromante-final
       show(elTitleMobile, inBoss && isArqui && isMobile);
 
-      if (!inBoss) return;
+      if (!inBoss) {
+        // Garante que elementos boss ficam ocultos fora do boss mode
+        const nb = document.getElementById('bossNarrativeBox');
+        const bl = document.getElementById('bossLogSection');
+        if (nb) nb.style.display = 'none';
+        if (bl) bl.style.display = 'none';
+        return;
+      }
 
       const progress = getBossProgress();
       const hp       = getBossHP();
+
+      // ── Narrativa do boss (painel esquerdo) ──
+      const bossNarr = document.getElementById('bossNarrativeBox');
+      if (bossNarr) {
+        bossNarr.innerHTML = `
+          <h3>☠ Confronto Final</h3>
+          <p id="bossNarrText">${_getBossNarrText(progress)}</p>`;
+      }
+
+      // ── Log de batalha (painel esquerdo) ──
+      const bossLogEl = document.getElementById('bossLogEntries');
+      if (bossLogEl && state.bossLog && state.bossLog.length) {
+        bossLogEl.innerHTML = [...state.bossLog].reverse()
+          .slice(0, 12)
+          .map(e => `<div class="boss-log-entry ${e.cls}">${e.txt}</div>`)
+          .join('');
+      }
 
       // ── HP Bar ──
       const hpFill  = document.getElementById('bossHpFill');
@@ -28705,7 +28791,7 @@
       const _diffLives = {easy:5, normal:4, hard:3, hardcore:1};
       const _chosenDiff = state.difficulty || 'normal';
       const _startLives = _diffLives[_chosenDiff] || 3;
-      Object.assign(state,{level:1,xp:0,xpToNext:200,score:0,lives:_startLives,maxLives:_startLives,streak:0,gold:0,difficulty:_chosenDiff,legendaryAbilityUsed:{},current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,gameOver:false,gameStarted:true,extraLifeGiven:false,gameCompleted:false,completedGame:false,chestsOpened:0});
+      Object.assign(state,{level:1,xp:0,xpToNext:200,score:0,lives:_startLives,maxLives:_startLives,streak:0,gold:0,difficulty:_chosenDiff,legendaryAbilityUsed:{},current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,bossIntroShown:false,gameOver:false,gameStarted:true,extraLifeGiven:false,gameCompleted:false,completedGame:false,chestsOpened:0,bossLog:[]});
       state.equipment={
         weapon:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
         armor:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
