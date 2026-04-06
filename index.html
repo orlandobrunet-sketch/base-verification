@@ -3632,8 +3632,7 @@
       margin-bottom: 8px;
     }
     .arqui-nefromante-final #arquiBossTitleDesktop {
-      display: block !important;
-      white-space: nowrap;
+      display: none !important;
     }
 
     /* AJUSTE 2 DESKTOP: Estrelas abaixo da HP bar — REMOVIDAS conforme solicitado */
@@ -3865,51 +3864,49 @@
       display: none !important;
     }
 
-    /* Ajuste PC: ocultar contador de questão no PC */
+    /* Contador de questão: visível no desktop */
     .arqui-nefromante-final #bossQuestionNum {
-      display: none !important;
+      display: block !important;
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      color: #9f7aea;
+      letter-spacing: 2px;
+      text-align: center;
+      margin-bottom: 8px;
     }
 
-    /* Ajuste PC: ocultar label HP no PC */
+    /* HP Label: nome à esq + % à dir */
     .arqui-nefromante-final #bossHpLabel {
-      display: none !important;
+      display: flex !important;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
     }
 
-    /* Ajuste PC: barra HP discreta e elegante com estrelas + valor HP */
+    /* HP fill bar: visível, barra normal */
     .arqui-nefromante-final #bossHpFill {
-      display: none !important;
+      display: block !important;
     }
     .arqui-nefromante-final #bossHpTrack {
-      display: flex !important;
-      align-items: center;
-      justify-content: space-around;
-      padding: 0 8px;
       height: 24px !important;
-      width: 70% !important;
-      margin: 0 auto !important;
-      overflow: visible !important;
-      background: rgba(5,0,10,0.55) !important;
-      border: 2px solid #ffd700 !important;
-      border-radius: 10px !important;
-      position: relative;
-      box-shadow: 0 0 8px rgba(255,215,0,0.5), 0 0 16px rgba(255,215,0,0.2) !important;
+      width: 100% !important;
+      margin: 0 !important;
+      overflow: hidden !important;
+      background: #0b1020 !important;
+      border: 1px solid rgba(74,26,122,0.8) !important;
+      border-radius: 12px !important;
+      box-shadow: 0 0 12px rgba(124,58,237,0.3) !important;
+      display: block !important;
+      padding: 0 !important;
     }
-    /* Fundo roxo discreto que vai esvaziando da direita para a esquerda */
     .arqui-nefromante-final #bossHpTrack::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; bottom: 0;
-      width: var(--hp-width, 100%);
-      background: linear-gradient(90deg, rgba(55,10,100,0.7), rgba(100,30,160,0.5), rgba(130,50,180,0.35));
-      border-radius: 8px;
-      transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
-      z-index: 0;
+      content: none !important;
     }
     #arquiHpStarsDesktop {
-      display: none;
+      display: none !important;
     }
     .arqui-nefromante-final #arquiHpStarsDesktop {
-      display: contents !important;
+      display: none !important;
     }
     .arqui-hp-star {
       font-size: 0.75rem;
@@ -3937,11 +3934,11 @@
       100% { transform: scale(1.25) rotate(0deg); opacity: 1; }
     }
 
-    /* Opções: grade 2x2, borda de cristal */
+    /* Opções: coluna única, borda de cristal */
     .arqui-nefromante-final #options {
       display: grid !important;
-      grid-template-columns: 1fr 1fr !important;
-      gap: 10px !important;
+      grid-template-columns: 1fr !important;
+      gap: 8px !important;
     }
     .arqui-nefromante-final .option {
       background: linear-gradient(135deg,
@@ -4863,7 +4860,7 @@
 
       <!-- BOSS HP BAR (hidden until boss mode activates) -->
       <div id="bossHpContainer" style="display:none;">
-        <div id="bossHpLabel">ARQUI-NEFROMANTE (HP: 100%)</div>
+        <div id="bossHpLabel"><span id="bossHpName" style="font-family:'Cinzel',serif;font-size:.75rem;color:#c084fc;letter-spacing:1px;">☠ ARQUI-NEFROMANTE</span><span id="bossHpPct" style="font-size:.72rem;color:#7a90b8;">HP 100%</span></div>
         <div id="bossHpTrack">
           <div id="bossHpFill" style="width:100%;"></div>
           <!-- ESTRELAS HP DESKTOP: ficam dentro da barra, acendem conforme progressão -->
@@ -4909,10 +4906,18 @@
 
       <!-- POPUP NARRATIVO QUESTÃO 9 (mobile: popup fullscreen; PC: troca imagem) -->
       <div id="arquiQ9Popup" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.92);flex-direction:column;align-items:center;justify-content:center;padding:20px;">
-        <div style="max-width:420px;width:100%;text-align:center;">
-          <img src="assets/battle_final.png" alt="Batalha Final" style="width:100%;border-radius:12px;border:2px solid rgba(168,85,247,0.7);box-shadow:0 0 30px rgba(124,58,237,0.6);margin-bottom:16px;clip-path:inset(0 0 9% 0 round 12px);">
-          <p style="font-family:'Cinzel',serif;color:#e9d5ff;font-size:1rem;letter-spacing:2px;text-shadow:0 0 15px rgba(216,180,254,0.8);line-height:1.6;margin-bottom:20px;">&#9760; O Arqui-Nefromante está de joelhos! O Batalhão da Resistência une suas forças para o golpe definitivo. Uma última resposta separa a vitória da derrota! &#9760;</p>
-          <button onclick="document.getElementById('arquiQ9Popup').style.display='none'" style="font-family:'Cinzel',serif;background:linear-gradient(180deg,#c8960c,#7a5a06);border:2px solid #ffd700;color:#1a0a00;padding:12px 32px;border-radius:10px;font-size:0.9rem;font-weight:900;letter-spacing:3px;cursor:pointer;text-transform:uppercase;box-shadow:0 0 20px rgba(255,215,0,0.5);">Partir para o Ataque!</button>
+        <style>
+          @keyframes golpeFinalFloat { 0%,100%{transform:scale(1) translateY(0);filter:brightness(1) drop-shadow(0 0 18px rgba(168,85,247,0.7));} 50%{transform:scale(1.03) translateY(-6px);filter:brightness(1.1) drop-shadow(0 0 32px rgba(168,85,247,1));} }
+          @keyframes golpeFinalTextPulse { 0%,100%{text-shadow:0 0 20px rgba(216,180,254,0.8),0 0 40px rgba(168,85,247,0.5);} 50%{text-shadow:0 0 35px rgba(216,180,254,1),0 0 70px rgba(168,85,247,0.9),0 0 100px rgba(88,28,135,0.5);} }
+          @keyframes golpeFinalEnter { from{opacity:0;transform:scale(0.88);} to{opacity:1;transform:scale(1);} }
+          #arquiQ9PopupInner { animation: golpeFinalEnter 0.4s cubic-bezier(0.34,1.56,0.64,1) both; }
+          #arquiQ9PopupImg { animation: golpeFinalFloat 3s ease-in-out infinite; }
+          #arquiQ9PopupTitle { animation: golpeFinalTextPulse 2s ease-in-out infinite; }
+        </style>
+        <div id="arquiQ9PopupInner" style="max-width:520px;width:100%;text-align:center;">
+          <p id="arquiQ9PopupTitle" style="font-family:'Cinzel',serif;color:#e9d5ff;font-size:1.3rem;font-weight:900;letter-spacing:4px;text-transform:uppercase;margin-bottom:16px;">⚔ Golpe Final<br><span style="font-size:.85em;letter-spacing:3px;color:#c084fc;">Última Pergunta</span></p>
+          <img id="arquiQ9PopupImg" src="assets/battle_final.png" alt="Golpe Final" style="width:100%;border-radius:12px;border:2px solid rgba(168,85,247,0.7);box-shadow:0 0 40px rgba(124,58,237,0.7);margin-bottom:20px;clip-path:inset(0 0 9% 0 round 12px);">
+          <button onclick="document.getElementById('arquiQ9Popup').style.display='none'" style="font-family:'Cinzel',serif;background:linear-gradient(180deg,#7c3aed,#4c1d95);border:2px solid #a855f7;color:#f3e8ff;padding:14px 40px;border-radius:10px;font-size:1rem;font-weight:900;letter-spacing:3px;cursor:pointer;text-transform:uppercase;box-shadow:0 0 25px rgba(168,85,247,0.6);">⚔ Partir para o Ataque!</button>
         </div>
       </div>
 
@@ -27914,9 +27919,9 @@
 
       // ── HP Bar ──
       const hpFill  = document.getElementById('bossHpFill');
-      const hpLabel = document.getElementById('bossHpLabel');
-      if (hpFill)  hpFill.style.width = hp + '%';
-      if (hpLabel) hpLabel.textContent = `ARQUI-NEFROMANTE (HP: ${hp}%)`;
+      const hpPct   = document.getElementById('bossHpPct');
+      if (hpFill) hpFill.style.width = hp + '%';
+      if (hpPct)  hpPct.textContent = `HP ${hp}%`;
 
       // Muda cor da barra conforme HP diminui
       if (hpFill) {
@@ -28072,8 +28077,8 @@
         }
       }
 
-      // ── Popup narrativo na questão 9 (progress === 8 = 9ª questão) ──
-      if (progress === 8 && isArqui && isMobile) {
+      // ── Popup Golpe Final na última questão (progress === 9 = questão 10/10) ──
+      if (progress === 9 && isArqui) {
         const popup = document.getElementById('arquiQ9Popup');
         if (popup && !popup._shown) {
           popup._shown = true;
@@ -28764,6 +28769,8 @@
         relic:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0}
       };
       ui.journal.innerHTML='';
+      const _q9p = document.getElementById('arquiQ9Popup');
+      if (_q9p) { _q9p._shown = false; _q9p.style.display = 'none'; }
       log(`🎭 ${char.name}, ${char.title}, inicia sua jornada no Reino Sombrio do Néfron!`);
       shuffleQueue();
       renderHUD();
