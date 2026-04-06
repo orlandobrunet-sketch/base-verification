@@ -3770,15 +3770,13 @@
     }
 
     /* Título do boss: "CONFRONTO FINAL: ARQUI-NEFROMANTE" (mantido para boss mode normal) */
+    /* Hide sound controls and menu in boss mode — keep only NefroQuest logo */
+    .arqui-nefromante-final #soundControlsBar {
+      display: none !important;
+    }
+
     .arqui-nefromante-final #bossTitleBar {
-      color: #e9d5ff !important;
-      font-size: clamp(0.9rem, 2.2vw, 1.35rem) !important;
-      letter-spacing: 4px !important;
-      text-shadow:
-        0 0 20px rgba(216,180,254,0.95),
-        0 0 40px rgba(168,85,247,0.7),
-        0 0 80px rgba(124,58,237,0.4) !important;
-      animation: arquiTitleGlow 2.5s ease-in-out infinite alternate !important;
+      display: none !important;
     }
     @keyframes arquiTitleGlow {
       from { color: #c084fc; text-shadow: 0 0 15px rgba(192,132,252,0.8), 0 0 30px rgba(168,85,247,0.5); }
@@ -3793,32 +3791,20 @@
       padding: 0 0 4px !important;
       margin-bottom: 4px !important;
     }
+    /* Remove top glowing line from HP bar */
     .arqui-nefromante-final #bossHpContainer::before {
-      background: linear-gradient(90deg,
-        transparent, rgba(168,85,247,0.7), rgba(216,180,254,1),
-        rgba(168,85,247,0.7), transparent) !important;
-      animation: arquiHpLine 2s ease-in-out infinite alternate !important;
-    }
-    @keyframes arquiHpLine {
-      from { opacity: 0.4; }
-      to   { opacity: 1; box-shadow: 0 0 14px rgba(192,132,252,0.9); }
+      display: none !important;
     }
 
-    /* Colunas rúnicas: roxo intenso + menores para não colar nos botões */
+    /* Hide rune columns completely */
     .arqui-nefromante-final #runeColLeft,
     .arqui-nefromante-final #runeColRight {
-      width: 12px !important;
+      display: none !important;
     }
-    .arqui-nefromante-final .rune-glyph {
-      font-size: 0.42rem !important;
-      color: rgba(192,132,252,0.55) !important;
-      text-shadow: 0 0 4px rgba(168,85,247,0.4) !important;
-      letter-spacing: 0px !important;
-    }
-    .arqui-nefromante-final .rune-glyph.bright {
-      font-size: 0.42rem !important;
-      color: rgba(216,180,254,0.75) !important;
-      text-shadow: 0 0 8px rgba(216,180,254,0.8), 0 0 15px rgba(168,85,247,0.3) !important;
+
+    /* Black background in boss mode */
+    body.arqui-nefromante-final {
+      background: #000 !important;
     }
 
     /* ================================================================
@@ -3829,6 +3815,20 @@
     /* Ocultar a cena de batalha no desktop — os heróis ficam no painel esquerdo */
     .arqui-nefromante-final #bossBattleScene {
       display: none !important;
+    }
+
+    /* Hide decorative sparkles, orbs and rays in boss mode */
+    .arqui-nefromante-final .boss-sparkle,
+    .arqui-nefromante-final .boss-corner-orb,
+    .arqui-nefromante-final .boss-corner-ray {
+      display: none !important;
+    }
+
+    /* Remove glow/pulse animations from boss image container */
+    .arqui-nefromante-final #arquiBossImageDesktop {
+      animation: none !important;
+      box-shadow: none !important;
+      border-color: rgba(100,50,180,0.5) !important;
     }
 
     /* ================================================================
@@ -3947,8 +3947,8 @@
       border: 2px solid rgba(124,58,237,0.6) !important;
       border-radius: 10px !important;
       color: #e9d5ff !important;
-      padding: 12px 12px 12px 52px !important;
-      min-height: 78px !important;
+      padding: 12px 16px !important;
+      min-height: auto !important;
       display: flex !important;
       align-items: center !important;
       font-size: 0.82rem !important;
@@ -3976,31 +3976,10 @@
       border-color: #fb7185 !important;
     }
 
-    /* Badge de letra (A/B/C/D): cristal roxo */
-    /* AJUSTE 4 DESKTOP: Badge de letra mais à direita para não grudar na borda */
-    .arqui-nefromante-final .option .boss-letter-badge {
-      position: absolute !important;
-      left: 16px !important;
-      top: 50% !important;
-      transform: translateY(-50%) !important;
-      width: 32px !important;
-      height: 32px !important;
-      background: radial-gradient(circle at 38% 32%,
-        rgba(168,85,247,0.9), rgba(76,29,149,0.95)) !important;
-      border-radius: 50% !important;
-      border: 2px solid rgba(216,180,254,0.8) !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      font-family: 'Cinzel', serif !important;
-      font-size: 0.82rem !important;
-      font-weight: 900 !important;
-      color: #fff !important;
-      box-shadow:
-        0 0 10px rgba(168,85,247,0.6),
-        0 0 5px rgba(216,180,254,0.4),
-        inset 0 1px 2px rgba(255,255,255,0.15) !important;
-      text-shadow: 0 0 6px rgba(216,180,254,0.7) !important;
+    /* Badge de letra (A/B/C/D): oculto no modo boss */
+    .arqui-nefromante-final .option .boss-letter-badge,
+    .arqui-nefromante-final .boss-letter-badge {
+      display: none !important;
     }
 
     /* Botão Atacar/Golpe Final: dourado discreto */
@@ -4062,6 +4041,26 @@
     }
     .arqui-nefromante-final #finalMeterLabel {
       color: rgba(192,132,252,0.8) !important;
+    }
+
+    /* Botões no modo boss: ATACAR + NOVO JOGO lado a lado */
+    .arqui-nefromante-final .ctrl {
+      flex-direction: row !important;
+      gap: 8px !important;
+    }
+    .arqui-nefromante-final .ctrl #newBtn {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      flex: 0 0 auto !important;
+    }
+    .arqui-nefromante-final .ctrl #nextBtn:not(.hidden) {
+      flex: 1 !important;
+    }
+
+    /* Remove glow animation from ATACAR button — solid colors only */
+    .arqui-nefromante-final #nextBtn:not(.hidden) {
+      animation: none !important;
     }
 
     /* Estado crítico de HP: boss tremendo */
@@ -4874,9 +4873,6 @@
       <!-- ESTRELAS DESKTOP (abaixo da HP bar, visível só no desktop arqui-nefromante-final) -->
       <div id="arquiStarsDesktop"></div>
 
-      <!-- BOSS QUESTION COUNTER -->
-      <div id="bossQuestionNum" style="display:none;">QUESTÃO FINAL 1/10</div>
-
       <!-- IMAGEM BOSS RETANGULAR DESKTOP (acima da questão, visível só no desktop arqui-nefromante-final) -->
       <div id="arquiBossImageDesktop">
         <!-- Orbes nos 4 cantos -->
@@ -4903,6 +4899,9 @@
           <img id="arquiBossImgEl" src="assets/nefromancer.png" alt="Arqui-Nefromante">
         </div>
       </div>
+
+      <!-- BOSS QUESTION COUNTER (abaixo da imagem, acima da questão) -->
+      <div id="bossQuestionNum" style="display:none;">QUESTÃO FINAL 1/10</div>
 
       <!-- POPUP NARRATIVO QUESTÃO 9 (mobile: popup fullscreen; PC: troca imagem) -->
       <div id="arquiQ9Popup" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.92);flex-direction:column;align-items:center;justify-content:center;padding:20px;">
@@ -27224,7 +27223,10 @@
       }
       state.correctTotal = BOSS_START_CORRECT;
       state.hp = state.maxHp;
+      state.bossIntroShown = true;
       renderQuestion();
+      // Show boss intro popup
+      setTimeout(() => showBossIntroPopup(), 50);
     }
 
     function openAdminPanel() {
@@ -27451,7 +27453,7 @@
         updateBossUI();
         animateLastBossStar();
         // Muda texto do botão Próxima: "ATACAR" nas questões 91-99, "GOLPE FINAL" na última
-        if(isBossBattle()) ui.nextBtn.textContent = getBossProgress() >= 9 ? 'GOLPE FINAL' : 'ATACAR';
+        if(isBossBattle()) ui.nextBtn.textContent = getBossProgress() >= 9 ? 'GOLPE FINAL' : 'ATACAR (PRÓXIMA PERGUNTA)';
       }
     }
 
@@ -27940,7 +27942,7 @@
 
       // ── Botão Próxima: "ATACAR (responder)" nas questões 91-99, "GOLPE FINAL" apenas na última (100ª) ──
       const nextBtn = document.getElementById('nextBtn');
-      if (nextBtn) nextBtn.textContent = progress >= 9 ? 'GOLPE FINAL' : 'ATACAR (responder)';
+      if (nextBtn) nextBtn.textContent = progress >= 9 ? 'GOLPE FINAL' : 'ATACAR (PRÓXIMA PERGUNTA)';
 
       // ── Hint do botão ──
       if (elHint) {
