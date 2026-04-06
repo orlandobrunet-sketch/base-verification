@@ -3373,17 +3373,17 @@
       max-width: 260px;
     }
 
-    /* 5. Texto da questão: Cinzel dourado — capitalização normal */
+    /* 5. Texto da questão: cor igual às alternativas, sem brilho */
     .boss-battle-mode .qbox p#question,
     .arqui-nefromante-final .qbox p#question {
       font-family: 'Philosopher', Georgia, serif !important;
       font-weight: 700;
-      color: #fde68a;
+      color: #e9d5ff !important;
       font-size: 0.87rem;
       letter-spacing: 0.2px;
       line-height: 1.65;
       text-transform: none !important;
-      text-shadow: 0 0 12px rgba(255,215,0,0.35), 0 0 25px rgba(200,150,0,0.15);
+      text-shadow: none !important;
     }
 
     /* 6. qbox: painel de cristal sombrio */
@@ -3460,21 +3460,28 @@
     }
 
     /* ================================================================
-       2. DESKTOP — Painel esquerdo: heróis grandes em destaque
+       2. DESKTOP — Layout grid boss: 2 colunas centralizadas, sem dock
        ================================================================ */
 
-    /* Painel esquerdo: fundo roxo profundo, sem elementos normais */
-    /* Especificidade maior que .boss-battle-mode .panel.left */
+    /* Grid boss: remove 3ª coluna vazia, centraliza as 2 colunas */
+    .arqui-nefromante-final.boss-battle-mode.app,
+    body.arqui-nefromante-final .app {
+      grid-template-columns: minmax(260px, 360px) minmax(300px, 900px) !important;
+      justify-content: center !important;
+      max-width: 1300px !important;
+    }
+
+    /* Ocultar action dock no boss mode */
+    .arqui-nefromante-final #actionDock {
+      display: none !important;
+    }
+
+    /* Painel esquerdo: fundo preto sólido */
     .boss-battle-mode.arqui-nefromante-final .panel.left,
     .arqui-nefromante-final .panel.left {
-      background: linear-gradient(180deg,
-        rgba(12,3,32,0.98) 0%,
-        rgba(8,1,22,0.99) 60%,
-        rgba(5,0,14,1) 100%) !important;
-      border-color: rgba(168,85,247,0.6) !important;
-      box-shadow:
-        0 0 40px rgba(124,58,237,0.4),
-        inset 0 0 60px rgba(88,28,135,0.15) !important;
+      background: #0a0a0a !important;
+      border-color: rgba(100,60,160,0.4) !important;
+      box-shadow: none !important;
     }
 
     /* HUD tiles: roxo */
@@ -3591,16 +3598,11 @@
        3. DESKTOP — Painel direito: questão com cristais roxos
        ================================================================ */
 
-    /* Painel direito: fundo roxo escuro */
+    /* Painel direito: fundo preto sólido */
     .arqui-nefromante-final .panel.right {
-      border-color: rgba(168,85,247,0.7) !important;
-      background: linear-gradient(160deg,
-        rgba(12,2,35,0.97) 0%,
-        rgba(7,1,20,0.99) 100%) !important;
-      box-shadow:
-        0 0 45px rgba(124,58,237,0.4),
-        0 0 20px rgba(168,85,247,0.15),
-        inset 0 0 55px rgba(88,28,135,0.12) !important;
+      border-color: rgba(100,60,160,0.4) !important;
+      background: #0a0a0a !important;
+      box-shadow: none !important;
     }
 
     /* AJUSTE 2 DESKTOP: Logo visível no topo (mostrar h1 e subtitle, ocultar bossTitleBar no game-title) */
@@ -3660,11 +3662,13 @@
     }
     .arqui-nefromante-final #arquiBossImageDesktop {
       display: block !important;
-      animation: bossFramePulse 3s ease-in-out infinite;
+      animation: none !important;
+      border-color: rgba(100,60,160,0.4) !important;
+      box-shadow: none !important;
     }
     @keyframes bossFramePulse {
-      0%, 100% { border-color: rgba(168,85,247,0.55); box-shadow: 0 0 25px rgba(124,58,237,0.4), 0 0 50px rgba(124,58,237,0.15); }
-      50%       { border-color: rgba(216,180,254,0.9);  box-shadow: 0 0 40px rgba(168,85,247,0.7), 0 0 80px rgba(124,58,237,0.35), 0 0 120px rgba(88,28,135,0.2); }
+      0%, 100% { border-color: rgba(168,85,247,0.55); }
+      50%       { border-color: rgba(216,180,254,0.9); }
     }
     #arquiBossImageDesktop .boss-img-wrap {
       width: 100%;
@@ -3679,7 +3683,9 @@
       object-fit: cover;
       object-position: center 30%;
       border-radius: 10px;
-      animation: bossImgFloat 6s ease-in-out infinite;
+      animation: none !important;
+      transform: none !important;
+      display: block;
     }
     @keyframes bossImgFloat {
       0%, 100% { transform: scale(1.02) translateY(0px); }
@@ -3770,11 +3776,7 @@
     }
 
     /* Título do boss: "CONFRONTO FINAL: ARQUI-NEFROMANTE" (mantido para boss mode normal) */
-    /* Hide sound controls and menu in boss mode — keep only NefroQuest logo */
-    .arqui-nefromante-final #soundControlsBar {
-      display: none !important;
-    }
-
+    /* Boss title bar oculto — só mostra logo NefroQuest Ascension */
     .arqui-nefromante-final #bossTitleBar {
       display: none !important;
     }
@@ -3837,15 +3839,11 @@
 
     /* qbox: fundo escuro com borda de cristal */
     .arqui-nefromante-final .qbox {
-      background: linear-gradient(180deg,
-        rgba(10,2,28,0.98) 0%,
-        rgba(6,1,18,0.99) 100%) !important;
-      border: 1px solid rgba(168,85,247,0.5) !important;
-      border-top: 2px solid rgba(192,132,252,0.4) !important;
+      background: #0d0d0d !important;
+      border: 1px solid rgba(100,60,160,0.35) !important;
+      border-top: 1px solid rgba(100,60,160,0.35) !important;
       border-radius: 10px !important;
-      box-shadow:
-        0 0 18px rgba(88,28,135,0.2),
-        inset 0 0 18px rgba(0,0,0,0.55) !important;
+      box-shadow: none !important;
     }
 
     /* Texto da questão: capitalização normal no PC (sobrescreve boss-battle-mode) */
@@ -28092,21 +28090,21 @@
      * Deve ser chamada APÓS renderQuestion() preencher as options.
      */
     function applyBossOptionBadges() {
+      // No modo arqui-nefromante-final: garantir que o prefixo A) B) C) D)
+      // esteja no texto como texto simples (igual página normal), sem badge circular
       if (!isBossBattle()) return;
       const opts = document.querySelectorAll('#options .option');
       const letters = ['A','B','C','D'];
       opts.forEach((btn, i) => {
-        // Evitar duplicar badge
-        if (btn.querySelector('.boss-letter-badge')) return;
-        const badge = document.createElement('span');
-        badge.className = 'boss-letter-badge';
-        badge.textContent = letters[i] || String.fromCharCode(65+i);
-        btn.prepend(badge);
-        // Remover o prefixo de letra que a renderQuestion já colocou no texto
-        // O texto ficará: "A) texto" → limpar para só "texto"
+        // Remover badge circular caso exista de execução anterior
+        btn.querySelectorAll('.boss-letter-badge').forEach(b => b.remove());
+        // Garantir que o texto já começa com "A) " — se foi removido, restaurar
         const textNode = [...btn.childNodes].find(n => n.nodeType === 3);
         if (textNode) {
-          textNode.textContent = textNode.textContent.replace(/^[A-D]\)\s*/, '');
+          const prefix = (letters[i] || String.fromCharCode(65+i)) + ') ';
+          if (!textNode.textContent.trim().startsWith(prefix.trim())) {
+            textNode.textContent = prefix + textNode.textContent.replace(/^[A-D]\)\s*/, '');
+          }
         }
       });
     }
@@ -28356,13 +28354,16 @@
       popup.style.cssText = `
         position: fixed; inset: 0; z-index: 99999;
         background: rgba(0,0,0,0.92);
-        display: flex; align-items: center; justify-content: center;
+        display: flex; align-items: flex-start; justify-content: center;
         animation: fadeIn 0.6s ease;
         padding: 16px;
+        overflow-y: auto;
       `;
       popup.innerHTML = `
         <div style="
           max-width: 540px; width: 100%;
+          max-height: calc(100vh - 32px);
+          overflow-y: auto;
           background: linear-gradient(160deg, #0a0118 0%, #120230 50%, #0a0118 100%);
           border: 2px solid rgba(168,85,247,0.7);
           border-radius: 18px;
@@ -28370,7 +28371,7 @@
           text-align: center;
           box-shadow: 0 0 60px rgba(168,85,247,0.4), 0 0 120px rgba(88,28,135,0.2), inset 0 0 60px rgba(0,0,0,0.6);
           position: relative;
-          overflow: hidden;
+          margin: auto 0;
         ">
           <!-- Linha de cristal no topo -->
           <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.8),rgba(216,180,254,1),rgba(168,85,247,0.8),transparent);"></div>
