@@ -4466,7 +4466,7 @@
     // Verificação de versão — bypassa o Service Worker via no-store
     // Se a versão do servidor for diferente da carregada, limpa tudo e recarrega
     (function() {
-      const LOADED_VERSION = '5.9';
+      const LOADED_VERSION = '9.0';
       fetch('/version.json', { cache: 'no-store' })
         .then(r => r.json())
         .then(data => {
