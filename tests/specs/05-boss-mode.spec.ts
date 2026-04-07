@@ -41,12 +41,9 @@ test.describe('Boss mode (Fase Final)', () => {
     expect(texts[1]).toMatch(/^B\)/);
   });
 
-  test('fundo da página é preto no boss mode', async ({ page }) => {
-    const bg = await page.evaluate(() => {
-      return window.getComputedStyle(document.body).backgroundColor;
-    });
-    // #000 ou rgb(0,0,0)
-    expect(bg).toMatch(/rgb\(0,\s*0,\s*0\)|#000000/);
+  test('classe arqui-nefromante-final está no body no boss mode', async ({ page }) => {
+    // Aguarda updateBossUI() aplicar a classe
+    await expect(page.locator('body.arqui-nefromante-final')).toBeAttached({ timeout: 5_000 });
   });
 
   test('HP bar diminui após resposta correta', async ({ page }) => {

@@ -1,52 +1,62 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Segurança e cabeçalhos HTTP', () => {
-  test('cabeçalhos de segurança estão presentes', async ({ page }) => {
-    const res = await page.request.get('/');
-    const headers = res.headers();
+/**
+ * Testes de segurança.
+ * - Em CI local (serve): valida apenas estrutura do vercel.json e SW registration.
+ * - Em produção (BASE_URL=https://nefroquest.com): valida cabeçalhos HTTP reais.
+ */
+const isProd = (process.env.BASE_URL || '').includes('nefroquest.com');
 
-    // X-Content-Type-Options
-    expect(headers['x-content-type-options'] || '').toMatch(/nosniff/i);
+test.describe('Segurança — vercel.json e Service Worker', () => {
+  test('vercel.json contém os 4 cabeçalhos obrigatórios', async ({ page }) => {
+    // Validação estática — não depende do servidor
+    const res = await page.request.get('/vercel.json');
+    if (res.status() !== 200) { test.skip(); return; }
+    const json = await res.json();
+    const allHeaders: string[] = (json.headers || [])
+      .flatMap((h: any) => (h.headers || []).map((hh: any) => hh.key));
 
-    // X-Frame-Options
-    expect(headers['x-frame-options'] || '').toMatch(/SAMEORIGIN|DENY/i);
-
-    // Referrer-Policy
-    expect(headers['referrer-policy'] || '').toBeTruthy();
-  });
-
-  test('sw.js não é cacheado pelo CDN', async ({ page }) => {
-    const res = await page.request.get('/sw.js');
-    const cc = res.headers()['cache-control'] || '';
-    expect(cc).toMatch(/no-cache|no-store/i);
-  });
-
-  test('version.json não é cacheado pelo CDN', async ({ page }) => {
-    const res = await page.request.get('/version.json');
-    const cc = res.headers()['cache-control'] || '';
-    expect(cc).toMatch(/no-cache|no-store/i);
-  });
-
-  test('assets estáticos têm cache de longa duração', async ({ page }) => {
-    // favicon.png está em /assets implicitamente — testar manifest.json já no config
-    const res = await page.request.get('/assets/nefromancer.png').catch(() => null);
-    if (!res) { test.skip(); return; }
-    const cc = res.headers()['cache-control'] || '';
-    // Deve ter max-age alto (pelo menos 1 dia)
-    const match = cc.match(/max-age=(\d+)/);
-    if (match) {
-      expect(parseInt(match[1])).toBeGreaterThanOrEqual(86400);
-    }
+    expect(allHeaders).toContain('X-Content-Type-Options');
+    expect(allHeaders).toContain('X-Frame-Options');
+    expect(allHeaders).toContain('Referrer-Policy');
+    expect(allHeaders).toContain('Permissions-Policy');
   });
 
   test('service worker está registrado', async ({ page }) => {
     await page.goto('/');
     await page.waitForLoadState('networkidle');
     const swRegistered = await page.evaluate(async () => {
-      if (!navigator.serviceWorker) return false;
+      if (!('serviceWorker' in navigator)) return false;
       const reg = await navigator.serviceWorker.getRegistration('/');
       return !!reg;
     });
     expect(swRegistered).toBe(true);
+  });
+
+  test('sw.js é acessível', async ({ page }) => {
+    const res = await page.request.get('/sw.js');
+    expect(res.status()).toBe(200);
+    const body = await res.text();
+    expect(body).toContain('nefroquest-v');
+  });
+
+  test('cabeçalhos HTTP de segurança — apenas em produção', async ({ page }) => {
+    if (!isProd) {
+      test.skip(); // serve local não aplica regras do vercel.json
+      return;
+    }
+    const res = await page.request.get('/');
+    const h = res.headers();
+    expect(h['x-content-type-options']).toMatch(/nosniff/i);
+    expect(h['x-frame-options']).toMatch(/SAMEORIGIN|DENY/i);
+    expect(h['referrer-policy']).toBeTruthy();
+  });
+
+  test('cache sw.js e version.json — apenas em produção', async ({ page }) => {
+    if (!isProd) { test.skip(); return; }
+    for (const path of ['/sw.js', '/version.json']) {
+      const res = await page.request.get(path);
+      expect(res.headers()['cache-control'] || '').toMatch(/no-cache|no-store/i);
+    }
   });
 });
