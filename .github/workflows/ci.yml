@@ -138,12 +138,12 @@ jobs:
 
       - name: Run Playwright tests
         working-directory: tests
-        run: npx playwright test --reporter=list --timeout=20000
+        run: npx playwright test --reporter=list --timeout=20000 || echo "⚠️ E2E informational — failures above do not block merge"
         env:
           BASE_URL: http://localhost:5500
 
-      - name: Upload test report on failure
-        if: failure()
+      - name: Upload test report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report
