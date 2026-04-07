@@ -20,13 +20,17 @@ CREATE UNIQUE INDEX IF NOT EXISTS idx_leaderboard_user_id_unique
   WHERE user_id IS NOT NULL;
 
 -- 3. Check constraints de sanidade (bloqueio no banco, não só no cliente)
-ALTER TABLE public.leaderboard
-  ADD CONSTRAINT IF NOT EXISTS chk_score_range
-    CHECK (score >= 0 AND score <= 9999999),
-  ADD CONSTRAINT IF NOT EXISTS chk_level_range
-    CHECK (level >= 1 AND level <= 999),
-  ADD CONSTRAINT IF NOT EXISTS chk_player_name_length
-    CHECK (char_length(player_name) <= 40 AND char_length(player_name) >= 1);
+DO $$ BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'chk_score_range' AND conrelid = 'public.leaderboard'::regclass) THEN
+    ALTER TABLE public.leaderboard ADD CONSTRAINT chk_score_range CHECK (score >= 0 AND score <= 9999999);
+  END IF;
+  IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'chk_level_range' AND conrelid = 'public.leaderboard'::regclass) THEN
+    ALTER TABLE public.leaderboard ADD CONSTRAINT chk_level_range CHECK (level >= 1 AND level <= 999);
+  END IF;
+  IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'chk_player_name_length' AND conrelid = 'public.leaderboard'::regclass) THEN
+    ALTER TABLE public.leaderboard ADD CONSTRAINT chk_player_name_length CHECK (char_length(player_name) <= 40 AND char_length(player_name) >= 1);
+  END IF;
+END $$;
 
 -- 4. Ativar RLS
 ALTER TABLE public.leaderboard ENABLE ROW LEVEL SECURITY;
