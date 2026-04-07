@@ -4580,14 +4580,7 @@
   <div id="offlineBadge" style="display:none;position:fixed;top:8px;left:50%;transform:translateX(-50%);background:rgba(251,191,36,0.92);color:#1a1200;font-size:0.78rem;font-weight:700;padding:5px 16px;border-radius:20px;z-index:10000;backdrop-filter:blur(4px);box-shadow:0 2px 12px rgba(0,0,0,0.4);pointer-events:none;">
     📵 Offline — usando cache local
   </div>
-  <!-- PWA install banner -->
-  <div id="pwaBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9998;background:linear-gradient(180deg,rgba(18,25,46,0.97),rgba(11,20,40,0.98));border-top:1px solid rgba(99,102,241,0.4);padding:10px 16px;align-items:center;justify-content:space-between;gap:10px;backdrop-filter:blur(8px);">
-    <span style="color:var(--txt);font-size:0.83rem;">📱 Instalar NefroQuest para uso offline</span>
-    <div style="display:flex;gap:8px;flex-shrink:0;">
-      <button onclick="_installPWA()" style="background:linear-gradient(180deg,#4f46e5,#3730a3);border:none;color:#fff;padding:6px 14px;border-radius:8px;font-size:0.8rem;font-weight:700;cursor:pointer;">Instalar</button>
-      <button onclick="_dismissPWA()" style="background:none;border:1px solid rgba(255,255,255,0.2);color:var(--txt-dim);padding:6px 12px;border-radius:8px;font-size:0.8rem;cursor:pointer;">✕</button>
-    </div>
-  </div>
+  <!-- PWA install banner (desativado) -->
   <!-- Background layers -->
   <div class="bg-layer"></div>
   <div class="bg-overlay"></div>
@@ -4676,6 +4669,7 @@
           <button class="profile-popup-item" onclick="openPlanModal();event.stopPropagation()">⭐ Seu Plano</button>
           <button class="profile-popup-item admin-item" onclick="openAdminPanel();event.stopPropagation()">🛡 Administração</button>
           <button class="profile-popup-item admin-item" onclick="adminJumpToBoss();event.stopPropagation()">⚔ Fase Final</button>
+          <button class="profile-popup-item admin-item" onclick="openAnalyticsPanel();event.stopPropagation()">📊 Analytics</button>
           <hr class="profile-popup-divider">
           <button class="profile-popup-logout" onclick="authLogout();event.stopPropagation()">Sair</button>
         </div>
@@ -4763,6 +4757,7 @@
             <button class="profile-popup-item" onclick="openPlanModal();event.stopPropagation()">⭐ Seu Plano</button>
             <button class="profile-popup-item admin-item" onclick="openAdminPanel();event.stopPropagation()">🛡 Administração</button>
             <button class="profile-popup-item admin-item" onclick="adminJumpToBoss();event.stopPropagation()">⚔ Fase Final</button>
+            <button class="profile-popup-item admin-item" onclick="openAnalyticsPanel();event.stopPropagation()">📊 Analytics</button>
             <hr class="profile-popup-divider">
             <button class="profile-popup-logout" onclick="authLogout();event.stopPropagation()">Sair</button>
           </div>
