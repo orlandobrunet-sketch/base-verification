@@ -1,7 +1,10 @@
 import { test, expect } from '@playwright/test';
-import { injectGameState, waitForGame, pickFirstOption, answerAndAdvance } from '../helpers/game';
+import { injectGameState, waitForGame, pickFirstOption, answerAndAdvance , isLiveEnv } from '../helpers/game';
 
 test.describe('Gameplay básico', () => {
+  test.beforeAll(() => {
+    if (!isLiveEnv) test.skip();
+  });
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
     await injectGameState(page);

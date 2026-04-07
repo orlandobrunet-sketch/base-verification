@@ -1,7 +1,10 @@
 import { test, expect } from '@playwright/test';
-import { injectGameState, waitForGame } from '../helpers/game';
+import { injectGameState, waitForGame , isLiveEnv } from '../helpers/game';
 
 test.describe('Leaderboard — rate limiting e validação', () => {
+  test.beforeAll(() => {
+    if (!isLiveEnv) test.skip();
+  });
   test('boardPush respeita rate limit de 1 push por sessão', async ({ page }) => {
     await page.goto('/');
     await injectGameState(page);

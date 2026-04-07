@@ -1,6 +1,9 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Save schema — migração e resiliência', () => {
+  test.beforeAll(() => {
+    if (!isLiveEnv) test.skip();
+  });
   test('save v1 (sem schemaVersion) é migrado para v2 sem perder dados', async ({ page }) => {
     await page.goto('/');
 

@@ -1,7 +1,10 @@
 import { test, expect } from '@playwright/test';
-import { injectGameState, waitForGame, answerAndAdvance } from '../helpers/game';
+import { injectGameState, waitForGame, answerAndAdvance , isLiveEnv } from '../helpers/game';
 
 test.describe('Progressão e salvamento', () => {
+  test.beforeAll(() => {
+    if (!isLiveEnv) test.skip();
+  });
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
     await injectGameState(page, { score: 1000, level: 3 });

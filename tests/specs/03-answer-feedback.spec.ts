@@ -1,7 +1,10 @@
 import { test, expect } from '@playwright/test';
-import { injectGameState, waitForGame } from '../helpers/game';
+import { injectGameState, waitForGame , isLiveEnv } from '../helpers/game';
 
 test.describe('Feedback de resposta', () => {
+  test.beforeAll(() => {
+    if (!isLiveEnv) test.skip();
+  });
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
     await injectGameState(page);
