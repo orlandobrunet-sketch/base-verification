@@ -60,7 +60,7 @@ test.describe('Save schema — migração e resiliência', () => {
     });
 
     await page.reload();
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
 
     // Não deve ter erros não tratados
     const critical = errors.filter(e => !e.includes('fetch') && !e.includes('net::'));

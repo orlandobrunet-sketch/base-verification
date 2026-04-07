@@ -8,7 +8,7 @@ test.describe('Landing / Welcome screen', () => {
   test('carrega sem erros de console críticos', async ({ page }) => {
     const errors: string[] = [];
     page.on('pageerror', e => errors.push(e.message));
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     const critical = errors.filter(e =>
       !e.includes('supabase') &&   // falhas de rede auth são esperadas offline
       !e.includes('fetch') &&

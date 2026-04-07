@@ -24,7 +24,7 @@ test.describe('Segurança — vercel.json e Service Worker', () => {
 
   test('service worker está registrado', async ({ page }) => {
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
     const swRegistered = await page.evaluate(async () => {
       if (!('serviceWorker' in navigator)) return false;
       const reg = await navigator.serviceWorker.getRegistration('/');
