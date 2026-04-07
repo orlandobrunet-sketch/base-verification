@@ -71,20 +71,66 @@
 
   <style>
     :root {
-      --bg: #0a0e1a;
-      --panel-bg: rgba(12, 18, 40, 0.85);
+      /* ── Core palette ─────────────────────────────────────── */
+      --bg:           #0a0e1a;
+      --bg-deep:      #0b1329;
+      --bg-panel:     #0e1525;
+      --panel-bg:     rgba(12, 18, 40, 0.85);
       --panel-border: #3a5a8a;
-      --gold: #ffd700;
-      --gold-dark: #b8860b;
-      --txt: #e8efff;
-      --txt-dim: #8a9cc0;
-      --ok: #34d399;
-      --bad: #fb7185;
-      --parchment: #d4c4a0;
+
+      /* ── Gold (primary accent) ────────────────────────────── */
+      --gold:         #ffd700;
+      --gold-dark:    #b8860b;
+      --gold-light:   #fcd34d;
+
+      /* ── Blue scale ───────────────────────────────────────── */
+      --blue-dark:    #2a4a7a;   /* borders, secondary frames  */
+      --blue:         #60a5fa;   /* interactive elements       */
+      --blue-light:   #93c5fd;   /* highlights                 */
+
+      /* ── Purple scale (boss / epic) ──────────────────────── */
+      --purple-dark:  #7c3aed;
+      --purple:       #c084fc;
+      --purple-light: #a78bfa;
+
+      /* ── Semantic ─────────────────────────────────────────── */
+      --txt:          #e8efff;
+      --txt-dim:      #8a9cc0;
+      --ok:           #34d399;
+      --bad:          #fb7185;
+      --overlay:      rgba(0, 0, 0, 0.75);
+
+      /* ── Parchment / wood (tavern UI) ────────────────────── */
+      --parchment:      #d4c4a0;
       --parchment-dark: #b8a67a;
-      --wood-dark: #2a1a0a;
-      --wood-mid: #4a3018;
-      --wood-light: #6a4828;
+      --wood-dark:      #2a1a0a;
+      --wood-mid:       #4a3018;
+      --wood-light:     #6a4828;
+
+      /* ── Typography scale ─────────────────────────────────── */
+      --text-2xs: 0.62rem;
+      --text-xs:  0.72rem;
+      --text-sm:  0.82rem;
+      --text-base: 0.88rem;
+      --text-md:  1rem;
+      --text-lg:  1.2rem;
+      --text-xl:  1.5rem;
+      --text-2xl: 2rem;
+
+      /* ── Spacing scale ────────────────────────────────────── */
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+
+      /* ── Border-radius scale ──────────────────────────────── */
+      --radius-sm:   6px;
+      --radius-md:   10px;
+      --radius-lg:   14px;
+      --radius-xl:   20px;
+      --radius-full: 9999px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -146,7 +192,7 @@
     /* PANELS - Wood/Parchment Frame */
     .panel {
       background: linear-gradient(180deg, #1a1228 0%, #12192e 50%, #0e1525 100%);
-      border: 2px solid #2a4a7a;
+      border: 2px solid var(--blue-dark);
       border-radius: 12px;
       position: relative;
       overflow: hidden;
@@ -169,7 +215,7 @@
     /* HERO SECTION */
     .hero {
       background: linear-gradient(135deg, rgba(20,15,40,0.9), rgba(15,25,50,0.9));
-      border: 1px solid #2a4a7a; border-radius: 10px;
+      border: 1px solid var(--blue-dark); border-radius: 10px;
       padding: 12px; margin-bottom: 10px;
       position: relative;
     }
@@ -185,9 +231,9 @@
       box-shadow: 0 0 15px rgba(255,215,0,0.2);
     }
     .portrait.l5 { border-color: #ffd700; box-shadow: 0 0 25px rgba(255,215,0,0.6), 0 0 50px rgba(255,215,0,0.2); }
-    .portrait.l4 { border-color: #c084fc; box-shadow: 0 0 22px rgba(192,132,252,0.5); }
+    .portrait.l4 { border-color: var(--purple); box-shadow: 0 0 22px rgba(192,132,252,0.5); }
     .portrait.l3 { border-color: #34d399; box-shadow: 0 0 18px rgba(52,211,153,0.4); }
-    .portrait.l2 { border-color: #60a5fa; box-shadow: 0 0 16px rgba(96,165,250,0.4); }
+    .portrait.l2 { border-color: var(--blue); box-shadow: 0 0 16px rgba(96,165,250,0.4); }
     .hero-info { flex: 1; }
     .class {
       font-family: 'Cinzel', serif; font-weight: 700;
@@ -202,11 +248,11 @@
     }
     .xp-bar {
       height: 8px; border-radius: 99px; overflow: hidden;
-      border: 1px solid #2a4a7a; background: #0b1329; margin-top: 8px;
+      border: 1px solid var(--blue-dark); background: #0b1329; margin-top: 8px;
     }
     .xp-bar > div {
       height: 100%; width: 0; border-radius: 99px;
-      background: linear-gradient(90deg, #2563eb, #7c3aed, #c084fc);
+      background: linear-gradient(90deg, #2563eb, #7c3aed, var(--purple));
       transition: width 0.4s ease;
       box-shadow: 0 0 6px rgba(124,58,237,0.5);
     }
@@ -215,7 +261,7 @@
     /* STORY */
     .story {
       background: linear-gradient(135deg, rgba(20,15,40,0.8), rgba(15,25,50,0.8));
-      border: 1px solid #2a4a7a; border-radius: 10px;
+      border: 1px solid var(--blue-dark); border-radius: 10px;
       padding: 10px; margin-bottom: 10px;
     }
     .story h3 {
@@ -231,7 +277,7 @@
     }
     .tile {
       background: linear-gradient(180deg, rgba(15,20,40,0.9), rgba(10,15,30,0.9));
-      border: 1px solid #2a4a7a; border-radius: 8px;
+      border: 1px solid var(--blue-dark); border-radius: 8px;
       padding: 6px; text-align: center;
     }
     .tile span { display: block; color: var(--txt-dim); font-size: 0.62rem; text-transform: uppercase; letter-spacing: 1px; }
@@ -242,7 +288,7 @@
     /* EQUIPMENT */
     .equip {
       background: linear-gradient(135deg, rgba(20,15,40,0.8), rgba(15,25,50,0.8));
-      border: 1px solid #2a4a7a; border-radius: 10px;
+      border: 1px solid var(--blue-dark); border-radius: 10px;
       padding: 10px; margin-bottom: 10px;
     }
     .equip h3 {
@@ -258,7 +304,7 @@
     .slot:hover { border-color: #3a6a9a; }
     .slot-icon {
       width: 36px; height: 36px; border-radius: 6px;
-      border: 1px solid #2a4a7a; object-fit: cover;
+      border: 1px solid var(--blue-dark); object-fit: cover;
       background: #0a0e1a;
       /* Unifica o estilo visual entre JPEGs (assets/items) e PNGs (assets/images) */
       filter: saturate(1.25) contrast(1.05) brightness(1.0);
@@ -498,14 +544,14 @@
     .narrative-card .narr-progress strong { color:var(--gold); }
     .narrative-card button { margin-top:6px; }
     .rar-common { color: #8a9cc0; }
-    .rar-rare { color: #60a5fa; }
-    .rar-epic { color: #c084fc; }
+    .rar-rare { color: var(--blue); }
+    .rar-epic { color: var(--purple); }
     .rar-legendary { color: var(--gold); text-shadow: 0 0 8px rgba(255,215,0,0.4); }
 
     /* LOG */
     .log {
       background: linear-gradient(135deg, rgba(20,15,40,0.8), rgba(15,25,50,0.8));
-      border: 1px solid #2a4a7a; border-radius: 10px;
+      border: 1px solid var(--blue-dark); border-radius: 10px;
       padding: 8px 10px; max-height: 140px; overflow-y: auto;
     }
     .log h3 { font-family: 'Cinzel', serif; font-size: 0.82rem; color: var(--gold); margin-bottom: 6px; }
@@ -604,7 +650,7 @@
     .options { display: grid; gap: 8px; }
     .option {
       padding: 12px 16px;
-      border: 2px solid #2a4a7a;
+      border: 2px solid var(--blue-dark);
       border-radius: 10px;
       background: linear-gradient(180deg, rgba(20,30,55,0.95), rgba(12,20,40,0.95));
       color: #c8d8f0;
@@ -616,7 +662,7 @@
     }
     .option::before {
       content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
-      background: linear-gradient(180deg, #3a5a8a, #2a4a7a);
+      background: linear-gradient(180deg, #3a5a8a, var(--blue-dark));
       border-radius: 10px 0 0 10px;
     }
     .option:hover:not(:disabled) {
@@ -640,7 +686,7 @@
     /* FEEDBACK */
     .feedback {
       background: linear-gradient(135deg, rgba(20,15,40,0.85), rgba(15,25,50,0.85));
-      border: 1px solid #2a4a7a; border-radius: 10px;
+      border: 1px solid var(--blue-dark); border-radius: 10px;
       padding: 12px; min-height: 60px; margin-top: 10px;
       font-size: 0.85rem; line-height: 1.5; color: #b0c4e8;
     }
@@ -795,7 +841,7 @@
       padding: 10px 0; margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;
     }
     .btn {
-      border: 2px solid #2a4a7a;
+      border: 2px solid var(--blue-dark);
       background: linear-gradient(180deg, #1e3a5e 0%, #152a48 50%, #0e1e38 100%);
       color: #c8d8f0; border-radius: 8px;
       padding: 10px 16px; font-weight: 700;
@@ -1042,7 +1088,7 @@
       z-index: 2;
     }
     .dock-cost.purple {
-      background: linear-gradient(135deg, #c084fc, #7c3aed);
+      background: linear-gradient(135deg, var(--purple), #7c3aed);
       color: #fff;
       border-color: rgba(192,132,252,0.5);
     }
@@ -1063,7 +1109,7 @@
     .modal {
       width: min(700px, 92vw);
       background: linear-gradient(180deg, #12192e, #0b1428);
-      border: 2px solid #2a4a7a; border-radius: 14px; padding: 16px;
+      border: 2px solid var(--blue-dark); border-radius: 14px; padding: 16px;
       box-shadow: 0 0 40px rgba(30,60,120,0.4);
     }
     table { width: 100%; border-collapse: collapse; margin-top: 8px; }
@@ -1098,7 +1144,7 @@
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
     .article-card {
-      background: rgba(10,15,30,0.8); border: 1px solid #2a4a7a;
+      background: rgba(10,15,30,0.8); border: 1px solid var(--blue-dark);
       border-radius: 10px; padding: 16px; margin-bottom: 12px;
     }
     .article-card h3 { margin: 0 0 8px; color: var(--gold); font-size: 1rem; }
@@ -1155,7 +1201,7 @@
     }
     .char-card {
       background: linear-gradient(180deg, rgba(15,20,40,0.95), rgba(10,15,30,0.95));
-      border: 2px solid #2a4a7a; border-radius: 12px;
+      border: 2px solid var(--blue-dark); border-radius: 12px;
       padding: 14px; text-align: center; cursor: pointer;
       transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
     }
@@ -1184,7 +1230,7 @@
     }
     .name-input-box input {
       width: 100%; padding: 10px; font-size: 1rem;
-      background: #0e1525; border: 1px solid #2a4a7a;
+      background: #0e1525; border: 1px solid var(--blue-dark);
       border-radius: 6px; color: var(--txt); font-family: inherit;
     }
     .name-input-box input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 10px rgba(255,215,0,0.2); }
@@ -1554,7 +1600,7 @@
     .game-modes-box .gm-btn {
       display: flex; align-items: center; gap: 12px;
       width: 100%; background: rgba(255,255,255,0.04);
-      border: 1px solid #2a4a7a; border-radius: 10px;
+      border: 1px solid var(--blue-dark); border-radius: 10px;
       padding: 13px 16px; margin-bottom: 10px;
       cursor: pointer; color: #c8d8f0; font-size: 0.88rem;
       font-family: 'Philosopher', serif; transition: background 0.2s, border-color 0.2s;
@@ -1582,7 +1628,7 @@
       display: none; /* oculto por padrão; o PC mostra via media query */
     }
     .sound-toggle {
-      background: rgba(15,20,40,1); border: 2px solid #2a4a7a; border-radius: 8px;
+      background: rgba(15,20,40,1); border: 2px solid var(--blue-dark); border-radius: 8px;
       width: 30px; height: 30px; cursor: pointer; color: var(--txt-dim); font-size: 0.85rem;
       transition: border-color 0.2s, color 0.2s, opacity 0.2s;
       display: flex; align-items: center; justify-content: center;
@@ -1680,14 +1726,14 @@
 
     /* ===== PROFILE ICON + POPUP ===== */
     .profile-btn {
-      background: rgba(15,20,40,1); border: 2px solid #2a4a7a; border-radius: 8px;
+      background: rgba(15,20,40,1); border: 2px solid var(--blue-dark); border-radius: 8px;
       width: 30px; height: 30px; cursor: pointer; color: var(--txt-dim); font-size: 0.85rem;
       transition: border-color 0.2s, color 0.2s;
       display: none; align-items: center; justify-content: center;
       box-shadow: 0 2px 10px rgba(0,0,0,0.5);
       position: relative;
     }
-    .profile-btn.visible { display: flex; border-color: #60a5fa; color: #60a5fa; }
+    .profile-btn.visible { display: flex; border-color: var(--blue); color: var(--blue); }
     .profile-btn:hover { border-color: var(--gold); color: var(--gold); }
     .profile-popup {
       position: absolute; top: calc(100% + 8px); right: 0;
@@ -1765,13 +1811,13 @@
     @media (max-width: 640px) { .pricing-cards { grid-template-columns: 1fr; } }
     .pricing-card {
       background: linear-gradient(160deg,#0f1e30,#0b1428);
-      border: 1px solid #2a4a7a; border-radius: 20px;
+      border: 1px solid var(--blue-dark); border-radius: 20px;
       padding: 26px 20px 20px; cursor: pointer;
       transition: transform 0.2s, border-color 0.25s, box-shadow 0.25s;
       position: relative; text-align: center;
     }
     .pricing-card:hover { transform: translateY(-3px); }
-    .pricing-card:hover { border-color: #60a5fa; box-shadow: 0 0 20px rgba(96,165,250,0.12); }
+    .pricing-card:hover { border-color: var(--blue); box-shadow: 0 0 20px rgba(96,165,250,0.12); }
     .pricing-card.featured {
       border-color: #ffd700;
       box-shadow: 0 0 32px rgba(255,215,0,0.14);
@@ -1809,8 +1855,8 @@
       font-family: 'Cinzel', serif; text-transform: uppercase; letter-spacing: 1px;
     }
     .pricing-choose-btn:hover { opacity: 0.85; }
-    .btn-free { background: rgba(96,165,250,0.1); color: #60a5fa; border: 2px solid rgba(96,165,250,0.45) !important; }
-    .btn-monthly { background: rgba(168,85,247,0.15); color: #c084fc; border: 2px solid rgba(168,85,247,0.4) !important; }
+    .btn-free { background: rgba(96,165,250,0.1); color: var(--blue); border: 2px solid rgba(96,165,250,0.45) !important; }
+    .btn-monthly { background: rgba(168,85,247,0.15); color: var(--purple); border: 2px solid rgba(168,85,247,0.4) !important; }
     .btn-lifetime { background: linear-gradient(135deg,#b8860b,#ffd700); color: #1a0e00; border: none !important; }
     .pricing-login-link {
       color: #506070; font-size: 0.8rem; cursor: pointer;
@@ -1856,7 +1902,7 @@
     #accountModal.show, #planModal.show, #adminModal.show { display: flex; }
     .modal-panel {
       background: linear-gradient(160deg, #0d1428, #12192e);
-      border: 2px solid #2a4a7a; border-radius: 20px;
+      border: 2px solid var(--blue-dark); border-radius: 20px;
       max-width: 420px; width: 100%; padding: 28px 24px;
       max-height: calc(100vh - 64px); overflow-y: auto;
       box-shadow: 0 0 40px rgba(30,60,120,0.4);
@@ -1883,11 +1929,11 @@
     .modal-panel label { display: block; color: #708090; font-size: 0.75rem; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
     .modal-panel input, .modal-panel select {
       width: 100%; box-sizing: border-box;
-      background: rgba(255,255,255,0.06); border: 1px solid #2a4a7a;
+      background: rgba(255,255,255,0.06); border: 1px solid var(--blue-dark);
       border-radius: 8px; padding: 9px 12px; color: #e0f0ff;
       font-size: 0.85rem; outline: none;
     }
-    .modal-panel input:focus, .modal-panel select:focus { border-color: #60a5fa; }
+    .modal-panel input:focus, .modal-panel select:focus { border-color: var(--blue); }
     .modal-panel .modal-actions { display: flex; gap: 10px; margin-top: 18px; }
     .modal-panel .modal-actions button { flex: 1; padding: 10px; border-radius: 8px; font-size: 0.85rem; font-weight: 700; cursor: pointer; font-family: 'Cinzel', serif; }
     .plan-badge {
@@ -1896,18 +1942,18 @@
       font-family: 'Cinzel', serif; font-size: 0.95rem;
       margin: 0 auto 20px; font-weight: 700;
     }
-    .plan-badge.free { background: rgba(96,165,250,0.12); color: #60a5fa; border: 2px solid rgba(96,165,250,0.4); }
+    .plan-badge.free { background: rgba(96,165,250,0.12); color: var(--blue); border: 2px solid rgba(96,165,250,0.4); }
     .plan-badge.premium { background: rgba(255,215,0,0.1); color: #ffd700; border: 2px solid rgba(255,215,0,0.4); }
     .plan-badge.admin { background: rgba(167,139,250,0.12); color: #a78bfa; border: 2px solid rgba(167,139,250,0.4); }
     .plan-stat { color: #a0b8d0; font-size: 0.85rem; margin-bottom: 8px; text-align: center; }
     .plan-bar-wrap { background: rgba(255,255,255,0.08); border-radius: 6px; height: 8px; margin: 10px 0 20px; overflow: hidden; }
-    .plan-bar { height: 100%; border-radius: 6px; background: linear-gradient(90deg,#60a5fa,#a78bfa); transition: width 0.5s; }
+    .plan-bar { height: 100%; border-radius: 6px; background: linear-gradient(90deg,var(--blue),#a78bfa); transition: width 0.5s; }
     .whitelist-input-row { display: flex; gap: 8px; margin-bottom: 14px; }
     .whitelist-input-row input { flex: 1; }
     .whitelist-list { max-height: 200px; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; }
     .whitelist-item {
       display: flex; align-items: center; justify-content: space-between;
-      background: rgba(255,255,255,0.04); border: 1px solid #2a4a7a;
+      background: rgba(255,255,255,0.04); border: 1px solid var(--blue-dark);
       border-radius: 8px; padding: 7px 12px; font-size: 0.8rem; color: #90b4e0;
     }
     .whitelist-item button { background: rgba(251,113,133,0.15); color: #fb7185; border: 1px solid rgba(251,113,133,0.3); border-radius: 5px; padding: 3px 8px; font-size: 0.75rem; cursor: pointer; }
@@ -1922,13 +1968,13 @@
     }
     .streak-x2 .streak-mult { background: rgba(234,179,8,0.3); color: #fbbf24; border: 1px solid rgba(234,179,8,0.5); }
     .streak-x3 .streak-mult { background: rgba(239,68,68,0.3); color: #f87171; border: 1px solid rgba(239,68,68,0.5); }
-    .streak-x4 .streak-mult { background: rgba(168,85,247,0.3); color: #c084fc; border: 1px solid rgba(168,85,247,0.5); }
+    .streak-x4 .streak-mult { background: rgba(168,85,247,0.3); color: var(--purple); border: 1px solid rgba(168,85,247,0.5); }
     .streak-x5 .streak-mult { background: rgba(255,215,0,0.3); color: #ffd700; border: 1px solid rgba(255,215,0,0.5); text-shadow: 0 0 6px rgba(255,215,0,0.5); }
 
     /* BADGES DE PROGRESSÃO */
     .badges-container {
       margin-top: 10px; padding: 8px; background: rgba(10,15,30,0.6);
-      border: 1px solid #2a4a7a; border-radius: 8px;
+      border: 1px solid var(--blue-dark); border-radius: 8px;
     }
     .badges-title {
       font-size: 0.7rem; color: var(--gold); text-transform: uppercase;
@@ -1939,7 +1985,7 @@
     }
     .badge-slot {
       aspect-ratio: 1; border-radius: 6px; overflow: hidden;
-      border: 2px solid #2a4a7a; background: rgba(0,0,0,0.5);
+      border: 2px solid var(--blue-dark); background: rgba(0,0,0,0.5);
       position: relative; transition: border-color 0.3s, box-shadow 0.3s;
     }
     .badge-slot.unlocked {
@@ -1982,7 +2028,7 @@
     /* SCROLLBAR */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #2a4a7a; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb { background: var(--blue-dark); border-radius: 3px; }
     ::-webkit-scrollbar-thumb:hover { background: #3a6a9a; }
 
     /* ============ PC ONLY (min-width: 769px) ============ */
@@ -2040,7 +2086,7 @@
         box-shadow: 4px 0 30px rgba(0,0,0,0.8);
         padding-bottom: 80px;
         background: linear-gradient(180deg, #0c1e35 0%, #091626 50%, #060f1e 100%) !important;
-        border: 2px solid #2a4a7a;
+        border: 2px solid var(--blue-dark);
         isolation: isolate;
       }
       .panel.left.mobile-open {
@@ -2307,14 +2353,14 @@
       }
       .mobile-bottom-dock .mdock-btn.forge-item svg { color: #f59e5a; }
       .mobile-bottom-dock .mdock-btn.forge-item .mdock-label { color: #f59e5a; }
-      .mobile-bottom-dock .mdock-btn.forge-legendary svg { color: #c084fc; }
-      .mobile-bottom-dock .mdock-btn.forge-legendary .mdock-label { color: #c084fc; }
+      .mobile-bottom-dock .mdock-btn.forge-legendary svg { color: var(--purple); }
+      .mobile-bottom-dock .mdock-btn.forge-legendary .mdock-label { color: var(--purple); }
       .mobile-bottom-dock .mdock-btn.open-chest svg { color: #fbbf24; }
       .mobile-bottom-dock .mdock-btn.open-chest .mdock-label { color: #fbbf24; }
       .mobile-bottom-dock .mdock-btn.ranking svg { color: #34d399; }
       .mobile-bottom-dock .mdock-btn.ranking .mdock-label { color: #34d399; }
-      .mobile-bottom-dock .mdock-btn.stats svg { color: #60a5fa; }
-      .mobile-bottom-dock .mdock-btn.stats .mdock-label { color: #60a5fa; }
+      .mobile-bottom-dock .mdock-btn.stats svg { color: var(--blue); }
+      .mobile-bottom-dock .mdock-btn.stats .mdock-label { color: var(--blue); }
       .mobile-bottom-dock .mdock-btn.conquistas svg { color: #ffd700; }
       .mobile-bottom-dock .mdock-btn.conquistas .mdock-label { color: #ffd700; }
       .mobile-bottom-dock .mdock-btn.personagem svg { color: #a78bfa; }
@@ -2445,7 +2491,7 @@
         border-radius: 10px;
         padding: 6px 10px 4px;
         cursor: pointer;
-        color: #c084fc;
+        color: var(--purple);
         box-shadow: 0 0 10px rgba(139,92,246,0.25);
         -webkit-tap-highlight-color: transparent;
       }
@@ -2721,7 +2767,7 @@
     }
     #bossHpFill {
       height: 100%;
-      background: linear-gradient(90deg, #4c1d95, #7c3aed, #a855f7, #c084fc);
+      background: linear-gradient(90deg, #4c1d95, #7c3aed, #a855f7, var(--purple));
       border-radius: 10px;
       transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
       box-shadow: 0 0 16px rgba(168,85,247,0.9), 0 0 30px rgba(168,85,247,0.4);
@@ -3014,7 +3060,7 @@
       padding: 10px; margin-bottom: 10px;
     }
     #bossNarrativeBox h3 {
-      font-family: 'Cinzel', serif; font-size: .78rem; color: #c084fc;
+      font-family: 'Cinzel', serif; font-size: .78rem; color: var(--purple);
       margin-bottom: 6px; letter-spacing: 1px;
     }
     #bossNarrativeBox p { font-size: .78rem; color: #c4b5fd; line-height: 1.55; font-style: italic; }
@@ -3116,7 +3162,7 @@
     .boss-party-hero-name {
       font-family: 'Cinzel', serif;
       font-size: 0.52rem;
-      color: #c084fc;
+      color: var(--purple);
       letter-spacing: 0.5px;
       text-align: center;
       text-shadow: 0 0 6px rgba(192,132,252,0.5);
@@ -3574,7 +3620,7 @@
       animation: arquiBannerGlow 2.8s ease-in-out infinite alternate !important;
     }
     @keyframes arquiBannerGlow {
-      from { color: #c084fc; text-shadow: 0 0 10px rgba(192,132,252,0.7); }
+      from { color: var(--purple); text-shadow: 0 0 10px rgba(192,132,252,0.7); }
       to   { color: #f3e8ff; text-shadow: 0 0 22px rgba(216,180,254,1), 0 0 45px rgba(168,85,247,0.5); }
     }
 
@@ -3618,7 +3664,7 @@
     }
     .arqui-nefromante-final .boss-party-hero-name {
       font-size: 0.58rem !important;
-      color: #c084fc !important;
+      color: var(--purple) !important;
       text-shadow: 0 0 8px rgba(192,132,252,0.6) !important;
       letter-spacing: 0.8px !important;
     }
@@ -3626,7 +3672,7 @@
     /* Motto: "A vitória é nossa!" */
     .arqui-nefromante-final .boss-party-motto {
       font-size: 0.78rem !important;
-      color: #c084fc !important;
+      color: var(--purple) !important;
       font-style: italic !important;
       animation: arquiMottoGlow 3.5s ease-in-out infinite alternate !important;
     }
@@ -3822,7 +3868,7 @@
       display: none !important;
     }
     @keyframes arquiTitleGlow {
-      from { color: #c084fc; text-shadow: 0 0 15px rgba(192,132,252,0.8), 0 0 30px rgba(168,85,247,0.5); }
+      from { color: var(--purple); text-shadow: 0 0 15px rgba(192,132,252,0.8), 0 0 30px rgba(168,85,247,0.5); }
       to   { color: #f3e8ff; text-shadow: 0 0 30px rgba(216,180,254,1), 0 0 60px rgba(192,132,252,0.8), 0 0 100px rgba(124,58,237,0.4); }
     }
 
@@ -4066,7 +4112,7 @@
 
     /* Medidor de estrelas: roxo vibrante */
     .arqui-nefromante-final .final-star.filled {
-      color: #c084fc !important;
+      color: var(--purple) !important;
       filter:
         drop-shadow(0 0 10px rgba(192,132,252,1))
         drop-shadow(0 0 20px rgba(168,85,247,0.7)) !important;
@@ -4191,7 +4237,7 @@
       .arqui-nefromante-final .game-title h1 {
         font-size: 1.1rem !important;
         letter-spacing: 2px !important;
-        color: #c084fc !important;
+        color: var(--purple) !important;
         text-shadow: 0 0 15px rgba(192,132,252,0.8), 0 0 30px rgba(168,85,247,0.5) !important;
       }
       .arqui-nefromante-final .game-title .subtitle {
@@ -4342,7 +4388,7 @@
       .arqui-hero-strip-name {
         font-family: 'Cinzel', serif;
         font-size: 0.48rem;
-        color: #c084fc;
+        color: var(--purple);
         letter-spacing: 0.5px;
         text-align: center;
         text-shadow: 0 0 5px rgba(192,132,252,0.5);
@@ -4655,7 +4701,7 @@
           <div class="wsaved-charname" id="wsSavedChar">-</div>
           <div class="wsaved-stats">
             <div class="wsaved-stat">
-              <span class="ws-v" style="color:#60a5fa" id="wsSavedLevel">-</span>
+              <span class="ws-v" style="color:var(--blue)" id="wsSavedLevel">-</span>
               <span class="ws-l">Nível</span>
             </div>
             <div class="wsaved-stat">
@@ -4817,7 +4863,7 @@
 
       <!-- BOSS MODE: battle log (substitui Jornada) -->
       <div id="bossLogSection" style="display:none;">
-        <h3 style="font-family:'Cinzel',serif;font-size:.82rem;color:#c084fc;margin-bottom:8px;">⚔ Log de Batalha</h3>
+        <h3 style="font-family:'Cinzel',serif;font-size:.82rem;color:var(--purple);margin-bottom:8px;">⚔ Log de Batalha</h3>
         <div id="bossLogEntries"></div>
       </div>
     </section>
@@ -4896,7 +4942,7 @@
 
       <!-- BOSS HP BAR (hidden until boss mode activates) -->
       <div id="bossHpContainer" style="display:none;">
-        <div id="bossHpLabel"><span id="bossHpName" style="font-family:'Cinzel',serif;font-size:.75rem;color:#c084fc;letter-spacing:1px;">☠ ARQUI-NEFROMANTE</span><span id="bossHpPct" style="font-size:.72rem;color:#7a90b8;">HP 100%</span></div>
+        <div id="bossHpLabel"><span id="bossHpName" style="font-family:'Cinzel',serif;font-size:.75rem;color:var(--purple);letter-spacing:1px;">☠ ARQUI-NEFROMANTE</span><span id="bossHpPct" style="font-size:.72rem;color:#7a90b8;">HP 100%</span></div>
         <div id="bossHpTrack">
           <div id="bossHpFill" style="width:100%;"></div>
           <!-- ESTRELAS HP DESKTOP: ficam dentro da barra, acendem conforme progressão -->
@@ -4951,7 +4997,7 @@
           #arquiQ9PopupTitle { animation: golpeFinalTextPulse 2s ease-in-out infinite; }
         </style>
         <div id="arquiQ9PopupInner" style="max-width:520px;width:100%;text-align:center;">
-          <p id="arquiQ9PopupTitle" style="font-family:'Cinzel',serif;color:#e9d5ff;font-size:1.3rem;font-weight:900;letter-spacing:4px;text-transform:uppercase;margin-bottom:16px;">⚔ Golpe Final<br><span style="font-size:.85em;letter-spacing:3px;color:#c084fc;">Última Pergunta</span></p>
+          <p id="arquiQ9PopupTitle" style="font-family:'Cinzel',serif;color:#e9d5ff;font-size:1.3rem;font-weight:900;letter-spacing:4px;text-transform:uppercase;margin-bottom:16px;">⚔ Golpe Final<br><span style="font-size:.85em;letter-spacing:3px;color:var(--purple);">Última Pergunta</span></p>
           <img id="arquiQ9PopupImg" src="assets/battle_final.png" alt="Golpe Final" style="width:100%;border-radius:12px;border:2px solid rgba(168,85,247,0.7);box-shadow:0 0 40px rgba(124,58,237,0.7);margin-bottom:20px;clip-path:inset(0 0 9% 0 round 12px);">
           <button onclick="document.getElementById('arquiQ9Popup').style.display='none'" style="font-family:'Cinzel',serif;background:linear-gradient(180deg,#7c3aed,#4c1d95);border:2px solid #a855f7;color:#f3e8ff;padding:14px 40px;border-radius:10px;font-size:1rem;font-weight:900;letter-spacing:3px;cursor:pointer;text-transform:uppercase;box-shadow:0 0 25px rgba(168,85,247,0.6);">⚔ Partir para o Ataque!</button>
         </div>
@@ -5351,7 +5397,7 @@
         </div>
         <div class="auth-field">
           <label>Especialidade</label>
-          <select id="authSpecialty" style="width:100%;background:#0f1a2e;border:1px solid #2a4a7a;border-radius:8px;padding:10px 12px;color:#e0f0ff;font-size:0.88rem;outline:none;cursor:pointer;">
+          <select id="authSpecialty" style="width:100%;background:#0f1a2e;border:1px solid var(--blue-dark);border-radius:8px;padding:10px 12px;color:#e0f0ff;font-size:0.88rem;outline:none;cursor:pointer;">
             <option value="" style="background:#0f1a2e;color:#6080a0;">Selecione sua área...</option>
             <option value="Nefrologia" style="background:#0f1a2e;color:#e0f0ff;">Nefrologia</option>
             <option value="Clínica Médica" style="background:#0f1a2e;color:#e0f0ff;">Clínica Médica</option>
@@ -5938,7 +5984,7 @@
       modal.className = 'modal show';
       modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(6px);padding:32px 16px;';
       modal.innerHTML = `
-        <div class="modal-content" style="max-width:450px;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid #2a4a7a;border-radius:14px;padding:24px;">
+        <div class="modal-content" style="max-width:450px;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;">
           <h2 style="color:var(--ok);margin-bottom:16px;">💚 VIDA EXTRA! 💚</h2>
           <p style="font-size:1.05rem;line-height:1.6;margin-bottom:20px;">
             Os Deuses do Néfron reconhecem sua dedicação!<br>
@@ -6058,7 +6104,7 @@
       modal.className = 'modal show evolution-popup';
       modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(6px);padding:32px 16px;';
       modal.innerHTML = `
-        <div class="modal-content" style="max-width:500px;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid #2a4a7a;border-radius:14px;padding:24px;">
+        <div class="modal-content" style="max-width:500px;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;">
           <h2 style="color:var(--gold);margin-bottom:12px;">⚡ EVOLUÇÃO! ⚡</h2>
           <div style="margin:20px auto;width:120px;height:120px;border-radius:50%;overflow:hidden;border:3px solid var(--gold);box-shadow:0 0 20px rgba(255,215,0,0.5);">
             <img src="${newImage}" style="width:100%;height:100%;object-fit:cover;" alt="${newTitle}">
@@ -26376,7 +26422,7 @@
         const slotCls = (isActive && !wasUsed) ? 'slot has-active-ability' : (isActive && wasUsed) ? 'slot has-used-ability' : 'slot';
         const abilityBadge = (isActive||isPassive) ? `<div style="font-size:0.6rem;color:${wasUsed?'#64748b':isPassive?'rgba(255,215,0,0.7)':'#ffd700'};margin-top:2px">${wasUsed?'\u2713 usada':_LEG_LABELS[v.n]||''}</div>` : '';
         const imgHtml = isEmpty 
-          ? `<div class='slot-icon' style='display:flex;align-items:center;justify-content:center;background:rgba(10,15,30,0.8);border:2px dashed #2a4a7a;color:#3a5a8a;font-size:1.5rem'>?</div>`
+          ? `<div class='slot-icon' style='display:flex;align-items:center;justify-content:center;background:rgba(10,15,30,0.8);border:2px dashed var(--blue-dark);color:#3a5a8a;font-size:1.5rem'>?</div>`
           : `<img class='slot-icon ${glowCls} item-with-tooltip' loading='lazy' src='${icon}' alt="${v.n.replace(/"/g,'&quot;')}" data-item-name="${v.n.replace(/"/g,'&quot;')}" data-item-desc="${desc.replace(/"/g,'&quot;')}"/>`;
         return `<div class='${slotCls}'>
           ${imgHtml}
@@ -26683,7 +26729,7 @@
           <p style="font-size:0.82rem;color:#94a3b8;background:rgba(30,40,70,0.5);border-radius:8px;padding:10px;margin-bottom:14px;font-style:italic;line-height:1.5;">"${qText.replace(/"/g,'&quot;')}"</p>
           <label style="font-size:0.82rem;color:#93b4e8;display:block;margin-bottom:6px;">Descreva o problema:</label>
           <textarea id="flagComment" rows="3" placeholder="Ex: A alternativa B está incorreta pois... / O gabarito deveria ser..."
-            style="width:100%;background:rgba(10,20,40,0.8);border:1px solid #2a4a7a;border-radius:8px;color:#d5e2ff;font-size:0.85rem;padding:10px;resize:vertical;font-family:'Philosopher',serif;outline:none;box-sizing:border-box;"></textarea>
+            style="width:100%;background:rgba(10,20,40,0.8);border:1px solid var(--blue-dark);border-radius:8px;color:#d5e2ff;font-size:0.85rem;padding:10px;resize:vertical;font-family:'Philosopher',serif;outline:none;box-sizing:border-box;"></textarea>
           <div id="flagStatus" style="min-height:20px;margin-top:8px;font-size:0.78rem;text-align:center;"></div>
           <button onclick="submitFlag(${qNum})" id="flagSendBtn"
             style="width:100%;margin-top:10px;background:linear-gradient(180deg,#4f46e5,#3730a3);border:2px solid #6366f1;color:#fff;border-radius:8px;padding:12px;font-family:'Cinzel',serif;font-size:0.82rem;font-weight:700;letter-spacing:1px;cursor:pointer;text-transform:uppercase;">
@@ -26883,7 +26929,7 @@
       modal.id = 'paywallModal';
       modal.className = 'show';
       const guestBtns = !authUser ? `
-        <button class="btn" style="background:rgba(96,165,250,0.12);border:2px solid rgba(96,165,250,0.5);color:#60a5fa" onclick="paywallRegister()">📝 Criar conta gratuita</button>
+        <button class="btn" style="background:rgba(96,165,250,0.12);border:2px solid rgba(96,165,250,0.5);color:var(--blue)" onclick="paywallRegister()">📝 Criar conta gratuita</button>
         <button class="btn" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.2)" onclick="paywallLogin()">Já tenho conta — Entrar</button>
       ` : '';
       modal.innerHTML = `
@@ -27231,7 +27277,7 @@
               <input id="acctCity" type="text" placeholder="Sua cidade">
             </div>
             <div class="modal-actions">
-              <button onclick="closeAccountModal()" style="background:rgba(255,255,255,0.06);color:#c8d8f0;border:1px solid #2a4a7a;">Cancelar</button>
+              <button onclick="closeAccountModal()" style="background:rgba(255,255,255,0.06);color:#c8d8f0;border:1px solid var(--blue-dark);">Cancelar</button>
               <button onclick="saveAccountData()" style="background:linear-gradient(135deg,#1a4080,#2a5fa0);color:#e0f0ff;border:none;">Salvar</button>
             </div>
           </div>
@@ -27312,7 +27358,7 @@
         </div>
         ${detailHtml}
         <div class="modal-actions" style="margin-top:14px">
-          <button onclick="closePlanModal()" style="background:rgba(255,255,255,0.06);color:#c8d8f0;border:1px solid #2a4a7a;">Fechar</button>
+          <button onclick="closePlanModal()" style="background:rgba(255,255,255,0.06);color:#c8d8f0;border:1px solid var(--blue-dark);">Fechar</button>
         </div>
       `;
       modal.style.display = 'flex';
@@ -27358,7 +27404,7 @@
             </div>
             <div id="wlList" class="whitelist-list"><div class="whitelist-empty">Carregando...</div></div>
             <div class="modal-actions" style="margin-top:16px">
-              <button onclick="closeAdminPanel()" style="background:rgba(255,255,255,0.06);color:#c8d8f0;border:1px solid #2a4a7a;">Fechar</button>
+              <button onclick="closeAdminPanel()" style="background:rgba(255,255,255,0.06);color:#c8d8f0;border:1px solid var(--blue-dark);">Fechar</button>
             </div>
           </div>
         `;
@@ -28038,7 +28084,7 @@
 
       // Muda cor da barra conforme HP diminui
       if (hpFill) {
-        if (hp > 60)      hpFill.style.background = 'linear-gradient(90deg,#4c1d95,#7c3aed,#a855f7,#c084fc)';
+        if (hp > 60)      hpFill.style.background = 'linear-gradient(90deg,#4c1d95,#7c3aed,#a855f7,var(--purple))';
         else if (hp > 30) hpFill.style.background = 'linear-gradient(90deg,#831843,#be185d,#ec4899)';
         else              hpFill.style.background = 'linear-gradient(90deg,#7f1d1d,#dc2626,#f87171)';
       }
@@ -28762,7 +28808,7 @@
       modal.className = 'modal show session-review-popup';
       modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.88);display:flex;align-items:flex-start;justify-content:center;z-index:9999;backdrop-filter:blur(6px);overflow-y:auto;padding:32px 16px;box-sizing:border-box;';
       modal.innerHTML = `
-        <div style="max-width:560px;width:100%;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid #2a4a7a;border-radius:14px;padding:24px;box-shadow:0 0 40px rgba(251,113,133,0.3);margin:auto 0;">
+        <div style="max-width:560px;width:100%;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;box-shadow:0 0 40px rgba(251,113,133,0.3);margin:auto 0;">
           <h2 style="color:#fb7185;font-family:'Cinzel',serif;text-align:center;margin-bottom:6px;">📋 ERROS DA JORNADA</h2>
           <p style="color:var(--txt-dim);text-align:center;font-size:0.8rem;margin-bottom:20px;">${wrongs.length} questão${wrongs.length>1?'es':''} errada${wrongs.length>1?'s':''} nesta sessão</p>
           <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px;">
@@ -29009,7 +29055,7 @@
         <div style="text-align:center;margin-bottom:12px;padding:10px;background:rgba(0,255,100,0.1);border:1px solid rgba(0,255,100,0.3);border-radius:8px;">
           <span style="font-size:1.3rem;">📚</span>
           <span style="color:#4ade80;font-weight:bold;font-size:1.1rem;"> +${knoGain} Conhecimento!</span>
-          <span style="color:#60a5fa;font-weight:bold;font-size:1.1rem;"> +${chestPoints} Pontos!</span>
+          <span style="color:var(--blue);font-weight:bold;font-size:1.1rem;"> +${chestPoints} Pontos!</span>
           <span style="color:var(--txt-dim);font-size:0.85rem;"> (Baús abertos: ${state.chestsOpened})</span>
         </div>
         <div class="article-card">
@@ -29177,7 +29223,7 @@
       modal.className = 'modal show stats-popup';
       modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(6px);padding:32px 16px;';
       modal.innerHTML = `
-        <div class="modal-content" style="max-width:600px;max-height:88vh;overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid #2a4a7a;border-radius:14px;padding:24px;box-shadow:0 0 40px rgba(59,130,246,0.3);">
+        <div class="modal-content" style="max-width:600px;max-height:88vh;overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;box-shadow:0 0 40px rgba(59,130,246,0.3);">
           <h2 style="color:var(--gold);margin-bottom:16px;font-family:'Cinzel',serif;">📊 ESTATÍSTICAS</h2>
           
           <!-- Resumo geral -->
@@ -29191,7 +29237,7 @@
               <div style="font-size:0.75rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:0.5px;">Acerto</div>
             </div>
             <div style="background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.35);border-radius:10px;padding:12px 6px;">
-              <div style="font-size:1.5rem;color:#60a5fa;font-weight:bold;">${avgTime}s</div>
+              <div style="font-size:1.5rem;color:var(--blue);font-weight:bold;">${avgTime}s</div>
               <div style="font-size:0.75rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:0.5px;">T. Médio</div>
             </div>
             <div style="background:rgba(251,113,133,0.12);border:1px solid rgba(251,113,133,0.35);border-radius:10px;padding:12px 6px;">
@@ -29399,7 +29445,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
       }
 
       modal.innerHTML = `
-        <div class="modal-content" style="max-width:460px;width:100%;max-height:calc(100vh - 48px);overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid #2a4a7a;border-radius:14px;padding:18px 20px;box-shadow:0 0 40px rgba(139,92,246,0.3);">
+        <div class="modal-content" style="max-width:460px;width:100%;max-height:calc(100vh - 48px);overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:18px 20px;box-shadow:0 0 40px rgba(139,92,246,0.3);">
           <h2 style="color:var(--gold);margin-bottom:6px;font-family:'Cinzel',serif;">📖 MODO DE ESTUDO</h2>
           <p style="color:var(--txt-dim);font-size:0.82rem;margin-bottom:18px;">Selecione os eixos que deseja praticar</p>
 
@@ -29563,7 +29609,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
           </div>
           
           <!-- Question Area -->
-          <div id="studyQuestionArea" style="background:linear-gradient(180deg,#1a1228,#12192e);border:2px solid #2a4a7a;border-radius:14px;padding:24px;box-shadow:0 0 30px rgba(30,60,120,0.3);">
+          <div id="studyQuestionArea" style="background:linear-gradient(180deg,#1a1228,#12192e);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;box-shadow:0 0 30px rgba(30,60,120,0.3);">
             <!-- Questão será renderizada aqui -->
           </div>
         </div>
@@ -29597,9 +29643,9 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
           ${q.opts.map((opt, idx) => `
             <button class="study-option-btn" onclick="answerStudyQuestion(${idx})" 
                     style="background:linear-gradient(180deg,#1e293b,#0f172a);border:2px solid #334155;border-radius:10px;padding:14px 18px;text-align:left;color:var(--txt);font-size:0.95rem;cursor:pointer;transition:all 0.2s;"
-                    onmouseover="this.style.borderColor='#60a5fa';this.style.background='linear-gradient(180deg,#1e3a5f,#0f172a)'"
+                    onmouseover="this.style.borderColor='var(--blue)';this.style.background='linear-gradient(180deg,#1e3a5f,#0f172a)'"
                     onmouseout="this.style.borderColor='#334155';this.style.background='linear-gradient(180deg,#1e293b,#0f172a)'">
-              <span style="color:#60a5fa;font-weight:bold;margin-right:8px;">${String.fromCharCode(65 + idx)})</span>
+              <span style="color:var(--blue);font-weight:bold;margin-right:8px;">${String.fromCharCode(65 + idx)})</span>
               ${opt}
             </button>
           `).join('')}
@@ -29652,7 +29698,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
           <div style="color:var(--txt);font-size:0.9rem;line-height:1.5;">
             ${q.exp || 'A resposta correta é a alternativa ' + String.fromCharCode(65 + q.ans) + '.'}
           </div>
-          ${(q.refs||[]).length ? `<div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;">${(q.refs||[]).map(k => refsDB[k] ? `<a href="${refsDB[k].url}" target="_blank" rel="noopener" style="color:#60a5fa;font-size:0.72rem;text-decoration:none;border:1px solid rgba(96,165,250,0.3);padding:2px 9px;border-radius:12px;white-space:nowrap;">🔗 ${refsDB[k].label}</a>` : '').filter(Boolean).join('')}</div>` : ''}
+          ${(q.refs||[]).length ? `<div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;">${(q.refs||[]).map(k => refsDB[k] ? `<a href="${refsDB[k].url}" target="_blank" rel="noopener" style="color:var(--blue);font-size:0.72rem;text-decoration:none;border:1px solid rgba(96,165,250,0.3);padding:2px 9px;border-radius:12px;white-space:nowrap;">🔗 ${refsDB[k].label}</a>` : '').filter(Boolean).join('')}</div>` : ''}
         </div>
         
         <div style="text-align:center;margin-top:16px;">
@@ -29998,8 +30044,8 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
         ? 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;align-items:flex-start;justify-content:center;z-index:9999;backdrop-filter:blur(6px);overflow-y:auto;padding:32px 12px 100px;box-sizing:border-box;'
         : 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(6px);padding:32px 16px;';
       const _achContentStyle = _achIsMobile
-        ? 'max-width:550px;width:100%;max-height:calc(100vh - 132px);overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid #2a4a7a;border-radius:14px;padding:20px 16px;box-shadow:0 0 40px rgba(255,215,0,0.3);'
-        : 'max-width:550px;max-height:calc(100vh - 64px);overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid #2a4a7a;border-radius:14px;padding:24px;box-shadow:0 0 40px rgba(255,215,0,0.3);';
+        ? 'max-width:550px;width:100%;max-height:calc(100vh - 132px);overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:20px 16px;box-shadow:0 0 40px rgba(255,215,0,0.3);'
+        : 'max-width:550px;max-height:calc(100vh - 64px);overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;box-shadow:0 0 40px rgba(255,215,0,0.3);';
       modal.innerHTML = `
         <div class="modal-content" style="${_achContentStyle}">
           <h2 style="color:var(--gold);margin-bottom:12px;font-family:'MedievalSharp','Cinzel',serif;">🏆 CONQUISTAS 🏆</h2>
@@ -30033,7 +30079,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
                       setTimeout(()=>{tip.remove();el.style.overflow='hidden';},2500);
                     })(this)"
                     style="position:relative;aspect-ratio:1;border-radius:8px;overflow:hidden;cursor:pointer;
-                    border:2px solid ${isUnlocked ? 'var(--gold)' : '#2a4a7a'};
+                    border:2px solid ${isUnlocked ? 'var(--gold)' : 'var(--blue-dark)'};
                     box-shadow:${isUnlocked ? '0 0 12px rgba(255,215,0,0.4)' : 'none'};
                   ">
                     <img src="assets/badges/badge${badge.id}.png" alt="${badge.name}"
@@ -30228,7 +30274,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
       overlay.innerHTML = `
         <div style="max-width:700px;width:100%;margin:0 auto;padding:20px 16px 100px;box-sizing:border-box;">
           <!-- Header -->
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;background:rgba(20,30,50,0.9);border-radius:12px;padding:12px 16px;border:1px solid #2a4a7a;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;background:rgba(20,30,50,0.9);border-radius:12px;padding:12px 16px;border:1px solid var(--blue-dark);">
             <div style="font-family:'Cinzel',serif;color:var(--gold);font-size:0.9rem;">📝 Prova Simulada</div>
             <div style="display:flex;gap:16px;align-items:center;">
               <div id="examTimer" style="font-weight:bold;color:#34d399;">⏱ ${m}:${s.toString().padStart(2,'0')}</div>
@@ -30240,14 +30286,14 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
             <div style="background:var(--gold);height:100%;width:${((idx)/questions.length*100).toFixed(1)}%;transition:width 0.3s;"></div>
           </div>
           <!-- Questão -->
-          <div style="background:rgba(20,30,50,0.8);border:1px solid #2a4a7a;border-radius:12px;padding:18px;margin-bottom:14px;">
+          <div style="background:rgba(20,30,50,0.8);border:1px solid var(--blue-dark);border-radius:12px;padding:18px;margin-bottom:14px;">
             <div style="color:var(--txt-dim);font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Questão ${idx+1}</div>
             <p style="color:var(--txt);font-size:0.92rem;line-height:1.7;margin:0;">${q.q}</p>
           </div>
           <!-- Opções -->
           <div id="examOpts" style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;">
             ${q.o.map((opt, i) => {
-              let bg = 'rgba(20,30,50,0.7)', border = '1px solid #2a4a7a', color = 'var(--txt)';
+              let bg = 'rgba(20,30,50,0.7)', border = '1px solid var(--blue-dark)', color = 'var(--txt)';
               if (answered) {
                 if (i === q.a) { bg='rgba(52,211,153,0.15)'; border='1px solid #34d399'; color='#34d399'; }
                 else if (i === answered.chosen) { bg='rgba(251,113,133,0.15)'; border='1px solid #fb7185'; color='#fb7185'; }
@@ -30256,7 +30302,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
             }).join('')}
           </div>
           ${answered ? `
-            <div style="background:rgba(20,30,50,0.8);border:1px solid #2a4a7a;border-radius:10px;padding:14px;margin-bottom:14px;font-size:0.82rem;color:#94a3b8;line-height:1.6;">
+            <div style="background:rgba(20,30,50,0.8);border:1px solid var(--blue-dark);border-radius:10px;padding:14px;margin-bottom:14px;font-size:0.82rem;color:#94a3b8;line-height:1.6;">
               <strong style="color:${answered.correct?'#34d399':'#fb7185'};">${answered.correct?'✅ Correto':'❌ Incorreto'}</strong><br>
               ${q.e}
             </div>
@@ -30342,7 +30388,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
               <div style="font-size:0.68rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:0.5px;">Acerto</div>
             </div>
             <div style="background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.35);border-radius:10px;padding:14px;text-align:center;">
-              <div style="font-size:1.8rem;font-weight:bold;color:#60a5fa;">${totalCorrect}/${totalAnswered}</div>
+              <div style="font-size:1.8rem;font-weight:bold;color:var(--blue);">${totalCorrect}/${totalAnswered}</div>
               <div style="font-size:0.68rem;color:var(--txt-dim);text-transform:uppercase;letter-spacing:0.5px;">Corretas</div>
             </div>
             <div style="background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.35);border-radius:10px;padding:14px;text-align:center;">
@@ -30351,7 +30397,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
             </div>
           </div>
           <!-- Mensagem -->
-          <div style="background:rgba(20,30,50,0.8);border:1px solid #2a4a7a;border-radius:10px;padding:14px;text-align:center;margin-bottom:20px;">
+          <div style="background:rgba(20,30,50,0.8);border:1px solid var(--blue-dark);border-radius:10px;padding:14px;text-align:center;margin-bottom:20px;">
             <p style="color:var(--txt);font-size:0.9rem;margin:0;">
               ${pct>=70?'🏆 Excelente! Aprovado com distinção.':pct>=60?'✅ Aprovado! Continue estudando para aperfeiçoar.':pct>=40?'⚠️ Abaixo da média. Revise os tópicos em vermelho.':'❌ Resultado insuficiente. Use o Modo de Estudo para reforçar.'}
             </p>
@@ -30415,7 +30461,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
       modal.className = 'modal show changelog-popup';
       modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;align-items:flex-start;justify-content:center;z-index:9999;backdrop-filter:blur(6px);overflow-y:auto;padding:32px 16px;box-sizing:border-box;';
       modal.innerHTML = `
-        <div class="modal-content" style="max-width:540px;width:calc(100% - 32px);max-height:none;overflow-y:visible;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid #2a4a7a;border-radius:14px;padding:24px;box-shadow:0 0 40px rgba(255,215,0,0.3);margin:auto 0;">
+        <div class="modal-content" style="max-width:540px;width:calc(100% - 32px);max-height:none;overflow-y:visible;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;box-shadow:0 0 40px rgba(255,215,0,0.3);margin:auto 0;">
           <h2 style="color:var(--gold);margin-bottom:4px;font-family:'MedievalSharp','Cinzel',serif;">📜 NOVIDADES 📜</h2>
           <div style="color:var(--txt-dim);font-size:0.75rem;margin-bottom:20px;">O que há de novo no NefroQuest: Ascension</div>
 

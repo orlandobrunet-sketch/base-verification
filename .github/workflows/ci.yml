@@ -19,7 +19,7 @@ jobs:
       - name: Check version sync (SW ↔ version.json)
         run: |
           SW_VERSION=$(grep -oP "nefroquest-v\K[0-9.]+" sw.js | head -1)
-          JSON_VERSION=$(grep -oP '"version"\s*:\s*"\K[^"]+' version.json)
+          JSON_VERSION=$(grep -oP '"version"\s*:\s*"\K[^"]+' version.json | head -1)
           echo "SW cache key version: $SW_VERSION"
           echo "version.json: $JSON_VERSION"
           if [ "$SW_VERSION" != "$JSON_VERSION" ]; then
