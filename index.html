@@ -25757,6 +25757,39 @@
       }
     };
 
+    // ============ STATE — Schema centralizado ============
+    // Ao adicionar campos: 1) adicione aqui  2) incremente SAVE_SCHEMA_VERSION
+    //                      3) adicione migração em _migrateSave()
+    //
+    // Campo              Tipo          Descrição
+    // ─────────────────────────────────────────────────────
+    // level              number        Nível atual do jogador (1–∞)
+    // xp                 number        XP acumulado no nível atual
+    // xpToNext           number        XP necessário para o próximo nível
+    // score              number        Pontuação total da sessão
+    // lives              number        Vidas restantes
+    // maxLives           number        Vidas máximas (ajustado por dificuldade)
+    // streak             number        Sequência atual de acertos
+    // gold               number        Ouro acumulado
+    // difficulty         string        'easy'|'normal'|'hard'|'hardcore'
+    // legendaryAbilityUsed object      Habilidades lendárias usadas (por equipamento)
+    // current            object|null   Questão atual renderizada
+    // answered           boolean       Se a questão atual já foi respondida
+    // queue              array         Fila de questões embaralhadas
+    // idx                number        Índice na fila
+    // bonusUses          number        Usos de pergunta bônus restantes
+    // correctTotal       number        Total de acertos corretos acumulados
+    // narrativeShown     number        Último checkpoint narrativo exibido
+    // bossIntroShown     boolean       Se o popup de intro do boss já foi exibido
+    // gameOver           boolean       Se o jogo terminou (sem vidas)
+    // bossLog            array         Log de eventos da batalha final
+    // gameStarted        boolean       Se o jogo foi iniciado
+    // chestsOpened       number        Total de baús abertos na sessão
+    // character          string|null   ID do personagem selecionado
+    // equipment          object        Slots weapon/armor/relic com atributos
+    // selectedCharacter  string|null   Alias de character (usado em alguns fluxos)
+    // hp/maxHp           number        HP do boss (usado em boss mode)
+    // ─────────────────────────────────────────────────────
     const state={
       level:1,xp:0,xpToNext:200,score:0,lives:3,maxLives:3,streak:0,gold:0,difficulty:"normal",legendaryAbilityUsed:{},
       current:null,answered:false,queue:[],idx:0,bonusUses:0,
