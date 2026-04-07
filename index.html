@@ -2676,10 +2676,19 @@
        Ativa quando correctTotal >= 90
        =================================================== */
 
-    /* Background mais sombrio e intenso no modo boss */
+    /* Background preto no modo boss */
     .boss-battle-mode .bg-layer {
-      filter: brightness(0.38) saturate(2) hue-rotate(-15deg);
-      transition: filter 1.2s ease;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+    }
+    body.boss-battle-mode {
+      background: #000 !important;
+    }
+    body.boss-battle-mode .bg-overlay {
+      display: none;
+    }
+    body.boss-battle-mode .particles {
+      display: none;
     }
 
     /* ---- Barra de título do confronto ---- */
@@ -2704,9 +2713,9 @@
       from { text-shadow: 0 0 15px rgba(255,215,0,0.7), 0 0 30px rgba(255,100,0,0.4); color: #ffd700; }
       to   { text-shadow: 0 0 30px rgba(255,230,0,1), 0 0 60px rgba(255,180,0,0.8), 0 0 100px rgba(200,80,255,0.4); color: #ffe566; }
     }
-    .boss-battle-mode #bossTitleBar { display: block; }
+    .boss-battle-mode #bossTitleBar { display: none !important; }
     .boss-battle-mode .game-title h1,
-    .boss-battle-mode .game-title .subtitle { display: none; }
+    .boss-battle-mode .game-title .subtitle { display: block !important; }
     .boss-battle-mode .game-title { padding: 4px 0 0; }
 
     /* ---- HP Bar do boss ---- */
@@ -3531,10 +3540,10 @@
 
     /* === DESKTOP: Layout de 2 colunas — Heróis | Questão === */
 
-    /* 1. Background: roxo profundo com névoa mágica */
+    /* 1. Background: preto sólido no arqui-nefromante-final */
     .arqui-nefromante-final .bg-layer {
-      filter: brightness(0.28) saturate(2.5) hue-rotate(210deg) !important;
-      transition: filter 1.5s ease !important;
+      opacity: 0 !important;
+      transition: opacity 1.5s ease !important;
     }
 
     /* ================================================================
@@ -4512,7 +4521,7 @@
     // Verificação de versão — bypassa o Service Worker via no-store
     // Se a versão do servidor for diferente da carregada, limpa tudo e recarrega
     (function() {
-      const LOADED_VERSION = '5.9';
+      const LOADED_VERSION = '9.0';
       fetch('/version.json', { cache: 'no-store' })
         .then(r => r.json())
         .then(data => {
@@ -25803,6 +25812,39 @@
       }
     };
 
+    // ============ STATE — Schema centralizado ============
+    // Ao adicionar campos: 1) adicione aqui  2) incremente SAVE_SCHEMA_VERSION
+    //                      3) adicione migração em _migrateSave()
+    //
+    // Campo              Tipo          Descrição
+    // ─────────────────────────────────────────────────────
+    // level              number        Nível atual do jogador (1–∞)
+    // xp                 number        XP acumulado no nível atual
+    // xpToNext           number        XP necessário para o próximo nível
+    // score              number        Pontuação total da sessão
+    // lives              number        Vidas restantes
+    // maxLives           number        Vidas máximas (ajustado por dificuldade)
+    // streak             number        Sequência atual de acertos
+    // gold               number        Ouro acumulado
+    // difficulty         string        'easy'|'normal'|'hard'|'hardcore'
+    // legendaryAbilityUsed object      Habilidades lendárias usadas (por equipamento)
+    // current            object|null   Questão atual renderizada
+    // answered           boolean       Se a questão atual já foi respondida
+    // queue              array         Fila de questões embaralhadas
+    // idx                number        Índice na fila
+    // bonusUses          number        Usos de pergunta bônus restantes
+    // correctTotal       number        Total de acertos corretos acumulados
+    // narrativeShown     number        Último checkpoint narrativo exibido
+    // bossIntroShown     boolean       Se o popup de intro do boss já foi exibido
+    // gameOver           boolean       Se o jogo terminou (sem vidas)
+    // bossLog            array         Log de eventos da batalha final
+    // gameStarted        boolean       Se o jogo foi iniciado
+    // chestsOpened       number        Total de baús abertos na sessão
+    // character          string|null   ID do personagem selecionado
+    // equipment          object        Slots weapon/armor/relic com atributos
+    // selectedCharacter  string|null   Alias de character (usado em alguns fluxos)
+    // hp/maxHp           number        HP do boss (usado em boss mode)
+    // ─────────────────────────────────────────────────────
     const state={
       level:1,xp:0,xpToNext:200,score:0,lives:3,maxLives:3,streak:0,gold:0,difficulty:"normal",legendaryAbilityUsed:{},
       current:null,answered:false,queue:[],idx:0,bonusUses:0,
