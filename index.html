@@ -4981,6 +4981,10 @@
         <div class="boss-img-wrap">
           <img id="arquiBossImgEl" src="assets/nefromancer.png" alt="Arqui-Nefromante">
         </div>
+        <!-- Texto GOLPE FINAL (exibido apenas na questão 10/10) -->
+        <div id="bossGolpeFinalText" style="display:none;position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:linear-gradient(160deg,#0a0118,#1a0030);z-index:2;">
+          <span style="font-family:'Cinzel Decorative','Cinzel',serif;font-size:clamp(1.6rem,5vw,2.8rem);font-weight:900;letter-spacing:6px;color:#e9d5ff;text-shadow:0 0 30px rgba(168,85,247,1),0 0 60px rgba(168,85,247,0.6),0 0 100px rgba(88,28,135,0.4);text-transform:uppercase;">GOLPE FINAL</span>
+        </div>
       </div>
 
       <!-- BOSS QUESTION COUNTER (abaixo da imagem, acima da questão) -->
@@ -6227,6 +6231,7 @@
         correctTotal: state.correctTotal,
         narrativeShown: state.narrativeShown,
         bossIntroShown: state.bossIntroShown || false,
+        battleFinalShown: state.battleFinalShown || false,
         character: state.character,
         equipment: JSON.parse(JSON.stringify(state.equipment)),
         idx: state.idx,
@@ -6283,6 +6288,7 @@
       state.correctTotal = save.correctTotal || 0;
       state.narrativeShown = save.narrativeShown || 0;
       state.bossIntroShown = save.bossIntroShown || false;
+      state.battleFinalShown = save.battleFinalShown || false;
       state.chestsOpened = save.chestsOpened || 0;
       state.gameOver = false;
       state.gameStarted = true;
@@ -25848,7 +25854,7 @@
     const state={
       level:1,xp:0,xpToNext:200,score:0,lives:3,maxLives:3,streak:0,gold:0,difficulty:"normal",legendaryAbilityUsed:{},
       current:null,answered:false,queue:[],idx:0,bonusUses:0,
-      correctTotal:0, narrativeShown:0, bossIntroShown:false, gameOver:false, bossLog:[],
+      correctTotal:0, narrativeShown:0, bossIntroShown:false, battleFinalShown:false, gameOver:false, bossLog:[],
       gameStarted: false, chestsOpened:0,
       character: null,
       equipment:{
@@ -27381,6 +27387,7 @@
       state.correctTotal = BOSS_START_CORRECT;
       state.hp = state.maxHp;
       state.bossIntroShown = true;
+      state.battleFinalShown = false;
       renderQuestion();
       // Show boss intro popup
       setTimeout(() => showBossIntroPopup(), 50);
@@ -28189,6 +28196,39 @@
       const meterHint = document.getElementById('finalMeterHint');
       if (meterHint) meterHint.textContent = 'ATIVADO APÓS A RESPOSTA CORRETA';
 
+      // ── Boss image swap ──
+      const bossImgEl      = document.getElementById('arquiBossImgEl');
+      const bossGolpeText  = document.getElementById('bossGolpeFinalText');
+      const bossImgWrapEl  = bossImgEl ? bossImgEl.closest('.boss-img-wrap') : null;
+      if (bossImgEl && bossGolpeText) {
+        if (progress >= 9) {
+          // Última questão: esconde imagem, mostra "GOLPE FINAL"
+          if (bossImgWrapEl) bossImgWrapEl.style.display = 'none';
+          bossGolpeText.style.display = 'flex';
+          // Popup battle_final — exibe apenas uma vez
+          if (!state.battleFinalShown) {
+            state.battleFinalShown = true;
+            setTimeout(() => showBattleFinalPopup(), 200);
+          }
+        } else if (progress === 8) {
+          // Penúltima questão: mostra clash_final
+          if (bossImgWrapEl) bossImgWrapEl.style.display = '';
+          bossGolpeText.style.display = 'none';
+          if (bossImgEl.getAttribute('src') !== 'assets/clash_final.png') {
+            bossImgEl.src = 'assets/clash_final.png';
+            bossImgEl.style.objectPosition = 'center center';
+          }
+        } else {
+          // Questões normais: mostra nefromancer
+          if (bossImgWrapEl) bossImgWrapEl.style.display = '';
+          bossGolpeText.style.display = 'none';
+          if (bossImgEl.getAttribute('src') !== 'assets/nefromancer.png') {
+            bossImgEl.src = 'assets/nefromancer.png';
+            bossImgEl.style.objectPosition = 'center 30%';
+          }
+        }
+      }
+
       // ── Heróis na party panel, battle scene e strip mobile ──
       const heroData = {
         nephros:    { party: 'partyHero1Img', battle: 'battleHero1', strip: 'arquiStripHero1', folder: 'clerigo_renal',        ext: 'jpg' },
@@ -28506,6 +28546,49 @@
       showNarrativePopup(stage);
       // Chance de minigame após narrativa em checkpoints específicos
       maybeTriggerMinigame(stage.at);
+    }
+
+    function showBattleFinalPopup() {
+      const popup = document.createElement('div');
+      popup.id = 'battleFinalPopup';
+      popup.style.cssText = `
+        position:fixed;inset:0;z-index:99999;
+        background:rgba(0,0,0,0.88);
+        display:flex;align-items:center;justify-content:center;
+        animation:fadeIn 0.5s ease;
+        padding:16px;
+      `;
+      popup.innerHTML = `
+        <div style="
+          max-width:560px;width:100%;
+          background:linear-gradient(160deg,#0a0118 0%,#120230 60%,#0a0118 100%);
+          border:2px solid rgba(168,85,247,0.7);
+          border-radius:18px;
+          padding:24px 20px 20px;
+          text-align:center;
+          box-shadow:0 0 60px rgba(168,85,247,0.4),0 0 120px rgba(88,28,135,0.2);
+        ">
+          <div style="font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:4px;color:rgba(192,132,252,0.7);text-transform:uppercase;margin-bottom:8px;">Questão Final</div>
+          <h2 style="font-family:'Cinzel',serif;font-size:clamp(1rem,4vw,1.4rem);font-weight:900;letter-spacing:3px;color:#e9d5ff;text-shadow:0 0 20px rgba(216,180,254,0.9);margin:0 0 16px;">⚔ GOLPE FINAL ⚔</h2>
+          <!-- Imagem battle_final cortada (esconde texto amarelo no fundo) -->
+          <div style="border-radius:12px;overflow:hidden;border:2px solid rgba(168,85,247,0.5);box-shadow:0 0 30px rgba(168,85,247,0.4);height:340px;">
+            <img src="assets/battle_final.png" alt="Batalha Final" style="width:100%;height:370px;object-fit:cover;object-position:center top;display:block;">
+          </div>
+          <p style="font-family:'Philosopher',serif;font-size:0.88rem;color:#c4b5fd;line-height:1.7;font-style:italic;margin:16px 0 20px;padding:0 4px;">
+            Este é o momento decisivo. Uma única resposta separa a vitória da derrota eterna.<br>
+            <strong style="color:#e9d5ff;">O destino dos rins do reino está em suas mãos.</strong>
+          </p>
+          <button onclick="document.getElementById('battleFinalPopup').remove()" style="
+            background:linear-gradient(135deg,#4c1d95,#7c3aed);
+            color:#e9d5ff;border:2px solid rgba(168,85,247,0.6);
+            border-radius:10px;padding:12px 32px;
+            font-family:'Cinzel',serif;font-size:0.85rem;font-weight:700;
+            letter-spacing:2px;cursor:pointer;text-transform:uppercase;
+            box-shadow:0 0 20px rgba(124,58,237,0.5);
+          ">ENFRENTAR O DESTINO</button>
+        </div>
+      `;
+      document.body.appendChild(popup);
     }
 
     function showBossIntroPopup() {
@@ -28923,7 +29006,7 @@
       const _diffLives = {easy:5, normal:4, hard:3, hardcore:1};
       const _chosenDiff = state.difficulty || 'normal';
       const _startLives = _diffLives[_chosenDiff] || 3;
-      Object.assign(state,{level:1,xp:0,xpToNext:200,score:0,lives:_startLives,maxLives:_startLives,streak:0,gold:0,difficulty:_chosenDiff,legendaryAbilityUsed:{},current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,bossIntroShown:false,gameOver:false,gameStarted:true,extraLifeGiven:false,gameCompleted:false,completedGame:false,chestsOpened:0,bossLog:[]});
+      Object.assign(state,{level:1,xp:0,xpToNext:200,score:0,lives:_startLives,maxLives:_startLives,streak:0,gold:0,difficulty:_chosenDiff,legendaryAbilityUsed:{},current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,bossIntroShown:false,battleFinalShown:false,gameOver:false,gameStarted:true,extraLifeGiven:false,gameCompleted:false,completedGame:false,chestsOpened:0,bossLog:[]});
       state.equipment={
         weapon:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
         armor:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
