@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { injectBossState, waitForGame , isLiveEnv } from '../helpers/game';
 
 test.describe('Boss mode (Fase Final)', () => {
-  test.beforeAll(() => {
+  test.beforeEach(async () => {
     if (!isLiveEnv) test.skip();
   });
   test.beforeEach(async ({ page }) => {

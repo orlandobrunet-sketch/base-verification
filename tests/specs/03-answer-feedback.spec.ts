@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { injectGameState, waitForGame , isLiveEnv } from '../helpers/game';
 
 test.describe('Feedback de resposta', () => {
-  test.beforeAll(() => {
+  test.beforeEach(async () => {
     if (!isLiveEnv) test.skip();
   });
   test.beforeEach(async ({ page }) => {

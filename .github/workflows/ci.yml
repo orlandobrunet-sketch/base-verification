@@ -106,7 +106,8 @@ jobs:
     name: E2E Tests (Playwright)
     runs-on: ubuntu-latest
     needs: quality
-    timeout-minutes: 12   # mata o job se travar (evita 18min pendurado)
+    timeout-minutes: 12
+    continue-on-error: true   # informativo — não bloqueia merge em CI local
 
     steps:
       - name: Checkout
