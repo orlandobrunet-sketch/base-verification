@@ -19,12 +19,11 @@ jobs:
       - name: Check version sync (SW ↔ version.json)
         run: |
           SW_VERSION=$(grep -oP "nefroquest-v\K[0-9.]+" sw.js | head -1)
-          JSON_VERSION=$(node -e "console.log(require('./version.json').version)")
+          JSON_VERSION=$(grep -oP '"version"\s*:\s*"\K[^"]+' version.json)
           echo "SW cache key version: $SW_VERSION"
           echo "version.json: $JSON_VERSION"
           if [ "$SW_VERSION" != "$JSON_VERSION" ]; then
-            echo "❌ Version mismatch: sw.js uses 'nefroquest-v$SW_VERSION' but version.json says '$JSON_VERSION'"
-            echo "   Update version.json or the CACHE constant in sw.js to match."
+            echo "❌ Version mismatch: sw.js='$SW_VERSION' vs version.json='$JSON_VERSION'"
             exit 1
           fi
           echo "✅ Versions in sync ($JSON_VERSION)"
@@ -34,12 +33,13 @@ jobs:
         run: |
           SIZE=$(stat -c%s index.html)
           LIMIT=2621440  # 2.5 MB
-          echo "index.html size: $(numfmt --to=iec $SIZE)"
+          SIZE_KB=$((SIZE / 1024))
+          echo "index.html size: ${SIZE_KB}KB"
           if [ $SIZE -gt $LIMIT ]; then
-            echo "❌ Bundle too large: $(numfmt --to=iec $SIZE) > 2.5 MB limit"
+            echo "❌ Bundle too large: ${SIZE_KB}KB > 2560KB limit"
             exit 1
           fi
-          echo "✅ Bundle size OK ($(numfmt --to=iec $SIZE))"
+          echo "✅ Bundle size OK (${SIZE_KB}KB)"
 
       # ── 3. HTML estrutural: tag críticas obrigatórias ─────────────────────
       - name: HTML structure check
