@@ -5887,6 +5887,21 @@
       });
     }
     
+    // ── Analytics ────────────────────────────────────────────────────────────
+    // Wrapper sobre gtag (GA4). Adicione outros destinos aqui se necessário.
+    // Funil principal: game_started → question_answered → boss_entered
+    //                  → game_completed / paywall_shown → premium_converted
+    function _track(event, params = {}) {
+      try {
+        if (typeof gtag === 'function') {
+          gtag('event', event, params);
+        }
+        // Descomente para debug local:
+        // console.debug('[analytics]', event, params);
+      } catch(e) { /* silencia erros de analytics */ }
+    }
+    // ─────────────────────────────────────────────────────────────────────────
+
     function checkGameCompletion() {
       if (state.correctTotal >= 100 && !state.gameCompleted) {
         state.gameCompleted = true;
@@ -5894,6 +5909,7 @@
         if (state.difficulty === 'hardcore') {
           localStorage.setItem('nefroquest-hardcore-completed', '1');
         }
+        _track('game_completed', { difficulty: state.difficulty, level: state.level, score: state.score });
         checkAchievements();
         showGameCompletionModal();
       }
@@ -6397,6 +6413,7 @@
     }
     
     function dismissWelcome() {
+      _track('game_started', { difficulty: state.difficulty || 'normal', character: state.selectedCharacter });
       const ws = document.getElementById('welcomeScreen');
       ws.style.opacity = '0';
       ws.style.transition = 'opacity 0.5s';
@@ -26801,6 +26818,7 @@
       state.xp+=x; let up=0;
       while(state.xp>=state.xpToNext){
         state.xp-=state.xpToNext; state.level++; state.xpToNext=xpForLevel(state.level); up++;
+        _track('level_up', { level: state.level, difficulty: state.difficulty });
       }
       return up;
     }
@@ -26931,6 +26949,7 @@
     function showPaywallModal() {
       let modal = document.getElementById('paywallModal');
       if (modal) { modal.classList.add('show'); return; }
+      _track('paywall_shown', { questions_answered: state.correctTotal, level: state.level });
       modal = document.createElement('div');
       modal.id = 'paywallModal';
       modal.className = 'show';
@@ -27199,6 +27218,7 @@
     })();
 
     function _showPaymentSuccess(plan) {
+      _track('premium_converted', { plan });
       const el = document.createElement('div');
       el.id = 'paymentSuccessOverlay';
       el.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:10000;display:flex;align-items:center;justify-content:center;padding:32px 16px;';
@@ -27592,6 +27612,15 @@
 
       _incrementQuestionsAnswered();
       _checkPromoBanner();
+      // ── Analytics: question answered ──
+      _track('question_answered', {
+        correct: i === state.current.a,
+        difficulty: state.current.d,
+        is_boss: isBossBattle(),
+        boss_progress: isBossBattle() ? getBossProgress() : undefined,
+        streak: state.streak,
+        level: state.level,
+      });
       renderHUD();
       updateBadges();
       if(state.lives<=0) {
@@ -28537,6 +28566,7 @@
       // Popup especial de intro do boss ao atingir 90 acertos
       if (state.correctTotal === BOSS_START_CORRECT && !state.bossIntroShown) {
         state.bossIntroShown = true;
+        _track('boss_entered', { level: state.level, score: state.score, difficulty: state.difficulty });
         showBossIntroPopup();
         return; // não mostra narrativa comum ao mesmo tempo
       }
