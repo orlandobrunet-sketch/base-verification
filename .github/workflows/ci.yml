@@ -1,0 +1,102 @@
+name: NefroQuest CI
+
+on:
+  push:
+    branches: [main, "claude/**"]
+  pull_request:
+    branches: [main]
+
+jobs:
+  quality:
+    name: Quality Gates
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # ── 1. Versão: SW deve estar em sincronia com version.json ──────────────
+      - name: Check version sync (SW ↔ version.json)
+        run: |
+          SW_VERSION=$(grep -oP "nefroquest-v\K[0-9.]+" sw.js | head -1)
+          JSON_VERSION=$(node -e "console.log(require('./version.json').version)")
+          echo "SW cache key version: $SW_VERSION"
+          echo "version.json: $JSON_VERSION"
+          if [ "$SW_VERSION" != "$JSON_VERSION" ]; then
+            echo "❌ Version mismatch: sw.js uses 'nefroquest-v$SW_VERSION' but version.json says '$JSON_VERSION'"
+            echo "   Update version.json or the CACHE constant in sw.js to match."
+            exit 1
+          fi
+          echo "✅ Versions in sync ($JSON_VERSION)"
+
+      # ── 2. Tamanho do bundle (budget: 2.5MB) ───────────────────────────────
+      - name: Bundle size check
+        run: |
+          SIZE=$(stat -c%s index.html)
+          LIMIT=2621440  # 2.5 MB
+          echo "index.html size: $(numfmt --to=iec $SIZE)"
+          if [ $SIZE -gt $LIMIT ]; then
+            echo "❌ Bundle too large: $(numfmt --to=iec $SIZE) > 2.5 MB limit"
+            exit 1
+          fi
+          echo "✅ Bundle size OK ($(numfmt --to=iec $SIZE))"
+
+      # ── 3. HTML estrutural: tag críticas obrigatórias ─────────────────────
+      - name: HTML structure check
+        run: |
+          ERRORS=0
+          check() {
+            if ! grep -q "$2" index.html; then
+              echo "❌ Missing: $1"
+              ERRORS=$((ERRORS+1))
+            else
+              echo "✅ Found: $1"
+            fi
+          }
+          check "charset meta"            'charset="UTF-8"'
+          check "viewport meta"           'name="viewport"'
+          check "title"                   '<title>'
+          check "manifest link"           'manifest.json'
+          check "Supabase SDK"            'supabase'
+          check "Service Worker register" 'serviceWorker.register'
+          check "question bank (data)"    'questionBank'
+          check "boss start constant"     'BOSS_START_CORRECT'
+          if [ $ERRORS -gt 0 ]; then
+            echo "❌ $ERRORS structural check(s) failed"
+            exit 1
+          fi
+          echo "✅ All structural checks passed"
+
+      # ── 4. Segurança: chaves hardcoded suspeitas ───────────────────────────
+      - name: Secret leak check
+        run: |
+          ERRORS=0
+          # Permitir apenas a chave anon pública do Supabase conhecida
+          KNOWN_KEY="kUxWMU36-PEaNuhEqTy3Zw_-A5ep67_"
+          # Detectar padrões de service_role ou JWT secret (nunca devem estar no front)
+          if grep -qE 'service_role|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\.[a-zA-Z0-9_-]{40,}' index.html; then
+            echo "❌ Possible service_role key or privileged JWT found in index.html"
+            ERRORS=$((ERRORS+1))
+          else
+            echo "✅ No privileged Supabase keys detected"
+          fi
+          if [ $ERRORS -gt 0 ]; then exit 1; fi
+
+      # ── 5. Vercel config: headers de segurança presentes ──────────────────
+      - name: Vercel security headers check
+        run: |
+          ERRORS=0
+          check_header() {
+            if ! grep -q "$1" vercel.json; then
+              echo "❌ Missing header: $1"
+              ERRORS=$((ERRORS+1))
+            else
+              echo "✅ Header present: $1"
+            fi
+          }
+          check_header "X-Content-Type-Options"
+          check_header "X-Frame-Options"
+          check_header "Referrer-Policy"
+          check_header "Permissions-Policy"
+          if [ $ERRORS -gt 0 ]; then exit 1; fi
+          echo "✅ All security headers configured"

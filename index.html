@@ -37,6 +37,38 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=Philosopher:wght@400;700&family=MedievalSharp&display=block" rel="stylesheet">
   <link rel="prefetch" href="assets/audio/welcome-theme.mp3">
+
+  <!-- ══ Sentry error monitoring ══════════════════════════════════════════
+       Para ativar:
+         1. Crie conta em https://sentry.io (plano gratuito cobre 5k eventos/mês)
+         2. Crie projeto → tipo: JavaScript
+         3. Substitua o valor de SENTRY_DSN abaixo pelo DSN do seu projeto
+         4. Remova o `if (SENTRY_DSN)` para que o Sentry carregue sempre
+       ════════════════════════════════════════════════════════════════════ -->
+  <script>
+    const SENTRY_DSN = ''; // ← cole aqui seu DSN do Sentry (ex: https://abc@o123.ingest.sentry.io/456)
+    if (SENTRY_DSN) {
+      const s = document.createElement('script');
+      s.src = 'https://browser.sentry-cdn.com/7.99.0/bundle.tracing.min.js';
+      s.crossOrigin = 'anonymous';
+      s.onload = () => {
+        Sentry.init({
+          dsn: SENTRY_DSN,
+          release: 'nefroquest@9.0',
+          environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
+          tracesSampleRate: 0.1,            // 10% das transações para performance
+          replaysOnErrorSampleRate: 1.0,    // replay completo em erros
+          beforeSend(event) {
+            // Nunca enviar dados do usuário que possam ser sensíveis
+            if (event.user) delete event.user.ip_address;
+            return event;
+          }
+        });
+      };
+      document.head.appendChild(s);
+    }
+  </script>
+
   <style>
     :root {
       --bg: #0a0e1a;
@@ -6035,6 +6067,9 @@
     const SAVE_KEY = 'nefroquest-save';
     const STATS_KEY = 'nefroquest-stats';
     const MASTERED_KEY = 'nefroquest-mastered';
+    // Schema version — incrementar ao adicionar campos obrigatórios ao saveData
+    // Histórico: 1 = original  2 = bossIntroShown + chestsOpened
+    const SAVE_SCHEMA_VERSION = 2;
     // Chave Web3Forms — obtenha grátis em https://web3forms.com (cadastre orlandobrunet@gmail.com)
     const FLAG_API_KEY = 'd88c1c48-5d9c-48f2-b506-53ac0ac71396';
 
@@ -6143,15 +6178,35 @@
         queueIds: state.queue.map(q => q.id),
         recentIds: _recentIds,
         chestsOpened: state.chestsOpened,
-        timestamp: Date.now()
+        timestamp: Date.now(),
+        schemaVersion: SAVE_SCHEMA_VERSION
       };
       try { localStorage.setItem(SAVE_KEY, JSON.stringify(saveData)); } catch(e) {}
     }
-    
+
+    function _migrateSave(save) {
+      const v = save.schemaVersion || 1;
+      // v1 → v2: garantir campos adicionados depois do lançamento
+      if (v < 2) {
+        save.bossIntroShown  = save.bossIntroShown  ?? false;
+        save.chestsOpened    = save.chestsOpened    ?? 0;
+        save.schemaVersion   = 2;
+      }
+      // Futuras migrações: if (v < 3) { ... }
+      return save;
+    }
+
     function loadGame() {
       const raw = localStorage.getItem(SAVE_KEY);
       if (!raw) return null;
-      try { return JSON.parse(raw); } catch(e) { return null; }
+      try {
+        const save = JSON.parse(raw);
+        return _migrateSave(save);
+      } catch(e) {
+        console.warn('[NefroQuest] Save corrompido — descartando:', e);
+        localStorage.removeItem(SAVE_KEY);
+        return null;
+      }
     }
     
     function deleteSave() {
@@ -26050,6 +26105,9 @@
     const BOARD_CACHE_TTL = 30000; // 30s
     const BOARD_LOCAL_KEY = 'nefroquest-leaderboard';
 
+    // Rate limiting: 1 push por sessão de jogo (evita flood no leaderboard)
+    let _boardPushedThisSession = false;
+
     async function boardFetch(forceRefresh = false) {
       const now = Date.now();
       if (!forceRefresh && _boardCache && (now - _boardCacheTime) < BOARD_CACHE_TTL) return _boardCache;
@@ -26075,29 +26133,44 @@
     }
 
     async function boardPush(score, level, playerName) {
+      // Rate limiting: 1 push por sessão de jogo
+      if (_boardPushedThisSession) return;
+      // Sanity check: score e level devem ser números positivos razoáveis
+      if (typeof score !== 'number' || score < 0 || score > 9_999_999) return;
+      if (typeof level !== 'number' || level < 1 || level > 999) return;
+
+      _boardPushedThisSession = true;
       const charName = state.character ? characters[state.character].name : 'Desconhecido';
+      const userId = authUser?.id || null;
+      const payload = {
+        player_name: (playerName || 'Anônimo').substring(0, 40), // limite de tamanho
+        character_name: charName,
+        score: Math.floor(score),
+        level: Math.floor(level),
+        chests_opened: Math.max(0, state.chestsOpened || 0),
+        best_streak: Math.max(0, state.streak || 0),
+        played_at: new Date().toISOString(),
+        ...(userId ? { user_id: userId } : {})
+      };
       try {
+        // Upsert por user_id quando autenticado (evita entradas duplicadas no ranking)
+        const prefer = userId
+          ? 'resolution=merge-duplicates,return=minimal'
+          : 'return=minimal';
         await fetch(`${SUPA_URL}/rest/v1/leaderboard`, {
           method: 'POST',
           headers: {
             'apikey': SUPA_KEY,
-            'Authorization': `Bearer ${SUPA_KEY}`,
+            'Authorization': _supaClient ? `Bearer ${(await _supaClient.auth.getSession()).data.session?.access_token || SUPA_KEY}` : `Bearer ${SUPA_KEY}`,
             'Content-Type': 'application/json',
-            'Prefer': 'return=minimal'
+            'Prefer': prefer
           },
-          body: JSON.stringify({
-            player_name: playerName || 'Anônimo',
-            character_name: charName,
-            score: score,
-            level: level,
-            chests_opened: state.chestsOpened || 0,
-            best_streak: state.streak || 0,
-            played_at: new Date().toISOString()
-          })
+          body: JSON.stringify(payload)
         });
-        _boardCache = null; // invalidar cache
+        _boardCache = null; // invalidar cache local
       } catch(e) {
         console.warn('Leaderboard push error:', e);
+        _boardPushedThisSession = false; // permitir retry em caso de erro de rede
       }
     }
 
@@ -28760,6 +28833,7 @@
 
       _sessionWrongAnswers = [];
       _minigameTriggerCount = 0;
+      _boardPushedThisSession = false; // reset rate limit a cada novo jogo
       const _diffLives = {easy:5, normal:4, hard:3, hardcore:1};
       const _chosenDiff = state.difficulty || 'normal';
       const _startLives = _diffLives[_chosenDiff] || 3;
