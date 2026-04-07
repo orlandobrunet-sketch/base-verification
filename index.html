@@ -2630,10 +2630,19 @@
        Ativa quando correctTotal >= 90
        =================================================== */
 
-    /* Background mais sombrio e intenso no modo boss */
+    /* Background preto no modo boss */
     .boss-battle-mode .bg-layer {
-      filter: brightness(0.38) saturate(2) hue-rotate(-15deg);
-      transition: filter 1.2s ease;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+    }
+    body.boss-battle-mode {
+      background: #000 !important;
+    }
+    body.boss-battle-mode .bg-overlay {
+      display: none;
+    }
+    body.boss-battle-mode .particles {
+      display: none;
     }
 
     /* ---- Barra de título do confronto ---- */
@@ -2658,9 +2667,9 @@
       from { text-shadow: 0 0 15px rgba(255,215,0,0.7), 0 0 30px rgba(255,100,0,0.4); color: #ffd700; }
       to   { text-shadow: 0 0 30px rgba(255,230,0,1), 0 0 60px rgba(255,180,0,0.8), 0 0 100px rgba(200,80,255,0.4); color: #ffe566; }
     }
-    .boss-battle-mode #bossTitleBar { display: block; }
+    .boss-battle-mode #bossTitleBar { display: none !important; }
     .boss-battle-mode .game-title h1,
-    .boss-battle-mode .game-title .subtitle { display: none; }
+    .boss-battle-mode .game-title .subtitle { display: block !important; }
     .boss-battle-mode .game-title { padding: 4px 0 0; }
 
     /* ---- HP Bar do boss ---- */
@@ -3485,10 +3494,10 @@
 
     /* === DESKTOP: Layout de 2 colunas — Heróis | Questão === */
 
-    /* 1. Background: roxo profundo com névoa mágica */
+    /* 1. Background: preto sólido no arqui-nefromante-final */
     .arqui-nefromante-final .bg-layer {
-      filter: brightness(0.28) saturate(2.5) hue-rotate(210deg) !important;
-      transition: filter 1.5s ease !important;
+      opacity: 0 !important;
+      transition: opacity 1.5s ease !important;
     }
 
     /* ================================================================
