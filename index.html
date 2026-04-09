@@ -1663,8 +1663,9 @@
     }
     .landing-content {
       position: relative; z-index: 2;
-      display: flex; flex-direction: column; align-items: center; gap: 10px;
-      width: 100%; max-width: 360px; padding: 0 20px;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      width: 100%; max-width: 360px; padding: 16px 20px;
+      overflow-y: auto; max-height: 100vh;
     }
     .landing-ornament {
       font-size: 0.68rem; color: var(--gold); letter-spacing: 3px;
@@ -1672,25 +1673,25 @@
     }
     .landing-title {
       font-family: 'Cinzel Decorative', 'Cinzel', serif;
-      font-size: clamp(2.2rem, 8vw, 3.2rem);
+      font-size: clamp(1.8rem, 7vw, 2.6rem);
       color: var(--gold, #ffd700); margin: 0;
       text-shadow: 0 0 30px rgba(255,215,0,0.35), 0 2px 4px rgba(0,0,0,0.8);
       letter-spacing: 2px;
     }
     .landing-sub {
       font-family: var(--font-title, 'Cinzel', serif);
-      font-size: 0.95rem; color: rgba(255,215,0,0.55);
-      letter-spacing: 6px; text-transform: uppercase; margin-bottom: 8px;
+      font-size: 0.85rem; color: rgba(255,215,0,0.55);
+      letter-spacing: 6px; text-transform: uppercase; margin-bottom: 4px;
     }
     .landing-tagline {
-      font-size: 0.82rem; color: var(--txt-dim, #7e9ec8);
-      text-align: center; letter-spacing: 0.5px; margin-bottom: 18px;
-      line-height: 1.5;
+      font-size: 0.78rem; color: var(--txt-dim, #7e9ec8);
+      text-align: center; letter-spacing: 0.5px; margin-bottom: 6px;
+      line-height: 1.4;
     }
     .landing-divider {
       width: 100%; height: 1px;
       background: linear-gradient(90deg, transparent, rgba(255,215,0,0.25), transparent);
-      margin: 4px 0 16px;
+      margin: 2px 0 8px;
     }
     .landing-btn-google {
       width: 100%; padding: 12px 20px;
@@ -4638,18 +4639,18 @@
         Entrar com Google
       </button>
       <button class="landing-btn-email" onclick="landingLoginEmail()">&#9993; Entrar com Email</button>
-      <div style="margin-top:28px;border-top:1px solid rgba(255,215,0,0.12);padding-top:22px;width:100%;max-width:360px;">
+      <div style="margin-top:12px;border-top:1px solid rgba(255,215,0,0.12);padding-top:14px;width:100%;max-width:360px;">
         <!-- Contador de questões -->
-        <div style="text-align:center;margin-bottom:16px;">
+        <div style="text-align:center;margin-bottom:10px;">
           <div style="font-size:0.65rem;letter-spacing:3px;color:#6080a0;text-transform:uppercase;margin-bottom:4px;">✦ Reino dos Néfrons ✦</div>
-          <div style="font-family:'Cinzel',serif;font-size:clamp(2.2rem,8vw,3rem);font-weight:900;color:#ffd700;line-height:1;margin-bottom:0;">1.000<span style="font-size:60%;vertical-align:super;color:#b8860b;">+</span></div>
+          <div style="font-family:'Cinzel',serif;font-size:clamp(1.8rem,6vw,2.4rem);font-weight:900;color:#ffd700;line-height:1;margin-bottom:0;">1.000<span style="font-size:60%;vertical-align:super;color:#b8860b;">+</span></div>
           <div style="font-family:'Cinzel',serif;font-size:0.72rem;letter-spacing:2px;color:#c8a030;text-transform:uppercase;margin-bottom:2px;">questões comentadas</div>
           <div style="color:#6080a0;font-size:0.68rem;letter-spacing:1px;">de Nefrologia — atualizadas constantemente</div>
         </div>
         <!-- Divisor -->
-        <div style="border-top:1px solid rgba(255,215,0,0.1);margin-bottom:16px;"></div>
+        <div style="border-top:1px solid rgba(255,215,0,0.1);margin-bottom:10px;"></div>
         <!-- 3 features -->
-        <div style="display:flex;flex-direction:column;gap:10px;text-align:left;">
+        <div style="display:flex;flex-direction:column;gap:7px;text-align:left;">
           <div style="display:flex;gap:12px;align-items:flex-start;">
             <span style="font-size:1.2rem;flex-shrink:0;margin-top:1px;">⚔️</span>
             <div>
