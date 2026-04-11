@@ -4179,6 +4179,11 @@
        ================================================================ */
     @media (max-width: 768px) {
 
+      /* Forçar grid de 1 coluna no boss mode mobile (sobrescreve regra desktop de 2 colunas) */
+      body.arqui-nefromante-final .app {
+        grid-template-columns: 1fr !important;
+      }
+
       /* Painel esquerdo: drawer com tema roxo */
       .arqui-nefromante-final .panel.left {
         background: linear-gradient(180deg,
