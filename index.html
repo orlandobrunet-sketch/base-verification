@@ -325,7 +325,7 @@
     .btn.disabled { opacity:0.4; cursor:not-allowed; filter:grayscale(0.6); pointer-events:none; }
     /* Popup de forja */
     .forge-popup { position:fixed; inset:0; z-index:9999; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.7); animation:fadeIn 0.3s; padding:32px 16px; }
-    .forge-card { background:linear-gradient(135deg,#1a1040,#0e1830); border:2px solid var(--gold); border-radius:16px; padding:24px; text-align:center; max-width:340px; box-shadow:0 0 40px rgba(255,215,0,0.2); animation:scaleIn 0.4s; }
+    .forge-card { background:linear-gradient(135deg,#1a1040,#0e1830); border:2px solid var(--gold); border-radius:16px; padding:24px; text-align:center; max-width:340px; max-height:88vh; overflow-y:auto; box-shadow:0 0 40px rgba(255,215,0,0.2); animation:scaleIn 0.4s; }
     /* Equipment comparison popup */
     .equip-compare-overlay {
       position: fixed; inset: 0; z-index: 9999;
@@ -407,15 +407,16 @@
     .ecp-rar.legendary { background: linear-gradient(135deg,rgba(255,215,0,0.4),rgba(255,140,0,0.4)); color: #ffd700; }
     /* ===== DIFFICULTY SELECTOR ===== */
     .diff-selector-overlay {
-      position: fixed; inset: 0; z-index: 9500; display: flex; align-items: center;
+      position: fixed; inset: 0; z-index: 9500; display: flex; align-items: flex-start;
       justify-content: center; background: rgba(0,0,0,0.85); backdrop-filter: blur(6px);
-      padding: 20px 16px; animation: fadeIn 0.25s;
+      padding: 20px 16px; animation: fadeIn 0.25s; overflow-y: auto;
     }
     .diff-selector-card {
       background: linear-gradient(160deg, #0d1428, #12192e, #0e1022);
       border: 2px solid var(--gold, #ffd700); border-radius: 20px;
       padding: 24px; max-width: 520px; width: 100%;
       box-shadow: 0 0 60px rgba(255,215,0,0.15); animation: scaleIn 0.3s;
+      margin: auto 0;
     }
     .diff-selector-title {
       color: var(--gold); font-family: 'Cinzel', serif; font-size: 1.05rem;
@@ -1111,6 +1112,18 @@
       background: linear-gradient(180deg, #12192e, #0b1428);
       border: 2px solid var(--blue-dark); border-radius: 14px; padding: 16px;
       box-shadow: 0 0 40px rgba(30,60,120,0.4);
+    }
+    /* Garante que nenhum modal-content estoure a viewport */
+    .modal-content {
+      max-height: 88vh;
+      overflow-y: auto;
+      box-sizing: border-box;
+    }
+    /* Wrapper de modal dinâmico: scroll quando conteúdo excede viewport */
+    [style*="position:fixed"][style*="align-items:center"] > .modal-content,
+    [style*="position:fixed"][style*="align-items: center"] > .modal-content {
+      max-height: 88vh;
+      overflow-y: auto;
     }
     table { width: 100%; border-collapse: collapse; margin-top: 8px; }
     th, td { border-bottom: 1px solid #1e3a5e; padding: 6px; text-align: left; font-size: 0.8rem; }
@@ -4607,7 +4620,19 @@
     <div class="sound-toggle" onclick="toggleSound()">
       <span id="mobileSoundSfxIcon">🔊</span>
     </div>
-
+    <div class="profile-btn" id="mobileTopProfileBtn" onclick="toggleProfilePopup('mobileTop')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+      <div class="profile-popup" id="mobileTopProfilePopup">
+        <div class="profile-popup-email"><strong>Conta</strong><span id="mobileTopProfileEmail"></span></div>
+        <button class="profile-popup-item" onclick="openAccountModal();event.stopPropagation()">&#128100; Minha Conta</button>
+        <button class="profile-popup-item" onclick="openPlanModal();event.stopPropagation()">&#11088; Seu Plano</button>
+        <button class="profile-popup-item admin-item" onclick="openAdminPanel();event.stopPropagation()">&#128737; Administração</button>
+        <button class="profile-popup-item admin-item" onclick="adminJumpToBoss();event.stopPropagation()">⚔ Fase Final</button>
+        <button class="profile-popup-item admin-item" onclick="openAnalyticsPanel();event.stopPropagation()">&#128202; Analytics</button>
+        <hr class="profile-popup-divider">
+        <button class="profile-popup-logout" onclick="authLogout();event.stopPropagation()">Sair</button>
+      </div>
+    </div>
   </div>
 
   <!-- LANDING / LOGIN SCREEN -->
@@ -6030,9 +6055,9 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     function showExtraLifeModal() {
       const modal = document.createElement('div');
       modal.className = 'modal show';
-      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(6px);padding:32px 16px;';
+      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(6px);padding:32px 16px;overflow-y:auto;';
       modal.innerHTML = `
-        <div class="modal-content" style="max-width:450px;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;">
+        <div class="modal-content" style="max-width:450px;max-height:88vh;overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;">
           <h2 style="color:var(--ok);margin-bottom:16px;">💚 VIDA EXTRA! 💚</h2>
           <p style="font-size:1.05rem;line-height:1.6;margin-bottom:20px;">
             Os Deuses do Néfron reconhecem sua dedicação!<br>
@@ -6150,9 +6175,9 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       
       const modal = document.createElement('div');
       modal.className = 'modal show evolution-popup';
-      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(6px);padding:32px 16px;';
+      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(6px);padding:32px 16px;overflow-y:auto;';
       modal.innerHTML = `
-        <div class="modal-content" style="max-width:500px;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;">
+        <div class="modal-content" style="max-width:500px;max-height:88vh;overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;">
           <h2 style="color:var(--gold);margin-bottom:12px;">⚡ EVOLUÇÃO! ⚡</h2>
           <div style="margin:20px auto;width:120px;height:120px;border-radius:50%;overflow:hidden;border:3px solid var(--gold);box-shadow:0 0 20px rgba(255,215,0,0.5);">
             <img src="${newImage}" style="width:100%;height:100%;object-fit:cover;" alt="${newTitle}">
@@ -26716,6 +26741,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         if (loginBtn) loginBtn.style.display = 'none';
         document.querySelectorAll('.profile-btn').forEach(b => b.classList.add('visible'));
         document.querySelectorAll('[id$="ProfileEmail"]').forEach(el => { el.textContent = email; });
+        const mobileTopEmail = document.getElementById('mobileTopProfileEmail');
+        if (mobileTopEmail) mobileTopEmail.textContent = email;
         const isAdmin = email === ADMIN_EMAIL;
         document.querySelectorAll('.admin-item').forEach(el => el.classList.toggle('visible', isAdmin));
         const landing = document.getElementById('landingScreen');
@@ -26848,9 +26875,9 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       if (!modal) {
         modal = document.createElement('div');
         modal.id = 'updatePasswordModal';
-        modal.style.cssText = 'display:flex;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:10000;align-items:center;justify-content:center;backdrop-filter:blur(10px);padding:32px 16px;';
+        modal.style.cssText = 'display:flex;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:10000;align-items:flex-start;justify-content:center;backdrop-filter:blur(10px);padding:32px 16px;overflow-y:auto;';
         modal.innerHTML = `
-          <div class="modal-panel" style="max-width:400px">
+          <div class="modal-panel" style="max-width:400px;margin:auto 0;">
             <h2>🔑 Nova Senha</h2>
             <p style="color:#a0b8d0;font-size:0.85rem;margin-bottom:16px;text-align:center;line-height:1.6">Digite sua nova senha para retomar a jornada.</p>
             <div class="form-group">
@@ -26925,7 +26952,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
 
     // ===== PROFILE POPUP =====
     function toggleProfilePopup(ctx) {
-      const ids = { game: 'gameProfilePopup', welcome: 'welcomeProfilePopup', landing: 'landingProfilePopup', mobile: 'mobileProfilePopup' };
+      const ids = { game: 'gameProfilePopup', welcome: 'welcomeProfilePopup', landing: 'landingProfilePopup', mobile: 'mobileProfilePopup', mobileTop: 'mobileTopProfilePopup' };
       const popup = document.getElementById(ids[ctx] || 'welcomeProfilePopup');
       if (!popup) return;
       const isOpen = popup.classList.contains('open');
