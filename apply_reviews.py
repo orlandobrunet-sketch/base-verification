@@ -26,21 +26,22 @@ def update_q(html, topic, new_q=None, new_opts=None, new_ans=None, new_exp=None)
     block = html[blk_start:blk_end]
 
     if new_q is not None:
-        safe = new_q.replace('\\', '\\\\').replace('"', '\\"')
+        safe = new_q.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n').replace('\r', '\\r').replace('\t', '\\t')
         block = re.sub(r'"q":\s*"(?:[^"\\]|\\.)*"', f'"q": "{safe}"', block, count=1)
 
     if new_opts is not None:
         opts_str = '[\n      ' + ',\n      '.join(
-            f'"{o.replace(chr(92), chr(92)*2).replace(chr(34), chr(92)+chr(34))}"'
+            f'"{o.replace(chr(92), chr(92)*2).replace(chr(34), chr(92)+chr(34)).replace(chr(10), r"\\n").replace(chr(13), r"\\r").replace(chr(9), r"\\t")}"'
             for o in new_opts
         ) + '\n    ]'
-        block = re.sub(r'"opts":\s*\[[^\]]*\]', f'"opts": {opts_str}', block, count=1, flags=re.DOTALL)
+        # Regex que respeita strings entre aspas (não para no ] dentro de uma string)
+        block = re.sub(r'"opts":\s*\[(?:"(?:[^"\\]|\\.)*"(?:\s*,\s*)?)*\s*\]', f'"opts": {opts_str}', block, count=1, flags=re.DOTALL)
 
     if new_ans is not None:
         block = re.sub(r'"ans":\s*\d', f'"ans": {new_ans}', block, count=1)
 
     if new_exp is not None:
-        safe = new_exp.replace('\\', '\\\\').replace('"', '\\"')
+        safe = new_exp.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n').replace('\r', '\\r').replace('\t', '\\t')
         block = re.sub(r'"exp":\s*"(?:[^"\\]|\\.)*"', f'"exp": "{safe}"', block, count=1)
 
     print(f"  OK {topic[:70]}")
