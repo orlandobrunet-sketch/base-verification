@@ -1,20 +1,19 @@
 #!/usr/bin/env python3
 """
 review_questions.py
-Revisa as questões do NefroQuest via OpenAI Responses API (gpt-5.4-mini)
-com Structured Outputs e escalonamento automático para gpt-5.4.
+Revisa as questões do NefroQuest via OpenAI Responses API (gpt-5.4)
+com Structured Outputs, effort=high e verificação obrigatória de estudos clínicos.
 
 USO:
   pip install openai
   export OPENAI_API_KEY="sk-..."
   python review_questions.py --start 0 --end 50 --out reviewed_0_50.json
-  python review_questions.py --start 0 --end 50 --out reviewed_0_50.json --no-escalate
 
 Opções:
-  --model           Modelo base (padrão: gpt-5.4-mini)
+  --model           Modelo base (padrão: gpt-5.4)
   --escalate-model  Modelo para escalonamento (padrão: gpt-5.4)
   --no-escalate     Desativa escalonamento
-  --effort          Nível de raciocínio (minimal|low|medium|high, padrão: medium)
+  --effort          Nível de raciocínio (minimal|low|medium|high, padrão: high)
 
 Escalonamento automático é disparado quando:
   - confianca == "baixa"
@@ -29,11 +28,11 @@ import os, re, json, time, argparse
 from openai import OpenAI
 
 # ── Config ───────────────────────────────────────────────────────────────────
-DEFAULT_MODEL    = "gpt-5.4-mini"
+DEFAULT_MODEL    = "gpt-5.4"
 ESCALATE_MODEL   = "gpt-5.4"
-DEFAULT_EFFORT   = "medium"
-MAX_OUTPUT_TOKS  = 6000
-SLEEP_SEC        = 1.0
+DEFAULT_EFFORT   = "high"
+MAX_OUTPUT_TOKS  = 8000
+SLEEP_SEC        = 1.5
 HTML_FILE        = "index.html"
 
 # ── System Prompt ────────────────────────────────────────────────────────────
@@ -103,6 +102,14 @@ baixa = enunciado ou alternativas insuficientes, ambíguas ou fortemente depende
 
 HEURÍSTICAS DE ALERTA
 Revise com atenção extra quando: alternativa marcada contradiz a explicação; feedback diz "incorreta" mas a alternativa foi marcada como correta; explicação defende alternativa diferente da marcada; uso de creatinina/ureia/bicarbonato isolado como critério absoluto; termos absolutos em contexto clínico; enunciado pergunta sobre critério "isoladamente" mas descreve múltiplas indicações simultâneas; duas alternativas verdadeiras dependendo do contexto; dependência de diretriz antiga ou conceito superado.
+
+VERIFICAÇÃO OBRIGATÓRIA DE ESTUDOS CLÍNICOS
+Quando a questão mencionar um estudo clínico (SPRINT, BPROAD, FIDELIO-DKD, FIGARO-DKD, CREDENCE, DAPA-CKD, EMPA-KIDNEY, FLOW, CONVINCE, KDIGO, etc.):
+1. Verifique se o nome do estudo no enunciado é consistente com os achados descritos nas alternativas e na explicação.
+2. Verifique se os percentuais e resultados citados são compatíveis com os dados reais do estudo (ex: SPRINT mostrou redução de ~25% em MACE e ~27% em mortalidade, NÃO 40%).
+3. Se uma alternativa menciona um estudo diferente do que o enunciado pergunta, isso é um erro grave — identifique e marque como problema.
+4. Nunca misture achados de um estudo com o nome de outro.
+5. Nunca invente percentuais. Se não souber o dado exato, prefira uma formulação qualitativa correta.
 
 REGRAS FINAIS
 1. Se o veredito for "manter", ainda assim retorne o JSON completo com questao_revisada preenchida (idêntica à original).

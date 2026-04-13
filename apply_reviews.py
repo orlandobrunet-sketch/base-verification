@@ -123,14 +123,13 @@ def main():
         if veredito in ("corrigir_explicacao", "corrigir_gabarito_e_explicacao"):
             new_exp = qr.get("explicacao_final_revisada")
 
+        # ── reescrever: NÃO toca em q nem opts — só corrige gabarito e explicação ──
         if veredito == "reescrever":
-            new_q    = qr.get("enunciado")
-            alts     = qr.get("alternativas", {})
-            new_opts = [alts.get("A",""), alts.get("B",""), alts.get("C",""), alts.get("D","")]
-            letter   = qr.get("gabarito_correto")
+            print(f"  ~~ REESCREVER (só corrige ans+exp, preserva enunciado/opts): {topic[:60]}")
+            letter = qr.get("gabarito_correto")
             if letter and letter in LETTER_TO_IDX:
                 new_ans = LETTER_TO_IDX[letter]
-            new_exp  = qr.get("explicacao_final_revisada")
+            new_exp = qr.get("explicacao_final_revisada")
 
         html = update_q(html, topic=topic,
                         new_q=new_q, new_opts=new_opts,
