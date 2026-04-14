@@ -1258,9 +1258,11 @@
       display: flex; align-items: flex-start; justify-content: center;
       animation: fadeIn 0.8s;
       overflow-y: auto;
+      scrollbar-width: none;
       padding-top: clamp(24px, 5vh, 60px);
       padding-bottom: 24px;
     }
+    .welcome-screen::-webkit-scrollbar { display: none; }
     .welcome-screen.hidden { display: none; }
 
     /* Botões de som na welcome screen — PC only, canto superior direito */
