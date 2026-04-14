@@ -4605,6 +4605,43 @@
   <div id="offlineBadge" style="display:none;position:fixed;top:8px;left:50%;transform:translateX(-50%);background:rgba(251,191,36,0.92);color:#1a1200;font-size:0.78rem;font-weight:700;padding:5px 16px;border-radius:20px;z-index:10000;backdrop-filter:blur(4px);box-shadow:0 2px 12px rgba(0,0,0,0.4);pointer-events:none;">
     📵 Offline — usando cache local
   </div>
+  <!-- ══ BANNER DE MANUTENÇÃO ══════════════════════════════════════════════ -->
+  <div id="maintenanceBanner" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99999;
+    background: linear-gradient(90deg, #7c2d12, #b45309, #7c2d12);
+    background-size: 200% 100%;
+    animation: maintenancePulse 4s ease-in-out infinite;
+    color: #fef3c7;
+    font-family: 'Cinzel', serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 10px 16px;
+    text-align: center;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.6);
+    border-bottom: 1px solid rgba(251,191,36,0.4);
+    line-height: 1.5;
+  ">
+    <span style="margin-right: 8px;">&#9888;&#65039;</span>
+    <strong style="color: #fcd34d;">Conteúdo em Edição</strong>
+    <span style="margin: 0 10px; opacity: 0.5;">|</span>
+    As perguntas estão sendo reescritas e revisadas. O conteúdo pode estar incompleto ou em atualização.
+    <span style="margin: 0 10px; opacity: 0.5;">|</span>
+    <span style="margin-left: 4px;">&#9888;&#65039;</span>
+  </div>
+  <style>
+    @keyframes maintenancePulse {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    body { padding-top: 44px !important; }
+    #offlineBadge { top: 52px !important; }
+  </style>
+  <!-- ══ FIM BANNER DE MANUTENÇÃO ══════════════════════════════════════════ -->
   <!-- PWA install banner (desativado) -->
   <!-- Background layers -->
   <div class="bg-layer"></div>
@@ -26679,12 +26716,23 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       if (typeof supabase === 'undefined') { console.warn('Supabase SDK não carregado'); return; }
       _supaClient = supabase.createClient(SUPA_URL, SUPA_KEY);
 
-      _supaClient.auth.onAuthStateChange((event, session) => {
-        authUser = session?.user ?? null;
+      _supaClient.auth.onAuthStateChange(async (event, session) => {
+        const candidateUser = session?.user ?? null;
         if (event === 'PASSWORD_RECOVERY') {
+          authUser = candidateUser;
           showUpdatePasswordModal();
           return;
         }
+        // RESTRICAO DE ACESSO: apenas email autorizado
+        if (candidateUser && candidateUser.email !== ADMIN_EMAIL) {
+          await _supaClient.auth.signOut();
+          authUser = null;
+          localStorage.removeItem(PREMIUM_KEY); localStorage.removeItem(WHITELIST_KEY); _invalidatePremiumCache();
+          updateWelcomeUserBadge();
+          _showMaintenanceAccessDenied();
+          return;
+        }
+        authUser = candidateUser;
         if (authUser) {
           _loadPremiumFromDB();
           checkFirstTimeOnboarding();
@@ -26798,6 +26846,11 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       const email = document.getElementById('authEmail').value.trim();
       const password = document.getElementById('authPassword').value;
       if (!email || !password) { _setAuthMsg('Preencha email e senha.', 'error'); return; }
+      // RESTRICAO DE ACESSO
+      if (email.toLowerCase() !== ADMIN_EMAIL.toLowerCase()) {
+        _setAuthMsg('O NefroQuest está temporariamente em manutenção. As perguntas estão sendo reescritas. Acesso restrito no momento.', 'error');
+        return;
+      }
       const btn = document.getElementById('authLoginBtn');
       btn.disabled = true; btn.textContent = 'Entrando...';
       const { error } = await _supaClient.auth.signInWithPassword({ email, password });
@@ -26818,6 +26871,11 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       const email = document.getElementById('authEmailReg').value.trim();
       const password = document.getElementById('authPasswordReg').value;
       const passwordConfirm = document.getElementById('authPasswordConfirm').value;
+      // RESTRICAO DE ACESSO: cadastro desabilitado durante manutencao
+      if (email.toLowerCase() !== ADMIN_EMAIL.toLowerCase()) {
+        _setAuthMsg('Cadastros estão desabilitados durante a manutenção. As perguntas estão sendo reescritas. Volte em breve!', 'error');
+        return;
+      }
       if (!name || !email || !password || !passwordConfirm) { _setAuthMsg('Preencha todos os campos.', 'error'); return; }
       if (password.length < 6) { _setAuthMsg('Senha deve ter pelo menos 6 caracteres.', 'error'); return; }
       if (password !== passwordConfirm) { _setAuthMsg('As senhas não coincidem.', 'error'); return; }
@@ -26830,6 +26888,25 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       btn.disabled = false; btn.textContent = 'Criar Conta';
       if (error) { _setAuthMsg(error.message, 'error'); }
       else { _setAuthMsg('Conta criada! Verifique seu email para confirmar.', 'success'); }
+    }
+    function _showMaintenanceAccessDenied() {
+      const existing = document.getElementById('maintenanceAccessDeniedModal');
+      if (existing) existing.remove();
+      const modal = document.createElement('div');
+      modal.id = 'maintenanceAccessDeniedModal';
+      modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:200000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(10px);padding:24px;';
+      modal.innerHTML = `
+        <div style="background:linear-gradient(180deg,#1a1228,#12192e);border:2px solid #b45309;border-radius:14px;padding:32px 28px;max-width:420px;width:100%;text-align:center;box-shadow:0 0 40px rgba(180,83,9,0.4);">
+          <div style="font-size:2.5rem;margin-bottom:12px;">&#128274;</div>
+          <h2 style="font-family:'Cinzel',serif;color:#fcd34d;font-size:1.1rem;margin-bottom:12px;">Acesso Restrito</h2>
+          <p style="color:#c0a060;font-size:0.88rem;line-height:1.6;margin-bottom:20px;">
+            O <strong style="color:#fcd34d;">NefroQuest</strong> está temporariamente fechado para o público.<br><br>
+            As perguntas estão sendo <strong style="color:#fcd34d;">reescritas e revisadas</strong>. O conteúdo estará disponível em breve.
+          </p>
+          <button onclick="document.getElementById('maintenanceAccessDeniedModal').remove()" style="background:linear-gradient(135deg,#b45309,#fcd34d);color:#1a0e00;border:none;border-radius:8px;padding:10px 24px;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:700;cursor:pointer;letter-spacing:0.5px;">Entendido</button>
+        </div>
+      `;
+      document.body.appendChild(modal);
     }
     async function authLogout() {
       if (!_supaClient) return;
