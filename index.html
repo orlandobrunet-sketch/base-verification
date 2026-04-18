@@ -1740,24 +1740,29 @@
       border-radius: 8px; padding: 8px 12px; width: 100%;
     }
 
-    /* ── Desktop landing: layout mais amplo e sem risco separador ── */
+    /* ── Desktop landing: card centralizado, sem scrollbar interno ── */
     @media (min-width: 769px) {
-      #landingScreen { justify-content: center; }
+      #landingScreen { justify-content: center; overflow-y: auto; }
       .landing-content {
-        max-width: 480px;
-        background: rgba(8,13,26,0.7);
-        border: 1px solid rgba(255,215,0,0.1);
-        border-radius: 18px;
-        padding: 36px 40px;
-        backdrop-filter: blur(10px);
-        box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+        max-width: 500px;
+        overflow-y: visible;
+        max-height: none;
+        background: rgba(8,13,26,0.78);
+        border: 1px solid rgba(255,215,0,0.14);
+        border-radius: 20px;
+        padding: 40px 44px 36px;
+        backdrop-filter: blur(14px);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,215,0,0.04);
+        gap: 10px;
       }
-      .landing-btn-google { padding: 14px 24px; font-size: 1rem; }
-      .landing-btn-email  { padding: 13px 24px; font-size: 0.95rem; }
+      .landing-title { font-size: 2.5rem; }
+      .landing-tagline { font-size: 0.84rem; margin-bottom: 10px; }
+      .landing-btn-google { padding: 14px 20px; font-size: 1rem; }
+      .landing-btn-email  { padding: 12px 20px; font-size: 0.95rem; }
       .landing-stats-section {
-        border-top: none !important;
-        padding-top: 6px !important;
-        margin-top: 8px !important;
+        border-top: 1px solid rgba(255,215,0,0.1) !important;
+        padding-top: 14px !important;
+        margin-top: 10px !important;
       }
     }
 
