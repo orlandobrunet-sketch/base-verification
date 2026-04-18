@@ -1740,6 +1740,27 @@
       border-radius: 8px; padding: 8px 12px; width: 100%;
     }
 
+    /* ── Desktop landing: layout mais amplo e sem risco separador ── */
+    @media (min-width: 769px) {
+      #landingScreen { justify-content: center; }
+      .landing-content {
+        max-width: 480px;
+        background: rgba(8,13,26,0.7);
+        border: 1px solid rgba(255,215,0,0.1);
+        border-radius: 18px;
+        padding: 36px 40px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+      }
+      .landing-btn-google { padding: 14px 24px; font-size: 1rem; }
+      .landing-btn-email  { padding: 13px 24px; font-size: 0.95rem; }
+      .landing-stats-section {
+        border-top: none !important;
+        padding-top: 6px !important;
+        margin-top: 8px !important;
+      }
+    }
+
     /* ===== PROFILE ICON + POPUP ===== */
     .profile-btn {
       background: rgba(15,20,40,1); border: 2px solid var(--blue-dark); border-radius: 8px;
@@ -2490,7 +2511,7 @@
         position: fixed;
         top: 8px;
         right: 8px;
-        z-index: 99999;
+        z-index: 9500; /* abaixo de modais (9999) para não sobrepor popups */
       }
       /* Botão herói no canto superior esquerdo (mobile) */
       .mobile-hero-btn {
@@ -4658,7 +4679,7 @@
         Entrar com Google
       </button>
       <button class="landing-btn-email" onclick="landingLoginEmail()">&#9993; Entrar com Email</button>
-      <div style="margin-top:12px;border-top:1px solid rgba(255,215,0,0.12);padding-top:14px;width:100%;max-width:360px;">
+      <div class="landing-stats-section" style="margin-top:12px;border-top:1px solid rgba(255,215,0,0.12);padding-top:14px;width:100%;max-width:360px;">
         <!-- Contador de questões -->
         <div style="text-align:center;margin-bottom:10px;">
           <div style="font-family:'Cinzel',serif;font-size:clamp(1.8rem,6vw,2.4rem);font-weight:900;color:#ffd700;line-height:1;margin-bottom:0;">1.000<span style="font-size:60%;vertical-align:super;color:#b8860b;">+</span></div>
@@ -7672,6 +7693,57 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         journal:"CJASN 2021;16(9):1418-1428",
         ano:2021,tipo:"Consórcio de Pesquisa",badge:"REVIEW",badgeColor:"#0ea5e9",
         impacto:"Atlas molecular renal com single-cell RNA-seq — redefinindo doenças renais para terapias de precisão",icon:"🔬"
+      },
+
+      // ===== REFS ADICIONADOS v6.1 =====
+      finerenone_2025:{
+        label:"Finerenona — FIDELIO-DKD + FIGARO-DKD (FIDELITY)",
+        url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2025845",
+        journal:"N Engl J Med 2020–2021; JAMA 2022",
+        ano:2022,tipo:"Análise Pooled RCT",badge:"RCT",badgeColor:"#10b981",
+        impacto:"Finerenona ↓20% desfecho renal e ↓14% MACE em DRC diabética — análise combinada FIDELITY (>13.000 pacientes)",icon:"💊"
+      },
+      fidelio_dkd:{
+        label:"FIDELIO-DKD Trial (Finerenona)",
+        url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2025845",
+        journal:"N Engl J Med 2020;383(23):2219-2229",
+        ano:2020,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
+        impacto:"Finerenona ↓18% desfecho renal composto · ↓14% eventos CV · Antagonista não-esteroidal do receptor mineralocorticoide",icon:"💊"
+      },
+      finerenone_t1d_2025:{
+        label:"FIGARO-DKD Trial (Finerenona)",
+        url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2110956",
+        journal:"N Engl J Med 2021;385(24):2252-2263",
+        ano:2021,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
+        impacto:"Finerenona ↓13% MACE e ↓23% novo início de DRC em DM2 com DRC moderada-grave",icon:"💊"
+      },
+      finerenone_transplant_2025:{
+        label:"Finerenona em Transplante Renal — Evidência Emergente",
+        url:"https://www.kidney-international.org/",
+        journal:"Kidney International 2024",
+        ano:2024,tipo:"Revisão/Estudo Piloto",badge:"REVIEW",badgeColor:"#0ea5e9",
+        impacto:"Dados preliminares de segurança e eficácia de ARM não-esteroidais em receptores de transplante renal (evidência em desenvolvimento)",icon:"📖"
+      },
+      confidence_trial_2025:{
+        label:"CONFIDENCE Trial (Finerenona + Empagliflozina)",
+        url:"https://www.thelancet.com/journals/landia/article/PIIS2213-8587(24)00243-8/fulltext",
+        journal:"Lancet Diabetes Endocrinol 2025",
+        ano:2025,tipo:"Ensaio Clínico Fase II",badge:"RCT",badgeColor:"#10b981",
+        impacto:"Iniciação simultânea finerenona + empagliflozina bem tolerada; maior redução de albuminúria que monoterapia isolada em DRC diabética",icon:"💊"
+      },
+      bestow_trial_2025:{
+        label:"BESTOW Trial (Tegoprubart em Transplante Renal)",
+        url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2404733",
+        journal:"N Engl J Med 2024;391(26):2493-2504",
+        ano:2024,tipo:"Ensaio Clínico Fase II",badge:"RCT",badgeColor:"#10b981",
+        impacto:"Tegoprubart (anti-CD40L) não-inferior ao tacrolimus em rejeição aguda; menor DGF e preservação de TFGe em transplante renal",icon:"💊"
+      },
+      fine_one_2025:{
+        label:"FINE-ONE Trial (Finerenona em IgAN)",
+        url:"https://www.jasn.org/",
+        journal:"J Am Soc Nephrol 2025",
+        ano:2025,tipo:"Ensaio Clínico Fase II/III",badge:"RCT",badgeColor:"#10b981",
+        impacto:"Finerenona ↓ proteinúria e atenua inflamação/fibrose renal em Nefropatia por IgA — nova indicação potencial do ARM não-esteroidal",icon:"💊"
       }
     };
 
@@ -29471,13 +29543,14 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         background: rgba(0,0,0,0.92);
         display: flex; align-items: flex-start; justify-content: center;
         animation: fadeIn 0.6s ease;
-        padding: 16px;
+        padding: 16px 16px calc(env(safe-area-inset-bottom, 0px) + 24px);
         overflow-y: auto;
+        box-sizing: border-box;
       `;
       popup.innerHTML = `
         <div style="
           max-width: 540px; width: 100%;
-          max-height: calc(100vh - 32px);
+          max-height: 88svh; max-height: 88dvh;
           overflow-y: auto;
           background: linear-gradient(160deg, #0a0118 0%, #120230 50%, #0a0118 100%);
           border: 2px solid rgba(168,85,247,0.7);
@@ -29543,8 +29616,6 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
             width: 100%;
             animation: arquiGolpeGlow 2s ease-in-out infinite alternate;
           ">&#9876; Iniciar Batalha Final</button>
-          <!-- Linha de cristal no fundo -->
-          <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.8),rgba(216,180,254,1),rgba(168,85,247,0.8),transparent);"></div>
         </div>
       `;
       document.body.appendChild(popup);
@@ -29758,7 +29829,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       const optLetters = ['A','B','C','D'];
       const modal = document.createElement('div');
       modal.className = 'modal show session-review-popup';
-      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.88);display:flex;align-items:flex-start;justify-content:center;z-index:9999;backdrop-filter:blur(6px);overflow-y:auto;padding:32px 16px;box-sizing:border-box;';
+      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;height:100dvh;background:rgba(0,0,0,0.88);display:flex;align-items:flex-start;justify-content:center;z-index:10000;backdrop-filter:blur(6px);overflow-y:auto;padding:12px 16px calc(env(safe-area-inset-bottom,0px)+80px);box-sizing:border-box;';
       modal.innerHTML = `
         <div style="max-width:560px;width:100%;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;box-shadow:0 0 40px rgba(251,113,133,0.3);margin:auto 0;">
           <h2 style="color:#fb7185;font-family:'Cinzel',serif;text-align:center;margin-bottom:6px;">📋 ERROS DA JORNADA</h2>
@@ -30173,7 +30244,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       
       const modal = document.createElement('div');
       modal.className = 'modal show stats-popup';
-      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(6px);padding:32px 16px;';
+      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;height:100dvh;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:10000;backdrop-filter:blur(6px);overflow-y:auto;padding:32px 16px calc(env(safe-area-inset-bottom,0px)+16px);box-sizing:border-box;';
       modal.innerHTML = `
         <div class="modal-content" style="max-width:600px;max-height:88vh;overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;box-shadow:0 0 40px rgba(59,130,246,0.3);">
           <h2 style="color:var(--gold);margin-bottom:16px;font-family:'Cinzel',serif;">📊 ESTATÍSTICAS</h2>
@@ -30367,7 +30438,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       const modal = document.createElement('div');
       modal.className = 'modal show study-mode-popup';
       const _isMobile = window.innerWidth <= 768;
-modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;align-items:' + (_isMobile ? 'flex-start' : 'center') + ';justify-content:center;z-index:9999;backdrop-filter:blur(6px);overflow-y:auto;padding:' + (_isMobile ? '32px 12px 120px' : '32px 16px') + ';box-sizing:border-box;';
+modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;height:100dvh;background:rgba(0,0,0,0.85);display:flex;align-items:' + (_isMobile ? 'flex-start' : 'center') + ';justify-content:center;z-index:10000;backdrop-filter:blur(6px);overflow-y:auto;padding:' + (_isMobile ? '12px 12px calc(env(safe-area-inset-bottom,0px)+80px)' : '32px 16px') + ';box-sizing:border-box;';
 
       function renderAxesHTML() {
         return NEFRO_AXES.map(axis => {
@@ -30993,10 +31064,10 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
       // No mobile: overflow-y auto no container + align-items flex-start para scroll completo
       // No PC: centralizado com max-height 85vh
       modal.style.cssText = _achIsMobile
-        ? 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;align-items:flex-start;justify-content:center;z-index:9999;backdrop-filter:blur(6px);overflow-y:auto;padding:32px 12px 100px;box-sizing:border-box;'
-        : 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(6px);padding:32px 16px;';
+        ? 'position:fixed;top:0;left:0;width:100vw;height:100svh;height:100dvh;background:rgba(0,0,0,0.85);display:flex;align-items:flex-start;justify-content:center;z-index:10000;backdrop-filter:blur(6px);overflow-y:auto;padding:12px 12px calc(env(safe-area-inset-bottom,0px)+80px);box-sizing:border-box;'
+        : 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:10000;backdrop-filter:blur(6px);padding:32px 16px;';
       const _achContentStyle = _achIsMobile
-        ? 'max-width:550px;width:100%;max-height:calc(100vh - 132px);overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:20px 16px;box-shadow:0 0 40px rgba(255,215,0,0.3);'
+        ? 'max-width:550px;width:100%;max-height:calc(100svh - 100px);max-height:calc(100dvh - 100px);overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:20px 16px;box-shadow:0 0 40px rgba(255,215,0,0.3);'
         : 'max-width:550px;max-height:calc(100vh - 64px);overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;box-shadow:0 0 40px rgba(255,215,0,0.3);';
       modal.innerHTML = `
         <div class="modal-content" style="${_achContentStyle}">
@@ -31411,7 +31482,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
       document.querySelectorAll('.changelog-popup').forEach(el => el.remove());
       const modal = document.createElement('div');
       modal.className = 'modal show changelog-popup';
-      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;align-items:flex-start;justify-content:center;z-index:9999;backdrop-filter:blur(6px);overflow-y:auto;padding:32px 16px;box-sizing:border-box;';
+      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;height:100dvh;background:rgba(0,0,0,0.85);display:flex;align-items:flex-start;justify-content:center;z-index:10000;backdrop-filter:blur(6px);overflow-y:auto;padding:12px 16px calc(env(safe-area-inset-bottom,0px)+80px);box-sizing:border-box;';
       modal.innerHTML = `
         <div class="modal-content" style="max-width:540px;width:calc(100% - 32px);max-height:none;overflow-y:visible;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;box-shadow:0 0 40px rgba(255,215,0,0.3);margin:auto 0;">
           <h2 style="color:var(--gold);margin-bottom:4px;font-family:'MedievalSharp','Cinzel',serif;">📜 NOVIDADES 📜</h2>
