@@ -4605,43 +4605,6 @@
   <div id="offlineBadge" style="display:none;position:fixed;top:8px;left:50%;transform:translateX(-50%);background:rgba(251,191,36,0.92);color:#1a1200;font-size:0.78rem;font-weight:700;padding:5px 16px;border-radius:20px;z-index:10000;backdrop-filter:blur(4px);box-shadow:0 2px 12px rgba(0,0,0,0.4);pointer-events:none;">
     📵 Offline — usando cache local
   </div>
-  <!-- ══ BANNER DE MANUTENÇÃO ══════════════════════════════════════════════ -->
-  <div id="maintenanceBanner" style="
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 99999;
-    background: linear-gradient(90deg, #7c2d12, #b45309, #7c2d12);
-    background-size: 200% 100%;
-    animation: maintenancePulse 4s ease-in-out infinite;
-    color: #fef3c7;
-    font-family: 'Cinzel', serif;
-    font-size: 0.82rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    padding: 10px 16px;
-    text-align: center;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.6);
-    border-bottom: 1px solid rgba(251,191,36,0.4);
-    line-height: 1.5;
-  ">
-    <span style="margin-right: 8px;">&#9888;&#65039;</span>
-    <strong style="color: #fcd34d;">Conteúdo em Edição</strong>
-    <span style="margin: 0 10px; opacity: 0.5;">|</span>
-    As perguntas estão sendo reescritas e revisadas. O conteúdo pode estar incompleto ou em atualização.
-    <span style="margin: 0 10px; opacity: 0.5;">|</span>
-    <span style="margin-left: 4px;">&#9888;&#65039;</span>
-  </div>
-  <style>
-    @keyframes maintenancePulse {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-    body { padding-top: 44px !important; }
-    #offlineBadge { top: 52px !important; }
-  </style>
-  <!-- ══ FIM BANNER DE MANUTENÇÃO ══════════════════════════════════════════ -->
   <!-- PWA install banner (desativado) -->
   <!-- Background layers -->
   <div class="bg-layer"></div>
@@ -4815,7 +4778,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         <button class="btn sec" onclick="showLeaderboardFromWelcome()">Leaderboard</button>
         <button id="bossPreviewBtn" class="btn-boss-preview" onclick="startBossPreview()" title="Preview do Confronto Final" style="display:none;">⚔️ Preview: Confronto Final</button>
       </div>
-      <div class="welcome-credit" style="margin-top:14px;"><a href="https://nefroquest.com">nefroquest.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;cursor:pointer;" onclick="showChangelog()">v6.0</span></div>
+      <div class="welcome-credit" style="margin-top:14px;"><a href="https://nefroquest.com">nefroquest.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;cursor:pointer;" onclick="showChangelog()">v6.1</span></div>
     </div>
   </div>
 
@@ -5237,7 +5200,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       <p>
         <a href="https://nefroquest.com">nefroquest.com</a>
         &nbsp;•&nbsp;
-        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" onclick="showChangelog()">v6.0</span>
+        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" onclick="showChangelog()">v6.1</span>
       </p>
     </div>
   </main>
@@ -26689,15 +26652,6 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
           showUpdatePasswordModal();
           return;
         }
-        // RESTRICAO DE ACESSO: apenas email autorizado
-        if (candidateUser && candidateUser.email !== ADMIN_EMAIL) {
-          await _supaClient.auth.signOut();
-          authUser = null;
-          localStorage.removeItem(PREMIUM_KEY); localStorage.removeItem(WHITELIST_KEY); _invalidatePremiumCache();
-          updateWelcomeUserBadge();
-          _showMaintenanceAccessDenied();
-          return;
-        }
         authUser = candidateUser;
         if (authUser) {
           _loadPremiumFromDB();
@@ -26812,11 +26766,6 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       const email = document.getElementById('authEmail').value.trim();
       const password = document.getElementById('authPassword').value;
       if (!email || !password) { _setAuthMsg('Preencha email e senha.', 'error'); return; }
-      // RESTRICAO DE ACESSO
-      if (email.toLowerCase() !== ADMIN_EMAIL.toLowerCase()) {
-        _setAuthMsg('O NefroQuest está temporariamente em manutenção. As perguntas estão sendo reescritas. Acesso restrito no momento.', 'error');
-        return;
-      }
       const btn = document.getElementById('authLoginBtn');
       btn.disabled = true; btn.textContent = 'Entrando...';
       const { error } = await _supaClient.auth.signInWithPassword({ email, password });
@@ -26837,11 +26786,6 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       const email = document.getElementById('authEmailReg').value.trim();
       const password = document.getElementById('authPasswordReg').value;
       const passwordConfirm = document.getElementById('authPasswordConfirm').value;
-      // RESTRICAO DE ACESSO: cadastro desabilitado durante manutencao
-      if (email.toLowerCase() !== ADMIN_EMAIL.toLowerCase()) {
-        _setAuthMsg('Cadastros estão desabilitados durante a manutenção. As perguntas estão sendo reescritas. Volte em breve!', 'error');
-        return;
-      }
       if (!name || !email || !password || !passwordConfirm) { _setAuthMsg('Preencha todos os campos.', 'error'); return; }
       if (password.length < 6) { _setAuthMsg('Senha deve ter pelo menos 6 caracteres.', 'error'); return; }
       if (password !== passwordConfirm) { _setAuthMsg('As senhas não coincidem.', 'error'); return; }
@@ -26854,25 +26798,6 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       btn.disabled = false; btn.textContent = 'Criar Conta';
       if (error) { _setAuthMsg(error.message, 'error'); }
       else { _setAuthMsg('Conta criada! Verifique seu email para confirmar.', 'success'); }
-    }
-    function _showMaintenanceAccessDenied() {
-      const existing = document.getElementById('maintenanceAccessDeniedModal');
-      if (existing) existing.remove();
-      const modal = document.createElement('div');
-      modal.id = 'maintenanceAccessDeniedModal';
-      modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:200000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(10px);padding:24px;';
-      modal.innerHTML = `
-        <div style="background:linear-gradient(180deg,#1a1228,#12192e);border:2px solid #b45309;border-radius:14px;padding:32px 28px;max-width:420px;width:100%;text-align:center;box-shadow:0 0 40px rgba(180,83,9,0.4);">
-          <div style="font-size:2.5rem;margin-bottom:12px;">&#128274;</div>
-          <h2 style="font-family:'Cinzel',serif;color:#fcd34d;font-size:1.1rem;margin-bottom:12px;">Acesso Restrito</h2>
-          <p style="color:#c0a060;font-size:0.88rem;line-height:1.6;margin-bottom:20px;">
-            O <strong style="color:#fcd34d;">NefroQuest</strong> está temporariamente fechado para o público.<br><br>
-            As perguntas estão sendo <strong style="color:#fcd34d;">reescritas e revisadas</strong>. O conteúdo estará disponível em breve.
-          </p>
-          <button onclick="document.getElementById('maintenanceAccessDeniedModal').remove()" style="background:linear-gradient(135deg,#b45309,#fcd34d);color:#1a0e00;border:none;border-radius:8px;padding:10px 24px;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:700;cursor:pointer;letter-spacing:0.5px;">Entendido</button>
-        </div>
-      `;
-      document.body.appendChild(modal);
     }
     async function authLogout() {
       if (!_supaClient) return;
@@ -31494,6 +31419,21 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
 
           <div style="text-align:left;padding:4px;">
 
+            <!-- v6.1 -->
+            <div style="background:linear-gradient(135deg,rgba(255,215,0,0.18),rgba(255,215,0,0.06));border:2px solid rgba(255,215,0,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                <span style="background:rgba(255,215,0,0.9);color:#1a0e00;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v6.1</span>
+                <span style="color:#fef3c7;font-weight:bold;font-size:0.95rem;">Refinamento Científico</span>
+              </div>
+              <ul style="margin:0;padding-left:18px;color:#c8d8f0;font-size:0.82rem;line-height:1.8;">
+                <li><strong>Organização por subespecialidade</strong> — questões reagrupadas em 15 domínios clínicos (DRC, glomerular, diálise, transplante, genética, eletrólitos, ácido-base e outros) para estudo direcionado</li>
+                <li><strong>Trials atualizados</strong> — resultados de EMPA-KIDNEY, DAPA-CKD, FLOW, FIDELIO-DKD, BPROAD, CONVINCE e outros com HR, IC95% e endpoints conforme publicação original</li>
+                <li><strong>Guidelines KDIGO 2024/2025/2026</strong> — alvos pressóricos, limiares de TFGe, critérios de indução/manutenção imunossupressora e monitoramento de HIF-PHI alinhados às atualizações</li>
+                <li><strong>Modo Ponto Fraco mais preciso</strong> — categorização refinada torna o diagnóstico de lacunas por domínio mais fiel ao desempenho real</li>
+                <li><strong>Acesso público liberado</strong> — catálogo completo disponível após cadastro</li>
+              </ul>
+            </div>
+
             <!-- v6.0 -->
             <div style="background:linear-gradient(135deg,rgba(99,202,183,0.18),rgba(99,202,183,0.06));border:2px solid rgba(99,202,183,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
@@ -31508,172 +31448,6 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;back
                 <li><strong>Minha Conta & Seu Plano</strong> — novos menus no perfil do usuário</li>
                 <li><strong>Email de confirmação</strong> — cadastro requer validação por link</li>
                 <li><strong>Google OAuth atualizado</strong> — domínio nefroquest.com autorizado</li>
-              </ul>
-            </div>
-
-            <!-- v5.8 -->
-            <div style="background:linear-gradient(135deg,rgba(244,114,182,0.18),rgba(244,114,182,0.06));border:2px solid rgba(244,114,182,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
-              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
-                <span style="background:rgba(244,114,182,0.85);color:#fff;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v5.8</span>
-                <span style="color:#fce7f3;font-weight:bold;font-size:0.95rem;">Música & Polimento</span>
-              </div>
-              <ul style="color:var(--txt);font-size:0.83rem;line-height:1.9;padding-left:18px;margin:0;">
-                <li><strong>Música de boas-vindas corrigida</strong> — autoplay ao carregar, fade-in suave de 1.2s, transição perfeita para música de perguntas</li>
-                <li><strong>Anti-FOUT</strong> — títulos ficam invisíveis até Cinzel Decorative carregar, eliminando flash de fonte genérica</li>
-                <li><strong>Logo 30% menor na página de perguntas (web)</strong> — melhor proporção visual no desktop</li>
-                <li><strong>Sombra suavizada</strong> — título NefroQuest na tela de boas-vindas com drop-shadow mais leve</li>
-                <li><strong>Correção de changelog</strong> — badges de versão v5.2/v5.4/v5.5 exibiam número errado</li>
-                <li><strong>Código limpo</strong> — CSS duplicado removido, variáveis mortas excluídas, guard clauses adicionadas</li>
-              </ul>
-            </div>
-
-            <!-- v5.7 -->
-            <div style="background:linear-gradient(135deg,rgba(52,211,153,0.18),rgba(52,211,153,0.06));border:2px solid rgba(52,211,153,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
-              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
-                <span style="background:rgba(52,211,153,0.85);color:#fff;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v5.7</span>
-                <span style="color:#d1fae5;font-weight:bold;font-size:0.95rem;">Mobile Refinado & Cache Inteligente</span>
-              </div>
-              <ul style="color:var(--txt);font-size:0.83rem;line-height:1.9;padding-left:18px;margin:0;">
-                <li><strong>Box da Jornada na tela inicial mobile</strong> — salvo ativo exibido no welcome screen com personagem, nível, vidas e pontos</li>
-                <li><strong>Botões de boas-vindas largura total</strong> — todos os botões do welcome screen empilhados verticalmente em largura máxima no mobile</li>
-                <li><strong>Botão Menu no dock mobile</strong> — ícone de casa no dock inferior retorna ao welcome screen salvando o progresso automaticamente</li>
-                <li><strong>Cache inteligente (SW v8)</strong> — páginas HTML agora usam estratégia network-first, garantindo que atualizações cheguem imediatamente sem precisar de force-refresh</li>
-                <li><strong>Logo NefroQuest</strong> — grafia padronizada para "NefroQuest" com fonte Cinzel em todo o projeto</li>
-              </ul>
-            </div>
-
-            <!-- v5.6 -->
-            <div style="background:linear-gradient(135deg,rgba(167,139,250,0.18),rgba(167,139,250,0.06));border:2px solid rgba(167,139,250,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
-              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
-                <span style="background:rgba(167,139,250,0.85);color:#fff;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v5.6</span>
-                <span style="color:#ede9fe;font-weight:bold;font-size:0.95rem;">Narrativa de Início por Personagem</span>
-              </div>
-              <ul style="color:var(--txt);font-size:0.83rem;line-height:1.9;padding-left:18px;margin:0;">
-                <li><strong>Tela de introdução dramática</strong> — ao selecionar um personagem, um popup cinematográfico exibe o retrato do herói, título, epíteto e narrativa de origem exclusiva antes de iniciar a jornada</li>
-                <li><strong>Narrativa do Dr. Nephros</strong> — "Guardião dos Néfrons": missão de preservar cada unidade funcional do reino contra o Arqui-Nefromante da ignorância clínica</li>
-                <li><strong>Narrativa da Dra. Aquaria</strong> — "Senhora das Marés Metabólicas": domínio dos equilíbrios hidroeletrolítico e ácido-base como arma contra o caos metabólico</li>
-                <li><strong>Narrativa do Dr. Glomerulus</strong> — "Lâmina dos Glomérulos": guerra microscópica pela preservação dos glomérulos contra as doenças que destroem a barreira de filtração</li>
-                <li><strong>Efeito de aparecimento</strong> — parágrafos surgem em sequência com fade-in; botão "Iniciar Jornada" aparece após a leitura completa</li>
-              </ul>
-            </div>
-
-            <!-- v5.5 -->
-            <div style="background:linear-gradient(135deg,rgba(251,191,36,0.18),rgba(251,191,36,0.06));border:2px solid rgba(251,191,36,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
-              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
-                <span style="background:rgba(251,191,36,0.85);color:#1a1200;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v5.5</span>
-                <span style="color:#fef3c7;font-weight:bold;font-size:0.95rem;">Engajamento, Progresso & PWA</span>
-              </div>
-              <ul style="color:var(--txt);font-size:0.83rem;line-height:1.9;padding-left:18px;margin:0;">
-                <li><strong>Questão do Dia</strong> — uma questão surpresa diária na tela de boas-vindas com contador de sequência (🔥 dias seguidos); resposta persiste via localStorage</li>
-                <li><strong>Modo Ponto Fraco</strong> — botão na tela inicial inicia automaticamente um estudo nas categorias com menos de 50% de acerto; fallback para as 3 piores quando não há nenhuma abaixo do limiar</li>
-                <li><strong>Progresso do ciclo</strong> — barra e contador "Questão N de 878" visíveis durante a partida mostram posição no ciclo atual</li>
-                <li><strong>Compartilhar resultado</strong> — botão ao fim da partida e da prova simulada; usa Web Share API no mobile ou copia texto para área de transferência</li>
-                <li><strong>Gráfico de evolução temporal</strong> — sparkline SVG no modal de Estatísticas mostrando % de acerto por dia nos últimos 7 dias</li>
-                <li><strong>Links de referência</strong> — ícones 🔗 clicáveis com link direto ao artigo original no feedback do Modo de Estudo</li>
-                <li><strong>Banner de instalação PWA</strong> — convite discreto para instalar o app na tela inicial após 20s de uso</li>
-                <li><strong>Indicador offline</strong> — badge amarelo no topo quando rodando sem internet</li>
-              </ul>
-            </div>
-
-            <!-- v5.4 -->
-            <div style="background:linear-gradient(135deg,rgba(96,165,250,0.18),rgba(96,165,250,0.06));border:2px solid rgba(96,165,250,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
-              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
-                <span style="background:rgba(96,165,250,0.85);color:#fff;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v5.4</span>
-                <span style="color:#bfdbfe;font-weight:bold;font-size:0.95rem;">Progresso Persistente & Melhorias de Jogabilidade</span>
-              </div>
-              <ul style="color:var(--txt);font-size:0.83rem;line-height:1.9;padding-left:18px;margin:0;">
-                <li><strong>Progresso persistente</strong> — questões respondidas corretamente são marcadas como dominadas e salvas no dispositivo; nas próximas sessões, questões novas ou com erros aparecem sempre primeiro</li>
-                <li><strong>Estatísticas por categoria corrigidas</strong> — painel "Desempenho por Categoria" agora exibe corretamente todos os 17 eixos do banco (UTI / Crítico, Oncologia Renal, Farmacologia, etc.)</li>
-                <li><strong>Cache atualizado (v6)</strong> — Service Worker renovado; todos os clientes recebem a versão mais recente automaticamente na próxima visita</li>
-              </ul>
-            </div>
-
-            <!-- v5.2 -->
-            <div style="background:linear-gradient(135deg,rgba(34,197,94,0.18),rgba(34,197,94,0.06));border:2px solid rgba(34,197,94,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
-              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
-                <span style="background:rgba(34,197,94,0.85);color:#fff;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v5.2</span>
-                <span style="color:#bbf7d0;font-weight:bold;font-size:0.95rem;">Revisão Científica Completa do Banco</span>
-              </div>
-              <ul style="color:var(--txt);font-size:0.83rem;line-height:1.9;padding-left:18px;margin:0;">
-                <li><strong>5 erros factuais de alta severidade corrigidos</strong> — dados numéricos incorretos nos estudos NOBILITY, BPROAD (×2), BLISS-LN e DAPA-CKD substituídos pelos valores publicados nos trials originais</li>
-                <li><strong>Viés de gabarito eliminado</strong> — a opção B era gabarito em 47,5% das questões (quase 2× o esperado); distribuição uniformizada para ~25% por opção em todas as questões</li>
-                <li><strong>Explicações aprimoradas</strong> — 48 questões com explicações de apenas 1 frase expandidas com fisiopatologia detalhada e referências clínicas; Q429 e Q446 receberam contexto de evidência (ASTRAL/CORAL, KDIGO 2021/ACR 2020)</li>
-                <li><strong>Análise de ambiguidade</strong> — revisão sistemática das questões identificou 11 casos com potencial de dupla interpretação; prioridades corrigidas ou sinalizadas para próxima revisão</li>
-              </ul>
-            </div>
-
-
-            <!-- v5.3 -->
-            <div style="background:linear-gradient(135deg,rgba(251,191,36,0.18),rgba(251,191,36,0.06));border:2px solid rgba(251,191,36,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
-              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
-                <span style="background:rgba(251,191,36,0.85);color:#1a1a00;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v5.3</span>
-                <span style="color:#fef3c7;font-weight:bold;font-size:0.95rem;">Expansão e Qualidade do Banco</span>
-              </div>
-              <ul style="color:var(--txt);font-size:0.83rem;line-height:1.9;padding-left:18px;margin:0;">
-                <li><strong>49 questões de nível fácil</strong> — cobertura de conceitos básicos: anatomia renal, TFG, IRA, distúrbios eletrolíticos, síndromes nefrótica/nefrítica, diálise, transplante e farmacologia</li>
-                <li><strong>72 enunciados reformulados</strong> — questões genéricas transformadas em casos clínicos completos com contexto de paciente</li>
-                <li><strong>48 explicações expandidas</strong> — explicações curtas da seção de nefrologia expandidas com fisiopatologia detalhada</li>
-                <li><strong>389 questões com 2ª referência</strong> — questões com referência única receberam fonte secundária por categoria</li>
-                <li><strong>Categorias unificadas</strong> — 5 categorias redundantes mescladas (glomerulo→glomerular, ira→lra, etc.): 15 categorias distintas</li>
-                <li><strong>878 questões</strong> — 1 duplicata removida; 130 títulos preenchidos; 35 explicações longas cortadas para ≤900 chars; categorias pediatria/nefropatias/especial eliminadas (17 categorias limpas)</li>
-              </ul>
-            </div>
-
-            <!-- v5.1 -->
-            <div style="background:linear-gradient(135deg,rgba(168,85,247,0.18),rgba(168,85,247,0.06));border:2px solid rgba(168,85,247,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
-              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
-                <span style="background:rgba(168,85,247,0.85);color:#fff;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v5.1</span>
-                <span style="color:#e9d5ff;font-weight:bold;font-size:0.95rem;">Confronto Final: Arqui-Nefromante</span>
-              </div>
-              <ul style="color:var(--txt);font-size:0.83rem;line-height:1.9;padding-left:18px;margin:0;">
-                <li><strong>Nova tela especial para as últimas 10 questões</strong> — layout completamente redesenhado com tema roxo/violeta, cristais mágicos e atmósfera épica de confronto final</li>
-                <li><strong>Batalão da Resistência</strong> — os 3 heróis (Dr. Nephros, Dra. Aquaria, Dr. Glomerulus) se unem em destaque no painel esquerdo contra o Arqui-Nefromante</li>
-                <li><strong>Layout responsivo desktop/mobile</strong> — versão PC com painel de heróis lateral; versão mobile com faixa de heróis no topo, logo NefroQuest visível, título acima da barra de HP e estrelas abaixo</li>
-                <li><strong>Colunas rúnicas</strong> — letras rúnicas animadas nas laterais com tema roxo; redimensionadas no mobile para não sobrepor os botões</li>
-                <li><strong>Link de acesso rápido</strong> — parâmetro <code>?boss=1</code> na URL abre diretamente a questão 91 para testes sem jogar o jogo inteiro</li>
-              </ul>
-            </div>
-
-            <!-- v5.0 -->
-            <div style="background:linear-gradient(135deg,rgba(255,215,0,0.15),rgba(255,215,0,0.05));border:2px solid rgba(255,215,0,0.6);border-radius:10px;padding:16px;margin-bottom:12px;">
-              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
-                <span style="background:var(--gold);color:#1a0e00;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v5.0</span>
-                <span style="color:var(--gold);font-weight:bold;font-size:0.95rem;">Prova Simulada, Estatísticas & Offline</span>
-              </div>
-              <ul style="color:var(--txt);font-size:0.83rem;line-height:1.9;padding-left:18px;margin:0;">
-                <li><strong>Modo Prova Simulada</strong> — 60 questões aleatórias cronometradas (90 min) com relatório completo de desempenho por categoria ao final, simulando provas de residência e título</li>
-                <li><strong>Estatísticas por Categoria</strong> — painel de desempenho no modal de Estatísticas mostrando % de acerto em cada área (Glomerulopatias, LRA, Eletrólitos, etc.) para focar no ponto fraco</li>
-                <li><strong>Modo Offline (PWA)</strong> — Service Worker instalado: após a primeira visita, o jogo funciona 100% sem internet, ideal para uso em plantão</li>
-                <li><strong>Banco expandido para 631 questões</strong> — novas questões em categorias subrepresentadas: Infecção (ITU, peritonite DP, CMV/BK transplante, sepse), Farmacologia (ajuste de dose, nefrotóxicos, rituximabe) e Ácido-Base (ABG, cetoacidose, ATR, alcalose, distúrbios mistos)</li>
-                <li><strong>Referências ampliadas</strong> — 20 novos artigos fundamentais adicionados ao banco de referências: RAVE, MENTOR, Sepsis-3, ISKDC, IDSA UTI, ISPD Peritonitis, Adrogue ácido-base, Kitabchi DKA e outros clássicos da nefrologia</li>
-                <li><strong>Popup de sinalização reformulado</strong> — envio direto ao desenvolvedor via Web3Forms sem abrir cliente de e-mail</li>
-                <li><strong>Popup de ouro</strong> — notificação ao atingir 100 ouro informando opções de baú, forja e lendário</li>
-                <li><strong>Custo do baú ajustado</strong> — 100 ouro (antes 60) para melhor equilíbrio da economia do jogo</li>
-              </ul>
-            </div>
-
-            <!-- v4.1 -->
-            <div style="background:linear-gradient(135deg,rgba(255,215,0,0.06),rgba(255,215,0,0.02));border:1px solid rgba(255,215,0,0.25);border-radius:10px;padding:16px;margin-bottom:12px;">
-              <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-                <span style="background:rgba(255,215,0,0.2);color:var(--gold);font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v4.1</span>
-                <span style="color:#c8d8f0;font-weight:bold;font-size:0.88rem;">Mobile Aprimorado & Banco Expandido</span>
-              </div>
-              <ul style="color:var(--txt-dim);font-size:0.8rem;line-height:1.7;padding-left:18px;margin:0;">
-                <li>Botão Herói mobile, dock reformulado, swipe para abrir painel</li>
-                <li>Banco expandido para 594 questões com explicações aprimoradas</li>
-                <li>Sistema anti-repetição (últimas 101 questões bloqueadas)</li>
-              </ul>
-            </div>
-
-            <!-- v4.0 -->
-            <div style="background:linear-gradient(135deg,rgba(255,215,0,0.04),rgba(255,215,0,0.01));border:1px solid rgba(255,215,0,0.15);border-radius:10px;padding:16px;">
-              <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-                <span style="background:rgba(255,215,0,0.12);color:var(--gold);font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v4.0</span>
-                <span style="color:#94a3b8;font-weight:bold;font-size:0.88rem;">Interface Renovada</span>
-              </div>
-              <ul style="color:var(--txt-dim);font-size:0.8rem;line-height:1.7;padding-left:18px;margin:0;">
-                <li>Layout PC com 3 painéis, dock lateral, modo de estudo renovado</li>
-                <li>Controles de áudio em todas as telas, rodapé com versão</li>
               </ul>
             </div>
 
