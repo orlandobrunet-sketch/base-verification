@@ -31610,7 +31610,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
         if (isArquiFinal) {
           // Forçar display nos elementos normais do herói (sobrescreve o !important do boss mode)
           if (heroSection)   heroSection.setAttribute('style', 'display:block!important');
-          if (hudSection)    hudSection.setAttribute('style', 'display:block!important');
+          if (hudSection)    hudSection.setAttribute('style', 'display:grid!important;grid-template-columns:repeat(3,1fr)!important');
           if (storySection)  storySection.setAttribute('style', 'display:block!important');
           if (logSection)    logSection.setAttribute('style', 'display:block!important');
           if (equipSection)  equipSection.setAttribute('style', 'display:block!important');
