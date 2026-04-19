@@ -3086,8 +3086,7 @@
 
     /* Ocultar elementos normais do painel esquerdo em boss mode */
     .boss-battle-mode .panel.left .story,
-    .boss-battle-mode .panel.left .log,
-    .boss-battle-mode .panel.left .badges-container {
+    .boss-battle-mode .panel.left .log {
       display: none !important;
     }
     /* Mostrar herói e equip em boss mode (continuidade natural) */
@@ -4007,11 +4006,34 @@
     }
 
     /* HP Label: nome à esq + % à dir */
+    .arqui-nefromante-final #bossHpContainer {
+      position: relative !important;
+    }
     .arqui-nefromante-final #bossHpLabel {
+      position: absolute !important;
+      left: 14px !important; right: 14px !important;
+      bottom: 12px !important;
+      height: 24px !important;
       display: flex !important;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 4px;
+      justify-content: space-between !important;
+      align-items: center !important;
+      margin-bottom: 0 !important;
+      z-index: 3 !important;
+      pointer-events: none !important;
+      padding: 0 8px !important;
+    }
+    .arqui-nefromante-final #bossHpName {
+      font-family: 'Cinzel', serif !important;
+      font-size: 0.7rem !important;
+      color: #fff !important;
+      letter-spacing: 1px !important;
+      text-shadow: 0 0 6px #000, 0 1px 3px #000 !important;
+    }
+    .arqui-nefromante-final #bossHpPct {
+      font-size: 0.7rem !important;
+      color: #fde68a !important;
+      text-shadow: 0 0 6px #000, 0 1px 3px #000 !important;
+      font-weight: 700 !important;
     }
 
     /* HP fill bar: visível, barra normal */
@@ -4024,9 +4046,9 @@
       margin: 0 !important;
       overflow: hidden !important;
       background: #0b1020 !important;
-      border: 1px solid rgba(74,26,122,0.8) !important;
+      border: 2px solid rgba(168,85,247,0.9) !important;
       border-radius: 12px !important;
-      box-shadow: 0 0 12px rgba(124,58,237,0.3) !important;
+      box-shadow: 0 0 10px rgba(168,85,247,0.5), inset 0 0 6px rgba(0,0,0,0.5) !important;
       display: block !important;
       padding: 0 !important;
     }
@@ -4572,7 +4594,7 @@
     // Verificação de versão — bypassa o Service Worker via no-store
     // Se a versão do servidor for diferente da carregada, limpa tudo e recarrega
     (function() {
-      const LOADED_VERSION = '9.1';
+      const LOADED_VERSION = '9.2';
       fetch('/version.json', { cache: 'no-store' })
         .then(r => r.json())
         .then(data => {
@@ -4666,6 +4688,7 @@
         <button class="profile-popup-item" onclick="openAccountModal();event.stopPropagation()">👤 Minha Conta</button>
         <button class="profile-popup-item" onclick="openPlanModal();event.stopPropagation()">⭐ Seu Plano</button>
         <button class="profile-popup-item admin-item" onclick="openAdminPanel();event.stopPropagation()">🛡 Administração</button>
+        <button class="profile-popup-item admin-item" onclick="showRapidQuizMinigame();event.stopPropagation()">⚡ Julgamento Rápido</button>
         <button class="profile-popup-item admin-item" onclick="adminJumpToBoss();event.stopPropagation()">⚔ Fase Final</button>
         <button class="profile-popup-item admin-item" onclick="openAnalyticsPanel();event.stopPropagation()">📊 Analytics</button>
         <hr class="profile-popup-divider">
@@ -4744,6 +4767,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
           <button class="profile-popup-item" onclick="openAccountModal();event.stopPropagation()">👤 Minha Conta</button>
           <button class="profile-popup-item" onclick="openPlanModal();event.stopPropagation()">⭐ Seu Plano</button>
           <button class="profile-popup-item admin-item" onclick="openAdminPanel();event.stopPropagation()">🛡 Administração</button>
+          <button class="profile-popup-item admin-item" onclick="showRapidQuizMinigame();event.stopPropagation()">⚡ Julgamento Rápido</button>
           <button class="profile-popup-item admin-item" onclick="adminJumpToBoss();event.stopPropagation()">⚔ Fase Final</button>
           <button class="profile-popup-item admin-item" onclick="openAnalyticsPanel();event.stopPropagation()">📊 Analytics</button>
           <hr class="profile-popup-divider">
@@ -4832,6 +4856,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
             <button class="profile-popup-item" onclick="openAccountModal();event.stopPropagation()">👤 Minha Conta</button>
             <button class="profile-popup-item" onclick="openPlanModal();event.stopPropagation()">⭐ Seu Plano</button>
             <button class="profile-popup-item admin-item" onclick="openAdminPanel();event.stopPropagation()">🛡 Administração</button>
+            <button class="profile-popup-item admin-item" onclick="showRapidQuizMinigame();event.stopPropagation()">⚡ Julgamento Rápido</button>
             <button class="profile-popup-item admin-item" onclick="adminJumpToBoss();event.stopPropagation()">⚔ Fase Final</button>
             <button class="profile-popup-item admin-item" onclick="openAnalyticsPanel();event.stopPropagation()">📊 Analytics</button>
             <hr class="profile-popup-divider">
@@ -4875,6 +4900,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
             <div id="heroName" class="hero-name"></div>
             <div class="xp-bar"><div id="xpFill"></div></div>
             <small id="xpTxt" class="xp-text">XP 0 / 120</small>
+            <small id="questionCounterTxt" class="xp-text" style="opacity:0.65;font-size:0.68rem;">0/1032</small>
           </div>
         </div>
       </div>
@@ -5330,6 +5356,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     <button class="profile-popup-item" onclick="openAccountModal()">👤 Minha Conta</button>
     <button class="profile-popup-item" onclick="openPlanModal()">⭐ Seu Plano</button>
     <button class="profile-popup-item admin-item" onclick="openAdminPanel()">🛡 Administração</button>
+    <button class="profile-popup-item admin-item" onclick="showRapidQuizMinigame()">⚡ Julgamento Rápido</button>
     <button class="profile-popup-item admin-item" onclick="adminJumpToBoss()">⚔ Fase Final</button>
     <button class="profile-popup-item admin-item" onclick="openAnalyticsPanel()">📊 Analytics</button>
     <hr class="profile-popup-divider">
@@ -24404,24 +24431,6 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     ]
   },
   {
-    "t": "Sibeprenlimabe — Mecanismo de Ação",
-    "q": "Qual é o mecanismo de ação do sibeprenlimabe (Voyxact), um medicamento em investigação para nefropatia por IgA?",
-    "opts": [
-      "Inibidor do Fator B do complemento",
-      "Anticorpo monoclonal humanizado IgG2 anti-APRIL que inibe proliferação plasmocitária e troca de classe para IgA",
-      "Antagonista duplo dos receptores de endotelina e angiotensina",
-      "Proteína de fusão anti-BLyS e anti-APRIL"
-    ],
-    "ans": 1,
-    "exp": "O sibeprenlimabe é um anticorpo monoclonal humanizado anti-APRIL, proteína da superfamília do TNF envolvida na sobrevivência de plasmócitos e na comutação de classe das células B para produção de IgA, por isso sua ação busca reduzir a produção de IgA patogênica na nefropatia por IgA. A alternativa A descreve um inibidor do fator B do complemento, a C corresponde ao perfil de um antagonista endotelina/angiotensina como o sparsentan, e a D descreve uma proteína de fusão que bloqueia BLyS e APRIL, não o sibeprenlimabe.",
-    "diff": "hard",
-    "cat": "glomerular",
-    "refs": [
-      "visionary_trial",
-      "kdigo_gn"
-    ]
-  },
-  {
     "t": "VISIONARY — Redução de Proteinúria aos 9 Meses",
     "q": "No estudo VISIONARY (Fase 3), qual foi a redução percentual na razão proteína/creatinina urinária (uPCR) com o uso de sibeprenlimabe em comparação ao placebo após 9 meses de tratamento?",
     "opts": [
@@ -27129,11 +27138,11 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     }
 
     const chapters = [
-      { lv:1,  title:"Prólogo — As Criptas da Creatinina",       goal:"Estude os fundamentos e sobreviva às primeiras cartas." },
-      { lv:4,  title:"Capítulo II — O Vale da Albuminúria",       goal:"Consolide estratificação de risco e terapia nefroprotetora." },
-      { lv:8,  title:"Capítulo III — Torre das Glomerulopatias",  goal:"Domine sinais de gravidade e decisões de intervenção precoce." },
-      { lv:12, title:"Capítulo IV — Trono Cardiorrenal",          goal:"Integre terapias complexas e mantenha consistência clínica." },
-      { lv:15, title:"Capítulo Final — O Arqui-Nefromante",       goal:"Equipe 2 lendários e alcance a vitória clínica suprema." }
+      { lv:1,  title:"Prólogo — As Criptas da Creatinina",       goal:"Estude os fundamentos da nefrologia e sobreviva às primeiras cartas da jornada." },
+      { lv:4,  title:"Capítulo II — O Vale da Albuminúria",       goal:"Consolide a estratificação de risco renal e domine a terapia nefroprotetora essencial." },
+      { lv:8,  title:"Capítulo III — Torre das Glomerulopatias",  goal:"Domine os sinais de gravidade glomerular e tome decisões de intervenção com precisão." },
+      { lv:12, title:"Capítulo IV — Trono Cardiorrenal",          goal:"Integre as terapias complexas do síndrome cardiorrenal e mantenha consistência clínica avançada." },
+      { lv:15, title:"Capítulo Final — O Arqui-Nefromante",       goal:"Alcance o domínio supremo da nefrologia e derrote o Arqui-Nefromante de uma vez por todas." }
     ];
 
     function chapterMeta(){
@@ -27278,7 +27287,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       } else if(existingChampBadge) { existingChampBadge.remove(); }
       ui.heroImg.src=img; ui.heroImg.className=`portrait ${cls}`;
       ui.storyTitle.textContent=chapter.title;
-      ui.storyGoal.textContent=`Objetivo: ${chapter.goal} Lendários equipados: ${legendaryCount()}/2.`;
+      ui.storyGoal.textContent=`Objetivo: ${chapter.goal}`;
       ui.level.textContent=state.level; ui.score.textContent=state.score;
       const _ml=state.maxLives||3; ui.lives.innerHTML='<span style="color:#ef4444">❤</span>'.repeat(Math.max(0,state.lives))+'<span style="color:#555">♡</span>'.repeat(Math.max(0,_ml-Math.max(0,state.lives)));
       ui.record.textContent=best(); ui.gold.textContent=state.gold;
@@ -27295,6 +27304,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       const _qDone = state.idx;
       const _qTotal = state.queue.length;
       ui.xpTxt.textContent=`XP ${state.xp}/${state.xpToNext}`;
+      const _qCtr = document.getElementById('questionCounterTxt');
+      if (_qCtr) _qCtr.textContent = `${state.correctTotal}/${topics.length} questões`;
       // Barra de progresso do ciclo
       const _cpf = document.getElementById('cycleProgressFill');
       const _cpt = document.getElementById('cycleProgressTxt');
