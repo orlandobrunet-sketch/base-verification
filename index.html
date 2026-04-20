@@ -4594,7 +4594,7 @@
     // Verificação de versão — bypassa o Service Worker via no-store
     // Se a versão do servidor for diferente da carregada, limpa tudo e recarrega
     (function() {
-      const LOADED_VERSION = '9.3';
+      const LOADED_VERSION = '9.4';
       fetch('/version.json', { cache: 'no-store' })
         .then(r => r.json())
         .then(data => {
@@ -6593,8 +6593,30 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         tipo:"Diretriz Internacional — Public Review Draft",
         badge:"GUIDELINE",
         badgeColor:"#6366f1",
-        impacto:"Atualização da diretriz AKI com escopo ampliado para AKD (continuum AKI→AKD→CKD), biomarcadores estruturais, modelos de risco, alertas eletrônicos, TRS (timing/modalidade/dose), stewardship de nefrotoxinas, CA-AKI, pediatria/neonatologia e follow-up pós-AKI",
+        impacto:"AKI definição: ↑Cr ≥0,3 em 48h ou ↑Cr/Cistatina-C ≥50% em 7d ou diurese <0,5 mL/kg/h 6h. Estadiamento 3D (C/U/B). AKD: 7–90d. Biomarcadores TIMP-2×IGFBP7/NGAL (2B). MAP >65 (2C). Teste de furosemida (2C). Glicemia 140–180. Aminoglicosídeo dose única (2B). Anfotericina lipídica (2A). Follow-up pós-AKI/AKD.",
         icon:"📋"
+      },
+      sglt2i_aki_meta_2020:{
+        label:"SGLT2i e IRA — Meta-análise (Kidney Int 2020)",
+        url:"https://pubmed.ncbi.nlm.nih.gov/32437800/",
+        journal:"Kidney International",
+        ano:2020,
+        tipo:"Meta-análise",
+        badge:"META",
+        badgeColor:"#0ea5e9",
+        impacto:"120 ECRs (n=96.722) + 4 estudos observacionais (n=83.934): iSGLT2 reduziu IRA em 36% nos ECRs (OR 0,64; IC 95% 0,53–0,78) e 60% nos estudos observacionais (OR 0,40; IC 95% 0,33–0,48)",
+        icon:"🔬"
+      },
+      permissive_azotemia_2022:{
+        label:"Azotemia Permissiva na IRA (Critical Care 2022)",
+        url:"https://pubmed.ncbi.nlm.nih.gov/?term=permissive+azotemia+acute+kidney+injury+2022",
+        journal:"Critical Care",
+        ano:2022,
+        tipo:"Artigo Teórico / Revisão",
+        badge:"REVIEW",
+        badgeColor:"#8b5cf6",
+        impacto:"Hipótese: ureia elevada (100–150 mg/dL) estimula EGF, HGF, IGF-1, reduz inflamação e fibrose e promove regeneração renal. TRS com clearance reduzido por 7–10d pode acelerar recuperação renal (requer validação clínica)",
+        icon:"🔬"
       },
       kdigo_gn:{
         label:"KDIGO Glomerular Diseases 2021",
@@ -8571,6 +8593,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     "q": "De acordo com os critérios KDIGO para Lesão Renal Aguda (LRA), qual é o aumento mínimo no valor da creatinina sérica basal dentro de 48 horas que define o Estágio 1 de LRA?",
     "refs": [
       "kdigo_aki",
+      "kdigo_aki_2026",
       "brenner_rector"
     ],
     "opts": [
@@ -8580,7 +8603,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       "Aumento de 1,5 a 1,9 vezes o valor basal em 24 horas"
     ],
     "ans": 1,
-    "exp": "Pelo KDIGO, LRA estágio 1 é definida por aumento de creatinina sérica ≥0,3 mg/dL em até 48 horas, ou aumento para 1,5–1,9 vezes o basal em até 7 dias, ou critério urinário correspondente. Como a pergunta pede o aumento mínimo absoluto em 48 horas, a resposta correta é ≥0,3 mg/dL.",
+    "exp": "Pelo KDIGO 2012 (mantido em 2026), LRA estágio 1 é definida por ↑Cr ≥0,3 mg/dL em 48h, ou 1,5–1,9× basal em ≤7 dias, ou diurese <0,5 mL/kg/h por 6–12h. O KDIGO 2026 amplia a definição incluindo cistatina-C (↑≥50% em ≤7d) e institui estadiamento tridimensional (C = creatinina, U = débito urinário, B = biomarcadores estruturais como NGAL/TIMP-2×IGFBP7). Também define DRA (Doença Renal Aguda): disfunção renal por 7–90 dias (TFG <60, ↓TFG ≥35% ou ↑Cr >50%).",
     "diff": "medium",
     "cat": "lra"
   },
@@ -8709,6 +8732,23 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     "exp": "A Síndrome de Lise Tumoral (SLT) é caracterizada por hiperuricemia, hipercalemia, hiperfosfatemia e hipocalcemia, resultantes da rápida destruição celular e liberação de conteúdo intracelular no contexto de tratamento de neoplasias hematológicas. A hiperuricemia é uma das alterações metabólicas mais críticas, podendo levar à nefropatia aguda por ácido úrico. Para pacientes de alto risco com níveis muito elevados de ácido úrico, a rasburicase é a droga de escolha, pois é uma urato oxidase recombinante que converte o ácido úrico em alantoína, uma substância mais solúvel e facilmente excretada. O alopurinol, por outro lado, apenas inibe a formação de novo ácido úrico, mas não reduz os níveis já elevados de forma eficaz e rápida. Portanto, rasburicase é preferida em situações de hiperuricemia severa e risco renal iminente.",
     "diff": "medium",
     "cat": "oncologia_renal"
+  },
+  {
+    "t": "iSGLT2 e Risco de Injúria Renal Aguda",
+    "q": "Grande meta-análise publicada no Kidney International (2020) avaliou o efeito dos inibidores de SGLT2 sobre o risco de injúria renal aguda (IRA). Qual foi a principal conclusão em relação aos ECRs incluídos (n = 96.722 participantes)?",
+    "refs": [
+      "sglt2i_aki_meta_2020"
+    ],
+    "opts": [
+      "Os iSGLT2 aumentaram o risco de IRA em 30% — principalmente pela depleção volumétrica",
+      "Os iSGLT2 reduziram o risco de IRA em 36% (OR 0,64; IC 95% 0,53–0,78)",
+      "Não houve diferença significativa no risco de IRA entre iSGLT2 e placebo",
+      "O benefício foi restrito a pacientes não diabéticos com DRC G1–G2"
+    ],
+    "ans": 1,
+    "exp": "A meta-análise (Kidney Int 2020; 98:294–309) incluiu 120 ECRs (n=96.722) e 4 estudos observacionais (n=83.934), a maioria com pacientes diabéticos. Os iSGLT2 reduziram o risco de IRA em 36% nos ECRs (OR 0,64; IC 95% 0,53–0,78; p<0,001) e em 60% nos estudos observacionais (OR 0,40; IC 95% 0,33–0,48). O mecanismo protetor envolve: redução da hiperfiltração glomerular, menos exposição a nefrotoxinas (menor necessidade de contraste/AINE), redução de inflamação intrarrenal e efeito hemodinâmico cardiorenal.",
+    "diff": "hard",
+    "cat": "lra"
   },
   {
     "t": "Inibidores de SGLT2 e Efeito \"Dip\" Inicial",
@@ -20634,8 +20674,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     "t": "Injúria Renal Aguda",
     "q": "Paciente de 35 anos apresenta injúria renal aguda, anemia hemolítica microangiopática com esquizócitos e Coombs direto negativo, plaquetopenia de 22.000/mm³, febre e alteração do nível de consciência. Diante de suspeita de microangiopatia trombótica, qual diagnóstico deve ser priorizado por maior urgência terapêutica e qual conduta deve ser instituída imediatamente, sem aguardar exames confirmatórios?",
     "refs": [
-      "KDIGO AKI Guidelines 2012",
-      "kdigo_aki"
+      "kdigo_aki",
+      "kdigo_gn"
     ],
     "opts": [
       "PTT (púrpura trombocitopênica trombótica) — iniciar plasmaférese terapêutica imediatamente sem aguardar confirmação da atividade ADAMTS13; é a conduta de maior urgência e impacto prognóstico",
@@ -20652,9 +20692,9 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     "t": "Injúria Renal Aguda",
     "q": "Paciente com sepse grave por pneumonia, oligúria e IRA estágio 3 (creatinina 5,6 mg/dL). Hemodinamicamente instável (PAM 58 mmHg em uso de noradrenalina 0,8 mcg/kg/min). Qual a modalidade de TRS mais adequada neste cenário e o momento de início?",
     "refs": [
-      "STARRT-AKI, NEJM 2020",
-      "KDIGO AKI 2012",
-      "ATN Trial 2008"
+      "starrt_aki",
+      "kdigo_aki",
+      "kdigo_aki_2026"
     ],
     "opts": [
       "Hemodiálise intermitente convencional 4h — mais eficiente para ureia",
@@ -20671,8 +20711,9 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     "t": "Injúria Renal Aguda",
     "q": "Homem de 68 anos pós-cateterismo cardíaco com contraste iodado (140 mL). Creatinina basal 1,6 mg/dL. 48h após: creatinina 2,4 mg/dL, sem outras causas aparentes. Qual a principal medida preventiva que deveria ter sido adotada antes do procedimento?",
     "refs": [
-      "PRESERVE Trial, NEJM 2018",
-      "KDIGO AKI 2012"
+      "preserve_study",
+      "kdigo_aki",
+      "kdigo_aki_2026"
     ],
     "opts": [
       "N-acetilcisteína 600 mg 12/12h pré e pós-procedimento — evidência robusta",
@@ -20689,8 +20730,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     "t": "Injúria Renal Aguda",
     "q": "Mulher de 35 anos com IRA oligúrica, creatinina 4,8 mg/dL, febre 38,2°C, rash cutâneo e eosinofilia periférica. Iniciou uso de amoxicilina-clavulanato há 12 dias. Urinálise com cilindros de leucócitos e eosinofíluria. Qual o diagnóstico e conduta?",
     "refs": [
-      "Muriithi et al., AJKD 2014",
-      "Praga et al., JASN 2010"
+      "ici_nia_cortazar_2016",
+      "kdigo_aki"
     ],
     "opts": [
       "Nefrite intersticial aguda (NIA) por hipersensibilidade a antibiótico",
@@ -20707,8 +20748,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     "t": "Injúria Renal Aguda",
     "q": "Sobre o diagnóstico diferencial entre IRA pré-renal e NTA isquêmica, qual o achado urinário mais característico de NTA?",
     "refs": [
-      "Miller et al., JAMA 1978",
-      "Rose & Post, Clinical Physiology of Acid-Base"
+      "kdigo_aki",
+      "kdigo_aki_2026"
     ],
     "opts": [
       "Densidade urinária > 1.020 e osmolalidade > 500 mOsm/kg",
@@ -20743,8 +20784,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     "t": "Injúria Renal Aguda",
     "q": "Qual o principal biomarcador de IRA precoce validado em estudos clínicos para detecção antes da elevação da creatinina sérica, e qual sua origem?",
     "refs": [
-      "Devarajan et al., JASN 2006",
-      "Kashani et al., Crit Care Med 2013 (NephroCheck)"
+      "kdigo_aki_2026"
     ],
     "opts": [
       "Cistatina C — filtrado glomerular, reflete TFG mais precocemente",
@@ -20753,7 +20793,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       "Beta-2 microglobulina — marcador de função tubular proximal crônica"
     ],
     "ans": 1,
-    "exp": "NGAL urinário e plasmático é produzido pela alça de Henle e ducto coletor em resposta à injúria e pode elevar-se 2-6h antes da creatinina. Meta-análises mostram AUC-ROC de 0,73-0,82 para predição de IRA. Outros biomarcadores validados: KIM-1, IL-18, TIMP-2 × IGFBP7 (NephroCheck® — aprovado FDA para predição de IRA grave em UTI). Cistatina C é melhor estimador de TFG que creatinina, mas não é marcador de injúria.",
+    "exp": "NGAL urinário e plasmático é produzido pela alça de Henle e ducto coletor em resposta à injúria e pode elevar-se 2–6h antes da creatinina (AUC-ROC 0,73–0,82). O KDIGO 2026 recomenda biomarcadores urinários (NGAL, TIMP-2 × IGFBP7) especialmente em pacientes críticos (grau 2B) e os incorpora como dimensão B do estadiamento 3D (B0 = negativos, B1 = positivos). Cistatina-C é melhor estimador de TFG, mas não é marcador de injúria estrutural; a partir de 2026, também entra na definição funcional de IRA (↑≥50% em ≤7d).",
     "diff": "medium",
     "cat": "lra"
   },
@@ -20761,8 +20801,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     "t": "Injúria Renal Aguda",
     "q": "Paciente de 72 anos pós-cirurgia cardíaca com CEC desenvolve IRA estágio 3. No 10º dia, começa a recuperar diurese (2.500 mL/dia) mas creatinina permanece em 3,8 mg/dL. Qual o cuidado mais importante na fase de recuperação da IRA?",
     "refs": [
-      "KDIGO AKI 2012",
-      "Hsu et al., CJASN 2016"
+      "kdigo_aki",
+      "kdigo_aki_2026"
     ],
     "opts": [
       "Suspender toda hidratação para evitar sobrecarga",
@@ -20771,7 +20811,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       "Alta hospitalar imediata pela melhora da diurese"
     ],
     "ans": 2,
-    "exp": "A fase poliúrica da recuperação da NTA pode gerar déficits significativos de K, Mg e P (perda tubular antes da recuperação funcional completa). Distúrbios eletrolíticos podem causar arritmias e fraqueza muscular. O follow-up pós-IRA é fundamental: 30% evoluem para DRC, principalmente se IRA grave em doença renal prévia. KDIGO recomenda follow-up nefrológico 3 meses após IRA.",
+    "exp": "A fase poliúrica da recuperação da NTA pode gerar déficits significativos de K, Mg e P (perda tubular antes da recuperação funcional completa). Distúrbios eletrolíticos causam arritmias e fraqueza muscular. O follow-up pós-IRA é fundamental: 30% evoluem para DRC. O KDIGO 2026 formaliza o conceito de DRA (Doença Renal Aguda): disfunção renal por 7–90 dias — esse paciente no D10 com Cr ainda elevada está em fase de DRA, exigindo acompanhamento nefrológico estruturado com avaliação em 3 meses.",
     "diff": "medium",
     "cat": "lra"
   },
@@ -20779,8 +20819,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     "t": "Injúria Renal Aguda",
     "q": "Homem de 58 anos com cirrose hepática Child C, ascite refratária, creatinina que sobe de 0,7 para 2,1 mg/dL em 48h sem causa aparente, sódio urinário < 10 mEq/L, sem proteinúria, sem melhora após expansão volêmica com albumina (1g/kg × 2 dias). Qual o diagnóstico e tratamento de primeira linha?",
     "refs": [
-      "CONFIRM Trial, Francoz et al., NEJM 2021",
-      "EASL Guidelines 2018"
+      "hepatorenal_review",
+      "kdigo_aki_2026"
     ],
     "opts": [
       "IRA pré-renal por hipovolemia; expansão adicional com SF",
@@ -20797,8 +20837,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     "t": "Injúria Renal Aguda",
     "q": "Sobre a síndrome cardiorrenal tipo 1 (SCR-1), qual é a principal fisiopatologia e a melhor abordagem?",
     "refs": [
-      "Mullens et al., JACC 2009",
-      "DOSE Trial, NEJM 2011"
+      "kdigo_aki",
+      "kdigo_aki_2026"
     ],
     "opts": [
       "Redução do débito cardíaco → hipofluxo renal → IRA pré-renal; tratar com expansão de volume generosa",
@@ -20815,8 +20855,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     "t": "Injúria Renal Aguda",
     "q": "Mulher de 29 anos no 3º trimestre de gestação com PA 168/108 mmHg, proteinúria 4,2 g/24h, creatinina 1,4 mg/dL, plaquetas 88.000/mm³, LDH 860 U/L, esquizócitos no esfregaço, AST 120 U/L. Qual o diagnóstico e conduta?",
     "refs": [
-      "ACOG Practice Bulletin",
-      "Sibai et al., Lancet 2005"
+      "kdigo_aki"
     ],
     "opts": [
       "Pré-eclâmpsia grave sem síndrome HELLP; anti-hipertensivo oral e observação",
@@ -20833,8 +20872,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     "t": "Injúria Renal Aguda",
     "q": "Paciente de 35 anos com IRA grave (creatinina 8,2 mg/dL), anemia microangiopática (hemoglobina 7,8 g/dL, esquizócitos, Coombs negativo), plaquetopenia 22.000/mm³, febre 39°C, alteração do nível de consciência. Qual o diagnóstico mais urgente a excluir e a conduta imediata?",
     "refs": [
-      "Scully et al., NEJM 2019 (caplacizumabe)",
-      "KDIGO TMA Guidelines 2024"
+      "kdigo_aki",
+      "kdigo_gn"
     ],
     "opts": [
       "SHU por E. coli O157:H7; antibioticoterapia e suporte",
@@ -20851,8 +20890,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     "t": "Injúria Renal Aguda",
     "q": "Em paciente com NTA isquêmica estabelecida em UTI, qual a melhor estratégia de manejo volêmico para prevenir piora da IRA?",
     "refs": [
-      "SMART Trial, NEJM 2018",
-      "CLASSIC Trial, NEJM 2022"
+      "kdigo_aki_2026"
     ],
     "opts": [
       "Hidratação liberal para manter PVC entre 12-15 mmHg",
@@ -20869,8 +20907,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     "t": "Injúria Renal Aguda",
     "q": "Sobre o uso de dopamina em dose \"renal\" (2-3 mcg/kg/min) para prevenção ou tratamento da IRA, qual a conclusão dos estudos clínicos?",
     "refs": [
-      "Bellomo et al., Lancet 2000",
-      "KDIGO AKI 2012"
+      "kdigo_aki",
+      "kdigo_aki_2026"
     ],
     "opts": [
       "Aumenta TFG e diurese com benefício clínico comprovado",
@@ -20879,7 +20917,24 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       "Dose renal de dopamina é equivalente à noradrenalina em vasoplegias"
     ],
     "ans": 1,
-    "exp": "O estudo ANZICS (Bellomo et al., Lancet 2000) e metanálises subsequentes demonstraram que dopamina em \"dose renal\" aumenta transitoriamente a diurese (efeito diurético), mas sem redução de necessidade de TRS, mortalidade ou desfechos renais clinicamente relevantes. A dopamina foi removida do arsenal terapêutico da IRA preventiva pelas principais diretrizes (KDIGO 2012).",
+    "exp": "O estudo ANZICS (Bellomo et al., Lancet 2000) e metanálises subsequentes demonstraram que dopamina em \"dose renal\" aumenta transitoriamente a diurese (efeito diurético), mas sem redução de necessidade de TRS, mortalidade ou desfechos renais clinicamente relevantes. A dopamina foi removida do arsenal terapêutico da IRA preventiva pelas principais diretrizes (KDIGO 2012 e 2026).",
+    "diff": "medium",
+    "cat": "lra"
+  },
+  {
+    "t": "Doença Renal Aguda (DRA) — Conceito KDIGO 2026",
+    "q": "O KDIGO 2026 introduz formalmente o conceito de Doença Renal Aguda (DRA). Qual das seguintes afirmativas melhor descreve a DRA e sua importância clínica?",
+    "refs": [
+      "kdigo_aki_2026"
+    ],
+    "opts": [
+      "DRA é sinônimo de IRA grave estágio 3, indicando necessidade imediata de TRS",
+      "DRA define disfunção renal com duração de 7 a 90 dias, abrangendo TFG < 60 mL/min, redução de TFG ≥ 35%, aumento de Cr > 50% ou marcadores de dano — representa o continuum entre IRA e DRC",
+      "DRA é o mesmo que DRC em estágio G3a, definida por TFG 45–59 mL/min persistente",
+      "DRA corresponde a qualquer IRA que não resolve em 48h, independentemente dos critérios de creatinina"
+    ],
+    "ans": 1,
+    "exp": "O KDIGO 2026 formaliza a DRA (Doença Renal Aguda / AKD) como disfunção renal com duração de 7–90 dias, preenchendo pelo menos um dos critérios: TFG < 60 mL/min, queda de TFG ≥ 35%, aumento de Cr > 50% ou marcadores estruturais de dano renal. Ela representa a zona de transição entre a IRA (≤7 dias) e a DRC (>90 dias). Dentro da IRA, o 2026 também distingue IRA transitória (<48h) de IRA persistente (>48h a 7d), pois a persistência piora o prognóstico. O reconhecimento da DRA orienta follow-up estruturado com avaliação nefrológica em 3 meses.",
     "diff": "medium",
     "cat": "lra"
   },
@@ -20887,9 +20942,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     "t": "Injúria Renal Aguda",
     "q": "Na IRA por síndrome de lise tumoral (SLT), qual o tratamento profilático de primeira linha em paciente de alto risco (leucemia aguda com leucocitose > 100.000/mm³)?",
     "refs": [
-      "Cairo et al., BJH 2010",
-      "KDIGO AKI 2012",
-      "Howard et al., NEJM 2011"
+      "kdigo_aki",
+      "kdigo_aki_2026"
     ],
     "opts": [
       "Alopurinol 600 mg/dia + hidratação oral",
@@ -22058,9 +22112,9 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     "t": "Nefrologia na UTI",
     "q": "Paciente em UTI evolui com IRA estágio 3 (creatinina 5,1 mg/dL), hipercalemia K 5,9 mEq/L sem alterações ao ECG, bicarbonato 16 mEq/L, oligúria de 12h, hemodinamicamente estável, sem encefalopatia, sem pericardite e sem sobrecarga volêmica refratária. Qual a indicação correta para início da terapia renal substitutiva (TRS)?",
     "refs": [
-      "STARRT-AKI, NEJM 2020",
-      "KDIGO AKI Workgroup 2012",
-      "Ostermann et al., Lancet 2019"
+      "starrt_aki",
+      "kdigo_aki",
+      "kdigo_aki_2026"
     ],
     "opts": [
       "Imediatamente, pois qualquer IRA estadio 3 em séptico deve receber TRSC precoce",
@@ -22074,11 +22128,28 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     "cat": "uti"
   },
   {
+    "t": "Azotemia Permissiva na IRA — Hipótese e Evidência",
+    "q": "A hipótese da azotemia permissiva na IRA propõe que manter níveis elevados de ureia (100–150 mg/dL) durante a fase aguda pode acelerar a recuperação renal. Qual é o principal mecanismo proposto para esse benefício?",
+    "refs": [
+      "permissive_azotemia_2022"
+    ],
+    "opts": [
+      "A ureia em altas concentrações inibe diretamente a fibrose tubular por efeito osmótico",
+      "Níveis elevados de ureia estimulam fatores de crescimento tubular (EGF, HGF, IGF-1), reduzem inflamação e fibrose renal, promovendo regeneração celular tubular",
+      "A ureia suprime a ativação imune intrarrenal, prevenindo a progressão para DRA",
+      "Azotemia permissiva reduz a necessidade de TRS por inibir o catabolismo proteico muscular"
+    ],
+    "ans": 1,
+    "exp": "A hipótese (Critical Care 2022) baseia-se em modelos pré-clínicos onde a ureia elevada estimula EGF (Epidermal Growth Factor), HGF (Hepatocyte Growth Factor) e IGF-1 nos túbulos renais, promovendo regeneração epitelial e reduzindo fibrose intersticial. O protocolo proposto envolve TRS com clearance reduzido por 7–10 dias para manter ureia 100–150 mg/dL, controlando concomitantemente sobrecarga hídrica, hipercalemia e acidose. Importante: é uma hipótese teórica — ainda sem validação em ensaios clínicos robustos. Não deve ser aplicada rotineiramente fora de contexto de pesquisa.",
+    "diff": "hard",
+    "cat": "uti"
+  },
+  {
     "t": "Nefrologia na UTI",
     "q": "Paciente em pós-operatório de revascularização miocárdica evolui com IRA estadio 2, em uso de furosemida IV para controle de balanço hídrico. Urina de 24h: 1.200 mL. Sódio urinário: 68 mEq/L. Osmolalidade urinária: 380 mOsm/kg. Fração de excreção de sódio (FENa): 1,9%. FE de ureia: 38%. Qual diagnóstico é mais provável e como a furosemida interfere na interpretação?",
     "refs": [
-      "Carvounis et al., Am J Kidney Dis 2002",
-      "Bagshaw et al., Nephrol Dial Transplant 2007"
+      "kdigo_aki",
+      "kdigo_aki_2026"
     ],
     "opts": [
       "NTA isquêmica — FENa inválida após furosemida; usar FE ureia < 35% como alternativa",
