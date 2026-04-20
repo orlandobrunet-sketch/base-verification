@@ -4594,7 +4594,7 @@
     // Verificação de versão — bypassa o Service Worker via no-store
     // Se a versão do servidor for diferente da carregada, limpa tudo e recarrega
     (function() {
-      const LOADED_VERSION = '9.2';
+      const LOADED_VERSION = '9.3';
       fetch('/version.json', { cache: 'no-store' })
         .then(r => r.json())
         .then(data => {
@@ -6582,7 +6582,18 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         tipo:"Diretriz Internacional",
         badge:"GUIDELINE",
         badgeColor:"#6366f1",
-        impacto:"Critérios universais de diagnóstico e estadiamento da LRA",
+        impacto:"Critérios universais de diagnóstico e estadiamento da LRA (atualização 2026 em revisão pública)",
+        icon:"📋"
+      },
+      kdigo_aki_2026:{
+        label:"KDIGO 2026 AKI/AKD — Public Review Draft",
+        url:"https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+        journal:"Kidney International (Public Review Draft)",
+        ano:2026,
+        tipo:"Diretriz Internacional — Public Review Draft",
+        badge:"GUIDELINE",
+        badgeColor:"#6366f1",
+        impacto:"Atualização da diretriz AKI com escopo ampliado para AKD (continuum AKI→AKD→CKD), biomarcadores estruturais, modelos de risco, alertas eletrônicos, TRS (timing/modalidade/dose), stewardship de nefrotoxinas, CA-AKI, pediatria/neonatologia e follow-up pós-AKI",
         icon:"📋"
       },
       kdigo_gn:{
