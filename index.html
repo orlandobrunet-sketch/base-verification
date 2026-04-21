@@ -4594,12 +4594,13 @@
     // Verificação de versão — bypassa o Service Worker via no-store
     // Se a versão do servidor for diferente da carregada, limpa tudo e recarrega
     (function() {
-      const LOADED_VERSION = '9.6';
-      fetch('/version.json', { cache: 'no-store' })
+      const LOADED_VERSION = '9.8';
+      fetch('version.json', { cache: 'no-store' })
         .then(r => r.json())
         .then(data => {
           if (data.version && data.version !== LOADED_VERSION) {
-            window.location.replace('/clear-cache.html');
+            console.log('Versão incompatível! Servidor:', data.version, 'Local:', LOADED_VERSION);
+            window.location.replace('clear-cache.html');
           }
         })
         .catch(() => {});
