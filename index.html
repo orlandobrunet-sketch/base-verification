@@ -30111,39 +30111,45 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
 
     // ============ SISTEMA DE ESTATÍSTICAS E DESEMPENHO ============
     const STATS_STORAGE_KEY = 'nefroquest-detailed-stats';
-    
+    const DETAILED_STATS_SCHEMA_VERSION = 1;
+
+    function _defaultDetailedStats() {
+      return {
+        schemaVersion: DETAILED_STATS_SCHEMA_VERSION,
+        totalQuestions: 0,
+        totalCorrect: 0,
+        totalWrong: 0,
+        byTopic: {},
+        byCategory: {},
+        questionHistory: [],
+        timeStats: { totalTime: 0, questionCount: 0 },
+        mostMissed: {}
+      };
+    }
+
+    function _migrateDetailedStats(s) {
+      const v = s.schemaVersion || 0;
+      // v0 → v1: adicionar schemaVersion
+      if (v < 1) {
+        s.schemaVersion = 1;
+      }
+      // v1 → v2: futuras migrações aqui
+      return s;
+    }
+
     function getDetailedStats() {
       const raw = localStorage.getItem(STATS_STORAGE_KEY);
-      if (!raw) {
-        return {
-          totalQuestions: 0,
-          totalCorrect: 0,
-          totalWrong: 0,
-          byTopic: {},
-          byCategory: {},
-          questionHistory: [],
-          timeStats: {
-            totalTime: 0,
-            questionCount: 0
-          },
-          mostMissed: {}
-        };
-      }
-      try { return JSON.parse(raw); } catch(e) {
-        return {
-          totalQuestions: 0,
-          totalCorrect: 0,
-          totalWrong: 0,
-          byTopic: {},
-          byCategory: {},
-          questionHistory: [],
-          timeStats: { totalTime: 0, questionCount: 0 },
-          mostMissed: {}
-        };
+      if (!raw) return _defaultDetailedStats();
+      try {
+        const parsed = JSON.parse(raw);
+        return _migrateDetailedStats(parsed);
+      } catch(e) {
+        return _defaultDetailedStats();
       }
     }
-    
+
     function saveDetailedStats(stats) {
+      if (!stats.schemaVersion) stats.schemaVersion = DETAILED_STATS_SCHEMA_VERSION;
       try { localStorage.setItem(STATS_STORAGE_KEY, JSON.stringify(stats)); } catch(e) {}
     }
     
@@ -31256,11 +31262,54 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
     // ============ MODO PROVA SIMULADA ============
     const EXAM_QUESTION_COUNT = 60;
     const EXAM_DURATION_SEC   = 90 * 60; // 90 minutos
+    const EXAM_SAVE_KEY = 'nefroquest-exam-state';
+    const EXAM_TTL_MS   = 2 * 60 * 60 * 1000; // 2 horas
 
     let _examState = null; // {questions, idx, answers, startTime, timerInterval}
 
+    function _saveExamState() {
+      if (!_examState) return;
+      try {
+        const { questions, idx, answers, startTime } = _examState;
+        localStorage.setItem(EXAM_SAVE_KEY, JSON.stringify({ questions, idx, answers, startTime, savedAt: Date.now() }));
+      } catch(e) {}
+    }
+
+    function _loadExamState() {
+      try {
+        const raw = localStorage.getItem(EXAM_SAVE_KEY);
+        if (!raw) return null;
+        const s = JSON.parse(raw);
+        if (!s?.startTime || !s?.questions?.length) return null;
+        if (Date.now() - s.savedAt > EXAM_TTL_MS) { localStorage.removeItem(EXAM_SAVE_KEY); return null; }
+        const elapsed = Math.floor((Date.now() - s.startTime) / 1000);
+        if (elapsed >= EXAM_DURATION_SEC) { localStorage.removeItem(EXAM_SAVE_KEY); return null; }
+        return s;
+      } catch(e) { return null; }
+    }
+
+    function _clearExamState() {
+      try { localStorage.removeItem(EXAM_SAVE_KEY); } catch(e) {}
+    }
+
     function startExamMode() {
       if (_examState) { showExamQuestion(); return; }
+
+      // Verificar se existe prova salva (refresh/fechar browser)
+      const saved = _loadExamState();
+      if (saved) {
+        const elapsed = Math.floor((Date.now() - saved.startTime) / 1000);
+        const remaining = EXAM_DURATION_SEC - elapsed;
+        const m = Math.floor(remaining / 60);
+        if (confirm(`Você tem uma prova em andamento (${m} min restantes). Continuar de onde parou?`)) {
+          _examState = { questions: saved.questions, idx: saved.idx, answers: saved.answers, startTime: saved.startTime, timerInterval: null };
+          document.getElementById('welcomeScreen')?.classList.add('hidden');
+          _renderExamUI();
+          return;
+        } else {
+          _clearExamState();
+        }
+      }
 
       // Sortear 60 questões únicas do banco
       const pool = shuffle([...questionBank]);
@@ -31296,6 +31345,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
       if (!el) return;
       if (remaining <= 0) {
         clearInterval(_examState.timerInterval);
+        _clearExamState();
         // Marcar questões restantes como não respondidas
         while (_examState.answers.length < _examState.questions.length) {
           _examState.answers.push({ qId: _examState.questions[_examState.answers.length].id, correct: false, cat: _examState.questions[_examState.answers.length].c || 'geral', answered: false });
@@ -31338,7 +31388,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
           <!-- Questão -->
           <div style="background:rgba(20,30,50,0.8);border:1px solid var(--blue-dark);border-radius:12px;padding:18px;margin-bottom:14px;">
             <div style="color:var(--txt-dim);font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Questão ${idx+1}</div>
-            <p style="color:var(--txt);font-size:0.92rem;line-height:1.7;margin:0;">${q.q}</p>
+            <p style="color:var(--txt);font-size:0.92rem;line-height:1.7;margin:0;">${escapeHtml(q.q)}</p>
           </div>
           <!-- Opções -->
           <div id="examOpts" style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;">
@@ -31348,13 +31398,13 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
                 if (i === q.a) { bg='rgba(52,211,153,0.15)'; border='1px solid #34d399'; color='#34d399'; }
                 else if (i === answered.chosen) { bg='rgba(251,113,133,0.15)'; border='1px solid #fb7185'; color='#fb7185'; }
               }
-              return `<button onclick="_examAnswer(${i})" ${answered?'disabled':''} style="text-align:left;background:${bg};border:${border};border-radius:10px;padding:12px 14px;color:${color};font-size:0.87rem;cursor:${answered?'default':'pointer'};transition:all 0.15s;line-height:1.5;">${opt}</button>`;
+              return `<button onclick="_examAnswer(${i})" ${answered?'disabled':''} style="text-align:left;background:${bg};border:${border};border-radius:10px;padding:12px 14px;color:${color};font-size:0.87rem;cursor:${answered?'default':'pointer'};transition:all 0.15s;line-height:1.5;">${escapeHtml(opt)}</button>`;
             }).join('')}
           </div>
           ${answered ? `
             <div style="background:rgba(20,30,50,0.8);border:1px solid var(--blue-dark);border-radius:10px;padding:14px;margin-bottom:14px;font-size:0.82rem;color:#94a3b8;line-height:1.6;">
               <strong style="color:${answered.correct?'#34d399':'#fb7185'};">${answered.correct?'✅ Correto':'❌ Incorreto'}</strong><br>
-              ${q.e}
+              ${escapeHtml(q.e)}
             </div>
             <button onclick="_examNext()" style="width:100%;background:linear-gradient(180deg,#4f46e5,#3730a3);border:2px solid #6366f1;color:#fff;border-radius:10px;padding:13px;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:700;cursor:pointer;letter-spacing:1px;">
               ${idx+1 < questions.length ? 'PRÓXIMA →' : 'VER RESULTADO'}
@@ -31369,6 +31419,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
       const q = questions[idx];
       const correct = chosen === q.a;
       _examState.answers[idx] = { qId: q.id, correct, cat: q.c || 'geral', chosen, answered: true };
+      _saveExamState();
       showExamQuestion();
     }
 
@@ -31381,6 +31432,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
     function _exitExam() {
       if (!confirm('Encerrar a prova? O progresso será perdido.')) return;
       clearInterval(_examState.timerInterval);
+      _clearExamState();
       _examState = null;
       document.querySelectorAll('.exam-overlay').forEach(e => e.remove());
       document.getElementById('welcomeScreen')?.classList.remove('hidden');
@@ -31471,7 +31523,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
                 ${wrongItems.map(({q, ans}) => {
                   const opts = q.o || [];
                   return `<div style="background:rgba(251,113,133,0.08);border:1px solid rgba(251,113,133,0.3);border-radius:10px;padding:14px;">
-                    <p style="color:var(--txt);font-size:0.85rem;line-height:1.6;margin-bottom:10px;">${q.q}</p>
+                    <p style="color:var(--txt);font-size:0.85rem;line-height:1.6;margin-bottom:10px;">${escapeHtml(q.q)}</p>
                     <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:10px;">
                       ${opts.map((o, i) => {
                         const isCorrect = i === q.a;
@@ -31480,10 +31532,10 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
                         const border= isCorrect ? '1px solid #34d399' : isChosen ? '1px solid #fb7185' : '1px solid rgba(255,255,255,0.1)';
                         const color = isCorrect ? '#34d399' : isChosen ? '#fb7185' : 'var(--txt-dim)';
                         const mark  = isCorrect ? ' ✓' : isChosen ? ' ✗' : '';
-                        return `<div style="background:${bg};border:${border};border-radius:6px;padding:7px 10px;font-size:0.8rem;color:${color};">${optLetters[i]}. ${o}${mark}</div>`;
+                        return `<div style="background:${bg};border:${border};border-radius:6px;padding:7px 10px;font-size:0.8rem;color:${color};">${optLetters[i]}. ${escapeHtml(o)}${mark}</div>`;
                       }).join('')}
                     </div>
-                    <div style="font-size:0.78rem;color:#94a3b8;line-height:1.6;border-top:1px solid rgba(255,255,255,0.08);padding-top:8px;">${q.e || ''}</div>
+                    <div style="font-size:0.78rem;color:#94a3b8;line-height:1.6;border-top:1px solid rgba(255,255,255,0.08);padding-top:8px;">${escapeHtml(q.e || '')}</div>
                   </div>`;
                 }).join('')}
               </div>
@@ -31497,6 +31549,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
     }
 
     function _finishExam() {
+      _clearExamState();
       _examState = null;
       document.querySelectorAll('.exam-overlay').forEach(e => e.remove());
       document.getElementById('welcomeScreen')?.classList.remove('hidden');
