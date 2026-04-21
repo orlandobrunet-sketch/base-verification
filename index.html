@@ -6255,6 +6255,14 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
 
     // ============ FREEMIUM ============
     const ADMIN_EMAIL = 'orlandobrunet@gmail.com';
+    // Reconhece admin via JWT custom claim (app_metadata.is_admin).
+    // Fallback por email cobre sessões antigas/offline; segurança real está no RLS.
+    function isAdminUser() {
+      if (!authUser) return false;
+      if (authUser.app_metadata?.is_admin === true) return true;
+      if (authUser.email === ADMIN_EMAIL) return true;
+      return false;
+    }
     const FREE_QUESTIONS_LIMIT = 50;
     const PREMIUM_KEY = 'nefroquest-premium';
     const WHITELIST_KEY = 'nefroquest-whitelist';
@@ -6285,7 +6293,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     // ── Cache de isPremium (evita 2x localStorage por resposta) ──
     let _isPremiumCache = null;
     function isPremium() {
-      if (authUser?.email === ADMIN_EMAIL) return true;
+      if (isAdminUser()) return true;
       if (_isPremiumCache !== null) return _isPremiumCache;
       _isPremiumCache = localStorage.getItem(PREMIUM_KEY) === '1' || localStorage.getItem(WHITELIST_KEY) === '1';
       return _isPremiumCache;
@@ -6294,7 +6302,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
 
     async function _loadPremiumFromDB() {
       if (!_supaClient || !authUser) return;
-      if (authUser.email === ADMIN_EMAIL) return;
+      if (isAdminUser()) return;
       try {
         const { data: profile } = await _supaClient
           .from('profiles')
@@ -27769,8 +27777,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         document.querySelectorAll('[id$="ProfileEmail"]').forEach(el => { el.textContent = email; });
         const mobileTopEmail = document.getElementById('mobileTopProfileEmail');
         if (mobileTopEmail) mobileTopEmail.textContent = email;
-        const isAdmin = email === ADMIN_EMAIL;
-        document.querySelectorAll('.admin-item').forEach(el => el.classList.toggle('visible', isAdmin));
+        const _showAdmin = isAdminUser();
+        document.querySelectorAll('.admin-item').forEach(el => el.classList.toggle('visible', _showAdmin));
         const landing = document.getElementById('landingScreen');
         if (landing && !landing.classList.contains('hidden')) {
           landing.classList.add('hidden');
@@ -29172,7 +29180,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       const stats = getGameStats();
       const answered = stats.questionsAnsweredAllTime || 0;
       let badgeClass = 'free', badgeLabel = '🎓 Plano Gratuito', detailHtml = '';
-      if (authUser?.email === ADMIN_EMAIL) {
+      if (isAdminUser()) {
         badgeClass = 'admin'; badgeLabel = '🛡 Admin — Acesso Total';
         detailHtml = `<p class="plan-stat">Conta de administrador com acesso irrestrito.</p>`;
       } else if (isPremium()) {
@@ -29208,7 +29216,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
 
     // ============ ADMIN PANEL ============
     function adminJumpToBoss() {
-      if (authUser?.email !== ADMIN_EMAIL) return;
+      if (!isAdminUser()) return;
       document.querySelectorAll('.profile-popup.open').forEach(p => p.classList.remove('open'));
       // Garante que o jogo está iniciado com um personagem
       if (!state.gameStarted) {
@@ -29227,7 +29235,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     }
 
     function openAdminPanel() {
-      if (authUser?.email !== ADMIN_EMAIL) return;
+      if (!isAdminUser()) return;
       document.querySelectorAll('.profile-popup.open').forEach(p => p.classList.remove('open'));
       let modal = document.getElementById('adminModal');
       if (!modal) {
@@ -29261,7 +29269,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
 
     // ── Analytics Panel ───────────────────────────────────────────────────────
     function openAnalyticsPanel() {
-      if (authUser?.email !== ADMIN_EMAIL) return;
+      if (!isAdminUser()) return;
       document.querySelectorAll('.profile-popup.open').forEach(p => p.classList.remove('open'));
       let modal = document.getElementById('analyticsModal');
       if (!modal) {
@@ -29432,7 +29440,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       }
     }
     async function adminAddWhitelist() {
-      if (authUser?.email !== ADMIN_EMAIL) return;
+      if (!isAdminUser()) return;
       const input = document.getElementById('wlEmailInput');
       const email = input?.value.trim().toLowerCase();
       if (!email || !email.includes('@')) { alert('Digite um email válido.'); return; }
@@ -29449,7 +29457,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       }
     }
     async function adminRemoveWhitelist(email) {
-      if (authUser?.email !== ADMIN_EMAIL) return;
+      if (!isAdminUser()) return;
       if (!_supaClient) return;
       if (!confirm(`Remover acesso de ${email}?`)) return;
       try {
