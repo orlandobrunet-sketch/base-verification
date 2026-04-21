@@ -4594,7 +4594,7 @@
     // Verificação de versão — bypassa o Service Worker via no-store
     // Se a versão do servidor for diferente da carregada, limpa tudo e recarrega
     (function() {
-      const LOADED_VERSION = '9.5';
+      const LOADED_VERSION = '9.6';
       fetch('/version.json', { cache: 'no-store' })
         .then(r => r.json())
         .then(data => {
@@ -4624,13 +4624,18 @@
               });
             });
 
-            // Verificar atualizações a cada 2 minutos
-            setInterval(() => reg.update(), 2 * 60 * 1000);
+            // Verificar atualizações a cada 2 minutos (clearável; evita múltiplos por aba)
+            if (!window._swUpdateInterval) {
+              window._swUpdateInterval = setInterval(() => reg.update(), 2 * 60 * 1000);
+            }
 
-            // Verificar quando aba volta ao foco
-            document.addEventListener('visibilitychange', () => {
-              if (document.visibilityState === 'visible') reg.update();
-            });
+            // Verificar quando aba volta ao foco (uma única vez)
+            if (!window._swVisibilityBound) {
+              window._swVisibilityBound = true;
+              document.addEventListener('visibilitychange', () => {
+                if (document.visibilityState === 'visible') reg.update();
+              });
+            }
           }).catch(() => {});
 
         // Quando novo SW assume controle, NÃO recarregar automaticamente
@@ -6429,8 +6434,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       return true;
     }
     
-    // Auto-save every 30 seconds
-    setInterval(() => { saveGame(); }, 30000);
+    // Auto-save every 30 seconds — armazenado para permitir cleanup
+    const _autoSaveInterval = setInterval(() => { saveGame(); }, 30000);
 
     // ============ WELCOME SCREEN LOGIC ============
     function initWelcomeScreen() {
@@ -26663,6 +26668,11 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     };
 
     const $=id=>document.getElementById(id);
+    // Escapa caracteres HTML para evitar XSS em innerHTML com dados dinâmicos
+    function escapeHtml(s) {
+      if (s == null) return '';
+      return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
     const ui={
       heroImg:$("heroImg"),heroClass:$("heroClass"),heroTitle:$("heroTitle"),xpFill:$("xpFill"),xpTxt:$("xpTxt"),
       storyTitle:$("storyTitle"),storyGoal:$("storyGoal"),
@@ -28075,15 +28085,20 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       try { localStorage.setItem(ACCT_KEY, JSON.stringify(data)); } catch(e) {}
       // Salvar no Supabase
       if (_supaClient && authUser) {
-        await _supaClient.from('profiles').upsert({
-          id:         authUser.id,
-          full_name:  data.name,
-          phone:      data.phone,
-          specialty:  data.spec,
-          city:       data.city,
-        });
-        // Atualizar também o user_metadata do auth
-        await _supaClient.auth.updateUser({ data: { full_name: data.name, specialty: data.spec } });
+        try {
+          const { error: profileError } = await _supaClient.from('profiles').upsert({
+            id:        authUser.id,
+            full_name: data.name,
+            phone:     data.phone,
+            specialty: data.spec,
+            city:      data.city,
+          });
+          if (profileError) console.warn('Erro ao salvar perfil:', profileError.message);
+          const { error: userError } = await _supaClient.auth.updateUser({ data: { full_name: data.name, specialty: data.spec } });
+          if (userError) console.warn('Erro ao atualizar auth user:', userError.message);
+        } catch(e) {
+          console.warn('saveAccountData falhou (Supabase):', e);
+        }
       }
       closeAccountModal();
     }
@@ -28138,6 +28153,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
 
     // ============ ADMIN PANEL ============
     function adminJumpToBoss() {
+      if (authUser?.email !== ADMIN_EMAIL) return;
       document.querySelectorAll('.profile-popup.open').forEach(p => p.classList.remove('open'));
       // Garante que o jogo está iniciado com um personagem
       if (!state.gameStarted) {
@@ -28156,6 +28172,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     }
 
     function openAdminPanel() {
+      if (authUser?.email !== ADMIN_EMAIL) return;
       document.querySelectorAll('.profile-popup.open').forEach(p => p.classList.remove('open'));
       let modal = document.getElementById('adminModal');
       if (!modal) {
@@ -28189,6 +28206,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
 
     // ── Analytics Panel ───────────────────────────────────────────────────────
     function openAnalyticsPanel() {
+      if (authUser?.email !== ADMIN_EMAIL) return;
       document.querySelectorAll('.profile-popup.open').forEach(p => p.classList.remove('open'));
       let modal = document.getElementById('analyticsModal');
       if (!modal) {
@@ -28316,7 +28334,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         document.getElementById('anTop5').innerHTML = data.slice(0, 5).map((r, i) => `
           <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
             <span style="width:24px;font-size:0.85rem;">${medals[i]}</span>
-            <span style="flex:1;color:#e8efff;">${(r.player_name||'Anônimo').slice(0,28)}</span>
+            <span style="flex:1;color:#e8efff;">${escapeHtml((r.player_name||'Anônimo').slice(0,28))}</span>
             <span style="color:var(--gold);font-weight:700;">${(r.score||0).toLocaleString('pt-BR')}</span>
             <span style="color:#8a9cc0;font-size:0.72rem;">Lv${r.level||1}</span>
           </div>
@@ -28341,17 +28359,25 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
           list.innerHTML = '<div class="whitelist-empty">Nenhum email na lista ainda.</div>';
           return;
         }
-        list.innerHTML = data.map(r => `
-          <div class="whitelist-item">
-            <span>${r.email}</span>
-            <button onclick="adminRemoveWhitelist('${r.email.replace(/'/g, "\\'")}')">Remover</button>
-          </div>
-        `).join('');
+        list.innerHTML = '';
+        data.forEach(r => {
+          const item = document.createElement('div');
+          item.className = 'whitelist-item';
+          const span = document.createElement('span');
+          span.textContent = r.email;
+          const btn = document.createElement('button');
+          btn.textContent = 'Remover';
+          btn.addEventListener('click', () => adminRemoveWhitelist(r.email));
+          item.appendChild(span);
+          item.appendChild(btn);
+          list.appendChild(item);
+        });
       } catch(e) {
         list.innerHTML = '<div class="whitelist-empty" style="color:#fb7185">Erro ao carregar. Verifique a tabela no Supabase.</div>';
       }
     }
     async function adminAddWhitelist() {
+      if (authUser?.email !== ADMIN_EMAIL) return;
       const input = document.getElementById('wlEmailInput');
       const email = input?.value.trim().toLowerCase();
       if (!email || !email.includes('@')) { alert('Digite um email válido.'); return; }
@@ -28368,6 +28394,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       }
     }
     async function adminRemoveWhitelist(email) {
+      if (authUser?.email !== ADMIN_EMAIL) return;
       if (!_supaClient) return;
       if (!confirm(`Remover acesso de ${email}?`)) return;
       try {
@@ -29658,8 +29685,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
           const isMe = state.lastSubmittedName && r.player_name === state.lastSubmittedName;
           return `<tr class="rank-${i+1 <= 3 ? i+1 : 'n'}${isMe ? ' rank-me' : ''}">
             <td class="col-rank"><span class="rank-badge ${rc}">${rl}</span></td>
-            <td class="col-player"><div class="player-cell"><img class="player-avatar" src="${avatar}" alt="" loading="lazy"><span class="player-name-text">${r.player_name||'An\u00f4nimo'}</span></div></td>
-            <td class="col-char">${r.character_name||'Desconhecido'}</td>
+            <td class="col-player"><div class="player-cell"><img class="player-avatar" src="${avatar}" alt="" loading="lazy"><span class="player-name-text">${escapeHtml(r.player_name)||'An\u00f4nimo'}</span></div></td>
+            <td class="col-char">${escapeHtml(r.character_name)||'Desconhecido'}</td>
             <td class="col-score score-cell">${(r.score||0).toLocaleString('pt-BR')}</td>
             <td class="col-level level-cell">${r.level||1}</td>
             <td class="col-chests chests-cell">${r.chests_opened||0}</td>
