@@ -27305,7 +27305,10 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     // mesmo na virada de ciclo. Tamanho do histórico = 20% do banco.
     const HISTORY_SIZE = Math.max(30, Math.floor(questionBank.length * 0.20));
     let _recentIds = []; // fila circular dos últimos IDs vistos
-    let _masteredSet = new Set(JSON.parse(localStorage.getItem(MASTERED_KEY) || '[]'));
+    let _masteredSet = (() => {
+      try { return new Set(JSON.parse(localStorage.getItem(MASTERED_KEY) || '[]')); }
+      catch(e) { return new Set(); }
+    })();
 
     function shuffle(arr) {
       const a = [...arr];
@@ -27336,16 +27339,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         // Somente questões difíceis
         interleaved.push(...hi);
       } else {
-        // Padrão de repetição por dificuldade
-        const patterns = {
-          easy:   (e,m,h) => [e.shift(),e.shift(),m.shift(),m.shift(),h.shift()],
-          normal: (e,m,h) => [e.shift(),m.shift(),h.shift(),m.shift(),h.shift()],
-          hard:   (e,m,h) => [m.shift(),h.shift(),h.shift(),h.shift(),null],
-        };
-        const pat = patterns[diff] || patterns.normal;
         while (ei.length || mi.length || hi.length) {
-          const chunk = pat([...ei],[...mi],[...hi]); // peek lengths
-          // advance the real arrays
           if (diff === 'easy') {
             if (ei.length) interleaved.push(ei.shift());
             if (ei.length) interleaved.push(ei.shift());
@@ -30150,7 +30144,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     }
     
     function saveDetailedStats(stats) {
-      localStorage.setItem(STATS_STORAGE_KEY, JSON.stringify(stats));
+      try { localStorage.setItem(STATS_STORAGE_KEY, JSON.stringify(stats)); } catch(e) {}
     }
     
     function trackQuestionAnswer(question, isCorrect, timeSpent) {
@@ -31024,7 +31018,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
     }
     
     function saveUnlockedAchievements(unlocked) {
-      localStorage.setItem(ACHIEVEMENTS_KEY, JSON.stringify(unlocked));
+      try { localStorage.setItem(ACHIEVEMENTS_KEY, JSON.stringify(unlocked)); } catch(e) {}
     }
     
     function checkAchievements() {
