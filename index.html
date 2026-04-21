@@ -6278,7 +6278,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       stats.gamesPlayed++;
       if (state.level > stats.bestLevel) stats.bestLevel = state.level;
       if (state.score > stats.bestScore) stats.bestScore = state.score;
-      localStorage.setItem(STATS_KEY, JSON.stringify(stats));
+      try { localStorage.setItem(STATS_KEY, JSON.stringify(stats)); } catch(e) {}
       _invalidateStatsCache();
     }
 
@@ -28003,22 +28003,40 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     }
 
     let _premiumPollCount = 0;
+    let _premiumPolling = false; // evita chains concorrentes
     async function _pollPremiumActivation() {
       if (!authUser || !_supaClient) return;
-      if (_premiumPollCount++ > 10) return; // máx 10 tentativas
-      const { data: profile } = await _supaClient
-        .from('profiles')
-        .select('is_premium')
-        .eq('id', authUser.id)
-        .single();
-      if (profile?.is_premium) {
-        localStorage.setItem(PREMIUM_KEY, '1');
-        _invalidatePremiumCache();
-        document.getElementById('paymentSuccessOverlay')?.remove();
-        updateWelcomeUserBadge();
+      if (_premiumPolling) return; // já existe uma chain ativa
+      _premiumPolling = true;
+      _premiumPollCount = 0; // reinicia contador para nova sessão de polling
+      await _doPremiumPoll();
+    }
+    async function _doPremiumPoll() {
+      if (!authUser || !_supaClient || _premiumPollCount >= 10) {
+        _premiumPolling = false;
         return;
       }
-      setTimeout(_pollPremiumActivation, 3000);
+      _premiumPollCount++;
+      try {
+        const { data: profile } = await _supaClient
+          .from('profiles')
+          .select('is_premium')
+          .eq('id', authUser.id)
+          .single();
+        if (profile?.is_premium) {
+          localStorage.setItem(PREMIUM_KEY, '1');
+          _invalidatePremiumCache();
+          document.getElementById('paymentSuccessOverlay')?.remove();
+          updateWelcomeUserBadge();
+          _premiumPolling = false;
+          return;
+        }
+      } catch(e) {
+        console.warn('Premium poll error:', e);
+      }
+      // Backoff exponencial: tentativas 1-3→3s, 4-6→5s, 7-10→8s
+      const delay = _premiumPollCount <= 3 ? 3000 : _premiumPollCount <= 6 ? 5000 : 8000;
+      setTimeout(_doPremiumPoll, delay);
     }
 
     // ============ ACCOUNT MODAL ============
@@ -30117,7 +30135,18 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
           mostMissed: {}
         };
       }
-      try { return JSON.parse(raw); } catch(e) { return null; }
+      try { return JSON.parse(raw); } catch(e) {
+        return {
+          totalQuestions: 0,
+          totalCorrect: 0,
+          totalWrong: 0,
+          byTopic: {},
+          byCategory: {},
+          questionHistory: [],
+          timeStats: { totalTime: 0, questionCount: 0 },
+          mostMissed: {}
+        };
+      }
     }
     
     function saveDetailedStats(stats) {
@@ -30125,8 +30154,15 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     }
     
     function trackQuestionAnswer(question, isCorrect, timeSpent) {
-      const stats = getDetailedStats();
+      const stats = getDetailedStats() || {};
+      if (!stats.byTopic)    stats.byTopic    = {};
       if (!stats.byCategory) stats.byCategory = {};
+      if (!stats.mostMissed) stats.mostMissed = {};
+      if (!stats.questionHistory) stats.questionHistory = [];
+      if (!stats.timeStats)  stats.timeStats  = { totalTime: 0, questionCount: 0 };
+      if (!stats.totalQuestions) stats.totalQuestions = 0;
+      if (!stats.totalCorrect)   stats.totalCorrect   = 0;
+      if (!stats.totalWrong)     stats.totalWrong     = 0;
       const topic = question.t || 'Geral';
       const cat = question.c || question.cat || 'geral';
       
