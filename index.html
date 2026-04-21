@@ -4666,7 +4666,7 @@
 
   <!-- Botões de som fixos no topo direito (MOBILE ONLY) -->
   <!-- Botão herói no canto superior esquerdo (mobile) -->
-  <button class="mobile-hero-btn" id="mobileHeroBtn" onclick="openMobileDrawer()" style="display:none;">
+  <button class="mobile-hero-btn" id="mobileHeroBtn" data-action="openMobileDrawer" style="display:none;">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
       <circle cx="12" cy="8" r="4"/>
       <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
@@ -4674,10 +4674,10 @@
     <span class="hero-btn-label">Herói</span>
   </button>
   <div class="mobile-sound-controls" id="mobileSoundControls">
-    <div class="sound-toggle" onclick="toggleMusic()">
+    <div class="sound-toggle" data-action="toggleMusic">
       <span id="mobileSoundMusicIcon">🎵</span>
     </div>
-    <div class="sound-toggle" onclick="toggleSound()">
+    <div class="sound-toggle" data-action="toggleSound">
       <span id="mobileSoundSfxIcon">🔊</span>
     </div>
   </div>
@@ -4686,18 +4686,18 @@
   <div id="landingScreen">
     <div class="landing-bg"></div>
     <!-- Profile button (top-right, shown when already logged in) -->
-    <div class="profile-btn" id="landingProfileBtn" onclick="toggleProfilePopup('landing')" style="position:absolute;top:14px;right:14px;z-index:10;">
+    <div class="profile-btn" id="landingProfileBtn" data-action="toggleProfilePopup" data-arg="landing" style="position:absolute;top:14px;right:14px;z-index:10;">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
       <div class="profile-popup" id="landingProfilePopup">
         <div class="profile-popup-email"><strong>Conta</strong><span id="landingProfileEmail"></span></div>
-        <button class="profile-popup-item" onclick="openAccountModal();event.stopPropagation()">👤 Minha Conta</button>
-        <button class="profile-popup-item" onclick="openPlanModal();event.stopPropagation()">⭐ Seu Plano</button>
-        <button class="profile-popup-item admin-item" onclick="openAdminPanel();event.stopPropagation()">🛡 Administração</button>
-        <button class="profile-popup-item admin-item" onclick="showRapidQuizMinigame();event.stopPropagation()">⚡ Julgamento Rápido</button>
-        <button class="profile-popup-item admin-item" onclick="adminJumpToBoss();event.stopPropagation()">⚔ Fase Final</button>
-        <button class="profile-popup-item admin-item" onclick="openAnalyticsPanel();event.stopPropagation()">📊 Analytics</button>
+        <button class="profile-popup-item" data-action="openAccountModal" data-stop-propagation="1">👤 Minha Conta</button>
+        <button class="profile-popup-item" data-action="openPlanModal" data-stop-propagation="1">⭐ Seu Plano</button>
+        <button class="profile-popup-item admin-item" data-action="openAdminPanel" data-stop-propagation="1">🛡 Administração</button>
+        <button class="profile-popup-item admin-item" data-action="showRapidQuizMinigame" data-stop-propagation="1">⚡ Julgamento Rápido</button>
+        <button class="profile-popup-item admin-item" data-action="adminJumpToBoss" data-stop-propagation="1">⚔ Fase Final</button>
+        <button class="profile-popup-item admin-item" data-action="openAnalyticsPanel" data-stop-propagation="1">📊 Analytics</button>
         <hr class="profile-popup-divider">
-        <button class="profile-popup-logout" onclick="authLogout();event.stopPropagation()">Sair</button>
+        <button class="profile-popup-logout" data-action="authLogout" data-stop-propagation="1">Sair</button>
       </div>
     </div>
     <div class="landing-content">
@@ -4707,11 +4707,11 @@
       <div class="landing-tagline">Domine a Nefrologia.<br>Conquiste o reino dos néfrons.</div>
       <div class="landing-divider"></div>
       <div id="landingMsg" class="landing-msg"></div>
-      <button class="landing-btn-google" onclick="landingLoginGoogle()">
+      <button class="landing-btn-google" data-action="landingLoginGoogle">
         <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.1 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.6-13.47-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
         Entrar com Google
       </button>
-      <button class="landing-btn-email" onclick="landingLoginEmail()">&#9993; Entrar com Email</button>
+      <button class="landing-btn-email" data-action="landingLoginEmail">&#9993; Entrar com Email</button>
       <div class="landing-stats-section" style="margin-top:12px;border-top:1px solid rgba(255,215,0,0.12);padding-top:14px;width:100%;max-width:360px;">
         <!-- Contador de questões -->
         <div style="text-align:center;margin-bottom:10px;">
@@ -4759,24 +4759,24 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     <div class="welcome-particles" id="welcomeParticles"></div>
     <!-- Botões de som na welcome screen (PC only) -->
     <div class="welcome-sound-controls" id="welcomeSoundControls">
-      <div class="sound-toggle" onclick="toggleMusic()">
+      <div class="sound-toggle" data-action="toggleMusic">
         <span id="welcomeMusicIcon">🎵</span>
       </div>
-      <div class="sound-toggle" onclick="toggleSound()">
+      <div class="sound-toggle" data-action="toggleSound">
         <span id="welcomeSoundIcon">🔊</span>
       </div>
-      <div class="profile-btn" id="welcomeProfileBtn" onclick="toggleProfilePopup('welcome')">
+      <div class="profile-btn" id="welcomeProfileBtn" data-action="toggleProfilePopup" data-arg="welcome">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
         <div class="profile-popup" id="welcomeProfilePopup">
           <div class="profile-popup-email"><strong>Conta</strong><span id="welcomeProfileEmail"></span></div>
-          <button class="profile-popup-item" onclick="openAccountModal();event.stopPropagation()">👤 Minha Conta</button>
-          <button class="profile-popup-item" onclick="openPlanModal();event.stopPropagation()">⭐ Seu Plano</button>
-          <button class="profile-popup-item admin-item" onclick="openAdminPanel();event.stopPropagation()">🛡 Administração</button>
-          <button class="profile-popup-item admin-item" onclick="showRapidQuizMinigame();event.stopPropagation()">⚡ Julgamento Rápido</button>
-          <button class="profile-popup-item admin-item" onclick="adminJumpToBoss();event.stopPropagation()">⚔ Fase Final</button>
-          <button class="profile-popup-item admin-item" onclick="openAnalyticsPanel();event.stopPropagation()">📊 Analytics</button>
+          <button class="profile-popup-item" data-action="openAccountModal" data-stop-propagation="1">👤 Minha Conta</button>
+          <button class="profile-popup-item" data-action="openPlanModal" data-stop-propagation="1">⭐ Seu Plano</button>
+          <button class="profile-popup-item admin-item" data-action="openAdminPanel" data-stop-propagation="1">🛡 Administração</button>
+          <button class="profile-popup-item admin-item" data-action="showRapidQuizMinigame" data-stop-propagation="1">⚡ Julgamento Rápido</button>
+          <button class="profile-popup-item admin-item" data-action="adminJumpToBoss" data-stop-propagation="1">⚔ Fase Final</button>
+          <button class="profile-popup-item admin-item" data-action="openAnalyticsPanel" data-stop-propagation="1">📊 Analytics</button>
           <hr class="profile-popup-divider">
-          <button class="profile-popup-logout" onclick="authLogout();event.stopPropagation()">Sair</button>
+          <button class="profile-popup-logout" data-action="authLogout" data-stop-propagation="1">Sair</button>
         </div>
       </div>
     </div>
@@ -4817,23 +4817,23 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       </div>
       <!-- Botões primários: Nova Jornada + Continuar Jornada -->
       <div class="welcome-primary-btns">
-        <button id="welcomeLoginBtn" class="btn gold" onclick="startNewFromWelcome()" style="display:none;">Nova Jornada</button>
-        <button id="welcomeContinueBtn" class="btn continue-btn" style="display:none;" onclick="continueGame()">Continuar Jornada</button>
-        <button class="btn gold" onclick="startNewFromWelcome()">Nova Jornada</button>
+        <button id="welcomeLoginBtn" class="btn gold" data-action="startNewFromWelcome" style="display:none;">Nova Jornada</button>
+        <button id="welcomeContinueBtn" class="btn continue-btn" style="display:none;" data-action="continueGame">Continuar Jornada</button>
+        <button class="btn gold" data-action="startNewFromWelcome">Nova Jornada</button>
       </div>
       <div class="welcome-buttons">
         <div class="game-mode-btns-group">
-          <button class="btn sec" onclick="showTopicSelector()">📖 Modo de Estudo</button>
-          <button class="btn sec" onclick="startWeakPointStudy()" id="weakPointBtn" style="background:rgba(251,113,133,0.12);border-color:rgba(251,113,133,0.35);color:#fb7185;">📍 Ponto Fraco</button>
-          <button class="btn sec" onclick="startExamMode()">📝 Prova Simulada</button>
+          <button class="btn sec" data-action="showTopicSelector">📖 Modo de Estudo</button>
+          <button class="btn sec" data-action="startWeakPointStudy" id="weakPointBtn" style="background:rgba(251,113,133,0.12);border-color:rgba(251,113,133,0.35);color:#fb7185;">📍 Ponto Fraco</button>
+          <button class="btn sec" data-action="startExamMode">📝 Prova Simulada</button>
         </div>
-        <button class="btn sec btn-game-modes" onclick="openGameModesPopup()">🎮 Modos de Jogo</button>
-        <button class="btn sec" onclick="showStatsModal()">📊 Estatísticas</button>
-        <button class="btn sec" onclick="showAchievementsModal()">🏆 Conquistas</button>
-        <button class="btn sec" onclick="showLeaderboardFromWelcome()">Leaderboard</button>
-        <button id="bossPreviewBtn" class="btn-boss-preview" onclick="startBossPreview()" title="Preview do Confronto Final" style="display:none;">⚔️ Preview: Confronto Final</button>
+        <button class="btn sec btn-game-modes" data-action="openGameModesPopup">🎮 Modos de Jogo</button>
+        <button class="btn sec" data-action="showStatsModal">📊 Estatísticas</button>
+        <button class="btn sec" data-action="showAchievementsModal">🏆 Conquistas</button>
+        <button class="btn sec" data-action="showLeaderboardFromWelcome">Leaderboard</button>
+        <button id="bossPreviewBtn" class="btn-boss-preview" data-action="startBossPreview" title="Preview do Confronto Final" style="display:none;">⚔️ Preview: Confronto Final</button>
       </div>
-      <div class="welcome-credit" style="margin-top:14px;"><a href="https://nefroquest.com">nefroquest.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;cursor:pointer;" onclick="showChangelog()">v6.1</span></div>
+      <div class="welcome-credit" style="margin-top:14px;"><a href="https://nefroquest.com">nefroquest.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;cursor:pointer;" data-action="showChangelog">v6.1</span></div>
     </div>
   </div>
 
@@ -4848,24 +4848,24 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       <div id="finalMeterStarsTop" style="display:none;justify-content:center;gap:6px;align-items:center;padding:4px 0 2px;"></div>
       <!-- Sound controls estáticos dentro do título (PC only) -->
       <div class="sound-controls" id="soundControlsBar">
-        <div id="musicToggle" class="sound-toggle" onclick="toggleMusic()">
+        <div id="musicToggle" class="sound-toggle" data-action="toggleMusic">
           <span id="musicIcon">🎵</span>
         </div>
-        <div id="soundToggle" class="sound-toggle" onclick="toggleSound()">
+        <div id="soundToggle" class="sound-toggle" data-action="toggleSound">
           <span id="soundIcon">🔊</span>
         </div>
-        <div class="profile-btn" id="gameProfileBtn" onclick="toggleProfilePopup('game')">
+        <div class="profile-btn" id="gameProfileBtn" data-action="toggleProfilePopup" data-arg="game">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
           <div class="profile-popup" id="gameProfilePopup">
             <div class="profile-popup-email"><strong>Conta</strong><span id="gameProfileEmail"></span></div>
-            <button class="profile-popup-item" onclick="openAccountModal();event.stopPropagation()">👤 Minha Conta</button>
-            <button class="profile-popup-item" onclick="openPlanModal();event.stopPropagation()">⭐ Seu Plano</button>
-            <button class="profile-popup-item admin-item" onclick="openAdminPanel();event.stopPropagation()">🛡 Administração</button>
-            <button class="profile-popup-item admin-item" onclick="showRapidQuizMinigame();event.stopPropagation()">⚡ Julgamento Rápido</button>
-            <button class="profile-popup-item admin-item" onclick="adminJumpToBoss();event.stopPropagation()">⚔ Fase Final</button>
-            <button class="profile-popup-item admin-item" onclick="openAnalyticsPanel();event.stopPropagation()">📊 Analytics</button>
+            <button class="profile-popup-item" data-action="openAccountModal" data-stop-propagation="1">👤 Minha Conta</button>
+            <button class="profile-popup-item" data-action="openPlanModal" data-stop-propagation="1">⭐ Seu Plano</button>
+            <button class="profile-popup-item admin-item" data-action="openAdminPanel" data-stop-propagation="1">🛡 Administração</button>
+            <button class="profile-popup-item admin-item" data-action="showRapidQuizMinigame" data-stop-propagation="1">⚡ Julgamento Rápido</button>
+            <button class="profile-popup-item admin-item" data-action="adminJumpToBoss" data-stop-propagation="1">⚔ Fase Final</button>
+            <button class="profile-popup-item admin-item" data-action="openAnalyticsPanel" data-stop-propagation="1">📊 Analytics</button>
             <hr class="profile-popup-divider">
-            <button class="profile-popup-logout" onclick="authLogout();event.stopPropagation()">Sair</button>
+            <button class="profile-popup-logout" data-action="authLogout" data-stop-propagation="1">Sair</button>
           </div>
         </div>
       </div>
@@ -4896,7 +4896,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
 
       <div class="hero">
         <div class="hero-wrap">
-          <div class="portrait-frame" onclick="showHeroLore()" style="cursor:pointer;" title="Ver história do personagem">
+          <div class="portrait-frame" data-action="showHeroLore" style="cursor:pointer;" title="Ver história do personagem">
             <img id="heroImg" class="portrait" src="assets/classes/clerigo_renal/nivel_01.jpg" alt="Herói" />
           </div>
           <div class="hero-info">
@@ -5106,7 +5106,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         <div id="arquiQ9PopupInner" style="max-width:520px;width:100%;text-align:center;">
           <p id="arquiQ9PopupTitle" style="font-family:'Cinzel',serif;color:#e9d5ff;font-size:1.3rem;font-weight:900;letter-spacing:4px;text-transform:uppercase;margin-bottom:16px;">⚔ Golpe Final<br><span style="font-size:.85em;letter-spacing:3px;color:var(--purple);">Última Pergunta</span></p>
           <img id="arquiQ9PopupImg" src="assets/battle_final.png" alt="Golpe Final" style="width:100%;border-radius:12px;border:2px solid rgba(168,85,247,0.7);box-shadow:0 0 40px rgba(124,58,237,0.7);margin-bottom:20px;clip-path:inset(0 0 9% 0 round 12px);">
-          <button onclick="document.getElementById('arquiQ9Popup').style.display='none'" style="font-family:'Cinzel',serif;background:linear-gradient(180deg,#7c3aed,#4c1d95);border:2px solid #a855f7;color:#f3e8ff;padding:14px 40px;border-radius:10px;font-size:1rem;font-weight:900;letter-spacing:3px;cursor:pointer;text-transform:uppercase;box-shadow:0 0 25px rgba(168,85,247,0.6);">⚔ Partir para o Ataque!</button>
+          <button id="arquiQ9CloseBtn" style="font-family:'Cinzel',serif;background:linear-gradient(180deg,#7c3aed,#4c1d95);border:2px solid #a855f7;color:#f3e8ff;padding:14px 40px;border-radius:10px;font-size:1rem;font-weight:900;letter-spacing:3px;cursor:pointer;text-transform:uppercase;box-shadow:0 0 25px rgba(168,85,247,0.6);">⚔ Partir para o Ataque!</button>
         </div>
       </div>
 
@@ -5134,7 +5134,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       <div class="qbox">
         <!-- CRONÔMETRO -->
         <div id="timerWidget">
-          <button id="timerPlayPause" title="Play/Pause cronômetro" onclick="timerToggle()">
+          <button id="timerPlayPause" title="Play/Pause cronômetro" data-action="timerToggle">
             <svg id="timerIcon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <!-- ícone play -->
               <polygon points="5,3 19,12 5,21" />
@@ -5142,7 +5142,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
           </button>
           <span id="timerDisplay">00:00</span>
         </div>
-        <button class="flag-btn" id="flagBtn" title="Sinalizar pergunta" onclick="flagQuestion()">🚩</button>
+        <button class="flag-btn" id="flagBtn" title="Sinalizar pergunta" data-action="flagQuestion">🚩</button>
         <p id="question"></p>
         <div id="cycleProgressBar" style="margin-top:6px;height:3px;background:transparent;border-radius:2px;overflow:hidden;">
           <div id="cycleProgressFill" style="height:100%;background:linear-gradient(90deg,#6366f1,#8b5cf6);width:0%;transition:width 0.4s;"></div>
@@ -5176,7 +5176,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     <!-- Forja (item comum + lendário em popup) -->
     <button id="forgeBtn"
       class="dock-btn forge-btn"
-      onclick="showForjaModal()"
+      data-action="showForjaModal"
       data-tip="Forja">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <path d="M14.5 2.5c0 1.5-1.5 3-1.5 3s-1.5-1.5-1.5-3a1.5 1.5 0 0 1 3 0z"/>
@@ -5195,7 +5195,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     <!-- Abrir Baú -->
     <button id="chestBtn"
       class="dock-btn open-chest"
-      onclick="showMobileActionConfirm('chest')"
+      data-action="showMobileActionConfirm" data-arg="chest"
       data-tip="Abrir Baú">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <path d="M5 8h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2z"/>
@@ -5225,7 +5225,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     <!-- Stats -->
     <button
       class="dock-btn stats-btn"
-      onclick="showStatsModal()"
+      data-action="showStatsModal"
       data-tip="Estatísticas">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <line x1="18" y1="20" x2="18" y2="10"/>
@@ -5239,7 +5239,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     <!-- Conquistas -->
     <button
       class="dock-btn achievements-btn"
-      onclick="showAchievementsModal()"
+      data-action="showAchievementsModal"
       data-tip="Conquistas">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <path d="M6 9H3.5a2.5 2.5 0 0 0 0 5H6"/>
@@ -5257,7 +5257,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       <p>
         <a href="https://nefroquest.com">nefroquest.com</a>
         &nbsp;•&nbsp;
-        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" onclick="showChangelog()">v6.1</span>
+        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" data-action="showChangelog">v6.1</span>
       </p>
     </div>
   </main>
@@ -5284,7 +5284,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
   <div class="mobile-bottom-dock" id="mobileBottomDock" style="display:none;">
 
     <!-- Forja (item comum + lendário via modal igual web) -->
-    <button class="mdock-btn forge-item" onclick="showForjaModal()" title="Forja">
+    <button class="mdock-btn forge-item" data-action="showForjaModal" title="Forja">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
         <path d="M14.5 2.5c0 1.5-1.5 3-1.5 3s-1.5-1.5-1.5-3a1.5 1.5 0 0 1 3 0z"/>
         <path d="M12 5.5V9"/>
@@ -5295,7 +5295,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     </button>
 
     <!-- Baú -->
-    <button class="mdock-btn open-chest" onclick="showActionConfirmPopup('chest')" title="Abrir Baú">
+    <button class="mdock-btn open-chest" data-action="showActionConfirmPopup" data-arg="chest" title="Abrir Baú">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
         <path d="M5 8h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2z"/>
         <path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2"/>
@@ -5305,7 +5305,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     </button>
 
     <!-- Ranking -->
-    <button class="mdock-btn ranking" onclick="if(typeof renderBoard==='function'){renderBoard();document.getElementById('boardModal').classList.remove('hidden');}" title="Ranking">
+    <button class="mdock-btn ranking" data-action="showLeaderboardFromWelcome" title="Ranking">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
         <rect x="2" y="14" width="5" height="8" rx="1"/>
         <rect x="9.5" y="9" width="5" height="13" rx="1"/>
@@ -5315,7 +5315,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     </button>
 
     <!-- Stats -->
-    <button class="mdock-btn stats" onclick="showStatsModal()" title="Estatísticas">
+    <button class="mdock-btn stats" data-action="showStatsModal" title="Estatísticas">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
         <line x1="18" y1="20" x2="18" y2="10"/>
         <line x1="12" y1="20" x2="12" y2="4"/>
@@ -5326,7 +5326,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     </button>
 
     <!-- Conquistas -->
-    <button class="mdock-btn conquistas" onclick="showAchievementsModal()" title="Conquistas">
+    <button class="mdock-btn conquistas" data-action="showAchievementsModal" title="Conquistas">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
         <path d="M6 9H3.5a2.5 2.5 0 0 0 0 5H6"/>
         <path d="M18 9h2.5a2.5 2.5 0 0 1 0 5H18"/>
@@ -5338,13 +5338,13 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     </button>
 
     <!-- Música (mobile) -->
-    <button class="mdock-btn musica" id="mobileMusToggle" onclick="toggleMusic()" title="Música">
+    <button class="mdock-btn musica" id="mobileMusToggle" data-action="toggleMusic" title="Música">
       <span id="mobileMusIcon" style="font-size:1.2rem;line-height:1;">&#127925;</span>
       <span class="mdock-label">Música</span>
     </button>
 
     <!-- Menu (conta / configurações) -->
-    <button class="mdock-btn menu" id="mobileMenuBtn" onclick="toggleProfilePopup('mobile')" title="Menu">
+    <button class="mdock-btn menu" id="mobileMenuBtn" data-action="toggleProfilePopup" data-arg="mobile" title="Menu">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
         <line x1="3" y1="6" x2="21" y2="6"/>
         <line x1="3" y1="12" x2="21" y2="12"/>
@@ -5358,14 +5358,14 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
   <!-- Popup do menu mobile — fora do dock para evitar overflow:hidden e garantir cliques -->
   <div class="profile-popup mobile-dock-popup" id="mobileProfilePopup">
     <div class="profile-popup-email"><strong>Conta</strong><span id="mobileProfileEmail"></span></div>
-    <button class="profile-popup-item" onclick="openAccountModal()">👤 Minha Conta</button>
-    <button class="profile-popup-item" onclick="openPlanModal()">⭐ Seu Plano</button>
-    <button class="profile-popup-item admin-item" onclick="openAdminPanel()">🛡 Administração</button>
-    <button class="profile-popup-item admin-item" onclick="showRapidQuizMinigame()">⚡ Julgamento Rápido</button>
-    <button class="profile-popup-item admin-item" onclick="adminJumpToBoss()">⚔ Fase Final</button>
-    <button class="profile-popup-item admin-item" onclick="openAnalyticsPanel()">📊 Analytics</button>
+    <button class="profile-popup-item" data-action="openAccountModal">👤 Minha Conta</button>
+    <button class="profile-popup-item" data-action="openPlanModal">⭐ Seu Plano</button>
+    <button class="profile-popup-item admin-item" data-action="openAdminPanel">🛡 Administração</button>
+    <button class="profile-popup-item admin-item" data-action="showRapidQuizMinigame">⚡ Julgamento Rápido</button>
+    <button class="profile-popup-item admin-item" data-action="adminJumpToBoss">⚔ Fase Final</button>
+    <button class="profile-popup-item admin-item" data-action="openAnalyticsPanel">📊 Analytics</button>
     <hr class="profile-popup-divider">
-    <button class="profile-popup-logout" onclick="authLogout()">Sair</button>
+    <button class="profile-popup-logout" data-action="authLogout">Sair</button>
   </div>
 
   <!-- LEADERBOARD MODAL -->
@@ -5415,19 +5415,19 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     <div class="chest-content" style="max-width:680px;">
       <h2>Escolha seu Personagem</h2>
       <div class="char-grid">
-        <div class="char-card" onclick="selectCharacter('nephros')">
+        <div class="char-card" data-action="selectCharacter" data-arg="nephros">
           <img src="assets/classes/clerigo_renal/nivel_01.jpg" alt="Dr. Nephros">
           <h3>Dr. Nephros</h3>
           <p class="char-subtitle">Guardião dos Néfrons</p>
           <p class="char-desc">Equilíbrio e sabedoria. Bônus: +2 Conhecimento</p>
         </div>
-        <div class="char-card" onclick="selectCharacter('aquaria')">
+        <div class="char-card" data-action="selectCharacter" data-arg="aquaria">
           <img src="assets/classes/maga_metabolica/nivel_01.jpg" alt="Dra. Aquaria">
           <h3>Dra. Aquaria</h3>
           <p class="char-subtitle">Mestra das Águas</p>
           <p class="char-desc">Cura e regeneração. Bônus: +2 Defesa</p>
         </div>
-        <div class="char-card" onclick="selectCharacter('glomerulus')">
+        <div class="char-card" data-action="selectCharacter" data-arg="glomerulus">
           <img src="assets/classes/guerreiro_glomerular/nivel_01.png" alt="Dr. Glomerulus">
           <h3>Dr. Glomerulus</h3>
           <p class="char-subtitle">Cientista Renal</p>
@@ -5447,24 +5447,24 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         <input type="text" id="playerName" maxlength="20" placeholder="Ex: Dr. Silva" />
       </div>
       <div class="btn-group">
-        <button class="close-chest" onclick="saveScore()">Salvar</button>
-        <button class="close-chest" style="background:linear-gradient(180deg,#374151,#1f2937);color:#9ca3af;border-color:#4b5563;" onclick="skipSaveScore()">Pular</button>
+        <button class="close-chest" data-action="saveScore">Salvar</button>
+        <button class="close-chest" style="background:linear-gradient(180deg,#374151,#1f2937);color:#9ca3af;border-color:#4b5563;" data-action="skipSaveScore">Pular</button>
       </div>
     </div>
   </div>
 
   <!-- AUTH MODAL -->
-  <div id="authModal" class="auth-modal-overlay" onclick="closeAuthOutside(event)">
+  <div id="authModal" class="auth-modal-overlay" data-action="closeAuthOutside" data-pass-event="1">
     <div class="auth-box" id="authBox">
-      <button class="auth-close-btn" onclick="closeAuthModal()">✕</button>
+      <button class="auth-close-btn" data-action="closeAuthModal">✕</button>
       <div class="auth-title">⚔ NefroQuest</div>
       <div class="auth-subtitle">Salve seu progresso e apareça no leaderboard</div>
       <div class="auth-tabs">
-        <button class="auth-tab active" id="tabEntrar" onclick="switchAuthTab('entrar')">Entrar</button>
-        <button class="auth-tab" id="tabCadastrar" onclick="switchAuthTab('cadastrar')">Criar conta</button>
+        <button class="auth-tab active" id="tabEntrar" data-action="switchAuthTab" data-arg="entrar">Entrar</button>
+        <button class="auth-tab" id="tabCadastrar" data-action="switchAuthTab" data-arg="cadastrar">Criar conta</button>
       </div>
       <div id="authMsg" class="auth-msg"></div>
-      <button class="auth-google-btn" onclick="loginWithGoogle()">
+      <button class="auth-google-btn" data-action="loginWithGoogle">
         <svg width="20" height="20" viewBox="0 0 48 48">
           <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
           <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
@@ -5484,9 +5484,9 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
           <input type="password" id="authPassword" placeholder="••••••••" onkeypress="authKeyPress(event)" />
         </div>
         <div style="text-align:right;margin:-4px 0 10px;">
-          <button onclick="showForgotPassword()" style="background:none;border:none;color:#708090;font-size:0.78rem;cursor:pointer;text-decoration:underline;padding:0;">Esqueci minha senha</button>
+          <button data-action="showForgotPassword" style="background:none;border:none;color:#708090;font-size:0.78rem;cursor:pointer;text-decoration:underline;padding:0;">Esqueci minha senha</button>
         </div>
-        <button class="auth-submit-btn" id="authLoginBtn" onclick="authEmailLogin()">Entrar na Jornada</button>
+        <button class="auth-submit-btn" id="authLoginBtn" data-action="authEmailLogin">Entrar na Jornada</button>
       </div>
       <div id="authFormForgot" style="display:none;">
         <p style="color:#a0b8d0;font-size:0.85rem;margin-bottom:14px;line-height:1.6;">Digite seu email e enviaremos um link para redefinir sua senha.</p>
@@ -5494,9 +5494,9 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
           <label>Email</label>
           <input type="email" id="authForgotEmail" placeholder="seu@email.com" />
         </div>
-        <button class="auth-submit-btn" id="authForgotBtn" onclick="authForgotPassword()">Enviar Link de Redefinição</button>
+        <button class="auth-submit-btn" id="authForgotBtn" data-action="authForgotPassword">Enviar Link de Redefinição</button>
         <div style="text-align:center;margin-top:10px;">
-          <button onclick="switchAuthTab('entrar')" style="background:none;border:none;color:#708090;font-size:0.8rem;cursor:pointer;">← Voltar ao login</button>
+          <button data-action="switchAuthTab" data-arg="entrar" style="background:none;border:none;color:#708090;font-size:0.8rem;cursor:pointer;">← Voltar ao login</button>
         </div>
       </div>
       <div id="authFormCadastrar" style="display:none;">
@@ -5527,32 +5527,32 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
           <label>Confirmar Senha</label>
           <input type="password" id="authPasswordConfirm" placeholder="repita a senha" onkeypress="authKeyPress(event)" />
         </div>
-        <button class="auth-submit-btn" id="authRegBtn" onclick="authEmailRegister()">Criar Conta</button>
+        <button class="auth-submit-btn" id="authRegBtn" data-action="authEmailRegister">Criar Conta</button>
       </div>
     </div>
   </div>
 
   <!-- CHEST MODAL -->
   <!-- Popup MODOS DE JOGO (mobile only) -->
-  <div id="gameModesOverlay" class="game-modes-overlay" onclick="closeGameModesPopupOutside(event)">
+  <div id="gameModesOverlay" class="game-modes-overlay" data-action="closeGameModesPopupOutside" data-pass-event="1">
     <div class="game-modes-box">
-      <button class="game-modes-close" onclick="closeGameModesPopup()" aria-label="Fechar">✕</button>
+      <button class="game-modes-close" data-action="closeGameModesPopup" aria-label="Fechar">✕</button>
       <h3>⚔️ Modos de Jogo</h3>
-      <button class="gm-btn" onclick="closeGameModesPopup(); showTopicSelector()">
+      <button class="gm-btn" data-action-seq="closeGameModesPopup,showTopicSelector">
         <span class="gm-icon">📖</span>
         <span class="gm-label">
           <span class="gm-title">Modo de Estudo</span>
           <span class="gm-desc">Escolha um tema e estude no seu ritmo</span>
         </span>
       </button>
-      <button class="gm-btn weak-btn" onclick="closeGameModesPopup(); startWeakPointStudy()">
+      <button class="gm-btn weak-btn" data-action-seq="closeGameModesPopup,startWeakPointStudy">
         <span class="gm-icon">📍</span>
         <span class="gm-label">
           <span class="gm-title">Ponto Fraco</span>
           <span class="gm-desc">Foque nos temas com menor acerto</span>
         </span>
       </button>
-      <button class="gm-btn" onclick="closeGameModesPopup(); startExamMode()">
+      <button class="gm-btn" data-action-seq="closeGameModesPopup,startExamMode">
         <span class="gm-icon">📝</span>
         <span class="gm-label">
           <span class="gm-title">Prova Simulada</span>
@@ -5566,7 +5566,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     <div class="chest-content">
       <h2 id="chestTitle">Baú Desbloqueado!</h2>
       <div id="chestArticle"></div>
-      <button class="close-chest" onclick="closeChestModal()">Fechar</button>
+      <button class="close-chest" data-action="closeChestModal">Fechar</button>
     </div>
   </div>
 
@@ -33220,6 +33220,48 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
       if (!document.hidden) {
         const ws = document.getElementById('welcomeScreen');
         if (ws && !ws.classList.contains('hidden')) refreshWelcomeSave();
+      }
+    });
+
+    // ============ DISPATCHER CENTRAL (data-action / data-action-seq) ============
+    // Substitui inline onclick="fn()" nos elementos HTML estáticos
+    document.addEventListener('click', function(e) {
+      const el = e.target.closest('[data-action], [data-action-seq]');
+      if (!el) return;
+
+      // Sequência de ações: data-action-seq="fn1,fn2"
+      const seq = el.dataset.actionSeq;
+      if (seq) {
+        if (el.dataset.stopPropagation) e.stopPropagation();
+        seq.split(',').forEach(fn => {
+          const f = window[fn.trim()];
+          if (typeof f === 'function') f();
+        });
+        return;
+      }
+
+      // Ação única: data-action="fn"  +  data-arg="..."  +  data-pass-event="1"
+      const action = el.dataset.action;
+      if (!action) return;
+      if (el.dataset.stopPropagation) e.stopPropagation();
+
+      const fn = window[action];
+      if (typeof fn !== 'function') return;
+
+      if (el.dataset.passEvent) {
+        fn(e);
+      } else if (el.dataset.arg !== undefined) {
+        fn(el.dataset.arg);
+      } else {
+        fn();
+      }
+    });
+
+    // Bind estático: arquiQ9CloseBtn (handler complexo removido do HTML)
+    document.addEventListener('click', function(e) {
+      if (e.target.id === 'arquiQ9CloseBtn') {
+        const popup = document.getElementById('arquiQ9Popup');
+        if (popup) popup.style.display = 'none';
       }
     });
 
