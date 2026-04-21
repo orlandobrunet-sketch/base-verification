@@ -6051,9 +6051,9 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
             </div>
             <p style="color:var(--txt-dim);font-size:0.85rem;margin-bottom:20px;">Você recebeu o <strong style="color:var(--gold);">Título de Campeão</strong>! Este badge ficará visível no Leaderboard.</p>
             <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
-              <button class="btn sec" onclick="continueAfterCompletion()" style="flex:1;min-width:120px;">Continuar Jogando</button>
-              <button class="btn gold" onclick="finishGameCompletely()" style="flex:1;min-width:120px;">Encerrar Jornada</button>
-              <button class="btn sec" onclick="shareVictory(this)" style="flex:1;min-width:120px;background:linear-gradient(180deg,#3b82f6,#2563eb);border-color:#1d4ed8;color:#fff;">📤 Compartilhar</button>
+              <button class="btn sec" data-action="continueAfterCompletion" style="flex:1;min-width:120px;">Continuar Jogando</button>
+              <button class="btn gold" data-action="finishGameCompletely" style="flex:1;min-width:120px;">Encerrar Jornada</button>
+              <button class="btn sec" data-action="shareVictory" data-pass-this="1" style="flex:1;min-width:120px;background:linear-gradient(180deg,#3b82f6,#2563eb);border-color:#1d4ed8;color:#fff;">📤 Compartilhar</button>
             </div>
           </div>
         </div>
@@ -6118,7 +6118,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
           <p style="color:var(--txt-dim);margin-bottom:24px;">
             Continue sua jornada com renovada energia e sabedoria.
           </p>
-          <button class="btn gold" onclick="this.closest('.modal').remove()">Continuar</button>
+          <button class="btn gold" data-close-closest=".modal">Continuar</button>
         </div>
       `;
       document.body.appendChild(modal);
@@ -6236,7 +6236,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
           </div>
           <h3 style="color:var(--ok);margin-bottom:8px;font-size:1.3rem;">${newTitle}</h3>
           ${loreText ? loreText.replace('margin-top:12px', 'margin-top:12px;margin-bottom:20px') : `<em style="color:#a0aec0;font-size:0.85rem;display:block;margin:12px 20px 20px;font-style:italic;">${text}</em>`}
-          <button class="btn gold" onclick="this.closest('.modal').remove()">Continuar Jornada</button>
+          <button class="btn gold" data-close-closest=".modal">Continuar Jornada</button>
         </div>
       `;
       document.body.appendChild(modal);
@@ -27924,7 +27924,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
             </div>
             <div id="updatePwMsg" style="display:none;margin-bottom:12px;font-size:0.83rem;border-radius:6px;padding:8px 12px;"></div>
             <div class="modal-actions">
-              <button onclick="saveNewPassword()" style="background:linear-gradient(135deg,#c8960b,#ffd700);color:#1a0e00;border:none;font-weight:700;font-family:'Cinzel',serif;">Salvar Nova Senha</button>
+              <button data-action="saveNewPassword" style="background:linear-gradient(135deg,#c8960b,#ffd700);color:#1a0e00;border:none;font-weight:700;font-family:'Cinzel',serif;">Salvar Nova Senha</button>
             </div>
           </div>
         `;
@@ -28455,7 +28455,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
               ${ref.tipo ? `<span class="ref-tipo">${ref.tipo}</span>` : ''}
             </div>
             ${ref.impacto ? `<div class="ref-impacto ${impactoClass}">${ref.impacto}</div>` : ''}
-            <button class="ref-copy-btn" onclick="_copyRef(this,'${copyText.replace(/'/g,"\\'")}')">
+            <button class="ref-copy-btn" data-action="_copyRefBtn" data-pass-this="1" data-copy-text="${escapeHtml(copyText)}">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
               copiar referência
             </button>
@@ -28543,7 +28543,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         <div style="background:linear-gradient(180deg,#1a2a4a,#0e1830);border:2px solid #6366f1;border-radius:14px;padding:24px;max-width:500px;width:100%;box-shadow:0 0 40px rgba(99,102,241,0.3);">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
             <h3 style="color:#a5b4fc;font-family:'Cinzel',serif;font-size:1rem;letter-spacing:1px;">🚩 Sinalizar Erro na Questão</h3>
-            <button onclick="document.getElementById('flagPopup').remove()" style="background:none;border:none;color:#64748b;font-size:1.4rem;cursor:pointer;line-height:1;">×</button>
+            <button data-remove-id="flagPopup" style="background:none;border:none;color:#64748b;font-size:1.4rem;cursor:pointer;line-height:1;">×</button>
           </div>
           <p style="font-size:0.78rem;color:#64748b;margin-bottom:6px;">Questão #${qNum}</p>
           <p style="font-size:0.82rem;color:#94a3b8;background:rgba(30,40,70,0.5);border-radius:8px;padding:10px;margin-bottom:14px;font-style:italic;line-height:1.5;">"${qText.replace(/"/g,'&quot;')}"</p>
@@ -28551,7 +28551,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
           <textarea id="flagComment" rows="3" placeholder="Ex: A alternativa B está incorreta pois... / O gabarito deveria ser..."
             style="width:100%;background:rgba(10,20,40,0.8);border:1px solid var(--blue-dark);border-radius:8px;color:#d5e2ff;font-size:0.85rem;padding:10px;resize:vertical;font-family:'Philosopher',serif;outline:none;box-sizing:border-box;"></textarea>
           <div id="flagStatus" style="min-height:20px;margin-top:8px;font-size:0.78rem;text-align:center;"></div>
-          <button onclick="submitFlag(${qNum})" id="flagSendBtn"
+          <button data-action="submitFlag" data-arg="${qNum}" data-arg-type="number" id="flagSendBtn"
             style="width:100%;margin-top:10px;background:linear-gradient(180deg,#4f46e5,#3730a3);border:2px solid #6366f1;color:#fff;border-radius:8px;padding:12px;font-family:'Cinzel',serif;font-size:0.82rem;font-weight:700;letter-spacing:1px;cursor:pointer;text-transform:uppercase;">
             📧 Enviar
           </button>
@@ -28751,8 +28751,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       modal.id = 'paywallModal';
       modal.className = 'show';
       const guestBtns = !authUser ? `
-        <button class="btn" style="background:rgba(96,165,250,0.12);border:2px solid rgba(96,165,250,0.5);color:var(--blue)" onclick="paywallRegister()">📝 Criar conta gratuita</button>
-        <button class="btn" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.2)" onclick="paywallLogin()">Já tenho conta — Entrar</button>
+        <button class="btn" style="background:rgba(96,165,250,0.12);border:2px solid rgba(96,165,250,0.5);color:var(--blue)" data-action="paywallRegister">📝 Criar conta gratuita</button>
+        <button class="btn" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.2)" data-action="paywallLogin">Já tenho conta — Entrar</button>
       ` : '';
       modal.innerHTML = `
         <div class="paywall-content">
@@ -28765,7 +28765,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
             <div class="price-desc">Acesso vitalício · Todas as questões · Futuras atualizações</div>
           </div>
           <div style="display:flex;flex-direction:column;gap:10px;">
-            <button class="btn gold" onclick="paywallUpgrade()">✨ Desbloquear Acesso Premium</button>
+            <button class="btn gold" data-action="paywallUpgrade">✨ Desbloquear Acesso Premium</button>
             ${guestBtns}
           </div>
         </div>
@@ -28800,7 +28800,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         : 'Master Nephrology with a method that works — real clinical questions, RPG & cutting-edge science.';
       modal.innerHTML = `
         <div class="pricing-wrap" style="position:relative;">
-          <button class="pricing-close-btn" onclick="closePricingModal()">✕</button>
+          <button class="pricing-close-btn" data-action="closePricingModal">✕</button>
           <div class="pricing-ornament">✦ Reino dos Néfrons ✦</div>
           <h2>NefroQuest</h2>
           <div class="pricing-sub-title">Ascension</div>
@@ -28825,7 +28825,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
                 <li class="pf-no">${questionBank.length} questões completas</li>
                 <li class="pf-no">Atualizações e novos conteúdos</li>
               </ul>
-              <button class="pricing-choose-btn btn-free" onclick="pricingChoose('free')">${isPt ? 'Começar Grátis' : 'Start Free'}</button>
+              <button class="pricing-choose-btn btn-free" data-action="pricingChoose" data-arg="free">${isPt ? 'Começar Grátis' : 'Start Free'}</button>
             </div>
             <div class="pricing-card featured">
               <div class="pricing-badge">⭐ ${isPt ? 'MAIS POPULAR' : 'MOST POPULAR'}</div>
@@ -28842,7 +28842,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
                 <li>Novos conteúdos todo mês</li>
                 <li>Apoia o desenvolvimento da ferramenta</li>
               </ul>
-              <button class="pricing-choose-btn btn-monthly" onclick="pricingChoose('monthly')">${isPt ? 'Assinar Agora' : 'Subscribe Now'}</button>
+              <button class="pricing-choose-btn btn-monthly" data-action="pricingChoose" data-arg="monthly">${isPt ? 'Assinar Agora' : 'Subscribe Now'}</button>
             </div>
             <div class="pricing-card">
               <div class="pricing-icon">👑</div>
@@ -28858,10 +28858,10 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
                 <li>Maior contribuição ao projeto</li>
                 <li>Formação de nefrologistas para sempre</li>
               </ul>
-              <button class="pricing-choose-btn btn-lifetime" onclick="pricingChoose('lifetime')">${isPt ? 'Compra Única' : 'Buy Once'}</button>
+              <button class="pricing-choose-btn btn-lifetime" data-action="pricingChoose" data-arg="lifetime">${isPt ? 'Compra Única' : 'Buy Once'}</button>
             </div>
           </div>
-          <button class="pricing-login-link" onclick="closePricingModal();openAuthModal();switchAuthTab('entrar')">${isPt ? 'Já tenho conta — Entrar' : 'I have an account — Sign in'}</button>
+          <button class="pricing-login-link" data-action="_pricingToLogin">${isPt ? 'Já tenho conta — Entrar' : 'I have an account — Sign in'}</button>
         </div>`;
       document.body.appendChild(modal);
     }
@@ -28903,8 +28903,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
               e atualizações constantes — por menos de um café por mês.
             </div>
           </div>
-          <button class="promo-banner-cta" onclick="document.getElementById('promoBannerOverlay')?.remove();showPricingModal()">Ver Planos</button>
-          <button class="promo-banner-close" onclick="document.getElementById('promoBannerOverlay')?.remove()">✕</button>
+          <button class="promo-banner-cta" data-remove-id="promoBannerOverlay" data-action="showPricingModal">Ver Planos</button>
+          <button class="promo-banner-close" data-remove-id="promoBannerOverlay">✕</button>
         </div>`;
       document.body.appendChild(overlay);
       setTimeout(() => document.getElementById('promoBannerOverlay')?.remove(), 12000);
@@ -29029,7 +29029,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
             Seu acesso a <strong style="color:#ffd700">${questionBank.length} questões</strong> foi ativado.<br>
             Aguarde alguns instantes enquanto sincronizamos seu acesso.
           </p>
-          <button onclick="document.getElementById('paymentSuccessOverlay')?.remove();_pollPremiumActivation();"
+          <button data-remove-id="paymentSuccessOverlay" data-action="_pollPremiumActivation"
             style="background:linear-gradient(135deg,#b8860b,#ffd700);color:#1a0e00;border:none;padding:14px 32px;border-radius:10px;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:700;letter-spacing:1px;cursor:pointer;">
             ⚔ Começar Jornada Premium
           </button>
@@ -29095,7 +29095,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         modal.style.cssText = 'display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9998;align-items:center;justify-content:center;backdrop-filter:blur(8px);padding:32px 16px;';
         modal.innerHTML = `
           <div class="modal-panel">
-            <button class="modal-panel-x" onclick="closeAccountModal()" aria-label="Fechar">&times;</button>
+            <button class="modal-panel-x" data-action="closeAccountModal" aria-label="Fechar">&times;</button>
             <h2>👤 Minha Conta</h2>
             <div class="form-group">
               <label>Nome completo</label>
@@ -29118,8 +29118,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
               <input id="acctCity" type="text" placeholder="Sua cidade">
             </div>
             <div class="modal-actions">
-              <button onclick="closeAccountModal()" style="background:rgba(255,255,255,0.06);color:#c8d8f0;border:1px solid var(--blue-dark);">Cancelar</button>
-              <button onclick="saveAccountData()" style="background:linear-gradient(135deg,#1a4080,#2a5fa0);color:#e0f0ff;border:none;">Salvar</button>
+              <button data-action="closeAccountModal" style="background:rgba(255,255,255,0.06);color:#c8d8f0;border:1px solid var(--blue-dark);">Cancelar</button>
+              <button data-action="saveAccountData" style="background:linear-gradient(135deg,#1a4080,#2a5fa0);color:#e0f0ff;border:none;">Salvar</button>
             </div>
           </div>
         `;
@@ -29193,18 +29193,18 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
           <p class="plan-stat">${answered} de ${FREE_QUESTIONS_LIMIT} questões gratuitas respondidas.</p>
           <div class="plan-bar-wrap"><div class="plan-bar" style="width:${pct}%"></div></div>
           <p class="plan-stat" style="font-size:0.78rem;color:#708090">${remaining} questões restantes no plano gratuito.</p>
-          <button class="btn gold" style="width:100%;margin-top:4px" onclick="closePlanModal();showPricingModal()">✨ Fazer Upgrade</button>
+          <button class="btn gold" style="width:100%;margin-top:4px" data-action-seq="closePlanModal,showPricingModal">✨ Fazer Upgrade</button>
         `;
       }
       document.getElementById('planModalContent').innerHTML = `
-        <button class="modal-panel-x" onclick="closePlanModal()" aria-label="Fechar">&times;</button>
+        <button class="modal-panel-x" data-action="closePlanModal" aria-label="Fechar">&times;</button>
         <h2>⭐ Seu Plano</h2>
         <div style="text-align:center">
           <div class="plan-badge ${badgeClass}">${badgeLabel}</div>
         </div>
         ${detailHtml}
         <div class="modal-actions" style="margin-top:14px">
-          <button onclick="closePlanModal()" style="background:rgba(255,255,255,0.06);color:#c8d8f0;border:1px solid var(--blue-dark);">Fechar</button>
+          <button data-action="closePlanModal" style="background:rgba(255,255,255,0.06);color:#c8d8f0;border:1px solid var(--blue-dark);">Fechar</button>
         </div>
       `;
       modal.style.display = 'flex';
@@ -29244,16 +29244,16 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         modal.style.cssText = 'display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9998;align-items:center;justify-content:center;backdrop-filter:blur(8px);padding:32px 16px;';
         modal.innerHTML = `
           <div class="modal-panel" style="max-width:500px">
-            <button class="modal-panel-x" onclick="closeAdminPanel()" aria-label="Fechar">&times;</button>
+            <button class="modal-panel-x" data-action="closeAdminPanel" aria-label="Fechar">&times;</button>
             <h2>🛡 Administração — Lista de Acesso</h2>
             <p style="color:#a0b8d0;font-size:0.82rem;margin-bottom:14px">Emails com acesso completo (lista de amigos / convidados).</p>
             <div class="whitelist-input-row">
               <input id="wlEmailInput" type="email" placeholder="email@exemplo.com">
-              <button class="btn gold" style="white-space:nowrap;padding:8px 16px" onclick="adminAddWhitelist()">+ Adicionar</button>
+              <button class="btn gold" style="white-space:nowrap;padding:8px 16px" data-action="adminAddWhitelist">+ Adicionar</button>
             </div>
             <div id="wlList" class="whitelist-list"><div class="whitelist-empty">Carregando...</div></div>
             <div class="modal-actions" style="margin-top:16px">
-              <button onclick="closeAdminPanel()" style="background:rgba(255,255,255,0.06);color:#c8d8f0;border:1px solid var(--blue-dark);">Fechar</button>
+              <button data-action="closeAdminPanel" style="background:rgba(255,255,255,0.06);color:#c8d8f0;border:1px solid var(--blue-dark);">Fechar</button>
             </div>
           </div>
         `;
@@ -29278,7 +29278,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         modal.style.cssText = 'display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9998;align-items:flex-start;justify-content:center;backdrop-filter:blur(8px);padding:20px 16px;overflow-y:auto;';
         modal.innerHTML = `
           <div class="modal-panel" style="max-width:560px;width:100%;margin:auto 0;">
-            <button class="modal-panel-x" onclick="closeAnalyticsPanel()" aria-label="Fechar">&times;</button>
+            <button class="modal-panel-x" data-action="closeAnalyticsPanel" aria-label="Fechar">&times;</button>
             <h2>📊 Analytics — NefroQuest</h2>
             <p style="color:#8a9cc0;font-size:0.78rem;margin-bottom:16px;">Dados em tempo real do Supabase + funil de eventos no GA4.</p>
 
@@ -29328,8 +29328,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
             </div>
 
             <div class="modal-actions">
-              <button onclick="closeAnalyticsPanel()" style="background:rgba(255,255,255,0.06);color:#c8d8f0;border:1px solid var(--blue-dark);">Fechar</button>
-              <button onclick="loadAnalyticsData()" style="background:rgba(96,165,250,0.12);color:var(--blue);border:1px solid rgba(96,165,250,0.4);">↺ Atualizar</button>
+              <button data-action="closeAnalyticsPanel" style="background:rgba(255,255,255,0.06);color:#c8d8f0;border:1px solid var(--blue-dark);">Fechar</button>
+              <button data-action="loadAnalyticsData" style="background:rgba(96,165,250,0.12);color:var(--blue);border:1px solid rgba(96,165,250,0.4);">↺ Atualizar</button>
             </div>
           </div>
         `;
@@ -29730,9 +29730,9 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         <div class="mac-cost" style="color:${cfg.costColor}">💰 ${cfg.cost} ouro</div>
         <div class="mac-gold-avail">Seu ouro: <strong style="color:${canAfford?'#ffd700':'#ef4444'}">${state.gold}</strong>${canAfford ? ' ✓' : ' — insuficiente'}</div>
         <div class="mac-btns">
-          <button class="mac-btn mac-cancel" onclick="document.getElementById('mobileActionConfirm')?.remove()">CANCELAR</button>
+          <button class="mac-btn mac-cancel" data-remove-id="mobileActionConfirm">CANCELAR</button>
           <button class="mac-btn mac-confirm ${cfg.btnClass}" ${canAfford?'':'disabled style="opacity:0.4;pointer-events:none;"'}
-            onclick="document.getElementById('mobileActionConfirm')?.remove(); _mobileActionCallbacks['${type}']();">
+            data-remove-id="mobileActionConfirm" data-action="_mobileCallback" data-arg="${type}">
             ${cfg.btnLabel}
           </button>
         </div>
@@ -29790,7 +29790,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
                 <span style="color:#ffd700;font-family:'Cinzel',serif;font-size:0.75rem;">💰 300</span>
               </div>
               <p style="color:#9aabcc;font-family:'Philosopher',serif;font-size:0.73rem;margin:0 0 10px;line-height:1.4;">Forja um item aleatório. A raridade depende do seu nível e sorte.</p>
-              <button onclick="document.getElementById('forjaModal')?.remove(); _mobileActionCallbacks.forge();"
+              <button data-remove-id="forjaModal" data-action="_mobileCallback" data-arg="forge"
                 ${canForge?'':'disabled'}
                 style="width:100%;padding:8px;background:${canForge?'linear-gradient(135deg,rgba(251,146,60,0.35),rgba(200,100,30,0.3))':'rgba(255,255,255,0.04)'};
                 border:1px solid rgba(251,146,60,${canForge?'0.6':'0.2'});border-radius:8px;
@@ -29811,7 +29811,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
                 <span style="color:#ffd700;font-family:'Cinzel',serif;font-size:0.75rem;">💰 1000</span>
               </div>
               <p style="color:#9aabcc;font-family:'Philosopher',serif;font-size:0.73rem;margin:0 0 10px;line-height:1.4;">Garante um item lendário para um slot aleatório. Poder máximo!</p>
-              <button onclick="document.getElementById('forjaModal')?.remove(); _mobileActionCallbacks.legendary();"
+              <button data-remove-id="forjaModal" data-action="_mobileCallback" data-arg="legendary"
                 ${canLeg?'':'disabled'}
                 style="width:100%;padding:8px;background:${canLeg?'linear-gradient(135deg,rgba(192,132,252,0.3),rgba(140,80,220,0.25))':'rgba(255,255,255,0.04)'};
                 border:1px solid rgba(192,132,252,${canLeg?'0.6':'0.2'});border-radius:8px;
@@ -29827,7 +29827,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
             Ouro disponível: <strong style="color:#ffd700;">${state.gold}</strong>
           </div>
 
-          <button onclick="document.getElementById('forjaModal')?.remove()"
+          <button data-remove-id="forjaModal"
             style="margin-top:14px;width:100%;padding:7px;background:rgba(255,255,255,0.07);
             border:1px solid rgba(255,255,255,0.35);border-radius:8px;color:#c0cfe8;
             font-family:'Cinzel',serif;font-size:0.68rem;cursor:pointer;letter-spacing:1px;">
@@ -29980,7 +29980,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
             ${gains.length>0 ? gains.join(' &nbsp;·&nbsp; ') : '🔄 Nenhum atributo melhorou desta vez...'}
           </div>
           <p style='font-size:0.75rem;color:var(--txt-dim);margin-top:6px'>⚔️${item.atk} · 🛡️${item.def} · 📚${item.kno} · 🍀${item.luck}</p>
-          <button class='btn gold' onclick='this.closest(".forge-popup").remove()'>Continuar</button>
+          <button class='btn gold' data-close-closest=".forge-popup">Continuar</button>
         </div>
       `;
       document.body.appendChild(popup);
@@ -30477,8 +30477,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
             <div class="minigame-timer"><div class="minigame-timer-fill" id="mgTimerFill" style="width:100%"></div></div>
             <div class="minigame-stmt" id="mgStmt">${q.q}</div>
             <div class="minigame-tf-btns">
-              <button class="minigame-true-btn" id="mgTrue" onclick="mgAnswer(true)">✓ VERDADEIRO</button>
-              <button class="minigame-false-btn" id="mgFalse" onclick="mgAnswer(false)">✗ FALSO</button>
+              <button class="minigame-true-btn" id="mgTrue" data-action="mgAnswer" data-arg="true" data-arg-type="boolean">✓ VERDADEIRO</button>
+              <button class="minigame-false-btn" id="mgFalse" data-action="mgAnswer" data-arg="false" data-arg-type="boolean">✗ FALSO</button>
             </div>
             <div id="mgFeedback" style="min-height:32px;font-size:0.75rem;color:#94a3b8;text-align:center;line-height:1.4;"></div>
           </div>`;
@@ -30526,7 +30526,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
             <p style="color:#94a3b8;font-size:0.75rem;text-align:center;margin-bottom:16px">
               ${correctCount >= 4 ? 'Excelente! Conhecimento de mestre!' : correctCount >= 2 ? 'Bom! Continue estudando.' : 'Revise os conceitos. Você chega lá!'}
             </p>
-            <button class="diff-confirm-btn" onclick="document.getElementById('rapidQuizOverlay')?.remove();renderHUD();updateBadges();saveGame();">Continuar a Jornada</button>
+            <button class="diff-confirm-btn" data-remove-id="rapidQuizOverlay" data-action-seq="renderHUD,updateBadges,saveGame">Continuar a Jornada</button>
           </div>`;
         log('⚡ Julgamento Rápido: ' + correctCount + '/' + pool.length + ' corretas → +' + goldReward + ' ouro +' + xpReward + ' XP');
       }
@@ -30581,7 +30581,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
             Este é o momento decisivo. Uma única resposta separa a vitória da derrota eterna.<br>
             <strong style="color:#e9d5ff;">O destino dos rins do reino está em suas mãos.</strong>
           </p>
-          <button onclick="document.getElementById('battleFinalPopup').remove()" style="
+          <button data-remove-id="battleFinalPopup" style="
             background:linear-gradient(135deg,#4c1d95,#7c3aed);
             color:#e9d5ff;border:2px solid rgba(168,85,247,0.6);
             border-radius:10px;padding:12px 32px;
@@ -30659,7 +30659,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
             </div>
           </div>
           <!-- Botão -->
-          <button onclick="document.getElementById('bossIntroPopup').remove()" style="
+          <button data-remove-id="bossIntroPopup" style="
             font-family:'Cinzel',serif;
             background: linear-gradient(180deg, #7c3aed 0%, #5b21b6 50%, #3b0764 100%);
             border: 2px solid #a855f7;
@@ -30705,7 +30705,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
           <div class='narr-progress'>
             <strong>${state.correctTotal}</strong> acertos · Nível <strong>${state.level}</strong> · ${state.queue.length - state.idx} cartas restantes
           </div>
-          <button class='btn ${isBoss ? 'sec' : 'gold'}' onclick='this.closest(".narrative-popup").remove()' ${isBoss ? 'style="background:linear-gradient(180deg,#a855f7,#7c3aed);border-color:#6d28d9;color:#fff;text-shadow:0 0 10px rgba(168,85,247,0.5);"' : ''}>${isFinale ? '🏆 Glória Eterna!' : isBoss ? '⚔️ Enfrentar o Arqui-Nefromante!' : 'Continuar a Jornada'}</button>
+          <button class='btn ${isBoss ? 'sec' : 'gold'}' data-close-closest=".narrative-popup" ${isBoss ? 'style="background:linear-gradient(180deg,#a855f7,#7c3aed);border-color:#6d28d9;color:#fff;text-shadow:0 0 10px rgba(168,85,247,0.5);"' : ''}>${isFinale ? '🏆 Glória Eterna!' : isBoss ? '⚔️ Enfrentar o Arqui-Nefromante!' : 'Continuar a Jornada'}</button>
         </div>
       `;
       document.body.appendChild(popup);
@@ -30814,12 +30814,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
             </div>
             <div class="diff-grid">
               ${Object.entries(defs).map(([k,d]) => `
-                <div class="diff-card${d.hc?' hardcore':''}${selectedDiff===k?' selected':''}" onclick="(function(){
-                  document.querySelectorAll('.diff-card').forEach(c=>c.classList.remove('selected'));
-                  this.classList.add('selected');
-                  document.getElementById('diffConfirmBtn').disabled=false;
-                  window._pendingDiff='${k}';
-                }).call(this)">
+                <div class="diff-card${d.hc?' hardcore':''}${selectedDiff===k?' selected':''}" data-action="_selectDiffCard" data-pass-this="1" data-diff-key="${k}">
                   <div class="diff-icon">${d.icon}</div>
                   <div class="diff-name">${d.name}</div>
                   <div class="diff-lives">${d.label}</div>
@@ -30827,15 +30822,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
                   ${d.hc ? '<div class="diff-hardcore-badge">🏆 BADGE EXCLUSIVO</div>' : ''}
                 </div>`).join('')}
             </div>
-            <button class="diff-confirm-btn" id="diffConfirmBtn" onclick="
-              const diff = window._pendingDiff || '${selectedDiff}';
-              document.getElementById('diffSelectorOverlay')?.remove();
-              state.difficulty = diff;
-              deleteSave();
-              ${fromWelcome ? "dismissWelcome();" : ""}
-              document.getElementById('charSelectModal').classList.add('show');
-            ">CONFIRMAR DIFICULDADE</button>
-            <button class="diff-cancel-btn" onclick="document.getElementById('diffSelectorOverlay')?.remove()">CANCELAR</button>
+            <button class="diff-confirm-btn" id="diffConfirmBtn" data-action="_confirmDiff" data-arg="${fromWelcome ? 'true' : 'false'}" data-arg-type="boolean">CONFIRMAR DIFICULDADE</button>
+            <button class="diff-cancel-btn" data-remove-id="diffSelectorOverlay">CANCELAR</button>
           </div>`;
         window._pendingDiff = selectedDiff;
         // Mark current selection
@@ -30851,7 +30839,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       document.body.appendChild(overlay);
       renderDiff();
     }
-    // forgeBtn agora usa onclick="showMobileActionConfirm('forge')" no HTML
+    // forgeBtn agora usa data-action="showMobileActionConfirm" data-arg="forge" no HTML
     ui.bonusBtn.addEventListener('click',buyBonusQuestion);
     ui.boardBtn.addEventListener('click',()=>{ renderBoard(); ui.boardModal.classList.remove('hidden'); });
     ui.closeBoard.addEventListener('click',()=>ui.boardModal.classList.add('hidden'));
@@ -30913,7 +30901,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
               </div>`;
             }).join('')}
           </div>
-          <button class="btn gold" onclick="this.closest('.modal').remove()" style="width:100%;">Fechar</button>
+          <button class="btn gold" data-close-closest=".modal" style="width:100%;">Fechar</button>
         </div>`;
       document.body.appendChild(modal);
     }
@@ -30980,7 +30968,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
           <div class='narr-chapter'>⚔️ Início da Jornada</div>
           <h3>📖 ${intro.ch}</h3>
           <div class='narr-text'>${intro.text}</div>
-          <button class='btn gold' onclick='closeIntroAndStart()'>⚔️ Iniciar Jornada</button>
+          <button class='btn gold' data-action="closeIntroAndStart">⚔️ Iniciar Jornada</button>
         </div>`;
       document.body.appendChild(popup);
       playSound('click');
@@ -31068,7 +31056,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
               <p style="color:#cbd5e1;font-size:0.78rem;margin:4px 0 0;">Acumule mais <strong style="color:#fbbf24;">+${1000 - GOLD_MILESTONE} ouro</strong> para o item mais poderoso.</p>
             </div>
           </div>
-          <button onclick="document.getElementById('goldMilestonePopup').remove()"
+          <button data-remove-id="goldMilestonePopup"
             style="margin-top:20px;width:100%;background:linear-gradient(180deg,#b8860b,#7a5a00);border:2px solid #ffd700;color:#fff8dc;border-radius:8px;padding:11px;font-family:'Cinzel',serif;font-size:0.82rem;font-weight:700;letter-spacing:1px;cursor:pointer;text-transform:uppercase;">
             Entendido!
           </button>
@@ -31479,8 +31467,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
               + '</div>'
               + '</div>';
           })()}
-          <button class="btn sec" onclick="confirmResetProgress()"  style="margin-right:8px;background:rgba(251,113,133,0.15);border-color:rgba(251,113,133,0.4);color:#fb7185;font-size:0.78rem;">🗑️ Resetar Progresso</button>
-          <button class="btn gold" onclick="this.closest('.modal').remove()">Fechar</button>
+          <button class="btn sec" data-action="confirmResetProgress"  style="margin-right:8px;background:rgba(251,113,133,0.15);border-color:rgba(251,113,133,0.4);color:#fb7185;font-size:0.78rem;">🗑️ Resetar Progresso</button>
+          <button class="btn gold" data-close-closest=".modal">Fechar</button>
         </div>
       `;
       document.body.appendChild(modal);
@@ -31532,7 +31520,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
           const pct = axisData ? axisData.accuracy.toFixed(0) + '%' : '—';
           const color = axisData ? (axisData.accuracy >= 70 ? '#34d399' : axisData.accuracy >= 50 ? '#fbbf24' : '#fb7185') : 'var(--txt-dim)';
           return `
-            <div onclick="_studyToggleAxis('${axis.id}')" id="axis-card-${axis.id}"
+            <div data-action="_studyToggleAxis" data-arg="${axis.id}" id="axis-card-${axis.id}"
               style="cursor:pointer;padding:8px 10px;border-radius:10px;border:2px solid ${sel ? '#8b5cf6' : 'rgba(255,255,255,0.1)'};background:${sel ? 'rgba(139,92,246,0.15)' : 'rgba(255,255,255,0.03)'};transition:all 0.2s;display:flex;align-items:center;gap:10px;">
               <span style="font-size:1.4rem;">${axis.icon}</span>
               <div style="flex:1;text-align:left;">
@@ -31561,13 +31549,13 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
           </div>
 
           <div style="display:flex;gap:10px;justify-content:center;margin-bottom:16px;">
-            <button class="btn sec" onclick="_studySelectAll(true)" style="font-size:0.78rem;padding:7px 14px;">✓ Todos</button>
-            <button class="btn sec" onclick="_studySelectAll(false)" style="font-size:0.78rem;padding:7px 14px;">✗ Nenhum</button>
+            <button class="btn sec" data-action="_studySelectAll" data-arg="true" data-arg-type="boolean" style="font-size:0.78rem;padding:7px 14px;">✓ Todos</button>
+            <button class="btn sec" data-action="_studySelectAll" data-arg="false" data-arg-type="boolean" style="font-size:0.78rem;padding:7px 14px;">✗ Nenhum</button>
           </div>
 
           <div style="display:flex;gap:12px;justify-content:center;">
-            <button class="btn sec" onclick="this.closest('.modal').remove()">Cancelar</button>
-            <button class="btn gold" onclick="startStudyMode()">📚 Iniciar Estudo</button>
+            <button class="btn sec" data-close-closest=".modal">Cancelar</button>
+            <button class="btn gold" data-action="startStudyMode">📚 Iniciar Estudo</button>
           </div>
         </div>
       `;
@@ -31589,7 +31577,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
         const pct = axisData ? axisData.accuracy.toFixed(0) + '%' : '—';
         const color = axisData ? (axisData.accuracy >= 70 ? '#34d399' : axisData.accuracy >= 50 ? '#fbbf24' : '#fb7185') : 'var(--txt-dim)';
         return `
-          <div onclick="_studyToggleAxis('${axis.id}')" id="axis-card-${axis.id}"
+          <div data-action="_studyToggleAxis" data-arg="${axis.id}" id="axis-card-${axis.id}"
             style="cursor:pointer;padding:12px 14px;border-radius:10px;border:2px solid ${sel ? '#8b5cf6' : 'rgba(255,255,255,0.1)'};background:${sel ? 'rgba(139,92,246,0.15)' : 'rgba(255,255,255,0.03)'};transition:all 0.2s;display:flex;align-items:center;gap:12px;">
             <span style="font-size:1.4rem;">${axis.icon}</span>
             <div style="flex:1;text-align:left;">
@@ -31622,7 +31610,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
         const pct = axisData ? axisData.accuracy.toFixed(0) + '%' : '—';
         const color = axisData ? (axisData.accuracy >= 70 ? '#34d399' : axisData.accuracy >= 50 ? '#fbbf24' : '#fb7185') : 'var(--txt-dim)';
         return `
-          <div onclick="_studyToggleAxis('${axis.id}')" id="axis-card-${axis.id}"
+          <div data-action="_studyToggleAxis" data-arg="${axis.id}" id="axis-card-${axis.id}"
             style="cursor:pointer;padding:12px 14px;border-radius:10px;border:2px solid ${selected ? '#8b5cf6' : 'rgba(255,255,255,0.1)'};background:${selected ? 'rgba(139,92,246,0.15)' : 'rgba(255,255,255,0.03)'};transition:all 0.2s;display:flex;align-items:center;gap:12px;">
             <span style="font-size:1.4rem;">${axis.icon}</span>
             <div style="flex:1;text-align:left;">
@@ -31748,7 +31736,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
           <!-- Header -->
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;gap:8px;flex-wrap:nowrap;">
             <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
-              <button class="btn sec" onclick="exitStudyMode()" style="font-size:0.78rem;padding:6px 12px;white-space:nowrap;">
+              <button class="btn sec" data-action="exitStudyMode" style="font-size:0.78rem;padding:6px 12px;white-space:nowrap;">
                 ← Voltar
               </button>
               <!-- Contadores ao lado do botão Voltar -->
@@ -31799,7 +31787,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
         
         <div id="studyOptions" style="display:grid;gap:10px;">
           ${q.opts.map((opt, idx) => `
-            <button class="study-option-btn" onclick="answerStudyQuestion(${idx})" 
+            <button class="study-option-btn" data-action="answerStudyQuestion" data-arg="${idx}" data-arg-type="number" 
                     style="background:linear-gradient(180deg,#1e293b,#0f172a);border:2px solid #334155;border-radius:10px;padding:14px 18px;text-align:left;color:var(--txt);font-size:0.95rem;cursor:pointer;transition:all 0.2s;"
                     onmouseover="this.style.borderColor='var(--blue)';this.style.background='linear-gradient(180deg,#1e3a5f,#0f172a)'"
                     onmouseout="this.style.borderColor='#334155';this.style.background='linear-gradient(180deg,#1e293b,#0f172a)'">
@@ -31860,7 +31848,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
         </div>
         
         <div style="text-align:center;margin-top:16px;">
-          <button class="btn gold" onclick="nextStudyQuestion()">
+          <button class="btn gold" data-action="nextStudyQuestion">
             ${studyModeIndex + 1 < studyModeQuestions.length ? 'Próxima Questão →' : 'Ver Resultados'}
           </button>
         </div>
@@ -31907,8 +31895,8 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
           </div>
           
           <div style="display:flex;gap:12px;justify-content:center;">
-            <button class="btn sec" onclick="exitStudyMode()">← Voltar</button>
-            <button class="btn gold" onclick="restartStudyMode()">Estudar Novamente</button>
+            <button class="btn sec" data-action="exitStudyMode">← Voltar</button>
+            <button class="btn gold" data-action="restartStudyMode">Estudar Novamente</button>
           </div>
         </div>
       `;
@@ -32227,18 +32215,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
                 const badgeLabel = isUnlocked ? `${badge.name}` : `${badge.name} (${badge.required} acertos)`;
                 return `
                   <div title="${badge.name} (${badge.required} acertos)"
-                    onclick="(function(el){
-                      const existing = el.querySelector('.badge-mobile-tip');
-                      if(existing){existing.remove();return;}
-                      document.querySelectorAll('.badge-mobile-tip').forEach(e=>e.remove());
-                      const tip = document.createElement('div');
-                      tip.className='badge-mobile-tip';
-                      tip.textContent='${badge.name.replace(/'/g,"'")} (${badge.required} acertos)';
-                      tip.style.cssText='position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:#0e1830;border:1px solid var(--gold);border-radius:6px;padding:5px 8px;font-size:0.65rem;color:#d5e2ff;white-space:nowrap;z-index:99999;pointer-events:none;box-shadow:0 4px 12px rgba(0,0,0,0.8);';
-                      el.style.overflow='visible';
-                      el.appendChild(tip);
-                      setTimeout(()=>{tip.remove();el.style.overflow='hidden';},2500);
-                    })(this)"
+                    data-action="_showBadgeTip" data-pass-this="1" data-badge-label="${escapeHtml(badge.name)} (${badge.required} acertos)"
                     style="position:relative;aspect-ratio:1;border-radius:8px;overflow:hidden;cursor:pointer;
                     border:2px solid ${isUnlocked ? 'var(--gold)' : 'var(--blue-dark)'};
                     box-shadow:${isUnlocked ? '0 0 12px rgba(255,215,0,0.4)' : 'none'};
@@ -32291,7 +32268,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
             }).join('')}
           </div>
           
-          <button class="btn gold" style="margin-top:20px;" onclick="this.closest('.modal').remove()">Continuar</button>
+          <button class="btn gold" style="margin-top:20px;" data-close-closest=".modal">Continuar</button>
         </div>
       `;
       
@@ -32503,7 +32480,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
                 if (i === q.a) { bg='rgba(52,211,153,0.15)'; border='1px solid #34d399'; color='#34d399'; }
                 else if (i === answered.chosen) { bg='rgba(251,113,133,0.15)'; border='1px solid #fb7185'; color='#fb7185'; }
               }
-              return `<button onclick="_examAnswer(${i})" ${answered?'disabled':''} style="text-align:left;background:${bg};border:${border};border-radius:10px;padding:12px 14px;color:${color};font-size:0.87rem;cursor:${answered?'default':'pointer'};transition:all 0.15s;line-height:1.5;">${escapeHtml(opt)}</button>`;
+              return `<button data-action="_examAnswer" data-arg="${i}" data-arg-type="number" ${answered?'disabled':''} style="text-align:left;background:${bg};border:${border};border-radius:10px;padding:12px 14px;color:${color};font-size:0.87rem;cursor:${answered?'default':'pointer'};transition:all 0.15s;line-height:1.5;">${escapeHtml(opt)}</button>`;
             }).join('')}
           </div>
           ${answered ? `
@@ -32511,11 +32488,11 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
               <strong style="color:${answered.correct?'#34d399':'#fb7185'};">${answered.correct?'✅ Correto':'❌ Incorreto'}</strong><br>
               ${escapeHtml(q.e)}
             </div>
-            <button onclick="_examNext()" style="width:100%;background:linear-gradient(180deg,#4f46e5,#3730a3);border:2px solid #6366f1;color:#fff;border-radius:10px;padding:13px;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:700;cursor:pointer;letter-spacing:1px;">
+            <button data-action="_examNext" style="width:100%;background:linear-gradient(180deg,#4f46e5,#3730a3);border:2px solid #6366f1;color:#fff;border-radius:10px;padding:13px;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:700;cursor:pointer;letter-spacing:1px;">
               ${idx+1 < questions.length ? 'PRÓXIMA →' : 'VER RESULTADO'}
             </button>` : ''}
           <!-- Botão sair -->
-          <button onclick="_exitExam()" style="margin-top:10px;width:100%;background:none;border:1px solid #374151;color:#64748b;border-radius:8px;padding:8px;font-size:0.78rem;cursor:pointer;">Encerrar prova</button>
+          <button data-action="_exitExam" style="margin-top:10px;width:100%;background:none;border:1px solid #374151;color:#64748b;border-radius:8px;padding:8px;font-size:0.78rem;cursor:pointer;">Encerrar prova</button>
         </div>`;
     }
 
@@ -32622,7 +32599,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
             return `
             <div style="text-align:left;margin-bottom:20px;">
               <h3 style="color:#fb7185;font-family:'Cinzel',serif;font-size:0.9rem;letter-spacing:1px;margin-bottom:4px;">📋 REVISÃO DE ERROS (${wrongItems.length})</h3>
-              <button onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'flex':'none';this.textContent=this.textContent.includes('▼')?'▲ Ocultar erros':'▼ Ver erros'"
+              <button data-action="_toggleErrorsList" data-pass-this="1"
                 style="background:none;border:1px solid rgba(251,113,133,0.4);color:#fb7185;border-radius:6px;padding:6px 14px;font-size:0.78rem;cursor:pointer;margin-bottom:10px;">▼ Ver erros</button>
               <div style="display:none;flex-direction:column;gap:10px;">
                 ${wrongItems.map(({q, ans}) => {
@@ -32647,8 +32624,8 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
             </div>`;
           })()}
           <div style="display:flex;gap:10px;margin-top:0;">
-            <button onclick="_shareExamResult(${pct},${totalCorrect},${totalAnswered})" style="flex:1;background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.4);color:#a5b4fc;border-radius:10px;padding:11px;font-size:0.82rem;font-weight:600;cursor:pointer;">📤 Compartilhar</button>
-            <button onclick="_finishExam()" style="flex:2;background:linear-gradient(180deg,#b8860b,#7a5a00);border:2px solid var(--gold);color:#fff8dc;border-radius:10px;padding:11px;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:700;cursor:pointer;letter-spacing:1px;">VOLTAR AO MENU</button>
+            <button data-action="_shareExamResult" data-args='[${pct},${totalCorrect},${totalAnswered}]' style="flex:1;background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.4);color:#a5b4fc;border-radius:10px;padding:11px;font-size:0.82rem;font-weight:600;cursor:pointer;">📤 Compartilhar</button>
+            <button data-action="_finishExam" style="flex:2;background:linear-gradient(180deg,#b8860b,#7a5a00);border:2px solid var(--gold);color:#fff8dc;border-radius:10px;padding:11px;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:700;cursor:pointer;letter-spacing:1px;">VOLTAR AO MENU</button>
           </div>
         </div>`;
     }
@@ -32709,7 +32686,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
 
           </div>
 
-          <button class="btn gold" style="margin-top:20px;" onclick="this.closest('.modal').remove()">Fechar</button>
+          <button class="btn gold" style="margin-top:20px;" data-close-closest=".modal">Fechar</button>
         </div>
       `;
       document.body.appendChild(modal);
@@ -32950,7 +32927,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
             <p>${lore.p1}</p>
             <p>${lore.p2}</p>
           </div>
-          <button class="lore-close" onclick="document.getElementById('heroLoreModal').remove()">FECHAR</button>
+          <button class="lore-close" data-remove-id="heroLoreModal">FECHAR</button>
         </div>
       `;
       modal.addEventListener('click', function(e) {
@@ -33231,11 +33208,71 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
       }
     });
 
+    // Wrappers expostos no window para serem chamáveis via data-action
+    window._mobileCallback = function(type) {
+      const cb = (typeof _mobileActionCallbacks !== 'undefined') && _mobileActionCallbacks?.[type];
+      if (typeof cb === 'function') cb();
+    };
+    window._pricingToLogin = function() {
+      closePricingModal();
+      openAuthModal();
+      switchAuthTab('entrar');
+    };
+    window._toggleErrorsList = function(btn) {
+      const sib = btn.nextElementSibling;
+      if (!sib) return;
+      sib.style.display = sib.style.display === 'none' ? 'flex' : 'none';
+      btn.textContent = btn.textContent.includes('▼') ? '▲ Ocultar erros' : '▼ Ver erros';
+    };
+    window._selectDiffCard = function(card) {
+      document.querySelectorAll('.diff-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      const btn = document.getElementById('diffConfirmBtn');
+      if (btn) btn.disabled = false;
+      window._pendingDiff = card.dataset.diffKey || '';
+    };
+    window._confirmDiff = function(fromWelcome) {
+      const diff = window._pendingDiff;
+      if (!diff) return;
+      document.getElementById('diffSelectorOverlay')?.remove();
+      state.difficulty = diff;
+      deleteSave();
+      if (fromWelcome === true) dismissWelcome();
+      document.getElementById('charSelectModal').classList.add('show');
+    };
+    window._showBadgeTip = function(el) {
+      const existing = el.querySelector('.badge-mobile-tip');
+      if (existing) { existing.remove(); return; }
+      document.querySelectorAll('.badge-mobile-tip').forEach(e => e.remove());
+      const tip = document.createElement('div');
+      tip.className = 'badge-mobile-tip';
+      tip.textContent = el.dataset.badgeLabel || '';
+      tip.style.cssText = 'position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:#0e1830;border:1px solid var(--gold);border-radius:6px;padding:5px 8px;font-size:0.65rem;color:#d5e2ff;white-space:nowrap;z-index:99999;pointer-events:none;box-shadow:0 4px 12px rgba(0,0,0,0.8);';
+      el.style.overflow = 'visible';
+      el.appendChild(tip);
+      setTimeout(() => { tip.remove(); el.style.overflow = 'hidden'; }, 2500);
+    };
+    window._copyRefBtn = function(btn) {
+      if (typeof _copyRef === 'function') _copyRef(btn, btn.dataset.copyText || '');
+    };
+
     // ============ DISPATCHER CENTRAL (data-action / data-action-seq) ============
-    // Substitui inline onclick="fn()" nos elementos HTML estáticos
+    // Substitui inline onclick="..." em HTML estático e em templates JS
     document.addEventListener('click', function(e) {
-      const el = e.target.closest('[data-action], [data-action-seq]');
+      const el = e.target.closest('[data-action], [data-action-seq], [data-close-closest], [data-remove-id]');
       if (!el) return;
+
+      // DOM helpers (podem combinar com data-action para executar depois)
+      const closeSel = el.dataset.closeClosest;
+      if (closeSel) {
+        if (el.dataset.stopPropagation) e.stopPropagation();
+        el.closest(closeSel)?.remove();
+      }
+      const removeId = el.dataset.removeId;
+      if (removeId) {
+        if (el.dataset.stopPropagation) e.stopPropagation();
+        document.getElementById(removeId)?.remove();
+      }
 
       // Sequência de ações: data-action-seq="fn1,fn2"
       const seq = el.dataset.actionSeq;
@@ -33248,18 +33285,35 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
         return;
       }
 
-      // Ação única: data-action="fn"  +  data-arg="..."  +  data-pass-event="1"
+      // Ação única: data-action="fn"  +  data-arg / data-args / data-pass-event / data-pass-this
       const action = el.dataset.action;
-      if (!action) return;
+      if (!action) {
+        return; // nada mais a fazer (close-closest / remove-id já rodaram)
+      }
       if (el.dataset.stopPropagation) e.stopPropagation();
 
       const fn = window[action];
       if (typeof fn !== 'function') return;
 
+      // data-args='[1,"foo",true]' — múltiplos argumentos via JSON
+      if (el.dataset.args !== undefined) {
+        try {
+          const arr = JSON.parse(el.dataset.args);
+          fn.apply(null, Array.isArray(arr) ? arr : [arr]);
+        } catch { fn(); }
+        return;
+      }
       if (el.dataset.passEvent) {
         fn(e);
+      } else if (el.dataset.passThis) {
+        fn(el);
       } else if (el.dataset.arg !== undefined) {
-        fn(el.dataset.arg);
+        // data-arg-type="number" / "boolean" converte o valor
+        let v = el.dataset.arg;
+        const t = el.dataset.argType;
+        if (t === 'number') v = Number(v);
+        else if (t === 'boolean') v = v === 'true';
+        fn(v);
       } else {
         fn();
       }
