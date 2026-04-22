@@ -27113,15 +27113,10 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         const opts = t.opts || t.o || [];
         const ans  = (t.ans !== undefined) ? t.ans : (t.a !== undefined ? t.a : 0);
         const exp  = t.exp || t.e || '';
-        // Embaralhar opções para corrigir viés de posição
-        const indices = [0,1,2,3];
-        for(let j=3;j>0;j--){
-          const k=Math.floor(Math.random()*(j+1));
-          [indices[j],indices[k]]=[indices[k],indices[j]];
-        }
-        const shuffledOpts = indices.map(idx => opts[idx]);
-        const newAns = indices.indexOf(ans);
-        deck.push({id:t.qid||(String(i+1)),d,_d:t.diff||t.d||'medium',q:t.q,o:shuffledOpts,a:newAns,e:exp,r:t.refs||t.r||[],c:t.cat||t.c||'geral'});
+        // Shuffle desabilitado (Fase 1): 259 explicações referenciam "alternativa A/B/C/D"
+        // que ficariam incorretas após o embaralhamento. Reativar quando as
+        // explicações forem reescritas para referenciar o conteúdo, não a letra.
+        deck.push({id:t.qid||(String(i+1)),d,_d:t.diff||t.d||'medium',q:t.q,o:opts,a:ans,e:exp,r:t.refs||t.r||[],c:t.cat||t.c||'geral'});
       }
       return deck;
     }
