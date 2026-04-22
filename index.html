@@ -33210,7 +33210,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
 
     // Wrappers expostos no window para serem chamáveis via data-action
     window._mobileCallback = function(type) {
-      const cb = (typeof _mobileActionCallbacks !== 'undefined') && _mobileActionCallbacks?.[type];
+      const cb = window._mobileActionCallbacks?.[type];
       if (typeof cb === 'function') cb();
     };
     window._pricingToLogin = function() {
