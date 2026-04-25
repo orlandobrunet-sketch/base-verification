@@ -4593,13 +4593,22 @@
   <script>
     // Verificação de versão — bypassa o Service Worker via no-store
     // Se a versão do servidor for diferente da carregada, limpa tudo e recarrega
-    (function() {
-      const LOADED_VERSION = '9.8';
-      fetch('version.json', { cache: 'no-store' })
+        (function() {
+      const LOADED_VERSION = '9.11';
+      // Evita loop infinito se o redirecionamento ja aconteceu recentemente
+      const lastRedirect = sessionStorage.getItem('last_version_redirect');
+      const now = Date.now();
+      if (lastRedirect && (now - parseInt(lastRedirect)) < 30000) {
+        console.warn('Redirecionamento de versão ignorado para evitar loop infinito.');
+        return;
+      }
+
+      fetch('version.json?t=' + now, { cache: 'no-store' })
         .then(r => r.json())
         .then(data => {
           if (data.version && data.version !== LOADED_VERSION) {
             console.log('Versão incompatível! Servidor:', data.version, 'Local:', LOADED_VERSION);
+            sessionStorage.setItem('last_version_redirect', now.toString());
             window.location.replace('clear-cache.html');
           }
         })
