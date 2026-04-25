@@ -5530,6 +5530,10 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
           <input type="password" id="authPasswordConfirm" placeholder="repita a senha" onkeypress="authKeyPress(event)" />
         </div>
         <button class="auth-submit-btn" id="authRegBtn" data-action="authEmailRegister">Criar Conta</button>
+        <div id="authResendWrap" style="display:none;text-align:center;margin-top:10px;" data-email="">
+          <span style="color:var(--txt-dim);font-size:0.8rem;">Não recebeu? Verifique o spam ou </span>
+          <button id="authResendBtn" class="auth-guest-link" style="background:none;border:none;padding:0;cursor:pointer;" data-action="authResendConfirmation">reenviar email</button>
+        </div>
       </div>
     </div>
   </div>
@@ -27402,11 +27406,29 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       btn.disabled = true; btn.textContent = 'Criando conta...';
       const { error } = await _supaClient.auth.signUp({
         email, password,
-        options: { data: { full_name: name, specialty } }
+        options: {
+          data: { full_name: name, specialty },
+          emailRedirectTo: window.location.origin + window.location.pathname
+        }
       });
       btn.disabled = false; btn.textContent = 'Criar Conta';
       if (error) { _setAuthMsg(error.message, 'error'); }
-      else { _setAuthMsg('Conta criada! Verifique seu email para confirmar.', 'success'); }
+      else {
+        _setAuthMsg('Conta criada! Verifique seu email para confirmar.', 'success');
+        const resendEl = document.getElementById('authResendWrap');
+        if (resendEl) { resendEl.style.display = 'block'; resendEl.dataset.email = email; }
+      }
+    }
+    async function authResendConfirmation() {
+      if (!_supaClient) return;
+      const el = document.getElementById('authResendWrap');
+      const email = el ? el.dataset.email : '';
+      if (!email) return;
+      const btn = document.getElementById('authResendBtn');
+      btn.disabled = true; btn.textContent = 'Reenviando...';
+      const { error } = await _supaClient.auth.resend({ type: 'signup', email });
+      btn.disabled = false; btn.textContent = 'Reenviar email';
+      _setAuthMsg(error ? error.message : 'Email reenviado! Verifique sua caixa de entrada e o spam.', error ? 'error' : 'success');
     }
     async function authLogout() {
       if (!_supaClient) return;
