@@ -5306,7 +5306,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     </button>
 
     <!-- Baú -->
-    <button class="mdock-btn open-chest" data-action="showActionConfirmPopup" data-arg="chest" title="Abrir Baú">
+    <button class="mdock-btn open-chest" data-action="showMobileActionConfirm" data-arg="chest" title="Abrir Baú">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
         <path d="M5 8h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2z"/>
         <path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2"/>
@@ -29303,6 +29303,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
 
     // Expor popup no escopo global para uso via onclick no HTML
     window.showMobileActionConfirm = showActionConfirmPopup;
+    window.closeChestModal = closeChestModal;
 
     // Modal da Forja — duas opções: item comum e lendário
     function showForjaModal() {
