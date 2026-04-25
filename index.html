@@ -27609,7 +27609,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
           method: 'POST',
           headers: {
             'apikey': SUPA_KEY,
-            'Authorization': _supaClient ? `Bearer ${(await _supaClient.auth.getSession()).data.session?.access_token || SUPA_KEY}` : `Bearer ${SUPA_KEY}`,
+            'Authorization': `Bearer ${await (async()=>{ try { return (await _supaClient?.auth?.getSession())?.data?.session?.access_token || SUPA_KEY; } catch { return SUPA_KEY; } })()}`,
             'Content-Type': 'application/json',
             'Prefer': prefer
           },
@@ -28594,8 +28594,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       if (!authUser || !_supaClient) return;
       if (_premiumPolling) return; // já existe uma chain ativa
       _premiumPolling = true;
-      _premiumPollCount = 0; // reinicia contador para nova sessão de polling
-      await _doPremiumPoll();
+      _premiumPollCount = 0;
+      try { await _doPremiumPoll(); } catch { _premiumPolling = false; }
     }
     async function _doPremiumPoll() {
       if (!authUser || !_supaClient || _premiumPollCount >= 10) {
@@ -30296,7 +30296,9 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         const slotPool = items[slot];
         const tiers = score >= 9 ? ['epic','legendary'] : ['rare','epic'];
         const candidates = slotPool.filter(i => tiers.includes(i.rar));
-        const item = candidates.length ? candidates[Math.floor(Math.random()*candidates.length)] : slotPool[slotPool.length-2];
+        const item = candidates.length
+          ? candidates[Math.floor(Math.random()*candidates.length)]
+          : slotPool[Math.floor(Math.random()*slotPool.length)];
         return { slot, item: Object.assign({}, item) };
       }
 
