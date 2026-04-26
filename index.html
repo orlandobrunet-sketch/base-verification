@@ -7625,7 +7625,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
             <button data-remove-id="flagPopup" style="background:none;border:none;color:#64748b;font-size:1.4rem;cursor:pointer;line-height:1;">×</button>
           </div>
           <p style="font-size:0.78rem;color:#64748b;margin-bottom:6px;">Questão #${qNum}</p>
-          <p style="font-size:0.82rem;color:#94a3b8;background:rgba(30,40,70,0.5);border-radius:8px;padding:10px;margin-bottom:14px;font-style:italic;line-height:1.5;">"${qText.replace(/"/g,'&quot;')}"</p>
+          <p style="font-size:0.82rem;color:#94a3b8;background:rgba(30,40,70,0.5);border-radius:8px;padding:10px;margin-bottom:14px;font-style:italic;line-height:1.5;">"${escapeHtml(qText)}"</p>
           <label style="font-size:0.82rem;color:#93b4e8;display:block;margin-bottom:6px;">Descreva o problema:</label>
           <textarea id="flagComment" rows="3" placeholder="Ex: A alternativa B está incorreta pois... / O gabarito deveria ser..."
             style="width:100%;background:rgba(10,20,40,0.8);border:1px solid var(--blue-dark);border-radius:8px;color:#d5e2ff;font-size:0.85rem;padding:10px;resize:vertical;font-family:'Philosopher',serif;outline:none;box-sizing:border-box;"></textarea>
