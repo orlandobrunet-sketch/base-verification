@@ -9569,7 +9569,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
             <div class="minigame-subtitle">Verdadeiro ou Falso? ${TIME_PER_Q}s por afirmação</div>
             <div class="minigame-progress">${currentIdx + 1} / ${pool.length}</div>
             <div class="minigame-timer"><div class="minigame-timer-fill" id="mgTimerFill" style="width:100%"></div></div>
-            <div class="minigame-stmt" id="mgStmt">${q.q}</div>
+            <div class="minigame-stmt" id="mgStmt">${escapeHtml(q.q)}</div>
             <div class="minigame-tf-btns">
               <button class="minigame-true-btn" id="mgTrue" data-action="mgAnswer" data-arg="true" data-arg-type="boolean">✓ VERDADEIRO</button>
               <button class="minigame-false-btn" id="mgFalse" data-action="mgAnswer" data-arg="false" data-arg-type="boolean">✗ FALSO</button>
@@ -10061,17 +10061,17 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
               const opts = q.o || [];
               return `<div style="background:rgba(251,113,133,0.08);border:1px solid rgba(251,113,133,0.25);border-radius:10px;padding:14px;">
                 <div style="color:var(--txt-dim);font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">${qi+1}/${wrongs.length}</div>
-                <p style="color:var(--txt);font-size:0.87rem;line-height:1.6;margin-bottom:10px;">${q.q}</p>
+                <p style="color:var(--txt);font-size:0.87rem;line-height:1.6;margin-bottom:10px;">${escapeHtml(q.q)}</p>
                 <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:10px;">
                   ${opts.map((o, i) => {
                     const isCorrect = i === q.a;
                     const bg     = isCorrect ? 'rgba(52,211,153,0.15)' : 'transparent';
                     const border  = isCorrect ? '1px solid #34d399' : '1px solid rgba(255,255,255,0.08)';
                     const color   = isCorrect ? '#34d399' : 'var(--txt-dim)';
-                    return `<div style="background:${bg};border:${border};border-radius:6px;padding:6px 10px;font-size:0.8rem;color:${color};">${optLetters[i]}. ${o}${isCorrect?' ✓':''}</div>`;
+                    return `<div style="background:${bg};border:${border};border-radius:6px;padding:6px 10px;font-size:0.8rem;color:${color};">${optLetters[i]}. ${escapeHtml(o)}${isCorrect?' ✓':''}</div>`;
                   }).join('')}
                 </div>
-                ${q.e ? `<div style="font-size:0.78rem;color:#94a3b8;line-height:1.6;border-top:1px solid rgba(255,255,255,0.08);padding-top:8px;">${q.e}</div>` : ''}
+                ${q.e ? `<div style="font-size:0.78rem;color:#94a3b8;line-height:1.6;border-top:1px solid rgba(255,255,255,0.08);padding-top:8px;">${escapeHtml(q.e)}</div>` : ''}
               </div>`;
             }).join('')}
           </div>
@@ -10966,17 +10966,17 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
         </div>
         
         <h3 style="color:var(--txt);font-size:1.1rem;line-height:1.6;margin-bottom:24px;">
-          ${q.q}
+          ${escapeHtml(q.q)}
         </h3>
-        
+
         <div id="studyOptions" style="display:grid;gap:10px;">
           ${q.opts.map((opt, idx) => `
-            <button class="study-option-btn" data-action="answerStudyQuestion" data-arg="${idx}" data-arg-type="number" 
+            <button class="study-option-btn" data-action="answerStudyQuestion" data-arg="${idx}" data-arg-type="number"
                     style="background:linear-gradient(180deg,#1e293b,#0f172a);border:2px solid #334155;border-radius:10px;padding:14px 18px;text-align:left;color:var(--txt);font-size:0.95rem;cursor:pointer;transition:all 0.2s;"
                     onmouseover="this.style.borderColor='var(--blue)';this.style.background='linear-gradient(180deg,#1e3a5f,#0f172a)'"
                     onmouseout="this.style.borderColor='#334155';this.style.background='linear-gradient(180deg,#1e293b,#0f172a)'">
               <span style="color:var(--blue);font-weight:bold;margin-right:8px;">${String.fromCharCode(65 + idx)})</span>
-              ${opt}
+              ${escapeHtml(opt)}
             </button>
           `).join('')}
         </div>
@@ -11026,7 +11026,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
             ${isCorrect ? '✓ Correto!' : '✗ Incorreto'}
           </div>
           <div style="color:var(--txt);font-size:0.9rem;line-height:1.5;">
-            ${q.exp || 'A resposta correta é a alternativa ' + String.fromCharCode(65 + q.ans) + '.'}
+            ${escapeHtml(q.exp || 'A resposta correta é a alternativa ' + String.fromCharCode(65 + q.ans) + '.')}
           </div>
           ${(q.refs||[]).length ? `<div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;">${(q.refs||[]).map(k => refsDB[k] ? `<a href="${refsDB[k].url}" target="_blank" rel="noopener" style="color:var(--blue);font-size:0.72rem;text-decoration:none;border:1px solid rgba(96,165,250,0.3);padding:2px 9px;border-radius:12px;white-space:nowrap;">🔗 ${refsDB[k].label}</a>` : '').filter(Boolean).join('')}</div>` : ''}
         </div>
