@@ -7763,6 +7763,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
           </div>
         </div>`;
       const sellVal = _itemSellVal(newItem);
+      document.getElementById('equipCompareOverlay')?.remove();
       const overlay = document.createElement('div');
       overlay.className = 'equip-compare-overlay';
       overlay.id = 'equipCompareOverlay';
