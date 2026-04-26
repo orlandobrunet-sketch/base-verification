@@ -6269,7 +6269,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     const MASTERED_KEY = 'nefroquest-mastered';
     // Schema version — incrementar ao adicionar campos obrigatórios ao saveData
     // Histórico: 1 = original  2 = bossIntroShown + chestsOpened
-    const SAVE_SCHEMA_VERSION = 2;
+    const SAVE_SCHEMA_VERSION = 3;
     // Chave Web3Forms — obtenha grátis em https://web3forms.com (cadastre orlandobrunet@gmail.com)
     const FLAG_API_KEY = 'd88c1c48-5d9c-48f2-b506-53ac0ac71396';
 
@@ -6387,6 +6387,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         queueIds: state.queue.map(q => q.id),
         recentIds: _recentIds,
         chestsOpened: state.chestsOpened,
+        legendaryAbilityUsed: {...state.legendaryAbilityUsed},
+        extraLifeGiven: state.extraLifeGiven || false,
         timestamp: Date.now(),
         schemaVersion: SAVE_SCHEMA_VERSION
       };
@@ -6401,7 +6403,10 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         save.chestsOpened    = save.chestsOpened    ?? 0;
         save.schemaVersion   = 2;
       }
-      // Futuras migrações: if (v < 3) { ... }
+      if (v < 3) {
+        save.legendaryAbilityUsed = save.legendaryAbilityUsed ?? {};
+        save.schemaVersion = 3;
+      }
       return save;
     }
 
@@ -6440,6 +6445,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       state.battleFinalShown = save.battleFinalShown || false;
       state.chestsOpened = save.chestsOpened || 0;
       chestCost = Math.min(100 + state.chestsOpened * 15, 250);
+      state.legendaryAbilityUsed = save.legendaryAbilityUsed || {};
+      state.extraLifeGiven = save.extraLifeGiven || false;
       state.gameCompleted = !!localStorage.getItem('nefroquest-arqui-defeated');
       state.gameOver = false;
       state.gameStarted = true;
@@ -8738,6 +8745,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       state.gold-=cost;
       state.bonusUses++;
       state.lives=1;
+      state.gameOver=false;
       log(`✨ Pergunta Bônus comprada por ${cost} ouro. A jornada continua.`);
       renderHUD();
       updateBadges();
@@ -8921,14 +8929,15 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       state.gold-=cost;
       const st=total();
       const rolled=rollItem(state.level, st.luck);
-      const msg=equipOrSell(rolled.slot, rolled.item);
       const gains=[`⚔️ ATK ${rolled.item.atk}`, `🛡️ DEF ${rolled.item.def}`, `📚 CONH ${rolled.item.kno}`, `🍀 SORTE ${rolled.item.luck}`];
-      showForgePopup(rolled.item, rolled.slot, gains);
       playSound('forge');
-      log(`🔨 Forja concluída! ${msg}`);
-      renderHUD();
-      updateBadges();
-      saveGame();
+      equipOrSell(rolled.slot, rolled.item, (msg) => {
+        showForgePopup(rolled.item, rolled.slot, gains);
+        log(`🔨 Forja concluída! ${msg}`);
+        renderHUD();
+        updateBadges();
+        saveGame();
+      });
     }
 
     function _forgeLegendaryDirect(){
@@ -8942,11 +8951,12 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       const legendaryItems = items[slot].filter(i => i.rar === 'legendary');
       if(legendaryItems.length === 0){ log('Sem itens lendários para este slot.'); state.gold+=cost; return; }
       const legendaryItem = legendaryItems[Math.floor(Math.random()*legendaryItems.length)];
+      const legendaryItemCopy = {...legendaryItem};
       const gains = [`⚔️ ATK ${legendaryItem.atk}`, `🛡️ DEF ${legendaryItem.def}`, `📚 CONH ${legendaryItem.kno}`, `🍀 SORTE ${legendaryItem.luck}`];
       playSound('forge');
       renderHUD();
-      equipOrSell(slot, {...legendaryItem}, (msg) => {
-        showForgePopup(state.equipment[slot], slot, gains);
+      equipOrSell(slot, legendaryItemCopy, (msg) => {
+        showForgePopup(legendaryItemCopy, slot, gains);
         log(`🔨 Forja Lendária! ${msg}`);
         renderHUD(); updateBadges(); saveGame();
       });
@@ -9016,11 +9026,12 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       const legendaryItems = items[slot].filter(i => i.rar === 'legendary');
       if(legendaryItems.length === 0){ log('Sem itens lendários para este slot.'); state.gold+=cost; return; }
       const legendaryItem = legendaryItems[Math.floor(Math.random()*legendaryItems.length)];
+      const legendaryItemCopy = {...legendaryItem};
       const gains = [`⚔️ ATK ${legendaryItem.atk}`, `🛡️ DEF ${legendaryItem.def}`, `📚 CONH ${legendaryItem.kno}`, `🍀 SORTE ${legendaryItem.luck}`];
       playSound('forge');
       renderHUD();
-      equipOrSell(slot, {...legendaryItem}, (msg) => {
-        showForgePopup(state.equipment[slot], slot, gains);
+      equipOrSell(slot, legendaryItemCopy, (msg) => {
+        showForgePopup(legendaryItemCopy, slot, gains);
         log(`🔨 Forja Lendária! ${msg}`);
         renderHUD(); updateBadges(); saveGame();
       });
@@ -10238,7 +10249,6 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     
     function openChest() {
       if(state.gameOver){ log('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
-      if(allItemsMaxed()){ log('🏆 Sem novos baús! Você já possui todos os equipamentos lendários!'); return; }
       if (state.correctTotal < CHEST_MIN_CORRECT) {
         log(`📚 Você precisa de pelo menos ${CHEST_MIN_CORRECT} acertos para abrir um baú! (Atual: ${state.correctTotal})`);
         return;
