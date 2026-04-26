@@ -7424,8 +7424,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     let _masteredSet = (() => {
       try {
         const raw = JSON.parse(localStorage.getItem(MASTERED_KEY) || "[]");
-        // Migração: IDs antigos eram inteiros posicionais — descartar
-        const valid = raw.filter(id => typeof id === "string" && /^[0-9a-f]{8}$/.test(id));
+        // Migração: IDs antigos eram number — descartar apenas tipos não-string
+        const valid = raw.filter(id => typeof id === "string" && id.length > 0);
         return new Set(valid);
       }
       catch(e) { return new Set(); }
@@ -9715,10 +9715,13 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       // Popup especial de intro do boss ao atingir 90 acertos
       if (state.correctTotal === BOSS_START_CORRECT && !state.bossIntroShown) {
         state.bossIntroShown = true;
+        state.narrativeShown = BOSS_START_CORRECT; // marca capítulo 90 como visto
         _track('boss_entered', { level: state.level, score: state.score, difficulty: state.difficulty });
         showBossIntroPopup();
         return; // não mostra narrativa comum ao mesmo tempo
       }
+      // Narrativa de 100 acertos é substituída pelo modal de vitória (checkGameCompletion)
+      if (state.correctTotal >= 100) return;
       const stage = narrativeStages.find(s => s.at === state.correctTotal && state.narrativeShown < s.at);
       if(!stage) return;
       state.narrativeShown = stage.at;
