@@ -7691,13 +7691,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     }
 
     function allItemsMaxed(){
-      // Verifica se todos os 3 slots têm o item legendary (melhor possível)
-      const legendaryNames = {};
-      for(const [slot, list] of Object.entries(items)){
-        const leg = list.find(i=>i.rar==='legendary');
-        if(leg) legendaryNames[slot] = leg.n;
-      }
-      return Object.entries(legendaryNames).every(([slot, name]) => state.equipment[slot] && state.equipment[slot].n === name);
+      // Verifica se todos os 3 slots têm qualquer item legendary equipado
+      return Object.keys(items).every(slot => state.equipment[slot]?.rar === 'legendary');
     }
 
      function rollItem(diff,luck){
@@ -10138,6 +10133,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     }
 
     function showCharacterIntroModal(charId) {
+      document.getElementById('charIntroOverlay')?.remove();
       const intro = CHARACTER_INTROS[charId];
       const popup = document.createElement('div');
       popup.className = 'narrative-popup';
@@ -10453,7 +10449,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       { id: 'farmacologia',         icon: '💊', label: 'Farmacologia',              cat: 'farmacologia' },
       { id: 'genetica',             icon: '🧬', label: 'Genética Renal',            cat: 'genetica' },
       { id: 'uti',                  icon: '🏥', label: 'UTI / Crítico',             cat: 'uti' },
-      { id: 'patologia',            icon: '🔭', label: 'Patologia',                 cat: 'patologia' },
+      { id: 'diagnostico',          icon: '🔭', label: 'Diagnóstico',               cat: 'diagnostico' },
       { id: 'oncologia_renal',      icon: '🎗️', label: 'Oncologia Renal',           cat: 'oncologia_renal' },
       { id: 'nefrologia_geral',     icon: '📚', label: 'Nefrologia Geral',          cat: 'nefrologia_geral' },
     ];
