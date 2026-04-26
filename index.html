@@ -29443,7 +29443,6 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
 
     function _openChestDirect(){
       if(state.gameOver){ log('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
-      if(allItemsMaxed()){ log('🏆 Sem novos baús! Você já possui todos os equipamentos lendários!'); return; }
       if (state.correctTotal < CHEST_MIN_CORRECT) {
         log(`📚 Você precisa de pelo menos ${CHEST_MIN_CORRECT} acertos para abrir um baú! (Atual: ${state.correctTotal})`);
         return;
@@ -31348,6 +31347,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       unlockedArticles = [];
       _masteredSet = new Set();
       chestCost = 100;
+      _invalidateStatsCache();
       document.querySelectorAll('.stats-popup').forEach(el => el.remove());
       alert('✅ Progresso resetado. Começando do zero!');
     }
