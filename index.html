@@ -6434,6 +6434,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       state.bossIntroShown = save.bossIntroShown || false;
       state.battleFinalShown = save.battleFinalShown || false;
       state.chestsOpened = save.chestsOpened || 0;
+      chestCost = Math.min(100 + state.chestsOpened * 15, 250);
+      state.gameCompleted = !!localStorage.getItem('nefroquest-arqui-defeated');
       state.gameOver = false;
       state.gameStarted = true;
       state.answered = false;
@@ -30852,6 +30854,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       const _chosenDiff = state.difficulty || 'normal';
       const _startLives = _diffLives[_chosenDiff] || 3;
       Object.assign(state,{level:1,xp:0,xpToNext:200,score:0,lives:_startLives,maxLives:_startLives,streak:0,gold:0,difficulty:_chosenDiff,legendaryAbilityUsed:{},current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,bossIntroShown:false,battleFinalShown:false,gameOver:false,gameStarted:true,extraLifeGiven:false,gameCompleted:false,completedGame:false,chestsOpened:0,bossLog:[]});
+      chestCost = 100;
       state.equipment={
         weapon:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
         armor:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
@@ -31336,7 +31339,15 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       localStorage.removeItem(MASTERED_KEY);
       localStorage.removeItem(SAVE_KEY);
       localStorage.removeItem(STATS_KEY);
+      localStorage.removeItem(ACHIEVEMENTS_KEY);
+      localStorage.removeItem(STUDY_SAVE_KEY);
+      localStorage.removeItem(EXAM_SAVE_KEY);
+      localStorage.removeItem('unlockedArticles');
+      localStorage.removeItem('nefroquest-arqui-defeated');
+      localStorage.removeItem('nefroquest-minigame-notified');
+      unlockedArticles = [];
       _masteredSet = new Set();
+      chestCost = 100;
       document.querySelectorAll('.stats-popup').forEach(el => el.remove());
       alert('✅ Progresso resetado. Começando do zero!');
     }
