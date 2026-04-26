@@ -6268,8 +6268,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     const STATS_KEY = 'nefroquest-stats';
     const MASTERED_KEY = 'nefroquest-mastered';
     // Schema version — incrementar ao adicionar campos obrigatórios ao saveData
-    // Histórico: 1 = original  2 = bossIntroShown + chestsOpened
-    const SAVE_SCHEMA_VERSION = 3;
+    // Histórico: 1 = original  2 = bossIntroShown + chestsOpened  3 = legendaryAbilityUsed  4 = difficulty + maxLives
+    const SAVE_SCHEMA_VERSION = 4;
     // Chave Web3Forms — obtenha grátis em https://web3forms.com (cadastre orlandobrunet@gmail.com)
     const FLAG_API_KEY = 'd88c1c48-5d9c-48f2-b506-53ac0ac71396';
 
@@ -6387,6 +6387,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         queueIds: state.queue.map(q => q.id),
         recentIds: _recentIds,
         chestsOpened: state.chestsOpened,
+        difficulty: state.difficulty || 'normal',
+        maxLives: state.maxLives || 3,
         legendaryAbilityUsed: {...state.legendaryAbilityUsed},
         extraLifeGiven: state.extraLifeGiven || false,
         timestamp: Date.now(),
@@ -6406,6 +6408,11 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       if (v < 3) {
         save.legendaryAbilityUsed = save.legendaryAbilityUsed ?? {};
         save.schemaVersion = 3;
+      }
+      if (v < 4) {
+        save.difficulty = save.difficulty ?? 'normal';
+        save.maxLives   = save.maxLives   ?? 3;
+        save.schemaVersion = 4;
       }
       return save;
     }
@@ -6444,6 +6451,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       state.bossIntroShown = save.bossIntroShown || false;
       state.battleFinalShown = save.battleFinalShown || false;
       state.chestsOpened = save.chestsOpened || 0;
+      state.difficulty = save.difficulty || 'normal';
+      state.maxLives = save.maxLives || 3;
       chestCost = Math.min(100 + state.chestsOpened * 15, 250);
       state.legendaryAbilityUsed = save.legendaryAbilityUsed || {};
       state.extraLifeGiven = save.extraLifeGiven || false;
@@ -10589,7 +10598,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
               transplante:'Transplante', hipertensao:'Hipertensão',
               acido_base:'Ácido-Base', 'litíase':'Litíase', infeccao:'Infecção',
               farmacologia:'Farmacologia', genetica:'Genética', uti:'UTI / Crítico',
-              patologia:'Patologia', oncologia_renal:'Oncologia Renal'
+              diagnostico:'Diagnóstico', oncologia_renal:'Oncologia Renal'
             };
             if (!catData.length) return '';
             return `
@@ -11730,7 +11739,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
         transplante:'Transplante',hipertensao:'Hipertensão',
         acido_base:'Ácido-Base','litíase':'Litíase',infeccao:'Infecção',
         farmacologia:'Farmacologia',genetica:'Genética',uti:'UTI / Crítico',
-        patologia:'Patologia',oncologia_renal:'Oncologia Renal',geral:'Geral'
+        diagnostico:'Diagnóstico',oncologia_renal:'Oncologia Renal',geral:'Geral'
       };
       const catRows = Object.entries(byCat)
         .sort((a,b) => (a[1].correct/a[1].total) - (b[1].correct/b[1].total))
