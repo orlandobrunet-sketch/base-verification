@@ -6115,7 +6115,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     // ============ SISTEMA DE VIDA EXTRA ============
     function checkExtraLife() {
       // Ganha vida extra a cada 5 níveis (5, 10, 15, 20...)
-      if (state.level % 5 === 0 && state.lives < 3 && !state.extraLifeGiven) {
+      if (state.level % 5 === 0 && state.lives < (state.maxLives || 3) && !state.extraLifeGiven) {
         state.lives++;
         state.extraLifeGiven = true;
         showExtraLifeModal();
@@ -10101,7 +10101,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         ui.bonusBtn.classList.remove('hidden');
       } else {
         ui.feedback.className='feedback';
-        ui.feedback.textContent='As 3 vidas acabaram. Junte mais ouro em outra corrida para comprar Perguntas Bônus.';
+        ui.feedback.textContent=`As ${state.maxLives||3} vidas acabaram. Junte mais ouro em outra corrida para comprar Perguntas Bônus.`;
         ui.bonusBtn.classList.add('hidden');
       }
       // Botão de revisão de erros da sessão
