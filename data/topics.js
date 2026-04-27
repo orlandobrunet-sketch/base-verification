@@ -18774,7 +18774,7 @@ const topics = [
     "ans": 1,
     "exp": "O KPMP tem como foco principal integrar biópsias renais com abordagens de medicina de precisão, especialmente análises moleculares e transcriptômica de célula única, para construir atlas do rim doente e redefinir os fenótipos e mecanismos das doenças renais. As alternativas A, C e D não representam o eixo central do projeto, porque classificações clínicas isoladas, escores populacionais e biomarcadores séricos não capturam a heterogeneidade celular e molecular que o KPMP pretende mapear.",
     "diff": "hard",
-    "cat": "diagnostico",
+    "cat": "nefrologia_geral",
     "refs": [
       "kpmp_project",
       "kdigo_ckd"
@@ -18964,7 +18964,7 @@ const topics = [
     "ans": 1,
     "exp": "A alternativa 'Queda rápida da TFG ou síndrome nefrótica súbita sem retinop...' é a correta porque queda rápida da TFG e síndrome nefrótica de início súbito, especialmente na ausência de retinopatia diabética, são achados atípicos para nefropatia diabética clássica e aumentam a suspeita de doença renal não diabética, situação em que a biópsia renal pode ser decisiva para definir etiologia e tratamento. A alternativa 'Proteinúria leve em DM tipo 2 com retinopatia' está errada porque proteinúria leve em paciente com DM2 e retinopatia favorece doença renal diabética, não sendo, isoladamente, um padrão que exija biópsia. A alternativa 'Microalbuminúria persistente' também está errada, pois microalbuminúria persistente é manifestação típica e precoce de nefropatia diabética e não sugere, por si só, glomerulopatia alternativa. A alternativa 'HbA1c acima de 9%' está errada porque HbA1c elevada indica controle glicêmico inadequado e maior risco de progressão renal, mas não constitui critério de biópsia nem diferencia doença glomerular não diabética. Em síntese, a biópsia no diabético deve ser considerada diante de apresentação renal atípica, abrupta ou dissociada das manifestações microvasculares habituais do diabetes.",
     "diff": "medium",
-    "cat": "diagnostico",
+    "cat": "nefropatia_diabetica",
     "refs": [
       "kdigo_diabetes_in_ckd_guideline",
       "kdigo_gn"
