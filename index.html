@@ -10315,13 +10315,13 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
           <span style="color:var(--txt-dim);font-size:0.85rem;"> (Baús abertos: ${state.chestsOpened})</span>
         </div>
         <div class="article-card">
-          <h3>📜 ${article.titulo} (${article.ano})</h3>
-          <p style="font-size:0.78rem;color:var(--gold);margin-bottom:4px">✍️ <em>${article.autores}</em></p>
-          <p style="font-size:0.72rem;color:var(--txt-dim);margin-bottom:10px">📖 ${article.jornal}</p>
-          <p><span class="label">📚 Resumo:</span><br>${article.resumo}</p>
-          <p><span class="label">🎯 Conclusão Principal:</span><br>${article.conclusao}</p>
-          <p><span class="label">💡 Curiosidade:</span><br>${article.curiosidade}</p>
-          <p><span class="label">⭐ Impacto na Nefrologia:</span><br>${article.impacto}</p>
+          <h3>📜 ${escapeHtml(article.titulo)} (${escapeHtml(String(article.ano))})</h3>
+          <p style="font-size:0.78rem;color:var(--gold);margin-bottom:4px">✍️ <em>${escapeHtml(article.autores)}</em></p>
+          <p style="font-size:0.72rem;color:var(--txt-dim);margin-bottom:10px">📖 ${escapeHtml(article.jornal)}</p>
+          <p><span class="label">📚 Resumo:</span><br>${escapeHtml(article.resumo)}</p>
+          <p><span class="label">🎯 Conclusão Principal:</span><br>${escapeHtml(article.conclusao)}</p>
+          <p><span class="label">💡 Curiosidade:</span><br>${escapeHtml(article.curiosidade)}</p>
+          <p><span class="label">⭐ Impacto na Nefrologia:</span><br>${escapeHtml(article.impacto)}</p>
         </div>
       `;
       
