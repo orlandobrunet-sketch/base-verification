@@ -10568,7 +10568,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
                 const color = t.accuracy >= 70 ? '#34d399' : t.accuracy >= 50 ? '#fbbf24' : '#fb7185';
                 return `
                   <div style="display:flex;align-items:center;justify-content:space-between;padding:7px 10px;background:rgba(255,255,255,0.04);border-radius:6px;">
-                    <span style="color:var(--txt);font-size:0.78rem;flex:1;">${t.topic}</span>
+                    <span style="color:var(--txt);font-size:0.78rem;flex:1;">${escapeHtml(t.topic)}</span>
                     <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
                       <div style="width:60px;background:rgba(0,0,0,0.4);height:4px;border-radius:2px;overflow:hidden;">
                         <div style="background:${color};height:100%;width:${pct}%;"></div>
