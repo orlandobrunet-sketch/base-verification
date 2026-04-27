@@ -7525,15 +7525,15 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
           <div class="ref-card" style="--ref-accent:${accent}">
             <div class="ref-card-top">
               <span class="ref-icon">${ref.icon || '📄'}</span>
-              <span class="ref-title">${ref.label}</span>
-              <span class="ref-badge" style="background:${accent}">${ref.badge || 'REF'}</span>
+              <span class="ref-title">${escapeHtml(ref.label)}</span>
+              <span class="ref-badge" style="background:${accent}">${escapeHtml(ref.badge || 'REF')}</span>
             </div>
             <div class="ref-meta">
-              <span class="ref-journal">${ref.journal || ''}</span>
-              ${ref.ano ? `<span class="ref-year">${ref.ano}</span>` : ''}
-              ${ref.tipo ? `<span class="ref-tipo">${ref.tipo}</span>` : ''}
+              <span class="ref-journal">${escapeHtml(ref.journal || '')}</span>
+              ${ref.ano ? `<span class="ref-year">${escapeHtml(String(ref.ano))}</span>` : ''}
+              ${ref.tipo ? `<span class="ref-tipo">${escapeHtml(ref.tipo)}</span>` : ''}
             </div>
-            ${ref.impacto ? `<div class="ref-impacto ${impactoClass}">${ref.impacto}</div>` : ''}
+            ${ref.impacto ? `<div class="ref-impacto ${impactoClass}">${escapeHtml(ref.impacto)}</div>` : ''}
             <button class="ref-copy-btn" data-action="_copyRefBtn" data-pass-this="1" data-copy-text="${escapeHtml(copyText)}">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
               copiar referência
@@ -10971,7 +10971,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
       area.innerHTML = `
         <div style="margin-bottom:16px;">
           <span style="background:rgba(139,92,246,0.2);color:#a78bfa;padding:4px 10px;border-radius:4px;font-size:0.75rem;">
-            ${q.t || 'Geral'}
+            ${escapeHtml(q.t || 'Geral')}
           </span>
         </div>
         
@@ -11038,7 +11038,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
           <div style="color:var(--txt);font-size:0.9rem;line-height:1.5;">
             ${escapeHtml(q.exp || 'A resposta correta é a alternativa ' + String.fromCharCode(65 + q.ans) + '.')}
           </div>
-          ${(q.refs||[]).length ? `<div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;">${(q.refs||[]).map(k => refsDB[k] ? `<a href="${refsDB[k].url}" target="_blank" rel="noopener" style="color:var(--blue);font-size:0.72rem;text-decoration:none;border:1px solid rgba(96,165,250,0.3);padding:2px 9px;border-radius:12px;white-space:nowrap;">🔗 ${refsDB[k].label}</a>` : '').filter(Boolean).join('')}</div>` : ''}
+          ${(q.refs||[]).length ? `<div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;">${(q.refs||[]).map(k => refsDB[k] ? `<a href="${refsDB[k].url}" target="_blank" rel="noopener" style="color:var(--blue);font-size:0.72rem;text-decoration:none;border:1px solid rgba(96,165,250,0.3);padding:2px 9px;border-radius:12px;white-space:nowrap;">🔗 ${escapeHtml(refsDB[k].label)}</a>` : '').filter(Boolean).join('')}</div>` : ''}
         </div>
         
         <div style="text-align:center;margin-top:16px;">
