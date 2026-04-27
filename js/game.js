@@ -1181,6 +1181,13 @@
       if (s == null) return '';
       return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     }
+    function shuffle(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
     const ui={
       heroImg:$("heroImg"),heroClass:$("heroClass"),heroTitle:$("heroTitle"),xpFill:$("xpFill"),xpTxt:$("xpTxt"),
       storyTitle:$("storyTitle"),storyGoal:$("storyGoal"),
@@ -2708,7 +2715,6 @@
         document.getElementById('mainApp')?.classList.remove('hidden');
       }
       state.correctTotal = BOSS_START_CORRECT;
-      state.hp = state.maxHp;
       state.bossIntroShown = true;
       state.battleFinalShown = false;
       renderQuestion();
@@ -3083,7 +3089,6 @@
         if(state.equipment?.relic?.n==='Amuleto do Rim Imortal' && !state.legendaryAbilityUsed['Amuleto do Rim Imortal']) {
           state.legendaryAbilityUsed['Amuleto do Rim Imortal'] = true;
           state.lives = 1;
-          state.legendaryAbilityUsed['Amuleto do Rim Imortal'] = true;
           renderEquip();
           const revNotif = document.createElement('div');
           revNotif.style.cssText='position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9990;background:linear-gradient(135deg,#1a0a2a,#2a1040);border:2px solid var(--gold);border-radius:16px;padding:24px 28px;text-align:center;animation:scaleIn 0.4s;box-shadow:0 0 50px rgba(255,215,0,0.3);';
@@ -4417,13 +4422,6 @@
             <button class="diff-cancel-btn" data-remove-id="diffSelectorOverlay">CANCELAR</button>
           </div>`;
         window._pendingDiff = selectedDiff;
-        // Mark current selection
-        setTimeout(() => {
-          overlay.querySelectorAll('.diff-card').forEach((c, idx) => {
-            const k = Object.keys(defs)[idx];
-            if(k === selectedDiff) c.classList.add('selected');
-          });
-        }, 0);
       }
 
       overlay.addEventListener('click', e => { if(e.target===overlay) overlay.remove(); });
@@ -5308,7 +5306,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
       }
       
       // Embaralhar questões
-      studyModeQuestions = studyModeQuestions.sort(() => Math.random() - 0.5);
+      studyModeQuestions = shuffle(studyModeQuestions);
       studyModeIndex = 0;
       studyModeCorrect = 0;
       studyModeWrong = 0;
@@ -5507,7 +5505,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
     
     function restartStudyMode() {
       _clearStudyState();
-      studyModeQuestions = studyModeQuestions.sort(() => Math.random() - 0.5);
+      studyModeQuestions = shuffle(studyModeQuestions);
       studyModeIndex = 0;
       studyModeCorrect = 0;
       studyModeWrong = 0;
@@ -6354,7 +6352,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
         }
         const name = item.getAttribute('data-item-name');
         const desc = item.getAttribute('data-item-desc');
-        itemTooltip.innerHTML = `<strong>${name}</strong>${desc}`;
+        itemTooltip.innerHTML = `<strong>${escapeHtml(name)}</strong>${escapeHtml(desc)}`;
         itemTooltip.style.display = 'block';
         const x = Math.min(e.clientX + 15, window.innerWidth - 290);
         const y = Math.max(10, e.clientY - 60);
@@ -6730,7 +6728,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
         axesToStudy = weakAxes;
       }
       const cats = new Set(axesToStudy.map(a => a.cat));
-      studyModeQuestions = topics.filter(q => cats.has(q.cat)).sort(() => Math.random() - 0.5);
+      studyModeQuestions = shuffle(topics.filter(q => cats.has(q.cat)));
       if (!studyModeQuestions.length) { alert('Nenhuma questão encontrada nas categorias fracas.'); return; }
       _studySelectedAxes = new Set(axesToStudy.map(a => a.id));
       studyModeIndex = 0; studyModeCorrect = 0; studyModeWrong = 0; studyModeActive = true;

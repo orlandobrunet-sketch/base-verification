@@ -54,7 +54,7 @@
       s.onload = () => {
         Sentry.init({
           dsn: SENTRY_DSN,
-          release: 'nefroquest@9.0',
+          release: 'nefroquest@9.13',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,            // 10% das transações para performance
           replaysOnErrorSampleRate: 1.0,    // replay completo em erros
