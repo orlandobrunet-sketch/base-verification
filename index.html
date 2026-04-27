@@ -89,7 +89,7 @@
     // Verificação de versão — bypassa o Service Worker via no-store
     // Se a versão do servidor for diferente da carregada, limpa tudo e recarrega
         (function() {
-      const LOADED_VERSION = '9.11';
+      const LOADED_VERSION = '9.13';
       // Evita loop infinito se o redirecionamento ja aconteceu recentemente
       const lastRedirect = sessionStorage.getItem('last_version_redirect');
       const now = Date.now();
@@ -339,7 +339,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         <button id="bossPreviewBtn" class="btn-boss-preview" data-action="startBossPreview" title="Preview do Confronto Final" style="display:none;">⚔️ Preview: Confronto Final</button>
         <button id="rapidQuizUnlockedBtn" class="btn sec" data-action="showStandaloneMinigame" style="display:none;background:rgba(74,222,128,0.12);border-color:rgba(74,222,128,0.4);color:#4ade80;">⚡ Julgamento Rápido</button>
       </div>
-      <div class="welcome-credit" style="margin-top:14px;"><a href="https://nefroquest.com">nefroquest.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;cursor:pointer;" data-action="showChangelog">v6.1</span></div>
+      <div class="welcome-credit" style="margin-top:14px;"><a href="https://nefroquest.com">nefroquest.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;cursor:pointer;" data-action="showChangelog">v6.2</span></div>
     </div>
   </div>
 
@@ -755,7 +755,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       <p>
         <a href="https://nefroquest.com">nefroquest.com</a>
         &nbsp;•&nbsp;
-        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" data-action="showChangelog">v6.1</span>
+        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" data-action="showChangelog">v6.2</span>
       </p>
     </div>
   </main>

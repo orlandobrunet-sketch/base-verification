@@ -6253,6 +6253,22 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
 
           <div style="text-align:left;padding:4px;">
 
+            <!-- v6.2 -->
+            <div style="background:linear-gradient(135deg,rgba(168,85,247,0.18),rgba(168,85,247,0.06));border:2px solid rgba(168,85,247,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                <span style="background:rgba(168,85,247,0.9);color:#fff;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v6.2</span>
+                <span style="color:#e9d5ff;font-weight:bold;font-size:0.95rem;">Correções & Estabilidade</span>
+              </div>
+              <ul style="margin:0;padding-left:18px;color:#c8d8f0;font-size:0.82rem;line-height:1.8;">
+                <li><strong>Baú de artigos corrigido</strong> — botão de abrir parou de funcionar em algumas situações; resolvido</li>
+                <li><strong>Timer do cronômetro</strong> — contador não reiniciava corretamente ao avançar questão com "Próxima"; corrigido</li>
+                <li><strong>Vidas extras por dificuldade</strong> — o limite de vidas não respeitava a dificuldade selecionada; ajustado</li>
+                <li><strong>Textos cortados no baú</strong> — valores clínicos com símbolo &lt; (ex.: &lt;120 mmHg) sumiam do resumo dos artigos; corrigido</li>
+                <li><strong>Sobreposição de popups</strong> — janelas de comparação de equipamentos podiam se acumular; corrigido</li>
+                <li><strong>Novo ícone</strong> — favicon atualizado em todas as plataformas</li>
+              </ul>
+            </div>
+
             <!-- v6.1 -->
             <div style="background:linear-gradient(135deg,rgba(255,215,0,0.18),rgba(255,215,0,0.06));border:2px solid rgba(255,215,0,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
