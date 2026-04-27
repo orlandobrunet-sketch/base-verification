@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v9.10
-const CACHE = 'nefroquest-v9.11';
+// NefroQuest Service Worker — v9.13
+const CACHE = 'nefroquest-v9.13';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -17,6 +17,12 @@ const STATIC_ASSETS = [
   '/assets/nefromancer.png',
   '/manifest.json',
   '/favicon.ico',
+  '/data/refs.js',
+  '/data/articles.js',
+  '/data/topics.js',
+  '/data/rapid-quiz.js',
+  '/style.css',
+  '/js/game.js',
 ];
 
 self.addEventListener('install', e => {
