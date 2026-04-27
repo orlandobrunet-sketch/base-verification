@@ -9965,7 +9965,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       else { ui.question.textContent=''; ui.options.innerHTML=''; ui.feedback.textContent=''; ui.feedback.className='feedback'; ui.refs.innerHTML=''; ui.nextBtn.classList.add('hidden'); }
     }
 
-    ui.nextBtn.addEventListener('click',renderQuestion);
+    ui.nextBtn.addEventListener('click',() => renderQuestion());
     // Event delegation para opções — 1 listener reutilizado em vez de 4 por pergunta
     ui.options.addEventListener('click', (e) => {
       const btn = e.target.closest('button.option');
