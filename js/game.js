@@ -1324,6 +1324,13 @@
       } else if (_guestMode) {
         document.querySelectorAll('.profile-btn').forEach(b => b.classList.add('visible'));
         document.querySelectorAll('[id$="ProfileEmail"]').forEach(el => { el.textContent = '👤 Convidado'; });
+        const landing = document.getElementById('landingScreen');
+        if (landing && !landing.classList.contains('hidden')) {
+          landing.classList.add('hidden');
+          document.getElementById('welcomeScreen').classList.remove('hidden');
+          refreshWelcomeSave();
+          if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
+        }
       } else {
         document.querySelectorAll('.profile-btn').forEach(b => b.classList.remove('visible'));
       }
@@ -2211,6 +2218,7 @@
       state.xp+=x; let up=0;
       while(state.xp>=state.xpToNext){
         state.xp-=state.xpToNext; state.level++; state.xpToNext=xpForLevel(state.level); up++;
+        if (_guestMode && state.level === 2) _showGuestHook();
         _track('level_up', { level: state.level, difficulty: state.difficulty });
       }
       return up;
