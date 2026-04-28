@@ -38,35 +38,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=Philosopher:wght@400;700&family=MedievalSharp&display=block" rel="stylesheet">
   <link rel="prefetch" href="assets/audio/welcome-theme.mp3">
 
-  <!-- ══ Sentry error monitoring ══════════════════════════════════════════
-       Para ativar:
-         1. Crie conta em https://sentry.io (plano gratuito cobre 5k eventos/mês)
-         2. Crie projeto → tipo: JavaScript
-         3. Substitua o valor de SENTRY_DSN abaixo pelo DSN do seu projeto
-         4. Remova o `if (SENTRY_DSN)` para que o Sentry carregue sempre
-       ════════════════════════════════════════════════════════════════════ -->
+  <!-- ══ Sentry error monitoring ══════════════════════════════════════════ -->
+  <script
+    src="https://js-de.sentry-cdn.com/11e6a03af273d89034995606be7570be.min.js"
+    crossorigin="anonymous"
+  ></script>
   <script>
-    const SENTRY_DSN = ''; // ← cole aqui seu DSN do Sentry (ex: https://abc@o123.ingest.sentry.io/456)
-    if (SENTRY_DSN) {
-      const s = document.createElement('script');
-      s.src = 'https://browser.sentry-cdn.com/7.99.0/bundle.tracing.min.js';
-      s.crossOrigin = 'anonymous';
-      s.onload = () => {
-        Sentry.init({
-          dsn: SENTRY_DSN,
-          release: 'nefroquest@9.13',
-          environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
-          tracesSampleRate: 0.1,            // 10% das transações para performance
-          replaysOnErrorSampleRate: 1.0,    // replay completo em erros
-          beforeSend(event) {
-            // Nunca enviar dados do usuário que possam ser sensíveis
-            if (event.user) delete event.user.ip_address;
-            return event;
-          }
-        });
-      };
-      document.head.appendChild(s);
-    }
+    Sentry.onLoad(function() {
+      Sentry.init({
+        release: 'nefroquest@9.13',
+        environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
+        tracesSampleRate: 0.1,
+        beforeSend(event) {
+          if (event.user) delete event.user.ip_address;
+          return event;
+        }
+      });
+    });
   </script>
 
   <link rel="stylesheet" href="style.css">
