@@ -1188,6 +1188,58 @@
       }
       return arr;
     }
+
+    // ── Spaced Repetition (SM-2) ──────────────────────────────────────────
+    const SR_KEY = 'nefroquest-sr-data';
+    function _loadSRData() {
+      try { return JSON.parse(localStorage.getItem(SR_KEY) || '{}'); } catch { return {}; }
+    }
+    function _saveSRData(d) {
+      try { localStorage.setItem(SR_KEY, JSON.stringify(d)); } catch {}
+    }
+    function updateSRData(qid, isCorrect) {
+      if (!qid) return;
+      const data = _loadSRData();
+      const today = new Date().setHours(0,0,0,0);
+      const card = data[qid] || { ef: 2.5, interval: 1, reps: 0, due: today };
+      const q = isCorrect ? 4 : 1;
+      card.ef = Math.max(1.3, card.ef + 0.1 - (5 - q) * (0.08 + (5 - q) * 0.02));
+      if (isCorrect) {
+        card.reps++;
+        card.interval = card.reps === 1 ? 1 : card.reps === 2 ? 6 : Math.ceil(card.interval * card.ef);
+      } else {
+        card.reps = 0;
+        card.interval = 1;
+      }
+      card.due = today + card.interval * 86400000;
+      data[qid] = card;
+      _saveSRData(data);
+    }
+    function getSRDueQuestions(qs) {
+      const data = _loadSRData();
+      const today = new Date().setHours(0,0,0,0);
+      return qs.filter(q => !q.qid || !data[q.qid] || data[q.qid].due <= today);
+    }
+    function getSRDueCount() {
+      const selectedCats = new Set();
+      NEFRO_AXES.forEach(ax => { if (_studySelectedAxes.has(ax.id)) selectedCats.add(ax.cat); });
+      return getSRDueQuestions(topics.filter(q => selectedCats.has(q.cat))).length;
+    }
+    function startSRStudyMode() {
+      if (_studySelectedAxes.size === 0) { alert('Selecione pelo menos um eixo!'); return; }
+      const selectedCats = new Set();
+      NEFRO_AXES.forEach(ax => { if (_studySelectedAxes.has(ax.id)) selectedCats.add(ax.cat); });
+      const due = getSRDueQuestions(topics.filter(q => selectedCats.has(q.cat)));
+      if (due.length === 0) {
+        alert('Nenhuma questão para revisar hoje! Volte amanhã ou use o estudo livre.');
+        return;
+      }
+      studyModeQuestions = shuffle(due);
+      studyModeIndex = 0; studyModeCorrect = 0; studyModeWrong = 0; studyModeActive = true;
+      document.querySelectorAll('.study-mode-popup').forEach(el => el.remove());
+      showStudyModePage();
+    }
+
     const ui={
       heroImg:$("heroImg"),heroClass:$("heroClass"),heroTitle:$("heroTitle"),xpFill:$("xpFill"),xpTxt:$("xpTxt"),
       storyTitle:$("storyTitle"),storyGoal:$("storyGoal"),
@@ -1205,8 +1257,11 @@
     // ===== SUPABASE AUTH =====
     let _supaClient = null;
     let authUser = null;
+    let _guestMode = false;
+    let _guestHookShown = false;
 
     (function initSupaAuth() {
+      if (localStorage.getItem('nq_guest_mode') === '1') _guestMode = true;
       if (typeof supabase === 'undefined') { console.warn('Supabase SDK não carregado'); return; }
       _supaClient = supabase.createClient(SUPA_URL, SUPA_KEY);
 
@@ -1219,6 +1274,11 @@
         }
         authUser = candidateUser;
         if (authUser) {
+          if (_guestMode) {
+            _guestMode = false;
+            _guestHookShown = false;
+            localStorage.removeItem('nq_guest_mode');
+          }
           _loadPremiumFromDB();
           checkFirstTimeOnboarding();
           // Se havia plano pendente (usuário clicou em pagar antes de fazer login)
@@ -1254,6 +1314,16 @@
         if (mobileTopEmail) mobileTopEmail.textContent = email;
         const _showAdmin = isAdminUser();
         document.querySelectorAll('.admin-item').forEach(el => el.classList.toggle('visible', _showAdmin));
+        const landing = document.getElementById('landingScreen');
+        if (landing && !landing.classList.contains('hidden')) {
+          landing.classList.add('hidden');
+          document.getElementById('welcomeScreen').classList.remove('hidden');
+          refreshWelcomeSave();
+          if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
+        }
+      } else if (_guestMode) {
+        document.querySelectorAll('.profile-btn').forEach(b => b.classList.add('visible'));
+        document.querySelectorAll('[id$="ProfileEmail"]').forEach(el => { el.textContent = '👤 Convidado'; });
         const landing = document.getElementById('landingScreen');
         if (landing && !landing.classList.contains('hidden')) {
           landing.classList.add('hidden');
@@ -1386,6 +1456,9 @@
       if (!_supaClient) return;
       await _supaClient.auth.signOut();
       authUser = null;
+      _guestMode = false;
+      _guestHookShown = false;
+      localStorage.removeItem('nq_guest_mode');
       localStorage.removeItem(PREMIUM_KEY);
       localStorage.removeItem(WHITELIST_KEY);
       _invalidatePremiumCache(); _invalidateStatsCache();
@@ -1394,6 +1467,43 @@
       document.getElementById('welcomeScreen').classList.add('hidden');
       document.getElementById('landingScreen').classList.remove('hidden');
       document.getElementById('mainApp')?.classList.add('hidden');
+    }
+
+    function playAsGuest() {
+      _guestMode = true;
+      localStorage.setItem('nq_guest_mode', '1');
+      const landing = document.getElementById('landingScreen');
+      const welcome = document.getElementById('welcomeScreen');
+      if (landing) landing.classList.add('hidden');
+      if (welcome) welcome.classList.remove('hidden');
+      updateWelcomeUserBadge();
+    }
+
+    function _showGuestHook() {
+      if (!_guestMode || _guestHookShown || authUser) return;
+      _guestHookShown = true;
+      const overlay = document.createElement('div');
+      overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:10001;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px);';
+      overlay.innerHTML = `
+        <div style="background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid rgba(255,215,0,0.5);border-radius:16px;padding:28px 24px;max-width:400px;width:100%;text-align:center;box-shadow:0 0 60px rgba(255,215,0,0.15);">
+          <div style="font-size:2rem;margin-bottom:8px;">🏆</div>
+          <h2 style="color:var(--gold);font-family:'Cinzel',serif;margin-bottom:6px;font-size:1.2rem;">Nível 2 desbloqueado!</h2>
+          <p style="color:var(--txt-dim);font-size:0.85rem;margin-bottom:20px;line-height:1.6;">Crie uma conta gratuita para salvar seu XP, equipamentos e sequência — e aparecer no ranking.</p>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;text-align:left;">
+            <div style="color:#c8d8f0;font-size:0.82rem;">✅ Progresso salvo em qualquer dispositivo</div>
+            <div style="color:#c8d8f0;font-size:0.82rem;">✅ Aparecer no ranking global</div>
+            <div style="color:#c8d8f0;font-size:0.82rem;">✅ Streak e conquistas permanentes</div>
+          </div>
+          <button id="guestHookSignup" style="width:100%;padding:13px;background:linear-gradient(135deg,#fbbf24,#f59e0b);border:none;border-radius:10px;color:#1a0e00;font-weight:900;font-size:0.95rem;cursor:pointer;font-family:'Cinzel',serif;letter-spacing:1px;margin-bottom:10px;">🔑 Criar conta — é grátis</button>
+          <button id="guestHookContinue" style="width:100%;padding:11px;background:transparent;border:1px solid rgba(255,255,255,0.2);border-radius:10px;color:var(--txt-dim);font-size:0.82rem;cursor:pointer;">Continuar sem salvar →</button>
+        </div>
+      `;
+      document.body.appendChild(overlay);
+      document.getElementById('guestHookSignup').onclick = () => {
+        overlay.remove();
+        openAuthModal();
+      };
+      document.getElementById('guestHookContinue').onclick = () => overlay.remove();
     }
 
     // ===== REDEFINIÇÃO DE SENHA =====
@@ -2108,6 +2218,7 @@
       state.xp+=x; let up=0;
       while(state.xp>=state.xpToNext){
         state.xp-=state.xpToNext; state.level++; state.xpToNext=xpForLevel(state.level); up++;
+        if (_guestMode && state.level === 2) _showGuestHook();
         _track('level_up', { level: state.level, difficulty: state.difficulty });
       }
       return up;
@@ -2357,7 +2468,7 @@
     function closePricingModal() {
       document.getElementById('pricingModal')?.remove();
       // Se não autenticado, volta para a landing — sem opção de jogar sem conta
-      if (!authUser) {
+      if (!authUser && !_guestMode) {
         document.getElementById('welcomeScreen')?.classList.add('hidden');
         document.getElementById('landingScreen')?.classList.remove('hidden');
       }
@@ -4869,6 +4980,67 @@
       { id: 'nefrologia_geral',     icon: '📚', label: 'Nefrologia Geral',          cat: 'nefrologia_geral' },
     ];
 
+    function drawRadarChart(canvas, axes) {
+      if (!canvas || !axes.length) return;
+      const ctx = canvas.getContext('2d');
+      const W = canvas.width, H = canvas.height;
+      const cx = W / 2, cy = H / 2;
+      const r = Math.min(cx, cy) - 36;
+      const n = axes.length;
+      ctx.clearRect(0, 0, W, H);
+      // Rings at 25%, 50%, 75%, 100%
+      [0.25, 0.5, 0.75, 1].forEach(pct => {
+        ctx.beginPath();
+        for (let i = 0; i < n; i++) {
+          const a = (i / n) * Math.PI * 2 - Math.PI / 2;
+          const x = cx + r * pct * Math.cos(a), y = cy + r * pct * Math.sin(a);
+          i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        }
+        ctx.closePath();
+        ctx.strokeStyle = pct === 1 ? 'rgba(96,165,250,0.3)' : 'rgba(96,165,250,0.12)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      });
+      // Spokes
+      for (let i = 0; i < n; i++) {
+        const a = (i / n) * Math.PI * 2 - Math.PI / 2;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(cx + r * Math.cos(a), cy + r * Math.sin(a));
+        ctx.strokeStyle = 'rgba(96,165,250,0.15)';
+        ctx.stroke();
+      }
+      // Data polygon
+      ctx.beginPath();
+      axes.forEach((ax, i) => {
+        const pct = ax.total > 0 ? ax.correct / ax.total : 0;
+        const a = (i / n) * Math.PI * 2 - Math.PI / 2;
+        const x = cx + r * pct * Math.cos(a), y = cy + r * pct * Math.sin(a);
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      });
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(168,85,247,0.22)';
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(168,85,247,0.85)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      // Dots + labels
+      ctx.font = 'bold 13px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      axes.forEach((ax, i) => {
+        const pct = ax.total > 0 ? ax.correct / ax.total : 0;
+        const a = (i / n) * Math.PI * 2 - Math.PI / 2;
+        const dx = cx + r * pct * Math.cos(a), dy = cy + r * pct * Math.sin(a);
+        ctx.beginPath();
+        ctx.arc(dx, dy, 3, 0, Math.PI * 2);
+        ctx.fillStyle = '#a855f7';
+        ctx.fill();
+        const lx = cx + (r + 22) * Math.cos(a), ly = cy + (r + 22) * Math.sin(a);
+        ctx.fillText(ax.icon, lx, ly);
+      });
+    }
+
     function getAxisStats(stats) {
       return NEFRO_AXES.map(axis => {
         const d = (stats.byCategory || {})[axis.cat] || { correct: 0, wrong: 0, total: 0 };
@@ -4879,9 +5051,54 @@
         .sort((a, b) => (a.accuracy ?? 100) - (b.accuracy ?? 100)); // piores primeiro
     }
 
+    // ── Notificações de estudo ──────────────────────────────────────────────
+    async function enableStudyReminders() {
+      if (!('Notification' in window)) {
+        alert('Seu navegador não suporta notificações.'); return;
+      }
+      const perm = await Notification.requestPermission();
+      if (perm !== 'granted') {
+        alert('Permissão negada. Ative nas configurações do navegador.'); return;
+      }
+      localStorage.setItem('nq_notif_enabled', '1');
+      // Tentar registrar periodic sync
+      if ('serviceWorker' in navigator) {
+        const reg = await navigator.serviceWorker.ready;
+        if ('periodicSync' in reg) {
+          await reg.periodicSync.register('nq-study-reminder', { minInterval: 20 * 60 * 60 * 1000 }).catch(() => {});
+        }
+      }
+      alert('✅ Lembretes de estudo ativados!');
+    }
+    function disableStudyReminders() {
+      localStorage.removeItem('nq_notif_enabled');
+      alert('Lembretes desativados.');
+    }
+    function toggleStudyReminders() {
+      if (localStorage.getItem('nq_notif_enabled')) {
+        disableStudyReminders();
+      } else {
+        enableStudyReminders();
+      }
+    }
+    function _checkStudyReminder() {
+      if (Notification.permission !== 'granted') return;
+      if (!localStorage.getItem('nq_notif_enabled')) return;
+      const lastStudy = parseInt(localStorage.getItem('nq_last_study') || '0');
+      const yesterday = Date.now() - 24 * 60 * 60 * 1000;
+      if (lastStudy < yesterday) {
+        const banner = document.createElement('div');
+        banner.id = 'studyReminderBanner';
+        banner.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:rgba(139,92,246,0.95);color:#fff;padding:12px 20px;border-radius:12px;z-index:9999;font-size:0.85rem;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.4);max-width:320px;width:90%;';
+        banner.innerHTML = '📚 Você não estudou hoje ainda!<br><button onclick="this.parentElement.remove();showTopicSelector();" style="margin-top:8px;background:#fff;color:#7c3aed;border:none;padding:6px 16px;border-radius:8px;font-weight:bold;cursor:pointer;">Estudar agora</button> <button onclick="this.parentElement.remove();" style="margin-top:8px;background:transparent;color:#e9d5ff;border:1px solid rgba(255,255,255,0.3);padding:6px 12px;border-radius:8px;cursor:pointer;">Depois</button>';
+        document.body.appendChild(banner);
+        setTimeout(() => banner.remove(), 15000);
+      }
+    }
+
     function showStatsModal() {
       document.querySelectorAll('.stats-popup').forEach(el => el.remove());
-      
+
       const stats = getDetailedStats();
       const avgTime = stats.timeStats.questionCount > 0 
         ? Math.round(stats.timeStats.totalTime / stats.timeStats.questionCount) 
@@ -4931,6 +5148,12 @@
             </div>
           </div>
 
+          <!-- Radar Chart -->
+          ${axisStats.length >= 3 ? `
+          <div style="text-align:center;margin-bottom:16px;">
+            <h3 style="color:var(--gold);margin-bottom:10px;font-size:0.9rem;font-family:'Cinzel',serif;letter-spacing:1px;">RADAR DE DESEMPENHO</h3>
+            <canvas id="nqRadarChart" width="280" height="280" style="max-width:100%;"></canvas>
+          </div>` : ''}
           <!-- Desempenho por Eixo -->
           <div style="text-align:left;margin-bottom:16px;">
             <h3 style="color:var(--gold);margin-bottom:10px;font-size:0.9rem;font-family:'Cinzel',serif;letter-spacing:1px;">DESEMPENHO POR EIXO</h3>
@@ -5062,6 +5285,8 @@
         </div>
       `;
       document.body.appendChild(modal);
+      const radarCanvas = document.getElementById('nqRadarChart');
+      if (radarCanvas && axisStats.length >= 3) drawRadarChart(radarCanvas, axisStats);
       playSound('click');
     }
 
@@ -5077,6 +5302,7 @@
       localStorage.removeItem('unlockedArticles');
       localStorage.removeItem('nefroquest-arqui-defeated');
       localStorage.removeItem('nefroquest-minigame-notified');
+      localStorage.removeItem(SR_KEY);
       unlockedArticles = [];
       _masteredSet = new Set();
       chestCost = 100;
@@ -5152,13 +5378,21 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
             <button class="btn sec" data-action="_studySelectAll" data-arg="false" data-arg-type="boolean" style="font-size:0.78rem;padding:7px 14px;">✗ Nenhum</button>
           </div>
 
-          <div style="display:flex;gap:12px;justify-content:center;">
+          <div id="srDueCount" style="text-align:center;margin-bottom:10px;color:var(--txt-dim);font-size:0.8rem;"></div>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
             <button class="btn sec" data-close-closest=".modal">Cancelar</button>
-            <button class="btn gold" data-action="startStudyMode">📚 Iniciar Estudo</button>
+            <button class="btn" style="background:rgba(139,92,246,0.15);border-color:#8b5cf6;color:#c4b5fd;" data-action="startSRStudyMode">📅 Revisão Espaçada</button>
+            <button class="btn gold" data-action="startStudyMode">📚 Estudo Livre</button>
           </div>
         </div>
       `;
       document.body.appendChild(modal);
+      // Update SR due count after render (needs _studySelectedAxes to be set)
+      const srEl = document.getElementById('srDueCount');
+      if (srEl) {
+        const due = getSRDueCount();
+        srEl.textContent = due > 0 ? `📅 ${due} questão(ões) para revisar hoje` : '✓ Sem revisões pendentes hoje';
+      }
       playSound('click');
     }
 
@@ -5424,6 +5658,8 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
       });
       
       // Atualizar contadores
+      updateSRData(q.qid, isCorrect);
+      localStorage.setItem('nq_last_study', Date.now().toString());
       if (isCorrect) {
         studyModeCorrect++;
         document.getElementById('studyCorrect').textContent = studyModeCorrect;
@@ -6310,6 +6546,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
 
     resetGame();
     initWelcomeScreen();
+    setTimeout(_checkStudyReminder, 3000);
 
     // Botão de preview só visível para desenvolvimento (?dev=1)
     if (new URLSearchParams(window.location.search).get('dev') === '1') {
