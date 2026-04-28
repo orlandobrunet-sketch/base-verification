@@ -1257,8 +1257,11 @@
     // ===== SUPABASE AUTH =====
     let _supaClient = null;
     let authUser = null;
+    let _guestMode = false;
+    let _guestHookShown = false;
 
     (function initSupaAuth() {
+      if (localStorage.getItem('nq_guest_mode') === '1') _guestMode = true;
       if (typeof supabase === 'undefined') { console.warn('Supabase SDK não carregado'); return; }
       _supaClient = supabase.createClient(SUPA_URL, SUPA_KEY);
 
@@ -1271,6 +1274,11 @@
         }
         authUser = candidateUser;
         if (authUser) {
+          if (_guestMode) {
+            _guestMode = false;
+            _guestHookShown = false;
+            localStorage.removeItem('nq_guest_mode');
+          }
           _loadPremiumFromDB();
           checkFirstTimeOnboarding();
           // Se havia plano pendente (usuário clicou em pagar antes de fazer login)
@@ -1313,6 +1321,9 @@
           refreshWelcomeSave();
           if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
         }
+      } else if (_guestMode) {
+        document.querySelectorAll('.profile-btn').forEach(b => b.classList.add('visible'));
+        document.querySelectorAll('[id$="ProfileEmail"]').forEach(el => { el.textContent = '👤 Convidado'; });
       } else {
         document.querySelectorAll('.profile-btn').forEach(b => b.classList.remove('visible'));
       }
@@ -1438,6 +1449,9 @@
       if (!_supaClient) return;
       await _supaClient.auth.signOut();
       authUser = null;
+      _guestMode = false;
+      _guestHookShown = false;
+      localStorage.removeItem('nq_guest_mode');
       localStorage.removeItem(PREMIUM_KEY);
       localStorage.removeItem(WHITELIST_KEY);
       _invalidatePremiumCache(); _invalidateStatsCache();
@@ -1446,6 +1460,43 @@
       document.getElementById('welcomeScreen').classList.add('hidden');
       document.getElementById('landingScreen').classList.remove('hidden');
       document.getElementById('mainApp')?.classList.add('hidden');
+    }
+
+    function playAsGuest() {
+      _guestMode = true;
+      localStorage.setItem('nq_guest_mode', '1');
+      const landing = document.getElementById('landingScreen');
+      const welcome = document.getElementById('welcomeScreen');
+      if (landing) landing.classList.add('hidden');
+      if (welcome) welcome.classList.remove('hidden');
+      updateWelcomeUserBadge();
+    }
+
+    function _showGuestHook() {
+      if (!_guestMode || _guestHookShown || authUser) return;
+      _guestHookShown = true;
+      const overlay = document.createElement('div');
+      overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:10001;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px);';
+      overlay.innerHTML = `
+        <div style="background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid rgba(255,215,0,0.5);border-radius:16px;padding:28px 24px;max-width:400px;width:100%;text-align:center;box-shadow:0 0 60px rgba(255,215,0,0.15);">
+          <div style="font-size:2rem;margin-bottom:8px;">🏆</div>
+          <h2 style="color:var(--gold);font-family:'Cinzel',serif;margin-bottom:6px;font-size:1.2rem;">Nível 2 desbloqueado!</h2>
+          <p style="color:var(--txt-dim);font-size:0.85rem;margin-bottom:20px;line-height:1.6;">Crie uma conta gratuita para salvar seu XP, equipamentos e sequência — e aparecer no ranking.</p>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;text-align:left;">
+            <div style="color:#c8d8f0;font-size:0.82rem;">✅ Progresso salvo em qualquer dispositivo</div>
+            <div style="color:#c8d8f0;font-size:0.82rem;">✅ Aparecer no ranking global</div>
+            <div style="color:#c8d8f0;font-size:0.82rem;">✅ Streak e conquistas permanentes</div>
+          </div>
+          <button id="guestHookSignup" style="width:100%;padding:13px;background:linear-gradient(135deg,#fbbf24,#f59e0b);border:none;border-radius:10px;color:#1a0e00;font-weight:900;font-size:0.95rem;cursor:pointer;font-family:'Cinzel',serif;letter-spacing:1px;margin-bottom:10px;">🔑 Criar conta — é grátis</button>
+          <button id="guestHookContinue" style="width:100%;padding:11px;background:transparent;border:1px solid rgba(255,255,255,0.2);border-radius:10px;color:var(--txt-dim);font-size:0.82rem;cursor:pointer;">Continuar sem salvar →</button>
+        </div>
+      `;
+      document.body.appendChild(overlay);
+      document.getElementById('guestHookSignup').onclick = () => {
+        overlay.remove();
+        openAuthModal();
+      };
+      document.getElementById('guestHookContinue').onclick = () => overlay.remove();
     }
 
     // ===== REDEFINIÇÃO DE SENHA =====
@@ -2409,7 +2460,7 @@
     function closePricingModal() {
       document.getElementById('pricingModal')?.remove();
       // Se não autenticado, volta para a landing — sem opção de jogar sem conta
-      if (!authUser) {
+      if (!authUser && !_guestMode) {
         document.getElementById('welcomeScreen')?.classList.add('hidden');
         document.getElementById('landingScreen')?.classList.remove('hidden');
       }
