@@ -97,3 +97,24 @@ self.addEventListener('fetch', e => {
     })
   );
 });
+
+// ── Study reminder via Periodic Background Sync ──────────────────────────
+self.addEventListener('periodicsync', e => {
+  if (e.tag === 'nq-study-reminder') {
+    e.waitUntil(
+      self.registration.showNotification('NefroQuest — hora de estudar! 📚', {
+        body: 'Mantenha sua sequência de estudos. Uma sessão rápida faz a diferença.',
+        icon: '/assets/images/favicon-192x192.png',
+        badge: '/assets/images/favicon-32x32.png',
+        tag: 'nq-study-reminder',
+        renotify: false,
+        data: { url: '/' }
+      })
+    );
+  }
+});
+
+self.addEventListener('notificationclick', e => {
+  e.notification.close();
+  e.waitUntil(clients.openWindow(e.notification.data?.url || '/'));
+});

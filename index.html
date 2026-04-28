@@ -129,6 +129,12 @@
                 if (document.visibilityState === 'visible') reg.update();
               });
             }
+            // Registrar periodic sync para lembretes diários (Chrome/Android)
+            if ('periodicSync' in reg && Notification.permission === 'granted') {
+              reg.periodicSync.register('nq-study-reminder', {
+                minInterval: 20 * 60 * 60 * 1000  // 20h
+              }).catch(() => {});
+            }
           }).catch(() => {});
 
         // Quando novo SW assume controle, NÃO recarregar automaticamente
@@ -190,6 +196,7 @@
         <button class="profile-popup-item admin-item" data-action="adminJumpToBoss" data-stop-propagation="1">⚔ Fase Final</button>
         <button class="profile-popup-item admin-item" data-action="openAnalyticsPanel" data-stop-propagation="1">📊 Analytics</button>
         <hr class="profile-popup-divider">
+        <button class="profile-popup-item" data-action="toggleStudyReminders" data-stop-propagation="1">🔔 Lembretes</button>
         <button class="profile-popup-logout" data-action="authLogout" data-stop-propagation="1">Sair</button>
       </div>
     </div>
@@ -269,6 +276,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
           <button class="profile-popup-item admin-item" data-action="adminJumpToBoss" data-stop-propagation="1">⚔ Fase Final</button>
           <button class="profile-popup-item admin-item" data-action="openAnalyticsPanel" data-stop-propagation="1">📊 Analytics</button>
           <hr class="profile-popup-divider">
+          <button class="profile-popup-item" data-action="toggleStudyReminders" data-stop-propagation="1">🔔 Lembretes</button>
           <button class="profile-popup-logout" data-action="authLogout" data-stop-propagation="1">Sair</button>
         </div>
       </div>
@@ -359,6 +367,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
             <button class="profile-popup-item admin-item" data-action="adminJumpToBoss" data-stop-propagation="1">⚔ Fase Final</button>
             <button class="profile-popup-item admin-item" data-action="openAnalyticsPanel" data-stop-propagation="1">📊 Analytics</button>
             <hr class="profile-popup-divider">
+            <button class="profile-popup-item" data-action="toggleStudyReminders" data-stop-propagation="1">🔔 Lembretes</button>
             <button class="profile-popup-logout" data-action="authLogout" data-stop-propagation="1">Sair</button>
           </div>
         </div>
@@ -851,6 +860,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     <button class="profile-popup-item admin-item" data-action="adminJumpToBoss">⚔ Fase Final</button>
     <button class="profile-popup-item admin-item" data-action="openAnalyticsPanel">📊 Analytics</button>
     <hr class="profile-popup-divider">
+    <button class="profile-popup-item" data-action="toggleStudyReminders">🔔 Lembretes</button>
     <button class="profile-popup-logout" data-action="authLogout">Sair</button>
   </div>
 
