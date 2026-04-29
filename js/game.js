@@ -928,27 +928,6 @@
       }
       
       refreshWelcomeSave();
-
-      // Botão Julgamento Rápido — visível apenas após derrotar o Arqui-Nefromante
-      const rqBtn = document.getElementById('rapidQuizUnlockedBtn');
-      if (rqBtn) {
-        const defeated = !!localStorage.getItem('nefroquest-arqui-defeated');
-        rqBtn.style.display = defeated ? 'inline-block' : 'none';
-        if (defeated && !localStorage.getItem('nefroquest-minigame-notified')) {
-          localStorage.setItem('nefroquest-minigame-notified', '1');
-          setTimeout(() => {
-            const n = document.createElement('div');
-            n.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:9999;' +
-              'background:linear-gradient(135deg,#065f46,#047857);border:1.5px solid #4ade80;border-radius:14px;' +
-              'padding:14px 22px;max-width:320px;text-align:center;box-shadow:0 0 30px rgba(74,222,128,0.4);';
-            n.innerHTML = '<div style="font-size:1.5rem;margin-bottom:6px;">⚡</div>' +
-              '<div style="font-weight:700;color:#a7f3d0;margin-bottom:4px;">Julgamento Rápido Desbloqueado!</div>' +
-              '<div style="font-size:0.8rem;color:#6ee7b7;">Você derrotou o Arqui-Nefromante e desbloqueou o minigame exclusivo. Jogue a qualquer momento pela tela inicial!</div>';
-            document.body.appendChild(n);
-            setTimeout(() => n.remove(), 5000);
-          }, 800);
-        }
-      }
     }
 
     function refreshWelcomeSave() {
@@ -4129,6 +4108,13 @@
       overlay.id = 'rapidQuizOverlay';
       document.body.appendChild(overlay);
 
+      window._exitMinigame = function() {
+        if (timerInterval) clearInterval(timerInterval);
+        overlay.remove();
+        delete window.mgAnswer;
+        delete window._exitMinigame;
+      };
+
       function _renderMinigameQuestion() {
         if (currentIdx >= pool.length) { showResults(); return; }
         const q = pool[currentIdx];
@@ -4138,6 +4124,7 @@
 
         overlay.innerHTML = `
           <div class="minigame-card">
+            ${standalone ? '<button data-action="_exitMinigame" style="position:absolute;top:10px;right:12px;background:none;border:none;color:#64748b;font-size:1.1rem;cursor:pointer;line-height:1;" title="Sair">✕</button>' : ''}
             <div class="minigame-title">⚡ Julgamento Rápido</div>
             <div class="minigame-subtitle">Verdadeiro ou Falso? ${TIME_PER_Q}s por afirmação</div>
             <div class="minigame-progress">${currentIdx + 1} / ${pool.length}</div>
@@ -5250,47 +5237,6 @@
           </div>
           ` : ''}
           
-          <!-- Desempenho por Categoria -->
-          ${(() => {
-            const catData = Object.entries(stats.byCategory || {})
-              .map(([cat, d]) => ({
-                cat,
-                accuracy: d.total > 0 ? (d.correct / d.total) * 100 : null,
-                total: d.total, correct: d.correct
-              }))
-              .filter(c => c.total > 0)
-              .sort((a, b) => (a.accuracy ?? 100) - (b.accuracy ?? 100));
-            const catLabels = {
-              glomerular:'Glomerulopatias', nefrologia_geral:'Nefrologia Geral',
-              'eletrólitos':'Eletrólitos', lra:'LRA', drc:'DRC',
-              nefropatia_diabetica:'Nefropatia Diabética', dialise:'Diálise',
-              transplante:'Transplante', hipertensao:'Hipertensão',
-              acido_base:'Ácido-Base', 'litíase':'Litíase', infeccao:'Infecção',
-              farmacologia:'Farmacologia', genetica:'Genética', uti:'UTI / Crítico',
-              diagnostico:'Diagnóstico', oncologia_renal:'Oncologia Renal'
-            };
-            if (!catData.length) return '';
-            return `
-            <div style="text-align:left;margin-bottom:16px;">
-              <h3 style="color:var(--gold);margin-bottom:10px;font-size:0.9rem;font-family:'Cinzel',serif;letter-spacing:1px;">DESEMPENHO POR CATEGORIA</h3>
-              <div style="display:flex;flex-direction:column;gap:6px;max-height:200px;overflow-y:auto;">
-                ${catData.map(c => {
-                  const pct = c.accuracy !== null ? c.accuracy.toFixed(0) : 0;
-                  const color = c.accuracy >= 70 ? '#34d399' : c.accuracy >= 50 ? '#fbbf24' : '#fb7185';
-                  const label = catLabels[c.cat] || c.cat;
-                  return `
-                    <div style="display:flex;align-items:center;gap:8px;padding:7px 10px;background:rgba(255,255,255,0.04);border-radius:6px;">
-                      <span style="color:var(--txt);font-size:0.78rem;flex:1;">${label}</span>
-                      <div style="width:70px;background:rgba(0,0,0,0.4);height:4px;border-radius:2px;overflow:hidden;flex-shrink:0;">
-                        <div style="background:${color};height:100%;width:${pct}%;"></div>
-                      </div>
-                      <span style="color:${color};font-weight:bold;font-size:0.78rem;min-width:36px;text-align:right;">${pct}%</span>
-                      <span style="color:var(--txt-dim);font-size:0.7rem;min-width:28px;text-align:right;">${c.correct}/${c.total}</span>
-                    </div>`;
-                }).join('')}
-              </div>
-            </div>`;
-          })()}
 
           ${(() => {
             const hist = (stats.questionHistory || []).slice().reverse();
@@ -5306,15 +5252,15 @@
             const sorted = Object.keys(days).sort().slice(-7);
             if (sorted.length < 2) return '';
             const pts = sorted.map(d => ({ d, pct: Math.round(days[d].correct/days[d].total*100) }));
-            const max = 100, h2 = 40, w = 100/(pts.length-1);
+            const max = 100, h2 = 55, w = 400/(pts.length-1);
             const polyline = pts.map((p,i) => `${(i*w).toFixed(1)},${(h2 - p.pct/max*h2).toFixed(1)}`).join(' ');
-            const dots = pts.map((p,i) => `<circle cx="${(i*w).toFixed(1)}" cy="${(h2 - p.pct/max*h2).toFixed(1)}" r="3" fill="${p.pct>=70?'#34d399':p.pct>=50?'#fbbf24':'#fb7185'}" />`).join('');
-            const labels = pts.map((p,i) => `<text x="${(i*w).toFixed(1)}" y="${h2+14}" text-anchor="middle" fill="#64748b" font-size="8">${p.d.slice(5)}</text><text x="${(i*w).toFixed(1)}" y="${(h2 - p.pct/max*h2 - 5).toFixed(1)}" text-anchor="middle" fill="${p.pct>=70?'#34d399':p.pct>=50?'#fbbf24':'#fb7185'}" font-size="8">${p.pct}%</text>`).join('');
+            const dots = pts.map((p,i) => `<circle cx="${(i*w).toFixed(1)}" cy="${(h2 - p.pct/max*h2).toFixed(1)}" r="5" fill="${p.pct>=70?'#34d399':p.pct>=50?'#fbbf24':'#fb7185'}" />`).join('');
+            const labels = pts.map((p,i) => `<text x="${(i*w).toFixed(1)}" y="${h2+16}" text-anchor="middle" fill="#64748b" font-size="11">${p.d.slice(5)}</text><text x="${(i*w).toFixed(1)}" y="${(h2 - p.pct/max*h2 - 8).toFixed(1)}" text-anchor="middle" fill="${p.pct>=70?'#34d399':p.pct>=50?'#fbbf24':'#fb7185'}" font-size="11" font-weight="bold">${p.pct}%</text>`).join('');
             return '<div style="text-align:left;margin-bottom:16px;">'
               + '<h3 style="color:var(--gold);margin-bottom:8px;font-size:0.9rem;font-family:\'Cinzel\',serif;letter-spacing:1px;">EVOLUÇÃO (ÚLTIMOS 7 DIAS)</h3>'
               + '<div style="background:rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px 12px;">'
-              + '<svg viewBox="-4 -4 108 62" style="width:100%;overflow:visible;">'
-              + '<polyline points="' + polyline + '" fill="none" stroke="#6366f1" stroke-width="2" stroke-linejoin="round"/>'
+              + '<svg viewBox="-8 -14 416 90" style="width:100%;display:block;">'
+              + '<polyline points="' + polyline + '" fill="none" stroke="#6366f1" stroke-width="3" stroke-linejoin="round"/>'
               + dots + labels
               + '</svg>'
               + '</div>'
@@ -5326,7 +5272,44 @@
       `;
       document.body.appendChild(modal);
       const radarCanvas = document.getElementById('nqRadarChart');
-      if (radarCanvas && axisStats.length >= 3) drawRadarChart(radarCanvas, axisStats);
+      if (radarCanvas && axisStats.length >= 3) {
+        drawRadarChart(radarCanvas, axisStats);
+        // Tooltip ao passar o mouse nos ícones do radar
+        const _rTip = document.createElement('div');
+        _rTip.style.cssText = 'position:fixed;pointer-events:none;background:#0e1830;border:1px solid rgba(139,92,246,0.5);color:#d5e2ff;padding:4px 10px;border-radius:7px;font-size:0.78rem;white-space:nowrap;z-index:99999;display:none;box-shadow:0 4px 12px rgba(0,0,0,0.6);';
+        document.body.appendChild(_rTip);
+        const _rN = axisStats.length;
+        const _rW = radarCanvas.width, _rH = radarCanvas.height;
+        const _rCx = _rW / 2, _rCy = _rH / 2;
+        const _rR = Math.min(_rCx, _rCy) - 36;
+        const _rPts = axisStats.map((ax, i) => {
+          const a = (i / _rN) * Math.PI * 2 - Math.PI / 2;
+          return { x: _rCx + (_rR + 22) * Math.cos(a), y: _rCy + (_rR + 22) * Math.sin(a), label: ax.label, accuracy: ax.accuracy };
+        });
+        radarCanvas.addEventListener('mousemove', e => {
+          const rect = radarCanvas.getBoundingClientRect();
+          const scaleX = radarCanvas.width / rect.width;
+          const scaleY = radarCanvas.height / rect.height;
+          const mx = (e.clientX - rect.left) * scaleX;
+          const my = (e.clientY - rect.top) * scaleY;
+          const found = _rPts.find(pt => Math.hypot(mx - pt.x, my - pt.y) < 24);
+          if (found) {
+            const pct = found.accuracy != null ? found.accuracy.toFixed(0) + '%' : '—';
+            _rTip.textContent = `${found.label} — ${pct} acerto`;
+            _rTip.style.display = 'block';
+            _rTip.style.left = (e.clientX + 14) + 'px';
+            _rTip.style.top = (e.clientY - 12) + 'px';
+          } else {
+            _rTip.style.display = 'none';
+          }
+        });
+        radarCanvas.addEventListener('mouseleave', () => { _rTip.style.display = 'none'; });
+        // Limpa o tooltip quando o modal for removido do DOM
+        const _rObs = new MutationObserver(() => {
+          if (!document.contains(radarCanvas)) { _rTip.remove(); _rObs.disconnect(); }
+        });
+        _rObs.observe(document.body, { childList: true, subtree: false });
+      }
       playSound('click');
     }
 
@@ -5430,8 +5413,8 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
           <div id="srDueCount" style="text-align:center;margin-bottom:10px;color:var(--txt-dim);font-size:0.8rem;"></div>
           <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
             <button class="btn sec" data-close-closest=".modal">Cancelar</button>
-            <button class="btn" style="background:rgba(139,92,246,0.15);border-color:#8b5cf6;color:#c4b5fd;" data-action="startSRStudyMode">📅 Revisão Espaçada</button>
-            <button class="btn gold" data-action="startStudyMode">📚 Estudo Livre</button>
+            <button class="btn" style="background:rgba(139,92,246,0.15);border-color:#8b5cf6;color:#c4b5fd;" data-action="startSRStudyMode" title="Mostra apenas as questões com revisão vencida hoje. Erros voltam em 1 dia; acertos espaçam progressivamente (2 → 5 → 10 dias...). Ideal para manter o que você já aprendeu.">📅 Revisão Espaçada</button>
+            <button class="btn gold" data-action="startStudyMode" title="Apresenta todas as questões dos eixos selecionados em ordem aleatória, sem prioridade por histórico. Ideal para explorar um tema novo.">📚 Estudo Livre</button>
           </div>
         </div>
       `;
