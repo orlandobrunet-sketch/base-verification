@@ -5430,8 +5430,8 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
           <div id="srDueCount" style="text-align:center;margin-bottom:10px;color:var(--txt-dim);font-size:0.8rem;"></div>
           <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
             <button class="btn sec" data-close-closest=".modal">Cancelar</button>
-            <button class="btn" style="background:rgba(139,92,246,0.15);border-color:#8b5cf6;color:#c4b5fd;" data-action="startSRStudyMode">📅 Revisão Espaçada</button>
-            <button class="btn gold" data-action="startStudyMode">📚 Estudo Livre</button>
+            <button class="btn" style="background:rgba(139,92,246,0.15);border-color:#8b5cf6;color:#c4b5fd;" data-action="startSRStudyMode" title="Mostra apenas as questões com revisão vencida hoje. Erros voltam em 1 dia; acertos espaçam progressivamente (2 → 5 → 10 dias...). Ideal para manter o que você já aprendeu.">📅 Revisão Espaçada</button>
+            <button class="btn gold" data-action="startStudyMode" title="Apresenta todas as questões dos eixos selecionados em ordem aleatória, sem prioridade por histórico. Ideal para explorar um tema novo.">📚 Estudo Livre</button>
           </div>
         </div>
       `;
