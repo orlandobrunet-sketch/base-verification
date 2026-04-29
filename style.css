@@ -2635,8 +2635,12 @@
     .btn-board-refresh { display: flex; align-items: center; gap: 6px; background: rgba(255,215,0,0.08); border: 1px solid rgba(255,215,0,0.2); color: rgba(255,215,0,0.8); padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; transition: background 0.2s, color 0.2s; }
     .btn-board-refresh:hover { background: rgba(255,215,0,0.15); color: var(--gold); }
     .col-rank { width: 40px; text-align: center; }
+    .col-player { text-align: left; }
     .col-score { text-align: right; }
     .col-level, .col-chests { text-align: center; }
+    .crystal-corner { position: absolute; font-size: 1.4rem; opacity: 0.5; pointer-events: none; }
+    .crystal-corner.left  { left: 10px; top: 10px; }
+    .crystal-corner.right { right: 10px; top: 10px; }
     @media (max-width: 600px) {
       .col-char, .col-chests, .col-date { display: none; }
       .board-table-wrap { max-height: 300px; }
