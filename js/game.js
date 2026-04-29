@@ -928,27 +928,6 @@
       }
       
       refreshWelcomeSave();
-
-      // Botão Julgamento Rápido — visível apenas após derrotar o Arqui-Nefromante
-      const rqBtn = document.getElementById('rapidQuizUnlockedBtn');
-      if (rqBtn) {
-        const defeated = !!localStorage.getItem('nefroquest-arqui-defeated');
-        rqBtn.style.display = defeated ? 'inline-block' : 'none';
-        if (defeated && !localStorage.getItem('nefroquest-minigame-notified')) {
-          localStorage.setItem('nefroquest-minigame-notified', '1');
-          setTimeout(() => {
-            const n = document.createElement('div');
-            n.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:9999;' +
-              'background:linear-gradient(135deg,#065f46,#047857);border:1.5px solid #4ade80;border-radius:14px;' +
-              'padding:14px 22px;max-width:320px;text-align:center;box-shadow:0 0 30px rgba(74,222,128,0.4);';
-            n.innerHTML = '<div style="font-size:1.5rem;margin-bottom:6px;">⚡</div>' +
-              '<div style="font-weight:700;color:#a7f3d0;margin-bottom:4px;">Julgamento Rápido Desbloqueado!</div>' +
-              '<div style="font-size:0.8rem;color:#6ee7b7;">Você derrotou o Arqui-Nefromante e desbloqueou o minigame exclusivo. Jogue a qualquer momento pela tela inicial!</div>';
-            document.body.appendChild(n);
-            setTimeout(() => n.remove(), 5000);
-          }, 800);
-        }
-      }
     }
 
     function refreshWelcomeSave() {

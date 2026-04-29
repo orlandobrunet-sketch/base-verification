@@ -331,13 +331,13 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
           <button class="btn sec" data-action="showTopicSelector">📖 Modo de Estudo</button>
           <button class="btn sec" data-action="startWeakPointStudy" id="weakPointBtn" style="background:rgba(251,113,133,0.12);border-color:rgba(251,113,133,0.35);color:#fb7185;">📍 Ponto Fraco</button>
           <button class="btn sec" data-action="startExamMode">📝 Prova Simulada</button>
+          <button class="btn sec" data-action="showStandaloneMinigame" style="background:rgba(74,222,128,0.08);border-color:rgba(74,222,128,0.35);color:#4ade80;">⚡ Julgamento Rápido</button>
         </div>
         <button class="btn sec btn-game-modes" data-action="openGameModesPopup">🎮 Modos de Jogo</button>
         <button class="btn sec" data-action="showStatsModal">📊 Estatísticas</button>
         <button class="btn sec" data-action="showAchievementsModal">🏆 Conquistas</button>
         <button class="btn sec" data-action="showLeaderboardFromWelcome">Leaderboard</button>
         <button id="bossPreviewBtn" class="btn-boss-preview" data-action="startBossPreview" title="Preview do Confronto Final" style="display:none;">⚔️ Preview: Confronto Final</button>
-        <button id="rapidQuizUnlockedBtn" class="btn sec" data-action="showStandaloneMinigame" style="display:none;background:rgba(74,222,128,0.12);border-color:rgba(74,222,128,0.4);color:#4ade80;">⚡ Julgamento Rápido</button>
       </div>
       <div class="welcome-credit" style="margin-top:14px;"><a href="https://nefroquest.com">nefroquest.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;cursor:pointer;" data-action="showChangelog">v9.13</span></div>
     </div>
@@ -1061,6 +1061,13 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         <span class="gm-label">
           <span class="gm-title">Prova Simulada</span>
           <span class="gm-desc">60 questões em 90 minutos</span>
+        </span>
+      </button>
+      <button class="gm-btn" data-action-seq="closeGameModesPopup,showStandaloneMinigame">
+        <span class="gm-icon">⚡</span>
+        <span class="gm-label">
+          <span class="gm-title">Julgamento Rápido</span>
+          <span class="gm-desc">Sequência veloz de V ou F — bata seu recorde</span>
         </span>
       </button>
     </div>
