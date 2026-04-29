@@ -246,6 +246,7 @@
       nextTrack.play().catch(() => {});
       
       const steps = 30;
+      const stepTime = Math.round((XFADE_TIME * 1000) / steps); // ms por passo de fade
       let step = 0;
       
       const fadeInterval = setInterval(() => {
