@@ -2087,6 +2087,7 @@
       renderRefs(q.r);
       ui.nextBtn.classList.add('hidden');
       ui.bonusBtn.classList.add('hidden');
+      if (!q.o || !Array.isArray(q.o)) return;
       q.o.forEach((opt,i)=>{
         const b=document.createElement('button');
         b.className='option'; b.type='button';
@@ -7179,6 +7180,13 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
     window._copyRefBtn = function(btn) {
       if (typeof _copyRef === 'function') _copyRef(btn, btn.dataset.copyText || '');
     };
+    // Dispatcher gaps — funções async que precisam ser acessíveis via data-action
+    window.saveNewPassword        = function() { return saveNewPassword(); };
+    window.submitFlag             = function(q) { return submitFlag(q); };
+    window._pollPremiumActivation = function() { return _pollPremiumActivation(); };
+    window.saveAccountData        = function() { return saveAccountData(); };
+    window.loadAnalyticsData      = function() { return loadAnalyticsData(); };
+    window.adminAddWhitelist      = function() { return adminAddWhitelist(); };
 
     // ============ DISPATCHER CENTRAL (data-action / data-action-seq) ============
     // Substitui inline onclick="..." em HTML estático e em templates JS
