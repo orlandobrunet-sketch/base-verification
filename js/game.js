@@ -246,6 +246,7 @@
       nextTrack.play().catch(() => {});
       
       const steps = 30;
+      const stepTime = Math.round((XFADE_TIME * 1000) / steps); // ms por passo de fade
       let step = 0;
       
       const fadeInterval = setInterval(() => {
@@ -1187,6 +1188,14 @@
         [arr[i], arr[j]] = [arr[j], arr[i]];
       }
       return arr;
+    }
+
+    function _firstSentence(text, maxLen) {
+      if (!text) return '';
+      maxLen = maxLen || 140;
+      const dot = text.search(/\.\s+[A-ZÁÉÍÓÚÀÂÊÔÇÃ]/);
+      const cut = dot > 30 && dot < maxLen ? dot + 1 : Math.min(text.length, maxLen);
+      return text.substring(0, cut).trim();
     }
 
     // ── Spaced Repetition (SM-2) ──────────────────────────────────────────
@@ -2151,6 +2160,16 @@
           <p style="font-size:0.78rem;color:#64748b;margin-bottom:6px;">Questão #${qNum}</p>
           <p style="font-size:0.82rem;color:#94a3b8;background:rgba(30,40,70,0.5);border-radius:8px;padding:10px;margin-bottom:14px;font-style:italic;line-height:1.5;">"${escapeHtml(qText)}"</p>
           <label style="font-size:0.82rem;color:#93b4e8;display:block;margin-bottom:6px;">Descreva o problema:</label>
+          <div style="margin-bottom:10px;">
+  <div style="color:var(--txt-dim);font-size:0.75rem;margin-bottom:6px;">Tipo de problema:</div>
+  <div style="display:flex;flex-wrap:wrap;gap:6px;" id="flagCategoryChips">
+    <button type="button" class="flag-chip selected" data-cat="resposta_incorreta" style="padding:4px 10px;border-radius:20px;border:1px solid rgba(251,113,133,0.6);background:rgba(251,113,133,0.15);color:#fca5a5;font-size:0.75rem;cursor:pointer;">❌ Resposta incorreta</button>
+    <button type="button" class="flag-chip" data-cat="desatualizada" style="padding:4px 10px;border-radius:20px;border:1px solid rgba(255,255,255,0.15);background:transparent;color:var(--txt-dim);font-size:0.75rem;cursor:pointer;">📅 Desatualizada</button>
+    <button type="button" class="flag-chip" data-cat="ambigua" style="padding:4px 10px;border-radius:20px;border:1px solid rgba(255,255,255,0.15);background:transparent;color:var(--txt-dim);font-size:0.75rem;cursor:pointer;">🤔 Ambígua</button>
+    <button type="button" class="flag-chip" data-cat="erro_texto" style="padding:4px 10px;border-radius:20px;border:1px solid rgba(255,255,255,0.15);background:transparent;color:var(--txt-dim);font-size:0.75rem;cursor:pointer;">✏️ Erro de texto</button>
+    <button type="button" class="flag-chip" data-cat="outra" style="padding:4px 10px;border-radius:20px;border:1px solid rgba(255,255,255,0.15);background:transparent;color:var(--txt-dim);font-size:0.75rem;cursor:pointer;">💬 Outra</button>
+  </div>
+</div>
           <textarea id="flagComment" rows="3" placeholder="Ex: A alternativa B está incorreta pois... / O gabarito deveria ser..."
             style="width:100%;background:rgba(10,20,40,0.8);border:1px solid var(--blue-dark);border-radius:8px;color:#d5e2ff;font-size:0.85rem;padding:10px;resize:vertical;font-family:'Philosopher',serif;outline:none;box-sizing:border-box;"></textarea>
           <div id="flagStatus" style="min-height:20px;margin-top:8px;font-size:0.78rem;text-align:center;"></div>
@@ -2160,12 +2179,29 @@
           </button>
         </div>`;
       document.body.appendChild(popup);
+      document.getElementById('flagCategoryChips')?.addEventListener('click', e => {
+        const chip = e.target.closest('.flag-chip');
+        if (!chip) return;
+        document.querySelectorAll('.flag-chip').forEach(c => {
+          c.style.background = 'transparent';
+          c.style.borderColor = 'rgba(255,255,255,0.15)';
+          c.style.color = 'var(--txt-dim)';
+          c.classList.remove('selected');
+        });
+        chip.classList.add('selected');
+        chip.style.background = 'rgba(251,113,133,0.15)';
+        chip.style.borderColor = 'rgba(251,113,133,0.6)';
+        chip.style.color = '#fca5a5';
+      });
       popup.addEventListener('click', e => { if(e.target===popup) popup.remove(); });
       setTimeout(() => document.getElementById('flagComment')?.focus(), 100);
     }
 
     async function submitFlag(qNum) {
       const comment = (document.getElementById('flagComment')?.value || '').trim();
+      const selectedCat = document.querySelector('.flag-chip.selected')?.dataset?.cat || 'outra';
+      const catLabels = { resposta_incorreta:'Resposta incorreta', desatualizada:'Desatualizada', ambigua:'Ambígua', erro_texto:'Erro de texto', outra:'Outra' };
+      const catLabel = catLabels[selectedCat] || 'Outra';
       const q = state.current;
       const qText = (q?.q || '').substring(0, 500);
       const btn = document.getElementById('flagSendBtn');
@@ -2178,10 +2214,11 @@
 
       const body = {
         access_key: FLAG_API_KEY,
-        subject: `[NefroQuest] Erro sinalizado — Questão #${qNum}`,
+        subject: `[NefroQuest] ${catLabel} — Questão #${qNum}`,
         from_name: 'NefroQuest — Sinalização de Erro',
         message:
           `Questão #${qNum}\n\n` +
+          `Tipo: ${catLabel}\n\n` +
           `ENUNCIADO:\n"${qText}"\n\n` +
           `COMENTÁRIO DO JOGADOR:\n${comment || '(sem comentário adicional)'}`,
       };
@@ -3110,7 +3147,11 @@
         ui.feedback.className='feedback good';
         const multText = sm.label ? ` (${sm.label})` : '';
         const synergyText = _synergy ? ' ✨+20% sinergia' : '';
-        ui.feedback.textContent=`✅ Correto! ${state.current.e} +${xp} XP${multText}${synergyText}, +${g} ouro.${lv?` Level up x${lv}!`:''}`;
+        { const _snip = escapeHtml(_firstSentence(state.current.e));
+          const _full = escapeHtml(state.current.e || '');
+          const _hasMore = _full.length > _snip.length;
+          ui.feedback.innerHTML = `<strong>✅ Correto!</strong> +${xp} XP${multText}${synergyText}, +${g} ouro.${lv?` <strong>Level up x${lv}!</strong>`:''}<br><span>${_snip}${_hasMore?`<span style="display:none;" class="fb-rest"> ${_full.substring(_snip.length)}</span><button class="fb-more-btn" style="background:none;border:none;color:#93c5fd;cursor:pointer;font-size:0.8rem;padding:0 0 0 4px;" onclick="this.previousElementSibling.style.display='inline';this.style.display='none';">ver mais ▾</button>`:''}</span>`;
+        }
         // Boss log
         if (isBossBattle()) {
           const dmg = Math.floor(st.atk * 8 + st.kno * 5 + state.streak * 5);
@@ -3162,12 +3203,11 @@
         if(!blocked) state.lives--;
         state.score=Math.max(0,state.score-(28-Math.min(20,st.def)));
         ui.feedback.className='feedback bad';
-        if(legendaryBlockMsg) {
-          ui.feedback.textContent = legendaryBlockMsg + ' ' + state.current.e;
-        } else {
-          ui.feedback.textContent=blocked
-            ? `🛡️ Errou, mas sua defesa absorveu. ${state.current.e}`
-            : `❌ Incorreta. ${state.current.e}`;
+        { const _prefix = legendaryBlockMsg || (blocked ? '🛡️ Errou, mas sua defesa absorveu.' : '❌ Incorreta.');
+          const _snip2 = escapeHtml(_firstSentence(state.current.e));
+          const _full2 = escapeHtml(state.current.e || '');
+          const _hasMore2 = _full2.length > _snip2.length;
+          ui.feedback.innerHTML = `<strong>${escapeHtml(_prefix)}</strong><br><span>${_snip2}${_hasMore2?`<span style="display:none;" class="fb-rest"> ${_full2.substring(_snip2.length)}</span><button class="fb-more-btn" style="background:none;border:none;color:#93c5fd;cursor:pointer;font-size:0.8rem;padding:0 0 0 4px;" onclick="this.previousElementSibling.style.display='inline';this.style.display='none';">ver mais ▾</button>`:''}</span>`;
         }
         log('⚠️ Você falhou nessa carta. Ajuste a estratégia e continue.');
         playSound('wrong');
@@ -5369,6 +5409,15 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
           <h2 style="color:var(--gold);margin-bottom:6px;font-family:'Cinzel',serif;">📖 MODO DE ESTUDO</h2>
           <p style="color:var(--txt-dim);font-size:0.82rem;margin-bottom:18px;">Selecione os eixos que deseja praticar</p>
 
+          <div style="margin-bottom:12px;">
+            <p style="color:var(--txt-dim);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;margin:0 0 6px;">Trilhas rápidas</p>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;">
+              <button class="btn sec" data-action="_selectTrail" data-arg="residencia" style="font-size:0.74rem;padding:5px 10px;">🏥 Residência</button>
+              <button class="btn sec" data-action="_selectTrail" data-arg="titulo" style="font-size:0.74rem;padding:5px 10px;">📋 Prova de Título</button>
+              <button class="btn sec" data-action="_selectTrail" data-arg="eletrolitos" style="font-size:0.74rem;padding:5px 10px;">⚡ Eletrólitos & AB</button>
+            </div>
+          </div>
+
           <div id="axisCardList" style="display:flex;flex-direction:column;gap:5px;margin-bottom:14px;">
             ${renderAxesHTML()}
           </div>
@@ -5461,7 +5510,47 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
         `;
       }).join('');
     }
-    
+
+    const _TRAILS = {
+      residencia:  ['lra', 'eletrólitos', 'hipertensao', 'infeccao', 'glomerular', 'acido_base'],
+      titulo:      ['glomerular', 'transplante', 'dialise', 'genetica', 'drc', 'acido_base', 'nefropatia_diabetica', 'farmacologia'],
+      eletrolitos: ['eletrólitos', 'acido_base'],
+    };
+
+    function _selectTrail(trailId) {
+      const ids = _TRAILS[trailId];
+      if (!ids) return;
+      _studySelectedAxes.clear();
+      ids.forEach(id => _studySelectedAxes.add(id));
+      const list = document.getElementById('axisCardList');
+      if (!list) return;
+      const stats = getDetailedStats();
+      list.innerHTML = NEFRO_AXES.map(axis => {
+        const sel = _studySelectedAxes.has(axis.id);
+        const axisData = getAxisStats(stats).find(a => a.id === axis.id);
+        const qCount = topics.filter(q => q.cat === axis.cat).length;
+        const pct = axisData ? axisData.accuracy.toFixed(0) + '%' : '—';
+        const color = axisData ? (axisData.accuracy >= 70 ? '#34d399' : axisData.accuracy >= 50 ? '#fbbf24' : '#fb7185') : 'var(--txt-dim)';
+        return `
+          <div data-action="_studyToggleAxis" data-arg="${axis.id}" id="axis-card-${axis.id}"
+            style="cursor:pointer;padding:12px 14px;border-radius:10px;border:2px solid ${sel ? '#8b5cf6' : 'rgba(255,255,255,0.1)'};background:${sel ? 'rgba(139,92,246,0.15)' : 'rgba(255,255,255,0.03)'};transition:all 0.2s;display:flex;align-items:center;gap:12px;">
+            <span style="font-size:1.4rem;">${axis.icon}</span>
+            <div style="flex:1;text-align:left;">
+              <div style="color:var(--txt);font-weight:600;font-size:0.9rem;">${axis.label}</div>
+              <div style="color:var(--txt-dim);font-size:0.7rem;margin-top:2px;">${qCount} questões</div>
+            </div>
+            <div style="text-align:right;">
+              <div style="color:${color};font-weight:bold;font-size:0.85rem;">${pct}</div>
+              <div style="color:var(--txt-dim);font-size:0.65rem;">acerto</div>
+            </div>
+            <div style="width:20px;height:20px;border-radius:50%;border:2px solid ${sel ? '#8b5cf6' : 'rgba(255,255,255,0.3)'};background:${sel ? '#8b5cf6' : 'transparent'};display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              ${sel ? '<span style="color:#fff;font-size:0.7rem;">&#10003;</span>' : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
     // Estado do modo de estudo
     const STUDY_SAVE_KEY = 'nefroquest-study-state';
     const STUDY_TTL_MS   = 24 * 60 * 60 * 1000; // 24h
