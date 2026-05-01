@@ -433,6 +433,22 @@
         // console.debug('[analytics]', event, params);
       } catch(e) { /* silencia erros de analytics */ }
     }
+
+    // Toast centralizado — substitui alert() em toda a aplicação
+    let _toastTimer = null;
+    function _toast(msg, type = 'info', duration = 3000) {
+      const existing = document.querySelector('.nq-toast');
+      if (existing) existing.remove();
+      if (_toastTimer) clearTimeout(_toastTimer);
+      const el = document.createElement('div');
+      el.className = 'nq-toast' + (type !== 'info' ? ' ' + type : '');
+      el.textContent = msg;
+      document.body.appendChild(el);
+      _toastTimer = setTimeout(() => {
+        el.classList.add('out');
+        setTimeout(() => el.remove(), 260);
+      }, duration);
+    }
     // ─────────────────────────────────────────────────────────────────────────
 
     function checkGameCompletion() {
@@ -1214,12 +1230,12 @@
       return getSRDueQuestions(topics.filter(q => selectedCats.has(q.cat))).length;
     }
     function startSRStudyMode() {
-      if (_studySelectedAxes.size === 0) { alert('Selecione pelo menos um eixo!'); return; }
+      if (_studySelectedAxes.size === 0) { _toast('Selecione pelo menos um eixo!', 'warning'); return; }
       const selectedCats = new Set();
       NEFRO_AXES.forEach(ax => { if (_studySelectedAxes.has(ax.id)) selectedCats.add(ax.cat); });
       const due = getSRDueQuestions(topics.filter(q => selectedCats.has(q.cat)));
       if (due.length === 0) {
-        alert('Nenhuma questão para revisar hoje! Volte amanhã ou use o estudo livre.');
+        _toast('Sem revisões pendentes hoje. Volte amanhã ou use o Estudo Livre.', 'info', 4000);
         return;
       }
       studyModeQuestions = shuffle(due);
@@ -1389,6 +1405,7 @@
       const email = document.getElementById('authEmail').value.trim();
       const password = document.getElementById('authPassword').value;
       if (!email || !password) { _setAuthMsg('Preencha email e senha.', 'error'); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { _setAuthMsg('Digite um email válido.', 'error'); return; }
       const btn = document.getElementById('authLoginBtn');
       btn.disabled = true; btn.textContent = 'Entrando...';
       const { error } = await _supaClient.auth.signInWithPassword({ email, password });
@@ -1410,6 +1427,7 @@
       const password = document.getElementById('authPasswordReg').value;
       const passwordConfirm = document.getElementById('authPasswordConfirm').value;
       if (!name || !email || !password || !passwordConfirm) { _setAuthMsg('Preencha todos os campos.', 'error'); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { _setAuthMsg('Digite um email válido.', 'error'); return; }
       if (password.length < 6) { _setAuthMsg('Senha deve ter pelo menos 6 caracteres.', 'error'); return; }
       if (password !== passwordConfirm) { _setAuthMsg('As senhas não coincidem.', 'error'); return; }
       const btn = document.getElementById('authRegBtn');
@@ -1626,6 +1644,7 @@
             }
           }
         } catch(e2) {}
+        _toast('Erro ao carregar o leaderboard. Verifique sua conexão.', 'error');
         return [];
       }
     }
@@ -2781,6 +2800,7 @@
         }
       }
       closeAccountModal();
+      _toast('Perfil salvo com sucesso!', 'success');
     }
 
     // ============ PLAN MODAL ============
@@ -3059,7 +3079,7 @@
       if (!isAdminUser()) return;
       const input = document.getElementById('wlEmailInput');
       const email = input?.value.trim().toLowerCase();
-      if (!email || !email.includes('@')) { alert('Digite um email válido.'); return; }
+      if (!email || !email.includes('@')) { _toast('Digite um email válido.', 'error'); return; }
       if (!_supaClient) return;
       try {
         const { error } = await _supaClient
@@ -3069,7 +3089,7 @@
         if (input) input.value = '';
         adminLoadWhitelist();
       } catch(e) {
-        alert('Erro ao adicionar: ' + (e.message || e));
+        _toast('Erro ao adicionar: ' + (e.message || e), 'error');
       }
     }
     async function adminRemoveWhitelist(email) {
@@ -3084,7 +3104,7 @@
         if (error) throw error;
         adminLoadWhitelist();
       } catch(e) {
-        alert('Erro ao remover: ' + (e.message || e));
+        _toast('Erro ao remover: ' + (e.message || e), 'error');
       }
     }
 
@@ -5082,11 +5102,11 @@
     // ── Notificações de estudo ──────────────────────────────────────────────
     async function enableStudyReminders() {
       if (!('Notification' in window)) {
-        alert('Seu navegador não suporta notificações.'); return;
+        _toast('Seu navegador não suporta notificações.', 'error'); return;
       }
       const perm = await Notification.requestPermission();
       if (perm !== 'granted') {
-        alert('Permissão negada. Ative nas configurações do navegador.'); return;
+        _toast('Permissão negada. Ative nas configurações do navegador.', 'warning'); return;
       }
       localStorage.setItem('nq_notif_enabled', '1');
       // Tentar registrar periodic sync
@@ -5096,11 +5116,11 @@
           await reg.periodicSync.register('nq-study-reminder', { minInterval: 20 * 60 * 60 * 1000 }).catch(() => {});
         }
       }
-      alert('✅ Lembretes de estudo ativados!');
+      _toast('Lembretes de estudo ativados!', 'success');
     }
     function disableStudyReminders() {
       localStorage.removeItem('nq_notif_enabled');
-      alert('Lembretes desativados.');
+      _toast('Lembretes desativados.', 'info');
     }
     function toggleStudyReminders() {
       if (localStorage.getItem('nq_notif_enabled')) {
@@ -5332,7 +5352,7 @@
       chestCost = 100;
       _invalidateStatsCache();
       document.querySelectorAll('.stats-popup').forEach(el => el.remove());
-      alert('✅ Progresso resetado. Começando do zero!');
+      _toast('Progresso resetado. Começando do zero!', 'success');
     }
 
     // ============ MODO DE ESTUDO POR TEMA ============
@@ -5575,7 +5595,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
     
     function startStudyMode() {
       if (_studySelectedAxes.size === 0) {
-        alert('Selecione pelo menos um eixo para estudar!');
+        _toast('Selecione pelo menos um eixo para estudar!', 'warning');
         return;
       }
 
@@ -5608,7 +5628,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
       studyModeQuestions = topics.filter(q => selectedCats.has(q.cat));
       
       if (studyModeQuestions.length === 0) {
-        alert('Nenhuma questão encontrada para os temas selecionados.');
+        _toast('Nenhuma questão encontrada para os temas selecionados.', 'warning');
         return;
       }
       
@@ -7036,7 +7056,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
           const d = (stats.byCategory || {})[axis.cat];
           return { axis, accuracy: (d && d.total > 0) ? d.correct/d.total : 1, total: d ? d.total : 0 };
         }).filter(x => x.total > 0).sort((a,b) => a.accuracy - b.accuracy).slice(0, 3);
-        if (!ranked.length) { alert('Jogue mais questões para identificar seus pontos fracos!'); return; }
+        if (!ranked.length) { _toast('Jogue mais questões para identificar seus pontos fracos!', 'info', 4000); return; }
         axesToStudy = ranked.map(x => x.axis);
         const labels = axesToStudy.map(a => `• ${a.label}`).join('\n');
         if (!confirm(`Nenhuma categoria abaixo de 50%.\nEstudo nas 3 com menor acerto:\n${labels}\n\nContinuar?`)) return;
@@ -7045,7 +7065,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
       }
       const cats = new Set(axesToStudy.map(a => a.cat));
       studyModeQuestions = shuffle(topics.filter(q => cats.has(q.cat)));
-      if (!studyModeQuestions.length) { alert('Nenhuma questão encontrada nas categorias fracas.'); return; }
+      if (!studyModeQuestions.length) { _toast('Nenhuma questão encontrada nas categorias fracas.', 'warning'); return; }
       _studySelectedAxes = new Set(axesToStudy.map(a => a.id));
       studyModeIndex = 0; studyModeCorrect = 0; studyModeWrong = 0; studyModeActive = true;
       document.querySelectorAll('.study-mode-popup,.welcome-screen').forEach(el => el.classList.add('hidden'));
@@ -7066,8 +7086,8 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
         navigator.share({ title: 'NefroQuest', text: lines }).catch(() => {});
       } else {
         navigator.clipboard.writeText(lines)
-          .then(() => alert('✅ Resultado copiado para a área de transferência!'))
-          .catch(() => alert(lines));
+          .then(() => _toast('Resultado copiado para a área de transferência!', 'success'))
+          .catch(() => _toast('Copie manualmente:\n' + lines.substring(0, 80) + '…', 'info', 5000));
       }
     }
 
