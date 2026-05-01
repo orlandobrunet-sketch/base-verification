@@ -429,7 +429,7 @@
         if (typeof gtag === 'function') {
           gtag('event', event, params);
         }
-        // Descomente para debug local:
+        // _track envia via Sentry/analytics; descomente para debug local:
         // console.debug('[analytics]', event, params);
       } catch(e) { /* silencia erros de analytics */ }
     }
@@ -832,7 +832,7 @@
         const save = JSON.parse(raw);
         return _migrateSave(save);
       } catch(e) {
-        console.warn('[NefroQuest] Save corrompido — descartando:', e);
+        _track('error_save_corrupt', {msg: String(e)});
         localStorage.removeItem(SAVE_KEY);
         return null;
       }
@@ -1250,7 +1250,7 @@
 
     (function initSupaAuth() {
       if (localStorage.getItem('nq_guest_mode') === '1') _guestMode = true;
-      if (typeof supabase === 'undefined') { console.warn('Supabase SDK não carregado'); return; }
+      if (typeof supabase === 'undefined') { _track('error_supabase_missing'); return; }
       _supaClient = supabase.createClient(SUPA_URL, SUPA_KEY);
 
       _supaClient.auth.onAuthStateChange(async (event, session) => {
@@ -1614,7 +1614,7 @@
         try { localStorage.setItem(BOARD_LOCAL_KEY, JSON.stringify({ data, ts: now })); } catch(e) {}
         return data;
       } catch(e) {
-        console.warn('Leaderboard fetch error:', e);
+        _track('error_leaderboard_fetch', {msg: String(e)});
         if (_boardCache) return _boardCache;
         try {
           const raw = localStorage.getItem(BOARD_LOCAL_KEY);
@@ -1667,7 +1667,7 @@
         });
         _boardCache = null; // invalidar cache local
       } catch(e) {
-        console.warn('Leaderboard push error:', e);
+        _track('error_leaderboard_push', {msg: String(e)});
         _boardPushedThisSession = false; // permitir retry em caso de erro de rede
       }
     }
@@ -1833,7 +1833,7 @@
         const abilityBadge = (isActive||isPassive) ? `<div style="font-size:0.6rem;color:${wasUsed?'#64748b':isPassive?'rgba(255,215,0,0.7)':'#ffd700'};margin-top:2px">${wasUsed?'\u2713 usada':_LEG_LABELS[v.n]||''}</div>` : '';
         const imgHtml = isEmpty 
           ? `<div class='slot-icon' style='display:flex;align-items:center;justify-content:center;background:rgba(10,15,30,0.8);border:2px dashed var(--blue-dark);color:#3a5a8a;font-size:1.5rem'>?</div>`
-          : `<img class='slot-icon ${glowCls} item-with-tooltip' loading='lazy' src='${icon}' alt="${v.n.replace(/"/g,'&quot;')}" data-item-name="${v.n.replace(/"/g,'&quot;')}" data-item-desc="${desc.replace(/"/g,'&quot;')}"/>`;
+          : `<img class='slot-icon ${glowCls} item-with-tooltip' loading='lazy' src='${icon}' alt="${escapeHtml(v.n)}" data-item-name="${escapeHtml(v.n)}" data-item-desc="${escapeHtml(desc)}"/>`;
         return `<div class='${slotCls}'>
           ${imgHtml}
           <div class='slot-info'>
@@ -2223,7 +2223,7 @@
         status.textContent = '❌ Falha ao enviar. Verifique a chave da API.';
         btn.disabled = false;
         btn.textContent = '📧 Enviar';
-        console.error('[Flag]', err);
+        _track('error_flag_submit', {msg: String(err)});
       }
     }
 
@@ -2694,7 +2694,7 @@
           return;
         }
       } catch(e) {
-        console.warn('Premium poll error:', e);
+        _track('error_premium_poll', {msg: String(e)});
       }
       // Backoff exponencial: tentativas 1-3→3s, 4-6→5s, 7-10→8s
       const delay = _premiumPollCount <= 3 ? 3000 : _premiumPollCount <= 6 ? 5000 : 8000;
@@ -2773,11 +2773,11 @@
             specialty: data.spec,
             city:      data.city,
           });
-          if (profileError) console.warn('Erro ao salvar perfil:', profileError.message);
+          if (profileError) _track('error_save_profile', {msg: profileError.message});
           const { error: userError } = await _supaClient.auth.updateUser({ data: { full_name: data.name, specialty: data.spec } });
-          if (userError) console.warn('Erro ao atualizar auth user:', userError.message);
+          if (userError) _track('error_update_auth_user', {msg: userError.message});
         } catch(e) {
-          console.warn('saveAccountData falhou (Supabase):', e);
+          _track('error_save_account', {msg: String(e)});
         }
       }
       closeAccountModal();
@@ -6635,6 +6635,9 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
       }, 300);
     }
 
+    // Throttle para mousemove/mouseover — evita jank em 60fps
+    let _mmLast = 0;
+    const _MM_THROTTLE = 40; // ms
     // Posicionar tooltips via JS para evitar corte
     document.addEventListener('mouseover', function(e){
       const badge = e.target.closest('.stat-badge');
@@ -6653,6 +6656,9 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
     // Tooltip de item ao passar mouse
     let itemTooltip = null;
     document.addEventListener('mousemove', function(e){
+      const now = Date.now();
+      if (now - _mmLast < _MM_THROTTLE) return;
+      _mmLast = now;
       const item = e.target.closest('.item-with-tooltip');
       if(item){
         if(!itemTooltip){
@@ -7078,6 +7084,28 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
     }
     window.addEventListener('online',  _updateOnlineStatus);
     window.addEventListener('offline', _updateOnlineStatus);
+
+    // Handler global para promises rejeitadas sem catch — evita falha silenciosa
+    window.addEventListener('unhandledrejection', function(e) {
+      _track('error_unhandled_rejection', { msg: String(e.reason) });
+    });
+
+    // ESC fecha o modal ou popup mais recente no topo
+    document.addEventListener('keydown', function(e) {
+      if (e.key !== 'Escape') return;
+      // Fecha forge popup primeiro
+      const forgePopup = document.querySelector('.forge-popup');
+      if (forgePopup) { forgePopup.remove(); return; }
+      // Fecha narrative popup
+      const narrative = document.querySelector('.narrative-popup');
+      if (narrative) { narrative.remove(); return; }
+      // Fecha qualquer modal genérico
+      const modal = document.querySelector('.modal');
+      if (modal) { modal.remove(); return; }
+      // Fecha game modes overlay
+      const gm = document.getElementById('gameModesOverlay');
+      if (gm && gm.style.display !== 'none' && gm.classList.contains('open')) { closeGameModesPopup(); return; }
+    });
     _updateOnlineStatus();
 
     // ============ PWA INSTALL BANNER ============

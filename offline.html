@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NefroQuest — Sem conexão</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100dvh;
+      background: linear-gradient(135deg, #0a0e1a 0%, #0d1527 50%, #0a0e1a 100%);
+      color: #d5e2ff;
+      font-family: system-ui, -apple-system, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+    }
+    .icon { font-size: 4rem; margin-bottom: 20px; }
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #ffd700;
+      margin-bottom: 10px;
+      letter-spacing: 0.05em;
+    }
+    p {
+      font-size: 0.9rem;
+      color: #90b4e0;
+      max-width: 320px;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    button {
+      background: linear-gradient(180deg, #3b82f6, #1d4ed8);
+      border: none;
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+    }
+    button:active { opacity: 0.85; }
+  </style>
+</head>
+<body>
+  <div class="icon">📡</div>
+  <h1>Sem conexão</h1>
+  <p>Você está offline. Verifique sua conexão e tente novamente para continuar sua jornada pelo Reino dos Néfrons.</p>
+  <button onclick="location.reload()">Tentar novamente</button>
+</body>
+</html>

@@ -95,7 +95,7 @@
       max-width: 1460px; margin: 0 auto; padding: 8px;
       display: grid; grid-template-columns: 380px 1fr 80px; gap: 8px;
       align-content: start;
-      min-height: 100vh; /* garante que o fundo não aparece abaixo quando o conteúdo é menor que a viewport */
+      min-height: 100dvh; /* garante que o fundo não aparece abaixo quando o conteúdo é menor que a viewport */
     }
     .app.hidden { display: none; }
 
@@ -1609,7 +1609,7 @@
       position: relative; z-index: 2;
       display: flex; flex-direction: column; align-items: center; gap: 8px;
       width: 100%; max-width: 360px; padding: 16px 20px;
-      overflow-y: auto; max-height: 100vh;
+      overflow-y: auto; max-height: 100dvh;
     }
     .landing-ornament {
       font-size: 0.68rem; color: var(--gold); letter-spacing: 3px;
@@ -2048,7 +2048,7 @@
         position: fixed;
         top: 0; left: 0;
         width: 100vw;
-        height: 100vh;
+        height: 100vh; height: 100dvh;
         z-index: 8500;
         transform: translateX(-100%);
         transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);

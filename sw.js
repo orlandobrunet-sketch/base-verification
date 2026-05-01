@@ -3,6 +3,7 @@ const CACHE = 'nefroquest-v9.13';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
+  '/offline.html',
   '/assets/sounds/bgmusic.mp3',
   '/assets/sounds/correct.wav',
   '/assets/sounds/wrong.wav',
@@ -65,7 +66,7 @@ self.addEventListener('fetch', e => {
   if (url.pathname === '/clear-cache.html') return;
   if (url.pathname === '/version.json') return;
 
-  // HTML e navegação → network-first com cache: no-store para bypassar CDN/HTTP cache
+  // HTML e navegação → network-first com fallback para offline.html
   const isNav = e.request.mode === 'navigate'
     || url.pathname.endsWith('.html')
     || url.pathname === '/';
@@ -79,7 +80,7 @@ self.addEventListener('fetch', e => {
           }
           return res;
         })
-        .catch(() => caches.match(e.request))
+        .catch(() => caches.match(e.request).then(cached => cached || caches.match('/offline.html')))
     );
     return;
   }
