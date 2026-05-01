@@ -7085,6 +7085,17 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
     window.addEventListener('online',  _updateOnlineStatus);
     window.addEventListener('offline', _updateOnlineStatus);
 
+    // Garante role="dialog" e aria-modal em todos os modais criados dinamicamente
+    const _origAppendChild = Element.prototype.appendChild;
+    Element.prototype.appendChild = function(node) {
+      const result = _origAppendChild.call(this, node);
+      if (node && node.classList && node.classList.contains('modal') && !node.getAttribute('role')) {
+        node.setAttribute('role', 'dialog');
+        node.setAttribute('aria-modal', 'true');
+      }
+      return result;
+    };
+
     // Handler global para promises rejeitadas sem catch — evita falha silenciosa
     window.addEventListener('unhandledrejection', function(e) {
       _track('error_unhandled_rejection', { msg: String(e.reason) });
@@ -7218,6 +7229,15 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
 
     // ============ DISPATCHER CENTRAL (data-action / data-action-seq) ============
     // Substitui inline onclick="..." em HTML estático e em templates JS
+    // Suporte a teclado (Enter/Space) para elementos role="button" com data-action
+    document.addEventListener('keydown', function(e) {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      const el = e.target.closest('[role="button"][data-action]');
+      if (!el) return;
+      e.preventDefault();
+      el.click();
+    });
+
     document.addEventListener('click', function(e) {
       const el = e.target.closest('[data-action], [data-action-seq], [data-close-closest], [data-remove-id]');
       if (!el) return;

@@ -177,11 +177,11 @@
     <span class="hero-btn-label">Herói</span>
   </button>
   <div class="mobile-sound-controls" id="mobileSoundControls">
-    <div class="sound-toggle" data-action="toggleMusic">
-      <span id="mobileSoundMusicIcon">🎵</span>
+    <div class="sound-toggle" role="button" tabindex="0" aria-label="Ativar/desativar música" data-action="toggleMusic">
+      <span id="mobileSoundMusicIcon" aria-hidden="true">🎵</span>
     </div>
-    <div class="sound-toggle" data-action="toggleSound">
-      <span id="mobileSoundSfxIcon">🔊</span>
+    <div class="sound-toggle" role="button" tabindex="0" aria-label="Ativar/desativar efeitos sonoros" data-action="toggleSound">
+      <span id="mobileSoundSfxIcon" aria-hidden="true">🔊</span>
     </div>
   </div>
 
@@ -267,11 +267,11 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     <div class="welcome-particles" id="welcomeParticles"></div>
     <!-- Botões de som na welcome screen (PC only) -->
     <div class="welcome-sound-controls" id="welcomeSoundControls">
-      <div class="sound-toggle" data-action="toggleMusic">
-        <span id="welcomeMusicIcon">🎵</span>
+      <div class="sound-toggle" role="button" tabindex="0" aria-label="Ativar/desativar música" data-action="toggleMusic">
+        <span id="welcomeMusicIcon" aria-hidden="true">🎵</span>
       </div>
-      <div class="sound-toggle" data-action="toggleSound">
-        <span id="welcomeSoundIcon">🔊</span>
+      <div class="sound-toggle" role="button" tabindex="0" aria-label="Ativar/desativar efeitos sonoros" data-action="toggleSound">
+        <span id="welcomeSoundIcon" aria-hidden="true">🔊</span>
       </div>
       <div class="profile-btn" id="welcomeProfileBtn" data-action="toggleProfilePopup" data-arg="welcome">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
@@ -358,11 +358,11 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       <div id="finalMeterStarsTop" style="display:none;justify-content:center;gap:6px;align-items:center;padding:4px 0 2px;"></div>
       <!-- Sound controls estáticos dentro do título (PC only) -->
       <div class="sound-controls" id="soundControlsBar">
-        <div id="musicToggle" class="sound-toggle" data-action="toggleMusic">
-          <span id="musicIcon">🎵</span>
+        <div id="musicToggle" class="sound-toggle" role="button" tabindex="0" aria-label="Ativar/desativar música" data-action="toggleMusic">
+          <span id="musicIcon" aria-hidden="true">🎵</span>
         </div>
-        <div id="soundToggle" class="sound-toggle" data-action="toggleSound">
-          <span id="soundIcon">🔊</span>
+        <div id="soundToggle" class="sound-toggle" role="button" tabindex="0" aria-label="Ativar/desativar efeitos sonoros" data-action="toggleSound">
+          <span id="soundIcon" aria-hidden="true">🔊</span>
         </div>
         <div class="profile-btn" id="gameProfileBtn" data-action="toggleProfilePopup" data-arg="game">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
@@ -652,7 +652,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         </div>
       </div>
       <div id="options" class="options"></div>
-      <div id="feedback" class="feedback">Escolha a melhor resposta.</div>
+      <div id="feedback" class="feedback" aria-live="polite" aria-atomic="true">Escolha a melhor resposta.</div>
       <div id="refs" class="refs"></div>
       <div class="ctrl">
         <button id="nextBtn" class="btn hidden">Próxima Carta</button>
