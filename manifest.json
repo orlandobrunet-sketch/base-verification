@@ -1,7 +1,7 @@
 {
   "name": "NefroQuest: Ascension",
   "short_name": "NefroQuest",
-  "description": "Domine a Nefrologia. Conquiste o Reino dos Néfrons.",
+  "description": "Domine a Nefrologia através de um RPG épico de perguntas e suba de nível.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -13,5 +13,21 @@
   "icons": [
     { "src": "assets/images/favicon-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
     { "src": "assets/images/favicon-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "Modo de Estudo",
+      "short_name": "Estudo",
+      "description": "Abrir seletor de eixos do modo de estudo",
+      "url": "/?mode=study",
+      "icons": [{ "src": "assets/images/favicon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Julgamento Rápido",
+      "short_name": "Julgamento",
+      "description": "Iniciar o minigame de Verdadeiro ou Falso",
+      "url": "/?mode=rapidquiz",
+      "icons": [{ "src": "assets/images/favicon-192x192.png", "sizes": "192x192" }]
+    }
   ]
 }
