@@ -710,6 +710,7 @@
     const FREE_QUESTIONS_LIMIT = 50;
     const PREMIUM_KEY = 'nefroquest-premium';
     const WHITELIST_KEY = 'nefroquest-whitelist';
+    const IDENTITY_KEY = 'nq-identity'; // 'study' | 'combat'
     const _lang = (navigator.language || 'pt').startsWith('pt') ? 'pt' : 'en';
     const PRICE_MONTHLY  = _lang === 'pt' ? 'R$14,90' : 'US$14.90';
     const PRICE_LIFETIME = _lang === 'pt' ? 'R$199,00' : 'US$199.00';
@@ -944,7 +945,54 @@
       }
       
       refreshWelcomeSave();
+      _showIdentityChooser();
     }
+
+    // ── IDENTITY CHOOSER ────────────────────────────────────────────────────
+    function _getIdentity() { return localStorage.getItem(IDENTITY_KEY); }
+
+    function _showIdentityChooser() {
+      if (_getIdentity()) return;
+      const overlay = document.createElement('div');
+      overlay.id = 'identityOverlay';
+      overlay.className = 'identity-overlay';
+      overlay.innerHTML = `
+        <div class="identity-modal" role="dialog" aria-modal="true" aria-labelledby="identityTitle">
+          <div class="identity-ornament">&#10022; Reino dos Néfrons &#10022;</div>
+          <h2 class="identity-title" id="identityTitle">Como você chega hoje?</h2>
+          <p class="identity-sub">Sua escolha define o ponto de partida. Você pode mudar quando quiser nas configurações.</p>
+          <div class="identity-paths">
+            <button class="identity-path study" onclick="window._pickIdentity('study')">
+              <span class="identity-path-icon">📖</span>
+              <span class="identity-path-name">Estudar</span>
+              <span class="identity-path-desc">Revisar tópicos, trilhas temáticas e desafios rápidos</span>
+            </button>
+            <button class="identity-path combat" onclick="window._pickIdentity('combat')">
+              <span class="identity-path-icon">⚔️</span>
+              <span class="identity-path-name">Combater</span>
+              <span class="identity-path-desc">Avançar na jornada, subir de nível e derrotar o Arqui-Nefromante</span>
+            </button>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(overlay);
+      requestAnimationFrame(() => overlay.classList.add('visible'));
+    }
+
+    window._pickIdentity = function(v) {
+      localStorage.setItem(IDENTITY_KEY, v);
+      const overlay = document.getElementById('identityOverlay');
+      if (overlay) {
+        overlay.classList.remove('visible');
+        setTimeout(() => overlay.remove(), 300);
+      }
+      if (v === 'study') {
+        playSound('click');
+        setTimeout(() => showTopicSelector(), 350);
+      } else {
+        playSound('click');
+      }
+    };
 
     function refreshWelcomeSave() {
       const save = loadGame();
@@ -2091,33 +2139,24 @@
       }).catch(() => {});
     }
 
-    function renderQuestion(){
-      // Mostrar barra de status mobile apenas na tela de perguntas
-      const _msb = document.getElementById('mobileStatusBar');
-      if(_msb) _msb.classList.add('active');
-      state.answered=false;
-      const q=drawQuestion();
-      if(!q) return;
-      state.current=q;
-      ui.question.textContent=q.q;
-      ui.options.innerHTML='';
-      ui.feedback.className='feedback';
-      ui.feedback.textContent='Escolha a melhor alternativa clínica.';
-      renderRefs(q.r);
-      ui.nextBtn.classList.add('hidden');
-      ui.bonusBtn.classList.add('hidden');
+    function _renderOptions(q) {
+      ui.options.innerHTML = '';
       if (!q.o || !Array.isArray(q.o)) return;
-      q.o.forEach((opt,i)=>{
-        const b=document.createElement('button');
-        b.className='option'; b.type='button';
-        b.dataset.idx=i;
-        b.textContent=`${String.fromCharCode(65+i)}) ${opt}`;
+      q.o.forEach((opt, i) => {
+        const b = document.createElement('button');
+        b.className = 'option'; b.type = 'button';
+        b.dataset.idx = i;
+        b.textContent = `${String.fromCharCode(65 + i)}) ${opt}`;
         ui.options.appendChild(b);
       });
-      // Relíquia do Título: botão de pular questão (1× por jogo)
-      const _skipBtn = document.getElementById('skipQuestionBtn');
-      if(state.equipment?.relic?.n === 'Relíquia do Título' && !state.legendaryAbilityUsed?.['Relíquia do Título']) {
-        if(!_skipBtn) {
+    }
+
+    function _updateSkipButton() {
+      const existing = document.getElementById('skipQuestionBtn');
+      const hasRelic = state.equipment?.relic?.n === 'Relíquia do Título';
+      const alreadyUsed = state.legendaryAbilityUsed?.['Relíquia do Título'];
+      if (hasRelic && !alreadyUsed) {
+        if (!existing) {
           const sb = document.createElement('button');
           sb.id = 'skipQuestionBtn';
           sb.className = 'skip-question-btn visible';
@@ -2131,12 +2170,28 @@
           };
           ui.options.parentElement.insertBefore(sb, ui.options.nextSibling);
         } else {
-          _skipBtn.classList.add('visible');
+          existing.classList.add('visible');
         }
-      } else if(_skipBtn) {
-        _skipBtn.remove();
+      } else if (existing) {
+        existing.remove();
       }
-      // ── Confronto Final: atualiza UI do boss e injeta badges ──
+    }
+
+    function renderQuestion(){
+      const _msb = document.getElementById('mobileStatusBar');
+      if (_msb) _msb.classList.add('active');
+      state.answered = false;
+      const q = drawQuestion();
+      if (!q) return;
+      state.current = q;
+      ui.question.textContent = q.q;
+      ui.feedback.className = 'feedback';
+      ui.feedback.textContent = 'Escolha a melhor alternativa clínica.';
+      renderRefs(q.r);
+      ui.nextBtn.classList.add('hidden');
+      ui.bonusBtn.classList.add('hidden');
+      _renderOptions(q);
+      _updateSkipButton();
       updateBossUI();
       applyBossOptionBadges();
     }
@@ -2390,15 +2445,23 @@
         <button class="btn" style="background:rgba(96,165,250,0.12);border:2px solid rgba(96,165,250,0.5);color:var(--blue)" data-action="paywallRegister">📝 Criar conta gratuita</button>
         <button class="btn" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.2)" data-action="paywallLogin">Já tenho conta — Entrar</button>
       ` : '';
+      const _identity = _getIdentity();
+      const _pwIcon  = _identity === 'study'  ? '📖' : '🏰';
+      const _pwTitle = _identity === 'study'  ? 'Banco de Questões Completo' : 'Jornada Gratuita Concluída';
+      const _pwBody  = _identity === 'study'
+        ? `Você esgotou as <strong style="color:#ffd700">${FREE_QUESTIONS_LIMIT} questões gratuitas</strong>.<br>Desbloqueie o banco completo e todas as trilhas temáticas!`
+        : `Você respondeu <strong style="color:#ffd700">${FREE_QUESTIONS_LIMIT} questões gratuitas</strong>.<br>Desbloqueie o acesso completo para continuar sua jornada nefrológica!`;
+      const _pwDesc  = _identity === 'study'
+        ? 'Acesso vitalício · +1000 questões · Todas as trilhas · Futuras atualizações'
+        : 'Acesso vitalício · Todas as questões · Futuras atualizações';
       modal.innerHTML = `
         <div class="paywall-content">
-          <div style="font-size:2.6rem;margin-bottom:12px;">🏰</div>
-          <h2>Jornada Gratuita Concluída</h2>
-          <p>Você respondeu <strong style="color:#ffd700">${FREE_QUESTIONS_LIMIT} questões gratuitas</strong>.<br>
-          Desbloqueie o acesso completo para continuar sua jornada nefrológica!</p>
+          <div style="font-size:2.6rem;margin-bottom:12px;">${_pwIcon}</div>
+          <h2>${_pwTitle}</h2>
+          <p>${_pwBody}</p>
           <div class="paywall-price">
             <div class="price-amount">${PRICE_LIFETIME}</div>
-            <div class="price-desc">Acesso vitalício · Todas as questões · Futuras atualizações</div>
+            <div class="price-desc">${_pwDesc}</div>
           </div>
           <div style="display:flex;flex-direction:column;gap:10px;">
             <button class="btn gold" data-action="paywallUpgrade">✨ Desbloquear Acesso Premium</button>
@@ -2753,6 +2816,14 @@
               <label>Cidade</label>
               <input id="acctCity" type="text" placeholder="Sua cidade">
             </div>
+            <div class="form-group">
+              <label>Modo preferido</label>
+              <select id="acctIdentity" style="width:100%;background:#0d1525;border:1px solid var(--blue-dark);color:var(--txt);border-radius:var(--radius-md);padding:9px 12px;font-size:var(--text-sm);font-family:inherit;">
+                <option value="">Não definido</option>
+                <option value="study">📖 Estudar</option>
+                <option value="combat">⚔️ Combater</option>
+              </select>
+            </div>
             <div class="modal-actions">
               <button data-action="closeAccountModal" style="background:rgba(255,255,255,0.06);color:#c8d8f0;border:1px solid var(--blue-dark);">Cancelar</button>
               <button data-action="saveAccountData" style="background:linear-gradient(135deg,#1a4080,#2a5fa0);color:#e0f0ff;border:none;">Salvar</button>
@@ -2763,11 +2834,12 @@
       }
       // Populate
       const saved = (() => { try { return JSON.parse(localStorage.getItem(ACCT_KEY) || '{}'); } catch(e) { return {}; } })();
-      document.getElementById('acctName').value  = authUser?.user_metadata?.full_name || saved.name || '';
-      document.getElementById('acctEmail').value = authUser?.email || '';
-      document.getElementById('acctPhone').value = saved.phone || '';
-      document.getElementById('acctSpec').value  = saved.spec  || '';
-      document.getElementById('acctCity').value  = saved.city  || '';
+      document.getElementById('acctName').value     = authUser?.user_metadata?.full_name || saved.name || '';
+      document.getElementById('acctEmail').value    = authUser?.email || '';
+      document.getElementById('acctPhone').value    = saved.phone || '';
+      document.getElementById('acctSpec').value     = saved.spec  || '';
+      document.getElementById('acctCity').value     = saved.city  || '';
+      document.getElementById('acctIdentity').value = _getIdentity() || '';
       modal.style.display = 'flex';
     }
     function closeAccountModal() {
@@ -2782,6 +2854,9 @@
         city:  document.getElementById('acctCity').value.trim(),
       };
       try { localStorage.setItem(ACCT_KEY, JSON.stringify(data)); } catch(e) {}
+      const newIdentity = document.getElementById('acctIdentity').value;
+      if (newIdentity) localStorage.setItem(IDENTITY_KEY, newIdentity);
+      else localStorage.removeItem(IDENTITY_KEY);
       // Salvar no Supabase
       if (_supaClient && authUser) {
         try {
@@ -4476,45 +4551,77 @@
     }
 
     let _lastBoardFetch = 0;
+    let _boardFullData = [];
+
+    function _renderBoardRows(data, query) {
+      const rankClass = ['r1','r2','r3'];
+      const rankLabel = ['🥇','🥈','🥉'];
+      const charAvatars = {
+        'Dr. Nephros':    'assets/classes/clerigo_renal/nivel_01.jpg',
+        'Dra. Aquaria':   'assets/classes/maga_metabolica/nivel_01.jpg',
+        'Dr. Glomerulus': 'assets/classes/guerreiro_glomerular/nivel_01.png'
+      };
+      const q = (query || '').trim().toLowerCase();
+      const filtered = data.map((r, globalIdx) => ({ r, globalIdx }))
+        .filter(({ r }) => !q ||
+          (r.player_name    || '').toLowerCase().includes(q) ||
+          (r.character_name || '').toLowerCase().includes(q)
+        );
+      if (!filtered.length) {
+        ui.boardBody.innerHTML = '<tr><td colspan="7" class="board-empty">Nenhum resultado encontrado.</td></tr>';
+        return;
+      }
+      ui.boardBody.innerHTML = filtered.map(({ r, globalIdx: i }) => {
+        const rc = i < 3 ? rankClass[i] : 'rn';
+        const rl = i < 3 ? rankLabel[i] : (i + 1);
+        const avatar = charAvatars[r.character_name] || 'assets/classes/clerigo_renal/nivel_01.jpg';
+        const dateStr = r.played_at ? new Date(r.played_at).toLocaleDateString('pt-BR', {day:'2-digit',month:'2-digit',year:'2-digit'}) : '-';
+        const isMe = state.lastSubmittedName && r.player_name === state.lastSubmittedName;
+        return `<tr class="rank-${i < 3 ? i+1 : 'n'}${isMe ? ' rank-me' : ''}">
+          <td class="col-rank"><span class="rank-badge ${rc}">${rl}</span></td>
+          <td class="col-player"><div class="player-cell"><img class="player-avatar" src="${avatar}" alt="" loading="lazy"><span class="player-name-text">${escapeHtml(r.player_name)||'Anônimo'}</span></div></td>
+          <td class="col-char">${escapeHtml(r.character_name)||'Desconhecido'}</td>
+          <td class="col-score score-cell">${(r.score||0).toLocaleString('pt-BR')}</td>
+          <td class="col-level level-cell">${r.level||1}</td>
+          <td class="col-chests chests-cell">${r.chests_opened||0}</td>
+          <td class="col-date date-cell">${dateStr}</td>
+        </tr>`;
+      }).join('');
+    }
+
     async function renderBoard(forceRefresh = false){
       const now = Date.now();
       if (!forceRefresh && now - _lastBoardFetch < 5000) return;
       _lastBoardFetch = now;
       const loading = document.getElementById('boardLoading');
       const updateEl = document.getElementById('boardLastUpdate');
+      const searchEl = document.getElementById('boardSearch');
       if (loading) loading.classList.remove('hidden');
       ui.boardBody.innerHTML = '';
       const data = await boardFetch(forceRefresh);
       if (loading) loading.classList.add('hidden');
-      const b = data.slice(0, 20);
-      const rankClass = ['r1','r2','r3'];
-      const rankLabel = ['🥇','🥈','🥉'];
-      const charAvatars = {
-        'Dr. Nephros': 'assets/classes/clerigo_renal/nivel_01.jpg',
-        'Dra. Aquaria': 'assets/classes/maga_metabolica/nivel_01.jpg',
-        'Dr. Glomerulus': 'assets/classes/guerreiro_glomerular/nivel_01.png'
-      };
-      if (b.length) {
-        ui.boardBody.innerHTML = b.map((r, i) => {
-          const rc = i < 3 ? rankClass[i] : 'rn';
-          const rl = i < 3 ? rankLabel[i] : (i + 1);
-          const avatar = charAvatars[r.character_name] || 'assets/classes/clerigo_renal/nivel_01.jpg';
-          const dateStr = r.played_at ? new Date(r.played_at).toLocaleDateString('pt-BR', {day:'2-digit',month:'2-digit',year:'2-digit'}) : '-';
-          const isMe = state.lastSubmittedName && r.player_name === state.lastSubmittedName;
-          return `<tr class="rank-${i+1 <= 3 ? i+1 : 'n'}${isMe ? ' rank-me' : ''}">
-            <td class="col-rank"><span class="rank-badge ${rc}">${rl}</span></td>
-            <td class="col-player"><div class="player-cell"><img class="player-avatar" src="${avatar}" alt="" loading="lazy"><span class="player-name-text">${escapeHtml(r.player_name)||'An\u00f4nimo'}</span></div></td>
-            <td class="col-char">${escapeHtml(r.character_name)||'Desconhecido'}</td>
-            <td class="col-score score-cell">${(r.score||0).toLocaleString('pt-BR')}</td>
-            <td class="col-level level-cell">${r.level||1}</td>
-            <td class="col-chests chests-cell">${r.chests_opened||0}</td>
-            <td class="col-date date-cell">${dateStr}</td>
-          </tr>`;
-        }).join('');
-      } else {
+      _boardFullData = data.slice(0, 50);
+      if (_boardFullData.length === 0) {
         ui.boardBody.innerHTML = '<tr><td colspan="7" class="board-empty">Nenhum aventureiro registrou pontuação ainda.<br>Seja o primeiro a entrar para a história!</td></tr>';
+      } else {
+        _renderBoardRows(_boardFullData, searchEl?.value || '');
       }
       if (updateEl) updateEl.textContent = `Atualizado: ${new Date().toLocaleTimeString('pt-BR', {hour:'2-digit',minute:'2-digit'})}`;
+
+      if (searchEl && !searchEl.dataset.wired) {
+        searchEl.dataset.wired = '1';
+        searchEl.addEventListener('input', () => _renderBoardRows(_boardFullData, searchEl.value));
+      }
+      const myPosBtn = document.getElementById('boardMyPos');
+      if (myPosBtn && !myPosBtn.dataset.wired) {
+        myPosBtn.dataset.wired = '1';
+        myPosBtn.addEventListener('click', () => {
+          if (searchEl) { searchEl.value = ''; _renderBoardRows(_boardFullData, ''); }
+          const myRow = ui.boardBody.querySelector('tr.rank-me');
+          if (myRow) myRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          else _toast('Sua pontuação ainda não está no ranking. Termine uma partida!', 'info');
+        });
+      }
     }
     window.renderBoard = renderBoard;
 
@@ -7246,6 +7353,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
     window.saveAccountData        = function() { return saveAccountData(); };
     window.loadAnalyticsData      = function() { return loadAnalyticsData(); };
     window.adminAddWhitelist      = function() { return adminAddWhitelist(); };
+    window._pickIdentity          = window._pickIdentity || function() {};
 
     // ============ DISPATCHER CENTRAL (data-action / data-action-seq) ============
     // Substitui inline onclick="..." em HTML estático e em templates JS
