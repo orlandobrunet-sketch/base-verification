@@ -695,7 +695,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
       showStudyModePage();
     }
     
-    function showStudyModePage() {
+    function showStudyModePage(sessionLabel) {
       // Esconder o jogo principal
       document.querySelector('.app').classList.add('hidden');
       document.querySelector('.welcome-screen')?.classList.add('hidden');
@@ -722,7 +722,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
               </div>
             </div>
             <div style="text-align:center;flex:1;">
-              <h1 style="font-family:'MedievalSharp','Cinzel',serif;color:var(--gold);font-size:1.1rem;margin:0;">📖 Modo de Estudo</h1>
+              <h1 style="font-family:'MedievalSharp','Cinzel',serif;color:var(--gold);font-size:1.1rem;margin:0;">${sessionLabel === 'reforço' ? '🎯 Sessão de Reforço' : '📖 Modo de Estudo'}</h1>
             </div>
             <div style="color:var(--txt-dim);font-size:0.85rem;flex-shrink:0;">
               <span id="studyProgress">${studyModeIndex + 1}</span>/${studyModeQuestions.length}
@@ -935,15 +935,73 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
         const { diagnosis } = await res.json();
         if (!diagnosis) throw new Error('empty');
 
+        // Verificar se há pontos fracos para reforço (cat com acerto < 60%)
+        const weakCats = _getWeakCats();
+        const hasWeak = weakCats.length > 0;
+
         card.classList.remove('ai-diagnosis-loading');
         card.innerHTML = `
           <div class="ai-diagnosis-header">🤖 Diagnóstico da Sessão</div>
           <div class="ai-diagnosis-body">${escapeHtml(diagnosis).replace(/\n/g, '<br>')}</div>
+          ${hasWeak ? `
+          <div style="margin-top:14px;text-align:center;">
+            <button class="btn reinforcement-btn" data-action="startReinforcementSession">
+              🎯 Treinar pontos fracos <span style="font-size:0.72rem;opacity:0.7;">(${_countReinforcementQuestions(weakCats)} questões)</span>
+            </button>
+          </div>` : ''}
         `;
       } catch {
         card.remove();
       }
     }
+
+    function _getWeakCats() {
+      return Object.entries(_studyAxisStats)
+        .filter(([, s]) => {
+          const total = s.correct + s.wrong;
+          return total > 0 && (s.correct / total) < 0.6;
+        })
+        .map(([cat]) => cat);
+    }
+
+    function _countReinforcementQuestions(weakCats) {
+      const pool = topics.filter(q => weakCats.includes(q.cat));
+      return Math.min(7, pool.length);
+    }
+
+    function startReinforcementSession() {
+      const weakCats = _getWeakCats();
+      if (weakCats.length === 0) {
+        _toast('Nenhum ponto fraco identificado — sessão excelente!', 'success');
+        return;
+      }
+
+      // Filtrar questões das categorias fracas, priorizando revisões pendentes
+      const pool = topics.filter(q => weakCats.includes(q.cat));
+      const due   = getSRDueQuestions(pool);
+      // Se não há revisões pendentes, usa o pool completo
+      const source = due.length >= 3 ? due : pool;
+      const questions = shuffle(source).slice(0, 7);
+
+      if (questions.length === 0) {
+        _toast('Sem questões disponíveis para esses eixos.', 'warning');
+        return;
+      }
+
+      // Lançar mini-sessão reutilizando o fluxo existente
+      studyModeQuestions = questions;
+      studyModeIndex     = 0;
+      studyModeCorrect   = 0;
+      studyModeWrong     = 0;
+      studyModeActive    = true;
+      _studyAxisStats    = {};
+      _clearStudyState();
+
+      // Label especial para sessão de reforço
+      showStudyModePage('reforço');
+    }
+
+    window.startReinforcementSession = startReinforcementSession;
     
     function restartStudyMode() {
       _clearStudyState();
