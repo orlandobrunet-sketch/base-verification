@@ -23,6 +23,10 @@ const STATIC_ASSETS = [
   '/data/topics.js',
   '/data/rapid-quiz.js',
   '/style.css',
+  '/js/utils.js',
+  '/js/audio.js',
+  '/js/leaderboard.js',
+  '/js/study-mode.js',
   '/js/game.js',
 ];
 
