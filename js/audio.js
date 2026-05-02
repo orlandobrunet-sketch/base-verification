@@ -53,7 +53,7 @@
       function tick(now) {
         if (_wmStopRequested) { if (rafId) cancelAnimationFrame(rafId); _wmFadeInterval = null; return; }
         const elapsed = now - startTime;
-        const t = Math.min(1, elapsed / WM_FADEIN_MS);
+        const t = Math.min(1, Math.max(0, elapsed / WM_FADEIN_MS));
         // curva ease-out sqrt: sobe rápido no início, desacelera no fim
         wmTrack.volume = WELCOME_MUSIC_VOL * Math.sqrt(t);
         if (t < 1) {

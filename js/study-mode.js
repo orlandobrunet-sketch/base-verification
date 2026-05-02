@@ -17,6 +17,7 @@
       }
       studyModeQuestions = shuffle(due);
       studyModeIndex = 0; studyModeCorrect = 0; studyModeWrong = 0; studyModeActive = true;
+      _studyAxisStats = {};
       document.querySelectorAll('.study-mode-popup').forEach(el => el.remove());
       showStudyModePage();
     }
@@ -605,6 +606,40 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
     let studyModeIndex = 0;
     let studyModeCorrect = 0;
     let studyModeWrong = 0;
+    let _studyAxisStats = {};  // { cat: { correct, wrong } } — reset each session
+
+    // ── Mentor quota (free: 3/day) ────────────────────────────────────────────
+    const MENTOR_QUOTA_KEY = 'nq-mentor-quota';
+    let _mentorCurrentQ = null;
+    let _mentorHistory = [];
+
+    function _getMentorQuota() {
+      const today = new Date().toISOString().slice(0, 10);
+      try {
+        const stored = JSON.parse(localStorage.getItem(MENTOR_QUOTA_KEY) || '{}');
+        if (stored.date !== today) return { date: today, count: 0 };
+        return stored;
+      } catch { return { date: today, count: 0 }; }
+    }
+
+    function _canAskMentor() {
+      if (isPremium()) return true;
+      return _getMentorQuota().count < 3;
+    }
+
+    function _incrementMentorQuota() {
+      if (isPremium()) return;
+      const q = _getMentorQuota();
+      q.count = (q.count || 0) + 1;
+      localStorage.setItem(MENTOR_QUOTA_KEY, JSON.stringify(q));
+    }
+
+    function _mentorRemainingText() {
+      if (isPremium()) return '';
+      const { count } = _getMentorQuota();
+      const rem = Math.max(0, 3 - count);
+      return `${rem}/3 perguntas restantes hoje`;
+    }
     
     function startStudyMode() {
       if (_studySelectedAxes.size === 0) {
@@ -651,7 +686,8 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
       studyModeCorrect = 0;
       studyModeWrong = 0;
       studyModeActive = true;
-      
+      _studyAxisStats = {};
+
       // Fechar popup de seleção
       document.querySelectorAll('.study-mode-popup').forEach(el => el.remove());
 
@@ -773,7 +809,24 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
         studyModeWrong++;
         document.getElementById('studyWrong').textContent = studyModeWrong;
       }
-      
+
+      // Rastrear desempenho por eixo temático
+      if (q.cat) {
+        _studyAxisStats[q.cat] = _studyAxisStats[q.cat] || { correct: 0, wrong: 0 };
+        _studyAxisStats[q.cat][isCorrect ? 'correct' : 'wrong']++;
+      }
+
+      // Botão de mentor (apenas em erros)
+      const mentorBtnHtml = !isCorrect ? `
+        <div style="text-align:center;margin-top:10px;">
+          ${_canAskMentor()
+            ? `<button class="btn ghost" style="font-size:0.78rem;padding:7px 16px;" data-action="openMentorModal">
+                🎓 Perguntar ao Mentor <span style="font-size:0.68rem;opacity:0.6;">(${_mentorRemainingText()})</span>
+               </button>`
+            : `<div style="font-size:0.75rem;color:var(--txt-dim);margin-top:4px;">Limite diário de perguntas atingido — <button class="btn ghost" style="font-size:0.72rem;padding:4px 10px;" data-action="showPricingModal">Premium ilimitado</button></div>`
+          }
+        </div>` : '';
+
       // Mostrar feedback
       const feedback = document.getElementById('studyFeedback');
       feedback.style.display = 'block';
@@ -787,14 +840,18 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
           </div>
           ${(q.refs||[]).length ? `<div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;">${(q.refs||[]).map(k => refsDB[k] ? `<a href="${refsDB[k].url}" target="_blank" rel="noopener" style="color:var(--blue);font-size:0.72rem;text-decoration:none;border:1px solid rgba(96,165,250,0.3);padding:2px 9px;border-radius:12px;white-space:nowrap;">🔗 ${escapeHtml(refsDB[k].label)}</a>` : '').filter(Boolean).join('')}</div>` : ''}
         </div>
-        
+        ${mentorBtnHtml}
         <div style="text-align:center;margin-top:16px;">
           <button class="btn gold" data-action="nextStudyQuestion">
             ${studyModeIndex + 1 < studyModeQuestions.length ? 'Próxima Questão →' : 'Ver Resultados'}
           </button>
         </div>
       `;
-      
+
+      // Guardar questão atual para o mentor
+      _mentorCurrentQ = q;
+      _mentorHistory = [];
+
       playSound(isCorrect ? 'correct' : 'wrong');
     }
     
@@ -807,14 +864,14 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
     function showStudyModeResults() {
       const total = studyModeQuestions.length;
       const accuracy = total > 0 ? Math.round((studyModeCorrect / total) * 100) : 0;
-      
+
       const area = document.getElementById('studyQuestionArea');
       area.innerHTML = `
         <div style="text-align:center;">
           <h2 style="color:var(--gold);font-family:'MedievalSharp','Cinzel',serif;margin-bottom:20px;">
             🎉 Estudo Concluído! 🎉
           </h2>
-          
+
           <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px;">
             <div style="background:rgba(59,130,246,0.15);border:2px solid rgba(59,130,246,0.4);border-radius:10px;padding:16px;">
               <div style="font-size:2rem;color:#3b82f6;font-weight:bold;">${total}</div>
@@ -829,20 +886,63 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
               <div style="font-size:0.8rem;color:var(--txt-dim);">Erros</div>
             </div>
           </div>
-          
+
           <div style="background:rgba(255,215,0,0.1);border:2px solid rgba(255,215,0,0.3);border-radius:10px;padding:20px;margin-bottom:24px;">
             <div style="font-size:2.5rem;color:var(--gold);font-weight:bold;">${accuracy}%</div>
             <div style="color:var(--txt-dim);">Taxa de Acerto</div>
           </div>
-          
-          <div style="display:flex;gap:12px;justify-content:center;">
+
+          <div id="aiDiagnosisCard" class="ai-diagnosis-card ai-diagnosis-loading">
+            <div class="ai-diagnosis-header">🤖 Analisando sua sessão...</div>
+            <div class="ai-diagnosis-spinner"></div>
+          </div>
+
+          <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;">
             <button class="btn sec" data-action="exitStudyMode">← Voltar</button>
             <button class="btn gold" data-action="restartStudyMode">Estudar Novamente</button>
           </div>
         </div>
       `;
-      
+
       playSound('victory');
+
+      // Buscar diagnóstico IA em background — graceful degradation se falhar
+      if (total > 0) {
+        _fetchDiagnosis(total, studyModeCorrect, studyModeWrong, accuracy);
+      } else {
+        document.getElementById('aiDiagnosisCard')?.remove();
+      }
+    }
+
+    async function _fetchDiagnosis(total, correct, wrong, accuracy) {
+      const card = document.getElementById('aiDiagnosisCard');
+      if (!card) return;
+
+      // Montar array de eixos com estatísticas
+      const axes = Object.entries(_studyAxisStats).map(([cat, stats]) => {
+        const axis = NEFRO_AXES.find(a => a.cat === cat);
+        return { name: axis ? axis.label : cat, correct: stats.correct, wrong: stats.wrong };
+      });
+
+      try {
+        const res = await fetch(`${SUPA_URL}/functions/v1/ai-diagnosis`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'apikey': SUPA_KEY },
+          body: JSON.stringify({ axes, totalCorrect: correct, totalWrong: wrong, accuracy }),
+        });
+
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const { diagnosis } = await res.json();
+        if (!diagnosis) throw new Error('empty');
+
+        card.classList.remove('ai-diagnosis-loading');
+        card.innerHTML = `
+          <div class="ai-diagnosis-header">🤖 Diagnóstico da Sessão</div>
+          <div class="ai-diagnosis-body">${escapeHtml(diagnosis).replace(/\n/g, '<br>')}</div>
+        `;
+      } catch {
+        card.remove();
+      }
     }
     
     function restartStudyMode() {
@@ -866,3 +966,136 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
         refreshWelcomeSave();
       }
     }
+
+    // ── Mentor Modal ────────────────────────────────────────────────────────
+    function openMentorModal() {
+      const q = _mentorCurrentQ;
+      if (!q) return;
+
+      // Remove existing overlay if any
+      document.getElementById('mentorOverlay')?.remove();
+
+      const overlay = document.createElement('div');
+      overlay.id = 'mentorOverlay';
+      overlay.className = 'mentor-overlay';
+      overlay.innerHTML = `
+        <div class="mentor-modal" role="dialog" aria-modal="true" aria-label="Mentor NefroQuest">
+          <div class="mentor-header">
+            <span>🎓 Mentor NefroQuest</span>
+            <button class="mentor-close-btn" data-action="closeMentorModal" aria-label="Fechar">✕</button>
+          </div>
+          <div class="mentor-context">
+            <div class="mentor-context-label">Questão em análise:</div>
+            <div class="mentor-context-text">${escapeHtml(_firstSentence(q.q || '', 120))}</div>
+          </div>
+          <div class="mentor-chat" id="mentorChat"></div>
+          <div class="mentor-quota-bar" id="mentorQuotaBar">${_mentorRemainingText()}</div>
+          <div class="mentor-input-row">
+            <textarea id="mentorInput" class="mentor-textarea"
+              placeholder="O que você não entendeu? Qual foi o seu raciocínio?" rows="2"
+              maxlength="400"></textarea>
+            <button class="btn gold mentor-send-btn" data-action="_sendMentorMessage">Enviar</button>
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(overlay);
+      requestAnimationFrame(() => overlay.classList.add('visible'));
+
+      const input = document.getElementById('mentorInput');
+      input?.focus();
+
+      // Close on overlay click outside modal
+      overlay.addEventListener('click', e => { if (e.target === overlay) closeMentorModal(); });
+
+      // Enter to submit (Shift+Enter for newline)
+      input?.addEventListener('keydown', e => {
+        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); _sendMentorMessage(); }
+      });
+    }
+
+    function closeMentorModal() {
+      const overlay = document.getElementById('mentorOverlay');
+      if (!overlay) return;
+      overlay.classList.remove('visible');
+      setTimeout(() => overlay.remove(), 280);
+    }
+
+    async function _sendMentorMessage() {
+      const q = _mentorCurrentQ;
+      const input = document.getElementById('mentorInput');
+      const chat = document.getElementById('mentorChat');
+      if (!input || !chat || !q) return;
+
+      const text = input.value.trim();
+      if (!text) return;
+
+      if (!_canAskMentor()) {
+        _appendMentorMsg(chat, 'system', 'Você atingiu o limite diário de 3 perguntas. Faça upgrade para Premium para perguntas ilimitadas.');
+        return;
+      }
+
+      _appendMentorMsg(chat, 'user', text);
+      input.value = '';
+      input.disabled = true;
+
+      const thinkingEl = _appendMentorMsg(chat, 'assistant', '...');
+      thinkingEl.classList.add('mentor-thinking');
+
+      try {
+        const res = await fetch(`${SUPA_URL}/functions/v1/ai-mentor`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'apikey': SUPA_KEY },
+          body: JSON.stringify({
+            questionText: q.q,
+            options: q.opts,
+            correctOption: q.opts?.[q.ans],
+            explanation: q.exp,
+            userQuestion: text,
+            history: _mentorHistory,
+          }),
+        });
+
+        const data = await res.json();
+        if (!res.ok || !data.reply) throw new Error(data.error || 'Erro ao contatar o mentor.');
+
+        thinkingEl.classList.remove('mentor-thinking');
+        thinkingEl.textContent = data.reply;
+        thinkingEl.innerHTML = escapeHtml(data.reply).replace(/\n/g, '<br>');
+
+        // Update history for multi-turn
+        _mentorHistory.push({ role: 'user', content: text });
+        _mentorHistory.push({ role: 'assistant', content: data.reply });
+
+        _incrementMentorQuota();
+
+        const quotaBar = document.getElementById('mentorQuotaBar');
+        if (quotaBar) quotaBar.textContent = _mentorRemainingText();
+
+        // Update the mentor button in feedback if quota exhausted
+        if (!_canAskMentor()) {
+          document.querySelector('[data-action="openMentorModal"]')?.remove();
+        }
+      } catch (err) {
+        thinkingEl.classList.remove('mentor-thinking');
+        thinkingEl.textContent = 'Mentor indisponível no momento. Tente novamente em instantes.';
+        thinkingEl.style.color = '#fb7185';
+      } finally {
+        input.disabled = false;
+        input.focus();
+      }
+    }
+
+    function _appendMentorMsg(chat, role, text) {
+      const el = document.createElement('div');
+      el.className = `mentor-msg mentor-msg-${role}`;
+      el.textContent = text;
+      chat.appendChild(el);
+      chat.scrollTop = chat.scrollHeight;
+      return el;
+    }
+
+    // Expose to dispatcher
+    window.openMentorModal   = openMentorModal;
+    window.closeMentorModal  = closeMentorModal;
+    window._sendMentorMessage = _sendMentorMessage;
