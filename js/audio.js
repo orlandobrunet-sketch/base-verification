@@ -75,9 +75,13 @@
       const steps = Math.round(WM_FADEOUT_MS / 30);
       let step = 0;
       _wmFadeOutInterval = setInterval(() => {
+        if (_wmStopRequested) {
+          clearInterval(_wmFadeOutInterval); _wmFadeOutInterval = null;
+          wmTrack.volume = 0; wmTrack.pause();
+          return;
+        }
         step++;
         const t = step / steps;
-        // curva ease-in: desce devagar no início, acelera no fim
         wmTrack.volume = Math.max(0, startVol * (1 - t * t));
         if (step >= steps) {
           clearInterval(_wmFadeOutInterval); _wmFadeOutInterval = null;
