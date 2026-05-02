@@ -153,7 +153,13 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-903Y6240FZ');
+    gtag('config', 'G-903Y6240FZ', {
+      // Ativa GA4 DebugView fora de produção — permite ver eventos em tempo real
+      // em analytics.google.com > DebugView enquanto testa
+      debug_mode: location.hostname !== 'nefroquest.com',
+      // Garante cookies SameSite corretos para PWA instalado (standalone mode)
+      cookie_flags: 'SameSite=None;Secure',
+    });
   </script>
 </head>
 <body>
