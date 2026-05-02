@@ -414,7 +414,10 @@
         timestamp: Date.now(),
         schemaVersion: SAVE_SCHEMA_VERSION
       };
-      try { localStorage.setItem(SAVE_KEY, JSON.stringify(saveData)); } catch(e) {}
+      try { localStorage.setItem(SAVE_KEY, JSON.stringify(saveData)); } catch(e) {
+        _track('error_localstorage_full', { msg: String(e) });
+        _toast('Aviso: progresso não salvo — armazenamento cheio. Libere espaço nas configurações do navegador.', 'warning', 6000);
+      }
     }
 
     function _migrateSave(save) {
@@ -1321,7 +1324,7 @@
 
     function renderEquip(){
       const st=total();
-      ui.equipList.innerHTML=Object.entries(state.equipment).map(([k,v])=>{
+      const slotsHTML=Object.entries(state.equipment).map(([k,v])=>{
         const isEmpty = v.n === 'Vazio';
         const icon = isEmpty ? '' : (itemIcons[v.n] || defaultIcons[k]);
         const desc = isEmpty ? 'Slot vazio. Forje itens para equipar!' : (itemDescriptions[v.n] || '');
@@ -1357,8 +1360,8 @@
       const synergyBanner = _synergyActive
         ? `<div style='text-align:center;margin-top:6px;padding:5px 10px;background:linear-gradient(135deg,rgba(255,215,0,0.15),rgba(255,140,0,0.1));border-radius:8px;border:1px solid rgba(255,215,0,0.5);font-size:0.7rem;color:#ffd700;animation:legendaryPassiveGlow 3s ease-in-out infinite'>✨ Sinergia Lendária — +20% XP</div>`
         : '';
-      // Desktop: no final da lista de equipamentos
-      ui.equipList.innerHTML+=`<div style='text-align:center;margin-top:8px;padding:6px 10px;background:rgba(42,74,122,0.2);border-radius:8px;border:1px solid rgba(42,74,122,0.4);font-size:0.75rem;color:#b0c4e8'>${totalHTML}</div>${synergyBanner}`;
+      // Desktop: no final da lista de equipamentos — um único innerHTML= para evitar reflow duplo
+      ui.equipList.innerHTML = slotsHTML + `<div style='text-align:center;margin-top:8px;padding:6px 10px;background:rgba(42,74,122,0.2);border-radius:8px;border:1px solid rgba(42,74,122,0.4);font-size:0.75rem;color:#b0c4e8'>${totalHTML}</div>${synergyBanner}`;
       // Mobile: logo abaixo do herói
       const equipTotalMobile = document.getElementById('equipTotalMobile');
       if(equipTotalMobile) {

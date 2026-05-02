@@ -59,6 +59,17 @@
       --radius-lg:   14px;
       --radius-xl:   20px;
       --radius-full: 9999px;
+
+      /* ── Z-index scale (centralizado — nunca use valores ad-hoc) ─ */
+      --z-bg:           0;    /* .bg-layer, .bg-overlay, .particles */
+      --z-app:          10;   /* .app principal */
+      --z-dropdown:     100;  /* tooltips, dropdowns */
+      --z-sticky:       200;  /* headers fixos */
+      --z-overlay:      500;  /* overlays de conteúdo (study page, modals leves) */
+      --z-modal:        1000; /* modals padrão */
+      --z-mentor:       9900; /* identity overlay, mentor modal */
+      --z-toast:        9950; /* toasts e notificações */
+      --z-top:          10000; /* offline badge, elementos máxima prioridade */
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {

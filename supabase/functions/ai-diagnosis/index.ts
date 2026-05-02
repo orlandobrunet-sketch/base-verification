@@ -8,11 +8,26 @@
  *   ANTHROPIC_API_KEY — chave da API da Anthropic
  */
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-};
+const ALLOWED_ORIGINS = [
+  'https://nefroquest.com',
+  'https://www.nefroquest.com',
+];
+
+function getCorsHeaders(origin: string | null): Record<string, string> {
+  const allowed =
+    origin != null && (
+      ALLOWED_ORIGINS.includes(origin) ||
+      /^https:\/\/[a-z0-9-]+-[a-z0-9]+-[a-z0-9]+\.vercel\.app$/.test(origin) ||
+      /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)
+    );
+
+  return {
+    'Access-Control-Allow-Origin': allowed ? origin! : 'https://nefroquest.com',
+    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Vary': 'Origin',
+  };
+}
 
 const ANTHROPIC_API = 'https://api.anthropic.com/v1/messages';
 
@@ -29,15 +44,23 @@ Diretrizes:
 - Não repita os números que já foram mostrados ao usuário — acrescente interpretação
 - Termine com uma frase motivacional curta e específica para nefrologia`;
 
+// Input size limits
+const MAX_AXES       = 20;
+const MAX_AXIS_NAME  = 100;
+const MAX_COUNT      = 10_000;
+
 Deno.serve(async (req) => {
+  const origin = req.headers.get('Origin');
+  const cors   = getCorsHeaders(origin);
+
   if (req.method === 'OPTIONS') {
-    return new Response('ok', { headers: corsHeaders });
+    return new Response('ok', { headers: cors });
   }
 
   if (req.method !== 'POST') {
     return new Response(JSON.stringify({ error: 'Method not allowed' }), {
       status: 405,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      headers: { ...cors, 'Content-Type': 'application/json' },
     });
   }
 
@@ -45,7 +68,7 @@ Deno.serve(async (req) => {
   if (!apiKey) {
     return new Response(JSON.stringify({ error: 'API key not configured' }), {
       status: 500,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      headers: { ...cors, 'Content-Type': 'application/json' },
     });
   }
 
@@ -61,24 +84,49 @@ Deno.serve(async (req) => {
   } catch {
     return new Response(JSON.stringify({ error: 'Invalid JSON' }), {
       status: 400,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      headers: { ...cors, 'Content-Type': 'application/json' },
     });
   }
 
   const { axes = [], totalCorrect = 0, totalWrong = 0, accuracy = 0 } = body;
 
-  if (axes.length === 0 && totalCorrect + totalWrong === 0) {
-    return new Response(JSON.stringify({ error: 'No session data provided' }), {
-      status: 400,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+  // ── Input validation ────────────────────────────────────────────────────
+  if (!Array.isArray(axes) || axes.length > MAX_AXES) {
+    return new Response(JSON.stringify({ error: 'axes invalid' }), {
+      status: 400, headers: { ...cors, 'Content-Type': 'application/json' },
     });
   }
+  for (const a of axes) {
+    if (
+      typeof a.name !== 'string' || a.name.length > MAX_AXIS_NAME ||
+      !Number.isFinite(a.correct) || a.correct < 0 || a.correct > MAX_COUNT ||
+      !Number.isFinite(a.wrong)   || a.wrong   < 0 || a.wrong   > MAX_COUNT
+    ) {
+      return new Response(JSON.stringify({ error: 'axis data invalid' }), {
+        status: 400, headers: { ...cors, 'Content-Type': 'application/json' },
+      });
+    }
+  }
+  if (
+    !Number.isFinite(totalCorrect) || totalCorrect < 0 || totalCorrect > MAX_COUNT ||
+    !Number.isFinite(totalWrong)   || totalWrong   < 0 || totalWrong   > MAX_COUNT ||
+    !Number.isFinite(accuracy)     || accuracy < 0     || accuracy > 100
+  ) {
+    return new Response(JSON.stringify({ error: 'session totals invalid' }), {
+      status: 400, headers: { ...cors, 'Content-Type': 'application/json' },
+    });
+  }
+  if (axes.length === 0 && totalCorrect + totalWrong === 0) {
+    return new Response(JSON.stringify({ error: 'No session data provided' }), {
+      status: 400, headers: { ...cors, 'Content-Type': 'application/json' },
+    });
+  }
+  // ────────────────────────────────────────────────────────────────────────
 
-  // Build performance summary
   const axisLines = axes.length
     ? axes.map(a => {
         const total = a.correct + a.wrong;
-        const pct = total > 0 ? Math.round((a.correct / total) * 100) : 0;
+        const pct   = total > 0 ? Math.round((a.correct / total) * 100) : 0;
         return `- ${a.name}: ${a.correct}/${total} acertos (${pct}%)`;
       }).join('\n')
     : '(dados por eixo não disponíveis)';
@@ -113,7 +161,7 @@ Gere um diagnóstico personalizado para este estudante.`;
       console.error('Anthropic API error:', response.status, errText);
       return new Response(JSON.stringify({ error: 'AI service unavailable' }), {
         status: 502,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        headers: { ...cors, 'Content-Type': 'application/json' },
       });
     }
 
@@ -121,13 +169,13 @@ Gere um diagnóstico personalizado para este estudante.`;
     const diagnosis = data.content?.[0]?.text ?? '';
 
     return new Response(JSON.stringify({ diagnosis }), {
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      headers: { ...cors, 'Content-Type': 'application/json' },
     });
   } catch (err) {
     console.error('Diagnosis function error:', err);
     return new Response(JSON.stringify({ error: 'Internal error' }), {
       status: 500,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      headers: { ...cors, 'Content-Type': 'application/json' },
     });
   }
 });

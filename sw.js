@@ -78,9 +78,10 @@ self.addEventListener('fetch', e => {
   if (isNav) {
     e.respondWith(
       fetch(e.request, { cache: 'no-store' })
-        .then(res => {
+        .then(async res => {
           if (res.ok) {
-            caches.open(CACHE).then(c => c.put(e.request, res.clone()));
+            const cache = await caches.open(CACHE);
+            await cache.put(e.request, res.clone());
           }
           return res;
         })
@@ -93,9 +94,10 @@ self.addEventListener('fetch', e => {
   e.respondWith(
     caches.match(e.request).then(cached => {
       if (cached) return cached;
-      return fetch(e.request).then(res => {
+      return fetch(e.request).then(async res => {
         if (res.ok) {
-          caches.open(CACHE).then(c => c.put(e.request, res.clone()));
+          const cache = await caches.open(CACHE);
+          await cache.put(e.request, res.clone());
         }
         return res;
       }).catch(() => caches.match(e.request));

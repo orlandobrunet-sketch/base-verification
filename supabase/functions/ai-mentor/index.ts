@@ -8,11 +8,26 @@
  *   ANTHROPIC_API_KEY — chave da API da Anthropic
  */
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-};
+const ALLOWED_ORIGINS = [
+  'https://nefroquest.com',
+  'https://www.nefroquest.com',
+];
+
+function getCorsHeaders(origin: string | null): Record<string, string> {
+  const allowed =
+    origin != null && (
+      ALLOWED_ORIGINS.includes(origin) ||
+      /^https:\/\/[a-z0-9-]+-[a-z0-9]+-[a-z0-9]+\.vercel\.app$/.test(origin) ||
+      /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)
+    );
+
+  return {
+    'Access-Control-Allow-Origin': allowed ? origin! : 'https://nefroquest.com',
+    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Vary': 'Origin',
+  };
+}
 
 const ANTHROPIC_API = 'https://api.anthropic.com/v1/messages';
 
@@ -27,15 +42,27 @@ Diretrizes:
 - Se o aluno fizer uma pergunta fora do contexto da questão, redirecione gentilmente
 - Nunca forneça apenas a resposta — explique o raciocínio`;
 
+// Input size limits
+const MAX_USER_QUESTION  = 500;
+const MAX_QUESTION_TEXT  = 2000;
+const MAX_OPTION_TEXT    = 300;
+const MAX_OPTIONS        = 5;
+const MAX_EXPLANATION    = 2000;
+const MAX_HISTORY_TURNS  = 10;
+const MAX_HISTORY_CONTENT = 2000;
+
 Deno.serve(async (req) => {
+  const origin = req.headers.get('Origin');
+  const cors   = getCorsHeaders(origin);
+
   if (req.method === 'OPTIONS') {
-    return new Response('ok', { headers: corsHeaders });
+    return new Response('ok', { headers: cors });
   }
 
   if (req.method !== 'POST') {
     return new Response(JSON.stringify({ error: 'Method not allowed' }), {
       status: 405,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      headers: { ...cors, 'Content-Type': 'application/json' },
     });
   }
 
@@ -43,7 +70,7 @@ Deno.serve(async (req) => {
   if (!apiKey) {
     return new Response(JSON.stringify({ error: 'API key not configured' }), {
       status: 500,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      headers: { ...cors, 'Content-Type': 'application/json' },
     });
   }
 
@@ -61,38 +88,86 @@ Deno.serve(async (req) => {
   } catch {
     return new Response(JSON.stringify({ error: 'Invalid JSON' }), {
       status: 400,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      headers: { ...cors, 'Content-Type': 'application/json' },
     });
   }
 
-  const { questionText, options, correctOption, explanation, userQuestion, history = [] } = body;
+  const {
+    questionText,
+    options,
+    correctOption,
+    explanation,
+    userQuestion,
+    history = [],
+  } = body;
 
-  if (!userQuestion?.trim()) {
-    return new Response(JSON.stringify({ error: 'userQuestion is required' }), {
-      status: 400,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-    });
+  // ── Input validation ────────────────────────────────────────────────────
+  const uq = userQuestion?.trim() ?? '';
+  if (!uq || uq.length > MAX_USER_QUESTION) {
+    return new Response(
+      JSON.stringify({ error: `userQuestion must be 1–${MAX_USER_QUESTION} characters` }),
+      { status: 400, headers: { ...cors, 'Content-Type': 'application/json' } },
+    );
   }
+  if (questionText && questionText.length > MAX_QUESTION_TEXT) {
+    return new Response(
+      JSON.stringify({ error: 'questionText too long' }),
+      { status: 400, headers: { ...cors, 'Content-Type': 'application/json' } },
+    );
+  }
+  if (options) {
+    if (!Array.isArray(options) || options.length > MAX_OPTIONS ||
+        options.some(o => typeof o !== 'string' || o.length > MAX_OPTION_TEXT)) {
+      return new Response(
+        JSON.stringify({ error: 'options invalid' }),
+        { status: 400, headers: { ...cors, 'Content-Type': 'application/json' } },
+      );
+    }
+  }
+  if (explanation && explanation.length > MAX_EXPLANATION) {
+    return new Response(
+      JSON.stringify({ error: 'explanation too long' }),
+      { status: 400, headers: { ...cors, 'Content-Type': 'application/json' } },
+    );
+  }
+  if (!Array.isArray(history) || history.length > MAX_HISTORY_TURNS * 2) {
+    return new Response(
+      JSON.stringify({ error: 'history too long' }),
+      { status: 400, headers: { ...cors, 'Content-Type': 'application/json' } },
+    );
+  }
+  for (const msg of history) {
+    if (
+      typeof msg.role !== 'string' || !['user', 'assistant'].includes(msg.role) ||
+      typeof msg.content !== 'string' || msg.content.length > MAX_HISTORY_CONTENT
+    ) {
+      return new Response(
+        JSON.stringify({ error: 'history message invalid' }),
+        { status: 400, headers: { ...cors, 'Content-Type': 'application/json' } },
+      );
+    }
+  }
+  // ────────────────────────────────────────────────────────────────────────
 
-  // Build context block
   const contextParts: string[] = [];
   if (questionText) contextParts.push(`**Questão:** ${questionText}`);
-  if (options?.length) contextParts.push(`**Alternativas:**\n${options.map((o, i) => `${String.fromCharCode(65 + i)}) ${o}`).join('\n')}`);
+  if (options?.length) {
+    contextParts.push(
+      `**Alternativas:**\n${options.map((o, i) => `${String.fromCharCode(65 + i)}) ${o}`).join('\n')}`,
+    );
+  }
   if (correctOption) contextParts.push(`**Resposta correta:** ${correctOption}`);
-  if (explanation) contextParts.push(`**Explicação oficial:** ${explanation}`);
+  if (explanation)   contextParts.push(`**Explicação oficial:** ${explanation}`);
 
   const contextBlock = contextParts.length
     ? `Contexto da questão:\n${contextParts.join('\n\n')}\n\n---\n\n`
     : '';
 
-  // Build message history for multi-turn
   const messages: { role: string; content: string }[] = [];
 
-  // Inject context into first user message
   if (history.length === 0) {
-    messages.push({ role: 'user', content: `${contextBlock}Dúvida do aluno: ${userQuestion}` });
+    messages.push({ role: 'user', content: `${contextBlock}Dúvida do aluno: ${uq}` });
   } else {
-    // Prepend context to the first message in history if not already present
     const firstMsg = history[0];
     if (!firstMsg.content.startsWith('Contexto da questão:')) {
       messages.push({ role: firstMsg.role, content: `${contextBlock}${firstMsg.content}` });
@@ -100,7 +175,7 @@ Deno.serve(async (req) => {
     } else {
       messages.push(...history);
     }
-    messages.push({ role: 'user', content: userQuestion });
+    messages.push({ role: 'user', content: uq });
   }
 
   try {
@@ -124,7 +199,7 @@ Deno.serve(async (req) => {
       console.error('Anthropic API error:', response.status, errText);
       return new Response(JSON.stringify({ error: 'AI service unavailable' }), {
         status: 502,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        headers: { ...cors, 'Content-Type': 'application/json' },
       });
     }
 
@@ -132,13 +207,13 @@ Deno.serve(async (req) => {
     const reply = data.content?.[0]?.text ?? '';
 
     return new Response(JSON.stringify({ reply }), {
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      headers: { ...cors, 'Content-Type': 'application/json' },
     });
   } catch (err) {
     console.error('Mentor function error:', err);
     return new Response(JSON.stringify({ error: 'Internal error' }), {
       status: 500,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      headers: { ...cors, 'Content-Type': 'application/json' },
     });
   }
 });
