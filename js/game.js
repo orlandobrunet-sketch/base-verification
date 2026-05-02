@@ -5856,13 +5856,13 @@
     window._copyRefBtn = function(btn) {
       if (typeof _copyRef === 'function') _copyRef(btn, btn.dataset.copyText || '');
     };
-    // Dispatcher gaps — funções async que precisam ser acessíveis via data-action
-    window.saveNewPassword        = function() { return saveNewPassword(); };
-    window.submitFlag             = function(q) { return submitFlag(q); };
-    window._pollPremiumActivation = function() { return _pollPremiumActivation(); };
-    window.saveAccountData        = function() { return saveAccountData(); };
-    window.loadAnalyticsData      = function() { return loadAnalyticsData(); };
-    window.adminAddWhitelist      = function() { return adminAddWhitelist(); };
+    // Dispatcher gaps — referências diretas (nunca lambdas, para evitar recursão infinita)
+    window.saveNewPassword        = saveNewPassword;
+    window.submitFlag             = submitFlag;
+    window._pollPremiumActivation = _pollPremiumActivation;
+    window.saveAccountData        = saveAccountData;
+    window.loadAnalyticsData      = loadAnalyticsData;
+    window.adminAddWhitelist      = adminAddWhitelist;
     window._pickIdentity          = window._pickIdentity || function() {};
 
     // ============ DISPATCHER CENTRAL (data-action / data-action-seq) ============
