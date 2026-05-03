@@ -927,7 +927,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
       try {
         const res = await fetch(`${SUPA_URL}/functions/v1/ai-diagnosis`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'apikey': SUPA_KEY },
+          headers: { 'Content-Type': 'application/json', 'apikey': SUPA_KEY, 'Authorization': `Bearer ${SUPA_KEY}` },
           body: JSON.stringify({ axes, totalCorrect: correct, totalWrong: wrong, accuracy }),
         });
 
@@ -1103,7 +1103,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
       try {
         const res = await fetch(`${SUPA_URL}/functions/v1/ai-mentor`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'apikey': SUPA_KEY },
+          headers: { 'Content-Type': 'application/json', 'apikey': SUPA_KEY, 'Authorization': `Bearer ${SUPA_KEY}` },
           body: JSON.stringify({
             questionText: q.q,
             options: q.opts,
@@ -1118,7 +1118,6 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
         if (!res.ok || !data.reply) throw new Error(data.error || 'Erro ao contatar o mentor.');
 
         thinkingEl.classList.remove('mentor-thinking');
-        thinkingEl.textContent = data.reply;
         thinkingEl.innerHTML = escapeHtml(data.reply).replace(/\n/g, '<br>');
 
         // Update history for multi-turn
