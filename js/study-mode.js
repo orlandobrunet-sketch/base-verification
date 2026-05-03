@@ -1134,6 +1134,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
           document.querySelector('[data-action="openMentorModal"]')?.remove();
         }
       } catch (err) {
+        _track('error_mentor_send', { msg: String(err) });
         thinkingEl.classList.remove('mentor-thinking');
         thinkingEl.textContent = 'Mentor indisponível no momento. Tente novamente em instantes.';
         thinkingEl.style.color = '#fb7185';
