@@ -1532,11 +1532,12 @@
         const impactoClass = (ref.impacto && (ref.impacto.includes('↓') || ref.impacto.includes('superior') || ref.impacto.includes('reduz'))) ? 'green' :
                              (ref.impacto && (ref.impacto.includes('não') || ref.impacto.includes('n\u00e3o'))) ? 'amber' : '';
         const copyText = [ref.label, ref.journal, ref.ano].filter(Boolean).join('. ');
+        const scholarUrl = `https://scholar.google.com/scholar?q=${encodeURIComponent(ref.label)}`;
         return `
           <div class="ref-card" style="--ref-accent:${accent}">
             <div class="ref-card-top">
               <span class="ref-icon">${ref.icon || '📄'}</span>
-              <span class="ref-title">${escapeHtml(ref.label)}</span>
+              <a class="ref-title" href="${scholarUrl}" target="_blank" rel="noopener noreferrer" title="Buscar no Google Scholar" style="color:inherit;text-decoration:none;">${escapeHtml(ref.label)} <span style="font-size:0.7em;opacity:0.55;">↗</span></a>
               <span class="ref-badge" style="background:${accent}">${escapeHtml(ref.badge || 'REF')}</span>
             </div>
             <div class="ref-meta">
