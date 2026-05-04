@@ -5869,6 +5869,75 @@
     window.adminAddWhitelist      = adminAddWhitelist;
     window._pickIdentity          = window._pickIdentity || function() {};
 
+    // ============ POLÍTICA DE PRIVACIDADE ============
+    function showPrivacyPolicy() {
+      document.querySelectorAll('.privacy-popup').forEach(el => el.remove());
+      const modal = document.createElement('div');
+      modal.className = 'modal show privacy-popup';
+      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;height:100dvh;background:rgba(0,0,0,0.88);display:flex;align-items:flex-start;justify-content:center;z-index:10000;backdrop-filter:blur(6px);overflow-y:auto;padding:12px 16px calc(env(safe-area-inset-bottom,0px)+40px);box-sizing:border-box;';
+      modal.innerHTML = `
+        <div class="modal-content" style="max-width:560px;width:calc(100% - 32px);max-height:none;overflow-y:visible;text-align:left;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;box-shadow:0 0 40px rgba(96,165,250,0.2);margin:auto 0;">
+          <h2 style="color:var(--gold);margin-bottom:4px;font-family:'MedievalSharp','Cinzel',serif;text-align:center;">📜 Política de Privacidade</h2>
+          <div style="color:var(--txt-dim);font-size:0.72rem;margin-bottom:20px;text-align:center;">NefroQuest · Última atualização: maio de 2025</div>
+
+          <div style="color:#c8d8f0;font-size:0.83rem;line-height:1.75;display:flex;flex-direction:column;gap:16px;">
+
+            <div>
+              <div style="color:var(--blue);font-weight:700;margin-bottom:4px;">1. Quem somos</div>
+              <p style="margin:0;">O NefroQuest é uma plataforma educacional de nefrologia desenvolvida para médicos, residentes e estudantes de medicina. Operado por Orlando Brunet (contato: <span style="color:var(--blue);">contato@nefroquest.com</span>).</p>
+            </div>
+
+            <div>
+              <div style="color:var(--blue);font-weight:700;margin-bottom:4px;">2. Dados coletados</div>
+              <ul style="margin:0;padding-left:18px;">
+                <li><strong>Conta:</strong> endereço de e-mail para autenticação.</li>
+                <li><strong>Progresso:</strong> nível, XP, questões respondidas, estatísticas de desempenho e revisão espaçada — armazenados localmente e/ou no servidor para sincronização entre dispositivos.</li>
+                <li><strong>Uso:</strong> eventos anônimos de navegação (questões respondidas, modos utilizados) via Sentry e Supabase para diagnóstico de erros.</li>
+              </ul>
+            </div>
+
+            <div>
+              <div style="color:var(--blue);font-weight:700;margin-bottom:4px;">3. Uso de Inteligência Artificial</div>
+              <p style="margin:0;">O NefroQuest utiliza <strong style="color:#e9d5ff;">Claude (Anthropic)</strong> para as funcionalidades de <em>Mentor IA</em> (dúvidas sobre questões) e <em>Diagnóstico de Sessão</em>. Ao usar esses recursos, o texto da questão e sua dúvida são enviados à Anthropic para geração da resposta. Não enviamos dados pessoais identificáveis à Anthropic. A Anthropic não usa dados de produção para treinar modelos sem consentimento explícito.</p>
+            </div>
+
+            <div>
+              <div style="color:var(--blue);font-weight:700;margin-bottom:4px;">4. Compartilhamento de dados</div>
+              <p style="margin:0;">Não vendemos seus dados. Compartilhamos apenas com prestadores de serviços necessários para o funcionamento da plataforma: <strong>Supabase</strong> (autenticação e banco de dados), <strong>Anthropic</strong> (IA, somente conteúdo educacional), <strong>Sentry</strong> (monitoramento de erros) e <strong>Mercado Pago</strong> (processamento de pagamentos, quando aplicável).</p>
+            </div>
+
+            <div>
+              <div style="color:var(--blue);font-weight:700;margin-bottom:4px;">5. Seus direitos</div>
+              <p style="margin:0;">Você pode solicitar a exclusão da sua conta e de todos os dados associados a qualquer momento entrando em contato pelo e-mail acima. O acesso ao app sem conta (modo visitante) não armazena dados no servidor.</p>
+            </div>
+
+            <div>
+              <div style="color:var(--blue);font-weight:700;margin-bottom:4px;">6. Cookies e armazenamento local</div>
+              <p style="margin:0;">Utilizamos <code style="background:rgba(255,255,255,0.08);padding:1px 4px;border-radius:3px;">localStorage</code> para salvar seu progresso de jogo localmente. Não utilizamos cookies de rastreamento ou publicidade.</p>
+            </div>
+
+            <div>
+              <div style="color:var(--blue);font-weight:700;margin-bottom:4px;">7. Menores de idade</div>
+              <p style="margin:0;">O NefroQuest é destinado a adultos (estudantes de medicina, residentes e médicos). Não coletamos dados de menores de 18 anos intencionalmente.</p>
+            </div>
+
+            <div>
+              <div style="color:var(--blue);font-weight:700;margin-bottom:4px;">8. Alterações nesta política</div>
+              <p style="margin:0;">Podemos atualizar esta política periodicamente. A data de atualização será revisada no topo do documento. O uso continuado após alterações implica aceite das novas condições.</p>
+            </div>
+
+          </div>
+
+          <button data-remove-id="" style="margin-top:24px;width:100%;background:rgba(96,165,250,0.15);border:1px solid rgba(96,165,250,0.4);color:var(--blue);border-radius:8px;padding:10px;font-family:'Cinzel',serif;cursor:pointer;font-size:0.85rem;" onclick="this.closest('.privacy-popup').remove()">Fechar</button>
+        </div>
+      `;
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) modal.remove();
+      });
+      document.body.appendChild(modal);
+    }
+    window.showPrivacyPolicy = showPrivacyPolicy;
+
     // ============ DISPATCHER CENTRAL (data-action / data-action-seq) ============
     // Substitui inline onclick="..." em HTML estático e em templates JS
     // Suporte a teclado (Enter/Space) para elementos role="button" com data-action
