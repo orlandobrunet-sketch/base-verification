@@ -622,6 +622,26 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
       } catch { return { date: today, count: 0 }; }
     }
 
+    function _renderMentorMarkdown(text) {
+      // Escapa HTML primeiro para evitar XSS
+      let s = escapeHtml(text);
+      // Títulos: ### → h4, ## → h3, # → h3
+      s = s.replace(/^### (.+)$/gm, '<h4 style="color:var(--gold);margin:10px 0 4px;font-size:0.9rem;">$1</h4>');
+      s = s.replace(/^## (.+)$/gm, '<h3 style="color:var(--blue);margin:12px 0 5px;font-size:0.95rem;">$1</h3>');
+      s = s.replace(/^# (.+)$/gm, '<h3 style="color:var(--gold);margin:12px 0 5px;font-size:1rem;">$1</h3>');
+      // Negrito e itálico
+      s = s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      s = s.replace(/\*(.+?)\*/g, '<em>$1</em>');
+      // Listas com -
+      s = s.replace(/^- (.+)$/gm, '<li style="margin:2px 0;">$1</li>');
+      s = s.replace(/(<li.*<\/li>\n?)+/g, '<ul style="margin:6px 0 6px 16px;padding:0;">$&</ul>');
+      // Quebras de linha
+      s = s.replace(/\n/g, '<br>');
+      // Limpar <br> após tags de bloco
+      s = s.replace(/<br>(<\/?(?:h[34]|ul|li))/g, '$1');
+      return s;
+    }
+
     function _canAskMentor() {
       if (isPremium()) return true;
       return _getMentorQuota().count < 3;
@@ -1118,7 +1138,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
         if (!res.ok || !data.reply) throw new Error(data.error || 'Erro ao contatar o mentor.');
 
         thinkingEl.classList.remove('mentor-thinking');
-        thinkingEl.innerHTML = escapeHtml(data.reply).replace(/\n/g, '<br>');
+        thinkingEl.innerHTML = _renderMentorMarkdown(data.reply);
 
         // Update history for multi-turn
         _mentorHistory.push({ role: 'user', content: text });
