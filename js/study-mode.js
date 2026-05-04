@@ -386,14 +386,71 @@
 
     function showTopicSelector() {
       document.querySelectorAll('.study-mode-popup').forEach(el => el.remove());
-      _studySelectedAxes = new Set(NEFRO_AXES.map(a => a.id)); // todos selecionados por padrão
+      _studySelectedAxes = new Set(NEFRO_AXES.map(a => a.id));
 
-      const stats = getDetailedStats();
-
+      const isMobile = window.innerWidth <= 768;
       const modal = document.createElement('div');
       modal.className = 'modal show study-mode-popup';
-      const _isMobile = window.innerWidth <= 768;
-modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;height:100dvh;background:rgba(0,0,0,0.85);display:flex;align-items:' + (_isMobile ? 'flex-start' : 'center') + ';justify-content:center;z-index:10000;backdrop-filter:blur(6px);overflow-y:auto;padding:' + (_isMobile ? '12px 12px calc(env(safe-area-inset-bottom,0px)+80px)' : '32px 16px') + ';box-sizing:border-box;';
+      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;height:100dvh;background:rgba(0,0,0,0.85);display:flex;align-items:' + (isMobile ? 'flex-start' : 'center') + ';justify-content:center;z-index:10000;backdrop-filter:blur(6px);overflow-y:auto;padding:' + (isMobile ? '12px 12px calc(env(safe-area-inset-bottom,0px)+80px)' : '32px 16px') + ';box-sizing:border-box;';
+
+      // Calcular SR due com todos os temas
+      const totalDue = getSRDueQuestions(topics).length;
+      const srLabel = totalDue > 0 ? `${totalDue} questão${totalDue > 1 ? 'ões' : ''} para revisar hoje` : 'Nenhuma revisão pendente hoje';
+      const srColor = totalDue > 0 ? '#a78bfa' : 'var(--txt-dim)';
+
+      modal.innerHTML = `
+        <div class="modal-content" style="max-width:440px;width:100%;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:16px;padding:24px 20px;box-shadow:0 0 40px rgba(139,92,246,0.3);">
+          <h2 style="color:var(--gold);margin:0 0 4px;font-family:'Cinzel',serif;font-size:1.1rem;">📖 MODO DE ESTUDO</h2>
+          <p style="color:var(--txt-dim);font-size:0.8rem;margin:0 0 20px;">Escolha como quer estudar hoje</p>
+
+          <!-- Opção 1: Estudo Livre -->
+          <div style="border:2px solid rgba(251,191,36,0.4);border-radius:12px;padding:16px;margin-bottom:12px;background:rgba(251,191,36,0.05);text-align:left;display:flex;align-items:center;gap:14px;">
+            <div style="font-size:2rem;flex-shrink:0;">🎲</div>
+            <div style="flex:1;">
+              <div style="color:var(--gold);font-weight:700;font-size:0.95rem;margin-bottom:3px;">Estudo Livre</div>
+              <div style="color:var(--txt-dim);font-size:0.78rem;line-height:1.4;">20 questões aleatórias de <strong style="color:var(--txt);">todos os temas</strong>. Sem configuração. Ideal para uma revisão rápida.</div>
+            </div>
+            <button class="btn gold" data-action="startFreeStudyMode" style="flex-shrink:0;padding:8px 14px;font-size:0.82rem;white-space:nowrap;">Iniciar →</button>
+          </div>
+
+          <!-- Opção 2: Por Tema -->
+          <div style="border:2px solid rgba(96,165,250,0.4);border-radius:12px;padding:16px;margin-bottom:12px;background:rgba(96,165,250,0.05);text-align:left;display:flex;align-items:center;gap:14px;">
+            <div style="font-size:2rem;flex-shrink:0;">📚</div>
+            <div style="flex:1;">
+              <div style="color:var(--blue);font-weight:700;font-size:0.95rem;margin-bottom:3px;">Por Tema</div>
+              <div style="color:var(--txt-dim);font-size:0.78rem;line-height:1.4;">Escolha os temas e pratique <strong style="color:var(--txt);">20 questões focadas</strong>. Útil quando quer reforçar um assunto específico.</div>
+            </div>
+            <button class="btn" data-action="showAxesSelector" style="flex-shrink:0;padding:8px 14px;font-size:0.82rem;white-space:nowrap;border-color:var(--blue);color:var(--blue);">Selecionar →</button>
+          </div>
+
+          <!-- Opção 3: Revisão Espaçada -->
+          <div style="border:2px solid rgba(167,139,250,0.4);border-radius:12px;padding:16px;margin-bottom:20px;background:rgba(167,139,250,0.05);text-align:left;display:flex;align-items:center;gap:14px;">
+            <div style="font-size:2rem;flex-shrink:0;">📅</div>
+            <div style="flex:1;">
+              <div style="color:#a78bfa;font-weight:700;font-size:0.95rem;margin-bottom:3px;">Revisão Espaçada</div>
+              <div style="color:var(--txt-dim);font-size:0.78rem;line-height:1.4;">O sistema decide o que você precisa rever. <strong style="color:var(--txt);">Acertou → some por mais dias. Errou → volta amanhã.</strong> Retém mais com menos esforço.</div>
+              <div style="margin-top:6px;font-size:0.75rem;color:${srColor};font-weight:600;">📅 ${srLabel}</div>
+            </div>
+            <button class="btn" data-action="startSRStudyAllMode" style="flex-shrink:0;padding:8px 14px;font-size:0.82rem;white-space:nowrap;border-color:#8b5cf6;color:#c4b5fd;${totalDue === 0 ? 'opacity:0.5;cursor:not-allowed;' : ''}">Revisar →</button>
+          </div>
+
+          <button class="btn sec" data-close-closest=".modal" style="width:100%;">Fechar</button>
+        </div>
+      `;
+      document.body.appendChild(modal);
+      playSound('click');
+    }
+
+    function showAxesSelector() {
+      document.querySelectorAll('.study-mode-popup').forEach(el => el.remove());
+      _studySelectedAxes = new Set(NEFRO_AXES.map(a => a.id));
+
+      const isMobile = window.innerWidth <= 768;
+      const modal = document.createElement('div');
+      modal.className = 'modal show study-mode-popup';
+      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;height:100dvh;background:rgba(0,0,0,0.85);display:flex;align-items:' + (isMobile ? 'flex-start' : 'center') + ';justify-content:center;z-index:10000;backdrop-filter:blur(6px);overflow-y:auto;padding:' + (isMobile ? '12px 12px calc(env(safe-area-inset-bottom,0px)+80px)' : '32px 16px') + ';box-sizing:border-box;';
+
+      const stats = getDetailedStats();
 
       function renderAxesHTML() {
         return NEFRO_AXES.map(axis => {
@@ -424,42 +481,33 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
 
       modal.innerHTML = `
         <div class="modal-content" style="max-width:460px;width:100%;max-height:calc(100vh - 48px);overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:18px 20px;box-shadow:0 0 40px rgba(139,92,246,0.3);">
-          <h2 style="color:var(--gold);margin-bottom:6px;font-family:'Cinzel',serif;">📖 MODO DE ESTUDO</h2>
-          <p style="color:var(--txt-dim);font-size:0.82rem;margin-bottom:18px;">Selecione os eixos que deseja praticar</p>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
+            <button class="btn sec" data-action="showTopicSelector" style="padding:4px 10px;font-size:0.78rem;">← Voltar</button>
+            <h2 style="color:var(--blue);margin:0;font-family:'Cinzel',serif;font-size:1rem;flex:1;">📚 Escolha os Temas</h2>
+          </div>
+          <p style="color:var(--txt-dim);font-size:0.78rem;margin:0 0 14px;">20 questões serão sorteadas dos temas selecionados</p>
 
-          <div style="margin-bottom:12px;">
-            <p style="color:var(--txt-dim);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;margin:0 0 6px;">Trilhas rápidas</p>
-            <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;">
-              <button class="btn sec" data-action="_selectTrail" data-arg="residencia" style="font-size:0.74rem;padding:5px 10px;">🏥 Residência</button>
-              <button class="btn sec" data-action="_selectTrail" data-arg="titulo" style="font-size:0.74rem;padding:5px 10px;">📋 Prova de Título</button>
-              <button class="btn sec" data-action="_selectTrail" data-arg="eletrolitos" style="font-size:0.74rem;padding:5px 10px;">⚡ Eletrólitos & AB</button>
+          <div style="margin-bottom:10px;">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:8px;">
+              <button class="btn sec" data-action="_selectTrail" data-arg="residencia" style="font-size:0.72rem;padding:4px 9px;">🏥 Residência</button>
+              <button class="btn sec" data-action="_selectTrail" data-arg="titulo" style="font-size:0.72rem;padding:4px 9px;">📋 Título</button>
+              <button class="btn sec" data-action="_selectTrail" data-arg="eletrolitos" style="font-size:0.72rem;padding:4px 9px;">⚡ Eletrólitos & AB</button>
             </div>
           </div>
 
-          <div id="axisCardList" style="display:flex;flex-direction:column;gap:5px;margin-bottom:14px;">
+          <div id="axisCardList" style="display:flex;flex-direction:column;gap:5px;margin-bottom:12px;">
             ${renderAxesHTML()}
           </div>
 
-          <div style="display:flex;gap:10px;justify-content:center;margin-bottom:16px;">
-            <button class="btn sec" data-action="_studySelectAll" data-arg="true" data-arg-type="boolean" style="font-size:0.78rem;padding:7px 14px;">✓ Todos</button>
-            <button class="btn sec" data-action="_studySelectAll" data-arg="false" data-arg-type="boolean" style="font-size:0.78rem;padding:7px 14px;">✗ Nenhum</button>
+          <div style="display:flex;gap:8px;justify-content:center;margin-bottom:14px;">
+            <button class="btn sec" data-action="_studySelectAll" data-arg="true" data-arg-type="boolean" style="font-size:0.76rem;padding:6px 12px;">✓ Todos</button>
+            <button class="btn sec" data-action="_studySelectAll" data-arg="false" data-arg-type="boolean" style="font-size:0.76rem;padding:6px 12px;">✗ Nenhum</button>
           </div>
 
-          <div id="srDueCount" style="text-align:center;margin-bottom:10px;color:var(--txt-dim);font-size:0.8rem;"></div>
-          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-            <button class="btn sec" data-close-closest=".modal">Cancelar</button>
-            <button class="btn" style="background:rgba(139,92,246,0.15);border-color:#8b5cf6;color:#c4b5fd;" data-action="startSRStudyMode" title="Mostra apenas as questões com revisão vencida hoje. Erros voltam em 1 dia; acertos espaçam progressivamente (2 → 5 → 10 dias...). Ideal para manter o que você já aprendeu.">📅 Revisão Espaçada</button>
-            <button class="btn gold" data-action="startStudyMode" title="Apresenta todas as questões dos eixos selecionados em ordem aleatória, sem prioridade por histórico. Ideal para explorar um tema novo.">📚 Estudo Livre</button>
-          </div>
+          <button class="btn gold" data-action="startStudyMode" style="width:100%;padding:12px;">📚 Iniciar Sessão →</button>
         </div>
       `;
       document.body.appendChild(modal);
-      // Update SR due count after render (needs _studySelectedAxes to be set)
-      const srEl = document.getElementById('srDueCount');
-      if (srEl) {
-        const due = getSRDueCount();
-        srEl.textContent = due > 0 ? `📅 ${due} questão(ões) para revisar hoje` : '✓ Sem revisões pendentes hoje';
-      }
       playSound('click');
     }
 
@@ -612,6 +660,31 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
     const MENTOR_QUOTA_KEY = 'nq-mentor-quota';
     let _mentorCurrentQ = null;
     let _mentorHistory = [];
+
+    function startFreeStudyMode() {
+      // Estudo Livre: 20 questões aleatórias de TODOS os temas, sem precisar selecionar eixos
+      _studySelectedAxes = new Set(NEFRO_AXES.map(a => a.id));
+      document.querySelectorAll('.study-mode-popup').forEach(el => el.remove());
+      studyModeQuestions = shuffle([...topics]).slice(0, 20);
+      studyModeIndex = 0; studyModeCorrect = 0; studyModeWrong = 0; studyModeActive = true;
+      _studyAxisStats = {};
+      showStudyModePage();
+    }
+
+    function startSRStudyAllMode() {
+      // Revisão Espaçada com todos os temas
+      _studySelectedAxes = new Set(NEFRO_AXES.map(a => a.id));
+      const due = getSRDueQuestions(topics);
+      if (due.length === 0) {
+        _toast('Nenhuma revisão pendente hoje. Volte amanhã ou use o Estudo Livre.', 'info', 4000);
+        return;
+      }
+      document.querySelectorAll('.study-mode-popup').forEach(el => el.remove());
+      studyModeQuestions = shuffle(due);
+      studyModeIndex = 0; studyModeCorrect = 0; studyModeWrong = 0; studyModeActive = true;
+      _studyAxisStats = {};
+      showStudyModePage('revisão espaçada');
+    }
 
     function _getMentorQuota() {
       const today = new Date().toISOString().slice(0, 10);
@@ -1022,6 +1095,9 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
     }
 
     window.startReinforcementSession = startReinforcementSession;
+    window.showAxesSelector      = showAxesSelector;
+    window.startFreeStudyMode    = startFreeStudyMode;
+    window.startSRStudyAllMode   = startSRStudyAllMode;
     
     function restartStudyMode() {
       _clearStudyState();
