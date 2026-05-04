@@ -700,8 +700,8 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
         return;
       }
       
-      // Embaralhar questões
-      studyModeQuestions = shuffle(studyModeQuestions);
+      // Embaralhar e limitar sessão a 20 questões
+      studyModeQuestions = shuffle(studyModeQuestions).slice(0, 20);
       studyModeIndex = 0;
       studyModeCorrect = 0;
       studyModeWrong = 0;
@@ -962,7 +962,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
         card.classList.remove('ai-diagnosis-loading');
         card.innerHTML = `
           <div class="ai-diagnosis-header">🤖 Diagnóstico da Sessão</div>
-          <div class="ai-diagnosis-body">${escapeHtml(diagnosis).replace(/\n/g, '<br>')}</div>
+          <div class="ai-diagnosis-body">${_renderMentorMarkdown(diagnosis)}</div>
           ${hasWeak ? `
           <div style="margin-top:14px;text-align:center;">
             <button class="btn reinforcement-btn" data-action="startReinforcementSession">
