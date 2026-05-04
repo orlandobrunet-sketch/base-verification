@@ -374,6 +374,7 @@
       stats.questionsAnsweredAllTime = (stats.questionsAnsweredAllTime || 0) + 1;
       try { localStorage.setItem(STATS_KEY, JSON.stringify(stats)); } catch(e) {}
       _invalidateStatsCache();
+      if (_guestMode) _guestQuestionCount++;
     }
     
     // Debounce do saveGame para evitar escritas excessivas no localStorage
@@ -543,7 +544,6 @@
       }
       
       refreshWelcomeSave();
-      _showIdentityChooser();
     }
 
     // ── IDENTITY CHOOSER ────────────────────────────────────────────────────
@@ -830,6 +830,8 @@
     let authUser = null;
     let _guestMode = false;
     let _guestHookShown = false;
+    let _guestQuestionCount = 0;
+    const GUEST_FREE_LIMIT = 15;
 
     (function initSupaAuth() {
       if (localStorage.getItem('nq_guest_mode') === '1') _guestMode = true;
@@ -891,6 +893,7 @@
           document.getElementById('welcomeScreen').classList.remove('hidden');
           refreshWelcomeSave();
           if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
+          _showIdentityChooser();
         }
       } else if (_guestMode) {
         document.querySelectorAll('.profile-btn').forEach(b => b.classList.add('visible'));
@@ -901,6 +904,7 @@
           document.getElementById('welcomeScreen').classList.remove('hidden');
           refreshWelcomeSave();
           if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
+          _showIdentityChooser();
         }
       } else {
         document.querySelectorAll('.profile-btn').forEach(b => b.classList.remove('visible'));
@@ -1737,7 +1741,7 @@
       state.xp+=x; let up=0;
       while(state.xp>=state.xpToNext){
         state.xp-=state.xpToNext; state.level++; state.xpToNext=xpForLevel(state.level); up++;
-        if (_guestMode && state.level === 2) _showGuestHook();
+        if (_guestMode && !_guestHookShown && _guestQuestionCount >= GUEST_FREE_LIMIT) _showGuestHook();
         _track('level_up', { level: state.level, difficulty: state.difficulty });
       }
       return up;
