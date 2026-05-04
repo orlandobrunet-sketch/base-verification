@@ -4,14 +4,64 @@
  * Recebe notificações IPN do Mercado Pago e atualiza o status premium do usuário.
  *
  * Variáveis de ambiente necessárias:
- *   MP_ACCESS_TOKEN          — Access Token do Mercado Pago
+ *   MP_ACCESS_TOKEN           — Access Token do Mercado Pago
  *   SUPABASE_SERVICE_ROLE_KEY — Service Role Key (acesso admin ao Supabase)
- *
- * URL a configurar no Mercado Pago / preferência:
- *   https://<project>.supabase.co/functions/v1/mp-webhook
+ *   MP_WEBHOOK_SECRET         — Segredo do webhook (configurado no painel MP)
  */
 
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+async function verifySignature(req: Request, rawBody: string): Promise<boolean> {
+  const secret = Deno.env.get('MP_WEBHOOK_SECRET');
+  if (!secret) {
+    // Sem segredo configurado: bloqueia em produção para evitar ativações fraudulentas
+    console.error('MP_WEBHOOK_SECRET not set — rejecting request');
+    return false;
+  }
+
+  const signature = req.headers.get('x-signature') ?? '';
+  if (!signature) {
+    console.error('Missing x-signature header');
+    return false;
+  }
+
+  // Formato: ts=<timestamp>,v1=<hmac>
+  const ts  = signature.match(/ts=(\d+)/)?.[1] ?? '';
+  const v1  = signature.match(/v1=([a-f0-9]+)/)?.[1] ?? '';
+  if (!ts || !v1) {
+    console.error('Malformed x-signature header:', signature);
+    return false;
+  }
+
+  // Manifesto: id:<payment_id>;request-id:<x-request-id>;ts:<ts>;
+  const requestId  = req.headers.get('x-request-id') ?? '';
+  let   paymentId  = '';
+  try {
+    const body = JSON.parse(rawBody);
+    if (body.data?.id)  paymentId = String(body.data.id);
+    else if (body.id)   paymentId = String(body.id);
+  } catch { /* será tratado depois */ }
+
+  const manifest = `id:${paymentId};request-id:${requestId};ts:${ts};`;
+
+  const key = await crypto.subtle.importKey(
+    'raw',
+    new TextEncoder().encode(secret),
+    { name: 'HMAC', hash: 'SHA-256' },
+    false,
+    ['sign'],
+  );
+  const sigBytes  = await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(manifest));
+  const computed  = Array.from(new Uint8Array(sigBytes))
+    .map(b => b.toString(16).padStart(2, '0'))
+    .join('');
+
+  if (computed !== v1) {
+    console.error('Signature mismatch — computed:', computed, 'received:', v1);
+    return false;
+  }
+  return true;
+}
 
 Deno.serve(async (req) => {
   // Mercado Pago às vezes envia GET para validar o endpoint
@@ -24,7 +74,16 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const body = await req.json();
+    // Lê o body uma única vez (necessário para validar assinatura E parsear JSON)
+    const rawBody = await req.text();
+
+    // Validar assinatura HMAC do Mercado Pago
+    const valid = await verifySignature(req, rawBody);
+    if (!valid) {
+      return new Response('Unauthorized', { status: 401 });
+    }
+
+    const body = JSON.parse(rawBody);
     console.log('MP webhook received:', JSON.stringify(body));
 
     // MP envia diferentes tipos de notificação:

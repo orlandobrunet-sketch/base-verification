@@ -622,6 +622,26 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
       } catch { return { date: today, count: 0 }; }
     }
 
+    function _renderMentorMarkdown(text) {
+      // Escapa HTML primeiro para evitar XSS
+      let s = escapeHtml(text);
+      // Títulos: ### → h4, ## → h3, # → h3
+      s = s.replace(/^### (.+)$/gm, '<h4 style="color:var(--gold);margin:10px 0 4px;font-size:0.9rem;">$1</h4>');
+      s = s.replace(/^## (.+)$/gm, '<h3 style="color:var(--blue);margin:12px 0 5px;font-size:0.95rem;">$1</h3>');
+      s = s.replace(/^# (.+)$/gm, '<h3 style="color:var(--gold);margin:12px 0 5px;font-size:1rem;">$1</h3>');
+      // Negrito e itálico
+      s = s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      s = s.replace(/\*(.+?)\*/g, '<em>$1</em>');
+      // Listas com -
+      s = s.replace(/^- (.+)$/gm, '<li style="margin:2px 0;">$1</li>');
+      s = s.replace(/(<li.*<\/li>\n?)+/g, '<ul style="margin:6px 0 6px 16px;padding:0;">$&</ul>');
+      // Quebras de linha
+      s = s.replace(/\n/g, '<br>');
+      // Limpar <br> após tags de bloco
+      s = s.replace(/<br>(<\/?(?:h[34]|ul|li))/g, '$1');
+      return s;
+    }
+
     function _canAskMentor() {
       if (isPremium()) return true;
       return _getMentorQuota().count < 3;
@@ -680,8 +700,8 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
         return;
       }
       
-      // Embaralhar questões
-      studyModeQuestions = shuffle(studyModeQuestions);
+      // Embaralhar e limitar sessão a 20 questões
+      studyModeQuestions = shuffle(studyModeQuestions).slice(0, 20);
       studyModeIndex = 0;
       studyModeCorrect = 0;
       studyModeWrong = 0;
@@ -942,7 +962,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
         card.classList.remove('ai-diagnosis-loading');
         card.innerHTML = `
           <div class="ai-diagnosis-header">🤖 Diagnóstico da Sessão</div>
-          <div class="ai-diagnosis-body">${escapeHtml(diagnosis).replace(/\n/g, '<br>')}</div>
+          <div class="ai-diagnosis-body">${_renderMentorMarkdown(diagnosis)}</div>
           ${hasWeak ? `
           <div style="margin-top:14px;text-align:center;">
             <button class="btn reinforcement-btn" data-action="startReinforcementSession">
@@ -1118,7 +1138,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
         if (!res.ok || !data.reply) throw new Error(data.error || 'Erro ao contatar o mentor.');
 
         thinkingEl.classList.remove('mentor-thinking');
-        thinkingEl.innerHTML = escapeHtml(data.reply).replace(/\n/g, '<br>');
+        thinkingEl.innerHTML = _renderMentorMarkdown(data.reply);
 
         // Update history for multi-turn
         _mentorHistory.push({ role: 'user', content: text });
@@ -1134,6 +1154,7 @@ modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;hei
           document.querySelector('[data-action="openMentorModal"]')?.remove();
         }
       } catch (err) {
+        _track('error_mentor_send', { msg: String(err) });
         thinkingEl.classList.remove('mentor-thinking');
         thinkingEl.textContent = 'Mentor indisponível no momento. Tente novamente em instantes.';
         thinkingEl.style.color = '#fb7185';

@@ -3775,7 +3775,7 @@
         if (itemReward) {
           document.getElementById('mgContinueBtn')?.addEventListener('click', () => {
             setTimeout(() => {
-              try { equipOrSell(itemReward.slot, itemReward.item, m => log(m)); } catch(e) {}
+              try { equipOrSell(itemReward.slot, itemReward.item, m => log(m)); } catch(e) { _track('error_equip_item_reward', { msg: String(e) }); }
             }, 400);
           }, { once: true });
         }
