@@ -125,14 +125,14 @@
 
             // Verificar atualizações a cada 2 minutos (clearável; evita múltiplos por aba)
             if (!window._swUpdateInterval) {
-              window._swUpdateInterval = setInterval(() => reg.update(), 2 * 60 * 1000);
+              window._swUpdateInterval = setInterval(() => reg.update().catch(() => {}), 2 * 60 * 1000);
             }
 
             // Verificar quando aba volta ao foco (uma única vez)
             if (!window._swVisibilityBound) {
               window._swVisibilityBound = true;
               document.addEventListener('visibilitychange', () => {
-                if (document.visibilityState === 'visible') reg.update();
+                if (document.visibilityState === 'visible') reg.update().catch(() => {});
               });
             }
             // Registrar periodic sync para lembretes diários (Chrome/Android)
