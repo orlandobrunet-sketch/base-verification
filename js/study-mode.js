@@ -395,7 +395,7 @@
 
       // Calcular SR due com todos os temas
       const totalDue = getSRDueQuestions(topics).length;
-      const srLabel = totalDue > 0 ? `${totalDue} questão${totalDue > 1 ? 'ões' : ''} para revisar hoje` : 'Nenhuma revisão pendente hoje';
+      const srLabel = totalDue > 0 ? `${totalDue} ${totalDue > 1 ? 'questões' : 'questão'} para revisar hoje` : 'Nenhuma revisão pendente hoje';
       const srColor = totalDue > 0 ? '#a78bfa' : 'var(--txt-dim)';
 
       modal.innerHTML = `
