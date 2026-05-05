@@ -151,7 +151,7 @@
       if (lastStudy < yesterday) {
         const banner = document.createElement('div');
         banner.id = 'studyReminderBanner';
-        banner.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:rgba(139,92,246,0.95);color:#fff;padding:12px 20px;border-radius:12px;z-index:9999;font-size:0.85rem;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.4);max-width:320px;width:90%;';
+        banner.style.cssText = 'position:fixed;bottom:calc(80px + env(safe-area-inset-bottom, 0px));left:50%;transform:translateX(-50%);background:rgba(139,92,246,0.95);color:#fff;padding:12px 20px;border-radius:12px;z-index:9999;font-size:0.85rem;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.4);max-width:320px;width:90%;';
         banner.innerHTML = '📚 Você não estudou hoje ainda!<br><button onclick="this.parentElement.remove();showTopicSelector();" style="margin-top:8px;background:#fff;color:#7c3aed;border:none;padding:6px 16px;border-radius:8px;font-weight:bold;cursor:pointer;">Estudar agora</button> <button onclick="this.parentElement.remove();" style="margin-top:8px;background:transparent;color:#e9d5ff;border:1px solid rgba(255,255,255,0.3);padding:6px 12px;border-radius:8px;cursor:pointer;">Depois</button>';
         document.body.appendChild(banner);
         setTimeout(() => banner.remove(), 15000);
