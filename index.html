@@ -10,11 +10,11 @@
   <link rel="canonical" href="https://nefroquest.com">
   <title>NefroQuest: Ascension</title>
   <!-- Favicons -->
-  <link rel="icon" type="image/x-icon" href="favicon.ico?v=9.15">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png?v=9.15">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png?v=9.15">
-  <link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicon-192x192.png?v=9.15">
-  <link rel="icon" type="image/png" sizes="512x512" href="assets/images/favicon-512x512.png?v=9.15">
+  <link rel="icon" type="image/x-icon" href="favicon.ico?v=9.17">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png?v=9.17">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png?v=9.17">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicon-192x192.png?v=9.17">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/images/favicon-512x512.png?v=9.17">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#0a0e1a">
@@ -52,7 +52,7 @@
   <script>
     Sentry.onLoad(function() {
       Sentry.init({
-        release: 'nefroquest@9.15',
+        release: 'nefroquest@9.17',
         environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
         tracesSampleRate: 0.1,
         beforeSend(event) {
@@ -83,7 +83,7 @@
     // Verificação de versão — bypassa o Service Worker via no-store
     // Se a versão do servidor for diferente da carregada, limpa tudo e recarrega
         (function() {
-      const LOADED_VERSION = '9.15';
+      const LOADED_VERSION = '9.17';
       // Evita loop infinito se o redirecionamento ja aconteceu recentemente
       const lastRedirect = sessionStorage.getItem('last_version_redirect');
       const now = Date.now();
@@ -156,10 +156,7 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-903Y6240FZ', {
-      // Ativa GA4 DebugView fora de produção — permite ver eventos em tempo real
-      // em analytics.google.com > DebugView enquanto testa
-      debug_mode: location.hostname !== 'nefroquest.com',
-      // Garante cookies SameSite corretos para PWA instalado (standalone mode)
+      debug_mode: !['nefroquest.com', 'www.nefroquest.com'].includes(location.hostname),
       cookie_flags: 'SameSite=None;Secure',
     });
   </script>
@@ -357,7 +354,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         <button class="btn sec" data-action="showLeaderboardFromWelcome">Leaderboard</button>
         <button id="bossPreviewBtn" class="btn-boss-preview" data-action="startBossPreview" title="Preview do Confronto Final" style="display:none;">⚔️ Preview: Confronto Final</button>
       </div>
-      <div class="welcome-credit" style="margin-top:14px;"><a href="https://nefroquest.com">nefroquest.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;cursor:pointer;" data-action="showChangelog">v9.15</span> &nbsp;·&nbsp; <span style="opacity:0.5;font-size:0.8em;cursor:pointer;text-decoration:underline;" data-action="showPrivacyPolicy">Política de Privacidade</span></div>
+      <div class="welcome-credit" style="margin-top:14px;"><a href="https://nefroquest.com">nefroquest.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;cursor:pointer;" data-action="showChangelog">v9.17</span> &nbsp;·&nbsp; <span style="opacity:0.5;font-size:0.8em;cursor:pointer;text-decoration:underline;" data-action="showPrivacyPolicy">Política de Privacidade</span></div>
     </div>
   </div>
 
@@ -776,7 +773,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       <p>
         <a href="https://nefroquest.com">nefroquest.com</a>
         &nbsp;•&nbsp;
-        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" data-action="showChangelog">v9.15</span>
+        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" data-action="showChangelog">v9.17</span>
       </p>
     </div>
   </main>

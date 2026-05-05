@@ -737,6 +737,42 @@
       return `${rem}/${MENTOR_DAILY_LIMIT} perguntas restantes hoje`;
     }
 
+    function _diagRemainingText() {
+      if (isPremium()) return '';
+      const { count } = _getDiagQuota();
+      const rem = Math.max(0, DIAG_DAILY_LIMIT - count);
+      return `${rem}/${DIAG_DAILY_LIMIT} diagnósticos restantes hoje`;
+    }
+
+    function _buildAxisBarsHtml() {
+      const entries = Object.entries(_studyAxisStats);
+      if (entries.length === 0) return '';
+      const sorted = entries
+        .map(([cat, s]) => {
+          const axis = NEFRO_AXES.find(a => a.cat === cat);
+          const total = s.correct + s.wrong;
+          const pct = total > 0 ? Math.round((s.correct / total) * 100) : 0;
+          return { label: axis ? `${axis.icon} ${axis.label}` : cat, pct };
+        })
+        .sort((a, b) => a.pct - b.pct);
+      const bars = sorted.map(({ label, pct }) => {
+        const color = pct >= 70 ? '#34d399' : pct >= 50 ? '#fbbf24' : '#fb7185';
+        return `
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px;">
+            <div style="flex:0 0 150px;font-size:0.73rem;color:var(--txt-dim);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${label}</div>
+            <div style="flex:1;background:rgba(255,255,255,0.08);border-radius:4px;height:12px;overflow:hidden;">
+              <div style="width:${pct}%;background:${color};height:100%;border-radius:4px;"></div>
+            </div>
+            <div style="flex:0 0 34px;font-size:0.73rem;color:${color};font-weight:bold;">${pct}%</div>
+          </div>`;
+      }).join('');
+      return `
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:16px 16px 10px;margin-bottom:20px;text-align:left;">
+          <div style="font-size:0.75rem;color:var(--txt-dim);margin-bottom:12px;text-align:center;letter-spacing:0.05em;text-transform:uppercase;">Desempenho por Eixo</div>
+          ${bars}
+        </div>`;
+    }
+
     function _getDiagQuota() {
       const today = new Date().toISOString().slice(0, 10);
       try {
@@ -1009,8 +1045,12 @@
             <div style="color:var(--txt-dim);">Taxa de Acerto</div>
           </div>
 
+          ${_buildAxisBarsHtml()}
+
           <div id="aiDiagnosisCard" class="ai-diagnosis-card ai-diagnosis-loading">
-            <div class="ai-diagnosis-header">🤖 Analisando sua sessão...</div>
+            <div class="ai-diagnosis-header">🤖 Diagnóstico da Sessão
+              ${!isPremium() ? `<span style="font-size:0.68rem;opacity:0.55;font-weight:normal;margin-left:8px;">${_diagRemainingText()}</span>` : ''}
+            </div>
             <div class="ai-diagnosis-spinner"></div>
           </div>
 
@@ -1066,8 +1106,11 @@
 
         card.classList.remove('ai-diagnosis-loading');
         card.innerHTML = `
-          <div class="ai-diagnosis-header">🤖 Diagnóstico da Sessão</div>
+          <div class="ai-diagnosis-header">🤖 Diagnóstico da Sessão
+            ${!isPremium() ? `<span style="font-size:0.68rem;opacity:0.55;font-weight:normal;margin-left:8px;">${_diagRemainingText()}</span>` : ''}
+          </div>
           <div class="ai-diagnosis-body">${_renderMentorMarkdown(diagnosis)}</div>
+          ${!isPremium() ? `<div style="font-size:0.7rem;color:var(--txt-dim);margin-top:10px;border-top:1px solid rgba(255,255,255,0.08);padding-top:8px;">🔮 Oráculo: ${_mentorRemainingText()} &nbsp;·&nbsp; 🤖 Diagnóstico: ${_diagRemainingText()}</div>` : ''}
           ${hasWeak ? `
           <div style="margin-top:14px;text-align:center;">
             <button class="btn reinforcement-btn" data-action="startReinforcementSession">
@@ -1166,12 +1209,15 @@
       overlay.className = 'mentor-overlay';
       overlay.innerHTML = `
         <div class="mentor-modal" role="dialog" aria-modal="true" aria-label="Oráculo dos Néfrons">
-          <div class="mentor-avatar" style="text-align:center;padding:16px 0 8px;border-bottom:1px solid rgba(96,165,250,0.15);margin-bottom:8px;">
-            <img src="assets/images/oraculo-nefrons.webp" alt="Oráculo dos Néfrons"
-              style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid rgba(168,85,247,0.6);box-shadow:0 0 20px rgba(168,85,247,0.3);"
-              onerror="this.style.display='none'">
-            <div style="color:#e9d5ff;font-size:0.78rem;font-weight:700;letter-spacing:0.05em;margin-top:6px;">ORÁCULO DOS NÉFRONS</div>
-            <div style="color:#6b5a8a;font-size:0.65rem;letter-spacing:0.08em;">A Sabedoria dos Rins</div>
+          <div class="mentor-avatar" style="text-align:center;padding:20px 0 14px;background:linear-gradient(180deg,rgba(88,28,135,0.18),transparent);border-bottom:1px solid rgba(168,85,247,0.2);margin-bottom:10px;">
+            <div style="position:relative;display:inline-block;margin-bottom:10px;">
+              <div style="position:absolute;inset:-4px;border-radius:50%;background:conic-gradient(from 0deg,#a855f7,#6366f1,#a855f7);opacity:0.55;animation:spin 6s linear infinite;"></div>
+              <img src="assets/images/oraculo-nefrons.webp" alt="Oráculo dos Néfrons"
+                style="position:relative;width:120px;height:120px;border-radius:50%;object-fit:cover;border:3px solid rgba(168,85,247,0.8);box-shadow:0 0 32px rgba(168,85,247,0.45),0 0 8px rgba(0,0,0,0.8);display:block;"
+                onerror="this.parentElement.style.display='none'">
+            </div>
+            <div style="color:#e9d5ff;font-size:0.85rem;font-weight:700;letter-spacing:0.08em;text-shadow:0 0 12px rgba(168,85,247,0.5);">ORÁCULO DOS NÉFRONS</div>
+            <div style="color:#9d7ec0;font-size:0.68rem;letter-spacing:0.1em;margin-top:2px;">✦ A Sabedoria dos Rins ✦</div>
           </div>
           <div class="mentor-header">
             <span style="font-size:0.85rem;">🔮 Faça sua pergunta</span>
