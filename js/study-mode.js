@@ -938,7 +938,7 @@
         <div style="text-align:center;margin-top:10px;">
           ${_canAskMentor()
             ? `<button class="btn ghost" style="font-size:0.78rem;padding:7px 16px;" data-action="openMentorModal">
-                🎓 Perguntar ao Mentor <span style="font-size:0.68rem;opacity:0.6;">(${_mentorRemainingText()})</span>
+                🔮 Consultar o Oráculo <span style="font-size:0.68rem;opacity:0.6;">(${_mentorRemainingText()})</span>
                </button>`
             : `<div style="font-size:0.75rem;color:var(--txt-dim);margin-top:4px;">Limite diário de perguntas atingido — <button class="btn ghost" style="font-size:0.72rem;padding:4px 10px;" data-action="showPricingModal">Premium ilimitado</button></div>`
           }
@@ -1165,9 +1165,16 @@
       overlay.id = 'mentorOverlay';
       overlay.className = 'mentor-overlay';
       overlay.innerHTML = `
-        <div class="mentor-modal" role="dialog" aria-modal="true" aria-label="Mentor NefroQuest">
+        <div class="mentor-modal" role="dialog" aria-modal="true" aria-label="Oráculo dos Néfrons">
+          <div class="mentor-avatar" style="text-align:center;padding:16px 0 8px;border-bottom:1px solid rgba(96,165,250,0.15);margin-bottom:8px;">
+            <img src="/assets/images/oraculo-nefrons.png" alt="Oráculo dos Néfrons"
+              style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid rgba(168,85,247,0.6);box-shadow:0 0 20px rgba(168,85,247,0.3);"
+              onerror="this.style.display='none'">
+            <div style="color:#e9d5ff;font-size:0.78rem;font-weight:700;letter-spacing:0.05em;margin-top:6px;">ORÁCULO DOS NÉFRONS</div>
+            <div style="color:#6b5a8a;font-size:0.65rem;letter-spacing:0.08em;">A Sabedoria dos Rins</div>
+          </div>
           <div class="mentor-header">
-            <span>🎓 Mentor NefroQuest</span>
+            <span style="font-size:0.85rem;">🔮 Faça sua pergunta</span>
             <button class="mentor-close-btn" data-action="closeMentorModal" aria-label="Fechar">✕</button>
           </div>
           <div class="mentor-context">
@@ -1285,3 +1292,4 @@
     window.openMentorModal   = openMentorModal;
     window.closeMentorModal  = closeMentorModal;
     window._sendMentorMessage = _sendMentorMessage;
+    window.setMentorQuestion = function(q) { _mentorCurrentQ = q; _mentorHistory = []; };

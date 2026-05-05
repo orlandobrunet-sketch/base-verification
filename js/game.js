@@ -816,7 +816,7 @@
       storyTitle:$("storyTitle"),storyGoal:$("storyGoal"),
       level:$("level"),score:$("score"),lives:$("lives"),record:$("record"),gold:$("gold"),streak:$("streak"),
       equipList:$("equipList"),journal:$("journal"),question:$("question"),options:$("options"),feedback:$("feedback"),refs:$("refs"),
-      nextBtn:$("nextBtn"),newBtn:$("newBtn"),forgeBtn:$("forgeBtn"),bonusBtn:$("bonusBtn"),boardBtn:$("boardBtn"),
+      oraculoBtn:$("oraculoBtn"),nextBtn:$("nextBtn"),newBtn:$("newBtn"),forgeBtn:$("forgeBtn"),bonusBtn:$("bonusBtn"),boardBtn:$("boardBtn"),
       boardModal:$("boardModal"),boardBody:$("boardBody"),closeBoard:$("closeBoard"),
       dockForgeBtn:$("forgeBtn"),dockChestBtn:$("chestBtn"),dockLegBtn:$("legendaryForgeBtn"),dockChestCost:$("chestCostBadge"),actionDock:$("actionDock")
     };
@@ -1623,6 +1623,7 @@
       renderRefs(q.r);
       ui.nextBtn.classList.add('hidden');
       ui.bonusBtn.classList.add('hidden');
+      if (ui.oraculoBtn) ui.oraculoBtn.classList.add('hidden');
       _renderOptions(q);
       _updateSkipButton();
       updateBossUI();
@@ -2765,6 +2766,16 @@
           }
         }
         saveGame();
+        // Oráculo button: set journey question context for mentor, show button
+        if (typeof window.setMentorQuestion === 'function') {
+          const cur = state.current;
+          window.setMentorQuestion({
+            q: cur.q, opts: cur.o,
+            ans: cur.a, exp: cur.e,
+            correctOption: cur.o ? cur.o[cur.a] : ''
+          });
+        }
+        if (ui.oraculoBtn) ui.oraculoBtn.classList.remove('hidden');
       }
 
       _incrementQuestionsAnswered();
@@ -5225,6 +5236,11 @@
       refreshWelcomeSave();
       if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
     }
+
+    function openOraculoFromJourney() {
+      if (typeof window.openMentorModal === 'function') window.openMentorModal();
+    }
+    window.openOraculoFromJourney = openOraculoFromJourney;
 
     function goToWelcomeFromGame() {
       document.getElementById('mainApp')?.classList.add('hidden');

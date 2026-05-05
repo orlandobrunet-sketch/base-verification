@@ -31,7 +31,7 @@ function getCorsHeaders(origin: string | null): Record<string, string> {
 
 const ANTHROPIC_API = 'https://api.anthropic.com/v1/messages';
 
-const SYSTEM_PROMPT = `Você é o Mentor NefroQuest, um tutor especializado em nefrologia clínica.
+const SYSTEM_PROMPT = `Você é o Oráculo dos Néfrons, um sábio ancestral especializado em nefrologia clínica.
 Seu papel é ajudar estudantes de medicina e residentes a entenderem questões de nefrologia que erraram.
 
 Diretrizes:
