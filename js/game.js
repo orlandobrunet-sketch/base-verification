@@ -1072,7 +1072,7 @@
             <div style="color:#c8d8f0;font-size:0.82rem;">✅ Streak e conquistas permanentes</div>
           </div>
           <button id="guestHookSignup" style="width:100%;padding:13px;background:linear-gradient(135deg,#fbbf24,#f59e0b);border:none;border-radius:10px;color:#1a0e00;font-weight:900;font-size:0.95rem;cursor:pointer;font-family:'Cinzel',serif;letter-spacing:1px;margin-bottom:10px;">🔑 Criar conta — é grátis</button>
-          <button id="guestHookContinue" style="width:100%;padding:11px;background:transparent;border:1px solid rgba(255,255,255,0.2);border-radius:10px;color:var(--txt-dim);font-size:0.82rem;cursor:pointer;">Continuar sem salvar →</button>
+          <button id="guestHookContinue" style="width:100%;padding:11px;background:transparent;border:1px solid rgba(255,255,255,0.2);border-radius:10px;color:var(--txt-dim);font-size:0.82rem;cursor:pointer;">Continuar sem salvar</button>
         </div>
       `;
       document.body.appendChild(overlay);
@@ -5087,7 +5087,7 @@
               ${escapeHtml(q.e)}
             </div>
             <button data-action="_examNext" style="width:100%;background:linear-gradient(180deg,#4f46e5,#3730a3);border:2px solid #6366f1;color:#fff;border-radius:10px;padding:13px;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:700;cursor:pointer;letter-spacing:1px;">
-              ${idx+1 < questions.length ? 'PRÓXIMA →' : 'VER RESULTADO'}
+              ${idx+1 < questions.length ? 'PRÓXIMA' : 'VER RESULTADO'}
             </button>` : ''}
           <!-- Botão sair -->
           <button data-action="_exitExam" style="margin-top:10px;width:100%;background:none;border:1px solid #374151;color:#64748b;border-radius:8px;padding:8px;font-size:0.78rem;cursor:pointer;">Encerrar prova</button>
