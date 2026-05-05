@@ -1167,7 +1167,7 @@
       overlay.innerHTML = `
         <div class="mentor-modal" role="dialog" aria-modal="true" aria-label="Oráculo dos Néfrons">
           <div class="mentor-avatar" style="text-align:center;padding:16px 0 8px;border-bottom:1px solid rgba(96,165,250,0.15);margin-bottom:8px;">
-            <img src="/assets/images/oraculo-nefrons.png" alt="Oráculo dos Néfrons"
+            <img src="assets/images/oraculo-nefrons.webp" alt="Oráculo dos Néfrons"
               style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid rgba(168,85,247,0.6);box-shadow:0 0 20px rgba(168,85,247,0.3);"
               onerror="this.style.display='none'">
             <div style="color:#e9d5ff;font-size:0.78rem;font-weight:700;letter-spacing:0.05em;margin-top:6px;">ORÁCULO DOS NÉFRONS</div>
