@@ -404,34 +404,34 @@
           <p style="color:var(--txt-dim);font-size:0.8rem;margin:0 0 20px;">Escolha como quer estudar hoje</p>
 
           <!-- Opção 1: Estudo Livre -->
-          <div style="border:2px solid rgba(251,191,36,0.4);border-radius:12px;padding:16px;margin-bottom:12px;background:rgba(251,191,36,0.05);text-align:left;display:flex;align-items:center;gap:14px;">
-            <div style="font-size:2rem;flex-shrink:0;">🎲</div>
-            <div style="flex:1;">
-              <div style="color:var(--gold);font-weight:700;font-size:0.95rem;margin-bottom:3px;">Estudo Livre</div>
-              <div style="color:var(--txt-dim);font-size:0.78rem;line-height:1.4;">20 questões aleatórias de <strong style="color:var(--txt);">todos os temas</strong>. Sem configuração. Ideal para uma revisão rápida.</div>
+          <div style="border:2px solid rgba(251,191,36,0.35);border-radius:14px;padding:16px 16px 14px;margin-bottom:10px;background:rgba(251,191,36,0.04);text-align:left;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+              <div style="font-size:1.6rem;line-height:1;flex-shrink:0;">🎲</div>
+              <div style="color:var(--gold);font-weight:700;font-size:0.97rem;">Estudo Livre</div>
             </div>
-            <button class="btn gold" data-action="startFreeStudyMode" style="flex-shrink:0;padding:8px 14px;font-size:0.82rem;white-space:nowrap;">Iniciar →</button>
+            <div style="color:var(--txt-dim);font-size:0.82rem;line-height:1.5;margin-bottom:12px;">20 questões aleatórias de <strong style="color:var(--txt);">todos os temas</strong>. Sem configuração. Ideal para uma revisão rápida.</div>
+            <button class="btn gold" data-action="startFreeStudyMode" style="width:100%;padding:10px;font-size:0.88rem;">Iniciar</button>
           </div>
 
           <!-- Opção 2: Por Tema -->
-          <div style="border:2px solid rgba(96,165,250,0.4);border-radius:12px;padding:16px;margin-bottom:12px;background:rgba(96,165,250,0.05);text-align:left;display:flex;align-items:center;gap:14px;">
-            <div style="font-size:2rem;flex-shrink:0;">📚</div>
-            <div style="flex:1;">
-              <div style="color:var(--blue);font-weight:700;font-size:0.95rem;margin-bottom:3px;">Por Tema</div>
-              <div style="color:var(--txt-dim);font-size:0.78rem;line-height:1.4;">Escolha os temas e pratique <strong style="color:var(--txt);">20 questões focadas</strong>. Útil quando quer reforçar um assunto específico.</div>
+          <div style="border:2px solid rgba(96,165,250,0.35);border-radius:14px;padding:16px 16px 14px;margin-bottom:10px;background:rgba(96,165,250,0.04);text-align:left;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+              <div style="font-size:1.6rem;line-height:1;flex-shrink:0;">📚</div>
+              <div style="color:var(--blue);font-weight:700;font-size:0.97rem;">Por Tema</div>
             </div>
-            <button class="btn" data-action="showAxesSelector" style="flex-shrink:0;padding:8px 14px;font-size:0.82rem;white-space:nowrap;border-color:var(--blue);color:var(--blue);">Selecionar →</button>
+            <div style="color:var(--txt-dim);font-size:0.82rem;line-height:1.5;margin-bottom:12px;">Escolha os temas e pratique <strong style="color:var(--txt);">20 questões focadas</strong>. Útil quando quer reforçar um assunto específico.</div>
+            <button class="btn" data-action="showAxesSelector" style="width:100%;padding:10px;font-size:0.88rem;border-color:var(--blue);color:var(--blue);">Selecionar Temas</button>
           </div>
 
           <!-- Opção 3: Revisão Espaçada -->
-          <div style="border:2px solid rgba(167,139,250,0.4);border-radius:12px;padding:16px;margin-bottom:20px;background:rgba(167,139,250,0.05);text-align:left;display:flex;align-items:center;gap:14px;">
-            <div style="font-size:2rem;flex-shrink:0;">📅</div>
-            <div style="flex:1;">
-              <div style="color:#a78bfa;font-weight:700;font-size:0.95rem;margin-bottom:3px;">Revisão Espaçada</div>
-              <div style="color:var(--txt-dim);font-size:0.78rem;line-height:1.4;">O sistema decide o que você precisa rever. <strong style="color:var(--txt);">Acertou → some por mais dias. Errou → volta amanhã.</strong> Retém mais com menos esforço.</div>
-              <div style="margin-top:6px;font-size:0.75rem;color:${srColor};font-weight:600;">📅 ${srLabel}</div>
+          <div style="border:2px solid rgba(167,139,250,0.35);border-radius:14px;padding:16px 16px 14px;margin-bottom:20px;background:rgba(167,139,250,0.04);text-align:left;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+              <div style="font-size:1.6rem;line-height:1;flex-shrink:0;">📅</div>
+              <div style="color:#a78bfa;font-weight:700;font-size:0.97rem;">Revisão Espaçada</div>
             </div>
-            <button class="btn" data-action="startSRStudyAllMode" style="flex-shrink:0;padding:8px 14px;font-size:0.82rem;white-space:nowrap;border-color:#8b5cf6;color:#c4b5fd;${totalDue === 0 ? 'opacity:0.5;cursor:not-allowed;' : ''}">Revisar →</button>
+            <div style="color:var(--txt-dim);font-size:0.82rem;line-height:1.5;margin-bottom:6px;">O sistema decide o que você precisa rever. Retém mais com menos esforço.</div>
+            <div style="margin-bottom:12px;font-size:0.78rem;color:${srColor};font-weight:600;">📅 ${srLabel}</div>
+            <button class="btn" data-action="startSRStudyAllMode" style="width:100%;padding:10px;font-size:0.88rem;border-color:#8b5cf6;color:#c4b5fd;${totalDue === 0 ? 'opacity:0.5;cursor:not-allowed;' : ''}">Revisar Agora</button>
           </div>
 
           <button class="btn sec" data-close-closest=".modal" style="width:100%;">Fechar</button>
@@ -504,7 +504,7 @@
             <button class="btn sec" data-action="_studySelectAll" data-arg="false" data-arg-type="boolean" style="font-size:0.76rem;padding:6px 12px;">✗ Nenhum</button>
           </div>
 
-          <button class="btn gold" data-action="startStudyMode" style="width:100%;padding:12px;">📚 Iniciar Sessão →</button>
+          <button class="btn gold" data-action="startStudyMode" style="width:100%;padding:12px;">📚 Iniciar Sessão</button>
         </div>
       `;
       document.body.appendChild(modal);
@@ -996,7 +996,7 @@
         ${mentorBtnHtml}
         <div style="text-align:center;margin-top:16px;">
           <button class="btn gold" data-action="nextStudyQuestion">
-            ${studyModeIndex + 1 < studyModeQuestions.length ? 'Próxima Questão →' : 'Ver Resultados'}
+            ${studyModeIndex + 1 < studyModeQuestions.length ? 'Próxima Questão' : 'Ver Resultados'}
           </button>
         </div>
       `;
@@ -1209,19 +1209,18 @@
       overlay.className = 'mentor-overlay';
       overlay.innerHTML = `
         <div class="mentor-modal" role="dialog" aria-modal="true" aria-label="Oráculo dos Néfrons">
-          <div class="mentor-avatar" style="text-align:center;padding:20px 0 14px;background:linear-gradient(180deg,rgba(88,28,135,0.18),transparent);border-bottom:1px solid rgba(168,85,247,0.2);margin-bottom:10px;">
-            <div style="position:relative;display:inline-block;margin-bottom:10px;">
-              <div style="position:absolute;inset:-4px;border-radius:50%;background:conic-gradient(from 0deg,#a855f7,#6366f1,#a855f7);opacity:0.55;animation:spin 6s linear infinite;"></div>
-              <img src="assets/images/oraculo-nefrons.webp" alt="Oráculo dos Néfrons"
-                style="position:relative;width:120px;height:120px;border-radius:50%;object-fit:cover;border:3px solid rgba(168,85,247,0.8);box-shadow:0 0 32px rgba(168,85,247,0.45),0 0 8px rgba(0,0,0,0.8);display:block;"
-                onerror="this.parentElement.style.display='none'">
+          <div style="position:relative;overflow:hidden;border-radius:17px 17px 0 0;flex-shrink:0;">
+            <img src="assets/images/oraculo-nefrons.webp" alt="Oráculo dos Néfrons"
+              style="width:100%;height:178px;object-fit:cover;object-position:center 18%;display:block;"
+              onerror="this.style.display='none'">
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.06) 0%,rgba(9,13,35,0.52) 48%,#131d35 100%);pointer-events:none;"></div>
+            <div style="position:absolute;inset:0;background:radial-gradient(ellipse 90% 65% at 50% 32%,rgba(168,85,247,0.16) 0%,transparent 68%);pointer-events:none;"></div>
+            <div style="position:absolute;bottom:14px;left:0;right:0;text-align:center;pointer-events:none;">
+              <div style="color:#f0e6ff;font-size:0.9rem;font-weight:700;letter-spacing:0.1em;text-shadow:0 0 22px rgba(168,85,247,1),0 2px 8px rgba(0,0,0,1);">ORÁCULO DOS NÉFRONS</div>
+              <div style="color:#c4a6e0;font-size:0.63rem;letter-spacing:0.14em;margin-top:4px;text-shadow:0 1px 5px rgba(0,0,0,1);">✦ A Sabedoria dos Rins ✦</div>
             </div>
-            <div style="color:#e9d5ff;font-size:0.85rem;font-weight:700;letter-spacing:0.08em;text-shadow:0 0 12px rgba(168,85,247,0.5);">ORÁCULO DOS NÉFRONS</div>
-            <div style="color:#9d7ec0;font-size:0.68rem;letter-spacing:0.1em;margin-top:2px;">✦ A Sabedoria dos Rins ✦</div>
-          </div>
-          <div class="mentor-header">
-            <span style="font-size:0.85rem;">🔮 Faça sua pergunta</span>
-            <button class="mentor-close-btn" data-action="closeMentorModal" aria-label="Fechar">✕</button>
+            <button class="mentor-close-btn" data-action="closeMentorModal" aria-label="Fechar"
+              style="position:absolute;top:10px;right:12px;background:rgba(0,0,0,0.58);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:4px 9px;line-height:1;z-index:2;">✕</button>
           </div>
           <div class="mentor-context">
             <div class="mentor-context-label">Questão em análise:</div>
