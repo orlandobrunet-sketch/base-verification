@@ -1209,12 +1209,15 @@
       overlay.className = 'mentor-overlay';
       overlay.innerHTML = `
         <div class="mentor-modal" role="dialog" aria-modal="true" aria-label="Oráculo dos Néfrons">
-          <div class="mentor-avatar" style="text-align:center;padding:16px 0 8px;border-bottom:1px solid rgba(96,165,250,0.15);margin-bottom:8px;">
-            <img src="assets/images/oraculo-nefrons.webp" alt="Oráculo dos Néfrons"
-              style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid rgba(168,85,247,0.6);box-shadow:0 0 20px rgba(168,85,247,0.3);"
-              onerror="this.style.display='none'">
-            <div style="color:#e9d5ff;font-size:0.78rem;font-weight:700;letter-spacing:0.05em;margin-top:6px;">ORÁCULO DOS NÉFRONS</div>
-            <div style="color:#6b5a8a;font-size:0.65rem;letter-spacing:0.08em;">A Sabedoria dos Rins</div>
+          <div class="mentor-avatar" style="text-align:center;padding:20px 0 14px;background:linear-gradient(180deg,rgba(88,28,135,0.18),transparent);border-bottom:1px solid rgba(168,85,247,0.2);margin-bottom:10px;">
+            <div style="position:relative;display:inline-block;margin-bottom:10px;">
+              <div style="position:absolute;inset:-4px;border-radius:50%;background:conic-gradient(from 0deg,#a855f7,#6366f1,#a855f7);opacity:0.55;animation:spin 6s linear infinite;"></div>
+              <img src="assets/images/oraculo-nefrons.webp" alt="Oráculo dos Néfrons"
+                style="position:relative;width:120px;height:120px;border-radius:50%;object-fit:cover;border:3px solid rgba(168,85,247,0.8);box-shadow:0 0 32px rgba(168,85,247,0.45),0 0 8px rgba(0,0,0,0.8);display:block;"
+                onerror="this.parentElement.style.display='none'">
+            </div>
+            <div style="color:#e9d5ff;font-size:0.85rem;font-weight:700;letter-spacing:0.08em;text-shadow:0 0 12px rgba(168,85,247,0.5);">ORÁCULO DOS NÉFRONS</div>
+            <div style="color:#9d7ec0;font-size:0.68rem;letter-spacing:0.1em;margin-top:2px;">✦ A Sabedoria dos Rins ✦</div>
           </div>
           <div class="mentor-header">
             <span style="font-size:0.85rem;">🔮 Faça sua pergunta</span>

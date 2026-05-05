@@ -5245,7 +5245,12 @@
     function goToWelcomeFromGame() {
       document.getElementById('mainApp')?.classList.add('hidden');
       document.querySelectorAll('.exam-overlay').forEach(e => e.remove());
-      document.getElementById('welcomeScreen')?.classList.remove('hidden');
+      const ws = document.getElementById('welcomeScreen');
+      if (ws) {
+        ws.style.opacity = '';
+        ws.style.transition = '';
+        ws.classList.remove('hidden');
+      }
       refreshWelcomeSave();
       if (typeof startWelcomeMusic === 'function' && musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
     }
