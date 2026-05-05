@@ -2261,6 +2261,10 @@
               <button data-action="closeAccountModal" style="background:rgba(255,255,255,0.06);color:#c8d8f0;border:1px solid var(--blue-dark);">Cancelar</button>
               <button data-action="saveAccountData" style="background:linear-gradient(135deg,#1a4080,#2a5fa0);color:#e0f0ff;border:none;">Salvar</button>
             </div>
+            <div style="margin-top:20px;border-top:1px solid rgba(251,113,133,0.25);padding-top:16px;">
+              <div style="font-size:0.72rem;color:#fb7185;font-weight:700;letter-spacing:0.06em;margin-bottom:8px;">⚠ ZONA DE RISCO</div>
+              <button data-action="confirmDeleteAccount" style="width:100%;background:rgba(251,113,133,0.08);border:1px solid rgba(251,113,133,0.4);color:#fb7185;border-radius:8px;padding:9px;font-size:0.82rem;cursor:pointer;">🗑 Excluir minha conta e todos os dados</button>
+            </div>
           </div>
         `;
         document.body.appendChild(modal);
@@ -2279,6 +2283,39 @@
       const m = document.getElementById('accountModal');
       if (m) m.style.display = 'none';
     }
+
+    function confirmDeleteAccount() {
+      document.querySelectorAll('.delete-account-confirm').forEach(el => el.remove());
+      const popup = document.createElement('div');
+      popup.className = 'modal show delete-account-confirm';
+      popup.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:10001;display:flex;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(8px);';
+      popup.innerHTML = `
+        <div style="max-width:380px;width:100%;background:linear-gradient(180deg,#1a0a0a,#0d0808);border:2px solid rgba(251,113,133,0.6);border-radius:14px;padding:28px 24px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:12px;">⚠️</div>
+          <h3 style="color:#fb7185;margin:0 0 8px;font-family:'Cinzel',serif;">Excluir Conta</h3>
+          <p style="color:#c8d8f0;font-size:0.84rem;line-height:1.6;margin:0 0 16px;">Esta ação irá <strong style="color:#fb7185;">apagar permanentemente</strong> todos os seus dados: progresso, estatísticas, conquistas e histórico de revisão. Esta ação <strong>não pode ser desfeita.</strong></p>
+          <p style="color:var(--txt-dim);font-size:0.75rem;margin:0 0 20px;">Para confirmar, sua sessão será encerrada e todos os dados locais e do servidor serão removidos.</p>
+          <div style="display:flex;gap:10px;">
+            <button onclick="this.closest('.delete-account-confirm').remove()" style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#c8d8f0;border-radius:8px;padding:10px;cursor:pointer;font-size:0.85rem;">Cancelar</button>
+            <button data-action="executeDeleteAccount" style="flex:1;background:rgba(251,113,133,0.2);border:1px solid rgba(251,113,133,0.6);color:#fb7185;border-radius:8px;padding:10px;cursor:pointer;font-weight:700;font-size:0.85rem;">Sim, excluir tudo</button>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(popup);
+    }
+    window.confirmDeleteAccount = confirmDeleteAccount;
+
+    async function executeDeleteAccount() {
+      if (!_supaClient || !authUser) return;
+      document.querySelectorAll('.delete-account-confirm').forEach(el => el.remove());
+      try {
+        await _supaClient.from('profiles').delete().eq('id', authUser.id);
+      } catch(e) {}
+      const nqKeys = Object.keys(localStorage).filter(k => k.startsWith('nq') || k.startsWith('nefro'));
+      nqKeys.forEach(k => { try { localStorage.removeItem(k); } catch(e) {} });
+      await authLogout();
+    }
+    window.executeDeleteAccount = executeDeleteAccount;
     async function saveAccountData() {
       const data = {
         name:  document.getElementById('acctName').value.trim(),
@@ -5189,6 +5226,15 @@
       if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
     }
 
+    function goToWelcomeFromGame() {
+      document.getElementById('mainApp')?.classList.add('hidden');
+      document.querySelectorAll('.exam-overlay').forEach(e => e.remove());
+      document.getElementById('welcomeScreen')?.classList.remove('hidden');
+      refreshWelcomeSave();
+      if (typeof startWelcomeMusic === 'function' && musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
+    }
+    window.goToWelcomeFromGame = goToWelcomeFromGame;
+
     // ============ CHANGELOG v5.0 ============
     function showChangelog() {
       document.querySelectorAll('.changelog-popup').forEach(el => el.remove());
@@ -5885,7 +5931,7 @@
 
             <div>
               <div style="color:var(--blue);font-weight:700;margin-bottom:4px;">1. Quem somos</div>
-              <p style="margin:0;">O NefroQuest é uma plataforma educacional de nefrologia desenvolvida para médicos, residentes e estudantes de medicina. Operado por Orlando Brunet (contato: <span style="color:var(--blue);">contato@nefroquest.com</span>).</p>
+              <p style="margin:0;">O NefroQuest é uma plataforma educacional de nefrologia desenvolvida para médicos, residentes e estudantes de medicina. Contato: <span style="color:var(--blue);">contato@nefroquest.com</span></p>
             </div>
 
             <div>

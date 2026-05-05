@@ -656,8 +656,11 @@
     let studyModeWrong = 0;
     let _studyAxisStats = {};  // { cat: { correct, wrong } } — reset each session
 
-    // ── Mentor quota (free: 3/day) ────────────────────────────────────────────
+    // ── Mentor quota (free: 5/day) + Diagnosis quota (free: 3/day) ──────────
     const MENTOR_QUOTA_KEY = 'nq-mentor-quota';
+    const DIAG_QUOTA_KEY   = 'nq-diag-quota';
+    const MENTOR_DAILY_LIMIT = 5;
+    const DIAG_DAILY_LIMIT   = 3;
     let _mentorCurrentQ = null;
     let _mentorHistory = [];
 
@@ -717,7 +720,7 @@
 
     function _canAskMentor() {
       if (isPremium()) return true;
-      return _getMentorQuota().count < 3;
+      return _getMentorQuota().count < MENTOR_DAILY_LIMIT;
     }
 
     function _incrementMentorQuota() {
@@ -730,8 +733,29 @@
     function _mentorRemainingText() {
       if (isPremium()) return '';
       const { count } = _getMentorQuota();
-      const rem = Math.max(0, 3 - count);
-      return `${rem}/3 perguntas restantes hoje`;
+      const rem = Math.max(0, MENTOR_DAILY_LIMIT - count);
+      return `${rem}/${MENTOR_DAILY_LIMIT} perguntas restantes hoje`;
+    }
+
+    function _getDiagQuota() {
+      const today = new Date().toISOString().slice(0, 10);
+      try {
+        const stored = JSON.parse(localStorage.getItem(DIAG_QUOTA_KEY) || '{}');
+        if (stored.date !== today) return { date: today, count: 0 };
+        return stored;
+      } catch { return { date: today, count: 0 }; }
+    }
+
+    function _canRunDiagnosis() {
+      if (isPremium()) return true;
+      return _getDiagQuota().count < DIAG_DAILY_LIMIT;
+    }
+
+    function _incrementDiagQuota() {
+      if (isPremium()) return;
+      const q = _getDiagQuota();
+      q.count = (q.count || 0) + 1;
+      localStorage.setItem(DIAG_QUOTA_KEY, JSON.stringify(q));
     }
     
     function startStudyMode() {
@@ -1010,6 +1034,14 @@
     async function _fetchDiagnosis(total, correct, wrong, accuracy) {
       const card = document.getElementById('aiDiagnosisCard');
       if (!card) return;
+
+      if (!_canRunDiagnosis()) {
+        card.innerHTML = `<div class="ai-diagnosis-header">🤖 Diagnóstico da Sessão</div>
+          <div style="color:var(--txt-dim);font-size:0.82rem;padding:8px 0;">Limite diário de diagnósticos atingido (${DIAG_DAILY_LIMIT}/dia). Volte amanhã ou <strong style="color:var(--gold);">faça upgrade para Premium</strong> para uso ilimitado.</div>`;
+        card.classList.remove('ai-diagnosis-loading');
+        return;
+      }
+      _incrementDiagQuota();
 
       // Montar array de eixos com estatísticas
       const axes = Object.entries(_studyAxisStats).map(([cat, stats]) => {

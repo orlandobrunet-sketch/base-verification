@@ -1215,6 +1215,10 @@
       display: none; /* oculto por padrão; PC ativa via media query */
     }
     @media (min-width: 769px) {
+      .welcome-sound-controls .sound-toggle {
+        width: 30px; height: 30px; min-width: 30px; min-height: 30px;
+        font-size: 0.78rem;
+      }
       .welcome-sound-controls {
         display: flex;
         flex-direction: row;
