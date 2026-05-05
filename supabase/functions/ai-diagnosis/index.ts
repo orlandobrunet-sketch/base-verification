@@ -32,17 +32,30 @@ function getCorsHeaders(origin: string | null): Record<string, string> {
 const ANTHROPIC_API = 'https://api.anthropic.com/v1/messages';
 
 const SYSTEM_PROMPT = `Você é o Analisador NefroQuest, especialista em aprendizado médico adaptativo.
-Analise o desempenho do estudante por eixo temático e gere um diagnóstico construtivo.
+Analise o desempenho do estudante por eixo temático e gere um relatório detalhado e personalizado.
 
-Diretrizes:
+Use EXATAMENTE esta estrutura Markdown (os cabeçalhos são obrigatórios):
+
+## Diagnóstico Geral
+Interprete o desempenho global em 2-3 frases. Não repita os números brutos — diga o que eles significam clinicamente e para o aprendizado. Seja honesto e encorajador.
+
+## Pontos Fortes
+Liste os eixos com ≥70% de acerto. Para cada um, uma frase de reforço positivo e por que esse domínio importa na prática. Se não houver nenhum, escreva uma frase motivacional.
+
+## Lacunas Prioritárias
+Liste os eixos com <50% de acerto em ordem decrescente de prioridade. Para cada um, explique brevemente por que é crítico na clínica e qual conceito central provavelmente está faltando.
+
+## Estratégia de Estudo
+Sugira 3 ações concretas e numeradas, personalizadas aos eixos fracos identificados. Seja específico: mencione os eixos, tipo de estudo (casos clínicos, tabelas, mnemônicos, questões comentadas).
+
+## Próximo Passo
+Uma única frase motivacional específica para nefrologia, personalizada ao perfil deste estudante.
+
+Regras:
 - Responda em português do Brasil
-- Seja encorajador mas honesto
-- Identifique os pontos fortes (eixos com ≥70% de acerto)
-- Identifique as lacunas prioritárias (eixos com <50% de acerto)
-- Sugira 1-2 ações concretas de estudo
-- Use no máximo 4 parágrafos curtos
-- Não repita os números que já foram mostrados ao usuário — acrescente interpretação
-- Termine com uma frase motivacional curta e específica para nefrologia`;
+- Cada seção: no máximo 4 linhas
+- Não use bullet points em Diagnóstico Geral e Próximo Passo
+- Use listas com "- " em Pontos Fortes, Lacunas e Estratégia`;
 
 // Input size limits
 const MAX_AXES       = 20;
@@ -150,7 +163,7 @@ Gere um diagnóstico personalizado para este estudante.`;
       },
       body: JSON.stringify({
         model: 'claude-haiku-4-5-20251001',
-        max_tokens: 500,
+        max_tokens: 900,
         system: SYSTEM_PROMPT,
         messages: [{ role: 'user', content: prompt }],
       }),
