@@ -1520,7 +1520,7 @@
       return q;
     }
     function renderRefs(keys){
-      const list = keys.map(k => refsDB[k]).filter(Boolean);
+      const list = [...new Set(keys)].map(k => refsDB[k]).filter(Boolean);
       if(!list.length){ ui.refs.innerHTML=''; return; }
 
       // Determinar cor de acento baseada no badge dominante

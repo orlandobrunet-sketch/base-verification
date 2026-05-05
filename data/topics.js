@@ -12708,7 +12708,6 @@ const topics = [
     "qid": "d7ac22f6",
     "q": "Qual afirmativa sobre o uso de finerenona em DRC diabética é correta, baseada nos estudos FIDELIO-DKD e FIGARO-DKD?",
     "refs": [
-      "fidelio_dkd",
       "fidelio_dkd"
     ],
     "opts": [
@@ -15059,7 +15058,6 @@ const topics = [
     "qid": "65fcdeae",
     "q": "Paciente transplantado renal há 6 meses, FE 35% por cardiopatia isquêmica prévia, em uso de tacrolimus + micofenolato + prednisona 5 mg/dia. TFG 52 mL/min/1,73m². Médico cardiologista quer iniciar finerenona pela cardiopatia. Quais são as interações medicamentosas relevantes?",
     "refs": [
-      "fidelio_dkd",
       "fidelio_dkd"
     ],
     "opts": [
