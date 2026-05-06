@@ -1433,7 +1433,7 @@
       const _qTotal = state.queue.length;
       ui.xpTxt.textContent=`XP ${state.xp}/${state.xpToNext}`;
       const _qCtr = document.getElementById('questionCounterTxt');
-      if (_qCtr) _qCtr.textContent = `${state.correctTotal}/${topics.length} questões`;
+      if (_qCtr) _qCtr.textContent = `${state.correctTotal}/${questionBank?.length ?? '+'} questões`;
       // Barra de progresso do ciclo
       const _cpf = document.getElementById('cycleProgressFill');
       const _cpt = document.getElementById('cycleProgressTxt');
