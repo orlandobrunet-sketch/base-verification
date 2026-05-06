@@ -1217,7 +1217,7 @@
         <div class="mentor-modal" role="dialog" aria-modal="true" aria-label="Oráculo dos Néfrons">
           <div style="position:relative;overflow:hidden;border-radius:17px 17px 0 0;flex-shrink:0;">
             <img src="assets/images/oraculo-nefrons.webp" alt="Oráculo dos Néfrons"
-              style="width:100%;height:178px;object-fit:cover;object-position:center 18%;display:block;"
+              style="width:100%;height:178px;object-fit:cover;object-position:center 38%;display:block;"
               onerror="this.style.display='none'">
             <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.06) 0%,rgba(9,13,35,0.52) 48%,#131d35 100%);pointer-events:none;"></div>
             <div style="position:absolute;inset:0;background:radial-gradient(ellipse 90% 65% at 50% 32%,rgba(168,85,247,0.16) 0%,transparent 68%);pointer-events:none;"></div>
