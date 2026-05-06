@@ -1,12 +1,17 @@
 /**
  * Supabase Edge Function: ai-mentor
  *
- * Recebe o contexto de uma questão errada e a dúvida do usuário,
+ * Recebe o contexto de uma questão e a dúvida do usuário,
  * retorna explicação personalizada gerada pelo Claude Haiku.
+ * Para usuários autenticados, aplica cota diária server-side (5/dia free).
  *
  * Variáveis de ambiente necessárias:
- *   ANTHROPIC_API_KEY — chave da API da Anthropic
+ *   ANTHROPIC_API_KEY        — chave da API da Anthropic
+ *   SUPABASE_URL             — URL do projeto (injetada automaticamente)
+ *   SUPABASE_SERVICE_ROLE_KEY — service role key (injetada automaticamente)
  */
+
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
 const ALLOWED_ORIGINS = [
   'https://nefroquest.com',
@@ -29,7 +34,8 @@ function getCorsHeaders(origin: string | null): Record<string, string> {
   };
 }
 
-const ANTHROPIC_API = 'https://api.anthropic.com/v1/messages';
+const ANTHROPIC_API  = 'https://api.anthropic.com/v1/messages';
+const MENTOR_LIMIT   = 5;
 
 const SYSTEM_PROMPT = `Você é o Oráculo dos Néfrons, um sábio ancestral especializado em nefrologia clínica.
 Seu papel é ajudar estudantes de medicina e residentes a entenderem questões de nefrologia que erraram.
@@ -43,13 +49,81 @@ Diretrizes:
 - Nunca forneça apenas a resposta — explique o raciocínio`;
 
 // Input size limits
-const MAX_USER_QUESTION  = 500;
-const MAX_QUESTION_TEXT  = 2000;
-const MAX_OPTION_TEXT    = 300;
-const MAX_OPTIONS        = 5;
-const MAX_EXPLANATION    = 2000;
-const MAX_HISTORY_TURNS  = 10;
+const MAX_USER_QUESTION   = 500;
+const MAX_QUESTION_TEXT   = 2000;
+const MAX_OPTION_TEXT     = 300;
+const MAX_OPTIONS         = 5;
+const MAX_EXPLANATION     = 2000;
+const MAX_HISTORY_TURNS   = 10;
 const MAX_HISTORY_CONTENT = 2000;
+
+async function checkAndIncrementQuota(
+  supabaseUrl: string,
+  serviceRoleKey: string,
+  userToken: string,
+): Promise<{ allowed: boolean; remaining: number; userId: string | null }> {
+  const db = createClient(supabaseUrl, serviceRoleKey);
+
+  // Verify user JWT
+  const { data: { user }, error } = await db.auth.getUser(userToken);
+  if (error || !user) return { allowed: true, remaining: -1, userId: null }; // guest — skip
+
+  const isPremium =
+    user.app_metadata?.premium === true ||
+    user.app_metadata?.is_admin === true;
+  if (isPremium) return { allowed: true, remaining: -1, userId: user.id };
+
+  const today = new Date().toISOString().slice(0, 10);
+
+  // Upsert usage row (insert or increment)
+  const { data, error: upsertErr } = await db
+    .from('ai_usage')
+    .upsert(
+      { user_id: user.id, feature: 'mentor', date: today, count: 1 },
+      { onConflict: 'user_id,feature,date', ignoreDuplicates: false },
+    )
+    .select('count')
+    .single();
+
+  if (upsertErr) {
+    // Fallback: try read-then-write
+    const { data: row } = await db
+      .from('ai_usage')
+      .select('count')
+      .eq('user_id', user.id)
+      .eq('feature', 'mentor')
+      .eq('date', today)
+      .single();
+
+    const currentCount = (row?.count ?? 0) as number;
+    if (currentCount >= MENTOR_LIMIT) {
+      return { allowed: false, remaining: 0, userId: user.id };
+    }
+
+    await db
+      .from('ai_usage')
+      .update({ count: currentCount + 1 })
+      .eq('user_id', user.id)
+      .eq('feature', 'mentor')
+      .eq('date', today);
+
+    return { allowed: true, remaining: MENTOR_LIMIT - currentCount - 1, userId: user.id };
+  }
+
+  const newCount = (data?.count ?? 1) as number;
+  if (newCount > MENTOR_LIMIT) {
+    // Already over — decrement back and reject
+    await db
+      .from('ai_usage')
+      .update({ count: MENTOR_LIMIT })
+      .eq('user_id', user.id)
+      .eq('feature', 'mentor')
+      .eq('date', today);
+    return { allowed: false, remaining: 0, userId: user.id };
+  }
+
+  return { allowed: true, remaining: MENTOR_LIMIT - newCount, userId: user.id };
+}
 
 Deno.serve(async (req) => {
   const origin = req.headers.get('Origin');
@@ -66,12 +140,35 @@ Deno.serve(async (req) => {
     });
   }
 
-  const apiKey = Deno.env.get('ANTHROPIC_API_KEY');
+  const apiKey         = Deno.env.get('ANTHROPIC_API_KEY');
+  const supabaseUrl    = Deno.env.get('SUPABASE_URL');
+  const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+
   if (!apiKey) {
     return new Response(JSON.stringify({ error: 'API key not configured' }), {
       status: 500,
       headers: { ...cors, 'Content-Type': 'application/json' },
     });
+  }
+
+  // Extract user token (may be anon key or real JWT)
+  const authHeader = req.headers.get('Authorization') ?? '';
+  const userToken  = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : '';
+
+  // Server-side quota check for authenticated users
+  if (userToken && supabaseUrl && serviceRoleKey) {
+    try {
+      const quota = await checkAndIncrementQuota(supabaseUrl, serviceRoleKey, userToken);
+      if (!quota.allowed) {
+        return new Response(
+          JSON.stringify({ error: 'quota_exceeded', message: 'Limite diário atingido. Faça upgrade para Premium.' }),
+          { status: 429, headers: { ...cors, 'Content-Type': 'application/json' } },
+        );
+      }
+    } catch (err) {
+      console.error('Quota check error (non-fatal):', err);
+      // On quota check failure, allow the request rather than blocking users
+    }
   }
 
   let body: {

@@ -3,10 +3,15 @@
  *
  * Recebe estatísticas de uma sessão de estudo por eixo temático e retorna
  * um diagnóstico personalizado de lacunas de conhecimento gerado pelo Claude Haiku.
+ * Para usuários autenticados, aplica cota diária server-side (3/dia free).
  *
  * Variáveis de ambiente necessárias:
- *   ANTHROPIC_API_KEY — chave da API da Anthropic
+ *   ANTHROPIC_API_KEY         — chave da API da Anthropic
+ *   SUPABASE_URL              — URL do projeto (injetada automaticamente)
+ *   SUPABASE_SERVICE_ROLE_KEY — service role key (injetada automaticamente)
  */
+
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
 const ALLOWED_ORIGINS = [
   'https://nefroquest.com',
@@ -30,6 +35,7 @@ function getCorsHeaders(origin: string | null): Record<string, string> {
 }
 
 const ANTHROPIC_API = 'https://api.anthropic.com/v1/messages';
+const DIAG_LIMIT    = 3;
 
 const SYSTEM_PROMPT = `Você é o Analisador NefroQuest, especialista em aprendizado médico adaptativo.
 Analise o desempenho do estudante por eixo temático e gere um relatório detalhado e personalizado.
@@ -58,9 +64,73 @@ Regras:
 - Use listas com "- " em Pontos Fortes, Lacunas e Estratégia`;
 
 // Input size limits
-const MAX_AXES       = 20;
-const MAX_AXIS_NAME  = 100;
-const MAX_COUNT      = 10_000;
+const MAX_AXES      = 20;
+const MAX_AXIS_NAME = 100;
+const MAX_COUNT     = 10_000;
+
+async function checkAndIncrementQuota(
+  supabaseUrl: string,
+  serviceRoleKey: string,
+  userToken: string,
+): Promise<{ allowed: boolean; remaining: number; userId: string | null }> {
+  const db = createClient(supabaseUrl, serviceRoleKey);
+
+  const { data: { user }, error } = await db.auth.getUser(userToken);
+  if (error || !user) return { allowed: true, remaining: -1, userId: null };
+
+  const isPremium =
+    user.app_metadata?.premium === true ||
+    user.app_metadata?.is_admin === true;
+  if (isPremium) return { allowed: true, remaining: -1, userId: user.id };
+
+  const today = new Date().toISOString().slice(0, 10);
+
+  const { data, error: upsertErr } = await db
+    .from('ai_usage')
+    .upsert(
+      { user_id: user.id, feature: 'diagnosis', date: today, count: 1 },
+      { onConflict: 'user_id,feature,date', ignoreDuplicates: false },
+    )
+    .select('count')
+    .single();
+
+  if (upsertErr) {
+    const { data: row } = await db
+      .from('ai_usage')
+      .select('count')
+      .eq('user_id', user.id)
+      .eq('feature', 'diagnosis')
+      .eq('date', today)
+      .single();
+
+    const currentCount = (row?.count ?? 0) as number;
+    if (currentCount >= DIAG_LIMIT) {
+      return { allowed: false, remaining: 0, userId: user.id };
+    }
+
+    await db
+      .from('ai_usage')
+      .update({ count: currentCount + 1 })
+      .eq('user_id', user.id)
+      .eq('feature', 'diagnosis')
+      .eq('date', today);
+
+    return { allowed: true, remaining: DIAG_LIMIT - currentCount - 1, userId: user.id };
+  }
+
+  const newCount = (data?.count ?? 1) as number;
+  if (newCount > DIAG_LIMIT) {
+    await db
+      .from('ai_usage')
+      .update({ count: DIAG_LIMIT })
+      .eq('user_id', user.id)
+      .eq('feature', 'diagnosis')
+      .eq('date', today);
+    return { allowed: false, remaining: 0, userId: user.id };
+  }
+
+  return { allowed: true, remaining: DIAG_LIMIT - newCount, userId: user.id };
+}
 
 Deno.serve(async (req) => {
   const origin = req.headers.get('Origin');
@@ -77,12 +147,32 @@ Deno.serve(async (req) => {
     });
   }
 
-  const apiKey = Deno.env.get('ANTHROPIC_API_KEY');
+  const apiKey         = Deno.env.get('ANTHROPIC_API_KEY');
+  const supabaseUrl    = Deno.env.get('SUPABASE_URL');
+  const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+
   if (!apiKey) {
     return new Response(JSON.stringify({ error: 'API key not configured' }), {
       status: 500,
       headers: { ...cors, 'Content-Type': 'application/json' },
     });
+  }
+
+  const authHeader = req.headers.get('Authorization') ?? '';
+  const userToken  = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : '';
+
+  if (userToken && supabaseUrl && serviceRoleKey) {
+    try {
+      const quota = await checkAndIncrementQuota(supabaseUrl, serviceRoleKey, userToken);
+      if (!quota.allowed) {
+        return new Response(
+          JSON.stringify({ error: 'quota_exceeded', message: 'Limite diário atingido. Faça upgrade para Premium.' }),
+          { status: 429, headers: { ...cors, 'Content-Type': 'application/json' } },
+        );
+      }
+    } catch (err) {
+      console.error('Quota check error (non-fatal):', err);
+    }
   }
 
   let body: {

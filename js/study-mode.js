@@ -1090,12 +1090,18 @@
       });
 
       try {
+        const _diagToken = (typeof window.getAuthToken === 'function') ? (await window.getAuthToken()) : null;
         const res = await fetch(`${SUPA_URL}/functions/v1/ai-diagnosis`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'apikey': SUPA_KEY, 'Authorization': `Bearer ${SUPA_KEY}` },
+          headers: { 'Content-Type': 'application/json', 'apikey': SUPA_KEY, 'Authorization': `Bearer ${_diagToken || SUPA_KEY}` },
           body: JSON.stringify({ axes, totalCorrect: correct, totalWrong: wrong, accuracy }),
         });
 
+        if (res.status === 429) {
+          card.classList.remove('ai-diagnosis-loading');
+          card.innerHTML = `<div class="ai-diagnosis-header">🤖 Diagnóstico da Sessão</div><div class="ai-diagnosis-body" style="text-align:center;padding:16px 0;color:var(--txt-dim);">Limite diário atingido.<br><span style="font-size:0.8rem;">Volte amanhã ou <strong style="color:var(--gold);cursor:pointer;" onclick="showPremiumModal()">faça upgrade para Premium</strong>.</span></div>`;
+          return;
+        }
         if (!res.ok) throw new Error('HTTP ' + res.status);
         const { diagnosis } = await res.json();
         if (!diagnosis) throw new Error('empty');
@@ -1211,7 +1217,7 @@
         <div class="mentor-modal" role="dialog" aria-modal="true" aria-label="Oráculo dos Néfrons">
           <div style="position:relative;overflow:hidden;border-radius:17px 17px 0 0;flex-shrink:0;">
             <img src="assets/images/oraculo-nefrons.webp" alt="Oráculo dos Néfrons"
-              style="width:100%;height:178px;object-fit:cover;object-position:center 18%;display:block;"
+              style="width:100%;height:178px;object-fit:cover;object-position:center 38%;display:block;"
               onerror="this.style.display='none'">
             <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.06) 0%,rgba(9,13,35,0.52) 48%,#131d35 100%);pointer-events:none;"></div>
             <div style="position:absolute;inset:0;background:radial-gradient(ellipse 90% 65% at 50% 32%,rgba(168,85,247,0.16) 0%,transparent 68%);pointer-events:none;"></div>
@@ -1281,9 +1287,10 @@
       thinkingEl.classList.add('mentor-thinking');
 
       try {
+        const _mentorToken = (typeof window.getAuthToken === 'function') ? (await window.getAuthToken()) : null;
         const res = await fetch(`${SUPA_URL}/functions/v1/ai-mentor`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'apikey': SUPA_KEY, 'Authorization': `Bearer ${SUPA_KEY}` },
+          headers: { 'Content-Type': 'application/json', 'apikey': SUPA_KEY, 'Authorization': `Bearer ${_mentorToken || SUPA_KEY}` },
           body: JSON.stringify({
             questionText: q.q,
             options: q.opts,
@@ -1295,6 +1302,7 @@
         });
 
         const data = await res.json();
+        if (res.status === 429) throw new Error('quota_exceeded');
         if (!res.ok || !data.reply) throw new Error(data.error || 'Erro ao contatar o mentor.');
 
         thinkingEl.classList.remove('mentor-thinking');
@@ -1316,7 +1324,11 @@
       } catch (err) {
         _track('error_mentor_send', { msg: String(err) });
         thinkingEl.classList.remove('mentor-thinking');
-        thinkingEl.textContent = 'Mentor indisponível no momento. Tente novamente em instantes.';
+        if (String(err).includes('quota_exceeded')) {
+          thinkingEl.innerHTML = `Limite diário atingido. <span style="color:var(--gold);cursor:pointer;" onclick="showPremiumModal()">Faça upgrade para Premium</span> para perguntas ilimitadas.`;
+        } else {
+          thinkingEl.textContent = 'Oráculo indisponível no momento. Tente novamente em instantes.';
+        }
         thinkingEl.style.color = '#fb7185';
       } finally {
         input.disabled = false;

@@ -289,8 +289,6 @@
     // Schema version — incrementar ao adicionar campos obrigatórios ao saveData
     // Histórico: 1 = original  2 = bossIntroShown + chestsOpened  3 = legendaryAbilityUsed  4 = difficulty + maxLives
     const SAVE_SCHEMA_VERSION = 4;
-    // Chave Web3Forms — obtenha grátis em https://web3forms.com (cadastre orlandobrunet@gmail.com)
-    const FLAG_API_KEY = 'd88c1c48-5d9c-48f2-b506-53ac0ac71396';
 
     // ============ FREEMIUM ============
     const ADMIN_EMAIL = 'orlandobrunet@gmail.com';
@@ -1701,9 +1699,7 @@
       status.textContent = '';
 
       const body = {
-        access_key: FLAG_API_KEY,
         subject: `[NefroQuest] ${catLabel} — Questão #${qNum}`,
-        from_name: 'NefroQuest — Sinalização de Erro',
         message:
           `Questão #${qNum}\n\n` +
           `Tipo: ${catLabel}\n\n` +
@@ -1712,7 +1708,7 @@
       };
 
       try {
-        const res = await fetch('https://api.web3forms.com/submit', {
+        const res = await fetch(`${SUPA_URL}/functions/v1/send-flag`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
           body: JSON.stringify(body),
@@ -5931,6 +5927,11 @@
     // Dispatcher gaps — referências diretas (nunca lambdas, para evitar recursão infinita)
     window.saveNewPassword        = saveNewPassword;
     window.submitFlag             = submitFlag;
+    window.getAuthToken           = async function() {
+      if (!_supaClient) return null;
+      const { data: { session } } = await _supaClient.auth.getSession();
+      return session?.access_token ?? null;
+    };
     window._pollPremiumActivation = _pollPremiumActivation;
     window.saveAccountData        = saveAccountData;
     window.loadAnalyticsData      = loadAnalyticsData;
