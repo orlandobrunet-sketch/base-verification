@@ -10,11 +10,11 @@
   <link rel="canonical" href="https://nefroquest.com">
   <title>NefroQuest: Ascension</title>
   <!-- Favicons -->
-  <link rel="icon" type="image/x-icon" href="favicon.ico?v=9.20">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png?v=9.20">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png?v=9.20">
-  <link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicon-192x192.png?v=9.20">
-  <link rel="icon" type="image/png" sizes="512x512" href="assets/images/favicon-512x512.png?v=9.20">
+  <link rel="icon" type="image/x-icon" href="favicon.ico?v=9.21">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png?v=9.21">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png?v=9.21">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicon-192x192.png?v=9.21">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/images/favicon-512x512.png?v=9.21">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#0a0e1a">
@@ -22,6 +22,16 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="NefroQuest">
+  <!-- iOS Splash Screens -->
+  <link rel="apple-touch-startup-image" href="assets/images/splash-1290x2796.png" media="(device-width:430px) and (device-height:932px) and (-webkit-device-pixel-ratio:3)">
+  <link rel="apple-touch-startup-image" href="assets/images/splash-1179x2556.png" media="(device-width:393px) and (device-height:852px) and (-webkit-device-pixel-ratio:3)">
+  <link rel="apple-touch-startup-image" href="assets/images/splash-1284x2778.png" media="(device-width:428px) and (device-height:926px) and (-webkit-device-pixel-ratio:3)">
+  <link rel="apple-touch-startup-image" href="assets/images/splash-1170x2532.png" media="(device-width:390px) and (device-height:844px) and (-webkit-device-pixel-ratio:3)">
+  <link rel="apple-touch-startup-image" href="assets/images/splash-1125x2436.png" media="(device-width:375px) and (device-height:812px) and (-webkit-device-pixel-ratio:3)">
+  <link rel="apple-touch-startup-image" href="assets/images/splash-828x1792.png"  media="(device-width:414px) and (device-height:896px) and (-webkit-device-pixel-ratio:2)">
+  <link rel="apple-touch-startup-image" href="assets/images/splash-750x1334.png"  media="(device-width:375px) and (device-height:667px) and (-webkit-device-pixel-ratio:2)">
+  <link rel="apple-touch-startup-image" href="assets/images/splash-2048x2732.png" media="(device-width:1024px) and (device-height:1366px) and (-webkit-device-pixel-ratio:2)">
+  <link rel="apple-touch-startup-image" href="assets/images/splash-1668x2388.png" media="(device-width:834px) and (device-height:1194px) and (-webkit-device-pixel-ratio:2)">
   <!-- SEO & Open Graph -->
   <meta name="description" content="Domine a Nefrologia através de um RPG épico de perguntas. Suba de nível, colete equipamentos e derrote o Arqui-Nefromante!">
   <meta name="keywords" content="nefrologia, questões, medicina, RPG, educação médica, rim, diálise, nefrologia quiz">
@@ -52,7 +62,7 @@
   <script>
     Sentry.onLoad(function() {
       Sentry.init({
-        release: 'nefroquest@9.20',
+        release: 'nefroquest@9.21',
         environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
         tracesSampleRate: 0.1,
         beforeSend(event) {
@@ -68,7 +78,7 @@
     // Verificação de versão — bypassa o Service Worker via no-store
     // Se a versão do servidor for diferente da carregada, limpa tudo e recarrega
         (function() {
-      const LOADED_VERSION = '9.20';
+      const LOADED_VERSION = '9.21';
       // Evita loop infinito se o redirecionamento ja aconteceu recentemente
       const lastRedirect = sessionStorage.getItem('last_version_redirect');
       const now = Date.now();
@@ -338,7 +348,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         <button class="btn sec" data-action="showLeaderboardFromWelcome">Leaderboard</button>
         <button id="bossPreviewBtn" class="btn-boss-preview" data-action="startBossPreview" title="Preview do Confronto Final" style="display:none;">⚔️ Preview: Confronto Final</button>
       </div>
-      <div class="welcome-credit" style="margin-top:14px;"><a href="https://nefroquest.com">nefroquest.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;cursor:pointer;" data-action="showChangelog">v9.20</span> &nbsp;·&nbsp; <span style="opacity:0.5;font-size:0.8em;cursor:pointer;text-decoration:underline;" data-action="showPrivacyPolicy">Política de Privacidade</span></div>
+      <div class="welcome-credit" style="margin-top:14px;"><a href="https://nefroquest.com">nefroquest.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;cursor:pointer;" data-action="showChangelog">v9.21</span> &nbsp;·&nbsp; <span style="opacity:0.5;font-size:0.8em;cursor:pointer;text-decoration:underline;" data-action="showPrivacyPolicy">Política de Privacidade</span></div>
     </div>
   </div>
 
@@ -757,7 +767,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       <p>
         <a href="https://nefroquest.com">nefroquest.com</a>
         &nbsp;•&nbsp;
-        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" data-action="showChangelog">v9.20</span>
+        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" data-action="showChangelog">v9.21</span>
       </p>
     </div>
   </main>
