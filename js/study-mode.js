@@ -384,7 +384,12 @@
     // Eixos selecionados no Modo de Estudo
     let _studySelectedAxes = new Set();
 
-    function showTopicSelector() {
+    async function showTopicSelector() {
+      if (typeof topics === 'undefined') {
+        _toast('Carregando questões…', 'info', 30000);
+        try { await window._loadTopics(); document.querySelector('.nq-toast')?.remove(); }
+        catch { _toast('Erro ao carregar questões. Recarregue a página.', 'error', 5000); return; }
+      }
       document.querySelectorAll('.study-mode-popup').forEach(el => el.remove());
       _studySelectedAxes = new Set(NEFRO_AXES.map(a => a.id));
 
@@ -664,7 +669,12 @@
     let _mentorCurrentQ = null;
     let _mentorHistory = [];
 
-    function startFreeStudyMode() {
+    async function startFreeStudyMode() {
+      if (typeof topics === 'undefined') {
+        _toast('Carregando questões…', 'info', 30000);
+        try { await window._loadTopics(); document.querySelector('.nq-toast')?.remove(); }
+        catch { _toast('Erro ao carregar questões. Recarregue a página.', 'error', 5000); return; }
+      }
       // Estudo Livre: 20 questões aleatórias de TODOS os temas, sem precisar selecionar eixos
       _studySelectedAxes = new Set(NEFRO_AXES.map(a => a.id));
       document.querySelectorAll('.study-mode-popup').forEach(el => el.remove());
@@ -674,7 +684,12 @@
       showStudyModePage();
     }
 
-    function startSRStudyAllMode() {
+    async function startSRStudyAllMode() {
+      if (typeof topics === 'undefined') {
+        _toast('Carregando questões…', 'info', 30000);
+        try { await window._loadTopics(); document.querySelector('.nq-toast')?.remove(); }
+        catch { _toast('Erro ao carregar questões. Recarregue a página.', 'error', 5000); return; }
+      }
       // Revisão Espaçada com todos os temas
       _studySelectedAxes = new Set(NEFRO_AXES.map(a => a.id));
       const due = getSRDueQuestions(topics);

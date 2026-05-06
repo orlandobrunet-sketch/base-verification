@@ -731,7 +731,29 @@
       return deck;
     }
 
-    const questionBank=buildDeck();
+    let questionBank = null;
+
+    // ── Lazy loading do topics.js (1.4 MB) ─────────────────────────────────
+    let _topicsPromise = null;
+    function _loadTopics() {
+      if (questionBank) return Promise.resolve();
+      if (_topicsPromise) return _topicsPromise;
+      _topicsPromise = new Promise((resolve, reject) => {
+        const s = document.createElement('script');
+        s.src = 'data/topics.js';
+        s.onload  = () => { questionBank = buildDeck(); HISTORY_SIZE = Math.max(30, Math.floor(questionBank.length * 0.20)); resolve(); };
+        s.onerror = () => reject(new Error('Falha ao carregar questões'));
+        document.head.appendChild(s);
+      });
+      return _topicsPromise;
+    }
+    window._loadTopics = _loadTopics;
+    // Inicia download no primeiro toque — head start antes do usuário clicar em jogar
+    document.addEventListener('pointerdown', function _topicsEarlyLoad() {
+      _loadTopics().catch(() => {});
+      document.removeEventListener('pointerdown', _topicsEarlyLoad);
+    }, { once: true, passive: true });
+    // ────────────────────────────────────────────────────────────────────────
 
     // Definições de Personagens
     const characters = {
@@ -1445,7 +1467,7 @@
      // ── Sistema de randomização com histórico ──────────────────────────────
     // Mantém os IDs das últimas N questões vistas para impedir repetição
     // mesmo na virada de ciclo. Tamanho do histórico = 20% do banco.
-    const HISTORY_SIZE = Math.max(30, Math.floor(questionBank.length * 0.20));
+    let HISTORY_SIZE = 30; // atualizado após topics.js carregar
     let _recentIds = []; // fila circular dos últimos IDs vistos
     let _masteredSet = (() => {
       try {
@@ -1935,7 +1957,7 @@
           <div class="pricing-sub-title">Ascension</div>
           <p>${tagline}</p>
           <div class="pricing-stats-row">
-            <div class="pricing-stat-pill">🧠 <strong>${questionBank.length}</strong> questões de nefrologia</div>
+            <div class="pricing-stat-pill">🧠 <strong>${questionBank?.length ?? '+'}</strong> questões de nefrologia</div>
             <div class="pricing-stat-pill">🔄 Atualizado <strong>constantemente</strong></div>
             <div class="pricing-stat-pill">🏥 Foco em <strong>residência &amp; título</strong></div>
           </div>
@@ -1951,7 +1973,7 @@
                 <li>Todos os personagens</li>
                 <li>Ranking global</li>
                 <li class="pf-no">Modo de Estudo por tema</li>
-                <li class="pf-no">${questionBank.length} questões completas</li>
+                <li class="pf-no">${questionBank?.length ?? '+'} questões completas</li>
                 <li class="pf-no">Atualizações e novos conteúdos</li>
               </ul>
               <button class="pricing-choose-btn btn-free" data-action="pricingChoose" data-arg="free">${isPt ? 'Começar Grátis' : 'Start Free'}</button>
@@ -1964,7 +1986,7 @@
               <div class="pricing-period">${isPt ? 'por mês · cancele quando quiser' : 'per month · cancel anytime'}</div>
               <hr class="pricing-divider">
               <ul class="pricing-features">
-                <li>${questionBank.length} questões de nefrologia</li>
+                <li>${questionBank?.length ?? '+'} questões de nefrologia</li>
                 <li>Modo de Estudo por tema</li>
                 <li>Jornada RPG completa</li>
                 <li>Ranking global</li>
@@ -2028,7 +2050,7 @@
             <div class="promo-banner-title">Você está dominando a Nefrologia!</div>
             <div class="promo-banner-text">
               Restam <strong style="color:#ffd700">${remaining} questões</strong> gratuitas.
-              Desbloqueie <strong style="color:#c8d8f0">${questionBank.length} questões</strong>, modo de estudo por tema
+              Desbloqueie <strong style="color:#c8d8f0">${questionBank?.length ?? '+'} questões</strong>, modo de estudo por tema
               e atualizações constantes — por menos de um café por mês.
             </div>
           </div>
@@ -2155,7 +2177,7 @@
           <h2 style="font-family:'Cinzel Decorative',serif;color:#ffd700;font-size:1.6rem;margin-bottom:8px;">Pagamento Confirmado!</h2>
           <p style="color:#a0c8e0;font-size:0.9rem;line-height:1.6;margin-bottom:24px;">
             Bem-vindo ao Plano ${label}!<br>
-            Seu acesso a <strong style="color:#ffd700">${questionBank.length} questões</strong> foi ativado.<br>
+            Seu acesso a <strong style="color:#ffd700">${questionBank?.length ?? '+'} questões</strong> foi ativado.<br>
             Aguarde alguns instantes enquanto sincronizamos seu acesso.
           </p>
           <button data-remove-id="paymentSuccessOverlay" data-action="_pollPremiumActivation"
@@ -4242,10 +4264,20 @@
       }
     }
     
-    function startGameWithCharacter() {
+    async function startGameWithCharacter() {
       if (!isPremium() && getGameStats().questionsAnsweredAllTime >= FREE_QUESTIONS_LIMIT) {
         showPricingModal();
         return;
+      }
+      if (!questionBank) {
+        _toast('Carregando questões…', 'info', 30000);
+        try {
+          await _loadTopics();
+          document.querySelector('.nq-toast')?.remove();
+        } catch {
+          _toast('Erro ao carregar questões. Recarregue a página.', 'error', 5000);
+          return;
+        }
       }
       const char = characters[state.character];
 
