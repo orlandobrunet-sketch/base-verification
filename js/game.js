@@ -637,10 +637,21 @@
       });
     }
     
-    function continueGame() {
+    async function continueGame() {
       const save = loadGame();
       if (!save) { startNewFromWelcome(); return; }
-      
+
+      if (!questionBank) {
+        _toast('Carregando questões…', 'info', 30000);
+        try {
+          await _loadTopics();
+          document.querySelector('.nq-toast')?.remove();
+        } catch {
+          _toast('Erro ao carregar questões. Recarregue a página.', 'error', 5000);
+          return;
+        }
+      }
+
       if (restoreGame(save)) {
         dismissWelcome();
         ui.journal.innerHTML = '';
