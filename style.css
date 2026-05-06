@@ -61,15 +61,21 @@
       --radius-full: 9999px;
 
       /* ── Z-index scale (centralizado — nunca use valores ad-hoc) ─ */
-      --z-bg:           0;    /* .bg-layer, .bg-overlay, .particles */
-      --z-app:          10;   /* .app principal */
-      --z-dropdown:     100;  /* tooltips, dropdowns */
-      --z-sticky:       200;  /* headers fixos */
-      --z-overlay:      500;  /* overlays de conteúdo (study page, modals leves) */
-      --z-modal:        1000; /* modals padrão */
-      --z-mentor:       9900; /* identity overlay, mentor modal */
-      --z-toast:        9950; /* toasts e notificações */
-      --z-top:          10000; /* offline badge, elementos máxima prioridade */
+      --z-bg:           0;     /* .bg-layer, .bg-overlay, .particles */
+      --z-app:          10;    /* .app principal */
+      --z-dropdown:     100;   /* tooltips, dropdowns */
+      --z-sticky:       200;   /* headers fixos */
+      --z-overlay:      500;   /* overlays leves (study page) */
+      --z-modal-low:    8000;  /* painel de pagamento, admin */
+      --z-modal:        8500;  /* modals padrão */
+      --z-modal-high:   9000;  /* confirmações, dialogs */
+      --z-panel:        9500;  /* painéis flutuantes */
+      --z-nav:          9600;  /* drawer mobile, navegação */
+      --z-notify:       9800;  /* banners de notificação */
+      --z-mentor:       9900;  /* identity overlay, mentor modal */
+      --z-toast:        9950;  /* toasts e notificações */
+      --z-critical:     9999;  /* overlays críticos */
+      --z-top:          99999; /* máxima prioridade (toast UI, controls) */
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -253,22 +259,22 @@
     .slot-name { font-size: 0.78rem; font-weight: 600; }
     .slot-stats { font-size: 0.62rem; color: var(--txt-dim); margin-top: 1px; display:flex; gap:6px; flex-wrap:wrap; }
     .stat-badge { position:relative; cursor:help; padding:1px 4px; border-radius:3px; background:rgba(42,74,122,0.3); transition:background 0.2s, color 0.2s; display:inline-block; }
-    .stat-badge:hover { background:rgba(42,74,122,0.6); color:#fff; z-index:9000; }
-    .stat-badge .stat-tip { display:none; position:fixed; background:linear-gradient(180deg,#1a2a4a,#0e1830); border:1px solid var(--gold); border-radius:8px; padding:10px 14px; font-size:0.75rem; color:#d5e2ff; white-space:nowrap; z-index:9999; box-shadow:0 6px 24px rgba(0,0,0,0.8); pointer-events:none; max-width:300px; white-space:normal; line-height:1.4; }
+    .stat-badge:hover { background:rgba(42,74,122,0.6); color:#fff; z-index: var(--z-modal-high); }
+    .stat-badge .stat-tip { display:none; position:fixed; background:linear-gradient(180deg,#1a2a4a,#0e1830); border:1px solid var(--gold); border-radius:8px; padding:10px 14px; font-size:0.75rem; color:#d5e2ff; white-space:nowrap; z-index: var(--z-critical); box-shadow:0 6px 24px rgba(0,0,0,0.8); pointer-events:none; max-width:300px; white-space:normal; line-height:1.4; }
     .stat-badge:hover .stat-tip { display:block; }
     .stat-tip strong { color:var(--gold); display:block; margin-bottom:4px; font-size:0.82rem; }
     /* Tooltip de item */
     .item-with-tooltip { cursor:help; position:relative; }
-    .item-tooltip { display:none; position:fixed; background:linear-gradient(180deg,#1a2a4a,#0e1830); border:2px solid var(--gold); border-radius:10px; padding:12px 16px; font-size:0.8rem; color:#d5e2ff; z-index:9999; box-shadow:0 8px 32px rgba(0,0,0,0.9); pointer-events:none; max-width:280px; line-height:1.5; }
+    .item-tooltip { display:none; position:fixed; background:linear-gradient(180deg,#1a2a4a,#0e1830); border:2px solid var(--gold); border-radius:10px; padding:12px 16px; font-size:0.8rem; color:#d5e2ff; z-index: var(--z-critical); box-shadow:0 8px 32px rgba(0,0,0,0.9); pointer-events:none; max-width:280px; line-height:1.5; }
     .item-tooltip strong { color:var(--gold); display:block; margin-bottom:6px; font-size:0.9rem; font-family:'Cinzel',serif; }
     /* Botão desabilitado */
     .btn.disabled { opacity:0.4; cursor:not-allowed; filter:grayscale(0.6); pointer-events:none; }
     /* Popup de forja */
-    .forge-popup { position:fixed; inset:0; z-index:9999; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.7); animation:fadeIn 0.3s; padding:32px 16px; }
+    .forge-popup { position:fixed; inset:0; z-index: var(--z-critical); display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.7); animation:fadeIn 0.3s; padding:32px 16px; }
     .forge-card { background:linear-gradient(135deg,#1a1040,#0e1830); border:2px solid var(--gold); border-radius:16px; padding:24px; text-align:center; max-width:340px; max-height:88vh; overflow-y:auto; box-shadow:0 0 40px rgba(255,215,0,0.2); animation:scaleIn 0.4s; }
     /* Equipment comparison popup */
     .equip-compare-overlay {
-      position: fixed; inset: 0; z-index: 9999;
+      position: fixed; inset: 0; z-index: var(--z-critical);
       display: flex; align-items: center; justify-content: center;
       background: rgba(0,0,0,0.82); backdrop-filter: blur(6px);
       animation: fadeIn 0.25s; padding: 16px;
@@ -347,7 +353,7 @@
     .ecp-rar.legendary { background: linear-gradient(135deg,rgba(255,215,0,0.4),rgba(255,140,0,0.4)); color: #ffd700; }
     /* ===== DIFFICULTY SELECTOR ===== */
     .diff-selector-overlay {
-      position: fixed; inset: 0; z-index: 9500; display: flex; align-items: flex-start;
+      position: fixed; inset: 0; z-index: var(--z-panel); display: flex; align-items: flex-start;
       justify-content: center; background: rgba(0,0,0,0.85); backdrop-filter: blur(6px);
       padding: 20px 16px; animation: fadeIn 0.25s; overflow-y: auto;
     }
@@ -436,7 +442,7 @@
 
     /* ===== MINIGAME POPUP ===== */
     .minigame-overlay {
-      position: fixed; inset: 0; z-index: 9800; display: flex; align-items: center;
+      position: fixed; inset: 0; z-index: var(--z-notify); display: flex; align-items: center;
       justify-content: center; background: rgba(0,0,0,0.9); backdrop-filter: blur(8px);
       animation: fadeIn 0.3s; padding: 16px;
     }
@@ -477,7 +483,7 @@
     @keyframes scaleIn { from{transform:scale(0.5);opacity:0} to{transform:scale(1);opacity:1} }
     @keyframes fadeIn { from{opacity:0} to{opacity:1} }
     /* Popup de narrativa */
-    .narrative-popup { position:fixed; inset:0; z-index:9999; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.8); animation:fadeIn 0.4s; padding:32px 16px; }
+    .narrative-popup { position:fixed; inset:0; z-index: var(--z-critical); display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.8); animation:fadeIn 0.4s; padding:32px 16px; }
     .narrative-card { background:linear-gradient(135deg,#0e1830 0%,#1a1040 40%,#2a1050 100%); border:2px solid var(--gold); border-radius:16px; padding:28px 24px; text-align:center; max-width:420px; width:100%; max-height:calc(100vh - 64px); overflow-y:auto; box-shadow:0 0 60px rgba(255,215,0,0.15), inset 0 0 40px rgba(255,215,0,0.03); animation:scaleIn 0.5s; }
     .narrative-card .narr-chapter { color:var(--gold); font-family:'Cinzel',serif; font-size:0.75rem; letter-spacing:3px; text-transform:uppercase; margin-bottom:8px; opacity:0.8; }
     .narrative-card h3 { color:var(--gold); font-family:'Cinzel',serif; font-size:1.2rem; margin-bottom:14px; text-shadow:0 0 12px rgba(255,215,0,0.3); }
@@ -945,7 +951,7 @@
       transition: opacity 0.15s;
       box-shadow: 0 4px 20px rgba(0,0,0,0.8),
                   0 0 0 1px rgba(255,215,0,0.1) inset;
-      z-index: 9999;
+      z-index: var(--z-critical);
     }
     /* Seta do tooltip */
     .dock-btn:hover::after { opacity: 1; }
@@ -1049,7 +1055,7 @@
     /* MODALS */
     .modalWrap {
       position: fixed; inset: 0; background: rgba(0,0,0,0.7);
-      display: grid; place-items: center; z-index: 9500;
+      display: grid; place-items: center; z-index: var(--z-panel);
       backdrop-filter: blur(4px);
     }
     .modalWrap.hidden { display: none !important; }
@@ -1078,7 +1084,7 @@
     /* CHEST MODAL */
     .chest-modal {
       display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,0.8); z-index: 9500;
+      background: rgba(0,0,0,0.8); z-index: var(--z-panel);
       align-items: center; justify-content: center;
       backdrop-filter: blur(6px);
       padding: 32px 16px;
@@ -1122,7 +1128,7 @@
     /* PAYWALL MODAL */
     #paywallModal {
       display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,0.88); z-index: 9999;
+      background: rgba(0,0,0,0.88); z-index: var(--z-critical);
       align-items: center; justify-content: center;
       backdrop-filter: blur(8px); padding: 16px;
     }
@@ -1199,7 +1205,7 @@
 
     /* WELCOME SCREEN */
     .welcome-screen {
-      position: fixed; inset: 0; z-index: 500;
+      position: fixed; inset: 0; z-index: var(--z-overlay);
       background: radial-gradient(ellipse at 50% 0%, #0d1a3a 0%, #060a18 60%, #030610 100%);
       display: flex; align-items: flex-start; justify-content: center;
       animation: fadeIn 0.8s;
@@ -1228,7 +1234,7 @@
         position: absolute;
         top: 14px;
         right: 14px;
-        z-index: 99999;
+        z-index: var(--z-top);
       }
     }
 
@@ -1544,7 +1550,7 @@
     /* Overlay do popup MODOS DE JOGO */
     .game-modes-overlay {
       display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,0.82); z-index: 9600;
+      background: rgba(0,0,0,0.82); z-index: var(--z-nav);
       align-items: center; justify-content: center;
       backdrop-filter: blur(6px);
     }
@@ -1594,7 +1600,7 @@
       to   { opacity: 1; transform: translateY(0) scale(1); }
     }
     .identity-overlay {
-      position: fixed; inset: 0; z-index: 9900;
+      position: fixed; inset: 0; z-index: var(--z-mentor);
       background: rgba(5, 8, 20, 0.88);
       backdrop-filter: blur(10px);
       display: flex; align-items: center; justify-content: center;
@@ -1699,7 +1705,7 @@
       position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px);
       background: #0e1830; border: 1px solid rgba(96,165,250,0.4);
       color: #d5e2ff; padding: 11px 20px; border-radius: 10px;
-      font-size: 0.85rem; z-index: 99999; max-width: 340px; width: 90%;
+      font-size: 0.85rem; z-index: var(--z-top); max-width: 340px; width: 90%;
       text-align: center; box-shadow: 0 6px 24px rgba(0,0,0,0.6);
       animation: toastIn 0.25s ease forwards;
       pointer-events: none;
@@ -1713,7 +1719,7 @@
 
     /* ===== LANDING SCREEN ===== */
     #landingScreen {
-      position: fixed; inset: 0; z-index: 9000;
+      position: fixed; inset: 0; z-index: var(--z-modal-high);
       background: #080d1a;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       gap: 0;
@@ -1842,7 +1848,7 @@
       border-radius: 10px; padding: 12px 14px; min-width: 200px;
       box-shadow: 0 8px 30px rgba(0,0,0,0.7);
       display: none; flex-direction: column; gap: 10px;
-      z-index: 10000;
+      z-index: var(--z-top);
     }
     .profile-popup.open { display: flex; }
     .profile-popup-email {
@@ -1878,7 +1884,7 @@
     /* PRICING MODAL */
     #pricingModal {
       display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,0.92); z-index: 9998;
+      background: rgba(0,0,0,0.92); z-index: var(--z-critical);
       align-items: center; justify-content: center;
       backdrop-filter: blur(10px); padding: 16px; overflow-y: auto;
     }
@@ -1972,7 +1978,7 @@
     .pricing-close-btn:hover { color: #90b4e0; }
     /* Banner promocional a cada 10 questões */
     .promo-banner-overlay {
-      position: fixed; inset: 0; z-index: 9995;
+      position: fixed; inset: 0; z-index: var(--z-critical);
       display: flex; align-items: flex-end; justify-content: center;
       padding: 0 16px 24px; pointer-events: none;
     }
@@ -1996,7 +2002,7 @@
     /* ACCOUNT MODAL */
     #accountModal, #planModal, #adminModal {
       display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,0.88); z-index: 9998;
+      background: rgba(0,0,0,0.88); z-index: var(--z-critical);
       align-items: center; justify-content: center;
       backdrop-filter: blur(8px); padding: 16px;
     }
@@ -2144,7 +2150,7 @@
         top: 50%;
         right: 0;
         transform: translateY(-50%);
-        z-index: 99999;
+        z-index: var(--z-top);
       }
       .sound-controls .sound-toggle {
         width: 30px; height: 30px; min-width: 30px; min-height: 30px;
@@ -2183,7 +2189,7 @@
         top: 0; left: 0;
         width: 100vw;
         height: 100vh; height: 100dvh;
-        z-index: 8500;
+        z-index: var(--z-modal);
         transform: translateX(-100%);
         transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
         overflow-y: auto;
@@ -2203,7 +2209,7 @@
       .hero-lore-modal {
         position: fixed;
         inset: 0;
-        z-index: 9600;
+        z-index: var(--z-nav);
         background: rgba(0,0,0,0.82);
         display: flex;
         align-items: center;
@@ -2274,7 +2280,7 @@
         display: none;
         position: fixed; inset: 0;
         background: rgba(0,0,0,0.65);
-        z-index: 8400;
+        z-index: var(--z-modal);
       }
       .mobile-overlay.active { display: block; }
       .drawer-close-btn {
@@ -2363,7 +2369,7 @@
           position: fixed;
           bottom: calc(72px + env(safe-area-inset-bottom, 0px)); /* logo acima do bottom dock */
           left: 0; right: 0;
-          z-index: 7999;
+          z-index: var(--z-modal-low);
           background: linear-gradient(0deg, rgba(8,14,30,0.97) 0%, rgba(12,20,42,0.92) 100%);
           border-top: 1px solid rgba(255,215,0,0.15);
           padding: 5px 12px;
@@ -2407,7 +2413,7 @@
         display: none;
         position: fixed;
         bottom: 0; left: 0; right: 0;
-        z-index: 8000;
+        z-index: var(--z-modal-low);
         background: linear-gradient(0deg, rgba(8,14,30,0.98) 0%, rgba(12,20,42,0.95) 100%);
         border-top: 1px solid rgba(255,215,0,0.2);
         padding: 8px 2px calc(8px + env(safe-area-inset-bottom, 0px));
@@ -2481,7 +2487,7 @@
         bottom: 72px;
         right: 8px;
         left: auto;
-        z-index: 99999;
+        z-index: var(--z-top);
       }
       .mobile-bottom-dock .mdock-btn.musica { color: #a78bfa; }
       .mobile-bottom-dock .mdock-btn.musica .mdock-label { color: #a78bfa; }
@@ -2584,7 +2590,7 @@
         position: fixed;
         top: max(8px, calc(8px + env(safe-area-inset-top, 0px)));
         right: max(8px, calc(8px + env(safe-area-inset-right, 0px)));
-        z-index: 9500; /* abaixo de modais (9999) para não sobrepor popups */
+        z-index: var(--z-panel); /* abaixo de modais (9999) para não sobrepor popups */
       }
       /* Botão herói no canto superior esquerdo (mobile) */
       .mobile-hero-btn {
@@ -2595,7 +2601,7 @@
         position: fixed;
         top: 8px;
         left: 8px;
-        z-index: 9000;
+        z-index: var(--z-modal-high);
         background: rgba(139,92,246,0.22);
         border: 2px solid rgba(139,92,246,0.72);
         border-radius: 10px;
@@ -2639,7 +2645,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      z-index: 9500;
+      z-index: var(--z-panel);
       background: linear-gradient(160deg, #0f1d3a 0%, #0a1428 100%);
       border: 1px solid rgba(255,215,0,0.35);
       border-radius: 16px;
@@ -4589,7 +4595,7 @@
 
     /* ========== AUTH MODAL ========== */
     .auth-modal-overlay {
-      display: none; position: fixed; inset: 0; z-index: 10000;
+      display: none; position: fixed; inset: 0; z-index: var(--z-top);
       background: rgba(0,0,0,0.88); backdrop-filter: blur(8px);
       align-items: flex-start; justify-content: center;
       padding: 24px 16px 40px;
@@ -4673,7 +4679,7 @@
 
 /* ── Mentor Modal ──────────────────────────────────────────────────────────── */
 .mentor-overlay {
-  position: fixed; inset: 0; z-index: 9950;
+  position: fixed; inset: 0; z-index: var(--z-toast);
   background: rgba(5, 8, 20, 0.85); backdrop-filter: blur(8px);
   display: flex; align-items: flex-end; justify-content: center;
   opacity: 0; transition: opacity 0.28s ease; pointer-events: none;

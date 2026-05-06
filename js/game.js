@@ -332,6 +332,7 @@
     let _isPremiumCache = null;
     function isPremium() {
       if (isAdminUser()) return true;
+      if (!authUser) return false; // sem conta ativa, localStorage não conta
       if (_isPremiumCache !== null) return _isPremiumCache;
       _isPremiumCache = localStorage.getItem(PREMIUM_KEY) === '1' || localStorage.getItem(WHITELIST_KEY) === '1';
       return _isPremiumCache;
