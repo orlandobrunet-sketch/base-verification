@@ -10,11 +10,11 @@
   <link rel="canonical" href="https://nefroquest.com">
   <title>NefroQuest: Ascension</title>
   <!-- Favicons -->
-  <link rel="icon" type="image/x-icon" href="favicon.ico?v=9.19">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png?v=9.19">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png?v=9.19">
-  <link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicon-192x192.png?v=9.19">
-  <link rel="icon" type="image/png" sizes="512x512" href="assets/images/favicon-512x512.png?v=9.19">
+  <link rel="icon" type="image/x-icon" href="favicon.ico?v=9.20">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png?v=9.20">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png?v=9.20">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicon-192x192.png?v=9.20">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/images/favicon-512x512.png?v=9.20">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#0a0e1a">
@@ -52,7 +52,7 @@
   <script>
     Sentry.onLoad(function() {
       Sentry.init({
-        release: 'nefroquest@9.19',
+        release: 'nefroquest@9.20',
         environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
         tracesSampleRate: 0.1,
         beforeSend(event) {
@@ -65,25 +65,10 @@
 
   <link rel="stylesheet" href="style.css">
   <script>
-    // Font loading — prevents FOUT by hiding titles until Cinzel Decorative is ready
-    (function() {
-      var timeout = setTimeout(function() {
-        document.documentElement.classList.add('fonts-loaded');
-      }, 2500);
-      document.fonts.load('900 1em "Cinzel Decorative"').then(function() {
-        clearTimeout(timeout);
-        document.documentElement.classList.add('fonts-loaded');
-      }).catch(function() {
-        clearTimeout(timeout);
-        document.documentElement.classList.add('fonts-loaded');
-      });
-    })();
-  </script>
-  <script>
     // Verificação de versão — bypassa o Service Worker via no-store
     // Se a versão do servidor for diferente da carregada, limpa tudo e recarrega
         (function() {
-      const LOADED_VERSION = '9.19';
+      const LOADED_VERSION = '9.20';
       // Evita loop infinito se o redirecionamento ja aconteceu recentemente
       const lastRedirect = sessionStorage.getItem('last_version_redirect');
       const now = Date.now();
@@ -104,7 +89,6 @@
         .catch(() => {});
     })();
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
@@ -311,7 +295,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         <div class="welcome-stat"><span class="ws-val" id="wsGamesPlayed">0</span><span class="ws-lbl">Partidas</span></div>
         <div class="welcome-stat"><span class="ws-val" id="wsBestLevel">0</span><span class="ws-lbl">Maior Nível</span></div>
       </div>
-      <img id="wsSavedAvatar" alt="" style="display:none;">
+      <img id="wsSavedAvatar" alt="" loading="lazy" style="display:none;">
       <div id="welcomeSavedInfo" class="welcome-saved-info" style="display:none;margin:8px 0;transition:opacity 0.4s ease;">
         <div class="wsaved-top">
           <span class="wsaved-label">⚔ Jornada em Andamento</span>
@@ -354,7 +338,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         <button class="btn sec" data-action="showLeaderboardFromWelcome">Leaderboard</button>
         <button id="bossPreviewBtn" class="btn-boss-preview" data-action="startBossPreview" title="Preview do Confronto Final" style="display:none;">⚔️ Preview: Confronto Final</button>
       </div>
-      <div class="welcome-credit" style="margin-top:14px;"><a href="https://nefroquest.com">nefroquest.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;cursor:pointer;" data-action="showChangelog">v9.19</span> &nbsp;·&nbsp; <span style="opacity:0.5;font-size:0.8em;cursor:pointer;text-decoration:underline;" data-action="showPrivacyPolicy">Política de Privacidade</span></div>
+      <div class="welcome-credit" style="margin-top:14px;"><a href="https://nefroquest.com">nefroquest.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;cursor:pointer;" data-action="showChangelog">v9.20</span> &nbsp;·&nbsp; <span style="opacity:0.5;font-size:0.8em;cursor:pointer;text-decoration:underline;" data-action="showPrivacyPolicy">Política de Privacidade</span></div>
     </div>
   </div>
 
@@ -401,15 +385,15 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         <div class="boss-party-banner">⚔ Batalhão da Resistência ⚔</div>
         <div class="boss-party-heroes">
           <div class="boss-party-hero">
-            <img id="partyHero1Img" src="assets/classes/clerigo_renal/nivel_01.jpg" alt="Dr. Nephros">
+            <img id="partyHero1Img" src="assets/classes/clerigo_renal/nivel_01.jpg" alt="Dr. Nephros" loading="lazy">
             <span class="boss-party-hero-name">Dr. Nephros</span>
           </div>
           <div class="boss-party-hero">
-            <img id="partyHero2Img" src="assets/classes/maga_metabolica/nivel_01.jpg" alt="Dra. Aquaria">
+            <img id="partyHero2Img" src="assets/classes/maga_metabolica/nivel_01.jpg" alt="Dra. Aquaria" loading="lazy">
             <span class="boss-party-hero-name">Dra. Aquaria</span>
           </div>
           <div class="boss-party-hero">
-            <img id="partyHero3Img" src="assets/classes/guerreiro_glomerular/nivel_01.png" alt="Dr. Glomerulus">
+            <img id="partyHero3Img" src="assets/classes/guerreiro_glomerular/nivel_01.png" alt="Dr. Glomerulus" loading="lazy">
             <span class="boss-party-hero-name">Dr. Glomerulus</span>
           </div>
         </div>
@@ -419,7 +403,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       <div class="hero">
         <div class="hero-wrap">
           <div class="portrait-frame" data-action="showHeroLore" style="cursor:pointer;" title="Ver história do personagem">
-            <img id="heroImg" class="portrait" src="assets/classes/clerigo_renal/nivel_01.jpg" alt="Herói" />
+            <img id="heroImg" class="portrait" src="assets/classes/clerigo_renal/nivel_01.jpg" alt="Herói" loading="lazy" />
           </div>
           <div class="hero-info">
             <div id="heroClass" class="class">Noviço da Filtração</div>
@@ -439,23 +423,23 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       <div class="badges-container" style="margin-top:8px;padding:6px 10px;background:rgba(0,0,0,0.3);border-radius:8px;border:1px solid #1a3a5a;">
         <div class="badges-row" style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px;">
           <div class="badge-slot" data-badge="1" title="Vórtice do Néfron (20 acertos)">
-            <img src="assets/badges/badge1.png" alt="Vórtice do Néfron">
+            <img src="assets/badges/badge1.png" alt="Vórtice do Néfron" loading="lazy">
             <div class="badge-lock">🔒</div>
           </div>
           <div class="badge-slot" data-badge="2" title="Sábio do Microscópio (40 acertos)">
-            <img src="assets/badges/badge2.png" alt="Sábio do Microscópio">
+            <img src="assets/badges/badge2.png" alt="Sábio do Microscópio" loading="lazy">
             <div class="badge-lock">🔒</div>
           </div>
           <div class="badge-slot" data-badge="3" title="Guardião das Águas (60 acertos)">
-            <img src="assets/badges/badge3.png" alt="Guardião das Águas">
+            <img src="assets/badges/badge3.png" alt="Guardião das Águas" loading="lazy">
             <div class="badge-lock">🔒</div>
           </div>
           <div class="badge-slot" data-badge="4" title="Árbitro dos Rins (80 acertos)">
-            <img src="assets/badges/badge4.png" alt="Árbitro dos Rins">
+            <img src="assets/badges/badge4.png" alt="Árbitro dos Rins" loading="lazy">
             <div class="badge-lock">🔒</div>
           </div>
           <div class="badge-slot" data-badge="5" title="Ascendido do NefroQuest (100 acertos)">
-            <img src="assets/badges/badge5.png" alt="Ascendido do NefroQuest">
+            <img src="assets/badges/badge5.png" alt="Ascendido do NefroQuest" loading="lazy">
             <div class="badge-lock">🔒</div>
           </div>
         </div>
@@ -539,21 +523,21 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       <!-- FAIXA DE HERÓIS MOBILE (arqui-nefromante-final) -->
       <div id="arquiHeroStrip">
         <div class="arqui-hero-strip-item">
-          <img id="arquiStripHero1" src="assets/classes/clerigo_renal/nivel_01.jpg" alt="Dr. Nephros">
+          <img id="arquiStripHero1" src="assets/classes/clerigo_renal/nivel_01.jpg" alt="Dr. Nephros" loading="lazy">
           <span class="arqui-hero-strip-name">Dr. Nephros</span>
         </div>
         <div class="arqui-hero-strip-item">
-          <img id="arquiStripHero2" src="assets/classes/maga_metabolica/nivel_01.jpg" alt="Dra. Aquaria">
+          <img id="arquiStripHero2" src="assets/classes/maga_metabolica/nivel_01.jpg" alt="Dra. Aquaria" loading="lazy">
           <span class="arqui-hero-strip-name">Dra. Aquaria</span>
         </div>
         <div class="arqui-hero-strip-item">
-          <img id="arquiStripHero3" src="assets/classes/guerreiro_glomerular/nivel_01.png" alt="Dr. Glomerulus">
+          <img id="arquiStripHero3" src="assets/classes/guerreiro_glomerular/nivel_01.png" alt="Dr. Glomerulus" loading="lazy">
           <span class="arqui-hero-strip-name">Dr. Glomerulus</span>
         </div>
         <div class="arqui-strip-vs">VS</div>
         <div class="arqui-strip-boss">
           <div class="arqui-strip-boss-thumb">
-            <img src="assets/nefromancer_mobile.png" alt="Arqui-Nefromante">
+            <img src="assets/nefromancer_mobile.png" alt="Arqui-Nefromante" loading="lazy">
           </div>
           <!-- nome removido: já aparece no título acima da HP bar -->
         </div>
@@ -604,7 +588,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         <span class="boss-sparkle" style="left:60%;bottom:18px;animation-duration:3.8s;animation-delay:0.7s;font-size:0.55rem;color:#fbbf24;">★</span>
         <!-- Wrapper da imagem com efeitos de overlay -->
         <div class="boss-img-wrap">
-          <img id="arquiBossImgEl" src="assets/nefromancer.png" alt="Arqui-Nefromante">
+          <img id="arquiBossImgEl" src="assets/nefromancer.png" alt="Arqui-Nefromante" loading="lazy">
         </div>
         <!-- Texto GOLPE FINAL (exibido apenas na questão 10/10) -->
         <div id="bossGolpeFinalText" style="display:none;position:absolute;inset:0;align-items:center;justify-content:center;background:linear-gradient(160deg,#0a0118,#1a0030);z-index:2;">
@@ -619,7 +603,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       <div id="arquiQ9Popup" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.92);flex-direction:column;align-items:center;justify-content:center;padding:20px;">
 <div id="arquiQ9PopupInner" style="max-width:520px;width:100%;text-align:center;">
           <p id="arquiQ9PopupTitle" style="font-family:'Cinzel',serif;color:#e9d5ff;font-size:1.3rem;font-weight:900;letter-spacing:4px;text-transform:uppercase;margin-bottom:16px;">⚔ Golpe Final<br><span style="font-size:.85em;letter-spacing:3px;color:var(--purple);">Última Pergunta</span></p>
-          <img id="arquiQ9PopupImg" src="assets/battle_final.png" alt="Golpe Final" style="width:100%;border-radius:12px;border:2px solid rgba(168,85,247,0.7);box-shadow:0 0 40px rgba(124,58,237,0.7);margin-bottom:20px;clip-path:inset(0 0 9% 0 round 12px);">
+          <img id="arquiQ9PopupImg" src="assets/battle_final.png" alt="Golpe Final" loading="lazy" style="width:100%;border-radius:12px;border:2px solid rgba(168,85,247,0.7);box-shadow:0 0 40px rgba(124,58,237,0.7);margin-bottom:20px;clip-path:inset(0 0 9% 0 round 12px);">
           <button id="arquiQ9CloseBtn" style="font-family:'Cinzel',serif;background:linear-gradient(180deg,#7c3aed,#4c1d95);border:2px solid #a855f7;color:#f3e8ff;padding:14px 40px;border-radius:10px;font-size:1rem;font-weight:900;letter-spacing:3px;cursor:pointer;text-transform:uppercase;box-shadow:0 0 25px rgba(168,85,247,0.6);">⚔ Partir para o Ataque!</button>
         </div>
       </div>
@@ -631,9 +615,9 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         <span class="crystal-corner right" aria-hidden="true">🔮</span>
         <!-- Heróis (esquerda) -->
         <div class="battle-heroes-side">
-          <img id="battleHero1" class="battle-hero-mini" src="assets/classes/clerigo_renal/nivel_01.jpg" alt="Dr. Nephros">
-          <img id="battleHero2" class="battle-hero-mini" src="assets/classes/maga_metabolica/nivel_01.jpg" alt="Dra. Aquaria">
-          <img id="battleHero3" class="battle-hero-mini" src="assets/classes/guerreiro_glomerular/nivel_01.png" alt="Dr. Glomerulus">
+          <img id="battleHero1" class="battle-hero-mini" src="assets/classes/clerigo_renal/nivel_01.jpg" alt="Dr. Nephros" loading="lazy">
+          <img id="battleHero2" class="battle-hero-mini" src="assets/classes/maga_metabolica/nivel_01.jpg" alt="Dra. Aquaria" loading="lazy">
+          <img id="battleHero3" class="battle-hero-mini" src="assets/classes/guerreiro_glomerular/nivel_01.png" alt="Dr. Glomerulus" loading="lazy">
         </div>
         <!-- Centro de colisão -->
         <div class="battle-clash-center">
@@ -773,7 +757,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       <p>
         <a href="https://nefroquest.com">nefroquest.com</a>
         &nbsp;•&nbsp;
-        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" data-action="showChangelog">v9.19</span>
+        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" data-action="showChangelog">v9.20</span>
       </p>
     </div>
   </main>
@@ -937,19 +921,19 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       <h2>Escolha seu Personagem</h2>
       <div class="char-grid">
         <div class="char-card" data-action="selectCharacter" data-arg="nephros">
-          <img src="assets/classes/clerigo_renal/nivel_01.jpg" alt="Dr. Nephros">
+          <img src="assets/classes/clerigo_renal/nivel_01.jpg" alt="Dr. Nephros" loading="lazy">
           <h3>Dr. Nephros</h3>
           <p class="char-subtitle">Guardião dos Néfrons</p>
           <p class="char-desc">Equilíbrio e sabedoria. Bônus: +2 Conhecimento</p>
         </div>
         <div class="char-card" data-action="selectCharacter" data-arg="aquaria">
-          <img src="assets/classes/maga_metabolica/nivel_01.jpg" alt="Dra. Aquaria">
+          <img src="assets/classes/maga_metabolica/nivel_01.jpg" alt="Dra. Aquaria" loading="lazy">
           <h3>Dra. Aquaria</h3>
           <p class="char-subtitle">Mestra das Águas</p>
           <p class="char-desc">Cura e regeneração. Bônus: +2 Defesa</p>
         </div>
         <div class="char-card" data-action="selectCharacter" data-arg="glomerulus">
-          <img src="assets/classes/guerreiro_glomerular/nivel_01.png" alt="Dr. Glomerulus">
+          <img src="assets/classes/guerreiro_glomerular/nivel_01.png" alt="Dr. Glomerulus" loading="lazy">
           <h3>Dr. Glomerulus</h3>
           <p class="char-subtitle">Cientista Renal</p>
           <p class="char-desc">Força e precisão. Bônus: +2 Ataque, +1 Conhecimento</p>
@@ -1102,6 +1086,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script src="data/refs.js"></script>
   <script src="data/articles.js"></script>
   <script src="data/topics.js"></script>

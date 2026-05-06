@@ -1090,12 +1090,18 @@
       });
 
       try {
+        const _diagToken = (typeof window.getAuthToken === 'function') ? (await window.getAuthToken()) : null;
         const res = await fetch(`${SUPA_URL}/functions/v1/ai-diagnosis`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'apikey': SUPA_KEY, 'Authorization': `Bearer ${SUPA_KEY}` },
+          headers: { 'Content-Type': 'application/json', 'apikey': SUPA_KEY, 'Authorization': `Bearer ${_diagToken || SUPA_KEY}` },
           body: JSON.stringify({ axes, totalCorrect: correct, totalWrong: wrong, accuracy }),
         });
 
+        if (res.status === 429) {
+          card.classList.remove('ai-diagnosis-loading');
+          card.innerHTML = `<div class="ai-diagnosis-header">🤖 Diagnóstico da Sessão</div><div class="ai-diagnosis-body" style="text-align:center;padding:16px 0;color:var(--txt-dim);">Limite diário atingido.<br><span style="font-size:0.8rem;">Volte amanhã ou <strong style="color:var(--gold);cursor:pointer;" onclick="showPremiumModal()">faça upgrade para Premium</strong>.</span></div>`;
+          return;
+        }
         if (!res.ok) throw new Error('HTTP ' + res.status);
         const { diagnosis } = await res.json();
         if (!diagnosis) throw new Error('empty');
@@ -1281,9 +1287,10 @@
       thinkingEl.classList.add('mentor-thinking');
 
       try {
+        const _mentorToken = (typeof window.getAuthToken === 'function') ? (await window.getAuthToken()) : null;
         const res = await fetch(`${SUPA_URL}/functions/v1/ai-mentor`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'apikey': SUPA_KEY, 'Authorization': `Bearer ${SUPA_KEY}` },
+          headers: { 'Content-Type': 'application/json', 'apikey': SUPA_KEY, 'Authorization': `Bearer ${_mentorToken || SUPA_KEY}` },
           body: JSON.stringify({
             questionText: q.q,
             options: q.opts,
@@ -1295,6 +1302,7 @@
         });
 
         const data = await res.json();
+        if (res.status === 429) throw new Error('quota_exceeded');
         if (!res.ok || !data.reply) throw new Error(data.error || 'Erro ao contatar o mentor.');
 
         thinkingEl.classList.remove('mentor-thinking');
@@ -1316,7 +1324,11 @@
       } catch (err) {
         _track('error_mentor_send', { msg: String(err) });
         thinkingEl.classList.remove('mentor-thinking');
-        thinkingEl.textContent = 'Mentor indisponível no momento. Tente novamente em instantes.';
+        if (String(err).includes('quota_exceeded')) {
+          thinkingEl.innerHTML = `Limite diário atingido. <span style="color:var(--gold);cursor:pointer;" onclick="showPremiumModal()">Faça upgrade para Premium</span> para perguntas ilimitadas.`;
+        } else {
+          thinkingEl.textContent = 'Oráculo indisponível no momento. Tente novamente em instantes.';
+        }
         thinkingEl.style.color = '#fb7185';
       } finally {
         input.disabled = false;
