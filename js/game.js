@@ -1481,6 +1481,7 @@
 
 
     function shuffleQueue() {
+      if (!questionBank) return; // topics ainda não carregou
       // Separar por dificuldade e embaralhar cada grupo
       // Dentro de cada grupo: não-dominadas primeiro, dominadas por último
       function splitMastered(arr) {
