@@ -4779,6 +4779,21 @@
   transform: translateY(-1px);
 }
 
+/* Utilitários de overlay — base compartilhada para modais criados por JS */
+.nq-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 32px 16px;
+  box-sizing: border-box;
+}
+.nq-overlay--col    { flex-direction: column; }
+.nq-overlay--top    { align-items: flex-start; }
+.nq-overlay--hidden { display: none; }
+
 /* Acessibilidade: desativa animações para quem prefere movimento reduzido */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -4786,5 +4801,31 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  /* Partículas e elementos puramente decorativos — ocultados */
+  .particle,
+  .particles,
+  .welcome-particles {
+    display: none !important;
+  }
+
+  /* Boss: remove o float e a aura pulsante */
+  .arqui-boss-img-wrap,
+  .boss-aura {
+    animation: none !important;
+  }
+
+  /* Scrolls e fogo do painel de batalha */
+  .rune-scroll,
+  .fire-embers,
+  .panel-fire-line {
+    animation: none !important;
+    opacity: 0.4;
+  }
+
+  /* HP shimmer — deixa estático */
+  .hp-bar-fill::after {
+    animation: none !important;
   }
 }

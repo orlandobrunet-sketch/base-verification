@@ -63,7 +63,8 @@
       const modal = document.createElement('div');
       modal.className = 'modal show';
       modal.id = 'victoryModal';
-      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.92);display:flex;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(8px);overflow-y:auto;padding:32px 16px;';
+      modal.classList.add('nq-overlay');
+      modal.style.cssText = 'background:rgba(0,0,0,0.92);z-index:9999;backdrop-filter:blur(8px);';
       modal.innerHTML = `
         <div style="max-width:600px;width:100%;text-align:center;position:relative;">
           <img src="assets/victory.jpg" alt="Vitória" style="width:100%;border-radius:16px;border:3px solid var(--gold);box-shadow:0 0 40px rgba(218,165,32,0.5);margin-bottom:20px;">
@@ -146,7 +147,8 @@
     function showExtraLifeModal() {
       const modal = document.createElement('div');
       modal.className = 'modal show';
-      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(6px);padding:32px 16px;overflow-y:auto;';
+      modal.classList.add('nq-overlay');
+      modal.style.cssText = 'background:rgba(0,0,0,0.85);z-index:9999;backdrop-filter:blur(6px);';
       modal.innerHTML = `
         <div class="modal-content" style="max-width:450px;max-height:88vh;overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;">
           <h2 style="color:var(--ok);margin-bottom:16px;">💚 VIDA EXTRA! 💚</h2>
@@ -266,7 +268,8 @@
       
       const modal = document.createElement('div');
       modal.className = 'modal show evolution-popup';
-      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(6px);padding:32px 16px;overflow-y:auto;';
+      modal.classList.add('nq-overlay');
+      modal.style.cssText = 'background:rgba(0,0,0,0.85);z-index:9999;backdrop-filter:blur(6px);';
       modal.innerHTML = `
         <div class="modal-content" style="max-width:500px;max-height:88vh;overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;">
           <h2 style="color:var(--gold);margin-bottom:12px;">⚡ EVOLUÇÃO! ⚡</h2>
@@ -1092,7 +1095,8 @@
       if (!_guestMode || _guestHookShown || authUser) return;
       _guestHookShown = true;
       const overlay = document.createElement('div');
-      overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:10001;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px);';
+      overlay.className = 'nq-overlay';
+      overlay.style.cssText = 'background:rgba(0,0,0,0.88);z-index:10001;backdrop-filter:blur(6px);padding:20px;';
       overlay.innerHTML = `
         <div style="background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid rgba(255,215,0,0.5);border-radius:16px;padding:28px 24px;max-width:400px;width:100%;text-align:center;box-shadow:0 0 60px rgba(255,215,0,0.15);">
           <div style="font-size:2rem;margin-bottom:8px;">🏆</div>
@@ -1121,7 +1125,8 @@
       if (!modal) {
         modal = document.createElement('div');
         modal.id = 'updatePasswordModal';
-        modal.style.cssText = 'display:flex;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:10000;align-items:flex-start;justify-content:center;backdrop-filter:blur(10px);padding:32px 16px;overflow-y:auto;';
+        modal.className = 'nq-overlay nq-overlay--top';
+        modal.style.cssText = 'background:rgba(0,0,0,0.92);z-index:10000;backdrop-filter:blur(10px);';
         modal.innerHTML = `
           <div class="modal-panel" style="max-width:400px;margin:auto 0;">
             <h2>🔑 Nova Senha</h2>
@@ -1671,7 +1676,8 @@
       const qText = (q.q || '').substring(0, 300);
       const popup = document.createElement('div');
       popup.id = 'flagPopup';
-      popup.style.cssText = 'position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.75);padding:32px 16px;';
+      popup.className = 'nq-overlay';
+      popup.style.cssText = 'z-index:9999;background:rgba(0,0,0,0.75);';
       popup.innerHTML = `
         <div style="background:linear-gradient(180deg,#1a2a4a,#0e1830);border:2px solid #6366f1;border-radius:14px;padding:24px;max-width:500px;width:100%;box-shadow:0 0 40px rgba(99,102,241,0.3);">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
@@ -1957,7 +1963,8 @@
       document.getElementById('pricingModal')?.remove();
       const modal = document.createElement('div');
       modal.id = 'pricingModal';
-      modal.style.cssText = 'display:flex;position:fixed;inset:0;background:rgba(0,0,0,0.94);z-index:9998;align-items:center;justify-content:center;backdrop-filter:blur(10px);padding:32px 16px;overflow-y:auto;';
+      modal.className = 'nq-overlay';
+      modal.style.cssText = 'background:rgba(0,0,0,0.94);z-index:9998;backdrop-filter:blur(10px);';
       const isPt = _lang === 'pt';
       const tagline = isPt
         ? 'Domine a Nefrologia com o método que funciona — questões clínicas reais, RPG e ciência de ponta.'
@@ -2141,7 +2148,8 @@
     function _showPaymentLoading(plan) {
       const el = document.createElement('div');
       el.id = 'paymentLoadingOverlay';
-      el.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:10000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;';
+      el.className = 'nq-overlay nq-overlay--col';
+      el.style.cssText = 'background:rgba(0,0,0,0.9);z-index:10000;gap:16px;';
       const label = plan === 'lifetime' ? 'Plano Vitalício' : 'Plano Mensal';
       el.innerHTML = `
         <div style="width:48px;height:48px;border:3px solid rgba(255,215,0,0.2);border-top-color:#ffd700;border-radius:50%;animation:spin 0.8s linear infinite;"></div>
@@ -2182,7 +2190,8 @@
       _track('premium_converted', { plan });
       const el = document.createElement('div');
       el.id = 'paymentSuccessOverlay';
-      el.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:10000;display:flex;align-items:center;justify-content:center;padding:32px 16px;';
+      el.className = 'nq-overlay';
+      el.style.cssText = 'background:rgba(0,0,0,0.96);z-index:10000;';
       const label = plan === 'lifetime' ? 'Vitalício' : 'Mensal';
       el.innerHTML = `
         <div style="text-align:center;max-width:420px;">
@@ -2256,7 +2265,8 @@
       if (!modal) {
         modal = document.createElement('div');
         modal.id = 'accountModal';
-        modal.style.cssText = 'display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9998;align-items:center;justify-content:center;backdrop-filter:blur(8px);padding:32px 16px;';
+        modal.className = 'nq-overlay nq-overlay--hidden';
+        modal.style.cssText = 'background:rgba(0,0,0,0.88);z-index:9998;backdrop-filter:blur(8px);';
         modal.innerHTML = `
           <div class="modal-panel">
             <button class="modal-panel-x" data-action="closeAccountModal" aria-label="Fechar">&times;</button>
@@ -2320,7 +2330,8 @@
       document.querySelectorAll('.delete-account-confirm').forEach(el => el.remove());
       const popup = document.createElement('div');
       popup.className = 'modal show delete-account-confirm';
-      popup.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:10001;display:flex;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(8px);';
+      popup.className = 'nq-overlay';
+      popup.style.cssText = 'background:rgba(0,0,0,0.92);z-index:10001;backdrop-filter:blur(8px);padding:24px;';
       popup.innerHTML = `
         <div style="max-width:380px;width:100%;background:linear-gradient(180deg,#1a0a0a,#0d0808);border:2px solid rgba(251,113,133,0.6);border-radius:14px;padding:28px 24px;text-align:center;">
           <div style="font-size:2rem;margin-bottom:12px;">⚠️</div>
@@ -2387,7 +2398,8 @@
       if (!modal) {
         modal = document.createElement('div');
         modal.id = 'planModal';
-        modal.style.cssText = 'display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9998;align-items:center;justify-content:center;backdrop-filter:blur(8px);padding:32px 16px;';
+        modal.className = 'nq-overlay nq-overlay--hidden';
+        modal.style.cssText = 'background:rgba(0,0,0,0.88);z-index:9998;backdrop-filter:blur(8px);';
         modal.innerHTML = `<div class="modal-panel" id="planModalContent"></div>`;
         document.body.appendChild(modal);
       }
@@ -2466,7 +2478,8 @@
       if (!modal) {
         modal = document.createElement('div');
         modal.id = 'adminModal';
-        modal.style.cssText = 'display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9998;align-items:center;justify-content:center;backdrop-filter:blur(8px);padding:32px 16px;';
+        modal.className = 'nq-overlay nq-overlay--hidden';
+        modal.style.cssText = 'background:rgba(0,0,0,0.88);z-index:9998;backdrop-filter:blur(8px);';
         modal.innerHTML = `
           <div class="modal-panel" style="max-width:500px">
             <button class="modal-panel-x" data-action="closeAdminPanel" aria-label="Fechar">&times;</button>
@@ -2500,7 +2513,8 @@
       if (!modal) {
         modal = document.createElement('div');
         modal.id = 'analyticsModal';
-        modal.style.cssText = 'display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9998;align-items:flex-start;justify-content:center;backdrop-filter:blur(8px);padding:20px 16px;overflow-y:auto;';
+        modal.className = 'nq-overlay nq-overlay--hidden nq-overlay--top';
+        modal.style.cssText = 'background:rgba(0,0,0,0.88);z-index:9998;backdrop-filter:blur(8px);padding:20px 16px;';
         modal.innerHTML = `
           <div class="modal-panel" style="max-width:560px;width:100%;margin:auto 0;">
             <button class="modal-panel-x" data-action="closeAnalyticsPanel" aria-label="Fechar">&times;</button>
@@ -3004,7 +3018,8 @@
 
       const modal = document.createElement('div');
       modal.id = 'forjaModal';
-      modal.style.cssText = 'position:fixed;inset:0;z-index:9100;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.72);padding:24px 16px;';
+      modal.className = 'nq-overlay';
+      modal.style.cssText = 'z-index:9100;background:rgba(0,0,0,0.72);padding:24px 16px;';
       modal.innerHTML = `
         <div style="
           background:linear-gradient(160deg,rgba(18,26,54,0.99),rgba(10,16,38,0.99));
@@ -4348,7 +4363,8 @@
       document.getElementById('goldMilestonePopup')?.remove();
       const popup = document.createElement('div');
       popup.id = 'goldMilestonePopup';
-      popup.style.cssText = 'position:fixed;inset:0;z-index:9998;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.7);padding:32px 16px;';
+      popup.className = 'nq-overlay';
+      popup.style.cssText = 'z-index:9998;background:rgba(0,0,0,0.7);';
       popup.innerHTML = `
         <div style="background:linear-gradient(160deg,#1a2a0a,#0e1830,#2a1a00);border:2px solid #ffd700;border-radius:16px;padding:26px 24px;max-width:420px;width:100%;box-shadow:0 0 50px rgba(255,215,0,0.25);text-align:center;animation:scaleIn 0.35s;">
           <div style="font-size:2.4rem;margin-bottom:8px;">💰</div>
