@@ -282,6 +282,11 @@ No Supabase Dashboard → Edge Functions → selecionar a função → Deploy / 
 - [x] UI: banner do Oráculo + redesign do card de study mode
 - [x] Fix: `adminJumpToBoss()` — aguarda topics.js + chama shuffleQueue/renderHUD/updateBossUI
 - [x] Fix: Oráculo — pergunta truncada em 120 chars (removido `_firstSentence`, exibe texto completo)
+- [x] Segurança: CSP completada — `media-src 'self'`, `worker-src 'self'` adicionados; `api.web3forms.com` removido de connect-src (browser não chama diretamente)
+- [x] Performance: Google Fonts não-render-blocking (`media="print"` + `onload` + `<noscript>` fallback)
+- [x] Performance: SDK Supabase já estava no fim do `<body>` — não bloqueia renderização (P2 era falso positivo)
+- [x] Performance: `loading="lazy"` — já presente em todas as imagens (P4 já estava feito)
+- [x] Performance: `font-display: swap` — já configurado via `display=swap` no URL do Google Fonts (P3 já estava feito)
 
 ---
 
@@ -298,15 +303,15 @@ No Supabase Dashboard → Edge Functions → selecionar a função → Deploy / 
 |---|--------|---------|
 | S1 | Chave Web3Forms proxy | Já em edge function (`send-flag`, `send-contact`) — **feito** |
 | S2 | JWT nas edge functions | `ai-mentor` e `ai-diagnosis` já verificam JWT; `send-flag`/`send-contact` são públicas por design |
-| S3 | Content Security Policy (CSP) | Adicionar header via `vercel.json` — **pendente** |
+| S3 | Content Security Policy (CSP) | **Feito** — `media-src`, `worker-src` adicionados; `api.web3forms.com` removido |
 
 ### ALTA PRIORIDADE — Performance
 | # | Tarefa | Detalhe |
 |---|--------|---------|
 | P1 | `topics.js` lazy load | **Feito** (v9.22) |
-| P2 | SDK Supabase com `defer` | Mover `<script>` do Supabase para antes do `</body>` ou usar `defer` |
-| P3 | Fontes: `font-display: swap` | Remover loader JS de fontes; usar `font-display: swap` no CSS |
-| P4 | Imagens: `loading="lazy"` | Adicionar em todas as `<img>` fora do above-the-fold |
+| P2 | SDK Supabase com `defer` | **Feito** — SDK já estava no fim do `<body>`, não bloqueia renderização |
+| P3 | Fontes: `font-display: swap` | **Feito** — `display=swap` no URL Google Fonts + `media=print/onload` não-blocking |
+| P4 | Imagens: `loading="lazy"` | **Feito** — já presente em todas as `<img>` |
 
 ### MÉDIA PRIORIDADE — PWA
 | # | Tarefa | Detalhe |
