@@ -333,7 +333,7 @@ No Supabase Dashboard → Edge Functions → selecionar a função → Deploy / 
 |---|--------|---------|
 | A1 | Separar `game.js` (6.088 linhas) | Módulos sugeridos: `state.js`, `ui.js`, `combat.js`, `inventory.js`, `api.js` — projeto grande |
 | A2 | Store central de estado | Objeto reativo com Proxy para sincronizar as 4 fontes de verdade |
-| A3 | `await`/`try-catch` em async | Promessas não tratadas causam erros silenciosos |
+| A3 | `await`/`try-catch` em async | **Feito** — 7 funções de auth + authLogout + enableStudyReminders + floating promises |
 | A4 | Event delegation | Migrar `onclick="funcao()"` no HTML para `data-action` centralizado |
 
 ### A TESTAR em produção (pós-redeploy)

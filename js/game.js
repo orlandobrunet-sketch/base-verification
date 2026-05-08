@@ -588,7 +588,7 @@
       }
       if (v === 'study') {
         playSound('click');
-        setTimeout(() => showTopicSelector(), 350);
+        setTimeout(() => showTopicSelector().catch(err => console.error('showTopicSelector:', err)), 350);
       } else {
         playSound('click');
       }
@@ -681,7 +681,7 @@
     
     function showLeaderboardFromWelcome() {
       playSound('click');
-      renderBoard();
+      renderBoard().catch(() => {});
       ui.boardModal.classList.remove('hidden');
     }
 
@@ -900,7 +900,7 @@
         if (authUser) _loadPremiumFromDB();
         else { localStorage.removeItem(PREMIUM_KEY); _invalidatePremiumCache(); }
         updateWelcomeUserBadge();
-      });
+      }).catch(() => { updateWelcomeUserBadge(); });
     })();
 
     function _authDisplayName() {
@@ -980,12 +980,14 @@
       if (!email) { _setAuthMsg('Digite seu email.', 'error'); return; }
       const btn = document.getElementById('authForgotBtn');
       btn.disabled = true; btn.textContent = 'Enviando...';
-      const { error } = await _supaClient.auth.resetPasswordForEmail(email, {
-        redirectTo: 'https://nefroquest.com'
-      });
-      btn.disabled = false; btn.textContent = 'Enviar Link de Redefinição';
-      if (error) { _setAuthMsg(error.message, 'error'); }
-      else { _setAuthMsg('Link enviado! Verifique seu email.', 'success'); }
+      try {
+        const { error } = await _supaClient.auth.resetPasswordForEmail(email, {
+          redirectTo: 'https://nefroquest.com'
+        });
+        if (error) { _setAuthMsg(error.message, 'error'); }
+        else { _setAuthMsg('Link enviado! Verifique seu email.', 'success'); }
+      } catch { _setAuthMsg('Erro de conexão. Tente novamente.', 'error'); }
+      finally { btn.disabled = false; btn.textContent = 'Enviar Link de Redefinição'; }
     }
     function authKeyPress(e) {
       if (e.key !== 'Enter') return;
@@ -1000,11 +1002,13 @@
     }
     async function loginWithGoogle() {
       if (!_supaClient) return;
-      const { error } = await _supaClient.auth.signInWithOAuth({
-        provider: 'google',
-        options: { redirectTo: window.location.origin }
-      });
-      if (error) _setAuthMsg(error.message, 'error');
+      try {
+        const { error } = await _supaClient.auth.signInWithOAuth({
+          provider: 'google',
+          options: { redirectTo: window.location.origin }
+        });
+        if (error) _setAuthMsg(error.message, 'error');
+      } catch { _setAuthMsg('Erro de conexão. Tente novamente.', 'error'); }
     }
     async function authEmailLogin() {
       if (!_supaClient) return;
@@ -1014,16 +1018,18 @@
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { _setAuthMsg('Digite um email válido.', 'error'); return; }
       const btn = document.getElementById('authLoginBtn');
       btn.disabled = true; btn.textContent = 'Entrando...';
-      const { error } = await _supaClient.auth.signInWithPassword({ email, password });
-      btn.disabled = false; btn.textContent = 'Entrar na Jornada';
-      if (error) {
-        const msg = error.message === 'Invalid login credentials'
-          ? 'Email ou senha incorretos.'
-          : error.message === 'Email not confirmed'
-            ? 'Email não confirmado. Verifique sua caixa de entrada e clique no link de ativação.'
-            : error.message;
-        _setAuthMsg(msg, 'error');
-      } else { closeAuthModal(); }
+      try {
+        const { error } = await _supaClient.auth.signInWithPassword({ email, password });
+        if (error) {
+          const msg = error.message === 'Invalid login credentials'
+            ? 'Email ou senha incorretos.'
+            : error.message === 'Email not confirmed'
+              ? 'Email não confirmado. Verifique sua caixa de entrada e clique no link de ativação.'
+              : error.message;
+          _setAuthMsg(msg, 'error');
+        } else { closeAuthModal(); }
+      } catch { _setAuthMsg('Erro de conexão. Tente novamente.', 'error'); }
+      finally { btn.disabled = false; btn.textContent = 'Entrar na Jornada'; }
     }
     async function authEmailRegister() {
       if (!_supaClient) return;
@@ -1038,20 +1044,22 @@
       if (password !== passwordConfirm) { _setAuthMsg('As senhas não coincidem.', 'error'); return; }
       const btn = document.getElementById('authRegBtn');
       btn.disabled = true; btn.textContent = 'Criando conta...';
-      const { error } = await _supaClient.auth.signUp({
-        email, password,
-        options: {
-          data: { full_name: name, specialty },
-          emailRedirectTo: window.location.origin + window.location.pathname
+      try {
+        const { error } = await _supaClient.auth.signUp({
+          email, password,
+          options: {
+            data: { full_name: name, specialty },
+            emailRedirectTo: window.location.origin + window.location.pathname
+          }
+        });
+        if (error) { _setAuthMsg(error.message, 'error'); }
+        else {
+          _setAuthMsg('Conta criada! Verifique seu email para confirmar.', 'success');
+          const resendEl = document.getElementById('authResendWrap');
+          if (resendEl) { resendEl.style.display = 'block'; resendEl.dataset.email = email; }
         }
-      });
-      btn.disabled = false; btn.textContent = 'Criar Conta';
-      if (error) { _setAuthMsg(error.message, 'error'); }
-      else {
-        _setAuthMsg('Conta criada! Verifique seu email para confirmar.', 'success');
-        const resendEl = document.getElementById('authResendWrap');
-        if (resendEl) { resendEl.style.display = 'block'; resendEl.dataset.email = email; }
-      }
+      } catch { _setAuthMsg('Erro de conexão. Tente novamente.', 'error'); }
+      finally { btn.disabled = false; btn.textContent = 'Criar Conta'; }
     }
     async function authResendConfirmation() {
       if (!_supaClient) return;
@@ -1060,13 +1068,15 @@
       if (!email) return;
       const btn = document.getElementById('authResendBtn');
       btn.disabled = true; btn.textContent = 'Reenviando...';
-      const { error } = await _supaClient.auth.resend({ type: 'signup', email });
-      btn.disabled = false; btn.textContent = 'Reenviar email';
-      _setAuthMsg(error ? error.message : 'Email reenviado! Verifique sua caixa de entrada e o spam.', error ? 'error' : 'success');
+      try {
+        const { error } = await _supaClient.auth.resend({ type: 'signup', email });
+        _setAuthMsg(error ? error.message : 'Email reenviado! Verifique sua caixa de entrada e o spam.', error ? 'error' : 'success');
+      } catch { _setAuthMsg('Erro de conexão. Tente novamente.', 'error'); }
+      finally { btn.disabled = false; btn.textContent = 'Reenviar email'; }
     }
     async function authLogout() {
       if (!_supaClient) return;
-      await _supaClient.auth.signOut();
+      try { await _supaClient.auth.signOut(); } catch { /* cleanup local state regardless */ }
       authUser = null;
       _guestMode = false;
       _guestHookShown = false;
@@ -1075,7 +1085,6 @@
       localStorage.removeItem(WHITELIST_KEY);
       _invalidatePremiumCache(); _invalidateStatsCache();
       updateWelcomeUserBadge();
-      // Return to landing screen
       document.getElementById('welcomeScreen').classList.add('hidden');
       document.getElementById('landingScreen').classList.remove('hidden');
       document.getElementById('mainApp')?.classList.add('hidden');
@@ -1160,12 +1169,14 @@
       };
       if (pwd.length < 6) { showMsg('Senha deve ter pelo menos 6 caracteres.', false); return; }
       if (pwd !== confirm) { showMsg('As senhas não coincidem.', false); return; }
-      const { error } = await _supaClient.auth.updateUser({ password: pwd });
-      if (error) { showMsg(error.message, false); }
-      else {
-        showMsg('Senha atualizada com sucesso!', true);
-        setTimeout(() => { document.getElementById('updatePasswordModal').style.display = 'none'; }, 1500);
-      }
+      try {
+        const { error } = await _supaClient.auth.updateUser({ password: pwd });
+        if (error) { showMsg(error.message, false); }
+        else {
+          showMsg('Senha atualizada com sucesso!', true);
+          setTimeout(() => { document.getElementById('updatePasswordModal').style.display = 'none'; }, 1500);
+        }
+      } catch { showMsg('Erro de conexão. Tente novamente.', false); }
     }
 
     // ===== ONBOARDING =====
@@ -4161,7 +4172,7 @@
     }
     // forgeBtn agora usa data-action="showMobileActionConfirm" data-arg="forge" no HTML
     ui.bonusBtn.addEventListener('click',buyBonusQuestion);
-    ui.boardBtn.addEventListener('click',()=>{ renderBoard(); ui.boardModal.classList.remove('hidden'); });
+    ui.boardBtn.addEventListener('click',()=>{ renderBoard().catch(() => {}); ui.boardModal.classList.remove('hidden'); });
     ui.closeBoard.addEventListener('click',()=>ui.boardModal.classList.add('hidden'));
     const boardRefreshBtn = document.getElementById('boardRefresh');
     if (boardRefreshBtn) boardRefreshBtn.addEventListener('click', () => { renderBoard(true); });
@@ -4263,7 +4274,7 @@
       if(_msbGO) _msbGO.classList.remove('active');
       renderRefs(["kdigo_ckd","kdigo_aki","kdigo_gn","kdigo_tx","dapa","empa"]);
       renderHUD();
-      updateBadges(); renderBoard();
+      updateBadges(); renderBoard().catch(() => {});
     }
     // ============ NARRATIVAS DE INÍCIO POR PERSONAGEM ============
     const CHARACTER_INTROS = {
@@ -4297,11 +4308,11 @@
 
     function closeIntroAndStart() {
       const overlay = document.getElementById('charIntroOverlay');
-      if (overlay) {
-        overlay.remove(); startGameWithCharacter();
-      } else {
-        startGameWithCharacter();
-      }
+      if (overlay) overlay.remove();
+      startGameWithCharacter().catch(err => {
+        console.error('startGameWithCharacter error:', err);
+        _toast('Erro ao iniciar o jogo. Recarregue a página.', 'error');
+      });
     }
     
     async function startGameWithCharacter() {

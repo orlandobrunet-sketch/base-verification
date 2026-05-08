@@ -118,19 +118,20 @@
       if (!('Notification' in window)) {
         _toast('Seu navegador não suporta notificações.', 'error'); return;
       }
-      const perm = await Notification.requestPermission();
-      if (perm !== 'granted') {
-        _toast('Permissão negada. Ative nas configurações do navegador.', 'warning'); return;
-      }
-      localStorage.setItem('nq_notif_enabled', '1');
-      // Tentar registrar periodic sync
-      if ('serviceWorker' in navigator) {
-        const reg = await navigator.serviceWorker.ready;
-        if ('periodicSync' in reg) {
-          await reg.periodicSync.register('nq-study-reminder', { minInterval: 20 * 60 * 60 * 1000 }).catch(() => {});
+      try {
+        const perm = await Notification.requestPermission();
+        if (perm !== 'granted') {
+          _toast('Permissão negada. Ative nas configurações do navegador.', 'warning'); return;
         }
-      }
-      _toast('Lembretes de estudo ativados!', 'success');
+        localStorage.setItem('nq_notif_enabled', '1');
+        if ('serviceWorker' in navigator) {
+          const reg = await navigator.serviceWorker.ready;
+          if ('periodicSync' in reg) {
+            await reg.periodicSync.register('nq-study-reminder', { minInterval: 20 * 60 * 60 * 1000 }).catch(() => {});
+          }
+        }
+        _toast('Lembretes de estudo ativados!', 'success');
+      } catch { _toast('Não foi possível ativar lembretes. Tente novamente.', 'error'); }
     }
     function disableStudyReminders() {
       localStorage.removeItem('nq_notif_enabled');
