@@ -1245,7 +1245,7 @@
           </div>
           <div class="mentor-context">
             <div class="mentor-context-label">Questão em análise:</div>
-            <div class="mentor-context-text">${escapeHtml(_firstSentence(q.q || '', 120))}</div>
+            <div class="mentor-context-text">${escapeHtml(q.q || '')}</div>
           </div>
           <div class="mentor-chat" id="mentorChat"></div>
           <div class="mentor-quota-bar" id="mentorQuotaBar">${_mentorRemainingText()}</div>

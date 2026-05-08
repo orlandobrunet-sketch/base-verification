@@ -267,22 +267,77 @@ No Supabase Dashboard → Edge Functions → selecionar a função → Deploy / 
 
 ---
 
-## Estado Atual das Tarefas (última sessão)
+## Histórico de Tarefas Concluídas
 
-### Concluído
 - [x] Migration 001 — colunas de pagamento em `profiles`
 - [x] Migration 002 — RLS + user_id no leaderboard
 - [x] Migration 003 — tabela `ai_usage` para quota de IA
 - [x] Redeploy das edge functions: `ai-mentor`, `ai-diagnosis`, `send-flag`, `send-contact`
 - [x] Variável `WEB3FORMS_KEY` adicionada nas funções `send-flag` e `send-contact`
+- [x] Segurança: cotas de IA movidas para edge function com banco (server-side)
+- [x] Segurança: `isPremium()` exige `authUser` autenticado — nunca concede via localStorage
+- [x] Segurança: z-index padronizado via variáveis CSS no `:root`
+- [x] Performance: `topics.js` (~1,4 MB) convertido para lazy loading (dynamic import)
+- [x] PWA: iOS splash screens adicionados para múltiplos tamanhos de iPhone/iPad
+- [x] UI: banner do Oráculo + redesign do card de study mode
+- [x] Fix: `adminJumpToBoss()` — aguarda topics.js + chama shuffleQueue/renderHUD/updateBossUI
+- [x] Fix: Oráculo — pergunta truncada em 120 chars (removido `_firstSentence`, exibe texto completo)
 
-### Pendente / A testar
-- [ ] Testar `ai-mentor` em produção (Oráculo dos Néfrons funcionando)
-- [ ] Testar `ai-diagnosis` em produção (diagnóstico ao final de sessão)
-- [ ] Testar `send-flag` em produção (reportar erro em questão)
-- [ ] Testar `send-contact` em produção (formulário de contato)
-- [ ] Verificar quota de IA sendo contabilizada na tabela `ai_usage`
-- [ ] Verificar paywall premium funcionando corretamente
+---
+
+## Roadmap do Projeto
+
+### CRÍTICO — Bugs ativos
+| # | Bug | Arquivo | Status |
+|---|-----|---------|--------|
+| B1 | Fase Final (admin): tela de perguntas não muda ao ativar | `js/game.js:adminJumpToBoss` | **Corrigido** |
+| B2 | Oráculo: pergunta cortada na exibição do contexto | `js/study-mode.js:1248` | **Corrigido** |
+
+### ALTA PRIORIDADE — Segurança (restante)
+| # | Tarefa | Detalhe |
+|---|--------|---------|
+| S1 | Chave Web3Forms proxy | Já em edge function (`send-flag`, `send-contact`) — **feito** |
+| S2 | JWT nas edge functions | `ai-mentor` e `ai-diagnosis` já verificam JWT; `send-flag`/`send-contact` são públicas por design |
+| S3 | Content Security Policy (CSP) | Adicionar header via `vercel.json` — **pendente** |
+
+### ALTA PRIORIDADE — Performance
+| # | Tarefa | Detalhe |
+|---|--------|---------|
+| P1 | `topics.js` lazy load | **Feito** (v9.22) |
+| P2 | SDK Supabase com `defer` | Mover `<script>` do Supabase para antes do `</body>` ou usar `defer` |
+| P3 | Fontes: `font-display: swap` | Remover loader JS de fontes; usar `font-display: swap` no CSS |
+| P4 | Imagens: `loading="lazy"` | Adicionar em todas as `<img>` fora do above-the-fold |
+
+### MÉDIA PRIORIDADE — PWA
+| # | Tarefa | Detalhe |
+|---|--------|---------|
+| W1 | Screenshots no manifest | Adicionar `screenshot-mobile.png` (390×844) e `screenshot-desktop.png` (1280×800) — destrava botão de instalação no Android |
+| W2 | iOS splash screens | **Feito** (v9.21) |
+| W3 | Push notifications server-side | Projeto médio/longo, alto impacto em retenção — **backlog** |
+
+### MÉDIA PRIORIDADE — CSS/UI
+| # | Tarefa | Detalhe |
+|---|--------|---------|
+| C1 | `!important` — 185 ocorrências | Substituir por especificidade; requer análise visual — **deferido** |
+| C2 | z-index centralizado | Sistema declarado no `:root`, mas há valores hardcoded — reduzir gradualmente |
+| C3 | `prefers-reduced-motion` | Animações sem suporte a acessibilidade — adicionar media query global |
+| C4 | Estilos inline JS → classes CSS | Mover estilos estáticos gerados por JS para classes CSS |
+
+### BAIXA PRIORIDADE — Arquitetura JS
+| # | Tarefa | Detalhe |
+|---|--------|---------|
+| A1 | Separar `game.js` (6.088 linhas) | Módulos sugeridos: `state.js`, `ui.js`, `combat.js`, `inventory.js`, `api.js` — projeto grande |
+| A2 | Store central de estado | Objeto reativo com Proxy para sincronizar as 4 fontes de verdade |
+| A3 | `await`/`try-catch` em async | Promessas não tratadas causam erros silenciosos |
+| A4 | Event delegation | Migrar `onclick="funcao()"` no HTML para `data-action` centralizado |
+
+### A TESTAR em produção (pós-redeploy)
+- [ ] `ai-mentor` — Oráculo respondendo corretamente
+- [ ] `ai-diagnosis` — diagnóstico ao final de sessão
+- [ ] `send-flag` — reportar erro em questão (checa se WEB3FORMS_KEY chegou)
+- [ ] `send-contact` — formulário de contato
+- [ ] `ai_usage` — quota sendo contabilizada na tabela (SQL: `SELECT * FROM ai_usage ORDER BY date DESC LIMIT 10`)
+- [ ] Paywall premium — fluxo de compra Mercado Pago funcionando
 
 ---
 

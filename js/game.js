@@ -2429,21 +2429,33 @@
     }
 
     // ============ ADMIN PANEL ============
-    function adminJumpToBoss() {
+    async function adminJumpToBoss() {
       if (!isAdminUser()) return;
       document.querySelectorAll('.profile-popup.open').forEach(p => p.classList.remove('open'));
-      // Garante que o jogo está iniciado com um personagem
+
+      if (!questionBank) {
+        _toast('Carregando questões…', 'info', 30000);
+        try { await _loadTopics(); document.querySelector('.nq-toast')?.remove(); }
+        catch { _toast('Erro ao carregar questões. Recarregue a página.', 'error', 5000); return; }
+      }
+
       if (!state.gameStarted) {
         if (!state.selectedCharacter) state.selectedCharacter = 'guerreiro';
         state.gameStarted = true;
         document.getElementById('welcomeScreen')?.classList.add('hidden');
         document.getElementById('mainApp')?.classList.remove('hidden');
+        document.getElementById('actionDock')?.classList.remove('hidden');
       }
       state.correctTotal = BOSS_START_CORRECT;
+      state.narrativeShown = BOSS_START_CORRECT;
       state.bossIntroShown = true;
       state.battleFinalShown = false;
+      shuffleQueue();
+      renderHUD();
+      updateBadges();
       renderQuestion();
-      // Show boss intro popup
+      updateBossUI();
+      applyBossOptionBadges();
       setTimeout(() => showBossIntroPopup(), 50);
     }
 
