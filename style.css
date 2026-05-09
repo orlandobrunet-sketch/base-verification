@@ -4887,3 +4887,595 @@
     animation: none !important;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   REDESIGN FASE 0 — Fundação CSS
+   Adicionado sem remover nada existente. Classes novas convivem com
+   as antigas durante a transição tela-a-tela.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── F0-1: Paleta expandida (mockups RPG épico) ─────────────────── */
+:root {
+  --rd-bg-deep:      #060810;
+  --rd-bg-surface:   #0d1225;
+  --rd-bg-panel:     #0f1830;
+  --rd-bg-card:      #111a30;
+
+  --rd-gold-bright:  #f0c040;
+  --rd-gold-mid:     #d4a820;
+  --rd-gold-dim:     #8a6010;
+  --rd-gold-glow:    rgba(240,192,64,0.35);
+
+  --rd-purple-vivid: #7c3aed;
+  --rd-purple-dim:   #3d1d6e;
+  --rd-purple-glow:  rgba(124,58,237,0.4);
+
+  --rd-blue-crystal: #4a9eff;
+  --rd-blue-dim:     #1e3a6e;
+
+  --rd-red-hp:       #cc2222;
+  --rd-green-ok:     #22c55e;
+
+  --rd-parchment:    #e8d498;
+  --rd-parchment-bg: #1a1408;
+
+  --rd-txt-primary:  #d0e4f8;
+  --rd-txt-dim:      #6a8aaa;
+  --rd-txt-gold:     #e0c060;
+}
+
+/* ── F0-2: Frames ornamentais ───────────────────────────────────── */
+
+/* Frame dourado — painéis principais */
+.rd-frame {
+  background: linear-gradient(160deg, var(--rd-bg-surface) 0%, var(--rd-bg-panel) 100%);
+  border: 2px solid var(--rd-gold-dim);
+  border-radius: 12px;
+  box-shadow:
+    0 0 0 1px rgba(240,192,64,0.08) inset,
+    0 4px 32px rgba(0,0,0,0.6),
+    0 0 20px rgba(240,192,64,0.06);
+  position: relative;
+}
+.rd-frame::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1px solid rgba(240,192,64,0.1);
+  border-radius: 10px;
+  pointer-events: none;
+}
+/* Ornamentos nos cantos */
+.rd-frame::after {
+  content: '✦';
+  position: absolute;
+  top: 8px; right: 12px;
+  color: var(--rd-gold-dim);
+  font-size: 0.65rem;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Frame dourado brilhante — destaques, selecionados */
+.rd-frame-bright {
+  border-color: var(--rd-gold-bright);
+  box-shadow:
+    0 0 0 1px rgba(240,192,64,0.15) inset,
+    0 0 30px rgba(240,192,64,0.18),
+    0 4px 32px rgba(0,0,0,0.6);
+}
+
+/* Frame pergaminho — cards de questão e evidência */
+.rd-frame-parchment {
+  background: linear-gradient(160deg, #16120a 0%, #1a1610 100%);
+  border: 2px solid var(--rd-gold-dim);
+  border-radius: 10px;
+  box-shadow:
+    inset 0 0 40px rgba(0,0,0,0.5),
+    0 4px 24px rgba(0,0,0,0.5);
+}
+
+/* Frame roxo — boss, XP, acentos épicos */
+.rd-frame-purple {
+  background: linear-gradient(160deg, #130d2a 0%, #0e1225 100%);
+  border: 2px solid rgba(124,58,237,0.5);
+  border-radius: 12px;
+  box-shadow:
+    0 0 20px rgba(124,58,237,0.15),
+    0 4px 24px rgba(0,0,0,0.5);
+}
+
+/* ── F0-3: Botões base redesenhados ─────────────────────────────── */
+
+/* Botão primário dourado — ações principais */
+.rd-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s, filter 0.15s;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.rd-btn:active { transform: translateY(1px); }
+
+.rd-btn-gold {
+  background: linear-gradient(135deg, #a07010 0%, #d4a820 40%, #f0c040 60%, #a07010 100%);
+  color: #0a0800;
+  box-shadow: 0 2px 12px rgba(240,192,64,0.3), 0 1px 0 rgba(255,255,255,0.15) inset;
+}
+.rd-btn-gold:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 4px 20px rgba(240,192,64,0.45);
+  transform: translateY(-1px);
+}
+
+.rd-btn-teal {
+  background: linear-gradient(135deg, #0a3a3a 0%, #0d5a4a 100%);
+  color: #60e0c0;
+  border: 1px solid rgba(96,224,192,0.3);
+  box-shadow: 0 2px 12px rgba(13,90,74,0.4);
+}
+.rd-btn-teal:hover {
+  border-color: rgba(96,224,192,0.6);
+  box-shadow: 0 4px 20px rgba(13,90,74,0.6);
+  transform: translateY(-1px);
+}
+
+.rd-btn-ghost {
+  background: rgba(255,255,255,0.04);
+  color: var(--rd-txt-dim);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.rd-btn-ghost:hover {
+  background: rgba(255,255,255,0.08);
+  color: var(--rd-txt-primary);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.rd-btn-parchment {
+  background: linear-gradient(135deg, #f5f0e0, #ede0c0);
+  color: #1a1408;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+.rd-btn-parchment:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
+
+/* ── F0-4: Fundo global aprimorado ─────────────────────────────── */
+
+/* Sobrescreve o fundo existente com versão mais profunda */
+.bg-layer {
+  background:
+    url('assets/nefroquest_background.jpg') center/cover no-repeat,
+    radial-gradient(ellipse 120% 80% at 50% 0%, #0d1a40 0%, #060810 60%);
+  filter: brightness(0.45) saturate(1.3);
+}
+
+.bg-overlay {
+  background:
+    radial-gradient(ellipse 100% 60% at 50% 100%, rgba(6,8,16,0.9) 0%, transparent 70%),
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(124,58,237,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 20% 50%, rgba(240,192,64,0.03) 0%, transparent 60%);
+}
+
+/* Partículas mais variadas */
+.particle:nth-child(3n) { background: var(--rd-purple-vivid); width: 3px; height: 3px; }
+.particle:nth-child(5n) { background: var(--rd-blue-crystal); width: 2px; height: 2px; opacity: 0.2; }
+
+/* ── F0-5: Scrollbar temática ───────────────────────────────────── */
+.rd-scroll::-webkit-scrollbar { width: 5px; }
+.rd-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); border-radius: 3px; }
+.rd-scroll::-webkit-scrollbar-thumb { background: var(--rd-gold-dim); border-radius: 3px; }
+.rd-scroll::-webkit-scrollbar-thumb:hover { background: var(--rd-gold-mid); }
+
+/* ── F0-6: Divisores e ornamentos ──────────────────────────────── */
+.rd-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--rd-gold-dim), transparent);
+  margin: 8px 0;
+}
+
+.rd-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--rd-gold-mid);
+  opacity: 0.8;
+}
+
+.rd-diamond {
+  display: inline-block;
+  width: 6px; height: 6px;
+  background: var(--rd-blue-crystal);
+  transform: rotate(45deg);
+  box-shadow: 0 0 6px var(--rd-blue-crystal);
+  flex-shrink: 0;
+}
+.rd-diamond-gold {
+  background: var(--rd-gold-mid);
+  box-shadow: 0 0 6px var(--rd-gold-glow);
+}
+
+/* ── F0-7: Labels de HUD ────────────────────────────────────────── */
+.rd-hud-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.58rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--rd-txt-dim);
+}
+.rd-hud-value {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--rd-txt-primary);
+}
+.rd-hud-value-gold { color: var(--rd-gold-bright); }
+.rd-hud-value-purple { color: #c084fc; }
+
+/* ── F0-8: Badge de rank/nível ──────────────────────────────────── */
+.rd-level-badge {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 52px; height: 52px;
+  border: 2px solid var(--rd-gold-dim);
+  border-radius: 50%;
+  background: radial-gradient(circle, #1a1408 0%, #0d0e1a 100%);
+  box-shadow: 0 0 12px rgba(240,192,64,0.2), inset 0 0 12px rgba(0,0,0,0.5);
+}
+.rd-level-badge .rd-lvl-text {
+  font-family: 'Cinzel', serif;
+  font-size: 0.5rem;
+  letter-spacing: 2px;
+  color: var(--rd-gold-dim);
+  text-transform: uppercase;
+}
+.rd-level-badge .rd-lvl-num {
+  font-family: 'Cinzel', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--rd-gold-bright);
+  line-height: 1;
+}
+
+/* ── F0-9: Barra de progresso temática ──────────────────────────── */
+.rd-bar {
+  height: 8px;
+  border-radius: 99px;
+  background: rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.06);
+  overflow: hidden;
+}
+.rd-bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.4s ease;
+}
+.rd-bar-fill-xp {
+  background: linear-gradient(90deg, var(--rd-purple-vivid), #a855f7);
+  box-shadow: 0 0 8px var(--rd-purple-glow);
+}
+.rd-bar-fill-hp {
+  background: linear-gradient(90deg, #991b1b, var(--rd-red-hp));
+  box-shadow: 0 0 6px rgba(204,34,34,0.5);
+}
+.rd-bar-fill-gold-narrow {
+  background: linear-gradient(90deg, var(--rd-gold-dim), var(--rd-gold-mid));
+}
+
+/* ── F0-10: Glow utilities ──────────────────────────────────────── */
+.rd-glow-gold   { filter: drop-shadow(0 0 8px rgba(240,192,64,0.5)); }
+.rd-glow-purple { filter: drop-shadow(0 0 8px rgba(124,58,237,0.6)); }
+.rd-glow-blue   { filter: drop-shadow(0 0 8px rgba(74,158,255,0.5)); }
+
+/* ── F0-11: Keyframes novos ─────────────────────────────────────── */
+@keyframes rd-fade-in     { from{opacity:0} to{opacity:1} }
+@keyframes rd-slide-up    { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+@keyframes rd-scale-in    { from{opacity:0;transform:scale(0.92)} to{opacity:1;transform:scale(1)} }
+@keyframes rd-glow-pulse  { 0%,100%{box-shadow:0 0 10px rgba(240,192,64,0.2)} 50%{box-shadow:0 0 24px rgba(240,192,64,0.5)} }
+@keyframes rd-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+.rd-anim-fade-in  { animation: rd-fade-in  0.3s ease both; }
+.rd-anim-slide-up { animation: rd-slide-up 0.35s ease both; }
+.rd-anim-scale-in { animation: rd-scale-in 0.3s ease both; }
+.rd-anim-glow     { animation: rd-glow-pulse 2s ease infinite; }
+/* ═══════════════════════════════════════════════════════════════════
+   FIM FASE 0
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════════
+   REDESIGN FASE 1 — T1: Landing Screen
+   ═══════════════════════════════════════════════════════════════════ */
+
+#landingScreen {
+  background: var(--rd-bg-deep);
+}
+
+/* Fundo com padrão circular sutil (atlas ornamental) */
+.landing-bg {
+  background:
+    radial-gradient(ellipse 90% 60% at 50% 0%,   rgba(124,58,237,0.12) 0%, transparent 65%),
+    radial-gradient(ellipse 70% 50% at 15% 100%,  rgba(74,158,255,0.07) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 85% 100%,  rgba(240,192,64,0.05) 0%, transparent 55%),
+    var(--rd-bg-deep);
+}
+.landing-bg::before {
+  background-image:
+    radial-gradient(circle, rgba(240,192,64,0.12) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 75%);
+}
+
+/* Container principal do card */
+.landing-content {
+  gap: 10px;
+  padding: 20px 22px;
+  max-width: 380px;
+  animation: rd-slide-up 0.5s ease both;
+}
+
+/* Card flutuante com borda ornamental */
+@media (min-width: 769px) {
+  .landing-content {
+    max-width: 480px;
+    padding: 44px 48px 40px;
+    background:
+      linear-gradient(160deg, rgba(13,18,37,0.96) 0%, rgba(9,14,28,0.98) 100%);
+    border: 2px solid rgba(240,192,64,0.28);
+    border-radius: 16px;
+    box-shadow:
+      0 0 0 1px rgba(240,192,64,0.06) inset,
+      0 24px 80px rgba(0,0,0,0.8),
+      0 0 60px rgba(124,58,237,0.08),
+      0 0 120px rgba(240,192,64,0.04);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    gap: 12px;
+    overflow-y: visible;
+    max-height: none;
+  }
+  .landing-content::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border: 1px solid rgba(240,192,64,0.08);
+    border-radius: 13px;
+    pointer-events: none;
+  }
+  /* Diamantes nos cantos do card */
+  .landing-content::after {
+    content: '✦';
+    position: absolute;
+    bottom: 14px; right: 18px;
+    color: rgba(240,192,64,0.25);
+    font-size: 0.7rem;
+    pointer-events: none;
+  }
+}
+
+/* Eyebrow */
+.landing-ornament {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 4px;
+  color: var(--rd-gold-mid);
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin-bottom: 0;
+}
+
+/* Logo principal */
+.landing-title {
+  font-family: 'Cinzel Decorative', 'Cinzel', serif;
+  font-size: clamp(2rem, 8vw, 2.8rem);
+  letter-spacing: 3px;
+  background: linear-gradient(180deg,
+    #fff8dc 0%,
+    #f0c040 20%,
+    #d4a820 55%,
+    #a07010 85%,
+    #d4a820 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 2px 12px rgba(240,192,64,0.4));
+  margin: 0;
+  line-height: 1.05;
+}
+
+/* Subtítulo ASCENSION */
+.landing-sub {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 8px;
+  color: rgba(240,192,64,0.5);
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 6px;
+}
+
+/* Tagline */
+.landing-tagline {
+  font-family: 'Philosopher', serif;
+  font-size: 0.9rem;
+  color: var(--rd-txt-dim);
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+
+/* Divisor dourado */
+.landing-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(240,192,64,0.4) 30%,
+    rgba(240,192,64,0.4) 70%,
+    transparent
+  );
+  margin: 4px 0 8px;
+  position: relative;
+}
+.landing-divider::before {
+  content: '◆';
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--rd-gold-dim);
+  font-size: 0.55rem;
+  background: var(--rd-bg-deep);
+  padding: 0 6px;
+}
+@media (min-width: 769px) {
+  .landing-divider::before { background: #0c1124; }
+}
+
+/* Botão Google — estilo pergaminho claro */
+.landing-btn-google {
+  background: linear-gradient(160deg, #f5f0e0 0%, #ede0c0 100%);
+  color: #1a1208;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 13px 20px;
+  box-shadow:
+    0 3px 16px rgba(0,0,0,0.5),
+    0 1px 0 rgba(255,255,255,0.3) inset;
+  transition: filter 0.15s, transform 0.12s, box-shadow 0.15s;
+}
+.landing-btn-google:hover {
+  filter: brightness(1.06);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.3) inset;
+}
+.landing-btn-google:active { transform: translateY(0); }
+
+/* Botão Email — azul escuro com borda */
+.landing-btn-email {
+  background: linear-gradient(160deg, rgba(14,24,60,0.9) 0%, rgba(10,18,45,0.95) 100%);
+  color: #90b8e0;
+  border: 2px solid rgba(74,158,255,0.35);
+  border-radius: 10px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 12px 20px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.12s, color 0.2s;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+.landing-btn-email:hover {
+  border-color: rgba(74,158,255,0.65);
+  color: #c8e0ff;
+  box-shadow: 0 4px 20px rgba(74,158,255,0.15);
+  transform: translateY(-2px);
+}
+
+/* Botão Experimentar sem conta */
+#landingScreen .btn.sec {
+  background: rgba(255,255,255,0.04) !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  color: rgba(160,180,210,0.7) !important;
+  border-radius: 10px !important;
+  font-family: 'Cinzel', serif !important;
+  font-size: 0.8rem !important;
+  letter-spacing: 0.5px !important;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.12s !important;
+}
+#landingScreen .btn.sec:hover {
+  background: rgba(255,255,255,0.08) !important;
+  border-color: rgba(255,255,255,0.22) !important;
+  color: rgba(200,220,245,0.9) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Mensagem de erro/sucesso */
+.landing-msg {
+  font-family: 'Philosopher', serif;
+  font-size: 0.82rem;
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+/* Seção de stats e features */
+.landing-stats-section {
+  border-top: 1px solid rgba(240,192,64,0.14) !important;
+  padding-top: 16px !important;
+  margin-top: 8px !important;
+  max-width: 100% !important;
+}
+
+/* Contador "1.000+" */
+.landing-stats-section > div:first-child > div:first-child {
+  font-family: 'Cinzel Decorative', 'Cinzel', serif;
+  background: linear-gradient(180deg, #f0c040 0%, #d4a820 60%, #a07010 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 1px 6px rgba(240,192,64,0.3));
+}
+
+/* Feature items */
+#landingScreen .landing-stats-section [style*="display:flex;gap:12px"] {
+  border-radius: 10px;
+  transition: background 0.2s;
+}
+#landingScreen .landing-stats-section [style*="display:flex;gap:12px"]:hover {
+  background: rgba(255,255,255,0.03);
+}
+
+/* Badge IA — roxo */
+#landingScreen .landing-stats-section [style*="rgba(168,85,247"] {
+  border: 1px solid rgba(124,58,237,0.35) !important;
+  background: linear-gradient(135deg,
+    rgba(124,58,237,0.12) 0%,
+    rgba(74,158,255,0.06) 100%
+  ) !important;
+  box-shadow: 0 2px 12px rgba(124,58,237,0.1);
+}
+
+/* ── Desktop stats section (coluna de features em 2 rows) ── */
+@media (min-width: 769px) {
+  .landing-stats-section {
+    padding-top: 20px !important;
+    margin-top: 12px !important;
+  }
+}
+
+/* ── Mobile ajustes ── */
+@media (max-width: 768px) {
+  .landing-content {
+    padding: 20px 18px 28px;
+    background: linear-gradient(160deg, rgba(13,18,37,0.95), rgba(9,14,28,0.97));
+    border: 1px solid rgba(240,192,64,0.2);
+    border-radius: 14px;
+    margin: 12px;
+    max-width: calc(100% - 24px);
+    backdrop-filter: blur(10px);
+  }
+  .landing-title { font-size: clamp(1.8rem, 10vw, 2.4rem); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   FIM FASE 1 — T1
+   ═══════════════════════════════════════════════════════════════════ */
