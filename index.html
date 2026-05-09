@@ -65,7 +65,7 @@
     if (typeof Sentry !== 'undefined') {
       Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@9.27',
+          release: 'nefroquest@9.28',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           beforeSend(event) {
@@ -82,7 +82,7 @@
     // Verificação de versão — bypassa o Service Worker via no-store
     // Se a versão do servidor for diferente da carregada, limpa tudo e recarrega
         (function() {
-      const LOADED_VERSION = '9.26';
+      const LOADED_VERSION = '9.28';
       // Evita loop infinito se o redirecionamento ja aconteceu recentemente
       const lastRedirect = sessionStorage.getItem('last_version_redirect');
       const now = Date.now();
