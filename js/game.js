@@ -562,12 +562,12 @@
           <h2 class="identity-title" id="identityTitle">Como você chega hoje?</h2>
           <p class="identity-sub">Sua escolha define o ponto de partida. Você pode mudar quando quiser nas configurações.</p>
           <div class="identity-paths">
-            <button class="identity-path study" onclick="window._pickIdentity('study')">
+            <button class="identity-path study" data-action="_pickIdentity" data-arg="study">
               <span class="identity-path-icon">📖</span>
               <span class="identity-path-name">Estudar</span>
               <span class="identity-path-desc">Revisar tópicos, trilhas temáticas e desafios rápidos</span>
             </button>
-            <button class="identity-path combat" onclick="window._pickIdentity('combat')">
+            <button class="identity-path combat" data-action="_pickIdentity" data-arg="combat">
               <span class="identity-path-icon">⚔️</span>
               <span class="identity-path-name">Combater</span>
               <span class="identity-path-desc">Avançar na jornada, subir de nível e derrotar o Arqui-Nefromante</span>
@@ -2350,7 +2350,7 @@
           <p style="color:#c8d8f0;font-size:0.84rem;line-height:1.6;margin:0 0 16px;">Esta ação irá <strong style="color:#fb7185;">apagar permanentemente</strong> todos os seus dados: progresso, estatísticas, conquistas e histórico de revisão. Esta ação <strong>não pode ser desfeita.</strong></p>
           <p style="color:var(--txt-dim);font-size:0.75rem;margin:0 0 20px;">Para confirmar, sua sessão será encerrada e todos os dados locais e do servidor serão removidos.</p>
           <div style="display:flex;gap:10px;">
-            <button onclick="this.closest('.delete-account-confirm').remove()" style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#c8d8f0;border-radius:8px;padding:10px;cursor:pointer;font-size:0.85rem;">Cancelar</button>
+            <button data-close-closest=".delete-account-confirm" style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#c8d8f0;border-radius:8px;padding:10px;cursor:pointer;font-size:0.85rem;">Cancelar</button>
             <button data-action="executeDeleteAccount" style="flex:1;background:rgba(251,113,133,0.2);border:1px solid rgba(251,113,133,0.6);color:#fb7185;border-radius:8px;padding:10px;cursor:pointer;font-weight:700;font-size:0.85rem;">Sim, excluir tudo</button>
           </div>
         </div>
@@ -2764,7 +2764,7 @@
         { const _snip = escapeHtml(_firstSentence(state.current.e));
           const _full = escapeHtml(state.current.e || '');
           const _hasMore = _full.length > _snip.length;
-          ui.feedback.innerHTML = `<strong>✅ Correto!</strong> +${xp} XP${multText}${synergyText}, +${g} ouro.${lv?` <strong>Level up x${lv}!</strong>`:''}<br><span>${_snip}${_hasMore?`<span style="display:none;" class="fb-rest"> ${_full.substring(_snip.length)}</span><button class="fb-more-btn" style="background:none;border:none;color:#93c5fd;cursor:pointer;font-size:0.8rem;padding:0 0 0 4px;" onclick="this.previousElementSibling.style.display='inline';this.style.display='none';">ver mais ▾</button>`:''}</span>`;
+          ui.feedback.innerHTML = `<strong>✅ Correto!</strong> +${xp} XP${multText}${synergyText}, +${g} ouro.${lv?` <strong>Level up x${lv}!</strong>`:''}<br><span>${_snip}${_hasMore?`<span style="display:none;" class="fb-rest"> ${_full.substring(_snip.length)}</span><button class="fb-more-btn" style="background:none;border:none;color:#93c5fd;cursor:pointer;font-size:0.8rem;padding:0 0 0 4px;" data-action="_showMoreFb" data-pass-this>ver mais ▾</button>`:''}</span>`;
         }
         // Boss log
         if (isBossBattle()) {
@@ -2821,7 +2821,7 @@
           const _snip2 = escapeHtml(_firstSentence(state.current.e));
           const _full2 = escapeHtml(state.current.e || '');
           const _hasMore2 = _full2.length > _snip2.length;
-          ui.feedback.innerHTML = `<strong>${escapeHtml(_prefix)}</strong><br><span>${_snip2}${_hasMore2?`<span style="display:none;" class="fb-rest"> ${_full2.substring(_snip2.length)}</span><button class="fb-more-btn" style="background:none;border:none;color:#93c5fd;cursor:pointer;font-size:0.8rem;padding:0 0 0 4px;" onclick="this.previousElementSibling.style.display='inline';this.style.display='none';">ver mais ▾</button>`:''}</span>`;
+          ui.feedback.innerHTML = `<strong>${escapeHtml(_prefix)}</strong><br><span>${_snip2}${_hasMore2?`<span style="display:none;" class="fb-rest"> ${_full2.substring(_snip2.length)}</span><button class="fb-more-btn" style="background:none;border:none;color:#93c5fd;cursor:pointer;font-size:0.8rem;padding:0 0 0 4px;" data-action="_showMoreFb" data-pass-this>ver mais ▾</button>`:''}</span>`;
         }
         log('⚠️ Você falhou nessa carta. Ajuste a estratégia e continue.');
         playSound('wrong');
@@ -6081,7 +6081,7 @@
 
           </div>
 
-          <button data-remove-id="" style="margin-top:24px;width:100%;background:rgba(96,165,250,0.15);border:1px solid rgba(96,165,250,0.4);color:var(--blue);border-radius:8px;padding:10px;font-family:'Cinzel',serif;cursor:pointer;font-size:0.85rem;" onclick="this.closest('.privacy-popup').remove()">Fechar</button>
+          <button data-close-closest=".privacy-popup" style="margin-top:24px;width:100%;background:rgba(96,165,250,0.15);border:1px solid rgba(96,165,250,0.4);color:var(--blue);border-radius:8px;padding:10px;font-family:'Cinzel',serif;cursor:pointer;font-size:0.85rem;">Fechar</button>
         </div>
       `;
       modal.addEventListener('click', function(e) {
@@ -6090,6 +6090,13 @@
       document.body.appendChild(modal);
     }
     window.showPrivacyPolicy = showPrivacyPolicy;
+
+    function _showMoreFb(btn) {
+      const rest = btn.previousElementSibling;
+      if (rest) rest.style.display = 'inline';
+      btn.style.display = 'none';
+    }
+    window._showMoreFb = _showMoreFb;
 
     // ============ DISPATCHER CENTRAL (data-action / data-action-seq) ============
     // Substitui inline onclick="..." em HTML estático e em templates JS
