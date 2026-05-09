@@ -1737,17 +1737,115 @@
     /* ===== LANDING SCREEN ===== */
     #landingScreen {
       position: fixed; inset: 0; z-index: var(--z-modal-high);
-      display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+      background: #080d1a;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 0;
     }
     #landingScreen.hidden { display: none; }
     .landing-bg {
       position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(90,50,160,0.22) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 20% 90%, rgba(30,70,150,0.13) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 90%, rgba(30,70,150,0.10) 0%, transparent 60%);
     }
     .landing-bg::before {
-      content: ''; position: absolute; inset: 0;
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(60,100,180,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(60,100,180,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
     }
+    .landing-content {
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      width: 100%; max-width: 360px; padding: 16px 20px;
+      overflow-y: auto; max-height: 100dvh;
+    }
+    .landing-ornament {
+      font-size: 0.68rem; color: var(--gold); letter-spacing: 3px;
+      text-transform: uppercase; opacity: 0.8; margin-bottom: 2px;
+    }
+    .landing-title {
+      font-family: 'Cinzel Decorative', 'Cinzel', serif;
+      font-size: clamp(1.8rem, 7vw, 2.6rem);
+      color: var(--gold, #ffd700); margin: 0;
+      text-shadow: 0 0 30px rgba(255,215,0,0.35), 0 2px 4px rgba(0,0,0,0.8);
+      letter-spacing: 2px;
+    }
+    .landing-sub {
+      font-family: var(--font-title, 'Cinzel', serif);
+      font-size: 0.85rem; color: rgba(255,215,0,0.55);
+      letter-spacing: 6px; text-transform: uppercase; margin-bottom: 4px;
+    }
+    .landing-tagline {
+      font-size: 0.78rem; color: var(--txt-dim, #7e9ec8);
+      text-align: center; letter-spacing: 0.5px; margin-bottom: 6px;
+      line-height: 1.4;
+    }
+    .landing-divider {
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,215,0,0.25), transparent);
+      margin: 2px 0 8px;
+    }
+    .landing-btn-google {
+      width: 100%; padding: 12px 20px;
+      background: #fff; color: #1a1a2e;
+      border: none; border-radius: 10px;
+      font-size: 0.95rem; font-weight: 700;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    }
+    .landing-btn-google:hover { background: #f0f0f0; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,0.5); }
+    .landing-btn-google:active { transform: translateY(0); }
+    .landing-btn-email {
+      width: 100%; padding: 11px 20px;
+      background: rgba(42,74,122,0.35); color: #90b4e0;
+      border: 2px solid rgba(42,74,122,0.6); border-radius: 10px;
+      font-size: 0.9rem; font-weight: 600;
+      cursor: pointer; transition: border-color 0.2s, background 0.2s, transform 0.1s;
+    }
+    .landing-btn-email:hover { border-color: rgba(96,165,250,0.7); background: rgba(42,74,122,0.5); transform: translateY(-1px); }
+    .landing-guest-link {
+      font-size: 0.78rem; color: rgba(126,158,200,0.6);
+      cursor: pointer; text-decoration: underline; text-underline-offset: 3px;
+      transition: color 0.2s; margin-top: 4px;
+      background: none; border: none; padding: 0;
+    }
+    .landing-guest-link:hover { color: rgba(126,158,200,0.9); }
     .landing-msg {
-      display: none; width: 100%;
+      font-size: 0.8rem; color: #fb7185; text-align: center; display: none;
+      background: rgba(251,113,133,0.1); border: 1px solid rgba(251,113,133,0.3);
+      border-radius: 8px; padding: 8px 12px; width: 100%;
+    }
+
+    /* ── Desktop landing: card centralizado, sem scrollbar interno ── */
+    @media (min-width: 769px) {
+      #landingScreen { justify-content: center; overflow-y: auto; }
+      .landing-content {
+        max-width: 500px;
+        overflow-y: visible;
+        max-height: none;
+        background: rgba(8,13,26,0.78);
+        border: 1px solid rgba(255,215,0,0.14);
+        border-radius: 20px;
+        padding: 40px 44px 36px;
+        -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,215,0,0.04);
+        gap: 10px;
+      }
+      .landing-title { font-size: 2.5rem; }
+      .landing-tagline { font-size: 0.84rem; margin-bottom: 10px; }
+      .landing-btn-google { padding: 14px 20px; font-size: 1rem; }
+      .landing-btn-email  { padding: 12px 20px; font-size: 0.95rem; }
+      .landing-stats-section {
+        border-top: 1px solid rgba(255,215,0,0.1) !important;
+        padding-top: 14px !important;
+        margin-top: 10px !important;
+      }
     }
 
     /* ===== PROFILE ICON + POPUP ===== */
@@ -5099,258 +5197,4 @@
 .rd-anim-glow     { animation: rd-glow-pulse 2s ease infinite; }
 /* ═══════════════════════════════════════════════════════════════════
    FIM FASE 0
-   ═══════════════════════════════════════════════════════════════════ */
-
-/* ═══════════════════════════════════════════════════════════════════
-   REDESIGN FASE 1 — T1: Landing Screen (coluna única + bg imagem)
-   ═══════════════════════════════════════════════════════════════════ */
-
-/* ── Tela raiz ── */
-#landingScreen {
-  background: #05080f;
-  overflow-y: auto;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-
-/* ── Background imagem + overlay escuro ── */
-.landing-bg {
-  background:
-    linear-gradient(180deg,
-      rgba(5,8,15,0.55) 0%,
-      rgba(5,8,15,0.40) 40%,
-      rgba(5,8,15,0.65) 100%
-    ),
-    url('assets/nefroquest_background.jpg') center center / cover no-repeat;
-}
-.landing-bg::before {
-  background: none;
-}
-
-/* ── Scroll wrapper — centraliza quando cabe, rola quando não cabe ── */
-.landing-scroll {
-  position: relative; z-index: 2;
-  display: flex; align-items: flex-start; justify-content: center;
-  min-height: 100%; width: 100%;
-  padding: 28px 16px 40px;
-  animation: rd-slide-up 0.45s ease both;
-}
-@media (min-height: 800px) {
-  .landing-scroll { align-items: center; }
-}
-
-/* ── Card principal — coluna única centralizada ── */
-.landing-card {
-  display: flex; flex-direction: column; align-items: center;
-  gap: 10px;
-  width: 100%; max-width: 580px;
-  background: linear-gradient(180deg,
-    rgba(8,12,28,0.92) 0%,
-    rgba(6,9,20,0.96) 100%
-  );
-  border: 2px solid rgba(180,140,40,0.55);
-  border-radius: 4px;
-  padding: 24px 28px 24px;
-  -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
-  box-shadow:
-    0 0 0 1px rgba(240,192,64,0.08) inset,
-    0 0 0 4px rgba(140,100,20,0.18) inset,
-    0 24px 80px rgba(0,0,0,0.85),
-    0 0 60px rgba(0,0,0,0.5);
-  position: relative;
-}
-/* Cantos ornamentais via pseudo-elemento */
-.landing-card::before {
-  content: '';
-  position: absolute; inset: 5px;
-  border: 1px solid rgba(240,192,64,0.12);
-  border-radius: 2px;
-  pointer-events: none;
-}
-/* Diamantes decorativos nos cantos */
-.landing-card::after {
-  content: '✦';
-  position: absolute; bottom: 10px; right: 14px;
-  color: rgba(240,192,64,0.22); font-size: 0.6rem; pointer-events: none;
-}
-
-
-
-/* ── Eyebrow ── */
-.landing-ornament {
-  font-family: 'Cinzel', serif;
-  font-size: 0.6rem; letter-spacing: 5px;
-  color: var(--rd-gold-mid); text-transform: uppercase; opacity: 0.9;
-}
-
-/* ── Logo ── */
-.landing-title {
-  font-family: 'Cinzel Decorative', 'Cinzel', serif;
-  font-size: clamp(2.2rem, 8vw, 3.4rem);
-  letter-spacing: 4px; margin: 0; line-height: 1;
-  background: linear-gradient(180deg, #fff8dc 0%, #f0c040 25%, #d4a820 55%, #a07010 85%, #d4a820 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  filter: drop-shadow(0 0 20px rgba(240,192,64,0.5));
-}
-
-/* ── Subtítulo ASCENSION com linhas flanqueando ── */
-.landing-sub-line {
-  display: flex; align-items: center; gap: 10px; width: 100%; justify-content: center;
-}
-.landing-sub {
-  font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 7px;
-  color: rgba(240,192,64,0.55); text-transform: uppercase; white-space: nowrap;
-}
-.landing-sub-rule {
-  flex: 1; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(240,192,64,0.3));
-  max-width: 80px;
-}
-.landing-sub-line .landing-sub-rule:last-child {
-  background: linear-gradient(270deg, transparent, rgba(240,192,64,0.3));
-}
-
-/* ── Tagline ── */
-.landing-tagline {
-  font-family: 'Philosopher', serif; font-size: 0.92rem;
-  color: rgba(180,200,230,0.65); text-align: center; line-height: 1.6;
-}
-
-/* ── Divisor dourado ── */
-.landing-divider {
-  width: 100%; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(240,192,64,0.4) 30%, rgba(240,192,64,0.4) 70%, transparent);
-  position: relative; margin: 2px 0 4px;
-}
-.landing-divider::before {
-  content: '◆'; position: absolute; left: 50%; top: 50%;
-  transform: translate(-50%, -50%);
-  color: var(--rd-gold-dim); font-size: 0.5rem;
-  background: #080c1c; padding: 0 8px;
-}
-.landing-divider--sm { margin: 6px 0 2px; }
-.landing-divider--sm::before { background: #070a18; }
-
-/* ── Mensagem de erro ── */
-.landing-msg {
-  font-family: 'Philosopher', serif; font-size: 0.82rem;
-  border-radius: 8px; padding: 10px 14px; width: 100%;
-}
-
-/* ── Botão Google (pergaminho) ── */
-.landing-btn-google {
-  width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;
-  background: linear-gradient(160deg, #f5f0e0 0%, #ede0c0 100%);
-  color: #1a1208; border: 2px solid rgba(200,160,60,0.5); border-radius: 8px;
-  font-family: 'Cinzel', serif; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.5px;
-  padding: 14px 20px; cursor: pointer;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.3) inset;
-  transition: filter 0.15s, transform 0.12s, box-shadow 0.15s;
-}
-.landing-btn-google:hover {
-  filter: brightness(1.06); transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(0,0,0,0.7), 0 1px 0 rgba(255,255,255,0.3) inset;
-}
-.landing-btn-google:active { transform: translateY(0); }
-
-/* ── Botão Email (azul escuro) ── */
-.landing-btn-email {
-  width: 100%;
-  background: linear-gradient(160deg, rgba(10,18,55,0.95) 0%, rgba(7,13,40,0.98) 100%);
-  color: #90b8e0; border: 2px solid rgba(74,158,255,0.45); border-radius: 8px;
-  font-family: 'Cinzel', serif; font-size: 0.88rem; font-weight: 600;
-  padding: 13px 20px; cursor: pointer;
-  transition: border-color 0.2s, box-shadow 0.2s, transform 0.12s, color 0.2s;
-  box-shadow: 0 3px 16px rgba(0,0,0,0.5);
-}
-.landing-btn-email:hover {
-  border-color: rgba(74,158,255,0.75); color: #c8e0ff;
-  box-shadow: 0 6px 24px rgba(74,158,255,0.15); transform: translateY(-2px);
-}
-
-/* ── Botão guest (translúcido com borda dourada fina) ── */
-.landing-btn-guest {
-  width: 100%;
-  background: rgba(255,255,255,0.03); border: 1px solid rgba(240,192,64,0.2);
-  color: rgba(180,160,100,0.7); border-radius: 8px;
-  font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.5px;
-  padding: 11px 20px; cursor: pointer;
-  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.12s;
-}
-.landing-btn-guest:hover {
-  background: rgba(240,192,64,0.06); border-color: rgba(240,192,64,0.4);
-  color: rgba(240,192,64,0.85); transform: translateY(-1px);
-}
-
-/* ── Contador 1.000+ ── */
-.landing-counter {
-  display: flex; flex-direction: column; align-items: center;
-  gap: 3px; width: 100%; padding-top: 4px;
-}
-.landing-counter-num {
-  font-family: 'Cinzel Decorative', 'Cinzel', serif;
-  font-size: clamp(2rem, 6vw, 2.6rem); font-weight: 900; line-height: 1;
-  background: linear-gradient(180deg, #fff0a0 0%, #f0c040 30%, #d4a820 70%, #a07010 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  filter: drop-shadow(0 0 12px rgba(240,192,64,0.5));
-}
-.landing-counter-num sup { font-size: 50%; vertical-align: super; }
-.landing-counter-label {
-  font-family: 'Cinzel', serif; font-size: 0.68rem; letter-spacing: 3px;
-  color: rgba(200,160,60,0.8); text-transform: uppercase; text-align: center;
-}
-.landing-counter-sub {
-  font-size: 0.68rem; color: rgba(100,130,170,0.7); letter-spacing: 0.5px; text-align: center;
-}
-
-/* ── Feature list ── */
-.landing-features {
-  display: flex; flex-direction: column; gap: 6px; width: 100%;
-  margin-top: 2px;
-}
-.landing-feature {
-  display: flex; gap: 12px; align-items: flex-start;
-  padding: 10px 14px; border-radius: 8px;
-  background: rgba(255,255,255,0.025);
-  border: 1px solid rgba(255,255,255,0.06);
-  transition: background 0.2s;
-}
-.landing-feature:hover { background: rgba(255,255,255,0.045); }
-.landing-feature--ai {
-  background: linear-gradient(135deg, rgba(100,40,200,0.14) 0%, rgba(50,100,220,0.07) 100%);
-  border-color: rgba(124,58,237,0.35);
-  box-shadow: 0 2px 14px rgba(100,40,200,0.1);
-}
-.landing-feature-icon-wrap {
-  width: 36px; height: 36px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  background: rgba(180,140,40,0.12);
-  border: 1px solid rgba(180,140,40,0.25);
-  border-radius: 8px;
-  font-size: 1rem;
-}
-.landing-feature-icon-wrap--ai {
-  background: rgba(124,58,237,0.18);
-  border-color: rgba(124,58,237,0.4);
-}
-.landing-feature-title {
-  color: #c8daf0; font-size: 0.82rem; font-weight: 700;
-  font-family: 'Cinzel', serif; letter-spacing: 0.3px;
-  margin-bottom: 3px;
-}
-.landing-feature-desc {
-  color: #4e6a88; font-size: 0.73rem; line-height: 1.55;
-}
-.landing-feature--ai .landing-feature-title { color: #d8c8f8; }
-.landing-feature--ai .landing-feature-desc  { color: #7060a0; }
-.landing-feature--ai strong { color: #b8a8e8; }
-
-/* ── Mobile ── */
-@media (max-width: 640px) {
-  .landing-card { padding: 24px 16px 20px; gap: 10px; }
-  .landing-title { font-size: clamp(2rem, 10vw, 2.6rem); }
-}
-
-/* ═══════════════════════════════════════════════════════════════════
-   FIM FASE 1 — T1
    ═══════════════════════════════════════════════════════════════════ */
