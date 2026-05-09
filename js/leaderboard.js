@@ -3,6 +3,7 @@
 
     let _boardCache = null;
     let _boardCacheTime = 0;
+    let _boardFetchPromise = null; // in-flight lock — evita race condition em fetches paralelos
     const BOARD_CACHE_TTL = 30000; // 30s
     const BOARD_LOCAL_KEY = 'nefroquest-leaderboard';
 
@@ -12,6 +13,14 @@
     async function boardFetch(forceRefresh = false) {
       const now = Date.now();
       if (!forceRefresh && _boardCache && (now - _boardCacheTime) < BOARD_CACHE_TTL) return _boardCache;
+      // Deduplica fetches concorrentes: retorna a mesma Promise se já está em voo
+      if (_boardFetchPromise) return _boardFetchPromise;
+      _boardFetchPromise = _doBoardFetch().finally(() => { _boardFetchPromise = null; });
+      return _boardFetchPromise;
+    }
+
+    async function _doBoardFetch() {
+      const now = Date.now();
       try {
         const res = await fetch(`${SUPA_URL}/rest/v1/leaderboard?select=*&order=score.desc,level.desc&limit=50`, {
           headers: { 'apikey': SUPA_KEY, 'Authorization': `Bearer ${SUPA_KEY}` }
@@ -146,7 +155,11 @@
 
       if (searchEl && !searchEl.dataset.wired) {
         searchEl.dataset.wired = '1';
-        searchEl.addEventListener('input', () => _renderBoardRows(_boardFullData, searchEl.value));
+        let _searchTimer;
+        searchEl.addEventListener('input', () => {
+          clearTimeout(_searchTimer);
+          _searchTimer = setTimeout(() => _renderBoardRows(_boardFullData, searchEl.value), 200);
+        });
       }
       const myPosBtn = document.getElementById('boardMyPos');
       if (myPosBtn && !myPosBtn.dataset.wired) {
