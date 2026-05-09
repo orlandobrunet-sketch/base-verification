@@ -8,7 +8,7 @@ NefroQuest é um jogo RPG educacional de perguntas e respostas sobre Nefrologia,
 - **Repositório GitHub:** orlandobrunet-sketch/base-verification
 - **Branch principal:** `main`
 - **Branch de trabalho atual:** `claude/fix-nefroquest-migration-pCkmH`
-- **Versão atual:** 9.23
+- **Versão atual:** 9.27
 - **Hospedagem:** GitHub Pages (CNAME aponta para nefroquest.com) + Vercel (vercel.json presente)
 - **Domínio customizado:** nefroquest.com
 
@@ -303,7 +303,12 @@ No Supabase Dashboard → Edge Functions → selecionar a função → Deploy / 
 - [x] A2: Store central de estado — `state` wrapped em Proxy que auto-invalida statsCache e debounce-salva a cada 500ms
 - [x] W1: Screenshots no manifest — `screenshot-mobile.png` e `screenshot-desktop.png` já presentes (verificado)
 - [x] W3: Push notifications server-side — migration 004, edge function `send-push`, `js/notifications.js`, listener `push` no SW
-- [x] Versão atual: **9.26**
+- [x] Versão atual: **9.27**
+- [x] A11y: `type="button"` em todos os 89 botões sem tipo
+- [x] A11y: `aria-live="polite"` em `#authMsg` para leitores de tela
+- [x] A11y: Touch targets — `min-height: 44px` em `.profile-popup-item` e `.profile-popup-logout`
+- [x] Performance: `width`/`height` em 11 imagens estáticas (previne CLS)
+- [x] Architecture: Profile popup deduplicado — 4 cópias idênticas → 1 `<template>` + injeção JS no DOMContentLoaded
 
 ---
 
