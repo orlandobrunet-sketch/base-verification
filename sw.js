@@ -28,6 +28,10 @@ const STATIC_ASSETS = [
   '/js/leaderboard.js',
   '/js/study-mode.js',
   '/js/game.js',
+  '/js/admin.js',
+  '/js/minigame.js',
+  '/js/achievements.js',
+  '/js/changelog.js',
 ];
 
 self.addEventListener('install', e => {
