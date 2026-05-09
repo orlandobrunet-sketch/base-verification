@@ -152,8 +152,7 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-903Y6240FZ', {
-      debug_mode: !['nefroquest.com', 'www.nefroquest.com'].includes(location.hostname),
-      cookie_flags: 'SameSite=None;Secure',
+      debug_mode: /^(localhost|127\.0\.0\.1)$/.test(location.hostname),
     });
   </script>
 </head>
