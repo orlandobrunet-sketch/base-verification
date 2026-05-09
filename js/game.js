@@ -767,10 +767,8 @@
     }
     window._loadTopics = _loadTopics;
     // Inicia download no primeiro toque — head start antes do usuário clicar em jogar
-    document.addEventListener('pointerdown', function _topicsEarlyLoad() {
-      _loadTopics().catch(() => {});
-      document.removeEventListener('pointerdown', _topicsEarlyLoad);
-    }, { once: true, passive: true });
+    document.addEventListener('pointerdown', () => _loadTopics().catch(() => {}),
+      { once: true, passive: true });
     // ────────────────────────────────────────────────────────────────────────
 
     // Definições de Personagens
@@ -1091,7 +1089,9 @@
       ui.storyTitle.textContent=chapter.title;
       ui.storyGoal.textContent=`Objetivo: ${chapter.goal}`;
       ui.level.textContent=state.level; ui.score.textContent=state.score;
-      const _ml=state.maxLives||3; ui.lives.innerHTML='<span style="color:#ef4444">❤</span>'.repeat(Math.max(0,state.lives))+'<span style="color:#555">♡</span>'.repeat(Math.max(0,_ml-Math.max(0,state.lives)));
+      const _ml=state.maxLives||3;
+      const _livesHtml='<span style="color:#ef4444">❤</span>'.repeat(Math.max(0,state.lives))+'<span style="color:#555">♡</span>'.repeat(Math.max(0,_ml-Math.max(0,state.lives)));
+      if(ui.lives.innerHTML!==_livesHtml) ui.lives.innerHTML=_livesHtml;
       ui.record.textContent=best(); ui.gold.textContent=state.gold;
       // Streak visual com multiplicador
       const sm = getStreakMultiplier(state.streak);
@@ -1132,9 +1132,9 @@
       if(msbLivesEl) {
         const lives = Math.max(0, state.lives);
         const maxLives = state.maxLives || 3;
-        msbLivesEl.innerHTML =
-          '<span style="color:#ef4444">❤</span>'.repeat(Math.min(lives, maxLives)) +
+        const msbHtml = '<span style="color:#ef4444">❤</span>'.repeat(Math.min(lives, maxLives)) +
           '<span style="color:#555">♡</span>'.repeat(Math.max(0, maxLives - lives));
+        if(msbLivesEl.innerHTML !== msbHtml) msbLivesEl.innerHTML = msbHtml;
       }
     }
 
@@ -1996,7 +1996,6 @@
       const legendaryItemCopy = {...legendaryItem};
       const gains = [`⚔️ ATK ${legendaryItem.atk}`, `🛡️ DEF ${legendaryItem.def}`, `📚 CONH ${legendaryItem.kno}`, `🍀 SORTE ${legendaryItem.luck}`];
       playSound('forge');
-      renderHUD();
       equipOrSell(slot, legendaryItemCopy, (msg) => {
         showForgePopup(legendaryItemCopy, slot, gains);
         log(`🔨 Forja Lendária! ${msg}`);
@@ -2049,7 +2048,6 @@
       const rolled=rollItem(state.level, st.luck);
       const gains=[`⚔️ ATK ${rolled.item.atk}`, `🛡️ DEF ${rolled.item.def}`, `📚 CONH ${rolled.item.kno}`, `🍀 SORTE ${rolled.item.luck}`];
       playSound('forge');
-      renderHUD();
       equipOrSell(rolled.slot, rolled.item, (msg) => {
         showForgePopup(rolled.item, rolled.slot, gains);
         log(`🔨 Forja concluída! ${msg}`);
@@ -2071,7 +2069,6 @@
       const legendaryItemCopy = {...legendaryItem};
       const gains = [`⚔️ ATK ${legendaryItem.atk}`, `🛡️ DEF ${legendaryItem.def}`, `📚 CONH ${legendaryItem.kno}`, `🍀 SORTE ${legendaryItem.luck}`];
       playSound('forge');
-      renderHUD();
       equipOrSell(slot, legendaryItemCopy, (msg) => {
         showForgePopup(legendaryItemCopy, slot, gains);
         log(`🔨 Forja Lendária! ${msg}`);
@@ -3108,11 +3105,8 @@
       }
     });
 
-    // Bind estático: arquiQ9CloseBtn (handler complexo removido do HTML)
-    document.addEventListener('click', function(e) {
-      if (e.target.id === 'arquiQ9CloseBtn') {
-        const popup = document.getElementById('arquiQ9Popup');
-        if (popup) popup.style.display = 'none';
-      }
-    });
+    window._closeArquiQ9Popup = function() {
+      const popup = document.getElementById('arquiQ9Popup');
+      if (popup) popup.style.display = 'none';
+    };
 
