@@ -107,6 +107,21 @@ jobs:
           if [ $ERRORS -gt 0 ]; then exit 1; fi
           echo "✅ All security headers configured"
 
+      # ── 6. XSS guard: innerHTML com dados externos deve usar escapeHtml ──
+      - name: XSS innerHTML guard
+        run: |
+          ERRORS=0
+          # Detecta padrões perigosos: innerHTML recebendo variável de API/user sem escapeHtml
+          # Padrão: innerHTML = `...${var}...` onde var vem de r. (Supabase row) ou data. (fetch)
+          # Falsos positivos esperados: 0 (escapeHtml é aplicado antes em _renderMentorMarkdown e leaderboard)
+          if grep -rn 'innerHTML.*\${\(r\.\|data\.\|result\.\|response\.\)\([a-z_]*\)}' js/ 2>/dev/null | grep -v escapeHtml | grep -v '//'; then
+            echo "❌ Possible unescaped external data in innerHTML — wrap with escapeHtml()"
+            ERRORS=$((ERRORS+1))
+          else
+            echo "✅ No unescaped external data detected in innerHTML"
+          fi
+          if [ $ERRORS -gt 0 ]; then exit 1; fi
+
   # ── Job separado: Playwright E2E ──────────────────────────────────────────
   e2e:
     name: E2E Tests (Playwright)
