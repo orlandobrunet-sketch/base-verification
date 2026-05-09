@@ -5102,269 +5102,259 @@
    ═══════════════════════════════════════════════════════════════════ */
 
 /* ═══════════════════════════════════════════════════════════════════
-   REDESIGN FASE 1 — T1: Landing Screen (rebuild com 2 colunas)
+   REDESIGN FASE 1 — T1: Landing Screen (coluna única + bg imagem)
    ═══════════════════════════════════════════════════════════════════ */
 
+/* ── Tela raiz ── */
 #landingScreen {
-  background: var(--rd-bg-deep);
-  align-items: stretch;
-  justify-content: stretch;
+  background: #05080f;
   overflow-y: auto;
+  align-items: center;
+  justify-content: flex-start;
 }
 
-/* ── Fundo ── */
+/* ── Background imagem + overlay escuro ── */
 .landing-bg {
   background:
-    radial-gradient(ellipse 90% 60% at 50% 0%,   rgba(124,58,237,0.12) 0%, transparent 65%),
-    radial-gradient(ellipse 70% 50% at 15% 100%,  rgba(74,158,255,0.07) 0%, transparent 55%),
-    radial-gradient(ellipse 70% 50% at 85% 100%,  rgba(240,192,64,0.05) 0%, transparent 55%),
-    var(--rd-bg-deep);
+    linear-gradient(180deg,
+      rgba(5,8,15,0.55) 0%,
+      rgba(5,8,15,0.40) 40%,
+      rgba(5,8,15,0.65) 100%
+    ),
+    url('assets/nefroquest_background.jpg') center center / cover no-repeat;
 }
 .landing-bg::before {
-  background-image: radial-gradient(circle, rgba(240,192,64,0.10) 1px, transparent 1px);
-  background-size: 40px 40px;
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 75%);
+  background: none;
 }
 
-/* ── Layout 2 colunas ── */
-.landing-layout {
+/* ── Scroll wrapper para centralizar o card verticalmente ── */
+.landing-scroll {
   position: relative; z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%; min-height: 100%;
-  padding: 20px 16px 32px;
-  gap: 24px;
+  display: flex; align-items: center; justify-content: center;
+  min-height: 100%; width: 100%;
+  padding: 24px 16px 40px;
   animation: rd-slide-up 0.45s ease both;
 }
 
-/* ── Card de login (coluna esquerda no desktop) ── */
+/* ── Card principal — coluna única centralizada ── */
 .landing-card {
   display: flex; flex-direction: column; align-items: center;
-  gap: 10px;
-  width: 100%; max-width: 380px;
-  background: linear-gradient(160deg, rgba(13,18,37,0.95) 0%, rgba(9,14,28,0.97) 100%);
-  border: 1px solid rgba(240,192,64,0.2);
-  border-radius: 16px;
-  padding: 28px 24px 24px;
-  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
-  box-shadow: 0 16px 60px rgba(0,0,0,0.7), 0 0 40px rgba(124,58,237,0.06);
+  gap: 12px;
+  width: 100%; max-width: 600px;
+  background: linear-gradient(180deg,
+    rgba(8,12,28,0.92) 0%,
+    rgba(6,9,20,0.96) 100%
+  );
+  border: 2px solid rgba(180,140,40,0.55);
+  border-radius: 4px;
+  padding: 32px 28px 28px;
+  -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+  box-shadow:
+    0 0 0 1px rgba(240,192,64,0.08) inset,
+    0 0 0 4px rgba(140,100,20,0.18) inset,
+    0 24px 80px rgba(0,0,0,0.85),
+    0 0 60px rgba(0,0,0,0.5);
   position: relative;
 }
+/* Cantos ornamentais via pseudo-elemento */
+.landing-card::before {
+  content: '';
+  position: absolute; inset: 5px;
+  border: 1px solid rgba(240,192,64,0.12);
+  border-radius: 2px;
+  pointer-events: none;
+}
+/* Diamantes decorativos nos cantos */
 .landing-card::after {
   content: '✦';
-  position: absolute; bottom: 12px; right: 16px;
-  color: rgba(240,192,64,0.2); font-size: 0.65rem; pointer-events: none;
+  position: absolute; bottom: 10px; right: 14px;
+  color: rgba(240,192,64,0.22); font-size: 0.6rem; pointer-events: none;
+}
+
+/* ── Brasão / crest ── */
+.landing-crest {
+  margin-bottom: -4px;
+}
+.landing-crest img {
+  width: 64px; height: 64px;
+  filter: drop-shadow(0 0 16px rgba(240,192,64,0.5));
+  display: block;
 }
 
 /* ── Eyebrow ── */
 .landing-ornament {
   font-family: 'Cinzel', serif;
-  font-size: 0.62rem; letter-spacing: 4px;
+  font-size: 0.6rem; letter-spacing: 5px;
   color: var(--rd-gold-mid); text-transform: uppercase; opacity: 0.9;
 }
 
 /* ── Logo ── */
 .landing-title {
   font-family: 'Cinzel Decorative', 'Cinzel', serif;
-  font-size: clamp(2rem, 8vw, 2.8rem);
-  letter-spacing: 3px; margin: 0; line-height: 1.05;
-  background: linear-gradient(180deg, #fff8dc 0%, #f0c040 20%, #d4a820 55%, #a07010 85%, #d4a820 100%);
+  font-size: clamp(2.2rem, 8vw, 3.4rem);
+  letter-spacing: 4px; margin: 0; line-height: 1;
+  background: linear-gradient(180deg, #fff8dc 0%, #f0c040 25%, #d4a820 55%, #a07010 85%, #d4a820 100%);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  filter: drop-shadow(0 2px 12px rgba(240,192,64,0.4));
+  filter: drop-shadow(0 0 20px rgba(240,192,64,0.5));
 }
 
-/* ── Subtítulo ASCENSION ── */
+/* ── Subtítulo ASCENSION com linhas flanqueando ── */
+.landing-sub-line {
+  display: flex; align-items: center; gap: 10px; width: 100%; justify-content: center;
+}
 .landing-sub {
-  font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 8px;
-  color: rgba(240,192,64,0.5); text-transform: uppercase; margin-bottom: 4px;
+  font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 7px;
+  color: rgba(240,192,64,0.55); text-transform: uppercase; white-space: nowrap;
+}
+.landing-sub-rule {
+  flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(240,192,64,0.3));
+  max-width: 80px;
+}
+.landing-sub-line .landing-sub-rule:last-child {
+  background: linear-gradient(270deg, transparent, rgba(240,192,64,0.3));
 }
 
 /* ── Tagline ── */
 .landing-tagline {
-  font-family: 'Philosopher', serif; font-size: 0.88rem;
-  color: var(--rd-txt-dim); text-align: center; line-height: 1.6; margin-bottom: 2px;
+  font-family: 'Philosopher', serif; font-size: 0.92rem;
+  color: rgba(180,200,230,0.65); text-align: center; line-height: 1.6;
 }
 
 /* ── Divisor dourado ── */
 .landing-divider {
   width: 100%; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(240,192,64,0.35) 30%, rgba(240,192,64,0.35) 70%, transparent);
-  margin: 4px 0 6px; position: relative;
+  background: linear-gradient(90deg, transparent, rgba(240,192,64,0.4) 30%, rgba(240,192,64,0.4) 70%, transparent);
+  position: relative; margin: 2px 0 4px;
 }
 .landing-divider::before {
   content: '◆'; position: absolute; left: 50%; top: 50%;
   transform: translate(-50%, -50%);
   color: var(--rd-gold-dim); font-size: 0.5rem;
-  background: #090e1c; padding: 0 6px;
+  background: #080c1c; padding: 0 8px;
+}
+.landing-divider--sm { margin: 6px 0 2px; }
+.landing-divider--sm::before { background: #070a18; }
+
+/* ── Mensagem de erro ── */
+.landing-msg {
+  font-family: 'Philosopher', serif; font-size: 0.82rem;
+  border-radius: 8px; padding: 10px 14px; width: 100%;
 }
 
 /* ── Botão Google (pergaminho) ── */
 .landing-btn-google {
   width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;
   background: linear-gradient(160deg, #f5f0e0 0%, #ede0c0 100%);
-  color: #1a1208; border: none; border-radius: 10px;
-  font-family: 'Cinzel', serif; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.5px;
-  padding: 13px 20px; cursor: pointer;
-  box-shadow: 0 3px 16px rgba(0,0,0,0.5), 0 1px 0 rgba(255,255,255,0.3) inset;
+  color: #1a1208; border: 2px solid rgba(200,160,60,0.5); border-radius: 8px;
+  font-family: 'Cinzel', serif; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.5px;
+  padding: 14px 20px; cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.3) inset;
   transition: filter 0.15s, transform 0.12s, box-shadow 0.15s;
 }
 .landing-btn-google:hover {
   filter: brightness(1.06); transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.3) inset;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.7), 0 1px 0 rgba(255,255,255,0.3) inset;
 }
 .landing-btn-google:active { transform: translateY(0); }
 
 /* ── Botão Email (azul escuro) ── */
 .landing-btn-email {
   width: 100%;
-  background: linear-gradient(160deg, rgba(14,24,60,0.9) 0%, rgba(10,18,45,0.95) 100%);
-  color: #90b8e0; border: 2px solid rgba(74,158,255,0.35); border-radius: 10px;
-  font-family: 'Cinzel', serif; font-size: 0.85rem; font-weight: 600;
-  padding: 12px 20px; cursor: pointer;
+  background: linear-gradient(160deg, rgba(10,18,55,0.95) 0%, rgba(7,13,40,0.98) 100%);
+  color: #90b8e0; border: 2px solid rgba(74,158,255,0.45); border-radius: 8px;
+  font-family: 'Cinzel', serif; font-size: 0.88rem; font-weight: 600;
+  padding: 13px 20px; cursor: pointer;
   transition: border-color 0.2s, box-shadow 0.2s, transform 0.12s, color 0.2s;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  box-shadow: 0 3px 16px rgba(0,0,0,0.5);
 }
 .landing-btn-email:hover {
-  border-color: rgba(74,158,255,0.65); color: #c8e0ff;
-  box-shadow: 0 4px 20px rgba(74,158,255,0.15); transform: translateY(-2px);
+  border-color: rgba(74,158,255,0.75); color: #c8e0ff;
+  box-shadow: 0 6px 24px rgba(74,158,255,0.15); transform: translateY(-2px);
 }
 
-/* ── Botão guest (translúcido) ── */
+/* ── Botão guest (translúcido com borda dourada fina) ── */
 .landing-btn-guest {
   width: 100%;
-  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12);
-  color: rgba(160,180,210,0.7); border-radius: 10px;
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(240,192,64,0.2);
+  color: rgba(180,160,100,0.7); border-radius: 8px;
   font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.5px;
-  padding: 10px 20px; cursor: pointer;
+  padding: 11px 20px; cursor: pointer;
   transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.12s;
 }
 .landing-btn-guest:hover {
-  background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.22);
-  color: rgba(200,220,245,0.9); transform: translateY(-1px);
+  background: rgba(240,192,64,0.06); border-color: rgba(240,192,64,0.4);
+  color: rgba(240,192,64,0.85); transform: translateY(-1px);
 }
 
-/* ── Mensagem de erro ── */
-.landing-msg {
-  font-family: 'Philosopher', serif; font-size: 0.82rem;
-  border-radius: 10px; padding: 10px 14px;
-}
-
-/* ── Contador (1.000+) ── */
+/* ── Contador 1.000+ ── */
 .landing-counter {
   display: flex; flex-direction: column; align-items: center;
-  gap: 2px; width: 100%; padding-top: 12px;
-  border-top: 1px solid rgba(240,192,64,0.12);
-  margin-top: 4px;
+  gap: 3px; width: 100%; padding-top: 4px;
 }
 .landing-counter-num {
   font-family: 'Cinzel Decorative', 'Cinzel', serif;
-  font-size: clamp(1.6rem, 5vw, 2rem); font-weight: 900; line-height: 1;
-  background: linear-gradient(180deg, #f0c040 0%, #d4a820 60%, #a07010 100%);
+  font-size: clamp(2rem, 6vw, 2.6rem); font-weight: 900; line-height: 1;
+  background: linear-gradient(180deg, #fff0a0 0%, #f0c040 30%, #d4a820 70%, #a07010 100%);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  filter: drop-shadow(0 1px 6px rgba(240,192,64,0.3));
+  filter: drop-shadow(0 0 12px rgba(240,192,64,0.5));
 }
+.landing-counter-num sup { font-size: 50%; vertical-align: super; }
 .landing-counter-label {
-  font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 1.5px;
-  color: #6a8aaa; text-transform: uppercase; text-align: center;
+  font-family: 'Cinzel', serif; font-size: 0.68rem; letter-spacing: 3px;
+  color: rgba(200,160,60,0.8); text-transform: uppercase; text-align: center;
 }
-.landing-counter--desktop { display: none; }
-.landing-counter--mobile  { display: flex; }
-
-/* ── Coluna direita (personagens + features) ── */
-.landing-right {
-  display: none;
-}
-
-/* ── Desktop: 2 colunas ── */
-@media (min-width: 860px) {
-  .landing-layout {
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding: 32px 40px;
-    gap: 48px;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-  .landing-card {
-    flex-shrink: 0;
-    max-width: 380px;
-    padding: 36px 32px 32px;
-    border: 2px solid rgba(240,192,64,0.25);
-  }
-  .landing-right {
-    display: flex; flex-direction: column;
-    align-items: center; gap: 24px;
-    flex: 1; max-width: 420px;
-  }
-  .landing-counter--desktop { display: flex; }
-  .landing-counter--mobile  { display: none; }
-  .landing-card::after { bottom: 14px; right: 18px; }
-}
-
-/* ── Personagens ── */
-.landing-heroes {
-  display: flex; align-items: flex-end; justify-content: center;
-  gap: 8px; width: 100%;
-}
-.landing-hero {
-  display: flex; flex-direction: column; align-items: center; gap: 6px;
-  flex: 1;
-}
-.landing-hero img {
-  width: 100%; max-width: 110px; height: auto;
-  border-radius: 10px;
-  border: 1px solid rgba(240,192,64,0.2);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.6), 0 0 20px rgba(240,192,64,0.06);
-  transition: transform 0.2s, box-shadow 0.2s;
-  display: block;
-}
-.landing-hero--center img {
-  max-width: 130px;
-  border-color: rgba(240,192,64,0.4);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.7), 0 0 30px rgba(240,192,64,0.12);
-}
-.landing-hero:hover img { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(0,0,0,0.7); }
-.landing-hero-name {
-  font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.5px;
-  color: rgba(240,192,64,0.6); text-align: center; text-transform: uppercase;
+.landing-counter-sub {
+  font-size: 0.68rem; color: rgba(100,130,170,0.7); letter-spacing: 0.5px; text-align: center;
 }
 
 /* ── Feature list ── */
 .landing-features {
-  display: flex; flex-direction: column; gap: 8px; width: 100%;
+  display: flex; flex-direction: column; gap: 6px; width: 100%;
+  margin-top: 2px;
 }
 .landing-feature {
   display: flex; gap: 12px; align-items: flex-start;
-  padding: 10px 12px; border-radius: 10px;
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.05);
+  padding: 10px 14px; border-radius: 8px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.06);
   transition: background 0.2s;
 }
-.landing-feature:hover { background: rgba(255,255,255,0.04); }
+.landing-feature:hover { background: rgba(255,255,255,0.045); }
 .landing-feature--ai {
-  background: linear-gradient(135deg, rgba(124,58,237,0.12) 0%, rgba(74,158,255,0.06) 100%);
-  border-color: rgba(124,58,237,0.3);
-  box-shadow: 0 2px 12px rgba(124,58,237,0.08);
+  background: linear-gradient(135deg, rgba(100,40,200,0.14) 0%, rgba(50,100,220,0.07) 100%);
+  border-color: rgba(124,58,237,0.35);
+  box-shadow: 0 2px 14px rgba(100,40,200,0.1);
 }
-.landing-feature-icon {
-  font-size: 1.1rem; flex-shrink: 0; margin-top: 1px;
+.landing-feature-icon-wrap {
+  width: 36px; height: 36px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(180,140,40,0.12);
+  border: 1px solid rgba(180,140,40,0.25);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+.landing-feature-icon-wrap--ai {
+  background: rgba(124,58,237,0.18);
+  border-color: rgba(124,58,237,0.4);
 }
 .landing-feature-title {
-  color: #d0e4f8; font-size: 0.8rem; font-weight: 600; margin-bottom: 2px;
+  color: #c8daf0; font-size: 0.82rem; font-weight: 700;
+  font-family: 'Cinzel', serif; letter-spacing: 0.3px;
+  margin-bottom: 3px;
 }
 .landing-feature-desc {
-  color: #5a7896; font-size: 0.72rem; line-height: 1.5;
+  color: #4e6a88; font-size: 0.73rem; line-height: 1.55;
 }
-.landing-feature--ai .landing-feature-title { color: #e9d5ff; }
-.landing-feature--ai .landing-feature-desc  { color: #8b7ca8; }
-.landing-feature--ai strong { color: #c4b5fd; }
+.landing-feature--ai .landing-feature-title { color: #d8c8f8; }
+.landing-feature--ai .landing-feature-desc  { color: #7060a0; }
+.landing-feature--ai strong { color: #b8a8e8; }
 
-/* ── Mobile: card com margem lateral ── */
-@media (max-width: 859px) {
-  .landing-card { margin: 0 4px; max-width: calc(100% - 8px); }
-  .landing-title { font-size: clamp(1.8rem, 10vw, 2.4rem); }
+/* ── Mobile ── */
+@media (max-width: 640px) {
+  .landing-card { padding: 24px 16px 20px; gap: 10px; }
+  .landing-title { font-size: clamp(2rem, 10vw, 2.6rem); }
+  .landing-crest img { width: 52px; height: 52px; }
 }
 
 /* ═══════════════════════════════════════════════════════════════════
