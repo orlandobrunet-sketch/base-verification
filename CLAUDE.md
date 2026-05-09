@@ -335,15 +335,15 @@ No Supabase Dashboard → Edge Functions → selecionar a função → Deploy / 
 |---|--------|---------|
 | W1 | Screenshots no manifest | **Feito** — imagens e entradas no manifest já presentes |
 | W2 | iOS splash screens | **Feito** (v9.21) |
-| W3 | Push notifications server-side | **Feito** (v9.26) — migration 004, `send-push` edge function, `js/notifications.js` + SW listener. **Pendente deploy**: rodar migration, configurar `VAPID_PUBLIC_KEY`/`VAPID_PRIVATE_KEY`/`VAPID_SUBJECT` no Dashboard, setar `window._VAPID_PUBLIC_KEY` em index.html |
+| W3 | Push notifications server-side | **Feito** (v9.26) — migration 004 ✅, VAPID secrets ✅, `window._VAPID_PUBLIC_KEY` ✅. **Pendente**: fazer deploy da edge function `send-push` pelo Supabase Dashboard (não existe ainda — precisa ser criada/deployada manualmente via CLI ou upload) |
 
 ### MÉDIA PRIORIDADE — CSS/UI
 | # | Tarefa | Detalhe |
 |---|--------|---------|
 | C1 | `!important` — reduzido | De 321 para ~99; restantes têm conflito legítimo com `.boss-battle-mode` — **concluído** |
 | C2 | z-index centralizado | `.app` e `.action-dock` migrados; valores locais (0-3, 10-11 em stacking contexts) deixados como estão — **concluído** |
-| C3 | `prefers-reduced-motion` | Animações sem suporte a acessibilidade — adicionar media query global |
-| C4 | Estilos inline JS → classes CSS | Mover estilos estáticos gerados por JS para classes CSS |
+| C3 | `prefers-reduced-motion` | **Feito** — media query global no fim do `style.css` cobre todas as animações |
+| C4 | Estilos inline JS → classes CSS | **Feito** — flag-chip, flag-status, ref-copy-btn, boss-hp, meter-result, minigame-fb migrados para classes CSS |
 
 ### BAIXA PRIORIDADE — Arquitetura JS
 | # | Tarefa | Detalhe |
@@ -360,6 +360,35 @@ No Supabase Dashboard → Edge Functions → selecionar a função → Deploy / 
 - [ ] `send-contact` — formulário de contato
 - [ ] `ai_usage` — quota sendo contabilizada na tabela (SQL: `SELECT * FROM ai_usage ORDER BY date DESC LIMIT 10`)
 - [ ] Paywall premium — fluxo de compra Mercado Pago funcionando
+- [ ] GA4 — verificar dados chegando no painel após fix do Measurement ID (G-0TS171XV3K)
+
+### PENDENTE — Infraestrutura / Negócio
+| # | Tarefa | Detalhe |
+|---|--------|---------|
+| I1 | Criar e-mail `contato@nefroquest.com` | Necessário para formulário de contato e identidade profissional |
+| I2 | Testar fluxo completo de pagamento | Mercado Pago: preference → checkout → webhook → `profiles.is_premium = true`; testar plano mensal e vitalício |
+| I3 | Deploy edge function `send-push` | Colar `supabase/functions/send-push/index.ts` no editor do Dashboard → nome `send-push` → Deploy |
+
+### NOVA FEATURE — Minigame Ácido-Base
+| # | Tarefa | Detalhe |
+|---|--------|---------|
+| M1 | Minigame Ácido-Base interativo | Modo de jogo educacional com narrativa que ensina diagnóstico e manejo de distúrbios ácido-base |
+
+**Conceito do Minigame Ácido-Base:**
+- **Narrativa:** o jogador é um "Alquimista Renal" chamado para equilibrar o pH do reino. Cada caso clínico é apresentado como uma missão — um personagem do reino com sintomas
+- **Mecânica:** o jogador recebe gasometria (pH, PaCO2, HCO3, BE) e precisa: (1) identificar o distúrbio primário, (2) calcular a compensação esperada usando as fórmulas, (3) escolher a conduta
+- **Fórmulas ensinadas interativamente:**
+  - Acidose metabólica: `PaCO2 esperado = 1.5 × HCO3 + 8 (±2)` (Winter)
+  - Alcalose metabólica: `PaCO2 esperado = 0.7 × HCO3 + 21 (±2)`
+  - Acidose respiratória aguda: `HCO3 sobe 1 para cada 10 de PaCO2`
+  - Acidose respiratória crônica: `HCO3 sobe 3.5 para cada 10 de PaCO2`
+  - Alcalose respiratória aguda: `HCO3 cai 2 para cada 10 de PaCO2`
+  - Alcalose respiratória crônica: `HCO3 cai 5 para cada 10 de PaCO2`
+  - Ânion gap: `AG = Na - (Cl + HCO3)` normal 8–12; com albumina: `AG corrigido = AG + 2.5 × (4 - albumina)`
+  - Delta-delta: `ΔAG/ΔHCO3` — distingue distúrbios mistos
+- **Progressão:** 5 casos de dificuldade crescente (simples → misto → triplo). A fórmula relevante aparece como "dica do grimório" antes de cada cálculo
+- **Integração:** acessível via "Modos de Jogo" no menu principal; salva progresso no `localStorage`; eventos GA4 `minigame_acid_base_started` e `minigame_acid_base_completed`
+- **Arquivo:** `js/minigame-acidbase.js` + seção dedicada no `index.html`
 
 ---
 
