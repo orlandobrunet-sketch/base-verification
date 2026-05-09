@@ -1021,6 +1021,16 @@
       box-shadow: 0 4px 20px rgba(0,0,0,0.7), 0 0 22px rgba(255,215,0,0.45);
     }
 
+    /* Próxima Pergunta — verde esmeralda, aparece após resposta */
+    .dock-btn.next-question-dock { border-color: rgba(74,222,128,0.45); }
+    .dock-btn.next-question-dock svg { color: #4ade80; filter: drop-shadow(0 0 8px rgba(74,222,128,0.9)); }
+    .dock-btn.next-question-dock .dock-label { color: #4ade80; background: rgba(74,222,128,0.22); }
+    .dock-btn.next-question-dock:hover {
+      border-color: rgba(74,222,128,0.75);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.7), 0 0 20px rgba(74,222,128,0.4);
+    }
+    .dock-btn.next-question-dock.hidden { display: none; }
+
     /* Badge de custo */
     .dock-cost {
       position: absolute;

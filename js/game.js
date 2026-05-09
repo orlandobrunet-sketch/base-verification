@@ -869,7 +869,8 @@
       equipList:$("equipList"),journal:$("journal"),question:$("question"),options:$("options"),feedback:$("feedback"),refs:$("refs"),
       oraculoBtn:$("oraculoBtn"),nextBtn:$("nextBtn"),newBtn:$("newBtn"),forgeBtn:$("forgeBtn"),bonusBtn:$("bonusBtn"),boardBtn:$("boardBtn"),
       boardModal:$("boardModal"),boardBody:$("boardBody"),closeBoard:$("closeBoard"),
-      dockForgeBtn:$("forgeBtn"),dockChestBtn:$("chestBtn"),dockLegBtn:$("legendaryForgeBtn"),dockChestCost:$("chestCostBadge"),actionDock:$("actionDock")
+      dockForgeBtn:$("forgeBtn"),dockChestBtn:$("chestBtn"),dockLegBtn:$("legendaryForgeBtn"),dockChestCost:$("chestCostBadge"),actionDock:$("actionDock"),
+      dockNextBtn:$("dockNextBtn")
     };
 
     // === SUPABASE LEADERBOARD ===
@@ -1314,6 +1315,7 @@
       ui.feedback.textContent = 'Escolha a melhor alternativa clínica.';
       renderRefs(q.r);
       ui.nextBtn.classList.add('hidden');
+      ui.dockNextBtn?.classList.add('hidden');
       ui.bonusBtn.classList.add('hidden');
       if (ui.oraculoBtn) ui.oraculoBtn.classList.add('hidden');
       _renderOptions(q);
@@ -1719,6 +1721,7 @@
         showPricingModal();
       } else {
         ui.nextBtn.classList.remove('hidden');
+        ui.dockNextBtn?.classList.remove('hidden');
         // ── Confronto Final: atualiza barra de HP, estrelas e botão ──
         updateBossUI();
         animateLastBossStar();
