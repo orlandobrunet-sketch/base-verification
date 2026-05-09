@@ -1315,7 +1315,7 @@
       ui.feedback.textContent = 'Escolha a melhor alternativa clínica.';
       renderRefs(q.r);
       ui.nextBtn.classList.add('hidden');
-      ui.dockNextBtn?.classList.add('hidden');
+      ui.dockNextBtn?.classList.add('disabled');
       ui.bonusBtn.classList.add('hidden');
       if (ui.oraculoBtn) ui.oraculoBtn.classList.add('hidden');
       _renderOptions(q);
@@ -1721,7 +1721,11 @@
         showPricingModal();
       } else {
         ui.nextBtn.classList.remove('hidden');
-        ui.dockNextBtn?.classList.remove('hidden');
+        if (ui.dockNextBtn) {
+          ui.dockNextBtn.classList.remove('disabled');
+          ui.dockNextBtn.classList.add('dock-next-ready');
+          setTimeout(() => ui.dockNextBtn.classList.remove('dock-next-ready'), 600);
+        }
         // ── Confronto Final: atualiza barra de HP, estrelas e botão ──
         updateBossUI();
         animateLastBossStar();

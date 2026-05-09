@@ -272,7 +272,27 @@ Cada classe tem 10 níveis de imagens (`assets/classes/<nome>/nivel_01.jpg` ... 
 4. **Variáveis de Ambiente** — configurar no Dashboard: Project Settings → Edge Functions
 
 ### Como fazer redeploy de uma Edge Function
-No Supabase Dashboard → Edge Functions → selecionar a função → Deploy / Redeploy
+
+**Via Dashboard (atual):** Supabase Dashboard → Edge Functions → selecionar → Deploy / Redeploy
+
+**Via CLI (recomendado para evitar drift):**
+```bash
+# Instalar CLI (se necessário)
+npm install -g supabase
+
+# Login e link ao projeto
+supabase login
+supabase link --project-ref wviutasgroltjuyxpevc
+
+# Deploy de função específica
+supabase functions deploy send-push
+supabase functions deploy ai-mentor
+
+# Deploy de migration
+supabase db push
+```
+
+> ⚠️ Usar CLI garante que o código versionado é exatamente o que está em produção, eliminando risco de drift entre repositório e Dashboard.
 
 ---
 

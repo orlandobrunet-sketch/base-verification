@@ -1021,7 +1021,7 @@
       box-shadow: 0 4px 20px rgba(0,0,0,0.7), 0 0 22px rgba(255,215,0,0.45);
     }
 
-    /* Próxima Pergunta — verde esmeralda, aparece após resposta */
+    /* Próxima Pergunta — verde esmeralda */
     .dock-btn.next-question-dock { border-color: rgba(74,222,128,0.45); }
     .dock-btn.next-question-dock svg { color: #4ade80; filter: drop-shadow(0 0 8px rgba(74,222,128,0.9)); }
     .dock-btn.next-question-dock .dock-label { color: #4ade80; background: rgba(74,222,128,0.22); }
@@ -1029,7 +1029,14 @@
       border-color: rgba(74,222,128,0.75);
       box-shadow: 0 4px 20px rgba(0,0,0,0.7), 0 0 20px rgba(74,222,128,0.4);
     }
-    .dock-btn.next-question-dock.hidden { display: none; }
+    @keyframes dockNextPulse {
+      0%   { box-shadow: 0 4px 16px rgba(0,0,0,0.7), 0 0 0 0 rgba(74,222,128,0.7); }
+      60%  { box-shadow: 0 4px 16px rgba(0,0,0,0.7), 0 0 0 10px rgba(74,222,128,0); }
+      100% { box-shadow: 0 4px 16px rgba(0,0,0,0.7), 0 0 0 0 rgba(74,222,128,0); }
+    }
+    .dock-btn.next-question-dock.dock-next-ready {
+      animation: dockNextPulse 0.6s ease-out;
+    }
 
     /* Badge de custo */
     .dock-cost {
