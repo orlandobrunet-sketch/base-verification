@@ -7,8 +7,8 @@ NefroQuest é um jogo RPG educacional de perguntas e respostas sobre Nefrologia,
 - **URL de produção:** https://nefroquest.com
 - **Repositório GitHub:** orlandobrunet-sketch/base-verification
 - **Branch principal:** `main`
-- **Branch de trabalho atual:** `claude/fix-nefroquest-migration-pCkmH`
-- **Versão atual:** 9.27
+- **Branch de trabalho atual:** `claude/fix-analytics-service-worker-MEeIh`
+- **Versão atual:** 9.28
 - **Hospedagem:** GitHub Pages (CNAME aponta para nefroquest.com) + Vercel (vercel.json presente)
 - **Domínio customizado:** nefroquest.com
 
@@ -323,7 +323,10 @@ supabase db push
 - [x] A2: Store central de estado — `state` wrapped em Proxy que auto-invalida statsCache e debounce-salva a cada 500ms
 - [x] W1: Screenshots no manifest — `screenshot-mobile.png` e `screenshot-desktop.png` já presentes (verificado)
 - [x] W3: Push notifications server-side — migration 004, edge function `send-push` (deployada ✅), `js/notifications.js`, listener `push` no SW
-- [x] Versão atual: **9.27**
+- [x] Versão atual: **9.28**
+- [x] Play Store PS-1a: `privacy-policy.html` standalone criada
+- [x] Play Store PS-1c: TWA detection — botões de compra substituídos no APK Android
+- [x] Play Store PS-1d: `manifest.json` com campo `"id": "/"`
 - [x] A11y: `type="button"` em todos os 89 botões sem tipo
 - [x] A11y: `aria-live="polite"` em `#authMsg` para leitores de tela
 - [x] A11y: Touch targets — `min-height: 44px` em `.profile-popup-item` e `.profile-popup-logout`
@@ -411,19 +414,19 @@ O NefroQuest é publicado como **TWA (Trusted Web Activity)** — o APK Android 
 ### PS-1: Técnico (código) — PRIORITÁRIO
 | # | Tarefa | Detalhe | Responsável |
 |---|--------|---------|-------------|
-| PS-1a | `privacy-policy.html` standalone | Google exige URL pública da política (não apenas modal). Criar `/privacy-policy.html` com conteúdo já existente em `showPrivacyPolicy()` | Código |
-| PS-1b | `.well-known/assetlinks.json` | Vincula o domínio ao APK assinado (Digital Asset Links). Gerado pelo PWABuilder após criar o APK — inserir SHA-256 do certificado de assinatura | Código + Play Console |
-| PS-1c | Desabilitar compra no Android TWA | Detectar TWA via `document.referrer` ou `navigator.userAgent` e esconder botão "Assinar" — mostrar "Acesse nefroquest.com para Premium" | Código |
-| PS-1d | `manifest.json` — `id` canônico | Adicionar campo `"id": "/"` para identificação estável do app no Play Store | Código |
+| PS-1a | `privacy-policy.html` standalone | ✅ **Feito** — `/privacy-policy.html` disponível em nefroquest.com/privacy-policy.html | Código |
+| PS-1b | `.well-known/assetlinks.json` | Pendente — gerar após criar APK no PWABuilder e obter SHA-256 do Play Console | Código + Play Console |
+| PS-1c | Desabilitar compra no Android TWA | ✅ **Feito** — `_isTWA` detecta `android-app://` referrer; botões Mensal/Vitalício substituídos por mensagem de redirecionamento | Código |
+| PS-1d | `manifest.json` — `id` canônico | ✅ **Feito** — `"id": "/"` adicionado | Código |
 
 ### PS-2: Assets visuais — PRIORITÁRIO
 | # | Asset | Especificação | Status |
 |---|-------|---------------|--------|
 | PS-2a | Ícone hi-res | 512×512 PNG sem transparência, sem arredondamento | ✅ Existe (`favicon-512x512.png`) — verificar fundo |
-| PS-2b | Feature graphic | 1024×500 PNG/JPG — banner do Play Store | ❌ Falta criar |
-| PS-2c | Screenshots Phone | Mín. 2, recomendado 4–8. Formato 1080×1920 ou 9:16 | ❌ Falta (existentes são 390×844) |
-| PS-2d | Screenshots Tablet | Opcional mas recomendado | ❌ Falta |
-| PS-2e | Ícone adaptativo | `foreground` + `background` layers para Android | ❌ Falta (usar 512x512 existente como base) |
+| PS-2b | Feature graphic | 1024×500 PNG/JPG — banner do Play Store | ⏳ Pendente — design |
+| PS-2c | Screenshots Phone | Mín. 2, recomendado 4–8. Formato 1080×1920 ou 9:16 | ⏳ Pendente — design (existentes são 390×844) |
+| PS-2d | Screenshots Tablet | Opcional mas recomendado | ⏳ Pendente — design |
+| PS-2e | Ícone adaptativo | `foreground` + `background` layers para Android | ⏳ Pendente (usar 512x512 existente como base) |
 
 ### PS-3: Administrativo (manual — Google Play Console)
 | # | Tarefa | Detalhe |
@@ -474,14 +477,14 @@ Ideal para estudantes de medicina, residentes de clínica médica e nefrologia.
 ```
 
 ### PS-5: Ordem recomendada de execução
-1. **PS-1a** — criar `privacy-policy.html` (30 min, código)
-2. **PS-1d** — adicionar `id` ao manifest.json (5 min, código)
-3. **PS-2b/2c** — criar feature graphic e screenshots (design — fora do código)
-4. **PS-3a** — abrir conta Google Play ($25)
-5. **PS-3b** — gerar APK no PWABuilder
-6. **PS-1b** — inserir assetlinks.json com SHA do APK gerado
-7. **PS-1c** — detectar TWA e esconder compra in-app
-8. **PS-3c até PS-3h** — preencher Play Console e submeter
+1. ~~**PS-1a** — criar `privacy-policy.html`~~ ✅ Feito
+2. ~~**PS-1d** — adicionar `id` ao manifest.json~~ ✅ Feito
+3. ~~**PS-1c** — detectar TWA e esconder compra in-app~~ ✅ Feito
+4. **PS-2b/2c** — criar feature graphic e screenshots (design — você)
+5. **PS-3a** — abrir conta Google Play ($25) — você
+6. **PS-3b** — gerar APK no PWABuilder — você
+7. **PS-1b** — inserir assetlinks.json com SHA do APK gerado — código após APK
+8. **PS-3c até PS-3h** — preencher Play Console e submeter — você
 
 ### PS-6: Cronograma estimado
 | Etapa | Tempo estimado |
