@@ -1862,7 +1862,8 @@
       border: 1px solid rgba(251,113,133,0.35); border-radius: 7px;
       padding: 7px 12px; font-size: 0.82rem; font-weight: 600;
       cursor: pointer; transition: background 0.2s;
-      text-align: center;
+      text-align: center; min-height: 44px;
+      display: flex; align-items: center; justify-content: center;
     }
     .profile-popup-logout:hover { background: rgba(251,113,133,0.22); }
     .profile-popup-item {
@@ -1870,6 +1871,7 @@
       border: 1px solid rgba(42,74,122,0.45); border-radius: 7px;
       padding: 7px 12px; font-size: 0.82rem; cursor: pointer;
       transition: background 0.2s; text-align: left; width: 100%;
+      min-height: 44px; display: flex; align-items: center;
     }
     .profile-popup-item:hover { background: rgba(255,255,255,0.09); }
     .profile-popup-item.admin-item {
