@@ -10,11 +10,11 @@
   <link rel="canonical" href="https://nefroquest.com">
   <title>NefroQuest: Ascension</title>
   <!-- Favicons -->
-  <link rel="icon" type="image/x-icon" href="favicon.ico?v=9.23">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png?v=9.23">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png?v=9.23">
-  <link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicon-192x192.png?v=9.23">
-  <link rel="icon" type="image/png" sizes="512x512" href="assets/images/favicon-512x512.png?v=9.23">
+  <link rel="icon" type="image/x-icon" href="favicon.ico?v=9.27">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png?v=9.27">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png?v=9.27">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicon-192x192.png?v=9.27">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/images/favicon-512x512.png?v=9.27">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#0a0e1a">
@@ -65,7 +65,7 @@
     if (typeof Sentry !== 'undefined') {
       Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@9.26',
+          release: 'nefroquest@9.27',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           beforeSend(event) {
@@ -171,7 +171,7 @@
 
   <!-- Botões de som fixos no topo direito (MOBILE ONLY) -->
   <!-- Botão herói no canto superior esquerdo (mobile) -->
-  <button class="mobile-hero-btn" id="mobileHeroBtn" data-action="openMobileDrawer" style="display:none;">
+  <button type="button" class="mobile-hero-btn" id="mobileHeroBtn" data-action="openMobileDrawer" style="display:none;">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
       <circle cx="12" cy="8" r="4"/>
       <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
@@ -195,15 +195,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
       <div class="profile-popup" id="landingProfilePopup">
         <div class="profile-popup-email"><strong>Conta</strong><span id="landingProfileEmail"></span></div>
-        <button class="profile-popup-item" data-action="openAccountModal" data-stop-propagation="1">👤 Minha Conta</button>
-        <button class="profile-popup-item" data-action="openPlanModal" data-stop-propagation="1">⭐ Seu Plano</button>
-        <button class="profile-popup-item admin-item" data-action="openAdminPanel" data-stop-propagation="1">🛡 Administração</button>
-        <button class="profile-popup-item admin-item" data-action="showRapidQuizMinigame" data-stop-propagation="1">⚡ Julgamento Rápido</button>
-        <button class="profile-popup-item admin-item" data-action="adminJumpToBoss" data-stop-propagation="1">⚔ Fase Final</button>
-        <button class="profile-popup-item admin-item" data-action="openAnalyticsPanel" data-stop-propagation="1">📊 Analytics</button>
-        <hr class="profile-popup-divider">
-        <button class="profile-popup-item" data-action="toggleStudyReminders" data-stop-propagation="1">🔔 Lembretes</button>
-        <button class="profile-popup-logout" data-action="authLogout" data-stop-propagation="1">Sair</button>
+
       </div>
     </div>
     <div class="landing-content">
@@ -213,13 +205,13 @@
       <div class="landing-tagline">Domine a Nefrologia.<br>Conquiste o reino dos néfrons.</div>
       <div class="landing-divider"></div>
       <div id="landingMsg" class="landing-msg"></div>
-      <button class="landing-btn-google" data-action="landingLoginGoogle">
+      <button type="button" class="landing-btn-google" data-action="landingLoginGoogle">
         <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.1 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.6-13.47-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
         Entrar com Google
       </button>
-      <button class="landing-btn-email" data-action="landingLoginEmail">&#9993; Entrar com Email</button>
+      <button type="button" class="landing-btn-email" data-action="landingLoginEmail">&#9993; Entrar com Email</button>
       <div style="margin-top:8px;text-align:center;">
-        <button class="btn sec" data-action="playAsGuest" style="width:100%;opacity:0.8;font-size:0.85rem;padding:10px;">🎮 Experimentar sem conta</button>
+        <button type="button" class="btn sec" data-action="playAsGuest" style="width:100%;opacity:0.8;font-size:0.85rem;padding:10px;">🎮 Experimentar sem conta</button>
       </div>
       <div class="landing-stats-section" style="margin-top:12px;border-top:1px solid rgba(255,215,0,0.12);padding-top:14px;width:100%;max-width:360px;">
         <!-- Contador de questões -->
@@ -285,15 +277,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
         <div class="profile-popup" id="welcomeProfilePopup">
           <div class="profile-popup-email"><strong>Conta</strong><span id="welcomeProfileEmail"></span></div>
-          <button class="profile-popup-item" data-action="openAccountModal" data-stop-propagation="1">👤 Minha Conta</button>
-          <button class="profile-popup-item" data-action="openPlanModal" data-stop-propagation="1">⭐ Seu Plano</button>
-          <button class="profile-popup-item admin-item" data-action="openAdminPanel" data-stop-propagation="1">🛡 Administração</button>
-          <button class="profile-popup-item admin-item" data-action="showRapidQuizMinigame" data-stop-propagation="1">⚡ Julgamento Rápido</button>
-          <button class="profile-popup-item admin-item" data-action="adminJumpToBoss" data-stop-propagation="1">⚔ Fase Final</button>
-          <button class="profile-popup-item admin-item" data-action="openAnalyticsPanel" data-stop-propagation="1">📊 Analytics</button>
-          <hr class="profile-popup-divider">
-          <button class="profile-popup-item" data-action="toggleStudyReminders" data-stop-propagation="1">🔔 Lembretes</button>
-          <button class="profile-popup-logout" data-action="authLogout" data-stop-propagation="1">Sair</button>
+
         </div>
       </div>
     </div>
@@ -334,22 +318,22 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       </div>
       <!-- Botões primários: Nova Jornada + Continuar Jornada -->
       <div class="welcome-primary-btns">
-        <button id="welcomeLoginBtn" class="btn gold" data-action="startNewFromWelcome" style="display:none;">Nova Jornada</button>
-        <button id="welcomeContinueBtn" class="btn continue-btn" style="display:none;" data-action="continueGame">Continuar Jornada</button>
-        <button class="btn gold" data-action="startNewFromWelcome">Nova Jornada</button>
+        <button type="button" id="welcomeLoginBtn" class="btn gold" data-action="startNewFromWelcome" style="display:none;">Nova Jornada</button>
+        <button type="button" id="welcomeContinueBtn" class="btn continue-btn" style="display:none;" data-action="continueGame">Continuar Jornada</button>
+        <button type="button" class="btn gold" data-action="startNewFromWelcome">Nova Jornada</button>
       </div>
       <div class="welcome-buttons">
         <div class="game-mode-btns-group">
-          <button class="btn sec" data-action="showTopicSelector">📖 Modo de Estudo</button>
-          <button class="btn sec" data-action="startWeakPointStudy" id="weakPointBtn" style="background:rgba(251,113,133,0.12);border-color:rgba(251,113,133,0.35);color:#fb7185;">📍 Ponto Fraco</button>
-          <button class="btn sec" data-action="startExamMode">📝 Prova Simulada</button>
-          <button class="btn sec" data-action="showStandaloneMinigame" style="background:rgba(74,222,128,0.08);border-color:rgba(74,222,128,0.35);color:#4ade80;">⚡ Julgamento Rápido</button>
+          <button type="button" class="btn sec" data-action="showTopicSelector">📖 Modo de Estudo</button>
+          <button type="button" class="btn sec" data-action="startWeakPointStudy" id="weakPointBtn" style="background:rgba(251,113,133,0.12);border-color:rgba(251,113,133,0.35);color:#fb7185;">📍 Ponto Fraco</button>
+          <button type="button" class="btn sec" data-action="startExamMode">📝 Prova Simulada</button>
+          <button type="button" class="btn sec" data-action="showStandaloneMinigame" style="background:rgba(74,222,128,0.08);border-color:rgba(74,222,128,0.35);color:#4ade80;">⚡ Julgamento Rápido</button>
         </div>
-        <button class="btn sec btn-game-modes" data-action="openGameModesPopup">🎮 Modos de Jogo</button>
-        <button class="btn sec" data-action="showStatsModal">📊 Estatísticas</button>
-        <button class="btn sec" data-action="showAchievementsModal">🏆 Conquistas</button>
-        <button class="btn sec" data-action="showLeaderboardFromWelcome">Leaderboard</button>
-        <button id="bossPreviewBtn" class="btn-boss-preview" data-action="startBossPreview" title="Preview do Confronto Final" style="display:none;">⚔️ Preview: Confronto Final</button>
+        <button type="button" class="btn sec btn-game-modes" data-action="openGameModesPopup">🎮 Modos de Jogo</button>
+        <button type="button" class="btn sec" data-action="showStatsModal">📊 Estatísticas</button>
+        <button type="button" class="btn sec" data-action="showAchievementsModal">🏆 Conquistas</button>
+        <button type="button" class="btn sec" data-action="showLeaderboardFromWelcome">Leaderboard</button>
+        <button type="button" id="bossPreviewBtn" class="btn-boss-preview" data-action="startBossPreview" title="Preview do Confronto Final" style="display:none;">⚔️ Preview: Confronto Final</button>
       </div>
       <div class="welcome-credit" style="margin-top:14px;"><a href="https://nefroquest.com">nefroquest.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;cursor:pointer;" data-action="showChangelog">v9.26</span> &nbsp;·&nbsp; <span style="opacity:0.5;font-size:0.8em;cursor:pointer;text-decoration:underline;" data-action="showPrivacyPolicy">Política de Privacidade</span></div>
     </div>
@@ -376,15 +360,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
           <div class="profile-popup" id="gameProfilePopup">
             <div class="profile-popup-email"><strong>Conta</strong><span id="gameProfileEmail"></span></div>
-            <button class="profile-popup-item" data-action="openAccountModal" data-stop-propagation="1">👤 Minha Conta</button>
-            <button class="profile-popup-item" data-action="openPlanModal" data-stop-propagation="1">⭐ Seu Plano</button>
-            <button class="profile-popup-item admin-item" data-action="openAdminPanel" data-stop-propagation="1">🛡 Administração</button>
-            <button class="profile-popup-item admin-item" data-action="showRapidQuizMinigame" data-stop-propagation="1">⚡ Julgamento Rápido</button>
-            <button class="profile-popup-item admin-item" data-action="adminJumpToBoss" data-stop-propagation="1">⚔ Fase Final</button>
-            <button class="profile-popup-item admin-item" data-action="openAnalyticsPanel" data-stop-propagation="1">📊 Analytics</button>
-            <hr class="profile-popup-divider">
-            <button class="profile-popup-item" data-action="toggleStudyReminders" data-stop-propagation="1">🔔 Lembretes</button>
-            <button class="profile-popup-logout" data-action="authLogout" data-stop-propagation="1">Sair</button>
+
           </div>
         </div>
       </div>
@@ -398,15 +374,15 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         <div class="boss-party-banner">⚔ Batalhão da Resistência ⚔</div>
         <div class="boss-party-heroes">
           <div class="boss-party-hero">
-            <img id="partyHero1Img" src="assets/classes/clerigo_renal/nivel_01.jpg" alt="Dr. Nephros" loading="lazy">
+            <img id="partyHero1Img" src="assets/classes/clerigo_renal/nivel_01.jpg" width="48" height="50" alt="Dr. Nephros" loading="lazy">
             <span class="boss-party-hero-name">Dr. Nephros</span>
           </div>
           <div class="boss-party-hero">
-            <img id="partyHero2Img" src="assets/classes/maga_metabolica/nivel_01.jpg" alt="Dra. Aquaria" loading="lazy">
+            <img id="partyHero2Img" src="assets/classes/maga_metabolica/nivel_01.jpg" width="48" height="50" alt="Dra. Aquaria" loading="lazy">
             <span class="boss-party-hero-name">Dra. Aquaria</span>
           </div>
           <div class="boss-party-hero">
-            <img id="partyHero3Img" src="assets/classes/guerreiro_glomerular/nivel_01.png" alt="Dr. Glomerulus" loading="lazy">
+            <img id="partyHero3Img" src="assets/classes/guerreiro_glomerular/nivel_01.png" width="48" height="45" alt="Dr. Glomerulus" loading="lazy">
             <span class="boss-party-hero-name">Dr. Glomerulus</span>
           </div>
         </div>
@@ -416,7 +392,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       <div class="hero">
         <div class="hero-wrap">
           <div class="portrait-frame" data-action="showHeroLore" style="cursor:pointer;" title="Ver história do personagem">
-            <img id="heroImg" class="portrait" src="assets/classes/clerigo_renal/nivel_01.jpg" alt="Herói" loading="lazy" />
+            <img id="heroImg" class="portrait" src="assets/classes/clerigo_renal/nivel_01.jpg" width="233" height="243" alt="Herói" loading="lazy" />
           </div>
           <div class="hero-info">
             <div id="heroClass" class="class">Noviço da Filtração</div>
@@ -436,23 +412,23 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       <div class="badges-container" style="margin-top:8px;padding:6px 10px;background:rgba(0,0,0,0.3);border-radius:8px;border:1px solid #1a3a5a;">
         <div class="badges-row" style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px;">
           <div class="badge-slot" data-badge="1" title="Vórtice do Néfron (20 acertos)">
-            <img src="assets/badges/badge1.png" alt="Vórtice do Néfron" loading="lazy">
+            <img src="assets/badges/badge1.png" alt="Vórtice do Néfron" width="60" height="60" loading="lazy">
             <div class="badge-lock">🔒</div>
           </div>
           <div class="badge-slot" data-badge="2" title="Sábio do Microscópio (40 acertos)">
-            <img src="assets/badges/badge2.png" alt="Sábio do Microscópio" loading="lazy">
+            <img src="assets/badges/badge2.png" alt="Sábio do Microscópio" width="60" height="60" loading="lazy">
             <div class="badge-lock">🔒</div>
           </div>
           <div class="badge-slot" data-badge="3" title="Guardião das Águas (60 acertos)">
-            <img src="assets/badges/badge3.png" alt="Guardião das Águas" loading="lazy">
+            <img src="assets/badges/badge3.png" alt="Guardião das Águas" width="60" height="60" loading="lazy">
             <div class="badge-lock">🔒</div>
           </div>
           <div class="badge-slot" data-badge="4" title="Árbitro dos Rins (80 acertos)">
-            <img src="assets/badges/badge4.png" alt="Árbitro dos Rins" loading="lazy">
+            <img src="assets/badges/badge4.png" alt="Árbitro dos Rins" width="60" height="60" loading="lazy">
             <div class="badge-lock">🔒</div>
           </div>
           <div class="badge-slot" data-badge="5" title="Ascendido do NefroQuest (100 acertos)">
-            <img src="assets/badges/badge5.png" alt="Ascendido do NefroQuest" loading="lazy">
+            <img src="assets/badges/badge5.png" alt="Ascendido do NefroQuest" width="60" height="60" loading="lazy">
             <div class="badge-lock">🔒</div>
           </div>
         </div>
@@ -550,7 +526,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         <div class="arqui-strip-vs">VS</div>
         <div class="arqui-strip-boss">
           <div class="arqui-strip-boss-thumb">
-            <img src="assets/nefromancer_mobile.png" alt="Arqui-Nefromante" loading="lazy">
+            <img src="assets/nefromancer_mobile.png" alt="Arqui-Nefromante" width="246" height="248" loading="lazy">
           </div>
           <!-- nome removido: já aparece no título acima da HP bar -->
         </div>
@@ -617,7 +593,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
 <div id="arquiQ9PopupInner" style="max-width:520px;width:100%;text-align:center;">
           <p id="arquiQ9PopupTitle" style="font-family:'Cinzel',serif;color:#e9d5ff;font-size:1.3rem;font-weight:900;letter-spacing:4px;text-transform:uppercase;margin-bottom:16px;">⚔ Golpe Final<br><span style="font-size:.85em;letter-spacing:3px;color:var(--purple);">Última Pergunta</span></p>
           <img id="arquiQ9PopupImg" src="assets/battle_final.png" alt="Golpe Final" loading="lazy" style="width:100%;border-radius:12px;border:2px solid rgba(168,85,247,0.7);box-shadow:0 0 40px rgba(124,58,237,0.7);margin-bottom:20px;clip-path:inset(0 0 9% 0 round 12px);">
-          <button id="arquiQ9CloseBtn" style="font-family:'Cinzel',serif;background:linear-gradient(180deg,#7c3aed,#4c1d95);border:2px solid #a855f7;color:#f3e8ff;padding:14px 40px;border-radius:10px;font-size:1rem;font-weight:900;letter-spacing:3px;cursor:pointer;text-transform:uppercase;box-shadow:0 0 25px rgba(168,85,247,0.6);">⚔ Partir para o Ataque!</button>
+          <button type="button" id="arquiQ9CloseBtn" style="font-family:'Cinzel',serif;background:linear-gradient(180deg,#7c3aed,#4c1d95);border:2px solid #a855f7;color:#f3e8ff;padding:14px 40px;border-radius:10px;font-size:1rem;font-weight:900;letter-spacing:3px;cursor:pointer;text-transform:uppercase;box-shadow:0 0 25px rgba(168,85,247,0.6);">⚔ Partir para o Ataque!</button>
         </div>
       </div>
 
@@ -638,14 +614,14 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         </div>
         <!-- Boss (direita) -->
         <div class="battle-boss-side">
-          <img src="assets/nefromancer.png" alt="Arqui-Nefromante — O confronto final" loading="lazy">
+          <img src="assets/nefromancer.png" alt="Arqui-Nefromante — O confronto final" width="800" height="545" loading="lazy">
         </div>
       </div>
 
       <div class="qbox">
         <!-- CRONÔMETRO -->
         <div id="timerWidget">
-          <button id="timerPlayPause" title="Play/Pause cronômetro" data-action="timerToggle">
+          <button type="button" id="timerPlayPause" title="Play/Pause cronômetro" data-action="timerToggle">
             <svg id="timerIcon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <!-- ícone play -->
               <polygon points="5,3 19,12 5,21" />
@@ -653,7 +629,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
           </button>
           <span id="timerDisplay">00:00</span>
         </div>
-        <button class="flag-btn" id="flagBtn" title="Sinalizar pergunta" data-action="flagQuestion">🚩</button>
+        <button type="button" class="flag-btn" id="flagBtn" title="Sinalizar pergunta" data-action="flagQuestion">🚩</button>
         <p id="question"></p>
         <div id="cycleProgressBar" style="margin-top:6px;height:3px;background:transparent;border-radius:2px;overflow:hidden;">
           <div id="cycleProgressFill" style="height:100%;background:linear-gradient(90deg,#6366f1,#8b5cf6);width:0%;transition:width 0.4s;"></div>
@@ -663,12 +639,12 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       <div id="feedback" class="feedback" aria-live="polite" aria-atomic="true">Escolha a melhor resposta.</div>
       <div id="refs" class="refs"></div>
       <div class="ctrl">
-        <button id="oraculoBtn" class="btn hidden" style="background:rgba(168,85,247,0.12);border-color:rgba(168,85,247,0.5);color:#c4b5fd;" data-action="openOraculoFromJourney">🔮 Oráculo</button>
-        <button id="nextBtn" class="btn hidden">Próxima Carta</button>
+        <button type="button" id="oraculoBtn" class="btn hidden" style="background:rgba(168,85,247,0.12);border-color:rgba(168,85,247,0.5);color:#c4b5fd;" data-action="openOraculoFromJourney">🔮 Oráculo</button>
+        <button type="button" id="nextBtn" class="btn hidden">Próxima Carta</button>
         <div id="golpeFinalHint" style="display:none;">Ativado após selecionar a resposta correta</div>
-        <button id="newBtn" class="btn sec">Novo Jogo</button>
-        <button class="btn sec" data-action="goToWelcomeFromGame" style="background:rgba(96,165,250,0.08);border-color:rgba(96,165,250,0.3);color:var(--blue);">🏠 Início</button>
-        <button id="bonusBtn" class="btn gold hidden">Pergunta Bônus</button>
+        <button type="button" id="newBtn" class="btn sec">Novo Jogo</button>
+        <button type="button" class="btn sec" data-action="goToWelcomeFromGame" style="background:rgba(96,165,250,0.08);border-color:rgba(96,165,250,0.3);color:var(--blue);">🏠 Início</button>
+        <button type="button" id="bonusBtn" class="btn gold hidden">Pergunta Bônus</button>
       </div>
 
       <!-- MEDIDOR DE FINALIZAÇÃO — boss mode (fundo do painel) -->
@@ -686,8 +662,21 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     <!-- ACTION DOCK — Coluna fixa no grid -->
     <div id="actionDock" class="action-dock hidden">
 
+    <!-- Próxima Pergunta — aparece após responder, some ao avançar -->
+    <button type="button" id="dockNextBtn"
+      class="dock-btn next-question-dock hidden"
+      data-action="renderQuestion"
+      data-tip="Próxima Pergunta">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <polyline points="12 8 16 12 12 16"/>
+        <line x1="8" y1="12" x2="16" y2="12"/>
+      </svg>
+      <span class="dock-label">Próxima</span>
+    </button>
+
     <!-- Forja (item comum + lendário em popup) -->
-    <button id="forgeBtn"
+    <button type="button" id="forgeBtn"
       class="dock-btn forge-btn"
       data-action="showForjaModal"
       data-tip="Forja">
@@ -706,7 +695,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     <div class="dock-divider"></div>
 
     <!-- Abrir Baú -->
-    <button id="chestBtn"
+    <button type="button" id="chestBtn"
       class="dock-btn open-chest"
       data-action="showMobileActionConfirm" data-arg="chest"
       data-tip="Abrir Baú">
@@ -723,7 +712,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     <div class="dock-divider"></div>
 
     <!-- Leaderboard -->
-    <button id="boardBtn"
+    <button type="button" id="boardBtn"
       class="dock-btn leaderboard"
       data-tip="Leaderboard">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -736,7 +725,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     </button>
 
     <!-- Stats -->
-    <button
+    <button type="button"
       class="dock-btn stats-btn"
       data-action="showStatsModal"
       data-tip="Estatísticas">
@@ -750,7 +739,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     </button>
 
     <!-- Conquistas -->
-    <button
+    <button type="button"
       class="dock-btn achievements-btn"
       data-action="showAchievementsModal"
       data-tip="Conquistas">
@@ -797,7 +786,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
   <div class="mobile-bottom-dock" id="mobileBottomDock" style="display:none;">
 
     <!-- Forja (item comum + lendário via modal igual web) -->
-    <button class="mdock-btn forge-item" data-action="showForjaModal" title="Forja">
+    <button type="button" class="mdock-btn forge-item" data-action="showForjaModal" title="Forja">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
         <path d="M14.5 2.5c0 1.5-1.5 3-1.5 3s-1.5-1.5-1.5-3a1.5 1.5 0 0 1 3 0z"/>
         <path d="M12 5.5V9"/>
@@ -808,7 +797,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     </button>
 
     <!-- Baú -->
-    <button class="mdock-btn open-chest" data-action="showMobileActionConfirm" data-arg="chest" title="Abrir Baú">
+    <button type="button" class="mdock-btn open-chest" data-action="showMobileActionConfirm" data-arg="chest" title="Abrir Baú">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
         <path d="M5 8h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2z"/>
         <path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2"/>
@@ -818,7 +807,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     </button>
 
     <!-- Ranking -->
-    <button class="mdock-btn ranking" data-action="showLeaderboardFromWelcome" title="Ranking">
+    <button type="button" class="mdock-btn ranking" data-action="showLeaderboardFromWelcome" title="Ranking">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
         <rect x="2" y="14" width="5" height="8" rx="1"/>
         <rect x="9.5" y="9" width="5" height="13" rx="1"/>
@@ -828,7 +817,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     </button>
 
     <!-- Stats -->
-    <button class="mdock-btn stats" data-action="showStatsModal" title="Estatísticas">
+    <button type="button" class="mdock-btn stats" data-action="showStatsModal" title="Estatísticas">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
         <line x1="18" y1="20" x2="18" y2="10"/>
         <line x1="12" y1="20" x2="12" y2="4"/>
@@ -839,7 +828,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     </button>
 
     <!-- Conquistas -->
-    <button class="mdock-btn conquistas" data-action="showAchievementsModal" title="Conquistas">
+    <button type="button" class="mdock-btn conquistas" data-action="showAchievementsModal" title="Conquistas">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
         <path d="M6 9H3.5a2.5 2.5 0 0 0 0 5H6"/>
         <path d="M18 9h2.5a2.5 2.5 0 0 1 0 5H18"/>
@@ -851,13 +840,13 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     </button>
 
     <!-- Música (mobile) -->
-    <button class="mdock-btn musica" id="mobileMusToggle" data-action="toggleMusic" title="Música">
+    <button type="button" class="mdock-btn musica" id="mobileMusToggle" data-action="toggleMusic" title="Música">
       <span id="mobileMusIcon" style="font-size:1.2rem;line-height:1;">&#127925;</span>
       <span class="mdock-label">Música</span>
     </button>
 
     <!-- Menu (conta / configurações) -->
-    <button class="mdock-btn menu" id="mobileMenuBtn" data-action="toggleProfilePopup" data-arg="mobile" title="Menu">
+    <button type="button" class="mdock-btn menu" id="mobileMenuBtn" data-action="toggleProfilePopup" data-arg="mobile" title="Menu">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
         <line x1="3" y1="6" x2="21" y2="6"/>
         <line x1="3" y1="12" x2="21" y2="12"/>
@@ -871,15 +860,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
   <!-- Popup do menu mobile — fora do dock para evitar overflow:hidden e garantir cliques -->
   <div class="profile-popup mobile-dock-popup" id="mobileProfilePopup">
     <div class="profile-popup-email"><strong>Conta</strong><span id="mobileProfileEmail"></span></div>
-    <button class="profile-popup-item" data-action="openAccountModal">👤 Minha Conta</button>
-    <button class="profile-popup-item" data-action="openPlanModal">⭐ Seu Plano</button>
-    <button class="profile-popup-item admin-item" data-action="openAdminPanel">🛡 Administração</button>
-    <button class="profile-popup-item admin-item" data-action="showRapidQuizMinigame">⚡ Julgamento Rápido</button>
-    <button class="profile-popup-item admin-item" data-action="adminJumpToBoss">⚔ Fase Final</button>
-    <button class="profile-popup-item admin-item" data-action="openAnalyticsPanel">📊 Analytics</button>
-    <hr class="profile-popup-divider">
-    <button class="profile-popup-item" data-action="toggleStudyReminders">🔔 Lembretes</button>
-    <button class="profile-popup-logout" data-action="authLogout">Sair</button>
+
   </div>
 
   <!-- LEADERBOARD MODAL -->
@@ -899,7 +880,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       </div>
       <div class="board-filters">
         <input id="boardSearch" type="text" placeholder="Buscar jogador ou personagem..." class="board-search-input" autocomplete="off">
-        <button id="boardMyPos" class="btn ghost" title="Ir para minha posição">Minha posição</button>
+        <button type="button" id="boardMyPos" class="btn ghost" title="Ir para minha posição">Minha posição</button>
       </div>
       <div class="board-table-wrap">
         <table class="board-table">
@@ -919,11 +900,11 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       </div>
       <div class="board-footer">
         <span id="boardLastUpdate" class="board-update-time"></span>
-        <button id="boardRefresh" class="btn-board-refresh" title="Atualizar ranking">
+        <button type="button" id="boardRefresh" class="btn-board-refresh" title="Atualizar ranking">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
           Atualizar
         </button>
-        <button id="closeBoard" class="btn">Fechar</button>
+        <button type="button" id="closeBoard" class="btn">Fechar</button>
       </div>
     </div>
   </div>
@@ -965,8 +946,8 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         <input type="text" id="playerName" maxlength="20" placeholder="Ex: Dr. Silva" />
       </div>
       <div class="btn-group">
-        <button class="close-chest" data-action="saveScore">Salvar</button>
-        <button class="close-chest" style="background:linear-gradient(180deg,#374151,#1f2937);color:#9ca3af;border-color:#4b5563;" data-action="skipSaveScore">Pular</button>
+        <button type="button" class="close-chest" data-action="saveScore">Salvar</button>
+        <button type="button" class="close-chest" style="background:linear-gradient(180deg,#374151,#1f2937);color:#9ca3af;border-color:#4b5563;" data-action="skipSaveScore">Pular</button>
       </div>
     </div>
   </div>
@@ -974,15 +955,15 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
   <!-- AUTH MODAL -->
   <div id="authModal" class="auth-modal-overlay" data-action="closeAuthOutside" data-pass-event="1">
     <div class="auth-box" id="authBox">
-      <button class="auth-close-btn" data-action="closeAuthModal">✕</button>
+      <button type="button" class="auth-close-btn" data-action="closeAuthModal">✕</button>
       <div class="auth-title">⚔ NefroQuest</div>
       <div class="auth-subtitle">Salve seu progresso e apareça no leaderboard</div>
       <div class="auth-tabs">
-        <button class="auth-tab active" id="tabEntrar" data-action="switchAuthTab" data-arg="entrar">Entrar</button>
-        <button class="auth-tab" id="tabCadastrar" data-action="switchAuthTab" data-arg="cadastrar">Criar conta</button>
+        <button type="button" class="auth-tab active" id="tabEntrar" data-action="switchAuthTab" data-arg="entrar">Entrar</button>
+        <button type="button" class="auth-tab" id="tabCadastrar" data-action="switchAuthTab" data-arg="cadastrar">Criar conta</button>
       </div>
-      <div id="authMsg" class="auth-msg"></div>
-      <button class="auth-google-btn" data-action="loginWithGoogle">
+      <div id="authMsg" class="auth-msg" aria-live="polite" aria-atomic="true"></div>
+      <button type="button" class="auth-google-btn" data-action="loginWithGoogle">
         <svg width="20" height="20" viewBox="0 0 48 48">
           <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
           <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
@@ -1002,9 +983,9 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
           <input type="password" id="authPassword" placeholder="••••••••" onkeypress="authKeyPress(event)" />
         </div>
         <div style="text-align:right;margin:-4px 0 10px;">
-          <button data-action="showForgotPassword" style="background:none;border:none;color:#708090;font-size:0.78rem;cursor:pointer;text-decoration:underline;padding:0;">Esqueci minha senha</button>
+          <button type="button" data-action="showForgotPassword" style="background:none;border:none;color:#708090;font-size:0.78rem;cursor:pointer;text-decoration:underline;padding:0;">Esqueci minha senha</button>
         </div>
-        <button class="auth-submit-btn" id="authLoginBtn" data-action="authEmailLogin">Entrar na Jornada</button>
+        <button type="button" class="auth-submit-btn" id="authLoginBtn" data-action="authEmailLogin">Entrar na Jornada</button>
       </div>
       <div id="authFormForgot" style="display:none;">
         <p style="color:#a0b8d0;font-size:0.85rem;margin-bottom:14px;line-height:1.6;">Digite seu email e enviaremos um link para redefinir sua senha.</p>
@@ -1012,9 +993,9 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
           <label>Email</label>
           <input type="email" id="authForgotEmail" placeholder="seu@email.com" />
         </div>
-        <button class="auth-submit-btn" id="authForgotBtn" data-action="authForgotPassword">Enviar Link de Redefinição</button>
+        <button type="button" class="auth-submit-btn" id="authForgotBtn" data-action="authForgotPassword">Enviar Link de Redefinição</button>
         <div style="text-align:center;margin-top:10px;">
-          <button data-action="switchAuthTab" data-arg="entrar" style="background:none;border:none;color:#708090;font-size:0.8rem;cursor:pointer;">← Voltar ao login</button>
+          <button type="button" data-action="switchAuthTab" data-arg="entrar" style="background:none;border:none;color:#708090;font-size:0.8rem;cursor:pointer;">← Voltar ao login</button>
         </div>
       </div>
       <div id="authFormCadastrar" style="display:none;">
@@ -1045,10 +1026,10 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
           <label>Confirmar Senha</label>
           <input type="password" id="authPasswordConfirm" placeholder="repita a senha" onkeypress="authKeyPress(event)" />
         </div>
-        <button class="auth-submit-btn" id="authRegBtn" data-action="authEmailRegister">Criar Conta</button>
+        <button type="button" class="auth-submit-btn" id="authRegBtn" data-action="authEmailRegister">Criar Conta</button>
         <div id="authResendWrap" style="display:none;text-align:center;margin-top:10px;" data-email="">
           <span style="color:var(--txt-dim);font-size:0.8rem;">Não recebeu? Verifique o spam ou </span>
-          <button id="authResendBtn" class="auth-guest-link" style="background:none;border:none;padding:0;cursor:pointer;" data-action="authResendConfirmation">reenviar email</button>
+          <button type="button" id="authResendBtn" class="auth-guest-link" style="background:none;border:none;padding:0;cursor:pointer;" data-action="authResendConfirmation">reenviar email</button>
         </div>
       </div>
     </div>
@@ -1058,30 +1039,30 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
   <!-- Popup MODOS DE JOGO (mobile only) -->
   <div id="gameModesOverlay" class="game-modes-overlay" data-action="closeGameModesPopupOutside" data-pass-event="1">
     <div class="game-modes-box">
-      <button class="game-modes-close" data-action="closeGameModesPopup" aria-label="Fechar">✕</button>
+      <button type="button" class="game-modes-close" data-action="closeGameModesPopup" aria-label="Fechar">✕</button>
       <h3>⚔️ Modos de Jogo</h3>
-      <button class="gm-btn" data-action-seq="closeGameModesPopup,showTopicSelector">
+      <button type="button" class="gm-btn" data-action-seq="closeGameModesPopup,showTopicSelector">
         <span class="gm-icon">📖</span>
         <span class="gm-label">
           <span class="gm-title">Modo de Estudo</span>
           <span class="gm-desc">Escolha um tema e estude no seu ritmo</span>
         </span>
       </button>
-      <button class="gm-btn weak-btn" data-action-seq="closeGameModesPopup,startWeakPointStudy">
+      <button type="button" class="gm-btn weak-btn" data-action-seq="closeGameModesPopup,startWeakPointStudy">
         <span class="gm-icon">📍</span>
         <span class="gm-label">
           <span class="gm-title">Ponto Fraco</span>
           <span class="gm-desc">Foque nos temas com menor acerto</span>
         </span>
       </button>
-      <button class="gm-btn" data-action-seq="closeGameModesPopup,startExamMode">
+      <button type="button" class="gm-btn" data-action-seq="closeGameModesPopup,startExamMode">
         <span class="gm-icon">📝</span>
         <span class="gm-label">
           <span class="gm-title">Prova Simulada</span>
           <span class="gm-desc">60 questões em 90 minutos</span>
         </span>
       </button>
-      <button class="gm-btn" data-action-seq="closeGameModesPopup,showStandaloneMinigame">
+      <button type="button" class="gm-btn" data-action-seq="closeGameModesPopup,showStandaloneMinigame">
         <span class="gm-icon">⚡</span>
         <span class="gm-label">
           <span class="gm-title">Julgamento Rápido</span>
@@ -1095,7 +1076,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
     <div class="chest-content">
       <h2 id="chestTitle">Baú Desbloqueado!</h2>
       <div id="chestArticle"></div>
-      <button class="close-chest" data-action="closeChestModal">Fechar</button>
+      <button type="button" class="close-chest" data-action="closeChestModal">Fechar</button>
     </div>
   </div>
 
@@ -1120,5 +1101,32 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
   <script src="js/minigame.js"></script>
   <script src="js/achievements.js"></script>
   <script src="js/changelog.js"></script>
+
+  <!-- Single source of truth for profile popup menu items -->
+  <template id="profilePopupItems">
+    <button type="button" class="profile-popup-item" data-action="openAccountModal" data-stop-propagation="1">👤 Minha Conta</button>
+    <button type="button" class="profile-popup-item" data-action="openPlanModal" data-stop-propagation="1">⭐ Seu Plano</button>
+    <button type="button" class="profile-popup-item admin-item" data-action="openAdminPanel" data-stop-propagation="1">🛡 Administração</button>
+    <button type="button" class="profile-popup-item admin-item" data-action="showRapidQuizMinigame" data-stop-propagation="1">⚡ Julgamento Rápido</button>
+    <button type="button" class="profile-popup-item admin-item" data-action="adminJumpToBoss" data-stop-propagation="1">⚔ Fase Final</button>
+    <button type="button" class="profile-popup-item admin-item" data-action="openAnalyticsPanel" data-stop-propagation="1">📊 Analytics</button>
+    <hr class="profile-popup-divider">
+    <button type="button" class="profile-popup-item" data-action="toggleStudyReminders" data-stop-propagation="1">🔔 Lembretes</button>
+    <button type="button" class="profile-popup-logout" data-action="authLogout" data-stop-propagation="1">Sair</button>
+  </template>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var tpl = document.getElementById('profilePopupItems');
+      if (!tpl) return;
+      ['landingProfilePopup','welcomeProfilePopup','gameProfilePopup','mobileProfilePopup'].forEach(function(id) {
+        var popup = document.getElementById(id);
+        if (!popup) return;
+        var emailDiv = popup.querySelector('.profile-popup-email');
+        // Remove all children after the email div
+        while (popup.lastChild !== emailDiv) popup.removeChild(popup.lastChild);
+        popup.appendChild(tpl.content.cloneNode(true));
+      });
+    });
+  </script>
 </body>
 </html>
