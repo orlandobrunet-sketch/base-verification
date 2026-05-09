@@ -1113,9 +1113,9 @@
       // Atualizar dock de ações (usando elementos cacheados no objeto ui)
       const {dockForgeBtn:forgeBtn, dockChestBtn:chestBtn, dockLegBtn:legBtn, dockChestCost:chestCostBadge} = ui;
       // Botões sempre ativos — popup de confirmação informa custo e disponibilidade
-      if(forgeBtn){ forgeBtn.classList.remove('disabled'); forgeBtn.style.pointerEvents='auto'; forgeBtn.style.opacity='1'; }
-      if(legBtn){ legBtn.classList.remove('disabled'); legBtn.style.pointerEvents='auto'; legBtn.style.opacity='1'; }
-      if(chestBtn){ chestBtn.classList.remove('disabled'); chestBtn.style.pointerEvents='auto'; chestBtn.style.opacity='1'; }
+      if(forgeBtn){ forgeBtn.classList.remove('disabled'); }
+      if(legBtn){ legBtn.classList.remove('disabled'); }
+      if(chestBtn){ chestBtn.classList.remove('disabled'); }
 
       // Badges ! removidos — popup de confirmação já informa custo e disponibilidade
 
@@ -1253,12 +1253,10 @@
     function _copyRef(btn, text) {
       navigator.clipboard.writeText(text).then(() => {
         btn.innerHTML = '✓ copiado';
-        btn.style.color = '#6ee7b7';
-        btn.style.borderColor = 'rgba(110,231,183,0.4)';
+        btn.classList.add('ref-copy-btn--copied');
         setTimeout(() => {
           btn.innerHTML = '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> copiar referência';
-          btn.style.color = '';
-          btn.style.borderColor = '';
+          btn.classList.remove('ref-copy-btn--copied');
         }, 2000);
       }).catch(() => {});
     }
@@ -1343,16 +1341,16 @@
           <div style="margin-bottom:10px;">
   <div style="color:var(--txt-dim);font-size:0.75rem;margin-bottom:6px;">Tipo de problema:</div>
   <div style="display:flex;flex-wrap:wrap;gap:6px;" id="flagCategoryChips">
-    <button type="button" class="flag-chip selected" data-cat="resposta_incorreta" style="padding:4px 10px;border-radius:20px;border:1px solid rgba(251,113,133,0.6);background:rgba(251,113,133,0.15);color:#fca5a5;font-size:0.75rem;cursor:pointer;">❌ Resposta incorreta</button>
-    <button type="button" class="flag-chip" data-cat="desatualizada" style="padding:4px 10px;border-radius:20px;border:1px solid rgba(255,255,255,0.15);background:transparent;color:var(--txt-dim);font-size:0.75rem;cursor:pointer;">📅 Desatualizada</button>
-    <button type="button" class="flag-chip" data-cat="ambigua" style="padding:4px 10px;border-radius:20px;border:1px solid rgba(255,255,255,0.15);background:transparent;color:var(--txt-dim);font-size:0.75rem;cursor:pointer;">🤔 Ambígua</button>
-    <button type="button" class="flag-chip" data-cat="erro_texto" style="padding:4px 10px;border-radius:20px;border:1px solid rgba(255,255,255,0.15);background:transparent;color:var(--txt-dim);font-size:0.75rem;cursor:pointer;">✏️ Erro de texto</button>
-    <button type="button" class="flag-chip" data-cat="outra" style="padding:4px 10px;border-radius:20px;border:1px solid rgba(255,255,255,0.15);background:transparent;color:var(--txt-dim);font-size:0.75rem;cursor:pointer;">💬 Outra</button>
+    <button type="button" class="flag-chip selected" data-cat="resposta_incorreta">❌ Resposta incorreta</button>
+    <button type="button" class="flag-chip" data-cat="desatualizada">📅 Desatualizada</button>
+    <button type="button" class="flag-chip" data-cat="ambigua">🤔 Ambígua</button>
+    <button type="button" class="flag-chip" data-cat="erro_texto">✏️ Erro de texto</button>
+    <button type="button" class="flag-chip" data-cat="outra">💬 Outra</button>
   </div>
 </div>
           <textarea id="flagComment" rows="3" placeholder="Ex: A alternativa B está incorreta pois... / O gabarito deveria ser..."
             style="width:100%;background:rgba(10,20,40,0.8);border:1px solid var(--blue-dark);border-radius:8px;color:#d5e2ff;font-size:0.85rem;padding:10px;resize:vertical;font-family:'Philosopher',serif;outline:none;box-sizing:border-box;"></textarea>
-          <div id="flagStatus" style="min-height:20px;margin-top:8px;font-size:0.78rem;text-align:center;"></div>
+          <div id="flagStatus" class="flag-status"></div>
           <button data-action="submitFlag" data-arg="${qNum}" data-arg-type="number" id="flagSendBtn"
             style="width:100%;margin-top:10px;background:linear-gradient(180deg,#4f46e5,#3730a3);border:2px solid #6366f1;color:#fff;border-radius:8px;padding:12px;font-family:'Cinzel',serif;font-size:0.82rem;font-weight:700;letter-spacing:1px;cursor:pointer;text-transform:uppercase;">
             📧 Enviar
@@ -1363,15 +1361,9 @@
         const chip = e.target.closest('.flag-chip');
         if (!chip) return;
         document.querySelectorAll('.flag-chip').forEach(c => {
-          c.style.background = 'transparent';
-          c.style.borderColor = 'rgba(255,255,255,0.15)';
-          c.style.color = 'var(--txt-dim)';
           c.classList.remove('selected');
         });
         chip.classList.add('selected');
-        chip.style.background = 'rgba(251,113,133,0.15)';
-        chip.style.borderColor = 'rgba(251,113,133,0.6)';
-        chip.style.color = '#fca5a5';
       });
       popup.addEventListener('click', e => { if(e.target===popup) popup.remove(); });
       setTimeout(() => document.getElementById('flagComment')?.focus(), 100);
@@ -1389,7 +1381,7 @@
 
       btn.disabled = true;
       btn.textContent = 'Enviando...';
-      status.style.color = '#93b4e8';
+      status.className = 'flag-status flag-status--pending';
       status.textContent = '';
 
       const body = {
@@ -1409,7 +1401,7 @@
         });
         const data = await res.json();
         if (data.success) {
-          status.style.color = '#4ade80';
+          status.className = 'flag-status flag-status--success';
           status.textContent = '✅ Erro enviado! Obrigado pelo feedback.';
           setTimeout(() => document.getElementById('flagPopup')?.remove(), 2000);
           log('🚩 Erro na questão #' + qNum + ' sinalizado com sucesso!');
@@ -1417,7 +1409,7 @@
           throw new Error(data.message || 'Falha no envio');
         }
       } catch (err) {
-        status.style.color = '#f87171';
+        status.className = 'flag-status flag-status--error';
         status.textContent = '❌ Falha ao enviar. Verifique a chave da API.';
         btn.disabled = false;
         btn.textContent = '📧 Enviar';

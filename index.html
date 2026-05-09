@@ -62,17 +62,19 @@
     crossorigin="anonymous"
   ></script>
   <script>
-    Sentry.onLoad(function() {
-      Sentry.init({
-        release: 'nefroquest@9.26',
-        environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
-        tracesSampleRate: 0.1,
-        beforeSend(event) {
-          if (event.user) delete event.user.ip_address;
-          return event;
-        }
+    if (typeof Sentry !== 'undefined') {
+      Sentry.onLoad(function() {
+        Sentry.init({
+          release: 'nefroquest@9.26',
+          environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
+          tracesSampleRate: 0.1,
+          beforeSend(event) {
+            if (event.user) delete event.user.ip_address;
+            return event;
+          }
+        });
       });
-    });
+    }
   </script>
 
   <link rel="stylesheet" href="style.css">

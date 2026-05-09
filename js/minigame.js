@@ -142,7 +142,8 @@
           if (!isCorrect && correctBtn) correctBtn.style.boxShadow = '0 0 14px rgba(74,222,128,0.85)';
         }
         if (fb) {
-          fb.style.color = isCorrect ? '#4ade80' : '#fb7185';
+          fb.classList.toggle('minigame-fb--correct', isCorrect);
+          fb.classList.toggle('minigame-fb--wrong', !isCorrect);
           fb.textContent = (userAns === null ? '⏱️ Tempo esgotado! ' : (isCorrect ? '✓ Correto! ' : '✗ Incorreto! ')) + q.exp;
         }
         currentIdx++;
