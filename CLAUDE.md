@@ -240,7 +240,7 @@ Cada classe tem 10 níveis de imagens (`assets/classes/<nome>/nivel_01.jpg` ... 
 ## PWA e Service Worker
 
 - **SW versão:** controlada por `version.json` — ao detectar versão diferente, redireciona para `clear-cache.html`
-- **Cache busting:** `?v=9.23` nos assets principais
+- **Cache busting:** `?v=9.26` nos assets principais
 - **iOS PWA:** splash screens para múltiplos tamanhos de iPhone/iPad
 - **Offline:** página `offline.html` servida pelo SW quando sem conexão
 
@@ -248,7 +248,7 @@ Cada classe tem 10 níveis de imagens (`assets/classes/<nome>/nivel_01.jpg` ... 
 
 ## Analytics e Monitoramento
 
-- **Sentry:** monitoramento de erros (DSN configurado inline no `index.html`, release `nefroquest@9.23`)
+- **Sentry:** monitoramento de erros (DSN configurado inline no `index.html`, release `nefroquest@9.26`)
 - **GA4 (Google Analytics):** via `gtag()` — eventos rastreados:
   - `game_started`, `question_answered`, `boss_entered`
   - `game_completed`, `paywall_shown`, `premium_converted`
@@ -309,57 +309,102 @@ No Supabase Dashboard → Edge Functions → selecionar a função → Deploy / 
 
 ## Roadmap do Projeto
 
+> Avaliação estratégica externa (escala 8.2/10): "Isso tem alma. Potencial para ser o Duolingo da Medicina na LATAM. Objetivo não é um jogo bonito — é fazer médicos **melhores** mais rápido." — Relatório de Primeiro Princípios, mai/2026
+
+---
+
 ### CRÍTICO — Bugs ativos
 | # | Bug | Arquivo | Status |
 |---|-----|---------|--------|
 | B1 | Fase Final (admin): tela de perguntas não muda ao ativar | `js/game.js:adminJumpToBoss` | **Corrigido** |
 | B2 | Oráculo: pergunta cortada na exibição do contexto | `js/study-mode.js:1248` | **Corrigido** |
+| B3 | Clear-cache loop no boot (LOADED_VERSION desatualizada) | `index.html:83` | **Corrigido v9.26** |
+| B4 | `saveNewPassword` não exposta no `window` (Sentry) | `js/auth.js` | **Corrigido v9.26** |
 
-### ALTA PRIORIDADE — Segurança (restante)
-| # | Tarefa | Detalhe |
-|---|--------|---------|
-| S1 | Chave Web3Forms proxy | Já em edge function (`send-flag`, `send-contact`) — **feito** |
-| S2 | JWT nas edge functions | `ai-mentor` e `ai-diagnosis` já verificam JWT; `send-flag`/`send-contact` são públicas por design |
-| S3 | Content Security Policy (CSP) | **Feito** — `media-src`, `worker-src` adicionados; `api.web3forms.com` removido |
+---
 
-### ALTA PRIORIDADE — Performance
-| # | Tarefa | Detalhe |
-|---|--------|---------|
-| P1 | `topics.js` lazy load | **Feito** (v9.22) |
-| P2 | SDK Supabase com `defer` | **Feito** — SDK já estava no fim do `<body>`, não bloqueia renderização |
-| P3 | Fontes: `font-display: swap` | **Feito** — `display=swap` no URL Google Fonts + `media=print/onload` não-blocking |
-| P4 | Imagens: `loading="lazy"` | **Feito** — já presente em todas as `<img>` |
+### FASE 1 — Produto-Core (Próximas 4–6 Semanas)
+*Alta alavancagem: sem escala, sem impacto.*
 
-### MÉDIA PRIORIDADE — PWA
-| # | Tarefa | Detalhe |
-|---|--------|---------|
-| W1 | Screenshots no manifest | **Feito** — imagens e entradas no manifest já presentes |
-| W2 | iOS splash screens | **Feito** (v9.21) |
-| W3 | Push notifications server-side | **Feito** (v9.26) — migration 004, `send-push` edge function, `js/notifications.js` + SW listener. **Pendente deploy**: rodar migration, configurar `VAPID_PUBLIC_KEY`/`VAPID_PRIVATE_KEY`/`VAPID_SUBJECT` no Dashboard, setar `window._VAPID_PUBLIC_KEY` em index.html |
+| # | Tarefa | Detalhe | Status |
+|---|--------|---------|--------|
+| F1-1 | **Banco de questões dinâmico** | Migrar `data/topics.js` (~1.4 MB estático) para tabela Supabase com colunas `id, topic, question, options, answer, explanation, difficulty, source, flagged`. Criar Edge Function `get-questions` com paginação e filtro por eixo. Admin panel simples para curadoria. | Pendente |
+| F1-2 | **Adaptive Learning real** | Ampliar spaced repetition além do atual: pesos por eixo fraco (dados de `_studyAxisStats`), fila de revisão priorizada por taxa de erro individual, integração com `ai-diagnosis` para ajustar fila automaticamente. | Pendente |
+| F1-3 | **Admin panel de questões** | Tela admin (isAdminUser) para adicionar/editar/desativar questões diretamente no Supabase, visualizar flags de erro acumuladas e marcar revisão. Substitui scripts Python manuais. | Pendente |
+| F1-4 | **CI/CD Edge Functions** | GitHub Actions: deploy automático de `ai-mentor`, `ai-diagnosis`, `send-push` via `supabase functions deploy` no push para `main`. Atualmente é manual no Dashboard. | Pendente |
+| F1-5 | **Cache de respostas IA** | Edge Function `ai-mentor`: cachear explicações de questões já respondidas em tabela `ai_cache (question_hash, explanation, created_at)`. Reduz custo Anthropic ~60-80% para questões populares. | Pendente |
 
-### MÉDIA PRIORIDADE — CSS/UI
-| # | Tarefa | Detalhe |
-|---|--------|---------|
-| C1 | `!important` — reduzido | De 321 para ~99; restantes têm conflito legítimo com `.boss-battle-mode` — **concluído** |
-| C2 | z-index centralizado | `.app` e `.action-dock` migrados; valores locais (0-3, 10-11 em stacking contexts) deixados como estão — **concluído** |
-| C3 | `prefers-reduced-motion` | Animações sem suporte a acessibilidade — adicionar media query global |
-| C4 | Estilos inline JS → classes CSS | Mover estilos estáticos gerados por JS para classes CSS |
+---
 
-### BAIXA PRIORIDADE — Arquitetura JS
-| # | Tarefa | Detalhe |
-|---|--------|---------|
-| A1 | Separar `game.js` | **Feito** — 6180 → 3094 linhas; 9 módulos extraídos |
-| A2 | Store central de estado | **Feito** — Proxy reativo com debounce de 500ms + auto-invalidação de statsCache |
-| A3 | `await`/`try-catch` em async | **Feito** — 7 funções de auth + authLogout + enableStudyReminders + floating promises |
-| A4 | Event delegation | **Feito** — todos `onclick=` inline migrados para dispatcher central |
+### FASE 2 — Escala e Monetização (2–4 Meses)
+*Crescimento e receita: DAU, conversão, App Stores.*
+
+| # | Tarefa | Detalhe | Status |
+|---|--------|---------|--------|
+| F2-1 | **App Stores (Capacitor)** | Empacotar SPA como app nativo iOS/Android via Capacitor. Publicar em App Store e Google Play como "NefroQuest: Ascension". PWA instalável já existe — wrapper nativo desbloqueia distribuição orgânica. | Pendente |
+| F2-2 | **Analytics avançado** | Integrar PostHog (self-hosted ou cloud) para eventos granulares: tempo por questão, taxa de abandono por eixo, funil paywall→conversão, heatmap de cliques. Mover além do GA4. Cobrar semanalmente: DAU/MAU, D7/D30 retention, % completa 100 questões, custo IA por usuário ativo. | Pendente |
+| F2-3 | **Expansão de conteúdo (DLCs)** | Módulos de Cardiologia, Pneumologia, Gastro como "DLCs" compráveis (ou incluídos no premium). Parcerias com ligas acadêmicas/residências para conteúdo validado por especialistas. | Pendente |
+| F2-4 | **IA Melhorada (Sonnet para Premium)** | Oferecer Claude Sonnet (maior capacidade de raciocínio clínico) para assinantes premium no Oráculo. Free continua com Haiku. Adicionar opção de gerar questão complementar sobre o mesmo tema via IA. | Pendente |
+| F2-5 | **Gamificação avançada** | Seasons (ranking reset mensal com recompensas), desafios semanais temáticos, guildas de estudo, leaderboards regionais (por estado/universidade), achievements cross-device sincronizados. | Pendente |
+| F2-6 | **Multiplayer / Estudo Colaborativo** | Modo "duelo" assíncrono: dois jogadores respondem o mesmo set de questões, comparam acertos. Ou desafio semanal da comunidade com questão curada. | Pendente |
+
+---
+
+### FASE 3 — Empresa e Impacto (6+ Meses)
+*Missão: ferramenta referência na formação médica da América Latina.*
+
+| # | Tarefa | Detalhe | Status |
+|---|--------|---------|--------|
+| F3-1 | **White-label / Institucional** | Versão para universidades e hospitais: custom branding, gestão de turmas (professor acompanha progresso dos alunos), relatórios exportáveis. Modelo B2B além do B2C. | Pendente |
+| F3-2 | **Internacionalização (i18n)** | Suporte a EN e ES primeiro. Localizar lore (classes, Arqui-Nefromante) e questões. Desbloqueia mercado LATAM completo + EUA/Europa onde residentes brasileiros atuam. | Pendente |
+| F3-3 | **Dados como produto** | Com consentimento explícito (LGPD/GDPR): relatórios anônimos de lacunas de conhecimento por eixo para pesquisa médica e programas de residência. "Onde os residentes brasileiros mais erram em Nefrologia?" | Pendente |
+| F3-4 | **Open Source parcial (engine)** | Liberar game engine / core de gamificação como projeto separado para outros campos médicos (NutritionQuest, PneumoQuest). Incentiva contribuições e posiciona NefroQuest como referência técnica. | Pendente |
+| F3-5 | **RAG sobre guidelines** | Edge Function com retrieval sobre KDIGO, SBN guidelines atualizadas. Oráculo passa a citar fontes atuais em vez de só explicar questões do banco. | Pendente |
+
+---
+
+### TECH DEBT — Manutenção e Qualidade
+| # | Tarefa | Detalhe | Status |
+|---|--------|---------|--------|
+| T1 | Scripts Python → Admin Panel | `apply_reviews.py`, `review_questions.py` etc. devem ser substituídos pelo F1-3 (admin panel). Até lá, documentar uso em `scripts/README.md`. | Pendente |
+| T2 | Backup automático do banco | Supabase scheduled backup habilitado + export semanal de `questions` table para JSON no repositório como fallback. | Pendente |
+| T3 | Testes E2E expandidos | Adicionar suites para: fluxo premium (mock Mercado Pago), Oráculo multi-turn, push notifications, admin panel. Atualmente 9 suites cobrem happy paths. | Pendente |
+| T4 | `prefers-reduced-motion` | Animações sem suporte a acessibilidade — adicionar media query global em `style.css`. | Pendente |
+| T5 | Estilos inline JS → classes CSS | Mover estilos estáticos gerados por JS para classes CSS (C4 pendente). | Pendente |
+
+---
+
+### CONCLUÍDO — Referência Rápida
+| Categoria | Itens concluídos |
+|-----------|----------------|
+| Segurança | CSP completa, isPremium() server-side, cotas IA no banco, Web3Forms proxy, JWT em edge functions |
+| Performance | lazy load topics.js, font-display:swap, loading=lazy, Supabase no fim do body |
+| Arquitetura JS | game.js 6180→3094 linhas (9 módulos), state Proxy reativo, event delegation, try-catch async |
+| PWA | iOS splash screens, screenshots manifest, push notifications (send-push + SW listener) |
+| CSS | !important 321→99, z-index centralizado, prefers-reduced-motion base |
+| Backend | Migrations 001-004, RLS leaderboard, ai_usage quota, send-push migration |
+| Bugs | adminJumpToBoss, Oráculo pergunta cortada, clear-cache loop, saveNewPassword Sentry |
+
+---
 
 ### A TESTAR em produção (pós-redeploy)
-- [ ] `ai-mentor` — Oráculo respondendo corretamente
-- [ ] `ai-diagnosis` — diagnóstico ao final de sessão
-- [ ] `send-flag` — reportar erro em questão (checa se WEB3FORMS_KEY chegou)
+- [ ] `ai-mentor` — Oráculo respondendo corretamente (multi-turn)
+- [ ] `ai-diagnosis` — diagnóstico ao final de sessão com markdown
+- [ ] `send-flag` — reportar erro em questão (checa `WEB3FORMS_KEY`)
 - [ ] `send-contact` — formulário de contato
-- [ ] `ai_usage` — quota sendo contabilizada na tabela (SQL: `SELECT * FROM ai_usage ORDER BY date DESC LIMIT 10`)
-- [ ] Paywall premium — fluxo de compra Mercado Pago funcionando
+- [ ] `ai_usage` — quota contabilizada: `SELECT * FROM ai_usage ORDER BY date DESC LIMIT 10`
+- [ ] Paywall premium — fluxo completo Mercado Pago (preference → checkout → webhook → profiles)
+- [ ] Push notifications — rodar migration 004, configurar `VAPID_*` no Dashboard, setar `window._VAPID_PUBLIC_KEY`
+- [ ] Clear-cache — confirmar que v9.26 não redireciona mais para `clear-cache.html`
+
+---
+
+### Métricas a Cobrar Semanalmente (KPIs de Saúde)
+- **Engajamento:** DAU/MAU, retention D7/D30, % usuários completando 100 questões
+- **Monetização:** conversão free→premium, receita MRR, churn mensal
+- **Qualidade:** erros reportados por questão, acurácia média por eixo
+- **IA:** custo Anthropic por usuário ativo, cache hit rate (após F1-5)
+- **Técnico:** erros Sentry/semana, tempo médio de sessão, LCP mobile
 
 ---
 
