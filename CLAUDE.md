@@ -166,6 +166,12 @@ Todas as funções rodam no Supabase Edge (Deno). CORS configurado para aceitar:
 ### `mp-webhook`
 - **Propósito:** Recebe notificação de pagamento aprovado do Mercado Pago e atualiza `profiles`
 
+### `send-push`
+- **Propósito:** Envia Web Push notifications para um usuário ou para todos os assinantes (admin only via service-role key)
+- **Auth:** Requer `Authorization: Bearer <SUPABASE_SERVICE_ROLE_KEY>` — não exposto ao cliente
+- **Env vars necessárias:** `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `VAPID_SUBJECT`, `SUPABASE_URL` (auto), `SUPABASE_SERVICE_ROLE_KEY` (auto)
+- **Endpoint:** POST com `{ userId?: string, title: string, body: string, url?: string, tag?: string }`
+
 ---
 
 ## Configuração de Variáveis de Ambiente nas Edge Functions
@@ -183,6 +189,9 @@ Todas as funções rodam no Supabase Edge (Deno). CORS configurado para aceitar:
 | create-mp-preference | `MP_ACCESS_TOKEN` | Mercado Pago |
 | create-mp-preference | `APP_URL` | `https://nefroquest.com` |
 | mp-webhook | `MP_ACCESS_TOKEN` | Mercado Pago |
+| send-push | `VAPID_PUBLIC_KEY` | `npx web-push generate-vapid-keys` |
+| send-push | `VAPID_PRIVATE_KEY` | `npx web-push generate-vapid-keys` |
+| send-push | `VAPID_SUBJECT` | `mailto:admin@nefroquest.com` |
 
 ---
 
@@ -287,6 +296,14 @@ No Supabase Dashboard → Edge Functions → selecionar a função → Deploy / 
 - [x] Performance: SDK Supabase já estava no fim do `<body>` — não bloqueia renderização (P2 era falso positivo)
 - [x] Performance: `loading="lazy"` — já presente em todas as imagens (P4 já estava feito)
 - [x] Performance: `font-display: swap` — já configurado via `display=swap` no URL do Google Fonts (P3 já estava feito)
+- [x] C1: `!important` — 321 ocorrências reduzidas para ~99 (removidos 222 do bloco `.arqui-nefromante-final`)
+- [x] C2: z-index centralizado — `.app` e `.action-dock` migrados para `var(--z-app)`
+- [x] A4: Event delegation — todos os `onclick=` inline migrados para dispatcher central (`data-action`, `data-close-closest`, etc.)
+- [x] A1: game.js modularizado — 6180 → 3094 linhas; 9 módulos extraídos: `admin.js`, `minigame.js`, `achievements.js`, `changelog.js`, `auth.js`, `paywall.js`, `account.js`, `boss.js`, `exam.js`
+- [x] A2: Store central de estado — `state` wrapped em Proxy que auto-invalida statsCache e debounce-salva a cada 500ms
+- [x] W1: Screenshots no manifest — `screenshot-mobile.png` e `screenshot-desktop.png` já presentes (verificado)
+- [x] W3: Push notifications server-side — migration 004, edge function `send-push`, `js/notifications.js`, listener `push` no SW
+- [x] Versão atual: **9.26**
 
 ---
 
@@ -316,25 +333,25 @@ No Supabase Dashboard → Edge Functions → selecionar a função → Deploy / 
 ### MÉDIA PRIORIDADE — PWA
 | # | Tarefa | Detalhe |
 |---|--------|---------|
-| W1 | Screenshots no manifest | Adicionar `screenshot-mobile.png` (390×844) e `screenshot-desktop.png` (1280×800) — destrava botão de instalação no Android |
+| W1 | Screenshots no manifest | **Feito** — imagens e entradas no manifest já presentes |
 | W2 | iOS splash screens | **Feito** (v9.21) |
-| W3 | Push notifications server-side | Projeto médio/longo, alto impacto em retenção — **backlog** |
+| W3 | Push notifications server-side | **Feito** (v9.26) — migration 004, `send-push` edge function, `js/notifications.js` + SW listener. **Pendente deploy**: rodar migration, configurar `VAPID_PUBLIC_KEY`/`VAPID_PRIVATE_KEY`/`VAPID_SUBJECT` no Dashboard, setar `window._VAPID_PUBLIC_KEY` em index.html |
 
 ### MÉDIA PRIORIDADE — CSS/UI
 | # | Tarefa | Detalhe |
 |---|--------|---------|
-| C1 | `!important` — 185 ocorrências | Substituir por especificidade; requer análise visual — **deferido** |
-| C2 | z-index centralizado | Sistema declarado no `:root`, mas há valores hardcoded — reduzir gradualmente |
+| C1 | `!important` — reduzido | De 321 para ~99; restantes têm conflito legítimo com `.boss-battle-mode` — **concluído** |
+| C2 | z-index centralizado | `.app` e `.action-dock` migrados; valores locais (0-3, 10-11 em stacking contexts) deixados como estão — **concluído** |
 | C3 | `prefers-reduced-motion` | Animações sem suporte a acessibilidade — adicionar media query global |
 | C4 | Estilos inline JS → classes CSS | Mover estilos estáticos gerados por JS para classes CSS |
 
 ### BAIXA PRIORIDADE — Arquitetura JS
 | # | Tarefa | Detalhe |
 |---|--------|---------|
-| A1 | Separar `game.js` (6.088 linhas) | Módulos sugeridos: `state.js`, `ui.js`, `combat.js`, `inventory.js`, `api.js` — projeto grande |
-| A2 | Store central de estado | Objeto reativo com Proxy para sincronizar as 4 fontes de verdade |
+| A1 | Separar `game.js` | **Feito** — 6180 → 3094 linhas; 9 módulos extraídos |
+| A2 | Store central de estado | **Feito** — Proxy reativo com debounce de 500ms + auto-invalidação de statsCache |
 | A3 | `await`/`try-catch` em async | **Feito** — 7 funções de auth + authLogout + enableStudyReminders + floating promises |
-| A4 | Event delegation | Migrar `onclick="funcao()"` no HTML para `data-action` centralizado |
+| A4 | Event delegation | **Feito** — todos `onclick=` inline migrados para dispatcher central |
 
 ### A TESTAR em produção (pós-redeploy)
 - [ ] `ai-mentor` — Oráculo respondendo corretamente
