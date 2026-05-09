@@ -354,3 +354,12 @@
       setTimeout(_doPremiumPoll, delay);
     }
 
+    window.showPaywallModal       = showPaywallModal;
+    window.paywallUpgrade         = paywallUpgrade;
+    window.paywallLogin           = paywallLogin;
+    window.paywallRegister        = paywallRegister;
+    window.showPricingModal       = showPricingModal;
+    window.closePricingModal      = closePricingModal;
+    window.pricingChoose          = pricingChoose;
+    window._pollPremiumActivation = _pollPremiumActivation;
+

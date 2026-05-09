@@ -2935,10 +2935,7 @@
     window._copyRefBtn = function(btn) {
       if (typeof _copyRef === 'function') _copyRef(btn, btn.dataset.copyText || '');
     };
-    // Dispatcher gaps — referências diretas (nunca lambdas, para evitar recursão infinita)
-    // saveNewPassword → auth.js | _pollPremiumActivation → paywall.js
-    // saveAccountData → account.js | loadAnalyticsData → admin.js
-    // (function declarations in those files are auto-global; no window.xxx needed here)
+    // Dispatcher gaps — funções definidas em módulos separados, expostas via window.xxx em cada arquivo
     window.submitFlag  = submitFlag;
     window.getAuthToken = async function() {
       if (!_supaClient) return null;

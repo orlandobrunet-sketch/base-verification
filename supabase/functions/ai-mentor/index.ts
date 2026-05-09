@@ -236,7 +236,8 @@ Deno.serve(async (req) => {
   for (const msg of history) {
     if (
       typeof msg.role !== 'string' || !['user', 'assistant'].includes(msg.role) ||
-      typeof msg.content !== 'string' || msg.content.length > MAX_HISTORY_CONTENT
+      typeof msg.content !== 'string' || msg.content.trim().length === 0 ||
+      msg.content.length > MAX_HISTORY_CONTENT
     ) {
       return new Response(
         JSON.stringify({ error: 'history message invalid' }),

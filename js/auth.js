@@ -372,3 +372,22 @@
         document.querySelectorAll('.profile-popup.open').forEach(p => p.classList.remove('open'));
       }
     });
+
+    window.saveNewPassword        = saveNewPassword;
+    window.openAuthModal          = openAuthModal;
+    window.closeAuthModal         = closeAuthModal;
+    window.switchAuthTab          = switchAuthTab;
+    window.showForgotPassword     = showForgotPassword;
+    window.authEmailLogin         = authEmailLogin;
+    window.authEmailRegister      = authEmailRegister;
+    window.authResendConfirmation = authResendConfirmation;
+    window.authLogout             = authLogout;
+    window.authKeyPress           = authKeyPress;
+    window.loginWithGoogle        = loginWithGoogle;
+    window.playAsGuest            = playAsGuest;
+    window.showUpdatePasswordModal = showUpdatePasswordModal;
+    window.toggleProfilePopup     = toggleProfilePopup;
+    window.landingLoginGoogle     = landingLoginGoogle;
+    window.landingLoginEmail      = landingLoginEmail;
+    window.landingPlayGuest       = landingPlayGuest;
+    window.showLandingMsg         = showLandingMsg;
