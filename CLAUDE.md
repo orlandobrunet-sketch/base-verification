@@ -387,12 +387,112 @@ supabase db push
 - [ ] Paywall premium — fluxo de compra Mercado Pago funcionando
 - [ ] GA4 — verificar dados chegando no painel após fix do Measurement ID (G-0TS171XV3K)
 
+- [ ] GA4 — verificar dados chegando no painel após fix do Measurement ID (G-0TS171XV3K)
+
 ### PENDENTE — Infraestrutura / Negócio
 | # | Tarefa | Detalhe |
 |---|--------|---------|
 | I1 | Criar e-mail `contato@nefroquest.com` | Necessário para formulário de contato e identidade profissional |
 | I2 | Testar fluxo completo de pagamento | Mercado Pago: preference → checkout → webhook → `profiles.is_premium = true`; testar plano mensal e vitalício |
 | I3 | ~~Deploy edge function `send-push`~~ | **Feito** — deployada no Supabase Dashboard |
+
+---
+
+## 🚀 PLAY STORE — Checklist de Publicação
+
+### Estratégia técnica
+O NefroQuest é publicado como **TWA (Trusted Web Activity)** — o APK Android é gerado automaticamente a partir da PWA via [PWABuilder](https://pwabuilder.com), sem necessidade de código nativo. A URL continua sendo `https://nefroquest.com`.
+
+> ⚠️ **Decisão crítica de negócio — Monetização no Android:**
+> O Google Play Policy exige uso do **Google Play Billing** para venda de conteúdo digital dentro de apps Android (com comissão de 15–30%). Opções:
+> 1. **Recomendado:** Desabilitar compra premium dentro do app Android — mostrar mensagem "Adquira o Premium em nefroquest.com". Compra ocorre no navegador (Mercado Pago), sincroniza via Supabase Auth. Sem comissão para o Google.
+> 2. Implementar Google Play Billing (15–30% de comissão + trabalho de integração).
+
+### PS-1: Técnico (código) — PRIORITÁRIO
+| # | Tarefa | Detalhe | Responsável |
+|---|--------|---------|-------------|
+| PS-1a | `privacy-policy.html` standalone | Google exige URL pública da política (não apenas modal). Criar `/privacy-policy.html` com conteúdo já existente em `showPrivacyPolicy()` | Código |
+| PS-1b | `.well-known/assetlinks.json` | Vincula o domínio ao APK assinado (Digital Asset Links). Gerado pelo PWABuilder após criar o APK — inserir SHA-256 do certificado de assinatura | Código + Play Console |
+| PS-1c | Desabilitar compra no Android TWA | Detectar TWA via `document.referrer` ou `navigator.userAgent` e esconder botão "Assinar" — mostrar "Acesse nefroquest.com para Premium" | Código |
+| PS-1d | `manifest.json` — `id` canônico | Adicionar campo `"id": "/"` para identificação estável do app no Play Store | Código |
+
+### PS-2: Assets visuais — PRIORITÁRIO
+| # | Asset | Especificação | Status |
+|---|-------|---------------|--------|
+| PS-2a | Ícone hi-res | 512×512 PNG sem transparência, sem arredondamento | ✅ Existe (`favicon-512x512.png`) — verificar fundo |
+| PS-2b | Feature graphic | 1024×500 PNG/JPG — banner do Play Store | ❌ Falta criar |
+| PS-2c | Screenshots Phone | Mín. 2, recomendado 4–8. Formato 1080×1920 ou 9:16 | ❌ Falta (existentes são 390×844) |
+| PS-2d | Screenshots Tablet | Opcional mas recomendado | ❌ Falta |
+| PS-2e | Ícone adaptativo | `foreground` + `background` layers para Android | ❌ Falta (usar 512x512 existente como base) |
+
+### PS-3: Administrativo (manual — Google Play Console)
+| # | Tarefa | Detalhe |
+|---|--------|---------|
+| PS-3a | Conta Google Play Developer | Cadastro único em play.google.com/console — taxa de $25 USD |
+| PS-3b | Gerar APK TWA | [pwabuilder.com](https://pwabuilder.com) → inserir `https://nefroquest.com` → Download Android Package |
+| PS-3c | Assinar APK | Play Console gera e gerencia chave de assinatura automaticamente ("Play App Signing") |
+| PS-3d | Classificação etária (IARC) | Questionário no Play Console — responder: educação médica, sem violência/conteúdo adulto → classificação "Livre" ou "10+" |
+| PS-3e | Seção Data Safety | Declarar: coleta e-mail (obrigatório), dados de uso (analytics), dados de pagamento (Mercado Pago). Sem compartilhamento para publicidade |
+| PS-3f | Texto da listing (PT-BR) | Título (50 chars), descrição curta (80 chars), descrição completa (4.000 chars) |
+| PS-3g | Política de privacidade URL | URL pública — usar `https://nefroquest.com/privacy-policy.html` (PS-1a) |
+| PS-3h | Categoria | "Educação" — subcategoria Saúde/Medicina |
+
+### PS-4: Listing text sugerido
+```
+Título: NefroQuest: Ascension
+
+Descrição curta (80 chars):
+RPG educacional de Nefrologia para médicos e residentes. 1.000+ questões.
+
+Descrição completa:
+Domine a Nefrologia através de um RPG épico de perguntas e respostas.
+
+Escolha seu personagem — Guerreiro Glomerular, Maga Metabólica ou Clérigo Renal — e enfrente mais de 1.000 questões comentadas de nefrologia baseadas nas melhores evidências (KDIGO, DOQI, SBN, principais RCTs).
+
+⚔️ JORNADA RPG GAMIFICADA
+Ganhe XP, colete equipamentos, suba de nível e derrote o Arqui-Nefromante respondendo questões clínicas.
+
+🎯 ESTUDE SEU PONTO FRACO
+O sistema identifica suas lacunas por eixo temático: Glomerulopatias, LRA, ERC, Diálise, Transplante, Distúrbios Ácido-Base, Eletrólitos e muito mais.
+
+📋 BASEADO EM EVIDÊNCIAS
+Explicações detalhadas com referências bibliográficas atualizadas.
+
+✨ MENTOR IA PERSONALIZADO
+Errou uma questão? O Mentor IA explica o raciocínio clínico e responde suas dúvidas em tempo real, com tecnologia Claude (Anthropic).
+
+📊 MODOS DE JOGO
+- Jornada RPG (modo principal)
+- Modo de Estudo por eixo temático
+- Prova Simulada cronometrada
+- Julgamento Rápido (verdadeiro ou falso)
+
+🏆 CONQUISTAS E RANKING
+Compare seu desempenho com outros jogadores no ranking global.
+
+Ideal para estudantes de medicina, residentes de clínica médica e nefrologia.
+```
+
+### PS-5: Ordem recomendada de execução
+1. **PS-1a** — criar `privacy-policy.html` (30 min, código)
+2. **PS-1d** — adicionar `id` ao manifest.json (5 min, código)
+3. **PS-2b/2c** — criar feature graphic e screenshots (design — fora do código)
+4. **PS-3a** — abrir conta Google Play ($25)
+5. **PS-3b** — gerar APK no PWABuilder
+6. **PS-1b** — inserir assetlinks.json com SHA do APK gerado
+7. **PS-1c** — detectar TWA e esconder compra in-app
+8. **PS-3c até PS-3h** — preencher Play Console e submeter
+
+### PS-6: Cronograma estimado
+| Etapa | Tempo estimado |
+|-------|---------------|
+| Código (PS-1a,b,c,d) | 2–3 horas |
+| Design assets (PS-2b,c) | 2–4 horas (ou contratar designer) |
+| Play Console + submissão (PS-3) | 2–3 horas |
+| Revisão Google (primeira vez) | 3–7 dias úteis |
+| **Total até publicação** | **~1–2 semanas** |
+
+---
 
 ### NOVA FEATURE — Minigame Ácido-Base
 | # | Tarefa | Detalhe |
@@ -414,6 +514,29 @@ supabase db push
 - **Progressão:** 5 casos de dificuldade crescente (simples → misto → triplo). A fórmula relevante aparece como "dica do grimório" antes de cada cálculo
 - **Integração:** acessível via "Modos de Jogo" no menu principal; salva progresso no `localStorage`; eventos GA4 `minigame_acid_base_started` e `minigame_acid_base_completed`
 - **Arquivo:** `js/minigame-acidbase.js` + seção dedicada no `index.html`
+
+**Plano pedagógico detalhado (aprovado):**
+- **"A Câmara do Equilíbrio"** — narrativa: Alquimista Renal recebe pacientes do reino com pH desregulado. Cada caso é um personagem com história para ancorar o diagnóstico.
+- **3 pontos de entrada:** Menu "Modos de Jogo" (sempre), desbloqueio narrativo ao nível 5 no jogo principal, conteúdo pós-vitória.
+- **Diagnóstico em 4 Atos** (sequência fixa, pedagogicamente intencional):
+  1. Distúrbio primário (pH + PaCO2/HCO3)
+  2. Compensação esperada — **cálculo ativo**: aluno insere o valor, sistema aceita ±2
+  3. Distúrbio adicional? (AG, delta-delta se aplicável)
+  4. Conduta clínica (múltipla escolha contextualizada)
+- **"Grimório"** — aluno escolhe ver ou não a fórmula antes de calcular. Sem punição, mas com registro ("Você usou o Grimório 2× neste caso").
+- **Feedback explicativo**: erro mostra o raciocínio completo com o cálculo correto.
+- **5 casos com personagens fixos:**
+  | Caso | Personagem | Distúrbio | Complexidade |
+  |------|-----------|-----------|--------------|
+  | 1 | Ferreiro Aldric | Acidose metabólica simples (Winter) | Introdução |
+  | 2 | Curandeira Mara | Alcalose metabólica (vômitos) | + AG normal |
+  | 3 | Guarda Theron | Acidose respiratória crônica (DPOC) | + compensação renal |
+  | 4 | Mercador Vance | Acidose met. AG alto + alcalose resp. | Misto + delta-delta |
+  | 5 | General Kael | Triplo distúrbio | Desafio máximo |
+- **Variantes por caso:** 2–3 sets de valores diferentes (mesma narrativa, gasometria diferente) para replay sem decorar.
+- **Recompensa:** ao completar todos os 5 casos → +500 ouro + conquista "Alquimista Renal" no jogo principal.
+- **Sem cronômetro** — ácido-base exige raciocínio, não velocidade.
+- **100% offline** — sem Supabase, funciona antes de login.
 
 ---
 
