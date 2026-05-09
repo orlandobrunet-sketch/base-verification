@@ -61,7 +61,7 @@
       const modal = document.createElement('div');
       modal.id = 'pricingModal';
       modal.className = 'nq-overlay';
-      modal.style.cssText = 'background:rgba(0,0,0,0.94);z-index:9998;backdrop-filter:blur(10px);';
+      modal.style.cssText = 'background:rgba(0,0,0,0.94);z-index:9998;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);';
       const isPt = _lang === 'pt';
       const tagline = isPt
         ? 'Domine a Nefrologia com o método que funciona — questões clínicas reais, RPG e ciência de ponta.'
@@ -217,7 +217,7 @@
         const token = session.data.session?.access_token;
         if (!token) throw new Error('Sessão inválida');
 
-        const res = await fetch(`${SUPA_URL}/functions/v1/swift-function`, {
+        const res = await fetch(`${SUPA_URL}/functions/v1/create-mp-preference`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

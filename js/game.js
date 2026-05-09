@@ -64,7 +64,7 @@
       modal.className = 'modal show';
       modal.id = 'victoryModal';
       modal.classList.add('nq-overlay');
-      modal.style.cssText = 'background:rgba(0,0,0,0.92);z-index:9999;backdrop-filter:blur(8px);';
+      modal.style.cssText = 'background:rgba(0,0,0,0.92);z-index:9999;-webkit-backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);';
       modal.innerHTML = `
         <div style="max-width:600px;width:100%;text-align:center;position:relative;">
           <img src="assets/victory.jpg" alt="Vitória" style="width:100%;border-radius:16px;border:3px solid var(--gold);box-shadow:0 0 40px rgba(218,165,32,0.5);margin-bottom:20px;">
@@ -148,7 +148,7 @@
       const modal = document.createElement('div');
       modal.className = 'modal show';
       modal.classList.add('nq-overlay');
-      modal.style.cssText = 'background:rgba(0,0,0,0.85);z-index:9999;backdrop-filter:blur(6px);';
+      modal.style.cssText = 'background:rgba(0,0,0,0.85);z-index:9999;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);';
       modal.innerHTML = `
         <div class="modal-content" style="max-width:450px;max-height:88vh;overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;">
           <h2 style="color:var(--ok);margin-bottom:16px;">💚 VIDA EXTRA! 💚</h2>
@@ -269,7 +269,7 @@
       const modal = document.createElement('div');
       modal.className = 'modal show evolution-popup';
       modal.classList.add('nq-overlay');
-      modal.style.cssText = 'background:rgba(0,0,0,0.85);z-index:9999;backdrop-filter:blur(6px);';
+      modal.style.cssText = 'background:rgba(0,0,0,0.85);z-index:9999;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);';
       modal.innerHTML = `
         <div class="modal-content" style="max-width:500px;max-height:88vh;overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;">
           <h2 style="color:var(--gold);margin-bottom:12px;">⚡ EVOLUÇÃO! ⚡</h2>
@@ -642,6 +642,9 @@
     }
     
     async function continueGame() {
+      // Revalida premium do servidor a cada sessão — impede bypass via localStorage
+      _loadPremiumFromDB().catch(() => {});
+
       const save = loadGame();
       if (!save) { startNewFromWelcome(); return; }
 
@@ -1378,6 +1381,17 @@
       const qText = (q?.q || '').substring(0, 500);
       const btn = document.getElementById('flagSendBtn');
       const status = document.getElementById('flagStatus');
+
+      if (selectedCat === 'outra' && comment.length < 10) {
+        status.className = 'flag-status flag-status--error';
+        status.textContent = '❌ Para "Outra", descreva o problema (mín. 10 caracteres).';
+        return;
+      }
+      if (!navigator.onLine) {
+        status.className = 'flag-status flag-status--error';
+        status.textContent = '📵 Sem conexão. Verifique sua rede e tente novamente.';
+        return;
+      }
 
       btn.disabled = true;
       btn.textContent = 'Enviando...';
@@ -2909,6 +2923,8 @@
       document.getElementById('diffSelectorOverlay')?.remove();
       state.difficulty = diff;
       deleteSave();
+      // Revalida premium do servidor — impede bypass via localStorage
+      _loadPremiumFromDB().catch(() => {});
       if (fromWelcome === true) dismissWelcome();
       document.getElementById('charSelectModal').classList.add('show');
     };
@@ -2942,7 +2958,7 @@
       document.querySelectorAll('.privacy-popup').forEach(el => el.remove());
       const modal = document.createElement('div');
       modal.className = 'modal show privacy-popup';
-      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;height:100dvh;background:rgba(0,0,0,0.88);display:flex;align-items:flex-start;justify-content:center;z-index:10000;backdrop-filter:blur(6px);overflow-y:auto;padding:12px 16px calc(env(safe-area-inset-bottom,0px)+40px);box-sizing:border-box;';
+      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;height:100dvh;background:rgba(0,0,0,0.88);display:flex;align-items:flex-start;justify-content:center;z-index:10000;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);overflow-y:auto;padding:12px 16px calc(env(safe-area-inset-bottom,0px)+40px);box-sizing:border-box;';
       modal.innerHTML = `
         <div class="modal-content" style="max-width:560px;width:calc(100% - 32px);max-height:none;overflow-y:visible;text-align:left;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;box-shadow:0 0 40px rgba(96,165,250,0.2);margin:auto 0;">
           <h2 style="color:var(--gold);margin-bottom:4px;font-family:'MedievalSharp','Cinzel',serif;text-align:center;">📜 Política de Privacidade</h2>
