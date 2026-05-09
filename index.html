@@ -198,69 +198,92 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
       <div class="profile-popup" id="landingProfilePopup">
         <div class="profile-popup-email"><strong>Conta</strong><span id="landingProfileEmail"></span></div>
+      </div>
+    </div>
 
-      </div>
-    </div>
-    <div class="landing-content" style="position:relative;">
-      <div class="landing-ornament">&#10022; Reino dos Néfrons &#10022;</div>
-      <h1 class="landing-title">NefroQuest</h1>
-      <div class="landing-sub">Ascension</div>
-      <div class="landing-tagline">Domine a Nefrologia.<br>Conquiste o reino dos néfrons.</div>
-      <div class="landing-divider"></div>
-      <div id="landingMsg" class="landing-msg"></div>
-      <button type="button" class="landing-btn-google" data-action="landingLoginGoogle">
-        <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.1 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.6-13.47-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-        Entrar com Google
-      </button>
-      <button type="button" class="landing-btn-email" data-action="landingLoginEmail">&#9993; Entrar com Email</button>
-      <div style="margin-top:8px;text-align:center;">
-        <button type="button" class="btn sec" data-action="playAsGuest" style="width:100%;opacity:0.8;font-size:0.85rem;padding:10px;">🎮 Experimentar sem conta</button>
-      </div>
-      <div class="landing-stats-section" style="margin-top:12px;border-top:1px solid rgba(255,215,0,0.12);padding-top:14px;width:100%;max-width:360px;">
-        <!-- Contador de questões -->
-        <div style="text-align:center;margin-bottom:10px;">
-          <div style="font-family:'Cinzel',serif;font-size:clamp(1.8rem,6vw,2.4rem);font-weight:900;color:#ffd700;line-height:1;margin-bottom:0;">1.000<span style="font-size:60%;vertical-align:super;color:#b8860b;">+</span></div>
-          <div style="font-family:'Cinzel',serif;font-size:0.72rem;letter-spacing:2px;color:#c8a030;text-transform:uppercase;margin-bottom:2px;">questões comentadas</div>
-          <div style="color:#6080a0;font-size:0.68rem;letter-spacing:1px;">de Nefrologia — atualizadas constantemente</div>
-        </div>
-        <!-- Divisor -->
-        <div style="border-top:1px solid rgba(255,215,0,0.1);margin-bottom:10px;"></div>
-        <!-- 3 features -->
-        <div style="display:flex;flex-direction:column;gap:7px;text-align:left;">
-          <div style="display:flex;gap:12px;align-items:flex-start;">
-            <span style="font-size:1.2rem;flex-shrink:0;margin-top:1px;">⚔️</span>
-            <div>
-              <div style="color:#e2e8f0;font-size:0.8rem;font-weight:600;">Jornada RPG gamificada</div>
-              <div style="color:#6080a0;font-size:0.72rem;margin-top:2px;line-height:1.45;">Escolha seu herói, ganhe XP e equipamentos.
-Derrote o Arqui-Nefromante aprendendo.</div>
-            </div>
-          </div>
-          <div style="display:flex;gap:12px;align-items:flex-start;">
-            <span style="font-size:1.2rem;flex-shrink:0;margin-top:1px;">🎯</span>
-            <div>
-              <div style="color:#e2e8f0;font-size:0.8rem;font-weight:600;">Estude pelo seu ponto fraco</div>
-              <div style="color:#6080a0;font-size:0.72rem;margin-top:2px;line-height:1.45;">Identifica suas lacunas por tema: Glomerulopatias,
-LRA, Diálise, Transplante, Eletrólitos e mais.</div>
-            </div>
-          </div>
-          <div style="display:flex;gap:12px;align-items:flex-start;">
-            <span style="font-size:1.2rem;flex-shrink:0;margin-top:1px;">📋</span>
-            <div>
-              <div style="color:#e2e8f0;font-size:0.8rem;font-weight:600;">Baseado nas melhores evidências</div>
-              <div style="color:#6080a0;font-size:0.72rem;margin-top:2px;line-height:1.45;">Explicações detalhadas com referências:
-KDIGO, DOQI, SBN e principais RCTs.</div>
-            </div>
-          </div>
-          <div style="display:flex;gap:12px;align-items:flex-start;background:linear-gradient(135deg,rgba(168,85,247,0.12),rgba(96,165,250,0.08));border:1px solid rgba(168,85,247,0.3);border-radius:10px;padding:10px 12px;margin-top:4px;">
-            <span style="font-size:1.2rem;flex-shrink:0;margin-top:1px;">✨</span>
-            <div>
-              <div style="color:#e9d5ff;font-size:0.8rem;font-weight:700;">Tutor IA personalizado</div>
-              <div style="color:#8b7ca8;font-size:0.72rem;margin-top:2px;line-height:1.45;">Errou uma questão? O Mentor IA explica o raciocínio clínico e responde suas dúvidas em tempo real. Tecnologia <strong style="color:#c4b5fd;">Claude · Anthropic</strong>.</div>
-            </div>
-          </div>
+    <!-- Two-column wrapper (single col on mobile, side-by-side on desktop) -->
+    <div class="landing-layout">
+
+      <!-- LEFT: Login card -->
+      <div class="landing-card">
+        <div class="landing-ornament">&#10022; Reino dos Néfrons &#10022;</div>
+        <h1 class="landing-title">NefroQuest</h1>
+        <div class="landing-sub">Ascension</div>
+        <div class="landing-tagline">Domine a Nefrologia.<br>Conquiste o reino dos néfrons.</div>
+        <div class="landing-divider"></div>
+        <div id="landingMsg" class="landing-msg"></div>
+        <button type="button" class="landing-btn-google" data-action="landingLoginGoogle">
+          <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.1 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.6-13.47-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+          Entrar com Google
+        </button>
+        <button type="button" class="landing-btn-email" data-action="landingLoginEmail">&#9993; Entrar com Email</button>
+        <button type="button" class="landing-btn-guest" data-action="playAsGuest">&#127918; Experimentar sem conta</button>
+
+        <!-- Counter (mobile only, hidden on desktop) -->
+        <div class="landing-counter landing-counter--mobile">
+          <span class="landing-counter-num">1.000<sup>+</sup></span>
+          <span class="landing-counter-label">questões comentadas de Nefrologia</span>
         </div>
       </div>
-    </div>
+
+      <!-- RIGHT: Characters + Features (desktop only) -->
+      <div class="landing-right">
+        <!-- Counter -->
+        <div class="landing-counter landing-counter--desktop">
+          <span class="landing-counter-num">1.000<sup>+</sup></span>
+          <span class="landing-counter-label">questões comentadas de Nefrologia</span>
+        </div>
+
+        <!-- 3 Character portraits -->
+        <div class="landing-heroes">
+          <div class="landing-hero">
+            <img src="assets/classes/guerreiro_glomerular/nivel_10.png" alt="Guerreiro Glomerular" width="120" height="180" loading="lazy">
+            <div class="landing-hero-name">Guerreiro Glomerular</div>
+          </div>
+          <div class="landing-hero landing-hero--center">
+            <img src="assets/classes/maga_metabolica/nivel_10.jpg" alt="Maga Metabólica" width="120" height="180" loading="lazy">
+            <div class="landing-hero-name">Maga Metabólica</div>
+          </div>
+          <div class="landing-hero">
+            <img src="assets/classes/clerigo_renal/nivel_10.jpg" alt="Clérigo Renal" width="120" height="180" loading="lazy">
+            <div class="landing-hero-name">Clérigo Renal</div>
+          </div>
+        </div>
+
+        <!-- Feature list -->
+        <div class="landing-features">
+          <div class="landing-feature">
+            <span class="landing-feature-icon">&#9876;</span>
+            <div>
+              <div class="landing-feature-title">Jornada RPG gamificada</div>
+              <div class="landing-feature-desc">Escolha seu herói, ganhe XP e equipamentos. Derrote o Arqui-Nefromante aprendendo.</div>
+            </div>
+          </div>
+          <div class="landing-feature">
+            <span class="landing-feature-icon">&#127919;</span>
+            <div>
+              <div class="landing-feature-title">Estude pelo seu ponto fraco</div>
+              <div class="landing-feature-desc">Identifica suas lacunas por tema: Glomerulopatias, LRA, Diálise, Transplante, Eletrólitos e mais.</div>
+            </div>
+          </div>
+          <div class="landing-feature">
+            <span class="landing-feature-icon">&#128203;</span>
+            <div>
+              <div class="landing-feature-title">Baseado nas melhores evidências</div>
+              <div class="landing-feature-desc">Explicações com referências: KDIGO, DOQI, SBN e principais RCTs.</div>
+            </div>
+          </div>
+          <div class="landing-feature landing-feature--ai">
+            <span class="landing-feature-icon">&#10024;</span>
+            <div>
+              <div class="landing-feature-title">Tutor IA personalizado</div>
+              <div class="landing-feature-desc">Errou? O Mentor IA explica o raciocínio clínico em tempo real. Tecnologia <strong>Claude · Anthropic</strong>.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /landing-layout -->
   </div>
 
   <!-- WELCOME SCREEN -->
