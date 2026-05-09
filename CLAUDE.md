@@ -553,7 +553,293 @@ Ideal para estudantes de medicina, residentes de clínica médica e nefrologia.
 
 ---
 
-## Informações de Desenvolvimento
+## 🎨 ROADMAP DE REDESIGN — Layout Completo
+
+### Contexto
+Redesign completo do visual do NefroQuest baseado em mockups de alta fidelidade com estética RPG épico medieval.
+Abordagem: **CSS-first** (sem dependência de imagens externas) com substituição progressiva por assets quando fornecidos.
+**Regra de ouro: nenhuma tela vai ao ar sem aprovação explícita do usuário.**
+
+### Assets de referência recebidos
+| Arquivo | Conteúdo |
+|---------|----------|
+| UI Kit 1 (roxo/escuro) | Botões, barras de progresso, ícones HUD, level badge, answer options A–E |
+| UI Kit 2 (dourado/marrom) | Menu buttons, question cards, character portrait frame, item slots, tabs |
+| Mockup Landing | Tela de login com colunas + feature list footer |
+| Mockup Game Screen | Layout 3 colunas: character panel / questão / sidebar |
+| Mockup Difficulty | Modal 2×2 com 4 dificuldades |
+| Mockup Modos de Jogo | Painel com lista de modos (Estudo, Ponto Fraco, Simulada, Julgamento) |
+| Campanha publicitária | Plano de ações com Posts A–G + Reels para Instagram |
+
+### Paleta definitiva (extraída dos mockups)
+```
+--bg-deep:     #060810   (fundo mais escuro)
+--bg-surface:  #0d1225   (superfícies/cards)
+--bg-panel:    #0f1830   (painéis laterais)
+--gold-bright: #f0c040   (títulos, ornamentos)
+--gold-dim:    #a07820   (bordas, detalhes)
+--purple-vivid:#7c3aed   (acentos, streak, XP bar)
+--purple-dim:  #3d1d6e   (backgrounds de acentos)
+--blue-crystal:#4a9eff   (diamantes, highlights)
+--red-hp:      #cc2222   (vida, erros)
+--parchment:   #e8d9a0   (texto em cards bege/pergaminho)
+--txt-primary: #d0e4f8
+--txt-secondary:#7090b0
+```
+
+### Tipografia definitiva
+- **Títulos grandes:** Cinzel Decorative — todas maiúsculas, dourado
+- **Títulos de modal:** Cinzel — capitalizado, dourado
+- **Corpo de jogo:** Philosopher — texto de questões, descrições
+- **UI / Labels:** Cinzel — caps, tamanho pequeno, espaçado
+- **Números / HUD:** Cinzel Bold — pontos, nível, contadores
+
+---
+
+### FASE 0 — Fundação CSS (pré-requisito de tudo)
+> Não toca em HTML — apenas refatora variáveis e classes base em style.css
+
+| # | Tarefa | Detalhe | Status |
+|---|--------|---------|--------|
+| F0-1 | Paleta CSS atualizada | Substituir variáveis atuais pela paleta definitiva acima | ⏳ Aguardando OK |
+| F0-2 | Sistema de bordas ornamentais | Classes `.frame-gold`, `.frame-parchment`, `.frame-dark` via box-shadow + border-image | ⏳ |
+| F0-3 | Botão primário redesenhado | `.btn-rpg` com gradiente dourado, borda ornamental, hover com glow | ⏳ |
+| F0-4 | Fundo global | Gradiente radial profundo (#060810 → #0d1225) + padrão sutil de partículas CSS | ⏳ |
+| F0-5 | Scrollbar temática | Scrollbar fina dourada nos painéis | ⏳ |
+
+---
+
+### FASE 1 — Telas de entrada (maior impacto imediato)
+
+#### T1 — Landing / Login
+**Referência:** Mockup "landing screen" (colunas com login + feature list)
+**Elementos a redesenhar:**
+- Container central com moldura dourada ornamental
+- Logo com tratamento Cinzel Decorative
+- Botão Google com borda bege/pergaminho
+- Botão Email com fundo azul escuro
+- Botão "Experimentar sem conta" com fundo translúcido
+- Feature list no footer com ícones dos 6 diferenciais
+- "✦ Reino dos Néfrons ✦" como eyebrow text
+
+| Status | → | ⏳ Aguardando início |
+|--------|---|---------------------|
+| Aprovação necessária | → | Sim — screenshot antes do merge |
+
+---
+
+#### T2 — Seleção de classe / Welcome screen
+**Referência:** Mockup de seleção com 3 personagens lado a lado
+**Elementos a redesenhar:**
+- Cards de personagem com moldura azul-dourada
+- Nome da classe em Cinzel
+- Stats/bônus da classe
+- Botão de seleção ativo/inativo
+- Animação de hover (glow roxo na borda)
+
+| Status | → | ⏳ Após T1 aprovado |
+|--------|---|---------------------|
+
+---
+
+#### T3 — Seleção de dificuldade
+**Referência:** Mockup "Escolha a Dificuldade" (grid 2×2)
+**Elementos a redesenhar:**
+- Modal com moldura dourada ornamental grande
+- 4 cards com ícones e barras de corações
+- Card selecionado com borda dourada brilhante
+- Botão "Confirmar Dificuldade" teal/verde escuro
+- Tag "BADGE EXCLUSIVO" em Hardcore (vermelho escuro)
+
+| Status | → | ⏳ Após T2 aprovado |
+|--------|---|---------------------|
+
+---
+
+#### T_MODOS — Modos de Jogo (menu lateral)
+**Referência:** Mockup "Modos de Jogo" com lista de 4 modos
+**Elementos a redesenhar:**
+- Header com título "⚔ Modos de Jogo" em frame dourado
+- 4 itens de menu com ícone octagonal, título e descrição
+- "Ponto Fraco" com fundo vermelho escuro (destaque especial)
+- Close button circular dourado
+
+| Status | → | ⏳ Após T3 aprovado |
+|--------|---|---------------------|
+
+---
+
+### FASE 2 — Game Screen (coração do jogo)
+
+#### T4 — Game screen principal (pergunta ativa)
+**Referência:** Mockup full 3 colunas
+**Elementos a redesenhar:**
+
+*Coluna esquerda — Character Panel:*
+- Portrait com moldura ornamental arredondada
+- Nome e subtítulo do personagem
+- XP bar roxa com valor
+- "Capítulo da Narrativa" em card pergaminho
+- Slots de equipamento (3 quadrados com +)
+- Stats: Nível, Pontos, Vidas (corações), Recorde, Ouro, Streak
+
+*Centro — Questão:*
+- Header com timer + "Questão X de Y" + botão ?
+- Card pergaminho com texto da questão + watermark rim
+- 4–5 answer buttons (A–D/E) com letra em círculo dourado
+- "Escolha a melhor alternativa clínica" em itálico
+- Card "Evidência Científica" com badge GUIDELINE, ano, fonte
+
+*Coluna direita — Action Dock:*
+- 5 botões verticais: Forja / Baú / Ranking / Stats / Conquistas
+- Cada botão com ícone + label + moldura individual
+
+| Status | → | ⏳ Após Fase 1 aprovada |
+|--------|---|--------------------------|
+
+---
+
+#### T5 — Game screen (resposta correta)
+**Elementos adicionais vs T4:**
+- Answer button selecionado: fundo verde + glow verde
+- Ícone ✓ no círculo da letra
+- Card de evidência expandido com texto completo
+- "PRÓXIMA" button teal brilhante
+
+| Status | → | ⏳ Junto com T4 |
+|--------|---|-----------------|
+
+---
+
+#### T6 — Game screen (resposta errada)
+**Elementos adicionais vs T4:**
+- Answer button errado: fundo vermelho escuro
+- Answer button correto: destacado em verde
+- Opção de abrir Mentor IA
+- Animação de shake no card
+
+| Status | → | ⏳ Junto com T4 |
+|--------|---|-----------------|
+
+---
+
+### FASE 3 — Modais principais
+
+#### M5 — Mentor IA (Oráculo dos Néfrons)
+**Referência:** Post E da campanha (wizard com livro brilhante)
+**Elementos:**
+- Header com ícone de cérebro roxo + "Oráculo dos Néfrons"
+- Área de chat com bolhas de resposta
+- Input de pergunta com borda dourada
+- Indicador de quota (X de 5 consultas)
+
+| Status | → | ⏳ Após T4 aprovado |
+|--------|---|---------------------|
+
+---
+
+#### M1 — Baú / Chest
+**Elementos:**
+- Animação de abertura (CSS)
+- Item revelado com moldura de raridade
+- Botão "Equipar" ou "Vender"
+
+| Status | → | ⏳ |
+
+---
+
+#### M2 — Forja
+**Elementos:**
+- Grid de itens disponíveis
+- Preview de item selecionado
+- Custo em ouro + botão craftar
+
+| Status | → | ⏳ |
+
+---
+
+#### M4 — Conquista desbloqueada
+**Elementos:**
+- Popup central com badge em destaque
+- Nome e descrição da conquista
+- Animação de brilho
+
+| Status | → | ⏳ |
+
+---
+
+### FASE 4 — Telas de conteúdo
+
+| # | Tela | Prioridade | Status |
+|---|------|-----------|--------|
+| T10 | Leaderboard | Alta | ⏳ |
+| T11 | Modo de Estudo (seletor de eixos) | Alta | ⏳ |
+| T12 | Simulado / Prova cronometrada | Média | ⏳ |
+| T13 | Julgamento Rápido (V ou F) | Média | ⏳ |
+| T14 | Stats / Estatísticas | Média | ⏳ |
+| T15 | Conquistas (grid) | Média | ⏳ |
+
+---
+
+### FASE 5 — Modais de sistema
+
+| # | Modal | Status |
+|---|-------|--------|
+| M7 | Auth (login/cadastro) | ⏳ |
+| M8 | Pricing / Paywall (planos) | ⏳ |
+| M9 | Profile popup | ⏳ |
+| M10 | Conta / Account | ⏳ |
+| M11 | Reportar questão | ⏳ |
+| M12 | Contato | ⏳ |
+| M13 | Política de Privacidade | ⏳ |
+| M14 | Changelog | ⏳ |
+| M15 | Notificações | ⏳ |
+| M16 | Toast notifications | ⏳ |
+
+---
+
+### FASE 6 — Boss e desfechos
+
+| # | Tela | Status |
+|---|------|--------|
+| T7 | Boss Battle (Arqui-Nefromante) | ⏳ |
+| T8 | Game Over | ⏳ |
+| T9 | Victory (100 acertos) | ⏳ |
+
+---
+
+### FASE 7 — Mobile
+
+| # | Tela | Status |
+|---|------|--------|
+| T16 | Game screen mobile (status bar + dock bottom) | ⏳ |
+| T17 | Ajustes gerais de responsividade | ⏳ |
+
+---
+
+### Protocolo de aprovação (por tela)
+```
+1. Claude implementa em branch separada
+2. Claude compartilha screenshot ou link do PR
+3. Usuário abre no browser e revisa
+4. Usuário aprova (merge) OU pede ajustes
+5. Após merge confirmado → próxima tela
+```
+
+### Contagem total
+| Grupo | Qtd |
+|-------|-----|
+| Fase 0 — Fundação CSS | 5 |
+| Fase 1 — Entrada | 4 |
+| Fase 2 — Game screen | 3 |
+| Fase 3 — Modais principais | 4 |
+| Fase 4 — Conteúdo | 6 |
+| Fase 5 — Modais sistema | 10 |
+| Fase 6 — Boss/desfechos | 3 |
+| Fase 7 — Mobile | 2 |
+| **TOTAL** | **37 itens** |
+
+
 
 - **Supabase CLI:** `supabase/config.toml` presente mas edge functions são deployadas pelo Dashboard
 - **Testes:** Playwright E2E em `/tests/` (9 suites de teste)
