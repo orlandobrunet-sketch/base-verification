@@ -335,15 +335,15 @@ No Supabase Dashboard → Edge Functions → selecionar a função → Deploy / 
 |---|--------|---------|
 | W1 | Screenshots no manifest | **Feito** — imagens e entradas no manifest já presentes |
 | W2 | iOS splash screens | **Feito** (v9.21) |
-| W3 | Push notifications server-side | **Feito** (v9.26) — migration 004, `send-push` edge function, `js/notifications.js` + SW listener. **Pendente deploy**: rodar migration, configurar `VAPID_PUBLIC_KEY`/`VAPID_PRIVATE_KEY`/`VAPID_SUBJECT` no Dashboard, setar `window._VAPID_PUBLIC_KEY` em index.html |
+| W3 | Push notifications server-side | **Feito** (v9.26) — migration 004 ✅, VAPID secrets ✅, `window._VAPID_PUBLIC_KEY` ✅. **Pendente**: fazer deploy da edge function `send-push` pelo Supabase Dashboard (não existe ainda — precisa ser criada/deployada manualmente via CLI ou upload) |
 
 ### MÉDIA PRIORIDADE — CSS/UI
 | # | Tarefa | Detalhe |
 |---|--------|---------|
 | C1 | `!important` — reduzido | De 321 para ~99; restantes têm conflito legítimo com `.boss-battle-mode` — **concluído** |
 | C2 | z-index centralizado | `.app` e `.action-dock` migrados; valores locais (0-3, 10-11 em stacking contexts) deixados como estão — **concluído** |
-| C3 | `prefers-reduced-motion` | Animações sem suporte a acessibilidade — adicionar media query global |
-| C4 | Estilos inline JS → classes CSS | Mover estilos estáticos gerados por JS para classes CSS |
+| C3 | `prefers-reduced-motion` | **Feito** — media query global no fim do `style.css` cobre todas as animações |
+| C4 | Estilos inline JS → classes CSS | **Feito** — flag-chip, flag-status, ref-copy-btn, boss-hp, meter-result, minigame-fb migrados para classes CSS |
 
 ### BAIXA PRIORIDADE — Arquitetura JS
 | # | Tarefa | Detalhe |
@@ -360,6 +360,14 @@ No Supabase Dashboard → Edge Functions → selecionar a função → Deploy / 
 - [ ] `send-contact` — formulário de contato
 - [ ] `ai_usage` — quota sendo contabilizada na tabela (SQL: `SELECT * FROM ai_usage ORDER BY date DESC LIMIT 10`)
 - [ ] Paywall premium — fluxo de compra Mercado Pago funcionando
+- [ ] GA4 — verificar dados chegando no painel após fix do Measurement ID (G-0TS171XV3K)
+
+### PENDENTE — Infraestrutura / Negócio
+| # | Tarefa | Detalhe |
+|---|--------|---------|
+| I1 | Criar e-mail `contato@nefroquest.com` | Necessário para formulário de contato e identidade profissional |
+| I2 | Testar fluxo completo de pagamento | Mercado Pago: preference → checkout → webhook → `profiles.is_premium = true`; testar plano mensal e vitalício |
+| I3 | Deploy edge function `send-push` | Não existe no Supabase ainda — fazer upload/deploy pelo CLI: `supabase functions deploy send-push` |
 
 ---
 
