@@ -2936,16 +2936,15 @@
       if (typeof _copyRef === 'function') _copyRef(btn, btn.dataset.copyText || '');
     };
     // Dispatcher gaps — referências diretas (nunca lambdas, para evitar recursão infinita)
-    window.saveNewPassword        = saveNewPassword;
-    window.submitFlag             = submitFlag;
-    window.getAuthToken           = async function() {
+    // saveNewPassword → auth.js | _pollPremiumActivation → paywall.js
+    // saveAccountData → account.js | loadAnalyticsData → admin.js
+    // (function declarations in those files are auto-global; no window.xxx needed here)
+    window.submitFlag  = submitFlag;
+    window.getAuthToken = async function() {
       if (!_supaClient) return null;
       const { data: { session } } = await _supaClient.auth.getSession();
       return session?.access_token ?? null;
     };
-    window._pollPremiumActivation = _pollPremiumActivation;
-    window.saveAccountData        = saveAccountData;
-    window.loadAnalyticsData      = loadAnalyticsData;
 
     window._pickIdentity          = window._pickIdentity || function() {};
 
