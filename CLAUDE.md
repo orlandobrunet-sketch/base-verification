@@ -367,7 +367,28 @@ No Supabase Dashboard → Edge Functions → selecionar a função → Deploy / 
 |---|--------|---------|
 | I1 | Criar e-mail `contato@nefroquest.com` | Necessário para formulário de contato e identidade profissional |
 | I2 | Testar fluxo completo de pagamento | Mercado Pago: preference → checkout → webhook → `profiles.is_premium = true`; testar plano mensal e vitalício |
-| I3 | Deploy edge function `send-push` | Não existe no Supabase ainda — fazer upload/deploy pelo CLI: `supabase functions deploy send-push` |
+| I3 | Deploy edge function `send-push` | Colar `supabase/functions/send-push/index.ts` no editor do Dashboard → nome `send-push` → Deploy |
+
+### NOVA FEATURE — Minigame Ácido-Base
+| # | Tarefa | Detalhe |
+|---|--------|---------|
+| M1 | Minigame Ácido-Base interativo | Modo de jogo educacional com narrativa que ensina diagnóstico e manejo de distúrbios ácido-base |
+
+**Conceito do Minigame Ácido-Base:**
+- **Narrativa:** o jogador é um "Alquimista Renal" chamado para equilibrar o pH do reino. Cada caso clínico é apresentado como uma missão — um personagem do reino com sintomas
+- **Mecânica:** o jogador recebe gasometria (pH, PaCO2, HCO3, BE) e precisa: (1) identificar o distúrbio primário, (2) calcular a compensação esperada usando as fórmulas, (3) escolher a conduta
+- **Fórmulas ensinadas interativamente:**
+  - Acidose metabólica: `PaCO2 esperado = 1.5 × HCO3 + 8 (±2)` (Winter)
+  - Alcalose metabólica: `PaCO2 esperado = 0.7 × HCO3 + 21 (±2)`
+  - Acidose respiratória aguda: `HCO3 sobe 1 para cada 10 de PaCO2`
+  - Acidose respiratória crônica: `HCO3 sobe 3.5 para cada 10 de PaCO2`
+  - Alcalose respiratória aguda: `HCO3 cai 2 para cada 10 de PaCO2`
+  - Alcalose respiratória crônica: `HCO3 cai 5 para cada 10 de PaCO2`
+  - Ânion gap: `AG = Na - (Cl + HCO3)` normal 8–12; com albumina: `AG corrigido = AG + 2.5 × (4 - albumina)`
+  - Delta-delta: `ΔAG/ΔHCO3` — distingue distúrbios mistos
+- **Progressão:** 5 casos de dificuldade crescente (simples → misto → triplo). A fórmula relevante aparece como "dica do grimório" antes de cada cálculo
+- **Integração:** acessível via "Modos de Jogo" no menu principal; salva progresso no `localStorage`; eventos GA4 `minigame_acid_base_started` e `minigame_acid_base_completed`
+- **Arquivo:** `js/minigame-acidbase.js` + seção dedicada no `index.html`
 
 ---
 
