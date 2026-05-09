@@ -118,19 +118,20 @@
       if (!('Notification' in window)) {
         _toast('Seu navegador não suporta notificações.', 'error'); return;
       }
-      const perm = await Notification.requestPermission();
-      if (perm !== 'granted') {
-        _toast('Permissão negada. Ative nas configurações do navegador.', 'warning'); return;
-      }
-      localStorage.setItem('nq_notif_enabled', '1');
-      // Tentar registrar periodic sync
-      if ('serviceWorker' in navigator) {
-        const reg = await navigator.serviceWorker.ready;
-        if ('periodicSync' in reg) {
-          await reg.periodicSync.register('nq-study-reminder', { minInterval: 20 * 60 * 60 * 1000 }).catch(() => {});
+      try {
+        const perm = await Notification.requestPermission();
+        if (perm !== 'granted') {
+          _toast('Permissão negada. Ative nas configurações do navegador.', 'warning'); return;
         }
-      }
-      _toast('Lembretes de estudo ativados!', 'success');
+        localStorage.setItem('nq_notif_enabled', '1');
+        if ('serviceWorker' in navigator) {
+          const reg = await navigator.serviceWorker.ready;
+          if ('periodicSync' in reg) {
+            await reg.periodicSync.register('nq-study-reminder', { minInterval: 20 * 60 * 60 * 1000 }).catch(() => {});
+          }
+        }
+        _toast('Lembretes de estudo ativados!', 'success');
+      } catch { _toast('Não foi possível ativar lembretes. Tente novamente.', 'error'); }
     }
     function disableStudyReminders() {
       localStorage.removeItem('nq_notif_enabled');
@@ -152,7 +153,7 @@
         const banner = document.createElement('div');
         banner.id = 'studyReminderBanner';
         banner.style.cssText = 'position:fixed;bottom:calc(80px + env(safe-area-inset-bottom, 0px));left:50%;transform:translateX(-50%);background:rgba(139,92,246,0.95);color:#fff;padding:12px 20px;border-radius:12px;z-index:9999;font-size:0.85rem;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.4);max-width:320px;width:90%;';
-        banner.innerHTML = '📚 Você não estudou hoje ainda!<br><button onclick="this.parentElement.remove();showTopicSelector();" style="margin-top:8px;background:#fff;color:#7c3aed;border:none;padding:6px 16px;border-radius:8px;font-weight:bold;cursor:pointer;">Estudar agora</button> <button onclick="this.parentElement.remove();" style="margin-top:8px;background:transparent;color:#e9d5ff;border:1px solid rgba(255,255,255,0.3);padding:6px 12px;border-radius:8px;cursor:pointer;">Depois</button>';
+        banner.innerHTML = '📚 Você não estudou hoje ainda!<br><button data-close-closest="#studyReminderBanner" data-action="showTopicSelector" style="margin-top:8px;background:#fff;color:#7c3aed;border:none;padding:6px 16px;border-radius:8px;font-weight:bold;cursor:pointer;">Estudar agora</button> <button data-close-closest="#studyReminderBanner" style="margin-top:8px;background:transparent;color:#e9d5ff;border:1px solid rgba(255,255,255,0.3);padding:6px 12px;border-radius:8px;cursor:pointer;">Depois</button>';
         document.body.appendChild(banner);
         setTimeout(() => banner.remove(), 15000);
       }
@@ -1114,7 +1115,7 @@
 
         if (res.status === 429) {
           card.classList.remove('ai-diagnosis-loading');
-          card.innerHTML = `<div class="ai-diagnosis-header">🤖 Diagnóstico da Sessão</div><div class="ai-diagnosis-body" style="text-align:center;padding:16px 0;color:var(--txt-dim);">Limite diário atingido.<br><span style="font-size:0.8rem;">Volte amanhã ou <strong style="color:var(--gold);cursor:pointer;" onclick="showPremiumModal()">faça upgrade para Premium</strong>.</span></div>`;
+          card.innerHTML = `<div class="ai-diagnosis-header">🤖 Diagnóstico da Sessão</div><div class="ai-diagnosis-body" style="text-align:center;padding:16px 0;color:var(--txt-dim);">Limite diário atingido.<br><span style="font-size:0.8rem;">Volte amanhã ou <strong style="color:var(--gold);cursor:pointer;" data-action="showPaywallModal">faça upgrade para Premium</strong>.</span></div>`;
           return;
         }
         if (!res.ok) throw new Error('HTTP ' + res.status);
@@ -1245,7 +1246,7 @@
           </div>
           <div class="mentor-context">
             <div class="mentor-context-label">Questão em análise:</div>
-            <div class="mentor-context-text">${escapeHtml(_firstSentence(q.q || '', 120))}</div>
+            <div class="mentor-context-text">${escapeHtml(q.q || '')}</div>
           </div>
           <div class="mentor-chat" id="mentorChat"></div>
           <div class="mentor-quota-bar" id="mentorQuotaBar">${_mentorRemainingText()}</div>
@@ -1340,7 +1341,7 @@
         _track('error_mentor_send', { msg: String(err) });
         thinkingEl.classList.remove('mentor-thinking');
         if (String(err).includes('quota_exceeded')) {
-          thinkingEl.innerHTML = `Limite diário atingido. <span style="color:var(--gold);cursor:pointer;" onclick="showPremiumModal()">Faça upgrade para Premium</span> para perguntas ilimitadas.`;
+          thinkingEl.innerHTML = `Limite diário atingido. <span style="color:var(--gold);cursor:pointer;" data-action="showPaywallModal">Faça upgrade para Premium</span> para perguntas ilimitadas.`;
         } else {
           thinkingEl.textContent = 'Oráculo indisponível no momento. Tente novamente em instantes.';
         }

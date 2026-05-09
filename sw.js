@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v9.23
-const CACHE = 'nefroquest-v9.23';
+// NefroQuest Service Worker — v9.26
+const CACHE = 'nefroquest-v9.26';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -28,6 +28,16 @@ const STATIC_ASSETS = [
   '/js/leaderboard.js',
   '/js/study-mode.js',
   '/js/game.js',
+  '/js/notifications.js',
+  '/js/auth.js',
+  '/js/paywall.js',
+  '/js/account.js',
+  '/js/boss.js',
+  '/js/exam.js',
+  '/js/admin.js',
+  '/js/minigame.js',
+  '/js/achievements.js',
+  '/js/changelog.js',
 ];
 
 self.addEventListener('install', e => {
@@ -101,6 +111,19 @@ self.addEventListener('fetch', e => {
         }
         return res;
       }).catch(() => caches.match(e.request));
+    })
+  );
+});
+
+// ── Web Push notifications ────────────────────────────────────────────────
+self.addEventListener('push', e => {
+  let data = { title: 'NefroQuest', body: 'Você tem uma novidade!', url: '/', tag: 'nq-push',
+                icon: '/assets/images/favicon-192x192.png', badge: '/assets/images/favicon-32x32.png' };
+  try { if (e.data) Object.assign(data, e.data.json()); } catch {}
+  e.waitUntil(
+    self.registration.showNotification(data.title, {
+      body: data.body, icon: data.icon, badge: data.badge,
+      tag: data.tag, renotify: true, data: { url: data.url }
     })
   );
 });
