@@ -275,3 +275,4 @@
     window.adminAddWhitelist      = adminAddWhitelist;
     window.openAdminPanel         = openAdminPanel;
     window.adminJumpToBoss        = adminJumpToBoss;
+    window.loadAnalyticsData      = loadAnalyticsData;

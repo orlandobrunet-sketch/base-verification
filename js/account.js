@@ -184,3 +184,9 @@
       if (m) m.style.display = 'none';
     }
 
+    window.saveAccountData   = saveAccountData;
+    window.openAccountModal  = openAccountModal;
+    window.closeAccountModal = closeAccountModal;
+    window.openPlanModal     = openPlanModal;
+    window.closePlanModal    = closePlanModal;
+
