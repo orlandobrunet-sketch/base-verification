@@ -109,7 +109,7 @@
 
     /* MAIN LAYOUT */
     .app {
-      position: relative; z-index: 10;
+      position: relative; z-index: var(--z-app);
       max-width: 1460px; margin: 0 auto; padding: 8px;
       display: grid; grid-template-columns: 380px 1fr 80px; gap: 8px;
       align-content: start;
@@ -839,7 +839,7 @@
       grid-column: 3;
       grid-row: 2 / 3;
       align-self: start;
-      z-index: 10;
+      z-index: var(--z-app);
       display: flex;
       flex-direction: column;
       align-items: center;
