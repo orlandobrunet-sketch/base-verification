@@ -107,9 +107,9 @@
 
       // Muda cor da barra conforme HP diminui
       if (hpFill) {
-        if (hp > 60)      hpFill.style.background = 'linear-gradient(90deg,#4c1d95,#7c3aed,#a855f7,var(--purple))';
-        else if (hp > 30) hpFill.style.background = 'linear-gradient(90deg,#831843,#be185d,#ec4899)';
-        else              hpFill.style.background = 'linear-gradient(90deg,#7f1d1d,#dc2626,#f87171)';
+        hpFill.classList.toggle('boss-hp-fill--high', hp > 60);
+        hpFill.classList.toggle('boss-hp-fill--med',  hp > 30 && hp <= 60);
+        hpFill.classList.toggle('boss-hp-fill--low',  hp <= 30);
       }
 
       // ── Contador de questão ──
@@ -129,7 +129,7 @@
         elHint.textContent = hp <= 10
           ? 'VITÓRIA GARANTIDA COM RESPOSTA CORRETA'
           : 'ATIVADO APÓS SELECIONAR A RESPOSTA CORRETA';
-        elHint.style.color = hp <= 10 ? '#ffd700' : '';
+        elHint.classList.toggle('boss-hint--critical', hp <= 10);
       }
 
       // ── Medidor de estrelas (topo da página) ──
@@ -201,12 +201,13 @@
       if (meterResult) {
         if (progress >= 10) {
           meterResult.textContent = 'FINALIZADO';
-          meterResult.style.color = '#ffd700';
+          meterResult.classList.add('meter-result--active');
         } else if (hp <= 10) {
           meterResult.textContent = 'VITÓRIA GARANTIDA';
-          meterResult.style.color = '#ffd700';
+          meterResult.classList.add('meter-result--active');
         } else {
           meterResult.textContent = '';
+          meterResult.classList.remove('meter-result--active');
         }
       }
       const meterHint = document.getElementById('finalMeterHint');
