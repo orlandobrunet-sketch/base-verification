@@ -1,6 +1,23 @@
 // NefroQuest — Paywall, Pricing, Payment (Mercado Pago)
 // Plain script — shares global scope with game.js
 
+    // TWA (Trusted Web Activity) detection — Android app wrapper
+    // When running inside the Play Store APK, in-app purchases via Mercado Pago
+    // would violate Google Play Billing policy. Redirect users to the website instead.
+    const _isTWA = (function() {
+      try {
+        // Primary signal: document.referrer is set to the Android package URI by TWA
+        if (document.referrer && document.referrer.startsWith('android-app://')) return true;
+        // Secondary: Chrome on Android with TWA sets a display-mode of standalone
+        // and the user agent contains the package name passed via trusted origins
+        if (window.matchMedia('(display-mode: standalone)').matches &&
+            /Android/.test(navigator.userAgent) &&
+            document.referrer.startsWith('android-app://')) return true;
+      } catch(e) {}
+      return false;
+    })();
+    window._isTWA = _isTWA;
+
     // ============ PAYWALL ============
     function showPaywallModal() {
       let modal = document.getElementById('paywallModal');
@@ -110,7 +127,9 @@
                 <li>Novos conteúdos todo mês</li>
                 <li>Apoia o desenvolvimento da ferramenta</li>
               </ul>
-              <button class="pricing-choose-btn btn-monthly" data-action="pricingChoose" data-arg="monthly">${isPt ? 'Assinar Agora' : 'Subscribe Now'}</button>
+              ${_isTWA
+                ? `<div class="pricing-twa-notice">${isPt ? '🌐 Para assinar, acesse <strong>nefroquest.com</strong> no seu navegador.' : '🌐 To subscribe, visit <strong>nefroquest.com</strong> in your browser.'}</div>`
+                : `<button class="pricing-choose-btn btn-monthly" data-action="pricingChoose" data-arg="monthly">${isPt ? 'Assinar Agora' : 'Subscribe Now'}</button>`}
             </div>
             <div class="pricing-card">
               <div class="pricing-icon">👑</div>
@@ -126,7 +145,9 @@
                 <li>Maior contribuição ao projeto</li>
                 <li>Formação de nefrologistas para sempre</li>
               </ul>
-              <button class="pricing-choose-btn btn-lifetime" data-action="pricingChoose" data-arg="lifetime">${isPt ? 'Compra Única' : 'Buy Once'}</button>
+              ${_isTWA
+                ? `<div class="pricing-twa-notice">${isPt ? '🌐 Para comprar, acesse <strong>nefroquest.com</strong> no seu navegador.' : '🌐 To purchase, visit <strong>nefroquest.com</strong> in your browser.'}</div>`
+                : `<button class="pricing-choose-btn btn-lifetime" data-action="pricingChoose" data-arg="lifetime">${isPt ? 'Compra Única' : 'Buy Once'}</button>`}
             </div>
           </div>
           <button class="pricing-login-link" data-action="_pricingToLogin">${isPt ? 'Já tenho conta — Entrar' : 'I have an account — Sign in'}</button>
