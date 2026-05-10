@@ -79,34 +79,6 @@
 
   <link rel="stylesheet" href="style.css">
   <script>
-    // Verificação de versão — sem valor hardcoded no HTML.
-    // Compara version.json do servidor com a última versão vista pelo browser (localStorage).
-    // Atualizar version.json é suficiente — index.html nunca precisa ser tocado.
-    (function() {
-      const STORAGE_KEY = 'nq_last_version';
-      const lastRedirect = sessionStorage.getItem('last_version_redirect');
-      const now = Date.now();
-      if (lastRedirect && (now - parseInt(lastRedirect)) < 30000) return;
-
-      fetch('version.json?t=' + now, { cache: 'no-store' })
-        .then(r => r.json())
-        .then(data => {
-          if (!data.version) return;
-          const lastKnown = localStorage.getItem(STORAGE_KEY);
-          if (!lastKnown) {
-            localStorage.setItem(STORAGE_KEY, data.version);
-            return;
-          }
-          if (data.version !== lastKnown) {
-            localStorage.setItem(STORAGE_KEY, data.version);
-            sessionStorage.setItem('last_version_redirect', now.toString());
-            window.location.replace('clear-cache.html');
-          }
-        })
-        .catch(() => {});
-    })();
-  </script>
-  <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' })
