@@ -1,0 +1,623 @@
+# NefroQuest — Roadmap
+
+## Aviso
+
+Este documento orienta a direção do produto. Nenhum item aqui autoriza execução automática.
+Toda tarefa deve ser solicitada explicitamente pelo usuário.
+
+---
+
+## Bugs Ativos
+
+| # | Bug | Arquivo | Status |
+|---|-----|---------|--------|
+| B1 | Fase Final (admin): tela de perguntas não muda ao ativar | `js/game.js:adminJumpToBoss` | **Corrigido** |
+| B2 | Oráculo: pergunta cortada na exibição do contexto | `js/study-mode.js:1248` | **Corrigido** |
+
+---
+
+## Alta Prioridade — Segurança
+
+| # | Tarefa | Detalhe |
+|---|--------|---------|
+| S1 | Chave Web3Forms proxy | Já em edge function (`send-flag`, `send-contact`) — **feito** |
+| S2 | JWT nas edge functions | `ai-mentor` e `ai-diagnosis` já verificam JWT; `send-flag`/`send-contact` são públicas por design |
+| S3 | Content Security Policy (CSP) | **Feito** — `media-src`, `worker-src` adicionados; `api.web3forms.com` removido |
+
+---
+
+## Alta Prioridade — Performance
+
+| # | Tarefa | Detalhe |
+|---|--------|---------|
+| P1 | `topics.js` lazy load | **Feito** (v9.22) |
+| P2 | SDK Supabase com `defer` | **Feito** — SDK já estava no fim do `<body>`, não bloqueia renderização |
+| P3 | Fontes: `font-display: swap` | **Feito** — `display=swap` no URL Google Fonts + `media=print/onload` não-blocking |
+| P4 | Imagens: `loading="lazy"` | **Feito** — já presente em todas as `<img>` |
+
+---
+
+## Média Prioridade — PWA
+
+| # | Tarefa | Detalhe |
+|---|--------|---------|
+| W1 | Screenshots no manifest | **Feito** — imagens e entradas no manifest já presentes |
+| W2 | iOS splash screens | **Feito** (v9.21) |
+| W3 | Push notifications server-side | **Feito** (v9.26) — migration 004 ✅, VAPID secrets ✅, `window._VAPID_PUBLIC_KEY` ✅. **Pendente**: fazer deploy da edge function `send-push` pelo Supabase Dashboard (não existe ainda — precisa ser criada/deployada manualmente via CLI ou upload) |
+
+---
+
+## Média Prioridade — CSS/UI
+
+| # | Tarefa | Detalhe |
+|---|--------|---------|
+| C1 | `!important` — reduzido | De 321 para ~99; restantes têm conflito legítimo com `.boss-battle-mode` — **concluído** |
+| C2 | z-index centralizado | `.app` e `.action-dock` migrados; valores locais (0-3, 10-11 em stacking contexts) deixados como estão — **concluído** |
+| C3 | `prefers-reduced-motion` | **Feito** — media query global no fim do `style.css` cobre todas as animações |
+| C4 | Estilos inline JS → classes CSS | **Feito** — flag-chip, flag-status, ref-copy-btn, boss-hp, meter-result, minigame-fb migrados para classes CSS |
+
+---
+
+## Baixa Prioridade — Arquitetura JS
+
+| # | Tarefa | Detalhe |
+|---|--------|---------|
+| A1 | Separar `game.js` | **Feito** — 6180 → 3094 linhas; 9 módulos extraídos |
+| A2 | Store central de estado | **Feito** — Proxy reativo com debounce de 500ms + auto-invalidação de statsCache |
+| A3 | `await`/`try-catch` em async | **Feito** — 7 funções de auth + authLogout + enableStudyReminders + floating promises |
+| A4 | Event delegation | **Feito** — todos `onclick=` inline migrados para dispatcher central |
+
+---
+
+## A Testar em Produção (pós-redeploy)
+
+- [ ] `ai-mentor` — Oráculo respondendo corretamente
+- [ ] `ai-diagnosis` — diagnóstico ao final de sessão
+- [ ] `send-flag` — reportar erro em questão (checa se WEB3FORMS_KEY chegou)
+- [ ] `send-contact` — formulário de contato
+- [ ] `ai_usage` — quota sendo contabilizada na tabela (SQL: `SELECT * FROM ai_usage ORDER BY date DESC LIMIT 10`)
+- [ ] Paywall premium — fluxo de compra Mercado Pago funcionando
+- [ ] GA4 — verificar dados chegando no painel após fix do Measurement ID (G-0TS171XV3K)
+
+---
+
+## Pendente — Infraestrutura e Negócio
+
+| # | Tarefa | Detalhe |
+|---|--------|---------|
+| I1 | Criar e-mail `contato@nefroquest.com` | Necessário para formulário de contato e identidade profissional |
+| I2 | Testar fluxo completo de pagamento | Mercado Pago: preference → checkout → webhook → `profiles.is_premium = true`; testar plano mensal e vitalício |
+| I3 | ~~Deploy edge function `send-push`~~ | **Feito** — deployada no Supabase Dashboard |
+
+---
+
+## Features Futuras
+
+### Biblioteca de Referências
+
+**Conceito:** Botão na página principal que abre um modal/página com **todas as referências bibliográficas** nas quais as questões do jogo são embasadas. Demonstra o rigor científico da ferramenta e agrega valor percebido ao usuário.
+
+| # | Tarefa | Detalhe | Status |
+|---|--------|---------|--------|
+| REF-1 | Botão "Biblioteca" na main page | Botão visível na tela principal (landing + game screen), acessível sem login | ⏳ Pendente |
+| REF-2 | Modal de referências | Lista completa em ordem alfabética (autor, título, revista, ano, DOI/link), visual similar ao painel de refs das perguntas | ⏳ Pendente |
+| REF-3 | Dados das referências | Consolidar `data/refs.js` + `data/articles.js` em lista única deduplicada, ordenada A–Z por primeiro autor | ⏳ Pendente |
+| REF-4 | Seção "Sugerir artigo" | Ao final da biblioteca: formulário onde o usuário envia (a) link/DOI do artigo, (b) texto livre explicando por que é relevante para o NefroQuest — enviado via `send-contact` (Web3Forms) ou endpoint dedicado | ⏳ Pendente |
+| REF-5 | Edge function `suggest-article` | Recebe `{ articleUrl, articleTitle?, reason, userEmail? }` e encaminha por e-mail via Web3Forms. Alternativa: reutilizar `send-contact` com campo `subject` padronizado | ⏳ Pendente |
+
+**Fluxo do "Sugerir artigo":**
+1. Usuário abre a Biblioteca de Referências
+2. Rola até o final → vê seção "Quer contribuir?"
+3. Preenche: **Link / DOI** (obrigatório) + **Por que é importante?** (textarea, mín. 20 chars)
+4. Opcional: e-mail para retorno
+5. Submissão → edge function → e-mail para `contato@nefroquest.com`
+6. Toast de confirmação: *"Sugestão enviada! Analisaremos e podemos criar novas questões baseadas nela."*
+
+**Dados disponíveis:**
+- `data/refs.js` — referências já extraídas das questões
+- `data/articles.js` — artigos curados separados
+- Cada ref tem: autores, título, revista, ano, URL/DOI (formato variável — normalizar na hora da exibição)
+
+---
+
+### Minigame Ácido-Base
+
+| # | Tarefa | Detalhe |
+|---|--------|---------|
+| M1 | Minigame Ácido-Base interativo | Modo de jogo educacional com narrativa que ensina diagnóstico e manejo de distúrbios ácido-base |
+
+**Conceito:**
+- **Narrativa:** o jogador é um "Alquimista Renal" chamado para equilibrar o pH do reino. Cada caso clínico é apresentado como uma missão — um personagem do reino com sintomas
+- **Mecânica:** o jogador recebe gasometria (pH, PaCO2, HCO3, BE) e precisa: (1) identificar o distúrbio primário, (2) calcular a compensação esperada usando as fórmulas, (3) escolher a conduta
+- **Fórmulas ensinadas interativamente:**
+  - Acidose metabólica: `PaCO2 esperado = 1.5 × HCO3 + 8 (±2)` (Winter)
+  - Alcalose metabólica: `PaCO2 esperado = 0.7 × HCO3 + 21 (±2)`
+  - Acidose respiratória aguda: `HCO3 sobe 1 para cada 10 de PaCO2`
+  - Acidose respiratória crônica: `HCO3 sobe 3.5 para cada 10 de PaCO2`
+  - Alcalose respiratória aguda: `HCO3 cai 2 para cada 10 de PaCO2`
+  - Alcalose respiratória crônica: `HCO3 cai 5 para cada 10 de PaCO2`
+  - Ânion gap: `AG = Na - (Cl + HCO3)` normal 8–12; com albumina: `AG corrigido = AG + 2.5 × (4 - albumina)`
+  - Delta-delta: `ΔAG/ΔHCO3` — distingue distúrbios mistos
+- **Progressão:** 5 casos de dificuldade crescente (simples → misto → triplo). A fórmula relevante aparece como "dica do grimório" antes de cada cálculo
+- **Integração:** acessível via "Modos de Jogo" no menu principal; salva progresso no `localStorage`; eventos GA4 `minigame_acid_base_started` e `minigame_acid_base_completed`
+- **Arquivo:** `js/minigame-acidbase.js` + seção dedicada no `index.html`
+
+**Plano pedagógico detalhado (aprovado):**
+- **"A Câmara do Equilíbrio"** — narrativa: Alquimista Renal recebe pacientes do reino com pH desregulado. Cada caso é um personagem com história para ancorar o diagnóstico.
+- **3 pontos de entrada:** Menu "Modos de Jogo" (sempre), desbloqueio narrativo ao nível 5 no jogo principal, conteúdo pós-vitória.
+- **Diagnóstico em 4 Atos** (sequência fixa, pedagogicamente intencional):
+  1. Distúrbio primário (pH + PaCO2/HCO3)
+  2. Compensação esperada — **cálculo ativo**: aluno insere o valor, sistema aceita ±2
+  3. Distúrbio adicional? (AG, delta-delta se aplicável)
+  4. Conduta clínica (múltipla escolha contextualizada)
+- **"Grimório"** — aluno escolhe ver ou não a fórmula antes de calcular. Sem punição, mas com registro ("Você usou o Grimório 2× neste caso").
+- **Feedback explicativo**: erro mostra o raciocínio completo com o cálculo correto.
+- **5 casos com personagens fixos:**
+
+  | Caso | Personagem | Distúrbio | Complexidade |
+  |------|-----------|-----------|--------------|
+  | 1 | Ferreiro Aldric | Acidose metabólica simples (Winter) | Introdução |
+  | 2 | Curandeira Mara | Alcalose metabólica (vômitos) | + AG normal |
+  | 3 | Guarda Theron | Acidose respiratória crônica (DPOC) | + compensação renal |
+  | 4 | Mercador Vance | Acidose met. AG alto + alcalose resp. | Misto + delta-delta |
+  | 5 | General Kael | Triplo distúrbio | Desafio máximo |
+
+- **Variantes por caso:** 2–3 sets de valores diferentes (mesma narrativa, gasometria diferente) para replay sem decorar.
+- **Recompensa:** ao completar todos os 5 casos → +500 ouro + conquista "Alquimista Renal" no jogo principal.
+- **Sem cronômetro** — ácido-base exige raciocínio, não velocidade.
+- **100% offline** — sem Supabase, funciona antes de login.
+
+---
+
+### Expansão Internacional (Longo Prazo)
+
+**Objetivo:** Traduzir o NefroQuest para inglês e publicar nas lojas globais — Google Play (Android) e Apple App Store (iOS).
+
+#### Fase A — Internacionalização (i18n)
+
+| # | Tarefa | Detalhe | Status |
+|---|--------|---------|--------|
+| EN-1 | Inventário de strings | Mapear todas as strings de UI em `index.html`, `js/*.js`, modais e toasts — estimar volume (~500–800 strings) | ⏳ Pendente |
+| EN-2 | Sistema i18n | Criar `js/i18n.js` com dicionário `{ pt: {}, en: {} }` + função `t('key')` + detecção de idioma por `navigator.language` com override manual | ⏳ Pendente |
+| EN-3 | Tradução do banco de questões | `data/topics.js` (~1.4 MB, ~1.000+ questões) traduzidas para inglês — trabalho de conteúdo médico, requer revisão especializada | ⏳ Pendente |
+| EN-4 | Tradução de referências e artigos | `data/refs.js`, `data/articles.js` — geralmente já em inglês, verificar | ⏳ Pendente |
+| EN-5 | Adaptar edge functions | Respostas do Mentor IA e Diagnóstico em inglês conforme idioma do usuário | ⏳ Pendente |
+| EN-6 | Testes QA multilíngue | Verificar layout com strings longas em inglês (botões, cards, HUD) | ⏳ Pendente |
+
+#### Fase B — Google Play (Android) — versão EN
+
+| # | Tarefa | Detalhe | Status |
+|---|--------|---------|--------|
+| GP-1 | Listing em inglês | Título, descrição curta (80 chars), descrição completa (4.000 chars) em inglês | ⏳ Pendente |
+| GP-2 | Screenshots EN | Capturas com UI em inglês — mesmas especificações (1080×1920, 9:16) | ⏳ Pendente |
+| GP-3 | Publicar versão EN no Play Store | Mesma conta ($25 já paga), novo listing ou atualização com suporte a idioma | ⏳ Pendente |
+
+#### Fase C — Apple App Store (iOS)
+
+| # | Tarefa | Detalhe | Status |
+|---|--------|---------|--------|
+| iOS-1 | Apple Developer Program | Conta em developer.apple.com — taxa anual de $99 USD | ⏳ Pendente |
+| iOS-2 | Estratégia de publicação | **Opção A (recomendada):** PWA via WKWebView wrapper (ex: PWABuilder iOS) — sem Swift nativo. **Opção B:** app nativo React Native/Flutter — maior custo. | ⏳ Pendente |
+| iOS-3 | Política de monetização iOS | Apple cobra 15–30% de comissão em compras in-app. Mesma estratégia do Android: desabilitar compra dentro do app, redirecionar para nefroquest.com | ⏳ Pendente |
+| iOS-4 | Assets iOS | Ícones (1024×1024 sem transparência), screenshots por device (iPhone 6.9", 6.3", iPad), preview videos opcionais | ⏳ Pendente |
+| iOS-5 | App Store Connect | Criar listing, preencher metadados, declarar privacidade (App Privacy labels), submeter para revisão (~24–72h) | ⏳ Pendente |
+| iOS-6 | `privacy-policy.html` já pronto | ✅ Disponível em nefroquest.com/privacy-policy.html — reutilizar | ✅ Feito |
+
+**Ordem recomendada:**
+1. Finalizar redesign + dashboard
+2. Biblioteca de Referências (REF-1 a REF-5)
+3. Internacionalização PT→EN (EN-1 a EN-6)
+4. Google Play versão EN (GP-1 a GP-3)
+5. Apple App Store (iOS-1 a iOS-6)
+
+> ⚠️ **Decisão de conteúdo crítica:** A tradução das ~1.000 questões de nefrologia para inglês (EN-3) é o maior gargalo. Requer revisão médica por nefrologista fluente em inglês para garantir terminologia clínica correta (KDIGO, DOQI em inglês). Estimar 2–4 semanas de trabalho de conteúdo.
+
+---
+
+## Play Store — Checklist
+
+### Estratégia técnica
+O NefroQuest é publicado como **TWA (Trusted Web Activity)** — o APK Android é gerado automaticamente a partir da PWA via PWABuilder, sem necessidade de código nativo. A URL continua sendo `https://nefroquest.com`.
+
+> ⚠️ **Decisão crítica de negócio — Monetização no Android:**
+> O Google Play Policy exige uso do **Google Play Billing** para venda de conteúdo digital dentro de apps Android (com comissão de 15–30%). Opções:
+> 1. **Recomendado:** Desabilitar compra premium dentro do app Android — mostrar mensagem "Adquira o Premium em nefroquest.com". Compra ocorre no navegador (Mercado Pago), sincroniza via Supabase Auth. Sem comissão para o Google.
+> 2. Implementar Google Play Billing (15–30% de comissão + trabalho de integração).
+
+### PS-1: Técnico (código) — PRIORITÁRIO
+
+| # | Tarefa | Detalhe | Responsável |
+|---|--------|---------|-------------|
+| PS-1a | `privacy-policy.html` standalone | ✅ **Feito** — `/privacy-policy.html` disponível em nefroquest.com/privacy-policy.html | Código |
+| PS-1b | `.well-known/assetlinks.json` | Pendente — gerar após criar APK no PWABuilder e obter SHA-256 do Play Console | Código + Play Console |
+| PS-1c | Desabilitar compra no Android TWA | ✅ **Feito** — `_isTWA` detecta `android-app://` referrer; botões Mensal/Vitalício substituídos por mensagem de redirecionamento | Código |
+| PS-1d | `manifest.json` — `id` canônico | ✅ **Feito** — `"id": "/"` adicionado | Código |
+
+### PS-2: Assets visuais — PRIORITÁRIO
+
+| # | Asset | Especificação | Status |
+|---|-------|---------------|--------|
+| PS-2a | Ícone hi-res | 512×512 PNG sem transparência, sem arredondamento | ✅ Existe (`favicon-512x512.png`) — verificar fundo |
+| PS-2b | Feature graphic | 1024×500 PNG/JPG — banner do Play Store | ⏳ Pendente — design |
+| PS-2c | Screenshots Phone | Mín. 2, recomendado 4–8. Formato 1080×1920 ou 9:16 | ⏳ Pendente — design (existentes são 390×844) |
+| PS-2d | Screenshots Tablet | Opcional mas recomendado | ⏳ Pendente — design |
+| PS-2e | Ícone adaptativo | `foreground` + `background` layers para Android | ⏳ Pendente (usar 512x512 existente como base) |
+
+### PS-3: Administrativo (manual — Google Play Console)
+
+| # | Tarefa | Detalhe |
+|---|--------|---------|
+| PS-3a | Conta Google Play Developer | Cadastro único em play.google.com/console — taxa de $25 USD |
+| PS-3b | Gerar APK TWA | pwabuilder.com → inserir `https://nefroquest.com` → Download Android Package |
+| PS-3c | Assinar APK | Play Console gera e gerencia chave de assinatura automaticamente ("Play App Signing") |
+| PS-3d | Classificação etária (IARC) | Questionário no Play Console — responder: educação médica, sem violência/conteúdo adulto → classificação "Livre" ou "10+" |
+| PS-3e | Seção Data Safety | Declarar: coleta e-mail (obrigatório), dados de uso (analytics), dados de pagamento (Mercado Pago). Sem compartilhamento para publicidade |
+| PS-3f | Texto da listing (PT-BR) | Título (50 chars), descrição curta (80 chars), descrição completa (4.000 chars) |
+| PS-3g | Política de privacidade URL | URL pública — usar `https://nefroquest.com/privacy-policy.html` (PS-1a) |
+| PS-3h | Categoria | "Educação" — subcategoria Saúde/Medicina |
+
+### PS-4: Listing text sugerido
+
+```
+Título: NefroQuest: Ascension
+
+Descrição curta (80 chars):
+RPG educacional de Nefrologia para médicos e residentes. 1.000+ questões.
+
+Descrição completa:
+Domine a Nefrologia através de um RPG épico de perguntas e respostas.
+
+Escolha seu personagem — Guerreiro Glomerular, Maga Metabólica ou Clérigo Renal — e enfrente mais de 1.000 questões comentadas de nefrologia baseadas nas melhores evidências (KDIGO, DOQI, SBN, principais RCTs).
+
+⚔️ JORNADA RPG GAMIFICADA
+Ganhe XP, colete equipamentos, suba de nível e derrote o Arqui-Nefromante respondendo questões clínicas.
+
+🎯 ESTUDE SEU PONTO FRACO
+O sistema identifica suas lacunas por eixo temático: Glomerulopatias, LRA, ERC, Diálise, Transplante, Distúrbios Ácido-Base, Eletrólitos e muito mais.
+
+📋 BASEADO EM EVIDÊNCIAS
+Explicações detalhadas com referências bibliográficas atualizadas.
+
+✨ MENTOR IA PERSONALIZADO
+Errou uma questão? O Mentor IA explica o raciocínio clínico e responde suas dúvidas em tempo real, com tecnologia Claude (Anthropic).
+
+📊 MODOS DE JOGO
+- Jornada RPG (modo principal)
+- Modo de Estudo por eixo temático
+- Prova Simulada cronometrada
+- Julgamento Rápido (verdadeiro ou falso)
+
+🏆 CONQUISTAS E RANKING
+Compare seu desempenho com outros jogadores no ranking global.
+
+Ideal para estudantes de medicina, residentes de clínica médica e nefrologia.
+```
+
+### PS-5: Ordem recomendada de execução
+
+1. ~~**PS-1a** — criar `privacy-policy.html`~~ ✅ Feito
+2. ~~**PS-1d** — adicionar `id` ao manifest.json~~ ✅ Feito
+3. ~~**PS-1c** — detectar TWA e esconder compra in-app~~ ✅ Feito
+4. **PS-2b/2c** — criar feature graphic e screenshots (design — você)
+5. **PS-3a** — abrir conta Google Play ($25) — você
+6. **PS-3b** — gerar APK no PWABuilder — você
+7. **PS-1b** — inserir assetlinks.json com SHA do APK gerado — código após APK
+8. **PS-3c até PS-3h** — preencher Play Console e submeter — você
+
+### PS-6: Cronograma estimado
+
+| Etapa | Tempo estimado |
+|-------|---------------|
+| Código (PS-1a,b,c,d) | 2–3 horas |
+| Design assets (PS-2b,c) | 2–4 horas (ou contratar designer) |
+| Play Console + submissão (PS-3) | 2–3 horas |
+| Revisão Google (primeira vez) | 3–7 dias úteis |
+| **Total até publicação** | **~1–2 semanas** |
+
+---
+
+## Redesign Visual — Fase 0 a 7
+
+### Contexto
+
+Redesign completo do visual do NefroQuest baseado em mockups de alta fidelidade com estética RPG épico medieval.
+Abordagem: **CSS-first** (sem dependência de imagens externas) com substituição progressiva por assets quando fornecidos.
+**Regra de ouro: nenhuma tela vai ao ar sem aprovação explícita do usuário.**
+
+### Assets de referência recebidos
+
+| Arquivo | Conteúdo |
+|---------|----------|
+| UI Kit 1 (roxo/escuro) | Botões, barras de progresso, ícones HUD, level badge, answer options A–E |
+| UI Kit 2 (dourado/marrom) | Menu buttons, question cards, character portrait frame, item slots, tabs |
+| Mockup Landing | Tela de login com colunas + feature list footer |
+| Mockup Game Screen | Layout 3 colunas: character panel / questão / sidebar |
+| Mockup Difficulty | Modal 2×2 com 4 dificuldades |
+| Mockup Modos de Jogo | Painel com lista de modos (Estudo, Ponto Fraco, Simulada, Julgamento) |
+| Campanha publicitária | Plano de ações com Posts A–G + Reels para Instagram |
+
+### Paleta definitiva (extraída dos mockups)
+
+```
+--bg-deep:     #060810   (fundo mais escuro)
+--bg-surface:  #0d1225   (superfícies/cards)
+--bg-panel:    #0f1830   (painéis laterais)
+--gold-bright: #f0c040   (títulos, ornamentos)
+--gold-dim:    #a07820   (bordas, detalhes)
+--purple-vivid:#7c3aed   (acentos, streak, XP bar)
+--purple-dim:  #3d1d6e   (backgrounds de acentos)
+--blue-crystal:#4a9eff   (diamantes, highlights)
+--red-hp:      #cc2222   (vida, erros)
+--parchment:   #e8d9a0   (texto em cards bege/pergaminho)
+--txt-primary: #d0e4f8
+--txt-secondary:#7090b0
+```
+
+### Tipografia definitiva
+
+- **Títulos grandes:** Cinzel Decorative — todas maiúsculas, dourado
+- **Títulos de modal:** Cinzel — capitalizado, dourado
+- **Corpo de jogo:** Philosopher — texto de questões, descrições
+- **UI / Labels:** Cinzel — caps, tamanho pequeno, espaçado
+- **Números / HUD:** Cinzel Bold — pontos, nível, contadores
+
+### Protocolo de aprovação (por tela)
+
+```
+1. Claude implementa em branch separada
+2. Claude compartilha link do PR
+3. Usuário abre no browser e revisa
+4. Usuário aprova (merge) OU pede ajustes
+5. Após merge confirmado → próxima tela
+```
+
+---
+
+### FASE 0 — Fundação CSS (pré-requisito de tudo)
+
+> Não toca em HTML — apenas refatora variáveis e classes base em style.css
+
+| # | Tarefa | Detalhe | Status |
+|---|--------|---------|--------|
+| F0-1 | Paleta CSS atualizada | Substituir variáveis atuais pela paleta definitiva acima | ⏳ Aguardando OK |
+| F0-2 | Sistema de bordas ornamentais | Classes `.frame-gold`, `.frame-parchment`, `.frame-dark` via box-shadow + border-image | ⏳ |
+| F0-3 | Botão primário redesenhado | `.btn-rpg` com gradiente dourado, borda ornamental, hover com glow | ⏳ |
+| F0-4 | Fundo global | Gradiente radial profundo (#060810 → #0d1225) + padrão sutil de partículas CSS | ⏳ |
+| F0-5 | Scrollbar temática | Scrollbar fina dourada nos painéis | ⏳ |
+
+---
+
+### FASE 1 — Telas de entrada
+
+#### T1 — Landing / Login
+**Referência:** Mockup "landing screen" (colunas com login + feature list)
+**Elementos a redesenhar:**
+- Container central com moldura dourada ornamental
+- Logo com tratamento Cinzel Decorative
+- Botão Google com borda bege/pergaminho
+- Botão Email com fundo azul escuro
+- Botão "Experimentar sem conta" com fundo translúcido
+- Feature list no footer com ícones dos 6 diferenciais
+- "✦ Reino dos Néfrons ✦" como eyebrow text
+
+| Status | → | ⏳ Aguardando início |
+|--------|---|---------------------|
+| Aprovação necessária | → | Sim — screenshot antes do merge |
+
+#### T2 — Seleção de classe / Welcome screen
+**Referência:** Mockup de seleção com 3 personagens lado a lado
+**Elementos a redesenhar:**
+- Cards de personagem com moldura azul-dourada
+- Nome da classe em Cinzel
+- Stats/bônus da classe
+- Botão de seleção ativo/inativo
+- Animação de hover (glow roxo na borda)
+
+| Status | → | ⏳ Após T1 aprovado |
+|--------|---|---------------------|
+
+#### T3 — Seleção de dificuldade
+**Referência:** Mockup "Escolha a Dificuldade" (grid 2×2)
+**Elementos a redesenhar:**
+- Modal com moldura dourada ornamental grande
+- 4 cards com ícones e barras de corações
+- Card selecionado com borda dourada brilhante
+- Botão "Confirmar Dificuldade" teal/verde escuro
+- Tag "BADGE EXCLUSIVO" em Hardcore (vermelho escuro)
+
+| Status | → | ⏳ Após T2 aprovado |
+|--------|---|---------------------|
+
+#### T_MODOS — Modos de Jogo (menu lateral)
+**Referência:** Mockup "Modos de Jogo" com lista de 4 modos
+**Elementos a redesenhar:**
+- Header com título "⚔ Modos de Jogo" em frame dourado
+- 4 itens de menu com ícone octagonal, título e descrição
+- "Ponto Fraco" com fundo vermelho escuro (destaque especial)
+- Close button circular dourado
+
+| Status | → | ⏳ Após T3 aprovado |
+|--------|---|---------------------|
+
+---
+
+### FASE 2 — Game Screen
+
+#### T4 — Game screen principal (pergunta ativa)
+**Referência:** Mockup full 3 colunas
+
+*Coluna esquerda — Character Panel:*
+- Portrait com moldura ornamental arredondada
+- Nome e subtítulo do personagem
+- XP bar roxa com valor
+- "Capítulo da Narrativa" em card pergaminho
+- Slots de equipamento (3 quadrados com +)
+- Stats: Nível, Pontos, Vidas (corações), Recorde, Ouro, Streak
+
+*Centro — Questão:*
+- Header com timer + "Questão X de Y" + botão ?
+- Card pergaminho com texto da questão + watermark rim
+- 4–5 answer buttons (A–D/E) com letra em círculo dourado
+- "Escolha a melhor alternativa clínica" em itálico
+- Card "Evidência Científica" com badge GUIDELINE, ano, fonte
+
+*Coluna direita — Action Dock:*
+- 5 botões verticais: Forja / Baú / Ranking / Stats / Conquistas
+- Cada botão com ícone + label + moldura individual
+
+| Status | → | ⏳ Após Fase 1 aprovada |
+|--------|---|--------------------------|
+
+#### T5 — Game screen (resposta correta)
+- Answer button selecionado: fundo verde + glow verde
+- Ícone ✓ no círculo da letra
+- Card de evidência expandido com texto completo
+- "PRÓXIMA" button teal brilhante
+
+| Status | → | ⏳ Junto com T4 |
+|--------|---|-----------------|
+
+#### T6 — Game screen (resposta errada)
+- Answer button errado: fundo vermelho escuro
+- Answer button correto: destacado em verde
+- Opção de abrir Mentor IA
+- Animação de shake no card
+
+| Status | → | ⏳ Junto com T4 |
+|--------|---|-----------------|
+
+---
+
+### FASE 3 — Modais principais
+
+#### M5 — Mentor IA (Oráculo dos Néfrons)
+- Header com ícone de cérebro roxo + "Oráculo dos Néfrons"
+- Área de chat com bolhas de resposta
+- Input de pergunta com borda dourada
+- Indicador de quota (X de 5 consultas)
+
+| Status | → | ⏳ Após T4 aprovado |
+|--------|---|---------------------|
+
+#### M1 — Baú / Chest
+- Animação de abertura (CSS)
+- Item revelado com moldura de raridade
+- Botão "Equipar" ou "Vender"
+
+| Status | → | ⏳ |
+
+#### M2 — Forja
+- Grid de itens disponíveis
+- Preview de item selecionado
+- Custo em ouro + botão craftar
+
+| Status | → | ⏳ |
+
+#### M4 — Conquista desbloqueada
+- Popup central com badge em destaque
+- Nome e descrição da conquista
+- Animação de brilho
+
+| Status | → | ⏳ |
+
+---
+
+### FASE 4 — Telas de conteúdo
+
+| # | Tela | Prioridade | Status |
+|---|------|-----------|--------|
+| T10 | Leaderboard | Alta | ⏳ |
+| T11 | Modo de Estudo (seletor de eixos) | Alta | ⏳ |
+| T12 | Simulado / Prova cronometrada | Média | ⏳ |
+| T13 | Julgamento Rápido (V ou F) | Média | ⏳ |
+| T14 | Stats / Estatísticas | Média | ⏳ |
+| T15 | Conquistas (grid) | Média | ⏳ |
+
+---
+
+### FASE 5 — Modais de sistema
+
+| # | Modal | Status |
+|---|-------|--------|
+| M7 | Auth (login/cadastro) | ⏳ |
+| M8 | Pricing / Paywall (planos) | ⏳ |
+| M9 | Profile popup | ⏳ |
+| M10 | Conta / Account | ⏳ |
+| M11 | Reportar questão | ⏳ |
+| M12 | Contato | ⏳ |
+| M13 | Política de Privacidade | ⏳ |
+| M14 | Changelog | ⏳ |
+| M15 | Notificações | ⏳ |
+| M16 | Toast notifications | ⏳ |
+
+---
+
+### FASE 6 — Boss e desfechos
+
+| # | Tela | Status |
+|---|------|--------|
+| T7 | Boss Battle (Arqui-Nefromante) | ⏳ |
+| T8 | Game Over | ⏳ |
+| T9 | Victory (100 acertos) | ⏳ |
+
+---
+
+### FASE 7 — Mobile
+
+| # | Tela | Status |
+|---|------|--------|
+| T16 | Game screen mobile (status bar + dock bottom) | ⏳ |
+| T17 | Ajustes gerais de responsividade | ⏳ |
+
+### Contagem total
+
+| Grupo | Qtd |
+|-------|-----|
+| Fase 0 — Fundação CSS | 5 |
+| Fase 1 — Entrada | 4 |
+| Fase 2 — Game screen | 3 |
+| Fase 3 — Modais principais | 4 |
+| Fase 4 — Conteúdo | 6 |
+| Fase 5 — Modais sistema | 10 |
+| Fase 6 — Boss/desfechos | 3 |
+| Fase 7 — Mobile | 2 |
+| **TOTAL** | **37 itens** |
+
+---
+
+## Histórico de Concluídas
+
+- [x] Migration 001 — colunas de pagamento em `profiles`
+- [x] Migration 002 — RLS + user_id no leaderboard
+- [x] Migration 003 — tabela `ai_usage` para quota de IA
+- [x] Redeploy das edge functions: `ai-mentor`, `ai-diagnosis`, `send-flag`, `send-contact`
+- [x] Variável `WEB3FORMS_KEY` adicionada nas funções `send-flag` e `send-contact`
+- [x] Segurança: cotas de IA movidas para edge function com banco (server-side)
+- [x] Segurança: `isPremium()` exige `authUser` autenticado — nunca concede via localStorage
+- [x] Segurança: z-index padronizado via variáveis CSS no `:root`
+- [x] Performance: `topics.js` (~1,4 MB) convertido para lazy loading (dynamic import)
+- [x] PWA: iOS splash screens adicionados para múltiplos tamanhos de iPhone/iPad
+- [x] UI: banner do Oráculo + redesign do card de study mode
+- [x] Fix: `adminJumpToBoss()` — aguarda topics.js + chama shuffleQueue/renderHUD/updateBossUI
+- [x] Fix: Oráculo — pergunta truncada em 120 chars (removido `_firstSentence`, exibe texto completo)
+- [x] Segurança: CSP completada — `media-src 'self'`, `worker-src 'self'` adicionados; `api.web3forms.com` removido de connect-src
+- [x] Performance: Google Fonts não-render-blocking (`media="print"` + `onload` + `<noscript>` fallback)
+- [x] Performance: SDK Supabase já estava no fim do `<body>` — não bloqueia renderização
+- [x] Performance: `loading="lazy"` — já presente em todas as imagens
+- [x] Performance: `font-display: swap` — já configurado via `display=swap` no URL do Google Fonts
+- [x] C1: `!important` — 321 ocorrências reduzidas para ~99 (removidos 222 do bloco `.arqui-nefromante-final`)
+- [x] C2: z-index centralizado — `.app` e `.action-dock` migrados para `var(--z-app)`
+- [x] A4: Event delegation — todos os `onclick=` inline migrados para dispatcher central
+- [x] A1: game.js modularizado — 6180 → 3094 linhas; 9 módulos extraídos
+- [x] A2: Store central de estado — `state` wrapped em Proxy com debounce de 500ms
+- [x] W1: Screenshots no manifest — `screenshot-mobile.png` e `screenshot-desktop.png` presentes
+- [x] W3: Push notifications server-side — migration 004, edge function `send-push` deployada
+- [x] Versão: **9.28**
+- [x] Play Store PS-1a: `privacy-policy.html` standalone criada
+- [x] Play Store PS-1c: TWA detection — botões de compra substituídos no APK Android
+- [x] Play Store PS-1d: `manifest.json` com campo `"id": "/"`
+- [x] A11y: `type="button"` em todos os 89 botões sem tipo
+- [x] A11y: `aria-live="polite"` em `#authMsg` para leitores de tela
+- [x] A11y: Touch targets — `min-height: 44px` em `.profile-popup-item` e `.profile-popup-logout`
+- [x] Performance: `width`/`height` em 11 imagens estáticas (previne CLS)
+- [x] Architecture: Profile popup deduplicado — 4 cópias idênticas → 1 `<template>` + injeção JS
