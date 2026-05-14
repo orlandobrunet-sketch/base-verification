@@ -5245,3 +5245,374 @@
 /* ═══════════════════════════════════════════════════════════════════
    FIM FASE 0
    ═══════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════════
+   FASE 1 — Telas de Entrada
+   T1: Landing/Login · T2: Welcome+CharSelect · T3: Dificuldade · T_MODOS
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── T1: Landing / Login ─────────────────────────────────────────── */
+
+/* Card principal: rd-frame-bright palette */
+.landing-content {
+  background: linear-gradient(160deg, var(--rd-bg-surface) 0%, #0a0f22 100%);
+  border-color: var(--rd-gold-bright);
+  box-shadow:
+    0 0 0 1px rgba(240,192,64,0.15) inset,
+    0 0 40px rgba(240,192,64,0.12),
+    0 22px 60px rgba(0,0,0,0.8);
+}
+.landing-content::before {
+  border-color: rgba(240,192,64,0.28);
+}
+
+.landing-ornament {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  color: var(--rd-gold-mid);
+  letter-spacing: 4px;
+  opacity: 1;
+}
+.landing-title {
+  color: var(--rd-gold-bright);
+  text-shadow: 0 0 32px rgba(240,192,64,0.28), 0 2px 4px rgba(0,0,0,0.8);
+}
+.landing-sub {
+  color: rgba(240,192,64,0.48);
+  letter-spacing: 8px;
+}
+.landing-tagline {
+  color: var(--rd-txt-dim);
+  font-family: 'Philosopher', serif;
+  font-size: 0.82rem;
+}
+.landing-divider {
+  background: linear-gradient(90deg, transparent, var(--rd-gold-dim), transparent);
+}
+
+/* Google button: parchment style */
+.landing-btn-google {
+  background: linear-gradient(135deg, #f5f0e0, #ede0c0);
+  color: #1a1208;
+  border: none;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.45);
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.3px;
+}
+.landing-btn-google:hover {
+  background: linear-gradient(135deg, #f8f3e8, #f0e8cc);
+  filter: none;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.55);
+}
+
+/* Email button: blue crystal style */
+.landing-btn-email {
+  background: rgba(20,40,90,0.3);
+  color: var(--rd-blue-crystal);
+  border: 2px solid rgba(74,158,255,0.3);
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.3px;
+}
+.landing-btn-email:hover {
+  background: rgba(20,40,90,0.5);
+  border-color: var(--rd-blue-crystal);
+  color: #90ccff;
+  transform: translateY(-1px);
+}
+
+/* Guest button: ghost style */
+.landing-btn-guest {
+  display: block;
+  width: 100%;
+  padding: 10px 20px;
+  margin-top: 2px;
+  background: rgba(255,255,255,0.04);
+  color: var(--rd-txt-dim);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  font-family: 'Philosopher', serif;
+  text-align: center;
+}
+.landing-btn-guest:hover {
+  background: rgba(255,255,255,0.07);
+  color: var(--rd-txt-primary);
+  border-color: rgba(255,255,255,0.18);
+}
+
+/* ── T2: Welcome Screen ──────────────────────────────────────────── */
+
+/* Welcome content: subtle card backdrop */
+.welcome-content {
+  background: rgba(6,8,16,0.65);
+  border: 1px solid rgba(240,192,64,0.07);
+  border-radius: 20px;
+  padding: 28px 24px 24px;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 48px rgba(0,0,0,0.7);
+}
+
+/* Ornament: rd gold */
+.welcome-ornament span {
+  color: var(--rd-gold-mid);
+  opacity: 0.9;
+}
+.welcome-ornament::before,
+.welcome-ornament::after {
+  background: linear-gradient(90deg, transparent, rgba(212,168,32,0.5), transparent);
+}
+
+/* Title */
+.welcome-content h1 { color: var(--rd-gold-bright); }
+.welcome-sub { color: rgba(240,192,64,0.48); letter-spacing: 8px; }
+
+/* Stats */
+.welcome-stat .ws-val {
+  color: var(--rd-gold-bright);
+  font-family: 'Cinzel', serif;
+}
+.welcome-stat .ws-lbl {
+  color: var(--rd-txt-dim);
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 1.5px;
+}
+
+/* Nova Jornada button: gold style */
+#welcomeScreen .btn.gold {
+  background: linear-gradient(135deg, #a07010 0%, #d4a820 40%, #f0c040 60%, #a07010 100%);
+  color: #0a0800;
+  border: none;
+  box-shadow: 0 2px 12px rgba(240,192,64,0.3), 0 1px 0 rgba(255,255,255,0.15) inset;
+  font-family: 'Cinzel', serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: filter 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+#welcomeScreen .btn.gold:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 4px 20px rgba(240,192,64,0.45);
+  transform: translateY(-1px);
+}
+
+/* Secondary buttons */
+#welcomeScreen .btn.sec {
+  background: rgba(240,192,64,0.04);
+  border: 1px solid rgba(138,96,16,0.3);
+  color: var(--rd-txt-primary);
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.5px;
+  transition: background 0.2s, border-color 0.2s, transform 0.1s;
+}
+#welcomeScreen .btn.sec:hover {
+  background: rgba(240,192,64,0.08);
+  border-color: var(--rd-gold-dim);
+  transform: translateY(-1px);
+}
+
+/* Ponto Fraco: red accent preserved */
+#weakPointBtn {
+  background: rgba(204,34,34,0.1) !important;
+  border-color: rgba(204,34,34,0.35) !important;
+  color: #ff8080 !important;
+}
+#weakPointBtn:hover {
+  background: rgba(204,34,34,0.18) !important;
+  border-color: var(--rd-red-hp) !important;
+}
+
+/* Continue button */
+#welcomeScreen .continue-btn {
+  background: linear-gradient(135deg, #1a3a6a 0%, #2a5fa0 100%);
+  color: #90c8ff;
+  border: 1px solid rgba(74,158,255,0.35);
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  transition: filter 0.15s, transform 0.15s;
+}
+#welcomeScreen .continue-btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+/* ── T2: Seleção de Classe (charSelectModal) ────────────────────── */
+
+/* Char cards: blue-gold style with purple glow on hover */
+.char-card {
+  background: linear-gradient(160deg, var(--rd-bg-surface) 0%, var(--rd-bg-panel) 100%);
+  border-color: rgba(74,158,255,0.2);
+}
+.char-card:hover {
+  border-color: var(--rd-gold-mid);
+  transform: translateY(-3px);
+  box-shadow: 0 0 28px var(--rd-purple-glow);
+}
+.char-card img {
+  border-color: rgba(30,58,110,0.6);
+}
+.char-card:hover img {
+  border-color: var(--rd-gold-dim);
+  box-shadow: 0 0 14px var(--rd-gold-glow);
+}
+.char-card h3 {
+  color: var(--rd-gold-bright);
+  font-family: 'Cinzel', serif;
+}
+.char-subtitle {
+  color: var(--rd-txt-dim);
+  font-family: 'Philosopher', serif;
+}
+.char-desc {
+  color: var(--rd-txt-dim);
+  font-family: 'Philosopher', serif;
+}
+
+/* ── T3: Seleção de Dificuldade ─────────────────────────────────── */
+
+.diff-selector-overlay {
+  background: rgba(0,0,0,0.86);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.diff-selector-card {
+  background: linear-gradient(160deg, var(--rd-bg-surface) 0%, var(--rd-bg-panel) 100%);
+  border-color: var(--rd-gold-bright);
+  box-shadow:
+    0 0 0 1px rgba(240,192,64,0.1) inset,
+    0 0 60px rgba(240,192,64,0.14),
+    0 20px 60px rgba(0,0,0,0.75);
+}
+.diff-selector-title {
+  color: var(--rd-gold-bright);
+  font-size: 1.05rem;
+  letter-spacing: 2px;
+  text-shadow: 0 0 20px rgba(240,192,64,0.3);
+}
+.diff-card {
+  background: rgba(240,192,64,0.03);
+  border-color: rgba(138,96,16,0.25);
+}
+.diff-card:hover {
+  background: rgba(240,192,64,0.07);
+  border-color: var(--rd-gold-mid);
+}
+.diff-card.selected {
+  border-color: var(--rd-gold-bright);
+  background: rgba(240,192,64,0.1);
+  box-shadow: 0 0 20px rgba(240,192,64,0.18);
+}
+.diff-card.hardcore {
+  border-color: rgba(204,34,34,0.3);
+}
+.diff-card.hardcore:hover {
+  border-color: var(--rd-red-hp);
+  background: rgba(204,34,34,0.08);
+}
+.diff-card.hardcore.selected {
+  border-color: var(--rd-red-hp);
+  background: rgba(204,34,34,0.12);
+  box-shadow: 0 0 20px rgba(204,34,34,0.2);
+}
+.diff-name {
+  color: var(--rd-txt-primary);
+  font-family: 'Cinzel', serif;
+}
+.diff-desc {
+  color: var(--rd-txt-dim);
+  font-family: 'Philosopher', serif;
+}
+/* Confirm button: teal style */
+.diff-confirm-btn {
+  background: linear-gradient(135deg, #0a3a3a 0%, #0d5a4a 100%);
+  color: #60e0c0;
+  border: 1px solid rgba(96,224,192,0.3);
+  box-shadow: 0 2px 12px rgba(13,90,74,0.4);
+  font-family: 'Cinzel', serif;
+  letter-spacing: 1px;
+}
+.diff-confirm-btn:not(:disabled):hover {
+  border-color: rgba(96,224,192,0.6);
+  box-shadow: 0 4px 20px rgba(13,90,74,0.6);
+  filter: brightness(1.08);
+}
+
+/* ── T_MODOS: Modos de Jogo popup ───────────────────────────────── */
+
+.game-modes-box {
+  background: linear-gradient(160deg, var(--rd-bg-surface) 0%, var(--rd-bg-panel) 100%);
+  border-color: var(--rd-gold-bright);
+  box-shadow:
+    0 0 0 1px rgba(240,192,64,0.1) inset,
+    0 0 60px rgba(240,192,64,0.14),
+    0 20px 60px rgba(0,0,0,0.75);
+}
+.game-modes-box h3 {
+  color: var(--rd-gold-bright);
+  letter-spacing: 2px;
+  text-shadow: 0 0 20px rgba(240,192,64,0.3);
+}
+.game-modes-box .gm-btn {
+  background: rgba(240,192,64,0.03);
+  border-color: rgba(138,96,16,0.25);
+  color: var(--rd-txt-primary);
+  font-family: 'Philosopher', serif;
+}
+.game-modes-box .gm-btn:hover {
+  background: rgba(240,192,64,0.08);
+  border-color: var(--rd-gold-dim);
+}
+.game-modes-box .gm-btn .gm-title {
+  color: var(--rd-txt-primary);
+  font-family: 'Cinzel', serif;
+  font-size: 0.88rem;
+}
+.game-modes-box .gm-btn .gm-desc {
+  color: var(--rd-txt-dim);
+  font-family: 'Philosopher', serif;
+}
+.game-modes-box .gm-btn.weak-btn {
+  background: rgba(204,34,34,0.07);
+  border-color: rgba(204,34,34,0.3);
+}
+.game-modes-box .gm-btn.weak-btn .gm-title {
+  color: #ff8080;
+}
+.game-modes-box .gm-btn.weak-btn:hover {
+  background: rgba(204,34,34,0.14);
+  border-color: var(--rd-red-hp);
+}
+.game-modes-close {
+  background: rgba(240,192,64,0.07);
+  border: 1px solid rgba(240,192,64,0.2);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--rd-gold-mid);
+  top: 10px;
+  right: 10px;
+}
+.game-modes-close:hover {
+  background: rgba(240,192,64,0.15);
+  border-color: var(--rd-gold-mid);
+  color: var(--rd-gold-bright);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   FIM FASE 1
+   ═══════════════════════════════════════════════════════════════════ */
