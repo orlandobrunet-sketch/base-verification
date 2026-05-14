@@ -1223,7 +1223,7 @@
     /* WELCOME SCREEN */
     .welcome-screen {
       position: fixed; inset: 0; z-index: var(--z-overlay);
-      background: radial-gradient(ellipse at 50% 0%, #0d1a3a 0%, #060a18 60%, #030610 100%);
+      /* background aplicado via #welcomeScreen no bloco de redesign (bg-hall.jpg) */
       display: flex; align-items: flex-start; justify-content: center;
       animation: fadeIn 0.8s;
       overflow-y: auto;
@@ -1737,9 +1737,7 @@
     /* ===== LANDING SCREEN ===== */
     #landingScreen {
       position: fixed; inset: 0; z-index: var(--z-modal-high);
-      background:
-        linear-gradient(rgba(2,6,20,0.68), rgba(2,6,20,0.78)),
-        url('assets/images/welcome-bg.png') center/cover no-repeat #080d1a;
+      /* background aplicado via #landingScreen no bloco de redesign (bg-hall.jpg) */
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       gap: 0;
     }
@@ -5064,20 +5062,61 @@
 
 /* ── F0-4: Fundo global aprimorado ─────────────────────────────── */
 
-/* Sobrescreve o fundo existente com versão mais profunda */
+/* ── Fundo global: Hall Medieval (bg-hall.jpg) ───────────────────────────── */
+/* Arquivo: assets/bg-hall.jpg — azul navy escuro, colunas douradas, runas mágicas */
 .bg-layer {
   background:
-    url('assets/nefroquest_background.jpg') center/cover no-repeat,
-    radial-gradient(ellipse 120% 80% at 50% 0%, #0d1a40 0%, #060810 60%);
-  filter: brightness(0.45) saturate(1.3);
+    url('assets/bg-hall.jpg') center/cover no-repeat,
+    #060810;
+  filter: brightness(0.72) saturate(1.15);
 }
 
 .bg-overlay {
   background:
-    radial-gradient(ellipse 100% 60% at 50% 100%, rgba(6,8,16,0.9) 0%, transparent 70%),
-    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(124,58,237,0.06) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 20% 50%, rgba(240,192,64,0.03) 0%, transparent 60%);
+    /* Sombra inferior — ancora o conteúdo no chão */
+    radial-gradient(ellipse 120% 55% at 50% 100%, rgba(4,6,16,0.88) 0%, transparent 65%),
+    /* Vinheta lateral suave */
+    radial-gradient(ellipse 40% 100% at 0% 50%, rgba(4,6,16,0.5) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 100% at 100% 50%, rgba(4,6,16,0.5) 0%, transparent 60%),
+    /* Brilho roxo sutil no topo — combina com o brilho do chão da imagem */
+    radial-gradient(ellipse 70% 40% at 50% 0%, rgba(90,50,180,0.06) 0%, transparent 70%);
 }
+
+/* ── Landing screen: mesma imagem, overlay mais escuro para legibilidade ── */
+#landingScreen {
+  background:
+    url('assets/bg-hall.jpg') center/cover no-repeat,
+    #060810;
+}
+/* Escurece e adiciona vignette para o texto do login ficar legível */
+#landingScreen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 100% 100% at 50% 50%, rgba(4,6,18,0.58) 0%, rgba(4,6,18,0.86) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+/* Garante que o conteúdo do landing fique acima do overlay */
+#landingScreen > * { position: relative; z-index: 1; }
+
+/* ── Welcome screen (seleção de personagem): mesma imagem ─────────────────── */
+#welcomeScreen {
+  background:
+    url('assets/bg-hall.jpg') center/cover no-repeat,
+    #060810;
+}
+#welcomeScreen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 6, 18, 0.68);
+  pointer-events: none;
+  z-index: 0;
+}
+/* Garante que o conteúdo do welcome fique acima do overlay */
+#welcomeScreen > * { position: relative; z-index: 1; }
 
 /* Partículas mais variadas */
 .particle:nth-child(3n) { background: var(--rd-purple-vivid); width: 3px; height: 3px; }

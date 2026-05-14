@@ -401,6 +401,77 @@ supabase db push
 
 ---
 
+### NOVA FEATURE — Biblioteca de Referências
+
+**Conceito:** Botão na página principal que abre um modal/página com **todas as referências bibliográficas** nas quais as questões do jogo são embasadas. Demonstra o rigor científico da ferramenta e agrega valor percebido ao usuário.
+
+| # | Tarefa | Detalhe | Status |
+|---|--------|---------|--------|
+| REF-1 | Botão "Biblioteca" na main page | Botão visível na tela principal (landing + game screen), acessível sem login | ⏳ Pendente |
+| REF-2 | Modal de referências | Lista completa em ordem alfabética (autor, título, revista, ano, DOI/link), visual similar ao painel de refs das perguntas | ⏳ Pendente |
+| REF-3 | Dados das referências | Consolidar `data/refs.js` + `data/articles.js` em lista única deduplicada, ordenada A–Z por primeiro autor | ⏳ Pendente |
+| REF-4 | Seção "Sugerir artigo" | Ao final da biblioteca: formulário onde o usuário envia (a) link/DOI do artigo, (b) texto livre explicando por que é relevante para o NefroQuest — enviado via `send-contact` (Web3Forms) ou endpoint dedicado | ⏳ Pendente |
+| REF-5 | Edge function `suggest-article` | Recebe `{ articleUrl, articleTitle?, reason, userEmail? }` e encaminha por e-mail via Web3Forms. Alternativa: reutilizar `send-contact` com campo `subject` padronizado | ⏳ Pendente |
+
+**Fluxo do "Sugerir artigo":**
+1. Usuário abre a Biblioteca de Referências
+2. Rola até o final → vê seção "Quer contribuir?"
+3. Preenche: **Link / DOI** (obrigatório) + **Por que é importante?** (textarea, mín. 20 chars)
+4. Opcional: e-mail para retorno
+5. Submissão → edge function → e-mail para `contato@nefroquest.com`
+6. Toast de confirmação: *"Sugestão enviada! Analisaremos e podemos criar novas questões baseadas nela."*
+
+**Dados disponíveis:**
+- `data/refs.js` — referências já extraídas das questões
+- `data/articles.js` — artigos curados separados
+- Cada ref tem: autores, título, revista, ano, URL/DOI (formato variável — normalizar na hora da exibição)
+
+---
+
+### NOVA FEATURE — Expansão Internacional (Roadmap de Longo Prazo)
+
+**Objetivo:** Traduzir o NefroQuest para inglês e publicar nas lojas globais — Google Play (Android) e Apple App Store (iOS).
+
+#### Fase A — Internacionalização (i18n)
+| # | Tarefa | Detalhe | Status |
+|---|--------|---------|--------|
+| EN-1 | Inventário de strings | Mapear todas as strings de UI em `index.html`, `js/*.js`, modais e toasts — estimar volume (~500–800 strings) | ⏳ Pendente |
+| EN-2 | Sistema i18n | Criar `js/i18n.js` com dicionário `{ pt: {}, en: {} }` + função `t('key')` + detecção de idioma por `navigator.language` com override manual | ⏳ Pendente |
+| EN-3 | Tradução do banco de questões | `data/topics.js` (~1.4 MB, ~1.000+ questões) traduzidas para inglês — trabalho de conteúdo médico, requer revisão especializada | ⏳ Pendente |
+| EN-4 | Tradução de referências e artigos | `data/refs.js`, `data/articles.js` — geralmente já em inglês, verificar | ⏳ Pendente |
+| EN-5 | Adaptar edge functions | Respostas do Mentor IA e Diagnóstico em inglês conforme idioma do usuário | ⏳ Pendente |
+| EN-6 | Testes QA multilíngue | Verificar layout com strings longas em inglês (botões, cards, HUD) | ⏳ Pendente |
+
+#### Fase B — Google Play (Android) — versão EN
+> Já existe checklist para PT-BR (seção 🚀 PLAY STORE acima). Para a versão EN:
+
+| # | Tarefa | Detalhe | Status |
+|---|--------|---------|--------|
+| GP-1 | Listing em inglês | Título, descrição curta (80 chars), descrição completa (4.000 chars) em inglês | ⏳ Pendente |
+| GP-2 | Screenshots EN | Capturas com UI em inglês — mesmas especificações (1080×1920, 9:16) | ⏳ Pendente |
+| GP-3 | Publicar versão EN no Play Store | Mesma conta ($25 já paga), novo listing ou atualização com suporte a idioma | ⏳ Pendente |
+
+#### Fase C — Apple App Store (iOS)
+| # | Tarefa | Detalhe | Status |
+|---|--------|---------|--------|
+| iOS-1 | Apple Developer Program | Conta em developer.apple.com — taxa anual de $99 USD | ⏳ Pendente |
+| iOS-2 | Estratégia de publicação | **Opção A (recomendada):** PWA via WKWebView wrapper (ex: [PWABuilder iOS](https://pwabuilder.com)) — sem Swift nativo. **Opção B:** app nativo React Native/Flutter — maior custo. | ⏳ Pendente |
+| iOS-3 | Política de monetização iOS | Apple cobra 15–30% de comissão em compras in-app. Mesma estratégia do Android: desabilitar compra dentro do app, redirecionar para nefroquest.com | ⏳ Pendente |
+| iOS-4 | Assets iOS | Ícones (1024×1024 sem transparência), screenshots por device (iPhone 6.9", 6.3", iPad), preview videos opcionais | ⏳ Pendente |
+| iOS-5 | App Store Connect | Criar listing, preencher metadados, declarar privacidade (App Privacy labels), submeter para revisão (~24–72h) | ⏳ Pendente |
+| iOS-6 | `privacy-policy.html` já pronto | ✅ Disponível em nefroquest.com/privacy-policy.html — reutilizar | ✅ Feito |
+
+**Ordem recomendada:**
+1. Finalizar redesign + dashboard
+2. Biblioteca de Referências (REF-1 a REF-5)
+3. Internacionalização PT→EN (EN-1 a EN-6)
+4. Google Play versão EN (GP-1 a GP-3)
+5. Apple App Store (iOS-1 a iOS-6)
+
+> ⚠️ **Decisão de conteúdo crítica:** A tradução das ~1.000 questões de nefrologia para inglês (EN-3) é o maior gargalo. Requer revisão médica por nefrologista fluente em inglês para garantir terminologia clínica correta (KDIGO, DOQI em inglês). Estimar 2–4 semanas de trabalho de conteúdo.
+
+---
+
 ## 🚀 PLAY STORE — Checklist de Publicação
 
 ### Estratégia técnica
