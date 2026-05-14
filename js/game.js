@@ -1608,7 +1608,7 @@
         { const _snip = escapeHtml(_firstSentence(state.current.e));
           const _full = escapeHtml(state.current.e || '');
           const _hasMore = _full.length > _snip.length;
-          ui.feedback.innerHTML = `<strong>✅ Correto!</strong> +${xp} XP${multText}${synergyText}, +${g} ouro.${lv?` <strong>Level up x${lv}!</strong>`:''}<br><span>${_snip}${_hasMore?`<span style="display:none;" class="fb-rest"> ${_full.substring(_snip.length)}</span><button class="fb-more-btn" style="background:none;border:none;color:#93c5fd;cursor:pointer;font-size:0.8rem;padding:0 0 0 4px;" data-action="_showMoreFb" data-pass-this>ver mais ▾</button>`:''}</span>`;
+          ui.feedback.innerHTML = `<strong>✅ Correto!</strong> +${xp} XP${multText}${synergyText}, +${g} ouro.${lv?` <strong>Level up x${lv}!</strong>`:''}<br><span>${_snip}${_hasMore?`<span style="display:none;" class="fb-rest"> ${_full.substring(_snip.length)}</span><button class="fb-more-btn" style="background:none;border:none;color:#93c5fd;cursor:pointer;font-size:0.8rem;padding:0 0 0 4px;" data-action="_showMoreFb" data-pass-this="1">ver mais ▾</button>`:''}</span>`;
         }
         // Boss log
         if (isBossBattle()) {
@@ -1665,7 +1665,7 @@
           const _snip2 = escapeHtml(_firstSentence(state.current.e));
           const _full2 = escapeHtml(state.current.e || '');
           const _hasMore2 = _full2.length > _snip2.length;
-          ui.feedback.innerHTML = `<strong>${escapeHtml(_prefix)}</strong><br><span>${_snip2}${_hasMore2?`<span style="display:none;" class="fb-rest"> ${_full2.substring(_snip2.length)}</span><button class="fb-more-btn" style="background:none;border:none;color:#93c5fd;cursor:pointer;font-size:0.8rem;padding:0 0 0 4px;" data-action="_showMoreFb" data-pass-this>ver mais ▾</button>`:''}</span>`;
+          ui.feedback.innerHTML = `<strong>${escapeHtml(_prefix)}</strong><br><span>${_snip2}${_hasMore2?`<span style="display:none;" class="fb-rest"> ${_full2.substring(_snip2.length)}</span><button class="fb-more-btn" style="background:none;border:none;color:#93c5fd;cursor:pointer;font-size:0.8rem;padding:0 0 0 4px;" data-action="_showMoreFb" data-pass-this="1">ver mais ▾</button>`:''}</span>`;
         }
         log('⚠️ Você falhou nessa carta. Ajuste a estratégia e continue.');
         playSound('wrong');
