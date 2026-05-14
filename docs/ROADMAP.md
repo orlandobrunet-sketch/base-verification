@@ -183,6 +183,7 @@ Toda tarefa deve ser solicitada explicitamente pelo usuário.
 | EN-4 | Tradução de referências e artigos | `data/refs.js`, `data/articles.js` — geralmente já em inglês, verificar | ⏳ Pendente |
 | EN-5 | Adaptar edge functions | Respostas do Mentor IA e Diagnóstico em inglês conforme idioma do usuário | ⏳ Pendente |
 | EN-6 | Testes QA multilíngue | Verificar layout com strings longas em inglês (botões, cards, HUD) | ⏳ Pendente |
+| EN-7 | Infraestrutura EN | Registrar domínio `nephroquest.com` + criar e-mail `contact@nephroquest.com` para a versão em inglês | ⏳ Pendente |
 
 #### Fase B — Google Play (Android) — versão EN
 
@@ -211,6 +212,44 @@ Toda tarefa deve ser solicitada explicitamente pelo usuário.
 5. Apple App Store (iOS-1 a iOS-6)
 
 > ⚠️ **Decisão de conteúdo crítica:** A tradução das ~1.000 questões de nefrologia para inglês (EN-3) é o maior gargalo. Requer revisão médica por nefrologista fluente em inglês para garantir terminologia clínica correta (KDIGO, DOQI em inglês). Estimar 2–4 semanas de trabalho de conteúdo.
+
+---
+
+### Dashboard e UX — Melhorias Futuras
+
+#### Knowledge Cards — Artigos de História da Nefrologia
+
+**Conceito:** Os artigos históricos que hoje aparecem nos baús durante o jogo ficariam também disponíveis no Dashboard como uma "Biblioteca de Conquistas". Cada card conteria um artigo da história da nefrologia que o jogador desbloqueou.
+
+| # | Tarefa | Detalhe | Status |
+|---|--------|---------|--------|
+| DC-1 | Cards de conhecimento no Dashboard | Seção "Biblioteca de Néfrons" no Dashboard: grid de cards mostrando artigos históricos já desbloqueados nos baús | ⏳ Ideia futura |
+| DC-2 | Estado de desbloqueio | Usar `unlockedArticles` (já salvo em localStorage) para mostrar quais artigos o jogador desbloqueou | ⏳ Ideia futura |
+
+---
+
+#### Dashboard — Badges dentro de Conquistas
+
+**Problema:** Os 5 badges (badge1–5 dos 20/40/60/80/100 acertos) ficam muito grandes no painel lateral esquerdo do jogo, ocupando espaço desproporcional no HUD.
+
+**Solução:** Mover os 5 badges para dentro da seção Conquistas no Dashboard, onde fazem mais sentido contextualmente (ao lado das demais conquistas).
+
+| # | Tarefa | Detalhe | Status |
+|---|--------|---------|--------|
+| DC-3 | Mover badges para Conquistas no Dashboard | Remover `.badges-container` do painel lateral esquerdo do jogo e exibi-los dentro da modal de Conquistas / Dashboard | ⏳ Ideia futura |
+
+---
+
+#### Leaderboard Alternativo — Perfil Global
+
+**Problema:** O leaderboard atual registra pontuação por jogo. Um usuário com 50 partidas boas não aparece no ranking se cada jogo individual for menor que o recorde de outro.
+
+**Conceito:** Leaderboard alternativo baseado no **perfil acumulado do usuário**: total de questões corretas, total de XP ganho, nível máximo atingido — não apenas o melhor score individual.
+
+| # | Tarefa | Detalhe | Status |
+|---|--------|---------|--------|
+| DC-4 | Leaderboard de perfil global | Nova tab "Perfil Global" no leaderboard: ordena por total de questões corretas acumuladas ou XP total — reflete consistência, não só um jogo perfeito | ⏳ Ideia futura |
+| DC-5 | Coluna de stats acumulados no Supabase | Adicionar colunas `total_correct`, `total_xp`, `total_games` na tabela `leaderboard` ou criar tabela `profiles_stats` para não quebrar ranking atual | ⏳ Ideia futura |
 
 ---
 
