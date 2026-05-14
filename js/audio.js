@@ -195,7 +195,7 @@
     }
 
     // Background Music - Double-buffer crossfade loop
-    const MUSIC_URL = 'assets/sounds/bgmusic.mp3?v=2';
+    const MUSIC_URL = 'assets/sounds/bgmusic.mp3';
     const MUSIC_VOL = 0.14;
     const XFADE_TIME = 1.5; // crossfade equal-power
     
@@ -376,5 +376,9 @@
             if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
           }, { once: true });
         }
+        // Fallback para browsers que bloqueiam autoplay: inicia na primeira interação
+        document.addEventListener('click', function _firstClick() {
+          if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
+        }, { once: true, capture: true });
       }
     })();
