@@ -1738,8 +1738,10 @@
     #landingScreen {
       position: fixed; inset: 0; z-index: var(--z-modal-high);
       /* background aplicado via #landingScreen no bloco de redesign (bg-hall.jpg) */
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
       gap: 0;
+      overflow-y: auto;
+      padding: 28px 16px;
     }
     #landingScreen.hidden { display: none; }
     .landing-bg {
@@ -1762,7 +1764,7 @@
       position: relative; z-index: 2;
       display: flex; flex-direction: column; align-items: center; gap: 8px;
       width: 100%; max-width: 390px; padding: 34px 26px 24px;
-      overflow-y: auto; max-height: 100dvh;
+      margin: auto 0;
       background:
         linear-gradient(180deg, rgba(2,8,30,0.9), rgba(2,6,24,0.94)),
         url('assets/images/welcome-bg-portrait-new.jpg') center/cover no-repeat;
@@ -1838,11 +1840,9 @@
 
     /* ── Desktop landing: card centralizado, sem scrollbar interno ── */
     @media (min-width: 769px) {
-      #landingScreen { justify-content: center; overflow-y: auto; }
+      #landingScreen { padding: 40px 20px; }
       .landing-content {
         max-width: 560px;
-        overflow-y: visible;
-        max-height: none;
         padding: 50px 56px 42px;
         gap: 10px;
       }
@@ -5088,13 +5088,12 @@
     url('assets/bg-hall.jpg') center/cover no-repeat,
     #060810;
 }
-/* Escurece e adiciona vignette para o texto do login ficar legível */
+/* Overlay escuro uniforme — sem gradiente radial que cria banding */
 #landingScreen::before {
   content: '';
-  position: absolute;
+  position: fixed; /* fixed para cobrir toda a tela mesmo com scroll */
   inset: 0;
-  background:
-    radial-gradient(ellipse 100% 100% at 50% 50%, rgba(4,6,18,0.58) 0%, rgba(4,6,18,0.86) 100%);
+  background: rgba(4, 6, 18, 0.48);
   pointer-events: none;
   z-index: 0;
 }
