@@ -5092,17 +5092,15 @@
 /* Garante que o conteúdo do landing fique acima do overlay */
 #landingScreen > * { position: relative; z-index: 1; }
 
-/* ── Welcome screen (seleção de personagem): mesma imagem ─────────────────── */
+/* ── Welcome screen (seleção de personagem): mesmo fundo da tela de perguntas ── */
 #welcomeScreen {
-  background:
-    url('assets/bg-hall.jpg') center/cover no-repeat,
-    #060810;
+  background: transparent;
 }
 #welcomeScreen::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(4, 6, 18, 0.68);
+  background: rgba(4, 6, 18, 0.45);
   pointer-events: none;
   z-index: 0;
 }
