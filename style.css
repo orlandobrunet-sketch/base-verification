@@ -6768,3 +6768,280 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     box-shadow: none;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   FASE 8 — DIFFICULTY SELECTOR REDESIGN
+   Dark-fantasy grimório aesthetic, cromática por dificuldade
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Container / overlay ──────────────────────────────────────── */
+.diff-selector-overlay {
+  align-items: center !important;
+}
+
+.diff-selector-card {
+  background: linear-gradient(160deg, #060918 0%, #09102a 55%, #060a16 100%) !important;
+  border: 1px solid rgba(212,175,55,0.38) !important;
+  border-radius: 18px !important;
+  max-width: 500px !important;
+  box-shadow:
+    0 0 0 1px rgba(212,175,55,0.07),
+    0 0 80px rgba(0,0,0,0.95),
+    inset 0 1px 0 rgba(212,175,55,0.1),
+    inset 0 -1px 0 rgba(0,0,0,0.6) !important;
+}
+
+/* ── Título ────────────────────────────────────────────────────── */
+.diff-selector-title {
+  font-family: 'Cinzel Decorative', 'Cinzel', serif !important;
+  font-size: 0.95rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 3px !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  background: linear-gradient(180deg, #fde68a 0%, #f59e0b 55%, #b45309 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  text-shadow: none !important;
+  padding-bottom: 14px !important;
+  margin-bottom: 12px !important;
+  border-bottom: 1px solid rgba(212,175,55,0.12) !important;
+}
+
+/* ── Aviso de progresso perdido ───────────────────────────────── */
+.diff-warning {
+  background: rgba(239,68,68,0.06) !important;
+  border: 1px solid rgba(239,68,68,0.18) !important;
+  border-radius: 7px !important;
+  color: rgba(252,165,165,0.8) !important;
+  font-family: 'Philosopher', serif !important;
+  font-size: 0.68rem !important;
+  letter-spacing: 0.3px !important;
+  padding: 6px 12px !important;
+  margin-bottom: 14px !important;
+  text-align: center !important;
+}
+
+/* ── Grid ──────────────────────────────────────────────────────── */
+.diff-grid {
+  gap: 8px !important;
+  margin-bottom: 16px !important;
+}
+
+/* ── Card base ─────────────────────────────────────────────────── */
+.diff-card {
+  border-width: 1px !important;
+  border-radius: 11px !important;
+  padding: 13px 12px 11px 15px !important;
+  text-align: left !important;
+  position: relative !important;
+  overflow: hidden !important;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease !important;
+}
+
+/* Barra de acento lateral */
+.diff-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  border-radius: 11px 0 0 11px;
+  transition: opacity 0.2s;
+}
+
+/* ── FÁCIL — ciano gelo ────────────────────────────────────────── */
+.diff-card[data-diff-key="easy"] {
+  background: linear-gradient(135deg, rgba(7,26,44,0.92) 0%, rgba(5,16,28,0.88) 100%) !important;
+  border-color: rgba(103,232,249,0.18) !important;
+}
+.diff-card[data-diff-key="easy"]::before {
+  background: linear-gradient(180deg, #a5f3fc, #0e7490);
+}
+.diff-card[data-diff-key="easy"]:hover {
+  border-color: rgba(103,232,249,0.5) !important;
+  background: linear-gradient(135deg, rgba(14,116,144,0.2) 0%, rgba(7,26,44,0.92) 100%) !important;
+  box-shadow: 0 4px 22px rgba(103,232,249,0.12) !important;
+  transform: translateY(-2px) !important;
+}
+.diff-card[data-diff-key="easy"].selected {
+  border-color: #67e8f9 !important;
+  background: linear-gradient(135deg, rgba(14,116,144,0.24) 0%, rgba(7,26,44,0.92) 100%) !important;
+  box-shadow: 0 0 22px rgba(103,232,249,0.2), inset 0 0 24px rgba(103,232,249,0.04) !important;
+}
+.diff-card[data-diff-key="easy"] .diff-name { color: #a5f3fc !important; }
+.diff-card[data-diff-key="easy"] .diff-lives { color: #67e8f9 !important; }
+.diff-card[data-diff-key="easy"] .diff-icon {
+  filter: drop-shadow(0 0 8px rgba(103,232,249,0.55));
+}
+
+/* ── MÉDIO — ouro ─────────────────────────────────────────────── */
+.diff-card[data-diff-key="normal"] {
+  background: linear-gradient(135deg, rgba(28,20,5,0.92) 0%, rgba(18,13,3,0.88) 100%) !important;
+  border-color: rgba(251,191,36,0.18) !important;
+}
+.diff-card[data-diff-key="normal"]::before {
+  background: linear-gradient(180deg, #fde68a, #b45309);
+}
+.diff-card[data-diff-key="normal"]:hover {
+  border-color: rgba(251,191,36,0.55) !important;
+  background: linear-gradient(135deg, rgba(146,64,14,0.2) 0%, rgba(28,20,5,0.92) 100%) !important;
+  box-shadow: 0 4px 22px rgba(251,191,36,0.12) !important;
+  transform: translateY(-2px) !important;
+}
+.diff-card[data-diff-key="normal"].selected {
+  border-color: #fbbf24 !important;
+  background: linear-gradient(135deg, rgba(146,64,14,0.22) 0%, rgba(28,20,5,0.92) 100%) !important;
+  box-shadow: 0 0 22px rgba(251,191,36,0.18), inset 0 0 24px rgba(251,191,36,0.04) !important;
+}
+.diff-card[data-diff-key="normal"] .diff-name { color: #fde68a !important; }
+.diff-card[data-diff-key="normal"] .diff-lives { color: #f59e0b !important; }
+.diff-card[data-diff-key="normal"] .diff-icon {
+  filter: drop-shadow(0 0 8px rgba(251,191,36,0.5));
+}
+
+/* ── DIFÍCIL — âmbar laranja ──────────────────────────────────── */
+.diff-card[data-diff-key="hard"] {
+  background: linear-gradient(135deg, rgba(28,14,3,0.93) 0%, rgba(18,8,1,0.88) 100%) !important;
+  border-color: rgba(251,146,60,0.18) !important;
+}
+.diff-card[data-diff-key="hard"]::before {
+  background: linear-gradient(180deg, #fdba74, #c2410c);
+}
+.diff-card[data-diff-key="hard"]:hover {
+  border-color: rgba(251,146,60,0.55) !important;
+  background: linear-gradient(135deg, rgba(154,52,18,0.2) 0%, rgba(28,14,3,0.93) 100%) !important;
+  box-shadow: 0 4px 22px rgba(251,146,60,0.12) !important;
+  transform: translateY(-2px) !important;
+}
+.diff-card[data-diff-key="hard"].selected {
+  border-color: #fb923c !important;
+  background: linear-gradient(135deg, rgba(154,52,18,0.24) 0%, rgba(28,14,3,0.93) 100%) !important;
+  box-shadow: 0 0 22px rgba(251,146,60,0.2), inset 0 0 24px rgba(251,146,60,0.04) !important;
+}
+.diff-card[data-diff-key="hard"] .diff-name { color: #fed7aa !important; }
+.diff-card[data-diff-key="hard"] .diff-lives { color: #fb923c !important; }
+.diff-card[data-diff-key="hard"] .diff-icon {
+  filter: drop-shadow(0 0 8px rgba(251,146,60,0.5));
+}
+
+/* ── HARDCORE — carmesim ──────────────────────────────────────── */
+.diff-card[data-diff-key="hardcore"] {
+  background: linear-gradient(135deg, rgba(28,3,3,0.94) 0%, rgba(18,1,1,0.9) 100%) !important;
+  border-color: rgba(239,68,68,0.2) !important;
+}
+.diff-card[data-diff-key="hardcore"]::before {
+  background: linear-gradient(180deg, #fca5a5, #7f1d1d);
+}
+.diff-card[data-diff-key="hardcore"]:hover {
+  border-color: rgba(239,68,68,0.58) !important;
+  background: linear-gradient(135deg, rgba(127,29,29,0.24) 0%, rgba(28,3,3,0.94) 100%) !important;
+  box-shadow: 0 4px 22px rgba(239,68,68,0.14) !important;
+  transform: translateY(-2px) !important;
+}
+.diff-card[data-diff-key="hardcore"].selected {
+  border-color: #ef4444 !important;
+  background: linear-gradient(135deg, rgba(127,29,29,0.28) 0%, rgba(28,3,3,0.94) 100%) !important;
+  box-shadow: 0 0 22px rgba(239,68,68,0.22), inset 0 0 24px rgba(239,68,68,0.05) !important;
+}
+.diff-card[data-diff-key="hardcore"] .diff-name { color: #fca5a5 !important; }
+.diff-card[data-diff-key="hardcore"] .diff-lives { color: #ef4444 !important; }
+.diff-card[data-diff-key="hardcore"] .diff-icon {
+  filter: drop-shadow(0 0 8px rgba(239,68,68,0.6));
+}
+
+/* ── Elementos internos compartilhados ────────────────────────── */
+.diff-icon {
+  font-size: 1.55rem !important;
+  margin-bottom: 6px !important;
+  line-height: 1 !important;
+  display: block !important;
+}
+.diff-name {
+  font-family: 'Cinzel', serif !important;
+  font-weight: 700 !important;
+  font-size: 0.8rem !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  margin-bottom: 5px !important;
+}
+.diff-lives {
+  font-size: 0.78rem !important;
+  margin-bottom: 6px !important;
+  letter-spacing: 2px !important;
+  display: block !important;
+}
+.diff-desc {
+  font-family: 'Philosopher', serif !important;
+  font-size: 0.66rem !important;
+  line-height: 1.45 !important;
+  color: rgba(172,193,220,0.58) !important;
+}
+.diff-hardcore-badge {
+  display: inline-block !important;
+  background: linear-gradient(135deg, rgba(239,68,68,0.15), rgba(127,29,29,0.25)) !important;
+  border: 1px solid rgba(239,68,68,0.38) !important;
+  color: #fca5a5 !important;
+  font-size: 0.57rem !important;
+  border-radius: 20px !important;
+  padding: 2px 8px !important;
+  margin-top: 5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+}
+
+/* ── Botão Confirmar — gold ───────────────────────────────────── */
+.diff-confirm-btn {
+  background: linear-gradient(180deg, #b8860b 0%, #96700e 45%, #6b4f09 100%) !important;
+  color: #fef3c7 !important;
+  border: 1px solid rgba(212,175,55,0.48) !important;
+  box-shadow:
+    0 2px 14px rgba(107,79,9,0.4),
+    inset 0 1px 0 rgba(255,235,150,0.14) !important;
+  font-family: 'Cinzel', serif !important;
+  font-size: 0.8rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 2.5px !important;
+  text-transform: uppercase !important;
+  padding: 13px !important;
+  border-radius: 10px !important;
+  margin-top: 4px !important;
+  width: 100% !important;
+}
+.diff-confirm-btn:not(:disabled):hover {
+  filter: brightness(1.13) !important;
+  box-shadow:
+    0 4px 22px rgba(107,79,9,0.55),
+    inset 0 1px 0 rgba(255,235,150,0.2) !important;
+}
+.diff-confirm-btn:disabled {
+  opacity: 0.3 !important;
+  cursor: not-allowed !important;
+}
+
+/* ── Botão Cancelar ───────────────────────────────────────────── */
+.diff-cancel-btn {
+  background: transparent !important;
+  border: 1px solid rgba(148,163,184,0.1) !important;
+  color: rgba(148,163,184,0.5) !important;
+  font-family: 'Cinzel', serif !important;
+  font-size: 0.68rem !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  padding: 9px !important;
+  border-radius: 8px !important;
+  margin-top: 8px !important;
+  width: 100% !important;
+  cursor: pointer !important;
+  transition: color 0.15s, background 0.15s !important;
+}
+.diff-cancel-btn:hover {
+  color: rgba(148,163,184,0.85) !important;
+  background: rgba(255,255,255,0.04) !important;
+}
+
+/* ── Mobile: stack em 1 coluna abaixo de 480px ────────────────── */
+@media (max-width: 480px) {
+  .diff-grid { grid-template-columns: 1fr !important; }
+  .diff-card { text-align: left !important; }
+}
