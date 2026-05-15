@@ -293,6 +293,9 @@
         grid-template-columns: repeat(5, 1fr);
         gap: 10px;
         margin-bottom: 22px;
+        max-width: 420px;
+        margin-left: auto;
+        margin-right: auto;
       }
       .nq-dash-badge-slot {
         aspect-ratio: 1;

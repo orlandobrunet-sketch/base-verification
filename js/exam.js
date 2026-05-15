@@ -33,7 +33,7 @@
       try { localStorage.removeItem(EXAM_SAVE_KEY); } catch(e) {}
     }
 
-    function startExamMode() {
+    async function startExamMode() {
       if (_examState) { showExamQuestion(); return; }
 
       // Verificar se existe prova salva (refresh/fechar browser)
@@ -53,6 +53,7 @@
       }
 
       // Sortear 60 questões únicas do banco
+      if (!questionBank) { await _loadTopics(); }
       const pool = shuffle([...questionBank]);
       const questions = pool.slice(0, EXAM_QUESTION_COUNT);
 

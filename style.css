@@ -6693,6 +6693,54 @@ body.arqui-nefromante-final #arquiStarsDesktop {
    FIM FASE 6B
    ═══════════════════════════════════════════════════════════════════ */
 
+/* ── FASE 6B DESKTOP: coluna esquerda do boss battle ─────────────────── */
+@media (min-width: 769px) {
+  body.arqui-nefromante-final .panel.left {
+    background: linear-gradient(180deg, #080212 0%, #04010e 100%) !important;
+    border: 1px solid rgba(109,40,217,0.4) !important;
+    box-shadow: 0 0 40px rgba(88,28,135,0.15), inset 0 0 30px rgba(4,1,14,0.6) !important;
+  }
+  body.arqui-nefromante-final .portrait-frame {
+    border-color: rgba(139,92,246,0.75) !important;
+    box-shadow: 0 0 22px rgba(139,92,246,0.45), 0 0 48px rgba(88,28,135,0.22) !important;
+  }
+  body.arqui-nefromante-final .xp-bar {
+    background: rgba(88,28,135,0.28) !important;
+    border: 1px solid rgba(139,92,246,0.35) !important;
+  }
+  body.arqui-nefromante-final #xpFill {
+    background: linear-gradient(90deg, #6d28d9, #8b5cf6, #c084fc) !important;
+    box-shadow: 0 0 8px rgba(192,132,252,0.5) !important;
+  }
+  body.arqui-nefromante-final .class {
+    color: #c084fc !important;
+    text-shadow: 0 0 8px rgba(192,132,252,0.5) !important;
+  }
+  body.arqui-nefromante-final .hero-title {
+    color: #a78bfa !important;
+  }
+  /* Ocultar badges no confronto final — sem distrações */
+  body.arqui-nefromante-final .badges-container {
+    display: none !important;
+  }
+  /* Log de batalha: atmosfera roxa */
+  body.arqui-nefromante-final .panel.left .log {
+    background: rgba(8,2,22,0.82) !important;
+    border-color: rgba(109,40,217,0.35) !important;
+  }
+  body.arqui-nefromante-final .panel.left .log h3 {
+    color: #c084fc !important;
+    letter-spacing: 1.5px;
+  }
+  body.arqui-nefromante-final .panel.left .story {
+    background: rgba(8,2,22,0.7) !important;
+    border-color: rgba(109,40,217,0.28) !important;
+  }
+  body.arqui-nefromante-final .panel.left .story h3 {
+    color: #a78bfa !important;
+  }
+}
+
 /* ── MOBILE WELCOME SCREEN OVERRIDES (após regras globais do redesign) ── */
 @media (max-width: 768px) {
   /* Padding-top maior para descolar botões música/sfx da logo */
