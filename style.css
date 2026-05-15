@@ -5060,25 +5060,9 @@
 
 /* ── F0-4: Fundo global aprimorado ─────────────────────────────── */
 
-/* ── Fundo global: Hall Medieval (bg-hall.jpg) ───────────────────────────── */
-/* Arquivo: assets/bg-hall.jpg — azul navy escuro, colunas douradas, runas mágicas */
-.bg-layer {
-  background:
-    url('assets/bg-hall.jpg') center/cover no-repeat,
-    #060810;
-  filter: brightness(0.72) saturate(1.15);
-}
-
-.bg-overlay {
-  background:
-    /* Sombra inferior — ancora o conteúdo no chão */
-    radial-gradient(ellipse 120% 55% at 50% 100%, rgba(4,6,16,0.88) 0%, transparent 65%),
-    /* Vinheta lateral suave */
-    radial-gradient(ellipse 40% 100% at 0% 50%, rgba(4,6,16,0.5) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 100% at 100% 50%, rgba(4,6,16,0.5) 0%, transparent 60%),
-    /* Brilho roxo sutil no topo — combina com o brilho do chão da imagem */
-    radial-gradient(ellipse 70% 40% at 50% 0%, rgba(90,50,180,0.06) 0%, transparent 70%);
-}
+/* ── Fundo da landing/welcome: bg-hall.jpg escopado às telas de entrada ─── */
+/* .bg-layer global não é sobrescrito aqui — mantém nefroquest_background.jpg
+   na tela de perguntas. Apenas #landingScreen e #welcomeScreen usam bg-hall.jpg */
 
 /* ── Landing screen: mesma imagem, overlay mais escuro para legibilidade ── */
 #landingScreen {
