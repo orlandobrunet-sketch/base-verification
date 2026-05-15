@@ -5616,3 +5616,468 @@
 /* ═══════════════════════════════════════════════════════════════════
    FIM FASE 1
    ═══════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════════
+   FASE 2 — Game Screen
+   T4: Questão ativa · T5: Resposta correta · T6: Resposta errada
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Left panel ─────────────────────────────────────────────────── */
+.panel.left {
+  background: linear-gradient(170deg, var(--rd-bg-surface) 0%, var(--rd-bg-panel) 100%);
+  border-right: 1px solid rgba(240,192,64,0.1);
+}
+
+.portrait-frame {
+  border: 2px solid var(--rd-gold-dim);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(240,192,64,0.12), 0 4px 20px rgba(0,0,0,0.55);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.portrait-frame:hover {
+  border-color: var(--rd-gold-bright);
+  box-shadow: 0 0 32px rgba(240,192,64,0.28), 0 0 60px rgba(240,192,64,0.08);
+}
+.portrait { border-radius: 10px; }
+
+.xp-bar {
+  background: rgba(124,58,237,0.12);
+  border: 1px solid rgba(124,58,237,0.22);
+  border-radius: 6px;
+}
+.xp-bar > div {
+  background: linear-gradient(90deg, var(--rd-purple-vivid), #9333ea);
+  box-shadow: 0 0 10px rgba(124,58,237,0.55);
+}
+
+.story {
+  background: rgba(240,192,64,0.03);
+  border: 1px solid rgba(240,192,64,0.1);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+.story h3 {
+  color: var(--rd-gold-bright);
+  font-size: 0.66rem;
+  letter-spacing: 1.5px;
+}
+
+.hud {
+  background: linear-gradient(160deg, rgba(13,18,37,0.75), rgba(15,24,48,0.75));
+  border: 1px solid rgba(240,192,64,0.08);
+  border-radius: 10px;
+  padding: 10px 8px;
+}
+.tile {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.055);
+  border-radius: 7px;
+  padding: 6px 4px;
+  transition: border-color 0.2s;
+}
+.tile:hover { border-color: rgba(240,192,64,0.18); }
+.tile span { color: var(--rd-txt-dim); }
+.tile strong { font-family: 'Cinzel', serif; color: var(--rd-txt-primary); }
+.tile:nth-child(5) strong { color: var(--rd-gold-bright); }
+.tile:nth-child(6) strong { color: var(--rd-purple-vivid); }
+
+/* ── Question box (T4) ──────────────────────────────────────────── */
+.qbox {
+  background: linear-gradient(160deg, rgba(13,18,37,0.96) 0%, rgba(15,24,48,0.96) 100%);
+  border: 1px solid rgba(240,192,64,0.18);
+  border-radius: 14px;
+  box-shadow: 0 0 0 1px rgba(240,192,64,0.05) inset, 0 6px 28px rgba(0,0,0,0.5);
+}
+#question {
+  color: var(--rd-txt-primary);
+  font-family: 'Philosopher', serif;
+  font-size: 0.97rem;
+  line-height: 1.66;
+}
+
+/* ── Answer options (T4) ────────────────────────────────────────── */
+.option {
+  background: linear-gradient(160deg, rgba(13,18,37,0.96), rgba(15,24,48,0.96));
+  border: 1.5px solid rgba(74,158,255,0.18);
+  border-radius: 10px;
+  padding: 0;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  text-align: left;
+  transition: border-color 0.18s, box-shadow 0.18s, transform 0.15s;
+}
+.option::before { display: none; }
+
+.opt-key {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  flex-shrink: 0;
+  background: rgba(240,192,64,0.07);
+  border-right: 1px solid rgba(240,192,64,0.13);
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.84rem;
+  color: var(--rd-gold-mid);
+  padding: 13px 0;
+  transition: background 0.18s, color 0.18s, border-color 0.18s;
+}
+.opt-body {
+  padding: 13px 14px;
+  font-family: 'Philosopher', serif;
+  font-size: 0.9rem;
+  color: var(--rd-txt-primary);
+  line-height: 1.46;
+}
+
+.option:hover:not(:disabled) {
+  border-color: var(--rd-gold-mid);
+  box-shadow: 0 0 18px rgba(240,192,64,0.1), 0 2px 8px rgba(0,0,0,0.35);
+  transform: translateX(3px);
+}
+.option:hover:not(:disabled) .opt-key {
+  background: rgba(240,192,64,0.14);
+  color: var(--rd-gold-bright);
+  border-right-color: rgba(240,192,64,0.25);
+}
+
+/* T5 — Correct answer */
+.option.correct {
+  border-color: rgba(34,197,94,0.55);
+  background: linear-gradient(160deg, rgba(8,32,18,0.97), rgba(6,24,14,0.97));
+  box-shadow: 0 0 22px rgba(34,197,94,0.18);
+  transform: none;
+}
+.option.correct .opt-key {
+  background: rgba(34,197,94,0.18);
+  border-right-color: rgba(34,197,94,0.28);
+  color: #4ade80;
+}
+.option.correct .opt-body { color: #a7f3d0; }
+
+/* T6 — Wrong answer + shake */
+@keyframes rd-shake {
+  0%, 100% { transform: translateX(0); }
+  18%       { transform: translateX(-7px); }
+  36%       { transform: translateX(6px); }
+  54%       { transform: translateX(-4px); }
+  72%       { transform: translateX(3px); }
+}
+.option.wrong {
+  border-color: rgba(220,38,38,0.55);
+  background: linear-gradient(160deg, rgba(36,8,12,0.97), rgba(28,6,10,0.97));
+  box-shadow: 0 0 20px rgba(220,38,38,0.18);
+  animation: rd-shake 0.42s ease;
+}
+.option.wrong .opt-key {
+  background: rgba(220,38,38,0.18);
+  border-right-color: rgba(220,38,38,0.28);
+  color: #f87171;
+}
+.option.wrong .opt-body { color: #fca5a5; }
+
+/* ── Feedback card ──────────────────────────────────────────────── */
+.feedback {
+  background: linear-gradient(160deg, rgba(13,18,37,0.9), rgba(15,24,48,0.9));
+  border-color: rgba(74,158,255,0.18);
+  border-radius: 10px;
+}
+.feedback.good {
+  border-color: rgba(34,197,94,0.3);
+  background: linear-gradient(160deg, rgba(7,26,16,0.93), rgba(5,20,12,0.93));
+}
+.feedback.bad {
+  border-color: rgba(220,38,38,0.3);
+  background: linear-gradient(160deg, rgba(28,7,10,0.93), rgba(22,5,8,0.93));
+}
+.fb-more-btn {
+  background: none !important;
+  border: none !important;
+  color: var(--rd-blue-crystal) !important;
+  cursor: pointer;
+  font-size: 0.8rem !important;
+  padding: 0 0 0 4px !important;
+  font-family: 'Philosopher', serif;
+  opacity: 0.85;
+  transition: opacity 0.15s;
+}
+.fb-more-btn:hover { opacity: 1; }
+
+/* ── Refs / Evidence card ───────────────────────────────────────── */
+.refs-header {
+  color: var(--rd-gold-bright);
+  font-family: 'Cinzel', serif;
+  font-size: 0.68rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.ref-card {
+  background: linear-gradient(160deg, rgba(13,18,37,0.95), rgba(15,24,48,0.95));
+  border-radius: 10px;
+  border: 1px solid rgba(240,192,64,0.12);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.35);
+}
+.ref-card:hover { border-color: rgba(240,192,64,0.22); }
+
+/* ── Ctrl buttons ───────────────────────────────────────────────── */
+#nextBtn {
+  background: linear-gradient(135deg, #083838 0%, #0a5040 100%);
+  color: #5cd9b8;
+  border: 1px solid rgba(92,217,184,0.3);
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  transition: background 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+#nextBtn:hover {
+  background: linear-gradient(135deg, #0c4848 0%, #0e6050 100%);
+  border-color: rgba(92,217,184,0.5);
+  box-shadow: 0 0 22px rgba(92,217,184,0.18);
+}
+
+/* ── Right panel (center question area) ─────────────────────────── */
+.panel.right {
+  background: linear-gradient(170deg, rgba(6,8,16,0.6) 0%, rgba(9,13,26,0.6) 100%);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   FIM FASE 2
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════════
+   FASE 3 — Modais principais
+   M5: Mentor IA · M1: Baú · M2: Forja · M4: Conquista desbloqueada
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── M5 — Mentor IA (Oráculo dos Néfrons) ──────────────────────── */
+.mentor-modal {
+  background: linear-gradient(170deg, var(--rd-bg-surface) 0%, var(--rd-bg-deep) 100%);
+  border-color: rgba(168,85,247,0.3);
+  box-shadow: 0 -14px 60px rgba(124,58,237,0.18), 0 -4px 24px rgba(0,0,0,0.55);
+}
+.mentor-context {
+  background: rgba(168,85,247,0.04);
+  border-bottom-color: rgba(168,85,247,0.1);
+}
+.mentor-context-label { color: rgba(168,85,247,0.65); }
+.mentor-context-text  { color: var(--rd-txt-primary); font-family: 'Philosopher', serif; }
+.mentor-chat { scrollbar-color: rgba(168,85,247,0.25) transparent; }
+.mentor-msg-user {
+  background: rgba(74,158,255,0.1);
+  border-color: rgba(74,158,255,0.2);
+  color: var(--rd-blue-crystal);
+}
+.mentor-msg-assistant {
+  background: rgba(124,58,237,0.08);
+  border-color: rgba(168,85,247,0.18);
+  color: var(--rd-txt-primary);
+}
+.mentor-textarea {
+  background: rgba(13,18,37,0.85);
+  border-color: rgba(168,85,247,0.22);
+  color: var(--rd-txt-primary);
+}
+.mentor-textarea:focus { border-color: rgba(168,85,247,0.55); }
+.mentor-input-row  { border-top-color: rgba(168,85,247,0.1); }
+.mentor-quota-bar  { color: var(--rd-txt-dim); }
+
+/* ── M1 — Baú / Chest ───────────────────────────────────────────── */
+.chest-content {
+  background: linear-gradient(160deg, var(--rd-bg-surface) 0%, var(--rd-bg-panel) 100%);
+  border: 1px solid rgba(240,192,64,0.28);
+  border-radius: 18px;
+  box-shadow: 0 0 60px rgba(240,192,64,0.08), 0 14px 50px rgba(0,0,0,0.7);
+  padding: 28px 24px 24px;
+}
+.chest-content h2 {
+  color: var(--rd-gold-bright);
+  font-family: 'Cinzel Decorative', 'Cinzel', serif;
+  text-shadow: 0 0 22px rgba(240,192,64,0.35);
+  margin-bottom: 16px;
+}
+.article-card {
+  background: rgba(255,255,255,0.022);
+  border: 1px solid rgba(240,192,64,0.1);
+  border-radius: 12px;
+  padding: 16px;
+}
+.article-card h3 { color: var(--rd-gold-bright); }
+.close-chest {
+  background: rgba(240,192,64,0.06);
+  border: 1px solid rgba(240,192,64,0.28);
+  color: var(--rd-gold-mid);
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.8px;
+  border-radius: 10px;
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.close-chest:hover {
+  background: rgba(240,192,64,0.13);
+  border-color: var(--rd-gold-bright);
+  box-shadow: 0 0 20px rgba(240,192,64,0.18);
+}
+
+/* ── M2 — Forja ─────────────────────────────────────────────────── */
+#forjaModal > div {
+  background: linear-gradient(160deg, var(--rd-bg-surface) 0%, var(--rd-bg-panel) 100%) !important;
+  border-color: rgba(240,192,64,0.28) !important;
+  box-shadow: 0 14px 60px rgba(0,0,0,0.85), 0 0 0 1px rgba(240,192,64,0.06) inset !important;
+}
+
+/* ── M4 — Conquista desbloqueada ─────────────────────────────────── */
+.ach-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(160deg, var(--rd-bg-surface) 0%, var(--rd-bg-panel) 100%);
+  border: 2px solid var(--rd-gold-bright);
+  border-radius: 14px;
+  padding: 22px 20px;
+  max-width: 330px;
+  z-index: 20000;
+  box-shadow: 0 0 40px rgba(240,192,64,0.22), 0 14px 44px rgba(0,0,0,0.65);
+  animation: slideInRight 0.5s ease-out, achGlow 2.5s ease-in-out 0.5s infinite;
+}
+@keyframes achGlow {
+  0%, 100% { box-shadow: 0 0 40px rgba(240,192,64,0.22), 0 14px 44px rgba(0,0,0,0.65); }
+  50%       { box-shadow: 0 0 58px rgba(240,192,64,0.42), 0 14px 44px rgba(0,0,0,0.65); }
+}
+.ach-notification-img {
+  width: 72px; height: 72px;
+  object-fit: contain;
+  margin-bottom: 10px;
+  animation: bounce 1s ease-in-out infinite;
+  filter: drop-shadow(0 0 14px rgba(240,192,64,0.7));
+}
+.ach-notification-icon {
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+  animation: bounce 1s ease-in-out infinite;
+  display: block;
+}
+.ach-notification-title {
+  color: var(--rd-gold-bright);
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+  text-shadow: 0 0 14px rgba(240,192,64,0.4);
+}
+.ach-notification-name {
+  color: var(--rd-txt-primary);
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.88rem;
+  margin-bottom: 5px;
+}
+.ach-notification-desc {
+  color: var(--rd-txt-dim);
+  font-family: 'Philosopher', serif;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   FIM FASE 3
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════════
+   FASE 4 — Telas de conteúdo
+   T10: Leaderboard · T11: Modo Estudo · T12: Simulado
+   T13: Julgamento Rápido · T14: Stats · T15: Conquistas
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── T10 — Leaderboard ──────────────────────────────────────────── */
+.board-modal {
+  background: linear-gradient(160deg, var(--rd-bg-surface) 0%, var(--rd-bg-panel) 100%);
+  border-color: rgba(240,192,64,0.28);
+  box-shadow: 0 0 0 1px rgba(240,192,64,0.06) inset, 0 16px 60px rgba(0,0,0,0.75);
+}
+.board-header {
+  background: linear-gradient(135deg, rgba(240,192,64,0.06) 0%, transparent 60%);
+  border-bottom-color: rgba(240,192,64,0.14);
+  padding: 22px 24px 14px;
+}
+.board-title {
+  color: var(--rd-gold-bright);
+  text-shadow: 0 0 26px rgba(240,192,64,0.4);
+}
+.board-subtitle { color: var(--rd-txt-dim); }
+
+.board-search-input {
+  background: rgba(13,18,37,0.85);
+  border-color: rgba(240,192,64,0.18);
+  color: var(--rd-txt-primary);
+}
+.board-search-input:focus { border-color: var(--rd-gold-mid); }
+.board-search-input::placeholder { color: var(--rd-txt-dim); }
+
+.board-table thead th {
+  background: var(--rd-bg-surface);
+  color: rgba(240,192,64,0.6);
+  border-bottom-color: rgba(240,192,64,0.12);
+}
+.board-table-wrap { scrollbar-color: rgba(240,192,64,0.25) transparent; }
+.board-table tbody tr:hover { background: rgba(240,192,64,0.04); }
+.board-table tbody tr.rank-1 { background: linear-gradient(90deg, rgba(240,192,64,0.12) 0%, transparent 100%); }
+.board-table tbody tr.rank-2 { background: linear-gradient(90deg, rgba(192,192,192,0.08) 0%, transparent 100%); }
+.board-table tbody tr.rank-3 { background: linear-gradient(90deg, rgba(205,127,50,0.08) 0%, transparent 100%); }
+
+.board-footer { border-top-color: rgba(240,192,64,0.1); }
+.btn-board-refresh {
+  background: rgba(240,192,64,0.07);
+  border-color: rgba(240,192,64,0.2);
+  color: rgba(240,192,64,0.75);
+}
+.btn-board-refresh:hover { background: rgba(240,192,64,0.14); color: var(--rd-gold-bright); }
+
+/* ── T11 — Modo de Estudo ───────────────────────────────────────── */
+#studyModePage {
+  background: linear-gradient(170deg, var(--rd-bg-deep) 0%, var(--rd-bg-surface) 100%) !important;
+}
+#studyQuestionArea {
+  background: linear-gradient(160deg, var(--rd-bg-surface), var(--rd-bg-panel)) !important;
+  border: 1px solid rgba(240,192,64,0.18) !important;
+  box-shadow: 0 0 32px rgba(0,0,0,0.5) !important;
+}
+.study-option-btn {
+  background: linear-gradient(160deg, rgba(13,18,37,0.97), rgba(15,24,48,0.97)) !important;
+  border: 1.5px solid rgba(74,158,255,0.2) !important;
+  color: var(--rd-txt-primary) !important;
+  transition: border-color 0.18s, box-shadow 0.18s !important;
+}
+.study-option-btn:hover {
+  border-color: var(--rd-gold-mid) !important;
+  background: linear-gradient(160deg, rgba(18,24,48,0.98), rgba(20,30,58,0.98)) !important;
+  box-shadow: 0 0 14px rgba(240,192,64,0.1) !important;
+}
+
+/* ── T12 — Prova Simulada ───────────────────────────────────────── */
+.exam-overlay {
+  background: var(--rd-bg-deep) !important;
+}
+
+/* ── T13 — Julgamento Rápido ────────────────────────────────────── */
+#rapidQuizOverlay {
+  background: var(--rd-bg-deep) !important;
+}
+
+/* ── T14 — Estatísticas ─────────────────────────────────────────── */
+.stats-popup .modal-content {
+  background: linear-gradient(170deg, var(--rd-bg-surface) 0%, var(--rd-bg-panel) 100%) !important;
+  border: 1px solid rgba(240,192,64,0.22) !important;
+  box-shadow: 0 0 50px rgba(0,0,0,0.7) !important;
+}
+
+/* ── T15 — Conquistas ───────────────────────────────────────────── */
+.achievements-popup .modal-content {
+  background: linear-gradient(170deg, var(--rd-bg-surface) 0%, var(--rd-bg-panel) 100%) !important;
+  border: 1px solid rgba(240,192,64,0.22) !important;
+  box-shadow: 0 0 50px rgba(0,0,0,0.7) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   FIM FASE 4
+   ═══════════════════════════════════════════════════════════════════ */

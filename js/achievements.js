@@ -179,38 +179,24 @@
     
     function showAchievementNotification(achievement) {
       playSound('levelup');
-      
+
       const notification = document.createElement('div');
-      notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: linear-gradient(135deg, #1a1228 0%, #2a1a3a 100%);
-        border: 2px solid var(--gold);
-        border-radius: 12px;
-        padding: 20px;
-        max-width: 350px;
-        z-index: 20000;
-        box-shadow: 0 10px 40px rgba(255,215,0,0.3), 0 0 20px rgba(255,215,0,0.2);
-        animation: slideInRight 0.5s ease-out, pulse 2s ease-in-out infinite;
-      `;
-      
+      notification.className = 'ach-notification';
+
       const iconHtml = achievement.imgIcon
-        ? `<img src="${achievement.imgIcon}" alt="${achievement.name}" style="width:72px;height:72px;object-fit:contain;margin-bottom:10px;animation:bounce 1s ease-in-out infinite;filter:drop-shadow(0 0 12px rgba(255,215,0,0.8));">`
-        : `<div style="font-size:3rem;margin-bottom:10px;animation:bounce 1s ease-in-out infinite;">${achievement.icon}</div>`;
+        ? `<img src="${achievement.imgIcon}" alt="${achievement.name}" class="ach-notification-img">`
+        : `<div class="ach-notification-icon">${achievement.icon}</div>`;
       notification.innerHTML = `
         <div style="text-align:center;">
           ${iconHtml}
-          <div style="color:var(--gold);font-weight:bold;font-size:1.1rem;margin-bottom:8px;font-family:'Cinzel',serif;">
-            🏆 Conquista Desbloqueada!
-          </div>
-          <div style="color:var(--txt);font-weight:bold;margin-bottom:6px;">${achievement.name}</div>
-          <div style="color:var(--txt-dim);font-size:0.85rem;line-height:1.4;">${achievement.description}</div>
+          <div class="ach-notification-title">🏆 Conquista Desbloqueada!</div>
+          <div class="ach-notification-name">${achievement.name}</div>
+          <div class="ach-notification-desc">${achievement.description}</div>
         </div>
       `;
-      
+
       document.body.appendChild(notification);
-      
+
       setTimeout(() => {
         notification.style.animation = 'slideOutRight 0.5s ease-in';
         setTimeout(() => notification.remove(), 500);
