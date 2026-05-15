@@ -208,8 +208,8 @@
     bgA.addEventListener('ended', () => { if(musicEnabled && musicStarted) { bgA.currentTime=0; bgA.play().catch(()=>{}); scheduleXfade(bgA); } });
     bgB.addEventListener('ended', () => { if(musicEnabled && musicStarted) { bgB.currentTime=0; bgB.play().catch(()=>{}); scheduleXfade(bgB); } });
     
-    let soundEnabled = localStorage.getItem('nefroquest-sound') !== 'off';
-    let musicEnabled = localStorage.getItem('nefroquest-music') !== 'off';
+    let soundEnabled = true, musicEnabled = true;
+    try { soundEnabled = localStorage.getItem('nefroquest-sound') !== 'off'; musicEnabled = localStorage.getItem('nefroquest-music') !== 'off'; } catch(e) {}
     let musicStarted = false;
     let activeTrack = bgA;
     let xfadeInterval = null;

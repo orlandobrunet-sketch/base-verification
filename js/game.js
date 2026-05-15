@@ -494,8 +494,7 @@
       return true;
     }
     
-    // Auto-save every 30 seconds — armazenado para permitir cleanup
-    const _autoSaveInterval = setInterval(() => { saveGame(); }, 30000);
+    // Auto-save via Proxy debounce (500ms) — sem setInterval redundante
 
     // ============ WELCOME SCREEN LOGIC ============
     function initWelcomeScreen() {
@@ -1604,6 +1603,7 @@
           const _full = escapeHtml(state.current.e || '');
           const _hasMore = _full.length > _snip.length;
           ui.feedback.innerHTML = `<strong>✅ Correto!</strong> +${xp} XP${multText}${synergyText}, +${g} ouro.${lv?` <strong>Level up x${lv}!</strong>`:''}<br><span>${_snip}${_hasMore?`<span style="display:none;" class="fb-rest"> ${_full.substring(_snip.length)}</span><button class="fb-more-btn" style="background:none;border:none;color:#93c5fd;cursor:pointer;font-size:0.8rem;padding:0 0 0 4px;" data-action="_showMoreFb" data-pass-this="1">ver mais ▾</button>`:''}</span>`;
+          if (window.innerWidth <= 768) setTimeout(() => ui.feedback.scrollIntoView({behavior:'smooth', block:'nearest'}), 80);
         }
         // Boss log
         if (isBossBattle()) {
@@ -1640,14 +1640,14 @@
         let blocked=Math.random()<shield;
         let legendaryBlockMsg = '';
         // Legendary active: Excalibur do Néfron (auto-blocks 1st life loss)
-        if(!blocked && state.equipment?.weapon?.n==='Excalibur do Néfron' && !state.legendaryAbilityUsed['Excalibur do Néfron']) {
+        if(!blocked && state.equipment?.weapon?.n==='Excalibur do Néfron' && !state.legendaryAbilityUsed?.['Excalibur do Néfron']) {
           state.legendaryAbilityUsed['Excalibur do Néfron'] = true;
           blocked = true;
           legendaryBlockMsg = '⚔️ Excalibur do Néfron anulou o dano! (1× por jogo)';
           renderEquip();
         }
         // Legendary active: Armadura Primeva (blocks hit when on last life)
-        if(!blocked && state.lives<=1 && state.equipment?.armor?.n==='Armadura Primeva' && !state.legendaryAbilityUsed['Armadura Primeva']) {
+        if(!blocked && state.lives<=1 && state.equipment?.armor?.n==='Armadura Primeva' && !state.legendaryAbilityUsed?.['Armadura Primeva']) {
           state.legendaryAbilityUsed['Armadura Primeva'] = true;
           blocked = true;
           legendaryBlockMsg = '🛡️ Armadura Primeva salvou sua última vida! (1× por jogo)';
@@ -1661,6 +1661,7 @@
           const _full2 = escapeHtml(state.current.e || '');
           const _hasMore2 = _full2.length > _snip2.length;
           ui.feedback.innerHTML = `<strong>${escapeHtml(_prefix)}</strong><br><span>${_snip2}${_hasMore2?`<span style="display:none;" class="fb-rest"> ${_full2.substring(_snip2.length)}</span><button class="fb-more-btn" style="background:none;border:none;color:#93c5fd;cursor:pointer;font-size:0.8rem;padding:0 0 0 4px;" data-action="_showMoreFb" data-pass-this="1">ver mais ▾</button>`:''}</span>`;
+          if (window.innerWidth <= 768) setTimeout(() => ui.feedback.scrollIntoView({behavior:'smooth', block:'nearest'}), 80);
         }
         log('⚠️ Você falhou nessa carta. Ajuste a estratégia e continue.');
         playSound('wrong');
@@ -1700,7 +1701,7 @@
       updateBadges();
       if(state.lives<=0) {
         // Legendary active: Amuleto do Rim Imortal - revive once
-        if(state.equipment?.relic?.n==='Amuleto do Rim Imortal' && !state.legendaryAbilityUsed['Amuleto do Rim Imortal']) {
+        if(state.equipment?.relic?.n==='Amuleto do Rim Imortal' && !state.legendaryAbilityUsed?.['Amuleto do Rim Imortal']) {
           state.legendaryAbilityUsed['Amuleto do Rim Imortal'] = true;
           state.lives = 1;
           renderEquip();
@@ -2387,7 +2388,7 @@
     window.openOraculoFromJourney = openOraculoFromJourney;
 
     function goToWelcomeFromGame() {
-      document.body.classList.remove('rd-game-over');
+      document.body.classList.remove('rd-game-over', 'boss-battle-mode', 'arqui-nefromante-final', 'boss-hp-critical');
       document.getElementById('mainApp')?.classList.add('hidden');
       document.querySelectorAll('.exam-overlay').forEach(e => e.remove());
       const ws = document.getElementById('welcomeScreen');
