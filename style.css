@@ -6209,3 +6209,61 @@
 /* ═══════════════════════════════════════════════════════════════════
    FIM FASE 5
    ═══════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════════
+   FASE 6 — Boss & correções de layout
+   T7: Confronto Final — strip de heróis removida, layout profissional
+   Fix: achievements popup gap preto na base
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Fix — Achievements popup: sem gap preto abaixo do botão ─────── */
+.achievements-popup {
+  padding-bottom: 12px !important;
+}
+.achievements-popup .modal-content {
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 88px) !important;
+}
+
+/* ── T7 — Boss: remover strip de 3 personagens (mobile e desktop) ── */
+#arquiHeroStrip,
+.arqui-nefromante-final #arquiHeroStrip {
+  display: none !important;
+}
+
+/* Ocultar também o painel party lateral (desktop) */
+#bossPartyPanel,
+.arqui-nefromante-final #bossPartyPanel {
+  display: none !important;
+}
+
+/* ── T7 — Confronto Final: header mais profissional ─────────────── */
+
+/* Título mobile: espaçamento e impacto visual melhorado */
+.arqui-nefromante-final #arquiBossTitleMobile {
+  display: block !important;
+  padding: 16px 16px 10px;
+  font-size: clamp(1rem, 4.2vw, 1.2rem) !important;
+  letter-spacing: 4px;
+  text-align: center;
+  color: #ede9fe;
+  text-shadow:
+    0 0 20px rgba(168,85,247,0.9),
+    0 0 50px rgba(124,58,237,0.45),
+    0 2px 4px rgba(0,0,0,0.9);
+  border-bottom: 1px solid rgba(168,85,247,0.22);
+  margin-bottom: 4px;
+}
+
+/* HP bar: respiro extra no topo após a remoção do strip */
+.arqui-nefromante-final #bossHpContainer {
+  margin-top: 6px !important;
+}
+
+/* Boss image desktop: leve aumento de altura para preencher espaço extra */
+.arqui-nefromante-final #arquiBossImageDesktop {
+  min-height: 168px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   FIM FASE 6
+   ═══════════════════════════════════════════════════════════════════ */
