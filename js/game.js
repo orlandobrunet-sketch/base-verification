@@ -623,24 +623,10 @@
         document.getElementById('mainApp').classList.remove('hidden');
         document.getElementById('actionDock').classList.remove('hidden');
       }, 500);
-      // Iniciar bgMusic aqui (contexto de gesto do usuário, volume 0) para contornar
-      // bloqueio de autoplay — o setInterval do fade-out dura >1s e perde o contexto
-      if (musicEnabled && !musicStarted) {
-        activeTrack = bgA;
-        bgA.currentTime = 0;
-        bgA.volume = 0;
-        bgA.play().catch(() => {});
-      }
-      // Fade-out da welcome music; aplica volume real do bgMusic após conclusão
-      stopWelcomeMusic(true, () => {
-        if (musicEnabled && !bgA.paused) {
-          musicStarted = true;
-          bgA.volume = MUSIC_VOL;
-          scheduleXfade(bgA);
-        } else {
-          startBgMusic();
-        }
-      });
+      // Para welcome music imediatamente (cancela qualquer play() pendente via _wmStopRequested)
+      // e inicia bg music no contexto de gesto do usuário (sem delay de callback)
+      stopWelcomeMusic(false);
+      if (musicEnabled && !musicStarted) startBgMusic();
     }
     
     async function continueGame() {
