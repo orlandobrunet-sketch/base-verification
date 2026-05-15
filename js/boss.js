@@ -116,8 +116,8 @@
       const qNum = progress + 1;
       if (elQNum) {
         elQNum.textContent = progress >= 10
-          ? 'QUESTÃO FINAL 10/10 — VITÓRIA!'
-          : `QUESTÃO FINAL ${qNum}/10`;
+          ? 'FASE FINAL 10/10 — VITÓRIA!'
+          : `FASE FINAL ${qNum}/10`;
       }
 
       // ── Botão Próxima: "ATACAR (responder)" nas questões 91-99, "GOLPE FINAL" apenas na última (100ª) ──

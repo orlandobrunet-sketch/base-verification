@@ -4428,13 +4428,20 @@
       .arqui-nefromante-final .game-title h1 {
         font-size: 1.1rem;
         letter-spacing: 2px;
-        color: var(--purple);
-        text-shadow: 0 0 15px rgba(192,132,252,0.8), 0 0 30px rgba(168,85,247,0.5);
+        color: #f3e8ff;
+        -webkit-text-fill-color: #f3e8ff;
+        background: none;
+        filter: none;
+        text-shadow:
+          0 0 12px rgba(216,180,254,1),
+          0 0 28px rgba(168,85,247,0.8),
+          0 0 55px rgba(124,58,237,0.5);
       }
       .arqui-nefromante-final .game-title .subtitle {
         font-size: 0.55rem;
-        color: rgba(192,132,252,0.6);
-        letter-spacing: 4px;
+        color: rgba(233,213,255,0.92);
+        letter-spacing: 5px;
+        text-shadow: 0 0 10px rgba(192,132,252,0.7);
       }
       /* Título "CONFRONTO FINAL" sai do game-title e vai acima da HP bar */
       .arqui-nefromante-final #bossTitleBar {
@@ -6390,7 +6397,7 @@ body.arqui-nefromante-final #bossHpContainer {
   border-radius: 10px !important;
   box-shadow: 0 2px 16px rgba(0,0,0,0.5), inset 0 0 20px rgba(0,0,0,0.4) !important;
   margin-top: 6px !important;
-  margin-bottom: 6px !important;
+  margin-bottom: 2px !important;
 }
 
 body.arqui-nefromante-final #bossHpLabel {
@@ -6507,7 +6514,7 @@ body.arqui-nefromante-final #bossQuestionNum {
   letter-spacing: 3px !important;
   color: #a78bfa !important;
   text-align: center !important;
-  padding: 8px 0 4px !important;
+  padding: 4px 0 4px !important;
   text-transform: uppercase !important;
   border-bottom: 1px solid rgba(168,85,247,0.2) !important;
   margin-bottom: 8px !important;
@@ -6745,7 +6752,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 @media (max-width: 768px) {
   /* Padding-top maior para descolar botões música/sfx da logo */
   .welcome-content {
-    padding-top: 60px;
+    padding-top: 44px;
   }
   /* "Reino dos Néfrons": mais destaque no mobile */
   .welcome-ornament span {
