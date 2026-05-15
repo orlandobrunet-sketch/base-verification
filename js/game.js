@@ -66,34 +66,22 @@
       modal.classList.add('nq-overlay');
       modal.style.cssText = 'background:rgba(0,0,0,0.92);z-index:9999;-webkit-backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);';
       modal.innerHTML = `
-        <div style="max-width:600px;width:100%;text-align:center;position:relative;">
-          <img src="assets/victory.jpg" alt="Vitória" style="width:100%;border-radius:16px;border:3px solid var(--gold);box-shadow:0 0 40px rgba(218,165,32,0.5);margin-bottom:20px;">
-          <div style="background:linear-gradient(180deg,rgba(18,25,46,0.95),rgba(11,20,40,0.98));border:2px solid var(--gold);border-radius:14px;padding:24px;margin-top:-30px;position:relative;z-index:2;">
-            <h2 style="color:var(--gold);font-size:1.8rem;margin-bottom:8px;text-shadow:0 0 20px rgba(218,165,32,0.5);">PARABÉNS, HERÓI!</h2>
-            <p style="color:#e2c97e;font-size:1rem;margin-bottom:16px;">Você purificou o Reino e venceu o NefroQuest!</p>
-            <div style="display:flex;justify-content:center;gap:20px;margin-bottom:20px;flex-wrap:wrap;">
-              <div style="background:rgba(218,165,32,0.15);border:1px solid rgba(218,165,32,0.3);border-radius:10px;padding:12px 18px;">
-                <div style="font-size:1.4rem;font-weight:700;color:var(--gold);">${state.score}</div>
-                <div style="font-size:0.7rem;color:var(--txt-dim);text-transform:uppercase;">Pontos</div>
-              </div>
-              <div style="background:rgba(218,165,32,0.15);border:1px solid rgba(218,165,32,0.3);border-radius:10px;padding:12px 18px;">
-                <div style="font-size:1.4rem;font-weight:700;color:var(--gold);">${state.level}</div>
-                <div style="font-size:0.7rem;color:var(--txt-dim);text-transform:uppercase;">Nível</div>
-              </div>
-              <div style="background:rgba(218,165,32,0.15);border:1px solid rgba(218,165,32,0.3);border-radius:10px;padding:12px 18px;">
-                <div style="font-size:1.4rem;font-weight:700;color:var(--gold);">100</div>
-                <div style="font-size:0.7rem;color:var(--txt-dim);text-transform:uppercase;">Acertos</div>
-              </div>
-              <div style="background:rgba(218,165,32,0.15);border:1px solid rgba(218,165,32,0.3);border-radius:10px;padding:12px 18px;">
-                <div style="font-size:1.4rem;font-weight:700;color:var(--gold);">${state.gold}</div>
-                <div style="font-size:0.7rem;color:var(--txt-dim);text-transform:uppercase;">Ouro</div>
-              </div>
+        <div class="victory-wrap">
+          <img src="assets/victory.jpg" alt="Vitória" class="victory-img">
+          <div class="victory-card">
+            <h2 class="victory-title">PARABÉNS, HERÓI!</h2>
+            <p class="victory-sub">Você purificou o Reino e venceu o NefroQuest!</p>
+            <div class="victory-stats">
+              <div class="victory-stat"><span class="victory-stat-val">${state.score.toLocaleString('pt-BR')}</span><span class="victory-stat-lbl">Pontos</span></div>
+              <div class="victory-stat"><span class="victory-stat-val">${state.level}</span><span class="victory-stat-lbl">Nível</span></div>
+              <div class="victory-stat"><span class="victory-stat-val">100</span><span class="victory-stat-lbl">Acertos</span></div>
+              <div class="victory-stat"><span class="victory-stat-val">${state.gold}</span><span class="victory-stat-lbl">Ouro</span></div>
             </div>
-            <p style="color:var(--txt-dim);font-size:0.85rem;margin-bottom:20px;">Você recebeu o <strong style="color:var(--gold);">Título de Campeão</strong>! Este badge ficará visível no Leaderboard.</p>
-            <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
-              <button class="btn sec" data-action="continueAfterCompletion" style="flex:1;min-width:120px;">Continuar Jogando</button>
-              <button class="btn gold" data-action="finishGameCompletely" style="flex:1;min-width:120px;">Encerrar Jornada</button>
-              <button class="btn sec" data-action="shareVictory" data-pass-this="1" style="flex:1;min-width:120px;background:linear-gradient(180deg,#3b82f6,#2563eb);border-color:#1d4ed8;color:#fff;">📤 Compartilhar</button>
+            <p class="victory-champion-msg">Você recebeu o <strong>Título de Campeão</strong>! Este badge ficará visível no Leaderboard.</p>
+            <div class="victory-btns">
+              <button class="btn sec" data-action="continueAfterCompletion">Continuar Jogando</button>
+              <button class="btn gold" data-action="finishGameCompletely">Encerrar Jornada</button>
+              <button class="btn victory-share" data-action="shareVictory" data-pass-this="1">📤 Compartilhar</button>
             </div>
           </div>
         </div>
@@ -1804,6 +1792,7 @@
       if(state.bonusUses >= 1){ log('🚫 Você já usou sua pergunta bônus nesta jornada!'); return; }
       const cost=bonusCost();
       if(state.gold<cost||state.lives>0) return;
+      document.body.classList.remove('rd-game-over');
       state.gold-=cost;
       state.bonusUses++;
       state.lives=1;
@@ -2412,6 +2401,7 @@
     window.openOraculoFromJourney = openOraculoFromJourney;
 
     function goToWelcomeFromGame() {
+      document.body.classList.remove('rd-game-over');
       document.getElementById('mainApp')?.classList.add('hidden');
       document.querySelectorAll('.exam-overlay').forEach(e => e.remove());
       const ws = document.getElementById('welcomeScreen');

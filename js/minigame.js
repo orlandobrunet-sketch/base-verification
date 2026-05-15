@@ -568,6 +568,7 @@
     }
 
     function finishGameUI() {
+      document.body.classList.add('rd-game-over');
       ui.question.textContent=`Fim da jornada! Pontos: ${state.score} • Nível: ${state.level}.`;
       ui.options.innerHTML='';
       const cost=bonusCost();
