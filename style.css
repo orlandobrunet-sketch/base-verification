@@ -6081,3 +6081,189 @@
 /* ═══════════════════════════════════════════════════════════════════
    FIM FASE 4
    ═══════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════════
+   FASE 5 — Modais de sistema
+   M7: Auth · M8: Pricing · M9: Profile popup · M10: Account
+   M11: Flag questão · M14: Changelog · M16: Toast
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── M7 — Auth (login / cadastro) ───────────────────────────────── */
+.auth-box {
+  background: linear-gradient(170deg, var(--rd-bg-surface) 0%, var(--rd-bg-deep) 100%);
+  border: 1px solid rgba(240,192,64,0.25);
+  box-shadow: 0 0 60px rgba(240,192,64,0.08), 0 16px 60px rgba(0,0,0,0.75);
+}
+.auth-title  { color: var(--rd-gold-bright); }
+.auth-subtitle { color: var(--rd-txt-dim); }
+
+.auth-tabs { background: rgba(255,255,255,0.04); }
+.auth-tab  { color: var(--rd-txt-dim); font-family: 'Philosopher', serif; }
+.auth-tab.active {
+  background: rgba(240,192,64,0.12);
+  color: var(--rd-gold-bright);
+  border-radius: 6px;
+}
+
+.auth-field label { color: var(--rd-txt-dim); }
+.auth-field input {
+  background: rgba(13,18,37,0.85);
+  border-color: rgba(74,158,255,0.2);
+  color: var(--rd-txt-primary);
+}
+.auth-field input:focus { border-color: var(--rd-gold-mid); }
+
+.auth-divider { color: var(--rd-txt-dim); }
+.auth-divider::before,
+.auth-divider::after { background: rgba(240,192,64,0.1); }
+
+/* ── M8 — Pricing / Paywall ─────────────────────────────────────── */
+.pricing-card {
+  background: linear-gradient(160deg, var(--rd-bg-surface) 0%, var(--rd-bg-panel) 100%);
+  border-color: rgba(74,158,255,0.2);
+}
+.pricing-card:hover {
+  border-color: var(--rd-gold-mid);
+  box-shadow: 0 0 24px rgba(240,192,64,0.1);
+}
+.pricing-card.featured {
+  border-color: var(--rd-gold-bright);
+  box-shadow: 0 0 36px rgba(240,192,64,0.16);
+}
+.pricing-card.featured:hover { box-shadow: 0 0 50px rgba(240,192,64,0.26); }
+.pricing-ornament   { color: var(--rd-gold-dim); }
+.pricing-sub-title  { color: var(--rd-txt-dim); }
+.pricing-stat-pill  {
+  background: rgba(240,192,64,0.06);
+  border-color: rgba(240,192,64,0.18);
+  color: var(--rd-gold-mid);
+}
+.pricing-stat-pill strong { color: var(--rd-gold-bright); }
+
+/* ── M9 — Profile popup ─────────────────────────────────────────── */
+.profile-popup {
+  background: rgba(10,14,30,0.98);
+  border: 1px solid rgba(240,192,64,0.2);
+  box-shadow: 0 10px 36px rgba(0,0,0,0.75), 0 0 0 1px rgba(240,192,64,0.06) inset;
+}
+.profile-popup-email {
+  color: var(--rd-txt-primary);
+  border-bottom-color: rgba(240,192,64,0.12);
+}
+.profile-popup-email strong { color: var(--rd-txt-dim); }
+.profile-popup-item {
+  background: rgba(255,255,255,0.03);
+  border-color: rgba(240,192,64,0.1);
+  color: var(--rd-txt-primary);
+}
+.profile-popup-item:hover {
+  background: rgba(240,192,64,0.07);
+  border-color: rgba(240,192,64,0.2);
+}
+
+/* ── M10 — Conta / Account (+ Plan + Admin) ─────────────────────── */
+.modal-panel {
+  background: linear-gradient(160deg, var(--rd-bg-surface) 0%, var(--rd-bg-panel) 100%);
+  border: 1px solid rgba(240,192,64,0.22);
+  box-shadow: 0 0 50px rgba(0,0,0,0.7), 0 0 0 1px rgba(240,192,64,0.05) inset;
+}
+
+/* ── M11 — Reportar questão (flag) ──────────────────────────────── */
+#flagPopup > div {
+  background: linear-gradient(160deg, var(--rd-bg-surface) 0%, var(--rd-bg-panel) 100%) !important;
+  border-color: rgba(99,102,241,0.5) !important;
+  box-shadow: 0 0 40px rgba(99,102,241,0.2) !important;
+}
+.flag-chip {
+  background: rgba(99,102,241,0.1);
+  border: 1px solid rgba(99,102,241,0.3);
+  color: #a5b4fc;
+  border-radius: 16px;
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: background 0.18s, border-color 0.18s;
+}
+.flag-chip:hover    { background: rgba(99,102,241,0.2); border-color: rgba(99,102,241,0.55); }
+.flag-chip.selected { background: rgba(99,102,241,0.28); border-color: #818cf8; color: #e0e7ff; }
+
+/* ── M14 — Changelog ────────────────────────────────────────────── */
+.changelog-popup .modal-content {
+  background: linear-gradient(170deg, var(--rd-bg-surface) 0%, var(--rd-bg-panel) 100%) !important;
+  border: 1px solid rgba(240,192,64,0.22) !important;
+  box-shadow: 0 0 50px rgba(0,0,0,0.7) !important;
+}
+
+/* ── M16 — Toast notifications ──────────────────────────────────── */
+.nq-toast {
+  background: var(--rd-bg-surface);
+  border-color: rgba(74,158,255,0.35);
+  color: var(--rd-txt-primary);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.65);
+  border-radius: 10px;
+}
+.nq-toast.success { border-color: rgba(34,197,94,0.45);  color: #a7f3d0; }
+.nq-toast.error   { border-color: rgba(220,38,38,0.45);  color: #fca5a5; }
+.nq-toast.warning { border-color: rgba(251,191,36,0.45); color: #fde68a; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   FIM FASE 5
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════════
+   FASE 6 — Boss & correções de layout
+   T7: Confronto Final — strip de heróis removida, layout profissional
+   Fix: achievements popup gap preto na base
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Fix — Achievements popup: sem gap preto abaixo do botão ─────── */
+.achievements-popup {
+  padding-bottom: 12px !important;
+}
+.achievements-popup .modal-content {
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 88px) !important;
+}
+
+/* ── T7 — Boss: remover strip de 3 personagens (mobile e desktop) ── */
+#arquiHeroStrip,
+.arqui-nefromante-final #arquiHeroStrip {
+  display: none !important;
+}
+
+/* Ocultar também o painel party lateral (desktop) */
+#bossPartyPanel,
+.arqui-nefromante-final #bossPartyPanel {
+  display: none !important;
+}
+
+/* ── T7 — Confronto Final: header mais profissional ─────────────── */
+
+/* Título mobile: espaçamento e impacto visual melhorado */
+.arqui-nefromante-final #arquiBossTitleMobile {
+  display: block !important;
+  padding: 16px 16px 10px;
+  font-size: clamp(1rem, 4.2vw, 1.2rem) !important;
+  letter-spacing: 4px;
+  text-align: center;
+  color: #ede9fe;
+  text-shadow:
+    0 0 20px rgba(168,85,247,0.9),
+    0 0 50px rgba(124,58,237,0.45),
+    0 2px 4px rgba(0,0,0,0.9);
+  border-bottom: 1px solid rgba(168,85,247,0.22);
+  margin-bottom: 4px;
+}
+
+/* HP bar: respiro extra no topo após a remoção do strip */
+.arqui-nefromante-final #bossHpContainer {
+  margin-top: 6px !important;
+}
+
+/* Boss image desktop: leve aumento de altura para preencher espaço extra */
+.arqui-nefromante-final #arquiBossImageDesktop {
+  min-height: 168px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   FIM FASE 6
+   ═══════════════════════════════════════════════════════════════════ */
