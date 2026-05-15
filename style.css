@@ -4428,13 +4428,20 @@
       .arqui-nefromante-final .game-title h1 {
         font-size: 1.1rem;
         letter-spacing: 2px;
-        color: var(--purple);
-        text-shadow: 0 0 15px rgba(192,132,252,0.8), 0 0 30px rgba(168,85,247,0.5);
+        color: #f3e8ff;
+        -webkit-text-fill-color: #f3e8ff;
+        background: none;
+        filter: none;
+        text-shadow:
+          0 0 12px rgba(216,180,254,1),
+          0 0 28px rgba(168,85,247,0.8),
+          0 0 55px rgba(124,58,237,0.5);
       }
       .arqui-nefromante-final .game-title .subtitle {
         font-size: 0.55rem;
-        color: rgba(192,132,252,0.6);
-        letter-spacing: 4px;
+        color: rgba(233,213,255,0.92);
+        letter-spacing: 5px;
+        text-shadow: 0 0 10px rgba(192,132,252,0.7);
       }
       /* Título "CONFRONTO FINAL" sai do game-title e vai acima da HP bar */
       .arqui-nefromante-final #bossTitleBar {
