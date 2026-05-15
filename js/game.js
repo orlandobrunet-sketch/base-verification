@@ -1286,7 +1286,14 @@
         const b = document.createElement('button');
         b.className = 'option'; b.type = 'button';
         b.dataset.idx = i;
-        b.textContent = `${String.fromCharCode(65 + i)}) ${opt}`;
+        const keySpan = document.createElement('span');
+        keySpan.className = 'opt-key';
+        keySpan.textContent = String.fromCharCode(65 + i);
+        const bodySpan = document.createElement('span');
+        bodySpan.className = 'opt-body';
+        bodySpan.textContent = opt;
+        b.appendChild(keySpan);
+        b.appendChild(bodySpan);
         ui.options.appendChild(b);
       });
     }
