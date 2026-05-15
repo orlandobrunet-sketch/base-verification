@@ -5092,15 +5092,17 @@
 /* Garante que o conteúdo do landing fique acima do overlay */
 #landingScreen > * { position: relative; z-index: 1; }
 
-/* ── Welcome screen (seleção de personagem): mesmo fundo da tela de perguntas ── */
+/* ── Welcome screen: mesmo fundo da tela de perguntas (nefroquest_background.jpg) ── */
+/* Estratégia: background via ::before para poder aplicar brightness sem afetar o conteúdo */
 #welcomeScreen {
-  background: transparent;
+  background: none !important;
 }
 #welcomeScreen::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(4, 6, 18, 0.45);
+  background: url('assets/nefroquest_background.jpg') center/cover no-repeat;
+  filter: brightness(0.45) saturate(1.1);
   pointer-events: none;
   z-index: 0;
 }
