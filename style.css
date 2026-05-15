@@ -6370,3 +6370,338 @@ body.rd-game-over #feedback {
 /* ═══════════════════════════════════════════════════════════════════
    FIM FASE 6
    ═══════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════════
+   FASE 6B — Confronto Final redesign premium
+   Escopo: body.arqui-nefromante-final (últimas 10 questões)
+   Vem APÓS o bloco FIM FASE 6 — não remove regras antigas,
+   apenas sobrescreve com seletores iguais ou mais específicos.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── ATMOSPHERE — app background & panel ──────────────────────────── */
+
+/* App-level dark blueish-purple atmosphere */
+body.arqui-nefromante-final .app,
+body.arqui-nefromante-final #mainApp {
+  background: #04010e;
+}
+
+/* Right panel: deep dark with subtle radial purple glow */
+body.arqui-nefromante-final .panel.right {
+  background: radial-gradient(ellipse 80% 60% at 50% 0%,
+    rgba(88,28,135,0.18) 0%, rgba(10,4,26,0.98) 55%) !important;
+  border: 1px solid rgba(109,40,217,0.3) !important;
+  box-shadow: 0 0 60px rgba(88,28,135,0.12), inset 0 0 40px rgba(4,1,14,0.6) !important;
+}
+
+/* ── HP BAR — cinematographic ─────────────────────────────────────── */
+
+body.arqui-nefromante-final #bossHpContainer {
+  padding: 8px 12px 10px !important;
+  background: rgba(8,2,22,0.85) !important;
+  border: 1px solid rgba(88,28,135,0.4) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.5), inset 0 0 20px rgba(0,0,0,0.4) !important;
+  margin-top: 6px !important;
+  margin-bottom: 6px !important;
+}
+
+body.arqui-nefromante-final #bossHpLabel {
+  position: static !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 5px !important;
+  height: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  right: auto !important;
+  padding: 0 !important;
+}
+
+body.arqui-nefromante-final #bossHpName {
+  font-family: 'Cinzel', serif !important;
+  font-size: 0.72rem !important;
+  color: #d8b4fe !important;
+  letter-spacing: 2px !important;
+  text-shadow: 0 0 8px rgba(216,180,254,0.5) !important;
+}
+
+body.arqui-nefromante-final #bossHpPct {
+  font-size: 0.7rem !important;
+  color: #a78bfa !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+}
+
+body.arqui-nefromante-final #bossHpTrack {
+  height: 18px !important;
+  border-radius: 9px !important;
+  border: 1px solid rgba(168,85,247,0.5) !important;
+  background: rgba(4,1,14,0.9) !important;
+  box-shadow: inset 0 1px 4px rgba(0,0,0,0.7), 0 0 6px rgba(88,28,135,0.2) !important;
+  overflow: hidden !important;
+  position: relative !important;
+  display: block !important;
+  padding: 0 !important;
+}
+
+body.arqui-nefromante-final #bossHpFill {
+  height: 100% !important;
+  border-radius: inherit !important;
+  transition: width 0.5s cubic-bezier(0.4,0,0.2,1) !important;
+}
+
+/* HP fill color states */
+body.arqui-nefromante-final #bossHpFill.boss-hp-fill--high {
+  background: linear-gradient(90deg, #6d28d9, #7c3aed, #8b5cf6) !important;
+  box-shadow: 0 0 12px rgba(124,58,237,0.5) !important;
+}
+
+body.arqui-nefromante-final #bossHpFill.boss-hp-fill--med {
+  background: linear-gradient(90deg, #92400e, #b45309, #d97706) !important;
+  box-shadow: 0 0 12px rgba(217,119,6,0.4) !important;
+}
+
+body.arqui-nefromante-final #bossHpFill.boss-hp-fill--low {
+  background: linear-gradient(90deg, #991b1b, #dc2626, #ef4444) !important;
+  box-shadow: 0 0 12px rgba(239,68,68,0.4) !important;
+  animation: boss-hp-pulse 1.2s ease-in-out infinite !important;
+}
+
+@keyframes boss-hp-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.75; }
+}
+
+/* ── BOSS IMAGE — cinematic container ─────────────────────────────── */
+
+body.arqui-nefromante-final #arquiBossImageDesktop {
+  height: clamp(160px, 22vw, 240px) !important;
+  min-height: clamp(160px, 22vw, 240px) !important;
+  border: 1px solid rgba(168,85,247,0.5) !important;
+  border-radius: 12px !important;
+  box-shadow:
+    0 0 40px rgba(124,58,237,0.3),
+    0 0 80px rgba(88,28,135,0.2) !important;
+  overflow: hidden !important;
+  position: relative !important;
+  background: #0a0118 !important;
+  animation: none !important;
+  margin-bottom: 8px !important;
+}
+
+body.arqui-nefromante-final #arquiBossImgEl {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center 15% !important;
+  display: block !important;
+  border-radius: 0 !important;
+  animation: none !important;
+  transform: none !important;
+}
+
+/* Vignette overlay on boss image container */
+body.arqui-nefromante-final #arquiBossImageDesktop .boss-img-wrap::after {
+  background: radial-gradient(ellipse at 50% 50%,
+    transparent 30%,
+    rgba(4,1,14,0.45) 70%,
+    rgba(4,1,14,0.75) 100%) !important;
+}
+
+/* Keep the scanlines from existing CSS (boss-img-wrap::before) — no override needed */
+
+/* ── QUESTION COUNTER ─────────────────────────────────────────────── */
+
+body.arqui-nefromante-final #bossQuestionNum {
+  font-family: 'Cinzel', serif !important;
+  font-size: 0.75rem !important;
+  letter-spacing: 3px !important;
+  color: #a78bfa !important;
+  text-align: center !important;
+  padding: 8px 0 4px !important;
+  text-transform: uppercase !important;
+  border-bottom: 1px solid rgba(168,85,247,0.2) !important;
+  margin-bottom: 8px !important;
+  text-shadow: none !important;
+  display: block !important;
+}
+
+/* ── QUESTION CARD (.qbox) ────────────────────────────────────────── */
+
+body.arqui-nefromante-final .qbox {
+  background: linear-gradient(170deg,
+    rgba(20,10,45,0.95) 0%,
+    rgba(10,4,26,0.98) 100%) !important;
+  border: 1px solid rgba(168,85,247,0.35) !important;
+  border-top: 1px solid rgba(168,85,247,0.35) !important;
+  border-radius: 12px !important;
+  box-shadow:
+    inset 0 0 20px rgba(88,28,135,0.15),
+    0 4px 20px rgba(0,0,0,0.5) !important;
+  padding: 16px 18px !important;
+}
+
+body.arqui-nefromante-final #question {
+  color: #e9d5ff !important;
+  font-size: clamp(0.82rem, 1.5vw, 0.95rem) !important;
+  line-height: 1.65 !important;
+  text-transform: none !important;
+  text-shadow: none !important;
+}
+
+/* ── OPTIONS — combat cards ───────────────────────────────────────── */
+
+body.arqui-nefromante-final .option {
+  background: rgba(20,10,45,0.9) !important;
+  border: 1px solid rgba(109,40,217,0.4) !important;
+  border-radius: 10px !important;
+  color: #ddd6fe !important;
+  transition: all 0.18s ease !important;
+  padding: 10px 14px !important;
+  min-height: auto !important;
+  font-size: 0.82rem !important;
+  text-shadow: none !important;
+}
+
+body.arqui-nefromante-final .option:hover:not(:disabled):not(.wrong):not(.correct) {
+  background: rgba(109,40,217,0.15) !important;
+  border-color: rgba(139,92,246,0.7) !important;
+  transform: translateX(3px) !important;
+  box-shadow: -3px 0 12px rgba(139,92,246,0.3) !important;
+}
+
+/* Preserve correct/wrong states */
+body.arqui-nefromante-final .option.correct {
+  background: linear-gradient(135deg, rgba(5,45,25,0.95), rgba(3,28,18,0.98)) !important;
+  border-color: #34d399 !important;
+}
+
+body.arqui-nefromante-final .option.wrong {
+  background: linear-gradient(135deg, rgba(55,5,15,0.95), rgba(38,3,10,0.98)) !important;
+  border-color: #fb7185 !important;
+}
+
+/* opt-key letter badge in boss mode */
+body.arqui-nefromante-final .opt-key {
+  background: rgba(109,40,217,0.4) !important;
+  border-color: rgba(139,92,246,0.6) !important;
+  color: #c4b5fd !important;
+}
+
+/* Desktop 2-column grid for options */
+@media (min-width: 1200px) {
+  body.arqui-nefromante-final #options {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+}
+
+/* ── NEXT BUTTON — attack button ──────────────────────────────────── */
+
+body.arqui-nefromante-final #nextBtn:not(.hidden) {
+  background: linear-gradient(180deg, #4c1d95, #3b0764) !important;
+  border: 1px solid #7c3aed !important;
+  color: #e9d5ff !important;
+  font-family: 'Cinzel', serif !important;
+  letter-spacing: 2px !important;
+  font-size: 0.85rem !important;
+  box-shadow: 0 0 20px rgba(124,58,237,0.3) !important;
+  width: 100% !important;
+  padding: 14px !important;
+  border-radius: 10px !important;
+  text-shadow: none !important;
+  animation: none !important;
+}
+
+body.arqui-nefromante-final #nextBtn:not(.hidden)::after {
+  content: none !important;
+  display: none !important;
+}
+
+body.arqui-nefromante-final #nextBtn:not(.hidden):hover {
+  background: linear-gradient(180deg, #5b21b6, #4c1d95) !important;
+  box-shadow: 0 0 30px rgba(124,58,237,0.5) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* ctrl row: stack vertically in boss mode (nextBtn full width) */
+body.arqui-nefromante-final .ctrl {
+  flex-direction: column !important;
+  gap: 6px !important;
+}
+
+body.arqui-nefromante-final .ctrl #nextBtn:not(.hidden) {
+  flex: none !important;
+}
+
+/* ── FEEDBACK ─────────────────────────────────────────────────────── */
+
+body.arqui-nefromante-final #feedback {
+  border-radius: 8px !important;
+  padding: 10px 14px !important;
+}
+
+/* ── PROGRESS: hide redundant bottom meter on desktop ─────────────── */
+/* The HP bar (with stars inside bossHpTrack) is the primary indicator.
+   The bottom meter is hidden on both desktop and mobile (already done
+   by earlier rules). This reinforces that with higher specificity. */
+body.arqui-nefromante-final #finalMeterContainer {
+  display: none !important;
+}
+
+body.arqui-nefromante-final #golpeFinalHint {
+  display: none !important;
+}
+
+/* arquiStarsDesktop also hidden — HP bar is the single progress indicator */
+body.arqui-nefromante-final #arquiStarsDesktop {
+  display: none !important;
+}
+
+/* ── MOBILE ADJUSTMENTS (≤768px) ─────────────────────────────────── */
+
+@media (max-width: 768px) {
+  body.arqui-nefromante-final .panel.right {
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+  }
+
+  body.arqui-nefromante-final #arquiBossImageDesktop {
+    max-height: 130px !important;
+    min-height: 0 !important;
+    height: 130px !important;
+  }
+
+  body.arqui-nefromante-final #options {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+
+  body.arqui-nefromante-final #nextBtn:not(.hidden) {
+    font-size: 0.8rem !important;
+    padding: 12px !important;
+  }
+}
+
+/* ── PREFERS-REDUCED-MOTION ───────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  body.arqui-nefromante-final #bossHpFill.boss-hp-fill--low {
+    animation: none !important;
+  }
+
+  body.arqui-nefromante-final .boss-corner-orb,
+  body.arqui-nefromante-final .boss-corner-ray,
+  body.arqui-nefromante-final .boss-sparkle,
+  body.arqui-nefromante-final .rune-track {
+    animation: none !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   FIM FASE 6B
+   ═══════════════════════════════════════════════════════════════════ */
