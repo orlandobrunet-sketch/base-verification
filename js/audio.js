@@ -158,15 +158,16 @@
       wmTrack.muted = false;
       if (wmTrack.readyState >= 1) wmTrack.currentTime = 0;
       wmTrack.play().then(() => {
+        if (_wmStopRequested) { wmTrack.pause(); wmTrack.volume = 0; return; }
         welcomeMusicStarted = true;
         _wmFadeIn(() => { if (!_wmStopRequested) _wmScheduleFadeOut(); });
       }).catch(() => {});
     }
 
     function stopWelcomeMusic(withFade, onComplete) {
-      if (!welcomeMusicStarted) { if (onComplete) onComplete(); return; }
-      _wmStopRequested = true;
+      _wmStopRequested = true;   // cancela qualquer play() pendente antes de tudo
       _wmClearTimers();
+      if (!welcomeMusicStarted && wmTrack.paused) { if (onComplete) onComplete(); return; }
       wmTrack.muted = false; // garantir desmutado ao parar
       if (!withFade) {
         wmTrack.pause();
