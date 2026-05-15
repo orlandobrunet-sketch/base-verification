@@ -5982,3 +5982,102 @@
 /* ═══════════════════════════════════════════════════════════════════
    FIM FASE 3
    ═══════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════════
+   FASE 4 — Telas de conteúdo
+   T10: Leaderboard · T11: Modo Estudo · T12: Simulado
+   T13: Julgamento Rápido · T14: Stats · T15: Conquistas
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── T10 — Leaderboard ──────────────────────────────────────────── */
+.board-modal {
+  background: linear-gradient(160deg, var(--rd-bg-surface) 0%, var(--rd-bg-panel) 100%);
+  border-color: rgba(240,192,64,0.28);
+  box-shadow: 0 0 0 1px rgba(240,192,64,0.06) inset, 0 16px 60px rgba(0,0,0,0.75);
+}
+.board-header {
+  background: linear-gradient(135deg, rgba(240,192,64,0.06) 0%, transparent 60%);
+  border-bottom-color: rgba(240,192,64,0.14);
+  padding: 22px 24px 14px;
+}
+.board-title {
+  color: var(--rd-gold-bright);
+  text-shadow: 0 0 26px rgba(240,192,64,0.4);
+}
+.board-subtitle { color: var(--rd-txt-dim); }
+
+.board-search-input {
+  background: rgba(13,18,37,0.85);
+  border-color: rgba(240,192,64,0.18);
+  color: var(--rd-txt-primary);
+}
+.board-search-input:focus { border-color: var(--rd-gold-mid); }
+.board-search-input::placeholder { color: var(--rd-txt-dim); }
+
+.board-table thead th {
+  background: var(--rd-bg-surface);
+  color: rgba(240,192,64,0.6);
+  border-bottom-color: rgba(240,192,64,0.12);
+}
+.board-table-wrap { scrollbar-color: rgba(240,192,64,0.25) transparent; }
+.board-table tbody tr:hover { background: rgba(240,192,64,0.04); }
+.board-table tbody tr.rank-1 { background: linear-gradient(90deg, rgba(240,192,64,0.12) 0%, transparent 100%); }
+.board-table tbody tr.rank-2 { background: linear-gradient(90deg, rgba(192,192,192,0.08) 0%, transparent 100%); }
+.board-table tbody tr.rank-3 { background: linear-gradient(90deg, rgba(205,127,50,0.08) 0%, transparent 100%); }
+
+.board-footer { border-top-color: rgba(240,192,64,0.1); }
+.btn-board-refresh {
+  background: rgba(240,192,64,0.07);
+  border-color: rgba(240,192,64,0.2);
+  color: rgba(240,192,64,0.75);
+}
+.btn-board-refresh:hover { background: rgba(240,192,64,0.14); color: var(--rd-gold-bright); }
+
+/* ── T11 — Modo de Estudo ───────────────────────────────────────── */
+#studyModePage {
+  background: linear-gradient(170deg, var(--rd-bg-deep) 0%, var(--rd-bg-surface) 100%) !important;
+}
+#studyQuestionArea {
+  background: linear-gradient(160deg, var(--rd-bg-surface), var(--rd-bg-panel)) !important;
+  border: 1px solid rgba(240,192,64,0.18) !important;
+  box-shadow: 0 0 32px rgba(0,0,0,0.5) !important;
+}
+.study-option-btn {
+  background: linear-gradient(160deg, rgba(13,18,37,0.97), rgba(15,24,48,0.97)) !important;
+  border: 1.5px solid rgba(74,158,255,0.2) !important;
+  color: var(--rd-txt-primary) !important;
+  transition: border-color 0.18s, box-shadow 0.18s !important;
+}
+.study-option-btn:hover {
+  border-color: var(--rd-gold-mid) !important;
+  background: linear-gradient(160deg, rgba(18,24,48,0.98), rgba(20,30,58,0.98)) !important;
+  box-shadow: 0 0 14px rgba(240,192,64,0.1) !important;
+}
+
+/* ── T12 — Prova Simulada ───────────────────────────────────────── */
+.exam-overlay {
+  background: var(--rd-bg-deep) !important;
+}
+
+/* ── T13 — Julgamento Rápido ────────────────────────────────────── */
+#rapidQuizOverlay {
+  background: var(--rd-bg-deep) !important;
+}
+
+/* ── T14 — Estatísticas ─────────────────────────────────────────── */
+.stats-popup .modal-content {
+  background: linear-gradient(170deg, var(--rd-bg-surface) 0%, var(--rd-bg-panel) 100%) !important;
+  border: 1px solid rgba(240,192,64,0.22) !important;
+  box-shadow: 0 0 50px rgba(0,0,0,0.7) !important;
+}
+
+/* ── T15 — Conquistas ───────────────────────────────────────────── */
+.achievements-popup .modal-content {
+  background: linear-gradient(170deg, var(--rd-bg-surface) 0%, var(--rd-bg-panel) 100%) !important;
+  border: 1px solid rgba(240,192,64,0.22) !important;
+  box-shadow: 0 0 50px rgba(0,0,0,0.7) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   FIM FASE 4
+   ═══════════════════════════════════════════════════════════════════ */
