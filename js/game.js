@@ -2913,7 +2913,7 @@
       btn.textContent = btn.textContent.includes('▼') ? '▲ Ocultar erros' : '▼ Ver erros';
     };
     window._selectDiffCard = function(card) {
-      document.querySelectorAll('.diff-card').forEach(c => c.classList.remove('selected'));
+      document.querySelectorAll('.difficulty-card').forEach(c => c.classList.remove('selected'));
       card.classList.add('selected');
       const btn = document.getElementById('diffConfirmBtn');
       if (btn) btn.disabled = false;

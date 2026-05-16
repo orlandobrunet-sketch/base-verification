@@ -166,14 +166,16 @@
         return;
       }
       _wmStopRequested = false;
-      welcomeMusicStarted = true; // marca antes do play() para bloquear re-entradas (autoplay race)
-      wmTrack.volume = 0.01;
-      wmTrack.muted = false;
+      welcomeMusicStarted = true; // marca antes do play() para bloquear re-entradas
+      wmTrack.volume = 0;
+      wmTrack.muted = true; // muted-first: browsers allow muted autoplay (bypass autoplay policy pós-redirect)
       if (wmTrack.readyState >= 1) wmTrack.currentTime = 0;
       wmTrack.play().then(() => {
-        if (_wmStopRequested) { wmTrack.pause(); wmTrack.volume = 0; welcomeMusicStarted = false; return; }
+        if (_wmStopRequested) { wmTrack.pause(); wmTrack.muted = false; wmTrack.volume = 0; welcomeMusicStarted = false; return; }
+        wmTrack.muted = false;
+        wmTrack.volume = 0.01;
         _wmFadeIn(() => { if (!_wmStopRequested) _wmScheduleFadeOut(); });
-      }).catch(() => { welcomeMusicStarted = false; }); // libera retry apenas se o browser bloqueou
+      }).catch(() => { wmTrack.muted = false; welcomeMusicStarted = false; }); // libera retry apenas se bloqueado
     }
 
     function stopWelcomeMusic(withFade, onComplete) {
