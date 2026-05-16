@@ -152,7 +152,19 @@
     });
 
     function startWelcomeMusic() {
-      if (!musicEnabled || welcomeMusicStarted) return;
+      if (!musicEnabled) return;
+      if (welcomeMusicStarted) {
+        // Já iniciada mas pode estar pausada (gap entre loops) — retomar imediatamente
+        if (wmTrack.paused && !_wmStopRequested) {
+          _wmClearTimers();
+          wmTrack.currentTime = 0;
+          wmTrack.volume = 0.01;
+          wmTrack.play().then(() => {
+            _wmFadeIn(() => { if (!_wmStopRequested) _wmScheduleFadeOut(); });
+          }).catch(() => {});
+        }
+        return;
+      }
       _wmStopRequested = false;
       welcomeMusicStarted = true; // marca antes do play() para bloquear re-entradas (autoplay race)
       wmTrack.volume = 0.01;

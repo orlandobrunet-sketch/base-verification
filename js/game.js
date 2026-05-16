@@ -1599,10 +1599,10 @@
         ui.feedback.className='feedback good';
         const multText = sm.label ? ` (${sm.label})` : '';
         const synergyText = _synergy ? ' ✨+20% sinergia' : '';
-        { const _snip = escapeHtml(_firstSentence(state.current.e));
+        { const _snip = escapeHtml(_firstSentence(state.current.e, 280));
           const _full = escapeHtml(state.current.e || '');
           const _hasMore = _full.length > _snip.length;
-          ui.feedback.innerHTML = `<strong>✅ Correto!</strong> +${xp} XP${multText}${synergyText}, +${g} ouro.${lv?` <strong>Level up x${lv}!</strong>`:''}<br><span>${_snip}${_hasMore?`<span style="display:none;" class="fb-rest"> ${_full.substring(_snip.length)}</span><button class="fb-more-btn" style="background:none;border:none;color:#93c5fd;cursor:pointer;font-size:0.8rem;padding:0 0 0 4px;" data-action="_showMoreFb" data-pass-this="1">ver mais ▾</button>`:''}</span>`;
+          ui.feedback.innerHTML = `<strong>✅ Correto!</strong> +${xp} XP${multText}${synergyText}, +${g} ouro.${lv?` <strong>Level up x${lv}!</strong>`:''}<br><span class="fb-snip">${_snip}<span style="display:none;" class="fb-rest"> ${_full.substring(_snip.length)}</span></span>${_hasMore?`<button class="fb-more-btn" style="display:block;background:none;border:none;color:#93c5fd;cursor:pointer;font-size:0.8rem;padding:4px 0 0 0;margin-top:2px;" data-action="_showMoreFb" data-pass-this="1">ver mais ▾</button>`:''}` ;
           if (window.innerWidth <= 768) setTimeout(() => ui.feedback.scrollIntoView({behavior:'smooth', block:'nearest'}), 80);
         }
         // Boss log
@@ -1657,10 +1657,10 @@
         state.score=Math.max(0,state.score-(28-Math.min(20,st.def)));
         ui.feedback.className='feedback bad';
         { const _prefix = legendaryBlockMsg || (blocked ? '🛡️ Errou, mas sua defesa absorveu.' : '❌ Incorreta.');
-          const _snip2 = escapeHtml(_firstSentence(state.current.e));
+          const _snip2 = escapeHtml(_firstSentence(state.current.e, 280));
           const _full2 = escapeHtml(state.current.e || '');
           const _hasMore2 = _full2.length > _snip2.length;
-          ui.feedback.innerHTML = `<strong>${escapeHtml(_prefix)}</strong><br><span>${_snip2}${_hasMore2?`<span style="display:none;" class="fb-rest"> ${_full2.substring(_snip2.length)}</span><button class="fb-more-btn" style="background:none;border:none;color:#93c5fd;cursor:pointer;font-size:0.8rem;padding:0 0 0 4px;" data-action="_showMoreFb" data-pass-this="1">ver mais ▾</button>`:''}</span>`;
+          ui.feedback.innerHTML = `<strong>${escapeHtml(_prefix)}</strong><br><span class="fb-snip">${_snip2}<span style="display:none;" class="fb-rest"> ${_full2.substring(_snip2.length)}</span></span>${_hasMore2?`<button class="fb-more-btn" style="display:block;background:none;border:none;color:#93c5fd;cursor:pointer;font-size:0.8rem;padding:4px 0 0 0;margin-top:2px;" data-action="_showMoreFb" data-pass-this="1">ver mais ▾</button>`:''}` ;
           if (window.innerWidth <= 768) setTimeout(() => ui.feedback.scrollIntoView({behavior:'smooth', block:'nearest'}), 80);
         }
         log('⚠️ Você falhou nessa carta. Ajuste a estratégia e continue.');
@@ -3025,7 +3025,8 @@
     window.showPrivacyPolicy = showPrivacyPolicy;
 
     function _showMoreFb(btn) {
-      const rest = btn.previousElementSibling;
+      const snip = btn.previousElementSibling; // .fb-snip span
+      const rest = snip ? snip.querySelector('.fb-rest') : null;
       if (rest) rest.style.display = 'inline';
       btn.style.display = 'none';
     }
