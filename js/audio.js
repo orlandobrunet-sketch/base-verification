@@ -160,9 +160,11 @@
           _wmClearTimers();
           wmTrack.currentTime = 0;
           wmTrack.volume = 0.01;
+          wmTrack.muted = true;
           wmTrack.play().then(() => {
+            wmTrack.muted = false;
             _wmFadeIn(() => { if (!_wmStopRequested) _wmScheduleFadeOut(); });
-          }).catch(() => {});
+          }).catch(() => { wmTrack.muted = false; });
         }
         return;
       }
@@ -228,6 +230,27 @@
     let musicStarted = false;
     let activeTrack = bgA;
     let xfadeInterval = null;
+
+    // Audio unlock — iOS Safari requires each HTMLAudioElement to be play()'d during
+    // a user gesture before it can be played programmatically (e.g. from timers).
+    // We unlock bgB here (bgA is unlocked by startBgMusic which is called from gesture;
+    // wmTrack is unlocked by startWelcomeMusic which uses muted-first on gesture).
+    let _audioUnlocked = false;
+    function _unlockAll() {
+      if (_audioUnlocked) return;
+      _audioUnlocked = true;
+      // Pre-unlock bgB so crossfadeTo() succeeds without user gesture
+      bgB.muted = true;
+      bgB.play().then(() => { bgB.pause(); bgB.currentTime = 0; bgB.muted = false; }).catch(() => { bgB.muted = false; });
+      // Silent AudioContext buffer — unlocks Web Audio and HTMLAudioElement on iOS 13+
+      try {
+        const _ac = new (window.AudioContext || window.webkitAudioContext)();
+        const _buf = _ac.createBuffer(1, 1, 22050);
+        const _src = _ac.createBufferSource();
+        _src.buffer = _buf; _src.connect(_ac.destination); _src.start(0);
+        _ac.resume().then(() => _ac.close()).catch(() => {});
+      } catch(e) {}
+    }
     
     function scheduleXfade(track) {
       // Quando faltam XFADE_TIME segundos, iniciar crossfade para o outro track
@@ -252,7 +275,9 @@
       const prevTrack = activeTrack;
       nextTrack.currentTime = 0;
       nextTrack.volume = 0;
-      nextTrack.play().catch(() => {});
+      // muted-first: crossfadeTo is called from a timer, never from a user gesture
+      nextTrack.muted = true;
+      nextTrack.play().then(() => { nextTrack.muted = false; }).catch(() => { nextTrack.muted = false; });
       
       const steps = 30;
       const stepTime = Math.round((XFADE_TIME * 1000) / steps); // ms por passo de fade
@@ -395,10 +420,16 @@
             if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
           }, { once: true });
         }
-        // Fallback para browsers que bloqueiam autoplay: inicia na primeira interação
+        // Fallback para browsers que bloqueiam autoplay: inicia na primeira interação.
+        // _unlockAll() pré-aquece todos os elementos de áudio (crítico no iOS Safari).
         document.addEventListener('click', function _firstClick() {
+          _unlockAll();
           if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
         }, { once: true, capture: true });
+        // touchstart para mobile: unlock antes do click (touchstart precede click no iOS)
+        document.addEventListener('touchstart', function _firstTouch() {
+          _unlockAll();
+        }, { once: true, capture: true, passive: true });
       }
 
       // Retoma música quando a aba volta ao foco (tab switch, OAuth popup, etc.)
