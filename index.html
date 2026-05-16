@@ -65,7 +65,7 @@
     if (typeof Sentry !== 'undefined') {
       Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@9.28',
+          release: 'nefroquest@9.61',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           beforeSend(event) {
@@ -78,6 +78,24 @@
   </script>
 
   <link rel="stylesheet" href="style.css">
+  <script>
+    // Version beacon — detecta nova versão e força limpeza de cache
+    (function() {
+      var _stored = localStorage.getItem('nq-sw-version');
+      fetch('/version.json', { cache: 'no-store' })
+        .then(function(r) { return r.json(); })
+        .then(function(d) {
+          var _v = String(d.version || '');
+          if (_stored !== null && _stored !== _v) {
+            localStorage.setItem('nq-sw-version', _v);
+            window.location.replace('/clear-cache.html');
+          } else {
+            localStorage.setItem('nq-sw-version', _v);
+          }
+        })
+        .catch(function() {});
+    })();
+  </script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
@@ -301,7 +319,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         <button type="button" class="btn sec" data-action="showLeaderboardFromWelcome">Leaderboard</button>
         <button type="button" id="bossPreviewBtn" class="btn-boss-preview" data-action="startBossPreview" title="Preview do Confronto Final" style="display:none;">⚔️ Preview: Confronto Final</button>
       </div>
-      <div class="welcome-credit" style="margin-top:14px;"><a href="https://nefroquest.com">nefroquest.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;cursor:pointer;" data-action="showChangelog">v9.26</span> &nbsp;·&nbsp; <span style="opacity:0.5;font-size:0.8em;cursor:pointer;text-decoration:underline;" data-action="showPrivacyPolicy">Política de Privacidade</span></div>
+      <div class="welcome-credit" style="margin-top:14px;"><a href="https://nefroquest.com">nefroquest.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;cursor:pointer;" data-action="showChangelog">v9.61</span> &nbsp;·&nbsp; <span style="opacity:0.5;font-size:0.8em;cursor:pointer;text-decoration:underline;" data-action="showPrivacyPolicy">Política de Privacidade</span></div>
     </div>
   </div>
 
@@ -737,7 +755,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       <p>
         <a href="https://nefroquest.com">nefroquest.com</a>
         &nbsp;•&nbsp;
-        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" data-action="showChangelog">v9.26</span>
+        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" data-action="showChangelog">v9.61</span>
       </p>
     </div>
   </main>
