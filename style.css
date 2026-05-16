@@ -2114,44 +2114,87 @@
     .streak-x4 .streak-mult { background: rgba(168,85,247,0.3); color: var(--purple); border: 1px solid rgba(168,85,247,0.5); }
     .streak-x5 .streak-mult { background: rgba(255,215,0,0.3); color: #ffd700; border: 1px solid rgba(255,215,0,0.5); text-shadow: 0 0 6px rgba(255,215,0,0.5); }
 
-    /* BADGES DE PROGRESSÃO */
+    /* BADGES DE PROGRESSÃO — Escudos Rúnicos */
     .badges-container {
-      margin-top: 10px; padding: 8px; background: rgba(10,15,30,0.6);
+      margin-top: 10px; padding: 10px 8px 12px;
+      background: rgba(10,15,30,0.6);
       border: 1px solid var(--blue-dark); border-radius: 8px;
     }
-    .badges-title {
-      font-size: 0.7rem; color: var(--gold); text-transform: uppercase;
-      letter-spacing: 1px; margin-bottom: 6px; text-align: center;
-    }
-    .badges-grid {
-      display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px;
+    .badges-row {
+      display: grid; grid-template-columns: repeat(5,1fr); gap: 6px;
     }
     .badge-slot {
-      aspect-ratio: 1; border-radius: 6px; overflow: hidden;
-      border: 2px solid var(--blue-dark); background: rgba(0,0,0,0.5);
-      position: relative; transition: border-color 0.3s, box-shadow 0.3s;
+      position: relative; display: flex; flex-direction: column;
+      align-items: center; cursor: default;
     }
-    .badge-slot.unlocked {
-      border-color: var(--gold); box-shadow: 0 0 10px rgba(255,215,0,0.3);
+    .badge-shield {
+      width: 100%; aspect-ratio: 0.86;
+      clip-path: polygon(8% 0%, 92% 0%, 100% 14%, 100% 63%, 50% 100%, 0% 63%, 0% 14%);
+      background: linear-gradient(180deg, #111825 0%, #060a18 100%);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.35s, filter 0.35s;
+      filter: drop-shadow(0 2px 5px rgba(0,0,0,0.65));
     }
-    .badge-slot img {
-      width: 100%; height: 100%; object-fit: cover;
-      filter: grayscale(60%) brightness(0.7) saturate(0.6);
-      opacity: 0.7;
-      transition: filter 0.3s, opacity 0.3s;
-    }
-    .badge-slot.unlocked img {
-      filter: grayscale(0%) brightness(1) saturate(1);
-      opacity: 1;
+    .badge-rune {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.9rem, 2.2vw, 1.35rem);
+      font-weight: 700; line-height: 1; user-select: none;
+      color: rgba(120,140,170,0.28);
+      transition: color 0.35s, text-shadow 0.35s;
     }
     .badge-slot .badge-lock {
-      position: absolute; inset: 0; display: flex; align-items: center;
-      justify-content: center; font-size: 1.3rem;
-      color: rgba(255,255,255,0.85);
-      text-shadow: 0 1px 6px rgba(0,0,0,0.9), 0 0 10px rgba(0,0,0,0.7);
-      background: rgba(0,0,0,0.15);
+      position: absolute; top: -3px; right: 1px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: rgba(6,8,18,0.95);
+      border: 1px solid rgba(120,130,155,0.35);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 7px; pointer-events: none; z-index: 5;
     }
     .badge-slot.unlocked .badge-lock { display: none; }
+    /* Tier 1 — Bronze */
+    .badge-slot.unlocked[data-badge="1"] .badge-shield {
+      background: linear-gradient(180deg, #4a2e15 0%, #1a0e05 100%);
+      filter: drop-shadow(0 0 8px rgba(201,138,75,0.6));
+    }
+    .badge-slot.unlocked[data-badge="1"] .badge-rune {
+      color: #f4c98a; text-shadow: 0 0 8px rgba(244,201,138,0.8);
+    }
+    /* Tier 2 — Prata */
+    .badge-slot.unlocked[data-badge="2"] .badge-shield {
+      background: linear-gradient(180deg, #2c3a4d 0%, #0d1320 100%);
+      filter: drop-shadow(0 0 9px rgba(184,201,216,0.6));
+    }
+    .badge-slot.unlocked[data-badge="2"] .badge-rune {
+      color: #e2eaf2; text-shadow: 0 0 8px rgba(226,234,242,0.8);
+    }
+    /* Tier 3 — Ouro */
+    .badge-slot.unlocked[data-badge="3"] .badge-shield {
+      background: linear-gradient(180deg, #4a3a10 0%, #1a1305 100%);
+      filter: drop-shadow(0 0 10px rgba(255,215,0,0.7));
+    }
+    .badge-slot.unlocked[data-badge="3"] .badge-rune {
+      color: #fff6c8; text-shadow: 0 0 10px rgba(255,215,0,0.9);
+    }
+    /* Tier 4 — Ciano */
+    .badge-slot.unlocked[data-badge="4"] .badge-shield {
+      background: linear-gradient(180deg, #143b3b 0%, #051515 100%);
+      filter: drop-shadow(0 0 10px rgba(125,211,252,0.7));
+    }
+    .badge-slot.unlocked[data-badge="4"] .badge-rune {
+      color: #e0f6fe; text-shadow: 0 0 10px rgba(125,211,252,0.9);
+    }
+    /* Tier 5 — Mítico, pulso roxo */
+    .badge-slot.unlocked[data-badge="5"] .badge-shield {
+      background: linear-gradient(180deg, #3d1a4a 0%, #150520 100%);
+      animation: badge-rune-pulse 2.6s ease-in-out infinite;
+    }
+    .badge-slot.unlocked[data-badge="5"] .badge-rune {
+      color: #f3e8ff; text-shadow: 0 0 12px rgba(192,132,252,0.9);
+    }
+    @keyframes badge-rune-pulse {
+      0%,100% { filter: drop-shadow(0 0 10px rgba(192,132,252,0.75)); }
+      50%      { filter: drop-shadow(0 0 20px rgba(192,132,252,1)); }
+    }
 
     /* FOOTER */
     .game-footer {

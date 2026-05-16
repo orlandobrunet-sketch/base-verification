@@ -65,7 +65,7 @@
     if (typeof Sentry !== 'undefined') {
       Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@9.65',
+          release: 'nefroquest@9.66',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           beforeSend(event) {
@@ -319,7 +319,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         <button type="button" class="btn sec" data-action="showLeaderboardFromWelcome">Leaderboard</button>
         <button type="button" id="bossPreviewBtn" class="btn-boss-preview" data-action="startBossPreview" title="Preview do Confronto Final" style="display:none;">⚔️ Preview: Confronto Final</button>
       </div>
-      <div class="welcome-credit" style="margin-top:14px;"><a href="https://nefroquest.com">nefroquest.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;cursor:pointer;" data-action="showChangelog">v9.65</span> &nbsp;·&nbsp; <span style="opacity:0.5;font-size:0.8em;cursor:pointer;text-decoration:underline;" data-action="showPrivacyPolicy">Política de Privacidade</span></div>
+      <div class="welcome-credit" style="margin-top:14px;"><a href="https://nefroquest.com">nefroquest.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;cursor:pointer;" data-action="showChangelog">v9.66</span> &nbsp;·&nbsp; <span style="opacity:0.5;font-size:0.8em;cursor:pointer;text-decoration:underline;" data-action="showPrivacyPolicy">Política de Privacidade</span></div>
     </div>
   </div>
 
@@ -393,26 +393,26 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       <div id="equipTotalMobile" style="display:none;"></div>
 
       <!-- Badges de Progressão -->
-      <div class="badges-container" style="margin-top:8px;padding:6px 10px;background:rgba(0,0,0,0.3);border-radius:8px;border:1px solid #1a3a5a;">
-        <div class="badges-row" style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px;">
+      <div class="badges-container">
+        <div class="badges-row">
           <div class="badge-slot" data-badge="1" title="Vórtice do Néfron (20 acertos)">
-            <img src="assets/badges/badge1.png" alt="Vórtice do Néfron" width="60" height="60" loading="lazy">
+            <div class="badge-shield"><span class="badge-rune">ᚠ</span></div>
             <div class="badge-lock">🔒</div>
           </div>
           <div class="badge-slot" data-badge="2" title="Sábio do Microscópio (40 acertos)">
-            <img src="assets/badges/badge2.png" alt="Sábio do Microscópio" width="60" height="60" loading="lazy">
+            <div class="badge-shield"><span class="badge-rune">ᚨ</span></div>
             <div class="badge-lock">🔒</div>
           </div>
           <div class="badge-slot" data-badge="3" title="Guardião das Águas (60 acertos)">
-            <img src="assets/badges/badge3.png" alt="Guardião das Águas" width="60" height="60" loading="lazy">
+            <div class="badge-shield"><span class="badge-rune">ᛊ</span></div>
             <div class="badge-lock">🔒</div>
           </div>
           <div class="badge-slot" data-badge="4" title="Árbitro dos Rins (80 acertos)">
-            <img src="assets/badges/badge4.png" alt="Árbitro dos Rins" width="60" height="60" loading="lazy">
+            <div class="badge-shield"><span class="badge-rune">ᛟ</span></div>
             <div class="badge-lock">🔒</div>
           </div>
           <div class="badge-slot" data-badge="5" title="Ascendido do NefroQuest (100 acertos)">
-            <img src="assets/badges/badge5.png" alt="Ascendido do NefroQuest" width="60" height="60" loading="lazy">
+            <div class="badge-shield"><span class="badge-rune">ᛏ</span></div>
             <div class="badge-lock">🔒</div>
           </div>
         </div>
@@ -713,7 +713,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       <p>
         <a href="https://nefroquest.com">nefroquest.com</a>
         &nbsp;•&nbsp;
-        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" data-action="showChangelog">v9.65</span>
+        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" data-action="showChangelog">v9.66</span>
       </p>
     </div>
   </main>
