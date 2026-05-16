@@ -318,7 +318,23 @@
         bgA.volume = MUSIC_VOL;
         musicStarted = true;
         scheduleXfade(bgA);
-      }).catch(() => { bgA.muted = false; });
+      }).catch(() => {
+        bgA.muted = false;
+        // Retry único após 800ms — cobre timing de OAuth redirect e focus tardio
+        setTimeout(() => {
+          if (!musicEnabled || musicStarted) return;
+          bgA.muted = true;
+          bgA.play().then(() => {
+            bgA.muted = false;
+            bgA.volume = MUSIC_VOL;
+            musicStarted = true;
+            scheduleXfade(bgA);
+          }).catch(() => {
+            bgA.muted = false;
+            if (typeof _track === 'function') _track('error_bg_music_start_fail', {});
+          });
+        }, 800);
+      });
     }
     
     function stopBgMusic() {
@@ -419,14 +435,19 @@
           }, { once: true });
         }
         // Fallback para browsers que bloqueiam autoplay: retenta em cada gesto até sucesso.
-        // { once: true } foi removido intencionalmente — se play() falhar na 1ª gesture (iOS),
-        // o próximo gesto do usuário tenta de novo. A guard de welcomeScreen.hidden impede
-        // re-trigger depois que o jogo começou e stopWelcomeMusic() zerou welcomeMusicStarted.
+        // Permite retry mesmo quando welcomeMusicStarted=true mas a track está pausada
+        // (play() pode ter falhado silenciosamente em loop — A8 da auditoria externa).
         function _tryWelcomeMusic() {
           _unlockAll();
-          if (!musicEnabled || welcomeMusicStarted) return;
+          if (!musicEnabled) return;
           const ws = document.getElementById('welcomeScreen');
           if (ws && ws.classList.contains('hidden')) return; // jogo já iniciado
+          // Se a track está pausada apesar de "started", reset para permitir novo start
+          if (welcomeMusicStarted && wmTrack.paused && !_wmStopRequested) {
+            _wmClearTimers();
+            welcomeMusicStarted = false;
+          }
+          if (welcomeMusicStarted) return;
           startWelcomeMusic();
         }
         document.addEventListener('touchstart', _tryWelcomeMusic, { capture: true, passive: true });
