@@ -139,6 +139,7 @@ Toda tarefa deve ser solicitada explicitamente pelo usuário.
 | REF-3 | Dados das referências | Consolidar `data/refs.js` + `data/articles.js` em lista única deduplicada, ordenada A–Z por primeiro autor | ⏳ Pendente |
 | REF-4 | Seção "Sugerir artigo" | Ao final da biblioteca: formulário onde o usuário envia (a) link/DOI do artigo, (b) texto livre explicando por que é relevante para o NefroQuest — enviado via `send-contact` (Web3Forms) ou endpoint dedicado | ⏳ Pendente |
 | REF-5 | Edge function `suggest-article` | Recebe `{ articleUrl, articleTitle?, reason, userEmail? }` e encaminha por e-mail via Web3Forms. Alternativa: reutilizar `send-contact` com campo `subject` padronizado | ⏳ Pendente |
+| REF-6 | Todo artigo de referência com versão para baú | Cada entrada de `data/articles.js` deve ter uma versão "descobrível" associada a um baú — o jogador a encontra durante a partida ao abrir baús, progressivamente revelando o Grimório completo. Discutir: (1) como associar artigos a baús específicos ou a thresholds de baús abertos; (2) se o mesmo artigo pode aparecer em múltiplos baús ou é único; (3) se `refsDB` (já visível) também ganha versão de baú ou permanece sempre livre | ⏳ Pendente — discutir antes de executar |
 
 **Fluxo do "Sugerir artigo":**
 1. Usuário abre a Biblioteca de Referências
