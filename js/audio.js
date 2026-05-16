@@ -420,18 +420,19 @@
             if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
           }, { once: true });
         }
-        // Fallback para browsers que bloqueiam autoplay: inicia na primeira interação.
-        // _unlockAll() pré-aquece todos os elementos de áudio (crítico no iOS Safari).
-        // touchstart: iOS Safari — esta é a janela de gesto mais cedo disponível no mobile
-        document.addEventListener('touchstart', function _firstTouch() {
+        // Fallback para browsers que bloqueiam autoplay: retenta em cada gesto até sucesso.
+        // { once: true } foi removido intencionalmente — se play() falhar na 1ª gesture (iOS),
+        // o próximo gesto do usuário tenta de novo. A guard de welcomeScreen.hidden impede
+        // re-trigger depois que o jogo começou e stopWelcomeMusic() zerou welcomeMusicStarted.
+        function _tryWelcomeMusic() {
           _unlockAll();
-          if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
-        }, { once: true, capture: true, passive: true });
-        // click: fallback para desktop e browsers sem touch
-        document.addEventListener('click', function _firstClick() {
-          _unlockAll();
-          if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
-        }, { once: true, capture: true });
+          if (!musicEnabled || welcomeMusicStarted) return;
+          const ws = document.getElementById('welcomeScreen');
+          if (ws && ws.classList.contains('hidden')) return; // jogo já iniciado
+          startWelcomeMusic();
+        }
+        document.addEventListener('touchstart', _tryWelcomeMusic, { capture: true, passive: true });
+        document.addEventListener('click',      _tryWelcomeMusic, { capture: true });
       }
 
       // Retoma música quando a aba volta ao foco (tab switch, OAuth popup, etc.)
