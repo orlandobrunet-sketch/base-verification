@@ -23,17 +23,13 @@
         description: 'Acerte 100 questões consecutivas sem errar',
         icon: '🛡️',
         condition: (stats) => {
-          // Verificar streak máximo no histórico
-          let maxStreak = 0;
-          let currentStreak = 0;
-          stats.questionHistory.slice().reverse().forEach(q => {
-            if (q.correct) {
-              currentStreak++;
-              maxStreak = Math.max(maxStreak, currentStreak);
-            } else {
-              currentStreak = 0;
-            }
-          });
+          // Usar bestStreak se disponível; recomputa apenas se necessário (evita O(n) por resposta)
+          if ((stats.bestStreak || 0) >= 100) return true;
+          let maxStreak = 0, cur = 0;
+          for (const q of (stats.questionHistory || [])) {
+            if (q.correct) { cur++; if (cur > maxStreak) maxStreak = cur; }
+            else cur = 0;
+          }
           return maxStreak >= 100;
         }
       },
@@ -333,8 +329,8 @@
     // Modificar a função answer original para incluir tracking
     const originalAnswer = answer;
     window.answer = function(i, btn) {
-      if (!state.gameStarted || state.answered) return;
-      
+      if (!state.gameStarted || state.answered || !state.current) return;
+
       const timeSpent = questionStartTime > 0 ? Math.floor((Date.now() - questionStartTime) / 1000) : 0;
       const isCorrect = i === state.current.a;
       

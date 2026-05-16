@@ -1563,9 +1563,10 @@
     function answer(i,btn){
       if(!state.gameStarted) return;
       if(state.answered) return;
+      if(!state.current) return;
       state.answered=true;
       const st=total();
-      const all=[...document.querySelectorAll('.option')];
+      const all=[...ui.options.querySelectorAll('.option')];
       all.forEach(b=>b.disabled=true);
       const c=state.current.a;
       all[c].classList.add('correct');
@@ -2022,7 +2023,7 @@
       localStorage.setItem('unlockedArticles', JSON.stringify(unlockedArticles));
       state.chestsOpened++;
       const knoGain = state.chestsOpened;
-      if(state.equipment.relic) state.equipment.relic.kno = (state.equipment.relic.kno || 0) + knoGain;
+      if(state.equipment.relic) { const r={...state.equipment.relic}; r.kno=(r.kno||0)+knoGain; state.equipment.relic=r; }
       const chestPoints = 30 + state.chestsOpened * 10;
       state.score += chestPoints;
       showChestModal(randomArticle, knoGain, chestPoints);
@@ -2182,7 +2183,7 @@
       // Conhecimento progressivo: baú N dá +N conhecimento
       state.chestsOpened++;
       const knoGain = state.chestsOpened;
-      if(state.equipment.relic) state.equipment.relic.kno = (state.equipment.relic.kno || 0) + knoGain;
+      if(state.equipment.relic) { const r={...state.equipment.relic}; r.kno=(r.kno||0)+knoGain; state.equipment.relic=r; }
       
       // Pontos por abrir baú (sem XP para não bagunçar progressão)
       const chestPoints = 30 + state.chestsOpened * 10;

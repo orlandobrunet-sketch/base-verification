@@ -246,7 +246,7 @@
         const _buf = _ac.createBuffer(1, 1, 22050);
         const _src = _ac.createBufferSource();
         _src.buffer = _buf; _src.connect(_ac.destination); _src.start(0);
-        _ac.resume().then(() => _ac.close()).catch(() => {});
+        _ac.resume().finally(() => _ac.close().catch(() => {}));
       } catch(e) {}
     }
     

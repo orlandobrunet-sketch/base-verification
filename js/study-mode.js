@@ -145,7 +145,7 @@
       }
     }
     function _checkStudyReminder() {
-      if (Notification.permission !== 'granted') return;
+      if (typeof Notification === 'undefined' || Notification.permission !== 'granted') return;
       if (!localStorage.getItem('nq_notif_enabled')) return;
       const lastStudy = parseInt(localStorage.getItem('nq_last_study') || '0');
       const yesterday = Date.now() - 24 * 60 * 60 * 1000;
@@ -344,7 +344,7 @@
         const _rObs = new MutationObserver(() => {
           if (!document.contains(radarCanvas)) { _rTip.remove(); _rObs.disconnect(); }
         });
-        _rObs.observe(document.body, { childList: true, subtree: false });
+        _rObs.observe(document.body, { childList: true, subtree: true });
       }
       playSound('click');
     }
@@ -459,9 +459,10 @@
       const stats = getDetailedStats();
 
       function renderAxesHTML() {
+        const _allAxisStats = getAxisStats(stats);
         return NEFRO_AXES.map(axis => {
           const sel = _studySelectedAxes.has(axis.id);
-          const axisData = getAxisStats(stats).find(a => a.id === axis.id);
+          const axisData = _allAxisStats.find(a => a.id === axis.id);
           const qCount = topics.filter(q => q.cat === axis.cat).length;
           const pct = axisData ? axisData.accuracy.toFixed(0) + '%' : '—';
           const color = axisData ? (axisData.accuracy >= 70 ? '#34d399' : axisData.accuracy >= 50 ? '#fbbf24' : '#fb7185') : 'var(--txt-dim)';
@@ -524,9 +525,10 @@
       const list = document.getElementById('axisCardList');
       if (!list) return;
       const stats = getDetailedStats();
+      const _axisStatsCache = getAxisStats(stats);
       list.innerHTML = NEFRO_AXES.map(axis => {
         const sel = _studySelectedAxes.has(axis.id);
-        const axisData = getAxisStats(stats).find(a => a.id === axis.id);
+        const axisData = _axisStatsCache.find(a => a.id === axis.id);
         const qCount = topics.filter(q => q.cat === axis.cat).length;
         const pct = axisData ? axisData.accuracy.toFixed(0) + '%' : '—';
         const color = axisData ? (axisData.accuracy >= 70 ? '#34d399' : axisData.accuracy >= 50 ? '#fbbf24' : '#fb7185') : 'var(--txt-dim)';
@@ -557,9 +559,10 @@
       const list = document.getElementById('axisCardList');
       if (!list) return;
       const stats = getDetailedStats();
+      const _axisStatsCache2 = getAxisStats(stats);
       list.innerHTML = NEFRO_AXES.map(axis => {
         const selected = _studySelectedAxes.has(axis.id);
-        const axisData = getAxisStats(stats).find(a => a.id === axis.id);
+        const axisData = _axisStatsCache2.find(a => a.id === axis.id);
         const qCount = topics.filter(q => q.cat === axis.cat).length;
         const pct = axisData ? axisData.accuracy.toFixed(0) + '%' : '—';
         const color = axisData ? (axisData.accuracy >= 70 ? '#34d399' : axisData.accuracy >= 50 ? '#fbbf24' : '#fb7185') : 'var(--txt-dim)';
@@ -597,9 +600,10 @@
       const list = document.getElementById('axisCardList');
       if (!list) return;
       const stats = getDetailedStats();
+      const _axisStatsCache = getAxisStats(stats);
       list.innerHTML = NEFRO_AXES.map(axis => {
         const sel = _studySelectedAxes.has(axis.id);
-        const axisData = getAxisStats(stats).find(a => a.id === axis.id);
+        const axisData = _axisStatsCache.find(a => a.id === axis.id);
         const qCount = topics.filter(q => q.cat === axis.cat).length;
         const pct = axisData ? axisData.accuracy.toFixed(0) + '%' : '—';
         const color = axisData ? (axisData.accuracy >= 70 ? '#34d399' : axisData.accuracy >= 50 ? '#fbbf24' : '#fb7185') : 'var(--txt-dim)';

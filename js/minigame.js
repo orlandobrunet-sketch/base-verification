@@ -165,6 +165,10 @@
       }
 
       function showResults() {
+        // Limpar globals antes de renderizar resultado (evita leak se overlay for fechado por outro meio)
+        if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+        delete window.mgAnswer;
+        delete window._exitMinigame;
         const total = pool.length;
         const pct = correctCount / total;
         const baseGold = 30 + correctCount * 20;

@@ -116,7 +116,8 @@
         ui.boardBody.innerHTML = '<tr><td colspan="7" class="board-empty">Nenhum resultado encontrado.</td></tr>';
         return;
       }
-      ui.boardBody.innerHTML = filtered.map(({ r, globalIdx: i }) => {
+      ui.boardBody.innerHTML = filtered.map(({ r, globalIdx }, filteredIdx) => {
+        const i = q ? filteredIdx : globalIdx; // quando busca ativa, rank é da posição filtrada
         const rc = i < 3 ? rankClass[i] : 'rn';
         const rl = i < 3 ? rankLabel[i] : (i + 1);
         const avatar = charAvatars[r.character_name] || 'assets/classes/clerigo_renal/nivel_01.jpg';

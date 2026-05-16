@@ -29,7 +29,7 @@ function pushSupported() {
 
 /** Current push permission state: 'default' | 'granted' | 'denied' */
 function pushPermission() {
-  return Notification.permission;
+  return typeof Notification !== 'undefined' ? Notification.permission : 'denied';
 }
 
 /**

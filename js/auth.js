@@ -366,7 +366,7 @@
     }
     // Close profile popup when clicking outside
     document.addEventListener('click', function(e) {
-      if (!e.target.closest('.profile-btn') && !e.target.closest('#mobileMenuBtn') && !e.target.closest('#mobileProfilePopup')) {
+      if (!e.target.closest('.profile-btn') && !e.target.closest('#mobileMenuBtn') && !e.target.closest('.profile-popup')) {
         document.querySelectorAll('.profile-popup.open').forEach(p => p.classList.remove('open'));
       }
     });
