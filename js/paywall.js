@@ -6,13 +6,7 @@
     // would violate Google Play Billing policy. Redirect users to the website instead.
     const _isTWA = (function() {
       try {
-        // Primary signal: document.referrer is set to the Android package URI by TWA
         if (document.referrer && document.referrer.startsWith('android-app://')) return true;
-        // Secondary: Chrome on Android with TWA sets a display-mode of standalone
-        // and the user agent contains the package name passed via trusted origins
-        if (window.matchMedia('(display-mode: standalone)').matches &&
-            /Android/.test(navigator.userAgent) &&
-            document.referrer.startsWith('android-app://')) return true;
       } catch(e) {}
       return false;
     })();
@@ -21,7 +15,7 @@
     // ============ PAYWALL ============
     function showPaywallModal() {
       let modal = document.getElementById('paywallModal');
-      if (modal) { modal.classList.add('show'); return; }
+      if (modal) { modal.classList.add('show'); _track('paywall_shown', { questions_answered: state.correctTotal, level: state.level }); return; }
       _track('paywall_shown', { questions_answered: state.correctTotal, level: state.level });
       modal = document.createElement('div');
       modal.id = 'paywallModal';

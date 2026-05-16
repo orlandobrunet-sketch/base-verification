@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v9.72
-const CACHE = 'nefroquest-v9.72';
+// NefroQuest Service Worker — v9.76
+const CACHE = 'nefroquest-v9.76';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -88,16 +88,19 @@ self.addEventListener('fetch', e => {
     || url.pathname === '/';
 
   if (isNav) {
+    // Cache sob a pathname canônica (sem query string) para evitar cachear
+    // versões com ?payment=approved, ?code=... etc. como entradas separadas.
+    const canonicalKey = new Request(url.pathname, { method: 'GET', credentials: 'same-origin' });
     e.respondWith(
       fetch(e.request, { cache: 'no-store' })
         .then(async res => {
           if (res.ok) {
             const cache = await caches.open(CACHE);
-            await cache.put(e.request, res.clone());
+            await cache.put(canonicalKey, res.clone());
           }
           return res;
         })
-        .catch(() => caches.match(e.request).then(cached => cached || caches.match('/offline.html')))
+        .catch(() => caches.match(canonicalKey).then(cached => cached || caches.match('/offline.html')))
     );
     return;
   }

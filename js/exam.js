@@ -81,6 +81,7 @@
     }
 
     function _updateExamTimer() {
+      if (!_examState) return;
       const elapsed = Math.floor((Date.now() - _examState.startTime) / 1000);
       const remaining = EXAM_DURATION_SEC - elapsed;
       const el = document.getElementById('examTimer');

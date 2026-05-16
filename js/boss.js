@@ -281,7 +281,7 @@
       document.body.classList.toggle('boss-hp-critical', hp <= 30);
 
       // ── Imagem boss retangular desktop: troca para batalha na questão 9 (progress === 8) ──
-      const arquiBossImgEl = document.getElementById('arquiBossImgEl');
+      const arquiBossImgEl = bossImgEl; // reutiliza o querySelector já feito acima (L-7)
       if (arquiBossImgEl && isArqui) {
         if (progress >= 9) {
           arquiBossImgEl.src = 'assets/battle_final.png';

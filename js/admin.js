@@ -13,7 +13,7 @@
       }
 
       if (!state.gameStarted) {
-        if (!state.selectedCharacter) state.selectedCharacter = 'guerreiro';
+        if (!state.selectedCharacter) state.selectedCharacter = 'nephros';
         state.gameStarted = true;
         document.getElementById('welcomeScreen')?.classList.add('hidden');
         document.getElementById('mainApp')?.classList.remove('hidden');

@@ -7,6 +7,41 @@ Toda tarefa deve ser solicitada explicitamente pelo usuário.
 
 ---
 
+## 10 Melhorias Estratégicas — Pendentes para Avaliação Conjunta
+
+> Levantadas pela auditoria técnica sênior (maio/2026). Cada item requer discussão antes de execução.
+> Nenhum destes itens deve ser implementado automaticamente.
+
+| # | Melhoria | Descrição | Impacto esperado |
+|---|----------|-----------|-----------------|
+| E1 | **Motor adaptativo de aprendizado (IRT leve)** | Ajustar dificuldade por eixo temático em tempo real com base no histórico individual do usuário. Algoritmo IRT (Item Response Theory) simplificado integrado ao banco de questões. | Retenção, engajamento premium |
+| E2 | **Plano de estudo inteligente semanal** | Trilhas automáticas geradas por IA baseadas nos erros recorrentes e tempo disponível declarado. Ex.: "Esta semana: 3 sessões de 20min focadas em TFG e Proteinúria." | Recorrência de uso, diferencial competitivo |
+| E3 | **Dashboard pedagógico premium** | Métricas por competência: acurácia por eixo, velocidade de resposta, confiança (padrão de mudança de resposta), estabilidade temporal (retenção entre sessões). Gráficos radar por domínio. | Monetização, valor percebido premium |
+| E4 | **Simulado estilo prova de residência** | Modo cronometrado com blueprint temático (proporção de questões por eixo igual à prova real), análise pós-prova com desempenho por categoria e comparativo com outros usuários. | Conversão premium, NPS |
+| E5 | **Sistema de revisão espaçada robusto (SM-2/FSRS)** | Evoluir o SM-2 atual para FSRS (Free Spaced Repetition Scheduler) com deck de revisão diária explícito e notificações push personalizadas por questão prioritária. | Retenção de longo prazo |
+| E6 | **Banco de questões versionado com revisão editorial** | Workflow interno de QA: status por questão (rascunho → revisão médica → publicado), painel de auditoria, versionamento de gabaritos e revisão de questões flagadas pelos usuários. | Qualidade do conteúdo, confiança |
+| E7 | **Telemetria de funil de conversão premium** | Rastrear jornada completa: paywall_shown → plan_selected → checkout_started → payment_approved por coorte (canal, classe, nível). Otimizar gatilho do paywall por contexto comportamental. | Receita, otimização de monetização |
+| E8 | **Modo offline enriquecido** | Pacote local de questões essenciais (top-200 por eixo) disponível offline via SW. Sincronização diferida de progresso e leaderboard quando conexão retornar. | Retenção mobile, experiência em áreas sem sinal |
+| E9 | **Programa de segurança contínua** | Suíte automatizada de testes de segurança: CSP validation, XSS payloads em campos livres (ranking, perfil, formulários), fuzzing de endpoints IA, scan de dependências. CI obrigatório antes de merge. | Segurança, confiança do usuário |
+| E10 | **Internacionalização planejada (pt-BR / en)** | Arquitetura i18n para expansão acadêmica e parcerias internacionais. Separar strings de UI em arquivo de locale, traduzir questões com revisão médica em inglês. | Alcance global, parcerias |
+
+---
+
+## Dívida Técnica — Pendentes para Avaliação
+
+> Achados da auditoria técnica sênior (maio/2026). Discutir prioridade antes de executar.
+
+| # | Item | Severidade | Detalhe |
+|---|------|-----------|---------|
+| DT1 | **FSM de áudio explícita** | Média | O estado de áudio usa booleanos (`welcomeMusicStarted`, `musicStarted`). Substituir por FSM explícita (`idle→starting→playing→paused→failed→stopped`) para eliminar condições de corrida sutis em navegadores com políticas de autoplay agressivas. |
+| DT2 | **Leaderboard push — idempotência por partida** | Média | `_boardPushedThisSession` é um booleano simples. Em cenários de erro concorrente raro, pode ficar inconsistente. Substituir por máquina de estados (`idle→in_flight→done→failed`) com timeout defensivo. |
+| DT3 | **Superfície de `innerHTML` — campanha de redução** | Alta | Política formal: `textContent` por padrão; `innerHTML` apenas em templates totalmente controlados. Revisar prioritariamente: leaderboard, feedback de IA, painel admin. Criar suíte de testes de injeção. |
+| DT4 | **Pipeline E2E reproduzível** | Alta | Suíte Playwright não roda sem setup explícito de browsers (`npx playwright install --with-deps chromium`). Adicionar script `npm run setup:e2e` + smoke-test obrigatório no CI antes de merge. |
+| DT5 | **Webhook Mercado Pago — hardening** | Baixa | Comparação de assinatura em tempo constante; log estruturado de tentativas inválidas; idempotência por `paymentId` para blindar retries duplicados. |
+| DT6 | **Observabilidade de erros silenciosos** | Média | Muitos `catch(() => {})` sem telemetria. Padronizar handler com contexto (feature, ação, plataforma) enviado ao Sentry/GA4. |
+
+---
+
 ## Bugs Ativos
 
 | # | Bug | Arquivo | Status |

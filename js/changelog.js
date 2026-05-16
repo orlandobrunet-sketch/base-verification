@@ -76,13 +76,14 @@
     setTimeout(_checkStudyReminder, 3000);
 
     // Botão de preview só visível para desenvolvimento (?dev=1)
-    if (new URLSearchParams(window.location.search).get('dev') === '1') {
+    const _urlParams = new URLSearchParams(window.location.search);
+    if (_urlParams.get('dev') === '1') {
       const previewBtn = document.getElementById('bossPreviewBtn');
       if (previewBtn) previewBtn.style.display = '';
     }
 
     // Acesso direto ao Confronto Final via ?boss=1 (link de teste)
-    if (new URLSearchParams(window.location.search).get('boss') === '1') {
+    if (_urlParams.get('boss') === '1') {
       // Aguarda o DOM estar pronto e inicia o boss preview automaticamente
       setTimeout(() => {
         startBossPreview();

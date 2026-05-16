@@ -1563,9 +1563,10 @@
     function answer(i,btn){
       if(!state.gameStarted) return;
       if(state.answered) return;
+      if(!state.current) return;
       state.answered=true;
       const st=total();
-      const all=[...document.querySelectorAll('.option')];
+      const all=[...ui.options.querySelectorAll('.option')];
       all.forEach(b=>b.disabled=true);
       const c=state.current.a;
       all[c].classList.add('correct');
@@ -1847,14 +1848,19 @@
         </div>
       `;
 
-      // Fechar ao clicar fora
+      // Fechar ao clicar fora — listener único (evita acúmulo por taps rápidos)
+      if (showActionConfirmPopup._listener) {
+        document.removeEventListener('click', showActionConfirmPopup._listener);
+      }
       setTimeout(() => {
-        document.addEventListener('click', function closeConfirm(e) {
-          if(!popup.contains(e.target)) {
+        showActionConfirmPopup._listener = function closeConfirm(e) {
+          if (!popup.contains(e.target)) {
             popup.remove();
-            document.removeEventListener('click', closeConfirm);
+            document.removeEventListener('click', showActionConfirmPopup._listener);
+            showActionConfirmPopup._listener = null;
           }
-        });
+        };
+        document.addEventListener('click', showActionConfirmPopup._listener);
       }, 100);
 
       document.body.appendChild(popup);
@@ -2022,7 +2028,7 @@
       localStorage.setItem('unlockedArticles', JSON.stringify(unlockedArticles));
       state.chestsOpened++;
       const knoGain = state.chestsOpened;
-      if(state.equipment.relic) state.equipment.relic.kno = (state.equipment.relic.kno || 0) + knoGain;
+      if(state.equipment.relic) { const r={...state.equipment.relic}; r.kno=(r.kno||0)+knoGain; state.equipment.relic=r; }
       const chestPoints = 30 + state.chestsOpened * 10;
       state.score += chestPoints;
       showChestModal(randomArticle, knoGain, chestPoints);
@@ -2033,44 +2039,6 @@
       renderHUD();
       updateBadges();
       saveGame();
-    }
-
-    function forgeItem(){
-      if(state.gameOver){ log('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
-      if(allItemsMaxed()){ log('🏆 Você já possui todos os equipamentos lendários!'); return; }
-      const cost=300;
-      if(state.gold<cost){ log('🧱 Ouro insuficiente! Precisa de 300 ouro para forjar.'); return; }
-      state.gold-=cost;
-      const st=total();
-      const rolled=rollItem(state.level, st.luck);
-      const gains=[`⚔️ ATK ${rolled.item.atk}`, `🛡️ DEF ${rolled.item.def}`, `📚 CONH ${rolled.item.kno}`, `🍀 SORTE ${rolled.item.luck}`];
-      playSound('forge');
-      equipOrSell(rolled.slot, rolled.item, (msg) => {
-        showForgePopup(rolled.item, rolled.slot, gains);
-        log(`🔨 Forja concluída! ${msg}`);
-        renderHUD(); updateBadges(); saveGame();
-      });
-    }
-
-    function forgeLegendary(){
-      if(state.gameOver){ log('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
-      if(allItemsMaxed()){ log('🏆 Você já possui todos os equipamentos lendários!'); return; }
-      const cost=1000;
-      if(state.gold<cost){ log('🧱 Ouro insuficiente! Precisa de 1000 ouro para forjar lendário.'); return; }
-      state.gold-=cost;
-      const keys=Object.keys(state.equipment);
-      const slot=keys[Math.floor(Math.random()*keys.length)];
-      const legendaryItems = items[slot].filter(i => i.rar === 'legendary');
-      if(legendaryItems.length === 0){ log('Sem itens lendários para este slot.'); state.gold+=cost; return; }
-      const legendaryItem = legendaryItems[Math.floor(Math.random()*legendaryItems.length)];
-      const legendaryItemCopy = {...legendaryItem};
-      const gains = [`⚔️ ATK ${legendaryItem.atk}`, `🛡️ DEF ${legendaryItem.def}`, `📚 CONH ${legendaryItem.kno}`, `🍀 SORTE ${legendaryItem.luck}`];
-      playSound('forge');
-      equipOrSell(slot, legendaryItemCopy, (msg) => {
-        showForgePopup(legendaryItemCopy, slot, gains);
-        log(`🔨 Forja Lendária! ${msg}`);
-        renderHUD(); updateBadges(); saveGame();
-      });
     }
 
     function showForgePopup(item, slot, gains){
@@ -2182,7 +2150,7 @@
       // Conhecimento progressivo: baú N dá +N conhecimento
       state.chestsOpened++;
       const knoGain = state.chestsOpened;
-      if(state.equipment.relic) state.equipment.relic.kno = (state.equipment.relic.kno || 0) + knoGain;
+      if(state.equipment.relic) { const r={...state.equipment.relic}; r.kno=(r.kno||0)+knoGain; state.equipment.relic=r; }
       
       // Pontos por abrir baú (sem XP para não bagunçar progressão)
       const chestPoints = 30 + state.chestsOpened * 10;

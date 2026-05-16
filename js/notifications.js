@@ -29,7 +29,7 @@ function pushSupported() {
 
 /** Current push permission state: 'default' | 'granted' | 'denied' */
 function pushPermission() {
-  return Notification.permission;
+  return typeof Notification !== 'undefined' ? Notification.permission : 'denied';
 }
 
 /**
@@ -63,8 +63,8 @@ async function subscribePush() {
       await supa.from(SUPA_PUSH_TABLE).upsert({
         user_id:   (typeof authUser !== 'undefined' ? authUser?.id : null) ?? null,
         endpoint:  sub.endpoint,
-        p256dh:    btoa(String.fromCharCode(...new Uint8Array(key))),
-        auth_key:  btoa(String.fromCharCode(...new Uint8Array(token))),
+        p256dh:    btoa(Array.from(new Uint8Array(key),   b => String.fromCharCode(b)).join('')),
+        auth_key:  btoa(Array.from(new Uint8Array(token), b => String.fromCharCode(b)).join('')),
         last_seen_at: new Date().toISOString(),
       }, { onConflict: 'endpoint' });
     }

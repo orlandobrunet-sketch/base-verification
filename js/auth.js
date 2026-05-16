@@ -69,7 +69,7 @@
         const landing = document.getElementById('landingScreen');
         if (landing && !landing.classList.contains('hidden')) {
           landing.classList.add('hidden');
-          document.getElementById('welcomeScreen').classList.remove('hidden');
+          document.getElementById('welcomeScreen')?.classList.remove('hidden');
           refreshWelcomeSave();
           if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
         }
@@ -79,7 +79,7 @@
         const landing = document.getElementById('landingScreen');
         if (landing && !landing.classList.contains('hidden')) {
           landing.classList.add('hidden');
-          document.getElementById('welcomeScreen').classList.remove('hidden');
+          document.getElementById('welcomeScreen')?.classList.remove('hidden');
           refreshWelcomeSave();
           if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
         }
@@ -227,8 +227,8 @@
       localStorage.removeItem(WHITELIST_KEY);
       _invalidatePremiumCache(); _invalidateStatsCache();
       updateWelcomeUserBadge();
-      document.getElementById('welcomeScreen').classList.add('hidden');
-      document.getElementById('landingScreen').classList.remove('hidden');
+      document.getElementById('welcomeScreen')?.classList.add('hidden');
+      document.getElementById('landingScreen')?.classList.remove('hidden');
       document.getElementById('mainApp')?.classList.add('hidden');
     }
 
@@ -366,7 +366,7 @@
     }
     // Close profile popup when clicking outside
     document.addEventListener('click', function(e) {
-      if (!e.target.closest('.profile-btn') && !e.target.closest('#mobileMenuBtn') && !e.target.closest('#mobileProfilePopup')) {
+      if (!e.target.closest('.profile-btn') && !e.target.closest('#mobileMenuBtn') && !e.target.closest('.profile-popup')) {
         document.querySelectorAll('.profile-popup.open').forEach(p => p.classList.remove('open'));
       }
     });
