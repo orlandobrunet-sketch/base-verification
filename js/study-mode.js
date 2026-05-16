@@ -186,7 +186,7 @@
       
       const modal = document.createElement('div');
       modal.className = 'modal show stats-popup';
-      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;height:100dvh;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:10000;backdrop-filter:blur(6px);overflow-y:auto;padding:32px 16px calc(env(safe-area-inset-bottom,0px)+16px);box-sizing:border-box;';
+      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;height:100svh;height:100dvh;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:10000;backdrop-filter:blur(6px);overflow-y:auto;padding:32px 16px calc(env(safe-area-inset-bottom,0px)+16px);box-sizing:border-box;';
       modal.innerHTML = `
         <div class="modal-content" style="max-width:600px;max-height:88vh;overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;box-shadow:0 0 40px rgba(59,130,246,0.3);">
           <h2 style="color:var(--gold);margin-bottom:16px;font-family:'Cinzel',serif;">📊 ESTATÍSTICAS</h2>
@@ -397,7 +397,7 @@
       const isMobile = window.innerWidth <= 768;
       const modal = document.createElement('div');
       modal.className = 'modal show study-mode-popup';
-      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;height:100dvh;background:rgba(0,0,0,0.85);display:flex;align-items:' + (isMobile ? 'flex-start' : 'center') + ';justify-content:center;z-index:10000;backdrop-filter:blur(6px);overflow-y:auto;padding:' + (isMobile ? '12px 12px calc(env(safe-area-inset-bottom,0px)+80px)' : '32px 16px') + ';box-sizing:border-box;';
+      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;height:100svh;height:100dvh;background:rgba(0,0,0,0.85);display:flex;align-items:' + (isMobile ? 'flex-start' : 'center') + ';justify-content:center;z-index:10000;backdrop-filter:blur(6px);overflow-y:auto;padding:' + (isMobile ? '12px 12px calc(env(safe-area-inset-bottom,0px)+80px)' : '32px 16px') + ';box-sizing:border-box;';
 
       // Calcular SR due com todos os temas
       const totalDue = getSRDueQuestions(topics).length;
@@ -454,7 +454,7 @@
       const isMobile = window.innerWidth <= 768;
       const modal = document.createElement('div');
       modal.className = 'modal show study-mode-popup';
-      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;height:100dvh;background:rgba(0,0,0,0.85);display:flex;align-items:' + (isMobile ? 'flex-start' : 'center') + ';justify-content:center;z-index:10000;backdrop-filter:blur(6px);overflow-y:auto;padding:' + (isMobile ? '12px 12px calc(env(safe-area-inset-bottom,0px)+80px)' : '32px 16px') + ';box-sizing:border-box;';
+      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;height:100svh;height:100dvh;background:rgba(0,0,0,0.85);display:flex;align-items:' + (isMobile ? 'flex-start' : 'center') + ';justify-content:center;z-index:10000;backdrop-filter:blur(6px);overflow-y:auto;padding:' + (isMobile ? '12px 12px calc(env(safe-area-inset-bottom,0px)+80px)' : '32px 16px') + ';box-sizing:border-box;';
 
       const stats = getDetailedStats();
 

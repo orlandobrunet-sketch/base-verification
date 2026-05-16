@@ -73,7 +73,6 @@
     function confirmDeleteAccount() {
       document.querySelectorAll('.delete-account-confirm').forEach(el => el.remove());
       const popup = document.createElement('div');
-      popup.className = 'modal show delete-account-confirm';
       popup.className = 'nq-overlay';
       popup.style.cssText = 'background:rgba(0,0,0,0.92);z-index:10001;backdrop-filter:blur(8px);padding:24px;';
       popup.innerHTML = `

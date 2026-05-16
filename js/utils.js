@@ -221,7 +221,7 @@
         ].filter(Boolean);
         return `<div class="bib-card">
   <div class="bib-card-top">
-    <span class="bib-card-icon">${it.icon}</span>
+    <span class="bib-card-icon">${escapeHtml(it.icon)}</span>
     <span class="bib-card-label">${labelHtml}</span>
     <span class="bib-badge" style="background:${it.tipoColor}22;color:${it.tipoColor};border:1px solid ${it.tipoColor}55;">${escapeHtml(it.tipo)}</span>
   </div>
