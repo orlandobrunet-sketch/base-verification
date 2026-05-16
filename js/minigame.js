@@ -469,29 +469,41 @@
 
       function renderDiff() {
         const defs = {
-          easy:     { icon:'🌊', name:'Fácil',    lives:5, label:'❤❤❤❤❤', desc:'5 vidas · Questões equilibradas · Ideal para começar', hc: false },
-          normal:   { icon:'⚕️', name:'Médio',    lives:4, label:'❤❤❤❤',  desc:'4 vidas · Distribuição mista · Residência médica', hc: false },
-          hard:     { icon:'⚔️', name:'Difícil',  lives:3, label:'❤❤❤',   desc:'3 vidas · Questões difíceis priorizadas · Prova de título', hc: false },
-          hardcore: { icon:'💀', name:'Hardcore', lives:1, label:'❤',      desc:'1 vida · Somente questões difíceis · Badge exclusivo', hc: true }
+          easy:     { icon:'☽', name:'Fácil',    chip:'entrada segura',  role:'aprendiz do templo',   lives:'♥ ♥ ♥ ♥ ♥', desc:'5 vidas · questões equilibradas · ideal para aquecer raciocínio clínico' },
+          normal:   { icon:'⚕', name:'Médio',    chip:'recomendado',     role:'residência médica',     lives:'♥ ♥ ♥ ♥',   desc:'4 vidas · distribuição mista · o caminho da maioria dos residentes' },
+          hard:     { icon:'⚔', name:'Difícil',  chip:'alta tensão',     role:'prova de título',       lives:'♥ ♥ ♥',     desc:'3 vidas · questões difíceis priorizadas · para quem domina a nefrologia' },
+          hardcore: { icon:'☠', name:'Hardcore', chip:'badge exclusivo', role:'lenda da guilda',       lives:'♥',         desc:'1 vida · somente questões difíceis · falhou uma vez, tudo recomeça' }
         };
         overlay.innerHTML = `
-          <div class="diff-selector-card">
-            <div class="diff-selector-title">⚔️ Escolha a Dificuldade</div>
-            <div class="diff-warning" style="text-align:center;color:#ef4444;font-size:0.72rem;margin-bottom:12px">
-              ⚠️ Todo o progresso atual será perdido.
+          <div class="difficulty-modal">
+            <span class="difficulty-corner tl"></span><span class="difficulty-corner tr"></span>
+            <span class="difficulty-corner bl"></span><span class="difficulty-corner br"></span>
+            <div class="difficulty-header">
+              <div class="difficulty-medallion">⚔</div>
+              <div class="difficulty-title">ESCOLHA SEU DESTINO</div>
+              <div class="difficulty-subtitle">Cada caminho tem seu preço</div>
             </div>
-            <div class="diff-grid">
+            <div class="difficulty-divider"></div>
+            ${!fromWelcome ? '<div class="difficulty-warning">Todo o progresso atual será perdido.</div>' : ''}
+            <div class="difficulty-grid">
               ${Object.entries(defs).map(([k,d]) => `
-                <div class="diff-card${d.hc?' hardcore':''}${selectedDiff===k?' selected':''}" data-action="_selectDiffCard" data-pass-this="1" data-diff-key="${k}">
-                  <div class="diff-icon">${d.icon}</div>
-                  <div class="diff-name">${d.name}</div>
-                  <div class="diff-lives">${d.label}</div>
-                  <div class="diff-desc">${d.desc}</div>
-                  ${d.hc ? '<div class="diff-hardcore-badge">🏆 BADGE EXCLUSIVO</div>' : ''}
+                <div class="difficulty-card ${k}${selectedDiff===k?' selected':''}" data-action="_selectDiffCard" data-pass-this="1" data-diff-key="${k}">
+                  <span class="card-corner tl"></span><span class="card-corner tr"></span>
+                  <span class="card-corner bl"></span><span class="card-corner br"></span>
+                  <div class="difficulty-card-header">
+                    <span class="difficulty-icon">${d.icon}</span>
+                    <span class="difficulty-chip">${d.chip}</span>
+                  </div>
+                  <div class="difficulty-card-body">
+                    <div class="difficulty-name">${d.name}</div>
+                    <div class="difficulty-role">${d.role}</div>
+                    <div class="difficulty-lives">${d.lives}</div>
+                    <div class="difficulty-description">${d.desc}</div>
+                  </div>
                 </div>`).join('')}
             </div>
-            <button class="diff-confirm-btn" id="diffConfirmBtn" data-action="_confirmDiff" data-arg="${fromWelcome ? 'true' : 'false'}" data-arg-type="boolean">CONFIRMAR DIFICULDADE</button>
-            <button class="diff-cancel-btn" data-remove-id="diffSelectorOverlay">CANCELAR</button>
+            <button class="difficulty-confirm" id="diffConfirmBtn" data-action="_confirmDiff" data-arg="${fromWelcome ? 'true' : 'false'}" data-arg-type="boolean">CONFIRMAR DIFICULDADE</button>
+            <button class="difficulty-cancel" data-remove-id="diffSelectorOverlay">cancelar</button>
           </div>`;
         window._pendingDiff = selectedDiff;
       }
