@@ -2563,7 +2563,6 @@
     };
 
     function showHeroLore() {
-      if (window.innerWidth > 768) return;
       if (!state.character || !heroLores[state.character]) return;
       const char = characters[state.character];
       const lore = heroLores[state.character];
@@ -2590,6 +2589,7 @@
       });
       document.body.appendChild(modal);
     }
+    window.showHeroLore = showHeroLore;
 
      // === SWIPE PARA PRÓXIMA QUESTÃO + NAVEGAÇÃO HERÓI (mobile) ===
     (function initSwipe() {
