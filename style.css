@@ -7385,8 +7385,9 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 #welcomeScreen .welcome-content {
   position: relative;
   z-index: 5 !important;
-  width: min(920px, 88vw);
-  margin: 56px auto 40px;
+  width: min(920px, 88vw) !important;
+  max-width: min(920px, 88vw) !important;
+  margin: 56px auto 40px !important;
   padding: 38px 40px 32px !important;
   background:
     linear-gradient(180deg, rgba(13,18,44,0.95), rgba(7,10,26,0.94)),
@@ -7739,6 +7740,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 @media (max-width: 980px) {
   #welcomeScreen .welcome-content {
     width: 96vw !important;
+    max-width: 96vw !important;
     padding: 28px 20px 24px !important;
     margin: 44px auto 32px !important;
   }

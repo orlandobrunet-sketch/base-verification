@@ -287,11 +287,14 @@
       if (!musicEnabled || musicStarted) return;
       activeTrack = bgA;
       bgA.currentTime = 0;
-      bgA.volume = MUSIC_VOL;
+      bgA.volume = 0;
+      bgA.muted = true; // muted-first para bypass de autoplay policy
       bgA.play().then(() => {
+        bgA.muted = false;
+        bgA.volume = MUSIC_VOL;
         musicStarted = true;
         scheduleXfade(bgA);
-      }).catch(() => {});
+      }).catch(() => { bgA.muted = false; });
     }
     
     function stopBgMusic() {
