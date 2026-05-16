@@ -514,7 +514,7 @@
     }
     // forgeBtn agora usa data-action="showMobileActionConfirm" data-arg="forge" no HTML
     ui.bonusBtn.addEventListener('click',buyBonusQuestion);
-    ui.boardBtn.addEventListener('click',()=>{ renderBoard().catch(() => {}); ui.boardModal.classList.remove('hidden'); });
+    if (ui.boardBtn) ui.boardBtn.addEventListener('click',()=>{ renderBoard().catch(() => {}); ui.boardModal.classList.remove('hidden'); });
     ui.closeBoard.addEventListener('click',()=>ui.boardModal.classList.add('hidden'));
     const boardRefreshBtn = document.getElementById('boardRefresh');
     if (boardRefreshBtn) boardRefreshBtn.addEventListener('click', () => { renderBoard(true); });
