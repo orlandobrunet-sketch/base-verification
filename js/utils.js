@@ -208,6 +208,24 @@
     function closeBibliotecaModal() {
       const modal = document.getElementById('bibliotecaModal');
       if (modal) modal.classList.add('hidden');
+      // Colapsa o formulário de sugestão ao fechar
+      const fields = document.getElementById('bibSuggestFields');
+      const btn = document.querySelector('.bib-suggest-toggle');
+      if (fields) fields.classList.remove('show');
+      if (btn) btn.classList.remove('open');
+    }
+
+    function toggleBibSuggestForm() {
+      const fields = document.getElementById('bibSuggestFields');
+      const btn = document.querySelector('.bib-suggest-toggle');
+      if (!fields) return;
+      const isOpen = fields.classList.contains('show');
+      fields.classList.toggle('show', !isOpen);
+      if (btn) btn.classList.toggle('open', !isOpen);
+      if (!isOpen) {
+        // Rola para o formulário aparecer na tela
+        setTimeout(() => fields.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+      }
     }
 
     function closeBibliotecaModalOutside(e) {
