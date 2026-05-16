@@ -133,13 +133,14 @@
       if (_wmStopRequested || !welcomeMusicStarted) return;
       wmTrack.volume = 0.01;
       if (wmTrack.readyState >= 1) wmTrack.currentTime = 0;
-      wmTrack.muted = false;
+      wmTrack.muted = true; // muted-first também nos loops (garante replay sem gesto)
       wmTrack.play().then(() => {
-        if (_wmStopRequested) { wmTrack.pause(); return; }
+        if (_wmStopRequested) { wmTrack.pause(); wmTrack.muted = false; return; }
+        wmTrack.muted = false;
         _wmFadeIn(() => {
           if (!_wmStopRequested) _wmScheduleFadeOut();
         });
-      }).catch(() => {});
+      }).catch(() => { wmTrack.muted = false; });
     }
 
     // Evento 'ended' como safety net (caso o fade-out não tenha pausado a tempo)
@@ -219,8 +220,8 @@
     bgA.volume = MUSIC_VOL; bgB.volume = 0;
     bgA.load(); bgB.load();
     // Fallback: se crossfade não disparar, 'ended' garante o loop
-    bgA.addEventListener('ended', () => { if(musicEnabled && musicStarted) { bgA.currentTime=0; bgA.play().catch(()=>{}); scheduleXfade(bgA); } });
-    bgB.addEventListener('ended', () => { if(musicEnabled && musicStarted) { bgB.currentTime=0; bgB.play().catch(()=>{}); scheduleXfade(bgB); } });
+    bgA.addEventListener('ended', () => { if(musicEnabled && musicStarted) { bgA.currentTime=0; bgA.muted=true; bgA.play().then(()=>{ bgA.muted=false; bgA.volume=MUSIC_VOL; scheduleXfade(bgA); }).catch(()=>{ bgA.muted=false; }); } });
+    bgB.addEventListener('ended', () => { if(musicEnabled && musicStarted) { bgB.currentTime=0; bgB.muted=true; bgB.play().then(()=>{ bgB.muted=false; bgB.volume=MUSIC_VOL; scheduleXfade(bgB); }).catch(()=>{ bgB.muted=false; }); } });
     
     let soundEnabled = true, musicEnabled = true;
     try { soundEnabled = localStorage.getItem('nefroquest-sound') !== 'off'; musicEnabled = localStorage.getItem('nefroquest-music') !== 'off'; } catch(e) {}
@@ -399,4 +400,24 @@
           if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
         }, { once: true, capture: true });
       }
+
+      // Retoma música quando a aba volta ao foco (tab switch, OAuth popup, etc.)
+      document.addEventListener('visibilitychange', function() {
+        if (document.visibilityState !== 'visible') return;
+        // Welcome music
+        if (welcomeMusicStarted && wmTrack.paused && !_wmStopRequested && musicEnabled) {
+          wmTrack.muted = true;
+          wmTrack.play().then(function() {
+            wmTrack.muted = false;
+          }).catch(function() { wmTrack.muted = false; });
+        }
+        // Background music
+        if (musicStarted && musicEnabled && activeTrack && activeTrack.paused) {
+          activeTrack.muted = true;
+          activeTrack.play().then(function() {
+            activeTrack.muted = false;
+            activeTrack.volume = MUSIC_VOL;
+          }).catch(function() { activeTrack.muted = false; });
+        }
+      });
     })();
