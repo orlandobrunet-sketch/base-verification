@@ -1110,9 +1110,13 @@
     /* ── BIBLIOTECA DE REFERÊNCIAS ──────────────────────────────────────── */
     .bib-modal {
       width: min(780px, 95vw);
-      max-height: 88vh;
+      max-height: min(88vh, 88dvh);
       display: flex; flex-direction: column;
       padding: 0; overflow: hidden;
+      border: 1px solid rgba(40,65,120,0.25) !important;
+    }
+    @media (max-width: 600px) {
+      .bib-modal { max-height: calc(100dvh - 24px); width: 98vw; }
     }
     .bib-header {
       display: flex; align-items: center; justify-content: space-between;
@@ -1158,7 +1162,7 @@
       letter-spacing: 0.5px;
     }
     .bib-list {
-      flex: 1; overflow-y: auto; padding: 12px 16px;
+      flex: 1; overflow-y: auto; overflow-x: hidden; padding: 12px 16px;
       display: flex; flex-direction: column; gap: 8px;
     }
     .bib-list::-webkit-scrollbar { width: 4px; }
@@ -1170,6 +1174,7 @@
       border-radius: 10px; padding: 12px 14px;
       display: flex; flex-direction: column; gap: 5px;
       transition: border-color 0.2s, background 0.2s;
+      overflow: hidden; min-width: 0;
     }
     .bib-card:hover { border-color: rgba(80,120,200,0.5); background: rgba(12,20,40,0.9); }
     .bib-card-top {
@@ -1219,20 +1224,31 @@
     }
     .bib-suggest-section {
       border-top: 1px solid rgba(45,70,120,0.4);
-      padding: 16px 20px 18px;
+      padding: 0;
       flex-shrink: 0;
     }
-    .bib-suggest-title {
-      font-family: 'Cinzel', serif; font-size: 0.85rem;
-      color: var(--gold); margin: 0 0 4px; font-weight: 700;
-      letter-spacing: 0.5px;
+    .bib-suggest-toggle {
+      width: 100%; background: none; border: none; cursor: pointer;
+      font-family: 'Cinzel', serif; font-size: 0.82rem;
+      color: var(--gold); font-weight: 700; letter-spacing: 0.5px;
+      padding: 10px 20px; text-align: left;
+      display: flex; align-items: center; gap: 6px;
+      transition: background 0.2s;
     }
+    .bib-suggest-toggle:hover { background: rgba(255,215,0,0.04); }
+    .bib-suggest-toggle .bib-suggest-chevron { margin-left: auto; transition: transform 0.2s; font-style: normal; }
+    .bib-suggest-toggle.open .bib-suggest-chevron { transform: rotate(180deg); }
+    .bib-suggest-fields {
+      display: none; flex-direction: column; gap: 8px;
+      padding: 0 20px 16px;
+    }
+    .bib-suggest-fields.show { display: flex; }
     .bib-suggest-desc {
       font-size: 0.75rem; color: rgba(100,130,180,0.6);
-      margin: 0 0 10px;
+      margin: 0 0 4px;
     }
     .bib-suggest-form {
-      display: flex; flex-direction: column; gap: 8px;
+      display: flex; flex-direction: column; gap: 8px; margin: 0;
     }
     .bib-input, .bib-textarea {
       background: rgba(8,14,28,0.8);
@@ -1941,18 +1957,11 @@
       width: 100%; max-width: 390px; padding: 34px 26px 24px;
       margin: auto 0;
       background: linear-gradient(180deg, rgba(2,8,30,0.95), rgba(2,6,24,0.97));
-      border: 2px solid rgba(209,157,76,0.9);
+      border: none;
       border-radius: 20px;
-      box-shadow: 0 22px 60px rgba(0,0,0,0.72), 0 0 0 1px rgba(255,215,130,0.2) inset;
+      box-shadow: 0 22px 60px rgba(0,0,0,0.72);
     }
-    .landing-content::before {
-      content: '';
-      position: absolute;
-      inset: 8px;
-      border: 1px solid rgba(255,215,130,0.45);
-      border-radius: 14px;
-      pointer-events: none;
-    }
+    .landing-content::before { display: none; }
     .landing-ornament {
       font-size: 0.68rem; color: var(--gold); letter-spacing: 3px;
       text-transform: uppercase; opacity: 0.8; margin-bottom: 2px;
@@ -2294,16 +2303,16 @@
     .badge-shield {
       width: 100%; aspect-ratio: 0.86;
       clip-path: polygon(8% 0%, 92% 0%, 100% 14%, 100% 63%, 50% 100%, 0% 63%, 0% 14%);
-      background: linear-gradient(180deg, #16202e 0%, #090d1a 100%);
+      background: rgba(12,18,42,0.38);
       display: flex; align-items: center; justify-content: center;
       transition: background 0.35s, filter 0.35s;
-      filter: drop-shadow(0 1px 4px rgba(0,0,0,0.7));
+      filter: drop-shadow(0 0 5px rgba(40,65,130,0.5)) drop-shadow(0 1px 3px rgba(0,0,0,0.55));
     }
     .badge-rune {
       font-family: 'Cinzel', serif;
       font-size: clamp(0.9rem, 2.4vw, 1.35rem);
       font-weight: 700; line-height: 1; user-select: none;
-      color: rgba(90,105,135,0.45);
+      color: rgba(100,115,155,0.55);
       transition: color 0.35s, text-shadow 0.35s;
     }
     .badge-slot .badge-lock { display: none; }
@@ -7950,49 +7959,51 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 /* ─── Responsive ─────────────────────────────────────────────── */
 @media (max-width: 600px) {
   #welcomeScreen {
-    padding: 20px 12px !important;
+    padding: 50px 10px 14px !important; /* top 50px: clearance for mobile sound buttons (fixed, ~42px) */
     align-items: flex-start !important;
   }
   #welcomeScreen .welcome-content {
-    padding: 26px 18px 22px !important;
-    gap: 12px !important;
-    margin: 8px auto 16px !important;
+    padding: 20px 16px 16px !important;
+    gap: 8px !important;
+    margin: 0 auto !important;
   }
   #welcomeScreen .welcome-content h1 {
-    font-size: clamp(1.9rem, 9vw, 2.5rem) !important;
+    font-size: clamp(1.7rem, 8vw, 2.2rem) !important;
   }
   #welcomeScreen .welcome-content .welcome-sub {
-    font-size: 0.72rem !important;
-    letter-spacing: 0.38em !important;
+    font-size: 0.68rem !important;
+    letter-spacing: 0.35em !important;
   }
   #welcomeScreen .welcome-content .welcome-sub::before,
   #welcomeScreen .welcome-content .welcome-sub::after {
-    width: 28px !important;
-    margin: 0 8px !important;
+    width: 24px !important;
+    margin: 0 6px !important;
   }
-  #welcomeScreen .welcome-sound-controls {
-    top: 12px !important;
-    right: 12px !important;
+  #welcomeScreen .welcome-stat .ws-val { font-size: 1.2rem !important; }
+  #welcomeScreen .welcome-stat .ws-lbl { font-size: 0.48rem !important; letter-spacing: 0.14em !important; }
+  /* Journey card — sem avatar no mobile para economizar espaço */
+  #welcomeScreen #wsSavedAvatar { display: none !important; }
+  #welcomeScreen .wsaved-info {
+    width: 100% !important;
   }
-  #welcomeScreen .welcome-sound-controls .sound-toggle,
-  #welcomeScreen .welcome-sound-controls .profile-btn {
-    width: 34px !important;
-    height: 34px !important;
-    min-width: 34px !important;
-    min-height: 34px !important;
-  }
-  #welcomeScreen .welcome-stat .ws-val { font-size: 1.35rem !important; }
-  #welcomeScreen .welcome-stat .ws-lbl { font-size: 0.50rem !important; letter-spacing: 0.16em !important; }
+  #welcomeScreen .wsaved-charname { text-align: center !important; width: 100% !important; }
+  #welcomeScreen .wsaved-stats { justify-content: center !important; }
   #welcomeScreen .wsaved-bottom {
     padding: 8px 12px 10px !important;
+    justify-content: center !important;
   }
   #welcomeScreen .wsaved-stat { border-left: 1px solid rgba(202,165,68,0.12) !important; }
   #welcomeScreen .wsaved-stat:first-child { border-left: none !important; }
+  /* Buttons — alturas reduzidas para caber tudo sem scroll */
   #welcomeScreen .welcome-primary-btns .btn {
-    min-height: 48px !important;
-    font-size: 0.78rem !important;
+    min-height: 42px !important;
+    font-size: 0.76rem !important;
   }
-  #welcomeScreen .welcome-buttons .btn { min-height: 48px !important; font-size: 0.62rem !important; }
+  #welcomeScreen .welcome-buttons .btn {
+    min-height: 35px !important;
+    font-size: 0.58rem !important;
+    padding: 6px 6px !important;
+  }
 }
 
 

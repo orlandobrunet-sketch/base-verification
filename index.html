@@ -65,7 +65,7 @@
     if (typeof Sentry !== 'undefined') {
       Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@9.70',
+          release: 'nefroquest@9.71',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           beforeSend(event) {
@@ -316,7 +316,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         <button type="button" class="btn sec btn-biblioteca" data-action="openBibliotecaModal">📚 Biblioteca</button>
         <button type="button" id="bossPreviewBtn" class="btn-boss-preview" data-action="startBossPreview" title="Preview do Confronto Final" style="display:none;">⚔️ Preview: Confronto Final</button>
       </div>
-      <div class="welcome-credit" style="margin-top:14px;"><a href="https://nefroquest.com">nefroquest.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;cursor:pointer;" data-action="showChangelog">v9.70</span> &nbsp;·&nbsp; <span style="opacity:0.5;font-size:0.8em;cursor:pointer;text-decoration:underline;" data-action="showPrivacyPolicy">Política de Privacidade</span></div>
+      <div class="welcome-credit" style="margin-top:14px;"><a href="https://nefroquest.com">nefroquest.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;cursor:pointer;" data-action="showChangelog">v9.71</span> &nbsp;·&nbsp; <span style="opacity:0.5;font-size:0.8em;cursor:pointer;text-decoration:underline;" data-action="showPrivacyPolicy">Política de Privacidade</span></div>
     </div>
   </div>
 
@@ -717,7 +717,7 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       <p>
         <a href="https://nefroquest.com">nefroquest.com</a>
         &nbsp;•&nbsp;
-        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" data-action="showChangelog">v9.70</span>
+        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" data-action="showChangelog">v9.71</span>
       </p>
     </div>
   </main>
@@ -1063,14 +1063,18 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       </div>
       <div class="bib-list" id="bibList"></div>
       <div class="bib-suggest-section">
-        <h4 class="bib-suggest-title">💡 Sugerir artigo</h4>
-        <p class="bib-suggest-desc">Encontrou um artigo relevante para o NefroQuest? Envie a sugestão.</p>
-        <form id="bibSuggestForm" class="bib-suggest-form" novalidate>
-          <input type="text" id="bibSuggestUrl" class="bib-input" placeholder="Link, DOI ou referência completa" autocomplete="off">
-          <textarea id="bibSuggestReason" class="bib-textarea" placeholder="Por que este artigo é relevante?" rows="3"></textarea>
-          <button type="submit" class="btn gold bib-submit-btn">Enviar sugestão</button>
-        </form>
-        <p id="bibSuggestMsg" class="bib-suggest-msg" style="display:none;"></p>
+        <button type="button" class="bib-suggest-toggle" data-action="toggleBibSuggestForm">
+          💡 Sugerir artigo <em class="bib-suggest-chevron">▾</em>
+        </button>
+        <div id="bibSuggestFields" class="bib-suggest-fields">
+          <p class="bib-suggest-desc">Encontrou um artigo relevante para o NefroQuest? Envie a sugestão.</p>
+          <form id="bibSuggestForm" class="bib-suggest-form" novalidate>
+            <input type="text" id="bibSuggestUrl" class="bib-input" placeholder="Link, DOI ou referência completa" autocomplete="off">
+            <textarea id="bibSuggestReason" class="bib-textarea" placeholder="Por que este artigo é relevante?" rows="3"></textarea>
+            <button type="submit" class="btn gold bib-submit-btn">Enviar sugestão</button>
+          </form>
+          <p id="bibSuggestMsg" class="bib-suggest-msg" style="display:none;"></p>
+        </div>
       </div>
     </div>
   </div>
