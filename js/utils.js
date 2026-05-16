@@ -101,13 +101,18 @@
       return qs.filter(q => !q.qid || !data[q.qid] || data[q.qid].due <= today);
     }
 
-    // ── Biblioteca de Referências ─────────────────────────────────────────
+    // ── Grimório de Conhecimento ──────────────────────────────────────────
     let _bibItems = null;
+
+    function _getUnlockedArticles() {
+      try { return JSON.parse(localStorage.getItem('unlockedArticles') || '[]'); } catch { return []; }
+    }
+
     function _buildBibItems() {
-      if (_bibItems) return _bibItems;
+      const unlockedIdxs = _getUnlockedArticles();
       const items = [];
 
-      // Normalize refsDB (object keyed by id)
+      // refsDB — sempre visíveis (diretrizes, guias, referências)
       if (typeof refsDB === 'object' && refsDB !== null) {
         Object.values(refsDB).forEach(r => {
           items.push({
@@ -120,56 +125,93 @@
             impacto:   r.impacto || '',
             url:       r.url || '',
             icon:      r.icon || '📖',
+            locked:    false,
           });
         });
       }
 
-      // Normalize nefroArticles (array)
+      // nefroArticles — desbloqueados conforme baús abertos
       if (typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles)) {
-        nefroArticles.forEach(a => {
+        const total = nefroArticles.length;
+        nefroArticles.forEach((a, idx) => {
+          const isUnlocked = unlockedIdxs.includes(idx);
           items.push({
-            label:     a.titulo || '',
-            autores:   a.autores || '',
-            jornal:    a.jornal || '',
-            ano:       a.ano || '',
+            label:     isUnlocked ? (a.titulo || '') : 'Artigo bloqueado',
+            autores:   isUnlocked ? (a.autores || '') : '',
+            jornal:    isUnlocked ? (a.jornal  || '') : '',
+            ano:       isUnlocked ? (a.ano     || '') : '',
             tipo:      'ARTIGO',
             tipoColor: '#0e7490',
-            impacto:   a.impacto || '',
+            impacto:   isUnlocked ? (a.impacto || '') : '',
             url:       '',
-            icon:      '📄',
+            icon:      isUnlocked ? '📄' : '🔒',
+            locked:    !isUnlocked,
+            _totalArticles: total,
+            _unlockedCount: unlockedIdxs.length,
           });
         });
       }
 
-      // Sort A-Z by label
-      items.sort((a, b) => a.label.localeCompare(b.label, 'pt', { sensitivity: 'base' }));
-      _bibItems = items;
-      return _bibItems;
+      // Desbloqueados primeiro (A-Z), depois bloqueados
+      items.sort((a, b) => {
+        if (a.locked !== b.locked) return a.locked ? 1 : -1;
+        return a.label.localeCompare(b.label, 'pt', { sensitivity: 'base' });
+      });
+
+      return items;
     }
 
     function _bibRenderList(query) {
       const items = _buildBibItems();
       const q = (query || '').trim().toLowerCase();
-      const filtered = q ? items.filter(it =>
-        it.label.toLowerCase().includes(q) ||
-        it.autores.toLowerCase().includes(q) ||
-        it.jornal.toLowerCase().includes(q) ||
-        it.tipo.toLowerCase().includes(q) ||
-        it.impacto.toLowerCase().includes(q)
-      ) : items;
+
+      // Desbloqueados: filtráveis. Bloqueados: sempre ao final, não filtrados.
+      const unlocked = items.filter(it => !it.locked);
+      const locked   = items.filter(it =>  it.locked);
+      const filtered = q
+        ? unlocked.filter(it =>
+            it.label.toLowerCase().includes(q) ||
+            it.autores.toLowerCase().includes(q) ||
+            it.jornal.toLowerCase().includes(q) ||
+            it.tipo.toLowerCase().includes(q) ||
+            it.impacto.toLowerCase().includes(q)
+          )
+        : unlocked;
 
       const list = document.getElementById('bibList');
       const count = document.getElementById('bibCount');
       if (!list) return;
 
-      if (count) count.textContent = filtered.length + ' / ' + items.length + ' referências';
+      if (count) {
+        const meta = locked[0];
+        const totalArt   = meta ? meta._totalArticles : 0;
+        const artVisible = unlocked.filter(it => it.tipo === 'ARTIGO').length;
+        const refs       = unlocked.filter(it => it.tipo !== 'ARTIGO').length;
+        count.textContent = q
+          ? `${filtered.length} resultado${filtered.length !== 1 ? 's' : ''}`
+          : (totalArt > 0
+              ? `${refs} referências · ${artVisible}/${totalArt} artigos`
+              : `${refs} referências`);
+      }
 
-      if (!filtered.length) {
+      const visibleItems = q ? filtered : [...unlocked, ...locked];
+
+      if (!visibleItems.length) {
         list.innerHTML = '<div class="bib-empty">Nenhuma referência encontrada.</div>';
         return;
       }
 
-      list.innerHTML = filtered.map(it => {
+      list.innerHTML = visibleItems.map(it => {
+        if (it.locked) {
+          return `<div class="bib-card bib-card-locked">
+  <div class="bib-card-top">
+    <span class="bib-card-icon">🔒</span>
+    <span class="bib-card-label">Artigo bloqueado</span>
+    <span class="bib-badge" style="background:#0e749022;color:#0e7490;border:1px solid #0e749055;">ARTIGO</span>
+  </div>
+  <div class="bib-unlock-hint">Abra mais baús para revelar este artigo no Grimório</div>
+</div>`;
+        }
         const labelHtml = it.url
           ? `<a href="${escapeHtml(it.url)}" target="_blank" rel="noopener">${escapeHtml(it.label)}</a>`
           : escapeHtml(it.label);
@@ -193,6 +235,7 @@
     function openBibliotecaModal() {
       const modal = document.getElementById('bibliotecaModal');
       if (!modal) return;
+      _bibItems = null; // rebuild para refletir baús recém-abertos
       modal.classList.remove('hidden');
       _bibRenderList('');
       const searchEl = document.getElementById('bibSearch');
