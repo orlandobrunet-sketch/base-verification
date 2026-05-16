@@ -7312,11 +7312,11 @@ body.arqui-nefromante-final #arquiStarsDesktop {
    FASE 12 — WELCOME HUB (Ornamental Panel — difficulty-selector pattern)
    ═══════════════════════════════════════════════════════════════ */
 
-/* ─── Background: bg-hall.jpg with dark overlay ──────────────── */
+/* ─── Background: nefroquest_background.jpg (game screen) with overlay ── */
 #welcomeScreen {
   background:
-    linear-gradient(rgba(4,6,20,0.68), rgba(4,6,20,0.72)),
-    url('assets/bg-hall.jpg') center/cover no-repeat,
+    linear-gradient(rgba(4,6,18,0.55), rgba(4,6,18,0.60)),
+    url('assets/nefroquest_background.jpg') center/cover no-repeat,
     #060810 !important;
   align-items: center !important;
   justify-content: center !important;
@@ -7444,7 +7444,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 #welcomeScreen .welcome-content h1 {
   margin: 0 !important;
   font-family: 'Cinzel Decorative', 'Cinzel', serif !important;
-  font-size: clamp(2.6rem, 8vw, 4rem) !important;
+  font-size: clamp(2rem, 5.5vw, 2.9rem) !important;
   font-weight: 900 !important;
   line-height: 0.95 !important;
   letter-spacing: 0.03em !important;
@@ -7527,7 +7527,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 /* ─── Journey card (in-progress) ─────────────────────────────── */
 #welcomeScreen #welcomeSavedInfo {
   width: 100% !important;
-  overflow: hidden !important;
+  overflow: visible !important;
   background: linear-gradient(180deg, rgba(18,16,50,0.95), rgba(8,9,28,0.97)) !important;
   border: 1px solid rgba(126,69,255,0.40) !important;
   border-radius: 5px !important;
@@ -7560,23 +7560,27 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 }
 #welcomeScreen .wsaved-bottom {
   display: flex !important;
+  flex-direction: column !important;
   align-items: center !important;
-  gap: 16px !important;
-  padding: 10px 16px !important;
+  gap: 8px !important;
+  padding: 10px 16px 12px !important;
 }
 #welcomeScreen .wsaved-charname {
   font-family: 'Cinzel', serif !important;
   font-size: 1.0rem !important;
   color: #e8e6ff !important;
-  flex: 1 !important;
-  text-align: left !important;
+  text-align: center !important;
+  width: 100% !important;
 }
 #welcomeScreen .wsaved-stats {
   display: flex !important;
-  gap: 10px !important;
+  gap: 0 !important;
+  justify-content: center !important;
+  width: 100% !important;
 }
 #welcomeScreen .wsaved-stat {
-  min-width: 44px !important;
+  flex: 1 !important;
+  min-width: 0 !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
@@ -7736,7 +7740,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     margin: 8px auto 16px !important;
   }
   #welcomeScreen .welcome-content h1 {
-    font-size: clamp(2.2rem, 10vw, 3rem) !important;
+    font-size: clamp(1.9rem, 9vw, 2.5rem) !important;
   }
   #welcomeScreen .welcome-content .welcome-sub {
     font-size: 0.72rem !important;
@@ -7761,12 +7765,10 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   #welcomeScreen .welcome-stat .ws-val { font-size: 1.35rem !important; }
   #welcomeScreen .welcome-stat .ws-lbl { font-size: 0.50rem !important; letter-spacing: 0.16em !important; }
   #welcomeScreen .wsaved-bottom {
-    flex-direction: column !important;
-    gap: 8px !important;
-    padding: 8px 12px !important;
+    padding: 8px 12px 10px !important;
   }
-  #welcomeScreen .wsaved-charname { text-align: center !important; }
-  #welcomeScreen .wsaved-stat { border-left: none !important; padding-left: 0 !important; }
+  #welcomeScreen .wsaved-stat { border-left: 1px solid rgba(202,165,68,0.12) !important; }
+  #welcomeScreen .wsaved-stat:first-child { border-left: none !important; }
   #welcomeScreen .welcome-primary-btns .btn {
     min-height: 48px !important;
     font-size: 0.78rem !important;
