@@ -2116,41 +2116,31 @@
 
     /* BADGES DE PROGRESSÃO — Escudos Rúnicos */
     .badges-container {
-      margin-top: 10px; padding: 10px 8px 12px;
-      background: rgba(10,15,30,0.6);
-      border: 1px solid var(--blue-dark); border-radius: 8px;
+      margin-top: 10px; padding: 2px 0 6px;
     }
     .badges-row {
-      display: grid; grid-template-columns: repeat(5,1fr); gap: 6px;
+      display: grid; grid-template-columns: repeat(5,1fr); gap: 5px;
     }
     .badge-slot {
-      position: relative; display: flex; flex-direction: column;
-      align-items: center; cursor: default;
+      position: relative; display: flex; align-items: center; justify-content: center;
+      cursor: default;
     }
     .badge-shield {
       width: 100%; aspect-ratio: 0.86;
       clip-path: polygon(8% 0%, 92% 0%, 100% 14%, 100% 63%, 50% 100%, 0% 63%, 0% 14%);
-      background: linear-gradient(180deg, #111825 0%, #060a18 100%);
+      background: linear-gradient(180deg, #16202e 0%, #090d1a 100%);
       display: flex; align-items: center; justify-content: center;
       transition: background 0.35s, filter 0.35s;
-      filter: drop-shadow(0 2px 5px rgba(0,0,0,0.65));
+      filter: drop-shadow(0 1px 4px rgba(0,0,0,0.7));
     }
     .badge-rune {
       font-family: 'Cinzel', serif;
-      font-size: clamp(0.9rem, 2.2vw, 1.35rem);
+      font-size: clamp(0.9rem, 2.4vw, 1.35rem);
       font-weight: 700; line-height: 1; user-select: none;
-      color: rgba(120,140,170,0.28);
+      color: rgba(90,105,135,0.45);
       transition: color 0.35s, text-shadow 0.35s;
     }
-    .badge-slot .badge-lock {
-      position: absolute; top: -3px; right: 1px;
-      width: 14px; height: 14px; border-radius: 50%;
-      background: rgba(6,8,18,0.95);
-      border: 1px solid rgba(120,130,155,0.35);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 7px; pointer-events: none; z-index: 5;
-    }
-    .badge-slot.unlocked .badge-lock { display: none; }
+    .badge-slot .badge-lock { display: none; }
     /* Tier 1 — Bronze */
     .badge-slot.unlocked[data-badge="1"] .badge-shield {
       background: linear-gradient(180deg, #4a2e15 0%, #1a0e05 100%);
