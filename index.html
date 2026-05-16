@@ -65,7 +65,7 @@
     if (typeof Sentry !== 'undefined') {
       Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@9.66',
+          release: 'nefroquest@9.69',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           beforeSend(event) {
@@ -276,26 +276,28 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         <div class="welcome-stat"><span class="ws-val" id="wsGamesPlayed">0</span><span class="ws-lbl">Partidas</span></div>
         <div class="welcome-stat"><span class="ws-val" id="wsBestLevel">0</span><span class="ws-lbl">Maior Nível</span></div>
       </div>
-      <img id="wsSavedAvatar" alt="" loading="lazy" style="display:none;">
       <div id="welcomeSavedInfo" class="welcome-saved-info" style="display:none;margin:8px 0;transition:opacity 0.4s ease;">
         <div class="wsaved-top">
           <span class="wsaved-label">⚔ Jornada em Andamento</span>
           <span class="wsaved-time-lbl" id="wsSavedTime"></span>
         </div>
         <div class="wsaved-bottom">
-          <div class="wsaved-charname" id="wsSavedChar">-</div>
-          <div class="wsaved-stats">
-            <div class="wsaved-stat">
-              <span class="ws-v" style="color:var(--blue)" id="wsSavedLevel">-</span>
-              <span class="ws-l">Nível</span>
-            </div>
-            <div class="wsaved-stat">
-              <span class="ws-v" style="color:#fb7185" id="wsSavedLives">-</span>
-              <span class="ws-l">Vidas</span>
-            </div>
-            <div class="wsaved-stat">
-              <span class="ws-v" style="color:#34d399" id="wsSavedScore">-</span>
-              <span class="ws-l">Pts</span>
+          <img id="wsSavedAvatar" alt="" loading="lazy">
+          <div class="wsaved-info">
+            <div class="wsaved-charname" id="wsSavedChar">-</div>
+            <div class="wsaved-stats">
+              <div class="wsaved-stat">
+                <span class="ws-v" style="color:var(--blue)" id="wsSavedLevel">-</span>
+                <span class="ws-l">Nível</span>
+              </div>
+              <div class="wsaved-stat">
+                <span class="ws-v" style="color:#fb7185" id="wsSavedLives">-</span>
+                <span class="ws-l">Vidas</span>
+              </div>
+              <div class="wsaved-stat">
+                <span class="ws-v" style="color:#34d399" id="wsSavedScore">-</span>
+                <span class="ws-l">Pts</span>
+              </div>
             </div>
           </div>
         </div>
@@ -307,19 +309,14 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         <button type="button" class="btn gold" data-action="startNewFromWelcome">Nova Jornada</button>
       </div>
       <div class="welcome-buttons">
-        <div class="game-mode-btns-group">
-          <button type="button" class="btn sec" data-action="showTopicSelector">📖 Modo de Estudo</button>
-          <button type="button" class="btn sec" data-action="startWeakPointStudy" id="weakPointBtn" style="background:rgba(251,113,133,0.12);border-color:rgba(251,113,133,0.35);color:#fb7185;">📍 Ponto Fraco</button>
-          <button type="button" class="btn sec" data-action="startExamMode">📝 Prova Simulada</button>
-          <button type="button" class="btn sec" data-action="showStandaloneMinigame" style="background:rgba(74,222,128,0.08);border-color:rgba(74,222,128,0.35);color:#4ade80;">⚡ Julgamento Rápido</button>
-        </div>
         <button type="button" class="btn sec btn-game-modes" data-action="openGameModesPopup">🎮 Modos de Jogo</button>
         <button type="button" class="btn sec" data-action="showStatsModal">📊 Estatísticas</button>
         <button type="button" class="btn sec" data-action="showAchievementsModal">🏆 Conquistas</button>
         <button type="button" class="btn sec" data-action="showLeaderboardFromWelcome">Leaderboard</button>
+        <button type="button" class="btn sec btn-biblioteca" data-action="openBibliotecaModal">📚 Biblioteca</button>
         <button type="button" id="bossPreviewBtn" class="btn-boss-preview" data-action="startBossPreview" title="Preview do Confronto Final" style="display:none;">⚔️ Preview: Confronto Final</button>
       </div>
-      <div class="welcome-credit" style="margin-top:14px;"><a href="https://nefroquest.com">nefroquest.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;cursor:pointer;" data-action="showChangelog">v9.66</span> &nbsp;·&nbsp; <span style="opacity:0.5;font-size:0.8em;cursor:pointer;text-decoration:underline;" data-action="showPrivacyPolicy">Política de Privacidade</span></div>
+      <div class="welcome-credit" style="margin-top:14px;"><a href="https://nefroquest.com">nefroquest.com</a> &nbsp;·&nbsp; <span style="opacity:0.6;font-size:0.9em;cursor:pointer;" data-action="showChangelog">v9.69</span> &nbsp;·&nbsp; <span style="opacity:0.5;font-size:0.8em;cursor:pointer;text-decoration:underline;" data-action="showPrivacyPolicy">Política de Privacidade</span></div>
     </div>
   </div>
 
@@ -397,23 +394,18 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
         <div class="badges-row">
           <div class="badge-slot" data-badge="1" title="Vórtice do Néfron (20 acertos)">
             <div class="badge-shield"><span class="badge-rune">ᚠ</span></div>
-            <div class="badge-lock">🔒</div>
           </div>
           <div class="badge-slot" data-badge="2" title="Sábio do Microscópio (40 acertos)">
             <div class="badge-shield"><span class="badge-rune">ᚨ</span></div>
-            <div class="badge-lock">🔒</div>
           </div>
           <div class="badge-slot" data-badge="3" title="Guardião das Águas (60 acertos)">
             <div class="badge-shield"><span class="badge-rune">ᛊ</span></div>
-            <div class="badge-lock">🔒</div>
           </div>
           <div class="badge-slot" data-badge="4" title="Árbitro dos Rins (80 acertos)">
             <div class="badge-shield"><span class="badge-rune">ᛟ</span></div>
-            <div class="badge-lock">🔒</div>
           </div>
           <div class="badge-slot" data-badge="5" title="Ascendido do NefroQuest (100 acertos)">
             <div class="badge-shield"><span class="badge-rune">ᛏ</span></div>
-            <div class="badge-lock">🔒</div>
           </div>
         </div>
       </div>
@@ -707,13 +699,25 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       <span class="dock-label">Dashboard</span>
     </button>
 
+    <!-- Biblioteca (desktop) -->
+    <button type="button"
+      class="dock-btn"
+      data-action="openBibliotecaModal"
+      data-tip="Biblioteca">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+      </svg>
+      <span class="dock-label">Biblioteca</span>
+    </button>
+
     </div><!-- /action-dock -->
 
     <div class="game-footer">
       <p>
         <a href="https://nefroquest.com">nefroquest.com</a>
         &nbsp;•&nbsp;
-        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" data-action="showChangelog">v9.66</span>
+        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" data-action="showChangelog">v9.69</span>
       </p>
     </div>
   </main>
@@ -1040,6 +1044,34 @@ KDIGO, DOQI, SBN e principais RCTs.</div>
       <h2 id="chestTitle">Baú Desbloqueado!</h2>
       <div id="chestArticle"></div>
       <button type="button" class="close-chest" data-action="closeChestModal">Fechar</button>
+    </div>
+  </div>
+
+  <!-- BIBLIOTECA DE REFERÊNCIAS MODAL -->
+  <div id="bibliotecaModal" class="modalWrap hidden" data-action="closeBibliotecaModalOutside" data-pass-event="1">
+    <div class="modal bib-modal">
+      <div class="bib-header">
+        <div class="bib-header-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <h3>Biblioteca de Referências</h3>
+        </div>
+        <button type="button" class="bib-close" data-action="closeBibliotecaModal">✕</button>
+      </div>
+      <div class="bib-search-wrap">
+        <input type="text" id="bibSearch" class="bib-search" placeholder="Buscar por título, autor, tema ou tipo…" autocomplete="off">
+        <span class="bib-count" id="bibCount"></span>
+      </div>
+      <div class="bib-list" id="bibList"></div>
+      <div class="bib-suggest-section">
+        <h4 class="bib-suggest-title">💡 Sugerir artigo</h4>
+        <p class="bib-suggest-desc">Encontrou um artigo relevante para o NefroQuest? Envie a sugestão.</p>
+        <form id="bibSuggestForm" class="bib-suggest-form" novalidate>
+          <input type="text" id="bibSuggestUrl" class="bib-input" placeholder="Link, DOI ou referência completa" autocomplete="off">
+          <textarea id="bibSuggestReason" class="bib-textarea" placeholder="Por que este artigo é relevante?" rows="3"></textarea>
+          <button type="submit" class="btn gold bib-submit-btn">Enviar sugestão</button>
+        </form>
+        <p id="bibSuggestMsg" class="bib-suggest-msg" style="display:none;"></p>
+      </div>
     </div>
   </div>
 

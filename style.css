@@ -1107,6 +1107,173 @@
     th, td { border-bottom: 1px solid #1e3a5e; padding: 6px; text-align: left; font-size: 0.8rem; }
     th { color: var(--gold); font-family: 'Cinzel', serif; font-size: 0.7rem; text-transform: uppercase; }
 
+    /* ── BIBLIOTECA DE REFERÊNCIAS ──────────────────────────────────────── */
+    .bib-modal {
+      width: min(780px, 95vw);
+      max-height: 88vh;
+      display: flex; flex-direction: column;
+      padding: 0; overflow: hidden;
+    }
+    .bib-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px 14px;
+      border-bottom: 1px solid rgba(60,90,140,0.35);
+      flex-shrink: 0;
+    }
+    .bib-header-title {
+      display: flex; align-items: center; gap: 10px;
+      color: var(--gold);
+    }
+    .bib-header-title h3 {
+      font-family: 'Cinzel', serif; font-size: 1.05rem;
+      font-weight: 700; color: var(--gold); margin: 0;
+      letter-spacing: 1px;
+    }
+    .bib-header-title svg { color: var(--gold); opacity: 0.85; flex-shrink: 0; }
+    .bib-close {
+      background: none; border: none; color: rgba(130,160,200,0.6);
+      font-size: 1.2rem; cursor: pointer; padding: 4px 8px;
+      border-radius: 6px; transition: color 0.2s, background 0.2s;
+      line-height: 1;
+    }
+    .bib-close:hover { color: #e2e8f0; background: rgba(255,255,255,0.06); }
+    .bib-search-wrap {
+      display: flex; align-items: center; gap: 10px;
+      padding: 12px 20px 10px;
+      border-bottom: 1px solid rgba(40,60,100,0.3);
+      flex-shrink: 0;
+    }
+    .bib-search {
+      flex: 1; background: rgba(8,14,28,0.8);
+      border: 1px solid rgba(60,90,140,0.4); border-radius: 8px;
+      color: #c8d8f0; padding: 8px 14px; font-size: 0.85rem;
+      font-family: inherit; outline: none;
+      transition: border-color 0.2s;
+    }
+    .bib-search:focus { border-color: rgba(100,140,220,0.6); }
+    .bib-search::placeholder { color: rgba(100,130,180,0.5); }
+    .bib-count {
+      font-size: 0.72rem; color: rgba(100,130,180,0.6);
+      white-space: nowrap; font-family: 'Cinzel', serif;
+      letter-spacing: 0.5px;
+    }
+    .bib-list {
+      flex: 1; overflow-y: auto; padding: 12px 16px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .bib-list::-webkit-scrollbar { width: 4px; }
+    .bib-list::-webkit-scrollbar-track { background: transparent; }
+    .bib-list::-webkit-scrollbar-thumb { background: rgba(60,90,140,0.4); border-radius: 4px; }
+    .bib-card {
+      background: rgba(10,16,32,0.75);
+      border: 1px solid rgba(45,70,120,0.35);
+      border-radius: 10px; padding: 12px 14px;
+      display: flex; flex-direction: column; gap: 5px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .bib-card:hover { border-color: rgba(80,120,200,0.5); background: rgba(12,20,40,0.9); }
+    .bib-card-top {
+      display: flex; align-items: flex-start; gap: 8px;
+    }
+    .bib-card-icon {
+      font-size: 1rem; line-height: 1.4; flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .bib-card-label {
+      font-family: 'Philosopher', serif; font-size: 0.88rem;
+      font-weight: 700; color: #d4e0f5; line-height: 1.35;
+      flex: 1;
+    }
+    .bib-card-label a {
+      color: #a8c4f0; text-decoration: none;
+      transition: color 0.2s;
+    }
+    .bib-card-label a:hover { color: var(--gold); text-decoration: underline; }
+    .bib-badge {
+      font-size: 0.62rem; font-weight: 700;
+      padding: 2px 7px; border-radius: 4px;
+      letter-spacing: 0.8px; flex-shrink: 0;
+      font-family: 'Cinzel', serif;
+      align-self: flex-start; margin-top: 2px;
+      opacity: 0.9;
+    }
+    .bib-card-meta {
+      display: flex; flex-wrap: wrap; gap: 4px 12px;
+      font-size: 0.75rem; color: rgba(110,140,190,0.75);
+      padding-left: 26px;
+    }
+    .bib-card-meta span { white-space: nowrap; }
+    .bib-card-impacto {
+      font-size: 0.78rem; color: rgba(150,180,230,0.65);
+      line-height: 1.45; padding-left: 26px;
+      font-style: italic;
+    }
+    .bib-card-authors {
+      font-size: 0.75rem; color: rgba(120,155,210,0.7);
+      padding-left: 26px;
+    }
+    .bib-empty {
+      text-align: center; padding: 40px 0;
+      color: rgba(100,130,180,0.5);
+      font-size: 0.9rem;
+    }
+    .bib-suggest-section {
+      border-top: 1px solid rgba(45,70,120,0.4);
+      padding: 16px 20px 18px;
+      flex-shrink: 0;
+    }
+    .bib-suggest-title {
+      font-family: 'Cinzel', serif; font-size: 0.85rem;
+      color: var(--gold); margin: 0 0 4px; font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .bib-suggest-desc {
+      font-size: 0.75rem; color: rgba(100,130,180,0.6);
+      margin: 0 0 10px;
+    }
+    .bib-suggest-form {
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .bib-input, .bib-textarea {
+      background: rgba(8,14,28,0.8);
+      border: 1px solid rgba(60,90,140,0.4); border-radius: 8px;
+      color: #c8d8f0; padding: 8px 12px;
+      font-size: 0.82rem; font-family: inherit; outline: none;
+      resize: vertical; transition: border-color 0.2s;
+    }
+    .bib-input:focus, .bib-textarea:focus { border-color: rgba(100,140,220,0.6); }
+    .bib-input::placeholder, .bib-textarea::placeholder { color: rgba(100,130,180,0.45); }
+    .bib-submit-btn {
+      align-self: flex-start; font-size: 0.75rem;
+      padding: 8px 18px; letter-spacing: 1px;
+    }
+    .bib-suggest-msg {
+      font-size: 0.8rem; margin: 6px 0 0;
+      padding: 6px 10px; border-radius: 6px;
+    }
+    .bib-suggest-msg.ok { background: rgba(20,120,60,0.2); color: #6ee7a0; border: 1px solid rgba(60,180,100,0.3); }
+    .bib-suggest-msg.err { background: rgba(120,20,30,0.2); color: #fca5a5; border: 1px solid rgba(180,60,70,0.3); }
+
+    /* Biblioteca button on welcome screen — full-width 5th button */
+    .welcome-buttons .btn.btn-biblioteca {
+      flex: 1 1 100%; max-width: 100%;
+      border-color: rgba(90,130,60,0.4) !important;
+      color: rgba(150,200,120,0.8) !important;
+    }
+    .welcome-buttons .btn.btn-biblioteca:hover {
+      border-color: rgba(130,190,80,0.65) !important;
+      color: rgba(180,230,140,0.95) !important;
+    }
+
+    @media (max-width: 600px) {
+      .bib-modal { max-height: 92vh; }
+      .bib-card-meta, .bib-card-impacto, .bib-card-authors { padding-left: 0; }
+      .bib-suggest-section { padding: 12px 14px 16px; }
+      .bib-header { padding: 12px 14px 10px; }
+      .bib-search-wrap { padding: 10px 14px 8px; }
+      .bib-list { padding: 10px 10px; }
+    }
+
     /* CHEST MODAL */
     .chest-modal {
       display: none; position: fixed; inset: 0;
@@ -1571,7 +1738,6 @@
 
     /* Botão MODOS DE JOGO — sempre visível, grupo individual escondido */
     .btn-game-modes { display: block; }
-    .game-mode-btns-group { display: none !important; }
 
     /* Overlay do popup MODOS DE JOGO */
     .game-modes-overlay {
@@ -2116,41 +2282,31 @@
 
     /* BADGES DE PROGRESSÃO — Escudos Rúnicos */
     .badges-container {
-      margin-top: 10px; padding: 10px 8px 12px;
-      background: rgba(10,15,30,0.6);
-      border: 1px solid var(--blue-dark); border-radius: 8px;
+      margin-top: 10px; padding: 2px 0 6px;
     }
     .badges-row {
-      display: grid; grid-template-columns: repeat(5,1fr); gap: 6px;
+      display: grid; grid-template-columns: repeat(5,1fr); gap: 5px;
     }
     .badge-slot {
-      position: relative; display: flex; flex-direction: column;
-      align-items: center; cursor: default;
+      position: relative; display: flex; align-items: center; justify-content: center;
+      cursor: default;
     }
     .badge-shield {
       width: 100%; aspect-ratio: 0.86;
       clip-path: polygon(8% 0%, 92% 0%, 100% 14%, 100% 63%, 50% 100%, 0% 63%, 0% 14%);
-      background: linear-gradient(180deg, #111825 0%, #060a18 100%);
+      background: linear-gradient(180deg, #16202e 0%, #090d1a 100%);
       display: flex; align-items: center; justify-content: center;
       transition: background 0.35s, filter 0.35s;
-      filter: drop-shadow(0 2px 5px rgba(0,0,0,0.65));
+      filter: drop-shadow(0 1px 4px rgba(0,0,0,0.7));
     }
     .badge-rune {
       font-family: 'Cinzel', serif;
-      font-size: clamp(0.9rem, 2.2vw, 1.35rem);
+      font-size: clamp(0.9rem, 2.4vw, 1.35rem);
       font-weight: 700; line-height: 1; user-select: none;
-      color: rgba(120,140,170,0.28);
+      color: rgba(90,105,135,0.45);
       transition: color 0.35s, text-shadow 0.35s;
     }
-    .badge-slot .badge-lock {
-      position: absolute; top: -3px; right: 1px;
-      width: 14px; height: 14px; border-radius: 50%;
-      background: rgba(6,8,18,0.95);
-      border: 1px solid rgba(120,130,155,0.35);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 7px; pointer-events: none; z-index: 5;
-    }
-    .badge-slot.unlocked .badge-lock { display: none; }
+    .badge-slot .badge-lock { display: none; }
     /* Tier 1 — Bronze */
     .badge-slot.unlocked[data-badge="1"] .badge-shield {
       background: linear-gradient(180deg, #4a2e15 0%, #1a0e05 100%);
@@ -7578,7 +7734,6 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   position: relative !important;
   z-index: 1 !important;
 }
-#welcomeScreen #wsSavedAvatar { display: none !important; }
 #welcomeScreen .wsaved-top {
   padding: 7px 16px !important;
   display: flex !important;
@@ -7603,22 +7758,43 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 }
 #welcomeScreen .wsaved-bottom {
   display: flex !important;
-  flex-direction: column !important;
+  flex-direction: row !important;
   align-items: center !important;
-  gap: 8px !important;
-  padding: 10px 16px 12px !important;
+  gap: 14px !important;
+  padding: 12px 16px 14px !important;
+}
+#welcomeScreen #wsSavedAvatar {
+  display: block !important;
+  width: 58px !important;
+  height: 66px !important;
+  object-fit: cover !important;
+  border-radius: 9px !important;
+  border: 1.5px solid rgba(160,127,255,0.45) !important;
+  box-shadow: 0 0 14px rgba(100,60,220,0.4), 0 2px 8px rgba(0,0,0,0.55) !important;
+  flex-shrink: 0 !important;
+}
+#welcomeScreen .wsaved-info {
+  flex: 1 !important;
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 7px !important;
 }
 #welcomeScreen .wsaved-charname {
   font-family: 'Cinzel', serif !important;
-  font-size: 1.0rem !important;
+  font-size: 0.92rem !important;
   color: #e8e6ff !important;
-  text-align: center !important;
-  width: 100% !important;
+  text-align: left !important;
+  width: auto !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
 }
 #welcomeScreen .wsaved-stats {
   display: flex !important;
   gap: 0 !important;
-  justify-content: center !important;
+  justify-content: flex-start !important;
   width: 100% !important;
 }
 #welcomeScreen .wsaved-stat {
@@ -7628,18 +7804,18 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   flex-direction: column !important;
   align-items: center !important;
   border-left: 1px solid rgba(202,165,68,0.18) !important;
-  padding-left: 10px !important;
+  padding-left: 8px !important;
 }
 #welcomeScreen .wsaved-stat:first-child { border-left: none !important; padding-left: 0 !important; }
 #welcomeScreen .ws-v {
   font-family: 'Cinzel', serif !important;
-  font-size: 1.1rem !important;
+  font-size: 0.95rem !important;
   line-height: 1 !important;
   display: block !important;
 }
 #welcomeScreen .ws-l {
   font-family: 'Cinzel', serif !important;
-  font-size: 0.52rem !important;
+  font-size: 0.48rem !important;
   letter-spacing: 0.16em !important;
   color: rgba(174,180,211,0.50) !important;
   text-transform: uppercase !important;
@@ -7712,10 +7888,6 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   width: 100% !important;
   position: relative !important;
   z-index: 1 !important;
-}
-/* Hide individual mode buttons group — Modos de Jogo popup covers them */
-#welcomeScreen .welcome-buttons .game-mode-btns-group {
-  display: none !important;
 }
 /* Show the Modos de Jogo popup button on desktop too */
 #welcomeScreen .welcome-buttons .btn-game-modes {
