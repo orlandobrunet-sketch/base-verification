@@ -7306,286 +7306,206 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 
 
 
+
+
 /* ═══════════════════════════════════════════════════════════════
-   FASE 11 — WELCOME HUB (AoE Codex Panel, pure-CSS ornaments)
+   FASE 12 — WELCOME HUB (Ornamental Panel — difficulty-selector pattern)
    ═══════════════════════════════════════════════════════════════ */
 
-/* ─── Throne room: dark vignette + side pillar hints ────────── */
+/* ─── Background: bg-hall.jpg with dark overlay ──────────────── */
 #welcomeScreen {
   background:
-    radial-gradient(ellipse at 50% 30%, rgba(80,68,160,0.16) 0%, transparent 38%),
-    radial-gradient(ellipse at 12% 50%, rgba(60,140,230,0.10) 0%, transparent 26%),
-    radial-gradient(ellipse at 88% 50%, rgba(126,69,255,0.12) 0%, transparent 26%),
-    linear-gradient(180deg, #060818 0%, #04050f 100%) !important;
-  align-items: flex-start !important;
+    linear-gradient(rgba(4,6,20,0.68), rgba(4,6,20,0.72)),
+    url('assets/bg-hall.jpg') center/cover no-repeat,
+    #060810 !important;
+  align-items: center !important;
+  justify-content: center !important;
   overflow-y: auto !important;
+  padding: 32px 16px !important;
 }
-
-/* Cinematic vignette overlay */
-#welcomeScreen::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background:
-    linear-gradient(90deg, rgba(2,4,12,0.72) 0%, transparent 18%, transparent 82%, rgba(2,4,12,0.72) 100%),
-    radial-gradient(ellipse at center 40%, transparent 30%, rgba(0,0,0,0.55) 100%);
-  filter: none !important;
-}
-
-/* Star/particle dust */
-#welcomeScreen::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background-image:
-    radial-gradient(circle at 12% 18%, rgba(255,229,121,0.55) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 84% 32%, rgba(122,206,255,0.45) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 28% 72%, rgba(196,181,253,0.40) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 76% 78%, rgba(255,229,121,0.40) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 50% 12%, rgba(255,229,121,0.35) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 8% 88%, rgba(122,206,255,0.30) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 92% 88%, rgba(196,181,253,0.30) 0 1px, transparent 1.5px);
-  opacity: 0.55;
-}
-
-/* Hide legacy decorations */
+/* Disable legacy overlay pseudo-elements */
+#welcomeScreen::before,
+#welcomeScreen::after { display: none !important; }
 #welcomeScreen .welcome-bg,
 #welcomeScreen .welcome-glow,
 #welcomeScreen .welcome-particles { display: none !important; }
 
-/* ─── Sound controls: top-right, brass-rivet button style ──── */
+/* ─── Sound controls: brass-button style top-right ──────────── */
 #welcomeScreen .welcome-sound-controls {
   position: fixed !important;
-  top: 22px !important;
-  right: 28px !important;
+  top: 18px !important;
+  right: 22px !important;
   z-index: 30 !important;
   display: flex !important;
   flex-direction: row !important;
-  gap: 8px !important;
+  gap: 6px !important;
   background: none !important;
 }
 #welcomeScreen .welcome-sound-controls .sound-toggle,
 #welcomeScreen .welcome-sound-controls .profile-btn {
-  width: 42px !important;
-  height: 42px !important;
-  min-width: 42px !important;
-  min-height: 42px !important;
-  border-radius: 8px !important;
-  border: 1px solid rgba(202,165,68,0.55) !important;
-  background: linear-gradient(180deg, rgba(20,28,58,0.92), rgba(8,12,30,0.94)) !important;
+  width: 38px !important;
+  height: 38px !important;
+  min-width: 38px !important;
+  min-height: 38px !important;
+  border-radius: 7px !important;
+  border: 1px solid rgba(202,165,68,0.45) !important;
+  background: linear-gradient(180deg, rgba(18,24,52,0.94), rgba(8,12,28,0.96)) !important;
   color: #f1de7c !important;
   display: grid !important;
   place-items: center !important;
   cursor: pointer !important;
-  box-shadow: inset 0 0 14px rgba(202,165,68,0.10), 0 0 14px rgba(40,80,180,0.16) !important;
-  backdrop-filter: blur(8px) !important;
-  font-size: 1rem !important;
-  transition: 160ms ease !important;
+  font-size: 0.9rem !important;
+  transition: 140ms ease !important;
 }
 #welcomeScreen .welcome-sound-controls .sound-toggle:hover,
 #welcomeScreen .welcome-sound-controls .profile-btn:hover {
-  transform: translateY(-2px) !important;
   border-color: #f1de7c !important;
-  box-shadow: inset 0 0 18px rgba(202,165,68,0.18), 0 0 22px rgba(120,160,255,0.22) !important;
+  transform: translateY(-1px) !important;
 }
 
-/* ─── Codex panel ─────────────────────────────────────────── */
+/* ─── Main panel ─────────────────────────────────────────────── */
 #welcomeScreen .welcome-content {
   position: relative !important;
   z-index: 5 !important;
-  width: min(860px, 92vw) !important;
-  max-width: min(860px, 92vw) !important;
-  margin: 64px auto 48px !important;
-  padding: 92px 56px 36px !important; /* extra top for medallion */
-  background:
-    linear-gradient(180deg, rgba(11,16,42,0.96) 0%, rgba(6,9,26,0.97) 100%),
-    radial-gradient(ellipse at 50% 0%, rgba(98,135,255,0.16), transparent 50%) !important;
-  border: 2px solid #caa544 !important;
+  width: min(520px, 92vw) !important;
+  max-width: min(520px, 92vw) !important;
+  min-width: 0 !important;
+  margin: auto !important;
+  padding: 36px 36px 28px !important;
+  background: linear-gradient(180deg, rgba(12,16,40,0.97) 0%, rgba(6,9,24,0.98) 100%) !important;
+  border: 1px solid rgba(217,191,85,0.40) !important;
   border-radius: 6px !important;
   box-shadow:
-    0 0 0 1px rgba(5,8,24,0.95),
-    inset 0 0 0 7px rgba(8,12,28,0.6),
-    inset 0 0 0 8px rgba(202,165,68,0.42),
-    inset 0 0 80px rgba(67,84,160,0.10),
-    0 28px 90px rgba(0,0,0,0.65),
-    0 0 56px rgba(98,132,255,0.12) !important;
-  backdrop-filter: blur(14px) !important;
+    0 0 0 1px rgba(4,6,16,0.9),
+    inset 0 0 0 5px rgba(6,9,20,0.75),
+    inset 0 0 0 6px rgba(202,165,68,0.16),
+    0 24px 72px rgba(0,0,0,0.72) !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
-  gap: 22px !important;
+  gap: 14px !important;
   text-align: center !important;
 }
-
-/* Top medallion (kidney-wings sigil, CSS-only) bleeds above panel */
+/* TL corner bracket */
 #welcomeScreen .welcome-content::before {
-  content: '';
-  position: absolute;
-  top: -44px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 92px;
-  height: 92px;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 50% 38%, #f6d870 0%, #caa544 35%, #7c5f1c 75%, #3d2d0e 100%);
-  border: 2px solid #caa544;
-  box-shadow:
-    0 0 0 4px rgba(8,12,28,0.95),
-    0 0 0 5px rgba(202,165,68,0.55),
-    0 0 30px rgba(202,165,68,0.45),
-    inset 0 -8px 14px rgba(0,0,0,0.5),
-    inset 0 6px 10px rgba(255,230,140,0.35);
-  z-index: 4;
+  content: '' !important;
+  display: block !important;
+  position: absolute !important;
+  top: 9px !important; left: 9px !important;
+  width: 16px !important; height: 16px !important;
+  border-top: 1.5px solid rgba(217,191,85,0.65) !important;
+  border-left: 1.5px solid rgba(217,191,85,0.65) !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
 }
-
-/* Center kidney glyph on medallion */
-#welcomeScreen .welcome-content > .welcome-ornament {
-  position: relative;
-  z-index: 1;
-  margin-top: 0 !important;
-}
-#welcomeScreen .welcome-content > .welcome-ornament::after {
-  content: '';
-  position: absolute;
-  top: -82px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 36px;
-  height: 36px;
-  background:
-    radial-gradient(ellipse at 50% 45%, rgba(160,200,255,0.85) 0%, rgba(60,100,200,0.6) 60%, transparent 75%);
-  filter: drop-shadow(0 0 6px rgba(120,160,255,0.7));
-  border-radius: 50% 50% 60% 60% / 40% 40% 60% 60%;
-  z-index: 5;
-}
-
-/* Bottom inner ornamental frame */
+/* BR corner bracket */
 #welcomeScreen .welcome-content::after {
-  content: '';
-  position: absolute;
-  inset: 16px;
-  border: 1px solid rgba(202,165,68,0.22);
-  border-radius: 3px;
-  pointer-events: none;
-  z-index: 0;
+  content: '' !important;
+  display: block !important;
+  position: absolute !important;
+  bottom: 9px !important; right: 9px !important;
+  width: 16px !important; height: 16px !important;
+  border-bottom: 1.5px solid rgba(217,191,85,0.65) !important;
+  border-right: 1.5px solid rgba(217,191,85,0.65) !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
 }
 
-/* ─── Corner ornaments (4 gold L-brackets with gem) ────────── */
-#welcomeScreen .welcome-content > *:first-child::before,
-#welcomeScreen .welcome-content > *:first-child::after { display: none; }
-
-#welcomeScreen .welcome-content .welcome-ornament {
-  position: relative;
+/* ─── Header: REINO DOS NÉFRONS ornament ─────────────────────── */
+#welcomeScreen .welcome-ornament {
+  position: relative !important;
+  z-index: 1 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 18px !important;
+  gap: 12px !important;
   margin: 0 !important;
   opacity: 1 !important;
-  z-index: 2;
 }
-#welcomeScreen .welcome-content .welcome-ornament::before,
-#welcomeScreen .welcome-content .welcome-ornament::after {
-  content: '';
-  display: inline-block;
-  width: 54px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(202,165,68,0.85), transparent) !important;
-  min-width: 0 !important;
-  flex: 0 0 54px !important;
+#welcomeScreen .welcome-ornament::before,
+#welcomeScreen .welcome-ornament::after {
+  content: '' !important;
+  display: inline-block !important;
+  width: 44px !important;
+  height: 1px !important;
+  background: linear-gradient(90deg, transparent, rgba(202,165,68,0.80), transparent) !important;
+  flex-shrink: 0 !important;
 }
-#welcomeScreen .welcome-content .welcome-ornament span {
+#welcomeScreen .welcome-ornament span {
   font-family: 'Cinzel', serif !important;
-  font-size: 0.74rem !important;
-  letter-spacing: 0.42em !important;
-  color: rgba(217,191,85,0.85) !important;
+  font-size: 0.68rem !important;
+  letter-spacing: 0.36em !important;
+  color: rgba(217,191,85,0.80) !important;
   text-transform: uppercase !important;
   font-weight: 600 !important;
-  opacity: 1 !important;
 }
 
 /* ─── Title NEFROQUEST ──────────────────────────────────────── */
 #welcomeScreen .welcome-content h1 {
-  margin: -2px 0 0 !important;
+  margin: 0 !important;
   font-family: 'Cinzel Decorative', 'Cinzel', serif !important;
-  font-size: clamp(2.6rem, 6vw, 4.6rem) !important;
+  font-size: clamp(2.6rem, 8vw, 4rem) !important;
   font-weight: 900 !important;
-  line-height: 0.92 !important;
-  letter-spacing: 0.04em !important;
-  background: linear-gradient(180deg, #fff3a4 0%, #f1de7c 28%, #caa544 55%, #7c5f1c 100%) !important;
+  line-height: 0.95 !important;
+  letter-spacing: 0.03em !important;
+  background: linear-gradient(180deg, #fff3a4 0%, #f1de7c 28%, #caa544 60%, #7c5f1c 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
-  text-shadow: 0 3px 0 rgba(74,52,18,0.55), 0 6px 18px rgba(0,0,0,0.55) !important;
-  filter: drop-shadow(0 0 14px rgba(202,165,68,0.20));
-  position: relative;
-  z-index: 1;
+  position: relative !important;
+  z-index: 1 !important;
 }
 
-/* ─── Subtitle ASCENSION ────────────────────────────────────── */
+/* ─── Subtitle ASCENSION ─────────────────────────────────────── */
 #welcomeScreen .welcome-content .welcome-sub {
-  position: relative;
-  z-index: 1;
+  position: relative !important;
+  z-index: 1 !important;
   font-family: 'Cinzel', serif !important;
-  font-size: 1.05rem !important;
-  letter-spacing: 0.58em !important;
-  color: rgba(202,165,68,0.85) !important;
-  margin-top: 6px !important;
+  font-size: 0.90rem !important;
+  letter-spacing: 0.52em !important;
+  color: rgba(202,165,68,0.80) !important;
+  margin-top: 2px !important;
   display: inline-flex !important;
   align-items: center !important;
-  justify-content: center !important;
   gap: 0 !important;
 }
 #welcomeScreen .welcome-content .welcome-sub::before,
 #welcomeScreen .welcome-content .welcome-sub::after {
-  content: '';
-  display: inline-block;
-  width: 70px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(202,165,68,0.8), transparent);
-  margin: 0 14px;
-}
-/* Decorative diamonds flanking subtitle */
-#welcomeScreen .welcome-content .welcome-sub {
-  position: relative;
+  content: '' !important;
+  display: inline-block !important;
+  width: 52px !important;
+  height: 1px !important;
+  background: linear-gradient(90deg, transparent, rgba(202,165,68,0.75), transparent) !important;
+  margin: 0 12px !important;
 }
 
-/* ─── Stats strip (3 hex-clipped tiles) ─────────────────────── */
+/* ─── Stats strip (3 rectangular tiles) ──────────────────────── */
 #welcomeScreen .welcome-stats {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr) !important;
-  gap: 14px !important;
+  gap: 10px !important;
   width: 100% !important;
-  max-width: 640px !important;
-  margin: 8px auto 0 !important;
-  position: relative;
-  z-index: 1;
+  margin: 2px 0 !important;
+  position: relative !important;
+  z-index: 1 !important;
 }
 #welcomeScreen .welcome-stat {
-  min-height: 96px !important;
-  padding: 14px 8px !important;
+  padding: 12px 6px !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 4px !important;
-  background: linear-gradient(180deg, rgba(17,22,52,0.95), rgba(8,11,30,0.96)) !important;
-  border: 1px solid rgba(202,165,68,0.34) !important;
-  box-shadow:
-    inset 0 0 26px rgba(126,69,255,0.08),
-    inset 0 1px 0 rgba(255,235,150,0.06),
-    0 8px 22px rgba(0,0,0,0.3) !important;
-  clip-path: polygon(8% 0%, 92% 0%, 100% 18%, 100% 82%, 92% 100%, 8% 100%, 0% 82%, 0% 18%);
+  gap: 3px !important;
+  background: linear-gradient(180deg, rgba(16,22,52,0.90), rgba(8,11,30,0.92)) !important;
+  border: 1px solid rgba(202,165,68,0.28) !important;
+  border-radius: 5px !important;
+  box-shadow: inset 0 0 16px rgba(100,70,200,0.07), 0 4px 12px rgba(0,0,0,0.25) !important;
+  clip-path: none !important;
   text-align: center !important;
 }
 #welcomeScreen .welcome-stat .ws-val {
   font-family: 'Cinzel', serif !important;
-  font-size: 1.85rem !important;
+  font-size: 1.7rem !important;
   font-weight: 700 !important;
   line-height: 1 !important;
   background: linear-gradient(180deg, #fff3a4 0%, #d8b82e 60%, #7f631a 100%) !important;
@@ -7596,204 +7516,173 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 }
 #welcomeScreen .welcome-stat .ws-lbl {
   font-family: 'Cinzel', serif !important;
-  font-size: 0.62rem !important;
-  letter-spacing: 0.26em !important;
-  color: rgba(217,191,85,0.66) !important;
+  font-size: 0.58rem !important;
+  letter-spacing: 0.24em !important;
+  color: rgba(217,191,85,0.60) !important;
   text-transform: uppercase !important;
-  margin-top: 6px !important;
+  margin-top: 4px !important;
   display: block !important;
 }
 
-/* ─── Journey card (in-progress quest) ──────────────────────── */
+/* ─── Journey card (in-progress) ─────────────────────────────── */
 #welcomeScreen #welcomeSavedInfo {
   width: 100% !important;
-  max-width: 720px !important;
-  margin: 4px auto !important;
   overflow: hidden !important;
-  background: linear-gradient(180deg, rgba(18,18,52,0.96), rgba(8,11,30,0.97)) !important;
-  border: 1px solid rgba(126,69,255,0.45) !important;
-  box-shadow:
-    inset 0 0 36px rgba(85,67,183,0.16),
-    inset 0 1px 0 rgba(196,181,253,0.10),
-    0 10px 26px rgba(0,0,0,0.36),
-    0 0 28px rgba(126,69,255,0.14) !important;
-  clip-path: polygon(2% 0%, 98% 0%, 100% 14%, 100% 86%, 98% 100%, 2% 100%, 0% 86%, 0% 14%);
-  position: relative;
-  z-index: 1;
+  background: linear-gradient(180deg, rgba(18,16,50,0.95), rgba(8,9,28,0.97)) !important;
+  border: 1px solid rgba(126,69,255,0.40) !important;
+  border-radius: 5px !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.30), 0 0 24px rgba(100,60,220,0.10) !important;
+  position: relative !important;
+  z-index: 1 !important;
 }
 #welcomeScreen #wsSavedAvatar { display: none !important; }
 #welcomeScreen .wsaved-top {
-  padding: 9px 22px !important;
+  padding: 7px 16px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
-  background: linear-gradient(90deg, rgba(64,28,128,0.74), rgba(28,22,68,0.66)) !important;
-  border-bottom: 1px solid rgba(160,127,255,0.22) !important;
+  background: linear-gradient(90deg, rgba(64,28,128,0.65), rgba(28,22,68,0.55)) !important;
+  border-bottom: 1px solid rgba(160,127,255,0.18) !important;
 }
 #welcomeScreen .wsaved-label {
   font-family: 'Cinzel', serif !important;
-  font-size: 0.72rem !important;
-  letter-spacing: 0.24em !important;
+  font-size: 0.65rem !important;
+  letter-spacing: 0.22em !important;
   color: #c4b5fd !important;
   text-transform: uppercase !important;
   font-weight: 600 !important;
 }
 #welcomeScreen .wsaved-time-lbl {
   font-family: 'Philosopher', serif !important;
-  font-size: 0.7rem !important;
+  font-size: 0.65rem !important;
   font-style: italic !important;
-  color: rgba(174,180,211,0.55) !important;
-  letter-spacing: 0 !important;
-  text-transform: none !important;
+  color: rgba(174,180,211,0.50) !important;
 }
 #welcomeScreen .wsaved-bottom {
   display: flex !important;
   align-items: center !important;
-  gap: 24px !important;
-  padding: 16px 24px !important;
+  gap: 16px !important;
+  padding: 10px 16px !important;
 }
 #welcomeScreen .wsaved-charname {
   font-family: 'Cinzel', serif !important;
-  font-size: clamp(1.3rem, 2.2vw, 1.95rem) !important;
+  font-size: 1.0rem !important;
   color: #e8e6ff !important;
-  letter-spacing: 0.05em !important;
-  text-shadow: 0 0 14px rgba(160,127,255,0.26) !important;
   flex: 1 !important;
   text-align: left !important;
 }
 #welcomeScreen .wsaved-stats {
   display: flex !important;
-  gap: 14px !important;
+  gap: 10px !important;
 }
 #welcomeScreen .wsaved-stat {
-  min-width: 60px !important;
+  min-width: 44px !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
   border-left: 1px solid rgba(202,165,68,0.18) !important;
-  padding-left: 14px !important;
+  padding-left: 10px !important;
 }
 #welcomeScreen .wsaved-stat:first-child { border-left: none !important; padding-left: 0 !important; }
 #welcomeScreen .ws-v {
   font-family: 'Cinzel', serif !important;
-  font-size: 1.4rem !important;
+  font-size: 1.1rem !important;
   line-height: 1 !important;
   display: block !important;
 }
 #welcomeScreen .ws-l {
   font-family: 'Cinzel', serif !important;
-  font-size: 0.58rem !important;
-  letter-spacing: 0.18em !important;
-  color: rgba(174,180,211,0.55) !important;
+  font-size: 0.52rem !important;
+  letter-spacing: 0.16em !important;
+  color: rgba(174,180,211,0.50) !important;
   text-transform: uppercase !important;
-  margin-top: 4px !important;
+  margin-top: 3px !important;
 }
 
-/* ─── Primary buttons (Continuar + Nova) ────────────────────── */
+/* ─── Primary buttons ─────────────────────────────────────────── */
 #welcomeScreen .welcome-primary-btns {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  gap: 18px !important;
-  width: 100% !important;
-  max-width: 720px !important;
-  margin: 6px auto 0 !important;
-  position: relative;
-  z-index: 1;
-}
-/* Hide the duplicate Nova Jornada button (un-IDed sibling) */
-#welcomeScreen .welcome-primary-btns .btn.gold:not(#welcomeLoginBtn) {
-  display: none !important;
-}
-#welcomeScreen .welcome-primary-btns .btn {
-  position: relative !important;
-  min-height: 92px !important;
-  padding: 10px !important;
-  border-radius: 6px !important;
-  font-family: 'Cinzel', serif !important;
-  font-size: 1.05rem !important;
-  font-weight: 800 !important;
-  letter-spacing: 0.1em !important;
-  text-transform: uppercase !important;
-  cursor: pointer !important;
-  overflow: visible !important;
-  transition: 180ms ease !important;
-  flex: none !important;
-  max-width: none !important;
-  width: auto !important;
-}
-#welcomeScreen .welcome-primary-btns .btn::before {
-  content: '';
-  position: absolute;
-  inset: 6px;
-  border: 1px solid rgba(255,255,255,0.14);
-  border-radius: 3px;
-  pointer-events: none;
-}
-#welcomeScreen .welcome-primary-btns .btn::after {
-  content: '';
-  position: absolute;
-  top: -6px;
-  left: 50%;
-  width: 10px;
-  height: 10px;
-  background: linear-gradient(135deg, #f1de7c, #caa544);
-  border: 1px solid #2b1f08;
-  transform: translateX(-50%) rotate(45deg);
-  box-shadow: 0 0 8px rgba(202,165,68,0.6);
-}
-#welcomeScreen .welcome-primary-btns .btn:hover {
-  transform: translateY(-3px) !important;
-  filter: brightness(1.08);
-}
-#welcomeScreen .welcome-primary-btns #welcomeContinueBtn,
-#welcomeScreen .welcome-primary-btns .continue-btn {
-  background:
-    radial-gradient(circle at 50% 0%, rgba(133,188,255,0.30), transparent 56%),
-    linear-gradient(180deg, #3958a4 0%, #2a4078 50%, #1c2c5a 100%) !important;
-  border: 1px solid rgba(132,191,255,0.72) !important;
-  color: #f4f8ff !important;
-  box-shadow:
-    inset 0 0 30px rgba(140,191,255,0.20),
-    inset 0 1px 0 rgba(255,255,255,0.15),
-    0 0 28px rgba(85,146,255,0.30),
-    0 14px 36px rgba(0,0,0,0.40) !important;
-  text-shadow: 0 1px 0 rgba(0,0,0,0.6) !important;
-}
-#welcomeScreen .welcome-primary-btns #welcomeLoginBtn,
-#welcomeScreen .welcome-primary-btns .btn.gold {
-  background:
-    radial-gradient(circle at 50% 0%, rgba(217,191,85,0.22), transparent 56%),
-    linear-gradient(180deg, #6b521b 0%, #4a3812 50%, #2a1f0a 100%) !important;
-  border: 1px solid rgba(217,191,85,0.65) !important;
-  color: #fff3a4 !important;
-  box-shadow:
-    inset 0 0 30px rgba(217,191,85,0.16),
-    inset 0 1px 0 rgba(255,235,150,0.20),
-    0 0 28px rgba(202,165,68,0.22),
-    0 14px 36px rgba(0,0,0,0.40) !important;
-  text-shadow: 0 1px 0 rgba(0,0,0,0.6) !important;
-}
-
-/* ─── Secondary buttons (4-col grid) ────────────────────────── */
-#welcomeScreen .welcome-buttons {
-  display: grid !important;
-  grid-template-columns: repeat(4, 1fr) !important;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
   gap: 10px !important;
   width: 100% !important;
-  margin: 0 !important;
-  position: relative;
-  z-index: 1;
+  position: relative !important;
+  z-index: 1 !important;
 }
+/* always show the anonymous Nova Jornada btn */
+#welcomeScreen .welcome-primary-btns .btn.gold:not(#welcomeLoginBtn) {
+  display: flex !important;
+  flex: 1 !important;
+  min-width: 140px !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+/* keep welcomeLoginBtn hidden (unused) */
+#welcomeScreen .welcome-primary-btns #welcomeLoginBtn { display: none !important; }
+#welcomeScreen .welcome-primary-btns .btn {
+  min-height: 52px !important;
+  padding: 12px 14px !important;
+  border-radius: 5px !important;
+  font-family: 'Cinzel', serif !important;
+  font-size: 0.85rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  transition: 160ms ease !important;
+}
+#welcomeScreen .welcome-primary-btns .btn.gold:not(#welcomeLoginBtn),
+#welcomeScreen .welcome-primary-btns #welcomeLoginBtn {
+  background: linear-gradient(180deg, #7a5c1f 0%, #54400e 50%, #2e2208 100%) !important;
+  border: 1px solid rgba(217,191,85,0.60) !important;
+  color: #fff3a4 !important;
+  box-shadow: inset 0 1px 0 rgba(255,230,120,0.16), 0 0 20px rgba(202,165,68,0.18), 0 8px 24px rgba(0,0,0,0.36) !important;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.6) !important;
+}
+#welcomeScreen .welcome-primary-btns .btn.gold:not(#welcomeLoginBtn):hover {
+  filter: brightness(1.10) !important;
+  transform: translateY(-2px) !important;
+}
+#welcomeScreen .welcome-primary-btns .continue-btn,
+#welcomeScreen .welcome-primary-btns #welcomeContinueBtn {
+  background: linear-gradient(180deg, #2a3f8a 0%, #1c2d68 50%, #101a42 100%) !important;
+  border: 1px solid rgba(132,178,255,0.55) !important;
+  color: #d0e8ff !important;
+  box-shadow: inset 0 1px 0 rgba(160,210,255,0.12), 0 0 20px rgba(80,140,255,0.14), 0 8px 24px rgba(0,0,0,0.36) !important;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.6) !important;
+}
+#welcomeScreen .welcome-primary-btns .continue-btn:hover,
+#welcomeScreen .welcome-primary-btns #welcomeContinueBtn:hover {
+  filter: brightness(1.10) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* ─── Secondary buttons: 2×2 grid ───────────────────────────── */
+#welcomeScreen .welcome-buttons {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 8px !important;
+  width: 100% !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+/* Hide individual mode buttons group — Modos de Jogo popup covers them */
 #welcomeScreen .welcome-buttons .game-mode-btns-group {
-  display: contents !important;
+  display: none !important;
+}
+/* Show the Modos de Jogo popup button on desktop too */
+#welcomeScreen .welcome-buttons .btn-game-modes {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 #welcomeScreen .welcome-buttons .btn,
 #welcomeScreen .welcome-buttons .btn-boss-preview {
   position: relative !important;
-  min-height: 78px !important;
-  padding: 12px 8px !important;
+  min-height: 52px !important;
+  padding: 10px 8px !important;
   border-radius: 5px !important;
-  border: 1px solid rgba(202,165,68,0.32) !important;
+  border: 1px solid rgba(202,165,68,0.28) !important;
   background: linear-gradient(180deg, rgba(14,18,46,0.95), rgba(7,10,28,0.96)) !important;
   color: rgba(217,200,160,0.85) !important;
   font-family: 'Cinzel', serif !important;
@@ -7802,171 +7691,320 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   letter-spacing: 0.06em !important;
   text-transform: uppercase !important;
   cursor: pointer !important;
-  box-shadow:
-    inset 0 0 22px rgba(126,69,255,0.06),
-    inset 0 1px 0 rgba(217,191,85,0.06),
-    0 8px 22px rgba(0,0,0,0.30) !important;
-  transition: 160ms ease !important;
+  box-shadow: inset 0 0 14px rgba(100,60,200,0.05), 0 4px 14px rgba(0,0,0,0.28) !important;
+  transition: 140ms ease !important;
   max-width: none !important;
   min-width: 0 !important;
-  flex: none !important;
-  width: auto !important;
-}
-#welcomeScreen .welcome-buttons .btn::before {
-  content: '';
-  position: absolute;
-  top: -5px;
-  left: 50%;
-  width: 8px;
-  height: 8px;
-  background: linear-gradient(135deg, #caa544, #6b521b);
-  border: 1px solid rgba(255,229,121,0.65);
-  transform: translateX(-50%) rotate(45deg);
 }
 #welcomeScreen .welcome-buttons .btn:hover {
-  transform: translateY(-2px) !important;
-  border-color: rgba(202,165,68,0.65) !important;
+  border-color: rgba(202,165,68,0.55) !important;
   color: #f1de7c !important;
-  box-shadow:
-    inset 0 0 24px rgba(126,69,255,0.14),
-    inset 0 1px 0 rgba(217,191,85,0.10),
-    0 0 22px rgba(202,165,68,0.16),
-    0 8px 22px rgba(0,0,0,0.32) !important;
+  transform: translateY(-1px) !important;
+  background: linear-gradient(180deg, rgba(22,26,60,0.95), rgba(10,14,36,0.96)) !important;
 }
-
-/* Hide the redundant "Modos de Jogo" group button (we list them individually) */
-#welcomeScreen .welcome-buttons .btn-game-modes {
-  display: none !important;
-}
-
-/* Boss preview spans full grid when visible */
+/* Boss preview: full width */
 #welcomeScreen .welcome-buttons .btn-boss-preview {
   grid-column: 1 / -1 !important;
   background: linear-gradient(180deg, rgba(70,18,18,0.95), rgba(34,8,8,0.96)) !important;
-  border-color: rgba(239,68,68,0.50) !important;
+  border-color: rgba(239,68,68,0.45) !important;
   color: #fca5a5 !important;
-  font-size: 0.82rem !important;
-  min-height: 64px !important;
-}
-#welcomeScreen .welcome-buttons .btn-boss-preview::before {
-  background: linear-gradient(135deg, #ef4444, #7f1d1d) !important;
-  border-color: rgba(252,165,165,0.7) !important;
 }
 
-/* ─── Footer credits ────────────────────────────────────────── */
+/* ─── Footer credits ──────────────────────────────────────────── */
 #welcomeScreen .welcome-credit {
   font-family: 'Cinzel', serif !important;
-  color: rgba(217,191,85,0.55) !important;
-  font-size: 0.7rem !important;
+  color: rgba(217,191,85,0.45) !important;
+  font-size: 0.65rem !important;
   letter-spacing: 0.08em !important;
-  margin-top: 8px !important;
+  margin-top: 4px !important;
   text-align: center !important;
-  position: relative;
-  z-index: 1;
+  position: relative !important;
+  z-index: 1 !important;
 }
-#welcomeScreen .welcome-credit a { color: rgba(217,191,85,0.7) !important; text-decoration: none !important; }
+#welcomeScreen .welcome-credit a { color: rgba(217,191,85,0.60) !important; text-decoration: none !important; }
 #welcomeScreen .welcome-credit a:hover { color: #f1de7c !important; }
 
-/* ─── Responsive: tablet ────────────────────────────────────── */
-@media (max-width: 980px) {
+/* ─── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  #welcomeScreen {
+    padding: 20px 12px !important;
+    align-items: flex-start !important;
+  }
   #welcomeScreen .welcome-content {
-    width: 94vw !important;
-    max-width: 94vw !important;
-    padding: 78px 24px 26px !important;
-    margin: 48px auto 32px !important;
-    gap: 16px !important;
+    padding: 26px 18px 22px !important;
+    gap: 12px !important;
+    margin: 8px auto 16px !important;
   }
   #welcomeScreen .welcome-content h1 {
-    font-size: clamp(2.2rem, 8vw, 3.4rem) !important;
+    font-size: clamp(2.2rem, 10vw, 3rem) !important;
   }
   #welcomeScreen .welcome-content .welcome-sub {
-    font-size: 0.88rem !important;
-    letter-spacing: 0.42em !important;
+    font-size: 0.72rem !important;
+    letter-spacing: 0.38em !important;
   }
   #welcomeScreen .welcome-content .welcome-sub::before,
   #welcomeScreen .welcome-content .welcome-sub::after {
-    width: 32px !important;
+    width: 28px !important;
     margin: 0 8px !important;
   }
-  #welcomeScreen .welcome-buttons {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 8px !important;
-  }
-}
-
-/* ─── Responsive: mobile ────────────────────────────────────── */
-@media (max-width: 600px) {
-  #welcomeScreen .welcome-content {
-    padding: 68px 16px 22px !important;
-    border-width: 2px !important;
-    margin: 36px auto 24px !important;
-  }
-  #welcomeScreen .welcome-content::before {
-    width: 72px !important;
-    height: 72px !important;
-    top: -36px !important;
-  }
-  #welcomeScreen .welcome-content > .welcome-ornament::after {
-    top: -64px !important;
-    width: 28px !important;
-    height: 28px !important;
-  }
-  #welcomeScreen .welcome-stats {
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 6px !important;
-    max-width: 100% !important;
-  }
-  #welcomeScreen .welcome-stat {
-    min-height: 74px !important;
-    clip-path: polygon(8% 0%, 92% 0%, 100% 22%, 100% 78%, 92% 100%, 8% 100%, 0% 78%, 0% 22%);
-  }
-  #welcomeScreen .welcome-stat .ws-val { font-size: 1.35rem !important; }
-  #welcomeScreen .welcome-stat .ws-lbl { font-size: 0.52rem !important; letter-spacing: 0.18em !important; }
-  #welcomeScreen .wsaved-bottom {
-    flex-direction: column !important;
-    gap: 12px !important;
-    padding: 14px 18px !important;
-  }
-  #welcomeScreen .wsaved-charname { text-align: center !important; }
-  #welcomeScreen .wsaved-stat {
-    border-left: none !important;
-    padding-left: 0 !important;
-  }
-  #welcomeScreen .welcome-primary-btns {
-    grid-template-columns: 1fr !important;
-    gap: 10px !important;
-    max-width: 100% !important;
-  }
-  #welcomeScreen .welcome-primary-btns .btn {
-    min-height: 64px !important;
-    font-size: 0.9rem !important;
-  }
-  #welcomeScreen .welcome-buttons {
-    grid-template-columns: 1fr 1fr !important;
-    gap: 8px !important;
-  }
-  #welcomeScreen .welcome-buttons .btn {
-    min-height: 62px !important;
-    font-size: 0.62rem !important;
-  }
   #welcomeScreen .welcome-sound-controls {
-    top: 14px !important;
-    right: 14px !important;
+    top: 12px !important;
+    right: 12px !important;
   }
   #welcomeScreen .welcome-sound-controls .sound-toggle,
   #welcomeScreen .welcome-sound-controls .profile-btn {
-    width: 36px !important;
-    height: 36px !important;
-    min-width: 36px !important;
-    min-height: 36px !important;
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
   }
-  #welcomeScreen .welcome-content .welcome-ornament span {
-    font-size: 0.6rem !important;
-    letter-spacing: 0.28em !important;
+  #welcomeScreen .welcome-stat .ws-val { font-size: 1.35rem !important; }
+  #welcomeScreen .welcome-stat .ws-lbl { font-size: 0.50rem !important; letter-spacing: 0.16em !important; }
+  #welcomeScreen .wsaved-bottom {
+    flex-direction: column !important;
+    gap: 8px !important;
+    padding: 8px 12px !important;
   }
-  #welcomeScreen .welcome-content .welcome-ornament::before,
-  #welcomeScreen .welcome-content .welcome-ornament::after {
-    width: 28px !important;
-    flex: 0 0 28px !important;
+  #welcomeScreen .wsaved-charname { text-align: center !important; }
+  #welcomeScreen .wsaved-stat { border-left: none !important; padding-left: 0 !important; }
+  #welcomeScreen .welcome-primary-btns .btn {
+    min-height: 48px !important;
+    font-size: 0.78rem !important;
   }
+  #welcomeScreen .welcome-buttons .btn { min-height: 48px !important; font-size: 0.62rem !important; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   FASE 13 — ALL MODALS ORNAMENTAL (difficulty-selector panel style)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── Shared ornamental panel variables ──────────────────────── */
+/* Applied to: auth-box, chest-content, game-modes-box,
+               board-modal, stats/achievements modal-content,
+               modal-panel, pricing-wrap, forjaModal */
+
+/* Auth modal box */
+.auth-box {
+  background: linear-gradient(180deg, rgba(12,16,40,0.98) 0%, rgba(7,9,24,0.98) 100%) !important;
+  border: 1px solid rgba(217,191,85,0.40) !important;
+  border-radius: 8px !important;
+  box-shadow:
+    0 0 0 1px rgba(4,6,16,0.9),
+    inset 0 0 0 5px rgba(6,9,20,0.75),
+    inset 0 0 0 6px rgba(202,165,68,0.14),
+    0 24px 72px rgba(0,0,0,0.72) !important;
+  position: relative !important;
+}
+.auth-box::before, .auth-box::after {
+  content: '' !important;
+  position: absolute !important;
+  width: 14px !important; height: 14px !important;
+  border-color: rgba(217,191,85,0.55) !important;
+  border-style: solid !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+}
+.auth-box::before { top:8px; left:8px; border-width: 1.5px 0 0 1.5px !important; }
+.auth-box::after  { bottom:8px; right:8px; border-width: 0 1.5px 1.5px 0 !important; }
+
+.auth-title {
+  font-family: 'Cinzel', serif !important;
+  color: rgba(217,191,85,0.92) !important;
+  letter-spacing: 0.18em !important;
+  font-size: 1.1rem !important;
+}
+.auth-subtitle { color: rgba(172,193,220,0.60) !important; }
+
+/* Chest modal panel (charSelect, nameModal, chestModal) */
+.chest-content {
+  background: linear-gradient(180deg, rgba(12,16,40,0.98) 0%, rgba(7,9,24,0.98) 100%) !important;
+  border: 1px solid rgba(217,191,85,0.40) !important;
+  border-radius: 7px !important;
+  box-shadow:
+    0 0 0 1px rgba(4,6,16,0.9),
+    inset 0 0 0 5px rgba(6,9,20,0.75),
+    inset 0 0 0 6px rgba(202,165,68,0.14),
+    0 24px 72px rgba(0,0,0,0.72) !important;
+  position: relative !important;
+}
+.chest-content::before, .chest-content::after {
+  content: '' !important;
+  position: absolute !important;
+  width: 14px !important; height: 14px !important;
+  border-color: rgba(217,191,85,0.55) !important;
+  border-style: solid !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+}
+.chest-content::before { top:8px; left:8px; border-width: 1.5px 0 0 1.5px !important; }
+.chest-content::after  { bottom:8px; right:8px; border-width: 0 1.5px 1.5px 0 !important; }
+
+/* Game modes popup */
+.game-modes-box {
+  background: linear-gradient(180deg, rgba(12,16,40,0.98) 0%, rgba(7,9,24,0.98) 100%) !important;
+  border: 1px solid rgba(217,191,85,0.40) !important;
+  border-radius: 8px !important;
+  box-shadow:
+    0 0 0 1px rgba(4,6,16,0.9),
+    inset 0 0 0 5px rgba(6,9,20,0.75),
+    inset 0 0 0 6px rgba(202,165,68,0.14),
+    0 24px 72px rgba(0,0,0,0.72) !important;
+  position: relative !important;
+}
+.game-modes-box::before, .game-modes-box::after {
+  content: '' !important;
+  position: absolute !important;
+  width: 14px !important; height: 14px !important;
+  border-color: rgba(217,191,85,0.55) !important;
+  border-style: solid !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+}
+.game-modes-box::before { top:8px; left:8px; border-width: 1.5px 0 0 1.5px !important; }
+.game-modes-box::after  { bottom:8px; right:8px; border-width: 0 1.5px 1.5px 0 !important; }
+.game-modes-box h3 {
+  font-family: 'Cinzel', serif !important;
+  color: rgba(217,191,85,0.92) !important;
+  letter-spacing: 0.22em !important;
+}
+
+/* Leaderboard / Board modal */
+.board-modal {
+  background: linear-gradient(180deg, rgba(12,16,40,0.99) 0%, rgba(7,9,24,0.99) 100%) !important;
+  border: 1px solid rgba(217,191,85,0.40) !important;
+  border-radius: 8px !important;
+  box-shadow:
+    0 0 0 1px rgba(4,6,16,0.9),
+    inset 0 0 0 5px rgba(6,9,20,0.75),
+    inset 0 0 0 6px rgba(202,165,68,0.14),
+    0 24px 72px rgba(0,0,0,0.72) !important;
+}
+.board-title {
+  font-family: 'Cinzel', serif !important;
+  color: rgba(217,191,85,0.92) !important;
+}
+.board-subtitle {
+  font-family: 'Philosopher', serif !important;
+  font-style: italic !important;
+  color: rgba(172,193,220,0.55) !important;
+}
+
+/* Stats and Achievements modal-content (dynamically generated) */
+.stats-popup .modal-content,
+.achievements-popup .modal-content {
+  background: linear-gradient(180deg, rgba(12,16,40,0.98) 0%, rgba(7,9,24,0.98) 100%) !important;
+  border: 1px solid rgba(217,191,85,0.38) !important;
+  border-radius: 8px !important;
+  box-shadow:
+    0 0 0 1px rgba(4,6,16,0.9),
+    inset 0 0 0 5px rgba(6,9,20,0.7),
+    inset 0 0 0 6px rgba(202,165,68,0.12),
+    0 24px 72px rgba(0,0,0,0.72) !important;
+}
+
+/* Account / Plan modal panel */
+.modal-panel {
+  background: linear-gradient(180deg, rgba(12,16,40,0.98) 0%, rgba(7,9,24,0.98) 100%) !important;
+  border: 1px solid rgba(217,191,85,0.38) !important;
+  border-radius: 8px !important;
+  box-shadow:
+    0 0 0 1px rgba(4,6,16,0.9),
+    inset 0 0 0 5px rgba(6,9,20,0.7),
+    inset 0 0 0 6px rgba(202,165,68,0.12),
+    0 24px 72px rgba(0,0,0,0.72) !important;
+  position: relative !important;
+}
+.modal-panel::before, .modal-panel::after {
+  content: '' !important;
+  position: absolute !important;
+  width: 14px !important; height: 14px !important;
+  border-color: rgba(217,191,85,0.50) !important;
+  border-style: solid !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+}
+.modal-panel::before { top:8px; left:8px; border-width: 1.5px 0 0 1.5px !important; }
+.modal-panel::after  { bottom:8px; right:8px; border-width: 0 1.5px 1.5px 0 !important; }
+.modal-panel h2 {
+  color: rgba(217,191,85,0.92) !important;
+  font-family: 'Cinzel', serif !important;
+  letter-spacing: 0.12em !important;
+}
+.modal-panel input:focus,
+.modal-panel select:focus { border-color: rgba(217,191,85,0.50) !important; }
+
+/* Pricing / paywall panel */
+.pricing-wrap {
+  background: linear-gradient(180deg, rgba(12,16,40,0.99) 0%, rgba(7,9,24,0.99) 100%) !important;
+  border: 1px solid rgba(217,191,85,0.38) !important;
+  border-radius: 8px !important;
+  box-shadow:
+    0 0 0 1px rgba(4,6,16,0.9),
+    inset 0 0 0 5px rgba(6,9,20,0.7),
+    inset 0 0 0 6px rgba(202,165,68,0.12),
+    0 24px 72px rgba(0,0,0,0.72) !important;
+}
+.pricing-wrap h2 {
+  font-family: 'Cinzel Decorative', 'Cinzel', serif !important;
+  background: linear-gradient(180deg, #fff3a4, #caa544 60%, #7c5f1c) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* Identity chooser overlay */
+.identity-modal {
+  background: linear-gradient(180deg, rgba(12,16,40,0.98) 0%, rgba(7,9,24,0.98) 100%) !important;
+  border: 1px solid rgba(217,191,85,0.40) !important;
+  border-radius: 8px !important;
+  box-shadow:
+    0 0 0 1px rgba(4,6,16,0.9),
+    inset 0 0 0 5px rgba(6,9,20,0.75),
+    inset 0 0 0 6px rgba(202,165,68,0.14),
+    0 24px 72px rgba(0,0,0,0.72) !important;
+  position: relative !important;
+}
+.identity-modal::before, .identity-modal::after {
+  content: '' !important;
+  position: absolute !important;
+  width: 14px !important; height: 14px !important;
+  border-color: rgba(217,191,85,0.55) !important;
+  border-style: solid !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+}
+.identity-modal::before { top:8px; left:8px; border-width: 1.5px 0 0 1.5px !important; }
+.identity-modal::after  { bottom:8px; right:8px; border-width: 0 1.5px 1.5px 0 !important; }
+.identity-ornament {
+  font-family: 'Cinzel', serif !important;
+  color: rgba(217,191,85,0.80) !important;
+  letter-spacing: 0.32em !important;
+  font-size: 0.68rem !important;
+}
+.identity-title {
+  font-family: 'Cinzel', serif !important;
+  color: rgba(217,191,85,0.92) !important;
+  letter-spacing: 0.12em !important;
+}
+
+/* Forja modal inner div */
+#forjaModal > div {
+  background: linear-gradient(180deg, rgba(12,16,40,0.98) 0%, rgba(7,9,24,0.98) 100%) !important;
+  border: 1px solid rgba(217,191,85,0.40) !important;
+  border-radius: 8px !important;
+  box-shadow:
+    0 0 0 1px rgba(4,6,16,0.9),
+    inset 0 0 0 5px rgba(6,9,20,0.75),
+    inset 0 0 0 6px rgba(202,165,68,0.14),
+    0 24px 72px rgba(0,0,0,0.72) !important;
+  position: relative !important;
+}
+
+/* Generic modal-content upgrade (stats/achievements inline styles override) */
+.stats-popup,
+.achievements-popup {
+  background: rgba(0,0,0,0.88) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
 }

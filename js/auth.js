@@ -72,7 +72,6 @@
           document.getElementById('welcomeScreen').classList.remove('hidden');
           refreshWelcomeSave();
           if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
-          _showIdentityChooser();
         }
       } else if (_guestMode) {
         document.querySelectorAll('.profile-btn').forEach(b => b.classList.add('visible'));
@@ -83,7 +82,6 @@
           document.getElementById('welcomeScreen').classList.remove('hidden');
           refreshWelcomeSave();
           if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
-          _showIdentityChooser();
         }
       } else {
         document.querySelectorAll('.profile-btn').forEach(b => b.classList.remove('visible'));
