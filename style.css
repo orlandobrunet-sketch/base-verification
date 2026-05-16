@@ -7561,6 +7561,10 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   border-color: #f1de7c !important;
   transform: translateY(-1px) !important;
 }
+/* Oculta botões de som na welcome em mobile (mostrados apenas em desktop) */
+@media (max-width: 768px) {
+  #welcomeScreen .welcome-sound-controls { display: none !important; }
+}
 
 /* ─── Main panel ─────────────────────────────────────────────── */
 #welcomeScreen .welcome-content {
