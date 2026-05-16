@@ -2303,16 +2303,16 @@
     .badge-shield {
       width: 100%; aspect-ratio: 0.86;
       clip-path: polygon(8% 0%, 92% 0%, 100% 14%, 100% 63%, 50% 100%, 0% 63%, 0% 14%);
-      background: linear-gradient(180deg, #16202e 0%, #090d1a 100%);
+      background: rgba(12,18,42,0.38);
       display: flex; align-items: center; justify-content: center;
       transition: background 0.35s, filter 0.35s;
-      filter: drop-shadow(0 1px 4px rgba(0,0,0,0.7));
+      filter: drop-shadow(0 0 5px rgba(40,65,130,0.5)) drop-shadow(0 1px 3px rgba(0,0,0,0.55));
     }
     .badge-rune {
       font-family: 'Cinzel', serif;
       font-size: clamp(0.9rem, 2.4vw, 1.35rem);
       font-weight: 700; line-height: 1; user-select: none;
-      color: rgba(90,105,135,0.45);
+      color: rgba(100,115,155,0.55);
       transition: color 0.35s, text-shadow 0.35s;
     }
     .badge-slot .badge-lock { display: none; }

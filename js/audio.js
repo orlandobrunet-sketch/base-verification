@@ -46,27 +46,25 @@
     }
 
     // Fade-in suave usando curva ease-out (raiz quadrada) para soar natural
+    // Usa setInterval em vez de requestAnimationFrame — RAF pode ser throttled em páginas
+    // recém-carregadas via redirect OAuth (Brave PC), causando o áudio "congelar".
     function _wmFadeIn(onDone) {
       wmTrack.volume = 0.01;
-      const startTime = performance.now();
-      let rafId = null;
-      function tick(now) {
-        if (_wmStopRequested) { if (rafId) cancelAnimationFrame(rafId); _wmFadeInterval = null; return; }
-        const elapsed = now - startTime;
-        const t = Math.min(1, Math.max(0, elapsed / WM_FADEIN_MS));
-        // curva ease-out sqrt: sobe rápido no início, desacelera no fim
+      const steps = Math.round(WM_FADEIN_MS / 30);
+      let step = 0;
+      const iv = setInterval(() => {
+        if (_wmStopRequested) { clearInterval(iv); _wmFadeInterval = null; return; }
+        step++;
+        const t = Math.min(1, step / steps);
         wmTrack.volume = WELCOME_MUSIC_VOL * Math.sqrt(t);
-        if (t < 1) {
-          rafId = requestAnimationFrame(tick);
-          _wmFadeInterval = { cancel: () => cancelAnimationFrame(rafId) };
-        } else {
+        if (step >= steps) {
+          clearInterval(iv);
           wmTrack.volume = WELCOME_MUSIC_VOL;
           _wmFadeInterval = null;
           if (onDone) onDone();
         }
-      }
-      rafId = requestAnimationFrame(tick);
-      _wmFadeInterval = { cancel: () => cancelAnimationFrame(rafId) };
+      }, 30);
+      _wmFadeInterval = { cancel: () => clearInterval(iv) };
     }
 
     // Fade-out suave usando curva ease-in (quadrática) para soar natural
