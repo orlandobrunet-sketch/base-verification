@@ -422,14 +422,16 @@
         }
         // Fallback para browsers que bloqueiam autoplay: inicia na primeira interação.
         // _unlockAll() pré-aquece todos os elementos de áudio (crítico no iOS Safari).
+        // touchstart: iOS Safari — esta é a janela de gesto mais cedo disponível no mobile
+        document.addEventListener('touchstart', function _firstTouch() {
+          _unlockAll();
+          if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
+        }, { once: true, capture: true, passive: true });
+        // click: fallback para desktop e browsers sem touch
         document.addEventListener('click', function _firstClick() {
           _unlockAll();
           if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
         }, { once: true, capture: true });
-        // touchstart para mobile: unlock antes do click (touchstart precede click no iOS)
-        document.addEventListener('touchstart', function _firstTouch() {
-          _unlockAll();
-        }, { once: true, capture: true, passive: true });
       }
 
       // Retoma música quando a aba volta ao foco (tab switch, OAuth popup, etc.)
