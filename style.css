@@ -8419,19 +8419,19 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     radial-gradient(ellipse 56% 28% at 50% 105%,  rgba(208, 182, 100, 0.07), transparent 38%);
 }
 
-/* ── Painel central — mais largo e premium ──────────────────────────────── */
+/* ── Painel central ─────────────────────────────────────────────────────── */
 #welcomeScreen > .welcome-content,
 #welcomeScreen .welcome-content {
   position: relative !important;
   z-index: 2 !important;
-  width: min(900px, 96vw) !important;
+  width: min(580px, 96vw) !important;
   max-width: unset !important;
-  padding: clamp(28px, 3.5vw, 52px) clamp(22px, 4.5vw, 60px) clamp(24px, 3vw, 44px) !important;
+  padding: clamp(28px, 3.5vw, 44px) clamp(22px, 4vw, 44px) clamp(24px, 3vw, 40px) !important;
   gap: 0 !important;
   background:
     linear-gradient(180deg, rgba(14, 16, 36, 0.80), rgba(6, 8, 20, 0.92)),
     radial-gradient(ellipse 80% 30% at 50% 0%, rgba(216, 193, 111, 0.06), transparent 50%) !important;
-  border-radius: 22px !important;
+  border-radius: 18px !important;
   border: 1px solid rgba(208, 182, 100, 0.28) !important;
   box-shadow:
     0 28px 80px rgba(0, 0, 0, 0.56),
@@ -8441,14 +8441,54 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   backdrop-filter: blur(24px) !important;
 }
 
-/* ── Ornamento superior do painel ───────────────────────────────────────── */
+/* ── Cantos ornamentais — L-shapes nos 4 cantos ─────────────────────────── */
+/* ::before: canto superior-esquerdo e inferior-direito */
 #welcomeScreen .welcome-content::before {
   content: '';
   position: absolute;
-  top: 0; left: 14%; right: 14%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(208, 182, 100, 0.55), transparent);
+  /* canto superior-esquerdo */
+  top: 8px; left: 8px;
+  width: 22px; height: 22px;
+  border-top: 1.5px solid rgba(208, 182, 100, 0.72);
+  border-left: 1.5px solid rgba(208, 182, 100, 0.72);
+  border-radius: 3px 0 0 0;
   pointer-events: none;
+  /* segundo canto via box-shadow (inferior-direito) */
+  box-shadow:
+    /* inferior-direito relativo ao próprio elemento não funciona bem; usa outline */
+    none;
+}
+/* Cantos via outline duplo simulado: segundo par via elemento dedicado */
+/* Usar outline no wrapper ficaria sobreposto; melhor usar background-image com gradients */
+/* Abordagem: 4 gradientes lineares nas bordas como "cantos" */
+#welcomeScreen .welcome-content::after {
+  content: '';
+  position: absolute;
+  inset: 7px;
+  pointer-events: none;
+  border-radius: 14px;
+  /* Cantos L-shape via background gradients */
+  background:
+    /* canto superior-esquerdo horizontal */
+    linear-gradient(90deg, rgba(208,182,100,0.70) 0%, rgba(208,182,100,0.70) 24px, transparent 24px) top left / 24px 1.5px no-repeat,
+    /* canto superior-esquerdo vertical */
+    linear-gradient(180deg, rgba(208,182,100,0.70) 0%, rgba(208,182,100,0.70) 24px, transparent 24px) top left / 1.5px 24px no-repeat,
+    /* canto superior-direito horizontal */
+    linear-gradient(270deg, rgba(208,182,100,0.70) 0%, rgba(208,182,100,0.70) 24px, transparent 24px) top right / 24px 1.5px no-repeat,
+    /* canto superior-direito vertical */
+    linear-gradient(180deg, rgba(208,182,100,0.70) 0%, rgba(208,182,100,0.70) 24px, transparent 24px) top right / 1.5px 24px no-repeat,
+    /* canto inferior-esquerdo horizontal */
+    linear-gradient(90deg, rgba(208,182,100,0.70) 0%, rgba(208,182,100,0.70) 24px, transparent 24px) bottom left / 24px 1.5px no-repeat,
+    /* canto inferior-esquerdo vertical */
+    linear-gradient(0deg, rgba(208,182,100,0.70) 0%, rgba(208,182,100,0.70) 24px, transparent 24px) bottom left / 1.5px 24px no-repeat,
+    /* canto inferior-direito horizontal */
+    linear-gradient(270deg, rgba(208,182,100,0.70) 0%, rgba(208,182,100,0.70) 24px, transparent 24px) bottom right / 24px 1.5px no-repeat,
+    /* canto inferior-direito vertical */
+    linear-gradient(0deg, rgba(208,182,100,0.70) 0%, rgba(208,182,100,0.70) 24px, transparent 24px) bottom right / 1.5px 24px no-repeat,
+    /* linha ornamental no topo (centro) */
+    linear-gradient(90deg, transparent, rgba(208,182,100,0.40), transparent) top center / 55% 1px no-repeat,
+    /* linha ornamental no rodapé (centro) */
+    linear-gradient(90deg, transparent, rgba(208,182,100,0.28), transparent) bottom center / 42% 1px no-repeat;
 }
 
 /* ── Texto do ornamento ─────────────────────────────────────────────────── */
@@ -8600,10 +8640,10 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   transform: translateY(-2px) !important;
 }
 
-/* ── Botões secundários — grid 3 colunas ────────────────────────────────── */
+/* ── Botões secundários — grid 2 colunas (painel estreito) ─────────────── */
 #welcomeScreen .welcome-buttons {
   display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   gap: 10px !important;
   width: 100% !important;
   max-width: 100% !important;
@@ -8649,10 +8689,10 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   box-shadow: 0 0 20px rgba(208, 182, 100, 0.09), 0 14px 36px rgba(0, 0, 0, 0.36) !important;
 }
 
-/* Botão Grimório: cols 1-2 na linha 2, Leaderboard fica em col 3 */
+/* Botão Grimório: linha inteira */
 #welcomeScreen .welcome-buttons .btn.btn-biblioteca {
-  grid-column: 1 / 3 !important;
-  grid-row: 2 !important;
+  grid-column: 1 / -1 !important;
+  grid-row: unset !important;
   min-height: 56px !important;
   border-color: rgba(196, 156, 56, 0.42) !important;
   color: rgba(236, 196, 84, 0.92) !important;
@@ -8670,10 +8710,10 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   box-shadow: 0 0 20px rgba(255, 215, 0, 0.11), 0 12px 32px rgba(0, 0, 0, 0.40) !important;
 }
 
-/* Leaderboard: col 3, linha 2 */
+/* Leaderboard: auto-place no grid 2×2 */
 #welcomeScreen .welcome-buttons .btn:nth-child(4) {
-  grid-column: 3 !important;
-  grid-row: 2 !important;
+  grid-column: unset !important;
+  grid-row: unset !important;
 }
 
 /* ── Crédito / rodapé ────────────────────────────────────────────────────── */
@@ -8697,7 +8737,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   #welcomeScreen .welcome-content {
     width: min(calc(100vw - 16px), 100%) !important;
     padding: 44px 16px 22px !important;
-    border-radius: 16px !important;
+    border-radius: 14px !important;
   }
   #welcomeScreen .welcome-buttons {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
