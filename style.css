@@ -8388,3 +8388,355 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   backdrop-filter: blur(8px) !important;
   -webkit-backdrop-filter: blur(8px) !important;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   WELCOME SCREEN — REDESIGN PREMIUM
+   Escopo: #welcomeScreen — não altera JS, logo, assets ou outras telas
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Variáveis locais ───────────────────────────────────────────────────── */
+#welcomeScreen {
+  --ws-brass:      #d8c170;
+  --ws-brass-soft: #f0e2a8;
+  --ws-teal:       #5ed4d8;
+  --ws-violet:     #a07cef;
+  --ws-text-soft:  #b4b0c8;
+  --ws-radius:     14px;
+  --ws-glow-gold:  0 0 28px rgba(216, 193, 111, 0.22);
+}
+
+/* ── Overlay de cor sobre o fundo (z-index entre bg e conteúdo) ─────────── */
+#welcomeScreen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 72% 52% at 50% 0%,   rgba(140, 110, 255, 0.14), transparent 58%),
+    radial-gradient(ellipse 60% 38% at  0% 100%,  rgba(94, 212, 216, 0.07),  transparent 48%),
+    radial-gradient(ellipse 60% 38% at 100% 100%, rgba(94, 212, 216, 0.06),  transparent 48%),
+    radial-gradient(ellipse 56% 28% at 50% 105%,  rgba(208, 182, 100, 0.07), transparent 38%);
+}
+
+/* ── Painel central — mais largo e premium ──────────────────────────────── */
+#welcomeScreen > .welcome-content,
+#welcomeScreen .welcome-content {
+  position: relative !important;
+  z-index: 2 !important;
+  width: min(900px, 96vw) !important;
+  max-width: unset !important;
+  padding: clamp(28px, 3.5vw, 52px) clamp(22px, 4.5vw, 60px) clamp(24px, 3vw, 44px) !important;
+  gap: 0 !important;
+  background:
+    linear-gradient(180deg, rgba(14, 16, 36, 0.80), rgba(6, 8, 20, 0.92)),
+    radial-gradient(ellipse 80% 30% at 50% 0%, rgba(216, 193, 111, 0.06), transparent 50%) !important;
+  border-radius: 22px !important;
+  border: 1px solid rgba(208, 182, 100, 0.28) !important;
+  box-shadow:
+    0 28px 80px rgba(0, 0, 0, 0.56),
+    0 0 0 1px rgba(255, 255, 255, 0.025) inset,
+    0 1px 0 rgba(255, 255, 255, 0.06) inset !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  backdrop-filter: blur(24px) !important;
+}
+
+/* ── Ornamento superior do painel ───────────────────────────────────────── */
+#welcomeScreen .welcome-content::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 14%; right: 14%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(208, 182, 100, 0.55), transparent);
+  pointer-events: none;
+}
+
+/* ── Texto do ornamento ─────────────────────────────────────────────────── */
+#welcomeScreen .welcome-ornament {
+  opacity: 1;
+  margin-bottom: 16px;
+  margin-top: 6px;
+}
+#welcomeScreen .welcome-ornament::before,
+#welcomeScreen .welcome-ornament::after {
+  background: linear-gradient(90deg, transparent, rgba(208, 182, 100, 0.5), transparent) !important;
+}
+#welcomeScreen .welcome-ornament span {
+  color: rgba(208, 182, 100, 0.88) !important;
+  letter-spacing: 5px !important;
+  font-size: 0.66rem !important;
+}
+
+/* ── Subtítulo ──────────────────────────────────────────────────────────── */
+#welcomeScreen .welcome-sub {
+  color: rgba(208, 182, 100, 0.62) !important;
+  letter-spacing: 0.68em !important;
+  margin: 4px 0 22px !important;
+}
+
+/* ── Stats cards — premium ──────────────────────────────────────────────── */
+#welcomeScreen .welcome-stats {
+  gap: 12px !important;
+  margin: 0 0 18px !important;
+  width: 100% !important;
+}
+#welcomeScreen .welcome-stat {
+  position: relative;
+  min-height: 90px !important;
+  padding: 18px 14px !important;
+  border-radius: var(--ws-radius) !important;
+  border: 1px solid rgba(208, 182, 100, 0.22) !important;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(148, 120, 255, 0.13), transparent 44%),
+    linear-gradient(180deg, rgba(20, 22, 50, 0.80), rgba(9, 10, 26, 0.94)) !important;
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  backdrop-filter: blur(8px) !important;
+  overflow: hidden;
+  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease !important;
+}
+#welcomeScreen .welcome-stat:hover {
+  transform: translateY(-2px);
+  border-color: rgba(208, 182, 100, 0.42) !important;
+  box-shadow: var(--ws-glow-gold), 0 16px 40px rgba(0, 0, 0, 0.42) !important;
+}
+#welcomeScreen .welcome-stat::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, 0.04) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 500ms ease;
+  pointer-events: none;
+}
+#welcomeScreen .welcome-stat:hover::after {
+  transform: translateX(100%);
+}
+#welcomeScreen .welcome-stat .ws-val {
+  font-size: clamp(1.35rem, 2.4vw, 1.75rem) !important;
+  font-family: 'Cinzel', serif !important;
+  color: #f0e2a8 !important;
+  text-shadow: 0 0 22px rgba(216, 193, 111, 0.22) !important;
+  line-height: 1 !important;
+}
+#welcomeScreen .welcome-stat .ws-lbl {
+  font-size: 0.64rem !important;
+  color: var(--ws-text-soft) !important;
+  letter-spacing: 0.18em !important;
+  margin-top: 9px !important;
+  text-transform: uppercase !important;
+}
+
+/* ── Botão principal: Nova Jornada ──────────────────────────────────────── */
+#welcomeScreen .welcome-primary-btns {
+  max-width: 620px !important;
+  margin: 10px auto 0 !important;
+  gap: 10px !important;
+}
+#welcomeScreen .welcome-primary-btns .btn.gold {
+  position: relative;
+  min-height: 60px !important;
+  border-radius: 12px !important;
+  border-color: rgba(240, 220, 140, 0.50) !important;
+  background:
+    linear-gradient(180deg, rgba(196, 168, 72, 0.96), rgba(118, 96, 28, 0.96)),
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.22), transparent 44%) !important;
+  color: #fff8d4 !important;
+  font-size: clamp(0.76rem, 1.3vw, 0.88rem) !important;
+  letter-spacing: 0.24em !important;
+  box-shadow:
+    0 16px 42px rgba(0, 0, 0, 0.38),
+    0 0 32px rgba(216, 193, 111, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -10px 20px rgba(60, 44, 12, 0.24) !important;
+  transition: transform 170ms ease, filter 170ms ease, box-shadow 170ms ease !important;
+}
+#welcomeScreen .welcome-primary-btns .btn.gold::before {
+  content: '✦';
+  position: absolute;
+  left: clamp(10px, 7%, 22px);
+  top: 50%; transform: translateY(-50%);
+  color: rgba(255, 248, 212, 0.68);
+  font-size: 0.82rem;
+  pointer-events: none;
+}
+#welcomeScreen .welcome-primary-btns .btn.gold::after {
+  content: '✦';
+  position: absolute;
+  right: clamp(10px, 7%, 22px);
+  top: 50%; transform: translateY(-50%);
+  color: rgba(255, 248, 212, 0.68);
+  font-size: 0.82rem;
+  pointer-events: none;
+}
+#welcomeScreen .welcome-primary-btns .btn.gold:hover {
+  transform: translateY(-2px) !important;
+  filter: brightness(1.07) !important;
+  box-shadow:
+    0 20px 54px rgba(0, 0, 0, 0.46),
+    0 0 44px rgba(216, 193, 111, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.26) !important;
+}
+
+/* Continuar */
+#welcomeScreen .welcome-primary-btns .btn.continue-btn {
+  min-height: 60px !important;
+  border-radius: 12px !important;
+  border-color: rgba(52, 210, 160, 0.42) !important;
+  color: rgba(100, 235, 175, 0.92) !important;
+  background:
+    linear-gradient(180deg, rgba(18, 42, 32, 0.88), rgba(8, 22, 18, 0.94)) !important;
+  font-size: clamp(0.76rem, 1.3vw, 0.88rem) !important;
+  letter-spacing: 0.18em !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(100, 235, 175, 0.05) !important;
+  transition: transform 170ms ease, border-color 160ms ease, box-shadow 160ms ease !important;
+}
+#welcomeScreen .welcome-primary-btns .btn.continue-btn:hover {
+  border-color: rgba(52, 211, 153, 0.72) !important;
+  color: #6ee7b7 !important;
+  box-shadow: 0 0 26px rgba(52, 211, 153, 0.16), 0 14px 36px rgba(0, 0, 0, 0.42) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* ── Botões secundários — grid 3 colunas ────────────────────────────────── */
+#welcomeScreen .welcome-buttons {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 14px 0 0 !important;
+  padding-top: 14px !important;
+  border-top: 1px solid rgba(60, 80, 120, 0.28) !important;
+  flex-direction: unset !important;
+  flex-wrap: unset !important;
+}
+
+/* Todos os botões secundários */
+#welcomeScreen .welcome-buttons .btn {
+  position: relative !important;
+  min-height: 68px !important;
+  padding: 14px 12px !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(120, 100, 200, 0.24) !important;
+  background:
+    radial-gradient(circle at 16% 28%, rgba(148, 120, 255, 0.11), transparent 38%),
+    linear-gradient(180deg, rgba(18, 19, 46, 0.80), rgba(9, 10, 26, 0.92)) !important;
+  color: var(--ws-text-soft) !important;
+  font-size: 0.63rem !important;
+  letter-spacing: 0.13em !important;
+  flex: unset !important;
+  max-width: unset !important;
+  width: 100% !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
+  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease, background 160ms ease, color 160ms ease !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  gap: 3px !important;
+}
+#welcomeScreen .welcome-buttons .btn:hover {
+  transform: translateY(-2px) !important;
+  border-color: rgba(208, 182, 100, 0.36) !important;
+  color: rgba(218, 196, 110, 0.92) !important;
+  background:
+    radial-gradient(circle at 16% 28%, rgba(208, 182, 100, 0.09), transparent 42%),
+    linear-gradient(180deg, rgba(24, 24, 52, 0.88), rgba(10, 10, 28, 0.96)) !important;
+  box-shadow: 0 0 20px rgba(208, 182, 100, 0.09), 0 14px 36px rgba(0, 0, 0, 0.36) !important;
+}
+
+/* Botão Grimório: cols 1-2 na linha 2, Leaderboard fica em col 3 */
+#welcomeScreen .welcome-buttons .btn.btn-biblioteca {
+  grid-column: 1 / 3 !important;
+  grid-row: 2 !important;
+  min-height: 56px !important;
+  border-color: rgba(196, 156, 56, 0.42) !important;
+  color: rgba(236, 196, 84, 0.92) !important;
+  background:
+    radial-gradient(circle at 14% 30%, rgba(196, 156, 56, 0.13), transparent 38%),
+    linear-gradient(180deg, rgba(28, 18, 6, 0.86), rgba(14, 9, 4, 0.94)) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 215, 0, 0.05), 0 10px 28px rgba(0, 0, 0, 0.32) !important;
+}
+#welcomeScreen .welcome-buttons .btn.btn-biblioteca:hover {
+  border-color: rgba(255, 215, 0, 0.58) !important;
+  color: #ffd060 !important;
+  background:
+    radial-gradient(circle at 14% 30%, rgba(255, 215, 0, 0.10), transparent 42%),
+    linear-gradient(180deg, rgba(40, 26, 8, 0.92), rgba(16, 10, 4, 0.96)) !important;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.11), 0 12px 32px rgba(0, 0, 0, 0.40) !important;
+}
+
+/* Leaderboard: col 3, linha 2 */
+#welcomeScreen .welcome-buttons .btn:nth-child(4) {
+  grid-column: 3 !important;
+  grid-row: 2 !important;
+}
+
+/* ── Crédito / rodapé ────────────────────────────────────────────────────── */
+#welcomeScreen .welcome-credit {
+  color: rgba(175, 170, 196, 0.42) !important;
+  margin: 18px 0 2px !important;
+  font-size: 0.61rem !important;
+  letter-spacing: 0.06em !important;
+}
+#welcomeScreen .welcome-credit a:hover { color: rgba(208, 182, 100, 0.62) !important; }
+
+/* ── Saved info ──────────────────────────────────────────────────────────── */
+#welcomeScreen .welcome-saved-info {
+  max-width: 100% !important;
+  border: 1px solid rgba(80, 58, 160, 0.32) !important;
+  border-radius: 12px !important;
+}
+
+/* ── Responsivo: tablet ─────────────────────────────────────────────────── */
+@media (max-width: 760px) {
+  #welcomeScreen .welcome-content {
+    width: min(calc(100vw - 16px), 100%) !important;
+    padding: 44px 16px 22px !important;
+    border-radius: 16px !important;
+  }
+  #welcomeScreen .welcome-buttons {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  #welcomeScreen .welcome-buttons .btn {
+    min-height: 60px !important;
+    flex: unset !important;
+    max-width: unset !important;
+    width: 100% !important;
+  }
+  /* Resetar posicionamentos explícitos de grid no mobile */
+  #welcomeScreen .welcome-buttons .btn.btn-biblioteca {
+    grid-column: 1 / -1 !important;
+    grid-row: unset !important;
+  }
+  #welcomeScreen .welcome-buttons .btn:nth-child(4) {
+    grid-column: unset !important;
+    grid-row: unset !important;
+  }
+  #welcomeScreen .welcome-stat .ws-val {
+    font-size: 1.3rem !important;
+  }
+  #welcomeScreen .welcome-primary-btns {
+    max-width: 100% !important;
+  }
+}
+
+/* ── Responsivo: mobile pequeno ─────────────────────────────────────────── */
+@media (max-width: 480px) {
+  #welcomeScreen .welcome-buttons {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #welcomeScreen .welcome-stat,
+  #welcomeScreen .welcome-stat::after,
+  #welcomeScreen .welcome-buttons .btn {
+    transition: none !important;
+    animation: none !important;
+  }
+}
