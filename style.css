@@ -1133,8 +1133,20 @@
       padding: 0; overflow: hidden;
       border: 1px solid rgba(40,65,120,0.25) !important;
     }
-    @media (max-width: 600px) {
-      .bib-modal { max-height: calc(100dvh - 24px); width: 98vw; }
+    @media (max-width: 768px) {
+      .bib-modal { max-height: 92vh; width: 98vw; }
+      .bib-header { padding: 12px 14px 10px; }
+      /* Contador sempre abaixo do campo de busca — grid garante isso em qualquer largura */
+      .bib-search-wrap {
+        display: grid;
+        grid-template-columns: 1fr;
+        padding: 8px 14px;
+        gap: 4px;
+      }
+      .bib-count { text-align: right; font-size: 0.68rem; white-space: normal; }
+      .bib-card-meta, .bib-card-impacto, .bib-card-authors { padding-left: 0; }
+      .bib-suggest-section { padding: 12px 14px 16px; }
+      .bib-list { padding: 10px; }
     }
     .bib-header {
       display: flex; align-items: center; justify-content: space-between;
@@ -1311,16 +1323,6 @@
       color: rgba(180,230,140,0.95) !important;
     }
 
-    @media (max-width: 600px) {
-      .bib-modal { max-height: 92vh; }
-      .bib-card-meta, .bib-card-impacto, .bib-card-authors { padding-left: 0; }
-      .bib-suggest-section { padding: 12px 14px 16px; }
-      .bib-header { padding: 12px 14px 10px; }
-      .bib-search-wrap { padding: 8px 14px 8px; flex-wrap: wrap; gap: 6px; }
-      .bib-search { min-width: 0; }
-      .bib-count { width: 100%; text-align: right; font-size: 0.68rem; }
-      .bib-list { padding: 10px 10px; }
-    }
 
     /* CHEST MODAL */
     .chest-modal {
