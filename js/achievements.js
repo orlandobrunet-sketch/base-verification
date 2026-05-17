@@ -153,6 +153,7 @@
     
     function saveUnlockedAchievements(unlocked) {
       try { localStorage.setItem(ACHIEVEMENTS_KEY, JSON.stringify(unlocked)); } catch(e) {}
+      _scheduleCloudSync();
     }
     
     function checkAchievements() {

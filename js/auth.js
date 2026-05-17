@@ -32,6 +32,7 @@
             localStorage.removeItem('nq_guest_mode');
           }
           _loadPremiumFromDB();
+          _loadProgressFromCloud();
           checkFirstTimeOnboarding();
           // Se havia plano pendente (usuário clicou em pagar antes de fazer login)
           _resumePendingPayment();
@@ -41,7 +42,7 @@
 
       _supaClient.auth.getSession().then(({ data: { session } }) => {
         authUser = session?.user ?? null;
-        if (authUser) _loadPremiumFromDB();
+        if (authUser) { _loadPremiumFromDB(); _loadProgressFromCloud(); }
         else { localStorage.removeItem(PREMIUM_KEY); _invalidatePremiumCache(); }
         updateWelcomeUserBadge();
       }).catch(() => { updateWelcomeUserBadge(); });

@@ -317,6 +317,7 @@
       if (state.score > stats.bestScore) stats.bestScore = state.score;
       try { localStorage.setItem(STATS_KEY, JSON.stringify(stats)); } catch(e) {}
       _invalidateStatsCache();
+      _scheduleCloudSync();
     }
 
     // ── Cache de isPremium (evita 2x localStorage por resposta) ──
@@ -409,6 +410,7 @@
         _track('error_localstorage_full', { msg: String(e) });
         _toast('Aviso: progresso não salvo — armazenamento cheio. Libere espaço nas configurações do navegador.', 'warning', 6000);
       }
+      _scheduleCloudSync();
     }
 
     function _migrateSave(save) {
@@ -447,8 +449,111 @@
     function deleteSave() {
       localStorage.removeItem(SAVE_KEY);
     }
-    
-    function restoreGame(save) {
+
+    // ============ CLOUD SYNC (progresso na nuvem para usuários logados) ============
+    let _cloudSyncTimer = null;
+
+    function _scheduleCloudSync() {
+      if (!authUser || !_supaClient) return;
+      if (_cloudSyncTimer) clearTimeout(_cloudSyncTimer);
+      _cloudSyncTimer = setTimeout(_syncProgressToCloud, 10000);
+    }
+
+    function _buildCloudProgress() {
+      let achievements = [], mastered = [], unlockedArticles = [], detailedStats = {}, save = null;
+      try { achievements    = JSON.parse(localStorage.getItem('nefroquest-achievements') || '[]'); } catch(e) {}
+      try { mastered        = JSON.parse(localStorage.getItem(MASTERED_KEY) || '[]'); } catch(e) {}
+      try { unlockedArticles= JSON.parse(localStorage.getItem('unlockedArticles') || '[]'); } catch(e) {}
+      try { detailedStats   = JSON.parse(localStorage.getItem(STATS_STORAGE_KEY || 'nefroquest-detailed-stats') || '{}'); } catch(e) {}
+      try { const r = localStorage.getItem(SAVE_KEY); save = r ? JSON.parse(r) : null; } catch(e) {}
+      return {
+        stats:            getGameStats(),
+        achievements,
+        mastered,
+        unlockedArticles,
+        arquiDefeated:    !!localStorage.getItem('nefroquest-arqui-defeated'),
+        hardcoreCompleted:!!localStorage.getItem('nefroquest-hardcore-completed'),
+        detailedStats,
+        save,
+        updatedAt:        new Date().toISOString()
+      };
+    }
+
+    async function _syncProgressToCloud() {
+      _cloudSyncTimer = null;
+      if (!authUser || !_supaClient) return;
+      try {
+        await _supaClient
+          .from('profiles')
+          .update({ game_progress: _buildCloudProgress() })
+          .eq('id', authUser.id);
+      } catch(e) { _track('error_cloud_sync', { msg: String(e) }); }
+    }
+
+    function _mergeCloudProgress(cloud) {
+      if (!cloud || typeof cloud !== 'object') return;
+
+      // Stats: máximo por campo
+      if (cloud.stats && typeof cloud.stats === 'object') {
+        const local = getGameStats();
+        const merged = {
+          gamesPlayed:            Math.max(local.gamesPlayed || 0,            cloud.stats.gamesPlayed || 0),
+          bestLevel:              Math.max(local.bestLevel || 0,              cloud.stats.bestLevel || 0),
+          bestScore:              Math.max(local.bestScore || 0,              cloud.stats.bestScore || 0),
+          questionsAnsweredAllTime: Math.max(local.questionsAnsweredAllTime || 0, cloud.stats.questionsAnsweredAllTime || 0)
+        };
+        try { localStorage.setItem(STATS_KEY, JSON.stringify(merged)); } catch(e) {}
+        _invalidateStatsCache();
+      }
+
+      // Conquistas, questões dominadas, artigos — união dos dois sets
+      const _mergeArray = (key, cloud) => {
+        if (!Array.isArray(cloud) || !cloud.length) return;
+        let local = [];
+        try { local = JSON.parse(localStorage.getItem(key) || '[]'); } catch(e) {}
+        const merged = [...new Set([...local, ...cloud])];
+        try { localStorage.setItem(key, JSON.stringify(merged)); } catch(e) {}
+      };
+      _mergeArray('nefroquest-achievements', cloud.achievements);
+      _mergeArray(MASTERED_KEY,              cloud.mastered);
+      _mergeArray('unlockedArticles',        cloud.unlockedArticles);
+
+      // Flags booleanas: OR (true prevalece)
+      if (cloud.arquiDefeated)     localStorage.setItem('nefroquest-arqui-defeated', '1');
+      if (cloud.hardcoreCompleted) localStorage.setItem('nefroquest-hardcore-completed', '1');
+
+      // Stats detalhadas: local prevalece se existir, nuvem preenche o que faltar
+      if (cloud.detailedStats && typeof cloud.detailedStats === 'object') {
+        let local = {};
+        try { local = JSON.parse(localStorage.getItem('nefroquest-detailed-stats') || '{}'); } catch(e) {}
+        if (!Object.keys(local).length) {
+          try { localStorage.setItem('nefroquest-detailed-stats', JSON.stringify(cloud.detailedStats)); } catch(e) {}
+        }
+      }
+
+      // Save em andamento: prevalece o mais recente (por timestamp)
+      if (cloud.save && typeof cloud.save === 'object' && cloud.save.character) {
+        let localTs = 0;
+        try { const r = localStorage.getItem(SAVE_KEY); localTs = r ? (JSON.parse(r).timestamp || 0) : 0; } catch(e) {}
+        if ((cloud.save.timestamp || 0) > localTs) {
+          try { localStorage.setItem(SAVE_KEY, JSON.stringify(cloud.save)); } catch(e) {}
+        }
+      }
+    }
+
+    async function _loadProgressFromCloud() {
+      if (!authUser || !_supaClient) return;
+      try {
+        const { data: profile } = await _supaClient
+          .from('profiles')
+          .select('game_progress')
+          .eq('id', authUser.id)
+          .single();
+        _mergeCloudProgress(profile?.game_progress);
+      } catch(e) { _track('error_cloud_load', { msg: String(e) }); }
+    }
+
+
       if (!save || !save.character) return false;
       
       state.character = save.character;
