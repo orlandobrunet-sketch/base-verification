@@ -553,7 +553,8 @@
       } catch(e) { _track('error_cloud_load', { msg: String(e) }); }
     }
 
-
+    function restoreGame() {
+      const save = loadGame();
       if (!save || !save.character) return false;
       
       state.character = save.character;
