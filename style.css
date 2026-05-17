@@ -8426,7 +8426,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   z-index: 2 !important;
   width: min(580px, 96vw) !important;
   max-width: unset !important;
-  padding: clamp(28px, 3.5vw, 44px) clamp(22px, 4vw, 44px) clamp(24px, 3vw, 40px) !important;
+  padding: clamp(14px, 2vw, 24px) clamp(18px, 3.5vw, 36px) clamp(12px, 2vw, 20px) !important;
   gap: 0 !important;
   background:
     linear-gradient(180deg, rgba(14, 16, 36, 0.80), rgba(6, 8, 20, 0.92)),
@@ -8441,61 +8441,41 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   backdrop-filter: blur(24px) !important;
 }
 
-/* ── Cantos ornamentais — L-shapes nos 4 cantos ─────────────────────────── */
-/* ::before: canto superior-esquerdo e inferior-direito */
-#welcomeScreen .welcome-content::before {
-  content: '';
-  position: absolute;
-  /* canto superior-esquerdo */
-  top: 8px; left: 8px;
-  width: 22px; height: 22px;
-  border-top: 1.5px solid rgba(208, 182, 100, 0.72);
-  border-left: 1.5px solid rgba(208, 182, 100, 0.72);
-  border-radius: 3px 0 0 0;
-  pointer-events: none;
-  /* segundo canto via box-shadow (inferior-direito) */
-  box-shadow:
-    /* inferior-direito relativo ao próprio elemento não funciona bem; usa outline */
-    none;
-}
-/* Cantos via outline duplo simulado: segundo par via elemento dedicado */
-/* Usar outline no wrapper ficaria sobreposto; melhor usar background-image com gradients */
-/* Abordagem: 4 gradientes lineares nas bordas como "cantos" */
+/* ── Cantos ornamentais — somente via ::after com gradientes (sem ::before) ── */
 #welcomeScreen .welcome-content::after {
   content: '';
   position: absolute;
   inset: 7px;
   pointer-events: none;
   border-radius: 14px;
-  /* Cantos L-shape via background gradients */
   background:
-    /* canto superior-esquerdo horizontal */
-    linear-gradient(90deg, rgba(208,182,100,0.70) 0%, rgba(208,182,100,0.70) 24px, transparent 24px) top left / 24px 1.5px no-repeat,
-    /* canto superior-esquerdo vertical */
-    linear-gradient(180deg, rgba(208,182,100,0.70) 0%, rgba(208,182,100,0.70) 24px, transparent 24px) top left / 1.5px 24px no-repeat,
-    /* canto superior-direito horizontal */
-    linear-gradient(270deg, rgba(208,182,100,0.70) 0%, rgba(208,182,100,0.70) 24px, transparent 24px) top right / 24px 1.5px no-repeat,
-    /* canto superior-direito vertical */
-    linear-gradient(180deg, rgba(208,182,100,0.70) 0%, rgba(208,182,100,0.70) 24px, transparent 24px) top right / 1.5px 24px no-repeat,
-    /* canto inferior-esquerdo horizontal */
-    linear-gradient(90deg, rgba(208,182,100,0.70) 0%, rgba(208,182,100,0.70) 24px, transparent 24px) bottom left / 24px 1.5px no-repeat,
-    /* canto inferior-esquerdo vertical */
-    linear-gradient(0deg, rgba(208,182,100,0.70) 0%, rgba(208,182,100,0.70) 24px, transparent 24px) bottom left / 1.5px 24px no-repeat,
-    /* canto inferior-direito horizontal */
-    linear-gradient(270deg, rgba(208,182,100,0.70) 0%, rgba(208,182,100,0.70) 24px, transparent 24px) bottom right / 24px 1.5px no-repeat,
-    /* canto inferior-direito vertical */
-    linear-gradient(0deg, rgba(208,182,100,0.70) 0%, rgba(208,182,100,0.70) 24px, transparent 24px) bottom right / 1.5px 24px no-repeat,
-    /* linha ornamental no topo (centro) */
-    linear-gradient(90deg, transparent, rgba(208,182,100,0.40), transparent) top center / 55% 1px no-repeat,
-    /* linha ornamental no rodapé (centro) */
-    linear-gradient(90deg, transparent, rgba(208,182,100,0.28), transparent) bottom center / 42% 1px no-repeat;
+    /* L superior-esquerdo — horizontal */
+    linear-gradient(90deg,  rgba(208,182,100,0.65) 20px, transparent 20px) top    left   / 20px 1.5px no-repeat,
+    /* L superior-esquerdo — vertical */
+    linear-gradient(180deg, rgba(208,182,100,0.65) 20px, transparent 20px) top    left   / 1.5px 20px no-repeat,
+    /* L superior-direito — horizontal */
+    linear-gradient(270deg, rgba(208,182,100,0.65) 20px, transparent 20px) top    right  / 20px 1.5px no-repeat,
+    /* L superior-direito — vertical */
+    linear-gradient(180deg, rgba(208,182,100,0.65) 20px, transparent 20px) top    right  / 1.5px 20px no-repeat,
+    /* L inferior-esquerdo — horizontal */
+    linear-gradient(90deg,  rgba(208,182,100,0.65) 20px, transparent 20px) bottom left   / 20px 1.5px no-repeat,
+    /* L inferior-esquerdo — vertical */
+    linear-gradient(0deg,   rgba(208,182,100,0.65) 20px, transparent 20px) bottom left   / 1.5px 20px no-repeat,
+    /* L inferior-direito — horizontal */
+    linear-gradient(270deg, rgba(208,182,100,0.65) 20px, transparent 20px) bottom right  / 20px 1.5px no-repeat,
+    /* L inferior-direito — vertical */
+    linear-gradient(0deg,   rgba(208,182,100,0.65) 20px, transparent 20px) bottom right  / 1.5px 20px no-repeat,
+    /* linha central topo */
+    linear-gradient(90deg, transparent, rgba(208,182,100,0.38), transparent) top   center / 50% 1px no-repeat,
+    /* linha central rodapé */
+    linear-gradient(90deg, transparent, rgba(208,182,100,0.26), transparent) bottom center / 38% 1px no-repeat;
 }
 
 /* ── Texto do ornamento ─────────────────────────────────────────────────── */
 #welcomeScreen .welcome-ornament {
   opacity: 1;
-  margin-bottom: 16px;
-  margin-top: 6px;
+  margin-bottom: 6px !important;
+  margin-top: 4px !important;
 }
 #welcomeScreen .welcome-ornament::before,
 #welcomeScreen .welcome-ornament::after {
@@ -8511,36 +8491,32 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 #welcomeScreen .welcome-sub {
   color: rgba(208, 182, 100, 0.62) !important;
   letter-spacing: 0.68em !important;
-  margin: 4px 0 22px !important;
+  margin: 2px 0 10px !important;
 }
 
-/* ── Stats cards — premium ──────────────────────────────────────────────── */
+/* ── Stats cards — compactos e premium ──────────────────────────────────── */
 #welcomeScreen .welcome-stats {
-  gap: 12px !important;
-  margin: 0 0 18px !important;
+  gap: 6px !important;
+  margin: 0 0 8px !important;
   width: 100% !important;
 }
 #welcomeScreen .welcome-stat {
   position: relative;
-  min-height: 90px !important;
-  padding: 18px 14px !important;
-  border-radius: var(--ws-radius) !important;
+  min-height: unset !important;
+  padding: 10px 8px !important;
+  border-radius: 10px !important;
   border: 1px solid rgba(208, 182, 100, 0.22) !important;
   background:
-    radial-gradient(circle at 18% 22%, rgba(148, 120, 255, 0.13), transparent 44%),
+    radial-gradient(circle at 18% 22%, rgba(148, 120, 255, 0.12), transparent 44%),
     linear-gradient(180deg, rgba(20, 22, 50, 0.80), rgba(9, 10, 26, 0.94)) !important;
-  box-shadow:
-    0 12px 32px rgba(0, 0, 0, 0.36),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
-  backdrop-filter: blur(8px) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
   overflow: hidden;
   transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease !important;
 }
 #welcomeScreen .welcome-stat:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   border-color: rgba(208, 182, 100, 0.42) !important;
-  box-shadow: var(--ws-glow-gold), 0 16px 40px rgba(0, 0, 0, 0.42) !important;
+  box-shadow: var(--ws-glow-gold), 0 10px 24px rgba(0, 0, 0, 0.40) !important;
 }
 #welcomeScreen .welcome-stat::after {
   content: '';
@@ -8551,92 +8527,91 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   transition: transform 500ms ease;
   pointer-events: none;
 }
-#welcomeScreen .welcome-stat:hover::after {
-  transform: translateX(100%);
-}
+#welcomeScreen .welcome-stat:hover::after { transform: translateX(100%); }
 #welcomeScreen .welcome-stat .ws-val {
-  font-size: clamp(1.35rem, 2.4vw, 1.75rem) !important;
+  font-size: 1.2rem !important;
   font-family: 'Cinzel', serif !important;
   color: #f0e2a8 !important;
-  text-shadow: 0 0 22px rgba(216, 193, 111, 0.22) !important;
+  text-shadow: 0 0 18px rgba(216, 193, 111, 0.20) !important;
   line-height: 1 !important;
 }
 #welcomeScreen .welcome-stat .ws-lbl {
-  font-size: 0.64rem !important;
+  font-size: 0.60rem !important;
   color: var(--ws-text-soft) !important;
-  letter-spacing: 0.18em !important;
-  margin-top: 9px !important;
+  letter-spacing: 0.15em !important;
+  margin-top: 5px !important;
   text-transform: uppercase !important;
 }
 
 /* ── Botão principal: Nova Jornada ──────────────────────────────────────── */
 #welcomeScreen .welcome-primary-btns {
-  max-width: 620px !important;
-  margin: 10px auto 0 !important;
-  gap: 10px !important;
+  max-width: 100% !important;
+  margin: 6px auto 0 !important;
+  gap: 8px !important;
 }
 #welcomeScreen .welcome-primary-btns .btn.gold {
   position: relative;
-  min-height: 60px !important;
-  border-radius: 12px !important;
+  min-height: 46px !important;
+  border-radius: 10px !important;
   border-color: rgba(240, 220, 140, 0.50) !important;
   background:
     linear-gradient(180deg, rgba(196, 168, 72, 0.96), rgba(118, 96, 28, 0.96)),
-    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.22), transparent 44%) !important;
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.20), transparent 44%) !important;
   color: #fff8d4 !important;
-  font-size: clamp(0.76rem, 1.3vw, 0.88rem) !important;
-  letter-spacing: 0.24em !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.20em !important;
+  padding: 12px 20px !important;
   box-shadow:
-    0 16px 42px rgba(0, 0, 0, 0.38),
-    0 0 32px rgba(216, 193, 111, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.22),
-    inset 0 -10px 20px rgba(60, 44, 12, 0.24) !important;
+    0 10px 28px rgba(0, 0, 0, 0.34),
+    0 0 22px rgba(216, 193, 111, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.20),
+    inset 0 -8px 16px rgba(60, 44, 12, 0.22) !important;
   transition: transform 170ms ease, filter 170ms ease, box-shadow 170ms ease !important;
 }
 #welcomeScreen .welcome-primary-btns .btn.gold::before {
   content: '✦';
   position: absolute;
-  left: clamp(10px, 7%, 22px);
+  left: clamp(10px, 7%, 20px);
   top: 50%; transform: translateY(-50%);
-  color: rgba(255, 248, 212, 0.68);
-  font-size: 0.82rem;
+  color: rgba(255, 248, 212, 0.62);
+  font-size: 0.76rem;
   pointer-events: none;
 }
 #welcomeScreen .welcome-primary-btns .btn.gold::after {
   content: '✦';
   position: absolute;
-  right: clamp(10px, 7%, 22px);
+  right: clamp(10px, 7%, 20px);
   top: 50%; transform: translateY(-50%);
-  color: rgba(255, 248, 212, 0.68);
-  font-size: 0.82rem;
+  color: rgba(255, 248, 212, 0.62);
+  font-size: 0.76rem;
   pointer-events: none;
 }
 #welcomeScreen .welcome-primary-btns .btn.gold:hover {
   transform: translateY(-2px) !important;
   filter: brightness(1.07) !important;
   box-shadow:
-    0 20px 54px rgba(0, 0, 0, 0.46),
-    0 0 44px rgba(216, 193, 111, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.26) !important;
+    0 14px 38px rgba(0, 0, 0, 0.42),
+    0 0 32px rgba(216, 193, 111, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24) !important;
 }
 
 /* Continuar */
 #welcomeScreen .welcome-primary-btns .btn.continue-btn {
-  min-height: 60px !important;
-  border-radius: 12px !important;
+  min-height: 46px !important;
+  border-radius: 10px !important;
   border-color: rgba(52, 210, 160, 0.42) !important;
   color: rgba(100, 235, 175, 0.92) !important;
-  background:
-    linear-gradient(180deg, rgba(18, 42, 32, 0.88), rgba(8, 22, 18, 0.94)) !important;
-  font-size: clamp(0.76rem, 1.3vw, 0.88rem) !important;
-  letter-spacing: 0.18em !important;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(100, 235, 175, 0.05) !important;
+  background: linear-gradient(180deg, rgba(18, 42, 32, 0.88), rgba(8, 22, 18, 0.94)) !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.16em !important;
+  padding: 12px 20px !important;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.30), inset 0 1px 0 rgba(100, 235, 175, 0.05) !important;
   transition: transform 170ms ease, border-color 160ms ease, box-shadow 160ms ease !important;
 }
 #welcomeScreen .welcome-primary-btns .btn.continue-btn:hover {
   border-color: rgba(52, 211, 153, 0.72) !important;
   color: #6ee7b7 !important;
-  box-shadow: 0 0 26px rgba(52, 211, 153, 0.16), 0 14px 36px rgba(0, 0, 0, 0.42) !important;
+  box-shadow: 0 0 20px rgba(52, 211, 153, 0.14), 0 10px 28px rgba(0, 0, 0, 0.38) !important;
   transform: translateY(-2px) !important;
 }
 
@@ -8644,11 +8619,11 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 #welcomeScreen .welcome-buttons {
   display: grid !important;
   grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  gap: 10px !important;
+  gap: 6px !important;
   width: 100% !important;
   max-width: 100% !important;
-  margin: 14px 0 0 !important;
-  padding-top: 14px !important;
+  margin: 8px 0 0 !important;
+  padding-top: 8px !important;
   border-top: 1px solid rgba(60, 80, 120, 0.28) !important;
   flex-direction: unset !important;
   flex-wrap: unset !important;
@@ -8657,27 +8632,27 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 /* Todos os botões secundários */
 #welcomeScreen .welcome-buttons .btn {
   position: relative !important;
-  min-height: 68px !important;
-  padding: 14px 12px !important;
-  border-radius: 12px !important;
+  min-height: 48px !important;
+  padding: 10px 8px !important;
+  border-radius: 10px !important;
   border: 1px solid rgba(120, 100, 200, 0.24) !important;
   background:
-    radial-gradient(circle at 16% 28%, rgba(148, 120, 255, 0.11), transparent 38%),
+    radial-gradient(circle at 16% 28%, rgba(148, 120, 255, 0.10), transparent 38%),
     linear-gradient(180deg, rgba(18, 19, 46, 0.80), rgba(9, 10, 26, 0.92)) !important;
   color: var(--ws-text-soft) !important;
   font-size: 0.63rem !important;
-  letter-spacing: 0.13em !important;
+  letter-spacing: 0.12em !important;
   flex: unset !important;
   max-width: unset !important;
   width: 100% !important;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
   transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease, background 160ms ease, color 160ms ease !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
   justify-content: center !important;
   text-align: center !important;
-  gap: 3px !important;
+  gap: 2px !important;
 }
 #welcomeScreen .welcome-buttons .btn:hover {
   transform: translateY(-2px) !important;
@@ -8693,7 +8668,8 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 #welcomeScreen .welcome-buttons .btn.btn-biblioteca {
   grid-column: 1 / -1 !important;
   grid-row: unset !important;
-  min-height: 56px !important;
+  min-height: 42px !important;
+  padding: 10px 8px !important;
   border-color: rgba(196, 156, 56, 0.42) !important;
   color: rgba(236, 196, 84, 0.92) !important;
   background:
@@ -8719,7 +8695,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 /* ── Crédito / rodapé ────────────────────────────────────────────────────── */
 #welcomeScreen .welcome-credit {
   color: rgba(175, 170, 196, 0.42) !important;
-  margin: 18px 0 2px !important;
+  margin: 8px 0 2px !important;
   font-size: 0.61rem !important;
   letter-spacing: 0.06em !important;
 }
