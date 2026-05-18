@@ -2385,20 +2385,28 @@
       cursor: default;
     }
     .badge-shield {
-      width: 100%; aspect-ratio: 0.86;
-      clip-path: polygon(8% 0%, 92% 0%, 100% 14%, 100% 63%, 50% 100%, 0% 63%, 0% 14%);
-      background: rgba(8,12,30,0.48);
+      width: 88%; aspect-ratio: 1/1.08;
+      clip-path: path('M 50 2 Q 95 2 95 18 L 95 55 Q 95 80 50 98 Q 5 80 5 55 L 5 18 Q 5 2 50 2 Z');
+      border-radius: 50% 50% 18% 18% / 22% 22% 50% 50%;
+      border: 1.5px solid rgba(96,165,250,0.25);
+      background: linear-gradient(180deg, #1a2240 0%, #0a0f22 100%);
       display: flex; align-items: center; justify-content: center;
-      transition: background 0.4s, filter 0.4s;
-      filter:
-        drop-shadow(0 0 2px rgba(45,70,140,0.35))
-        drop-shadow(0 1px 5px rgba(0,0,0,0.85));
+      position: relative;
+      transition: background 0.4s, filter 0.4s, border-color 0.4s;
+      filter: drop-shadow(0 1px 5px rgba(0,0,0,0.85));
+    }
+    .badge-shield::before {
+      content: ''; position: absolute; left: 8%; right: 8%; top: 8%; bottom: 8%;
+      border-radius: 50% 50% 18% 18% / 22% 22% 50% 50%;
+      border: 1px solid rgba(96,165,250,0.15);
+      pointer-events: none;
     }
     .badge-rune {
-      font-family: 'Cinzel', serif;
+      font-family: 'Cinzel Decorative', serif;
       font-size: clamp(0.9rem, 2.4vw, 1.35rem);
       font-weight: 700; line-height: 1; user-select: none;
-      color: rgba(75,95,135,0.38);
+      color: rgba(160,180,210,0.35);
+      position: relative; z-index: 2;
       transition: color 0.4s, text-shadow 0.4s;
     }
     .badge-slot .badge-lock {
@@ -2410,7 +2418,8 @@
 
     /* Tier 1 — Bronze / Vórtice */
     .badge-slot.unlocked[data-badge="1"] .badge-shield {
-      background: linear-gradient(155deg, #5c3218 0%, #2b1205 100%);
+      background: linear-gradient(180deg, #4a2e15 0%, #1a0e05 100%);
+      border-color: #c98a4b;
       filter:
         drop-shadow(0 0 1px rgba(230,160,80,0.95))
         drop-shadow(0 0 5px rgba(210,140,65,0.8))
@@ -2423,7 +2432,8 @@
     }
     /* Tier 2 — Prata / Sábio */
     .badge-slot.unlocked[data-badge="2"] .badge-shield {
-      background: linear-gradient(155deg, #2f4055 0%, #0d1522 100%);
+      background: linear-gradient(180deg, #2c3a4d 0%, #0d1320 100%);
+      border-color: #b8c9d8;
       filter:
         drop-shadow(0 0 1px rgba(205,220,235,0.9))
         drop-shadow(0 0 5px rgba(180,200,220,0.7))
@@ -2431,12 +2441,13 @@
         drop-shadow(0 2px 5px rgba(0,0,0,0.75));
     }
     .badge-slot.unlocked[data-badge="2"] .badge-rune {
-      color: #e4ecf4;
-      text-shadow: 0 0 7px rgba(230,238,246,0.95), 0 0 14px rgba(180,205,225,0.65);
+      color: #e2eaf2;
+      text-shadow: 0 0 7px rgba(226,234,242,0.95), 0 0 14px rgba(180,205,225,0.65);
     }
     /* Tier 3 — Ouro / Guardião */
     .badge-slot.unlocked[data-badge="3"] .badge-shield {
-      background: linear-gradient(155deg, #4e3d10 0%, #1e1405 100%);
+      background: linear-gradient(180deg, #4a3a10 0%, #1a1305 100%);
+      border-color: #ffd700;
       filter:
         drop-shadow(0 0 1px rgba(255,215,0,0.95))
         drop-shadow(0 0 6px rgba(240,190,0,0.8))
@@ -2449,7 +2460,8 @@
     }
     /* Tier 4 — Ciano / Árbitro */
     .badge-slot.unlocked[data-badge="4"] .badge-shield {
-      background: linear-gradient(155deg, #163d3d 0%, #051618 100%);
+      background: linear-gradient(180deg, #143b3b 0%, #051515 100%);
+      border-color: #7dd3fc;
       filter:
         drop-shadow(0 0 1px rgba(125,215,255,0.95))
         drop-shadow(0 0 6px rgba(100,195,245,0.75))
@@ -2457,12 +2469,13 @@
         drop-shadow(0 2px 5px rgba(0,0,0,0.75));
     }
     .badge-slot.unlocked[data-badge="4"] .badge-rune {
-      color: #e0f7ff;
+      color: #e0f6fe;
       text-shadow: 0 0 8px rgba(125,215,255,1), 0 0 18px rgba(90,190,240,0.75);
     }
     /* Tier 5 — Mítico / Ascendido, pulso roxo */
     .badge-slot.unlocked[data-badge="5"] .badge-shield {
-      background: linear-gradient(155deg, #40184d 0%, #160520 100%);
+      background: linear-gradient(180deg, #3d1a4a 0%, #150520 100%);
+      border-color: #c084fc;
       animation: badge-rune-pulse 2.6s ease-in-out infinite;
     }
     .badge-slot.unlocked[data-badge="5"] .badge-rune {
