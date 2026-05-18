@@ -2104,6 +2104,18 @@
       color: #6080a0; font-size: 0.72rem; margin-top: 2px; line-height: 1.45;
     }
 
+    /* ── Mobile landing: reduz tamanho da logo e espaçamentos para caber sem scroll ── */
+    @media (max-width: 768px) {
+      #landingScreen { padding: 14px 16px; }
+      .landing-content { padding: 20px 22px 18px; gap: 5px; }
+      .landing-ornament { font-size: 0.62rem; margin-bottom: 0; }
+      .landing-title { font-size: clamp(1.45rem, 6vw, 2rem); }
+      .landing-sub { font-size: 0.78rem; letter-spacing: 5px; margin-bottom: 1px; }
+      .landing-tagline { font-size: 0.74rem; margin-bottom: 3px; }
+      .landing-divider { margin: 1px 0 5px; }
+      .landing-stats-section { margin-top: 8px; padding-top: 10px; }
+    }
+
     /* ── Desktop landing: card centralizado, sem scrollbar interno ── */
     @media (min-width: 769px) {
       #landingScreen { padding: 40px 20px; }
