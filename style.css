@@ -8040,11 +8040,11 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 /* ─── Responsive ─────────────────────────────────────────────── */
 @media (max-width: 600px) {
   #welcomeScreen {
-    padding: 50px 10px 14px !important; /* top 50px: clearance for mobile sound buttons (fixed, ~42px) */
+    padding: 4px 10px 14px !important; /* buttons are position:fixed top-right, no clearance needed */
     align-items: flex-start !important;
   }
   #welcomeScreen .welcome-content {
-    padding: 20px 16px 16px !important;
+    padding: 12px 16px 16px !important;
     gap: 8px !important;
     margin: 0 auto !important;
   }
