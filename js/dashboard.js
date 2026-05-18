@@ -297,41 +297,25 @@
         margin-left: auto;
         margin-right: auto;
       }
-      .nq-dash-badge-slot {
-        aspect-ratio: 1;
-        border-radius: 12px;
-        overflow: hidden;
-        border: 2px solid rgba(42,74,122,0.6);
-        position: relative;
-        cursor: pointer;
-        transition: all 0.25s;
-      }
-      .nq-dash-badge-slot.on {
-        border-color: var(--gold);
-        box-shadow: 0 0 16px rgba(255,215,0,0.3), 0 0 32px rgba(255,215,0,0.1);
-      }
-      .nq-dash-badge-slot.on:hover { transform: scale(1.06); }
-      .nq-dash-badge-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
-      .nq-dash-badge-lock {
-        position: absolute;
-        inset: 0;
+      /* Each cell: shield on top, label below */
+      .nq-dash-badge-wrap {
         display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: center;
-        background: rgba(0,0,0,0.5);
-        font-size: 1rem;
+        gap: 5px;
+      }
+      /* The .badge-slot inside uses the global shield CSS from style.css */
+      .nq-dash-badge-wrap .badge-slot {
+        width: 100%;
       }
       .nq-dash-badge-lbl {
-        position: absolute;
-        bottom: 0; left: 0; right: 0;
-        background: linear-gradient(transparent, rgba(0,0,0,0.8));
-        font-size: 0.52rem;
+        font-size: 0.48rem;
         color: var(--txt-dim);
         text-align: center;
-        padding: 10px 3px 4px;
         line-height: 1.2;
+        font-family: 'Cinzel', serif;
       }
-      .nq-dash-badge-slot.on .nq-dash-badge-lbl { color: var(--gold-light); }
+      .nq-dash-badge-wrap.on .nq-dash-badge-lbl { color: var(--gold-light); }
 
       /* Progress row */
       .nq-dash-prow {
@@ -568,13 +552,17 @@
     return pct >= 70 ? '#34d399' : pct >= 50 ? '#fbbf24' : '#fb7185';
   }
 
+  const _BADGE_RUNES = { 1: 'ᚠ', 2: 'ᚨ', 3: 'ᛊ', 4: 'ᛟ', 5: 'ᛏ' };
+
   function _badgeHtml(badge) {
     const on = (state.correctTotal || 0) >= badge.required;
+    const rune = _BADGE_RUNES[badge.id] || '✦';
     return `
-      <div class="nq-dash-badge-slot ${on ? 'on' : ''}" title="${escapeHtml(badge.name)} — ${badge.required} acertos">
-        <img src="assets/badges/badge${badge.id}.png" alt="${escapeHtml(badge.name)}" loading="lazy"
-          style="filter:${on ? 'none' : 'grayscale(70%) brightness(0.4)'}">
-        ${on ? '' : '<div class="nq-dash-badge-lock">🔒</div>'}
+      <div class="nq-dash-badge-wrap ${on ? 'on' : ''}" title="${escapeHtml(badge.name)} — ${badge.required} acertos">
+        <div class="badge-slot ${on ? 'unlocked' : ''}" data-badge="${badge.id}">
+          <div class="badge-shield"><span class="badge-rune">${rune}</span></div>
+          ${on ? '' : '<span class="badge-lock">🔒</span>'}
+        </div>
         <div class="nq-dash-badge-lbl">${escapeHtml(badge.name)}</div>
       </div>`;
   }

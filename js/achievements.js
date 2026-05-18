@@ -229,14 +229,15 @@
 
       const unlocked = getUnlockedAchievements();
 
+      const _achRunes = { 1: 'ᚠ', 2: 'ᚨ', 3: 'ᛊ', 4: 'ᛟ', 5: 'ᛏ' };
       const badgesHTML = BADGES.map(badge => {
         const isUnlocked = state.correctTotal >= badge.required;
-        return `<div class="ach-badge-slot${isUnlocked ? ' unlocked' : ''}"
+        return `<div class="badge-slot${isUnlocked ? ' unlocked' : ''}" data-badge="${badge.id}"
             title="${escapeHtml(badge.name)} (${badge.required} acertos)"
             data-action="_showBadgeTip" data-pass-this="1"
             data-badge-label="${escapeHtml(badge.name)} (${badge.required} acertos)">
-          <img src="assets/badges/badge${badge.id}.png" alt="${escapeHtml(badge.name)}">
-          ${!isUnlocked ? '<span class="ach-badge-lock">🔒</span>' : ''}
+          <div class="badge-shield"><span class="badge-rune">${_achRunes[badge.id] || '✦'}</span></div>
+          ${!isUnlocked ? '<span class="badge-lock">🔒</span>' : ''}
         </div>`;
       }).join('');
 
