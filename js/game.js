@@ -1038,17 +1038,19 @@
       return fallback;
     }
 
+    // Capítulos baseados em correctTotal (0-100) — 5 faixas de 20 acertos cada.
+    // Boss começa em 90 (BOSS_START_CORRECT), por isso o capítulo final inicia em 80.
     const chapters = [
-      { lv:1,  title:"Prólogo — As Criptas da Creatinina",       goal:"Estude os fundamentos da nefrologia e sobreviva às primeiras cartas da jornada." },
-      { lv:4,  title:"Capítulo II — O Vale da Albuminúria",       goal:"Consolide a estratificação de risco renal e domine a terapia nefroprotetora essencial." },
-      { lv:8,  title:"Capítulo III — Torre das Glomerulopatias",  goal:"Domine os sinais de gravidade glomerular e tome decisões de intervenção com precisão." },
-      { lv:12, title:"Capítulo IV — Trono Cardiorrenal",          goal:"Integre as terapias complexas do síndrome cardiorrenal e mantenha consistência clínica avançada." },
-      { lv:15, title:"Capítulo Final — O Arqui-Nefromante",       goal:"Alcance o domínio supremo da nefrologia e derrote o Arqui-Nefromante de uma vez por todas." }
+      { at:0,  title:"Prólogo — As Criptas da Creatinina",       goal:"Estude os fundamentos da nefrologia e sobreviva às primeiras cartas da jornada." },
+      { at:20, title:"Capítulo II — O Vale da Albuminúria",       goal:"Consolide a estratificação de risco renal e domine a terapia nefroprotetora essencial." },
+      { at:40, title:"Capítulo III — Torre das Glomerulopatias",  goal:"Domine os sinais de gravidade glomerular e tome decisões de intervenção com precisão." },
+      { at:60, title:"Capítulo IV — Trono Cardiorrenal",          goal:"Integre as terapias complexas do síndrome cardiorrenal e mantenha consistência clínica avançada." },
+      { at:80, title:"Capítulo Final — O Arqui-Nefromante",       goal:"Alcance o domínio supremo da nefrologia e derrote o Arqui-Nefromante de uma vez por todas." }
     ];
 
     function chapterMeta(){
       let current=chapters[0];
-      for(const c of chapters){ if(state.level>=c.lv) current=c; }
+      for(const c of chapters){ if((state.correctTotal||0)>=c.at) current=c; }
       return current;
     }
 
