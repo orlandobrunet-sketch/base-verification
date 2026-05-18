@@ -219,7 +219,7 @@
       const infoBanner = !q
         ? `<div class="bib-info-banner">
   <span class="bib-info-banner-icon">📖</span>
-  <span>Referências desbloqueiam ao <strong>acertar questões</strong> que as citam &nbsp;·&nbsp; Artigos ao <strong>abrir baús</strong></span>
+  <span>Acerte questões para revelar a evidência científica que as fundamenta. Artigos adicionais são desbloqueados ao abrir baús durante o jogo.</span>
 </div>`
         : '';
 
