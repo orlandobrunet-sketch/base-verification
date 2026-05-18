@@ -14450,7 +14450,7 @@ const topics = [
       "PEEP elevado melhora a oxigenação tecidual renal e reduz a IRA",
       "O único mecanismo de IRA induzida por VM é a hipoxemia, corrigida pelo aumento do PEEP",
       "PEEP afeta apenas a hemodinâmica pulmonar, sem impacto renal",
-      "compressão do parênquima renal por hiperinsuflação/aumento da pressão pleural transmitida ao abdome"
+      "Compressão do parênquima renal por hiperinsuflação/aumento da pressão pleural transmitida ao abdome"
     ],
     "ans": 3,
     "exp": "A injúria renal associada à ventilação mecânica (Ventilator-induced kidney injury — VIKI) é mediada principalmente por mecanismos hemodinâmicos (redução do DC, elevação da CVP) e humorais (ADH, aldosterona, ANP reduzido). Além disso, a ventilação com volumes correntes elevados gera VILI que libera citocinas sistêmicas (TNF-α, IL-6) que causam inflamação renal direta. O estudo ARDSNet (ARDS Network, NEJM 2000) demonstrou que VC baixo (6 mL/kg PPC) reduziu mortalidade e também teve impacto positivo em disfunção renal.",
