@@ -45,19 +45,16 @@
       if (_wmFadeOutTimeout)  { clearTimeout(_wmFadeOutTimeout);   _wmFadeOutTimeout = null; }
     }
 
-    // Fade-in suave usando curva ease-out (raiz quadrada) para soar natural
-    // Usa setInterval em vez de requestAnimationFrame — RAF pode ser throttled em páginas
-    // recém-carregadas via redirect OAuth (Brave PC), causando o áudio "congelar".
+    // Fade-in suave — time-based via performance.now() para imunidade a throttling de aba
+    // (setInterval throttled não afeta a curva — o volume salta para o valor correto do timestamp)
     function _wmFadeIn(onDone) {
       wmTrack.volume = 0.01;
-      const steps = Math.round(WM_FADEIN_MS / 30);
-      let step = 0;
+      const t0 = performance.now();
       const iv = setInterval(() => {
         if (_wmStopRequested) { clearInterval(iv); _wmFadeInterval = null; return; }
-        step++;
-        const t = Math.min(1, step / steps);
-        wmTrack.volume = WELCOME_MUSIC_VOL * Math.sqrt(t);
-        if (step >= steps) {
+        const t = Math.min(1, (performance.now() - t0) / WM_FADEIN_MS);
+        wmTrack.volume = WELCOME_MUSIC_VOL * Math.sqrt(t); // ease-out
+        if (t >= 1) {
           clearInterval(iv);
           wmTrack.volume = WELCOME_MUSIC_VOL;
           _wmFadeInterval = null;
@@ -67,21 +64,19 @@
       _wmFadeInterval = { cancel: () => clearInterval(iv) };
     }
 
-    // Fade-out suave usando curva ease-in (quadrática) para soar natural
+    // Fade-out suave — time-based, mesma lógica
     function _wmFadeOut(onDone) {
       const startVol = wmTrack.volume;
-      const steps = Math.round(WM_FADEOUT_MS / 30);
-      let step = 0;
+      const t0 = performance.now();
       _wmFadeOutInterval = setInterval(() => {
         if (_wmStopRequested) {
           clearInterval(_wmFadeOutInterval); _wmFadeOutInterval = null;
           wmTrack.volume = 0; wmTrack.pause();
           return;
         }
-        step++;
-        const t = step / steps;
-        wmTrack.volume = Math.max(0, startVol * (1 - t * t));
-        if (step >= steps) {
+        const t = Math.min(1, (performance.now() - t0) / WM_FADEOUT_MS);
+        wmTrack.volume = Math.max(0, startVol * (1 - t * t)); // ease-in
+        if (t >= 1) {
           clearInterval(_wmFadeOutInterval); _wmFadeOutInterval = null;
           wmTrack.volume = 0;
           wmTrack.pause();
@@ -192,14 +187,13 @@
         if (onComplete) onComplete();
         return;
       }
-      // Fade-out suave
+      // Fade-out suave — time-based
       const startVol = wmTrack.volume;
-      const steps = Math.round(WM_FADEOUT_MS / 50);
-      let step = 0;
+      const t0 = performance.now();
       _wmFadeInterval = setInterval(() => {
-        step++;
-        wmTrack.volume = Math.max(0, startVol * (1 - step / steps));
-        if (step >= steps) {
+        const t = Math.min(1, (performance.now() - t0) / WM_FADEOUT_MS);
+        wmTrack.volume = Math.max(0, startVol * (1 - t));
+        if (t >= 1) {
           clearInterval(_wmFadeInterval); _wmFadeInterval = null;
           wmTrack.pause();
           wmTrack.currentTime = 0;
@@ -220,14 +214,16 @@
     bgA.volume = MUSIC_VOL; bgB.volume = 0;
     bgA.load(); bgB.load();
     // Fallback: se crossfade não disparar, 'ended' garante o loop
-    bgA.addEventListener('ended', () => { if(musicEnabled && musicStarted) { bgA.currentTime=0; bgA.muted=true; bgA.play().then(()=>{ bgA.muted=false; bgA.volume=MUSIC_VOL; scheduleXfade(bgA); }).catch(()=>{ bgA.muted=false; }); } });
-    bgB.addEventListener('ended', () => { if(musicEnabled && musicStarted) { bgB.currentTime=0; bgB.muted=true; bgB.play().then(()=>{ bgB.muted=false; bgB.volume=MUSIC_VOL; scheduleXfade(bgB); }).catch(()=>{ bgB.muted=false; }); } });
+    // _crossfading guard evita que 'ended' e crossfadeTo() toquem simultaneamente (eco)
+    bgA.addEventListener('ended', () => { if(musicEnabled && musicStarted && !_crossfading) { bgA.currentTime=0; bgA.muted=true; bgA.play().then(()=>{ bgA.muted=false; bgA.volume=MUSIC_VOL; scheduleXfade(bgA); }).catch(()=>{ bgA.muted=false; }); } });
+    bgB.addEventListener('ended', () => { if(musicEnabled && musicStarted && !_crossfading) { bgB.currentTime=0; bgB.muted=true; bgB.play().then(()=>{ bgB.muted=false; bgB.volume=MUSIC_VOL; scheduleXfade(bgB); }).catch(()=>{ bgB.muted=false; }); } });
     
     let soundEnabled = true, musicEnabled = true;
     try { soundEnabled = localStorage.getItem('nefroquest-sound') !== 'off'; musicEnabled = localStorage.getItem('nefroquest-music') !== 'off'; } catch(e) {}
     let musicStarted = false;
     let activeTrack = bgA;
     let xfadeInterval = null;
+    let _crossfading = false; // guard contra race condition ended + crossfade simultâneos
 
     // Audio unlock — iOS Safari requires each HTMLAudioElement to be play()'d during
     // a user gesture before it can be played programmatically (e.g. from timers).
@@ -270,34 +266,33 @@
     }
     
     function crossfadeTo(nextTrack) {
+      if (_crossfading) return; // previne double-trigger (race condition ended + scheduleXfade)
+      _crossfading = true;
       const prevTrack = activeTrack;
       nextTrack.currentTime = 0;
       nextTrack.volume = 0;
-      // muted-first: crossfadeTo is called from a timer, never from a user gesture
+      // muted-first: crossfadeTo é chamado de timer, nunca de gesto do usuário
       nextTrack.muted = true;
       nextTrack.play().then(() => { nextTrack.muted = false; }).catch(() => { nextTrack.muted = false; });
-      
-      const steps = 30;
-      const stepTime = Math.round((XFADE_TIME * 1000) / steps); // ms por passo de fade
-      let step = 0;
-      
+
+      // Time-based equal-power crossfade — imune a throttling de aba inativa
+      const XFADE_MS = XFADE_TIME * 1000;
+      const t0 = performance.now();
       const fadeInterval = setInterval(() => {
-        step++;
-        const progress = step / steps;
-        // Equal-power crossfade
-        prevTrack.volume = MUSIC_VOL * Math.cos(progress * Math.PI / 2);
-        nextTrack.volume = MUSIC_VOL * Math.sin(progress * Math.PI / 2);
-        
-        if (step >= steps) {
+        const t = Math.min(1, (performance.now() - t0) / XFADE_MS);
+        prevTrack.volume = MUSIC_VOL * Math.cos(t * Math.PI / 2);
+        nextTrack.volume  = MUSIC_VOL * Math.sin(t * Math.PI / 2);
+        if (t >= 1) {
           clearInterval(fadeInterval);
           prevTrack.pause();
           prevTrack.currentTime = 0;
           prevTrack.volume = MUSIC_VOL;
           nextTrack.volume = MUSIC_VOL;
           activeTrack = nextTrack;
+          _crossfading = false;
           scheduleXfade(nextTrack);
         }
-      }, stepTime);
+      }, 50);
     }
     
     function playSound(name) {
@@ -434,20 +429,29 @@
             if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
           }, { once: true });
         }
-        // Fallback para browsers que bloqueiam autoplay: retenta em cada gesto até sucesso.
-        // Permite retry mesmo quando welcomeMusicStarted=true mas a track está pausada
-        // (play() pode ter falhado silenciosamente em loop — A8 da auditoria externa).
+        // Fallback para browsers que bloqueiam autoplay: retenta no primeiro gesto até sucesso.
+        // Remove-se automaticamente após desbloquear para não processar todos os cliques.
         function _tryWelcomeMusic() {
           _unlockAll();
           if (!musicEnabled) return;
           const ws = document.getElementById('welcomeScreen');
-          if (ws && ws.classList.contains('hidden')) return; // jogo já iniciado
+          if (ws && ws.classList.contains('hidden')) {
+            // Jogo já iniciado — listeners não são mais necessários
+            document.removeEventListener('touchstart', _tryWelcomeMusic, { capture: true });
+            document.removeEventListener('click',      _tryWelcomeMusic, { capture: true });
+            return;
+          }
           // Se a track está pausada apesar de "started", reset para permitir novo start
           if (welcomeMusicStarted && wmTrack.paused && !_wmStopRequested) {
             _wmClearTimers();
             welcomeMusicStarted = false;
           }
-          if (welcomeMusicStarted) return;
+          if (welcomeMusicStarted && !wmTrack.paused) {
+            // Música tocando com sucesso — remove listeners
+            document.removeEventListener('touchstart', _tryWelcomeMusic, { capture: true });
+            document.removeEventListener('click',      _tryWelcomeMusic, { capture: true });
+            return;
+          }
           startWelcomeMusic();
         }
         document.addEventListener('touchstart', _tryWelcomeMusic, { capture: true, passive: true });

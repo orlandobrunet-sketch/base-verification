@@ -169,7 +169,10 @@
     }
     
     function saveUnlockedAchievements(unlocked) {
-      try { localStorage.setItem(ACHIEVEMENTS_KEY, JSON.stringify(unlocked)); } catch(e) {}
+      try { localStorage.setItem(ACHIEVEMENTS_KEY, JSON.stringify(unlocked)); } catch(e) {
+        if (typeof _toast === 'function') _toast('Conquista desbloqueada, mas não foi possível salvar localmente — armazenamento cheio.', 'warning', 6000);
+        if (typeof _track === 'function') _track('error_localstorage_achievements', {});
+      }
       _scheduleCloudSync();
     }
     
