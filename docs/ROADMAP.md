@@ -42,6 +42,14 @@ Toda tarefa deve ser solicitada explicitamente pelo usuário.
 
 ---
 
+## Grimório — Conteúdo Pendente
+
+| # | Item | Detalhe | Status |
+|---|------|---------|--------|
+| G1 | **Resumos das referências (`refsDB`)** | Cada entrada em `data/refs.js` deve ganhar os campos `resumo`, `conclusao`, `curiosidade` (mesmo formato dos `nefroArticles`). O botão "Resumo Rápido" já existe no Grimório e exibe "Resumo em elaboração" até o campo ser preenchido. Priorizar diretrizes KDIGO e RCTs mais citados nas questões. | **Pendente** |
+
+---
+
 ## Bugs Ativos
 
 | # | Bug | Arquivo | Status |

@@ -2643,14 +2643,28 @@
       const img = ui.heroImg ? ui.heroImg.src : '';
       const existing = document.getElementById('heroLoreModal');
       if(existing) existing.remove();
+
+      const st = state.stats || {};
+      const lvl = state.level || 1;
+      const statsHtml = `
+        <div class="lore-stats">
+          <span class="lore-stat">Nível ${lvl}</span>
+          <span class="lore-stat">⚔️ ${st.atk || 0}</span>
+          <span class="lore-stat">🛡️ ${st.def || 0}</span>
+          <span class="lore-stat">📚 ${st.kno || 0}</span>
+          <span class="lore-stat">🍀 ${st.luck || 0}</span>
+        </div>
+      `;
+
       const modal = document.createElement('div');
       modal.id = 'heroLoreModal';
       modal.className = 'hero-lore-modal';
       modal.innerHTML = `
         <div class="hero-lore-card">
-          <img class="lore-portrait" src="${img}" alt="${char.name}">
-          <div class="lore-name">${char.name}</div>
-          <div class="lore-title">${char.title}</div>
+          <img class="lore-portrait" src="${img}" alt="${escapeHtml(char.name)}">
+          <div class="lore-name">${escapeHtml(char.name)}</div>
+          <div class="lore-title">${escapeHtml(char.title)}</div>
+          ${state.gameStarted ? statsHtml : ''}
           <div class="lore-text">
             <p>${lore.p1}</p>
             <p>${lore.p2}</p>
