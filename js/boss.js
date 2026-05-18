@@ -414,11 +414,41 @@
       {at:80, ch:"Capítulo XVI", title:"A Fortaleza da Finerenona", text:"A Fortaleza da Finerenona é a última adição ao arsenal nefroprotetor. ARM não esteroidal, sem a ginecomastia da espironolactona. FIDELIO-DKD e FIGARO-DKD provam seu valor. A tríade está completa: IECA/BRA + SGLT2i + Finerenona. O Arqui-Nefromante treme."},
       {at:85, ch:"Capítulo XVII", title:"O Santuário da Peritoneal", text:"No Santuário da Diálise Peritoneal, o peritônio é a membrana sagrada. Você aprende sobre trocas osmóticas, icodextrina, peritonite e esclerose encapsulante. Cada paciente é único — adequação, clearance, ultrafiltração. O santuário brilha com conhecimento aplicado."},
       {at:90, ch:"Capítulo XVIII", title:"O Portal do Xenotransplante", text:"Um portal brilhante se abre: o futuro do transplante renal! Rins suínos geneticamente editados, 10 modificações genéticas para vencer a rejeição hiperaguda. Montgomery e Riella mostram o caminho. A fila de transplante pode ter seus dias contados. O futuro é agora."},
+      {at:93, ch:"⚡ Feitiço do Arqui-Nefromante", title:"A Névoa da Azotemia", stun:true, text:"O Arqui-Nefromante ergue o cajado e grita: 'AZOTEMIA NEBULOSA!' — um raio de ureia cristalizada te atinge em cheio! A névoa tóxica invade seus sentidos. Seus equipamentos ficam paralisados pelo veneno urêmico... você sente as pernas pesadas, a mente turva. Mas a chama do conhecimento ainda pulsa dentro de você. Resista — a recuperação começa em breve!"},
       {at:95, ch:"Capítulo XIX", title:"O Confronto com o Arqui-Nefromante", text:"Finalmente, você chega ao Trono da Uremia, onde o Arqui-Nefromante aguarda. Ele lança feitiços de azotemia, hiperfiltração maligna e nefrotoxicidade. Mas você está preparado — cada questão respondida foi um feitiço aprendido. A batalha final começa!"},
+      {at:98, ch:"⚔️ Recuperação do Herói", title:"A Chama dos Néfrons", stunRecovery:true, text:"O veneno urêmico começa a ser filtrado pelos seus próprios néfrons purificados! A névoa se dissipa. Seus equipamentos voltam a brilhar — a força retorna! O Arqui-Nefromante recua, visivelmente abalado: 'Im-impossível... nenhum nefrologista sobrevive ao meu Feitiço da Azotemia!' Você sorri. Restam apenas 2 acertos. O golpe final está ao alcance — não deixe escapar!"},
       {at:99, ch:"Capítulo XX", title:"A Última Prova", text:"O Arqui-Nefromante ergue seu cajado sombrio. Rins corrompidos orbitam ao seu redor como satélites de pura destruição renal. Seus golens de uremia avançam. Ele ri: 'Você acha que pode me derrotar? Eu sou a Insuficiência Renal Eterna!' Mas você sente o poder de todo o conhecimento acumulado pulsando em suas veias. Uma última questão. Uma última resposta. O destino dos rins do reino depende de você.", boss:true},
       {at:100, ch:"Epílogo", title:"Os Rins Foram Salvos!", text:"Com um último golpe de conhecimento puro, o Arqui-Nefromante é derrotado! Os néfrons do reino voltam a filtrar com perfeição. A creatinina normaliza, a proteinúria desaparece, o equilíbrio hidroeletrolítico é restaurado. Você é coroado(a) como o(a) Grande Guardião(ã) dos Rins. A nefrologia está salva — graças a você!"}
     ];
 
+
+    // ============================================================
+    // ============ BOSS STUN MECHANIC (questões 93–97) ============
+    // O Arqui-Nefromante atordoa o herói na questão 93.
+    // Equipamentos ficam bloqueados (visual + stats zerados) até a questão 98.
+    // ============================================================
+
+    function applyBossStun() {
+      state.bossStunActive = true;
+      document.body.classList.add('boss-stun-active');
+      const app = document.getElementById('mainApp');
+      if (app) {
+        app.classList.add('boss-stun-shake');
+        // Remove a animação de shake após ela completar (não fica tremendo eternamente)
+        setTimeout(() => app.classList.remove('boss-stun-shake'), 1200);
+      }
+      renderEquip();
+      if (typeof _toast === 'function')
+        _toast('⚡ Atordoado! Equipamentos bloqueados até 98 acertos.', 'warning', 4000);
+    }
+
+    function removeStun() {
+      state.bossStunActive = false;
+      document.body.classList.remove('boss-stun-active');
+      const app = document.getElementById('mainApp');
+      if (app) app.classList.remove('boss-stun-shake');
+      if (typeof renderEquip === 'function') renderEquip();
+    }
 
     // ============ NARRATIVAS DE INÍCIO POR PERSONAGEM ============
     const CHARACTER_INTROS = {
@@ -482,7 +512,8 @@
       const _diffLives = {easy:5, normal:4, hard:3, hardcore:1};
       const _chosenDiff = state.difficulty || 'normal';
       const _startLives = _diffLives[_chosenDiff] || 3;
-      Object.assign(state,{level:1,xp:0,xpToNext:200,score:0,lives:_startLives,maxLives:_startLives,streak:0,gold:0,difficulty:_chosenDiff,legendaryAbilityUsed:{},current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,bossIntroShown:false,battleFinalShown:false,gameOver:false,gameStarted:true,extraLifeGiven:false,gameCompleted:false,completedGame:false,chestsOpened:0,bossLog:[]});
+      Object.assign(state,{level:1,xp:0,xpToNext:200,score:0,lives:_startLives,maxLives:_startLives,streak:0,gold:0,difficulty:_chosenDiff,legendaryAbilityUsed:{},current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,bossIntroShown:false,battleFinalShown:false,gameOver:false,gameStarted:true,extraLifeGiven:false,gameCompleted:false,completedGame:false,chestsOpened:0,bossLog:[],bossStunActive:false});
+      removeStun(); // garante limpeza de resíduo de partida anterior
       chestCost = 100;
       state.equipment={
         weapon:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},

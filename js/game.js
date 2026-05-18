@@ -979,7 +979,10 @@
 
     function log(m){const p=document.createElement('p');p.textContent=m;ui.journal.prepend(p);while(ui.journal.children.length>4)ui.journal.lastChild.remove()}
     function total(){
-      const base=Object.values(state.equipment).reduce((a,i)=>(a.atk+=i.atk,a.def+=i.def,a.kno+=i.kno,a.luck+=i.luck,a),{atk:0,def:0,kno:0,luck:0});
+      // Durante stun do boss, equipamentos ficam paralisados — apenas bônus do personagem contam
+      const base = state.bossStunActive
+        ? {atk:0, def:0, kno:0, luck:0}
+        : Object.values(state.equipment).reduce((a,i)=>(a.atk+=i.atk,a.def+=i.def,a.kno+=i.kno,a.luck+=i.luck,a),{atk:0,def:0,kno:0,luck:0});
       if(state.character && characters[state.character]){
         const c=characters[state.character];
         base.atk+=c.bonusAtk||0; base.def+=c.bonusDef||0;
@@ -1159,8 +1162,13 @@
       const synergyBanner = _synergyActive
         ? `<div style='text-align:center;margin-top:6px;padding:5px 10px;background:linear-gradient(135deg,rgba(255,215,0,0.15),rgba(255,140,0,0.1));border-radius:8px;border:1px solid rgba(255,215,0,0.5);font-size:0.7rem;color:#ffd700;animation:legendaryPassiveGlow 3s ease-in-out infinite'>✨ Sinergia Lendária — +20% XP</div>`
         : '';
+      // Banner de stun: sobrepõe equipamentos quando o boss atordoou o herói
+      const stunBanner = state.bossStunActive
+        ? `<div class="equip-stun-overlay">⚡ Equipamentos paralisados pelo veneno urêmico!<br><span style="font-size:0.72rem;opacity:0.8;">Recuperação na questão 98</span></div>`
+        : '';
+
       // Desktop: no final da lista de equipamentos — um único innerHTML= para evitar reflow duplo
-      ui.equipList.innerHTML = slotsHTML + `<div style='text-align:center;margin-top:8px;padding:6px 10px;background:rgba(42,74,122,0.2);border-radius:8px;border:1px solid rgba(42,74,122,0.4);font-size:0.75rem;color:#b0c4e8'>${totalHTML}</div>${synergyBanner}`;
+      ui.equipList.innerHTML = stunBanner + slotsHTML + `<div style='text-align:center;margin-top:8px;padding:6px 10px;background:rgba(42,74,122,0.2);border-radius:8px;border:1px solid rgba(42,74,122,0.4);font-size:0.75rem;color:#b0c4e8'>${totalHTML}</div>${synergyBanner}`;
       // Mobile: logo abaixo do herói
       const equipTotalMobile = document.getElementById('equipTotalMobile');
       if(equipTotalMobile) {
