@@ -103,6 +103,7 @@
 
     // ── Grimório de Conhecimento ──────────────────────────────────────────
     let _bibItems = null;
+    let _bibVisibleItems = []; // rastreado para openBibResumo
     const UNLOCKED_REFS_KEY = 'nq-unlocked-refs';
 
     function _getUnlockedArticles() {
@@ -134,17 +135,20 @@
         Object.entries(refsDB).forEach(([key, r]) => {
           const isUnlocked = unlockedRefs.has(key);
           items.push({
-            label:     isUnlocked ? (r.label || '') : 'Referência bloqueada',
-            autores:   '',
-            jornal:    isUnlocked ? (r.journal || '') : '',
-            ano:       isUnlocked ? (r.ano || '') : '',
-            tipo:      isUnlocked ? (r.badge || 'REF') : 'REF',
-            tipoColor: r.badgeColor || '#64748b',
-            impacto:   isUnlocked ? (r.impacto || '') : '',
-            url:       isUnlocked ? (r.url || '') : '',
-            icon:      isUnlocked ? (r.icon || '📖') : '🔒',
-            locked:    !isUnlocked,
-            _lockType: 'ref',
+            label:      isUnlocked ? (r.label || '') : 'Referência bloqueada',
+            autores:    '',
+            jornal:     isUnlocked ? (r.journal || '') : '',
+            ano:        isUnlocked ? (r.ano || '') : '',
+            tipo:       isUnlocked ? (r.badge || 'REF') : 'REF',
+            tipoColor:  r.badgeColor || '#64748b',
+            impacto:    isUnlocked ? (r.impacto || '') : '',
+            url:        isUnlocked ? (r.url || '') : '',
+            icon:       isUnlocked ? (r.icon || '📖') : '🔒',
+            locked:     !isUnlocked,
+            _lockType:  'ref',
+            resumo:     r.resumo || '',
+            conclusao:  r.conclusao || '',
+            curiosidade: r.curiosidade || '',
           });
         });
       }
@@ -155,18 +159,21 @@
         nefroArticles.forEach((a, idx) => {
           const isUnlocked = unlockedIdxs.includes(idx);
           items.push({
-            label:     isUnlocked ? (a.titulo || '') : 'Artigo bloqueado',
-            autores:   isUnlocked ? (a.autores || '') : '',
-            jornal:    isUnlocked ? (a.jornal  || '') : '',
-            ano:       isUnlocked ? (a.ano     || '') : '',
-            tipo:      'ARTIGO',
-            tipoColor: '#0e7490',
-            impacto:   isUnlocked ? (a.impacto || '') : '',
-            url:       '',
-            icon:      isUnlocked ? '📄' : '🔒',
-            locked:    !isUnlocked,
-            _lockType: 'article',
+            label:      isUnlocked ? (a.titulo || '') : 'Artigo bloqueado',
+            autores:    isUnlocked ? (a.autores || '') : '',
+            jornal:     isUnlocked ? (a.jornal  || '') : '',
+            ano:        isUnlocked ? (a.ano     || '') : '',
+            tipo:       'ARTIGO',
+            tipoColor:  '#0e7490',
+            impacto:    isUnlocked ? (a.impacto || '') : '',
+            url:        '',
+            icon:       isUnlocked ? '📄' : '🔒',
+            locked:     !isUnlocked,
+            _lockType:  'article',
             _totalArticles: total,
+            resumo:     isUnlocked ? (a.resumo     || '') : '',
+            conclusao:  isUnlocked ? (a.conclusao  || '') : '',
+            curiosidade: isUnlocked ? (a.curiosidade || '') : '',
           });
         });
       }
@@ -236,6 +243,7 @@
 
       // Visíveis: desbloqueados + artigos bloqueados individualmente
       const visibleItems = q ? filtered : [...unlockedItems, ...lockedArts];
+      _bibVisibleItems = visibleItems;
 
       if (!visibleItems.length && !hintCard) {
         list.innerHTML = infoBanner + '<div class="bib-empty">Nenhuma referência encontrada.</div>';
@@ -260,6 +268,7 @@
           it.jornal ? escapeHtml(it.jornal) : '',
           it.ano    ? escapeHtml(String(it.ano)) : '',
         ].filter(Boolean);
+        const itemIdx = visibleItems.indexOf(it);
         return `<div class="bib-card">
   <div class="bib-card-top">
     <span class="bib-card-icon">${escapeHtml(it.icon)}</span>
@@ -269,6 +278,7 @@
   ${it.autores ? `<div class="bib-card-authors">${escapeHtml(it.autores)}</div>` : ''}
   ${metaParts.length ? `<div class="bib-card-meta">${metaParts.map(p => `<span>${p}</span>`).join('')}</div>` : ''}
   ${it.impacto ? `<div class="bib-card-impacto">${escapeHtml(it.impacto)}</div>` : ''}
+  <button class="bib-resumo-btn" data-action="openBibResumo" data-pass-this="1" data-item-idx="${itemIdx}">📝 Resumo rápido</button>
 </div>`;
       }).join('') + hintCard;
     }
@@ -297,6 +307,43 @@
       const btn = document.querySelector('.bib-suggest-toggle');
       if (fields) fields.classList.remove('show');
       if (btn) btn.classList.remove('open');
+    }
+
+    function openBibResumo(btn) {
+      const idx = parseInt(btn?.dataset?.itemIdx ?? '-1', 10);
+      const it = _bibVisibleItems[idx];
+      if (!it || it.locked) return;
+
+      document.querySelectorAll('.bib-resumo-modal').forEach(el => el.remove());
+
+      const hasContent = it.resumo || it.conclusao || it.curiosidade || it.impacto;
+      const bodyHtml = hasContent
+        ? [
+            it.resumo     ? `<div class="brm-section"><div class="brm-label">📚 Resumo</div><div class="brm-text">${escapeHtml(it.resumo)}</div></div>` : '',
+            it.conclusao  ? `<div class="brm-section"><div class="brm-label">🎯 Conclusão Principal</div><div class="brm-text">${escapeHtml(it.conclusao)}</div></div>` : '',
+            it.curiosidade? `<div class="brm-section"><div class="brm-label">💡 Curiosidade</div><div class="brm-text">${escapeHtml(it.curiosidade)}</div></div>` : '',
+            it.impacto    ? `<div class="brm-section"><div class="brm-label">⭐ Impacto na Nefrologia</div><div class="brm-text">${escapeHtml(it.impacto)}</div></div>` : '',
+          ].join('')
+        : `<div class="brm-soon">Resumo em elaboração — disponível em breve.</div>`;
+
+      const overlay = document.createElement('div');
+      overlay.className = 'bib-resumo-modal';
+      overlay.innerHTML = `
+        <div class="brm-box">
+          <div class="brm-header">
+            <div class="brm-title">${escapeHtml(it.label)}</div>
+            <button class="brm-close" data-action="closeBibResumo" aria-label="Fechar">✕</button>
+          </div>
+          ${it.autores ? `<div class="brm-meta">${escapeHtml(it.autores)}${it.jornal ? ` · <em>${escapeHtml(it.jornal)}</em>` : ''}${it.ano ? ` (${escapeHtml(String(it.ano))})` : ''}</div>` : ''}
+          <div class="brm-body">${bodyHtml}</div>
+        </div>
+      `;
+      overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
+      document.body.appendChild(overlay);
+    }
+
+    function closeBibResumo() {
+      document.querySelectorAll('.bib-resumo-modal').forEach(el => el.remove());
     }
 
     function toggleBibSuggestForm() {
