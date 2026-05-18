@@ -169,7 +169,10 @@
     }
     
     function saveUnlockedAchievements(unlocked) {
-      try { localStorage.setItem(ACHIEVEMENTS_KEY, JSON.stringify(unlocked)); } catch(e) {}
+      try { localStorage.setItem(ACHIEVEMENTS_KEY, JSON.stringify(unlocked)); } catch(e) {
+        if (typeof _toast === 'function') _toast('Conquista desbloqueada, mas não foi possível salvar localmente — armazenamento cheio.', 'warning', 6000);
+        if (typeof _track === 'function') _track('error_localstorage_achievements', {});
+      }
       _scheduleCloudSync();
     }
     
@@ -226,14 +229,15 @@
 
       const unlocked = getUnlockedAchievements();
 
+      const _achRunes = { 1: 'ᚠ', 2: 'ᚨ', 3: 'ᛊ', 4: 'ᛟ', 5: 'ᛏ' };
       const badgesHTML = BADGES.map(badge => {
         const isUnlocked = state.correctTotal >= badge.required;
-        return `<div class="ach-badge-slot${isUnlocked ? ' unlocked' : ''}"
+        return `<div class="badge-slot${isUnlocked ? ' unlocked' : ''}" data-badge="${badge.id}"
             title="${escapeHtml(badge.name)} (${badge.required} acertos)"
             data-action="_showBadgeTip" data-pass-this="1"
             data-badge-label="${escapeHtml(badge.name)} (${badge.required} acertos)">
-          <img src="assets/badges/badge${badge.id}.png" alt="${escapeHtml(badge.name)}">
-          ${!isUnlocked ? '<span class="ach-badge-lock">🔒</span>' : ''}
+          <div class="badge-shield"><span class="badge-rune">${_achRunes[badge.id] || '✦'}</span></div>
+          ${!isUnlocked ? '<span class="badge-lock">🔒</span>' : ''}
         </div>`;
       }).join('');
 

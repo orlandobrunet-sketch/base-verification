@@ -310,12 +310,20 @@
     }
     function _invalidateStatsCache() { _statsCache = null; }
 
+    let _storageWarnShown = false;
+    function _warnStorageFull() {
+      if (_storageWarnShown) return;
+      _storageWarnShown = true;
+      if (typeof _toast === 'function') _toast('Armazenamento cheio — estatísticas podem não ser salvas. Libere espaço no navegador.', 'warning', 7000);
+      if (typeof _track === 'function') _track('error_localstorage_full', {});
+    }
+
     function updateGameStats() {
       const stats = getGameStats();
       stats.gamesPlayed++;
       if (state.level > stats.bestLevel) stats.bestLevel = state.level;
       if (state.score > stats.bestScore) stats.bestScore = state.score;
-      try { localStorage.setItem(STATS_KEY, JSON.stringify(stats)); } catch(e) {}
+      try { localStorage.setItem(STATS_KEY, JSON.stringify(stats)); } catch(e) { _warnStorageFull(); }
       _invalidateStatsCache();
       _scheduleCloudSync();
     }
@@ -363,7 +371,7 @@
     function _incrementQuestionsAnswered() {
       const stats = getGameStats();
       stats.questionsAnsweredAllTime = (stats.questionsAnsweredAllTime || 0) + 1;
-      try { localStorage.setItem(STATS_KEY, JSON.stringify(stats)); } catch(e) {}
+      try { localStorage.setItem(STATS_KEY, JSON.stringify(stats)); } catch(e) { _warnStorageFull(); }
       _invalidateStatsCache();
       if (_guestMode) _guestQuestionCount++;
     }

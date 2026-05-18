@@ -216,17 +216,14 @@
         const artOpen   = unlockedItems.filter(it => it._lockType === 'article').length;
         count.textContent = q
           ? `${filtered.length} resultado${filtered.length !== 1 ? 's' : ''}`
-          : [
-              totalRefs > 0 ? `${refsOpen}/${totalRefs} refs` : null,
-              totalArt  > 0 ? `${artOpen}/${totalArt} artigos` : null,
-            ].filter(Boolean).join(' · ');
+          : `${refsOpen + artOpen}/${totalRefs + totalArt} artigos`;
       }
 
       // Banner explicativo de como desbloquear (topo da lista, sempre visível)
       const infoBanner = !q
         ? `<div class="bib-info-banner">
   <span class="bib-info-banner-icon">📖</span>
-  <span>Acerte questões para revelar a evidência científica que as fundamenta. Artigos adicionais são desbloqueados ao abrir baús durante o jogo.</span>
+  <span>Artigos são desbloqueados quando você acerta as questões ou abre baús.</span>
 </div>`
         : '';
 
