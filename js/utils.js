@@ -215,14 +215,22 @@
             ].filter(Boolean).join(' · ');
       }
 
+      // Banner explicativo de como desbloquear (topo da lista, sempre visível)
+      const infoBanner = !q
+        ? `<div class="bib-info-banner">
+  <span class="bib-info-banner-icon">📖</span>
+  <span>Referências desbloqueiam ao <strong>acertar questões</strong> que as citam &nbsp;·&nbsp; Artigos ao <strong>abrir baús</strong></span>
+</div>`
+        : '';
+
       // Refs bloqueadas: card único de resumo (não lista individual)
       const hintCard = (!q && lockedRefs.length > 0)
         ? `<div class="bib-card bib-hint-card">
   <div class="bib-card-top">
-    <span class="bib-card-icon">📖</span>
-    <span class="bib-card-label">Acerte questões para liberar mais referências no Grimório</span>
+    <span class="bib-card-icon">🔒</span>
+    <span class="bib-card-label">${lockedRefs.length} referência${lockedRefs.length !== 1 ? 's' : ''} ainda bloqueada${lockedRefs.length !== 1 ? 's' : ''}</span>
   </div>
-  <div class="bib-unlock-hint">${lockedRefs.length} referência${lockedRefs.length !== 1 ? 's' : ''} ainda bloqueada${lockedRefs.length !== 1 ? 's' : ''} — aparecem ao acertar questões que as citam</div>
+  <div class="bib-unlock-hint">Acerte mais questões para revelar as referências que elas citam</div>
 </div>`
         : '';
 
@@ -230,11 +238,11 @@
       const visibleItems = q ? filtered : [...unlockedItems, ...lockedArts];
 
       if (!visibleItems.length && !hintCard) {
-        list.innerHTML = '<div class="bib-empty">Nenhuma referência encontrada.</div>';
+        list.innerHTML = infoBanner + '<div class="bib-empty">Nenhuma referência encontrada.</div>';
         return;
       }
 
-      list.innerHTML = visibleItems.map(it => {
+      list.innerHTML = infoBanner + visibleItems.map(it => {
         if (it.locked) {
           return `<div class="bib-card bib-card-locked">
   <div class="bib-card-top">
