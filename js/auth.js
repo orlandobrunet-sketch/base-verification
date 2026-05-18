@@ -59,8 +59,6 @@
     function updateWelcomeUserBadge() {
       if (authUser) {
         const email = authUser.email || '';
-        const loginBtn = document.getElementById('welcomeLoginBtn');
-        if (loginBtn) loginBtn.style.display = 'none';
         document.querySelectorAll('.profile-btn').forEach(b => b.classList.add('visible'));
         document.querySelectorAll('[id$="ProfileEmail"]').forEach(el => { el.textContent = email; });
         const mobileTopEmail = document.getElementById('mobileTopProfileEmail');
