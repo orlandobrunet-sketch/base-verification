@@ -245,12 +245,14 @@
       const email = input?.value.trim().toLowerCase();
       if (!email || !email.includes('@')) { _toast('Digite um email válido.', 'error'); return; }
       if (!_supaClient) return;
+      if (!_supaClient) { _toast('Cliente Supabase não disponível.', 'error'); return; }
       try {
         const { error } = await _supaClient
           .from('access_whitelist')
           .upsert({ email, added_at: new Date().toISOString() });
         if (error) throw error;
         if (input) input.value = '';
+        _toast('Email adicionado com sucesso!', 'ok');
         adminLoadWhitelist();
       } catch(e) {
         _toast('Erro ao adicionar: ' + (e.message || e), 'error');
