@@ -143,6 +143,23 @@
         condition: (stats) => {
           return !!localStorage.getItem('nefroquest-hardcore-completed');
         }
+      },
+      {
+        id: 'grimoire_master',
+        name: 'Guardião do Grimório Eterno',
+        description: 'Desbloqueie todas as referências e artigos do Grimório de Conhecimento',
+        icon: '📚',
+        condition: () => {
+          try {
+            const unlockedRefs = new Set(JSON.parse(localStorage.getItem('nq-unlocked-refs') || '[]'));
+            const totalRefs = typeof refsDB === 'object' && refsDB !== null ? Object.keys(refsDB).length : 0;
+            if (totalRefs === 0 || unlockedRefs.size < totalRefs) return false;
+            const unlockedArts = JSON.parse(localStorage.getItem('unlockedArticles') || '[]');
+            const totalArts = typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles) ? nefroArticles.length : 0;
+            if (totalArts === 0 || unlockedArts.length < totalArts) return false;
+            return true;
+          } catch { return false; }
+        }
       }
     ];
     
