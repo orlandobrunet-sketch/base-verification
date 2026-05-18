@@ -8813,3 +8813,157 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   border-color: rgba(212, 168, 75, 0.60);
   box-shadow: 0 6px 24px rgba(0,0,0,0.75), 0 0 14px rgba(212, 168, 75, 0.22);
 }
+
+/* ── Popup Conquistas redesenhado ───────────────────────────────────────── */
+.achievements-popup {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.72);
+  z-index: 10000;
+  padding: 16px;
+  backdrop-filter: blur(5px);
+  box-sizing: border-box;
+}
+.ach-box {
+  background: linear-gradient(180deg, rgba(12,16,40,0.98) 0%, rgba(7,9,24,0.98) 100%);
+  border: 1px solid rgba(217,191,85,0.40);
+  border-radius: 8px;
+  box-shadow:
+    0 0 0 1px rgba(4,6,16,0.9),
+    inset 0 0 0 5px rgba(6,9,20,0.75),
+    inset 0 0 0 6px rgba(202,165,68,0.14),
+    0 24px 72px rgba(0,0,0,0.72);
+  position: relative;
+  width: min(500px, 100%);
+  max-height: min(86svh, 86dvh);
+  overflow-y: auto;
+  padding: 24px 20px 20px;
+  box-sizing: border-box;
+}
+.ach-box::before, .ach-box::after {
+  content: '';
+  position: absolute;
+  width: 14px; height: 14px;
+  border-color: rgba(217,191,85,0.55);
+  border-style: solid;
+  pointer-events: none;
+  z-index: 2;
+}
+.ach-box::before { top:8px; left:8px; border-width: 1.5px 0 0 1.5px; }
+.ach-box::after  { bottom:8px; right:8px; border-width: 0 1.5px 1.5px 0; }
+.ach-close {
+  position: absolute;
+  top: 10px; right: 10px;
+  background: rgba(217,191,85,0.07);
+  border: 1px solid rgba(217,191,85,0.2);
+  border-radius: 50%;
+  width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(217,191,85,0.8);
+  font-size: 0.8rem;
+  cursor: pointer;
+  z-index: 3;
+}
+.ach-close:hover { background: rgba(217,191,85,0.15); border-color: rgba(217,191,85,0.5); color: rgba(217,191,85,1); }
+.ach-title {
+  font-family: 'Cinzel', serif;
+  color: rgba(217,191,85,0.92);
+  letter-spacing: 0.18em;
+  font-size: 1.05rem;
+  text-align: center;
+  margin: 0 0 14px;
+  padding-right: 24px;
+}
+.ach-counter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.ach-counter-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 68px; height: 68px;
+  background: rgba(217,191,85,0.12);
+  border: 2px solid rgba(217,191,85,0.35);
+  border-radius: 50%;
+  font-size: 1.45rem;
+  font-weight: bold;
+  color: rgba(217,191,85,0.95);
+}
+.ach-counter-label { font-size: 0.78rem; color: rgba(140,160,200,0.65); margin-top: 6px; }
+.ach-badges-label {
+  font-size: 0.68rem;
+  color: rgba(140,160,200,0.55);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  margin-bottom: 9px;
+}
+.ach-badges-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 7px;
+  max-width: 290px;
+  margin: 0 auto 7px;
+}
+.ach-badge-slot {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 7px;
+  overflow: hidden;
+  border: 2px solid rgba(45,70,120,0.4);
+  cursor: pointer;
+}
+.ach-badge-slot.unlocked { border-color: rgba(217,191,85,0.6); box-shadow: 0 0 10px rgba(217,191,85,0.28); }
+.ach-badge-slot img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(60%) brightness(0.62); opacity: 0.7; }
+.ach-badge-slot.unlocked img { filter: none; opacity: 1; }
+.ach-badge-lock {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  background: rgba(0,0,0,0.1);
+}
+.ach-badges-count { font-size: 0.68rem; color: rgba(140,160,200,0.5); text-align: center; margin-bottom: 14px; }
+.ach-list { display: flex; flex-direction: column; gap: 7px; margin-bottom: 14px; }
+.ach-row {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 9px 11px;
+  border-radius: 8px;
+  border: 1px solid rgba(55,85,145,0.28);
+  background: rgba(0,0,0,0.22);
+}
+.ach-row.unlocked {
+  border-color: rgba(52,211,153,0.28);
+  background: linear-gradient(135deg, rgba(52,211,153,0.09), rgba(16,185,129,0.05));
+}
+.ach-row.locked { opacity: 0.55; }
+.ach-row-left { font-size: 1.65rem; flex-shrink: 0; width: 36px; text-align: center; line-height: 1; }
+.ach-row.locked .ach-row-left { filter: grayscale(1) brightness(0.5); }
+.ach-row-img { width: 34px; height: 34px; object-fit: contain; }
+.ach-row.unlocked .ach-row-img { filter: drop-shadow(0 0 5px rgba(255,215,0,0.5)); }
+.ach-row-img.locked { filter: grayscale(1) brightness(0.45); }
+.ach-row-name {
+  font-size: 0.86rem; font-weight: bold;
+  color: rgba(155,170,200,0.75);
+  display: flex; align-items: center; gap: 5px;
+  line-height: 1.3;
+}
+.ach-row.unlocked .ach-row-name { color: #34d399; }
+.ach-check { color: #34d399; font-size: 0.78rem; }
+.ach-lock-icon { color: #6b7280; font-size: 0.68rem; }
+.ach-row-desc { font-size: 0.72rem; color: rgba(110,135,180,0.65); margin-top: 2px; line-height: 1.35; }
+.ach-continue-btn { width: 100%; margin-top: 4px; }
+
+/* Grimório: hint card para refs bloqueadas */
+.bib-hint-card {
+  border-color: rgba(208,182,100,0.22) !important;
+  background: rgba(208,182,100,0.04) !important;
+}
+.bib-hint-card .bib-card-label { color: rgba(208,182,100,0.75) !important; }

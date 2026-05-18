@@ -103,29 +103,48 @@
 
     // ── Grimório de Conhecimento ──────────────────────────────────────────
     let _bibItems = null;
+    const UNLOCKED_REFS_KEY = 'nq-unlocked-refs';
 
     function _getUnlockedArticles() {
       try { return JSON.parse(localStorage.getItem('unlockedArticles') || '[]'); } catch { return []; }
     }
 
+    function _getUnlockedRefs() {
+      try { return new Set(JSON.parse(localStorage.getItem(UNLOCKED_REFS_KEY) || '[]')); } catch { return new Set(); }
+    }
+
+    function _unlockRefsFromQuestion(keys) {
+      if (!Array.isArray(keys) || !keys.length) return;
+      const set = _getUnlockedRefs();
+      let changed = false;
+      keys.forEach(k => { if (k && !set.has(k)) { set.add(k); changed = true; } });
+      if (changed) {
+        try { localStorage.setItem(UNLOCKED_REFS_KEY, JSON.stringify([...set])); } catch {}
+        _bibItems = null;
+      }
+    }
+
     function _buildBibItems() {
       const unlockedIdxs = _getUnlockedArticles();
+      const unlockedRefs = _getUnlockedRefs();
       const items = [];
 
-      // refsDB — sempre visíveis (diretrizes, guias, referências)
+      // refsDB — desbloqueadas conforme aparecem nas referências de questões acertadas
       if (typeof refsDB === 'object' && refsDB !== null) {
-        Object.values(refsDB).forEach(r => {
+        Object.entries(refsDB).forEach(([key, r]) => {
+          const isUnlocked = unlockedRefs.has(key);
           items.push({
-            label:     r.label || '',
+            label:     isUnlocked ? (r.label || '') : 'Referência bloqueada',
             autores:   '',
-            jornal:    r.journal || '',
-            ano:       r.ano || '',
-            tipo:      r.badge || 'REF',
+            jornal:    isUnlocked ? (r.journal || '') : '',
+            ano:       isUnlocked ? (r.ano || '') : '',
+            tipo:      isUnlocked ? (r.badge || 'REF') : 'REF',
             tipoColor: r.badgeColor || '#64748b',
-            impacto:   r.impacto || '',
-            url:       r.url || '',
-            icon:      r.icon || '📖',
-            locked:    false,
+            impacto:   isUnlocked ? (r.impacto || '') : '',
+            url:       isUnlocked ? (r.url || '') : '',
+            icon:      isUnlocked ? (r.icon || '📖') : '🔒',
+            locked:    !isUnlocked,
+            _lockType: 'ref',
           });
         });
       }
@@ -146,8 +165,8 @@
             url:       '',
             icon:      isUnlocked ? '📄' : '🔒',
             locked:    !isUnlocked,
+            _lockType: 'article',
             _totalArticles: total,
-            _unlockedCount: unlockedIdxs.length,
           });
         });
       }
@@ -165,38 +184,52 @@
       const items = _buildBibItems();
       const q = (query || '').trim().toLowerCase();
 
-      // Desbloqueados: filtráveis. Bloqueados: sempre ao final, não filtrados.
-      const unlocked = items.filter(it => !it.locked);
-      const locked   = items.filter(it =>  it.locked);
+      const unlockedItems = items.filter(it => !it.locked);
+      const lockedRefs    = items.filter(it =>  it.locked && it._lockType === 'ref');
+      const lockedArts    = items.filter(it =>  it.locked && it._lockType === 'article');
+
       const filtered = q
-        ? unlocked.filter(it =>
+        ? unlockedItems.filter(it =>
             it.label.toLowerCase().includes(q) ||
             it.autores.toLowerCase().includes(q) ||
             it.jornal.toLowerCase().includes(q) ||
             it.tipo.toLowerCase().includes(q) ||
             it.impacto.toLowerCase().includes(q)
           )
-        : unlocked;
+        : unlockedItems;
 
       const list = document.getElementById('bibList');
       const count = document.getElementById('bibCount');
       if (!list) return;
 
       if (count) {
-        const meta = locked[0];
-        const totalArt   = meta ? meta._totalArticles : 0;
-        const artVisible = unlocked.filter(it => it.tipo === 'ARTIGO').length;
-        const refs       = unlocked.filter(it => it.tipo !== 'ARTIGO').length;
+        const totalRefs = unlockedItems.filter(it => it._lockType === 'ref').length + lockedRefs.length;
+        const refsOpen  = unlockedItems.filter(it => it._lockType === 'ref').length;
+        const totalArt  = unlockedItems.filter(it => it._lockType === 'article').length + lockedArts.length;
+        const artOpen   = unlockedItems.filter(it => it._lockType === 'article').length;
         count.textContent = q
           ? `${filtered.length} resultado${filtered.length !== 1 ? 's' : ''}`
-          : (totalArt > 0
-              ? `${refs} referências · ${artVisible}/${totalArt} artigos`
-              : `${refs} referências`);
+          : [
+              totalRefs > 0 ? `${refsOpen}/${totalRefs} refs` : null,
+              totalArt  > 0 ? `${artOpen}/${totalArt} artigos` : null,
+            ].filter(Boolean).join(' · ');
       }
 
-      const visibleItems = q ? filtered : [...unlocked, ...locked];
+      // Refs bloqueadas: card único de resumo (não lista individual)
+      const hintCard = (!q && lockedRefs.length > 0)
+        ? `<div class="bib-card bib-hint-card">
+  <div class="bib-card-top">
+    <span class="bib-card-icon">📖</span>
+    <span class="bib-card-label">Acerte questões para liberar mais referências no Grimório</span>
+  </div>
+  <div class="bib-unlock-hint">${lockedRefs.length} referência${lockedRefs.length !== 1 ? 's' : ''} ainda bloqueada${lockedRefs.length !== 1 ? 's' : ''} — aparecem ao acertar questões que as citam</div>
+</div>`
+        : '';
 
-      if (!visibleItems.length) {
+      // Visíveis: desbloqueados + artigos bloqueados individualmente
+      const visibleItems = q ? filtered : [...unlockedItems, ...lockedArts];
+
+      if (!visibleItems.length && !hintCard) {
         list.innerHTML = '<div class="bib-empty">Nenhuma referência encontrada.</div>';
         return;
       }
@@ -229,7 +262,7 @@
   ${metaParts.length ? `<div class="bib-card-meta">${metaParts.map(p => `<span>${p}</span>`).join('')}</div>` : ''}
   ${it.impacto ? `<div class="bib-card-impacto">${escapeHtml(it.impacto)}</div>` : ''}
 </div>`;
-      }).join('');
+      }).join('') + hintCard;
     }
 
     function openBibliotecaModal() {
