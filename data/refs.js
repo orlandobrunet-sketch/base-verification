@@ -1,4 +1,4 @@
-const refsDB = {
+﻿const refsDB = {
   brenner_rector:{
     label:"Brenner & Rector's The Kidney",
     url:"https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
@@ -79,13 +79,16 @@ const refsDB = {
   kdigo_gn:{
     label:"KDIGO Glomerular Diseases 2021",
     url:"https://kdigo.org/guidelines/glomerular-diseases/",
-    journal:"Kidney International",
+    journal:"Kidney Int 2021;100(4S):S1-S276",
     ano:2021,
     tipo:"Diretriz Internacional",
     badge:"GUIDELINE",
     badgeColor:"#6366f1",
     impacto:"Referência global para diagnóstico e tratamento das glomerulopatias",
-    icon:"📋"
+    icon:"📋",
+    resumo:"Diretriz abrangente para manejo de glomerulonefrites: IgAN, NM, GESF, nefrite lúpica, vasculite ANCA, com incorporação de novos biomarcadores (PLA2R, ANCA) e terapias biológicas.",
+    conclusao:"A diretriz KDIGO 2021 incorporou medicina de precisão em glomerulonefrites, com diagnóstico molecular e terapias alvo-específicas.",
+    curiosidade:"Primeira diretriz de glomerulonefrites a incluir rituximabe como primeira linha! Reflete a revolução biológica na nefrologia."
   },
   kdigo_tx:{
     label:"KDIGO Transplant 2022",
@@ -1123,111 +1126,6 @@ const refsDB = {
     impacto:"Atlas molecular renal com single-cell RNA-seq — redefinindo doenças renais para terapias de precisão",icon:"🔬"
   },
 
-  bliss_ln:{
-    label:"BLISS-LN Trial (Belimumabe)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2029238",
-    journal:"N Engl J Med 2020;383(12):1117-1128",
-    ano:2020,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Belimumabe + terapia padrão ↑ remissão renal primária e ↓ flares em Nefrite Lúpica",icon:"💊"
-  },
-  visionary_trial:{
-    label:"VISIONARY Trial (Sibeprenlimabe)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2305361",
-    journal:"N Engl J Med 2023;389(1):22-32",
-    ano:2023,tipo:"Ensaio Clínico Fase II",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Sibeprenlimabe (anti-APRIL) ↓ proteinúria 47% em Nefropatia por IgA",icon:"💊"
-  },
-  pisces_study:{
-    label:"PISCES Trial (Ômega-3 em HD)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2407495",
-    journal:"N Engl J Med 2025",
-    ano:2025,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Ômega-3 purificado ↓ arritmias ventriculares e morte súbita em hemodiálise",icon:"💊"
-  },
-  roxadustat_trial:{
-    label:"Roxadustat ANDES/PYRENEES Trials",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1901713",
-    journal:"N Engl J Med 2019;381(11):1011-1022",
-    ano:2019,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Roxadustat eficaz para anemia da DRC, oral, sem monitorização de nível sérico",icon:"💊"
-  },
-  empact_mi_trial:{
-    label:"EMPACT-MI Trial (Empagliflozina pós-IAM)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2401316",
-    journal:"N Engl J Med 2024;390(16):1455-1466",
-    ano:2024,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Empagliflozina após IAM ↓ mortalidade/IC e protegeu função renal",icon:"💊"
-  },
-  advor_trial:{
-    label:"ADVOR Trial (Acetazolamida + Furosemida na IC)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2203094",
-    journal:"N Engl J Med 2022;387(13):1185-1195",
-    ano:2022,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Acetazolamida + furosemida ↑ descongestão sem aumento de nefrotoxicidade em IC",icon:"💊"
-  },
-  lumasiran_trial:{
-    label:"ILLUMINATE-A Trial (Lumasiran)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2022978",
-    journal:"N Engl J Med 2021;385(19):1737-1746",
-    ano:2021,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Lumasiran (RNAi) ↓ 65% oxalato urinário em Hiperoxalúria Primária Tipo 1",icon:"💊"
-  },
-  mainritsan_trial:{
-    label:"MAINRITSAN Trial (Rituximabe vs Azatioprina em ANCA)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1404231",
-    journal:"N Engl J Med 2014;371(19):1771-1780",
-    ano:2014,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Rituximabe superior à azatioprina na manutenção de remissão em vasculite ANCA",icon:"💊"
-  },
-  sotagliflozin_trial:{
-    label:"SOLOIST-WHF Trial (Sotagliflozina na IC)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2030422",
-    journal:"N Engl J Med 2021;384(2):117-128",
-    ano:2021,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Sotagliflozina (dual SGLT1/2) ↓ mortalidade CV e hospitalizações em IC",icon:"💊"
-  },
-  vadadustat_trial:{
-    label:"PRO2TECT Trial (Vadadustat em DRC não-dialítica)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2101791",
-    journal:"N Engl J Med 2021;384(17):1589-1600",
-    ano:2021,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Vadadustat não inferior à darbepoetina em Hb, mas não atingiu critério CV em não-dialíticos",icon:"🔬"
-  },
-  imlifidase_study:{
-    label:"Imlifidase em Transplante Hiperimune (Jordan et al.)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2114694",
-    journal:"N Engl J Med 2022;386(26):2544-2555",
-    ano:2022,tipo:"Estudo Clínico",badge:"STUDY",badgeColor:"#0ea5e9",
-    impacto:"Imlifidase cliva IgG e permite transplante renal em pacientes hiperimunes com prova cruzada positiva",icon:"🔬"
-  },
-  ext1ext2_sethi:{
-    label:"Sethi S et al. — EXT1/EXT2 Membranous Nephropathy (JASN 2019)",
-    url:"https://jasn.asnjournals.org/content/30/6/1123",
-    journal:"JASN 2019;30(6):1123-1136",
-    ano:2019,tipo:"Estudo Observacional",badge:"STUDY",badgeColor:"#0ea5e9",
-    impacto:"EXT1/EXT2 identificados como antígenos da NM lupus-like; associação com autoimunidade e melhor prognóstico renal",icon:"🔬"
-  },
-  penkid_study:{
-    label:"Hollinger A et al. — penKid em LRA (Critical Care 2018)",
-    url:"https://ccforum.biomedcentral.com/articles/10.1186/s13054-018-2007-9",
-    journal:"Critical Care 2018;22(1):189",
-    ano:2018,tipo:"Estudo Observacional",badge:"STUDY",badgeColor:"#0ea5e9",
-    impacto:"Proenkephalin A (penKid) como biomarcador precoce de LRA em choque séptico — independente de massa muscular",icon:"🔬"
-  },
-  evaluate_trial:{
-    label:"EVALUATE Trial (Diálise vs Conservador em Idosos)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2308687",
-    journal:"N Engl J Med 2024",
-    ano:2024,tipo:"Ensaio Clínico",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Diálise não superior ao manejo conservador em qualidade de vida em pacientes > 75 anos com DRC estágio 5",icon:"🔬"
-  },
-  kpmp_project:{
-    label:"KPMP — Kidney Precision Medicine Project",
-    url:"https://www.kpmp.org/",
-    journal:"CJASN 2021;16(9):1418-1428",
-    ano:2021,tipo:"Consórcio de Pesquisa",badge:"REVIEW",badgeColor:"#0ea5e9",
-    impacto:"Atlas molecular renal com single-cell RNA-seq — redefinindo doenças renais para terapias de precisão",icon:"🔬"
-  },
 
   // ===== REFS ADICIONADOS v6.1 =====
   finerenone_2025:{

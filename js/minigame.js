@@ -403,6 +403,9 @@
       popup.className='narrative-popup';
       const isFinale = stage.at >= 100;
       const isBoss = stage.boss === true;
+      const isStun = stage.stun === true;
+      const isStunRecovery = stage.stunRecovery === true;
+
       const bossImgHtml = isBoss ? `
         <div style="text-align:center;margin:15px 0;">
           <img src="assets/nefromancer.png" alt="Arqui-Nefromante" style="width:100%;max-width:500px;border-radius:12px;border:3px solid #a855f7;box-shadow:0 0 30px rgba(168,85,247,0.6),0 0 60px rgba(168,85,247,0.3);">
@@ -410,23 +413,58 @@
         <div style="text-align:center;margin-bottom:10px;">
           <span style="font-size:1.5rem;color:#a855f7;font-weight:900;text-shadow:0 0 20px rgba(168,85,247,0.8);letter-spacing:2px;">ARQUI-NEFROMANTE</span>
         </div>` : '';
+
+      // Estilo e emoji por tipo
+      const cardStyle = isStun
+        ? 'border-color:#ef4444;box-shadow:0 0 40px rgba(239,68,68,0.5);'
+        : isStunRecovery
+          ? 'border-color:#22c55e;box-shadow:0 0 40px rgba(34,197,94,0.4);'
+          : isBoss ? 'border-color:#a855f7;box-shadow:0 0 40px rgba(168,85,247,0.4);' : '';
+      const chStyle = isStun ? 'color:#f87171;' : isStunRecovery ? 'color:#4ade80;' : isBoss ? 'color:#a855f7;' : '';
+      const textStyle = isStun
+        ? 'color:#fecaca;font-style:italic;'
+        : isStunRecovery
+          ? 'color:#bbf7d0;font-style:italic;'
+          : isBoss ? 'style="color:#e9d5ff;font-style:italic;"' : '';
+      const headEmoji = isFinale ? '🏆 ' : isStun ? '⚡ ' : isStunRecovery ? '💚 ' : isBoss ? '💀 ' : '📖 ';
+      const btnLabel = isFinale ? '🏆 Glória Eterna!'
+        : isStun ? '⚡ Suportar o impacto…'
+        : isStunRecovery ? '💪 Retomar o combate!'
+        : isBoss ? '⚔️ Enfrentar o Arqui-Nefromante!'
+        : 'Continuar a Jornada';
+      const btnStyle = isStun
+        ? 'background:linear-gradient(180deg,#ef4444,#b91c1c);border-color:#991b1b;color:#fff;'
+        : isStunRecovery
+          ? 'background:linear-gradient(180deg,#22c55e,#15803d);border-color:#166534;color:#fff;'
+          : isBoss ? 'background:linear-gradient(180deg,#a855f7,#7c3aed);border-color:#6d28d9;color:#fff;text-shadow:0 0 10px rgba(168,85,247,0.5);' : '';
+
       popup.innerHTML=`
-        <div class='narrative-card' ${isBoss ? 'style="border-color:#a855f7;box-shadow:0 0 40px rgba(168,85,247,0.4);"' : ''}>
-          <div class='narr-chapter' ${isBoss ? 'style="color:#a855f7;"' : ''}>${stage.ch}</div>
-          <h3>${isFinale ? '🏆 ' : isBoss ? '💀 ' : '📖 '}${stage.title}</h3>
+        <div class='narrative-card' style="${cardStyle}">
+          <div class='narr-chapter' style="${chStyle}">${stage.ch}</div>
+          <h3>${headEmoji}${stage.title}</h3>
           ${bossImgHtml}
-          <div class='narr-text' ${isBoss ? 'style="color:#e9d5ff;font-style:italic;"' : ''}>${stage.text}</div>
+          <div class='narr-text' style="${textStyle}">${stage.text}</div>
           <div class='narr-progress'>
             <strong>${state.correctTotal}</strong> acertos · Nível <strong>${state.level}</strong> · ${state.queue.length - state.idx} cartas restantes
           </div>
-          <button class='btn ${isBoss ? 'sec' : 'gold'}' data-close-closest=".narrative-popup" ${isBoss ? 'style="background:linear-gradient(180deg,#a855f7,#7c3aed);border-color:#6d28d9;color:#fff;text-shadow:0 0 10px rgba(168,85,247,0.5);"' : ''}>${isFinale ? '🏆 Glória Eterna!' : isBoss ? '⚔️ Enfrentar o Arqui-Nefromante!' : 'Continuar a Jornada'}</button>
+          <button class='btn sec' style="${btnStyle}" data-close-closest=".narrative-popup">${btnLabel}</button>
         </div>
       `;
       document.body.appendChild(popup);
       popup.addEventListener('click',(e)=>{if(e.target===popup) popup.remove();});
-      if(isFinale){
+
+      // Stun: acionar mecânica após popup aparecer
+      if (isStun) {
+        playSound('wrong');
+        setTimeout(() => { if (typeof applyBossStun === 'function') applyBossStun(); }, 300);
+        log('⚡ Atordoado pelo Arqui-Nefromante! Equipamentos bloqueados (93-97).');
+      } else if (isStunRecovery) {
+        playSound('levelup');
+        setTimeout(() => { if (typeof removeStun === 'function') removeStun(); }, 300);
+        log('💚 Recuperado! Equipamentos voltaram a funcionar.');
+      } else if (isFinale) {
         log('🏆 VITÓRIA! Você derrotou o Arqui-Nefromante e salvou os rins do reino!');
-      } else if(isBoss){
+      } else if (isBoss) {
         playSound('boss');
         log(`💀 ${stage.ch}: ${stage.title}`);
       } else {

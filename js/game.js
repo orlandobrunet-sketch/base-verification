@@ -979,7 +979,10 @@
 
     function log(m){const p=document.createElement('p');p.textContent=m;ui.journal.prepend(p);while(ui.journal.children.length>4)ui.journal.lastChild.remove()}
     function total(){
-      const base=Object.values(state.equipment).reduce((a,i)=>(a.atk+=i.atk,a.def+=i.def,a.kno+=i.kno,a.luck+=i.luck,a),{atk:0,def:0,kno:0,luck:0});
+      // Durante stun do boss, equipamentos ficam paralisados — apenas bônus do personagem contam
+      const base = state.bossStunActive
+        ? {atk:0, def:0, kno:0, luck:0}
+        : Object.values(state.equipment).reduce((a,i)=>(a.atk+=i.atk,a.def+=i.def,a.kno+=i.kno,a.luck+=i.luck,a),{atk:0,def:0,kno:0,luck:0});
       if(state.character && characters[state.character]){
         const c=characters[state.character];
         base.atk+=c.bonusAtk||0; base.def+=c.bonusDef||0;
@@ -1038,17 +1041,19 @@
       return fallback;
     }
 
+    // Capítulos baseados em correctTotal (0-100) — 5 faixas de 20 acertos cada.
+    // Boss começa em 90 (BOSS_START_CORRECT), por isso o capítulo final inicia em 80.
     const chapters = [
-      { lv:1,  title:"Prólogo — As Criptas da Creatinina",       goal:"Estude os fundamentos da nefrologia e sobreviva às primeiras cartas da jornada." },
-      { lv:4,  title:"Capítulo II — O Vale da Albuminúria",       goal:"Consolide a estratificação de risco renal e domine a terapia nefroprotetora essencial." },
-      { lv:8,  title:"Capítulo III — Torre das Glomerulopatias",  goal:"Domine os sinais de gravidade glomerular e tome decisões de intervenção com precisão." },
-      { lv:12, title:"Capítulo IV — Trono Cardiorrenal",          goal:"Integre as terapias complexas do síndrome cardiorrenal e mantenha consistência clínica avançada." },
-      { lv:15, title:"Capítulo Final — O Arqui-Nefromante",       goal:"Alcance o domínio supremo da nefrologia e derrote o Arqui-Nefromante de uma vez por todas." }
+      { at:0,  title:"Prólogo — As Criptas da Creatinina",       goal:"Estude os fundamentos da nefrologia e sobreviva às primeiras cartas da jornada." },
+      { at:20, title:"Capítulo II — O Vale da Albuminúria",       goal:"Consolide a estratificação de risco renal e domine a terapia nefroprotetora essencial." },
+      { at:40, title:"Capítulo III — Torre das Glomerulopatias",  goal:"Domine os sinais de gravidade glomerular e tome decisões de intervenção com precisão." },
+      { at:60, title:"Capítulo IV — Trono Cardiorrenal",          goal:"Integre as terapias complexas do síndrome cardiorrenal e mantenha consistência clínica avançada." },
+      { at:80, title:"Capítulo Final — O Arqui-Nefromante",       goal:"Alcance o domínio supremo da nefrologia e derrote o Arqui-Nefromante de uma vez por todas." }
     ];
 
     function chapterMeta(){
       let current=chapters[0];
-      for(const c of chapters){ if(state.level>=c.lv) current=c; }
+      for(const c of chapters){ if((state.correctTotal||0)>=c.at) current=c; }
       return current;
     }
 
@@ -1157,8 +1162,13 @@
       const synergyBanner = _synergyActive
         ? `<div style='text-align:center;margin-top:6px;padding:5px 10px;background:linear-gradient(135deg,rgba(255,215,0,0.15),rgba(255,140,0,0.1));border-radius:8px;border:1px solid rgba(255,215,0,0.5);font-size:0.7rem;color:#ffd700;animation:legendaryPassiveGlow 3s ease-in-out infinite'>✨ Sinergia Lendária — +20% XP</div>`
         : '';
+      // Banner de stun: sobrepõe equipamentos quando o boss atordoou o herói
+      const stunBanner = state.bossStunActive
+        ? `<div class="equip-stun-overlay">⚡ Equipamentos paralisados pelo veneno urêmico!<br><span style="font-size:0.72rem;opacity:0.8;">Recuperação na questão 98</span></div>`
+        : '';
+
       // Desktop: no final da lista de equipamentos — um único innerHTML= para evitar reflow duplo
-      ui.equipList.innerHTML = slotsHTML + `<div style='text-align:center;margin-top:8px;padding:6px 10px;background:rgba(42,74,122,0.2);border-radius:8px;border:1px solid rgba(42,74,122,0.4);font-size:0.75rem;color:#b0c4e8'>${totalHTML}</div>${synergyBanner}`;
+      ui.equipList.innerHTML = stunBanner + slotsHTML + `<div style='text-align:center;margin-top:8px;padding:6px 10px;background:rgba(42,74,122,0.2);border-radius:8px;border:1px solid rgba(42,74,122,0.4);font-size:0.75rem;color:#b0c4e8'>${totalHTML}</div>${synergyBanner}`;
       // Mobile: logo abaixo do herói
       const equipTotalMobile = document.getElementById('equipTotalMobile');
       if(equipTotalMobile) {

@@ -178,13 +178,28 @@
         });
       }
 
+      // De-duplicação por título normalizado: mantém o mais completo (desbloqueado > bloqueado,
+      // depois o que tiver mais campos preenchidos — resumo/conclusao/curiosidade)
+      const _norm = s => (s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+      const _seen = new Map();
+      const _score = it => (!it.locked ? 100 : 0) + (it.resumo ? 4 : 0) + (it.conclusao ? 2 : 0) + (it.curiosidade ? 1 : 0);
+      const deduped = [];
+      for (const it of items) {
+        const k = _norm(it.label);
+        if (!_seen.has(k)) { _seen.set(k, deduped.length); deduped.push(it); }
+        else {
+          const idx = _seen.get(k);
+          if (_score(it) > _score(deduped[idx])) deduped[idx] = it;
+        }
+      }
+
       // Desbloqueados primeiro (A-Z), depois bloqueados
-      items.sort((a, b) => {
+      deduped.sort((a, b) => {
         if (a.locked !== b.locked) return a.locked ? 1 : -1;
         return a.label.localeCompare(b.label, 'pt', { sensitivity: 'base' });
       });
 
-      return items;
+      return deduped;
     }
 
     function _bibRenderList(query) {
