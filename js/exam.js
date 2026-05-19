@@ -178,6 +178,7 @@
       _clearExamState();
       _examState = null;
       document.querySelectorAll('.exam-overlay').forEach(e => e.remove());
+      document.getElementById('mobileStatusBar')?.classList.remove('active');
       document.getElementById('welcomeScreen')?.classList.remove('hidden');
       refreshWelcomeSave();
       if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
@@ -295,6 +296,7 @@
       _clearExamState();
       _examState = null;
       document.querySelectorAll('.exam-overlay').forEach(e => e.remove());
+      document.getElementById('mobileStatusBar')?.classList.remove('active');
       document.getElementById('welcomeScreen')?.classList.remove('hidden');
       refreshWelcomeSave();
       if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();

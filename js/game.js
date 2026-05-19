@@ -2489,6 +2489,8 @@
         ws.style.transition = '';
         ws.classList.remove('hidden');
       }
+      // Garantir que a barra de status mobile não sobreponha os menus da welcome screen
+      document.getElementById('mobileStatusBar')?.classList.remove('active');
       refreshWelcomeSave();
       if (typeof startWelcomeMusic === 'function' && musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
     }
@@ -2628,6 +2630,8 @@
           if (_heroBtn) _heroBtn.style.display = mainAppVisible ? 'flex' : 'none';
           if (mainAppVisible) closeDrawer();
           if (welcomeVisible) refreshWelcomeSave();
+          // Ocultar barra de status ao sair do jogo para qualquer tela
+          if (!mainAppVisible) document.getElementById('mobileStatusBar')?.classList.remove('active');
         }
       });
       observer.observe(mainAppEl, { attributes: true, attributeFilter: ['class'] });
