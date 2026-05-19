@@ -182,12 +182,33 @@
       // depois o que tiver mais campos preenchidos — resumo/conclusao/curiosidade)
       const _norm = s => (s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
       const _seen = new Map();
+      const _seenJournal = new Map();
       const _score = it => (!it.locked ? 100 : 0) + (it.resumo ? 4 : 0) + (it.conclusao ? 2 : 0) + (it.curiosidade ? 1 : 0);
       const deduped = [];
       for (const it of items) {
+        // Chave primária: label normalizado
         const k = _norm(it.label);
-        if (!_seen.has(k)) { _seen.set(k, deduped.length); deduped.push(it); }
-        else {
+        // Chave secundária: jornal normalizado (captura mesma ref com títulos diferentes)
+        const jk = it.jornal ? _norm(it.jornal) : null;
+
+        // Verifica se já existe pelo journal (ex: KDIGO GN com títulos PT/EN diferentes)
+        if (jk && _seenJournal.has(jk)) {
+          const idx = _seenJournal.get(jk);
+          if (_score(it) > _score(deduped[idx])) {
+            // Atualiza tanto o item quanto o mapeamento de label
+            _seen.delete(_norm(deduped[idx].label));
+            deduped[idx] = it;
+            _seen.set(k, idx);
+            _seenJournal.set(jk, idx);
+          }
+          continue;
+        }
+
+        if (!_seen.has(k)) {
+          _seen.set(k, deduped.length);
+          if (jk) _seenJournal.set(jk, deduped.length);
+          deduped.push(it);
+        } else {
           const idx = _seen.get(k);
           if (_score(it) > _score(deduped[idx])) deduped[idx] = it;
         }
