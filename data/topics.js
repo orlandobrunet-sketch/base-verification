@@ -16255,7 +16255,7 @@ const topics = [
       "Necrose cortical bilateral por coagulação intravascular disseminada"
     ],
     "ans": 1,
-    "exp": "A alternativa 'Vasodilatação sistêmica com vasoconstrição renal relativa, h...' é a melhor resposta porque a LRA associada à sepse é predominantemente multifatorial, com disfunção hemodinâmica e microcirculatória, inflamação endotelial e alteração da perfusão renal; a vasodilatação sistêmica com redistribuição do fluxo e perfusão renal ineficaz ajuda a explicar a queda da filtração glomerular. Embora haja participação de lesão tubular e mediadores inflamatórios, isso não torna a “lesão tubular direta” a melhor descrição única entre as opções. As alternativas A, C e D descrevem mecanismos específicos e menos prováveis no contexto típico de sepse, não representando a causa predominante da LRA séptica.",
+    “exp”: “B) é a melhor resposta. A LRA séptica é de mecanismo multifatorial: vasodilatação sistêmica com redistribuição do fluxo, vasoconstrição renal relativa, hipoperfusão microcirculatória e inflamação endotelial ativa explicam a queda da filtração glomerular. Embora lesão tubular e mediadores inflamatórios participem, a 'lesão tubular direta' isolada não é a descrição mais abrangente e aceita. A) trombose bilateral por microêmbolos, C) glomerulonefrite por imunocomplexos e D) necrose cortical por CIVD são mecanismos específicos e muito menos frequentes no cenário típico de sepse.”,
     "diff": "easy",
     "cat": "uti"
   },
