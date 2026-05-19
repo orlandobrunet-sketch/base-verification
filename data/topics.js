@@ -12796,22 +12796,22 @@ const topics = [
     "cat": "glomerular"
   },
   {
-    "t": "Glomerulopatias",
+    "t": "Nefropatia membranosa primária: indicação de imunossupressão",
     "qid": "2198d3ba",
-    "q": "Homem de 52 anos com proteinúria 6,8 g/24h, albumina 2,3 g/dL, TFG 58 mL/min. Biópsia: glomerulonefrite membranosa (GNM). IF: depósitos granulares subepiteliais de IgG e C3. Pesquisa de PLA2R: positiva (anti-PLA2R 148 U/mL). Qual o critério de tratamento imunossupressor e a primeira linha recomendada?",
+    "q": "Homem de 52 anos com proteinúria 6,8 g/24h, albumina 2,3 g/dL e TFGe 58 mL/min. Biópsia: nefropatia membranosa, com depósitos granulares subepiteliais de IgG e C3. Anti-PLA2R positivo em título elevado. Qual é a melhor interpretação terapêutica?",
     "refs": [
       "mentor_trial",
       "kdigo_gn"
     ],
     "opts": [
-      "Observar 6 meses (remissão espontânea 30-35%); imunossupressão se proteinúria persistente > 3,5 g após 6 meses",
-      "Imunossupressão imediata pelo título elevado de anti-PLA2R",
-      "Ciclosporina + prednisona como única opção",
-      "Clorambucil + metilprednisolona (protocolo Ponticelli) como padrão-ouro atual"
+      "Observar por 6 meses sem imunossupressão, pois a remissão espontânea é a regra mesmo em alto risco",
+      "Classificar como maior risco de progressão e considerar imunossupressão, sendo rituximabe uma opção preferencial de primeira linha",
+      "Usar ciclosporina associada a prednisona como única opção recomendada",
+      "Usar clorambucil e metilprednisolona como padrão-ouro atual para todos os pacientes"
     ],
-    "ans": 0,
-    "exp": "A GNM primária tem 30-35% de remissão espontânea em 12-24 meses. Critérios de tratamento (regra dos terços de Cattran): proteinúria persistente > 4 g/24h com hipoalbuminemia ou complicações nefróticas, deterioração da função renal, ou sintomas nefróticos incapacitantes. Rituximabe (MENTOR trial, NEJM 2019) mostrou remissão sustentada superior à ciclosporina com melhor perfil de segurança. Monitorizar anti-PLA2R para guiar resposta.",
-    "diff": "medium",
+    "ans": 1,
+    "exp": "O quadro é compatível com nefropatia membranosa primária anti-PLA2R positiva com proteinúria nefrótica, hipoalbuminemia importante, anti-PLA2R em título elevado e TFGe reduzida — configurando maior risco de progressão. Nesses pacientes, não se deve adotar observação passiva como única conduta: o manejo inclui suporte otimizado (IECA/BRA, controle de PA e edema) e avaliação para imunossupressão. A decisão de imunossupressão é baseada no conjunto do risco de progressão (proteinúria persistente, albumina, TFGe e título de anti-PLA2R) — não no anti-PLA2R isolado. Rituximabe é opção preferencial de primeira linha em risco moderado/alto (MENTOR trial, NEJM 2019). Esquemas com ciclofosfamida e glicocorticoide continuam sendo alternativa importante em risco alto ou muito alto. Inibidores de calcineurina podem reduzir proteinúria, mas têm maior risco de recaída após suspensão e não são a única opção. Clorambucil não é o padrão-ouro atual.",
+    "diff": "hard",
     "cat": "glomerular"
   },
   {
