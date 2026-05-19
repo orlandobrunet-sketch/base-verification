@@ -16255,7 +16255,7 @@ const topics = [
       "Necrose cortical bilateral por coagulação intravascular disseminada"
     ],
     "ans": 1,
-    “exp”: “B) é a melhor resposta. A LRA séptica é de mecanismo multifatorial: vasodilatação sistêmica com redistribuição do fluxo, vasoconstrição renal relativa, hipoperfusão microcirculatória e inflamação endotelial ativa explicam a queda da filtração glomerular. Embora lesão tubular e mediadores inflamatórios participem, a 'lesão tubular direta' isolada não é a descrição mais abrangente e aceita. A) trombose bilateral por microêmbolos, C) glomerulonefrite por imunocomplexos e D) necrose cortical por CIVD são mecanismos específicos e muito menos frequentes no cenário típico de sepse.”,
+    "exp": "B) é a melhor resposta. A LRA séptica é de mecanismo multifatorial: vasodilatação sistêmica com redistribuição do fluxo, vasoconstrição renal relativa, hipoperfusão microcirculatória e inflamação endotelial ativa explicam a queda da filtração glomerular. Embora lesão tubular e mediadores inflamatórios participem, a 'lesão tubular direta' isolada não é a descrição mais abrangente e aceita. A) trombose bilateral por microêmbolos, C) glomerulonefrite por imunocomplexos e D) necrose cortical por CIVD são mecanismos específicos e muito menos frequentes no cenário típico de sepse.",
     "diff": "easy",
     "cat": "uti"
   },
