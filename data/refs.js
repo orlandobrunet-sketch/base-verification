@@ -258,7 +258,10 @@
     badge:"RCT",
     badgeColor:"#10b981",
     impacto:"Rituximabe não inferior a ciclofosfamida na vasculite ANCA com LRA",
-    icon:"💊"
+    icon:"💊",
+    resumo:"ECR (RITUXVAS, n=44) em vasculite ANCA recém-diagnosticada com envolvimento renal (TFGe reduzida), comparando rituximabe (2 pulsos IV) + 2 pulsos de ciclofosfamida vs 15 pulsos de ciclofosfamida IV. Remissão sustentada aos 12 meses: 76% vs 82% (não inferior). Publicado como trial-irmão do RAVE no mesmo número do NEJM de 2010.",
+    conclusao:"RITUXVAS e RAVE juntos estabeleceram rituximabe como alternativa à ciclofosfamida na indução da vasculite ANCA, com eficácia equivalente e sem necessidade de curso prolongado de ciclofosfamida.",
+    curiosidade:"A publicação simultânea de RITUXVAS e RAVE no mesmo número do NEJM cobriu os dois cenários clínicos principais — doença recidivante (RAVE) e doença nova com comprometimento renal (RITUXVAS) — tornando a evidência para rituximabe difícil de contestar."
   },
   rave_study:{
     label:"RAVE Trial",
@@ -374,7 +377,10 @@
     badge:"RCT",
     badgeColor:"#10b981",
     impacto:"↓39% desfecho renal composto · ↓31% mortalidade · Benefício independente de diabetes",
-    icon:"💊"
+    icon:"💊",
+    resumo:"ECR multicêntrico, n=4.304, dapagliflozina 10 mg/dia vs placebo em DRC com ou sem DM2; TFGe 25–75 e ACR 200–5000 mg/g. Desfecho primário (queda sustentada ≥50% TFGe, DRCT ou morte renal/CV): 9,2% vs 14,5%; HR 0,61, IC 95% 0,51–0,72, P<0,001; NNT 19. Reduziu morte por qualquer causa: HR 0,69. Interrompido precocemente por eficácia.",
+    conclusao:"DAPA-CKD foi o trial pivô que mostrou nefroproteção dos iSGLT2 independente de diabetes em DRC proteinúrica.",
+    curiosidade:"32,5% da coorte não tinha DM2, dado que ajudou a deslocar os iSGLT2 de fármacos 'antidiabéticos' para fármacos cardiorrenais."
   },
   kdigo_dialise:{
     label:"KDOQI Hemodialysis Adequacy 2015",
@@ -521,7 +527,10 @@
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa052187",
     journal:"N Engl J Med 2005;353(25):2643-2653",
     ano:2005,tipo:"Estudo de Coorte (seguimento RCT)",badge:"COORTE",badgeColor:"#0ea5e9",
-    impacto:"Memória metabólica confirmada: benefício do controle intensivo do DCCT persistiu 11 anos após o estudo — ↓57% doença CV",icon:"📖"
+    impacto:"Memória metabólica confirmada: benefício do controle intensivo do DCCT persistiu 11 anos após o estudo — ↓57% doença CV",icon:"📖",
+    resumo:"Seguimento observacional do DCCT (estudo de insulinoterapia intensiva vs convencional em DM1, 1983–1993). No EDIC, 11 anos após a convergência do controle glicêmico entre os grupos, o grupo de controle intensivo do DCCT ainda apresentava 57% menos doença cardiovascular e progressão mais lenta de complicações microvasculares — conceito de memória metabólica.",
+    conclusao:"O EDIC demonstrou que o controle glicêmico precoce e intensivo em DM1 gera benefício CV e microvascular duradouro muito além do período de intervenção — reforçando a importância de iniciar controle rigoroso cedo no curso da doença.",
+    curiosidade:"A memória metabólica parece mediada por modificações epigenéticas (metilação de DNA, modificações de histonas) induzidas pela hiperglicemia crônica — alterações que persistem mesmo após a normalização glicêmica e continuam a dirigir o comportamento das células vasculares e renais."
   },
   // --- SGLT2 ---
   canvas_program:{
@@ -610,7 +619,10 @@
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1803537",
     journal:"N Engl J Med 2020;382(7):622-631",
     ano:2020,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Plasmaférese NÃO reduziu morte ou DRCT em vasculite ANCA grave — mudou prática clínica abandonando plasmaférese de rotina",icon:"🔬"
+    impacto:"Plasmaférese NÃO reduziu morte ou DRCT em vasculite ANCA grave — mudou prática clínica abandonando plasmaférese de rotina",icon:"🔬",
+    resumo:"ECR com delineamento 2×2 fatorial (n=704) em vasculite ANCA grave (GPA ou PAM com TFGe <50 ou hemorragia alveolar). Comparou plasmaférese (7 sessões) vs nenhuma e glicocorticoide padrão vs reduzido. Desfecho primário (morte ou DRCT, mediana 2,9 anos): plasmaférese não reduziu o risco (HR 0,86, IC 95% 0,65–1,13). Glicocorticoide reduzido foi não inferior ao padrão e associado a menos infecções graves.",
+    conclusao:"PEXIVAS encerrou o uso rotineiro de plasmaférese em vasculite ANCA grave e sustentou protocolos de redução de corticoide — ambos os paradigmas vigoravam sem suporte de trials de alta qualidade.",
+    curiosidade:"A hipótese da plasmaférese era remover ANCA circulante para reduzir ativação de neutrófilos. O PEXIVAS mostrou que, em desfechos clinicamente relevantes (morte e DRCT), esse mecanismo não se traduz em benefício — questionando o papel dos ANCA circulantes como driver autônomo do dano glomerular."
   },
   // --- IRA ---
   furosemide_stress_test:{
@@ -684,14 +696,20 @@
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1812389",
     journal:"N Engl J Med 2019;380(4):347-357",
     ano:2019,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Dapagliflozin ↓17% hospitalização por IC e ↓47% progressão renal em DM2 com múltiplos perfis de risco CV",icon:"🔬"
+    impacto:"Dapagliflozin ↓17% hospitalização por IC e ↓47% progressão renal em DM2 com múltiplos perfis de risco CV",icon:"🔬",
+    resumo:"ECR (n=17.160), dapagliflozina 10 mg vs placebo em DM2 — maior coorte de iSGLT2, incluindo pacientes com ASCVD estabelecida e com múltiplos fatores de risco (prevenção primária). MACE: HR 0,93 (não inferior, não superior). Desfecho cardíaco composto (hospitalização por IC + morte CV): HR 0,83, P=0,005. Progressão renal (queda ≥40% TFGe ou DRCT): HR 0,53.",
+    conclusao:"DECLARE-TIMI 58 expandiu a indicação dos iSGLT2 ao incluir pacientes sem ASCVD estabelecida, demonstrando benefício cardíaco e renal em perfis de risco menos extremos.",
+    curiosidade:"O DECLARE incluiu ~59% de pacientes sem ASCVD estabelecida — diferença fundamental em relação ao EMPA-REG e CANVAS, restritos a alto risco CV, tornando-o o trial mais representativo da população real de DM2 e o que mais informou a expansão das indicações nas diretrizes."
   },
   empa_reg_outcome:{
     label:"Zinman B et al. — EMPA-REG OUTCOME (NEJM 2015)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1504720",
     journal:"N Engl J Med 2015;373(22):2117-2128",
     ano:2015,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Empagliflozin ↓38% morte CV e ↓35% hospitalização por IC em DM2 alto risco CV — primeiro SGLT2i com benefício CV",icon:"🔬"
+    impacto:"Empagliflozin ↓38% morte CV e ↓35% hospitalização por IC em DM2 alto risco CV — primeiro SGLT2i com benefício CV",icon:"🔬",
+    resumo:"ECR fase III (n=7.020), empagliflozina 10 mg ou 25 mg vs placebo em DM2 com alto risco cardiovascular estabelecido. Desfecho primário (MACE): HR 0,86, IC 95% 0,74–0,99, principalmente pela redução de morte CV (HR 0,62). Hospitalização por IC: HR 0,65. Também reduziu incidência ou piora de nefropatia: HR 0,61. Primeiro trial de iSGLT2 a demonstrar benefício CV — marcou a transição da classe de hipoglicemiante para cardiorrenal.",
+    conclusao:"EMPA-REG OUTCOME foi o trial que iniciou a revolução cardiorrenal dos iSGLT2, demonstrando benefício CV e renal além do controle glicêmico em DM2 de alto risco.",
+    curiosidade:"A redução de morte CV e hospitalização por IC foi mais rápida do que seria esperado por efeito aterosclerótico — sugerindo mecanismo hemodinâmico direto (natriurese, redução de pré e pós-carga) independente do controle glicêmico."
   },
   leader_trial:{
     label:"Marso SP et al. — LEADER (NEJM 2016)",
@@ -798,7 +816,10 @@
     url:"https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2780319",
     journal:"JAMA Intern Med 2021;181(1):81-92",
     ano:2021,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Bolus de solução hipertônica: risco MAIOR de hipercorreção que infusão contínua — orienta protocolo de correção da hiponatremia",icon:"🔬"
+    impacto:"Bolus de solução hipertônica: risco MAIOR de hipercorreção que infusão contínua — orienta protocolo de correção da hiponatremia",icon:"🔬",
+    resumo:"ECR (n=178) comparando bolus de NaCl 3% (150 mL em 20 min, repetível até 3 vezes) vs infusão contínua de NaCl 3% em hiponatremia grave (<125 mEq/L ou sintomática ≤130). Hipercorreção (elevação >12 mEq/L em 24h ou >18 mEq/L em 48h) ocorreu em 23,6% no grupo bolus vs 10,7% na infusão contínua. Ambos foram eficazes na correção inicial, mas a infusão contínua permitiu controle mais fino.",
+    conclusao:"O SALSA questiona o uso irrestrito de bolus como protocolo-padrão: embora indicado na emergência sintomática aguda, o bolus repetido sem monitorização rigorosa aumenta o risco de hipercorreção e síndrome de desmielinização osmótica.",
+    curiosidade:"O bolus de NaCl 3% havia sido adotado amplamente com base em facilidade e eficácia sintomática rápida — o SALSA foi o primeiro RCT a mostrar que conveniência pode ter custo em segurança, retomando a discussão de protocolos individualizados."
   },
   protect_trial:{
     label:"Rovin BH et al. — PROTECT (Lancet 2023)",
@@ -835,7 +856,10 @@
     url:"https://www.kidney-international.org/article/S0085-2538(15)30396-7/fulltext",
     journal:"Kidney Int 2013;84(6):1079-1089",
     ano:2013,tipo:"Consenso Clínico",badge:"CONSENSO",badgeColor:"#f59e0b",
-    impacto:"Definição e classificação da C3G: C3GN (depósito difuso C3) e DDD (depósito denso intramembranoso), papel do complemento",icon:"⚠️"
+    impacto:"Definição e classificação da C3G: C3GN (depósito difuso C3) e DDD (depósito denso intramembranoso), papel do complemento",icon:"⚠️",
+    resumo:"Consenso internacional que unificou o conceito de C3 glomerulopatia (C3G) como entidade definida por C3 glomerular predominante (≥2+ acima de qualquer imunoglobulina na imunofluorescência) decorrente de disregulação da via alternativa do complemento. Inclui dois subtipos: C3GN (depósitos variados ao ME) e doença de depósitos densos (DDD, depósitos intramembranosos densos ao ME), que compartilham o mecanismo de disregulação do complemento.",
+    conclusao:"A classificação C3G unificou entidades anteriormente dispersas (MPGN tipo II, MPGN com C3 predominante) sob um marco etiológico comum — a disregulação do complemento — orientando investigação laboratorial e potenciais alvos terapêuticos.",
+    curiosidade:"O fator nefrítico C3 (C3NeF) é um autoanticorpo IgG que estabiliza a C3-convertase alternativa (C3bBb), impedindo sua inativação e perpetuando a ativação do complemento — presente em ~50% dos casos de DDD e em menor proporção da C3GN."
   },
   c3g_servais:{
     label:"Servais A et al. — C3 Glomerulopathy Complement (Kidney Int 2012)",
@@ -1101,14 +1125,20 @@
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2305361",
     journal:"N Engl J Med 2023;389(1):22-32",
     ano:2023,tipo:"Ensaio Clínico Fase II",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Sibeprenlimabe (anti-APRIL) ↓ proteinúria 47% em Nefropatia por IgA",icon:"💊"
+    impacto:"Sibeprenlimabe (anti-APRIL) ↓ proteinúria 47% em Nefropatia por IgA",icon:"💊",
+    resumo:"ECR fase II (n=155), sibeprenlimabe (anticorpo monoclonal anti-APRIL) vs placebo em IgAN com proteinúria ≥1 g/dia apesar de SRAA otimizado. APRIL (A Proliferation-Inducing Ligand) é um membro da família TNF que estimula a produção de IgA1 galactose-deficiente via receptor TACI em células B. Reduziu proteinúria em 47% vs aumento de 5% no placebo aos 12 meses.",
+    conclusao:"VISIONARY validou o bloqueio de APRIL como abordagem upstream na IgAN, atuando sobre o estímulo à produção do autoanticorpo patogênico — base para o trial de fase 3 em andamento.",
+    curiosidade:"O anti-APRIL difere do anti-BAFF (belimumabe no lúpus) por ser mais seletivo: APRIL tem papel crítico na switch de IgA nas mucosas — a seletividade pode traduzir-se em menor imunossupressão sistêmica que o bloqueio mais amplo do eixo BAFF."
   },
   pisces_study:{
     label:"PISCES Trial (Ômega-3 em HD)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2407495",
     journal:"N Engl J Med 2025",
     ano:2025,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Ômega-3 purificado ↓ arritmias ventriculares e morte súbita em hemodiálise",icon:"💊"
+    impacto:"Ômega-3 purificado ↓ arritmias ventriculares e morte súbita em hemodiálise",icon:"💊",
+    resumo:"ECR fase III avaliando ácidos graxos ômega-3 purificados (EPA/DHA) em pacientes em hemodiálise, população com altíssima incidência de morte súbita cardíaca e arritmias ventriculares. Demonstrou redução de arritmias ventriculares e morte súbita. Publicado no NEJM em 2025.",
+    conclusao:"PISCES fornece base para considerar ômega-3 como estratégia de redução de risco arrítmico em hemodiálise — população de altíssimo risco cardiovascular para a qual as opções farmacológicas são limitadas pela DRC avançada.",
+    curiosidade:"Pacientes em hemodiálise têm risco de morte súbita cardíaca ~50 vezes maior que a população geral — contribuem as alterações eletrolíticas peri-diálise (hipocalemia, hipomagnesia), uremia, calcificação vascular e disfunção autonômica associadas à DRC-5D."
   },
   roxadustat_trial:{
     label:"Roxadustat ANDES/PYRENEES Trials",

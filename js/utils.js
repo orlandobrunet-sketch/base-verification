@@ -135,6 +135,7 @@
         Object.entries(refsDB).forEach(([key, r]) => {
           const isUnlocked = unlockedRefs.has(key);
           items.push({
+            _bibKey:    key,                                          // chave única para dedup
             label:      isUnlocked ? (r.label || '') : 'Referência bloqueada',
             autores:    '',
             jornal:     isUnlocked ? (r.journal || '') : '',
@@ -159,6 +160,7 @@
         nefroArticles.forEach((a, idx) => {
           const isUnlocked = unlockedIdxs.includes(idx);
           items.push({
+            _bibKey:    `__art_${idx}`,                              // chave única para dedup
             label:      isUnlocked ? (a.titulo || '') : 'Artigo bloqueado',
             autores:    isUnlocked ? (a.autores || '') : '',
             jornal:     isUnlocked ? (a.jornal  || '') : '',
@@ -178,35 +180,18 @@
         });
       }
 
-      // De-duplicação por título normalizado: mantém o mais completo (desbloqueado > bloqueado,
-      // depois o que tiver mais campos preenchidos — resumo/conclusao/curiosidade)
-      const _norm = s => (s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-      const _seen = new Map();
-      const _seenJournal = new Map();
+      // De-duplicação por _bibKey (chave única da fonte).
+      // Mantém o mais completo quando a mesma chave aparece mais de uma vez
+      // (ex: entrada duplicada na refsDB). NÃO faz dedup por journal — journals
+      // genéricos como "New England Journal of Medicine" são compartilhados por
+      // dezenas de refs distintas e colapsar por journal eliminaria a maioria delas.
       const _score = it => (!it.locked ? 100 : 0) + (it.resumo ? 4 : 0) + (it.conclusao ? 2 : 0) + (it.curiosidade ? 1 : 0);
+      const _seen = new Map();
       const deduped = [];
       for (const it of items) {
-        // Chave primária: label normalizado
-        const k = _norm(it.label);
-        // Chave secundária: jornal normalizado (captura mesma ref com títulos diferentes)
-        const jk = it.jornal ? _norm(it.jornal) : null;
-
-        // Verifica se já existe pelo journal (ex: KDIGO GN com títulos PT/EN diferentes)
-        if (jk && _seenJournal.has(jk)) {
-          const idx = _seenJournal.get(jk);
-          if (_score(it) > _score(deduped[idx])) {
-            // Atualiza tanto o item quanto o mapeamento de label
-            _seen.delete(_norm(deduped[idx].label));
-            deduped[idx] = it;
-            _seen.set(k, idx);
-            _seenJournal.set(jk, idx);
-          }
-          continue;
-        }
-
+        const k = it._bibKey;
         if (!_seen.has(k)) {
           _seen.set(k, deduped.length);
-          if (jk) _seenJournal.set(jk, deduped.length);
           deduped.push(it);
         } else {
           const idx = _seen.get(k);
@@ -246,9 +231,10 @@
       if (!list) return;
 
       if (count) {
-        const totalRefs = unlockedItems.filter(it => it._lockType === 'ref').length + lockedRefs.length;
+        // Totais reais direto das fontes (evita distorção por dedup)
+        const totalRefs = (typeof refsDB === 'object' && refsDB) ? Object.keys(refsDB).length : 0;
+        const totalArt  = (typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles)) ? nefroArticles.length : 0;
         const refsOpen  = unlockedItems.filter(it => it._lockType === 'ref').length;
-        const totalArt  = unlockedItems.filter(it => it._lockType === 'article').length + lockedArts.length;
         const artOpen   = unlockedItems.filter(it => it._lockType === 'article').length;
         count.textContent = q
           ? `${filtered.length} resultado${filtered.length !== 1 ? 's' : ''}`
@@ -264,11 +250,14 @@
         : '';
 
       // Refs bloqueadas: card único de resumo (não lista individual)
-      const hintCard = (!q && lockedRefs.length > 0)
+      // Usa o total real de refsDB menos as já desbloqueadas para exibir a contagem correta
+      const _totalRefsReal = (typeof refsDB === 'object' && refsDB) ? Object.keys(refsDB).length : 0;
+      const _lockedRefsCount = _totalRefsReal - unlockedItems.filter(it => it._lockType === 'ref').length;
+      const hintCard = (!q && _lockedRefsCount > 0)
         ? `<div class="bib-card bib-hint-card">
   <div class="bib-card-top">
     <span class="bib-card-icon">🔒</span>
-    <span class="bib-card-label">${lockedRefs.length} referência${lockedRefs.length !== 1 ? 's' : ''} ainda bloqueada${lockedRefs.length !== 1 ? 's' : ''}</span>
+    <span class="bib-card-label">${_lockedRefsCount} referência${_lockedRefsCount !== 1 ? 's' : ''} ainda bloqueada${_lockedRefsCount !== 1 ? 's' : ''}</span>
   </div>
   <div class="bib-unlock-hint">Acerte mais questões para revelar as referências que elas citam</div>
 </div>`
