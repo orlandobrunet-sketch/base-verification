@@ -8,7 +8,10 @@
     badge:"TEXTBOOK",
     badgeColor:"#64748b",
     impacto:"Livro-texto de referência em nefrologia — fisiologia, fisiopatologia e manejo clínico das doenças renais",
-    icon:"📚"
+    icon:"📚",
+    resumo:"Tratado enciclopédico de nefrologia em dois volumes, cobrindo fisiologia glomerular e tubular, fisiopatologia e manejo clínico de LRA, DRC, glomerulopatias, distúrbios hidroeletrolíticos, hipertensão renal, transplante e diálise. A edição de 2024 incorpora atualizações em iSGLT2, novos biomarcadores e imunossupressão nas glomerulopatias.",
+    conclusao:"Referência fundamental da nefrologia — base para compreensão fisiopatológica antes de interpretar qualquer diretriz clínica.",
+    curiosidade:"Barry Brenner formulou a hipótese do néfron único: a redução da massa nefrônica induz hiperfiltração compensatória nos néfrons remanescentes, acelerando a progressão da DRC — conceito que fundamenta o uso de IECA e BRA na nefroproteção."
   },
   harrisons_principles:{
     label:"Harrison's Principles of Internal Medicine",
@@ -30,7 +33,10 @@
     badge:"GUIDELINE",
     badgeColor:"#6366f1",
     impacto:"Padrão global de manejo da DRC",
-    icon:"📋"
+    icon:"📋",
+    resumo:"Classifica a DRC pelo cruzamento de categorias de TFGe (G1–G5) com albuminúria (A1 <30, A2 30–300, A3 >300 mg/g). A versão 2024 recomenda iSGLT2 para pacientes com TFGe ≥20 e ACR ≥200 mg/g, ou com insuficiência cardíaca independentemente da albuminúria; sugere considerar o uso em TFGe 20–45 com ACR <200 mg/g. Cistatina C é incorporada para melhorar a acurácia da estimativa de TFG em situações selecionadas.",
+    conclusao:"O sistema CGA (Causa, TFG, Albuminúria) é o padrão de estadiamento e risco na DRC; a atualização 2024 consolida os iSGLT2 como pilar terapêutico nefroprotetor.",
+    curiosidade:"A inclusão dos iSGLT2 na diretriz 2024 representa a primeira vez que uma classe de fármacos originalmente desenvolvida como hipoglicemiante se torna recomendação-padrão para nefroproteção independente da presença de diabetes."
   },
   kdigo_aki:{
     label:"KDIGO AKI 2012",
@@ -41,7 +47,10 @@
     badge:"GUIDELINE",
     badgeColor:"#6366f1",
     impacto:"Critérios universais de diagnóstico e estadiamento da LRA (atualização 2026 em revisão pública)",
-    icon:"📋"
+    icon:"📋",
+    resumo:"Primeira diretriz global que unificou os critérios diagnósticos de LRA: aumento de creatinina ≥0,3 mg/dL em 48h, ≥1,5× basal em 7 dias ou diurese <0,5 mL/kg/h por ≥6h. Estadiamento em 3 estágios. Harmonizou as definições RIFLE e AKIN e estabeleceu o padrão diagnóstico mundial. O draft KDIGO AKI/AKD 2026 (em revisão pública) representa a primeira grande revisão: expande os critérios para incluir cistatina C ≥1,5× basal e introduz o conceito de AKD como alteração funcional ou estrutural renal com duração ≤3 meses, integrando o contínuo LRA → AKD → DRC.",
+    conclusao:"Os critérios KDIGO 2012 permanecem o padrão prático de diagnóstico e estadiamento da LRA; o draft de 2026 os expande e os contextualiza em um contínuo de injúria renal aguda a crônica.",
+    curiosidade:"Meta-análise global mostrou que aproximadamente 1 em 5 adultos e 1 em 3 crianças desenvolvem LRA durante episódio hospitalar — número revelado pela padronização dos critérios KDIGO, que permitiu comparações sistemáticas entre estudos e países."
   },
   kdigo_aki_2026:{
     label:"KDIGO 2026 AKI/AKD — Public Review Draft",
@@ -52,7 +61,10 @@
     badge:"GUIDELINE",
     badgeColor:"#6366f1",
     impacto:"AKI definição: ↑Cr ≥0,3 em 48h ou ↑Cr/Cistatina-C ≥50% em 7d ou diurese <0,5 mL/kg/h 6h. Estadiamento 3D (C/U/B). AKD: 7–90d. Biomarcadores TIMP-2×IGFBP7/NGAL (2B). MAP >65 (2C). Teste de furosemida (2C). Glicemia 140–180. Aminoglicosídeo dose única (2B). Anfotericina lipídica (2A). Follow-up pós-AKI/AKD.",
-    icon:"📋"
+    icon:"📋",
+    resumo:"Atualização em draft público da diretriz KDIGO de LRA, primeira grande revisão desde 2012. Expande a definição de AKI para anormalidades funcionais ou estruturais ocorridas em até 7 dias, incluindo creatinina (≥0,3 mg/dL em 48h ou ≥1,5× basal em 7 dias), diurese (<0,5 mL/kg/h por ≥6h), cistatina C (≥1,5× basal em 7 dias) e biomarcadores de dano renal quando validados. Introduz AKD como alteração funcional ou estrutural renal em contexto clínico apropriado com duração ≤3 meses, integrando o contínuo AKI → AKD → DRC.",
+    conclusao:"O draft de 2026 amplia o conceito de LRA para um contínuo desde a injúria aguda até a progressão para DRC, reforça o seguimento estruturado pós-AKI e incorpora biomarcadores modernos na estratificação de risco.",
+    curiosidade:"O conceito de AKD formaliza uma janela de disfunção renal subaguda entre LRA e DRC, identificada clinicamente mas sem definição padronizada até este draft — período crítico para intervenção e prevenção de progressão."
   },
   sglt2i_aki_meta_2020:{
     label:"SGLT2i e IRA — Meta-análise (Kidney Int 2020)",
@@ -86,20 +98,23 @@
     badgeColor:"#6366f1",
     impacto:"Referência global para diagnóstico e tratamento das glomerulopatias",
     icon:"📋",
-    resumo:"Diretriz abrangente para manejo de glomerulonefrites: IgAN, NM, GESF, nefrite lúpica, vasculite ANCA, com incorporação de novos biomarcadores (PLA2R, ANCA) e terapias biológicas.",
-    conclusao:"A diretriz KDIGO 2021 incorporou medicina de precisão em glomerulonefrites, com diagnóstico molecular e terapias alvo-específicas.",
-    curiosidade:"Primeira diretriz de glomerulonefrites a incluir rituximabe como primeira linha! Reflete a revolução biológica na nefrologia."
+    resumo:"Primeira diretriz KDIGO dedicada às glomerulopatias, cobrindo síndrome nefrótica de lesões mínimas, GESF, nefropatia membranosa, nefropatia por IgA, nefrite lúpica, vasculites ANCA, C3 glomerulopatia e MPGN. Incorpora biomarcadores serológicos no diagnóstico — anti-PLA2R (presente em cerca de 70–80% dos casos de nefropatia membranosa primária) e ANCA-PR3/MPO — e gradua recomendações pelo sistema GRADE. Alguns capítulos foram complementados por atualizações posteriores específicas, como a diretriz dedicada à IgAN 2025; usar em conjunto com fontes mais recentes quando disponíveis.",
+    conclusao:"Referência unificada para diagnóstico e imunossupressão nas glomerulopatias — substituiu capítulos fragmentados de diretrizes anteriores.",
+    curiosidade:"O anti-PLA2R, descoberto por Beck et al. em 2009 (NEJM), permite o diagnóstico sorológico da nefropatia membranosa primária em contextos típicos — reduzindo a dependência exclusiva da biópsia renal — e serve como marcador de atividade e resposta ao tratamento pelo título sérico."
   },
   kdigo_tx:{
-    label:"KDIGO Transplant 2022",
+    label:"KDIGO Transplant Recipient Care 2009",
     url:"https://kdigo.org/guidelines/transplant-recipient-care/",
-    journal:"American Journal of Transplantation",
-    ano:2022,
+    journal:"Am J Transplant 2009;9(Suppl 3):S1-S155",
+    ano:2009,
     tipo:"Diretriz Internacional",
     badge:"GUIDELINE",
     badgeColor:"#6366f1",
     impacto:"Manejo do receptor de transplante renal — imunossupressão, infecções e complicações",
-    icon:"📋"
+    icon:"📋",
+    resumo:"Diretriz abrangente para manejo do receptor de transplante renal, cobrindo imunossupressão (esquemas baseados em inibidor de calcineurina e antiproliferativo, com ou sem corticoide, individualizados por risco imunológico), monitorização do enxerto, rejeição aguda e crônica, infecções oportunistas (CMV, BK, PCP), doença cardiovascular, neoplasia e complicações metabólicas a longo prazo.",
+    conclusao:"Referência-base para o acompanhamento do transplantado renal — da imunossupressão de indução ao manejo das complicações tardias.",
+    curiosidade:"A introdução do tacrolimo marcou a consolidação dos inibidores de calcineurina como eixo da imunossupressão moderna, reduzindo a rejeição aguda e melhorando a sobrevida inicial do enxerto renal de forma expressiva."
   },
   dapa:{
     label:"DAPA-CKD Trial",
@@ -344,15 +359,18 @@
     icon:"💊"
   },
   kdigo_dialise:{
-    label:"KDIGO Dialysis 2012",
-    url:"https://kdigo.org/guidelines/hemodialysis/",
-    journal:"Kidney International Supplements",
-    ano:2012,
-    tipo:"Diretriz Internacional",
+    label:"KDOQI Hemodialysis Adequacy 2015",
+    url:"https://www.ajkd.org/article/S0272-6386(15)01019-2/fulltext",
+    journal:"Am J Kidney Dis 2015;66(5):884-930",
+    ano:2015,
+    tipo:"Diretriz Clínica (KDOQI/NKF)",
     badge:"GUIDELINE",
     badgeColor:"#6366f1",
-    impacto:"Padrão global para adequação e prescrição em hemodiálise e diálise peritoneal",
-    icon:"📋"
+    impacto:"Padrão para adequação e prescrição em hemodiálise — alvo Kt/V e dose dialítica mínima",
+    icon:"📋",
+    resumo:"Diretriz KDOQI para adequação da hemodiálise. Para HD três vezes por semana, recomenda spKt/V alvo de 1,4 por sessão, com valor mínimo entregue de 1,2. Aborda avaliação periódica da dose dialítica, estado nutricional e acesso vascular como componentes integrados da qualidade do tratamento.",
+    conclusao:"Define o índice Kt/V como medida-padrão da dose de diálise — base para auditoria e controle de qualidade nos centros de hemodiálise.",
+    curiosidade:"O Kt/V foi proposto por Gotch e Sargent em 1985 com base no NCDS — primeiro estudo a demonstrar que a dose de diálise influencia a morbimortalidade. O 'K' representa o clearance de ureia do dialisador, 't' o tempo de sessão e 'V' o volume de distribuição da ureia, aproximadamente 60% do peso corporal."
   },
   kdigo_lra:{
     label:"KDIGO AKI 2012",
@@ -733,11 +751,14 @@
     impacto:"Revisão clássica de hiponatremia: diagnóstico, causas, manejo e velocidade de correção segura (máx 10-12 mEq/L/24h)",icon:"📖"
   },
   hyponatremia_verbalis2022:{
-    label:"Verbalis JG et al. — Hyponatremia Guidelines 2022 (Kidney Int)",
-    url:"https://www.kidney-international.org/article/S0085-2538(22)00329-1/fulltext",
-    journal:"Kidney Int 2022;102(5):900-927",
-    ano:2022,tipo:"Diretriz/Consenso",badge:"GUIDELINE",badgeColor:"#6366f1",
-    impacto:"Atualização 2022 do manejo de hiponatremia: fluxograma diagnóstico, indicações de solução hipertônica, tolvaptan",icon:"📋"
+    label:"European Clinical Practice Guideline on Hyponatraemia (ESE/ERA-EDTA 2014)",
+    url:"https://academic.oup.com/ejendo/article/170/3/G1/6655834",
+    journal:"Eur J Endocrinol 2014;170(3):G1-G47",
+    ano:2014,tipo:"Diretriz Europeia",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Diretriz europeia para diagnóstico e tratamento de hiponatremia: classificação por gravidade, fluxograma diagnóstico, indicações de solução hipertônica e vaptanas",icon:"📋",
+    resumo:"Em hiponatremia sintomática grave, priorizar sintomas e tempo de instalação. A diretriz europeia recomenda NaCl 3% 150 mL IV em 20 minutos, repetível até 2 vezes ou até elevação de ~5 mmol/L. Após melhora, limitar a correção a 10 mmol/L nas primeiras 24h e 8 mmol/L a cada 24h subsequente. Vaptanas exigem cautela: evitar em hiponatremia hipovolêmica, incapacidade de monitorização e hepatopatia relevante.",
+    conclusao:"A abordagem da hiponatremia é guiada pela gravidade sintomática e velocidade de instalação — não apenas pelo nível sérico — com metas de correção para prevenir síndrome de desmielinização osmótica.",
+    curiosidade:"A síndrome de desmielinização osmótica resulta da re-osmolarização cerebral abrupta em pacientes com hiponatremia crônica — o cérebro adapta seu conteúdo de osmóis orgânicos à hipoosmolaridade e não tolera correção rápida."
   },
   salsa_trial:{
     label:"Baek SH et al. — SALSA Trial (JAMA Intern Med 2021)",
@@ -905,7 +926,10 @@
     url:"https://journals.sagepub.com/doi/10.1177/08968608221096963",
     journal:"Peritoneal Dialysis International 2022;42(2):110-153",
     ano:2022,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
-    impacto:"Padrão ouro para diagnóstico e tratamento de peritonite na diálise peritoneal",icon:"📋"
+    impacto:"Padrão ouro para diagnóstico e tratamento de peritonite na diálise peritoneal",icon:"📋",
+    resumo:"Define peritonite em DP pelo critério de pelo menos 2 de 3: dor abdominal ou efluente turvo; leucócitos no efluente >100/µL após dwell ≥2h com >50% PMN; ou cultura positiva. Tratamento empírico cobre gram-positivos (vancomicina ou cefalosporina de 1ª geração) e gram-negativos (aminoglicosídeo ou cefalosporina de 3ª geração), ajustado pelo antibiograma em 48–72h. Metas de qualidade: cultura negativa <15% dos episódios; taxa global ≤0,40 episódio/paciente-ano; >80% dos pacientes livres de peritonite ao ano.",
+    conclusao:"A peritonite é a principal causa de falência de técnica na DP — diagnóstico precoce e antibioticoterapia intraperitoneal adequada são determinantes para preservar o acesso peritoneal.",
+    curiosidade:"A DP usa o próprio peritônio como membrana dialítica. O PET (Peritoneal Equilibration Test) classifica os pacientes em altos ou baixos transportadores e orienta a escolha entre regimes curtos e frequentes (altos transportadores) ou prolongados (baixos transportadores)."
   },
   cmv_kdigo_tx:{
     label:"KDIGO CMV in Transplant 2022",
@@ -1259,7 +1283,10 @@
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1900100",
     journal:"N Engl J Med 2019;381(1):36-46",
     ano:2019,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Rituximabe superior à ciclosporina em remissão sustentada da nefropatia membranosa — nova primeira linha terapêutica",icon:"🔬"
+    impacto:"Rituximabe superior à ciclosporina em remissão sustentada da nefropatia membranosa — nova primeira linha terapêutica",icon:"🔬",
+    resumo:"ECR multicêntrico (n=130) comparando rituximabe vs. ciclosporina no tratamento da nefropatia membranosa primária por 24 meses. O endpoint primário — remissão completa ou parcial sustentada aos 24 meses — foi alcançado em 60% dos pacientes com rituximabe vs. 20% com ciclosporina (p<0,001). Eventos adversos graves ocorreram em 17% vs. 31%, respectivamente. Após suspensão da ciclosporina, a maioria dos pacientes recaiu; as remissões com rituximabe se mantiveram com maior durabilidade.",
+    conclusao:"O MENTOR demonstrou não inferioridade em 12 meses e superioridade do rituximabe em manter remissão proteica até 24 meses, reduzindo o problema clássico de recaída após suspensão do inibidor de calcineurina.",
+    curiosidade:"O rituximabe foi inicialmente aprovado para linfoma de células B em 1997. Seu uso na nefropatia membranosa explora o fato de que a maioria dos casos é mediada por anticorpos IgG4 anti-PLA2R produzidos por células B — depletar células B suprime o autoanticorpo e permite a remissão glomerular."
   },
   kdigo_igan_2025:{
     label:"KDIGO IgAN 2025 (Guideline Dedicada)",
