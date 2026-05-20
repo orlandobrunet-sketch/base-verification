@@ -99,7 +99,7 @@
 
         overlay.innerHTML = `
           <div class="minigame-card">
-            ${standalone ? '<button data-action="_exitMinigame" style="position:absolute;top:10px;right:12px;background:none;border:none;color:#64748b;font-size:1.1rem;cursor:pointer;line-height:1;" title="Sair">✕</button>' : ''}
+            ${standalone ? '<button class="minigame-close-btn" data-action="_exitMinigame" title="Fechar">✕</button>' : ''}
             <div class="minigame-title">⚡ Julgamento Rápido</div>
             <div class="minigame-subtitle">Verdadeiro ou Falso? ${TIME_PER_Q}s por afirmação</div>
             <div class="minigame-progress">${currentIdx + 1} / ${pool.length}</div>
@@ -220,6 +220,7 @@
 
         overlay.innerHTML = `
           <div class="minigame-card">
+            ${standalone ? '<button class="minigame-close-btn" data-remove-id="rapidQuizOverlay" title="Fechar">✕</button>' : ''}
             <div class="minigame-title">⚡ Resultado</div>
             <div class="minigame-result">${emoji} ${correctCount}/${total} corretas</div>
             ${rewardHtml}
