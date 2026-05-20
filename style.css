@@ -451,35 +451,49 @@
     /* ===== MINIGAME POPUP ===== */
     .minigame-overlay {
       position: fixed; inset: 0; z-index: var(--z-notify); display: flex; align-items: center;
-      justify-content: center; background: rgba(0,0,0,0.9); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+      justify-content: center; background: rgba(0,0,0,0.88); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
       animation: fadeIn 0.3s; padding: 16px;
     }
     .minigame-card {
-      background: linear-gradient(135deg, #0a1220, #12192e, #0e1022);
-      border: 2px solid #4ade80; border-radius: 18px; padding: 22px 20px;
+      background: linear-gradient(135deg, #0e1830 0%, #1a1040 40%, #2a1050 100%);
+      border: 2px solid var(--gold); border-radius: 18px; padding: 28px 24px 22px;
       max-width: 420px; width: 100%; text-align: center; animation: scaleIn 0.35s;
-      position: relative;
+      position: relative; box-shadow: 0 0 60px rgba(255,215,0,0.12), inset 0 0 40px rgba(255,215,0,0.03);
     }
-    .minigame-title { color: #4ade80; font-family: 'Cinzel', serif; font-size: 0.95rem; margin-bottom: 4px; }
-    .minigame-subtitle { color: #94a3b8; font-size: 0.75rem; margin-bottom: 16px; }
+    .minigame-close-btn {
+      position: absolute; top: 12px; right: 14px;
+      background: none; border: none; color: var(--txt-dim);
+      font-size: 1.2rem; cursor: pointer; line-height: 1;
+      padding: 4px 6px; border-radius: 6px; transition: color 0.2s, background 0.2s;
+    }
+    .minigame-close-btn:hover { color: var(--gold); background: rgba(255,215,0,0.08); }
+    .minigame-title {
+      color: var(--gold); font-family: 'Cinzel', serif; font-size: 0.95rem;
+      letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px;
+    }
+    .minigame-subtitle { color: var(--txt-dim); font-family: 'Philosopher', serif; font-size: 0.8rem; margin-bottom: 16px; }
     .minigame-stmt {
-      background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.25);
-      border-radius: 10px; padding: 14px 12px; font-size: 0.85rem; color: #e2e8f0;
-      line-height: 1.5; margin-bottom: 12px; min-height: 70px;
+      background: rgba(255,215,0,0.06); border: 1px solid rgba(255,215,0,0.18);
+      border-radius: 10px; padding: 16px 14px; font-size: 0.88rem; color: #e2e8f0;
+      line-height: 1.6; margin-bottom: 14px; min-height: 70px; font-family: 'Philosopher', serif;
       display: flex; align-items: center; justify-content: center;
     }
     .minigame-tf-btns { display: flex; gap: 10px; margin-bottom: 10px; }
-    .minigame-tf-btns button { flex: 1; padding: 12px; border-radius: 10px; border: none; cursor: pointer; font-size: 0.9rem; font-weight: 700; transition: transform 0.1s; }
+    .minigame-tf-btns button {
+      flex: 1; padding: 12px; border-radius: 10px; border: none; cursor: pointer;
+      font-size: 0.88rem; font-weight: 700; transition: transform 0.1s;
+      font-family: 'Cinzel', serif; letter-spacing: 1px;
+    }
     .minigame-tf-btns button:active { transform: scale(0.96); }
     .minigame-true-btn { background: linear-gradient(135deg, #065f46, #059669); color: #ecfdf5; }
     .minigame-false-btn { background: linear-gradient(135deg, #7f1d1d, #dc2626); color: #fef2f2; }
     .minigame-timer {
-      height: 4px; background: rgba(74,222,128,0.15); border-radius: 2px; overflow: hidden;
+      height: 4px; background: rgba(255,215,0,0.15); border-radius: 2px; overflow: hidden;
       margin-bottom: 14px;
     }
-    .minigame-timer-fill { height: 100%; background: #4ade80; transition: width 0.1s linear; }
-    .minigame-progress { color: #64748b; font-size: 0.72rem; margin-bottom: 8px; }
-    .minigame-result { font-size: 1.1rem; margin-bottom: 6px; }
+    .minigame-timer-fill { height: 100%; background: var(--gold); transition: width 0.1s linear; }
+    .minigame-progress { color: var(--txt-dim); font-size: 0.72rem; margin-bottom: 8px; }
+    .minigame-result { font-size: 1.15rem; font-family: 'Cinzel', serif; color: var(--gold); margin-bottom: 6px; }
     .minigame-reward { color: #ffd700; font-size: 0.85rem; font-weight: 700; margin-bottom: 14px; }
 
 
