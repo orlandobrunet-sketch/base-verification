@@ -139,7 +139,10 @@
     badge:"RCT",
     badgeColor:"#10b981",
     impacto:"↓28% progressão renal ou morte CV · Benefício independente de DM",
-    icon:"💊"
+    icon:"💊",
+    resumo:"ECR multicêntrico, n=6.609, avaliou empagliflozina 10 mg/dia em DRC ampla: TFGe 20–<45 independente de albuminúria ou TFGe 45–<90 com ACR ≥200 mg/g. Reduziu progressão renal ou morte cardiovascular: 13,1% vs 16,9%; HR 0,72, IC 95% 0,64–0,82, P<0,001. Benefício consistente em diabéticos e não diabéticos e nas faixas de TFGe estudadas.",
+    conclusao:"EMPA-KIDNEY consolidou os iSGLT2 como nefroproteção central em DRC ampla, inclusive não diabética, com TFGe ≥20 dentro dos critérios do estudo.",
+    curiosidade:"Foi o grande trial de iSGLT2 com maior heterogeneidade etiológica e incluiu proporção expressiva de pacientes sem diabetes."
   },
   hypona:{
     label:"Guideline Hyponatremia ESE/ERA",
@@ -266,7 +269,10 @@
     badge:"RCT",
     badgeColor:"#10b981",
     impacto:"Rituximabe superior à ciclofosfamida na vasculite ANCA recidivante",
-    icon:"💊"
+    icon:"💊",
+    resumo:"ECR multicêntrico (RAVE, n=197) comparando rituximabe vs ciclofosfamida para indução de remissão em vasculite ANCA grave (GPA ou PAM). Endpoint primário: remissão completa sem corticoide aos 6 meses. Rituximabe não foi inferior à ciclofosfamida na doença nova (64% vs 53%); foi superior na doença recidivante (67% vs 42%). Perfil de eventos adversos graves semelhante entre os grupos.",
+    conclusao:"RAVE estabeleceu o rituximabe como alternativa à ciclofosfamida na indução da vasculite ANCA, com vantagem clara na doença recidivante onde o acúmulo de dose de ciclofosfamida já é preocupação.",
+    curiosidade:"As vasculites ANCA (GPA, PAM, EGPA) são mediadas por anticorpos IgG anti-ANCA que ativam neutrófilos circulantes, levando a inflamação necrosante de pequenos vasos — o que explica o efeito terapêutico do rituximabe, que depleta as células B produtoras desses autoanticorpos."
   },
   advocate_study:{
     label:"ADVOCATE Trial (Avacopan)",
@@ -354,7 +360,10 @@
     badge:"RCT",
     badgeColor:"#10b981",
     impacto:"↓30% desfecho renal composto · 1º RCT de SGLT2i com desfecho renal primário em DRC diabética",
-    icon:"💊"
+    icon:"💊",
+    resumo:"ECR fase III (n=4.401), canagliflozina 100 mg/dia vs placebo em DM2 com DRC diabética (TFGe 30–90, UACR 300–5.000 mg/g) em uso de SRAA otimizado. Desfecho primário composto (DRCT, duplicação de creatinina, morte renal ou CV): HR 0,70, redução relativa de 30%. Primeiro RCT de iSGLT2 com desfecho renal como endpoint primário pré-especificado. Interrompido precocemente por eficácia.",
+    conclusao:"CREDENCE foi o trial que abriu o campo da nefroproteção com iSGLT2 em DRC diabética — evidência que desencadeou os trials subsequentes (DAPA-CKD, EMPA-KIDNEY) em populações mais amplas.",
+    curiosidade:"O CREDENCE foi interrompido com 2,62 anos de seguimento médio (de 5,5 planejados) após análise interina mostrar benefício inequívoco — o que elevou o nível de evidência e acelerou a incorporação nas diretrizes."
   },
   dapa_ckd:{
     label:"DAPA-CKD Trial",
@@ -752,7 +761,10 @@
     url:"https://kdigo.org/guidelines/ckd-mbd/",
     journal:"Kidney Int Suppl 2017;7(1):1-59",
     ano:2017,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
-    impacto:"Metas de PTH (2-9× LSN), fósforo e cálcio em DRC; preferência por quelantes não cálcicos; calcitriol/análogos em estágios 3-5D",icon:"📋"
+    impacto:"Metas de PTH (2-9× LSN), fósforo e cálcio em DRC; preferência por quelantes não cálcicos; calcitriol/análogos em estágios 3-5D",icon:"📋",
+    resumo:"Atualização da diretriz KDIGO sobre distúrbios do metabolismo mineral e ósseo na DRC. Em diálise, sugere manter PTH entre 2 e 9 vezes o limite superior da normalidade do ensaio utilizado — não há alvo fixo. Para fósforo, recomenda manter dentro da faixa normal, preferindo quelantes não cálcicos quando indicada quelação. Evitar hipercalcemia e limitar quelantes com cálcio. Vitamina D ativa (calcitriol ou análogos) indicada no hiperparatireoidismo grave ou progressivo nos estágios 3–5D.",
+    conclusao:"A ausência de alvos rígidos de PTH reflete a limitação das evidências: a relação entre PTH e desfechos ósseos/cardiovasculares na DRC-5D é complexa e a meta deve ser individualizada.",
+    curiosidade:"A calcificação vascular na DRC resulta de transdiferenciação ativa das células musculares lisas vasculares em células osteoblasto-like — mediada em parte pelo excesso de fósforo e FGF-23 — e não simplesmente precipitação passiva de cálcio e fósforo."
   },
   phosphate_binders_ckd:{
     label:"Block GA et al. — Phosphate Binders in Moderate CKD (JASN 2012)",
@@ -803,14 +815,20 @@
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2305124",
     journal:"N Engl J Med 2023;389(22):2024-2034",
     ano:2023,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Atrasentan (antagonista seletivo ETₐR) ↓38% risco de duplicar creatinina em IgAN com proteinúria persistente",icon:"🔬"
+    impacto:"Atrasentan (antagonista seletivo ETₐR) ↓38% risco de duplicar creatinina em IgAN com proteinúria persistente",icon:"🔬",
+    resumo:"ECR fase III (ALIGN, n=343), atrasentan (antagonista seletivo do receptor de endotelina tipo A) vs placebo em IgAN com proteinúria persistente ≥1 g/dia apesar de SRAA otimizado. Incluiu fase de rodagem obrigatória para excluir retenção de fluidos. Desfecho primário composto (falência renal, queda ≥40% da TFGe sustentada ou morte renal/CV): HR 0,62 (~38% de redução de risco). Interrompido precocemente pelo comitê de monitoramento por eficácia.",
+    conclusao:"ALIGN consolidou o bloqueio seletivo do ETₐR como estratégia eficaz para retardar a progressão renal na IgAN proteinúrica, complementar ao SRAA e às terapias não imunossupressoras.",
+    curiosidade:"A fase de rodagem do ALIGN foi desenhada especificamente para detectar retenção de fluidos precoce — problema que havia comprometido ensaios anteriores com antagonistas de endotelina em doença renal — tornando o protocolo de segurança parte central do desenho do trial."
   },
   nefigard_trial:{
     label:"Lafayette RA et al. — NefIgArd (Lancet 2023)",
     url:"https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(23)02765-2/fulltext",
     journal:"Lancet 2023;402(10405):859-870",
     ano:2023,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Budesonida de liberação alvo (atua nos Peyer's patches) ↓proteinúria e preserva TFG em IgAN com proteinúria ≥1g/dia",icon:"🔬"
+    impacto:"Budesonida de liberação alvo (atua nos Peyer's patches) ↓proteinúria e preserva TFG em IgAN com proteinúria ≥1g/dia",icon:"🔬",
+    resumo:"ECR fase III (NefIgArd, n=364), nefecon (budesonida de liberação alvo nos Patches de Peyer do íleo distal) vs placebo por 9 meses em IgAN com TFGe ≥35 e proteinúria ≥1 g/dia. Reduziu proteinúria de forma sustentada vs placebo ao final do tratamento. Resultados aos 2 anos mostraram preservação da TFGe: diferença estimada de +3,8 ml/min/1,73m² vs placebo. Aprovado pelo FDA (Tarpeyo) e EMA (Kinpeygo) para IgAN primária com risco de progressão.",
+    conclusao:"NefIgArd validou a hipótese do eixo intestino-rim na IgAN: reduzir a produção de IgA1 galactose-deficiente nos Patches de Peyer com budesonida tópica preserva a TFGe sem a toxicidade sistêmica dos corticoides.",
+    curiosidade:"A IgA1 galactose-deficiente produzida no tecido linfoide intestinal (MALT-gut) é o gatilho imunológico central da IgAN — razão pela qual a budesonida entérica, que atua localmente no íleo distal, tem efeito sobre uma doença glomerular."
   },
   c3g_consensus:{
     label:"Pickering MC et al. — C3 Glomerulopathy Consensus (Kidney Int 2013)",
@@ -1323,21 +1341,30 @@
     url:"https://kdigo.org/guidelines/glomerular-diseases/",
     journal:"Kidney International",
     ano:2025,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
-    impacto:"Primeira diretriz KDIGO dedicada exclusivamente à IgAN: alvo proteinúria < 1 g/dia (idealmente < 0,5), sparsentana, budesonida e novas terapias",icon:"📋"
+    impacto:"Primeira diretriz KDIGO dedicada exclusivamente à IgAN: alvo proteinúria < 1 g/dia (idealmente < 0,5), sparsentana, budesonida e novas terapias",icon:"📋",
+    resumo:"Primeira diretriz KDIGO dedicada exclusivamente à nefropatia por IgA. Define tratamento escalonado: cuidado de suporte otimizado (SRAA + controle de PA + estilo de vida) como base universal; adição de sparsentan ou nefecon (budesonida) conforme proteinúria persistente ≥1 g/dia e risco de progressão; imunossupressão sistêmica com corticoide reservada para casos selecionados de alto risco com TFGe preservada. Alvo de proteinúria: <1 g/dia, idealmente <0,5 g/dia.",
+    conclusao:"A diretriz KDIGO 2025 para IgAN consolidou a transição de um paradigma imunossupressor amplo para abordagem escalonada, priorizando terapias não imunossupressoras com evidência de trials fase III.",
+    curiosidade:"A IgAN é a glomerulopatia primária mais comum no mundo, mas por décadas o tratamento baseou-se em séries de casos. O surgimento de múltiplos trials fase III em menos de 5 anos (TESTING, NefIgArd, PROTECT, ALIGN) permitiu a elaboração da primeira diretriz dedicada à doença."
   },
   kdigo_adpkd_2025:{
     label:"KDIGO ADPKD 2025 (Rim Policístico Autossômico Dominante)",
     url:"https://kdigo.org/guidelines/adpkd/",
     journal:"Kidney International",
     ano:2025,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
-    impacto:"Primeira diretriz KDIGO para DPARD: tolvaptana, SGLT2i, controle de PA, dieta e abordagem de progressão renal",icon:"📋"
+    impacto:"Primeira diretriz KDIGO para DPARD: tolvaptana, SGLT2i, controle de PA, dieta e abordagem de progressão renal",icon:"📋",
+    resumo:"Primeira diretriz KDIGO dedicada ao rim policístico autossômico dominante. Recomenda tolvaptana (antagonista do receptor V2 da vasopressina) para pacientes com progressão rápida identificada pela classificação de Mayo (classes 1C, 1D, 1E) ou PROPKD score, com TFGe >25 ml/min/1,73m² e após avaliação hepática. Alvo de PA: <110/75 mmHg em adultos jovens com TFGe preservada (baseado no HALT-PKD). Inclui recomendações sobre hidratação, dieta, SGLT2i como terapia emergente e rastreamento de complicações.",
+    conclusao:"A diretriz ADPKD 2025 uniformiza o uso de tolvaptana com critérios de progressão rápida (Mayo 1C–1E), evitando tratar pacientes de baixo risco que não se beneficiam e têm risco de hepatotoxicidade.",
+    curiosidade:"A vasopressina é o principal driver do crescimento cístico na DPARD: estimula a adenilato ciclase via receptor V2, elevando o AMPc intracelular nas células epiteliais dos cistos e promovendo proliferação e secreção de fluido. O tolvaptana bloqueia esse mecanismo diretamente."
   },
   kdigo_anemia_2026:{
     label:"KDIGO Anemia in CKD 2026",
     url:"https://kdigo.org/guidelines/anemia-in-ckd/",
     journal:"Kidney International",
     ano:2026,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
-    impacto:"Atualização 2026: ESA preferido sobre HIF-PHI (1ª linha, Grau 2D); metas Hb 10-11,5 g/dL; ferro IV antes de iniciar ESA; HIF-PHI com restrições por segurança CV",icon:"📋"
+    impacto:"Atualização 2026: ESA preferido sobre HIF-PHI (1ª linha, Grau 2D); metas Hb 10-11,5 g/dL; ferro IV antes de iniciar ESA; HIF-PHI com restrições por segurança CV",icon:"📋",
+    resumo:"Atualização da diretriz KDIGO para anemia na DRC. Recomenda ferro intravenoso antes de iniciar agente estimulador de eritropoese (AEE) em pacientes com deficiência funcional ou absoluta de ferro. Para AEE, alvos de hemoglobina entre 10 e 11,5 g/dL, sem ultrapassar 11,5 g/dL de forma intencional. HIF-PHI (inibidores da prolil-hidroxilase do HIF, como roxadustat e daprodustat) reconhecidos como alternativa com restrições por preocupações de segurança cardiovascular — posicionados como segunda linha.",
+    conclusao:"A diretriz 2026 mantém AEE como primeira linha para anemia da DRC e posiciona os HIF-PHI com cautela, refletindo os dados de segurança cardiovascular inconsistentes entre as moléculas da classe.",
+    curiosidade:"Os HIF-PHI estimulam a produção endógena de eritropoetina inibindo as enzimas PHD2/PHD1 que normalmente degradam o HIF-1α em normóxia — mimando farmacologicamente a resposta fisiológica à hipoxia para tratar anemia sem hipoxia real."
   },
   kdigo_lupus_nephritis_guideline_2024:{
     label:"KDIGO Lupus Nephritis 2024",
@@ -1351,6 +1378,9 @@
     url:"https://kdigo.org/guidelines/ckd-evaluation-and-management/",
     journal:"Kidney International",
     ano:2024,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
-    impacto:"Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",icon:"📋"
+    impacto:"Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",icon:"📋",
+    resumo:"Diretriz KDIGO para avaliação e manejo da DRC, versão 2024. Consolida o sistema CGA (Causa, TFGe, Albuminúria) para estadiamento e risco. Recomenda iSGLT2 para DRC com TFGe ≥20 e ACR ≥200 mg/g ou insuficiência cardíaca; finerenona em DRC diabética com TFGe ≥25 e ACR ≥300 mg/g. Incorpora rastreamento ativo em grupos de risco, abordagem multidisciplinar e cuidado de suporte ampliado.",
+    conclusao:"A versão 2024 consolida iSGLT2 e finerenona como pilares terapêuticos modernos além do bloqueio do SRAA — transformando o manejo da DRC de reativo para preventivo.",
+    curiosidade:"A inclusão simultânea de iSGLT2 e finerenona na diretriz 2024 reflete a convergência de evidências de múltiplos trials (DAPA-CKD, EMPA-KIDNEY, FIDELIO, FIGARO) publicados entre 2019 e 2023 — uma das janelas de evidência mais produtivas da nefrologia."
   }
 };

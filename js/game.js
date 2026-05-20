@@ -558,7 +558,29 @@
           .eq('id', authUser.id)
           .single();
         _mergeCloudProgress(profile?.game_progress);
+        _refreshWelcomeStats(); // atualiza DOM após dados da nuvem chegarem (evita race condition)
       } catch(e) { _track('error_cloud_load', { msg: String(e) }); }
+    }
+
+    // Atualiza o bloco de estatísticas da welcome screen com dados atuais do localStorage.
+    // Chamado após merge cloud→local para corrigir o caso em que localStorage estava vazio
+    // quando a tela foi renderizada (ex: usuário limpou dados do navegador).
+    function _refreshWelcomeStats() {
+      const ws = document.getElementById('welcomeScreen');
+      if (!ws || ws.classList.contains('hidden')) return;
+      const stats = getGameStats();
+      const board = boardGet();
+      const statsEl = document.getElementById('welcomeStats');
+      if (!statsEl) return;
+      if (stats.gamesPlayed > 0 || board.length > 0) {
+        statsEl.style.display = 'grid';
+        const s = document.getElementById('wsBestScore');
+        const g = document.getElementById('wsGamesPlayed');
+        const l = document.getElementById('wsBestLevel');
+        if (s) s.textContent = stats.bestScore || (board.length ? board[0].score : 0);
+        if (g) g.textContent = stats.gamesPlayed;
+        if (l) l.textContent = stats.bestLevel;
+      }
     }
 
     function restoreGame() {
@@ -637,7 +659,7 @@
       const save = loadGame();
       const stats = getGameStats();
       const board = boardGet();
-      
+
       // Show stats if player has history
       if (stats.gamesPlayed > 0 || board.length > 0) {
         document.getElementById('welcomeStats').style.display = 'grid';
@@ -645,7 +667,16 @@
         document.getElementById('wsGamesPlayed').textContent = stats.gamesPlayed;
         document.getElementById('wsBestLevel').textContent = stats.bestLevel;
       }
-      
+
+      // Versão dinâmica — lê version.json para manter label sempre atualizado
+      fetch('/version.json', { cache: 'no-store' })
+        .then(r => r.json())
+        .then(({ version }) => {
+          const el = document.getElementById('welcomeVersionLabel');
+          if (el) el.textContent = 'v' + version;
+        })
+        .catch(() => {});
+
       refreshWelcomeSave();
     }
 
