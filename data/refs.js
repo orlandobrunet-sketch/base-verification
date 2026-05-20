@@ -125,7 +125,10 @@
     badge:"RCT",
     badgeColor:"#10b981",
     impacto:"↓39% desfecho renal composto · ↓31% mortalidade · Interrompido precocemente por eficácia · Benefício independente de diabetes",
-    icon:"💊"
+    icon:"💊",
+    resumo:"ECR multicêntrico, n=4.304, dapagliflozina 10 mg/dia vs placebo em DRC com ou sem DM2; TFGe 25–75 e ACR 200–5000 mg/g. Desfecho primário: queda sustentada ≥50% da TFGe, DRCT ou morte renal/CV. Resultado: 9,2% vs 14,5%; HR 0,61, IC 95% 0,51–0,72, P<0,001; NNT 19. Também reduziu morte por qualquer causa: 4,7% vs 6,8%; HR 0,69, IC 95% 0,53–0,88.",
+    conclusao:"DAPA-CKD foi o trial pivô que mostrou nefroproteção dos iSGLT2 independente de diabetes em DRC proteinúrica.",
+    curiosidade:"32,5% da coorte não tinha DM2, dado que ajudou a deslocar os iSGLT2 de fármacos 'antidiabéticos' para fármacos cardiorrenais."
   },
   empa:{
     label:"EMPA-KIDNEY Trial",
@@ -158,7 +161,10 @@
     badge:"RCT",
     badgeColor:"#10b981",
     impacto:"↓21% eventos CV em DM2 com meta PA sistólica <120 mmHg",
-    icon:"💊"
+    icon:"💊",
+    resumo:"ECR multicêntrico chinês, n=12.821, DM2 + HAS + alto risco cardiovascular, comparando PAS alvo <120 mmHg vs <140 mmHg. Desfecho primário: AVC não fatal, IAM não fatal, tratamento/internação por IC ou morte cardiovascular. Reduziu o desfecho primário: 393 vs 492 eventos; HR 0,79, IC 95% 0,69–0,90, P<0,001. Benefício principalmente por redução de AVC fatal/não fatal: HR 0,79, IC 95% 0,67–0,92. Eventos adversos graves foram semelhantes, mas hipotensão sintomática e hipercalemia foram mais frequentes no grupo intensivo.",
+    conclusao:"BPROAD fortalece alvo intensivo de PAS em DM2 de alto risco cardiovascular, mas exige medida padronizada, vigilância de hipotensão/hipercalemia e cautela em idosos frágeis, ortostatismo e DRC avançada.",
+    curiosidade:"Diferente do SPRINT, que excluiu diabetes, BPROAD testou diretamente o alvo <120 mmHg em DM2."
   },
   fidelio:{
     label:"FIDELIO-DKD Trial",
@@ -180,7 +186,10 @@
     badge:"RCT",
     badgeColor:"#10b981",
     impacto:"↓24% desfecho renal composto · 1º RCT de GLP-1 com desfecho renal primário",
-    icon:"💊"
+    icon:"💊",
+    resumo:"ECR fase III, n=3.533, semaglutida 1 mg semanal vs placebo em DM2 + DRC. Critérios: TFGe 50–75 com UACR >300–<5000 ou TFGe 25–<50 com UACR >100–<5000. Desfecho primário: falência renal, queda ≥50% da TFGe ou morte renal/CV. Semaglutida reduziu o desfecho primário: 18,7% vs 23,2%; HR 0,76, IC 95% 0,66–0,88, P=0,0003. Também reduziu MACE: HR 0,82, IC 95% 0,68–0,98; e mortalidade geral: HR 0,80, IC 95% 0,67–0,95.",
+    conclusao:"FLOW estabeleceu benefício renal primário da semaglutida em DM2 com DRC, posicionando GLP-1 RA como terapia complementar aos iSGLT2/SRAA/finerenona.",
+    curiosidade:"O benefício renal provavelmente resulta de combinação de efeitos metabólicos, pressóricos, ponderais, anti-inflamatórios e hemodinâmicos; não reduzir a explicação a 'bloqueio do SRAA'."
   },
   convince_study:{
     label:"CONVINCE Trial",
@@ -414,7 +423,10 @@
     badge:"LIVRO",
     badgeColor:"#8b5cf6",
     impacto:"Referência clássica de fisiologia renal e regulação hemodinâmica",
-    icon:"📚"
+    icon:"📚",
+    resumo:"Tratado-base de fisiologia médica, com capítulos centrais sobre filtração glomerular, transporte tubular, concentração/diluição urinária, equilíbrio ácido-base, regulação de Na/K/Ca/P e integração rim–SRAA–pressão arterial.",
+    conclusao:"Leitura de base para entender mecanismos antes de memorizar diretrizes.",
+    curiosidade:"O conceito de controle renal da PA crônica pela natriurese pressórica segue sendo uma das ideias fisiológicas mais importantes para hipertensão e nefrologia."
   },
   kdigo_diabetes_in_ckd_guideline:{
     label:"KDIGO Diabetes in CKD 2022",
@@ -515,14 +527,20 @@
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2204233",
     journal:"N Engl J Med 2023;388(2):117-127",
     ano:2023,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Empagliflozin ↓28% progressão renal ou morte CV em DRC ampla (TFG 20-45, com ou sem DM)",icon:"🔬"
+    impacto:"Empagliflozin ↓28% progressão renal ou morte CV em DRC ampla (TFG 20-45, com ou sem DM)",icon:"🔬",
+    resumo:"ECR multicêntrico, n=6.609, avaliou empagliflozina 10 mg/dia em DRC ampla: TFGe 20–<45 independente de albuminúria ou TFGe 45–<90 com ACR ≥200 mg/g. Reduziu progressão renal ou morte cardiovascular: 13,1% vs 16,9%; HR 0,72, IC 95% 0,64–0,82, P<0,001. Benefício consistente em diabéticos e não diabéticos e nas faixas de TFGe estudadas.",
+    conclusao:"EMPA-KIDNEY consolidou os iSGLT2 como nefroproteção central em DRC ampla, inclusive não diabética, com TFGe ≥20 dentro dos critérios do estudo.",
+    curiosidade:"Foi o grande trial de iSGLT2 com maior heterogeneidade etiológica e incluiu proporção expressiva de pacientes sem diabetes."
   },
   flow_trial:{
     label:"FLOW Trial Investigators — Semaglutida (NEJM 2024)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2403945",
     journal:"N Engl J Med 2024;391(18):1718-1730",
     ano:2024,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Semaglutida ↓24% desfecho renal composto em DM2 com DRC — primeiro GLP-1 com benefício renal primário comprovado",icon:"🔬"
+    impacto:"Semaglutida ↓24% desfecho renal composto em DM2 com DRC — primeiro GLP-1 com benefício renal primário comprovado",icon:"🔬",
+    resumo:"ECR fase III, n=3.533, semaglutida 1 mg semanal vs placebo em DM2 + DRC. Critérios: TFGe 50–75 com UACR >300–<5000 ou TFGe 25–<50 com UACR >100–<5000. Desfecho primário: falência renal, queda ≥50% da TFGe ou morte renal/CV. Semaglutida reduziu o desfecho primário: 18,7% vs 23,2%; HR 0,76, IC 95% 0,66–0,88, P=0,0003. Também reduziu MACE: HR 0,82, IC 95% 0,68–0,98; e mortalidade geral: HR 0,80, IC 95% 0,67–0,95.",
+    conclusao:"FLOW estabeleceu benefício renal primário da semaglutida em DM2 com DRC, posicionando GLP-1 RA como terapia complementar aos iSGLT2/SRAA/finerenona.",
+    curiosidade:"O benefício renal provavelmente resulta de combinação de efeitos metabólicos, pressóricos, ponderais, anti-inflamatórios e hemodinâmicos; não reduzir a explicação a 'bloqueio do SRAA'."
   },
   // --- Hipertensão ---
   sprint_trial:{
@@ -748,7 +766,10 @@
     url:"https://www.nejm.org/doi/full/10.1056/NEJM200005253422107",
     journal:"N Engl J Med 2000;342(21):1581-1589",
     ano:2000,tipo:"Revisão Clínica",badge:"REVIEW",badgeColor:"#0ea5e9",
-    impacto:"Revisão clássica de hiponatremia: diagnóstico, causas, manejo e velocidade de correção segura (máx 10-12 mEq/L/24h)",icon:"📖"
+    impacto:"Revisão clássica de hiponatremia: diagnóstico, causas, manejo e velocidade de correção segura (máx 10-12 mEq/L/24h)",icon:"📖",
+    resumo:"Revisão clássica que organizou diagnóstico e manejo da hiponatremia. Fórmula prática: ΔNa ≈ ([Na + K]infusato − Na sérico) / (ACT + 1); ACT ≈ 0,6 × peso em homens, 0,5 × peso em mulheres, menor em idosos. Para soluções sem potássio, usar apenas Na do infusato. A correção deve ser lenta na hiponatremia crônica; alvo usual 4–6 mEq/L/dia, evitando correções excessivas, especialmente em alto risco de desmielinização osmótica.",
+    conclusao:"A fórmula de Adrogué-Madias é ferramenta de estimativa, não substitui rechecagem seriada do sódio.",
+    curiosidade:"Hipocalemia aumenta risco de desmielinização; reposição de K também eleva a natremia efetiva."
   },
   hyponatremia_verbalis2022:{
     label:"European Clinical Practice Guideline on Hyponatraemia (ESE/ERA-EDTA 2014)",
@@ -772,7 +793,10 @@
     url:"https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(22)02605-5/fulltext",
     journal:"Lancet 2023;401(10372):173-183",
     ano:2023,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Sparsentan (dual bloqueio AT1R + ETₐR) ↓50% proteinúria vs irbesartan em IgAN — nova opção terapêutica",icon:"🔬"
+    impacto:"Sparsentan (dual bloqueio AT1R + ETₐR) ↓50% proteinúria vs irbesartan em IgAN — nova opção terapêutica",icon:"🔬",
+    resumo:"ECR fase III, n=404, nefropatia por IgA com proteinúria ≥1 g/dia apesar de SRAA otimizado, comparando sparsentan 400 mg/dia vs irbesartan 300 mg/dia. Aos 36 semanas, reduziu proteinúria mais que irbesartan: −49,8% vs −15,1%; redução relativa entre grupos 41%, razão 0,59, IC 95% 0,51–0,69, P<0,0001. Aos 110 semanas, manteve menor proteinúria: 40% menor vs irbesartan; slope crônico da TFGe melhor: −2,7 vs −3,8 ml/min/1,73m²/ano, diferença 1,1, IC 95% 0,1–2,1, P=0,037; slope total limítrofe: P=0,058. Composto de falência renal: 9% vs 13%; RR 0,7, IC 95% 0,4–1,2.",
+    conclusao:"PROTECT introduziu o bloqueio dual endotelina-angiotensina como terapia não imunossupressora para IgAN proteinúrica, com redução robusta de proteinúria e sinal funcional renal, mais sólido no slope crônico que no slope total.",
+    curiosidade:"O sparsentan recebeu aprovação acelerada pelo FDA em 2023 e aprovação plena em 2024 para retardar declínio de função renal em adultos com IgAN primária sob risco de progressão."
   },
   atrasentan_igan:{
     label:"Barratt J et al. — Atrasentan IgAN (NEJM 2023)",
@@ -884,7 +908,10 @@
     url:"https://www.thrombosisresearch.com/article/S0049-3848(21)00497-3/fulltext",
     journal:"Thromb Res 2022;210:73-81",
     ano:2022,tipo:"Revisão Sistemática",badge:"META",badgeColor:"#ec4899",
-    impacto:"TEV no SN: incidência 8-10%; NM tem maior risco de trombose de veia renal; albumina <2,5g/dL é principal preditor",icon:"📊"
+    impacto:"TEV no SN: incidência 8-10%; NM tem maior risco de trombose de veia renal; albumina <2,5g/dL é principal preditor",icon:"📊",
+    resumo:"Revisão sistemática sobre tromboembolismo venoso no síndrome nefrótica. Risco maior em nefropatia membranosa, especialmente com albumina sérica muito baixa, proteinúria intensa e fatores adicionais de trombose. Albumina <2,5 g/dL é marcador clínico importante, mas a decisão de anticoagulação profilática deve integrar histologia, albumina, sangramento, idade e fatores trombóticos.",
+    conclusao:"Em síndrome nefrótica, membranosa + albumina muito baixa é o cenário clássico de maior risco trombótico.",
+    curiosidade:"A hipercoagulabilidade resulta de perda urinária de anticoagulantes naturais, aumento de fatores pró-coagulantes, ativação plaquetária e hemoconcentração."
   },
   eps_dp:{
     label:"Brown MC et al. — Encapsulating Peritoneal Sclerosis (Kidney Int 2009)",
@@ -1213,7 +1240,10 @@
     url:"https://kdigo.org/guidelines/blood-pressure-in-ckd/",
     journal:"Kidney International",
     ano:2021,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
-    impacto:"Alvo PA < 120 mmHg sistólica em DRC — reduz progressão renal e eventos cardiovasculares; base das metas tensionais atuais",icon:"📋"
+    impacto:"Alvo PA < 120 mmHg sistólica em DRC — reduz progressão renal e eventos cardiovasculares; base das metas tensionais atuais",icon:"📋",
+    resumo:"Diretriz KDIGO para PA em DRC não dialítica. Sugere alvo de PAS <120 mmHg quando tolerado, desde que a medida seja padronizada. Esse alvo não deve ser aplicado automaticamente à medida casual de consultório, porque a técnica padronizada tende a produzir valores menores.",
+    conclusao:"O alvo <120 mmHg é alvo de medida padronizada; na prática clínica, individualizar por idade, fragilidade, sintomas, proteinúria, risco cardiovascular, ortostatismo e DRC avançada.",
+    curiosidade:"Ignorar a diferença entre medida padronizada e casual pode levar a intensificação excessiva do anti-hipertensivo."
   },
   nef4d_trial:{
     label:"4D Trial — Atorvastatina em Hemodiálise Diabética",
