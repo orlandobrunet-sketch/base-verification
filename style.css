@@ -9293,17 +9293,26 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   }
   #landingScreen .lnd-brand .landing-title {
     margin: 0;
-    color: var(--nq-gold);
     font-family: 'Cinzel Decorative', 'Cinzel', serif;
     font-size: clamp(2.9rem, 3.9vw, 4.3rem);
     font-weight: 900;
     line-height: .92;
     letter-spacing: .06em;
     text-transform: uppercase;
-    text-shadow:
-      0 2px 0 rgba(60,42,8,.85),
-      0 0 28px rgba(238,199,82,.18);
     text-align: left;
+    /* Gradient text — igual ao game-title h1 e welcome-content h1 */
+    background: linear-gradient(180deg,
+      #fff3a4 0%,
+      #f1de7c 25%,
+      #caa544 55%,
+      #7c5f1c 82%,
+      #e8c84a 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none; /* anula herança da classe base .landing-title */
+    filter: drop-shadow(0 2px 10px rgba(255,215,0,.38));
   }
   #landingScreen .lnd-sub {
     margin: 10px 0 0 0;
