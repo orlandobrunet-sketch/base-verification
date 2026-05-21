@@ -10405,30 +10405,28 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   /* ── Esconder partículas (performance mobile) ────────────── */
   #landingScreen .lnd-particles { display: none; }
 
-  /* ── Coluna esquerda: coluna normal, sem padding ─────────── */
+  /* ── Coluna esquerda: dissolve a caixa, filhos entram
+       diretamente no flex de .landing-content ──────────────── */
   #landingScreen .lnd-left {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    width: 100%;
-    padding: 0;
-    overflow: visible;
+    display: contents;
   }
 
-  /* ── Coluna direita: coluna normal, abaixo da esquerda ───── */
+  /* ── Coluna direita: ocupa largura total, vem após brand ─── */
   #landingScreen .lnd-right {
     display: flex;
     flex-direction: column;
     width: 100%;
     padding: 0;
-    margin-top: 18px;
+    margin-top: 14px;
     overflow: visible;
+    order: 2;
   }
 
   /* ── Brand block ─────────────────────────────────────────── */
   #landingScreen .lnd-brand {
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
+    order: 1;
   }
   #landingScreen .lnd-ornament {
     color: #eec752;
@@ -10534,10 +10532,11 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     animation: lndPPSweep 3.2s ease-in-out infinite;
   }
 
-  /* ── Showcase / Carousel ─────────────────────────────────── */
+  /* ── Showcase / Carousel: depois dos botões de login ──────── */
   #landingScreen .lnd-showcase {
     width: 100%;
-    margin-top: 2px;
+    margin-top: 12px;
+    order: 3;
   }
   #landingScreen .lnd-carousel {
     width: 100%;
@@ -10561,7 +10560,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   /* Track: altura fixa essencial para cards absolutos */
   #landingScreen .lnd-carousel-track {
     position: relative;
-    height: 196px;
+    height: 155px;
     overflow: hidden;
   }
 
