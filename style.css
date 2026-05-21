@@ -9197,3 +9197,461 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 }
 .portrait-frame:hover .portrait { filter: brightness(1.08); }
 .portrait-frame:hover { box-shadow: 0 0 14px rgba(217,191,85,0.25); }
+
+/* ============================================================
+   LANDING LOGIN — DESKTOP REDESIGN (min-width: 901px)
+   CSS-only override — appended no fim de style.css.
+   NÃO altera background, logo, JS, nem conteúdo médico.
+   ============================================================ */
+
+@media (min-width: 901px) {
+
+  /* 0 ─ Contêiner: flex centralizado, sem padding extra */
+  #landingScreen {
+    position: fixed;
+    inset: 0;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  /* 1 ─ Painel central: grid 2 colunas */
+  #landingScreen .landing-content {
+    --nq-gold:    #eec752;
+    --nq-gold-dim:#927026;
+    --nq-blue:    #75a3ff;
+    --nq-panel:   rgba(8,11,28,.94);
+    --nq-text:    #d5e2f2;
+    --nq-muted:   #8294b2;
+
+    position: relative;
+    z-index: 2;
+
+    width: min(1220px, calc(100vw - 210px));
+    min-height: 690px;
+    max-height: calc(100vh - 95px);
+    max-width: unset;
+
+    display: grid;
+    grid-template-columns: 1.12fr .88fr;
+    grid-template-rows: auto auto auto auto auto 1fr;
+    column-gap: 88px;
+    align-items: start;
+
+    padding: 56px 58px 46px 58px;
+    margin: 0;
+    gap: unset;
+    column-gap: 88px;
+
+    background:
+      linear-gradient(180deg, rgba(13,17,39,.97), rgba(8,11,28,.96)),
+      radial-gradient(circle at 50% 0%, rgba(255,255,255,.055), transparent 42%);
+    border: 1px solid rgba(238,199,82,.48);
+    border-radius: 26px;
+    box-shadow:
+      0 28px 80px rgba(0,0,0,.55),
+      inset 0 1px 0 rgba(255,255,255,.05),
+      inset 0 0 70px rgba(124,58,237,.035);
+
+    text-align: left;
+    box-sizing: border-box;
+  }
+
+  /* Borda interna decorativa */
+  #landingScreen .landing-content::before {
+    content: "";
+    display: block;
+    position: absolute;
+    inset: 10px;
+    border: 1px solid rgba(146,112,38,.25);
+    border-radius: 20px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Linha divisória vertical entre colunas */
+  #landingScreen .landing-content::after {
+    content: "";
+    position: absolute;
+    top: 46px;
+    bottom: 46px;
+    left: 56%;
+    width: 1px;
+    background: linear-gradient(
+      180deg,
+      transparent,
+      rgba(238,199,82,.18) 12%,
+      rgba(238,199,82,.24) 50%,
+      rgba(238,199,82,.18) 88%,
+      transparent
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* 2 ─ Coluna esquerda */
+  #landingScreen .landing-ornament,
+  #landingScreen .landing-title,
+  #landingScreen .landing-sub,
+  #landingScreen .landing-tagline,
+  #landingScreen .landing-divider,
+  #landingScreen .landing-stats-section { grid-column: 1; }
+
+  /* 3 ─ Coluna direita */
+  #landingScreen #landingMsg,
+  #landingScreen .landing-btn-google,
+  #landingScreen .landing-btn-email,
+  #landingScreen .landing-btn-guest   { grid-column: 2; }
+
+  /* 4 ─ Ornamento */
+  #landingScreen .landing-ornament {
+    margin: 0 0 15px 0;
+    color: var(--nq-gold);
+    font-family: 'Cinzel', serif;
+    font-size: .88rem;
+    font-weight: 600;
+    letter-spacing: .42em;
+    text-transform: uppercase;
+    opacity: .95;
+    text-shadow: 0 0 18px rgba(238,199,82,.18);
+    text-align: left;
+  }
+
+  /* 5 ─ Título */
+  #landingScreen .landing-title {
+    margin: 0;
+    color: var(--nq-gold);
+    font-family: 'Cinzel Decorative', 'Cinzel', serif;
+    font-size: clamp(3.2rem, 4.25vw, 4.65rem);
+    font-weight: 900;
+    line-height: .95;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    text-shadow:
+      0 2px 0 rgba(60,42,8,.85),
+      0 0 28px rgba(238,199,82,.18);
+    text-align: left;
+  }
+
+  /* 6 ─ Sub (Ascension) */
+  #landingScreen .landing-sub {
+    position: static;
+    margin: 12px 0 22px 0;
+    width: auto;
+    color: var(--nq-gold);
+    font-family: 'Cinzel', serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: .62em;
+    text-transform: uppercase;
+    opacity: .86;
+    text-align: left;
+  }
+  #landingScreen .landing-sub::before,
+  #landingScreen .landing-sub::after { display: none; }
+
+  /* 7 ─ Tagline */
+  #landingScreen .landing-tagline {
+    margin: 0 0 26px 0;
+    color: var(--nq-text);
+    font-family: 'Philosopher', serif;
+    font-size: 1.12rem;
+    line-height: 1.45;
+    opacity: .9;
+    text-align: left;
+  }
+
+  /* 8 ─ Divisor */
+  #landingScreen .landing-divider {
+    position: relative;
+    width: 60%;
+    height: 1px;
+    margin: 0 0 20px 0;
+    background: linear-gradient(90deg, transparent, rgba(146,112,38,.75), transparent);
+  }
+  #landingScreen .landing-divider::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px; height: 8px;
+    transform: translate(-50%,-50%) rotate(45deg);
+    background: var(--nq-gold);
+    box-shadow: 0 0 0 6px rgba(8,11,28,.96);
+  }
+
+  /* 9 ─ Msg de erro / cabeçalho da coluna direita
+         — exibido sempre (::before mostra heading quando vazio) */
+  #landingScreen #landingMsg {
+    display: block;
+    align-self: end;
+    min-height: 22px;
+    margin: 0 0 14px 0;
+    color: #fca5a5;
+    font-family: 'Philosopher', serif;
+    font-size: .9rem;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    width: auto;
+    text-align: center;
+  }
+  /* Heading visível quando não há erro */
+  #landingScreen #landingMsg:empty::before {
+    content: "\2726 ACESSO \00C0 SUA JORNADA \2726";
+    display: block;
+    color: var(--nq-gold);
+    font-family: 'Cinzel', serif;
+    font-size: .82rem;
+    font-weight: 600;
+    letter-spacing: .36em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  /* Erro presente — restaurar caixa rosa */
+  #landingScreen #landingMsg:not(:empty) {
+    background: rgba(251,113,133,.10);
+    border: 1px solid rgba(251,113,133,.30);
+    border-radius: 8px;
+    padding: 8px 12px;
+  }
+
+  /* 10 ─ Botões */
+  #landingScreen .landing-btn-google,
+  #landingScreen .landing-btn-email,
+  #landingScreen .landing-btn-guest {
+    width: 100%;
+    height: 62px;
+    min-height: 62px;
+    margin: 0 0 16px 0;
+    padding: 0 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    font-family: 'Cinzel', serif;
+    font-size: .96rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, filter .18s ease;
+  }
+  #landingScreen .landing-btn-google {
+    color: #17120b;
+    border: 1px solid rgba(255,246,220,.92);
+    background: linear-gradient(180deg, #f8f1d9 0%, #e6d9ad 100%);
+    box-shadow: 0 12px 28px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.82);
+  }
+  #landingScreen .landing-btn-email {
+    color: var(--nq-blue);
+    border: 1px solid rgba(117,163,255,.64);
+    background: linear-gradient(180deg, rgba(16,25,58,.92), rgba(9,14,35,.88));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 0 0 1px rgba(117,163,255,.07);
+  }
+  #landingScreen .landing-btn-guest {
+    color: rgba(202,190,228,.72);
+    border: 1px solid rgba(255,255,255,.10);
+    background: linear-gradient(180deg, rgba(29,31,54,.75), rgba(17,19,36,.70));
+    margin-bottom: 0;
+  }
+  #landingScreen .landing-btn-google:hover,
+  #landingScreen .landing-btn-email:hover,
+  #landingScreen .landing-btn-guest:hover { transform: translateY(-2px); filter: brightness(1.06); }
+  #landingScreen .landing-btn-google:hover {
+    box-shadow: 0 14px 34px rgba(0,0,0,.34), 0 0 22px rgba(238,199,82,.20);
+  }
+  #landingScreen .landing-btn-email:hover {
+    border-color: rgba(117,163,255,.9);
+    box-shadow: 0 0 22px rgba(74,158,255,.16);
+  }
+  #landingScreen .landing-btn-guest:hover {
+    border-color: rgba(124,58,237,.42);
+    box-shadow: 0 0 20px rgba(124,58,237,.13);
+  }
+
+  /* 11 ─ Stats section (col esquerda, row 6) */
+  #landingScreen .landing-stats-section {
+    margin: 0; padding: 0; border: 0; background: transparent; width: 100%;
+  }
+  #landingScreen .landing-question-count {
+    text-align: center;
+    margin-bottom: 22px;
+    padding: 23px 28px 24px;
+    border: 1px solid rgba(146,112,38,.48);
+    border-radius: 14px;
+    background: linear-gradient(180deg, rgba(15,20,45,.82), rgba(9,13,33,.76));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.035);
+  }
+  #landingScreen .landing-question-count::before {
+    content: "CONHECIMENTO \00C9 SEU MAIOR PODER";
+    display: block;
+    margin-bottom: 14px;
+    color: var(--nq-gold);
+    font-family: 'Cinzel', serif;
+    font-size: .9rem;
+    font-weight: 800;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+  }
+  #landingScreen .landing-question-big {
+    color: var(--nq-gold);
+    font-family: 'Cinzel', serif;
+    font-size: 2.1rem;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: .04em;
+    text-shadow: 0 0 18px rgba(238,199,82,.15);
+  }
+  #landingScreen .landing-question-big sup { font-size: 1rem; top: -.55em; }
+  #landingScreen .landing-question-label {
+    margin-top: 4px;
+    color: var(--nq-gold);
+    font-family: 'Cinzel', serif;
+    font-size: .83rem;
+    font-weight: 800;
+    letter-spacing: .26em;
+    text-transform: uppercase;
+  }
+  #landingScreen .landing-question-caption {
+    margin-top: 8px;
+    color: var(--nq-muted);
+    font-family: 'Philosopher', serif;
+    font-size: .92rem;
+  }
+  #landingScreen .landing-stats-divider { display: none; }
+
+  /* 3 cards de features */
+  #landingScreen .landing-features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 0;
+  }
+  #landingScreen .landing-feature-item {
+    min-height: 78px;
+    padding: 14px 13px 13px;
+    border: 1px solid rgba(255,255,255,.105);
+    border-radius: 12px;
+    background: linear-gradient(180deg, rgba(17,22,48,.76), rgba(11,15,36,.72));
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    text-align: left;
+  }
+  #landingScreen .landing-feature-icon {
+    flex: 0 0 28px;
+    width: 28px; height: 28px;
+    display: inline-grid;
+    place-items: center;
+    border-radius: 999px;
+    background: rgba(124,58,237,.16);
+    box-shadow: 0 0 0 1px rgba(146,112,38,.28);
+    font-size: 1rem;
+    line-height: 1;
+  }
+  #landingScreen .landing-feature-title {
+    color: var(--nq-gold);
+    font-family: 'Cinzel', serif;
+    font-size: .72rem;
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  #landingScreen .landing-feature-desc {
+    margin-top: 5px;
+    color: var(--nq-muted);
+    font-family: 'Philosopher', serif;
+    font-size: .78rem;
+    line-height: 1.28;
+  }
+
+  /* 12 ─ Trust card — posição absoluta ancorada ao painel
+          (.landing-content é position:relative via regra global existente)      */
+
+  /* Cadeado */
+  #landingScreen .landing-content > .landing-btn-email::after {
+    content: "\1F512";
+    position: absolute;
+    left: calc(56% + 78px);
+    bottom: 126px;
+    width: 58px; height: 68px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(238,199,82,.42);
+    border-radius: 12px 12px 22px 22px;
+    background: linear-gradient(180deg, rgba(41,45,76,.96), rgba(19,22,44,.96));
+    color: var(--nq-gold);
+    font-size: 1.65rem;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 12px 22px rgba(0,0,0,.28);
+    pointer-events: none;
+    z-index: 2;
+  }
+  /* Texto do card de confiança */
+  #landingScreen .landing-content > .landing-btn-guest::after {
+    content: "SEUS DADOS, SUA CONFIAN\00C7A\A N\00E3o compartilhamos suas informa\00E7\00F5es.\A Login seguro, experi\00EAncia protegida.";
+    white-space: pre-line;
+    position: absolute;
+    left: calc(56% + 48px);
+    right: 58px;
+    bottom: 95px;
+    min-height: 116px;
+    padding: 25px 28px 22px 118px;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 14px;
+    background:
+      radial-gradient(circle at 62px 58px, rgba(238,199,82,.08), transparent 42px),
+      linear-gradient(180deg, rgba(15,20,45,.72), rgba(10,14,35,.68));
+    color: var(--nq-text);
+    font-family: 'Philosopher', serif;
+    font-size: .92rem;
+    line-height: 1.45;
+    letter-spacing: .02em;
+    text-align: left;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* 13 ─ Profile button (top-right fixo) */
+  #landingScreen .profile-btn {
+    position: fixed !important;
+    top: 24px !important;
+    right: 31px !important;
+    width: 46px; height: 46px;
+    border: 1px solid rgba(238,199,82,.52);
+    border-radius: 9px;
+    background: rgba(11,15,34,.78);
+    color: var(--gold, #eec752);
+    box-shadow: 0 8px 22px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.04);
+    z-index: 100;
+  }
+}
+
+/* Ajuste para notebooks menores (901–1450px) */
+@media (min-width: 901px) and (max-width: 1450px) {
+  #landingScreen .landing-content {
+    width: min(1120px, calc(100vw - 120px));
+    min-height: 640px;
+    padding: 46px 52px 42px;
+    column-gap: 72px;
+  }
+  #landingScreen .landing-title {
+    font-size: clamp(2.9rem, 4vw, 4.05rem);
+  }
+  #landingScreen .landing-feature-desc { display: none; }
+  #landingScreen .landing-feature-item { min-height: 58px; align-items: center; }
+  #landingScreen .landing-content > .landing-btn-guest::after {
+    bottom: 80px;
+    right: 52px;
+    padding-top: 22px;
+  }
+  #landingScreen .landing-content > .landing-btn-email::after {
+    bottom: 111px;
+  }
+}
