@@ -9199,16 +9199,20 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 .portrait-frame:hover { box-shadow: 0 0 14px rgba(217,191,85,0.25); }
 
 /* ============================================================
-   LANDING LOGIN — DESKTOP REDESIGN v3 (min-width: 901px)
-   HTML restructured: .lnd-left / .lnd-vsep / .lnd-right
-   Flexbox row — no CSS Grid, no pseudo-element content tricks.
-   Background (bg-hall.jpg) e card retangular (.landing-content)
-   permanecem intactos. Apenas o interior do card muda.
+   LANDING LOGIN — DESKTOP REDESIGN v4 (min-width: 901px)
+   HTML: .lnd-left / .lnd-vsep (3 gems) / .lnd-right
+   Animação de entrada, valor card, stats grid, trust badges.
+   Background (bg-hall.jpg) e .landing-content preservados.
    ============================================================ */
+
+@keyframes lndCardIn {
+  from { opacity: 0; transform: translateY(24px) scale(.983); }
+  to   { opacity: 1; transform: none; }
+}
 
 @media (min-width: 901px) {
 
-  /* 0 — Contêiner: centraliza o card */
+  /* 0 — Contêiner */
   #landingScreen {
     position: fixed;
     inset: 0;
@@ -9219,7 +9223,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     padding: 0;
   }
 
-  /* 1 — Painel central: flexbox row, mantém aparência do card */
+  /* 1 — Painel central */
   #landingScreen .landing-content {
     --nq-gold:     #eec752;
     --nq-gold-dim: #927026;
@@ -9230,16 +9234,14 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     position: relative;
     z-index: 2;
 
-    width: min(1160px, calc(100vw - 140px));
-    min-height: 660px;
-    max-height: calc(100vh - 80px);
+    width: min(1200px, calc(100vw - 100px));
+    min-height: 700px;
+    max-height: calc(100vh - 56px);
     max-width: unset;
 
-    /* Flexbox row — estrutura das colunas */
     display: flex;
     flex-direction: row;
     align-items: stretch;
-
     padding: 0;
     margin: 0;
 
@@ -9249,16 +9251,18 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     border: 1px solid rgba(238,199,82,.46);
     border-radius: 24px;
     box-shadow:
-      0 28px 80px rgba(0,0,0,.55),
+      0 28px 80px rgba(0,0,0,.58),
       inset 0 1px 0 rgba(255,255,255,.05),
-      inset 0 0 70px rgba(124,58,237,.035);
+      inset 0 0 80px rgba(124,58,237,.04);
 
     text-align: left;
     box-sizing: border-box;
     overflow: hidden;
+
+    animation: lndCardIn .42s cubic-bezier(.22,.8,.34,1) both;
   }
 
-  /* Borda interna decorativa (não interfere com layout) */
+  /* Borda interna decorativa */
   #landingScreen .landing-content::before {
     content: "";
     position: absolute;
@@ -9274,33 +9278,36 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;
-    padding: 52px 48px 48px 52px;
+    padding: 48px 44px 44px 52px;
     min-width: 0;
     position: relative;
     z-index: 1;
   }
 
-  /* Brand block */
+  /* Brand block — centralizado */
+  #landingScreen .lnd-brand {
+    text-align: center;
+    margin-bottom: 16px;
+  }
   #landingScreen .lnd-ornament {
     color: var(--nq-gold);
     font-family: 'Cinzel', serif;
-    font-size: .78rem;
+    font-size: .74rem;
     font-weight: 600;
     letter-spacing: .42em;
     text-transform: uppercase;
-    opacity: .9;
-    margin-bottom: 10px;
+    opacity: .88;
+    margin-bottom: 8px;
   }
   #landingScreen .lnd-brand .landing-title {
     margin: 0;
     font-family: 'Cinzel Decorative', 'Cinzel', serif;
-    font-size: clamp(2.9rem, 3.9vw, 4.3rem);
+    font-size: clamp(2.8rem, 3.8vw, 4.2rem);
     font-weight: 900;
     line-height: .92;
     letter-spacing: .06em;
     text-transform: uppercase;
-    text-align: left;
-    /* Gradient text — igual ao game-title h1 e welcome-content h1 */
+    /* Gradient text — idêntico ao game-title h1 e welcome-content h1 */
     background: linear-gradient(180deg,
       #fff3a4 0%,
       #f1de7c 25%,
@@ -9311,127 +9318,178 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-shadow: none; /* anula herança da classe base .landing-title */
+    text-shadow: none;
     filter: drop-shadow(0 2px 10px rgba(255,215,0,.38));
   }
   #landingScreen .lnd-sub {
-    margin: 10px 0 0 0;
+    margin: 9px 0 0 0;
     color: var(--nq-gold);
     font-family: 'Cinzel', serif;
-    font-size: 1rem;
+    font-size: .9rem;
     font-weight: 500;
-    letter-spacing: .55em;
+    letter-spacing: .48em;
     text-transform: uppercase;
-    opacity: .75;
+    opacity: .7;
   }
 
-  /* Linha divisória decorativa */
-  #landingScreen .lnd-divider-line {
-    width: 52%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(146,112,38,.55), transparent);
-    margin: 20px 0 16px;
-  }
-
-  /* Tagline */
+  /* Tagline (dentro de .lnd-brand → herda text-align: center) */
   #landingScreen .lnd-tagline {
     color: var(--nq-text);
     font-family: 'Philosopher', serif;
-    font-size: 1.05rem;
-    line-height: 1.52;
-    opacity: .88;
-    margin: 0 0 20px 0;
+    font-size: .98rem;
+    line-height: 1.55;
+    opacity: .82;
+    margin: 12px 0 0 0;
   }
 
-  /* Stats row */
-  #landingScreen .lnd-stats-row {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    padding: 16px 22px;
-    border: 1px solid rgba(146,112,38,.38);
-    border-radius: 12px;
-    background: linear-gradient(180deg, rgba(15,20,45,.82), rgba(9,13,33,.76));
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.03);
+  /* Feature cards */
+  #landingScreen .lnd-feats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 12px;
   }
-  #landingScreen .lnd-stat {
-    flex: 1;
+  #landingScreen .lnd-feat {
+    padding: 14px 10px 12px;
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: 10px;
+    background: linear-gradient(180deg, rgba(17,22,52,.78), rgba(11,15,36,.72));
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    gap: 8px;
+    transition: border-color .2s, box-shadow .2s;
+  }
+  #landingScreen .lnd-feat:hover {
+    border-color: rgba(146,112,38,.28);
+    box-shadow: 0 0 14px rgba(124,58,237,.12);
+  }
+  #landingScreen .lnd-feat-icon {
+    width: 38px; height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(124,58,237,.2);
+    box-shadow: 0 0 0 1px rgba(146,112,38,.2), 0 0 14px rgba(124,58,237,.18);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  #landingScreen .lnd-feat-body {
+    color: var(--nq-text);
+    font-family: 'Philosopher', serif;
+    font-size: .78rem;
+    line-height: 1.42;
+    opacity: .82;
+  }
+
+  /* Valor card */
+  #landingScreen .lnd-valor {
+    margin-top: auto;
+    border: 1px solid rgba(238,199,82,.28);
+    border-radius: 14px;
+    background: linear-gradient(180deg, rgba(15,20,50,.84), rgba(9,13,33,.78));
+    padding: 20px 24px 18px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.03), 0 0 24px rgba(124,58,237,.06);
+    text-align: center;
+  }
+  #landingScreen .lnd-valor-title {
+    color: var(--nq-gold);
+    font-family: 'Cinzel', serif;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    margin-bottom: 7px;
+    opacity: .95;
+  }
+  #landingScreen .lnd-valor-desc {
+    color: var(--nq-text);
+    font-family: 'Philosopher', serif;
+    font-size: .84rem;
+    line-height: 1.55;
+    opacity: .78;
+    margin: 0 0 14px 0;
+  }
+  /* Divider ◆ centralizado com linhas */
+  #landingScreen .lnd-valor-divider {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+    color: rgba(238,199,82,.45);
+    font-size: .42rem;
+    line-height: 1;
+  }
+  #landingScreen .lnd-valor-divider::before,
+  #landingScreen .lnd-valor-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+  }
+  #landingScreen .lnd-valor-divider::before {
+    background: linear-gradient(90deg, transparent, rgba(238,199,82,.28));
+  }
+  #landingScreen .lnd-valor-divider::after {
+    background: linear-gradient(270deg, transparent, rgba(238,199,82,.28));
+  }
+
+  /* Stats 4 colunas dentro do valor card */
+  #landingScreen .lnd-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  #landingScreen .lnd-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2px 6px 2px;
+    border-right: 1px solid rgba(238,199,82,.12);
+  }
+  #landingScreen .lnd-stat:last-child { border-right: none; }
+  #landingScreen .lnd-stat-icon {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    filter: drop-shadow(0 0 6px rgba(124,58,237,.4));
   }
   #landingScreen .lnd-stat-num {
     color: var(--nq-gold);
     font-family: 'Cinzel', serif;
-    font-size: 1.45rem;
+    font-size: 1.18rem;
     font-weight: 900;
     line-height: 1;
+    margin-bottom: 5px;
   }
-  #landingScreen .lnd-stat-num sup { font-size: .65rem; vertical-align: super; }
+  #landingScreen .lnd-stat-num sup { font-size: .58rem; vertical-align: super; }
   #landingScreen .lnd-stat-lbl {
     color: var(--nq-muted);
     font-family: 'Philosopher', serif;
-    font-size: .76rem;
-    margin-top: 4px;
-  }
-  #landingScreen .lnd-stat-sep {
-    flex: 0 0 1px;
-    height: 36px;
-    background: rgba(146,112,38,.32);
-    margin: 0 8px;
-  }
-
-  /* Feature cards — empurrados para o fundo da coluna */
-  #landingScreen .lnd-feats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 9px;
-    margin-top: auto;
-  }
-  #landingScreen .lnd-feat {
-    padding: 12px 11px;
-    border: 1px solid rgba(255,255,255,.09);
-    border-radius: 10px;
-    background: linear-gradient(180deg, rgba(17,22,48,.76), rgba(11,15,36,.72));
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    text-align: left;
-  }
-  #landingScreen .lnd-feat-icon {
-    flex: 0 0 26px;
-    width: 26px; height: 26px;
-    display: inline-grid;
-    place-items: center;
-    border-radius: 999px;
-    background: rgba(124,58,237,.16);
-    box-shadow: 0 0 0 1px rgba(146,112,38,.22);
-    font-size: .85rem;
-    line-height: 1;
-    flex-shrink: 0;
-  }
-  #landingScreen .lnd-feat-title {
-    color: var(--nq-gold);
-    font-family: 'Cinzel', serif;
-    font-size: .62rem;
-    font-weight: 700;
-    line-height: 1.3;
-    letter-spacing: .05em;
+    font-size: .64rem;
+    line-height: 1.35;
     text-transform: uppercase;
-    margin-bottom: 3px;
-  }
-  #landingScreen .lnd-feat-desc {
-    color: var(--nq-muted);
-    font-family: 'Philosopher', serif;
-    font-size: .76rem;
-    line-height: 1.4;
+    letter-spacing: .06em;
   }
 
-  /* ── SEPARADOR VERTICAL ──────────────────────────────────── */
+  /* ── SEPARADOR VERTICAL com gems ────────────────────────── */
   #landingScreen .lnd-vsep {
-    flex: 0 0 1px;
-    align-self: stretch;
+    flex: 0 0 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 44px 0;
+    position: relative;
+  }
+  /* Linha do separador */
+  #landingScreen .lnd-vsep::before {
+    content: '';
+    position: absolute;
+    top: 44px; bottom: 44px;
+    left: 50%;
+    width: 1px;
+    transform: translateX(-50%);
     background: linear-gradient(
       180deg,
       transparent 0%,
@@ -9440,33 +9498,39 @@ body.arqui-nefromante-final #arquiStarsDesktop {
       rgba(238,199,82,.14) 90%,
       transparent 100%
     );
-    margin: 44px 0;
+  }
+  #landingScreen .lnd-vsep-gem {
+    position: relative;
+    z-index: 1;
+    color: rgba(238,199,82,.58);
+    font-size: .44rem;
+    line-height: 1;
   }
 
   /* ── COLUNA DIREITA ──────────────────────────────────────── */
   #landingScreen .lnd-right {
-    flex: 0 0 370px;
+    flex: 0 0 360px;
     display: flex;
     flex-direction: column;
-    padding: 52px 48px 48px 48px;
+    padding: 52px 44px 44px 44px;
     position: relative;
     z-index: 1;
   }
 
-  /* Heading da coluna direita */
+  /* Heading */
   #landingScreen .lnd-right-heading {
     color: var(--nq-gold);
     font-family: 'Cinzel', serif;
-    font-size: .74rem;
+    font-size: .72rem;
     font-weight: 600;
-    letter-spacing: .34em;
+    letter-spacing: .36em;
     text-transform: uppercase;
     text-align: center;
     margin-bottom: 16px;
-    opacity: .92;
+    opacity: .9;
   }
 
-  /* Mensagem de erro / aviso */
+  /* Mensagem de erro */
   #landingScreen #landingMsg {
     display: block;
     color: #fca5a5;
@@ -9476,7 +9540,6 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     border: none;
     padding: 0;
     text-align: center;
-    margin-bottom: 0;
   }
   #landingScreen #landingMsg:empty { margin-bottom: 0; }
   #landingScreen #landingMsg:not(:empty) {
@@ -9487,7 +9550,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     margin-bottom: 14px;
   }
 
-  /* Botões de login */
+  /* Botões */
   #landingScreen .landing-btn-google,
   #landingScreen .landing-btn-email,
   #landingScreen .landing-btn-guest {
@@ -9511,7 +9574,6 @@ body.arqui-nefromante-final #arquiStarsDesktop {
                 border-color .18s ease, filter .18s ease;
     position: static;
   }
-  /* Remover pseudo-elementos de versões anteriores */
   #landingScreen .landing-btn-email::before,
   #landingScreen .landing-btn-guest::before { display: none; }
 
@@ -9523,79 +9585,100 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   }
   #landingScreen .landing-btn-email {
     color: var(--nq-blue);
-    border: 1px solid rgba(117,163,255,.58);
+    border: 1px solid rgba(117,163,255,.55);
     background: linear-gradient(180deg, rgba(16,25,58,.92), rgba(9,14,35,.88));
     box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
   }
+  /* Botão guest: hierarquia inferior — mais sutil */
   #landingScreen .landing-btn-guest {
-    color: rgba(202,190,228,.68);
-    border: 1px solid rgba(255,255,255,.09);
-    background: linear-gradient(180deg, rgba(29,31,54,.72), rgba(17,19,36,.68));
+    color: rgba(185,175,215,.58);
+    border: 1px solid rgba(255,255,255,.07);
+    background: linear-gradient(180deg, rgba(22,24,44,.65), rgba(14,16,30,.60));
+    font-size: .82rem;
+    height: 50px;
+    min-height: 50px;
   }
   #landingScreen .landing-btn-google:hover,
   #landingScreen .landing-btn-email:hover,
-  #landingScreen .landing-btn-guest:hover { transform: translateY(-2px); filter: brightness(1.06); }
+  #landingScreen .landing-btn-guest:hover { transform: translateY(-2px); filter: brightness(1.07); }
   #landingScreen .landing-btn-google:hover {
-    box-shadow: 0 12px 28px rgba(0,0,0,.3), 0 0 16px rgba(238,199,82,.14);
+    box-shadow: 0 12px 28px rgba(0,0,0,.3), 0 0 18px rgba(238,199,82,.16);
   }
   #landingScreen .landing-btn-email:hover {
     border-color: rgba(117,163,255,.82);
-    box-shadow: 0 0 16px rgba(74,158,255,.13);
+    box-shadow: 0 0 18px rgba(74,158,255,.14);
   }
   #landingScreen .landing-btn-guest:hover {
-    border-color: rgba(124,58,237,.36);
-    box-shadow: 0 0 14px rgba(124,58,237,.11);
+    border-color: rgba(124,58,237,.28);
+    box-shadow: 0 0 12px rgba(124,58,237,.1);
   }
 
-  /* Separadores entre botões */
+  /* Separadores ◆ entre botões */
   #landingScreen .lnd-btn-sep {
     text-align: center;
-    color: rgba(146,112,38,.5);
+    color: rgba(146,112,38,.48);
     font-size: .38rem;
     line-height: 1;
     padding: 5px 0;
   }
 
-  /* Trust card — empurrado para o fundo da coluna */
+  /* Trust card — ancorado no fundo */
   #landingScreen .lnd-trust {
     margin-top: auto;
     display: flex;
     flex-direction: row;
-    align-items: center;
-    gap: 14px;
-    padding: 18px 16px;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 15px 14px;
     border: 1px solid rgba(255,255,255,.10);
     border-radius: 12px;
-    background: linear-gradient(180deg, rgba(15,20,45,.72), rgba(10,14,35,.68));
+    background: linear-gradient(180deg, rgba(15,20,48,.74), rgba(10,14,35,.68));
     box-sizing: border-box;
   }
   #landingScreen .lnd-trust-icon {
-    flex: 0 0 48px;
-    width: 48px; height: 56px;
+    flex: 0 0 44px;
+    width: 44px; height: 54px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(238,199,82,.34);
-    border-radius: 9px 9px 18px 18px;
+    border: 1px solid rgba(238,199,82,.32);
+    border-radius: 8px 8px 16px 16px;
     background: linear-gradient(180deg, rgba(41,45,76,.96), rgba(19,22,44,.96));
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
     flex-shrink: 0;
   }
+  #landingScreen .lnd-trust-body { flex: 1; min-width: 0; }
   #landingScreen .lnd-trust-title {
     color: var(--nq-text);
     font-family: 'Cinzel', serif;
-    font-size: .72rem;
+    font-size: .68rem;
     font-weight: 700;
     letter-spacing: .08em;
     text-transform: uppercase;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
   }
   #landingScreen .lnd-trust-desc {
     color: var(--nq-muted);
     font-family: 'Philosopher', serif;
-    font-size: .8rem;
-    line-height: 1.5;
+    font-size: .75rem;
+    line-height: 1.45;
+    margin-bottom: 8px;
+  }
+  #landingScreen .lnd-trust-badges {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+  #landingScreen .lnd-trust-badge {
+    color: rgba(144,210,110,.82);
+    font-family: 'Philosopher', serif;
+    font-size: .66rem;
+    background: rgba(60,130,60,.12);
+    border: 1px solid rgba(60,130,60,.22);
+    border-radius: 4px;
+    padding: 2px 7px;
+    white-space: nowrap;
   }
 
   /* Profile button */
@@ -9616,20 +9699,17 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 /* Notebooks menores (901–1450px) */
 @media (min-width: 901px) and (max-width: 1450px) {
   #landingScreen .landing-content {
-    width: min(1060px, calc(100vw - 100px));
-    min-height: 620px;
+    width: min(1060px, calc(100vw - 80px));
+    min-height: 660px;
   }
-  #landingScreen .lnd-left {
-    padding: 44px 40px 40px 46px;
-  }
-  #landingScreen .lnd-right {
-    flex: 0 0 330px;
-    padding: 44px 38px 40px 38px;
-  }
-  #landingScreen .lnd-brand .landing-title {
-    font-size: clamp(2.5rem, 3.6vw, 3.6rem);
-  }
-  #landingScreen .lnd-feat { padding: 10px 9px; }
-  #landingScreen .lnd-feat-title { font-size: .60rem; }
-  #landingScreen .lnd-feat-desc { font-size: .72rem; }
+  #landingScreen .lnd-left  { padding: 42px 36px 38px 44px; }
+  #landingScreen .lnd-right { flex: 0 0 320px; padding: 44px 36px 38px 36px; }
+  #landingScreen .lnd-brand .landing-title { font-size: clamp(2.4rem, 3.5vw, 3.4rem); }
+  #landingScreen .lnd-feat  { padding: 12px 8px 10px; }
+  #landingScreen .lnd-feat-body { font-size: .74rem; }
+  #landingScreen .lnd-valor { padding: 16px 18px 14px; }
+  #landingScreen .lnd-valor-title { font-size: .74rem; }
+  #landingScreen .lnd-valor-desc  { font-size: .8rem; }
+  #landingScreen .lnd-stat-num    { font-size: 1.06rem; }
+  #landingScreen .lnd-stat-lbl    { font-size: .6rem; }
 }
