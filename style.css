@@ -8182,9 +8182,11 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 
 .auth-title {
   font-family: 'Cinzel', serif !important;
-  color: rgba(217,191,85,0.92) !important;
+  color: rgba(217,191,85,0.88) !important;
   letter-spacing: 0.18em !important;
-  font-size: 1.1rem !important;
+  font-size: 0.88rem !important;
+  text-shadow: none !important;
+  filter: none !important;
 }
 .auth-subtitle { color: rgba(172,193,220,0.60) !important; }
 
@@ -8319,10 +8321,13 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 }
 .pricing-wrap h2 {
   font-family: 'Cinzel Decorative', 'Cinzel', serif !important;
-  background: linear-gradient(180deg, #fff3a4, #caa544 60%, #7c5f1c) !important;
+  font-size: clamp(1.12rem, 3.2vw, 1.6rem) !important;
+  background: linear-gradient(180deg, #eec752 0%, #caa544 48%, #8a6520 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
+  filter: none !important;
+  text-shadow: none !important;
 }
 
 /* Identity chooser overlay */
