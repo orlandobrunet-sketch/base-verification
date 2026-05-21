@@ -192,46 +192,65 @@
       </div>
     </div>
     <div class="landing-content">
-      <div class="landing-ornament">&#10022; Reino dos Néfrons &#10022;</div>
-      <h1 class="landing-title">NefroQuest</h1>
-      <div class="landing-sub">Ascension</div>
-      <div class="landing-tagline">Domine a Nefrologia.<br>Conquiste o reino dos néfrons.</div>
-      <div class="landing-divider"></div>
-      <div id="landingMsg" class="landing-msg"></div>
-      <button type="button" class="landing-btn-google" data-action="landingLoginGoogle">
-        <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.1 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.6-13.47-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-        Entrar com Google
-      </button>
-      <button type="button" class="landing-btn-email" data-action="landingLoginEmail">&#9993; Entrar com Email</button>
-      <button type="button" class="landing-btn-guest" data-action="playAsGuest">🎮 Experimentar sem conta</button>
-      <div class="landing-stats-section">
-        <div class="landing-question-count">
-          <div class="landing-question-big">1.000<sup>+</sup></div>
-          <div class="landing-question-label">questões comentadas</div>
-          <div class="landing-question-caption">de Nefrologia — atualizadas constantemente</div>
+      <!-- LEFT COLUMN: brand + value props -->
+      <div class="lnd-left">
+        <div class="lnd-brand">
+          <div class="lnd-ornament">✦ Reino dos Néfrons ✦</div>
+          <h1 class="landing-title">NefroQuest</h1>
+          <div class="lnd-sub">Ascension</div>
         </div>
-        <hr class="landing-stats-divider">
-        <div class="landing-features">
-          <div class="landing-feature-item">
-            <span class="landing-feature-icon">⚔️</span>
+        <div class="lnd-divider-line"></div>
+        <p class="lnd-tagline">A revolução no aprendizado médico.<br>Domine Nefrologia jogando.</p>
+        <div class="lnd-stats-row">
+          <div class="lnd-stat"><span class="lnd-stat-num">1.000<sup>+</sup></span><span class="lnd-stat-lbl">Questões</span></div>
+          <div class="lnd-stat-sep"></div>
+          <div class="lnd-stat"><span class="lnd-stat-num">20<sup>+</sup></span><span class="lnd-stat-lbl">Temas</span></div>
+          <div class="lnd-stat-sep"></div>
+          <div class="lnd-stat"><span class="lnd-stat-num">Top 1%</span><span class="lnd-stat-lbl">Ranking</span></div>
+        </div>
+        <div class="lnd-feats">
+          <div class="lnd-feat">
+            <span class="lnd-feat-icon">⚔️</span>
             <div>
-              <div class="landing-feature-title">Jornada RPG gamificada</div>
-              <div class="landing-feature-desc">Escolha seu herói, ganhe XP e equipamentos. Derrote o Arqui-Nefromante aprendendo.</div>
+              <div class="lnd-feat-title">RPG Gamificado</div>
+              <div class="lnd-feat-desc">Aprenda combatendo o Arqui-Nefromante</div>
             </div>
           </div>
-          <div class="landing-feature-item">
-            <span class="landing-feature-icon">🎯</span>
+          <div class="lnd-feat">
+            <span class="lnd-feat-icon">🧠</span>
             <div>
-              <div class="landing-feature-title">Estude pelo seu ponto fraco</div>
-              <div class="landing-feature-desc">Identifica suas lacunas por tema: Glomerulopatias, LRA, Diálise, Transplante, Eletrólitos e mais.</div>
+              <div class="lnd-feat-title">IA Mentora</div>
+              <div class="lnd-feat-desc">Oráculo explica cada caso em profundidade</div>
             </div>
           </div>
-          <div class="landing-feature-item">
-            <span class="landing-feature-icon">📋</span>
+          <div class="lnd-feat">
+            <span class="lnd-feat-icon">📖</span>
             <div>
-              <div class="landing-feature-title">Baseado nas melhores evidências</div>
-              <div class="landing-feature-desc">Explicações detalhadas com referências: KDIGO, DOQI, SBN e principais RCTs.</div>
+              <div class="lnd-feat-title">Evidência Científica</div>
+              <div class="lnd-feat-desc">KDIGO, SBN e os principais RCTs</div>
             </div>
+          </div>
+        </div>
+      </div>
+      <!-- VERTICAL SEPARATOR -->
+      <div class="lnd-vsep"></div>
+      <!-- RIGHT COLUMN: login -->
+      <div class="lnd-right">
+        <div class="lnd-right-heading">✦ Acesso à sua jornada ✦</div>
+        <div id="landingMsg" class="landing-msg"></div>
+        <button type="button" class="landing-btn-google" data-action="landingLoginGoogle">
+          <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.1 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.6-13.47-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+          Entrar com Google
+        </button>
+        <div class="lnd-btn-sep"><span>◆</span></div>
+        <button type="button" class="landing-btn-email" data-action="landingLoginEmail">✉ Entrar com Email</button>
+        <div class="lnd-btn-sep"><span>◆</span></div>
+        <button type="button" class="landing-btn-guest" data-action="playAsGuest">🎮 Experimentar sem conta</button>
+        <div class="lnd-trust">
+          <div class="lnd-trust-icon">🔒</div>
+          <div>
+            <div class="lnd-trust-title">Seus dados, sua confiança</div>
+            <div class="lnd-trust-desc">Não compartilhamos suas informações. Login seguro, experiência protegida.</div>
           </div>
         </div>
       </div>
