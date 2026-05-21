@@ -330,7 +330,7 @@
       // Marcar questão como dominada após resposta correta
       if (isCorrect && state.current && state.current.id) {
         _masteredSet.add(state.current.id);
-        try { localStorage.setItem(MASTERED_KEY, JSON.stringify([..._masteredSet])); } catch(e) {}
+        try { localStorage.setItem(MASTERED_KEY, JSON.stringify([..._masteredSet])); } catch(e) { console.error('[NQ] saveMastered failed', e); }
       }
 
       // Desbloquear refs do Grimório ao acertar

@@ -641,7 +641,7 @@
           wrong: studyModeWrong,
           savedAt: Date.now()
         }));
-      } catch(e) {}
+      } catch(e) { console.error('[NQ] _saveStudyState failed', e); }
     }
 
     function _loadStudyState() {

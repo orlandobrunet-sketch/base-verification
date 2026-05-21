@@ -40,49 +40,56 @@
 
     function _wmClearTimers() {
       if (_wmFadeInterval)    { if (_wmFadeInterval.cancel) _wmFadeInterval.cancel(); else clearInterval(_wmFadeInterval); _wmFadeInterval = null; }
-      if (_wmFadeOutInterval) { clearInterval(_wmFadeOutInterval); _wmFadeOutInterval = null; }
+      if (_wmFadeOutInterval) { if (_wmFadeOutInterval.cancel) _wmFadeOutInterval.cancel(); else clearInterval(_wmFadeOutInterval); _wmFadeOutInterval = null; }
       if (_wmLoopTimeout)     { clearTimeout(_wmLoopTimeout);      _wmLoopTimeout = null; }
       if (_wmFadeOutTimeout)  { clearTimeout(_wmFadeOutTimeout);   _wmFadeOutTimeout = null; }
     }
 
-    // Fade-in suave — time-based via performance.now() para imunidade a throttling de aba
-    // (setInterval throttled não afeta a curva — o volume salta para o valor correto do timestamp)
+    // Fade-in suave — time-based via performance.now(), rAF para imunidade a throttling de aba
     function _wmFadeIn(onDone) {
       wmTrack.volume = 0.01;
       const t0 = performance.now();
-      const iv = setInterval(() => {
-        if (_wmStopRequested) { clearInterval(iv); _wmFadeInterval = null; return; }
+      let rafId;
+      function _tick() {
+        if (_wmStopRequested) { _wmFadeInterval = null; return; }
         const t = Math.min(1, (performance.now() - t0) / WM_FADEIN_MS);
         wmTrack.volume = WELCOME_MUSIC_VOL * Math.sqrt(t); // ease-out
         if (t >= 1) {
-          clearInterval(iv);
           wmTrack.volume = WELCOME_MUSIC_VOL;
           _wmFadeInterval = null;
           if (onDone) onDone();
+        } else {
+          rafId = requestAnimationFrame(_tick);
         }
-      }, 30);
-      _wmFadeInterval = { cancel: () => clearInterval(iv) };
+      }
+      rafId = requestAnimationFrame(_tick);
+      _wmFadeInterval = { cancel: () => cancelAnimationFrame(rafId) };
     }
 
-    // Fade-out suave — time-based, mesma lógica
+    // Fade-out suave — time-based, rAF
     function _wmFadeOut(onDone) {
       const startVol = wmTrack.volume;
       const t0 = performance.now();
-      _wmFadeOutInterval = setInterval(() => {
+      let rafId;
+      function _tick() {
         if (_wmStopRequested) {
-          clearInterval(_wmFadeOutInterval); _wmFadeOutInterval = null;
+          _wmFadeOutInterval = null;
           wmTrack.volume = 0; wmTrack.pause();
           return;
         }
         const t = Math.min(1, (performance.now() - t0) / WM_FADEOUT_MS);
         wmTrack.volume = Math.max(0, startVol * (1 - t * t)); // ease-in
         if (t >= 1) {
-          clearInterval(_wmFadeOutInterval); _wmFadeOutInterval = null;
+          _wmFadeOutInterval = null;
           wmTrack.volume = 0;
           wmTrack.pause();
           if (onDone) onDone();
+        } else {
+          rafId = requestAnimationFrame(_tick);
         }
-      }, 30);
+      }
+      rafId = requestAnimationFrame(_tick);
+      _wmFadeOutInterval = { cancel: () => cancelAnimationFrame(rafId) };
     }
 
     // Agenda o fade-out automático quando a faixa estiver tocando
@@ -187,21 +194,26 @@
         if (onComplete) onComplete();
         return;
       }
-      // Fade-out suave — time-based
+      // Fade-out suave — time-based, rAF
       const startVol = wmTrack.volume;
       const t0 = performance.now();
-      _wmFadeInterval = setInterval(() => {
+      let rafId;
+      function _tick() {
         const t = Math.min(1, (performance.now() - t0) / WM_FADEOUT_MS);
         wmTrack.volume = Math.max(0, startVol * (1 - t));
         if (t >= 1) {
-          clearInterval(_wmFadeInterval); _wmFadeInterval = null;
+          _wmFadeInterval = null;
           wmTrack.pause();
           wmTrack.currentTime = 0;
           wmTrack.volume = 0;
           welcomeMusicStarted = false;
           if (onComplete) onComplete();
+        } else {
+          rafId = requestAnimationFrame(_tick);
         }
-      }, 50);
+      }
+      rafId = requestAnimationFrame(_tick);
+      _wmFadeInterval = { cancel: () => cancelAnimationFrame(rafId) };
     }
 
     // Background Music - Double-buffer crossfade loop
@@ -275,15 +287,15 @@
       nextTrack.muted = true;
       nextTrack.play().then(() => { nextTrack.muted = false; }).catch(() => { nextTrack.muted = false; });
 
-      // Time-based equal-power crossfade — imune a throttling de aba inativa
+      // Time-based equal-power crossfade — rAF, imune a throttling de aba inativa
       const XFADE_MS = XFADE_TIME * 1000;
       const t0 = performance.now();
-      const fadeInterval = setInterval(() => {
+      let rafId;
+      function _tick() {
         const t = Math.min(1, (performance.now() - t0) / XFADE_MS);
         prevTrack.volume = MUSIC_VOL * Math.cos(t * Math.PI / 2);
         nextTrack.volume  = MUSIC_VOL * Math.sin(t * Math.PI / 2);
         if (t >= 1) {
-          clearInterval(fadeInterval);
           prevTrack.pause();
           prevTrack.currentTime = 0;
           prevTrack.volume = MUSIC_VOL;
@@ -291,8 +303,11 @@
           activeTrack = nextTrack;
           _crossfading = false;
           scheduleXfade(nextTrack);
+        } else {
+          rafId = requestAnimationFrame(_tick);
         }
-      }, 50);
+      }
+      rafId = requestAnimationFrame(_tick);
     }
     
     function playSound(name) {
