@@ -9713,3 +9713,380 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   #landingScreen .lnd-stat-num    { font-size: 1.06rem; }
   #landingScreen .lnd-stat-lbl    { font-size: .6rem; }
 }
+
+/* ============================================================
+   LANDING v5 — Particles · Progression Path · Question Card
+   Leaderboard Teaser · Punchy Copy Animations
+   ============================================================ */
+
+/* ── Keyframes ─────────────────────────────────────────────── */
+@keyframes lndParticleFloat {
+  0%   { transform: translate(0, 0)         opacity: 0; }
+  8%   { opacity: 1; }
+  92%  { opacity: .7; }
+  100% { transform: translate(var(--drift), -110vh); opacity: 0; }
+}
+@keyframes lndVigBreath {
+  0%, 100% { opacity: .55; }
+  50%       { opacity: .38; }
+}
+@keyframes lndNodePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(238,199,82,.0), 0 0 12px rgba(238,199,82,.38); }
+  50%      { box-shadow: 0 0 0 6px rgba(238,199,82,.0), 0 0 22px rgba(238,199,82,.62); }
+}
+@keyframes lndPPSweep {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%);  }
+}
+@keyframes lndLbFill {
+  from { width: 0; }
+  to   { width: var(--w); }
+}
+@keyframes lndQFade {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (min-width: 901px) {
+
+  /* ── Left column: scrollable for taller content ─────────── */
+  #landingScreen .lnd-left {
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  #landingScreen .lnd-left::-webkit-scrollbar { display: none; }
+
+  /* valor card no longer auto-pushes — flows naturally after feats */
+  #landingScreen .lnd-valor {
+    margin-top: 12px;
+  }
+
+  /* ── Vignette ────────────────────────────────────────────── */
+  #landingScreen .lnd-vignette {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background: radial-gradient(
+      ellipse 80% 70% at 50% 50%,
+      transparent 30%,
+      rgba(5,8,22,.72) 100%
+    );
+    animation: lndVigBreath 5s ease-in-out infinite;
+  }
+
+  /* ── Particles ───────────────────────────────────────────── */
+  #landingScreen .lnd-particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+  }
+  #landingScreen .lnd-particle {
+    position: absolute;
+    bottom: -10px;
+    left: var(--x);
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(238,199,82,.9) 0%, rgba(238,199,82,.2) 100%);
+    box-shadow: 0 0 4px 1px rgba(238,199,82,.5);
+    animation: lndParticleFloat var(--dur) ease-in var(--delay) infinite;
+    will-change: transform, opacity;
+  }
+
+  /* ── Progression Path ────────────────────────────────────── */
+  #landingScreen .lnd-pp {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin: 0 0 14px 0;
+    padding: 10px 16px;
+    background: linear-gradient(180deg, rgba(17,22,52,.6), rgba(11,15,36,.5));
+    border: 1px solid rgba(238,199,82,.14);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  #landingScreen .lnd-pp-node {
+    flex: 0 0 36px;
+    width: 36px; height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid rgba(238,199,82,.18);
+    background: rgba(15,20,48,.9);
+    font-size: 1rem;
+    opacity: .42;
+    transition: opacity .3s;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  #landingScreen .lnd-pp-node--lit {
+    opacity: 1;
+    border-color: rgba(238,199,82,.72);
+    background: linear-gradient(180deg, rgba(40,32,8,.9), rgba(22,18,4,.9));
+    animation: lndNodePulse 2.4s ease-in-out infinite;
+  }
+  #landingScreen .lnd-pp-line {
+    flex: 1;
+    height: 2px;
+    background: rgba(238,199,82,.1);
+    position: relative;
+    overflow: hidden;
+  }
+  #landingScreen .lnd-pp-fill {
+    display: block;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(238,199,82,.7) 50%, transparent 100%);
+    animation: lndPPSweep 3.2s ease-in-out infinite;
+  }
+
+  /* ── Interactive Question Card ───────────────────────────── */
+  #landingScreen .lnd-q-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  #landingScreen .lnd-q-tag {
+    color: var(--nq-gold);
+    font-family: 'Cinzel', serif;
+    font-size: .65rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    opacity: .88;
+  }
+  #landingScreen .lnd-q-badge {
+    color: rgba(144,210,110,.82);
+    font-family: 'Philosopher', serif;
+    font-size: .62rem;
+    background: rgba(60,130,60,.12);
+    border: 1px solid rgba(60,130,60,.22);
+    border-radius: 4px;
+    padding: 2px 7px;
+  }
+  #landingScreen .lnd-q-text {
+    color: var(--nq-text);
+    font-family: 'Philosopher', serif;
+    font-size: .83rem;
+    line-height: 1.52;
+    margin: 0 0 10px 0;
+    min-height: 2.5em;
+    animation: lndQFade .35s ease both;
+  }
+  #landingScreen .lnd-q-opts {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 0;
+  }
+  #landingScreen .lnd-q-opt {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    padding: 7px 12px;
+    background: rgba(12,17,44,.72);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    transition: border-color .15s, background .15s;
+  }
+  #landingScreen .lnd-q-opt:hover:not([disabled]) {
+    border-color: rgba(117,163,255,.42);
+    background: rgba(20,28,60,.82);
+  }
+  #landingScreen .lnd-q-opt-l {
+    flex: 0 0 22px; height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(124,58,237,.18);
+    border: 1px solid rgba(124,58,237,.28);
+    color: var(--nq-blue);
+    font-family: 'Cinzel', serif;
+    font-size: .62rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  #landingScreen .lnd-q-opt-txt {
+    color: var(--nq-text);
+    font-family: 'Philosopher', serif;
+    font-size: .76rem;
+    line-height: 1.38;
+    opacity: .84;
+  }
+  #landingScreen .lnd-q-opt--ok {
+    border-color: rgba(74,222,128,.58) !important;
+    background: rgba(20,60,30,.72) !important;
+    pointer-events: none;
+  }
+  #landingScreen .lnd-q-opt--ok .lnd-q-opt-l {
+    background: rgba(74,222,128,.22);
+    border-color: rgba(74,222,128,.5);
+    color: #4ade80;
+  }
+  #landingScreen .lnd-q-opt--err {
+    border-color: rgba(251,113,133,.5) !important;
+    background: rgba(60,15,20,.72) !important;
+    pointer-events: none;
+  }
+  #landingScreen .lnd-q-opt--err .lnd-q-opt-l {
+    background: rgba(251,113,133,.18);
+    border-color: rgba(251,113,133,.4);
+    color: #fb7185;
+  }
+  #landingScreen .lnd-q-result {
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+    animation: lndQFade .3s ease both;
+  }
+  #landingScreen .lnd-q-expl {
+    color: var(--nq-text);
+    font-family: 'Philosopher', serif;
+    font-size: .78rem;
+    line-height: 1.5;
+    margin: 0;
+    padding: 10px 12px;
+    background: rgba(74,222,128,.06);
+    border: 1px solid rgba(74,222,128,.18);
+    border-radius: 8px;
+    opacity: .9;
+  }
+  #landingScreen .lnd-q-cta {
+    text-align: center;
+    color: rgba(117,163,255,.76);
+    font-family: 'Philosopher', serif;
+    font-size: .72rem;
+    font-style: italic;
+    padding: 4px 0;
+  }
+
+  /* ── Leaderboard Teaser ──────────────────────────────────── */
+  #landingScreen .lnd-leaderboard {
+    background: linear-gradient(180deg, rgba(16,22,54,.88), rgba(9,13,34,.84));
+    border: 1px solid rgba(238,199,82,.22);
+    border-radius: 12px;
+    padding: 14px 16px 12px;
+    margin-bottom: 14px;
+    overflow: hidden;
+    position: relative;
+  }
+  #landingScreen .lnd-lb-title {
+    color: var(--nq-gold);
+    font-family: 'Cinzel', serif;
+    font-size: .64rem;
+    font-weight: 700;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    opacity: .9;
+  }
+  #landingScreen .lnd-lb-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  #landingScreen .lnd-lb-row:last-of-type { margin-bottom: 0; }
+  #landingScreen .lnd-lb-pos {
+    flex: 0 0 18px;
+    width: 18px; height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-family: 'Cinzel', serif;
+    font-size: .58rem;
+    font-weight: 900;
+    background: rgba(238,199,82,.12);
+    border: 1px solid rgba(238,199,82,.2);
+    color: var(--nq-muted);
+    flex-shrink: 0;
+  }
+  #landingScreen .lnd-lb-pos--1 {
+    background: linear-gradient(180deg, rgba(255,215,0,.3), rgba(200,160,0,.18));
+    border-color: rgba(255,215,0,.5);
+    color: #ffd700;
+  }
+  #landingScreen .lnd-lb-pos--2 {
+    background: rgba(192,192,192,.14);
+    border-color: rgba(192,192,192,.36);
+    color: #c0c0c0;
+  }
+  #landingScreen .lnd-lb-pos--3 {
+    background: rgba(205,127,50,.14);
+    border-color: rgba(205,127,50,.36);
+    color: #cd7f32;
+  }
+  #landingScreen .lnd-lb-name {
+    color: var(--nq-text);
+    font-family: 'Philosopher', serif;
+    font-size: .72rem;
+    flex: 0 0 88px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    opacity: .85;
+  }
+  #landingScreen .lnd-lb-bar {
+    flex: 1;
+    height: 5px;
+    background: rgba(255,255,255,.06);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  #landingScreen .lnd-lb-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, rgba(124,58,237,.7), rgba(238,199,82,.9));
+    animation: lndLbFill 1.2s cubic-bezier(.22,.8,.34,1) both;
+    animation-delay: .4s;
+    width: 0;
+  }
+  #landingScreen .lnd-lb-pts {
+    flex: 0 0 36px;
+    text-align: right;
+    color: var(--nq-gold);
+    font-family: 'Cinzel', serif;
+    font-size: .62rem;
+    font-weight: 700;
+    opacity: .9;
+  }
+  #landingScreen .lnd-lb-you {
+    margin-top: 9px;
+    text-align: center;
+    color: rgba(117,163,255,.72);
+    font-family: 'Philosopher', serif;
+    font-size: .68rem;
+    font-style: italic;
+    border-top: 1px solid rgba(255,255,255,.06);
+    padding-top: 8px;
+    cursor: pointer;
+  }
+  #landingScreen .lnd-lb-you:hover { color: rgba(117,163,255,.92); }
+
+  /* ── Right column: trust card keeps margin-top: auto ─────── */
+  #landingScreen .lnd-right { overflow-y: auto; scrollbar-width: none; }
+  #landingScreen .lnd-right::-webkit-scrollbar { display: none; }
+}
+
+/* Notebook overrides for v5 elements (901–1450px) */
+@media (min-width: 901px) and (max-width: 1450px) {
+  #landingScreen .lnd-pp      { padding: 8px 12px; margin-bottom: 10px; }
+  #landingScreen .lnd-pp-node { flex: 0 0 30px; width: 30px; height: 30px; font-size: .88rem; }
+  #landingScreen .lnd-q-text  { font-size: .78rem; }
+  #landingScreen .lnd-q-opt   { padding: 6px 10px; }
+  #landingScreen .lnd-q-opt-txt { font-size: .72rem; }
+  #landingScreen .lnd-leaderboard { padding: 12px 14px 10px; }
+  #landingScreen .lnd-lb-name { flex: 0 0 78px; font-size: .68rem; }
+}

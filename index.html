@@ -183,6 +183,17 @@
   <!-- LANDING / LOGIN SCREEN -->
   <div id="landingScreen">
     <div class="landing-bg"></div>
+    <div class="lnd-vignette" aria-hidden="true"></div>
+    <div class="lnd-particles" aria-hidden="true">
+      <span class="lnd-particle" style="--x:8%;--dur:7s;--delay:0s;--size:2px;--drift:12px"></span>
+      <span class="lnd-particle" style="--x:22%;--dur:9.5s;--delay:1.8s;--size:3px;--drift:-8px"></span>
+      <span class="lnd-particle" style="--x:38%;--dur:6.5s;--delay:3.2s;--size:2px;--drift:18px"></span>
+      <span class="lnd-particle" style="--x:55%;--dur:8s;--delay:0.6s;--size:3px;--drift:-14px"></span>
+      <span class="lnd-particle" style="--x:70%;--dur:10s;--delay:2.5s;--size:2px;--drift:10px"></span>
+      <span class="lnd-particle" style="--x:82%;--dur:7.5s;--delay:4.2s;--size:4px;--drift:-6px"></span>
+      <span class="lnd-particle" style="--x:15%;--dur:11s;--delay:5.5s;--size:2px;--drift:20px"></span>
+      <span class="lnd-particle" style="--x:62%;--dur:8.5s;--delay:7s;--size:3px;--drift:-12px"></span>
+    </div>
     <!-- Profile button (top-right, shown when already logged in) -->
     <div class="profile-btn" id="landingProfileBtn" data-action="toggleProfilePopup" data-arg="landing" style="position:absolute;top:14px;right:14px;z-index:10;">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
@@ -198,7 +209,18 @@
           <div class="lnd-ornament">✦ Reino dos Néfrons ✦</div>
           <h1 class="landing-title">NefroQuest</h1>
           <div class="lnd-sub">— Ascension —</div>
-          <p class="lnd-tagline">Domine a Nefrologia.<br>Conquiste o reino dos néfrons.</p>
+          <p class="lnd-tagline">A residência vai testar sua memória.<br>NefroQuest vai construir seu domínio.</p>
+        </div>
+        <div class="lnd-pp" aria-label="Sua jornada de evolução">
+          <div class="lnd-pp-node">🩺</div>
+          <div class="lnd-pp-line"><span class="lnd-pp-fill"></span></div>
+          <div class="lnd-pp-node lnd-pp-node--lit">⚔️</div>
+          <div class="lnd-pp-line"><span class="lnd-pp-fill"></span></div>
+          <div class="lnd-pp-node">🧙</div>
+          <div class="lnd-pp-line"><span class="lnd-pp-fill"></span></div>
+          <div class="lnd-pp-node">👑</div>
+          <div class="lnd-pp-line"><span class="lnd-pp-fill"></span></div>
+          <div class="lnd-pp-node">🏆</div>
         </div>
         <div class="lnd-feats">
           <div class="lnd-feat">
@@ -215,8 +237,16 @@
           </div>
         </div>
         <div class="lnd-valor">
-          <div class="lnd-valor-title">Conhecimento é seu maior poder</div>
-          <p class="lnd-valor-desc">Enfrente desafios clínicos, responda questões comentadas<br>e torne-se referência em Nefrologia.</p>
+          <div class="lnd-q-header">
+            <span class="lnd-q-tag">⚔️ Desafio rápido</span>
+            <span class="lnd-q-badge">Questão comentada</span>
+          </div>
+          <p class="lnd-q-text" id="lndQText"></p>
+          <div class="lnd-q-opts" id="lndQOpts"></div>
+          <div class="lnd-q-result" id="lndQResult" style="display:none">
+            <p class="lnd-q-expl" id="lndQExplBlur"></p>
+            <div class="lnd-q-cta">🧠 IA Claude comenta cada questão — entre para acessar</div>
+          </div>
           <div class="lnd-valor-divider"><span>◆</span></div>
           <div class="lnd-stats">
             <div class="lnd-stat">
@@ -250,7 +280,29 @@
       </div>
       <!-- ══ RIGHT COLUMN: login ══ -->
       <div class="lnd-right">
-        <div class="lnd-right-heading">✦ Acesso à sua jornada ✦</div>
+        <div class="lnd-leaderboard">
+          <div class="lnd-lb-title">🏆 Ranking Ativo Agora</div>
+          <div class="lnd-lb-row">
+            <span class="lnd-lb-pos lnd-lb-pos--1">1</span>
+            <span class="lnd-lb-name">Dr. R.M.</span>
+            <div class="lnd-lb-bar"><div class="lnd-lb-fill" style="--w:94%"></div></div>
+            <span class="lnd-lb-pts">1.247</span>
+          </div>
+          <div class="lnd-lb-row">
+            <span class="lnd-lb-pos lnd-lb-pos--2">2</span>
+            <span class="lnd-lb-name">Médico_4821</span>
+            <div class="lnd-lb-bar"><div class="lnd-lb-fill" style="--w:82%"></div></div>
+            <span class="lnd-lb-pts">1.089</span>
+          </div>
+          <div class="lnd-lb-row">
+            <span class="lnd-lb-pos lnd-lb-pos--3">3</span>
+            <span class="lnd-lb-name">Dr. P.C.</span>
+            <div class="lnd-lb-bar"><div class="lnd-lb-fill" style="--w:74%"></div></div>
+            <span class="lnd-lb-pts">978</span>
+          </div>
+          <div class="lnd-lb-you">Sua posição está em aberto →</div>
+        </div>
+        <div class="lnd-right-heading">✦ Como prefere entrar no reino? ✦</div>
         <div id="landingMsg" class="landing-msg"></div>
         <button type="button" class="landing-btn-google" data-action="landingLoginGoogle">
           <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.1 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.6-13.47-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
@@ -259,7 +311,7 @@
         <div class="lnd-btn-sep"><span>◆</span></div>
         <button type="button" class="landing-btn-email" data-action="landingLoginEmail">✉ Entrar com Email</button>
         <div class="lnd-btn-sep"><span>◆</span></div>
-        <button type="button" class="landing-btn-guest" data-action="playAsGuest">🎮 Experimentar sem conta</button>
+        <button type="button" class="landing-btn-guest" data-action="playAsGuest">🗺️ Entrar como viajante</button>
         <div class="lnd-trust">
           <div class="lnd-trust-icon">🔒</div>
           <div class="lnd-trust-body">
@@ -274,6 +326,45 @@
       </div>
     </div>
   </div>
+
+  <!-- Landing interactive question widget -->
+  <script>
+  (function(){
+    var _q=[
+      {t:"Paciente com DRC estágio 4, K⁺ 6,4 mEq/L e bicarbonato 16 mEq/L. Qual mecanismo explica principalmente a hipercalemia?",
+       o:["Aumento da excreção renal de H⁺","Troca K⁺/H⁺ pela acidose metabólica","Hiperaldosteronismo primário associado","Redistribuição por alcalose respiratória"],c:1,
+       e:"A acidose metabólica causa saída de K⁺ do intracelular em troca de H⁺. Para cada queda de 0,1 no pH, o K⁺ sobe ~0,5 mEq/L."},
+      {t:"Após iniciar IECA em paciente com DRC+DM2, creatinina sobe 26% em 3 semanas, sem hipercalemia. A conduta mais adequada é:",
+       o:["Suspender IECA imediatamente","Reduzir dose pela metade","Manter — elevação esperada e benéfica","Substituir por BRA"],c:2,
+       e:"Elevação de creatinina ≤30% após IECA/BRA reflete queda da pressão intraglomerular — o próprio mecanismo nefroprotetor."},
+      {t:"Mulher com LES, proteinúria 3 g/dia, hematúria microscópica e creatinina 1,8 mg/dL. Qual classe de nefrite lúpica é mais compatível?",
+       o:["Classe II — mesangial mínima","Classe III — proliferativa focal","Classe IV — proliferativa difusa","Classe V — membranosa pura"],c:2,
+       e:"Proteinúria nefrótica-range, hematúria e disfunção renal caracterizam a Classe IV (nefrite lúpica difusa), a forma mais grave e de pior prognóstico."}
+    ];
+    var _qi=Math.floor(Math.random()*_q.length),_ans=false;
+    function _render(){
+      var q=_q[_qi],tt=document.getElementById('lndQText'),oo=document.getElementById('lndQOpts'),rr=document.getElementById('lndQResult');
+      if(!tt||!oo||!rr)return;
+      tt.textContent=q.t; oo.innerHTML=''; rr.style.display='none'; _ans=false;
+      ['A','B','C','D'].forEach(function(l,i){
+        var b=document.createElement('button');
+        b.type='button'; b.className='lnd-q-opt';
+        b.innerHTML='<span class="lnd-q-opt-l">'+l+'</span><span class="lnd-q-opt-txt">'+q.o[i]+'</span>';
+        b.addEventListener('click',function(){
+          if(_ans)return; _ans=true;
+          var ok=i===q.c;
+          b.classList.add(ok?'lnd-q-opt--ok':'lnd-q-opt--err');
+          oo.querySelectorAll('.lnd-q-opt')[q.c].classList.add('lnd-q-opt--ok');
+          document.getElementById('lndQExplBlur').textContent=q.e;
+          rr.style.display='flex';
+          setTimeout(function(){_qi=(_qi+1)%_q.length;_render();},6000);
+        });
+        oo.appendChild(b);
+      });
+    }
+    if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',_render);}else{_render();}
+  })();
+  </script>
 
   <!-- WELCOME SCREEN -->
   <div id="welcomeScreen" class="welcome-screen hidden">
