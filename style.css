@@ -10082,11 +10082,281 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 
 /* Notebook overrides for v5 elements (901–1450px) */
 @media (min-width: 901px) and (max-width: 1450px) {
-  #landingScreen .lnd-pp      { padding: 8px 12px; margin-bottom: 10px; }
-  #landingScreen .lnd-pp-node { flex: 0 0 30px; width: 30px; height: 30px; font-size: .88rem; }
-  #landingScreen .lnd-q-text  { font-size: .78rem; }
-  #landingScreen .lnd-q-opt   { padding: 6px 10px; }
-  #landingScreen .lnd-q-opt-txt { font-size: .72rem; }
+  #landingScreen .lnd-pp          { padding: 8px 12px; margin-bottom: 10px; }
+  #landingScreen .lnd-pp-node     { flex: 0 0 30px; width: 30px; height: 30px; font-size: .88rem; }
   #landingScreen .lnd-leaderboard { padding: 12px 14px 10px; }
-  #landingScreen .lnd-lb-name { flex: 0 0 78px; font-size: .68rem; }
+  #landingScreen .lnd-lb-name     { flex: 0 0 78px; font-size: .68rem; }
+}
+
+/* ============================================================
+   LANDING v6 — CAROUSEL DE CARDS PREMIUM
+   Substitui .lnd-feats + .lnd-valor. 8 cards, auto-rotate 3 s,
+   setas, dots, pausa hover/focus, prefers-reduced-motion.
+   ============================================================ */
+
+@keyframes lndCarProgRun {
+  from { width: 0;    }
+  to   { width: 100%; }
+}
+
+@media (min-width: 901px) {
+
+  /* ── Subtext abaixo da tagline ───────────────────────────── */
+  #landingScreen .lnd-subtext {
+    color: rgba(213,226,242,.58);
+    font-family: 'Philosopher', serif;
+    font-size: .78rem;
+    line-height: 1.48;
+    text-align: center;
+    margin: 8px 0 0;
+    padding: 0 12px;
+  }
+
+  /* ── Showcase wrapper ────────────────────────────────────── */
+  #landingScreen .lnd-showcase {
+    margin-top: 14px;
+  }
+
+  /* ── Carousel container ──────────────────────────────────── */
+  #landingScreen .lnd-carousel {
+    position: relative;
+    background: linear-gradient(148deg, rgba(14,20,56,.98) 0%, rgba(8,12,34,.99) 100%);
+    border: 1px solid rgba(238,199,82,.28);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow:
+      0 0 0 1px rgba(124,58,237,.07),
+      inset 0 1px 0 rgba(255,255,255,.035),
+      0 16px 48px rgba(0,0,0,.42);
+  }
+  /* Highlight superior dourado */
+  #landingScreen .lnd-carousel::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(238,199,82,.55) 50%, transparent 100%);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* ── Track: altura fixa para posicionamento absoluto ─────── */
+  #landingScreen .lnd-carousel-track {
+    position: relative;
+    height: 192px;
+    overflow: hidden;
+  }
+
+  /* ── Cards ───────────────────────────────────────────────── */
+  #landingScreen .lnd-carousel-card {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 18px 34px 12px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity .38s ease, transform .38s ease;
+    pointer-events: none;
+    will-change: opacity, transform;
+  }
+  #landingScreen .lnd-carousel-card.is-active {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  /* Orb do ícone — usa --ci (RGB triplet) do elemento pai */
+  #landingScreen .lnd-carousel-icon {
+    width: 50px; height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(var(--ci),.22) 0%, rgba(var(--ci),.04) 100%);
+    border: 1px solid rgba(var(--ci),.34);
+    box-shadow: 0 0 22px rgba(var(--ci),.28), inset 0 1px 0 rgba(255,255,255,.07);
+    font-size: 1.4rem;
+    margin-bottom: 9px;
+    flex-shrink: 0;
+  }
+
+  /* Kicker — categoria */
+  #landingScreen .lnd-carousel-kicker {
+    color: rgba(238,199,82,.56);
+    font-family: 'Cinzel', serif;
+    font-size: .54rem;
+    font-weight: 700;
+    letter-spacing: .34em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  /* Título — gradiente dourado */
+  #landingScreen .lnd-carousel-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: 900;
+    letter-spacing: .05em;
+    line-height: 1.22;
+    margin: 0 0 7px;
+    background: linear-gradient(180deg, #fff3a4 0%, #f1de7c 28%, #caa544 65%, #e8c84a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Descrição */
+  #landingScreen .lnd-carousel-text {
+    color: rgba(213,226,242,.70);
+    font-family: 'Philosopher', serif;
+    font-size: .78rem;
+    line-height: 1.5;
+    margin: 0;
+    max-width: 340px;
+  }
+
+  /* ── Barra de progresso ──────────────────────────────────── */
+  #landingScreen .lnd-carousel-progress {
+    height: 2px;
+    background: rgba(255,255,255,.05);
+    position: relative;
+    overflow: hidden;
+  }
+  #landingScreen .lnd-carousel-prog-bar {
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: 0;
+    background: linear-gradient(90deg, rgba(124,58,237,.75), rgba(238,199,82,.92));
+  }
+  #landingScreen .lnd-carousel-prog-bar.lnd-prog-run {
+    animation: lndCarProgRun 3s linear forwards;
+  }
+
+  /* ── Controles (setas + dots) ────────────────────────────── */
+  #landingScreen .lnd-carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 9px 14px 11px;
+  }
+
+  /* Setas */
+  #landingScreen .lnd-carousel-arrow {
+    flex: 0 0 28px; width: 28px; height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(238,199,82,.18);
+    border-radius: 6px;
+    background: rgba(255,255,255,.025);
+    color: rgba(238,199,82,.55);
+    font-size: 1.15rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: border-color .18s, color .18s, background .18s;
+    padding: 0;
+  }
+  #landingScreen .lnd-carousel-arrow:hover {
+    border-color: rgba(238,199,82,.52);
+    color: rgba(238,199,82,.96);
+    background: rgba(238,199,82,.07);
+  }
+  #landingScreen .lnd-carousel-arrow:focus-visible {
+    outline: 2px solid rgba(238,199,82,.65);
+    outline-offset: 2px;
+  }
+
+  /* Dots */
+  #landingScreen .lnd-carousel-dots {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  #landingScreen .lnd-carousel-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.14);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background .22s, transform .22s, width .22s;
+    flex-shrink: 0;
+  }
+  #landingScreen .lnd-carousel-dot.is-active {
+    background: rgba(238,199,82,.9);
+    width: 14px;
+    border-radius: 3px;
+  }
+  #landingScreen .lnd-carousel-dot:hover:not(.is-active) {
+    background: rgba(238,199,82,.38);
+  }
+  #landingScreen .lnd-carousel-dot:focus-visible {
+    outline: 2px solid rgba(238,199,82,.65);
+    outline-offset: 2px;
+  }
+
+  /* ── Botões de login — altura reduzida ───────────────────── */
+  #landingScreen .landing-btn-google,
+  #landingScreen .landing-btn-email {
+    height: 48px;
+    min-height: 48px;
+    font-size: .84rem;
+  }
+  #landingScreen .landing-btn-guest {
+    height: 42px;
+    min-height: 42px;
+    font-size: .78rem;
+  }
+
+  /* ── Trust block — faixa compacta ────────────────────────── */
+  #landingScreen .lnd-trust {
+    margin-top: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 0 0;
+    background: transparent;
+    border: none;
+    border-top: 1px solid rgba(255,255,255,.07);
+    border-radius: 0;
+    box-sizing: border-box;
+  }
+  #landingScreen .lnd-trust-lock {
+    font-size: .8rem;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  #landingScreen .lnd-trust-text {
+    color: rgba(130,148,178,.56);
+    font-family: 'Philosopher', serif;
+    font-size: .68rem;
+    line-height: 1.3;
+  }
+}
+
+/* ── prefers-reduced-motion ──────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  #landingScreen .lnd-carousel-card {
+    transition: none;
+  }
+  #landingScreen .lnd-carousel-progress {
+    display: none;
+  }
+}
+
+/* ── Notebook (901–1450px) carousel overrides ─────────────── */
+@media (min-width: 901px) and (max-width: 1450px) {
+  #landingScreen .lnd-carousel-track  { height: 178px; }
+  #landingScreen .lnd-carousel-card   { padding: 14px 26px 10px; }
+  #landingScreen .lnd-carousel-icon   { width: 44px; height: 44px; font-size: 1.25rem; margin-bottom: 7px; }
+  #landingScreen .lnd-carousel-title  { font-size: .9rem; }
+  #landingScreen .lnd-carousel-text   { font-size: .74rem; }
+  #landingScreen .lnd-carousel-kicker { font-size: .52rem; }
 }
