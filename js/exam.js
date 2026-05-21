@@ -13,7 +13,7 @@
       try {
         const { questions, idx, answers, startTime } = _examState;
         localStorage.setItem(EXAM_SAVE_KEY, JSON.stringify({ questions, idx, answers, startTime, savedAt: Date.now() }));
-      } catch(e) {}
+      } catch(e) { console.error('[NQ] _saveExamState failed', e); }
     }
 
     function _loadExamState() {

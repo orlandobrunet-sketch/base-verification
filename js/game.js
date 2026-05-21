@@ -510,7 +510,7 @@
           bestScore:              Math.max(local.bestScore || 0,              cloud.stats.bestScore || 0),
           questionsAnsweredAllTime: Math.max(local.questionsAnsweredAllTime || 0, cloud.stats.questionsAnsweredAllTime || 0)
         };
-        try { localStorage.setItem(STATS_KEY, JSON.stringify(merged)); } catch(e) {}
+        try { localStorage.setItem(STATS_KEY, JSON.stringify(merged)); } catch(e) { console.error('[NQ] saveStats failed', e); }
         _invalidateStatsCache();
       }
 
@@ -520,7 +520,7 @@
         let local = [];
         try { local = JSON.parse(localStorage.getItem(key) || '[]'); } catch(e) {}
         const merged = [...new Set([...local, ...cloud])];
-        try { localStorage.setItem(key, JSON.stringify(merged)); } catch(e) {}
+        try { localStorage.setItem(key, JSON.stringify(merged)); } catch(e) { console.error('[NQ] _mergeArray write failed', e); }
       };
       _mergeArray('nefroquest-achievements', cloud.achievements);
       _mergeArray(MASTERED_KEY,              cloud.mastered);
@@ -535,7 +535,7 @@
         let local = {};
         try { local = JSON.parse(localStorage.getItem('nefroquest-detailed-stats') || '{}'); } catch(e) {}
         if (!Object.keys(local).length) {
-          try { localStorage.setItem('nefroquest-detailed-stats', JSON.stringify(cloud.detailedStats)); } catch(e) {}
+          try { localStorage.setItem('nefroquest-detailed-stats', JSON.stringify(cloud.detailedStats)); } catch(e) { console.error('[NQ] saveDetailedStats (cloud merge) failed', e); }
         }
       }
 
@@ -544,7 +544,7 @@
         let localTs = 0;
         try { const r = localStorage.getItem(SAVE_KEY); localTs = r ? (JSON.parse(r).timestamp || 0) : 0; } catch(e) {}
         if ((cloud.save.timestamp || 0) > localTs) {
-          try { localStorage.setItem(SAVE_KEY, JSON.stringify(cloud.save)); } catch(e) {}
+          try { localStorage.setItem(SAVE_KEY, JSON.stringify(cloud.save)); } catch(e) { console.error('[NQ] saveSave (cloud merge) failed', e); }
         }
       }
     }
@@ -2395,7 +2395,7 @@
 
     function saveDetailedStats(stats) {
       if (!stats.schemaVersion) stats.schemaVersion = DETAILED_STATS_SCHEMA_VERSION;
-      try { localStorage.setItem(STATS_STORAGE_KEY, JSON.stringify(stats)); } catch(e) {}
+      try { localStorage.setItem(STATS_STORAGE_KEY, JSON.stringify(stats)); } catch(e) { console.error('[NQ] saveDetailedStats failed', e); }
     }
     
     function trackQuestionAnswer(question, isCorrect, timeSpent) {

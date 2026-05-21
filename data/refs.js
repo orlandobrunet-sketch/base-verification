@@ -22,7 +22,10 @@
     badge:"TEXTBOOK",
     badgeColor:"#64748b",
     impacto:"Referência em medicina interna — capítulos de nefrologia cobrem síndromes, distúrbios hidroeletrolíticos e DRC",
-    icon:"📚"
+    icon:"📚",
+    resumo:"Livro-texto clássico de medicina interna, usado como referência ampla para raciocínio clínico. Nos capítulos de nefrologia, organiza diagnóstico diferencial das síndromes renais — LRA, DRC, síndrome nefrótica, síndrome nefrítica, distúrbios hidroeletrolíticos e ácido-base — além de glomerulopatias, doenças tubulointersticiais, hipertensão renal e acometimento renal de doenças sistêmicas como diabetes, LES, vasculites e gamopatias.",
+    conclusao:"Harrison's é útil como ponto de entrada clínico e diagnóstico antes das diretrizes específicas; ajuda a construir raciocínio diferencial, mas não substitui guidelines nefrológicas com recomendações graduadas.",
+    curiosidade:"Os capítulos do Harrison's refletem síntese narrativa de especialistas, não recomendações formais com classe e nível de evidência. Por isso, funcionam melhor como mapa clínico geral do que como fonte final para decisão terapêutica específica."
   },
   kdigo_ckd:{
     label:"KDIGO CKD 2024",
@@ -181,7 +184,10 @@
     badge:"RCT",
     badgeColor:"#10b981",
     impacto:"↓18% desfecho renal · ↓14% eventos CV · Finerenona como 3º pilar nefroprotetor",
-    icon:"💊"
+    icon:"💊",
+    resumo:"ECR fase III, duplo-cego, placebo-controlado (FIDELIO-DKD, n=5.734), em DM2 com DRC albuminúrica, potássio controlado e uso de IECA ou BRA em dose máxima tolerada. Finerenona 10–20 mg/dia reduziu o desfecho renal primário composto — queda sustentada de TFGe ≥40%, DRCT ou morte renal — com HR 0,82 (IC 95% 0,73–0,93; P=0,001). O desfecho cardiovascular secundário também foi reduzido: HR 0,86 (IC 95% 0,75–0,99; P=0,03). Descontinuação por hipercalemia foi mais frequente com finerenona: 2,3% vs 0,9%.",
+    conclusao:"FIDELIO-DKD estabeleceu a finerenona como terapia nefroprotetora e cardioprotetora adicional ao bloqueio do SRAA em DRC diabética albuminúrica, com necessidade de seleção por potássio e monitorização laboratorial.",
+    curiosidade:"A finerenona é um antagonista não esteroidal do receptor mineralocorticoide. Diferencia-se dos MRAs esteroidais por estrutura, distribuição tecidual e ausência de atividade androgênica/progestagênica relevante, mas não elimina o principal cuidado clínico da classe: hipercalemia."
   },
   flow_study:{
     label:"FLOW Trial (Semaglutida)",
@@ -408,7 +414,10 @@
     badge:"GUIDELINE",
     badgeColor:"#6366f1",
     impacto:"Critérios universais de diagnóstico e estadiamento da LRA",
-    icon:"📋"
+    icon:"📋",
+    resumo:"Draft de revisão pública KDIGO 2026 para AKI/AKD, primeira grande atualização desde a diretriz KDIGO AKI 2012. Define AKI como anormalidade funcional ou estrutural renal ocorrida, ou presumida, em até 7 dias no contexto clínico apropriado. Mantém creatinina e diurese como critérios centrais, mas incorpora cistatina C e biomarcadores validados de estresse/dano renal como critérios adicionais quando disponíveis. Também formaliza AKD como alteração funcional ou estrutural renal com duração de até 3 meses, integrando o contínuo AKI → AKD → CKD.",
+    conclusao:"O draft KDIGO 2026 desloca o conceito de LRA de uma definição baseada quase exclusivamente em creatinina/diurese para uma estrutura mais ampla, combinando função, dano renal, persistência da injúria e seguimento pós-LRA.",
+    curiosidade:"A KDIGO 2012 foi transformadora por unificar RIFLE e AKIN e padronizar a linguagem da LRA. O draft 2026 preserva esse legado, mas amplia a definição ao reconhecer que lesão renal estrutural, cistatina C e biomarcadores podem identificar injúria antes ou além da creatinina."
   },
   kdigo_cardiorenal_consensus:{
     label:"KDIGO Cardiorenal Syndrome 2012",
@@ -419,7 +428,10 @@
     badge:"GUIDELINE",
     badgeColor:"#6366f1",
     impacto:"Classificação e manejo da síndrome cardiorrenal em 5 tipos",
-    icon:"📋"
+    icon:"📋",
+    resumo:"Classificação clínica da síndrome cardiorrenal proposta por Ronco/ADQI, organizando a interação coração-rim em 5 tipos conforme órgão inicial, temporalidade e contexto sistêmico: tipo 1, disfunção cardíaca aguda levando a LRA; tipo 2, disfunção cardíaca crônica levando a DRC; tipo 3, LRA levando a disfunção cardíaca aguda; tipo 4, DRC contribuindo para disfunção cardíaca crônica; tipo 5, doença sistêmica causando disfunção cardíaca e renal simultânea, como sepse, amiloidose ou vasculite.",
+    conclusao:"A classificação em 5 tipos oferece linguagem comum entre nefrologia, cardiologia e terapia intensiva, mas não substitui a avaliação hemodinâmica, congestiva, inflamatória e medicamentosa individual.",
+    curiosidade:"O tipo 3 é frequentemente negligenciado: LRA pode precipitar disfunção cardíaca por hipercalemia, acidose, sobrecarga volêmica, inflamação, toxinas urêmicas e alterações neuro-hormonais, mesmo sem cardiopatia estrutural prévia evidente."
   },
   kdigo_ckd_guideline:{
     label:"KDIGO CKD 2024",
@@ -513,21 +525,30 @@
     url:"https://www.nejm.org/doi/full/10.1056/NEJM199311253292103",
     journal:"N Engl J Med 1993;329(20):1456-1462",
     ano:1993,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Captopril ↓50% risco de duplicar creatinina em nefropatia diabética — primeiro RCT de nefroproteção com IECA",icon:"🔬"
+    impacto:"Captopril ↓50% risco de duplicar creatinina em nefropatia diabética — primeiro RCT de nefroproteção com IECA",icon:"🔬",
+    resumo:"ECR multicêntrico (n=409), em DM1 com nefropatia estabelecida, proteinúria >500 mg/dia e creatinina sérica ≤2,5 mg/dL, comparando captopril 25 mg 3x/dia vs placebo. O desfecho primário foi duplicação da creatinina sérica: 12,1% no grupo captopril vs 21,3% no placebo, com redução de risco de aproximadamente 48% (P=0,007). O composto de morte, diálise ou transplante também foi reduzido, e o benefício excedeu o esperado apenas pela diferença pressórica.",
+    conclusao:"O trial de Lewis demonstrou que IECA protege rim em nefropatia diabética do DM1 com proteinúria, consolidando o bloqueio do SRAA como eixo histórico da nefroproteção.",
+    curiosidade:"Este estudo ajudou a deslocar o tratamento da nefropatia diabética de simples controle pressórico para bloqueio específico do SRAA, reforçando a proteinúria como marcador de atividade e risco de progressão renal."
   },
   renaal_trial:{
     label:"Brenner BM et al. — RENAAL (NEJM 2001)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa011161",
     journal:"N Engl J Med 2001;345(12):861-869",
     ano:2001,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Losartan ↓16% desfecho renal composto em DM2 com nefropatia — estabeleceu BRA como nefroprotetor padrão",icon:"🔬"
+    impacto:"Losartan ↓16% desfecho renal composto em DM2 com nefropatia — estabeleceu BRA como nefroprotetor padrão",icon:"🔬",
+    resumo:"ECR multicêntrico (RENAAL, n=1.513), em DM2 com nefropatia e proteinúria, comparando losartan 50–100 mg/dia vs placebo, adicionados ao tratamento anti-hipertensivo convencional, sem IECA ou outro BRA. O desfecho primário composto foi duplicação da creatinina, DRCT ou morte: HR 0,84 (redução relativa de 16%; P=0,02). Losartan reduziu duplicação de creatinina em 25%, DRCT em 28%, primeira hospitalização por insuficiência cardíaca em 32% e proteinúria em 35%.",
+    conclusao:"RENAAL demonstrou que o BRA losartan reduz desfechos renais concretos em nefropatia diabética do DM2, com benefício além do controle pressórico convencional.",
+    curiosidade:"A redução de proteinúria no RENAAL reforçou a albuminúria como marcador intermediário de risco renal: quanto maior a queda inicial da proteinúria, menor o risco posterior de progressão para desfechos renais duros."
   },
   idnt_trial:{
     label:"Lewis EJ et al. — IDNT (NEJM 2001)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa011303",
     journal:"N Engl J Med 2001;345(12):851-860",
     ano:2001,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Irbesartan ↓23% risco de duplicar creatinina vs amlodipino em nefropatia diabética tipo 2",icon:"🔬"
+    impacto:"Irbesartan ↓23% risco de duplicar creatinina vs amlodipino em nefropatia diabética tipo 2",icon:"🔬",
+    resumo:"ECR multicêntrico (IDNT, n=1.715), em DM2 hipertenso com nefropatia, comparando irbesartan 300 mg/dia, amlodipino 10 mg/dia ou placebo, com controle pressórico semelhante entre os grupos. O desfecho primário foi duplicação da creatinina, DRCT ou morte por qualquer causa. Irbesartan reduziu o risco do desfecho primário em relação ao placebo e ao amlodipino; amlodipino não diferiu do placebo para proteção renal, apesar de reduzir PA.",
+    conclusao:"IDNT demonstrou que a nefroproteção do BRA em DM2 albuminúrico não é explicada apenas pela redução da PA: o bloqueio do SRAA conferiu proteção renal que o bloqueador de canal de cálcio diidropiridínico não reproduziu.",
+    curiosidade:"O desenho com três braços — BRA, amlodipino e placebo — foi didaticamente importante porque separou controle pressórico de nefroproteção específica do SRAA."
   },
   // --- Controle Glicêmico ---
   dcct_trial:{
@@ -535,7 +556,10 @@
     url:"https://www.nejm.org/doi/full/10.1056/NEJM199309303291401",
     journal:"N Engl J Med 1993;329(14):977-986",
     ano:1993,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Tratamento intensivo do DM1 ↓63% retinopatia e ↓54% microalbuminúria — base da teoria da memória metabólica",icon:"🔬"
+    impacto:"Tratamento intensivo do DM1 ↓63% retinopatia e ↓54% microalbuminúria — base da teoria da memória metabólica",icon:"🔬",
+    resumo:"ECR multicêntrico (DCCT, n=1.441), em DM1, comparando insulinoterapia intensiva — múltiplas aplicações ou bomba, com alvo de controle glicêmico próximo do normal — vs tratamento convencional. A HbA1c média alcançada foi cerca de 7,2% vs 9,1%. A terapia intensiva reduziu o surgimento de retinopatia em 76% na coorte de prevenção primária, reduziu progressão de retinopatia na coorte secundária, reduziu microalbuminúria em 39%, albuminúria clínica em 54% e neuropatia clínica em 60%, ao custo de maior hipoglicemia grave.",
+    conclusao:"DCCT provou de forma definitiva que hiperglicemia crônica causa complicações microvasculares no DM1 e que controle glicêmico intensivo reduz nefropatia, retinopatia e neuropatia.",
+    curiosidade:"O seguimento EDIC revelou o conceito de memória metabólica: benefícios microvasculares e cardiovasculares persistiram por anos mesmo após a convergência parcial da HbA1c entre os grupos."
   },
   edic_followup:{
     label:"Nathan DM et al. — EDIC Follow-up (NEJM 2005)",
@@ -584,21 +608,30 @@
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1511939",
     journal:"N Engl J Med 2015;373(22):2103-2116",
     ano:2015,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Alvo de PA < 120 mmHg ↓25% eventos CV vs < 140 mmHg em não-diabéticos de alto risco (exceto DRC avançada)",icon:"🔬"
+    impacto:"Alvo de PA < 120 mmHg ↓25% eventos CV vs < 140 mmHg em não-diabéticos de alto risco (exceto DRC avançada)",icon:"🔬",
+    resumo:"ECR multicêntrico (SPRINT, n=9.361), em adultos sem diabetes e sem AVC prévio, com PAS ≥130 mmHg e alto risco cardiovascular, comparando alvo intensivo de PAS <120 mmHg vs alvo padrão <140 mmHg por medida padronizada automatizada em consultório. O desfecho primário composto cardiovascular foi reduzido: HR 0,75 (IC 95% 0,64–0,89; P<0,001), e o estudo foi interrompido precocemente por benefício. No subgrupo com DRC, o benefício cardiovascular foi preservado, mas houve maior queda inicial de TFGe e mais eventos renais/AKI no braço intensivo.",
+    conclusao:"SPRINT fundamentou metas pressóricas mais intensivas em pacientes não diabéticos de alto risco, incluindo DRC, mas sua aplicação exige reproduzir técnica de medida padronizada e considerar fragilidade, hipotensão, AKI e tolerabilidade.",
+    curiosidade:"A controvérsia do SPRINT não está apenas no número <120 mmHg, mas na forma de medir a PA: leitura padronizada, automatizada, após repouso e sem conversa não equivale à medida casual apressada de consultório."
   },
   pathway2_trial:{
     label:"Williams B et al. — PATHWAY-2 (Lancet 2015)",
     url:"https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(15)00257-3/fulltext",
     journal:"Lancet 2015;386(10008):2059-2068",
     ano:2015,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Espironolactona é o agente mais eficaz para hipertensão resistente — reduziu PA sistólica média 8,7 mmHg vs placebo",icon:"🔬"
+    impacto:"Espironolactona é o agente mais eficaz para hipertensão resistente — reduziu PA sistólica média 8,7 mmHg vs placebo",icon:"🔬",
+    resumo:"ECR duplo-cego, cruzado, controlado por placebo (PATHWAY-2, n=314 analisados), em hipertensão resistente apesar de 3 anti-hipertensivos incluindo diurético. Comparou espironolactona 25–50 mg, bisoprolol 5–10 mg, doxazosina 4–8 mg e placebo em sequência crossover. A espironolactona reduziu a PAS domiciliar 8,7 mmHg a mais que placebo, 4,0 mmHg a mais que doxazosina e 4,5 mmHg a mais que bisoprolol, sendo a intervenção mais eficaz.",
+    conclusao:"PATHWAY-2 fundamentou espironolactona como quarta droga preferencial na hipertensão resistente, sugerindo que retenção de sódio/atividade mineralocorticoide é mecanismo dominante em muitos pacientes.",
+    curiosidade:"A resposta à espironolactona foi maior nos pacientes com renina basal mais baixa, perfil compatível com expansão volêmica ou aldosteronismo relativo. Em nefrologia, a aplicação exige checar TFGe e potássio, pois DRC avançada e hipercalemia limitam o uso seguro."
   },
   aask_trial:{
     label:"Wright JT et al. — AASK (JAMA 2002)",
     url:"https://jamanetwork.com/journals/jama/fullarticle/195133",
     journal:"JAMA 2002;288(19):2421-2431",
     ano:2002,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Ramipril superior à anlodipina e metoprolol em retardar progressão da nefropatia hipertensiva em afro-americanos",icon:"🔬"
+    impacto:"Ramipril superior à anlodipina e metoprolol em retardar progressão da nefropatia hipertensiva em afro-americanos",icon:"🔬",
+    resumo:"ECR multicêntrico (AASK, n=1.094), em afro-americanos com DRC atribuída à nefroesclerose hipertensiva, comparando 3 estratégias iniciais de anti-hipertensivo — ramipril, metoprolol ou amlodipino — e 2 metas pressóricas. O desfecho primário foi declínio da TFG; o composto clínico secundário incluiu queda importante da TFG, DRCT ou morte. Ramipril foi superior ao amlodipino na proteção renal, sobretudo em pacientes com proteinúria. A meta pressórica mais baixa não reduziu progressão renal na coorte global.",
+    conclusao:"AASK mostrou que, na DRC hipertensiva com proteinúria, o IECA oferece proteção renal superior ao bloqueador de canal de cálcio diidropiridínico, e que intensificar PA sem considerar proteinúria não garante nefroproteção adicional.",
+    curiosidade:"O achado mais didático do AASK é a interação com proteinúria: quanto maior a proteinúria basal, mais relevante o bloqueio do SRAA. A escolha anti-hipertensiva em DRC deve considerar albuminúria/proteinúria, não apenas o valor da PA."
   },
   // --- Progressão DRC ---
   mdrd_study:{
@@ -606,7 +639,10 @@
     url:"https://www.nejm.org/doi/full/10.1056/NEJM199403313301301",
     journal:"N Engl J Med 1994;330(13):877-884",
     ano:1994,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Restrição proteica (0,6g/kg/dia) e baixa meta de PA retardam progressão da DRC — base das recomendações dietéticas",icon:"🔬"
+    impacto:"Restrição proteica (0,6g/kg/dia) e baixa meta de PA retardam progressão da DRC — base das recomendações dietéticas",icon:"🔬",
+    resumo:"ECR multicêntrico (MDRD, n=840), em DRC não dialítica, dividido em duas coortes por nível de TFG medida. Avaliou restrição proteica e diferentes metas pressóricas sobre a progressão da DRC. A restrição proteica mostrou, no máximo, tendência modesta de menor declínio de TFG, sem prova definitiva de grande benefício clínico no desfecho primário. Posteriormente, os dados do estudo serviram de base para o desenvolvimento da equação MDRD de estimativa da TFG.",
+    conclusao:"O MDRD Study teve impacto duplo: não confirmou de forma robusta que restrição proteica isolada mudasse dramaticamente a progressão da DRC, mas influenciou recomendações nutricionais e originou uma das equações de TFGe mais usadas da história.",
+    curiosidade:"A equação MDRD acabou sendo mais influente para a prática nefrológica diária do que a própria intervenção dietética testada — exemplo clássico de subproduto metodológico superando o objetivo terapêutico inicial."
   },
   // --- Hemodiálise ---
   pivotal_trial:{
@@ -614,7 +650,10 @@
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1810742",
     journal:"N Engl J Med 2019;381(15):1411-1420",
     ano:2019,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Ferro IV proativo (1g/mês) vs reativo ↓20% eventos CV em hemodiálise — estratégia de reposição de ferro em diálise",icon:"🔬"
+    impacto:"Ferro IV proativo (1g/mês) vs reativo ↓20% eventos CV em hemodiálise — estratégia de reposição de ferro em diálise",icon:"🔬",
+    resumo:"ECR multicêntrico (PIVOTAL, n=2.141), em pacientes incidentes em hemodiálise de manutenção, comparando ferro IV proativo em alta dose — sacarato de ferro 400 mg/mês, enquanto ferritina ≤700 µg/L e TSAT <40% — vs estratégia reativa em baixa dose, administrada apenas se ferritina <200 µg/L ou TSAT <20%. O desfecho primário composto — morte, IM não fatal, AVC não fatal ou hospitalização por insuficiência cardíaca — foi menor com estratégia proativa: HR 0,85 (IC 95% 0,73–1,00; P=0,04). Também houve menor necessidade de AEE e transfusões.",
+    conclusao:"PIVOTAL mostrou que, em hemodiálise, reposição proativa de ferro IV dentro de limites de segurança definidos é eficaz e não aumenta eventos adversos maiores, reduzindo dose de AEE e transfusões.",
+    curiosidade:"O estudo não autoriza ferro irrestrito: o protocolo suspendia ferro quando ferritina ultrapassava 700 µg/L ou TSAT chegava a 40%. A mensagem correta é reposição proativa monitorizada, não liberalidade sem limite."
   },
   dopps_study:{
     label:"DOPPS Study — Longer Dialysis Time & Ultrafiltration",
@@ -648,7 +687,10 @@
     url:"https://cjasn.asnjournals.org/content/8/11/1935",
     journal:"Clin J Am Soc Nephrol 2013;8(11):1935-1943",
     ano:2013,tipo:"Estudo Clínico",badge:"COORTE",badgeColor:"#0ea5e9",
-    impacto:"FST (1mg/kg furosemida IV): débito urinário < 200mL/2h prediz progressão para LRA estágio 3 com alta sensibilidade",icon:"📖"
+    impacto:"FST (1mg/kg furosemida IV): débito urinário < 200mL/2h prediz progressão para LRA estágio 3 com alta sensibilidade",icon:"📖",
+    resumo:"Estudo prospectivo de coorte (Chawla et al., CJASN 2013; n=77), em pacientes críticos com LRA inicial após ressuscitação volêmica adequada. Administrou furosemida IV 1 mg/kg em pacientes sem exposição prévia a diurético de alça ou 1,5 mg/kg em usuários prévios, e mediu o débito urinário nas 2h seguintes. Débito urinário ≤200 mL em 2h previu progressão para LRA estágio 3 com AUC 0,87, sensibilidade de 87,1% e especificidade de 84,1%.",
+    conclusao:"O Furosemide Stress Test é uma ferramenta funcional de reserva tubular para estratificar risco de progressão da LRA e preparar vigilância/planejamento de TRS; não deve ser usado isoladamente para indicar diálise.",
+    curiosidade:"A lógica do FST é testar se o túbulo ainda consegue secretar e responder à furosemida. Uma resposta diurética ruim sugere baixa reserva tubular, mas isso não significa que furosemida trate a injúria renal — ela apenas revela a capacidade funcional residual."
   },
   // --- Síndrome Hepatorrenal ---
   confirm_trial:{
@@ -656,7 +698,10 @@
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2008290",
     journal:"N Engl J Med 2021;384(9):818-828",
     ano:2021,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Terlipressina + albumina ↑reversão da SHR-1 vs placebo — confirmou terlipressina como tratamento padrão no ocidente",icon:"🔬"
+    impacto:"Terlipressina + albumina ↑reversão da SHR-1 vs placebo — confirmou terlipressina como tratamento padrão no ocidente",icon:"🔬",
+    resumo:"ECR multicêntrico, duplo-cego, placebo-controlado (CONFIRM, n=300), em cirrose avançada com SHR tipo 1/SHR-AKI, comparando terlipressina IV intermitente associada à albumina vs placebo + albumina. A reversão verificada da SHR foi maior com terlipressina: 32% vs 17% (P=0,006). Não houve melhora significativa de sobrevida em 90 dias. Terlipressina aumentou eventos adversos graves, especialmente insuficiência respiratória, exigindo seleção cuidadosa e monitorização de hipóxia, congestão e gravidade hepática.",
+    conclusao:"CONFIRM fundamentou a aprovação da terlipressina para SHR-AKI por aumentar reversão bioquímica da síndrome, mas não demonstrou benefício claro de sobrevida e revelou risco respiratório clinicamente relevante.",
+    curiosidade:"A SHR-AKI é uma falência circulatória funcional sobre cirrose avançada: vasodilatação esplâncnica reduz volume arterial efetivo, ativa vasoconstritores endógenos e causa vasoconstrição renal intensa. Terlipressina corrige parte da hemodinâmica, mas não modifica a doença hepática terminal que determina o prognóstico."
   },
   // --- Síndrome Cardiorrenal / IC ---
   carress_hf:{
@@ -671,28 +716,40 @@
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1911303",
     journal:"N Engl J Med 2019;381(21):1995-2008",
     ano:2019,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Dapagliflozin ↓26% morte CV + hospitalização por IC em ICFEr (com e sem DM2) — expandiu SGLT2i para IC",icon:"🔬"
+    impacto:"Dapagliflozin ↓26% morte CV + hospitalização por IC em ICFEr (com e sem DM2) — expandiu SGLT2i para IC",icon:"🔬",
+    resumo:"ECR multicêntrico (DAPA-HF, n=4.744), em ICFEr sintomática (FEVE ≤40%, NYHA II–IV), comparando dapagliflozina 10 mg/dia vs placebo sobre terapia padrão. O desfecho primário — piora da insuficiência cardíaca ou morte cardiovascular — ocorreu em 16,3% vs 21,2%: HR 0,74 (IC 95% 0,65–0,85; P<0,001). O benefício foi consistente em pacientes com e sem DM2.",
+    conclusao:"DAPA-HF estabeleceu dapagliflozina como tratamento modificador de prognóstico na ICFEr, independentemente de diabetes, consolidando os iSGLT2 como parte da terapia moderna da insuficiência cardíaca.",
+    curiosidade:"Antes do DAPA-HF, os iSGLT2 eram vistos sobretudo como antidiabéticos com benefício cardiovascular. O estudo mudou o enquadramento: a dapagliflozina passou a ser tratada como fármaco de insuficiência cardíaca com efeito glicêmico adicional."
   },
   emperor_reduced:{
     label:"Packer M et al. — EMPEROR-Reduced (NEJM 2020)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2022190",
     journal:"N Engl J Med 2020;383(15):1413-1424",
     ano:2020,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Empagliflozin ↓25% morte CV + hospitalização em ICFEr — confirmou classe dos SGLT2i em IC independente de DM",icon:"🔬"
+    impacto:"Empagliflozin ↓25% morte CV + hospitalização em ICFEr — confirmou classe dos SGLT2i em IC independente de DM",icon:"🔬",
+    resumo:"ECR multicêntrico (EMPEROR-Reduced, n=3.730), em ICFEr sintomática com FEVE ≤40%, comparando empagliflozina 10 mg/dia vs placebo. O desfecho primário — morte cardiovascular ou hospitalização por insuficiência cardíaca — ocorreu em 19,4% vs 24,7%: HR 0,75 (IC 95% 0,65–0,86; P<0,001), com benefício em pacientes com e sem diabetes. A empagliflozina também reduziu desfecho renal composto exploratório e desacelerou o declínio da TFGe.",
+    conclusao:"EMPEROR-Reduced confirmou benefício de classe dos iSGLT2 na ICFEr e reforçou a interface cardiorrenal da terapia, especialmente em pacientes com IC e DRC concomitantes.",
+    curiosidade:"O benefício renal observado em trials de IC sugere que parte da nefroproteção dos iSGLT2 independe da doença renal primária e se relaciona a mecanismos hemodinâmicos, tubuloglomerulares e cardiorrenais."
   },
   emperor_preserved:{
     label:"Anker SD et al. — EMPEROR-Preserved (NEJM 2021)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2107038",
     journal:"N Engl J Med 2021;385(16):1451-1461",
     ano:2021,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Empagliflozin ↓21% morte CV + hospitalização em ICFEp — primeiro tratamento com benefício em IC com fração preservada",icon:"🔬"
+    impacto:"Empagliflozin ↓21% morte CV + hospitalização em ICFEp — primeiro tratamento com benefício em IC com fração preservada",icon:"🔬",
+    resumo:"ECR multicêntrico (EMPEROR-Preserved, n=5.988), em insuficiência cardíaca sintomática com FEVE >40%, comparando empagliflozina 10 mg/dia vs placebo. O desfecho primário — morte cardiovascular ou hospitalização por insuficiência cardíaca — ocorreu em 13,8% vs 17,1%: HR 0,79 (IC 95% 0,69–0,90; P<0,001), com benefício independente de diabetes e impulsionado principalmente por redução de hospitalização por IC.",
+    conclusao:"EMPEROR-Preserved foi decisivo para demonstrar benefício dos iSGLT2 em IC com FEVE preservada ou levemente reduzida, uma área historicamente marcada por trials neutros ou marginalmente positivos.",
+    curiosidade:"A IC com FEVE preservada é comum em idosos, mulheres, obesos, diabéticos e pacientes com DRC; por isso, o EMPEROR-Preserved fortaleceu a abordagem cardiorrenal integrada desse fenótipo clínico."
   },
   deliver_trial:{
     label:"Solomon SD et al. — DELIVER (NEJM 2022)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2211658",
     journal:"N Engl J Med 2022;387(12):1089-1098",
     ano:2022,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Dapagliflozin ↓18% morte CV + hospitalização em IC com FE ≥40% — confirmou SGLT2i em todo o espectro de IC",icon:"🔬"
+    impacto:"Dapagliflozin ↓18% morte CV + hospitalização em IC com FE ≥40% — confirmou SGLT2i em todo o espectro de IC",icon:"🔬",
+    resumo:"ECR multicêntrico (DELIVER, n=6.263), em insuficiência cardíaca com FEVE >40%, incluindo FEVE levemente reduzida, preservada e pacientes com FEVE previamente reduzida que melhorou, comparando dapagliflozina 10 mg/dia vs placebo. O desfecho primário — piora da insuficiência cardíaca ou morte cardiovascular — ocorreu em 16,4% vs 19,5%: HR 0,82 (IC 95% 0,73–0,92; P<0,001). O benefício foi consistente independentemente de diabetes e ao longo das faixas de FEVE estudadas.",
+    conclusao:"DELIVER complementou DAPA-HF ao mostrar benefício da dapagliflozina também em IC com FEVE >40%, consolidando os iSGLT2 como terapia aplicável ao amplo espectro da insuficiência cardíaca.",
+    curiosidade:"A consistência dos resultados de DAPA-HF e DELIVER sugere que os benefícios dos iSGLT2 na IC não dependem apenas de glicemia ou fração de ejeção, mas de efeitos cardiorrenais combinados sobre congestão, hemodinâmica renal e risco de hospitalização."
   },
   // ===== ARTIGOS ADICIONADOS v5.1 =====
   benazepril_ckd:{
@@ -700,14 +757,20 @@
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa060038",
     journal:"N Engl J Med 2006;354(2):131-140",
     ano:2006,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Benazepril ↓43% duplicação de creatinina em DRC avançada (TFG 20-70) — estabeleceu IECA como nefroprotetor em DRC não-diabética",icon:"🔬"
+    impacto:"Benazepril ↓43% duplicação de creatinina em DRC avançada (TFG 20-70) — estabeleceu IECA como nefroprotetor em DRC não-diabética",icon:"🔬",
+    resumo:"ECR multicêntrico chinês (Hou et al., NEJM 2006; n=422), em DRC não diabética com proteinúria persistente. Após run-in, pacientes com creatinina 1,5–3,0 mg/dL receberam benazepril 20 mg/dia, enquanto pacientes com creatinina 3,1–5,0 mg/dL foram randomizados para benazepril 20 mg/dia vs placebo, além de tratamento anti-hipertensivo convencional. No grupo com DRC avançada, benazepril reduziu em 43% o risco do composto de duplicação da creatinina, DRCT ou morte, reduziu proteinúria em 52% e desacelerou o declínio da função renal.",
+    conclusao:"Hou et al. demonstrou que IECA pode manter benefício antiproteinúrico e nefroprotetor mesmo em DRC não diabética avançada selecionada, desde que usado com monitorização rigorosa de creatinina, potássio e tolerabilidade.",
+    curiosidade:"O estudo ajudou a combater a prática de suspender IECA automaticamente apenas por TFGe baixa. A decisão deve ser individualizada: hipercalemia, queda abrupta de TFG, hipotensão e estenose de artéria renal mudam a conduta; DRC avançada estável com proteinúria pode ainda se beneficiar."
   },
   starrt_aki:{
     label:"Wald R et al. — STARRT-AKI (NEJM 2020)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2000741",
     journal:"N Engl J Med 2020;383(3):240-251",
     ano:2020,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Início acelerado de TRS não superior ao início padrão em LRA grave — estratégia expectante é segura",icon:"🔬"
+    impacto:"Início acelerado de TRS não superior ao início padrão em LRA grave — estratégia expectante é segura",icon:"🔬",
+    resumo:"ECR multicêntrico internacional (STARRT-AKI, n=2.927), em pacientes críticos com LRA grave, comparando estratégia acelerada de TRS — início em até 12h após elegibilidade — vs estratégia padrão, com início apenas diante de indicação convencional ou persistência da LRA. Mortalidade em 90 dias foi semelhante: 43,9% vs 43,7% (RR 1,00; IC 95% 0,93–1,09). No braço padrão, mais de um terço dos pacientes não precisou receber TRS. A estratégia acelerada aumentou dependência de TRS entre sobreviventes e eventos adversos, incluindo hipotensão e hipofosfatemia.",
+    conclusao:"STARRT-AKI reforçou que início precoce rotineiro de TRS em LRA grave não reduz mortalidade. Em pacientes sem indicação emergencial, estratégia expectante é segura e evita TRS desnecessária em parcela relevante.",
+    curiosidade:"O dado mais prático do STARRT-AKI é que LRA grave não significa inevitabilidade de diálise. Mesmo em UTI, muitos pacientes recuperam função renal se não houver indicação clássica imediata, como hipercalemia refratária, acidose grave, sobrecarga volêmica intratável ou uremia complicada."
   },
   declare_timi58:{
     label:"Wiviott SD et al. — DECLARE-TIMI 58 (NEJM 2019)",
@@ -734,14 +797,20 @@
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1603827",
     journal:"N Engl J Med 2016;375(4):311-322",
     ano:2016,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Liraglutida ↓13% MACE e ↓22% nefropatia (nova macroalbuminúria ou duplicação de creatinina) em DM2",icon:"🔬"
+    impacto:"Liraglutida ↓13% MACE e ↓22% nefropatia (nova macroalbuminúria ou duplicação de creatinina) em DM2",icon:"🔬",
+    resumo:"ECR cardiovascular (LEADER, n=9.340), em DM2 com alto risco cardiovascular, comparando liraglutida até 1,8 mg/dia vs placebo. O desfecho primário MACE foi reduzido: HR 0,87 (IC 95% 0,78–0,97; P=0,01 para superioridade). Houve redução de morte cardiovascular (HR 0,78) e morte por qualquer causa (HR 0,85). O desfecho renal composto também foi reduzido (HR 0,78), principalmente por menor incidência de macroalbuminúria persistente nova.",
+    conclusao:"LEADER estabeleceu liraglutida como GLP-1 RA cardioprotetor em DM2 de alto risco e sugeriu benefício renal predominantemente albuminúrico, antes dos trials renais dedicados da classe.",
+    curiosidade:"O LEADER separa bem dois tipos de evidência renal: queda de albuminúria é relevante, mas não equivale ao mesmo grau de prova de trials com desfechos renais duros, como DRCT, queda sustentada de TFGe ou morte renal."
   },
   rewind_trial:{
     label:"Gerstein HC et al. — REWIND (Lancet 2019)",
     url:"https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(19)31149-9/fulltext",
     journal:"Lancet 2019;394(10193):121-130",
     ano:2019,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Dulaglutida ↓15% MACE e ↓15% desfecho renal composto em DM2 com perfil CV diverso (inclusão de baixo risco)",icon:"🔬"
+    impacto:"Dulaglutida ↓15% MACE e ↓15% desfecho renal composto em DM2 com perfil CV diverso (inclusão de baixo risco)",icon:"🔬",
+    resumo:"ECR cardiovascular (REWIND, n=9.901), em DM2 com DCV estabelecida ou múltiplos fatores de risco, comparando dulaglutida 1,5 mg semanal vs placebo, com seguimento mediano de 5,4 anos. Dulaglutida reduziu MACE: HR 0,88 (IC 95% 0,79–0,99; P=0,026). O desfecho renal exploratório também foi reduzido (HR 0,85), principalmente por menor incidência de macroalbuminúria nova. Cerca de 46% dos participantes não tinham DCV prévia.",
+    conclusao:"REWIND ampliou a evidência cardiovascular dos GLP-1 RA para população de DM2 com menor proporção de prevenção secundária, aproximando o trial do perfil ambulatorial comum.",
+    curiosidade:"O benefício renal do REWIND foi principalmente albuminúrico, como em outros CVOTs de GLP-1 RA. Isso é relevante, mas não equivale a um trial renal dedicado com DRCT, queda sustentada de TFGe ou morte renal como foco principal."
   },
   ktv_daugirdas1993:{
     label:"Daugirdas JT — Kt/V Single-Pool (JASN 1993)",
@@ -776,21 +845,30 @@
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1005419",
     journal:"N Engl J Med 2011;364(9):797-805",
     ano:2011,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Altas doses de furosemida (2,5× dose oral) superiores em alívio dos sintomas vs baixas doses; bolus e infusão contínua equivalentes",icon:"🔬"
+    impacto:"Altas doses de furosemida (2,5× dose oral) superiores em alívio dos sintomas vs baixas doses; bolus e infusão contínua equivalentes",icon:"🔬",
+    resumo:"ECR multicêntrico, duplo-cego, fatorial 2×2 (DOSE, n=308), em insuficiência cardíaca aguda descompensada, comparando furosemida IV em bolus a cada 12h vs infusão contínua e estratégia de baixa dose vs alta dose (2,5 vezes a dose oral diária prévia). Não houve diferença significativa entre bolus e infusão contínua nos desfechos primários de sintomas ou mudança da creatinina em 72h. Alta dose não foi superior nos desfechos primários, mas produziu maior diurese e perda ponderal em desfechos secundários, com maior frequência de piora transitória da função renal.",
+    conclusao:"DOSE mostrou que bolus e infusão contínua de furosemida são estratégias equivalentes em IC aguda, e que doses mais altas podem acelerar descongestão, mas exigem monitorização de creatinina, eletrólitos, pressão arterial e resposta clínica.",
+    curiosidade:"O estudo ajudou a relativizar a creatinina durante descongestão: elevação transitória pode acompanhar diurese efetiva e não necessariamente indicar lesão tubular irreversível. A interpretação deve integrar congestão residual, perfusão, diurese e evolução clínica."
   },
   sacubitril_valsartan_hf:{
     label:"Voors AA et al. — LCZ696 renal effects HFpEF (EHJ 2015)",
     url:"https://academic.oup.com/eurheartj/article/36/7/408/2293234",
     journal:"Eur Heart J 2015;36(7):408-416",
     ano:2015,tipo:"Análise de RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Sacubitril/valsartan: efeitos renais benéficos em IC, redução de albuminúria e potencial nefroproteção via BNP/neprilisina",icon:"🔬"
+    impacto:"Sacubitril/valsartan: efeitos renais benéficos em IC, redução de albuminúria e potencial nefroproteção via BNP/neprilisina",icon:"🔬",
+    resumo:"Análise renal do PARADIGM-HF (Damman et al., JACC Heart Failure 2018), em pacientes com ICFEr randomizados para sacubitril/valsartan vs enalapril. O declínio anual da TFGe foi menor com sacubitril/valsartan: −1,61 vs −2,04 ml/min/1,73m²/ano (P<0,001). Apesar disso, houve maior aumento de UACR com sacubitril/valsartan, em magnitude pequena, mostrando que preservação de TFGe e albuminúria podem se comportar de forma dissociada nessa intervenção.",
+    conclusao:"A análise renal do PARADIGM-HF sugere que sacubitril/valsartan desacelera o declínio da TFGe em ICFEr quando comparado ao enalapril, mas não deve ser apresentado como terapia antiproteinúrica.",
+    curiosidade:"O achado é fisiologicamente interessante porque a inibição da neprilisina aumenta peptídeos natriuréticos e sinalização por cGMP, com efeitos hemodinâmicos renais complexos. A mensagem didática é que nem toda nefroproteção se manifesta como redução de albuminúria."
   },
   evolve_trial:{
     label:"Chertow GM et al. — EVOLVE (NEJM 2012)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1205131",
     journal:"N Engl J Med 2012;367(26):2482-2494",
     ano:2012,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Cinacalcet não reduziu significativamente mortalidade ou eventos CV no HPT2 em diálise (resultado neutro com ajuste estatístico)",icon:"🔬"
+    impacto:"Cinacalcet não reduziu significativamente mortalidade ou eventos CV no HPT2 em diálise (resultado neutro com ajuste estatístico)",icon:"🔬",
+    resumo:"ECR multicêntrico (EVOLVE, n=3.883), em pacientes em hemodiálise com hiperparatireoidismo secundário moderado a grave, comparando cinacalcet titulado até 180 mg/dia vs placebo, sobre tratamento usual. O desfecho primário composto — morte por qualquer causa ou primeiro evento cardiovascular não fatal, incluindo IM, hospitalização por angina instável, insuficiência cardíaca ou evento vascular periférico — não foi reduzido de forma estatisticamente significativa na análise primária por intenção de tratar: HR 0,93 (IC 95% 0,85–1,02; P=0,11). Análises ajustadas e de sensibilidade sugeriram possível benefício, mas não substituem o resultado primário neutro.",
+    conclusao:"EVOLVE mostrou que cinacalcet melhora controle bioquímico do HPT2, mas não comprovou redução significativa de mortalidade ou eventos cardiovasculares maiores na análise primária.",
+    curiosidade:"O EVOLVE é um exemplo clássico de dissociação entre controle laboratorial e desfecho duro: reduzir PTH, cálcio e fósforo é clinicamente útil, mas isso não se traduziu claramente em menor mortalidade cardiovascular no trial."
   },
   kdigo_ckd_mbd_2017:{
     label:"KDIGO CKD-MBD Update 2017",
@@ -911,21 +989,30 @@
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1603017",
     journal:"N Engl J Med 2016;375(2):122-133",
     ano:2016,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Início precoce de TRS não reduziu mortalidade vs estratégia expectante — muitos pacientes do grupo tardio recuperaram sem TRS",icon:"🔬"
+    impacto:"Início precoce de TRS não reduziu mortalidade vs estratégia expectante — muitos pacientes do grupo tardio recuperaram sem TRS",icon:"🔬",
+    resumo:"ECR multicêntrico francês (AKIKI, n=620), em pacientes críticos com LRA estágio 3 KDIGO, em ventilação mecânica e/ou uso de vasopressor, sem indicação emergencial imediata de TRS. Comparou estratégia precoce — início imediato de TRS após randomização — vs estratégia tardia, iniciando TRS apenas diante de critérios como hipercalemia grave, acidose metabólica grave, edema pulmonar/sobrecarga volêmica, ureia elevada ou oligúria/anúria persistente. Mortalidade em 60 dias não diferiu: 48,5% vs 49,7% (P=0,79). No grupo tardio, 49% não recebeu TRS.",
+    conclusao:"AKIKI demonstrou que início imediato rotineiro de TRS em LRA grave de UTI, na ausência de indicação emergencial, não reduz mortalidade e pode expor pacientes a procedimento desnecessário.",
+    curiosidade:"O dado mais prático do AKIKI é que quase metade dos pacientes no braço tardio recuperou sem TRS. LRA KDIGO 3 aumenta risco, mas não equivale automaticamente a necessidade imediata de diálise."
   },
   ideal_icu_trial:{
     label:"Barbar SD et al. — IDEAL-ICU (NEJM 2018)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1803213",
     journal:"N Engl J Med 2018;379(15):1431-1442",
     ano:2018,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"TRS precoce vs tardio em LRA+sepse: sem diferença em mortalidade — consistente com AKIKI e STARRT-AKI",icon:"🔬"
+    impacto:"TRS precoce vs tardio em LRA+sepse: sem diferença em mortalidade — consistente com AKIKI e STARRT-AKI",icon:"🔬",
+    resumo:"ECR multicêntrico francês (IDEAL-ICU, n=488), em pacientes com choque séptico e LRA grave, comparando início precoce de TRS em até 12h após diagnóstico vs estratégia tardia, aguardando até 48h se não houvesse recuperação ou surgisse indicação emergencial. O estudo foi interrompido precocemente por futilidade. Mortalidade em 90 dias não diferiu: 58% no precoce vs 54% no tardio (P=0,38). No braço tardio, 38% dos pacientes não recebeu TRS.",
+    conclusao:"IDEAL-ICU mostrou que, em LRA grave associada a choque séptico, o início precoce rotineiro de TRS não reduz mortalidade quando comparado a uma estratégia de espera monitorizada.",
+    curiosidade:"IDEAL-ICU é importante porque testou uma população séptica, na qual muitos clínicos tendem a antecipar TRS por gravidade sistêmica. Mesmo nesse cenário, aguardar recuperação ou indicação formal poupou TRS em parcela relevante."
   },
   elain_trial:{
     label:"Zarbock A et al. — ELAIN (JAMA 2016)",
     url:"https://jamanetwork.com/journals/jama/fullarticle/2522434",
     journal:"JAMA 2016;315(20):2190-2199",
     ano:2016,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Único RCT favorecendo início PRECOCE de TRS: ↓28 dias de mortalidade em população cirúrgica selecionada — critérios KDIGO NGAL",icon:"🔬"
+    impacto:"Único RCT favorecendo início PRECOCE de TRS: ↓28 dias de mortalidade em população cirúrgica selecionada — critérios KDIGO NGAL",icon:"🔬",
+    resumo:"ECR unicêntrico alemão (ELAIN, n=231), em pacientes críticos majoritariamente cirúrgicos, muitos após cirurgia cardíaca, com LRA estágio 2 KDIGO e NGAL plasmático elevado. Comparou início precoce de TRS em até 8h após estágio 2 vs início tardio após progressão para estágio 3 ou indicação clínica. Mortalidade em 90 dias foi menor no grupo precoce: 39,3% vs 54,7% (HR 0,66; IC 95% 0,45–0,97; P=0,03). Houve menor duração de TRS e maior recuperação renal no grupo precoce.",
+    conclusao:"ELAIN foi o principal trial favorável ao início precoce de TRS, mas sua generalização é limitada por ser unicêntrico, pequeno, com população cirúrgica selecionada e uso de biomarcador como critério de inclusão.",
+    curiosidade:"A discrepância entre ELAIN e trials maiores como AKIKI, IDEAL-ICU e STARRT-AKI provavelmente reflete diferenças de população, gravidade, critérios de inclusão e definição operacional de 'precoce' e 'tardio'."
   },
   water_uti_hooton2018:{
     label:"Hooton TM et al. — Water Intake and UTI (JAMA Intern Med 2018)",
@@ -1266,7 +1353,10 @@
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2025845",
     journal:"N Engl J Med 2020;383(23):2219-2229",
     ano:2020,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Finerenona ↓18% desfecho renal composto · ↓14% eventos CV · Antagonista não-esteroidal do receptor mineralocorticoide",icon:"💊"
+    impacto:"Finerenona ↓18% desfecho renal composto · ↓14% eventos CV · Antagonista não-esteroidal do receptor mineralocorticoide",icon:"💊",
+    resumo:"ECR fase III, duplo-cego, placebo-controlado (FIDELIO-DKD, n=5.734), em DM2 com DRC albuminúrica, potássio controlado e uso de IECA ou BRA em dose máxima tolerada. Finerenona 10–20 mg/dia reduziu o desfecho renal primário composto — queda sustentada de TFGe ≥40%, DRCT ou morte renal — com HR 0,82 (IC 95% 0,73–0,93; P=0,001). O desfecho cardiovascular secundário também foi reduzido: HR 0,86 (IC 95% 0,75–0,99; P=0,03). Descontinuação por hipercalemia foi mais frequente com finerenona: 2,3% vs 0,9%.",
+    conclusao:"FIDELIO-DKD estabeleceu a finerenona como terapia nefroprotetora e cardioprotetora adicional ao bloqueio do SRAA em DRC diabética albuminúrica, com necessidade de seleção por potássio e monitorização laboratorial.",
+    curiosidade:"A finerenona é um antagonista não esteroidal do receptor mineralocorticoide. Diferencia-se dos MRAs esteroidais por estrutura, distribuição tecidual e ausência de atividade androgênica/progestagênica relevante, mas não elimina o principal cuidado clínico da classe: hipercalemia."
   },
   finerenone_t1d_2025:{
     label:"FIGARO-DKD Trial (Finerenona)",

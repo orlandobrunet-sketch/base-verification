@@ -75,7 +75,7 @@
       try { return JSON.parse(localStorage.getItem(SR_KEY) || '{}'); } catch { return {}; }
     }
     function _saveSRData(d) {
-      try { localStorage.setItem(SR_KEY, JSON.stringify(d)); } catch {}
+      try { localStorage.setItem(SR_KEY, JSON.stringify(d)); } catch(e) { console.error('[NQ] _saveSRData failed', e); }
     }
     function updateSRData(qid, isCorrect) {
       if (!qid) return;
@@ -120,7 +120,7 @@
       let changed = false;
       keys.forEach(k => { if (k && !set.has(k)) { set.add(k); changed = true; } });
       if (changed) {
-        try { localStorage.setItem(UNLOCKED_REFS_KEY, JSON.stringify([...set])); } catch {}
+        try { localStorage.setItem(UNLOCKED_REFS_KEY, JSON.stringify([...set])); } catch(e) { console.error('[NQ] _unlockRefsFromQuestion failed', e); }
         _bibItems = null;
       }
     }
