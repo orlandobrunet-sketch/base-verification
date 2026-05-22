@@ -10361,83 +10361,82 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     position: relative;
     border-radius: 12px;
     overflow: hidden;
-    border: 1px solid rgba(var(--cc), .28);
+    border: 1px solid rgba(var(--cc), .26);
     background: linear-gradient(160deg,
-      rgba(var(--cc), .16) 0%,
+      rgba(var(--cc), .14) 0%,
       rgba(var(--cc), .04) 50%,
       rgba(8,11,28,.92) 100%
     );
     display: flex;
     flex-direction: column;
     cursor: default;
-    transition: border-color .22s, box-shadow .22s, transform .18s;
+    transition: border-color .28s, box-shadow .28s;
   }
   #landingScreen .lnd-fcard:hover {
-    border-color: rgba(var(--cc), .68);
-    box-shadow: 0 0 26px rgba(var(--cc), .22), inset 0 0 24px rgba(var(--cc), .05);
-    transform: translateY(-2px);
+    border-color: rgba(var(--cc), .58);
+    box-shadow: 0 0 22px rgba(var(--cc), .16), inset 0 0 20px rgba(var(--cc), .04);
   }
-  /* Shine sweep no hover */
-  #landingScreen .lnd-fcard::after {
-    content: '';
-    position: absolute;
-    top: 0; left: -60%;
-    width: 40%; height: 100%;
-    background: linear-gradient(105deg, transparent, rgba(255,255,255,.07), transparent);
-    transition: left .38s ease;
-    pointer-events: none;
-  }
-  #landingScreen .lnd-fcard:hover::after { left: 130%; }
 
   /* Área visual — gradiente colorido com orb e emoji */
   #landingScreen .lnd-fcard-vis {
-    height: 78px;
+    height: 70px;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(160deg, rgba(var(--cc),.26) 0%, rgba(var(--cc),.07) 80%, transparent 100%);
-    border-bottom: 1px solid rgba(var(--cc),.14);
+    background: linear-gradient(160deg, rgba(var(--cc),.24) 0%, rgba(var(--cc),.06) 80%, transparent 100%);
+    border-bottom: 1px solid rgba(var(--cc),.13);
     overflow: hidden;
+    flex-shrink: 0;
   }
   #landingScreen .lnd-fcard-orb {
     position: absolute;
-    width: 62px; height: 62px;
+    width: 58px; height: 58px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(var(--cc),.34) 0%, rgba(var(--cc),.07) 64%, transparent 100%);
-    box-shadow: 0 0 28px rgba(var(--cc),.32);
+    background: radial-gradient(circle, rgba(var(--cc),.30) 0%, rgba(var(--cc),.06) 64%, transparent 100%);
+    box-shadow: 0 0 24px rgba(var(--cc),.28);
   }
   #landingScreen .lnd-fcard-emoji {
     position: relative;
     z-index: 1;
-    font-size: 1.72rem;
+    font-size: 1.6rem;
     line-height: 1;
-    filter: drop-shadow(0 0 10px rgba(var(--cc),.7));
+    filter: drop-shadow(0 0 8px rgba(var(--cc),.65));
   }
 
   /* Texto inferior */
   #landingScreen .lnd-fcard-info {
-    padding: 9px 12px 11px;
-    background: rgba(5,8,22,.55);
+    padding: 10px 12px 12px;
+    background: rgba(5,8,22,.52);
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    gap: 0;
+  }
+  #landingScreen .lnd-fcard-tag {
+    font-family: 'Cinzel', serif;
+    font-size: .48rem;
+    font-weight: 700;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    color: rgba(var(--cc),.72);
+    margin: 0 0 4px;
+    display: block;
   }
   #landingScreen .lnd-fcard-name {
     font-family: 'Cinzel', serif;
-    font-size: .74rem;
+    font-size: .72rem;
     font-weight: 700;
-    letter-spacing: .03em;
+    letter-spacing: .02em;
     line-height: 1.22;
-    color: rgba(213,226,242,.92);
-    margin: 0 0 3px;
+    color: rgba(213,226,242,.94);
+    margin: 0 0 6px;
   }
-  #landingScreen .lnd-fcard-tag {
+  #landingScreen .lnd-fcard-desc {
     font-family: 'Philosopher', serif;
-    font-size: .63rem;
-    line-height: 1.25;
-    color: rgba(var(--cc),.78);
+    font-size: .68rem;
+    line-height: 1.5;
+    color: rgba(213,226,242,.52);
     margin: 0;
   }
 }
@@ -10461,11 +10460,12 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   #landingScreen .lnd-carousel-text   { font-size: .74rem; }
   #landingScreen .lnd-carousel-kicker { font-size: .52rem; }
   /* feat-grid cards menores em notebooks */
-  #landingScreen .lnd-fcard-vis   { height: 66px; }
-  #landingScreen .lnd-fcard-orb   { width: 52px; height: 52px; }
-  #landingScreen .lnd-fcard-emoji { font-size: 1.5rem; }
-  #landingScreen .lnd-fcard-name  { font-size: .7rem; }
-  #landingScreen .lnd-fcard-tag   { font-size: .6rem; }
+  #landingScreen .lnd-fcard-vis   { height: 62px; }
+  #landingScreen .lnd-fcard-orb   { width: 50px; height: 50px; }
+  #landingScreen .lnd-fcard-emoji { font-size: 1.42rem; }
+  #landingScreen .lnd-fcard-name  { font-size: .68rem; }
+  #landingScreen .lnd-fcard-tag   { font-size: .44rem; }
+  #landingScreen .lnd-fcard-desc  { font-size: .63rem; line-height: 1.44; }
   #landingScreen .lnd-brand .landing-title { font-size: clamp(1.7rem, 2.5vw, 2.4rem); }
 }
 
