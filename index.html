@@ -203,7 +203,7 @@
       </div>
     </div>
     <div class="landing-content">
-      <!-- ══ LEFT COLUMN: brand + features + valor card ══ -->
+      <!-- ══ LEFT COLUMN: brand + mini card + login buttons ══ -->
       <div class="lnd-left">
         <div class="lnd-brand">
           <div class="lnd-ornament">✦ Reino dos Néfrons ✦</div>
@@ -211,7 +211,34 @@
           <div class="lnd-sub">— Ascension —</div>
           <p class="lnd-subtext">1.000+ questões, IA comentando raciocínio, minigames e progressão em um RPG médico de nefrologia.</p>
         </div>
-        <!-- ══ FEAT GRID — 6 cards (desktop only, hidden on mobile) ══ -->
+
+        <!-- Mini card: 1.000+ questões (desktop only — entre logo e botões) -->
+        <div class="lnd-mini-feat">
+          <span class="lnd-mini-feat-emoji">⚔️</span>
+          <div class="lnd-mini-feat-body">
+            <span class="lnd-mini-feat-name">1.000+ questões comentadas</span>
+            <span class="lnd-mini-feat-desc">DRC · LRA · Glomerulopatias · Eletrólitos · Diálise · Transplante</span>
+          </div>
+        </div>
+
+        <!-- Bloco de autenticação (desktop: coluna esquerda / mobile: order 2) -->
+        <div class="lnd-auth-block">
+          <div id="landingMsg" class="landing-msg"></div>
+          <button type="button" class="landing-btn-google" data-action="landingLoginGoogle">
+            <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.1 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.6-13.47-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+            Entrar com Google
+          </button>
+          <div class="lnd-btn-sep"><span>◆</span></div>
+          <button type="button" class="landing-btn-email" data-action="landingLoginEmail">✉ Entrar com Email</button>
+          <div class="lnd-btn-sep"><span>◆</span></div>
+          <button type="button" class="landing-btn-guest" data-action="playAsGuest">🗺️ Entrar como viajante</button>
+          <div class="lnd-trust">
+            <span class="lnd-trust-lock">🔒</span>
+            <span class="lnd-trust-text">Login seguro. Seus dados não são compartilhados.</span>
+          </div>
+        </div>
+
+        <!-- ══ SHOWCASE — carousel mobile / feat-grid desktop (ambos ocultados no desktop agora) ══ -->
         <div class="lnd-showcase">
           <div class="lnd-feat-grid">
 
@@ -380,20 +407,40 @@
         <span class="lnd-vsep-gem">◆</span>
         <span class="lnd-vsep-gem">◆</span>
       </div>
-      <!-- ══ RIGHT COLUMN: login ══ -->
+      <!-- ══ RIGHT COLUMN: screenshot + 3 mini-cards (desktop only) ══ -->
       <div class="lnd-right">
-        <div id="landingMsg" class="landing-msg"></div>
-        <button type="button" class="landing-btn-google" data-action="landingLoginGoogle">
-          <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.1 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.6-13.47-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-          Entrar com Google
-        </button>
-        <div class="lnd-btn-sep"><span>◆</span></div>
-        <button type="button" class="landing-btn-email" data-action="landingLoginEmail">✉ Entrar com Email</button>
-        <div class="lnd-btn-sep"><span>◆</span></div>
-        <button type="button" class="landing-btn-guest" data-action="playAsGuest">🗺️ Entrar como viajante</button>
-        <div class="lnd-trust">
-          <span class="lnd-trust-lock">🔒</span>
-          <span class="lnd-trust-text">Login seguro. Seus dados não são compartilhados.</span>
+        <!-- Área do screenshot — substitua src="" pelo caminho da imagem após upload -->
+        <div class="lnd-screenshot-wrap">
+          <img id="lndScreenshot" class="lnd-screenshot-img" src="" alt="NefroQuest — tela de questões">
+          <div class="lnd-screenshot-ph">
+            <span class="lnd-ss-ph-icon">🖥️</span>
+            <span class="lnd-ss-ph-label">Preview da tela de questões</span>
+            <span class="lnd-ss-ph-path">→ assets/images/screenshot-questions.png</span>
+          </div>
+        </div>
+        <!-- 3 mini-cards abaixo do screenshot -->
+        <div class="lnd-right-cards">
+          <article class="lnd-rcard" style="--rc:74,158,255">
+            <span class="lnd-rcard-emoji">🔮</span>
+            <div class="lnd-rcard-body">
+              <span class="lnd-rcard-name">Tutor IA</span>
+              <p class="lnd-rcard-desc">Comenta seus erros e explica o raciocínio clínico com precisão de nefrologista.</p>
+            </div>
+          </article>
+          <article class="lnd-rcard" style="--rc:220,38,38">
+            <span class="lnd-rcard-emoji">🛡️</span>
+            <div class="lnd-rcard-body">
+              <span class="lnd-rcard-name">Jornada RPG</span>
+              <p class="lnd-rcard-desc">XP, ouro, badges e confronto final com o Arqui-Nefromante.</p>
+            </div>
+          </article>
+          <article class="lnd-rcard" style="--rc:245,158,11">
+            <span class="lnd-rcard-emoji">📚</span>
+            <div class="lnd-rcard-body">
+              <span class="lnd-rcard-name">Baseado em Evidências</span>
+              <p class="lnd-rcard-desc">Diretrizes KDIGO, trials clínicos e referências atualizadas em cada questão.</p>
+            </div>
+          </article>
         </div>
       </div>
     </div>

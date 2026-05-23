@@ -9280,10 +9280,10 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 
   /* ── COLUNA ESQUERDA ─────────────────────────────────────── */
   #landingScreen .lnd-left {
-    flex: 1 1 auto;
+    flex: 0 0 300px;
     display: flex;
     flex-direction: column;
-    padding: 48px 44px 44px 52px;
+    padding: 44px 32px 40px 44px;
     min-width: 0;
     position: relative;
     z-index: 1;
@@ -9514,12 +9514,14 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 
   /* ── COLUNA DIREITA ──────────────────────────────────────── */
   #landingScreen .lnd-right {
-    flex: 0 0 360px;
+    flex: 1 1 auto;
     display: flex;
     flex-direction: column;
-    padding: 52px 44px 44px 44px;
+    padding: 28px 36px 28px 24px;
+    gap: 16px;
     position: relative;
     z-index: 1;
+    min-width: 0;
   }
 
   /* Heading */
@@ -9686,6 +9688,174 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     white-space: nowrap;
   }
 
+  /* ── MINI FEAT — 1.000+ questões (entre logo e botões) ─── */
+  #landingScreen .lnd-mini-feat {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border: 1px solid rgba(238,199,82,.22);
+    border-radius: 10px;
+    background: linear-gradient(180deg, rgba(17,22,52,.78), rgba(11,15,36,.72));
+    margin-bottom: 12px;
+  }
+  #landingScreen .lnd-mini-feat-emoji {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 6px rgba(238,199,82,.4));
+  }
+  #landingScreen .lnd-mini-feat-body {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+  }
+  #landingScreen .lnd-mini-feat-name {
+    color: var(--nq-gold);
+    font-family: 'Cinzel', serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    display: block;
+  }
+  #landingScreen .lnd-mini-feat-desc {
+    color: var(--nq-muted);
+    font-family: 'Philosopher', serif;
+    font-size: .68rem;
+    line-height: 1.35;
+    display: block;
+  }
+
+  /* ── AUTH BLOCK — wrapper dos botões na coluna esquerda ─── */
+  #landingScreen .lnd-auth-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: auto;
+  }
+  /* Trust badge simplificada dentro do bloco de auth */
+  #landingScreen .lnd-auth-block .lnd-trust {
+    margin-top: 10px;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+  #landingScreen .lnd-trust-lock {
+    font-size: 1rem;
+    flex-shrink: 0;
+    opacity: .72;
+  }
+  #landingScreen .lnd-trust-text {
+    color: var(--nq-muted);
+    font-family: 'Philosopher', serif;
+    font-size: .7rem;
+    line-height: 1.4;
+  }
+
+  /* ── SCREENSHOT — coluna direita (topo) ─────────────────── */
+  #landingScreen .lnd-screenshot-wrap {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(238,199,82,.22);
+    background: rgba(10,14,34,.9);
+    flex: 1 1 0;
+    min-height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #landingScreen .lnd-screenshot-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  #landingScreen .lnd-screenshot-img[src=""] { display: none; }
+  #landingScreen .lnd-screenshot-ph {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 16px;
+    text-align: center;
+    pointer-events: none;
+  }
+  #landingScreen .lnd-screenshot-img:not([src=""]) ~ .lnd-screenshot-ph { display: none; }
+  #landingScreen .lnd-ss-ph-icon {
+    font-size: 2rem;
+    opacity: .38;
+  }
+  #landingScreen .lnd-ss-ph-label {
+    color: var(--nq-muted);
+    font-family: 'Philosopher', serif;
+    font-size: .78rem;
+    opacity: .65;
+  }
+  #landingScreen .lnd-ss-ph-path {
+    color: rgba(117,163,255,.5);
+    font-family: 'Philosopher', serif;
+    font-size: .66rem;
+    font-style: italic;
+  }
+
+  /* ── RIGHT CARDS — 3 cards de features (abaixo do print) ── */
+  #landingScreen .lnd-right-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  #landingScreen .lnd-rcard {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border: 1px solid rgba(var(--rc), .22);
+    border-radius: 10px;
+    background: linear-gradient(135deg,
+      rgba(var(--rc), .08) 0%,
+      rgba(10,14,34,.82) 100%
+    );
+    transition: border-color .2s, box-shadow .2s;
+  }
+  #landingScreen .lnd-rcard:hover {
+    border-color: rgba(var(--rc), .42);
+    box-shadow: 0 0 14px rgba(var(--rc), .12);
+  }
+  #landingScreen .lnd-rcard-emoji {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 8px rgba(var(--rc), .5));
+  }
+  #landingScreen .lnd-rcard-body {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+  }
+  #landingScreen .lnd-rcard-name {
+    color: var(--nq-text);
+    font-family: 'Cinzel', serif;
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    display: block;
+  }
+  #landingScreen .lnd-rcard-desc {
+    color: var(--nq-muted);
+    font-family: 'Philosopher', serif;
+    font-size: .7rem;
+    line-height: 1.4;
+    margin: 0;
+    display: block;
+  }
+
   /* Profile button */
   #landingScreen .profile-btn {
     position: fixed !important;
@@ -9705,18 +9875,17 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 @media (min-width: 901px) and (max-width: 1450px) {
   #landingScreen .landing-content {
     width: min(1060px, calc(100vw - 80px));
-    min-height: 660px;
+    min-height: 560px;
   }
-  #landingScreen .lnd-left  { padding: 42px 36px 38px 44px; }
-  #landingScreen .lnd-right { flex: 0 0 320px; padding: 44px 36px 38px 36px; }
-  #landingScreen .lnd-brand .landing-title { font-size: clamp(2.4rem, 3.5vw, 3.4rem); }
-  #landingScreen .lnd-feat  { padding: 12px 8px 10px; }
-  #landingScreen .lnd-feat-body { font-size: .74rem; }
-  #landingScreen .lnd-valor { padding: 16px 18px 14px; }
-  #landingScreen .lnd-valor-title { font-size: .74rem; }
-  #landingScreen .lnd-valor-desc  { font-size: .8rem; }
-  #landingScreen .lnd-stat-num    { font-size: 1.06rem; }
-  #landingScreen .lnd-stat-lbl    { font-size: .6rem; }
+  #landingScreen .lnd-left  { flex: 0 0 272px; padding: 38px 26px 34px 38px; }
+  #landingScreen .lnd-right { padding: 22px 28px 22px 20px; gap: 12px; }
+  #landingScreen .lnd-brand .landing-title { font-size: clamp(2rem, 3vw, 2.8rem); }
+  #landingScreen .lnd-rcard  { padding: 8px 12px; }
+  #landingScreen .lnd-rcard-name { font-size: .68rem; }
+  #landingScreen .lnd-rcard-desc { font-size: .66rem; }
+  #landingScreen .lnd-mini-feat  { padding: 8px 12px; }
+  #landingScreen .lnd-mini-feat-name { font-size: .66rem; }
+  #landingScreen .lnd-mini-feat-desc { font-size: .64rem; }
 }
 
 /* ============================================================
@@ -10106,21 +10275,9 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 
 @media (min-width: 901px) {
 
-  /* ── Subtext abaixo da tagline ───────────────────────────── */
-  #landingScreen .lnd-subtext {
-    color: rgba(213,226,242,.58);
-    font-family: 'Philosopher', serif;
-    font-size: .78rem;
-    line-height: 1.48;
-    text-align: center;
-    margin: 8px 0 0;
-    padding: 0 12px;
-  }
-
-  /* ── Showcase wrapper ────────────────────────────────────── */
-  #landingScreen .lnd-showcase {
-    margin-top: 14px;
-  }
+  /* ── Subtext e Showcase: hidden no desktop (usados só no mobile) */
+  #landingScreen .lnd-subtext  { display: none; }
+  #landingScreen .lnd-showcase { display: none; }
 
   /* ── Carousel container ──────────────────────────────────── */
   #landingScreen .lnd-carousel {
@@ -10517,15 +10674,24 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     display: contents;
   }
 
-  /* ── Coluna direita: ocupa largura total, vem após brand ─── */
-  #landingScreen .lnd-right {
+  /* ── Mini feat: só desktop — ocultar no mobile ───────────── */
+  #landingScreen .lnd-mini-feat { display: none; }
+
+  /* ── Auth block: vira item direto do flex flow (order 2) ─── */
+  #landingScreen .lnd-auth-block {
+    order: 2;
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 0;
-    margin-top: 14px;
-    overflow: visible;
-    order: 2;
+    margin-top: 0;
+  }
+  #landingScreen .lnd-auth-block .lnd-trust {
+    margin-top: 8px;
+  }
+
+  /* ── Coluna direita (screenshot): oculta no mobile ──────── */
+  #landingScreen .lnd-right {
+    display: none !important;
   }
 
   /* ── Brand block ─────────────────────────────────────────── */
