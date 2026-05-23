@@ -334,17 +334,12 @@
       loginWithGoogle();
     }
     function landingLoginEmail() {
-      document.getElementById('landingScreen').classList.add('hidden');
-      document.getElementById('welcomeScreen').classList.remove('hidden');
-      refreshWelcomeSave();
-      if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
-      showPricingModal();
+      openAuthModal();
+      switchAuthTab('entrar');
     }
     function landingPlayGuest() {
-      document.getElementById('landingScreen').classList.add('hidden');
-      document.getElementById('welcomeScreen').classList.remove('hidden');
-      refreshWelcomeSave();
-      if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
+      // Wrapper para o fluxo de convidado — equivalente a playAsGuest()
+      playAsGuest();
     }
     function showLandingMsg(msg) {
       const el = document.getElementById('landingMsg');

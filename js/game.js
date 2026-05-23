@@ -1869,7 +1869,8 @@
           renderHUD(); saveGame(); return;
         }
         finishGame();
-      } else if (!isPremium() && getGameStats().questionsAnsweredAllTime >= FREE_QUESTIONS_LIMIT) {
+      } else if (!_guestMode && !isPremium() && getGameStats().questionsAnsweredAllTime >= FREE_QUESTIONS_LIMIT) {
+        // Convidados não bloqueiam aqui — usam _showGuestHook (hook suave em 15 questões)
         showPricingModal();
       } else {
         ui.nextBtn.classList.remove('hidden');
