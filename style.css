@@ -9693,81 +9693,85 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 
   /* ── MINI FEAT — 1.000+ questões (entre logo e botões) ─── */
   #landingScreen .lnd-mini-feat {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 12px 16px;
-    border: 1px solid rgba(238,199,82,.32);
-    border-radius: 12px;
-    background:
-      linear-gradient(135deg, rgba(40,30,8,.72) 0%, rgba(11,15,36,.82) 100%);
-    box-shadow:
-      inset 0 1px 0 rgba(255,255,255,.06),
-      0 0 18px rgba(238,199,82,.08);
-    margin-bottom: 14px;
     position: relative;
     overflow: hidden;
+    border-radius: 14px;
+    border: 1px solid rgba(238,199,82,.38);
+    background:
+      radial-gradient(ellipse 90% 60% at 50% 0%, rgba(238,199,82,.14) 0%, transparent 70%),
+      linear-gradient(150deg, rgba(42,30,6,.88) 0%, rgba(10,13,32,.92) 100%);
+    box-shadow:
+      0 0 32px rgba(238,199,82,.12),
+      inset 0 1px 0 rgba(255,255,255,.09);
+    padding: 14px 18px 13px;
+    margin-bottom: 14px;
   }
-  /* Linha de acento dourada no topo */
+  /* Shimmer line topo */
   #landingScreen .lnd-mini-feat::before {
     content: '';
     position: absolute;
-    top: 0; left: 12px; right: 12px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(238,199,82,.5), transparent);
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(238,199,82,.5) 20%,
+      rgba(255,236,130,.95) 50%,
+      rgba(238,199,82,.5) 80%,
+      transparent 100%);
   }
-  #landingScreen .lnd-mini-feat-orb {
-    flex-shrink: 0;
-    width: 40px; height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(238,199,82,.18) 0%, rgba(238,199,82,.04) 100%);
-    border: 1px solid rgba(238,199,82,.28);
-    box-shadow: 0 0 14px rgba(238,199,82,.2);
-    font-size: 1.25rem;
-  }
-  #landingScreen .lnd-mini-feat-body {
+  #landingScreen .lnd-mini-feat-inner {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    min-width: 0;
+    gap: 8px;
   }
-  #landingScreen .lnd-mini-feat-name {
+  #landingScreen .lnd-mini-feat-headline {
     display: flex;
     align-items: baseline;
-    gap: 6px;
+    gap: 10px;
     flex-wrap: nowrap;
   }
   #landingScreen .lnd-mini-feat-num {
-    font-family: 'Cinzel', serif;
-    font-size: 1.05rem;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.7rem;
     font-weight: 900;
-    letter-spacing: .04em;
-    background: linear-gradient(180deg, #fff3a4 0%, #eec752 50%, #caa544 100%);
+    line-height: 1;
+    background: linear-gradient(170deg, #fff8c0 0%, #ffd84d 28%, #eec752 58%, #b8850a 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    line-height: 1;
+    filter: drop-shadow(0 0 12px rgba(238,199,82,.45));
     white-space: nowrap;
+  }
+  #landingScreen .lnd-mini-feat-plus {
+    font-size: 1.15rem;
   }
   #landingScreen .lnd-mini-feat-label {
     font-family: 'Cinzel', serif;
-    font-size: .68rem;
+    font-size: .72rem;
     font-weight: 700;
-    letter-spacing: .1em;
+    letter-spacing: .12em;
     text-transform: uppercase;
-    color: var(--nq-text);
-    opacity: .85;
+    color: rgba(230,215,168,.88);
     white-space: nowrap;
   }
-  #landingScreen .lnd-mini-feat-desc {
-    color: var(--nq-muted);
+  /* Topic pills */
+  #landingScreen .lnd-mini-feat-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  #landingScreen .lnd-mfp {
     font-family: 'Philosopher', serif;
-    font-size: .66rem;
-    line-height: 1.35;
-    display: block;
+    font-size: .58rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: rgba(238,199,82,.78);
+    background: rgba(238,199,82,.07);
+    border: 1px solid rgba(238,199,82,.22);
+    border-radius: 4px;
+    padding: 2px 7px;
+    white-space: nowrap;
   }
 
   /* ── AUTH BLOCK — wrapper dos botões na coluna esquerda ─── */
@@ -9798,100 +9802,141 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     line-height: 1.4;
   }
 
-  /* ── SCREENSHOT — coluna direita (topo) ─────────────────── */
-  #landingScreen .lnd-screenshot-wrap {
+  /* ── QR CODE CARD — topo da coluna direita ──────────────── */
+  #landingScreen .lnd-qr-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    border: 1px solid rgba(238,199,82,.35);
+    background:
+      radial-gradient(ellipse 65% 90% at 15% 50%, rgba(238,199,82,.1) 0%, transparent 65%),
+      linear-gradient(145deg, rgba(22,17,5,.92) 0%, rgba(8,11,28,.94) 100%);
+    box-shadow:
+      0 0 28px rgba(238,199,82,.1),
+      inset 0 1px 0 rgba(255,255,255,.07);
     position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  #landingScreen .lnd-qr-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(238,199,82,.65), transparent);
+  }
+  #landingScreen .lnd-qr-frame {
+    flex-shrink: 0;
+    width: 80px; height: 80px;
     border-radius: 10px;
-    background: transparent;
-    flex: 1 1 0;
-    min-height: 100px;
+    border: 2px solid rgba(238,199,82,.55);
+    padding: 4px;
+    background: #080d1e;
+    box-shadow:
+      0 0 20px rgba(238,199,82,.22),
+      inset 0 0 8px rgba(238,199,82,.06);
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: visible;
-    perspective: 1000px;
   }
-  #landingScreen .lnd-screenshot-img {
+  #landingScreen .lnd-qr-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: top center;
     display: block;
-    border-radius: 10px;
-    border: 1px solid rgba(238,199,82,.25);
-    transform: perspective(900px) rotateY(-10deg) rotateX(3deg);
-    transform-origin: center center;
-    box-shadow:
-      18px 18px 48px rgba(0,0,0,.7),
-      0 0 30px rgba(0,0,0,.5),
-      inset 0 1px 0 rgba(255,255,255,.06);
-    transition: transform .35s ease, box-shadow .35s ease;
+    border-radius: 6px;
   }
-  #landingScreen .lnd-screenshot-img:hover {
-    transform: perspective(900px) rotateY(-4deg) rotateX(1deg);
-    box-shadow:
-      12px 12px 36px rgba(0,0,0,.55),
-      0 0 40px rgba(124,58,237,.14);
-  }
-  #landingScreen .lnd-screenshot-img[src=""] { display: none; }
-  #landingScreen .lnd-screenshot-ph {
-    position: absolute;
-    inset: 0;
+  #landingScreen .lnd-qr-body {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    padding: 16px;
-    text-align: center;
-    pointer-events: none;
+    gap: 3px;
+    min-width: 0;
   }
-  #landingScreen .lnd-screenshot-img:not([src=""]) ~ .lnd-screenshot-ph { display: none; }
-  #landingScreen .lnd-ss-ph-icon {
-    font-size: 2rem;
-    opacity: .38;
-  }
-  #landingScreen .lnd-ss-ph-label {
-    color: var(--nq-muted);
+  #landingScreen .lnd-qr-kicker {
     font-family: 'Philosopher', serif;
-    font-size: .78rem;
-    opacity: .65;
+    font-size: .62rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: rgba(238,199,82,.7);
+    display: block;
   }
-  #landingScreen .lnd-ss-ph-path {
-    color: rgba(117,163,255,.5);
+  #landingScreen .lnd-qr-title {
+    font-family: 'Cinzel', serif;
+    font-size: .84rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    color: var(--nq-text);
+    line-height: 1.25;
+    display: block;
+  }
+  #landingScreen .lnd-qr-sub {
     font-family: 'Philosopher', serif;
     font-size: .66rem;
-    font-style: italic;
+    color: var(--nq-muted);
+    display: block;
+  }
+  #landingScreen .lnd-qr-url {
+    font-family: 'Philosopher', serif;
+    font-size: .7rem;
+    font-weight: 700;
+    color: rgba(117,163,255,.75);
+    display: block;
+    letter-spacing: .04em;
   }
 
-  /* ── RIGHT CARDS — 3 cards de features (abaixo do print) ── */
+  /* ── RIGHT CARDS — 3 feature cards (coluna direita) ──────── */
   #landingScreen .lnd-right-cards {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    flex-shrink: 0;
+    gap: 9px;
+    flex: 1 1 0;
   }
   #landingScreen .lnd-rcard {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 8px 12px;
-    border: 1px solid rgba(var(--rc), .22);
-    border-radius: 9px;
-    background: linear-gradient(135deg,
-      rgba(var(--rc), .08) 0%,
-      rgba(10,14,34,.82) 100%
-    );
-    transition: border-color .2s, box-shadow .2s;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(var(--rc), .24);
+    background:
+      radial-gradient(ellipse 65% 100% at 0% 50%, rgba(var(--rc), .11) 0%, transparent 70%),
+      linear-gradient(140deg, rgba(var(--rc), .06) 0%, rgba(8,11,28,.86) 100%);
+    position: relative;
+    overflow: hidden;
+    transition: border-color .22s, box-shadow .22s, transform .22s;
+    flex: 1 1 0;
+  }
+  /* Left accent bar */
+  #landingScreen .lnd-rcard::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(var(--rc), .9) 0%, rgba(var(--rc), .2) 100%);
+    border-radius: 3px 0 0 3px;
   }
   #landingScreen .lnd-rcard:hover {
-    border-color: rgba(var(--rc), .42);
-    box-shadow: 0 0 14px rgba(var(--rc), .12);
+    border-color: rgba(var(--rc), .5);
+    box-shadow: 0 0 22px rgba(var(--rc), .16), 0 4px 18px rgba(0,0,0,.32);
+    transform: translateX(3px);
   }
-  #landingScreen .lnd-rcard-emoji {
-    font-size: 1.2rem;
+  #landingScreen .lnd-rcard-icon-wrap {
     flex-shrink: 0;
-    filter: drop-shadow(0 0 8px rgba(var(--rc), .5));
+    width: 38px; height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: radial-gradient(circle, rgba(var(--rc), .2) 0%, rgba(var(--rc), .04) 100%);
+    border: 1px solid rgba(var(--rc), .3);
+    box-shadow: 0 0 14px rgba(var(--rc), .14);
+  }
+  #landingScreen .lnd-rcard-icon {
+    font-size: 1.1rem;
+    filter: drop-shadow(0 0 6px rgba(var(--rc), .65));
   }
   #landingScreen .lnd-rcard-body {
     display: flex;
@@ -9902,18 +9947,33 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   #landingScreen .lnd-rcard-name {
     color: var(--nq-text);
     font-family: 'Cinzel', serif;
-    font-size: .66rem;
+    font-size: .68rem;
     font-weight: 700;
-    letter-spacing: .05em;
+    letter-spacing: .07em;
+    text-transform: uppercase;
     display: block;
   }
   #landingScreen .lnd-rcard-desc {
-    color: var(--nq-muted);
+    color: rgba(173,190,215,.76);
     font-family: 'Philosopher', serif;
-    font-size: .64rem;
-    line-height: 1.38;
+    font-size: .63rem;
+    line-height: 1.42;
     margin: 0;
     display: block;
+  }
+  #landingScreen .lnd-rcard-badge {
+    display: inline-block;
+    margin-top: 4px;
+    font-family: 'Philosopher', serif;
+    font-size: .57rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: rgba(var(--rc), .88);
+    background: rgba(var(--rc), .1);
+    border: 1px solid rgba(var(--rc), .28);
+    border-radius: 4px;
+    padding: 2px 7px;
   }
 
   /* ── SOUND CONTROLS — canto superior direito da página ───── */
@@ -9991,13 +10051,20 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   #landingScreen .lnd-left  { padding: 30px 22px 28px 32px; }
   #landingScreen .lnd-right { flex: 0 0 340px; padding: 16px 22px 16px 14px; gap: 8px; }
   #landingScreen .lnd-brand .landing-title { font-size: clamp(1.8rem, 3vw, 2.6rem); }
-  #landingScreen .lnd-rcard  { padding: 7px 10px; }
-  #landingScreen .lnd-rcard-name { font-size: .62rem; }
-  #landingScreen .lnd-rcard-desc { font-size: .60rem; }
-  #landingScreen .lnd-mini-feat  { padding: 9px 12px; }
-  #landingScreen .lnd-mini-feat-num { font-size: .9rem; }
-  #landingScreen .lnd-mini-feat-label { font-size: .62rem; }
-  #landingScreen .lnd-mini-feat-desc { font-size: .62rem; }
+  #landingScreen .lnd-rcard           { padding: 8px 11px; }
+  #landingScreen .lnd-rcard-icon-wrap { width: 32px; height: 32px; }
+  #landingScreen .lnd-rcard-name      { font-size: .62rem; }
+  #landingScreen .lnd-rcard-desc      { font-size: .60rem; }
+  #landingScreen .lnd-rcard-badge     { font-size: .54rem; }
+  #landingScreen .lnd-mini-feat       { padding: 10px 14px; }
+  #landingScreen .lnd-mini-feat-num   { font-size: 1.35rem; }
+  #landingScreen .lnd-mini-feat-label { font-size: .64rem; }
+  #landingScreen .lnd-mfp             { font-size: .54rem; }
+  #landingScreen .lnd-qr-card         { padding: 11px 13px; gap: 12px; }
+  #landingScreen .lnd-qr-frame        { width: 68px; height: 68px; }
+  #landingScreen .lnd-qr-title        { font-size: .76rem; }
+  #landingScreen .lnd-qr-sub          { font-size: .60rem; }
+  #landingScreen .lnd-qr-url          { font-size: .63rem; }
 }
 
 /* ============================================================
