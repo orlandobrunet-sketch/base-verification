@@ -490,7 +490,8 @@
     }
     
     async function startGameWithCharacter() {
-      if (!isPremium() && getGameStats().questionsAnsweredAllTime >= FREE_QUESTIONS_LIMIT) {
+      // Convidados usam _showGuestHook (hook suave em 15 questões), não o paywall global
+      if (!_guestMode && !isPremium() && getGameStats().questionsAnsweredAllTime >= FREE_QUESTIONS_LIMIT) {
         showPricingModal();
         return;
       }
