@@ -1119,9 +1119,9 @@
     }
     .modal {
       width: min(700px, 92vw);
-      background: linear-gradient(180deg, #12192e, #0b1428);
-      border: 2px solid var(--blue-dark); border-radius: 14px; padding: 16px;
-      box-shadow: 0 0 40px rgba(30,60,120,0.4);
+      background: linear-gradient(180deg, #1a2744, #0d1426);
+      border: 2px solid var(--gold); border-radius: 16px; padding: 16px;
+      box-shadow: 0 0 60px rgba(255,215,0,0.15), 0 8px 32px rgba(0,0,0,.6);
     }
     /* Garante que nenhum modal-content estoure a viewport */
     .modal-content {
@@ -2329,11 +2329,11 @@
     }
     #accountModal.show, #planModal.show, #adminModal.show { display: flex; }
     .modal-panel {
-      background: linear-gradient(160deg, #0d1428, #12192e);
-      border: 2px solid var(--blue-dark); border-radius: 20px;
+      background: linear-gradient(160deg, #1a2744, #0d1426);
+      border: 2px solid var(--gold); border-radius: 20px;
       max-width: 420px; width: 100%; padding: 28px 24px;
       max-height: calc(100vh - 64px); overflow-y: auto;
-      box-shadow: 0 0 40px rgba(30,60,120,0.4);
+      box-shadow: 0 0 60px rgba(255,215,0,0.15), 0 8px 32px rgba(0,0,0,.6);
       animation: scaleIn 0.3s ease-out;
       position: relative;
     }
@@ -6540,16 +6540,16 @@
 
 /* ── M10 — Conta / Account (+ Plan + Admin) ─────────────────────── */
 .modal-panel {
-  background: linear-gradient(160deg, var(--rd-bg-surface) 0%, var(--rd-bg-panel) 100%);
-  border: 1px solid rgba(240,192,64,0.22);
-  box-shadow: 0 0 50px rgba(0,0,0,0.7), 0 0 0 1px rgba(240,192,64,0.05) inset;
+  background: linear-gradient(160deg, #1a2744 0%, #0d1426 100%);
+  border: 2px solid var(--gold) !important;
+  box-shadow: 0 0 60px rgba(255,215,0,0.15), 0 8px 32px rgba(0,0,0,.6);
 }
 
 /* ── M11 — Reportar questão (flag) ──────────────────────────────── */
 #flagPopup > div {
-  background: linear-gradient(160deg, var(--rd-bg-surface) 0%, var(--rd-bg-panel) 100%) !important;
-  border-color: rgba(99,102,241,0.5) !important;
-  box-shadow: 0 0 40px rgba(99,102,241,0.2) !important;
+  background: linear-gradient(160deg, #1a2744 0%, #0d1426 100%) !important;
+  border-color: var(--gold) !important;
+  box-shadow: 0 0 60px rgba(255,215,0,0.15), 0 8px 32px rgba(0,0,0,.6) !important;
 }
 .flag-chip {
   background: rgba(99,102,241,0.1);
@@ -9240,9 +9240,9 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     position: relative;
     z-index: 2;
 
-    width: min(1200px, calc(100vw - 100px));
-    min-height: 595px;
-    max-height: calc(85vh - 48px);
+    width: min(920px, calc(100vw - 100px));
+    min-height: 580px;
+    max-height: calc(90vh - 48px);
     max-width: unset;
 
     display: flex;
@@ -9281,11 +9281,12 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 
   /* ── COLUNA ESQUERDA ─────────────────────────────────────── */
   #landingScreen .lnd-left {
-    flex: 0 0 300px;
+    flex: 1 1 auto;
+    min-width: 300px;
+    max-width: 380px;
     display: flex;
     flex-direction: column;
     padding: 36px 28px 32px 40px;
-    min-width: 0;
     position: relative;
     z-index: 1;
   }
@@ -9515,7 +9516,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 
   /* ── COLUNA DIREITA ──────────────────────────────────────── */
   #landingScreen .lnd-right {
-    flex: 1 1 auto;
+    flex: 0 0 400px;
     display: flex;
     flex-direction: column;
     padding: 20px 28px 20px 18px;
@@ -9523,6 +9524,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     position: relative;
     z-index: 1;
     min-width: 0;
+    overflow: visible;
   }
 
   /* Heading */
@@ -9693,36 +9695,77 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   #landingScreen .lnd-mini-feat {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 10px 14px;
-    border: 1px solid rgba(238,199,82,.22);
-    border-radius: 10px;
-    background: linear-gradient(180deg, rgba(17,22,52,.78), rgba(11,15,36,.72));
-    margin-bottom: 12px;
+    gap: 14px;
+    padding: 12px 16px;
+    border: 1px solid rgba(238,199,82,.32);
+    border-radius: 12px;
+    background:
+      linear-gradient(135deg, rgba(40,30,8,.72) 0%, rgba(11,15,36,.82) 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.06),
+      0 0 18px rgba(238,199,82,.08);
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
   }
-  #landingScreen .lnd-mini-feat-emoji {
-    font-size: 1.3rem;
+  /* Linha de acento dourada no topo */
+  #landingScreen .lnd-mini-feat::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 12px; right: 12px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(238,199,82,.5), transparent);
+  }
+  #landingScreen .lnd-mini-feat-orb {
     flex-shrink: 0;
-    filter: drop-shadow(0 0 6px rgba(238,199,82,.4));
+    width: 40px; height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(238,199,82,.18) 0%, rgba(238,199,82,.04) 100%);
+    border: 1px solid rgba(238,199,82,.28);
+    box-shadow: 0 0 14px rgba(238,199,82,.2);
+    font-size: 1.25rem;
   }
   #landingScreen .lnd-mini-feat-body {
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 4px;
     min-width: 0;
   }
   #landingScreen .lnd-mini-feat-name {
-    color: var(--nq-gold);
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    flex-wrap: nowrap;
+  }
+  #landingScreen .lnd-mini-feat-num {
     font-family: 'Cinzel', serif;
-    font-size: .7rem;
+    font-size: 1.05rem;
+    font-weight: 900;
+    letter-spacing: .04em;
+    background: linear-gradient(180deg, #fff3a4 0%, #eec752 50%, #caa544 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  #landingScreen .lnd-mini-feat-label {
+    font-family: 'Cinzel', serif;
+    font-size: .68rem;
     font-weight: 700;
-    letter-spacing: .08em;
-    display: block;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--nq-text);
+    opacity: .85;
+    white-space: nowrap;
   }
   #landingScreen .lnd-mini-feat-desc {
     color: var(--nq-muted);
     font-family: 'Philosopher', serif;
-    font-size: .68rem;
+    font-size: .66rem;
     line-height: 1.35;
     display: block;
   }
@@ -9759,14 +9802,14 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   #landingScreen .lnd-screenshot-wrap {
     position: relative;
     border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid rgba(238,199,82,.22);
-    background: rgba(10,14,34,.9);
+    background: transparent;
     flex: 1 1 0;
     min-height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: visible;
+    perspective: 1000px;
   }
   #landingScreen .lnd-screenshot-img {
     width: 100%;
@@ -9774,6 +9817,21 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     object-fit: cover;
     object-position: top center;
     display: block;
+    border-radius: 10px;
+    border: 1px solid rgba(238,199,82,.25);
+    transform: perspective(900px) rotateY(-10deg) rotateX(3deg);
+    transform-origin: center center;
+    box-shadow:
+      18px 18px 48px rgba(0,0,0,.7),
+      0 0 30px rgba(0,0,0,.5),
+      inset 0 1px 0 rgba(255,255,255,.06);
+    transition: transform .35s ease, box-shadow .35s ease;
+  }
+  #landingScreen .lnd-screenshot-img:hover {
+    transform: perspective(900px) rotateY(-4deg) rotateX(1deg);
+    box-shadow:
+      12px 12px 36px rgba(0,0,0,.55),
+      0 0 40px rgba(124,58,237,.14);
   }
   #landingScreen .lnd-screenshot-img[src=""] { display: none; }
   #landingScreen .lnd-screenshot-ph {
@@ -9858,32 +9916,34 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     display: block;
   }
 
-  /* ── SOUND CONTROLS — landing screen (top-right do card) ─── */
+  /* ── SOUND CONTROLS — canto superior direito da página ───── */
   #landingScreen .lnd-sound-controls {
-    position: absolute;
-    top: 12px;
-    right: 14px;
+    position: fixed;
+    top: 16px;
+    right: 16px;
     display: flex;
-    gap: 4px;
-    z-index: 10;
+    gap: 6px;
+    z-index: 200;
   }
   #landingScreen .lnd-sound-btn {
-    width: 30px; height: 30px;
+    width: 36px; height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 7px;
-    background: rgba(10,14,34,.72);
-    color: rgba(213,226,242,.72);
-    font-size: .88rem;
+    border: 1px solid rgba(238,199,82,.28);
+    border-radius: 9px;
+    background: rgba(11,15,34,.82);
+    color: rgba(213,226,242,.8);
+    font-size: .95rem;
     cursor: pointer;
-    transition: border-color .18s, background .18s;
+    transition: border-color .18s, background .18s, box-shadow .18s;
     padding: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,.3);
   }
   #landingScreen .lnd-sound-btn:hover {
-    border-color: rgba(238,199,82,.3);
-    background: rgba(20,26,60,.9);
+    border-color: rgba(238,199,82,.6);
+    background: rgba(20,26,60,.96);
+    box-shadow: 0 0 12px rgba(238,199,82,.14);
   }
 
   /* ── FOOTER abaixo do card ────────────────────────────────── */
@@ -9922,21 +9982,22 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   }
 }
 
-/* Notebooks menores (901–1450px) */
-@media (min-width: 901px) and (max-width: 1450px) {
+/* Notebooks menores (901–1200px) */
+@media (min-width: 901px) and (max-width: 1200px) {
   #landingScreen .landing-content {
-    width: min(1060px, calc(100vw - 80px));
-    min-height: 560px;
+    width: min(860px, calc(100vw - 60px));
+    min-height: 540px;
   }
-  #landingScreen .lnd-left  { flex: 0 0 272px; padding: 38px 26px 34px 38px; }
-  #landingScreen .lnd-right { padding: 22px 28px 22px 20px; gap: 12px; }
-  #landingScreen .lnd-brand .landing-title { font-size: clamp(2rem, 3vw, 2.8rem); }
-  #landingScreen .lnd-rcard  { padding: 8px 12px; }
-  #landingScreen .lnd-rcard-name { font-size: .68rem; }
-  #landingScreen .lnd-rcard-desc { font-size: .66rem; }
-  #landingScreen .lnd-mini-feat  { padding: 8px 12px; }
-  #landingScreen .lnd-mini-feat-name { font-size: .66rem; }
-  #landingScreen .lnd-mini-feat-desc { font-size: .64rem; }
+  #landingScreen .lnd-left  { padding: 30px 22px 28px 32px; }
+  #landingScreen .lnd-right { flex: 0 0 340px; padding: 16px 22px 16px 14px; gap: 8px; }
+  #landingScreen .lnd-brand .landing-title { font-size: clamp(1.8rem, 3vw, 2.6rem); }
+  #landingScreen .lnd-rcard  { padding: 7px 10px; }
+  #landingScreen .lnd-rcard-name { font-size: .62rem; }
+  #landingScreen .lnd-rcard-desc { font-size: .60rem; }
+  #landingScreen .lnd-mini-feat  { padding: 9px 12px; }
+  #landingScreen .lnd-mini-feat-num { font-size: .9rem; }
+  #landingScreen .lnd-mini-feat-label { font-size: .62rem; }
+  #landingScreen .lnd-mini-feat-desc { font-size: .62rem; }
 }
 
 /* ============================================================

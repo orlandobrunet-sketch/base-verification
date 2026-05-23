@@ -202,16 +202,16 @@
 
       </div>
     </div>
+    <!-- Botões de som — canto superior direito da página (desktop only) -->
+    <div class="lnd-sound-controls" id="lndSoundControls">
+      <button class="lnd-sound-btn" type="button" data-action="toggleMusic" title="Música" aria-label="Ativar/desativar música">
+        <span id="lndMusicIcon">🎵</span>
+      </button>
+      <button class="lnd-sound-btn" type="button" data-action="toggleSound" title="Efeitos sonoros" aria-label="Ativar/desativar efeitos">
+        <span id="lndSfxIcon">🔊</span>
+      </button>
+    </div>
     <div class="landing-content">
-      <!-- Botões de som — landing screen (desktop) -->
-      <div class="lnd-sound-controls" id="lndSoundControls">
-        <button class="lnd-sound-btn" type="button" data-action="toggleMusic" title="Música" aria-label="Ativar/desativar música">
-          <span id="lndMusicIcon">🎵</span>
-        </button>
-        <button class="lnd-sound-btn" type="button" data-action="toggleSound" title="Efeitos sonoros" aria-label="Ativar/desativar efeitos">
-          <span id="lndSfxIcon">🔊</span>
-        </button>
-      </div>
       <!-- ══ LEFT COLUMN: brand + mini card + login buttons ══ -->
       <div class="lnd-left">
         <div class="lnd-brand">
@@ -223,9 +223,12 @@
 
         <!-- Mini card: 1.000+ questões (desktop only — entre logo e botões) -->
         <div class="lnd-mini-feat">
-          <span class="lnd-mini-feat-emoji">⚔️</span>
+          <div class="lnd-mini-feat-orb">⚔️</div>
           <div class="lnd-mini-feat-body">
-            <span class="lnd-mini-feat-name">1.000+ questões comentadas</span>
+            <span class="lnd-mini-feat-name">
+              <span class="lnd-mini-feat-num">1.000+</span>
+              <span class="lnd-mini-feat-label">Questões Comentadas</span>
+            </span>
             <span class="lnd-mini-feat-desc">DRC · LRA · Glomerulopatias · Eletrólitos · Diálise · Transplante</span>
           </div>
         </div>
