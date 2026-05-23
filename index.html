@@ -203,60 +203,52 @@
       </div>
     </div>
     <div class="landing-content">
-      <!-- ══ LEFT COLUMN: brand + features + valor card ══ -->
-      <div class="lnd-left">
-        <div class="lnd-brand">
-          <div class="lnd-ornament">✦ Reino dos Néfrons ✦</div>
-          <h1 class="landing-title">NefroQuest</h1>
-          <div class="lnd-sub">— Ascension —</div>
-          <p class="lnd-subtext">1.000+ questões, IA comentando raciocínio, minigames e progressão em um RPG médico de nefrologia.</p>
+      <div class="lnd-promo-shell">
+        <!-- ══ LEFT COLUMN: brand + login (desktop) ══ -->
+        <div class="lnd-left">
+          <div class="lnd-brand">
+            <div class="lnd-ornament">✦ Reino dos Néfrons ✦</div>
+            <h1 class="landing-title">NefroQuest</h1>
+            <div class="lnd-sub">— Ascension —</div>
+            <p class="lnd-subtext lnd-subtext--hero">Domine a Nefrologia.<br>Conquiste o reino dos néfrons.</p>
+            <p class="lnd-subtext lnd-subtext--soft">Uma jornada épica de conhecimento, estratégia e evolução clínica.</p>
+          </div>
+          <div class="lnd-login-panel">
+            <div id="landingMsg" class="landing-msg"></div>
+            <button type="button" class="landing-btn-google" data-action="landingLoginGoogle">
+              <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.1 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.6-13.47-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+              Entrar com Google
+            </button>
+            <button type="button" class="landing-btn-email" data-action="landingLoginEmail">✉ Entrar com Email</button>
+            <button type="button" class="landing-btn-guest" data-action="playAsGuest">🗺️ Experimentar sem conta</button>
+            <p class="lnd-terms">Ao continuar, você concorda com nossos Termos de Uso e Política de Privacidade.</p>
+          </div>
         </div>
-        <!-- ══ FEAT GRID — desktop premium (mobile preservado no carrossel) ══ -->
-        <div class="lnd-showcase">
-          <div class="lnd-feat-grid" aria-hidden="true">
-            <p class="lnd-subtext">Treine nefrologia como uma jornada clínica: questões comentadas, IA explicando raciocínio, revisão ativa e progressão em RPG médico.</p>
-            <div class="lnd-seal-row">
-              <span class="lnd-seal">1.000+ questões</span>
-              <span class="lnd-seal">IA de raciocínio</span>
-              <span class="lnd-seal">Guidelines e trials</span>
-              <span class="lnd-seal">PWA</span>
+        <div class="lnd-vsep"><span class="lnd-vsep-gem">◆</span><span class="lnd-vsep-gem">◆</span><span class="lnd-vsep-gem">◆</span></div>
+        <!-- ══ RIGHT AREA: gameplay preview (desktop) ══ -->
+        <div class="lnd-right">
+          <div class="lnd-game-stage">
+            <aside class="lnd-guideline-seal" aria-label="Selo de evidência clínica">
+              <strong>Baseado nas principais diretrizes</strong>
+              <span>KDIGO · DOQI · SBN · LRA · DRC · Diálise</span>
+            </aside>
+            <div class="lnd-game-preview">
+              <img src="assets/images/landing-gameplay-preview.webp" alt="Prévia da jornada NefroQuest" width="1200" height="760" loading="eager">
+              <span class="lnd-preview-shine" aria-hidden="true"></span>
             </div>
-            <div class="lnd-stage-grid">
-              <article class="lnd-stage-card lnd-stage-card--quest">
-                <span class="lnd-fcard-tag">Banco de Questões</span>
-                <h4 class="lnd-fcard-name">Treino clínico guiado</h4>
-                <p class="lnd-fcard-desc">DRC, LRA, glomerulopatias, eletrólitos, diálise e transplante com explicações objetivas.</p>
-                <div class="lnd-mini lnd-mini-q">
-                  <div class="lnd-mini-top"><span>Caso 247 • DRC</span><span>02:18</span></div>
-                  <div class="lnd-mini-lines"><span></span><span></span></div>
-                  <div class="lnd-mini-opt"></div><div class="lnd-mini-opt lnd-mini-opt--on"></div><div class="lnd-mini-opt"></div>
-                </div>
-              </article>
-              <article class="lnd-stage-card lnd-stage-card--oracle">
-                <span class="lnd-fcard-tag">Inteligência Artificial</span>
-                <h4 class="lnd-fcard-name">Oráculo de raciocínio</h4>
-                <p class="lnd-fcard-desc">A IA reconstrói o erro, explica o raciocínio e aponta lacunas para revisar melhor.</p>
-                <div class="lnd-mini lnd-mini-ai">
-                  <div class="lnd-mini-aura"></div>
-                  <div class="lnd-mini-rune">✦ Oráculo Clínico</div>
-                  <div class="lnd-mini-lines"><span></span><span></span><span></span></div>
-                </div>
-              </article>
-              <article class="lnd-stage-card lnd-stage-card--rpg">
-                <span class="lnd-fcard-tag">Progressão RPG</span>
-                <h4 class="lnd-fcard-name">Evolução que dá vontade de voltar</h4>
-                <p class="lnd-fcard-desc">XP, ouro, badges, ranking, minigames e boss final transformam constância em jornada.</p>
-                <div class="lnd-mini lnd-mini-hud">
-                  <div class="lnd-hud-top"><span>Nv. 24</span><span>❤❤❤</span><span>⛃ 840</span></div>
-                  <div class="lnd-mini-xp"><i></i></div>
-                  <div class="lnd-mini-boss">Boss: Arqui-Nefromante 78%</div>
-                </div>
-              </article>
+            <div class="lnd-float-panels" aria-hidden="true">
+              <span class="lnd-float-panel">Ranking</span><span class="lnd-float-panel">Conquistas</span><span class="lnd-float-panel">Evidência científica</span><span class="lnd-float-panel">IA clínica</span>
             </div>
-            <div class="lnd-runes">
-              <span>Guidelines</span><span>Trials</span><span>Minigames</span><span>Grimório</span><span>Ranking</span><span>Modo estudo</span>
-            </div>
-          </div><!-- /.lnd-feat-grid -->
+          </div>
+        </div>
+        <div class="lnd-feature-rail" aria-hidden="true">
+          <article class="lnd-rail-item"><h4>1.000+ questões comentadas</h4><p>Todas com referências e explicações detalhadas.</p></article>
+          <article class="lnd-rail-item"><h4>Tutor IA personalizado</h4><p>Respostas para suas dúvidas em tempo real.</p></article>
+          <article class="lnd-rail-item"><h4>Jornada RPG gamificada</h4><p>Evolua, equipe-se e domine desafios da nefrologia.</p></article>
+          <article class="lnd-rail-item"><h4>Baseado em evidências</h4><p>Diretrizes, trials e referências sempre atualizadas.</p></article>
+          <article class="lnd-rail-item"><h4>Ranking e conquistas</h4><p>Compare progresso e desbloqueie recompensas.</p></article>
+        </div>
+      </div>
 
           <!-- ══ CAROUSEL — mobile only ══ -->
           <div class="lnd-carousel" role="region" aria-label="Funcionalidades do NefroQuest" aria-roledescription="carrossel">
@@ -339,32 +331,7 @@
               </div>
               <button class="lnd-carousel-arrow lnd-carousel-arrow--next" type="button" aria-label="Próximo card">&#8250;</button>
             </div>
-
           </div><!-- /.lnd-carousel -->
-        </div><!-- /.lnd-showcase -->
-      </div>
-      <!-- ══ VERTICAL SEPARATOR with gems ══ -->
-      <div class="lnd-vsep">
-        <span class="lnd-vsep-gem">◆</span>
-        <span class="lnd-vsep-gem">◆</span>
-        <span class="lnd-vsep-gem">◆</span>
-      </div>
-      <!-- ══ RIGHT COLUMN: login ══ -->
-      <div class="lnd-right">
-        <div id="landingMsg" class="landing-msg"></div>
-        <button type="button" class="landing-btn-google" data-action="landingLoginGoogle">
-          <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.1 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.6-13.47-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-          Entrar com Google
-        </button>
-        <div class="lnd-btn-sep"><span>◆</span></div>
-        <button type="button" class="landing-btn-email" data-action="landingLoginEmail">✉ Entrar com Email</button>
-        <div class="lnd-btn-sep"><span>◆</span></div>
-        <button type="button" class="landing-btn-guest" data-action="playAsGuest">🗺️ Testar como viajante</button>
-        <div class="lnd-trust">
-          <span class="lnd-trust-lock">🔒</span>
-          <span class="lnd-trust-text">Entre com conta para salvar progresso, ranking e conquistas.</span>
-        </div>
-      </div>
     </div>
   </div>
 

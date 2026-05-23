@@ -10969,3 +10969,47 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   #landingScreen .lnd-mini { padding: 6px; }
   #landingScreen .lnd-runes span { font-size: .53rem; padding: 3px 7px; }
 }
+
+/* ===== Landing desktop iteration 3: real gameplay hero ===== */
+@media (min-width: 900px) {
+  #landingScreen .lnd-promo-shell { display:grid; grid-template-columns: 36% 12px 1fr; grid-template-rows: 1fr auto; gap: 10px 12px; width:100%; min-height:min(680px,86vh); }
+  #landingScreen .lnd-left { grid-column:1; grid-row:1; padding: 26px 18px 18px 24px; display:flex; flex-direction:column; justify-content:space-between; }
+  #landingScreen .lnd-right { grid-column:3; grid-row:1; padding: 18px 24px 14px 8px; }
+  #landingScreen .lnd-vsep { grid-column:2; grid-row:1; }
+  #landingScreen .lnd-feature-rail { grid-column:1 / 4; grid-row:2; display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:8px; padding: 0 22px 14px; }
+  #landingScreen .lnd-subtext--hero { font-size: 1.04rem; color:#eff5ff; line-height:1.35; margin-top: 10px; }
+  #landingScreen .lnd-subtext--soft { font-size:.82rem; color:#b6c7ea; margin-top:8px; }
+  #landingScreen .lnd-login-panel { margin-top: 16px; border:1px solid rgba(108,138,200,.34); border-radius:14px; background:linear-gradient(180deg,rgba(11,20,44,.9),rgba(8,14,30,.92)); padding:14px; box-shadow: 0 18px 32px rgba(0,0,0,.34); }
+  #landingScreen .lnd-login-panel .landing-btn-google, #landingScreen .lnd-login-panel .landing-btn-email, #landingScreen .lnd-login-panel .landing-btn-guest { margin-bottom:8px; }
+  #landingScreen .lnd-login-panel .landing-btn-google { background:linear-gradient(180deg,#f9f1cf,#debe6f); color:#1a2035; border:1px solid rgba(242,212,133,.9); }
+  #landingScreen .lnd-login-panel .landing-btn-email { background:linear-gradient(180deg,#244a8d,#142b52); border:1px solid rgba(112,167,255,.6); }
+  #landingScreen .lnd-login-panel .landing-btn-guest { background:linear-gradient(180deg,#48206f,#26113e); border:1px solid rgba(189,141,255,.5); }
+  #landingScreen .lnd-terms { margin-top: 6px; color: rgba(192,206,238,.78); font-size: .62rem; line-height:1.35; }
+  #landingScreen .lnd-game-stage { position:relative; height:100%; display:flex; align-items:center; justify-content:center; perspective: 1300px; }
+  #landingScreen .lnd-guideline-seal { position:absolute; top:0; right:6px; z-index:3; border:1px solid rgba(237,200,112,.55); border-radius:10px; background:linear-gradient(180deg,rgba(40,28,66,.92),rgba(18,20,43,.92)); padding:8px 10px; max-width: 320px; box-shadow:0 10px 26px rgba(0,0,0,.4); }
+  #landingScreen .lnd-guideline-seal strong { display:block; color:#f1d692; font-size:.64rem; }
+  #landingScreen .lnd-guideline-seal span { display:block; color:#c1b5ed; font-size:.56rem; margin-top:2px; }
+  #landingScreen .lnd-game-preview { position:relative; width:min(100%,890px); border-radius:18px; padding:10px; background:linear-gradient(135deg,rgba(221,183,97,.28),rgba(62,115,219,.22)); box-shadow:0 34px 55px rgba(0,0,0,.55), 0 0 26px rgba(146,97,255,.26); transform: rotateY(-8deg) rotateX(2deg); overflow:hidden; }
+  #landingScreen .lnd-game-preview::before { content:''; position:absolute; inset:8px; border-radius:12px; border:1px solid rgba(240,215,147,.44); pointer-events:none; }
+  #landingScreen .lnd-game-preview img { width:100%; height:100%; aspect-ratio:16/10; object-fit:cover; border-radius:10px; display:block; background: radial-gradient(circle at 15% 20%, rgba(76,117,220,.45), rgba(14,22,45,.95)); }
+  #landingScreen .lnd-preview-shine { position:absolute; inset:0 auto auto 10%; width:45%; height:32%; background:linear-gradient(180deg,rgba(255,255,255,.2),transparent); filter:blur(4px); }
+  #landingScreen .lnd-float-panels { position:absolute; inset: auto 0 8% 0; display:flex; justify-content:space-between; pointer-events:none; }
+  #landingScreen .lnd-float-panel { border:1px solid rgba(116,150,221,.5); background:linear-gradient(180deg,rgba(15,26,52,.95),rgba(11,16,34,.95)); color:#d3e2ff; font-size:.6rem; padding:6px 10px; border-radius:999px; box-shadow:0 8px 20px rgba(0,0,0,.35); }
+  #landingScreen .lnd-rail-item { border:1px solid rgba(102,131,191,.35); border-radius:10px; padding:8px 9px; background:linear-gradient(180deg,rgba(11,19,40,.88),rgba(7,13,29,.92)); }
+  #landingScreen .lnd-rail-item h4 { font-size:.66rem; color:#f0d79a; margin-bottom:3px; }
+  #landingScreen .lnd-rail-item p { font-size:.58rem; color:#b5c7ea; line-height:1.34; }
+}
+
+@media (max-width: 899px) {
+  #landingScreen .lnd-promo-shell { display:none; }
+}
+
+@media (min-width: 900px) and (max-height: 800px) {
+  #landingScreen .lnd-promo-shell { min-height:min(620px,84vh); gap:8px 10px; }
+  #landingScreen .lnd-left { padding:20px 14px 12px 20px; }
+  #landingScreen .lnd-right { padding:12px 18px 8px 6px; }
+  #landingScreen .lnd-game-preview { transform: rotateY(-7deg) rotateX(1deg); }
+  #landingScreen .lnd-feature-rail { gap:6px; padding:0 16px 10px; }
+  #landingScreen .lnd-rail-item:nth-child(5) { display:none; }
+  #landingScreen .lnd-float-panel:nth-child(3), #landingScreen .lnd-float-panel:nth-child(4) { display:none; }
+}
