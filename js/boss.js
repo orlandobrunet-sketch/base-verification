@@ -74,8 +74,15 @@
         // Garante que elementos boss ficam ocultos fora do boss mode
         const nb = document.getElementById('bossNarrativeBox');
         const bl = document.getElementById('bossLogSection');
+        const mc = document.getElementById('finalMeterContainer');
+        const sd = document.getElementById('arquiStarsDesktop');
+        const sm = document.getElementById('arquiStarsMobile');
         if (nb) nb.style.display = 'none';
         if (bl) bl.style.display = 'none';
+        if (mc) mc.style.display = 'none';
+        if (sd) sd.style.display = 'none';
+        if (sm) sm.style.display = 'none';
+        document.body.classList.remove('boss-battle-mode', 'arqui-nefromante-final');
         return;
       }
 

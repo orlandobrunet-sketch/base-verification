@@ -9223,6 +9223,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     inset: 0;
     overflow: hidden;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 0;
@@ -9283,7 +9284,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     flex: 0 0 300px;
     display: flex;
     flex-direction: column;
-    padding: 44px 32px 40px 44px;
+    padding: 36px 28px 32px 40px;
     min-width: 0;
     position: relative;
     z-index: 1;
@@ -9292,7 +9293,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   /* Brand block — centralizado */
   #landingScreen .lnd-brand {
     text-align: center;
-    margin-bottom: 16px;
+    margin-bottom: 10px;
   }
   #landingScreen .lnd-ornament {
     color: var(--nq-gold);
@@ -9517,8 +9518,8 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;
-    padding: 28px 36px 28px 24px;
-    gap: 16px;
+    padding: 20px 28px 20px 18px;
+    gap: 10px;
     position: relative;
     z-index: 1;
     min-width: 0;
@@ -9731,7 +9732,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     display: flex;
     flex-direction: column;
     gap: 0;
-    margin-top: auto;
+    margin-top: 14px;
   }
   /* Trust badge simplificada dentro do bloco de auth */
   #landingScreen .lnd-auth-block .lnd-trust {
@@ -9757,12 +9758,12 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   /* ── SCREENSHOT — coluna direita (topo) ─────────────────── */
   #landingScreen .lnd-screenshot-wrap {
     position: relative;
-    border-radius: 12px;
+    border-radius: 10px;
     overflow: hidden;
     border: 1px solid rgba(238,199,82,.22);
     background: rgba(10,14,34,.9);
     flex: 1 1 0;
-    min-height: 140px;
+    min-height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -9771,6 +9772,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top center;
     display: block;
   }
   #landingScreen .lnd-screenshot-img[src=""] { display: none; }
@@ -9814,10 +9816,10 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   #landingScreen .lnd-rcard {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 10px 14px;
+    gap: 10px;
+    padding: 8px 12px;
     border: 1px solid rgba(var(--rc), .22);
-    border-radius: 10px;
+    border-radius: 9px;
     background: linear-gradient(135deg,
       rgba(var(--rc), .08) 0%,
       rgba(10,14,34,.82) 100%
@@ -9829,32 +9831,81 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     box-shadow: 0 0 14px rgba(var(--rc), .12);
   }
   #landingScreen .lnd-rcard-emoji {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     flex-shrink: 0;
     filter: drop-shadow(0 0 8px rgba(var(--rc), .5));
   }
   #landingScreen .lnd-rcard-body {
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 2px;
     min-width: 0;
   }
   #landingScreen .lnd-rcard-name {
     color: var(--nq-text);
     font-family: 'Cinzel', serif;
-    font-size: .72rem;
+    font-size: .66rem;
     font-weight: 700;
-    letter-spacing: .06em;
+    letter-spacing: .05em;
     display: block;
   }
   #landingScreen .lnd-rcard-desc {
     color: var(--nq-muted);
     font-family: 'Philosopher', serif;
-    font-size: .7rem;
-    line-height: 1.4;
+    font-size: .64rem;
+    line-height: 1.38;
     margin: 0;
     display: block;
   }
+
+  /* ── SOUND CONTROLS — landing screen (top-right do card) ─── */
+  #landingScreen .lnd-sound-controls {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    display: flex;
+    gap: 4px;
+    z-index: 10;
+  }
+  #landingScreen .lnd-sound-btn {
+    width: 30px; height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 7px;
+    background: rgba(10,14,34,.72);
+    color: rgba(213,226,242,.72);
+    font-size: .88rem;
+    cursor: pointer;
+    transition: border-color .18s, background .18s;
+    padding: 0;
+  }
+  #landingScreen .lnd-sound-btn:hover {
+    border-color: rgba(238,199,82,.3);
+    background: rgba(20,26,60,.9);
+  }
+
+  /* ── FOOTER abaixo do card ────────────────────────────────── */
+  #landingScreen .lnd-footer {
+    flex-shrink: 0;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(130,148,178,.55);
+    font-family: 'Philosopher', serif;
+    font-size: .68rem;
+  }
+  #landingScreen .lnd-footer-sep {
+    opacity: .5;
+  }
+  #landingScreen .lnd-footer-link {
+    color: rgba(117,163,255,.55);
+    text-decoration: none;
+    transition: color .18s;
+  }
+  #landingScreen .lnd-footer-link:hover { color: rgba(117,163,255,.9); }
 
   /* Profile button */
   #landingScreen .profile-btn {
@@ -10674,8 +10725,10 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     display: contents;
   }
 
-  /* ── Mini feat: só desktop — ocultar no mobile ───────────── */
-  #landingScreen .lnd-mini-feat { display: none; }
+  /* ── Mini feat, footer e sound controls: só desktop ─────── */
+  #landingScreen .lnd-mini-feat    { display: none; }
+  #landingScreen .lnd-footer       { display: none; }
+  #landingScreen .lnd-sound-controls { display: none; }
 
   /* ── Auth block: vira item direto do flex flow (order 2) ─── */
   #landingScreen .lnd-auth-block {

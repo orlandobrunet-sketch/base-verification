@@ -19,7 +19,7 @@
     // ============ MÚSICA DA TELA DE BOAS-VINDAS ============
     // Loop suave: fade-in 3s no início, fade-out automático 4s antes do fim, reinicia com fade-in
     const WELCOME_MUSIC_URL = 'assets/audio/welcome-theme.mp3';
-    const WELCOME_MUSIC_VOL = 0.30;
+    const WELCOME_MUSIC_VOL = 0.24;
     const WM_FADEIN_MS   = 3500;  // fade-in de 3.5 segundos — sobe suavemente
     const WM_FADEOUT_MS  = 4000;  // fade-out de 4 segundos antes do fim
     const WM_LOOP_GAP_MS = 800;   // pausa mínima entre loops após fade-out
@@ -360,17 +360,20 @@
       const icon = document.getElementById('soundIcon');
       const wIcon = document.getElementById('welcomeSoundIcon');
       const mSfxIcon = document.getElementById('mobileSoundSfxIcon');
+      const lndSfx = document.getElementById('lndSfxIcon');
       const label = document.getElementById('soundLabel');
       const toggle = document.getElementById('soundToggle');
       if (soundEnabled) {
         if(icon) icon.textContent = '🔊'; if(label) label.textContent = 'SFX'; if(toggle) toggle.classList.remove('muted');
         if(wIcon) wIcon.textContent = '🔊';
         if(mSfxIcon) mSfxIcon.textContent = '🔊';
+        if(lndSfx) lndSfx.textContent = '🔊';
         playSound('click');
       } else {
         if(icon) icon.textContent = '🔇'; if(label) label.textContent = 'Mudo'; if(toggle) toggle.classList.add('muted');
         if(wIcon) wIcon.textContent = '🔇';
         if(mSfxIcon) mSfxIcon.textContent = '🔇';
+        if(lndSfx) lndSfx.textContent = '🔇';
       }
     }
     
@@ -383,11 +386,13 @@
       const mobileIcon = document.getElementById('mobileMusIcon');
       const wMusicIcon = document.getElementById('welcomeMusicIcon');
       const mMusicIcon = document.getElementById('mobileSoundMusicIcon');
+      const lndMusic = document.getElementById('lndMusicIcon');
       if (musicEnabled) {
         if(icon) icon.textContent = '🎵'; if(label) label.textContent = 'Música'; if(toggle) toggle.classList.remove('muted');
         if(mobileIcon) mobileIcon.textContent = '🎵';
         if(wMusicIcon) wMusicIcon.textContent = '🎵';
         if(mMusicIcon) mMusicIcon.textContent = '🎵';
+        if(lndMusic) lndMusic.textContent = '🎵';
         // Tocar música correta conforme a tela ativa
         const ws = document.getElementById('welcomeScreen');
         if (ws && !ws.classList.contains('hidden')) {
@@ -400,6 +405,7 @@
         if(mobileIcon) mobileIcon.textContent = '🔇';
         if(wMusicIcon) wMusicIcon.textContent = '🔇';
         if(mMusicIcon) mMusicIcon.textContent = '🔇';
+        if(lndMusic) lndMusic.textContent = '🔇';
         stopWelcomeMusic(false);
         stopBgMusic();
       }
@@ -411,11 +417,13 @@
         const icon = document.getElementById('soundIcon');
         const wSoundIcon = document.getElementById('welcomeSoundIcon');
         const mSfxIcon = document.getElementById('mobileSoundSfxIcon');
+        const lndSfx = document.getElementById('lndSfxIcon');
         const label = document.getElementById('soundLabel');
         const toggle = document.getElementById('soundToggle');
         if (icon) icon.textContent = '🔇';
         if (wSoundIcon) wSoundIcon.textContent = '🔇';
         if (mSfxIcon) mSfxIcon.textContent = '🔇';
+        if (lndSfx) lndSfx.textContent = '🔇';
         if (label) label.textContent = 'Mudo';
         if (toggle) toggle.classList.add('muted');
       }
@@ -423,12 +431,14 @@
         const icon = document.getElementById('musicIcon');
         const wMusicIcon = document.getElementById('welcomeMusicIcon');
         const mMusicIcon = document.getElementById('mobileSoundMusicIcon');
+        const lndMusic = document.getElementById('lndMusicIcon');
         const label = document.getElementById('musicLabel');
         const toggle = document.getElementById('musicToggle');
         const mobileIcon = document.getElementById('mobileMusIcon');
         if (icon) icon.textContent = '🔇';
         if (wMusicIcon) wMusicIcon.textContent = '🔇';
         if (mMusicIcon) mMusicIcon.textContent = '🔇';
+        if (lndMusic) lndMusic.textContent = '🔇';
         if (label) label.textContent = 'Mudo';
         if (toggle) toggle.classList.add('muted');
         if (mobileIcon) mobileIcon.textContent = '🔇';
