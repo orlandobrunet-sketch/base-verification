@@ -9890,15 +9890,16 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   #landingScreen .lnd-right-cards {
     display: flex;
     flex-direction: column;
-    gap: 9px;
+    gap: 7px;
+    justify-content: center;
     flex: 1 1 0;
   }
   #landingScreen .lnd-rcard {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 10px 14px;
-    border-radius: 12px;
+    gap: 11px;
+    padding: 8px 12px;
+    border-radius: 11px;
     border: 1px solid rgba(var(--rc), .24);
     background:
       radial-gradient(ellipse 65% 100% at 0% 50%, rgba(var(--rc), .11) 0%, transparent 70%),
@@ -9906,7 +9907,6 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     position: relative;
     overflow: hidden;
     transition: border-color .22s, box-shadow .22s, transform .22s;
-    flex: 1 1 0;
   }
   /* Left accent bar */
   #landingScreen .lnd-rcard::before {
@@ -9925,29 +9925,29 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   }
   #landingScreen .lnd-rcard-icon-wrap {
     flex-shrink: 0;
-    width: 38px; height: 38px;
+    width: 34px; height: 34px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 10px;
+    border-radius: 9px;
     background: radial-gradient(circle, rgba(var(--rc), .2) 0%, rgba(var(--rc), .04) 100%);
     border: 1px solid rgba(var(--rc), .3);
-    box-shadow: 0 0 14px rgba(var(--rc), .14);
+    box-shadow: 0 0 12px rgba(var(--rc), .14);
   }
   #landingScreen .lnd-rcard-icon {
-    font-size: 1.1rem;
+    font-size: 1rem;
     filter: drop-shadow(0 0 6px rgba(var(--rc), .65));
   }
   #landingScreen .lnd-rcard-body {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 1px;
     min-width: 0;
   }
   #landingScreen .lnd-rcard-name {
     color: var(--nq-text);
     font-family: 'Cinzel', serif;
-    font-size: .68rem;
+    font-size: .67rem;
     font-weight: 700;
     letter-spacing: .07em;
     text-transform: uppercase;
@@ -9956,16 +9956,16 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   #landingScreen .lnd-rcard-desc {
     color: rgba(173,190,215,.76);
     font-family: 'Philosopher', serif;
-    font-size: .63rem;
-    line-height: 1.42;
+    font-size: .62rem;
+    line-height: 1.38;
     margin: 0;
     display: block;
   }
   #landingScreen .lnd-rcard-badge {
     display: inline-block;
-    margin-top: 4px;
+    margin-top: 3px;
     font-family: 'Philosopher', serif;
-    font-size: .57rem;
+    font-size: .56rem;
     font-weight: 700;
     letter-spacing: .06em;
     text-transform: uppercase;
@@ -9973,7 +9973,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     background: rgba(var(--rc), .1);
     border: 1px solid rgba(var(--rc), .28);
     border-radius: 4px;
-    padding: 2px 7px;
+    padding: 1px 6px;
   }
 
   /* ── SOUND CONTROLS — canto superior direito da página ───── */
