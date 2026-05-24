@@ -11206,13 +11206,14 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     margin-bottom: 12px;
   }
 
-  /* ── Trust block: faixa compacta ─────────────────────────── */
+  /* ── Trust block: faixa compacta — fixada no bottom do flex ── */
   #landingScreen .lnd-trust {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 5px;
+    order: 10;
     margin-top: 14px;
     padding: 10px 0 0;
     background: transparent;
