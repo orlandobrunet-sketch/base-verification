@@ -9719,8 +9719,17 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     white-space: nowrap;
   }
 
-  /* Subtext oculto no desktop — aparece só no mobile */
-  #landingScreen .lnd-subtext { display: none; }
+  /* Subtext — tagline entre a logo e os botões */
+  #landingScreen .lnd-subtext {
+    display: block;
+    color: rgba(160,180,220,.58);
+    font-family: 'Philosopher', serif;
+    font-size: .72rem;
+    line-height: 1.5;
+    text-align: center;
+    margin: 6px 0 0;
+    width: 100%;
+  }
 
   /* ── AUTH BLOCK — wrapper dos botões na coluna esquerda ─── */
   #landingScreen .lnd-auth-block {
@@ -11279,9 +11288,10 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 /* ===== Landing desktop iteration 3: real gameplay hero ===== */
 @media (min-width: 900px) {
   #landingScreen .lnd-promo-shell { display:grid; grid-template-columns: 36% 12px 1fr; grid-template-rows: 1fr auto; gap: 10px 12px; width:100%; min-height:min(680px,86vh); }
-  #landingScreen .lnd-left { grid-column:1; grid-row:1; padding: 26px 18px 18px 24px; display:flex; flex-direction:column; justify-content:space-between; }
-  #landingScreen .lnd-right { grid-column:3; grid-row:1; padding: 18px 24px 14px 8px; }
-  #landingScreen .lnd-vsep { grid-column:2; grid-row:1; }
+  /* Scoped to lnd-promo-shell (não existe no HTML atual — não sobrescreve nosso layout) */
+  #landingScreen .lnd-promo-shell .lnd-left { grid-column:1; grid-row:1; padding: 26px 18px 18px 24px; display:flex; flex-direction:column; justify-content:space-between; }
+  #landingScreen .lnd-promo-shell .lnd-right { grid-column:3; grid-row:1; padding: 18px 24px 14px 8px; }
+  #landingScreen .lnd-promo-shell .lnd-vsep { grid-column:2; grid-row:1; }
   #landingScreen .lnd-feature-rail { grid-column:1 / 4; grid-row:2; display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:8px; padding: 0 22px 14px; }
   #landingScreen .lnd-subtext--hero { font-size: 1.04rem; color:#eff5ff; line-height:1.35; margin-top: 10px; }
   #landingScreen .lnd-subtext--soft { font-size:.82rem; color:#b6c7ea; margin-top:8px; }
@@ -11312,8 +11322,8 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 
 @media (min-width: 900px) and (max-height: 800px) {
   #landingScreen .lnd-promo-shell { min-height:min(620px,84vh); gap:8px 10px; }
-  #landingScreen .lnd-left { padding:20px 14px 12px 20px; }
-  #landingScreen .lnd-right { padding:12px 18px 8px 6px; }
+  #landingScreen .lnd-promo-shell .lnd-left { padding:20px 14px 12px 20px; }
+  #landingScreen .lnd-promo-shell .lnd-right { padding:12px 18px 8px 6px; }
   #landingScreen .lnd-game-preview { transform: rotateY(-7deg) rotateX(1deg); }
   #landingScreen .lnd-feature-rail { gap:6px; padding:0 16px 10px; }
   #landingScreen .lnd-rail-item:nth-child(5) { display:none; }
