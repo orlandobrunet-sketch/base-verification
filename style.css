@@ -9248,6 +9248,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     display: flex;
     flex-direction: row;
     align-items: stretch;
+    justify-content: center;
     padding: 0;
     margin: 0;
 
@@ -9642,28 +9643,12 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     position: relative;
     overflow: hidden;
     border-radius: 14px;
-    border: 1px solid rgba(238,199,82,.38);
+    border: 1px solid rgba(238,199,82,.28);
     background:
-      radial-gradient(ellipse 90% 60% at 50% 0%, rgba(238,199,82,.14) 0%, transparent 70%),
-      linear-gradient(150deg, rgba(42,30,6,.88) 0%, rgba(10,13,32,.92) 100%);
-    box-shadow:
-      0 0 32px rgba(238,199,82,.12),
-      inset 0 1px 0 rgba(255,255,255,.09);
+      linear-gradient(150deg, rgba(42,30,6,.70) 0%, rgba(10,13,32,.88) 100%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
     padding: 14px 18px 13px;
     flex-shrink: 0;
-  }
-  /* Shimmer line topo */
-  #landingScreen .lnd-mini-feat::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg,
-      transparent 0%,
-      rgba(238,199,82,.5) 20%,
-      rgba(255,236,130,.95) 50%,
-      rgba(238,199,82,.5) 80%,
-      transparent 100%);
   }
   #landingScreen .lnd-mini-feat-inner {
     display: flex;
