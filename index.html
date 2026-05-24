@@ -212,31 +212,13 @@
       </button>
     </div>
     <div class="landing-content">
-      <!-- ══ LEFT COLUMN: brand + mini card + login buttons ══ -->
+      <!-- ══ LEFT COLUMN: brand + login buttons + QR card ══ -->
       <div class="lnd-left">
         <div class="lnd-brand">
           <div class="lnd-ornament">✦ Reino dos Néfrons ✦</div>
           <h1 class="landing-title">NefroQuest</h1>
           <div class="lnd-sub">— Ascension —</div>
           <p class="lnd-subtext">1.000+ questões, IA comentando raciocínio, minigames e progressão em um RPG médico de nefrologia.</p>
-        </div>
-
-        <!-- Mini card: 1.000+ questões (desktop only — entre logo e botões) -->
-        <div class="lnd-mini-feat">
-          <div class="lnd-mini-feat-inner">
-            <div class="lnd-mini-feat-headline">
-              <span class="lnd-mini-feat-num">1.000<span class="lnd-mini-feat-plus">+</span></span>
-              <span class="lnd-mini-feat-label">Questões Comentadas</span>
-            </div>
-            <div class="lnd-mini-feat-pills">
-              <span class="lnd-mfp">DRC</span>
-              <span class="lnd-mfp">LRA</span>
-              <span class="lnd-mfp">Glomerulopatias</span>
-              <span class="lnd-mfp">Eletrólitos</span>
-              <span class="lnd-mfp">Diálise</span>
-              <span class="lnd-mfp">Transplante</span>
-            </div>
-          </div>
         </div>
 
         <!-- Bloco de autenticação (desktop: coluna esquerda / mobile: order 2) -->
@@ -250,10 +232,26 @@
           <button type="button" class="landing-btn-email" data-action="landingLoginEmail">✉ Entrar com Email</button>
           <div class="lnd-btn-sep"><span>◆</span></div>
           <button type="button" class="landing-btn-guest" data-action="playAsGuest">🗺️ Entrar como viajante</button>
-          <div class="lnd-trust">
-            <span class="lnd-trust-lock">🔒</span>
-            <span class="lnd-trust-text">Login seguro. Seus dados não são compartilhados.</span>
+        </div>
+
+        <!-- QR Code card — coluna esquerda (desktop only), abaixo dos botões -->
+        <div class="lnd-qr-card">
+          <div class="lnd-qr-frame">
+            <img class="lnd-qr-img"
+                 src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://nefroquest.com&bgcolor=080d1e&color=eec752&qzone=1"
+                 alt="QR Code NefroQuest" width="120" height="120" loading="lazy">
           </div>
+          <div class="lnd-qr-body">
+            <span class="lnd-qr-kicker">📱 Versão Mobile</span>
+            <span class="lnd-qr-title">Estude em qualquer lugar</span>
+            <span class="lnd-qr-sub">Aponte a câmera e acesse</span>
+            <span class="lnd-qr-url">nefroquest.com</span>
+          </div>
+        </div>
+
+        <div class="lnd-trust">
+          <span class="lnd-trust-lock">🔒</span>
+          <span class="lnd-trust-text">Login seguro. Seus dados não são compartilhados.</span>
         </div>
 
         <!-- ══ SHOWCASE — carousel mobile / feat-grid desktop (ambos ocultados no desktop agora) ══ -->
@@ -424,20 +422,23 @@
         <span class="lnd-vsep-gem">◆</span>
         <span class="lnd-vsep-gem">◆</span>
       </div>
-      <!-- ══ RIGHT COLUMN: QR card + 3 feature cards (desktop only) ══ -->
+      <!-- ══ RIGHT COLUMN: 1.000+ card + 3 feature cards (desktop only) ══ -->
       <div class="lnd-right">
-        <!-- QR Code card — acesso mobile -->
-        <div class="lnd-qr-card">
-          <div class="lnd-qr-frame">
-            <img class="lnd-qr-img"
-                 src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://nefroquest.com&bgcolor=080d1e&color=eec752&qzone=1"
-                 alt="QR Code NefroQuest" width="120" height="120" loading="lazy">
-          </div>
-          <div class="lnd-qr-body">
-            <span class="lnd-qr-kicker">📱 Versão Mobile</span>
-            <span class="lnd-qr-title">Estude em qualquer lugar</span>
-            <span class="lnd-qr-sub">Aponte a câmera e acesse</span>
-            <span class="lnd-qr-url">nefroquest.com</span>
+        <!-- Card 1.000+ questões — topo da coluna direita -->
+        <div class="lnd-mini-feat">
+          <div class="lnd-mini-feat-inner">
+            <div class="lnd-mini-feat-headline">
+              <span class="lnd-mini-feat-num">1.000<span class="lnd-mini-feat-plus">+</span></span>
+              <span class="lnd-mini-feat-label">Questões Comentadas</span>
+            </div>
+            <div class="lnd-mini-feat-pills">
+              <span class="lnd-mfp">DRC</span>
+              <span class="lnd-mfp">LRA</span>
+              <span class="lnd-mfp">Glomerulopatias</span>
+              <span class="lnd-mfp">Eletrólitos</span>
+              <span class="lnd-mfp">Diálise</span>
+              <span class="lnd-mfp">Transplante</span>
+            </div>
           </div>
         </div>
         <!-- 3 feature cards -->
@@ -479,7 +480,7 @@
     <div class="lnd-footer">
       <span>nefroquest.com</span>
       <span class="lnd-footer-sep">·</span>
-      <span>v10.39</span>
+      <span>v10.40</span>
       <span class="lnd-footer-sep">·</span>
       <a href="https://nefroquest.com/privacy.html" class="lnd-footer-link" target="_blank" rel="noopener">Política de Privacidade</a>
     </div>
