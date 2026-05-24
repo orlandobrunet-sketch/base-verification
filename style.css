@@ -8500,7 +8500,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 #welcomeScreen .welcome-stat {
   position: relative;
   min-height: unset !important;
-  padding: 10px 8px !important;
+  padding: 14px 8px 12px !important;
   border-radius: 10px !important;
   border: 1px solid rgba(208, 182, 100, 0.22) !important;
   background:
@@ -8508,6 +8508,10 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     linear-gradient(180deg, rgba(20, 22, 50, 0.80), rgba(9, 10, 26, 0.94)) !important;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
   overflow: hidden;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
   transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease !important;
 }
 #welcomeScreen .welcome-stat:hover {
@@ -8857,7 +8861,9 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   position: relative;
   width: min(500px, 100%);
   max-height: min(86svh, 86dvh);
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   padding: 24px 20px 20px;
   box-sizing: border-box;
 }
@@ -8934,7 +8940,17 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   cursor: pointer;
 }
 .ach-badges-count { font-size: 0.68rem; color: rgba(140,160,200,0.5); text-align: center; margin-bottom: 14px; }
-.ach-list { display: flex; flex-direction: column; gap: 7px; margin-bottom: 14px; }
+.ach-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 14px;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  /* Espaço interno pra evitar sobreposição com os ornamentos de canto */
+  padding-right: 4px;
+}
 .ach-row {
   display: flex;
   align-items: center;
