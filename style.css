@@ -9570,8 +9570,8 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   #landingScreen .landing-btn-email,
   #landingScreen .landing-btn-guest {
     width: 100%;
-    height: 45px;
-    min-height: 45px;
+    height: 39px;
+    min-height: 39px;
     padding: 0 16px;
     margin: 0;
     border-radius: 10px;
@@ -9610,8 +9610,6 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     border: 1px solid rgba(255,255,255,.07);
     background: linear-gradient(180deg, rgba(22,24,44,.65), rgba(14,16,30,.60));
     font-size: .80rem;
-    height: 39px;
-    min-height: 39px;
   }
   #landingScreen .landing-btn-google:hover,
   #landingScreen .landing-btn-email:hover,
@@ -9634,7 +9632,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     color: rgba(146,112,38,.48);
     font-size: .38rem;
     line-height: 1;
-    padding: 5px 0;
+    padding: 2px 0;
   }
 
 
@@ -9697,16 +9695,18 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     font-weight: 700;
     letter-spacing: .05em;
     text-transform: uppercase;
-    color: rgba(238,199,82,.78);
-    background: rgba(238,199,82,.07);
-    border: 1px solid rgba(238,199,82,.22);
+    color: rgba(255,255,255,.82);
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.16);
     border-radius: 4px;
     padding: 2px 7px;
     white-space: nowrap;
-    transition: color .15s ease;
+    transition: color .15s ease, background .15s ease, border-color .15s ease;
   }
   #landingScreen .lnd-mfp:hover {
-    color: #ffffff;
+    color: rgba(238,199,82,.95);
+    background: rgba(238,199,82,.08);
+    border-color: rgba(238,199,82,.28);
   }
 
   /* Subtext — tagline entre a logo e os botões */
@@ -9726,7 +9726,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     display: flex;
     flex-direction: column;
     gap: 0;
-    margin-top: 12px;
+    margin-top: 14px;
     max-width: 342px;
     width: 100%;
   }
@@ -9761,10 +9761,10 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 10px 12px;
+    padding: 7px 12px;
     border-radius: 12px;
     border: 1px solid rgba(238,199,82,.35);
-    margin-top: 10px;
+    margin-top: 14px;
     width: 100%;
     max-width: 342px;
     box-sizing: border-box;
@@ -10602,12 +10602,10 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   #landingScreen .landing-btn-google,
   #landingScreen .landing-btn-email {
     height: 48px;
-    min-height: 48px;
+    min-height: 39px;
     font-size: .84rem;
   }
   #landingScreen .landing-btn-guest {
-    height: 42px;
-    min-height: 42px;
     font-size: .78rem;
   }
 
@@ -10622,7 +10620,6 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     padding: 10px 0 0;
     background: transparent;
     border: none;
-    border-top: 1px solid rgba(255,255,255,.07);
     border-radius: 0;
     box-sizing: border-box;
   }
