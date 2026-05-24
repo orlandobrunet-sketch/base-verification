@@ -9241,7 +9241,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     z-index: 2;
 
     width: min(870px, calc(100vw - 100px));
-    min-height: 560px;
+    min-height: 530px;
     max-height: calc(90vh - 48px);
     max-width: unset;
 
@@ -9283,11 +9283,12 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   #landingScreen .lnd-left {
     flex: 1 1 auto;
     min-width: 300px;
+    max-width: 420px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 32px 24px;
+    padding: 28px 24px;
     position: relative;
     z-index: 1;
   }
@@ -10422,8 +10423,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 
 @media (min-width: 901px) {
 
-  /* ── Subtext e Showcase: hidden no desktop (usados só no mobile) */
-  #landingScreen .lnd-subtext  { display: none; }
+  /* ── Showcase: hidden no desktop (usado só no mobile) */
   #landingScreen .lnd-showcase { display: none; }
 
   /* ── Carousel container ──────────────────────────────────── */
@@ -11206,13 +11206,14 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     margin-bottom: 12px;
   }
 
-  /* ── Trust block: faixa compacta ─────────────────────────── */
+  /* ── Trust block: faixa compacta — fixada no bottom do flex ── */
   #landingScreen .lnd-trust {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 5px;
+    order: 10;
     margin-top: 14px;
     padding: 10px 0 0;
     background: transparent;
