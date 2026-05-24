@@ -9240,8 +9240,8 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     position: relative;
     z-index: 2;
 
-    width: min(920px, calc(100vw - 100px));
-    min-height: 580px;
+    width: min(870px, calc(100vw - 100px));
+    min-height: 560px;
     max-height: calc(90vh - 48px);
     max-width: unset;
 
@@ -9282,8 +9282,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   /* ── COLUNA ESQUERDA ─────────────────────────────────────── */
   #landingScreen .lnd-left {
     flex: 1 1 auto;
-    min-width: 320px;
-    max-width: 460px;
+    min-width: 300px;
     display: flex;
     flex-direction: column;
     padding: 36px 28px 32px 40px;
@@ -9516,7 +9515,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 
   /* ── COLUNA DIREITA ──────────────────────────────────────── */
   #landingScreen .lnd-right {
-    flex: 0 0 340px;
+    flex: 0 0 350px;
     display: flex;
     flex-direction: column;
     padding: 20px 20px 20px 18px;
@@ -9725,6 +9724,8 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     flex-direction: column;
     gap: 0;
     margin-top: 16px;
+    max-width: 415px;
+    width: 100%;
   }
 
   /* ── TRUST BADGE — abaixo do QR card, fundo da col esquerda */
@@ -9777,10 +9778,10 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   }
   #landingScreen .lnd-qr-frame {
     flex-shrink: 0;
-    width: 80px; height: 80px;
-    border-radius: 10px;
+    width: 66px; height: 66px;
+    border-radius: 9px;
     border: 2px solid rgba(238,199,82,.55);
-    padding: 4px;
+    padding: 3px;
     background: #080d1e;
     box-shadow:
       0 0 20px rgba(238,199,82,.22),
@@ -9839,7 +9840,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     display: flex;
     flex-direction: column;
     gap: 7px;
-    justify-content: center;
+    justify-content: flex-start;
     flex: 1 1 0;
   }
   #landingScreen .lnd-rcard {
@@ -9848,6 +9849,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     gap: 11px;
     padding: 8px 12px;
     border-radius: 11px;
+    flex: 1 1 0;
     border: 1px solid rgba(var(--rc), .24);
     background:
       radial-gradient(ellipse 65% 100% at 0% 50%, rgba(var(--rc), .11) 0%, transparent 70%),
@@ -9993,11 +9995,12 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 /* Notebooks menores (901–1200px) */
 @media (min-width: 901px) and (max-width: 1200px) {
   #landingScreen .landing-content {
-    width: min(860px, calc(100vw - 60px));
-    min-height: 540px;
+    width: min(820px, calc(100vw - 60px));
+    min-height: 530px;
   }
-  #landingScreen .lnd-left  { padding: 30px 22px 28px 32px; max-width: 420px; }
-  #landingScreen .lnd-right { flex: 0 0 295px; padding: 16px 16px 16px 14px; gap: 8px; }
+  #landingScreen .lnd-left  { padding: 30px 22px 28px 32px; }
+  #landingScreen .lnd-right { flex: 0 0 300px; padding: 16px 16px 16px 14px; gap: 8px; }
+  #landingScreen .lnd-auth-block { max-width: 375px; }
   #landingScreen .lnd-brand .landing-title { font-size: clamp(1.8rem, 3vw, 2.6rem); }
   #landingScreen .lnd-rcard           { padding: 8px 11px; }
   #landingScreen .lnd-rcard-icon-wrap { width: 32px; height: 32px; }
