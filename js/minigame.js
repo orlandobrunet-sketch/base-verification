@@ -597,8 +597,8 @@
       modal.innerHTML = `
         <div style="max-width:560px;width:100%;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;box-shadow:0 0 40px rgba(251,113,133,0.3);margin:auto 0;">
           <h2 style="color:#fb7185;font-family:'Cinzel',serif;text-align:center;margin-bottom:6px;">📋 ERROS DA JORNADA</h2>
-          <p style="color:var(--txt-dim);text-align:center;font-size:0.8rem;margin-bottom:20px;">${wrongs.length} questão${wrongs.length>1?'es':''} errada${wrongs.length>1?'s':''} nesta sessão</p>
-          <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px;">
+          <p style="color:var(--txt-dim);text-align:center;font-size:0.8rem;margin-bottom:16px;">${wrongs.length} questão${wrongs.length>1?'es':''} errada${wrongs.length>1?'s':''} nesta sessão</p>
+          <div class="modal-scroll-body" style="display:flex;flex-direction:column;gap:12px;margin-bottom:12px;">
             ${wrongs.map((q, qi) => {
               const opts = q.o || [];
               return `<div style="background:rgba(251,113,133,0.08);border:1px solid rgba(251,113,133,0.25);border-radius:10px;padding:14px;">

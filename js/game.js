@@ -3106,9 +3106,9 @@
       modal.innerHTML = `
         <div class="modal-content" style="max-width:560px;width:calc(100% - 32px);max-height:none;overflow-y:visible;text-align:left;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;box-shadow:0 0 40px rgba(96,165,250,0.2);margin:auto 0;">
           <h2 style="color:var(--gold);margin-bottom:4px;font-family:'MedievalSharp','Cinzel',serif;text-align:center;">📜 Política de Privacidade</h2>
-          <div style="color:var(--txt-dim);font-size:0.72rem;margin-bottom:20px;text-align:center;">NefroQuest · Última atualização: maio de 2025</div>
+          <div style="color:var(--txt-dim);font-size:0.72rem;margin-bottom:16px;text-align:center;">NefroQuest · Última atualização: maio de 2025</div>
 
-          <div style="color:#c8d8f0;font-size:0.83rem;line-height:1.75;display:flex;flex-direction:column;gap:16px;">
+          <div class="modal-scroll-body" style="color:#c8d8f0;font-size:0.83rem;line-height:1.75;display:flex;flex-direction:column;gap:16px;">
 
             <div>
               <div style="color:var(--blue);font-weight:700;margin-bottom:4px;">1. Quem somos</div>
@@ -3156,7 +3156,7 @@
 
           </div>
 
-          <button data-close-closest=".privacy-popup" style="margin-top:24px;width:100%;background:rgba(96,165,250,0.15);border:1px solid rgba(96,165,250,0.4);color:var(--blue);border-radius:8px;padding:10px;font-family:'Cinzel',serif;cursor:pointer;font-size:0.85rem;">Fechar</button>
+          <button data-close-closest=".privacy-popup" style="margin-top:14px;width:100%;background:rgba(96,165,250,0.15);border:1px solid rgba(96,165,250,0.4);color:var(--blue);border-radius:8px;padding:10px;font-family:'Cinzel',serif;cursor:pointer;font-size:0.85rem;">Fechar</button>
         </div>
       `;
       modal.addEventListener('click', function(e) {
