@@ -407,40 +407,42 @@
       modal.innerHTML = `
         <div class="modal-content" style="max-width:440px;width:100%;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:16px;padding:24px 20px;box-shadow:0 0 40px rgba(139,92,246,0.3);">
           <h2 style="color:var(--gold);margin:0 0 4px;font-family:'Cinzel',serif;font-size:1.1rem;">📖 MODO DE ESTUDO</h2>
-          <p style="color:var(--txt-dim);font-size:0.8rem;margin:0 0 20px;">Escolha como quer estudar hoje</p>
+          <p style="color:var(--txt-dim);font-size:0.8rem;margin:0 0 16px;">Escolha como quer estudar hoje</p>
 
-          <!-- Opção 1: Estudo Livre -->
-          <div style="border:2px solid rgba(251,191,36,0.35);border-radius:14px;padding:16px 16px 14px;margin-bottom:10px;background:rgba(251,191,36,0.04);text-align:left;">
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-              <div style="font-size:1.6rem;line-height:1;flex-shrink:0;">🎲</div>
-              <div style="color:var(--gold);font-weight:700;font-size:0.97rem;">Estudo Livre</div>
+          <div class="modal-scroll-body">
+            <!-- Opção 1: Estudo Livre -->
+            <div style="border:2px solid rgba(251,191,36,0.35);border-radius:14px;padding:16px 16px 14px;margin-bottom:10px;background:rgba(251,191,36,0.04);text-align:left;">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+                <div style="font-size:1.6rem;line-height:1;flex-shrink:0;">🎲</div>
+                <div style="color:var(--gold);font-weight:700;font-size:0.97rem;">Estudo Livre</div>
+              </div>
+              <div style="color:var(--txt-dim);font-size:0.82rem;line-height:1.5;margin-bottom:12px;">20 questões aleatórias de <strong style="color:var(--txt);">todos os temas</strong>. Sem configuração. Ideal para uma revisão rápida.</div>
+              <button class="btn gold" data-action="startFreeStudyMode" style="width:100%;padding:10px;font-size:0.88rem;">Iniciar</button>
             </div>
-            <div style="color:var(--txt-dim);font-size:0.82rem;line-height:1.5;margin-bottom:12px;">20 questões aleatórias de <strong style="color:var(--txt);">todos os temas</strong>. Sem configuração. Ideal para uma revisão rápida.</div>
-            <button class="btn gold" data-action="startFreeStudyMode" style="width:100%;padding:10px;font-size:0.88rem;">Iniciar</button>
+
+            <!-- Opção 2: Por Tema -->
+            <div style="border:2px solid rgba(96,165,250,0.35);border-radius:14px;padding:16px 16px 14px;margin-bottom:10px;background:rgba(96,165,250,0.04);text-align:left;">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+                <div style="font-size:1.6rem;line-height:1;flex-shrink:0;">📚</div>
+                <div style="color:var(--blue);font-weight:700;font-size:0.97rem;">Por Tema</div>
+              </div>
+              <div style="color:var(--txt-dim);font-size:0.82rem;line-height:1.5;margin-bottom:12px;">Escolha os temas e pratique <strong style="color:var(--txt);">20 questões focadas</strong>. Útil quando quer reforçar um assunto específico.</div>
+              <button class="btn" data-action="showAxesSelector" style="width:100%;padding:10px;font-size:0.88rem;border-color:var(--blue);color:var(--blue);">Selecionar Temas</button>
+            </div>
+
+            <!-- Opção 3: Revisão Espaçada -->
+            <div style="border:2px solid rgba(167,139,250,0.35);border-radius:14px;padding:16px 16px 14px;margin-bottom:14px;background:rgba(167,139,250,0.04);text-align:left;">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+                <div style="font-size:1.6rem;line-height:1;flex-shrink:0;">📅</div>
+                <div style="color:#a78bfa;font-weight:700;font-size:0.97rem;">Revisão Espaçada</div>
+              </div>
+              <div style="color:var(--txt-dim);font-size:0.82rem;line-height:1.5;margin-bottom:6px;">O sistema decide o que você precisa rever. Retém mais com menos esforço.</div>
+              <div style="margin-bottom:12px;font-size:0.78rem;color:${srColor};font-weight:600;">📅 ${srLabel}</div>
+              <button class="btn" data-action="startSRStudyAllMode" style="width:100%;padding:10px;font-size:0.88rem;border-color:#8b5cf6;color:#c4b5fd;${totalDue === 0 ? 'opacity:0.5;cursor:not-allowed;' : ''}">Revisar Agora</button>
+            </div>
           </div>
 
-          <!-- Opção 2: Por Tema -->
-          <div style="border:2px solid rgba(96,165,250,0.35);border-radius:14px;padding:16px 16px 14px;margin-bottom:10px;background:rgba(96,165,250,0.04);text-align:left;">
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-              <div style="font-size:1.6rem;line-height:1;flex-shrink:0;">📚</div>
-              <div style="color:var(--blue);font-weight:700;font-size:0.97rem;">Por Tema</div>
-            </div>
-            <div style="color:var(--txt-dim);font-size:0.82rem;line-height:1.5;margin-bottom:12px;">Escolha os temas e pratique <strong style="color:var(--txt);">20 questões focadas</strong>. Útil quando quer reforçar um assunto específico.</div>
-            <button class="btn" data-action="showAxesSelector" style="width:100%;padding:10px;font-size:0.88rem;border-color:var(--blue);color:var(--blue);">Selecionar Temas</button>
-          </div>
-
-          <!-- Opção 3: Revisão Espaçada -->
-          <div style="border:2px solid rgba(167,139,250,0.35);border-radius:14px;padding:16px 16px 14px;margin-bottom:20px;background:rgba(167,139,250,0.04);text-align:left;">
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-              <div style="font-size:1.6rem;line-height:1;flex-shrink:0;">📅</div>
-              <div style="color:#a78bfa;font-weight:700;font-size:0.97rem;">Revisão Espaçada</div>
-            </div>
-            <div style="color:var(--txt-dim);font-size:0.82rem;line-height:1.5;margin-bottom:6px;">O sistema decide o que você precisa rever. Retém mais com menos esforço.</div>
-            <div style="margin-bottom:12px;font-size:0.78rem;color:${srColor};font-weight:600;">📅 ${srLabel}</div>
-            <button class="btn" data-action="startSRStudyAllMode" style="width:100%;padding:10px;font-size:0.88rem;border-color:#8b5cf6;color:#c4b5fd;${totalDue === 0 ? 'opacity:0.5;cursor:not-allowed;' : ''}">Revisar Agora</button>
-          </div>
-
-          <button class="btn sec" data-close-closest=".modal" style="width:100%;">Fechar</button>
+          <button class="btn sec" data-close-closest=".modal" style="width:100%;margin-top:6px;">Fechar</button>
         </div>
       `;
       document.body.appendChild(modal);
@@ -487,26 +489,28 @@
       }
 
       modal.innerHTML = `
-        <div class="modal-content" style="max-width:460px;width:100%;max-height:calc(100vh - 48px);overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:18px 20px;box-shadow:0 0 40px rgba(139,92,246,0.3);">
+        <div class="modal-content" style="max-width:460px;width:100%;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:18px 20px;box-shadow:0 0 40px rgba(139,92,246,0.3);">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
             <button class="btn sec" data-action="showTopicSelector" style="padding:4px 10px;font-size:0.78rem;">← Voltar</button>
             <h2 style="color:var(--blue);margin:0;font-family:'Cinzel',serif;font-size:1rem;flex:1;">📚 Escolha os Temas</h2>
           </div>
-          <p style="color:var(--txt-dim);font-size:0.78rem;margin:0 0 14px;">20 questões serão sorteadas dos temas selecionados</p>
+          <p style="color:var(--txt-dim);font-size:0.78rem;margin:0 0 12px;">20 questões serão sorteadas dos temas selecionados</p>
 
           <div style="margin-bottom:10px;">
-            <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:8px;">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:6px;">
               <button class="btn sec" data-action="_selectTrail" data-arg="residencia" style="font-size:0.72rem;padding:4px 9px;">🏥 Residência</button>
               <button class="btn sec" data-action="_selectTrail" data-arg="titulo" style="font-size:0.72rem;padding:4px 9px;">📋 Título</button>
               <button class="btn sec" data-action="_selectTrail" data-arg="eletrolitos" style="font-size:0.72rem;padding:4px 9px;">⚡ Eletrólitos & AB</button>
             </div>
           </div>
 
-          <div id="axisCardList" style="display:flex;flex-direction:column;gap:5px;margin-bottom:12px;">
-            ${renderAxesHTML()}
+          <div class="modal-scroll-body">
+            <div id="axisCardList" style="display:flex;flex-direction:column;gap:5px;margin-bottom:12px;">
+              ${renderAxesHTML()}
+            </div>
           </div>
 
-          <div style="display:flex;gap:8px;justify-content:center;margin-bottom:14px;">
+          <div style="display:flex;gap:8px;justify-content:center;margin:10px 0 12px;">
             <button class="btn sec" data-action="_studySelectAll" data-arg="true" data-arg-type="boolean" style="font-size:0.76rem;padding:6px 12px;">✓ Todos</button>
             <button class="btn sec" data-action="_studySelectAll" data-arg="false" data-arg-type="boolean" style="font-size:0.76rem;padding:6px 12px;">✗ Nenhum</button>
           </div>
