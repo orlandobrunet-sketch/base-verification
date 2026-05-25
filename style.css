@@ -8243,6 +8243,36 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   letter-spacing: 0.22em !important;
 }
 
+/* Forge popup — migrated to new design pattern */
+.forge-card {
+  background: linear-gradient(180deg, rgba(12,16,40,0.98) 0%, rgba(7,9,24,0.98) 100%) !important;
+  border: 1px solid rgba(217,191,85,0.40) !important;
+  border-radius: 8px !important;
+  box-shadow:
+    0 0 0 1px rgba(4,6,16,0.9),
+    inset 0 0 0 5px rgba(6,9,20,0.75),
+    inset 0 0 0 6px rgba(202,165,68,0.14),
+    0 24px 72px rgba(0,0,0,0.72) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+.forge-card::before, .forge-card::after {
+  content: '' !important;
+  position: absolute !important;
+  width: 14px !important; height: 14px !important;
+  border-color: rgba(217,191,85,0.55) !important;
+  border-style: solid !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+}
+.forge-card::before { top:8px; left:8px; border-width: 1.5px 0 0 1.5px !important; }
+.forge-card::after  { bottom:8px; right:8px; border-width: 0 1.5px 1.5px 0 !important; }
+.forge-card h3 {
+  font-family: 'Cinzel', serif !important;
+  color: rgba(217,191,85,0.92) !important;
+  letter-spacing: 0.18em !important;
+}
+
 /* Leaderboard / Board modal */
 .board-modal {
   background: linear-gradient(180deg, rgba(12,16,40,0.99) 0%, rgba(7,9,24,0.99) 100%) !important;
