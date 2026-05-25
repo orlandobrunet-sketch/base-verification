@@ -162,7 +162,7 @@
           <p class="plan-stat">${answered} de ${FREE_QUESTIONS_LIMIT} questões gratuitas respondidas.</p>
           <div class="plan-bar-wrap"><div class="plan-bar" style="width:${pct}%"></div></div>
           <p class="plan-stat" style="font-size:0.78rem;color:#708090">${remaining} questões restantes no plano gratuito.</p>
-          <button class="btn gold" style="width:100%;margin-top:4px" data-action-seq="closePlanModal,showPricingModal">✨ Fazer Upgrade</button>
+          <button class="btn gold" style="width:100%;margin-top:4px" data-action="openPricingFromPlan">✨ Fazer Upgrade</button>
         `;
       }
       document.getElementById('planModalContent').innerHTML = `
@@ -182,10 +182,21 @@
       const m = document.getElementById('planModal');
       if (m) m.style.display = 'none';
     }
+    // Wrapper defensivo: garante que ambas funções executem mesmo se uma
+    // delas falhar, evitando depender do dispatcher de data-action-seq.
+    function openPricingFromPlan() {
+      try { closePlanModal(); } catch (e) { /* ignore */ }
+      if (typeof window.showPricingModal === 'function') {
+        window.showPricingModal();
+      } else {
+        console.warn('showPricingModal não disponível');
+      }
+    }
 
-    window.saveAccountData   = saveAccountData;
-    window.openAccountModal  = openAccountModal;
-    window.closeAccountModal = closeAccountModal;
-    window.openPlanModal     = openPlanModal;
-    window.closePlanModal    = closePlanModal;
+    window.saveAccountData      = saveAccountData;
+    window.openAccountModal     = openAccountModal;
+    window.closeAccountModal    = closeAccountModal;
+    window.openPlanModal        = openPlanModal;
+    window.closePlanModal       = closePlanModal;
+    window.openPricingFromPlan  = openPricingFromPlan;
 
