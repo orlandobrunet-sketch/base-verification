@@ -9793,7 +9793,7 @@ const topics = [
   {
     "t": "Paciente com síndrome nefrítica, HAS, creatinina s",
     "qid": "d4bdf47d",
-    "q": "Paciente com síndrome nefrítica, hipertensão arterial sistêmica, aumento progressivo da creatinina, níveis baixos de C3 e C4, ANA positivo e anti-dsDNA positivo. Qual é o padrão histológico mais provável na biópsia renal?",
+    "q": "Paciente com síndrome nefrítica, hipertensão arterial sistêmica, aumento progressivo da creatinina, níveis baixos de C3 e C4, FAN positivo e anti-dsDNA positivo. Qual é o padrão histológico mais provável na biópsia renal?",
     "refs": [
       "kdigo_lupus_nephritis_guideline_2024",
       "kdigo_gn"
@@ -9805,7 +9805,7 @@ const topics = [
       "Nefrite lúpica proliferativa (classe III/IV)"
     ],
     "ans": 3,
-    "exp": "O conjunto de síndrome nefrítica, hipertensão, piora progressiva da creatinina, hipocomplementemia com C3 e C4 baixos e autoanticorpos ANA e anti-dsDNA positivos é típico de nefrite lúpica. Nessa situação, a biópsia renal mais provavelmente mostra glomerulonefrite proliferativa por imunocomplexos, em geral classe III ou IV, com hipercelularidade e depósitos imunes subendoteliais, muitas vezes com padrão em “full house” na imunofluorescência. GN pauci-imune costuma estar associada a ANCA e não a consumo importante de complemento; a doença anti-MBG tem outro contexto clínico e sorológico; e a lesão mínima não explica hipocomplementemia nem autoanticorpos positivos.",
+    "exp": "O conjunto de síndrome nefrítica, hipertensão, piora progressiva da creatinina, hipocomplementemia com C3 e C4 baixos e autoanticorpos FAN e anti-dsDNA positivos é típico de nefrite lúpica. Nessa situação, a biópsia renal mais provavelmente mostra glomerulonefrite proliferativa por imunocomplexos, em geral classe III ou IV, com hipercelularidade e depósitos imunes subendoteliais, muitas vezes com padrão em “full house” na imunofluorescência. GN pauci-imune costuma estar associada a ANCA e não a consumo importante de complemento; a doença anti-MBG tem outro contexto clínico e sorológico; e a lesão mínima não explica hipocomplementemia nem autoanticorpos positivos.",
     "diff": "hard",
     "cat": "glomerular"
   },
