@@ -9609,7 +9609,8 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     width: min(870px, calc(100vw - 100px));
     min-height: 530px;
     max-height: calc(90vh - 48px);
-    max-width: unset;
+    /* Defesa contra resoluções / zoom que façam o card exceder a viewport */
+    max-width: calc(100vw - 16px);
 
     display: flex;
     flex-direction: row;
