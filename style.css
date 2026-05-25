@@ -9230,13 +9230,24 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 .ach-badges-row {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 12px;
-  max-width: 420px;
-  margin: 0 auto 18px;
+  gap: 10px;
+  width: 100%;
+  max-width: none;
+  margin: 0 0 20px;
+  padding: 0 4px;
+  box-sizing: border-box;
 }
 /* .ach-badge-slot — migrated to .badge-slot shield structure */
 .ach-badges-row .badge-slot {
   cursor: pointer;
+}
+/* Override do tamanho do shield só dentro do modal de Conquistas — badges
+   maiores que o padrão do HUD (que usa 88%). Aqui ocupa toda a célula. */
+.ach-badges-row .badge-shield {
+  width: 100%;
+}
+.ach-badges-row .badge-rune {
+  font-size: clamp(1.1rem, 3.8vw, 1.7rem);
 }
 .ach-badges-count { font-size: 0.68rem; color: rgba(140,160,200,0.5); text-align: center; margin-bottom: 14px; }
 .ach-list {
