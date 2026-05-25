@@ -1235,18 +1235,12 @@
       overlay.className = 'mentor-overlay';
       overlay.innerHTML = `
         <div class="mentor-modal" role="dialog" aria-modal="true" aria-label="Oráculo dos Néfrons">
-          <div style="position:relative;overflow:hidden;border-radius:17px 17px 0 0;flex-shrink:0;">
-            <img src="assets/images/oraculo-nefrons.webp" alt="Oráculo dos Néfrons"
-              style="width:100%;height:178px;object-fit:cover;object-position:center 38%;display:block;"
-              onerror="this.style.display='none'">
-            <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.06) 0%,rgba(9,13,35,0.52) 48%,#131d35 100%);pointer-events:none;"></div>
-            <div style="position:absolute;inset:0;background:radial-gradient(ellipse 90% 65% at 50% 32%,rgba(168,85,247,0.16) 0%,transparent 68%);pointer-events:none;"></div>
-            <div style="position:absolute;bottom:14px;left:0;right:0;text-align:center;pointer-events:none;">
-              <div style="color:#f0e6ff;font-size:0.9rem;font-weight:700;letter-spacing:0.1em;text-shadow:0 0 22px rgba(168,85,247,1),0 2px 8px rgba(0,0,0,1);">ORÁCULO DOS NÉFRONS</div>
-              <div style="color:#c4a6e0;font-size:0.63rem;letter-spacing:0.14em;margin-top:4px;text-shadow:0 1px 5px rgba(0,0,0,1);">✦ A Sabedoria dos Rins ✦</div>
+          <div class="mentor-header">
+            <div class="mentor-header-title">
+              <div class="mentor-title-main">🔮 Oráculo dos Néfrons</div>
+              <div class="mentor-title-sub">A Sabedoria dos Rins</div>
             </div>
-            <button class="mentor-close-btn" data-action="closeMentorModal" aria-label="Fechar"
-              style="position:absolute;top:10px;right:12px;background:rgba(0,0,0,0.58);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:4px 9px;line-height:1;z-index:2;">✕</button>
+            <button class="mentor-close-btn" data-action="closeMentorModal" aria-label="Fechar">✕</button>
           </div>
           <div class="mentor-context">
             <div class="mentor-context-label">Questão em análise:</div>

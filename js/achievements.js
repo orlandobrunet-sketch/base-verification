@@ -270,9 +270,7 @@
             <div class="ach-counter-label">desbloqueadas</div>
           </div>
 
-          <div class="ach-badges-label">Badges de Progressão</div>
           <div class="ach-badges-row">${badgesHTML}</div>
-          <div class="ach-badges-count">${badgesUnlocked}/${BADGES.length} badges desbloqueados</div>
 
           <div class="ach-list">${achRowsHTML}</div>
 
