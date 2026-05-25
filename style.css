@@ -9609,8 +9609,11 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     width: min(870px, calc(100vw - 100px));
     min-height: 530px;
     max-height: calc(90vh - 48px);
-    /* Defesa contra resoluções / zoom que façam o card exceder a viewport */
-    max-width: calc(100vw - 16px);
+    /* Defesa contra resoluções / zoom que façam o card exceder a viewport.
+       Usa 100% (do parent #landingScreen) em vez de 100vw — em alguns níveis
+       de zoom o 100vw inclui a área da scrollbar, fazendo o card render
+       maior que a viewport visível. */
+    max-width: calc(100% - 16px);
 
     display: flex;
     flex-direction: row;
