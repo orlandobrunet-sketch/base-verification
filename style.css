@@ -9191,14 +9191,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   color: rgba(217,191,85,0.95);
 }
 .ach-counter-label { font-size: 0.78rem; color: rgba(140,160,200,0.65); margin-top: 6px; }
-.ach-badges-label {
-  font-size: 0.68rem;
-  color: rgba(140,160,200,0.55);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  text-align: center;
-  margin-bottom: 9px;
-}
+/* .ach-badges-label: regra removida (elemento extinto do HTML em v10.56) */
 .ach-badges-row {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -9221,7 +9214,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 .ach-badges-row .badge-rune {
   font-size: clamp(1.1rem, 3.8vw, 1.7rem);
 }
-.ach-badges-count { font-size: 0.68rem; color: rgba(140,160,200,0.5); text-align: center; margin-bottom: 14px; }
+/* .ach-badges-count: rule kept dead-code-free — elemento removido do HTML em v10.56 */
 .ach-list {
   display: flex;
   flex-direction: column;
@@ -9230,8 +9223,8 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
-  /* Espaço interno pra evitar sobreposição com os ornamentos de canto */
-  padding-right: 4px;
+  /* Espaço interno simétrico para evitar sobreposição com cantos ornamentais */
+  padding: 0 4px;
 }
 .ach-row {
   display: flex;
