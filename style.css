@@ -8433,7 +8433,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   letter-spacing: 0.16em !important;
 }
 
-/* Privacy policy popup */
+/* Privacy policy popup — SEM cantos (mesma razão de .study-mode-popup) */
 .privacy-popup .modal-content {
   background: linear-gradient(180deg, rgba(12,16,40,0.98) 0%, rgba(7,9,24,0.98) 100%) !important;
   border: 1px solid rgba(217,191,85,0.40) !important;
@@ -8443,22 +8443,11 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     inset 0 0 0 5px rgba(6,9,20,0.75),
     inset 0 0 0 6px rgba(202,165,68,0.14),
     0 24px 72px rgba(0,0,0,0.72) !important;
-  position: relative !important;
 }
-.privacy-popup .modal-content::before,
-.privacy-popup .modal-content::after {
-  content: '' !important;
-  position: absolute !important;
-  width: 14px !important; height: 14px !important;
-  border-color: rgba(217,191,85,0.55) !important;
-  border-style: solid !important;
-  pointer-events: none !important;
-  z-index: 2 !important;
-}
-.privacy-popup .modal-content::before { top:8px; left:8px; border-width: 1.5px 0 0 1.5px !important; }
-.privacy-popup .modal-content::after  { bottom:8px; right:8px; border-width: 0 1.5px 1.5px 0 !important; }
 
-/* Study Mode popup — picker (Estudo Livre / Por Tema / Revisão) e Axes Selector */
+/* Study Mode popup — picker (Estudo Livre / Por Tema / Revisão) e Axes Selector.
+   SEM cantos ornamentais: o conteúdo pode crescer e o overlay externo é que rola,
+   então cantos no .modal-content "flutuariam" mid-screen ao rolar. */
 .study-mode-popup .modal-content {
   background: linear-gradient(180deg, rgba(12,16,40,0.98) 0%, rgba(7,9,24,0.98) 100%) !important;
   border: 1px solid rgba(217,191,85,0.40) !important;
@@ -8468,27 +8457,17 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     inset 0 0 0 5px rgba(6,9,20,0.75),
     inset 0 0 0 6px rgba(202,165,68,0.14),
     0 24px 72px rgba(0,0,0,0.72) !important;
-  position: relative !important;
 }
-.study-mode-popup .modal-content::before,
-.study-mode-popup .modal-content::after {
-  content: '' !important;
-  position: absolute !important;
-  width: 14px !important; height: 14px !important;
-  border-color: rgba(217,191,85,0.55) !important;
-  border-style: solid !important;
-  pointer-events: none !important;
-  z-index: 2 !important;
-}
-.study-mode-popup .modal-content::before { top:8px; left:8px; border-width: 1.5px 0 0 1.5px !important; }
-.study-mode-popup .modal-content::after  { bottom:8px; right:8px; border-width: 0 1.5px 1.5px 0 !important; }
 .study-mode-popup .modal-content h2 {
   font-family: 'Cinzel', serif !important;
   color: rgba(217,191,85,0.92) !important;
   letter-spacing: 0.16em !important;
 }
 
-/* Shared override pattern for several dynamic modals */
+/* Shared override pattern for several dynamic modals.
+   .extra-life-popup tem conteúdo curto (cabe na viewport) — pode ter cantos.
+   .changelog-popup e .session-review-popup têm conteúdo longo — sem cantos
+   pra evitar o bug do canto rolando mid-screen. */
 .changelog-popup .modal-content,
 .extra-life-popup .modal-content,
 .session-review-popup > div:not(.btn) {
@@ -8500,14 +8479,11 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     inset 0 0 0 5px rgba(6,9,20,0.75),
     inset 0 0 0 6px rgba(202,165,68,0.14),
     0 24px 72px rgba(0,0,0,0.72) !important;
-  position: relative !important;
 }
-.changelog-popup .modal-content::before,
-.changelog-popup .modal-content::after,
+/* Cantos APENAS no extra-life-popup (conteúdo compacto). */
+.extra-life-popup .modal-content { position: relative !important; }
 .extra-life-popup .modal-content::before,
-.extra-life-popup .modal-content::after,
-.session-review-popup > div:not(.btn)::before,
-.session-review-popup > div:not(.btn)::after {
+.extra-life-popup .modal-content::after {
   content: '' !important;
   position: absolute !important;
   width: 14px !important; height: 14px !important;
@@ -8516,12 +8492,8 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   pointer-events: none !important;
   z-index: 2 !important;
 }
-.changelog-popup .modal-content::before,
-.extra-life-popup .modal-content::before,
-.session-review-popup > div:not(.btn)::before { top:8px; left:8px; border-width: 1.5px 0 0 1.5px !important; }
-.changelog-popup .modal-content::after,
-.extra-life-popup .modal-content::after,
-.session-review-popup > div:not(.btn)::after  { bottom:8px; right:8px; border-width: 0 1.5px 1.5px 0 !important; }
+.extra-life-popup .modal-content::before { top:8px; left:8px; border-width: 1.5px 0 0 1.5px !important; }
+.extra-life-popup .modal-content::after  { bottom:8px; right:8px; border-width: 0 1.5px 1.5px 0 !important; }
 .changelog-popup .modal-content h2,
 .extra-life-popup .modal-content h2 {
   font-family: 'Cinzel', serif !important;
