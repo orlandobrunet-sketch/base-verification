@@ -10,9 +10,9 @@
       modal.innerHTML = `
         <div class="modal-content" style="max-width:540px;width:calc(100% - 32px);max-height:none;overflow-y:visible;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;box-shadow:0 0 40px rgba(255,215,0,0.3);margin:auto 0;">
           <h2 style="color:var(--gold);margin-bottom:4px;font-family:'MedievalSharp','Cinzel',serif;">📜 NOVIDADES 📜</h2>
-          <div style="color:var(--txt-dim);font-size:0.75rem;margin-bottom:20px;">O que há de novo no NefroQuest: Ascension</div>
+          <div style="color:var(--txt-dim);font-size:0.75rem;margin-bottom:16px;">O que há de novo no NefroQuest: Ascension</div>
 
-          <div style="text-align:left;padding:4px;">
+          <div class="modal-scroll-body" style="text-align:left;">
 
             <!-- v6.2 -->
             <div style="background:linear-gradient(135deg,rgba(168,85,247,0.18),rgba(168,85,247,0.06));border:2px solid rgba(168,85,247,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
@@ -64,7 +64,7 @@
 
           </div>
 
-          <button class="btn gold" style="margin-top:20px;" data-close-closest=".modal">Fechar</button>
+          <button class="btn gold" style="margin-top:12px;" data-close-closest=".modal">Fechar</button>
         </div>
       `;
       document.body.appendChild(modal);
