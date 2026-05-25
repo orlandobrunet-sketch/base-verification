@@ -134,7 +134,7 @@
     
     function showExtraLifeModal() {
       const modal = document.createElement('div');
-      modal.className = 'modal show';
+      modal.className = 'modal show extra-life-popup';
       modal.classList.add('nq-overlay');
       modal.style.cssText = 'background:rgba(0,0,0,0.85);z-index:9999;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);';
       modal.innerHTML = `
