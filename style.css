@@ -9139,7 +9139,10 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   animation: scaleIn 0.28s ease;
   position: relative;
   max-height: min(90svh, 90dvh, 90vh);
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
 }
 .hero-lore-card::before, .hero-lore-card::after {
   content: '';
@@ -9196,6 +9199,11 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   line-height: 1.7;
   text-align: left;
   margin-bottom: 20px;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  align-self: stretch;
+  padding-right: 4px;
 }
 .hero-lore-card .lore-text p { margin-bottom: 12px; }
 .hero-lore-card .lore-text p:last-child { margin-bottom: 0; }
