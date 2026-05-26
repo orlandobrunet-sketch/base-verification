@@ -68,14 +68,15 @@
 
     // ============ PRICING MODAL ============
     function showPricingModal() {
-      document.getElementById('pricingModal')?.remove();
-      const modal = document.createElement('div');
-      modal.id = 'pricingModal';
-      // 'show' é necessário: a regra CSS #pricingModal define display:none por padrão
-      // e #pricingModal.show define display:flex. Sem essa classe o modal fica
-      // invisível no DOM (vence sobre o display:flex do .nq-overlay por especificidade).
-      modal.className = 'nq-overlay show';
-      modal.style.cssText = 'background:rgba(0,0,0,0.94);z-index:9998;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);';
+      try {
+        document.getElementById('pricingModal')?.remove();
+        const modal = document.createElement('div');
+        modal.id = 'pricingModal';
+        // 'show' é necessário: a regra CSS #pricingModal define display:none por padrão
+        // e #pricingModal.show define display:flex. Inline display:flex como camada extra
+        // de defesa caso outra regra CSS sobrescreva.
+        modal.className = 'nq-overlay show';
+        modal.style.cssText = 'display:flex !important;position:fixed;inset:0;align-items:center;justify-content:center;background:rgba(0,0,0,0.94);z-index:10000;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);padding:16px;overflow-y:auto;box-sizing:border-box;';
       const isPt = _lang === 'pt';
       const tagline = isPt
         ? 'Domine a Nefrologia com o método que funciona — questões clínicas reais, RPG e ciência de ponta.'
@@ -149,7 +150,13 @@
           </div>
           <button class="pricing-login-link" data-action="_pricingToLogin">${isPt ? 'Já tenho conta — Entrar' : 'I have an account — Sign in'}</button>
         </div>`;
-      document.body.appendChild(modal);
+        document.body.appendChild(modal);
+      } catch (err) {
+        console.error('[showPricingModal] erro ao montar modal:', err);
+        if (typeof _track === 'function') {
+          _track('error_pricing_modal', { msg: String(err && err.message || err) });
+        }
+      }
     }
     function closePricingModal() {
       document.getElementById('pricingModal')?.remove();
