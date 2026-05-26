@@ -17805,24 +17805,6 @@ const topics = [
     ]
   },
   {
-    "t": "KDIGO 2026 — Atualização Após Mais de Uma Década",
-    "qid": "7673e7ee",
-    "q": "A atualização abrangente da diretriz KDIGO sobre anemia na doença renal crônica publicada em 2025 ocorreu aproximadamente quantos anos após a diretriz anterior de 2012?",
-    "opts": [
-      "5 anos (desde 2021)",
-      "Mais de uma década (desde 2012)",
-      "3 anos (desde 2023)",
-      "20 anos (desde 2006)"
-    ],
-    "ans": 1,
-    "exp": "A alternativa correta é a opção 'Mais de uma década (desde 2012)', porque entre a diretriz KDIGO de 2012 sobre anemia na doença renal crônica e a atualização abrangente publicada em 2025 transcorreram aproximadamente 13 anos, o que corresponde a mais de uma década. A alternativa '5 anos (desde 2021)' está errada porque 5 anos remeteriam a um documento em torno de 2020 ou 2021, não a 2025; a alternativa '3 anos (desde 2023)' está errada porque 3 anos corresponderiam a uma atualização a partir de 2022 ou 2023, incompatível com a comparação explícita com 2012; e a alternativa '20 anos (desde 2006)' também está errada porque 20 anos implicariam um marco temporal próximo de 2005 ou 2006, superestimando claramente o intervalo. Trata-se de uma questão estritamente cronológica, e o ponto central é reconhecer que 2025 menos 2012 resulta em cerca de 13 anos.",
-    "diff": "easy",
-    "cat": "drc",
-    "refs": [
-      "kdigo_anemia_2026"
-    ]
-  },
-  {
     "t": "Equidade no Acesso — IgAN 2025",
     "qid": "9f3106b1",
     "q": "A diretriz KDIGO 2021 para a nefropatia por IgA (IgAN) destaca qual preocupação importante sobre o manejo da doença?",
@@ -18058,17 +18040,17 @@ const topics = [
     ]
   },
   {
-    "t": "KDIGO 2025 ADPKD — Intervenções Cetogênicas",
+    "t": "Intervenções cetogênicas na DRPAD",
     "qid": "c8364d4e",
-    "q": "A KDIGO 2021 recomenda intervenções cetogênicas, como dieta cetogênica ou jejum intermitente, para retardar a progressão da Doença Policística Autossômica Dominante (DPAD)?",
+    "q": "Segundo o KDIGO 2025 para doença renal policística autossômica dominante (DRPAD/ADPKD), qual é a orientação sobre intervenções cetogênicas, como dieta cetogênica, jejum intermitente/restrição temporal ou suplementação de corpos cetônicos, para retardar a progressão da doença?",
     "opts": [
-      "Sim, recomendadas como adjuvante à tolvaptana",
-      "Sim, recomendadas em monoterapia",
-      "Não devem ser implementadas sem evidência de ensaios clínicos controlados",
-      "Recomendadas apenas para pacientes não elegíveis para tolvaptana"
+      "São recomendadas rotineiramente como adjuvantes à tolvaptana",
+      "São recomendadas como monoterapia em pacientes com progressão rápida",
+      "Não devem ser implementadas rotineiramente sem evidência adicional de ensaios clínicos controlados",
+      "São recomendadas apenas para pacientes não elegíveis à tolvaptana"
     ],
     "ans": 2,
-    "exp": "A alternativa 'Não devem ser implementadas sem evidência de ensaios clínico...' é a melhor resposta porque intervenções cetogênicas, como dieta cetogênica ou jejum intermitente, não integram o manejo padrão baseado em evidências da DPAD e não devem ser implementadas rotineiramente com a finalidade de retardar a progressão da doença fora de contexto de pesquisa clínica, já que o racional biológico e os sinais de benefício vieram principalmente de estudos pré-clínicos e a validação em ensaios clínicos controlados ainda é insuficiente para recomendação formal. A alternativa 'Sim, recomendadas como adjuvante à tolvaptana' está errada porque não há recomendação estabelecida para uso dessas estratégias como adjuvantes à tolvaptana; a opção 'Sim, recomendadas em monoterapia' está errada porque menos ainda existe respaldo para monoterapia com esse objetivo; e a opção 'Recomendadas apenas para pacientes não elegíveis para tolvap...' está errada porque a ausência de elegibilidade para tolvaptana não cria, por si só, indicação de dieta cetogênica ou jejum intermitente como terapia modificadora da progressão. O manejo validado permanece centrado em estratificação de risco, controle pressórico, tratamento de complicações e uso de tolvaptana em pacientes selecionados. Há, contudo, um problema editorial importante no item: a ancoragem em 'KDIGO 2021' é inconsistente com a referência informada para DPAD, de modo que a letra C deve ser entendida como a melhor interpretação médica do conteúdo, embora o enunciado precise de revisão.",
+    "exp": "O KDIGO 2025, no Practice Point 4.8.1, orienta que intervenções cetogênicas não devem ser implementadas rotineiramente em pessoas com DRPAD/ADPKD sem evidência adicional de ensaios clínicos controlados. O racional metabólico é plausível, pois células com mutações PKD apresentam reprogramação energética e maior dependência de glicose, mas os estudos humanos disponíveis ainda são pequenos, curtos e insuficientes para demonstrar redução sustentada de crescimento renal, queda de TFGe ou progressão para doença renal avançada. Na prática, dieta cetogênica, jejum intermitente ou suplementação de cetonas não substituem medidas estabelecidas, como controle pressórico, restrição de sal, evitar obesidade/nefrotóxicos, hidratação orientada e tolvaptana em pacientes elegíveis com progressão rápida.",
     "diff": "medium",
     "cat": "genetica",
     "refs": [
@@ -18109,24 +18091,6 @@ const topics = [
     "cat": "transplante",
     "refs": [
       "kdigo_tx"
-    ]
-  },
-  {
-    "t": "KDIGO 2026 — Revisão de Literatura",
-    "qid": "9d2a7797",
-    "q": "Antes da atualização mais recente, qual era o ano da diretriz KDIGO de referência para o manejo da anemia na doença renal crônica?",
-    "opts": [
-      "2012",
-      "Outubro de 2024",
-      "Junho de 2023",
-      "Março de 2025"
-    ],
-    "ans": 0,
-    "exp": "A resposta correta é 2012, porque essa foi a diretriz KDIGO de referência para o manejo da anemia na DRC por mais de uma década, antes da atualização abrangente publicada em 2025. As demais alternativas (2022, 2023, 2024) não correspondem a publicações de diretrizes KDIGO de anemia.",
-    "diff": "medium",
-    "cat": "drc",
-    "refs": [
-      "kdigo_anemia_2026"
     ]
   },
   {
