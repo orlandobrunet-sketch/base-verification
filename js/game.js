@@ -61,9 +61,10 @@
     
     function showGameCompletionModal() {
       const modal = document.createElement('div');
-      modal.className = 'modal show';
+      // Removido 'modal show' — conflitava com .nq-overlay (regra .modal define
+      // width: 700px, fazendo o overlay virar card de meia tela).
+      modal.className = 'nq-overlay victory-popup';
       modal.id = 'victoryModal';
-      modal.classList.add('nq-overlay');
       modal.style.cssText = 'background:rgba(0,0,0,0.92);z-index:9999;-webkit-backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);';
       modal.innerHTML = `
         <div class="victory-wrap">
@@ -134,8 +135,8 @@
     
     function showExtraLifeModal() {
       const modal = document.createElement('div');
-      modal.className = 'modal show extra-life-popup';
-      modal.classList.add('nq-overlay');
+      // Removido 'modal show' — conflitava com .nq-overlay.
+      modal.className = 'nq-overlay extra-life-popup';
       modal.style.cssText = 'background:rgba(0,0,0,0.85);z-index:9999;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);';
       modal.innerHTML = `
         <div class="modal-content" style="max-width:450px;max-height:88vh;overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;">
@@ -147,7 +148,7 @@
           <p style="color:var(--txt-dim);margin-bottom:24px;">
             Continue sua jornada com renovada energia e sabedoria.
           </p>
-          <button class="btn gold" data-close-closest=".modal">Continuar</button>
+          <button class="btn gold" data-close-closest=".extra-life-popup">Continuar</button>
         </div>
       `;
       document.body.appendChild(modal);
@@ -255,8 +256,10 @@
       const text = evolutionTexts[newLevel] || "Você evoluiu! Continue sua jornada rumo à maestria nefrológica.";
       
       const modal = document.createElement('div');
-      modal.className = 'modal show evolution-popup';
-      modal.classList.add('nq-overlay');
+      // Removido 'modal show' — conflitava com .nq-overlay (a regra .modal
+      // define width: 700px, fazendo o overlay virar um card de meia tela
+      // em vez de cobrir a viewport inteira).
+      modal.className = 'nq-overlay evolution-popup';
       modal.style.cssText = 'background:rgba(0,0,0,0.85);z-index:9999;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);';
       modal.innerHTML = `
         <div class="modal-content" style="max-width:500px;max-height:88vh;overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;">
@@ -266,7 +269,7 @@
           </div>
           <h3 style="color:var(--ok);margin-bottom:8px;font-size:1.3rem;">${newTitle}</h3>
           ${loreText ? loreText.replace('margin-top:12px', 'margin-top:12px;margin-bottom:20px') : `<em style="color:#a0aec0;font-size:0.85rem;display:block;margin:12px 20px 20px;font-style:italic;">${text}</em>`}
-          <button class="btn gold" data-close-closest=".modal">Continuar Jornada</button>
+          <button class="btn gold" data-close-closest=".evolution-popup">Continuar Jornada</button>
         </div>
       `;
       document.body.appendChild(modal);
