@@ -374,7 +374,7 @@
     window.authEmailRegister      = authEmailRegister;
     window.authResendConfirmation = authResendConfirmation;
     window.authLogout             = authLogout;
-    window.authKeyPress           = authKeyPress;
+    window.authKeyPress           = authKeyPress;  // mantido por compat — não mais usado pelo HTML
     window.loginWithGoogle        = loginWithGoogle;
     window.playAsGuest            = playAsGuest;
     window.showUpdatePasswordModal = showUpdatePasswordModal;
@@ -383,3 +383,12 @@
     window.landingLoginEmail      = landingLoginEmail;
     window.landingPlayGuest       = landingPlayGuest;
     window.showLandingMsg         = showLandingMsg;
+
+    // ── Bind keypress listeners (substitui onkeypress= inline no HTML) ──
+    // auth.js carrega com defer, então DOM está pronto neste ponto.
+    (function bindAuthKeypress() {
+      ['authPassword', 'authPasswordConfirm'].forEach(function(id) {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('keypress', authKeyPress);
+      });
+    })();
