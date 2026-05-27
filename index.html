@@ -496,7 +496,7 @@
     <div class="lnd-footer">
       <span>nefroquest.com</span>
       <span class="lnd-footer-sep">·</span>
-      <span>v10.80</span>
+      <span>v10.81</span>
       <span class="lnd-footer-sep">·</span>
       <a href="https://nefroquest.com/privacy-policy.html" class="lnd-footer-link" target="_blank" rel="noopener">Política de Privacidade</a>
     </div>
@@ -1407,28 +1407,32 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-  <script src="data/refs.js"></script>
-  <script src="data/articles.js"></script>
-  <script src="data/rapid-quiz.js"></script>
+  <!-- defer: scripts baixam em paralelo durante o parse do HTML e executam em ordem
+       após DOMContentLoaded. Reduz bloqueio sequencial. O inline _VAPID_PUBLIC_KEY
+       executa imediatamente (sem defer) e fica disponível antes do notifications.js
+       deferido executar. -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script defer src="data/refs.js"></script>
+  <script defer src="data/articles.js"></script>
+  <script defer src="data/rapid-quiz.js"></script>
 
-  <script src="js/utils.js"></script>
-  <script src="js/audio.js"></script>
-  <script src="js/leaderboard.js"></script>
-  <script src="js/study-mode.js"></script>
-  <script src="js/game.js"></script>
+  <script defer src="js/utils.js"></script>
+  <script defer src="js/audio.js"></script>
+  <script defer src="js/leaderboard.js"></script>
+  <script defer src="js/study-mode.js"></script>
+  <script defer src="js/game.js"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
-  <script src="js/notifications.js"></script>
-  <script src="js/auth.js"></script>
-  <script src="js/paywall.js"></script>
-  <script src="js/account.js"></script>
-  <script src="js/boss.js"></script>
-  <script src="js/exam.js"></script>
-  <script src="js/admin.js"></script>
-  <script src="js/minigame.js"></script>
-  <script src="js/achievements.js"></script>
-  <script src="js/changelog.js"></script>
-  <script src="js/dashboard.js"></script>
+  <script defer src="js/notifications.js"></script>
+  <script defer src="js/auth.js"></script>
+  <script defer src="js/paywall.js"></script>
+  <script defer src="js/account.js"></script>
+  <script defer src="js/boss.js"></script>
+  <script defer src="js/exam.js"></script>
+  <script defer src="js/admin.js"></script>
+  <script defer src="js/minigame.js"></script>
+  <script defer src="js/achievements.js"></script>
+  <script defer src="js/changelog.js"></script>
+  <script defer src="js/dashboard.js"></script>
 
   <!-- Single source of truth for profile popup menu items -->
   <template id="profilePopupItems">
