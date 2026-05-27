@@ -72,16 +72,24 @@
         document.getElementById('pricingModal')?.remove();
         const modal = document.createElement('div');
         modal.id = 'pricingModal';
-        // 'show' é necessário: a regra CSS #pricingModal define display:none por padrão
-        // e #pricingModal.show define display:flex. Inline display:flex como camada extra
-        // de defesa caso outra regra CSS sobrescreva.
+        // 'show' é necessário: #pricingModal { display:none } por padrão,
+        // #pricingModal.show { display:flex } no style.css.
         modal.className = 'nq-overlay show';
-        modal.style.cssText = 'display:flex !important;position:fixed;inset:0;align-items:center;justify-content:center;background:rgba(0,0,0,0.94);z-index:10000;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);padding:16px;overflow-y:auto;box-sizing:border-box;';
-      const isPt = _lang === 'pt';
-      const tagline = isPt
-        ? 'Domine a Nefrologia com o método que funciona — questões clínicas reais, RPG e ciência de ponta.'
-        : 'Master Nephrology with a method that works — real clinical questions, RPG & cutting-edge science.';
-      modal.innerHTML = `
+        // Camada extra de defesa: display:flex !important inline garante
+        // visibilidade mesmo se algum hot reload / CSS quebrado interferir.
+        modal.style.setProperty('display', 'flex', 'important');
+        modal.style.background = 'rgba(0,0,0,0.94)';
+        modal.style.zIndex = '10000';
+        modal.style.webkitBackdropFilter = 'blur(10px)';
+        modal.style.backdropFilter = 'blur(10px)';
+        // O restante (position:fixed, inset:0, align/justify, padding,
+        // overflow-y, box-sizing) vem do #pricingModal e .nq-overlay.
+
+        const isPt = _lang === 'pt';
+        const tagline = isPt
+          ? 'Domine a Nefrologia com o método que funciona — questões clínicas reais, RPG e ciência de ponta.'
+          : 'Master Nephrology with a method that works — real clinical questions, RPG & cutting-edge science.';
+        modal.innerHTML = `
         <div class="pricing-wrap" style="position:relative;">
           <button class="pricing-close-btn" data-action="closePricingModal">✕</button>
           <div class="pricing-ornament">✦ Reino dos Néfrons ✦</div>
