@@ -77,6 +77,17 @@
     }
   </script>
 
+  <!-- Critical CSS: esconde controles de som / botões mobile durante o FOUC
+       (antes do style.css carregar). O CSS externo é mais específico
+       (#landingScreen .lnd-sound-controls) e sobrescreve depois. -->
+  <style>
+    .lnd-sound-controls,
+    .welcome-sound-controls,
+    .mobile-sound-controls,
+    .mobile-hero-btn,
+    .lnd-particles,
+    .particles { display: none; }
+  </style>
   <link rel="stylesheet" href="style.css">
   <script>
     // Version beacon — detecta nova versão e força limpeza de cache
@@ -485,7 +496,7 @@
     <div class="lnd-footer">
       <span>nefroquest.com</span>
       <span class="lnd-footer-sep">·</span>
-      <span>v10.77</span>
+      <span>v10.78</span>
       <span class="lnd-footer-sep">·</span>
       <a href="https://nefroquest.com/privacy-policy.html" class="lnd-footer-link" target="_blank" rel="noopener">Política de Privacidade</a>
     </div>
