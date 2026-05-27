@@ -37,7 +37,7 @@
             </div>
             <div class="form-group">
               <label>Modo preferido</label>
-              <select id="acctIdentity" style="width:100%;background:#0d1525;border:1px solid var(--blue-dark);color:var(--txt);border-radius:var(--radius-md);padding:9px 12px;font-size:var(--text-sm);font-family:inherit;">
+              <select id="acctIdentity" style="width:100%;background:#0d1525;border:1px solid var(--blue-dark);color:var(--txt);border-radius:var(--radius-md);padding:9px 12px;font-size:1rem;font-family:inherit;">
                 <option value="">Não definido</option>
                 <option value="study">📖 Estudar</option>
                 <option value="combat">⚔️ Combater</option>
