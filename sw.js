@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v10.80
-const CACHE = 'nefroquest-v10.80';
+// NefroQuest Service Worker — v10.81
+const CACHE = 'nefroquest-v10.81';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -15,8 +15,6 @@ const STATIC_ASSETS = [
   '/assets/sounds/boss.wav',
   '/assets/sounds/victory.wav',
   '/assets/audio/welcome-theme.mp3',
-  '/assets/images/welcome-bg.png',
-  '/assets/images/welcome-bg-portrait.jpg',
   '/assets/nefromancer.png',
   '/manifest.json',
   '/favicon.ico',
