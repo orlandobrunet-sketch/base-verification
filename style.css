@@ -1309,7 +1309,8 @@
       background: rgba(8,14,28,0.8);
       border: 1px solid rgba(60,90,140,0.4); border-radius: 8px;
       color: var(--txt-mid); padding: 8px 12px;
-      font-size: 0.82rem; font-family: inherit; outline: none;
+      /* 16px = limite que evita zoom automático em iOS Safari ao focar */
+      font-size: 1rem; font-family: inherit; outline: none;
       resize: vertical; transition: border-color 0.2s;
     }
     .bib-input:focus, .bib-textarea:focus { border-color: rgba(100,140,220,0.6); }
@@ -2385,7 +2386,8 @@
       width: 100%; box-sizing: border-box;
       background: rgba(255,255,255,0.06); border: 1px solid var(--blue-dark);
       border-radius: 8px; padding: 9px 12px; color: #e0f0ff;
-      font-size: 0.85rem; outline: none;
+      /* 16px = limite que evita zoom automático em iOS Safari ao focar */
+      font-size: 1rem; outline: none;
     }
     .modal-panel input:focus, .modal-panel select:focus { border-color: var(--blue); }
     .modal-panel .modal-actions { display: flex; gap: 10px; margin-top: 18px; }
@@ -3125,7 +3127,8 @@
     .board-search-input {
       flex: 1; background: rgba(255,255,255,0.04); border: 1px solid var(--blue-dark);
       border-radius: var(--radius-md); color: var(--txt); padding: 8px 12px;
-      font-size: var(--text-sm); font-family: inherit;
+      /* 16px = limite que evita zoom automático em iOS Safari ao focar */
+      font-size: 1rem; font-family: inherit;
       transition: border-color 0.2s;
     }
     .board-search-input::placeholder { color: var(--txt-dim); }
