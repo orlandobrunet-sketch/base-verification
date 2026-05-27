@@ -2212,6 +2212,9 @@
     .pricing-wrap {
       max-width: 960px; width: 100%; text-align: center;
       animation: scaleIn 0.35s ease-out;
+      /* position: relative é necessário para ancorar os cantos ornamentais
+         ::before/::after; antes dependia só do inline style no JS. */
+      position: relative;
       /* Card boundary no padrão dos outros popups */
       background: linear-gradient(180deg, rgba(12,16,40,0.98) 0%, rgba(7,9,24,0.98) 100%);
       border: 1px solid rgba(217,191,85,0.40);
@@ -8490,11 +8493,11 @@ body.arqui-nefromante-final #arquiStarsDesktop {
    header/footer fixos e só o corpo rola — assim os cantos ornamentais
    ficam de fato nas pontas visíveis. */
 .modal-scroll-body {
-  flex: 1 1 auto !important;
-  min-height: 0 !important;
-  overflow-y: auto !important;
-  padding: 0 4px !important;
-  box-sizing: border-box !important;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0 4px;
+  box-sizing: border-box;
 }
 
 /* Study Mode popup — picker (Estudo Livre / Por Tema / Revisão) e Axes Selector */
