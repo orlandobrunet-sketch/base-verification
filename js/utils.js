@@ -16,7 +16,8 @@
         if (typeof gtag === 'function') {
           gtag('event', event, params);
         }
-        // _track envia via Sentry/analytics; descomente para debug local:
+        // Nota: _track envia SÓ para o GA4 (gtag). O Sentry é canal separado e
+        // captura erros automaticamente (config no <head>). Para debug local:
         // console.debug('[analytics]', event, params);
       } catch(e) { /* silencia erros de analytics */ }
     }

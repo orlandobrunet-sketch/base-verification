@@ -2965,9 +2965,24 @@
       return result;
     };
 
-    // Handler global para promises rejeitadas sem catch — evita falha silenciosa
+    // Handler global para promises rejeitadas sem catch — evita falha silenciosa.
+    // Sentry já captura automaticamente; este handler envia também pro GA4 (_track).
     window.addEventListener('unhandledrejection', function(e) {
-      _track('error_unhandled_rejection', { msg: String(e.reason) });
+      _track('error_unhandled_rejection', { msg: String(e.reason).slice(0, 200) });
+    });
+
+    // Handler global para erros JS síncronos não tratados (TypeError, ReferenceError,
+    // etc). Sentry captura, mas GA4 precisa do _track explícito.
+    window.addEventListener('error', function(e) {
+      // Filtra ruído: erros de carga de recursos (img/script/css) chegam aqui
+      // mas têm e.target em vez de e.message. São tratados em onerror inline
+      // ou ignoráveis. Só logamos erros JS reais.
+      if (!e.message) return;
+      _track('error_uncaught', {
+        msg: String(e.message).slice(0, 200),
+        src: e.filename ? e.filename.slice(-60) : '',
+        line: e.lineno || 0
+      });
     });
 
     // ESC fecha o modal ou popup mais recente no topo
