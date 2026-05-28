@@ -90,6 +90,25 @@
       }, 300);
     }
 
+    // Shortcuts do PWA (manifest.json): /?mode=study e /?mode=rapidquiz
+    // Limpa o param da URL para não disparar de novo em reloads.
+    const _mode = _urlParams.get('mode');
+    if (_mode === 'study' || _mode === 'rapidquiz') {
+      const _clean = window.location.pathname;
+      window.history.replaceState({}, '', _clean);
+      setTimeout(() => {
+        try {
+          if (_mode === 'study' && typeof window.showTopicSelector === 'function') {
+            window.showTopicSelector();
+          } else if (_mode === 'rapidquiz' && typeof window.showRapidQuizMinigame === 'function') {
+            window.showRapidQuizMinigame(true);
+          }
+        } catch (e) {
+          console.error('[PWA shortcut] erro ao abrir modo:', _mode, e);
+        }
+      }, 500);
+    }
+
     // Throttle para mousemove/mouseover — evita jank em 60fps
     let _mmLast = 0;
     const _MM_THROTTLE = 40; // ms
