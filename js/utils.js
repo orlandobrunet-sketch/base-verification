@@ -394,7 +394,11 @@
       const btn = e.target.querySelector('.bib-submit-btn');
       if (btn) { btn.disabled = true; btn.textContent = 'Enviando…'; }
       try {
-        const supaUrl = 'https://wviutasgroltjuyxpevc.supabase.co';
+        // SUPA_URL é definida em auth.js no escopo global (plain script).
+        // window.NQ_CONFIG.SUPA_URL é fallback caso ordem de carregamento mude.
+        const supaUrl = (typeof SUPA_URL !== 'undefined') ? SUPA_URL
+          : (window.NQ_CONFIG && window.NQ_CONFIG.SUPA_URL)
+          || 'https://wviutasgroltjuyxpevc.supabase.co';
         const res = await fetch(supaUrl + '/functions/v1/send-contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
