@@ -1,8 +1,30 @@
 // NefroQuest — Auth (Supabase), Login, Guest, Profile
 // Plain script — shares global scope with game.js
 
+    // ============ SUPABASE CONFIG (single source of truth) ============
+    // Para futura troca para custom domain (ex: https://auth.nefroquest.com),
+    // mudar APENAS esta constante — todo o app referencia via window.NQ_CONFIG
+    // ou direto via SUPA_URL no escopo global. Veja docs/AUTH_SETUP.md.
     const SUPA_URL = 'https://wviutasgroltjuyxpevc.supabase.co';
     const SUPA_KEY = 'sb_publishable_kUxWMU36-PEaNuhEqTy3Zw_-A5ep67_';
+
+    // Onde o usuário é redirecionado APÓS completar o login OAuth (Google).
+    // - Produção (nefroquest.com): fixa em https://nefroquest.com pra evitar
+    //   inconsistências (www vs apex, query params residuais, etc).
+    // - Dev local (localhost/127.0.0.1): usa origin atual pra OAuth funcionar
+    //   no ambiente de desenvolvimento.
+    const AUTH_REDIRECT_URL = (function() {
+      const h = location.hostname;
+      if (h === 'localhost' || h === '127.0.0.1') return location.origin;
+      return 'https://nefroquest.com';
+    })();
+
+    // Expor config globalmente — outros módulos podem consultar via
+    // window.NQ_CONFIG sem depender da ordem de carregamento dos scripts.
+    window.NQ_CONFIG = window.NQ_CONFIG || {};
+    window.NQ_CONFIG.SUPA_URL = SUPA_URL;
+    window.NQ_CONFIG.SUPA_KEY = SUPA_KEY;
+    window.NQ_CONFIG.AUTH_REDIRECT_URL = AUTH_REDIRECT_URL;
 
     // ===== SUPABASE AUTH =====
     let _supaClient = null;
@@ -146,7 +168,7 @@
       try {
         const { error } = await _supaClient.auth.signInWithOAuth({
           provider: 'google',
-          options: { redirectTo: window.location.origin }
+          options: { redirectTo: AUTH_REDIRECT_URL }
         });
         if (error) _setAuthMsg(error.message, 'error');
       } catch { _setAuthMsg('Erro de conexão. Tente novamente.', 'error'); }
