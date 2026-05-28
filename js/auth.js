@@ -359,16 +359,8 @@
       openAuthModal();
       switchAuthTab('entrar');
     }
-    function landingPlayGuest() {
-      // Wrapper para o fluxo de convidado — equivalente a playAsGuest()
-      playAsGuest();
-    }
-    function showLandingMsg(msg) {
-      const el = document.getElementById('landingMsg');
-      if (!el) return;
-      el.textContent = msg;
-      el.style.display = 'block';
-    }
+    // (dead code removido em v10.90: landingPlayGuest — botão usa playAsGuest
+    //  direto; showLandingMsg — erros do landing vão pelo _setAuthMsg do modal)
 
     // ===== PROFILE POPUP =====
     function toggleProfilePopup(ctx) {
@@ -403,8 +395,6 @@
     window.toggleProfilePopup     = toggleProfilePopup;
     window.landingLoginGoogle     = landingLoginGoogle;
     window.landingLoginEmail      = landingLoginEmail;
-    window.landingPlayGuest       = landingPlayGuest;
-    window.showLandingMsg         = showLandingMsg;
 
     // ── Bind keypress listeners (substitui onkeypress= inline no HTML) ──
     // auth.js carrega com defer, então DOM está pronto neste ponto.
