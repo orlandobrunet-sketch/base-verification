@@ -430,10 +430,8 @@
       border: 2px solid rgba(255,215,0,0.2) !important; border-radius: 8px;
       filter: saturate(0.35) brightness(0.65) contrast(1.05);
     }
-    /* Ability label badge on item */
-    .slot.has-active-ability .slot-name::after {
-      content: " ✨"; color: var(--gold); font-size: 0.8em;
-    }
+    /* Ability label badge on item — o rótulo (ex.: "📖 Pular 1 questão") já
+       indica a habilidade ativa; nenhum ornamento extra para não quebrar linha. */
     .slot.has-used-ability .slot-name::after {
       content: " (usada)"; color: #64748b; font-size: 0.68em;
     }
