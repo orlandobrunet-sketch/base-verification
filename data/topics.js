@@ -2804,7 +2804,7 @@ const topics = [
     "q": "Paciente urêmico em diálise pela primeira vez, com ureia inicial de 280 mg/dL. Ao final da sessão apresenta cefaleia intensa, confusão mental, náusea e convulsão. O quadro regrediu espontaneamente. A Síndrome de Desequilíbrio da Diálise ocorre devido a?",
     "refs": [
       "kdigo_dialise",
-      "kdigo_lra"
+      "kdigo_aki"
     ],
     "opts": [
       "Reação alérgica grave e imediata à membrana do dialisador, com manifestações sistêmicas diversas",

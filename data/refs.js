@@ -405,20 +405,6 @@
     conclusao:"Define o índice Kt/V como medida-padrão da dose de diálise — base para auditoria e controle de qualidade nos centros de hemodiálise.",
     curiosidade:"O Kt/V foi proposto por Gotch e Sargent em 1985 com base no NCDS — primeiro estudo a demonstrar que a dose de diálise influencia a morbimortalidade. O 'K' representa o clearance de ureia do dialisador, 't' o tempo de sessão e 'V' o volume de distribuição da ureia, aproximadamente 60% do peso corporal."
   },
-  kdigo_lra:{
-    label:"KDIGO AKI 2012",
-    url:"https://kdigo.org/guidelines/acute-kidney-injury/",
-    journal:"Kidney International Supplements",
-    ano:2012,
-    tipo:"Diretriz Internacional",
-    badge:"GUIDELINE",
-    badgeColor:"#6366f1",
-    impacto:"Critérios universais de diagnóstico e estadiamento da LRA",
-    icon:"📋",
-    resumo:"Draft de revisão pública KDIGO 2026 para AKI/AKD, primeira grande atualização desde a diretriz KDIGO AKI 2012. Define AKI como anormalidade funcional ou estrutural renal ocorrida, ou presumida, em até 7 dias no contexto clínico apropriado. Mantém creatinina e diurese como critérios centrais, mas incorpora cistatina C e biomarcadores validados de estresse/dano renal como critérios adicionais quando disponíveis. Também formaliza AKD como alteração funcional ou estrutural renal com duração de até 3 meses, integrando o contínuo AKI → AKD → CKD.",
-    conclusao:"O draft KDIGO 2026 desloca o conceito de LRA de uma definição baseada quase exclusivamente em creatinina/diurese para uma estrutura mais ampla, combinando função, dano renal, persistência da injúria e seguimento pós-LRA.",
-    curiosidade:"A KDIGO 2012 foi transformadora por unificar RIFLE e AKIN e padronizar a linguagem da LRA. O draft 2026 preserva esse legado, mas amplia a definição ao reconhecer que lesão renal estrutural, cistatina C e biomarcadores podem identificar injúria antes ou além da creatinina."
-  },
   kdigo_cardiorenal_consensus:{
     label:"KDIGO Cardiorenal Syndrome 2012",
     url:"https://kdigo.org/guidelines/",
