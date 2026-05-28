@@ -15671,21 +15671,21 @@ const topics = [
     "cat": "farmacologia"
   },
   {
-    "t": "Ureia e Creatinina — Interpretação Básica",
+    "t": "Ureia/BUN e Creatinina — Interpretação da Relação",
     "qid": "95c81f1d",
-    "q": "Paciente de 50 anos, previamente saudável, apresenta em exame de rotina creatinina sérica de 1,8 mg/dL e ureia de 45 mg/dL. A razão ureia/creatinina é de 25. Qual é a interpretação mais provável desses achados laboratoriais?",
+    "q": "Paciente de 68 anos com hemorragia digestiva alta e sinais de hipovolemia. Exames: creatinina sérica 1,0 mg/dL e ureia 130 mg/dL — que corresponde a um BUN ≈ 60 mg/dL (lembrando que BUN = ureia ÷ 2,14). Qual é a interpretação mais provável da relação entre os nitrogenados e a creatinina?",
     "refs": [
       "kdigo_aki",
       "brenner_rector"
     ],
     "opts": [
-      "IRA por necrose tubular aguda (NTA)",
-      "Ureia e creatinina ambas normais, sem preocupação",
-      "IRA pré-renal ou estado hipercatabólico",
-      "Insuficiência hepática com redução da síntese de ureia"
+      "Padrão pré-renal / hipercatabólico: BUN/creatinina ≈ 60 (acima do corte de 20), equivalente a ureia/creatinina ≈ 130",
+      "Necrose tubular aguda (NTA), em que a relação BUN/creatinina costuma ser baixa (~10–15)",
+      "Função renal normal, sem alteração a investigar",
+      "Insuficiência hepática com queda da síntese de ureia"
     ],
-    "ans": 2,
-    "exp": "A razão ureia/creatinina elevada (>20) sugere uma condição pré-renal, frequentemente associada à hipoperfusão renal, como desidratação ou hipovolemia, onde a reabsorção tubular de ureia é aumentada em relação à creatinina. Na insuficiência renal aguda pré-renal, a creatinina pode estar elevada, mas a ureia aumenta de forma desproporcional devido à maior reabsorção tubular. A opção de aumento da produção de ureia por dieta rica em proteínas não explicaria a elevação da creatinina. A doença renal crônica geralmente apresenta uma razão ureia/creatinina normal ou baixa. A insuficiência renal aguda intrínseca, como na necrose tubular aguda, geralmente não apresenta razão ureia/creatinina elevada.",
+    "ans": 0,
+    "exp": "Ponto-chave: distinguir BUN (nitrogênio ureico, unidade usada nos EUA) de UREIA (dosada no Brasil) — BUN ≈ ureia ÷ 2,14. O corte clássico de relação ELEVADA é BUN/creatinina > 20, o que equivale a ureia/creatinina > ~40 (mesmas unidades, mg/dL). ATENÇÃO ao erro comum: 'ureia/creatinina > 20' NÃO é critério válido — esse 20 é para BUN/creatinina; usando ureia direta o corte é ~40. Neste caso, ureia 130 → BUN ≈ 60; BUN/creatinina ≈ 60 (ou ureia/creatinina ≈ 130) — claramente elevada. Uma elevação DESPROPORCIONAL de ureia/BUN frente à creatinina sugere componente pré-renal (hipovolemia, desidratação), hemorragia digestiva alta (reabsorção da carga proteica do sangue), dieta hiperproteica/estado hipercatabólico ou uso de corticoide — situações em que a reabsorção tubular de ureia aumenta enquanto a creatinina varia pouco. Na NTA a relação tipicamente cai (~10–15), pois a lesão tubular reduz a reabsorção de ureia. Na insuficiência hepática a síntese de ureia diminui (relação baixa), o oposto do quadro apresentado.",
     "diff": "easy",
     "cat": "lra"
   },
