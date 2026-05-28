@@ -414,6 +414,7 @@
         queueIds: state.queue.map(q => q.id),
         recentIds: _recentIds,
         chestsOpened: state.chestsOpened,
+        obtainedItems: Array.isArray(state.obtainedItems) ? state.obtainedItems.slice() : [],
         difficulty: state.difficulty || 'normal',
         maxLives: state.maxLives || 3,
         legendaryAbilityUsed: {...state.legendaryAbilityUsed},
@@ -608,6 +609,7 @@
       state.bossIntroShown = save.bossIntroShown || false;
       state.battleFinalShown = save.battleFinalShown || false;
       state.chestsOpened = save.chestsOpened || 0;
+      state.obtainedItems = Array.isArray(save.obtainedItems) ? save.obtainedItems.slice() : [];
       state.difficulty = save.difficulty || 'normal';
       state.maxLives = save.maxLives || 3;
       chestCost = Math.min(100 + state.chestsOpened * 15, 250);
@@ -976,7 +978,7 @@
       level:1,xp:0,xpToNext:200,score:0,lives:3,maxLives:3,streak:0,gold:0,difficulty:"normal",legendaryAbilityUsed:{},
       current:null,answered:false,queue:[],idx:0,bonusUses:0,
       correctTotal:0, narrativeShown:0, bossIntroShown:false, battleFinalShown:false, gameOver:false, bossLog:[],
-      gameStarted: false, chestsOpened:0,
+      gameStarted: false, chestsOpened:0, obtainedItems:[],
       character: null,
       equipment:{
         weapon:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
@@ -1595,17 +1597,31 @@
       }
     }
 
+    const MAX_LEVEL = 10;
     function xpForLevel(lv) {
       // xpToNext = 200 * 1.15^(lv-1), garante ~10 questões no nível 1
       return Math.floor(200 * Math.pow(1.15, lv - 1));
     }
+    // Teto de nível conforme o progresso (correctTotal). Garante que o nível
+    // máximo (10) só é atingido em 90 acertos — exatamente quando a batalha do
+    // boss começa (BOSS_START_CORRECT=90), 10 questões antes da vitória (100).
+    // Cadência: 1 nível a cada 10 acertos (L1 em 0, L2 em 10, … L10 em 90).
+    // O XP continua preenchendo a barra dentro de cada nível, mas não permite
+    // ultrapassar o teto do progresso — evita "subir nível fácil demais".
+    function levelCapForProgress() {
+      return Math.min(MAX_LEVEL, 1 + Math.floor((state.correctTotal || 0) / 10));
+    }
     function gainXP(x){
       state.xp+=x; let up=0;
-      while(state.xp>=state.xpToNext){
+      const cap = levelCapForProgress();
+      while(state.xp>=state.xpToNext && state.level < cap){
         state.xp-=state.xpToNext; state.level++; state.xpToNext=xpForLevel(state.level); up++;
         if (_guestMode && !_guestHookShown && _guestQuestionCount >= GUEST_FREE_LIMIT) _showGuestHook();
         _track('level_up', { level: state.level, difficulty: state.difficulty });
       }
+      // No teto: trava a barra cheia (não desperdiça XP além do cap; ele será
+      // consumido quando o progresso liberar o próximo nível).
+      if (state.level >= cap && state.xp > state.xpToNext) state.xp = state.xpToNext;
       return up;
     }
 
@@ -1614,22 +1630,47 @@
       return Object.keys(items).every(slot => state.equipment[slot]?.rar === 'legendary');
     }
 
+     function _markObtained(name){
+      if(!Array.isArray(state.obtainedItems)) state.obtainedItems=[];
+      if(!state.obtainedItems.includes(name)) state.obtainedItems=[...state.obtainedItems,name];
+    }
+
      function rollItem(diff,luck){
-      // Coletar nomes de itens já equipados
+      // Itens já vistos (equipados ou obtidos antes) nunca devem repetir
       const equipped = Object.values(state.equipment).map(e=>e.n);
-      
-      // Tentar até 20 vezes para não repetir item
+      const obtained = Array.isArray(state.obtainedItems) ? state.obtainedItems : [];
+      const seen = new Set([...equipped, ...obtained]);
+
+      // Tentar até 20 vezes respeitando a raridade sorteada, sem repetir
       for(let attempt=0; attempt<20; attempt++){
         const slots=Object.keys(items),slot=slots[Math.floor(Math.random()*slots.length)];
         const bonus=Math.min(2,Math.floor((luck+diff)/8));
-        const pool=[...rarityWeight,...(bonus?["rare","epic"].slice(0,bonus):[])];        const rar=pool[Math.floor(Math.random()*pool.length)];
-        const cand=items[slot].filter(i=>i.rar===rar && !equipped.includes(i.n));
-        if(cand.length>0) return{slot,item:cand[Math.floor(Math.random()*cand.length)]};
+        const pool=[...rarityWeight,...(bonus?["rare","epic"].slice(0,bonus):[])];
+        const rar=pool[Math.floor(Math.random()*pool.length)];
+        const cand=items[slot].filter(i=>i.rar===rar && !seen.has(i.n));
+        if(cand.length>0){
+          const item=cand[Math.floor(Math.random()*cand.length)];
+          _markObtained(item.n);
+          return{slot,item};
+        }
       }
-      // Fallback: qualquer item
-      const slots=Object.keys(items),slot=slots[Math.floor(Math.random()*slots.length)];
-      const allItems=items[slot];
-      return{slot,item:allItems[Math.floor(Math.random()*allItems.length)]};
+      // Fallback: qualquer item ainda não visto, em qualquer slot/raridade
+      const fresh=[];
+      Object.keys(items).forEach(slot=>{
+        items[slot].forEach(i=>{ if(!seen.has(i.n)) fresh.push({slot,item:i}); });
+      });
+      if(fresh.length>0){
+        const pick=fresh[Math.floor(Math.random()*fresh.length)];
+        _markObtained(pick.item.n);
+        return pick;
+      }
+      // Pool de 23 itens esgotado: libera repetição (somente o que não está equipado)
+      const allFree=[];
+      Object.keys(items).forEach(slot=>{
+        items[slot].forEach(i=>{ if(!equipped.includes(i.n)) allFree.push({slot,item:i}); });
+      });
+      const finalPool = allFree.length>0 ? allFree : Object.keys(items).map(slot=>({slot,item:items[slot][0]}));
+      return finalPool[Math.floor(Math.random()*finalPool.length)];
     }
 
     const _rarSellVal = {common:20,uncommon:40,rare:80,epic:150,legendary:300};
@@ -1762,7 +1803,7 @@
         const prevLevel = state.level;
         const lv=gainXP(xp);
 
-        if(state.level>=15&&legendaryCount()>=2){
+        if(state.level>=MAX_LEVEL&&legendaryCount()>=2){
           log('👑 Objetivo final desbloqueado! Você está pronto para vencer o Arqui-Nefromante.');
         }
         ui.feedback.className='feedback good';
@@ -2160,11 +2201,19 @@
       const cost=1000;
       if(state.gold<cost){ log('🧱 Ouro insuficiente! Precisa de 1000 ouro para forjar lendário.'); return; }
       state.gold-=cost;
-      const keys=Object.keys(state.equipment);
+      const equipped = Object.values(state.equipment).map(e=>e.n);
+      const obtained = Array.isArray(state.obtainedItems) ? state.obtainedItems : [];
+      const seen = new Set([...equipped, ...obtained]);
+      // Slots que ainda têm algum lendário inédito
+      const freshSlots = Object.keys(state.equipment).filter(slot =>
+        items[slot].some(i => i.rar === 'legendary' && !seen.has(i.n)));
+      const keys = freshSlots.length>0 ? freshSlots : Object.keys(state.equipment);
       const slot=keys[Math.floor(Math.random()*keys.length)];
-      const legendaryItems = items[slot].filter(i => i.rar === 'legendary');
-      if(legendaryItems.length === 0){ log('Sem itens lendários para este slot.'); state.gold+=cost; return; }
+      let legendaryItems = items[slot].filter(i => i.rar === 'legendary' && !seen.has(i.n));
+      if(legendaryItems.length === 0) legendaryItems = items[slot].filter(i => i.rar === 'legendary' && !equipped.includes(i.n));
+      if(legendaryItems.length === 0){ log('🏆 Você já forjou todos os lendários deste tipo!'); state.gold+=cost; return; }
       const legendaryItem = legendaryItems[Math.floor(Math.random()*legendaryItems.length)];
+      _markObtained(legendaryItem.n);
       const legendaryItemCopy = {...legendaryItem};
       const gains = [`⚔️ ATK ${legendaryItem.atk}`, `🛡️ DEF ${legendaryItem.def}`, `📚 CONH ${legendaryItem.kno}`, `🍀 SORTE ${legendaryItem.luck}`];
       playSound('forge');
