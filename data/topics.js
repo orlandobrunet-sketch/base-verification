@@ -16809,22 +16809,21 @@ const topics = [
     ]
   },
   {
-    "t": "VISIONARY — Redução de Proteinúria aos 9 Meses",
+    "t": "VISIONARY — Sibeprenlimabe: proteinúria vs slope de TFGe",
     "qid": "aa732568",
-    "q": "No estudo VISIONARY (Fase 3), qual foi a redução percentual na razão proteína/creatinina urinária (uPCR) com o uso de sibeprenlimabe em comparação ao placebo após 9 meses de tratamento?",
+    "q": "Paciente de 38 anos, com nefropatia por IgA confirmada por biópsia, mantém proteinúria persistente apesar de tratamento de suporte otimizado com bloqueio do SRAA, controle pressórico adequado e iSGLT2. Ele é incluído em estudo com sibeprenlimabe, anticorpo monoclonal que bloqueia APRIL, reduzindo a produção de IgA1 deficiente em galactose e, consequentemente, a formação de imunocomplexos envolvidos na fisiopatologia da doença. No estudo VISIONARY, após demonstrar redução precoce da proteinúria, qual desfecho secundário-chave avalia se esse efeito se traduz em preservação sustentada da função renal?",
     "opts": [
-      "30,5% de redução vs aumento de 5% com placebo",
-      "51,2% de redução vs aumento de 2,1% com placebo (P<0,001)",
-      "70% de redução vs 10% de redução com placebo",
-      "25% de redução vs estabilidade com placebo"
+      "Sobrevida global em 5 anos",
+      "Slope anualizado da TFGe ao longo de 24 meses",
+      "Remissão completa da hematúria microscópica",
+      "Desaparecimento dos depósitos mesangiais de IgA na biópsia"
     ],
     "ans": 1,
-    "exp": "No VISIONARY, ensaio fase 3 em nefropatia por IgA com proteinúria persistente apesar de tratamento de suporte otimizado, o sibeprenlimabe, anticorpo monoclonal anti-APRIL, promoveu redução de aproximadamente 51,2% na razão proteína/creatinina urinária após 9 meses, enquanto o placebo apresentou discreto aumento de cerca de 2,1%, o que torna a alternativa '51,2% de redução vs aumento de 2,1% com placebo (P<0,001)' a única que reproduz adequadamente o resultado principal de proteinúria. A alternativa '30,5% de redução vs aumento de 5% com placebo' está errada porque subestima o efeito antiproteinúrico observado e superestima a variação no grupo placebo; a alternativa '70% de redução vs 10% de redução com placebo' está errada por exagerar a magnitude da resposta e ainda atribuir queda de proteinúria ao placebo, o que não corresponde ao ensaio; e a alternativa '25% de redução vs estabilidade com placebo' também é incorreta por minimizar o benefício do fármaco e descrever estabilidade com placebo, quando houve pequeno aumento da uPCR. O racional biológico é coerente com o bloqueio da via APRIL, que reduz a atividade imune relacionada à produção de IgA patogênica e, consequentemente, a lesão glomerular e a proteinúria.",
-    "diff": "hard",
+    "exp": "O sibeprenlimabe é um anticorpo monoclonal anti-APRIL. Ao bloquear APRIL, reduz a produção de IgA1 deficiente em galactose — etapa central na fisiopatologia da nefropatia por IgA — diminuindo a formação de imunocomplexos nefritogênicos. No VISIONARY, a redução da proteinúria funciona como marcador PRECOCE de resposta, mas a confirmação de nefroproteção exige avaliar se há menor perda de função renal ao longo do tempo. Por isso, o desfecho secundário-chave é o slope anualizado da TFGe ao longo de 24 meses. A sobrevida global em 5 anos não é endpoint factível nem desenhado para esse contexto; a remissão da hematúria microscópica e o desaparecimento dos depósitos mesangiais de IgA não são os endpoints usados para demonstrar preservação funcional renal. Conceito-chave: proteinúria = marcador precoce/substituto; slope de TFGe = desfecho mais robusto de preservação funcional renal.",
+    "diff": "medium",
     "cat": "glomerular",
     "refs": [
-      "visionary_trial",
-      "kdigo_aki_2026"
+      "visionary_trial"
     ]
   },
   {
@@ -16846,18 +16845,18 @@ const topics = [
     ]
   },
   {
-    "t": "VISIONARY — Redução de APRIL e Gd-IgA1",
+    "t": "Sibeprenlimabe — cadeia APRIL → Gd-IgA1",
     "qid": "9fea5862",
-    "q": "No estudo VISIONARY, qual foi a redução percentual nos níveis de APRIL e Gd-IgA1 com o uso de sibeprenlimabe na semana 48 em pacientes com nefropatia por IgA?",
+    "q": "O sibeprenlimabe bloqueia o APRIL no tratamento da nefropatia por IgA e, no VISIONARY, reduziu tanto o APRIL circulante quanto a Gd-IgA1 (IgA1 deficiente em galactose). Qual sequência fisiopatológica explica por que bloquear o APRIL reduz a proteinúria?",
     "opts": [
-      "APRIL reduzido em 50% e Gd-IgA1 em 30%",
-      "APRIL reduzido em 95,8% e Gd-IgA1 em 67,1%",
-      "APRIL reduzido em 70% e Gd-IgA1 em 90%",
-      "APRIL reduzido em 80% e Gd-IgA1 em 45%"
+      "APRIL estimula plasmócitos a produzir Gd-IgA1 → bloqueá-lo reduz a Gd-IgA1 → menos imunocomplexos → menos depósito e inflamação mesangial → menos proteinúria",
+      "APRIL causa vasoconstrição da arteríola eferente → bloqueá-lo reduz a pressão intraglomerular, como faz o bloqueio do SRAA",
+      "APRIL ativa diretamente a via alternativa do complemento → bloqueá-lo impede a formação do complexo de ataque à membrana",
+      "APRIL promove fibrose tubulointersticial direta → bloqueá-lo reverte a fibrose já estabelecida"
     ],
-    "ans": 1,
-    "exp": "A alternativa 'APRIL reduzido em 95,8% e Gd-IgA1 em 67,1%' é a correta, porque no estudo VISIONARY o sibeprenlimabe promoveu supressão quase completa de APRIL circulante e redução substancial de Gd-IgA1 na semana 48, com valores reportados de 95,8% e 67,1%, respectivamente. Esse achado é biologicamente coerente com o mecanismo da droga, já que o bloqueio de APRIL reduz a ativação e sobrevivência de plasmócitos envolvidos na produção de IgA aberrante, atenuando a formação de Gd-IgA1, molécula central na fisiopatologia da nefropatia por IgA. A alternativa 'APRIL reduzido em 50% e Gd-IgA1 em 30%' está errada por subestimar claramente tanto a magnitude da supressão de APRIL quanto a queda de Gd-IgA1; a alternativa 'APRIL reduzido em 70% e Gd-IgA1 em 90%' está errada porque atribui redução exagerada de Gd-IgA1 e, ao mesmo tempo, subestima a intensidade do bloqueio de APRIL; e a alternativa 'APRIL reduzido em 80% e Gd-IgA1 em 45%' também está incorreta por apresentar reduções menores do que as observadas no estudo, especialmente para APRIL, cuja queda foi muito mais acentuada.",
-    "diff": "hard",
+    "ans": 0,
+    "exp": "A Gd-IgA1 (IgA1 deficiente em galactose) é o pivô da fisiopatologia da nefropatia por IgA: ela é reconhecida por autoanticorpos, forma imunocomplexos que se depositam no mesângio, ativam complemento local e desencadeiam inflamação e proteinúria. O APRIL (a proliferation-inducing ligand) é uma citocina que estimula a sobrevivência/maturação de plasmócitos produtores justamente dessa IgA aberrante. Por isso, bloquear APRIL (sibeprenlimabe) reduz a produção de Gd-IgA1 a montante — a sequência correta é APRIL↓ → Gd-IgA1↓ → imunocomplexos↓ → lesão mesangial↓ → proteinúria↓ (alternativa A). As demais descrevem mecanismos de OUTRAS classes: vasoconstrição eferente é alvo do bloqueio do SRAA e dos antagonistas de endotelina; o complemento é alvo de inibidores específicos (ex.: iptacopan); e reversão de fibrose estabelecida não é o mecanismo de nenhum anti-APRIL.",
+    "diff": "medium",
     "cat": "glomerular",
     "refs": [
       "visionary_trial"
@@ -16882,22 +16881,22 @@ const topics = [
     ]
   },
   {
-    "t": "VISIONARY — Proteinúria aos 12 Meses",
+    "t": "Nefropatia por IgA — quando indicar anti-APRIL",
     "qid": "03397c91",
-    "q": "Qual foi a redução percentual de proteinúria com o uso de sibeprenlimabe em comparação ao placebo aos 12 meses no estudo VISIONARY apresentado na ASN 2025?",
+    "q": "Considerando o racional dos ensaios atuais (VISIONARY e congêneres), em qual situação o sibeprenlimabe (anti-APRIL) é indicado na nefropatia por IgA?",
     "opts": [
-      "40% vs 10% com placebo",
-      "56,6% vs 5,1% com placebo (ajustada: 54,3%)",
-      "30% vs 2% com placebo",
-      "65% vs 8% com placebo"
+      "Proteinúria persistente (geralmente ≥0,75–1 g/dia) apesar de terapia de suporte otimizada: bloqueio do SRAA em dose máxima tolerada, controle pressórico e iSGLT2",
+      "Primeira linha isolada, antes de qualquer terapia de suporte, em todo paciente recém-diagnosticado",
+      "Apenas após o paciente já estar em diálise, para reduzir IgA residual",
+      "Em substituição ao bloqueio do SRAA, que deve ser suspenso ao iniciar o anti-APRIL"
     ],
-    "ans": 1,
-    "exp": "No estudo VISIONARY em nefropatia por IgA, o sibeprenlimabe, anticorpo monoclonal direcionado ao APRIL, mostrou redução robusta da proteinúria ao interferir na ativação de células B/plasmócitos e na produção de IgA nefritogênica, reduzindo a formação de imunocomplexos e a agressão mesangial; aos 12 meses, os dados divulgados foram de redução de 56,6% no grupo tratado versus 5,1% no placebo, com efeito placebo-ajustado de 54,3%, razão pela qual a alternativa '56,6% vs 5,1% com placebo (ajustada: 54,3%)' é a correta. A alternativa '40% vs 10% com placebo' está errada por subestimar claramente o efeito antiproteinúrico do fármaco e superestimar a resposta do placebo; a alternativa '30% vs 2% com placebo' também subestima de modo importante o benefício observado com sibeprenlimabe, embora o valor do placebo seja numericamente baixo; e a alternativa '65% vs 8% com placebo' superestima a magnitude do efeito do tratamento e não corresponde aos números reportados. Como a questão cobra um dado numérico específico do estudo, a única opção que reproduz adequadamente os valores apresentados é a letra B.",
-    "diff": "hard",
+    "ans": 0,
+    "exp": "A base do tratamento da nefropatia por IgA é a TERAPIA DE SUPORTE otimizada: bloqueio do SRAA (IECA ou BRA) em dose máxima tolerada, controle pressórico rigoroso, iSGLT2 e medidas de estilo de vida. Agentes dirigidos à fisiopatologia imune — como o anti-APRIL sibeprenlimabe — entram para o RISCO RESIDUAL, isto é, pacientes que mantêm proteinúria significativa apesar do suporte otimizado (população exata do VISIONARY). Por isso a alternativa A é a correta. Não é terapia de primeira linha isolada (o suporte vem antes e continua); não se inicia só em diálise (o objetivo é justamente preservar função antes disso); e nunca substitui o bloqueio do SRAA — os dois são complementares, atuando em eixos diferentes (hemodinâmico vs imune).",
+    "diff": "medium",
     "cat": "glomerular",
     "refs": [
       "visionary_trial",
-      "kdigo_aki_2026"
+      "kdigo_gn"
     ]
   },
   {
@@ -16920,22 +16919,21 @@ const topics = [
     ]
   },
   {
-    "t": "VALIANT — Desfecho Primário",
+    "t": "Pegcetacoplano (VALIANT) — racional do alvo C3",
     "qid": "e4d4db47",
-    "q": "Qual foi a redução percentual média na razão proteína-creatinina urinária (UPCR) com o uso de pegcetacoplano em comparação ao placebo na semana 26 do estudo VALIANT?",
+    "q": "O pegcetacoplano, inibidor de C3, foi estudado no VALIANT para glomerulopatia C3 (C3G) e GN membranoproliferativa por imunocomplexos (IC-MPGN). Qual é o racional fisiopatológico para inibir o complemento exatamente nessas duas doenças?",
     "opts": [
-      "35% de redução (P=0,01)",
-      "68% de redução vs placebo (P<0,0001)",
-      "50% de redução (P=0,005)",
-      "80% de redução (P<0,001)"
+      "São glomerulopatias mediadas por desregulação/hiperativação da via alternativa do complemento, com depósito de C3 no glomérulo; inibir C3 reduz a lesão inflamatória e a proteinúria",
+      "São mediadas por IgA1 deficiente em galactose; inibir C3 bloqueia diretamente a produção dessa IgA",
+      "O complemento não participa da lesão; o efeito do pegcetacoplano é puramente hemodinâmico, como o dos iSGLT2",
+      "Inibir C3 aumenta a opsonização e acelera a depuração dos imunocomplexos por fagocitose esplênica"
     ],
-    "ans": 1,
-    "exp": "No estudo VALIANT, o pegcetacoplano mostrou redução relativa de aproximadamente 68% na razão proteína-creatinina urinária em comparação ao placebo na semana 26, com significância estatística robusta, tornando a alternativa '68% de redução vs placebo (P<0,0001)' a correta. Esse achado é coerente com o mecanismo do fármaco, um inibidor proximal do complemento em doenças glomerulares mediadas por ativação complementar, nas quais a redução da lesão inflamatória glomerular se traduz em queda importante da proteinúria. A alternativa '35% de redução (P=0,01)' está incorreta porque subestima de forma relevante o efeito observado no ensaio; a alternativa '50% de redução (P=0,005)' também descreve uma redução menor do que a reportada; e a alternativa '80% de redução (P<0,001)' superestima o benefício, atribuindo uma magnitude de resposta maior do que a documentada. Portanto, entre as opções apresentadas, apenas a letra B reproduz adequadamente o resultado do VALIANT para UPCR na semana 26.",
-    "diff": "hard",
+    "ans": 0,
+    "exp": "C3G e IC-MPGN compartilham um eixo fisiopatológico comum: desregulação da via ALTERNATIVA do complemento, com consumo de C3 e depósito glomerular de produtos do complemento (na C3G, predomínio de C3 à imunofluorescência; na IC-MPGN, imunocomplexos que ativam complemento). Como o C3 é o ponto de convergência proximal de todas as vias do complemento, inibi-lo (pegcetacoplano) reduz a inflamação glomerular e, consequentemente, a proteinúria — daí o racional do VALIANT (alternativa A). A IgA1 deficiente em galactose é a fisiopatologia da nefropatia por IgA, não da C3G; o efeito não é hemodinâmico (isso é iSGLT2/SRAA); e inibir C3 reduz a opsonização, não a aumenta.",
+    "diff": "medium",
     "cat": "glomerular",
     "refs": [
-      "kdigo_tx",
-      "kdigo_aki_2026"
+      "kdigo_gn"
     ]
   },
   {
@@ -17353,18 +17351,18 @@ const topics = [
     ]
   },
   {
-    "t": "Telitacicept — Redução de Proteinúria",
+    "t": "Telitacicept — bloqueio duplo BAFF + APRIL",
     "qid": "a501e622",
-    "q": "Em um ensaio clínico randomizado de 39 semanas, qual foi a redução percentual da proteinúria (uPCR-24h) observada com o uso de telitacicept em comparação ao placebo em pacientes com nefropatia por IgA?",
+    "q": "O telitacicept difere do sibeprenlimabe por ser uma proteína de fusão que bloqueia não apenas o APRIL, mas também o BAFF. Qual a consequência mecanística desse bloqueio DUPLO na nefropatia por IgA?",
     "opts": [
-      "30,5% vs 15,2% (P=0,01)",
-      "58,9% vs 8,8% (P<0,0001)",
-      "45% vs 20% (P=0,005)",
-      "70% vs 5% (P<0,001)"
+      "Inibe a sobrevivência e maturação de linfócitos B e plasmócitos por duas vias (BAFF e APRIL), reduzindo de forma mais ampla a produção de IgA1 deficiente em galactose",
+      "Bloqueia o receptor de endotelina A, reduzindo proteinúria por vasodilatação da arteríola eferente",
+      "Inibe o cotransportador SGLT2, reduzindo a pressão intraglomerular",
+      "Ativa linfócitos T reguladores, induzindo tolerância imunológica à IgA"
     ],
-    "ans": 1,
-    "exp": "A alternativa '58,9% vs 8,8% (P<0,0001)' é a correta porque reproduz o resultado reportado no ensaio randomizado de 39 semanas em nefropatia por IgA, no qual o telitacicept promoveu redução muito mais acentuada da proteinúria do que o placebo. Esse achado é fisiopatologicamente coerente com o mecanismo do fármaco, que bloqueia BAFF e APRIL, reduzindo ativação de linfócitos B, produção de IgA anômala e formação de imunocomplexos envolvidos na lesão mesangial e na manutenção da proteinúria. A alternativa '30,5% vs 15,2% (P=0,01)' está errada por subestimar o efeito antiproteinúrico do telitacicept e atribuir ao placebo uma queda maior do que a observada; a alternativa '45% vs 20% (P=0,005)' também não corresponde aos valores publicados e desloca a magnitude do benefício e a resposta do grupo controle; e a alternativa '70% vs 5% (P<0,001)' superestima o efeito do tratamento e minimiza excessivamente a resposta do placebo, não refletindo o resultado do estudo. Portanto, entre as opções fornecidas, apenas a letra B corresponde ao dado numérico do ensaio.",
-    "diff": "hard",
+    "ans": 0,
+    "exp": "BAFF (B-cell activating factor) e APRIL são citocinas da mesma família que sustentam a sobrevivência, maturação e diferenciação de linfócitos B e plasmócitos. O sibeprenlimabe bloqueia só APRIL; o telitacicept é uma proteína de fusão (receptor TACI-Fc) que neutraliza BAFF E APRIL simultaneamente. Esse bloqueio duplo atinge a produção de IgA1 deficiente em galactose por dois eixos, com supressão mais ampla da resposta B (alternativa A). As demais descrevem mecanismos de classes diferentes: antagonista de endotelina A (atrasentana/sparsentana), iSGLT2 e indução de Treg — nenhum corresponde ao telitacicept.",
+    "diff": "medium",
     "cat": "glomerular",
     "refs": [
       "kdigo_igan_2025"
