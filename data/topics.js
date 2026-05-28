@@ -16809,22 +16809,21 @@ const topics = [
     ]
   },
   {
-    "t": "VISIONARY — Redução de Proteinúria aos 9 Meses",
+    "t": "VISIONARY — Sibeprenlimabe: proteinúria vs slope de TFGe",
     "qid": "aa732568",
-    "q": "No estudo VISIONARY (Fase 3), qual foi a redução percentual na razão proteína/creatinina urinária (uPCR) com o uso de sibeprenlimabe em comparação ao placebo após 9 meses de tratamento?",
+    "q": "Paciente de 38 anos, com nefropatia por IgA confirmada por biópsia, mantém proteinúria persistente apesar de tratamento de suporte otimizado com bloqueio do SRAA, controle pressórico adequado e iSGLT2. Ele é incluído em estudo com sibeprenlimabe, anticorpo monoclonal que bloqueia APRIL, reduzindo a produção de IgA1 deficiente em galactose e, consequentemente, a formação de imunocomplexos envolvidos na fisiopatologia da doença. No estudo VISIONARY, após demonstrar redução precoce da proteinúria, qual desfecho secundário-chave avalia se esse efeito se traduz em preservação sustentada da função renal?",
     "opts": [
-      "30,5% de redução vs aumento de 5% com placebo",
-      "51,2% de redução vs aumento de 2,1% com placebo (P<0,001)",
-      "70% de redução vs 10% de redução com placebo",
-      "25% de redução vs estabilidade com placebo"
+      "Sobrevida global em 5 anos",
+      "Slope anualizado da TFGe ao longo de 24 meses",
+      "Remissão completa da hematúria microscópica",
+      "Desaparecimento dos depósitos mesangiais de IgA na biópsia"
     ],
     "ans": 1,
-    "exp": "No VISIONARY, ensaio fase 3 em nefropatia por IgA com proteinúria persistente apesar de tratamento de suporte otimizado, o sibeprenlimabe, anticorpo monoclonal anti-APRIL, promoveu redução de aproximadamente 51,2% na razão proteína/creatinina urinária após 9 meses, enquanto o placebo apresentou discreto aumento de cerca de 2,1%, o que torna a alternativa '51,2% de redução vs aumento de 2,1% com placebo (P<0,001)' a única que reproduz adequadamente o resultado principal de proteinúria. A alternativa '30,5% de redução vs aumento de 5% com placebo' está errada porque subestima o efeito antiproteinúrico observado e superestima a variação no grupo placebo; a alternativa '70% de redução vs 10% de redução com placebo' está errada por exagerar a magnitude da resposta e ainda atribuir queda de proteinúria ao placebo, o que não corresponde ao ensaio; e a alternativa '25% de redução vs estabilidade com placebo' também é incorreta por minimizar o benefício do fármaco e descrever estabilidade com placebo, quando houve pequeno aumento da uPCR. O racional biológico é coerente com o bloqueio da via APRIL, que reduz a atividade imune relacionada à produção de IgA patogênica e, consequentemente, a lesão glomerular e a proteinúria.",
-    "diff": "hard",
+    "exp": "O sibeprenlimabe é um anticorpo monoclonal anti-APRIL. Ao bloquear APRIL, reduz a produção de IgA1 deficiente em galactose — etapa central na fisiopatologia da nefropatia por IgA — diminuindo a formação de imunocomplexos nefritogênicos. No VISIONARY, a redução da proteinúria funciona como marcador PRECOCE de resposta, mas a confirmação de nefroproteção exige avaliar se há menor perda de função renal ao longo do tempo. Por isso, o desfecho secundário-chave é o slope anualizado da TFGe ao longo de 24 meses. A sobrevida global em 5 anos não é endpoint factível nem desenhado para esse contexto; a remissão da hematúria microscópica e o desaparecimento dos depósitos mesangiais de IgA não são os endpoints usados para demonstrar preservação funcional renal. Conceito-chave: proteinúria = marcador precoce/substituto; slope de TFGe = desfecho mais robusto de preservação funcional renal.",
+    "diff": "medium",
     "cat": "glomerular",
     "refs": [
-      "visionary_trial",
-      "kdigo_aki_2026"
+      "visionary_trial"
     ]
   },
   {
