@@ -1081,12 +1081,18 @@
 
     // Capítulos baseados em correctTotal (0-100) — 5 faixas de 20 acertos cada.
     // Boss começa em 90 (BOSS_START_CORRECT), por isso o capítulo final inicia em 80.
+    // Capítulos do painel lateral. Cadência alinhada ao arco narrativo dos
+    // popups (narrativeStages em boss.js) para o painel não ficar "travado"
+    // no prólogo por 20 acertos. "Criptas da Creatinina" agora é Cap. I (at:10),
+    // consistente com o popup do mesmo checkpoint.
     const chapters = [
-      { at:0,  title:"Prólogo — As Criptas da Creatinina",       goal:"Estude os fundamentos da nefrologia e sobreviva às primeiras cartas da jornada." },
-      { at:20, title:"Capítulo II — O Vale da Albuminúria",       goal:"Consolide a estratificação de risco renal e domine a terapia nefroprotetora essencial." },
-      { at:40, title:"Capítulo III — Torre das Glomerulopatias",  goal:"Domine os sinais de gravidade glomerular e tome decisões de intervenção com precisão." },
-      { at:60, title:"Capítulo IV — Trono Cardiorrenal",          goal:"Integre as terapias complexas do síndrome cardiorrenal e mantenha consistência clínica avançada." },
-      { at:80, title:"Capítulo Final — O Arqui-Nefromante",       goal:"Alcance o domínio supremo da nefrologia e derrote o Arqui-Nefromante de uma vez por todas." }
+      { at:0,  title:"Prólogo — O Chamado das Águas",            goal:"Domine os fundamentos da nefrologia e sobreviva às primeiras cartas da jornada." },
+      { at:10, title:"Capítulo I — As Criptas da Creatinina",    goal:"Interprete função renal, creatinina e os marcadores básicos de lesão." },
+      { at:20, title:"Capítulo II — O Vale da Albuminúria",      goal:"Consolide a estratificação de risco renal e a terapia nefroprotetora essencial." },
+      { at:35, title:"Capítulo III — Torre das Glomerulopatias", goal:"Domine os sinais de gravidade glomerular e decisões de intervenção com precisão." },
+      { at:50, title:"Capítulo IV — O Deserto da Diálise",       goal:"Entenda diálise, clearance, Kt/V e adequação terapêutica." },
+      { at:65, title:"Capítulo V — Trono Cardiorrenal",          goal:"Integre as terapias do eixo cardiorrenal e a nefrologia avançada." },
+      { at:80, title:"Capítulo Final — O Arqui-Nefromante",      goal:"Alcance o domínio supremo da nefrologia e derrote o Arqui-Nefromante." }
     ];
 
     function chapterMeta(){
