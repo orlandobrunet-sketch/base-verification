@@ -9616,12 +9616,15 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   #landingScreen {
     position: fixed;
     inset: 0;
-    overflow: hidden;
+    /* overflow-y:auto + margin:auto no card → centraliza quando cabe, mas
+       mantém o topo (logo/título) acessível e nunca cortado ao dar zoom. */
+    overflow-y: auto;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 0;
+    justify-content: flex-start;
+    padding: 16px 0;
   }
 
   /* 1 — Painel central */
@@ -9637,11 +9640,12 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 
     width: min(870px, calc(100vw - 100px));
     min-height: 530px;
-    max-height: calc(90vh - 48px);
     /* Defesa contra resoluções / zoom que façam o card exceder a viewport.
        Usa 100% (do parent #landingScreen) em vez de 100vw — em alguns níveis
        de zoom o 100vw inclui a área da scrollbar, fazendo o card render
-       maior que a viewport visível. */
+       maior que a viewport visível.
+       Sem max-height: o card cresce com o conteúdo e o #landingScreen rola,
+       evitando que o logo/título seja cortado ao dar zoom. */
     max-width: calc(100% - 16px);
 
     display: flex;
@@ -9649,7 +9653,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     align-items: stretch;
     justify-content: center;
     padding: 0;
-    margin: 0;
+    margin: auto;
 
     background:
       linear-gradient(180deg, rgba(13,17,39,.97), rgba(8,11,28,.96)),
