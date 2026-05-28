@@ -2632,7 +2632,8 @@
       }
       // Expor globalmente para o botão do bottom dock
       window.openMobileDrawer = openDrawer;
-      window._applyMobileState = function() { applyMobileState(); };
+      // (window._applyMobileState removido em v10.90 — sem chamadores externos;
+      //  applyMobileState() é chamado internamente direto)
       function applyMobileState() {
         const heroBtn = document.getElementById('mobileHeroBtn');
         if (isMobile()) {
