@@ -299,6 +299,10 @@
     const WHITELIST_KEY = 'nefroquest-whitelist';
     const IDENTITY_KEY = 'nq-identity'; // 'study' | 'combat'
     const _lang = (navigator.language || 'pt').startsWith('pt') ? 'pt' : 'en';
+    // Expõe o idioma detectado para outros módulos (single source of truth).
+    // Veja o helper t(pt, en) em utils.js para strings bilíngues.
+    window.NQ_CONFIG = window.NQ_CONFIG || {};
+    window.NQ_CONFIG.lang = _lang;
     const PRICE_MONTHLY  = _lang === 'pt' ? 'R$14,90' : 'US$14.90';
     const PRICE_LIFETIME = _lang === 'pt' ? 'R$199,00' : 'US$199.00';
     

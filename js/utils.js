@@ -22,6 +22,15 @@
       } catch(e) { /* silencia erros de analytics */ }
     }
 
+    // Helper de i18n leve. Uso: t('Texto PT', 'EN text'). Lê o idioma de
+    // window.NQ_CONFIG.lang (definido em game.js). Default = PT (fallback seguro
+    // — public médico brasileiro). Veja docs/I18N.md para a estratégia completa.
+    function t(pt, en) {
+      const lang = (window.NQ_CONFIG && window.NQ_CONFIG.lang) || 'pt';
+      return (lang === 'en' && typeof en === 'string') ? en : pt;
+    }
+    window.t = t;
+
     // Toast centralizado — substitui alert() em toda a aplicação
     let _toastTimer = null;
     function _toast(msg, type = 'info', duration = 3000) {
