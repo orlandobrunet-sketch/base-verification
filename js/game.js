@@ -415,6 +415,7 @@
         recentIds: _recentIds,
         chestsOpened: state.chestsOpened,
         obtainedItems: Array.isArray(state.obtainedItems) ? state.obtainedItems.slice() : [],
+        allItemsCollectedNotified: !!state.allItemsCollectedNotified,
         difficulty: state.difficulty || 'normal',
         maxLives: state.maxLives || 3,
         legendaryAbilityUsed: {...state.legendaryAbilityUsed},
@@ -610,6 +611,7 @@
       state.battleFinalShown = save.battleFinalShown || false;
       state.chestsOpened = save.chestsOpened || 0;
       state.obtainedItems = Array.isArray(save.obtainedItems) ? save.obtainedItems.slice() : [];
+      state.allItemsCollectedNotified = !!save.allItemsCollectedNotified;
       state.difficulty = save.difficulty || 'normal';
       state.maxLives = save.maxLives || 3;
       chestCost = Math.min(100 + state.chestsOpened * 15, 250);
@@ -978,7 +980,7 @@
       level:1,xp:0,xpToNext:200,score:0,lives:3,maxLives:3,streak:0,gold:0,difficulty:"normal",legendaryAbilityUsed:{},
       current:null,answered:false,queue:[],idx:0,bonusUses:0,
       correctTotal:0, narrativeShown:0, bossIntroShown:false, battleFinalShown:false, gameOver:false, bossLog:[],
-      gameStarted: false, chestsOpened:0, obtainedItems:[],
+      gameStarted: false, chestsOpened:0, obtainedItems:[], allItemsCollectedNotified:false,
       character: null,
       equipment:{
         weapon:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
@@ -1665,6 +1667,13 @@
         return pick;
       }
       // Pool de 23 itens esgotado: libera repetição (somente o que não está equipado)
+      // Notifica o jogador uma única vez para que ele saiba que coletou tudo.
+      if(!state.allItemsCollectedNotified){
+        state.allItemsCollectedNotified = true;
+        try { log('🏆 Você coletou todos os equipamentos do reino! Forjas agora podem repetir itens.'); } catch {}
+        try { if (typeof _toast === 'function') _toast('🏆 Coleção completa! Todos os 23 equipamentos já foram forjados.', 'success', 5000); } catch {}
+        try { _track('all_items_collected', { correctTotal: state.correctTotal }); } catch {}
+      }
       const allFree=[];
       Object.keys(items).forEach(slot=>{
         items[slot].forEach(i=>{ if(!equipped.includes(i.n)) allFree.push({slot,item:i}); });
