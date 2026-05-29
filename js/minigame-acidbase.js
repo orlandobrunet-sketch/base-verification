@@ -46,6 +46,9 @@
     const PaCO2 = Math.round(winterExpected + (Math.random() * 4 - 2)); // dentro do Winter
     const pH = _ph(HCO3, PaCO2);
     const BE = _be(HCO3, PaCO2);
+    // Log para verificação rápida no DevTools: confirme que os valores na
+    // gasometria, prompts e explicações batem com este snapshot.
+    try { console.info('[Câmara] Aldric rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, winterExpected, AG }); } catch {}
 
     return {
       narrative: 'O ferreiro <strong>Aldric</strong> chega à câmara cambaleando. Trabalhou 14h diante da forja sob calor extremo, sem pausa para água. Apresenta fraqueza intensa, taquipneia profunda e mucosas secas. Você colhe a gasometria arterial.',
@@ -69,7 +72,7 @@
         },
         {
           kind: 'num',
-          prompt: `<strong>Ato II — Compensação esperada (Winter).</strong><br>Calcule a PaCO₂ esperada para acidose metabólica com HCO₃⁻ = ${HCO3} mEq/L.`,
+          prompt: `<strong>Ato II — Compensação esperada (Winter).</strong><br>PaCO₂ medida na gasometria = <strong>${PaCO2} mmHg</strong>. Calcule a PaCO₂ <em>esperada</em> pela compensação respiratória, dado HCO₃⁻ = ${HCO3} mEq/L. Em seguida, compare: a compensação está adequada?`,
           grimoire: { title: 'Fórmula de Winter', body: '<code>PaCO₂ esperado = 1,5 × HCO₃⁻ + 8 (±2)</code><br>Aplica-se apenas a <em>acidose metabólica</em>.' },
           unit: 'mmHg',
           target: winterExpected,
@@ -315,7 +318,9 @@
   }
 
   function _appendNextBtn(card, overlay, kase, sess){
-    const fb = card.querySelector('#abFeedback');
+    // Botão fica FORA do .ab-feedback (que é flex row) para ocupar largura
+    // total abaixo, em vez de virar o terceiro item flex e esmagar o texto.
+    card.querySelector('.ab-next')?.remove();
     const next = document.createElement('button');
     next.type = 'button';
     next.className = 'ab-btn-primary ab-next';
@@ -325,7 +330,8 @@
       if (isLast) { _renderSummary(overlay, kase, sess); }
       else { sess.actIdx++; _renderAct(overlay, kase, sess); }
     };
-    fb.appendChild(next);
+    const fb = card.querySelector('#abFeedback');
+    fb.insertAdjacentElement('afterend', next);
     setTimeout(() => next.focus(), 30);
   }
 
