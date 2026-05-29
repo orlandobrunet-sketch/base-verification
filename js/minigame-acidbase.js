@@ -23,16 +23,33 @@
     _saveProgress(p);
   }
 
-  // ── Casos clínicos (Fase 1: apenas Aldric ativo) ─────────────────────────
-  const CASES = [
-    {
-      id: 'aldric',
-      title: 'Ferreiro Aldric',
-      subtitle: 'Acidose metabólica simples (Winter)',
-      chapter: 'Caso I — A Forja Escaldante',
-      unlocked: true,
+  // ── Geradores de valores randomizados (clinicamente plausíveis) ─────────
+  // Cada caso é construído a cada partida: gasometria sorteada dentro de
+  // faixas válidas, alvos (Winter, AG) e explicações recalculados nos
+  // valores reais → replay sem decorar.
+  function _rand(min, max){ return Math.floor(Math.random() * (max - min + 1)) + min; }
+  function _r1(n){ return Math.round(n * 10) / 10; }
+  function _r2(n){ return Math.round(n * 100) / 100; }
+  // Henderson–Hasselbalch: pH = 6,1 + log10(HCO3 / (0,03 × PaCO2))
+  function _ph(HCO3, PaCO2){ return _r2(6.1 + Math.log10(HCO3 / (0.03 * PaCO2))); }
+  function _be(HCO3, PaCO2){ return Math.round((HCO3 - 24) - 0.4 * (40 - PaCO2)); }
+
+  function _buildAldric(){
+    // Acidose metabólica com AG alto (acidose láctica por esforço/calor)
+    const HCO3 = _rand(8, 13);                       // metabolic acidosis moderada–grave
+    const Na   = _rand(136, 142);
+    const AG   = _rand(18, 22);                      // claramente elevado
+    const Cl   = Na - AG - HCO3;                     // calculado p/ fechar o AG sorteado
+    const alb  = _r1(3.8 + Math.random() * 0.4);     // normal → sem correção
+    const K    = _r1(3.8 + Math.random() * 1.2);
+    const winterExpected = _r1(1.5 * HCO3 + 8);      // alvo do Winter
+    const PaCO2 = Math.round(winterExpected + (Math.random() * 4 - 2)); // dentro do Winter
+    const pH = _ph(HCO3, PaCO2);
+    const BE = _be(HCO3, PaCO2);
+
+    return {
       narrative: 'O ferreiro <strong>Aldric</strong> chega à câmara cambaleando. Trabalhou 14h diante da forja sob calor extremo, sem pausa para água. Apresenta fraqueza intensa, taquipneia profunda e mucosas secas. Você colhe a gasometria arterial.',
-      gas: { pH: 7.22, PaCO2: 22, HCO3: 9, BE: -16, Na: 138, Cl: 110, K: 4.2, alb: 4.0 },
+      gas: { pH, PaCO2, HCO3, BE, Na, Cl, K, alb },
       acts: [
         {
           kind: 'mc',
@@ -43,62 +60,61 @@
             { label: 'Alcalose metabólica', correct: false },
             { label: 'Alcalose respiratória', correct: false }
           ],
-          explainCorrect: 'pH 7.22 → <strong>acidemia</strong>. HCO₃⁻ 9 mEq/L (baixo) acompanha a acidemia → distúrbio primário é <strong>metabólico</strong>. PaCO₂ 22 mmHg (baixo) é a compensação respiratória esperada (hiperventilação), não o distúrbio primário.',
+          explainCorrect: `pH ${pH} → <strong>acidemia</strong> (< 7,35). HCO₃⁻ ${HCO3} mEq/L (baixo) acompanha a acidemia → distúrbio primário é <strong>metabólico</strong>. PaCO₂ ${PaCO2} mmHg (baixo) é a compensação respiratória esperada (hiperventilação), não o distúrbio primário.`,
           explainWrong: {
-            'Acidose respiratória': 'Numa acidose respiratória primária, PaCO₂ estaria <em>alto</em> e HCO₃⁻ subiria para compensar. Aqui PaCO₂ está baixo.',
-            'Alcalose metabólica': 'Alcalose teria pH > 7.45 e HCO₃⁻ alto. Aqui o pH é 7.22 (ácido).',
-            'Alcalose respiratória': 'Alcalose teria pH > 7.45. Aqui o pH é 7.22.'
+            'Acidose respiratória': `Numa acidose respiratória primária, PaCO₂ estaria <em>alto</em> e HCO₃⁻ subiria para compensar. Aqui PaCO₂ ${PaCO2} está baixo.`,
+            'Alcalose metabólica': `Alcalose teria pH > 7,45 e HCO₃⁻ alto. Aqui pH ${pH} (ácido) e HCO₃⁻ ${HCO3} (baixo).`,
+            'Alcalose respiratória': `Alcalose teria pH > 7,45. Aqui pH ${pH}.`
           }
         },
         {
           kind: 'num',
-          prompt: '<strong>Ato II — Compensação esperada (Winter).</strong><br>Calcule a PaCO₂ esperada para acidose metabólica com HCO₃⁻ = 9 mEq/L.',
-          grimoire: {
-            title: 'Fórmula de Winter',
-            body: '<code>PaCO₂ esperado = 1,5 × HCO₃⁻ + 8 (±2)</code><br>Aplica-se apenas a <em>acidose metabólica</em>.'
-          },
+          prompt: `<strong>Ato II — Compensação esperada (Winter).</strong><br>Calcule a PaCO₂ esperada para acidose metabólica com HCO₃⁻ = ${HCO3} mEq/L.`,
+          grimoire: { title: 'Fórmula de Winter', body: '<code>PaCO₂ esperado = 1,5 × HCO₃⁻ + 8 (±2)</code><br>Aplica-se apenas a <em>acidose metabólica</em>.' },
           unit: 'mmHg',
-          target: 21.5,
+          target: winterExpected,
           tolerance: 2,
-          explainCorrect: 'PaCO₂ esperada = 1,5 × 9 + 8 = <strong>21,5 mmHg (±2)</strong>. O valor real (22) está dentro da faixa → a compensação respiratória é <strong>adequada</strong>. Não há distúrbio respiratório associado.',
-          explainWrong: 'Reveja: 1,5 × 9 = 13,5. Some 8 → 21,5. Tolerância ±2 (19,5–23,5). PaCO₂ real 22 entra na faixa.'
+          explainCorrect: `PaCO₂ esperada = 1,5 × ${HCO3} + 8 = <strong>${winterExpected} mmHg (±2)</strong>. O valor real (${PaCO2}) está dentro da faixa → a compensação respiratória é <strong>adequada</strong>. Não há distúrbio respiratório associado.`,
+          explainWrong: `Reveja: 1,5 × ${HCO3} = ${_r1(1.5*HCO3)}. Some 8 → ${winterExpected}. Tolerância ±2.`
         },
         {
           kind: 'num',
-          prompt: '<strong>Ato III — Ânion gap.</strong><br>Calcule o AG sérico (albumina normal = 4,0 g/dL).',
-          grimoire: {
-            title: 'Ânion gap',
-            body: '<code>AG = Na⁺ − (Cl⁻ + HCO₃⁻)</code><br>Normal: 8–12 mEq/L. Corrigir para albumina: <code>AG_corrigido = AG + 2,5 × (4 − alb)</code>.'
-          },
+          prompt: `<strong>Ato III — Ânion gap.</strong><br>Calcule o AG sérico (albumina = ${alb} g/dL).`,
+          grimoire: { title: 'Ânion gap', body: '<code>AG = Na⁺ − (Cl⁻ + HCO₃⁻)</code><br>Normal: 8–12 mEq/L. Corrigir para albumina: <code>AG_corrigido = AG + 2,5 × (4 − alb)</code>.' },
           unit: 'mEq/L',
-          target: 19,
+          target: AG,
           tolerance: 1,
-          explainCorrect: 'AG = 138 − (110 + 9) = <strong>19 mEq/L</strong> (alto, normal 8–12). Albumina normal → sem correção. <strong>AG elevado</strong> indica acúmulo de ácido orgânico — investigar <strong>lactato</strong> (exercício extremo + hipovolemia).',
-          explainWrong: 'AG = Na − (Cl + HCO₃). Aqui: 138 − (110 + 9) = 19.'
+          explainCorrect: `AG = ${Na} − (${Cl} + ${HCO3}) = <strong>${AG} mEq/L</strong> (alto, normal 8–12). Albumina ${alb} g/dL → sem correção significativa. <strong>AG elevado</strong> indica acúmulo de ácido orgânico — investigar <strong>lactato</strong> (exercício extremo + hipovolemia).`,
+          explainWrong: `AG = Na − (Cl + HCO₃). Aqui: ${Na} − (${Cl} + ${HCO3}) = ${AG}.`
         },
         {
           kind: 'mc',
-          prompt: '<strong>Ato IV — Conduta clínica.</strong><br>pH 7.22, lactato pendente, paciente desidratado e taquipneico. Qual a conduta inicial?',
+          prompt: `<strong>Ato IV — Conduta clínica.</strong><br>pH ${pH}, lactato pendente, paciente desidratado e taquipneico. Qual a conduta inicial?`,
           options: [
             { label: 'Bolus de bicarbonato de sódio 8,4% IV imediato', correct: false },
             { label: 'Reposição volêmica com cristaloide + investigar causa do AG alto (lactato, função renal)', correct: true },
             { label: 'Intubação e hiperventilação mecânica', correct: false },
             { label: 'Hemodiálise de urgência', correct: false }
           ],
-          explainCorrect: 'A causa provável é <strong>acidose láctica por hipoperfusão</strong> (desidratação + exercício). Tratar a causa: ressuscitação volêmica. Bicarbonato só se pH < 7,10 ou disfunção orgânica grave. Hiperventilação artificial é desnecessária (compensação já adequada). Hemodiálise sem indicação clara aqui (sem insuficiência renal grave, sem toxinas).',
+          explainCorrect: 'A causa provável é <strong>acidose láctica por hipoperfusão</strong> (desidratação + esforço). Tratar a causa: ressuscitação volêmica. Bicarbonato só se pH < 7,10 ou disfunção orgânica grave. Hiperventilação artificial é desnecessária (compensação já adequada). Hemodiálise sem indicação clara aqui.',
           explainWrong: {
-            'Bolus de bicarbonato de sódio 8,4% IV imediato': 'Bicarbonato em acidose láctica não melhora desfecho com pH > 7,10 e pode piorar acidose intracelular. Tratar a causa primeiro.',
+            'Bolus de bicarbonato de sódio 8,4% IV imediato': `Bicarbonato em acidose láctica não melhora desfecho com pH > 7,10 (aqui ${pH}) e pode piorar acidose intracelular. Tratar a causa primeiro.`,
             'Intubação e hiperventilação mecânica': 'A compensação respiratória já é adequada (Winter). Intubar sem indicação ventilatória prejudica a compensação espontânea.',
             'Hemodiálise de urgência': 'Sem indicação clássica de HD aguda (sem AEIOU: Acidose refratária, distúrbio Eletrolítico, Intoxicação, sObrecarga, Uremia).'
           }
         }
       ],
-      summary: '<strong>Acidose metabólica com AG alto</strong> + compensação respiratória adequada (Winter). Causa provável: <strong>acidose láctica</strong> por hipoperfusão (calor + esforço + desidratação). Conduta: volume + investigar lactato.'
-    },
-    { id: 'mara',   title: 'Curandeira Mara',  subtitle: 'Alcalose metabólica (vômitos)',         chapter: 'Caso II',  unlocked: false },
-    { id: 'theron', title: 'Guarda Theron',    subtitle: 'Acidose respiratória crônica (DPOC)',   chapter: 'Caso III', unlocked: false },
-    { id: 'vance',  title: 'Mercador Vance',   subtitle: 'Misto + delta-delta',                   chapter: 'Caso IV',  unlocked: false },
-    { id: 'kael',   title: 'General Kael',     subtitle: 'Triplo distúrbio (desafio)',            chapter: 'Caso V',   unlocked: false }
+      summary: `<strong>Acidose metabólica com AG alto (${AG})</strong> + compensação respiratória adequada (Winter prevê ${winterExpected}, real ${PaCO2}). Causa provável: <strong>acidose láctica</strong> por hipoperfusão (calor + esforço + desidratação). Conduta: volume + investigar lactato.`
+    };
+  }
+
+  // ── Casos clínicos (Fase 1: apenas Aldric ativo) ─────────────────────────
+  const CASES = [
+    { id:'aldric', title:'Ferreiro Aldric',  subtitle:'Acidose metabólica simples (Winter)',     chapter:'Caso I — A Forja Escaldante', unlocked:true,  build:_buildAldric },
+    { id:'mara',   title:'Curandeira Mara',  subtitle:'Alcalose metabólica (vômitos)',           chapter:'Caso II',                     unlocked:false },
+    { id:'theron', title:'Guarda Theron',    subtitle:'Acidose respiratória crônica (DPOC)',     chapter:'Caso III',                    unlocked:false },
+    { id:'vance',  title:'Mercador Vance',   subtitle:'Misto + delta-delta',                     chapter:'Caso IV',                     unlocked:false },
+    { id:'kael',   title:'General Kael',     subtitle:'Triplo distúrbio (desafio)',              chapter:'Caso V',                      unlocked:false }
   ];
 
   // ── UI: Hub (lista de casos) ───────────────────────────────────────────
@@ -162,7 +178,12 @@
   }
 
   // ── UI: Caso (4 atos sequenciais) ──────────────────────────────────────
-  function _startCase(overlay, kase){
+  function _startCase(overlay, meta){
+    if (typeof meta.build !== 'function') return;
+    // Cada partida sorteia uma instância nova: gas + atos + alvos
+    // (Winter, AG) recalculados, mantendo a narrativa e os tipos de acto.
+    const instance = meta.build();
+    const kase = Object.assign({}, meta, instance);
     try { if (typeof _track === 'function') _track('minigame_acid_base_case_started', { case: kase.id }); } catch {}
     const sess = { actIdx: 0, grimoireUses: 0, wrongAttempts: 0 };
     _renderIntro(overlay, kase, sess);
@@ -326,11 +347,16 @@
           <div><span>Grimório</span><strong>${sess.grimoireUses}×</strong></div>
         </div>
         <div class="ab-summary-actions">
-          <button type="button" class="ab-btn-primary" data-ab-back>← Voltar à Câmara</button>
+          <button type="button" class="ab-btn-secondary" data-ab-back>← Voltar à Câmara</button>
+          <button type="button" class="ab-btn-primary" data-ab-replay>↻ Jogar novamente (novos valores)</button>
         </div>
       </div>`;
     card.querySelector('[data-ab-close]').onclick = () => overlay.remove();
     card.querySelector('[data-ab-back]').onclick = () => { overlay.remove(); showAcidBaseMinigame(); };
+    card.querySelector('[data-ab-replay]').onclick = () => {
+      const meta = CASES.find(c => c.id === kase.id);
+      if (meta) _startCase(overlay, meta);
+    };
   }
 
   // ── Expor entry point ──────────────────────────────────────────────────
