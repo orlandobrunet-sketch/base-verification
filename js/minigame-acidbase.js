@@ -148,12 +148,14 @@
     overlay.innerHTML = `
       <div class="ab-card">
         <button type="button" class="ab-close" data-ab-close aria-label="Fechar">✕</button>
-        <div class="ab-hub">
-          <div class="ab-ornament">✦ A Câmara do Equilíbrio ✦</div>
-          <h2 class="ab-title">Alquimista Renal</h2>
-          <p class="ab-lead">Cinco pacientes do reino aguardam diagnóstico ácido-base. Domine a fórmula de Winter, o ânion gap e a delta-delta para restaurar o equilíbrio.</p>
-          <div class="ab-grid">${cardsHTML}</div>
-          <div class="ab-hub-footer">Progresso: <strong>${completed.size}/5</strong> casos · Sem cronômetro · 100% offline</div>
+        <div class="ab-scroll">
+          <div class="ab-hub">
+            <div class="ab-ornament">✦ A Câmara do Equilíbrio ✦</div>
+            <h2 class="ab-title">Alquimista Renal</h2>
+            <p class="ab-lead">Cinco pacientes do reino aguardam diagnóstico ácido-base. Domine a fórmula de Winter, o ânion gap e a delta-delta para restaurar o equilíbrio.</p>
+            <div class="ab-grid">${cardsHTML}</div>
+            <div class="ab-hub-footer">Progresso: <strong>${completed.size}/5</strong> casos · Sem cronômetro · 100% offline</div>
+          </div>
         </div>
       </div>`;
     document.body.appendChild(overlay);
@@ -192,12 +194,11 @@
     _renderIntro(overlay, kase, sess);
   }
 
-  function _renderIntro(overlay, kase, sess){
+  // Header compartilhado: caso + gasometria sempre visível em todas as telas.
+  function _contextHeaderHTML(kase){
     const g = kase.gas;
-    const card = overlay.querySelector('.ab-card');
-    card.innerHTML = `
-      <button type="button" class="ab-close" data-ab-close aria-label="Fechar">✕</button>
-      <div class="ab-case-view">
+    return `
+      <div class="ab-context">
         <div class="ab-ornament">${kase.chapter}</div>
         <h2 class="ab-title">${kase.title}</h2>
         <p class="ab-narrative">${kase.narrative}</p>
@@ -211,7 +212,18 @@
           <div class="ab-gas"><span>K⁺</span><strong>${g.K}</strong></div>
           <div class="ab-gas"><span>Albumina</span><strong>${g.alb}</strong><em>g/dL</em></div>
         </div>
-        <button type="button" class="ab-btn-primary" data-ab-start-acts>Iniciar Diagnóstico em 4 Atos →</button>
+      </div>`;
+  }
+
+  function _renderIntro(overlay, kase, sess){
+    const card = overlay.querySelector('.ab-card');
+    card.innerHTML = `
+      <button type="button" class="ab-close" data-ab-close aria-label="Fechar">✕</button>
+      <div class="ab-scroll">
+        ${_contextHeaderHTML(kase)}
+        <div class="ab-body ab-body--intro">
+          <button type="button" class="ab-btn-primary" data-ab-start-acts>Iniciar Diagnóstico em 4 Atos →</button>
+        </div>
       </div>`;
     card.querySelector('[data-ab-start-acts]').onclick = () => _renderAct(overlay, kase, sess);
     card.querySelector('[data-ab-close]').onclick = () => overlay.remove();
@@ -244,13 +256,16 @@
 
     card.innerHTML = `
       <button type="button" class="ab-close" data-ab-close aria-label="Fechar">✕</button>
-      <div class="ab-case-view">
-        <div class="ab-progress">${progressDots}</div>
-        <div class="ab-prompt">${act.prompt}</div>
-        ${grimoireBtn}
-        <div class="ab-grimoire-panel" id="abGrimoirePanel" hidden></div>
-        ${bodyHTML}
-        <div class="ab-feedback" id="abFeedback" hidden></div>
+      <div class="ab-scroll">
+        ${_contextHeaderHTML(kase)}
+        <div class="ab-body">
+          <div class="ab-progress">${progressDots}</div>
+          <div class="ab-prompt">${act.prompt}</div>
+          ${grimoireBtn}
+          <div class="ab-grimoire-panel" id="abGrimoirePanel" hidden></div>
+          ${bodyHTML}
+          <div class="ab-feedback" id="abFeedback" hidden></div>
+        </div>
       </div>`;
 
     card.querySelector('[data-ab-close]').onclick = () => overlay.remove();
@@ -344,17 +359,20 @@
     const flawless = sess.wrongAttempts === 0;
     card.innerHTML = `
       <button type="button" class="ab-close" data-ab-close aria-label="Fechar">✕</button>
-      <div class="ab-case-view ab-summary-view">
-        <div class="ab-ornament">${kase.chapter} — Concluído</div>
-        <h2 class="ab-title">${flawless ? '🏆 Diagnóstico Impecável' : '✓ Caso Concluído'}</h2>
-        <div class="ab-summary-text">${kase.summary}</div>
-        <div class="ab-summary-stats">
-          <div><span>Erros</span><strong>${sess.wrongAttempts}</strong></div>
-          <div><span>Grimório</span><strong>${sess.grimoireUses}×</strong></div>
-        </div>
-        <div class="ab-summary-actions">
-          <button type="button" class="ab-btn-secondary" data-ab-back>← Voltar à Câmara</button>
-          <button type="button" class="ab-btn-primary" data-ab-replay>↻ Jogar novamente (novos valores)</button>
+      <div class="ab-scroll">
+        ${_contextHeaderHTML(kase)}
+        <div class="ab-body ab-summary-view">
+          <div class="ab-ornament">${kase.chapter} — Concluído</div>
+          <h3 class="ab-summary-title">${flawless ? '🏆 Diagnóstico Impecável' : '✓ Caso Concluído'}</h3>
+          <div class="ab-summary-text">${kase.summary}</div>
+          <div class="ab-summary-stats">
+            <div><span>Erros</span><strong>${sess.wrongAttempts}</strong></div>
+            <div><span>Grimório</span><strong>${sess.grimoireUses}×</strong></div>
+          </div>
+          <div class="ab-summary-actions">
+            <button type="button" class="ab-btn-secondary" data-ab-back>← Voltar à Câmara</button>
+            <button type="button" class="ab-btn-primary" data-ab-replay>↻ Jogar novamente (novos valores)</button>
+          </div>
         </div>
       </div>`;
     card.querySelector('[data-ab-close]').onclick = () => overlay.remove();
