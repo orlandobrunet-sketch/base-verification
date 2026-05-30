@@ -46,6 +46,9 @@
     const PaCO2 = Math.round(winterExpected + (Math.random() * 4 - 2)); // dentro do Winter
     const pH = _ph(HCO3, PaCO2);
     const BE = _be(HCO3, PaCO2);
+    // Log para verificação rápida no DevTools: confirme que os valores na
+    // gasometria, prompts e explicações batem com este snapshot.
+    try { console.info('[Câmara] Aldric rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, winterExpected, AG }); } catch {}
 
     return {
       narrative: 'O ferreiro <strong>Aldric</strong> chega à câmara cambaleando. Trabalhou 14h diante da forja sob calor extremo, sem pausa para água. Apresenta fraqueza intensa, taquipneia profunda e mucosas secas. Você colhe a gasometria arterial.',
@@ -69,7 +72,7 @@
         },
         {
           kind: 'num',
-          prompt: `<strong>Ato II — Compensação esperada (Winter).</strong><br>Calcule a PaCO₂ esperada para acidose metabólica com HCO₃⁻ = ${HCO3} mEq/L.`,
+          prompt: `<strong>Ato II — Compensação esperada (Winter).</strong><br>PaCO₂ medida na gasometria = <strong>${PaCO2} mmHg</strong>. Calcule a PaCO₂ <em>esperada</em> pela compensação respiratória, dado HCO₃⁻ = ${HCO3} mEq/L. Em seguida, compare: a compensação está adequada?`,
           grimoire: { title: 'Fórmula de Winter', body: '<code>PaCO₂ esperado = 1,5 × HCO₃⁻ + 8 (±2)</code><br>Aplica-se apenas a <em>acidose metabólica</em>.' },
           unit: 'mmHg',
           target: winterExpected,
@@ -145,12 +148,14 @@
     overlay.innerHTML = `
       <div class="ab-card">
         <button type="button" class="ab-close" data-ab-close aria-label="Fechar">✕</button>
-        <div class="ab-hub">
-          <div class="ab-ornament">✦ A Câmara do Equilíbrio ✦</div>
-          <h2 class="ab-title">Alquimista Renal</h2>
-          <p class="ab-lead">Cinco pacientes do reino aguardam diagnóstico ácido-base. Domine a fórmula de Winter, o ânion gap e a delta-delta para restaurar o equilíbrio.</p>
-          <div class="ab-grid">${cardsHTML}</div>
-          <div class="ab-hub-footer">Progresso: <strong>${completed.size}/5</strong> casos · Sem cronômetro · 100% offline</div>
+        <div class="ab-scroll">
+          <div class="ab-hub">
+            <div class="ab-ornament">✦ A Câmara do Equilíbrio ✦</div>
+            <h2 class="ab-title">Alquimista Renal</h2>
+            <p class="ab-lead">Cinco pacientes do reino aguardam diagnóstico ácido-base. Domine a fórmula de Winter, o ânion gap e a delta-delta para restaurar o equilíbrio.</p>
+            <div class="ab-grid">${cardsHTML}</div>
+            <div class="ab-hub-footer">Progresso: <strong>${completed.size}/5</strong> casos · Sem cronômetro · 100% offline</div>
+          </div>
         </div>
       </div>`;
     document.body.appendChild(overlay);
@@ -189,12 +194,11 @@
     _renderIntro(overlay, kase, sess);
   }
 
-  function _renderIntro(overlay, kase, sess){
+  // Header compartilhado: caso + gasometria sempre visível em todas as telas.
+  function _contextHeaderHTML(kase){
     const g = kase.gas;
-    const card = overlay.querySelector('.ab-card');
-    card.innerHTML = `
-      <button type="button" class="ab-close" data-ab-close aria-label="Fechar">✕</button>
-      <div class="ab-case-view">
+    return `
+      <div class="ab-context">
         <div class="ab-ornament">${kase.chapter}</div>
         <h2 class="ab-title">${kase.title}</h2>
         <p class="ab-narrative">${kase.narrative}</p>
@@ -208,7 +212,18 @@
           <div class="ab-gas"><span>K⁺</span><strong>${g.K}</strong></div>
           <div class="ab-gas"><span>Albumina</span><strong>${g.alb}</strong><em>g/dL</em></div>
         </div>
-        <button type="button" class="ab-btn-primary" data-ab-start-acts>Iniciar Diagnóstico em 4 Atos →</button>
+      </div>`;
+  }
+
+  function _renderIntro(overlay, kase, sess){
+    const card = overlay.querySelector('.ab-card');
+    card.innerHTML = `
+      <button type="button" class="ab-close" data-ab-close aria-label="Fechar">✕</button>
+      <div class="ab-scroll">
+        ${_contextHeaderHTML(kase)}
+        <div class="ab-body ab-body--intro">
+          <button type="button" class="ab-btn-primary" data-ab-start-acts>Iniciar Diagnóstico em 4 Atos →</button>
+        </div>
       </div>`;
     card.querySelector('[data-ab-start-acts]').onclick = () => _renderAct(overlay, kase, sess);
     card.querySelector('[data-ab-close]').onclick = () => overlay.remove();
@@ -241,13 +256,16 @@
 
     card.innerHTML = `
       <button type="button" class="ab-close" data-ab-close aria-label="Fechar">✕</button>
-      <div class="ab-case-view">
-        <div class="ab-progress">${progressDots}</div>
-        <div class="ab-prompt">${act.prompt}</div>
-        ${grimoireBtn}
-        <div class="ab-grimoire-panel" id="abGrimoirePanel" hidden></div>
-        ${bodyHTML}
-        <div class="ab-feedback" id="abFeedback" hidden></div>
+      <div class="ab-scroll">
+        ${_contextHeaderHTML(kase)}
+        <div class="ab-body">
+          <div class="ab-progress">${progressDots}</div>
+          <div class="ab-prompt">${act.prompt}</div>
+          ${grimoireBtn}
+          <div class="ab-grimoire-panel" id="abGrimoirePanel" hidden></div>
+          ${bodyHTML}
+          <div class="ab-feedback" id="abFeedback" hidden></div>
+        </div>
       </div>`;
 
     card.querySelector('[data-ab-close]').onclick = () => overlay.remove();
@@ -315,7 +333,9 @@
   }
 
   function _appendNextBtn(card, overlay, kase, sess){
-    const fb = card.querySelector('#abFeedback');
+    // Botão fica FORA do .ab-feedback (que é flex row) para ocupar largura
+    // total abaixo, em vez de virar o terceiro item flex e esmagar o texto.
+    card.querySelector('.ab-next')?.remove();
     const next = document.createElement('button');
     next.type = 'button';
     next.className = 'ab-btn-primary ab-next';
@@ -325,7 +345,8 @@
       if (isLast) { _renderSummary(overlay, kase, sess); }
       else { sess.actIdx++; _renderAct(overlay, kase, sess); }
     };
-    fb.appendChild(next);
+    const fb = card.querySelector('#abFeedback');
+    fb.insertAdjacentElement('afterend', next);
     setTimeout(() => next.focus(), 30);
   }
 
@@ -338,17 +359,20 @@
     const flawless = sess.wrongAttempts === 0;
     card.innerHTML = `
       <button type="button" class="ab-close" data-ab-close aria-label="Fechar">✕</button>
-      <div class="ab-case-view ab-summary-view">
-        <div class="ab-ornament">${kase.chapter} — Concluído</div>
-        <h2 class="ab-title">${flawless ? '🏆 Diagnóstico Impecável' : '✓ Caso Concluído'}</h2>
-        <div class="ab-summary-text">${kase.summary}</div>
-        <div class="ab-summary-stats">
-          <div><span>Erros</span><strong>${sess.wrongAttempts}</strong></div>
-          <div><span>Grimório</span><strong>${sess.grimoireUses}×</strong></div>
-        </div>
-        <div class="ab-summary-actions">
-          <button type="button" class="ab-btn-secondary" data-ab-back>← Voltar à Câmara</button>
-          <button type="button" class="ab-btn-primary" data-ab-replay>↻ Jogar novamente (novos valores)</button>
+      <div class="ab-scroll">
+        ${_contextHeaderHTML(kase)}
+        <div class="ab-body ab-summary-view">
+          <div class="ab-ornament">${kase.chapter} — Concluído</div>
+          <h3 class="ab-summary-title">${flawless ? '🏆 Diagnóstico Impecável' : '✓ Caso Concluído'}</h3>
+          <div class="ab-summary-text">${kase.summary}</div>
+          <div class="ab-summary-stats">
+            <div><span>Erros</span><strong>${sess.wrongAttempts}</strong></div>
+            <div><span>Grimório</span><strong>${sess.grimoireUses}×</strong></div>
+          </div>
+          <div class="ab-summary-actions">
+            <button type="button" class="ab-btn-secondary" data-ab-back>← Voltar à Câmara</button>
+            <button type="button" class="ab-btn-primary" data-ab-replay>↻ Jogar novamente (novos valores)</button>
+          </div>
         </div>
       </div>`;
     card.querySelector('[data-ab-close]').onclick = () => overlay.remove();
