@@ -21,6 +21,8 @@
     p.grimoireUses = p.grimoireUses || {};
     p.grimoireUses[caseId] = (p.grimoireUses[caseId] || 0) + (grimoireUses || 0);
     _saveProgress(p);
+    // Aciona a conquista "Alquimista Renal" (zerar os 6 casos), se elegível.
+    try { if (typeof checkAchievements === 'function') checkAchievements(); } catch {}
   }
 
   // ── Geradores de valores randomizados (clinicamente plausíveis) ─────────
@@ -63,7 +65,7 @@
             { label: 'Alcalose metabólica', correct: false },
             { label: 'Alcalose respiratória', correct: false }
           ],
-          explainCorrect: `pH ${pH} → <strong>acidemia</strong> (< 7,35). HCO₃⁻ ${HCO3} mEq/L (baixo) acompanha a acidemia → distúrbio primário é <strong>metabólico</strong>. PaCO₂ ${PaCO2} mmHg (baixo) é a compensação respiratória esperada (hiperventilação), não o distúrbio primário.`,
+          explainCorrect: `pH ${pH} → <strong>acidemia</strong> (< 7,35). HCO₃⁻ ${HCO3} mEq/L (baixo) acompanha a acidemia → distúrbio primário é <strong>metabólico</strong>. PaCO₂ ${PaCO2} mmHg também está baixo (taquipneia), sugerindo compensação respiratória em curso — <em>adequada ou não, será calculado no Ato II</em>.`,
           explainWrong: {
             'Acidose respiratória': `Numa acidose respiratória primária, PaCO₂ estaria <em>alto</em> e HCO₃⁻ subiria para compensar. Aqui PaCO₂ ${PaCO2} está baixo.`,
             'Alcalose metabólica': `Alcalose teria pH > 7,45 e HCO₃⁻ alto. Aqui pH ${pH} (ácido) e HCO₃⁻ ${HCO3} (baixo).`,
@@ -116,13 +118,17 @@
   }
 
   // ── Casos clínicos (Fase 1: apenas Aldric ativo) ─────────────────────────
+  // Diagnóstico não aparece no hub (spoiler) — fica como metadata interna.
   const CASES = [
-    { id:'aldric', title:'Ferreiro Aldric',  subtitle:'Acidose metabólica simples (Winter)',     chapter:'Caso I — A Forja Escaldante', unlocked:true,  build:_buildAldric },
-    { id:'mara',   title:'Curandeira Mara',  subtitle:'Alcalose metabólica (vômitos)',           chapter:'Caso II',                     unlocked:false },
-    { id:'theron', title:'Guarda Theron',    subtitle:'Acidose respiratória crônica (DPOC)',     chapter:'Caso III',                    unlocked:false },
-    { id:'vance',  title:'Mercador Vance',   subtitle:'Misto + delta-delta',                     chapter:'Caso IV',                     unlocked:false },
-    { id:'kael',   title:'General Kael',     subtitle:'Triplo distúrbio (desafio)',              chapter:'Caso V',                      unlocked:false }
+    { id:'aldric',  caso:'Caso I',   title:'A Forja Escaldante',     character:'Ferreiro Aldric',     unlocked:true,  build:_buildAldric },
+    { id:'mara',    caso:'Caso II',  title:'O Banquete Envenenado',  character:'Curandeira Mara',     unlocked:false },
+    { id:'theron',  caso:'Caso III', title:'Sentinela das Brumas',   character:'Guarda Theron',       unlocked:false },
+    { id:'vance',   caso:'Caso IV',  title:'A Rota das Especiarias', character:'Mercador Vance',      unlocked:false },
+    { id:'kael',    caso:'Caso V',   title:'O Cerco de Aço',         character:'General Kael',        unlocked:false },
+    { id:'vorgath', caso:'Caso VI',  title:'A Taça de Cristal Verde',character:'Alquimista Vorgath',  unlocked:false }
   ];
+  // Helper p/ telas internas que ainda referenciam o "chapter" antigo.
+  function _chapterOf(meta){ return `${meta.caso} — ${meta.title}`; }
 
   // ── UI: Hub (lista de casos) ───────────────────────────────────────────
   function showAcidBaseMinigame(){
@@ -135,14 +141,18 @@
       const isDone = completed.has(c.id);
       const isLocked = !c.unlocked;
       const stateClass = isLocked ? 'ab-case-locked' : (isDone ? 'ab-case-done' : 'ab-case-ready');
-      const badge = isLocked ? '🔒 Em breve' : (isDone ? '✓ Concluído' : '▶ Jogar');
+      const cta = isLocked
+        ? '🔒 Em breve'
+        : (isDone ? '↻ Jogar novamente' : '▶ Jogar');
+      const doneBadge = (!isLocked && isDone) ? '<div class="ab-case-done-flag">✓ Concluído</div>' : '';
       const action = isLocked ? '' : `data-ab-case="${c.id}"`;
       return `
         <button type="button" class="ab-case ${stateClass}" ${action} ${isLocked?'disabled':''}>
-          <div class="ab-case-chapter">${c.chapter}</div>
+          ${doneBadge}
+          <div class="ab-case-num">${c.caso}</div>
           <div class="ab-case-title">${c.title}</div>
-          <div class="ab-case-sub">${c.subtitle}</div>
-          <div class="ab-case-badge">${badge}</div>
+          <div class="ab-case-char">${c.character}</div>
+          <div class="ab-case-cta">${cta}</div>
         </button>`;
     }).join('');
 
@@ -156,9 +166,9 @@
           <div class="ab-hub">
             <div class="ab-ornament">✦ A Câmara do Equilíbrio ✦</div>
             <h2 class="ab-title">Alquimista Renal</h2>
-            <p class="ab-lead">Cinco pacientes do reino aguardam diagnóstico ácido-base. Domine a fórmula de Winter, o ânion gap e a delta-delta para restaurar o equilíbrio.</p>
+            <p class="ab-lead">Seis pacientes do reino aguardam diagnóstico ácido-base. Domine a fórmula de Winter, o ânion gap, a delta-delta e o gap osmolar para restaurar o equilíbrio.</p>
             <div class="ab-grid">${cardsHTML}</div>
-            <div class="ab-hub-footer">Progresso: <strong>${completed.size}/5</strong> casos · Sem cronômetro · 100% offline</div>
+            <div class="ab-hub-footer">Progresso: <strong>${completed.size}/${CASES.length}</strong> casos · Sem cronômetro · 100% offline · Zerar desbloqueia ⚗️ <strong>Alquimista Renal</strong></div>
           </div>
         </div>
       </div>`;
@@ -187,7 +197,12 @@
     // Cada partida sorteia uma instância nova: gas + atos + alvos
     // (Winter, AG) recalculados, mantendo a narrativa e os tipos de acto.
     const instance = meta.build();
-    const kase = Object.assign({}, meta, instance);
+    // chapter (= "Caso I — Título") + título visível (= personagem) consolidados
+    // p/ que o header e o summary continuem usando kase.chapter / kase.title.
+    const kase = Object.assign({}, meta, instance, {
+      chapter: _chapterOf(meta),
+      title: meta.character
+    });
     try { if (typeof _track === 'function') _track('minigame_acid_base_case_started', { case: kase.id }); } catch {}
     const sess = { actIdx: 0, grimoireUses: 0, wrongAttempts: 0 };
     _renderIntro(overlay, kase, sess);
@@ -205,10 +220,10 @@
           <div class="ab-gas"><span>pH</span><strong>${g.pH}</strong></div>
           <div class="ab-gas"><span>PaCO₂</span><strong>${g.PaCO2}</strong><em>mmHg</em></div>
           <div class="ab-gas"><span>HCO₃⁻</span><strong>${g.HCO3}</strong><em>mEq/L</em></div>
-          <div class="ab-gas"><span>BE</span><strong>${g.BE}</strong></div>
-          <div class="ab-gas"><span>Na⁺</span><strong>${g.Na}</strong></div>
-          <div class="ab-gas"><span>Cl⁻</span><strong>${g.Cl}</strong></div>
-          <div class="ab-gas"><span>K⁺</span><strong>${g.K}</strong></div>
+          <div class="ab-gas"><span>BE</span><strong>${g.BE}</strong><em>mEq/L</em></div>
+          <div class="ab-gas"><span>Na⁺</span><strong>${g.Na}</strong><em>mEq/L</em></div>
+          <div class="ab-gas"><span>Cl⁻</span><strong>${g.Cl}</strong><em>mEq/L</em></div>
+          <div class="ab-gas"><span>K⁺</span><strong>${g.K}</strong><em>mEq/L</em></div>
           <div class="ab-gas"><span>Albumina</span><strong>${g.alb}</strong><em>g/dL</em></div>
         </div>
       </div>`;
