@@ -11819,8 +11819,9 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 }
 .acid-base-overlay .ab-case {
   position: relative;
-  display: flex; flex-direction: column; align-items: center; gap: 6px;
-  text-align: center; padding: 14px 14px 12px;
+  height: 100%;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  text-align: center; padding: 16px 14px 14px;
   background: rgba(20,28,55,0.6); border: 1px solid rgba(146,112,38,0.4);
   border-radius: 12px; color: #d5e2f2; cursor: pointer;
   font-family: 'Philosopher', serif; transition: transform .15s, border-color .15s, background .15s;
@@ -11837,12 +11838,16 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 .acid-base-overlay .ab-case-title {
   font-family: 'Cinzel', serif; font-size: 1rem; color: #eec752;
   line-height: 1.2; margin-top: 2px;
+  /* Reserva 2 linhas para que o personagem e o botão alinhem entre cards
+     com títulos de 1 ou 2 linhas. */
+  min-height: 2.4em;
+  display: flex; align-items: center; justify-content: center;
 }
 .acid-base-overlay .ab-case-char {
   font-size: 0.8rem; color: #b6c2d8; font-style: italic;
 }
 .acid-base-overlay .ab-case-cta {
-  margin-top: 10px; width: 100%; padding: 8px 10px; border-radius: 8px;
+  margin-top: auto; width: 100%; padding: 8px 10px; border-radius: 8px;
   font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 1.5px;
   background: linear-gradient(135deg, #6b4f1a, #927026);
   border: 1px solid rgba(238,199,82,0.5); color: #fff8e1;
@@ -11854,11 +11859,12 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   background: rgba(130,148,178,0.10); border-color: rgba(130,148,178,0.4); color: #8294b2;
 }
 .acid-base-overlay .ab-case-done-flag {
-  position: absolute; top: 6px; right: 8px;
-  font-size: 0.62rem; letter-spacing: 1px;
-  color: #4ade80; font-family: 'Cinzel', serif;
+  position: absolute; top: 8px; right: 8px;
+  width: 18px; height: 18px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(74,222,128,0.18); border: 1px solid rgba(74,222,128,0.5);
+  color: #4ade80; font-size: 0.72rem; line-height: 1; font-weight: 700;
 }
-.acid-base-overlay .ab-hub-footer { text-align: center; color: #8294b2; font-size: 0.78rem; }
 /* Caso — narrativa + gasometria */
 .acid-base-overlay .ab-narrative {
   color: #d5e2f2; font-size: 0.95rem; line-height: 1.6; text-align: center;
