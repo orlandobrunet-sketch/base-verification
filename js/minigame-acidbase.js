@@ -72,7 +72,7 @@
         },
         {
           kind: 'num',
-          prompt: `<strong>Ato II — Compensação esperada (Winter).</strong><br>PaCO₂ medida na gasometria = <strong>${PaCO2} mmHg</strong>. Calcule a PaCO₂ <em>esperada</em> pela compensação respiratória, dado HCO₃⁻ = ${HCO3} mEq/L. Em seguida, compare: a compensação está adequada?`,
+          prompt: `<strong>Ato II — Compensação esperada (Winter).</strong><br>Calcule a PaCO₂ esperada pela compensação respiratória.`,
           grimoire: { title: 'Fórmula de Winter', body: '<code>PaCO₂ esperado = 1,5 × HCO₃⁻ + 8 (±2)</code><br>Aplica-se apenas a <em>acidose metabólica</em>.' },
           unit: 'mmHg',
           target: winterExpected,
@@ -92,16 +92,20 @@
         },
         {
           kind: 'mc',
-          prompt: `<strong>Ato IV — Conduta clínica.</strong><br>pH ${pH}, lactato pendente, paciente desidratado e taquipneico. Qual a conduta inicial?`,
+          prompt: `<strong>Ato IV — Conduta clínica.</strong><br>Qual é a sua conduta inicial?`,
+          grimoire: {
+            title: 'Bicarbonato em acidose metabólica grave — BICAR-ICU',
+            body: 'Jaber S et al. <em>Lancet</em> 2018;392:31-40. Bicarbonato de sódio reduziu mortalidade em 28 dias no subgrupo com <strong>pH ≤ 7,20 + AKI KDIGO 2/3</strong> (acidose mista metabólica grave). Fora desse subgrupo, sem benefício e com riscos (hipernatremia, hipocalcemia, alcalose paradoxal intracelular). Tratar primeiro a causa da acidose.'
+          },
           options: [
             { label: 'Bolus de bicarbonato de sódio 8,4% IV imediato', correct: false },
             { label: 'Reposição volêmica com cristaloide + investigar causa do AG alto (lactato, função renal)', correct: true },
             { label: 'Intubação e hiperventilação mecânica', correct: false },
             { label: 'Hemodiálise de urgência', correct: false }
           ],
-          explainCorrect: 'A causa provável é <strong>acidose láctica por hipoperfusão</strong> (desidratação + esforço). Tratar a causa: ressuscitação volêmica. Bicarbonato só se pH < 7,10 ou disfunção orgânica grave. Hiperventilação artificial é desnecessária (compensação já adequada). Hemodiálise sem indicação clara aqui.',
+          explainCorrect: `A causa provável é <strong>acidose láctica por hipoperfusão</strong> (desidratação + esforço). Tratar a causa: ressuscitação volêmica. Pelo <strong>BICAR-ICU (Lancet 2018)</strong>, bicarbonato só tem benefício de mortalidade se <strong>pH ≤ 7,20 + AKI KDIGO 2/3</strong> — aqui pH ${pH} não atinge o limiar e a função renal ainda precisa ser avaliada. Hiperventilação artificial é desnecessária (compensação já adequada). Hemodiálise sem indicação clara.`,
           explainWrong: {
-            'Bolus de bicarbonato de sódio 8,4% IV imediato': `Bicarbonato em acidose láctica não melhora desfecho com pH > 7,10 (aqui ${pH}) e pode piorar acidose intracelular. Tratar a causa primeiro.`,
+            'Bolus de bicarbonato de sódio 8,4% IV imediato': `Pelo <strong>BICAR-ICU</strong>, bicarbonato só reduz mortalidade no subgrupo com pH ≤ 7,20 + AKI KDIGO 2/3. Aqui pH ${pH} ${pH<=7.20?'atinge o limiar de pH, mas falta confirmar AKI 2/3 e tratar a causa primeiro':'não atinge o limiar'}. Tratar a causa (volume) é a prioridade.`,
             'Intubação e hiperventilação mecânica': 'A compensação respiratória já é adequada (Winter). Intubar sem indicação ventilatória prejudica a compensação espontânea.',
             'Hemodiálise de urgência': 'Sem indicação clássica de HD aguda (sem AEIOU: Acidose refratária, distúrbio Eletrolítico, Intoxicação, sObrecarga, Uremia).'
           }
@@ -227,9 +231,15 @@
   function _renderAct(overlay, kase, sess){
     const act = kase.acts[sess.actIdx];
     const card = overlay.querySelector('.ab-card');
-    const progressDots = kase.acts.map((_,i) =>
-      `<span class="ab-dot ${i<sess.actIdx?'done':i===sess.actIdx?'current':''}"></span>`
-    ).join('');
+    // Bolinhas: passos já completados são clicáveis (volta ao ato anterior
+     // para revisão); o ato atual e os futuros ficam inertes.
+    const progressDots = kase.acts.map((_,i) => {
+      const cls = i < sess.actIdx ? 'done' : i === sess.actIdx ? 'current' : '';
+      const clickable = i < sess.actIdx;
+      return clickable
+        ? `<button type="button" class="ab-dot ${cls}" data-ab-goto="${i}" aria-label="Voltar ao Ato ${i+1}"></button>`
+        : `<span class="ab-dot ${cls}"></span>`;
+    }).join('');
 
     let bodyHTML = '';
     if (act.kind === 'mc') {
@@ -264,6 +274,9 @@
       </div>`;
 
     card.querySelector('[data-ab-close]').onclick = () => overlay.remove();
+    card.querySelectorAll('[data-ab-goto]').forEach(b => {
+      b.onclick = () => { sess.actIdx = parseInt(b.getAttribute('data-ab-goto'), 10); _renderAct(overlay, kase, sess); };
+    });
     const grimBtn = card.querySelector('[data-ab-grimoire]');
     if (grimBtn) grimBtn.onclick = () => {
       const panel = card.querySelector('#abGrimoirePanel');

@@ -11854,6 +11854,8 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 .acid-base-overlay .ab-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(130,148,178,0.3); border: 1px solid rgba(130,148,178,0.5); }
 .acid-base-overlay .ab-dot.current { background: rgba(238,199,82,0.6); border-color: #eec752; box-shadow: 0 0 10px rgba(238,199,82,0.5); }
 .acid-base-overlay .ab-dot.done { background: rgba(74,222,128,0.6); border-color: #4ade80; }
+.acid-base-overlay button.ab-dot { padding: 0; cursor: pointer; transition: transform .15s, box-shadow .15s; }
+.acid-base-overlay button.ab-dot:hover { transform: scale(1.25); box-shadow: 0 0 10px rgba(74,222,128,0.6); }
 /* Prompt + opções */
 .acid-base-overlay .ab-prompt {
   color: #d5e2f2; font-size: 1rem; line-height: 1.55; text-align: center;
