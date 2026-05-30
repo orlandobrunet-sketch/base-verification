@@ -65,7 +65,7 @@
             { label: 'Alcalose metabólica', correct: false },
             { label: 'Alcalose respiratória', correct: false }
           ],
-          explainCorrect: `pH ${pH} → <strong>acidemia</strong> (< 7,35). HCO₃⁻ ${HCO3} mEq/L (baixo) acompanha a acidemia → distúrbio primário é <strong>metabólico</strong>. PaCO₂ ${PaCO2} mmHg (baixo) é a compensação respiratória esperada (hiperventilação), não o distúrbio primário.`,
+          explainCorrect: `pH ${pH} → <strong>acidemia</strong> (< 7,35). HCO₃⁻ ${HCO3} mEq/L (baixo) acompanha a acidemia → distúrbio primário é <strong>metabólico</strong>. PaCO₂ ${PaCO2} mmHg também está baixo (taquipneia), sugerindo compensação respiratória em curso — <em>adequada ou não, será calculado no Ato II</em>.`,
           explainWrong: {
             'Acidose respiratória': `Numa acidose respiratória primária, PaCO₂ estaria <em>alto</em> e HCO₃⁻ subiria para compensar. Aqui PaCO₂ ${PaCO2} está baixo.`,
             'Alcalose metabólica': `Alcalose teria pH > 7,45 e HCO₃⁻ alto. Aqui pH ${pH} (ácido) e HCO₃⁻ ${HCO3} (baixo).`,
@@ -220,10 +220,10 @@
           <div class="ab-gas"><span>pH</span><strong>${g.pH}</strong></div>
           <div class="ab-gas"><span>PaCO₂</span><strong>${g.PaCO2}</strong><em>mmHg</em></div>
           <div class="ab-gas"><span>HCO₃⁻</span><strong>${g.HCO3}</strong><em>mEq/L</em></div>
-          <div class="ab-gas"><span>BE</span><strong>${g.BE}</strong></div>
-          <div class="ab-gas"><span>Na⁺</span><strong>${g.Na}</strong></div>
-          <div class="ab-gas"><span>Cl⁻</span><strong>${g.Cl}</strong></div>
-          <div class="ab-gas"><span>K⁺</span><strong>${g.K}</strong></div>
+          <div class="ab-gas"><span>BE</span><strong>${g.BE}</strong><em>mEq/L</em></div>
+          <div class="ab-gas"><span>Na⁺</span><strong>${g.Na}</strong><em>mEq/L</em></div>
+          <div class="ab-gas"><span>Cl⁻</span><strong>${g.Cl}</strong><em>mEq/L</em></div>
+          <div class="ab-gas"><span>K⁺</span><strong>${g.K}</strong><em>mEq/L</em></div>
           <div class="ab-gas"><span>Albumina</span><strong>${g.alb}</strong><em>g/dL</em></div>
         </div>
       </div>`;
