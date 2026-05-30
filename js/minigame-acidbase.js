@@ -117,18 +117,113 @@
     };
   }
 
-  // ── Casos clínicos (Fase 1: apenas Aldric ativo) ─────────────────────────
+  function _buildMara(){
+    // Alcalose metabólica salina-responsiva por vômitos (perda de HCl)
+    const HCO3 = _rand(34, 42);                      // alcalose metabólica
+    const Na   = _rand(138, 144);
+    const AG   = _rand(9, 12);                       // normal
+    const Cl   = Na - AG - HCO3;                     // baixo (hipocloremia por perda de HCl)
+    const alb  = _r1(3.8 + Math.random() * 0.4);
+    const K    = _r1(2.6 + Math.random() * 0.6);     // hipocalemia (2,6–3,2)
+    const compExpected = _r1(0.7 * HCO3 + 21);       // compensação respiratória esperada
+    const PaCO2 = Math.round(compExpected + (Math.random() * 4 - 2)); // dentro da faixa
+    const pH = _ph(HCO3, PaCO2);
+    const BE = _be(HCO3, PaCO2);
+    const ClU = _rand(6, 15);                         // cloreto urinário baixo → salina-responsiva
+    try { console.info('[Câmara] Mara rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, compExpected, AG, ClU }); } catch {}
+
+    return {
+      narrative: 'A curandeira <strong>Mara</strong> é trazida após três dias vomitando sem cessar, vítima de um banquete envenenado. Está fraca, com cãibras, mucosas secas e pulso fino. Você colhe a gasometria.',
+      gas: { pH, PaCO2, HCO3, BE, Na, Cl, K, alb },
+      acts: [
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato I — Distúrbio primário.</strong><br>Analisando pH, PaCO₂ e HCO₃⁻, qual o distúrbio primário?',
+          options: [
+            { label: 'Alcalose metabólica', correct: true },
+            { label: 'Alcalose respiratória', correct: false },
+            { label: 'Acidose metabólica', correct: false },
+            { label: 'Acidose respiratória', correct: false }
+          ],
+          explainCorrect: `pH ${pH} → <strong>alcalemia</strong> (> 7,45). HCO₃⁻ ${HCO3} mEq/L (alto) acompanha a alcalemia → distúrbio primário é <strong>metabólico</strong>. PaCO₂ ${PaCO2} mmHg está elevado (hipoventilação), sugerindo compensação respiratória em curso — <em>adequada ou não, será calculado no Ato II</em>.`,
+          explainWrong: {
+            'Alcalose respiratória': `Numa alcalose respiratória primária, PaCO₂ estaria <em>baixo</em> e o HCO₃⁻ cairia para compensar. Aqui PaCO₂ ${PaCO2} está alto e HCO₃⁻ ${HCO3} está alto.`,
+            'Acidose metabólica': `Acidose metabólica teria pH < 7,35 e HCO₃⁻ baixo. Aqui pH ${pH} (alcalino) e HCO₃⁻ ${HCO3} (alto).`,
+            'Acidose respiratória': `Acidose respiratória teria pH < 7,35 com PaCO₂ alto como causa primária. Aqui o pH é ${pH} (alcalino).`
+          }
+        },
+        {
+          kind: 'num',
+          prompt: `<strong>Ato II — Compensação esperada.</strong><br>Calcule a PaCO₂ esperada pela compensação respiratória.`,
+          grimoire: { title: 'Compensação respiratória — alcalose metabólica', body: '<code>PaCO₂ esperado = 0,7 × HCO₃⁻ + 21 (±2)</code><br>A hipoventilação compensatória é limitada (raramente PaCO₂ > 55 mmHg) pelo estímulo hipoxêmico.' },
+          unit: 'mmHg',
+          target: compExpected,
+          tolerance: 2,
+          explainCorrect: `PaCO₂ esperada = 0,7 × ${HCO3} + 21 = <strong>${compExpected} mmHg (±2)</strong>. O valor real (${PaCO2}) está dentro da faixa → a compensação respiratória é <strong>adequada</strong>. Não há distúrbio respiratório associado.`,
+          explainWrong: `Reveja: 0,7 × ${HCO3} = ${_r1(0.7*HCO3)}. Some 21 → ${compExpected}. Tolerância ±2.`
+        },
+        {
+          kind: 'mc',
+          prompt: `<strong>Ato III — Classificação.</strong><br>O <strong>cloreto urinário</strong> volta em <strong>${ClU} mEq/L</strong>. Como você classifica esta alcalose?`,
+          grimoire: { title: 'Cloreto urinário na alcalose metabólica', body: '<code>Cl⁻ urinário &lt; 20</code> → <strong>salina-responsiva</strong> (vômito/SNG, diuréticos prévios, pós-hipercapnia).<br><code>Cl⁻ urinário &gt; 20</code> → <strong>salina-resistente</strong> (hiperaldosteronismo, Bartter/Gitelman). Use o Cl⁻ urinário, não o Na⁺ (o Na⁺ pode estar alto pela bicarbonatúria).' },
+          options: [
+            { label: 'Salina-responsiva (Cl⁻ urinário < 20)', correct: true },
+            { label: 'Salina-resistente (Cl⁻ urinário > 20)', correct: false },
+            { label: 'Alcalose por excesso de mineralocorticoide', correct: false },
+            { label: 'Indeterminada — precisa de mais exames', correct: false }
+          ],
+          explainCorrect: `Cl⁻ urinário ${ClU} mEq/L (< 20) → <strong>salina-responsiva</strong>. Compatível com perda de HCl por vômitos + contração de volume, que ativa a reabsorção renal ávida de Cl⁻ (deixando a urina pobre em cloreto).`,
+          explainWrong: {
+            'Salina-resistente (Cl⁻ urinário > 20)': `Salina-resistente exige Cl⁻ urinário > 20. Aqui é ${ClU} (< 20).`,
+            'Alcalose por excesso de mineralocorticoide': `Hiperaldosteronismo é salina-resistente, com Cl⁻ urinário > 20 e geralmente hipertensão. Aqui o Cl⁻ urinário ${ClU} é baixo e há depleção de volume.`,
+            'Indeterminada — precisa de mais exames': `O cloreto urinário (${ClU}) já permite classificar: < 20 = salina-responsiva.`
+          }
+        },
+        {
+          kind: 'mc',
+          prompt: `<strong>Ato IV — Conduta clínica.</strong><br>Qual é a sua conduta inicial?`,
+          grimoire: { title: 'Tratamento da alcalose metabólica salina-responsiva', body: 'Repor volume com <strong>SF 0,9%</strong> (fornece Cl⁻ e desliga o estímulo à reabsorção de HCO₃⁻) + corrigir a <strong>hipocalemia com KCl</strong>. Acetazolamida fica reservada para quando a sobrecarga de volume impede o uso de salina. Bloqueador H2/IBP se a perda gástrica continuar.' },
+          options: [
+            { label: 'Soro fisiológico 0,9% IV + reposição de KCl', correct: true },
+            { label: 'Acetazolamida IV em bolus', correct: false },
+            { label: 'Infusão de bicarbonato de sódio IV', correct: false },
+            { label: 'Restrição hídrica rigorosa', correct: false }
+          ],
+          explainCorrect: `Alcalose salina-responsiva com hipocalemia (K ${K}) → <strong>SF 0,9%</strong> restaura volume e repõe Cl⁻, corrigindo a alcalose; <strong>KCl</strong> corrige o potássio (essencial, pois a hipocalemia perpetua a alcalose). Tratar a causa: antiemético/IBP.`,
+          explainWrong: {
+            'Acetazolamida IV em bolus': 'Acetazolamida só é indicada quando a sobrecarga de volume impede a reposição com salina. Aqui a paciente está depletada — SF 0,9% é a base.',
+            'Infusão de bicarbonato de sódio IV': 'Bicarbonato pioraria a alcalose já existente.',
+            'Restrição hídrica rigorosa': 'A paciente está hipovolêmica por vômitos; restringir volume agrava a contração e perpetua a alcalose.'
+          }
+        }
+      ],
+      summary: `<strong>Alcalose metabólica salina-responsiva</strong> (Cl⁻ urinário ${ClU} < 20) por perda de HCl (vômitos), com <strong>hipocalemia</strong> (K ${K}) e compensação respiratória adequada (esperado ${compExpected}, real ${PaCO2}). Conduta: SF 0,9% + KCl.`
+    };
+  }
+
+  // ── Casos clínicos (Fase 2: Aldric + Mara ativos) ────────────────────────
   // Diagnóstico não aparece no hub (spoiler) — fica como metadata interna.
+  // Desbloqueio é progressivo: um caso libera quando o anterior é concluído
+  // (ver _isPlayable). Casos sem build() ficam como "Em breve".
   const CASES = [
-    { id:'aldric',  caso:'Caso I',   title:'A Forja Escaldante',     character:'Ferreiro Aldric',     unlocked:true,  build:_buildAldric },
-    { id:'mara',    caso:'Caso II',  title:'O Banquete Envenenado',  character:'Curandeira Mara',     unlocked:false },
-    { id:'theron',  caso:'Caso III', title:'Sentinela das Brumas',   character:'Guarda Theron',       unlocked:false },
-    { id:'vance',   caso:'Caso IV',  title:'A Rota das Especiarias', character:'Mercador Vance',      unlocked:false },
-    { id:'kael',    caso:'Caso V',   title:'O Cerco de Aço',         character:'General Kael',        unlocked:false },
-    { id:'vorgath', caso:'Caso VI',  title:'A Taça de Cristal Verde',character:'Alquimista Vorgath',  unlocked:false }
+    { id:'aldric',  caso:'Caso I',   title:'A Forja Escaldante',     character:'Ferreiro Aldric',     build:_buildAldric },
+    { id:'mara',    caso:'Caso II',  title:'O Banquete Envenenado',  character:'Curandeira Mara',     build:_buildMara },
+    { id:'theron',  caso:'Caso III', title:'Sentinela das Brumas',   character:'Guarda Theron'      },
+    { id:'vance',   caso:'Caso IV',  title:'A Rota das Especiarias', character:'Mercador Vance'     },
+    { id:'kael',    caso:'Caso V',   title:'O Cerco de Aço',         character:'General Kael'       },
+    { id:'vorgath', caso:'Caso VI',  title:'A Taça de Cristal Verde',character:'Alquimista Vorgath' }
   ];
   // Helper p/ telas internas que ainda referenciam o "chapter" antigo.
   function _chapterOf(meta){ return `${meta.caso} — ${meta.title}`; }
+
+  // Um caso é jogável se: tem build() E (é o primeiro OU o anterior já foi
+  // concluído). Casos sem build() ficam sempre bloqueados ("Em breve").
+  function _isPlayable(meta, completed){
+    if (typeof meta.build !== 'function') return false;
+    const idx = CASES.indexOf(meta);
+    if (idx <= 0) return true;
+    return completed.has(CASES[idx - 1].id);
+  }
 
   // ── UI: Hub (lista de casos) ───────────────────────────────────────────
   function showAcidBaseMinigame(){
@@ -137,17 +232,21 @@
     const completed = new Set(progress.completed || []);
     try { if (typeof _track === 'function') _track('minigame_acid_base_opened', {}); } catch {}
 
-    const cardsHTML = CASES.map(c => {
+    const cardsHTML = CASES.map((c, idx) => {
       const isDone = completed.has(c.id);
-      const isLocked = !c.unlocked;
-      const stateClass = isLocked ? 'ab-case-locked' : (isDone ? 'ab-case-done' : 'ab-case-ready');
-      const cta = isLocked
+      const hasBuild = typeof c.build === 'function';
+      const playable = _isPlayable(c, completed);
+      // Bloqueado por sequência: tem build, mas o caso anterior não foi concluído.
+      const lockedBySeq = hasBuild && !playable;
+      const stateClass = !playable ? 'ab-case-locked' : (isDone ? 'ab-case-done' : 'ab-case-ready');
+      const cta = !hasBuild
         ? '🔒 Em breve'
-        : (isDone ? '↻ Jogar novamente' : '▶ Jogar');
-      const doneBadge = (!isLocked && isDone) ? '<div class="ab-case-done-flag">✓ Concluído</div>' : '';
-      const action = isLocked ? '' : `data-ab-case="${c.id}"`;
+        : (lockedBySeq ? '🔒 Conclua o caso anterior'
+        : (isDone ? '↻ Jogar novamente' : '▶ Jogar'));
+      const doneBadge = (playable && isDone) ? '<div class="ab-case-done-flag">✓ Concluído</div>' : '';
+      const action = playable ? `data-ab-case="${c.id}"` : '';
       return `
-        <button type="button" class="ab-case ${stateClass}" ${action} ${isLocked?'disabled':''}>
+        <button type="button" class="ab-case ${stateClass}" ${action} ${playable?'':'disabled'}>
           ${doneBadge}
           <div class="ab-case-num">${c.caso}</div>
           <div class="ab-case-title">${c.title}</div>
@@ -186,7 +285,8 @@
       if (caseBtn){
         const id = caseBtn.getAttribute('data-ab-case');
         const c = CASES.find(x => x.id === id);
-        if (c && c.unlocked) _startCase(overlay, c);
+        const completed = new Set((_loadProgress().completed) || []);
+        if (c && _isPlayable(c, completed)) _startCase(overlay, c);
       }
     });
   }
