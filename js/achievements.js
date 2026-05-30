@@ -145,6 +145,21 @@
         }
       },
       {
+        id: 'acid_base_master',
+        name: 'Alquimista Renal',
+        description: 'Conclua os 6 casos da Câmara do Equilíbrio (minigame ácido-base)',
+        icon: '⚗️',
+        condition: () => {
+          try {
+            const p = JSON.parse(localStorage.getItem('nq-acidbase-progress') || '{}');
+            const done = new Set(p.completed || []);
+            // IDs em sync com CASES em js/minigame-acidbase.js
+            const allCases = ['aldric', 'mara', 'theron', 'vance', 'kael', 'vorgath'];
+            return allCases.every(id => done.has(id));
+          } catch { return false; }
+        }
+      },
+      {
         id: 'grimoire_master',
         name: 'Guardião do Grimório Eterno',
         description: 'Desbloqueie todas as referências e artigos do Grimório de Conhecimento',
