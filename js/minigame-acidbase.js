@@ -163,9 +163,11 @@
   }
 
   function _bindOverlayEvents(overlay){
+    // Fecha SOMENTE pelo botão ✕ (sem click-outside, sem ESC) para não
+    // perder progresso de um ato no meio do raciocínio por engano.
     overlay.addEventListener('click', e => {
       const t = e.target;
-      if (t === overlay || t.closest('[data-ab-close]')) { overlay.remove(); return; }
+      if (t.closest('[data-ab-close]')) { overlay.remove(); return; }
       const caseBtn = t.closest('[data-ab-case]');
       if (caseBtn){
         const id = caseBtn.getAttribute('data-ab-case');
@@ -173,13 +175,6 @@
         if (c && c.unlocked) _startCase(overlay, c);
       }
     });
-    document.addEventListener('keydown', _escClose);
-    function _escClose(ev){
-      if (ev.key === 'Escape' && document.getElementById(AB_OVERLAY_ID)){
-        overlay.remove();
-        document.removeEventListener('keydown', _escClose);
-      }
-    }
   }
 
   // ── UI: Caso (4 atos sequenciais) ──────────────────────────────────────
