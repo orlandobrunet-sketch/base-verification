@@ -105,7 +105,7 @@
             { label: 'Intubação e hiperventilação mecânica', correct: false },
             { label: 'Hemodiálise de urgência', correct: false }
           ],
-          explainCorrect: `A causa provável é <strong>acidose láctica por hipoperfusão</strong> (desidratação + esforço). Tratar a causa: ressuscitação volêmica. Pelo <strong>BICAR-ICU (Lancet 2018)</strong>, bicarbonato só tem benefício de mortalidade se <strong>pH ≤ 7,20 + AKI KDIGO 2/3</strong> — aqui pH ${pH} não atinge o limiar e a função renal ainda precisa ser avaliada. Hiperventilação artificial é desnecessária (compensação já adequada). Hemodiálise sem indicação clara.`,
+          explainCorrect: `A causa provável é <strong>acidose láctica por hipoperfusão</strong> (desidratação + esforço). Tratar a causa: ressuscitação volêmica. Pelo <strong>BICAR-ICU (Lancet 2018)</strong>, bicarbonato só tem benefício de mortalidade se <strong>pH ≤ 7,20 + AKI KDIGO 2/3</strong> — aqui pH ${pH} não atinge o limiar e a função renal ainda precisa ser avaliada. Hemodiálise sem indicação clara no momento.`,
           explainWrong: {
             'Bolus de bicarbonato de sódio 8,4% IV imediato': `Pelo <strong>BICAR-ICU</strong>, bicarbonato só reduz mortalidade no subgrupo com pH ≤ 7,20 + AKI KDIGO 2/3. Aqui pH ${pH} ${pH<=7.20?'atinge o limiar de pH, mas falta confirmar AKI 2/3 e tratar a causa primeiro':'não atinge o limiar'}. Tratar a causa (volume) é a prioridade.`,
             'Intubação e hiperventilação mecânica': 'A compensação respiratória já é adequada (Winter). Intubar sem indicação ventilatória prejudica a compensação espontânea.',
@@ -380,6 +380,17 @@
     }); } catch {}
     const card = overlay.querySelector('.ab-card');
     const flawless = sess.wrongAttempts === 0;
+    // Referências do caso = fórmulas e trials do Grimório usados nos atos.
+    const refs = (kase.acts || []).filter(a => a.grimoire).map(a => a.grimoire);
+    const refsHTML = refs.length ? `
+          <div class="ab-refs">
+            <div class="ab-refs-title">📖 Referências do Grimório</div>
+            ${refs.map(r => `
+              <div class="ab-ref-card">
+                <div class="ab-ref-name">${r.title}</div>
+                <div class="ab-ref-body">${r.body}</div>
+              </div>`).join('')}
+          </div>` : '';
     card.innerHTML = `
       <button type="button" class="ab-close" data-ab-close aria-label="Fechar">✕</button>
       <div class="ab-scroll">
@@ -392,6 +403,7 @@
             <div><span>Erros</span><strong>${sess.wrongAttempts}</strong></div>
             <div><span>Grimório</span><strong>${sess.grimoireUses}×</strong></div>
           </div>
+          ${refsHTML}
           <div class="ab-summary-actions">
             <button type="button" class="ab-btn-secondary" data-ab-back>← Voltar à Câmara</button>
             <button type="button" class="ab-btn-primary" data-ab-replay>↻ Jogar novamente (novos valores)</button>

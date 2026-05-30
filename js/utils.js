@@ -341,11 +341,10 @@
       if (btn) btn.classList.remove('open');
     }
 
-    function openBibResumo(btn) {
-      const idx = parseInt(btn?.dataset?.itemIdx ?? '-1', 10);
-      const it = _bibVisibleItems[idx];
-      if (!it || it.locked) return;
-
+    // Renderiza o popup de resumo (mesmo visual usado no Grimório) a partir de
+    // um item com { label, autores, jornal, ano, resumo, conclusao, curiosidade, impacto }.
+    function _showResumoModal(it) {
+      if (!it) return;
       document.querySelectorAll('.bib-resumo-modal').forEach(el => el.remove());
 
       const hasContent = it.resumo || it.conclusao || it.curiosidade || it.impacto;
@@ -366,12 +365,37 @@
             <div class="brm-title">${escapeHtml(it.label)}</div>
             <button class="brm-close" data-action="closeBibResumo" aria-label="Fechar">✕</button>
           </div>
-          ${it.autores ? `<div class="brm-meta">${escapeHtml(it.autores)}${it.jornal ? ` · <em>${escapeHtml(it.jornal)}</em>` : ''}${it.ano ? ` (${escapeHtml(String(it.ano))})` : ''}</div>` : ''}
+          ${it.autores || it.jornal ? `<div class="brm-meta">${it.autores ? escapeHtml(it.autores) : ''}${it.jornal ? `${it.autores ? ' · ' : ''}<em>${escapeHtml(it.jornal)}</em>` : ''}${it.ano ? ` (${escapeHtml(String(it.ano))})` : ''}</div>` : ''}
           <div class="brm-body">${bodyHtml}</div>
         </div>
       `;
       overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
       document.body.appendChild(overlay);
+    }
+
+    function openBibResumo(btn) {
+      const idx = parseInt(btn?.dataset?.itemIdx ?? '-1', 10);
+      const it = _bibVisibleItems[idx];
+      if (!it || it.locked) return;
+      _showResumoModal(it);
+    }
+
+    // Abre o mesmo popup de resumo do Grimório a partir de uma chave da refsDB.
+    // Usado pelas referências exibidas em cada questão do jogo.
+    function openRefResumo(key) {
+      if (typeof refsDB !== 'object' || !refsDB || !refsDB[key]) return;
+      const r = refsDB[key];
+      _showResumoModal({
+        label:       r.label || '',
+        autores:     '',
+        jornal:      r.journal || '',
+        ano:         r.ano || '',
+        resumo:      r.resumo || '',
+        conclusao:   r.conclusao || '',
+        curiosidade: r.curiosidade || '',
+        impacto:     r.impacto || '',
+      });
+      try { if (typeof _track === 'function') _track('ref_resumo_opened', { key }); } catch {}
     }
 
     function closeBibResumo() {

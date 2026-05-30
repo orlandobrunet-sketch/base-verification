@@ -1374,14 +1374,14 @@
       return q;
     }
     function renderRefs(keys){
-      const list = [...new Set(keys)].map(k => refsDB[k]).filter(Boolean);
+      const list = [...new Set(keys)].map(k => ({ key: k, ref: refsDB[k] })).filter(x => x.ref);
       if(!list.length){ ui.refs.innerHTML=''; return; }
 
       // Determinar cor de acento baseada no badge dominante
-      const hasRCT = list.some(r => r.badge === 'RCT');
+      const hasRCT = list.some(x => x.ref.badge === 'RCT');
       const accentColor = hasRCT ? '#10b981' : '#6366f1';
 
-      const cardsHTML = list.map((ref, i) => {
+      const cardsHTML = list.map(({ key, ref }, i) => {
         const accent = ref.badgeColor || '#6366f1';
         const impactoClass = (ref.impacto && (ref.impacto.includes('↓') || ref.impacto.includes('superior') || ref.impacto.includes('reduz'))) ? 'green' :
                              (ref.impacto && (ref.impacto.includes('não') || ref.impacto.includes('n\u00e3o'))) ? 'amber' : '';
@@ -1400,10 +1400,16 @@
               ${ref.tipo ? `<span class="ref-tipo">${escapeHtml(ref.tipo)}</span>` : ''}
             </div>
             ${ref.impacto ? `<div class="ref-impacto ${impactoClass}">${escapeHtml(ref.impacto)}</div>` : ''}
-            <button class="ref-copy-btn" data-action="_copyRefBtn" data-pass-this="1" data-copy-text="${escapeHtml(copyText)}">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              copiar referência
-            </button>
+            <div class="ref-actions">
+              <button class="ref-resumo-btn" data-action="openRefResumo" data-arg="${escapeHtml(key)}">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                ver resumo
+              </button>
+              <button class="ref-copy-btn" data-action="_copyRefBtn" data-pass-this="1" data-copy-text="${escapeHtml(copyText)}">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                copiar
+              </button>
+            </div>
           </div>`;
       }).join('');
 
@@ -1418,7 +1424,7 @@
         btn.innerHTML = '✓ copiado';
         btn.classList.add('ref-copy-btn--copied');
         setTimeout(() => {
-          btn.innerHTML = '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> copiar referência';
+          btn.innerHTML = '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> copiar';
           btn.classList.remove('ref-copy-btn--copied');
         }, 2000);
       }).catch(() => {});
