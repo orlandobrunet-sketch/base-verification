@@ -263,8 +263,15 @@
       /* Unifica o estilo visual entre JPEGs (assets/items) e PNGs (assets/images) */
       filter: saturate(1.25) contrast(1.05) brightness(1.0);
     }
-    .slot-info { flex: 1; }
-    .slot-name { font-size: 0.78rem; font-weight: 600; }
+    .slot-info { flex: 1; min-width: 0; }
+    .slot-name {
+      font-size: 0.78rem; font-weight: 600;
+      display: flex; align-items: baseline; gap: 4px; flex-wrap: nowrap;
+    }
+    .slot-name-text {
+      flex: 1 1 auto; min-width: 0;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
     .slot-stats { font-size: 0.62rem; color: var(--txt-dim); margin-top: 1px; display:flex; gap:6px; flex-wrap:wrap; }
     .stat-badge { position:relative; cursor:help; padding:1px 4px; border-radius:3px; background:rgba(42,74,122,0.3); transition:background 0.2s, color 0.2s; display:inline-block; }
     .stat-badge:hover { background:rgba(42,74,122,0.6); color:#fff; z-index: var(--z-modal-high); }
@@ -426,15 +433,18 @@
       border: 2px solid rgba(255,215,0,0.5) !important; border-radius: 8px;
       animation: legendaryPassiveGlow 3s ease-in-out infinite;
     }
+    /* legendary-used: mantido apenas como borda (sem acinzentar). O JS não
+       aplica mais esta classe; regra preservada por compatibilidade. */
     .slot-icon.legendary-used {
-      border: 2px solid rgba(255,215,0,0.2) !important; border-radius: 8px;
-      filter: saturate(0.35) brightness(0.65) contrast(1.05);
+      border: 2px solid var(--gold) !important; border-radius: 8px;
     }
-    /* Ability label badge on item — o rótulo (ex.: "📖 Pular 1 questão") já
-       indica a habilidade ativa; nenhum ornamento extra para não quebrar linha. */
-    .slot.has-used-ability .slot-name::after {
-      content: " (usada)"; color: #64748b; font-size: 0.68em;
+    /* Status da habilidade — mesma linha do título, alinhado à direita. */
+    .slot-ability-status {
+      flex-shrink: 0; font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.3px; white-space: nowrap; margin-left: 8px;
     }
+    .slot-ability-status.ready { color: #4ade80; }   /* verde: disponível */
+    .slot-ability-status.used  { color: #f87171; }   /* vermelho: já usada */
 
     /* ===== PULAR QUESTÃO BUTTON ===== */
     .skip-question-btn {
