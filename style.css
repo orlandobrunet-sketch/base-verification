@@ -5544,17 +5544,19 @@
 /* Garante que o conteúdo do landing fique acima do overlay */
 #landingScreen > * { position: relative; z-index: 1; }
 
-/* ── Welcome screen: mesmo fundo da tela de perguntas (nefroquest_background.jpg) ── */
-/* Estratégia: background via ::before para poder aplicar brightness sem afetar o conteúdo */
+/* ── Welcome screen: mesmo fundo da tela de login (bg-hall.jpg) ── */
+/* Espelha exatamente o #landingScreen: imagem no background + overlay escuro
+   uniforme no ::before (mesmo tom, sem filtro de brilho). */
 #welcomeScreen {
-  background: none !important;
+  background:
+    url('assets/bg-hall.jpg') center/cover no-repeat,
+    #060810 !important;
 }
 #welcomeScreen::before {
   content: '';
   position: absolute;
   top: 0; right: 0; bottom: 0; left: 0;
-  background: url('assets/nefroquest_background.jpg') center/cover no-repeat;
-  filter: brightness(0.45) saturate(1.1);
+  background: rgba(4, 6, 18, 0.48);
   pointer-events: none;
   z-index: 0;
 }
