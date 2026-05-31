@@ -243,7 +243,7 @@
         ? '🔒 Em breve'
         : (lockedBySeq ? '🔒 Conclua o caso anterior'
         : (isDone ? '↻ Jogar novamente' : '▶ Jogar'));
-      const doneBadge = (playable && isDone) ? '<div class="ab-case-done-flag">✓ Concluído</div>' : '';
+      const doneBadge = (playable && isDone) ? '<div class="ab-case-done-flag" title="Concluído" aria-label="Concluído">✓</div>' : '';
       const action = playable ? `data-ab-case="${c.id}"` : '';
       return `
         <button type="button" class="ab-case ${stateClass}" ${action} ${playable?'':'disabled'}>
@@ -267,7 +267,6 @@
             <h2 class="ab-title">Alquimista Renal</h2>
             <p class="ab-lead">Seis pacientes do reino aguardam diagnóstico ácido-base. Domine a fórmula de Winter, o ânion gap, a delta-delta e o gap osmolar para restaurar o equilíbrio.</p>
             <div class="ab-grid">${cardsHTML}</div>
-            <div class="ab-hub-footer">Progresso: <strong>${completed.size}/${CASES.length}</strong> casos · Sem cronômetro · 100% offline · Zerar desbloqueia ⚗️ <strong>Alquimista Renal</strong></div>
           </div>
         </div>
       </div>`;
