@@ -5,6 +5,13 @@
 (function(){
   const AB_KEY = 'nq-acidbase-progress';
   const AB_OVERLAY_ID = 'acidBaseOverlay';
+  // Logs de verificação só em debug (não poluir o console em produção).
+  // Ative no DevTools com: window.NQ_ACIDBASE_DEBUG = true
+  function _dbg(label, data){
+    if (typeof window !== 'undefined' && window.NQ_ACIDBASE_DEBUG) {
+      try { console.info('[Câmara] ' + label, data); } catch {}
+    }
+  }
 
   // ── Persistência ────────────────────────────────────────────────────────
   function _loadProgress(){
@@ -80,9 +87,7 @@
     const PaCO2 = Math.round(winterExpected + (Math.random() * 4 - 2)); // dentro do Winter
     const pH = _ph(HCO3, PaCO2);
     const BE = _be(HCO3, PaCO2);
-    // Log para verificação rápida no DevTools: confirme que os valores na
-    // gasometria, prompts e explicações batem com este snapshot.
-    try { console.info('[Câmara] Aldric rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, winterExpected, AG }); } catch {}
+    _dbg('Aldric rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, winterExpected, AG });
 
     return {
       narrative: 'O ferreiro <strong>Aldric</strong> chega à câmara cambaleando. Trabalhou 14h diante da forja sob calor extremo, sem pausa para água. Apresenta fraqueza intensa, taquipneia profunda e mucosas secas. Você colhe a gasometria arterial.',
@@ -182,7 +187,7 @@
     const pH = _ph(HCO3, PaCO2);
     const BE = _be(HCO3, PaCO2);
     const ClU = _rand(6, 15);                         // cloreto urinário baixo → salina-responsiva
-    try { console.info('[Câmara] Mara rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, compExpected, AG, ClU }); } catch {}
+    _dbg('Mara rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, compExpected, AG, ClU });
 
     return {
       narrative: 'A curandeira <strong>Mara</strong> é trazida após três dias vomitando sem cessar, vítima de um banquete envenenado. Está fraca, com cãibras, mucosas secas e pulso fino. Você colhe a gasometria.',
@@ -210,9 +215,9 @@
           grimoire: { title: 'Compensação respiratória — alcalose metabólica', body: '<code>PaCO₂ esperado = 0,7 × HCO₃⁻ + 21 (±2)</code><br>A hipoventilação compensatória é limitada (raramente PaCO₂ > 55 mmHg) pelo estímulo hipoxêmico.' },
           unit: 'mmHg',
           target: compExpected,
-          tolerance: 2,
-          explainCorrect: `PaCO₂ esperada = 0,7 × ${HCO3} + 21 = <strong>${compExpected} mmHg (±2)</strong>. O valor real (${PaCO2}) está dentro da faixa → a compensação respiratória é <strong>adequada</strong>. Não há distúrbio respiratório associado.`,
-          explainWrong: `Reveja: 0,7 × ${HCO3} = ${_r1(0.7*HCO3)}. Some 21 → ${compExpected}. Tolerância ±2.`
+          tolerance: 5,
+          explainCorrect: `PaCO₂ esperada = 0,7 × ${HCO3} + 21 = <strong>${compExpected} mmHg (±5)</strong>. A compensação respiratória da alcalose metabólica tem variância ampla (raramente PaCO₂ > 55). O valor real (${PaCO2}) está na faixa → compensação <strong>adequada</strong>, sem distúrbio respiratório associado.`,
+          explainWrong: `Reveja: 0,7 × ${HCO3} = ${_r1(0.7*HCO3)}. Some 21 → ${compExpected}. Tolerância ±5 (variância clínica ampla).`
         },
         {
           kind: 'mc',
@@ -285,7 +290,7 @@
     const pH = _ph(HCO3, PaCO2);
     const BE = _be(HCO3, PaCO2);
     const PaO2 = _rand(52, 66);                            // hipoxemia
-    try { console.info('[Câmara] Theron rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, expHCO3, PaO2 }); } catch {}
+    _dbg('Theron rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, expHCO3, PaO2 });
 
     return {
       narrative: 'O guarda <strong>Theron</strong> retorna da muralha com dispneia súbita e dor ao respirar, após dias imobilizado por um ferimento na perna. Está taquipneico e ansioso. A oximetria mostra hipoxemia.',
@@ -384,7 +389,7 @@
     const PaCO2 = Math.round(winterExpected + (Math.random() * 4 - 2));
     const pH = _ph(HCO3, PaCO2);
     const BE = _be(HCO3, PaCO2);
-    try { console.info('[Câmara] Vance rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, winterExpected, AG }); } catch {}
+    _dbg('Vance rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, winterExpected, AG });
 
     return {
       narrative: 'O mercador <strong>Vance</strong> chega após dias de diarreia volumosa durante a travessia da rota das especiarias. Refere fraqueza, sede intensa e cãibras.',
@@ -476,7 +481,7 @@
     const alb = _r1(3.8 + Math.random() * 0.4);
     const pH = _ph(HCO3, PaCO2);
     const BE = _be(HCO3, PaCO2);
-    try { console.info('[Câmara] Kael rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, expHCO3 }); } catch {}
+    _dbg('Kael rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, expHCO3 });
 
     return {
       narrative: 'O general <strong>Kael</strong> recebeu uma poção sedativa potente para a dor após a batalha. Tornou-se progressivamente sonolento, com respiração lenta e superficial.',
@@ -581,7 +586,7 @@
     const osmCalc = Math.round(2 * Na + glic / 18 + bun / 2.8);
     const osmGap = _rand(22, 40);                          // elevado (normal < 10)
     const osmMed = osmCalc + osmGap;
-    try { console.info('[Câmara] Vorgath rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, AG, winterExpected, glic, bun, osmCalc, osmMed, osmGap }); } catch {}
+    _dbg('Vorgath rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, AG, winterExpected, glic, bun, osmCalc, osmMed, osmGap });
 
     return {
       narrative: 'O alquimista <strong>Vorgath</strong> bebeu uma solução cristalina esverdeada acreditando ser um elixir raro. Horas depois, evolui com náuseas, fala arrastada, confusão e dor lombar.',
@@ -901,7 +906,7 @@
     }
 
     const grimoireBtn = act.grimoire
-      ? `<button type="button" class="ab-grimoire-btn" data-ab-grimoire>📖 Consultar Grimório</button>`
+      ? `<button type="button" class="ab-grimoire-btn" data-ab-grimoire aria-expanded="false" aria-controls="abGrimoirePanel">📖 Consultar Grimório</button>`
       : '';
 
     card.innerHTML = `
@@ -925,9 +930,10 @@
     const grimBtn = card.querySelector('[data-ab-grimoire]');
     if (grimBtn) grimBtn.onclick = () => {
       const panel = card.querySelector('#abGrimoirePanel');
-      if (!panel.hasAttribute('hidden')) { panel.setAttribute('hidden',''); return; }
+      if (!panel.hasAttribute('hidden')) { panel.setAttribute('hidden',''); grimBtn.setAttribute('aria-expanded','false'); return; }
       panel.innerHTML = `<div class="ab-grimoire-title">${act.grimoire.title}</div><div class="ab-grimoire-body">${act.grimoire.body}</div>`;
       panel.removeAttribute('hidden');
+      grimBtn.setAttribute('aria-expanded','true');
       sess.grimoireUses++;
     };
 
@@ -1011,7 +1017,12 @@
   }
 
   function _handleAnswerNum(overlay, kase, sess, value){
-    if (!Number.isFinite(value)) return;
+    if (!Number.isFinite(value)) {
+      const inp = overlay.querySelector('#abNumInput');
+      if (inp) inp.focus();
+      if (typeof _toast === 'function') _toast('Digite um valor para conferir.', 'info', 2200);
+      return;
+    }
     const act = kase.acts[sess.actIdx];
     sess.actResults = sess.actResults || {};
     if (!sess.actResults[sess.actIdx]) {            // conta o erro só na 1ª resposta
