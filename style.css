@@ -11917,52 +11917,104 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 }
 .acid-base-overlay .ab-num-input:focus { border-color: #eec752; box-shadow: 0 0 0 3px rgba(238,199,82,0.15); }
 .acid-base-overlay .ab-num-unit { color: #8294b2; font-size: 0.85rem; }
-/* Mesa de Cartas (Ato de Diagnósticos Diferenciais) */
+/* Mesa de Cartas — O Conselho dos Diagnósticos */
+.acid-base-overlay .ab-ddx-narrative {
+  color: #b6c2d8; font-size: 0.86rem; line-height: 1.55;
+  text-align: center; margin: 0 0 8px;
+}
+.acid-base-overlay .ab-ddx-arquivista {
+  font-family: 'Cinzel', serif; font-style: italic;
+  color: rgba(238,199,82,0.85); font-size: 0.82rem;
+  text-align: center; margin: 0 0 12px; line-height: 1.45;
+}
 .acid-base-overlay .ab-ddx-instruction {
-  color: #8294b2; font-size: 0.82rem; text-align: center; margin: 0 0 10px;
+  color: #8294b2; font-size: 0.8rem; text-align: center; margin: 0 0 12px;
 }
 .acid-base-overlay .ab-ddx-table {
   display: grid; gap: 8px; margin-bottom: 12px;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+/* Cartas reveladas podem ficar mais largas (texto longo) */
+.acid-base-overlay .ab-ddx-table--revealed {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 .acid-base-overlay .ab-ddx-card {
-  position: relative; text-align: left; cursor: pointer;
-  display: flex; flex-direction: column; gap: 4px;
-  padding: 10px 12px 11px; padding-right: 26px;
-  background: rgba(20,28,55,0.55); border: 1px solid rgba(146,112,38,0.35);
+  position: relative; text-align: left;
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 12px 13px;
+  background: linear-gradient(180deg, rgba(20,28,55,0.6), rgba(14,19,40,0.6));
+  border: 1px solid rgba(146,112,38,0.4);
   border-radius: 10px; color: #d5e2f2; font-family: 'Philosopher', serif;
-  transition: border-color .15s, background .15s, box-shadow .15s;
+  transition: border-color .15s, background .15s, box-shadow .15s, transform .15s;
 }
-.acid-base-overlay .ab-ddx-card:hover:not(:disabled) { border-color: rgba(238,199,82,0.6); }
+/* Pré-confirmação: carta lacrada (botão clicável) */
+button.ab-ddx-card { cursor: pointer; }
+.acid-base-overlay button.ab-ddx-card:hover { border-color: rgba(238,199,82,0.6); }
 .acid-base-overlay .ab-ddx-card.selected {
   border-color: #eec752; background: rgba(238,199,82,0.10);
-  box-shadow: inset 0 0 0 1px rgba(238,199,82,0.4);
+  box-shadow: inset 0 0 0 1px rgba(238,199,82,0.4), 0 4px 14px rgba(0,0,0,0.35);
+  transform: translateY(-3px);
 }
-.acid-base-overlay .ab-ddx-card.correct { border-color: #4ade80; background: rgba(74,222,128,0.12); box-shadow: none; }
-.acid-base-overlay .ab-ddx-card.wrong   { border-color: #ef4444; background: rgba(239,68,68,0.12); box-shadow: none; }
-.acid-base-overlay .ab-ddx-card.missed  { border-color: #fbbf24; background: rgba(251,191,36,0.10); border-style: dashed; box-shadow: none; }
-.acid-base-overlay .ab-ddx-card:disabled { cursor: default; opacity: 1; }
-.acid-base-overlay .ab-ddx-card-title { font-family: 'Cinzel', serif; font-size: 0.85rem; color: #eec752; line-height: 1.25; }
-.acid-base-overlay .ab-ddx-card.correct .ab-ddx-card-title { color: #86efac; }
-.acid-base-overlay .ab-ddx-card.wrong .ab-ddx-card-title { color: #fca5a5; }
-.acid-base-overlay .ab-ddx-card.missed .ab-ddx-card-title { color: #fcd34d; }
-.acid-base-overlay .ab-ddx-card-clue { font-size: 0.74rem; color: #b6c2d8; }
-.acid-base-overlay .ab-ddx-card-mechanism { font-size: 0.72rem; color: #8294b2; line-height: 1.45; }
+.acid-base-overlay .ab-ddx-card-check {
+  position: absolute; top: 8px; right: 9px;
+  width: 18px; height: 18px; border-radius: 50%;
+  display: none; align-items: center; justify-content: center;
+  background: rgba(238,199,82,0.2); border: 1px solid rgba(238,199,82,0.6);
+  color: #eec752; font-size: 0.7rem; line-height: 1; font-weight: 700;
+}
+.acid-base-overlay .ab-ddx-card.selected .ab-ddx-card-check { display: flex; }
+.acid-base-overlay .ab-ddx-card-title { font-family: 'Cinzel', serif; font-size: 0.88rem; color: #eec752; line-height: 1.25; }
+.acid-base-overlay .ab-ddx-card-pre { display: flex; flex-direction: column; gap: 5px; }
+.acid-base-overlay .ab-ddx-clue { font-size: 0.76rem; color: #c2cee0; line-height: 1.4; }
+.acid-base-overlay .ab-ddx-clue-label {
+  display: block; font-family: 'Cinzel', serif; font-size: 0.6rem;
+  letter-spacing: 1px; text-transform: uppercase; color: #7c8aa8; margin-bottom: 1px;
+}
+/* Pós-confirmação: selos rompidos, mecanismo revelado */
+.acid-base-overlay .ab-ddx-card.revealed { padding-top: 26px; }
+.acid-base-overlay .ab-ddx-card.correct  { border-color: rgba(74,222,128,0.7);  background: rgba(74,222,128,0.10); }
+.acid-base-overlay .ab-ddx-card.missed   { border-color: rgba(251,191,36,0.7);  background: rgba(251,191,36,0.08); border-style: dashed; }
+.acid-base-overlay .ab-ddx-card.wrong    { border-color: rgba(239,68,68,0.6);   background: rgba(239,68,68,0.10); }
+.acid-base-overlay .ab-ddx-card.rejected { border-color: rgba(130,148,178,0.45); background: rgba(130,148,178,0.06); }
+.acid-base-overlay .ab-ddx-card.correct .ab-ddx-card-title  { color: #86efac; }
+.acid-base-overlay .ab-ddx-card.missed .ab-ddx-card-title   { color: #fcd34d; }
+.acid-base-overlay .ab-ddx-card.wrong .ab-ddx-card-title    { color: #fca5a5; }
+.acid-base-overlay .ab-ddx-card.rejected .ab-ddx-card-title { color: #aab6cc; }
 .acid-base-overlay .ab-ddx-card-badge {
-  position: absolute; top: 7px; right: 8px;
-  font-size: 0.58rem; letter-spacing: 0.5px; color: #eec752;
-  font-family: 'Cinzel', serif; text-transform: uppercase;
+  position: absolute; top: 8px; left: 13px;
+  font-size: 0.58rem; letter-spacing: 0.5px;
+  font-family: 'Cinzel', serif; text-transform: uppercase; color: #eec752;
 }
-.acid-base-overlay .ab-ddx-card.correct .ab-ddx-card-badge { color: #4ade80; }
-.acid-base-overlay .ab-ddx-card.wrong .ab-ddx-card-badge { color: #f87171; }
-.acid-base-overlay .ab-ddx-card.missed .ab-ddx-card-badge { color: #fbbf24; }
-.acid-base-overlay .ab-ddx-submit { width: 100%; }
+.acid-base-overlay .ab-ddx-card.correct .ab-ddx-card-badge  { color: #4ade80; }
+.acid-base-overlay .ab-ddx-card.missed .ab-ddx-card-badge   { color: #fbbf24; }
+.acid-base-overlay .ab-ddx-card.wrong .ab-ddx-card-badge    { color: #f87171; }
+.acid-base-overlay .ab-ddx-card.rejected .ab-ddx-card-badge { color: #8294b2; }
+.acid-base-overlay .ab-ddx-card-reveal { display: flex; flex-direction: column; gap: 6px; }
+.acid-base-overlay .ab-ddx-reveal-block { font-size: 0.78rem; color: #c2cee0; line-height: 1.5; }
+.acid-base-overlay .ab-ddx-reveal-label {
+  display: block; font-family: 'Cinzel', serif; font-size: 0.6rem;
+  letter-spacing: 1px; text-transform: uppercase; color: #7c8aa8; margin-bottom: 1px;
+}
+/* Controles e julgamento */
+.acid-base-overlay .ab-ddx-counter { text-align: center; color: #8294b2; font-size: 0.8rem; margin-bottom: 10px; }
+.acid-base-overlay .ab-ddx-counter strong { color: #eec752; }
+.acid-base-overlay .ab-ddx-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.acid-base-overlay .ab-ddx-actions .ab-ddx-submit { flex: 1 1 160px; }
+.acid-base-overlay .ab-ddx-actions .ab-ddx-clear { flex: 0 0 auto; margin-top: 0; }
+.acid-base-overlay .ab-ddx-judgment { margin-bottom: 12px; }
 .acid-base-overlay .ab-ddx-feedback-section { margin-top: 10px; }
 .acid-base-overlay .ab-ddx-feedback-title {
   font-family: 'Cinzel', serif; font-size: 0.76rem; letter-spacing: 1px;
   margin-bottom: 4px; opacity: 0.9;
 }
 .acid-base-overlay .ab-ddx-feedback-item { font-size: 0.82rem; line-height: 1.5; margin-bottom: 6px; }
+@media (prefers-reduced-motion: reduce) {
+  .acid-base-overlay .ab-ddx-card { transition: none; }
+  .acid-base-overlay .ab-ddx-card.selected { transform: none; }
+}
+@media (max-width: 560px) {
+  .acid-base-overlay .ab-ddx-table--revealed { grid-template-columns: 1fr; }
+}
 /* Grimório */
 .acid-base-overlay .ab-grimoire-btn {
   margin: 0 0 10px; padding: 8px 14px;
