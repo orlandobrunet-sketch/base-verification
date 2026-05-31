@@ -2776,7 +2776,9 @@
       const existing = document.getElementById('heroLoreModal');
       if(existing) existing.remove();
 
-      const st = state.stats || {};
+      // Usa total() (base + equipamento), a MESMA fonte do painel "Atributos
+      // Totais" do herói — antes lia state.stats (sem equipamento) e divergia.
+      const st = (typeof total === 'function') ? total() : (state.stats || {});
       const lvl = state.level || 1;
       const statsHtml = `
         <div class="lore-stats">

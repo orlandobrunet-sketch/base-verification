@@ -85,8 +85,13 @@
     .welcome-sound-controls,
     .mobile-sound-controls,
     .mobile-hero-btn,
+    .mobile-status-bar,
+    .mobile-bottom-dock,
     .lnd-particles,
     .particles { display: none; }
+    /* Evita o flash do conteúdo do app (vidas/ouro/streak no canto) antes do
+       style.css aplicar .hidden. O CSS externo re-exibe quando o JS remove .hidden. */
+    .hidden { display: none !important; }
   </style>
   <link rel="stylesheet" href="style.css">
   <script>
@@ -496,7 +501,7 @@
     <div class="lnd-footer">
       <span>nefroquest.com</span>
       <span class="lnd-footer-sep">·</span>
-      <span>v11.17</span>
+      <span>v11.18</span>
       <span class="lnd-footer-sep">·</span>
       <a href="https://nefroquest.com/privacy-policy.html" class="lnd-footer-link" target="_blank" rel="noopener">Política de Privacidade</a>
     </div>
