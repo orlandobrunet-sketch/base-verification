@@ -1181,16 +1181,25 @@
         const isActive = _ACTIVE_LEGS.has(v.n);
         const isPassive = _PASSIVE_LEGS.has(v.n);
         const wasUsed = !!(state.legendaryAbilityUsed && state.legendaryAbilityUsed[v.n]);
-        const glowCls = (v.rar==='legendary') ? (isPassive ? 'legendary-passive' : (wasUsed ? 'legendary-used' : 'legendary-active')) : '';
-        const slotCls = (isActive && !wasUsed) ? 'slot has-active-ability' : (isActive && wasUsed) ? 'slot has-used-ability' : 'slot';
-        const abilityBadge = (isActive||isPassive) ? `<div style="font-size:0.6rem;color:${wasUsed?'#64748b':isPassive?'rgba(255,215,0,0.7)':'#ffd700'};margin-top:2px">${wasUsed?'\u2713 usada':_LEG_LABELS[v.n]||''}</div>` : '';
-        const imgHtml = isEmpty 
+        // Mant\u00e9m o brilho lend\u00e1rio mesmo ap\u00f3s usar (n\u00e3o acinzenta o item).
+        const glowCls = (v.rar==='legendary') ? (isPassive ? 'legendary-passive' : 'legendary-active') : '';
+        // Status inline (mesma linha do t\u00edtulo, \u00e0 direita): verde "(utilizar)"
+        // antes de usar, vermelho "(usada)" depois. S\u00f3 para lend\u00e1rias ATIVAS.
+        const statusInline = isActive
+          ? (wasUsed
+              ? `<span class='slot-ability-status used'>(usada)</span>`
+              : `<span class='slot-ability-status ready'>(utilizar)</span>`)
+          : '';
+        // O que a habilidade faz vai para a legenda (tooltip), abaixo da descri\u00e7\u00e3o.
+        const abilityLabel = (isActive || isPassive) ? (_LEG_LABELS[v.n] || '') : '';
+        const tipDesc = abilityLabel ? (desc ? `${desc} \u2014 ${abilityLabel}` : abilityLabel) : desc;
+        const imgHtml = isEmpty
           ? `<div class='slot-icon' style='display:flex;align-items:center;justify-content:center;background:rgba(10,15,30,0.8);border:2px dashed var(--blue-dark);color:#3a5a8a;font-size:1.5rem'>?</div>`
-          : `<img class='slot-icon ${glowCls} item-with-tooltip' loading='lazy' src='${icon}' alt="${escapeHtml(v.n)}" data-item-name="${escapeHtml(v.n)}" data-item-desc="${escapeHtml(desc)}"/>`;
-        return `<div class='${slotCls}'>
+          : `<img class='slot-icon ${glowCls} item-with-tooltip' loading='lazy' src='${icon}' alt="${escapeHtml(v.n)}" data-item-name="${escapeHtml(v.n)}" data-item-desc="${escapeHtml(tipDesc)}"/>`;
+        return `<div class='slot'>
           ${imgHtml}
           <div class='slot-info'>
-            <div class='slot-name'><span class='rar-${v.rar}'>${v.n}</span>${abilityBadge}</div>
+            <div class='slot-name'><span class='slot-name-text rar-${v.rar}'>${v.n}</span>${statusInline}</div>
             <div class='slot-stats'>
               <span class='stat-badge'>⚔️${v.atk}<span class='stat-tip'><strong>${statTips.atk.icon} ${statTips.atk.name}</strong><br>${statTips.atk.desc}</span></span>
               <span class='stat-badge'>🛡️${v.def}<span class='stat-tip'><strong>${statTips.def.icon} ${statTips.def.name}</strong><br>${statTips.def.desc}</span></span>
