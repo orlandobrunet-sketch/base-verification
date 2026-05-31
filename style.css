@@ -90,12 +90,12 @@
     }
     /* Background Layer */
     .bg-layer {
-      position: fixed; inset: 0; z-index: 0;
+      position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 0;
       background: url('assets/nefroquest_background.jpg') center/cover no-repeat;
       filter: brightness(0.55) saturate(1.2);
     }
     .bg-overlay {
-      position: fixed; inset: 0; z-index: 1;
+      position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 1;
       background: radial-gradient(ellipse at center, transparent 30%, rgba(5,8,20,0.7) 100%);
     }
     /* Floating particles */
@@ -107,7 +107,7 @@
     }
     @keyframes fadeInUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
     @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
-    .particles { position: fixed; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
+    .particles { position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 2; pointer-events: none; overflow: hidden; }
     .particle {
       position: absolute; width: 4px; height: 4px; border-radius: 50%;
       background: var(--gold); opacity: 0.3;
@@ -278,11 +278,11 @@
     /* Botão desabilitado */
     .btn.disabled { opacity:0.4; cursor:not-allowed; filter:grayscale(0.6); pointer-events:none; }
     /* Popup de forja */
-    .forge-popup { position:fixed; inset:0; z-index: var(--z-critical); display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.7); animation:fadeIn 0.3s; padding:32px 16px; }
+    .forge-popup { position:fixed; top:0; right:0; bottom:0; left:0; z-index: var(--z-critical); display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.7); animation:fadeIn 0.3s; padding:32px 16px; }
     .forge-card { background:linear-gradient(135deg,#1a1040,#0e1830); border:2px solid var(--gold); border-radius:16px; padding:24px; text-align:center; max-width:340px; max-height:88vh; overflow-y:auto; box-shadow:0 0 40px rgba(255,215,0,0.2); animation:scaleIn 0.4s; }
     /* Equipment comparison popup */
     .equip-compare-overlay {
-      position: fixed; inset: 0; z-index: var(--z-critical);
+      position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: var(--z-critical);
       display: flex; align-items: center; justify-content: center;
       background: rgba(0,0,0,0.82); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
       animation: fadeIn 0.25s; padding: 16px;
@@ -361,7 +361,7 @@
     .ecp-rar.legendary { background: linear-gradient(135deg,rgba(255,215,0,0.4),rgba(255,140,0,0.4)); color: #ffd700; }
     /* ===== DIFFICULTY SELECTOR ===== */
     .diff-selector-overlay {
-      position: fixed; inset: 0; z-index: var(--z-panel); display: flex; align-items: flex-start;
+      position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: var(--z-panel); display: flex; align-items: flex-start;
       justify-content: center; background: rgba(0,0,0,0.85); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
       padding: 20px 16px; animation: fadeIn 0.25s; overflow-y: auto;
     }
@@ -448,7 +448,7 @@
 
     /* ===== MINIGAME POPUP ===== */
     .minigame-overlay {
-      position: fixed; inset: 0; z-index: var(--z-notify); display: flex; align-items: center;
+      position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: var(--z-notify); display: flex; align-items: center;
       justify-content: center; background: rgba(0,0,0,0.88); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
       animation: fadeIn 0.3s; padding: 16px;
     }
@@ -503,7 +503,7 @@
     @keyframes scaleIn { from{transform:scale(0.5);opacity:0} to{transform:scale(1);opacity:1} }
     @keyframes fadeIn { from{opacity:0} to{opacity:1} }
     /* Popup de narrativa */
-    .narrative-popup { position:fixed; inset:0; z-index: var(--z-critical); display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.8); animation:fadeIn 0.4s; padding:32px 16px; }
+    .narrative-popup { position:fixed; top:0; right:0; bottom:0; left:0; z-index: var(--z-critical); display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.8); animation:fadeIn 0.4s; padding:32px 16px; }
     .narrative-card { background:linear-gradient(135deg,#0e1830 0%,#1a1040 40%,#2a1050 100%); border:2px solid var(--gold); border-radius:16px; padding:28px 24px; text-align:center; max-width:420px; width:100%; max-height:calc(100vh - 64px); overflow-y:auto; box-shadow:0 0 60px rgba(255,215,0,0.15), inset 0 0 40px rgba(255,215,0,0.03); animation:scaleIn 0.5s; }
     .narrative-card .narr-chapter { color:var(--gold); font-family:'Cinzel',serif; font-size:0.75rem; letter-spacing:3px; text-transform:uppercase; margin-bottom:8px; opacity:0.8; }
     .narrative-card h3 { color:var(--gold); font-family:'Cinzel',serif; font-size:1.2rem; margin-bottom:14px; text-shadow:0 0 12px rgba(255,215,0,0.3); }
@@ -1108,7 +1108,7 @@
 
     /* MODALS */
     .modalWrap {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+      position: fixed; top: 0; right: 0; bottom: 0; left: 0; background: rgba(0,0,0,0.7);
       display: grid; place-items: center; z-index: var(--z-panel);
       -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
     }
@@ -1336,7 +1336,7 @@
 
     /* CHEST MODAL */
     .chest-modal {
-      display: none; position: fixed; inset: 0;
+      display: none; position: fixed; top: 0; right: 0; bottom: 0; left: 0;
       background: rgba(0,0,0,0.8); z-index: var(--z-panel);
       align-items: center; justify-content: center;
       -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
@@ -1380,7 +1380,7 @@
 
     /* PAYWALL MODAL */
     #paywallModal {
-      display: none; position: fixed; inset: 0;
+      display: none; position: fixed; top: 0; right: 0; bottom: 0; left: 0;
       background: rgba(0,0,0,0.88); z-index: var(--z-critical);
       align-items: center; justify-content: center;
       -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); padding: 16px;
@@ -1458,7 +1458,7 @@
 
     /* WELCOME SCREEN */
     .welcome-screen {
-      position: fixed; inset: 0; z-index: var(--z-overlay);
+      position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: var(--z-overlay);
       /* background aplicado via #welcomeScreen no bloco de redesign (bg-hall.jpg) */
       display: flex; align-items: flex-start; justify-content: center;
       animation: fadeIn 0.8s;
@@ -1498,7 +1498,7 @@
 
     /* Fundo sem imagem — apenas gradiente e efeitos */
     .welcome-bg {
-      position: absolute; inset: 0;
+      position: absolute; top: 0; right: 0; bottom: 0; left: 0;
       background:
         radial-gradient(ellipse 80% 50% at 50% -10%, rgba(100,60,180,0.18) 0%, transparent 70%),
         radial-gradient(ellipse 60% 40% at 20% 80%, rgba(30,80,160,0.12) 0%, transparent 60%),
@@ -1509,7 +1509,7 @@
     /* Grade sutil no fundo — estilo mapa medieval */
     .welcome-bg::before {
       content: '';
-      position: absolute; inset: 0;
+      position: absolute; top: 0; right: 0; bottom: 0; left: 0;
       background-image:
         linear-gradient(rgba(60,100,180,0.04) 1px, transparent 1px),
         linear-gradient(90deg, rgba(60,100,180,0.04) 1px, transparent 1px);
@@ -1521,7 +1521,7 @@
 
     /* Partículas — pontos de luz flutuantes discretos */
     .welcome-particles {
-      position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 1;
+      position: absolute; top: 0; right: 0; bottom: 0; left: 0; pointer-events: none; overflow: hidden; z-index: 1;
     }
     .wp {
       position: absolute;
@@ -1818,7 +1818,7 @@
 
     /* Overlay do popup MODOS DE JOGO */
     .game-modes-overlay {
-      display: none; position: fixed; inset: 0;
+      display: none; position: fixed; top: 0; right: 0; bottom: 0; left: 0;
       background: rgba(0,0,0,0.82); z-index: var(--z-nav);
       align-items: center; justify-content: center;
       -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
@@ -1869,7 +1869,7 @@
       to   { opacity: 1; transform: translateY(0) scale(1); }
     }
     .identity-overlay {
-      position: fixed; inset: 0; z-index: var(--z-mentor);
+      position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: var(--z-mentor);
       background: rgba(5, 8, 20, 0.88);
       -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
       display: flex; align-items: center; justify-content: center;
@@ -1988,7 +1988,7 @@
 
     /* ===== LANDING SCREEN ===== */
     #landingScreen {
-      position: fixed; inset: 0; z-index: var(--z-modal-high);
+      position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: var(--z-modal-high);
       /* background aplicado via #landingScreen no bloco de redesign (bg-hall.jpg) */
       display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
       gap: 0;
@@ -1997,7 +1997,7 @@
     }
     #landingScreen.hidden { display: none; }
     .landing-bg {
-      position: absolute; inset: 0; pointer-events: none;
+      position: absolute; top: 0; right: 0; bottom: 0; left: 0; pointer-events: none;
       background:
         radial-gradient(ellipse 70% 50% at 50% 0%, rgba(90,50,160,0.14) 0%, transparent 70%),
         radial-gradient(ellipse 60% 40% at 20% 90%, rgba(30,70,150,0.13) 0%, transparent 60%),
@@ -2005,7 +2005,7 @@
     }
     .landing-bg::before {
       content: '';
-      position: absolute; inset: 0;
+      position: absolute; top: 0; right: 0; bottom: 0; left: 0;
       background-image:
         linear-gradient(rgba(60,100,180,0.04) 1px, transparent 1px),
         linear-gradient(90deg, rgba(60,100,180,0.04) 1px, transparent 1px);
@@ -2210,7 +2210,7 @@
 
     /* PRICING MODAL */
     #pricingModal {
-      display: none; position: fixed; inset: 0;
+      display: none; position: fixed; top: 0; right: 0; bottom: 0; left: 0;
       background: rgba(0,0,0,0.92); z-index: var(--z-critical);
       align-items: center; justify-content: center;
       -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); padding: 16px; overflow-y: auto;
@@ -2332,7 +2332,7 @@
     .pricing-close-btn:hover { color: #90b4e0; }
     /* Banner promocional a cada 10 questões */
     .promo-banner-overlay {
-      position: fixed; inset: 0; z-index: var(--z-critical);
+      position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: var(--z-critical);
       display: flex; align-items: flex-end; justify-content: center;
       padding: 0 16px 24px; pointer-events: none;
     }
@@ -2355,7 +2355,7 @@
 
     /* ACCOUNT MODAL */
     #accountModal, #planModal, #adminModal {
-      display: none; position: fixed; inset: 0;
+      display: none; position: fixed; top: 0; right: 0; bottom: 0; left: 0;
       background: rgba(0,0,0,0.88); z-index: var(--z-critical);
       align-items: center; justify-content: center;
       -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); padding: 16px;
@@ -2653,7 +2653,7 @@
       /* Overlay escuro quando drawer aberto */
       .mobile-overlay {
         display: none;
-        position: fixed; inset: 0;
+        position: fixed; top: 0; right: 0; bottom: 0; left: 0;
         background: rgba(0,0,0,0.65);
         z-index: var(--z-modal);
       }
@@ -3120,6 +3120,10 @@
     .mobile-bottom-dock { display: none; }
     .mobile-menu-btn { display: none; }
     .mobile-overlay { display: none; }
+    /* A barra de status mobile (ouro/streak/vidas) só tinha display:none dentro
+       do @media(max-width:768px); no desktop caía no default visível e vazava
+       no canto. Hide explícito de desktop (espelha o bottom-dock acima). */
+    .mobile-status-bar { display: none; }
 
     /* === LEADERBOARD PREMIUM === */
     .board-modal { max-width: 720px; width: 95vw; padding: 0; overflow: hidden; background: linear-gradient(160deg, #0d1b2a 0%, #1a2a3a 60%, #0d1b2a 100%); border: 1px solid rgba(255,215,0,0.3); }
@@ -3773,7 +3777,7 @@
     #bossBattleScene::after {
       content: '';
       position: absolute;
-      inset: 0;
+      top: 0; right: 0; bottom: 0; left: 0;
       background-image:
         radial-gradient(1.5px 1.5px at 18% 25%, rgba(255,160,0,0.7), transparent),
         radial-gradient(1px 1px   at 32% 70%, rgba(255,220,0,0.6), transparent),
@@ -4340,7 +4344,7 @@
     #arquiBossImageDesktop .boss-img-wrap::after {
       content: '';
       position: absolute;
-      inset: 0;
+      top: 0; right: 0; bottom: 0; left: 0;
       background: linear-gradient(
         180deg,
         transparent 40%,
@@ -4353,7 +4357,7 @@
     #arquiBossImageDesktop .boss-img-wrap::before {
       content: '';
       position: absolute;
-      inset: 0;
+      top: 0; right: 0; bottom: 0; left: 0;
       background: repeating-linear-gradient(
         0deg,
         transparent,
@@ -5027,7 +5031,7 @@
 
     /* ========== AUTH MODAL ========== */
     .auth-modal-overlay {
-      display: none; position: fixed; inset: 0; z-index: var(--z-top);
+      display: none; position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: var(--z-top);
       background: rgba(0,0,0,0.88); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
       align-items: flex-start; justify-content: center;
       padding: 24px 16px 40px;
@@ -5111,7 +5115,7 @@
 
 /* ── Mentor Modal ──────────────────────────────────────────────────────────── */
 .mentor-overlay {
-  position: fixed; inset: 0; z-index: var(--z-toast);
+  position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: var(--z-toast);
   background: rgba(5, 8, 20, 0.85); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
   display: flex; align-items: flex-end; justify-content: center;
   opacity: 0; transition: opacity 0.28s ease; pointer-events: none;
@@ -5244,7 +5248,7 @@
 /* Utilitários de overlay — base compartilhada para modais criados por JS */
 .nq-overlay {
   position: fixed;
-  inset: 0;
+  top: 0; right: 0; bottom: 0; left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -5532,7 +5536,7 @@
 #landingScreen::before {
   content: '';
   position: fixed; /* fixed para cobrir toda a tela mesmo com scroll */
-  inset: 0;
+  top: 0; right: 0; bottom: 0; left: 0;
   background: rgba(4, 6, 18, 0.48);
   pointer-events: none;
   z-index: 0;
@@ -5548,7 +5552,7 @@
 #welcomeScreen::before {
   content: '';
   position: absolute;
-  inset: 0;
+  top: 0; right: 0; bottom: 0; left: 0;
   background: url('assets/nefroquest_background.jpg') center/cover no-repeat;
   filter: brightness(0.45) saturate(1.1);
   pointer-events: none;
@@ -8772,7 +8776,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 #welcomeScreen::after {
   content: '';
   position: absolute;
-  inset: 0;
+  top: 0; right: 0; bottom: 0; left: 0;
   pointer-events: none;
   z-index: 1;
   background:
@@ -8888,7 +8892,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 #welcomeScreen .welcome-stat::after {
   content: '';
   position: absolute;
-  inset: 0;
+  top: 0; right: 0; bottom: 0; left: 0;
   background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, 0.04) 50%, transparent 70%);
   transform: translateX(-100%);
   transition: transform 500ms ease;
@@ -9205,7 +9209,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 /* ── Popup Conquistas redesenhado ───────────────────────────────────────── */
 .achievements-popup {
   position: fixed;
-  inset: 0;
+  top: 0; right: 0; bottom: 0; left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9378,7 +9382,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 /* Grimório: modal de resumo rápido */
 .bib-resumo-modal {
   position: fixed;
-  inset: 0;
+  top: 0; right: 0; bottom: 0; left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9482,7 +9486,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 /* ── Lore do Personagem (clique no retrato) ─────────────────────────────── */
 .hero-lore-modal {
   position: fixed;
-  inset: 0;
+  top: 0; right: 0; bottom: 0; left: 0;
   z-index: var(--z-nav);
   background: rgba(0,0,0,0.78);
   display: flex;
@@ -9621,7 +9625,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   /* 0 — Contêiner */
   #landingScreen {
     position: fixed;
-    inset: 0;
+    top: 0; right: 0; bottom: 0; left: 0;
     /* overflow-y:auto + margin:auto no card → centraliza quando cabe, mas
        mantém o topo (logo/título) acessível e nunca cortado ao dar zoom. */
     overflow-y: auto;
@@ -10485,7 +10489,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   /* ── Vignette ────────────────────────────────────────────── */
   #landingScreen .lnd-vignette {
     position: absolute;
-    inset: 0;
+    top: 0; right: 0; bottom: 0; left: 0;
     pointer-events: none;
     z-index: 1;
     background: radial-gradient(
@@ -10499,7 +10503,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   /* ── Particles ───────────────────────────────────────────── */
   #landingScreen .lnd-particles {
     position: absolute;
-    inset: 0;
+    top: 0; right: 0; bottom: 0; left: 0;
     pointer-events: none;
     overflow: hidden;
     z-index: 1;
@@ -10561,7 +10565,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   #landingScreen .lnd-pp-fill {
     display: block;
     position: absolute;
-    inset: 0;
+    top: 0; right: 0; bottom: 0; left: 0;
     background: linear-gradient(90deg, transparent 0%, rgba(238,199,82,.7) 50%, transparent 100%);
     animation: lndPPSweep 3.2s ease-in-out infinite;
   }
@@ -10857,7 +10861,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   /* ── Cards ───────────────────────────────────────────────── */
   #landingScreen .lnd-carousel-card {
     position: absolute;
-    inset: 0;
+    top: 0; right: 0; bottom: 0; left: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11181,7 +11185,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   /* ── Landing screen: coluna centralizada scrollável ─────── */
   #landingScreen {
     position: fixed;
-    inset: 0;
+    top: 0; right: 0; bottom: 0; left: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11343,7 +11347,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   #landingScreen .lnd-pp-fill {
     display: block;
     position: absolute;
-    inset: 0;
+    top: 0; right: 0; bottom: 0; left: 0;
     background: linear-gradient(90deg, transparent, rgba(238,199,82,.6), transparent);
     animation: lndPPSweep 3.2s ease-in-out infinite;
   }
@@ -11383,7 +11387,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   /* Cards: posição absoluta + transição — espelha o desktop */
   #landingScreen .lnd-carousel-card {
     position: absolute;
-    inset: 0;
+    top: 0; right: 0; bottom: 0; left: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11731,7 +11735,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
    Segue o padrão "NEW design" dos popups (dark navy + dourado).
    ============================================================ */
 .acid-base-overlay {
-  position: fixed; inset: 0; z-index: var(--z-notify, 1000);
+  position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: var(--z-notify, 1000);
   display: flex; align-items: flex-start; justify-content: center;
   background: rgba(0,0,0,0.78); backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
