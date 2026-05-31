@@ -259,17 +259,405 @@
     };
   }
 
-  // ── Casos clínicos (Fase 2: Aldric + Mara ativos) ────────────────────────
+  function _buildTheron(){
+    // Alcalose respiratória aguda por hipoxemia/TEP (hiperventilação)
+    const PaCO2 = _rand(22, 30);
+    const Na = _rand(137, 143);
+    const expHCO3 = _r1(24 - 2 * ((40 - PaCO2) / 10));   // queda ~2 por 10 de PaCO₂ (aguda)
+    const HCO3 = Math.round(expHCO3 + (Math.random() * 2 - 1)); // medido ≈ esperado (isolada)
+    const AG = _rand(9, 12);
+    const Cl = Na - AG - HCO3;
+    const K = _r1(3.6 + Math.random() * 0.8);
+    const alb = _r1(3.8 + Math.random() * 0.4);
+    const pH = _ph(HCO3, PaCO2);
+    const BE = _be(HCO3, PaCO2);
+    const PaO2 = _rand(52, 66);                            // hipoxemia
+    try { console.info('[Câmara] Theron rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, expHCO3, PaO2 }); } catch {}
+
+    return {
+      narrative: 'O guarda <strong>Theron</strong> retorna da muralha com dispneia súbita e dor ao respirar, após dias imobilizado por um ferimento na perna. Está taquipneico e ansioso. A oximetria mostra hipoxemia.',
+      gas: { pH, PaCO2, HCO3, BE, Na, Cl, K, alb },
+      acts: [
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato I — Distúrbio primário.</strong><br>Analisando pH, PaCO₂ e HCO₃⁻, qual o distúrbio primário?',
+          options: [
+            { label: 'Alcalose respiratória', correct: true },
+            { label: 'Alcalose metabólica', correct: false },
+            { label: 'Acidose respiratória', correct: false },
+            { label: 'Acidose metabólica', correct: false }
+          ],
+          explainCorrect: `pH ${pH} → <strong>alcalemia</strong> (> 7,45). A PaCO₂ ${PaCO2} mmHg (baixa) acompanha a alcalemia → o processo primário é <strong>respiratório</strong> (hiperventilação). O HCO₃⁻ ${HCO3} levemente reduzido é a resposta renal, não a causa.`,
+          explainWrong: {
+            'Alcalose metabólica': `Alcalose metabólica teria HCO₃⁻ alto como causa. Aqui o HCO₃⁻ ${HCO3} está baixo e a PaCO₂ ${PaCO2} baixa explica a alcalemia.`,
+            'Acidose respiratória': `Acidose respiratória teria pH < 7,35 e PaCO₂ alta. Aqui pH ${pH} e PaCO₂ ${PaCO2} (baixa).`,
+            'Acidose metabólica': `Acidose teria pH < 7,35 e HCO₃⁻ baixo como causa. Aqui o pH é ${pH} (alcalino).`
+          }
+        },
+        {
+          kind: 'num',
+          prompt: '<strong>Ato II — Compensação aguda.</strong><br>Calcule o HCO₃⁻ esperado para esta alcalose respiratória <em>aguda</em>.',
+          grimoire: { title: 'Compensação — alcalose respiratória', body: '<strong>Aguda:</strong> HCO₃⁻ cai ~2 mEq/L para cada −10 mmHg de PaCO₂.<br><strong>Crônica:</strong> cai ~4–5 mEq/L para cada −10 mmHg.<br><code>HCO₃⁻ esperado (aguda) = 24 − 2 × (40 − PaCO₂)/10</code>' },
+          unit: 'mEq/L',
+          target: expHCO3,
+          tolerance: 2,
+          explainCorrect: `HCO₃⁻ esperado = 24 − 2 × (40 − ${PaCO2})/10 = <strong>${expHCO3} mEq/L</strong>. O valor real (${HCO3}) bate com o esperado → alcalose respiratória aguda <strong>isolada</strong>, sem distúrbio metabólico associado.`,
+          explainWrong: `Aguda: cada −10 mmHg de PaCO₂ baixa ~2 de HCO₃⁻. 24 − 2 × (40 − ${PaCO2})/10 = ${expHCO3}.`
+        },
+        {
+          kind: 'mc',
+          prompt: `<strong>Ato III — Distúrbio associado?</strong><br>O HCO₃⁻ medido (${HCO3}) é praticamente igual ao esperado (${expHCO3}). O que isso indica?`,
+          grimoire: { title: 'Compensação adequada vs distúrbio misto', body: 'Se o HCO₃⁻ medido coincide com o esperado para a compensação, o distúrbio é simples. HCO₃⁻ <em>muito mais baixo</em> que o esperado sugere acidose metabólica associada; <em>mais alto</em> sugere alcalose metabólica associada.' },
+          options: [
+            { label: 'Alcalose respiratória aguda isolada (compensação adequada)', correct: true },
+            { label: 'Alcalose respiratória + acidose metabólica', correct: false },
+            { label: 'Alcalose respiratória + alcalose metabólica', correct: false },
+            { label: 'Distúrbio triplo', correct: false }
+          ],
+          explainCorrect: `Como o HCO₃⁻ real (${HCO3}) coincide com o esperado (${expHCO3}), trata-se de <strong>alcalose respiratória aguda isolada</strong> — a queda do HCO₃⁻ é apenas a resposta tampão/renal precoce, não um segundo distúrbio.`,
+          explainWrong: {
+            'Alcalose respiratória + acidose metabólica': `Exigiria HCO₃⁻ bem <em>abaixo</em> do esperado. Aqui real ${HCO3} ≈ esperado ${expHCO3}.`,
+            'Alcalose respiratória + alcalose metabólica': `Exigiria HCO₃⁻ <em>acima</em> do esperado. Aqui real ${HCO3} ≈ esperado ${expHCO3}.`,
+            'Distúrbio triplo': `Não há dados para três distúrbios; o padrão é de alcalose respiratória aguda simples.`
+          }
+        },
+        _buildCardsAct({
+          prompt: '<strong>Ato IV — Conselho dos Diagnósticos Diferenciais.</strong><br>Selecione <em>todas</em> as causas que também produzem este padrão (alcalose respiratória).',
+          instruction: 'Marque todas as causas compatíveis. Algumas cartas são armadilhas.',
+          cards: [
+            _makeCard('tep', 'Tromboembolismo pulmonar', 'Dispneia súbita, dor pleurítica, hipoxemia', 'O êmbolo cria espaço morto e hipoxemia; os quimiorreceptores aumentam a ventilação, eliminando CO₂ → alcalose respiratória.', true, 'Causa grave e tempo-dependente; este caso (imobilização + dispneia + hipoxemia) é altamente sugestivo.'),
+            _makeCard('pneumonia', 'Pneumonia', 'Febre, tosse, hipoxemia', 'A hipoxemia estimula os quimiorreceptores periféricos, aumentando a ventilação e baixando a PaCO₂.', true, 'Hipoxemia de qualquer pneumopatia aguda gera hiperventilação e alcalose respiratória.'),
+            _makeCard('sepse_resp', 'Sepse inicial', 'Febre, taquipneia, sem lactato alto ainda', 'Citocinas e febre estimulam diretamente o centro respiratório antes de a hipoperfusão gerar lactato.', true, 'Fase precoce da sepse cursa com alcalose respiratória; depois pode somar acidose lática.'),
+            _makeCard('gestacao', 'Gestação', 'Mulher gestante, dispneia leve crônica', 'A progesterona aumenta a sensibilidade do centro respiratório ao CO₂, elevando o volume-minuto → alcalose respiratória crônica.', true, 'Alcalose respiratória fisiológica da gravidez, compensada pelo rim.'),
+            _makeCard('salicilato_resp', 'Intoxicação por salicilato', 'Zumbido, taquipneia, febre', 'Estimula diretamente o centro respiratório (alcalose respiratória) e, em paralelo, gera acidose com AG alto.', true, 'O componente respiratório precoce do salicilato é alcalose; reconheça o padrão misto.'),
+            _makeCard('altitude', 'Grande altitude', 'Exposição a alta montanha', 'A hipóxia hipobárica estimula os quimiorreceptores, aumentando a ventilação → alcalose respiratória.', true, 'Causa ambiental clássica de hiperventilação hipoxêmica.'),
+            _makeCard('opioide', 'Opioide / sedação', 'Sonolência, respiração lenta', 'Deprime o centro respiratório → hipoventilação e <em>retenção</em> de CO₂ (acidose respiratória), o oposto.', false, 'Armadilha: causa acidose respiratória, não alcalose.'),
+            _makeCard('dpoc_fadiga', 'DPOC com fadiga', 'Hipercapnia crônica que piora', 'A obstrução e a fadiga muscular reduzem a ventilação alveolar → CO₂ sobe (acidose respiratória).', false, 'Armadilha: hipoventilação → acidose respiratória.'),
+            _makeCard('vomitos_resp', 'Vômitos', 'Perda de HCl gástrico', 'Gera alcalose metabólica (HCO₃⁻ alto), não um distúrbio respiratório.', false, 'Armadilha: é alcalose metabólica, não respiratória.')
+          ],
+          grimoire: { title: 'Alcalose respiratória — gatilhos do drive ventilatório', body: 'Pense em três motores: <strong>hipoxemia</strong> (TEP, pneumonia, altitude), <strong>estímulo central</strong> (sepse, salicilato, dor, gestação) e <strong>iatrogenia</strong> (ventilação excessiva). Excluir causas graves antes de atribuir à ansiedade.' }
+        }),
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato V — Conduta clínica.</strong><br>Qual é a sua conduta inicial?',
+          grimoire: { title: 'Abordagem da alcalose respiratória aguda', body: 'A prioridade é identificar e tratar a causa da hiperventilação. Em paciente com fator de risco para TEP + hipoxemia, investigar TEP (escore clínico, D-dímero/angio-TC) e suporte de O₂. Não rotular como "ansiedade" sem excluir causas graves.' },
+          options: [
+            { label: 'Investigar TEP/hipoxemia e ofertar O₂; tratar a causa', correct: true },
+            { label: 'Tranquilizar e liberar como crise de ansiedade', correct: false },
+            { label: 'Infundir bicarbonato de sódio IV', correct: false },
+            { label: 'Sedar para reduzir a frequência respiratória', correct: false }
+          ],
+          explainCorrect: `Com imobilização recente + dispneia súbita + hipoxemia (PaO₂ ~${PaO2} mmHg), a hipótese principal é <strong>TEP</strong>. Investigar e ofertar O₂. A alcalose em si raramente exige tratamento direto — corrige-se tratando a causa.`,
+          explainWrong: {
+            'Tranquilizar e liberar como crise de ansiedade': 'Ansiedade é diagnóstico de exclusão; com hipoxemia e fator de risco para TEP, liberar seria perigoso.',
+            'Infundir bicarbonato de sódio IV': 'Pioraria a alcalemia já existente.',
+            'Sedar para reduzir a frequência respiratória': 'A hiperventilação é compensatória/protetora à hipoxemia; sedar pode agravar a hipoxemia.'
+          }
+        }
+      ],
+      summary: `<strong>Alcalose respiratória aguda</strong> por hiperventilação hipoxêmica, provável <strong>TEP</strong> (imobilização + dispneia súbita + hipoxemia). HCO₃⁻ ${HCO3} ≈ esperado ${expHCO3} → distúrbio simples. Conduta: investigar TEP, O₂, tratar a causa. Armadilha: rotular como ansiedade.`
+    };
+  }
+
+  function _buildVance(){
+    // Acidose metabólica hiperclorêmica (AG normal) por diarreia
+    const HCO3 = _rand(12, 18);
+    const Na = _rand(137, 142);
+    const AG = _rand(9, 11);                              // normal
+    const Cl = Na - AG - HCO3;                            // alto (hiperclorêmica)
+    const alb = _r1(3.8 + Math.random() * 0.4);
+    const K = _r1(3.0 + Math.random() * 0.8);            // tende a baixo
+    const winterExpected = _r1(1.5 * HCO3 + 8);
+    const PaCO2 = Math.round(winterExpected + (Math.random() * 4 - 2));
+    const pH = _ph(HCO3, PaCO2);
+    const BE = _be(HCO3, PaCO2);
+    try { console.info('[Câmara] Vance rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, winterExpected, AG }); } catch {}
+
+    return {
+      narrative: 'O mercador <strong>Vance</strong> chega após dias de diarreia volumosa durante a travessia da rota das especiarias. Refere fraqueza, sede intensa e cãibras.',
+      gas: { pH, PaCO2, HCO3, BE, Na, Cl, K, alb },
+      acts: [
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato I — Distúrbio primário.</strong><br>Analisando pH, PaCO₂ e HCO₃⁻, qual o distúrbio primário?',
+          options: [
+            { label: 'Acidose metabólica', correct: true },
+            { label: 'Acidose respiratória', correct: false },
+            { label: 'Alcalose metabólica', correct: false },
+            { label: 'Alcalose respiratória', correct: false }
+          ],
+          explainCorrect: `pH ${pH} → <strong>acidemia</strong> (< 7,35). HCO₃⁻ ${HCO3} mEq/L (baixo) acompanha a acidemia → distúrbio primário <strong>metabólico</strong>. PaCO₂ ${PaCO2} mmHg baixa é a compensação respiratória.`,
+          explainWrong: {
+            'Acidose respiratória': `Teria PaCO₂ alta como causa. Aqui a PaCO₂ ${PaCO2} está baixa (compensando).`,
+            'Alcalose metabólica': `Teria pH > 7,45 e HCO₃⁻ alto. Aqui pH ${pH} e HCO₃⁻ ${HCO3} (baixo).`,
+            'Alcalose respiratória': `Teria pH > 7,45. Aqui pH ${pH}.`
+          }
+        },
+        {
+          kind: 'num',
+          prompt: '<strong>Ato II — Compensação esperada (Winter).</strong><br>Calcule a PaCO₂ esperada pela compensação respiratória.',
+          grimoire: { title: 'Fórmula de Winter', body: '<code>PaCO₂ esperado = 1,5 × HCO₃⁻ + 8 (±2)</code><br>Aplica-se à <em>acidose metabólica</em>.' },
+          unit: 'mmHg',
+          target: winterExpected,
+          tolerance: 2,
+          explainCorrect: `PaCO₂ esperada = 1,5 × ${HCO3} + 8 = <strong>${winterExpected} mmHg (±2)</strong>. O valor real (${PaCO2}) está na faixa → compensação adequada, sem componente respiratório.`,
+          explainWrong: `1,5 × ${HCO3} = ${_r1(1.5*HCO3)}; + 8 = ${winterExpected}. Tolerância ±2.`
+        },
+        {
+          kind: 'num',
+          prompt: `<strong>Ato III — Ânion gap.</strong><br>Calcule o AG sérico (albumina = ${alb} g/dL).`,
+          grimoire: { title: 'Ânion gap', body: '<code>AG = Na⁺ − (Cl⁻ + HCO₃⁻)</code><br>Normal 8–12. AG normal numa acidose aponta para perda de HCO₃⁻ ou falha renal de excretar H⁺ (acidose hiperclorêmica).' },
+          unit: 'mEq/L',
+          target: AG,
+          tolerance: 1,
+          explainCorrect: `AG = ${Na} − (${Cl} + ${HCO3}) = <strong>${AG} mEq/L</strong> (normal). Com Cl⁻ ${Cl} elevado, trata-se de <strong>acidose metabólica hiperclorêmica (AG normal)</strong> — aqui por perda intestinal de HCO₃⁻.`,
+          explainWrong: `AG = Na − (Cl + HCO₃) = ${Na} − (${Cl} + ${HCO3}) = ${AG}. É normal → hiperclorêmica.`
+        },
+        _buildCardsAct({
+          prompt: '<strong>Ato IV — Conselho dos Diagnósticos Diferenciais.</strong><br>Selecione <em>todas</em> as causas que também produzem este padrão (acidose metabólica com AG normal / hiperclorêmica).',
+          instruction: 'Marque todas as causas compatíveis. Algumas cartas são armadilhas.',
+          cards: [
+            _makeCard('diarreia', 'Diarreia', 'Perda fecal volumosa, K baixo', 'O fluido intestinal é rico em HCO₃⁻; sua perda baixa o HCO₃⁻ plasmático e o Cl⁻ sobe para manter a eletroneutralidade.', true, 'Causa extrarrenal mais comum de acidose com AG normal; o UAG costuma ser negativo.'),
+            _makeCard('atr1', 'ATR tipo 1 (distal)', 'K baixo, pH urinário > 5,5, nefrocalcinose', 'A célula alfa-intercalada falha em secretar H⁺ no coletor; o ácido se acumula e o HCO₃⁻ cai, com Cl⁻ alto.', true, 'NAGMA renal com hipocalemia e incapacidade de acidificar a urina.'),
+            _makeCard('atr2', 'ATR tipo 2 (proximal)', 'Bicarbonatúria, síndrome de Fanconi', 'O túbulo proximal não reabsorve o HCO₃⁻ filtrado; ele se perde na urina até o plasma atingir um novo limiar mais baixo.', true, 'NAGMA proximal; pode vir com glicosúria/fosfatúria (Fanconi).'),
+            _makeCard('atr4', 'ATR tipo 4', 'K alto, diabético/IECA', 'O hipoaldosteronismo reduz a secreção distal de H⁺ e a amoniagênese → acidose hiperclorêmica com hipercalemia.', true, 'Única ATR com K alto; comum em diabético com DRC.'),
+            _makeCard('salina', 'Excesso de SF 0,9%', 'Reanimação volumosa com salina', 'A grande carga de Cl⁻ reduz a diferença de íons fortes (SID), baixando o HCO₃⁻ → acidose hiperclorêmica dilucional.', true, 'Acidose hiperclorêmica iatrogênica; prefira cristaloide balanceado em grandes volumes.'),
+            _makeCard('acetazolamida', 'Acetazolamida', 'Inibidor da anidrase carbônica', 'Inibe a reabsorção proximal de HCO₃⁻ (efeito tipo ATR-2), gerando bicarbonatúria e acidose com AG normal.', true, 'Causa medicamentosa de NAGMA por perda renal de HCO₃⁻.'),
+            _makeCard('dka_vance', 'Cetoacidose diabética', 'Hiperglicemia, cetonas', 'A cetogênese gera β-hidroxibutirato — ânion não medido que eleva o AG.', false, 'Armadilha: dá AG ALTO, não acidose hiperclorêmica.'),
+            _makeCard('lactato_vance', 'Acidose lática', 'Choque, lactato alto', 'O lactato é um ânion não medido que eleva o AG.', false, 'Armadilha: AG alto, não AG normal.'),
+            _makeCard('vomitos_vance', 'Vômitos', 'Perda de HCl', 'Remove H⁺ e Cl⁻ → alcalose metabólica.', false, 'Armadilha: gera alcalose, o oposto deste caso.')
+          ],
+          grimoire: { title: 'Acidose com AG normal — GI vs renal', body: 'Diferencie pela origem: perda <strong>gastrointestinal</strong> de HCO₃⁻ (diarreia, fístula) com resposta renal preservada (UAG negativo) vs perda/falha <strong>renal</strong> (ATR, acetazolamida) com UAG positivo. <code>UAG = (Na⁺ + K⁺) − Cl⁻ urinários</code>.' }
+        }),
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato V — Conduta clínica.</strong><br>Qual é a sua conduta inicial?',
+          grimoire: { title: 'Conduta na acidose hiperclorêmica por perda GI', body: 'Repor volume e corrigir o potássio; tratar a causa (diarreia). Alcalinizar só se acidose grave/refratária. Em grandes volumes, preferir cristaloide balanceado a SF 0,9% para não agravar a hipercloremia.' },
+          options: [
+            { label: 'Reposição volêmica + correção de K⁺; tratar a diarreia', correct: true },
+            { label: 'Bolus imediato de bicarbonato 8,4% IV', correct: false },
+            { label: 'Grande volume de SF 0,9%', correct: false },
+            { label: 'Restrição hídrica', correct: false }
+          ],
+          explainCorrect: `Acidose hiperclorêmica por diarreia com depleção de volume e K⁺ ${K} → <strong>repor volume e potássio</strong> e tratar a diarreia. A acidose corrige com a recuperação. Em grandes volumes, cristaloide balanceado evita piorar a hipercloremia.`,
+          explainWrong: {
+            'Bolus imediato de bicarbonato 8,4% IV': 'Reservado para acidose grave/refratária; a maioria corrige com volume e tratamento da causa.',
+            'Grande volume de SF 0,9%': 'A carga de Cl⁻ pioraria a acidose hiperclorêmica — prefira solução balanceada.',
+            'Restrição hídrica': 'O paciente está hipovolêmico pela diarreia; restringir volume agrava o quadro.'
+          }
+        }
+      ],
+      summary: `<strong>Acidose metabólica hiperclorêmica (AG ${AG} normal)</strong> por perda intestinal de HCO₃⁻ (diarreia), com compensação respiratória adequada (Winter ${winterExpected}, real ${PaCO2}). Conduta: volume + K⁺ + tratar a causa; evitar SF 0,9% em excesso.`
+    };
+  }
+
+  function _buildKael(){
+    // Acidose respiratória aguda por hipoventilação (sedação)
+    const PaCO2 = _rand(55, 72);
+    const Na = _rand(137, 143);
+    const expHCO3 = _r1(24 + 1 * ((PaCO2 - 40) / 10));   // sobe ~1 por 10 de PaCO₂ (aguda)
+    const HCO3 = Math.round(expHCO3 + (Math.random() * 2 - 1));
+    const AG = _rand(9, 12);
+    const Cl = Na - AG - HCO3;
+    const K = _r1(3.8 + Math.random() * 0.8);
+    const alb = _r1(3.8 + Math.random() * 0.4);
+    const pH = _ph(HCO3, PaCO2);
+    const BE = _be(HCO3, PaCO2);
+    try { console.info('[Câmara] Kael rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, expHCO3 }); } catch {}
+
+    return {
+      narrative: 'O general <strong>Kael</strong> recebeu uma poção sedativa potente para a dor após a batalha. Tornou-se progressivamente sonolento, com respiração lenta e superficial.',
+      gas: { pH, PaCO2, HCO3, BE, Na, Cl, K, alb },
+      acts: [
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato I — Distúrbio primário.</strong><br>Analisando pH, PaCO₂ e HCO₃⁻, qual o distúrbio primário?',
+          options: [
+            { label: 'Acidose respiratória', correct: true },
+            { label: 'Acidose metabólica', correct: false },
+            { label: 'Alcalose respiratória', correct: false },
+            { label: 'Alcalose metabólica', correct: false }
+          ],
+          explainCorrect: `pH ${pH} → <strong>acidemia</strong> (< 7,35). A PaCO₂ ${PaCO2} mmHg (alta) acompanha a acidemia → o processo primário é <strong>respiratório</strong> (hipoventilação). O HCO₃⁻ ${HCO3} pouco elevado é resposta tampão precoce.`,
+          explainWrong: {
+            'Acidose metabólica': `Acidose metabólica teria HCO₃⁻ baixo como causa. Aqui o HCO₃⁻ ${HCO3} está normal/alto e a PaCO₂ ${PaCO2} está alta.`,
+            'Alcalose respiratória': `Teria pH > 7,45 e PaCO₂ baixa. Aqui pH ${pH} e PaCO₂ ${PaCO2} (alta).`,
+            'Alcalose metabólica': `Teria pH > 7,45 e HCO₃⁻ alto. Aqui pH ${pH} (ácido).`
+          }
+        },
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato II — Aguda ou crônica?</strong><br>Diante de uma sedação que começou há poucas horas, esta acidose respiratória é aguda ou crônica?',
+          grimoire: { title: 'Aguda vs crônica', body: 'Na <strong>aguda</strong> o HCO₃⁻ sobe ~1 mEq/L por +10 mmHg de PaCO₂ (tampão celular imediato). Na <strong>crônica</strong> (dias) sobe ~3,5–4 por +10, pela retenção renal de HCO₃⁻.' },
+          options: [
+            { label: 'Aguda', correct: true },
+            { label: 'Crônica', correct: false },
+            { label: 'Crônica agudizada', correct: false },
+            { label: 'Impossível dizer', correct: false }
+          ],
+          explainCorrect: `A sedação iniciou há poucas horas → <strong>aguda</strong>. Espera-se elevação modesta do HCO₃⁻ (~1 por 10 de PaCO₂), sem tempo para a compensação renal plena.`,
+          explainWrong: {
+            'Crônica': 'Crônica exigiria dias de hipercapnia e HCO₃⁻ bem mais alto (~3,5–4 por 10).',
+            'Crônica agudizada': 'Não há hipercapnia crônica de base na história — é um evento agudo (sedação).',
+            'Impossível dizer': 'A história (sedação recente) e o HCO₃⁻ pouco elevado definem como aguda.'
+          }
+        },
+        {
+          kind: 'num',
+          prompt: '<strong>Ato III — HCO₃⁻ esperado (aguda).</strong><br>Calcule o HCO₃⁻ esperado para esta acidose respiratória aguda.',
+          grimoire: { title: 'Compensação — acidose respiratória aguda', body: '<code>HCO₃⁻ esperado = 24 + 1 × (PaCO₂ − 40)/10</code><br>Crônica: usar ~3,5–4 no lugar do 1.' },
+          unit: 'mEq/L',
+          target: expHCO3,
+          tolerance: 2,
+          explainCorrect: `HCO₃⁻ esperado = 24 + 1 × (${PaCO2} − 40)/10 = <strong>${expHCO3} mEq/L</strong>. O valor real (${HCO3}) bate → acidose respiratória aguda isolada.`,
+          explainWrong: `24 + (${PaCO2} − 40)/10 = ${expHCO3}. Tolerância ±2.`
+        },
+        _buildCardsAct({
+          prompt: '<strong>Ato IV — Conselho dos Diagnósticos Diferenciais.</strong><br>Selecione <em>todas</em> as causas que também produzem este padrão (acidose respiratória).',
+          instruction: 'Marque todas as causas compatíveis. Algumas cartas são armadilhas.',
+          cards: [
+            _makeCard('opioides', 'Opioides', 'Sonolência, miose, FR baixa', 'Deprimem o centro respiratório bulbar → cai o volume-minuto e o CO₂ se retém.', true, 'Causa direta e reversível (naloxona) deste caso.'),
+            _makeCard('benzo', 'Benzodiazepínicos / sedativos', 'Rebaixamento, hipoventilação', 'Reduzem o drive ventilatório central → hipoventilação alveolar e retenção de CO₂.', true, 'Sedativos somam-se aos opioides na depressão respiratória.'),
+            _makeCard('dpoc_exac', 'DPOC exacerbado com fadiga', 'Hipercapnia que piora', 'A obstrução aumenta o trabalho respiratório; a fadiga muscular reduz a ventilação alveolar → CO₂ sobe.', true, 'Quando a musculatura fadiga, a PaCO₂ sobe — sinal de gravidade.'),
+            _makeCard('oh', 'Obesidade-hipoventilação', 'Obesidade, sonolência diurna', 'A carga mecânica torácica e o drive reduzido diminuem a ventilação, retendo CO₂ (sobretudo no sono).', true, 'Hipoventilação crônica; pode agudizar com sedativos.'),
+            _makeCard('neuromuscular', 'Doença neuromuscular', 'Fraqueza, tosse fraca', 'A falência da bomba ventilatória (diafragma/músculos) reduz a ventilação alveolar → hipercapnia.', true, 'Guillain-Barré, miastenia, ELA — a bomba falha e o CO₂ sobe.'),
+            _makeCard('asma_grave', 'Asma grave com fadiga', 'Tórax silencioso, exaustão', 'Inicialmente há hipocapnia; quando o paciente fadiga, a PaCO₂ "normaliza" e depois sobe — sinal de gravidade.', true, 'PaCO₂ subindo na crise asmática indica exaustão iminente.'),
+            _makeCard('tep_kael', 'TEP leve', 'Dispneia, hipoxemia', 'Gera hiperventilação → alcalose respiratória (PaCO₂ baixa), o oposto.', false, 'Armadilha: causa alcalose respiratória, não acidose.'),
+            _makeCard('sepse_kael', 'Sepse inicial', 'Febre, taquipneia', 'Estimula o centro respiratório → alcalose respiratória precoce.', false, 'Armadilha: alcalose respiratória, não acidose.'),
+            _makeCard('diarreia_kael', 'Diarreia', 'Perda fecal de HCO₃⁻', 'Causa acidose metabólica (hiperclorêmica), não respiratória.', false, 'Armadilha: distúrbio metabólico, não respiratório.')
+          ],
+          grimoire: { title: 'Acidose respiratória — falha do fole', body: 'A PaCO₂ sobe quando a ventilação alveolar cai. Localize a falha: <strong>drive</strong> (opioide, sedativo), <strong>bomba</strong> (neuromuscular, fadiga), ou <strong>carga/obstrução</strong> (DPOC, asma grave, obesidade).' }
+        }),
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato V — Conduta clínica.</strong><br>Qual é a sua conduta inicial?',
+          grimoire: { title: 'Acidose respiratória aguda por sedação', body: 'A prioridade é restaurar a ventilação: estímulo, suporte de via aérea/ventilação e, se for opioide, antagonista (naloxona). Bicarbonato NÃO trata acidose respiratória — pode piorar (gera mais CO₂).' },
+          options: [
+            { label: 'Suporte ventilatório e reverter a sedação (ex.: naloxona se opioide)', correct: true },
+            { label: 'Infundir bicarbonato de sódio IV', correct: false },
+            { label: 'Acetazolamida para baixar o HCO₃⁻', correct: false },
+            { label: 'Observação sem intervenção', correct: false }
+          ],
+          explainCorrect: `A causa é <strong>hipoventilação por sedação</strong> → restaurar a ventilação (estímulo, suporte/ventilação; naloxona se opioide). A acidose respiratória corrige eliminando CO₂, não com álcali.`,
+          explainWrong: {
+            'Infundir bicarbonato de sódio IV': 'Bicarbonato em acidose respiratória gera mais CO₂ e, sem ventilação adequada, piora a acidemia.',
+            'Acetazolamida para baixar o HCO₃⁻': 'O HCO₃⁻ alto é compensação apropriada; reduzi-lo agravaria a acidemia.',
+            'Observação sem intervenção': 'Hipoventilação progressiva por sedação pode evoluir para parada — exige ação.'
+          }
+        }
+      ],
+      summary: `<strong>Acidose respiratória aguda</strong> por hipoventilação induzida por sedação (PaCO₂ ${PaCO2}). HCO₃⁻ ${HCO3} ≈ esperado ${expHCO3} → aguda isolada. Conduta: restaurar a ventilação (naloxona se opioide); bicarbonato é contraindicado.`
+    };
+  }
+
+  function _buildVorgath(){
+    // Acidose metabólica com AG alto + gap osmolar (etilenoglicol) — caso expert
+    const HCO3 = _rand(6, 12);
+    const Na = _rand(138, 144);
+    const AG = _rand(22, 30);
+    const Cl = Na - AG - HCO3;
+    const alb = _r1(3.8 + Math.random() * 0.4);
+    const K = _r1(3.8 + Math.random() * 1.0);
+    const winterExpected = _r1(1.5 * HCO3 + 8);
+    const PaCO2 = Math.round(winterExpected + (Math.random() * 4 - 2));
+    const pH = _ph(HCO3, PaCO2);
+    const BE = _be(HCO3, PaCO2);
+    // Gap osmolar
+    const glic = _rand(80, 110);
+    const bun = _rand(10, 18);
+    const osmCalc = Math.round(2 * Na + glic / 18 + bun / 2.8);
+    const osmGap = _rand(22, 40);                          // elevado (normal < 10)
+    const osmMed = osmCalc + osmGap;
+    try { console.info('[Câmara] Vorgath rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, AG, winterExpected, glic, bun, osmCalc, osmMed, osmGap }); } catch {}
+
+    return {
+      narrative: 'O alquimista <strong>Vorgath</strong> bebeu uma solução cristalina esverdeada acreditando ser um elixir raro. Horas depois, evolui com náuseas, fala arrastada, confusão e dor lombar.',
+      gas: { pH, PaCO2, HCO3, BE, Na, Cl, K, alb },
+      acts: [
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato I — Distúrbio primário.</strong><br>Analisando pH, PaCO₂ e HCO₃⁻, qual o distúrbio primário?',
+          options: [
+            { label: 'Acidose metabólica', correct: true },
+            { label: 'Acidose respiratória', correct: false },
+            { label: 'Alcalose metabólica', correct: false },
+            { label: 'Alcalose respiratória', correct: false }
+          ],
+          explainCorrect: `pH ${pH} → <strong>acidemia</strong> grave. HCO₃⁻ ${HCO3} mEq/L (muito baixo) acompanha a acidemia → distúrbio <strong>metabólico</strong>. PaCO₂ ${PaCO2} mmHg baixa é compensação respiratória.`,
+          explainWrong: {
+            'Acidose respiratória': `Teria PaCO₂ alta como causa. Aqui a PaCO₂ ${PaCO2} está baixa (compensando).`,
+            'Alcalose metabólica': `Teria pH > 7,45 e HCO₃⁻ alto. Aqui pH ${pH} e HCO₃⁻ ${HCO3} (baixo).`,
+            'Alcalose respiratória': `Teria pH > 7,45. Aqui pH ${pH}.`
+          }
+        },
+        {
+          kind: 'num',
+          prompt: '<strong>Ato II — Compensação (Winter).</strong><br>Calcule a PaCO₂ esperada.',
+          grimoire: { title: 'Fórmula de Winter', body: '<code>PaCO₂ esperado = 1,5 × HCO₃⁻ + 8 (±2)</code>' },
+          unit: 'mmHg',
+          target: winterExpected,
+          tolerance: 2,
+          explainCorrect: `PaCO₂ esperada = 1,5 × ${HCO3} + 8 = <strong>${winterExpected} mmHg (±2)</strong>; real ${PaCO2} → compensação adequada.`,
+          explainWrong: `1,5 × ${HCO3} + 8 = ${winterExpected}. Tolerância ±2.`
+        },
+        {
+          kind: 'num',
+          prompt: `<strong>Ato III — Gap osmolar.</strong><br>Na⁺ ${Na}, glicose ${glic} mg/dL, BUN ${bun} mg/dL. Osmolaridade <em>medida</em> = <strong>${osmMed} mOsm/kg</strong>. Calcule o <strong>gap osmolar</strong>.`,
+          grimoire: { title: 'Gap osmolar', body: '<code>Osm calculada = 2 × Na⁺ + glicose/18 + BUN/2,8</code><br><code>Gap osmolar = Osm medida − Osm calculada</code><br>Normal &lt; 10. Elevado sugere soluto osmótico não medido (álcoois tóxicos). Lembre: ureia (mg/dL) ÷ 2,14 = BUN.' },
+          unit: 'mOsm/kg',
+          target: osmGap,
+          tolerance: 5,
+          explainCorrect: `Osm calculada = 2 × ${Na} + ${glic}/18 + ${bun}/2,8 ≈ <strong>${osmCalc}</strong>. Gap = ${osmMed} − ${osmCalc} = <strong>${osmGap} mOsm/kg</strong> (elevado, normal < 10). AG alto + gap osmolar elevado aponta <strong>álcool tóxico</strong>.`,
+          explainWrong: `Osm calc = 2×${Na} + ${glic}/18 + ${bun}/2,8 ≈ ${osmCalc}. Gap = ${osmMed} − ${osmCalc} = ${osmGap}.`
+        },
+        _buildCardsAct({
+          prompt: '<strong>Ato IV — Conselho dos Diagnósticos Diferenciais.</strong><br>Selecione <em>todas</em> as causas compatíveis com <strong>acidose AG alto + gap osmolar elevado</strong>.',
+          instruction: 'Marque só as que dão AG alto E gap osmolar. Há armadilhas clássicas.',
+          cards: [
+            _makeCard('etilenoglicol', 'Etilenoglicol', 'Anticongelante, IRA, cristais de oxalato', 'A álcool-desidrogenase o converte em glicolato e oxalato (AG alto); a molécula-mãe não medida eleva o gap osmolar; o oxalato precipita e causa IRA.', true, 'AG alto + gap osmolar + IRA: tríade clássica. Antídoto: fomepizol; HD se grave.'),
+            _makeCard('metanol', 'Metanol', 'Perda visual, AG alto', 'Convertido a formato (AG alto e toxicidade retiniana); o metanol não medido eleva o gap osmolar.', true, 'AG alto + gap osmolar + alteração visual. Fomepizol + HD.'),
+            _makeCard('propilenoglicol', 'Propilenoglicol', 'Solvente de medicações IV (ex.: lorazepam)', 'Metabolizado a lactato (AG alto) e, sendo um álcool, eleva o gap osmolar enquanto se acumula.', true, 'Toxicidade hospitalar por infusões prolongadas; dá AG alto com gap osmolar.'),
+            _makeCard('dietilenoglicol', 'Dietilenoglicol', 'Contaminante de xaropes/solventes', 'Metabolizado por álcool-desidrogenase a ácidos (AG alto) e, como álcool, eleva o gap osmolar; causa IRA e neurotoxicidade.', true, 'Mesma via dos álcoois tóxicos: AG alto + gap osmolar + IRA.'),
+            _makeCard('isopropanol', 'Isopropanol (álcool isopropílico)', 'Ebriedade, cetose, hálito de acetona', 'É oxidado a acetona — gera grande gap osmolar e cetonemia, mas <em>não</em> produz ácidos fixos.', false, 'Armadilha: gap osmolar SEM acidose com AG alto (gera acetona, não ácido).'),
+            _makeCard('salicilato_v', 'Salicilato', 'Zumbido, taquipneia', 'Dá AG alto (ácidos orgânicos) + alcalose respiratória, mas é molécula medida — não eleva o gap osmolar.', false, 'Armadilha: AG alto SEM gap osmolar relevante.'),
+            _makeCard('metformina_v', 'Metformina (acidose lática)', 'IRA, choque, lactato muito alto', 'Inibe a gliconeogênese e a oxidação mitocondrial → lactato (AG alto), mas não eleva o gap osmolar.', false, 'Armadilha: AG alto por lactato, sem gap osmolar.'),
+            _makeCard('vomitos_v', 'Vômitos', 'Perda de HCl', 'Geram alcalose metabólica, não acidose.', false, 'Armadilha: alcalose metabólica, padrão oposto.')
+          ],
+          grimoire: { title: 'AG alto + gap osmolar — separando os álcoois', body: 'Álcoois tóxicos (etileno/metanol/propileno/dietilenoglicol) dão <strong>AG alto + gap osmolar</strong>. <strong>Isopropanol</strong> dá gap osmolar SEM acidose. Salicilato e metformina dão AG alto SEM gap osmolar. O gap osmolar cai à medida que o álcool é metabolizado em ácido — um gap normal não exclui ingestão tardia.' }
+        }),
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato V — Conduta clínica.</strong><br>Qual é a sua conduta inicial?',
+          grimoire: { title: 'Tratamento dos álcoois tóxicos', body: 'Bloquear a álcool-desidrogenase com <strong>fomepizol</strong> (ou etanol) impede a formação dos metabólitos tóxicos. <strong>Hemodiálise</strong> remove a toxina e corrige a acidose — indicada em acidose grave, lesão de órgão-alvo (visual/renal) ou níveis altos.' },
+          options: [
+            { label: 'Fomepizol (bloquear álcool-desidrogenase) + hemodiálise se critérios', correct: true },
+            { label: 'Apenas hidratação e observação', correct: false },
+            { label: 'Bicarbonato isolado, sem antídoto', correct: false },
+            { label: 'Antiemético e alta', correct: false }
+          ],
+          explainCorrect: `AG alto + gap osmolar + IRA = intoxicação por <strong>álcool tóxico</strong> (etilenoglicol). Iniciar <strong>fomepizol</strong> imediatamente para bloquear a formação de metabólitos e indicar <strong>hemodiálise</strong> (acidose grave/lesão renal). Tiamina e piridoxina ajudam a desviar o metabolismo no etilenoglicol.`,
+          explainWrong: {
+            'Apenas hidratação e observação': 'A toxina continua sendo convertida em ácidos — atrasar o antídoto permite lesão renal/visual.',
+            'Bicarbonato isolado, sem antídoto': 'Bicarbonato é adjuvante; sem bloquear a álcool-desidrogenase a produção de ácido continua.',
+            'Antiemético e alta': 'Conduta perigosa: ignora uma intoxicação potencialmente fatal.'
+          }
+        }
+      ],
+      summary: `<strong>Acidose metabólica com AG alto (${AG}) + gap osmolar elevado (${osmGap})</strong> por <strong>etilenoglicol</strong>. A álcool-desidrogenase gera glicolato/oxalato (consome HCO₃⁻, eleva o AG) e causa IRA. Conduta: <strong>fomepizol + hemodiálise</strong> se critérios. Armadilha: isopropanol dá gap osmolar SEM acidose.`
+    };
+  }
+
+  // ── Casos clínicos (Fase 3: 6 casos jogáveis) ────────────────────────────
   // Diagnóstico não aparece no hub (spoiler) — fica como metadata interna.
   // Desbloqueio é progressivo: um caso libera quando o anterior é concluído
   // (ver _isPlayable). Casos sem build() ficam como "Em breve".
   const CASES = [
     { id:'aldric',  caso:'Caso I',   title:'A Forja Escaldante',     character:'Ferreiro Aldric',     build:_buildAldric },
     { id:'mara',    caso:'Caso II',  title:'O Banquete Envenenado',  character:'Curandeira Mara',     build:_buildMara },
-    { id:'theron',  caso:'Caso III', title:'Sentinela das Brumas',   character:'Guarda Theron'      },
-    { id:'vance',   caso:'Caso IV',  title:'A Rota das Especiarias', character:'Mercador Vance'     },
-    { id:'kael',    caso:'Caso V',   title:'O Cerco de Aço',         character:'General Kael'       },
-    { id:'vorgath', caso:'Caso VI',  title:'A Taça de Cristal Verde',character:'Alquimista Vorgath' }
+    { id:'theron',  caso:'Caso III', title:'Sentinela das Brumas',   character:'Guarda Theron',       build:_buildTheron  },
+    { id:'vance',   caso:'Caso IV',  title:'A Rota das Especiarias', character:'Mercador Vance',      build:_buildVance   },
+    { id:'kael',    caso:'Caso V',   title:'O Cerco de Aço',         character:'General Kael',        build:_buildKael    },
+    { id:'vorgath', caso:'Caso VI',  title:'A Taça de Cristal Verde',character:'Alquimista Vorgath',  build:_buildVorgath }
   ];
   // Helper p/ telas internas que ainda referenciam o "chapter" antigo.
   function _chapterOf(meta){ return `${meta.caso} — ${meta.title}`; }
