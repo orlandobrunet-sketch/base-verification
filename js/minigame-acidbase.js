@@ -36,6 +36,26 @@
   function _ph(HCO3, PaCO2){ return _r2(6.1 + Math.log10(HCO3 / (0.03 * PaCO2))); }
   function _be(HCO3, PaCO2){ return Math.round((HCO3 - 24) - 0.4 * (40 - PaCO2)); }
 
+  // ── Mesa de Cartas (Ato V — Diagnósticos Diferenciais) ──────────────────
+  // Cada carta carrega o mecanismo fisiopatológico (cadeia causal) e o "why"
+  // (por que é compatível ou por que é armadilha).
+  function _makeCard(id, title, clue, mechanism, correct, why){
+    return { id, title, clue, mechanism, correct, why };
+  }
+  function _shuffle(arr){
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+  // Monta um ato do tipo 'cards'. Embaralha as cartas no build (estável durante
+  // a partida — _renderAct reutiliza este array, inclusive ao voltar pelos dots).
+  function _buildCardsAct({ prompt, instruction, cards, grimoire }){
+    return { kind: 'cards', prompt, instruction, cards: _shuffle(cards), grimoire };
+  }
+
   function _buildAldric(){
     // Acidose metabólica com AG alto (acidose láctica por esforço/calor)
     const HCO3 = _rand(8, 13);                       // metabolic acidosis moderada–grave
@@ -92,9 +112,28 @@
           explainCorrect: `AG = ${Na} − (${Cl} + ${HCO3}) = <strong>${AG} mEq/L</strong> (alto, normal 8–12). Albumina ${alb} g/dL → sem correção significativa. <strong>AG elevado</strong> indica acúmulo de ácido orgânico — investigar <strong>lactato</strong> (exercício extremo + hipovolemia).`,
           explainWrong: `AG = Na − (Cl + HCO₃). Aqui: ${Na} − (${Cl} + ${HCO3}) = ${AG}.`
         },
+        _buildCardsAct({
+          prompt: '<strong>Ato IV — Conselho dos Diagnósticos Diferenciais.</strong><br>Selecione <em>todas</em> as causas que também produzem este padrão (acidose metabólica com ânion gap alto).',
+          instruction: 'Marque todas as causas compatíveis. Algumas cartas são armadilhas.',
+          cards: [
+            _makeCard('sepsis_lactate', 'Sepse / choque', 'Lactato alto, AG elevado, taquipneia', 'Hipoperfusão e disfunção mitocondrial desviam o piruvato para lactato; o HCO₃⁻ é consumido ao tamponar o H⁺, elevando o ânion gap.', true, 'Causa clássica de acidose com AG alto; pode somar alcalose respiratória pela hiperventilação inflamatória.'),
+            _makeCard('dka', 'Cetoacidose diabética', 'Hiperglicemia, cetonúria, Kussmaul', 'A falta de insulina libera ácidos graxos que o fígado converte em cetoácidos (β-hidroxibutirato/acetoacetato), ânions não medidos que consomem HCO₃⁻.', true, 'Uma das principais causas de AG alto; procure glicemia, cetonas e o gatilho (infecção, omissão de insulina).'),
+            _makeCard('alcoholic_ka', 'Cetoacidose alcoólica', 'Etilismo + jejum, cetose', 'Álcool e jejum elevam o NADH e esgotam o glicogênio; a lipólise gera β-hidroxibutirato, acumulando ânions não medidos.', true, 'Produz AG alto com glicemia normal ou baixa; responde a soro glicosado e tiamina.'),
+            _makeCard('uremia', 'Uremia / DRC avançada', 'TFG muito baixa, fosfato alto', 'A queda da TFG reduz a excreção de ácidos fixos e retém sulfato e fosfato — ânions não medidos que elevam o AG.', true, 'Na DRC avançada a retenção de ânions fixos eleva o AG; indica álcali e, se grave, diálise.'),
+            _makeCard('ethylene_glycol', 'Etilenoglicol', 'Ingestão tóxica, gap osmolar, IRA', 'Metabolizado pela álcool-desidrogenase a glicolato e oxalato, que consomem HCO₃⁻ e elevam o AG; o oxalato precipita e causa IRA.', true, 'AG alto + gap osmolar elevado + IRA; antídoto é fomepizol e, se grave, hemodiálise.'),
+            _makeCard('salicylate', 'Intoxicação por salicilato', 'Zumbido, taquipneia, febre', 'Estimula o centro respiratório (alcalose respiratória) e desacopla a fosforilação oxidativa, gerando ácidos orgânicos (AG alto).', true, 'Padrão misto típico: AG alto somado a alcalose respiratória.'),
+            _makeCard('diarrhea', 'Diarreia', 'Perda fecal volumosa, AG normal', 'Perde o HCO₃⁻ rico no fluido intestinal; o Cl⁻ sobe para manter a eletroneutralidade → acidose com AG normal (hiperclorêmica).', false, 'Armadilha: causa acidose, mas hiperclorêmica (AG normal), não AG alto.'),
+            _makeCard('vomiting', 'Vômitos', 'Perda de conteúdo gástrico', 'Remove HCl gástrico → perde H⁺ e Cl⁻, gerando alcalose metabólica, não acidose.', false, 'Armadilha: gera alcalose metabólica, o oposto deste caso.'),
+            _makeCard('rta1', 'ATR tipo 1 (distal)', 'Hipocalemia, pH urinário alto', 'A falha da secreção distal de H⁺ gera acidose, mas com Cl⁻ alto e AG normal (hiperclorêmica).', false, 'Armadilha: acidose com AG normal e hipocalemia, não AG alto.')
+          ],
+          grimoire: {
+            title: 'Diagnóstico diferencial por padrão ácido-base',
+            body: 'O objetivo não é decorar listas, mas reconhecer mecanismos que reproduzem o mesmo padrão. Para AG alto, lembre o <strong>GOLD MARK</strong>: Glicóis, Oxoprolina, L-/D-Lactato, Metanol, Aspirina, Renal (uremia), Cetoacidose.'
+          }
+        }),
         {
           kind: 'mc',
-          prompt: `<strong>Ato IV — Conduta clínica.</strong><br>Qual é a sua conduta inicial?`,
+          prompt: `<strong>Ato V — Conduta clínica.</strong><br>Qual é a sua conduta inicial?`,
           grimoire: {
             title: 'Bicarbonato em acidose metabólica grave — BICAR-ICU',
             body: 'Jaber S et al. <em>Lancet</em> 2018;392:31-40. Bicarbonato de sódio reduziu mortalidade em 28 dias no subgrupo com <strong>pH ≤ 7,20 + AKI KDIGO 2/3</strong> (acidose mista metabólica grave). Fora desse subgrupo, sem benefício e com riscos (hipernatremia, hipocalcemia, alcalose paradoxal intracelular). Tratar primeiro a causa da acidose.'
@@ -179,9 +218,28 @@
             'Indeterminada — precisa de mais exames': `O cloreto urinário (${ClU}) já permite classificar: < 20 = salina-responsiva.`
           }
         },
+        _buildCardsAct({
+          prompt: '<strong>Ato IV — Conselho dos Diagnósticos Diferenciais.</strong><br>Selecione <em>todas</em> as causas que também produzem este padrão (alcalose metabólica).',
+          instruction: 'Marque todas as causas compatíveis. Algumas cartas são armadilhas.',
+          cards: [
+            _makeCard('vomiting', 'Vômitos / SNG', 'Perda de conteúdo gástrico', 'Remove HCl gástrico; a hipocloremia impede a troca Cl⁻/HCO₃⁻ no coletor e a hipovolemia ativa o RAAS, perpetuando a secreção distal de H⁺.', true, 'Causa salina-responsiva clássica (Cl⁻ urinário baixo); compatível com este caso.'),
+            _makeCard('diuretic', 'Diuréticos (alça/tiazida)', 'Poliúria, K⁺ e Cl⁻ baixos', 'Aumentam a oferta distal de Na⁺ e ativam o RAAS; a secreção de H⁺ e K⁺ sobe e a contração de volume concentra o HCO₃⁻.', true, 'Causa comum de alcalose; o Cl⁻ urinário pode estar alto se o diurético ainda age.'),
+            _makeCard('hyperaldo', 'Hiperaldosteronismo primário', 'Hipertensão + K⁺ baixo', 'A aldosterona aumenta o ENaC no coletor; o lúmen fica mais negativo, favorecendo a secreção de H⁺ e K⁺ → hipocalemia e alcalose.', true, 'Alcalose salina-resistente com hipertensão e Cl⁻ urinário alto; entra no diferencial.'),
+            _makeCard('bartter', 'Síndrome de Bartter', 'Normotenso, Ca urinário alto', 'Defeito no ramo ascendente (tipo furosemida) ativa o RAAS, com perda renal de H⁺ e K⁺; cursa normotenso.', true, 'Alcalose hipocalêmica normotensa; compatível com o padrão.'),
+            _makeCard('gitelman', 'Síndrome de Gitelman', 'Normotenso, Mg²⁺ baixo', 'Defeito no túbulo distal (tipo tiazida) ativa o RAAS; cursa com hipomagnesemia e Ca urinário baixo, normotenso.', true, 'Alcalose hipocalêmica normotensa com Mg baixo; compatível com o padrão.'),
+            _makeCard('posthypercapnia', 'Pós-hipercapnia', 'DPOC ventilado rapidamente', 'Na hipercapnia crônica o rim retém HCO₃⁻; se a PaCO₂ cai rápido com a ventilação, o HCO₃⁻ alto persiste por dias → alcalose.', true, 'Mantém alcalose em pacientes pulmonares; reconheça pela história ventilatória.'),
+            _makeCard('diarrhea', 'Diarreia', 'AG normal, Cl⁻ alto', 'Perde HCO₃⁻ intestinal → acidose hiperclorêmica (AG normal), oposto da alcalose.', false, 'Armadilha: causa acidose hiperclorêmica, o oposto deste caso.'),
+            _makeCard('rta4', 'ATR tipo 4', 'K⁺ alto, acidose', 'O hipoaldosteronismo reduz a secreção distal de H⁺ e K⁺ → acidose hiperclorêmica com hipercalemia.', false, 'Armadilha: acidose hipercalêmica, não alcalose.'),
+            _makeCard('sepsis', 'Sepse com lactato', 'AG alto, lactato elevado', 'A hipoperfusão gera lactato (ânion não medido) que consome HCO₃⁻ → acidose com AG alto.', false, 'Armadilha: acidose com AG alto, não alcalose.')
+          ],
+          grimoire: {
+            title: 'Alcalose metabólica — responsiva vs resistente à salina',
+            body: 'Separe pelo Cl⁻ urinário: <strong>&lt; 20</strong> = salina-responsiva (vômito, diurético remoto, pós-hipercapnia); <strong>&gt; 20</strong> = salina-resistente (hiperaldosteronismo, Bartter/Gitelman, diurético ativo).'
+          }
+        }),
         {
           kind: 'mc',
-          prompt: `<strong>Ato IV — Conduta clínica.</strong><br>Qual é a sua conduta inicial?`,
+          prompt: `<strong>Ato V — Conduta clínica.</strong><br>Qual é a sua conduta inicial?`,
           grimoire: { title: 'Tratamento da alcalose metabólica salina-responsiva', body: 'Repor volume com <strong>SF 0,9%</strong> (fornece Cl⁻ e desliga o estímulo à reabsorção de HCO₃⁻) + corrigir a <strong>hipocalemia com KCl</strong>. Acetazolamida fica reservada para quando a sobrecarga de volume impede o uso de salina. Bloqueador H2/IBP se a perda gástrica continuar.' },
           options: [
             { label: 'Soro fisiológico 0,9% IV + reposição de KCl', correct: true },
@@ -290,7 +348,7 @@
     });
   }
 
-  // ── UI: Caso (4 atos sequenciais) ──────────────────────────────────────
+  // ── UI: Caso (atos sequenciais — nº variável por caso) ──────────────────
   function _startCase(overlay, meta){
     if (typeof meta.build !== 'function') return;
     // Cada partida sorteia uma instância nova: gas + atos + alvos
@@ -335,7 +393,7 @@
       <div class="ab-scroll">
         ${_contextHeaderHTML(kase)}
         <div class="ab-body ab-body--intro">
-          <button type="button" class="ab-btn-primary" data-ab-start-acts>Iniciar Diagnóstico em 4 Atos →</button>
+          <button type="button" class="ab-btn-primary" data-ab-start-acts>Iniciar Diagnóstico em ${kase.acts.length} Atos →</button>
         </div>
       </div>`;
     card.querySelector('[data-ab-start-acts]').onclick = () => _renderAct(overlay, kase, sess);
@@ -367,6 +425,24 @@
           <span class="ab-num-unit">${act.unit||''}</span>
           <button type="button" class="ab-btn-primary" data-ab-num-submit>Conferir</button>
         </div>`;
+    } else if (act.kind === 'cards') {
+      // Seleção persistida por id (sobrevive a voltar/avançar pelos dots).
+      sess.cardSel = sess.cardSel || {};
+      const sel = sess.cardSel[sess.actIdx] = sess.cardSel[sess.actIdx] || new Set();
+      const cardsBtns = act.cards.map(c => {
+        const isSel = sel.has(c.id);
+        return `
+          <button type="button" class="ab-ddx-card${isSel?' selected':''}" data-ab-card-id="${c.id}" aria-pressed="${isSel?'true':'false'}">
+            <span class="ab-ddx-card-badge">${isSel?'Selecionada':''}</span>
+            <span class="ab-ddx-card-title">${c.title}</span>
+            <span class="ab-ddx-card-clue">${c.clue}</span>
+            <span class="ab-ddx-card-mechanism">${c.mechanism}</span>
+          </button>`;
+      }).join('');
+      bodyHTML = `
+        ${act.instruction ? `<div class="ab-ddx-instruction">${act.instruction}</div>` : ''}
+        <div class="ab-ddx-table">${cardsBtns}</div>
+        <button type="button" class="ab-btn-primary ab-ddx-submit" data-ab-cards-submit>Conferir Conselho</button>`;
     }
 
     const grimoireBtn = act.grimoire
@@ -411,6 +487,20 @@
       submit.onclick = go;
       input.addEventListener('keydown', ev => { if (ev.key === 'Enter') go(); });
       setTimeout(() => input.focus(), 30);
+    } else if (act.kind === 'cards') {
+      const sel = sess.cardSel[sess.actIdx];
+      card.querySelectorAll('[data-ab-card-id]').forEach(b => {
+        b.onclick = () => {
+          const id = b.getAttribute('data-ab-card-id');
+          const nowSel = !sel.has(id);
+          if (nowSel) sel.add(id); else sel.delete(id);
+          b.classList.toggle('selected', nowSel);
+          b.setAttribute('aria-pressed', nowSel ? 'true' : 'false');
+          const badge = b.querySelector('.ab-ddx-card-badge');
+          if (badge) badge.textContent = nowSel ? 'Selecionada' : '';
+        };
+      });
+      card.querySelector('[data-ab-cards-submit]').onclick = () => _handleAnswerCards(overlay, kase, sess);
     }
   }
 
@@ -444,6 +534,52 @@
       sess.wrongAttempts++;
       _showFeedback(card, false, `Valor informado: <strong>${value}</strong>. Resposta esperada: <strong>${act.target} ${act.unit||''}</strong> (±${act.tolerance}).<br><br>${act.explainWrong}<br><br>${act.explainCorrect}`);
     }
+    _appendNextBtn(card, overlay, kase, sess);
+  }
+
+  function _handleAnswerCards(overlay, kase, sess){
+    const act = kase.acts[sess.actIdx];
+    const card = overlay.querySelector('.ab-card');
+    const sel = (sess.cardSel && sess.cardSel[sess.actIdx]) || new Set();
+    const correctIds = new Set(act.cards.filter(c => c.correct).map(c => c.id));
+
+    let correctSel = 0, missed = 0, wrong = 0;
+    act.cards.forEach(c => {
+      const el = card.querySelector(`[data-ab-card-id="${c.id}"]`);
+      const picked = sel.has(c.id);
+      const badge = el && el.querySelector('.ab-ddx-card-badge');
+      if (c.correct && picked)      { el.classList.add('correct'); if (badge) badge.textContent = 'Correta';     correctSel++; }
+      else if (c.correct && !picked){ el.classList.add('missed');  if (badge) badge.textContent = 'Você esqueceu'; missed++; }
+      else if (!c.correct && picked){ el.classList.add('wrong');   if (badge) badge.textContent = 'Armadilha';   wrong++; }
+      if (el){ el.disabled = true; el.setAttribute('aria-disabled', 'true'); }
+    });
+    const perfect = (missed === 0 && wrong === 0 && correctSel === correctIds.size);
+    if (!perfect) sess.wrongAttempts++;
+    const submitBtn = card.querySelector('[data-ab-cards-submit]');
+    if (submitBtn) submitBtn.disabled = true;
+
+    try { if (typeof _track === 'function') _track('minigame_acid_base_cards_checked', {
+      case: kase.id, correctCount: correctSel, selectedCount: sel.size, missedCount: missed, wrongCount: wrong, perfect
+    }); } catch {}
+
+    // Feedback estruturado: corretas acertadas / esquecidas / armadilhas.
+    const _section = (title, list) => list.length ? `
+      <div class="ab-ddx-feedback-section">
+        <div class="ab-ddx-feedback-title">${title}</div>
+        ${list.map(c => `<div class="ab-ddx-feedback-item"><strong>${c.title}.</strong> ${c.why}</div>`).join('')}
+      </div>` : '';
+    const goodPicks   = act.cards.filter(c => c.correct && sel.has(c.id));
+    const missedCards = act.cards.filter(c => c.correct && !sel.has(c.id));
+    const wrongCards  = act.cards.filter(c => !c.correct && sel.has(c.id));
+    const head = perfect
+      ? 'Conselho perfeito — você reconheceu todas as causas compatíveis e evitou as armadilhas.'
+      : 'Reveja o conselho abaixo:';
+    const html = `<div class="ab-ddx-feedback">${head}
+      ${_section('✓ Corretas', goodPicks)}
+      ${_section('Você esqueceu', missedCards)}
+      ${_section('Armadilhas selecionadas', wrongCards)}
+    </div>`;
+    _showFeedback(card, perfect, html);
     _appendNextBtn(card, overlay, kase, sess);
   }
 

@@ -11917,6 +11917,52 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 }
 .acid-base-overlay .ab-num-input:focus { border-color: #eec752; box-shadow: 0 0 0 3px rgba(238,199,82,0.15); }
 .acid-base-overlay .ab-num-unit { color: #8294b2; font-size: 0.85rem; }
+/* Mesa de Cartas (Ato de Diagnósticos Diferenciais) */
+.acid-base-overlay .ab-ddx-instruction {
+  color: #8294b2; font-size: 0.82rem; text-align: center; margin: 0 0 10px;
+}
+.acid-base-overlay .ab-ddx-table {
+  display: grid; gap: 8px; margin-bottom: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+.acid-base-overlay .ab-ddx-card {
+  position: relative; text-align: left; cursor: pointer;
+  display: flex; flex-direction: column; gap: 4px;
+  padding: 10px 12px 11px; padding-right: 26px;
+  background: rgba(20,28,55,0.55); border: 1px solid rgba(146,112,38,0.35);
+  border-radius: 10px; color: #d5e2f2; font-family: 'Philosopher', serif;
+  transition: border-color .15s, background .15s, box-shadow .15s;
+}
+.acid-base-overlay .ab-ddx-card:hover:not(:disabled) { border-color: rgba(238,199,82,0.6); }
+.acid-base-overlay .ab-ddx-card.selected {
+  border-color: #eec752; background: rgba(238,199,82,0.10);
+  box-shadow: inset 0 0 0 1px rgba(238,199,82,0.4);
+}
+.acid-base-overlay .ab-ddx-card.correct { border-color: #4ade80; background: rgba(74,222,128,0.12); box-shadow: none; }
+.acid-base-overlay .ab-ddx-card.wrong   { border-color: #ef4444; background: rgba(239,68,68,0.12); box-shadow: none; }
+.acid-base-overlay .ab-ddx-card.missed  { border-color: #fbbf24; background: rgba(251,191,36,0.10); border-style: dashed; box-shadow: none; }
+.acid-base-overlay .ab-ddx-card:disabled { cursor: default; opacity: 1; }
+.acid-base-overlay .ab-ddx-card-title { font-family: 'Cinzel', serif; font-size: 0.85rem; color: #eec752; line-height: 1.25; }
+.acid-base-overlay .ab-ddx-card.correct .ab-ddx-card-title { color: #86efac; }
+.acid-base-overlay .ab-ddx-card.wrong .ab-ddx-card-title { color: #fca5a5; }
+.acid-base-overlay .ab-ddx-card.missed .ab-ddx-card-title { color: #fcd34d; }
+.acid-base-overlay .ab-ddx-card-clue { font-size: 0.74rem; color: #b6c2d8; }
+.acid-base-overlay .ab-ddx-card-mechanism { font-size: 0.72rem; color: #8294b2; line-height: 1.45; }
+.acid-base-overlay .ab-ddx-card-badge {
+  position: absolute; top: 7px; right: 8px;
+  font-size: 0.58rem; letter-spacing: 0.5px; color: #eec752;
+  font-family: 'Cinzel', serif; text-transform: uppercase;
+}
+.acid-base-overlay .ab-ddx-card.correct .ab-ddx-card-badge { color: #4ade80; }
+.acid-base-overlay .ab-ddx-card.wrong .ab-ddx-card-badge { color: #f87171; }
+.acid-base-overlay .ab-ddx-card.missed .ab-ddx-card-badge { color: #fbbf24; }
+.acid-base-overlay .ab-ddx-submit { width: 100%; }
+.acid-base-overlay .ab-ddx-feedback-section { margin-top: 10px; }
+.acid-base-overlay .ab-ddx-feedback-title {
+  font-family: 'Cinzel', serif; font-size: 0.76rem; letter-spacing: 1px;
+  margin-bottom: 4px; opacity: 0.9;
+}
+.acid-base-overlay .ab-ddx-feedback-item { font-size: 0.82rem; line-height: 1.5; margin-bottom: 6px; }
 /* Grimório */
 .acid-base-overlay .ab-grimoire-btn {
   margin: 0 0 10px; padding: 8px 14px;
