@@ -34,7 +34,11 @@
   function _r2(n){ return Math.round(n * 100) / 100; }
   // Henderson–Hasselbalch: pH = 6,1 + log10(HCO3 / (0,03 × PaCO2))
   function _ph(HCO3, PaCO2){ return _r2(6.1 + Math.log10(HCO3 / (0.03 * PaCO2))); }
-  function _be(HCO3, PaCO2){ return Math.round((HCO3 - 24) - 0.4 * (40 - PaCO2)); }
+  // Base excess pela equação de Van Slyke. A fórmula antiga ((HCO3−24)−0,4×(40−PaCO2))
+  // produzia BE enganoso em distúrbios respiratórios (ex.: acidose respiratória aguda
+  // dava BE muito positivo, sugerindo alcalose metabólica inexistente). Van Slyke usa
+  // o pH e dá ~0 em distúrbios respiratórios puros, refletindo só o componente metabólico.
+  function _be(HCO3, PaCO2){ return Math.round(0.9287 * (HCO3 - 24.4 + 14.83 * (_ph(HCO3, PaCO2) - 7.4))); }
 
   // ── Mesa de Cartas (Ato do Conselho dos Diagnósticos) ───────────────────
   // Modelo de duas faces:
@@ -810,17 +814,31 @@
         : `<span class="ab-dot ${cls}"></span>`;
     }).join('');
 
+    // Estado de resposta de MC/NUM persistido por actIdx — voltar pelos dots
+    // mostra a resposta dada (read-only), sem re-contar erro nem permitir re-responder.
+    sess.actResults = sess.actResults || {};
+    const actRes = sess.actResults[sess.actIdx];
+
     let bodyHTML = '';
     if (act.kind === 'mc') {
       bodyHTML = `<div class="ab-options">
-        ${act.options.map((o,i) => `<button type="button" class="ab-option" data-ab-pick="${i}">${o.label}</button>`).join('')}
+        ${act.options.map((o,i) => {
+          let cls = '';
+          if (actRes) {
+            if (i === actRes.pickIdx) cls = actRes.correct ? ' correct' : ' wrong';
+            else if (o.correct) cls = ' correct';
+          }
+          return `<button type="button" class="ab-option${cls}" data-ab-pick="${i}"${actRes?' disabled':''}>${o.label}</button>`;
+        }).join('')}
       </div>`;
     } else if (act.kind === 'num') {
+      const valAttr = actRes ? ` value="${actRes.value}"` : '';
+      const dis = actRes ? ' disabled' : '';
       bodyHTML = `
         <div class="ab-num-row">
-          <input type="number" step="0.1" inputmode="decimal" class="ab-num-input" id="abNumInput" placeholder="Digite o valor" aria-label="Valor calculado">
+          <input type="number" step="0.1" inputmode="decimal" class="ab-num-input" id="abNumInput" placeholder="Digite o valor" aria-label="Valor calculado"${valAttr}${dis}>
           <span class="ab-num-unit">${act.unit||''}</span>
-          <button type="button" class="ab-btn-primary" data-ab-num-submit>Conferir</button>
+          <button type="button" class="ab-btn-primary" data-ab-num-submit${dis}>Conferir</button>
         </div>`;
     } else if (act.kind === 'cards') {
       // Estado persistido por actIdx (sobrevive a voltar/avançar pelos dots).
@@ -914,16 +932,28 @@
     };
 
     if (act.kind === 'mc') {
-      card.querySelectorAll('[data-ab-pick]').forEach(b => {
-        b.onclick = () => _handleAnswerMC(overlay, kase, sess, parseInt(b.getAttribute('data-ab-pick'),10), b);
-      });
+      if (actRes) {
+        const fb = _mcFeedback(act, actRes.pickIdx);
+        _showFeedback(card, fb.ok, fb.html);
+        _appendNextBtn(card, overlay, kase, sess);
+      } else {
+        card.querySelectorAll('[data-ab-pick]').forEach(b => {
+          b.onclick = () => _handleAnswerMC(overlay, kase, sess, parseInt(b.getAttribute('data-ab-pick'),10));
+        });
+      }
     } else if (act.kind === 'num') {
-      const input = card.querySelector('#abNumInput');
-      const submit = card.querySelector('[data-ab-num-submit]');
-      const go = () => _handleAnswerNum(overlay, kase, sess, parseFloat(input.value));
-      submit.onclick = go;
-      input.addEventListener('keydown', ev => { if (ev.key === 'Enter') go(); });
-      setTimeout(() => input.focus(), 30);
+      if (actRes) {
+        const fb = _numFeedback(act, actRes.value);
+        _showFeedback(card, fb.ok, fb.html);
+        _appendNextBtn(card, overlay, kase, sess);
+      } else {
+        const input = card.querySelector('#abNumInput');
+        const submit = card.querySelector('[data-ab-num-submit]');
+        const go = () => _handleAnswerNum(overlay, kase, sess, parseFloat(input.value));
+        submit.onclick = go;
+        input.addEventListener('keydown', ev => { if (ev.key === 'Enter') go(); });
+        setTimeout(() => input.focus(), 30);
+      }
     } else if (act.kind === 'cards') {
       const result = sess.cardResults[sess.actIdx];
       if (result && result.confirmed) {
@@ -955,37 +985,41 @@
     }
   }
 
-  function _handleAnswerMC(overlay, kase, sess, pickIdx, btn){
-    const act = kase.acts[sess.actIdx];
+  // Constrói o feedback (reutilizado na 1ª resposta e ao revisitar pelos dots).
+  function _mcFeedback(act, pickIdx){
     const picked = act.options[pickIdx];
-    const card = overlay.querySelector('.ab-card');
-    card.querySelectorAll('[data-ab-pick]').forEach(b => b.disabled = true);
-    btn.classList.add(picked.correct ? 'correct' : 'wrong');
-    if (picked.correct) {
-      _showFeedback(card, true, act.explainCorrect);
-    } else {
-      sess.wrongAttempts++;
-      const why = (act.explainWrong && act.explainWrong[picked.label]) || '';
-      const correctOpt = act.options.find(o => o.correct);
-      _showFeedback(card, false, `${why} <br><br><strong>Resposta correta:</strong> ${correctOpt.label}.<br>${act.explainCorrect}`);
+    if (picked.correct) return { ok: true, html: act.explainCorrect };
+    const why = (act.explainWrong && act.explainWrong[picked.label]) || '';
+    const correctOpt = act.options.find(o => o.correct);
+    return { ok: false, html: `${why} <br><br><strong>Resposta correta:</strong> ${correctOpt.label}.<br>${act.explainCorrect}` };
+  }
+  function _numFeedback(act, value){
+    const ok = Math.abs(value - act.target) <= act.tolerance;
+    if (ok) return { ok: true, html: act.explainCorrect };
+    return { ok: false, html: `Valor informado: <strong>${value}</strong>. Resposta esperada: <strong>${act.target} ${act.unit||''}</strong> (±${act.tolerance}).<br><br>${act.explainWrong}<br><br>${act.explainCorrect}` };
+  }
+
+  function _handleAnswerMC(overlay, kase, sess, pickIdx){
+    const act = kase.acts[sess.actIdx];
+    sess.actResults = sess.actResults || {};
+    if (!sess.actResults[sess.actIdx]) {            // conta o erro só na 1ª resposta
+      const picked = act.options[pickIdx];
+      if (!picked.correct) sess.wrongAttempts++;
+      sess.actResults[sess.actIdx] = { kind: 'mc', pickIdx, correct: picked.correct };
     }
-    _appendNextBtn(card, overlay, kase, sess);
+    _renderAct(overlay, kase, sess);                // re-renderiza em modo respondido
   }
 
   function _handleAnswerNum(overlay, kase, sess, value){
-    const act = kase.acts[sess.actIdx];
     if (!Number.isFinite(value)) return;
-    const card = overlay.querySelector('.ab-card');
-    const ok = Math.abs(value - act.target) <= act.tolerance;
-    card.querySelector('[data-ab-num-submit]').disabled = true;
-    card.querySelector('#abNumInput').disabled = true;
-    if (ok) {
-      _showFeedback(card, true, act.explainCorrect);
-    } else {
-      sess.wrongAttempts++;
-      _showFeedback(card, false, `Valor informado: <strong>${value}</strong>. Resposta esperada: <strong>${act.target} ${act.unit||''}</strong> (±${act.tolerance}).<br><br>${act.explainWrong}<br><br>${act.explainCorrect}`);
+    const act = kase.acts[sess.actIdx];
+    sess.actResults = sess.actResults || {};
+    if (!sess.actResults[sess.actIdx]) {            // conta o erro só na 1ª resposta
+      const ok = Math.abs(value - act.target) <= act.tolerance;
+      if (!ok) sess.wrongAttempts++;
+      sess.actResults[sess.actIdx] = { kind: 'num', value, ok };
     }
-    _appendNextBtn(card, overlay, kase, sess);
+    _renderAct(overlay, kase, sess);                // re-renderiza em modo respondido
   }
 
   function _handleAnswerCards(overlay, kase, sess){
