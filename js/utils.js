@@ -433,9 +433,13 @@
         const supaUrl = (typeof SUPA_URL !== 'undefined') ? SUPA_URL
           : (window.NQ_CONFIG && window.NQ_CONFIG.SUPA_URL)
           || 'https://wviutasgroltjuyxpevc.supabase.co';
+        // Auth obrigatória (verify_jwt) — sem apikey/Authorization o Supabase
+        // rejeita com 401 antes de chegar na função.
+        const _supaKey = (window.NQ_CONFIG && window.NQ_CONFIG.SUPA_KEY)
+          || (typeof SUPA_KEY !== 'undefined' ? SUPA_KEY : '');
         const res = await fetch(supaUrl + '/functions/v1/send-contact', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', apikey: _supaKey, Authorization: `Bearer ${_supaKey}` },
           body: JSON.stringify({
             subject: '[NefroQuest] Sugestão de artigo',
             message: `URL/DOI: ${urlVal || '(não informado)'}\n\nJustificativa: ${reasonVal || '(não informada)'}`,

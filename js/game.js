@@ -1582,9 +1582,19 @@
       };
 
       try {
+        // Headers de auth obrigatórios (verify_jwt): sem apikey/Authorization o
+        // Supabase rejeita com 401 antes de chegar na função. Usa a publishable
+        // key (anon) como as demais edge functions chamadas sem usuário logado.
+        const _supaKey = (window.NQ_CONFIG && window.NQ_CONFIG.SUPA_KEY)
+          || (typeof SUPA_KEY !== 'undefined' ? SUPA_KEY : '');
         const res = await fetch(`${SUPA_URL}/functions/v1/send-flag`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            apikey: _supaKey,
+            Authorization: `Bearer ${_supaKey}`,
+          },
           body: JSON.stringify(body),
         });
         const data = await res.json();
@@ -1598,7 +1608,7 @@
         }
       } catch (err) {
         status.className = 'flag-status flag-status--error';
-        status.textContent = '❌ Falha ao enviar. Verifique a chave da API.';
+        status.textContent = '❌ Falha ao enviar. Tente novamente em instantes.';
         btn.disabled = false;
         btn.textContent = '📧 Enviar';
         _track('error_flag_submit', {msg: String(err)});
