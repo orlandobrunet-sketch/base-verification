@@ -38,3 +38,15 @@ enable_signup = true
 enabled = true
 policy = "oneshot"
 inspector_port = 8083
+
+# ── Edge Functions ────────────────────────────────────────────────────────
+# Proxies de formulário público (Web3Forms). São chamados sem usuário logado
+# (inclusive visitantes), enviando apenas a publishable key — que NÃO é um JWT.
+# Com verify_jwt=true (default) o gateway do Supabase rejeita com 401 antes de
+# chegar na função. Estes proxies não precisam de auth de usuário (a proteção é
+# a WEB3FORMS_KEY no servidor + validação de origem/CORS), então: verify_jwt=false.
+[functions.send-flag]
+verify_jwt = false
+
+[functions.send-contact]
+verify_jwt = false
