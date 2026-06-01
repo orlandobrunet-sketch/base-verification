@@ -39,6 +39,8 @@
   function _rand(min, max){ return Math.floor(Math.random() * (max - min + 1)) + min; }
   function _r1(n){ return Math.round(n * 10) / 10; }
   function _r2(n){ return Math.round(n * 100) / 100; }
+  // Formata número para exibição em pt-BR (vírgula decimal). Inteiros ficam iguais.
+  function _c(n){ return String(n).replace('.', ','); }
   // Henderson–Hasselbalch: pH = 6,1 + log10(HCO3 / (0,03 × PaCO2))
   function _ph(HCO3, PaCO2){ return _r2(6.1 + Math.log10(HCO3 / (0.03 * PaCO2))); }
   // Base excess pela equação de Van Slyke. A fórmula antiga ((HCO3−24)−0,4×(40−PaCO2))
@@ -102,11 +104,11 @@
             { label: 'Alcalose metabólica', correct: false },
             { label: 'Alcalose respiratória', correct: false }
           ],
-          explainCorrect: `pH ${pH} → <strong>acidemia</strong> (< 7,35). HCO₃⁻ ${HCO3} mEq/L (baixo) acompanha a acidemia → distúrbio primário é <strong>metabólico</strong>. PaCO₂ ${PaCO2} mmHg também está baixo (taquipneia), sugerindo compensação respiratória em curso — <em>adequada ou não, será calculado no Ato II</em>.`,
+          explainCorrect: `pH ${_c(pH)} → <strong>acidemia</strong> (< 7,35). HCO₃⁻ ${HCO3} mEq/L (baixo) acompanha a acidemia → distúrbio primário é <strong>metabólico</strong>. PaCO₂ ${PaCO2} mmHg também está baixo (taquipneia), sugerindo compensação respiratória em curso — <em>adequada ou não, será calculado no Ato II</em>.`,
           explainWrong: {
             'Acidose respiratória': `Numa acidose respiratória primária, PaCO₂ estaria <em>alto</em> e HCO₃⁻ subiria para compensar. Aqui PaCO₂ ${PaCO2} está baixo.`,
-            'Alcalose metabólica': `Alcalose teria pH > 7,45 e HCO₃⁻ alto. Aqui pH ${pH} (ácido) e HCO₃⁻ ${HCO3} (baixo).`,
-            'Alcalose respiratória': `Alcalose teria pH > 7,45. Aqui pH ${pH}.`
+            'Alcalose metabólica': `Alcalose teria pH > 7,45 e HCO₃⁻ alto. Aqui pH ${_c(pH)} (ácido) e HCO₃⁻ ${HCO3} (baixo).`,
+            'Alcalose respiratória': `Alcalose teria pH > 7,45. Aqui pH ${_c(pH)}.`
           }
         },
         {
@@ -116,17 +118,17 @@
           unit: 'mmHg',
           target: winterExpected,
           tolerance: 2,
-          explainCorrect: `PaCO₂ esperada = 1,5 × ${HCO3} + 8 = <strong>${winterExpected} mmHg (±2)</strong>. O valor real (${PaCO2}) está dentro da faixa → a compensação respiratória é <strong>adequada</strong>. Não há distúrbio respiratório associado.`,
-          explainWrong: `Reveja: 1,5 × ${HCO3} = ${_r1(1.5*HCO3)}. Some 8 → ${winterExpected}. Tolerância ±2.`
+          explainCorrect: `PaCO₂ esperada = 1,5 × ${HCO3} + 8 = <strong>${_c(winterExpected)} mmHg (±2)</strong>. O valor real (${PaCO2}) está dentro da faixa → a compensação respiratória é <strong>adequada</strong>. Não há distúrbio respiratório associado.`,
+          explainWrong: `Reveja: 1,5 × ${HCO3} = ${_c(_r1(1.5*HCO3))}. Some 8 → ${_c(winterExpected)}. Tolerância ±2.`
         },
         {
           kind: 'num',
-          prompt: `<strong>Ato III — Ânion gap.</strong><br>Calcule o AG sérico (albumina = ${alb} g/dL).`,
+          prompt: `<strong>Ato III — Ânion gap.</strong><br>Calcule o AG sérico (albumina = ${_c(alb)} g/dL).`,
           grimoire: { title: 'Ânion gap', body: '<code>AG = Na⁺ − (Cl⁻ + HCO₃⁻)</code><br>Normal: 8–12 mEq/L. Corrigir para albumina: <code>AG_corrigido = AG + 2,5 × (4 − alb)</code>.' },
           unit: 'mEq/L',
           target: AG,
           tolerance: 1,
-          explainCorrect: `AG = ${Na} − (${Cl} + ${HCO3}) = <strong>${AG} mEq/L</strong> (alto, normal 8–12). Albumina ${alb} g/dL → sem correção significativa. <strong>AG elevado</strong> indica acúmulo de ácido orgânico — investigar <strong>lactato</strong> (exercício extremo + hipovolemia).`,
+          explainCorrect: `AG = ${Na} − (${Cl} + ${HCO3}) = <strong>${AG} mEq/L</strong> (alto, normal 8–12). Albumina ${_c(alb)} g/dL → sem correção significativa. <strong>AG elevado</strong> indica acúmulo de ácido orgânico — investigar <strong>lactato</strong> (exercício extremo + hipovolemia).`,
           explainWrong: `AG = Na − (Cl + HCO₃). Aqui: ${Na} − (${Cl} + ${HCO3}) = ${AG}.`
         },
         _buildCardsAct({
@@ -162,15 +164,15 @@
             { label: 'Intubação e hiperventilação mecânica', correct: false },
             { label: 'Hemodiálise de urgência', correct: false }
           ],
-          explainCorrect: `A causa provável é <strong>acidose láctica por hipoperfusão</strong> (desidratação + esforço). Tratar a causa: ressuscitação volêmica. Pelo <strong>BICAR-ICU (Lancet 2018)</strong>, bicarbonato só tem benefício de mortalidade se <strong>pH ≤ 7,20 + AKI KDIGO 2/3</strong> — aqui pH ${pH} não atinge o limiar e a função renal ainda precisa ser avaliada. Hemodiálise sem indicação clara no momento.`,
+          explainCorrect: `A causa provável é <strong>acidose láctica por hipoperfusão</strong> (desidratação + esforço). Tratar a causa: ressuscitação volêmica. Pelo <strong>BICAR-ICU (Lancet 2018)</strong>, bicarbonato só tem benefício de mortalidade se <strong>pH ≤ 7,20 + AKI KDIGO 2/3</strong> — aqui pH ${_c(pH)} não atinge o limiar e a função renal ainda precisa ser avaliada. Hemodiálise sem indicação clara no momento.`,
           explainWrong: {
-            'Bolus de bicarbonato de sódio 8,4% IV imediato': `Pelo <strong>BICAR-ICU</strong>, bicarbonato só reduz mortalidade no subgrupo com pH ≤ 7,20 + AKI KDIGO 2/3. Aqui pH ${pH} ${pH<=7.20?'atinge o limiar de pH, mas falta confirmar AKI 2/3 e tratar a causa primeiro':'não atinge o limiar'}. Tratar a causa (volume) é a prioridade.`,
+            'Bolus de bicarbonato de sódio 8,4% IV imediato': `Pelo <strong>BICAR-ICU</strong>, bicarbonato só reduz mortalidade no subgrupo com pH ≤ 7,20 + AKI KDIGO 2/3. Aqui pH ${_c(pH)} ${pH<=7.20?'atinge o limiar de pH, mas falta confirmar AKI 2/3 e tratar a causa primeiro':'não atinge o limiar'}. Tratar a causa (volume) é a prioridade.`,
             'Intubação e hiperventilação mecânica': 'A compensação respiratória já é adequada (Winter). Intubar sem indicação ventilatória prejudica a compensação espontânea.',
             'Hemodiálise de urgência': 'Sem indicação clássica de HD aguda (sem AEIOU: Acidose refratária, distúrbio Eletrolítico, Intoxicação, sObrecarga, Uremia).'
           }
         }
       ],
-      summary: `<strong>Acidose metabólica com AG alto (${AG})</strong> + compensação respiratória adequada (Winter prevê ${winterExpected}, real ${PaCO2}). Causa provável: <strong>acidose láctica</strong> por hipoperfusão (calor + esforço + desidratação). Conduta: volume + investigar lactato.`
+      summary: `<strong>Acidose metabólica com AG alto (${AG})</strong> + compensação respiratória adequada (Winter prevê ${_c(winterExpected)}, real ${PaCO2}). Causa provável: <strong>acidose láctica</strong> por hipoperfusão (calor + esforço + desidratação). Conduta: volume + investigar lactato.`
     };
   }
 
@@ -202,11 +204,11 @@
             { label: 'Acidose metabólica', correct: false },
             { label: 'Acidose respiratória', correct: false }
           ],
-          explainCorrect: `pH ${pH} → <strong>alcalemia</strong> (> 7,45). HCO₃⁻ ${HCO3} mEq/L (alto) acompanha a alcalemia → distúrbio primário é <strong>metabólico</strong>. PaCO₂ ${PaCO2} mmHg está elevado (hipoventilação), sugerindo compensação respiratória em curso — <em>adequada ou não, será calculado no Ato II</em>.`,
+          explainCorrect: `pH ${_c(pH)} → <strong>alcalemia</strong> (> 7,45). HCO₃⁻ ${HCO3} mEq/L (alto) acompanha a alcalemia → distúrbio primário é <strong>metabólico</strong>. PaCO₂ ${PaCO2} mmHg está elevado (hipoventilação), sugerindo compensação respiratória em curso — <em>adequada ou não, será calculado no Ato II</em>.`,
           explainWrong: {
             'Alcalose respiratória': `Numa alcalose respiratória primária, PaCO₂ estaria <em>baixo</em> e o HCO₃⁻ cairia para compensar. Aqui PaCO₂ ${PaCO2} está alto e HCO₃⁻ ${HCO3} está alto.`,
-            'Acidose metabólica': `Acidose metabólica teria pH < 7,35 e HCO₃⁻ baixo. Aqui pH ${pH} (alcalino) e HCO₃⁻ ${HCO3} (alto).`,
-            'Acidose respiratória': `Acidose respiratória teria pH < 7,35 com PaCO₂ alto como causa primária. Aqui o pH é ${pH} (alcalino).`
+            'Acidose metabólica': `Acidose metabólica teria pH < 7,35 e HCO₃⁻ baixo. Aqui pH ${_c(pH)} (alcalino) e HCO₃⁻ ${HCO3} (alto).`,
+            'Acidose respiratória': `Acidose respiratória teria pH < 7,35 com PaCO₂ alto como causa primária. Aqui o pH é ${_c(pH)} (alcalino).`
           }
         },
         {
@@ -216,8 +218,8 @@
           unit: 'mmHg',
           target: compExpected,
           tolerance: 5,
-          explainCorrect: `PaCO₂ esperada = 0,7 × ${HCO3} + 21 = <strong>${compExpected} mmHg (±5)</strong>. A compensação respiratória da alcalose metabólica tem variância ampla (raramente PaCO₂ > 55). O valor real (${PaCO2}) está na faixa → compensação <strong>adequada</strong>, sem distúrbio respiratório associado.`,
-          explainWrong: `Reveja: 0,7 × ${HCO3} = ${_r1(0.7*HCO3)}. Some 21 → ${compExpected}. Tolerância ±5 (variância clínica ampla).`
+          explainCorrect: `PaCO₂ esperada = 0,7 × ${HCO3} + 21 = <strong>${_c(compExpected)} mmHg (±5)</strong>. A compensação respiratória da alcalose metabólica tem variância ampla (raramente PaCO₂ > 55). O valor real (${PaCO2}) está na faixa → compensação <strong>adequada</strong>, sem distúrbio respiratório associado.`,
+          explainWrong: `Reveja: 0,7 × ${HCO3} = ${_c(_r1(0.7*HCO3))}. Some 21 → ${_c(compExpected)}. Tolerância ±5 (variância clínica ampla).`
         },
         {
           kind: 'mc',
@@ -273,7 +275,7 @@
           }
         }
       ],
-      summary: `<strong>Alcalose metabólica salina-responsiva</strong> (Cl⁻ urinário ${ClU} < 20) por perda de HCl (vômitos), com <strong>hipocalemia</strong> (K ${K}) e compensação respiratória adequada (esperado ${compExpected}, real ${PaCO2}). Conduta: SF 0,9% + KCl.`
+      summary: `<strong>Alcalose metabólica salina-responsiva</strong> (Cl⁻ urinário ${ClU} < 20) por perda de HCl (vômitos), com <strong>hipocalemia</strong> (K ${K}) e compensação respiratória adequada (esperado ${_c(compExpected)}, real ${PaCO2}). Conduta: SF 0,9% + KCl.`
     };
   }
 
@@ -305,11 +307,11 @@
             { label: 'Acidose respiratória', correct: false },
             { label: 'Acidose metabólica', correct: false }
           ],
-          explainCorrect: `pH ${pH} → <strong>alcalemia</strong> (> 7,45). A PaCO₂ ${PaCO2} mmHg (baixa) acompanha a alcalemia → o processo primário é <strong>respiratório</strong> (hiperventilação). O HCO₃⁻ ${HCO3} levemente reduzido é a resposta renal, não a causa.`,
+          explainCorrect: `pH ${_c(pH)} → <strong>alcalemia</strong> (> 7,45). A PaCO₂ ${PaCO2} mmHg (baixa) acompanha a alcalemia → o processo primário é <strong>respiratório</strong> (hiperventilação). O HCO₃⁻ ${HCO3} levemente reduzido é a resposta renal, não a causa.`,
           explainWrong: {
             'Alcalose metabólica': `Alcalose metabólica teria HCO₃⁻ alto como causa. Aqui o HCO₃⁻ ${HCO3} está baixo e a PaCO₂ ${PaCO2} baixa explica a alcalemia.`,
-            'Acidose respiratória': `Acidose respiratória teria pH < 7,35 e PaCO₂ alta. Aqui pH ${pH} e PaCO₂ ${PaCO2} (baixa).`,
-            'Acidose metabólica': `Acidose teria pH < 7,35 e HCO₃⁻ baixo como causa. Aqui o pH é ${pH} (alcalino).`
+            'Acidose respiratória': `Acidose respiratória teria pH < 7,35 e PaCO₂ alta. Aqui pH ${_c(pH)} e PaCO₂ ${PaCO2} (baixa).`,
+            'Acidose metabólica': `Acidose teria pH < 7,35 e HCO₃⁻ baixo como causa. Aqui o pH é ${_c(pH)} (alcalino).`
           }
         },
         {
@@ -319,12 +321,12 @@
           unit: 'mEq/L',
           target: expHCO3,
           tolerance: 2,
-          explainCorrect: `HCO₃⁻ esperado = 24 − 2 × (40 − ${PaCO2})/10 = <strong>${expHCO3} mEq/L</strong>. O valor real (${HCO3}) bate com o esperado → alcalose respiratória aguda <strong>isolada</strong>, sem distúrbio metabólico associado.`,
-          explainWrong: `Aguda: cada −10 mmHg de PaCO₂ baixa ~2 de HCO₃⁻. 24 − 2 × (40 − ${PaCO2})/10 = ${expHCO3}.`
+          explainCorrect: `HCO₃⁻ esperado = 24 − 2 × (40 − ${PaCO2})/10 = <strong>${_c(expHCO3)} mEq/L</strong>. O valor real (${HCO3}) bate com o esperado → alcalose respiratória aguda <strong>isolada</strong>, sem distúrbio metabólico associado.`,
+          explainWrong: `Aguda: cada −10 mmHg de PaCO₂ baixa ~2 de HCO₃⁻. 24 − 2 × (40 − ${PaCO2})/10 = ${_c(expHCO3)}.`
         },
         {
           kind: 'mc',
-          prompt: `<strong>Ato III — Distúrbio associado?</strong><br>O HCO₃⁻ medido (${HCO3}) é praticamente igual ao esperado (${expHCO3}). O que isso indica?`,
+          prompt: `<strong>Ato III — Distúrbio associado?</strong><br>O HCO₃⁻ medido (${HCO3}) é praticamente igual ao esperado (${_c(expHCO3)}). O que isso indica?`,
           grimoire: { title: 'Compensação adequada vs distúrbio misto', body: 'Se o HCO₃⁻ medido coincide com o esperado para a compensação, o distúrbio é simples. HCO₃⁻ <em>muito mais baixo</em> que o esperado sugere acidose metabólica associada; <em>mais alto</em> sugere alcalose metabólica associada.' },
           options: [
             { label: 'Alcalose respiratória aguda isolada (compensação adequada)', correct: true },
@@ -332,10 +334,10 @@
             { label: 'Alcalose respiratória + alcalose metabólica', correct: false },
             { label: 'Distúrbio triplo', correct: false }
           ],
-          explainCorrect: `Como o HCO₃⁻ real (${HCO3}) coincide com o esperado (${expHCO3}), trata-se de <strong>alcalose respiratória aguda isolada</strong> — a queda do HCO₃⁻ é apenas a resposta tampão/renal precoce, não um segundo distúrbio.`,
+          explainCorrect: `Como o HCO₃⁻ real (${HCO3}) coincide com o esperado (${_c(expHCO3)}), trata-se de <strong>alcalose respiratória aguda isolada</strong> — a queda do HCO₃⁻ é apenas a resposta tampão/renal precoce, não um segundo distúrbio.`,
           explainWrong: {
-            'Alcalose respiratória + acidose metabólica': `Exigiria HCO₃⁻ bem <em>abaixo</em> do esperado. Aqui real ${HCO3} ≈ esperado ${expHCO3}.`,
-            'Alcalose respiratória + alcalose metabólica': `Exigiria HCO₃⁻ <em>acima</em> do esperado. Aqui real ${HCO3} ≈ esperado ${expHCO3}.`,
+            'Alcalose respiratória + acidose metabólica': `Exigiria HCO₃⁻ bem <em>abaixo</em> do esperado. Aqui real ${HCO3} ≈ esperado ${_c(expHCO3)}.`,
+            'Alcalose respiratória + alcalose metabólica': `Exigiria HCO₃⁻ <em>acima</em> do esperado. Aqui real ${HCO3} ≈ esperado ${_c(expHCO3)}.`,
             'Distúrbio triplo': `Não há dados para três distúrbios; o padrão é de alcalose respiratória aguda simples.`
           }
         },
@@ -373,7 +375,7 @@
           }
         }
       ],
-      summary: `<strong>Alcalose respiratória aguda</strong> por hiperventilação hipoxêmica, provável <strong>TEP</strong> (imobilização + dispneia súbita + hipoxemia). HCO₃⁻ ${HCO3} ≈ esperado ${expHCO3} → distúrbio simples. Conduta: investigar TEP, O₂, tratar a causa. Armadilha: rotular como ansiedade.`
+      summary: `<strong>Alcalose respiratória aguda</strong> por hiperventilação hipoxêmica, provável <strong>TEP</strong> (imobilização + dispneia súbita + hipoxemia). HCO₃⁻ ${HCO3} ≈ esperado ${_c(expHCO3)} → distúrbio simples. Conduta: investigar TEP, O₂, tratar a causa. Armadilha: rotular como ansiedade.`
     };
   }
 
@@ -404,11 +406,11 @@
             { label: 'Alcalose metabólica', correct: false },
             { label: 'Alcalose respiratória', correct: false }
           ],
-          explainCorrect: `pH ${pH} → <strong>acidemia</strong> (< 7,35). HCO₃⁻ ${HCO3} mEq/L (baixo) acompanha a acidemia → distúrbio primário <strong>metabólico</strong>. PaCO₂ ${PaCO2} mmHg baixa é a compensação respiratória.`,
+          explainCorrect: `pH ${_c(pH)} → <strong>acidemia</strong> (< 7,35). HCO₃⁻ ${HCO3} mEq/L (baixo) acompanha a acidemia → distúrbio primário <strong>metabólico</strong>. PaCO₂ ${PaCO2} mmHg baixa é a compensação respiratória.`,
           explainWrong: {
             'Acidose respiratória': `Teria PaCO₂ alta como causa. Aqui a PaCO₂ ${PaCO2} está baixa (compensando).`,
-            'Alcalose metabólica': `Teria pH > 7,45 e HCO₃⁻ alto. Aqui pH ${pH} e HCO₃⁻ ${HCO3} (baixo).`,
-            'Alcalose respiratória': `Teria pH > 7,45. Aqui pH ${pH}.`
+            'Alcalose metabólica': `Teria pH > 7,45 e HCO₃⁻ alto. Aqui pH ${_c(pH)} e HCO₃⁻ ${HCO3} (baixo).`,
+            'Alcalose respiratória': `Teria pH > 7,45. Aqui pH ${_c(pH)}.`
           }
         },
         {
@@ -418,12 +420,12 @@
           unit: 'mmHg',
           target: winterExpected,
           tolerance: 2,
-          explainCorrect: `PaCO₂ esperada = 1,5 × ${HCO3} + 8 = <strong>${winterExpected} mmHg (±2)</strong>. O valor real (${PaCO2}) está na faixa → compensação adequada, sem componente respiratório.`,
-          explainWrong: `1,5 × ${HCO3} = ${_r1(1.5*HCO3)}; + 8 = ${winterExpected}. Tolerância ±2.`
+          explainCorrect: `PaCO₂ esperada = 1,5 × ${HCO3} + 8 = <strong>${_c(winterExpected)} mmHg (±2)</strong>. O valor real (${PaCO2}) está na faixa → compensação adequada, sem componente respiratório.`,
+          explainWrong: `1,5 × ${HCO3} = ${_c(_r1(1.5*HCO3))}; + 8 = ${_c(winterExpected)}. Tolerância ±2.`
         },
         {
           kind: 'num',
-          prompt: `<strong>Ato III — Ânion gap.</strong><br>Calcule o AG sérico (albumina = ${alb} g/dL).`,
+          prompt: `<strong>Ato III — Ânion gap.</strong><br>Calcule o AG sérico (albumina = ${_c(alb)} g/dL).`,
           grimoire: { title: 'Ânion gap', body: '<code>AG = Na⁺ − (Cl⁻ + HCO₃⁻)</code><br>Normal 8–12. AG normal numa acidose aponta para perda de HCO₃⁻ ou falha renal de excretar H⁺ (acidose hiperclorêmica).' },
           unit: 'mEq/L',
           target: AG,
@@ -465,7 +467,7 @@
           }
         }
       ],
-      summary: `<strong>Acidose metabólica hiperclorêmica (AG ${AG} normal)</strong> por perda intestinal de HCO₃⁻ (diarreia), com compensação respiratória adequada (Winter ${winterExpected}, real ${PaCO2}). Conduta: volume + K⁺ + tratar a causa; evitar SF 0,9% em excesso.`
+      summary: `<strong>Acidose metabólica hiperclorêmica (AG ${AG} normal)</strong> por perda intestinal de HCO₃⁻ (diarreia), com compensação respiratória adequada (Winter ${_c(winterExpected)}, real ${PaCO2}). Conduta: volume + K⁺ + tratar a causa; evitar SF 0,9% em excesso.`
     };
   }
 
@@ -496,11 +498,11 @@
             { label: 'Alcalose respiratória', correct: false },
             { label: 'Alcalose metabólica', correct: false }
           ],
-          explainCorrect: `pH ${pH} → <strong>acidemia</strong> (< 7,35). A PaCO₂ ${PaCO2} mmHg (alta) acompanha a acidemia → o processo primário é <strong>respiratório</strong> (hipoventilação). O HCO₃⁻ ${HCO3} pouco elevado é resposta tampão precoce.`,
+          explainCorrect: `pH ${_c(pH)} → <strong>acidemia</strong> (< 7,35). A PaCO₂ ${PaCO2} mmHg (alta) acompanha a acidemia → o processo primário é <strong>respiratório</strong> (hipoventilação). O HCO₃⁻ ${HCO3} pouco elevado é resposta tampão precoce.`,
           explainWrong: {
             'Acidose metabólica': `Acidose metabólica teria HCO₃⁻ baixo como causa. Aqui o HCO₃⁻ ${HCO3} está normal/alto e a PaCO₂ ${PaCO2} está alta.`,
-            'Alcalose respiratória': `Teria pH > 7,45 e PaCO₂ baixa. Aqui pH ${pH} e PaCO₂ ${PaCO2} (alta).`,
-            'Alcalose metabólica': `Teria pH > 7,45 e HCO₃⁻ alto. Aqui pH ${pH} (ácido).`
+            'Alcalose respiratória': `Teria pH > 7,45 e PaCO₂ baixa. Aqui pH ${_c(pH)} e PaCO₂ ${PaCO2} (alta).`,
+            'Alcalose metabólica': `Teria pH > 7,45 e HCO₃⁻ alto. Aqui pH ${_c(pH)} (ácido).`
           }
         },
         {
@@ -527,8 +529,8 @@
           unit: 'mEq/L',
           target: expHCO3,
           tolerance: 2,
-          explainCorrect: `HCO₃⁻ esperado = 24 + 1 × (${PaCO2} − 40)/10 = <strong>${expHCO3} mEq/L</strong>. O valor real (${HCO3}) bate → acidose respiratória aguda isolada.`,
-          explainWrong: `24 + (${PaCO2} − 40)/10 = ${expHCO3}. Tolerância ±2.`
+          explainCorrect: `HCO₃⁻ esperado = 24 + 1 × (${PaCO2} − 40)/10 = <strong>${_c(expHCO3)} mEq/L</strong>. O valor real (${HCO3}) bate → acidose respiratória aguda isolada.`,
+          explainWrong: `24 + (${PaCO2} − 40)/10 = ${_c(expHCO3)}. Tolerância ±2.`
         },
         _buildCardsAct({
           prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione <em>todas</em> as causas que também produzem este padrão (acidose respiratória). Não selecione causas de outro padrão.',
@@ -564,7 +566,7 @@
           }
         }
       ],
-      summary: `<strong>Acidose respiratória aguda</strong> por hipoventilação induzida por sedação (PaCO₂ ${PaCO2}). HCO₃⁻ ${HCO3} ≈ esperado ${expHCO3} → aguda isolada. Conduta: restaurar a ventilação (naloxona se opioide); bicarbonato é contraindicado.`
+      summary: `<strong>Acidose respiratória aguda</strong> por hipoventilação induzida por sedação (PaCO₂ ${PaCO2}). HCO₃⁻ ${HCO3} ≈ esperado ${_c(expHCO3)} → aguda isolada. Conduta: restaurar a ventilação (naloxona se opioide); bicarbonato é contraindicado.`
     };
   }
 
@@ -601,11 +603,11 @@
             { label: 'Alcalose metabólica', correct: false },
             { label: 'Alcalose respiratória', correct: false }
           ],
-          explainCorrect: `pH ${pH} → <strong>acidemia</strong> grave. HCO₃⁻ ${HCO3} mEq/L (muito baixo) acompanha a acidemia → distúrbio <strong>metabólico</strong>. PaCO₂ ${PaCO2} mmHg baixa é compensação respiratória.`,
+          explainCorrect: `pH ${_c(pH)} → <strong>acidemia</strong> grave. HCO₃⁻ ${HCO3} mEq/L (muito baixo) acompanha a acidemia → distúrbio <strong>metabólico</strong>. PaCO₂ ${PaCO2} mmHg baixa é compensação respiratória.`,
           explainWrong: {
             'Acidose respiratória': `Teria PaCO₂ alta como causa. Aqui a PaCO₂ ${PaCO2} está baixa (compensando).`,
-            'Alcalose metabólica': `Teria pH > 7,45 e HCO₃⁻ alto. Aqui pH ${pH} e HCO₃⁻ ${HCO3} (baixo).`,
-            'Alcalose respiratória': `Teria pH > 7,45. Aqui pH ${pH}.`
+            'Alcalose metabólica': `Teria pH > 7,45 e HCO₃⁻ alto. Aqui pH ${_c(pH)} e HCO₃⁻ ${HCO3} (baixo).`,
+            'Alcalose respiratória': `Teria pH > 7,45. Aqui pH ${_c(pH)}.`
           }
         },
         {
@@ -615,8 +617,8 @@
           unit: 'mmHg',
           target: winterExpected,
           tolerance: 2,
-          explainCorrect: `PaCO₂ esperada = 1,5 × ${HCO3} + 8 = <strong>${winterExpected} mmHg (±2)</strong>; real ${PaCO2} → compensação adequada.`,
-          explainWrong: `1,5 × ${HCO3} + 8 = ${winterExpected}. Tolerância ±2.`
+          explainCorrect: `PaCO₂ esperada = 1,5 × ${HCO3} + 8 = <strong>${_c(winterExpected)} mmHg (±2)</strong>; real ${PaCO2} → compensação adequada.`,
+          explainWrong: `1,5 × ${HCO3} + 8 = ${_c(winterExpected)}. Tolerância ±2.`
         },
         {
           kind: 'num',
@@ -780,14 +782,14 @@
         <h2 class="ab-title">${kase.title}</h2>
         <p class="ab-narrative">${kase.narrative}</p>
         <div class="ab-gas-grid">
-          <div class="ab-gas"><span>pH</span><strong>${g.pH}</strong></div>
+          <div class="ab-gas"><span>pH</span><strong>${_c(g.pH)}</strong></div>
           <div class="ab-gas"><span>PaCO₂</span><strong>${g.PaCO2}</strong><em>mmHg</em></div>
           <div class="ab-gas"><span>HCO₃⁻</span><strong>${g.HCO3}</strong><em>mEq/L</em></div>
           <div class="ab-gas"><span>BE</span><strong>${g.BE}</strong><em>mEq/L</em></div>
           <div class="ab-gas"><span>Na⁺</span><strong>${g.Na}</strong><em>mEq/L</em></div>
           <div class="ab-gas"><span>Cl⁻</span><strong>${g.Cl}</strong><em>mEq/L</em></div>
-          <div class="ab-gas"><span>K⁺</span><strong>${g.K}</strong><em>mEq/L</em></div>
-          <div class="ab-gas"><span>Albumina</span><strong>${g.alb}</strong><em>g/dL</em></div>
+          <div class="ab-gas"><span>K⁺</span><strong>${_c(g.K)}</strong><em>mEq/L</em></div>
+          <div class="ab-gas"><span>Albumina</span><strong>${_c(g.alb)}</strong><em>g/dL</em></div>
         </div>
       </div>`;
   }
@@ -1002,7 +1004,7 @@
   function _numFeedback(act, value){
     const ok = Math.abs(value - act.target) <= act.tolerance;
     if (ok) return { ok: true, html: act.explainCorrect };
-    return { ok: false, html: `Valor informado: <strong>${value}</strong>. Resposta esperada: <strong>${act.target} ${act.unit||''}</strong> (±${act.tolerance}).<br><br>${act.explainWrong}<br><br>${act.explainCorrect}` };
+    return { ok: false, html: `Valor informado: <strong>${_c(value)}</strong>. Resposta esperada: <strong>${_c(act.target)} ${act.unit||''}</strong> (±${act.tolerance}).<br><br>${act.explainWrong}<br><br>${act.explainCorrect}` };
   }
 
   function _handleAnswerMC(overlay, kase, sess, pickIdx){
