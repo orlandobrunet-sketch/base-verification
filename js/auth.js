@@ -79,14 +79,17 @@
     }
 
     function updateWelcomeUserBadge() {
+      // Itens de admin só aparecem para admin LOGADO. Recalculado sempre —
+      // senão, ao sair (ou entrar como visitante) os menus de admin ficavam
+      // abertos, parecendo que a conta Google ainda estava logada.
+      const _showAdmin = !!authUser && isAdminUser();
+      document.querySelectorAll('.admin-item').forEach(el => el.classList.toggle('visible', _showAdmin));
       if (authUser) {
         const email = authUser.email || '';
         document.querySelectorAll('.profile-btn').forEach(b => b.classList.add('visible'));
         document.querySelectorAll('[id$="ProfileEmail"]').forEach(el => { el.textContent = email; });
         const mobileTopEmail = document.getElementById('mobileTopProfileEmail');
         if (mobileTopEmail) mobileTopEmail.textContent = email;
-        const _showAdmin = isAdminUser();
-        document.querySelectorAll('.admin-item').forEach(el => el.classList.toggle('visible', _showAdmin));
         const landing = document.getElementById('landingScreen');
         if (landing && !landing.classList.contains('hidden')) {
           landing.classList.add('hidden');
