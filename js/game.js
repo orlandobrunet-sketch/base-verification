@@ -1537,7 +1537,7 @@
           <textarea id="flagComment" rows="3" placeholder="Ex: A alternativa B está incorreta pois... / O gabarito deveria ser..."
             style="width:100%;background:rgba(10,20,40,0.8);border:1px solid var(--blue-dark);border-radius:8px;color:#d5e2ff;font-size:0.85rem;padding:10px;resize:vertical;font-family:'Philosopher',serif;outline:none;box-sizing:border-box;"></textarea>
           <div id="flagStatus" class="flag-status"></div>
-          <button data-action="submitFlag" data-arg="${qNum}" data-arg-type="number" id="flagSendBtn"
+          <button data-action="submitFlag" data-arg="${qNum}" id="flagSendBtn"
             style="width:100%;margin-top:10px;background:linear-gradient(180deg,#4f46e5,#3730a3);border:2px solid #6366f1;color:#fff;border-radius:8px;padding:12px;font-family:'Cinzel',serif;font-size:0.82rem;font-weight:700;letter-spacing:1px;cursor:pointer;text-transform:uppercase;">
             📧 Enviar
           </button>
