@@ -80,8 +80,8 @@ const topics = [
     "qid": "cc3248a3",
     "q": "Um paciente apresenta nefrocalcinose medular, cálculos de fosfato de cálcio recorrentes, hipocalemia e pH urinário persistentemente acima de 5.5 em vigência de acidose sistêmica. Qual é o diagnóstico mais provável e o tratamento inicial adequado?",
     "refs": [
-      "kdigo_ckd",
-      "kdigo_aki"
+      "atr_rodriguez_soriano",
+      "brenner_rector"
     ],
     "opts": [
       "Acidose extrarrenal por diarreia; hidratação vigorosa",
@@ -1127,7 +1127,7 @@ const topics = [
     "qid": "5d7e81a6",
     "q": "O estudo AURORA avaliou o uso de Voclosporina na Nefrite Lúpica. Qual a classe farmacológica desta droga?",
     "refs": [
-      "aurora_study",
+      "aurora_voclosporina",
       "kdigo_gn"
     ],
     "opts": [
@@ -1515,7 +1515,7 @@ const topics = [
     "q": "Paciente com lúpus apresenta síndrome nefrótica franca, mas função renal preservada e sedimento urinário inativo. A biópsia revela Nefrite Lúpica Classe V isolada. Qual a característica histológica desta classe?",
     "refs": [
       "kdigo_gn",
-      "aurora_study"
+      "aurora_voclosporina"
     ],
     "opts": [
       "Áreas de esclerose segmentar com fusão pedicular e alterações cicatriciais em múltiplos glomérulos",
@@ -2339,7 +2339,7 @@ const topics = [
     "qid": "c952567a",
     "q": "Mulher de 35 anos com nefrolitíase de repetição por cálcio, nefrocalcinose bilateral e hipocalemia. Gasometria: pH 7,31, HCO3 14 mEq/L, pH urinário 6,2. Qual é o mecanismo pelo qual a hipocalemia ocorre na acidose tubular renal distal (ATR tipo 1)?",
     "refs": [
-      "kdigo_ckd",
+      "atr_rodriguez_soriano",
       "brenner_rector"
     ],
     "opts": [
@@ -7107,7 +7107,7 @@ const topics = [
     "ans": 0,
     "exp": "Na Acidose Tubular Renal (ATR) tipo 1 (distal), há um defeito na secreção de íons hidrogênio no túbulo coletor, resultando na incapacidade de acidificar a urina; portanto, o pH urinário permanece invariavelmente acima de 5,5, mesmo na presença de acidose metabólica sistêmica. Na ATR tipo 2 (proximal), o defeito primário é na reabsorção de bicarbonato no túbulo proximal. No entanto, o néfron distal está intacto e, uma vez que o bicarbonato sérico cai para um nível suficientemente baixo, o néfron distal consegue acidificar a urina, permitindo que o pH urinário caia para menos de 5,5.",
     "refs": [
-      "kdigo_ckd",
+      "atr_rodriguez_soriano",
       "brenner_rector"
     ],
     "cat": "acido_base",
@@ -12523,7 +12523,7 @@ const topics = [
     "q": "Mulher de 38 anos com DRC por nefropatia lúpica classe III/V (combinada), TFG 52 mL/min/1,73m², proteinúria 3,1 g/24h, em uso de micofenolato 3g/dia + prednisona 10mg/dia. Apresenta reativação lúpica com aumento de anti-dsDNA e queda da TFG para 38 mL/min. Qual a melhor estratégia terapêutica adicional?",
     "refs": [
       "bliss_ln",
-      "aurora_study"
+      "aurora_voclosporina"
     ],
     "opts": [
       "Aumentar prednisona para 1 mg/kg/dia como monoterapia",
@@ -18660,7 +18660,7 @@ const topics = [
     "diff": "hard",
     "cat": "glomerular",
     "refs": [
-      "aurora_study",
+      "aurora_voclosporina",
       "kdigo_gn"
     ]
   },
