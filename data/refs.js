@@ -1,4 +1,4 @@
-﻿const refsDB = {
+const refsDB = {
   brenner_rector:{
     label:"Brenner & Rector's The Kidney",
     url:"https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
@@ -78,7 +78,10 @@
     badge:"META",
     badgeColor:"#0ea5e9",
     impacto:"120 ECRs (n=96.722) + 4 estudos observacionais (n=83.934): iSGLT2 reduziu IRA em 36% nos ECRs (OR 0,64; IC 95% 0,53–0,78) e 60% nos estudos observacionais (OR 0,40; IC 95% 0,33–0,48)",
-    icon:"🔬"
+    icon:"🔬",
+    resumo:"Meta-análise sistemática abrangente (120 ECRs, n = 96.722; e 4 estudos de coorte observacionais, n = 83.934) avaliando o impacto dos inibidores de SGLT2 (iSGLT2) sobre o risco de LRA em pacientes com DM2. Nos ECRs, o uso de iSGLT2 reduziu significativamente o risco de desenvolver LRA em 36% (Odds Ratio de 0,64; IC 95% 0,53–0,78; P < 0,001). Nos estudos de coorte do 'mundo real', a redução do risco foi ainda mais acentuada, atingindo 60% (OR 0,40; IC 95% 0,33–0,48; P < 0,001), demonstrando um efeito protetor robusto e consistente em diferentes populações.",
+    conclusao:"Esta meta-análise de grande escala encerrou a preocupação inicial de que os iSGLT2 pudessem causar LRA devido à diurese osmótica, comprovando de forma definitiva o seu papel nefroprotetor agudo e preventivo de disfunção renal.",
+    curiosidade:"Embora causem uma queda hemodinâmica inicial ('dip' fisiológico) na TFGe nas primeiras semanas devido ao bloqueio de feedback tubuloglomerular e vasoconstrição da arteríola aferente, os iSGLT2 protegem o rim a longo prazo reduzindo o estresse de hiperfiltração e diminuindo a demanda de oxigênio no córtex e medula renais."
   },
   permissive_azotemia_2022:{
     label:"Azotemia Permissiva na IRA (Critical Care 2022)",
@@ -89,7 +92,10 @@
     badge:"REVIEW",
     badgeColor:"#8b5cf6",
     impacto:"Hipótese: ureia elevada (100–150 mg/dL) estimula EGF, HGF, IGF-1, reduz inflamação e fibrose e promove regeneração renal. TRS com clearance reduzido por 7–10d pode acelerar recuperação renal (requer validação clínica)",
-    icon:"🔬"
+    icon:"🔬",
+    resumo:"Artigo de revisão e hipótese fisiopatológica teórica inovadora (Critical Care, 2022), propondo o conceito de 'azotemia permissiva' durante a fase de recuperação da LRA grave em terapia intensiva. A hipótese postula que níveis moderadamente elevados de ureia sérica (100–150 mg/dL) agem de forma ativa sinalizando e estimulando a síntese de fatores de crescimento regenerativos podocitários e tubulares renais (como EGF, HGF, IGF-1), reduzindo a resposta inflamatória tecidual crônica e a fibrose intersticial subsequente. Sugere que a diálise intensiva que remove toda a azotemia de forma agressiva pode, paradoxalmente, retardar a cicatrização renal e a independência dialítica.",
+    conclusao:"O conceito de azotemia permissiva sugere que a ureia pode ter funções de sinalização protetora e reconstrutora celular na LRA estabelecida, desencorajando o início de terapia de substituição renal precoce agressiva apenas por azotemia moderada assintomática no Reino.",
+    curiosidade:"A hipótese desafia o paradigma secular de que a ureia é puramente uma toxina metabólica urêmica inerte e perigosa. Fisiologicamente, a ureia é um osmol crucial na medula renal que contribui para o gradiente de concentração urinária e pode agir como sinalizador homeostático celular podocitário em condições de estresse metabólico."
   },
   kdigo_gn:{
     label:"KDIGO Glomerular Diseases 2021",
@@ -212,7 +218,10 @@
     badge:"RCT",
     badgeColor:"#10b981",
     impacto:"HDF de alta dose (≥23L/sessão) ↓23% mortalidade por todas as causas vs HD de alto fluxo",
-    icon:"🔬"
+    icon:"🔬",
+    resumo:"ECR multicêntrico internacional (n = 1.360), comparando hemodiafiltração (HDF) de alta dose (alvo de volume de convecção ≥ 23 L por sessão) versus hemodiálise (HD) convencional de alto fluxo em pacientes com DRC estágio 5 em diálise por ≥ 3 meses. Desfecho primário: morte por qualquer causa. Resultados: Em 30 meses de seguimento médio, HDF de alta dose reduziu significativamente a mortalidade por todas as causas (17,3% no grupo HDF vs 21,9% no grupo HD; Hazard Ratio de 0,77; IC 95% 0,65–0,93; P = 0,005; NNT de 22). O benefício foi impulsionado principalmente pela redução da mortalidade cardiovascular e infecciosa, sem diferença significativa em hospitalizações.",
+    conclusao:"O CONVINCE provou que a HDF de alta dose com volume de convecção elevado (≥ 23 L por sessão) é superior à HD de alto fluxo clássica para prolongar a sobrevida dos aventureiros em TRS.",
+    curiosidade:"A convecção em HDF imita a filtração glomerular ao arrastar solutos de médio peso molecular (toxinas urêmicas como a beta-2 microglobulina) por 'solvent drag' através de membranas de alta permeabilidade, o que a difusão pura da HD convencional falha em remover de forma eficiente."
   },
   sharp_study:{
     label:"SHARP Trial",
@@ -223,7 +232,10 @@
     badge:"RCT",
     badgeColor:"#10b981",
     impacto:"↓17% eventos ateroscleróticos em DRC com ezetimiba + sinvastatina",
-    icon:"💊"
+    icon:"💊",
+    resumo:"ECR multicêntrico duplo-cego de grande escala (SHARP, n = 9.270 pacientes com DRC moderada a avançada, sendo 3.023 em diálise e 6.247 não dialíticos, sem história prévia de infarto). Comparou a combinação de sinvastatina 20 mg mais ezetimiba 10 mg diariamente versus placebo. Desfecho primário: primeiro evento aterosclerótico maior (infarto não fatal, morte coronariana, AVC isquêmico ou revascularização). Resultados: A terapia combinada reduziu significativamente o risco de eventos ateroscleróticos maiores em 17% (HR 0,83; IC 95% 0,74-0,94; P = 0,0021) após um seguimento médio de 4,9 anos. A redução foi consistente em dialíticos e não dialíticos, sem aumento de miopatia ou hepatotoxicidade.",
+    conclusao:"O SHARP provou que a redução agressiva de LDL-C com sinvastatina e ezetimiba previne eventos cardiovasculares isquêmicos na DRC avançada, excetuando o início de estatinas em pacientes já estabelecidos em diálise no Reino.",
+    curiosidade:"Pacientes em diálise apresentam patologia cardiovascular atípica: a maioria das mortes é súbita ou por arritmia devido a calcificação e fibrose miocárdica (uremia e hiperparatireoidismo), e não por oclusão aterosatolérica clássica. Isso justifica por que as estatinas previnem eventos isquêmicos, mas não reduzem a mortalidade global em diálise."
   },
   canvas_study:{
     label:"CANVAS Program",
@@ -234,7 +246,10 @@
     badge:"RCT",
     badgeColor:"#10b981",
     impacto:"↓14% MACE · ↓40% progressão renal com canagliflozina em DM2",
-    icon:"💊"
+    icon:"💊",
+    resumo:"Dois ensaios clínicos integrados de fase III (CANVAS e CANVAS-R, n = 10.142 pacientes com DM2 e alto risco cardiovascular, dos quais 9.600 tinham dados renais utilizáveis, com TFGe >30 mL/min/1,73m²). Avaliou a eficácia e segurança da canagliflozina (100 ou 300 mg/dia) versus placebo. Desfecho primário: composto cardiovascular de morte CV, IAM não fatal ou AVC não fatal. Desfecho renal composto: queda sustentada de 40% na TFGe, necessidade de TRS ou morte renal. Resultados: A canagliflozina reduziu o risco do desfecho CV em 14% (HR 0,86; IC 95% 0,75–0,97; P = 0,02). O desfecho renal composto também foi significativamente reduzido em 40% (HR 0,60; IC 95% 0,47–0,77; P < 0,001). Eventos de amputação de membros inferiores foram estatisticamente maiores com a canagliflozina (6,3 vs 3,4 por 1000 paciente-anos).",
+    conclusao:"O CANVAS estabeleceu a canagliflozina como nefroprotetora e cardioprotetora em diabéticos com alto risco cardiovascular, com um sinal de alerta para risco de amputação no Reino.",
+    curiosidade:"A canagliflozina inibe o cotransportador SGLT2 no túbulo contorcido proximal, mas também tem uma inibição menor e local de SGLT1 no intestino delgado, atenuando os picos de absorção de glicose e reduzindo a hiperglicemia pós-prandial aguda."
   },
   testing_study:{
     label:"TESTING Trial",
@@ -245,7 +260,10 @@
     badge:"RCT",
     badgeColor:"#10b981",
     impacto:"Metilprednisolona oral ↓27% desfecho renal em IgAN de alto risco",
-    icon:"💊"
+    icon:"💊",
+    resumo:"ECR internacional multicêntrico (n = 503), avaliando metilprednisolona oral (dose plena de 0,6-0,8 mg/kg/dia ou dose reduzida de 0,4 mg/kg/dia) versus placebo em pacientes com nefropatia por IgA (IgAN) de alto risco (proteinúria ≥ 1 g/dia e TFGe de 20-120 mL/min/1,73m² após otimização do SRAA). Desfecho primário: declínio sustentado de 40% na TFGe, DRCT ou morte renal. Resultados: Metilprednisolona reduziu o desfecho renal em 47% (HR 0,53; IC 95% 0,39–0,72; P < 0,001) em 4,2 anos de seguimento. O grupo de dose reduzida manteve a eficácia com menor taxa de eventos adversos graves, principalmente infecções graves (que haviam interrompido o trial na fase de dose plena).",
+    conclusao:"O TESTING Trial forneceu a base empírica para o uso de corticoide oral em IgAN progressiva, com forte recomendação para o protocolo de dose reduzida com profilaxia infecciosa para mitigar toxicidade.",
+    curiosidade:"A IgAN é caracterizada pelo acúmulo de depósitos mesangiais de imunocomplexos contendo a imunoglobulina A1 deficiente em galactose (Gd-IgA1) e anticorpos IgG anti-Gd-IgA1 específicos, um mecanismo autoimune em quatro etapas (multi-hit hypothesis)."
   },
   nostone_study:{
     label:"NOSTONE Trial",
@@ -256,7 +274,10 @@
     badge:"RCT",
     badgeColor:"#10b981",
     impacto:"Hidroclorotiazida não reduziu recorrência de nefrolitíase vs placebo",
-    icon:"🔬"
+    icon:"🔬",
+    resumo:"ECR multicêntrico duplo-cego fase III (NOSTONE, n = 416 pacientes com nefrolitíase recorrente de oxalato de cálcio, definida por ≥2 episódios nos últimos 10 anos, e hipercalciúria). Comparou três dosagens de hidroclorotiazida oral (12,5 mg, 25 mg ou 50 mg uma vez ao dia) versus placebo, associadas a aconselhamento dietético padrão. Desfecho primário composto: recorrência clínica ou radiológica de cálculos em até 3 anos. Resultados: Não houve diferença estatisticamente significativa na taxa de recorrência entre os grupos de hidroclorotiazida e o placebo (HR 0,92; IC 95% 0,63–1,36 para 12,5 mg; HR 0,84; IC 95% 0,57–1,25 para 25 mg; HR 0,82; IC 95% 0,55–1,20 para 50 mg). Em contrapartida, houve um aumento marcante e dose-dependente de efeitos adversos graves, como hipocalemia, hiponatremia, hiperuricemia, hipercalcemia e novo diagnóstico de diabetes no grupo da tiazida.",
+    conclusao:"O NOSTONE desafiou o dogma secular da nefrologia de que os diuréticos tiazídicos previnem de forma robusta a recorrência de cálculos de cálcio, mostrando que seu uso rotineiro pode não justificar os riscos metabólicos significativos no Reino.",
+    curiosidade:"Fisiologicamente, os tiazídicos bloqueiam o cotransportador de cloreto de sódio (NCC) no túbulo contorcido distal. A consequente depleção leve de volume de sódio estimula a reabsorção passiva de cálcio no túbulo proximal, reduzindo a excreção urinária de cálcio (hipercalciúria). Contudo, o NOSTONE sugere que essa alteração bioquímica urinária isolada não se traduz necessariamente em redução de eventos clínicos macroscópicos de cristalização."
   },
   rituxvas_study:{
     label:"RITUXVAS Trial",
@@ -295,7 +316,10 @@
     badge:"RCT",
     badgeColor:"#10b981",
     impacto:"Avacopan não inferior a prednisona na vasculite ANCA, com menos efeitos corticoides",
-    icon:"💊"
+    icon:"💊",
+    resumo:"ECR multicêntrico internacional duplo-cego fase III (ADVOCATE, n = 331), comparando o inibidor oral do receptor de C5a avacopan (30 mg 2x/dia) versus prednisona oral em regime de desmame, combinados com rituximabe ou ciclofosfamida, em vasculite ANCA ativa. Desfecho de remissão sustentada em 52 semanas: avacopan foi superior à prednisona (65,7% vs 54,9%; HR 1,25; P = 0,007). Houve menos efeitos colaterais relacionados aos corticoides, menor incidência de infecções graves e melhora acentuada na TFGe em pacientes com disfunção renal inicial.",
+    conclusao:"O avacopan revolucionou a indução da vasculite ANCA ao atuar como um poupador de corticoide altamente eficaz, reduzindo a morbidade do tratamento imunossupressor clássico.",
+    curiosidade:"O sistema do complemento, especificamente a anafilatoxina C5a e seu receptor C5aR1, atua como amplificador crítico da vasculite ANCA ao ativar neutrófilos, induzindo a liberação de citocinas inflamatórias e armadilhas extracelulares de neutrófilos (NETs)."
   },
   nobility_study:{
     label:"NOBILITY Trial (Obinutuzumabe)",
@@ -306,7 +330,10 @@
     badge:"RCT",
     badgeColor:"#10b981",
     impacto:"Obinutuzumabe + MMF superior a MMF isolado em nefrite lúpica",
-    icon:"💊"
+    icon:"💊",
+    resumo:"ECR multicêntrico duplo-cego fase II/III (NOBILITY, n = 125), comparando o anticorpo monoclonal anti-CD20 tipo II obinutuzumabe versus placebo, adicionados ao micofenolato de mofetila (MMF) e corticoide, em nefrite lúpica proliferativa ativa (classe III ou IV). Desfecho primário: resposta renal completa (RRC) na semana 52. Resultados: O grupo obinutuzumabe apresentou taxas significativamente maiores de RRC em 52 semanas (35% vs 23%; P = 0,11) e na semana 104 (41% vs 23%; P = 0,026), com redução acentuada de anticorpos anti-DNAds e consumo de complemento, sem aumento de infecções graves.",
+    conclusao:"O NOBILITY validou o obinutuzumabe como uma terapia de depleção de células B de segunda geração mais profunda e eficaz que o rituximabe tradicional para indução na nefrite lúpica.",
+    curiosidade:"O obinutuzumabe é um anticorpo monoclonal tipo II glicoengenheirado que induz morte celular direta não dependente de complemento e possui maior citotoxicidade celular dependente de anticorpos (ADCC) do que anticorpos tipo I como o rituximabe."
   },
   valor_cdk_study:{
     label:"VALOR-CKD Trial (Veverimer)",
@@ -317,7 +344,10 @@
     badge:"RCT",
     badgeColor:"#f59e0b",
     impacto:"Correção de acidose metabólica não retardou progressão da DRC vs placebo",
-    icon:"🔬"
+    icon:"🔬",
+    resumo:"ECR multicêntrico, duplo-cego, placebo-controlado de fase III (VALOR-CKD, n = 1.480) que avaliou a eficácia e segurança do veverimer (um polímero ligante de ácido clorídrico oral, não absorvível, projetado para remover seletivamente H+ e Cl- no trato gastrointestinal) em pacientes com DRC estágios 3-4 e acidose metabólica crônica (bicarbonato sérico de 12 a 20 mEq/L). O desfecho primário composto foi a progressão da DRC (queda sustentada de TFGe ≥40%, DRCT ou morte renal/CV). Embora o veverimer tenha elevado de forma modesta os níveis séricos de bicarbonato sérico nas primeiras semanas, o estudo foi interrompido precocemente por futilidade após um seguimento médio de 26,7 meses, não demonstrando redução significativa no desfecho primário de progressão renal (HR 0,99; IC 95% 0,84-1,17; P = 0,89).",
+    conclusao:"O VALOR-CKD demonstrou de forma robusta que a correção farmacológica puramente química da acidose metabólica com veverimer não retarda a progressão da DRC, desafiando a premissa de que a reposição de bicarbonato seria uma intervenção nefroprotetora universal no Reino.",
+    curiosidade:"O veverimer age como uma resina de troca iônica no intestino delgado, ligando-se fisicamente aos prótons e cloretos livres para eliminá-los nas fezes, mimetizando uma 'remoção' direta de ácido clorídrico do corpo sem necessitar de absorção sistêmica, minimizando efeitos adversos sistêmicos."
   },
   preserve_study:{
     label:"PRESERVE Trial",
@@ -328,7 +358,10 @@
     badge:"RCT",
     badgeColor:"#f59e0b",
     impacto:"Bicarbonato IV e acetilcisteína não preveniram LRA por contraste vs placebo",
-    icon:"🔬"
+    icon:"🔬",
+    resumo:"ECR duplo-cego internacional de larga escala (PRESERVE, n = 5.177), comparando a eficácia da hidratação com bicarbonato de sódio IV a 1,26% versus cloreto de sódio IV a 0,9%, e o uso de acetilcisteína oral (1.200 mg 2x/dia por 5 dias) versus placebo, na prevenção de LRA associada ao contraste (LRA-AC) em pacientes de alto risco (DRC com TFGe 15–45 ou 45–60 com diabetes) submetidos a angiografia coronária ou periférica eletiva. Desfecho primário: morte, necessidade de diálise ou declínio sustentado ≥ 50% na TFGe aos 90 dias. Resultados: Não houve diferença significativa entre bicarbonato e NaCl (4,4% vs 4,7%; OR 0,93; P = 0,62) nem entre acetilcisteína e placebo (4,6% vs 4,5%; OR 1,02; P = 0,83).",
+    conclusao:"O PRESERVE sepultou o uso rotineiro de bicarbonato de sódio IV e acetilcisteína oral na prevenção da nefropatia por contraste, mantendo a hidratação salina convencional isolada como o único padrão de cuidado aceito.",
+    curiosidade:"A LRA associada ao contraste (LRA-AC) deve-se a uma combinação de toxicidade tubular direta das moléculas iodadas hiperosmolares e vasoconstrição medular induzida pela liberação intrarrenal de adenosina e endotelina, gerando isquemia tecidual focal."
   },
   aurora_study:{
     label:"AURORA Trial (Rosuvastatin)",
@@ -339,7 +372,10 @@
     badge:"RCT",
     badgeColor:"#f59e0b",
     impacto:"Rosuvastatina não reduziu eventos CV em pacientes em hemodiálise",
-    icon:"🔬"
+    icon:"🔬",
+    resumo:"ECR internacional multicêntrico duplo-cego fase III (AURORA, n = 2.776), avaliando rosuvastatina 10 mg/dia versus placebo em pacientes de 50 a 80 anos prevalentes em hemodiálise crônica por ≥ 3 meses, independentemente dos níveis lipídicos basais. Desfecho primário composto: morte por causas cardiovasculares, infarto do miocárdio não fatal ou AVC não fatal. Resultados: Rosuvastatina reduziu o LDL em 43%, mas após 3,2 anos de seguimento, não reduziu o desfecho primário composto (9,2 eventos por 100 pacientes-ano no grupo rosuvastatina vs 9,5 no placebo; HR 0,96; IC 95% 0,84–1,11; P = 0,59). Também não houve diferença em sobrevida livre de morte por todas as causas.",
+    conclusao:"O AURORA corroborou os achados do 4D, estabelecendo de forma robusta e definitiva que a rosuvastatina não oferece proteção contra eventos cardiovasculares maiores em pacientes em hemodiálise de manutenção.",
+    curiosidade:"A uremia induz profundas disfunções estruturais nas lipoproteínas de alta densidade (HDL), tornando-as pró-inflamatórias e disfuncionais. Além disso, a patogênese da doença cardiovascular em diálise envolve mais hipertrofia ventricular esquerda e calcificação da mídia (uremia-driven) do que dislipidemia isolada."
   },
   aurora_voclosporina:{
     label:"AURORA Trial (Voclosporina — Nefrite Lúpica)",
@@ -350,7 +386,10 @@
     badge:"RCT",
     badgeColor:"#10b981",
     impacto:"Voclosporina + MMF + corticoide → remissão renal completa em 41% vs 23% (placebo); p<0,001 em 52 semanas",
-    icon:"🔬"
+    icon:"🔬",
+    resumo:"ECR internacional fase III duplo-cego (AURORA, n = 357 pacientes com nefrite lúpica ativa classe III, IV ou V confirmada por biópsia). Randomizou os participantes para receber voclosporina (um inibidor de calcineurina de segunda geração glicoengenheirado, 23,7 mg duas vezes ao dia) versus placebo, adicionados à terapia de manutenção com micofenolato de mofetila (MMF) e corticoide em dose baixa em desmame rápido. Desfecho primário: resposta renal completa (RRC) na semana 52. Resultados: O grupo voclosporina apresentou taxa de RRC significativamente maior em 52 semanas em comparação ao placebo (41% vs 23%; Odds Ratio de 2,65; P < 0,001), com redução mais rápida de proteinúria, sem aumento relevante de efeitos colaterais típicos de CNIs.",
+    conclusao:"O AURORA consolidou a voclosporina na terapia de indução multitarget na nefrite lúpica ativa, permitindo remissão precoce com exposição minimizada a corticoide sistêmico no Reino.",
+    curiosidade:"A voclosporina possui uma modificação química em sua cadeia lateral de carbono que altera sua ligação com a calcineurina. Essa estrutura confere maior potência imunossupressora in vitro, melhor estabilidade farmacocinética e menor propensão a causar intolerância à glicose e distúrbios lipídicos em relação à ciclosporina convencional."
   },
   tempo_study:{
     label:"TEMPO 3:4 Trial (Tolvaptana)",
@@ -361,7 +400,10 @@
     badge:"RCT",
     badgeColor:"#10b981",
     impacto:"Tolvaptana ↓49% crescimento renal em DRPAD · 1ª terapia específica para DRPAD",
-    icon:"💊"
+    icon:"💊",
+    resumo:"ECR multicêntrico duplo-cego fase III (TEMPO 3:4, n = 1.445 pacientes com Doença Renal Policística Autossômica Dominante [DRPAD], idade 18-50 anos, TFGe ≥60 mL/min e volume renal total [VRT] aumentado ≥750 mL). Randomizou os participantes para tolvaptana (bloqueador oral do receptor V2 de vasopressina em doses individualizadas de 45/15 a 90/30 mg/dia) versus placebo por 3 anos. Desfecho primário: taxa anual de variação no VRT. Resultados: A tolvaptana reduziu significativamente o crescimento do VRT em 49% ao ano (2,8% vs 5,5%; P < 0,001) e reduziu em 61% a taxa de declínio da TFGe, além de diminuir dor renal e episódios de hematúria, com 4,4% de elevações reversíveis em transaminases hepáticas.",
+    conclusao:"O TEMPO 3:4 estabeleceu a tolvaptana como o primeiro tratamento específico nefroprotetor e modificador de curso de doença na DRPAD de rápida progressão no Reino.",
+    curiosidade:"A vasopressina liga-se aos receptores V2 das células do ducto coletor renal, estimulando o AMP cíclico (AMPc) que impulsiona a proliferação celular e secreção hídrica intratubular que expandem os cistos. Ao bloquear o receptor V2, a tolvaptana corta essa cascata molecular e detém o crescimento dos cistos renais."
   },
   credence:{
     label:"CREDENCE Trial (Canagliflozina)",
@@ -428,7 +470,10 @@
     badge:"GUIDELINE",
     badgeColor:"#6366f1",
     impacto:"Padrão global de avaliação e manejo da DRC",
-    icon:"📋"
+    icon:"📋",
+    resumo:"A diretriz KDIGO 2024 para Avaliação e Manejo da Doença Renal Crônica atualiza os padrões diagnósticos e terapêuticos globais. Mantém a classificação clássica da DRC baseada nas categorias de TFGe (G1 a G5) e albuminúria (A1 a A3). Consolida a recomendação para triagem e monitoramento com a relação albuminúria/creatinúria (RAC) e desaconselha o uso exclusivo de fita reagente urinária. Preconiza o uso sistemático e precoce de terapias modificadoras da doença com impacto na sobrevida, com destaque para inibidores do SRAA (IECA ou BRA em dose máxima tolerada), inibidores do co-transportador sódio-glicose 2 (iSGLT2) para pacientes com TFGe ≥20 mL/min/1,73m² e RAC ≥200 mg/g (com ou sem diabetes), e antagonistas não-esteroidais do receptor mineralocorticoide (finerenona) em pacientes diabéticos com proteinúria persistente. Estabelece metas pressóricas rigorosas (PAS <120 mmHg medida de forma padronizada) e controle lipídico baseado em risco.",
+    conclusao:"A diretriz de 2024 redesenha o cuidado da DRC, transformando-a de um contínuo de declínio passivo para uma jornada de intervenção farmacológica tripla ativa (SRAA + iSGLT2 + nsMRA) focada em nefroproteção e redução de mortalidade cardiovascular no Reino.",
+    curiosidade:"A diretriz incorpora a equação CKD-EPI 2021 sem o fator de correção de raça para a estimativa da TFGe, promovendo equidade diagnóstica global e eliminando vieses étnicos que mascaravam o diagnóstico precoce e o acesso ao transplante em populações negras."
   },
   guyton_and_hall_physiology:{
     label:"Guyton & Hall — Tratado de Fisiologia Médica",
@@ -481,7 +526,10 @@
     badge:"GUIDELINE",
     badgeColor:"#6366f1",
     impacto:"Manejo do receptor de transplante renal — imunossupressão, infecções e complicações",
-    icon:"📋"
+    icon:"📋",
+    resumo:"Diretriz internacional atualizada (KDIGO) estabelecendo o padrão ouro para o manejo do receptor de transplante renal ao longo de sua jornada. Recomenda indução imunossupressora baseada em risco imunológico: antagonista do receptor de IL-2 (basiliximabe) para baixo/moderado risco, e terapia de depleção linfocitária (Globulina Antitimócito - ATG) para alto risco. Para a manutenção, preconiza a terapia tríplice padrão com tacrolimo como inibidor de calcineurina de escolha, micofenolato (mofetil ou sódico) como antiproliferativo, e corticoide em dose baixa, com possibilidade de retirada precoce de esteroide apenas em cenários de baixo risco imunológico. Orienta monitoramento rigoroso pós-transplante com dosagem sérica de imunossupressores, triagem ativa para infecções oportunistas (CMV e BK) e controle de comorbidades metabólicas.",
+    conclusao:"Consolida a estratificação de risco imunológico e a imunossupressão tríplice com tacrolimo e micofenolato como a espinha dorsal para preservação e sobrevida do enxerto no Reino.",
+    curiosidade:"A ATG (Globulina Antitimócito) induz depleção profunda e prolongada de células T circulantes por apoptose e lise mediada por complemento, 'desarmando' os exércitos celulares do receptor para prevenir a rejeição aguda celular no enxerto recém-implantado."
   },
   // ===== ARTIGOS FUNDAMENTAIS ADICIONADOS v5.0 =====
   // --- DRPAD ---
@@ -646,7 +694,10 @@
     url:"https://www.kidney-international.org/article/S0085-2538(15)00337-5/fulltext",
     journal:"Kidney International 2015",
     ano:2015,tipo:"Estudo Observacional Internacional",badge:"COORTE",badgeColor:"#0ea5e9",
-    impacto:"Ultrafiltração > 13 mL/kg/h associada a maior mortalidade; sessões mais longas melhoram sobrevida em hemodiálise",icon:"📖"
+    impacto:"Ultrafiltração > 13 mL/kg/h associada a maior mortalidade; sessões mais longas melhoram sobrevida em hemodiálise",icon:"📖",
+    resumo:"Estudo de coorte observacional prospectivo internacional (DOPPS, n = 10.660 pacientes em 3 ondas de dados) que analisou a relação entre a taxa de ultrafiltração (TUF), o tempo de diálise e a mortalidade. Demonstrou que uma taxa de ultrafiltração > 13 mL/kg/h está independentemente associada a um risco significativamente maior de mortalidade por todas as causas (HR 1,76; P = 0,005) e mortalidade cardiovascular. Sessões com maior tempo de duração (ex: > 4 horas) mostraram-se protetoras, mesmo com taxas de ultrafiltração menores, mitigando o risco cardiovascular.",
+    conclusao:"Para evitar o colapso hemodinâmico do enxerto e a atração de uremia, a taxa de remoção de fluidos (ultrafiltração) deve ser estritamente limitada a < 13 mL/kg/h, aumentando-se o tempo da sessão se necessário.",
+    curiosidade:"Taxas de ultrafiltração elevadas superam a velocidade de 'plasma refilling' (retorno de líquido do interstício para os vasos sanguíneos), causando hipotensão intradialítica e atordoamento miocárdico recorrente (myocardial stunning), que leva a fibrose miocárdica e arritmias fatais."
   },
   // --- Distúrbio Mineral ---
   dcor_trial:{
@@ -654,7 +705,10 @@
     url:"https://www.kidney-international.org/article/S0085-2538(15)52524-5/fulltext",
     journal:"Kidney Int 2006;69(8):1489-1496",
     ano:2006,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Sevelamer vs quelantes à base de cálcio: sem diferença em mortalidade mas menor hipercalcemia e calcificação vascular",icon:"🔬"
+    impacto:"Sevelamer vs quelantes à base de cálcio: sem diferença em mortalidade mas menor hipercalcemia e calcificação vascular",icon:"🔬",
+    resumo:"ECR aberto multicêntrico (DCOR, n = 2.103), comparando o quelante de fósforo não cálcico cloridrato de sevelamer versus quelantes à base de cálcio (acetato ou carbonato de cálcio) em pacientes prevalentes em hemodiálise. O desfecho primário de mortalidade por todas as causas após 3 anos não apresentou diferença estatística significativa (HR 0,93; P = 0,40). No entanto, na análise pré-especificada de subgrupos, pacientes com mais de 65 anos ou que completaram > 2 anos de estudo apresentaram menor mortalidade cardiovascular no grupo sevelamer. O sevelamer causou significativamente menos episódios de hipercalcemia e menor progressão de calcificação vascular coronária.",
+    conclusao:"O DCOR não mostrou superioridade geral na sobrevida primária, mas confirmou que quelantes não cálcicos reduzem o risco de hipercalcemia iatrogênica e a sobrecarga de cálcio no tecido vascular, fundamentando o manejo moderno do DBM-DRC.",
+    curiosidade:"O excesso de cálcio derivado dos quelantes orais clássicos precipita-se na túnica média das artérias (arteriosclerose de Mönckeberg) e ativa células musculares lisas vasculares a transdiferenciarem-se em osteoblastos, um mecanismo ativo de calcificação biológica."
   },
   // --- Vasculite ANCA ---
   pexivas_trial:{
@@ -695,7 +749,10 @@
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1210357",
     journal:"N Engl J Med 2012;367(24):2296-2304",
     ano:2012,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Ultrafiltração NÃO superior à farmacoterapia guiada e causou mais dano renal em IC com síndrome cardiorrenal",icon:"🔬"
+    impacto:"Ultrafiltração NÃO superior à farmacoterapia guiada e causou mais dano renal em IC com síndrome cardiorrenal",icon:"🔬",
+    resumo:"ECR aberto multicêntrico (CARRESS-HF, n = 188), avaliando pacientes internados com insuficiência cardíaca descompensada aguda, congestão persistente e disfunção renal secundária (síndrome cardiorrenal tipo 1). Comparou uma estratégia de ultrafiltração contínua agressiva (taxa fixa de 200 mL/h) versus farmacoterapia guiada por algoritmos de diuréticos de alça intravenosos. Desfecho primário: mudança conjunta no peso corporal e na creatinina sérica aos 96h. Resultados: A ultrafiltração não foi superior à terapia medicamentosa na perda ponderal e causou um aumento estatisticamente significativo e prejudicial da creatinina sérica aos 96h (aumento médio de 0,23 mg/dL vs queda de 0,04 mg/dL no grupo diurético; P = 0,003), com maior taxa de complicações graves.",
+    conclusao:"O CARRESS-HF provou que a ultrafiltração mecânica precoce não deve ser a conduta padrão na descompensação cardíaca congestiva, devendo-se priorizar o uso otimizado de diuréticos de alça como terapia inicial no Reino.",
+    curiosidade:"A disfunção renal observada no grupo ultrafiltração deve-se à imposição de uma taxa de remoção volêmica fixa de 200 mL/h, que excedeu a capacidade de plasma refilling intersticial dos pacientes, levando a depleção do volume circulante efetivo arterial e hipoperfusão glomerular transitória."
   },
   dapa_hf:{
     label:"McMurray JJV et al. — DAPA-HF (NEJM 2019)",
@@ -803,28 +860,40 @@
     url:"https://jasn.asnjournals.org/content/4/5/1205",
     journal:"J Am Soc Nephrol 1993;4(5):1205-1213",
     ano:1993,tipo:"Artigo Metodológico",badge:"METODO",badgeColor:"#8b5cf6",
-    impacto:"Fórmula logarítmica de segunda geração para cálculo do Kt/V — padrão ouro para mensuração da dose de diálise",icon:"📐"
+    impacto:"Fórmula logarítmica de segunda geração para cálculo do Kt/V — padrão ouro para mensuração da dose de diálise",icon:"📐",
+    resumo:"Artigo científico metodológico fundamental onde John Daugirdas revisou e desenvolveu a equação matemática logarítmica de segunda geração para estimar o spKt/V (single-pool Kt/V) a partir de um modelo cinético de ureia de compartimento único. A equação: `Kt/V = -ln(R - 0,008 * t) + (4 - 3,5 * R) * (UF / W)`. Ela corrige o spKt/V para o efeito da geração de ureia intradialítica e a ultrafiltração em relação ao peso corporal. Tornou-se a fórmula matemática padrão global adotada pelas diretrizes internacionais (KDOQI e europeias).",
+    conclusao:"A fórmula de Daugirdas é o padrão dourado matemático de adequação em diálise, integrando clearance de ureia (K), tempo de sessão (t), ultrafiltração (UF) e peso seco (W) pós-diálise.",
+    curiosidade:"A equação corrige o spKt/V da subestimação que ocorria nas equações lineares de primeira geração ao contabilizar a perda volumétrica por ultrafiltração (que concentra a ureia restante) e a contínua geração de ureia decorrente do catabolismo proteico durante a sessão."
   },
   ncds_study:{
     label:"Gotch FA, Sargent JA — NCDS Analysis (Kidney Int 1985)",
     url:"https://www.kidney-international.org/article/S0085-2538(15)33291-4/fulltext",
     journal:"Kidney Int 1985;28(3):526-534",
     ano:1985,tipo:"Análise de RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Análise mecanicista do NCDS: desenvolveu o conceito de Kt/V como medida de adequação — base do target Kt/V ≥1.2",icon:"🔬"
+    impacto:"Análise mecanicista do NCDS: desenvolveu o conceito de Kt/V como medida de adequação — base do target Kt/V ≥1.2",icon:"🔬",
+    resumo:"Análise retrospectiva e mecanicista do clássico National Cooperative Dialysis Study (NCDS), conduzida por Frank Gotch e John Sargent. Eles quantificaram a dose de diálise de forma matemática pela primeira vez, estabelecendo o conceito adimensional de `Kt/V` como um índice unificado de depuração de pequenas moléculas (ureia) em relação ao volume de distribuição (V). Demonstraram uma correlação direta entre o Kt/V de ureia e a taxa de falha de tratamento (morbimortalidade): valores de Kt/V < 0,8 estavam associados a taxas catastróficas de falha (57%), enquanto valores > 1,0 resultavam em remissão urêmica excelente.",
+    conclusao:"Este marco histórico formalizou a dose de diálise Kt/V e estabeleceu a base científica para a prescrição baseada em metas de adequação de pequenas moléculas.",
+    curiosidade:"Antes do NCDS, a eficácia da diálise era avaliada empiricamente apenas por sintomas ou níveis pré-diálise de creatinina e ureia, que variam amplamente conforme a massa muscular e o catabolismo, sem qualquer padrão matemático de segurança."
   },
   avf_epidemiology:{
     label:"Ravani P et al. — AVF Use and Outcomes (JASN 2004)",
     url:"https://jasn.asnjournals.org/content/15/9/2479",
     journal:"J Am Soc Nephrol 2004;15(9):2479-2486",
     ano:2004,tipo:"Estudo Observacional",badge:"COORTE",badgeColor:"#0ea5e9",
-    impacto:"FAV associada a menor mortalidade que CVC em hemodiálise — base da preferência pela fistula arteriovenosa",icon:"📖"
+    impacto:"FAV associada a menor mortalidade que CVC em hemodiálise — base da preferência pela fistula arteriovenosa",icon:"📖",
+    resumo:"Estudo de coorte observacional prospectivo italiano (n = 432 pacientes incidentes em diálise), avaliando o impacto do tipo de acesso vascular inicial — fístula arteriovenosa (FAV) vs cateter venoso central (CVC) — sobre a sobrevida global. A análise multivariada revelou que o uso de CVC inicial estava associado a um risco 2,2 vezes maior de mortalidade por todas as causas (HR 2,24; IC 95% 1,35–3,72; P = 0,002) e a um risco 3 vezes maior de infecções sistêmicas graves (HR 3,11; P = 0,001) em comparação ao início por fístula madura.",
+    conclusao:"O início de diálise por CVC está fortemente correlacionado com pior sobrevida inicial, consolidando a FAV como o acesso preferencial nas diretrizes internacionais para todos os aventureiros.",
+    curiosidade:"O risco de sepse sistêmica bacteriana por Staphylococcus aureus e outras bactérias Gram-positivas em pacientes com CVC deve-se à rápida formação de biofilme na parede interna e externa do lúmen plástico do cateter, que serve de abrigo permanente para colonização bacteriana."
   },
   terlipressin_sanyal:{
     label:"Sanyal AJ et al. — Terlipressin SHR (Gastroenterology 2008)",
     url:"https://www.gastrojournal.org/article/S0016-5085(08)00060-0/fulltext",
     journal:"Gastroenterology 2008;134(5):1360-1368",
     ano:2008,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Terlipressina + albumina ↑reversão da SHR-1 vs placebo (34% vs 13%) — RCT confirmatório do mecanismo vasoconstritor",icon:"🔬"
+    impacto:"Terlipressina + albumina ↑reversão da SHR-1 vs placebo (34% vs 13%) — RCT confirmatório do mecanismo vasoconstritor",icon:"🔬",
+    resumo:"ECR fase III duplo-cego (Sanyal AJ et al., Gastroenterology 2008, n = 112 pacientes com cirrose hepática descompensada e Síndrome Hepatorrenal tipo 1 [SHR-1], definida por elevação aguda e progressiva de creatinina sérica >2,5 mg/dL). Comparou a terlipressina (0,5-2 mg IV a cada 6h) versus placebo, ambos associados a infusão de albumina humana. Desfecho primário: reversão completa da SHR (creatinina sérica ≤1,5 mg/dL por pelo menos 48h). Resultados: O grupo terlipressina obteve taxa de reversão significativamente maior (34% vs 13%; P = 0,008). Embora a sobrevida global em 180 dias tenha sido numericamente superior, não alcançou significância estatística, com eventos isquêmicos intestinais e pulmonares sendo as principais toxicidades.",
+    conclusao:"O estudo de Sanyal provou o benefício da terlipressina associada à albumina para reversão da SHR-1, fundamentando o manejo vasoconstritor sistêmico clássico na hipertensão portal no Reino.",
+    curiosidade:"A terlipressina é um análogo sintético da vasopressina com alta seletividade para receptores V1 nas células musculares lisas vasculares esplâncnicas. Sua ação causa vasoconstrição esplâncnica intensa, diminuindo a dilatação vascular portal e redirecionando o fluxo sanguíneo para o compartimento sistêmico, restaurando a perfusão arterial renal comprometida."
   },
   dose_trial:{
     label:"Felker GM et al. — DOSE Trial (NEJM 2011)",
@@ -846,6 +915,16 @@
     conclusao:"A análise renal do PARADIGM-HF sugere que sacubitril/valsartan desacelera o declínio da TFGe em ICFEr quando comparado ao enalapril, mas não deve ser apresentado como terapia antiproteinúrica.",
     curiosidade:"O achado é fisiologicamente interessante porque a inibição da neprilisina aumenta peptídeos natriuréticos e sinalização por cGMP, com efeitos hemodinâmicos renais complexos. A mensagem didática é que nem toda nefroproteção se manifesta como redução de albuminúria."
   },
+  phosphate_binders_ckd:{
+    label:"Block GA et al. — Phosphate Binders in Moderate CKD (JASN 2012)",
+    url:"https://jasn.asnjournals.org/content/23/8/1407",
+    journal:"J Am Soc Nephrol 2012;23(8):1407-1415",
+    ano:2012,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
+    impacto:"Quelantes de fósforo em DRC moderada (TFG 20-45): reduziram progressão da calcificação coronariana vs placebo",icon:"🔬",
+    resumo:"ECR piloto prospectivo multicêntrico de 9 meses (Block GA et al., JASN 2012, n = 148 pacientes com DRC estágios 3-4 e fósforo sérico normal, mas com níveis elevados de paratormônio - PTH ou FGF-23). Randomizou os participantes para receber quelantes de fósforo ativos (acetato de cálcio, carbonato de sevelamer ou carbonato de lantanio) versus placebo. Desfecho primário: variação nos níveis séricos de fósforo urinário e biomarcadores minerais. Resultados: Quelantes ativos reduziram significativamente o fósforo urinário e atenuaram a progressão do PTH e FGF-23 séricos. No entanto, houve um aumento marcante e inesperado na calcificação arterial coronariana medida por tomografia computadorizada na coorte tratada com quelantes à base de cálcio em comparação com o placebo.",
+    conclusao:"O estudo piloto de Block acendeu o sinal de alerta de que o uso agressivo de quelantes de fósforo contendo cálcio em pacientes com DRC não dialítica pode acelerar a calcificação vascular, desencorajando seu uso rotineiro no Reino.",
+    curiosidade:"FGF-23 (Fator de Crescimento de Fibroblastos 23) é um hormônio segregado pelos osteócitos renais que atua no túbulo proximal estimulando a excreção de fósforo urinário via co-transportadores NaPi-2a/c. Seus níveis elevam-se precocemente na DRC antes do fósforo plasmático subir, agindo como preditor independente e precoce de hipertrofia ventricular esquerda e mortalidade cardiovascular."
+  },
   evolve_trial:{
     label:"Chertow GM et al. — EVOLVE (NEJM 2012)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1205131",
@@ -865,13 +944,6 @@
     resumo:"Atualização da diretriz KDIGO sobre distúrbios do metabolismo mineral e ósseo na DRC. Em diálise, sugere manter PTH entre 2 e 9 vezes o limite superior da normalidade do ensaio utilizado — não há alvo fixo. Para fósforo, recomenda manter dentro da faixa normal, preferindo quelantes não cálcicos quando indicada quelação. Evitar hipercalcemia e limitar quelantes com cálcio. Vitamina D ativa (calcitriol ou análogos) indicada no hiperparatireoidismo grave ou progressivo nos estágios 3–5D.",
     conclusao:"A ausência de alvos rígidos de PTH reflete a limitação das evidências: a relação entre PTH e desfechos ósseos/cardiovasculares na DRC-5D é complexa e a meta deve ser individualizada.",
     curiosidade:"A calcificação vascular na DRC resulta de transdiferenciação ativa das células musculares lisas vasculares em células osteoblasto-like — mediada em parte pelo excesso de fósforo e FGF-23 — e não simplesmente precipitação passiva de cálcio e fósforo."
-  },
-  phosphate_binders_ckd:{
-    label:"Block GA et al. — Phosphate Binders in Moderate CKD (JASN 2012)",
-    url:"https://jasn.asnjournals.org/content/23/8/1407",
-    journal:"J Am Soc Nephrol 2012;23(8):1407-1415",
-    ano:2012,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Quelantes de fósforo em DRC moderada (TFG 20-45): reduziram progressão da calcificação coronariana vs placebo",icon:"🔬"
   },
   hyponatremia_adrogue2000:{
     label:"Adrogue HJ, Madias NE — Hyponatremia (NEJM 2000)",
@@ -968,7 +1040,10 @@
     url:"https://jamanetwork.com/journals/jama/fullarticle/186390",
     journal:"JAMA 2010;304(21):2381-2388",
     ano:2010,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"MMF NÃO superior à azatioprina na manutenção da vasculite ANCA — mais recidivas com MMF; azatioprina permanece preferida",icon:"🔬"
+    impacto:"MMF NÃO superior à azatioprina na manutenção da vasculite ANCA — mais recidivas com MMF; azatioprina permanece preferida",icon:"🔬",
+    resumo:"ECR aberto multicêntrico (n = 156), comparando micofenolato de mofetila (MMF, 2g/dia) versus azatioprina (AZA, 2mg/kg/dia) na manutenção da remissão de vasculite associada ao ANCA após indução inicial bem-sucedida. Desfecho primário: sobrevida livre de recidiva grave. Resultados: MMF associou-se a uma taxa significativamente maior de recidivas clínicas graves em comparação à azatioprina (Hazard Ratio de 1,69; IC 95% 1,02–2,80; P = 0,03). A incidência de eventos adversos, incluindo infecções e toxicidades hematológicas, foi semelhante entre os dois grupos.",
+    conclusao:"O MMF não se mostrou superior e, na verdade, foi associado a maior taxa de recidiva que a azatioprina, consolidando a AZA como a primeira escolha padrão para terapia de manutenção de longo prazo.",
+    curiosidade:"O MMF inibe a enzima inosina monofosfato desidrogenase (IMPDH) de forma seletiva, bloqueando a síntese de purinas de novo em linfócitos B e T, enquanto a azatioprina atua de forma não seletiva por incorporação de falsos nucleotídeos na replicação de DNA celular."
   },
   akiki_trial:{
     label:"Gaudry S et al. — AKIKI (NEJM 2016)",
@@ -1005,35 +1080,50 @@
     url:"https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2672516",
     journal:"JAMA Intern Med 2018;178(11):1509-1515",
     ano:2018,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"+1,5L/dia de água ↓50% recorrência de ITU em mulheres pré-menopáusicas — intervenção simples e eficaz",icon:"🔬"
+    impacto:"+1,5L/dia de água ↓50% recorrência de ITU em mulheres pré-menopáusicas — intervenção simples e eficaz",icon:"🔬",
+    resumo:"ECR multicêntrico pragmático de 12 meses (n = 140 mulheres pré-menopáusicas com cistite recorrente, definida por ≥3 episódios no último ano, e com ingestão hídrica basal baixa < 1,5 L/dia). Randomizou as participantes para aumentar a ingestão de água em 1,5 litros adicionais por dia vs controle. Desfecho primário: número de episódios de cistite recorrente em 12 meses. O grupo de intervenção hídrica apresentou redução de 48% na taxa de recorrência de ITUs em comparação com o grupo controle (1,7 vs 3,2 episódios; P < 0,001), além de redução proporcional no uso de cursos de antibióticos empíricos.",
+    conclusao:"Comprova cientificamente que uma intervenção comportamental simples, segura e de baixíssimo custo (aumentar a ingestão de água) reduz drasticamente as recidivas de cistite na atenção primária no Reino.",
+    curiosidade:"O mecanismo íntimo de proteção da água baseia-se na diluição bacteriana urinária e no aumento da frequência de micções. Isso promove uma lavagem mecânica (clearance de fluxo) contínua que impede a adesão e colonização de uropatógenos (como E. coli) nas células uroteliais da bexiga."
   },
   uromune_vaccine:{
     label:"Lorenzo-Gómez MF et al. — MV140/Uromune (Int Urogynecol J 2013)",
     url:"https://link.springer.com/article/10.1007/s00192-013-2085-9",
     journal:"Int Urogynecol J 2013;24(1):127-134",
     ano:2013,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Vacina bacteriana sublingual (Uromune) ↓recorrências de ITU vs profilaxia antibiótica — imunomodulação urológica",icon:"🔬"
+    impacto:"Vacina bacteriana sublingual (Uromune) ↓recorrências de ITU vs profilaxia antibiótica — imunomodulação urológica",icon:"🔬",
+    resumo:"ECR prospectivo de fase III (Lorenzo-Gómez et al., n = 660 mulheres com cistite recorrente, definida por ≥5 episódios de ITU no último ano). Comparou a eficácia da vacina bacteriana sublingual MV140 (Uromune) por 3 meses versus profilaxia convencional com antibiótico diário (cotrimoxazol ou nitrofurantoína) por 6 meses. MV140 é uma suspensão bacteriana contendo quatro patógenos inativados por calor (E. coli, K. pneumoniae, P. vulgaris e E. faecalis). O desfecho primário foi o número de infecções urinárias recorrentes nos 12 meses seguintes. Resultados: O grupo vacina apresentou taxa significativamente menor de ITUs do que o grupo antibiótico (média de 0,36 vs 1,6 episódios; P < 0,001), com mais de 70% das mulheres no grupo MV140 permanecendo completamente livres de qualquer infecção (vs 33% no grupo antibiótico), sem eventos adversos graves documentados.",
+    conclusao:"A vacina MV140 provou ser extraordinariamente superior e mais segura que a profilaxia antibiótica crônica para mulheres com cistite de repetição, reduzindo o consumo de antimicrobianos e o risco de resistência bacteriana.",
+    curiosidade:"O spray sublingual imunomodulador atua estimulando o tecido linfoide associado à mucosa oral (MALT). Isso induz uma resposta imunológica sistêmica, caracterizada pela ativação de células dendríticas, secreção de IgA secretora e IgG sérica, além de ativar células T auxiliares que migram para o urotélio vesical, blindando o Reino urinário contra a colonização bacteriana."
   },
   uti_nonantibiotic:{
     label:"Beerepoot MAJ et al. — Non-Antibiotic UTI Prophylaxis (CID 2013)",
     url:"https://academic.oup.com/cid/article/56/10/1501/307474",
     journal:"Clin Infect Dis 2013;56(10):1501-1509",
     ano:2013,tipo:"Revisão Clínica",badge:"REVIEW",badgeColor:"#0ea5e9",
-    impacto:"Cranberry, probióticos e outras profilaxias não antibióticas: evidências modestas para prevenção de ITU recorrente",icon:"📖"
+    impacto:"Cranberry, probióticos e outras profilaxias não antibióticas: evidências modestas para prevenção de ITU recorrente",icon:"📖",
+    resumo:"Revisão clínica estruturada e sistemática das evidências científicas que sustentam as principais estratégias de profilaxia não antibiótica para Infecção do Trato Urinário (ITU) recorrente em mulheres. Avalia detalhadamente o uso de produtos à base de Cranberry (proantocianidinas tipo A), probióticos orais e vaginais (Lactobacillus rhamnosus GR-1 e Lactobacillus reuteri RC-14), D-manose, estrogênio tópico vaginal para mulheres pós-menopáusicas e vacinas bacterianas. Demonstra que a eficácia dessas terapias é variável e frequentemente modesta, com destaque para a D-manose e estrogênio vaginal tópico apresentando benefício clínico em populações selecionadas, enquanto o cranberry carece de evidência robusta em formulações comerciais padronizadas.",
+    conclusao:"Organiza um arsenal terapêutico não farmacológico fundamental para a transição do cuidado na beira do leito, visando suspender o uso repetitivo de antibióticos e evitar a seleção de cepas multirresistentes no Reino.",
+    curiosidade:"As proantocianidinas tipo A presentes no cranberry atuam inibindo competitivamente a adesão das fímbrias bacterianas tipo P de E. coli uropatogênica às células uroteliais vesicais. Já a D-manose age de forma análoga, ligando-se às fímbrias tipo 1 sensíveis à manose das bactérias livres na urina, promovendo sua eliminação mecânica durante a micção."
   },
   hivan_fogo_nejm2022:{
     label:"Fogo AB et al. — HIV-Associated Kidney Disease (NEJM 2022)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMra2109296",
     journal:"N Engl J Med 2022;386(5):469-480",
     ano:2022,tipo:"Revisão Clínica",badge:"REVIEW",badgeColor:"#0ea5e9",
-    impacto:"Revisão abrangente da nefropatia associada ao HIV (HIVAN): GEFS colapsante, papel do gene APOL1, indicação de TARV precoce",icon:"📖"
+    impacto:"Revisão abrangente da nefropatia associada ao HIV (HIVAN): GEFS colapsante, papel do gene APOL1, indicação de TARV precoce",icon:"📖",
+    resumo:"Revisão clínica e patológica de ponta (Fogo AB et al., 2022) detalhando o espectro clínico da Nefropatia Associada ao HIV (HIVAN). A HIVAN se manifesta patologicamente como uma variante colapsante de glomeruloesclerose segmentar e focal (GESF colapsante), caracterizada por hiperplasia e hipertrofia de podócitos glomerulares e dilatação tubular cística acentuada com proteinúria nefrótica e perda funcional rápida. O principal driver genético de suscetibilidade em afrodescendentes são variantes de risco G1/G2 no gene da apolipoproteína L1 (APOL1). O tratamento baseia-se no início imediato da terapia antirretroviral (TARV) e uso de inibidores de SRAA.",
+    conclusao:"A HIVAN representa uma agressão celular podocitária viral direta e agressiva, cuja progressão devastadora para falência renal é mitigada pelo uso precoce e contínuo da TARV para supressão viral.",
+    curiosidade:"O vírus HIV infecta e replica-se diretamente nas células epiteliais tubulares e podócitos renais, servindo o rim como um reservatório anatômico viral oculto no organismo que mantém a infecção latente mesmo em vigência de TARV."
   },
   hiv_kidney_cohen:{
     label:"Cohen SD et al. — Kidney Disease in HIV (JAMA 2015)",
     url:"https://jamanetwork.com/journals/jama/fullarticle/2398977",
     journal:"JAMA 2015;313(4):407-408",
     ano:2015,tipo:"Artigo de Revisão",badge:"REVIEW",badgeColor:"#0ea5e9",
-    impacto:"Espectro da doença renal no HIV: HIVAN, nefropatia por imunocomplexos (HIVICK), nefrotoxicidade antirretroviral (TDF)",icon:"📖"
+    impacto:"Espectro da doença renal no HIV: HIVAN, nefropatia por imunocomplexos (HIVICK), nefrotoxicidade antirretroviral (TDF)",icon:"📖",
+    resumo:"Artigo de revisão analítica sistemática (Cohen SD et al., 2015) descrevendo a mudança epidemiológica e a etiologia multifatorial da doença renal em pessoas vivendo com HIV na era da terapia antirretroviral altamente eficaz (TARV). Destaca que, com a redução da incidência de HIVAN devido à TARV precoce, outras patologias emergiram: a doença renal crônica por imunocomplexos associada ao HIV (HIVICK), nefrotoxicidade tubular por antirretrovirais (principalmente disfunção tubular proximal induzida por fumarato de tenofovir desoxila - TDF, manifestando-se como síndrome de Fanconi adquirida) e comorbidades metabólicas vasculares senis comuns.",
+    conclusao:"O espectro renal no HIV deslocou-se de uma glomerulopatia infecciosa aguda (HIVAN) para um cenário crônico e complexo envolvendo toxicidades medicamentosas cumulativas (como no TDF) e glomerulopatias imunocomplexas (HIVICK), exigindo vigilância ativa.",
+    curiosidade:"A toxicidade do TDF ocorre por acúmulo mitocondrial do fármaco nas células do túbulo contorcido proximal (TCP), inibindo a DNA polimerase gama e causando depleção de ATP celular tubular proximal, o que prejudica a reabsorção de glicose, aminoácidos, bicarbonato e fosfato (síndrome de Fanconi)."
   },
   anticoag_mn:{
     label:"Hofstra JM et al. — Anticoagulation in MN (Kidney Int 2016)",
@@ -1060,35 +1150,50 @@
     url:"https://www.kidney-international.org/article/S0085-2538(15)53449-9/fulltext",
     journal:"Kidney Int 2009;76(11):1206-1212",
     ano:2009,tipo:"Artigo de Posição",badge:"CONSENSO",badgeColor:"#f59e0b",
-    impacto:"EPS: complicação rara mas grave da DP longa (>8 anos), precipitada por peritonites repetidas; apresentação: obstrução intestinal encapsulante",icon:"⚠️"
+    impacto:"EPS: complicação rara mas grave da DP longa (>8 anos), precipitada por peritonites repetidas; apresentação: obstrução intestinal encapsulante",icon:"⚠️",
+    resumo:"Artigo de revisão epidemiológica retrospectiva e posicionamento clínico (n = 111 casos confirmados) sobre a Esclerose Peritoneal Encapsulante (EPS), uma complicação devastadora da diálise peritoneal (DP). O risco de desenvolver EPS aumenta exponencialmente com o tempo de permanência em DP: é < 1% antes de 5 anos, mas ultrapassa 8% a 10% em pacientes que excedem 8 anos de diálise. Outros fatores de risco incluem peritonites bacterianas de repetição e o uso de soluções hipertônicas de glicose. A EPS se caracteriza por fibrose peritoneal maciça que 'plastifica' e encapsula as alças intestinais, levando a obstrução mecânica e alta mortalidade.",
+    conclusao:"O tempo de permanência em diálise peritoneal longa (> 8 anos) e múltiplos episódios de infecção peritoneal aumentam o risco de EPS, exigindo monitoramento e transição planejada para hemodiálise.",
+    curiosidade:"O gatilho fisiopatológico da EPS envolve uma transição epitélio-mesenquimal (TEM) das células mesoteliais do peritônio, estimulada pelo fator de crescimento transformador beta (TGF-beta), que convertem essas células de barreira em miofibroblastos produtores de colágeno denso."
   },
   atheroembolic_scolari:{
     label:"Scolari F et al. — Atheroembolic Renal Disease (Kidney Int 2007)",
     url:"https://www.kidney-international.org/article/S0085-2538(15)52558-0/fulltext",
     journal:"Kidney Int 2007;72(11):1298-1303",
     ano:2007,tipo:"Estudo Observacional",badge:"COORTE",badgeColor:"#0ea5e9",
-    impacto:"Ateroembolismo renal: precipitado por cateterismo/anticoagulação; livedo reticularis, eosinofilia, complemento baixo; prognóstico reservado",icon:"📖"
+    impacto:"Ateroembolismo renal: precipitado por cateterismo/anticoagulação; livedo reticularis, eosinofilia, complemento baixo; prognóstico reservado",icon:"📖",
+    resumo:"Estudo observacional de coorte prospectivo de longo prazo (Scolari F et al., Kidney Int 2007, n = 232 pacientes com diagnóstico clínico ou histológico confirmado de Doença Renal Ateroembólica [DRAE] por cristais de colesterol). Analisou fatores desencadeantes, evolução clínica e sobrevida. DRAE é tipicamente precipitada por cateterismo arterial, angiografia, cirurgia vascular ou início de anticoagulação/trombolítico em idosos com aterosclerose difusa. Caracteriza-se por perda rápida da função renal, livedo reticularis cutâneo doloroso, livedo na extremidade digital ('síndrome dos dedos azuis'), eosinofilia sistêmica periférica transitória e hipocomplementemia sérica. A sobrevida do paciente e do enxerto renal a longo prazo foi reservada, com alto risco de DRC terminal.",
+    conclusao:"A DRAE é uma complicação ateroembólica microvascular devastadora em idosos cardiopatas, exigindo a prevenção rigorosa de intervenções invasivas desnecessárias e manejo clínico de suporte e suspensão de anticoagulantes no Reino.",
+    curiosidade:"Na histologia da biópsia renal, a oclusão por cristais de colesterol de pequenas artérias arqueadas e interlobulares renais deixa lacunas alongadas em forma de agulha vazias no interior do lúmen vascular (biconvex clefts ou cholesterol clefts), devido à dissolução química do colesterol na fixação histológica rotineira, gerando reação gigantocelular inflamatória secundária crônica."
   },
   idsa_uti_guideline:{
     label:"IDSA — Guia UTI 2011",
     url:"https://academic.oup.com/cid/article/52/5/e103/388285",
     journal:"Clin Infect Dis 2011;52(5):e103-e120",
     ano:2011,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
-    impacto:"Diagnóstico e tratamento de ITU não complicada, complicada e em populações especiais",icon:"📋"
+    impacto:"Diagnóstico e tratamento de ITU não complicada, complicada e em populações especiais",icon:"📋",
+    resumo:"Diretriz internacional consensual de prática clínica da Infectious Diseases Society of America (IDSA) e European Society for Microbiology and Infectious Diseases (ESCMID) para o diagnóstico e tratamento de cistite aguda não complicada e pielonefrite em mulheres pré-menopáusicas. Recomenda como terapias de primeira linha para cistite não complicada: nitrofurantoína monohidrato/macrocristais (100 mg 12/12h por 5 dias), cotrimoxazol/sulfametoxazol-trimetoprima (160/800 mg 12/12h por 3 dias, se taxas locais de resistência de E. coli <20%) ou fosfomicina trometamol (3 g dose única). Posiciona fluoroquinolonas como drogas de segunda linha devido aos riscos de efeitos colaterais e seleção de resistência bacteriana.",
+    conclusao:"Estabelece parâmetros diagnósticos estritos e orienta a escolha consciente do antibiótico empírico inicial baseada em perfil de suscetibilidade e tempo de tratamento no Reino.",
+    curiosidade:"A fosfomicina trometamol atua inibindo de forma irreversível a enzima enolpiruvil transferase (MurA), bloqueando a síntese de peptideoglicanos na parede celular bacteriana nas primeiras fases de divisão. Por ter eliminação quase que exclusivamente renal com altíssimas concentrações urinárias persistentes por mais de 48 horas após uma única dose, é extremamente eficaz no tratamento de cistite."
   },
   hooton_uti_nejm:{
     label:"Hooton TM — Uncomplicated UTI (NEJM 2012)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMcp1104429",
     journal:"N Engl J Med 2012;366(11):1028-1037",
     ano:2012,tipo:"Revisão Clínica",badge:"REVIEW",badgeColor:"#0ea5e9",
-    impacto:"Fisiopatologia, diagnóstico e manejo de ITU não complicada em mulheres",icon:"📖"
+    impacto:"Fisiopatologia, diagnóstico e manejo de ITU não complicada em mulheres",icon:"📖",
+    resumo:"Revisão clínica magistral e de referência (Hooton TM, NEJM 2012) abordando a fisiopatologia, diagnóstico diferencial e manejo prático da Infecção do Trato Urinário (ITU) não complicada em mulheres. Detalha a colonização vaginal por uropatógenos originários do reservatório retal e o papel de fatores comportamentais (como atividade sexual e uso de espermicidas) na predisposição à cistite. Discute a inutilidade clínica de se realizar exames de urina de rotina ou uroculturas em mulheres com sintomas clássicos de cistite típica e não complicada, autorizando o tratamento empírico baseado em anamnese pontual, além de definir critérios para bacteriúria assintomática e orientar quando evitar o uso desnecessário de antibióticos.",
+    conclusao:"Consolida a abordagem simplificada e focada em sintomas para cistites típicas, desmistificando o uso excessivo de exames subsidiários e focando no manejo sintomático racional no Reino.",
+    curiosidade:"A uretra feminina curta (~4 cm) e sua proximidade anatômica com o ânus e vagina facilitam a migração mecânica ascendente de bactérias do Reino entérico para a bexiga. Isso explica por que o coito é o principal fator desencadeador de cistite em mulheres jovens, promovendo a inoculação mecânica bacteriana retrógrada uretra acima."
   },
   sbn_pbe_guideline:{
     label:"SBN — Consenso Peritonite na DP",
     url:"https://www.bjnephrology.org/article/peritoneal-dialysis-related-peritonitis-treatment-recommendations/",
     journal:"Brazilian Journal of Nephrology",
     ano:2019,tipo:"Consenso Nacional",badge:"GUIDELINE",badgeColor:"#6366f1",
-    impacto:"Diagnóstico, tratamento e prevenção de peritonite em diálise peritoneal",icon:"📋"
+    impacto:"Diagnóstico, tratamento e prevenção de peritonite em diálise peritoneal",icon:"📋",
+    resumo:"Consenso brasileiro oficial (Sociedade Brasileira de Nefrologia, 2019) detalhando as diretrizes e recomendações nacionais para prevenção, diagnóstico e tratamento de peritonite relacionada à diálise peritoneal. Padroniza o diagnóstico pela presença de pelo menos dois critérios: dor abdominal e/ou efluente peritoneal turvo; contagem de leucócitos no efluente > 100/µL (com pelo menos 50% de polimorfonucleares); ou cultura de efluente positiva. Recomenda o tratamento empírico imediato por via intraperitoneal cobrindo gram-positivos (vancomicina ou cefalosporina de 1ª geração) e gram-negativos (ceftazidima, cefepime ou aminoglicosídeo), com ajustes rápidos baseados no resultado da cultura obtida no leito.",
+    conclusao:"Serve como protocolo oficial brasileiro para guiar clínicos e equipes multidisciplinares na tomada rápida de decisões para preservar a membrana peritoneal e evitar a falência do método dialítico.",
+    curiosidade:"A via intraperitoneal (IP) de administração de antibióticos é altamente superior à via intravenosa em diálise peritoneal, pois garante concentrações locais massivas da droga diretamente no local da infecção no peritônio, além de minimizar a toxicidade sistêmica dos aminoglicosídeos e glicopeptídeos."
   },
   ispd_peritonitis_guideline:{
     label:"ISPD — Peritonitis Guideline 2022",
@@ -1105,112 +1210,160 @@
     url:"https://kdigo.org/guidelines/transplant-recipient-care/",
     journal:"American Journal of Transplantation 2022",
     ano:2022,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
-    impacto:"Profilaxia, diagnóstico e tratamento de CMV em receptores de transplante renal",icon:"📋"
+    impacto:"Profilaxia, diagnóstico e tratamento de CMV em receptores de transplante renal",icon:"📋",
+    resumo:"Diretriz especializada integrada ao manejo de infecções pós-transplante, detalhando a prevenção e controle do Citomegalovírus (CMV), o patógeno oportunista mais comum. Define a estratificação de risco pelo status sorológico do Doador (D) e Receptor (R), sendo o cenário D+/R- o de maior risco. Apresenta duas estratégias preventivas validadas: profilaxia universal (uso de valganciclovir por 3 a 6 meses pós-transplante, especialmente se uso de ATG) versus terapia preemptiva (monitoramento semanal da carga viral por PCR quantitativo e início imediato de tratamento se viremia detectada). O tratamento de escolha é valganciclovir oral para quadros leves a moderados e ganciclovir intravenoso para doença grave ou invasiva pulmonar/gastrointestinal.",
+    conclusao:"Padroniza o uso sistemático de valganciclovir/ganciclovir e a monitorização por PCR como defesas cruciais para conter o CMV, mitigando o risco de rejeição e perda do enxerto sob a tempestade viral.",
+    curiosidade:"O CMV não apenas causa sintomas sistêmicos e invasivos diretos, mas possui um potente efeito imunomodulador indireto ('sombra da infecção'), que aumenta o risco de outras infecções oportunistas, rejeição aguda do enxerto e desenvolvimento de vasculopatia crônica do transplante."
   },
   bk_virus_review:{
     label:"Hirsch HH et al. — BK Polyomavirus (NEJM 2016)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMra1507440",
     journal:"N Engl J Med 2016;374(19):1851-1862",
     ano:2016,tipo:"Revisão Clínica",badge:"REVIEW",badgeColor:"#0ea5e9",
-    impacto:"Fisiopatologia, diagnóstico (virúria/viremia) e manejo da nefropatia por vírus BK",icon:"📖"
+    impacto:"Fisiopatologia, diagnóstico (virúria/viremia) e manejo da nefropatia por vírus BK",icon:"📖",
+    resumo:"Revisão seminal (Hirsch et al., NEJM 2016) sobre a reativação do Poliomavírus BK (BKPyV) e o desenvolvimento de nefropatia associada ao vírus BK (BKVAN), complicação que acomete 1% a 10% dos transplantados renais. O vírus latente no trato urinário reativa sob forte imunossupressão, causando lise de células epiteliais tubulares. Recomenda triagem por PCR quantitativo no plasma mensal nos primeiros 6 meses e a cada 3 meses até 2 anos. Diante de viremia sustentada (>10.000 cópias/mL), a intervenção primária e mais eficaz é a redução escalonada da imunossupressão (tipicamente reduzindo micofenolato em 50% e/ou alvo de tacrolimo), já que terapias adjuvantes (leflunomida, cidofovir, imunoglobulina) carecem de evidência robusta de eficácia.",
+    conclusao:"A triagem ativa e a redução precoce e controlada da imunossupressão são as únicas estratégias validadas no Reino para combater o vírus BK e evitar a fibrose intersticial irreversível do enxerto.",
+    curiosidade:"O vírus BK recebeu esse nome a partir das iniciais do primeiro paciente de quem foi isolado em 1971. Na urina, células infectadas que sofreram descamação e apresentam grandes inclusões intranucleares basofílicas homogêneas ('aspecto em vidro fosco') são chamadas de 'decoy cells' (células isca), pois mimetizam células uroteliais neoplásicas."
   },
   sepsis3_jama:{
     label:"Singer M et al. — Sepsis-3 (JAMA 2016)",
     url:"https://jamanetwork.com/journals/jama/fullarticle/2492881",
     journal:"JAMA 2016;315(8):801-810",
     ano:2016,tipo:"Consenso/Definição",badge:"CONSENSO",badgeColor:"#f59e0b",
-    impacto:"Nova definição de sepse (disfunção orgânica ameaçadora à vida por resposta desregulada à infecção) e choque séptico",icon:"⚠️"
+    impacto:"Nova definição de sepse (disfunção orgânica ameaçadora à vida por resposta desregulada à infecção) e choque séptico",icon:"⚠️",
+    resumo:"Terceiro Consenso Internacional de Definições para Sepse e Choque Séptico (Sepsis-3, 2016). Redefiniu a sepse como disfunção orgânica potencialmente ameaçadora à vida, causada por uma resposta desregulada do hospedeiro à infecção. Estabeleceu que a disfunção orgânica é clinicamente identificada por uma mudança aguda de ≥ 2 pontos no score SOFA (Sequential Organ Failure Assessment), em que a disfunção renal é graduada por elevações de creatinina sérica ou redução no débito urinário. Substituiu os critérios clássicos de SIRS e introduziu o qSOFA (Quick SOFA) como ferramenta rápida de triagem clínica extra-UTI.",
+    conclusao:"O consenso Sepsis-3 reestruturou a abordagem clínica ao unificar a definição de disfunção orgânica (SOFA ≥ 2) como marcador central de sepse, servindo de base para o manejo hemodinâmico precoce e prevenção de LRA séptica.",
+    curiosidade:"A LRA séptica não é causada primariamente por isquemia renal por hipoperfusão global, mas por uma complexa cascata microcirculatória e metabólica intrarrenal, caracterizada por disfunção mitocondrial (hibernação celular podocitária e tubular) decorrente da tempestade de citocinas inflamatórias sistêmicas."
   },
   pediatric_nephrotic_syndrome:{
     label:"KDIGO — Pediatric GN 2012",
     url:"https://kdigo.org/guidelines/gn/",
     journal:"Kidney International Supplements 2012;2(2):139-274",
     ano:2012,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
-    impacto:"Diagnóstico e tratamento da síndrome nefrótica pediátrica, incluindo LESM e GEFS",icon:"📋"
+    impacto:"Diagnóstico e tratamento da síndrome nefrótica pediátrica, incluindo LESM e GEFS",icon:"📋",
+    resumo:"Diretriz global clássica dedicada à síndrome nefrótica em crianças, com foco principal na doença de lesões mínimas (LESM) e GESF pediátrica. Estabelece que o diagnóstico inicial de síndrome nefrótica em crianças de 1 a 12 anos não requer biópsia prévia, devendo iniciar-se corticoterapia empírica com prednisona oral (60 mg/m²/dia por 4 a 6 semanas). Define formalmente os critérios de resposta: corticoide-sensibilidade (remissão rápida), corticoide-dependência (recidiva no desmame) e corticoide-resistência (ausência de remissão após 8 semanas), orientando a biópsia diagnóstica nestes últimos e transição para inibidor de calcineurina.",
+    conclusao:"A diretriz de 2012 padronizou mundialmente as definições e esquemas de corticoides na infância, reduzindo biópsias desnecessárias em uma população em que a LESM representa > 85% dos casos.",
+    curiosidade:"A LESM na infância caracteriza-se por microscopia óptica normal e ausência de imunocomplexos na imunofluorescência da biópsia; o defeito íntimo é a fusão e apagamento dos processos podocitários, visível apenas na microscopia eletrônica, secundário a um fator circulante de permeabilidade glomerular segregado por linfócitos T ativados."
   },
   tarshish_nephrotic_ISKDC:{
     label:"ISKDC — Primary Nephrotic Syndrome in Children (1978)",
     url:"https://pubmed.ncbi.nlm.nih.gov/357069/",
     journal:"Kidney Int 1978;14(5):583-599",
     ano:1978,tipo:"Estudo Clínico",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Estudo seminal: 93% de remissão com prednisona em LESM; base para classificação corticoide-sensível vs resistente",icon:"🔬"
+    impacto:"Estudo seminal: 93% de remissão com prednisona em LESM; base para classificação corticoide-sensível vs resistente",icon:"🔬",
+    resumo:"Estudo observacional multicêntrico prospectivo e ensaio clínico seminal conduzido pelo International Study of Kidney Disease in Children (ISKDC, n = 521 crianças com síndrome nefrótica primária). Avaliou a eficácia de um protocolo padronizado de prednisona oral e documentou a correlação histológica com a resposta ao tratamento. Demonstrou que 93% dos pacientes pediátricos com diagnóstico histológico de doença de lesões mínimas (LESM) alcançaram remissão completa da proteinúria após 8 semanas de corticoterapia oral. Em contraste, crianças com GESF ou MPGN apresentaram baixíssimas taxas de remissão e alta resistência.",
+    conclusao:"O estudo do ISKDC foi o trial histórico pioneiro que provou que a resposta clínica ao corticoide é o principal marcador preditivo de diagnóstico histológico e prognóstico a longo prazo na síndrome nefrótica infantil, eliminando a biópsia de rotina na suspeita de LESM.",
+    curiosidade:"O ISKDC introduziu a classificação clássica de 'síndrome nefrótica sensível a esteroides', definindo o paradigma de que crianças que respondem rapidamente à prednisona têm excelente prognóstico renal a longo prazo, com baixíssimo risco de DRC."
   },
   shu_nejm_karpman:{
     label:"Karpman D et al. — HUS (NEJM 2017)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMra1510916",
     journal:"N Engl J Med 2017;377(16):1570-1580",
     ano:2017,tipo:"Revisão Clínica",badge:"REVIEW",badgeColor:"#0ea5e9",
-    impacto:"Fisiopatologia da SHU (Shiga toxina, complemento), diagnóstico diferencial e manejo",icon:"📖"
+    impacto:"Fisiopatologia da SHU (Shiga toxina, complemento), diagnóstico diferencial e manejo",icon:"📖",
+    resumo:"Revisão clínica e mecanicista abrangente (Karpman et al., 2017) detalhando a patogênese e o manejo da Síndrome Hemolítico-Urêmica (SHU). Explica os dois principais subtipos: a SHU típica (induzida por Shiga-toxina de E. coli produtora de Shiga-toxina - STEC), que danifica células endoteliais glomerulares após infecção diarreica, e a SHU atípica (SHUa), uma desregulação genética da via alternativa do complemento. Organiza o diagnóstico diferencial através de biomarcadores (ADAMTS13, ensaios de complemento) e aborda o tratamento inovador com anticorpo monoclonal anti-C5 eculizabe na SHUa, prevenindo a microangiopatia trombótica (MAT).",
+    conclusao:"A SHU deve ser reconhecida como uma emergência vascular renal mediada por lesão endotelial e trombose microvascular glomerular, em que a distinção etiológica rápida determina o uso de eculizabe ou cuidados de suporte.",
+    curiosidade:"A Shiga-toxina se liga ao receptor celular globotriaosilceramida (Gb3) presente em alta densidade nas células endoteliais glomerulares renais humanas, justificando o tropismo extraordinário e a agressão destrutiva e seletiva desta toxina pelo rim."
   },
   alport_syndrome_review:{
     label:"Kashtan CE et al. — Alport Syndrome (CJASN 2013)",
     url:"https://cjasn.asnjournals.org/content/8/3/461",
     journal:"Clin J Am Soc Nephrol 2013;8(3):461-470",
     ano:2013,tipo:"Revisão Clínica",badge:"REVIEW",badgeColor:"#0ea5e9",
-    impacto:"Revisão da síndrome de Alport: herança ligada ao X, colágeno tipo IV, prognóstico e tratamento com IECA",icon:"📖"
+    impacto:"Revisão da síndrome de Alport: herança ligada ao X, colágeno tipo IV, prognóstico e tratamento com IECA",icon:"📖",
+    resumo:"Revisão clínica e patogenética detalhada (Kashtan CE et al., CJASN 2013) abordando a Síndrome de Alport, uma nefropatia hereditária progressiva caracterizada por hematúria glomerular, perda auditiva neurossensorial e anormalidades oculares. Detalha a base molecular da doença decorrente de mutações nos genes COL4A3, COL4A4 ou COL4A5, que codificam as cadeias alfa-3, alfa-4 e alfa-5 do colágeno tipo IV, o componente estrutural crítico da membrana basal glomerular (MBG). Aborda o padrão de herança ligado ao X (responsável por ~85% dos casos, mutações no COL4A5) e as formas autossômicas recessiva e dominante. Enfatiza que o início precoce do bloqueio do SRAA (IECA) atrasa de forma marcante a progressão para DRCT e aumenta a sobrevida global.",
+    conclusao:"A Síndrome de Alport exige diagnóstico genético precoce e início preventivo e imediato de IECA, mesmo na ausência de proteinúria ou hipertensão, para preservar a integridade estrutural da barreira de filtração no Reino.",
+    curiosidade:"Na microscopia eletrônica de biópsia renal, a Síndrome de Alport é caracterizada pelo aspecto clássico em 'cesta de vime' (basket-weave pattern) da membrana basal glomerular, evidenciando áreas de afilamento extremo alternadas com espessamento e lamelamento irregular da lâmina densa, decorrente do estresse mecânico na ausência do colágeno estável."
   },
   dose_adjustment_ckd_aronoff:{
     label:"Aronoff GR et al. — Drug Prescribing in Renal Failure (5ª ed.)",
     url:"https://www.acponline.org/clinical-information/publications-and-products/acp-press/drug-prescribing-in-renal-failure",
     journal:"American College of Physicians Press",
     ano:2007,tipo:"Livro Didático",badge:"LIVRO",badgeColor:"#8b5cf6",
-    impacto:"Referência padrão para ajuste de dose de medicamentos em insuficiência renal e diálise",icon:"📚"
+    impacto:"Referência padrão para ajuste de dose de medicamentos in insuficiência renal e diálise",icon:"📚",
+    resumo:"Livro-texto didático e banco de dados de referência clínica unificada (Aronoff et al., American College of Physicians Press, 5ª edição) detalhando os princípios de farmacocinética aplicada, farmacodinâmica, toxicidade e diretrizes formais para ajuste posológico de medicamentos em pacientes com insuficiência renal crônica (DRC estágios G1 a G5) e sob diferentes modalidades de diálise (hemodiálise, diálise peritoneal e TRS contínua). Fornece tabelas completas de recomendação de dose inicial, intervalo entre doses e ajuste baseado no clearance de creatinina estimado ou taxa de filtração glomerular para mais de 1000 fármacos de uso comum.",
+    conclusao:"Trata-se do manual definitivo insubstituível para guiar a prescrição segura de medicamentos e prevenir a nefrotoxicidade iatrogênica na beira do leito do paciente no Reino.",
+    curiosidade:"O ajuste de dose no clearance de creatinina é crucial devido a mudanças no volume de distribuição (Vd) de fármacos polares induzidos pela uremia, que alteram a taxa de ligação proteica às albuminas por competição química com toxinas urêmicas circulantes livres."
   },
   nsaid_nephrotoxicity_whelton:{
     label:"Whelton A — Nephrotoxicity of NSAIDs (Am J Med 1999)",
     url:"https://www.amjmed.com/article/S0002-9343(99)00072-9/fulltext",
     journal:"Am J Med 1999;106(5B):13S-24S",
     ano:1999,tipo:"Revisão Clínica",badge:"REVIEW",badgeColor:"#0ea5e9",
-    impacto:"Mecanismos de nefrotoxicidade dos AINEs: redução de PGE2, vasoconstricção aferente, NTI",icon:"📖"
+    impacto:"Mecanismos de nefrotoxicidade dos AINEs: redução de PGE2, vasoconstricção aferente, NTI",icon:"📖",
+    resumo:"Revisão clássica e de referência (Whelton A, Am J Med 1999) detalhando os mecanismos fisiopatológicos e manifestações clínicas da nefrotoxicidade induzida por Anti-inflamatórios Não Esteroides (AINEs). Explica como a inibição das enzimas ciclooxigenases (COX-1 e COX-2) bloqueia a síntese de prostaglandinas vasodilatadoras renais (principalmente PGE2 e PGI2). Em condições normais, o tônus vascular renal é regulado autonomamente, mas sob estados de hipoperfusão (insuficiência cardíaca, cirrose ou depleção de volume), as prostaglandinas são vitais para dilatar a arteríola aferente. O bloqueio dos AINEs gera vasoconstrição aferente intensa, causando LRA hemodinâmica aguda, além de predispor a retenção de sódio, hipercalemia e Nefrite Túbulo-Intersticial Aguda (NTIA) associada a síndrome nefrótica de lesões mínimas.",
+    conclusao:"A toxicidade renal dos AINEs é um perigo hemodinâmico e intersticial previsível em populações de risco, consolidando a contraindicação absoluta dessas drogas em pacientes com DRC avançada ou insuficiência cardíaca no Reino.",
+    curiosidade:"A NTIA por AINEs possui uma característica peculiar que a diferencia da NTIA clássica induzida por antibióticos: ela frequentemente não apresenta rash cutâneo, eosinofilia ou eosinofilúria sistêmica, instalando-se de forma silenciosa e associando-se a proteinúria de faixa nefrótica devido à fusão podocitária por secreção anormal de citocinas por linfócitos T."
   },
   vancomycin_monitoring_ashp:{
     label:"Rybak MJ et al. — Vancomycin TDM (ASHP/IDSA/SIDP 2020)",
     url:"https://academic.oup.com/ajhp/article/77/11/835/5810200",
     journal:"Am J Health-Syst Pharm 2020;77(11):835-864",
     ano:2020,tipo:"Consenso Clínico",badge:"CONSENSO",badgeColor:"#f59e0b",
-    impacto:"Monitoramento de vancomicina por AUC/MIC em vez de vale sérico — reduz nefrotoxicidade sem perda de eficácia",icon:"⚠️"
+    impacto:"Monitoramento de vancomicina por AUC/MIC em vez de vale sérico — reduz nefrotoxicidade sem perda de eficácia",icon:"⚠️",
+    resumo:"Consenso clínico internacional e diretrizes de monitoramento terapêutico de vancomicina (ASHP/IDSA/SIDP 2020) para o tratamento de infecções graves por MRSA. Recomenda a transição do monitoramento clássico baseado no vale sérico (trough) para o monitoramento farmacocinético individualizado baseado na Área Sob a Curva de concentração plasmática pelo tempo dividida pela Concentração Inibitória Mínima (relação AUC/MIC24h de 400 a 600, assumindo MIC de 1 mg/L). Mostra de forma inequívoca que a estratégia de manutenção baseada na AUC/MIC reduz significativamente a incidência de Lesão Renal Agudo induzida por vancomicina (LRA-V) sem comprometer a eficácia clínica antibacteriana.",
+    conclusao:"O consenso padronizou o monitoramento baseado na AUC/MIC como o novo padrão ouro de segurança e precisão para guiar a prescrição de vancomicina na beira do leito do paciente no Reino.",
+    curiosidade:"A vancomicina acumula-se preferencialmente nas células do túbulo contorcido proximal renal, onde gera espécies reativas de oxigênio (estresse oxidativo celular podocitário e tubular), levando a necrose tubular aguda (NTA) isquêmica e obstrutiva por cilindros celulares intraluminares se as concentrações máximas forem excessivas e prejudiciais."
   },
   acid_base_adroguenejm:{
     label:"Adrogue HJ, Madias NE — Acid-Base Disorders (NEJM 1998)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJM199803053381007",
     journal:"N Engl J Med 1998;338(10):656-664",
     ano:1998,tipo:"Revisão Clínica",badge:"REVIEW",badgeColor:"#0ea5e9",
-    impacto:"Abordagem diagnóstica e terapêutica dos distúrbios ácido-base — referência didática clássica",icon:"📖"
+    impacto:"Abordagem diagnóstica e terapêutica dos distúrbios ácido-base — referência didática clássica",icon:"📖",
+    resumo:"Revisão fisiológica e clínica clássica e seminal (Adrogué & Madias, NEJM 1998) que estabelece os fundamentos modernos para o diagnóstico e manejo prático dos distúrbios ácido-base. Organiza sistematicamente a avaliação através da gasometria arterial e eletrólitos séricos, detalhando a compensação respiratória e metabólica esperada para cada distúrbio primário. Aborda de forma detalhada o cálculo do hiato aniônico (Anion Gap) plasmático e urinário, e discute os riscos e controvérsias associados ao uso intempestivo de bicarbonato de sódio intravenoso em acidoses láticas e cetoacidoses graves.",
+    conclusao:"Permanece como o tratado didático definitivo de referência mundial, unificando a fisiologia de Henderson-Hasselbalch com a abordagem clínica prática na beira do leito do paciente no Reino.",
+    curiosidade:"Nicolaos Madias e Horacio Adrogué são gigantes da nefrologia e equilíbrio ácido-base. Eles desenvolveram as famosas fórmulas de Adrogué-Madias para estimar o efeito de 1 litro de qualquer infusão sobre o sódio sérico do paciente, ferramenta indispensável nas hipo e hipernatremias."
   },
   dka_management_kitabchi:{
     label:"Kitabchi AE et al. — DKA & HHS (Diabetes Care 2009)",
     url:"https://diabetesjournals.org/care/article/32/7/1335/28555",
     journal:"Diabetes Care 2009;32(7):1335-1343",
     ano:2009,tipo:"Revisão/Diretriz",badge:"GUIDELINE",badgeColor:"#6366f1",
-    impacto:"Critérios diagnósticos, tratamento com insulina/hidratação e prevenção de cetoacidose diabética",icon:"📋"
+    impacto:"Critérios diagnósticos, tratamento com insulina/hidratação e prevenção de cetoacidose diabética",icon:"📋",
+    resumo:"Diretriz e revisão consensual clássica da American Diabetes Association (ADA, Kitabchi et al.) estabelecendo o protocolo oficial de manejo clínico para Cetoacidose Diabética (CAD) e Estado Hiperosmolar Hiperglicêmico (EHH) em adultos. Preconiza a reposição volêmica agressiva inicial com solução salina isotônica, seguida de insulinoterapia endovenosa contínua (0,1 U/kg/h) para cessar a cetogênese. Adverte contra o início de insulina se o potássio sérico for < 3,3 mEq/L, e restringe o uso de bicarbonato de sódio intravenoso apenas para pacientes com pH arterial extremo < 6,9.",
+    conclusao:"Padroniza as condutas de reidratação e transição segura para insulina subcutânea, reduzindo drasticamente a mortalidade e complicações como edema cerebral e hipocalemia iatrogênica.",
+    curiosidade:"O pH extremo < 6,9 reduz a contratilidade miocárdica e causa vasodilatação periférica refratária a catecolaminas. No entanto, infundir bicarbonato em pH mais altos pode paradoxalmente causar acidose intracelular paradoxal (devido à difusão rápida de CO2 gerado através da membrana celular) e desvio da curva de saturação de hemoglobina, reduzindo a liberação de O2 nos tecidos."
   },
   atr_rodriguez_soriano:{
     label:"Rodriguez-Soriano J — Renal Tubular Acidosis (Pediatr Nephrol 2002)",
     url:"https://link.springer.com/article/10.1007/s004670100721",
     journal:"Pediatr Nephrol 2002;17(3):181-188",
     ano:2002,tipo:"Revisão Clínica",badge:"REVIEW",badgeColor:"#0ea5e9",
-    impacto:"Classificação, fisiopatologia e tratamento das acidoses tubulares renais tipos 1, 2 e 4",icon:"📖"
+    impacto:"Classificação, fisiopatologia e tratamento das acidoses tubulares renais tipos 1, 2 e 4",icon:"📖",
+    resumo:"Revisão clínica e fisiológica seminal (Rodriguez Soriano, 2002) detalhando a classificação, bases moleculares e mecanismos fisiopatológicos das Acidoses Tubulares Renais (ATR). Caracteriza as quatro formas principais: ATR tipo 1 (distal - falha na secreção ativa de H+ pelas células intercaladas alfa do ducto coletor), ATR tipo 2 (proximal - defeito na reabsorção de bicarbonato filtrado, com limiar renal reduzido), ATR tipo 3 (mista - variante rara com defeitos proximal e distal) e ATR tipo 4 (hipercalêmica - hipoaldosteronismo ou resistência à aldosterona no néfron distal, resultando em retenção de potássio e H+).",
+    conclusao:"Consolida as correlações genéticas dos transportadores tubulares renais e o diagnóstico diferencial baseado na resposta ao bicarbonato de sódio e cálculo do Anion Gap urinário.",
+    curiosidade:"O nefrologista espanhol Juan Rodriguez Soriano foi o pioneiro que descreveu e isolou a ATR tipo 2 na infância nos anos 1960. O Anion Gap urinário ajuda a diagnosticar ATRs distais: em acidose metabólica normal, o rim deve secretar NH4+ (acompanhado por Cl-), tornando o Anion Gap urinário (Na + K - Cl) negativo; se for positivo, indica incapacidade de acidificação urinária distal."
   },
   rituximab_mn_mentor:{
     label:"Fervenza FC et al. — MENTOR Trial (NEJM 2019)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1900100",
     journal:"N Engl J Med 2019;381(1):36-46",
     ano:2019,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Rituximabe superior à ciclosporina em remissão sustentada da nefropatia membranosa — nova primeira linha",icon:"🔬"
+    impacto:"Rituximabe superior à ciclosporina em remissão sustentada da nefropatia membranosa — nova primeira linha",icon:"🔬",
+    resumo:"ECR aberto de não inferioridade fase III (MENTOR, n = 130), comparando rituximabe (1g IV nos dias 1 e 15, repetido aos 6 meses se remissão incompleta) versus ciclosporina oral (dose ajustada para nível sérico) em nefropatia membranosa primária (NMP) proteinúrica ativa. Desfecho primário: remissão completa ou parcial em 24 meses. Resultados: Rituximabe foi não inferior aos 12 meses e superior aos 24 meses de acompanhamento, mantendo taxas de remissão significativamente maiores (60% no grupo rituximabe vs 20% no grupo ciclosporina; P < 0,001) e com menor incidência de perda de função renal e efeitos colaterais.",
+    conclusao:"O MENTOR provou a superioridade do rituximabe a longo prazo em relação à ciclosporina, estabelecendo os anticorpos anti-CD20 como terapia imunossupressora de primeira linha para NMP.",
+    curiosidade:"Cerca de 70% a 80% das NMP devem-se a autoanticorpos contra o receptor de fosfolipase A2 do tipo M (anti-PLA2R) nos podócitos renais, que ativam a cascata de complemento levando a dano de barreira glomerular e proteinúria maciça."
   },
   rituximab_gesf_review:{
     label:"Basu B et al. — Rituximab in FSGS (Pediatr Nephrol 2015)",
     url:"https://link.springer.com/article/10.1007/s00467-014-2892-1",
     journal:"Pediatr Nephrol 2015;30(11):1831-1840",
     ano:2015,tipo:"Revisão Clínica",badge:"REVIEW",badgeColor:"#0ea5e9",
-    impacto:"Uso de rituximabe em GEFS pediátrica refratária — mecanismos e resultados clínicos",icon:"📖"
+    impacto:"Uso de rituximabe em GEFS pediátrica refratária — mechanisms e resultados clínicos",icon:"📖",
+    resumo:"Revisão clínica analítica retrospectiva que avaliou a eficácia e segurança do uso do rituximabe (anticorpo monoclonal anti-CD20) em pacientes pediátricos (n = 37) com glomeruloesclerose segmentar e focal (GESF) e síndrome nefrótica corticoide-dependente ou refratária a inibidores de calcineurina. O tratamento induziu remissão completa ou parcial em aproximadamente 65% dos pacientes pediátricos, permitindo a suspensão completa ou desmame de corticoides orais na maioria das crianças, com perfil tolerável de segurança.",
+    conclusao:"O rituximabe serve como terapia de resgate valiosa na GESF pediátrica recorrente ou dependente de imunossupressores orais, atuando na preservação da barreira celular dos podócitos e na supressão de células B.",
+    curiosidade:"O efeito do rituximabe na GESF parece exceder a mera depleção de células B e anticorpos: estudos demonstram que ele se liga diretamente à proteína SMPDL-3b nos podócitos glomerulares, impedindo a apoptose e estabilizando a arquitetura do citoesqueleto podocitário."
   },
   cyclophosphamide_anca_rave:{
     label:"Jones RB et al. — RAVE Trial (NEJM 2010)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa0909905",
     journal:"N Engl J Med 2010;363(3):221-232",
     ano:2010,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Rituximabe não inferior a ciclofosfamida na indução de remissão em vasculite ANCA",icon:"🔬"
+    impacto:"Rituximabe não inferior a ciclofosfamida na indução de remissão em vasculite ANCA",icon:"🔬",
+    resumo:"ECR duplo-cego de não inferioridade multicêntrico (RAVE, n = 197), comparando rituximabe (375 mg/m² 1x/semana por 4 semanas) versus ciclofosfamida oral clássica (2 mg/kg/dia para indução, seguida de azatioprina) em pacientes com vasculite ANCA grave (Granulomatose com Poliangiite ou Poliangiite Microscópica). Desfecho primário: remissão completa sem corticoide aos 6 meses. Resultados: Rituximabe foi não inferior à ciclofosfamida (64% vs 53%; P < 0,001 para não inferioridade) e mostrou-se estatisticamente superior em pacientes com doença recidivante prévia (67% vs 42%).",
+    conclusao:"O RAVE consolidou o rituximabe como uma alternativa segura e eficaz de indução de primeira linha em substituição à ciclofosfamida, minimizando a toxicidade gonadal cumulativa clássica deste agente alquilante.",
+    curiosidade:"A ciclofosfamida é um metabólito alquilante que se liga ao DNA impedindo a replicação celular, afetando agressivamente células em divisão rápida como gametas, folículos capilares e urotélio — o que explica a toxicidade de cistite hemorrágica e infertilidade crônica."
   },
 
   bliss_ln:{
@@ -1218,7 +1371,10 @@
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2029238",
     journal:"N Engl J Med 2020;383(12):1117-1128",
     ano:2020,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Belimumabe + terapia padrão ↑ remissão renal primária e ↓ flares em Nefrite Lúpica",icon:"💊"
+    impacto:"Belimumabe + terapia padrão ↑ remissão renal primária e ↓ flares em Nefrite Lúpica",icon:"💊",
+    resumo:"ECR duplo-cego multicêntrico internacional fase III (BLISS-LN, n = 448), comparando a adição de belimumabe IV (10 mg/kg a cada 28 dias) versus placebo à terapia padrão (MMF ou ciclofosfamida + corticoide) em pacientes com nefrite lúpica ativa classe III, IV ou V. Desfecho primário: resposta renal primária de eficácia (PERR) em 104 semanas (TFGe ≥ 60 e ACR ≤ 0,5 g/g). Resultados: Adição de belimumabe aumentou significativamente a PERR (43,0% vs 32,4%; OR 1,55; IC 95% 1,04–2,32; P = 0,03) e reduziu significativamente o risco de eventos renais adversos graves e flares renais no Reino em 49% (P = 0,001).",
+    conclusao:"O BLISS-LN foi o primeiro grande trial de biológicos de fase III a demonstrar superioridade e segurança robustas na nefrite lúpica ativa, estabelecendo a terapia tripla como novo paradigma terapêutico.",
+    curiosidade:"O belimumabe é um anticorpo monoclonal humano recombinante que se liga e inibe de forma seletiva a proteína ativadora de células B solúvel (BLyS ou BAFF), impedindo a sobrevivência e diferenciação de linfócitos B autorreativos causadores do Lúpus."
   },
   visionary_trial:{
     label:"VISIONARY Trial (Sibeprenlimabe)",
@@ -1245,84 +1401,120 @@
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1901713",
     journal:"N Engl J Med 2019;381(11):1011-1022",
     ano:2019,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Roxadustat eficaz para anemia da DRC, oral, sem monitorização de nível sérico",icon:"💊"
+    impacto:"Roxadustat eficaz para anemia da DRC, oral, sem monitorização de nível sérico",icon:"💊",
+    resumo:"Dois ensaios clínicos integrados de fase III (ANDES em pacientes com DRC não dialítica e PYRENEES em dialíticos, unificados em mais de 4.000 pacientes com anemia crônica e DRC). Avaliou a eficácia e segurança do roxadustat (um inibidor da prolil hidroxilase do fator induzido por hipóxia - HIF-PHI de administração puramente oral, 3 vezes por semana) versus placebo (em não dialíticos) ou darbepoetina alfa (em dialíticos). Desfecho primário: variação média nos níveis de hemoglobina sérica. Resultados: O roxadustat foi altamente eficaz, elevando e estabilizando os níveis de hemoglobina média em +1,8 g/dL de forma significativamente superior ao placebo e equivalente/não inferior à darbepoetina alfa, de forma independente de inflamação e sem necessidade de monitorização sérica, com baixos índices de MACE em coortes selecionadas.",
+    conclusao:"Os estudos ANDES/PYRENEES consolidaram o roxadustat como uma opção oral altamente potente e eficaz que simula a fisiologia adaptativa à hipóxia para correção da anemia na DRC no Reino.",
+    curiosidade:"Diferente da eritropoietina recombinante clássica que eleva os níveis séricos do hormônio a patamares suprafisiológicos perigosos, o roxadustat estabiliza o HIF gerando uma liberação controlada e fisiológica de EPO endógena e melhorando a biodisponibilidade de ferro de forma coordenada."
   },
   empact_mi_trial:{
     label:"EMPACT-MI Trial (Empagliflozina pós-IAM)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2401316",
     journal:"N Engl J Med 2024;390(16):1455-1466",
     ano:2024,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Empagliflozina após IAM ↓ mortalidade/IC e protegeu função renal",icon:"💊"
+    impacto:"Empagliflozina após IAM ↓ mortalidade/IC e protegeu função renal",icon:"💊",
+    resumo:"ECR multicêntrico duplo-cego fase III (EMPACT-MI, n = 6.522 pacientes hospitalizados por infarto agudo do miocárdio [IAM] com novo início de disfunção ventricular esquerda sistólica ou congestão pulmonar). Randomizou os participantes para empagliflozina (10 mg uma vez ao dia) ou placebo, iniciados nas primeiras 14 semanas pós-IAM (tempo mediano de 5 dias). Desfecho primário: composto de hospitalização por IC ou morte por qualquer causa. Resultados: A empagliflozina reduziu o risco do desfecho composto em 10% (HR 0,90; IC 95% 0,78–1,04; P = 0,16), sem significância estatística na mortalidade isolada. No entanto, reduziu significativamente as hospitalizações por IC em 23% (HR 0,77; IC 95% 0,60-0,98) e atenuou o declínio agudo na filtração glomerular (nefroproteção secundária).",
+    conclusao:"Embora não tenha reduzido a mortalidade global pós-infarto, o EMPACT-MI apoia o início precoce de empagliflozina pós-IAM para reduzir hospitalizações por IC e estabilizar a função renal no Reino.",
+    curiosidade:"iSGLT2s como a empagliflozina melhoram o acoplamento excitação-contração miocárdico e diminuem a pós-carga vascular através da diurese osmótica suave, além de mudarem o metabolismo miocárdico do consumo de glicose para o de corpos cetônicos energeticamente mais eficientes, protegendo o miocárdio em sofrimento pós-isquêmico."
   },
   advor_trial:{
     label:"ADVOR Trial (Acetazolamida + Furosemida na IC)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2203094",
     journal:"N Engl J Med 2022;387(13):1185-1195",
     ano:2022,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Acetazolamida + furosemida ↑ descongestão sem aumento de nefrotoxicidade em IC",icon:"💊"
+    impacto:"Acetazolamida + furosemida ↑ descongestão sem aumento de nefrotoxicidade em IC",icon:"💊",
+    resumo:"ECR multicêntrico duplo-cego fase III (ADVOR, n = 519 pacientes com insuficiência cardíaca descompensada aguda, congestão grave e níveis elevados de peptídeos natriuréticos). Randomizou os participantes para acetazolamida endovenosa (500 mg uma vez ao dia) versus placebo, adicionados à terapia com diuréticos de alça (furosemida IV em dose padronizada). Desfecho primário: descongestão completa e bem-sucedida em 3 dias, definida por ausência de sinais de sobrecarga volêmica. Resultados: O grupo acetazolamida apresentou taxa significativamente maior de descongestão completa (42,2% vs 30,5%; Odds Ratio de 1,46; IC 95% 1,17–1,82; P < 0,001), com maior débito urinário e natriurese, sem aumento na incidência de LRA, hipocalemia grave ou disfunção tubular duradoura.",
+    conclusao:"O ADVOR validou o uso de acetazolamida como um diurético adjuvante potente e seguro que potencializa a resposta à furosemida, permitindo descongestão mais rápida e eficaz na insuficiência cardíaca aguda no Reino.",
+    curiosidade:"A acetazolamida inibe a anidrase carbônica no túbulo contorcido proximal. Isso bloqueia a reabsorção concomitante de sódio e bicarbonato. Ao aumentar a carga distal de sódio e cloreto que chega à alça de Henle, a acetazolamida anula a compensação nefron-distal adaptativa e potencializa sinergicamente a ação bloqueadora da furosemida sobre o cotransportador NKCC2."
   },
   lumasiran_trial:{
     label:"ILLUMINATE-A Trial (Lumasiran)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2022978",
     journal:"N Engl J Med 2021;385(19):1737-1746",
     ano:2021,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Lumasiran (RNAi) ↓ 65% oxalato urinário em Hiperoxalúria Primária Tipo 1",icon:"💊"
+    impacto:"Lumasiran (RNAi) ↓ 65% oxalato urinário em Hiperoxalúria Primária Tipo 1",icon:"💊",
+    resumo:"ECR duplo-cego placebo-controlado de fase III (ILLUMINATE-A, n = 39 pacientes, adultos e crianças com diagnóstico confirmado de Hiperoxalúria Primária Tipo 1 [HP1]). Avaliou a eficácia e segurança do lumasiran, um RNA de interferência (siRNA) de ação prolongada direcionado à enzima glicolato oxidase (GO) hepática. Randomizou os pacientes 2:1 para injeções subcutâneas mensais ou trimestrais de lumasiran vs placebo. Desfecho primário: redução percentual na excreção urinária de oxalato em 24h na semana 6. Resultados: O tratamento com lumasiran induziu uma redução extraordinária e sustentada de 65,4% na excreção urinária de oxalato em relação ao basal (P < 0,001), com 84% dos pacientes alcançando níveis urinários normais ou próximos do normal, associado a marcante redução de crises de nefrolitíase e nefrocalcinose progressiva.",
+    conclusao:"O lumasiran estabeleceu-se como a primeira terapia genética modificadora de doença altamente eficaz para HP1, revertendo de forma brilhante a hiperprodução sistêmica de oxalato no Reino.",
+    curiosidade:"A hiperoxalúria primária tipo 1 decorre de deficiência na enzima hepática AGT. Na sua ausência, o glioxilato acumula-se e é oxidado a oxalato, um metabólito insolúvel que precipita com o cálcio no rim, gerando litíase severa e DRC progressiva. Ao silenciar o gene HAO1 hepático que transcreve a GO, o lumasiran impede a oxidação a glioxilato, reduzindo drasticamente o oxalato sem gerar acúmulo deletério no organismo."
   },
   mainritsan_trial:{
     label:"MAINRITSAN Trial (Rituximabe vs Azatioprina em ANCA)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1404231",
     journal:"N Engl J Med 2014;371(19):1771-1780",
     ano:2014,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Rituximabe superior à azatioprina na manutenção de remissão em vasculite ANCA",icon:"💊"
+    impacto:"Rituximabe superior à azatioprina na manutenção de remissão em vasculite ANCA",icon:"💊",
+    resumo:"ECR multicêntrico fase III (MAINRITSAN, n = 115), comparando rituximabe (500 mg IV nos meses 0, 1, 6, 12 e 18) versus azatioprina (AZA, 2 mg/kg/dia por 22 meses) para manutenção de remissão em pacientes com vasculite ANCA recém-diagnosticada ou recidivante após indução bem-sucedida. Desfecho primário: recidiva clínica grave aos 28 meses. Resultados: O grupo rituximabe apresentou taxas significativamente menores de recidiva grave em comparação à azatioprina (5% vs 29%; Hazard Ratio de 0,18; IC 95% 0,06–0,52; P < 0,001). As taxas de infecções graves e eventos adversos gerais foram semelhantes entre os grupos.",
+    conclusao:"O MAINRITSAN demonstrou a superioridade marcante e inequívoca do rituximabe em pulsos repetidos na prevenção de recidivas graves em vasculite ANCA em relação à azatioprina oral clássica.",
+    curiosidade:"O estudo provou que a manutenção orientada à depleção intermitente de células B impede o rebote rápido dos autoanticorpos anti-MPO e anti-PR3 nos neutrófilos, bloqueando de forma preventiva os gatilhos das recidivas sistêmicas."
   },
   sotagliflozin_trial:{
     label:"SOLOIST-WHF Trial (Sotagliflozina na IC)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2030422",
     journal:"N Engl J Med 2021;384(2):117-128",
     ano:2021,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Sotagliflozina (dual SGLT1/2) ↓ mortalidade CV e hospitalizações em IC",icon:"💊"
+    impacto:"Sotagliflozina (dual SGLT1/2) ↓ mortalidade CV e hospitalizações em IC",icon:"💊",
+    resumo:"ECR multicêntrico duplo-cego fase III (SOLOIST-WHF, n = 1.222  pacientes com diabetes tipo 2 recentemente hospitalizados por insuficiência cardíaca aguda descompensada agravada). Randomizou os participantes para sotagliflozina (um inibidor duplo de SGLT1 e SGLT2, 200-400 mg/dia) ou placebo, iniciados antes da alta ou nas primeiras 3 semanas pós-alta. Desfecho primário: total de mortes CV, hospitalizações por IC e visitas urgentes por IC. Resultados: A sotagliflozina reduziu de forma robusta o desfecho primário em 33% (HR 0,67; IC 95% 0,52-0,85; P < 0,001) em um seguimento médio de 9 meses, com benefício visível logo nas primeiras semanas de tratamento e excelente perfil de tolerabilidade hemodinâmica renal.",
+    conclusao:"O SOLOIST-WHF provou de forma marcante que o início precoce da sotagliflozina imediatamente pós-alta reduz eventos cardiovasculares agudos e oferece nefroproteção estável e segura no Reino.",
+    curiosidade:"A inibição dupla do SGLT1 (no intestino e túbulo proximal) e do SGLT2 (no rim) retarda a absorção gastrointestinal de glicose, atenuando a hiperglicemia pós-prandial inicial de forma independente de insulina, além de atuar no néfron proximal para aumentar a excreção urinária de glicose e sódio."
   },
   vadadustat_trial:{
     label:"PRO2TECT Trial (Vadadustat em DRC não-dialítica)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2101791",
     journal:"N Engl J Med 2021;384(17):1589-1600",
     ano:2021,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Vadadustat não inferior à darbepoetina em Hb, mas não atingiu critério CV em não-dialíticos",icon:"🔬"
+    impacto:"Vadadustat não inferior à darbepoetina em Hb, mas não atingiu critério CV em não-dialíticos",icon:"🔬",
+    resumo:"Dois ensaios clínicos globais de fase III unificados (PRO2TECT, n = 3.476 pacientes com anemia associada a DRC não dialítica estágios 3-5). Comparou a eficácia e segurança cardiovascular do vadadustat (um inibidor oral da prolil hidroxilase do fator induzido por hipóxia - HIF-PHI) versus darbepoetina alfa endovenosa/subcutânea. Desfecho primário de eficácia: variação média nos níveis de hemoglobina. Desfecho primário de segurança: eventos cardiovasculares maiores adversos (MACE). Resultados: O vadadustat foi não inferior à darbepoetina alfa na correção e manutenção dos níveis de hemoglobina (variação de 1,4 g/dL). No entanto, o vadadustat não alcançou a não-inferioridade em termos de segurança cardiovascular para MACE (HR 1,17; IC 95% 1,01-1,36), impulsionado por maiores taxas de infarto e tromboembolismo venoso na coorte não dialítica.",
+    conclusao:"O vadadustat é altamente eficaz via oral para a correção da anemia renal, mas a restrição de segurança cardiovascular limita sua aprovação generalizada em populações não dialíticas no Reino.",
+    curiosidade:"Os inibidores de HIF-PHI como o vadadustat inibem temporariamente a prolil hidroxilase, estabilizando os fatores de transcrição HIF-1alfa e HIF-2alfa. Isso simula uma altitude elevada, estimulando de forma coordenada a secreção de eritropoietina endógena e otimizando a absorção e transporte de ferro pelo bloqueio da hepcidina."
   },
   imlifidase_study:{
     label:"Imlifidase em Transplante Hiperimune (Jordan et al.)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2114694",
     journal:"N Engl J Med 2022;386(26):2544-2555",
     ano:2022,tipo:"Estudo Clínico",badge:"STUDY",badgeColor:"#0ea5e9",
-    impacto:"Imlifidase cliva IgG e permite transplante renal em pacientes hiperimunes com prova cruzada positiva",icon:"🔬"
+    impacto:"Imlifidase cliva IgG e permite transplante renal em pacientes hiperimunes com prova cruzada positiva",icon:"🔬",
+    resumo:"Estudo clínico inovador avaliando o uso de imlifidase (IdeS) — uma endopeptidase recombinante derivada de Streptococcus pyogenes que cliva especificamente todas as subclasses de IgG humana em fragmentos F(ab')2 e Fc. Em pacientes altamente sensibilizados (candidatos hiperimunes com painel reativo de anticorpos - PRA elevado) e prova cruzada positiva com doadores falecidos, a infusão de uma dose única de imlifidase converteu a prova cruzada em negativa em 24 horas, clivando todos os anticorpos específicos contra o doador (DSAs). Isso permitiu a realização bem-sucedida do transplante renal incompatível em 100% dos pacientes da coorte. Embora ocorra rebote de anticorpos nas semanas seguintes com episódios de rejeição humoral aguda em parte dos pacientes, a sobrevida do enxerto permaneceu excelente.",
+    conclusao:"A imlifidase surge como uma terapia revolucionária de dessensibilização rápida, permitindo transpor barreiras imunológicas anteriormente intransponíveis e viabilizando o transplante em receptores altamente sensibilizados.",
+    curiosidade:"A imlifidase é, na verdade, uma arma biológica do Streptococcus pyogenes para inativar as defesas de anticorpos do hospedeiro humano. Na medicina de precisão, essa mesma enzima bacteriana foi domesticada para induzir uma janela terapêutica de imunossupressão humoral temporária de 48-72 horas, tempo suficiente para a realização do implante cirúrgico."
   },
   ext1ext2_sethi:{
     label:"Sethi S et al. — EXT1/EXT2 Membranous Nephropathy (JASN 2019)",
     url:"https://jasn.asnjournals.org/content/30/6/1123",
     journal:"JASN 2019;30(6):1123-1136",
     ano:2019,tipo:"Estudo Observacional",badge:"STUDY",badgeColor:"#0ea5e9",
-    impacto:"EXT1/EXT2 identificados como antígenos da NM lupus-like; associação com autoimunidade e melhor prognóstico renal",icon:"🔬"
+    impacto:"EXT1/EXT2 identificados como antígenos da NM lupus-like; associação com autoimunidade e melhor prognóstico renal",icon:"🔬",
+    resumo:"Estudo de coorte observacional patológica e proteômica glomerular (Sethi et al., n = 100 espécimes de biópsia), utilizando espectrometria de massas para identificar novos biomarcadores teciduais na nefropatia membranosa (NM). Identificou as exostosinas 1 e 2 (EXT1/EXT2) como antígenos glomerulares podocitários específicos presentes em 10% a 15% dos casos de NM. Clinicamente, a NM com coloração positiva para EXT1/EXT2 está fortemente associada a NM secundária a Lúpus Eritematoso Sistêmico (Nefrite Lúpica classe V 'lupus-like') ou outras doenças autoimunes, e prediz melhor prognóstico renal com menor evolução para falência renal.",
+    conclusao:"A identificação de EXT1/EXT2 via espectrometria de massas permitiu separar a NM lúpica e secundária de outras formas primárias, auxiliando no refinamento diagnóstico e prognóstico das glomerulopatias no Reino.",
+    curiosidade:"As exostosinas 1 e 2 são glicosiltransferases codificadas por genes supressores de tumor localizados no retículo endoplasmático podocitário, que atuam na síntese de sulfato de heparana. Na biópsia, a coloração imuno-histoquímica positiva para EXT1/EXT2 indica agressão glomerular lúpica mesmo se o paciente ainda não apresentar diagnóstico sistêmico formal de LES."
   },
   penkid_study:{
     label:"Hollinger A et al. — penKid em LRA (Critical Care 2018)",
     url:"https://ccforum.biomedcentral.com/articles/10.1186/s13054-018-2007-9",
     journal:"Critical Care 2018;22(1):189",
     ano:2018,tipo:"Estudo Observacional",badge:"STUDY",badgeColor:"#0ea5e9",
-    impacto:"Proenkephalin A (penKid) como biomarcador precoce de LRA em choque séptico — independente de massa muscular",icon:"🔬"
+    impacto:"Proenkephalin A (penKid) como biomarcador precoce de LRA em choque séptico — independente de massa muscular",icon:"🔬",
+    resumo:"Estudo observacional clínico prospectivo multicêntrico (n = 583 pacientes em choque séptico internados em UTI), avaliando o papel diagnóstico e prognóstico da proenquefalina A (penKid) sérica como um biomarcador funcional inovador de LRA. penKid é um peptídeo biologicamente estável gerado em estequiometria 1:1 com a enquefalina. O estudo demonstrou que os níveis séricos de penKid estão fortemente associados com a TFGe real e são capazes de prever o desenvolvimento agudo de LRA KDIGO nas próximas 48 horas de forma significativamente mais precoce que a creatinina sérica (P < 0,001), sendo totalmente independente de inflamação e massa muscular.",
+    conclusao:"O biomarcador funcional penKid é superior à creatinina para detecção precoce de LRA em pacientes graves com choque séptico, refletindo de forma fidedigna a taxa de filtração glomerular real no leito do paciente.",
+    curiosidade:"Diferente de biomarcadores estruturais de dano renal (como NGAL e TIMP-2/IGFBP7, que refletem lesão celular tubular direta), a penKid é filtrada livremente pelo glomérulo e atua como um marcador puramente funcional de filtração glomerular em tempo real, sem sofrer variações por sarcopenia, idade ou inflamação sistêmica."
   },
   evaluate_trial:{
     label:"EVALUATE Trial (Diálise vs Conservador em Idosos)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2308687",
     journal:"N Engl J Med 2024",
     ano:2024,tipo:"Ensaio Clínico",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Diálise não superior ao manejo conservador em qualidade de vida em pacientes > 75 anos com DRC estágio 5",icon:"🔬"
+    impacto:"Diálise não superior ao manejo conservador em qualidade de vida em pacientes > 75 anos com DRC estágio 5",icon:"🔬",
+    resumo:"ECR pragmático multicêntrico nacional (EVALUATE, n = 380), comparando a sobrevida e qualidade de vida (QdV) em idosos com idade ≥ 75 anos com DRC avançada (TFGe < 15 ml/min/1,73m²) randomizados para iniciar hemodiálise ou manter manejo clínico conservador otimizado. Desfecho primário: qualidade de vida ajustada por sobrevida aos 12 meses. Resultados: O início da diálise em idosos frágeis com alta carga de comorbidades não resultou em ganho significativo de qualidade de vida ou dias livres de hospitalização. Embora a diálise confira uma vantagem de sobrevida bruta de alguns meses, essa diferença desapareceu na análise de subgrupo de pacientes frágeis.",
+    conclusao:"A diálise em pacientes idosos frágeis (≥ 75 anos) e com múltiplas comorbidades não deve ser a coduta padrão cega; o manejo conservador otimizado é uma opção legítima de cuidado no Reino.",
+    curiosidade:"Idosos frágeis submetidos à hemodiálise convencional frequentemente sofrem de declínio funcional acelerado secundário ao estresse circulatório intradialítico recorrente e à perda de autonomia logística por necessitarem se deslocar 3 vezes por semana para uma clínica."
   },
   kpmp_project:{
     label:"KPMP — Kidney Precision Medicine Project",
     url:"https://www.kpmp.org/",
     journal:"CJASN 2021;16(9):1418-1428",
     ano:2021,tipo:"Consórcio de Pesquisa",badge:"REVIEW",badgeColor:"#0ea5e9",
-    impacto:"Atlas molecular renal com single-cell RNA-seq — redefinindo doenças renais para terapias de precisão",icon:"🔬"
+    impacto:"Atlas molecular renal com single-cell RNA-seq — redefinindo doenças renais para terapias de precisão",icon:"🔬",
+    resumo:"Consórcio de pesquisa clínica multicêntrico de grande escala (Kidney Precision Medicine Project - KPMP) dedicado a coletar e analisar de forma sistemática biópsias renais de pacientes com Lesão Renal Aguda (LRA) e Doença Renal Crônica (DRC). O KPMP combina tecnologias de biologia molecular avançada de célula única (single-cell RNA-seq, transcriptômica e proteômica espacial) com análise histopatológica convencional de alta definição. O objetivo é construir um atlas molecular em 3D do rim humano saudável e doente para identificar novos biomarcadores específicos celulares, redefinir subgrupos etiológicos clínicos de doenças renais de forma puramente molecular, e descobrir novos alvos terapêuticos direcionados de medicina de precisão.",
+    conclusao:"O KPMP representa a vanguarda científica que lidera a transição nefrológica da era histopatológica descritiva clássica para a era da medicina molecular e terapia personalizada de precisão no Reino.",
+    curiosidade:"O projeto utiliza técnicas rigorosas de biópsia segura em pacientes voluntários. Ao sequenciar milhares de células renais individuais isoladas, o KPMP revelou que podócitos e células tubulares renais sofrem estados de transição celular dinâmicos altamente complexos ('células em estado de hibernação ou senescência') durante o insulto de LRA, que guiam a cicatrização adaptativa ou a fibrose irreversível."
   },
 
 
@@ -1332,7 +1524,10 @@
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2025845",
     journal:"N Engl J Med 2020–2021; JAMA 2022",
     ano:2022,tipo:"Análise Pooled RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Finerenona ↓20% desfecho renal e ↓14% MACE em DRC diabética — análise combinada FIDELITY (>13.000 pacientes)",icon:"💊"
+    impacto:"Finerenona ↓20% desfecho renal e ↓14% MACE em DRC diabética — análise combinada FIDELITY (>13.000 pacientes)",icon:"💊",
+    resumo:"Análise combinada pré-especificada em larga escala (FIDELITY, n = 13.026 pacientes com DRC albuminúrica e diabetes mellitus tipo 2), unificando as coortes individuais dos ensaios clínicos pivotais de fase III FIDELIO-DKD e FIGARO-DKD. Avaliou a eficácia e segurança da finerenona (10 mg ou 20 mg uma vez ao dia) versus placebo, adicionados à terapia máxima tolerada com IECA ou BRA. O desfecho renal primário composto incluiu queda sustentada de TFGe ≥57% ou DRCT, e o desfecho cardiovascular foi um composto de morte CV, IAM não fatal, AVC não fatal ou hospitalização por IC. Resultados: A finerenona reduziu significativamente o risco do composto renal em 23% (HR 0,77; IC 95% 0,67–0,88; P < 0,001) e o risco de eventos cardiovasculares maiores (MACE) em 14% (HR 0,86; IC 95% 0,78–0,95; P = 0,0018). O risco de interrupção do tratamento por hipercalemia permaneceu muito baixo (1,7% no grupo ativo vs 0,6% no placebo).",
+    conclusao:"A análise combinada do FIDELITY consolida a finerenona como pilar inequívoco de proteção dupla — renal e cardiovascular — em pacientes com nefropatia diabética proteinúrica ao longo de um amplo espectro de gravidade no Reino.",
+    curiosidade:"O desfecho renal principal mediu a queda de TFGe ≥57% por equivaler matematicamente ao dobro do nível de creatinina sérica basal, um marcador de declínio funcional renal crônico aceito por órgãos reguladores globais como preditor confiável de falência renal estabelecida."
   },
   fidelio_dkd:{
     label:"FIDELIO-DKD Trial (Finerenona)",
@@ -1349,21 +1544,30 @@
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2110956",
     journal:"N Engl J Med 2021;385(24):2252-2263",
     ano:2021,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Finerenona ↓13% MACE e ↓23% novo início de DRC em DM2 com DRC moderada-grave",icon:"💊"
+    impacto:"Finerenona ↓13% MACE e ↓23% novo início de DRC em DM2 com DRC moderada-grave",icon:"💊",
+    resumo:"ECR multicêntrico duplo-cego fase III (FIGARO-DKD, n = 7.437 pacientes com DM2 e DRC de gravidade moderada, caracterizada por albuminúria persistente de alto grau e TFGe preservada, ou albuminúria moderada com TFGe reduzida). Comparou a finerenona (10-20 mg/dia) versus placebo, associados à dose máxima tolerada de bloqueadores do SRAA. Desfecho primário: morte CV, IAM não fatal, AVC não fatal ou internação por IC. Resultados: A finerenona reduziu significativamente o desfecho primário em 13% (HR 0,87; IC 95% 0,76–0,98; P = 0,03) após um seguimento médio de 3,4 anos. O benefício foi impulsionado principalmente por uma redução de 29% nas hospitalizações por IC (HR 0,71; IC 95% 0,56–0,90). O desfecho renal composto secundário (queda de TFGe ≥40% ou morte renal) também favoreceu o grupo ativo com HR 0,87.",
+    conclusao:"O FIGARO-DKD expandiu as indicações da finerenona para pacientes diabéticos com DRC nos estágios iniciais de disfunção funcional, demonstrando forte redução de hospitalização por insuficiência cardíaca e nefroproteção secundária no Reino.",
+    curiosidade:"Ao passo que o FIDELIO-DKD focou em pacientes com doença renal avançada (onde o risco de falência renal é primário), o FIGARO-DKD incluiu uma população com função renal mais preservada, em que o risco de morte cardiovascular precoce superava o risco de diálise."
   },
   finerenone_transplant_2025:{
     label:"Finerenona em Transplante Renal — Evidência Emergente",
     url:"https://www.kidney-international.org/",
     journal:"Kidney International 2024",
     ano:2024,tipo:"Revisão/Estudo Piloto",badge:"REVIEW",badgeColor:"#0ea5e9",
-    impacto:"Dados preliminares de segurança e eficácia de ARM não-esteroidais em receptores de transplante renal (evidência em desenvolvimento)",icon:"📖"
+    impacto:"Dados preliminares de segurança e eficácia de ARM não-esteroidais em receptores de transplante renal (evidência em desenvolvimento)",icon:"📖",
+    resumo:"Estudos observacionais e dados piloto iniciais (Kidney International, 2024) avaliando a segurança, tolerabilidade e eficácia antiproteinúrica da finerenona em receptores de transplante renal com proteinúria persistente sob imunossupressão padrão. O uso de antagonistas não esteroidais do receptor mineralocorticoide (nsMRA) em transplantados visa atenuar a inflamação e a fibrose intersticial, que levam à disfunção crônica do enxerto. Nos dados analisados, a finerenona (10 a 20 mg/dia) associou-se a uma redução significativa na relação proteinúria/creatinúria sem afetar de forma clinicamente relevante os níveis sanguíneos de tacrolimo ou ciclosporina. O principal evento adverso foi hipercalemia leve a moderada, manejável com orientação dietética ou quelantes, especialmente dada a predisposição hemodinâmica induzida pelos inibidores de calcineurina.",
+    conclusao:"A finerenona mostra-se promissora como terapia adjuvante segura e eficaz para redução de proteinúria e progressão fibrótica pós-transplante, aguardando validação definitiva por grandes ensaios clínicos.",
+    curiosidade:"Os inibidores de calcineurina aumentam a expressão e atividade do cotransportador cloreto de sódio sensível a tiazídicos (NCC) no túbulo distal e reduzem a secreção distal de potássio, o que explica por que a hipercalemia é o principal desafio ao combinar esses fármacos com a finerenona no pós-transplante."
   },
   confidence_trial_2025:{
     label:"CONFIDENCE Trial (Finerenona + Empagliflozina)",
     url:"https://www.thelancet.com/journals/landia/article/PIIS2213-8587(24)00243-8/fulltext",
     journal:"Lancet Diabetes Endocrinol 2025",
     ano:2025,tipo:"Ensaio Clínico Fase II",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Iniciação simultânea finerenona + empagliflozina bem tolerada; maior redução de albuminúria que monoterapia isolada em DRC diabética",icon:"💊"
+    impacto:"Iniciação simultânea finerenona + empagliflozina bem tolerada; maior redução de albuminúria que monoterapia isolada em DRC diabética",icon:"💊",
+    resumo:"ECR fase II duplo-cego multicêntrico (CONFIDENCE, n = ~1.000 pacientes com DRC e diabetes tipo 2). Avaliou a eficácia e segurança da iniciação combinada simultânea de empagliflozina (10 mg/dia) e finerenona (20 mg/dia) versus a monoterapia com empagliflozina ou monoterapia com finerenona isoladas, associadas ao bloqueio máximo do SRAA. Desfecho primário: alteração na relação albuminúria/creatinúria (RAC) urinária em 6 meses. Resultados: A terapia de iniciação combinada simultânea levou a uma redução estatisticamente superior e sinérgica na proteinúria (-53% em relação ao basal), significativamente maior que os grupos de monoterapia isolados. Além disso, a incidência de hipercalemia de relevância clínica e interrupção do tratamento foi marcadamente menor no grupo de iniciação simultânea em comparação com a monoterapia de finerenona.",
+    conclusao:"O CONFIDENCE provou que a iniciação simultânea da terapia dupla (iSGLT2 + nsMRA) confere nefroproteção sinérgica e superior, além de mitigar hemodinamicamente o risco de hipercalemia no Reino.",
+    curiosidade:"Fisiologicamente, a empagliflozina induz natriurese e glicosúria no túbulo proximal, aumentando a oferta de sódio ao néfron distal, o que estimula a excreção urinária de potássio pelas células principais do ducto coletor. Esse efeito caliurético compensa e anula perfeitamente a retenção de potássio induzida pela finerenona, gerando excelente sinergia de tolerabilidade eletrólitica."
   },
   bestow_trial_2025:{
     label:"BESTOW Trial (Tegoprubart em Transplante Renal)",
@@ -1380,14 +1584,20 @@
     url:"https://www.jasn.org/",
     journal:"J Am Soc Nephrol 2025",
     ano:2025,tipo:"Ensaio Clínico Fase II/III",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Finerenona ↓ proteinúria e atenua inflamação/fibrose renal em Nefropatia por IgA — nova indicação potencial do ARM não-esteroidal",icon:"💊"
+    impacto:"Finerenona ↓ proteinúria e atenua inflamação/fibrose renal em Nefropatia por IgA — nova indicação potencial do ARM não-esteroidal",icon:"💊",
+    resumo:"ECR multicêntrico internacional duplo-cego de fase II/III (FINE-ONE, n = ~300 pacientes adultos com Nefropatia por IgA comprovada por biópsia, proteinúria persistente ≥ 1 g/dia e TFGe ≥30 mL/min/1,73m² sob bloqueio otimizado do SRAA). Avaliou a eficácia antiproteinúrica e segurança da finerenona (20 mg uma vez ao dia) versus placebo. Desfecho primário: redução percentual na relação proteinúria/creatinúria (RAC) urinária em 9 meses. Resultados: O tratamento com finerenona induziu uma redução clinicamente relevante de 31% na proteinúria em 9 meses (P < 0,001) em comparação com o placebo, associado a marcante redução de biomarcadores séricos de inflamação e fibrose tecidual, com perfil de segurança favorável e taxas controladas de hipercalemia transitória.",
+    conclusao:"O FINE-ONE consolida a eficácia antiproteinúrica da finerenona em glomerulopatias primárias não diabéticas, abrindo caminho para uma nova estratégia terapêutica antinflamatória na IgAN no Reino.",
+    curiosidade:"O mecanismo protetor da finerenona na IgAN vai além da hemodinâmica: o bloqueio do receptor mineralocorticoide nas células mesangiais e podócitos suprime a via de sinalização do TGF-beta e do colágeno IV, atenuando a proliferação mesangial, fusão podocitária e fibrose intersticial secundárias ao depósito crônico de imunocomplexos de IgA1."
   },
   ici_nia_cortazar_2016:{
     label:"Cortazar et al. — NIA por Inibidores de Checkpoint",
     url:"https://www.kidney-international.org/article/S0085-2538(16)30201-1/fulltext",
     journal:"Kidney International",
     ano:2016,tipo:"Série de Casos",badge:"ESTUDO",badgeColor:"#f59e0b",
-    impacto:"Série seminal: NIA é o padrão histológico predominante na LRA por ICI (anti-PD-1/PD-L1); corticosteroides são a base do tratamento",icon:"🔬"
+    impacto:"Série seminal: NIA é o padrão histológico predominante na LRA por ICI (anti-PD-1/PD-L1); corticosteroides são a base do tratamento",icon:"🔬",
+    resumo:"Estudo de coorte multicêntrico e série de casos seminal (Cortazar et al., Kidney International 2016, n = 137 pacientes com neoplasias malignas sob tratamento com Inibidores de Checkpoint Imunológico [ICI, como anti-PD-1, anti-PD-L1 ou anti-CTLA-4] que desenvolveram LRA grave). Documentou os achados histopatológicos da biópsia renal e a resposta clínica ao tratamento. Revelou que a Nefrite Intersticial Aguda (NIA) é o padrão histológico predominante, ocorrendo em mais de 90% das biópsias indicadas por LRA associada a ICI. O uso precoce de corticosteroides endovenosos ou orais (prednisona 1 mg/kg/dia) levou à recuperação completa ou parcial da função renal na maioria dos pacientes, com menor taxa de recuperação se atraso no início da terapia.",
+    conclusao:"A LRA induzida por imunoterapia do câncer é majoritariamente decorrente de NIA imunomediada reativa, exigindo diagnóstico rápido e suspensão temporária do ICI associada a corticoterapia precoce para prevenir fibrose renal permanente.",
+    curiosidade:"Os inibidores de checkpoint imunológico reativam células T contra células tumorais ao bloquear vias inibitórias (como PD-1/PD-L1). No entanto, esse bloqueio também elimina a tolerância imunológica periférica do rim aos antígenos tubulares renais latentes, desencadeando um ataque autoimune reativo massivo e destrutivo das células T contra o próprio interstício renal."
   },
   kdigo_bp_ckd_2021:{
     label:"KDIGO Blood Pressure in CKD 2021",
@@ -1404,63 +1614,90 @@
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa040975",
     journal:"New England Journal of Medicine",
     ano:2005,tipo:"Ensaio Clínico Randomizado",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Atorvastatina não reduziu mortalidade cardiovascular em diabéticos em hemodiálise — questionou benefício de estatinas em diálise",icon:"💊"
+    impacto:"Atorvastatina não reduziu mortalidade cardiovascular em diabéticos em hemodiálise — questionou benefício de estatinas em diálise",icon:"💊",
+    resumo:"ECR multicêntrico duplo-cego fase III (4D, n = 1.255), comparando atorvastatina 20 mg/dia versus placebo em pacientes diabéticos tipo 2 em hemodiálise estável. Desfecho primário composto: morte cardíaca, infarto do miocárdio não fatal, AVC não fatal ou morte por qualquer causa cardíaca. Resultados: Durante 4 anos de seguimento médio, a atorvastatina reduziu o LDL-c em 42%, mas NÃO diminuiu de forma estatisticamente significativa o desfecho primário composto (396 eventos no grupo atorvastatina vs 408 no grupo placebo; HR 0,92; IC 95% 0,77–1,10; P = 0,37). Surpreendentemente, houve um aumento significativo no risco de AVC fatal no grupo atorvastatina (HR 2,03; IC 95% 1,05–3,93; P = 0,04).",
+    conclusao:"O 4D Trial abalou a prática cardiológica ao provar que o início de estatinas em pacientes em hemodiálise com diabetes tipo 2 não confere proteção cardiovascular significativa, não devendo ser prescrito de rotina para este fim.",
+    curiosidade:"A falha das estatinas na diálise reside no fato de que a mortalidade cardiovascular destes pacientes não é causada principalmente por ruptura de placa aterosclerótica clássica, mas sim por morte súbita cardíaca decorrente de arritmias, hipercalemia e calcificação de condução mediada por fibrose miocárdica crônica."
   },
   duplex_fsgs:{
     label:"DUPLEX Trial — Sparsentan em GESF",
-    url:"https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(23)01448-1/fulltext",
+    url:"https://www.thelancet.com/journals/Articles/article/PIIS0140-6736(23)01448-1/fulltext",
     journal:"The Lancet",
     ano:2023,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Sparsentan (dual AT1/ETₐ bloqueio) vs irbesartana em GESF: redução de proteinúria significativa — nova opção terapêutica",icon:"💊"
+    impacto:"Sparsentan (dual AT1/ETₐ bloqueio) vs irbesartana em GESF: redução de proteinúria significativa — nova opção terapêutica",icon:"💊",
+    resumo:"ECR internacional duplo-cego multicêntrico de fase III (DUPLEX, n = 371), comparando o duplo antagonista do receptor de endotelina e angiotensina sparsentan versus o BRA irbesartana (300 mg/dia) em pacientes com GESF primária proteinúrica (ACR ≥ 1,5 g/dia, TFGe ≥ 30). Desfecho primário: remissão parcial da proteinúria de GESF (FSR) na semana 36 (UACR ≤ 1,5 g/g e queda ≥ 40% em relação ao basal). Resultados: Sparsentan alcançou maior taxa de FSR aos 36 semanas (42,0% vs 26,0%; OR 2,23; IC 95% 1,37–3,62; P = 0,009). Embora a inclinação da TFGe a longo prazo (slope de 104 semanas) não tenha mostrado diferença estatística significativa nas taxas de declínio, o perfil de segurança foi semelhante, com discreto aumento de hipotensão leve.",
+    conclusao:"O DUPLEX estabeleceu o sparsentan como a primeira molécula de duplo bloqueio a alcançar redução rápida de proteinúria glomerular na GESF em relação a um BRA de dose máxima.",
+    curiosidade:"O sparsentan atua de forma inovadora bloqueando simultaneamente a via da angiotensina II (receptor AT1) e a via da endotelina-1 (receptor ETA). A endotelina-1 é um vasoconstritor glomerular potente que induz esclerose mesangial e dano aos podócitos — o sparsentan bloqueia essa agressão de forma direta."
   },
   rhabdo_review_2023:{
     label:"Rabdomiólise e LRA — Revisão Clin J Am Soc Nephrol",
     url:"https://cjasn.asnjournals.org/",
     journal:"Clinical Journal of the American Society of Nephrology",
     ano:2023,tipo:"Revisão",badge:"REVISÃO",badgeColor:"#8b5cf6",
-    impacto:"Patogênese e manejo da LRA por rabdomiólise: hidratação agressiva, monitoramento de CPK e complicações eletrolíticas",icon:"📖"
+    impacto:"Patogênese e manejo da LRA por rabdomiólise: hidratação agressiva, monitoramento de CPK e complicações eletrolíticas",icon:"📖",
+    resumo:"Artigo de revisão clínica e fisiopatológica sistemática sobre a Lesão Renal Aguda associada a Rabdomiólise (LRA-R) publicada no CJASN (2023). Detalha a patogênese da lesão que ocorre quando níveis séricos de creatina fosfoquinase (CPK) ultrapassam 5.000 U/L. O mecanismo central envolve a liberação maciça de mioglobina circulante das células musculares lisas lesadas, que causa toxicidade por 3 vias: obstrução física intratubular por cilindros de mioglobina precipitados, toxicidade celular direta induzida por estresse oxidativo do ferro livre, e vasoconstrição intrarrenal acentuada. O tratamento baseia-se na hidratação salina agressiva precoce (alvo de débito urinário de 200–300 mL/h) e alcalinização urinária dirigida em casos selecionados (alvo pH > 6,5) para impedir a precipitação do complexo mioglobina-proteína de Tamm-Horsfall.",
+    conclusao:"O manejo ideal da LRA por rabdomiólise exige ressuscitação volêmica salina precoce e vigorosa para restaurar o fluxo tubular e evitar a precipitação de cilindros de mioglobina, vigiando rigorosamente as alterações de potássio sérico.",
+    curiosidade:"A mioglobina precipita-se seletivamente nos túbulos renais na presença de urina ácida (pH < 5,6) devido à sua dissociação em globina e ferrihemato (ferro livre reativo), que catalisa reações de Haber-Weiss gerando radicais livres que oxidam a membrana lipídica das células tubulares."
   },
   hepatorenal_review:{
     label:"SHR-IRA — Síndrome Hepatorrenal (J Hepatol / KDIGO)",
     url:"https://www.journal-of-hepatology.eu/",
     journal:"Journal of Hepatology",
     ano:2023,tipo:"Revisão/Guideline",badge:"GUIDELINE",badgeColor:"#6366f1",
-    impacto:"Critérios diagnósticos atuais de SHR-IRA: ausência de choque, sem resposta a volume, infecção excluída — terlipressina + albumina",icon:"📋"
+    impacto:"Critérios diagnósticos atuais de SHR-IRA: ausência de choque, sem resposta a volume, infecção excluída — terlipressina + albumina",icon:"📋",
+    resumo:"Artigo de revisão sistemática e alinhamento de diretrizes internacionais (EASL/KDIGO, 2023) sobre a Síndrome Hepatorrenal (SHR-IRA). Estabelece os novos critérios diagnósticos que integraram a LRA KDIGO ao cenário cirrótico: aumento agudo de creatinina sérica ≥ 0,3 mg/dL em 48h ou ≥ 50% em 7 dias em paciente cirrótico com ascite. Exige a exclusão ativa de outras causas: ausência de choque hemodinâmico, ausência de proteinúria significativa (> 500 mg/dia) ou hematúria, e ausência de melhora funcional após 48 horas de suspensão de diuréticos e expansão volêmica dirigida com albumina (1g/kg/dia). Recomenda tratamento de primeira linha com terlipressina combinada com albumina humana.",
+    conclusao:"O diagnóstico de SHR-IRA é baseado em critérios rígidos de exclusão e exige a LRA KDIGO em contexto cirrótico refratário a volume, em que a terapia de vasoconstritores esplâncnicos com terlipressina e albumina é a única com evidência sólida de reversão bioquímica.",
+    curiosidade:"A SHR-IRA resulta de uma disfunção circulatória arterial sistêmica extrema secundária a hipertensão portal: a liberação local esplâncnica de óxido nítrico gera vasodilatação maciça, reduzindo o volume arterial circulante efetivo, ativando intensamente o SRAA e o sistema nervoso simpático, que causam vasoconstrição intrarrenal profunda."
   },
   thin_gbm_disease:{
-    label:"Doença da MBG Fina — Diagnóstico e Prognóstico (CJASN)",
+    label:"Doençã da MBG Fina — Diagnóstico e Prognóstico (CJASN)",
     url:"https://cjasn.asnjournals.org/",
     journal:"Clinical Journal of the American Society of Nephrology",
     ano:2020,tipo:"Revisão",badge:"REVISÃO",badgeColor:"#8b5cf6",
-    impacto:"Hematúria glomerular benigna em heterozigóticos COL4A — diferenciação clínica de Alport; prognóstico geralmente favorável",icon:"📖"
+    impacto:"Hematúria glomerular benigna em heterozigóticos COL4A — diferenciação clínica de Alport; prognóstico geralmente favorável",icon:"📖",
+    resumo:"Artigo de revisão clínica e genética sistemática sobre a Doença de Membrana Basal Fina (DMBF), também chamada de hematúria familiar benigna. A doença é causada por variantes heterozigóticas nos genes COL4A3 ou COL4A4, que codificam as cadeias alfa-3 e alfa-4 do colágeno tipo IV da membrana basal glomerular (MBG). Caracteriza-se por afinamento difuso da MBG (espessura média < 250 nm na biópsia por microscopia eletrônica). Apresenta-se clinicamente como hematúria microscópica presumida familiar isolada, com proteinúria mínima e função renal preservada a longo prazo.",
+    conclusao:"A DMBF representa a causa clássica de hematúria familiar glomerular benigna, possuindo excelente prognóstico renal de longo prazo e devendo ser diferenciada da progressão agressiva da Síndrome de Alport clássica.",
+    curiosidade:"A biópsia com microscopia eletrônica de transmissão é o padrão de ouro para confirmar o diagnóstico ao demonstrar afinamento extremo e homogêneo da MBG, porém testes genéticos de sequenciamento de nova geração (NGS) para o painel COL4A tornaram-se mais práticos e não-invasivos na atualidade."
   },
   membranous_pla2r:{
     label:"Beck LH et al. — Anti-PLA2R e Nefropatia Membranosa (NEJM 2009)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa0803684",
     journal:"New England Journal of Medicine",
     ano:2009,tipo:"Artigo Original",badge:"ESTUDO",badgeColor:"#f59e0b",
-    impacto:"PLA2R como antígeno-alvo da nefropatia membranosa primária: anti-PLA2R positivo em ~70% — primeiro biomarcador sérico específico",icon:"🔬"
+    impacto:"PLA2R como antígeno-alvo da nefropatia membranosa primária: anti-PLA2R positivo em ~70% — primeiro biomarcador sérico específico",icon:"🔬",
+    resumo:"Estudo translacional patológico e proteômica glomerular seminal (Beck LH et al., 2009), utilizando técnica de western blotting de extratos de glomérulos humanos normais com soro de pacientes com nefropatia membranosa primária (NMP). Identificou uma glicoproteína transmembrana de 185-kD, o receptor de fosfolipase A2 do tipo M (PLA2R), presente nos podócitos glomerulares normais, como o antígeno-alvo específico para autoanticorpos circulantes do subtipo IgG4 em 70% a 80% dos pacientes com NMP. A reatividade do anticorpo correlacionou-se fortemente com a atividade da doença e o nível de proteinúria.",
+    conclusao:"A descoberta do anti-PLA2R revolucionou a nefrologia clínica, permitindo o diagnóstico sorológico ('biópsia líquida') e o monitoramento imunológico quantitativo e preditivo da NMP sem dependência exclusiva de biópsia renal em casos selecionados.",
+    curiosidade:"O subtipo IgG4, que domina os anticorpos anti-PLA2R, é tradicionalmente considerado uma imunoglobulina anti-inflamatória por não ativar o complemento pela via clássica. No entanto, na NMP ele causa dano celular aos podócitos ativando a via das lectinas do sistema de complemento glomerular, induzindo a deposição do complexo de ataque à membrana (C5b-9)."
   },
   kdigo_anemia_2024:{
     label:"KDIGO Anemia in CKD 2024",
     url:"https://kdigo.org/guidelines/anemia-in-ckd/",
     journal:"Kidney International",
     ano:2024,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
-    impacto:"Metas Hb 10-11,5 g/dL; HIF-PHI como alternativa aos ESA; uso criterioso de ferro IV em DRC",icon:"📋"
+    impacto:"Metas Hb 10-11,5 g/dL; HIF-PHI como alternativa aos ESA; uso criterioso de ferro IV em DRC",icon:"📋",
+    resumo:"Diretriz internacional atualizada (KDIGO 2024) reunindo as recomendações clínicas oficiais para o diagnóstico, avaliação e tratamento da anemia associada à Doença Renal Crônica. Consolida a indicação de triagem e investigação diagnóstica de anemia em pacientes com DRC quando Hb <12 g/dL em mulheres e <13 g/dL em homens. Padroniza o alvo terapêutico preferencial de hemoglobina entre 10 e 11,5 g/dL para pacientes em tratamento com Agentes Estimuladores da Eritropoiese (ESAs), alertando contra alvos suprafisiológicos >13 g/dL devido aos riscos demonstrados de AVC e eventos tromboembólicos. Incorpora pela primeira vez as novas moléculas inibidoras de HIF-PHI (como roxadustat, vadadustat, daprodustat) como alternativas seguras e eficazes aos ESAs convencionais em pacientes selecionados, além de estabelecer diretrizes estritas de reposição de ferro baseadas nos índices de ferritina e saturação de transferrina.",
+    conclusao:"Padroniza a abordagem multidisciplinar da anemia renal no Reino, balanceando a eficácia na correção hematológica com a segurança cardiovascular estrita na beira do leito do paciente.",
+    curiosidade:"O desvio nas recomendações de alvos de Hb para níveis estritos de 10-11,5 g/dL decorre dos ensaios clínicos históricos seminais TREAT, CHOIR e CREATE, que demonstraram que tentar normalizar a hemoglobina para >13 g/dL usando altas doses de EPO recombinante iatrogênica causava um aumento perigoso no tônus vascular, hipertensão refratária e trombose de acessos vasculares."
   },
   kdigo_igan_2021:{
     label:"KDIGO IgAN — Capítulo da Diretriz GN 2021",
     url:"https://kdigo.org/guidelines/glomerular-diseases/",
     journal:"Kidney International",
     ano:2021,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
-    impacto:"Manejo da nefropatia por IgA: suporte otimizado (IECA/BRA), imunossupressão selecionada e critérios de progressão renal",icon:"📋"
+    impacto:"Manejo da nefropatia por IgA: suporte otimizado (IECA/BRA), imunossupressão selecionada e critérios de progressão renal",icon:"📋",
+    resumo:"Capítulo dedicado à nefropatia por IgA (IgAN) na diretriz KDIGO de Doenças Glomerulares de 2021. Estabelece como base absoluta do manejo a terapia de suporte otimizada por ≥ 3 meses: controle de PA (alvo < 120 mmHg sistólica), bloqueio de SRAA em dose máxima tolerada e restrição de sódio. Para pacientes com proteinúria persistente > 1 g/dia apesar do suporte otimizado, orienta avaliar risco de progressão (usando a ferramenta de previsão IIgANN) e discutir corticoterapia se a TFGe for ≥ 30, alertando para os riscos infecciosos graves identificados no TESTING.",
+    conclusao:"A diretriz IgAN 2021 colocou o suporte conservador otimizado de 3 meses como pré-requisito indispensável antes de qualquer consideração de imunossupressão, que deve ser reservada para alto risco progressivo e discutida individualmente.",
+    curiosidade:"A ferramenta de predição International IgAN Prediction Tool (IIgANN) integra variáveis clínicas tradicionais (TFGe, proteinúria, PA basal) com o score histopatológico MEST-C da classificação de Oxford (Hipercelularidade Mesangial, Endovascular, Esclerose Segmentar, Atrofia Tubular e Crescentes) para calcular o risco de declínio de 50% da TFGe em 5 anos."
   },
   tamm_horsfall:{
     label:"Uromodulina (Tamm-Horsfall) — Biomarcador Tubular",
     url:"https://jasn.asnjournals.org/",
     journal:"Journal of the American Society of Nephrology",
     ano:2021,tipo:"Revisão",badge:"REVISÃO",badgeColor:"#8b5cf6",
-    impacto:"Uromodulina como proteína protetora tubular e biomarcador de lesão — relevante no diagnóstico de NIA e lesão tubular aguda",icon:"📖"
+    impacto:"Uromodulina como proteína protetora tubular e biomarcador de lesão — relevante no diagnóstico de NIA e lesão tubular aguda",icon:"📖",
+    resumo:"Revisão fisiológica abrangente detalhando o papel e funções biológicas protetoras da glicoproteína de Tamm-Horsfall (THP), atualmente conhecida como Uromodulina. A uromodulina é a proteína mais abundante na urina humana normal, sendo sintetizada exclusivamente pelas células epiteliais do ramo ascendente espesso (RAE) da alça de Henle. A revisão elucida as funções multifacetadas da uromodulina: ela regula a permeabilidade de água e íons na alça de Henle (polimerizando-se na luz tubular), previne a formação de cálculos de oxalato de cálcio, possui potente atividade imunomoduladora inibitória e age como barreira mecânica crucial de defesa antimicrobiana contra uropatógenos como E. coli.",
+    conclusao:"A uromodulina consolidou-se como uma molécula endógena multifuncional protetora da integridade tubular e urotelial renal, cuja dosagem sérica/urinária surge como marcador de reserva funcional renal no Reino.",
+    curiosidade:"A uromodulina possui resíduos de manose altamente específicos em sua estrutura molecular. Esses resíduos atuam como iscas perfeitas que se ligam competitivamente às fímbrias do tipo 1 de Escherichia coli presentes na luz urinária. Dessa forma, as bactérias ficam fisicamente retidas nos polímeros de uromodulina e são lavadas e eliminadas na micção, impedindo sua ascensão e infecção do parênquima."
   },
   mentor_trial:{
     label:"Fervenza FC et al. — MENTOR Trial (NEJM 2019)",
@@ -1507,7 +1744,10 @@
     url:"https://kdigo.org/guidelines/glomerular-diseases/",
     journal:"Kidney International",
     ano:2024,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
-    impacto:"Atualização do manejo da nefrite lúpica: MMF como 1ª linha, voclosporina e belimumabe como opções adjuvantes, biópsia para estadiamento",icon:"📋"
+    impacto:"Atualização do manejo da nefrite lúpica: MMF como 1ª linha, voclosporina e belimumabe como opções adjuvantes, biópsia para estadiamento",icon:"📋",
+    resumo:"Atualização focada do guideline KDIGO de Nefrite Lúpica (NL), publicada em 2024. Recomenda a realização de biópsia renal em todo paciente com suspeita clínica de NL ativa. Para classes III ou IV (proliferativa), orienta indução de primeira linha com micofenolato de mofetila (MMF) ou ciclofosfamida em dose baixa (esquema Euro-Lupus), combinados com pulsos de corticoide. Consolida as novas terapias triplas como opções adjuvantes superiores: associação de belimumabe (anti-BAFF) à terapia padrão para proteção a longo prazo contra flares renais, ou voclosporina (CNI) em curto prazo para controle rápido de proteinúria maciça.",
+    conclusao:"A atualização de 2024 reestruturou a indução da NL incorporando formalmente as terapias biológicas direcionadas (belimumabe e voclosporina), permitindo esquemas de corticoide muito mais baixos e seguros no Reino.",
+    curiosidade:"A nefrite lúpica classe V (membranosa) pura tem abordagem distinta: é proteinúrica e não proliferativa, tratada preferencialmente com inibidores de calcineurina ou MMF, diferindo da urgência inflamatória celular e formação de crescentes das classes proliferativas III/IV."
   },
   kdigo_ckd_2024:{
     label:"KDIGO CKD 2024",
