@@ -434,12 +434,17 @@
           : (window.NQ_CONFIG && window.NQ_CONFIG.SUPA_URL)
           || 'https://wviutasgroltjuyxpevc.supabase.co';
         // Auth obrigatória (verify_jwt) — sem apikey/Authorization o Supabase
-        // rejeita com 401 antes de chegar na função.
+        // rejeita com 401. Logado: usa o JWT da sessão; visitante: publishable key.
         const _supaKey = (window.NQ_CONFIG && window.NQ_CONFIG.SUPA_KEY)
           || (typeof SUPA_KEY !== 'undefined' ? SUPA_KEY : '');
+        let _authToken = _supaKey;
+        try {
+          const _sess = await (typeof _supaClient !== 'undefined' ? _supaClient : null)?.auth?.getSession();
+          _authToken = _sess?.data?.session?.access_token || _supaKey;
+        } catch {}
         const res = await fetch(supaUrl + '/functions/v1/send-contact', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', apikey: _supaKey, Authorization: `Bearer ${_supaKey}` },
+          headers: { 'Content-Type': 'application/json', apikey: _supaKey, Authorization: `Bearer ${_authToken}` },
           body: JSON.stringify({
             subject: '[NefroQuest] Sugestão de artigo',
             message: `URL/DOI: ${urlVal || '(não informado)'}\n\nJustificativa: ${reasonVal || '(não informada)'}`,

@@ -1592,17 +1592,23 @@
 
       try {
         // Headers de auth obrigatórios (verify_jwt): sem apikey/Authorization o
-        // Supabase rejeita com 401 antes de chegar na função. Usa a publishable
-        // key (anon) como as demais edge functions chamadas sem usuário logado.
+        // Supabase rejeita com 401 antes de chegar na função. Quando logado,
+        // envia o JWT da sessão (passa no verify_jwt mesmo que a função exija);
+        // visitante cai na publishable key (requer verify_jwt=false na função).
         const _supaKey = (window.NQ_CONFIG && window.NQ_CONFIG.SUPA_KEY)
           || (typeof SUPA_KEY !== 'undefined' ? SUPA_KEY : '');
+        let _authToken = _supaKey;
+        try {
+          const _sess = await (typeof _supaClient !== 'undefined' ? _supaClient : null)?.auth?.getSession();
+          _authToken = _sess?.data?.session?.access_token || _supaKey;
+        } catch {}
         const res = await fetch(`${SUPA_URL}/functions/v1/send-flag`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',
             apikey: _supaKey,
-            Authorization: `Bearer ${_supaKey}`,
+            Authorization: `Bearer ${_authToken}`,
           },
           body: JSON.stringify(body),
         });
