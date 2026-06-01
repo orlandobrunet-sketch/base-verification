@@ -1606,21 +1606,34 @@
           },
           body: JSON.stringify(body),
         });
-        const data = await res.json();
-        if (data.success) {
+        let data = {};
+        try { data = await res.json(); } catch {}
+        if (res.ok && data.success) {
           status.className = 'flag-status flag-status--success';
           status.textContent = '✅ Erro enviado! Obrigado pelo feedback.';
           setTimeout(() => document.getElementById('flagPopup')?.remove(), 2000);
           log('🚩 Erro na questão #' + qNum + ' sinalizado com sucesso!');
         } else {
-          throw new Error(data.message || 'Falha no envio');
+          // Mostra o motivo real para diagnosticar (config/auth/serviço de e-mail).
+          const code = res.status;
+          const reason = (data && (data.error || data.message)) || '';
+          let hint = 'Tente novamente em instantes.';
+          if (code === 401 || code === 403) hint = 'Autenticação recusada pelo servidor.';
+          else if (code === 500 && /config/i.test(reason)) hint = 'Serviço de e-mail não configurado (WEB3FORMS_KEY).';
+          else if (code === 502) hint = 'Serviço de e-mail rejeitou o envio.';
+          status.className = 'flag-status flag-status--error';
+          status.textContent = `❌ Falha ao enviar (${code}). ${hint}`;
+          btn.disabled = false;
+          btn.textContent = '📧 Enviar';
+          _track('error_flag_submit', { status: code, reason });
         }
       } catch (err) {
+        // Erro de rede / função inexistente / CORS bloqueado.
         status.className = 'flag-status flag-status--error';
-        status.textContent = '❌ Falha ao enviar. Tente novamente em instantes.';
+        status.textContent = '❌ Falha de conexão com o servidor. Verifique sua rede.';
         btn.disabled = false;
         btn.textContent = '📧 Enviar';
-        _track('error_flag_submit', {msg: String(err)});
+        _track('error_flag_submit', { msg: String(err) });
       }
     }
 
