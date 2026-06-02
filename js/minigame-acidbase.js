@@ -1444,7 +1444,197 @@
     };
   }
 
-  // ── Casos clínicos (Fase 7: 14 casos jogáveis) ───────────────────────────
+  function _buildBrann(){
+    // D-lactato (intestino curto) — acidose metabólica AG alto com lactato L NORMAL
+    const HCO3 = _rand(14, 20);
+    const AG   = _rand(17, 24);
+    const Na   = _rand(137, 142);
+    const Cl   = Na - AG - HCO3;
+    const alb  = _r1(3.8 + Math.random() * 0.4);
+    const K    = _r1(3.6 + Math.random() * 0.8);
+    const winterExpected = _r1(1.5 * HCO3 + 8);
+    const PaCO2 = Math.round(winterExpected + Math.random() * 2); // acidose pode ser leve → não alcaliniza
+    const pH = _ph(HCO3, PaCO2);
+    const BE = _be(HCO3, PaCO2);
+    _dbg('Brann rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, AG, winterExpected });
+
+    return {
+      narrative: `O viajante <strong>Brann</strong> tem síndrome do intestino curto (após ressecção). Apresenta episódios de confusão e fala arrastada que <strong>pioram após refeições ricas em carboidrato</strong>. O <strong>lactato (L) sérico é normal</strong>.`,
+      gas: { pH, PaCO2, HCO3, BE, Na, Cl, K, alb },
+      acts: [
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato I — Distúrbio primário.</strong><br>Analisando pH, PaCO₂ e HCO₃⁻, qual o distúrbio primário?',
+          options: [
+            { label: 'Acidose metabólica', correct: true },
+            { label: 'Acidose respiratória', correct: false },
+            { label: 'Alcalose metabólica', correct: false },
+            { label: 'Alcalose respiratória', correct: false }
+          ],
+          explainCorrect: `pH ${_c(pH)} → <strong>acidemia</strong>. HCO₃⁻ ${HCO3} mEq/L (baixo) acompanha → distúrbio <strong>metabólico</strong>. PaCO₂ ${PaCO2} baixa é compensação.`,
+          explainWrong: {
+            'Acidose respiratória': `Teria PaCO₂ alta. Aqui a PaCO₂ ${PaCO2} está baixa (compensando).`,
+            'Alcalose metabólica': `Teria pH > 7,45 e HCO₃⁻ alto. Aqui pH ${_c(pH)} e HCO₃⁻ ${HCO3} (baixo).`,
+            'Alcalose respiratória': `Teria pH > 7,45. Aqui pH ${_c(pH)}.`
+          }
+        },
+        {
+          kind: 'num',
+          prompt: '<strong>Ato II — Compensação esperada (Winter).</strong><br>Calcule a PaCO₂ esperada pela compensação respiratória.',
+          grimoire: { title: 'Fórmula de Winter', body: '<code>PaCO₂ esperado = 1,5 × HCO₃⁻ + 8 (±2)</code>' },
+          unit: 'mmHg',
+          target: winterExpected,
+          tolerance: 2,
+          explainCorrect: `PaCO₂ esperada = 1,5 × ${HCO3} + 8 = <strong>${_c(winterExpected)} mmHg (±2)</strong>; real ${PaCO2} → compensação adequada.`,
+          explainWrong: `1,5 × ${HCO3} + 8 = ${_c(winterExpected)}. Tolerância ±2.`
+        },
+        {
+          kind: 'num',
+          prompt: `<strong>Ato III — Ânion gap.</strong><br>Calcule o AG sérico (albumina = ${_c(alb)} g/dL).`,
+          grimoire: { title: 'AG alto com lactato L normal', body: '<code>AG = Na⁺ − (Cl⁻ + HCO₃⁻)</code><br>Um AG alto com <strong>lactato L (rotineiro) normal</strong> e história sugestiva aponta um ânion <em>não dosado</em> — como o <strong>D-lactato</strong>, que o exame de lactato comum NÃO detecta.' },
+          unit: 'mEq/L',
+          target: AG,
+          tolerance: 1,
+          explainCorrect: `AG = ${Na} − (${Cl} + ${HCO3}) = <strong>${AG} mEq/L</strong> (alto). Com <strong>lactato L normal</strong> + intestino curto + piora pós-carboidrato → suspeitar de <strong>D-lactato</strong> (não medido pelo lactato de rotina).`,
+          explainWrong: `AG = Na − (Cl + HCO₃) = ${Na} − (${Cl} + ${HCO3}) = ${AG}.`
+        },
+        _buildCardsAct({
+          prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione <em>todas</em> as causas de acidose com <strong>AG alto e lactato L normal</strong> (ânions não dosados). Não selecione causas de outro padrão.',
+          instruction: 'Os mecanismos serão revelados somente após o julgamento.',
+          cards: [
+            _makeCard('dlactato_b', 'D-lactato (intestino curto)', 'Confusão pós-carboidrato, ressecção intestinal', 'AG alto, lactato L normal', true, 'Carboidrato não absorvido é fermentado por bactérias do cólon a D-lactato; o exame de lactato (L) padrão não o detecta → AG alto "inexplicado".', 'É exatamente este caso; dosa-se D-lactato específico.'),
+            _makeCard('oxoprolina_b', '5-oxoprolina (paracetamol)', 'Paracetamol crônico, desnutrida/sepse', 'AG alto, lactato normal', true, 'Paracetamol crônico + glutationa baixa → acúmulo de 5-oxoprolina (piroglutâmico), ânion não dosado → AG ↑.', 'Causa subdiagnosticada de AG alto inexplicado; pesquisar uso de paracetamol.'),
+            _makeCard('propileno_b', 'Propilenoglicol', 'Infusão IV prolongada (ex.: lorazepam)', 'AG alto, gap osmolar', true, 'Solvente metabolizado a L-lactato e D-lactato; em altas doses acumula ânions → AG ↑ (e gap osmolar).', 'Toxicidade hospitalar por infusões; eleva o AG.'),
+            _makeCard('tolueno_b', 'Tolueno (inalação)', 'Abuso de solvente/cola', 'AG variável, hipocalemia', true, 'Metabolizado a hipurato/benzoato (ânions); pode dar AG alto inicial e depois acidose hiperclorêmica quando excretado.', 'Causa toxicológica de AG alto por ânions orgânicos.'),
+            _makeCard('metformina_b', 'Metformina (acidose lática)', 'IRA, choque', 'Lactato L MUITO alto', true, 'Inibe a gliconeogênese/oxidação mitocondrial → acúmulo de L-lactato → AG ↑.', 'Aqui o lactato L estaria ALTO (não normal) — entra como causa de AG alto, mas com lactato dosável.'),
+            _makeCard('cetoacidose_b', 'Cetoacidose alcoólica', 'Etilismo + jejum', 'Cetose, AG alto', true, 'Jejum + NADH alto → β-hidroxibutirato (ânion não medido pela fita de cetona padrão em parte) → AG ↑.', 'AG alto por cetoácidos; diferencial dos ânions não medidos.'),
+            _makeCard('vomitos_b', 'Vômitos', 'Perda gástrica', 'HCO₃⁻ alto, hipocloremia', false, 'Perda de HCl → alcalose metabólica.', 'É armadilha: alcalose, padrão oposto.'),
+            _makeCard('diarreia_b', 'Diarreia', 'Perda fecal volumosa', 'AG NORMAL, Cl⁻ alto', false, 'Perda fecal de HCO₃⁻ → acidose hiperclorêmica (AG normal).', 'É armadilha: AG normal, não AG alto.'),
+            _makeCard('tep_b', 'Tromboembolismo pulmonar', 'Dispneia súbita', 'PaCO₂ baixo', false, 'Hiperventilação → alcalose respiratória.', 'É armadilha: distúrbio respiratório alcalótico, não acidose metabólica.')
+          ],
+          grimoire: { title: 'AG alto com lactato L normal', body: 'Quando o AG está alto mas o lactato L é normal, pense em ânions não dosados: <strong>D-lactato</strong> (intestino curto), <strong>5-oxoprolina</strong> (paracetamol), <strong>propilenoglicol</strong>, <strong>tolueno</strong>, cetoácidos. O lactato comum mede apenas o L-lactato.' }
+        }),
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato V — Conduta clínica.</strong><br>Qual é a sua conduta inicial?',
+          grimoire: { title: 'Tratamento da acidose D-láctica', body: 'Restringir <strong>carboidratos simples</strong> (substrato da fermentação), hidratar e considerar <strong>antibiótico oral</strong> (ex.: metronidazol) para reduzir a flora produtora; suporte nutricional. Geralmente reversível ao tratar a causa.' },
+          options: [
+            { label: 'Restringir carboidratos simples + hidratação ± antibiótico oral; ajustar a nutrição', correct: true },
+            { label: 'Infusão de bicarbonato em bolus como tratamento definitivo', correct: false },
+            { label: 'Aumentar a oferta de carboidratos para repor energia', correct: false },
+            { label: 'Apenas observação', correct: false }
+          ],
+          explainCorrect: `Acidose D-láctica → <strong>restringir carboidratos simples</strong> (substrato da fermentação bacteriana), hidratar e considerar <strong>antibiótico oral</strong> para reduzir a flora produtora. Costuma reverter ao tratar a causa.`,
+          explainWrong: {
+            'Infusão de bicarbonato em bolus como tratamento definitivo': 'Bicarbonato é só adjuvante na acidemia grave; não trata a causa (a fermentação continua).',
+            'Aumentar a oferta de carboidratos para repor energia': 'Carboidrato simples é o substrato da fermentação — pioraria a produção de D-lactato.',
+            'Apenas observação': 'Os episódios neurológicos recorrem; é preciso intervir na dieta/flora.'
+          }
+        }
+      ],
+      summary: `<strong>Acidose metabólica com AG alto (${AG}) por D-lactato</strong> (intestino curto): carboidrato não absorvido é fermentado a D-lactato, que o lactato L de rotina <strong>não detecta</strong>. Conduta: restringir carboidrato + hidratar ± antibiótico oral. Lição: AG alto com lactato L normal = ânion não dosado.`
+    };
+  }
+
+  function _buildNara(){
+    // Alcalose metabólica pós-hipercapnia — DPOC ventilado rápido (HCO₃⁻ alto "residual")
+    const HCO3 = _rand(30, 34);
+    const PaCO2 = _rand(38, 44);                   // PaCO₂ já normalizada (era cronicamente alta)
+    const Na   = _rand(137, 142);
+    const AG   = _rand(9, 12);
+    const Cl   = Na - AG - HCO3;
+    const alb  = _r1(3.8 + Math.random() * 0.4);
+    const K    = _r1(3.2 + Math.random() * 0.8);
+    const compExpected = _r1(0.7 * HCO3 + 21);
+    const pH = _ph(HCO3, PaCO2);
+    const BE = _be(HCO3, PaCO2);
+    _dbg('Nara rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, AG, compExpected });
+
+    return {
+      narrative: `A guerreira <strong>Nara</strong>, portadora de DPOC com retenção crônica de CO₂, foi intubada e <strong>ventilada agressivamente</strong>. A PaCO₂ caiu rápido ao normal, mas o <strong>HCO₃⁻ permanece alto</strong>. Agora está sonolenta.`,
+      gas: { pH, PaCO2, HCO3, BE, Na, Cl, K, alb },
+      acts: [
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato I — Distúrbio primário.</strong><br>Analisando pH, PaCO₂ e HCO₃⁻, qual o distúrbio primário <em>atual</em>?',
+          options: [
+            { label: 'Alcalose metabólica', correct: true },
+            { label: 'Acidose respiratória', correct: false },
+            { label: 'Alcalose respiratória', correct: false },
+            { label: 'Acidose metabólica', correct: false }
+          ],
+          explainCorrect: `pH ${_c(pH)} → <strong>alcalemia</strong>. Com PaCO₂ ${PaCO2} (normalizada) e HCO₃⁻ ${HCO3} (alto), o que sustenta a alcalemia agora é o <strong>HCO₃⁻ elevado</strong> → alcalose <strong>metabólica</strong>.`,
+          explainWrong: {
+            'Acidose respiratória': `Apesar do histórico de DPOC, agora a PaCO₂ ${PaCO2} está normal e o pH é alcalino — não há acidose respiratória atual.`,
+            'Alcalose respiratória': `Exigiria PaCO₂ baixa. Aqui a PaCO₂ ${PaCO2} está normal; quem sustenta a alcalemia é o HCO₃⁻ alto.`,
+            'Acidose metabólica': `Teria pH < 7,35 e HCO₃⁻ baixo. Aqui pH ${_c(pH)} (alcalino) e HCO₃⁻ ${HCO3} (alto).`
+          }
+        },
+        {
+          kind: 'num',
+          prompt: '<strong>Ato II — Compensação esperada.</strong><br>Calcule a PaCO₂ esperada pela compensação respiratória da alcalose metabólica.',
+          grimoire: { title: 'Compensação respiratória — alcalose metabólica', body: '<code>PaCO₂ esperado = 0,7 × HCO₃⁻ + 21 (±5)</code>' },
+          unit: 'mmHg',
+          target: compExpected,
+          tolerance: 5,
+          explainCorrect: `PaCO₂ esperada = 0,7 × ${HCO3} + 21 = <strong>${_c(compExpected)} mmHg (±5)</strong>. Como o paciente está em ventilação mecânica, a PaCO₂ depende do ajuste do respirador — não da compensação espontânea.`,
+          explainWrong: `0,7 × ${HCO3} = ${_c(_r1(0.7*HCO3))}; + 21 = ${_c(compExpected)}. Tolerância ±5.`
+        },
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato III — Mecanismo.</strong><br>Por que o HCO₃⁻ está alto numa paciente de DPOC recém-ventilada?',
+          grimoire: { title: 'Alcalose pós-hipercapnia', body: 'Na hipercapnia crônica, o rim retém HCO₃⁻ para compensar (HCO₃⁻ ↑ proporcional à PaCO₂ alta). Se a PaCO₂ é <strong>corrigida rapidamente</strong> (ventilação agressiva), o HCO₃⁻ alto <strong>persiste por dias</strong> (a excreção renal é lenta) → alcalose metabólica "pós-hipercapnia".' },
+          options: [
+            { label: 'Alcalose pós-hipercapnia: o HCO₃⁻ retido na DPOC crônica persiste após a queda rápida da PaCO₂', correct: true },
+            { label: 'Ganho agudo de base por bicarbonato', correct: false },
+            { label: 'Hiperaldosteronismo primário', correct: false },
+            { label: 'Compensação renal normal de uma alcalose respiratória', correct: false }
+          ],
+          explainCorrect: `<strong>Alcalose pós-hipercapnia</strong>: o HCO₃⁻ que o rim reteve para compensar a hipercapnia crônica <strong>não cai tão rápido</strong> quanto a PaCO₂ corrigida pela ventilação → sobra HCO₃⁻ alto → alcalemia.`,
+          explainWrong: {
+            'Ganho agudo de base por bicarbonato': 'Não há relato de carga de bicarbonato; o HCO₃⁻ alto é residual da compensação da hipercapnia crônica.',
+            'Hiperaldosteronismo primário': 'Não há hipertensão nem o contexto; a história é de DPOC ventilada.',
+            'Compensação renal normal de uma alcalose respiratória': 'A PaCO₂ está normal (não baixa) — não há alcalose respiratória primária; o distúrbio é metabólico.'
+          }
+        },
+        _buildCardsAct({
+          prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione <em>todas</em> as causas de alcalose metabólica relevantes no paciente <strong>pulmonar</strong>. Não selecione causas de outro padrão.',
+          instruction: 'Os mecanismos serão revelados somente após o julgamento.',
+          cards: [
+            _makeCard('poshiper_n', 'Pós-hipercapnia', 'DPOC ventilado rapidamente', 'HCO₃⁻ alto, PaCO₂ normalizada', true, 'O HCO₃⁻ retido na hipercapnia crônica persiste após a queda rápida da PaCO₂ → alcalose metabólica.', 'É exatamente este caso; corrigir a ventilação lentamente.'),
+            _makeCard('diuretico_n', 'Diurético em DPOC (cor pulmonale)', 'Uso de furosemida p/ edema', 'HCO₃⁻ alto, K⁺/Cl⁻ baixos', true, 'Contração de volume + RAAS → alcalose metabólica; comum no DPOC com cor pulmonale tratado com diurético.', 'Soma-se à pós-hipercapnia; reavaliar a dose.'),
+            _makeCard('vomitos_n', 'Vômitos / SNG', 'Perda gástrica', 'HCO₃⁻ alto, hipocloremia', true, 'Perda de HCl → alcalose metabólica salina-responsiva.', 'Causa de alcalose metabólica que pode coexistir no paciente internado.'),
+            _makeCard('bicarbHD_n', 'Banho rico em bicarbonato (diálise)', 'Dialítico recém-dialisado', 'HCO₃⁻ alto pós-sessão', true, 'A transferência de bicarbonato do dialisato eleva o HCO₃⁻ → alcalose metabólica pós-HD.', 'Relevante em pulmonar dialítico; ajustar o banho.'),
+            _makeCard('alcali_n', 'Carga de álcali (citrato/bicarbonato)', 'Transfusão maciça, antiácidos', 'HCO₃⁻ alto', true, 'Citrato metabolizado a bicarbonato ou ingestão de álcali elevam o HCO₃⁻.', 'Ganho exógeno/endógeno de base como causa de alcalose.'),
+            _makeCard('tep_n', 'TEP', 'Dispneia súbita', 'PaCO₂ BAIXO', false, 'Hiperventilação → alcalose RESPIRATÓRIA (PaCO₂ baixa).', 'É armadilha: distúrbio respiratório (PaCO₂ baixa), não metabólico.'),
+            _makeCard('diarreia_n', 'Diarreia', 'Perda fecal volumosa', 'HCO₃⁻ baixo, Cl⁻ alto', false, 'Perda fecal de HCO₃⁻ → acidose hiperclorêmica.', 'É armadilha: causa acidose, não alcalose.'),
+            _makeCard('dka_n', 'Cetoacidose diabética', 'Hiperglicemia, Kussmaul', 'AG alto, HCO₃⁻ baixo', false, 'Cetogênese → acidose com AG alto.', 'É armadilha: acidose metabólica, oposto.')
+          ],
+          grimoire: { title: 'Alcalose metabólica no paciente pulmonar', body: 'Causas a lembrar: <strong>pós-hipercapnia</strong> (HCO₃⁻ residual), <strong>diurético</strong> (cor pulmonale), vômitos, carga de álcali e <strong>pós-HD</strong> (banho rico em bicarbonato). Distinguir de alcalose RESPIRATÓRIA (PaCO₂ baixa).' }
+        }),
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato V — Conduta clínica.</strong><br>Qual é a sua conduta inicial?',
+          grimoire: { title: 'Conduta na alcalose pós-hipercapnia', body: 'Ajustar a ventilação para <strong>não derrubar a PaCO₂ abaixo do basal crônico</strong> do paciente (corrigir devagar) e repor <strong>Cl⁻ e K⁺</strong> para o rim excretar o excesso de HCO₃⁻. Acetazolamida em casos selecionados se houver sobrecarga de volume que impeça salina.' },
+          options: [
+            { label: 'Ajustar a ventilação (não hiperventilar) + repor Cl⁻ e K⁺', correct: true },
+            { label: 'Aumentar o volume-minuto do ventilador para baixar mais a PaCO₂', correct: false },
+            { label: 'Administrar bicarbonato de sódio', correct: false },
+            { label: 'Restringir volume e cloreto', correct: false }
+          ],
+          explainCorrect: `Pós-hipercapnia → <strong>não hiperventilar</strong> (manter a PaCO₂ perto do basal crônico) e repor <strong>Cl⁻/K⁺</strong> para o rim excretar o HCO₃⁻ excedente. A sonolência pode refletir a alcalemia.`,
+          explainWrong: {
+            'Aumentar o volume-minuto do ventilador para baixar mais a PaCO₂': 'Hiperventilar agrava a alcalemia (PaCO₂ ainda menor com HCO₃⁻ alto).',
+            'Administrar bicarbonato de sódio': 'Adicionar base piora a alcalose.',
+            'Restringir volume e cloreto': 'O Cl⁻ é justamente o que permite ao rim excretar o HCO₃⁻; restringir perpetua a alcalose.'
+          }
+        }
+      ],
+      summary: `<strong>Alcalose metabólica pós-hipercapnia</strong>: na DPOC, o HCO₃⁻ retido (compensação da hipercapnia crônica) persiste após a PaCO₂ ${PaCO2} ser corrigida rápido pela ventilação. Conduta: não hiperventilar + repor Cl⁻/K⁺. Lição: HCO₃⁻ alto com PaCO₂ normal num DPOC recém-ventilado = pós-hipercapnia.`
+    };
+  }
+
+  // ── Casos clínicos (Fase 8: 16 casos jogáveis) ───────────────────────────
   // Diagnóstico não aparece no hub (spoiler) — fica como metadata interna.
   // Desbloqueio é progressivo: um caso libera quando o anterior é concluído
   // (ver _isPlayable). Casos sem build() ficam como "Em breve".
@@ -1462,7 +1652,9 @@
     { id:'isolde',  caso:'Caso XI',    title:'A Flauta dos Túbulos',   character:'Flautista Isolde',    build:_buildIsolde  },
     { id:'corvin',  caso:'Caso XII',   title:'A Coroa de Sal',         character:'Nobre Corvin',        build:_buildCorvin  },
     { id:'ophelia', caso:'Caso XIII',  title:'O Sino do Salgueiro',    character:'Herborista Ophelia',  build:_buildOphelia },
-    { id:'helena',  caso:'Caso XIV',   title:'A Sacerdotisa do Fígado',character:'Sacerdotisa Helena',  build:_buildHelena  }
+    { id:'helena',  caso:'Caso XIV',   title:'A Sacerdotisa do Fígado',character:'Sacerdotisa Helena',  build:_buildHelena  },
+    { id:'brann',   caso:'Caso XV',    title:'O Intestino Curto',      character:'Viajante Brann',      build:_buildBrann   },
+    { id:'nara',    caso:'Caso XVI',   title:'A Máscara do Dragão',    character:'Guerreira Nara',      build:_buildNara    }
   ];
   // Helper p/ telas internas que ainda referenciam o "chapter" antigo.
   function _chapterOf(meta){ return `${meta.caso} — ${meta.title}`; }
@@ -1516,7 +1708,7 @@
           <div class="ab-hub">
             <div class="ab-ornament">✦ A Câmara do Equilíbrio ✦</div>
             <h2 class="ab-title">Alquimista Renal</h2>
-            <p class="ab-lead">Catorze pacientes do reino aguardam diagnóstico ácido-base. Domine a fórmula de Winter, o ânion gap (e sua correção pela albumina), a delta ratio, o cloreto e o pH urinário, os distúrbios mistos e o gap osmolar para restaurar o equilíbrio.</p>
+            <p class="ab-lead">Dezesseis pacientes do reino aguardam diagnóstico ácido-base. Domine a fórmula de Winter, o ânion gap (e sua correção pela albumina), a delta ratio, o cloreto e o pH urinário, os distúrbios mistos e o gap osmolar para restaurar o equilíbrio.</p>
             <div class="ab-grid">${cardsHTML}</div>
           </div>
         </div>
