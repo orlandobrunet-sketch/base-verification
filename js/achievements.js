@@ -147,14 +147,14 @@
       {
         id: 'acid_base_master',
         name: 'Alquimista Renal',
-        description: 'Conclua os 6 casos da Câmara do Equilíbrio (minigame ácido-base)',
+        description: 'Conclua todos os casos da Câmara do Equilíbrio (minigame ácido-base)',
         icon: '⚗️',
         condition: () => {
           try {
             const p = JSON.parse(localStorage.getItem('nq-acidbase-progress') || '{}');
             const done = new Set(p.completed || []);
             // IDs em sync com CASES em js/minigame-acidbase.js
-            const allCases = ['aldric', 'mara', 'theron', 'vance', 'kael', 'vorgath'];
+            const allCases = ['aldric', 'mara', 'theron', 'vance', 'kael', 'vorgath', 'selene', 'edrin'];
             return allCases.every(id => done.has(id));
           } catch { return false; }
         }
