@@ -667,17 +667,209 @@
     };
   }
 
-  // ── Casos clínicos (Fase 3: 6 casos jogáveis) ────────────────────────────
+  function _buildSelene(){
+    // Cetoacidose diabética (acidose metabólica com AG alto, cetose)
+    const HCO3 = _rand(6, 14);
+    const AG   = _rand(20, 28);
+    const Na   = _rand(130, 138);
+    const Cl   = Na - AG - HCO3;
+    const alb  = _r1(3.8 + Math.random() * 0.4);
+    const K    = _r1(4.6 + Math.random() * 1.0);   // déficit total, sérico normal/alto antes do tratamento
+    const glic = _rand(380, 620);
+    const winterExpected = _r1(1.5 * HCO3 + 8);
+    const PaCO2 = Math.round(winterExpected + (Math.random() * 4 - 2));
+    const pH = _ph(HCO3, PaCO2);
+    const BE = _be(HCO3, PaCO2);
+    _dbg('Selene rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, winterExpected, AG, glic });
+
+    return {
+      narrative: `A jovem maga <strong>Selene</strong> chega com poliúria intensa, perda de peso, dor abdominal e respiração profunda e ritmada (Kussmaul). Hálito cetônico. A glicemia capilar marca <strong>${glic} mg/dL</strong>.`,
+      gas: { pH, PaCO2, HCO3, BE, Na, Cl, K, alb },
+      acts: [
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato I — Distúrbio primário.</strong><br>Analisando pH, PaCO₂ e HCO₃⁻, qual o distúrbio primário?',
+          options: [
+            { label: 'Acidose metabólica', correct: true },
+            { label: 'Acidose respiratória', correct: false },
+            { label: 'Alcalose metabólica', correct: false },
+            { label: 'Alcalose respiratória', correct: false }
+          ],
+          explainCorrect: `pH ${_c(pH)} → <strong>acidemia</strong>. HCO₃⁻ ${HCO3} mEq/L (baixo) acompanha a acidemia → distúrbio <strong>metabólico</strong>. A PaCO₂ ${PaCO2} baixa é a respiração de Kussmaul (compensação), não a causa.`,
+          explainWrong: {
+            'Acidose respiratória': `Teria PaCO₂ alta como causa. Aqui a PaCO₂ ${PaCO2} está baixa (Kussmaul compensando).`,
+            'Alcalose metabólica': `Teria pH > 7,45 e HCO₃⁻ alto. Aqui pH ${_c(pH)} e HCO₃⁻ ${HCO3} (baixo).`,
+            'Alcalose respiratória': `Teria pH > 7,45. Aqui pH ${_c(pH)}.`
+          }
+        },
+        {
+          kind: 'num',
+          prompt: '<strong>Ato II — Compensação esperada (Winter).</strong><br>Calcule a PaCO₂ esperada pela compensação respiratória.',
+          grimoire: { title: 'Fórmula de Winter', body: '<code>PaCO₂ esperado = 1,5 × HCO₃⁻ + 8 (±2)</code>' },
+          unit: 'mmHg',
+          target: winterExpected,
+          tolerance: 2,
+          explainCorrect: `PaCO₂ esperada = 1,5 × ${HCO3} + 8 = <strong>${_c(winterExpected)} mmHg (±2)</strong>; real ${PaCO2} → compensação adequada (Kussmaul).`,
+          explainWrong: `1,5 × ${HCO3} + 8 = ${_c(winterExpected)}. Tolerância ±2.`
+        },
+        {
+          kind: 'num',
+          prompt: `<strong>Ato III — Ânion gap.</strong><br>Calcule o AG sérico (albumina = ${_c(alb)} g/dL).`,
+          grimoire: { title: 'Ânion gap', body: '<code>AG = Na⁺ − (Cl⁻ + HCO₃⁻)</code><br>Normal 8–12. Na DKA, os cetoácidos (β-hidroxibutirato) são os ânions não medidos que elevam o AG.' },
+          unit: 'mEq/L',
+          target: AG,
+          tolerance: 1,
+          explainCorrect: `AG = ${Na} − (${Cl} + ${HCO3}) = <strong>${AG} mEq/L</strong> (alto). Com hiperglicemia + cetonemia, é <strong>cetoacidose diabética</strong> — o β-hidroxibutirato consome HCO₃⁻ e eleva o AG.`,
+          explainWrong: `AG = Na − (Cl + HCO₃) = ${Na} − (${Cl} + ${HCO3}) = ${AG}.`
+        },
+        _buildCardsAct({
+          prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione <em>todas</em> as causas que também produzem este padrão (acidose metabólica com ânion gap alto). Não selecione causas de outro padrão.',
+          instruction: 'Os mecanismos serão revelados somente após o julgamento.',
+          cards: [
+            _makeCard('dka_s', 'Cetoacidose diabética', 'Poliúria, dor abdominal, Kussmaul', 'Hiperglicemia, cetonemia, AG alto', true, 'Insulina ↓ + glucagon ↑ → lipólise → β-hidroxibutirato/acetoacetato → consomem HCO₃⁻ → AG ↑.', 'É exatamente este caso; investigar o gatilho (infecção, omissão de insulina).'),
+            _makeCard('euglycemic_s', 'Cetoacidose euglicêmica (iSGLT2)', 'Diabético em iSGLT2, jejum/infecção', 'Cetonemia com glicose normal ou pouco alta', true, 'A glicosúria do iSGLT2 reduz a glicemia aparente; insulina efetiva ↓ + glucagon ↑ → cetogênese → AG ↑.', 'Acidose grave sem hiperglicemia marcada — a glicemia normal engana.'),
+            _makeCard('alcoholic_s', 'Cetoacidose alcoólica', 'Etilismo + jejum, vômitos', 'Glicose baixa/normal, cetose, AG alto', true, 'Álcool + jejum → NADH ↑ e glicogênio esgotado → β-hidroxibutirato ↑ → AG ↑.', 'AG alto com glicemia normal/baixa; responde a soro glicosado + tiamina.'),
+            _makeCard('starvation_s', 'Cetoacidose de jejum', 'Inanição prolongada', 'Cetose leve, HCO₃⁻ pouco reduzido', true, 'O jejum prolongado mobiliza ácidos graxos → cetogênese hepática → leve acúmulo de cetoácidos.', 'Costuma ser leve (HCO₃⁻ raramente < 18); ainda assim entra no padrão de AG alto.'),
+            _makeCard('lactate_s', 'Sepse / choque (lactato)', 'Febre, hipotensão, má perfusão', 'Lactato alto, AG alto', true, 'Hipoperfusão/disfunção mitocondrial → lactato ↑ → consome HCO₃⁻ → AG ↑.', 'Pode coexistir com a DKA (sepse é gatilho clássico de descompensação).'),
+            _makeCard('uremia_s', 'Uremia / DRC avançada', 'DRC avançada, sintomas urêmicos', 'TFG muito baixa, fosfato alto, AG alto', true, 'Menor excreção de ácidos fixos + retenção de sulfato/fosfato → AG ↑.', 'Causa renal de acidose com AG alto.'),
+            _makeCard('diarrhea_s', 'Diarreia', 'Perda fecal volumosa', 'HCO₃⁻ baixo, Cl⁻ alto, AG normal', false, 'Perda fecal de HCO₃⁻ → Cl⁻ sobe para eletroneutralidade → acidose hiperclorêmica.', 'É armadilha: acidose, mas com AG normal.'),
+            _makeCard('vomiting_s', 'Vômitos', 'Perda de conteúdo gástrico', 'HCO₃⁻ alto, hipocloremia', false, 'Perda de HCl → HCO₃⁻ ↑ → alcalose metabólica.', 'É armadilha: alcalose, padrão oposto.'),
+            _makeCard('rta1_s', 'ATR tipo 1 (distal)', 'Nefrocalcinose, litíase', 'pH urinário > 5,5, K⁺ baixo, AG normal', false, 'Falha distal de secreção de H⁺ → acidose hiperclorêmica.', 'É armadilha: AG normal, não AG alto.')
+          ],
+          grimoire: { title: 'O padrão: acidose metabólica com AG alto', body: 'Ácidos não medidos se acumulam e consomem HCO₃⁻. O ânion gap separa esse grupo da acidose hiperclorêmica (AG normal). No diabético, pense em cetoácidos — inclusive na forma euglicêmica.' }
+        }),
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato V — Conduta clínica.</strong><br>Qual é a sua conduta inicial?',
+          grimoire: { title: 'Tratamento da cetoacidose diabética', body: 'Pilares: <strong>volume</strong> (SF 0,9%), <strong>insulina regular IV</strong> em infusão e <strong>reposição de potássio</strong>. Regra de segurança: <strong>não iniciar insulina se K⁺ < 3,3 mEq/L</strong> (a insulina joga K⁺ para dentro da célula e pode causar hipocalemia grave) — repor K⁺ antes. Bicarbonato só se pH < 6,9.' },
+          options: [
+            { label: 'SF 0,9% + insulina regular IV + reposição de K⁺ (não iniciar insulina se K⁺ < 3,3)', correct: true },
+            { label: 'Insulina subcutânea isolada, sem hidratação', correct: false },
+            { label: 'Bolus de bicarbonato 8,4% IV de rotina', correct: false },
+            { label: 'Apenas hidratação, sem insulina nem potássio', correct: false }
+          ],
+          explainCorrect: `DKA → <strong>volume + insulina IV + K⁺</strong>. O K⁺ sérico (${_c(K)}) costuma mascarar déficit corporal total; monitorar e repor. Bicarbonato fica reservado a pH < 6,9.`,
+          explainWrong: {
+            'Insulina subcutânea isolada, sem hidratação': 'A desidratação é grave na DKA; sem volume a perfusão e a resposta à insulina ficam comprometidas. Via IV em infusão é o padrão.',
+            'Bolus de bicarbonato 8,4% IV de rotina': 'Bicarbonato de rotina não melhora desfecho e pode causar hipocalemia/alcalose tardia; reservado a pH < 6,9.',
+            'Apenas hidratação, sem insulina nem potássio': 'Sem insulina a cetogênese continua; sem repor K⁺ há risco de hipocalemia grave ao iniciar insulina.'
+          }
+        }
+      ],
+      summary: `<strong>Cetoacidose diabética</strong> (acidose metabólica com AG ${AG} alto + hiperglicemia + cetonemia), compensação de Kussmaul adequada (Winter ${_c(winterExpected)}, real ${PaCO2}). Conduta: SF 0,9% + insulina IV + K⁺ (cuidado com K⁺ < 3,3). Bicarbonato só se pH < 6,9.`
+    };
+  }
+
+  function _buildEdrin(){
+    // Acidose urêmica da DRC avançada — AG mascarado por hipoalbuminemia (AG corrigido)
+    const HCO3 = _rand(14, 19);
+    const Na   = _rand(136, 142);
+    const measAG = _rand(12, 16);                  // AG medido parece normal/limítrofe
+    const Cl   = Na - measAG - HCO3;
+    const alb  = _r1(2.4 + Math.random() * 0.7);   // hipoalbuminemia (2,4–3,1)
+    const AGcorr = Math.round(measAG + 2.5 * (4 - alb));
+    const K    = _r1(4.6 + Math.random() * 1.0);
+    const cr   = _r1(4.5 + Math.random() * 3.5);   // creatinina alta (narrativa)
+    const winterExpected = _r1(1.5 * HCO3 + 8);
+    // Acidose leve: PaCO₂ na faixa do Winter mas sem cair abaixo do esperado
+    // (PaCO₂ baixa demais alcalinizaria → deixaria de ser acidemia). Mantém
+    // distúrbio simples com compensação adequada e pH < 7,35.
+    const PaCO2 = Math.round(winterExpected + Math.random() * 2);
+    const pH = _ph(HCO3, PaCO2);
+    const BE = _be(HCO3, PaCO2);
+    _dbg('Edrin rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, measAG, AGcorr, cr, winterExpected });
+
+    return {
+      narrative: `O cronista <strong>Edrin</strong>, idoso com doença renal crônica avançada, apresenta inapetência, fadiga e respiração mais profunda. A creatinina está em <strong>${_c(cr)} mg/dL</strong> e a albumina, baixa (<strong>${_c(alb)} g/dL</strong>).`,
+      gas: { pH, PaCO2, HCO3, BE, Na, Cl, K, alb },
+      acts: [
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato I — Distúrbio primário.</strong><br>Analisando pH, PaCO₂ e HCO₃⁻, qual o distúrbio primário?',
+          options: [
+            { label: 'Acidose metabólica', correct: true },
+            { label: 'Acidose respiratória', correct: false },
+            { label: 'Alcalose metabólica', correct: false },
+            { label: 'Alcalose respiratória', correct: false }
+          ],
+          explainCorrect: `pH ${_c(pH)} → <strong>acidemia</strong>. HCO₃⁻ ${HCO3} mEq/L (baixo) acompanha a acidemia → distúrbio <strong>metabólico</strong>. PaCO₂ ${PaCO2} baixa é compensação respiratória.`,
+          explainWrong: {
+            'Acidose respiratória': `Teria PaCO₂ alta como causa. Aqui a PaCO₂ ${PaCO2} está baixa (compensando).`,
+            'Alcalose metabólica': `Teria pH > 7,45 e HCO₃⁻ alto. Aqui pH ${_c(pH)} e HCO₃⁻ ${HCO3} (baixo).`,
+            'Alcalose respiratória': `Teria pH > 7,45. Aqui pH ${_c(pH)}.`
+          }
+        },
+        {
+          kind: 'num',
+          prompt: '<strong>Ato II — Compensação esperada (Winter).</strong><br>Calcule a PaCO₂ esperada pela compensação respiratória.',
+          grimoire: { title: 'Fórmula de Winter', body: '<code>PaCO₂ esperado = 1,5 × HCO₃⁻ + 8 (±2)</code>' },
+          unit: 'mmHg',
+          target: winterExpected,
+          tolerance: 2,
+          explainCorrect: `PaCO₂ esperada = 1,5 × ${HCO3} + 8 = <strong>${_c(winterExpected)} mmHg (±2)</strong>; real ${PaCO2} → compensação adequada.`,
+          explainWrong: `1,5 × ${HCO3} + 8 = ${_c(winterExpected)}. Tolerância ±2.`
+        },
+        {
+          kind: 'num',
+          prompt: `<strong>Ato III — Ânion gap CORRIGIDO.</strong><br>O AG medido = Na⁺ − (Cl⁻ + HCO₃⁻) = <strong>${measAG}</strong> (parece normal). Com albumina baixa (${_c(alb)} g/dL), calcule o <strong>AG corrigido</strong>.`,
+          grimoire: { title: 'AG corrigido pela albumina', body: '<code>AG = Na⁺ − (Cl⁻ + HCO₃⁻)</code><br><code>AG corrigido = AG + 2,5 × (4 − albumina)</code><br>Cada 1 g/dL de queda da albumina reduz o AG medido em ~2,5 — por isso a hipoalbuminemia <em>mascara</em> um AG alto.' },
+          unit: 'mEq/L',
+          target: AGcorr,
+          tolerance: 2,
+          explainCorrect: `AG corrigido = ${measAG} + 2,5 × (4 − ${_c(alb)}) = <strong>${AGcorr} mEq/L</strong> (alto). O AG medido (${measAG}) parecia normal, mas a <strong>hipoalbuminemia mascarava um AG alto</strong> — típico da retenção de sulfato/fosfato na uremia.`,
+          explainWrong: `AG corrigido = AG medido + 2,5 × (4 − albumina) = ${measAG} + 2,5 × (4 − ${_c(alb)}) = ${AGcorr}.`
+        },
+        _buildCardsAct({
+          prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione <em>todas</em> as causas <em>renais</em> que também produzem acidose metabólica. Não selecione causas de outro padrão.',
+          instruction: 'Os mecanismos serão revelados somente após o julgamento.',
+          cards: [
+            _makeCard('ckd_e', 'DRC avançada (acidose urêmica)', 'Uremia, anemia, fadiga', 'TFG muito baixa, fosfato alto', true, 'A queda da TFG reduz a excreção de ácidos fixos e a amoniagênese → retenção de sulfato/fosfato/ácidos orgânicos → AG ↑ (com componente hiperclorêmico em fases iniciais).', 'É o caso; indica álcali oral e, se grave/refratária, diálise.'),
+            _makeCard('atr4_e', 'ATR tipo 4', 'Diabético, IECA/BRA/espironolactona', 'K⁺ alto, AG normal', true, 'Hipoaldosteronismo → secreção distal de H⁺/K⁺ ↓ + amoniagênese ↓ → acidose hiperclorêmica com hipercalemia.', 'Única ATR com K⁺ alto; muito comum na DRC do diabético.'),
+            _makeCard('atr1_e', 'ATR tipo 1 (distal)', 'Nefrocalcinose, litíase', 'pH urinário > 5,5, K⁺ baixo, AG normal', true, 'Falha da célula alfa-intercalada em secretar H⁺ no coletor → acidose hiperclorêmica.', 'NAGMA renal com hipocalemia e urina que não acidifica.'),
+            _makeCard('atr2_e', 'ATR tipo 2 (proximal)', 'Síndrome de Fanconi', 'Bicarbonatúria, glicosúria, fosfatúria', true, 'O túbulo proximal não reabsorve o HCO₃⁻ filtrado → perda urinária de HCO₃⁻ até um novo limiar mais baixo.', 'NAGMA proximal; associada a mieloma, fármacos e doenças tubulares.'),
+            _makeCard('hipoaldo_e', 'Hipoaldosteronismo hiporreninêmico', 'Diabético com DRC', 'K⁺ alto, AG normal', true, 'Renina e aldosterona baixas → menos secreção distal de H⁺/K⁺ → acidose hiperclorêmica hipercalêmica.', 'Mecanismo de fundo da ATR tipo 4 no diabético.'),
+            _makeCard('ira_e', 'IRA grave (oligúrica)', 'Oligúria aguda', 'Creatinina subindo rápido, K⁺ alto', true, 'A queda abrupta da filtração e da amoniagênese retém ácidos fixos → acidose metabólica.', 'Acidose aguda; pode exigir diálise por critérios (AEIOU).'),
+            _makeCard('vomitos_e', 'Vômitos', 'Perda de conteúdo gástrico', 'HCO₃⁻ alto, hipocloremia', false, 'Perda de HCl → HCO₃⁻ ↑ → alcalose metabólica.', 'É armadilha: alcalose, padrão oposto.'),
+            _makeCard('hiperaldo_e', 'Hiperaldosteronismo primário', 'Hipertensão resistente', 'K⁺ baixo, HCO₃⁻ alto', false, 'Aldosterona ↑ → secreção distal de H⁺/K⁺ ↑ → alcalose metabólica hipocalêmica.', 'É armadilha: alcalose, não acidose.'),
+            _makeCard('tep_e', 'Tromboembolismo pulmonar', 'Dispneia súbita', 'PaCO₂ baixo, hipoxemia', false, 'Hiperventilação → CO₂ eliminado → alcalose respiratória.', 'É armadilha: distúrbio respiratório alcalótico, não acidose metabólica.')
+          ],
+          grimoire: { title: 'Acidose de origem renal', body: 'O rim acidifica o sangue excretando H⁺ (como NH₄⁺) e regenerando HCO₃⁻. Falhas geram acidose: <strong>queda de TFG</strong> (uremia, AG alto), <strong>ATR</strong> (1 distal, 2 proximal, 4 hipoaldosteronismo — AG normal) e <strong>IRA</strong>. Diferencie das alcaloses (vômito, hiperaldo) e dos distúrbios respiratórios.' }
+        }),
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato V — Conduta clínica.</strong><br>Qual é a sua conduta inicial?',
+          grimoire: { title: 'Acidose metabólica da DRC', body: 'Na DRC estável, a recomendação é <strong>repor álcali por via oral</strong> (bicarbonato de sódio) com alvo de HCO₃⁻ ≥ 22 mEq/L — corrigir a acidose crônica retarda o catabolismo muscular/ósseo e a progressão da DRC. Bicarbonato IV em bolus é para acidemia aguda grave. Diálise se acidose grave/refratária ou outros critérios.' },
+          options: [
+            { label: 'Bicarbonato de sódio ORAL, alvo HCO₃⁻ ≥ 22 (DRC estável); avaliar diálise se grave/refratária', correct: true },
+            { label: 'Bolus de bicarbonato 8,4% IV imediato', correct: false },
+            { label: 'Grande volume de SF 0,9%', correct: false },
+            { label: 'Apenas observar — acidose crônica não precisa de tratamento', correct: false }
+          ],
+          explainCorrect: `Acidose metabólica crônica da DRC → <strong>álcali oral</strong> (bicarbonato de sódio), alvo HCO₃⁻ ≥ 22. Corrigir a acidose retarda a progressão da DRC e o catabolismo. Diálise se grave/refratária.`,
+          explainWrong: {
+            'Bolus de bicarbonato 8,4% IV imediato': 'Reservado a acidemia aguda grave; na DRC estável a correção é oral e gradual.',
+            'Grande volume de SF 0,9%': 'A carga de Cl⁻ pioraria a acidose (hiperclorêmica) e o paciente com DRC pode não tolerar o volume.',
+            'Apenas observar — acidose crônica não precisa de tratamento': 'A acidose crônica acelera a perda muscular/óssea e a progressão da DRC — deve ser tratada.'
+          }
+        }
+      ],
+      summary: `<strong>Acidose metabólica da DRC avançada</strong> com <strong>AG corrigido alto (${AGcorr})</strong> mascarado pela hipoalbuminemia (AG medido ${measAG}). Compensação adequada (Winter ${_c(winterExpected)}, real ${PaCO2}). Conduta: álcali oral (alvo HCO₃⁻ ≥ 22); diálise se grave. Lição: corrija o AG pela albumina.`
+    };
+  }
+
+  // ── Casos clínicos (Fase 4: 8 casos jogáveis) ────────────────────────────
   // Diagnóstico não aparece no hub (spoiler) — fica como metadata interna.
   // Desbloqueio é progressivo: um caso libera quando o anterior é concluído
   // (ver _isPlayable). Casos sem build() ficam como "Em breve".
   const CASES = [
-    { id:'aldric',  caso:'Caso I',   title:'A Forja Escaldante',     character:'Ferreiro Aldric',     build:_buildAldric },
-    { id:'mara',    caso:'Caso II',  title:'O Banquete Envenenado',  character:'Curandeira Mara',     build:_buildMara },
-    { id:'theron',  caso:'Caso III', title:'Sentinela das Brumas',   character:'Guarda Theron',       build:_buildTheron  },
-    { id:'vance',   caso:'Caso IV',  title:'A Rota das Especiarias', character:'Mercador Vance',      build:_buildVance   },
-    { id:'kael',    caso:'Caso V',   title:'O Cerco de Aço',         character:'General Kael',        build:_buildKael    },
-    { id:'vorgath', caso:'Caso VI',  title:'A Taça de Cristal Verde',character:'Alquimista Vorgath',  build:_buildVorgath }
+    { id:'aldric',  caso:'Caso I',    title:'A Forja Escaldante',     character:'Ferreiro Aldric',     build:_buildAldric },
+    { id:'mara',    caso:'Caso II',   title:'O Banquete Envenenado',  character:'Curandeira Mara',     build:_buildMara },
+    { id:'theron',  caso:'Caso III',  title:'Sentinela das Brumas',   character:'Guarda Theron',       build:_buildTheron  },
+    { id:'vance',   caso:'Caso IV',   title:'A Rota das Especiarias', character:'Mercador Vance',      build:_buildVance   },
+    { id:'kael',    caso:'Caso V',    title:'O Cerco de Aço',         character:'General Kael',        build:_buildKael    },
+    { id:'vorgath', caso:'Caso VI',   title:'A Taça de Cristal Verde',character:'Alquimista Vorgath',  build:_buildVorgath },
+    { id:'selene',  caso:'Caso VII',  title:'O Véu Açucarado',        character:'Maga Selene',         build:_buildSelene  },
+    { id:'edrin',   caso:'Caso VIII', title:'O Cronista Urêmico',     character:'Escriba Edrin',       build:_buildEdrin   }
   ];
   // Helper p/ telas internas que ainda referenciam o "chapter" antigo.
   function _chapterOf(meta){ return `${meta.caso} — ${meta.title}`; }
@@ -731,7 +923,7 @@
           <div class="ab-hub">
             <div class="ab-ornament">✦ A Câmara do Equilíbrio ✦</div>
             <h2 class="ab-title">Alquimista Renal</h2>
-            <p class="ab-lead">Seis pacientes do reino aguardam diagnóstico ácido-base. Domine a fórmula de Winter, o ânion gap, a delta-delta e o gap osmolar para restaurar o equilíbrio.</p>
+            <p class="ab-lead">Oito pacientes do reino aguardam diagnóstico ácido-base. Domine a fórmula de Winter, o ânion gap (e sua correção pela albumina), a delta-delta e o gap osmolar para restaurar o equilíbrio.</p>
             <div class="ab-grid">${cardsHTML}</div>
           </div>
         </div>
