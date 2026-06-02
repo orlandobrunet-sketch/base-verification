@@ -66,7 +66,7 @@ async function checkAndIncrementQuota(
 
   // Verify user JWT
   const { data: { user }, error } = await db.auth.getUser(userToken);
-  if (error || !user) return { allowed: true, remaining: -1, userId: null }; // guest — skip
+  if (error || !user) return { allowed: false, remaining: 0, userId: null }; // block guests
 
   const isPremium =
     user.app_metadata?.premium === true ||
@@ -155,20 +155,31 @@ Deno.serve(async (req) => {
   const authHeader = req.headers.get('Authorization') ?? '';
   const userToken  = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : '';
 
-  // Server-side quota check for authenticated users
-  if (userToken && supabaseUrl && serviceRoleKey) {
-    try {
-      const quota = await checkAndIncrementQuota(supabaseUrl, serviceRoleKey, userToken);
-      if (!quota.allowed) {
-        return new Response(
-          JSON.stringify({ error: 'quota_exceeded', message: 'Limite diário atingido. Faça upgrade para Premium.' }),
-          { status: 429, headers: { ...cors, 'Content-Type': 'application/json' } },
-        );
-      }
-    } catch (err) {
-      console.error('Quota check error (non-fatal):', err);
-      // On quota check failure, allow the request rather than blocking users
+  // Server-side quota check
+  if (!userToken || !supabaseUrl || !serviceRoleKey) {
+    return new Response(
+      JSON.stringify({ error: 'unauthorized', message: 'Acesso restrito. Faça login para usar o Oráculo de IA.' }),
+      { status: 401, headers: { ...cors, 'Content-Type': 'application/json' } },
+    );
+  }
+
+  try {
+    const quota = await checkAndIncrementQuota(supabaseUrl, serviceRoleKey, userToken);
+    if (!quota.allowed) {
+      return new Response(
+        JSON.stringify({
+          error: quota.userId ? 'quota_exceeded' : 'unauthorized',
+          message: quota.userId ? 'Limite diário atingido. Faça upgrade para Premium.' : 'Acesso restrito. Faça login para usar o Oráculo de IA.'
+        }),
+        { status: quota.userId ? 429 : 401, headers: { ...cors, 'Content-Type': 'application/json' } },
+      );
     }
+  } catch (err) {
+    console.error('Quota check error:', err);
+    return new Response(
+      JSON.stringify({ error: 'unauthorized', message: 'Erro na autenticação de cota.' }),
+      { status: 401, headers: { ...cors, 'Content-Type': 'application/json' } },
+    );
   }
 
   let body: {

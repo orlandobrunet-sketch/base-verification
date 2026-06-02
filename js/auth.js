@@ -29,6 +29,11 @@
     // ===== SUPABASE AUTH =====
     let _supaClient = null;
     let authUser = null;
+    Object.defineProperty(window, 'authUser', {
+      get() { return authUser; },
+      set(val) { authUser = val; },
+      configurable: true
+    });
     let _guestMode = false;
     let _guestHookShown = false;
     let _guestQuestionCount = 0;
@@ -58,14 +63,25 @@
           checkFirstTimeOnboarding();
           // Se havia plano pendente (usuário clicou em pagar antes de fazer login)
           _resumePendingPayment();
-        } else { localStorage.removeItem(PREMIUM_KEY); localStorage.removeItem(WHITELIST_KEY); _invalidatePremiumCache(); }
+        } else {
+          localStorage.removeItem(PREMIUM_KEY);
+          localStorage.removeItem(WHITELIST_KEY);
+          localStorage.removeItem('nefroquest-premium-sig');
+          localStorage.removeItem('nefroquest-whitelist-sig');
+          _invalidatePremiumCache();
+        }
         updateWelcomeUserBadge();
       });
 
       _supaClient.auth.getSession().then(({ data: { session } }) => {
         authUser = session?.user ?? null;
         if (authUser) { _loadPremiumFromDB(); _loadProgressFromCloud(); }
-        else { localStorage.removeItem(PREMIUM_KEY); _invalidatePremiumCache(); }
+        else {
+          localStorage.removeItem(PREMIUM_KEY);
+          localStorage.removeItem('nefroquest-premium-sig');
+          localStorage.removeItem('nefroquest-whitelist-sig');
+          _invalidatePremiumCache();
+        }
         updateWelcomeUserBadge();
       }).catch(() => { updateWelcomeUserBadge(); });
     })();
@@ -248,7 +264,9 @@
       _guestHookShown = false;
       localStorage.removeItem('nq_guest_mode');
       localStorage.removeItem(PREMIUM_KEY);
+      localStorage.removeItem('nefroquest-premium-sig');
       localStorage.removeItem(WHITELIST_KEY);
+      localStorage.removeItem('nefroquest-whitelist-sig');
       _invalidatePremiumCache(); _invalidateStatsCache();
       updateWelcomeUserBadge();
       document.getElementById('welcomeScreen')?.classList.add('hidden');

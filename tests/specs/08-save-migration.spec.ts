@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { isLiveEnv } from '../helpers/game';
 
 test.describe('Save schema — migração e resiliência', () => {
   test.beforeEach(async () => {

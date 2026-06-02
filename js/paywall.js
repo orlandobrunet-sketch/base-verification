@@ -373,6 +373,9 @@
           .single();
         if (profile?.is_premium) {
           localStorage.setItem(PREMIUM_KEY, '1');
+          if (window._generatePremiumSignature) {
+            localStorage.setItem('nefroquest-premium-sig', window._generatePremiumSignature(authUser.id));
+          }
           _invalidatePremiumCache();
           document.getElementById('paymentSuccessOverlay')?.remove();
           updateWelcomeUserBadge();

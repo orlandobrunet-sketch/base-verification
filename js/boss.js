@@ -291,7 +291,7 @@
       const arquiBossImgEl = bossImgEl; // reutiliza o querySelector já feito acima (L-7)
       if (arquiBossImgEl && isArqui) {
         if (progress >= 9) {
-          arquiBossImgEl.src = 'assets/battle_final.png';
+          arquiBossImgEl.src = 'assets/battle_final.webp';
           arquiBossImgEl.style.objectPosition = 'center top';
           arquiBossImgEl.style.clipPath = 'inset(0 0 9% 0)';
         } else {
