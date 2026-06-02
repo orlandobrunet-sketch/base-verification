@@ -1056,21 +1056,222 @@
     };
   }
 
-  // ── Casos clínicos (Fase 5: 10 casos jogáveis) ───────────────────────────
+  function _buildIsolde(){
+    // Bartter/Gitelman — alcalose metabólica hipocalêmica NORMOTENSA (salina-resistente)
+    const HCO3 = _rand(30, 40);
+    const Na   = _rand(137, 142);
+    const AG   = _rand(9, 12);
+    const Cl   = Na - AG - HCO3;                   // baixo (hipocloremia)
+    const alb  = _r1(3.8 + Math.random() * 0.4);
+    const K    = _r1(2.6 + Math.random() * 0.6);   // hipocalemia (2,6–3,2)
+    const ClU  = _rand(25, 45);                     // cloreto urinário ALTO → salina-resistente
+    const compExpected = _r1(0.7 * HCO3 + 21);
+    const PaCO2 = Math.round(compExpected + (Math.random() * 4 - 2));
+    const pH = _ph(HCO3, PaCO2);
+    const BE = _be(HCO3, PaCO2);
+    _dbg('Isolde rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, AG, ClU, compExpected });
+
+    return {
+      narrative: `A flautista <strong>Isolde</strong> sofre de cãibras e fraqueza recorrentes. A pressão arterial é <strong>normal</strong>, o potássio e o <strong>magnésio</strong> estão baixos, e o cálcio urinário é baixo. Sem uso de diuréticos.`,
+      gas: { pH, PaCO2, HCO3, BE, Na, Cl, K, alb },
+      acts: [
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato I — Distúrbio primário.</strong><br>Analisando pH, PaCO₂ e HCO₃⁻, qual o distúrbio primário?',
+          options: [
+            { label: 'Alcalose metabólica', correct: true },
+            { label: 'Alcalose respiratória', correct: false },
+            { label: 'Acidose metabólica', correct: false },
+            { label: 'Acidose respiratória', correct: false }
+          ],
+          explainCorrect: `pH ${_c(pH)} → <strong>alcalemia</strong> (> 7,45). HCO₃⁻ ${HCO3} mEq/L (alto) acompanha → distúrbio <strong>metabólico</strong>. A PaCO₂ ${PaCO2} elevada é a hipoventilação compensatória.`,
+          explainWrong: {
+            'Alcalose respiratória': `Teria PaCO₂ baixa e HCO₃⁻ baixo. Aqui PaCO₂ ${PaCO2} e HCO₃⁻ ${HCO3} estão altos.`,
+            'Acidose metabólica': `Teria pH < 7,35 e HCO₃⁻ baixo. Aqui pH ${_c(pH)} (alcalino) e HCO₃⁻ ${HCO3} (alto).`,
+            'Acidose respiratória': `Teria pH < 7,35. Aqui pH ${_c(pH)}.`
+          }
+        },
+        {
+          kind: 'num',
+          prompt: '<strong>Ato II — Compensação esperada.</strong><br>Calcule a PaCO₂ esperada pela compensação respiratória.',
+          grimoire: { title: 'Compensação respiratória — alcalose metabólica', body: '<code>PaCO₂ esperado = 0,7 × HCO₃⁻ + 21 (±5)</code><br>A hipoventilação compensatória é limitada (raramente PaCO₂ > 55).' },
+          unit: 'mmHg',
+          target: compExpected,
+          tolerance: 5,
+          explainCorrect: `PaCO₂ esperada = 0,7 × ${HCO3} + 21 = <strong>${_c(compExpected)} mmHg (±5)</strong>; real ${PaCO2} → compensação adequada.`,
+          explainWrong: `0,7 × ${HCO3} = ${_c(_r1(0.7*HCO3))}; + 21 = ${_c(compExpected)}. Tolerância ±5.`
+        },
+        {
+          kind: 'mc',
+          prompt: `<strong>Ato III — Classificação.</strong><br>Cloreto urinário = <strong>${ClU} mEq/L</strong>, pressão <strong>normal</strong>. Como classificar esta alcalose?`,
+          grimoire: { title: 'Alcalose: cloreto urinário + pressão', body: '<code>Cl⁻ urinário &lt; 20</code> → salina-responsiva (vômito, diurético remoto). <code>Cl⁻ urinário &gt; 20</code> → <strong>salina-resistente</strong>: aí a <strong>pressão</strong> separa — <em>normotensa</em> (Bartter/Gitelman, diurético em uso) vs <em>hipertensa</em> (hiperaldosteronismo, Liddle).' },
+          options: [
+            { label: 'Salina-resistente, normotensa → tubulopatia (Bartter/Gitelman) ou diurético', correct: true },
+            { label: 'Salina-responsiva (Cl⁻ urinário < 20) por vômitos', correct: false },
+            { label: 'Salina-resistente, hipertensa → hiperaldosteronismo', correct: false },
+            { label: 'Acidose tubular renal', correct: false }
+          ],
+          explainCorrect: `Cl⁻ urinário ${ClU} (> 20) = <strong>salina-resistente</strong>; com pressão <strong>normal</strong> → <strong>Bartter/Gitelman</strong> (ou diurético em uso). O Mg baixo e o Ca urinário baixo apontam <strong>Gitelman</strong>.`,
+          explainWrong: {
+            'Salina-responsiva (Cl⁻ urinário < 20) por vômitos': `Salina-responsiva exige Cl⁻ urinário < 20. Aqui é ${ClU} (> 20).`,
+            'Salina-resistente, hipertensa → hiperaldosteronismo': `Hiperaldosteronismo cursa com <em>hipertensão</em>. Esta paciente é normotensa.`,
+            'Acidose tubular renal': `ATR causa acidose (HCO₃⁻ baixo); aqui há alcalose (HCO₃⁻ alto).`
+          }
+        },
+        _buildCardsAct({
+          prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione <em>todas</em> as causas de alcalose metabólica <em>salina-resistente NORMOTENSA</em>. Não selecione causas de outro padrão.',
+          instruction: 'Os mecanismos serão revelados somente após o julgamento.',
+          cards: [
+            _makeCard('gitelman_i', 'Síndrome de Gitelman', 'Normotenso, cãibras', 'K⁺ baixo, Mg²⁺ baixo, Ca urinário baixo', true, 'Defeito no cotransportador NCC (tipo tiazida) no túbulo distal → ativa o RAAS → secreção distal de H⁺/K⁺ → alcalose hipocalêmica; cursa com hipomagnesemia.', 'É exatamente este caso (Mg baixo + Ca urinário baixo); normotenso.'),
+            _makeCard('bartter_i', 'Síndrome de Bartter', 'Normotenso, poliúria', 'K⁺ baixo, Ca urinário alto', true, 'Defeito no ramo ascendente (tipo furosemida) → ativa o RAAS → perda renal de H⁺/K⁺ → alcalose; cursa normotenso, com Ca urinário alto.', 'Tubulopatia normotensa; diferencia-se de Gitelman pelo Ca urinário alto e Mg normal.'),
+            _makeCard('tiazida_i', 'Diurético tiazídico (em uso)', 'Uso atual de tiazida', 'Cl⁻ urinário alto, K⁺ baixo', true, 'Bloqueia o NCC (mimetiza Gitelman) → maior oferta distal de Na⁺ + RAAS ativo → alcalose hipocalêmica com Cl⁻ urinário alto.', 'Mimetiza Gitelman; por isso sempre excluir uso de diurético (history/triagem urinária).'),
+            _makeCard('alca_i', 'Diurético de alça (em uso)', 'Uso atual de furosemida', 'Cl⁻ urinário alto, K⁺ baixo', true, 'Bloqueia o cotransportador NKCC2 (mimetiza Bartter) → RAAS ativo → alcalose hipocalêmica.', 'Mimetiza Bartter; o Cl⁻ urinário fica alto enquanto o diurético age.'),
+            _makeCard('laxante_i', 'Abuso de laxante/diurético oculto', 'História psicossocial', 'Padrão flutuante, Cl⁻ urinário variável', true, 'Uso encoberto de diuréticos ou laxantes reproduz tubulopatia ou perda; o Cl⁻ urinário oscila conforme a dose.', 'Diferencial importante (transtorno alimentar/factício) antes de rotular como genético.'),
+            _makeCard('hiperaldo_i', 'Hiperaldosteronismo primário', 'HIPERTENSÃO resistente', 'K⁺ baixo, Cl⁻ urinário alto', false, 'Aldosterona ↑ → ENaC ↑ → secreção de H⁺/K⁺ → alcalose; porém cursa com hipertensão.', 'É armadilha: é salina-resistente, mas HIPERTENSO. Esta paciente é normotensa.'),
+            _makeCard('liddle_i', 'Síndrome de Liddle', 'HIPERTENSÃO, jovem', 'K⁺ baixo, renina e aldosterona baixas', false, 'ENaC constitutivamente ativo → alcalose hipocalêmica, mas com hipertensão e RAAS suprimido.', 'É armadilha: hipertenso, não normotenso.'),
+            _makeCard('vomitos_i', 'Vômitos', 'Perda gástrica', 'Cl⁻ urinário BAIXO (< 20)', false, 'Perda de HCl → alcalose salina-responsiva, com Cl⁻ urinário baixo pela ávida reabsorção renal.', 'É armadilha: alcalose, porém salina-responsiva (Cl⁻ urinário baixo), não a deste caso.'),
+            _makeCard('diarreia_i', 'Diarreia', 'Perda fecal volumosa', 'HCO₃⁻ baixo, Cl⁻ alto', false, 'Perda fecal de HCO₃⁻ → acidose hiperclorêmica.', 'É armadilha: causa acidose, não alcalose.')
+          ],
+          grimoire: { title: 'Alcalose salina-resistente normotensa', body: 'Cl⁻ urinário > 20 + pressão normal = tubulopatia tipo diurético (Bartter ~ alça; Gitelman ~ tiazida, com Mg baixo/Ca urinário baixo) — ou uso/abuso de diuréticos. Hiperaldosteronismo e Liddle também são salina-resistentes, mas HIPERTENSOS.' }
+        }),
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato V — Conduta clínica.</strong><br>Qual é a sua conduta inicial?',
+          grimoire: { title: 'Tratamento de Bartter/Gitelman', body: 'Repor <strong>potássio e magnésio</strong> (a correção do Mg é essencial — sem ela a hipocalemia é refratária). Poupadores de K⁺ (espironolactona/amilorida) e AINE ajudam em casos selecionados. SF 0,9% NÃO corrige (é salina-resistente). Excluir uso/abuso de diuréticos.' },
+          options: [
+            { label: 'Repor K⁺ e Mg²⁺ (corrigir o Mg é essencial); considerar poupador de K⁺; excluir diuréticos', correct: true },
+            { label: 'Soro fisiológico 0,9% em grande volume', correct: false },
+            { label: 'Iniciar diurético tiazídico', correct: false },
+            { label: 'Bicarbonato de sódio IV', correct: false }
+          ],
+          explainCorrect: `Alcalose salina-resistente hipocalêmica (K⁺ ${_c(K)}) + hipomagnesemia → <strong>repor K⁺ e Mg²⁺</strong>. Sem corrigir o Mg, a hipocalemia não responde. Poupador de K⁺ ajuda; investigar diuréticos ocultos.`,
+          explainWrong: {
+            'Soro fisiológico 0,9% em grande volume': 'É salina-resistente — a salina não corrige (diferente da alcalose por vômitos).',
+            'Iniciar diurético tiazídico': 'O tiazídico é justamente o que mimetiza/agrava Gitelman — pioraria a alcalose e a hipocalemia.',
+            'Bicarbonato de sódio IV': 'Adicionar base piora a alcalose já existente.'
+          }
+        }
+      ],
+      summary: `<strong>Alcalose metabólica salina-resistente NORMOTENSA</strong> (Cl⁻ urinário ${ClU} > 20) com hipocalemia (K⁺ ${_c(K)}) e hipomagnesemia → <strong>Gitelman</strong> (Ca urinário baixo) / Bartter. Conduta: repor K⁺ + Mg²⁺; excluir diuréticos. Lição: Cl⁻ urinário alto + normotenso = tubulopatia.`
+    };
+  }
+
+  function _buildCorvin(){
+    // Hiperaldosteronismo / excesso de mineralocorticoide — alcalose hipocalêmica HIPERTENSA
+    const HCO3 = _rand(30, 40);
+    const Na   = _rand(138, 144);
+    const AG   = _rand(9, 12);
+    const Cl   = Na - AG - HCO3;
+    const alb  = _r1(3.8 + Math.random() * 0.4);
+    const K    = _r1(2.7 + Math.random() * 0.7);   // hipocalemia
+    const ClU  = _rand(25, 45);                     // cloreto urinário alto
+    const compExpected = _r1(0.7 * HCO3 + 21);
+    const PaCO2 = Math.round(compExpected + (Math.random() * 4 - 2));
+    const pH = _ph(HCO3, PaCO2);
+    const BE = _be(HCO3, PaCO2);
+    _dbg('Corvin rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, AG, ClU, compExpected });
+
+    return {
+      narrative: `O nobre <strong>Corvin</strong> tem <strong>hipertensão resistente</strong> (a três anti-hipertensivos), fraqueza muscular e cãibras. O potássio está baixo e ele não usa diuréticos.`,
+      gas: { pH, PaCO2, HCO3, BE, Na, Cl, K, alb },
+      acts: [
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato I — Distúrbio primário.</strong><br>Analisando pH, PaCO₂ e HCO₃⁻, qual o distúrbio primário?',
+          options: [
+            { label: 'Alcalose metabólica', correct: true },
+            { label: 'Alcalose respiratória', correct: false },
+            { label: 'Acidose metabólica', correct: false },
+            { label: 'Acidose respiratória', correct: false }
+          ],
+          explainCorrect: `pH ${_c(pH)} → <strong>alcalemia</strong>. HCO₃⁻ ${HCO3} mEq/L (alto) → distúrbio <strong>metabólico</strong>. PaCO₂ ${PaCO2} elevada é a hipoventilação compensatória.`,
+          explainWrong: {
+            'Alcalose respiratória': `Teria PaCO₂ e HCO₃⁻ baixos. Aqui ambos estão altos (HCO₃⁻ ${HCO3}, PaCO₂ ${PaCO2}).`,
+            'Acidose metabólica': `Teria pH < 7,35 e HCO₃⁻ baixo. Aqui pH ${_c(pH)} e HCO₃⁻ ${HCO3} alto.`,
+            'Acidose respiratória': `Teria pH < 7,35. Aqui pH ${_c(pH)}.`
+          }
+        },
+        {
+          kind: 'num',
+          prompt: '<strong>Ato II — Compensação esperada.</strong><br>Calcule a PaCO₂ esperada pela compensação respiratória.',
+          grimoire: { title: 'Compensação respiratória — alcalose metabólica', body: '<code>PaCO₂ esperado = 0,7 × HCO₃⁻ + 21 (±5)</code>' },
+          unit: 'mmHg',
+          target: compExpected,
+          tolerance: 5,
+          explainCorrect: `PaCO₂ esperada = 0,7 × ${HCO3} + 21 = <strong>${_c(compExpected)} mmHg (±5)</strong>; real ${PaCO2} → compensação adequada.`,
+          explainWrong: `0,7 × ${HCO3} = ${_c(_r1(0.7*HCO3))}; + 21 = ${_c(compExpected)}. Tolerância ±5.`
+        },
+        {
+          kind: 'mc',
+          prompt: `<strong>Ato III — Classificação.</strong><br>Cloreto urinário = <strong>${ClU} mEq/L</strong>, com <strong>hipertensão</strong> + hipocalemia. O que isso sugere?`,
+          grimoire: { title: 'Alcalose salina-resistente HIPERTENSA', body: 'Cl⁻ urinário > 20 (salina-resistente) + <strong>hipertensão</strong> + K⁺ baixo → <strong>excesso de mineralocorticoide</strong>. Triagem: relação aldosterona/renina (ARR). Renina baixa + aldosterona alta = hiperaldosteronismo primário.' },
+          options: [
+            { label: 'Excesso de mineralocorticoide (hiperaldosteronismo / aparentado) — rastrear ARR', correct: true },
+            { label: 'Bartter/Gitelman (tubulopatia normotensa)', correct: false },
+            { label: 'Alcalose por vômitos (salina-responsiva)', correct: false },
+            { label: 'Acidose tubular renal tipo 4', correct: false }
+          ],
+          explainCorrect: `Cl⁻ urinário ${ClU} (> 20) + <strong>hipertensão</strong> + K⁺ baixo = <strong>excesso de mineralocorticoide</strong>. O próximo passo é a <strong>relação aldosterona/renina (ARR)</strong> para confirmar hiperaldosteronismo primário.`,
+          explainWrong: {
+            'Bartter/Gitelman (tubulopatia normotensa)': 'Bartter/Gitelman são NORMOtensos. Corvin é hipertenso → excesso de mineralocorticoide.',
+            'Alcalose por vômitos (salina-responsiva)': 'Vômitos dão Cl⁻ urinário baixo (< 20) e não hipertensão. Aqui o Cl⁻ urinário é alto.',
+            'Acidose tubular renal tipo 4': 'ATR-4 causa acidose hipercalêmica; aqui há alcalose hipocalêmica.'
+          }
+        },
+        _buildCardsAct({
+          prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione <em>todas</em> as causas de alcalose metabólica com <em>hipertensão</em> (excesso de mineralocorticoide). Não selecione causas de outro padrão.',
+          instruction: 'Os mecanismos serão revelados somente após o julgamento.',
+          cards: [
+            _makeCard('aldo1_c', 'Hiperaldosteronismo primário', 'Hipertensão resistente', 'Aldosterona alta, renina BAIXA', true, 'Adenoma/hiperplasia adrenal produz aldosterona autônoma → ENaC ↑ → retenção de Na⁺ (HAS) + secreção de H⁺/K⁺ (alcalose hipocalêmica).', 'Causa mais comum de HAS secundária endócrina; ARR é o rastreio.'),
+            _makeCard('aldo2_c', 'Hiperaldosteronismo secundário', 'HAS renovascular, edema', 'Aldosterona alta, renina ALTA', true, 'Hipoperfusão renal (ex.: estenose de artéria renal) → renina ↑ → angiotensina/aldosterona ↑ → alcalose hipocalêmica + HAS.', 'Diferencia-se do primário pela renina alta.'),
+            _makeCard('liddle_c', 'Síndrome de Liddle', 'HAS jovem, história familiar', 'Renina e aldosterona BAIXAS', true, 'Mutação ativa o ENaC de forma constitutiva (independe da aldosterona) → retenção de Na⁺ + secreção de H⁺/K⁺.', 'Pseudo-hiperaldosteronismo; responde a amilorida, não a espironolactona.'),
+            _makeCard('alcacuz_c', 'Alcaçuz / AME', 'Consumo de alcaçuz', 'Cortisol ativa receptor MR', true, 'O alcaçuz inibe a 11β-HSD2 → o cortisol passa a ativar o receptor mineralocorticoide → efeito tipo aldosterona.', 'Excesso aparente de mineralocorticoide (AME); pesquisar na anamnese.'),
+            _makeCard('cushing_c', 'Síndrome de Cushing / ACTH ectópico', 'Fácies cushingoide, HAS', 'Cortisol muito alto', true, 'O cortisol em excesso satura a 11β-HSD2 e ativa o receptor mineralocorticoide → HAS + alcalose hipocalêmica.', 'Especialmente no ACTH ectópico, a hipocalemia/alcalose é marcante.'),
+            _makeCard('gitelman_c', 'Bartter / Gitelman', 'NORMOTENSO, cãibras', 'K⁺ baixo, pressão normal', false, 'Tubulopatia tipo diurético → alcalose hipocalêmica, porém NORMOtensa.', 'É armadilha: é salina-resistente, mas normotenso (sem HAS).'),
+            _makeCard('vomitos_c', 'Vômitos', 'Perda gástrica', 'Cl⁻ urinário baixo, sem HAS', false, 'Perda de HCl → alcalose salina-responsiva.', 'É armadilha: salina-responsiva (Cl⁻ urinário baixo) e sem hipertensão.'),
+            _makeCard('diarreia_c', 'Diarreia', 'Perda fecal volumosa', 'HCO₃⁻ baixo, Cl⁻ alto', false, 'Perda fecal de HCO₃⁻ → acidose hiperclorêmica.', 'É armadilha: acidose, não alcalose.')
+          ],
+          grimoire: { title: 'Alcalose hipertensa = excesso de mineralocorticoide', body: 'Use a renina/aldosterona: <strong>renina baixa + aldosterona alta</strong> = hiperaldo primário; <strong>ambas altas</strong> = secundário (renovascular); <strong>ambas baixas</strong> = Liddle, alcaçuz/AME, Cushing. Todas cursam com HAS + alcalose hipocalêmica.' }
+        }),
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato V — Conduta clínica.</strong><br>Qual é a conduta de investigação inicial?',
+          grimoire: { title: 'Investigação do hiperaldosteronismo', body: 'Frente a HAS + hipocalemia + alcalose, rastrear com a <strong>relação aldosterona/renina (ARR)</strong>. Se positiva, testes confirmatórios e imagem (TC de adrenais) ± cateterismo de veias adrenais. Tratamento: antagonista mineralocorticoide (espironolactona) ou cirurgia se adenoma unilateral.' },
+          options: [
+            { label: 'Dosar relação aldosterona/renina (ARR) e corrigir o K⁺; depois confirmar e localizar', correct: true },
+            { label: 'Iniciar tiazídico para a hipertensão', correct: false },
+            { label: 'Repor volume com SF 0,9%', correct: false },
+            { label: 'Restringir potássio na dieta', correct: false }
+          ],
+          explainCorrect: `HAS resistente + hipocalemia + alcalose → rastrear <strong>ARR (aldosterona/renina)</strong> e corrigir o K⁺. Confirmação e imagem definem hiperaldosteronismo primário (espironolactona ou adrenalectomia).`,
+          explainWrong: {
+            'Iniciar tiazídico para a hipertensão': 'O tiazídico agrava a hipocalemia e pode mascarar o diagnóstico antes do rastreio.',
+            'Repor volume com SF 0,9%': 'É salina-resistente; salina não corrige e o paciente já retém Na⁺ (HAS).',
+            'Restringir potássio na dieta': 'O paciente é HIPOcalêmico — restringir K⁺ piora o quadro.'
+          }
+        }
+      ],
+      summary: `<strong>Alcalose metabólica salina-resistente HIPERTENSA</strong> (Cl⁻ urinário ${ClU} > 20) com hipocalemia (K⁺ ${_c(K)}) → <strong>excesso de mineralocorticoide</strong> (hiperaldosteronismo). Conduta: relação aldosterona/renina + corrigir K⁺. Lição: alcalose + HAS + K⁺ baixo = rastrear hiperaldo.`
+    };
+  }
+
+  // ── Casos clínicos (Fase 6: 12 casos jogáveis) ───────────────────────────
   // Diagnóstico não aparece no hub (spoiler) — fica como metadata interna.
   // Desbloqueio é progressivo: um caso libera quando o anterior é concluído
   // (ver _isPlayable). Casos sem build() ficam como "Em breve".
   const CASES = [
-    { id:'aldric',  caso:'Caso I',    title:'A Forja Escaldante',     character:'Ferreiro Aldric',     build:_buildAldric },
-    { id:'mara',    caso:'Caso II',   title:'O Banquete Envenenado',  character:'Curandeira Mara',     build:_buildMara },
-    { id:'theron',  caso:'Caso III',  title:'Sentinela das Brumas',   character:'Guarda Theron',       build:_buildTheron  },
-    { id:'vance',   caso:'Caso IV',   title:'A Rota das Especiarias', character:'Mercador Vance',      build:_buildVance   },
-    { id:'kael',    caso:'Caso V',    title:'O Cerco de Aço',         character:'General Kael',        build:_buildKael    },
-    { id:'vorgath', caso:'Caso VI',   title:'A Taça de Cristal Verde',character:'Alquimista Vorgath',  build:_buildVorgath },
-    { id:'selene',  caso:'Caso VII',  title:'O Véu Açucarado',        character:'Maga Selene',         build:_buildSelene  },
-    { id:'edrin',   caso:'Caso VIII', title:'O Cronista Urêmico',     character:'Escriba Edrin',       build:_buildEdrin   },
-    { id:'liora',   caso:'Caso IX',   title:'As Lágrimas de Sal',     character:'Sacerdotisa Liora',   build:_buildLiora   },
-    { id:'borius',  caso:'Caso X',    title:'O Pacto do Potássio',    character:'Alquimista Borius',   build:_buildBorius  }
+    { id:'aldric',  caso:'Caso I',     title:'A Forja Escaldante',     character:'Ferreiro Aldric',     build:_buildAldric },
+    { id:'mara',    caso:'Caso II',    title:'O Banquete Envenenado',  character:'Curandeira Mara',     build:_buildMara },
+    { id:'theron',  caso:'Caso III',   title:'Sentinela das Brumas',   character:'Guarda Theron',       build:_buildTheron  },
+    { id:'vance',   caso:'Caso IV',    title:'A Rota das Especiarias', character:'Mercador Vance',      build:_buildVance   },
+    { id:'kael',    caso:'Caso V',     title:'O Cerco de Aço',         character:'General Kael',        build:_buildKael    },
+    { id:'vorgath', caso:'Caso VI',    title:'A Taça de Cristal Verde',character:'Alquimista Vorgath',  build:_buildVorgath },
+    { id:'selene',  caso:'Caso VII',   title:'O Véu Açucarado',        character:'Maga Selene',         build:_buildSelene  },
+    { id:'edrin',   caso:'Caso VIII',  title:'O Cronista Urêmico',     character:'Escriba Edrin',       build:_buildEdrin   },
+    { id:'liora',   caso:'Caso IX',    title:'As Lágrimas de Sal',     character:'Sacerdotisa Liora',   build:_buildLiora   },
+    { id:'borius',  caso:'Caso X',     title:'O Pacto do Potássio',    character:'Alquimista Borius',   build:_buildBorius  },
+    { id:'isolde',  caso:'Caso XI',    title:'A Flauta dos Túbulos',   character:'Flautista Isolde',    build:_buildIsolde  },
+    { id:'corvin',  caso:'Caso XII',   title:'A Coroa de Sal',         character:'Nobre Corvin',        build:_buildCorvin  }
   ];
   // Helper p/ telas internas que ainda referenciam o "chapter" antigo.
   function _chapterOf(meta){ return `${meta.caso} — ${meta.title}`; }
@@ -1124,7 +1325,7 @@
           <div class="ab-hub">
             <div class="ab-ornament">✦ A Câmara do Equilíbrio ✦</div>
             <h2 class="ab-title">Alquimista Renal</h2>
-            <p class="ab-lead">Dez pacientes do reino aguardam diagnóstico ácido-base. Domine a fórmula de Winter, o ânion gap (e sua correção pela albumina), o pH urinário, a delta-delta e o gap osmolar para restaurar o equilíbrio.</p>
+            <p class="ab-lead">Doze pacientes do reino aguardam diagnóstico ácido-base. Domine a fórmula de Winter, o ânion gap (e sua correção pela albumina), o cloreto e o pH urinário, a delta-delta e o gap osmolar para restaurar o equilíbrio.</p>
             <div class="ab-grid">${cardsHTML}</div>
           </div>
         </div>
