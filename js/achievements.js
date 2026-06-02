@@ -154,7 +154,7 @@
             const p = JSON.parse(localStorage.getItem('nq-acidbase-progress') || '{}');
             const done = new Set(p.completed || []);
             // IDs em sync com CASES em js/minigame-acidbase.js
-            const allCases = ['aldric', 'mara', 'theron', 'vance', 'kael', 'vorgath', 'selene', 'edrin', 'liora', 'borius'];
+            const allCases = ['aldric', 'mara', 'theron', 'vance', 'kael', 'vorgath', 'selene', 'edrin', 'liora', 'borius', 'isolde', 'corvin'];
             return allCases.every(id => done.has(id));
           } catch { return false; }
         }
