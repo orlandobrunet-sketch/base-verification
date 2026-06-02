@@ -151,6 +151,24 @@ Deno.serve(async (req) => {
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,
     );
 
+    // Tenta registrar o pagamento para garantir idempotência (chave única)
+    const { error: insertError } = await supabase
+      .from('processed_payments')
+      .insert({
+        payment_id: paymentId,
+        user_id: userId,
+        plan: plan,
+      });
+
+    if (insertError) {
+      if (insertError.code === '23505') {
+        console.log(`Payment ${paymentId} already processed (idempotency check). Skipping profile update.`);
+        return new Response('ok', { status: 200 });
+      }
+      console.error('Failed to log payment idempotency:', insertError);
+      return new Response('DB error', { status: 500 });
+    }
+
     const { error } = await supabase
       .from('profiles')
       .update({

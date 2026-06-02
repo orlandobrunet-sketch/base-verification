@@ -11,11 +11,26 @@
 
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-};
+const ALLOWED_ORIGINS = [
+  'https://nefroquest.com',
+  'https://www.nefroquest.com',
+];
+
+function getCorsHeaders(origin: string | null): Record<string, string> {
+  const allowed =
+    origin != null && (
+      ALLOWED_ORIGINS.includes(origin) ||
+      /^https:\/\/[a-z0-9-]+-[a-z0-9]+-[a-z0-9]+\.vercel\.app$/.test(origin) ||
+      /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)
+    );
+
+  return {
+    'Access-Control-Allow-Origin': allowed ? origin! : 'https://nefroquest.com',
+    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Vary': 'Origin',
+  };
+}
 
 const PRICES: Record<string, { title: string; amount: number }> = {
   monthly:  { title: 'NefroQuest — Plano Mensal',   amount: 14.90 },
@@ -23,10 +38,14 @@ const PRICES: Record<string, { title: string; amount: number }> = {
 };
 
 Deno.serve(async (req) => {
+  const origin = req.headers.get('origin');
+  const corsHeaders = getCorsHeaders(origin);
+
   // Handle CORS preflight
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders });
   }
+
 
   try {
     // Verify JWT — only authenticated users can create preferences
