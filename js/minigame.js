@@ -290,7 +290,7 @@
           <h2 style="font-family:'Cinzel',serif;font-size:clamp(1rem,4vw,1.4rem);font-weight:900;letter-spacing:3px;color:#e9d5ff;text-shadow:0 0 20px rgba(216,180,254,0.9);margin:0 0 16px;">⚔ GOLPE FINAL ⚔</h2>
           <!-- Imagem battle_final cortada (esconde texto amarelo no fundo) -->
           <div style="border-radius:12px;overflow:hidden;border:2px solid rgba(168,85,247,0.5);box-shadow:0 0 30px rgba(168,85,247,0.4);height:340px;">
-            <img src="assets/battle_final.png" alt="Batalha Final" style="width:100%;height:370px;object-fit:cover;object-position:center top;display:block;">
+            <img src="assets/battle_final.webp" alt="Batalha Final" style="width:100%;height:370px;object-fit:cover;object-position:center top;display:block;">
           </div>
           <p style="font-family:'Philosopher',serif;font-size:0.88rem;color:#c4b5fd;line-height:1.7;font-style:italic;margin:16px 0 20px;padding:0 4px;">
             Este é o momento decisivo. Uma única resposta separa a vitória da derrota eterna.<br>

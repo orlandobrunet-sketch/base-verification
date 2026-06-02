@@ -6394,7 +6394,7 @@
   border-radius: 14px;
   padding: 22px 20px;
   max-width: 330px;
-  z-index: 20000;
+  z-index: var(--z-toast);
   box-shadow: 0 0 40px rgba(240,192,64,0.22), 0 14px 44px rgba(0,0,0,0.65);
   animation: slideInRight 0.5s ease-out, achGlow 2.5s ease-in-out 0.5s infinite;
 }
@@ -9226,7 +9226,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   align-items: center;
   justify-content: center;
   background: rgba(0,0,0,0.72);
-  z-index: 10000;
+  z-index: var(--z-modal);
   padding: 16px;
   backdrop-filter: blur(5px);
   box-sizing: border-box;
@@ -9399,7 +9399,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   align-items: center;
   justify-content: center;
   background: rgba(0,0,0,0.65);
-  z-index: 20000;
+  z-index: var(--z-modal-high);
   padding: 16px;
   box-sizing: border-box;
   backdrop-filter: blur(4px);

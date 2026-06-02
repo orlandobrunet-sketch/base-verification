@@ -1099,6 +1099,22 @@
       const card = document.getElementById('aiDiagnosisCard');
       if (!card) return;
 
+      const isGuest = typeof authUser === 'undefined' || authUser === null;
+      if (isGuest) {
+        card.classList.remove('ai-diagnosis-loading');
+        card.innerHTML = `
+          <div class="ai-diagnosis-header">🤖 Diagnóstico da Sessão</div>
+          <div class="ai-diagnosis-body" style="text-align:center;padding:16px 0;color:var(--txt-dim);">
+            O Diagnóstico da Sessão requer uma conta ativa.<br>
+            <span style="font-size:0.8rem;">Crie uma conta gratuita para obter análise de lacunas por IA, treinar seus pontos fracos e evoluir seu personagem.</span>
+            <div style="margin-top:12px;display:flex;gap:10px;justify-content:center;">
+              <button class="btn gold" style="font-size:0.75rem;padding:6px 12px;" data-action="showRegisterFromDiagnosis">Criar Conta</button>
+              <button class="btn sec" style="font-size:0.75rem;padding:6px 12px;" data-action="showLoginFromDiagnosis">Entrar</button>
+            </div>
+          </div>`;
+        return;
+      }
+
       if (!_canRunDiagnosis()) {
         card.innerHTML = `<div class="ai-diagnosis-header">🤖 Diagnóstico da Sessão</div>
           <div style="color:var(--txt-dim);font-size:0.82rem;padding:8px 0;">Limite diário de diagnósticos atingido (${DIAG_DAILY_LIMIT}/dia). Volte amanhã ou <strong style="color:var(--gold);">faça upgrade para Premium</strong> para uso ilimitado.</div>`;
@@ -1237,6 +1253,9 @@
       const overlay = document.createElement('div');
       overlay.id = 'mentorOverlay';
       overlay.className = 'mentor-overlay';
+      
+      const isGuest = typeof authUser === 'undefined' || authUser === null;
+
       overlay.innerHTML = `
         <div class="mentor-modal" role="dialog" aria-modal="true" aria-label="Oráculo dos Néfrons">
           <div class="mentor-header">
@@ -1251,13 +1270,24 @@
             <div class="mentor-context-text">${escapeHtml(q.q || '')}</div>
           </div>
           <div class="mentor-chat" id="mentorChat"></div>
-          <div class="mentor-quota-bar" id="mentorQuotaBar">${_mentorRemainingText()}</div>
-          <div class="mentor-input-row">
-            <textarea id="mentorInput" class="mentor-textarea"
-              placeholder="O que você não entendeu? Qual foi o seu raciocínio?" rows="2"
-              maxlength="400"></textarea>
-            <button class="btn gold mentor-send-btn" data-action="_sendMentorMessage">Enviar</button>
-          </div>
+          ${isGuest ? `
+            <div class="mentor-quota-bar" style="color:var(--gold);font-weight:bold;">✨ Recurso Exclusivo</div>
+            <div style="padding:20px;text-align:center;background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.15);border-radius:10px;margin:12px;">
+              <p style="font-family:'Philosopher',serif;font-size:0.9rem;color:var(--txt-dim);line-height:1.6;margin-bottom:12px;">
+                O Oráculo dos Néfrons requer uma conta ativa para analisar suas dúvidas. Crie sua conta grátis para salvar seu progresso, acessar o ranking global e consultar a IA!
+              </p>
+              <button class="btn gold" style="width:100%;margin-bottom:8px;" data-action="closeMentorModalAndRegister">Criar Conta Gratuita</button>
+              <span style="font-size:0.75rem;color:var(--txt-dim);">Já tem conta? <strong style="color:var(--gold);cursor:pointer;" data-action="closeMentorModalAndLogin">Fazer Login</strong></span>
+            </div>
+          ` : `
+            <div class="mentor-quota-bar" id="mentorQuotaBar">${_mentorRemainingText()}</div>
+            <div class="mentor-input-row">
+              <textarea id="mentorInput" class="mentor-textarea"
+                placeholder="O que você não entendeu? Qual foi o seu raciocínio?" rows="2"
+                maxlength="400"></textarea>
+              <button class="btn gold mentor-send-btn" data-action="_sendMentorMessage">Enviar</button>
+            </div>
+          `}
         </div>
       `;
 
@@ -1363,8 +1393,39 @@
       return el;
     }
 
+    function closeMentorModalAndRegister() {
+      closeMentorModal();
+      if (typeof window.openAuthModal === 'function') {
+        window.openAuthModal();
+        if (typeof window.switchAuthTab === 'function') window.switchAuthTab('cadastrar');
+      }
+    }
+    function closeMentorModalAndLogin() {
+      closeMentorModal();
+      if (typeof window.openAuthModal === 'function') {
+        window.openAuthModal();
+        if (typeof window.switchAuthTab === 'function') window.switchAuthTab('entrar');
+      }
+    }
+    function showRegisterFromDiagnosis() {
+      if (typeof window.openAuthModal === 'function') {
+        window.openAuthModal();
+        if (typeof window.switchAuthTab === 'function') window.switchAuthTab('cadastrar');
+      }
+    }
+    function showLoginFromDiagnosis() {
+      if (typeof window.openAuthModal === 'function') {
+        window.openAuthModal();
+        if (typeof window.switchAuthTab === 'function') window.switchAuthTab('entrar');
+      }
+    }
+
     // Expose to dispatcher
     window.openMentorModal   = openMentorModal;
     window.closeMentorModal  = closeMentorModal;
     window._sendMentorMessage = _sendMentorMessage;
     window.setMentorQuestion = function(q) { _mentorCurrentQ = q; _mentorHistory = []; };
+    window.closeMentorModalAndRegister = closeMentorModalAndRegister;
+    window.closeMentorModalAndLogin = closeMentorModalAndLogin;
+    window.showRegisterFromDiagnosis = showRegisterFromDiagnosis;
+    window.showLoginFromDiagnosis = showLoginFromDiagnosis;

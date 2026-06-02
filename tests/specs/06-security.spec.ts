@@ -59,4 +59,44 @@ test.describe('Segurança — vercel.json e Service Worker', () => {
       expect(res.headers()['cache-control'] || '').toMatch(/no-cache|no-store/i);
     }
   });
+
+  test('bypass do premium via console/localStorage é evitado sem assinatura', async ({ page }) => {
+    await page.goto('/');
+    await page.waitForLoadState('domcontentloaded');
+    
+    const premiumStatus = await page.evaluate(() => {
+      // Configura um mock de authUser para simular usuário logado
+      window.authUser = { id: 'test-user-id', email: 'test@example.com' };
+      localStorage.setItem('nefroquest-premium', '1');
+      if (typeof window.isPremium === 'function') {
+        return window.isPremium();
+      }
+      return null;
+    });
+    
+    // Deve retornar false porque a assinatura correspondente não foi gerada/salva
+    expect(premiumStatus).toBe(false);
+  });
+
+  test('bypass do premium via console/localStorage concede acesso quando assinatura é válida', async ({ page }) => {
+    await page.goto('/');
+    await page.waitForLoadState('domcontentloaded');
+    
+    const premiumStatus = await page.evaluate(() => {
+      window.authUser = { id: 'test-user-id', email: 'test@example.com' };
+      localStorage.setItem('nefroquest-premium', '1');
+      // Gera assinatura válida usando a função exposta
+      if (typeof window._generatePremiumSignature === 'function') {
+        const sig = window._generatePremiumSignature('test-user-id');
+        localStorage.setItem('nefroquest-premium-sig', sig);
+      }
+      if (typeof window.isPremium === 'function') {
+        return window.isPremium();
+      }
+      return null;
+    });
+    
+    // Deve retornar true porque a assinatura é válida para o ID do usuário
+    expect(premiumStatus).toBe(true);
+  });
 });

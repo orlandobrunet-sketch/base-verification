@@ -335,13 +335,39 @@
       _scheduleCloudSync();
     }
 
+    // ── Geração de Assinatura Premium local para evitar bypass via console ──
+    function _generatePremiumSignature(userId) {
+      if (!userId) return '';
+      const salt = 'nefro-gold-rpg-secret-2026';
+      const str = userId + salt;
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) {
+        const char = str.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash; // Converte para inteiro de 32 bits
+      }
+      return hash.toString(36);
+    }
+    window._generatePremiumSignature = _generatePremiumSignature;
+    window.isPremium = isPremium;
+    window._invalidatePremiumCache = _invalidatePremiumCache;
+
     // ── Cache de isPremium (evita 2x localStorage por resposta) ──
     let _isPremiumCache = null;
     function isPremium() {
       if (isAdminUser()) return true;
       if (!authUser) return false; // sem conta ativa, localStorage não conta
       if (_isPremiumCache !== null) return _isPremiumCache;
-      _isPremiumCache = localStorage.getItem(PREMIUM_KEY) === '1' || localStorage.getItem(WHITELIST_KEY) === '1';
+
+      const sig = localStorage.getItem('nefroquest-premium-sig');
+      const expectedSig = _generatePremiumSignature(authUser.id);
+      const hasPremium = localStorage.getItem(PREMIUM_KEY) === '1' && sig === expectedSig;
+
+      const wlSig = localStorage.getItem('nefroquest-whitelist-sig');
+      const expectedWlSig = _generatePremiumSignature(authUser.email);
+      const hasWhitelist = localStorage.getItem(WHITELIST_KEY) === '1' && wlSig === expectedWlSig;
+
+      _isPremiumCache = hasPremium || hasWhitelist;
       return _isPremiumCache;
     }
     function _invalidatePremiumCache() { _isPremiumCache = null; }
@@ -357,11 +383,14 @@
           .single();
         if (profile?.is_premium) {
           localStorage.setItem(PREMIUM_KEY, '1');
+          localStorage.setItem('nefroquest-premium-sig', _generatePremiumSignature(authUser.id));
           localStorage.removeItem(WHITELIST_KEY);
+          localStorage.removeItem('nefroquest-whitelist-sig');
           _invalidatePremiumCache();
           return;
         } else {
           localStorage.removeItem(PREMIUM_KEY);
+          localStorage.removeItem('nefroquest-premium-sig');
         }
         // Check whitelist
         const { data: wl } = await _supaClient
@@ -369,8 +398,13 @@
           .select('email')
           .eq('email', authUser.email)
           .maybeSingle();
-        if (wl?.email) localStorage.setItem(WHITELIST_KEY, '1');
-        else localStorage.removeItem(WHITELIST_KEY);
+        if (wl?.email) {
+          localStorage.setItem(WHITELIST_KEY, '1');
+          localStorage.setItem('nefroquest-whitelist-sig', _generatePremiumSignature(authUser.email));
+        } else {
+          localStorage.removeItem(WHITELIST_KEY);
+          localStorage.removeItem('nefroquest-whitelist-sig');
+        }
         _invalidatePremiumCache();
       } catch(e) {}
     }

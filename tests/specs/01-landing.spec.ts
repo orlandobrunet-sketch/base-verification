@@ -19,8 +19,8 @@ test.describe('Landing / Welcome screen', () => {
 
   test('exibe tela de boas-vindas com botão de início', async ({ page }) => {
     await page.waitForLoadState('domcontentloaded');
-    // Deve mostrar welcome screen ou tela de login
-    const welcome = page.locator('#welcomeScreen, .landing-screen, .auth-form');
+    // Deve mostrar welcome screen, landing screen ou tela de login
+    const welcome = page.locator('#welcomeScreen, #landingScreen, .landing-screen, .auth-form');
     await expect(welcome.first()).toBeVisible({ timeout: 8_000 });
   });
 
