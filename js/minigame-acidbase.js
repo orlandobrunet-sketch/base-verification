@@ -1255,7 +1255,196 @@
     };
   }
 
-  // ── Casos clínicos (Fase 6: 12 casos jogáveis) ───────────────────────────
+  function _buildOphelia(){
+    // Intoxicação por salicilato — distúrbio MISTO: alcalose respiratória + acidose
+    // metabólica com AG alto. Introduz a delta ratio (ΔAG/ΔHCO₃).
+    const HCO3 = _rand(14, 18);
+    const AG   = 12 + Math.round((24 - HCO3) * (1 + Math.random() * 0.6)); // ΔAG ≈ 1–1,6 × ΔHCO₃
+    const Na   = _rand(137, 142);
+    const Cl   = Na - AG - HCO3;
+    const alb  = _r1(3.9 + Math.random() * 0.2);  // ~4 → sem correção
+    const K    = _r1(3.6 + Math.random() * 0.8);
+    const winterExpected = _r1(1.5 * HCO3 + 8);
+    const PaCO2 = Math.max(16, winterExpected - _rand(6, 12)); // bem abaixo do Winter (alcalose resp.)
+    const pH = _ph(HCO3, PaCO2);
+    const BE = _be(HCO3, PaCO2);
+    const deltaRatio = _r1((AG - 12) / (24 - HCO3));
+    _dbg('Ophelia rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, AG, winterExpected, deltaRatio });
+
+    return {
+      narrative: `A herborista <strong>Ophelia</strong> chega com <strong>zumbido nos ouvidos</strong>, náuseas, febre baixa e respiração rápida e profunda, após tomar muitas "poções analgésicas". Suspeita-se de intoxicação por salicilato.`,
+      gas: { pH, PaCO2, HCO3, BE, Na, Cl, K, alb },
+      acts: [
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato I — Componente respiratório.</strong><br>O pH está <strong>alcalêmico</strong> com PaCO₂ muito baixa. Que processo respiratório está presente?',
+          options: [
+            { label: 'Alcalose respiratória (hiperventilação)', correct: true },
+            { label: 'Acidose respiratória', correct: false },
+            { label: 'Nenhum — a PaCO₂ baixa é só compensação', correct: false },
+            { label: 'Alcalose metabólica', correct: false }
+          ],
+          explainCorrect: `pH ${_c(pH)} (> 7,45) + PaCO₂ ${PaCO2} (muito baixa) → <strong>alcalose respiratória</strong> por estímulo direto do centro respiratório (típico do salicilato). Mas o HCO₃⁻ ${HCO3} também está baixo — pode haver um segundo distúrbio. Investiga-se nos próximos atos.`,
+          explainWrong: {
+            'Acidose respiratória': `Acidose respiratória teria PaCO₂ ALTA. Aqui a PaCO₂ ${PaCO2} está baixa.`,
+            'Nenhum — a PaCO₂ baixa é só compensação': `A compensação de uma acidose metabólica não baixaria a PaCO₂ a este ponto nem deixaria o pH alcalino — há alcalose respiratória primária.`,
+            'Alcalose metabólica': `Alcalose metabólica teria HCO₃⁻ ALTO. Aqui o HCO₃⁻ ${HCO3} está baixo.`
+          }
+        },
+        {
+          kind: 'num',
+          prompt: `<strong>Ato II — Há também acidose metabólica?</strong><br>O HCO₃⁻ está baixo (${HCO3}). Pela fórmula de Winter, qual PaCO₂ seria esperada se houvesse <em>apenas</em> acidose metabólica?`,
+          grimoire: { title: 'Winter desmascara o distúrbio respiratório', body: '<code>PaCO₂ esperado = 1,5 × HCO₃⁻ + 8 (±2)</code><br>Se a PaCO₂ <strong>real</strong> está <em>bem abaixo</em> da esperada, há uma <strong>alcalose respiratória sobreposta</strong> (não apenas compensação).' },
+          unit: 'mmHg',
+          target: winterExpected,
+          tolerance: 2,
+          explainCorrect: `Winter: 1,5 × ${HCO3} + 8 = <strong>${_c(winterExpected)} mmHg</strong>. A PaCO₂ real (${PaCO2}) está <strong>muito abaixo</strong> disso → confirma <strong>alcalose respiratória</strong> somada à acidose metabólica. Distúrbio <strong>misto</strong>.`,
+          explainWrong: `1,5 × ${HCO3} + 8 = ${_c(winterExpected)}. Como a PaCO₂ real (${PaCO2}) é bem menor, há alcalose respiratória associada.`
+        },
+        {
+          kind: 'num',
+          prompt: `<strong>Ato III — Delta ratio (ΔAG/ΔHCO₃).</strong><br>AG = ${AG}, HCO₃⁻ = ${HCO3}. Calcule a delta ratio para caracterizar o componente metabólico.`,
+          grimoire: { title: 'Delta ratio (ΔAG/ΔHCO₃)', body: '<code>Δratio = (AG − 12) / (24 − HCO₃⁻)</code><br><strong>&lt; 0,8</strong>: AG alto + acidose hiperclorêmica associada.<br><strong>1–2</strong>: acidose com AG alto isolada.<br><strong>&gt; 2</strong>: AG alto + alcalose metabólica (ou acidose respiratória crônica).' },
+          unit: '',
+          target: deltaRatio,
+          tolerance: 0.3,
+          explainCorrect: `Δratio = (${AG} − 12) / (24 − ${HCO3}) = <strong>${_c(deltaRatio)}</strong> (entre 1 e 2) → o componente metabólico é uma <strong>acidose com AG alto pura</strong>. Somada à alcalose respiratória (Ato II), fecha o padrão clássico do <strong>salicilato</strong>.`,
+          explainWrong: `Δratio = (AG − 12) / (24 − HCO₃) = (${AG} − 12) / (24 − ${HCO3}) = ${_c(deltaRatio)}.`
+        },
+        _buildCardsAct({
+          prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione <em>todas</em> as causas do padrão <strong>misto: alcalose respiratória + acidose metabólica com AG alto</strong>. Não selecione causas de outro padrão.',
+          instruction: 'Os mecanismos serão revelados somente após o julgamento.',
+          cards: [
+            _makeCard('salicilato_o', 'Intoxicação por salicilato', 'Zumbido, febre, taquipneia', 'PaCO₂ baixo, AG alto, pH variável', true, 'Estimula o centro respiratório (alcalose respiratória) e desacopla a fosforilação oxidativa → ácidos orgânicos/lactato (acidose com AG alto).', 'O padrão misto clássico; é exatamente este caso.'),
+            _makeCard('sepse_o', 'Sepse / choque', 'Febre, hipotensão', 'Lactato alto + taquipneia', true, 'Citocinas/febre estimulam a ventilação (alcalose respiratória) e a hipoperfusão gera lactato (acidose com AG alto).', 'Combina alcalose respiratória precoce + acidose lática — mesmo padrão misto.'),
+            _makeCard('hepato_o', 'Insuficiência hepática / cirrose descompensada', 'Hepatopata, encefalopatia', 'PaCO₂ baixo crônico + lactato', true, 'Hiperventilação crônica da hepatopatia (alcalose respiratória) + acúmulo de lactato (clearance hepático reduzido) → acidose com AG alto.', 'Hepatopata grave pode reproduzir o padrão misto.'),
+            _makeCard('tep_choque_o', 'TEP com choque', 'Dispneia súbita + hipotensão', 'Hipoxemia + lactato', true, 'O TEP causa hiperventilação (alcalose respiratória) e, se houver choque obstrutivo, lactato (acidose com AG alto).', 'Combinação possível quando o TEP cursa com instabilidade.'),
+            _makeCard('opioide_o', 'Opioide / sedação', 'Sonolência, FR baixa', 'PaCO₂ ALTO', false, 'Deprime o centro respiratório → retenção de CO₂ (acidose respiratória).', 'É armadilha: dá acidose respiratória (PaCO₂ alto), oposto da alcalose respiratória deste caso.'),
+            _makeCard('dpoc_o', 'DPOC com fadiga', 'Hipercapnia crônica', 'PaCO₂ ALTO, HCO₃ alto', false, 'Hipoventilação → CO₂ retido → acidose respiratória.', 'É armadilha: PaCO₂ alto (acidose respiratória).'),
+            _makeCard('vomitos_o', 'Vômitos', 'Perda gástrica', 'HCO₃⁻ ALTO, hipocloremia', false, 'Perda de HCl → alcalose metabólica (HCO₃⁻ alto).', 'É armadilha: HCO₃⁻ alto (alcalose metabólica); aqui o HCO₃⁻ está baixo.'),
+            _makeCard('diarreia_o', 'Diarreia', 'Perda fecal volumosa', 'AG NORMAL, Cl⁻ alto', false, 'Perda fecal de HCO₃⁻ → acidose hiperclorêmica (AG normal).', 'É armadilha: acidose com AG normal, não AG alto, e sem alcalose respiratória.')
+          ],
+          grimoire: { title: 'Distúrbio misto: alcalose respiratória + acidose AG alto', body: 'Suspeite quando o pH está quase normal mas a PaCO₂ está fora do esperado pelo Winter E o AG está alto. As causas clássicas: <strong>salicilato</strong>, <strong>sepse</strong> e <strong>insuficiência hepática</strong> (hiperventilação + lactato/ácidos).' }
+        }),
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato V — Conduta clínica.</strong><br>Qual é a sua conduta inicial na intoxicação por salicilato?',
+          grimoire: { title: 'Tratamento da intoxicação por salicilato', body: 'Carvão ativado se ingestão recente; <strong>alcalinização urinária</strong> com bicarbonato de sódio (urina alcalina aprisiona o salicilato ionizado e aumenta sua excreção) + repor K⁺; <strong>hemodiálise</strong> se grave (níveis muito altos, alteração neurológica, edema pulmonar, acidemia refratária). NUNCA deprimir a ventilação (intubar/sedar sem necessidade) — a hiperventilação é protetora.' },
+          options: [
+            { label: 'Alcalinização urinária com bicarbonato + repor K⁺; hemodiálise se grave; carvão se recente', correct: true },
+            { label: 'Sedar e reduzir a frequência respiratória do paciente', correct: false },
+            { label: 'Restringir bicarbonato (está contraindicado)', correct: false },
+            { label: 'Apenas observação clínica', correct: false }
+          ],
+          explainCorrect: `Salicilato → <strong>alcalinização urinária</strong> com bicarbonato (aumenta a excreção) + K⁺; <strong>hemodiálise</strong> se grave. A hiperventilação é protetora — não deprimir a ventilação.`,
+          explainWrong: {
+            'Sedar e reduzir a frequência respiratória do paciente': 'Conduta PERIGOSA: sedar/intubar e deixar de hiperventilar derruba o pH abruptamente (mais salicilato entra no SNC). A hiperventilação é protetora.',
+            'Restringir bicarbonato (está contraindicado)': 'Ao contrário — o bicarbonato (alcalinização urinária) é parte central do tratamento.',
+            'Apenas observação clínica': 'Intoxicação por salicilato pode ser fatal; exige tratamento ativo.'
+          }
+        }
+      ],
+      summary: `<strong>Distúrbio MISTO</strong>: alcalose respiratória (PaCO₂ ${PaCO2} ≪ Winter ${_c(winterExpected)}) + acidose metabólica com AG alto (${AG}; delta ratio ${_c(deltaRatio)} = AG alto puro) → <strong>salicilato</strong>. Conduta: alcalinização urinária + K⁺, HD se grave; não deprimir a ventilação.`
+    };
+  }
+
+  function _buildHelena(){
+    // Cirrose — distúrbio MISTO: alcalose respiratória crônica + alcalose metabólica (diurético)
+    const PaCO2 = _rand(31, 35);
+    const HCO3  = _rand(26, 28);                   // bem acima do esperado p/ alcalose resp. crônica
+    const Na    = _rand(137, 142);
+    const AG    = _rand(9, 12);
+    const Cl    = Na - AG - HCO3;
+    const alb   = _r1(2.6 + Math.random() * 0.6);  // hipoalbuminemia da cirrose
+    const K     = _r1(3.0 + Math.random() * 0.6);  // tende a baixo (diurético)
+    const expHCO3 = _r1(24 - 0.4 * (40 - PaCO2));   // esperado p/ alcalose respiratória CRÔNICA (~4/10)
+    const pH = _ph(HCO3, PaCO2);
+    const BE = _be(HCO3, PaCO2);
+    _dbg('Helena rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, AG, expHCO3 });
+
+    return {
+      narrative: `A sacerdotisa <strong>Helena</strong> tem cirrose com ascite, em uso de <strong>furosemida e espironolactona</strong>. Apresenta confusão leve. A pressão é normal-baixa e o potássio está reduzido.`,
+      gas: { pH, PaCO2, HCO3, BE, Na, Cl, K, alb },
+      acts: [
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato I — Componente respiratório.</strong><br>O pH está alcalêmico com PaCO₂ baixa. Que processo respiratório está presente?',
+          options: [
+            { label: 'Alcalose respiratória', correct: true },
+            { label: 'Acidose respiratória', correct: false },
+            { label: 'Acidose metabólica', correct: false },
+            { label: 'Nenhum distúrbio respiratório', correct: false }
+          ],
+          explainCorrect: `pH ${_c(pH)} (alcalêmico) + PaCO₂ ${PaCO2} (baixa) → <strong>alcalose respiratória</strong>. Na cirrose, mediadores e hiperventilação crônica baixam a PaCO₂. Mas o HCO₃⁻ ${HCO3} está alto — pode haver um segundo distúrbio.`,
+          explainWrong: {
+            'Acidose respiratória': `Teria PaCO₂ alta. Aqui a PaCO₂ ${PaCO2} está baixa.`,
+            'Acidose metabólica': `Teria pH < 7,35 e HCO₃⁻ baixo. Aqui pH ${_c(pH)} (alcalino) e HCO₃⁻ ${HCO3} (alto).`,
+            'Nenhum distúrbio respiratório': `A PaCO₂ ${PaCO2} está claramente baixa, com pH alcalino → há alcalose respiratória.`
+          }
+        },
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato II — Aguda ou crônica?</strong><br>Diante de uma cirrose com hiperventilação de longa data, esta alcalose respiratória é:',
+          grimoire: { title: 'Alcalose respiratória: aguda vs crônica', body: '<strong>Aguda:</strong> HCO₃⁻ cai ~2 mEq/L por −10 mmHg de PaCO₂. <strong>Crônica</strong> (dias): cai ~4–5 por −10, pela adaptação renal.' },
+          options: [
+            { label: 'Crônica (da hepatopatia)', correct: true },
+            { label: 'Aguda', correct: false },
+            { label: 'Não é possível dizer', correct: false }
+          ],
+          explainCorrect: `A hiperventilação da cirrose é de <strong>longa data → crônica</strong>. Espera-se queda renal do HCO₃⁻ de ~4–5 por −10 mmHg de PaCO₂.`,
+          explainWrong: {
+            'Aguda': 'Aguda exigiria início recente; a hepatopatia mantém a hiperventilação cronicamente.',
+            'Não é possível dizer': 'A história (cirrose crônica) define como crônica.'
+          }
+        },
+        {
+          kind: 'num',
+          prompt: `<strong>Ato III — HCO₃⁻ esperado (crônica).</strong><br>Para esta alcalose respiratória crônica, calcule o HCO₃⁻ esperado.`,
+          grimoire: { title: 'Compensação — alcalose respiratória crônica', body: '<code>HCO₃⁻ esperado = 24 − 4 × (40 − PaCO₂)/10</code><br>Se o HCO₃⁻ medido estiver <em>bem acima</em> do esperado, há uma <strong>alcalose metabólica associada</strong>.' },
+          unit: 'mEq/L',
+          target: expHCO3,
+          tolerance: 2,
+          explainCorrect: `HCO₃⁻ esperado = 24 − 4 × (40 − ${PaCO2})/10 = <strong>${_c(expHCO3)} mEq/L</strong>. O HCO₃⁻ medido (${HCO3}) está <strong>bem acima</strong> → há também <strong>alcalose metabólica</strong> (diurético) → distúrbio <strong>misto</strong> (duas alcaloses).`,
+          explainWrong: `24 − 4 × (40 − ${PaCO2})/10 = ${_c(expHCO3)}. Como o HCO₃⁻ medido (${HCO3}) é bem maior, há alcalose metabólica associada.`
+        },
+        _buildCardsAct({
+          prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione <em>todas</em> as causas compatíveis com este padrão <strong>misto: alcalose respiratória + alcalose metabólica</strong>. Não selecione causas de outro padrão.',
+          instruction: 'Os mecanismos serão revelados somente após o julgamento.',
+          cards: [
+            _makeCard('cirrose_h', 'Cirrose (hiperventilação crônica)', 'Hepatopata, ascite', 'PaCO₂ baixo crônico', true, 'Mediadores não depurados e vasodilatação estimulam a ventilação → alcalose respiratória crônica.', 'Fornece o componente respiratório do caso.'),
+            _makeCard('diuretico_h', 'Diurético (alça/tiazida)', 'Uso de furosemida', 'HCO₃⁻ alto, K⁺ e Cl⁻ baixos', true, 'Contração de volume + RAAS ativado → secreção distal de H⁺/K⁺ e concentração do HCO₃⁻ → alcalose metabólica.', 'Fornece o componente metabólico (a paciente usa furosemida).'),
+            _makeCard('vomitos_h', 'Vômitos', 'Náuseas, perda gástrica', 'HCO₃⁻ alto, hipocloremia', true, 'Perda de HCl → alcalose metabólica salina-responsiva.', 'Outra causa de alcalose metabólica que somaria ao componente respiratório.'),
+            _makeCard('sepse_h', 'Sepse inicial', 'Febre, taquipneia', 'PaCO₂ baixo', true, 'Citocinas/febre estimulam o centro respiratório → alcalose respiratória.', 'Reforça/adiciona o componente respiratório (PBE é comum no cirrótico).'),
+            _makeCard('hipoxemia_h', 'Hipoxemia (sd. hepatopulmonar/TEP)', 'Dispneia, dessaturação', 'PaO₂ baixa, PaCO₂ baixo', true, 'A hipoxemia estimula os quimiorreceptores → hiperventilação → alcalose respiratória.', 'Componente respiratório adicional, relevante no hepatopata.'),
+            _makeCard('dpoc_sed_h', 'DPOC sedado', 'Sonolência, hipercapnia', 'PaCO₂ ALTO', false, 'Hipoventilação → CO₂ retido → acidose respiratória.', 'É armadilha: acidose respiratória (PaCO₂ alto), oposto.'),
+            _makeCard('diarreia_h', 'Diarreia', 'Perda fecal volumosa', 'HCO₃⁻ baixo, Cl⁻ alto', false, 'Perda fecal de HCO₃⁻ → acidose hiperclorêmica.', 'É armadilha: causa acidose, não alcalose.'),
+            _makeCard('dka_h', 'Cetoacidose diabética', 'Hiperglicemia, Kussmaul', 'AG alto, HCO₃⁻ baixo', false, 'Cetogênese → AG alto, HCO₃⁻ baixo (acidose).', 'É armadilha: acidose metabólica, oposto da alcalose.')
+          ],
+          grimoire: { title: 'Dupla alcalose (respiratória + metabólica)', body: 'pH muito alcalino com PaCO₂ baixa E HCO₃⁻ alto = duas alcaloses somadas. No cirrótico: hiperventilação crônica (respiratória) + diurético/vômitos (metabólica). Procurar também infecção (PBE) e hipoxemia.' }
+        }),
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato V — Conduta clínica.</strong><br>Qual é a sua conduta inicial?',
+          grimoire: { title: 'Conduta na dupla alcalose do cirrótico', body: 'Rever/ajustar o <strong>diurético</strong>, repor <strong>K⁺ e Cl⁻</strong> (a hipocalemia e a alcalose pioram a <strong>encefalopatia</strong> hepática por aumentarem a amoniogênese/difusão de NH₃) e <strong>investigar infecção (PBE) e hipoxemia</strong>. Evitar adicionar base.' },
+          options: [
+            { label: 'Rever o diurético, repor K⁺/Cl⁻ e investigar infecção (PBE)/hipoxemia', correct: true },
+            { label: 'Aumentar a dose do diurético', correct: false },
+            { label: 'Administrar bicarbonato de sódio', correct: false },
+            { label: 'Restringir potássio', correct: false }
+          ],
+          explainCorrect: `Dupla alcalose com hipocalemia (K⁺ ${_c(K)}) no cirrótico → <strong>ajustar diurético</strong>, repor <strong>K⁺/Cl⁻</strong> (reduz risco de encefalopatia) e <strong>procurar infecção/hipoxemia</strong>. Não adicionar base.`,
+          explainWrong: {
+            'Aumentar a dose do diurético': 'O diurético é um dos causadores da alcalose metabólica — aumentar pioraria.',
+            'Administrar bicarbonato de sódio': 'Adicionar base agrava a alcalose já existente e a encefalopatia.',
+            'Restringir potássio': 'A paciente é HIPOcalêmica; restringir K⁺ piora a hipocalemia e a encefalopatia.'
+          }
+        }
+      ],
+      summary: `<strong>Distúrbio MISTO — dupla alcalose</strong>: respiratória crônica da cirrose (HCO₃⁻ esperado ${_c(expHCO3)}) + metabólica do diurético (HCO₃⁻ medido ${HCO3}, bem acima). Conduta: ajustar diurético, repor K⁺/Cl⁻, investigar PBE/hipoxemia. Lição: HCO₃⁻ acima do esperado numa alcalose respiratória = alcalose metabólica associada.`
+    };
+  }
+
+  // ── Casos clínicos (Fase 7: 14 casos jogáveis) ───────────────────────────
   // Diagnóstico não aparece no hub (spoiler) — fica como metadata interna.
   // Desbloqueio é progressivo: um caso libera quando o anterior é concluído
   // (ver _isPlayable). Casos sem build() ficam como "Em breve".
@@ -1271,7 +1460,9 @@
     { id:'liora',   caso:'Caso IX',    title:'As Lágrimas de Sal',     character:'Sacerdotisa Liora',   build:_buildLiora   },
     { id:'borius',  caso:'Caso X',     title:'O Pacto do Potássio',    character:'Alquimista Borius',   build:_buildBorius  },
     { id:'isolde',  caso:'Caso XI',    title:'A Flauta dos Túbulos',   character:'Flautista Isolde',    build:_buildIsolde  },
-    { id:'corvin',  caso:'Caso XII',   title:'A Coroa de Sal',         character:'Nobre Corvin',        build:_buildCorvin  }
+    { id:'corvin',  caso:'Caso XII',   title:'A Coroa de Sal',         character:'Nobre Corvin',        build:_buildCorvin  },
+    { id:'ophelia', caso:'Caso XIII',  title:'O Sino do Salgueiro',    character:'Herborista Ophelia',  build:_buildOphelia },
+    { id:'helena',  caso:'Caso XIV',   title:'A Sacerdotisa do Fígado',character:'Sacerdotisa Helena',  build:_buildHelena  }
   ];
   // Helper p/ telas internas que ainda referenciam o "chapter" antigo.
   function _chapterOf(meta){ return `${meta.caso} — ${meta.title}`; }
@@ -1325,7 +1516,7 @@
           <div class="ab-hub">
             <div class="ab-ornament">✦ A Câmara do Equilíbrio ✦</div>
             <h2 class="ab-title">Alquimista Renal</h2>
-            <p class="ab-lead">Doze pacientes do reino aguardam diagnóstico ácido-base. Domine a fórmula de Winter, o ânion gap (e sua correção pela albumina), o cloreto e o pH urinário, a delta-delta e o gap osmolar para restaurar o equilíbrio.</p>
+            <p class="ab-lead">Catorze pacientes do reino aguardam diagnóstico ácido-base. Domine a fórmula de Winter, o ânion gap (e sua correção pela albumina), a delta ratio, o cloreto e o pH urinário, os distúrbios mistos e o gap osmolar para restaurar o equilíbrio.</p>
             <div class="ab-grid">${cardsHTML}</div>
           </div>
         </div>
