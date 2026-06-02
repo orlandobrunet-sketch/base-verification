@@ -362,9 +362,24 @@
     async function _doPremiumPoll() {
       if (!authUser || !_supaClient || _premiumPollCount >= 10) {
         _premiumPolling = false;
+        const msgEl = document.querySelector('#paymentSuccessOverlay p');
+        if (msgEl) {
+          msgEl.innerHTML = `
+            <span style="color:#f87171;font-weight:bold;">A ativação está demorando mais que o esperado.</span><br>
+            O pagamento foi enviado, mas o status ainda não foi atualizado no servidor.<br>
+            Por favor, recarregue a página em alguns instantes ou entre em contato com o suporte.
+          `;
+        }
+        const btnEl = document.querySelector('#paymentSuccessOverlay button');
+        if (btnEl) {
+          btnEl.textContent = '❌ Fechar & Verificar Depois';
+          btnEl.style.background = 'linear-gradient(135deg,#4b5563,#374151)';
+          btnEl.style.color = '#fff';
+        }
         return;
       }
       _premiumPollCount++;
+
       try {
         const { data: profile } = await _supaClient
           .from('profiles')

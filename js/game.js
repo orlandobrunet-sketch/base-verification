@@ -285,15 +285,14 @@
     const SAVE_SCHEMA_VERSION = 4;
 
     // ============ FREEMIUM ============
-    const ADMIN_EMAIL = 'orlandobrunet@gmail.com';
     // Reconhece admin via JWT custom claim (app_metadata.is_admin).
-    // Fallback por email cobre sessões antigas/offline; segurança real está no RLS.
+    // Segurança real está no RLS.
     function isAdminUser() {
       if (!authUser) return false;
       if (authUser.app_metadata?.is_admin === true) return true;
-      if (authUser.email === ADMIN_EMAIL) return true;
       return false;
     }
+
     const FREE_QUESTIONS_LIMIT = 50;
     const PREMIUM_KEY = 'nefroquest-premium';
     const WHITELIST_KEY = 'nefroquest-whitelist';
