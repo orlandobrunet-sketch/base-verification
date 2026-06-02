@@ -857,7 +857,206 @@
     };
   }
 
-  // ── Casos clínicos (Fase 4: 8 casos jogáveis) ────────────────────────────
+  function _buildLiora(){
+    // ATR tipo 1 (distal) — NAGMA hipocalêmica, urina que não acidifica
+    const HCO3 = _rand(12, 18);
+    const Na   = _rand(137, 142);
+    const AG   = _rand(9, 11);                     // normal
+    const Cl   = Na - AG - HCO3;                   // alto (hiperclorêmica)
+    const alb  = _r1(3.8 + Math.random() * 0.4);
+    const K    = _r1(2.8 + Math.random() * 0.6);   // hipocalemia (2,8–3,4)
+    const uPH  = _r1(5.8 + Math.random() * 0.7);   // pH urinário alto, inadequado (>5,5)
+    const winterExpected = _r1(1.5 * HCO3 + 8);
+    const PaCO2 = Math.round(winterExpected + Math.random() * 2); // não alcaliniza (NAGMA leve)
+    const pH = _ph(HCO3, PaCO2);
+    const BE = _be(HCO3, PaCO2);
+    _dbg('Liora rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, AG, uPH, winterExpected });
+
+    return {
+      narrative: `A sacerdotisa <strong>Liora</strong> tem fraqueza muscular, boca e olhos secos (síndrome seca) e história de cálculos renais. Exames mostram <strong>hipocalemia</strong> e nefrocalcinose. O pH urinário está em <strong>${_c(uPH)}</strong>.`,
+      gas: { pH, PaCO2, HCO3, BE, Na, Cl, K, alb },
+      acts: [
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato I — Distúrbio primário.</strong><br>Analisando pH, PaCO₂ e HCO₃⁻, qual o distúrbio primário?',
+          options: [
+            { label: 'Acidose metabólica', correct: true },
+            { label: 'Acidose respiratória', correct: false },
+            { label: 'Alcalose metabólica', correct: false },
+            { label: 'Alcalose respiratória', correct: false }
+          ],
+          explainCorrect: `pH ${_c(pH)} → <strong>acidemia</strong>. HCO₃⁻ ${HCO3} mEq/L (baixo) acompanha → distúrbio <strong>metabólico</strong>. Com Cl⁻ ${Cl} elevado e AG normal, é uma acidose <strong>hiperclorêmica</strong> (AG normal).`,
+          explainWrong: {
+            'Acidose respiratória': `Teria PaCO₂ alta como causa. Aqui a PaCO₂ ${PaCO2} está baixa (compensando).`,
+            'Alcalose metabólica': `Teria pH > 7,45 e HCO₃⁻ alto. Aqui pH ${_c(pH)} e HCO₃⁻ ${HCO3} (baixo).`,
+            'Alcalose respiratória': `Teria pH > 7,45. Aqui pH ${_c(pH)}.`
+          }
+        },
+        {
+          kind: 'num',
+          prompt: '<strong>Ato II — Compensação esperada (Winter).</strong><br>Calcule a PaCO₂ esperada pela compensação respiratória.',
+          grimoire: { title: 'Fórmula de Winter', body: '<code>PaCO₂ esperado = 1,5 × HCO₃⁻ + 8 (±2)</code>' },
+          unit: 'mmHg',
+          target: winterExpected,
+          tolerance: 2,
+          explainCorrect: `PaCO₂ esperada = 1,5 × ${HCO3} + 8 = <strong>${_c(winterExpected)} mmHg (±2)</strong>; real ${PaCO2} → compensação adequada.`,
+          explainWrong: `1,5 × ${HCO3} + 8 = ${_c(winterExpected)}. Tolerância ±2.`
+        },
+        {
+          kind: 'mc',
+          prompt: `<strong>Ato III — pH urinário.</strong><br>Diante de uma acidose metabólica sistêmica, o pH urinário de <strong>${_c(uPH)}</strong> é apropriado?`,
+          grimoire: { title: 'pH urinário na acidose', body: 'Frente a uma acidemia, o rim normal acidifica a urina a <strong>pH < 5,5</strong> (excretando H⁺ como NH₄⁺ e acidez titulável). Um pH urinário <strong>&gt; 5,5</strong> durante acidose indica <strong>falha de acidificação distal</strong> (ATR tipo 1).' },
+          options: [
+            { label: 'Não — a urina deveria estar ácida (pH < 5,5); a falha de acidificação distal indica ATR tipo 1', correct: true },
+            { label: 'Sim — pH urinário alto é a resposta renal normal à acidose', correct: false },
+            { label: 'Indica perda gastrointestinal de bicarbonato', correct: false },
+            { label: 'Indica acidose respiratória compensada', correct: false }
+          ],
+          explainCorrect: `Numa acidose, a urina deveria ficar ácida (pH < 5,5). O pH urinário ${_c(uPH)} (> 5,5) mostra <strong>incapacidade de acidificar</strong> → <strong>ATR tipo 1 (distal)</strong>. A hipocalemia e a nefrocalcinose reforçam o diagnóstico.`,
+          explainWrong: {
+            'Sim — pH urinário alto é a resposta renal normal à acidose': 'Ao contrário: na acidose o rim normal abaixa o pH urinário (< 5,5). Urina alcalina aqui é inapropriada.',
+            'Indica perda gastrointestinal de bicarbonato': 'Na perda GI (diarreia) o rim acidifica bem a urina (pH < 5,5, UAG negativo). Aqui a urina NÃO acidifica.',
+            'Indica acidose respiratória compensada': 'O distúrbio é metabólico (HCO₃⁻ baixo), não respiratório.'
+          }
+        },
+        _buildCardsAct({
+          prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione <em>todas</em> as causas que também produzem este padrão (acidose hiperclorêmica de origem renal/ATR). Não selecione causas de outro padrão.',
+          instruction: 'Os mecanismos serão revelados somente após o julgamento.',
+          cards: [
+            _makeCard('atr1_l', 'ATR tipo 1 (distal)', 'Litíase, nefrocalcinose', 'pH urinário > 5,5, K⁺ baixo, AG normal', true, 'Falha da célula alfa-intercalada em secretar H⁺ no coletor → urina não acidifica → acidose hiperclorêmica com hipocalemia.', 'É exatamente este caso; investigar causa (Sjögren, autoimune, fármacos).'),
+            _makeCard('sjogren_l', 'Síndrome de Sjögren', 'Olhos/boca secos, autoimune', 'ATR distal, anti-Ro/La', true, 'A infiltração linfocítica tubulointersticial autoimune lesa a célula alfa-intercalada → ATR tipo 1.', 'Causa autoimune clássica de ATR-1 — combina com a síndrome seca da paciente.'),
+            _makeCard('anfo_l', 'Anfotericina B', 'Uso de antifúngico', 'ATR distal, K⁺ baixo', true, 'Forma poros na membrana do túbulo distal → vazamento de H⁺ de volta → defeito de acidificação distal (ATR-1).', 'Causa medicamentosa de ATR tipo 1.'),
+            _makeCard('atr2_l', 'ATR tipo 2 (proximal)', 'Síndrome de Fanconi', 'Bicarbonatúria, glicosúria', true, 'O túbulo proximal não reabsorve o HCO₃⁻ filtrado → perda urinária de HCO₃⁻ → acidose hiperclorêmica.', 'Outra ATR; diferencia-se por acidificar a urina quando o HCO₃⁻ plasmático cai abaixo do limiar.'),
+            _makeCard('diarreia_l', 'Diarreia', 'Perda fecal volumosa', 'AG normal, Cl⁻ alto, UAG negativo', true, 'Perde HCO₃⁻ intestinal → acidose hiperclorêmica; o rim acidifica bem (pH urinário < 5,5).', 'Também é NAGMA, mas extrarrenal — a urina acidifica (diferente da ATR-1).'),
+            _makeCard('acetazolamida_l', 'Acetazolamida', 'Inibidor da anidrase carbônica', 'Bicarbonatúria, AG normal', true, 'Inibe a reabsorção proximal de HCO₃⁻ (efeito tipo ATR-2) → bicarbonatúria → NAGMA.', 'NAGMA medicamentosa por perda renal de HCO₃⁻.'),
+            _makeCard('dka_l', 'Cetoacidose diabética', 'Hiperglicemia, Kussmaul', 'Cetonas, AG alto', false, 'Cetogênese → β-hidroxibutirato (ânion não medido) → AG ↑.', 'É armadilha: dá AG ALTO, não acidose hiperclorêmica.'),
+            _makeCard('vomitos_l', 'Vômitos', 'Perda de conteúdo gástrico', 'HCO₃⁻ alto, hipocloremia', false, 'Perda de HCl → HCO₃⁻ ↑ → alcalose metabólica.', 'É armadilha: alcalose, padrão oposto.'),
+            _makeCard('atr4_l', 'ATR tipo 4', 'Diabético, IECA', 'K⁺ ALTO, AG normal', false, 'Hipoaldosteronismo → acidose hiperclorêmica com hipercalemia.', 'É armadilha aqui: a ATR-4 cursa com K⁺ ALTO; esta paciente tem K⁺ BAIXO (ATR-1).')
+          ],
+          grimoire: { title: 'Acidose hiperclorêmica: o pH urinário separa renal de GI', body: 'Na NAGMA, o pH urinário e o UAG localizam a falha: rim que <strong>acidifica</strong> (pH < 5,5, UAG negativo) → perda GI; rim que <strong>não acidifica</strong> (pH > 5,5, UAG positivo) → ATR. A ATR-1 é hipocalêmica; a ATR-4, hipercalêmica.' }
+        }),
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato V — Conduta clínica.</strong><br>Qual é a sua conduta inicial?',
+          grimoire: { title: 'Tratamento da ATR tipo 1', body: 'Repor <strong>álcali</strong> (citrato/bicarbonato de potássio) — o citrato de potássio corrige a acidose <em>e</em> a hipocalemia e reduz a litíase/nefrocalcinose. Investigar e tratar a causa de base (ex.: Sjögren). Não usar diurético poupador de K⁺ como primeira medida.' },
+          options: [
+            { label: 'Reposição de álcali com citrato/bicarbonato de POTÁSSIO + investigar causa (ex.: Sjögren)', correct: true },
+            { label: 'Bicarbonato de SÓDIO em bolus IV, sem repor potássio', correct: false },
+            { label: 'Restrição de potássio na dieta', correct: false },
+            { label: 'Espironolactona', correct: false }
+          ],
+          explainCorrect: `ATR-1 com hipocalemia (K⁺ ${_c(K)}) → <strong>álcali de potássio</strong> (citrato de K⁺): corrige acidose e K⁺ ao mesmo tempo e reduz cálculos. Investigar autoimunidade (Sjögren).`,
+          explainWrong: {
+            'Bicarbonato de SÓDIO em bolus IV, sem repor potássio': 'Repor só sódio pioraria a hipocalemia (a correção da acidose desloca K⁺ para dentro da célula). Use sal de potássio.',
+            'Restrição de potássio na dieta': 'A paciente é HIPOcalêmica — restringir K⁺ é o contrário do necessário.',
+            'Espironolactona': 'Poupador de K⁺ não trata a ATR-1 e é desnecessário (K⁺ já está baixo).'
+          }
+        }
+      ],
+      summary: `<strong>ATR tipo 1 (distal)</strong>: acidose hiperclorêmica (AG ${AG} normal) com <strong>hipocalemia</strong> (K⁺ ${_c(K)}) e <strong>pH urinário ${_c(uPH)} > 5,5</strong> (não acidifica). Compensação adequada. Conduta: citrato/bicarbonato de potássio + investigar Sjögren. Lição: pH urinário > 5,5 na acidose = falha distal.`
+    };
+  }
+
+  function _buildBorius(){
+    // ATR tipo 4 — NAGMA HIPERcalêmica por hipoaldosteronismo
+    const HCO3 = _rand(15, 20);
+    const Na   = _rand(137, 142);
+    const AG   = _rand(9, 11);                     // normal
+    const Cl   = Na - AG - HCO3;                   // alto (hiperclorêmica)
+    const alb  = _r1(3.8 + Math.random() * 0.4);
+    const K    = _r1(5.6 + Math.random() * 1.0);   // HIPERcalemia (5,6–6,6)
+    const winterExpected = _r1(1.5 * HCO3 + 8);
+    const PaCO2 = Math.round(winterExpected + Math.random() * 2); // não alcaliniza (NAGMA leve)
+    const pH = _ph(HCO3, PaCO2);
+    const BE = _be(HCO3, PaCO2);
+    _dbg('Borius rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, AG, winterExpected });
+
+    return {
+      narrative: `O alquimista <strong>Borius</strong>, diabético com doença renal crônica, usa IECA e espironolactona. Chega com fraqueza e a gasometria revela acidose leve com <strong>potássio elevado</strong>.`,
+      gas: { pH, PaCO2, HCO3, BE, Na, Cl, K, alb },
+      acts: [
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato I — Distúrbio primário.</strong><br>Analisando pH, PaCO₂ e HCO₃⁻, qual o distúrbio primário?',
+          options: [
+            { label: 'Acidose metabólica', correct: true },
+            { label: 'Acidose respiratória', correct: false },
+            { label: 'Alcalose metabólica', correct: false },
+            { label: 'Alcalose respiratória', correct: false }
+          ],
+          explainCorrect: `pH ${_c(pH)} → <strong>acidemia</strong>. HCO₃⁻ ${HCO3} mEq/L (baixo) → distúrbio <strong>metabólico</strong>. Cl⁻ ${Cl} alto + AG normal → acidose <strong>hiperclorêmica</strong>.`,
+          explainWrong: {
+            'Acidose respiratória': `Teria PaCO₂ alta como causa. Aqui a PaCO₂ ${PaCO2} está baixa (compensando).`,
+            'Alcalose metabólica': `Teria pH > 7,45 e HCO₃⁻ alto. Aqui pH ${_c(pH)} e HCO₃⁻ ${HCO3} (baixo).`,
+            'Alcalose respiratória': `Teria pH > 7,45. Aqui pH ${_c(pH)}.`
+          }
+        },
+        {
+          kind: 'num',
+          prompt: '<strong>Ato II — Compensação esperada (Winter).</strong><br>Calcule a PaCO₂ esperada pela compensação respiratória.',
+          grimoire: { title: 'Fórmula de Winter', body: '<code>PaCO₂ esperado = 1,5 × HCO₃⁻ + 8 (±2)</code>' },
+          unit: 'mmHg',
+          target: winterExpected,
+          tolerance: 2,
+          explainCorrect: `PaCO₂ esperada = 1,5 × ${HCO3} + 8 = <strong>${_c(winterExpected)} mmHg (±2)</strong>; real ${PaCO2} → compensação adequada.`,
+          explainWrong: `1,5 × ${HCO3} + 8 = ${_c(winterExpected)}. Tolerância ±2.`
+        },
+        {
+          kind: 'mc',
+          prompt: `<strong>Ato III — A pista do potássio.</strong><br>Trata-se de acidose hiperclorêmica (AG normal) com <strong>K⁺ ${_c(K)} (alto)</strong>. Qual o mecanismo mais provável?`,
+          grimoire: { title: 'Acidose com AG normal — o potássio orienta', body: 'Na NAGMA, o K⁺ separa os diagnósticos: <strong>K⁺ baixo</strong> → ATR-1, ATR-2, diarreia. <strong>K⁺ alto</strong> → <strong>ATR tipo 4</strong> (hipoaldosteronismo / resistência à aldosterona).' },
+          options: [
+            { label: 'Hipoaldosteronismo / resistência à aldosterona — ATR tipo 4', correct: true },
+            { label: 'Falha de acidificação distal — ATR tipo 1', correct: false },
+            { label: 'Perda gastrointestinal de bicarbonato', correct: false },
+            { label: 'Hiperaldosteronismo primário', correct: false }
+          ],
+          explainCorrect: `Acidose hiperclorêmica com <strong>K⁺ alto</strong> = <strong>ATR tipo 4</strong>: o hipoaldosteronismo (ou resistência) reduz a secreção distal de H⁺ e K⁺. No diabético com DRC usando IECA + espironolactona, vários fatores somam-se.`,
+          explainWrong: {
+            'Falha de acidificação distal — ATR tipo 1': 'A ATR-1 cursa com K⁺ BAIXO. Aqui o K⁺ está alto → ATR-4.',
+            'Perda gastrointestinal de bicarbonato': 'Diarreia dá NAGMA, mas com K⁺ baixo. Aqui o K⁺ está alto.',
+            'Hiperaldosteronismo primário': 'Hiperaldosteronismo causa alcalose metabólica com K⁺ baixo — o oposto.'
+          }
+        },
+        _buildCardsAct({
+          prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione <em>todas</em> as causas que produzem este padrão (acidose hiperclorêmica com K⁺ alto / ATR-4). Não selecione causas de outro padrão.',
+          instruction: 'Os mecanismos serão revelados somente após o julgamento.',
+          cards: [
+            _makeCard('dm_b', 'Diabetes (hipoaldo hiporreninêmico)', 'Diabético com DRC', 'K⁺ alto, AG normal', true, 'A nefropatia diabética reduz a renina → aldosterona baixa → menos secreção distal de H⁺/K⁺ → ATR-4.', 'Causa mais comum de ATR-4; combina com o perfil do paciente.'),
+            _makeCard('ieca_b', 'IECA / BRA', 'Uso de enalapril/losartana', 'K⁺ alto, AG normal', true, 'Bloqueiam a formação/ação da angiotensina II → aldosterona ↓ → secreção distal de H⁺/K⁺ ↓.', 'Gatilho medicamentoso frequente; suspender/ajustar é parte da conduta.'),
+            _makeCard('espiro_b', 'Espironolactona / eplerenona', 'Antagonista mineralocorticoide', 'K⁺ alto, AG normal', true, 'Bloqueiam o receptor de aldosterona no coletor → ENaC/secreção de H⁺ e K⁺ ↓ → acidose hipercalêmica.', 'Bloqueio direto da aldosterona; principal suspeito a suspender aqui.'),
+            _makeCard('amilorida_b', 'Amilorida / trimetoprim', 'Diurético poupador / antibiótico', 'K⁺ alto, AG normal', true, 'Bloqueiam o canal ENaC no coletor → menos reabsorção de Na⁺ e menos secreção de H⁺/K⁺ → ATR-4 funcional.', 'Trimetoprim (em dose alta) age como amilorida — causa subestimada de hipercalemia/acidose.'),
+            _makeCard('heparina_b', 'Heparina', 'Anticoagulação prolongada', 'K⁺ alto, aldosterona baixa', true, 'Inibe a síntese de aldosterona na zona glomerulosa adrenal → hipoaldosteronismo → ATR-4.', 'Causa pouco lembrada de hipercalemia com acidose.'),
+            _makeCard('aine_b', 'AINEs', 'Uso crônico de anti-inflamatório', 'K⁺ alto, AG normal', true, 'Inibem prostaglandinas → reduzem a renina → aldosterona ↓ → ATR-4.', 'Fármaco comum que precipita ATR-4, sobretudo em DRC/diabético.'),
+            _makeCard('atr1_b', 'ATR tipo 1', 'Litíase, nefrocalcinose', 'K⁺ BAIXO, pH urinário > 5,5', false, 'Falha distal de secreção de H⁺ → NAGMA, porém com hipocalemia.', 'É armadilha: a ATR-1 é HIPOcalêmica; aqui o K⁺ está alto.'),
+            _makeCard('bartter_b', 'Síndrome de Bartter/Gitelman', 'Normotenso, cãibras', 'K⁺ BAIXO, alcalose', false, 'Defeito tubular tipo diurético → ativa RAAS → alcalose hipocalêmica.', 'É armadilha: alcalose com K⁺ baixo, oposto da ATR-4.'),
+            _makeCard('dka_b', 'Cetoacidose diabética', 'Hiperglicemia, Kussmaul', 'Cetonas, AG alto', false, 'Cetogênese → β-hidroxibutirato → AG ↑.', 'É armadilha: o diabético pode ter DKA, mas aquela é AG ALTO, não hiperclorêmica.')
+          ],
+          grimoire: { title: 'ATR tipo 4 — a acidose hipercalêmica', body: 'Hipoaldosteronismo (diabetes/DRC) ou bloqueio do eixo (IECA/BRA, espironolactona, amilorida, trimetoprim, heparina, AINE) reduzem a secreção distal de H⁺ e K⁺ → acidose hiperclorêmica com K⁺ alto. É a única ATR com hipercalemia.' }
+        }),
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato V — Conduta clínica.</strong><br>Qual é a sua conduta inicial?',
+          grimoire: { title: 'Tratamento da ATR tipo 4', body: 'Tratar a <strong>hipercalemia</strong> e <strong>suspender/ajustar os gatilhos</strong> (IECA/BRA, espironolactona, AINE, trimetoprim). Dieta pobre em K⁺; diurético de alça/tiazídico ajuda a excretar K⁺; fludrocortisona em casos selecionados de hipoaldosteronismo. Álcali se acidose persistir.' },
+          options: [
+            { label: 'Suspender espironolactona/IECA, tratar a hipercalemia e reavaliar; álcali se persistir', correct: true },
+            { label: 'Repor potássio (KCl)', correct: false },
+            { label: 'Iniciar espironolactona em dose maior', correct: false },
+            { label: 'Restringir álcali (bicarbonato)', correct: false }
+          ],
+          explainCorrect: `ATR-4 com hipercalemia (K⁺ ${_c(K)}) → <strong>suspender os gatilhos</strong> (espironolactona, IECA/BRA), tratar a hipercalemia e reavaliar. Diurético/dieta pobre em K⁺ ajudam; álcali se a acidose persistir.`,
+          explainWrong: {
+            'Repor potássio (KCl)': 'O paciente está HIPERcalêmico — repor K⁺ poderia ser fatal.',
+            'Iniciar espironolactona em dose maior': 'A espironolactona é justamente um gatilho da ATR-4 — aumentar piora a hipercalemia.',
+            'Restringir álcali (bicarbonato)': 'Faz o oposto do necessário; se houver acidose persistente, repõe-se álcali, não se restringe.'
+          }
+        }
+      ],
+      summary: `<strong>ATR tipo 4</strong>: acidose hiperclorêmica (AG ${AG} normal) com <strong>hipercalemia</strong> (K⁺ ${_c(K)}) por hipoaldosteronismo (diabetes + IECA + espironolactona). Conduta: suspender gatilhos, tratar a hipercalemia, álcali se persistir. Lição: NAGMA + K⁺ alto = ATR tipo 4 (única ATR hipercalêmica).`
+    };
+  }
+
+  // ── Casos clínicos (Fase 5: 10 casos jogáveis) ───────────────────────────
   // Diagnóstico não aparece no hub (spoiler) — fica como metadata interna.
   // Desbloqueio é progressivo: um caso libera quando o anterior é concluído
   // (ver _isPlayable). Casos sem build() ficam como "Em breve".
@@ -869,7 +1068,9 @@
     { id:'kael',    caso:'Caso V',    title:'O Cerco de Aço',         character:'General Kael',        build:_buildKael    },
     { id:'vorgath', caso:'Caso VI',   title:'A Taça de Cristal Verde',character:'Alquimista Vorgath',  build:_buildVorgath },
     { id:'selene',  caso:'Caso VII',  title:'O Véu Açucarado',        character:'Maga Selene',         build:_buildSelene  },
-    { id:'edrin',   caso:'Caso VIII', title:'O Cronista Urêmico',     character:'Escriba Edrin',       build:_buildEdrin   }
+    { id:'edrin',   caso:'Caso VIII', title:'O Cronista Urêmico',     character:'Escriba Edrin',       build:_buildEdrin   },
+    { id:'liora',   caso:'Caso IX',   title:'As Lágrimas de Sal',     character:'Sacerdotisa Liora',   build:_buildLiora   },
+    { id:'borius',  caso:'Caso X',    title:'O Pacto do Potássio',    character:'Alquimista Borius',   build:_buildBorius  }
   ];
   // Helper p/ telas internas que ainda referenciam o "chapter" antigo.
   function _chapterOf(meta){ return `${meta.caso} — ${meta.title}`; }
@@ -923,7 +1124,7 @@
           <div class="ab-hub">
             <div class="ab-ornament">✦ A Câmara do Equilíbrio ✦</div>
             <h2 class="ab-title">Alquimista Renal</h2>
-            <p class="ab-lead">Oito pacientes do reino aguardam diagnóstico ácido-base. Domine a fórmula de Winter, o ânion gap (e sua correção pela albumina), a delta-delta e o gap osmolar para restaurar o equilíbrio.</p>
+            <p class="ab-lead">Dez pacientes do reino aguardam diagnóstico ácido-base. Domine a fórmula de Winter, o ânion gap (e sua correção pela albumina), o pH urinário, a delta-delta e o gap osmolar para restaurar o equilíbrio.</p>
             <div class="ab-grid">${cardsHTML}</div>
           </div>
         </div>
