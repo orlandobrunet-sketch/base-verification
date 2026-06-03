@@ -1,384 +1,2802 @@
 const RAPID_QUIZ_QUESTIONS = [
-  {q:"IECA e BRA nunca devem ser usados juntos em DRC — risco de hipercalemia e IRA.",ans:true,exp:"ONTARGET: combinação aumenta eventos adversos sem benefício renal adicional."},
-  {q:"O 'dip' inicial de TFG com SGLT2i é sinal de nefrotoxicidade direta.",ans:false,exp:"É efeito hemodinâmico protetor — reduz hiperfiltração intraglomerular. Reversível."},
-  {q:"Na hemodiálise, Kt/V alvo mínimo recomendado pelo KDIGO é 1.2 por sessão.",ans:true,exp:"Kt/V ≥ 1.2 por sessão em diálise 3×/semana é o padrão mínimo de adequação."},
-  {q:"Hiato aniônico normal na acidose metabólica sugere causa renal ou gastrointestinal.",ans:true,exp:"NAGMA: acidose tubular renal, diarreia, fístulas digestivas — perda de bicarbonato."},
-  {q:"Anti-PLA2R positivo indica nefropatia membranosa de causa secundária (ex: lúpus).",ans:false,exp:"Anti-PLA2R positivo = nefropatia membranosa primária. Causas secundárias costumam ser anti-PLA2R negativas."},
-  {q:"Icodextrina na diálise peritoneal melhora ultrafiltração na troca longa noturna.",ans:true,exp:"Polímero de alto PM — mantém osmose por período prolongado sem absorção sistêmica."},
-  {q:"Clearance de creatinina superestima a TFG real por incluir secreção tubular ativa.",ans:true,exp:"Secreção proximal de creatinina → ClCr > TFGe real em até 20%, especialmente com TFG baixa."},
-  {q:"Cistatina C é marcador mais preciso que creatinina em pacientes com baixa massa muscular.",ans:true,exp:"Cistatina C independe de massa muscular e etnia — superior em idosos, amputados e desnutridos."},
-  {q:"Na ATR tipo 1 (distal), o pH urinário permanece > 5.5 mesmo com acidemia sistêmica grave.",ans:true,exp:"Defeito na bomba H-ATPase tubular distal — incapacidade de acidificar urina abaixo de pH 5.5."},
-  {q:"Hidratação com bicarbonato de sódio é superior ao soro fisiológico para prevenir nefropatia por contraste.",ans:false,exp:"Estudos randomizados não mostraram superioridade do bicarbonato — soro fisiológico isotônico é padrão."},
-  {q:"Finerenona é um ARM não esteroidal com menos ginecomastia que espironolactona.",ans:true,exp:"Finerenona (FIDELIO-DKD, FIGARO-DKD): seletiva para MR, sem efeitos androgênicos/estrogênicos."},
-  {q:"Dapagliflozina reduz progressão de DRC independentemente da presença de diabetes tipo 2.",ans:true,exp:"DAPA-CKD incluiu pacientes sem DM2 e demonstrou benefício nefroprotetor consistente."},
-  {q:"Hipercalemia com ECG alterado exige gluconato de cálcio IV imediato para estabilizar o miocárdio.",ans:true,exp:"Gluconato de cálcio: efeito em 1-3 min, sem alterar a calemia — protege o coração enquanto aguarda depuração."},
-  {q:"Na peritonite em diálise peritoneal, a cultura do efluente deve ser positiva para fechar o diagnóstico.",ans:false,exp:"Diagnóstico: efluente turvo + leucócitos > 100/mm³ — cultura pode ser negativa em até 20% dos casos."},
-  {q:"Nefropatia membranosa é a causa mais comum de glomerulonefrite primária no mundo.",ans:false,exp:"IgA nefropatia é a GN primária mais comum (30-40%) — nefropatia membranosa é a mais frequente na síndrome nefrótica de adultos, não de GN no geral. das GN primárias globalmente; mais prevalente em asiáticos e caucasianos jovens."},
-  {q:"Síndrome de Alport resulta de mutação no colágeno tipo II da membrana basal glomerular.",ans:false,exp:"Alport é causada por mutações no COLÁGENO TIPO IV (COL4A3/A4/A5) — colágeno tipo II está em cartilagem e não na membrana basal glomerular."},
-  {q:"PTH elevado cronicamente na DRC pode causar doença óssea adinâmica pelo hiperparatireoidismo secundário.",ans:false,exp:"PTH cronicamente ELEVADO causa OSTEÍTE FIBROSA CÍSTICA (alto turnover) — doença óssea adinâmica é causada por PTH muito BAIXO ou supressão excessiva com vitamina D ativa."},
-  {q:"Calcitriol (1,25-OH-D3) é produzido principalmente no fígado.",ans:false,exp:"1α-hidroxilação ocorre no rim (túbulo proximal) — DRC avançada leva a deficiência de calcitriol."},
-  {q:"Acidose metabólica crônica na DRC protege o néfron remanescente ao reduzir a hiperfiltração glomerular.",ans:false,exp:"Acidose ACELERA a progressão da DRC — ativa TGF-β, endotelina e complemento, promovendo fibrose tubulointersticial progressiva."},
-  {q:"Furosemida tem eficácia reduzida como diurético quando TFGe < 30 mL/min.",ans:false,exp:"Furosemida mantém eficácia em TFG baixa (precisa de doses maiores) — tiazídicos é que perdem eficácia < 30."},
-  {q:"SHR tipo 1 (síndrome hepatorrenal aguda) tem progressão rápida em menos de 2 semanas.",ans:true,exp:"SHR tipo 1 (agora 'SHR-IRA'): progressão em < 2 semanas, mortalidade > 80% sem tratamento."},
-  {q:"O escore de Banff é usado para classificar o grau de rejeição em biópsias renais pós-transplante.",ans:true,exp:"Critérios de Banff (desde 1991): classifica rejeição celular e mediada por anticorpos."},
-  {q:"Ciclosporina pode causar nefrotoxicidade aguda (vasoconstrição) E crônica (fibrose intersticial).",ans:true,exp:"Toxicidade aguda: vasoconstrição aferente (reversível). Crônica: fibrose e arteriolopatia (irreversível)."},
-  {q:"Rabdomiólise induz IRA principalmente por obstrução tubular com cilindros de mioglobina.",ans:true,exp:"Mioglobina é nefrotóxica: vasoconstrição, estresse oxidativo e obstrução tubular direta."},
-  {q:"O transplante renal de doador vivo tem melhor sobrevida de enxerto que o de doador falecido.",ans:true,exp:"Menor isquemia fria, melhor função imediata do enxerto, melhor match imunológico possível."},
-  {q:"SGLT2i estão contraindicados em qualquer paciente com TFGe < 45 mL/min.",ans:false,exp:"Dapagliflozina/empagliflozina são usadas para nefroproteção mesmo em TFGe 25-45 — mudança recente de bula."},
-  {q:"A albumina sérica baixa na síndrome nefrótica é consequência direta da proteinúria maciça.",ans:true,exp:"Perda renal de albumina supera capacidade hepática de síntese → hipoalbuminemia e edema."},
-  {q:"Bicarbonato de sódio oral está indicado em DRC somente quando bicarbonato sérico < 18 mEq/L, quando a acidose é grave.",ans:false,exp:"KDIGO 2024 indica suplementação quando HCO₃ < 22 mEq/L — não apenas < 18; meta é manter > 22 para retardar progressão."},
-  {q:"AINE em DRC avançada pode precipitar IRA por bloquear prostaglandinas vasodilatadoras renais.",ans:true,exp:"Em estados de baixo fluxo, rins dependem de prostaglandinas para vasodilatação aferente — AINE bloqueia."},
-  {q:"Nefropatia por IgA pode ser tratada com inibidores de SGLT2 para reduzir proteinúria.",ans:true,exp:"DAPA-CKD e estudos específicos de IgAN mostram redução de proteinúria com SGLT2i."},
-  {q:"Aliskiren (inibidor direto da renina) pode ser combinado com IECA em DRC diabética para maior nefroproteção.",ans:false,exp:"ALTITUDE trial: combinação aumenta eventos adversos graves — contraindicada em DRC."},
-  {q:"Losartana não causa tosse seca porque não inibe a degradação de bradicinina.",ans:true,exp:"BRA bloqueiam receptor AT1 sem afetar ECA — bradicinina acumulada pelos IECA é a causa da tosse."},
-  {q:"Canagliflozina demonstrou redução de hospitalização por insuficiência cardíaca em diabéticos tipo 2 no EMPA-REG OUTCOME.",ans:false,exp:"O EMPA-REG OUTCOME testou EMPAGLIFLOZINA — foi o primeiro SGLT2i a mostrar benefício cardiovascular, com 35% menos hospitalizações por IC."},
-  {q:"SGLT2i reduzem o risco de infecções genitais fúngicas ao diminuírem a concentração local de glicose.",ans:false,exp:"SGLT2i AUMENTAM o risco de infecções fúngicas genitais — glicosúria favorece Candida; efeito de classe bem documentado."},
-  {q:"Dapagliflozina foi associada a aumento de amputações de membros inferiores no estudo CANVAS.",ans:false,exp:"Risco aproximadamente dobrado — mecanismo não totalmente elucidado; outros SGLT2i têm sinal menor."},
-  {q:"SGLT2i reduzem a hiperfiltração glomerular ao contrair a arteríola aferente via feedback tubuloglomerular.",ans:true,exp:"Maior entrega de NaCl à mácula densa → FTG → constrição aferente → queda da pressão intraglomerular."},
-  {q:"Eplerenona foi aprovada para DRC associada ao DM2 com base nos estudos FIDELIO-DKD e FIGARO-DKD.",ans:false,exp:"FINERENONA (não eplerenona) foi aprovada com base nesses estudos — finerenona é ARM não esteroidal; eplerenona é ARM esteroidal sem essa indicação específica."},
-  {q:"Espironolactona em baixas doses não tem efeito antiproteinúrico em DRC pois age exclusivamente reduzindo a pressão arterial.",ans:false,exp:"Ação direta no receptor de mineralocorticoide dos podócitos — efeito antiproteinúrico independente do efeito anti-hipertensivo."},
-  {q:"Acetazolamida inibe a anidrase carbônica e pode ser usada para corrigir alcalose metabólica.",ans:true,exp:"Inibe reabsorção proximal de HCO₃⁻ → perda urinária de bicarbonato → correção da alcalose."},
-  {q:"Tiazídicos perdem eficácia diurética quando a TFGe cai abaixo de 30 mL/min/1,73m².",ans:true,exp:"Necessitam de secreção tubular para atingir o TCD — em TFG baixa, secreção insuficiente e competição com ânions urêmicos."},
-  {q:"Tolvaptana é um agonista do receptor V1 de vasopressina aprovado para retardar a progressão da DRPAD.",ans:false,exp:"Tolvaptana é ANTAGONISTA do receptor V2 (não agonista do V1) — bloqueia sinal de ADH → reduz AMPc nos cistos → menor crescimento."},
-  {q:"Carbonato de sevelâmer tem vantagem sobre quelantes cálcicos de fosfato por não causar hipercalcemia.",ans:true,exp:"Livre de cálcio e alumínio — reduz carga de cálcio e melhora perfil lipídico; indicado quando Ca sérico está elevado."},
-  {q:"Cinacalcete reduz a sensibilidade do receptor sensor de cálcio nas paratireoides, suprimindo o PTH.",ans:false,exp:"Cinacalcete AUMENTA a sensibilidade do CaSR (calcimimético) — simula hipercalcemia → suprime PTH. Não reduz, aumenta a sensibilidade."},
-  {q:"Trimetoprim pode elevar a creatinina sérica sem causar lesão renal real ao bloquear a secreção tubular de creatinina.",ans:true,exp:"Compete com creatinina no transportador MATE proximal — eleva creatinina sem alterar TFG verdadeira (como a cimetidina)."},
-  {q:"Gadolínio em pacientes com TFGe < 30 mL/min pode causar fibrose sistêmica nefrogênica.",ans:true,exp:"Depósito de gadolínio livre em tecidos → fibrose cutânea e visceral grave; quelantes macrocíclicos têm menor risco."},
-  {q:"AINE seletivos para COX-2 (coxibes) têm menor risco de IRA que os AINE não seletivos.",ans:false,exp:"Efeito renal adverso é mediado pela inibição de PGE₂ e PGI₂ vasodilatadoras — efeito de classe igual para seletivos e não seletivos."},
-  {q:"Alopurinol pode retardar a progressão da DRC ao reduzir ácido úrico e a inflamação intersticial.",ans:true,exp:"Hiperuricemia é fator de risco independente de DRC — estudos mostram desaceleração do declínio de TFG com alopurinol."},
-  {q:"Hemodiafiltração online com volume > 23 L/sessão reduziu mortalidade no estudo ESHOL.",ans:true,exp:"ESHOL: HDF de alto volume com redução de ~30% na mortalidade total vs HD convencional na análise por dose entregue."},
-  {q:"Em IRA em UTI, o início precoce de TRS não mostrou superioridade em sobrevida vs início tardio por critérios clínicos.",ans:true,exp:"AKIKI e IDEAL-ICU: sem diferença de mortalidade — início precoce aumenta TRS desnecessária e riscos procedimentais."},
-  {q:"A dose de efluente total na TRS contínua para IRA deve ser de pelo menos 35–40 mL/kg/h para melhor depuração.",ans:false,exp:"RENAL e ATN trials: 20–25 mL/kg/h é suficiente — doses maiores (35–40) não trazem benefício adicional."},
-  {q:"Cateter de duplo lúmen tunelizado deve ser preferido ao temporário quando diálise for necessária por mais de 3 semanas.",ans:true,exp:"Menor taxa de infecção e trombose — indicado como ponte enquanto o acesso definitivo amadurece."},
-  {q:"Na síndrome de desequilíbrio dialítico, o edema cerebral ocorre por rápida redução da osmolaridade plasmática.",ans:true,exp:"Ureia intracelular cria gradiente osmótico — remoção rápida de uremia plasmática gera influxo de água para células cerebrais."},
-  {q:"Peritonite fúngica em diálise peritoneal exige remoção imediata do cateter peritoneal.",ans:true,exp:"Alta mortalidade e refratariedade antifúngica com cateter in situ — diferente da bacteriana onde se tenta antibiótico intraperitoneal primeiro."},
-  {q:"Síndrome de ultrafiltração tipo I na DP decorre de hiperpermeabilidade da membrana peritoneal ao soluto.",ans:true,exp:"Transporte rápido de glicose destrói o gradiente osmótico prematuramente — solução: trocas mais curtas ou icodextrina."},
-  {q:"Cada rim humano adulto sadio contém aproximadamente 5 a 10 milhões de néfrons.",ans:false,exp:"Cada rim contém ~1 a 1,5 milhão de néfrons (variação 200.000–2,5 milhões) — 5 a 10 milhões seria anatomicamente impossível."},
-  {q:"A TFG normal em adultos jovens sadios é de aproximadamente 90–100 mL/min/1,73m².",ans:false,exp:"A TFG normal em jovens é 120–130 mL/min/1,73m² — 90–100 já representa declínio leve (potencial G2 se houver lesão renal)."},
-  {q:"O túbulo proximal reabsorve cerca de 30–40% do sódio filtrado pelo glomérulo.",ans:false,exp:"Na verdade o túbulo proximal reabsorve 60–70% do Na⁺ filtrado — é o maior sítio de reabsorção renal."},
-  {q:"Aldosterona age no túbulo coletor cortical para reabsorver Na⁺ e secretar K⁺ e H⁺.",ans:true,exp:"Ativa ENaC apical e Na/K-ATPase basolateral — eixo renina-angiotensina-aldosterona regula volume e equilíbrio ácido-base."},
-  {q:"A pressão oncótica das proteínas plasmáticas no capilar glomerular favorece a filtração glomerular.",ans:false,exp:"Pressão oncótica OPÕE-SE à filtração — retém fluido no capilar. Só a pressão hidrostática glomerular favorece a saída de filtrado."},
-  {q:"ADH/vasopressina insere aquaporina-2 na membrana apical do túbulo coletor, aumentando a permeabilidade à água.",ans:true,exp:"Via V2R → cAMP → PKA → inserção de vesículas com AQP2 — essencial para concentrar a urina."},
-  {q:"A alça de Henle descendente delgada é muito permeável à água e impermeável ao NaCl.",ans:true,exp:"Expressa AQP1 constitutivamente — contribui para concentração de solutos no interstício medular (multiplicador de contracorrente)."},
-  {q:"O feedback tubuloglomerular dilata a arteríola aferente quando a mácula densa detecta aumento de NaCl.",ans:false,exp:"FTG → CONTRAÇÃO da arteríola aferente → redução de TFG — mecanismo de autorregulação que protege o glomérulo de sobrecarga."},
-  {q:"A eritropoetina é produzida pelas células intersticiais da medula renal em resposta à hipóxia.",ans:false,exp:"EPO é produzida no CÓRTEX renal (células peritubulares miofibroblastóides) — fibrose cortical na DRC reduz EPO. Medula não é sítio principal."},
-  {q:"A reabsorção tubular de glicose é mediada 90% pelo SGLT2 (S1–S2) e 10% pelo SGLT1 (S3).",ans:true,exp:"Fundamento molecular dos SGLT2i — bloqueio do SGLT2 induz glicosúria de 60–80 g/dia independente de insulina."},
-  {q:"A hipercapnia estimula a reabsorção de bicarbonato no túbulo proximal, compensando a acidose respiratória.",ans:true,exp:"CO₂ entra na célula → forma H⁺ + HCO₃⁻ → H⁺ secretado, HCO₃⁻ reabsorvido — compensação renal à acidose respiratória crônica."},
-  {q:"Ânion gap urinário positivo em acidose metabólica hiperclorêmica indica baixa excreção de NH₄⁺ — sugestivo de ATR.",ans:true,exp:"AG urinário = [Na⁺+K⁺] − Cl⁻; positivo = poucos cátions não medidos (NH₄⁺) = rim não excreta ácido → ATR renal."},
-  {q:"A angiotensina II causa vasoconstrição predominantemente na arteríola aferente, reduzindo a pressão de filtração.",ans:false,exp:"Ang II contrai preferencialmente a EFERENTE — mantém TFG em estados de baixo fluxo. IECA/BRA ao bloquear Ang II reduzem resistência eferente e a hiperfiltração."},
-  {q:"A reabsorção de NaCl na alça de Henle ascendente espessa é mediada pelo cotransportador NKCC2, alvo dos diuréticos tiazídicos.",ans:false,exp:"NKCC2 é alvo da FUROSEMIDA (diurético de ansa) — tiazídicos atuam no NCC do túbulo contorcido distal, não no NKCC2."},
-  {q:"O túbulo contorcido distal reabsorve NaCl via cotransportador NCC, alvo da furosemida.",ans:false,exp:"NCC é alvo dos TIAZÍDICOS, não da furosemida — furosemida inibe o NKCC2 na alça ascendente espessa."},
-  {q:"Os critérios KDIGO definem IRA como aumento de creatinina ≥ 0,3 mg/dL em 48h ou ≥ 50% em 7 dias ou DU < 0,5 mL/kg/h por 6h.",ans:true,exp:"Definição KDIGO 2012 — amplamente adotada para estratificar gravidade em estágios 1, 2 e 3."},
-  {q:"Na NTA isquêmica, cilindros granulosos castanhos na microscopia urinária são achados típicos.",ans:true,exp:"Células epiteliais tubulares descamadas formam cilindros — achado altamente sugestivo de lesão tubular isquêmica."},
-  {q:"NGAL urinária eleva-se antes da creatinina sérica na IRA isquêmica, sendo útil como biomarcador precoce.",ans:true,exp:"NGAL aumenta em 2–4h após lesão tubular — creatinina pode demorar 24–48h para refletir queda da TFG."},
-  {q:"Em IRA pré-renal, a excreção fracionada de sódio (FeNa) é tipicamente > 2%.",ans:false,exp:"Em IRA pré-renal a FeNa é < 1% (não > 2%) — rim preservado reabsorve Na⁺ avidamente. FeNa > 2% sugere NTA com lesão tubular."},
-  {q:"A FeNa pode ser falsamente baixa (< 1%) na NTA causada por contraste iodado ou mioglobina.",ans:true,exp:"Nessas causas, vasoconstricção e obstrução tubular coexistem com reabsorção de Na⁺ relativamente preservada — FeNa não diferencia bem."},
-  {q:"Rabdomiólise é a causa mais comum de IRA em pacientes internados em UTI.",ans:false,exp:"IRA ASSOCIADA À SEPSE é a mais comum em UTI (45–70%) — rabdomiólise é causa importante mas não a mais frequente nesse contexto."},
-  {q:"Na síndrome de lise tumoral, a IRA ocorre exclusivamente por vasoconstrição renal mediada por citocinas inflamatórias.",ans:false,exp:"Liberação maciça de purinas → hiperuricemia → cristais de urato nos túbulos; hiperfosfatemia → precipitação de CaP — ambos causam obstrução."},
-  {q:"IRA por aminoglicosídeos tipicamente se manifesta nas primeiras 24–48 horas de uso.",ans:false,exp:"Aminoglicosídeos acumulam na célula tubular proximal — NTA não oligúrica com início tardio; monitorar creatinina e DU desde o início."},
-  {q:"A síndrome hepatorrenal tipo 2 tem progressão mais lenta que o tipo 1 e está associada a ascite refratária.",ans:true,exp:"SHR-DRC (tipo 2): progressão em semanas–meses, cursa com ascite refratária; SHR-IRA (tipo 1): progressão em dias, mortalidade muito alta."},
-  {q:"O manitol é recomendado para prevenção de IRA em rabdomiólise junto à hidratação vigorosa.",ans:false,exp:"Evidência de benefício do manitol é fraca — hidratação com SF 0,9% é o pilar; manitol pode piorar volemia se houver IRA estabelecida."},
-  {q:"Em IRA séptica, a expansão de volume sem avaliação de responsividade pode causar sobrecarga hídrica prejudicial.",ans:true,exp:"Fluid overload acumulado > 10% do peso em UTI associa-se a pior mortalidade — guiar ressuscitação por parâmetros dinâmicos."},
-  {q:"A nefrite lúpica classe III (focal) e classe IV (difusa) são as formas mais graves e exigem imunossupressão intensa.",ans:true,exp:"Tratamento de indução: micofenolato ou ciclofosfamida + corticoide em pulso; voclosporina ou belimumabe como add-on nas diretrizes atuais."},
-  {q:"GNRP (glomerulonefrite rapidamente progressiva) com anti-MBG positivo pode cursar com hemorragia alveolar difusa.",ans:true,exp:"Síndrome de Goodpasture: anti-MBG ataca colágeno IV de MBG e alvéolos pulmonares — tríade: hematúria, hemoptise, IRA."},
-  {q:"Vasculite ANCA-positiva deve ser tratada com ciclofosfamida ou rituximabe + corticoide na fase de indução.",ans:true,exp:"RAVE trial: rituximabe não inferior à ciclofosfamida na indução de remissão em vasculite ANCA, com menos toxicidade."},
-  {q:"Na síndrome nefrótica da criança, a lesão histológica mais comum é a glomeruloesclerose focal e segmentar (GESF).",ans:false,exp:"DLM representa ~80% das síndromes nefróticas em crianças < 10 anos — corticossensível em ~90% dos casos."},
-  {q:"A GESF colapsante tem o pior prognóstico entre as variantes e está associada ao HIV.",ans:true,exp:"GESF colapsante: podocitose grave, colapso do tufo glomerular — associada à nefropatia pelo HIV (HIVAN) e COVID-19."},
-  {q:"Ciclofosfamida é recomendada como tratamento de primeira linha para nefropatia membranosa primária grave pelo KDIGO 2021.",ans:false,exp:"KDIGO 2021 indica RITUXIMABE como 1ª linha — MENTOR trial mostrou superioridade sobre ciclosporina; ciclofosfamida é alternativa de 2ª linha."},
-  {q:"GN C3 (complemento 3) reflete disregulação da via alternativa do complemento sem depósito de imunoglobulinas.",ans:true,exp:"Mutações em fatores reguladores (CFH, CFI, MCP) ou anticorpos anti-C3 convertase (C3NeF) — eculizumabe em casos refratários."},
-  {q:"GN fibrilar é positiva para vermelho Congo na coloração histológica, como a amiloidose.",ans:false,exp:"GN fibrilar é NEGATIVA para vermelho Congo — depósitos de fibrilas não amiloides; amiloidose é Congo-vermelho positiva com birrefringência verde."},
-  {q:"Acantócitos > 20% na microscopia de fase contraste são necessários para diagnóstico de hematúria glomerular.",ans:false,exp:"Acantócitos (eritrócitos dismórficos em forma de vesícula) se formam ao passar pela membrana basal lesionada — sensibilidade ~52%, especificidade ~98%."},
-  {q:"DRC estágio G3a corresponde a TFGe de 30–44 mL/min/1,73m².",ans:false,exp:"G3a = 45–59 mL/min/1,73m² (KDIGO) — G3b é que corresponde a 30–44. Confusão frequente mas importante para estadiamento correto."},
-  {q:"A meta de PA em DRC com proteinúria ≥ 300 mg/g é < 140/90 mmHg, independentemente da proteinúria.",ans:false,exp:"KDIGO 2021: alvo em DRC proteinúrica (proteinúria ≥ 300 mg/g) é < 130/80 mmHg — mais restrito que em DRC não proteinúrica."},
-  {q:"Restrição proteica a 0,6–0,8 g/kg/dia pode acelerar a progressão da DRC por causar desnutrição proteico-calórica.",ans:false,exp:"MDRD trial: dieta hipoproteica reduz declínio de TFG — cuidado com desnutrição; monitorar albumina e peso."},
-  {q:"A taxa de declínio normal da TFG com envelhecimento é de aproximadamente 1 mL/min/1,73m² ao ano após os 40 anos.",ans:true,exp:"Perda fisiológica de néfrons com a idade — sem proteinúria ou lesão renal estrutural, não deve ser classificada como DRC."},
-  {q:"Neuropatia periférica urêmica em DRC avançada pode ser o gatilho clínico para indicar início de diálise.",ans:true,exp:"Sintomas urêmicos intratáveis (neuropatia, pericardite, encefalopatia) são indicações clínicas de diálise de urgência ou eletiva."},
-  {q:"Pericardite urêmica é indicação de diálise de urgência independentemente de outras indicações clássicas.",ans:true,exp:"Risco de tamponamento cardíaco — iniciar diálise imediatamente, de preferência sem anticoagulação."},
-  {q:"Na hiponatremia hipotônica euvolêmica, a causa mais comum é SIADH.",ans:true,exp:"SIADH: ADH inapropriadamente elevado sem estímulo osmótico ou hemodinâmico — causas: SNC, pulmão, drogas, dor/náusea."},
-  {q:"Na SIADH, a osmolalidade urinária está inapropriadamente baixa (< 100 mOsm/kg) em resposta à hiponatremia.",ans:false,exp:"Diagnóstico requer: osmolalidade urinária > 100 mOsm/kg com Na urinário > 30 mEq/L — euvolemia e função renal preservada."},
-  {q:"Correção de hiponatremia crônica sintomática deve ser < 10 mEq/L nas primeiras 24h para evitar mielinólise osmótica.",ans:true,exp:"Desmielinização osmótica (síndrome de mielinólise pontina): correção muito rápida causa lesão por rápida mudança de osmolaridade no SNC."},
-  {q:"Pseudohiponatremia pode ocorrer em hipertrigliceridemia grave por interferência nos métodos laboratoriais.",ans:true,exp:"Lipídios deslocam plasma na amostra → falsa redução de Na⁺ medido por fotometria de chama — Na⁺ real é normal."},
-  {q:"Na hipocalemia, reposição de magnésio é frequentemente necessária pois hipomagnesemia perpetua a perda renal de K⁺.",ans:true,exp:"Hipomagnesemia ativa o canal ROMK no TCD/túbulo coletor → hiperpolarização → maior secreção de K⁺ — hipocalemia refratária sem reposição de Mg²."},
-  {q:"Na hipercalemia grave, gluconato de cálcio IV é a principal medida de redistribuição intracelular de K⁺.",ans:false,exp:"Insulina ativa Na/K-ATPase → K⁺ entra na célula; salbutamol inalatório faz o mesmo — efeitos aditivos, início em 15–30 min."},
-  {q:"FGF-23 elevado em DRC estimula a síntese de calcitriol e retém fósforo nos túbulos renais.",ans:false,exp:"FGF-23 inibe 1α-hidroxilase renal → menos calcitriol → hipocalcemia; aumenta excreção urinária de fosfato (fosfatúria)."},
-  {q:"Na síndrome de realimentação, hipofosforemia grave pode causar insuficiência respiratória, cardíaca e hemólise.",ans:true,exp:"Fósforo é essencial para produção de ATP e 2,3-DPG — depleção grave colapsa múltiplos sistemas; monitorar P⁻ ao realimentar desnutridos."},
-  {q:"Em cetoacidose diabética, o K⁺ sérico pode estar normal ou elevado apesar de depleção corporal total de potássio.",ans:true,exp:"Acidose desloca K⁺ para fora da célula (saída de H⁺ entra, K⁺ sai) — K⁺ sérico subestima o déficit real; repor K⁺ após insulinoterapia."},
-  {q:"Hipernatremia em idosos é frequentemente causada por déficit de acesso à água livre (adipsia ou restrição).",ans:true,exp:"Idosos têm menor sensação de sede e menor capacidade de concentrar a urina — risco alto em internações prolongadas."},
-  {q:"Na infusão de soluções hipotônicas em grande volume, pode ocorrer hiponatremia dilucional iatrogênica.",ans:true,exp:"Soro glicosado 5% ou SF 0,45% em excesso dilui o sódio sérico — preferir cristaloides isotônicos na ressuscitação."},
-  {q:"Hipermagnesemia grave (> 6 mg/dL) pode causar bloqueio neuromuscular, hipotensão e parada cardíaca.",ans:true,exp:"Mg²⁺ bloqueia canais de Ca²⁺ e receptores NMDA — tratamento: gluconato de Ca²⁺ IV + diálise em casos graves."},
-  {q:"O padrão de imunossupressão de manutenção pós-transplante renal é ciclosporina + azatioprina + prednisona.",ans:false,exp:"Tripla terapia de manutenção — tacrolimus em baixas doses (nível alvo < 5 ng/mL após 1 ano) reduz nefrotoxicidade a longo prazo."},
-  {q:"DSA (anticorpos específicos do doador) de novo estão associados à rejeição aguda celular (RAC) mediada por linfócitos T.",ans:false,exp:"DSA causam REJEIÇÃO MEDIADA POR ANTICORPOS (RMA), não RAC — RAC é mediada por linfócitos T sem participação de anticorpos doador-específicos."},
-  {q:"Isquemia fria curta (< 6h) aumenta o risco de função tardia do enxerto por hipoperfusão e vasoconstrição.",ans:false,exp:"Lesão de isquemia-reperfusão — aumenta imunogenicidade do enxerto e incidência de rejeição aguda."},
-  {q:"Infecção por CMV é a complicação infecciosa viral mais comum no primeiro ano após transplante renal.",ans:true,exp:"Especialmente em receptor CMV-negativo de doador CMV-positivo (D+/R−) — profilaxia com valganciclovir por 3–6 meses."},
-  {q:"Vírus JC pode causar nefropatia do enxerto e deve ser monitorado por PCR nos primeiros 2 anos.",ans:false,exp:"Nefropatia do enxerto é causada pelo POLIOMAVÍRUS BK — vírus JC causa leucoencefalopatia multifocal progressiva (PML) no SNC, não nefropatia."},
-  {q:"Tacrolimus (inibidor de calcineurina) está associado à pior cicatrização de feridas e pneumonite intersticial.",ans:false,exp:"Inibição de mTOR prejudica proliferação de fibroblastos e células epiteliais; pneumonite ocorre em 5–15% dos pacientes."},
-  {q:"O período de maior risco para rejeição aguda celular após transplante renal é nos primeiros 6–12 meses.",ans:false,exp:"Pico de alorreatividade após reconhecimento do enxerto — monitorar creatinina e nível de tacrolimus semanalmente no início."},
-  {q:"Metilprednisolona IV em pulsos é o tratamento de primeira linha para rejeição aguda celular Banff IA/IB.",ans:true,exp:"500–1000 mg/dia por 3 dias — resolução em ~70% dos casos; rejeição celular grave (IIB/III) pode requerer anticorpos anti-timócito."},
-  {q:"Melanoma é o câncer de pele mais comum em receptores de transplante renal devido à imunossupressão crônica.",ans:false,exp:"Imunossupressão crônica favorece carcinoma espinocelular (mais agressivo) sobre o basocelular — rastrear anualmente com dermatologista."},
-  {q:"PTH é o primeiro marcador a se alterar na doença mineral óssea da DRC, antes do FGF-23.",ans:false,exp:"Eleva-se precocemente (TFGe 60–80) como resposta à hiperfosfatemia nascente — aumenta excreção de fósforo e suprime calcitriol."},
-  {q:"A calcificação vascular em DRC é consequência benigna do envelhecimento e não prediz mortalidade cardiovascular.",ans:false,exp:"Produto Ca×P elevado e hiperfosfatemia promovem calcificação da íntima e da média arterial — mortalidade CV em DRC é 10–20× maior que na população geral."},
-  {q:"A doença óssea adinâmica em DRC está associada a PTH muito baixo e risco aumentado de fraturas.",ans:true,exp:"PTH < 100–150 pg/mL em diálise → turnover ósseo insuficiente → acúmulo de microfraturas; também comum com uso excessivo de vitamina D ativa."},
-  {q:"Bifosfonatos são seguros em qualquer grau de DRC pois são eliminados por via hepática.",ans:false,exp:"Acúmulo renal de bifosfonatos → inibição excessiva de osteoclastos → doença adinâmica; contraindicados em DRC avançada."},
-  {q:"Densidade óssea por DXA pode superestimar a saúde óssea em DRC por não diferenciar lesões distintas.",ans:true,exp:"DXA mede massa óssea, não qualidade microestruturalde — em DRC, osteíte fibrosa, adinâmica e osteomalácia coexistem."},
-  {q:"Hiperparatireoidismo terciário pós-transplante com hipercalcemia persistente frequentemente requer paratireoidectomia.",ans:true,exp:"Glândulas paratireoides hipertrofiadas funcionam autonomamente após transplante — se persistir > 6–12 meses, cinacalcete ou cirurgia."},
-  {q:"O tipo mais comum de cálculo renal é o de oxalato de cálcio, representando 70–80% dos casos.",ans:true,exp:"Oxalato de cálcio mono e di-hidratado — fatores de risco: hipercalciúria, hiperoxalúria, hipocitratúria, baixo volume urinário."},
-  {q:"Cálculos de ácido úrico são radiotransparentes na radiografia simples mas visíveis na tomografia.",ans:true,exp:"Ácido úrico não absorve raios X — TC sem contraste identifica todos os tipos de cálculos, inclusive os radiotransparentes."},
-  {q:"Litotripsia extracorpórea por ondas de choque (LEOC) é contraindicada em gestantes.",ans:true,exp:"Risco de dano fetal por cavitação e ondas de pressão — litotripsia em gestantes substituída por ureteroscopia ou conduta expectante."},
-  {q:"Tiazídicos são utilizados para prevenir a recorrência de cálculos de oxalato de cálcio por reduzirem a calciúria.",ans:true,exp:"Tiazídicos aumentam reabsorção distal de Ca²⁺ → hipocalciúria → menos nucleação de cristais de oxalato de cálcio."},
-  {q:"Nefrocalcinose cortical bilateral é característica da acidose tubular renal distal (ATR tipo 1).",ans:true,exp:"ATR tipo 1: pH urinário elevado + hipocitratúria → cristalização de fosfato de cálcio no parênquima cortical."},
-  {q:"Hiperuricosúria é fator de risco tanto para cálculos de ácido úrico quanto de oxalato de cálcio.",ans:true,exp:"Urato monossódico serve como núcleo de cristalização para oxalato de cálcio (nucleação heterogênea) — tratar hiperuricosúria reduz recorrência de ambos."},
-  {q:"Carbonato de cálcio oral alcaliniza a urina e pode dissolver cálculos de ácido úrico existentes.",ans:false,exp:"pH urinário > 6,5 dissolve cristais de ácido úrico — preferir citrato de K⁺ (alcaliniza + não aumenta calciúria) ao bicarbonato de Na⁺."},
-  {q:"Na nefrolitíase por cistina, o tratamento requer grande ingestão hídrica (> 3 L/dia) e alcalinização urinária.",ans:true,exp:"Cistina é solúvel em pH > 7,5 — além de hidratação, D-penicilamina ou tiopronina quelatam cistina em casos refratários."},
-  {q:"Hiperoxalúria primária tipo 1 é causada por deficiência de alanina-glioxalato aminotransferase hepática (AGXT).",ans:true,exp:"AGXT converte glioxalato em glicina no fígado — sem AGXT, glioxalato vira oxalato → oxalose sistêmica; lumasirana é tratamento aprovado."},
-  {q:"Cálculos de estruvita (fosfato-amônio-magnésio) estão associados a infecções por bactérias urease-negativas, como E. coli.",ans:false,exp:"Estruvita forma-se em urina ALCALINA produzida por bactérias UREASE-POSITIVAS (Proteus, Klebsiella) — E. coli é urease-negativa e não causa estruvita."},
-  {q:"A relação cálcio/creatinina urinária em amostra matinal isolada > 0,5 mg/mg sugere hipercalciúria.",ans:false,exp:"Triagem simples em crianças e adultos — confirmar com urina de 24h (hipercalciúria > 4 mg/kg/dia ou > 300/250 mg/dia H/M)."},
-  {q:"Ureterorenoscopia flexível com laser é o método preferencial para cálculos no sistema coletor renal < 20 mm.",ans:true,exp:"URS flexível + laser Holmium: alta taxa de limpeza de fragmentos, mínima invasão — nefrolitotripsia percutânea para > 20 mm."},
-  {q:"Doença renal policística autossômica dominante (DRPAD) é causada por mutações nos genes PKD1 ou PKD2.",ans:true,exp:"PKD1 (85%): proteína policistina-1, chromosoma 16; PKD2 (15%): policistina-2, chromosoma 4 — PKD1 tem pior prognóstico."},
-  {q:"DRPAD por PKD1 tem progressão para DRC terminal mais lenta que por PKD2.",ans:false,exp:"É o CONTRÁRIO: PKD2 tem progressão mais lenta (DRCT ~74 anos) vs PKD1 (~54 anos) — PKD1 tem pior prognóstico."},
-  {q:"Síndrome de Gitelman é causada por mutação no cotransportador NKCC2 (SLC12A1) na alça de Henle.",ans:false,exp:"Cursas com hipocalemia, hipomagnesemia, hipocalciúria e alcalose metabólica — fenotipicamente semelhante ao uso crônico de tiazídicos."},
-  {q:"Síndrome de Bartter tipo 4 é a mais grave e pode causar surdez por envolvimento do estria vascular coclear.",ans:true,exp:"Mutação na bartina (BSND), subunidade β dos canais ClC-Ka/Kb presentes no rim e cóclea — hipocalemia grave + surdez congênita."},
-  {q:"Doença de Fabry é uma doença de depósito lisossomial ligada ao X causada por deficiência de alfa-galactosidase A.",ans:true,exp:"Acúmulo de globotriaosilceramida (Gb3) em vários órgãos — DRC, cardiomiopatia hipertrófica, AVC precoce, angioceratomas."},
-  {q:"Na doença de Fabry, a biópsia renal mostra inclusões lamelares nos mesangiócitos (células de Zebra à microscopia eletrônica).",ans:false,exp:"Gb3 acumulado nos lisossomos cria padrão em 'zebra' na ME — diagnóstico definitivo por atividade enzimática e genética."},
-  {q:"DRPAD é a causa genética mais comum de DRC terminal em crianças e adolescentes nos países desenvolvidos.",ans:false,exp:"Doença ciliopática autossômica recessiva — mutações em NPHP1–20; fibrose intersticial progressiva, cistos na junção córtico-medular."},
-  {q:"Síndrome de Lowe (oculocerebrorrenal) cursa com síndrome de Fanconi proximal, cataratas congênitas e atraso neurológico.",ans:true,exp:"Mutação em OCRL1 (fosfatase de fosfatidilinositol) ligada ao X — tubulopatia proximal com aminoacidúria, glicosúria e fosfatúria."},
-  {q:"Esclerose tuberosa pode causar angiomiolipomas renais bilaterais e cistos renais, levando a DRC progressiva.",ans:true,exp:"Mutações em TSC1 ou TSC2 (inibidores de mTOR) — sirolimus reduz tamanho de angiomiolipomas; angiomiolipoma > 4 cm tem risco de sangramento."},
-  {q:"KIM-1 (kidney injury molecule-1) é um biomarcador de lesão tubular proximal isquêmica e nefrotóxica.",ans:true,exp:"KIM-1 é uma proteína transmembrana upregulada no tubulo proximal lesado — detectável na urina horas após a lesão."},
-  {q:"IL-18 urinária pode diferenciar NTA isquêmica de outras causas de IRA em UTI.",ans:true,exp:"IL-18 é liberada por células tubulares proximais lesadas — mais específica que NGAL para NTA isquêmica; combinar biomarcadores melhora acurácia."},
-  {q:"A relação albumina/creatinina urinária (ACR) ≥ 30 mg/g define microalbuminúria e prediz progressão de DRC.",ans:true,exp:"ACR 30–300 mg/g = microalbuminúria (A2); > 300 mg/g = macroalbuminúria (A3) — preditor independente de progressão renal e CV."},
-  {q:"Anti-PLA2R pode ser usado para monitorar a resposta ao tratamento da nefropatia membranosa primária.",ans:true,exp:"Queda do título de anti-PLA2R precede a melhora clínica da proteinúria em semanas a meses — guia decisão de aumentar ou reduzir imunossupressão."},
-  {q:"[TIMP-2]·[IGFBP7] em urina (NephroCheck) identifica pacientes com risco de IRA grave em UTI.",ans:true,exp:"Biomarcadores de parada do ciclo celular G1 — valor > 0,3 prediz IRA estágio 2–3 em 12h; aprovado pelo FDA como teste de risco."},
-  {q:"A meta de hemoglobina com ESA em DRC deve ser entre 10–11,5 g/dL, evitando normalização completa.",ans:true,exp:"TREAT e CHOIR: Hb-alvo > 13 g/dL aumenta risco de AVC e morte — benefício sintomático deve ser pesado contra risco trombótico."},
-  {q:"Ferro IV é mais eficaz que ferro oral para corrigir deficiência funcional de ferro em pacientes em hemodiálise.",ans:true,exp:"Absorção intestinal reduzida por hepcidina elevada + inflamação crônica — ferro IV entrega ferro diretamente ao sistema reticuloendotelial."},
-  {q:"Eritropoetina elevada na DRC é o principal mecanismo de resistência ao ferro oral por estimular excessivamente a eritropoese.",ans:false,exp:"O principal mecanismo é a HEPCIDINA elevada — inibe ferroportina nos enterócitos bloqueando liberação de ferro. EPO em DRC geralmente está baixa."},
-  {q:"ESA aumentam risco de eventos trombóticos quando usados com alvo de Hb muito elevado.",ans:true,exp:"TREAT: darbepoetina com alvo Hb normal em DM2 aumentou AVC em 2× — trombose microvascular renal também descrita."},
-  {q:"Roxadustate (inibidor de HIF-PH) estimula eritropoese por via diferente dos ESA injetáveis.",ans:true,exp:"Inibe prolil-hidroxilase → estabiliza HIF-1α → transcrição de EPO e receptores de transferrina — oral, aprovado em vários países."},
-  {q:"Hiperparatireoidismo secundário grave pode causar resistência a ESA por fibrose medular óssea.",ans:true,exp:"PTH muito elevado → osteíte fibrosa cística → fibrose da medula óssea → redução de precursores eritroides — resposta ao ESA é limitada."},
-  {q:"ATR tipo 4 (hipercalêmica) pode causar síndrome de Fanconi completa quando grave.",ans:false,exp:"Deficiência de reabsorção no túbulo proximal → glicosúria, aminoacidúria, fosfatúria, uricosúria, bicarbonatúria — causa clássica: cistinosefenilcetonúria, tenofovir."},
-  {q:"ATR tipo 4 (hipercalêmica) está associada a hipoaldosteronismo hiporreninêmico, comum em DRC diabética.",ans:true,exp:"Nefropatia diabética → dano ao aparelho justaglomerular → baixa renina → baixa aldosterona → hipercalemia + acidose moderada."},
-  {q:"Tenofovir (antirretroviral usado em HIV) pode causar síndrome de Fanconi adquirida.",ans:true,exp:"Tenofovir disoproxil fumarato (TDF) acumula nas mitocôndrias tubulares proximais → disfunção tubular generalizada; substituir por TAF (menor risco)."},
-  {q:"Diabetes insípido nefrogênico causa poliúria sem resposta a desmopressina (DDAVP).",ans:true,exp:"Defeito no receptor V2 ou nas aquaporinas — litio é a causa adquirida mais comum; amilorida pode reduzir o dano renal pelo lítio."},
-  {q:"Furosemida é uma das causas mais comuns de diabetes insípido nefrogênico adquirido.",ans:false,exp:"A causa farmacológica mais comum de DI nefrogênico é o LÍTIO (não furosemida) — furosemida prejudica concentração urinária por outro mecanismo."},
-  {q:"Estenose da artéria renal aterosclerótica causa hipertensão renovascular por ativação do SRAA.",ans:true,exp:"Redução do fluxo renal → isquemia → aumento de renina → angiotensina II → hipertensão e retenção de sódio."},
-  {q:"Arterite de Takayasu é a causa mais comum de estenose de artéria renal em mulheres jovens.",ans:false,exp:"A causa mais comum em mulheres jovens é a DISPLASIA FIBROMUSCULAR — Takayasu também acomete jovens, mas é rara comparada à DFM."},
-  {q:"Trombose de veia renal aguda pode cursar com hematúria, dor lombar e síndrome nefrótica.",ans:true,exp:"Síndrome nefrótica (especialmente membranosa) predispõe à trombose de VR por estado hipercoagulável; anticoagulação indicada."},
-  {q:"Na SHU típica por E. coli O157:H7, antibióticos devem ser evitados na fase aguda.",ans:true,exp:"Antibióticos podem aumentar liberação de toxina Shiga (Stx) pela lise bacteriana → piora de MAT; tratamento é suporte."},
-  {q:"Eculizumabe (anti-C5) é o tratamento específico para SHU atípica mediada por complemento.",ans:true,exp:"Bloqueia a via terminal do complemento → previne MAT mediada por C5b-9 — transformou o prognóstico da SHUa."},
-  {q:"Crise renal esclerodérmica deve ser tratada imediatamente com IECA mesmo com disfunção renal grave.",ans:true,exp:"IECA é o tratamento de escolha — melhora a sobrevida mesmo em diálise; não aguardar melhora da PA para iniciar."},
-  {q:"Na pré-eclâmpsia, o diagnóstico requer PA ≥ 140/90 mmHg após 20 semanas e proteinúria ≥ 300 mg/24h.",ans:true,exp:"Ou na ausência de proteinúria: trombocitopenia, disfunção hepática, IRA, edema pulmonar ou sintomas visuais/cerebrais."},
-  {q:"IECA são contraindicados no 2º e 3º trimestres da gestação por causar oligoidrâmnio e malformações fetais.",ans:true,exp:"Bloqueio do SRAA fetal → redução de filtração renal fetal → oligoidrâmnio → hipoplasia pulmonar e contraturas (fetopatin por IECA)."},
-  {q:"Na nefropatia associada ao HIV (HIVAN), a biópsia renal mostra padrão de GESF colapsante.",ans:true,exp:"HIVAN: infecção direta de podócitos pelo HIV → colapso do tufo glomerular — tipicamente em afrodescendentes; TARV é o principal tratamento."},
-  {q:"Crioglobulinemia mista tipo II associada ao HCV pode causar GN membranoproliferativa e púrpura cutânea.",ans:true,exp:"IgM monoclonal + IgG policlonal → depósitos crioglobulinêmicos no glomérulo → GNMP com complemento baixo e FR positivo."},
-  {q:"Em mieloma múltiplo, a nefropatia por cilindros de cadeias leves é tratada com quimioterapia anti-mieloma.",ans:true,exp:"Cast nephropathy: precipitação de cadeias leves livres com proteína de Tamm-Horsfall no TCD/TD → obstrução tubular; reduzir carga tumoral é essencial."},
-  {q:"CREDENCE trial demonstrou que canagliflozina reduz desfechos renais em DM2 com nefropatia diabética.",ans:true,exp:"Redução de 30% no desfecho composto renal primário (DRCT, creatinina 2×, morte renal/CV) — primeiro SGLT2i com desfecho renal primário positivo."},
-  {q:"EMPA-KIDNEY demonstrou benefício da empagliflozina em DRC com TFGe ≥ 20 mesmo sem DM2.",ans:true,exp:"Redução de 28% em progressão de DRC ou morte renal — confirmou nefroproteção independente do diabetes e em TFG mais baixa."},
-  {q:"Sparsentan (bloqueador duplo AT1/endotelina) foi aprovado para nefropatia por IgA por reduzir proteinúria.",ans:true,exp:"PROTECT trial: redução superior de proteinúria vs irbesartana — aprovado FDA/EMA como tratamento específico de IgAN."},
-  {q:"Budesonida de liberação intestinal (Nefecon/Tarpeyo) reduz proteinúria em nefropatia por IgA.",ans:true,exp:"NefIgArd trial: ação na placa de Peyer intestinal — reduz produção de IgA1 galacto-deficiente; aprovada FDA 2021."},
-  {q:"Avacopan (inibidor de C5aR1) pode reduzir uso de corticoide oral na indução das vasculites ANCA.",ans:true,exp:"ADVOCATE trial: avacopan não inferior ao prednisona em remissão e superior em preservação de TFG — aprovado FDA/EMA."},
-  {q:"Voclosporina em combinação com micofenolato mostrou eficácia superior ao placebo na nefrite lúpica.",ans:true,exp:"AURORA-1 trial: maior taxa de remissão renal completa — voclosporina tem meia-vida curta e menos variabilidade que ciclosporina."},
-  {q:"Nefropatia por aristolóquia (ervas chinesas) causa fibrose intersticial extensa e carcinoma urotelial.",ans:true,exp:"Ácido aristolóquico é nefrotóxico e mutagênico — cuidado especial em países que usam fitoterápicos sem regulação."},
-  {q:"Biópsia renal percutânea em rim único funcionante é contraindicação absoluta ao procedimento.",ans:false,exp:"É contraindicação RELATIVA — pode ser realizada com cautela, experiência e suporte cirúrgico; benefício deve superar risco de perda do rim único."},
-  {q:"Cistite por E. coli ascendente é a causa mais comum de pielonefrite aguda em mulheres jovens.",ans:true,exp:"E. coli uropatogênica (UPEC) com fímbrias P e tipo 1 adere ao urotélio e ascende até o pelve renal — tratamento: fluoroquinolonas ou cefalosporinas."},
-  {q:"DRC aumenta o risco cardiovascular de forma independente, proporcional à queda da TFG e aumento da proteinúria.",ans:true,exp:"TFGe < 60 dobra o risco CV; proteinúria > 1 g/g aumenta mortalidade CV em 5× — DRC é equivalente de risco cardiovascular."},
-  {q:"Linfocele pós-transplante renal pode causar compressão do ureter do enxerto com hidronefrose.",ans:true,exp:"Coleção linfática pericirúrgica — drenagem percutânea guiada por imagem ou marsupialização laparoscópica nos casos sintomáticos."},
-  {q:"Síndrome de lise tumoral pode ser prevenida com hidratação IV e alopurinol antes da quimioterapia.",ans:true,exp:"Rasburicase é superior ao alopurinol em casos de alto risco — converte ácido úrico em alantoína, mais solúvel e de excreção renal fácil."},
-  {q:"Microalbuminúria (ACR 30–300 mg/g) é o primeiro marcador de nefropatia diabética e preditor de progressão.",ans:true,exp:"Rastrear anualmente em todo diabético — regressão possível com IECA/BRA + controle glicêmico intensivo + SGLT2i."},
-  {q:"Transferrina sérica com saturação < 20% e ferritina < 100 ng/mL indicam deficiência absoluta de ferro em DRC.",ans:true,exp:"Reposição de ferro indicada antes ou junto com ESA — TSAT < 20% indica ferro insuficiente para eritropoese eficaz."},
-  {q:"Micofenolato mofetil é teratogênico e deve ser substituído por azatioprina em gestantes transplantadas.",ans:true,exp:"MMF causa malformações fetais (lábio leporino, microtia) — trocar por azatioprina pelo menos 6 semanas antes de engravidar."},
-  {q:"A pressão arterial alvo em pacientes em hemodiálise pré-diálise é geralmente < 140/90 mmHg.",ans:true,exp:"PA medida antes da sessão de HD — difícil controlar pela sobrecarga hídrica interdialítica; controle de volemia é tão importante quanto os anti-hipertensivos."},
-  {q:"Na síndrome nefrótica, o risco de trombose de veia renal é maior na nefropatia membranosa.",ans:true,exp:"Perda urinária de anticoagulantes naturais (antitrombina III, proteína C e S) + hipercoagulabilidade — membranosa tem maior incidência de complicações trombóticas."},
-  {q:"Proteinúria de Bence-Jones (cadeias leves livres) detectada na urina é patognomônica de mieloma múltiplo.",ans:false,exp:"Pode ocorrer em outras gamopatias (amiloidose, LCDD, leucemia de células plasmáticas) — não é exclusiva do mieloma."},
-  {q:"O escore de Oxford (MEST-C) estratifica o risco na nefropatia por IgA e orienta decisões terapêuticas.",ans:true,exp:"Mesangial (M), Endocapilar (E), Segmentar (S), Tubular (T) e Crescentes (C) — T e C predizem pior prognóstico e benefício de imunossupressão."},
-  {q:"Na glomeruloesclerose diabética, espessamento da membrana basal e expansão mesangial são as lesões histológicas características.",ans:true,exp:"Nódulos de Kimmelstiel-Wilson (expansão mesangial nodular) são patognomônicos da nefropatia diabética avançada."},
-  {q:"Hipoalbuminemia grave na síndrome nefrótica pode reduzir a eficácia da furosemida por menor ligação tubular.",ans:true,exp:"Furosemida liga-se à albumina para chegar ao túbulo — hipoalbuminemia reduz entrega do diurético ao sítio de ação; albumina IV + furosemida melhora resposta."},
-  {q:"Eritrócitos dismórficos e cilindros hemáticos na urina confirmam origem glomerular do sangramento.",ans:true,exp:"Cilindro hemático é patognomônico de GN — qualquer hematúria com cilindro hemático exige investigação histológica."},
-  {q:"Em DRC avançada, a hiperpotassemia assintomática com K⁺ entre 5,5–6 mEq/L pode ser manejada com resina de troca oral.",ans:true,exp:"Patiromer ou ciclossilicato de zircônio e sódio (SZC) são opções modernas com menos efeitos adversos que o poliestireno sulfonato de sódio."},
-  {q:"A biópsia renal é essencial para diferenciar GN por IgA de outras GN hematúricas quando há proteinúria progressiva.",ans:true,exp:"Sem biópsia não é possível diferenciar IgAN de GESF precoce, GN C3 ou outras — proteinúria > 1 g/g ou TFG em queda são indicações de biópsia."},
-  {q:"Infecção urinária de repetição em mulheres jovens sem anomalia estrutural deve ser investigada com uroculturas de acompanhamento.",ans:true,exp:"Profilaxia antibiótica (nitrofurantoína, trimetoprim) ou profilaxia pós-coital podem ser necessárias — não há indicação rotineira de imagem sem fator complicador."},
-  {q:"Hipertensão renovascular por displasia fibromuscular em pacientes jovens tem excelente resposta à angioplastia percutânea.",ans:true,exp:"Angioplastia com balão sem stent: taxa de cura de hipertensão em ~50% dos jovens — preferível à revascularização cirúrgica na DFM."},
-  {q:"A hemodiálise de longa duração noturna (8–10h, 6×/semana) melhora o controle de fósforo sem quelantes.",ans:true,exp:"Maior tempo de diálise remove mais fósforo (proteína ligada ao tempo) — pacientes em HD convencional (4h) retêm muito fósforo."},
-  {q:"A nefrectomia do rim nativo pré-transplante é necessária em todos os pacientes com DRPAD.",ans:false,exp:"Nefrectomia bilateral pré-transplante só é indicada quando cistos causam sintomas intensos, infecção recorrente ou falta de espaço para o enxerto."},
-  {q:"Nefropatia por refluxo com cicatrizes renais é uma causa de hipertensão arterial em crianças e adultos jovens.",ans:true,exp:"Cicatrizes corticais pós-pielonefrite associada ao RVU → hipertensão renovascular e DRC — rastrear com cintilografia DMSA."},
-  {q:"O padrão urinário de proteinúria tubular (α1-microglobulina, β2-microglobulina) indica disfunção tubular proximal.",ans:true,exp:"Proteínas de baixo PM filtradas normalmente são reabsorvidas no TP — proteinúria tubular reflete lesão do TP (nefrotoxinas, ATR tipo 2, Fanconi)."},
-  {q:"Hipouricemia renal pode ser causada por disfunção do transportador URAT1 e está associada à nefrolitíase por ácido úrico.",ans:false,exp:"Hipouricemia renal (déficit de reabsorção de urato) está associada a ácido úrico baixo e hiperuricosúria — risco de cálculos de ácido úrico e IRA de esforço."},
-
-  // ── DRC — manejo e progressão ─────────────────────────────────────────────
-  {q:"Inibidores de SGLT2 reduzem progressão da DRC por queda da pressão intraglomerular mediada pelo feedback tubuloglomerular.",ans:true,exp:"Maior entrega de NaCl à mácula densa → FTG → vasoconstrição aferente → redução da hiperfiltração — efeito nefroprotetor independente do controle glicêmico."},
-  {q:"Corrigir acidose metabólica na DRC, mantendo bicarbonato ≥ 22 mEq/L, pode reduzir progressão renal e perda muscular/óssea.",ans:true,exp:"KDIGO 2024: acidose ativa TGF-β e endotelina → fibrose tubular; bicarbonato oral retarda declínio da TFG e previne catabolismo proteico e desmineralização óssea."},
-  {q:"TFGe reduzida e albuminúria elevada são os principais marcadores prognósticos de progressão da DRC e risco cardiovascular.",ans:true,exp:"Classificação KDIGO por TFGe (G1–G5) + albuminúria (A1–A3): risco combinado — proteinúria > 1 g/g + TFGe < 30 confere risco muito alto de progressão e eventos CV."},
-  {q:"Finerenona reduz desfechos renais e cardiovasculares na DRC associada ao diabetes, exigindo monitorização do potássio.",ans:true,exp:"FIDELIO-DKD + FIGARO-DKD: finerenona (ARM não esteroidal) reduziu DRCT, progressão renal e eventos CV — monitorar K⁺, especialmente com TFGe < 45 ou K⁺ basal > 4,8 mEq/L."},
-  {q:"Restrição proteica moderada pode ser usada na DRC conservadora metabolicamente estável, evitando-se em pacientes desnutridos ou catabólicos.",ans:true,exp:"KDIGO sugere 0,6–0,8 g/kg/dia em DRC 3–5 sem diálise — retarda progressão; contraindicado se albumina < 3,5 g/dL ou perda de peso involuntária."},
-  {q:"O duplo bloqueio IECA + BRA é estratégia rotineira segura para reduzir proteinúria e prevenir diálise.",ans:false,exp:"ONTARGET e VA NEPHRON: combinação aumenta hipercalemia e IRA sem benefício renal ou CV adicional — contraindicada como rotina em DRC."},
-  {q:"Estatinas reduzem diretamente a velocidade de perda da TFGe na DRC.",ans:false,exp:"Estatinas reduzem eventos CV em DRC, mas meta-análises não confirmam efeito direto na taxa de declínio da TFGe — benefício é cardiovascular, não renotrópico."},
-  {q:"Metformina deve ser mantida em dose máxima independentemente da TFGe.",ans:false,exp:"TFGe 30–45: reduzir dose pela metade; TFGe < 30: suspender — risco de acidose lática por acúmulo; monitorar creatinina a cada 3–6 meses em DRC."},
-  {q:"Todo idoso frágil com DRC deve atingir PAS < 120 mmHg de forma obrigatória.",ans:false,exp:"SPRINT excluiu diabéticos e fragilidade severa — em idosos frágeis com DRC, alvo < 120 mmHg aumenta risco de queda, síncope e IRA; individualizar conforme comorbidades."},
-  {q:"A queda inicial da TFGe após SGLT2i é sempre sinal de lesão renal e exige suspensão definitiva.",ans:false,exp:"Queda de 5–10% nas primeiras semanas é esperada (vasoconstrição aferente hemodinâmica) e reversível — manter se queda < 30% e sem outros sinais de lesão renal."},
-
-  // ── IRA — diagnóstico e biomarcadores ────────────────────────────────────
-  {q:"Creatinina sérica é marcador tardio de IRA, podendo subir apenas 48–72h após o insulto renal.",ans:true,exp:"Creatinina reflete queda sustentada da TFG — biomarcadores precoces (NGAL, KIM-1, TIMP-2·IGFBP7) se elevam horas antes da creatinina e permitem intervenção precoce."},
-  {q:"TIMP-2 e IGFBP7 indicam estresse tubular com parada do ciclo celular e ajudam a predizer IRA moderada/grave.",ans:true,exp:"[TIMP-2]·[IGFBP7] > 0,3 (NephroCheck) prediz IRA estágio 2–3 em 12h — marcadores de G1/S arrest em células tubulares; aprovados pela FDA como teste de risco."},
-  {q:"CCL14 urinário ajuda a identificar IRA persistente e maior risco de recuperação lenta ou necessidade prolongada de suporte renal.",ans:true,exp:"CCL14 ≥ 1,3 ng/mL discrimina IRA persistente de transitória em UTI — prediz necessidade prolongada de TRS com AUC > 0,8; auxilia decisão de início de diálise."},
-  {q:"Sobrecarga hídrica pode diluir a creatinina sérica e mascarar a gravidade real da IRA.",ans:true,exp:"Expansão do volume de distribuição reduz a concentração plasmática de creatinina — IRA subestimada em pacientes ressuscitados com grandes volumes; usar também débito urinário e biomarcadores."},
-  {q:"Diuréticos reduzem a acurácia da fração de excreção de sódio na diferenciação entre IRA pré-renal e NTA.",ans:true,exp:"Furosemida aumenta excreção de Na⁺ → FENa falsa-positiva para NTA mesmo em IRA pré-renal — FEUreia (< 35% em pré-renal) é alternativa mais confiável após uso de diurético."},
-  {q:"KDIGO usa apenas débito urinário para diagnosticar e estadiar IRA.",ans:false,exp:"KDIGO 2012 usa critérios duplos: creatinina (↑ ≥ 0,3 mg/dL em 48h ou ≥ 50% em 7 dias) E/OU débito urinário (< 0,5 mL/kg/h por ≥ 6h) — ambos definem e estadiam IRA."},
-  {q:"Toda IRA deve ser tratada empiricamente com expansão vigorosa usando soro fisiológico 0,9%.",ans:false,exp:"IRA obstrutiva, NTA estabelecida ou parenquimatosa não se beneficia de expansão; SF 0,9% em volume pode causar acidose hiperclorêmica — tratar a causa específica."},
-  {q:"NGAL urinário é marcador específico de lesão podocitária e barreira glomerular.",ans:false,exp:"NGAL é marcador de lesão do TÚBULO PROXIMAL — expressão aumentada em células tubulares isquêmicas; não reflete lesão podocitária (que é melhor avaliada por proteinúria e anti-PLA2R)."},
-  {q:"IRA séptica recuperada não aumenta risco futuro de DRC.",ans:false,exp:"Episódios de IRA séptica, mesmo aparentemente recuperados, causam perda permanente de néfrons e inflamação residual — aumentam risco de DRC, DRC terminal e mortalidade a longo prazo."},
-  {q:"Biópsia renal é absolutamente contraindicada em qualquer episódio de IRA.",ans:false,exp:"Biópsia pode ser indicada em IRA de causa incerta (GN crescêntica, vasculite ANCA, NIA grave) — contraindicações relativas incluem coagulopatia não corrigida e rim único."},
-
-  // ── Distúrbios do sódio e da água ─────────────────────────────────────────
-  {q:"Hiponatremia geralmente reflete excesso relativo de água em relação ao sódio, não necessariamente perda absoluta de sal.",ans:true,exp:"Desequilíbrio entre ingesta de água e capacidade de excreção — SIADH, polidipsia, insuficiência cardíaca causam hiponatremia com sódio corporal total variável."},
-  {q:"Hiperglicemia grave causa hiponatremia hipertônica/translocacional, diferente da pseudohiponatremia.",ans:true,exp:"Glicose eleva osmolalidade efetiva → atrai água intracelular → dilui Na⁺; corrigir: adicionar 1,6 mEq/L de Na⁺ para cada 100 mg/dL de glicose acima de 100 mg/dL."},
-  {q:"SIADH cursa com hiponatremia euvolêmica, urina inapropriadamente concentrada e sódio urinário geralmente elevado.",ans:true,exp:"Diagnóstico: Na⁺ < 135 mEq/L, Posm < 275, Uosm > 100 mOsm/kg, Na⁺u > 30 mEq/L, euvolemia, tireoide e adrenal normais — causas: SNC, pulmão, drogas."},
-  {q:"Correção rápida de hiponatremia crônica aumenta risco de síndrome de desmielinização osmótica.",ans:true,exp:"Limite seguro: < 10 mEq/L/24h e < 18 mEq/L/48h — neurônios adaptam osmólitos intracelulares e os perdem com a correção rápida; mielinólise pontina central pode ser irreversível."},
-  {q:"Na diabetes insipidus, sede preservada e livre acesso à água são as principais defesas contra hipernatremia grave.",ans:true,exp:"Em DI, a poliúria é compensada pela polidipsia — hipernatremia grave ocorre quando o acesso à água é restrito (pacientes inconscientes, idosos, bebês sem acesso autônomo)."},
-  {q:"Hipernatremia é sempre causada por excesso de sal e tratada apenas com restrição de sódio.",ans:false,exp:"Hipernatremia reflete déficit relativo de água livre — causas: DI, perdas insensíveis, febre, suor; tratamento é reposição de água livre (SG 5%, VO ou SNG), não restrição de sódio."},
-  {q:"Hipovolemia e desidratação são sinônimos e ambas devem ser tratadas agudamente com grandes volumes de SG 5%.",ans:false,exp:"Hipovolemia = déficit de volume circulante (tratar com isotônico); desidratação = déficit de água livre (hiperosmolar) — SG5% em hipovolemia piora a perfusão; não são sinônimos."},
-  {q:"Hiponatremia hipovolêmica com repercussão sistêmica deve ser tratada prioritariamente com restrição hídrica.",ans:false,exp:"Restrição hídrica é para hiponatremia EUvolêmica (SIADH) — hipovolêmica sintomática exige NaCl 3% IV para correção e reposição da volemia simultaneamente."},
-  {q:"Ureia é o principal osmól efetivo responsável por deslocar água para o intravascular.",ans:false,exp:"Ureia é osmól INEFETIVO — atravessa livremente as membranas celulares sem gerar gradiente osmótico efetivo; Na⁺, glicose e manitol são os osmóis efetivos clinicamente relevantes."},
-  {q:"Hipernatremia aguda deve ser corrigida tão lentamente quanto a crônica para evitar desmielinização.",ans:false,exp:"Desmielinização osmótica ocorre na HIPOnatremia crônica corrigida rapidamente — em hipernatremia aguda (< 48h) a correção pode ser mais rápida; crônica: max 10 mEq/L/24h."},
-
-  // ── Acidose tubular, equilíbrio ácido-base e potássio ────────────────────
-  {q:"ATR distal causa falha de secreção de H+, hipocalemia, urina alcalina e maior risco de nefrocalcinose/litíase por fosfato de cálcio.",ans:true,exp:"Incapacidade de acidificar urina abaixo de pH 5,5 → hipocitratúria + pH alto → precipitação de fosfato de cálcio → nefrocalcinose e cálculos; tratar com citrato de potássio."},
-  {q:"Na ATR proximal, após queda do bicarbonato sérico, o néfron distal ainda consegue acidificar a urina.",ans:true,exp:"Limiar de reabsorção de HCO₃⁻ reduzido no proximal — uma vez que HCO₃⁻ cai abaixo do limiar, o distal acidifica normalmente (pH urinário < 5,5 possível), distinguindo ATR tipo 2 do tipo 1."},
-  {q:"Hipomagnesemia favorece perda renal de potássio por ROMK e torna a hipocalemia refratária à reposição isolada de KCl.",ans:true,exp:"Mg²⁺ intracelular bloqueia o canal ROMK no ramo ascendente e túbulo coletor — sem Mg²⁺, ROMK fica aberto → fuga contínua de K⁺; repor Mg²⁺ antes de tratar hipocalemia."},
-  {q:"Acidose metabólica por diarreia costuma cursar com ânion gap urinário negativo por aumento apropriado da excreção de NH4Cl.",ans:true,exp:"Diarreia → perda de HCO₃⁻ → acidose hiperclorêmica → rins respondem aumentando amoniogênese (NH₄⁺ = cátion não medido) → AG urinário negativo = resposta renal adequada."},
-  {q:"Insulina com glicose e beta-2 agonista reduzem temporariamente a calemia por shift intracelular.",ans:true,exp:"Insulina ativa Na/K-ATPase; beta-2 agonista ativa adenilato ciclase → AMPc → PKA → Na/K-ATPase — efeito aditivo, início em 15–30 min, duração 2–4h; não remove K⁺ do organismo."},
-  {q:"Furosemida é secretada no glomérulo e age no túbulo distal dependente de aldosterona.",ans:false,exp:"Furosemida é secretada pelo TÚBULO PROXIMAL (via OAT1/3) e age no NKCC2 da ALÇA DE HENLE ASCENDENTE ESPESSA — o túbulo distal dependente de aldosterona é o sítio dos tiazídicos e amilorida."},
-  {q:"ATR distal clássica cursa com ânion gap urinário negativo por aumento da amoniogênese.",ans:false,exp:"ATR distal tem FALHA de acidificação — amoniogênese está reduzida → AG urinário POSITIVO (poucos cátions não medidos como NH₄⁺); AG urinário negativo é o esperado na resposta renal normal à diarreia."},
-  {q:"Hipertensão grave com hipocalemia e alcalose metabólica em jovem sugere paralisia periódica genética, sem necessidade de avaliar renina/aldosterona.",ans:false,exp:"Hipertensão + hipocalemia + alcalose = investigar obrigatoriamente o eixo renina-aldosterona (hiperaldosteronismo primário, estenose de AR, síndrome de Liddle) — paralisia periódica é normotensa."},
-  {q:"Acidoses orgânicas causam maior shift extracelular de potássio do que acidoses minerais hiperclorêmicas.",ans:false,exp:"Acidoses MINERAIS (H⁺ inorgânico, hiperclorêmicas) causam maior saída de K⁺ da célula — em acidoses orgânicas o ânion orgânico penetra na célula junto com H⁺, minimizando o shift de K⁺."},
-  {q:"Poliestirenossulfonato é droga injetável de ação imediata para hipercalemia com alteração eletrocardiográfica grave.",ans:false,exp:"Poliestirenossulfonato é ORAL/RETAL de ação LENTA (horas a dias) — hipercalemia grave com ECG alterado exige gluconato de cálcio IV (estabilização cardíaca) + insulina/glicose de imediato."},
-
-  // ── Glomerulopatias ───────────────────────────────────────────────────────
-  {q:"Hemácias dismórficas, acantócitos e cilindros hemáticos sugerem fortemente hematúria glomerular.",ans:true,exp:"Eritrócitos deformados ao passar pela MBG lesada — acantócitos > 5% têm alta especificidade para GN; cilindro hemático é patognomônico de glomerulite ativa e indica biópsia urgente."},
-  {q:"GNRP é síndrome clínica de perda rápida da função renal com sedimento nefrítico, frequentemente associada a crescentes na biópsia.",ans:true,exp:"Perda de ≥ 50% da TFG em semanas — crescentes (proliferação extracapilar) em > 50% dos glomérulos; causas: anti-MBG (Goodpasture), ANCA, imunocomplexos."},
-  {q:"Anti-PLA2R auxilia diagnóstico, atividade e prognóstico da nefropatia membranosa primária.",ans:true,exp:"Positivo em ~70% da membranosa primária; título correlaciona com atividade da doença — queda precede a remissão clínica; diferencia membranosa primária da secundária (lúpus, neoplasia)."},
-  {q:"Nefropatia por IgA pode causar hematúria macroscópica sinfaringítica após infecção de vias aéreas.",ans:true,exp:"Hematúria em 24–72h de IVAS — diferente da GN pós-estreptocócica (latência 1–3 semanas); IgA1 galacto-deficiente forma imunocomplexos que se depositam no mesângio."},
-  {q:"Padrão full house na imunofluorescência sugere nefrite lúpica e indica investigação autoimune.",ans:true,exp:"Full house = IgG + IgA + IgM + C3 + C1q positivos — C1q (via clássica) é muito sugestivo de lúpus; pedir FAN, anti-dsDNA, complemento e excluir outras causas."},
-  {q:"Doença de lesão mínima exige proliferação endotelial difusa e consumo importante de C3.",ans:false,exp:"DLM: lesão podocitária com apagamento de processos na ME — SEM alteração endotelial e complemento NORMAL; proliferação endotelial e C3 baixo são achados de GN pós-infecciosa ou GNMP."},
-  {q:"Glomerulonefrite membranoproliferativa exige complemento sérico normal durante toda a evolução.",ans:false,exp:"GNMP frequentemente cursa com C3 baixo (via alternativa ou clássica consumida) — hipocomplementemia apoia o diagnóstico; complemento normal não é critério diagnóstico."},
-  {q:"Nefrite lúpica classe V com proteinúria não nefrótica sempre exige ciclofosfamida mensal.",ans:false,exp:"Classe V com proteinúria < nefrótica: IECA/BRA + antimalárico são suficientes inicialmente — ciclofosfamida/rituximabe/belimumabe são para proteinúria nefrótica persistente ou classes proliferativas mistas (III+V, IV+V)."},
-  {q:"Nefropatia diabética típica exige biópsia renal obrigatória em todos os pacientes.",ans:false,exp:"DM longa data + microalbuminúria progressiva + retinopatia: diagnóstico presuntivo aceito sem biópsia — biopsiar se atípico (início abrupto, sedimento ativo, progressão rápida sem retinopatia)."},
-  {q:"GESF genética apresenta excelente resposta sustentada à corticoterapia empírica.",ans:false,exp:"GESF genética (NPHS1, NPHS2, WT1, COL4A) é tipicamente CORTICORRESISTENTE — diagnóstico molecular orienta prognóstico e avaliação de recidiva no transplante."},
-
-  // ── Transplante renal ─────────────────────────────────────────────────────
-  {q:"Glomerulopatia do transplante cursa com duplicação da membrana basal glomerular e associa-se à rejeição crônica mediada por anticorpos.",ans:true,exp:"Lesão endotelial crônica por DSA → dupla contorno da MBG (multilaminação) + glomerulite crônica — critério de Banff para rejeição crônica ativa mediada por anticorpos."},
-  {q:"Decoy cells em transplantado renal levantam suspeita de nefropatia por poliomavírus BK.",ans:true,exp:"Decoy cells = células uroteliais com inclusões virais nucleares em 'olho de coruja' na citologia urinária — rastrear com PCR do BK no plasma; viremia > 10.000 cópias/mL indica redução da imunossupressão."},
-  {q:"Tacrolimo pode causar vasoconstrição aferente e queda da filtração como mecanismo de nefrotoxicidade por inibidor de calcineurina.",ans:true,exp:"CNI → vasoconstrição aferente por ativação de endotelina e tromboxano A₂ → queda de TFG — nível de tacrolimo correlaciona com nefrotoxicidade; manter < 8 ng/mL após 3 meses."},
-  {q:"GESF primária idiopática pode recorrer no enxerto, especialmente quando associada a fator de permeabilidade circulante.",ans:true,exp:"Recidiva precoce (horas–dias pós-transplante) em até 40% das GESF primárias — fator circulante (CLCF1, anti-CD40) aumenta permeabilidade da MBG; plasmaférese pode induzir remissão."},
-  {q:"Inibidores de mTOR, como sirolimo, podem induzir ou agravar proteinúria por toxicidade podocitária.",ans:true,exp:"mTOR é essencial para sobrevida e função do podócito — sirolimo/everolimo inibem mTORC1 → apoptose podocitária → proteinúria, especialmente ao substituir inibidores de calcineurina."},
-  {q:"CMV no transplante limita-se a pneumonia fatal nos primeiros dias pós-indução.",ans:false,exp:"CMV causa síndrome viral (febre, leucopenia), pneumonite, colite, hepatite, retinite — pico entre 1–6 meses pós-transplante; profilaxia com valganciclovir por 3–6 meses em alto risco."},
-  {q:"Nefropatia diabética recorrente destrói enxerto renal em poucas semanas.",ans:false,exp:"Lesões histológicas de nefropatia diabética reaparecem em 2–3 anos, mas falência do enxerto por diabetes recorrente tipicamente ocorre em décadas — não é causa de perda precoce do enxerto."},
-  {q:"Biópsia de enxerto renal é proibida por risco inevitável de perda vascular do rim transplantado.",ans:false,exp:"Biópsia percutânea guiada por US é procedimento padrão para avaliar rejeição, nefrotoxicidade e nefropatia BK — risco de sangramento grave < 1% em centros experientes."},
-  {q:"Rituximabe previne de forma confiável reativação de BK e JC no transplante.",ans:false,exp:"Rituximabe (anti-CD20) é usado em RMA e GN, mas NÃO previne reativação de poliomavírus — controle de BK é por redução da imunossupressão, não por agentes antivirais diretos."},
-  {q:"Alocação de rim de doador falecido no Brasil depende apenas de creatinina estável do receptor.",ans:false,exp:"O sistema brasileiro (SNT) considera compatibilidade HLA, tempo em lista, PRA, compatibilidade ABO e distância do centro — creatinina do receptor não é critério de alocação."},
-
-  // ── Síndrome hepatorrenal e cirrose ──────────────────────────────────────
-  {q:"IRA-SHR decorre de vasodilatação esplâncnica, redução do volume arterial efetivo e vasoconstrição renal compensatória.",ans:true,exp:"Hipertensão portal → vasodilatação esplâncnica (NO, prostaglandinas) → baixo enchimento arterial percebido → ativação SRAA/SNS → vasoconstrição renal intensa → SHR."},
-  {q:"Suspeita de SHR exige ausência de melhora após retirada de diuréticos e expansão com albumina por 48h.",ans:true,exp:"Critério KDIGO/ICA: excluir IRA pré-renal funcional com albumina 1 g/kg/dia (máx 100 g/dia) × 48h + suspensão de diuréticos; se sem melhora → confirma diagnóstico de SHR-IRA."},
-  {q:"Terlipressina ou outro vasoconstritor associado à albumina é a base do tratamento medicamentoso da IRA-SHR.",ans:true,exp:"Terlipressina (agonista V1) + albumina: reversão em ~40% — norepinefrina é alternativa em UTI; midodrina + octreotida em casos menos graves sem UTI."},
-  {q:"Congestão venosa sistêmica eleva pressão venosa renal e reduz o gradiente efetivo de filtração glomerular.",ans:true,exp:"PVC alta transmite-se para veias renais → aumenta pressão venosa renal → reduz diferença hidrostática transglomerular → queda da TFG (síndrome cardiorrenal venosa)."},
-  {q:"AINEs podem precipitar IRA em DRC, cirrose e insuficiência cardíaca por bloqueio das prostaglandinas renais.",ans:true,exp:"Em estados de baixo fluxo, PGE₂ e PGI₂ mantêm vasodilatação aferente compensatória — AINE elimina esse mecanismo → IRA funcional grave nessas populações de alto risco."},
-  {q:"Creatinina sérica sempre estima com precisão a função renal no cirrótico, independentemente da massa muscular.",ans:false,exp:"Cirrótico tem massa muscular reduzida → baixa produção de creatinina → creatinina sérica subestima a gravidade da IRA; cistatina C e ureia são marcadores mais confiáveis nesses pacientes."},
-  {q:"Débito urinário isolado é o critério mais confiável para diagnosticar IRA-SHR em todos os cirróticos.",ans:false,exp:"Cirróticos frequentemente têm oligúria por hiperaldosteronismo secundário sem IRA-SHR real — diagnóstico requer elevação de creatinina + exclusão de outras causas + critérios ICA específicos."},
-  {q:"Sódio urinário alto ou FENa elevada confirma síndrome hepatorrenal.",ans:false,exp:"SHR-IRA tem FENa < 0,1% (vasoconstrição intensa conserva Na⁺) — Na⁺u alto ou FENa elevada sugere NTA (uso de diuréticos ou lesão tubular real) e praticamente exclui SHR típico."},
-  {q:"Paracentese volumosa sem albumina previne disfunção circulatória e protege os rins.",ans:false,exp:"Paracentese > 5 L SEM albumina causa disfunção circulatória pós-paracentese → ativação SRAA → risco de IRA e SHR; reposição obrigatória: 8 g de albumina/L removido."},
-  {q:"Pequena elevação transitória de ureia/creatinina durante descongestão indica falência terapêutica e obriga suspender o diurético.",ans:false,exp:"Elevação de creatinina ≤ 0,5 mg/dL durante diurese eficaz é aceitável se clinicamente indicada — suspender apenas se houver IRA real com critérios KDIGO ou sinais de hipoperfusão tecidual."},
-
-  // ── Técnicas dialíticas e prescrição ─────────────────────────────────────
-  {q:"Hipotensão intradialítica ocorre quando a ultrafiltração excede a capacidade de refil plasmático e manutenção da volemia efetiva.",ans:true,exp:"Taxa de UF > taxa de refil vascular → hipovolemia efetiva → hipotensão; soluções: reduzir UF, aumentar Na dialístico, perfil de sódio, biofeedback de volemia."},
-  {q:"Citrato na CRRT anticoagula o circuito ao quelar cálcio e prolongar a vida útil do filtro.",ans:true,exp:"Citrato quelante de Ca²⁺ iônico no circuito extracorpóreo → inibe cascata de coagulação → vida útil do filtro > 72h; monitorar Ca total/iônico e acúmulo de citrato (risco em cirróticos)."},
-  {q:"Aumentar o fluxo de sangue pode elevar a depuração de pequenos solutos quando os demais parâmetros da diálise não são limitantes.",ans:true,exp:"Em hemodiálise, Kt/V e depuração de ureia aumentam com maior fluxo sanguíneo — especialmente relevante quando dose dialítica está abaixo do alvo de Kt/V 1,2/sessão."},
-  {q:"Em CRRT, dose entregue de efluente em torno de 20–25 mL/kg/h é o alvo usual para a maioria dos pacientes críticos.",ans:true,exp:"RENAL e ATN trials: doses > 35 mL/kg/h não reduzem mortalidade — 20–25 mL/kg/h (prescrever 25–30 para compensar o downtime) é a recomendação vigente das diretrizes."},
-  {q:"Hemodiálise incremental busca considerar a função renal residual; esquemas intensivos podem acelerar sua perda.",ans:true,exp:"Iniciar com 1–2 sessões/semana em pacientes com FRR preservada retarda anúria — sessões mais frequentes e intensivas podem reduzir FRR por mecanismos hemodinâmicos e remoção de solutos trófico-renais."},
-  {q:"Diálise peritoneal é invariavelmente incapaz de remover volume em situações agudas e sempre pior que hemodiálise.",ans:false,exp:"DP pode ser eficaz em IRA e IC aguda — ensaios randomizados não mostraram inferioridade em países de recursos limitados; CRRT e HD têm vantagens específicas em hipercatabolismo grave."},
-  {q:"Pré-diluição e pós-diluição na hemofiltração têm a mesma eficiência depurativa.",ans:false,exp:"Pós-diluição é mais eficiente (concentração plasmática maior no filtro); pré-diluição dilui o sangue antes do filtro → menor depuração por convecção, mas preserva a vida útil do filtro."},
-  {q:"Hemofiltração contínua remove solutos principalmente por difusão, sem papel relevante da convecção.",ans:false,exp:"Hemofiltração (HF) remove por CONVECÇÃO (arraste soluto com água — sieving) — difusão é o mecanismo principal da hemodiálise; hemodiafiltração combina ambos os mecanismos."},
-  {q:"Doses muito altas de CRRT, como 60–70 mL/kg/h, reduzem mortalidade de sepse em cerca de 80%.",ans:false,exp:"IVOIRE trial (60 vs 35 mL/kg/h em sepse): sem redução de mortalidade — doses muito altas não são benéficas e associam-se a perda excessiva de antibióticos e micronutrientes."},
-  {q:"Diálise incremental tem como objetivo eliminar rapidamente a função renal residual e induzir anúria.",ans:false,exp:"Objetivo oposto: PRESERVAR a função renal residual pelo maior tempo possível — menor carga hemodinâmica sobre néfrons remanescentes, com redução de sessões e hospitalizações."},
-
-  // ── Tópicos especiais (mineral ósseo, litíase, intoxicações, gestação) ───
-  {q:"Cinacalcete é calcimimético que ativa o receptor sensor de cálcio na paratireoide e reduz PTH, podendo reduzir cálcio sérico.",ans:true,exp:"Aumenta sensibilidade do CaSR → simula hipercalcemia → suprime PTH — hipocalcemia é efeito adverso importante; útil em hiperparatireoidismo secundário sem Ca baixo."},
-  {q:"Na litíase por oxalato, orienta-se hidratação, redução de sódio, moderação de proteína animal e manutenção de cálcio dietético adequado.",ans:true,exp:"Cálcio dietético 1000–1200 mg/dia liga oxalato no intestino → menos absorção → menos oxalúria; sódio e proteína animal aumentam calciúria e oxalúria — restrição de Ca é erro clássico."},
-  {q:"Lítio crônico pode causar diabetes insipidus nefrogênico; intoxicação grave por lítio pode exigir hemodiálise.",ans:true,exp:"Lítio bloqueia sinalização de AQP2 (via AMPc/PKA) → DI nefrogênico; t½ longo com depuração renal → HD indicada em intoxicação grave (lítio > 4 mEq/L ou sintomático)."},
-  {q:"Na DRC, retenção de fósforo e menor produção de calcitriol estimulam hiperparatireoidismo secundário.",ans:true,exp:"Hiperfosfatemia + hipocalcitriolismo + hipocalcemia → estimulam as paratireoides → HPT secundário → doença mineral óssea da DRC (CKD-MBD)."},
-  {q:"Intoxicação por salicilato pode se beneficiar de alcalinização urinária; casos graves podem exigir hemodiálise.",ans:true,exp:"pH urinário > 7,5 ↑ ionização do salicilato no túbulo → menor reabsorção → maior excreção renal; HD indicada em intoxicação grave (AAS > 100 mg/dL) ou falência orgânica."},
-  {q:"Cálculos de ácido úrico são radiopacos e melhoram com acidificação urinária intensa.",ans:false,exp:"Ácido úrico é RADIOTRANSPARENTE (invisível na RX simples, visível na TC) e dissolve com ALCALINIZAÇÃO urinária (pH > 6,5) — acidificação expande os cálculos."},
-  {q:"Doença óssea adinâmica não ocorre em pacientes dialíticos.",ans:false,exp:"Doença adinâmica (PTH baixo, turnover reduzido) é FREQUENTE em dialíticos — supressão excessiva com vitamina D ativa ou cinacalcete, diabetes e uso histórico de alumínio são fatores de risco."},
-  {q:"Bicarbonato ou N-acetilcisteína eliminam de forma absoluta o risco de nefropatia associada a contraste.",ans:false,exp:"PRESERVE e ACT trials: bicarbonato e NAC não são superiores ao soro fisiológico isotônico — hidratação adequada pré e pós-procedimento permanece o único pilar com evidência consistente."},
-  {q:"Carvão ativado é tratamento eficaz para intoxicação por etanol mesmo muitas horas após a ingestão.",ans:false,exp:"Carvão ativado NÃO adsorve etanol de forma eficiente — para metanol e etilenoglicol o tratamento é fomepizol + HD; para etanol, suporte clínico é o pilar."},
-  {q:"Na gestação normal, a TFGe cai acentuadamente e creatinina sérica aumenta fisiologicamente.",ans:false,exp:"Gestação normal AUMENTA TFG em 40–60% (hiperfiltração fisiológica) → creatinina cai para 0,4–0,6 mg/dL — creatinina 'normal' de 0,9 mg/dL na grávida pode mascarar disfunção renal."},
-
-  // ── Microangiopatias trombóticas e diagnósticos miscelâneos ──────────────
-  {q:"Esquizócitos, plaquetopenia, LDH elevado e haptoglobina baixa sugerem anemia hemolítica microangiopática.",ans:true,exp:"Tríade de MAT: MAHA + plaquetopenia + disfunção orgânica — causas: PTT, SHU, HELLP; a diferenciação guia o tratamento específico (plasmaférese vs suporte vs eculizumabe)."},
-  {q:"Deficiência grave de ADAMTS13, geralmente por autoanticorpo, é mecanismo central da PTT imune.",ans:true,exp:"ADAMTS13 < 10% + inibidor → acúmulo de multímeros ultralargos de FvW → microtrombos plaquetários → PTT imune; plasmaférese urgente + rituximabe salva a vida."},
-  {q:"SHU típica costuma ocorrer após diarreia por bactéria produtora de toxina Shiga e cursa com anemia hemolítica, plaquetopenia e IRA.",ans:true,exp:"E. coli O157:H7 (STEC) → toxina Shiga lesiona endotélio renal → MAT renal com IRA oligúrica — pico em < 10 anos; evitar antibióticos na fase aguda para não aumentar liberação de Stx."},
-  {q:"Proteinúria discreta em diabético de longa data, sem sedimento ativo, pode sugerir nefropatia diabética típica sem biópsia inicial obrigatória.",ans:true,exp:"DM > 10 anos + microalbuminúria progressiva + retinopatia: diagnóstico presuntivo é aceito — biopsiar se atípico: hematúria, sedimento nefrítico, progressão rápida ou ausência de retinopatia."},
-  {q:"Hipertensão resistente ou hipocalemia com alcalose metabólica deve levantar suspeita de hiperaldosteronismo primário.",ans:true,exp:"Aldosterona independente de angiotensina → retenção de Na⁺/H₂O, excreção de K⁺ e H⁺ → HAS + hipocalemia + alcalose; rastrear com relação aldosterona/renina plasmáticas."},
-  {q:"Suspeita de PTT deve ser manejada apenas com diurético e antibiótico, evitando plasmaférese.",ans:false,exp:"PTT é emergência hematológica — plasmaférese (repõe ADAMTS13 e remove inibidor) DEVE ser iniciada imediatamente; atraso leva a mortalidade de 90%; corticoide e rituximabe são adjuvantes."},
-  {q:"Tenofovir causa obstrução uretral crônica, sem disfunção tubular proximal.",ans:false,exp:"Tenofovir disoproxil fumarato (TDF) causa toxicidade MITOCONDRIAL tubular proximal → síndrome de Fanconi adquirida (glicosúria, aminoacidúria, fosfatúria) — não causa obstrução uretral."},
-  {q:"Proteinúria leve na gestação sempre indica glomerulonefrite grave ou nefropatia diabética preexistente.",ans:false,exp:"Proteinúria < 300 mg/24h pode ser fisiológica na gestação (hiperfiltração) — pré-eclâmpsia exige PA ≥ 140/90 + proteinúria ≥ 300 mg/24h após 20 semanas ou critérios clínicos adicionais."},
-  {q:"Doença renal policística autossômica dominante exige biópsia renal seriada para confirmação diagnóstica.",ans:false,exp:"DRPAD é diagnosticada por IMAGEM (US, TC ou RM) pelos critérios de Ravine ou Pei conforme idade e número de cistos — biópsia é desnecessária quando imagem e história familiar são típicos."},
-  {q:"Lítio tem alta ligação à albumina e, por isso, não é removível por hemodiálise em intoxicações graves.",ans:false,exp:"Lítio tem BAIXA ligação proteica (< 5%) e volume de distribuição moderado → altamente dialisável; HD está indicada em intoxicação grave (lítio > 4 mEq/L, sintomas neurológicos ou renais)."},
-
-  // ── Avaliação de função renal e biomarcadores ─────────────────────────────
-  {q:"CKD-EPI estima a TFGe com melhor desempenho que MDRD, especialmente em faixas mais altas de função renal.",ans:true,exp:"CKD-EPI 2021 (sem coeficiente racial) tem melhor acurácia em TFGe > 60 mL/min — MDRD subestima TFGe nesses valores, impactando o correto estadiamento da DRC."},
-  {q:"Clearance de creatinina em urina de 24h tende a superestimar a TFG por secreção tubular de creatinina.",ans:true,exp:"Secreção proximal de creatinina via OAT/MATE adiciona creatinina ao filtrado — ClCr supera a TFGe real em até 20–40%, especialmente em DRC avançada onde a secreção é proporcionalmente maior."},
-  {q:"Na DRC, hepcidina elevada reduz a disponibilidade de ferro e contribui para deficiência funcional de ferro.",ans:true,exp:"Inflamação crônica + redução da depuração renal → hepcidina alta → degrada ferroportina em enterócitos e macrófagos → ferro retido nos estoques, inacessível para eritropoese."},
-  {q:"Estabilizadores de HIF estimulam eritropoietina endógena e podem reduzir hepcidina na anemia da DRC.",ans:true,exp:"Inibidores de prolil-hidroxilase (roxadustate, daprodustate) estabilizam HIF-α → ↑EPO endógena + supressão de hepcidina → melhor utilização do ferro armazenado — via distinta dos ESA injetáveis."},
-  {q:"Clearance de ureia isolado estima a TFG com precisão e não sofre influência de dieta, sangramento digestivo ou catabolismo.",ans:false,exp:"Ureia sofre reabsorção tubular variável (20–70%) e é influenciada por ingesta proteica, catabolismo, sangramento digestivo e hidratação — não é marcador confiável de TFG isoladamente."},
-  {q:"Nefropatia diabética típica exige biópsia renal obrigatória logo após microalbuminúria.",ans:false,exp:"Microalbuminúria em DM com retinopatia e longa duração: diagnóstico presuntivo é aceito sem biópsia — biopsiar apenas se atípico (sedimento ativo, progressão rápida sem retinopatia, suspeita de outra GN)."},
-  {q:"Urina tipo I perdeu valor clínico porque não detecta proteinúria, hematúria ou dismorfismo eritrocitário.",ans:false,exp:"EQU detecta proteinúria (fita reagente) e hematúria — o dismorfismo eritrocitário exige microscopia de fase contraste, que é exame adicional; o EQU continua sendo triagem clínica essencial."},
-  {q:"BNP isolado confirma síndrome cardiorrenal tipo 1 e não sofre interferência da DRC.",ans:false,exp:"BNP e NT-proBNP são elevados na DRC (redução da depuração renal) mesmo sem disfunção cardíaca descompensada — diagnóstico de síndrome cardiorrenal exige contexto clínico, imagem e função renal seriada."},
-
-  // ── Ácido-base e eletrólitos — complemento ────────────────────────────────
-  {q:"Ânion gap deve ser corrigido pela albumina, pois hipoalbuminemia pode mascarar acidose com ânions não mensurados.",ans:true,exp:"AG corrigido = AG medido + 2,5 × (4 − albumina g/dL) — sem correção, hipoalbuminemia reduz o AG basal e pode ocultar acidose de AG elevado (lactato, cetose, uremia)."},
-  {q:"Acidose hiperclorêmica por diarreia cursa com ânion gap urinário negativo quando a resposta renal ao amônio está preservada.",ans:true,exp:"Diarreia → perda de HCO₃⁻ → acidose NAGMA → rim aumenta amoniogênese (NH₄⁺ = cátion não medido) → AG urinário [Na⁺+K⁺−Cl⁻] negativo = resposta renal correta."},
-  {q:"Acidose metabólica com ânion gap elevado e gap osmolar aumentado sugere intoxicação por álcoois tóxicos.",ans:true,exp:"Metanol e etilenoglicol → ácidos fórmico e oxálico (↑AG) + osmóis não medidos (↑gap osmolar = osmolalidade medida − calculada > 10) — indicação de fomepizol + hemodiálise urgente."},
-  {q:"Na ATR proximal, há bicarbonatúria inicial; após queda do bicarbonato sérico, a urina pode voltar a acidificar.",ans:true,exp:"Limiar de reabsorção de HCO₃⁻ reduzido no proximal — quando HCO₃⁻ sérico cai abaixo do limiar, o distal intacto acidifica normalmente (pH < 5,5); distingue ATR tipo 2 do tipo 1."},
-  {q:"Furosemida intravenosa reverte choque hipovolêmico por reidratar o intravascular e proteger a TFG.",ans:false,exp:"Furosemida em hipovolemia agrava a perfusão renal e pode precipitar IRA — tratamento de choque hipovolêmico é expansão com cristaloide isotônico; diurético é contraindicado nesse contexto."},
-  {q:"Gluconato de cálcio reduz rapidamente o potássio sérico total na hipercalemia grave.",ans:false,exp:"Gluconato de cálcio ESTABILIZA A MEMBRANA cardíaca sem alterar a calemia — para reduzir K⁺: insulina + glicose (shift intracelular), beta-2 agonista; para remover: resinas de troca, diálise."},
-  {q:"Paracetamol crônico causa acidose metabólica com ânion gap sempre normal e mielinólise cerebral fulminante.",ans:false,exp:"Intoxicação aguda por paracetamol pode gerar acidose lática (AG elevado) por disfunção mitocondrial e hepatotoxicidade — mielinólise cerebral não é complicação associada ao paracetamol."},
-  {q:"Na intoxicação por metanol, lavagem gástrica com bicarbonato é superior à hemodiálise para depuração da toxina.",ans:false,exp:"Hemodiálise remove metanol e seu metabólito tóxico (ácido fórmico) de forma muito mais eficiente do que lavagem gástrica — fomepizol inibe o metabolismo e HD é o pilar do tratamento grave."},
-
-  // ── Glomerulopatias — complemento ─────────────────────────────────────────
-  {q:"Anti-PLA2R é o principal marcador imunológico da nefropatia membranosa primária em adultos.",ans:true,exp:"Positivo em ~70% da membranosa primária idiopática — auxilia diagnóstico, diferencia de membranosa secundária (geralmente anti-PLA2R negativa), monitora resposta ao tratamento e prediz recidiva."},
-  {q:"Na MGRS, clones pequenos podem produzir imunoglobulinas monoclonais nefrotóxicas, mesmo sem critério para mieloma múltiplo.",ans:true,exp:"Monoclonal Gammopathy of Renal Significance: clone subclínico (< 10% plasmócitos) produz proteína que causa amiloidose AL, LCDD ou MIDD — tratar o clone independentemente do tamanho tumoral."},
-  {q:"O escore MEST-C estratifica prognóstico na nefropatia por IgA por achados glomerulares e túbulo-intersticiais.",ans:true,exp:"Mesangial (M), Endocapilar (E), Segmentar (S), Tubular (T) e Crescentes (C) — T (atrofia tubular > 25%) e C (crescentes > 25%) predizem pior prognóstico e benefício de imunossupressão."},
-  {q:"Nefrite lúpica classe IV é forma proliferativa grave, associada a hematúria, queda de função renal e consumo de complemento.",ans:true,exp:"GN proliferativa difusa (> 50% dos glomérulos) — sedimento nefrítico, C3/C4 baixos, anti-dsDNA elevado; indução com micofenolato ou ciclofosfamida + corticoide em pulso."},
-  {q:"Doença de lesão mínima cursa com crescentes fibróticos e depósitos glomerulares volumosos na microscopia eletrônica.",ans:false,exp:"DLM: apagamento difuso de processos podocitários na ME, SEM crescentes e SEM depósitos imunes significativos — crescentes e depósitos sugerem GN proliferativa ou membranosa."},
-  {q:"MGRS causa apenas glomeruloesclerose segmentar focal familiar.",ans:false,exp:"MGRS engloba múltiplas lesões histológicas: amiloidose AL, LCDD, MIDD, GN com depósitos organizados (fibrilar, imunotactoide) — não é entidade única nem de base familiar."},
-  {q:"Nefrite lúpica classe II sempre evolui para síndrome nefrótica terminal e exige ciclofosfamida venosa.",ans:false,exp:"Classe II (mesangial pura): prognóstico favorável — antimalárico + IECA/BRA suficientes; ciclofosfamida reservada para classes III/IV ou V com síndrome nefrótica grave."},
-  {q:"GNRP pauci-imune com crescentes exclui vasculite ANCA-associada.",ans:false,exp:"GNRP pauci-imune (IF negativa ou mínima) É a forma típica de vasculite ANCA-associada (PAM, granulomatose com poliangiite) — ANCA positivo em > 80% dos casos pauci-imunes."},
-
-  // ── Diálise e CRRT — complemento ──────────────────────────────────────────
-  {q:"Na anticoagulação regional com citrato, relação cálcio total/cálcio iônico > 2,5 sugere acúmulo sistêmico de citrato.",ans:true,exp:"Acúmulo de citrato (hepatopatia, hipoperfusão hepática) complexa Ca sistêmico → Ca total alto mas iônico baixo; relação > 2,5 = 'citrate lock' → reduzir infusão de citrato e avaliar carga metabólica."},
-  {q:"Na água de diálise, contagem bacteriana elevada exige ação corretiva antes de ultrapassar o limite máximo permitido.",ans:true,exp:"Padrão ABNT/AAMI: < 100 UFC/mL para HD convencional e < 0,1 UFC/mL para ultrapura (HDF online) — contagem elevada indica biofilme no sistema de tratamento de água; ação preventiva obrigatória."},
-  {q:"Doses intensivas de CRRT acima do padrão não demonstraram benefício consistente de sobrevida em IRA séptica.",ans:true,exp:"RENAL e ATN: 20–25 mL/kg/h suficiente; IVOIRE (60 vs 35 mL/kg/h): sem redução de mortalidade — doses muito altas aumentam perda de antibióticos e micronutrientes sem benefício adicional."},
-  {q:"Hemodiálise incremental exige função renal residual significativa, diurese preservada e monitorização periódica.",ans:true,exp:"Critérios: TFGe residual > 5 mL/min, diurese > 500 mL/dia e Kt/V semanal ≥ 2,0 com 1–2 sessões/semana — monitorar FRR a cada 3–6 meses para ajustar frequência dialítica."},
-  {q:"CRRT não consegue corrigir hipercalemia e remove potássio apenas por arrasto de sódio.",ans:false,exp:"CRRT remove K⁺ eficientemente por convecção e difusão — hipercalemia grave responde em horas com banho de diálise com K⁺ 0–2 mEq/L; é uma das indicações urgentes de TRS."},
-  {q:"Membranas low-flux são a principal estratégia para remover citocinas grandes na CRRT.",ans:false,exp:"Membranas HIGH-flux e de alto corte (HCO) são usadas para remoção de médias e grandes moléculas — membranas low-flux removem apenas pequenos solutos por difusão e são ineficazes para citocinas."},
-  {q:"Diálise peritoneal de urgência é comprovadamente superior à hemodiálise diária em pacientes metabolicamente instáveis.",ans:false,exp:"Evidência insuficiente para superioridade da DP sobre HD em instabilidade hemodinâmica grave — HD lenta ou CRRT têm vantagens no controle de solutos em pacientes catabólicos graves."},
-  {q:"Cateter de alto fluxo elimina a necessidade de avaliar anticoagulação ou risco de coagulação do circuito dialítico.",ans:false,exp:"Cateter de alto fluxo garante fluxo sanguíneo adequado, mas coagulação do circuito depende do estado de coagulabilidade do paciente, tipo de membrana e anticoagulação — avaliação é sempre necessária."},
-
-  // ── Síndrome hepatorrenal e transplante — complemento ────────────────────
-  {q:"IRA-SHR decorre de vasodilatação esplâncnica, baixo volume arterial efetivo e intensa retenção renal de sódio.",ans:true,exp:"Hipertensão portal → vasodilatação esplâncnica (NO) → baixo enchimento arterial percebido → ativação SRAA + SNS → vasoconstrição renal + retenção máxima de Na⁺ → oligo/anúria."},
-  {q:"Na suspeita de IRA-SHR, deve-se suspender diuréticos e avaliar resposta à albumina por 48h após excluir outras causas evidentes.",ans:true,exp:"Critério ICA/EASL: albumina 1 g/kg/dia × 48h + suspensão de diuréticos + exclusão de nefrotóxicos e obstrução; ausência de melhora confirma o diagnóstico de SHR-IRA."},
-  {q:"Inibidores de mTOR, como sirolimo e everolimo, podem causar ou agravar proteinúria por toxicidade podocitária.",ans:true,exp:"mTORC1 é essencial para sobrevivência podocitária — sirolimo/everolimo induzem apoptose podocitária e proteinúria, especialmente ao substituir inibidores de calcineurina."},
-  {q:"Glomerulopatia do transplante cursa com proteinúria, duplicação da membrana basal glomerular e associação com rejeição crônica mediada por anticorpos.",ans:true,exp:"Lesão endotelial crônica por DSA → multilaminação da MBG + glomerulite crônica — critério de Banff para rejeição crônica ativa mediada por anticorpos; tratar com plasmaférese e rituximabe."},
-  {q:"Toda IRA nas primeiras horas de um cirrótico grave deve ser classificada imediatamente como síndrome hepatorrenal pura.",ans:false,exp:"Diagnóstico de SHR exige exclusão ativa de hipovolemia, nefrotóxicos, infecção e obstrução + ausência de melhora após albumina por 48h — classificação prematura leva a tratamento inadequado."},
-  {q:"Decoy cells em transplantado renal indicam explante imediato e obrigatório do enxerto.",ans:false,exp:"Decoy cells sugerem infecção por BK — confirmação requer PCR do BK > 10.000 cópias/mL e biópsia do enxerto; manejo é REDUÇÃO DA IMUNOSSUPRESSÃO, não explante."},
-  {q:"PTH > 1200 pg/mL é critério legal de prioridade para transplante renal cadavérico no Brasil.",ans:false,exp:"O sistema de alocação renal do Brasil (SNT) não usa PTH como critério de prioridade — alocação considera compatibilidade HLA, PRA, tempo em lista, ABO e fatores logísticos."},
-  {q:"Ultrassonografia substitui a biópsia no diagnóstico definitivo de rejeição celular aguda do enxerto.",ans:false,exp:"US Doppler avalia morfologia e vascularização, mas não tem especificidade para tipo de rejeição — diagnóstico definitivo de rejeição aguda celular ou mediada por anticorpos exige biópsia com critérios de Banff."},
-
-  // ── Tópicos especiais — complemento ──────────────────────────────────────
-  {q:"Na poliúria hipotônica, ausência de concentração urinária no teste de restrição hídrica com resposta à desmopressina sugere diabetes insipidus central.",ans:true,exp:"DI central: Uosm não sobe com desidratação, mas aumenta ≥ 50% após DDAVP; DI nefrogênico: sem resposta ao DDAVP; polidipsia primária: concentra progressivamente com desidratação."},
-  {q:"Na DRPAD, hipertensão arterial pode surgir antes da queda da TFGe.",ans:true,exp:"Cistos em crescimento comprimem arteríolas → ativação local do SRAA → HAS precoce; HALT-PKD: IECA/BRA em alvo PA < 110/75 mmHg retardou crescimento cistico em jovens com TFG preservada."},
-  {q:"Hiperoxalúria primária tipo 1 decorre de deficiência hepática da AGT e pode causar nefrocalcinose, DRC e oxalose sistêmica.",ans:true,exp:"Deficiência de AGXT hepática → acúmulo de oxalato → nefrocalcinose, DRC e depósitos em coração, ossos e retina (oxalose); lumasirana (siRNA) aprovada; transplante hepatorrenal em casos graves."},
-  {q:"Na DRC dialítica, PTH muito elevado com fosfatase alcalina alta sugere doença óssea de alto turnover.",ans:true,exp:"PTH > 600–1000 pg/mL + fosfatase alcalina elevada = osteíte fibrosa cística (alto turnover) — controlar fósforo, repor calcitriol/paricalcitol e cinacalcete; biópsia óssea se diagnóstico incerto."},
-  {q:"Hiponatremia hipertônica deve ser tratada com vaptans e grandes volumes de soluções hipotônicas.",ans:false,exp:"Hiponatremia HIPERTÔNICA (ex: hiperglicemia grave) trata-se corrigindo a causa base (insulina na CAD) — vaptans são para hiponatremia hipotônica euvolêmica (SIADH); soluções hipotônicas em volume podem ser perigosas."},
-  {q:"Lítio injetável e diuréticos osmóticos reduzem PTH e tratam litíase renal recorrente.",ans:false,exp:"Lítio causa diabetes insipidus nefrogênico e hipercalcemia (não reduz PTH); diuréticos osmóticos não tratam litíase — litíase cálcica: tiazídicos + hidratação + citrato; úrica: alcalinização + alopurinol/febuxostate."},
-  {q:"Hemodiálise é contraindicada na acidose lática grave associada à metformina porque a molécula não é dializável.",ans:false,exp:"Metformina é ALTAMENTE DIALIZÁVEL (baixo peso molecular, baixa ligação proteica) — HD está INDICADA em acidose lática grave por metformina para remover a droga e o lactato acumulado."},
-  {q:"Cinacalcete atua bloqueando o intestino e causa hipercalcemia grave como efeito esperado.",ans:false,exp:"Cinacalcete é calcimimético que age no CaSR da paratireoide — aumenta sensibilidade, simula hipercalcemia, suprime PTH; efeito adverso é HIPOcalcemia (não hipercalcemia); não atua no intestino."},
-  {q:"SIADH causa perda maciça de sódio e deve ser tratada com grandes volumes de soro glicosado a 5%.",ans:false,exp:"SIADH retém água (não perde sódio ativamente) e cursa com euvolemia — SG 5% agrava a hiponatremia por ser hipotônico; tratamento: restrição hídrica ± NaCl 3% ± vaptans conforme gravidade."},
+  {
+    "qid": "cd693ac9",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "IECA e BRA nunca devem ser usados juntos em DRC — risco de hipercalemia e IRA.",
+    "ans": true,
+    "exp": "ONTARGET: combinação aumenta eventos adversos sem benefício renal adicional."
+  },
+  {
+    "qid": "8814e740",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "O 'dip' inicial de TFG com iSGLT2 é sinal de nefrotoxicidade direta.",
+    "ans": false,
+    "exp": "É efeito hemodinâmico protetor — reduz hiperfiltração intraglomerular. Reversível."
+  },
+  {
+    "qid": "c13a2938",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Na hemodiálise, Kt/V alvo mínimo recomendado pelo KDIGO é 1.2 por sessão.",
+    "ans": true,
+    "exp": "Kt/V ≥ 1.2 por sessão em diálise 3×/semana é o padrão mínimo de adequação."
+  },
+  {
+    "qid": "664c9e5b",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "Hiato aniônico normal na acidose metabólica sugere causa renal ou gastrointestinal.",
+    "ans": true,
+    "exp": "NAGMA: acidose tubular renal, diarreia, fístulas digestivas — perda de bicarbonato."
+  },
+  {
+    "qid": "5d52c636",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Anti-PLA2R positivo indica nefropatia membranosa de causa secundária (ex: lúpus).",
+    "ans": false,
+    "exp": "Anti-PLA2R positivo = nefropatia membranosa primária. Causas secundárias costumam ser anti-PLA2R negativas."
+  },
+  {
+    "qid": "1e2b546a",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Icodextrina na diálise peritoneal melhora ultrafiltração na troca longa noturna.",
+    "ans": true,
+    "exp": "Polímero de alto PM — mantém osmose por período prolongado sem absorção sistêmica."
+  },
+  {
+    "qid": "8c16594b",
+    "cat": "nefrologia_geral",
+    "diff": "medium",
+    "q": "Clearance de creatinina superestima a TFG real por incluir secreção tubular ativa.",
+    "ans": true,
+    "exp": "Secreção proximal de creatinina → ClCr > TFGe real em até 20%, especialmente com TFG baixa."
+  },
+  {
+    "qid": "78821432",
+    "cat": "hipertensao",
+    "diff": "medium",
+    "q": "Cistatina C é marcador mais preciso que creatinina em pacientes com baixa massa muscular.",
+    "ans": true,
+    "exp": "Cistatina C independe de massa muscular e etnia — superior em idosos, amputados e desnutridos."
+  },
+  {
+    "qid": "eacbc1c0",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "Na ATR tipo 1 (distal), o pH urinário permanece > 5.5 mesmo com acidemia sistêmica grave.",
+    "ans": true,
+    "exp": "Defeito na bomba H-ATPase tubular distal — incapacidade de acidificar urina abaixo de pH 5.5."
+  },
+  {
+    "qid": "547fa63b",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "Hidratação com bicarbonato de sódio é superior ao soro fisiológico para prevenir nefropatia por contraste.",
+    "ans": false,
+    "exp": "Estudos randomizados não mostraram superioridade do bicarbonato — soro fisiológico isotônico é padrão."
+  },
+  {
+    "qid": "dfbec68f",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Finerenona é um ARM não esteroidal com menos ginecomastia que espironolactona.",
+    "ans": true,
+    "exp": "Finerenona (FIDELIO-DKD, FIGARO-DKD): seletiva para MR, sem efeitos androgênicos/estrogênicos."
+  },
+  {
+    "qid": "bac1338f",
+    "cat": "nefropatia_diabetica",
+    "diff": "medium",
+    "q": "Dapagliflozina reduz progressão de DRC independentemente da presença de diabetes tipo 2.",
+    "ans": true,
+    "exp": "DAPA-CKD incluiu pacientes sem DM2 e demonstrou benefício nefroprotetor consistente."
+  },
+  {
+    "qid": "66d4cad0",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Hipercalemia com ECG alterado exige gluconato de cálcio IV imediato para estabilizar o miocárdio.",
+    "ans": true,
+    "exp": "Gluconato de cálcio: efeito em 1-3 min, sem alterar a calemia — protege o coração enquanto aguarda depuração."
+  },
+  {
+    "qid": "d9da7c09",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Na peritonite em diálise peritoneal, a cultura do efluente deve ser positiva para fechar o diagnóstico.",
+    "ans": false,
+    "exp": "Diagnóstico: efluente turvo + leucócitos > 100/mm³ — cultura pode ser negativa em até 20% dos casos."
+  },
+  {
+    "qid": "25adf01d",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Nefropatia membranosa é a causa mais comum de glomerulonefrite primária no mundo.",
+    "ans": false,
+    "exp": "IgA nefropatia é a GN primária mais comum (30-40%) — nefropatia membranosa é a mais frequente na síndrome nefrótica de adultos, não de GN no geral. das GN primárias globalmente; mais prevalente em asiáticos e caucasianos jovens."
+  },
+  {
+    "qid": "13e1681b",
+    "cat": "genetica",
+    "diff": "medium",
+    "q": "Síndrome de Alport resulta de mutação no colágeno tipo II da membrana basal glomerular.",
+    "ans": false,
+    "exp": "Alport é causada por mutações no COLÁGENO TIPO IV (COL4A3/A4/A5) — colágeno tipo II está em cartilagem e não na membrana basal glomerular."
+  },
+  {
+    "qid": "0f0d4f28",
+    "cat": "hipertensao",
+    "diff": "medium",
+    "q": "PTH elevado cronicamente na DRC pode causar doença óssea adinâmica pelo hiperparatireoidismo secundário.",
+    "ans": false,
+    "exp": "PTH cronicamente ELEVADO causa OSTEÍTE FIBROSA CÍSTICA (alto turnover) — doença óssea adinâmica é causada por PTH muito BAIXO ou supressão excessiva com vitamina D ativa."
+  },
+  {
+    "qid": "c25a2fed",
+    "cat": "hipertensao",
+    "diff": "medium",
+    "q": "Calcitriol (1,25-OH-D3) é produzido principalmente no fígado.",
+    "ans": false,
+    "exp": "1α-hidroxilação ocorre no rim (túbulo proximal) — DRC avançada leva a deficiência de calcitriol."
+  },
+  {
+    "qid": "0658ea1b",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Acidose metabólica crônica na DRC protege o néfron remanescente ao reduzir a hiperfiltração glomerular.",
+    "ans": false,
+    "exp": "Acidose ACELERA a progressão da DRC — ativa TGF-β, endotelina e complemento, promovendo fibrose tubulointersticial progressiva."
+  },
+  {
+    "qid": "eee2dc44",
+    "cat": "litíase",
+    "diff": "medium",
+    "q": "Furosemida tem eficácia reduzida como diurético quando TFGe < 30 mL/min.",
+    "ans": false,
+    "exp": "Furosemida mantém eficácia em TFG baixa (precisa de doses maiores) — tiazídicos é que perdem eficácia < 30."
+  },
+  {
+    "qid": "c94f2304",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "SHR tipo 1 (síndrome hepatorrenal aguda) tem progressão rápida em menos de 2 semanas.",
+    "ans": true,
+    "exp": "SHR tipo 1 (agora 'SHR-IRA'): progressão em < 2 semanas, mortalidade > 80% sem tratamento."
+  },
+  {
+    "qid": "526e78a2",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "O escore de Banff é usado para classificar o grau de rejeição em biópsias renais pós-transplante.",
+    "ans": true,
+    "exp": "Critérios de Banff (desde 1991): classifica rejeição celular e mediada por anticorpos."
+  },
+  {
+    "qid": "09ecff49",
+    "cat": "transplante",
+    "diff": "medium",
+    "q": "Ciclosporina pode causar nefrotoxicidade aguda (vasoconstrição) E crônica (fibrose intersticial).",
+    "ans": true,
+    "exp": "Toxicidade aguda: vasoconstrição aferente (reversível). Crônica: fibrose e arteriolopatia (irreversível)."
+  },
+  {
+    "qid": "1f2500ad",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Rabdomiólise induz IRA principalmente por obstrução tubular com cilindros de mioglobina.",
+    "ans": true,
+    "exp": "Mioglobina é nefrotóxica: vasoconstrição, estresse oxidativo e obstrução tubular direta."
+  },
+  {
+    "qid": "28a517ee",
+    "cat": "transplante",
+    "diff": "medium",
+    "q": "O transplante renal de doador vivo tem melhor sobrevida de enxerto que o de doador falecido.",
+    "ans": true,
+    "exp": "Menor isquemia fria, melhor função imediata do enxerto, melhor match imunológico possível."
+  },
+  {
+    "qid": "4495c9e2",
+    "cat": "nefropatia_diabetica",
+    "diff": "medium",
+    "q": "iSGLT2 estão contraindicados em qualquer paciente com TFGe < 45 mL/min.",
+    "ans": false,
+    "exp": "Dapagliflozina/empagliflozina são usadas para nefroproteção mesmo em TFGe 25-45 — mudança recente de bula."
+  },
+  {
+    "qid": "29fb3b2b",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "A albumina sérica baixa na síndrome nefrótica é consequência direta da proteinúria maciça.",
+    "ans": true,
+    "exp": "Perda renal de albumina supera capacidade hepática de síntese → hipoalbuminemia e edema."
+  },
+  {
+    "qid": "fce073e7",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "Bicarbonato de sódio oral está indicado em DRC somente quando bicarbonato sérico < 18 mEq/L, quando a acidose é grave.",
+    "ans": false,
+    "exp": "KDIGO 2024 indica suplementação quando HCO₃ < 22 mEq/L — não apenas < 18; meta é manter > 22 para retardar progressão."
+  },
+  {
+    "qid": "13f0ba39",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "AINE em DRC avançada pode precipitar IRA por bloquear prostaglandinas vasodilatadoras renais.",
+    "ans": true,
+    "exp": "Em estados de baixo fluxo, rins dependem de prostaglandinas para vasodilatação aferente — AINE bloqueia."
+  },
+  {
+    "qid": "e45d4c5c",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Nefropatia por IgA pode ser tratada com inibidores de SGLT2 para reduzir proteinúria.",
+    "ans": true,
+    "exp": "DAPA-CKD e estudos específicos de IgAN mostram redução de proteinúria com iSGLT2."
+  },
+  {
+    "qid": "2ebbe0cd",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Aliskiren (inibidor direto da renina) pode ser combinado com IECA em DRC diabética para maior nefroproteção.",
+    "ans": false,
+    "exp": "ALTITUDE trial: combinação aumenta eventos adversos graves — contraindicada em DRC."
+  },
+  {
+    "qid": "a52bd4bc",
+    "cat": "hipertensao",
+    "diff": "medium",
+    "q": "Losartana não causa tosse seca porque não inibe a degradação de bradicinina.",
+    "ans": true,
+    "exp": "BRA bloqueiam receptor AT1 sem afetar ECA — bradicinina acumulada pelos IECA é a causa da tosse."
+  },
+  {
+    "qid": "a115519b",
+    "cat": "nefropatia_diabetica",
+    "diff": "medium",
+    "q": "Canagliflozina demonstrou redução de hospitalização por insuficiência cardíaca em diabéticos tipo 2 no EMPA-REG OUTCOME.",
+    "ans": false,
+    "exp": "O EMPA-REG OUTCOME testou EMPAGLIFLOZINA — foi o primeiro iSGLT2 a mostrar benefício cardiovascular, com 35% menos hospitalizações por IC."
+  },
+  {
+    "qid": "d0f8fc95",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "iSGLT2 reduzem o risco de infecções genitais fúngicas ao diminuírem a concentração local de glicose.",
+    "ans": false,
+    "exp": "iSGLT2 AUMENTAM o risco de infecções fúngicas genitais — glicosúria favorece Candida; efeito de classe bem documentado."
+  },
+  {
+    "qid": "6f5779f3",
+    "cat": "nefropatia_diabetica",
+    "diff": "medium",
+    "q": "Dapagliflozina foi associada a aumento de amputações de membros inferiores no estudo CANVAS.",
+    "ans": false,
+    "exp": "Risco aproximadamente dobrado — mecanismo não totalmente elucidado; outros iSGLT2 têm sinal menor."
+  },
+  {
+    "qid": "3ab0c79b",
+    "cat": "nefropatia_diabetica",
+    "diff": "medium",
+    "q": "iSGLT2 reduzem a hiperfiltração glomerular ao contrair a arteríola aferente via feedback tubuloglomerular.",
+    "ans": true,
+    "exp": "Maior entrega de NaCl à mácula densa → FTG → constrição aferente → queda da pressão intraglomerular."
+  },
+  {
+    "qid": "c8fad475",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Eplerenona foi aprovada para DRC associada ao DM2 com base nos estudos FIDELIO-DKD e FIGARO-DKD.",
+    "ans": false,
+    "exp": "FINERENONA (não eplerenona) foi aprovada com base nesses estudos — finerenona é ARM não esteroidal; eplerenona é ARM esteroidal sem essa indicação específica."
+  },
+  {
+    "qid": "34e88eef",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Espironolactona em baixas doses não tem efeito antiproteinúrico em DRC pois age exclusivamente reduzindo a pressão arterial.",
+    "ans": false,
+    "exp": "Ação direta no receptor de mineralocorticoide dos podócitos — efeito antiproteinúrico independente do efeito anti-hipertensivo."
+  },
+  {
+    "qid": "021e35d1",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "Acetazolamida inibe a anidrase carbônica e pode ser usada para corrigir alcalose metabólica.",
+    "ans": true,
+    "exp": "Inibe reabsorção proximal de HCO₃⁻ → perda urinária de bicarbonato → correção da alcalose."
+  },
+  {
+    "qid": "67a7c3a9",
+    "cat": "litíase",
+    "diff": "medium",
+    "q": "Tiazídicos perdem eficácia diurética quando a TFGe cai abaixo de 30 mL/min/1,73m².",
+    "ans": true,
+    "exp": "Necessitam de secreção tubular para atingir o TCD — em TFG baixa, secreção insuficiente e competição com ânions urêmicos."
+  },
+  {
+    "qid": "08e2f5af",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Tolvaptana é um agonista do receptor V1 de vasopressina aprovado para retardar a progressão da DRPAD.",
+    "ans": false,
+    "exp": "Tolvaptana é ANTAGONISTA do receptor V2 (não agonista do V1) — bloqueia sinal de ADH → reduz AMPc nos cistos → menor crescimento."
+  },
+  {
+    "qid": "44e6a96a",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Carbonato de sevelâmer tem vantagem sobre quelantes cálcicos de fosfato por não causar hipercalcemia.",
+    "ans": true,
+    "exp": "Livre de cálcio e alumínio — reduz carga de cálcio e melhora perfil lipídico; indicado quando Ca sérico está elevado."
+  },
+  {
+    "qid": "26117bb7",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Cinacalcete reduz a sensibilidade do receptor sensor de cálcio nas paratireoides, suprimindo o PTH.",
+    "ans": false,
+    "exp": "Cinacalcete AUMENTA a sensibilidade do CaSR (calcimimético) — simula hipercalcemia → suprime PTH. Não reduz, aumenta a sensibilidade."
+  },
+  {
+    "qid": "022295f5",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Trimetoprim pode elevar a creatinina sérica sem causar lesão renal real ao bloquear a secreção tubular de creatinina.",
+    "ans": true,
+    "exp": "Compete com creatinina no transportador MATE proximal — eleva creatinina sem alterar TFG verdadeira (como a cimetidina)."
+  },
+  {
+    "qid": "1bfd7f0b",
+    "cat": "hipertensao",
+    "diff": "medium",
+    "q": "Gadolínio em pacientes com TFGe < 30 mL/min pode causar fibrose sistêmica nefrogênica.",
+    "ans": true,
+    "exp": "Depósito de gadolínio livre em tecidos → fibrose cutânea e visceral grave; quelantes macrocíclicos têm menor risco."
+  },
+  {
+    "qid": "b2f3f672",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "AINE seletivos para COX-2 (coxibes) têm menor risco de IRA que os AINE não seletivos.",
+    "ans": false,
+    "exp": "Efeito renal adverso é mediado pela inibição de PGE₂ e PGI₂ vasodilatadoras — efeito de classe igual para seletivos e não seletivos."
+  },
+  {
+    "qid": "15c924e7",
+    "cat": "litíase",
+    "diff": "medium",
+    "q": "Alopurinol pode retardar a progressão da DRC ao reduzir ácido úrico e a inflamação intersticial.",
+    "ans": true,
+    "exp": "Hiperuricemia é fator de risco independente de DRC — estudos mostram desaceleração do declínio de TFG com alopurinol."
+  },
+  {
+    "qid": "5501ebd0",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Hemodiafiltração online com volume > 23 L/sessão reduziu mortalidade no estudo ESHOL.",
+    "ans": true,
+    "exp": "ESHOL: HDF de alto volume com redução de ~30% na mortalidade total vs HD convencional na análise por dose entregue."
+  },
+  {
+    "qid": "8b3a8207",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Em IRA em UTI, o início precoce de TRS não mostrou superioridade em sobrevida vs início tardio por critérios clínicos.",
+    "ans": true,
+    "exp": "AKIKI e IDEAL-ICU: sem diferença de mortalidade — início precoce aumenta TRS desnecessária e riscos procedimentais."
+  },
+  {
+    "qid": "cd494ce9",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "A dose de efluente total na TRS contínua para IRA deve ser de pelo menos 35–40 mL/kg/h para melhor depuração.",
+    "ans": false,
+    "exp": "RENAL e ATN trials: 20–25 mL/kg/h é suficiente — doses maiores (35–40) não trazem benefício adicional."
+  },
+  {
+    "qid": "64b74ce4",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Cateter de duplo lúmen tunelizado deve ser preferido ao temporário quando diálise for necessária por mais de 3 semanas.",
+    "ans": true,
+    "exp": "Menor taxa de infecção e trombose — indicado como ponte enquanto o acesso definitivo amadurece."
+  },
+  {
+    "qid": "1e355b54",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Na síndrome de desequilíbrio dialítico, o edema cerebral ocorre por rápida redução da osmolaridade plasmática.",
+    "ans": true,
+    "exp": "Ureia intracelular cria gradiente osmótico — remoção rápida de uremia plasmática gera influxo de água para células cerebrais."
+  },
+  {
+    "qid": "be52db52",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Peritonite fúngica em diálise peritoneal exige remoção imediata do cateter peritoneal.",
+    "ans": true,
+    "exp": "Alta mortalidade e refratariedade antifúngica com cateter in situ — diferente da bacteriana onde se tenta antibiótico intraperitoneal primeiro."
+  },
+  {
+    "qid": "e3d9bd88",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Síndrome de ultrafiltração tipo I na DP decorre de hiperpermeabilidade da membrana peritoneal ao soluto.",
+    "ans": true,
+    "exp": "Transporte rápido de glicose destrói o gradiente osmótico prematuramente — solução: trocas mais curtas ou icodextrina."
+  },
+  {
+    "qid": "0f273929",
+    "cat": "nefrologia_geral",
+    "diff": "medium",
+    "q": "Cada rim humano adulto sadio contém aproximadamente 5 a 10 milhões de néfrons.",
+    "ans": false,
+    "exp": "Cada rim contém ~1 a 1,5 milhão de néfrons (variação 200.000–2,5 milhões) — 5 a 10 milhões seria anatomicamente impossível."
+  },
+  {
+    "qid": "f5814102",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "A TFG normal em adultos jovens sadios é de aproximadamente 90–100 mL/min/1,73m².",
+    "ans": false,
+    "exp": "A TFG normal em jovens é 120–130 mL/min/1,73m² — 90–100 já representa declínio leve (potencial G2 se houver lesão renal)."
+  },
+  {
+    "qid": "ef934ba4",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "O túbulo proximal reabsorve cerca de 30–40% do sódio filtrado pelo glomérulo.",
+    "ans": false,
+    "exp": "Na verdade o túbulo proximal reabsorve 60–70% do Na⁺ filtrado — é o maior sítio de reabsorção renal."
+  },
+  {
+    "qid": "3a1e910c",
+    "cat": "hipertensao",
+    "diff": "medium",
+    "q": "Aldosterona age no túbulo coletor cortical para reabsorver Na⁺ e secretar K⁺ e H⁺.",
+    "ans": true,
+    "exp": "Ativa ENaC apical e Na/K-ATPase basolateral — eixo renina-angiotensina-aldosterona regula volume e equilíbrio ácido-base."
+  },
+  {
+    "qid": "9ecf61f4",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "A pressão oncótica das proteínas plasmáticas no capilar glomerular favorece a filtração glomerular.",
+    "ans": false,
+    "exp": "Pressão oncótica OPÕE-SE à filtração — retém fluido no capilar. Só a pressão hidrostática glomerular favorece a saída de filtrado."
+  },
+  {
+    "qid": "a2c01c40",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "ADH/vasopressina insere aquaporina-2 na membrana apical do túbulo coletor, aumentando a permeabilidade à água.",
+    "ans": true,
+    "exp": "Via V2R → cAMP → PKA → inserção de vesículas com AQP2 — essencial para concentrar a urina."
+  },
+  {
+    "qid": "c4b11a34",
+    "cat": "hipertensao",
+    "diff": "medium",
+    "q": "A alça de Henle descendente delgada é muito permeável à água e impermeável ao NaCl.",
+    "ans": true,
+    "exp": "Expressa AQP1 constitutivamente — contribui para concentração de solutos no interstício medular (multiplicador de contracorrente)."
+  },
+  {
+    "qid": "075997ad",
+    "cat": "nefrologia_geral",
+    "diff": "medium",
+    "q": "O feedback tubuloglomerular dilata a arteríola aferente quando a mácula densa detecta aumento de NaCl.",
+    "ans": false,
+    "exp": "FTG → CONTRAÇÃO da arteríola aferente → redução de TFG — mecanismo de autorregulação que protege o glomérulo de sobrecarga."
+  },
+  {
+    "qid": "8e763ea6",
+    "cat": "hipertensao",
+    "diff": "medium",
+    "q": "A eritropoetina é produzida pelas células intersticiais da medula renal em resposta à hipóxia.",
+    "ans": false,
+    "exp": "EPO é produzida no CÓRTEX renal (células peritubulares miofibroblastóides) — fibrose cortical na DRC reduz EPO. Medula não é sítio principal."
+  },
+  {
+    "qid": "af5e8eb0",
+    "cat": "nefropatia_diabetica",
+    "diff": "medium",
+    "q": "A reabsorção tubular de glicose é mediada 90% pelo SGLT2 (S1–S2) e 10% pelo SGLT1 (S3).",
+    "ans": true,
+    "exp": "Fundamento molecular dos iSGLT2 — bloqueio do SGLT2 induz glicosúria de 60–80 g/dia independente de insulina."
+  },
+  {
+    "qid": "ab5b1d80",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "A hipercapnia estimula a reabsorção de bicarbonato no túbulo proximal, compensando a acidose respiratória.",
+    "ans": true,
+    "exp": "CO₂ entra na célula → forma H⁺ + HCO₃⁻ → H⁺ secretado, HCO₃⁻ reabsorvido — compensação renal à acidose respiratória crônica."
+  },
+  {
+    "qid": "dc15a659",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "Ânion gap urinário positivo em acidose metabólica hiperclorêmica indica baixa excreção de NH₄⁺ — sugestivo de ATR.",
+    "ans": true,
+    "exp": "AG urinário = [Na⁺+K⁺] − Cl⁻; positivo = poucos cátions não medidos (NH₄⁺) = rim não excreta ácido → ATR renal."
+  },
+  {
+    "qid": "ad0986b2",
+    "cat": "nefrologia_geral",
+    "diff": "medium",
+    "q": "A angiotensina II causa vasoconstrição predominantemente na arteríola aferente, reduzindo a pressão de filtração.",
+    "ans": false,
+    "exp": "Ang II contrai preferencialmente a EFERENTE — mantém TFG em estados de baixo fluxo. IECA/BRA ao bloquear Ang II reduzem resistência eferente e a hiperfiltração."
+  },
+  {
+    "qid": "4c007e04",
+    "cat": "litíase",
+    "diff": "medium",
+    "q": "A reabsorção de NaCl na alça de Henle ascendente espessa é mediada pelo cotransportador NKCC2, alvo dos diuréticos tiazídicos.",
+    "ans": false,
+    "exp": "NKCC2 é alvo da FUROSEMIDA (diurético de ansa) — tiazídicos atuam no NCC do túbulo contorcido distal, não no NKCC2."
+  },
+  {
+    "qid": "62e5af92",
+    "cat": "litíase",
+    "diff": "medium",
+    "q": "O túbulo contorcido distal reabsorve NaCl via cotransportador NCC, alvo da furosemida.",
+    "ans": false,
+    "exp": "NCC é alvo dos TIAZÍDICOS, não da furosemida — furosemida inibe o NKCC2 na alça ascendente espessa."
+  },
+  {
+    "qid": "be0ef0bc",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Os critérios KDIGO definem IRA como aumento de creatinina ≥ 0,3 mg/dL em 48h ou ≥ 50% em 7 dias ou DU < 0,5 mL/kg/h por 6h.",
+    "ans": true,
+    "exp": "Definição KDIGO 2012 — amplamente adotada para estratificar gravidade em estágios 1, 2 e 3."
+  },
+  {
+    "qid": "573c4f20",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Na NTA isquêmica, cilindros granulosos castanhos na microscopia urinária são achados típicos.",
+    "ans": true,
+    "exp": "Células epiteliais tubulares descamadas formam cilindros — achado altamente sugestivo de lesão tubular isquêmica."
+  },
+  {
+    "qid": "3c569793",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "NGAL urinária eleva-se antes da creatinina sérica na IRA isquêmica, sendo útil como biomarcador precoce.",
+    "ans": true,
+    "exp": "NGAL aumenta em 2–4h após lesão tubular — creatinina pode demorar 24–48h para refletir queda da TFG."
+  },
+  {
+    "qid": "248e52b4",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Em IRA pré-renal, a excreção fracionada de sódio (FeNa) é tipicamente > 2%.",
+    "ans": false,
+    "exp": "Em IRA pré-renal a FeNa é < 1% (não > 2%) — rim preservado reabsorve Na⁺ avidamente. FeNa > 2% sugere NTA com lesão tubular."
+  },
+  {
+    "qid": "5314bf76",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "A FeNa pode ser falsamente baixa (< 1%) na NTA causada por contraste iodado ou mioglobina.",
+    "ans": true,
+    "exp": "Nessas causas, vasoconstricção e obstrução tubular coexistem com reabsorção de Na⁺ relativamente preservada — FeNa não diferencia bem."
+  },
+  {
+    "qid": "78c4542f",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Rabdomiólise é a causa mais comum de IRA em pacientes internados em UTI.",
+    "ans": false,
+    "exp": "IRA ASSOCIADA À SEPSE é a mais comum em UTI (45–70%) — rabdomiólise é causa importante mas não a mais frequente nesse contexto."
+  },
+  {
+    "qid": "1cf29917",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Na síndrome de lise tumoral, a IRA ocorre exclusivamente por vasoconstrição renal mediada por citocinas inflamatórias.",
+    "ans": false,
+    "exp": "Liberação maciça de purinas → hiperuricemia → cristais de urato nos túbulos; hiperfosfatemia → precipitação de CaP — ambos causam obstrução."
+  },
+  {
+    "qid": "e36cd30c",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "IRA por aminoglicosídeos tipicamente se manifesta nas primeiras 24–48 horas de uso.",
+    "ans": false,
+    "exp": "Aminoglicosídeos acumulam na célula tubular proximal — NTA não oligúrica com início tardio; monitorar creatinina e DU desde o início."
+  },
+  {
+    "qid": "6bb6a068",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "A síndrome hepatorrenal tipo 2 tem progressão mais lenta que o tipo 1 e está associada a ascite refratária.",
+    "ans": true,
+    "exp": "SHR-DRC (tipo 2): progressão em semanas–meses, cursa com ascite refratária; SHR-IRA (tipo 1): progressão em dias, mortalidade muito alta."
+  },
+  {
+    "qid": "cb6831da",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "O manitol é recomendado para prevenção de IRA em rabdomiólise junto à hidratação vigorosa.",
+    "ans": false,
+    "exp": "Evidência de benefício do manitol é fraca — hidratação com SF 0,9% é o pilar; manitol pode piorar volemia se houver IRA estabelecida."
+  },
+  {
+    "qid": "e5045a9e",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Em IRA séptica, a expansão de volume sem avaliação de responsividade pode causar sobrecarga hídrica prejudicial.",
+    "ans": true,
+    "exp": "Fluid overload acumulado > 10% do peso em UTI associa-se a pior mortalidade — guiar ressuscitação por parâmetros dinâmicos."
+  },
+  {
+    "qid": "5cbf7df3",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "A nefrite lúpica classe III (focal) e classe IV (difusa) são as formas mais graves e exigem imunossupressão intensa.",
+    "ans": true,
+    "exp": "Tratamento de indução: micofenolato ou ciclofosfamida + corticoide em pulso; voclosporina ou belimumabe como add-on nas diretrizes atuais."
+  },
+  {
+    "qid": "cee4ea1d",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "GNRP (glomerulonefrite rapidamente progressiva) com anti-MBG positivo pode cursar com hemorragia alveolar difusa.",
+    "ans": true,
+    "exp": "Síndrome de Goodpasture: anti-MBG ataca colágeno IV de MBG e alvéolos pulmonares — tríade: hematúria, hemoptise, IRA."
+  },
+  {
+    "qid": "6134d8b5",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Vasculite ANCA-positiva deve ser tratada com ciclofosfamida ou rituximabe + corticoide na fase de indução.",
+    "ans": true,
+    "exp": "RAVE trial: rituximabe não inferior à ciclofosfamida na indução de remissão em vasculite ANCA, com menos toxicidade."
+  },
+  {
+    "qid": "b7822cab",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Na síndrome nefrótica da criança, a lesão histológica mais comum é a glomeruloesclerose focal e segmentar (GESF).",
+    "ans": false,
+    "exp": "DLM representa ~80% das síndromes nefróticas em crianças < 10 anos — corticossensível em ~90% dos casos."
+  },
+  {
+    "qid": "bc1b7ae8",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "A GESF colapsante tem o pior prognóstico entre as variantes e está associada ao HIV.",
+    "ans": true,
+    "exp": "GESF colapsante: podocitose grave, colapso do tufo glomerular — associada à nefropatia pelo HIV (HIVAN) e COVID-19."
+  },
+  {
+    "qid": "303a368c",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Ciclofosfamida é recomendada como tratamento de primeira linha para nefropatia membranosa primária grave pelo KDIGO 2021.",
+    "ans": false,
+    "exp": "KDIGO 2021 indica RITUXIMABE como 1ª linha — MENTOR trial mostrou superioridade sobre ciclosporina; ciclofosfamida é alternativa de 2ª linha."
+  },
+  {
+    "qid": "cfb6c191",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "GN C3 (complemento 3) reflete disregulação da via alternativa do complemento sem depósito de imunoglobulinas.",
+    "ans": true,
+    "exp": "Mutações em fatores reguladores (CFH, CFI, MCP) ou anticorpos anti-C3 convertase (C3NeF) — eculizumabe em casos refratários."
+  },
+  {
+    "qid": "ef2eedd3",
+    "cat": "hipertensao",
+    "diff": "medium",
+    "q": "GN fibrilar é positiva para vermelho Congo na coloração histológica, como a amiloidose.",
+    "ans": false,
+    "exp": "GN fibrilar é NEGATIVA para vermelho Congo — depósitos de fibrilas não amiloides; amiloidose é Congo-vermelho positiva com birrefringência verde."
+  },
+  {
+    "qid": "800e42c2",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Acantócitos > 20% na microscopia de fase contraste são necessários para diagnóstico de hematúria glomerular.",
+    "ans": false,
+    "exp": "Acantócitos (eritrócitos dismórficos em forma de vesícula) se formam ao passar pela membrana basal lesionada — sensibilidade ~52%, especificidade ~98%."
+  },
+  {
+    "qid": "146f9c47",
+    "cat": "hipertensao",
+    "diff": "medium",
+    "q": "DRC estágio G3a corresponde a TFGe de 30–44 mL/min/1,73m².",
+    "ans": false,
+    "exp": "G3a = 45–59 mL/min/1,73m² (KDIGO) — G3b é que corresponde a 30–44. Confusão frequente mas importante para estadiamento correto."
+  },
+  {
+    "qid": "7c7335e8",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "A meta de PA em DRC com proteinúria ≥ 300 mg/g é < 140/90 mmHg, independentemente da proteinúria.",
+    "ans": false,
+    "exp": "KDIGO 2021: alvo em DRC proteinúrica (proteinúria ≥ 300 mg/g) é < 130/80 mmHg — mais restrito que em DRC não proteinúrica."
+  },
+  {
+    "qid": "bfcffc30",
+    "cat": "nefrologia_geral",
+    "diff": "medium",
+    "q": "Restrição proteica a 0,6–0,8 g/kg/dia pode acelerar a progressão da DRC por causar desnutrição proteico-calórica.",
+    "ans": false,
+    "exp": "MDRD trial: dieta hipoproteica reduz declínio de TFG — cuidado com desnutrição; monitorar albumina e peso."
+  },
+  {
+    "qid": "8e026149",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "A taxa de declínio normal da TFG com envelhecimento é de aproximadamente 1 mL/min/1,73m² ao ano após os 40 anos.",
+    "ans": true,
+    "exp": "Perda fisiológica de néfrons com a idade — sem proteinúria ou lesão renal estrutural, não deve ser classificada como DRC."
+  },
+  {
+    "qid": "457370c5",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Neuropatia periférica urêmica em DRC avançada pode ser o gatilho clínico para indicar início de diálise.",
+    "ans": true,
+    "exp": "Sintomas urêmicos intratáveis (neuropatia, pericardite, encefalopatia) são indicações clínicas de diálise de urgência ou eletiva."
+  },
+  {
+    "qid": "fc5c9c36",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Pericardite urêmica é indicação de diálise de urgência independentemente de outras indicações clássicas.",
+    "ans": true,
+    "exp": "Risco de tamponamento cardíaco — iniciar diálise imediatamente, de preferência sem anticoagulação."
+  },
+  {
+    "qid": "f9c65f2c",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Na hiponatremia hipotônica euvolêmica, a causa mais comum é SIADH.",
+    "ans": true,
+    "exp": "SIADH: ADH inapropriadamente elevado sem estímulo osmótico ou hemodinâmico — causas: SNC, pulmão, drogas, dor/náusea."
+  },
+  {
+    "qid": "04891b07",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Na SIADH, a osmolalidade urinária está inapropriadamente baixa (< 100 mOsm/kg) em resposta à hiponatremia.",
+    "ans": false,
+    "exp": "Diagnóstico requer: osmolalidade urinária > 100 mOsm/kg com Na urinário > 30 mEq/L — euvolemia e função renal preservada."
+  },
+  {
+    "qid": "4859b9ce",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Correção de hiponatremia crônica sintomática deve ser < 10 mEq/L nas primeiras 24h para evitar mielinólise osmótica.",
+    "ans": true,
+    "exp": "Desmielinização osmótica (síndrome de mielinólise pontina): correção muito rápida causa lesão por rápida mudança de osmolaridade no SNC."
+  },
+  {
+    "qid": "14de6ca2",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Pseudohiponatremia pode ocorrer em hipertrigliceridemia grave por interferência nos métodos laboratoriais.",
+    "ans": true,
+    "exp": "Lipídios deslocam plasma na amostra → falsa redução de Na⁺ medido por fotometria de chama — Na⁺ real é normal."
+  },
+  {
+    "qid": "24ff6191",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Na hipocalemia, reposição de magnésio é frequentemente necessária pois hipomagnesemia perpetua a perda renal de K⁺.",
+    "ans": true,
+    "exp": "Hipomagnesemia ativa o canal ROMK no TCD/túbulo coletor → hiperpolarização → maior secreção de K⁺ — hipocalemia refratária sem reposição de Mg²."
+  },
+  {
+    "qid": "ccc34b99",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Na hipercalemia grave, gluconato de cálcio IV é a principal medida de redistribuição intracelular de K⁺.",
+    "ans": false,
+    "exp": "Insulina ativa Na/K-ATPase → K⁺ entra na célula; salbutamol inalatório faz o mesmo — efeitos aditivos, início em 15–30 min."
+  },
+  {
+    "qid": "c40eff19",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "FGF-23 elevado em DRC estimula a síntese de calcitriol e retém fósforo nos túbulos renais.",
+    "ans": false,
+    "exp": "FGF-23 inibe 1α-hidroxilase renal → menos calcitriol → hipocalcemia; aumenta excreção urinária de fosfato (fosfatúria)."
+  },
+  {
+    "qid": "30811162",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Na síndrome de realimentação, hipofosforemia grave pode causar insuficiência respiratória, cardíaca e hemólise.",
+    "ans": true,
+    "exp": "Fósforo é essencial para produção de ATP e 2,3-DPG — depleção grave colapsa múltiplos sistemas; monitorar P⁻ ao realimentar desnutridos."
+  },
+  {
+    "qid": "25e384fb",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "Em cetoacidose diabética, o K⁺ sérico pode estar normal ou elevado apesar de depleção corporal total de potássio.",
+    "ans": true,
+    "exp": "Acidose desloca K⁺ para fora da célula (saída de H⁺ entra, K⁺ sai) — K⁺ sérico subestima o déficit real; repor K⁺ após insulinoterapia."
+  },
+  {
+    "qid": "be8e04a9",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Hipernatremia em idosos é frequentemente causada por déficit de acesso à água livre (adipsia ou restrição).",
+    "ans": true,
+    "exp": "Idosos têm menor sensação de sede e menor capacidade de concentrar a urina — risco alto em internações prolongadas."
+  },
+  {
+    "qid": "3bc9a69c",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Na infusão de soluções hipotônicas em grande volume, pode ocorrer hiponatremia dilucional iatrogênica.",
+    "ans": true,
+    "exp": "Soro glicosado 5% ou SF 0,45% em excesso dilui o sódio sérico — preferir cristaloides isotônicos na ressuscitação."
+  },
+  {
+    "qid": "e0ed5d35",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Hipermagnesemia grave (> 6 mg/dL) pode causar bloqueio neuromuscular, hipotensão e parada cardíaca.",
+    "ans": true,
+    "exp": "Mg²⁺ bloqueia canais de Ca²⁺ e receptores NMDA — tratamento: gluconato de Ca²⁺ IV + diálise em casos graves."
+  },
+  {
+    "qid": "cc756ce3",
+    "cat": "transplante",
+    "diff": "medium",
+    "q": "O padrão de imunossupressão de manutenção pós-transplante renal é ciclosporina + azatioprina + prednisona.",
+    "ans": false,
+    "exp": "Tripla terapia de manutenção — tacrolimus em baixas doses (nível alvo < 5 ng/mL após 1 ano) reduz nefrotoxicidade a longo prazo."
+  },
+  {
+    "qid": "d80a44a9",
+    "cat": "transplante",
+    "diff": "medium",
+    "q": "DSA (anticorpos específicos do doador) de novo estão associados à rejeição aguda celular (RAC) mediada por linfócitos T.",
+    "ans": false,
+    "exp": "DSA causam REJEIÇÃO MEDIADA POR ANTICORPOS (RMA), não RAC — RAC é mediada por linfócitos T sem participação de anticorpos doador-específicos."
+  },
+  {
+    "qid": "5bca308a",
+    "cat": "transplante",
+    "diff": "medium",
+    "q": "Isquemia fria curta (< 6h) aumenta o risco de função tardia do enxerto por hipoperfusão e vasoconstrição.",
+    "ans": false,
+    "exp": "Lesão de isquemia-reperfusão — aumenta imunogenicidade do enxerto e incidência de rejeição aguda."
+  },
+  {
+    "qid": "9a7de08e",
+    "cat": "transplante",
+    "diff": "medium",
+    "q": "Infecção por CMV é a complicação infecciosa viral mais comum no primeiro ano após transplante renal.",
+    "ans": true,
+    "exp": "Especialmente em receptor CMV-negativo de doador CMV-positivo (D+/R−) — profilaxia com valganciclovir por 3–6 meses."
+  },
+  {
+    "qid": "5eaa7014",
+    "cat": "transplante",
+    "diff": "medium",
+    "q": "Vírus JC pode causar nefropatia do enxerto e deve ser monitorado por PCR nos primeiros 2 anos.",
+    "ans": false,
+    "exp": "Nefropatia do enxerto é causada pelo POLIOMAVÍRUS BK — vírus JC causa leucoencefalopatia multifocal progressiva (PML) no SNC, não nefropatia."
+  },
+  {
+    "qid": "fe35c617",
+    "cat": "transplante",
+    "diff": "medium",
+    "q": "Tacrolimus (inibidor de calcineurina) está associado à pior cicatrização de feridas e pneumonite intersticial.",
+    "ans": false,
+    "exp": "Inibição de mTOR prejudica proliferação de fibroblastos e células epiteliais; pneumonite ocorre em 5–15% dos pacientes."
+  },
+  {
+    "qid": "49dd1feb",
+    "cat": "transplante",
+    "diff": "medium",
+    "q": "O período de maior risco para rejeição aguda celular após transplante renal é nos primeiros 6–12 meses.",
+    "ans": false,
+    "exp": "Pico de alorreatividade após reconhecimento do enxerto — monitorar creatinina e nível de tacrolimus semanalmente no início."
+  },
+  {
+    "qid": "58a4170c",
+    "cat": "transplante",
+    "diff": "medium",
+    "q": "Metilprednisolona IV em pulsos é o tratamento de primeira linha para rejeição aguda celular Banff IA/IB.",
+    "ans": true,
+    "exp": "500–1000 mg/dia por 3 dias — resolução em ~70% dos casos; rejeição celular grave (IIB/III) pode requerer anticorpos anti-timócito."
+  },
+  {
+    "qid": "0aee071b",
+    "cat": "transplante",
+    "diff": "medium",
+    "q": "Melanoma é o câncer de pele mais comum em receptores de transplante renal devido à imunossupressão crônica.",
+    "ans": false,
+    "exp": "Imunossupressão crônica favorece carcinoma espinocelular (mais agressivo) sobre o basocelular — rastrear anualmente com dermatologista."
+  },
+  {
+    "qid": "1e77cc57",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "PTH é o primeiro marcador a se alterar na doença mineral óssea da DRC, antes do FGF-23.",
+    "ans": false,
+    "exp": "Eleva-se precocemente (TFGe 60–80) como resposta à hiperfosfatemia nascente — aumenta excreção de fósforo e suprime calcitriol."
+  },
+  {
+    "qid": "ff1d37eb",
+    "cat": "nefrologia_geral",
+    "diff": "medium",
+    "q": "A calcificação vascular em DRC é consequência benigna do envelhecimento e não prediz mortalidade cardiovascular.",
+    "ans": false,
+    "exp": "Produto Ca×P elevado e hiperfosfatemia promovem calcificação da íntima e da média arterial — mortalidade CV em DRC é 10–20× maior que na população geral."
+  },
+  {
+    "qid": "02d0b1d3",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "A doença óssea adinâmica em DRC está associada a PTH muito baixo e risco aumentado de fraturas.",
+    "ans": true,
+    "exp": "PTH < 100–150 pg/mL em diálise → turnover ósseo insuficiente → acúmulo de microfraturas; também comum com uso excessivo de vitamina D ativa."
+  },
+  {
+    "qid": "17225c51",
+    "cat": "nefrologia_geral",
+    "diff": "medium",
+    "q": "Bifosfonatos são seguros em qualquer grau de DRC pois são eliminados por via hepática.",
+    "ans": false,
+    "exp": "Acúmulo renal de bifosfonatos → inibição excessiva de osteoclastos → doença adinâmica; contraindicados em DRC avançada."
+  },
+  {
+    "qid": "8ea4af0a",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Densidade óssea por DXA pode superestimar a saúde óssea em DRC por não diferenciar lesões distintas.",
+    "ans": true,
+    "exp": "DXA mede massa óssea, não qualidade microestruturalde — em DRC, osteíte fibrosa, adinâmica e osteomalácia coexistem."
+  },
+  {
+    "qid": "30518c6e",
+    "cat": "transplante",
+    "diff": "medium",
+    "q": "Hiperparatireoidismo terciário pós-transplante com hipercalcemia persistente frequentemente requer paratireoidectomia.",
+    "ans": true,
+    "exp": "Glândulas paratireoides hipertrofiadas funcionam autonomamente após transplante — se persistir > 6–12 meses, cinacalcete ou cirurgia."
+  },
+  {
+    "qid": "0b34e55a",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "O tipo mais comum de cálculo renal é o de oxalato de cálcio, representando 70–80% dos casos.",
+    "ans": true,
+    "exp": "Oxalato de cálcio mono e di-hidratado — fatores de risco: hipercalciúria, hiperoxalúria, hipocitratúria, baixo volume urinário."
+  },
+  {
+    "qid": "371b2e06",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Cálculos de ácido úrico são radiotransparentes na radiografia simples mas visíveis na tomografia.",
+    "ans": true,
+    "exp": "Ácido úrico não absorve raios X — TC sem contraste identifica todos os tipos de cálculos, inclusive os radiotransparentes."
+  },
+  {
+    "qid": "13aa5178",
+    "cat": "infeccao",
+    "diff": "medium",
+    "q": "Litotripsia extracorpórea por ondas de choque (LEOC) é contraindicada em gestantes.",
+    "ans": true,
+    "exp": "Risco de dano fetal por cavitação e ondas de pressão — litotripsia em gestantes substituída por ureteroscopia ou conduta expectante."
+  },
+  {
+    "qid": "7dc5449a",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Tiazídicos são utilizados para prevenir a recorrência de cálculos de oxalato de cálcio por reduzirem a calciúria.",
+    "ans": true,
+    "exp": "Tiazídicos aumentam reabsorção distal de Ca²⁺ → hipocalciúria → menos nucleação de cristais de oxalato de cálcio."
+  },
+  {
+    "qid": "a9c90711",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "Nefrocalcinose cortical bilateral é característica da acidose tubular renal distal (ATR tipo 1).",
+    "ans": true,
+    "exp": "ATR tipo 1: pH urinário elevado + hipocitratúria → cristalização de fosfato de cálcio no parênquima cortical."
+  },
+  {
+    "qid": "e15aa449",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Hiperuricosúria é fator de risco tanto para cálculos de ácido úrico quanto de oxalato de cálcio.",
+    "ans": true,
+    "exp": "Urato monossódico serve como núcleo de cristalização para oxalato de cálcio (nucleação heterogênea) — tratar hiperuricosúria reduz recorrência de ambos."
+  },
+  {
+    "qid": "894d9759",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "Carbonato de cálcio oral alcaliniza a urina e pode dissolver cálculos de ácido úrico existentes.",
+    "ans": false,
+    "exp": "pH urinário > 6,5 dissolve cristais de ácido úrico — preferir citrato de K⁺ (alcaliniza + não aumenta calciúria) ao bicarbonato de Na⁺."
+  },
+  {
+    "qid": "5d8e7117",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "Na nefrolitíase por cistina, o tratamento requer grande ingestão hídrica (> 3 L/dia) e alcalinização urinária.",
+    "ans": true,
+    "exp": "Cistina é solúvel em pH > 7,5 — além de hidratação, D-penicilamina ou tiopronina quelatam cistina em casos refratários."
+  },
+  {
+    "qid": "982dc5ec",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Hiperoxalúria primária tipo 1 é causada por deficiência de alanina-glioxalato aminotransferase hepática (AGXT).",
+    "ans": true,
+    "exp": "AGXT converte glioxalato em glicina no fígado — sem AGXT, glioxalato vira oxalato → oxalose sistêmica; lumasirana é tratamento aprovado."
+  },
+  {
+    "qid": "8b045609",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Cálculos de estruvita (fosfato-amônio-magnésio) estão associados a infecções por bactérias urease-negativas, como E. coli.",
+    "ans": false,
+    "exp": "Estruvita forma-se em urina ALCALINA produzida por bactérias UREASE-POSITIVAS (Proteus, Klebsiella) — E. coli é urease-negativa e não causa estruvita."
+  },
+  {
+    "qid": "0dc5c652",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "A relação cálcio/creatinina urinária em amostra matinal isolada > 0,5 mg/mg sugere hipercalciúria.",
+    "ans": false,
+    "exp": "Triagem simples em crianças e adultos — confirmar com urina de 24h (hipercalciúria > 4 mg/kg/dia ou > 300/250 mg/dia H/M)."
+  },
+  {
+    "qid": "b2d92126",
+    "cat": "litíase",
+    "diff": "medium",
+    "q": "Ureterorenoscopia flexível com laser é o método preferencial para cálculos no sistema coletor renal < 20 mm.",
+    "ans": true,
+    "exp": "URS flexível + laser Holmium: alta taxa de limpeza de fragmentos, mínima invasão — nefrolitotripsia percutânea para > 20 mm."
+  },
+  {
+    "qid": "f7824958",
+    "cat": "genetica",
+    "diff": "medium",
+    "q": "Doença renal policística autossômica dominante (DRPAD) é causada por mutações nos genes PKD1 ou PKD2.",
+    "ans": true,
+    "exp": "PKD1 (85%): proteína policistina-1, chromosoma 16; PKD2 (15%): policistina-2, chromosoma 4 — PKD1 tem pior prognóstico."
+  },
+  {
+    "qid": "6e3e3924",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "DRPAD por PKD1 tem progressão para DRC terminal mais lenta que por PKD2.",
+    "ans": false,
+    "exp": "É o CONTRÁRIO: PKD2 tem progressão mais lenta (DRCT ~74 anos) vs PKD1 (~54 anos) — PKD1 tem pior prognóstico."
+  },
+  {
+    "qid": "7839c793",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "Síndrome de Gitelman é causada por mutação no cotransportador NKCC2 (SLC12A1) na alça de Henle.",
+    "ans": false,
+    "exp": "Cursas com hipocalemia, hipomagnesemia, hipocalciúria e alcalose metabólica — fenotipicamente semelhante ao uso crônico de tiazídicos."
+  },
+  {
+    "qid": "78be1dd6",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Síndrome de Bartter tipo 4 é a mais grave e pode causar surdez por envolvimento do estria vascular coclear.",
+    "ans": true,
+    "exp": "Mutação na bartina (BSND), subunidade β dos canais ClC-Ka/Kb presentes no rim e cóclea — hipocalemia grave + surdez congênita."
+  },
+  {
+    "qid": "5b8d6b3d",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Doença de Fabry é uma doença de depósito lisossomial ligada ao X causada por deficiência de alfa-galactosidase A.",
+    "ans": true,
+    "exp": "Acúmulo de globotriaosilceramida (Gb3) em vários órgãos — DRC, cardiomiopatia hipertrófica, AVC precoce, angioceratomas."
+  },
+  {
+    "qid": "8109f328",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Na doença de Fabry, a biópsia renal mostra inclusões lamelares nos mesangiócitos (células de Zebra à microscopia eletrônica).",
+    "ans": false,
+    "exp": "Gb3 acumulado nos lisossomos cria padrão em 'zebra' na ME — diagnóstico definitivo por atividade enzimática e genética."
+  },
+  {
+    "qid": "6dbfdd01",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "DRPAD é a causa genética mais comum de DRC terminal em crianças e adolescentes nos países desenvolvidos.",
+    "ans": false,
+    "exp": "Doença ciliopática autossômica recessiva — mutações em NPHP1–20; fibrose intersticial progressiva, cistos na junção córtico-medular."
+  },
+  {
+    "qid": "26dbffc3",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Síndrome de Lowe (oculocerebrorrenal) cursa com síndrome de Fanconi proximal, cataratas congênitas e atraso neurológico.",
+    "ans": true,
+    "exp": "Mutação em OCRL1 (fosfatase de fosfatidilinositol) ligada ao X — tubulopatia proximal com aminoacidúria, glicosúria e fosfatúria."
+  },
+  {
+    "qid": "4c421d5b",
+    "cat": "transplante",
+    "diff": "medium",
+    "q": "Esclerose tuberosa pode causar angiomiolipomas renais bilaterais e cistos renais, levando a DRC progressiva.",
+    "ans": true,
+    "exp": "Mutações em TSC1 ou TSC2 (inibidores de mTOR) — sirolimus reduz tamanho de angiomiolipomas; angiomiolipoma > 4 cm tem risco de sangramento."
+  },
+  {
+    "qid": "a93c413b",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "KIM-1 (kidney injury molecule-1) é um biomarcador de lesão tubular proximal isquêmica e nefrotóxica.",
+    "ans": true,
+    "exp": "KIM-1 é uma proteína transmembrana upregulada no tubulo proximal lesado — detectável na urina horas após a lesão."
+  },
+  {
+    "qid": "2eab2c34",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "IL-18 urinária pode diferenciar NTA isquêmica de outras causas de IRA em UTI.",
+    "ans": true,
+    "exp": "IL-18 é liberada por células tubulares proximais lesadas — mais específica que NGAL para NTA isquêmica; combinar biomarcadores melhora acurácia."
+  },
+  {
+    "qid": "45dc9183",
+    "cat": "nefrologia_geral",
+    "diff": "medium",
+    "q": "A relação albumina/creatinina urinária (ACR) ≥ 30 mg/g define microalbuminúria e prediz progressão de DRC.",
+    "ans": true,
+    "exp": "ACR 30–300 mg/g = microalbuminúria (A2); > 300 mg/g = macroalbuminúria (A3) — preditor independente de progressão renal e CV."
+  },
+  {
+    "qid": "816e208e",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Anti-PLA2R pode ser usado para monitorar a resposta ao tratamento da nefropatia membranosa primária.",
+    "ans": true,
+    "exp": "Queda do título de anti-PLA2R precede a melhora clínica da proteinúria em semanas a meses — guia decisão de aumentar ou reduzir imunossupressão."
+  },
+  {
+    "qid": "3bb3bd65",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "[TIMP-2]·[IGFBP7] em urina (NephroCheck) identifica pacientes com risco de IRA grave em UTI.",
+    "ans": true,
+    "exp": "Biomarcadores de parada do ciclo celular G1 — valor > 0,3 prediz IRA estágio 2–3 em 12h; aprovado pelo FDA como teste de risco."
+  },
+  {
+    "qid": "72fde2e3",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "A meta de hemoglobina com ESA em DRC deve ser entre 10–11,5 g/dL, evitando normalização completa.",
+    "ans": true,
+    "exp": "TREAT e CHOIR: Hb-alvo > 13 g/dL aumenta risco de AVC e morte — benefício sintomático deve ser pesado contra risco trombótico."
+  },
+  {
+    "qid": "548cc8dd",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Ferro IV é mais eficaz que ferro oral para corrigir deficiência funcional de ferro em pacientes em hemodiálise.",
+    "ans": true,
+    "exp": "Absorção intestinal reduzida por hepcidina elevada + inflamação crônica — ferro IV entrega ferro diretamente ao sistema reticuloendotelial."
+  },
+  {
+    "qid": "2c8fdb49",
+    "cat": "hipertensao",
+    "diff": "medium",
+    "q": "Eritropoetina elevada na DRC é o principal mecanismo de resistência ao ferro oral por estimular excessivamente a eritropoese.",
+    "ans": false,
+    "exp": "O principal mecanismo é a HEPCIDINA elevada — inibe ferroportina nos enterócitos bloqueando liberação de ferro. EPO em DRC geralmente está baixa."
+  },
+  {
+    "qid": "0512e87b",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "ESA aumentam risco de eventos trombóticos quando usados com alvo de Hb muito elevado.",
+    "ans": true,
+    "exp": "TREAT: darbepoetina com alvo Hb normal em DM2 aumentou AVC em 2× — trombose microvascular renal também descrita."
+  },
+  {
+    "qid": "15c20f2e",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "Roxadustate (inibidor de HIF-PH) estimula eritropoese por via diferente dos ESA injetáveis.",
+    "ans": true,
+    "exp": "Inibe prolil-hidroxilase → estabiliza HIF-1α → transcrição de EPO e receptores de transferrina — oral, aprovado em vários países."
+  },
+  {
+    "qid": "8c3d9291",
+    "cat": "hipertensao",
+    "diff": "medium",
+    "q": "Hiperparatireoidismo secundário grave pode causar resistência a ESA por fibrose medular óssea.",
+    "ans": true,
+    "exp": "PTH muito elevado → osteíte fibrosa cística → fibrose da medula óssea → redução de precursores eritroides — resposta ao ESA é limitada."
+  },
+  {
+    "qid": "44c56e23",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "ATR tipo 4 (hipercalêmica) pode causar síndrome de Fanconi completa quando grave.",
+    "ans": false,
+    "exp": "Deficiência de reabsorção no túbulo proximal → glicosúria, aminoacidúria, fosfatúria, uricosúria, bicarbonatúria — causa clássica: cistinosefenilcetonúria, tenofovir."
+  },
+  {
+    "qid": "d9670f62",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "ATR tipo 4 (hipercalêmica) está associada a hipoaldosteronismo hiporreninêmico, comum em DRC diabética.",
+    "ans": true,
+    "exp": "Nefropatia diabética → dano ao aparelho justaglomerular → baixa renina → baixa aldosterona → hipercalemia + acidose moderada."
+  },
+  {
+    "qid": "e14975a7",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Tenofovir (antirretroviral usado em HIV) pode causar síndrome de Fanconi adquirida.",
+    "ans": true,
+    "exp": "Tenofovir disoproxil fumarato (TDF) acumula nas mitocôndrias tubulares proximais → disfunção tubular generalizada; substituir por TAF (menor risco)."
+  },
+  {
+    "qid": "c4135730",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Diabetes insípido nefrogênico causa poliúria sem resposta a desmopressina (DDAVP).",
+    "ans": true,
+    "exp": "Defeito no receptor V2 ou nas aquaporinas — litio é a causa adquirida mais comum; amilorida pode reduzir o dano renal pelo lítio."
+  },
+  {
+    "qid": "99ce2df0",
+    "cat": "nefropatia_diabetica",
+    "diff": "medium",
+    "q": "Furosemida é uma das causas mais comuns de diabetes insípido nefrogênico adquirido.",
+    "ans": false,
+    "exp": "A causa farmacológica mais comum de DI nefrogênico é o LÍTIO (não furosemida) — furosemida prejudica concentração urinária por outro mecanismo."
+  },
+  {
+    "qid": "d2a2c852",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Estenose da artéria renal aterosclerótica causa hipertensão renovascular por ativação do SRAA.",
+    "ans": true,
+    "exp": "Redução do fluxo renal → isquemia → aumento de renina → angiotensina II → hipertensão e retenção de sódio."
+  },
+  {
+    "qid": "11b8c22f",
+    "cat": "hipertensao",
+    "diff": "medium",
+    "q": "Arterite de Takayasu é a causa mais comum de estenose de artéria renal em mulheres jovens.",
+    "ans": false,
+    "exp": "A causa mais comum em mulheres jovens é a DISPLASIA FIBROMUSCULAR — Takayasu também acomete jovens, mas é rara comparada à DFM."
+  },
+  {
+    "qid": "da55eb67",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Trombose de veia renal aguda pode cursar com hematúria, dor lombar e síndrome nefrótica.",
+    "ans": true,
+    "exp": "Síndrome nefrótica (especialmente membranosa) predispõe à trombose de VR por estado hipercoagulável; anticoagulação indicada."
+  },
+  {
+    "qid": "17fe1667",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Na SHU típica por E. coli O157:H7, antibióticos devem ser evitados na fase aguda.",
+    "ans": true,
+    "exp": "Antibióticos podem aumentar liberação de toxina Shiga (Stx) pela lise bacteriana → piora de MAT; tratamento é suporte."
+  },
+  {
+    "qid": "ade1f5b3",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Eculizumabe (anti-C5) é o tratamento específico para SHU atípica mediada por complemento.",
+    "ans": true,
+    "exp": "Bloqueia a via terminal do complemento → previne MAT mediada por C5b-9 — transformou o prognóstico da SHUa."
+  },
+  {
+    "qid": "91055f8a",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Crise renal esclerodérmica deve ser tratada imediatamente com IECA mesmo com disfunção renal grave.",
+    "ans": true,
+    "exp": "IECA é o tratamento de escolha — melhora a sobrevida mesmo em diálise; não aguardar melhora da PA para iniciar."
+  },
+  {
+    "qid": "d1ecb68e",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Na pré-eclâmpsia, o diagnóstico requer PA ≥ 140/90 mmHg após 20 semanas e proteinúria ≥ 300 mg/24h.",
+    "ans": true,
+    "exp": "Ou na ausência de proteinúria: trombocitopenia, disfunção hepática, IRA, edema pulmonar ou sintomas visuais/cerebrais."
+  },
+  {
+    "qid": "5eca8345",
+    "cat": "hipertensao",
+    "diff": "medium",
+    "q": "IECA são contraindicados no 2º e 3º trimestres da gestação por causar oligoidrâmnio e malformações fetais.",
+    "ans": true,
+    "exp": "Bloqueio do SRAA fetal → redução de filtração renal fetal → oligoidrâmnio → hipoplasia pulmonar e contraturas (fetopatin por IECA)."
+  },
+  {
+    "qid": "f673e80c",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Na nefropatia associada ao HIV (HIVAN), a biópsia renal mostra padrão de GESF colapsante.",
+    "ans": true,
+    "exp": "HIVAN: infecção direta de podócitos pelo HIV → colapso do tufo glomerular — tipicamente em afrodescendentes; TARV é o principal tratamento."
+  },
+  {
+    "qid": "2d0d212f",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Crioglobulinemia mista tipo II associada ao HCV pode causar GN membranoproliferativa e púrpura cutânea.",
+    "ans": true,
+    "exp": "IgM monoclonal + IgG policlonal → depósitos crioglobulinêmicos no glomérulo → GNMP com complemento baixo e FR positivo."
+  },
+  {
+    "qid": "8322d0c3",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "Em mieloma múltiplo, a nefropatia por cilindros de cadeias leves é tratada com quimioterapia anti-mieloma.",
+    "ans": true,
+    "exp": "Cast nephropathy: precipitação de cadeias leves livres com proteína de Tamm-Horsfall no TCD/TD → obstrução tubular; reduzir carga tumoral é essencial."
+  },
+  {
+    "qid": "02531730",
+    "cat": "nefropatia_diabetica",
+    "diff": "medium",
+    "q": "CREDENCE trial demonstrou que canagliflozina reduz desfechos renais em DM2 com nefropatia diabética.",
+    "ans": true,
+    "exp": "Redução de 30% no desfecho composto renal primário (DRCT, creatinina 2×, morte renal/CV) — primeiro iSGLT2 com desfecho renal primário positivo."
+  },
+  {
+    "qid": "48a88fa0",
+    "cat": "nefropatia_diabetica",
+    "diff": "medium",
+    "q": "EMPA-KIDNEY demonstrou benefício da empagliflozina em DRC com TFGe ≥ 20 mesmo sem DM2.",
+    "ans": true,
+    "exp": "Redução de 28% em progressão de DRC ou morte renal — confirmou nefroproteção independente do diabetes e em TFG mais baixa."
+  },
+  {
+    "qid": "dfd11d69",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Sparsentan (bloqueador duplo AT1/endotelina) foi aprovado para nefropatia por IgA por reduzir proteinúria.",
+    "ans": true,
+    "exp": "PROTECT trial: redução superior de proteinúria vs irbesartana — aprovado FDA/EMA como tratamento específico de IgAN."
+  },
+  {
+    "qid": "1daa7498",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Budesonida de liberação intestinal (Nefecon/Tarpeyo) reduz proteinúria em nefropatia por IgA.",
+    "ans": true,
+    "exp": "NefIgArd trial: ação na placa de Peyer intestinal — reduz produção de IgA1 galacto-deficiente; aprovada FDA 2021."
+  },
+  {
+    "qid": "c10be691",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Avacopan (inibidor de C5aR1) pode reduzir uso de corticoide oral na indução das vasculites ANCA.",
+    "ans": true,
+    "exp": "ADVOCATE trial: avacopan não inferior ao prednisona em remissão e superior em preservação de TFG — aprovado FDA/EMA."
+  },
+  {
+    "qid": "267bf8eb",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Voclosporina em combinação com micofenolato mostrou eficácia superior ao placebo na nefrite lúpica.",
+    "ans": true,
+    "exp": "AURORA-1 trial: maior taxa de remissão renal completa — voclosporina tem meia-vida curta e menos variabilidade que ciclosporina."
+  },
+  {
+    "qid": "668d9b29",
+    "cat": "hipertensao",
+    "diff": "medium",
+    "q": "Nefropatia por aristolóquia (ervas chinesas) causa fibrose intersticial extensa e carcinoma urotelial.",
+    "ans": true,
+    "exp": "Ácido aristolóquico é nefrotóxico e mutagênico — cuidado especial em países que usam fitoterápicos sem regulação."
+  },
+  {
+    "qid": "87ae8876",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Biópsia renal percutânea em rim único funcionante é contraindicação absoluta ao procedimento.",
+    "ans": false,
+    "exp": "É contraindicação RELATIVA — pode ser realizada com cautela, experiência e suporte cirúrgico; benefício deve superar risco de perda do rim único."
+  },
+  {
+    "qid": "b91b12f4",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Cistite por E. coli ascendente é a causa mais comum de pielonefrite aguda em mulheres jovens.",
+    "ans": true,
+    "exp": "E. coli uropatogênica (UPEC) com fímbrias P e tipo 1 adere ao urotélio e ascende até o pelve renal — tratamento: fluoroquinolonas ou cefalosporinas."
+  },
+  {
+    "qid": "cb206250",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "DRC aumenta o risco cardiovascular de forma independente, proporcional à queda da TFG e aumento da proteinúria.",
+    "ans": true,
+    "exp": "TFGe < 60 dobra o risco CV; proteinúria > 1 g/g aumenta mortalidade CV em 5× — DRC é equivalente de risco cardiovascular."
+  },
+  {
+    "qid": "b9f29f91",
+    "cat": "transplante",
+    "diff": "medium",
+    "q": "Linfocele pós-transplante renal pode causar compressão do ureter do enxerto com hidronefrose.",
+    "ans": true,
+    "exp": "Coleção linfática pericirúrgica — drenagem percutânea guiada por imagem ou marsupialização laparoscópica nos casos sintomáticos."
+  },
+  {
+    "qid": "695498fd",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Síndrome de lise tumoral pode ser prevenida com hidratação IV e alopurinol antes da quimioterapia.",
+    "ans": true,
+    "exp": "Rasburicase é superior ao alopurinol em casos de alto risco — converte ácido úrico em alantoína, mais solúvel e de excreção renal fácil."
+  },
+  {
+    "qid": "d902861c",
+    "cat": "nefropatia_diabetica",
+    "diff": "medium",
+    "q": "Microalbuminúria (ACR 30–300 mg/g) é o primeiro marcador de nefropatia diabética e preditor de progressão.",
+    "ans": true,
+    "exp": "Rastrear anualmente em todo diabético — regressão possível com IECA/BRA + controle glicêmico intensivo + iSGLT2."
+  },
+  {
+    "qid": "49b02125",
+    "cat": "hipertensao",
+    "diff": "medium",
+    "q": "Transferrina sérica com saturação < 20% e ferritina < 100 ng/mL indicam deficiência absoluta de ferro em DRC.",
+    "ans": true,
+    "exp": "Reposição de ferro indicada antes ou junto com ESA — TSAT < 20% indica ferro insuficiente para eritropoese eficaz."
+  },
+  {
+    "qid": "1155fbe4",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Micofenolato mofetil é teratogênico e deve ser substituído por azatioprina em gestantes transplantadas.",
+    "ans": true,
+    "exp": "MMF causa malformações fetais (lábio leporino, microtia) — trocar por azatioprina pelo menos 6 semanas antes de engravidar."
+  },
+  {
+    "qid": "fd396bdb",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "A pressão arterial alvo em pacientes em hemodiálise pré-diálise é geralmente < 140/90 mmHg.",
+    "ans": true,
+    "exp": "PA medida antes da sessão de HD — difícil controlar pela sobrecarga hídrica interdialítica; controle de volemia é tão importante quanto os anti-hipertensivos."
+  },
+  {
+    "qid": "ddfe568f",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Na síndrome nefrótica, o risco de trombose de veia renal é maior na nefropatia membranosa.",
+    "ans": true,
+    "exp": "Perda urinária de anticoagulantes naturais (antitrombina III, proteína C e S) + hipercoagulabilidade — membranosa tem maior incidência de complicações trombóticas."
+  },
+  {
+    "qid": "4bd11fde",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Proteinúria de Bence-Jones (cadeias leves livres) detectada na urina é patognomônica de mieloma múltiplo.",
+    "ans": false,
+    "exp": "Pode ocorrer em outras gamopatias (amiloidose, LCDD, leucemia de células plasmáticas) — não é exclusiva do mieloma."
+  },
+  {
+    "qid": "a0d588ca",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "O escore de Oxford (MEST-C) estratifica o risco na nefropatia por IgA e orienta decisões terapêuticas.",
+    "ans": true,
+    "exp": "Mesangial (M), Endocapilar (E), Segmentar (S), Tubular (T) e Crescentes (C) — T e C predizem pior prognóstico e benefício de imunossupressão."
+  },
+  {
+    "qid": "80725a04",
+    "cat": "nefropatia_diabetica",
+    "diff": "medium",
+    "q": "Na glomeruloesclerose diabética, espessamento da membrana basal e expansão mesangial são as lesões histológicas características.",
+    "ans": true,
+    "exp": "Nódulos de Kimmelstiel-Wilson (expansão mesangial nodular) são patognomônicos da nefropatia diabética avançada."
+  },
+  {
+    "qid": "e1ffec9e",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Hipoalbuminemia grave na síndrome nefrótica pode reduzir a eficácia da furosemida por menor ligação tubular.",
+    "ans": true,
+    "exp": "Furosemida liga-se à albumina para chegar ao túbulo — hipoalbuminemia reduz entrega do diurético ao sítio de ação; albumina IV + furosemida melhora resposta."
+  },
+  {
+    "qid": "0476bbf4",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Eritrócitos dismórficos e cilindros hemáticos na urina confirmam origem glomerular do sangramento.",
+    "ans": true,
+    "exp": "Cilindro hemático é patognomônico de GN — qualquer hematúria com cilindro hemático exige investigação histológica."
+  },
+  {
+    "qid": "893a932e",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Em DRC avançada, a hiperpotassemia assintomática com K⁺ entre 5,5–6 mEq/L pode ser manejada com resina de troca oral.",
+    "ans": true,
+    "exp": "Patiromer ou ciclossilicato de zircônio e sódio (SZC) são opções modernas com menos efeitos adversos que o poliestireno sulfonato de sódio."
+  },
+  {
+    "qid": "d1df0c0f",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "A biópsia renal é essencial para diferenciar GN por IgA de outras GN hematúricas quando há proteinúria progressiva.",
+    "ans": true,
+    "exp": "Sem biópsia não é possível diferenciar IgAN de GESF precoce, GN C3 ou outras — proteinúria > 1 g/g ou TFG em queda são indicações de biópsia."
+  },
+  {
+    "qid": "ddf7a158",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Infecção urinária de repetição em mulheres jovens sem anomalia estrutural deve ser investigada com uroculturas de acompanhamento.",
+    "ans": true,
+    "exp": "Profilaxia antibiótica (nitrofurantoína, trimetoprim) ou profilaxia pós-coital podem ser necessárias — não há indicação rotineira de imagem sem fator complicador."
+  },
+  {
+    "qid": "c7903358",
+    "cat": "hipertensao",
+    "diff": "medium",
+    "q": "Hipertensão renovascular por displasia fibromuscular em pacientes jovens tem excelente resposta à angioplastia percutânea.",
+    "ans": true,
+    "exp": "Angioplastia com balão sem stent: taxa de cura de hipertensão em ~50% dos jovens — preferível à revascularização cirúrgica na DFM."
+  },
+  {
+    "qid": "92e0d6db",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "A hemodiálise de longa duração noturna (8–10h, 6×/semana) melhora o controle de fósforo sem quelantes.",
+    "ans": true,
+    "exp": "Maior tempo de diálise remove mais fósforo (proteína ligada ao tempo) — pacientes em HD convencional (4h) retêm muito fósforo."
+  },
+  {
+    "qid": "bbcc530a",
+    "cat": "transplante",
+    "diff": "medium",
+    "q": "A nefrectomia do rim nativo pré-transplante é necessária em todos os pacientes com DRPAD.",
+    "ans": false,
+    "exp": "Nefrectomia bilateral pré-transplante só é indicada quando cistos causam sintomas intensos, infecção recorrente ou falta de espaço para o enxerto."
+  },
+  {
+    "qid": "ac4f7ff7",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Nefropatia por refluxo com cicatrizes renais é uma causa de hipertensão arterial em crianças e adultos jovens.",
+    "ans": true,
+    "exp": "Cicatrizes corticais pós-pielonefrite associada ao RVU → hipertensão renovascular e DRC — rastrear com cintilografia DMSA."
+  },
+  {
+    "qid": "2b0183fb",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "O padrão urinário de proteinúria tubular (α1-microglobulina, β2-microglobulina) indica disfunção tubular proximal.",
+    "ans": true,
+    "exp": "Proteínas de baixo PM filtradas normalmente são reabsorvidas no TP — proteinúria tubular reflete lesão do TP (nefrotoxinas, ATR tipo 2, Fanconi)."
+  },
+  {
+    "qid": "45b86efa",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Hipouricemia renal pode ser causada por disfunção do transportador URAT1 e está associada à nefrolitíase por ácido úrico.",
+    "ans": false,
+    "exp": "Hipouricemia renal (déficit de reabsorção de urato) está associada a ácido úrico baixo e hiperuricosúria — risco de cálculos de ácido úrico e IRA de esforço."
+  },
+  {
+    "qid": "7259bade",
+    "cat": "nefropatia_diabetica",
+    "diff": "medium",
+    "q": "Inibidores de SGLT2 reduzem progressão da DRC por queda da pressão intraglomerular mediada pelo feedback tubuloglomerular.",
+    "ans": true,
+    "exp": "Maior entrega de NaCl à mácula densa → FTG → vasoconstrição aferente → redução da hiperfiltração — efeito nefroprotetor independente do controle glicêmico."
+  },
+  {
+    "qid": "81866867",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "Corrigir acidose metabólica na DRC, mantendo bicarbonato ≥ 22 mEq/L, pode reduzir progressão renal e perda muscular/óssea.",
+    "ans": true,
+    "exp": "KDIGO 2024: acidose ativa TGF-β e endotelina → fibrose tubular; bicarbonato oral retarda declínio da TFG e previne catabolismo proteico e desmineralização óssea."
+  },
+  {
+    "qid": "4532d07e",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "TFGe reduzida e albuminúria elevada são os principais marcadores prognósticos de progressão da DRC e risco cardiovascular.",
+    "ans": true,
+    "exp": "Classificação KDIGO por TFGe (G1–G5) + albuminúria (A1–A3): risco combinado — proteinúria > 1 g/g + TFGe < 30 confere risco muito alto de progressão e eventos CV."
+  },
+  {
+    "qid": "a75d3939",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Finerenona reduz desfechos renais e cardiovasculares na DRC associada ao diabetes, exigindo monitorização do potássio.",
+    "ans": true,
+    "exp": "FIDELIO-DKD + FIGARO-DKD: finerenona (ARM não esteroidal) reduziu DRCT, progressão renal e eventos CV — monitorar K⁺, especialmente com TFGe < 45 ou K⁺ basal > 4,8 mEq/L."
+  },
+  {
+    "qid": "d8b8e320",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Restrição proteica moderada pode ser usada na DRC conservadora metabolicamente estável, evitando-se em pacientes desnutridos ou catabólicos.",
+    "ans": true,
+    "exp": "KDIGO sugere 0,6–0,8 g/kg/dia em DRC 3–5 sem diálise — retarda progressão; contraindicado se albumina < 3,5 g/dL ou perda de peso involuntária."
+  },
+  {
+    "qid": "d4ba778d",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "O duplo bloqueio IECA + BRA é estratégia rotineira segura para reduzir proteinúria e prevenir diálise.",
+    "ans": false,
+    "exp": "ONTARGET e VA NEPHRON: combinação aumenta hipercalemia e IRA sem benefício renal ou CV adicional — contraindicada como rotina em DRC."
+  },
+  {
+    "qid": "64d15a36",
+    "cat": "nefrologia_geral",
+    "diff": "medium",
+    "q": "Estatinas reduzem diretamente a velocidade de perda da TFGe na DRC.",
+    "ans": false,
+    "exp": "Estatinas reduzem eventos CV em DRC, mas meta-análises não confirmam efeito direto na taxa de declínio da TFGe — benefício é cardiovascular, não renotrópico."
+  },
+  {
+    "qid": "18326ed1",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "Metformina deve ser mantida em dose máxima independentemente da TFGe.",
+    "ans": false,
+    "exp": "TFGe 30–45: reduzir dose pela metade; TFGe < 30: suspender — risco de acidose lática por acúmulo; monitorar creatinina a cada 3–6 meses em DRC."
+  },
+  {
+    "qid": "0d7f316d",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Todo idoso frágil com DRC deve atingir PAS < 120 mmHg de forma obrigatória.",
+    "ans": false,
+    "exp": "SPRINT excluiu diabéticos e fragilidade severa — em idosos frágeis com DRC, alvo < 120 mmHg aumenta risco de queda, síncope e IRA; individualizar conforme comorbidades."
+  },
+  {
+    "qid": "a161276a",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "A queda inicial da TFGe após iSGLT2 é sempre sinal de lesão renal e exige suspensão definitiva.",
+    "ans": false,
+    "exp": "Queda de 5–10% nas primeiras semanas é esperada (vasoconstrição aferente hemodinâmica) e reversível — manter se queda < 30% e sem outros sinais de lesão renal."
+  },
+  {
+    "qid": "b999945c",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Creatinina sérica é marcador tardio de IRA, podendo subir apenas 48–72h após o insulto renal.",
+    "ans": true,
+    "exp": "Creatinina reflete queda sustentada da TFG — biomarcadores precoces (NGAL, KIM-1, TIMP-2·IGFBP7) se elevam horas antes da creatinina e permitem intervenção precoce."
+  },
+  {
+    "qid": "8590f267",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "TIMP-2 e IGFBP7 indicam estresse tubular com parada do ciclo celular e ajudam a predizer IRA moderada/grave.",
+    "ans": true,
+    "exp": "[TIMP-2]·[IGFBP7] > 0,3 (NephroCheck) prediz IRA estágio 2–3 em 12h — marcadores de G1/S arrest em células tubulares; aprovados pela FDA como teste de risco."
+  },
+  {
+    "qid": "839db8c9",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "CCL14 urinário ajuda a identificar IRA persistente e maior risco de recuperação lenta ou necessidade prolongada de suporte renal.",
+    "ans": true,
+    "exp": "CCL14 ≥ 1,3 ng/mL discrimina IRA persistente de transitória em UTI — prediz necessidade prolongada de TRS com AUC > 0,8; auxilia decisão de início de diálise."
+  },
+  {
+    "qid": "e8cbc276",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Sobrecarga hídrica pode diluir a creatinina sérica e mascarar a gravidade real da IRA.",
+    "ans": true,
+    "exp": "Expansão do volume de distribuição reduz a concentração plasmática de creatinina — IRA subestimada em pacientes ressuscitados com grandes volumes; usar também débito urinário e biomarcadores."
+  },
+  {
+    "qid": "e4022db2",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Diuréticos reduzem a acurácia da fração de excreção de sódio na diferenciação entre IRA pré-renal e NTA.",
+    "ans": true,
+    "exp": "Furosemida aumenta excreção de Na⁺ → FENa falsa-positiva para NTA mesmo em IRA pré-renal — FEUreia (< 35% em pré-renal) é alternativa mais confiável após uso de diurético."
+  },
+  {
+    "qid": "8ac8dac9",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "KDIGO usa apenas débito urinário para diagnosticar e estadiar IRA.",
+    "ans": false,
+    "exp": "KDIGO 2012 usa critérios duplos: creatinina (↑ ≥ 0,3 mg/dL em 48h ou ≥ 50% em 7 dias) E/OU débito urinário (< 0,5 mL/kg/h por ≥ 6h) — ambos definem e estadiam IRA."
+  },
+  {
+    "qid": "3ebba86b",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "Toda IRA deve ser tratada empiricamente com expansão vigorosa usando soro fisiológico 0,9%.",
+    "ans": false,
+    "exp": "IRA obstrutiva, NTA estabelecida ou parenquimatosa não se beneficia de expansão; SF 0,9% em volume pode causar acidose hiperclorêmica — tratar a causa específica."
+  },
+  {
+    "qid": "5d0cb1bf",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "NGAL urinário é marcador específico de lesão podocitária e barreira glomerular.",
+    "ans": false,
+    "exp": "NGAL é marcador de lesão do TÚBULO PROXIMAL — expressão aumentada em células tubulares isquêmicas; não reflete lesão podocitária (que é melhor avaliada por proteinúria e anti-PLA2R)."
+  },
+  {
+    "qid": "1e43b975",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "IRA séptica recuperada não aumenta risco futuro de DRC.",
+    "ans": false,
+    "exp": "Episódios de IRA séptica, mesmo aparentemente recuperados, causam perda permanente de néfrons e inflamação residual — aumentam risco de DRC, DRC terminal e mortalidade a longo prazo."
+  },
+  {
+    "qid": "483b9c7b",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Biópsia renal é absolutamente contraindicada em qualquer episódio de IRA.",
+    "ans": false,
+    "exp": "Biópsia pode ser indicada em IRA de causa incerta (GN crescêntica, vasculite ANCA, NIA grave) — contraindicações relativas incluem coagulopatia não corrigida e rim único."
+  },
+  {
+    "qid": "a1cd5724",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Hiponatremia geralmente reflete excesso relativo de água em relação ao sódio, não necessariamente perda absoluta de sal.",
+    "ans": true,
+    "exp": "Desequilíbrio entre ingesta de água e capacidade de excreção — SIADH, polidipsia, insuficiência cardíaca causam hiponatremia com sódio corporal total variável."
+  },
+  {
+    "qid": "23ca0632",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Hiperglicemia grave causa hiponatremia hipertônica/translocacional, diferente da pseudohiponatremia.",
+    "ans": true,
+    "exp": "Glicose eleva osmolalidade efetiva → atrai água intracelular → dilui Na⁺; corrigir: adicionar 1,6 mEq/L de Na⁺ para cada 100 mg/dL de glicose acima de 100 mg/dL."
+  },
+  {
+    "qid": "f35ef2bb",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "SIADH cursa com hiponatremia euvolêmica, urina inapropriadamente concentrada e sódio urinário geralmente elevado.",
+    "ans": true,
+    "exp": "Diagnóstico: Na⁺ < 135 mEq/L, Posm < 275, Uosm > 100 mOsm/kg, Na⁺u > 30 mEq/L, euvolemia, tireoide e adrenal normais — causas: SNC, pulmão, drogas."
+  },
+  {
+    "qid": "37f65f3b",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Correção rápida de hiponatremia crônica aumenta risco de síndrome de desmielinização osmótica.",
+    "ans": true,
+    "exp": "Limite seguro: < 10 mEq/L/24h e < 18 mEq/L/48h — neurônios adaptam osmólitos intracelulares e os perdem com a correção rápida; mielinólise pontina central pode ser irreversível."
+  },
+  {
+    "qid": "e391c3ce",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Na diabetes insipidus, sede preservada e livre acesso à água são as principais defesas contra hipernatremia grave.",
+    "ans": true,
+    "exp": "Em DI, a poliúria é compensada pela polidipsia — hipernatremia grave ocorre quando o acesso à água é restrito (pacientes inconscientes, idosos, bebês sem acesso autônomo)."
+  },
+  {
+    "qid": "f60c4902",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Hipernatremia é sempre causada por excesso de sal e tratada apenas com restrição de sódio.",
+    "ans": false,
+    "exp": "Hipernatremia reflete déficit relativo de água livre — causas: DI, perdas insensíveis, febre, suor; tratamento é reposição de água livre (SG 5%, VO ou SNG), não restrição de sódio."
+  },
+  {
+    "qid": "af28e55b",
+    "cat": "oncologia_renal",
+    "diff": "medium",
+    "q": "Hipovolemia e desidratação são sinônimos e ambas devem ser tratadas agudamente com grandes volumes de SG 5%.",
+    "ans": false,
+    "exp": "Hipovolemia = déficit de volume circulante (tratar com isotônico); desidratação = déficit de água livre (hiperosmolar) — SG5% em hipovolemia piora a perfusão; não são sinônimos."
+  },
+  {
+    "qid": "135318dc",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Hiponatremia hipovolêmica com repercussão sistêmica deve ser tratada prioritariamente com restrição hídrica.",
+    "ans": false,
+    "exp": "Restrição hídrica é para hiponatremia EUvolêmica (SIADH) — hipovolêmica sintomática exige NaCl 3% IV para correção e reposição da volemia simultaneamente."
+  },
+  {
+    "qid": "a3d39f8f",
+    "cat": "hipertensao",
+    "diff": "medium",
+    "q": "Ureia é o principal osmól efetivo responsável por deslocar água para o intravascular.",
+    "ans": false,
+    "exp": "Ureia é osmól INEFETIVO — atravessa livremente as membranas celulares sem gerar gradiente osmótico efetivo; Na⁺, glicose e manitol são os osmóis efetivos clinicamente relevantes."
+  },
+  {
+    "qid": "9bad5cf1",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Hipernatremia aguda deve ser corrigida tão lentamente quanto a crônica para evitar desmielinização.",
+    "ans": false,
+    "exp": "Desmielinização osmótica ocorre na HIPOnatremia crônica corrigida rapidamente — em hipernatremia aguda (< 48h) a correção pode ser mais rápida; crônica: max 10 mEq/L/24h."
+  },
+  {
+    "qid": "ee94d205",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "ATR distal causa falha de secreção de H+, hipocalemia, urina alcalina e maior risco de nefrocalcinose/litíase por fosfato de cálcio.",
+    "ans": true,
+    "exp": "Incapacidade de acidificar urina abaixo de pH 5,5 → hipocitratúria + pH alto → precipitação de fosfato de cálcio → nefrocalcinose e cálculos; tratar com citrato de potássio."
+  },
+  {
+    "qid": "7d16e9ca",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "Na ATR proximal, após queda do bicarbonato sérico, o néfron distal ainda consegue acidificar a urina.",
+    "ans": true,
+    "exp": "Limiar de reabsorção de HCO₃⁻ reduzido no proximal — uma vez que HCO₃⁻ cai abaixo do limiar, o distal acidifica normalmente (pH urinário < 5,5 possível), distinguindo ATR tipo 2 do tipo 1."
+  },
+  {
+    "qid": "ecabfa81",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Hipomagnesemia favorece perda renal de potássio por ROMK e torna a hipocalemia refratária à reposição isolada de KCl.",
+    "ans": true,
+    "exp": "Mg²⁺ intracelular bloqueia o canal ROMK no ramo ascendente e túbulo coletor — sem Mg²⁺, ROMK fica aberto → fuga contínua de K⁺; repor Mg²⁺ antes de tratar hipocalemia."
+  },
+  {
+    "qid": "6810552a",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "Acidose metabólica por diarreia costuma cursar com ânion gap urinário negativo por aumento apropriado da excreção de NH4Cl.",
+    "ans": true,
+    "exp": "Diarreia → perda de HCO₃⁻ → acidose hiperclorêmica → rins respondem aumentando amoniogênese (NH₄⁺ = cátion não medido) → AG urinário negativo = resposta renal adequada."
+  },
+  {
+    "qid": "ae57a88a",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Insulina com glicose e beta-2 agonista reduzem temporariamente a calemia por shift intracelular.",
+    "ans": true,
+    "exp": "Insulina ativa Na/K-ATPase; beta-2 agonista ativa adenilato ciclase → AMPc → PKA → Na/K-ATPase — efeito aditivo, início em 15–30 min, duração 2–4h; não remove K⁺ do organismo."
+  },
+  {
+    "qid": "7f56351b",
+    "cat": "litíase",
+    "diff": "medium",
+    "q": "Furosemida é secretada no glomérulo e age no túbulo distal dependente de aldosterona.",
+    "ans": false,
+    "exp": "Furosemida é secretada pelo TÚBULO PROXIMAL (via OAT1/3) e age no NKCC2 da ALÇA DE HENLE ASCENDENTE ESPESSA — o túbulo distal dependente de aldosterona é o sítio dos tiazídicos e amilorida."
+  },
+  {
+    "qid": "97d93c77",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "ATR distal clássica cursa com ânion gap urinário negativo por aumento da amoniogênese.",
+    "ans": false,
+    "exp": "ATR distal tem FALHA de acidificação — amoniogênese está reduzida → AG urinário POSITIVO (poucos cátions não medidos como NH₄⁺); AG urinário negativo é o esperado na resposta renal normal à diarreia."
+  },
+  {
+    "qid": "bd9d8d54",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Hipertensão grave com hipocalemia e alcalose metabólica em jovem sugere paralisia periódica genética, sem necessidade de avaliar renina/aldosterona.",
+    "ans": false,
+    "exp": "Hipertensão + hipocalemia + alcalose = investigar obrigatoriamente o eixo renina-aldosterona (hiperaldosteronismo primário, estenose de AR, síndrome de Liddle) — paralisia periódica é normotensa."
+  },
+  {
+    "qid": "459a31bf",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "Acidoses orgânicas causam maior shift extracelular de potássio do que acidoses minerais hiperclorêmicas.",
+    "ans": false,
+    "exp": "Acidoses MINERAIS (H⁺ inorgânico, hiperclorêmicas) causam maior saída de K⁺ da célula — em acidoses orgânicas o ânion orgânico penetra na célula junto com H⁺, minimizando o shift de K⁺."
+  },
+  {
+    "qid": "4a917fff",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Poliestirenossulfonato é droga injetável de ação imediata para hipercalemia com alteração eletrocardiográfica grave.",
+    "ans": false,
+    "exp": "Poliestirenossulfonato é ORAL/RETAL de ação LENTA (horas a dias) — hipercalemia grave com ECG alterado exige gluconato de cálcio IV (estabilização cardíaca) + insulina/glicose de imediato."
+  },
+  {
+    "qid": "afc69394",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Hemácias dismórficas, acantócitos e cilindros hemáticos sugerem fortemente hematúria glomerular.",
+    "ans": true,
+    "exp": "Eritrócitos deformados ao passar pela MBG lesada — acantócitos > 5% têm alta especificidade para GN; cilindro hemático é patognomônico de glomerulite ativa e indica biópsia urgente."
+  },
+  {
+    "qid": "da7068ea",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "GNRP é síndrome clínica de perda rápida da função renal com sedimento nefrítico, frequentemente associada a crescentes na biópsia.",
+    "ans": true,
+    "exp": "Perda de ≥ 50% da TFG em semanas — crescentes (proliferação extracapilar) em > 50% dos glomérulos; causas: anti-MBG (Goodpasture), ANCA, imunocomplexos."
+  },
+  {
+    "qid": "2251fd91",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Anti-PLA2R auxilia diagnóstico, atividade e prognóstico da nefropatia membranosa primária.",
+    "ans": true,
+    "exp": "Positivo em ~70% da membranosa primária; título correlaciona com atividade da doença — queda precede a remissão clínica; diferencia membranosa primária da secundária (lúpus, neoplasia)."
+  },
+  {
+    "qid": "7a8b01ec",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Nefropatia por IgA pode causar hematúria macroscópica sinfaringítica após infecção de vias aéreas.",
+    "ans": true,
+    "exp": "Hematúria em 24–72h de IVAS — diferente da GN pós-estreptocócica (latência 1–3 semanas); IgA1 galacto-deficiente forma imunocomplexos que se depositam no mesângio."
+  },
+  {
+    "qid": "9102b60c",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Padrão full house na imunofluorescência sugere nefrite lúpica e indica investigação autoimune.",
+    "ans": true,
+    "exp": "Full house = IgG + IgA + IgM + C3 + C1q positivos — C1q (via clássica) é muito sugestivo de lúpus; pedir FAN, anti-dsDNA, complemento e excluir outras causas."
+  },
+  {
+    "qid": "3f1e477d",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Doença de lesão mínima exige proliferação endotelial difusa e consumo importante de C3.",
+    "ans": false,
+    "exp": "DLM: lesão podocitária com apagamento de processos na ME — SEM alteração endotelial e complemento NORMAL; proliferação endotelial e C3 baixo são achados de GN pós-infecciosa ou GNMP."
+  },
+  {
+    "qid": "00e879ec",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Glomerulonefrite membranoproliferativa exige complemento sérico normal durante toda a evolução.",
+    "ans": false,
+    "exp": "GNMP frequentemente cursa com C3 baixo (via alternativa ou clássica consumida) — hipocomplementemia apoia o diagnóstico; complemento normal não é critério diagnóstico."
+  },
+  {
+    "qid": "22a43850",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Nefrite lúpica classe V com proteinúria não nefrótica sempre exige ciclofosfamida mensal.",
+    "ans": false,
+    "exp": "Classe V com proteinúria < nefrótica: IECA/BRA + antimalárico são suficientes inicialmente — ciclofosfamida/rituximabe/belimumabe são para proteinúria nefrótica persistente ou classes proliferativas mistas (III+V, IV+V)."
+  },
+  {
+    "qid": "4a13ad7d",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Nefropatia diabética típica exige biópsia renal obrigatória em todos os pacientes.",
+    "ans": false,
+    "exp": "DM longa data + microalbuminúria progressiva + retinopatia: diagnóstico presuntivo aceito sem biópsia — biopsiar se atípico (início abrupto, sedimento ativo, progressão rápida sem retinopatia)."
+  },
+  {
+    "qid": "da90d2e0",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "GESF genética apresenta excelente resposta sustentada à corticoterapia empírica.",
+    "ans": false,
+    "exp": "GESF genética (NPHS1, NPHS2, WT1, COL4A) é tipicamente CORTICORRESISTENTE — diagnóstico molecular orienta prognóstico e avaliação de recidiva no transplante."
+  },
+  {
+    "qid": "04e746b5",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Glomerulopatia do transplante cursa com duplicação da membrana basal glomerular e associa-se à rejeição crônica mediada por anticorpos.",
+    "ans": true,
+    "exp": "Lesão endotelial crônica por DSA → dupla contorno da MBG (multilaminação) + glomerulite crônica — critério de Banff para rejeição crônica ativa mediada por anticorpos."
+  },
+  {
+    "qid": "eca83b7b",
+    "cat": "transplante",
+    "diff": "medium",
+    "q": "Decoy cells em transplantado renal levantam suspeita de nefropatia por poliomavírus BK.",
+    "ans": true,
+    "exp": "Decoy cells = células uroteliais com inclusões virais nucleares em 'olho de coruja' na citologia urinária — rastrear com PCR do BK no plasma; viremia > 10.000 cópias/mL indica redução da imunossupressão."
+  },
+  {
+    "qid": "88e972ac",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Tacrolimo pode causar vasoconstrição aferente e queda da filtração como mecanismo de nefrotoxicidade por inibidor de calcineurina.",
+    "ans": true,
+    "exp": "CNI → vasoconstrição aferente por ativação de endotelina e tromboxano A₂ → queda de TFG — nível de tacrolimo correlaciona com nefrotoxicidade; manter < 8 ng/mL após 3 meses."
+  },
+  {
+    "qid": "f67d1299",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "GESF primária idiopática pode recorrer no enxerto, especialmente quando associada a fator de permeabilidade circulante.",
+    "ans": true,
+    "exp": "Recidiva precoce (horas–dias pós-transplante) em até 40% das GESF primárias — fator circulante (CLCF1, anti-CD40) aumenta permeabilidade da MBG; plasmaférese pode induzir remissão."
+  },
+  {
+    "qid": "c40640ba",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Inibidores de mTOR, como sirolimo, podem induzir ou agravar proteinúria por toxicidade podocitária.",
+    "ans": true,
+    "exp": "mTOR é essencial para sobrevida e função do podócito — sirolimo/everolimo inibem mTORC1 → apoptose podocitária → proteinúria, especialmente ao substituir inibidores de calcineurina."
+  },
+  {
+    "qid": "c13c75f5",
+    "cat": "transplante",
+    "diff": "medium",
+    "q": "CMV no transplante limita-se a pneumonia fatal nos primeiros dias pós-indução.",
+    "ans": false,
+    "exp": "CMV causa síndrome viral (febre, leucopenia), pneumonite, colite, hepatite, retinite — pico entre 1–6 meses pós-transplante; profilaxia com valganciclovir por 3–6 meses em alto risco."
+  },
+  {
+    "qid": "568d356a",
+    "cat": "transplante",
+    "diff": "medium",
+    "q": "Nefropatia diabética recorrente destrói enxerto renal em poucas semanas.",
+    "ans": false,
+    "exp": "Lesões histológicas de nefropatia diabética reaparecem em 2–3 anos, mas falência do enxerto por diabetes recorrente tipicamente ocorre em décadas — não é causa de perda precoce do enxerto."
+  },
+  {
+    "qid": "8e6047f1",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Biópsia de enxerto renal é proibida por risco inevitável de perda vascular do rim transplantado.",
+    "ans": false,
+    "exp": "Biópsia percutânea guiada por US é procedimento padrão para avaliar rejeição, nefrotoxicidade e nefropatia BK — risco de sangramento grave < 1% em centros experientes."
+  },
+  {
+    "qid": "21fbfc95",
+    "cat": "transplante",
+    "diff": "medium",
+    "q": "Rituximabe previne de forma confiável reativação de BK e JC no transplante.",
+    "ans": false,
+    "exp": "Rituximabe (anti-CD20) é usado em RMA e GN, mas NÃO previne reativação de poliomavírus — controle de BK é por redução da imunossupressão, não por agentes antivirais diretos."
+  },
+  {
+    "qid": "7bc7269e",
+    "cat": "hipertensao",
+    "diff": "medium",
+    "q": "Alocação de rim de doador falecido no Brasil depende apenas de creatinina estável do receptor.",
+    "ans": false,
+    "exp": "O sistema brasileiro (SNT) considera compatibilidade HLA, tempo em lista, PRA, compatibilidade ABO e distância do centro — creatinina do receptor não é critério de alocação."
+  },
+  {
+    "qid": "84dda9b2",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "IRA-SHR decorre de vasodilatação esplâncnica, redução do volume arterial efetivo e vasoconstrição renal compensatória.",
+    "ans": true,
+    "exp": "Hipertensão portal → vasodilatação esplâncnica (NO, prostaglandinas) → baixo enchimento arterial percebido → ativação SRAA/SNS → vasoconstrição renal intensa → SHR."
+  },
+  {
+    "qid": "bdf053f3",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Suspeita de SHR exige ausência de melhora após retirada de diuréticos e expansão com albumina por 48h.",
+    "ans": true,
+    "exp": "Critério KDIGO/ICA: excluir IRA pré-renal funcional com albumina 1 g/kg/dia (máx 100 g/dia) × 48h + suspensão de diuréticos; se sem melhora → confirma diagnóstico de SHR-IRA."
+  },
+  {
+    "qid": "afad097d",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Terlipressina ou outro vasoconstritor associado à albumina é a base do tratamento medicamentoso da IRA-SHR.",
+    "ans": true,
+    "exp": "Terlipressina (agonista V1) + albumina: reversão em ~40% — norepinefrina é alternativa em UTI; midodrina + octreotida em casos menos graves sem UTI."
+  },
+  {
+    "qid": "9c03ba98",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Congestão venosa sistêmica eleva pressão venosa renal e reduz o gradiente efetivo de filtração glomerular.",
+    "ans": true,
+    "exp": "PVC alta transmite-se para veias renais → aumenta pressão venosa renal → reduz diferença hidrostática transglomerular → queda da TFG (síndrome cardiorrenal venosa)."
+  },
+  {
+    "qid": "1a4a8d7a",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "AINEs podem precipitar IRA em DRC, cirrose e insuficiência cardíaca por bloqueio das prostaglandinas renais.",
+    "ans": true,
+    "exp": "Em estados de baixo fluxo, PGE₂ e PGI₂ mantêm vasodilatação aferente compensatória — AINE elimina esse mecanismo → IRA funcional grave nessas populações de alto risco."
+  },
+  {
+    "qid": "c9e64e5b",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Creatinina sérica sempre estima com precisão a função renal no cirrótico, independentemente da massa muscular.",
+    "ans": false,
+    "exp": "Cirrótico tem massa muscular reduzida → baixa produção de creatinina → creatinina sérica subestima a gravidade da IRA; cistatina C e ureia são marcadores mais confiáveis nesses pacientes."
+  },
+  {
+    "qid": "cf361f68",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Débito urinário isolado é o critério mais confiável para diagnosticar IRA-SHR em todos os cirróticos.",
+    "ans": false,
+    "exp": "Cirróticos frequentemente têm oligúria por hiperaldosteronismo secundário sem IRA-SHR real — diagnóstico requer elevação de creatinina + exclusão de outras causas + critérios ICA específicos."
+  },
+  {
+    "qid": "916ef158",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Sódio urinário alto ou FENa elevada confirma síndrome hepatorrenal.",
+    "ans": false,
+    "exp": "SHR-IRA tem FENa < 0,1% (vasoconstrição intensa conserva Na⁺) — Na⁺u alto ou FENa elevada sugere NTA (uso de diuréticos ou lesão tubular real) e praticamente exclui SHR típico."
+  },
+  {
+    "qid": "2ef9803e",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Paracentese volumosa sem albumina previne disfunção circulatória e protege os rins.",
+    "ans": false,
+    "exp": "Paracentese > 5 L SEM albumina causa disfunção circulatória pós-paracentese → ativação SRAA → risco de IRA e SHR; reposição obrigatória: 8 g de albumina/L removido."
+  },
+  {
+    "qid": "3bd3a64b",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Pequena elevação transitória de ureia/creatinina durante descongestão indica falência terapêutica e obriga suspender o diurético.",
+    "ans": false,
+    "exp": "Elevação de creatinina ≤ 0,5 mg/dL durante diurese eficaz é aceitável se clinicamente indicada — suspender apenas se houver IRA real com critérios KDIGO ou sinais de hipoperfusão tecidual."
+  },
+  {
+    "qid": "a9e26993",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Hipotensão intradialítica ocorre quando a ultrafiltração excede a capacidade de refil plasmático e manutenção da volemia efetiva.",
+    "ans": true,
+    "exp": "Taxa de UF > taxa de refil vascular → hipovolemia efetiva → hipotensão; soluções: reduzir UF, aumentar Na dialístico, perfil de sódio, biofeedback de volemia."
+  },
+  {
+    "qid": "6e6b9bd1",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Citrato na CRRT anticoagula o circuito ao quelar cálcio e prolongar a vida útil do filtro.",
+    "ans": true,
+    "exp": "Citrato quelante de Ca²⁺ iônico no circuito extracorpóreo → inibe cascata de coagulação → vida útil do filtro > 72h; monitorar Ca total/iônico e acúmulo de citrato (risco em cirróticos)."
+  },
+  {
+    "qid": "263b7d01",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Aumentar o fluxo de sangue pode elevar a depuração de pequenos solutos quando os demais parâmetros da diálise não são limitantes.",
+    "ans": true,
+    "exp": "Em hemodiálise, Kt/V e depuração de ureia aumentam com maior fluxo sanguíneo — especialmente relevante quando dose dialítica está abaixo do alvo de Kt/V 1,2/sessão."
+  },
+  {
+    "qid": "7292819f",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Em CRRT, dose entregue de efluente em torno de 20–25 mL/kg/h é o alvo usual para a maioria dos pacientes críticos.",
+    "ans": true,
+    "exp": "RENAL e ATN trials: doses > 35 mL/kg/h não reduzem mortalidade — 20–25 mL/kg/h (prescrever 25–30 para compensar o downtime) é a recomendação vigente das diretrizes."
+  },
+  {
+    "qid": "097864e0",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Hemodiálise incremental busca considerar a função renal residual; esquemas intensivos podem acelerar sua perda.",
+    "ans": true,
+    "exp": "Iniciar com 1–2 sessões/semana em pacientes com FRR preservada retarda anúria — sessões mais frequentes e intensivas podem reduzir FRR por mecanismos hemodinâmicos e remoção de solutos trófico-renais."
+  },
+  {
+    "qid": "59b32769",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Diálise peritoneal é invariavelmente incapaz de remover volume em situações agudas e sempre pior que hemodiálise.",
+    "ans": false,
+    "exp": "DP pode ser eficaz em IRA e IC aguda — ensaios randomizados não mostraram inferioridade em países de recursos limitados; CRRT e HD têm vantagens específicas em hipercatabolismo grave."
+  },
+  {
+    "qid": "d928ad7b",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Pré-diluição e pós-diluição na hemofiltração têm a mesma eficiência depurativa.",
+    "ans": false,
+    "exp": "Pós-diluição é mais eficiente (concentração plasmática maior no filtro); pré-diluição dilui o sangue antes do filtro → menor depuração por convecção, mas preserva a vida útil do filtro."
+  },
+  {
+    "qid": "02178078",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Hemofiltração contínua remove solutos principalmente por difusão, sem papel relevante da convecção.",
+    "ans": false,
+    "exp": "Hemofiltração (HF) remove por CONVECÇÃO (arraste soluto com água — sieving) — difusão é o mecanismo principal da hemodiálise; hemodiafiltração combina ambos os mecanismos."
+  },
+  {
+    "qid": "4b590248",
+    "cat": "infeccao",
+    "diff": "medium",
+    "q": "Doses muito altas de CRRT, como 60–70 mL/kg/h, reduzem mortalidade de sepse em cerca de 80%.",
+    "ans": false,
+    "exp": "IVOIRE trial (60 vs 35 mL/kg/h em sepse): sem redução de mortalidade — doses muito altas não são benéficas e associam-se a perda excessiva de antibióticos e micronutrientes."
+  },
+  {
+    "qid": "c9c5ffc0",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Diálise incremental tem como objetivo eliminar rapidamente a função renal residual e induzir anúria.",
+    "ans": false,
+    "exp": "Objetivo oposto: PRESERVAR a função renal residual pelo maior tempo possível — menor carga hemodinâmica sobre néfrons remanescentes, com redução de sessões e hospitalizações."
+  },
+  {
+    "qid": "cbf79949",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Cinacalcete é calcimimético que ativa o receptor sensor de cálcio na paratireoide e reduz PTH, podendo reduzir cálcio sérico.",
+    "ans": true,
+    "exp": "Aumenta sensibilidade do CaSR → simula hipercalcemia → suprime PTH — hipocalcemia é efeito adverso importante; útil em hiperparatireoidismo secundário sem Ca baixo."
+  },
+  {
+    "qid": "4d1029c0",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Na litíase por oxalato, orienta-se hidratação, redução de sódio, moderação de proteína animal e manutenção de cálcio dietético adequado.",
+    "ans": true,
+    "exp": "Cálcio dietético 1000–1200 mg/dia liga oxalato no intestino → menos absorção → menos oxalúria; sódio e proteína animal aumentam calciúria e oxalúria — restrição de Ca é erro clássico."
+  },
+  {
+    "qid": "379c4885",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Lítio crônico pode causar diabetes insipidus nefrogênico; intoxicação grave por lítio pode exigir hemodiálise.",
+    "ans": true,
+    "exp": "Lítio bloqueia sinalização de AQP2 (via AMPc/PKA) → DI nefrogênico; t½ longo com depuração renal → HD indicada em intoxicação grave (lítio > 4 mEq/L ou sintomático)."
+  },
+  {
+    "qid": "78a1a31e",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Na DRC, retenção de fósforo e menor produção de calcitriol estimulam hiperparatireoidismo secundário.",
+    "ans": true,
+    "exp": "Hiperfosfatemia + hipocalcitriolismo + hipocalcemia → estimulam as paratireoides → HPT secundário → doença mineral óssea da DRC (CKD-MBD)."
+  },
+  {
+    "qid": "5a2cc330",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Intoxicação por salicilato pode se beneficiar de alcalinização urinária; casos graves podem exigir hemodiálise.",
+    "ans": true,
+    "exp": "pH urinário > 7,5 ↑ ionização do salicilato no túbulo → menor reabsorção → maior excreção renal; HD indicada em intoxicação grave (AAS > 100 mg/dL) ou falência orgânica."
+  },
+  {
+    "qid": "bb6c8673",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "Cálculos de ácido úrico são radiopacos e melhoram com acidificação urinária intensa.",
+    "ans": false,
+    "exp": "Ácido úrico é RADIOTRANSPARENTE (invisível na RX simples, visível na TC) e dissolve com ALCALINIZAÇÃO urinária (pH > 6,5) — acidificação expande os cálculos."
+  },
+  {
+    "qid": "8ceb9e99",
+    "cat": "nefropatia_diabetica",
+    "diff": "medium",
+    "q": "Doença óssea adinâmica não ocorre em pacientes dialíticos.",
+    "ans": false,
+    "exp": "Doença adinâmica (PTH baixo, turnover reduzido) é FREQUENTE em dialíticos — supressão excessiva com vitamina D ativa ou cinacalcete, diabetes e uso histórico de alumínio são fatores de risco."
+  },
+  {
+    "qid": "5171bef8",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "Bicarbonato ou N-acetilcisteína eliminam de forma absoluta o risco de nefropatia associada a contraste.",
+    "ans": false,
+    "exp": "PRESERVE e ACT trials: bicarbonato e NAC não são superiores ao soro fisiológico isotônico — hidratação adequada pré e pós-procedimento permanece o único pilar com evidência consistente."
+  },
+  {
+    "qid": "b45d5b22",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Carvão ativado é tratamento eficaz para intoxicação por etanol mesmo muitas horas após a ingestão.",
+    "ans": false,
+    "exp": "Carvão ativado NÃO adsorve etanol de forma eficiente — para metanol e etilenoglicol o tratamento é fomepizol + HD; para etanol, suporte clínico é o pilar."
+  },
+  {
+    "qid": "cf668af7",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Na gestação normal, a TFGe cai acentuadamente e creatinina sérica aumenta fisiologicamente.",
+    "ans": false,
+    "exp": "Gestação normal AUMENTA TFG em 40–60% (hiperfiltração fisiológica) → creatinina cai para 0,4–0,6 mg/dL — creatinina 'normal' de 0,9 mg/dL na grávida pode mascarar disfunção renal."
+  },
+  {
+    "qid": "230d8de0",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Esquizócitos, plaquetopenia, LDH elevado e haptoglobina baixa sugerem anemia hemolítica microangiopática.",
+    "ans": true,
+    "exp": "Tríade de MAT: MAHA + plaquetopenia + disfunção orgânica — causas: PTT, SHU, HELLP; a diferenciação guia o tratamento específico (plasmaférese vs suporte vs eculizumabe)."
+  },
+  {
+    "qid": "70e19eb3",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Deficiência grave de ADAMTS13, geralmente por autoanticorpo, é mecanismo central da PTT imune.",
+    "ans": true,
+    "exp": "ADAMTS13 < 10% + inibidor → acúmulo de multímeros ultralargos de FvW → microtrombos plaquetários → PTT imune; plasmaférese urgente + rituximabe salva a vida."
+  },
+  {
+    "qid": "57799f9c",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "SHU típica costuma ocorrer após diarreia por bactéria produtora de toxina Shiga e cursa com anemia hemolítica, plaquetopenia e IRA.",
+    "ans": true,
+    "exp": "E. coli O157:H7 (STEC) → toxina Shiga lesiona endotélio renal → MAT renal com IRA oligúrica — pico em < 10 anos; evitar antibióticos na fase aguda para não aumentar liberação de Stx."
+  },
+  {
+    "qid": "6d0cb02d",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Proteinúria discreta em diabético de longa data, sem sedimento ativo, pode sugerir nefropatia diabética típica sem biópsia inicial obrigatória.",
+    "ans": true,
+    "exp": "DM > 10 anos + microalbuminúria progressiva + retinopatia: diagnóstico presuntivo é aceito — biopsiar se atípico: hematúria, sedimento nefrítico, progressão rápida ou ausência de retinopatia."
+  },
+  {
+    "qid": "7281063b",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "Hipertensão resistente ou hipocalemia com alcalose metabólica deve levantar suspeita de hiperaldosteronismo primário.",
+    "ans": true,
+    "exp": "Aldosterona independente de angiotensina → retenção de Na⁺/H₂O, excreção de K⁺ e H⁺ → HAS + hipocalemia + alcalose; rastrear com relação aldosterona/renina plasmáticas."
+  },
+  {
+    "qid": "6dd74e22",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Suspeita de PTT deve ser manejada apenas com diurético e antibiótico, evitando plasmaférese.",
+    "ans": false,
+    "exp": "PTT é emergência hematológica — plasmaférese (repõe ADAMTS13 e remove inibidor) DEVE ser iniciada imediatamente; atraso leva a mortalidade de 90%; corticoide e rituximabe são adjuvantes."
+  },
+  {
+    "qid": "ca6a270d",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Tenofovir causa obstrução uretral crônica, sem disfunção tubular proximal.",
+    "ans": false,
+    "exp": "Tenofovir disoproxil fumarato (TDF) causa toxicidade MITOCONDRIAL tubular proximal → síndrome de Fanconi adquirida (glicosúria, aminoacidúria, fosfatúria) — não causa obstrução uretral."
+  },
+  {
+    "qid": "d7ba18dd",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Proteinúria leve na gestação sempre indica glomerulonefrite grave ou nefropatia diabética preexistente.",
+    "ans": false,
+    "exp": "Proteinúria < 300 mg/24h pode ser fisiológica na gestação (hiperfiltração) — pré-eclâmpsia exige PA ≥ 140/90 + proteinúria ≥ 300 mg/24h após 20 semanas ou critérios clínicos adicionais."
+  },
+  {
+    "qid": "23685e85",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Doença renal policística autossômica dominante exige biópsia renal seriada para confirmação diagnóstica.",
+    "ans": false,
+    "exp": "DRPAD é diagnosticada por IMAGEM (US, TC ou RM) pelos critérios de Ravine ou Pei conforme idade e número de cistos — biópsia é desnecessária quando imagem e história familiar são típicos."
+  },
+  {
+    "qid": "7d64a6da",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Lítio tem alta ligação à albumina e, por isso, não é removível por hemodiálise em intoxicações graves.",
+    "ans": false,
+    "exp": "Lítio tem BAIXA ligação proteica (< 5%) e volume de distribuição moderado → altamente dialisável; HD está indicada em intoxicação grave (lítio > 4 mEq/L, sintomas neurológicos ou renais)."
+  },
+  {
+    "qid": "0c843be0",
+    "cat": "hipertensao",
+    "diff": "medium",
+    "q": "CKD-EPI estima a TFGe com melhor desempenho que MDRD, especialmente em faixas mais altas de função renal.",
+    "ans": true,
+    "exp": "CKD-EPI 2021 (sem coeficiente racial) tem melhor acurácia em TFGe > 60 mL/min — MDRD subestima TFGe nesses valores, impactando o correto estadiamento da DRC."
+  },
+  {
+    "qid": "57f23929",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Clearance de creatinina em urina de 24h tende a superestimar a TFG por secreção tubular de creatinina.",
+    "ans": true,
+    "exp": "Secreção proximal de creatinina via OAT/MATE adiciona creatinina ao filtrado — ClCr supera a TFGe real em até 20–40%, especialmente em DRC avançada onde a secreção é proporcionalmente maior."
+  },
+  {
+    "qid": "8b8c97f0",
+    "cat": "hipertensao",
+    "diff": "medium",
+    "q": "Na DRC, hepcidina elevada reduz a disponibilidade de ferro e contribui para deficiência funcional de ferro.",
+    "ans": true,
+    "exp": "Inflamação crônica + redução da depuração renal → hepcidina alta → degrada ferroportina em enterócitos e macrófagos → ferro retido nos estoques, inacessível para eritropoese."
+  },
+  {
+    "qid": "99d4c202",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Estabilizadores de HIF estimulam eritropoietina endógena e podem reduzir hepcidina na anemia da DRC.",
+    "ans": true,
+    "exp": "Inibidores de prolil-hidroxilase (roxadustate, daprodustate) estabilizam HIF-α → ↑EPO endógena + supressão de hepcidina → melhor utilização do ferro armazenado — via distinta dos ESA injetáveis."
+  },
+  {
+    "qid": "aa7749c3",
+    "cat": "nefrologia_geral",
+    "diff": "medium",
+    "q": "Clearance de ureia isolado estima a TFG com precisão e não sofre influência de dieta, sangramento digestivo ou catabolismo.",
+    "ans": false,
+    "exp": "Ureia sofre reabsorção tubular variável (20–70%) e é influenciada por ingesta proteica, catabolismo, sangramento digestivo e hidratação — não é marcador confiável de TFG isoladamente."
+  },
+  {
+    "qid": "2b5acf41",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Nefropatia diabética típica exige biópsia renal obrigatória logo após microalbuminúria.",
+    "ans": false,
+    "exp": "Microalbuminúria em DM com retinopatia e longa duração: diagnóstico presuntivo é aceito sem biópsia — biopsiar apenas se atípico (sedimento ativo, progressão rápida sem retinopatia, suspeita de outra GN)."
+  },
+  {
+    "qid": "9b1a0b61",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Urina tipo I perdeu valor clínico porque não detecta proteinúria, hematúria ou dismorfismo eritrocitário.",
+    "ans": false,
+    "exp": "EQU detecta proteinúria (fita reagente) e hematúria — o dismorfismo eritrocitário exige microscopia de fase contraste, que é exame adicional; o EQU continua sendo triagem clínica essencial."
+  },
+  {
+    "qid": "31f23b40",
+    "cat": "nefrologia_geral",
+    "diff": "medium",
+    "q": "BNP isolado confirma síndrome cardiorrenal tipo 1 e não sofre interferência da DRC.",
+    "ans": false,
+    "exp": "BNP e NT-proBNP são elevados na DRC (redução da depuração renal) mesmo sem disfunção cardíaca descompensada — diagnóstico de síndrome cardiorrenal exige contexto clínico, imagem e função renal seriada."
+  },
+  {
+    "qid": "f7ccf69e",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "Ânion gap deve ser corrigido pela albumina, pois hipoalbuminemia pode mascarar acidose com ânions não mensurados.",
+    "ans": true,
+    "exp": "AG corrigido = AG medido + 2,5 × (4 − albumina g/dL) — sem correção, hipoalbuminemia reduz o AG basal e pode ocultar acidose de AG elevado (lactato, cetose, uremia)."
+  },
+  {
+    "qid": "e3b69694",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "Acidose hiperclorêmica por diarreia cursa com ânion gap urinário negativo quando a resposta renal ao amônio está preservada.",
+    "ans": true,
+    "exp": "Diarreia → perda de HCO₃⁻ → acidose NAGMA → rim aumenta amoniogênese (NH₄⁺ = cátion não medido) → AG urinário [Na⁺+K⁺−Cl⁻] negativo = resposta renal correta."
+  },
+  {
+    "qid": "d873e1f3",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Acidose metabólica com ânion gap elevado e gap osmolar aumentado sugere intoxicação por álcoois tóxicos.",
+    "ans": true,
+    "exp": "Metanol e etilenoglicol → ácidos fórmico e oxálico (↑AG) + osmóis não medidos (↑gap osmolar = osmolalidade medida − calculada > 10) — indicação de fomepizol + hemodiálise urgente."
+  },
+  {
+    "qid": "6c776c51",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "Na ATR proximal, há bicarbonatúria inicial; após queda do bicarbonato sérico, a urina pode voltar a acidificar.",
+    "ans": true,
+    "exp": "Limiar de reabsorção de HCO₃⁻ reduzido no proximal — quando HCO₃⁻ sérico cai abaixo do limiar, o distal intacto acidifica normalmente (pH < 5,5); distingue ATR tipo 2 do tipo 1."
+  },
+  {
+    "qid": "4b7eee9c",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Furosemida intravenosa reverte choque hipovolêmico por reidratar o intravascular e proteger a TFG.",
+    "ans": false,
+    "exp": "Furosemida em hipovolemia agrava a perfusão renal e pode precipitar IRA — tratamento de choque hipovolêmico é expansão com cristaloide isotônico; diurético é contraindicado nesse contexto."
+  },
+  {
+    "qid": "235c254b",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Gluconato de cálcio reduz rapidamente o potássio sérico total na hipercalemia grave.",
+    "ans": false,
+    "exp": "Gluconato de cálcio ESTABILIZA A MEMBRANA cardíaca sem alterar a calemia — para reduzir K⁺: insulina + glicose (shift intracelular), beta-2 agonista; para remover: resinas de troca, diálise."
+  },
+  {
+    "qid": "5a853a82",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "Paracetamol crônico causa acidose metabólica com ânion gap sempre normal e mielinólise cerebral fulminante.",
+    "ans": false,
+    "exp": "Intoxicação aguda por paracetamol pode gerar acidose lática (AG elevado) por disfunção mitocondrial e hepatotoxicidade — mielinólise cerebral não é complicação associada ao paracetamol."
+  },
+  {
+    "qid": "7f954cde",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Na intoxicação por metanol, lavagem gástrica com bicarbonato é superior à hemodiálise para depuração da toxina.",
+    "ans": false,
+    "exp": "Hemodiálise remove metanol e seu metabólito tóxico (ácido fórmico) de forma muito mais eficiente do que lavagem gástrica — fomepizol inibe o metabolismo e HD é o pilar do tratamento grave."
+  },
+  {
+    "qid": "a0b15d5a",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Anti-PLA2R é o principal marcador imunológico da nefropatia membranosa primária em adultos.",
+    "ans": true,
+    "exp": "Positivo em ~70% da membranosa primária idiopática — auxilia diagnóstico, diferencia de membranosa secundária (geralmente anti-PLA2R negativa), monitora resposta ao tratamento e prediz recidiva."
+  },
+  {
+    "qid": "539c2a37",
+    "cat": "hipertensao",
+    "diff": "medium",
+    "q": "Na MGRS, clones pequenos podem produzir imunoglobulinas monoclonais nefrotóxicas, mesmo sem critério para mieloma múltiplo.",
+    "ans": true,
+    "exp": "Monoclonal Gammopathy of Renal Significance: clone subclínico (< 10% plasmócitos) produz proteína que causa amiloidose AL, LCDD ou MIDD — tratar o clone independentemente do tamanho tumoral."
+  },
+  {
+    "qid": "270ee2c1",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "O escore MEST-C estratifica prognóstico na nefropatia por IgA por achados glomerulares e túbulo-intersticiais.",
+    "ans": true,
+    "exp": "Mesangial (M), Endocapilar (E), Segmentar (S), Tubular (T) e Crescentes (C) — T (atrofia tubular > 25%) e C (crescentes > 25%) predizem pior prognóstico e benefício de imunossupressão."
+  },
+  {
+    "qid": "e0f936fe",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Nefrite lúpica classe IV é forma proliferativa grave, associada a hematúria, queda de função renal e consumo de complemento.",
+    "ans": true,
+    "exp": "GN proliferativa difusa (> 50% dos glomérulos) — sedimento nefrítico, C3/C4 baixos, anti-dsDNA elevado; indução com micofenolato ou ciclofosfamida + corticoide em pulso."
+  },
+  {
+    "qid": "c86eecc5",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Doença de lesão mínima cursa com crescentes fibróticos e depósitos glomerulares volumosos na microscopia eletrônica.",
+    "ans": false,
+    "exp": "DLM: apagamento difuso de processos podocitários na ME, SEM crescentes e SEM depósitos imunes significativos — crescentes e depósitos sugerem GN proliferativa ou membranosa."
+  },
+  {
+    "qid": "041e4f93",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "MGRS causa apenas glomeruloesclerose segmentar focal familiar.",
+    "ans": false,
+    "exp": "MGRS engloba múltiplas lesões histológicas: amiloidose AL, LCDD, MIDD, GN com depósitos organizados (fibrilar, imunotactoide) — não é entidade única nem de base familiar."
+  },
+  {
+    "qid": "138ff37d",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Nefrite lúpica classe II sempre evolui para síndrome nefrótica terminal e exige ciclofosfamida venosa.",
+    "ans": false,
+    "exp": "Classe II (mesangial pura): prognóstico favorável — antimalárico + IECA/BRA suficientes; ciclofosfamida reservada para classes III/IV ou V com síndrome nefrótica grave."
+  },
+  {
+    "qid": "460c6098",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "GNRP pauci-imune com crescentes exclui vasculite ANCA-associada.",
+    "ans": false,
+    "exp": "GNRP pauci-imune (IF negativa ou mínima) É a forma típica de vasculite ANCA-associada (PAM, granulomatose com poliangiite) — ANCA positivo em > 80% dos casos pauci-imunes."
+  },
+  {
+    "qid": "c204b39d",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Na anticoagulação regional com citrato, relação cálcio total/cálcio iônico > 2,5 sugere acúmulo sistêmico de citrato.",
+    "ans": true,
+    "exp": "Acúmulo de citrato (hepatopatia, hipoperfusão hepática) complexa Ca sistêmico → Ca total alto mas iônico baixo; relação > 2,5 = 'citrate lock' → reduzir infusão de citrato e avaliar carga metabólica."
+  },
+  {
+    "qid": "95860d41",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Na água de diálise, contagem bacteriana elevada exige ação corretiva antes de ultrapassar o limite máximo permitido.",
+    "ans": true,
+    "exp": "Padrão ABNT/AAMI: < 100 UFC/mL para HD convencional e < 0,1 UFC/mL para ultrapura (HDF online) — contagem elevada indica biofilme no sistema de tratamento de água; ação preventiva obrigatória."
+  },
+  {
+    "qid": "7160f2ed",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Doses intensivas de CRRT acima do padrão não demonstraram benefício consistente de sobrevida em IRA séptica.",
+    "ans": true,
+    "exp": "RENAL e ATN: 20–25 mL/kg/h suficiente; IVOIRE (60 vs 35 mL/kg/h): sem redução de mortalidade — doses muito altas aumentam perda de antibióticos e micronutrientes sem benefício adicional."
+  },
+  {
+    "qid": "48f4183b",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Hemodiálise incremental exige função renal residual significativa, diurese preservada e monitorização periódica.",
+    "ans": true,
+    "exp": "Critérios: TFGe residual > 5 mL/min, diurese > 500 mL/dia e Kt/V semanal ≥ 2,0 com 1–2 sessões/semana — monitorar FRR a cada 3–6 meses para ajustar frequência dialítica."
+  },
+  {
+    "qid": "24105d91",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "CRRT não consegue corrigir hipercalemia e remove potássio apenas por arrasto de sódio.",
+    "ans": false,
+    "exp": "CRRT remove K⁺ eficientemente por convecção e difusão — hipercalemia grave responde em horas com banho de diálise com K⁺ 0–2 mEq/L; é uma das indicações urgentes de TRS."
+  },
+  {
+    "qid": "53212828",
+    "cat": "hipertensao",
+    "diff": "medium",
+    "q": "Membranas low-flux são a principal estratégia para remover citocinas grandes na CRRT.",
+    "ans": false,
+    "exp": "Membranas HIGH-flux e de alto corte (HCO) são usadas para remoção de médias e grandes moléculas — membranas low-flux removem apenas pequenos solutos por difusão e são ineficazes para citocinas."
+  },
+  {
+    "qid": "c4ae93b0",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Diálise peritoneal de urgência é comprovadamente superior à hemodiálise diária em pacientes metabolicamente instáveis.",
+    "ans": false,
+    "exp": "Evidência insuficiente para superioridade da DP sobre HD em instabilidade hemodinâmica grave — HD lenta ou CRRT têm vantagens no controle de solutos em pacientes catabólicos graves."
+  },
+  {
+    "qid": "5ad96d11",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Cateter de alto fluxo elimina a necessidade de avaliar anticoagulação ou risco de coagulação do circuito dialítico.",
+    "ans": false,
+    "exp": "Cateter de alto fluxo garante fluxo sanguíneo adequado, mas coagulação do circuito depende do estado de coagulabilidade do paciente, tipo de membrana e anticoagulação — avaliação é sempre necessária."
+  },
+  {
+    "qid": "dfa910b9",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "IRA-SHR decorre de vasodilatação esplâncnica, baixo volume arterial efetivo e intensa retenção renal de sódio.",
+    "ans": true,
+    "exp": "Hipertensão portal → vasodilatação esplâncnica (NO) → baixo enchimento arterial percebido → ativação SRAA + SNS → vasoconstrição renal + retenção máxima de Na⁺ → oligo/anúria."
+  },
+  {
+    "qid": "da3325f2",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Na suspeita de IRA-SHR, deve-se suspender diuréticos e avaliar resposta à albumina por 48h após excluir outras causas evidentes.",
+    "ans": true,
+    "exp": "Critério ICA/EASL: albumina 1 g/kg/dia × 48h + suspensão de diuréticos + exclusão de nefrotóxicos e obstrução; ausência de melhora confirma o diagnóstico de SHR-IRA."
+  },
+  {
+    "qid": "98851616",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Inibidores de mTOR, como sirolimo e everolimo, podem causar ou agravar proteinúria por toxicidade podocitária.",
+    "ans": true,
+    "exp": "mTORC1 é essencial para sobrevivência podocitária — sirolimo/everolimo induzem apoptose podocitária e proteinúria, especialmente ao substituir inibidores de calcineurina."
+  },
+  {
+    "qid": "ffa126ba",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Glomerulopatia do transplante cursa com proteinúria, duplicação da membrana basal glomerular e associação com rejeição crônica mediada por anticorpos.",
+    "ans": true,
+    "exp": "Lesão endotelial crônica por DSA → multilaminação da MBG + glomerulite crônica — critério de Banff para rejeição crônica ativa mediada por anticorpos; tratar com plasmaférese e rituximabe."
+  },
+  {
+    "qid": "32b19c0e",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Toda IRA nas primeiras horas de um cirrótico grave deve ser classificada imediatamente como síndrome hepatorrenal pura.",
+    "ans": false,
+    "exp": "Diagnóstico de SHR exige exclusão ativa de hipovolemia, nefrotóxicos, infecção e obstrução + ausência de melhora após albumina por 48h — classificação prematura leva a tratamento inadequado."
+  },
+  {
+    "qid": "a167c75f",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Decoy cells em transplantado renal indicam explante imediato e obrigatório do enxerto.",
+    "ans": false,
+    "exp": "Decoy cells sugerem infecção por BK — confirmação requer PCR do BK > 10.000 cópias/mL e biópsia do enxerto; manejo é REDUÇÃO DA IMUNOSSUPRESSÃO, não explante."
+  },
+  {
+    "qid": "ad5c2ab2",
+    "cat": "transplante",
+    "diff": "medium",
+    "q": "PTH > 1200 pg/mL é critério legal de prioridade para transplante renal cadavérico no Brasil.",
+    "ans": false,
+    "exp": "O sistema de alocação renal do Brasil (SNT) não usa PTH como critério de prioridade — alocação considera compatibilidade HLA, PRA, tempo em lista, ABO e fatores logísticos."
+  },
+  {
+    "qid": "f4ab07a9",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Ultrassonografia substitui a biópsia no diagnóstico definitivo de rejeição celular aguda do enxerto.",
+    "ans": false,
+    "exp": "US Doppler avalia morfologia e vascularização, mas não tem especificidade para tipo de rejeição — diagnóstico definitivo de rejeição aguda celular ou mediada por anticorpos exige biópsia com critérios de Banff."
+  },
+  {
+    "qid": "6d4d922e",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Na poliúria hipotônica, ausência de concentração urinária no teste de restrição hídrica com resposta à desmopressina sugere diabetes insipidus central.",
+    "ans": true,
+    "exp": "DI central: Uosm não sobe com desidratação, mas aumenta ≥ 50% após DDAVP; DI nefrogênico: sem resposta ao DDAVP; polidipsia primária: concentra progressivamente com desidratação."
+  },
+  {
+    "qid": "ec316223",
+    "cat": "genetica",
+    "diff": "medium",
+    "q": "Na DRPAD, hipertensão arterial pode surgir antes da queda da TFGe.",
+    "ans": true,
+    "exp": "Cistos em crescimento comprimem arteríolas → ativação local do SRAA → HAS precoce; HALT-PKD: IECA/BRA em alvo PA < 110/75 mmHg retardou crescimento cistico em jovens com TFG preservada."
+  },
+  {
+    "qid": "844343ac",
+    "cat": "transplante",
+    "diff": "medium",
+    "q": "Hiperoxalúria primária tipo 1 decorre de deficiência hepática da AGT e pode causar nefrocalcinose, DRC e oxalose sistêmica.",
+    "ans": true,
+    "exp": "Deficiência de AGXT hepática → acúmulo de oxalato → nefrocalcinose, DRC e depósitos em coração, ossos e retina (oxalose); lumasirana (siRNA) aprovada; transplante hepatorrenal em casos graves."
+  },
+  {
+    "qid": "a4d99035",
+    "cat": "glomerular",
+    "diff": "medium",
+    "q": "Na DRC dialítica, PTH muito elevado com fosfatase alcalina alta sugere doença óssea de alto turnover.",
+    "ans": true,
+    "exp": "PTH > 600–1000 pg/mL + fosfatase alcalina elevada = osteíte fibrosa cística (alto turnover) — controlar fósforo, repor calcitriol/paricalcitol e cinacalcete; biópsia óssea se diagnóstico incerto."
+  },
+  {
+    "qid": "2097c8d9",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "Hiponatremia hipertônica deve ser tratada com vaptans e grandes volumes de soluções hipotônicas.",
+    "ans": false,
+    "exp": "Hiponatremia HIPERTÔNICA (ex: hiperglicemia grave) trata-se corrigindo a causa base (insulina na CAD) — vaptans são para hiponatremia hipotônica euvolêmica (SIADH); soluções hipotônicas em volume podem ser perigosas."
+  },
+  {
+    "qid": "75aa1c52",
+    "cat": "acido_base",
+    "diff": "medium",
+    "q": "Lítio injetável e diuréticos osmóticos reduzem PTH e tratam litíase renal recorrente.",
+    "ans": false,
+    "exp": "Lítio causa diabetes insipidus nefrogênico e hipercalcemia (não reduz PTH); diuréticos osmóticos não tratam litíase — litíase cálcica: tiazídicos + hidratação + citrato; úrica: alcalinização + alopurinol/febuxostate."
+  },
+  {
+    "qid": "1ac9e7e2",
+    "cat": "dialise",
+    "diff": "medium",
+    "q": "Hemodiálise é contraindicada na acidose lática grave associada à metformina porque a molécula não é dializável.",
+    "ans": false,
+    "exp": "Metformina é ALTAMENTE DIALIZÁVEL (baixo peso molecular, baixa ligação proteica) — HD está INDICADA em acidose lática grave por metformina para remover a droga e o lactato acumulado."
+  },
+  {
+    "qid": "88ba6f86",
+    "cat": "lra",
+    "diff": "medium",
+    "q": "Cinacalcete atua bloqueando o intestino e causa hipercalcemia grave como efeito esperado.",
+    "ans": false,
+    "exp": "Cinacalcete é calcimimético que age no CaSR da paratireoide — aumenta sensibilidade, simula hipercalcemia, suprime PTH; efeito adverso é HIPOcalcemia (não hipercalcemia); não atua no intestino."
+  },
+  {
+    "qid": "aff54dd8",
+    "cat": "eletrólitos",
+    "diff": "medium",
+    "q": "SIADH causa perda maciça de sódio e deve ser tratada com grandes volumes de soro glicosado a 5%.",
+    "ans": false,
+    "exp": "SIADH retém água (não perde sódio ativamente) e cursa com euvolemia — SG 5% agrava a hiponatremia por ser hipotônico; tratamento: restrição hídrica ± NaCl 3% ± vaptans conforme gravidade."
+  }
 ];

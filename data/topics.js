@@ -37,7 +37,7 @@ const topics = [
     "diff": "medium",
     "cat": "dialise"
   },
-  {
+    {
     "t": "Controle de PA na DRC e Diabetes Tipo 2",
     "qid": "e56795a6",
     "q": "Segundo as diretrizes KDIGO 2021, qual é a meta de pressão arterial sistólica (PAS) recomendada para reduzir o risco de eventos cardiovasculares e progressão da doença renal crônica (DRC) em pacientes com diabetes tipo 2 (DM2) e alto risco cardiovascular?",
@@ -47,12 +47,12 @@ const topics = [
     ],
     "opts": [
       "PAS < 130 mmHg",
-      "PAS < 120 mmHg",
+      "PAS < 120 mmHg (medida de forma padronizada em consultório)",
       "PAS < 140 mmHg",
       "PAD < 80 mmHg como alvo primário isolado"
     ],
-    "ans": 0,
-    "exp": "As diretrizes KDIGO 2021 recomendam uma meta de pressão arterial sistólica inferior a 130 mmHg para pacientes com doença renal crônica e diabetes tipo 2, especialmente aqueles com alto risco cardiovascular, com o objetivo de reduzir eventos cardiovasculares e a progressão da DRC. Evidências de estudos como o SPRINT e ACCORD sugerem que metas mais agressivas podem ser benéficas, mas o risco de eventos adversos deve ser considerado. A opção <120 mmHg não é recomendada devido ao risco aumentado de efeitos colaterais, enquanto metas mais altas, como <140 mmHg ou <150 mmHg, não são consideradas eficazes para a redução ideal de risco.",
+    "ans": 1,
+    "exp": "As diretrizes KDIGO 2021 de Pressão Arterial recomendam uma meta de pressão arterial sistólica inferior a 120 mmHg para pacientes adultos com doença renal crônica (DRC) não dialítica quando a pressão é medida de forma padronizada em consultório (Grau 2B), meta que se aplica também aos pacientes com diabetes tipo 2 (DM2). Evidências do estudo SPRINT e, mais recentemente, do estudo BPROAD (2024) confirmam que o controle intensivo de PAS com alvo < 120 mmHg reduz significativamente eventos cardiovasculares maiores nessa população. A meta de < 130 mmHg, embora adotada em diretrizes de diabetes como a ADA, é menos estrita do que o recomendado pelo KDIGO para a proteção cardiovascular no contínuo renal.",
     "diff": "medium",
     "cat": "hipertensao"
   },
@@ -1870,24 +1870,18 @@ const topics = [
     "diff": "medium",
     "cat": "lra"
   },
-  {
+    {
     "t": "Nefropatia por IgA e Óleo de Peixe (KDIGO)",
     "qid": "9961a406",
     "q": "Paciente com nefropatia por IgA, proteinúria de 1,5 g/dia após 3 meses de tratamento com inibidor da enzima conversora de angiotensina (IECA) em dose máxima, e função renal estável. O nefrologista considera a adição de óleo de peixe (ômega-3) ao tratamento. Qual é a recomendação atual do KDIGO sobre o uso de óleo de peixe na nefropatia por IgA?",
-    "refs": [
-      "kdigo_gn",
-      "protect_trial",
-      "atrasentan_igan",
-      "nefigard_trial"
-    ],
     "opts": [
-      "É formalmente contraindicada devido ao risco aumentado de sangramento associado a mecanismos fisiopatológicos relacionados à anticoagulação",
+      "É formalmente contraindicada devido ao risco aumentado de sangramento associado a mecanismos de anticoagulação",
       "É recomendada como primeira linha de tratamento para todos os pacientes com nefropatia por IgA, independentemente da proteinúria",
-      "Pode ser considerado em pacientes com proteinúria persistente, mas a evidência é considerada fraca e os resultados inconsistentes",
-      "Pode substituir completamente o uso de inibidores da ECA ou bloqueadores dos receptores da angiotensina, sem necessidade de ajuste renal adicional"
+      "Não é recomendado de rotina pelo KDIGO 2021 (Sugere-se não utilizar - Grau 2D), dada a inconsistência das evidências históricas",
+      "Pode substituir completamente o uso de inibidores da ECA ou bloqueadores dos receptores da angiotensina, sem necessidade de ajuste renal"
     ],
     "ans": 2,
-    "exp": "O KDIGO sugere que o uso de óleo de peixe (ômega-3) pode ser considerado em casos selecionados de nefropatia por IgA com proteinúria persistente apesar de tratamento otimizado com IECA/BRA. A evidência é fraca e os resultados são inconsistentes entre os estudos. A opção que propõe \"contraindicação formal\" está incorreta — o óleo de peixe não é contraindicado na NIgA. A opção que propõe \"primeira linha para todos os pacientes\" está incorreta — não há evidência robusta para uso universal como primeira linha. A opção que propõe \"substituir completamente IECA/BRA\" está incorreta — o bloqueio do SRAA permanece como pilar do tratamento de suporte.",
+    "exp": "A diretriz KDIGO 2021 de Glomerulopatias recomenda não utilizar óleo de peixe (ômega-3) de forma rotineira para o tratamento da nefropatia por IgA (Grau 2D), alterando o posicionamento mais permissivo de 2012. Isso se deve à fraqueza e inconsistência das evidências de benefício renal sustentado e ao advento de terapias de suporte mais eficazes, como os inibidores de SGLT2. O bloqueio do SRAA com IECA/BRA em dose máxima tolerada permanece como a base do tratamento de suporte inicial obrigatório.",
     "diff": "medium",
     "cat": "glomerular"
   },
@@ -2652,13 +2646,13 @@ const topics = [
       "brenner_rector"
     ],
     "opts": [
-      "Fosfato de magnésio amoníaco (estruvite)",
+      "Fosfato de magnésio amoníaco (estruvita)",
       "Ácido úrico",
       "Cistina",
       "Oxalato de cálcio"
     ],
     "ans": 3,
-    "exp": "Pacientes com Doença de Crohn ou submetidos a bypass gástrico desenvolvem hiperoxalúria entérica: a má absorção de gorduras faz com que os ácidos graxos livres sequestrem o cálcio intraluminal, deixando o oxalato livre para ser absorvido no cólon e precipitar nos túbulos renais. O resultado é a formação preferencial de cálculos de oxalato de cálcio (alternativa 'Oxalato de cálcio'). Cistina, estruvite e ácido úrico não são as causas predominantes nesse contexto.",
+    "exp": "Pacientes com Doença de Crohn ou submetidos a bypass gástrico desenvolvem hiperoxalúria entérica: a má absorção de gorduras faz com que os ácidos graxos livres sequestrem o cálcio intraluminal, deixando o oxalato livre para ser absorvido no cólon e precipitar nos túbulos renais. O resultado é a formação preferencial de cálculos de oxalato de cálcio (alternativa 'Oxalato de cálcio'). Cistina, estruvita e ácido úrico não são as causas predominantes nesse contexto.",
     "diff": "medium",
     "cat": "litíase"
   },
@@ -3157,12 +3151,12 @@ const topics = [
     ],
     "opts": [
       "Perda renal de bicarbonato por disfunção tubular proximal, como na síndrome de Fanconi com acidose tubular tipo 2",
-      "Excreção adequada de amónio (NH4+), sugerindo causa extrarrenal (ex: diarreia)",
+      "Excreção adequada de amônio (NH4+), sugerindo causa extrarrenal (ex: diarreia)",
       "Presença significativa de cetonas na urina, indicando cetoacidose metabólica não relacionada",
-      "Falha na excreção adequada de amónio urinário, sugerindo acidose tubular renal distal"
+      "Falha na excreção adequada de amônio urinário, sugerindo acidose tubular renal distal"
     ],
     "ans": 1,
-    "exp": "O hiato osmolar urinário é calculado como: Osm medida − [2×(Na+K) + ureia + glicose]. Quando elevado (> 100 mOsm/kg), reflete presença significativa de NH4⁺ na urina, indicando que os rins estão excretando adequadamente amônio — sugerindo que a acidose tem causa extrarrenal, como diarreia (alternativa 'Excreção adequada de amónio (NH4+), sugerindo causa extrarre...'). Um hiato osmolar urinário baixo indica falha na excreção de NH4⁺, sugestivo de acidose tubular renal distal. Cetonas e disfunção tubular proximal não explicam diretamente um hiato osmolar urinário elevado.",
+    "exp": "O hiato osmolar urinário é calculado como: Osm medida − [2×(Na+K) + ureia + glicose]. Quando elevado (> 100 mOsm/kg), reflete presença significativa de NH4⁺ na urina, indicando que os rins estão excretando adequadamente amônio — sugerindo que a acidose tem causa extrarrenal, como diarreia (alternativa 'Excreção adequada de amônio (NH4+), sugerindo causa extrarre...'). Um hiato osmolar urinário baixo indica falha na excreção de NH4⁺, sugestivo de acidose tubular renal distal. Cetonas e disfunção tubular proximal não explicam diretamente um hiato osmolar urinário elevado.",
     "diff": "hard",
     "cat": "acido_base"
   },
@@ -6017,14 +6011,10 @@ const topics = [
     "diff": "medium",
     "cat": "eletrólitos"
   },
-  {
+    {
     "t": "Acidose metabólica na DRC",
     "qid": "920621f6",
     "q": "Paciente com DRC avançada e bicarbonato sérico 17 mEq/L. Qual conduta é mais apropriada?",
-    "refs": [
-      "kdigo_ckd",
-      "brenner_rector"
-    ],
     "opts": [
       "Ignorar acidose leve/moderada por não impactar progressão",
       "Induzir alcalose metabólica para reduzir proteinúria em amostra isolada",
@@ -6032,7 +6022,7 @@ const topics = [
       "Usar reposição intravenosa crônica em ambulatório estável"
     ],
     "ans": 2,
-    "exp": "A acidose metabólica crônica na DRC (bicarbonato sérico < 22 mEq/L) deve ser corrigida gradualmente, geralmente com bicarbonato de sódio oral, visando uma meta de bicarbonato sérico entre 22-24 mEq/L. Essa intervenção demonstrou reduzir a progressão da DRC, melhorar o metabolismo ósseo e proteico, e diminuir a inflamação, conforme evidenciado por estudos como o CONVINCE. A correção deve ser monitorizada para evitar sobrecarga de sódio e volume, especialmente em pacientes com doença cardíaca ou hipertensão.",
+    "exp": "A acidose metabólica crônica na DRC (bicarbonato sérico < 22 mEq/L) deve ser corrigida gradualmente, geralmente com bicarbonato de sódio oral, visando uma meta de bicarbonato sérico entre 22-24 mEq/L. Essa intervenção demonstrou reduzir a progressão da DRC, melhorar o metabolismo ósseo e proteico, e diminuir a inflamação, conforme demonstrado em ensaios clínicos clássicos como o de de Brito-Ashurst (2009) e o estudo UBi. A correção deve ser monitorizada para evitar sobrecarga de sódio e volume, especialmente em pacientes com doença cardíaca ou hipertensão.",
     "diff": "medium",
     "cat": "acido_base"
   },
@@ -6316,7 +6306,7 @@ const topics = [
       "Ganho abrupto contínuo da função."
     ],
     "ans": 1,
-    "exp": "A dapagliflozina, assim como outros inibidores de SGLT2, costuma causar uma pequena queda aguda inicial da TFGe por efeito hemodinâmico intraglomerular, relacionada à redução da hiperfiltração, e isso não significa falência renal progressiva; ao contrário, depois desse “dip” inicial observa-se menor velocidade de perda de função renal ao longo do tempo em comparação ao placebo. A aceleração isquêmica para falência renal não é o achado esperado. A perda total do efeito nefroprotetor está incorreta: houve benefício mesmo no subgrupo com TFGe <30 mL/min/1,73 m². O ganho abrupto contínuo de TFGe também não é esperado após iniciar SGLT2i. É importante também formular corretamente o contexto do estudo: o DAPA-CKD incluiu pacientes com TFGe a partir de 25 mL/min/1,73 m², não 10 mL/min/1,73 m².",
+    "exp": "A dapagliflozina, assim como outros inibidores de SGLT2, costuma causar uma pequena queda aguda inicial da TFGe por efeito hemodinâmico intraglomerular, relacionada à redução da hiperfiltração, e isso não significa falência renal progressiva; ao contrário, depois desse “dip” inicial observa-se menor velocidade de perda de função renal ao longo do tempo em comparação ao placebo. A aceleração isquêmica para falência renal não é o achado esperado. A perda total do efeito nefroprotetor está incorreta: houve benefício mesmo no subgrupo com TFGe <30 mL/min/1,73 m². O ganho abrupto contínuo de TFGe também não é esperado após iniciar iSGLT2. É importante também formular corretamente o contexto do estudo: o DAPA-CKD incluiu pacientes com TFGe a partir de 25 mL/min/1,73 m², não 10 mL/min/1,73 m².",
     "refs": [
       "dapa",
       "credence"
@@ -7870,8 +7860,8 @@ const topics = [
     "q": "Paciente masculino, 68 anos, hipertenso e com insuficiência cardíaca congestiva, apresenta oligúria e elevação da creatinina sérica (de 1,2 para 2,5 mg/dL) após 5 dias de uso de ibuprofeno para dor lombar. Qual a principal razão para a nefrotoxicidade induzida por AINEs nesse paciente?",
     "opts": [
       "A ativação do sistema renina-angiotensina-aldosterona pelos AINEs provoca vasoconstrição das arteríolas e redução do débito urinário.",
-      "A interferência na reabsorção de sódio e água pelos AINEs aumenta a diurese, causando desidratação e insuficiência renal aguda.",
-      "A inibição da síntese de prostaglandinas reduz o fluxo sanguíneo renal, especialmente em pacientes com perfusão renal comprometida, levando à insuficiência renal aguda.",
+      "A interferência na reabsorção de sódio e água pelos AINEs aumenta a diurese, causando desidratação e lesão renal aguda.",
+      "A inibição da síntese de prostaglandinas reduz o fluxo sanguíneo renal, especialmente em pacientes com perfusão renal comprometida, levando à lesão renal aguda.",
       "A indução de lesão tubular direta pelos AINEs causa necrose tubular aguda, principalmente em pacientes com hipertensão arterial."
     ],
     "ans": 2,
@@ -8325,7 +8315,7 @@ const topics = [
   },
   {
     "qid": "df6caaed",
-    "q": "Paciente masculino, 32 anos, apresenta hemoptise progressiva, dispneia, proteinúria e insuficiência renal aguda. Exames revelam anemia, níveis elevados de anti-MBG (anticorpos anti-membrana basal glomerular) e infiltrados pulmonares sugestivos de hemorragia alveolar. Qual conduta terapêutica é mais indicada para reduzir a mortalidade e preservar a função renal?",
+    "q": "Paciente masculino, 32 anos, apresenta hemoptise progressiva, dispneia, proteinúria e lesão renal aguda. Exames revelam anemia, níveis elevados de anti-MBG (anticorpos anti-membrana basal glomerular) e infiltrados pulmonares sugestivos de hemorragia alveolar. Qual conduta terapêutica é mais indicada para reduzir a mortalidade e preservar a função renal?",
     "opts": [
       "Prescrever imunoglobulina intravenosa isolada para neutralização dos anticorpos circulantes.",
       "Iniciar plasmaférese associada a corticosteroides e ciclofosfamida para remoção dos anticorpos e controle da resposta imune.",
@@ -8572,7 +8562,7 @@ const topics = [
       "A redução da necessidade de transplante hepático devido à regeneração hepática induzida pela terlipressina associada à albumina.",
       "A prevenção da progressão para insuficiência renal crônica pela estabilização da pressão arterial média com vasoconstritores.",
       "A diminuição da mortalidade em 90 dias, mesmo na ausência de melhora da função renal, devido ao efeito anti-inflamatório da albumina.",
-      "A melhora significativa da taxa de resolução da insuficiência renal aguda em comparação com placebo, sem aumento significativo dos eventos adversos cardiovasculares."
+      "A melhora significativa da taxa de resolução da lesão renal aguda em comparação com placebo, sem aumento significativo dos eventos adversos cardiovasculares."
     ],
     "ans": 3,
     "exp": "A combinação de terlipressina com albumina é recomendada para o tratamento da síndrome hepatorrenal tipo 1 (HRS-1) devido à sua capacidade de melhorar a função renal e reverter a HRS-1, conforme demonstrado no estudo CONFIRM. O estudo mostrou que a terlipressina, um vasoconstritor esplâncnico, em combinação com albumina, melhora a perfusão renal e a função renal em pacientes com HRS-1. Embora a mortalidade a longo prazo não seja significativamente reduzida, a reversão da HRS-1 é um desfecho importante. As outras opções, como redução da mortalidade em 90 dias, prevenção de complicações hemorrágicas e redução da necessidade de transplante hepático, não são os principais benefícios demonstrados pela combinação terapêutica.",
@@ -8680,7 +8670,7 @@ const topics = [
   {
     "t": "Hipertensão Maligna: Achados no Fundo de Olho e Rim",
     "qid": "09748d98",
-    "q": "Um paciente apresenta quadro de hipertensão grave com pressão arterial de 220/130 mmHg, acompanhada de cefaleia intensa e edema de papila à fundoscopia. Exames laboratoriais revelam insuficiência renal aguda com creatinina elevada e hematúria discreta. Considerando o diagnóstico de hipertensão maligna, qual das seguintes correlações entre achados no fundo de olho e alterações renais é a mais consistente e clinicamente relevante para o manejo e prognóstico do paciente?",
+    "q": "Um paciente apresenta quadro de hipertensão grave com pressão arterial de 220/130 mmHg, acompanhada de cefaleia intensa e edema de papila à fundoscopia. Exames laboratoriais revelam lesão renal aguda com creatinina elevada e hematúria discreta. Considerando o diagnóstico de hipertensão maligna, qual das seguintes correlações entre achados no fundo de olho e alterações renais é a mais consistente e clinicamente relevante para o manejo e prognóstico do paciente?",
     "refs": [
       "kdigo_ckd",
       "brenner_rector"
@@ -8692,7 +8682,7 @@ const topics = [
       "Hemorragias retinianas refletindo lesão tubular aguda e reversível, com bom prognóstico para recuperação da função renal."
     ],
     "ans": 1,
-    "exp": "Na hipertensão maligna, o edema de papila é um achado de retinopatia hipertensiva grave e se associa a lesão endotelial sistêmica com necrose fibrinoide e hiperplasia arteriolar nas arteríolas renais, quadro típico de nefroesclerose hipertensiva aguda e insuficiência renal aguda. Essa correlação é a mais útil para o prognóstico e para reforçar a necessidade de redução controlada e imediata da pressão arterial. A alternativa 'Exsudatos algodonosos no fundo de olho correlacionando-se co...' é incorreta porque exsudatos algodonosos refletem isquemia da camada de fibras nervosas da retina, não glomeruloesclerose avançada; C é falsa porque papiledema na hipertensão maligna não é benigno nem sugere, por si, hipertensão intracraniana concomitante; e D erra ao atribuir hemorragias retinianas a lesão tubular aguda reversível, pois esses achados expressam retinopatia hipertensiva e não uma correlação renal específica.",
+    "exp": "Na hipertensão maligna, o edema de papila é um achado de retinopatia hipertensiva grave e se associa a lesão endotelial sistêmica com necrose fibrinoide e hiperplasia arteriolar nas arteríolas renais, quadro típico de nefroesclerose hipertensiva aguda e lesão renal aguda. Essa correlação é a mais útil para o prognóstico e para reforçar a necessidade de redução controlada e imediata da pressão arterial. A alternativa 'Exsudatos algodonosos no fundo de olho correlacionando-se co...' é incorreta porque exsudatos algodonosos refletem isquemia da camada de fibras nervosas da retina, não glomeruloesclerose avançada; C é falsa porque papiledema na hipertensão maligna não é benigno nem sugere, por si, hipertensão intracraniana concomitante; e D erra ao atribuir hemorragias retinianas a lesão tubular aguda reversível, pois esses achados expressam retinopatia hipertensiva e não uma correlação renal específica.",
     "diff": "hard",
     "cat": "hipertensao"
   },
@@ -8706,7 +8696,7 @@ const topics = [
     ],
     "opts": [
       "Nefroesclerose maligna geralmente cursa com proteinúria significativa (>3,5g/dia) e sedimentação urinária ativa, ao contrário da nefroesclerose benigna.",
-      "Nefroesclerose benigna costuma apresentar hipertensão maligna com quadro de insuficiência renal aguda e retinopatia grau IV.",
+      "Nefroesclerose benigna costuma apresentar hipertensão maligna com quadro de lesão renal aguda e retinopatia grau IV.",
       "Edema de papila e sintomas neurológicos associados à emergência hipertensiva caracterizam a nefroesclerose maligna e não são achados típicos da nefroesclerose benigna.",
       "A presença de hipertrofia ventricular esquerda no ECG exclui o diagnóstico de nefroesclerose maligna, estando associada apenas à nefroesclerose benigna."
     ],
@@ -9380,7 +9370,7 @@ const topics = [
       "Não apresenta SLT laboratorial, porque a hipercalemia deve estar acima de 6,5 mEq/L para ser considerada no diagnóstico."
     ],
     "ans": 1,
-    "exp": "Pelos critérios de Cairo-Bishop, a síndrome de lise tumoral laboratorial é diagnosticada quando há pelo menos duas alterações metabólicas típicas, como hiperuricemia, hipercalemia, hiperfosfatemia e hipocalcemia, ocorrendo no intervalo de 3 dias antes até 7 dias após o início da terapia. Este paciente apresenta hiperuricemia, hipercalemia, hiperfosfatemia e hipocalcemia, portanto preenche claramente o critério de SLT laboratorial. A presença de insuficiência renal aguda, arritmias ou convulsões é que define SLT clínica, e isso não foi informado. A alternativa 'Não apresenta SLT, pois o critério exige aumento da creatini...' está errada porque creatinina elevada não é requisito para o diagnóstico laboratorial; a opção 'Apresenta SLT clínica, pois a hipocalcemia isolada associada...' confunde SLT clínica com achados isolados de cálcio e fósforo; e a opção 'Não apresenta SLT laboratorial, porque a hipercalemia deve e...' usa um ponto de corte absoluto incorreto para potássio.",
+    "exp": "Pelos critérios de Cairo-Bishop, a síndrome de lise tumoral laboratorial é diagnosticada quando há pelo menos duas alterações metabólicas típicas, como hiperuricemia, hipercalemia, hiperfosfatemia e hipocalcemia, ocorrendo no intervalo de 3 dias antes até 7 dias após o início da terapia. Este paciente apresenta hiperuricemia, hipercalemia, hiperfosfatemia e hipocalcemia, portanto preenche claramente o critério de SLT laboratorial. A presença de lesão renal aguda, arritmias ou convulsões é que define SLT clínica, e isso não foi informado. A alternativa 'Não apresenta SLT, pois o critério exige aumento da creatini...' está errada porque creatinina elevada não é requisito para o diagnóstico laboratorial; a opção 'Apresenta SLT clínica, pois a hipocalcemia isolada associada...' confunde SLT clínica com achados isolados de cálcio e fósforo; e a opção 'Não apresenta SLT laboratorial, porque a hipercalemia deve e...' usa um ponto de corte absoluto incorreto para potássio.",
     "diff": "hard",
     "cat": "eletrólitos"
   },
@@ -9398,7 +9388,7 @@ const topics = [
       "Interromper o pembrolizumabe e iniciar corticosteroides em dose imunossupressora, monitorando a função renal"
     ],
     "ans": 3,
-    "exp": "A nefrite intersticial aguda é uma complicação reconhecida do uso de inibidores de checkpoint imunológico, como o pembrolizumabe. A interrupção do agente imunoterápico e o início de corticosteroides sistêmicos são recomendados para tratar a inflamação intersticial e preservar a função renal. A continuidade do pembrolizumabe sem tratamento adequado pode levar a um dano renal progressivo. A diálise não é indicada na ausência de insuficiência renal aguda grave ou complicações urêmicas. Antibióticos não são indicados, pois a leucocitúria é decorrente da inflamação intersticial e não de infecção.",
+    "exp": "A nefrite intersticial aguda é uma complicação reconhecida do uso de inibidores de checkpoint imunológico, como o pembrolizumabe. A interrupção do agente imunoterápico e o início de corticosteroides sistêmicos são recomendados para tratar a inflamação intersticial e preservar a função renal. A continuidade do pembrolizumabe sem tratamento adequado pode levar a um dano renal progressivo. A diálise não é indicada na ausência de lesão renal aguda grave ou complicações urêmicas. Antibióticos não são indicados, pois a leucocitúria é decorrente da inflamação intersticial e não de infecção.",
     "diff": "hard",
     "cat": "farmacologia"
   },
@@ -9632,7 +9622,7 @@ const topics = [
   {
     "t": "Paciente com DRC G4 em uso de furosemida 80 mg/d a",
     "qid": "6dd8e258",
-    "q": "Paciente com doença renal crônica (DRC) estágio G4 em uso de furosemida 80 mg/d apresenta insuficiência renal aguda (IRA) após episódio de gastroenterite. A creatinina sérica aumentou de 2,2 para 3,6 mg/dL. Exame de urina revela sódio urinário (NaU) de 38 mEq/L, fração de excreção de sódio (FENa) de 1,6%, osmolaridade urinária (osmU) de 520 mOsm/kg e sedimento urinário pobre. Qual é a melhor interpretação para este quadro clínico?",
+    "q": "Paciente com doença renal crônica (DRC) estágio G4 em uso de furosemida 80 mg/d apresenta lesão renal aguda (IRA) após episódio de gastroenterite. A creatinina sérica aumentou de 2,2 para 3,6 mg/dL. Exame de urina revela sódio urinário (NaU) de 38 mEq/L, fração de excreção de sódio (FENa) de 1,6%, osmolaridade urinária (osmU) de 520 mOsm/kg e sedimento urinário pobre. Qual é a melhor interpretação para este quadro clínico?",
     "refs": [
       "kdigo_aki",
       "kdigo_aki"
@@ -9768,7 +9758,7 @@ const topics = [
     "cat": "eletrólitos"
   },
   {
-    "t": "Paciente com DRC em uso de SGLT2i tem queda inicia",
+    "t": "Paciente com DRC em uso de iSGLT2 tem queda inicia",
     "qid": "96c0c85d",
     "q": "Paciente com doença renal crônica (DRC) em uso de inibidor de SGLT2 apresenta uma queda inicial da taxa de filtração glomerular (TFG) nas primeiras semanas de tratamento. Qual é o mecanismo fisiológico que explica essa redução inicial na TFG?",
     "refs": [
@@ -9830,7 +9820,7 @@ const topics = [
   {
     "t": "Paciente com IRA oligúrica apresenta: Na urinário",
     "qid": "028f2492",
-    "q": "Paciente com insuficiência renal aguda (IRA) oligúrica apresenta: sódio urinário de 12 mEq/L, osmolaridade urinária de 620 mOsm/kg, fração de excreção de ureia de 22%, em uso recente de furosemida. Qual é o diagnóstico mais provável?",
+    "q": "Paciente com lesão renal aguda (IRA) oligúrica apresenta: sódio urinário de 12 mEq/L, osmolaridade urinária de 620 mOsm/kg, fração de excreção de ureia de 22%, em uso recente de furosemida. Qual é o diagnóstico mais provável?",
     "refs": [
       "brenner_rector",
       "kdigo_aki"
@@ -10138,7 +10128,7 @@ const topics = [
   {
     "t": "Paciente com IRA apresenta cilindros leucocitários",
     "qid": "212f3a7d",
-    "q": "Um paciente com insuficiência renal aguda (IRA) apresenta cilindros leucocitários no sedimento urinário. Qual é o diagnóstico mais provável?",
+    "q": "Um paciente com lesão renal aguda (IRA) apresenta cilindros leucocitários no sedimento urinário. Qual é o diagnóstico mais provável?",
     "refs": [
       "brenner_rector",
       "kdigo_aki"
@@ -10273,7 +10263,7 @@ const topics = [
   {
     "t": "Paciente com IRA apresenta FEureia 48%, osmU 280 m",
     "qid": "d17fd6bd",
-    "q": "Paciente com insuficiência renal aguda (IRA) apresenta fração de excreção de ureia (FEureia) de 48%, osmolaridade urinária (osmU) de 280 mOsm/kg e presença de cilindros granulares no sedimento urinário. Qual é o diagnóstico mais provável?",
+    "q": "Paciente com lesão renal aguda (IRA) apresenta fração de excreção de ureia (FEureia) de 48%, osmolaridade urinária (osmU) de 280 mOsm/kg e presença de cilindros granulares no sedimento urinário. Qual é o diagnóstico mais provável?",
     "refs": [
       "brenner_rector",
       "kdigo_aki"
@@ -10540,7 +10530,7 @@ const topics = [
   {
     "t": "Qual alteração hemodinâmica caracteriza a necrose tubular ag...",
     "qid": "f3a883e1",
-    "q": "Paciente pós-cirurgia cardíaca de grande porte desenvolve insuficiência renal aguda (IRA) oligúrica 48 horas após hipotensão prolongada. A creatinina sérica aumenta progressivamente, a fração de excreção de sódio (FENa) é de 3,5%, a osmolalidade urinária é de 280 mOsm/kg e há presença de cilindros granulares no sedimento urinário. Qual alteração hemodinâmica intrarrenal caracteriza a necrose tubular aguda (NTA) estabelecida?",
+    "q": "Paciente pós-cirurgia cardíaca de grande porte desenvolve lesão renal aguda (IRA) oligúrica 48 horas após hipotensão prolongada. A creatinina sérica aumenta progressivamente, a fração de excreção de sódio (FENa) é de 3,5%, a osmolalidade urinária é de 280 mOsm/kg e há presença de cilindros granulares no sedimento urinário. Qual alteração hemodinâmica intrarrenal caracteriza a necrose tubular aguda (NTA) estabelecida?",
     "refs": [
       "kdigo_ckd",
       "brenner_rector"
@@ -10863,7 +10853,7 @@ const topics = [
   {
     "t": "Paciente com IRA apresenta cilindros granulares “muddy brown...",
     "qid": "631117ee",
-    "q": "Paciente de 65 anos, hipertenso e diabético, apresenta insuficiência renal aguda (IRA) após uso de anti-inflamatórios não esteroidais (AINEs). O exame de urina revela cilindros granulares marrons ('muddy brown casts'). Qual é o diagnóstico mais provável?",
+    "q": "Paciente de 65 anos, hipertenso e diabético, apresenta lesão renal aguda (IRA) após uso de anti-inflamatórios não esteroidais (AINEs). O exame de urina revela cilindros granulares marrons ('muddy brown casts'). Qual é o diagnóstico mais provável?",
     "refs": [
       "kdigo_ckd",
       "brenner_rector"
@@ -10875,7 +10865,7 @@ const topics = [
       "Necrose tubular aguda"
     ],
     "ans": 3,
-    "exp": "A presença de cilindros granulares marrons ('muddy brown casts') na urina é altamente sugestiva de necrose tubular aguda (NTA), especialmente em um contexto de insuficiência renal aguda associada ao uso de AINEs. A NTA é caracterizada por lesão tubular renal, frequentemente devido a isquemia ou nefrotoxinas, como os AINEs. Nefrite intersticial aguda pode ocorrer com AINEs, mas é mais frequentemente associada a eosinofilúria e cilindros leucocitários. Glomerulonefrite rapidamente progressiva e doença renal crônica não são associadas a cilindros granulares marrons.",
+    "exp": "A presença de cilindros granulares marrons ('muddy brown casts') na urina é altamente sugestiva de necrose tubular aguda (NTA), especialmente em um contexto de lesão renal aguda associada ao uso de AINEs. A NTA é caracterizada por lesão tubular renal, frequentemente devido a isquemia ou nefrotoxinas, como os AINEs. Nefrite intersticial aguda pode ocorrer com AINEs, mas é mais frequentemente associada a eosinofilúria e cilindros leucocitários. Glomerulonefrite rapidamente progressiva e doença renal crônica não são associadas a cilindros granulares marrons.",
     "diff": "hard",
     "cat": "lra"
   },
@@ -12551,7 +12541,7 @@ const topics = [
       "PA alvo < 130/80 mmHg"
     ],
     "ans": 3,
-    "exp": "KDIGO 2024 recomenda PA alvo < 120 mmHg sistólica em não-diabéticos de alto risco (extrapolado do SPRINT). Para pacientes com DM2 e DRC, o BPROAD (2024) e a maioria das diretrizes recomendam PAS < 120 mmHg (<130/80 mmHg), mas na prática clínica < 130/80 mmHg é alvo consensual. Com TFG < 30, tiazídicos têm eficácia reduzida; furosemida é preferida. SGLT2i pode ser usado até TFG ≥ 20 mL/min (dapagliflozina) com benefício nefroprotetor independente da queda de TFG.",
+    "exp": "KDIGO 2024 recomenda PA alvo < 120 mmHg sistólica em não-diabéticos de alto risco (extrapolado do SPRINT). Para pacientes com DM2 e DRC, o BPROAD (2024) e a maioria das diretrizes recomendam PAS < 120 mmHg (<130/80 mmHg), mas na prática clínica < 130/80 mmHg é alvo consensual. Com TFG < 30, tiazídicos têm eficácia reduzida; furosemida é preferida. iSGLT2 pode ser usado até TFG ≥ 20 mL/min (dapagliflozina) com benefício nefroprotetor independente da queda de TFG.",
     "diff": "medium",
     "cat": "drc"
   },
@@ -13858,22 +13848,18 @@ const topics = [
     "diff": "medium",
     "cat": "hipertensao"
   },
-  {
+    {
     "t": "Hipertensão e Rins",
     "qid": "1e0e571c",
     "q": "Sobre o tratamento de HAS em DRC com proteinúria, qual a meta de PA e o agente de primeira linha segundo o KDIGO 2021?",
-    "refs": [
-      "kdigo_bp_ckd_2021",
-      "sprint_trial"
-    ],
     "opts": [
-      "PA < 140/90 mmHg; qualquer anti-hipertensivo",
-      "PA < 130/80 mmHg (ou < 120 mmHg sistólica em pacientes de alto risco sem proteinúria",
-      "PA < 150/90 mmHg em todos os pacientes com DRC",
-      "PA < 140/90 mmHg; bloqueador de canal de cálcio como única opção"
+      "PAS < 140 mmHg; bloqueador dos canais de cálcio em monoterapia",
+      "PAS < 120 mmHg (medida padronizada em consultório); IECA ou BRA como primeira linha",
+      "PAS < 130 mmHg; betabloqueador em associação a diurético de alça",
+      "PAS < 150 mmHg; qualquer anti-hipertensivo tolerado pelo paciente"
     ],
     "ans": 1,
-    "exp": "KDIGO 2021 recomenda PA < 120 mmHg sistólica para DRC com alto risco cardiovascular (baseado no SPRINT), mas < 130/80 mmHg é a meta mais amplamente adotada. IECA/BRA são a base do tratamento em DRC com proteinúria, pois reduzem a pressão intraglomerular independentemente da redução de PA sistêmica, retardando a progressão. O estudo ONTARGET mostrou que a combinação IECA+BRA não é benéfica e aumenta efeitos adversos.",
+    "exp": "De acordo com a diretriz KDIGO 2021, o alvo terapêutico recomendado para adultos com hipertensão e DRC não dialítica (incluindo aqueles com proteinúria) é a pressão arterial sistólica (PAS) < 120 mmHg, desde que medida de forma padronizada em consultório. Em pacientes com proteinúria significativa (ACR ≥ 300 mg/g ou equivalente), os inibidores do SRAA (IECA ou BRA) são agentes de primeira linha obrigatórios devido ao seu efeito antiproteinúrico específico e à redução do ritmo de progressão da DRC. A combinação de IECA e BRA é contraindicada (como demonstrado no ONTARGET).",
     "diff": "medium",
     "cat": "hipertensao"
   },
@@ -15559,7 +15545,7 @@ const topics = [
   {
     "t": "Indicações de Diálise de Urgência",
     "qid": "e2dc7986",
-    "q": "Paciente com insuficiência renal aguda oligúrica apresenta: potássio 7,2 mEq/L com alterações no ECG, ureia 280 mg/dL, creatinina 12 mg/dL, bicarbonato 8 mEq/L e edema pulmonar. Qual das seguintes condições, isoladamente, é uma indicação suficiente para diálise de urgência?",
+    "q": "Paciente com lesão renal aguda oligúrica apresenta: potássio 7,2 mEq/L com alterações no ECG, ureia 280 mg/dL, creatinina 12 mg/dL, bicarbonato 8 mEq/L e edema pulmonar. Qual das seguintes condições, isoladamente, é uma indicação suficiente para diálise de urgência?",
     "refs": [
       "kdigo_aki",
       "kdigo_dialise"
@@ -15571,7 +15557,7 @@ const topics = [
       "HCO3 <15 mEq/L sem sintomas"
     ],
     "ans": 2,
-    "exp": "A hipercalemia com alterações eletrocardiográficas é a alternativa correta porque representa risco imediato de arritmias fatais e é uma indicação clássica de diálise de urgência na insuficiência renal aguda, sobretudo quando o tratamento clínico inicial não corrige a instabilidade. Já ureia elevada e creatinina muito alta, isoladamente, não são critérios absolutos para diálise sem correlação clínica; da mesma forma, bicarbonato baixo sem acidose grave refratária ou repercussão clínica não basta como indicação isolada. Embora o paciente do enunciado também tenha acidose importante e edema pulmonar, a questão pede a condição suficiente isoladamente, e a hipercalemia com alterações no ECG é a melhor resposta.",
+    "exp": "A hipercalemia com alterações eletrocardiográficas é a alternativa correta porque representa risco imediato de arritmias fatais e é uma indicação clássica de diálise de urgência na lesão renal aguda, sobretudo quando o tratamento clínico inicial não corrige a instabilidade. Já ureia elevada e creatinina muito alta, isoladamente, não são critérios absolutos para diálise sem correlação clínica; da mesma forma, bicarbonato baixo sem acidose grave refratária ou repercussão clínica não basta como indicação isolada. Embora o paciente do enunciado também tenha acidose importante e edema pulmonar, a questão pede a condição suficiente isoladamente, e a hipercalemia com alterações no ECG é a melhor resposta.",
     "diff": "easy",
     "cat": "dialise"
   },
@@ -16352,7 +16338,7 @@ const topics = [
     ]
   },
   {
-    "t": "SGLT2i na Nefropatia IgA — Limitações",
+    "t": "iSGLT2 na Nefropatia IgA — Limitações",
     "qid": "18784ef8",
     "q": "A diretriz KDIGO 2023 recomenda o uso de inibidores de SGLT2 em pacientes com nefropatia por IgA (IgAN) com base em evidências de benefício renal. No entanto, a diretriz destaca incerteza sobre o benefício em uma subpopulação específica. Qual é essa subpopulação?",
     "opts": [
@@ -16460,7 +16446,7 @@ const topics = [
     ]
   },
   {
-    "t": "SGLT2i na DPARD — KDIGO 2025",
+    "t": "iSGLT2 na DPARD — KDIGO 2025",
     "qid": "1ebc64f7",
     "q": "Em pacientes com doença renal policística autossômica dominante (DRPAD), por que os inibidores de SGLT2 não são atualmente recomendados especificamente para retardar a progressão da doença renal?",
     "opts": [
@@ -17171,7 +17157,7 @@ const topics = [
     ]
   },
   {
-    "t": "Meta-análise SGLT2i em DRC Avançada — CJASN 2025",
+    "t": "Meta-análise iSGLT2 em DRC Avançada — CJASN 2025",
     "qid": "28f7a828",
     "q": "Na meta-análise publicada no CJASN em 2025, que incluiu 13 ensaios com 29.614 participantes, quais benefícios os inibidores de SGLT2 demonstraram em pacientes com doença renal crônica (DRC) de muito alto risco?",
     "opts": [
@@ -17189,17 +17175,17 @@ const topics = [
     ]
   },
   {
-    "t": "SGLT2i na Diálise — Estado da Evidência",
+    "t": "iSGLT2 na Diálise — Estado da Evidência",
     "qid": "df2517a7",
     "q": "Qual é a principal razão pela qual a evidência sobre o uso de inibidores de SGLT2 em pacientes em hemodiálise ou diálise peritoneal ainda é limitada?",
     "opts": [
-      "Os SGLT2i são contraindicados em todas as formas de diálise",
+      "Os iSGLT2 são contraindicados em todas as formas de diálise",
       "Pacientes com função renal gravemente comprometida ou em diálise foram EXCLUÍDOS dos grandes ensaios clínicos (DAPA-CKD, EMPA-KIDNEY)",
       "Os estudos mostraram aumento de mortalidade em diálise",
       "Não há mecanismo teórico de benefício em diálise"
     ],
     "ans": 1,
-    "exp": "A melhor resposta é a opção 'Pacientes com função renal gravemente comprometida ou em diá...', porque a principal limitação da evidência é metodológica: os grandes ensaios que estabeleceram benefício dos SGLT2i em doença renal crônica e insuficiência cardíaca, em geral, excluíram pacientes em diálise, de modo que não há dados clínicos robustos para essa população. A alternativa 'Os SGLT2i são contraindicados em todas as formas de diálise' está errada porque não existe contraindicação universal e absoluta em todas as modalidades de diálise como regra geral de classe; a opção 'Os estudos mostraram aumento de mortalidade em diálise' está errada porque não há evidência de aumento de mortalidade em diálise; e a opção 'Não há mecanismo teórico de benefício em diálise' está errada porque existe plausibilidade fisiopatológica, embora o benefício em pacientes dialíticos permaneça não demonstrado por falta de estudos.",
+    "exp": "A melhor resposta é a opção 'Pacientes com função renal gravemente comprometida ou em diá...', porque a principal limitação da evidência é metodológica: os grandes ensaios que estabeleceram benefício dos iSGLT2 em doença renal crônica e insuficiência cardíaca, em geral, excluíram pacientes em diálise, de modo que não há dados clínicos robustos para essa população. A alternativa 'Os iSGLT2 são contraindicados em todas as formas de diálise' está errada porque não existe contraindicação universal e absoluta em todas as modalidades de diálise como regra geral de classe; a opção 'Os estudos mostraram aumento de mortalidade em diálise' está errada porque não há evidência de aumento de mortalidade em diálise; e a opção 'Não há mecanismo teórico de benefício em diálise' está errada porque existe plausibilidade fisiopatológica, embora o benefício em pacientes dialíticos permaneça não demonstrado por falta de estudos.",
     "diff": "medium",
     "cat": "drc",
     "refs": [
@@ -17207,7 +17193,7 @@ const topics = [
     ]
   },
   {
-    "t": "SGLT2i — Benefício Independente de Diabetes",
+    "t": "iSGLT2 — Benefício Independente de Diabetes",
     "qid": "7fd4c336",
     "q": "Qual é o benefício confirmado dos inibidores de SGLT2 em pacientes com doença renal crônica (DRC), conforme evidências recentes?",
     "opts": [
@@ -17427,13 +17413,13 @@ const topics = [
     "qid": "6b06f82b",
     "q": "Em pacientes com risco para doença renal crônica, qual alternativa melhor resume a abordagem recomendada para rastreamento e o papel dos inibidores de SGLT2?",
     "opts": [
-      "Rastreamento universal para toda a população adulta; SGLT2i restrito a pacientes com diabetes tipo 1 e TFGe > 60 mL/min/1,73m²",
-      "Rastreamento direcionado a grupos de risco (DM, HAS, DCV, obesidade) usando TFGe + relação albumina/creatinina; SGLT2i com benefício nefroprotetor e cardiovascular em DRC com ou sem diabetes",
-      "Rastreamento por creatinina sérica isolada, sem albuminúria; benefício dos SGLT2i vinculado exclusivamente ao controle glicêmico",
-      "Investigar DRC somente na presença de sintomas urêmicos ou edema; SGLT2i sem evidência em DRC não diabética"
+      "Rastreamento universal para toda a população adulta; iSGLT2 restrito a pacientes com diabetes tipo 1 e TFGe > 60 mL/min/1,73m²",
+      "Rastreamento direcionado a grupos de risco (DM, HAS, DCV, obesidade) usando TFGe + relação albumina/creatinina; iSGLT2 com benefício nefroprotetor e cardiovascular em DRC com ou sem diabetes",
+      "Rastreamento por creatinina sérica isolada, sem albuminúria; benefício dos iSGLT2 vinculado exclusivamente ao controle glicêmico",
+      "Investigar DRC somente na presença de sintomas urêmicos ou edema; iSGLT2 sem evidência em DRC não diabética"
     ],
     "ans": 1,
-    "exp": "A alternativa 'Rastreamento direcionado a grupos de risco (DM, HAS, DCV, ob...' é a melhor resposta porque o rastreamento de DRC deve ser direcionado a grupos de risco (diabetes, hipertensão, doença cardiovascular, obesidade, histórico familiar) e deve combinar a estimativa de TFG com a relação albumina/creatinina urinária, pois uma medida isolada é insuficiente para detectar toda a lesão renal precoce. Os inibidores de SGLT2 têm benefício nefroprotetor e cardiovascular demonstrado em DRC com ou sem diabetes (DAPA-CKD, EMPA-KIDNEY). A alternativa 'Rastreamento universal para toda a população adulta; SGLT2i...' erra ao propor rastreamento universal e ao restringir SGLT2i ao diabetes tipo 1. A alternativa 'Rastreamento por creatinina sérica isolada, sem albuminúria;...' erra ao excluir a albuminúria do rastreamento e ao vincular o benefício dos SGLT2i apenas ao controle glicêmico. A alternativa 'Investigar DRC somente na presença de sintomas urêmicos ou e...' está incorreta porque DRC deve ser detectada antes de sintomas urêmicos, e pacientes com DRC albuminúrica estão entre os que mais se beneficiam dos SGLT2i quando não há contraindicação.",
+    "exp": "A alternativa 'Rastreamento direcionado a grupos de risco (DM, HAS, DCV, ob...' é a melhor resposta porque o rastreamento de DRC deve ser direcionado a grupos de risco (diabetes, hipertensão, doença cardiovascular, obesidade, histórico familiar) e deve combinar a estimativa de TFG com a relação albumina/creatinina urinária, pois uma medida isolada é insuficiente para detectar toda a lesão renal precoce. Os inibidores de SGLT2 têm benefício nefroprotetor e cardiovascular demonstrado em DRC com ou sem diabetes (DAPA-CKD, EMPA-KIDNEY). A alternativa 'Rastreamento universal para toda a população adulta; iSGLT2...' erra ao propor rastreamento universal e ao restringir iSGLT2 ao diabetes tipo 1. A alternativa 'Rastreamento por creatinina sérica isolada, sem albuminúria;...' erra ao excluir a albuminúria do rastreamento e ao vincular o benefício dos iSGLT2 apenas ao controle glicêmico. A alternativa 'Investigar DRC somente na presença de sintomas urêmicos ou e...' está incorreta porque DRC deve ser detectada antes de sintomas urêmicos, e pacientes com DRC albuminúrica estão entre os que mais se beneficiam dos iSGLT2 quando não há contraindicação.",
     "diff": "medium",
     "cat": "drc",
     "refs": [
@@ -17651,7 +17637,7 @@ const topics = [
       "Apenas em pacientes diabéticos com proteinúria nefrótica"
     ],
     "ans": 2,
-    "exp": "As diretrizes KDIGO de lípides não recomendam estatinas para retardar a progressão da DRC: o benefício estabelecido é cardiovascular (redução de eventos ateroscleróticos), não renal. O ensaio SHARP demonstrou redução de eventos cardiovasculares maiores em pacientes com DRC, mas sem efeito consistente na progressão da perda de função renal. Por isso a opção 'Não; não há evidência de benefício renal consistente...' é a correta (Grau 2D). A opção 'Sim, como terapia de primeira linha para progressão renal' está errada porque estatinas não fazem parte das estratégias de nefroproteção de primeira linha (que incluem IECA/BRA, SGLT2i e controle pressórico). A opção 'Sim, associadas ao bloqueio do SRAA' está errada pelo mesmo motivo: não há recomendação de combinação de estatina com bloqueio do SRAA com objetivo nefroprotetor. A opção 'Apenas em pacientes diabéticos com proteinúria nefrótica' está errada porque a indicação de estatina na DRC é baseada no risco cardiovascular global, não restrita a diabéticos ou a grau de proteinúria.",
+    "exp": "As diretrizes KDIGO de lípides não recomendam estatinas para retardar a progressão da DRC: o benefício estabelecido é cardiovascular (redução de eventos ateroscleróticos), não renal. O ensaio SHARP demonstrou redução de eventos cardiovasculares maiores em pacientes com DRC, mas sem efeito consistente na progressão da perda de função renal. Por isso a opção 'Não; não há evidência de benefício renal consistente...' é a correta (Grau 2D). A opção 'Sim, como terapia de primeira linha para progressão renal' está errada porque estatinas não fazem parte das estratégias de nefroproteção de primeira linha (que incluem IECA/BRA, iSGLT2 e controle pressórico). A opção 'Sim, associadas ao bloqueio do SRAA' está errada pelo mesmo motivo: não há recomendação de combinação de estatina com bloqueio do SRAA com objetivo nefroprotetor. A opção 'Apenas em pacientes diabéticos com proteinúria nefrótica' está errada porque a indicação de estatina na DRC é baseada no risco cardiovascular global, não restrita a diabéticos ou a grau de proteinúria.",
     "diff": "medium",
     "cat": "drc",
     "refs": [
@@ -17684,10 +17670,10 @@ const topics = [
       "Porque transfusões causam sobrecarga de ferro irreversível",
       "Para minimizar alossensibilização (formação de anticorpos anti-HLA)",
       "Porque transfusões pioram a função renal residual",
-      "Porque interferem com a ação dos SGLT2i"
+      "Porque interferem com a ação dos iSGLT2"
     ],
     "ans": 1,
-    "exp": "As diretrizes KDIGO recomendam evitar transfusões de hemácias em candidatos a transplante renal porque elas podem induzir alossensibilização, com formação de anticorpos contra antígenos HLA presentes principalmente em leucócitos e plaquetas contaminantes do hemocomponente. Esses anticorpos dificultam a busca por doador compatível e podem aumentar o risco de rejeição e de atraso no transplante. As demais alternativas não explicam o motivo central dessa recomendação: sobrecarga de ferro não é a justificativa principal, transfusão não é evitada por piora da função renal residual e não há relação com SGLT2i.",
+    "exp": "As diretrizes KDIGO recomendam evitar transfusões de hemácias em candidatos a transplante renal porque elas podem induzir alossensibilização, com formação de anticorpos contra antígenos HLA presentes principalmente em leucócitos e plaquetas contaminantes do hemocomponente. Esses anticorpos dificultam a busca por doador compatível e podem aumentar o risco de rejeição e de atraso no transplante. As demais alternativas não explicam o motivo central dessa recomendação: sobrecarga de ferro não é a justificativa principal, transfusão não é evitada por piora da função renal residual e não há relação com iSGLT2.",
     "diff": "medium",
     "cat": "drc",
     "refs": [
@@ -17702,10 +17688,10 @@ const topics = [
       "Placebo",
       "Losartana em dose baixa",
       "Irbesartana em dose máxima titulada",
-      "Enalapril + SGLT2i"
+      "Enalapril + iSGLT2"
     ],
     "ans": 2,
-    "exp": "No estudo PROTECT, a sparsentana foi comparada com irbesartana em dose máxima titulada, especificamente 300 mg/dia, em pacientes com nefropatia por IgA e proteinúria persistente. A sparsentana mostrou superioridade na redução da proteinúria em relação à irbesartana, o que faz da alternativa 'Irbesartana em dose máxima titulada' a correta. As demais opções estão incorretas porque placebo não foi o comparador do estudo, losartana em dose baixa não foi o esquema utilizado e enalapril associado a SGLT2i não fez parte do desenho do PROTECT.",
+    "exp": "No estudo PROTECT, a sparsentana foi comparada com irbesartana em dose máxima titulada, especificamente 300 mg/dia, em pacientes com nefropatia por IgA e proteinúria persistente. A sparsentana mostrou superioridade na redução da proteinúria em relação à irbesartana, o que faz da alternativa 'Irbesartana em dose máxima titulada' a correta. As demais opções estão incorretas porque placebo não foi o comparador do estudo, losartana em dose baixa não foi o esquema utilizado e enalapril associado a iSGLT2 não fez parte do desenho do PROTECT.",
     "diff": "hard",
     "cat": "glomerular",
     "refs": [
@@ -17839,17 +17825,17 @@ const topics = [
     ]
   },
   {
-    "t": "SGLT2i em DRC de Alto Risco — Limitações",
+    "t": "iSGLT2 em DRC de Alto Risco — Limitações",
     "qid": "671bee79",
     "q": "Em relação ao uso de inibidores de SGLT2 em pacientes com doença renal crônica (DRC), qual das seguintes afirmações é verdadeira com base nas evidências mais recentes?",
     "opts": [
       "Sem diferença entre os grupos",
       "Em alto risco, houve pouco/nenhum efeito na hospitalização por IC e falência renal, diferente do muito alto risco",
-      "SGLT2i foram prejudiciais no grupo de alto risco",
+      "iSGLT2 foram prejudiciais no grupo de alto risco",
       "Benefício apenas no grupo de alto risco"
     ],
     "ans": 0,
-    "exp": "Os inibidores de SGLT2 mostraram efeito cardiorrenal consistente em DRC em diferentes estratos de risco, incluindo pacientes de alto e de muito alto risco, sem heterogeneidade clinicamente relevante que sustente perda de eficácia em um desses subgrupos; por isso, a melhor resposta é a alternativa 'Sem diferença entre os grupos', entendida como ausência de diferença importante na eficácia relativa entre os grupos, embora o benefício absoluto possa ser maior quanto maior o risco basal. A alternativa 'Em alto risco, houve pouco/nenhum efeito na hospitalização p...' está errada porque não há base para afirmar pouco ou nenhum efeito em alto risco sobre hospitalização por insuficiência cardíaca ou progressão renal; a opção 'SGLT2i foram prejudiciais no grupo de alto risco' é falsa porque os SGLT2i não se mostraram prejudiciais nesse estrato, ao contrário, reduziram desfechos renais e cardiovasculares; e a opção 'Benefício apenas no grupo de alto risco' também está incorreta porque o benefício não se restringe apenas ao grupo de alto risco, sendo observado também no muito alto risco, desde que respeitados os critérios clínicos de indicação e função renal.",
+    "exp": "Os inibidores de SGLT2 mostraram efeito cardiorrenal consistente em DRC em diferentes estratos de risco, incluindo pacientes de alto e de muito alto risco, sem heterogeneidade clinicamente relevante que sustente perda de eficácia em um desses subgrupos; por isso, a melhor resposta é a alternativa 'Sem diferença entre os grupos', entendida como ausência de diferença importante na eficácia relativa entre os grupos, embora o benefício absoluto possa ser maior quanto maior o risco basal. A alternativa 'Em alto risco, houve pouco/nenhum efeito na hospitalização p...' está errada porque não há base para afirmar pouco ou nenhum efeito em alto risco sobre hospitalização por insuficiência cardíaca ou progressão renal; a opção 'iSGLT2 foram prejudiciais no grupo de alto risco' é falsa porque os iSGLT2 não se mostraram prejudiciais nesse estrato, ao contrário, reduziram desfechos renais e cardiovasculares; e a opção 'Benefício apenas no grupo de alto risco' também está incorreta porque o benefício não se restringe apenas ao grupo de alto risco, sendo observado também no muito alto risco, desde que respeitados os critérios clínicos de indicação e função renal.",
     "diff": "hard",
     "cat": "drc",
     "refs": [
