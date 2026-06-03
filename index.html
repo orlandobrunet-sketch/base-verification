@@ -188,11 +188,17 @@
     <span class="hero-btn-label">Herói</span>
   </button>
   <div class="mobile-sound-controls" id="mobileSoundControls">
-    <div class="sound-toggle" role="button" tabindex="0" aria-label="Ativar/desativar música" data-action="toggleMusic">
-      <span id="mobileSoundMusicIcon" aria-hidden="true">🎵</span>
+    <div class="volume-slider-container">
+      <div class="sound-toggle" role="button" tabindex="0" aria-label="Ativar/desativar música" data-action="toggleMusic">
+        <span id="mobileSoundMusicIcon" aria-hidden="true">🎵</span>
+      </div>
+      <input type="range" class="volume-slider music-vol" min="0" max="1" step="0.05" aria-label="Volume da Música">
     </div>
-    <div class="sound-toggle" role="button" tabindex="0" aria-label="Ativar/desativar efeitos sonoros" data-action="toggleSound">
-      <span id="mobileSoundSfxIcon" aria-hidden="true">🔊</span>
+    <div class="volume-slider-container">
+      <div class="sound-toggle" role="button" tabindex="0" aria-label="Ativar/desativar efeitos sonoros" data-action="toggleSound">
+        <span id="mobileSoundSfxIcon" aria-hidden="true">🔊</span>
+      </div>
+      <input type="range" class="volume-slider sfx-vol" min="0" max="1" step="0.05" aria-label="Volume dos Efeitos">
     </div>
   </div>
 
@@ -501,7 +507,7 @@
     <div class="lnd-footer">
       <span>nefroquest.com</span>
       <span class="lnd-footer-sep">·</span>
-      <span>v11.38</span>
+      <span>v11.39</span>
       <span class="lnd-footer-sep">·</span>
       <a href="https://nefroquest.com/privacy-policy.html" class="lnd-footer-link" target="_blank" rel="noopener">Política de Privacidade</a>
     </div>
@@ -580,11 +586,17 @@
     <div class="welcome-particles" id="welcomeParticles"></div>
     <!-- Botões de som na welcome screen (PC only) -->
     <div class="welcome-sound-controls" id="welcomeSoundControls">
-      <div class="sound-toggle" role="button" tabindex="0" aria-label="Ativar/desativar música" data-action="toggleMusic">
-        <span id="welcomeMusicIcon" aria-hidden="true">🎵</span>
+      <div class="volume-slider-container">
+        <div class="sound-toggle" role="button" tabindex="0" aria-label="Ativar/desativar música" data-action="toggleMusic">
+          <span id="welcomeMusicIcon" aria-hidden="true">🎵</span>
+        </div>
+        <input type="range" class="volume-slider music-vol" min="0" max="1" step="0.05" aria-label="Volume da Música">
       </div>
-      <div class="sound-toggle" role="button" tabindex="0" aria-label="Ativar/desativar efeitos sonoros" data-action="toggleSound">
-        <span id="welcomeSoundIcon" aria-hidden="true">🔊</span>
+      <div class="volume-slider-container">
+        <div class="sound-toggle" role="button" tabindex="0" aria-label="Ativar/desativar efeitos sonoros" data-action="toggleSound">
+          <span id="welcomeSoundIcon" aria-hidden="true">🔊</span>
+        </div>
+        <input type="range" class="volume-slider sfx-vol" min="0" max="1" step="0.05" aria-label="Volume dos Efeitos">
       </div>
       <div class="profile-btn" id="welcomeProfileBtn" role="button" tabindex="0" aria-label="Menu da conta" data-action="toggleProfilePopup" data-arg="welcome">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
@@ -659,11 +671,17 @@
       <div id="finalMeterStarsTop" style="display:none;justify-content:center;gap:6px;align-items:center;padding:4px 0 2px;"></div>
       <!-- Sound controls estáticos dentro do título (PC only) -->
       <div class="sound-controls" id="soundControlsBar">
-        <div id="musicToggle" class="sound-toggle" role="button" tabindex="0" aria-label="Ativar/desativar música" data-action="toggleMusic">
-          <span id="musicIcon" aria-hidden="true">🎵</span>
+        <div class="volume-slider-container">
+          <div id="musicToggle" class="sound-toggle" role="button" tabindex="0" aria-label="Ativar/desativar música" data-action="toggleMusic">
+            <span id="musicIcon" aria-hidden="true">🎵</span>
+          </div>
+          <input type="range" class="volume-slider music-vol" min="0" max="1" step="0.05" aria-label="Volume da Música">
         </div>
-        <div id="soundToggle" class="sound-toggle" role="button" tabindex="0" aria-label="Ativar/desativar efeitos sonoros" data-action="toggleSound">
-          <span id="soundIcon" aria-hidden="true">🔊</span>
+        <div class="volume-slider-container">
+          <div id="soundToggle" class="sound-toggle" role="button" tabindex="0" aria-label="Ativar/desativar efeitos sonoros" data-action="toggleSound">
+            <span id="soundIcon" aria-hidden="true">🔊</span>
+          </div>
+          <input type="range" class="volume-slider sfx-vol" min="0" max="1" step="0.05" aria-label="Volume dos Efeitos">
         </div>
         <div class="profile-btn" id="gameProfileBtn" role="button" tabindex="0" aria-label="Menu da conta" data-action="toggleProfilePopup" data-arg="game">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>

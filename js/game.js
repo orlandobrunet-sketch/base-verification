@@ -1855,6 +1855,49 @@
     }
 
 
+    function showFloatingFeedback(text, isCorrect, x, y) {
+      const el = document.createElement('div');
+      el.className = 'floating-text ' + (isCorrect ? 'correct' : 'wrong');
+      el.textContent = text;
+      if (x === undefined || y === undefined) {
+        el.style.left = '50%';
+        el.style.top = '40%';
+      } else {
+        el.style.left = x + 'px';
+        el.style.top = y + 'px';
+      }
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 1600);
+    }
+    window.showFloatingFeedback = showFloatingFeedback;
+
+    function triggerScreenShake() {
+      const app = document.getElementById('mainApp');
+      if (!app) return;
+      app.classList.remove('shake-screen');
+      void app.offsetWidth; // forçar reflow
+      app.classList.add('shake-screen');
+      setTimeout(() => {
+        app.classList.remove('shake-screen');
+      }, 500);
+    }
+    window.triggerScreenShake = triggerScreenShake;
+
+    function triggerHapticFeedback(type) {
+      if (!navigator.vibrate) return;
+      try {
+        if (type === 'correct') {
+          navigator.vibrate([40, 30, 40]);
+        } else if (type === 'wrong') {
+          navigator.vibrate(120);
+        } else if (type === 'levelup') {
+          navigator.vibrate([100, 50, 100, 50, 150]);
+        }
+      } catch (e) {}
+    }
+    window.triggerHapticFeedback = triggerHapticFeedback;
+
+
     function answer(i,btn){
       if(!state.gameStarted) return;
       if(state.answered) return;
@@ -1901,6 +1944,15 @@
           ui.feedback.innerHTML = `<strong>✅ Correto!</strong> +${xp} XP${multText}${synergyText}, +${g} ouro.${lv?` <strong>Level up x${lv}!</strong>`:''}<br><span class="fb-snip">${_snip}<span style="display:none;" class="fb-rest"> ${_full.substring(_snip.length)}</span></span>${_hasMore?`<button class="fb-more-btn" style="display:block;background:none;border:none;color:#93c5fd;cursor:pointer;font-size:0.8rem;padding:4px 0 0 0;margin-top:2px;" data-action="_showMoreFb" data-pass-this="1">ver mais ▾</button>`:''}` ;
           if (window.innerWidth <= 768) setTimeout(() => ui.feedback.scrollIntoView({behavior:'smooth', block:'nearest'}), 80);
         }
+        // Feedback de dano/XP flutuante
+        let x, y;
+        if (btn && typeof btn.getBoundingClientRect === 'function') {
+          const rect = btn.getBoundingClientRect();
+          x = rect.left + rect.width / 2;
+          y = rect.top + rect.height / 2;
+        }
+        showFloatingFeedback(`+${xp} XP  +${g}💰`, true, x, y);
+
         // Boss log
         if (isBossBattle()) {
           const dmg = Math.floor(st.atk * 8 + st.kno * 5 + state.streak * 5);
@@ -1915,12 +1967,16 @@
         // Sons e popup de evolução
         if(lv) {
           playSound('levelup');
+          triggerHapticFeedback('levelup');
           // Verificar se houve mudança de imagem/título
           const [newClass, newImg, newCls, newTitle] = heroMeta();
           setTimeout(() => showEvolutionPopup(state.level, newTitle, newImg), 600);
           // Verificar vida extra
           checkExtraLife();
-        } else { playSound('correct'); }
+        } else {
+          playSound('correct');
+          triggerHapticFeedback('correct');
+        }
         if(state.streak >= 5) playSound('streak');
         // Verificar narrativa a cada 5 acertos
         checkNarrative();
@@ -1930,6 +1986,17 @@
       } else {
         state.streak=0;
         btn.classList.add('wrong');
+        // Tremor de tela e vibrar erro
+        triggerScreenShake();
+        triggerHapticFeedback('wrong');
+
+        let x, y;
+        if (btn && typeof btn.getBoundingClientRect === 'function') {
+          const rect = btn.getBoundingClientRect();
+          x = rect.left + rect.width / 2;
+          y = rect.top + rect.height / 2;
+        }
+
         // Legendary passive: Armadura da Homeostase Perfeita: DEF 2.0% vs 1.4%
         const defMult = (state.equipment?.armor?.n==='Armadura da Homeostase Perfeita') ? 0.020 : 0.014;
         const shield=Math.min(.50, st.def * defMult);
@@ -1951,6 +2018,13 @@
         }
         if(!blocked) state.lives--;
         state.score=Math.max(0,state.score-(28-Math.min(20,st.def)));
+
+        if (blocked) {
+          showFloatingFeedback('🛡️ Absorvido', true, x, y);
+        } else {
+          showFloatingFeedback('-1 ❤️', false, x, y);
+        }
+
         ui.feedback.className='feedback bad';
         { const _prefix = legendaryBlockMsg || (blocked ? '🛡️ Errou, mas sua defesa absorveu.' : '❌ Incorreta.');
           const _snip2 = escapeHtml(_firstSentence(state.current.e, 280));
@@ -3098,6 +3172,14 @@
     function _updateOnlineStatus() {
       const badge = document.getElementById('offlineBadge');
       if (badge) badge.style.display = navigator.onLine ? 'none' : 'block';
+      if (navigator.onLine) {
+        if (typeof _syncProgressToCloud === 'function') {
+          _syncProgressToCloud().catch(() => {});
+        }
+        if (typeof window.syncPendingLeaderboard === 'function') {
+          window.syncPendingLeaderboard().catch(() => {});
+        }
+      }
     }
     window.addEventListener('online',  _updateOnlineStatus);
     window.addEventListener('offline', _updateOnlineStatus);
@@ -3149,6 +3231,91 @@
       const gm = document.getElementById('gameModesOverlay');
       if (gm && gm.style.display !== 'none' && gm.classList.contains('open')) { closeGameModesPopup(); return; }
     });
+
+    // Atalhos de teclado para responder (1-4 ou A-D) e avançar (Enter/Space)
+    document.addEventListener('keydown', function(e) {
+      const target = e.target;
+      if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)) {
+        return;
+      }
+
+      // --- MINIGAME JULGAMENTO RÁPIDO ---
+      const mgTrue = document.getElementById('mgTrue');
+      const mgFalse = document.getElementById('mgFalse');
+      if (mgTrue && !mgTrue.disabled && mgFalse && !mgFalse.disabled) {
+        const key = e.key.toUpperCase();
+        if (key === 'V' || key === '1' || key === 'T' || key === 'C') {
+          e.preventDefault();
+          mgTrue.click();
+          return;
+        } else if (key === 'F' || key === '2' || key === 'E') {
+          e.preventDefault();
+          mgFalse.click();
+          return;
+        }
+      }
+
+      // --- MODO DE ESTUDO ---
+      const studyArea = document.getElementById('studyQuestionArea');
+      if (studyArea && studyArea.offsetParent !== null) {
+        const nextBtn = studyArea.querySelector('[data-action="nextStudyQuestion"]');
+        if (nextBtn) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            nextBtn.click();
+            return;
+          }
+        } else {
+          let optIndex = -1;
+          const key = e.key.toUpperCase();
+          if (key === 'A' || key === '1') optIndex = 0;
+          else if (key === 'B' || key === '2') optIndex = 1;
+          else if (key === 'C' || key === '3') optIndex = 2;
+          else if (key === 'D' || key === '4') optIndex = 3;
+          
+          if (optIndex >= 0) {
+            const allOptions = studyArea.querySelectorAll('.study-option-btn');
+            if (allOptions && allOptions[optIndex] && !allOptions[optIndex].disabled) {
+              e.preventDefault();
+              allOptions[optIndex].click();
+              return;
+            }
+          }
+        }
+      }
+
+      // --- MODO JORNADA / BOSS ---
+      const mainApp = document.getElementById('mainApp');
+      if (mainApp && !mainApp.classList.contains('hidden') && state.gameStarted) {
+        if (state.answered) {
+          const nextBtn = document.getElementById('nextBtn');
+          if (nextBtn && !nextBtn.classList.contains('hidden')) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              nextBtn.click();
+              return;
+            }
+          }
+        } else if (state.current) {
+          let optIndex = -1;
+          const key = e.key.toUpperCase();
+          if (key === 'A' || key === '1') optIndex = 0;
+          else if (key === 'B' || key === '2') optIndex = 1;
+          else if (key === 'C' || key === '3') optIndex = 2;
+          else if (key === 'D' || key === '4') optIndex = 3;
+          
+          if (optIndex >= 0) {
+            const allOptions = ui.options.querySelectorAll('.option');
+            if (allOptions && allOptions[optIndex]) {
+              e.preventDefault();
+              allOptions[optIndex].click();
+              return;
+            }
+          }
+        }
+      }
+    });
+
     _updateOnlineStatus();
 
     // ============ PWA INSTALL BANNER ============

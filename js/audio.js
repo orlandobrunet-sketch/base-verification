@@ -19,7 +19,7 @@
     // ============ MÚSICA DA TELA DE BOAS-VINDAS ============
     // Loop suave: fade-in 3s no início, fade-out automático 4s antes do fim, reinicia com fade-in
     const WELCOME_MUSIC_URL = 'assets/audio/welcome-theme.mp3';
-    const WELCOME_MUSIC_VOL = 0.24;
+    let WELCOME_MUSIC_VOL = 0.24;
     const WM_FADEIN_MS   = 3500;  // fade-in de 3.5 segundos — sobe suavemente
     const WM_FADEOUT_MS  = 4000;  // fade-out de 4 segundos antes do fim
     const WM_LOOP_GAP_MS = 800;   // pausa mínima entre loops após fade-out
@@ -218,7 +218,7 @@
 
     // Background Music - Double-buffer crossfade loop
     const MUSIC_URL = 'assets/sounds/bgmusic.mp3';
-    const MUSIC_VOL = 0.14;
+    let MUSIC_VOL = 0.14;
     const XFADE_TIME = 1.5; // crossfade equal-power
     
     const bgA = new Audio(MUSIC_URL);
@@ -231,11 +231,105 @@
     bgB.addEventListener('ended', () => { if(musicEnabled && musicStarted && !_crossfading) { bgB.currentTime=0; bgB.muted=true; bgB.play().then(()=>{ bgB.muted=false; bgB.volume=MUSIC_VOL; scheduleXfade(bgB); }).catch(()=>{ bgB.muted=false; }); } });
     
     let soundEnabled = true, musicEnabled = true;
-    try { soundEnabled = localStorage.getItem('nefroquest-sound') !== 'off'; musicEnabled = localStorage.getItem('nefroquest-music') !== 'off'; } catch(e) {}
+    let sfxVolume = 0.5;
+    let musicVolume = 0.14;
+    let prevSfxVolume = 0.5;
+    let prevMusicVolume = 0.14;
+
+    try {
+      soundEnabled = localStorage.getItem('nefroquest-sound') !== 'off';
+      musicEnabled = localStorage.getItem('nefroquest-music') !== 'off';
+      musicVolume = parseFloat(localStorage.getItem('nefroquest-music-vol') || '0.14');
+      sfxVolume = parseFloat(localStorage.getItem('nefroquest-sfx-vol') || '0.5');
+      prevMusicVolume = musicVolume;
+      prevSfxVolume = sfxVolume;
+      MUSIC_VOL = musicVolume;
+      WELCOME_MUSIC_VOL = musicVolume * 1.71;
+      if (WELCOME_MUSIC_VOL > 1.0) WELCOME_MUSIC_VOL = 1.0;
+    } catch(e) {}
+
     let musicStarted = false;
     let activeTrack = bgA;
     let xfadeInterval = null;
     let _crossfading = false; // guard contra race condition ended + crossfade simultâneos
+
+    function setMusicVolume(val) {
+      musicVolume = val;
+      localStorage.setItem('nefroquest-music-vol', val);
+      MUSIC_VOL = val;
+      WELCOME_MUSIC_VOL = val * 1.71;
+      if (WELCOME_MUSIC_VOL > 1.0) WELCOME_MUSIC_VOL = 1.0;
+
+      if (val === 0) {
+        musicEnabled = false;
+        localStorage.setItem('nefroquest-music', 'off');
+      } else {
+        musicEnabled = true;
+        localStorage.setItem('nefroquest-music', 'on');
+      }
+
+      if (bgA) bgA.volume = MUSIC_VOL;
+      if (bgB) bgB.volume = MUSIC_VOL;
+      if (wmTrack) {
+        if (welcomeMusicStarted && !wmTrack.paused) {
+          wmTrack.volume = WELCOME_MUSIC_VOL;
+        }
+      }
+
+      document.querySelectorAll('.volume-slider.music-vol').forEach(s => s.value = val);
+      updateAudioIcons();
+    }
+    window.setMusicVolume = setMusicVolume;
+
+    // Ajustar volumes padrão dos SFX
+    Object.values(SFX).forEach(a => { a.load(); a.volume = sfxVolume; });
+
+    function setSfxVolume(val) {
+      sfxVolume = val;
+      localStorage.setItem('nefroquest-sfx-vol', val);
+
+      if (val === 0) {
+        soundEnabled = false;
+        localStorage.setItem('nefroquest-sound', 'off');
+      } else {
+        soundEnabled = true;
+        localStorage.setItem('nefroquest-sound', 'on');
+      }
+
+      Object.values(SFX).forEach(audio => {
+        audio.volume = val;
+      });
+
+      document.querySelectorAll('.volume-slider.sfx-vol').forEach(s => s.value = val);
+      updateAudioIcons();
+    }
+    window.setSfxVolume = setSfxVolume;
+
+    function updateAudioIcons() {
+      const musicIconText = musicEnabled ? (musicVolume < 0.35 ? '🎵' : '🎶') : '🔇';
+      ['musicIcon', 'mobileMusIcon', 'welcomeMusicIcon', 'mobileSoundMusicIcon', 'lndMusicIcon'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = musicIconText;
+      });
+
+      const sfxIconText = soundEnabled ? (sfxVolume < 0.35 ? '🔉' : '🔊') : '🔇';
+      ['soundIcon', 'welcomeSoundIcon', 'mobileSoundSfxIcon', 'lndSfxIcon'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = sfxIconText;
+      });
+
+      ['musicToggle', 'soundToggle', 'mobileMusToggle'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          if ((id.includes('music') && !musicEnabled) || (id.includes('sound') && !soundEnabled)) {
+            el.classList.add('muted');
+          } else {
+            el.classList.remove('muted');
+          }
+        }
+      });
+    }
+    window.updateAudioIcons = updateAudioIcons;
 
     // Audio unlock — iOS Safari requires each HTMLAudioElement to be play()'d during
     // a user gesture before it can be played programmatically (e.g. from timers).
@@ -357,43 +451,20 @@
     function toggleSound() {
       soundEnabled = !soundEnabled;
       localStorage.setItem('nefroquest-sound', soundEnabled ? 'on' : 'off');
-      const icon = document.getElementById('soundIcon');
-      const wIcon = document.getElementById('welcomeSoundIcon');
-      const mSfxIcon = document.getElementById('mobileSoundSfxIcon');
-      const lndSfx = document.getElementById('lndSfxIcon');
-      const label = document.getElementById('soundLabel');
-      const toggle = document.getElementById('soundToggle');
       if (soundEnabled) {
-        if(icon) icon.textContent = '🔊'; if(label) label.textContent = 'SFX'; if(toggle) toggle.classList.remove('muted');
-        if(wIcon) wIcon.textContent = '🔊';
-        if(mSfxIcon) mSfxIcon.textContent = '🔊';
-        if(lndSfx) lndSfx.textContent = '🔊';
+        setSfxVolume(sfxVolume > 0 ? sfxVolume : (prevSfxVolume > 0 ? prevSfxVolume : 0.5));
         playSound('click');
       } else {
-        if(icon) icon.textContent = '🔇'; if(label) label.textContent = 'Mudo'; if(toggle) toggle.classList.add('muted');
-        if(wIcon) wIcon.textContent = '🔇';
-        if(mSfxIcon) mSfxIcon.textContent = '🔇';
-        if(lndSfx) lndSfx.textContent = '🔇';
+        prevSfxVolume = sfxVolume;
+        setSfxVolume(0);
       }
     }
     
     function toggleMusic() {
       musicEnabled = !musicEnabled;
       localStorage.setItem('nefroquest-music', musicEnabled ? 'on' : 'off');
-      const icon = document.getElementById('musicIcon');
-      const label = document.getElementById('musicLabel');
-      const toggle = document.getElementById('musicToggle');
-      const mobileIcon = document.getElementById('mobileMusIcon');
-      const wMusicIcon = document.getElementById('welcomeMusicIcon');
-      const mMusicIcon = document.getElementById('mobileSoundMusicIcon');
-      const lndMusic = document.getElementById('lndMusicIcon');
       if (musicEnabled) {
-        if(icon) icon.textContent = '🎵'; if(label) label.textContent = 'Música'; if(toggle) toggle.classList.remove('muted');
-        if(mobileIcon) mobileIcon.textContent = '🎵';
-        if(wMusicIcon) wMusicIcon.textContent = '🎵';
-        if(mMusicIcon) mMusicIcon.textContent = '🎵';
-        if(lndMusic) lndMusic.textContent = '🎵';
-        // Tocar música correta conforme a tela ativa
+        setMusicVolume(musicVolume > 0 ? musicVolume : (prevMusicVolume > 0 ? prevMusicVolume : 0.14));
         const ws = document.getElementById('welcomeScreen');
         if (ws && !ws.classList.contains('hidden')) {
           startWelcomeMusic();
@@ -401,48 +472,33 @@
           startBgMusic();
         }
       } else {
-        if(icon) icon.textContent = '🔇'; if(label) label.textContent = 'Mudo'; if(toggle) toggle.classList.add('muted');
-        if(mobileIcon) mobileIcon.textContent = '🔇';
-        if(wMusicIcon) wMusicIcon.textContent = '🔇';
-        if(mMusicIcon) mMusicIcon.textContent = '🔇';
-        if(lndMusic) lndMusic.textContent = '🔇';
+        prevMusicVolume = musicVolume;
+        setMusicVolume(0);
         stopWelcomeMusic(false);
         stopBgMusic();
       }
     }
     
+    // Ouvinte para os sliders de volume analógico
+    document.addEventListener('input', function(e) {
+      const target = e.target;
+      if (target && target.classList.contains('volume-slider')) {
+        const val = parseFloat(target.value);
+        if (target.classList.contains('music-vol')) {
+          setMusicVolume(val);
+        } else if (target.classList.contains('sfx-vol')) {
+          setSfxVolume(val);
+        }
+      }
+    });
+
     // Initialize sound/music UI
     (function() {
-      if (!soundEnabled) {
-        const icon = document.getElementById('soundIcon');
-        const wSoundIcon = document.getElementById('welcomeSoundIcon');
-        const mSfxIcon = document.getElementById('mobileSoundSfxIcon');
-        const lndSfx = document.getElementById('lndSfxIcon');
-        const label = document.getElementById('soundLabel');
-        const toggle = document.getElementById('soundToggle');
-        if (icon) icon.textContent = '🔇';
-        if (wSoundIcon) wSoundIcon.textContent = '🔇';
-        if (mSfxIcon) mSfxIcon.textContent = '🔇';
-        if (lndSfx) lndSfx.textContent = '🔇';
-        if (label) label.textContent = 'Mudo';
-        if (toggle) toggle.classList.add('muted');
-      }
-      if (!musicEnabled) {
-        const icon = document.getElementById('musicIcon');
-        const wMusicIcon = document.getElementById('welcomeMusicIcon');
-        const mMusicIcon = document.getElementById('mobileSoundMusicIcon');
-        const lndMusic = document.getElementById('lndMusicIcon');
-        const label = document.getElementById('musicLabel');
-        const toggle = document.getElementById('musicToggle');
-        const mobileIcon = document.getElementById('mobileMusIcon');
-        if (icon) icon.textContent = '🔇';
-        if (wMusicIcon) wMusicIcon.textContent = '🔇';
-        if (mMusicIcon) mMusicIcon.textContent = '🔇';
-        if (lndMusic) lndMusic.textContent = '🔇';
-        if (label) label.textContent = 'Mudo';
-        if (toggle) toggle.classList.add('muted');
-        if (mobileIcon) mobileIcon.textContent = '🔇';
-      }
+      // Sincronizar sliders no carregamento inicial
+      document.querySelectorAll('.volume-slider.music-vol').forEach(s => s.value = musicEnabled ? musicVolume : 0);
+      document.querySelectorAll('.volume-slider.sfx-vol').forEach(s => s.value = soundEnabled ? sfxVolume : 0);
+
+      updateAudioIcons();
 
       // Iniciar música automaticamente ao carregar a página
       // Aguarda áudio estar carregado para evitar AbortError

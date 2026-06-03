@@ -129,18 +129,46 @@
         if (timerInterval) clearInterval(timerInterval);
         const q = pool[currentIdx];
         const isCorrect = userAns === q.ans;
-        if (isCorrect) correctCount++;
+
         const fb = document.getElementById('mgFeedback');
         const trueBtn = document.getElementById('mgTrue');
         const falseBtn = document.getElementById('mgFalse');
         if (trueBtn) trueBtn.disabled = true;
         if (falseBtn) falseBtn.disabled = true;
+
+        let x, y;
         if (userAns !== null) {
           const clickedBtn = userAns ? trueBtn : falseBtn;
           const correctBtn = q.ans ? trueBtn : falseBtn;
           if (clickedBtn) clickedBtn.style.opacity = isCorrect ? '1' : '0.5';
           if (!isCorrect && correctBtn) correctBtn.style.boxShadow = '0 0 14px rgba(74,222,128,0.85)';
+          if (clickedBtn && typeof clickedBtn.getBoundingClientRect === 'function') {
+            const rect = clickedBtn.getBoundingClientRect();
+            x = rect.left + rect.width / 2;
+            y = rect.top + rect.height / 2;
+          }
         }
+
+        if (isCorrect) {
+          correctCount++;
+          if (typeof window.showFloatingFeedback === 'function') {
+            window.showFloatingFeedback('✓ Correto!', true, x, y);
+          }
+          if (typeof window.triggerHapticFeedback === 'function') {
+            window.triggerHapticFeedback('correct');
+          }
+        } else {
+          if (typeof window.showFloatingFeedback === 'function') {
+            window.showFloatingFeedback(userAns === null ? '⏱️ Esgotado' : '✗ Incorreto', false, x, y);
+          }
+          if (typeof window.triggerScreenShake === 'function') {
+            window.triggerScreenShake();
+          }
+          if (typeof window.triggerHapticFeedback === 'function') {
+            window.triggerHapticFeedback('wrong');
+          }
+        }
+
         if (fb) {
           fb.classList.toggle('minigame-fb--correct', isCorrect);
           fb.classList.toggle('minigame-fb--wrong', !isCorrect);

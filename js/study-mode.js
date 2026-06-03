@@ -975,6 +975,34 @@
           btn.style.background = 'rgba(251,113,133,0.15)';
         }
       });
+
+      // Feedback visual e tátil
+      let clickedBtn = document.querySelectorAll('.study-option-btn')[selectedIdx];
+      let x, y;
+      if (clickedBtn && typeof clickedBtn.getBoundingClientRect === 'function') {
+        const rect = clickedBtn.getBoundingClientRect();
+        x = rect.left + rect.width / 2;
+        y = rect.top + rect.height / 2;
+      }
+
+      if (isCorrect) {
+        if (typeof window.showFloatingFeedback === 'function') {
+          window.showFloatingFeedback('✓ Correto!', true, x, y);
+        }
+        if (typeof window.triggerHapticFeedback === 'function') {
+          window.triggerHapticFeedback('correct');
+        }
+      } else {
+        if (typeof window.showFloatingFeedback === 'function') {
+          window.showFloatingFeedback('✗ Incorreto', false, x, y);
+        }
+        if (typeof window.triggerScreenShake === 'function') {
+          window.triggerScreenShake();
+        }
+        if (typeof window.triggerHapticFeedback === 'function') {
+          window.triggerHapticFeedback('wrong');
+        }
+      }
       
       // Atualizar contadores
       updateSRData(q.qid, isCorrect);

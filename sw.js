@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v11.38
-const CACHE = 'nefroquest-v11.38';
+// NefroQuest Service Worker — v11.39
+const CACHE = 'nefroquest-v11.39';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -20,8 +20,7 @@ const STATIC_ASSETS = [
   '/favicon.ico',
   '/data/refs.js',
   '/data/articles.js',
-  // /data/topics.js removido do precache (1.4 MB) — lazy-loaded em runtime
-  // via game.js (#_loadTopics). Fetch handler ainda cacheia no primeiro acesso.
+  '/data/topics.js',
   '/data/rapid-quiz.js',
   '/style.css',
   '/js/utils.js',

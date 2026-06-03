@@ -12115,3 +12115,155 @@ button.ab-ddx-card { cursor: pointer; }
   font-size: 0.85rem; letter-spacing: 1px; cursor: pointer; transition: transform .15s, border-color .15s;
 }
 .acid-base-overlay .ab-btn-secondary:hover { transform: translateY(-1px); border-color: rgba(238,199,82,0.7); }
+
+/* ==========================================================================
+   UX/UI IMPROVEMENTS (BATCH 1)
+   ========================================================================== */
+
+/* Screen Shake Animation */
+.shake-screen {
+  animation: nq-shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes nq-shake {
+  10%, 90% { transform: translate3d(-2px, 0, 0); }
+  20%, 80% { transform: translate3d(3px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-5px, 0, 0); }
+  40%, 60% { transform: translate3d(5px, 0, 0); }
+}
+
+/* Floating Text Styles */
+.floating-text {
+  position: fixed;
+  font-family: 'Cinzel Decorative', 'Cinzel', serif;
+  font-weight: bold;
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+  pointer-events: none;
+  z-index: 100000;
+  animation: nq-float-up 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.95), 0 0 16px rgba(0, 0, 0, 0.6);
+  white-space: nowrap;
+}
+
+.floating-text.correct {
+  color: #34d399; /* Emerald/Green */
+}
+
+.floating-text.wrong {
+  color: #fb7185; /* Rose/Red */
+}
+
+@keyframes nq-float-up {
+  0% {
+    transform: translate(-50%, -50%) scale(0.6);
+    opacity: 0;
+  }
+  15% {
+    transform: translate(-50%, -50%) translateY(-25px) scale(1.15);
+    opacity: 1;
+  }
+  30% {
+    transform: translate(-50%, -50%) translateY(-35px) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) translateY(-120px) scale(0.85);
+    opacity: 0;
+  }
+}
+
+/* Volume Slider Styles (Batch 2) */
+.volume-slider-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(20, 28, 55, 0.4);
+  border: 1px solid rgba(238, 199, 82, 0.2);
+  border-radius: 20px;
+  padding: 2px 6px;
+  transition: all 0.3s ease;
+  height: 24px;
+}
+
+.volume-slider-container:hover {
+  background: rgba(20, 28, 55, 0.85);
+  border-color: rgba(238, 199, 82, 0.6);
+}
+
+.volume-slider {
+  width: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: width 0.3s ease, opacity 0.2s ease;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Chrome/Safari */
+.volume-slider::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gold, #ffd700);
+  margin-top: -3px;
+  transition: transform 0.1s ease;
+}
+
+.volume-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.3);
+}
+
+/* Firefox */
+.volume-slider::-moz-range-track {
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border: none;
+  border-radius: 50%;
+  background: var(--gold, #ffd700);
+  transition: transform 0.1s ease;
+  cursor: pointer;
+}
+
+.volume-slider::-moz-range-thumb:hover {
+  transform: scale(1.3);
+}
+
+.volume-slider-container:hover .volume-slider,
+.volume-slider:focus {
+  width: 60px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Mobile adjustments to keep controls visible or tap-friendly */
+@media (max-width: 768px) {
+  .volume-slider-container .volume-slider {
+    width: 45px;
+    opacity: 0.9;
+    pointer-events: auto;
+  }
+}
+
+
