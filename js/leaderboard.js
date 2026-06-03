@@ -69,6 +69,17 @@
         played_at: new Date().toISOString(),
         ...(userId ? { user_id: userId } : {})
       };
+
+      if (!navigator.onLine) {
+        try {
+          const pending = JSON.parse(localStorage.getItem('nq-pending-leaderboard') || '[]');
+          pending.push(payload);
+          localStorage.setItem('nq-pending-leaderboard', JSON.stringify(pending));
+          _boardPushedThisSession = false; // permite tentar novamente online
+        } catch(e) {}
+        return;
+      }
+
       try {
         // Upsert por user_id quando autenticado (evita entradas duplicadas no ranking)
         const prefer = userId
@@ -90,6 +101,30 @@
         _boardPushedThisSession = false; // permitir retry em caso de erro de rede
       }
     }
+
+    async function syncPendingLeaderboard() {
+      if (!navigator.onLine) return;
+      try {
+        const pending = JSON.parse(localStorage.getItem('nq-pending-leaderboard') || '[]');
+        if (!pending.length) return;
+        localStorage.removeItem('nq-pending-leaderboard');
+        for (const payload of pending) {
+          const prefer = payload.user_id ? 'resolution=merge-duplicates,return=minimal' : 'return=minimal';
+          await fetch(`${SUPA_URL}/rest/v1/leaderboard`, {
+            method: 'POST',
+            headers: {
+              'apikey': SUPA_KEY,
+              'Authorization': `Bearer ${await (async()=>{ try { return (await _supaClient?.auth?.getSession())?.data?.session?.access_token || SUPA_KEY; } catch { return SUPA_KEY; } })()}`,
+              'Content-Type': 'application/json',
+              'Prefer': prefer
+            },
+            body: JSON.stringify(payload)
+          });
+        }
+        _boardCache = null;
+      } catch(e) {}
+    }
+    window.syncPendingLeaderboard = syncPendingLeaderboard;
 
     // Manter compatibilidade com boardGet síncrono (usa cache)
     function boardGet() { return _boardCache || []; }
