@@ -1634,7 +1634,193 @@
     };
   }
 
-  // ── Casos clínicos (Fase 8: 16 casos jogáveis) ───────────────────────────
+  function _buildGalen(){
+    // TRIPLO distúrbio: acidose metabólica AG alto (lactato) + alcalose respiratória
+    // (taquipneia) + alcalose metabólica (vômitos). Capstone da delta ratio.
+    const AG   = _rand(22, 28);
+    const HCO3 = Math.round(24 - (AG - 12) / (2.5 + Math.random() * 1.5)); // HCO₃ pouco reduzido → Δratio > 2
+    const Na   = _rand(137, 142);
+    const Cl   = Na - AG - HCO3;
+    const alb  = _r1(3.8 + Math.random() * 0.4);
+    const K    = _r1(3.0 + Math.random() * 0.6);   // vômitos → hipocalemia
+    const winterExpected = _r1(1.5 * HCO3 + 8);
+    const PaCO2 = Math.max(16, winterExpected - _rand(5, 10)); // < esperado → alcalose respiratória
+    const pH = _ph(HCO3, PaCO2);
+    const BE = _be(HCO3, PaCO2);
+    const deltaRatio = _r1((AG - 12) / (24 - HCO3));
+    _dbg('Galen rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, AG, winterExpected, deltaRatio });
+
+    return {
+      narrative: `O mercador <strong>Galen</strong> chega da praga do mercado com <strong>febre, hipotensão</strong>, <strong>vômitos profusos</strong> há dias e respiração rápida e profunda. O pH parece quase normal — mas o caso esconde mais de um distúrbio.`,
+      gas: { pH, PaCO2, HCO3, BE, Na, Cl, K, alb },
+      acts: [
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato I — Componente respiratório.</strong><br>A PaCO₂ está baixa (com pH quase normal/alcalino). Que processo respiratório está presente?',
+          options: [
+            { label: 'Alcalose respiratória (hiperventilação)', correct: true },
+            { label: 'Acidose respiratória', correct: false },
+            { label: 'Nenhum — é só compensação de uma acidose', correct: false },
+            { label: 'Alcalose metabólica', correct: false }
+          ],
+          explainCorrect: `PaCO₂ ${PaCO2} (baixa) com pH ${_c(pH)} → há <strong>alcalose respiratória</strong> (febre/sepse estimulam a ventilação). Mas o HCO₃⁻ ${HCO3} e o AG sugerem distúrbios metabólicos associados — investigue.`,
+          explainWrong: {
+            'Acidose respiratória': `Teria PaCO₂ ALTA. Aqui a PaCO₂ ${PaCO2} está baixa.`,
+            'Nenhum — é só compensação de uma acidose': `Veremos no Winter que a PaCO₂ está MAIS baixa do que a compensação explicaria → alcalose respiratória real.`,
+            'Alcalose metabólica': `Alcalose metabólica é um distúrbio metabólico (HCO₃⁻); o componente respiratório aqui é a PaCO₂ baixa.`
+          }
+        },
+        {
+          kind: 'num',
+          prompt: `<strong>Ato II — Winter.</strong><br>HCO₃⁻ = ${HCO3}. Qual PaCO₂ seria esperada se houvesse <em>apenas</em> acidose metabólica?`,
+          grimoire: { title: 'Winter desmascara a alcalose respiratória', body: '<code>PaCO₂ esperado = 1,5 × HCO₃⁻ + 8 (±2)</code><br>PaCO₂ real <em>bem abaixo</em> do esperado = alcalose respiratória sobreposta.' },
+          unit: 'mmHg',
+          target: winterExpected,
+          tolerance: 2,
+          explainCorrect: `Winter = 1,5 × ${HCO3} + 8 = <strong>${_c(winterExpected)} mmHg</strong>. A PaCO₂ real (${PaCO2}) está bem abaixo → <strong>alcalose respiratória</strong> confirmada (1º distúrbio além da acidose).`,
+          explainWrong: `1,5 × ${HCO3} + 8 = ${_c(winterExpected)}; como a PaCO₂ real (${PaCO2}) é menor, há alcalose respiratória.`
+        },
+        {
+          kind: 'num',
+          prompt: `<strong>Ato III — Delta ratio.</strong><br>AG = <strong>${AG}</strong>, HCO₃⁻ = ${HCO3}. Calcule a delta ratio (ΔAG/ΔHCO₃).`,
+          grimoire: { title: 'Delta ratio (ΔAG/ΔHCO₃)', body: '<code>Δratio = (AG − 12) / (24 − HCO₃⁻)</code><br><strong>&lt; 0,8</strong>: AG alto + acidose hiperclorêmica.<br><strong>1–2</strong>: acidose AG alto isolada.<br><strong>&gt; 2</strong>: AG alto + <em>alcalose metabólica</em> (o HCO₃⁻ caiu menos do que o AG subiu).' },
+          unit: '',
+          target: deltaRatio,
+          tolerance: 0.3,
+          explainCorrect: `Δratio = (${AG} − 12) / (24 − ${HCO3}) = <strong>${_c(deltaRatio)}</strong> (> 2) → o HCO₃⁻ caiu <em>menos</em> do que o AG subiu: há <strong>alcalose metabólica</strong> associada (vômitos). Somando tudo → <strong>TRIPLO distúrbio</strong>: acidose metabólica AG alto (lactato) + alcalose respiratória + alcalose metabólica.`,
+          explainWrong: `Δratio = (AG − 12)/(24 − HCO₃) = (${AG} − 12)/(24 − ${HCO3}) = ${_c(deltaRatio)}.`
+        },
+        _buildCardsAct({
+          prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione <em>todas</em> as causas que podem gerar um <strong>triplo distúrbio</strong> (acidose AG alto + alcalose respiratória + alcalose metabólica). Rejeite as que dão um distúrbio isolado.',
+          instruction: 'Os mecanismos serão revelados somente após o julgamento.',
+          cards: [
+            _makeCard('sepse_g', 'Sepse', 'Febre, hipotensão', 'Lactato alto + taquipneia', true, 'Hipoperfusão → lactato (acidose AG alto) + citocinas/febre → hiperventilação (alcalose respiratória).', 'Fornece dois dos três componentes; combina com vômitos para o triplo.'),
+            _makeCard('vomitos_g', 'Vômitos', 'Perda gástrica profusa', 'HCO₃⁻ relativamente alto, hipocloremia', true, 'Perda de HCl → alcalose metabólica (eleva o HCO₃⁻, por isso a delta ratio > 2).', 'É o componente que "segura" o HCO₃⁻ — revelado pela delta ratio.'),
+            _makeCard('diuretico_g', 'Diurético', 'Uso de furosemida', 'HCO₃⁻ alto, K⁺/Cl⁻ baixos', true, 'Contração de volume + RAAS → alcalose metabólica, que se soma à acidose/alcalose respiratória.', 'Outra fonte do componente de alcalose metabólica.'),
+            _makeCard('salicilato_g', 'Salicilato', 'Zumbido, febre, taquipneia', 'AG alto + PaCO₂ baixo', true, 'Estímulo respiratório (alcalose) + ácidos orgânicos (AG alto); com vômitos, pode virar triplo.', 'Padrão misto que pode adquirir o terceiro componente.'),
+            _makeCard('cirrose_inf_g', 'Cirrose infectada (PBE)', 'Hepatopata, ascite, febre', 'PaCO₂ baixo + lactato + diurético', true, 'Hiperventilação crônica + lactato (clearance ↓) + diurético/vômitos → múltiplos distúrbios sobrepostos.', 'Cenário clássico de distúrbio triplo no hepatopata.'),
+            _makeCard('dka_vom_g', 'DKA com vômitos', 'Diabético com vômitos', 'AG alto + HCO₃⁻ menos baixo', true, 'Cetoacidose (AG alto) + vômitos (alcalose metabólica) → delta ratio > 2; pode somar hiperventilação.', 'A DKA com vômitos é uma causa comum de delta ratio > 2.'),
+            _makeCard('dpoc_sed_g', 'DPOC sedado (isolado)', 'Sonolência, hipercapnia', 'PaCO₂ ALTO isolado', false, 'Hipoventilação → acidose respiratória pura.', 'É armadilha: distúrbio único (acidose respiratória), não o padrão triplo.'),
+            _makeCard('atr1_g', 'ATR tipo 1 (isolada)', 'Litíase, nefrocalcinose', 'AG normal, K⁺ baixo', false, 'Acidose hiperclorêmica isolada (AG normal).', 'É armadilha: AG normal e distúrbio único.'),
+            _makeCard('gestacao_g', 'Gestação fisiológica (isolada)', 'Gestante saudável', 'PaCO₂ baixo discreto, AG normal', false, 'Alcalose respiratória fisiológica leve, sem AG alto.', 'É armadilha: distúrbio único e fisiológico, sem o componente metabólico AG alto.')
+          ],
+          grimoire: { title: 'Distúrbio triplo', body: 'Suspeite quando o pH parece quase normal mas: AG alto (acidose), PaCO₂ fora do Winter (alcalose respiratória) E delta ratio > 2 (alcalose metabólica). Cenário típico: <strong>sepse + vômitos/diurético + hiperventilação</strong>.' }
+        }),
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato V — Conduta clínica.</strong><br>Qual é a sua conduta inicial?',
+          grimoire: { title: 'Conduta no distúrbio triplo (sepse + vômitos)', body: 'Tratar a <strong>causa dominante</strong> (sepse: ressuscitação volêmica, culturas, antibiótico precoce, dosar lactato) e corrigir <strong>K⁺/Cl⁻</strong> dos vômitos. O pH "normal" engana — não dispensa tratar cada componente. Bicarbonato raramente indicado (acidemia não grave).' },
+          options: [
+            { label: 'Tratar a sepse (volume, lactato, culturas, ATB precoce) + repor K⁺/Cl⁻; tratar os vômitos', correct: true },
+            { label: 'Como o pH está normal, apenas observar', correct: false },
+            { label: 'Bolus de bicarbonato de sódio', correct: false },
+            { label: 'Sedar para reduzir a frequência respiratória', correct: false }
+          ],
+          explainCorrect: `Triplo distúrbio com sepse → <strong>tratar a sepse</strong> (volume, lactato, culturas, antibiótico precoce) e corrigir <strong>K⁺/Cl⁻</strong> dos vômitos. O pH quase normal é resultado de forças opostas — cada componente precisa de atenção.`,
+          explainWrong: {
+            'Como o pH está normal, apenas observar': 'Armadilha clássica: o pH normal esconde três distúrbios graves (incluindo sepse). Observar seria perigoso.',
+            'Bolus de bicarbonato de sódio': 'A acidemia não é grave (pH ~normal) e há alcalose associada; bicarbonato pioraria.',
+            'Sedar para reduzir a frequência respiratória': 'A hiperventilação é compensatória/protetora; sedar agravaria a acidose e a hipoperfusão.'
+          }
+        }
+      ],
+      summary: `<strong>TRIPLO distúrbio</strong>: acidose metabólica AG alto (${AG}, lactato) + alcalose respiratória (PaCO₂ ${PaCO2} ≪ Winter ${_c(winterExpected)}) + alcalose metabólica (delta ratio ${_c(deltaRatio)} > 2, vômitos). pH ${_c(pH)} enganosamente normal. Conduta: tratar a sepse + repor K⁺/Cl⁻. Lição: pH normal pode esconder 3 distúrbios.`
+    };
+  }
+
+  function _buildMaelis(){
+    // Acidose metabólica hiperclorêmica IATROGÊNICA (SF 0,9% em excesso / acetazolamida)
+    const HCO3 = _rand(15, 20);
+    const Na   = _rand(138, 143);
+    const AG   = _rand(9, 11);                     // normal
+    const Cl   = Na - AG - HCO3;                   // alto (hiperclorêmica)
+    const alb  = _r1(3.8 + Math.random() * 0.4);
+    const K    = _r1(3.6 + Math.random() * 0.8);
+    const winterExpected = _r1(1.5 * HCO3 + 8);
+    const PaCO2 = Math.round(winterExpected + Math.random() * 2); // não alcaliniza (NAGMA leve)
+    const pH = _ph(HCO3, PaCO2);
+    const BE = _be(HCO3, PaCO2);
+    _dbg('Maelis rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, AG, winterExpected });
+
+    return {
+      narrative: `A escudeira <strong>Maelis</strong> recebeu <strong>grande volume de soro fisiológico 0,9%</strong> e <strong>acetazolamida</strong> (para reduzir a pressão intracraniana). Agora a gasometria mostra acidose, sem sinais de hipoperfusão.`,
+      gas: { pH, PaCO2, HCO3, BE, Na, Cl, K, alb },
+      acts: [
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato I — Distúrbio primário.</strong><br>Analisando pH, PaCO₂ e HCO₃⁻, qual o distúrbio primário?',
+          options: [
+            { label: 'Acidose metabólica', correct: true },
+            { label: 'Acidose respiratória', correct: false },
+            { label: 'Alcalose metabólica', correct: false },
+            { label: 'Alcalose respiratória', correct: false }
+          ],
+          explainCorrect: `pH ${_c(pH)} → <strong>acidemia</strong>. HCO₃⁻ ${HCO3} (baixo) → distúrbio <strong>metabólico</strong>. Cl⁻ ${Cl} alto → acidose <strong>hiperclorêmica</strong> (AG normal).`,
+          explainWrong: {
+            'Acidose respiratória': `Teria PaCO₂ alta. Aqui a PaCO₂ ${PaCO2} está baixa (compensando).`,
+            'Alcalose metabólica': `Teria pH > 7,45 e HCO₃⁻ alto. Aqui pH ${_c(pH)} e HCO₃⁻ ${HCO3} (baixo).`,
+            'Alcalose respiratória': `Teria pH > 7,45. Aqui pH ${_c(pH)}.`
+          }
+        },
+        {
+          kind: 'num',
+          prompt: '<strong>Ato II — Compensação esperada (Winter).</strong><br>Calcule a PaCO₂ esperada pela compensação respiratória.',
+          grimoire: { title: 'Fórmula de Winter', body: '<code>PaCO₂ esperado = 1,5 × HCO₃⁻ + 8 (±2)</code>' },
+          unit: 'mmHg',
+          target: winterExpected,
+          tolerance: 2,
+          explainCorrect: `PaCO₂ esperada = 1,5 × ${HCO3} + 8 = <strong>${_c(winterExpected)} mmHg (±2)</strong>; real ${PaCO2} → compensação adequada.`,
+          explainWrong: `1,5 × ${HCO3} + 8 = ${_c(winterExpected)}. Tolerância ±2.`
+        },
+        {
+          kind: 'num',
+          prompt: `<strong>Ato III — Ânion gap.</strong><br>Calcule o AG sérico (albumina = ${_c(alb)} g/dL).`,
+          grimoire: { title: 'Ânion gap', body: '<code>AG = Na⁺ − (Cl⁻ + HCO₃⁻)</code><br>AG normal + Cl⁻ alto numa acidose = <strong>hiperclorêmica</strong>. Sem hipoperfusão e com história iatrogênica, pense em causa exógena.' },
+          unit: 'mEq/L',
+          target: AG,
+          tolerance: 1,
+          explainCorrect: `AG = ${Na} − (${Cl} + ${HCO3}) = <strong>${AG} mEq/L</strong> (normal). Com Cl⁻ ${Cl} alto e história de SF 0,9% + acetazolamida → <strong>acidose hiperclorêmica iatrogênica</strong>.`,
+          explainWrong: `AG = Na − (Cl + HCO₃) = ${Na} − (${Cl} + ${HCO3}) = ${AG}.`
+        },
+        _buildCardsAct({
+          prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione <em>todas</em> as causas <strong>iatrogênicas/exógenas</strong> de acidose hiperclorêmica (AG normal). Não selecione causas de outro padrão.',
+          instruction: 'Os mecanismos serão revelados somente após o julgamento.',
+          cards: [
+            _makeCard('salina_m', 'Excesso de SF 0,9%', 'Reanimação volumosa com salina', 'Cl⁻ alto, AG normal', true, 'A grande carga de Cl⁻ reduz a diferença de íons fortes (SID) → HCO₃⁻ cai → acidose hiperclorêmica dilucional.', 'É exatamente este caso; prefira cristaloide balanceado em grandes volumes.'),
+            _makeCard('acetazolamida_m', 'Acetazolamida', 'Inibidor da anidrase carbônica', 'Bicarbonatúria, AG normal', true, 'Inibe a reabsorção proximal de HCO₃⁻ (efeito tipo ATR-2) → bicarbonatúria → NAGMA.', 'Segundo gatilho deste caso; rever a indicação/dose.'),
+            _makeCard('npt_m', 'Nutrição parenteral rica em cloreto', 'NPT com excesso de Cl⁻/aminoácidos catiônicos', 'Cl⁻ alto, AG normal', true, 'A carga de aminoácidos catiônicos e Cl⁻ gera H⁺/reduz o SID → acidose hiperclorêmica.', 'Iatrogenia nutricional; ajustar a composição (acetato no lugar de cloreto).'),
+            _makeCard('derivacao_m', 'Derivação urinária intestinal', 'Ureterosigmoidostomia/conduto', 'Cl⁻ alto, K⁺ baixo', true, 'O intestino reabsorve NH₄⁺ e Cl⁻ da urina e troca HCO₃⁻ por Cl⁻ → acidose hiperclorêmica.', 'Causa clássica de NAGMA em paciente urológico.'),
+            _makeCard('diarreia_m', 'Diarreia hospitalar', 'Perda fecal volumosa', 'HCO₃⁻ baixo, Cl⁻ alto, UAG negativo', true, 'Perda fecal de HCO₃⁻ → acidose hiperclorêmica; o rim acidifica bem (UAG negativo).', 'NAGMA extrarrenal comum no internado.'),
+            _makeCard('atrmed_m', 'ATR medicamentosa (ex.: tenofovir)', 'Fármaco tubulotóxico', 'Bicarbonatúria, Fanconi', true, 'Lesão tubular proximal por fármaco → perda de HCO₃⁻ (tipo ATR-2).', 'NAGMA medicamentosa por toxicidade tubular.'),
+            _makeCard('bicarb_m', 'Bicarbonato em excesso', 'Reposição exagerada de álcali', 'HCO₃⁻ ALTO', false, 'Carga de base → alcalose metabólica.', 'É armadilha: causa alcalose (HCO₃⁻ alto), oposto.'),
+            _makeCard('vomitos_m', 'Vômitos', 'Perda gástrica', 'HCO₃⁻ alto, hipocloremia', false, 'Perda de HCl → alcalose metabólica.', 'É armadilha: alcalose, padrão oposto.'),
+            _makeCard('dka_m', 'Cetoacidose diabética', 'Hiperglicemia, Kussmaul', 'AG alto, cetonas', false, 'Cetogênese → β-hidroxibutirato → AG ↑.', 'É armadilha: AG ALTO, não acidose hiperclorêmica.')
+          ],
+          grimoire: { title: 'NAGMA iatrogênica', body: 'Acidose hiperclorêmica (AG normal) frequentemente é iatrogênica: <strong>SF 0,9% em excesso</strong> (carga de Cl⁻), <strong>acetazolamida</strong>, NPT rica em cloreto, derivação urinária intestinal e ATR medicamentosa. Em grandes volumes, prefira cristaloide balanceado.' }
+        }),
+        {
+          kind: 'mc',
+          prompt: '<strong>Ato V — Conduta clínica.</strong><br>Qual é a sua conduta inicial?',
+          grimoire: { title: 'Conduta na NAGMA iatrogênica', body: 'Identificar e <strong>suspender/ajustar o gatilho</strong> (trocar SF 0,9% por <strong>cristaloide balanceado</strong>; rever acetazolamida/NPT). A acidose costuma corrigir ao remover a causa; álcali só se grave/sintomática.' },
+          options: [
+            { label: 'Suspender/ajustar o gatilho (cristaloide balanceado no lugar de SF; rever acetazolamida)', correct: true },
+            { label: 'Manter SF 0,9% em alto volume', correct: false },
+            { label: 'Bolus de bicarbonato como tratamento definitivo', correct: false },
+            { label: 'Apenas observar — não há nada a corrigir', correct: false }
+          ],
+          explainCorrect: `Acidose hiperclorêmica iatrogênica → <strong>remover a causa</strong>: trocar SF 0,9% por <strong>cristaloide balanceado</strong> e rever acetazolamida/NPT. A acidose corrige ao ajustar a terapia; álcali só se grave.`,
+          explainWrong: {
+            'Manter SF 0,9% em alto volume': 'A carga de Cl⁻ do SF é justamente o gatilho — manter pioraria a acidose.',
+            'Bolus de bicarbonato como tratamento definitivo': 'Trata o número, não a causa; ajustar a fluidoterapia é o essencial.',
+            'Apenas observar — não há nada a corrigir': 'Há uma causa iatrogênica ativa e corrigível — deve ser ajustada.'
+          }
+        }
+      ],
+      summary: `<strong>Acidose metabólica hiperclorêmica iatrogênica (AG ${AG} normal)</strong> por SF 0,9% em excesso + acetazolamida. Compensação adequada. Conduta: trocar por cristaloide balanceado e rever os gatilhos; álcali só se grave. Lição: NAGMA sem hipoperfusão, pense iatrogenia.`
+    };
+  }
+
+  // ── Casos clínicos (Fase 9: 18 casos jogáveis) ───────────────────────────
   // Diagnóstico não aparece no hub (spoiler) — fica como metadata interna.
   // Desbloqueio é progressivo: um caso libera quando o anterior é concluído
   // (ver _isPlayable). Casos sem build() ficam como "Em breve".
@@ -1654,7 +1840,9 @@
     { id:'ophelia', caso:'Caso XIII',  title:'O Sino do Salgueiro',    character:'Herborista Ophelia',  build:_buildOphelia },
     { id:'helena',  caso:'Caso XIV',   title:'A Sacerdotisa do Fígado',character:'Sacerdotisa Helena',  build:_buildHelena  },
     { id:'brann',   caso:'Caso XV',    title:'O Intestino Curto',      character:'Viajante Brann',      build:_buildBrann   },
-    { id:'nara',    caso:'Caso XVI',   title:'A Máscara do Dragão',    character:'Guerreira Nara',      build:_buildNara    }
+    { id:'nara',    caso:'Caso XVI',   title:'A Máscara do Dragão',    character:'Guerreira Nara',      build:_buildNara    },
+    { id:'galen',   caso:'Caso XVII',  title:'A Praga do Mercado',     character:'Mercador Galen',      build:_buildGalen   },
+    { id:'maelis',  caso:'Caso XVIII', title:'A Água do Mar',          character:'Escudeira Maelis',    build:_buildMaelis  }
   ];
   // Helper p/ telas internas que ainda referenciam o "chapter" antigo.
   function _chapterOf(meta){ return `${meta.caso} — ${meta.title}`; }
@@ -1708,7 +1896,7 @@
           <div class="ab-hub">
             <div class="ab-ornament">✦ A Câmara do Equilíbrio ✦</div>
             <h2 class="ab-title">Alquimista Renal</h2>
-            <p class="ab-lead">Dezesseis pacientes do reino aguardam diagnóstico ácido-base. Domine a fórmula de Winter, o ânion gap (e sua correção pela albumina), a delta ratio, o cloreto e o pH urinário, os distúrbios mistos e o gap osmolar para restaurar o equilíbrio.</p>
+            <p class="ab-lead">Dezoito pacientes do reino aguardam diagnóstico ácido-base. Domine a fórmula de Winter, o ânion gap (e sua correção pela albumina), a delta ratio, o cloreto e o pH urinário, os distúrbios mistos e triplos e o gap osmolar para restaurar o equilíbrio.</p>
             <div class="ab-grid">${cardsHTML}</div>
           </div>
         </div>
