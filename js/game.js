@@ -768,6 +768,8 @@
         .then(({ version }) => {
           const el = document.getElementById('welcomeVersionLabel');
           if (el) el.textContent = 'v' + version;
+          const lndEl = document.getElementById('landingVersionLabel');
+          if (lndEl) lndEl.textContent = 'v' + version;
         })
         .catch(() => {});
 
@@ -1272,7 +1274,7 @@
         const isPassive = _PASSIVE_LEGS.has(v.n);
         const wasUsed = !!(state.legendaryAbilityUsed && state.legendaryAbilityUsed[v.n]);
         // Mant\u00e9m o brilho lend\u00e1rio mesmo ap\u00f3s usar (n\u00e3o acinzenta o item).
-        const glowCls = (v.rar==='legendary') ? (isPassive ? 'legendary-passive' : 'legendary-active') : '';
+        const glowCls = (v.rar==='legendary') ? (isPassive ? 'legendary-passive' : (wasUsed ? 'legendary-used' : 'legendary-active')) : '';
         // Status inline (mesma linha do t\u00edtulo, \u00e0 direita): verde "(utilizar)"
         // antes de usar, vermelho "(usada)" depois. S\u00f3 para lend\u00e1rias ATIVAS.
         const statusInline = isActive

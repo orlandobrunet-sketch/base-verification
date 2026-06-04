@@ -427,17 +427,18 @@
       100% { box-shadow: 0 0 4px 1px rgba(255,215,0,0.3); }
     }
     .slot-icon.legendary-active {
-      border: 2px solid var(--gold) !important; border-radius: 8px;
-      animation: legendaryPulse 2s ease-in-out infinite;
+      border: 2px solid #ffd700 !important; border-radius: 8px;
+      box-shadow: none !important;
+      animation: none !important;
     }
     .slot-icon.legendary-passive {
       border: 2px solid rgba(255,215,0,0.5) !important; border-radius: 8px;
       animation: legendaryPassiveGlow 3s ease-in-out infinite;
     }
-    /* legendary-used: mantido apenas como borda (sem acinzentar). O JS não
-       aplica mais esta classe; regra preservada por compatibilidade. */
     .slot-icon.legendary-used {
-      border: 2px solid var(--gold) !important; border-radius: 8px;
+      border: 2px solid #4b5563 !important; border-radius: 8px;
+      box-shadow: none !important;
+      animation: none !important;
     }
     /* Status da habilidade — mesma linha do título, alinhado à direita. */
     .slot-ability-status {
@@ -543,6 +544,10 @@
       border: 1px solid #3a5a8a; border-radius: 12px;
       padding: 18px; min-height: 100px; margin-bottom: 12px;
       position: relative;
+      word-break: normal;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      hyphens: none;
     }
     .flag-btn {
       position: absolute; bottom: 6px; right: 8px; top: auto; left: auto;
@@ -641,6 +646,10 @@
       box-shadow: 0 2px 0 #0a1020, 0 4px 8px rgba(0,0,0,0.3);
       transition: background 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
       position: relative;
+      word-break: normal;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      hyphens: none;
     }
     .option::before {
       content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
@@ -671,6 +680,10 @@
       border: 1px solid var(--blue-dark); border-radius: 10px;
       padding: 12px; min-height: 60px; margin-top: 10px;
       font-size: 0.85rem; line-height: 1.5; color: var(--txt-soft);
+      word-break: normal;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      hyphens: none;
     }
     .feedback.good { border-color: #1f7b63; background: linear-gradient(135deg, rgba(10,40,30,0.85), rgba(8,30,22,0.85)); }
     .feedback.bad { border-color: #9f3f54; background: linear-gradient(135deg, rgba(45,15,25,0.85), rgba(35,10,18,0.85)); }
@@ -6148,12 +6161,20 @@
   border: 1px solid rgba(240,192,64,0.18);
   border-radius: 14px;
   box-shadow: 0 0 0 1px rgba(240,192,64,0.05) inset, 0 6px 28px rgba(0,0,0,0.5);
+  word-break: normal;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: none;
 }
 #question {
   color: var(--rd-txt-primary);
   font-family: 'Philosopher', serif;
   font-size: 0.97rem;
   line-height: 1.66;
+  word-break: normal;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: none;
 }
 
 /* ── Answer options (T4) ────────────────────────────────────────── */
@@ -6167,6 +6188,10 @@
   overflow: hidden;
   text-align: left;
   transition: border-color 0.18s, box-shadow 0.18s, transform 0.15s;
+  word-break: normal;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: none;
 }
 .option::before { display: none; }
 
@@ -6191,6 +6216,10 @@
   font-size: 0.9rem;
   color: var(--rd-txt-primary);
   line-height: 1.46;
+  word-break: normal;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: none;
 }
 
 .option:hover:not(:disabled) {
@@ -6244,6 +6273,10 @@
   background: linear-gradient(160deg, rgba(13,18,37,0.9), rgba(15,24,48,0.9));
   border-color: rgba(74,158,255,0.18);
   border-radius: 10px;
+  word-break: normal;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: none;
 }
 .feedback.good {
   border-color: rgba(34,197,94,0.3);
