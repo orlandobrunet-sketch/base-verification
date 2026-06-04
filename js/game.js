@@ -453,6 +453,8 @@
         maxLives: state.maxLives || 3,
         legendaryAbilityUsed: {...state.legendaryAbilityUsed},
         extraLifeGiven: state.extraLifeGiven || false,
+        chestCorrectCount: state.chestCorrectCount || 0,
+        chestTarget: state.chestTarget || 5,
         timestamp: Date.now(),
         schemaVersion: SAVE_SCHEMA_VERSION
       };
@@ -700,6 +702,8 @@
       chestCost = Math.min(100 + state.chestsOpened * 15, 250);
       state.legendaryAbilityUsed = save.legendaryAbilityUsed || {};
       state.extraLifeGiven = save.extraLifeGiven || false;
+      state.chestCorrectCount = save.chestCorrectCount || 0;
+      state.chestTarget = save.chestTarget || (Math.floor(Math.random() * 3) + 5);
       state.gameCompleted = !!localStorage.getItem('nefroquest-arqui-defeated');
       state.gameOver = false;
       state.gameStarted = true;
@@ -1073,6 +1077,8 @@
       current:null,answered:false,queue:[],idx:0,bonusUses:0,
       correctTotal:0, narrativeShown:0, bossIntroShown:false, battleFinalShown:false, gameOver:false, bossLog:[],
       gameStarted: false, chestsOpened:0, obtainedItems:[], allItemsCollectedNotified:false,
+      chestCorrectCount:0,
+      chestTarget: Math.floor(Math.random() * 3) + 5,
       character: null,
       equipment:{
         weapon:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
@@ -1997,6 +2003,12 @@
       if(i===c){
         state.streak++;
         state.correctTotal++;
+        state.chestCorrectCount = (state.chestCorrectCount || 0) + 1;
+        if (state.chestCorrectCount >= state.chestTarget) {
+          state.chestCorrectCount = 0;
+          state.chestTarget = Math.floor(Math.random() * 3) + 5;
+          setTimeout(() => { if (typeof triggerChestRewardPopup === 'function') triggerChestRewardPopup(); }, 1200);
+        }
         const sm = getStreakMultiplier(state.streak);
         const baseXp=5+state.current.d*2+Math.min(state.streak,5)*1+Math.floor(st.kno/3);
         let xp=Math.floor(baseXp * sm.mult);
@@ -2384,12 +2396,14 @@
       modal.style.cssText = 'z-index:9100;background:rgba(0,0,0,0.72);padding:24px 16px;';
       modal.innerHTML = `
         <div style="
+          position:relative;
           background:linear-gradient(160deg,rgba(18,26,54,0.99),rgba(10,16,38,0.99));
           border:1px solid rgba(255,215,0,0.35);border-radius:18px;
           padding:28px 24px 20px;min-width:310px;max-width:380px;width:90%;
           max-height:calc(100vh - 48px);overflow-y:auto;
           box-shadow:0 8px 48px rgba(0,0,0,0.9),0 0 0 1px rgba(255,215,0,0.08) inset;
         ">
+          <button type="button" data-remove-id="forjaModal" style="position: absolute; top: 12px; right: 16px; background: none; border: none; color: #6b7db8; font-size: 1.2rem; cursor: pointer; z-index: 10;">✕</button>
           <h3 style="color:#fb923c;font-family:'Cinzel',serif;font-size:1.15rem;text-align:center;margin:0 0 6px;letter-spacing:1px;">🔥 FORJA</h3>
           <p style="color:#6b7db8;font-family:'Philosopher',serif;font-size:0.78rem;text-align:center;margin:0 0 20px;">Escolha o tipo de forjamento</p>
 
@@ -2456,6 +2470,19 @@
       document.body.appendChild(modal);
     }
     window.showForjaModal = showForjaModal;
+
+    function closeBoardModal() {
+      document.getElementById('boardModal').classList.add('hidden');
+    }
+    function closeCharSelectModal() {
+      document.getElementById('charSelectModal').classList.remove('show');
+    }
+    function closeNameModal() {
+      document.getElementById('nameModal').classList.remove('show');
+    }
+    window.closeBoardModal = closeBoardModal;
+    window.closeCharSelectModal = closeCharSelectModal;
+    window.closeNameModal = closeNameModal;
 
     // Callbacks das ações (chamados pelo popup)
     window._mobileActionCallbacks = {
@@ -2592,18 +2619,14 @@
       popup.className = 'nq-overlay';
       popup.style.cssText = 'z-index:9998;background:rgba(0,0,0,0.7);';
       popup.innerHTML = `
-        <div style="background:linear-gradient(160deg,#1a2a0a,#0e1830,#2a1a00);border:2px solid #ffd700;border-radius:16px;padding:26px 24px;max-width:420px;width:100%;box-shadow:0 0 50px rgba(255,215,0,0.25);text-align:center;animation:scaleIn 0.35s;">
+        <div style="position:relative;background:linear-gradient(160deg,#1a2a0a,#0e1830,#2a1a00);border:2px solid #ffd700;border-radius:16px;padding:26px 24px;max-width:420px;width:100%;box-shadow:0 0 50px rgba(255,215,0,0.25);text-align:center;animation:scaleIn 0.35s;">
+          <button type="button" data-remove-id="goldMilestonePopup" style="position: absolute; top: 12px; right: 16px; background: none; border: none; color: #ffd700; font-size: 1.2rem; cursor: pointer; z-index: 10;">✕</button>
           <div style="font-size:2.4rem;margin-bottom:8px;">💰</div>
           <h3 style="color:#ffd700;font-family:'Cinzel',serif;font-size:1.05rem;letter-spacing:1px;margin-bottom:6px;">${GOLD_MILESTONE} de Ouro!</h3>
           <p style="color:#c8d8f0;font-size:0.85rem;line-height:1.6;margin-bottom:18px;">
-            Você já pode abrir um baú! Ou continue acumulando ouro para forjar itens poderosos:
+            Você acumulou ouro suficiente para forjar equipamentos na Forja:
           </p>
           <div style="display:flex;flex-direction:column;gap:10px;text-align:left;">
-            <div style="background:rgba(255,215,0,0.1);border:2px solid rgba(255,215,0,0.5);border-radius:10px;padding:12px 14px;">
-              <span style="color:#ffd700;font-weight:700;">🪙 Abrir Baú</span>
-              <span style="color:#94a3b8;font-size:0.8rem;"> — ${chestCost} ouro</span>
-              <p style="color:#cbd5e1;font-size:0.78rem;margin:4px 0 0;">✅ Disponível agora! Obtenha um artigo ou item aleatório.</p>
-            </div>
             <div style="background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.25);border-radius:10px;padding:12px 14px;">
               <span style="color:#a5b4fc;font-weight:700;">⚒️ Forjar Item Comum</span>
               <span style="color:#94a3b8;font-size:0.8rem;"> — 300 ouro</span>
@@ -2673,6 +2696,94 @@
       updateBadges();
       saveGame();
     }
+    
+    function triggerChestRewardPopup() {
+      if(state.gameOver){ return; }
+      const popup = document.createElement('div');
+      popup.className = 'narrative-popup';
+      popup.id = 'autoChestPopup';
+      
+      popup.innerHTML = `
+        <div class="narrative-card" style="border-color: #fbbf24; box-shadow: 0 0 40px rgba(251, 191, 36, 0.45);">
+          <div class="narr-chapter" style="color: #fbbf24;">Encontro Inesperado</div>
+          <h3>✨ Baú de Relíquias Ancestrais</h3>
+          <div style="text-align: center; margin: 15px 0;">
+            <span style="font-size: 4.5rem; display: block; filter: drop-shadow(0 0 15px rgba(251, 191, 36, 0.6)); animation: bounce 2s infinite;">🎁</span>
+          </div>
+          <div class="narr-text" style="color: #fff8dc; font-style: italic; line-height: 1.6; font-size: 0.88rem;">
+            Enquanto purifica os néfrons das correntes urêmicas, uma pulsação dourada sob as névoas chama sua atenção. Você encontrou um baú misterioso deixado pelos antigos patronos da nefrologia. Suas runas brilham, aguardando o toque da sabedoria.
+          </div>
+          <button class="btn gold" data-action="claimChestReward" data-remove-id="autoChestPopup" style="width: 100%; margin-top: 15px; font-family: 'Cinzel', serif; font-weight: 700; letter-spacing: 1px;">
+            🔓 ABRIR BAÚ
+          </button>
+        </div>
+      `;
+      document.body.appendChild(popup);
+      playSound('chest');
+    }
+    window.triggerChestRewardPopup = triggerChestRewardPopup;
+
+    function claimChestReward() {
+      if(state.gameOver){ log('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
+      
+      // 50% scroll/article, 50% equipment
+      const isScroll = Math.random() < 0.5;
+      const availableArticles = nefroArticles.filter((_, idx) => !unlockedArticles.includes(idx));
+      
+      if (isScroll && availableArticles.length > 0) {
+        const randomArticle = availableArticles[Math.floor(Math.random() * availableArticles.length)];
+        const articleIndex = nefroArticles.indexOf(randomArticle);
+        
+        unlockedArticles.push(articleIndex);
+        localStorage.setItem('unlockedArticles', JSON.stringify(unlockedArticles));
+        
+        state.chestsOpened++;
+        const knoGain = state.chestsOpened;
+        if(state.equipment && state.equipment.relic) { 
+          const r = {...state.equipment.relic}; 
+          r.kno = (r.kno || 0) + knoGain; 
+          state.equipment.relic = r; 
+        }
+        
+        const chestPoints = 30 + state.chestsOpened * 10;
+        state.score += chestPoints;
+        
+        const prevKnoTotal = parseInt(localStorage.getItem('nefroquest_total_accumulated_knowledge') || '0', 10);
+        const newKnoTotal = prevKnoTotal + knoGain;
+        localStorage.setItem('nefroquest_total_accumulated_knowledge', String(newKnoTotal));
+        
+        showChestModal(randomArticle, knoGain, chestPoints);
+        playSound('chest');
+        log(`📚 Baú aberto: ${randomArticle.titulo} — +${knoGain} Conhecimento, +${chestPoints} pontos!`);
+        
+        renderHUD();
+        updateBadges();
+        saveGame();
+        
+        if (typeof checkAchievements === 'function') {
+          checkAchievements();
+        }
+      } else {
+        const st = total();
+        const rolled = rollItem(state.level, st.luck);
+        if (!rolled) {
+          log('🧱 Nenhum equipamento disponível.');
+          return;
+        }
+        
+        const chestPoints = 20 + state.chestsOpened * 5;
+        state.score += chestPoints;
+        
+        equipOrSell(rolled.slot, rolled.item, (msg) => {
+          showForgePopup(rolled.item, rolled.slot, [`⚔️ ATK ${rolled.item.atk}`, `🛡️ DEF ${rolled.item.def}`, `📚 CONH ${rolled.item.kno}`, `🍀 SORTE ${rolled.item.luck}`]);
+          log(`🎁 Baú de Equipamento! ${msg}`);
+          renderHUD();
+          updateBadges();
+          saveGame();
+        });
+      }
+    }
+    window.claimChestReward = claimChestReward;
     
     function showChestModal(article, knoGain, chestPoints) {
       knoGain = knoGain || 1;

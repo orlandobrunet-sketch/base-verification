@@ -102,6 +102,17 @@
         .then(function(r) { return r.json(); })
         .then(function(d) {
           var _v = String(d.version || '');
+          function updateLabels() {
+            var labels = document.querySelectorAll('.version-label-dynamic');
+            for (var i = 0; i < labels.length; i++) {
+              labels[i].textContent = _v ? ('v' + _v) : 'v11.45';
+            }
+          }
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', updateLabels);
+          } else {
+            updateLabels();
+          }
           if (_stored !== null && _stored !== _v) {
             localStorage.setItem('nq-sw-version', _v);
             window.location.replace('/clear-cache.html');
@@ -507,9 +518,9 @@
     <div class="lnd-footer">
       <span>nefroquest.com</span>
       <span class="lnd-footer-sep">·</span>
-      <span id="landingVersionLabel">v11.40</span>
+      <span id="landingVersionLabel" class="version-label-dynamic" style="cursor:pointer;" data-action="showChangelog">v11.45</span>
       <span class="lnd-footer-sep">·</span>
-      <a href="https://nefroquest.com/privacy-policy.html" class="lnd-footer-link" target="_blank" rel="noopener">Política de Privacidade</a>
+      <span style="cursor:pointer;text-decoration:underline;" class="lnd-footer-link" data-action="showPrivacyPolicy">Política de Privacidade</span>
     </div>
   </div>
 
@@ -656,7 +667,7 @@
         <button type="button" class="btn sec btn-biblioteca" data-action="openBibliotecaModal">📜 Grimório</button>
         <button type="button" id="bossPreviewBtn" class="btn-boss-preview" data-action="startBossPreview" title="Preview do Confronto Final" style="display:none;">⚔️ Preview: Confronto Final</button>
       </div>
-      <div class="welcome-credit"><a href="https://nefroquest.com">nefroquest.com</a> &nbsp;·&nbsp; <span id="welcomeVersionLabel" style="font-size:0.9em;cursor:pointer;" data-action="showChangelog">v10.11</span> &nbsp;·&nbsp; <span style="font-size:0.8em;cursor:pointer;text-decoration:underline;" data-action="showPrivacyPolicy">Política de Privacidade</span></div>
+      <div class="welcome-credit"><a href="https://nefroquest.com">nefroquest.com</a> &nbsp;·&nbsp; <span id="welcomeVersionLabel" class="version-label-dynamic" style="font-size:0.9em;cursor:pointer;" data-action="showChangelog">v11.45</span> &nbsp;·&nbsp; <span style="font-size:0.8em;cursor:pointer;text-decoration:underline;" data-action="showPrivacyPolicy">Política de Privacidade</span></div>
     </div>
   </div>
 
@@ -1021,22 +1032,7 @@
 
     <div class="dock-divider"></div>
 
-    <!-- Abrir Baú -->
-    <button type="button" id="chestBtn"
-      class="dock-btn open-chest"
-      data-action="showMobileActionConfirm" data-arg="chest"
-      data-tip="Abrir Baú">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M5 8h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2z"/>
-        <path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2"/>
-        <line x1="12" y1="8" x2="12" y2="6"/>
-        <path d="M8 12h8"/>
-        <circle cx="12" cy="15" r="1.5" fill="currentColor"/>
-      </svg>
-      <span class="dock-label">Baú</span>
-    </button>
 
-    <div class="dock-divider"></div>
 
     <!-- Dashboard (desktop) -->
     <button type="button"
@@ -1068,7 +1064,9 @@
       <p>
         <a href="https://nefroquest.com">nefroquest.com</a>
         &nbsp;•&nbsp;
-        <span style="color:var(--gold);cursor:pointer;text-decoration:underline;" data-action="showChangelog">v9.76</span>
+        <span class="version-label-dynamic" style="color:var(--gold);cursor:pointer;" data-action="showChangelog">v11.45</span>
+        &nbsp;•&nbsp;
+        <span style="cursor:pointer;text-decoration:underline;" data-action="showPrivacyPolicy">Política de Privacidade</span>
       </p>
     </div>
   </main>
@@ -1105,15 +1103,6 @@
       <span class="mdock-label">Forja</span>
     </button>
 
-    <!-- Baú -->
-    <button type="button" class="mdock-btn open-chest" data-action="showMobileActionConfirm" data-arg="chest" title="Abrir Baú">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
-        <path d="M5 8h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2z"/>
-        <path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2"/>
-        <path d="M8 12h8"/>
-      </svg>
-      <span class="mdock-label">Baú</span>
-    </button>
 
     <!-- Ranking -->
     <button type="button" class="mdock-btn ranking" data-action="showLeaderboardFromWelcome" title="Ranking">
@@ -1183,7 +1172,8 @@
 
   <!-- LEADERBOARD MODAL -->
   <div id="boardModal" class="modalWrap hidden">
-    <div class="modal board-modal">
+    <div class="modal board-modal" style="position:relative;">
+      <button type="button" class="auth-close-btn" style="z-index:10;" data-action="closeBoardModal" aria-label="Fechar">✕</button>
       <div class="board-header">
         <div class="board-title-wrap">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#ffd700" stroke="#ffd700" stroke-width="1"/></svg>
@@ -1229,7 +1219,8 @@
 
   <!-- CHARACTER SELECT MODAL -->
   <div id="charSelectModal" class="chest-modal">
-    <div class="chest-content" style="max-width:680px;">
+    <div class="chest-content" style="position:relative; max-width:680px;">
+      <button type="button" class="auth-close-btn" style="z-index:10;" data-action="closeCharSelectModal" aria-label="Fechar">✕</button>
       <h2>Escolha seu Personagem</h2>
       <div class="char-grid">
         <div class="char-card" data-action="selectCharacter" data-arg="nephros">
@@ -1256,7 +1247,8 @@
 
   <!-- NAME MODAL -->
   <div id="nameModal" class="chest-modal">
-    <div class="chest-content" style="max-width:480px;">
+    <div class="chest-content" style="position:relative; max-width:480px;">
+      <button type="button" class="auth-close-btn" style="z-index:10;" data-action="closeNameModal" aria-label="Fechar">✕</button>
       <h2>Registrar Pontuação</h2>
       <p style="color:var(--txt-dim);margin-bottom:16px;font-size:0.9rem;">Digite seu nome para o leaderboard!</p>
       <div class="name-input-box">
@@ -1398,7 +1390,8 @@
   </div>
 
   <div id="chestModal" class="chest-modal">
-    <div class="chest-content">
+    <div class="chest-content" style="position:relative;">
+      <button type="button" class="auth-close-btn" style="z-index:10;" data-action="closeChestModal" aria-label="Fechar">✕</button>
       <h2 id="chestTitle">Baú Desbloqueado!</h2>
       <div id="chestArticle"></div>
       <button type="button" class="close-chest" data-action="closeChestModal">Fechar</button>

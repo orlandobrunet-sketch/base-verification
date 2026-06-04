@@ -1260,15 +1260,16 @@
       }
 
       // Botão de mentor (apenas em erros)
-      const mentorBtnHtml = !isCorrect ? `
-        <div style="text-align:center;margin-top:10px;">
-          ${_canAskMentor()
-            ? `<button class="btn ghost" style="font-size:0.78rem;padding:7px 16px;" data-action="openMentorModal">
+      let mentorBtnInner = '';
+      if (!isCorrect) {
+        if (_canAskMentor()) {
+          mentorBtnInner = `<button class="btn ghost" style="font-size:0.78rem;padding:7px 16px;margin:0;" data-action="openMentorModal">
                 🔮 Consultar o Oráculo <span style="font-size:0.68rem;opacity:0.6;">(${_mentorRemainingText()})</span>
-               </button>`
-            : `<div style="font-size:0.75rem;color:var(--txt-dim);margin-top:4px;">Limite diário de perguntas atingido — <button class="btn ghost" style="font-size:0.72rem;padding:4px 10px;" data-action="showPricingModal">Premium ilimitado</button></div>`
-          }
-        </div>` : '';
+               </button>`;
+        } else {
+          mentorBtnInner = `<div style="font-size:0.75rem;color:var(--txt-dim);margin:0;">Limite diário de perguntas atingido — <button class="btn ghost" style="font-size:0.72rem;padding:4px 10px;" data-action="showPricingModal">Premium ilimitado</button></div>`;
+        }
+      }
 
       // Mostrar feedback
       const feedback = document.getElementById('studyFeedback');
@@ -1283,9 +1284,9 @@
           </div>
           ${(q.refs||[]).length ? `<div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;">${(q.refs||[]).map(k => refsDB[k] ? `<a href="https://scholar.google.com/scholar?q=${encodeURIComponent(refsDB[k].label)}" target="_blank" rel="noopener" style="color:var(--blue);font-size:0.72rem;text-decoration:none;border:1px solid rgba(96,165,250,0.3);padding:2px 9px;border-radius:12px;white-space:nowrap;">🔗 ${escapeHtml(refsDB[k].label)}</a>` : '').filter(Boolean).join('')}</div>` : ''}
         </div>
-        ${mentorBtnHtml}
-        <div style="text-align:center;margin-top:16px;">
-          <button class="btn gold" data-action="nextStudyQuestion">
+        <div style="display:flex;justify-content:center;align-items:center;gap:12px;margin-top:16px;flex-wrap:wrap;">
+          ${mentorBtnInner}
+          <button class="btn gold" data-action="nextStudyQuestion" style="margin:0;">
             ${studyModeIndex + 1 < studyModeQuestions.length ? 'Próxima Questão' : 'Ver Resultados'}
           </button>
         </div>

@@ -175,6 +175,18 @@
             return true;
           } catch { return false; }
         }
+      },
+      {
+        id: 'laurel_wreath_knowledge',
+        name: 'Coroa de Louros de Esculápio',
+        description: 'Alcance 1.000 ou mais de Conhecimento Acumulado no Oráculo',
+        icon: '🌿',
+        condition: () => {
+          try {
+            const totalAccumulatedKnowledge = parseInt(localStorage.getItem('nefroquest_total_accumulated_knowledge') || '0', 10);
+            return totalAccumulatedKnowledge >= 1000;
+          } catch { return false; }
+        }
       }
     ];
     
