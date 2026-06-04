@@ -23,7 +23,7 @@
     }
 
     const NEFRO_AXES = [
-      { id: 'drc',                  icon: '🪴', label: 'DRC & KDIGO',              cat: 'drc' },
+      { id: 'drc',                  icon: '🪴', label: 'DRC',                      cat: 'drc' },
       { id: 'lra',                  icon: '⚠️', label: 'LRA & Nefrotoxicidade',    cat: 'lra' },
       { id: 'glomerular',           icon: '🔬', label: 'Glomerulopatias',           cat: 'glomerular' },
       { id: 'eletrólitos',          icon: '⚡', label: 'Distúrbios Eletrolíticos',  cat: 'eletrólitos' },
@@ -42,15 +42,145 @@
       { id: 'nefrologia_geral',     icon: '📚', label: 'Nefrologia Geral',          cat: 'nefrologia_geral' },
     ];
 
-    function drawRadarChart(canvas, axes) {
-      if (!canvas || !axes.length) return;
+    const CORE_SKILLS = [
+      {
+        id: 'fisiopatologia_pesquisa',
+        label: 'Fisiopatologia & Pesquisa',
+        categories: ['acido_base', 'eletrólitos', 'genetica', 'nefrologia_geral'],
+        desc: 'Compreensão de mecanismos, genética, equilíbrio ácido-base, eletrólitos e fisiologia renal básica.'
+      },
+      {
+        id: 'diagnostico_investigacao',
+        label: 'Diagnóstico & Investigação',
+        categories: ['diagnostico', 'litíase', 'oncologia_renal'],
+        desc: 'Interpretação de exames laboratoriais, biópsia, métodos de imagem e raciocínio diagnóstico.'
+      },
+      {
+        id: 'tratamento_farmacologia',
+        label: 'Tratamento & Farmacologia',
+        categories: ['drc', 'hipertensao', 'nefropatia_diabetica', 'farmacologia'],
+        desc: 'Manejo terapêutico, diretrizes internacionais (KDIGO, etc.), farmacologia clínica e nefrotoxicidade.'
+      },
+      {
+        id: 'terapias_suporte',
+        label: 'Terapias de Suporte',
+        categories: ['dialise', 'lra', 'uti', 'infeccao'],
+        desc: 'Diálise, hemodiafiltração, DP, manejo crítico em UTI e infecções renais agudas.'
+      },
+      {
+        id: 'transplante_imunologia',
+        label: 'Transplante & Imunologia',
+        categories: ['transplante', 'glomerular'],
+        desc: 'Manejo do paciente transplantado, imunossupressão e glomerulopatias imunomediadas.'
+      }
+    ];
+    window.CORE_SKILLS = CORE_SKILLS;
+
+    function getCoreSkillsStats(detailedStats) {
+      return CORE_SKILLS.map(skill => {
+        let correct = 0;
+        let wrong = 0;
+        skill.categories.forEach(cat => {
+          const d = (detailedStats.byCategory || {})[cat] || { correct: 0, wrong: 0 };
+          correct += d.correct || 0;
+          wrong += d.wrong || 0;
+        });
+        const total = correct + wrong;
+        const accuracy = total > 0 ? (correct / total * 100) : null;
+        
+        const subcategories = skill.categories.map(cat => {
+          const d = (detailedStats.byCategory || {})[cat] || { correct: 0, wrong: 0 };
+          const tot = d.correct + d.wrong;
+          const label = NEFRO_AXES.find(a => a.cat === cat)?.label || cat;
+          return {
+            cat,
+            label: label.replace(' & KDIGO', ''),
+            correct: d.correct,
+            total: tot,
+            accuracy: tot > 0 ? (d.correct / tot * 100) : null
+          };
+        });
+
+        return {
+          id: skill.id,
+          label: skill.label,
+          desc: skill.desc,
+          correct,
+          wrong,
+          total,
+          accuracy,
+          categories: skill.categories,
+          subcategories
+        };
+      });
+    }
+    window.getCoreSkillsStats = getCoreSkillsStats;
+
+    function drawRadarChart(container, coreStats) {
+      if (!container) return;
+      container.innerHTML = '';
+      container.className = 'nq-radar-container-wrap';
+      container.style.cssText = 'position:relative; width:320px; height:320px; margin:0 auto; display:flex; justify-content:center; align-items:center;';
+
+      // Injetar estilos do Tooltip se não existirem
+      if (!document.getElementById('nqRadarTooltipStyles')) {
+        const s = document.createElement('style');
+        s.id = 'nqRadarTooltipStyles';
+        s.textContent = `
+          .nq-radar-tooltip {
+            position: absolute;
+            z-index: 100005;
+            background: rgba(10, 15, 30, 0.98);
+            border: 1px solid rgba(168, 85, 247, 0.45);
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 0.75rem;
+            color: #cbd5e1;
+            max-width: 260px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.15s ease;
+            line-height: 1.4;
+          }
+          .nq-radar-tooltip.visible {
+            opacity: 1;
+          }
+          .nq-radar-label {
+            position: absolute;
+            font-size: 0.72rem;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            color: var(--gold);
+            white-space: nowrap;
+            cursor: help;
+            transition: color 0.15s, text-shadow 0.15s;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.7);
+          }
+          .nq-radar-label:hover {
+            color: #fff;
+            text-shadow: 0 0 8px rgba(255,215,0,0.8);
+          }
+        `;
+        document.head.appendChild(s);
+      }
+
+      const canvas = document.createElement('canvas');
+      canvas.width = W = 320;
+      canvas.height = H = 320;
+      canvas.style.maxWidth = '320px';
+      canvas.style.width = '100%';
+      canvas.style.display = 'block';
+      container.appendChild(canvas);
+
       const ctx = canvas.getContext('2d');
-      const W = canvas.width, H = canvas.height;
-      const cx = W / 2, cy = H / 2;
-      const r = Math.min(cx, cy) - 36;
-      const n = axes.length;
-      ctx.clearRect(0, 0, W, H);
-      // Rings at 25%, 50%, 75%, 100%
+      const cx = 160, cy = 160;
+      const r = 108; // raio calculado para caber perfeitamente no container de 320px com margem
+      const n = coreStats.length;
+
+      ctx.clearRect(0, 0, 320, 320);
+
+      // Anéis concêntricos (25%, 50%, 75%, 100%)
       [0.25, 0.5, 0.75, 1].forEach(pct => {
         ctx.beginPath();
         for (let i = 0; i < n; i++) {
@@ -59,23 +189,25 @@
           i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
         }
         ctx.closePath();
-        ctx.strokeStyle = pct === 1 ? 'rgba(96,165,250,0.3)' : 'rgba(96,165,250,0.12)';
+        ctx.strokeStyle = pct === 1 ? 'rgba(139,92,246,0.35)' : 'rgba(139,92,246,0.12)';
         ctx.lineWidth = 1;
         ctx.stroke();
       });
-      // Spokes
+
+      // Linhas dos eixos (spokes)
       for (let i = 0; i < n; i++) {
         const a = (i / n) * Math.PI * 2 - Math.PI / 2;
         ctx.beginPath();
         ctx.moveTo(cx, cy);
         ctx.lineTo(cx + r * Math.cos(a), cy + r * Math.sin(a));
-        ctx.strokeStyle = 'rgba(96,165,250,0.15)';
+        ctx.strokeStyle = 'rgba(139,92,246,0.18)';
         ctx.stroke();
       }
-      // Data polygon
+
+      // Polígono dos dados
       ctx.beginPath();
-      axes.forEach((ax, i) => {
-        const pct = ax.total > 0 ? ax.correct / ax.total : 0;
+      coreStats.forEach((skill, i) => {
+        const pct = skill.total > 0 ? (skill.correct / skill.total) : 0;
         const a = (i / n) * Math.PI * 2 - Math.PI / 2;
         const x = cx + r * pct * Math.cos(a), y = cy + r * pct * Math.sin(a);
         i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
@@ -84,24 +216,119 @@
       ctx.fillStyle = 'rgba(168,85,247,0.22)';
       ctx.fill();
       ctx.strokeStyle = 'rgba(168,85,247,0.85)';
-      ctx.lineWidth = 2;
+      ctx.lineWidth = 2.5;
       ctx.stroke();
-      // Dots + labels
-      ctx.font = 'bold 13px sans-serif';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      axes.forEach((ax, i) => {
-        const pct = ax.total > 0 ? ax.correct / ax.total : 0;
+
+      // Nós de dados (dots)
+      coreStats.forEach((skill, i) => {
+        const pct = skill.total > 0 ? (skill.correct / skill.total) : 0;
         const a = (i / n) * Math.PI * 2 - Math.PI / 2;
         const dx = cx + r * pct * Math.cos(a), dy = cy + r * pct * Math.sin(a);
         ctx.beginPath();
-        ctx.arc(dx, dy, 3, 0, Math.PI * 2);
+        ctx.arc(dx, dy, 4.5, 0, Math.PI * 2);
         ctx.fillStyle = '#a855f7';
+        ctx.strokeStyle = '#080d1a';
+        ctx.lineWidth = 2;
         ctx.fill();
-        const lx = cx + (r + 22) * Math.cos(a), ly = cy + (r + 22) * Math.sin(a);
-        ctx.fillText(ax.icon, lx, ly);
+        ctx.stroke();
       });
+
+      // Criar rótulos HTML radialmente
+      coreStats.forEach((skill, i) => {
+        const angle = (i / n) * Math.PI * 2 - Math.PI / 2;
+        const cos = Math.cos(angle);
+        const sin = Math.sin(angle);
+        
+        const labelR = r + 16;
+        const x = cx + labelR * cos;
+        const y = cy + labelR * sin;
+        
+        let translate = 'translate(-50%, -50%)';
+        let textAlign = 'center';
+        
+        if (cos > 0.4) {
+          translate = 'translate(0, -50%)';
+          textAlign = 'left';
+        } else if (cos < -0.4) {
+          translate = 'translate(-100%, -50%)';
+          textAlign = 'right';
+        } else if (sin < -0.8) {
+          translate = 'translate(-50%, -100%)';
+          textAlign = 'center';
+        } else if (sin > 0.8) {
+          translate = 'translate(-50%, 0)';
+          textAlign = 'center';
+        }
+
+        const labelDiv = document.createElement('div');
+        labelDiv.className = 'nq-radar-label';
+        labelDiv.style.cssText = `position:absolute;left:${x}px;top:${y}px;transform:${translate};text-align:${textAlign};`;
+        
+        const accuracyStr = skill.total > 0 ? `${skill.accuracy.toFixed(0)}%` : '—';
+        labelDiv.textContent = `${skill.label} (${accuracyStr})`;
+        
+        const tooltipHtml = `
+          <div style="font-weight:bold;color:var(--gold);margin-bottom:4px;font-family:'Cinzel',serif;">${skill.label}</div>
+          <div style="font-size:0.68rem;color:var(--txt-dim);margin-bottom:8px;line-height:1.35;">${skill.desc}</div>
+          <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:6px;display:flex;flex-direction:column;gap:4px;min-width:200px;">
+            ${skill.subcategories.map(sub => {
+              const subPctStr = sub.total > 0 ? `${sub.accuracy.toFixed(0)}%` : '—';
+              const subCountStr = sub.total > 0 ? `(${sub.correct}/${sub.total})` : '(sem dados)';
+              const subColor = sub.total > 0 ? _colorFor(sub.accuracy) : 'var(--txt-dim)';
+              return `
+                <div style="display:flex;justify-content:space-between;gap:12px;font-size:0.72rem;line-height:1.3;">
+                  <span style="color:#e2e8f0;">• ${sub.label}</span>
+                  <span style="color:${subColor};font-weight:bold;">${subPctStr} <small style="color:var(--txt-dim);font-weight:normal;">${subCountStr}</small></span>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        `;
+        labelDiv.dataset.tooltip = tooltipHtml;
+        container.appendChild(labelDiv);
+      });
+
+      // Ligar eventos do Tooltip
+      container.querySelectorAll('.nq-radar-label').forEach(label => {
+        label.addEventListener('mouseenter', (e) => {
+          const tooltipHtml = label.dataset.tooltip;
+          let tooltip = document.getElementById('nqRadarTooltip');
+          if (!tooltip) {
+            tooltip = document.createElement('div');
+            tooltip.id = 'nqRadarTooltip';
+            tooltip.className = 'nq-radar-tooltip';
+            document.body.appendChild(tooltip);
+          }
+          tooltip.innerHTML = tooltipHtml;
+          tooltip.classList.add('visible');
+        });
+        
+        label.addEventListener('mousemove', (e) => {
+          const tooltip = document.getElementById('nqRadarTooltip');
+          if (tooltip) {
+            tooltip.style.left = (e.pageX + 15) + 'px';
+            tooltip.style.top = (e.pageY + 15) + 'px';
+          }
+        });
+        
+        label.addEventListener('mouseleave', () => {
+          const tooltip = document.getElementById('nqRadarTooltip');
+          if (tooltip) {
+            tooltip.classList.remove('visible');
+          }
+        });
+      });
+
+      const obs = new MutationObserver(() => {
+        if (!document.contains(container)) {
+          const tooltip = document.getElementById('nqRadarTooltip');
+          if (tooltip) tooltip.remove();
+          obs.disconnect();
+        }
+      });
+      obs.observe(document.body, { childList: true, subtree: true });
     }
+    window.drawRadarChart = drawRadarChart;
 
     function getAxisStats(stats) {
       return NEFRO_AXES.map(axis => {
@@ -212,11 +439,10 @@
           </div>
 
           <!-- Radar Chart -->
-          ${axisStats.length >= 3 ? `
-          <div style="text-align:center;margin-bottom:16px;">
+          <div style="text-align:center;margin-bottom:20px;display:flex;flex-direction:column;align-items:center;">
             <h3 style="color:var(--gold);margin-bottom:10px;font-size:0.9rem;font-family:'Cinzel',serif;letter-spacing:1px;">RADAR DE DESEMPENHO</h3>
-            <canvas id="nqRadarChart" width="280" height="280" style="max-width:100%;"></canvas>
-          </div>` : ''}
+            <div id="nqRadarChartContainer"></div>
+          </div>
           <!-- Desempenho por Eixo -->
           <div style="text-align:left;margin-bottom:16px;">
             <h3 style="color:var(--gold);margin-bottom:10px;font-size:0.9rem;font-family:'Cinzel',serif;letter-spacing:1px;">DESEMPENHO POR EIXO</h3>
@@ -307,44 +533,9 @@
         </div>
       `;
       document.body.appendChild(modal);
-      const radarCanvas = document.getElementById('nqRadarChart');
-      if (radarCanvas && axisStats.length >= 3) {
-        drawRadarChart(radarCanvas, axisStats);
-        // Tooltip ao passar o mouse nos ícones do radar
-        const _rTip = document.createElement('div');
-        _rTip.style.cssText = 'position:fixed;pointer-events:none;background:#0e1830;border:1px solid rgba(139,92,246,0.5);color:#d5e2ff;padding:4px 10px;border-radius:7px;font-size:0.78rem;white-space:nowrap;z-index:99999;display:none;box-shadow:0 4px 12px rgba(0,0,0,0.6);';
-        document.body.appendChild(_rTip);
-        const _rN = axisStats.length;
-        const _rW = radarCanvas.width, _rH = radarCanvas.height;
-        const _rCx = _rW / 2, _rCy = _rH / 2;
-        const _rR = Math.min(_rCx, _rCy) - 36;
-        const _rPts = axisStats.map((ax, i) => {
-          const a = (i / _rN) * Math.PI * 2 - Math.PI / 2;
-          return { x: _rCx + (_rR + 22) * Math.cos(a), y: _rCy + (_rR + 22) * Math.sin(a), label: ax.label, accuracy: ax.accuracy };
-        });
-        radarCanvas.addEventListener('mousemove', e => {
-          const rect = radarCanvas.getBoundingClientRect();
-          const scaleX = radarCanvas.width / rect.width;
-          const scaleY = radarCanvas.height / rect.height;
-          const mx = (e.clientX - rect.left) * scaleX;
-          const my = (e.clientY - rect.top) * scaleY;
-          const found = _rPts.find(pt => Math.hypot(mx - pt.x, my - pt.y) < 24);
-          if (found) {
-            const pct = found.accuracy != null ? found.accuracy.toFixed(0) + '%' : '—';
-            _rTip.textContent = `${found.label} — ${pct} acerto`;
-            _rTip.style.display = 'block';
-            _rTip.style.left = (e.clientX + 14) + 'px';
-            _rTip.style.top = (e.clientY - 12) + 'px';
-          } else {
-            _rTip.style.display = 'none';
-          }
-        });
-        radarCanvas.addEventListener('mouseleave', () => { _rTip.style.display = 'none'; });
-        // Limpa o tooltip quando o modal for removido do DOM
-        const _rObs = new MutationObserver(() => {
-          if (!document.contains(radarCanvas)) { _rTip.remove(); _rObs.disconnect(); }
-        });
-        _rObs.observe(document.body, { childList: true, subtree: true });
+      const radarContainer = document.getElementById('nqRadarChartContainer');
+      if (radarContainer) {
+        drawRadarChart(radarContainer, getCoreSkillsStats(stats));
       }
       playSound('click');
     }
@@ -1247,6 +1438,8 @@
     window.showAxesSelector      = showAxesSelector;
     window.startFreeStudyMode    = startFreeStudyMode;
     window.startSRStudyAllMode   = startSRStudyAllMode;
+    window.startStudyMode        = startStudyMode;
+    window._studySelectedAxes    = _studySelectedAxes;
     
     function restartStudyMode() {
       _clearStudyState();

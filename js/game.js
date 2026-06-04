@@ -511,20 +511,27 @@
 
     function _buildCloudProgress() {
       let achievements = [], mastered = [], unlockedArticles = [], detailedStats = {}, save = null;
+      let unlockedRefs = [], acidBaseProgress = {}, srData = {};
       try { achievements    = JSON.parse(localStorage.getItem('nefroquest-achievements') || '[]'); } catch(e) {}
       try { mastered        = JSON.parse(localStorage.getItem(MASTERED_KEY) || '[]'); } catch(e) {}
       try { unlockedArticles= JSON.parse(localStorage.getItem('unlockedArticles') || '[]'); } catch(e) {}
       try { detailedStats   = JSON.parse(localStorage.getItem(STATS_STORAGE_KEY || 'nefroquest-detailed-stats') || '{}'); } catch(e) {}
       try { const r = localStorage.getItem(SAVE_KEY); save = r ? JSON.parse(r) : null; } catch(e) {}
+      try { unlockedRefs    = JSON.parse(localStorage.getItem('nq-unlocked-refs') || '[]'); } catch(e) {}
+      try { acidBaseProgress= JSON.parse(localStorage.getItem('nq-acidbase-progress') || '{}'); } catch(e) {}
+      try { srData          = JSON.parse(localStorage.getItem('nefroquest-sr-data') || '{}'); } catch(e) {}
       return {
         stats:            getGameStats(),
         achievements,
         mastered,
         unlockedArticles,
+        unlockedRefs,
         arquiDefeated:    !!localStorage.getItem('nefroquest-arqui-defeated'),
         hardcoreCompleted:!!localStorage.getItem('nefroquest-hardcore-completed'),
         detailedStats,
         save,
+        acidBaseProgress,
+        srData,
         updatedAt:        new Date().toISOString()
       };
     }
@@ -567,6 +574,7 @@
       _mergeArray('nefroquest-achievements', cloud.achievements);
       _mergeArray(MASTERED_KEY,              cloud.mastered);
       _mergeArray('unlockedArticles',        cloud.unlockedArticles);
+      _mergeArray('nq-unlocked-refs',        cloud.unlockedRefs);
 
       // Flags booleanas: OR (true prevalece)
       if (cloud.arquiDefeated)     localStorage.setItem('nefroquest-arqui-defeated', '1');
@@ -588,6 +596,47 @@
         if ((cloud.save.timestamp || 0) > localTs) {
           try { localStorage.setItem(SAVE_KEY, JSON.stringify(cloud.save)); } catch(e) { console.error('[NQ] saveSave (cloud merge) failed', e); }
         }
+      }
+
+      // Progresso do minijogo de ácido-base/câmara de equilíbrio
+      if (cloud.acidBaseProgress && typeof cloud.acidBaseProgress === 'object') {
+        let local = {};
+        try { local = JSON.parse(localStorage.getItem('nq-acidbase-progress') || '{}'); } catch(e) {}
+        const localCompleted = Array.isArray(local.completed) ? local.completed : [];
+        const cloudCompleted = Array.isArray(cloud.acidBaseProgress.completed) ? cloud.acidBaseProgress.completed : [];
+        const mergedCompleted = [...new Set([...localCompleted, ...cloudCompleted])];
+
+        const localUses = local.grimoireUses && typeof local.grimoireUses === 'object' ? local.grimoireUses : {};
+        const cloudUses = cloud.acidBaseProgress.grimoireUses && typeof cloud.acidBaseProgress.grimoireUses === 'object' ? cloud.acidBaseProgress.grimoireUses : {};
+        const mergedUses = { ...localUses };
+        Object.keys(cloudUses).forEach(k => {
+          mergedUses[k] = Math.max(localUses[k] || 0, cloudUses[k] || 0);
+        });
+
+        const mergedAB = {
+          completed: mergedCompleted,
+          grimoireUses: mergedUses
+        };
+        try { localStorage.setItem('nq-acidbase-progress', JSON.stringify(mergedAB)); } catch(e) { console.error('[NQ] saveAcidBase (cloud merge) failed', e); }
+      }
+
+      // Dados de repetição espaçada (Spaced Repetition)
+      if (cloud.srData && typeof cloud.srData === 'object') {
+        let local = {};
+        try { local = JSON.parse(localStorage.getItem('nefroquest-sr-data') || '{}'); } catch(e) {}
+        const mergedSR = { ...cloud.srData, ...local };
+        Object.keys(cloud.srData).forEach(qid => {
+          const lCard = local[qid];
+          const cCard = cloud.srData[qid];
+          if (lCard && cCard) {
+            if (cCard.reps > lCard.reps) {
+              mergedSR[qid] = cCard;
+            }
+          } else if (cCard) {
+            mergedSR[qid] = cCard;
+          }
+        });
+        try { localStorage.setItem('nefroquest-sr-data', JSON.stringify(mergedSR)); } catch(e) { console.error('[NQ] saveSRData (cloud merge) failed', e); }
       }
     }
 
@@ -623,6 +672,7 @@
         if (g) g.textContent = stats.gamesPlayed;
         if (l) l.textContent = stats.bestLevel;
       }
+      refreshWelcomeSave();
     }
 
     function restoreGame() {
@@ -3397,6 +3447,7 @@
     window._confirmDiff = function(fromWelcome) {
       const diff = window._pendingDiff;
       if (!diff) return;
+      document.body.classList.remove('rd-game-over', 'boss-battle-mode', 'arqui-nefromante-final', 'boss-hp-critical');
       document.getElementById('diffSelectorOverlay')?.remove();
       state.difficulty = diff;
       deleteSave();
