@@ -616,10 +616,24 @@
     </svg>`;
   }
 
-  function _drawRadar(axisStats) {
-    const canvas = document.getElementById('nqDashRadar');
-    if (!canvas || !axisStats.length) return;
-    if (typeof drawRadarChart === 'function') drawRadarChart(canvas, axisStats);
+  function _drawRadar() {
+    // drawRadarChart(container, coreStats) recebe o CONTÊINER (limpa e desenha
+    // o SVG dentro) — não um <canvas>. Usa o mesmo provedor do modo estudo
+    // (getCoreSkillsStats) para o radar de 5 eixos.
+    const container = document.getElementById('nqDashRadarContainer');
+    if (!container) return;
+    if (typeof drawRadarChart !== 'function'
+        || typeof getCoreSkillsStats !== 'function'
+        || typeof getDetailedStats !== 'function') {
+      container.innerHTML = '<div style="color:var(--txt-dim);font-size:0.8rem;">Radar indisponível.</div>';
+      return;
+    }
+    try {
+      drawRadarChart(container, getCoreSkillsStats(getDetailedStats()));
+    } catch (e) {
+      container.innerHTML = '<div style="color:var(--txt-dim);font-size:0.8rem;">Não foi possível carregar o radar.</div>';
+      if (typeof _track === 'function') _track('error_dash_radar', { msg: String(e) });
+    }
   }
 
   // ── Render tabs ─────────────────────────────────────────────────────────

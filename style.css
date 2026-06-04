@@ -9403,7 +9403,8 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   align-items: center;
   justify-content: center;
   background: rgba(0,0,0,0.65);
-  z-index: var(--z-modal-high);
+  /* Acima do Grimório (.modalWrap = --z-panel/9500), senão o resumo abria por trás. */
+  z-index: var(--z-critical);
   padding: 16px;
   box-sizing: border-box;
   backdrop-filter: blur(4px);
