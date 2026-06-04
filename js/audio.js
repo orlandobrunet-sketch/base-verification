@@ -501,14 +501,16 @@
       updateAudioIcons();
 
       // Iniciar música automaticamente ao carregar a página
-      // Aguarda áudio estar carregado para evitar AbortError
       if (musicEnabled) {
-        if (wmTrack.readyState >= 4) {
-          startWelcomeMusic();
-        } else {
-          wmTrack.addEventListener('canplaythrough', function() {
+        startWelcomeMusic();
+
+        // Fallback se ainda estiver carregando
+        if (wmTrack.readyState < 2) {
+          const _onPlayable = () => {
             if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
-          }, { once: true });
+          };
+          wmTrack.addEventListener('canplay', _onPlayable, { once: true });
+          wmTrack.addEventListener('canplaythrough', _onPlayable, { once: true });
         }
         // Fallback para browsers que bloqueiam autoplay: retenta no primeiro gesto até sucesso.
         // Remove-se automaticamente após desbloquear para não processar todos os cliques.

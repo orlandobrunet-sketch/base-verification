@@ -116,4 +116,21 @@ test.describe('Dashboard, Core Skills & Layout Reset E2E Tests', () => {
     expect(selectedAxes).toContain('nefropatia_diabetica');
     expect(selectedAxes).toContain('farmacologia');
   });
+
+  test('clicking Skills tab renders radar chart canvas', async ({ page }) => {
+    await page.waitForFunction(() => typeof (window as any).openDashboard === 'function');
+    
+    // Open the dashboard
+    await page.evaluate(() => {
+      (window as any).openDashboard();
+    });
+
+    // Click the Skills tab
+    await page.click('button[data-dash-tab="skills"]');
+
+    // Wait for the radar container to contain a canvas
+    const canvas = page.locator('#nqDashRadarContainer canvas');
+    await expect(canvas).toBeVisible({ timeout: 5000 });
+  });
 });
+

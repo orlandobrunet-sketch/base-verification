@@ -273,7 +273,7 @@
           <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:6px;display:flex;flex-direction:column;gap:4px;min-width:200px;">
             ${skill.subcategories.map(sub => {
               const subPctStr = sub.total > 0 ? `${sub.accuracy.toFixed(0)}%` : '—';
-              const subCountStr = sub.total > 0 ? `(${sub.correct}/${sub.total})` : '(sem dados)';
+              const subCountStr = sub.total > 0 ? `(${sub.correct} de ${sub.total} respondidas)` : '(sem dados)';
               const subColor = sub.total > 0 ? _colorFor(sub.accuracy) : 'var(--txt-dim)';
               return `
                 <div style="display:flex;justify-content:space-between;gap:12px;font-size:0.72rem;line-height:1.3;">
