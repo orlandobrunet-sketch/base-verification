@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v11.43
-const CACHE = 'nefroquest-v11.43';
+// NefroQuest Service Worker — v11.44
+const CACHE = 'nefroquest-v11.44';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -39,6 +39,7 @@ const STATIC_ASSETS = [
   '/js/minigame-acidbase.js',
   '/js/achievements.js',
   '/js/changelog.js',
+  '/js/dashboard.js',
 ];
 
 self.addEventListener('install', e => {

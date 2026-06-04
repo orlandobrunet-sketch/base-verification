@@ -768,6 +768,8 @@
         .then(({ version }) => {
           const el = document.getElementById('welcomeVersionLabel');
           if (el) el.textContent = 'v' + version;
+          const lndEl = document.getElementById('landingVersionLabel');
+          if (lndEl) lndEl.textContent = 'v' + version;
         })
         .catch(() => {});
 
