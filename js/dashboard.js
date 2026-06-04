@@ -556,11 +556,16 @@
         grid-auto-columns: 10px;
         grid-auto-flow: column;
         gap: 5px;
-        justify-content: center;
+        justify-content: start;
         overflow-x: auto;
         padding: 6px 4px 10px;
         scrollbar-width: thin;
-        scrollbar-color: rgba(255,215,0,0.15) transparent;
+        scrollbar-color: rgba(255,215,0,0.18) transparent;
+      }
+      @media (min-width: 860px) {
+        .nq-dash-heatmap-grid {
+          justify-content: center;
+        }
       }
       .nq-dash-heatmap-grid::-webkit-scrollbar {
         height: 4px;
@@ -648,30 +653,17 @@
   }
 
   function _buildEngagementHeatmap(stats) {
-    const hist = stats.questionHistory || [];
-    
-    // Group history by local date YYYY-MM-DD
-    const daysData = {};
-    hist.forEach(h => {
-      if (!h.date) return;
-      const dateStr = h.date.slice(0, 10);
-      if (!daysData[dateStr]) {
-        daysData[dateStr] = { count: 0, time: 0, correct: 0 };
-      }
-      daysData[dateStr].count++;
-      if (h.correct) daysData[dateStr].correct++;
-      if (h.time && h.time > 0) daysData[dateStr].time += h.time;
-    });
+    const daysData = stats.dailyActivity || {};
 
     const today = new Date();
     const currentDayOfWeek = today.getDay(); // 0: Sun, 1: Mon, ..., 6: Sat
     
-    // Sunday of 5 weeks ago
+    // Sunday of 52 weeks ago
     const startDate = new Date(today);
-    startDate.setDate(today.getDate() - currentDayOfWeek - 35);
+    startDate.setDate(today.getDate() - currentDayOfWeek - 364);
     startDate.setHours(0, 0, 0, 0);
 
-    const totalDays = 42;
+    const totalDays = 371; // 53 weeks to show a full year + current week
     const gridDays = [];
 
     for (let i = 0; i < totalDays; i++) {
@@ -727,13 +719,13 @@
       return `<div class="nq-dash-heatmap-day" style="background:${bgStyle}; box-shadow:${shadow};" title="${escapeHtml(tooltip)}"></div>`;
     }).join('');
 
-    const startStr = startDate.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
-    const endStr = today.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+    const startStr = startDate.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: '2-digit' });
+    const endStr = today.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: '2-digit' });
 
     return `
       <div class="nq-dash-heatmap-wrap">
         <div class="nq-dash-heatmap-header">
-          <div class="nq-dash-heatmap-title">Foco & Engajamento (Últimas 6 Semanas)</div>
+          <div class="nq-dash-heatmap-title">Foco & Engajamento (Últimas 52 Semanas)</div>
         </div>
         <div class="nq-dash-heatmap-grid">
           ${daySquares}
@@ -822,6 +814,41 @@
     }
     
     const userTitle = getUserTitle(stats.totalCorrect || 0);
+
+    // Calcular dados do SRS (Spaced Repetition System)
+    const srsStats = (() => {
+      let srData = {};
+      try {
+        srData = JSON.parse(localStorage.getItem('nefroquest-sr-data') || '{}');
+      } catch (e) {}
+      
+      const todayStart = new Date().setHours(0, 0, 0, 0);
+      const totalBank = (typeof questionBank !== 'undefined' && Array.isArray(questionBank)) ? questionBank.length : 1003;
+      
+      let dueCount = 0;
+      let learningCount = 0;
+      let masteredCount = 0;
+      
+      Object.values(srData).forEach(card => {
+        if (card.due <= todayStart) {
+          dueCount++;
+        }
+        if (card.interval >= 15) {
+          masteredCount++;
+        } else {
+          learningCount++;
+        }
+      });
+      
+      const newCount = Math.max(0, totalBank - Object.keys(srData).length);
+      
+      return {
+        new: newCount,
+        learning: learningCount,
+        due: dueCount,
+        mastered: masteredCount
+      };
+    })();
 
     return `
       <!-- Card do Usuário (Perfil Definitivo) -->
@@ -934,6 +961,31 @@
       </div>
 
       ${actChart}
+
+      <!-- Widget de Repetição Espaçada (SRS) -->
+      <div class="nq-dash-stitle">Repetição Espaçada (Foco em Memorização)</div>
+      <div class="nq-dash-srs-widget" style="background:rgba(255,255,255,0.015); border:1px solid rgba(255,255,255,0.04); border-radius:16px; padding:16px 20px; margin-bottom:22px; display:grid; grid-template-columns: repeat(4, 1fr); gap:12px; text-align:center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+        <div style="border-right:1px solid rgba(255,255,255,0.06); padding:4px;">
+          <div style="font-size:1.3rem; margin-bottom:4px;" title="Questões do banco que você ainda não viu">🆕</div>
+          <div style="font-size:1.15rem; font-weight:700; color:#3b82f6; font-family:'Cinzel',serif;">${srsStats.new}</div>
+          <div style="font-size:0.6rem; color:var(--txt-dim); text-transform:uppercase; letter-spacing:0.5px; margin-top:2px;">Novas</div>
+        </div>
+        <div style="border-right:1px solid rgba(255,255,255,0.06); padding:4px;">
+          <div style="font-size:1.3rem; margin-bottom:4px;" title="Questões vistas recentemente e em processo de fixação">🌱</div>
+          <div style="font-size:1.15rem; font-weight:700; color:#fbbf24; font-family:'Cinzel',serif;">${srsStats.learning}</div>
+          <div style="font-size:0.6rem; color:var(--txt-dim); text-transform:uppercase; letter-spacing:0.5px; margin-top:2px;">Fixação</div>
+        </div>
+        <div style="border-right:1px solid rgba(255,255,255,0.06); padding:4px;">
+          <div style="font-size:1.3rem; margin-bottom:4px;" title="Questões com revisão vencida para praticar hoje">⏰</div>
+          <div style="font-size:1.15rem; font-weight:700; color:#ef4444; font-family:'Cinzel',serif;">${srsStats.due}</div>
+          <div style="font-size:0.6rem; color:var(--txt-dim); text-transform:uppercase; letter-spacing:0.5px; margin-top:2px;">Revisar Hoje</div>
+        </div>
+        <div style="padding:4px;">
+          <div style="font-size:1.3rem; margin-bottom:4px;" title="Questões retidas com alto intervalo de memorização">👑</div>
+          <div style="font-size:1.15rem; font-weight:700; color:var(--gold); font-family:'Cinzel',serif;">${srsStats.mastered}</div>
+          <div style="font-size:0.6rem; color:var(--txt-dim); text-transform:uppercase; letter-spacing:0.5px; margin-top:2px;">Retidas</div>
+        </div>
+      </div>
 
       <div class="nq-dash-stitle">Badges de progressão</div>
       <div class="nq-dash-prow">

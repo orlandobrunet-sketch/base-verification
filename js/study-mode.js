@@ -1175,11 +1175,14 @@
         <div id="studyOptions" style="display:grid;gap:10px;">
           ${q.opts.map((opt, idx) => `
             <button class="study-option-btn" data-action="answerStudyQuestion" data-arg="${idx}" data-arg-type="number"
-                    style="background:linear-gradient(180deg,#1e293b,#0f172a);border:2px solid #334155;border-radius:10px;padding:14px 18px;text-align:left;color:var(--txt);font-size:0.95rem;cursor:pointer;transition:all 0.2s;"
+                    data-kbd-hint="${idx + 1}"
+                    style="display:flex; justify-content:space-between; align-items:center; background:linear-gradient(180deg,#1e293b,#0f172a);border:2px solid #334155;border-radius:10px;padding:14px 18px;text-align:left;color:var(--txt);font-size:0.95rem;cursor:pointer;transition:all 0.2s;"
                     onmouseover="this.style.borderColor='var(--blue)';this.style.background='linear-gradient(180deg,#1e3a5f,#0f172a)'"
                     onmouseout="this.style.borderColor='#334155';this.style.background='linear-gradient(180deg,#1e293b,#0f172a)'">
-              <span style="color:var(--blue);font-weight:bold;margin-right:8px;">${String.fromCharCode(65 + idx)})</span>
-              ${escapeHtml(opt)}
+              <span>
+                <span style="color:var(--blue);font-weight:bold;margin-right:8px;">${String.fromCharCode(65 + idx)})</span>
+                ${escapeHtml(opt)}
+              </span>
             </button>
           `).join('')}
         </div>

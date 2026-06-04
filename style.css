@@ -12269,4 +12269,66 @@ button.ab-ddx-card { cursor: pointer; }
   }
 }
 
+/* Keyboard Shortcut Hints (Desktop only) */
+@media (min-width: 1024px) {
+  .option::after {
+    content: '[' attr(data-kbd-hint) ']';
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-size: 0.68rem;
+    color: var(--rd-txt-dim);
+    margin-right: 16px;
+    margin-left: auto;
+    font-family: var(--font-sans, sans-serif);
+    opacity: 0.5;
+    transition: opacity 0.15s, border-color 0.15s, color 0.15s;
+    flex-shrink: 0;
+  }
+  .option:hover::after {
+    opacity: 0.95;
+    border-color: var(--rd-gold-mid);
+    color: var(--rd-gold-bright);
+  }
+  
+  .study-option-btn::after {
+    content: '[' attr(data-kbd-hint) ']';
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-size: 0.68rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin-left: 16px;
+    opacity: 0.5;
+    transition: opacity 0.15s, border-color 0.15s, color 0.15s;
+    flex-shrink: 0;
+  }
+  .study-option-btn:hover::after {
+    opacity: 0.95;
+    border-color: var(--blue, #3b82f6);
+    color: #fff;
+  }
+}
+
+/* Flashing animations for gameplay feedback */
+.boss-damaged img {
+  animation: bossImpact 0.4s ease-in-out;
+}
+@keyframes bossImpact {
+  0%, 100% { filter: drop-shadow(0 0 10px rgba(124,58,237,0.3)); }
+  50% { filter: brightness(1.8) drop-shadow(0 0 35px #ef4444); transform: scale(0.95); }
+}
+
+.player-damaged {
+  animation: playerFlash 0.5s ease-in-out;
+}
+@keyframes playerFlash {
+  0%, 100% { background: linear-gradient(170deg, var(--rd-bg-surface) 0%, var(--rd-bg-panel) 100%); }
+  50% { background: rgba(220, 38, 38, 0.25) !important; box-shadow: 0 0 20px rgba(220, 38, 38, 0.4) inset; }
+}
+
 
