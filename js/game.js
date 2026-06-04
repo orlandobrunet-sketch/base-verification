@@ -976,6 +976,8 @@
     }
 
     let questionBank = null;
+    let _questionStartTime = 0;
+
 
     // ── Lazy loading do topics.js (1.4 MB) ─────────────────────────────────
     let _topicsPromise = null;
@@ -985,7 +987,12 @@
       _topicsPromise = new Promise((resolve, reject) => {
         const s = document.createElement('script');
         s.src = 'data/topics.js';
-        s.onload  = () => { questionBank = buildDeck(); HISTORY_SIZE = Math.max(30, Math.floor(questionBank.length * 0.20)); resolve(); };
+        s.onload  = () => {
+          questionBank = buildDeck();
+          HISTORY_SIZE = Math.max(30, Math.floor(questionBank.length * 0.20));
+          syncMasteredToDetailedStats();
+          resolve();
+        };
         s.onerror = () => reject(new Error('Falha ao carregar questões'));
         document.head.appendChild(s);
       });
@@ -1568,6 +1575,7 @@
     }
 
     function renderQuestion(){
+      _questionStartTime = Date.now();
       const _msb = document.getElementById('mobileStatusBar');
       if (_msb) _msb.classList.add('active');
       state.answered = false;
@@ -1953,6 +1961,30 @@
       if(state.answered) return;
       if(!state.current) return;
       state.answered=true;
+
+      const timeSpent = _questionStartTime > 0 ? Math.floor((Date.now() - _questionStartTime) / 1000) : 0;
+      const isCorrect = i === state.current.a;
+      
+      // Tracking de estatísticas
+      trackQuestionAnswer(state.current, isCorrect, timeSpent);
+
+      // Acumular erros da sessão para revisão no fim de partida
+      if (!isCorrect && state.current && typeof _sessionWrongAnswers !== 'undefined') {
+        _sessionWrongAnswers.push(state.current);
+      }
+
+      // Marcar questão como dominada após resposta correta
+      if (isCorrect && state.current && state.current.id) {
+        _masteredSet.add(state.current.id);
+        try { localStorage.setItem(MASTERED_KEY, JSON.stringify([..._masteredSet])); } catch(e) { console.error('[NQ] saveMastered failed', e); }
+      }
+
+      // Desbloquear refs do Grimório ao acertar
+      if (isCorrect && state.current?.r?.length) {
+        if (typeof _unlockRefsFromQuestion === 'function') {
+          _unlockRefsFromQuestion(state.current.r);
+        }
+      }
       const st=total();
       const all=[...ui.options.querySelectorAll('.option')];
       all.forEach(b=>b.disabled=true);
@@ -2148,6 +2180,10 @@
         animateLastBossStar();
         // Muda texto do botão Próxima: "ATACAR" nas questões 91-99, "GOLPE FINAL" na última
         if(isBossBattle()) ui.nextBtn.textContent = getBossProgress() >= 9 ? 'GOLPE FINAL' : 'ATACAR (PRÓXIMA PERGUNTA)';
+      }
+
+      if (typeof checkAchievements === 'function') {
+        checkAchievements();
       }
     }
 
@@ -2733,9 +2769,95 @@
       if (stats.questionHistory.length > 100) {
         stats.questionHistory = stats.questionHistory.slice(0, 100);
       }
+
+      // Evitar duplo-registro na sincronização retroativa
+      const qId = question.id || question.qid;
+      if (isCorrect && qId) {
+        stats.syncedMastered = stats.syncedMastered || [];
+        if (!stats.syncedMastered.includes(qId)) {
+          stats.syncedMastered.push(qId);
+        }
+      }
       
       saveDetailedStats(stats);
     }
+    
+    function syncMasteredToDetailedStats() {
+      // Recarregar _masteredSet do localStorage para garantir que pegamos alterações da nuvem ou de outros scripts
+      try {
+        const raw = JSON.parse(localStorage.getItem(MASTERED_KEY) || "[]");
+        const valid = raw.map(id => typeof id === 'number' ? String(id) : id).filter(id => typeof id === "string" && id.length > 0);
+        _masteredSet = new Set(valid);
+      } catch (e) {
+        console.error('[NQ] Reloading _masteredSet failed', e);
+      }
+
+      if (!questionBank) return;
+
+      const stats = getDetailedStats() || {};
+      stats.syncedMastered = stats.syncedMastered || [];
+      const syncedSet = new Set(stats.syncedMastered);
+      let changed = false;
+
+      const bankMap = {};
+      questionBank.forEach(q => { bankMap[q.id] = q; });
+
+      // Contar quantos itens do _masteredSet pertencem a cada categoria e tópico
+      const masteredCountsByCat = {};
+      const masteredCountsByTopic = {};
+      
+      _masteredSet.forEach(id => {
+        const q = bankMap[id];
+        if (q) {
+          const cat = q.c || 'geral';
+          const topic = q.t || 'Geral';
+          masteredCountsByCat[cat] = (masteredCountsByCat[cat] || 0) + 1;
+          masteredCountsByTopic[topic] = (masteredCountsByTopic[topic] || 0) + 1;
+          
+          // Adicionar também ao syncedMastered se não estiver lá
+          if (!syncedSet.has(id)) {
+            stats.syncedMastered.push(id);
+            syncedSet.add(id);
+            changed = true;
+          }
+        }
+      });
+
+      // Ajustar estatísticas por categoria para garantir que refletem pelo menos as questões masterizadas
+      stats.byCategory = stats.byCategory || {};
+      Object.keys(masteredCountsByCat).forEach(cat => {
+        const requiredCorrect = masteredCountsByCat[cat];
+        stats.byCategory[cat] = stats.byCategory[cat] || { correct: 0, wrong: 0, total: 0 };
+        const currentCorrect = stats.byCategory[cat].correct || 0;
+        if (currentCorrect < requiredCorrect) {
+          const diff = requiredCorrect - currentCorrect;
+          stats.byCategory[cat].correct = requiredCorrect;
+          stats.byCategory[cat].total = (stats.byCategory[cat].total || 0) + diff;
+          stats.totalCorrect = (stats.totalCorrect || 0) + diff;
+          stats.totalQuestions = (stats.totalQuestions || 0) + diff;
+          changed = true;
+        }
+      });
+
+      // Ajustar estatísticas por tópico
+      stats.byTopic = stats.byTopic || {};
+      Object.keys(masteredCountsByTopic).forEach(topic => {
+        const requiredCorrect = masteredCountsByTopic[topic];
+        stats.byTopic[topic] = stats.byTopic[topic] || { correct: 0, wrong: 0, total: 0 };
+        const currentCorrect = stats.byTopic[topic].correct || 0;
+        if (currentCorrect < requiredCorrect) {
+          const diff = requiredCorrect - currentCorrect;
+          stats.byTopic[topic].correct = requiredCorrect;
+          stats.byTopic[topic].total = (stats.byTopic[topic].total || 0) + diff;
+          changed = true;
+        }
+      });
+
+      if (changed) {
+        saveDetailedStats(stats);
+      }
+    }
+    window.syncMasteredToDetailedStats = syncMasteredToDetailedStats;
     
     // Eixos da nefrologia — um eixo por categoria do banco (17 no total)
     // ── Study mode UI ─────────────────────── js/study-mode.js ──

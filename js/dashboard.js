@@ -1139,17 +1139,42 @@
   }
 
   // ── Main open ────────────────────────────────────────────────────────────
-  function openDashboard() {
+  async function openDashboard() {
     _injectStyles();
     document.getElementById('nqDashboard')?.remove();
     document.querySelectorAll('.profile-popup.open').forEach(p => p.classList.remove('open'));
 
-    const stats = getDetailedStats();
-    const axisStats = getAxisStats(stats);
-
+    // Criar o contêiner com estado de carregamento inicial
     const overlay = document.createElement('div');
     overlay.id = 'nqDashboard';
     overlay.className = 'nq-dash-overlay';
+    overlay.innerHTML = `
+      <div class="nq-dash-panel" style="display:flex; justify-content:center; align-items:center; min-height:400px;">
+        <div style="text-align:center; color:var(--gold);">
+          <div class="nq-dash-lb-spin" style="margin:0 auto 12px auto; width:30px; height:30px; border:3px solid rgba(255,215,0,0.15); border-top-color:var(--gold); border-radius:50%; animation:nq-dash-spin 0.8s linear infinite;"></div>
+          <div style="font-family:'Cinzel',serif; font-size:0.9rem; font-weight:bold;">Carregando Perfil...</div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+
+    // Permitir fechar no backdrop mesmo enquanto carrega
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeDashboard(); });
+
+    // Forçar carregamento das questões e sincronização
+    if (typeof window._loadTopics === 'function') {
+      try {
+        await window._loadTopics();
+      } catch (e) {
+        console.error('[NQ] Failed to load topics for dashboard', e);
+      }
+    }
+    if (typeof window.syncMasteredToDetailedStats === 'function') {
+      window.syncMasteredToDetailedStats();
+    }
+
+    const stats = getDetailedStats();
+    const axisStats = getAxisStats(stats);
 
     overlay.innerHTML = `
       <div class="nq-dash-panel">
@@ -1185,9 +1210,7 @@
       </div>
     `;
 
-    document.body.appendChild(overlay);
-
-    // Tab switching
+    // Recriar listeners da aba
     overlay.querySelectorAll('[data-dash-tab]').forEach(btn => {
       btn.addEventListener('click', () => {
         const tab = btn.dataset.dashTab;
@@ -1197,9 +1220,6 @@
         if (tab === 'ranking') _loadRanking(false);
       });
     });
-
-    // Close on backdrop click
-    overlay.addEventListener('click', e => { if (e.target === overlay) closeDashboard(); });
 
     if (typeof playSound === 'function') playSound('click');
   }

@@ -321,49 +321,10 @@
 
     // ============ INTEGRAÇÃO COM O SISTEMA EXISTENTE ============
     
-    // Variável para tracking de tempo
-    let questionStartTime = 0;
+    // Variável para tracking de tempo (gerenciada por game.js)
+    window.questionStartTime = 0;
     // Erros da sessão atual (reset a cada nova partida)
-    let _sessionWrongAnswers = [];
-    
-    // Modificar a função answer original para incluir tracking
-    const originalAnswer = answer;
-    window.answer = function(i, btn) {
-      if (!state.gameStarted || state.answered || !state.current) return;
-
-      const timeSpent = questionStartTime > 0 ? Math.floor((Date.now() - questionStartTime) / 1000) : 0;
-      const isCorrect = i === state.current.a;
-      
-      // Tracking de estatísticas
-      trackQuestionAnswer(state.current, isCorrect, timeSpent);
-
-      // Acumular erros da sessão para revisão no fim de partida
-      if (!isCorrect && state.current) _sessionWrongAnswers.push(state.current);
-
-      // Marcar questão como dominada após resposta correta
-      if (isCorrect && state.current && state.current.id) {
-        _masteredSet.add(state.current.id);
-        try { localStorage.setItem(MASTERED_KEY, JSON.stringify([..._masteredSet])); } catch(e) { console.error('[NQ] saveMastered failed', e); }
-      }
-
-      // Desbloquear refs do Grimório ao acertar
-      if (isCorrect && state.current?.r?.length) {
-        _unlockRefsFromQuestion(state.current.r);
-      }
-
-      // Chamar função original
-      originalAnswer(i, btn);
-      
-      // Verificar conquistas
-      checkAchievements();
-    };
-    
-    // Modificar renderQuestion para iniciar timer
-    const originalRenderQuestion = renderQuestion;
-    window.renderQuestion = function() {
-      questionStartTime = Date.now();
-      originalRenderQuestion();
-    };
+    window._sessionWrongAnswers = [];
     
     // Filtros de modo de estudo são aplicados via filterQuestionsByMode() dentro do shuffleQueue
 

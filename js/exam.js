@@ -162,6 +162,9 @@
       const q = questions[idx];
       const correct = chosen === q.a;
       _examState.answers[idx] = { qId: q.id, correct, cat: q.c || 'geral', chosen, answered: true };
+      if (typeof trackQuestionAnswer === 'function') {
+        trackQuestionAnswer(q, correct, 0);
+      }
       _saveExamState();
       showExamQuestion();
     }
