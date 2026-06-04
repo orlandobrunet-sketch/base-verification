@@ -781,6 +781,7 @@
     const gamesPlayed  = gStats.gamesPlayed  || 0;
     const bestScore    = gStats.bestScore     || 0;
     const bestLevel    = gStats.bestLevel     || 0;
+    const totalAccumulatedKnowledge = parseInt(localStorage.getItem('nefroquest_total_accumulated_knowledge') || '0', 10);
 
     // Stats detalhados (STATS_STORAGE_KEY) — histórico de questões
     const accuracy = stats.totalQuestions > 0
@@ -892,7 +893,7 @@
 
       <!-- KPIs: linha 1 — dados de TODAS as partidas -->
       <div class="nq-dash-stitle">Histórico geral — todas as partidas</div>
-      <div class="nq-dash-kpis" style="margin-bottom:14px;">
+      <div class="nq-dash-kpis" style="margin-bottom:14px; grid-template-columns: repeat(4, 1fr);">
         <div class="nq-dash-kpi" style="border-color:rgba(255,215,0,0.15);">
           <div class="nq-dash-kpi-icon">🎮</div>
           <div class="nq-dash-kpi-val" style="color:var(--gold);">${gamesPlayed}</div>
@@ -907,6 +908,11 @@
           <div class="nq-dash-kpi-icon">⬆️</div>
           <div class="nq-dash-kpi-val" style="color:var(--gold);">${bestLevel}</div>
           <div class="nq-dash-kpi-lbl">Maior nível</div>
+        </div>
+        <div class="nq-dash-kpi" style="border-color:rgba(255,215,0,0.15);">
+          <div class="nq-dash-kpi-icon">📚</div>
+          <div class="nq-dash-kpi-val" style="color:var(--gold);">${totalAccumulatedKnowledge.toLocaleString('pt-BR')}</div>
+          <div class="nq-dash-kpi-lbl">Conhecimento Total</div>
         </div>
       </div>
 

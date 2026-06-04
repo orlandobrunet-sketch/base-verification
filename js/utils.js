@@ -112,6 +112,25 @@
     }
 
     // ── Grimório de Conhecimento ──────────────────────────────────────────
+    const rarityColors = {
+      comum: { text: '#94a3b8', bg: 'rgba(148,163,184,0.06)', border: 'rgba(148,163,184,0.2)', label: 'Comum' },
+      raro: { text: '#38bdf8', bg: 'rgba(14,165,233,0.08)', border: 'rgba(14,165,233,0.3)', label: 'Raro' },
+      'épico': { text: '#c084fc', bg: 'rgba(168,85,247,0.09)', border: 'rgba(168,85,247,0.35)', label: 'Épico' },
+      'épica': { text: '#c084fc', bg: 'rgba(168,85,247,0.09)', border: 'rgba(168,85,247,0.35)', label: 'Épico' },
+      lendário: { text: '#facc15', bg: 'rgba(234,179,8,0.12)', border: 'rgba(234,179,8,0.45)', label: 'Lendário' },
+      lendária: { text: '#facc15', bg: 'rgba(234,179,8,0.12)', border: 'rgba(234,179,8,0.45)', label: 'Lendário' }
+    };
+    const rarityScrollIcons = {
+      comum: '📜',
+      raro: '📜💎',
+      'épico': '📜🔮',
+      'épica': '📜🔮',
+      lendário: '📜👑',
+      lendária: '📜👑'
+    };
+    window.rarityScrollIcons = rarityScrollIcons;
+    window.rarityColors = rarityColors;
+
     let _bibItems = null;
     let _bibVisibleItems = []; // rastreado para openBibResumo
     const UNLOCKED_REFS_KEY = 'nq-unlocked-refs';
@@ -179,9 +198,10 @@
             tipoColor:  '#0e7490',
             impacto:    isUnlocked ? (a.impacto || '') : '',
             url:        '',
-            icon:       isUnlocked ? '📄' : '🔒',
+            icon:       isUnlocked ? (rarityScrollIcons[a.raridade || 'comum'] || '📜') : '🔒',
             locked:     !isUnlocked,
             _lockType:  'article',
+            raridade:   a.raridade || 'comum',
             _totalArticles: total,
             resumo:     isUnlocked ? (a.resumo     || '') : '',
             conclusao:  isUnlocked ? (a.conclusao  || '') : '',
@@ -301,10 +321,18 @@
           it.ano    ? escapeHtml(String(it.ano)) : '',
         ].filter(Boolean);
         const itemIdx = visibleItems.indexOf(it);
-        return `<div class="bib-card">
+        let cardStyle = '';
+        let rarityLabel = '';
+        if (it._lockType === 'article') {
+          const rarity = (it.raridade || 'comum').toLowerCase();
+          const rInfo = rarityColors[rarity] || rarityColors.comum;
+          cardStyle = `background:${rInfo.bg};border-color:${rInfo.border};box-shadow:0 0 10px ${rInfo.border};`;
+          rarityLabel = `<span style="background:${rInfo.bg};color:${rInfo.text};border:1px solid ${rInfo.border};padding:2px 8px;border-radius:10px;font-size:0.68rem;font-weight:bold;text-transform:uppercase;margin-left:6px;font-family:'Cinzel',serif;display:inline-block;vertical-align:middle;">${rInfo.label}</span>`;
+        }
+        return `<div class="bib-card" style="${cardStyle}">
   <div class="bib-card-top">
     <span class="bib-card-icon">${escapeHtml(it.icon)}</span>
-    <span class="bib-card-label">${labelHtml}</span>
+    <span class="bib-card-label">${labelHtml}${rarityLabel}</span>
     <span class="bib-badge" style="background:${it.tipoColor}22;color:${it.tipoColor};border:1px solid ${it.tipoColor}55;">${escapeHtml(it.tipo)}</span>
   </div>
   ${it.autores ? `<div class="bib-card-authors">${escapeHtml(it.autores)}</div>` : ''}
