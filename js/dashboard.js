@@ -951,7 +951,7 @@
     const coreStats = getCoreSkillsStats(stats);
     
     const worstSkill = coreStats
-      .filter(s => s.total > 0)
+      .filter(s => s.totalAnswered > 0)
       .sort((a, b) => (a.accuracy ?? 100) - (b.accuracy ?? 100))[0] || null;
 
     return `
@@ -963,7 +963,7 @@
       ${worstSkill ? `
         <button type="button" class="nq-dash-weakness" data-action="_dashGoWeakness">
           ⚠ Ponto fraco: ${escapeHtml(worstSkill.label)}
-          — ${worstSkill.accuracy != null ? worstSkill.accuracy.toFixed(0) : 0}%
+          — Acurácia: ${worstSkill.accuracy != null ? worstSkill.accuracy.toFixed(0) : 0}%
           &nbsp;→ Treinar agora
         </button>
       ` : ''}
@@ -971,29 +971,36 @@
       <div class="nq-dash-stitle">Desempenho por Competência</div>
       <div style="display:flex; flex-direction:column; gap:10px;">
         ${coreStats.map(skill => {
-          const hasData = skill.total > 0;
-          const pct = hasData ? skill.accuracy.toFixed(0) : '0';
+          const hasData = skill.totalAnswered > 0;
+          const masteryPct = skill.mastery.toFixed(0);
+          const accuracyPct = hasData ? skill.accuracy.toFixed(0) : '0';
           const c = hasData ? _colorFor(skill.accuracy) : '#374151';
           return `
             <div class="nq-dash-skill-card" style="background:rgba(255,255,255,0.025); border:1px solid rgba(255,255,255,0.05); border-radius:12px; padding:12px 14px; display:flex; flex-direction:column; gap:8px;">
               <div style="display:flex; justify-content:space-between; align-items:center;">
                 <span style="font-family:'Cinzel',serif; font-size:0.8rem; font-weight:bold; color:var(--gold);">${escapeHtml(skill.label)}</span>
-                <span style="font-size:0.78rem; font-weight:bold; color:${hasData ? c : 'var(--txt-dim)'};">${hasData ? pct + '%' : '—'} <small style="color:var(--txt-dim); font-weight:normal; font-size:0.68rem;">(${skill.correct} acertos de ${skill.total} respondidas)</small></span>
+                <span style="font-size:0.78rem; font-weight:bold; color:#cbd5e1;">
+                  ${masteryPct}% Dominado 
+                  <small style="color:var(--txt-dim); font-weight:normal; font-size:0.68rem;">
+                    (${skill.correct}/${skill.totalBank} q. • acurácia: <span style="color:${hasData ? c : 'var(--txt-dim)'}; font-weight:bold;">${hasData ? accuracyPct + '%' : '—'}</span>)
+                  </small>
+                </span>
               </div>
               <div style="width:100%; height:5px; background:rgba(255,255,255,0.06); border-radius:2.5px; overflow:hidden;">
-                <div style="height:100%; width:${hasData ? pct : 0}%; background:${c}; border-radius:2.5px; transition:width 0.6s ease;"></div>
+                <div style="height:100%; width:${masteryPct}%; background:var(--gold); box-shadow: 0 0 4px var(--gold); border-radius:2.5px; transition:width 0.6s ease;"></div>
               </div>
               <div style="font-size:0.68rem; color:var(--txt-dim); line-height:1.35;">
                 ${escapeHtml(skill.desc)}
               </div>
               <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:2px;">
                 ${skill.subcategories.map(sub => {
-                  const subHasData = sub.total > 0;
-                  const subPct = subHasData ? `${sub.accuracy.toFixed(0)}%` : '—';
+                  const subHasData = sub.totalAnswered > 0;
+                  const subMasteryPct = sub.mastery.toFixed(0);
+                  const subAccuracyPct = subHasData ? `${sub.accuracy.toFixed(0)}%` : '—';
                   const subColor = subHasData ? _colorFor(sub.accuracy) : 'var(--txt-dim)';
                   return `
                     <span style="font-size:0.62rem; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06); border-radius:4px; padding:2px 5px; color:#cbd5e1;">
-                      ${escapeHtml(sub.label)}: <strong style="color:${subColor};">${subPct}</strong>
+                      ${escapeHtml(sub.label)}: <strong>${subMasteryPct}% Dom.</strong> <small style="color:var(--txt-dim);">(${sub.correct}/${sub.totalBank} • acurácia: <strong style="color:${subColor};">${subAccuracyPct}</strong>)</small>
                     </span>
                   `;
                 }).join('')}
@@ -1259,7 +1266,7 @@
     const stats = getDetailedStats();
     const coreStats = getCoreSkillsStats(stats);
     const worstSkill = coreStats
-      .filter(s => s.total > 0)
+      .filter(s => s.totalAnswered > 0)
       .sort((a, b) => (a.accuracy ?? 100) - (b.accuracy ?? 100))[0] || null;
 
     if (!worstSkill) {

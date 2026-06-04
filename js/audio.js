@@ -152,7 +152,7 @@
       }, WM_LOOP_GAP_MS);
     });
 
-    function startWelcomeMusic() {
+    function startWelcomeMusic(fromUserGesture = false) {
       if (!musicEnabled) return;
       if (welcomeMusicStarted) {
         // Já iniciada mas pode estar pausada (gap entre loops) — retomar imediatamente
@@ -160,7 +160,7 @@
           _wmClearTimers();
           wmTrack.currentTime = 0;
           wmTrack.volume = 0.01;
-          wmTrack.muted = true;
+          wmTrack.muted = !fromUserGesture;
           wmTrack.play().then(() => {
             wmTrack.muted = false;
             _wmFadeIn(() => { if (!_wmStopRequested) _wmScheduleFadeOut(); });
@@ -171,7 +171,7 @@
       _wmStopRequested = false;
       welcomeMusicStarted = true; // marca antes do play() para bloquear re-entradas
       wmTrack.volume = 0;
-      wmTrack.muted = true; // muted-first: browsers allow muted autoplay (bypass autoplay policy pós-redirect)
+      wmTrack.muted = !fromUserGesture; // muted-first apenas se não for gesto do usuário
       if (wmTrack.readyState >= 1) wmTrack.currentTime = 0;
       wmTrack.play().then(() => {
         if (_wmStopRequested) { wmTrack.pause(); wmTrack.muted = false; wmTrack.volume = 0; welcomeMusicStarted = false; return; }
@@ -467,7 +467,7 @@
         setMusicVolume(musicVolume > 0 ? musicVolume : (prevMusicVolume > 0 ? prevMusicVolume : 0.14));
         const ws = document.getElementById('welcomeScreen');
         if (ws && !ws.classList.contains('hidden')) {
-          startWelcomeMusic();
+          startWelcomeMusic(true);
         } else {
           startBgMusic();
         }
@@ -535,7 +535,7 @@
             document.removeEventListener('click',      _tryWelcomeMusic, { capture: true });
             return;
           }
-          startWelcomeMusic();
+          startWelcomeMusic(true);
         }
         document.addEventListener('touchstart', _tryWelcomeMusic, { capture: true, passive: true });
         document.addEventListener('click',      _tryWelcomeMusic, { capture: true });

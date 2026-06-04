@@ -161,9 +161,6 @@
           if (typeof window.showFloatingFeedback === 'function') {
             window.showFloatingFeedback(userAns === null ? '⏱️ Esgotado' : '✗ Incorreto', false, x, y);
           }
-          if (typeof window.triggerScreenShake === 'function') {
-            window.triggerScreenShake();
-          }
           if (typeof window.triggerHapticFeedback === 'function') {
             window.triggerHapticFeedback('wrong');
           }
