@@ -37,13 +37,13 @@ const topics = [
     "diff": "medium",
     "cat": "dialise"
   },
-    {
+  {
     "t": "Controle de PA na DRC e Diabetes Tipo 2",
     "qid": "e56795a6",
     "q": "Segundo as diretrizes KDIGO 2021, qual é a meta de pressão arterial sistólica (PAS) recomendada para reduzir o risco de eventos cardiovasculares e progressão da doença renal crônica (DRC) em pacientes com diabetes tipo 2 (DM2) e alto risco cardiovascular?",
     "refs": [
       "bproad",
-      "kdigo_ckd"
+      "kdigo_bp_ckd_2021"
     ],
     "opts": [
       "PAS < 130 mmHg",
@@ -138,7 +138,7 @@ const topics = [
     "q": "Paciente diabético com doença renal crônica (DRC) estágio 4 apresenta histórico de infecções do trato urinário (ITUs) recorrentes. Sobre o uso de inibidores de SGLT2 (Dapagliflozina/Empagliflozina) neste contexto, o que as evidências atuais demonstram?",
     "refs": [
       "empa_kidney",
-      "dapa_ckd"
+      "dapa"
     ],
     "opts": [
       "Reduzem a proteinúria apenas se a taxa de filtração glomerular (TFG) estiver acima de 60 mL/min/1,73m², sem benefício em estágios avançados",
@@ -194,8 +194,7 @@ const topics = [
     "qid": "4d93de04",
     "q": "Com base nos resultados do estudo EMPA-KIDNEY, qual é a recomendação para o uso de Empagliflozina em pacientes com doença renal crônica (DRC) e taxa de filtração glomerular (TFG) entre 20-30 mL/min/1,73m²?",
     "refs": [
-      "empa_kidney",
-      "empa"
+      "empa_kidney"
     ],
     "opts": [
       "Suspender imediatamente o uso da empagliflozina devido ao risco aumentado de lesão renal aguda, recomendando ajuste rigoroso conforme função renal atual",
@@ -313,8 +312,7 @@ const topics = [
     "qid": "0f7d97f3",
     "q": "Em qual cenário clínico a triagem para Doença de Fabry deve ser fortemente considerada no setor de nefrologia?",
     "refs": [
-      "kdigo_gn",
-      "alport_syndrome_review"
+      "kdigo_gn"
     ],
     "opts": [
       "Homens com hipertrofia ventricular esquerda inexplicada e doença renal crônica de etiologia indeterminada",
@@ -734,10 +732,9 @@ const topics = [
     "q": "Ao iniciar um inibidor de SGLT2 (iSGLT2), é comum observar uma queda inicial na taxa de filtração glomerular (TFG). Qual é a principal razão fisiopatológica para essa redução inicial na TFG?",
     "refs": [
       "dapa",
-      "empa",
+      "empa_kidney",
       "credence",
       "canvas_program",
-      "empa_kidney",
       "empa_reg_outcome",
       "declare_timi58"
     ],
@@ -814,11 +811,10 @@ const topics = [
     "qid": "6cd39dfb",
     "q": "Qual foi o diferencial do estudo EMPA-KIDNEY em relação aos estudos anteriores com inibidores de SGLT2, como o DAPA-CKD?",
     "refs": [
-      "empa",
+      "empa_kidney",
       "dapa",
       "credence",
       "canvas_program",
-      "empa_kidney",
       "empa_reg_outcome",
       "declare_timi58"
     ],
@@ -993,7 +989,6 @@ const topics = [
     "qid": "d0137175",
     "q": "No estudo DAPA-CKD, pacientes com qual condição foram excluídos da análise?",
     "refs": [
-      "dapa_ckd",
       "dapa"
     ],
     "opts": [
@@ -1202,7 +1197,7 @@ const topics = [
     "qid": "b7a28d0b",
     "q": "Qual é o principal critério para indicar o uso de Tolvaptan em pacientes com Doença Renal Policística Autossômica Dominante (DRPAD)?",
     "refs": [
-      "tempo_study",
+      "tempo_34_trial",
       "brenner_rector"
     ],
     "opts": [
@@ -1338,9 +1333,8 @@ const topics = [
     "qid": "8c0e2119",
     "q": "O estudo EMPA-KIDNEY (2023) trouxe evidências significativas sobre o uso de empagliflozina em pacientes com doença renal crônica. Em qual grupo de pacientes a empagliflozina demonstrou benefícios significativos?",
     "refs": [
-      "empa",
-      "credence",
       "empa_kidney",
+      "credence",
       "empa_reg_outcome",
       "emperor_reduced",
       "emperor_preserved"
@@ -1610,7 +1604,7 @@ const topics = [
     "q": "Por que os inibidores de SGLT2 podem causar cetoacidose com níveis de glicemia normais ou apenas levemente elevados?",
     "refs": [
       "empa_kidney",
-      "dapa_ckd"
+      "dapa"
     ],
     "opts": [
       "Pela redução da insulina e aumento do glucagon, favorecendo a cetogénese, enquanto a glicosúria mantém a glicemia baixa",
@@ -1870,7 +1864,7 @@ const topics = [
     "diff": "medium",
     "cat": "lra"
   },
-    {
+  {
     "t": "Nefropatia por IgA e Óleo de Peixe (KDIGO)",
     "qid": "9961a406",
     "q": "Paciente com nefropatia por IgA, proteinúria de 1,5 g/dia após 3 meses de tratamento com inibidor da enzima conversora de angiotensina (IECA) em dose máxima, e função renal estável. O nefrologista considera a adição de óleo de peixe (ômega-3) ao tratamento. Qual é a recomendação atual do KDIGO sobre o uso de óleo de peixe na nefropatia por IgA?",
@@ -2199,7 +2193,7 @@ const topics = [
     "qid": "3d8fc3fe",
     "q": "Paciente com doença renal crônica (DRC) por nefropatia diabética (TFG 38 mL/min, UACR 950 mg/g), já em uso de IECA e iSGLT2, potássio 4,5 mEq/L, PA 138/88 mmHg. O nefrologista prescreve finerenona 10 mg/dia. A finerenona é classificada como?",
     "refs": [
-      "fidelio",
+      "fidelio_dkd",
       "kdigo_diabetes_in_ckd_guideline"
     ],
     "opts": [
@@ -2623,7 +2617,7 @@ const topics = [
     "qid": "f781f397",
     "q": "No estudo EMPA-KIDNEY, qual foi a redução relativa do risco de progressão da doença renal ou morte cardiovascular com o uso de empagliflozina em comparação ao placebo?",
     "refs": [
-      "empa",
+      "empa_kidney",
       "brenner_rector"
     ],
     "opts": [
@@ -2816,7 +2810,7 @@ const topics = [
     "qid": "d01633ca",
     "q": "Qual é a principal vantagem da finerenona em comparação com a espironolactona no tratamento de pacientes com doença renal crônica e diabetes tipo 2, conforme demonstrado em estudos de fase II/III?",
     "refs": [
-      "fidelio",
+      "fidelio_dkd",
       "kdigo_ckd"
     ],
     "opts": [
@@ -2970,7 +2964,7 @@ const topics = [
     "qid": "afb5064c",
     "q": "Qual foi o limite inferior de Taxa de Filtração Glomerular (TFG) para a inclusão de pacientes no estudo EMPA-KIDNEY?",
     "refs": [
-      "empa",
+      "empa_kidney",
       "kdigo_gn"
     ],
     "opts": [
@@ -3184,7 +3178,7 @@ const topics = [
     "qid": "86949ab7",
     "q": "No estudo FIDELIO-DKD, que investigou o uso de finerenona em pacientes com doença renal crônica e diabetes tipo 2, qual era o valor máximo permitido de potássio sérico para inclusão dos participantes, considerando o risco de hipercalemia associado ao uso de antagonistas do receptor de mineralocorticoide?",
     "refs": [
-      "fidelio",
+      "fidelio_dkd",
       "brenner_rector"
     ],
     "opts": [
@@ -3356,7 +3350,6 @@ const topics = [
     "qid": "35027c0d",
     "q": "O estudo MENTOR comparou Rituximabe versus Ciclosporina no tratamento da Nefropatia Membranosa primária. Qual foi o resultado principal em relação à remissão da proteinúria?",
     "refs": [
-      "mentor_trial",
       "mentor_trial"
     ],
     "opts": [
@@ -3527,7 +3520,6 @@ const topics = [
     "qid": "d21710a5",
     "q": "O estudo EMPA-KIDNEY avaliou empagliflozina em um amplo espectro de doença renal crônica (DRC), incluindo pacientes sem diabetes. Além dos desfechos renais primários, quais outros desfechos foram significativamente reduzidos com o uso de empagliflozina no EMPA-KIDNEY?",
     "refs": [
-      "empa",
       "empa_kidney",
       "empa_reg_outcome",
       "emperor_reduced",
@@ -3551,8 +3543,7 @@ const topics = [
     "refs": [
       "nefigard_trial",
       "protect_trial",
-      "atrasentan_igan",
-      "nefigard_trial"
+      "atrasentan_igan"
     ],
     "opts": [
       "Atuar diretamente no tecido linfoide associado ao intestino (Placas de Peyer), local de produção da IgA1 galacto-deficiente",
@@ -3896,9 +3887,8 @@ const topics = [
     "qid": "252a2e88",
     "q": "O estudo EMPA-KIDNEY demonstrou que o benefício da empagliflozina na progressão da doença renal crônica foi consistente entre pacientes com causas diabéticas e não-diabéticas de doença renal?",
     "refs": [
-      "empa",
-      "credence",
       "empa_kidney",
+      "credence",
       "empa_reg_outcome",
       "emperor_reduced",
       "emperor_preserved"
@@ -4151,7 +4141,7 @@ const topics = [
     "qid": "0a91548b",
     "q": "No estudo EMPA-KIDNEY, o benefício da empagliflozina na redução da progressão de DRC ou morte cardiovascular foi consistente em quais subgrupos pré-especificados?",
     "refs": [
-      "empa",
+      "empa_kidney",
       "brenner_rector"
     ],
     "opts": [
@@ -4633,8 +4623,6 @@ const topics = [
     "qid": "71aa5511",
     "q": "O estudo EMPA-KIDNEY avaliou a eficácia da empagliflozina em pacientes com doença renal crônica. Qual foi o principal benefício clínico observado que contribuiu para a sua custo-efetividade?",
     "refs": [
-      "empa",
-      "empa_kidney",
       "empa_kidney",
       "empa_reg_outcome",
       "emperor_reduced",
@@ -4902,7 +4890,6 @@ const topics = [
     "qid": "462c8d3d",
     "q": "O estudo EMPA-KIDNEY avaliou a eficácia da empagliflozina em pacientes com doença renal crônica. Houve diferença significativa no benefício da empagliflozina entre homens e mulheres?",
     "refs": [
-      "empa",
       "empa_kidney",
       "empa_reg_outcome",
       "emperor_reduced",
@@ -5392,7 +5379,7 @@ const topics = [
     "q": "No estudo EMPA-KIDNEY, qual foi o efeito do uso de empagliflozina em pacientes com doença renal crônica, incluindo aqueles com glomerulopatias como nefropatia por IgA?",
     "refs": [
       "kdigo_gn",
-      "empa"
+      "empa_kidney"
     ],
     "opts": [
       "Aumento progressivo da proteinúria observado em pacientes com glomerulopatias no seguimento do estudo EMPA-KIDNEY",
@@ -5604,10 +5591,9 @@ const topics = [
     "refs": [
       "kdigo_ckd",
       "dapa",
-      "empa",
+      "empa_kidney",
       "credence",
       "canvas_program",
-      "empa_kidney",
       "empa_reg_outcome",
       "declare_timi58"
     ],
@@ -6011,7 +5997,7 @@ const topics = [
     "diff": "medium",
     "cat": "eletrólitos"
   },
-    {
+  {
     "t": "Acidose metabólica na DRC",
     "qid": "920621f6",
     "q": "Paciente com DRC avançada e bicarbonato sérico 17 mEq/L. Qual conduta é mais apropriada?",
@@ -6419,7 +6405,7 @@ const topics = [
     "ans": 0,
     "exp": "A intercorrência clinicamente mais importante ao iniciar finerenona é a hipercalemia, porque o bloqueio do receptor mineralocorticoide reduz a excreção renal de potássio e esse risco aumenta quando a TFG está baixa, especialmente em DRC avançada. Hipocalemia não é efeito esperado do fármaco, necrose tubular aguda não é toxicidade característica da finerenona e crise de gota também não é um evento adverso típico; na prática, a principal limitação do uso é monitorar potássio e função renal para evitar elevação excessiva do K sérico.",
     "refs": [
-      "fidelio",
+      "fidelio_dkd",
       "kdigo_ckd"
     ],
     "cat": "drc",
@@ -7155,7 +7141,7 @@ const topics = [
     "ans": 2,
     "exp": "Os vaptanos, como o tolvaptana, são antagonistas seletivos dos receptores V2 da vasopressina (ADH) localizados na membrana basolateral das células principais do ducto coletor renal. Ao bloquear esses receptores, eles impedem a translocação e inserção das aquaporinas-2 (AQP2) na membrana apical, resultando na diminuição da reabsorção de água livre e no aumento da excreção de água sem eletrólitos (aquarese), elevando a concentração sérica de sódio. Este mecanismo é particularmente útil na hiponatremia euvolêmica e hipervolêmica, como na Síndrome de Secreção Inapropriada de ADH (SIADH) e na insuficiência cardíaca.",
     "refs": [
-      "tempo_study",
+      "tempo_34_trial",
       "hyponatremia_adrogue2000",
       "hyponatremia_verbalis2022",
       "salsa_trial"
@@ -7908,7 +7894,7 @@ const topics = [
     "diff": "hard",
     "refs": [
       "dapa",
-      "empa"
+      "empa_kidney"
     ],
     "t": "Espironolactona na Insuficiência Cardíaca com DRC"
   },
@@ -8342,11 +8328,11 @@ const topics = [
       "Utilizar apenas corticosteroides em doses altas até melhora clínica e laboratorial"
     ],
     "ans": 0,
-    "exp": "Para nefrite lúpica classe III/IV, KDIGO 2021, ACR 2020 e EULAR/ERA-EDTA recomendam: Indução — micofenolato mofetil (MMF) 2-3 g/dia OU ciclofosfamida (protocolo NIH ou Euro-Lupus) + corticoide (pulsoterapia 500-1000 mg IV × 3d, depois prednisona 0,5 mg/kg/dia com retirada em 6 meses). O MMF é preferido por equivalência de eficácia e melhor tolerabilidade. Voclosporina (AURORA) ou belimumabe (BLISS-LN) podem ser adicionados ao MMF para maior resposta renal. Manutenção: MMF 1,5-2 g/dia por ≥3 anos. Classe IV com crescentes: considerar pulsoterapia de CF. Resposta completa: proteinúria <0,5 g/dia + estabilidade da TFG.",
+    "exp": "Para nefrite lúpica classe III/IV, KDIGO 2024, ACR 2020 e EULAR/ERA-EDTA recomendam: Indução — micofenolato mofetil (MMF) 2-3 g/dia OU ciclofosfamida (protocolo NIH ou Euro-Lupus) + corticoide (pulsoterapia 500-1000 mg IV × 3d, depois prednisona 0,5 mg/kg/dia com retirada em 6 meses). O MMF é preferido por equivalência de eficácia e melhor tolerabilidade. Voclosporina (AURORA) ou belimumabe (BLISS-LN) podem ser adicionados ao MMF para maior resposta renal. Manutenção: MMF 1,5-2 g/dia por ≥3 anos. Classe IV com crescentes: considerar pulsoterapia de CF. Resposta completa: proteinúria <0,5 g/dia + estabilidade da TFG.",
     "cat": "glomerular",
     "diff": "hard",
     "refs": [
-      "kdigo_gn",
+      "kdigo_lupus_nephritis_guideline_2024",
       "vte_nephrotic_lim"
     ],
     "t": "Nefrite Lúpica — Classificação e Tratamento"
@@ -9112,9 +9098,9 @@ const topics = [
   {
     "t": "Anemia na DRC: Resistência ao ESA - Causas e Manejo",
     "qid": "a3b199d4",
-    "q": "Um paciente com doença renal crônica em estágio 4 apresenta anemia persistente, apesar do uso adequado de agentes estimuladores de eritropoiese (ESA) na dose máxima recomendada. Exames laboratoriais revelam ferritina sérica de 500 ng/mL, saturação de transferrina de 30%, PCR elevada e níveis normais de vitamina B12 e folato. Qual a abordagem inicial mais apropriada para manejar essa resistência ao ESA, considerando as diretrizes KDIGO 2023?",
+    "q": "Um paciente com doença renal crônica em estágio 4 apresenta anemia persistente, apesar do uso adequado de agentes estimuladores de eritropoiese (ESA) na dose máxima recomendada. Exames laboratoriais revelam ferritina sérica de 500 ng/mL, saturação de transferrina de 30%, PCR elevada e níveis normais de vitamina B12 e folato. Qual a abordagem inicial mais apropriada para manejar essa resistência ao ESA, considerando as diretrizes KDIGO 2026?",
     "refs": [
-      "kdigo_ckd",
+      "kdigo_anemia_2026",
       "brenner_rector"
     ],
     "opts": [
@@ -9188,9 +9174,8 @@ const topics = [
   {
     "t": "DMO-DRC: Hiperparatireoidismo Terciário - Definição e Tratamento",
     "qid": "3dfa2ab5",
-    "q": "Um paciente com doença renal crônica em diálise apresenta níveis persistentemente elevados de paratormônio (PTH) mesmo após normalização do cálcio sérico e tratamento clínico otimizado com quelantes de fósforo e análogos de vitamina D. A radiografia evidencia sinais de osteíte fibrosa e o paciente relata dor óssea progressiva. Qual a melhor conduta terapêutica para este quadro, considerando as diretrizes KDIGO 2022 e consensos da Sociedade Brasileira de Nefrologia?",
+    "q": "Um paciente com doença renal crônica em diálise apresenta níveis persistentemente elevados de paratormônio (PTH) mesmo após normalização do cálcio sérico e tratamento clínico otimizado com quelantes de fósforo e análogos de vitamina D. A radiografia evidencia sinais de osteíte fibrosa e o paciente relata dor óssea progressiva. Qual a melhor conduta terapêutica para este quadro, considerando as diretrizes KDIGO 2017 e consensos da Sociedade Brasileira de Nefrologia?",
     "refs": [
-      "kdigo_ckd",
       "kdigo_ckd_mbd_2017",
       "phosphate_binders_ckd"
     ],
@@ -9201,7 +9186,7 @@ const topics = [
       "Suspensão dos quelantes de fósforo e do uso de vitamina D ativa para evitar hipercalcemia e hipofosfatemia, focando apenas no manejo da insuficiência renal para reverter o hiperparatireoidismo."
     ],
     "ans": 0,
-    "exp": "O quadro descrito é consistente com hiperparatireoidismo secundário grave e refratário ao tratamento clínico otimizado, incluindo o uso de quelantes de fósforo e análogos de vitamina D. A presença de osteíte fibrosa e dor óssea progressiva sugere complicações significativas do hiperparatireoidismo. De acordo com as diretrizes KDIGO 2022, a paratireoidectomia é indicada em casos de hiperparatireoidismo secundário grave que não respondem ao tratamento clínico, especialmente quando há sintomas significativos ou complicações ósseas. O cinacalcete pode ser considerado em alguns casos, mas a cirurgia é a opção definitiva quando há refratariedade ao tratamento clínico. Aumento da dose de análogos de vitamina D ou quelantes de fósforo não seria eficaz neste contexto de refratariedade.",
+    "exp": "O quadro descrito é consistente com hiperparatireoidismo secundário grave e refratário ao tratamento clínico otimizado, incluindo o uso de quelantes de fósforo e análogos de vitamina D. A presença de osteíte fibrosa e dor óssea progressiva sugere complicações significativas do hiperparatireoidismo. De acordo com as diretrizes KDIGO 2017, a paratireoidectomia é indicada em casos de hiperparatireoidismo secundário grave que não respondem ao tratamento clínico, especialmente quando há sintomas significativos ou complicações ósseas. O cinacalcete pode ser considerado em alguns casos, mas a cirurgia é a opção definitiva quando há refratariedade ao tratamento clínico. Aumento da dose de análogos de vitamina D ou quelantes de fósforo não seria eficaz neste contexto de refratariedade.",
     "diff": "hard",
     "cat": "drc"
   },
@@ -9379,7 +9364,7 @@ const topics = [
     "qid": "5542579b",
     "q": "Um paciente com carcinoma de pulmão não pequenas células em uso de pembrolizumabe apresenta aumento progressivo da creatinina sérica (de 1,0 para 2,5 mg/dL em 4 semanas), sem sinais de hipovolemia ou uso de nefrotóxicos concomitantes. A proteinúria é leve e o sedimento urinário mostra leucocitúria discreta sem hemácias. A biópsia renal revela nefrite intersticial aguda. Considerando as diretrizes atuais e evidências recentes, qual a conduta mais adequada neste caso?",
     "refs": [
-      "kdigo_ckd_2024"
+      "kdigo_ckd"
     ],
     "opts": [
       "Prescrever dose baixa de corticosteroides e manter o inibidor de checkpoint, pois a nefrite intersticial é autolimitada",
@@ -9528,7 +9513,6 @@ const topics = [
     "qid": "95c5568b",
     "q": "Paciente de 65 anos com diabetes tipo 2, doença renal crônica estágio 3 (TFG 40 mL/min) e hipercalemia crônica (K 5,9 mEq/L). Gasometria arterial revela pH 7,30, HCO3- 17 mEq/L, cloro 112 mEq/L. Renina e aldosterona estão baixas. Qual alteração eletrolítica é mais típica da acidose tubular renal tipo 4?",
     "refs": [
-      "brenner_rector",
       "brenner_rector"
     ],
     "opts": [
@@ -9584,7 +9568,6 @@ const topics = [
     "qid": "63e137ec",
     "q": "Paciente de 58 anos com DRC estágio 3b (TFG 38 mL/min) por glomerulopatia, com proteinúria de 2,8 g/dia e PA de 148/92 mmHg. A biópsia renal mostra fibrose túbulo-intersticial correlacionada ao grau de proteinúria. Qual é o principal determinante da progressão da doença renal crônica neste paciente?",
     "refs": [
-      "kdigo_ckd_guideline",
       "kdigo_ckd"
     ],
     "opts": [
@@ -9624,7 +9607,6 @@ const topics = [
     "qid": "6dd8e258",
     "q": "Paciente com doença renal crônica (DRC) estágio G4 em uso de furosemida 80 mg/d apresenta lesão renal aguda (IRA) após episódio de gastroenterite. A creatinina sérica aumentou de 2,2 para 3,6 mg/dL. Exame de urina revela sódio urinário (NaU) de 38 mEq/L, fração de excreção de sódio (FENa) de 1,6%, osmolaridade urinária (osmU) de 520 mOsm/kg e sedimento urinário pobre. Qual é a melhor interpretação para este quadro clínico?",
     "refs": [
-      "kdigo_aki",
       "kdigo_aki"
     ],
     "opts": [
@@ -9643,7 +9625,6 @@ const topics = [
     "qid": "3ce4dbf4",
     "q": "Paciente de 35 anos apresenta acidose metabólica hiperclorêmica (AG normal), hipocalemia (K 2,9 mEq/L), pH urinário de 6,5 e nefrocalcinose ao ultrassom. Qual é o diagnóstico mais provável?",
     "refs": [
-      "brenner_rector",
       "brenner_rector"
     ],
     "opts": [
@@ -9743,7 +9724,6 @@ const topics = [
     "qid": "0334d0d1",
     "q": "Paciente com doença renal crônica (DRC) e hipercalemia recorrente está em uso de inibidor da enzima conversora de angiotensina (IECA) devido à proteinúria. Apresenta níveis baixos de renina e aldosterona, além de acidose metabólica leve com ânion gap normal. Qual é o diagnóstico sindrômico mais provável?",
     "refs": [
-      "brenner_rector",
       "brenner_rector"
     ],
     "opts": [
@@ -9917,7 +9897,6 @@ const topics = [
     "qid": "e8ca8ba5",
     "q": "Paciente com doença renal crônica (DRC) apresenta acidose metabólica crônica. Qual é a consequência fisiopatológica da acidose metabólica crônica no osso?",
     "refs": [
-      "brenner_rector",
       "brenner_rector"
     ],
     "opts": [
@@ -9936,7 +9915,6 @@ const topics = [
     "qid": "d889795b",
     "q": "Paciente de 38 anos em uso de tenofovir (antirretroviral) por 3 anos desenvolve fraqueza muscular, hipocalemia, hipofosfatemia e glicosúria com glicemia normal. A biópsia renal mostra lesão tubular proximal. Qual combinação laboratorial é característica da síndrome de Fanconi?",
     "refs": [
-      "brenner_rector",
       "brenner_rector"
     ],
     "opts": [
@@ -9993,7 +9971,6 @@ const topics = [
     "qid": "fc859f6a",
     "q": "Paciente com doença renal crônica (DRC) apresenta hipercalemia persistente. Qual adaptação fisiológica ocorre no cólon para compensar a redução da excreção renal de potássio?",
     "refs": [
-      "brenner_rector",
       "brenner_rector"
     ],
     "opts": [
@@ -10284,7 +10261,6 @@ const topics = [
     "qid": "ece4696c",
     "q": "Paciente com doença renal crônica (DRC) avançada e acidose metabólica crônica (HCO3 14 mEq/L) apresenta perda progressiva de força muscular e massa magra. Qual é o mecanismo pelo qual a acidose metabólica contribui para a sarcopenia na DRC?",
     "refs": [
-      "brenner_rector",
       "brenner_rector"
     ],
     "opts": [
@@ -12032,9 +12008,9 @@ const topics = [
   {
     "t": "Hemodiálise e Diálise Peritoneal",
     "qid": "e5e8ca2d",
-    "q": "Em paciente em HD de manutenção, qual é o alvo recomendado de hemoglobina pelo KDIGO 2012 e qual o risco de se superar esse alvo com ESA?",
+    "q": "Em paciente em HD de manutenção, qual é o alvo recomendado de hemoglobina pelo KDIGO 2026 e qual o risco de se superar esse alvo com ESA?",
     "refs": [
-      "kdigo_anemia_2024"
+      "kdigo_anemia_2026"
     ],
     "opts": [
       "Hb 12-13 g/dL em homens e 11-12 g/dL em mulheres; risco de hipotensão",
@@ -12492,7 +12468,7 @@ const topics = [
     "qid": "d4393bc2",
     "q": "Sobre o uso de sacubitril/valsartana em pacientes com insuficiência cardíaca com fração de ejeção reduzida (ICFEr) e doença renal crônica (DRC), assinale a alternativa correta.",
     "refs": [
-      "dapa_ckd",
+      "dapa",
       "empa_kidney",
       "fidelio_dkd"
     ],
@@ -12550,7 +12526,6 @@ const topics = [
     "qid": "3fed706c",
     "q": "Sobre o estadiamento prognóstico da DRC pela classificação KDIGO CGA (causa, TFG, albuminúria), qual célula da tabela de risco representa o pior prognóstico?",
     "refs": [
-      "kdigo_ckd",
       "kdigo_ckd"
     ],
     "opts": [
@@ -12588,7 +12563,7 @@ const topics = [
     "qid": "9661a8dd",
     "q": "Em paciente com DRC G4, qual é o nível de bicarbonato sérico alvo para retardar a progressão da DRC, e qual o mecanismo fisiopatológico da acidose sobre a progressão?",
     "refs": [
-      "kdigo_ckd_2024"
+      "kdigo_ckd"
     ],
     "opts": [
       "HCO3 > 20 mEq/L; acidose causa vasoconstricção renal",
@@ -12625,7 +12600,7 @@ const topics = [
     "qid": "960b61a3",
     "q": "Qual é o mecanismo de ação dos inibidores de SGLT2 na nefroproteção, além do controle glicêmico?",
     "refs": [
-      "kdigo_ckd_2024"
+      "kdigo_ckd"
     ],
     "opts": [
       "Apenas redução da glicemia com melhora secundária do filtrado",
@@ -12662,7 +12637,7 @@ const topics = [
     "qid": "22189222",
     "q": "Sobre o papel do FGF-23 na DRC, qual é a sequência cronológica correta das alterações do metabolismo mineral-ósseo na progressão da DRC?",
     "refs": [
-      "kdigo_ckd_2024"
+      "kdigo_ckd"
     ],
     "opts": [
       "↑FGF-23 (primeiro marcador na DRC G2-3) → ↓calcitriol → ↑PTH → hiperfosfatemia",
@@ -12754,7 +12729,7 @@ const topics = [
     "qid": "00c75e38",
     "q": "Paciente de 60 anos com DRC estágio 3 por nefropatia diabética. A REAU (razão albumina:creatinina urinária) é de 450 mg/g em três coletas. O nefrologista discute o valor prognóstico da proteinúria. Sobre proteinúria como biomarcador na DRC, qual afirmativa está correta?",
     "refs": [
-      "kdigo_ckd_2024"
+      "kdigo_ckd"
     ],
     "opts": [
       "Microalbuminúria (30-300 mg/g) não tem relevância prognóstica em DRC não diabética",
@@ -13848,7 +13823,7 @@ const topics = [
     "diff": "medium",
     "cat": "hipertensao"
   },
-    {
+  {
     "t": "Hipertensão e Rins",
     "qid": "1e0e571c",
     "q": "Sobre o tratamento de HAS em DRC com proteinúria, qual a meta de PA e o agente de primeira linha segundo o KDIGO 2021?",
@@ -14175,7 +14150,7 @@ const topics = [
     "qid": "340ecf87",
     "q": "Mulher de 35 anos com formação recorrente de cálculos de ácido úrico, hiperuricosúria, pH urinário persistentemente ácido (pH 5,1), sobrepeso, resistência à insulina. Qual a conduta mais eficaz para prevenção de novos cálculos?",
     "refs": [
-      "kdigo_ckd_2024"
+      "kdigo_ckd"
     ],
     "opts": [
       "Alopurinol isolado",
@@ -14193,7 +14168,7 @@ const topics = [
     "qid": "0aa9eaa4",
     "q": "Qual o mecanismo fisiopatológico da hipocitratúria como fator de risco para nefrolitíase e qual o tratamento?",
     "refs": [
-      "kdigo_ckd_2024"
+      "kdigo_ckd"
     ],
     "opts": [
       "Citrato urinário é inibidor da cristalização de cálcio",
@@ -14229,7 +14204,7 @@ const topics = [
     "qid": "ea7fe551",
     "q": "Paciente pós-cirurgia bariátrica (bypass gástrico em Y-de-Roux) há 2 anos apresenta cólica renal bilateral e múltiplos cálculos de oxalato de cálcio. Oxalúria 24h: 68 mg/dia (normal < 45). Qual a fisiopatologia e a estratégia de prevenção?",
     "refs": [
-      "kdigo_ckd_2024"
+      "kdigo_ckd"
     ],
     "opts": [
       "Hipercalciúria absorptiva pós-cirúrgica; tiazídico",
@@ -14247,7 +14222,7 @@ const topics = [
     "qid": "167f0ed8",
     "q": "Qual o exame de imagem de escolha para diagnóstico de nefrolitíase na sala de emergência e qual a sensibilidade/especificidade?",
     "refs": [
-      "kdigo_ckd_2024"
+      "kdigo_ckd"
     ],
     "opts": [
       "Radiografia simples de abdome (RX KUB); sensibilidade 60%, especificidade 70%",
@@ -14265,7 +14240,7 @@ const topics = [
     "qid": "321a25ae",
     "q": "Sobre a composição dos cálculos renais e sua correlação com fatores de risco metabólico, qual o par correto?",
     "refs": [
-      "kdigo_ckd_2024"
+      "kdigo_ckd"
     ],
     "opts": [
       "Cálculo de estruvita (fosfato amônio-magnesiano) → hiperuricemia",
@@ -14283,7 +14258,7 @@ const topics = [
     "qid": "fe3a8b5b",
     "q": "Homem de 38 anos com nefrolitíase cística (cálculos de cistina), oxalúria normal, TFG 85 mL/min/1,73m². Confirma-se cistinúria tipo A (homozigoto para SLC3A1). Qual o tratamento preventivo mais eficaz?",
     "refs": [
-      "kdigo_ckd_2024"
+      "kdigo_ckd"
     ],
     "opts": [
       "Alcalinização urinária com bicarbonato e hidratação",
@@ -14301,7 +14276,7 @@ const topics = [
     "qid": "6d3d64c7",
     "q": "Qual é o tamanho limite de cálculo renal para indicar tratamento ativo (LEOC, ureteroscopia ou nefrolitotomia percutânea) vs. conduta expectante, segundo as diretrizes da AUA?",
     "refs": [
-      "kdigo_ckd_2024"
+      "kdigo_ckd"
     ],
     "opts": [
       "Todo cálculo > 1 mm deve ser tratado ativamente",
@@ -14319,7 +14294,7 @@ const topics = [
     "qid": "ca596f32",
     "q": "Paciente com cálculo coraliforme completo no rim esquerdo (2,8 × 3,2 cm), TFG 58 mL/min/1,73m². Qual o tratamento de escolha e por quê a LEOC não é adequada?",
     "refs": [
-      "kdigo_ckd_2024"
+      "kdigo_ckd"
     ],
     "opts": [
       "Nefrolitotomia percutânea (NLPC) — procedimento de escolha para cálculos ≥ 20 mm e coraliformes",
@@ -14719,7 +14694,7 @@ const topics = [
     "qid": "918962ea",
     "q": "Paciente com história de doença renal familial, creatinina 2,8 mg/dL, proteinúria 280 mg/24h, hiperuricemia (ácido úrico 11,2 mg/dL), gota precoce (início aos 25 anos), sem hipertensão, sem diabetes. Pai e avô com DRC progressiva e gota precoce. Uroanálise: fração de excreção de ácido úrico de 4% (VR ~8-10%). Qual é o diagnóstico?",
     "refs": [
-      "kdigo_ckd_2024"
+      "kdigo_ckd"
     ],
     "opts": [
       "Nefropatia por depósito de ácido úrico por hiperuricemia primária",
@@ -15098,7 +15073,7 @@ const topics = [
     "qid": "5b4a4ada",
     "q": "Na DRC estágio 5, qual é a melhor conduta atual para indicar o início eletivo de diálise?",
     "refs": [
-      "kdigo_ckd_2024"
+      "kdigo_ckd"
     ],
     "opts": [
       "Pré-eclâmpsia grave + síndrome HELLP — indicação de parto imediato ≥ 34 semanas; estabilizar e induzir se < 34 sem",
@@ -15137,7 +15112,7 @@ const topics = [
       "kdigo_gn",
       "testing_study",
       "protect_trial",
-      "dapa_ckd"
+      "dapa"
     ],
     "opts": [
       "Iniciar prednisona 1 mg/kg/dia por 6 meses",
@@ -15209,7 +15184,7 @@ const topics = [
     "qid": "88918be2",
     "q": "Paciente do sexo masculino, 63 anos, com DRC estadio 3a (TFG 52 mL/min/1,73m²), proteinúria 0,4 g/24h, hipertensão controlada com losartana 50 mg, HbA1c 7,8%. Qual iSGLT2 está aprovado especificamente para redução de progressão de DRC nesse paciente?",
     "refs": [
-      "dapa_ckd",
+      "dapa",
       "empa_kidney",
       "credence"
     ],
@@ -15358,8 +15333,7 @@ const topics = [
     "qid": "cee26d6b",
     "q": "Paciente do sexo masculino, 46 anos, sem histórico familiar de DRC, em check-up anual. Uroanálise: proteinúria 1+ (dipstick). Proteinúria quantificada: 380 mg/24h. TFG 88 mL/min/1,73m². PA 138/88 mmHg. HbA1c 6,1%. Glicemia de jejum 103 mg/dL. IMC 31 kg/m². Exame físico sem alterações. Qual é a classificação de risco pelo KDIGO e a conduta?",
     "refs": [
-      "kdigo_ckd",
-      "kdigo_ckd_2024"
+      "kdigo_ckd"
     ],
     "opts": [
       "DRC G2A2 — risco moderadamente aumentado",
@@ -15794,8 +15768,7 @@ const topics = [
     "qid": "0319aa8b",
     "q": "Paciente com doença renal crônica (DRC) estágio 4, com taxa de filtração glomerular (TFG) de 28 mL/min, apresenta bicarbonato sérico de 17 mEq/L. Qual é o alvo de bicarbonato sérico recomendado pelas diretrizes KDIGO e qual é o tratamento apropriado para alcançar esse alvo?",
     "refs": [
-      "kdigo_ckd",
-      "kdigo_ckd_guideline"
+      "kdigo_ckd"
     ],
     "opts": [
       "Manter HCO3 >22 mEq/L com suplementação de bicarbonato oral",
@@ -16098,7 +16071,7 @@ const topics = [
     "qid": "e8a59de8",
     "q": "Segundo a KDIGO 2021, qual é o alvo pressórico recomendado para adultos com hipertensão arterial e doença renal crônica não dialítica, quando a pressão é medida de forma padronizada em consultório e o tratamento é tolerado?",
     "refs": [
-      "kdigo_ckd",
+      "kdigo_bp_ckd_2021",
       "brenner_rector"
     ],
     "opts": [
@@ -16286,7 +16259,7 @@ const topics = [
   {
     "t": "Alvo de Proteinúria na Nefropatia IgA — KDIGO 2025",
     "qid": "c1089f2e",
-    "q": "De acordo com a diretriz KDIGO 2021 para Nefropatia por IgA, qual é o alvo ideal de proteinúria a ser alcançado com o tratamento?",
+    "q": "De acordo com a diretriz KDIGO 2025 para Nefropatia por IgA, qual é o alvo ideal de proteinúria a ser alcançado com o tratamento?",
     "opts": [
       "<1,0 g/dia, idealmente <0,5 g/dia",
       "<0,5 g/dia, idealmente <0,3 g/dia",
@@ -16340,7 +16313,7 @@ const topics = [
   {
     "t": "iSGLT2 na Nefropatia IgA — Limitações",
     "qid": "18784ef8",
-    "q": "A diretriz KDIGO 2023 recomenda o uso de inibidores de SGLT2 em pacientes com nefropatia por IgA (IgAN) com base em evidências de benefício renal. No entanto, a diretriz destaca incerteza sobre o benefício em uma subpopulação específica. Qual é essa subpopulação?",
+    "q": "A diretriz KDIGO 2025 recomenda o uso de inibidores de SGLT2 em pacientes com nefropatia por IgA (IgAN) com base em evidências de benefício renal. No entanto, a diretriz destaca incerteza sobre o benefício em uma subpopulação específica. Qual é essa subpopulação?",
     "opts": [
       "Idosos com TFGe <15 mL/min/1,73m²",
       "Pacientes com proteinúria nefrótica >3,5 g/dia",
@@ -16412,7 +16385,7 @@ const topics = [
   {
     "t": "Tolvaptana na DPARD — Dose Inicial KDIGO 2025",
     "qid": "f2f49b49",
-    "q": "Qual é o esquema posológico inicial recomendado pela KDIGO 2022 para tolvaptana no tratamento da doença policística renal autossômica dominante (DPARD) rapidamente progressiva?",
+    "q": "Qual é o esquema posológico inicial recomendado pela KDIGO 2025 para tolvaptana no tratamento da doença policística renal autossômica dominante (DPARD) rapidamente progressiva?",
     "opts": [
       "60 mg em dose única diária pela manhã",
       "30 mg duas vezes ao dia (a cada 12 horas)",
@@ -16466,7 +16439,7 @@ const topics = [
   {
     "t": "Inibidores de mTOR na DPARD — KDIGO 2025",
     "qid": "341da45b",
-    "q": "Qual é a recomendação da KDIGO 2021 sobre o uso de inibidores de mTOR para retardar a progressão da doença renal na doença policística autossômica dominante (DPARD)?",
+    "q": "Qual é a recomendação da KDIGO 2025 sobre o uso de inibidores de mTOR para retardar a progressão da doença renal na doença policística autossômica dominante (DPARD)?",
     "opts": [
       "Recomendados como terapia de primeira linha",
       "Sugeridos apenas em combinação com tolvaptana",
@@ -16502,7 +16475,7 @@ const topics = [
   {
     "t": "Metformina na DPARD Não Diabética — KDIGO 2025",
     "qid": "1ee3dfa2",
-    "q": "Segundo a KDIGO 2022 sobre manejo do diabetes na doença renal crônica, qual é a posição sobre o uso de metformina para retardar a progressão da DRC em pacientes sem diabetes?",
+    "q": "Segundo a diretriz KDIGO 2025 sobre Doença Policística Autossômica Dominante (DPARD), qual é a posição sobre o uso de metformina para retardar a progressão da doença em pacientes sem diabetes?",
     "opts": [
       "Sim, como terapia adjuvante à tolvaptana",
       "Sim, em monoterapia para todos os pacientes",
@@ -16556,7 +16529,7 @@ const topics = [
   {
     "t": "Limiar de Hb para Iniciar ESA em Diálise — KDIGO 2026",
     "qid": "eacfb643",
-    "q": "De acordo com a KDIGO 2021, qual é o nível de hemoglobina recomendado para considerar o início de agentes estimuladores de eritropoiese (ESA) em pacientes em hemodiálise ou diálise peritoneal?",
+    "q": "De acordo com a KDIGO 2026, qual é o nível de hemoglobina recomendado para considerar o início de agentes estimuladores de eritropoiese (ESA) em pacientes em hemodiálise ou diálise peritoneal?",
     "opts": [
       "Hb ≤7,0 g/dL",
       "Hb ≤8,0 g/dL",
@@ -16574,7 +16547,7 @@ const topics = [
   {
     "t": "Meta de Hemoglobina com ESA — KDIGO 2026",
     "qid": "6f1598c5",
-    "q": "Qual é a meta de hemoglobina recomendada pela KDIGO 2021 para adultos com doença renal crônica (DRC) tratados com agentes estimuladores da eritropoiese (ESA)?",
+    "q": "Qual é a meta de hemoglobina recomendada pela KDIGO 2026 para adultos com doença renal crônica (DRC) tratados com agentes estimuladores da eritropoiese (ESA)?",
     "opts": [
       "12,0–13,0 g/dL",
       "10,0–11,0 g/dL",
@@ -16582,7 +16555,7 @@ const topics = [
       "Acima de 13,0 g/dL"
     ],
     "ans": 2,
-    "exp": "A KDIGO 2021 recomenda, para adultos com DRC em uso de ESA, manter a hemoglobina abaixo de 11,5 g/dL, porque metas mais altas aumentam o risco de hipertensão, trombose e eventos cardiovasculares sem benefício clínico consistente. Assim, a alternativa 'Abaixo de 11,5 g/dL' é a melhor resposta. A alternativa '12,0–13,0 g/dL' está acima do limite recomendado, a opção '10,0–11,0 g/dL' sugere um intervalo mais estreito e não é a forma correta de expressar a meta, e a opção 'Acima de 13,0 g/dL' é claramente inadequada por propor valores excessivos.",
+    "exp": "A KDIGO 2026 recomenda, para adultos com DRC em uso de ESA, manter a hemoglobina abaixo de 11,5 g/dL, porque metas mais altas aumentam o risco de hipertensão, trombose e eventos cardiovasculares sem benefício clínico consistente. Assim, a alternativa 'Abaixo de 11,5 g/dL' é a melhor resposta. A alternativa '12,0–13,0 g/dL' está acima do limite recomendado, a opção '10,0–11,0 g/dL' sugere um intervalo mais estreito e não é a forma correta de expressar a meta, e a opção 'Acima de 13,0 g/dL' é claramente inadequada por propor valores excessivos.",
     "diff": "easy",
     "cat": "drc",
     "refs": [
@@ -16628,7 +16601,7 @@ const topics = [
   {
     "t": "Transfusão de Hemácias na DRC — KDIGO 2026",
     "qid": "12121893",
-    "q": "De acordo com as diretrizes KDIGO 2012, qual é o limiar de hemoglobina recomendado para considerar a transfusão de hemácias em adultos hospitalizados com doença renal crônica (DRC) que estão hemodinamicamente estáveis?",
+    "q": "De acordo com as diretrizes KDIGO 2026, qual é o limiar de hemoglobina recomendado para considerar a transfusão de hemácias em adultos hospitalizados com doença renal crônica (DRC) que estão hemodinamicamente estáveis?",
     "opts": [
       "Hb <9 g/dL",
       "Hb <8 g/dL",
@@ -16636,7 +16609,7 @@ const topics = [
       "Hb <7 g/dL"
     ],
     "ans": 3,
-    "exp": "As diretrizes KDIGO 2012 recomendam considerar a transfusão de hemácias em pacientes adultos hospitalizados com DRC que estão hemodinamicamente estáveis quando a hemoglobina está abaixo de 7 g/dL. Este limiar é baseado em evidências que indicam que transfusões em níveis mais altos de hemoglobina não melhoram os desfechos e podem aumentar o risco de eventos adversos, como sobrecarga de volume e reações transfusionais. As outras opções, como 8 g/dL, 9 g/dL e 10 g/dL, são limiares mais altos que não são recomendados para pacientes estáveis, pois podem expor os pacientes a riscos desnecessários sem benefícios comprovados.",
+    "exp": "As diretrizes KDIGO 2026 recomendam considerar a transfusão de hemácias em pacientes adultos hospitalizados com DRC que estão hemodinamicamente estáveis quando a hemoglobina está abaixo de 7 g/dL. Este limiar é baseado em evidências que indicam que transfusões em níveis mais altos de hemoglobina não melhoram os desfechos e podem aumentar o risco de eventos adversos, como sobrecarga de volume e reações transfusionais. As outras opções, como 8 g/dL, 9 g/dL e 10 g/dL, são limiares mais altos que não são recomendados para pacientes estáveis, pois podem expor os pacientes a riscos desnecessários sem benefícios comprovados.",
     "diff": "medium",
     "cat": "drc",
     "refs": [
@@ -16646,7 +16619,7 @@ const topics = [
   {
     "t": "Ferro IV vs Oral na DRC Não-HD — KDIGO 2026",
     "qid": "1ba5a94d",
-    "q": "Para pacientes com anemia e doença renal crônica (DRC) não em hemodiálise, qual é a recomendação da KDIGO 2021 quanto à via de administração de ferro?",
+    "q": "Para pacientes com anemia e doença renal crônica (DRC) não em hemodiálise, qual é a recomendação da KDIGO 2026 quanto à via de administração de ferro?",
     "opts": [
       "Sempre ferro intravenoso",
       "Sempre ferro oral",
@@ -16676,8 +16649,7 @@ const topics = [
     "diff": "hard",
     "cat": "dialise",
     "refs": [
-      "pisces_study",
-      "kdigo_aki_2026"
+      "pisces_study"
     ]
   },
   {
@@ -16695,8 +16667,7 @@ const topics = [
     "diff": "medium",
     "cat": "dialise",
     "refs": [
-      "pisces_study",
-      "kdigo_aki_2026"
+      "pisces_study"
     ]
   },
   {
@@ -16714,8 +16685,7 @@ const topics = [
     "diff": "hard",
     "cat": "dialise",
     "refs": [
-      "pisces_study",
-      "kdigo_aki_2026"
+      "pisces_study"
     ]
   },
   {
@@ -16733,8 +16703,7 @@ const topics = [
     "diff": "hard",
     "cat": "dialise",
     "refs": [
-      "pisces_study",
-      "kdigo_aki_2026"
+      "pisces_study"
     ]
   },
   {
@@ -16752,8 +16721,7 @@ const topics = [
     "diff": "hard",
     "cat": "dialise",
     "refs": [
-      "pisces_study",
-      "kdigo_aki_2026"
+      "pisces_study"
     ]
   },
   {
@@ -16771,8 +16739,7 @@ const topics = [
     "diff": "medium",
     "cat": "dialise",
     "refs": [
-      "pisces_study",
-      "kdigo_aki_2026"
+      "pisces_study"
     ]
   },
   {
@@ -16790,8 +16757,7 @@ const topics = [
     "diff": "medium",
     "cat": "dialise",
     "refs": [
-      "pisces_study",
-      "kdigo_aki_2026"
+      "pisces_study"
     ]
   },
   {
@@ -17225,7 +17191,7 @@ const topics = [
     "diff": "medium",
     "cat": "transplante",
     "refs": [
-      "kdigo_tx"
+      "kdigo_transplant"
     ]
   },
   {
@@ -17243,7 +17209,7 @@ const topics = [
     "diff": "medium",
     "cat": "transplante",
     "refs": [
-      "kdigo_tx"
+      "kdigo_transplant"
     ]
   },
   {
@@ -17261,7 +17227,7 @@ const topics = [
     "diff": "medium",
     "cat": "dialise",
     "refs": [
-      "kdigo_gn"
+      "kdigo_dialise"
     ]
   },
   {
@@ -17315,7 +17281,7 @@ const topics = [
     "diff": "hard",
     "cat": "transplante",
     "refs": [
-      "kdigo_tx"
+      "kdigo_transplant"
     ]
   },
   {
@@ -17423,7 +17389,7 @@ const topics = [
     "diff": "medium",
     "cat": "drc",
     "refs": [
-      "kdigo_ckd_2024"
+      "kdigo_ckd"
     ]
   },
   {
@@ -17441,7 +17407,7 @@ const topics = [
     "diff": "easy",
     "cat": "drc",
     "refs": [
-      "kdigo_ckd_2024"
+      "kdigo_ckd"
     ]
   },
   {
@@ -17549,8 +17515,7 @@ const topics = [
     "diff": "hard",
     "cat": "glomerular",
     "refs": [
-      "empa_kidney",
-      "empa"
+      "empa_kidney"
     ]
   },
   {
@@ -17568,7 +17533,7 @@ const topics = [
     "diff": "hard",
     "cat": "glomerular",
     "refs": [
-      "dapa_ckd",
+      "dapa",
       "kdigo_igan_2025"
     ]
   },
@@ -17701,7 +17666,7 @@ const topics = [
   {
     "t": "Nefecon — Absorção Sistêmica e Efeitos Adversos",
     "qid": "ff676013",
-    "q": "Qual é a principal preocupação de segurança mencionada pela KDIGO 2021 sobre o uso do Nefecon em pacientes com nefropatia por IgA?",
+    "q": "Qual é a principal preocupação de segurança mencionada pela KDIGO 2025 sobre o uso do Nefecon em pacientes com nefropatia por IgA?",
     "opts": [
       "Nefrotoxicidade direta",
       "Risco de linfoma",
@@ -17785,13 +17750,13 @@ const topics = [
     "diff": "easy",
     "cat": "transplante",
     "refs": [
-      "kdigo_tx"
+      "kdigo_transplant"
     ]
   },
   {
     "t": "Equidade no Acesso — IgAN 2025",
     "qid": "9f3106b1",
-    "q": "A diretriz KDIGO 2021 para a nefropatia por IgA (IgAN) destaca qual preocupação importante sobre o manejo da doença?",
+    "q": "A diretriz KDIGO 2025 para a nefropatia por IgA (IgAN) destaca qual preocupação importante sobre o manejo da doença?",
     "opts": [
       "Excesso de oferta nos países desenvolvidos",
       "Muitas regiões com alta prevalência de IgAN (como Ásia) são sub-representadas em ensaios e enfrentam barreiras de acesso às novas terapias",
@@ -17807,7 +17772,7 @@ const topics = [
     ]
   },
   {
-    "t": "Holly™ — Ensaios Clínicos Planejados",
+    "t": "Benefício dos iSGLT2 na DRC e DM2",
     "qid": "da0fa458",
     "q": "Qual é o principal benefício dos inibidores do SGLT2 em pacientes com doença renal crônica e diabetes tipo 2?",
     "opts": [
@@ -17819,9 +17784,9 @@ const topics = [
     "ans": 0,
     "exp": "A alternativa 'Redução da progressão da DRC, eventos cardiovasculares maior...' é a melhor resposta. Os inibidores do SGLT2 reduzem a progressão da DRC e eventos cardiovasculares, com benefício demonstrado em pacientes com e sem diabetes (DAPA-CKD, EMPA-KIDNEY, CREDENCE). Esse efeito ocorre em parte pela redução da pressão intraglomerular (restauração do feedback túbulo-glomerular), além de efeitos anti-inflamatórios e metabólicos. A alternativa 'Apenas controle glicêmico sem impacto renal ou cardiovascula...' está errada: o benefício vai muito além do controle glicêmico. A alternativa 'Benefício renal exclusivo em albuminúria nefrótica (> 3,5 g/...' está errada: o benefício é demonstrado em ampla faixa de albuminúria, não apenas nefrótica. A alternativa 'Apenas nefroproteção sem benefício cardiovascular demonstrad...' está errada: há benefício CV consistente, incluindo redução de hospitalização por IC.",
     "diff": "easy",
-    "cat": "dialise",
+    "cat": "drc",
     "refs": [
-      "kdigo_gn"
+      "kdigo_ckd"
     ]
   },
   {
@@ -17912,7 +17877,7 @@ const topics = [
     "diff": "hard",
     "cat": "glomerular",
     "refs": [
-      "kdigo_tx"
+      "kdigo_transplant"
     ]
   },
   {
@@ -18056,7 +18021,7 @@ const topics = [
     "diff": "easy",
     "cat": "farmacologia",
     "refs": [
-      "fidelio"
+      "fidelio_dkd"
     ]
   },
   {
@@ -18128,7 +18093,7 @@ const topics = [
     "diff": "hard",
     "cat": "transplante",
     "refs": [
-      "kdigo_tx"
+      "kdigo_transplant"
     ]
   },
   {
@@ -18255,8 +18220,7 @@ const topics = [
     "diff": "hard",
     "cat": "dialise",
     "refs": [
-      "pisces_study",
-      "kdigo_aki_2026"
+      "pisces_study"
     ]
   },
   {
@@ -18383,7 +18347,7 @@ const topics = [
     "diff": "medium",
     "cat": "drc",
     "refs": [
-      "dapa_ckd",
+      "dapa",
       "empa_kidney"
     ]
   },
@@ -18496,7 +18460,7 @@ const topics = [
     "cat": "glomerular",
     "refs": [
       "kdigo_gn",
-      "rituximab_mn_mentor"
+      "mentor_trial"
     ]
   },
   {
@@ -18572,7 +18536,7 @@ const topics = [
     "cat": "transplante",
     "refs": [
       "imlifidase_study",
-      "kdigo_tx"
+      "kdigo_transplant"
     ]
   },
   {
@@ -18627,7 +18591,6 @@ const topics = [
     "diff": "hard",
     "cat": "genetica",
     "refs": [
-      "alport_syndrome_review",
       "kdigo_ckd"
     ]
   },
@@ -18760,7 +18723,6 @@ const topics = [
     "diff": "hard",
     "cat": "genetica",
     "refs": [
-      "alport_syndrome_review",
       "kdigo_ckd"
     ]
   },
@@ -18798,8 +18760,7 @@ const topics = [
     "diff": "medium",
     "cat": "drc",
     "refs": [
-      "kdigo_ckd",
-      "kdigo_ckd_guideline"
+      "kdigo_ckd"
     ]
   },
   {
@@ -18893,7 +18854,7 @@ const topics = [
     "cat": "drc",
     "refs": [
       "kdigo_ckd",
-      "dapa_ckd",
+      "dapa",
       "empa_kidney"
     ]
   },

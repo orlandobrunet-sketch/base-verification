@@ -27,7 +27,7 @@ const refsDB = {
     conclusao:"Harrison's é útil como ponto de entrada clínico e diagnóstico antes das diretrizes específicas; ajuda a construir raciocínio diferencial, mas não substitui guidelines nefrológicas com recomendações graduadas.",
     curiosidade:"Os capítulos do Harrison's refletem síntese narrativa de especialistas, não recomendações formais com classe e nível de evidência. Por isso, funcionam melhor como mapa clínico geral do que como fonte final para decisão terapêutica específica."
   },
-  kdigo_ckd:{
+kdigo_ckd:{
     label:"KDIGO CKD 2024",
     url:"https://kdigo.org/guidelines/ckd-evaluation-and-management/",
     journal:"Kidney International",
@@ -35,11 +35,11 @@ const refsDB = {
     tipo:"Diretriz Internacional",
     badge:"GUIDELINE",
     badgeColor:"#6366f1",
-    impacto:"Padrão global de manejo da DRC",
+    impacto:"Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
     icon:"📋",
-    resumo:"Classifica a DRC pelo cruzamento de categorias de TFGe (G1–G5) com albuminúria (A1 <30, A2 30–300, A3 >300 mg/g). A versão 2024 recomenda iSGLT2 para pacientes com TFGe ≥20 e ACR ≥200 mg/g, ou com insuficiência cardíaca independentemente da albuminúria; sugere considerar o uso em TFGe 20–45 com ACR <200 mg/g. Cistatina C é incorporada para melhorar a acurácia da estimativa de TFG em situações selecionadas.",
-    conclusao:"O sistema CGA (Causa, TFG, Albuminúria) é o padrão de estadiamento e risco na DRC; a atualização 2024 consolida os iSGLT2 como pilar terapêutico nefroprotetor.",
-    curiosidade:"A inclusão dos iSGLT2 na diretriz 2024 representa a primeira vez que uma classe de fármacos originalmente desenvolvida como hipoglicemiante se torna recomendação-padrão para nefroproteção independente da presença de diabetes."
+    resumo:"A diretriz KDIGO 2024 para Avaliação e Manejo da Doença Renal Crônica atualiza os padrões diagnósticos e terapêuticos globais. Mantém a classificação clássica da DRC baseada nas categorias de TFGe (G1 a G5) e albuminúria (A1 a A3). Consolida a recomendação para triagem e monitoramento com a relação albuminúria/creatinúria (RAC) e desaconselha o uso exclusivo de fita reagente urinária. Preconiza o uso sistemático e precoce de terapias modificadoras da doença com impacto na sobrevida, com destaque para inibidores do SRAA (IECA ou BRA em dose máxima tolerada), inibidores do co-transportador sódio-glicose 2 (iSGLT2) para pacientes com TFGe ≥20 mL/min/1,73m² e RAC ≥200 mg/g (com ou sem diabetes), e antagonistas não-esteroidais do receptor mineralocorticoide (finerenona) em pacientes diabéticos com proteinúria persistente. Estabelece metas pressóricas rigorosas (PAS <120 mmHg medida de forma padronizada) e controle lipídico baseado em risco.",
+    conclusao:"A diretriz de 2024 redesenha o cuidado da DRC, transformando-a de um contínuo de declínio passivo para uma jornada de intervenção farmacológica tripla ativa (SRAA + iSGLT2 + nsMRA) focada em nefroproteção e redução de mortalidade cardiovascular no Reino.",
+    curiosidade:"A diretriz incorpora a equação CKD-EPI 2021 sem o fator de correção de raça para a estimativa da TFGe, promovendo equidade diagnóstica global e eliminando vieses étnicos que mascaravam o diagnóstico precoce e o acesso ao transplante em populações negras."
   },
   kdigo_aki:{
     label:"KDIGO AKI 2012",
@@ -139,20 +139,7 @@ const refsDB = {
     conclusao:"DAPA-CKD foi o trial pivô que mostrou nefroproteção dos iSGLT2 independente de diabetes em DRC proteinúrica.",
     curiosidade:"32,5% da coorte não tinha DM2, dado que ajudou a deslocar os iSGLT2 de fármacos 'antidiabéticos' para fármacos cardiorrenais."
   },
-  empa:{
-    label:"EMPA-KIDNEY Trial",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2204233",
-    journal:"New England Journal of Medicine",
-    ano:2023,
-    tipo:"Ensaio Clínico Fase III",
-    badge:"RCT",
-    badgeColor:"#10b981",
-    impacto:"↓28% progressão renal ou morte CV · Benefício independente de DM",
-    icon:"💊",
-    resumo:"ECR multicêntrico, n=6.609, avaliou empagliflozina 10 mg/dia em DRC ampla: TFGe 20–<45 independente de albuminúria ou TFGe 45–<90 com ACR ≥200 mg/g. Reduziu progressão renal ou morte cardiovascular: 13,1% vs 16,9%; HR 0,72, IC 95% 0,64–0,82, P<0,001. Benefício consistente em diabéticos e não diabéticos e nas faixas de TFGe estudadas.",
-    conclusao:"EMPA-KIDNEY consolidou os iSGLT2 como nefroproteção central em DRC ampla, inclusive não diabética, com TFGe ≥20 dentro dos critérios do estudo.",
-    curiosidade:"Foi o grande trial de iSGLT2 com maior heterogeneidade etiológica e incluiu proporção expressiva de pacientes sem diabetes."
-  },
+
   hypona:{
     label:"Guideline Hyponatremia ESE/ERA",
     url:"https://academic.oup.com/ndt/article/29/suppl_2/i1/1843686",
@@ -181,20 +168,7 @@ const refsDB = {
     conclusao:"BPROAD fortalece alvo intensivo de PAS em DM2 de alto risco cardiovascular, mas exige medida padronizada, vigilância de hipotensão/hipercalemia e cautela em idosos frágeis, ortostatismo e DRC avançada.",
     curiosidade:"Diferente do SPRINT, que excluiu diabetes, BPROAD testou diretamente o alvo <120 mmHg em DM2."
   },
-  fidelio:{
-    label:"FIDELIO-DKD Trial",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2025845",
-    journal:"New England Journal of Medicine",
-    ano:2020,
-    tipo:"Ensaio Clínico Fase III",
-    badge:"RCT",
-    badgeColor:"#10b981",
-    impacto:"↓18% desfecho renal · ↓14% eventos CV · Finerenona como 3º pilar nefroprotetor",
-    icon:"💊",
-    resumo:"ECR fase III, duplo-cego, placebo-controlado (FIDELIO-DKD, n=5.734), em DM2 com DRC albuminúrica, potássio controlado e uso de IECA ou BRA em dose máxima tolerada. Finerenona 10–20 mg/dia reduziu o desfecho renal primário composto — queda sustentada de TFGe ≥40%, DRCT ou morte renal — com HR 0,82 (IC 95% 0,73–0,93; P=0,001). O desfecho cardiovascular secundário também foi reduzido: HR 0,86 (IC 95% 0,75–0,99; P=0,03). Descontinuação por hipercalemia foi mais frequente com finerenona: 2,3% vs 0,9%.",
-    conclusao:"FIDELIO-DKD estabeleceu a finerenona como terapia nefroprotetora e cardioprotetora adicional ao bloqueio do SRAA em DRC diabética albuminúrica, com necessidade de seleção por potássio e monitorização laboratorial.",
-    curiosidade:"A finerenona é um antagonista não esteroidal do receptor mineralocorticoide. Diferencia-se dos MRAs esteroidais por estrutura, distribuição tecidual e ausência de atividade androgênica/progestagênica relevante, mas não elimina o principal cuidado clínico da classe: hipercalemia."
-  },
+
   flow_study:{
     label:"FLOW Trial (Semaglutida)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2311324",
@@ -237,20 +211,7 @@ const refsDB = {
     conclusao:"O SHARP provou que a redução agressiva de LDL-C com sinvastatina e ezetimiba previne eventos cardiovasculares isquêmicos na DRC avançada, excetuando o início de estatinas em pacientes já estabelecidos em diálise no Reino.",
     curiosidade:"Pacientes em diálise apresentam patologia cardiovascular atípica: a maioria das mortes é súbita ou por arritmia devido a calcificação e fibrose miocárdica (uremia e hiperparatireoidismo), e não por oclusão aterosatolérica clássica. Isso justifica por que as estatinas previnem eventos isquêmicos, mas não reduzem a mortalidade global em diálise."
   },
-  canvas_study:{
-    label:"CANVAS Program",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1611925",
-    journal:"New England Journal of Medicine",
-    ano:2017,
-    tipo:"Ensaio Clínico Fase III",
-    badge:"RCT",
-    badgeColor:"#10b981",
-    impacto:"↓14% MACE · ↓40% progressão renal com canagliflozina em DM2",
-    icon:"💊",
-    resumo:"Dois ensaios clínicos integrados de fase III (CANVAS e CANVAS-R, n = 10.142 pacientes com DM2 e alto risco cardiovascular, dos quais 9.600 tinham dados renais utilizáveis, com TFGe >30 mL/min/1,73m²). Avaliou a eficácia e segurança da canagliflozina (100 ou 300 mg/dia) versus placebo. Desfecho primário: composto cardiovascular de morte CV, IAM não fatal ou AVC não fatal. Desfecho renal composto: queda sustentada de 40% na TFGe, necessidade de TRS ou morte renal. Resultados: A canagliflozina reduziu o risco do desfecho CV em 14% (HR 0,86; IC 95% 0,75–0,97; P = 0,02). O desfecho renal composto também foi significativamente reduzido em 40% (HR 0,60; IC 95% 0,47–0,77; P < 0,001). Eventos de amputação de membros inferiores foram estatisticamente maiores com a canagliflozina (6,3 vs 3,4 por 1000 paciente-anos).",
-    conclusao:"O CANVAS estabeleceu a canagliflozina como nefroprotetora e cardioprotetora em diabéticos com alto risco cardiovascular, com um sinal de alerta para risco de amputação no Reino.",
-    curiosidade:"A canagliflozina inibe o cotransportador SGLT2 no túbulo contorcido proximal, mas também tem uma inibição menor e local de SGLT1 no intestino delgado, atenuando os picos de absorção de glicose e reduzindo a hiperglicemia pós-prandial aguda."
-  },
+
   testing_study:{
     label:"TESTING Trial",
     url:"https://jamanetwork.com/journals/jama/fullarticle/2790263",
@@ -293,19 +254,15 @@ const refsDB = {
     conclusao:"RITUXVAS e RAVE juntos estabeleceram rituximabe como alternativa à ciclofosfamida na indução da vasculite ANCA, com eficácia equivalente e sem necessidade de curso prolongado de ciclofosfamida.",
     curiosidade:"A publicação simultânea de RITUXVAS e RAVE no mesmo número do NEJM cobriu os dois cenários clínicos principais — doença recidivante (RAVE) e doença nova com comprometimento renal (RITUXVAS) — tornando a evidência para rituximabe difícil de contestar."
   },
-  rave_study:{
-    label:"RAVE Trial",
+rave_study:{
+    label:"Jones RB et al. — RAVE Trial (NEJM 2010)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa0909905",
-    journal:"New England Journal of Medicine",
-    ano:2010,
-    tipo:"Ensaio Clínico Fase III",
-    badge:"RCT",
-    badgeColor:"#10b981",
-    impacto:"Rituximabe superior à ciclofosfamida na vasculite ANCA recidivante",
-    icon:"💊",
-    resumo:"ECR multicêntrico (RAVE, n=197) comparando rituximabe vs ciclofosfamida para indução de remissão em vasculite ANCA grave (GPA ou PAM). Endpoint primário: remissão completa sem corticoide aos 6 meses. Rituximabe não foi inferior à ciclofosfamida na doença nova (64% vs 53%); foi superior na doença recidivante (67% vs 42%). Perfil de eventos adversos graves semelhante entre os grupos.",
-    conclusao:"RAVE estabeleceu o rituximabe como alternativa à ciclofosfamida na indução da vasculite ANCA, com vantagem clara na doença recidivante onde o acúmulo de dose de ciclofosfamida já é preocupação.",
-    curiosidade:"As vasculites ANCA (GPA, PAM, EGPA) são mediadas por anticorpos IgG anti-ANCA que ativam neutrófilos circulantes, levando a inflamação necrosante de pequenos vasos — o que explica o efeito terapêutico do rituximabe, que depleta as células B produtoras desses autoanticorpos."
+    journal:"N Engl J Med 2010;363(3):221-230",
+    ano:2010,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
+    impacto:"Rituximabe não inferior à ciclofosfamida para indução na vasculite ANCA grave e superior na recidiva",icon:"🔬",
+    resumo:"ECR duplo-cego de não inferioridade multicêntrico (RAVE, n = 197), comparando rituximabe (375 mg/m² 1x/semana por 4 semanas) versus ciclofosfamida oral clássica (2 mg/kg/dia para indução, seguida de azatioprina) em pacientes com vasculite ANCA grave (Granulomatose com Poliangiite ou Poliangiite Microscópica). Desfecho primário: remissão completa sem corticoide aos 6 meses. Resultados: Rituximabe foi não inferior à ciclofosfamida (64% vs 53%; P < 0,001 para não inferioridade) e mostrou-se estatisticamente superior em pacientes com doença recidivante prévia (67% vs 42%).",
+    conclusao:"O RAVE consolidou o rituximabe como uma alternativa segura e eficaz de indução de primeira linha em substituição à ciclofosfamida, minimizando a toxicidade gonadal cumulativa clássica deste agente alquilante.",
+    curiosidade:"O rituximabe foi inicialmente aprovado para linfoma de células B em 1997. Seu uso na vasculite ANCA baseia-se na depeleção de células B produtoras de autoanticorpos (PR3 e MPO), bloqueando a cascata inflamatória."
   },
   advocate_study:{
     label:"ADVOCATE Trial (Avacopan)",
@@ -391,20 +348,7 @@ const refsDB = {
     conclusao:"O AURORA consolidou a voclosporina na terapia de indução multitarget na nefrite lúpica ativa, permitindo remissão precoce com exposição minimizada a corticoide sistêmico no Reino.",
     curiosidade:"A voclosporina possui uma modificação química em sua cadeia lateral de carbono que altera sua ligação com a calcineurina. Essa estrutura confere maior potência imunossupressora in vitro, melhor estabilidade farmacocinética e menor propensão a causar intolerância à glicose e distúrbios lipídicos em relação à ciclosporina convencional."
   },
-  tempo_study:{
-    label:"TEMPO 3:4 Trial (Tolvaptana)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1205511",
-    journal:"New England Journal of Medicine",
-    ano:2012,
-    tipo:"Ensaio Clínico Fase III",
-    badge:"RCT",
-    badgeColor:"#10b981",
-    impacto:"Tolvaptana ↓49% crescimento renal em DRPAD · 1ª terapia específica para DRPAD",
-    icon:"💊",
-    resumo:"ECR multicêntrico duplo-cego fase III (TEMPO 3:4, n = 1.445 pacientes com Doença Renal Policística Autossômica Dominante [DRPAD], idade 18-50 anos, TFGe ≥60 mL/min e volume renal total [VRT] aumentado ≥750 mL). Randomizou os participantes para tolvaptana (bloqueador oral do receptor V2 de vasopressina em doses individualizadas de 45/15 a 90/30 mg/dia) versus placebo por 3 anos. Desfecho primário: taxa anual de variação no VRT. Resultados: A tolvaptana reduziu significativamente o crescimento do VRT em 49% ao ano (2,8% vs 5,5%; P < 0,001) e reduziu em 61% a taxa de declínio da TFGe, além de diminuir dor renal e episódios de hematúria, com 4,4% de elevações reversíveis em transaminases hepáticas.",
-    conclusao:"O TEMPO 3:4 estabeleceu a tolvaptana como o primeiro tratamento específico nefroprotetor e modificador de curso de doença na DRPAD de rápida progressão no Reino.",
-    curiosidade:"A vasopressina liga-se aos receptores V2 das células do ducto coletor renal, estimulando o AMP cíclico (AMPc) que impulsiona a proliferação celular e secreção hídrica intratubular que expandem os cistos. Ao bloquear o receptor V2, a tolvaptana corta essa cascata molecular e detém o crescimento dos cistos renais."
-  },
+
   credence:{
     label:"CREDENCE Trial (Canagliflozina)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1811744",
@@ -419,20 +363,7 @@ const refsDB = {
     conclusao:"CREDENCE foi o trial que abriu o campo da nefroproteção com iSGLT2 em DRC diabética — evidência que desencadeou os trials subsequentes (DAPA-CKD, EMPA-KIDNEY) em populações mais amplas.",
     curiosidade:"O CREDENCE foi interrompido com 2,62 anos de seguimento médio (de 5,5 planejados) após análise interina mostrar benefício inequívoco — o que elevou o nível de evidência e acelerou a incorporação nas diretrizes."
   },
-  dapa_ckd:{
-    label:"DAPA-CKD Trial",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2024816",
-    journal:"New England Journal of Medicine",
-    ano:2020,
-    tipo:"Ensaio Clínico Fase III",
-    badge:"RCT",
-    badgeColor:"#10b981",
-    impacto:"↓39% desfecho renal composto · ↓31% mortalidade · Benefício independente de diabetes",
-    icon:"💊",
-    resumo:"ECR multicêntrico, n=4.304, dapagliflozina 10 mg/dia vs placebo em DRC com ou sem DM2; TFGe 25–75 e ACR 200–5000 mg/g. Desfecho primário (queda sustentada ≥50% TFGe, DRCT ou morte renal/CV): 9,2% vs 14,5%; HR 0,61, IC 95% 0,51–0,72, P<0,001; NNT 19. Reduziu morte por qualquer causa: HR 0,69. Interrompido precocemente por eficácia.",
-    conclusao:"DAPA-CKD foi o trial pivô que mostrou nefroproteção dos iSGLT2 independente de diabetes em DRC proteinúrica.",
-    curiosidade:"32,5% da coorte não tinha DM2, dado que ajudou a deslocar os iSGLT2 de fármacos 'antidiabéticos' para fármacos cardiorrenais."
-  },
+
   kdigo_dialise:{
     label:"KDOQI Hemodialysis Adequacy 2015",
     url:"https://www.ajkd.org/article/S0272-6386(15)01019-2/fulltext",
@@ -461,20 +392,7 @@ const refsDB = {
     conclusao:"A classificação em 5 tipos oferece linguagem comum entre nefrologia, cardiologia e terapia intensiva, mas não substitui a avaliação hemodinâmica, congestiva, inflamatória e medicamentosa individual.",
     curiosidade:"O tipo 3 é frequentemente negligenciado: LRA pode precipitar disfunção cardíaca por hipercalemia, acidose, sobrecarga volêmica, inflamação, toxinas urêmicas e alterações neuro-hormonais, mesmo sem cardiopatia estrutural prévia evidente."
   },
-  kdigo_ckd_guideline:{
-    label:"KDIGO CKD 2024",
-    url:"https://kdigo.org/guidelines/ckd-evaluation-and-management/",
-    journal:"Kidney International",
-    ano:2024,
-    tipo:"Diretriz Internacional",
-    badge:"GUIDELINE",
-    badgeColor:"#6366f1",
-    impacto:"Padrão global de avaliação e manejo da DRC",
-    icon:"📋",
-    resumo:"A diretriz KDIGO 2024 para Avaliação e Manejo da Doença Renal Crônica atualiza os padrões diagnósticos e terapêuticos globais. Mantém a classificação clássica da DRC baseada nas categorias de TFGe (G1 a G5) e albuminúria (A1 a A3). Consolida a recomendação para triagem e monitoramento com a relação albuminúria/creatinúria (RAC) e desaconselha o uso exclusivo de fita reagente urinária. Preconiza o uso sistemático e precoce de terapias modificadoras da doença com impacto na sobrevida, com destaque para inibidores do SRAA (IECA ou BRA em dose máxima tolerada), inibidores do co-transportador sódio-glicose 2 (iSGLT2) para pacientes com TFGe ≥20 mL/min/1,73m² e RAC ≥200 mg/g (com ou sem diabetes), e antagonistas não-esteroidais do receptor mineralocorticoide (finerenona) em pacientes diabéticos com proteinúria persistente. Estabelece metas pressóricas rigorosas (PAS <120 mmHg medida de forma padronizada) e controle lipídico baseado em risco.",
-    conclusao:"A diretriz de 2024 redesenha o cuidado da DRC, transformando-a de um contínuo de declínio passivo para uma jornada de intervenção farmacológica tripla ativa (SRAA + iSGLT2 + nsMRA) focada em nefroproteção e redução de mortalidade cardiovascular no Reino.",
-    curiosidade:"A diretriz incorpora a equação CKD-EPI 2021 sem o fator de correção de raça para a estimativa da TFGe, promovendo equidade diagnóstica global e eliminando vieses étnicos que mascaravam o diagnóstico precoce e o acesso ao transplante em populações negras."
-  },
+
   guyton_and_hall_physiology:{
     label:"Guyton & Hall — Tratado de Fisiologia Médica",
     url:"https://www.elsevier.com/books/guyton-and-hall-textbook-of-medical-physiology/hall/978-0-323-59712-8",
@@ -533,15 +451,15 @@ const refsDB = {
   },
   // ===== ARTIGOS FUNDAMENTAIS ADICIONADOS v5.0 =====
   // --- DRPAD ---
-  tempo_34_trial:{
+tempo_34_trial:{
     label:"Torres VE et al. — TEMPO 3:4 (NEJM 2012)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1205511",
     journal:"N Engl J Med 2012;367(25):2407-2418",
     ano:2012,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Tolvaptan ↓18% crescimento de volume renal total em DRPAD — primeiro ensaio de modificação da doença",icon:"🔬",
-    resumo:"ECR fase III (TEMPO 3:4, n=1.445), tolvaptan vs placebo em DRPAD com TFGe ≥60 e volume renal total aumentado. Reduziu a taxa de crescimento do volume renal total em 2,8% ao ano vs 5,5% ao ano no placebo — diferença de 18% relativa. Também retardou o declínio de TFGe e reduziu episódios de dor renal. Primeiro ensaio a demonstrar modificação da progressão em DRPAD.",
-    conclusao:"TEMPO 3:4 foi o trial que estabeleceu tolvaptan como terapia modificadora de doença na DRPAD, levando às aprovações regulatórias e ao desenvolvimento dos critérios de seleção (Mayo 1C–1E) usados nas diretrizes.",
-    curiosidade:"O volume renal total medido por ressonância magnética tornou-se o biomarcador-padrão de progressão na DRPAD — mais sensível que a TFGe nos estágios iniciais, quando a hiperfiltração dos néfrons remanescentes mascara o declínio funcional real."
+    impacto:"Tolvaptan ↓49% crescimento de VRT e ↓61% declínio de TFG em DRPAD rapidamente progressiva",icon:"🔬",
+    resumo:"ECR multicêntrico duplo-cego fase III (TEMPO 3:4, n = 1.445 pacientes com Doença Renal Policística Autossômica Dominante [DRPAD], idade 18-50 anos, TFGe ≥60 mL/min e volume renal total [VRT] aumentado ≥750 mL). Randomizou os participantes para tolvaptana (bloqueador oral do receptor V2 de vasopressina em doses individualizadas de 45/15 a 90/30 mg/dia) versus placebo por 3 anos. Desfecho primário: taxa anual de variação no VRT. Resultados: A tolvaptana reduziu significativamente o crescimento do VRT em 49% ao ano (2,8% vs 5,5%; P < 0,001) e reduziu em 61% a taxa de declínio da TFGe, além de diminuir dor renal e episódios de hematúria, com 4,4% de elevações reversíveis em transaminases hepáticas.",
+    conclusao:"O TEMPO 3:4 estabeleceu a tolvaptana como o primeiro tratamento específico nefroprotetor e modificador de curso de doença na DRPAD de rápida progressão no Reino.",
+    curiosidade:"A vasopressina é o principal driver do crescimento cístico na DRPAD: estimula a adenilato ciclase via receptor V2, elevando o AMPc intracelular nas células epiteliais dos cistos e promovendo proliferação e secreção de fluido. O tolvaptana bloqueia esse mecanismo diretamente."
   },
   reprise_trial:{
     label:"Torres VE et al. — REPRISE (NEJM 2017)",
@@ -606,14 +524,14 @@ const refsDB = {
     curiosidade:"A memória metabólica parece mediada por modificações epigenéticas (metilação de DNA, modificações de histonas) induzidas pela hiperglicemia crônica — alterações que persistem mesmo após a normalização glicêmica e continuam a dirigir o comportamento das células vasculares e renais."
   },
   // --- SGLT2 ---
-  canvas_program:{
+canvas_program:{
     label:"Neal B et al. — CANVAS Program (NEJM 2017)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1611925",
     journal:"N Engl J Med 2017;377(7):644-657",
     ano:2017,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Canagliflozin ↓40% progressão de albuminúria e ↓40% desfechos renais em DM2 de alto risco CV",icon:"🔬",
-    resumo:"Programa de dois ECRs (CANVAS e CANVAS-R, n=10.142 combinados), canagliflozina vs placebo em DM2 com alto risco CV ou DCV estabelecida. Reduziu MACE: HR 0,86. Reduziu progressão de albuminúria em 40% e desfechos renais compostos em 40%. Porém, associou-se a maior risco de amputação de membros inferiores (HR 1,97) — achado que gerou alertas regulatórios e comparações com CREDENCE.",
-    conclusao:"O CANVAS Program confirmou benefício cardiorrenal da canagliflozina mas identificou o sinal de amputação — que o CREDENCE (população de DRC diabética) não reproduziu na mesma magnitude, gerando debate sobre se é efeito de classe ou específico do CANVAS.",
+    impacto:"Canagliflozina ↓14% desfecho CV (MACE) e ↓40% desfecho renal composto em DM2 com alto risco",icon:"🔬",
+    resumo:"Dois ensaios clínicos integrados de fase III (CANVAS e CANVAS-R, n = 10.142 pacientes com DM2 e alto risco cardiovascular, dos quais 9.600 tinham dados renais utilizáveis, com TFGe >30 mL/min/1,73m²). Avaliou a eficácia e segurança da canagliflozina (100 ou 300 mg/dia) versus placebo. Desfecho primário: composto cardiovascular de morte CV, IAM não fatal ou AVC não fatal. Desfecho renal composto: queda sustentada de 40% na TFGe, necessidade de TRS ou morte renal. Resultados: A canagliflozina reduziu o risco do desfecho CV em 14% (HR 0,86; IC 95% 0,75–0,97; P = 0,02). O desfecho renal composto também foi significativamente reduzido em 40% (HR 0,60; IC 95% 0,47–0,77; P < 0,001). Eventos de amputação de membros inferiores foram estatisticamente maiores com a canagliflozina (6,3 vs 3,4 por 1000 paciente-anos).",
+    conclusao:"O CANVAS estabeleceu a canagliflozina como nefroprotetora e cardioprotetora em diabéticos com alto risco cardiovascular, com um sinal de alerta para risco de amputação no Reino.",
     curiosidade:"O sinal de amputação do CANVAS foi atribuído a possível depleção de volume mais acentuada com a dose de 300 mg usada no programa — o CREDENCE usou 100 mg. Essa diferença de dose pode explicar parte da discordância entre os trials da mesma molécula."
   },
   empa_kidney:{
@@ -1335,16 +1253,7 @@ const refsDB = {
     conclusao:"Consolida as correlações genéticas dos transportadores tubulares renais e o diagnóstico diferencial baseado na resposta ao bicarbonato de sódio e cálculo do Anion Gap urinário.",
     curiosidade:"O nefrologista espanhol Juan Rodriguez Soriano foi o pioneiro que descreveu e isolou a ATR tipo 2 na infância nos anos 1960. O Anion Gap urinário ajuda a diagnosticar ATRs distais: em acidose metabólica normal, o rim deve secretar NH4+ (acompanhado por Cl-), tornando o Anion Gap urinário (Na + K - Cl) negativo; se for positivo, indica incapacidade de acidificação urinária distal."
   },
-  rituximab_mn_mentor:{
-    label:"Fervenza FC et al. — MENTOR Trial (NEJM 2019)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1900100",
-    journal:"N Engl J Med 2019;381(1):36-46",
-    ano:2019,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Rituximabe superior à ciclosporina em remissão sustentada da nefropatia membranosa — nova primeira linha",icon:"🔬",
-    resumo:"ECR aberto de não inferioridade fase III (MENTOR, n = 130), comparando rituximabe (1g IV nos dias 1 e 15, repetido aos 6 meses se remissão incompleta) versus ciclosporina oral (dose ajustada para nível sérico) em nefropatia membranosa primária (NMP) proteinúrica ativa. Desfecho primário: remissão completa ou parcial em 24 meses. Resultados: Rituximabe foi não inferior aos 12 meses e superior aos 24 meses de acompanhamento, mantendo taxas de remissão significativamente maiores (60% no grupo rituximabe vs 20% no grupo ciclosporina; P < 0,001) e com menor incidência de perda de função renal e efeitos colaterais.",
-    conclusao:"O MENTOR provou a superioridade do rituximabe a longo prazo em relação à ciclosporina, estabelecendo os anticorpos anti-CD20 como terapia imunossupressora de primeira linha para NMP.",
-    curiosidade:"Cerca de 70% a 80% das NMP devem-se a autoanticorpos contra o receptor de fosfolipase A2 do tipo M (anti-PLA2R) nos podócitos renais, que ativam a cascata de complemento levando a dano de barreira glomerular e proteinúria maciça."
-  },
+
   rituximab_gesf_review:{
     label:"Basu B et al. — Rituximab in FSGS (Pediatr Nephrol 2015)",
     url:"https://link.springer.com/article/10.1007/s00467-014-2892-1",
@@ -1355,16 +1264,7 @@ const refsDB = {
     conclusao:"O rituximabe serve como terapia de resgate valiosa na GESF pediátrica recorrente ou dependente de imunossupressores orais, atuando na preservação da barreira celular dos podócitos e na supressão de células B.",
     curiosidade:"O efeito do rituximabe na GESF parece exceder a mera depleção de células B e anticorpos: estudos demonstram que ele se liga diretamente à proteína SMPDL-3b nos podócitos glomerulares, impedindo a apoptose e estabilizando a arquitetura do citoesqueleto podocitário."
   },
-  cyclophosphamide_anca_rave:{
-    label:"Jones RB et al. — RAVE Trial (NEJM 2010)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa0909905",
-    journal:"N Engl J Med 2010;363(3):221-232",
-    ano:2010,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Rituximabe não inferior a ciclofosfamida na indução de remissão em vasculite ANCA",icon:"🔬",
-    resumo:"ECR duplo-cego de não inferioridade multicêntrico (RAVE, n = 197), comparando rituximabe (375 mg/m² 1x/semana por 4 semanas) versus ciclofosfamida oral clássica (2 mg/kg/dia para indução, seguida de azatioprina) em pacientes com vasculite ANCA grave (Granulomatose com Poliangiite ou Poliangiite Microscópica). Desfecho primário: remissão completa sem corticoide aos 6 meses. Resultados: Rituximabe foi não inferior à ciclofosfamida (64% vs 53%; P < 0,001 para não inferioridade) e mostrou-se estatisticamente superior em pacientes com doença recidivante prévia (67% vs 42%).",
-    conclusao:"O RAVE consolidou o rituximabe como uma alternativa segura e eficaz de indução de primeira linha em substituição à ciclofosfamida, minimizando a toxicidade gonadal cumulativa clássica deste agente alquilante.",
-    curiosidade:"A ciclofosfamida é um metabólito alquilante que se liga ao DNA impedindo a replicação celular, afetando agressivamente células em divisão rápida como gametas, folículos capilares e urotélio — o que explica a toxicidade de cistite hemorrágica e infertilidade crônica."
-  },
+
 
   bliss_ln:{
     label:"BLISS-LN Trial (Belimumabe)",
@@ -1519,10 +1419,10 @@ const refsDB = {
 
 
   // ===== REFS ADICIONADOS v6.1 =====
-  finerenone_2025:{
+finerenone_2025:{
     label:"Finerenona — FIDELIO-DKD + FIGARO-DKD (FIDELITY)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2025845",
-    journal:"N Engl J Med 2020–2021; JAMA 2022",
+    url:"https://academic.oup.com/eurheartj/article/43/6/474/6433230",
+    journal:"Eur Heart J 2022;43(6):474-484",
     ano:2022,tipo:"Análise Pooled RCT",badge:"RCT",badgeColor:"#10b981",
     impacto:"Finerenona ↓20% desfecho renal e ↓14% MACE em DRC diabética — análise combinada FIDELITY (>13.000 pacientes)",icon:"💊",
     resumo:"Análise combinada pré-especificada em larga escala (FIDELITY, n = 13.026 pacientes com DRC albuminúrica e diabetes mellitus tipo 2), unificando as coortes individuais dos ensaios clínicos pivotais de fase III FIDELIO-DKD e FIGARO-DKD. Avaliou a eficácia e segurança da finerenona (10 mg ou 20 mg uma vez ao dia) versus placebo, adicionados à terapia máxima tolerada com IECA ou BRA. O desfecho renal primário composto incluiu queda sustentada de TFGe ≥57% ou DRCT, e o desfecho cardiovascular foi um composto de morte CV, IAM não fatal, AVC não fatal ou hospitalização por IC. Resultados: A finerenona reduziu significativamente o risco do composto renal em 23% (HR 0,77; IC 95% 0,67–0,88; P < 0,001) e o risco de eventos cardiovasculares maiores (MACE) em 14% (HR 0,86; IC 95% 0,78–0,95; P = 0,0018). O risco de interrupção do tratamento por hipercalemia permaneceu muito baixo (1,7% no grupo ativo vs 0,6% no placebo).",
@@ -1749,14 +1649,5 @@ const refsDB = {
     conclusao:"A atualização de 2024 reestruturou a indução da NL incorporando formalmente as terapias biológicas direcionadas (belimumabe e voclosporina), permitindo esquemas de corticoide muito mais baixos e seguros no Reino.",
     curiosidade:"A nefrite lúpica classe V (membranosa) pura tem abordagem distinta: é proteinúrica e não proliferativa, tratada preferencialmente com inibidores de calcineurina ou MMF, diferindo da urgência inflamatória celular e formação de crescentes das classes proliferativas III/IV."
   },
-  kdigo_ckd_2024:{
-    label:"KDIGO CKD 2024",
-    url:"https://kdigo.org/guidelines/ckd-evaluation-and-management/",
-    journal:"Kidney International",
-    ano:2024,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
-    impacto:"Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",icon:"📋",
-    resumo:"Diretriz KDIGO para avaliação e manejo da DRC, versão 2024. Consolida o sistema CGA (Causa, TFGe, Albuminúria) para estadiamento e risco. Recomenda iSGLT2 para DRC com TFGe ≥20 e ACR ≥200 mg/g ou insuficiência cardíaca; finerenona em DRC diabética com TFGe ≥25 e ACR ≥300 mg/g. Incorpora rastreamento ativo em grupos de risco, abordagem multidisciplinar e cuidado de suporte ampliado.",
-    conclusao:"A versão 2024 consolida iSGLT2 e finerenona como pilares terapêuticos modernos além do bloqueio do SRAA — transformando o manejo da DRC de reativo para preventivo.",
-    curiosidade:"A inclusão simultânea de iSGLT2 e finerenona na diretriz 2024 reflete a convergência de evidências de múltiplos trials (DAPA-CKD, EMPA-KIDNEY, FIDELIO, FIGARO) publicados entre 2019 e 2023 — uma das janelas de evidência mais produtivas da nefrologia."
-  }
+
 };
