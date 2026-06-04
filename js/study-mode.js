@@ -77,27 +77,58 @@
     window.CORE_SKILLS = CORE_SKILLS;
 
     function getCoreSkillsStats(detailedStats) {
+      // Contar totais do banco
+      const totalBankByCat = {};
+      if (typeof questionBank !== 'undefined' && Array.isArray(questionBank)) {
+        questionBank.forEach(q => {
+          const cat = q.c || 'geral';
+          totalBankByCat[cat] = (totalBankByCat[cat] || 0) + 1;
+        });
+      } else {
+        // Fallback estático se o banco não estiver carregado (baseado nos 1003 atuais)
+        const staticTotals = {
+          dialise: 96, hipertensao: 30, nefropatia_diabetica: 46, acido_base: 54,
+          drc: 135, glomerular: 209, transplante: 66, 'eletrólitos': 118,
+          genetica: 44, lra: 61, oncologia_renal: 8, nefrologia_geral: 37,
+          'litíase': 24, farmacologia: 37, infeccao: 21, uti: 17
+        };
+        Object.assign(totalBankByCat, staticTotals);
+      }
+
       return CORE_SKILLS.map(skill => {
         let correct = 0;
         let wrong = 0;
+        let totalAnswered = 0;
+        let totalBank = 0;
+
         skill.categories.forEach(cat => {
           const d = (detailedStats.byCategory || {})[cat] || { correct: 0, wrong: 0 };
           correct += d.correct || 0;
           wrong += d.wrong || 0;
+          totalBank += totalBankByCat[cat] || 0;
         });
-        const total = correct + wrong;
-        const accuracy = total > 0 ? (correct / total * 100) : null;
+
+        totalAnswered = correct + wrong;
         
+        // A acurácia das questões respondidas (para os cards de detalhe)
+        const accuracy = totalAnswered > 0 ? (correct / totalAnswered * 100) : null;
+        
+        // A taxa de domínio / progresso sobre o total do jogo (para o gráfico de radar)
+        const mastery = totalBank > 0 ? (correct / totalBank * 100) : 0;
+
         const subcategories = skill.categories.map(cat => {
           const d = (detailedStats.byCategory || {})[cat] || { correct: 0, wrong: 0 };
-          const tot = d.correct + d.wrong;
+          const totAnswered = d.correct + d.wrong;
+          const totBank = totalBankByCat[cat] || 0;
           const label = NEFRO_AXES.find(a => a.cat === cat)?.label || cat;
           return {
             cat,
             label: label.replace(' & KDIGO', ''),
             correct: d.correct,
-            total: tot,
-            accuracy: tot > 0 ? (d.correct / tot * 100) : null
+            totalAnswered: totAnswered,
+            totalBank: totBank,
+            accuracy: totAnswered > 0 ? (d.correct / totAnswered * 100) : null,
+            mastery: totBank > 0 ? (d.correct / totBank * 100) : 0
           };
         });
 
@@ -107,8 +138,10 @@
           desc: skill.desc,
           correct,
           wrong,
-          total,
+          totalAnswered,
+          totalBank,
           accuracy,
+          mastery,
           categories: skill.categories,
           subcategories
         };
@@ -214,7 +247,7 @@
       // Polígono dos dados
       ctx.beginPath();
       coreStats.forEach((skill, i) => {
-        const pct = skill.total > 0 ? (skill.correct / skill.total) : 0;
+        const pct = skill.mastery / 100;
         const a = (i / n) * Math.PI * 2 - Math.PI / 2;
         const x = cx + r * pct * Math.cos(a), y = cy + r * pct * Math.sin(a);
         i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
@@ -228,7 +261,7 @@
 
       // Nós de dados (dots)
       coreStats.forEach((skill, i) => {
-        const pct = skill.total > 0 ? (skill.correct / skill.total) : 0;
+        const pct = skill.mastery / 100;
         const a = (i / n) * Math.PI * 2 - Math.PI / 2;
         const dx = cx + r * pct * Math.cos(a), dy = cy + r * pct * Math.sin(a);
         ctx.beginPath();
@@ -271,21 +304,25 @@
         labelDiv.className = 'nq-radar-label';
         labelDiv.style.cssText = `position:absolute;left:${x}px;top:${y}px;transform:${translate};text-align:${textAlign};`;
         
-        const accuracyStr = skill.total > 0 ? `${skill.accuracy.toFixed(0)}%` : '—';
-        labelDiv.textContent = `${skill.label} (${accuracyStr})`;
+        const masteryStr = `${skill.mastery.toFixed(0)}%`;
+        labelDiv.textContent = `${skill.label} (${masteryStr})`;
         
         const tooltipHtml = `
           <div style="font-weight:bold;color:var(--gold);margin-bottom:4px;font-family:'Cinzel',serif;">${skill.label}</div>
           <div style="font-size:0.68rem;color:var(--txt-dim);margin-bottom:8px;line-height:1.35;">${skill.desc}</div>
-          <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:6px;display:flex;flex-direction:column;gap:4px;min-width:200px;">
+          <div style="font-size:0.72rem;color:#fff;margin-bottom:6px;border-bottom:1px solid rgba(255,255,255,0.08);padding-bottom:6px;line-height:1.4;">
+            Domínio: <strong style="color:var(--gold);">${skill.mastery.toFixed(0)}%</strong> (${skill.correct}/${skill.totalBank} q.)<br>
+            Acurácia: <strong style="color:${_colorFor(skill.accuracy)};">${skill.totalAnswered > 0 ? skill.accuracy.toFixed(0) + '%' : '—'}</strong> (${skill.correct}/${skill.totalAnswered} resp.)
+          </div>
+          <div style="display:flex;flex-direction:column;gap:4px;min-width:200px;">
             ${skill.subcategories.map(sub => {
-              const subPctStr = sub.total > 0 ? `${sub.accuracy.toFixed(0)}%` : '—';
-              const subCountStr = sub.total > 0 ? `(${sub.correct} de ${sub.total} respondidas)` : '(sem dados)';
-              const subColor = sub.total > 0 ? _colorFor(sub.accuracy) : 'var(--txt-dim)';
+              const subPctStr = sub.totalAnswered > 0 ? `${sub.accuracy.toFixed(0)}%` : '—';
+              const subCountStr = `(${sub.correct}/${sub.totalBank})`;
+              const subColor = sub.totalAnswered > 0 ? _colorFor(sub.accuracy) : 'var(--txt-dim)';
               return `
                 <div style="display:flex;justify-content:space-between;gap:12px;font-size:0.72rem;line-height:1.3;">
                   <span style="color:#e2e8f0;">• ${sub.label}</span>
-                  <span style="color:${subColor};font-weight:bold;">${subPctStr} <small style="color:var(--txt-dim);font-weight:normal;">${subCountStr}</small></span>
+                  <span style="color:#fff;font-weight:bold;">${sub.mastery.toFixed(0)}% <small style="color:var(--txt-dim);font-weight:normal;">${subCountStr}</small> &nbsp;<span style="color:${subColor};font-weight:bold;">${subPctStr}</span></span>
                 </div>
               `;
             }).join('')}
@@ -1193,9 +1230,6 @@
       } else {
         if (typeof window.showFloatingFeedback === 'function') {
           window.showFloatingFeedback('✗ Incorreto', false, x, y);
-        }
-        if (typeof window.triggerScreenShake === 'function') {
-          window.triggerScreenShake();
         }
         if (typeof window.triggerHapticFeedback === 'function') {
           window.triggerHapticFeedback('wrong');

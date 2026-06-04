@@ -2068,8 +2068,10 @@
       } else {
         state.streak=0;
         btn.classList.add('wrong');
-        // Tremor de tela e vibrar erro
-        triggerScreenShake();
+        // Tremor de tela e vibrar erro (apenas se for boss)
+        if (typeof isBossBattle === 'function' && isBossBattle()) {
+          triggerScreenShake();
+        }
         triggerHapticFeedback('wrong');
 
         let x, y;
@@ -2918,7 +2920,7 @@
       // Garantir que a barra de status mobile não sobreponha os menus da welcome screen
       document.getElementById('mobileStatusBar')?.classList.remove('active');
       refreshWelcomeSave();
-      if (typeof startWelcomeMusic === 'function' && musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
+      if (typeof startWelcomeMusic === 'function' && musicEnabled && !welcomeMusicStarted) startWelcomeMusic(true);
     }
     window.goToWelcomeFromGame = goToWelcomeFromGame;
 
