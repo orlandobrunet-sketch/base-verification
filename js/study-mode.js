@@ -118,9 +118,16 @@
 
     function drawRadarChart(container, coreStats) {
       if (!container) return;
+      
+      function _colorFor(pct) {
+        if (pct == null) return 'var(--txt-dim)';
+        return pct >= 70 ? '#34d399' : pct >= 50 ? '#fbbf24' : '#fb7185';
+      }
+
       container.innerHTML = '';
       container.className = 'nq-radar-container-wrap';
       container.style.cssText = 'position:relative; width:320px; height:320px; margin:0 auto; display:flex; justify-content:center; align-items:center;';
+
 
       // Injetar estilos do Tooltip se não existirem
       if (!document.getElementById('nqRadarTooltipStyles')) {
@@ -166,8 +173,8 @@
       }
 
       const canvas = document.createElement('canvas');
-      canvas.width = W = 320;
-      canvas.height = H = 320;
+      canvas.width = 320;
+      canvas.height = 320;
       canvas.style.maxWidth = '320px';
       canvas.style.width = '100%';
       canvas.style.display = 'block';
@@ -1198,6 +1205,9 @@
       // Atualizar contadores
       updateSRData(q.qid, isCorrect);
       localStorage.setItem('nq_last_study', Date.now().toString());
+      if (typeof trackQuestionAnswer === 'function') {
+        trackQuestionAnswer(q, isCorrect, 0);
+      }
       if (isCorrect) {
         studyModeCorrect++;
         document.getElementById('studyCorrect').textContent = studyModeCorrect;
