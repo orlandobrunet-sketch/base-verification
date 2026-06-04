@@ -1536,6 +1536,7 @@
         const b = document.createElement('button');
         b.className = 'option'; b.type = 'button';
         b.dataset.idx = i;
+        b.setAttribute('data-kbd-hint', i + 1);
         const keySpan = document.createElement('span');
         keySpan.className = 'opt-key';
         keySpan.textContent = String.fromCharCode(65 + i);
@@ -2035,16 +2036,42 @@
         }
         showFloatingFeedback(`+${xp} XP  +${g}💰`, true, x, y);
 
-        // Boss log
+        // Boss log & damage animation
         if (isBossBattle()) {
           const dmg = Math.floor(st.atk * 8 + st.kno * 5 + state.streak * 5);
           const hpBefore = Math.min(100, getBossHP() + 10);
           const hpAfter  = getBossHP();
+          
+          let attackAction = 'Você atacou';
+          const cat = state.current.c || state.current.cat || 'geral';
+          if (cat === 'glomerular') attackAction = 'Você conjurou Lâmina dos Glomérulos';
+          else if (cat === 'eletrólitos') attackAction = 'Você manipulou a Corrente de Eletrólitos';
+          else if (cat === 'acido_base') attackAction = 'Você equilibrou o pH com Feitiço Ácido-Base';
+          else if (cat === 'dialise') attackAction = 'Você ativou a Barreira Dialítica';
+          else if (cat === 'transplante') attackAction = 'Você canalizou a União de Enxerto HLA';
+          else if (cat === 'drc') attackAction = 'Você lançou a Barreira de Retardo de DRC';
+          else if (cat === 'lra') attackAction = 'Você mitigou a Injúria Renal Aguda (LRA)';
+          else if (cat === 'hipertensao') attackAction = 'Você empunhou o Escudo de Controle Pressórico';
+          else if (cat === 'nefropatia_diabetica') attackAction = 'Você anulou a Glicotoxicidade';
+          else if (cat === 'litíase') attackAction = 'Você pulverizou os Cálculos Renais';
+          else if (cat === 'farmacologia') attackAction = 'Você infundiu Nefroproteção Farmacológica';
+          else if (cat === 'infeccao') attackAction = 'Você expurgou a Infecção Urinária';
+          else if (cat === 'genetica') attackAction = 'Você decodificou a Síndrome Genética Renal';
+          else if (cat === 'uti') attackAction = 'Você estabilizou o Rim Crítico na UTI';
+          else attackAction = 'Você atacou com precisão clínica';
+
           state.bossLog = state.bossLog || [];
-          state.bossLog.push({cls:'hit', txt:`⚔️ Você causou <strong>${dmg} de dano!</strong>`});
+          state.bossLog.push({cls:'hit', txt:`⚔️ ${attackAction} e causou <strong>${dmg} de dano!</strong>`});
           state.bossLog.push({cls:'', txt:`HP: ${hpBefore}% → ${hpAfter}%`});
           const loreLines = ['😤 "Fraco demais para derrotar a Azotemia Eterna!"','😠 "Impossível... como você conhece os néfrons?"','😡 "Sua sabedoria me enfraquece... mas não me vencerá!"','😰 "N-não... meu poder está se dissipando!"','💀 "Você... venceu. Mas a Uremia... sempre volta..."'];
           if (state.bossLog.length % 4 === 0) state.bossLog.push({cls:'lore', txt: loreLines[Math.floor(state.bossLog.length/4) % loreLines.length]});
+          
+          // Animação visual de impacto no Boss
+          const bossImgBox = document.querySelector('.battle-boss-side');
+          if (bossImgBox) {
+            bossImgBox.classList.add('boss-damaged');
+            setTimeout(() => bossImgBox.classList.remove('boss-damaged'), 400);
+          }
         }
         // Sons e popup de evolução
         if(lv) {
@@ -2123,8 +2150,20 @@
         if (isBossBattle()) {
           state.bossLog = state.bossLog || [];
           state.bossLog.push({cls:'miss', txt:`❌ Resposta errada!`});
-          if (!blocked) {
+          if (blocked) {
+            if (legendaryBlockMsg) {
+              state.bossLog.push({cls:'lore', txt: `${legendaryBlockMsg}`});
+            } else {
+              state.bossLog.push({cls:'lore', txt: `🛡️ O dano foi bloqueado!`});
+            }
+          } else {
             state.bossLog.push({cls:'miss', txt:`💥 O Nefromante contra-atacou!`});
+            // Animação de dano no Herói (painel esquerdo)
+            const leftPanel = document.querySelector('.panel.left');
+            if (leftPanel) {
+              leftPanel.classList.add('player-damaged');
+              setTimeout(() => leftPanel.classList.remove('player-damaged'), 500);
+            }
           }
         }
         saveGame();
@@ -2678,6 +2717,7 @@
         byTopic: {},
         byCategory: {},
         questionHistory: [],
+        dailyActivity: {},
         timeStats: { totalTime: 0, questionCount: 0 },
         mostMissed: {}
       };
@@ -2685,11 +2725,25 @@
 
     function _migrateDetailedStats(s) {
       const v = s.schemaVersion || 0;
-      // v0 → v1: adicionar schemaVersion
       if (v < 1) {
         s.schemaVersion = 1;
       }
-      // v1 → v2: futuras migrações aqui
+      if (!s.dailyActivity) {
+        s.dailyActivity = {};
+        if (Array.isArray(s.questionHistory)) {
+          s.questionHistory.forEach(h => {
+            if (h.date) {
+              const dateStr = h.date.slice(0, 10);
+              if (!s.dailyActivity[dateStr]) {
+                s.dailyActivity[dateStr] = { count: 0, time: 0, correct: 0 };
+              }
+              s.dailyActivity[dateStr].count++;
+              if (h.correct) s.dailyActivity[dateStr].correct++;
+              if (h.time && h.time > 0) s.dailyActivity[dateStr].time += h.time;
+            }
+          });
+        }
+      }
       return s;
     }
 
@@ -2715,6 +2769,7 @@
       if (!stats.byCategory) stats.byCategory = {};
       if (!stats.mostMissed) stats.mostMissed = {};
       if (!stats.questionHistory) stats.questionHistory = [];
+      if (!stats.dailyActivity) stats.dailyActivity = {};
       if (!stats.timeStats)  stats.timeStats  = { totalTime: 0, questionCount: 0 };
       if (!stats.totalQuestions) stats.totalQuestions = 0;
       if (!stats.totalCorrect)   stats.totalCorrect   = 0;
@@ -2754,6 +2809,17 @@
         }
         stats.mostMissed[qKey].count++;
       }
+      
+      // Atualizar atividade diária persistente (YYYY-MM-DD local)
+      const offset = new Date().getTimezoneOffset();
+      const localDate = new Date(new Date().getTime() - (offset * 60 * 1000));
+      const localDateStr = localDate.toISOString().split('T')[0];
+      if (!stats.dailyActivity[localDateStr]) {
+        stats.dailyActivity[localDateStr] = { count: 0, time: 0, correct: 0 };
+      }
+      stats.dailyActivity[localDateStr].count++;
+      if (isCorrect) stats.dailyActivity[localDateStr].correct++;
+      if (timeSpent && timeSpent > 0) stats.dailyActivity[localDateStr].time += timeSpent;
       
       // Atualizar tempo
       if (timeSpent > 0) {
