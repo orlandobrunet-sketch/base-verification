@@ -527,6 +527,86 @@
         margin-top: 10px;
       }
 
+      /* ── Engagement Grid (Heatmap) ────────────────────────────────────────── */
+      .nq-dash-heatmap-wrap {
+        background: rgba(255, 255, 255, 0.015);
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        border-radius: 16px;
+        padding: 18px 20px;
+        margin-bottom: 22px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      }
+      .nq-dash-heatmap-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 14px;
+      }
+      .nq-dash-heatmap-title {
+        font-family: 'Cinzel Decorative', 'Cinzel', serif;
+        font-size: 0.76rem;
+        font-weight: bold;
+        color: var(--gold);
+        letter-spacing: 1px;
+        text-shadow: 0 0 10px rgba(255,215,0,0.25);
+      }
+      .nq-dash-heatmap-grid {
+        display: grid;
+        grid-template-rows: repeat(7, 10px);
+        grid-auto-columns: 10px;
+        grid-auto-flow: column;
+        gap: 5px;
+        justify-content: center;
+        overflow-x: auto;
+        padding: 6px 4px 10px;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255,215,0,0.15) transparent;
+      }
+      .nq-dash-heatmap-grid::-webkit-scrollbar {
+        height: 4px;
+      }
+      .nq-dash-heatmap-grid::-webkit-scrollbar-thumb {
+        background: rgba(255,215,0,0.15);
+        border-radius: 2px;
+      }
+      .nq-dash-heatmap-day {
+        width: 10px;
+        height: 10px;
+        border-radius: 2.5px;
+        cursor: help;
+        transition: transform 0.12s ease, box-shadow 0.12s ease;
+      }
+      .nq-dash-heatmap-day:hover {
+        transform: scale(1.35);
+        z-index: 5;
+        box-shadow: 0 0 6px rgba(255,255,255,0.3);
+      }
+      .nq-dash-heatmap-labels {
+        display: flex;
+        justify-content: space-between;
+        padding: 4px 6px 0;
+        margin-top: 4px;
+        font-size: 0.65rem;
+        color: var(--txt-dim);
+        font-family: 'Philosopher', sans-serif;
+      }
+      .nq-dash-heatmap-legend {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 5px;
+        margin-top: 12px;
+        font-size: 0.65rem;
+        color: var(--txt-dim);
+        font-family: 'Philosopher', sans-serif;
+      }
+      .nq-dash-heatmap-legend-box {
+        width: 10px;
+        height: 10px;
+        border-radius: 2.5px;
+        cursor: help;
+      }
+
       /* ── Responsive ────────────────────────────────────────────────────── */
       @media (max-width: 600px) {
         .nq-dash-overlay { padding: 0; align-items: flex-end; }
@@ -567,54 +647,114 @@
       </div>`;
   }
 
-  function _buildActivityChart(stats) {
-    const hist = (stats.questionHistory || []).slice().reverse();
-    if (hist.length < 3) return null;
-    const days = {};
+  function _buildEngagementHeatmap(stats) {
+    const hist = stats.questionHistory || [];
+    
+    // Group history by local date YYYY-MM-DD
+    const daysData = {};
     hist.forEach(h => {
-      const d = (h.date || '').slice(0, 10);
-      if (!d) return;
-      if (!days[d]) days[d] = { c: 0, t: 0 };
-      days[d].t++;
-      if (h.correct) days[d].c++;
+      if (!h.date) return;
+      const dateStr = h.date.slice(0, 10);
+      if (!daysData[dateStr]) {
+        daysData[dateStr] = { count: 0, time: 0, correct: 0 };
+      }
+      daysData[dateStr].count++;
+      if (h.correct) daysData[dateStr].correct++;
+      if (h.time && h.time > 0) daysData[dateStr].time += h.time;
     });
-    const sorted = Object.keys(days).sort().slice(-7);
-    if (sorted.length < 2) return null;
-    const pts = sorted.map(d => ({
-      d,
-      pct: Math.round(days[d].c / days[d].t * 100),
-      total: days[d].t
-    }));
-    const H = 64, W = 400;
-    const step = W / Math.max(pts.length - 1, 1);
-    const y = p => (H - p.pct / 100 * H).toFixed(1);
-    const x = i => (i * step).toFixed(1);
-    const polyline = pts.map((p, i) => `${x(i)},${y(p)}`).join(' ');
-    const areaBot = `${x(pts.length - 1)},${H} 0,${H}`;
-    const areaPts = pts.map((p, i) => `${x(i)},${y(p)}`).join(' ') + ' ' + areaBot;
-    const dots = pts.map((p, i) => {
-      const c = _colorFor(p.pct);
-      return `<circle cx="${x(i)}" cy="${y(p)}" r="4.5" fill="${c}" stroke="#080d1a" stroke-width="2.5"/>`;
+
+    const today = new Date();
+    const currentDayOfWeek = today.getDay(); // 0: Sun, 1: Mon, ..., 6: Sat
+    
+    // Sunday of 5 weeks ago
+    const startDate = new Date(today);
+    startDate.setDate(today.getDate() - currentDayOfWeek - 35);
+    startDate.setHours(0, 0, 0, 0);
+
+    const totalDays = 42;
+    const gridDays = [];
+
+    for (let i = 0; i < totalDays; i++) {
+      const current = new Date(startDate);
+      current.setDate(startDate.getDate() + i);
+      const yyyy = current.getFullYear();
+      const mm = String(current.getMonth() + 1).padStart(2, '0');
+      const dd = String(current.getDate()).padStart(2, '0');
+      const dateKey = `${yyyy}-${mm}-${dd}`;
+
+      const dayStats = daysData[dateKey] || { count: 0, time: 0, correct: 0 };
+      gridDays.push({
+        date: current,
+        dateKey,
+        dayOfWeek: current.getDay(),
+        ...dayStats
+      });
+    }
+
+    function getLevel(count, time) {
+      if (count === 0) return 0;
+      if (count >= 25 || time >= 600) return 4;
+      if (count >= 12 || time >= 240) return 3;
+      if (count >= 5 || time >= 60) return 2;
+      return 1;
+    }
+
+    const daySquares = gridDays.map(day => {
+      const lvl = getLevel(day.count, day.time);
+      const dayName = day.date.toLocaleDateString('pt-BR', { weekday: 'short' });
+      const formattedDate = day.date.toLocaleDateString('pt-BR');
+      let tooltip = `${formattedDate} (${dayName}): `;
+      if (day.count === 0) {
+        tooltip += 'Sem atividade';
+      } else {
+        const accuracy = Math.round(day.correct / day.count * 100);
+        const min = Math.floor(day.time / 60);
+        const sec = Math.round(day.time % 60);
+        const timeStr = min > 0 ? `${min}m ${sec}s` : `${sec}s`;
+        tooltip += `${day.count} qts (${day.correct} acertos, ${accuracy}%) • ${timeStr} foco`;
+      }
+
+      let bgStyle = 'rgba(255, 255, 255, 0.03)';
+      let shadow = 'none';
+      if (lvl === 1) bgStyle = 'rgba(139, 92, 246, 0.25)';
+      else if (lvl === 2) bgStyle = 'rgba(139, 92, 246, 0.55)';
+      else if (lvl === 3) bgStyle = 'rgba(139, 92, 246, 0.85)';
+      else if (lvl === 4) {
+        bgStyle = 'var(--gold)';
+        shadow = '0 0 6px rgba(255, 215, 0, 0.45)';
+      }
+
+      return `<div class="nq-dash-heatmap-day" style="background:${bgStyle}; box-shadow:${shadow};" title="${escapeHtml(tooltip)}"></div>`;
     }).join('');
-    const labels = pts.map((p, i) => {
-      const c = _colorFor(p.pct);
-      const yVal = parseFloat(y(p));
-      return `<text x="${x(i)}" y="${H + 16}" text-anchor="middle" fill="#5a6880" font-size="10">${p.d.slice(5)}</text>`
-           + `<text x="${x(i)}" y="${(yVal - 9).toFixed(1)}" text-anchor="middle" fill="${c}" font-size="10.5" font-weight="700">${p.pct}%</text>`
-           + `<text x="${x(i)}" y="${(yVal + 2).toFixed(1)}" text-anchor="middle" fill="${c}" font-size="8" opacity="0.7" dy="8">${p.total}q</text>`;
-    }).join('');
-    return `<svg viewBox="-14 -20 428 108" style="width:100%;display:block;">
-      <defs>
-        <linearGradient id="dashArea" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#6366f1" stop-opacity="0.28"/>
-          <stop offset="100%" stop-color="#6366f1" stop-opacity="0.01"/>
-        </linearGradient>
-      </defs>
-      <polygon points="${areaPts}" fill="url(#dashArea)"/>
-      <polyline points="${polyline}" fill="none" stroke="#6366f1" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-      ${dots}${labels}
-    </svg>`;
+
+    const startStr = startDate.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+    const endStr = today.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+
+    return `
+      <div class="nq-dash-heatmap-wrap">
+        <div class="nq-dash-heatmap-header">
+          <div class="nq-dash-heatmap-title">Foco & Engajamento (Últimas 6 Semanas)</div>
+        </div>
+        <div class="nq-dash-heatmap-grid">
+          ${daySquares}
+        </div>
+        <div class="nq-dash-heatmap-labels">
+          <span>${startStr}</span>
+          <span style="color:var(--gold); font-weight:bold; letter-spacing: 0.5px;">Intensidade de Foco</span>
+          <span>${endStr}</span>
+        </div>
+        <div class="nq-dash-heatmap-legend">
+          <span style="margin-right:2px;">Atividade:</span>
+          <div class="nq-dash-heatmap-legend-box" style="background:rgba(255,255,255,0.03);" title="Sem atividade"></div>
+          <div class="nq-dash-heatmap-legend-box" style="background:rgba(139,92,246,0.25);" title="1-4 questões"></div>
+          <div class="nq-dash-heatmap-legend-box" style="background:rgba(139,92,246,0.55);" title="5-11 questões"></div>
+          <div class="nq-dash-heatmap-legend-box" style="background:rgba(139,92,246,0.85);" title="12-24 questões"></div>
+          <div class="nq-dash-heatmap-legend-box" style="background:var(--gold); box-shadow:0 0 4px rgba(255,215,0,0.3);" title="25+ questões ou 10+ min de foco!"></div>
+        </div>
+      </div>
+    `;
   }
+
 
   function _drawRadar() {
     // drawRadarChart(container, coreStats) recebe o CONTÊINER (limpa e desenha
@@ -668,7 +808,7 @@
 
     const unlockedBadges = BADGES.filter(b => (state.correctTotal || 0) >= b.required).length;
     const badgePct = Math.round((unlockedBadges / BADGES.length) * 100);
-    const actChart = _buildActivityChart(stats);
+    const actChart = _buildEngagementHeatmap(stats);
     const acColor = _colorFor(accuracy);
 
     let userDisplayName = 'Aventureiro';
@@ -793,10 +933,7 @@
         </div>
       </div>
 
-      ${actChart ? `
-        <div class="nq-dash-stitle">Evolução (últimos 7 dias)</div>
-        <div class="nq-dash-activity">${actChart}</div>
-      ` : ''}
+      ${actChart}
 
       <div class="nq-dash-stitle">Badges de progressão</div>
       <div class="nq-dash-prow">
@@ -841,7 +978,7 @@
             <div class="nq-dash-skill-card" style="background:rgba(255,255,255,0.025); border:1px solid rgba(255,255,255,0.05); border-radius:12px; padding:12px 14px; display:flex; flex-direction:column; gap:8px;">
               <div style="display:flex; justify-content:space-between; align-items:center;">
                 <span style="font-family:'Cinzel',serif; font-size:0.8rem; font-weight:bold; color:var(--gold);">${escapeHtml(skill.label)}</span>
-                <span style="font-size:0.78rem; font-weight:bold; color:${hasData ? c : 'var(--txt-dim)'};">${hasData ? pct + '%' : '—'} <small style="color:var(--txt-dim); font-weight:normal; font-size:0.68rem;">(${skill.correct}/${skill.total})</small></span>
+                <span style="font-size:0.78rem; font-weight:bold; color:${hasData ? c : 'var(--txt-dim)'};">${hasData ? pct + '%' : '—'} <small style="color:var(--txt-dim); font-weight:normal; font-size:0.68rem;">(${skill.correct} acertos de ${skill.total} respondidas)</small></span>
               </div>
               <div style="width:100%; height:5px; background:rgba(255,255,255,0.06); border-radius:2.5px; overflow:hidden;">
                 <div style="height:100%; width:${hasData ? pct : 0}%; background:${c}; border-radius:2.5px; transition:width 0.6s ease;"></div>
