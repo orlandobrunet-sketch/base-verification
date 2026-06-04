@@ -657,14 +657,46 @@
     const actChart = _buildActivityChart(stats);
     const acColor = _colorFor(accuracy);
 
+    let userDisplayName = 'Aventureiro';
+    if (window.authUser) {
+      userDisplayName = window.authUser.user_metadata?.full_name 
+        || window.authUser.user_metadata?.name 
+        || window.authUser.email?.split('@')[0] 
+        || 'Nefrologista';
+    } else if (window._guestMode) {
+      userDisplayName = 'Convidado';
+    }
+    
+    const userTitle = getUserTitle(stats.totalCorrect || 0);
+
     return `
-      <div class="nq-dash-hero">
+      <!-- Card do Usuário (Perfil Definitivo) -->
+      <div class="nq-dash-user-card" style="background:linear-gradient(135deg, rgba(255,215,0,0.08), rgba(124,58,237,0.08)); border:1px solid rgba(255,215,0,0.25); border-radius:14px; padding:16px; margin-bottom:20px; display:flex; align-items:center; gap:16px; box-shadow:0 4px 15px rgba(0,0,0,0.15);">
+        <div style="font-size:2rem; background:rgba(255,215,0,0.1); border:2px solid var(--gold); border-radius:50%; width:56px; height:56px; display:flex; align-items:center; justify-content:center; flex-shrink:0; text-shadow:0 0 8px rgba(255,215,0,0.4);">
+          🎓
+        </div>
+        <div style="flex:1;">
+          <div style="font-family:'Cinzel',serif; font-size:1.05rem; color:var(--gold); font-weight:bold; line-height:1.2;">
+            ${escapeHtml(userDisplayName)}
+          </div>
+          <div style="font-family:'Cinzel',serif; font-size:0.75rem; color:#cbd5e1; text-transform:uppercase; letter-spacing:1px; margin-top:4px;">
+            Título: <strong style="color:var(--gold); font-weight:800;">${userTitle}</strong>
+          </div>
+          <div style="font-size:0.68rem; color:var(--txt-dim); margin-top:5px; line-height:1.3;">
+            Status definitivo do usuário (acumulado de todas as suas partidas no NefroQuest)
+          </div>
+        </div>
+      </div>
+
+      <!-- Jornada Ativa (Personagem) -->
+      <div class="nq-dash-stitle">Jornada Ativa (Personagem)</div>
+      <div class="nq-dash-hero" style="margin-bottom:12px;">
         ${avatarSrc
           ? `<img class="nq-dash-avatar" src="${avatarSrc}" alt="${escapeHtml(charData.name)}" loading="lazy">`
           : `<div class="nq-dash-avatar-ph">⚕️</div>`}
         <div>
-          <div class="nq-dash-char-name">${charData ? escapeHtml(charData.name) : 'Aventureiro'}</div>
-          <div class="nq-dash-char-title">${charData ? escapeHtml(charData.title) : 'Nefrologista em formação'}</div>
+          <div class="nq-dash-char-name">${charData ? escapeHtml(charData.name) : 'Sem Personagem'}</div>
+          <div class="nq-dash-char-title">${charData ? escapeHtml(charData.title) : 'Nenhum jogo ativo'}</div>
           <div class="nq-dash-char-stats">
             <div class="nq-dash-cs"><em>Nível</em>${state.level || 1}</div>
             <div class="nq-dash-cs"><em>Recorde</em>${bestScore.toLocaleString('pt-BR')}</div>
@@ -673,6 +705,9 @@
           </div>
         </div>
       </div>
+      <p style="font-size:0.68rem; color:var(--txt-dim); margin-top:-6px; margin-bottom:20px; line-height:1.4; padding:0 4px; font-style:italic;">
+        ℹ️ O progresso e nível acima pertencem apenas à corrida atual e serão resetados ao iniciar um novo jogo. Os acertos acumulados, conquistas e ranking abaixo pertencem ao seu perfil definitivo.
+      </p>
 
       <!-- KPIs: linha 1 — dados de TODAS as partidas -->
       <div class="nq-dash-stitle">Histórico geral — todas as partidas</div>
@@ -761,57 +796,61 @@
   }
 
   function _tabSkills(axisStats) {
-    const worstAxis = axisStats.length > 0 ? axisStats[0] : null;
-
-    // Eixos sem dados (ordenados alfabeticamente)
-    const withData = new Set(axisStats.map(a => a.id));
-    const noData = (typeof NEFRO_AXES !== 'undefined' ? NEFRO_AXES : []).filter(a => !withData.has(a.id));
+    const stats = getDetailedStats();
+    const coreStats = getCoreSkillsStats(stats);
+    
+    const worstSkill = coreStats
+      .filter(s => s.total > 0)
+      .sort((a, b) => (a.accuracy ?? 100) - (b.accuracy ?? 100))[0] || null;
 
     return `
-      <div class="nq-dash-stitle">Radar de desempenho</div>
-      ${axisStats.length >= 3 ? `
-        <div class="nq-dash-radar-wrap">
-          <canvas id="nqDashRadar" width="320" height="320"></canvas>
-        </div>
-      ` : `<p style="color:var(--txt-dim);text-align:center;padding:28px;font-size:0.84rem;">
-              Responda questões em pelo menos 3 eixos diferentes para ver o radar.
-           </p>`}
+      <div class="nq-dash-stitle">Radar de competências</div>
+      <div id="nqDashRadarContainer" style="margin-bottom:20px; min-height:340px; display:flex; justify-content:center; align-items:center;">
+        <div style="color:var(--txt-dim); font-size:0.8rem;">Carregando radar...</div>
+      </div>
 
-      ${worstAxis ? `
+      ${worstSkill ? `
         <button type="button" class="nq-dash-weakness" data-action="_dashGoWeakness">
-          ⚠ Ponto fraco: ${worstAxis.icon} ${escapeHtml(worstAxis.label)}
-          — ${worstAxis.accuracy != null ? worstAxis.accuracy.toFixed(0) : 0}%
+          ⚠ Ponto fraco: ${escapeHtml(worstSkill.label)}
+          — ${worstSkill.accuracy != null ? worstSkill.accuracy.toFixed(0) : 0}%
           &nbsp;→ Treinar agora
         </button>
       ` : ''}
 
-      <div class="nq-dash-stitle">Desempenho por eixo</div>
-      ${axisStats.length > 0
-        ? axisStats.map(a => {
-            const pct = a.accuracy != null ? a.accuracy.toFixed(0) : '0';
-            const c = _colorFor(a.accuracy);
-            return `<div class="nq-dash-axis">
-              <div class="nq-dash-axis-ico">${a.icon}</div>
-              <div class="nq-dash-axis-lbl">${escapeHtml(a.label)}</div>
-              <div class="nq-dash-axis-bar">
-                <div class="nq-dash-axis-fill" style="width:${pct}%;background:${c};"></div>
+      <div class="nq-dash-stitle">Desempenho por Competência</div>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        ${coreStats.map(skill => {
+          const hasData = skill.total > 0;
+          const pct = hasData ? skill.accuracy.toFixed(0) : '0';
+          const c = hasData ? _colorFor(skill.accuracy) : '#374151';
+          return `
+            <div class="nq-dash-skill-card" style="background:rgba(255,255,255,0.025); border:1px solid rgba(255,255,255,0.05); border-radius:12px; padding:12px 14px; display:flex; flex-direction:column; gap:8px;">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-family:'Cinzel',serif; font-size:0.8rem; font-weight:bold; color:var(--gold);">${escapeHtml(skill.label)}</span>
+                <span style="font-size:0.78rem; font-weight:bold; color:${hasData ? c : 'var(--txt-dim)'};">${hasData ? pct + '%' : '—'} <small style="color:var(--txt-dim); font-weight:normal; font-size:0.68rem;">(${skill.correct}/${skill.total})</small></span>
               </div>
-              <div class="nq-dash-axis-pct" style="color:${c};">${pct}%</div>
-              <div class="nq-dash-axis-cnt">${a.correct}/${a.total}</div>
-            </div>`;
-          }).join('')
-        : `<p style="color:var(--txt-dim);text-align:center;padding:28px;font-size:0.84rem;">
-              Jogue para ver seu desempenho por eixo!
-           </p>`}
-      ${noData.map(a => `
-        <div class="nq-dash-axis na">
-          <div class="nq-dash-axis-ico">${a.icon}</div>
-          <div class="nq-dash-axis-lbl" style="color:var(--txt-dim);">${escapeHtml(a.label)}</div>
-          <div class="nq-dash-axis-bar"><div class="nq-dash-axis-fill" style="width:0%;background:#374151;"></div></div>
-          <div class="nq-dash-axis-pct" style="color:var(--txt-dim);">—</div>
-          <div class="nq-dash-axis-cnt">0/0</div>
-        </div>
-      `).join('')}
+              <div style="width:100%; height:5px; background:rgba(255,255,255,0.06); border-radius:2.5px; overflow:hidden;">
+                <div style="height:100%; width:${hasData ? pct : 0}%; background:${c}; border-radius:2.5px; transition:width 0.6s ease;"></div>
+              </div>
+              <div style="font-size:0.68rem; color:var(--txt-dim); line-height:1.35;">
+                ${escapeHtml(skill.desc)}
+              </div>
+              <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:2px;">
+                ${skill.subcategories.map(sub => {
+                  const subHasData = sub.total > 0;
+                  const subPct = subHasData ? `${sub.accuracy.toFixed(0)}%` : '—';
+                  const subColor = subHasData ? _colorFor(sub.accuracy) : 'var(--txt-dim)';
+                  return `
+                    <span style="font-size:0.62rem; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06); border-radius:4px; padding:2px 5px; color:#cbd5e1;">
+                      ${escapeHtml(sub.label)}: <strong style="color:${subColor};">${subPct}</strong>
+                    </span>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
     `;
   }
 
@@ -1022,14 +1061,59 @@
     _loadRanking(true);
   }
 
-  function _dashGoWeakness() {
+  function getUserTitle(totalCorrect) {
+    if (totalCorrect >= 1500) return 'Grão-Mestre da Uremia 👑';
+    if (totalCorrect >= 800)  return 'Conselheiro Renal 🫁';
+    if (totalCorrect >= 400)  return 'Patrono dos Glomérulos 🧪';
+    if (totalCorrect >= 150)  return 'Erudito do Equilíbrio 📚';
+    if (totalCorrect >= 50)   return 'Escriba dos Rins ✍️';
+    if (totalCorrect >= 15)   return 'Nefro-Iniciado 🛡️';
+    return 'Aspirante da Guilda 🧭';
+  }
+
+  async function _dashGoWeakness() {
     closeDashboard();
-    if (typeof setStudyMode === 'function') setStudyMode('weakness');
-    else if (typeof _toast === 'function') _toast('Abra o Modo de Estudo para treinar seu ponto fraco.', 'info');
+
+    if (typeof topics === 'undefined') {
+      if (typeof _toast === 'function') _toast('Carregando questões…', 'info', 30000);
+      try {
+        await window._loadTopics();
+        document.querySelector('.nq-toast')?.remove();
+      } catch (e) {
+        if (typeof _toast === 'function') _toast('Erro ao carregar questões. Recarregue a página.', 'error', 5000);
+        return;
+      }
+    }
+
+    const stats = getDetailedStats();
+    const coreStats = getCoreSkillsStats(stats);
+    const worstSkill = coreStats
+      .filter(s => s.total > 0)
+      .sort((a, b) => (a.accuracy ?? 100) - (b.accuracy ?? 100))[0] || null;
+
+    if (!worstSkill) {
+      if (typeof _toast === 'function') _toast('Não há histórico suficiente para identificar um ponto fraco.', 'info');
+      return;
+    }
+
+    // Definir eixos selecionados no modo de estudo
+    if (typeof window._studySelectedAxes !== 'undefined') {
+      window._studySelectedAxes.clear();
+      worstSkill.categories.forEach(cat => {
+        window._studySelectedAxes.add(cat);
+      });
+    }
+
+    if (typeof window.startStudyMode === 'function') {
+      window.startStudyMode();
+    } else {
+      if (typeof _toast === 'function') _toast('Erro ao iniciar o Modo de Estudo.', 'error');
+    }
   }
 
   window.openDashboard       = openDashboard;
   window.closeDashboard      = closeDashboard;
   window._dashRefreshRanking = _dashRefreshRanking;
   window._dashGoWeakness     = _dashGoWeakness;
+  window.getUserTitle        = getUserTitle;
 })();

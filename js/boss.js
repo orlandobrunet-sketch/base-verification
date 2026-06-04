@@ -521,7 +521,9 @@
       const _chosenDiff = state.difficulty || 'normal';
       const _startLives = _diffLives[_chosenDiff] || 3;
       Object.assign(state,{level:1,xp:0,xpToNext:200,score:0,lives:_startLives,maxLives:_startLives,streak:0,gold:0,difficulty:_chosenDiff,legendaryAbilityUsed:{},current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,bossIntroShown:false,battleFinalShown:false,gameOver:false,gameStarted:true,extraLifeGiven:false,gameCompleted:false,completedGame:false,chestsOpened:0,bossLog:[],bossStunActive:false});
+      document.body.classList.remove('rd-game-over', 'boss-battle-mode', 'arqui-nefromante-final', 'boss-hp-critical');
       removeStun(); // garante limpeza de resíduo de partida anterior
+      if (typeof updateBossUI === 'function') updateBossUI();
       chestCost = 100;
       state.equipment={
         weapon:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
