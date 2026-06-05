@@ -1566,8 +1566,8 @@
       const input = document.getElementById('mentorInput');
       input?.focus();
 
-      // Close on overlay click outside modal
-      overlay.addEventListener('click', e => { if (e.target === overlay) closeMentorModal(); });
+      // Close on overlay click outside modal (disabled to prevent accidental closing)
+      // overlay.addEventListener('click', e => { if (e.target === overlay) closeMentorModal(); });
 
       // Enter to submit (Shift+Enter for newline)
       input?.addEventListener('keydown', e => {

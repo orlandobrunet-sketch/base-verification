@@ -1539,8 +1539,8 @@
     `;
     document.body.appendChild(overlay);
 
-    // Permitir fechar no backdrop mesmo enquanto carrega
-    overlay.addEventListener('click', e => { if (e.target === overlay) closeDashboard(); });
+    // Permitir fechar no backdrop mesmo enquanto carrega (desabilitado para evitar fechar por engano)
+    // overlay.addEventListener('click', e => { if (e.target === overlay) closeDashboard(); });
 
     // Forçar carregamento das questões e sincronização
     if (typeof window._loadTopics === 'function') {

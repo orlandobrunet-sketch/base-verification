@@ -268,6 +268,7 @@
       localStorage.removeItem(WHITELIST_KEY);
       localStorage.removeItem('nefroquest-whitelist-sig');
       _invalidatePremiumCache(); _invalidateStatsCache();
+      if (typeof window.clearLocalProgress === 'function') window.clearLocalProgress();
       updateWelcomeUserBadge();
       document.getElementById('welcomeScreen')?.classList.add('hidden');
       document.getElementById('landingScreen')?.classList.remove('hidden');
