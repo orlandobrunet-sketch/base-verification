@@ -133,8 +133,8 @@
       raro: { text: '#38bdf8', bg: 'rgba(14,165,233,0.08)', border: 'rgba(14,165,233,0.3)', label: 'Raro' },
       'épico': { text: '#c084fc', bg: 'rgba(168,85,247,0.09)', border: 'rgba(168,85,247,0.35)', label: 'Épico' },
       'épica': { text: '#c084fc', bg: 'rgba(168,85,247,0.09)', border: 'rgba(168,85,247,0.35)', label: 'Épico' },
-      lendário: { text: '#facc15', bg: 'rgba(234,179,8,0.12)', border: 'rgba(234,179,8,0.45)', label: 'Lendário' },
-      lendária: { text: '#facc15', bg: 'rgba(234,179,8,0.12)', border: 'rgba(234,179,8,0.45)', label: 'Lendário' }
+      lendário: { text: '#ffd700', bg: 'rgba(255,215,0,0.09)', border: 'rgba(255,215,0,0.6)', label: 'Lendário' },
+      lendária: { text: '#ffd700', bg: 'rgba(255,215,0,0.09)', border: 'rgba(255,215,0,0.6)', label: 'Lendário' }
     };
     const rarityScrollIcons = {
       comum: '📜',
@@ -171,6 +171,7 @@
     }
 
     function _buildBibItems() {
+      const isUserAdmin = (typeof isAdminUser === 'function' && isAdminUser()) || (typeof window.isAdminUser === 'function' && window.isAdminUser());
       const unlockedIdxs = _getUnlockedArticles();
       const unlockedRefs = _getUnlockedRefs();
       const items = [];
@@ -178,7 +179,7 @@
       // refsDB — desbloqueadas conforme aparecem nas referências de questões acertadas
       if (typeof refsDB === 'object' && refsDB !== null) {
         Object.entries(refsDB).forEach(([key, r]) => {
-          const isUnlocked = unlockedRefs.has(key);
+          const isUnlocked = isUserAdmin || unlockedRefs.has(key);
           items.push({
             _bibKey:    key,                                          // chave única para dedup
             label:      isUnlocked ? (r.label || '') : 'Referência bloqueada',
@@ -203,7 +204,7 @@
       if (typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles)) {
         const total = nefroArticles.length;
         nefroArticles.forEach((a, idx) => {
-          const isUnlocked = unlockedIdxs.includes(idx);
+          const isUnlocked = isUserAdmin || unlockedIdxs.includes(idx);
           items.push({
             _bibKey:    `__art_${idx}`,                              // chave única para dedup
             label:      isUnlocked ? (a.titulo || '') : 'Artigo bloqueado',
@@ -431,7 +432,7 @@
           <div class="brm-body">${bodyHtml}</div>
         </div>
       `;
-      overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
+      // overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); }); // disabled to prevent accidental closing
       document.body.appendChild(overlay);
     }
 

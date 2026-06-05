@@ -30,6 +30,12 @@
     _saveProgress(p);
     // Aciona a conquista "Alquimista Renal" (zerar os 6 casos), se elegível.
     try { if (typeof checkAchievements === 'function') checkAchievements(); } catch {}
+    // Sincroniza imediatamente o caso concluído para a nuvem
+    try {
+      if (typeof _syncProgressToCloud === 'function') {
+        _syncProgressToCloud().catch(() => {});
+      }
+    } catch(e) {}
   }
 
   // ── Geradores de valores randomizados (clinicamente plausíveis) ─────────

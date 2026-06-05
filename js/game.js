@@ -28,16 +28,41 @@
     
     function updateBadges() {
       BADGES.forEach(badge => {
-        const slot = document.querySelector(`.badge-slot[data-badge="${badge.id}"]`);
-        if (!slot) return;
+        const slots = document.querySelectorAll(`.badge-slot[data-badge="${badge.id}"]`);
         if (state.correctTotal >= badge.required) {
-          if (!slot.classList.contains('unlocked')) {
-            slot.classList.add('unlocked');
+          slots.forEach(slot => {
+            if (!slot.classList.contains('unlocked')) {
+              slot.classList.add('unlocked');
+              const lock = slot.querySelector('.badge-lock');
+              if (lock) lock.remove();
+            }
+          });
+        }
+      });
+
+      const announced = (() => {
+        try {
+          return JSON.parse(localStorage.getItem('nefroquest-announced-badges') || '[]');
+        } catch (e) {
+          return [];
+        }
+      })();
+      let changed = false;
+      BADGES.forEach(badge => {
+        if (state.correctTotal >= badge.required) {
+          if (!announced.includes(badge.id)) {
+            announced.push(badge.id);
+            changed = true;
             log(`🏆 Badge desbloqueado: ${badge.name}!`);
             playSound('chest');
           }
         }
       });
+      if (changed) {
+        try {
+          localStorage.setItem('nefroquest-announced-badges', JSON.stringify(announced));
+        } catch (e) {}
+      }
     }
     
     // ── Analytics ────────────────────────────────────────────────────────────
@@ -500,7 +525,30 @@
     
     function deleteSave() {
       localStorage.removeItem(SAVE_KEY);
+      localStorage.removeItem('nefroquest-announced-badges');
+      _scheduleCloudSync();
     }
+
+    function clearLocalProgress() {
+      const keys = [
+        SAVE_KEY,
+        STATS_KEY,
+        MASTERED_KEY,
+        'nefroquest-detailed-stats',
+        'nefroquest-achievements',
+        'unlockedArticles',
+        'nq-unlocked-refs',
+        'nq-acidbase-progress',
+        'nefroquest-sr-data',
+        'nefroquest-arqui-defeated',
+        'nefroquest-hardcore-completed',
+        'nefroquest-minigame-best',
+        'nefroquest-announced-badges'
+      ];
+      keys.forEach(k => localStorage.removeItem(k));
+      _invalidateStatsCache();
+    }
+    window.clearLocalProgress = clearLocalProgress;
 
     // ============ CLOUD SYNC (progresso na nuvem para usuários logados) ============
     let _cloudSyncTimer = null;
@@ -652,6 +700,13 @@
           .single();
         _mergeCloudProgress(profile?.game_progress);
         _refreshWelcomeStats(); // atualiza DOM após dados da nuvem chegarem (evita race condition)
+        
+        // Se após o merge local houver dados combinados mais recentes, agenda upload de volta
+        setTimeout(() => {
+          if (typeof _syncProgressToCloud === 'function') {
+            _syncProgressToCloud().catch(() => {});
+          }
+        }, 2000);
       } catch(e) { _track('error_cloud_load', { msg: String(e) }); }
     }
 
@@ -1181,25 +1236,20 @@
       return fallback;
     }
 
-    // Capítulos baseados em correctTotal (0-100) — 5 faixas de 20 acertos cada.
-    // Boss começa em 90 (BOSS_START_CORRECT), por isso o capítulo final inicia em 80.
-    // Capítulos do painel lateral. Cadência alinhada ao arco narrativo dos
-    // popups (narrativeStages em boss.js) para o painel não ficar "travado"
-    // no prólogo por 20 acertos. "Criptas da Creatinina" agora é Cap. I (at:10),
-    // consistente com o popup do mesmo checkpoint.
+    // Capítulos baseados em level (1-10) — Atualiza a narrativa conforme sobe de nível.
     const chapters = [
-      { at:0,  title:"Prólogo — O Chamado das Águas",            goal:"Domine os fundamentos da nefrologia e sobreviva às primeiras cartas da jornada." },
-      { at:10, title:"Capítulo I — As Criptas da Creatinina",    goal:"Interprete função renal, creatinina e os marcadores básicos de lesão." },
-      { at:20, title:"Capítulo II — O Vale da Albuminúria",      goal:"Consolide a estratificação de risco renal e a terapia nefroprotetora essencial." },
-      { at:35, title:"Capítulo III — Torre das Glomerulopatias", goal:"Domine os sinais de gravidade glomerular e decisões de intervenção com precisão." },
-      { at:50, title:"Capítulo IV — O Deserto da Diálise",       goal:"Entenda diálise, clearance, Kt/V e adequação terapêutica." },
-      { at:65, title:"Capítulo V — Trono Cardiorrenal",          goal:"Integre as terapias do eixo cardiorrenal e a nefrologia avançada." },
-      { at:80, title:"Capítulo Final — O Arqui-Nefromante",      goal:"Alcance o domínio supremo da nefrologia e derrote o Arqui-Nefromante." }
+      { lvl:1, title:"Prólogo — O Chamado das Águas",            goal:"Domine os fundamentos da nefrologia e sobreviva às primeiras cartas da jornada." },
+      { lvl:2, title:"Capítulo I — As Criptas da Creatinina",    goal:"Interprete função renal, creatinina e os marcadores básicos de lesão." },
+      { lvl:3, title:"Capítulo II — O Vale da Albuminúria",      goal:"Consolide a estratificação de risco renal e a terapia nefroprotetora essencial." },
+      { lvl:4, title:"Capítulo III — Torre das Glomerulopatias", goal:"Domine os sinais de gravidade glomerular e decisões de intervenção com precisão." },
+      { lvl:5, title:"Capítulo IV — O Deserto da Diálise",       goal:"Entenda diálise, clearance, Kt/V e adequação terapêutica." },
+      { lvl:6, title:"Capítulo V — Trono Cardiorrenal",          goal:"Integre as terapias do eixo cardiorrenal e a nefrologia avançada." },
+      { lvl:7, title:"Capítulo Final — O Arqui-Nefromante",      goal:"Alcance o domínio supremo da nefrologia e derrote o Arqui-Nefromante." }
     ];
 
     function chapterMeta(){
       let current=chapters[0];
-      for(const c of chapters){ if((state.correctTotal||0)>=c.at) current=c; }
+      for(const c of chapters){ if((state.level||1)>=c.lvl) current=c; }
       return current;
     }
 
@@ -1651,7 +1701,7 @@
         });
         chip.classList.add('selected');
       });
-      popup.addEventListener('click', e => { if(e.target===popup) popup.remove(); });
+      // popup.addEventListener('click', e => { if(e.target===popup) popup.remove(); });
       setTimeout(() => document.getElementById('flagComment')?.focus(), 100);
     }
 
@@ -2305,6 +2355,9 @@
         boardPush(pendingScore.score, pendingScore.level, name);
         pendingScore = null;
         finishGameUI();
+        if (typeof _syncProgressToCloud === 'function') {
+          _syncProgressToCloud().catch(() => {});
+        }
         return;
       }
 
@@ -2497,7 +2550,7 @@
         </div>
       `;
 
-      modal.addEventListener('click', e => { if(e.target === modal) modal.remove(); });
+      // modal.addEventListener('click', e => { if(e.target === modal) modal.remove(); });
       document.body.appendChild(modal);
     }
     window.showForjaModal = showForjaModal;
@@ -2606,7 +2659,7 @@
       saveGame();
     }
 
-    function showForgePopup(item, slot, gains){
+    function showForgePopup(item, slot, gains, title = '🔨 Forja Concluída!'){
       const icon = itemIcons[item.n] || defaultIcons[slot];
       const desc = itemDescriptions[item.n] || '';
       const rarLabels = {common:'Comum', uncommon:'Incomum', rare:'Raro', epic:'Épico', legendary:'Lendário'};
@@ -2614,7 +2667,7 @@
       popup.className='forge-popup';
       popup.innerHTML=`
         <div class='forge-card'>
-          <h3>🔨 Forja Concluída!</h3>
+          <h3>${title}</h3>
           <img src='${icon}' alt='${item.n}'/>
           <p class='rar-${item.rar}' style='font-size:1.1rem;font-weight:700'>${item.n}</p>
           <p style='font-size:0.72rem;color:var(--txt-dim);margin-bottom:2px'>${slotLabels[slot]} &nbsp;·&nbsp; <span class='rar-${item.rar}'>${rarLabels[item.rar]||item.rar}</span></p>
@@ -2627,7 +2680,7 @@
         </div>
       `;
       document.body.appendChild(popup);
-      popup.addEventListener('click',(e)=>{if(e.target===popup) popup.remove();});
+      // popup.addEventListener('click',(e)=>{if(e.target===popup) popup.remove();});
     }
 
 
@@ -2650,23 +2703,28 @@
       popup.className = 'nq-overlay';
       popup.style.cssText = 'z-index:9998;background:rgba(0,0,0,0.7);';
       popup.innerHTML = `
-        <div style="position:relative;background:linear-gradient(160deg,#1a2a0a,#0e1830,#2a1a00);border:2px solid #ffd700;border-radius:16px;padding:26px 24px;max-width:420px;width:100%;box-shadow:0 0 50px rgba(255,215,0,0.25);text-align:center;animation:scaleIn 0.35s;">
+        <div style="position:relative;background:linear-gradient(160deg,#1a2a0a,#0e1830,#2a1a00);border:2px solid #ffd700;border-radius:16px;padding:26px 24px;max-width:440px;width:100%;box-shadow:0 0 50px rgba(255,215,0,0.25);text-align:center;animation:scaleIn 0.35s;">
           <button type="button" data-remove-id="goldMilestonePopup" style="position: absolute; top: 12px; right: 16px; background: none; border: none; color: #ffd700; font-size: 1.2rem; cursor: pointer; z-index: 10;">✕</button>
           <div style="font-size:2.4rem;margin-bottom:8px;">💰</div>
           <h3 style="color:#ffd700;font-family:'Cinzel',serif;font-size:1.05rem;letter-spacing:1px;margin-bottom:6px;">${GOLD_MILESTONE} de Ouro!</h3>
           <p style="color:#c8d8f0;font-size:0.85rem;line-height:1.6;margin-bottom:18px;">
-            Você acumulou ouro suficiente para forjar equipamentos na Forja:
+            Você acumulou ouro! O ouro é um recurso precioso que pode ser utilizado de várias maneiras estratégicas na sua jornada:
           </p>
           <div style="display:flex;flex-direction:column;gap:10px;text-align:left;">
-            <div style="background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.25);border-radius:10px;padding:12px 14px;">
-              <span style="color:#a5b4fc;font-weight:700;">⚒️ Forjar Item Comum</span>
-              <span style="color:#94a3b8;font-size:0.8rem;"> — 300 ouro</span>
-              <p style="color:#cbd5e1;font-size:0.78rem;margin:4px 0 0;">Acumule mais <strong style="color:#a5b4fc;">+${300 - GOLD_MILESTONE} ouro</strong> para forjar um equipamento.</p>
+            <div style="background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.25);border-radius:10px;padding:12px 14px;">
+              <span style="color:#fcd34d;font-weight:700;">📦 Abrir Baú de Relíquias</span>
+              <span style="color:#94a3b8;font-size:0.8rem;"> — Custo atual: ${chestCost} ouro</span>
+              <p style="color:#cbd5e1;font-size:0.78rem;margin:4px 0 0;">Abra baús no dock de ações para liberar novos artigos/pergaminhos científicos de nefrologia ou encontrar novos equipamentos.</p>
             </div>
-            <div style="background:rgba(234,179,8,0.06);border:1px solid rgba(234,179,8,0.2);border-radius:10px;padding:12px 14px;">
-              <span style="color:#fbbf24;font-weight:700;">👑 Forjar Item Lendário</span>
-              <span style="color:#94a3b8;font-size:0.8rem;"> — 1000 ouro</span>
-              <p style="color:#cbd5e1;font-size:0.78rem;margin:4px 0 0;">Acumule mais <strong style="color:#fbbf24;">+${1000 - GOLD_MILESTONE} ouro</strong> para o item mais poderoso.</p>
+            <div style="background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.25);border-radius:10px;padding:12px 14px;">
+              <span style="color:#a5b4fc;font-weight:700;">⚒️ Forja de Equipamentos</span>
+              <span style="color:#94a3b8;font-size:0.8rem;"> — 300 / 1000 ouro</span>
+              <p style="color:#cbd5e1;font-size:0.78rem;margin:4px 0 0;">Use a Forja para criar equipamentos comuns (300 ouro) ou lendários (1000 ouro) e fortalecer seus atributos.</p>
+            </div>
+            <div style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25);border-radius:10px;padding:12px 14px;">
+              <span style="color:#fca5a5;font-weight:700;">❤️ Pergunta Bônus ao Final</span>
+              <span style="color:#94a3b8;font-size:0.8rem;"> — 1500 ouro</span>
+              <p style="color:#cbd5e1;font-size:0.78rem;margin:4px 0 0;">Caso perca todas as vidas no meio da jornada, use 1500 de ouro para comprar uma pergunta bônus (renascer) e continuar pontuando.</p>
             </div>
           </div>
           <button data-remove-id="goldMilestonePopup"
@@ -2675,7 +2733,6 @@
           </button>
         </div>`;
       document.body.appendChild(popup);
-      popup.addEventListener('click', e => { if (e.target === popup) popup.remove(); });
       playSound('chest');
     }
 
@@ -2735,24 +2792,68 @@
       popup.id = 'autoChestPopup';
       
       popup.innerHTML = `
+        <style>
+          @keyframes chestOpenAnim {
+            0% { transform: scale(1) rotate(0deg); }
+            15% { transform: scale(1.1) rotate(-8deg); }
+            30% { transform: scale(1.1) rotate(8deg); }
+            45% { transform: scale(1.15) rotate(-4deg); }
+            60% { transform: scale(1.15) rotate(4deg); }
+            75% { transform: scale(1.2) rotate(0deg); filter: drop-shadow(0 0 35px rgba(251, 191, 36, 0.95)); }
+            100% { transform: scale(0); opacity: 0; }
+          }
+          .chest-img-clickable {
+            width: 130px;
+            height: auto;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+            filter: drop-shadow(0 0 15px rgba(251, 191, 36, 0.5));
+            transition: transform 0.2s, filter 0.2s;
+            animation: bounce 2s infinite;
+          }
+          .chest-img-clickable:hover {
+            transform: scale(1.08);
+            filter: drop-shadow(0 0 25px rgba(251, 191, 36, 0.85));
+          }
+          .chest-img-clickable.opening {
+            animation: chestOpenAnim 0.6s ease-in-out forwards;
+            pointer-events: none;
+          }
+        </style>
         <div class="narrative-card" style="border-color: #fbbf24; box-shadow: 0 0 40px rgba(251, 191, 36, 0.45);">
           <div class="narr-chapter" style="color: #fbbf24;">Encontro Inesperado</div>
           <h3>✨ Baú de Relíquias Ancestrais</h3>
-          <div style="text-align: center; margin: 15px 0;">
-            <span style="font-size: 4.5rem; display: block; filter: drop-shadow(0 0 15px rgba(251, 191, 36, 0.6)); animation: bounce 2s infinite;">🎁</span>
+          
+          <img src="assets/chest_icon.png" alt="Baú" class="chest-img-clickable" data-action="_animateAndClaimChest" data-pass-this="1" />
+          
+          <div class="narr-text" style="color: #fff8dc; font-style: italic; line-height: 1.6; font-size: 0.88rem; text-align: center; margin-top: 15px;">
+            Enquanto purifica os néfrons das correntes urêmicas, uma pulsação dourada sob as névoas chama sua atenção. Você encontrou um baú misterioso deixado pelos antigos patronos da nefrologia.<br><br>
+            <strong style="color: #fbbf24; font-family: 'Cinzel', serif; display: block; font-size: 0.9rem; animation: pulse 1.5s infinite;">⚡ Toque no baú para abrir! ⚡</strong>
           </div>
-          <div class="narr-text" style="color: #fff8dc; font-style: italic; line-height: 1.6; font-size: 0.88rem;">
-            Enquanto purifica os néfrons das correntes urêmicas, uma pulsação dourada sob as névoas chama sua atenção. Você encontrou um baú misterioso deixado pelos antigos patronos da nefrologia. Suas runas brilham, aguardando o toque da sabedoria.
-          </div>
-          <button class="btn gold" data-action="claimChestReward" data-remove-id="autoChestPopup" style="width: 100%; margin-top: 15px; font-family: 'Cinzel', serif; font-weight: 700; letter-spacing: 1px;">
-            🔓 ABRIR BAÚ
-          </button>
         </div>
       `;
       document.body.appendChild(popup);
       playSound('chest');
     }
     window.triggerChestRewardPopup = triggerChestRewardPopup;
+
+    function _animateAndClaimChest(img) {
+      if (img.classList.contains('opening')) return;
+      img.classList.add('opening');
+      const card = img.closest('.narrative-card');
+      if (card) {
+        card.style.transition = 'opacity 0.6s';
+        card.style.opacity = '0.75';
+      }
+      playSound('click');
+      setTimeout(() => {
+        const popup = document.getElementById('autoChestPopup');
+        if (popup) popup.remove();
+        claimChestReward();
+      }, 600);
+    }
+    window._animateAndClaimChest = _animateAndClaimChest;
 
     function claimChestReward() {
       if(state.gameOver){ log('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
@@ -2806,7 +2907,7 @@
         state.score += chestPoints;
         
         equipOrSell(rolled.slot, rolled.item, (msg) => {
-          showForgePopup(rolled.item, rolled.slot, [`⚔️ ATK ${rolled.item.atk}`, `🛡️ DEF ${rolled.item.def}`, `📚 CONH ${rolled.item.kno}`, `🍀 SORTE ${rolled.item.luck}`]);
+          showForgePopup(rolled.item, rolled.slot, [`⚔️ ATK ${rolled.item.atk}`, `🛡️ DEF ${rolled.item.def}`, `📚 CONH ${rolled.item.kno}`, `🍀 SORTE ${rolled.item.luck}`], '🛡️ Equipamento Encontrado!');
           log(`🎁 Baú de Equipamento! ${msg}`);
           renderHUD();
           updateBadges();
@@ -2821,6 +2922,9 @@
       chestPoints = chestPoints || 0;
       const modal = document.getElementById('chestModal');
       const articleDiv = document.getElementById('chestArticle');
+      
+      const titleEl = document.getElementById('chestTitle');
+      if (titleEl) titleEl.textContent = '📜 Pergaminho Encontrado!';
       
       articleDiv.innerHTML = `
         <div style="text-align:center;margin-bottom:12px;padding:10px;background:rgba(0,255,100,0.1);border:1px solid rgba(0,255,100,0.3);border-radius:8px;">
@@ -3347,9 +3451,9 @@
           <button class="lore-close" data-remove-id="heroLoreModal">FECHAR</button>
         </div>
       `;
-      modal.addEventListener('click', function(e) {
-        if(e.target === modal) modal.remove();
-      });
+      // modal.addEventListener('click', function(e) {
+      //   if(e.target === modal) modal.remove();
+      // });
       document.body.appendChild(modal);
     }
     window.showHeroLore = showHeroLore;
@@ -3751,7 +3855,8 @@
       if (el) el.classList.remove('show');
     }
     function closeGameModesPopupOutside(e) {
-      if (e.target === document.getElementById('gameModesOverlay')) closeGameModesPopup();
+      // closeGameModesPopupOutside desativado para cliques fora (evita fechar acidentalmente)
+      // if (e.target === document.getElementById('gameModesOverlay')) closeGameModesPopup();
     }
 
 
@@ -3764,6 +3869,11 @@
       if (!document.hidden) {
         const ws = document.getElementById('welcomeScreen');
         if (ws && !ws.classList.contains('hidden')) refreshWelcomeSave();
+      } else {
+        // Quando entra em background, força sincronização imediata
+        if (typeof _syncProgressToCloud === 'function') {
+          _syncProgressToCloud().catch(() => {});
+        }
       }
     });
 
@@ -3797,6 +3907,9 @@
       document.getElementById('diffSelectorOverlay')?.remove();
       state.difficulty = diff;
       deleteSave();
+      if (typeof _syncProgressToCloud === 'function') {
+        _syncProgressToCloud().catch(() => {});
+      }
       // Revalida premium do servidor — impede bypass via localStorage
       _loadPremiumFromDB().catch(() => {});
       if (fromWelcome === true) dismissWelcome();
@@ -3889,9 +4002,9 @@
           <button data-close-closest=".privacy-popup" style="margin-top:14px;width:100%;background:rgba(96,165,250,0.15);border:1px solid rgba(96,165,250,0.4);color:var(--blue);border-radius:8px;padding:10px;font-family:'Cinzel',serif;cursor:pointer;font-size:0.85rem;">Fechar</button>
         </div>
       `;
-      modal.addEventListener('click', function(e) {
-        if (e.target === modal) modal.remove();
-      });
+      // modal.addEventListener('click', function(e) {
+      //   if (e.target === modal) modal.remove();
+      // });
       document.body.appendChild(modal);
     }
     window.showPrivacyPolicy = showPrivacyPolicy;

@@ -576,7 +576,7 @@
         window._pendingDiff = selectedDiff;
       }
 
-      overlay.addEventListener('click', e => { if(e.target===overlay) overlay.remove(); });
+      // overlay.addEventListener('click', e => { if(e.target===overlay) overlay.remove(); }); // disabled to prevent accidental closing
       document.body.appendChild(overlay);
       renderDiff();
     }
