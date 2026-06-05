@@ -14,6 +14,22 @@
 
           <div class="modal-scroll-body" style="text-align:left;">
 
+            <!-- v11.47 -->
+            <div style="background:linear-gradient(135deg,rgba(96,165,250,0.18),rgba(96,165,250,0.06));border:2px solid rgba(96,165,250,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                <span style="background:rgba(96,165,250,0.9);color:#0f172a;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v11.47</span>
+                <span style="color:#eff6ff;font-weight:bold;font-size:0.95rem;">Ascensão da Usabilidade</span>
+              </div>
+              <ul style="margin:0;padding-left:18px;color:#c8d8f0;font-size:0.82rem;line-height:1.8;">
+                <li><strong>Estudo Livre Offline 📡</strong> — Estude de qualquer lugar sem internet; suas respostas são salvas localmente e sincronizadas automaticamente ao restabelecer a conexão</li>
+                <li><strong>Atalhos de Teclado ⌨️</strong> — Responda com facilidade usando as teclas 1-4 ou A-D e avance usando Enter ou Espaço</li>
+                <li><strong>Dano Flutuante e Tátil 🎮</strong> — Feedbacks de combate dinâmicos na barra de vida e vibrações táteis calibradas para respostas certas, erradas e níveis</li>
+                <li><strong>Histórico Completo & Explorer 🔍</strong> — Nova aba no painel para pesquisar por termos (ex: IgA, Lupus, iSGLT2) e revisar erros recentes</li>
+                <li><strong>Previsão de Revisões (SRS) 📈</strong> — Planeje suas sessões com base em um gráfico de revisões pendentes para os próximos 7 dias</li>
+                <li><strong>Ajustes Finos de Layout 📱</strong> — Correção de espaçamento inferior (safe area) no mobile e destaque visual para o seu principal Ponto Fraco</li>
+              </ul>
+            </div>
+
             <!-- v11.45 -->
             <div style="background:linear-gradient(135deg,rgba(251,191,36,0.18),rgba(251,191,36,0.06));border:2px solid rgba(251,191,36,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
