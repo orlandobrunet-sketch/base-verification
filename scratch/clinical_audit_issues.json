@@ -1,0 +1,50 @@
+[
+  {
+    "severity": "dangerous",
+    "qid": "e56795a6",
+    "title": "Controle de PA na DRC e Diabetes Tipo 2",
+    "axis": "hipertensao / kdigo",
+    "problem": "Meta de PAS na DRC desatualizada/incorreta (< 130 mmHg como resposta correta e alegando que < 120 mmHg não é recomendada, contradizendo o KDIGO 2021/2024 e o estudo BPROAD).",
+    "current_ans": "PAS < 130 mmHg",
+    "suggested_ans": "PAS < 120 mmHg (medida de forma padronizada)",
+    "evidence": "KDIGO 2021/2024 recomendam meta de PAS < 120 mmHg em DRC não dialítica. O BPROAD (2024) confirmou esse benefício em DM2 + DRC.",
+    "pedagogical_risk": "Ensina conduta incorreta e desatualizada aos alunos, gerando confusão com outras questões do próprio app (ex: e8a59de8) que trazem o alvo correto de < 120 mmHg.",
+    "correction": "Corrigir o gabarito e a explicação de e56795a6 para apontar < 120 mmHg como correto, e atualizar 1e0e571c."
+  },
+  {
+    "severity": "regular",
+    "qid": "9961a406",
+    "title": "Nefropatia por IgA e Óleo de Peixe (KDIGO)",
+    "axis": "glomerular / kdigo",
+    "problem": "Recomendação de óleo de peixe na nefropatia por IgA desatualizada.",
+    "current_ans": "Pode ser considerado em pacientes com proteinúria persistente, mas a evidência é considerada fraca e os resultados inconsistentes",
+    "suggested_ans": "KDIGO 2021 sugere não utilizar óleo de peixe rotineiramente (Grau 2D), priorizando SRAA, iSGLT2 e imunossupressão conforme risco.",
+    "evidence": "Diretriz KDIGO 2021 de Glomerulopatias desaconselha o uso rotineiro de ômega-3, ao contrário da diretriz de 2012 que o considerava.",
+    "pedagogical_risk": "Ensina conduta de suporte desatualizada (óleo de peixe), que perdeu espaço para os inibidores de SGLT2 e novos agentes específicos (como sparsentan e Nefecon).",
+    "correction": "Atualizar a questão e a explicação para destacar que o óleo de peixe não é mais recomendado de rotina pelo KDIGO 2021/2024."
+  },
+  {
+    "severity": "ruim",
+    "qid": "920621f6",
+    "title": "Acidose metabólica na DRC",
+    "axis": "acido_base / drc",
+    "problem": "Alucinação na referência da explicação (cita o estudo CONVINCE para a suplementação de bicarbonato na DRC).",
+    "current_ans": "Corrigir acidose metabólica de forma gradual para meta clínica, monitorando sódio e volume",
+    "suggested_ans": "Corrigir acidose metabólica de forma gradual para meta clínica, monitorando sódio e volume",
+    "evidence": "O estudo CONVINCE avaliou hemodiafiltração de alta dose vs hemodiálise de alto fluxo, não tendo qualquer relação com bicarbonato oral para acidose metabólica na DRC.",
+    "pedagogical_risk": "Cita evidência científica errada e inexistente para apoiar um tratamento clínico, comprometendo o rigor acadêmico do app.",
+    "correction": "Substituir a citação do estudo CONVINCE por referências adequadas (como as diretrizes KDIGO CKD ou estudos clássicos de repor bicarbonato, ex: de Brito-Ashurst, 2009)."
+  },
+  {
+    "severity": "dangerous",
+    "qid": "1e0e571c",
+    "title": "Hipertensão e Rins",
+    "axis": "hipertensao / kdigo",
+    "problem": "Meta de PAS na DRC desatualizada/incorreta (< 130 mmHg como resposta correta e alegando que < 120 mmHg não é recomendada, contradizendo o KDIGO 2021/2024 e o estudo BPROAD).",
+    "current_ans": "PA < 130/80 mmHg (ou < 120 mmHg sistólica em pacientes de alto risco sem proteinúria",
+    "suggested_ans": "PAS < 120 mmHg (medida de forma padronizada)",
+    "evidence": "KDIGO 2021/2024 recomendam meta de PAS < 120 mmHg em DRC não dialítica. O BPROAD (2024) confirmou esse benefício em DM2 + DRC.",
+    "pedagogical_risk": "Ensina conduta incorreta e desatualizada aos alunos, gerando confusão com outras questões do próprio app (ex: e8a59de8) que trazem o alvo correto de < 120 mmHg.",
+    "correction": "Corrigir o gabarito e a explicação de e56795a6 para apontar < 120 mmHg como correto, e atualizar 1e0e571c."
+  }
+]
