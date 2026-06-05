@@ -2046,9 +2046,10 @@
   function _chapterOf(meta){ return `${meta.caso} — ${meta.title}`; }
 
   // Um caso é jogável se: tem build() E (é o primeiro OU o anterior já foi
-  // concluído). Casos sem build() ficam sempre bloqueados ("Em breve").
+  // concluído OU o usuário for admin). Casos sem build() ficam sempre bloqueados ("Em breve").
   function _isPlayable(meta, completed){
     if (typeof meta.build !== 'function') return false;
+    if (typeof isAdminUser === 'function' && isAdminUser()) return true;
     const idx = CASES.indexOf(meta);
     if (idx <= 0) return true;
     return completed.has(CASES[idx - 1].id);

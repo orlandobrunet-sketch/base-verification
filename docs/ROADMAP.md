@@ -166,9 +166,9 @@ Toda tarefa deve ser solicitada explicitamente pelo usuário.
 
 ### Minigame Ácido-Base
 
-| # | Tarefa | Detalhe |
-|---|--------|---------|
-| M1 | Minigame Ácido-Base interativo | Modo de jogo educacional com narrativa que ensina diagnóstico e manejo de distúrbios ácido-base |
+| # | Tarefa | Detalhe | Status |
+|---|--------|---------|--------|
+| M1 | Minigame Ácido-Base interativo | Modo de jogo educacional com narrativa que ensina diagnóstico e manejo de distúrbios ácido-base | **Concluído (v11.47)** |
 
 **Conceito:**
 - **Narrativa:** o jogador é um "Alquimista Renal" chamado para equilibrar o pH do reino. Cada caso clínico é apresentado como uma missão — um personagem do reino com sintomas
@@ -704,3 +704,9 @@ Abordagem: **CSS-first** (sem dependência de imagens externas) com substituiç�
 - [x] A11y: Touch targets — `min-height: 44px` em `.profile-popup-item` e `.profile-popup-logout`
 - [x] Performance: `width`/`height` em 11 imagens estáticas (previne CLS)
 - [x] Architecture: Profile popup deduplicado — 4 cópias idênticas → 1 `<template>` + injeção JS
+- [x] Minigame Ácido-Base (Câmara do Equilíbrio) — 20 casos clínicos interativos simulando distúrbios simples, mistos e triplos com feedbacks pedagógicos avançados e bypass de administrador.
+- [x] Melhorias de UX, RPG e Atalhos de Teclado (v11.47) — Feedbacks táteis aprimorados, danos de combate flutuantes, atalhos de teclado 1-4 / A-D em campanha e estudo, e z-index otimizado.
+- [x] Dashboard Detalhado (v11.47) — Forecast de revisões SuperMemo SRS em barras, explorador e buscador de histórico de questões respondidas com explicações, e badge visual para o pior eixo ("Ponto Fraco").
+- [x] Estudo Livre Offline (v11.47) — Página offline.html customizada com cache de topics.js, atalhos físicos e sincronização automática e transparente para o Supabase no retorno de conectividade.
+- [x] Versão: **11.47**
+
