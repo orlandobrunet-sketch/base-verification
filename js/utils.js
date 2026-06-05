@@ -112,6 +112,22 @@
     }
 
     // ── Grimório de Conhecimento ──────────────────────────────────────────
+    let _bibActiveFilter = 'all';
+
+    function _setBibFilter(filterName, btn) {
+      _bibActiveFilter = filterName;
+      const filterWrap = document.getElementById('bibFilters');
+      if (filterWrap) {
+        filterWrap.querySelectorAll('.bib-filter-btn').forEach(b => {
+          b.classList.toggle('active', b === btn || b.dataset.arg === filterName);
+        });
+      }
+      const searchEl = document.getElementById('bibSearch');
+      _bibRenderList(searchEl ? searchEl.value : '');
+      if (typeof playSound === 'function') playSound('click');
+    }
+    window._setBibFilter = _setBibFilter;
+
     const rarityColors = {
       comum: { text: '#94a3b8', bg: 'rgba(148,163,184,0.06)', border: 'rgba(148,163,184,0.2)', label: 'Comum' },
       raro: { text: '#38bdf8', bg: 'rgba(14,165,233,0.08)', border: 'rgba(14,165,233,0.3)', label: 'Raro' },
@@ -294,7 +310,18 @@
         : '';
 
       // Visíveis: desbloqueados + artigos bloqueados individualmente
-      const visibleItems = q ? filtered : [...unlockedItems, ...lockedArts];
+      let visibleItems = q ? filtered : [...unlockedItems, ...lockedArts];
+
+      if (_bibActiveFilter === 'legendary') {
+        visibleItems = visibleItems.filter(it => it.raridade === 'legendary' || it.raridade === 'lendário' || it.raridade === 'lendária');
+      } else if (_bibActiveFilter === 'epic') {
+        visibleItems = visibleItems.filter(it => it.raridade === 'epic' || it.raridade === 'épico' || it.raridade === 'épica');
+      } else if (_bibActiveFilter === 'rare') {
+        visibleItems = visibleItems.filter(it => it.raridade === 'rare' || it.raridade === 'raro' || it.raridade === 'uncommon' || it.raridade === 'incomum');
+      } else if (_bibActiveFilter === 'guideline') {
+        visibleItems = visibleItems.filter(it => it.tipo === 'GUIDELINE' || (it.label && it.label.toLowerCase().includes('kdigo')) || (it.jornal && it.jornal.toLowerCase().includes('kdigo')));
+      }
+
       _bibVisibleItems = visibleItems;
 
       if (!visibleItems.length && !hintCard) {
@@ -346,6 +373,13 @@
     function openBibliotecaModal() {
       const modal = document.getElementById('bibliotecaModal');
       if (!modal) return;
+      _bibActiveFilter = 'all';
+      const filterWrap = document.getElementById('bibFilters');
+      if (filterWrap) {
+        filterWrap.querySelectorAll('.bib-filter-btn').forEach(b => {
+          b.classList.toggle('active', b.dataset.arg === 'all');
+        });
+      }
       _bibItems = null; // rebuild para refletir baús recém-abertos
       modal.classList.remove('hidden');
       _bibRenderList('');

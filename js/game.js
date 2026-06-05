@@ -1956,9 +1956,9 @@
         if (type === 'correct') {
           navigator.vibrate([40, 30, 40]);
         } else if (type === 'wrong') {
-          navigator.vibrate(120);
+          navigator.vibrate(300);
         } else if (type === 'levelup') {
-          navigator.vibrate([100, 50, 100, 50, 150]);
+          navigator.vibrate([60, 40, 120, 40, 220]);
         }
       } catch (e) {}
     }
@@ -2053,6 +2053,23 @@
         // Boss log & damage animation
         if (isBossBattle()) {
           const dmg = Math.floor(st.atk * 8 + st.kno * 5 + state.streak * 5);
+          
+          // Dano flutuante sobre a imagem do Nefromante
+          const bossImg = document.getElementById('arquiBossImgEl');
+          let bx, by;
+          if (bossImg && typeof bossImg.getBoundingClientRect === 'function') {
+            const rect = bossImg.getBoundingClientRect();
+            if (rect.width > 0 && rect.height > 0) {
+              bx = rect.left + rect.width / 2 + window.scrollX;
+              by = rect.top + rect.height / 2 + window.scrollY;
+            }
+          }
+          if (bx !== undefined && by !== undefined) {
+            showFloatingFeedback(`-${dmg} HP`, true, bx, by);
+          } else {
+            showFloatingFeedback(`-${dmg} HP`, true, x, y);
+          }
+
           const hpBefore = Math.min(100, getBossHP() + 10);
           const hpAfter  = getBossHP();
           
@@ -2144,10 +2161,24 @@
         if(!blocked) state.lives--;
         state.score=Math.max(0,state.score-(28-Math.min(20,st.def)));
 
+        let lx, ly;
+        const livesEl = document.getElementById('lives') || document.getElementById('msbLivesIcons');
+        if (livesEl && typeof livesEl.getBoundingClientRect === 'function') {
+          const rect = livesEl.getBoundingClientRect();
+          if (rect.width > 0 && rect.height > 0) {
+            lx = rect.left + rect.width / 2 + window.scrollX;
+            ly = rect.top + rect.height / 2 + window.scrollY;
+          }
+        }
+        if (lx === undefined || ly === undefined) {
+          lx = x;
+          ly = y;
+        }
+
         if (blocked) {
-          showFloatingFeedback('🛡️ Absorvido', true, x, y);
+          showFloatingFeedback('🛡️ Absorvido', true, lx, ly);
         } else {
-          showFloatingFeedback('-1 ❤️', false, x, y);
+          showFloatingFeedback('-1 ❤️', false, lx, ly);
         }
 
         ui.feedback.className='feedback bad';
@@ -2942,6 +2973,7 @@
       
       // Histórico (últimas 100)
       stats.questionHistory.unshift({
+        qid: question.qid,
         topic: topic,
         correct: isCorrect,
         time: timeSpent,
@@ -2949,6 +2981,17 @@
       });
       if (stats.questionHistory.length > 100) {
         stats.questionHistory = stats.questionHistory.slice(0, 100);
+      }
+
+      // Persistir ID no conjunto de todas as respondidas
+      try {
+        const answeredQids = JSON.parse(localStorage.getItem('nefroquest-all-answered-qids') || '[]');
+        if (question.qid && !answeredQids.includes(question.qid)) {
+          answeredQids.push(question.qid);
+          localStorage.setItem('nefroquest-all-answered-qids', JSON.stringify(answeredQids));
+        }
+      } catch (e) {
+        console.error('[NQ] save all-answered-qids failed', e);
       }
 
       // Evitar duplo-registro na sincronização retroativa
@@ -3937,4 +3980,88 @@
       const popup = document.getElementById('arquiQ9Popup');
       if (popup) popup.style.display = 'none';
     };
+
+    // ============ ATALHOS DE TECLADO (Acessibilidade Desktop) ============
+    document.addEventListener('keydown', function(e) {
+      const activeEl = document.activeElement;
+      if (activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA' || activeEl.isContentEditable)) {
+        return; // Ignorar quando o usuário estiver digitando
+      }
+
+      const key = e.key.toUpperCase();
+
+      // Fechar popups narrativos com Enter ou Space se algum estiver na tela
+      const overlayBtn = document.querySelector('#charIntroOverlay button') || 
+                         document.querySelector('.narrative-popup button') ||
+                         document.getElementById('arquiQ9CloseBtn');
+      
+      if (overlayBtn && (key === 'ENTER' || key === ' ')) {
+        const visibleOverlay = overlayBtn.closest('.narrative-popup') || 
+                              document.getElementById('charIntroOverlay') || 
+                              document.getElementById('arquiQ9Popup');
+        if (visibleOverlay && visibleOverlay.style.display !== 'none' && !visibleOverlay.classList.contains('hidden')) {
+          e.preventDefault();
+          overlayBtn.click();
+          return;
+        }
+      }
+
+      // 1. Caso 1: Modo Estudo (Revisão Espaçada / Reforço)
+      const studyPage = document.getElementById('studyModePage');
+      const isStudyPageActive = studyPage && !studyPage.classList.contains('hidden') && studyPage.style.display !== 'none';
+      
+      if (isStudyPageActive) {
+        const feedback = document.getElementById('studyFeedback');
+        const isAnswered = feedback && feedback.style.display === 'block';
+
+        if (isAnswered) {
+          if (key === 'ENTER' || key === ' ') {
+            e.preventDefault();
+            const nextBtn = studyPage.querySelector('[data-action="nextStudyQuestion"]');
+            if (nextBtn) nextBtn.click();
+          }
+        } else {
+          const optionKeys = ['1', '2', '3', '4', 'A', 'B', 'C', 'D'];
+          const optIdx = optionKeys.indexOf(key) % 4;
+          if (optIdx >= 0) {
+            e.preventDefault();
+            const btns = studyPage.querySelectorAll('.study-option-btn');
+            if (btns && btns[optIdx] && !btns[optIdx].disabled) {
+              btns[optIdx].click();
+            }
+          }
+        }
+        return;
+      }
+
+      // 2. Caso 2: Modo Campanha RPG (Jogo Normal)
+      const mainApp = document.getElementById('mainApp');
+      const welcome = document.getElementById('welcomeScreen');
+      const isNormalGameActive = mainApp && !mainApp.classList.contains('hidden') && (!welcome || welcome.classList.contains('hidden'));
+
+      if (isNormalGameActive) {
+        const isAnswered = state.answered;
+
+        if (isAnswered) {
+          if (key === 'ENTER' || key === ' ') {
+            e.preventDefault();
+            const nextBtn = document.getElementById('nextBtn');
+            if (nextBtn && !nextBtn.disabled && nextBtn.style.display !== 'none') {
+              nextBtn.click();
+            }
+          }
+        } else {
+          const optionKeys = ['1', '2', '3', '4', 'A', 'B', 'C', 'D'];
+          const optIdx = optionKeys.indexOf(key) % 4;
+          if (optIdx >= 0) {
+            e.preventDefault();
+            const btns = document.querySelectorAll('#options .option');
+            if (btns && btns[optIdx] && !btns[optIdx].disabled) {
+              btns[optIdx].click();
+            }
+          }
+        }
+        return;
+      }
+    });
 

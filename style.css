@@ -1221,6 +1221,37 @@
       white-space: nowrap; font-family: 'Cinzel', serif;
       letter-spacing: 0.5px;
     }
+    .bib-filters {
+      display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px;
+      scrollbar-width: none; -ms-overflow-style: none;
+      width: 100%;
+    }
+    .bib-filters::-webkit-scrollbar { display: none; }
+    .bib-filter-btn {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      color: rgba(100,130,180,0.7);
+      padding: 5px 12px;
+      font-size: 0.7rem;
+      font-family: 'Philosopher', sans-serif;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+      outline: none;
+    }
+    .bib-filter-btn:hover {
+      background: rgba(255,255,255,0.08);
+      color: var(--txt);
+      border-color: rgba(255,255,255,0.15);
+    }
+    .bib-filter-btn.active {
+      background: rgba(255,215,0,0.12);
+      border-color: var(--gold);
+      color: var(--gold);
+      font-weight: bold;
+      box-shadow: 0 0 10px rgba(255,215,0,0.15);
+    }
     @media (max-width: 768px) {
       .bib-modal { max-height: min(90svh, 90dvh, 90vh); width: 98vw; }
       .bib-header { padding: 12px 14px 10px; }

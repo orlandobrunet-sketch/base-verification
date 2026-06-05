@@ -3,54 +3,484 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NefroQuest — Sem conexão</title>
+  <title>NefroQuest — Estudo Offline</title>
+  <!-- Carregar a folha de estilos do NefroQuest se estiver cacheada -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Fontes do Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=Philosopher:wght@400;700&family=MedievalSharp&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=Philosopher:wght@400;700&family=MedievalSharp&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=Philosopher:wght@400;700&family=MedievalSharp&display=swap"></noscript>
+
   <style>
+    /* Estilos de backup caso style.css não carregue ou falhe offline */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      min-height: 100dvh;
-      background: linear-gradient(135deg, #0a0e1a 0%, #0d1527 50%, #0a0e1a 100%);
+      min-height: 100vh;
+      background: linear-gradient(180deg, #0a1020 0%, #060d18 100%);
       color: #d5e2ff;
-      font-family: system-ui, -apple-system, sans-serif;
+      font-family: 'Philosopher', system-ui, -apple-system, sans-serif;
+      padding: 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 24px;
     }
-    .icon { font-size: 4rem; margin-bottom: 20px; }
-    h1 {
-      font-size: 1.4rem;
-      font-weight: 700;
+    
+    .nq-off-container {
+      max-width: 700px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-bottom: 40px;
+    }
+
+    .nq-off-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 215, 0, 0.03);
+      border: 1px solid rgba(255, 215, 0, 0.15);
+      border-radius: 12px;
+      padding: 12px 18px;
+      margin-top: 10px;
+    }
+
+    .nq-off-title {
+      font-size: 1.1rem;
       color: #ffd700;
-      margin-bottom: 10px;
-      letter-spacing: 0.05em;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    p {
-      font-size: 0.9rem;
-      color: #90b4e0;
-      max-width: 320px;
-      line-height: 1.6;
-      margin-bottom: 28px;
+
+    .nq-off-sync-banner {
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.76rem;
+      color: #93c5fd;
+      line-height: 1.4;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
-    button {
-      background: linear-gradient(180deg, #3b82f6, #1d4ed8);
-      border: none;
-      color: #fff;
-      padding: 12px 28px;
-      border-radius: 10px;
-      font-size: 0.9rem;
+
+    .nq-off-card {
+      background: linear-gradient(180deg, #161d30, #0d1424);
+      border: 2px solid rgba(59, 130, 246, 0.2);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .nq-off-topic {
+      display: inline-block;
+      align-self: flex-start;
+      background: rgba(139, 92, 246, 0.2);
+      color: #a78bfa;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.72rem;
       font-weight: 600;
-      cursor: pointer;
-      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
-    button:active { opacity: 0.85; }
+
+    .nq-off-question {
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.6;
+      color: #fff;
+    }
+
+    .nq-off-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .nq-off-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      background: linear-gradient(180deg, #1e293b, #0f172a);
+      border: 1.5px solid #334155;
+      border-radius: 10px;
+      padding: 14px 18px;
+      text-align: left;
+      color: #d5e2ff;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      outline: none;
+    }
+
+    .nq-off-btn:hover:not(:disabled) {
+      border-color: #ffd700;
+      background: linear-gradient(180deg, #1e3a5f, #0f172a);
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.15);
+    }
+
+    .nq-off-btn:disabled {
+      cursor: default;
+      opacity: 0.8;
+    }
+
+    .nq-off-btn.correct {
+      border-color: #34d399 !important;
+      background: rgba(52, 211, 153, 0.15) !important;
+      color: #34d399 !important;
+    }
+
+    .nq-off-btn.wrong {
+      border-color: #fb7185 !important;
+      background: rgba(251, 113, 133, 0.15) !important;
+      color: #fb7185 !important;
+    }
+
+    .nq-off-feedback {
+      border-radius: 10px;
+      padding: 16px;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .nq-off-feedback.good {
+      background: rgba(52, 211, 153, 0.08);
+      border: 1.5px solid rgba(52, 211, 153, 0.3);
+      color: #d1fae5;
+    }
+
+    .nq-off-feedback.bad {
+      background: rgba(251, 113, 133, 0.08);
+      border: 1.5px solid rgba(251, 113, 133, 0.3);
+      color: #ffe4e6;
+    }
+
+    .btn-next {
+      background: linear-gradient(180deg, #ffd700, #b8860b);
+      border: 1px solid #ffd700;
+      color: #000;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      align-self: center;
+      transition: opacity 0.2s;
+    }
+
+    .btn-next:hover {
+      opacity: 0.9;
+    }
+
+    /* Floating Text Styles */
+    .floating-text {
+      position: fixed;
+      font-weight: bold;
+      font-size: 1.5rem;
+      pointer-events: none;
+      z-index: 100000;
+      animation: nq-float-up 1.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.95);
+      white-space: nowrap;
+    }
+    .floating-text.correct { color: #34d399; }
+    .floating-text.wrong { color: #fb7185; }
+
+    @keyframes nq-float-up {
+      0% { transform: translate(-50%, -50%) scale(0.6); opacity: 0; }
+      15% { transform: translate(-50%, -50%) translateY(-20px) scale(1.1); opacity: 1; }
+      100% { transform: translate(-50%, -50%) translateY(-100px) scale(0.85); opacity: 0; }
+    }
   </style>
 </head>
 <body>
-  <div class="icon">📡</div>
-  <h1>Sem conexão</h1>
-  <p>Você está offline. Verifique sua conexão e tente novamente para continuar sua jornada pelo Reino dos Néfrons.</p>
-  <button onclick="location.reload()">Tentar novamente</button>
+
+  <div class="nq-off-container">
+    <!-- Header -->
+    <div class="nq-off-header">
+      <div class="nq-off-title">
+        <span>📡</span> Estudo Offline
+      </div>
+      <div style="font-size:0.75rem; color:#ffd700; font-weight:bold; letter-spacing:0.5px;" id="nqOffCounters">
+        Acertos: <span id="nqOffCorrectCount">0</span>
+      </div>
+    </div>
+
+    <!-- Banner informativo de sincronização -->
+    <div class="nq-off-sync-banner">
+      <span style="font-size:1.2rem;">⚡</span>
+      <div>
+        <strong>Modo Offline Ativo:</strong> Todo o progresso obtido nesta página será salvo localmente e sincronizado automaticamente com a nuvem (Supabase) assim que você se conectar à internet.
+      </div>
+    </div>
+
+    <!-- Question Card -->
+    <div class="nq-off-card" id="nqOffCard">
+      <div style="text-align:center; padding:40px; color:#90b4e0;" id="nqOffLoading">
+        Carregando banco de dados de questões offline...
+      </div>
+    </div>
+  </div>
+
+  <!-- Banco de dados de questões (topics) em cache -->
+  <script src="data/topics.js"></script>
+  <script>
+    // Inicialização da sessão
+    let sessionQuestions = [];
+    let currentIndex = 0;
+    let correctCount = 0;
+    let isAnswered = false;
+
+    const cardContainer = document.getElementById('nqOffCard');
+    const correctVal = document.getElementById('nqOffCorrectCount');
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+    }
+
+    function shuffle(array) {
+      let cur = array.length, rand;
+      while (cur !== 0) {
+        rand = Math.floor(Math.random() * cur);
+        cur--;
+        [array[cur], array[rand]] = [array[rand], array[cur]];
+      }
+      return array;
+    }
+
+    function initOfflineStudy() {
+      if (typeof topics === 'undefined' || !Array.isArray(topics) || topics.length === 0) {
+        cardContainer.innerHTML = `
+          <div style="text-align:center; padding:32px; color:#fb7185;">
+            <div style="font-size:2.5rem; margin-bottom:12px;">⚠️</div>
+            <strong>Erro ao carregar banco de dados</strong>
+            <p style="font-size:0.8rem; color:rgba(251,113,133,0.7); margin-top:8px;">O arquivo de questões (/data/topics.js) ainda não foi armazenado no cache local. Conecte-se e abra o app para carregá-lo.</p>
+            <button onclick="location.reload()" style="margin-top:16px; padding:10px 20px; background:#ef4444; border:none; color:#fff; border-radius:8px; font-weight:bold; cursor:pointer;">Tentar Novamente</button>
+          </div>
+        `;
+        return;
+      }
+
+      // Filtrar e embaralhar questões
+      sessionQuestions = shuffle([...topics]);
+      currentIndex = 0;
+      correctCount = 0;
+      
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      if (currentIndex >= sessionQuestions.length) {
+        // Reiniciar se acabar
+        sessionQuestions = shuffle([...topics]);
+        currentIndex = 0;
+      }
+
+      isAnswered = false;
+      const q = sessionQuestions[currentIndex];
+      
+      cardContainer.innerHTML = `
+        <div class="nq-off-topic">${escapeHtml(q.cat || 'Geral')}</div>
+        <div class="nq-off-question">${escapeHtml(q.q)}</div>
+        <div class="nq-off-options" id="nqOffOptions">
+          ${q.opts.map((opt, idx) => `
+            <button class="nq-off-btn" data-idx="${idx}">
+              <span>${escapeHtml(opt)}</span>
+              <span style="font-size:0.75rem; opacity:0.6; margin-left:10px;">${String.fromCharCode(65 + idx)}</span>
+            </button>
+          `).join('')}
+        </div>
+        <div id="nqOffFeedbackArea" style="display:none; flex-direction:column; gap:16px;"></div>
+      `;
+
+      // Adicionar listeners nos botões
+      const btns = cardContainer.querySelectorAll('.nq-off-btn');
+      btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = parseInt(btn.dataset.idx, 10);
+          answerQuestion(idx, btn);
+        });
+      });
+    }
+
+    function answerQuestion(selectedIdx, clickedBtn) {
+      if (isAnswered) return;
+      isAnswered = true;
+
+      const q = sessionQuestions[currentIndex];
+      const isCorrect = selectedIdx === q.ans;
+
+      // Desabilitar botões e pintar cores
+      const btns = document.querySelectorAll('.nq-off-btn');
+      btns.forEach((btn, idx) => {
+        btn.disabled = true;
+        if (idx === q.ans) {
+          btn.classList.add('correct');
+        } else if (idx === selectedIdx && !isCorrect) {
+          btn.classList.add('wrong');
+        }
+      });
+
+      // Disparar floating text
+      let x, y;
+      if (clickedBtn) {
+        const rect = clickedBtn.getBoundingClientRect();
+        x = rect.left + rect.width / 2;
+        y = rect.top + rect.height / 2;
+      }
+      showFloatingText(isCorrect ? '✓ Correto!' : '✗ Incorreto', isCorrect, x, y);
+
+      if (isCorrect) {
+        correctCount++;
+        correctVal.textContent = correctCount;
+      }
+
+      // Persistir progresso localmente
+      persistProgress(q, isCorrect);
+
+      // Exibir feedback
+      const feedbackArea = document.getElementById('nqOffFeedbackArea');
+      feedbackArea.style.display = 'flex';
+      feedbackArea.innerHTML = `
+        <div class="nq-off-feedback ${isCorrect ? 'good' : 'bad'}">
+          <strong style="display:block; margin-bottom:6px;">${isCorrect ? '✅ Resposta Correta!' : '❌ Resposta Incorreta'}</strong>
+          <p>${escapeHtml(q.exp || q.e || 'A resposta correta é a alternativa ' + String.fromCharCode(65 + q.ans) + '.')}</p>
+        </div>
+        <button class="btn-next" onclick="nextQuestion()">Próxima Questão</button>
+      `;
+    }
+
+    function nextQuestion() {
+      currentIndex++;
+      renderQuestion();
+    }
+
+    function showFloatingText(text, isCorrect, x, y) {
+      const el = document.createElement('div');
+      el.className = 'floating-text ' + (isCorrect ? 'correct' : 'wrong');
+      el.textContent = text;
+      el.style.left = (x !== undefined ? x : window.innerWidth / 2) + 'px';
+      el.style.top = (y !== undefined ? y : window.innerHeight / 2) + 'px';
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 1300);
+    }
+
+    function persistProgress(question, isCorrect) {
+      // 1. Adicionar ao mastered-ids se correto
+      if (isCorrect) {
+        try {
+          const mastered = JSON.parse(localStorage.getItem('nefroquest-mastered-ids') || '[]');
+          if (!mastered.includes(question.qid)) {
+            mastered.push(question.qid);
+            localStorage.setItem('nefroquest-mastered-ids', JSON.stringify(mastered));
+          }
+        } catch (e) {}
+      }
+
+      // 2. Adicionar ao all-answered-qids
+      try {
+        const answered = JSON.parse(localStorage.getItem('nefroquest-all-answered-qids') || '[]');
+        if (!answered.includes(question.qid)) {
+          answered.push(question.qid);
+          localStorage.setItem('nefroquest-all-answered-qids', JSON.stringify(answered));
+        }
+      } catch (e) {}
+
+      // 3. Atualizar estatísticas detalhadas
+      try {
+        const stats = JSON.parse(localStorage.getItem('nefroquest-detailed-stats') || '{}');
+        if (!stats.byTopic)    stats.byTopic    = {};
+        if (!stats.byCategory) stats.byCategory = {};
+        if (!stats.questionHistory) stats.questionHistory = [];
+        if (!stats.totalQuestions) stats.totalQuestions = 0;
+        if (!stats.totalCorrect)   stats.totalCorrect   = 0;
+        if (!stats.totalWrong)     stats.totalWrong     = 0;
+
+        const topic = question.t || 'Geral';
+        const cat = question.cat || question.c || 'geral';
+
+        stats.totalQuestions++;
+        if (isCorrect) stats.totalCorrect++;
+        else stats.totalWrong++;
+
+        if (!stats.byTopic[topic]) stats.byTopic[topic] = { correct: 0, wrong: 0, total: 0 };
+        stats.byTopic[topic].total++;
+        if (isCorrect) stats.byTopic[topic].correct++;
+        else stats.byTopic[topic].wrong++;
+
+        if (!stats.byCategory[cat]) stats.byCategory[cat] = { correct: 0, wrong: 0, total: 0 };
+        stats.byCategory[cat].total++;
+        if (isCorrect) stats.byCategory[cat].correct++;
+        else stats.byCategory[cat].wrong++;
+
+        // Unshift para o histórico (últimas 100)
+        stats.questionHistory.unshift({
+          qid: question.qid,
+          topic: topic,
+          correct: isCorrect,
+          time: 0,
+          date: new Date().toISOString()
+        });
+        if (stats.questionHistory.length > 100) {
+          stats.questionHistory = stats.questionHistory.slice(0, 100);
+        }
+
+        localStorage.setItem('nefroquest-detailed-stats', JSON.stringify(stats));
+      } catch (e) {}
+    }
+
+    // Atalhos de teclado (1-4 / A-D e Enter/Espaço)
+    document.addEventListener('keydown', (e) => {
+      const activeEl = document.activeElement;
+      if (activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA' || activeEl.isContentEditable)) {
+        return; // Ignorar quando digitando
+      }
+
+      const key = e.key.toUpperCase();
+
+      if (isAnswered) {
+        if (key === 'ENTER' || key === ' ') {
+          e.preventDefault();
+          nextQuestion();
+        }
+        return;
+      }
+
+      const optionKeys = ['1', '2', '3', '4', 'A', 'B', 'C', 'D'];
+      const optIdx = optionKeys.indexOf(key) % 4;
+      if (optIdx >= 0) {
+        e.preventDefault();
+        const btns = document.querySelectorAll('.nq-off-btn');
+        if (btns && btns[optIdx] && !btns[optIdx].disabled) {
+          btns[optIdx].click();
+        }
+      }
+    });
+
+    // Iniciar
+    setTimeout(initOfflineStudy, 200);
+  </script>
 </body>
 </html>

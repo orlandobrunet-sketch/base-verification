@@ -1117,7 +1117,7 @@
       
       const page = document.createElement('div');
       page.id = 'studyModePage';
-      page.style.cssText = 'position:fixed;inset:0;z-index:1000;background:linear-gradient(180deg,#0a1020 0%,#060d18 100%);overflow-y:auto;';
+      page.style.cssText = 'position:fixed;inset:0;z-index:9000;background:linear-gradient(180deg,#0a1020 0%,#060d18 100%);overflow-y:auto;';
       page.innerHTML = `
         <div style="max-width:900px;margin:0 auto;padding:20px;min-height:100%;padding-bottom:100px;">
           <!-- Header -->
