@@ -1670,4 +1670,106 @@ finerenone_2025:{
     conclusao:"Aumentar o Kt/V peritoneal de pequenos solutos acima da meta mínima de 1,70 não oferece benefício adicional de sobrevida a longo prazo em pacientes em DP.",
     curiosidade:"ADEMEX confirmou a nível de RCT o que o estudo observacional CANUSA havia sugerido: o Kt/V puramente peritoneal tem limite de impacto clínico se a função residual zerar."
   },
+  neumann_2018:{
+    label:"Neumann et al. Kidney Int. 2018",
+    url:"https://pubmed.ncbi.nlm.nih.gov/29054707/",
+    journal:"Kidney International",
+    ano:2018,tipo:"Estudo de Coorte",badge:"ESTUDO",badgeColor:"#0ea5e9",
+    impacto:"Associação entre diálise peritoneal e melhor função cognitiva ao longo de um ano",icon:"📊",
+    resumo:"Investigou mudanças cognitivas em pacientes com doença renal terminal (DRT) comparando diálise peritoneal (DP) e hemodiálise (HD) na coorte CORETH. Usou testes neurocognitivos validados e escore de propensão para pareamento. DP foi associada a melhor desempenho cognitivo basal e ao longo de 1 ano, embora ambos os grupos tenham mostrado melhoria (executiva/atenção).",
+    conclusao:"Estudos observacionais sugerem associação entre diálise peritoneal e melhor desempenho cognitivo, mas não estabelecem causalidade devido a limitações de pareamento e viés de atrito.",
+    curiosidade:"A perda de pacientes nos testes cognitivos foi maior no grupo de hemodiálise, o que pode introduzir viés de atrito nas análises de longo prazo."
+  },
+  niknafs_2025:{
+    label:"Niknafs et al. J Renal Injury Prev 2025",
+    url:"https://www.journalrip.com/Article/jrip-38662",
+    journal:"Journal of Renal Injury Prevention",
+    ano:2025,tipo:"Estudo Observacional",badge:"ESTUDO",badgeColor:"#0ea5e9",
+    impacto:"Comparação da função cognitiva em pacientes sob hemodiálise vs diálise peritoneal",icon:"📊",
+    resumo:"Estudo transversal pareado com 200 pacientes (100 em cada modalidade) avaliando a função cognitiva pelo Mini-Mental State Examination (MMSE). Pacientes submetidos à diálise peritoneal apresentaram pontuações significativamente melhores em orientação temporal/espacial, atenção, cálculo e evocação.",
+    conclusao:"Sugere melhor desempenho cognitivo associado à diálise peritoneal, mas por ser transversal, não permite inferir causalidade.",
+    curiosidade:"O estudo enfatiza a importância de rastreamentos cognitivos de rotina em pacientes com DRC em diálise para orientar estratégias de manejo individuais."
+  },
+  malik_meta_2025:{
+    label:"Malik et al. Systematic Review & Meta-analysis 2025",
+    url:"https://pubmed.ncbi.nlm.nih.gov/?term=Malik+cognitive+function+dementia+peritoneal+dialysis+hemodialysis+2025",
+    journal:"Systematic Review & Meta-analysis",
+    ano:2025,tipo:"Metanálise",badge:"META",badgeColor:"#0ea5e9",
+    impacto:"Avaliação da função cognitiva e risco de demência entre hemodiálise e diálise peritoneal",icon:"🔬",
+    resumo:"Revisão sistemática e metanálise que incluiu 326.216 pacientes de 26 estudos de coorte. A diálise peritoneal foi associada a uma melhor preservação cognitiva e a um menor risco de demência quando comparada à hemodiálise.",
+    conclusao:"Sugere associação benéfica de DP em desfechos cognitivos, apontando hipóteses como depuração contínua e estabilidade hemodinâmica, sem estabelecer causalidade direta.",
+    curiosidade:"Esta metanálise representa um dos maiores levantamentos globais sobre o risco de demência associado às diferentes modalidades dialíticas."
+  },
+  lok_kdoqi_2020:{
+    label:"Lok CE et al. — KDOQI Clinical Practice Guideline for Vascular Access (AJKD 2020)",
+    url:"https://pubmed.ncbi.nlm.nih.gov/32172944/",
+    journal:"American Journal of Kidney Diseases",
+    ano:2020,tipo:"Diretriz Clínica",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Atualização das diretrizes de acesso vascular com foco no ESKD Life-Plan individualizado",icon:"📋",
+    resumo:"KDOQI 2020 (Vascular Access Guidelines): diretriz moderna de acesso vascular enfatizando individualized ESKD Life-Plan, abandonando conceito simplista de “FAV-first”; FAV permanece acesso preferencial para maioria dos pacientes devido menor infecção, trombose e intervenções.",
+    conclusao:"KDOQI 2020 (Vascular Access): introduziu conceito “right access, right patient, right time”; FAV continua preferencial para maioria devido menor infecção, trombose e necessidade de intervenções.",
+    curiosidade:"A diretriz introduziu o conceito de plano de vida para doença renal crônica terminal (ESKD Life-Plan), que projeta múltiplos acessos ao longo da vida do paciente."
+  },
+  lee_jasn_2017:{
+    label:"Lee T et al. — Vascular Access Type and Clinical Outcomes (JASN 2017)",
+    url:"https://pubmed.ncbi.nlm.nih.gov/28838997/",
+    journal:"Journal of the American Society of Nephrology",
+    ano:2017,tipo:"Estudo de Coorte",badge:"ESTUDO",badgeColor:"#0ea5e9",
+    impacto:"Demonstração de menor mortalidade, hospitalização e infecção com FAV em incidentes de HD",icon:"📊",
+    resumo:"Lee et al. JASN: grandes coortes observacionais demonstram menor mortalidade, menor hospitalização e menor infecção associadas à FAV quando comparada a cateteres.",
+    conclusao:"A Fístula Arteriovenosa (FAV) está associada a melhores desfechos clínicos e menor infecção mesmo na população idosa, apesar de maior tempo de dependência inicial de cateter.",
+    curiosidade:"O estudo analisou especificamente pacientes idosos (idade >= 67 anos), mostrando benefício sustentado da FAV sobre enxertos e cateteres."
+  },
+  almasri_ajkd_2016:{
+    label:"Almasri et al. — Outcomes of Vascular Access (Systematic Review, AJKD/JVS 2016)",
+    url:"https://pubmed.ncbi.nlm.nih.gov/27264853/",
+    journal:"American Journal of Kidney Diseases / Journal of Vascular Surgery",
+    ano:2016,tipo:"Revisão Sistemática & Metanálise",badge:"META",badgeColor:"#0ea5e9",
+    impacto:"Meta-análise comprovando superioridade da FAV frente a enxertos e cateteres",icon:"🔬",
+    resumo:"Almasri et al. (Systematic Review, AJKD): meta-análise mostrando menor bacteremia, menor infecção and melhores desfechos de longo prazo com FAV vs cateteres.",
+    conclusao:"Fistulas nativas apresentam melhores desfechos de patência primária, menor mortalidade em 2 anos e menor taxa de infecção/bacteremia comparadas a cateteres e próteses.",
+    curiosidade:"A análise incluiu dados de mais de 800.000 acessos vasculares, consolidando a FAV como a escolha de primeira linha com o maior volume de dados globais."
+  },
+  kdigo_igan_igav_2025:{
+    label:"KDIGO 2025 IgAN/IgAV Guideline",
+    url:"https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+    journal:"Kidney International",
+    ano:2025,
+    tipo:"Diretriz clínica",
+    badge:"GUIDELINE",
+    badgeColor:"#6366f1",
+    impacto:"Referência central atual para manejo da NIgA.",
+    icon:"📋",
+    resumo:"Diretriz KDIGO 2025 específica para nefropatia por IgA e vasculite por IgA. Atualiza o capítulo de NIgA da diretriz KDIGO 2021 e organiza recomendações sobre avaliação de risco, terapia de suporte e terapias adicionais. Não estabelece dieta isenta de glúten como tratamento rotineiro da NIgA primária.",
+    conclusao:"Na NIgA, a base do manejo é nefroproteção e tratamento guiado por risco; dieta sem glúten não é recomendação universal.",
+    curiosidade:"A atualização de 2025 reflete a transição da NIgA de uma abordagem centrada apenas em suporte para um modelo com terapias direcionadas em pacientes selecionados."
+  },
+  acg_celiac_2023:{
+    label:"ACG Guideline Update: Diagnosis and Management of Celiac Disease",
+    url:"https://pubmed.ncbi.nlm.nih.gov/36602836/",
+    journal:"American Journal of Gastroenterology",
+    ano:2023,
+    tipo:"Diretriz clínica",
+    badge:"GUIDELINE",
+    badgeColor:"#6366f1",
+    impacto:"Define dieta sem glúten como tratamento da doença celíaca.",
+    icon:"📋",
+    resumo:"Atualização de 2023 da diretriz do American College of Gastroenterology para diagnóstico e manejo da doença celíaca. Aborda estratégias diagnósticas, confirmação em pacientes em dieta com glúten, acompanhamento e objetivos da dieta isenta de glúten. A indicação da dieta sem glúten é para doença celíaca, não como tratamento renal inespecífico.",
+    conclusao:"Quando a NIgA coexiste com doença celíaca confirmada, a dieta sem glúten é indicada pelo diagnóstico de doença celíaca.",
+    curiosidade:"A diretriz enfatiza que testes diagnósticos para doença celíaca devem ser interpretados considerando se o paciente já iniciou dieta sem glúten."
+  },
+  moeller_plosone_2014:{
+    label:"Lack of Serologic Evidence to Link IgA Nephropathy with Celiac Disease or Immune Reactivity to Gluten",
+    url:"https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0094677",
+    journal:"PLOS ONE",
+    ano:2014,
+    tipo:"Estudo caso-controle",
+    badge:"COHORT",
+    badgeColor:"#f59e0b",
+    impacto:"Ajuda a evitar extrapolação indevida sobre glúten e NIgA.",
+    icon:"🔬",
+    resumo:"Estudo caso-controle que avaliou marcadores sorológicos relacionados à doença celíaca e reatividade imune ao glúten em pacientes com nefropatia por IgA. Os dados não demonstraram evidência sorológica consistente de ligação entre NIgA e doença celíaca ou reatividade imune ao glúten. Por desenho observacional, não avalia intervenção dietética nem desfechos renais longitudinais.",
+    conclusao:"A associação entre glúten, doença celíaca e NIgA não deve ser convertida em recomendação terapêutica universal.",
+    curiosidade:"O estudo é útil pedagogicamente porque separa plausibilidade imunológica de evidência clínica acionável."
+  },
 };
