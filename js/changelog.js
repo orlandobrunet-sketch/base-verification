@@ -14,6 +14,17 @@
 
           <div class="modal-scroll-body" style="text-align:left;">
 
+            <!-- v11.67 -->
+            <div style="background:linear-gradient(135deg,rgba(168,85,247,0.18),rgba(168,85,247,0.06));border:2px solid rgba(168,85,247,0.6);border-radius:10px;padding:16px;margin-bottom:12px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                <span style="background:rgba(168,85,247,0.9);color:#fff;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v11.67</span>
+                <span style="color:#e9d5ff;font-weight:bold;font-size:0.95rem;">Títulos de Herói por Nível</span>
+              </div>
+              <ul style="margin:0;padding-left:18px;color:#c8d8f0;font-size:0.82rem;line-height:1.8;">
+                <li><strong>Subtítulo único a cada nível 🎖️</strong> — O subtítulo do herói agora muda em todos os níveis (antes repetia entre faixas), com nomes temáticos próprios para cada classe.</li>
+              </ul>
+            </div>
+
             <!-- v11.66 -->
             <div style="background:linear-gradient(135deg,rgba(56,189,248,0.18),rgba(56,189,248,0.06));border:2px solid rgba(56,189,248,0.6);border-radius:10px;padding:16px;margin-bottom:12px;">
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">

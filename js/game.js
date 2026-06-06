@@ -1225,15 +1225,38 @@
       const ext = charId === 'glomerulus' ? 'png' : 'jpg';
       const charImg = `assets/classes/${char.folder}/nivel_${evolutionLevel.toString().padStart(2,'0')}.${ext}`;
       
+      // Subtítulo ÚNICO por nível (índice = nível; índice 0 não usado).
+      // O rank (data[0]) continua por faixa; o subtítulo muda a cada nível.
+      const charSubtitles = {
+        nephros: ['',
+          "O Iniciante das Águas","O Aprendiz dos Túbulos","O Curandeiro dos Túbulos",
+          "O Zelador do Filtrado","O Defensor dos Néfrons","O Sentinela do Glomérulo",
+          "O Guardião da Homeostase","O Guardador dos Glomérulos","O Protetor do Equilíbrio",
+          "O Senhor da Filtração","O Arauto da Depuração","O Mestre do Equilíbrio Vital",
+          "O Conselheiro dos Rins","O Sábio da Nefroproteção","O Soberano da Homeostase"],
+        aquaria: ['',
+          "A Iniciante das Águas","A Aprendiz das Marés","A Curandeira dos Túbulos",
+          "A Canalizadora do Sódio","A Defensora dos Néfrons","A Domadora dos Eletrólitos",
+          "A Tecelã do Equilíbrio","A Guardiã dos Glomérulos","A Senhora das Marés Renais",
+          "A Feiticeira da Osmolaridade","A Arauta da Diurese","A Mestra do Equilíbrio Vital",
+          "A Vidente do Potássio","A Sábia da Homeostase","A Soberana da Homeostase"],
+        glomerulus: ['',
+          "O Aprendiz da Ciência Renal","O Estudante dos Glomérulos","O Analista dos Túbulos",
+          "O Investigador da Creatinina","O Investigador dos Néfrons","O Decifrador da Proteinúria",
+          "O Estrategista da TFG","O Decodificador dos Glomérulos","O Erudito da Função Renal",
+          "O Mestre dos Biomarcadores","O Arauto da Evidência","O Mestre da Análise Vital",
+          "O Pioneiro da Nefrologia","O Sábio da Ciência Renal","O Soberano da Ciência Renal"]
+      };
+      const subs = charSubtitles[charId] || charSubtitles.nephros;
+      const lvSubtitle = subs[Math.min(Math.max(1, state.level | 0), subs.length - 1)];
+
+      let chosen = titles[1];
       for(const [lv, data] of Object.entries(titles).sort((a,b) => b[0]-a[0])) {
-        if(state.level >= parseInt(lv)) {
-          data[1] = charImg;
-          return data;
-        }
+        if(state.level >= parseInt(lv)) { chosen = data; break; }
       }
-      const fallback = titles[1];
-      fallback[1] = charImg;
-      return fallback;
+      chosen[1] = charImg;
+      if (lvSubtitle) chosen[3] = lvSubtitle;
+      return chosen;
     }
 
     // Capítulos baseados em level (1-10) — Atualiza a narrativa conforme sobe de nível.
