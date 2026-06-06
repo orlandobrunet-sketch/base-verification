@@ -1487,6 +1487,8 @@
             <span style="position:absolute; left:12px; top:50%; transform:translateY(-50%); color:var(--txt-dim); font-size:0.9rem;">🔍</span>
             <input type="text" id="nqHistorySearch" placeholder="Pesquisar por termo (ex: IgA, Lupus, iSGLT2)..." style="width:100%; padding:8px 12px 8px 36px; background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff; font-size:0.85rem; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
           </div>
+          <!-- Botão Buscar -->
+          <button type="button" id="nqHistorySearchBtn" style="flex-shrink:0; padding:8px 18px; background:linear-gradient(180deg,#7c3aed,#5b21b6); border:1px solid #a855f7; border-radius:8px; color:#f3e8ff; font-size:0.82rem; font-weight:700; font-family:'Cinzel',serif; letter-spacing:0.5px; cursor:pointer;">🔍 Buscar</button>
           <!-- Filtro Apenas Erros Recentes -->
           <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:0.8rem; color:var(--txt-dim); user-select:none;">
             <input type="checkbox" id="nqHistoryErrorsOnly" style="cursor:pointer; width:16px; height:16px; accent-color:var(--gold);">
@@ -1502,11 +1504,19 @@
     `;
   }
 
-  function _initHistorySearchListeners(overlay) {
+  async function _initHistorySearchListeners(overlay) {
     const searchInput = overlay.querySelector('#nqHistorySearch');
     const errorsCheckbox = overlay.querySelector('#nqHistoryErrorsOnly');
+    const searchBtn = overlay.querySelector('#nqHistorySearchBtn');
     const listContainer = overlay.querySelector('#nqHistoryList');
     if (!listContainer) return;
+
+    // Garante o banco de questões carregado — necessário para casar os qids do
+    // histórico com as questões reais (e exibir título/opções/explicação).
+    if (typeof topics === 'undefined' && typeof window._loadTopics === 'function') {
+      listContainer.innerHTML = `<div style="color:var(--txt-dim); font-size:0.85rem; text-align:center; padding:24px;">Carregando banco de questões…</div>`;
+      try { await window._loadTopics(); } catch (e) {}
+    }
 
     // Obter dados de histórico
     const stats = getDetailedStats();
@@ -1535,8 +1545,10 @@
     } catch (e) {}
     mastered.forEach(qid => seenSet.add(qid));
 
-    // Pegar questões reais
-    const bank = (typeof questionBank !== 'undefined' && Array.isArray(questionBank)) ? questionBank : (typeof topics !== 'undefined' ? topics : []);
+    // Pegar questões reais. Usa SEMPRE `topics` (schema completo: qid, t, opts,
+    // ans, cat, exp). O `questionBank` (deck do jogo) usa schema abreviado
+    // (id/o/a/e/c, sem `qid`) e quebraria o casamento por qid + a exibição.
+    const bank = (typeof topics !== 'undefined' && Array.isArray(topics)) ? topics : [];
     const answeredQuestions = bank.filter(q => seenSet.has(q.qid));
 
     // Mapear último resultado de acerto/erro
@@ -1628,7 +1640,11 @@
       }
     });
 
-    if (searchInput) searchInput.addEventListener('input', renderList);
+    if (searchInput) {
+      searchInput.addEventListener('input', renderList);
+      searchInput.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); renderList(); } });
+    }
+    if (searchBtn) searchBtn.addEventListener('click', renderList);
     if (errorsCheckbox) errorsCheckbox.addEventListener('change', renderList);
 
     // Initial render
