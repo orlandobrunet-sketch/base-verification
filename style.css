@@ -6948,6 +6948,58 @@
 }
 .q-flag-link:hover { color: #ef4444; }
 
+/* ── Galeria de Assets (admin) ──────────────────────────────────── */
+.ag-section-h {
+  font-family: 'Cinzel', serif; color: var(--gold); font-size: 1rem;
+  margin: 22px 0 10px; padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255,215,0,0.2); letter-spacing: 1px;
+}
+.ag-section { margin-bottom: 18px; }
+.ag-h3 { font-family: 'Cinzel', serif; color: #d0e4f8; font-size: 0.92rem; margin: 0 0 4px; }
+.ag-dim { color: var(--txt-dim); font-weight: 400; }
+.ag-meta { font-size: 0.7rem; color: #8a9cc0; margin-bottom: 10px; }
+.ag-meta code { background: rgba(255,255,255,0.08); padding: 1px 5px; border-radius: 4px; color: #c8d8f0; }
+.ag-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+}
+.ag-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--blue-dark);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.ag-img {
+  width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block;
+  background: rgba(0,0,0,0.4); border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.ag-img-err {
+  outline: 2px solid #ef4444; outline-offset: -2px;
+  position: relative; min-height: 100px;
+}
+.ag-img-err::after {
+  content: '⚠ IMAGEM AUSENTE'; position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(40,0,0,0.85); color: #fca5a5;
+  font-size: 0.62rem; font-weight: 700; text-align: center; padding: 4px;
+}
+.ag-card-body { padding: 7px 8px 9px; display: flex; flex-direction: column; gap: 3px; }
+.ag-card-title { font-family: 'Cinzel', serif; font-size: 0.74rem; color: #e8d9a0; font-weight: 700; line-height: 1.2; }
+.ag-card-sub { font-size: 0.66rem; color: #9aabcc; font-style: italic; }
+.ag-rar {
+  align-self: flex-start; font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
+  padding: 1px 7px; border-radius: 10px; border: 1px solid; font-family: 'Cinzel', serif;
+}
+.ag-stats { font-size: 0.66rem; color: #c8d8f0; }
+.ag-desc { font-size: 0.66rem; color: #a8b8d8; line-height: 1.35; font-family: 'Philosopher', sans-serif; }
+.ag-nodesc { color: #708090; font-style: italic; }
+.ag-path {
+  font-size: 0.58rem; color: #6b7a99; word-break: break-all; font-family: monospace;
+  margin-top: 2px; border-top: 1px dashed rgba(255,255,255,0.08); padding-top: 4px;
+}
+
 /* ── M14 — Changelog ────────────────────────────────────────────── */
 .changelog-popup .modal-content {
   background: linear-gradient(170deg, var(--rd-bg-surface) 0%, var(--rd-bg-panel) 100%) !important;

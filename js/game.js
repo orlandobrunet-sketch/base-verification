@@ -1308,6 +1308,91 @@
       kno: {icon:'📚', name:'Conhecimento', desc:'Aumenta XP ganho por acerto. +1 XP extra por ponto de conhecimento.'},
       luck: {icon:'🍀', name:'Sorte', desc:'Aumenta ouro ganho e chance de itens raros na forja e drops.'}
     };
+
+    // ── Galeria de Assets (admin) — audita TODAS as imagens do jogo ──────────
+    function openAssetGallery() {
+      if (typeof isAdminUser === 'function' && !isAdminUser()) return;
+      document.getElementById('assetGalleryModal')?.remove();
+
+      const rarMap = {
+        common:    { label:'Comum',    color:'#94a3b8', bg:'rgba(148,163,184,0.10)', border:'rgba(148,163,184,0.35)' },
+        rare:      { label:'Raro',     color:'#38bdf8', bg:'rgba(56,189,248,0.10)',  border:'rgba(56,189,248,0.45)' },
+        epic:      { label:'Épico',    color:'#c084fc', bg:'rgba(192,132,252,0.10)', border:'rgba(192,132,252,0.45)' },
+        legendary: { label:'Lendário', color:'#ffd700', bg:'rgba(255,215,0,0.10)',   border:'rgba(255,215,0,0.55)' }
+      };
+      // Títulos por nível (mesmos tiers de charTitles; níveis de evolução vão até 10)
+      const charTiers = {
+        nephros:    [[8,'Mestre das Glomerulopatias'],[5,'Guardião da Nefroproteção'],[3,'Sacerdote Renal'],[1,'Noviço da Filtração']],
+        aquaria:    [[8,'Mestra das Glomerulopatias'],[5,'Guardiã da Nefroproteção'],[3,'Sacerdotisa das Águas'],[1,'Noviça da Filtração']],
+        glomerulus: [[8,'Doutor das Glomerulopatias'],[5,'Pesquisador da Nefroproteção'],[3,'Cientista Renal Júnior'],[1,'Estudante de Nefrologia']]
+      };
+      const tierFor = (cid, lv) => { for (const [thr,name] of (charTiers[cid]||charTiers.nephros)) if (lv >= thr) return name; return ''; };
+      const _imgTag = (src, alt) => `<img class="ag-img" src="${src}" alt="${alt}" loading="lazy" onerror="this.classList.add('ag-img-err');">`;
+
+      let charsHtml = '';
+      for (const cid of Object.keys(characters)) {
+        const c = characters[cid];
+        const ext = cid === 'glomerulus' ? 'png' : 'jpg';
+        let cards = '';
+        for (let lv = 1; lv <= 10; lv++) {
+          const path = `assets/classes/${c.folder}/nivel_${String(lv).padStart(2,'0')}.${ext}`;
+          cards += `<div class="ag-card">${_imgTag(path, c.name+' nível '+lv)}
+            <div class="ag-card-body">
+              <div class="ag-card-title">Nível ${lv}</div>
+              <div class="ag-card-sub">${tierFor(cid, lv)}</div>
+              <div class="ag-path">${path}</div>
+            </div></div>`;
+        }
+        charsHtml += `<div class="ag-section">
+          <h3 class="ag-h3">${c.name} — <span class="ag-dim">${c.title}</span></h3>
+          <div class="ag-meta">pasta <code>${c.folder}</code> · ext <code>.${ext}</code> · bônus ATK ${c.bonusAtk} / DEF ${c.bonusDef} / CONH ${c.bonusKno} / SORTE ${c.bonusLuck}</div>
+          <div class="ag-grid">${cards}</div></div>`;
+      }
+
+      let equipHtml = '';
+      let totalItems = 0;
+      for (const slot of ['weapon','armor','relic']) {
+        let cards = '';
+        for (const it of items[slot]) {
+          totalItems++;
+          const path = itemIcons[it.n] || defaultIcons[slot];
+          const r = rarMap[it.rar] || rarMap.common;
+          const desc = itemDescriptions[it.n] || '<span class="ag-nodesc">(sem descrição)</span>';
+          const hasIcon = !!itemIcons[it.n];
+          cards += `<div class="ag-card" style="border-color:${r.border};">${_imgTag(path, it.n)}
+            <div class="ag-card-body">
+              <div class="ag-card-title">${it.n}</div>
+              <span class="ag-rar" style="color:${r.color};background:${r.bg};border-color:${r.border};">${r.label}</span>
+              <div class="ag-stats">⚔️ ${it.atk} · 🛡️ ${it.def} · 📚 ${it.kno} · 🍀 ${it.luck}</div>
+              <div class="ag-desc">${desc}</div>
+              <div class="ag-path">${path}${hasIcon ? '' : ' <span class="ag-nodesc">(ícone padrão)</span>'}</div>
+            </div></div>`;
+        }
+        equipHtml += `<div class="ag-section">
+          <h3 class="ag-h3">${slotLabels[slot]} <span class="ag-dim">(${items[slot].length})</span></h3>
+          <div class="ag-grid">${cards}</div></div>`;
+      }
+
+      const modal = document.createElement('div');
+      modal.id = 'assetGalleryModal';
+      modal.style.cssText = 'position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,0.9);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);display:flex;align-items:flex-start;justify-content:center;padding:20px 14px calc(env(safe-area-inset-bottom,0px)+40px);overflow-y:auto;box-sizing:border-box;';
+      modal.innerHTML = `
+        <div class="modal-panel" style="max-width:940px;width:100%;margin:auto 0;">
+          <button class="modal-panel-x" data-action="closeAssetGallery" aria-label="Fechar">&times;</button>
+          <h2>🖼 Galeria de Assets (Admin)</h2>
+          <p style="color:#8a9cc0;font-size:0.78rem;margin-bottom:18px;">Personagens (3 classes × 10 evoluções) e equipamentos (${totalItems} itens). Imagens ausentes aparecem destacadas em vermelho.</p>
+          <h2 class="ag-section-h">⚔️ Personagens &amp; Evoluções</h2>
+          ${charsHtml}
+          <h2 class="ag-section-h">🛡 Equipamentos</h2>
+          ${equipHtml}
+          <div class="modal-actions" style="margin-top:18px;"><button data-action="closeAssetGallery" style="background:rgba(255,255,255,0.06);color:#c8d8f0;border:1px solid var(--blue-dark);">Fechar</button></div>
+        </div>`;
+      document.body.appendChild(modal);
+      modal.addEventListener('click', (e) => { if (e.target === modal) closeAssetGallery(); });
+    }
+    function closeAssetGallery() { document.getElementById('assetGalleryModal')?.remove(); }
+    window.openAssetGallery = openAssetGallery;
+    window.closeAssetGallery = closeAssetGallery;
     const _ACTIVE_LEGS = new Set(['Excalibur do N\u00e9fron','Armadura Primeva','Amuleto do Rim Imortal','Rel\u00edquia do T\u00edtulo']);
     const _PASSIVE_LEGS = new Set(['Cetro do N\u00e9fron Eterno','Armadura da Homeostase Perfeita','Elmo do Filtrador Supremo']);
     const _LEG_LABELS = {
