@@ -11,17 +11,33 @@
 
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
+// Log estruturado de tentativas inválidas — facilita auditoria/alertas no painel.
+function logInvalidAttempt(reason: string, ctx: Record<string, unknown> = {}): void {
+  console.error(JSON.stringify({ event: 'mp_webhook_rejected', reason, ...ctx }));
+}
+
+// Comparação de strings em tempo constante — evita timing side-channel ao
+// validar o HMAC. Compara sempre todos os caracteres, sem curto-circuito.
+function timingSafeEqual(a: string, b: string): boolean {
+  if (a.length !== b.length) return false;
+  let diff = 0;
+  for (let i = 0; i < a.length; i++) {
+    diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  }
+  return diff === 0;
+}
+
 async function verifySignature(req: Request, rawBody: string): Promise<boolean> {
   const secret = Deno.env.get('MP_WEBHOOK_SECRET');
   if (!secret) {
     // Sem segredo configurado: bloqueia em produção para evitar ativações fraudulentas
-    console.error('MP_WEBHOOK_SECRET not set — rejecting request');
+    logInvalidAttempt('secret_not_configured');
     return false;
   }
 
   const signature = req.headers.get('x-signature') ?? '';
   if (!signature) {
-    console.error('Missing x-signature header');
+    logInvalidAttempt('missing_signature_header');
     return false;
   }
 
@@ -29,7 +45,7 @@ async function verifySignature(req: Request, rawBody: string): Promise<boolean> 
   const ts  = signature.match(/ts=(\d+)/)?.[1] ?? '';
   const v1  = signature.match(/v1=([a-f0-9]+)/)?.[1] ?? '';
   if (!ts || !v1) {
-    console.error('Malformed x-signature header:', signature);
+    logInvalidAttempt('malformed_signature_header');
     return false;
   }
 
@@ -56,8 +72,8 @@ async function verifySignature(req: Request, rawBody: string): Promise<boolean> 
     .map(b => b.toString(16).padStart(2, '0'))
     .join('');
 
-  if (computed !== v1) {
-    console.error('Signature mismatch — computed:', computed, 'received:', v1);
+  if (!timingSafeEqual(computed, v1)) {
+    logInvalidAttempt('signature_mismatch', { paymentId, ts });
     return false;
   }
   return true;
