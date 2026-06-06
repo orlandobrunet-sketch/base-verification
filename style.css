@@ -9301,9 +9301,14 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 
 /* ── Responsivo: tablet ─────────────────────────────────────────────────── */
 @media (max-width: 760px) {
+  #welcomeScreen {
+    align-items: flex-start !important;
+    padding: 8px 16px !important;
+  }
   #welcomeScreen .welcome-content {
     width: min(calc(100vw - 16px), 100%) !important;
-    padding: 44px 16px 22px !important;
+    padding: 24px 16px 22px !important;
+    margin: 8px auto !important;
     border-radius: 14px !important;
   }
   #welcomeScreen .welcome-buttons {
