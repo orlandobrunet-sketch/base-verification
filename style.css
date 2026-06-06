@@ -12693,4 +12693,84 @@ button.ab-ddx-card { cursor: pointer; }
   50% { background: rgba(220, 38, 38, 0.25) !important; box-shadow: 0 0 20px rgba(220, 38, 38, 0.4) inset; }
 }
 
+/* ============================================================
+   FASE DO BOSS — layout normalizado em roxo (itens 5 e 6)
+   Mantém o dock lateral e os botões de feedback iguais à página
+   de perguntas normal, porém todos com cor base roxa.
+   ============================================================ */
+
+/* Item 5 — restaura a 3ª coluna (dock) no grid do boss (desktop) */
+body.arqui-nefromante-final .app {
+  grid-template-columns: 380px 1fr 80px !important;
+  max-width: none !important;
+}
+/* dock lateral visível e roxo */
+body.arqui-nefromante-final #actionDock,
+body.arqui-nefromante-final .action-dock {
+  display: flex !important;
+}
+body.arqui-nefromante-final .dock-btn {
+  border-color: rgba(168,85,247,0.45) !important;
+  color: #d8b4fe !important;
+}
+body.arqui-nefromante-final .dock-btn svg {
+  color: #c084fc !important;
+  filter: drop-shadow(0 0 6px rgba(168,85,247,0.75)) !important;
+}
+body.arqui-nefromante-final .dock-btn .dock-label {
+  color: #d8b4fe !important;
+  background: rgba(168,85,247,0.25) !important;
+}
+body.arqui-nefromante-final .dock-btn:hover {
+  border-color: rgba(192,132,252,0.7) !important;
+  box-shadow: 0 0 16px rgba(168,85,247,0.4) !important;
+}
+
+/* Item 6 — botões de feedback como na página normal, em roxo */
+body.arqui-nefromante-final .ctrl {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  padding: 10px 0 !important;
+  margin-top: 10px !important;
+}
+body.arqui-nefromante-final .ctrl #newBtn { display: inline-flex !important; }
+body.arqui-nefromante-final #nextBtn:not(.hidden) {
+  background: linear-gradient(180deg, #7c3aed 0%, #5b21b6 100%) !important;
+  border: 2px solid #a855f7 !important;
+  color: #f3e8ff !important;
+  font-family: 'Cinzel', serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+  text-transform: none !important;
+  font-size: 0.9rem !important;
+  width: auto !important;
+  flex: 1 1 auto !important;
+  padding: 11px 22px !important;
+  border-radius: 10px !important;
+  box-shadow: 0 0 16px rgba(124,58,237,0.35) !important;
+  animation: none !important;
+}
+/* remove o rótulo extra "CONFIRMAR RESPOSTA" e o efeito de golpe */
+body.arqui-nefromante-final #nextBtn:not(.hidden)::after,
+body.arqui-nefromante-final #nextBtn:not(.hidden)::before {
+  content: none !important;
+  display: none !important;
+}
+/* botão do Oráculo no boss — roxo discreto (clique mostra narrativa de bloqueio) */
+body.arqui-nefromante-final #oraculoBtn:not(.hidden) {
+  background: rgba(168,85,247,0.15) !important;
+  border: 1px solid rgba(168,85,247,0.5) !important;
+  color: #d8b4fe !important;
+}
+
+/* No mobile o dock lateral permanece oculto (igual à página normal) */
+@media (max-width: 768px) {
+  body.arqui-nefromante-final #actionDock,
+  body.arqui-nefromante-final .action-dock {
+    display: none !important;
+  }
+}
+
 

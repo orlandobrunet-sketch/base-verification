@@ -127,9 +127,9 @@
           : `FASE FINAL ${qNum}/10`;
       }
 
-      // ── Botão Próxima: "ATACAR (responder)" nas questões 91-99, "GOLPE FINAL" apenas na última (100ª) ──
+      // ── Botão Próxima: mantém o título normal "Próxima Carta" também no Confronto Final ──
       const nextBtn = document.getElementById('nextBtn');
-      if (nextBtn) nextBtn.textContent = progress >= 9 ? 'GOLPE FINAL' : 'ATACAR (PRÓXIMA PERGUNTA)';
+      if (nextBtn) nextBtn.textContent = 'Próxima Carta';
 
       // ── Hint do botão ──
       if (elHint) {

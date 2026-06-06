@@ -2428,8 +2428,8 @@
         // ── Confronto Final: atualiza barra de HP, estrelas e botão ──
         updateBossUI();
         animateLastBossStar();
-        // Muda texto do botão Próxima: "ATACAR" nas questões 91-99, "GOLPE FINAL" na última
-        if(isBossBattle()) ui.nextBtn.textContent = getBossProgress() >= 9 ? 'GOLPE FINAL' : 'ATACAR (PRÓXIMA PERGUNTA)';
+        // Botão mantém o título normal ("Próxima Carta") também no Confronto Final.
+        if (isBossBattle()) ui.nextBtn.textContent = 'Próxima Carta';
       }
 
       if (typeof checkAchievements === 'function') {
@@ -3462,9 +3462,33 @@
     // ============ MODO PROVA SIMULADA ============
 
     function openOraculoFromJourney() {
+      // No Confronto Final (últimas 10 questões) o Oráculo é silenciado.
+      if (typeof isBossBattle === 'function' && isBossBattle()) {
+        _showOracleBlockedNarrative();
+        return;
+      }
       if (typeof window.openMentorModal === 'function') window.openMentorModal();
     }
     window.openOraculoFromJourney = openOraculoFromJourney;
+
+    function _showOracleBlockedNarrative() {
+      document.getElementById('oracleBlockedPopup')?.remove();
+      const popup = document.createElement('div');
+      popup.id = 'oracleBlockedPopup';
+      popup.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;animation:fadeIn 0.4s ease;';
+      popup.innerHTML = `
+        <div style="max-width:440px;width:100%;background:linear-gradient(160deg,#0a0118 0%,#120230 50%,#0a0118 100%);border:2px solid rgba(168,85,247,0.7);border-radius:16px;padding:26px 22px;text-align:center;box-shadow:0 0 50px rgba(168,85,247,0.4),inset 0 0 50px rgba(0,0,0,0.6);">
+          <div style="font-size:2rem;margin-bottom:10px;">🔮💀</div>
+          <h3 style="font-family:'Cinzel',serif;color:#d8b4fe;font-size:1.05rem;letter-spacing:1px;margin:0 0 12px;text-shadow:0 0 18px rgba(168,85,247,0.7);">O Oráculo Silenciou</h3>
+          <p style="font-family:'Philosopher',serif;color:#c4b5fd;font-size:0.88rem;line-height:1.65;font-style:italic;margin:0 0 20px;">
+            No Trono da Uremia, a magia sombria do Arqui-Nefromante sufoca toda sabedoria externa. O Oráculo dos Néfrons não tem poder neste lugar — apenas o <strong style="color:#e9d5ff;">seu próprio conhecimento</strong> decidirá o destino do reino.
+          </p>
+          <button data-remove-id="oracleBlockedPopup" style="font-family:'Cinzel',serif;background:linear-gradient(180deg,#7c3aed 0%,#5b21b6 100%);border:2px solid #a855f7;border-radius:10px;color:#f3e8ff;font-size:0.85rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:11px 26px;cursor:pointer;box-shadow:0 0 18px rgba(168,85,247,0.5);">Enfrentar sozinho</button>
+        </div>`;
+      document.body.appendChild(popup);
+      popup.addEventListener('click', (e) => { if (e.target === popup) popup.remove(); });
+      if (typeof playSound === 'function') playSound('boss');
+    }
 
     function goToWelcomeFromGame() {
       document.body.classList.remove('rd-game-over', 'boss-battle-mode', 'arqui-nefromante-final', 'boss-hp-critical');
