@@ -14,6 +14,45 @@
 
           <div class="modal-scroll-body" style="text-align:left;">
 
+            <!-- v11.54 -->
+            <div style="background:linear-gradient(135deg,rgba(251,191,36,0.18),rgba(251,191,36,0.06));border:2px solid rgba(251,191,36,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                <span style="background:rgba(251,191,36,0.9);color:#1a0e00;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v11.54</span>
+                <span style="color:#fef3c7;font-weight:bold;font-size:0.95rem;">Interface RPG e Ajustes Mobile</span>
+              </div>
+              <ul style="margin:0;padding-left:18px;color:#c8d8f0;font-size:0.82rem;line-height:1.8;">
+                <li><strong>Mockup de Comparação Concluído ⚔️</strong> — Nova tela de substituição de equipamentos redesenhada com duas colunas (imagem à esquerda, atributos alinhados à direita), com nome e raridade agrupados no cabeçalho do item. Destaque dourado e brilho animado no novo item.</li>
+                <li><strong>Botões Alinhados 💰</strong> — Botão de manter o item atual com tamanho ajustado para evitar quebras de linhas na navegação móvel.</li>
+                <li><strong>Ajustes de Som Mobile 🔊</strong> — Sliders de volume ocultados no mobile para manter apenas os botões de ligar/desligar em formato de quadradinho discreto.</li>
+                <li><strong>Remoção de Bordas no Mobile 📱</strong> — Bordas e sombras externas dos painéis desativadas nas telas móveis, proporcionando um visual mais limpo.</li>
+                <li><strong>Dashboard Direto 📊</strong> — Botão "Dashboard" direto na tela inicial de boas-vindas do jogo.</li>
+              </ul>
+            </div>
+
+            <!-- v11.52 -->
+            <div style="background:linear-gradient(135deg,rgba(168,85,247,0.18),rgba(168,85,247,0.06));border:2px solid rgba(168,85,247,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                <span style="background:rgba(168,85,247,0.9);color:#fff;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v11.52</span>
+                <span style="color:#e9d5ff;font-weight:bold;font-size:0.95rem;">Correção Científica e Referências</span>
+              </div>
+              <ul style="margin:0;padding-left:18px;color:#c8d8f0;font-size:0.82rem;line-height:1.8;">
+                <li><strong>Questão de Glúten na NIgA 🔬</strong> — Reformulação da questão sobre restrição de glúten na nefropatia por IgA primária, especificando paciente sem doença celíaca para precisão acadêmica.</li>
+                <li><strong>Atualização de Diretrizes KDIGO 📚</strong> — Integração das diretrizes KDIGO 2025 de IgAN/IgAV e diretrizes ACG 2023 de Doença Celíaca nas referências e explicações.</li>
+              </ul>
+            </div>
+
+            <!-- v11.50 -->
+            <div style="background:linear-gradient(135deg,rgba(96,165,250,0.18),rgba(96,165,250,0.06));border:2px solid rgba(96,165,250,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                <span style="background:rgba(96,165,250,0.9);color:#0f172a;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v11.50</span>
+                <span style="color:#eff6ff;font-weight:bold;font-size:0.95rem;">Sincronização de Objetivos e Cores</span>
+              </div>
+              <ul style="margin:0;padding-left:18px;color:#c8d8f0;font-size:0.82rem;line-height:1.8;">
+                <li><strong>Objetivos da Home Reativos 🔄</strong> — Os capítulos da jornada lateral na home agora atualizam-se reativamente com base no nível do herói.</li>
+                <li><strong>Revitalização do Dourado Lendário 🎨</strong> — Melhoria na legibilidade e saturação dos tons dourados no Grimório, evitando tons cinzentos em fundos escuros.</li>
+              </ul>
+            </div>
+
             <!-- v11.48 -->
             <div style="background:linear-gradient(135deg,rgba(52,211,153,0.18),rgba(52,211,153,0.06));border:2px solid rgba(52,211,153,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">

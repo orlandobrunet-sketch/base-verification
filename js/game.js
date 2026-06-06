@@ -1374,12 +1374,7 @@
 
       // Desktop: no final da lista de equipamentos — um único innerHTML= para evitar reflow duplo
       ui.equipList.innerHTML = stunBanner + slotsHTML + `<div style='text-align:center;margin-top:8px;padding:6px 10px;background:rgba(42,74,122,0.2);border-radius:8px;border:1px solid rgba(42,74,122,0.4);font-size:0.75rem;color:#b0c4e8'>${totalHTML}</div>${synergyBanner}`;
-      // Mobile: logo abaixo do herói
-      const equipTotalMobile = document.getElementById('equipTotalMobile');
-      if(equipTotalMobile) {
-        equipTotalMobile.innerHTML = totalHTML;
-        equipTotalMobile.style.display = window.innerWidth <= 768 ? 'block' : 'none';
-      }
+
     }
 
     function renderHUD(){
@@ -1882,38 +1877,64 @@
 
     function showEquipComparePopup(slot, oldItem, newItem, onReplace, onKeep) {
       const def = defaultIcons[slot] || '';
-      function _statRow(label, oldV, newV) {
-        const diff = newV - oldV;
-        const diffStr = diff > 0 ? `<span class="pos">+${diff}</span>` : diff < 0 ? `<span class="neg">${diff}</span>` : `<span>—</span>`;
-        return `<span>${label} <b>${oldV}</b></span><span>${label} <b>${newV}</b> ${diffStr}</span>`;
-      }
       const ov = el => `
-        <div class="equip-compare-slot">
+        <div class="equip-compare-slot equipped">
           <div class="equip-compare-label">Equipado</div>
-          <img src="${itemIcons[el.n]||def}" onerror="this.src='${def}'" alt="${el.n}">
-          <div class="ecp-name">${el.n}</div>
-          <div class="ecp-rar ${el.rar}">${_rarLabel[el.rar]||el.rar}</div>
-          <div class="ecp-stats">
-            <span>⚔️ ATK <b>${el.atk}</b></span>
-            <span>🛡️ DEF <b>${el.def}</b></span>
-            <span>📚 CONH <b>${el.kno}</b></span>
-            <span>🍀 SORTE <b>${el.luck}</b></span>
+          <div class="ecp-header">
+            <span class="ecp-name">${el.n}</span>
+            <span class="ecp-rar ${el.rar}">${_rarLabel[el.rar]||el.rar}</span>
+          </div>
+          <div class="ecp-slot-body">
+            <div class="ecp-img-wrapper">
+              <img src="${itemIcons[el.n]||def}" onerror="this.src='${def}'" alt="${el.n}">
+            </div>
+            <div class="ecp-stats">
+              <div class="ecp-stat-row">
+                <span class="ecp-stat-label">⚔️ ATK</span>
+                <span class="ecp-stat-value">${el.atk}</span>
+              </div>
+              <div class="ecp-stat-row">
+                <span class="ecp-stat-label">🛡️ DEF</span>
+                <span class="ecp-stat-value">${el.def}</span>
+              </div>
+              <div class="ecp-stat-row">
+                <span class="ecp-stat-label">📚 CONH</span>
+                <span class="ecp-stat-value">${el.kno}</span>
+              </div>
+              <div class="ecp-stat-row">
+                <span class="ecp-stat-label">🍀 SORTE</span>
+                <span class="ecp-stat-value">${el.luck}</span>
+              </div>
+            </div>
           </div>
         </div>`;
       const nv = el => `
-        <div class="equip-compare-slot" style="border-color:rgba(255,215,0,0.4)">
-          <div class="equip-compare-label" style="color:#ffd700">Novo item</div>
-          <img src="${itemIcons[el.n]||def}" onerror="this.src='${def}'" alt="${el.n}">
-          <div class="ecp-name">${el.n}</div>
-          <div class="ecp-rar ${el.rar}">${_rarLabel[el.rar]||el.rar}</div>
-          <div class="ecp-stats">
-            ${['atk','def','kno','luck'].map(s => {
-              const icons = {atk:'⚔️',def:'🛡️',kno:'📚',luck:'🍀'};
-              const diff = el[s] - oldItem[s];
-              const cls = diff>0?'pos':diff<0?'neg':'';
-              const diffStr = diff>0?`+${diff}`:diff<0?`${diff}`:'';
-              return `<span>${icons[s]} <b>${el[s]}</b>${diffStr?' <span class="'+cls+'">('+diffStr+')</span>':''}</span>`;
-            }).join(' ')}
+        <div class="equip-compare-slot new-item">
+          <div class="equip-compare-label">Novo item</div>
+          <div class="ecp-header">
+            <span class="ecp-name">${el.n}</span>
+            <span class="ecp-rar ${el.rar}">${_rarLabel[el.rar]||el.rar}</span>
+          </div>
+          <div class="ecp-slot-body">
+            <div class="ecp-img-wrapper">
+              <img src="${itemIcons[el.n]||def}" onerror="this.src='${def}'" alt="${el.n}">
+            </div>
+            <div class="ecp-stats">
+              ${['atk','def','kno','luck'].map(s => {
+                const icons = {atk:'⚔️ ATK',def:'🛡️ DEF',kno:'📚 CONH',luck:'🍀 SORTE'};
+                const diff = el[s] - oldItem[s];
+                const cls = diff>0?'pos':diff<0?'neg':'';
+                const diffStr = diff>0?`+${diff}`:diff<0?`${diff}`:'';
+                return `
+                  <div class="ecp-stat-row">
+                    <span class="ecp-stat-label">${icons[s]}</span>
+                    <span class="ecp-stat-value">
+                      ${el[s]}
+                      ${diffStr ? `<span class="ecp-stat-diff ${cls}">(${diffStr})</span>` : ''}
+                    </span>
+                  </div>`;
+              }).join('')}
+            </div>
           </div>
         </div>`;
       const sellVal = _itemSellVal(newItem);
@@ -1930,8 +1951,8 @@
             ${nv(newItem)}
           </div>
           <div class="equip-compare-actions">
-            <button class="equip-compare-replace" id="ecpReplace">⬆️ Substituir</button>
-            <button class="equip-compare-keep" id="ecpKeep">💰 Manter atual (vender por ${sellVal}🪙)</button>
+            <button class="equip-compare-replace" id="ecpReplace">⬆️ SUBSTITUIR</button>
+            <button class="equip-compare-keep" id="ecpKeep">💰 MANTER ATUAL (VENDER)</button>
           </div>
         </div>`;
       document.body.appendChild(overlay);
