@@ -1106,6 +1106,9 @@
       overflow: visible;
       will-change: transform;
       box-shadow: 0 4px 16px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.08);
+      /* Cor padrão clara — botões sem classe de acento (Grimório, Início)
+         herdavam o preto padrão do <button>, ficando ilegíveis. */
+      color: #e8d9a0;
     }
     .dock-btn:hover {
       transform: scale(1.08);
@@ -6887,6 +6890,54 @@
 }
 .flag-chip:hover    { background: rgba(99,102,241,0.2); border-color: rgba(99,102,241,0.55); }
 .flag-chip.selected { background: rgba(99,102,241,0.28); border-color: #818cf8; color: #e0e7ff; }
+
+/* ── Avaliação 5★ por questão (no feedback) ─────────────────────── */
+.q-rating-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  text-align: left;
+}
+.q-rating-container .qr-left { display: flex; flex-direction: column; gap: 1px; }
+.q-rating-container .qr-title {
+  font-size: 0.78rem; color: #cbd5e1; font-family: 'Philosopher', sans-serif;
+}
+.q-rating-container .qr-sub {
+  font-size: 0.68rem; color: var(--txt-dim); font-family: 'Philosopher', sans-serif;
+}
+.q-rating-container .qr-right {
+  display: flex; flex-direction: column; align-items: flex-end; gap: 5px;
+}
+.q-rating-container .qr-line { display: flex; align-items: center; gap: 6px; }
+.q-rating-container .qr-label {
+  font-size: 0.72rem; color: var(--txt-dim); font-family: 'Philosopher', sans-serif;
+}
+.q-rating-container .stars-row { display: flex; gap: 3px; }
+.q-rating-container .star-rating {
+  cursor: pointer;
+  font-size: 1.15rem;
+  line-height: 1;
+  color: rgba(255,255,255,0.22);
+  transition: color 0.15s, text-shadow 0.15s;
+}
+.q-flag-link {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-top: 2px;
+  font-size: 0.68rem;
+  font-family: 'Philosopher', sans-serif;
+  color: var(--txt-dim);
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.15s;
+}
+.q-flag-link:hover { color: #ef4444; }
 
 /* ── M14 — Changelog ────────────────────────────────────────────── */
 .changelog-popup .modal-content {

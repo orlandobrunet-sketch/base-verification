@@ -14,6 +14,19 @@
 
           <div class="modal-scroll-body" style="text-align:left;">
 
+            <!-- v11.57 -->
+            <div style="background:linear-gradient(135deg,rgba(251,191,36,0.18),rgba(56,189,248,0.06));border:2px solid rgba(251,191,36,0.6);border-radius:10px;padding:16px;margin-bottom:12px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                <span style="background:rgba(251,191,36,0.9);color:#1a0e00;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v11.57</span>
+                <span style="color:#fef3c7;font-weight:bold;font-size:0.95rem;">Avaliação de Questões e Ajustes</span>
+              </div>
+              <ul style="margin:0;padding-left:18px;color:#c8d8f0;font-size:0.82rem;line-height:1.8;">
+                <li><strong>Avaliação Interativa ⭐</strong> — As estrelas de Qualidade (amarelo) e Aprendizado (azul) agora preenchem ao passar o mouse e fixam ao clicar, sem mensagem de confirmação. A nota é salva ao avançar de questão.</li>
+                <li><strong>Sinalizar Questão 🚩</strong> — O botão de bandeira virou um link discreto "sinalizar questão problemática" na área de feedback (fica vermelho ao passar o mouse) — e voltou a funcionar.</li>
+                <li><strong>Botão Início Legível 🏠</strong> — Corrigida a cor do rótulo dos botões Início e Grimório, que estavam ilegíveis.</li>
+              </ul>
+            </div>
+
             <!-- v11.56 -->
             <div style="background:linear-gradient(135deg,rgba(56,189,248,0.18),rgba(56,189,248,0.06));border:2px solid rgba(56,189,248,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
