@@ -31,7 +31,43 @@
     wmTrack.src = WELCOME_MUSIC_URL; // src após volume=0 para garantir ordem
     wmTrack.load();            // força início do carregamento (como bgA.load())
 
-    let welcomeMusicStarted = false;
+    let welcomeMusicState = 'idle'; // 'idle' | 'starting' | 'playing' | 'paused' | 'failed' | 'stopped'
+    let bgMusicState = 'idle';      // 'idle' | 'starting' | 'playing' | 'paused' | 'failed' | 'stopped'
+
+    function transitionWelcomeMusic(newState) {
+      console.log(`[AudioFSM] Welcome Music State: ${welcomeMusicState} -> ${newState}`);
+      welcomeMusicState = newState;
+    }
+
+    function transitionBgMusic(newState) {
+      console.log(`[AudioFSM] BG Music State: ${bgMusicState} -> ${newState}`);
+      bgMusicState = newState;
+    }
+
+    Object.defineProperty(window, 'welcomeMusicStarted', {
+      get: () => ['starting', 'playing'].includes(welcomeMusicState),
+      set: (val) => {
+        if (!val) {
+          transitionWelcomeMusic('stopped');
+        } else {
+          transitionWelcomeMusic('starting');
+        }
+      },
+      configurable: true
+    });
+
+    Object.defineProperty(window, 'musicStarted', {
+      get: () => ['starting', 'playing'].includes(bgMusicState),
+      set: (val) => {
+        if (!val) {
+          transitionBgMusic('stopped');
+        } else {
+          transitionBgMusic('starting');
+        }
+      },
+      configurable: true
+    });
+
     let _wmFadeInterval = null;
     let _wmFadeOutInterval = null;
     let _wmLoopTimeout = null;
@@ -134,63 +170,102 @@
       wmTrack.volume = 0.01;
       if (wmTrack.readyState >= 1) wmTrack.currentTime = 0;
       wmTrack.muted = true; // muted-first também nos loops (garante replay sem gesto)
+      transitionWelcomeMusic('starting');
       wmTrack.play().then(() => {
-        if (_wmStopRequested) { wmTrack.pause(); wmTrack.muted = false; return; }
+        if (_wmStopRequested) {
+          wmTrack.pause();
+          wmTrack.muted = false;
+          transitionWelcomeMusic('stopped');
+          return;
+        }
         wmTrack.muted = false;
+        transitionWelcomeMusic('playing');
         _wmFadeIn(() => {
           if (!_wmStopRequested) _wmScheduleFadeOut();
         });
-      }).catch(() => { wmTrack.muted = false; });
+      }).catch((err) => {
+        wmTrack.muted = false;
+        transitionWelcomeMusic('failed');
+        console.warn("[AudioFSM] _wmPlayOnce failed:", err);
+      });
     }
 
     // Evento 'ended' como safety net (caso o fade-out não tenha pausado a tempo)
     wmTrack.addEventListener('ended', () => {
-      if (_wmStopRequested || !welcomeMusicStarted) return;
+      if (_wmStopRequested || welcomeMusicState !== 'playing') return;
       _wmClearTimers();
       _wmLoopTimeout = setTimeout(() => {
-        if (!_wmStopRequested && welcomeMusicStarted) _wmPlayOnce();
+        if (!_wmStopRequested && welcomeMusicState === 'playing') _wmPlayOnce();
       }, WM_LOOP_GAP_MS);
     });
 
     function startWelcomeMusic(fromUserGesture = false) {
       if (!musicEnabled) return;
-      if (welcomeMusicStarted) {
-        // Já iniciada mas pode estar pausada (gap entre loops) — retomar imediatamente
+      if (welcomeMusicState === 'playing' || welcomeMusicState === 'starting') {
+        // Já iniciada mas pode estar pausada (gap entre loops ou pause de visibility) — retomar imediatamente
         if (wmTrack.paused && !_wmStopRequested) {
           _wmClearTimers();
           wmTrack.currentTime = 0;
           wmTrack.volume = 0.01;
           wmTrack.muted = !fromUserGesture;
+          transitionWelcomeMusic('starting');
           wmTrack.play().then(() => {
+            if (_wmStopRequested) {
+              wmTrack.pause();
+              wmTrack.muted = false;
+              wmTrack.volume = 0;
+              transitionWelcomeMusic('stopped');
+              return;
+            }
             wmTrack.muted = false;
+            transitionWelcomeMusic('playing');
             _wmFadeIn(() => { if (!_wmStopRequested) _wmScheduleFadeOut(); });
-          }).catch(() => { wmTrack.muted = false; });
+          }).catch((err) => {
+            wmTrack.muted = false;
+            transitionWelcomeMusic('failed');
+            console.warn("[AudioFSM] startWelcomeMusic (resume) failed:", err);
+          });
         }
         return;
       }
       _wmStopRequested = false;
-      welcomeMusicStarted = true; // marca antes do play() para bloquear re-entradas
+      transitionWelcomeMusic('starting');
       wmTrack.volume = 0;
       wmTrack.muted = !fromUserGesture; // muted-first apenas se não for gesto do usuário
       if (wmTrack.readyState >= 1) wmTrack.currentTime = 0;
       wmTrack.play().then(() => {
-        if (_wmStopRequested) { wmTrack.pause(); wmTrack.muted = false; wmTrack.volume = 0; welcomeMusicStarted = false; return; }
+        if (_wmStopRequested) {
+          wmTrack.pause();
+          wmTrack.muted = false;
+          wmTrack.volume = 0;
+          transitionWelcomeMusic('stopped');
+          return;
+        }
         wmTrack.muted = false;
         wmTrack.volume = 0.01;
+        transitionWelcomeMusic('playing');
         _wmFadeIn(() => { if (!_wmStopRequested) _wmScheduleFadeOut(); });
-      }).catch(() => { wmTrack.muted = false; welcomeMusicStarted = false; }); // libera retry apenas se bloqueado
+      }).catch((err) => {
+        wmTrack.muted = false;
+        transitionWelcomeMusic('failed');
+        console.warn("[AudioFSM] startWelcomeMusic failed:", err);
+      });
     }
 
     function stopWelcomeMusic(withFade, onComplete) {
       _wmStopRequested = true;   // cancela qualquer play() pendente antes de tudo
       _wmClearTimers();
-      if (!welcomeMusicStarted && wmTrack.paused) { if (onComplete) onComplete(); return; }
+      if (welcomeMusicState !== 'playing' && welcomeMusicState !== 'starting' && wmTrack.paused) {
+        transitionWelcomeMusic('stopped');
+        if (onComplete) onComplete();
+        return;
+      }
       wmTrack.muted = false; // garantir desmutado ao parar
       if (!withFade) {
         wmTrack.pause();
         wmTrack.currentTime = 0;
         wmTrack.volume = 0;
-        welcomeMusicStarted = false;
+        transitionWelcomeMusic('stopped');
         if (onComplete) onComplete();
         return;
       }
@@ -206,7 +281,7 @@
           wmTrack.pause();
           wmTrack.currentTime = 0;
           wmTrack.volume = 0;
-          welcomeMusicStarted = false;
+          transitionWelcomeMusic('stopped');
           if (onComplete) onComplete();
         } else {
           rafId = requestAnimationFrame(_tick);
@@ -248,7 +323,6 @@
       if (WELCOME_MUSIC_VOL > 1.0) WELCOME_MUSIC_VOL = 1.0;
     } catch(e) {}
 
-    let musicStarted = false;
     let activeTrack = bgA;
     let xfadeInterval = null;
     let _crossfading = false; // guard contra race condition ended + crossfade simultâneos
@@ -379,7 +453,15 @@
       nextTrack.volume = 0;
       // muted-first: crossfadeTo é chamado de timer, nunca de gesto do usuário
       nextTrack.muted = true;
-      nextTrack.play().then(() => { nextTrack.muted = false; }).catch(() => { nextTrack.muted = false; });
+      transitionBgMusic('starting');
+      nextTrack.play().then(() => {
+        nextTrack.muted = false;
+        transitionBgMusic('playing');
+      }).catch((err) => {
+        nextTrack.muted = false;
+        transitionBgMusic('failed');
+        console.warn("[AudioFSM] crossfadeTo play failed:", err);
+      });
 
       // Time-based equal-power crossfade — rAF, imune a throttling de aba inativa
       const XFADE_MS = XFADE_TIME * 1000;
@@ -398,7 +480,12 @@
           _crossfading = false;
           scheduleXfade(nextTrack);
         } else {
-          rafId = requestAnimationFrame(_tick);
+          if (bgMusicState === 'playing') {
+            rafId = requestAnimationFrame(_tick);
+          } else {
+            // Cancel crossfade if stopped/paused
+            _crossfading = false;
+          }
         }
       }
       rafId = requestAnimationFrame(_tick);
@@ -412,29 +499,33 @@
     }
     
     function startBgMusic() {
-      if (!musicEnabled || musicStarted) return;
+      if (!musicEnabled || bgMusicState === 'playing' || bgMusicState === 'starting') return;
       activeTrack = bgA;
       bgA.currentTime = 0;
       bgA.volume = 0;
       bgA.muted = true; // muted-first para bypass de autoplay policy
+      transitionBgMusic('starting');
       bgA.play().then(() => {
         bgA.muted = false;
         bgA.volume = MUSIC_VOL;
-        musicStarted = true;
+        transitionBgMusic('playing');
         scheduleXfade(bgA);
-      }).catch(() => {
+      }).catch((err) => {
         bgA.muted = false;
+        console.warn("[AudioFSM] startBgMusic failed, scheduling retry:", err);
         // Retry único após 800ms — cobre timing de OAuth redirect e focus tardio
         setTimeout(() => {
-          if (!musicEnabled || musicStarted) return;
+          if (!musicEnabled || bgMusicState === 'playing' || bgMusicState === 'starting') return;
           bgA.muted = true;
           bgA.play().then(() => {
             bgA.muted = false;
             bgA.volume = MUSIC_VOL;
-            musicStarted = true;
+            transitionBgMusic('playing');
             scheduleXfade(bgA);
-          }).catch(() => {
+          }).catch((err2) => {
             bgA.muted = false;
+            transitionBgMusic('failed');
+            console.error("[AudioFSM] startBgMusic retry failed:", err2);
             if (typeof _track === 'function') _track('error_bg_music_start_fail', {});
           });
         }, 800);
@@ -445,7 +536,7 @@
       bgA.pause(); bgB.pause();
       bgA.currentTime = 0; bgB.currentTime = 0;
       if (xfadeInterval) clearInterval(xfadeInterval);
-      musicStarted = false;
+      transitionBgMusic('stopped');
     }
     
     function toggleSound() {
@@ -525,11 +616,11 @@
             return;
           }
           // Se a track está pausada apesar de "started", reset para permitir novo start
-          if (welcomeMusicStarted && wmTrack.paused && !_wmStopRequested) {
+          if (welcomeMusicState === 'playing' && wmTrack.paused && !_wmStopRequested) {
             _wmClearTimers();
-            welcomeMusicStarted = false;
+            transitionWelcomeMusic('paused');
           }
-          if (welcomeMusicStarted && !wmTrack.paused) {
+          if (welcomeMusicState === 'playing' && !wmTrack.paused) {
             // Música tocando com sucesso — remove listeners
             document.removeEventListener('touchstart', _tryWelcomeMusic, { capture: true });
             document.removeEventListener('click',      _tryWelcomeMusic, { capture: true });
@@ -545,19 +636,31 @@
       document.addEventListener('visibilitychange', function() {
         if (document.visibilityState !== 'visible') return;
         // Welcome music
-        if (welcomeMusicStarted && wmTrack.paused && !_wmStopRequested && musicEnabled) {
+        if (welcomeMusicState === 'playing' && wmTrack.paused && !_wmStopRequested && musicEnabled) {
           wmTrack.muted = true;
+          transitionWelcomeMusic('starting');
           wmTrack.play().then(function() {
             wmTrack.muted = false;
-          }).catch(function() { wmTrack.muted = false; });
+            transitionWelcomeMusic('playing');
+          }).catch(function(err) {
+            wmTrack.muted = false;
+            transitionWelcomeMusic('failed');
+            console.warn("[AudioFSM] welcome music visibility resume failed:", err);
+          });
         }
         // Background music
-        if (musicStarted && musicEnabled && activeTrack && activeTrack.paused) {
+        if (bgMusicState === 'playing' && musicEnabled && activeTrack && activeTrack.paused) {
           activeTrack.muted = true;
+          transitionBgMusic('starting');
           activeTrack.play().then(function() {
             activeTrack.muted = false;
             activeTrack.volume = MUSIC_VOL;
-          }).catch(function() { activeTrack.muted = false; });
+            transitionBgMusic('playing');
+          }).catch(function(err) {
+            activeTrack.muted = false;
+            transitionBgMusic('failed');
+            console.warn("[AudioFSM] bg music visibility resume failed:", err);
+          });
         }
       });
     })();

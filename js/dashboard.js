@@ -1292,43 +1292,116 @@
   // ── Load ranking ─────────────────────────────────────────────────────────
   let _lbFullData = [];
 
-  function _renderLbRows(data, query) {
+  function _renderLbRows(wrap, data, query) {
+    wrap.innerHTML = '';
     const q = (query || '').trim().toLowerCase();
     const filtered = data.filter(r =>
       !q || (r.player_name || '').toLowerCase().includes(q) || (r.character_name || '').toLowerCase().includes(q)
     );
     if (!filtered.length) {
-      return '<div class="nq-dash-lb-spin" style="padding:24px;">Nenhum resultado encontrado.</div>';
+      const emptyDiv = document.createElement('div');
+      emptyDiv.className = 'nq-dash-lb-spin';
+      emptyDiv.style.padding = '24px';
+      emptyDiv.textContent = 'Nenhum resultado encontrado.';
+      wrap.appendChild(emptyDiv);
+      return;
     }
     const rl = ['🥇', '🥈', '🥉'];
     const rc = ['r1', 'r2', 'r3'];
-    return `<table class="nq-dash-lb-table">
-      <thead><tr>
-        <th style="width:36px;">#</th>
-        <th>Jogador</th>
-        <th style="display:none;">Classe</th>
-        <th style="text-align:right;">Score</th>
-        <th style="text-align:center;width:50px;">Nível</th>
-      </tr></thead>
-      <tbody>
-        ${filtered.map((r, i) => {
-          const me = state.lastSubmittedName && r.player_name === state.lastSubmittedName;
-          return `<tr class="${me ? 'lb-me' : ''}">
-            <td><span class="nq-dash-rank ${i < 3 ? rc[i] : ''}">${i < 3 ? rl[i] : i + 1}</span></td>
-            <td style="${me ? 'color:var(--gold);font-weight:700;' : ''}">
-              ${escapeHtml(r.player_name || 'Anônimo')}
-              <span style="color:var(--txt-dim);font-size:0.68rem;margin-left:4px;">${escapeHtml(r.character_name || '')}</span>
-            </td>
-            <td style="display:none;"></td>
-            <td class="nq-dash-lb-score">${(r.score || 0).toLocaleString('pt-BR')}</td>
-            <td style="text-align:center;color:var(--txt-dim);">${r.level || 1}</td>
-          </tr>`;
-        }).join('')}
-      </tbody>
-    </table>
-    <div class="nq-dash-lb-ts">
-      Atualizado: ${new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}
-    </div>`;
+
+    const table = document.createElement('table');
+    table.className = 'nq-dash-lb-table';
+
+    const thead = document.createElement('thead');
+    const trHead = document.createElement('tr');
+    
+    const thRank = document.createElement('th');
+    thRank.style.width = '36px';
+    thRank.textContent = '#';
+    
+    const thPlayer = document.createElement('th');
+    thPlayer.textContent = 'Jogador';
+    
+    const thClass = document.createElement('th');
+    thClass.style.display = 'none';
+    thClass.textContent = 'Classe';
+    
+    const thScore = document.createElement('th');
+    thScore.style.textAlign = 'right';
+    thScore.textContent = 'Score';
+    
+    const thLevel = document.createElement('th');
+    thLevel.style.textAlign = 'center';
+    thLevel.style.width = '50px';
+    thLevel.textContent = 'Nível';
+
+    trHead.appendChild(thRank);
+    trHead.appendChild(thPlayer);
+    trHead.appendChild(thClass);
+    trHead.appendChild(thScore);
+    trHead.appendChild(thLevel);
+    thead.appendChild(trHead);
+    table.appendChild(thead);
+
+    const tbody = document.createElement('tbody');
+    filtered.forEach((r, i) => {
+      const me = state.lastSubmittedName && r.player_name === state.lastSubmittedName;
+      const tr = document.createElement('tr');
+      if (me) tr.className = 'lb-me';
+
+      // rank td
+      const tdRank = document.createElement('td');
+      const spanRank = document.createElement('span');
+      spanRank.className = `nq-dash-rank ${i < 3 ? rc[i] : ''}`;
+      spanRank.textContent = i < 3 ? rl[i] : String(i + 1);
+      tdRank.appendChild(spanRank);
+      tr.appendChild(tdRank);
+
+      // player td
+      const tdPlayer = document.createElement('td');
+      if (me) {
+        tdPlayer.style.color = 'var(--gold)';
+        tdPlayer.style.fontWeight = '700';
+      }
+      tdPlayer.appendChild(document.createTextNode(r.player_name || 'Anônimo'));
+      
+      if (r.character_name) {
+        const spanChar = document.createElement('span');
+        spanChar.style.color = 'var(--txt-dim)';
+        spanChar.style.fontSize = '0.68rem';
+        spanChar.style.marginLeft = '4px';
+        spanChar.textContent = r.character_name;
+        tdPlayer.appendChild(spanChar);
+      }
+      tr.appendChild(tdPlayer);
+
+      // class td (hidden)
+      const tdClass = document.createElement('td');
+      tdClass.style.display = 'none';
+      tr.appendChild(tdClass);
+
+      // score td
+      const tdScore = document.createElement('td');
+      tdScore.className = 'nq-dash-lb-score';
+      tdScore.textContent = (r.score || 0).toLocaleString('pt-BR');
+      tr.appendChild(tdScore);
+
+      // level td
+      const tdLevel = document.createElement('td');
+      tdLevel.style.textAlign = 'center';
+      tdLevel.style.color = 'var(--txt-dim)';
+      tdLevel.textContent = r.level || 1;
+      tr.appendChild(tdLevel);
+
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+    wrap.appendChild(table);
+
+    const tsDiv = document.createElement('div');
+    tsDiv.className = 'nq-dash-lb-ts';
+    tsDiv.textContent = `Atualizado: ${new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}`;
+    wrap.appendChild(tsDiv);
   }
 
   async function _loadRanking(force) {
@@ -1342,7 +1415,7 @@
         wrap.innerHTML = '<div class="nq-dash-lb-spin">Nenhuma pontuação registrada ainda.</div>';
         return;
       }
-      wrap.innerHTML = _renderLbRows(_lbFullData, '');
+      _renderLbRows(wrap, _lbFullData, '');
       // Wire search
       const searchEl = document.getElementById('nqDashLbSearch');
       if (searchEl && !searchEl.dataset.wired) {
@@ -1352,7 +1425,7 @@
           clearTimeout(_t);
           _t = setTimeout(() => {
             const w = document.getElementById('nqDashLbWrap');
-            if (w) w.innerHTML = _renderLbRows(_lbFullData, searchEl.value);
+            if (w) _renderLbRows(w, _lbFullData, searchEl.value);
           }, 200);
         });
       }

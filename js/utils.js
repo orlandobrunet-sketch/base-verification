@@ -22,6 +22,26 @@
       } catch(e) { /* silencia erros de analytics */ }
     }
 
+    function _reportError(error, context = {}) {
+      console.error('[NQ Error]', error, context);
+      
+      // Envia para o Sentry
+      try {
+        if (typeof Sentry !== 'undefined' && typeof Sentry.captureException === 'function') {
+          Sentry.captureException(error, { extra: context });
+        }
+      } catch(e) {}
+
+      // Envia evento para o GA4
+      try {
+        _track('app_error', {
+          error_message: error instanceof Error ? error.message : String(error),
+          error_context: JSON.stringify(context)
+        });
+      } catch(e) {}
+    }
+    window._reportError = _reportError;
+
     // Helper de i18n leve. Uso: t('Texto PT', 'EN text'). Lê o idioma de
     // window.NQ_CONFIG.lang (definido em game.js). Default = PT (fallback seguro
     // — public médico brasileiro). Veja docs/I18N.md para a estratégia completa.
