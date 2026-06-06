@@ -21,7 +21,7 @@
                 <span style="color:#e0f2fe;font-weight:bold;font-size:0.95rem;">Correção de Siglas e Conteúdo</span>
               </div>
               <ul style="margin:0;padding-left:18px;color:#c8d8f0;font-size:0.82rem;line-height:1.8;">
-                <li><strong>Siglas em português 🇧🇷</strong> — Padronização para DRPAD (Doença Renal Policística Autossômica Dominante) e LECO (litotripsia extracorpórea por ondas de choque), corrigindo variantes e siglas em inglês no banco de questões.</li>
+                <li><strong>Siglas em português 🇧🇷</strong> — Varredura do banco de questões padronizando siglas: DRPAD (Doença Renal Policística Autossômica Dominante), LECO (litotripsia extracorpórea), TFGe, GESF, SRAA e "doença renal terminal", substituindo variantes e siglas em inglês.</li>
                 <li><strong>Cálculo coraliforme reescrito 🪨</strong> — Questão sobre conduta no cálculo coraliforme atualizada com diretrizes de urolitíase (EAU/AUA), priorizando a nefrolitotomia percutânea.</li>
               </ul>
             </div>
