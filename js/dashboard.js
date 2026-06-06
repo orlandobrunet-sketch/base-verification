@@ -551,28 +551,11 @@
         text-shadow: 0 0 10px rgba(255,215,0,0.25);
       }
       .nq-dash-heatmap-grid {
-        display: grid;
-        grid-template-rows: repeat(7, 10px);
-        grid-auto-columns: 10px;
-        grid-auto-flow: column;
+        display: flex;
+        flex-wrap: wrap;
         gap: 5px;
         justify-content: start;
-        overflow-x: auto;
         padding: 6px 4px 10px;
-        scrollbar-width: thin;
-        scrollbar-color: rgba(255,215,0,0.18) transparent;
-      }
-      @media (min-width: 860px) {
-        .nq-dash-heatmap-grid {
-          justify-content: center;
-        }
-      }
-      .nq-dash-heatmap-grid::-webkit-scrollbar {
-        height: 4px;
-      }
-      .nq-dash-heatmap-grid::-webkit-scrollbar-thumb {
-        background: rgba(255,215,0,0.15);
-        border-radius: 2px;
       }
       .nq-dash-heatmap-day {
         width: 10px;
@@ -716,6 +699,59 @@
         font-size: 0.74rem;
         color: #e2e8f0;
       }
+
+      /* Estilo do tooltip "i" na Jornada Ativa */
+      .nq-dash-hero-info-tooltip {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: var(--txt-dim);
+        font-size: 0.68rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: help;
+        transition: all 0.2s ease;
+        user-select: none;
+        z-index: 5;
+      }
+      .nq-dash-hero-info-tooltip:hover {
+        background: rgba(255, 215, 0, 0.15);
+        border-color: var(--gold);
+        color: var(--gold);
+        box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+      }
+      .nq-dash-hero-info-tooltip::after {
+        content: "O progresso e nível acima pertencem apenas à corrida atual e serão resetados ao iniciar um novo jogo. Os acertos acumulados, conquistas e ranking abaixo pertencem ao seu perfil definitivo.";
+        position: absolute;
+        bottom: 24px;
+        right: 0;
+        width: 220px;
+        background: #0f111a;
+        border: 1px solid rgba(255, 215, 0, 0.3);
+        border-radius: 8px;
+        padding: 8px 10px;
+        color: #e2e8f0;
+        font-size: 0.65rem;
+        line-height: 1.4;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+        transform: translateY(4px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        z-index: 10;
+        text-align: left;
+        font-family: 'Philosopher', sans-serif;
+      }
+      .nq-dash-hero-info-tooltip:hover::after {
+        opacity: 1;
+        transform: translateY(0);
+      }
     `;
     document.head.appendChild(s);
   }
@@ -780,32 +816,41 @@
       return 1;
     }
 
-    const daySquares = gridDays.map(day => {
-      const lvl = getLevel(day.count, day.time);
-      const dayName = day.date.toLocaleDateString('pt-BR', { weekday: 'short' });
-      const formattedDate = day.date.toLocaleDateString('pt-BR');
-      let tooltip = `${formattedDate} (${dayName}): `;
-      if (day.count === 0) {
-        tooltip += 'Sem atividade';
-      } else {
-        const accuracy = Math.round(day.correct / day.count * 100);
-        const min = Math.floor(day.time / 60);
-        const sec = Math.round(day.time % 60);
-        const timeStr = min > 0 ? `${min}m ${sec}s` : `${sec}s`;
-        tooltip += `${day.count} qts (${day.correct} acertos, ${accuracy}%) • ${timeStr} foco`;
-      }
+    const weeks = [];
+    for (let i = 0; i < gridDays.length; i += 7) {
+      weeks.push(gridDays.slice(i, i + 7));
+    }
 
-      let bgStyle = 'rgba(255, 255, 255, 0.03)';
-      let shadow = 'none';
-      if (lvl === 1) bgStyle = 'rgba(139, 92, 246, 0.25)';
-      else if (lvl === 2) bgStyle = 'rgba(139, 92, 246, 0.55)';
-      else if (lvl === 3) bgStyle = 'rgba(139, 92, 246, 0.85)';
-      else if (lvl === 4) {
-        bgStyle = 'var(--gold)';
-        shadow = '0 0 6px rgba(255, 215, 0, 0.45)';
-      }
+    const weekSquares = weeks.map(week => {
+      const daySquares = week.map(day => {
+        const lvl = getLevel(day.count, day.time);
+        const dayName = day.date.toLocaleDateString('pt-BR', { weekday: 'short' });
+        const formattedDate = day.date.toLocaleDateString('pt-BR');
+        let tooltip = `${formattedDate} (${dayName}): `;
+        if (day.count === 0) {
+          tooltip += 'Sem atividade';
+        } else {
+          const accuracy = Math.round(day.correct / day.count * 100);
+          const min = Math.floor(day.time / 60);
+          const sec = Math.round(day.time % 60);
+          const timeStr = min > 0 ? `${min}m ${sec}s` : `${sec}s`;
+          tooltip += `${day.count} qts (${day.correct} acertos, ${accuracy}%) • ${timeStr} foco`;
+        }
 
-      return `<div class="nq-dash-heatmap-day" style="background:${bgStyle}; box-shadow:${shadow};" title="${escapeHtml(tooltip)}"></div>`;
+        let bgStyle = 'rgba(255, 255, 255, 0.03)';
+        let shadow = 'none';
+        if (lvl === 1) bgStyle = 'rgba(139, 92, 246, 0.25)';
+        else if (lvl === 2) bgStyle = 'rgba(139, 92, 246, 0.55)';
+        else if (lvl === 3) bgStyle = 'rgba(139, 92, 246, 0.85)';
+        else if (lvl === 4) {
+          bgStyle = 'var(--gold)';
+          shadow = '0 0 6px rgba(255, 215, 0, 0.45)';
+        }
+
+        return `<div class="nq-dash-heatmap-day" style="background:${bgStyle}; box-shadow:${shadow};" title="${escapeHtml(tooltip)}"></div>`;
+      }).join('');
+
+      return `<div class="nq-dash-heatmap-week" style="display: flex; flex-direction: column; gap: 5px; width: 10px;">${daySquares}</div>`;
     }).join('');
 
     const startStr = startDate.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: '2-digit' });
@@ -817,7 +862,7 @@
           <div class="nq-dash-heatmap-title">Foco & Engajamento (Últimas 52 Semanas)</div>
         </div>
         <div class="nq-dash-heatmap-grid">
-          ${daySquares}
+          ${weekSquares}
         </div>
         <div class="nq-dash-heatmap-labels">
           <span>${startStr}</span>
@@ -1026,7 +1071,7 @@
 
       <!-- Jornada Ativa (Personagem) -->
       <div class="nq-dash-stitle">Jornada Ativa (Personagem)</div>
-      <div class="nq-dash-hero" style="margin-bottom:12px;">
+      <div class="nq-dash-hero" style="margin-bottom:20px;">
         ${avatarSrc
           ? `<img class="nq-dash-avatar" src="${avatarSrc}" alt="${escapeHtml(charData.name)}" loading="lazy">`
           : `<div class="nq-dash-avatar-ph">⚕️</div>`}
@@ -1040,10 +1085,8 @@
             <div class="nq-dash-cs"><em>✅</em>${state.correctTotal || 0}/100</div>
           </div>
         </div>
+        <div class="nq-dash-hero-info-tooltip">i</div>
       </div>
-      <p style="font-size:0.68rem; color:var(--txt-dim); margin-top:-6px; margin-bottom:20px; line-height:1.4; padding:0 4px; font-style:italic;">
-        ℹ️ O progresso e nível acima pertencem apenas à corrida atual e serão resetados ao iniciar um novo jogo. Os acertos acumulados, conquistas e ranking abaixo pertencem ao seu perfil definitivo.
-      </p>
 
       <!-- KPIs: linha 1 — dados de TODAS as partidas -->
       <div class="nq-dash-stitle">Histórico geral — todas as partidas</div>
