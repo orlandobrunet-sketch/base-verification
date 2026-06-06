@@ -3320,9 +3320,12 @@
         stats.timeStats.questionCount++;
       }
       
+      // ID da questão: no deck o qid fica em `id` (buildDeck: id = t.qid).
+      const _qid = question.qid || question.id;
+
       // Histórico (últimas 100)
       stats.questionHistory.unshift({
-        qid: question.qid,
+        qid: _qid,
         topic: topic,
         correct: isCorrect,
         time: timeSpent,
@@ -3335,8 +3338,8 @@
       // Persistir ID no conjunto de todas as respondidas
       try {
         const answeredQids = JSON.parse(localStorage.getItem('nefroquest-all-answered-qids') || '[]');
-        if (question.qid && !answeredQids.includes(question.qid)) {
-          answeredQids.push(question.qid);
+        if (_qid && !answeredQids.includes(_qid)) {
+          answeredQids.push(_qid);
           localStorage.setItem('nefroquest-all-answered-qids', JSON.stringify(answeredQids));
         }
       } catch (e) {
