@@ -1264,7 +1264,7 @@
       if (!isCorrect) {
         if (_canAskMentor()) {
           mentorBtnInner = `<button class="btn ghost" style="font-size:0.78rem;padding:7px 16px;margin:0;" data-action="openMentorModal">
-                🔮 Consultar o Oráculo <span style="font-size:0.68rem;opacity:0.6;">(${_mentorRemainingText()})</span>
+                🔮 Consultar Oráculo
                </button>`;
         } else {
           mentorBtnInner = `<div style="font-size:0.75rem;color:var(--txt-dim);margin:0;">Limite diário de perguntas atingido — <button class="btn ghost" style="font-size:0.72rem;padding:4px 10px;" data-action="showPricingModal">Premium ilimitado</button></div>`;
