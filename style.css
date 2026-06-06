@@ -943,6 +943,16 @@
       flex-shrink: 0;
       color: #fff;
     }
+    .ref-rarity {
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 2px 8px;
+      border-radius: 20px;
+      flex-shrink: 0;
+      font-family: 'Cinzel', serif;
+    }
     .ref-meta {
       display: flex;
       align-items: center;
@@ -1008,7 +1018,7 @@
 
     /* CONTROL BUTTONS */
     .ctrl {
-      padding: 10px 0; margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;
+      padding: 10px 0 10px 14px; margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;
     }
     .btn {
       border: 2px solid var(--blue-dark);
@@ -1188,6 +1198,15 @@
     .dock-btn.dashboard-btn:hover {
       border-color: rgba(192,132,252,0.65);
       box-shadow: 0 4px 20px rgba(0,0,0,0.7), 0 0 16px rgba(192,132,252,0.28);
+    }
+
+    /* Oráculo — roxo arcano */
+    .dock-btn.oraculo-dock { border-color: rgba(168,85,247,0.35); }
+    .dock-btn.oraculo-dock svg { color: #c4b5fd; filter: drop-shadow(0 0 6px rgba(168,85,247,0.7)); }
+    .dock-btn.oraculo-dock .dock-label { color: #c4b5fd; background: rgba(168,85,247,0.2); }
+    .dock-btn.oraculo-dock:hover {
+      border-color: rgba(168,85,247,0.65);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.7), 0 0 16px rgba(168,85,247,0.3);
     }
 
     /* Forja — laranja brasa (combina forjar item + lendário) */
