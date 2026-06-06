@@ -14,6 +14,17 @@
 
           <div class="modal-scroll-body" style="text-align:left;">
 
+            <!-- v11.56 -->
+            <div style="background:linear-gradient(135deg,rgba(56,189,248,0.18),rgba(56,189,248,0.06));border:2px solid rgba(56,189,248,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                <span style="background:rgba(56,189,248,0.9);color:#04222e;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v11.56</span>
+                <span style="color:#e0f2fe;font-weight:bold;font-size:0.95rem;">Correção da Tela de Novidades</span>
+              </div>
+              <ul style="margin:0;padding-left:18px;color:#c8d8f0;font-size:0.82rem;line-height:1.8;">
+                <li><strong>Changelog restaurado 📜</strong> — Corrigido erro de sintaxe que impedia esta própria tela de novidades de abrir. Tudo funcionando novamente.</li>
+              </ul>
+            </div>
+
             <!-- v11.55 -->
             <div style="background:linear-gradient(135deg,rgba(16,185,129,0.18),rgba(16,185,129,0.06));border:2px solid rgba(16,185,129,0.7);border-radius:10px;padding:16px;margin-bottom:12px;">
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
@@ -23,9 +34,9 @@
               <ul style="margin:0;padding-left:18px;color:#c8d8f0;font-size:0.82rem;line-height:1.8;">
                 <li><strong>Estabilidade no Áudio (FSM) 🎵</strong> — Implementação de Máquina de Estados Finita para o sistema de áudio, eliminando condições de corrida sutis e contornando bloqueios rígidos de autoplay nos navegadores.</li>
                 <li><strong>Idempotência no Ranking 🏆</strong> — Novo FSM com timeout defensivo de 10 segundos no controle de envios ao leaderboard, blindando contra duplicidades de registros em conexões instáveis.</li>
-                <li><strong>Mitigação de XSS (Superfície Limpa) 🛡️</strong> — Migração total de renderizadores baseados em HTML bruto para criação estruturada com a API DOM (`document.createElement`) e `textContent` no ranking, dashboard e painel de controle.</li>
+                <li><strong>Mitigação de XSS (Superfície Limpa) 🛡️</strong> — Migração total de renderizadores baseados em HTML bruto para criação estruturada com a API DOM ('document.createElement') e 'textContent' no ranking, dashboard e painel de controle.</li>
                 <li><strong>Observabilidade e Telemetria 📊</strong> — Roteador unificado de exceções pegando erros silenciosos anteriores e canalizando logs contextuais detalhados para Sentry e GA4.</li>
-                <li><strong>Setup Rápido de E2E 🛠️</strong> — Provisionamento direto de navegadores via script `npm run setup:e2e` e separação de smoke-tests obrigatórios na automação CI.</li>
+                <li><strong>Setup Rápido de E2E 🛠️</strong> — Provisionamento direto de navegadores via script 'npm run setup:e2e' e separação de smoke-tests obrigatórios na automação CI.</li>
               </ul>
             </div>
 
