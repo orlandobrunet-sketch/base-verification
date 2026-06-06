@@ -2837,11 +2837,13 @@
             pointer-events: none;
           }
         </style>
-        <div class="narrative-card" style="border-color: #fbbf24; box-shadow: 0 0 40px rgba(251, 191, 36, 0.45);">
+        <div class="narrative-card" style="border-color: #fbbf24; box-shadow: 0 0 40px rgba(251, 191, 36, 0.45); overflow: visible !important;">
           <div class="narr-chapter" style="color: #fbbf24;">Encontro Inesperado</div>
           <h3>✨ Baú de Relíquias Ancestrais</h3>
           
-          <img src="assets/chest_icon.png" alt="Baú" class="chest-img-clickable" data-action="_animateAndClaimChest" data-pass-this="1" />
+          <div style="padding: 10px 0 24px; overflow: visible !important; display: block;">
+            <img src="assets/chest_icon.png" alt="Baú" class="chest-img-clickable" data-action="_animateAndClaimChest" data-pass-this="1" />
+          </div>
           
           <div class="narr-text" style="color: #fff8dc; font-style: italic; line-height: 1.6; font-size: 0.88rem; text-align: center; margin-top: 15px;">
             Enquanto purifica os néfrons das correntes urêmicas, uma pulsação dourada sob as névoas chama sua atenção. Você encontrou um baú misterioso deixado pelos antigos patronos da nefrologia.<br><br>

@@ -1586,12 +1586,13 @@
     .article-card p { margin: 6px 0; line-height: 1.5; font-size: 0.85rem; }
     .article-card .label { color: var(--txt-dim); font-size: 0.78rem; font-weight: 600; }
     .close-chest {
-      width: 100%; padding: 10px; margin-top: 16px;
+      width: 100%; padding: 10px; margin-top: 16px; margin-bottom: 12px;
       background: linear-gradient(180deg, #ffd700, #b8860b);
       border: 2px solid #8b6914; border-radius: 8px; color: #1a0e00;
       font-weight: 700; font-size: 0.9rem; cursor: pointer;
       font-family: 'Cinzel', serif; text-transform: uppercase;
       transition: box-shadow 0.2s, background 0.2s;
+      box-sizing: border-box;
     }
     .close-chest:hover { box-shadow: 0 0 20px rgba(255,215,0,0.4); }
 
