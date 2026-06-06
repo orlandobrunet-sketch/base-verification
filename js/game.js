@@ -1628,7 +1628,12 @@
       }
     }
 
+    let _loadingNextQuestion = false;
     function renderQuestion(){
+      if (_loadingNextQuestion) return;
+      _loadingNextQuestion = true;
+      setTimeout(() => { _loadingNextQuestion = false; }, 400);
+
       _questionStartTime = Date.now();
       const _msb = document.getElementById('mobileStatusBar');
       if (_msb) _msb.classList.add('active');

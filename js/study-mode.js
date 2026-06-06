@@ -1299,7 +1299,12 @@
       playSound(isCorrect ? 'correct' : 'wrong');
     }
     
+    let _loadingStudyNext = false;
     function nextStudyQuestion() {
+      if (_loadingStudyNext) return;
+      _loadingStudyNext = true;
+      setTimeout(() => { _loadingStudyNext = false; }, 400);
+
       studyModeIndex++;
       _saveStudyState();
       renderStudyQuestion();
