@@ -1634,6 +1634,9 @@
       _loadingNextQuestion = true;
       setTimeout(() => { _loadingNextQuestion = false; }, 400);
 
+      // Envia a avaliação da questão anterior antes de carregar a próxima.
+      flushPendingRating();
+
       _questionStartTime = Date.now();
       const _msb = document.getElementById('mobileStatusBar');
       if (_msb) _msb.classList.add('active');
@@ -2351,94 +2354,100 @@
       setTimeout(renderQuestionRatingUI, 50);
     }
 
+    // ── Avaliação 5★ por questão (qualidade + aprendizado) ──────────────
+    // Comportamento: estrelas escuras → preenchem ao passar o mouse (amarelo
+    // para qualidade, azul para aprendizado) → cor fixada ao clicar. Sem
+    // mensagem de confirmação. O envio é diferido (flush) ao avançar de
+    // questão ou sair da página.
+    const RATING_COLOR = { quality: '#fbbf24', learning: '#38bdf8' };
+    const RATING_DARK = 'rgba(255,255,255,0.22)';
+    let _pendingRating = null; // { qid, qtext, quality, learning, saved }
+
+    async function flushPendingRating() {
+      const p = _pendingRating;
+      _pendingRating = null;
+      if (!p || p.saved) return;
+      // A tabela exige ambas as notas (1–5). Só persiste quando as duas existem.
+      if (p.quality > 0 && p.learning > 0) {
+        await submitQuestionRating(p.qid, p.qtext, p.quality, p.learning);
+      }
+    }
+
     function renderQuestionRatingUI() {
       const q = state.current;
       if (!q) return;
       const qid = q.qid || q.id;
       if (!qid) return;
 
-      // Se já avaliado na sessão, não mostra novamente
       let rated = {};
       try {
         rated = JSON.parse(localStorage.getItem('nefroquest-rated-questions') || '{}');
       } catch (e) {}
-      if (rated[qid]) return;
+      const prev = rated[qid] || null;
+
+      _pendingRating = {
+        qid,
+        qtext: (q.q || '').substring(0, 200),
+        quality: prev ? (prev.quality || 0) : 0,
+        learning: prev ? (prev.learning || 0) : 0,
+        saved: !!prev
+      };
 
       const ratingDiv = document.createElement('div');
       ratingDiv.id = 'qRatingContainer';
       ratingDiv.className = 'q-rating-container';
-      ratingDiv.style.cssText = 'margin-top:14px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.08); display:flex; flex-direction:column; gap:8px; text-align:left;';
+      const starsFor = () => [1,2,3,4,5].map(v => `<span class="star-rating" data-value="${v}">★</span>`).join('');
       ratingDiv.innerHTML = `
-        <div style="font-size:0.75rem; color:#cbd5e1; font-family:'Philosopher', sans-serif;">Avalie esta questão (Opcional):</div>
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
-          <div style="display:flex; align-items:center; gap:6px;">
-            <span style="font-size:0.72rem; color:var(--txt-dim); font-family:'Philosopher', sans-serif;">Qualidade:</span>
-            <div class="stars-row" data-rating-type="quality" style="display:flex; gap:3px;">
-              <span class="star-rating" data-value="1" style="cursor:pointer; font-size:1.1rem; color:rgba(255,255,255,0.25); transition:color 0.15s;">★</span>
-              <span class="star-rating" data-value="2" style="cursor:pointer; font-size:1.1rem; color:rgba(255,255,255,0.25); transition:color 0.15s;">★</span>
-              <span class="star-rating" data-value="3" style="cursor:pointer; font-size:1.1rem; color:rgba(255,255,255,0.25); transition:color 0.15s;">★</span>
-              <span class="star-rating" data-value="4" style="cursor:pointer; font-size:1.1rem; color:rgba(255,255,255,0.25); transition:color 0.15s;">★</span>
-              <span class="star-rating" data-value="5" style="cursor:pointer; font-size:1.1rem; color:rgba(255,255,255,0.25); transition:color 0.15s;">★</span>
-            </div>
-          </div>
-          <div style="display:flex; align-items:center; gap:6px;">
-            <span style="font-size:0.72rem; color:var(--txt-dim); font-family:'Philosopher', sans-serif;">Aprendizado:</span>
-            <div class="stars-row" data-rating-type="learning" style="display:flex; gap:3px;">
-              <span class="star-rating" data-value="1" style="cursor:pointer; font-size:1.1rem; color:rgba(255,255,255,0.25); transition:color 0.15s;">★</span>
-              <span class="star-rating" data-value="2" style="cursor:pointer; font-size:1.1rem; color:rgba(255,255,255,0.25); transition:color 0.15s;">★</span>
-              <span class="star-rating" data-value="3" style="cursor:pointer; font-size:1.1rem; color:rgba(255,255,255,0.25); transition:color 0.15s;">★</span>
-              <span class="star-rating" data-value="4" style="cursor:pointer; font-size:1.1rem; color:rgba(255,255,255,0.25); transition:color 0.15s;">★</span>
-              <span class="star-rating" data-value="5" style="cursor:pointer; font-size:1.1rem; color:rgba(255,255,255,0.25); transition:color 0.15s;">★</span>
-            </div>
-          </div>
+        <div class="qr-left">
+          <div class="qr-title">Avalie esta questão</div>
+          <div class="qr-sub">(feedback opcional)</div>
         </div>
-        <div id="ratingStatus" style="font-size:0.68rem; color:#4ade80; display:none; margin-top:2px; font-family:'Philosopher', sans-serif;">Obrigado pela sua avaliação!</div>
+        <div class="qr-right">
+          <div class="qr-line">
+            <span class="qr-label">Qualidade:</span>
+            <div class="stars-row" data-rating-type="quality">${starsFor()}</div>
+          </div>
+          <div class="qr-line">
+            <span class="qr-label">Aprendizado:</span>
+            <div class="stars-row" data-rating-type="learning">${starsFor()}</div>
+          </div>
+          <button type="button" class="q-flag-link" data-action="flagQuestion">sinalizar questão problemática</button>
+        </div>
       `;
-
       ui.feedback.appendChild(ratingDiv);
 
-      let qualitySelected = 0;
-      let learningSelected = 0;
-
-      // Event listeners para as estrelas
       ratingDiv.querySelectorAll('.stars-row').forEach(row => {
         const type = row.dataset.ratingType;
+        const color = RATING_COLOR[type];
         const stars = [...row.querySelectorAll('.star-rating')];
-        
+
+        const paint = (n) => stars.forEach((s, i) => {
+          const on = i < n;
+          s.style.color = on ? color : RATING_DARK;
+          s.style.textShadow = on ? `0 0 6px ${color}88` : 'none';
+        });
+        const selected = () => _pendingRating ? (_pendingRating[type] || 0) : 0;
+
+        paint(selected());
+
         stars.forEach(star => {
-          star.addEventListener('click', (e) => {
-            const val = parseInt(star.dataset.value);
-            if (type === 'quality') qualitySelected = val;
-            if (type === 'learning') learningSelected = val;
-
-            // Colorir as estrelas
-            stars.forEach((s, idx) => {
-              s.style.color = (idx < val) ? '#fbbf24' : 'rgba(255,255,255,0.25)';
-              if (idx < val) {
-                s.style.textShadow = '0 0 6px rgba(251,191,36,0.5)';
-              } else {
-                s.style.textShadow = 'none';
-              }
-            });
-
-            // Se ambos foram avaliados, submeter
-            if (qualitySelected > 0 && learningSelected > 0) {
-              submitQuestionRating(qualitySelected, learningSelected);
-            }
+          const val = parseInt(star.dataset.value);
+          star.addEventListener('mouseenter', () => paint(val));
+          star.addEventListener('click', () => {
+            if (_pendingRating) { _pendingRating[type] = val; _pendingRating.saved = false; }
+            paint(val);
           });
         });
+        row.addEventListener('mouseleave', () => paint(selected()));
       });
     }
 
-    async function submitQuestionRating(qualityVal, learningVal) {
-      const q = state.current;
-      if (!q) return;
-      const qid = q.qid || q.id;
+    async function submitQuestionRating(qid, qtext, qualityVal, learningVal) {
       if (!qid) return;
 
       const ratingData = {
         question_id: qid,
-        question_text: (q.q || '').substring(0, 200),
+        question_text: qtext,
         rating_quality: qualityVal,
         rating_learning: learningVal,
         player_email: (window.authUser && window.authUser.email) || 'anonimo',
@@ -2446,7 +2455,7 @@
         created_at: new Date().toISOString()
       };
 
-      // Guardar localmente
+      // Guardar localmente (marca como avaliada — evita reenvio)
       try {
         const rated = JSON.parse(localStorage.getItem('nefroquest-rated-questions') || '{}');
         rated[qid] = { quality: qualityVal, learning: learningVal };
@@ -2461,19 +2470,6 @@
           if (error) console.error('[NQ] Rating save error', error);
         } catch (err) {
           console.error('[NQ] Rating save exception', err);
-        }
-      }
-      
-      const status = document.getElementById('ratingStatus');
-      if (status) {
-        status.style.display = 'block';
-        status.textContent = '✨ Avaliação registrada! Obrigado.';
-        // Desabilitar mais cliques
-        const container = document.getElementById('qRatingContainer');
-        if (container) {
-          container.querySelectorAll('.star-rating').forEach(s => {
-            s.style.pointerEvents = 'none';
-          });
         }
       }
     }
@@ -4023,11 +4019,15 @@
         if (ws && !ws.classList.contains('hidden')) refreshWelcomeSave();
       } else {
         // Quando entra em background, força sincronização imediata
+        flushPendingRating();
         if (typeof _syncProgressToCloud === 'function') {
           _syncProgressToCloud().catch(() => {});
         }
       }
     });
+
+    // Garante o envio da avaliação pendente ao fechar/descarregar a página.
+    window.addEventListener('pagehide', () => { flushPendingRating(); });
 
     // Wrappers expostos no window para serem chamáveis via data-action
     window._mobileCallback = function(type) {
@@ -4084,6 +4084,7 @@
     };
     // Dispatcher gaps — funções definidas em módulos separados, expostas via window.xxx em cada arquivo
     window.submitFlag  = submitFlag;
+    window.flagQuestion = flagQuestion;
     window.getAuthToken = async function() {
       if (!_supaClient) return null;
       const { data: { session } } = await _supaClient.auth.getSession();
