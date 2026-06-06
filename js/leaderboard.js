@@ -7,8 +7,39 @@
     const BOARD_CACHE_TTL = 30000; // 30s
     const BOARD_LOCAL_KEY = 'nefroquest-leaderboard';
 
-    // Rate limiting: 1 push por sessão de jogo (evita flood no leaderboard)
-    let _boardPushedThisSession = false;
+    let boardPushState = 'idle'; // 'idle' | 'in_flight' | 'done' | 'failed'
+    let boardPushTimeout = null;
+
+    function transitionBoardPush(newState) {
+      console.log(`[LeaderboardFSM] Push State: ${boardPushState} -> ${newState}`);
+      boardPushState = newState;
+      if (boardPushTimeout) {
+        clearTimeout(boardPushTimeout);
+        boardPushTimeout = null;
+      }
+      
+      // Set a defensive timeout of 10 seconds for 'in_flight'
+      if (newState === 'in_flight') {
+        boardPushTimeout = setTimeout(() => {
+          if (boardPushState === 'in_flight') {
+            console.warn("[LeaderboardFSM] Push request timed out. Resetting to failed.");
+            transitionBoardPush('failed');
+          }
+        }, 10000);
+      }
+    }
+
+    Object.defineProperty(window, '_boardPushedThisSession', {
+      get: () => (boardPushState === 'in_flight' || boardPushState === 'done'),
+      set: (val) => {
+        if (!val) {
+          transitionBoardPush('idle');
+        } else {
+          transitionBoardPush('done');
+        }
+      },
+      configurable: true
+    });
 
     async function boardFetch(forceRefresh = false) {
       const now = Date.now();
@@ -32,7 +63,11 @@
         try { localStorage.setItem(BOARD_LOCAL_KEY, JSON.stringify({ data, ts: now })); } catch(e) {}
         return data;
       } catch(e) {
-        _track('error_leaderboard_fetch', {msg: String(e)});
+        if (typeof _reportError === 'function') {
+          _reportError(e, { action: 'boardFetch' });
+        } else {
+          _track('error_leaderboard_fetch', {msg: String(e)});
+        }
         if (_boardCache) return _boardCache;
         try {
           const raw = localStorage.getItem(BOARD_LOCAL_KEY);
@@ -43,7 +78,9 @@
               return localData;
             }
           }
-        } catch(e2) {}
+        } catch(e2) {
+          if (typeof _reportError === 'function') _reportError(e2, { action: 'boardFetch_parseCache' });
+        }
         _toast('Erro ao carregar o leaderboard. Verifique sua conexão.', 'error');
         return [];
       }
@@ -51,12 +88,12 @@
 
     async function boardPush(score, level, playerName) {
       // Rate limiting: 1 push por sessão de jogo
-      if (_boardPushedThisSession) return;
+      if (boardPushState === 'in_flight' || boardPushState === 'done') return;
       // Sanity check: score e level devem ser números positivos razoáveis
       if (typeof score !== 'number' || score < 0 || score > 9_999_999) return;
       if (typeof level !== 'number' || level < 1 || level > 999) return;
 
-      _boardPushedThisSession = true;
+      transitionBoardPush('in_flight');
       const charName = state.character ? characters[state.character].name : 'Desconhecido';
       const userId = authUser?.id || null;
       const payload = {
@@ -75,8 +112,10 @@
           const pending = JSON.parse(localStorage.getItem('nq-pending-leaderboard') || '[]');
           pending.push(payload);
           localStorage.setItem('nq-pending-leaderboard', JSON.stringify(pending));
-          _boardPushedThisSession = false; // permite tentar novamente online
-        } catch(e) {}
+          transitionBoardPush('idle'); // permite tentar novamente online
+        } catch(e) {
+          transitionBoardPush('failed');
+        }
         return;
       }
 
@@ -96,9 +135,14 @@
           body: JSON.stringify(payload)
         });
         _boardCache = null; // invalidar cache local
+        transitionBoardPush('done');
       } catch(e) {
-        _track('error_leaderboard_push', {msg: String(e)});
-        _boardPushedThisSession = false; // permitir retry em caso de erro de rede
+        if (typeof _reportError === 'function') {
+          _reportError(e, { action: 'boardPush', score, level });
+        } else {
+          _track('error_leaderboard_push', {msg: String(e)});
+        }
+        transitionBoardPush('failed'); // permitir retry em caso de erro de rede
       }
     }
 
@@ -122,7 +166,9 @@
           });
         }
         _boardCache = null;
-      } catch(e) {}
+      } catch(e) {
+        if (typeof _reportError === 'function') _reportError(e, { action: 'syncPendingLeaderboard' });
+      }
     }
     window.syncPendingLeaderboard = syncPendingLeaderboard;
 
@@ -147,27 +193,90 @@
           (r.player_name    || '').toLowerCase().includes(q) ||
           (r.character_name || '').toLowerCase().includes(q)
         );
+      ui.boardBody.innerHTML = '';
       if (!filtered.length) {
-        ui.boardBody.innerHTML = '<tr><td colspan="7" class="board-empty">Nenhum resultado encontrado.</td></tr>';
+        const trEmpty = document.createElement('tr');
+        const tdEmpty = document.createElement('td');
+        tdEmpty.colSpan = 7;
+        tdEmpty.className = 'board-empty';
+        tdEmpty.textContent = 'Nenhum resultado encontrado.';
+        trEmpty.appendChild(tdEmpty);
+        ui.boardBody.appendChild(trEmpty);
         return;
       }
-      ui.boardBody.innerHTML = filtered.map(({ r, globalIdx }, filteredIdx) => {
+      filtered.forEach(({ r, globalIdx }, filteredIdx) => {
         const i = q ? filteredIdx : globalIdx; // quando busca ativa, rank é da posição filtrada
         const rc = i < 3 ? rankClass[i] : 'rn';
         const rl = i < 3 ? rankLabel[i] : (i + 1);
         const avatar = charAvatars[r.character_name] || 'assets/classes/clerigo_renal/nivel_01.jpg';
         const dateStr = r.played_at ? new Date(r.played_at).toLocaleDateString('pt-BR', {day:'2-digit',month:'2-digit',year:'2-digit'}) : '-';
         const isMe = state.lastSubmittedName && r.player_name === state.lastSubmittedName;
-        return `<tr class="rank-${i < 3 ? i+1 : 'n'}${isMe ? ' rank-me' : ''}">
-          <td class="col-rank"><span class="rank-badge ${rc}">${rl}</span></td>
-          <td class="col-player"><div class="player-cell"><img class="player-avatar" src="${avatar}" alt="" loading="lazy"><span class="player-name-text">${escapeHtml(r.player_name)||'Anônimo'}</span></div></td>
-          <td class="col-char">${escapeHtml(r.character_name)||'Desconhecido'}</td>
-          <td class="col-score score-cell">${(r.score||0).toLocaleString('pt-BR')}</td>
-          <td class="col-level level-cell">${r.level||1}</td>
-          <td class="col-chests chests-cell">${r.chests_opened||0}</td>
-          <td class="col-date date-cell">${dateStr}</td>
-        </tr>`;
-      }).join('');
+
+        const tr = document.createElement('tr');
+        tr.className = `rank-${i < 3 ? i+1 : 'n'}${isMe ? ' rank-me' : ''}`;
+
+        // Rank cell
+        const tdRank = document.createElement('td');
+        tdRank.className = 'col-rank';
+        const spanRank = document.createElement('span');
+        spanRank.className = `rank-badge ${rc}`;
+        spanRank.textContent = rl;
+        tdRank.appendChild(spanRank);
+        tr.appendChild(tdRank);
+
+        // Player cell
+        const tdPlayer = document.createElement('td');
+        tdPlayer.className = 'col-player';
+        const divPlayer = document.createElement('div');
+        divPlayer.className = 'player-cell';
+        
+        const imgAvatar = document.createElement('img');
+        imgAvatar.className = 'player-avatar';
+        imgAvatar.src = avatar;
+        imgAvatar.alt = '';
+        imgAvatar.setAttribute('loading', 'lazy');
+        
+        const spanName = document.createElement('span');
+        spanName.className = 'player-name-text';
+        spanName.textContent = r.player_name || 'Anônimo';
+        
+        divPlayer.appendChild(imgAvatar);
+        divPlayer.appendChild(spanName);
+        tdPlayer.appendChild(divPlayer);
+        tr.appendChild(tdPlayer);
+
+        // Character cell
+        const tdChar = document.createElement('td');
+        tdChar.className = 'col-char';
+        tdChar.textContent = r.character_name || 'Desconhecido';
+        tr.appendChild(tdChar);
+
+        // Score cell
+        const tdScore = document.createElement('td');
+        tdScore.className = 'col-score score-cell';
+        tdScore.textContent = (r.score || 0).toLocaleString('pt-BR');
+        tr.appendChild(tdScore);
+
+        // Level cell
+        const tdLevel = document.createElement('td');
+        tdLevel.className = 'col-level level-cell';
+        tdLevel.textContent = r.level || 1;
+        tr.appendChild(tdLevel);
+
+        // Chests cell
+        const tdChests = document.createElement('td');
+        tdChests.className = 'col-chests chests-cell';
+        tdChests.textContent = r.chests_opened || 0;
+        tr.appendChild(tdChests);
+
+        // Date cell
+        const tdDate = document.createElement('td');
+        tdDate.className = 'col-date date-cell';
+        tdDate.textContent = dateStr;
+        tr.appendChild(tdDate);
+
+        ui.boardBody.appendChild(tr);
+      });
     }
 
     async function renderBoard(forceRefresh = false){
@@ -183,7 +292,16 @@
       if (loading) loading.classList.add('hidden');
       _boardFullData = data.slice(0, 50);
       if (_boardFullData.length === 0) {
-        ui.boardBody.innerHTML = '<tr><td colspan="7" class="board-empty">Nenhum aventureiro registrou pontuação ainda.<br>Seja o primeiro a entrar para a história!</td></tr>';
+        ui.boardBody.innerHTML = '';
+        const trEmpty = document.createElement('tr');
+        const tdEmpty = document.createElement('td');
+        tdEmpty.colSpan = 7;
+        tdEmpty.className = 'board-empty';
+        tdEmpty.appendChild(document.createTextNode('Nenhum aventureiro registrou pontuação ainda.'));
+        tdEmpty.appendChild(document.createElement('br'));
+        tdEmpty.appendChild(document.createTextNode('Seja o primeiro a entrar para a história!'));
+        trEmpty.appendChild(tdEmpty);
+        ui.boardBody.appendChild(trEmpty);
       } else {
         _renderBoardRows(_boardFullData, searchEl?.value || '');
       }

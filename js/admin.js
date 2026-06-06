@@ -180,31 +180,82 @@
           { label: 'Lv 51+',   min: 51, max: 999 },
         ];
         const maxBandCount = Math.max(...bands.map(b => data.filter(r => r.level >= b.min && r.level <= b.max).length), 1);
-        document.getElementById('anLevelChart').innerHTML = bands.map(b => {
-          const count = data.filter(r => r.level >= b.min && r.level <= b.max).length;
-          const pct = Math.round(count / maxBandCount * 100);
-          return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-            <span style="width:62px;font-size:0.72rem;color:#8a9cc0;flex-shrink:0;">${b.label}</span>
-            <div style="flex:1;background:rgba(255,255,255,0.05);border-radius:4px;height:14px;overflow:hidden;">
-              <div style="width:${pct}%;height:100%;background:linear-gradient(90deg,var(--blue-dark),var(--blue));border-radius:4px;transition:width 0.5s;"></div>
-            </div>
-            <span style="font-size:0.72rem;color:#c8d8f0;width:28px;text-align:right;">${count}</span>
-          </div>`;
-        }).join('');
+        const chartEl = document.getElementById('anLevelChart');
+        if (chartEl) {
+          chartEl.innerHTML = '';
+          bands.forEach(b => {
+            const count = data.filter(r => r.level >= b.min && r.level <= b.max).length;
+            const pct = Math.round(count / maxBandCount * 100);
+
+            const rowDiv = document.createElement('div');
+            rowDiv.style.cssText = 'display:flex;align-items:center;gap:8px;margin-bottom:6px;';
+
+            const labelSpan = document.createElement('span');
+            labelSpan.style.cssText = 'width:62px;font-size:0.72rem;color:#8a9cc0;flex-shrink:0;';
+            labelSpan.textContent = b.label;
+
+            const progressContainer = document.createElement('div');
+            progressContainer.style.cssText = 'flex:1;background:rgba(255,255,255,0.05);border-radius:4px;height:14px;overflow:hidden;';
+
+            const progressBar = document.createElement('div');
+            progressBar.style.cssText = `width:${pct}%;height:100%;background:linear-gradient(90deg,var(--blue-dark),var(--blue));border-radius:4px;transition:width 0.5s;`;
+            progressContainer.appendChild(progressBar);
+
+            const countSpan = document.createElement('span');
+            countSpan.style.cssText = 'font-size:0.72rem;color:#c8d8f0;width:28px;text-align:right;';
+            countSpan.textContent = count;
+
+            rowDiv.appendChild(labelSpan);
+            rowDiv.appendChild(progressContainer);
+            rowDiv.appendChild(countSpan);
+            chartEl.appendChild(rowDiv);
+          });
+        }
 
         // Top 5
         const medals = ['🥇','🥈','🥉','4º','5º'];
-        document.getElementById('anTop5').innerHTML = data.slice(0, 5).map((r, i) => `
-          <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
-            <span style="width:24px;font-size:0.85rem;">${medals[i]}</span>
-            <span style="flex:1;color:#e8efff;">${escapeHtml((r.player_name||'Anônimo').slice(0,28))}</span>
-            <span style="color:var(--gold);font-weight:700;">${(r.score||0).toLocaleString('pt-BR')}</span>
-            <span style="color:#8a9cc0;font-size:0.72rem;">Lv${r.level||1}</span>
-          </div>
-        `).join('');
+        const top5El = document.getElementById('anTop5');
+        if (top5El) {
+          top5El.innerHTML = '';
+          data.slice(0, 5).forEach((r, i) => {
+            const itemDiv = document.createElement('div');
+            itemDiv.style.cssText = 'display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);';
+
+            const spanMedal = document.createElement('span');
+            spanMedal.style.cssText = 'width:24px;font-size:0.85rem;';
+            spanMedal.textContent = medals[i];
+
+            const spanName = document.createElement('span');
+            spanName.style.cssText = 'flex:1;color:#e8efff;';
+            spanName.textContent = (r.player_name || 'Anônimo').slice(0, 28);
+
+            const spanScore = document.createElement('span');
+            spanScore.style.cssText = 'color:var(--gold);font-weight:700;';
+            spanScore.textContent = (r.score || 0).toLocaleString('pt-BR');
+
+            const spanLevel = document.createElement('span');
+            spanLevel.style.cssText = 'color:#8a9cc0;font-size:0.72rem;';
+            spanLevel.textContent = `Lv${r.level || 1}`;
+
+            itemDiv.appendChild(spanMedal);
+            itemDiv.appendChild(spanName);
+            itemDiv.appendChild(spanScore);
+            itemDiv.appendChild(spanLevel);
+            top5El.appendChild(itemDiv);
+          });
+        }
       } catch(e) {
-        const err = '<div style="color:#fb7185;font-size:0.78rem;">Erro ao carregar dados.</div>';
-        ['anLevelChart','anTop5'].forEach(id => { const el = document.getElementById(id); if(el) el.innerHTML = err; });
+        if (typeof _reportError === 'function') _reportError(e, { action: 'loadAnalyticsData' });
+        ['anLevelChart','anTop5'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) {
+            el.innerHTML = '';
+            const errDiv = document.createElement('div');
+            errDiv.style.cssText = 'color:#fb7185;font-size:0.78rem;';
+            errDiv.textContent = 'Erro ao carregar dados.';
+            el.appendChild(errDiv);
+          }
+        });
       }
     }
     // ─────────────────────────────────────────────────────────────────────────
@@ -236,6 +287,7 @@
           list.appendChild(item);
         });
       } catch(e) {
+        if (typeof _reportError === 'function') _reportError(e, { action: 'adminLoadWhitelist' });
         list.innerHTML = '<div class="whitelist-empty" style="color:#fb7185">Erro ao carregar. Verifique a tabela no Supabase.</div>';
       }
     }
@@ -255,6 +307,7 @@
         _toast('Email adicionado com sucesso!', 'ok');
         adminLoadWhitelist();
       } catch(e) {
+        if (typeof _reportError === 'function') _reportError(e, { action: 'adminAddWhitelist', email });
         _toast('Erro ao adicionar: ' + (e.message || e), 'error');
       }
     }
@@ -270,6 +323,7 @@
         if (error) throw error;
         adminLoadWhitelist();
       } catch(e) {
+        if (typeof _reportError === 'function') _reportError(e, { action: 'adminRemoveWhitelist', email });
         _toast('Erro ao remover: ' + (e.message || e), 'error');
       }
     }
