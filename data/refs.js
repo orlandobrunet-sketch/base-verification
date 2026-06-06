@@ -1,4 +1,46 @@
 const refsDB = {
+  eau_urolithiasis_2025:{
+    label:"EAU Guidelines on Urolithiasis 2025",
+    url:"https://uroweb.org/guidelines/urolithiasis",
+    journal:"European Association of Urology",
+    ano:2025,
+    tipo:"Diretriz internacional",
+    badge:"GUIDELINE",
+    badgeColor:"#6366f1",
+    impacto:"Define NLPC como primeira linha para cálculos renais > 2 cm.",
+    icon:"📋",
+    resumo:"Diretriz da European Association of Urology sobre urolitíase. A edição de 2025 é reimpressão da versão de 2024 com acréscimo de seção sobre fatores genéticos. Recomenda nefrolitotomia percutânea (NLPC) como primeira linha para cálculos renais maiores que 2 cm e reconhece que cálculos complexos, incluindo coraliformes parciais e completos, devem ser abordados primariamente com NLPC. Não é estudo randomizado; trata-se de recomendação baseada em síntese de evidências e consenso de painel.",
+    conclusao:"Para cálculo coraliforme completo ou cálculo renal > 2 cm, a estratégia inicial preferencial é NLPC, reservando LECO ou ureteroscopia flexível para casos selecionados ou complementares.",
+    curiosidade:"A diretriz também destaca que a eficácia da LECO cai conforme aumentam o tamanho do cálculo e fatores anatômicos desfavoráveis."
+  },
+  aua_endourology_stones_2016:{
+    label:"AUA/Endourology Society Guideline: Surgical Management of Stones",
+    url:"https://www.auanet.org/guidelines-and-quality/guidelines/surgical-management-of-kidney-and-ureteral-stones",
+    journal:"American Urological Association / Endourology Society",
+    ano:2016,
+    tipo:"Diretriz clínica",
+    badge:"GUIDELINE",
+    badgeColor:"#6366f1",
+    impacto:"Base clássica para manejo cirúrgico de cálculos renais.",
+    icon:"📋",
+    resumo:"Diretriz da American Urological Association em parceria com a Endourology Society para manejo cirúrgico de cálculos renais e ureterais. Recomenda abordagem baseada em tamanho, localização, composição provável, anatomia e fatores do paciente. Para cálculos renais de grande carga, a nefrolitotomia percutânea (NLPC) é a abordagem preferencial em relação à LECO, pela maior efetividade na remoção da carga litiásica. Não fornece uma resposta única para todos os casos; exige individualização.",
+    conclusao:"Em cálculos renais grandes ou complexos, a NLPC é o eixo terapêutico, enquanto a LECO tem papel limitado e geralmente não deve ser escolhida como monoterapia em cálculo coraliforme completo.",
+    curiosidade:"A diretriz reforça que a escolha do procedimento deve considerar também anatomia renal, risco infeccioso e necessidade provável de retratamento."
+  },
+  torricelli_staghorn_2020:{
+    label:"Staghorn renal stones: what the urologist needs to know",
+    url:"https://www.scielo.br/j/ibju/a/gwsL8GjxrGHsZmLYjTPfxTw/?lang=en",
+    journal:"International Brazilian Journal of Urology",
+    ano:2020,
+    tipo:"Revisão narrativa",
+    badge:"REVIEW",
+    badgeColor:"#8b5cf6",
+    impacto:"Revisão prática sobre cálculo coraliforme.",
+    icon:"🔬",
+    resumo:"Revisão narrativa de 2020 sobre manejo de cálculos coraliformes. Resume que a nefrolitotomia percutânea (NLPC) é o tratamento padrão para a maioria dos cálculos coraliformes, enquanto LECO e ureteroscopia flexível podem ser usadas como ferramentas auxiliares para fragmentos residuais ou em estratégias combinadas. Por ser revisão narrativa, não deve ser usada para estimar efeito causal ou substituir diretriz.",
+    conclusao:"Cálculo coraliforme exige estratégia ativa de remoção da carga litiásica; tratamento conservador ou LECO isolada tendem a ser inadequados na maioria dos pacientes aptos a intervenção.",
+    curiosidade:"Cálculos coraliformes frequentemente se associam a infecção por bactérias produtoras de urease, mas nem todo cálculo coraliforme é necessariamente de estruvita."
+  },
   brenner_rector:{
     label:"Brenner & Rector's The Kidney",
     url:"https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
@@ -1624,10 +1666,10 @@ finerenone_2025:{
     url:"https://kdigo.org/guidelines/adpkd/",
     journal:"Kidney International",
     ano:2025,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
-    impacto:"Primeira diretriz KDIGO para DPARD: tolvaptana, SGLT2i, controle de PA, dieta e abordagem de progressão renal",icon:"📋",
+    impacto:"Primeira diretriz KDIGO para DRPAD: tolvaptana, SGLT2i, controle de PA, dieta e abordagem de progressão renal",icon:"📋",
     resumo:"Primeira diretriz KDIGO dedicada ao rim policístico autossômico dominante. Recomenda tolvaptana (antagonista do receptor V2 da vasopressina) para pacientes com progressão rápida identificada pela classificação de Mayo (classes 1C, 1D, 1E) ou PROPKD score, com TFGe >25 ml/min/1,73m² e após avaliação hepática. Alvo de PA: <110/75 mmHg em adultos jovens com TFGe preservada (baseado no HALT-PKD). Inclui recomendações sobre hidratação, dieta, SGLT2i como terapia emergente e rastreamento de complicações.",
     conclusao:"A diretriz ADPKD 2025 uniformiza o uso de tolvaptana com critérios de progressão rápida (Mayo 1C–1E), evitando tratar pacientes de baixo risco que não se beneficiam e têm risco de hepatotoxicidade.",
-    curiosidade:"A vasopressina é o principal driver do crescimento cístico na DPARD: estimula a adenilato ciclase via receptor V2, elevando o AMPc intracelular nas células epiteliais dos cistos e promovendo proliferação e secreção de fluido. O tolvaptana bloqueia esse mecanismo diretamente."
+    curiosidade:"A vasopressina é o principal driver do crescimento cístico na DRPAD: estimula a adenilato ciclase via receptor V2, elevando o AMPc intracelular nas células epiteliais dos cistos e promovendo proliferação e secreção de fluido. O tolvaptana bloqueia esse mecanismo diretamente."
   },
   kdigo_anemia_2026:{
     label:"KDIGO Anemia in CKD 2026",
