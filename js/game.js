@@ -2732,11 +2732,6 @@
             Você acumulou ouro! O ouro é um recurso precioso que pode ser utilizado de várias maneiras estratégicas na sua jornada:
           </p>
           <div style="display:flex;flex-direction:column;gap:10px;text-align:left;">
-            <div style="background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.25);border-radius:10px;padding:12px 14px;">
-              <span style="color:#fcd34d;font-weight:700;">📦 Abrir Baú de Relíquias</span>
-              <span style="color:#94a3b8;font-size:0.8rem;"> — Custo atual: ${chestCost} ouro</span>
-              <p style="color:#cbd5e1;font-size:0.78rem;margin:4px 0 0;">Abra baús no dock de ações para liberar novos artigos/pergaminhos científicos de nefrologia ou encontrar novos equipamentos.</p>
-            </div>
             <div style="background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.25);border-radius:10px;padding:12px 14px;">
               <span style="color:#a5b4fc;font-weight:700;">⚒️ Forja de Equipamentos</span>
               <span style="color:#94a3b8;font-size:0.8rem;"> — 300 / 1000 ouro</span>
