@@ -2833,8 +2833,8 @@
       /* Layout principal: cresce conforme o conteúdo */
       .app {
         grid-template-columns: 1fr;
-        padding: 8px;
-        gap: 8px;
+        padding: 4px 8px 8px;
+        gap: 4px;
         min-height: auto;
         height: auto;
         overflow: visible;
@@ -2911,8 +2911,8 @@
         touch-action: pan-y; /* permite swipe horizontal via JS */
       }
 
-      /* Título menor — padding-top para não ficar sob os botões fixos do topo */
-      .game-title { padding: 16px 0 2px; }
+      /* Título menor — padding-top reduzido para ganhar espaço no mobile */
+      .game-title { padding: 4px 0 2px; }
       .game-title h1 { font-size: 1.58rem; letter-spacing: 2px; }
       .game-title .subtitle { font-size: 0.6rem; letter-spacing: 4px; }
 
@@ -2924,7 +2924,7 @@
         right: auto;
         left: 50%;
         transform: translateX(-50%);
-        top: -14px;
+        top: -10px;
       }
 
       /* Correção 4: Capítulo da Narrativa vai abaixo dos equipamentos no mobile */
@@ -11519,7 +11519,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-shadow: none;
-    filter: drop-shadow(0 2px 8px rgba(255,215,0,.32));
+    filter: none;
   }
   #landingScreen .lnd-sub {
     margin: 7px 0 0;
