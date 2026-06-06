@@ -1628,7 +1628,12 @@
       }
     }
 
+    let _loadingNextQuestion = false;
     function renderQuestion(){
+      if (_loadingNextQuestion) return;
+      _loadingNextQuestion = true;
+      setTimeout(() => { _loadingNextQuestion = false; }, 400);
+
       _questionStartTime = Date.now();
       const _msb = document.getElementById('mobileStatusBar');
       if (_msb) _msb.classList.add('active');
@@ -2342,6 +2347,135 @@
       if (typeof checkAchievements === 'function') {
         checkAchievements();
       }
+
+      setTimeout(renderQuestionRatingUI, 50);
+    }
+
+    function renderQuestionRatingUI() {
+      const q = state.current;
+      if (!q) return;
+      const qid = q.qid || q.id;
+      if (!qid) return;
+
+      // Se já avaliado na sessão, não mostra novamente
+      let rated = {};
+      try {
+        rated = JSON.parse(localStorage.getItem('nefroquest-rated-questions') || '{}');
+      } catch (e) {}
+      if (rated[qid]) return;
+
+      const ratingDiv = document.createElement('div');
+      ratingDiv.id = 'qRatingContainer';
+      ratingDiv.className = 'q-rating-container';
+      ratingDiv.style.cssText = 'margin-top:14px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.08); display:flex; flex-direction:column; gap:8px; text-align:left;';
+      ratingDiv.innerHTML = `
+        <div style="font-size:0.75rem; color:#cbd5e1; font-family:'Philosopher', sans-serif;">Avalie esta questão (Opcional):</div>
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+          <div style="display:flex; align-items:center; gap:6px;">
+            <span style="font-size:0.72rem; color:var(--txt-dim); font-family:'Philosopher', sans-serif;">Qualidade:</span>
+            <div class="stars-row" data-rating-type="quality" style="display:flex; gap:3px;">
+              <span class="star-rating" data-value="1" style="cursor:pointer; font-size:1.1rem; color:rgba(255,255,255,0.25); transition:color 0.15s;">★</span>
+              <span class="star-rating" data-value="2" style="cursor:pointer; font-size:1.1rem; color:rgba(255,255,255,0.25); transition:color 0.15s;">★</span>
+              <span class="star-rating" data-value="3" style="cursor:pointer; font-size:1.1rem; color:rgba(255,255,255,0.25); transition:color 0.15s;">★</span>
+              <span class="star-rating" data-value="4" style="cursor:pointer; font-size:1.1rem; color:rgba(255,255,255,0.25); transition:color 0.15s;">★</span>
+              <span class="star-rating" data-value="5" style="cursor:pointer; font-size:1.1rem; color:rgba(255,255,255,0.25); transition:color 0.15s;">★</span>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:6px;">
+            <span style="font-size:0.72rem; color:var(--txt-dim); font-family:'Philosopher', sans-serif;">Aprendizado:</span>
+            <div class="stars-row" data-rating-type="learning" style="display:flex; gap:3px;">
+              <span class="star-rating" data-value="1" style="cursor:pointer; font-size:1.1rem; color:rgba(255,255,255,0.25); transition:color 0.15s;">★</span>
+              <span class="star-rating" data-value="2" style="cursor:pointer; font-size:1.1rem; color:rgba(255,255,255,0.25); transition:color 0.15s;">★</span>
+              <span class="star-rating" data-value="3" style="cursor:pointer; font-size:1.1rem; color:rgba(255,255,255,0.25); transition:color 0.15s;">★</span>
+              <span class="star-rating" data-value="4" style="cursor:pointer; font-size:1.1rem; color:rgba(255,255,255,0.25); transition:color 0.15s;">★</span>
+              <span class="star-rating" data-value="5" style="cursor:pointer; font-size:1.1rem; color:rgba(255,255,255,0.25); transition:color 0.15s;">★</span>
+            </div>
+          </div>
+        </div>
+        <div id="ratingStatus" style="font-size:0.68rem; color:#4ade80; display:none; margin-top:2px; font-family:'Philosopher', sans-serif;">Obrigado pela sua avaliação!</div>
+      `;
+
+      ui.feedback.appendChild(ratingDiv);
+
+      let qualitySelected = 0;
+      let learningSelected = 0;
+
+      // Event listeners para as estrelas
+      ratingDiv.querySelectorAll('.stars-row').forEach(row => {
+        const type = row.dataset.ratingType;
+        const stars = [...row.querySelectorAll('.star-rating')];
+        
+        stars.forEach(star => {
+          star.addEventListener('click', (e) => {
+            const val = parseInt(star.dataset.value);
+            if (type === 'quality') qualitySelected = val;
+            if (type === 'learning') learningSelected = val;
+
+            // Colorir as estrelas
+            stars.forEach((s, idx) => {
+              s.style.color = (idx < val) ? '#fbbf24' : 'rgba(255,255,255,0.25)';
+              if (idx < val) {
+                s.style.textShadow = '0 0 6px rgba(251,191,36,0.5)';
+              } else {
+                s.style.textShadow = 'none';
+              }
+            });
+
+            // Se ambos foram avaliados, submeter
+            if (qualitySelected > 0 && learningSelected > 0) {
+              submitQuestionRating(qualitySelected, learningSelected);
+            }
+          });
+        });
+      });
+    }
+
+    async function submitQuestionRating(qualityVal, learningVal) {
+      const q = state.current;
+      if (!q) return;
+      const qid = q.qid || q.id;
+      if (!qid) return;
+
+      const ratingData = {
+        question_id: qid,
+        question_text: (q.q || '').substring(0, 200),
+        rating_quality: qualityVal,
+        rating_learning: learningVal,
+        player_email: (window.authUser && window.authUser.email) || 'anonimo',
+        player_name: (window.authUser && window.authUser.user_metadata && (window.authUser.user_metadata.full_name || window.authUser.user_metadata.name)) || 'Visitante',
+        created_at: new Date().toISOString()
+      };
+
+      // Guardar localmente
+      try {
+        const rated = JSON.parse(localStorage.getItem('nefroquest-rated-questions') || '{}');
+        rated[qid] = { quality: qualityVal, learning: learningVal };
+        localStorage.setItem('nefroquest-rated-questions', JSON.stringify(rated));
+      } catch (e) {}
+
+      if (typeof _supaClient !== 'undefined' && _supaClient) {
+        try {
+          const { error } = await _supaClient
+            .from('question_ratings')
+            .insert([ratingData]);
+          if (error) console.error('[NQ] Rating save error', error);
+        } catch (err) {
+          console.error('[NQ] Rating save exception', err);
+        }
+      }
+      
+      const status = document.getElementById('ratingStatus');
+      if (status) {
+        status.style.display = 'block';
+        status.textContent = '✨ Avaliação registrada! Obrigado.';
+        // Desabilitar mais cliques
+        const container = document.getElementById('qRatingContainer');
+        if (container) {
+          container.querySelectorAll('.star-rating').forEach(s => {
+            s.style.pointerEvents = 'none';
+          });
+        }
+      }
     }
 
     function finishDeck(){
@@ -2837,11 +2971,13 @@
             pointer-events: none;
           }
         </style>
-        <div class="narrative-card" style="border-color: #fbbf24; box-shadow: 0 0 40px rgba(251, 191, 36, 0.45);">
+        <div class="narrative-card" style="border-color: #fbbf24; box-shadow: 0 0 40px rgba(251, 191, 36, 0.45); overflow: visible !important;">
           <div class="narr-chapter" style="color: #fbbf24;">Encontro Inesperado</div>
           <h3>✨ Baú de Relíquias Ancestrais</h3>
           
-          <img src="assets/chest_icon.png" alt="Baú" class="chest-img-clickable" data-action="_animateAndClaimChest" data-pass-this="1" />
+          <div style="padding: 10px 0 24px; overflow: visible !important; display: block;">
+            <img src="assets/chest_icon.png" alt="Baú" class="chest-img-clickable" data-action="_animateAndClaimChest" data-pass-this="1" />
+          </div>
           
           <div class="narr-text" style="color: #fff8dc; font-style: italic; line-height: 1.6; font-size: 0.88rem; text-align: center; margin-top: 15px;">
             Enquanto purifica os néfrons das correntes urêmicas, uma pulsação dourada sob as névoas chama sua atenção. Você encontrou um baú misterioso deixado pelos antigos patronos da nefrologia.<br><br>
