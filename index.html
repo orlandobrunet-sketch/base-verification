@@ -940,7 +940,6 @@
           </button>
           <span id="timerDisplay">00:00</span>
         </div>
-        <button type="button" class="flag-btn" id="flagBtn" title="Sinalizar pergunta" data-action="flagQuestion">🚩</button>
         <p id="question"></p>
         <div id="cycleProgressBar" style="margin-top:6px;height:3px;background:transparent;border-radius:2px;overflow:hidden;">
           <div id="cycleProgressFill" style="height:100%;background:linear-gradient(90deg,#6366f1,#8b5cf6);width:0%;transition:width 0.4s;"></div>
@@ -954,8 +953,8 @@
         <button type="button" id="nextBtn" class="btn hidden">Próxima Carta</button>
         <div id="golpeFinalHint" style="display:none;">Ativado após selecionar a resposta correta</div>
         <button type="button" id="newBtn" class="btn sec">Novo Jogo</button>
-        <button type="button" class="btn sec" data-action="goToWelcomeFromGame" style="background:rgba(96,165,250,0.08);border-color:rgba(96,165,250,0.3);color:var(--blue);">🏠 Início</button>
         <button type="button" id="bonusBtn" class="btn gold hidden">Pergunta Bônus</button>
+        <button type="button" class="flag-btn" id="flagBtn" title="Sinalizar pergunta" data-action="flagQuestion">🚩</button>
       </div>
 
       <!-- MEDIDOR DE FINALIZAÇÃO — boss mode (fundo do painel) -->
@@ -1029,6 +1028,18 @@
         <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
       </svg>
       <span class="dock-label">Grimório</span>
+    </button>
+
+    <!-- Início (voltar à tela de boas-vindas) -->
+    <button type="button"
+      class="dock-btn inicio-btn"
+      data-action="goToWelcomeFromGame"
+      data-tip="Início">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+      <span class="dock-label">Início</span>
     </button>
 
     </div><!-- /action-dock -->

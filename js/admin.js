@@ -110,6 +110,12 @@
               <div id="anTop5" style="font-size:0.82rem;color:#c8d8f0;">Carregando…</div>
             </div>
 
+            <!-- Avaliações das Questões -->
+            <div style="background:rgba(255,255,255,0.03);border:1px solid var(--blue-dark);border-radius:10px;padding:14px;margin-bottom:18px;">
+              <div style="font-size:0.72rem;color:#8a9cc0;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">Avaliações Recentes de Questões</div>
+              <div id="anRatingsList" style="font-size:0.78rem;color:#c8d8f0;max-height:220px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;padding-right:4px;">Carregando…</div>
+            </div>
+
             <!-- Link GA4 -->
             <div style="background:rgba(96,165,250,0.06);border:1px solid rgba(96,165,250,0.3);border-radius:10px;padding:14px;margin-bottom:18px;">
               <div style="font-size:0.72rem;color:#8a9cc0;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Funil de Eventos (GA4)</div>
@@ -244,9 +250,50 @@
             top5El.appendChild(itemDiv);
           });
         }
+
+        // Carregar avaliações das questões do Supabase
+        const ratingsEl = document.getElementById('anRatingsList');
+        if (ratingsEl) {
+          ratingsEl.innerHTML = '<div style="color:var(--txt-dim); font-size:0.74rem;">Carregando avaliações…</div>';
+          try {
+            const { data: ratingData, error: ratingError } = await _supaClient
+              .from('question_ratings')
+              .select('question_id, question_text, rating_quality, rating_learning, player_email, created_at')
+              .order('created_at', { ascending: false })
+              .limit(50);
+
+            if (ratingError) throw ratingError;
+
+            if (!ratingData || ratingData.length === 0) {
+              ratingsEl.innerHTML = '<div style="color:var(--txt-dim); font-size:0.74rem; text-align:center; padding:10px 0;">Nenhuma avaliação registrada ainda.</div>';
+            } else {
+              const stars = (num) => '★'.repeat(num) + '☆'.repeat(5 - num);
+              ratingsEl.innerHTML = ratingData.map(r => {
+                const dateStr = new Date(r.created_at).toLocaleDateString('pt-BR');
+                return `
+                  <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:10px; font-size:0.74rem; line-height:1.4;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.65rem; color:var(--txt-dim); margin-bottom:4px;">
+                      <span>Q#${r.question_id} &nbsp;·&nbsp; ${escapeHtml(r.player_email)}</span>
+                      <span>${dateStr}</span>
+                    </div>
+                    <div style="font-size:0.78rem; color:#fff; font-weight:600; margin-bottom:6px; overflow:hidden; text-overflow:ellipsis; display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical; max-height:2.8em; line-height:1.3;">"${escapeHtml(r.question_text)}"</div>
+                    <div style="display:flex; gap:12px; font-size:0.7rem; border-top:1px solid rgba(255,255,255,0.03); padding-top:4px;">
+                      <span>Qualidade: <strong style="color:#fbbf24;">${stars(r.rating_quality)}</strong></span>
+                      <span>Aprendizado: <strong style="color:#fbbf24;">${stars(r.rating_learning)}</strong></span>
+                    </div>
+                  </div>
+                `;
+              }).join('');
+            }
+          } catch (err) {
+            console.error('[NQ] Load ratings error', err);
+            ratingsEl.innerHTML = '<div style="color:#fb7185; font-size:0.74rem;">Erro ao carregar avaliações.</div>';
+          }
+        }
+
       } catch(e) {
         if (typeof _reportError === 'function') _reportError(e, { action: 'loadAnalyticsData' });
-        ['anLevelChart','anTop5'].forEach(id => {
+        ['anLevelChart','anTop5','anRatingsList'].forEach(id => {
           const el = document.getElementById(id);
           if (el) {
             el.innerHTML = '';
