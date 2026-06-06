@@ -1308,6 +1308,91 @@
       kno: {icon:'📚', name:'Conhecimento', desc:'Aumenta XP ganho por acerto. +1 XP extra por ponto de conhecimento.'},
       luck: {icon:'🍀', name:'Sorte', desc:'Aumenta ouro ganho e chance de itens raros na forja e drops.'}
     };
+
+    // ── Galeria de Assets (admin) — audita TODAS as imagens do jogo ──────────
+    function openAssetGallery() {
+      if (typeof isAdminUser === 'function' && !isAdminUser()) return;
+      document.getElementById('assetGalleryModal')?.remove();
+
+      const rarMap = {
+        common:    { label:'Comum',    color:'#94a3b8', bg:'rgba(148,163,184,0.10)', border:'rgba(148,163,184,0.35)' },
+        rare:      { label:'Raro',     color:'#38bdf8', bg:'rgba(56,189,248,0.10)',  border:'rgba(56,189,248,0.45)' },
+        epic:      { label:'Épico',    color:'#c084fc', bg:'rgba(192,132,252,0.10)', border:'rgba(192,132,252,0.45)' },
+        legendary: { label:'Lendário', color:'#ffd700', bg:'rgba(255,215,0,0.10)',   border:'rgba(255,215,0,0.55)' }
+      };
+      // Títulos por nível (mesmos tiers de charTitles; níveis de evolução vão até 10)
+      const charTiers = {
+        nephros:    [[8,'Mestre das Glomerulopatias'],[5,'Guardião da Nefroproteção'],[3,'Sacerdote Renal'],[1,'Noviço da Filtração']],
+        aquaria:    [[8,'Mestra das Glomerulopatias'],[5,'Guardiã da Nefroproteção'],[3,'Sacerdotisa das Águas'],[1,'Noviça da Filtração']],
+        glomerulus: [[8,'Doutor das Glomerulopatias'],[5,'Pesquisador da Nefroproteção'],[3,'Cientista Renal Júnior'],[1,'Estudante de Nefrologia']]
+      };
+      const tierFor = (cid, lv) => { for (const [thr,name] of (charTiers[cid]||charTiers.nephros)) if (lv >= thr) return name; return ''; };
+      const _imgTag = (src, alt) => `<img class="ag-img" src="${src}" alt="${alt}" loading="lazy" onerror="this.classList.add('ag-img-err');">`;
+
+      let charsHtml = '';
+      for (const cid of Object.keys(characters)) {
+        const c = characters[cid];
+        const ext = cid === 'glomerulus' ? 'png' : 'jpg';
+        let cards = '';
+        for (let lv = 1; lv <= 10; lv++) {
+          const path = `assets/classes/${c.folder}/nivel_${String(lv).padStart(2,'0')}.${ext}`;
+          cards += `<div class="ag-card">${_imgTag(path, c.name+' nível '+lv)}
+            <div class="ag-card-body">
+              <div class="ag-card-title">Nível ${lv}</div>
+              <div class="ag-card-sub">${tierFor(cid, lv)}</div>
+              <div class="ag-path">${path}</div>
+            </div></div>`;
+        }
+        charsHtml += `<div class="ag-section">
+          <h3 class="ag-h3">${c.name} — <span class="ag-dim">${c.title}</span></h3>
+          <div class="ag-meta">pasta <code>${c.folder}</code> · ext <code>.${ext}</code> · bônus ATK ${c.bonusAtk} / DEF ${c.bonusDef} / CONH ${c.bonusKno} / SORTE ${c.bonusLuck}</div>
+          <div class="ag-grid">${cards}</div></div>`;
+      }
+
+      let equipHtml = '';
+      let totalItems = 0;
+      for (const slot of ['weapon','armor','relic']) {
+        let cards = '';
+        for (const it of items[slot]) {
+          totalItems++;
+          const path = itemIcons[it.n] || defaultIcons[slot];
+          const r = rarMap[it.rar] || rarMap.common;
+          const desc = itemDescriptions[it.n] || '<span class="ag-nodesc">(sem descrição)</span>';
+          const hasIcon = !!itemIcons[it.n];
+          cards += `<div class="ag-card" style="border-color:${r.border};">${_imgTag(path, it.n)}
+            <div class="ag-card-body">
+              <div class="ag-card-title">${it.n}</div>
+              <span class="ag-rar" style="color:${r.color};background:${r.bg};border-color:${r.border};">${r.label}</span>
+              <div class="ag-stats">⚔️ ${it.atk} · 🛡️ ${it.def} · 📚 ${it.kno} · 🍀 ${it.luck}</div>
+              <div class="ag-desc">${desc}</div>
+              <div class="ag-path">${path}${hasIcon ? '' : ' <span class="ag-nodesc">(ícone padrão)</span>'}</div>
+            </div></div>`;
+        }
+        equipHtml += `<div class="ag-section">
+          <h3 class="ag-h3">${slotLabels[slot]} <span class="ag-dim">(${items[slot].length})</span></h3>
+          <div class="ag-grid">${cards}</div></div>`;
+      }
+
+      const modal = document.createElement('div');
+      modal.id = 'assetGalleryModal';
+      modal.style.cssText = 'position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,0.9);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);display:flex;align-items:flex-start;justify-content:center;padding:20px 14px calc(env(safe-area-inset-bottom,0px)+40px);overflow-y:auto;box-sizing:border-box;';
+      modal.innerHTML = `
+        <div class="modal-panel" style="max-width:940px;width:100%;margin:auto 0;">
+          <button class="modal-panel-x" data-action="closeAssetGallery" aria-label="Fechar">&times;</button>
+          <h2>🖼 Galeria de Assets (Admin)</h2>
+          <p style="color:#8a9cc0;font-size:0.78rem;margin-bottom:18px;">Personagens (3 classes × 10 evoluções) e equipamentos (${totalItems} itens). Imagens ausentes aparecem destacadas em vermelho.</p>
+          <h2 class="ag-section-h">⚔️ Personagens &amp; Evoluções</h2>
+          ${charsHtml}
+          <h2 class="ag-section-h">🛡 Equipamentos</h2>
+          ${equipHtml}
+          <div class="modal-actions" style="margin-top:18px;"><button data-action="closeAssetGallery" style="background:rgba(255,255,255,0.06);color:#c8d8f0;border:1px solid var(--blue-dark);">Fechar</button></div>
+        </div>`;
+      document.body.appendChild(modal);
+      modal.addEventListener('click', (e) => { if (e.target === modal) closeAssetGallery(); });
+    }
+    function closeAssetGallery() { document.getElementById('assetGalleryModal')?.remove(); }
+    window.openAssetGallery = openAssetGallery;
+    window.closeAssetGallery = closeAssetGallery;
     const _ACTIVE_LEGS = new Set(['Excalibur do N\u00e9fron','Armadura Primeva','Amuleto do Rim Imortal','Rel\u00edquia do T\u00edtulo']);
     const _PASSIVE_LEGS = new Set(['Cetro do N\u00e9fron Eterno','Armadura da Homeostase Perfeita','Elmo do Filtrador Supremo']);
     const _LEG_LABELS = {
@@ -2343,8 +2428,8 @@
         // ── Confronto Final: atualiza barra de HP, estrelas e botão ──
         updateBossUI();
         animateLastBossStar();
-        // Muda texto do botão Próxima: "ATACAR" nas questões 91-99, "GOLPE FINAL" na última
-        if(isBossBattle()) ui.nextBtn.textContent = getBossProgress() >= 9 ? 'GOLPE FINAL' : 'ATACAR (PRÓXIMA PERGUNTA)';
+        // Botão mantém o título normal ("Próxima Carta") também no Confronto Final.
+        if (isBossBattle()) ui.nextBtn.textContent = 'Próxima Carta';
       }
 
       if (typeof checkAchievements === 'function') {
@@ -3377,9 +3462,33 @@
     // ============ MODO PROVA SIMULADA ============
 
     function openOraculoFromJourney() {
+      // No Confronto Final (últimas 10 questões) o Oráculo é silenciado.
+      if (typeof isBossBattle === 'function' && isBossBattle()) {
+        _showOracleBlockedNarrative();
+        return;
+      }
       if (typeof window.openMentorModal === 'function') window.openMentorModal();
     }
     window.openOraculoFromJourney = openOraculoFromJourney;
+
+    function _showOracleBlockedNarrative() {
+      document.getElementById('oracleBlockedPopup')?.remove();
+      const popup = document.createElement('div');
+      popup.id = 'oracleBlockedPopup';
+      popup.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;animation:fadeIn 0.4s ease;';
+      popup.innerHTML = `
+        <div style="max-width:440px;width:100%;background:linear-gradient(160deg,#0a0118 0%,#120230 50%,#0a0118 100%);border:2px solid rgba(168,85,247,0.7);border-radius:16px;padding:26px 22px;text-align:center;box-shadow:0 0 50px rgba(168,85,247,0.4),inset 0 0 50px rgba(0,0,0,0.6);">
+          <div style="font-size:2rem;margin-bottom:10px;">🔮💀</div>
+          <h3 style="font-family:'Cinzel',serif;color:#d8b4fe;font-size:1.05rem;letter-spacing:1px;margin:0 0 12px;text-shadow:0 0 18px rgba(168,85,247,0.7);">O Oráculo Silenciou</h3>
+          <p style="font-family:'Philosopher',serif;color:#c4b5fd;font-size:0.88rem;line-height:1.65;font-style:italic;margin:0 0 20px;">
+            No Trono da Uremia, a magia sombria do Arqui-Nefromante sufoca toda sabedoria externa. O Oráculo dos Néfrons não tem poder neste lugar — apenas o <strong style="color:#e9d5ff;">seu próprio conhecimento</strong> decidirá o destino do reino.
+          </p>
+          <button data-remove-id="oracleBlockedPopup" style="font-family:'Cinzel',serif;background:linear-gradient(180deg,#7c3aed 0%,#5b21b6 100%);border:2px solid #a855f7;border-radius:10px;color:#f3e8ff;font-size:0.85rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:11px 26px;cursor:pointer;box-shadow:0 0 18px rgba(168,85,247,0.5);">Enfrentar sozinho</button>
+        </div>`;
+      document.body.appendChild(popup);
+      popup.addEventListener('click', (e) => { if (e.target === popup) popup.remove(); });
+      if (typeof playSound === 'function') playSound('boss');
+    }
 
     function goToWelcomeFromGame() {
       document.body.classList.remove('rd-game-over', 'boss-battle-mode', 'arqui-nefromante-final', 'boss-hp-critical');

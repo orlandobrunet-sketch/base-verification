@@ -6948,6 +6948,58 @@
 }
 .q-flag-link:hover { color: #ef4444; }
 
+/* ── Galeria de Assets (admin) ──────────────────────────────────── */
+.ag-section-h {
+  font-family: 'Cinzel', serif; color: var(--gold); font-size: 1rem;
+  margin: 22px 0 10px; padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255,215,0,0.2); letter-spacing: 1px;
+}
+.ag-section { margin-bottom: 18px; }
+.ag-h3 { font-family: 'Cinzel', serif; color: #d0e4f8; font-size: 0.92rem; margin: 0 0 4px; }
+.ag-dim { color: var(--txt-dim); font-weight: 400; }
+.ag-meta { font-size: 0.7rem; color: #8a9cc0; margin-bottom: 10px; }
+.ag-meta code { background: rgba(255,255,255,0.08); padding: 1px 5px; border-radius: 4px; color: #c8d8f0; }
+.ag-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+}
+.ag-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--blue-dark);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.ag-img {
+  width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block;
+  background: rgba(0,0,0,0.4); border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.ag-img-err {
+  outline: 2px solid #ef4444; outline-offset: -2px;
+  position: relative; min-height: 100px;
+}
+.ag-img-err::after {
+  content: '⚠ IMAGEM AUSENTE'; position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(40,0,0,0.85); color: #fca5a5;
+  font-size: 0.62rem; font-weight: 700; text-align: center; padding: 4px;
+}
+.ag-card-body { padding: 7px 8px 9px; display: flex; flex-direction: column; gap: 3px; }
+.ag-card-title { font-family: 'Cinzel', serif; font-size: 0.74rem; color: #e8d9a0; font-weight: 700; line-height: 1.2; }
+.ag-card-sub { font-size: 0.66rem; color: #9aabcc; font-style: italic; }
+.ag-rar {
+  align-self: flex-start; font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
+  padding: 1px 7px; border-radius: 10px; border: 1px solid; font-family: 'Cinzel', serif;
+}
+.ag-stats { font-size: 0.66rem; color: #c8d8f0; }
+.ag-desc { font-size: 0.66rem; color: #a8b8d8; line-height: 1.35; font-family: 'Philosopher', sans-serif; }
+.ag-nodesc { color: #708090; font-style: italic; }
+.ag-path {
+  font-size: 0.58rem; color: #6b7a99; word-break: break-all; font-family: monospace;
+  margin-top: 2px; border-top: 1px dashed rgba(255,255,255,0.08); padding-top: 4px;
+}
+
 /* ── M14 — Changelog ────────────────────────────────────────────── */
 .changelog-popup .modal-content {
   background: linear-gradient(170deg, var(--rd-bg-surface) 0%, var(--rd-bg-panel) 100%) !important;
@@ -12639,6 +12691,86 @@ button.ab-ddx-card { cursor: pointer; }
 @keyframes playerFlash {
   0%, 100% { background: linear-gradient(170deg, var(--rd-bg-surface) 0%, var(--rd-bg-panel) 100%); }
   50% { background: rgba(220, 38, 38, 0.25) !important; box-shadow: 0 0 20px rgba(220, 38, 38, 0.4) inset; }
+}
+
+/* ============================================================
+   FASE DO BOSS — layout normalizado em roxo (itens 5 e 6)
+   Mantém o dock lateral e os botões de feedback iguais à página
+   de perguntas normal, porém todos com cor base roxa.
+   ============================================================ */
+
+/* Item 5 — restaura a 3ª coluna (dock) no grid do boss (desktop) */
+body.arqui-nefromante-final .app {
+  grid-template-columns: 380px 1fr 80px !important;
+  max-width: none !important;
+}
+/* dock lateral visível e roxo */
+body.arqui-nefromante-final #actionDock,
+body.arqui-nefromante-final .action-dock {
+  display: flex !important;
+}
+body.arqui-nefromante-final .dock-btn {
+  border-color: rgba(168,85,247,0.45) !important;
+  color: #d8b4fe !important;
+}
+body.arqui-nefromante-final .dock-btn svg {
+  color: #c084fc !important;
+  filter: drop-shadow(0 0 6px rgba(168,85,247,0.75)) !important;
+}
+body.arqui-nefromante-final .dock-btn .dock-label {
+  color: #d8b4fe !important;
+  background: rgba(168,85,247,0.25) !important;
+}
+body.arqui-nefromante-final .dock-btn:hover {
+  border-color: rgba(192,132,252,0.7) !important;
+  box-shadow: 0 0 16px rgba(168,85,247,0.4) !important;
+}
+
+/* Item 6 — botões de feedback como na página normal, em roxo */
+body.arqui-nefromante-final .ctrl {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  padding: 10px 0 !important;
+  margin-top: 10px !important;
+}
+body.arqui-nefromante-final .ctrl #newBtn { display: inline-flex !important; }
+body.arqui-nefromante-final #nextBtn:not(.hidden) {
+  background: linear-gradient(180deg, #7c3aed 0%, #5b21b6 100%) !important;
+  border: 2px solid #a855f7 !important;
+  color: #f3e8ff !important;
+  font-family: 'Cinzel', serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+  text-transform: none !important;
+  font-size: 0.9rem !important;
+  width: auto !important;
+  flex: 1 1 auto !important;
+  padding: 11px 22px !important;
+  border-radius: 10px !important;
+  box-shadow: 0 0 16px rgba(124,58,237,0.35) !important;
+  animation: none !important;
+}
+/* remove o rótulo extra "CONFIRMAR RESPOSTA" e o efeito de golpe */
+body.arqui-nefromante-final #nextBtn:not(.hidden)::after,
+body.arqui-nefromante-final #nextBtn:not(.hidden)::before {
+  content: none !important;
+  display: none !important;
+}
+/* botão do Oráculo no boss — roxo discreto (clique mostra narrativa de bloqueio) */
+body.arqui-nefromante-final #oraculoBtn:not(.hidden) {
+  background: rgba(168,85,247,0.15) !important;
+  border: 1px solid rgba(168,85,247,0.5) !important;
+  color: #d8b4fe !important;
+}
+
+/* No mobile o dock lateral permanece oculto (igual à página normal) */
+@media (max-width: 768px) {
+  body.arqui-nefromante-final #actionDock,
+  body.arqui-nefromante-final .action-dock {
+    display: none !important;
+  }
 }
 
 
