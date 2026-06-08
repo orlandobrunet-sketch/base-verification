@@ -3511,6 +3511,17 @@
         _showOracleAnswerFirst();
         return;
       }
+      // Alimenta o mentor com a questão ATUAL sempre que abre — o handler de
+      // resposta só fazia isso no ramo de ERRO, então ao ACERTAR o contexto
+      // ficava preso na questão anterior.
+      if (typeof window.setMentorQuestion === 'function' && state.current) {
+        const cur = state.current;
+        window.setMentorQuestion({
+          q: cur.q, opts: cur.o,
+          ans: cur.a, exp: cur.e,
+          correctOption: cur.o ? cur.o[cur.a] : ''
+        });
+      }
       if (typeof window.openMentorModal === 'function') window.openMentorModal();
     }
     window.openOraculoFromJourney = openOraculoFromJourney;
