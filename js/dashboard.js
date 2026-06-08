@@ -1588,7 +1588,18 @@
       });
 
       if (filtered.length === 0) {
-        listContainer.innerHTML = `<div style="color:var(--txt-dim); font-size:0.8rem; text-align:center; padding:32px;">Nenhuma questão encontrada no histórico para os filtros atuais.</div>`;
+        // Diferencia "histórico vazio" (usuário novo) de "filtro sem resultado".
+        if (answeredQuestions.length === 0) {
+          listContainer.innerHTML = `<div style="color:var(--txt-dim); font-size:0.82rem; text-align:center; padding:36px 20px; line-height:1.6;">
+            <div style="font-size:1.8rem; margin-bottom:8px;">📖</div>
+            <strong style="color:#c8d8f0;">Seu histórico está vazio.</strong><br>
+            Responda questões na <strong>Jornada</strong> ou no <strong>Modo Estudo</strong> para começar a montar seu histórico — depois volte aqui para revisá-las e buscar por tema.
+          </div>`;
+        } else if (query || errorsOnly) {
+          listContainer.innerHTML = `<div style="color:var(--txt-dim); font-size:0.8rem; text-align:center; padding:32px;">Nenhuma questão corresponde ${query ? `à busca "<strong>${escapeHtml(query)}</strong>"` : 'ao filtro selecionado'}. Tente outro termo${errorsOnly ? ' ou desmarque "Apenas Erros Recentes"' : ''}.</div>`;
+        } else {
+          listContainer.innerHTML = `<div style="color:var(--txt-dim); font-size:0.8rem; text-align:center; padding:32px;">Nenhuma questão encontrada no histórico.</div>`;
+        }
         return;
       }
 
