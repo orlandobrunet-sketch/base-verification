@@ -21,7 +21,7 @@
                 <span style="color:#e0f2fe;font-weight:bold;font-size:0.95rem;">Ganhos Rápidos</span>
               </div>
               <ul style="margin:0;padding-left:18px;color:#c8d8f0;font-size:0.82rem;line-height:1.8;">
-                <li><strong>Mais siglas em português 🇧🇷</strong> — ESA → AEE (agentes estimuladores da eritropoiese) e UACR → RAC (relação albumina-creatinina). BUN preservado por ser conteúdo didático (BUN vs ureia).</li>
+                <li><strong>Mais siglas em português 🇧🇷</strong> — ESA → AEE (agentes estimuladores da eritropoiese), UACR → RAC (relação albumina-creatinina) e BUN convertido para ureia, com os valores recalculados (ex.: corte da relação ureia/creatinina ~40, não 20).</li>
                 <li><strong>Histórico mais claro 📖</strong> — Mensagens de estado-vazio melhoradas: orienta o usuário novo a responder questões e diferencia "sem histórico" de "busca sem resultado".</li>
               </ul>
             </div>
