@@ -3505,9 +3505,34 @@
         _showOracleBlockedNarrative();
         return;
       }
+      // O Oráculo discute a questão EM TELA. Se ainda não foi respondida,
+      // orienta o jogador a responder primeiro.
+      if (state.current && !state.answered) {
+        _showOracleAnswerFirst();
+        return;
+      }
       if (typeof window.openMentorModal === 'function') window.openMentorModal();
     }
     window.openOraculoFromJourney = openOraculoFromJourney;
+
+    function _showOracleAnswerFirst() {
+      document.getElementById('oracleAnswerFirstPopup')?.remove();
+      const popup = document.createElement('div');
+      popup.id = 'oracleAnswerFirstPopup';
+      popup.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;animation:fadeIn 0.3s ease;';
+      popup.innerHTML = `
+        <div style="max-width:420px;width:100%;background:linear-gradient(160deg,#101a33 0%,#0b1428 100%);border:2px solid rgba(168,85,247,0.6);border-radius:16px;padding:26px 22px;text-align:center;box-shadow:0 0 40px rgba(168,85,247,0.3);">
+          <div style="font-size:2rem;margin-bottom:10px;">🔮</div>
+          <h3 style="font-family:'Cinzel',serif;color:#d8b4fe;font-size:1.02rem;letter-spacing:0.5px;margin:0 0 12px;">O Oráculo Aguarda</h3>
+          <p style="font-family:'Philosopher',serif;color:#c8d8f0;font-size:0.9rem;line-height:1.6;margin:0 0 20px;">
+            Tente responder primeiro a questão para discutirmos depois.
+          </p>
+          <button data-remove-id="oracleAnswerFirstPopup" style="font-family:'Cinzel',serif;background:linear-gradient(180deg,#7c3aed 0%,#5b21b6 100%);border:2px solid #a855f7;border-radius:10px;color:#f3e8ff;font-size:0.85rem;font-weight:700;letter-spacing:1px;padding:11px 26px;cursor:pointer;box-shadow:0 0 16px rgba(168,85,247,0.4);">Vou responder</button>
+        </div>`;
+      document.body.appendChild(popup);
+      popup.addEventListener('click', (e) => { if (e.target === popup) popup.remove(); });
+      if (typeof playSound === 'function') playSound('click');
+    }
 
     function _showOracleBlockedNarrative() {
       document.getElementById('oracleBlockedPopup')?.remove();
