@@ -146,6 +146,60 @@
       }
     }
 
+    // ── Perfil Global (DC-4): ranking por desempenho ACUMULADO ──────────────
+    let _profileCache = null;
+
+    // Envia (upsert) as estatísticas acumuladas do usuário autenticado.
+    async function profileStatsPush() {
+      const userId = authUser?.id;
+      if (!userId) return; // só autenticados têm perfil global acumulado
+      let totalCorrect = 0, totalGames = 0, bestLevel = 1;
+      try {
+        const ds = (typeof getDetailedStats === 'function') ? getDetailedStats() : {};
+        const gs = (typeof getGameStats === 'function') ? getGameStats() : {};
+        totalCorrect = Math.max(0, Math.min(100000000, Math.floor(ds.totalCorrect || 0)));
+        totalGames   = Math.max(0, Math.min(1000000, Math.floor(gs.gamesPlayed || 0)));
+        bestLevel    = Math.max(1, Math.min(999, Math.floor(gs.bestLevel || 1)));
+      } catch (e) { return; }
+      const playerName = (state.lastSubmittedName || authUser?.user_metadata?.full_name || authUser?.user_metadata?.name || 'Anônimo').substring(0, 40);
+      const charName = state.character && characters[state.character] ? characters[state.character].name : null;
+      const payload = {
+        user_id: userId, player_name: playerName, character_name: charName,
+        total_correct: totalCorrect, total_games: totalGames, best_level: bestLevel,
+        updated_at: new Date().toISOString()
+      };
+      if (!navigator.onLine) return;
+      try {
+        const token = await (async () => { try { return (await _supaClient?.auth?.getSession())?.data?.session?.access_token || SUPA_KEY; } catch { return SUPA_KEY; } })();
+        await fetch(`${SUPA_URL}/rest/v1/profiles_stats`, {
+          method: 'POST',
+          headers: { 'apikey': SUPA_KEY, 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json', 'Prefer': 'resolution=merge-duplicates,return=minimal' },
+          body: JSON.stringify(payload)
+        });
+        _profileCache = null;
+      } catch (e) {
+        if (typeof _reportError === 'function') _reportError(e, { action: 'profileStatsPush' });
+      }
+    }
+    window.profileStatsPush = profileStatsPush;
+
+    async function _doProfileFetch() {
+      try {
+        const res = await fetch(`${SUPA_URL}/rest/v1/profiles_stats?select=*&order=total_correct.desc,best_level.desc&limit=50`, {
+          headers: { 'apikey': SUPA_KEY, 'Authorization': `Bearer ${SUPA_KEY}` }
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        _profileCache = data;
+        return data;
+      } catch (e) {
+        if (typeof _reportError === 'function') _reportError(e, { action: 'profileFetch' });
+        if (_profileCache) return _profileCache;
+        _toast('Erro ao carregar o ranking de perfil. Verifique sua conexão.', 'error');
+        return [];
+      }
+    }
+
     async function syncPendingLeaderboard() {
       if (!navigator.onLine) return;
       try {
@@ -179,14 +233,119 @@
     let _lastBoardFetch = 0;
     let _boardFullData = [];
 
+    // Modo do quadro: 'record' (recorde por partida) | 'global' (perfil acumulado)
+    let _boardMode = 'record';
+    const _CHAR_AVATARS = {
+      'Dr. Nephros':    'assets/classes/clerigo_renal/nivel_01.jpg',
+      'Dra. Aquaria':   'assets/classes/maga_metabolica/nivel_01.jpg',
+      'Dr. Glomerulus': 'assets/classes/guerreiro_glomerular/nivel_01.png'
+    };
+
+    function _setBoardMode(mode) {
+      if (mode !== 'record' && mode !== 'global') return;
+      if (mode === _boardMode) return;
+      _boardMode = mode;
+      document.querySelectorAll('.board-tab-btn').forEach(b => b.classList.toggle('active', b.dataset.arg === mode));
+      const sub = document.querySelector('.board-subtitle');
+      if (sub) sub.textContent = mode === 'global' ? 'Quem mais acertou ao longo da jornada' : 'Os maiores nefrologistas do reino';
+      renderBoard(true);
+    }
+    window._setBoardMode = _setBoardMode;
+
+    function _setBoardHead() {
+      const head = document.getElementById('boardHead');
+      if (!head) return;
+      head.innerHTML = (_boardMode === 'global')
+        ? '<tr><th class="col-rank">#</th><th class="col-player">Jogador</th><th class="col-char">Personagem</th><th class="col-score">Acertos</th><th class="col-level">Nível máx</th><th class="col-chests">Partidas</th></tr>'
+        : '<tr><th class="col-rank">#</th><th class="col-player">Jogador</th><th class="col-char">Personagem</th><th class="col-score">Pontos</th><th class="col-level">Nível</th><th class="col-chests">Baús</th><th class="col-date">Data</th></tr>';
+    }
+
+    function _renderCurrentRows(query) {
+      if (_boardMode === 'global') _renderProfileRows(_boardFullData, query);
+      else _renderBoardRows(_boardFullData, query);
+    }
+
+    // Render do ranking de perfil global (colunas: acertos / nível máx / partidas)
+    function _renderProfileRows(data, query) {
+      const rankClass = ['r1','r2','r3'];
+      const rankLabel = ['🥇','🥈','🥉'];
+      const q = (query || '').trim().toLowerCase();
+      const filtered = data.map((r, globalIdx) => ({ r, globalIdx }))
+        .filter(({ r }) => !q ||
+          (r.player_name || '').toLowerCase().includes(q) ||
+          (r.character_name || '').toLowerCase().includes(q));
+      ui.boardBody.innerHTML = '';
+      if (!filtered.length) {
+        const trEmpty = document.createElement('tr');
+        const tdEmpty = document.createElement('td');
+        tdEmpty.colSpan = 6;
+        tdEmpty.className = 'board-empty';
+        tdEmpty.textContent = q ? 'Nenhum resultado encontrado.' : 'Ninguém montou um perfil ainda. Jogue para acumular acertos!';
+        trEmpty.appendChild(tdEmpty);
+        ui.boardBody.appendChild(trEmpty);
+        return;
+      }
+      const myId = (typeof authUser !== 'undefined' && authUser) ? authUser.id : null;
+      filtered.forEach(({ r, globalIdx }, filteredIdx) => {
+        const i = q ? filteredIdx : globalIdx;
+        const rc = i < 3 ? rankClass[i] : 'rn';
+        const rl = i < 3 ? rankLabel[i] : (i + 1);
+        const avatar = _CHAR_AVATARS[r.character_name] || 'assets/classes/clerigo_renal/nivel_01.jpg';
+        const isMe = myId && r.user_id === myId;
+
+        const tr = document.createElement('tr');
+        tr.className = `rank-${i < 3 ? i+1 : 'n'}${isMe ? ' rank-me' : ''}`;
+
+        const tdRank = document.createElement('td');
+        tdRank.className = 'col-rank';
+        const spanRank = document.createElement('span');
+        spanRank.className = `rank-badge ${rc}`;
+        spanRank.textContent = rl;
+        tdRank.appendChild(spanRank);
+        tr.appendChild(tdRank);
+
+        const tdPlayer = document.createElement('td');
+        tdPlayer.className = 'col-player';
+        const divPlayer = document.createElement('div');
+        divPlayer.className = 'player-cell';
+        const imgAvatar = document.createElement('img');
+        imgAvatar.className = 'player-avatar';
+        imgAvatar.src = avatar; imgAvatar.alt = ''; imgAvatar.setAttribute('loading', 'lazy');
+        const spanName = document.createElement('span');
+        spanName.className = 'player-name-text';
+        spanName.textContent = r.player_name || 'Anônimo';
+        divPlayer.appendChild(imgAvatar); divPlayer.appendChild(spanName);
+        tdPlayer.appendChild(divPlayer);
+        tr.appendChild(tdPlayer);
+
+        const tdChar = document.createElement('td');
+        tdChar.className = 'col-char';
+        tdChar.textContent = r.character_name || 'Desconhecido';
+        tr.appendChild(tdChar);
+
+        const tdCorrect = document.createElement('td');
+        tdCorrect.className = 'col-score score-cell';
+        tdCorrect.textContent = (r.total_correct || 0).toLocaleString('pt-BR');
+        tr.appendChild(tdCorrect);
+
+        const tdLevel = document.createElement('td');
+        tdLevel.className = 'col-level level-cell';
+        tdLevel.textContent = r.best_level || 1;
+        tr.appendChild(tdLevel);
+
+        const tdGames = document.createElement('td');
+        tdGames.className = 'col-chests chests-cell';
+        tdGames.textContent = r.total_games || 0;
+        tr.appendChild(tdGames);
+
+        ui.boardBody.appendChild(tr);
+      });
+    }
+
     function _renderBoardRows(data, query) {
       const rankClass = ['r1','r2','r3'];
       const rankLabel = ['🥇','🥈','🥉'];
-      const charAvatars = {
-        'Dr. Nephros':    'assets/classes/clerigo_renal/nivel_01.jpg',
-        'Dra. Aquaria':   'assets/classes/maga_metabolica/nivel_01.jpg',
-        'Dr. Glomerulus': 'assets/classes/guerreiro_glomerular/nivel_01.png'
-      };
+      const charAvatars = _CHAR_AVATARS;
       const q = (query || '').trim().toLowerCase();
       const filtered = data.map((r, globalIdx) => ({ r, globalIdx }))
         .filter(({ r }) => !q ||
@@ -286,24 +445,31 @@
       const loading = document.getElementById('boardLoading');
       const updateEl = document.getElementById('boardLastUpdate');
       const searchEl = document.getElementById('boardSearch');
+      _setBoardHead();
       if (loading) loading.classList.remove('hidden');
       ui.boardBody.innerHTML = '';
-      const data = await boardFetch(forceRefresh);
+      const data = (_boardMode === 'global') ? await _doProfileFetch() : await boardFetch(forceRefresh);
       if (loading) loading.classList.add('hidden');
       _boardFullData = data.slice(0, 50);
       if (_boardFullData.length === 0) {
         ui.boardBody.innerHTML = '';
         const trEmpty = document.createElement('tr');
         const tdEmpty = document.createElement('td');
-        tdEmpty.colSpan = 7;
+        tdEmpty.colSpan = (_boardMode === 'global') ? 6 : 7;
         tdEmpty.className = 'board-empty';
-        tdEmpty.appendChild(document.createTextNode('Nenhum aventureiro registrou pontuação ainda.'));
-        tdEmpty.appendChild(document.createElement('br'));
-        tdEmpty.appendChild(document.createTextNode('Seja o primeiro a entrar para a história!'));
+        if (_boardMode === 'global') {
+          tdEmpty.appendChild(document.createTextNode('Ninguém montou um perfil ainda.'));
+          tdEmpty.appendChild(document.createElement('br'));
+          tdEmpty.appendChild(document.createTextNode('Jogue para acumular acertos e aparecer aqui!'));
+        } else {
+          tdEmpty.appendChild(document.createTextNode('Nenhum aventureiro registrou pontuação ainda.'));
+          tdEmpty.appendChild(document.createElement('br'));
+          tdEmpty.appendChild(document.createTextNode('Seja o primeiro a entrar para a história!'));
+        }
         trEmpty.appendChild(tdEmpty);
         ui.boardBody.appendChild(trEmpty);
       } else {
-        _renderBoardRows(_boardFullData, searchEl?.value || '');
+        _renderCurrentRows(searchEl?.value || '');
       }
       if (updateEl) updateEl.textContent = `Atualizado: ${new Date().toLocaleTimeString('pt-BR', {hour:'2-digit',minute:'2-digit'})}`;
 
@@ -312,17 +478,17 @@
         let _searchTimer;
         searchEl.addEventListener('input', () => {
           clearTimeout(_searchTimer);
-          _searchTimer = setTimeout(() => _renderBoardRows(_boardFullData, searchEl.value), 200);
+          _searchTimer = setTimeout(() => _renderCurrentRows(searchEl.value), 200);
         });
       }
       const myPosBtn = document.getElementById('boardMyPos');
       if (myPosBtn && !myPosBtn.dataset.wired) {
         myPosBtn.dataset.wired = '1';
         myPosBtn.addEventListener('click', () => {
-          if (searchEl) { searchEl.value = ''; _renderBoardRows(_boardFullData, ''); }
+          if (searchEl) { searchEl.value = ''; _renderCurrentRows(''); }
           const myRow = ui.boardBody.querySelector('tr.rank-me');
           if (myRow) myRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          else _toast('Sua pontuação ainda não está no ranking. Termine uma partida!', 'info');
+          else _toast('Você ainda não está no ranking. Termine uma partida!', 'info');
         });
       }
     }
