@@ -2624,6 +2624,7 @@
       if (authUser) {
         const name = _authDisplayName();
         boardPush(pendingScore.score, pendingScore.level, name);
+        if (typeof profileStatsPush === 'function') profileStatsPush();
         pendingScore = null;
         finishGameUI();
         if (typeof _syncProgressToCloud === 'function') {

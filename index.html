@@ -1166,6 +1166,10 @@
         </div>
         <p class="board-subtitle">Os maiores nefrologistas do reino</p>
       </div>
+      <div class="board-tabs">
+        <button type="button" class="board-tab-btn active" data-action="_setBoardMode" data-arg="record">🏆 Recorde</button>
+        <button type="button" class="board-tab-btn" data-action="_setBoardMode" data-arg="global">📊 Perfil Global</button>
+      </div>
       <div id="boardLoading" class="board-loading hidden">
         <div class="board-spinner"></div>
         <span>Consultando os pergaminhos do reino...</span>
@@ -1176,7 +1180,7 @@
       </div>
       <div class="board-table-wrap">
         <table class="board-table">
-          <thead>
+          <thead id="boardHead">
             <tr>
               <th class="col-rank">#</th>
               <th class="col-player">Jogador</th>
