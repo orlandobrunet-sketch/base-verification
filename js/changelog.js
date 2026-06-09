@@ -14,6 +14,30 @@
 
           <div class="modal-scroll-body" style="text-align:left;">
 
+            <!-- v11.74 -->
+            <div style="background:linear-gradient(135deg,rgba(255,215,0,0.16),rgba(56,189,248,0.06));border:2px solid rgba(255,215,0,0.5);border-radius:10px;padding:16px;margin-bottom:12px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                <span style="background:rgba(255,215,0,0.9);color:#1a0e00;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v11.74</span>
+                <span style="color:#fef3c7;font-weight:bold;font-size:0.95rem;">Apelido no Ranking</span>
+              </div>
+              <ul style="margin:0;padding-left:18px;color:#c8d8f0;font-size:0.82rem;line-height:1.8;">
+                <li><strong>Privacidade no ranking 🏷️</strong> — Agora você escolhe um <strong>apelido</strong> (não precisa ser seu nome real). Ele é pedido no primeiro acesso e pode ser editado em "Minha Conta". É o que aparece no ranking.</li>
+                <li><strong>Perfil Global mais limpo 📊</strong> — A aba Perfil Global agora mostra só o apelido (sem divisão por personagem); o ranking por partida mantém personagem.</li>
+              </ul>
+            </div>
+
+            <!-- v11.73 -->
+            <div style="background:linear-gradient(135deg,rgba(255,215,0,0.16),rgba(168,85,247,0.06));border:2px solid rgba(255,215,0,0.5);border-radius:10px;padding:16px;margin-bottom:12px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                <span style="background:rgba(255,215,0,0.9);color:#1a0e00;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v11.73</span>
+                <span style="color:#fef3c7;font-weight:bold;font-size:0.95rem;">Ajustes Finos</span>
+              </div>
+              <ul style="margin:0;padding-left:18px;color:#c8d8f0;font-size:0.82rem;line-height:1.8;">
+                <li><strong>Aviso de ouro só uma vez 💰</strong> — O popup "100 de Ouro" agora aparece apenas na primeira vez (não repete ao reacumular ouro).</li>
+                <li><strong>Confronto Final no início ☠️</strong> — A narrativa do confronto com o Arqui-Nefromante deixou de surgir no meio da batalha (já é apresentada na abertura do boss).</li>
+              </ul>
+            </div>
+
             <!-- v11.72 -->
             <div style="background:linear-gradient(135deg,rgba(255,215,0,0.16),rgba(255,215,0,0.05));border:2px solid rgba(255,215,0,0.6);border-radius:10px;padding:16px;margin-bottom:12px;">
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">

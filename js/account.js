@@ -16,7 +16,11 @@
             <button class="modal-panel-x" data-action="closeAccountModal" aria-label="Fechar">&times;</button>
             <h2>👤 Minha Conta</h2>
             <div class="form-group">
-              <label>Nome completo</label>
+              <label>Apelido <span style="color:var(--txt-dim);font-weight:400;">(aparece no ranking)</span></label>
+              <input id="acctNickname" type="text" maxlength="40" placeholder="ex.: NefroMestre — não precisa ser seu nome real">
+            </div>
+            <div class="form-group">
+              <label>Nome completo <span style="color:var(--txt-dim);font-weight:400;">(privado)</span></label>
               <input id="acctName" type="text" placeholder="Seu nome">
             </div>
             <div class="form-group">
@@ -57,6 +61,7 @@
       }
       // Populate
       const saved = (() => { try { return JSON.parse(localStorage.getItem(ACCT_KEY) || '{}'); } catch(e) { return {}; } })();
+      document.getElementById('acctNickname').value = authUser?.user_metadata?.nickname || '';
       document.getElementById('acctName').value     = authUser?.user_metadata?.full_name || saved.name || '';
       document.getElementById('acctEmail').value    = authUser?.email || '';
       document.getElementById('acctPhone').value    = saved.phone || '';
@@ -109,7 +114,11 @@
         spec:  document.getElementById('acctSpec').value.trim(),
         city:  document.getElementById('acctCity').value.trim(),
       };
+      const nickname = (document.getElementById('acctNickname')?.value || '').trim().substring(0, 40);
       try { localStorage.setItem(ACCT_KEY, JSON.stringify(data)); } catch(e) {}
+      // Apelido (privacidade no ranking) — persiste e propaga ao leaderboard.
+      try { localStorage.setItem('nq-nickname-asked', '1'); } catch(e) {}
+      if (nickname && typeof _saveNickname === 'function') { try { await _saveNickname(nickname); } catch(e) {} }
       const newIdentity = document.getElementById('acctIdentity').value;
       if (newIdentity) localStorage.setItem(IDENTITY_KEY, newIdentity);
       else localStorage.removeItem(IDENTITY_KEY);

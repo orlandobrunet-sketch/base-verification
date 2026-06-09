@@ -2958,12 +2958,16 @@
 
     // ============ MILESTONE DE OURO ============
     const GOLD_MILESTONE = 100;
-    let _goldMilestoneShown = false;
+    const GOLD_MILESTONE_KEY = 'nefroquest-gold-milestone-shown';
+    // Persistido: o aviso aparece apenas na PRIMEIRA vez que o jogador chega a
+    // 100 de ouro — nunca mais (mesmo após gastar e reacumular, ou recarregar).
+    let _goldMilestoneShown = (() => { try { return localStorage.getItem(GOLD_MILESTONE_KEY) === '1'; } catch (e) { return false; } })();
 
     function checkGoldMilestone(prevGold) {
       if (_goldMilestoneShown) return;
       if (prevGold < GOLD_MILESTONE && state.gold >= GOLD_MILESTONE) {
         _goldMilestoneShown = true;
+        try { localStorage.setItem(GOLD_MILESTONE_KEY, '1'); } catch (e) {}
         setTimeout(showGoldMilestonePopup, 600);
       }
     }
