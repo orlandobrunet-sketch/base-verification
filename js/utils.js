@@ -99,35 +99,85 @@
       return text.substring(0, cut).trim();
     }
 
-    // ── Spaced Repetition (SM-2) ──────────────────────────────────────────
+    // ── Spaced Repetition (FSRS-4.5) ──────────────────────────────────────
+    // Free Spaced Repetition Scheduler — modela Estabilidade (S, dias até a
+    // retenção cair a 90%), Dificuldade (D, 1–10) e Retrievability (R). Mantém
+    // os campos `interval` (dias) e `due` (timestamp) por compatibilidade com o
+    // dashboard. Entrada binária do jogo: acerto→Good(3), erro→Again(1).
     const SR_KEY = 'nefroquest-sr-data';
+    const _DAY_MS = 86400000;
+    const _FSRS_W = [0.4, 0.6, 2.4, 5.8, 4.93, 0.94, 0.86, 0.01, 1.49, 0.14, 0.94, 2.18, 0.05, 0.34, 1.26, 0.29, 2.61];
+    const _FSRS_DECAY = -0.5;
+    const _FSRS_FACTOR = 19 / 81;       // = retençãoAlvo^(1/DECAY) − 1 para 0.9
+    const _FSRS_RETENTION = 0.9;        // retenção-alvo
+
     function _loadSRData() {
       try { return JSON.parse(localStorage.getItem(SR_KEY) || '{}'); } catch { return {}; }
     }
     function _saveSRData(d) {
       try { localStorage.setItem(SR_KEY, JSON.stringify(d)); } catch(e) { console.error('[NQ] _saveSRData failed', e); }
     }
+
+    const _clampD = d => Math.min(10, Math.max(1, d));
+    const _fsrsInitD = g => _clampD(_FSRS_W[4] - _FSRS_W[5] * (g - 3));
+    const _fsrsInitS = g => Math.max(0.1, _FSRS_W[g - 1]);
+    const _fsrsR = (t, S) => Math.pow(1 + _FSRS_FACTOR * t / S, _FSRS_DECAY);
+    const _fsrsInterval = S => Math.max(1, Math.round((S / _FSRS_FACTOR) * (Math.pow(_FSRS_RETENTION, 1 / _FSRS_DECAY) - 1)));
+    const _fsrsNextD = (D, g) => _clampD(_FSRS_W[7] * _fsrsInitD(4) + (1 - _FSRS_W[7]) * (D - _FSRS_W[6] * (g - 3)));
+    const _fsrsStabRecall = (D, S, R, g) => {
+      const hard = g === 2 ? _FSRS_W[15] : 1;
+      const easy = g === 4 ? _FSRS_W[16] : 1;
+      return S * (1 + Math.exp(_FSRS_W[8]) * (11 - D) * Math.pow(S, -_FSRS_W[9]) * (Math.exp((1 - R) * _FSRS_W[10]) - 1) * hard * easy);
+    };
+    const _fsrsStabLapse = (D, S, R) => _FSRS_W[11] * Math.pow(D, -_FSRS_W[12]) * (Math.pow(S + 1, _FSRS_W[13]) - 1) * Math.exp((1 - R) * _FSRS_W[14]);
+
     function updateSRData(qid, isCorrect) {
       if (!qid) return;
       const data = _loadSRData();
-      const today = new Date().setHours(0,0,0,0);
-      const card = data[qid] || { ef: 2.5, interval: 1, reps: 0, due: today };
-      const q = isCorrect ? 4 : 1;
-      card.ef = Math.max(1.3, card.ef + 0.1 - (5 - q) * (0.08 + (5 - q) * 0.02));
-      if (isCorrect) {
-        card.reps++;
-        card.interval = card.reps === 1 ? 1 : card.reps === 2 ? 6 : Math.ceil(card.interval * card.ef);
-      } else {
-        card.reps = 0;
-        card.interval = 1;
+      const today = new Date().setHours(0, 0, 0, 0);
+      const g = isCorrect ? 3 : 1; // Good / Again
+      let card = data[qid];
+
+      // Migração de cards SM-2 antigos ({ef, interval, reps, due}) → FSRS
+      if (card && card.S === undefined) {
+        const ef = typeof card.ef === 'number' ? card.ef : 2.5;
+        const interval = card.interval || 1;
+        card = {
+          S: Math.max(0.5, interval),
+          D: _clampD(1 + (2.5 - ef) / 1.2 * 9),
+          interval,
+          due: card.due || today,
+          last: card.due ? (card.due - interval * _DAY_MS) : today,
+          reps: card.reps || 1,
+          lapses: 0
+        };
       }
-      card.due = today + card.interval * 86400000;
+
+      if (!card || card.S === undefined || !card.reps) {
+        // Primeira revisão
+        const S = _fsrsInitS(g);
+        const D = _fsrsInitD(g);
+        const interval = _fsrsInterval(S);
+        card = { S, D, interval, due: today + interval * _DAY_MS, last: today, reps: 1, lapses: isCorrect ? 0 : 1 };
+      } else {
+        const t = Math.max(0, Math.round((today - (card.last || today)) / _DAY_MS));
+        const R = _fsrsR(t, card.S);
+        const D = _fsrsNextD(card.D, g);
+        let S = g === 1 ? _fsrsStabLapse(D, card.S, R) : _fsrsStabRecall(D, card.S, R, g);
+        S = Math.max(0.1, S);
+        const interval = _fsrsInterval(S);
+        card = {
+          S, D, interval, due: today + interval * _DAY_MS, last: today,
+          reps: (card.reps || 0) + 1, lapses: (card.lapses || 0) + (g === 1 ? 1 : 0)
+        };
+      }
       data[qid] = card;
       _saveSRData(data);
     }
+
     function getSRDueQuestions(qs) {
       const data = _loadSRData();
-      const today = new Date().setHours(0,0,0,0);
+      const today = new Date().setHours(0, 0, 0, 0);
       return qs.filter(q => !q.qid || !data[q.qid] || data[q.qid].due <= today);
     }
 
