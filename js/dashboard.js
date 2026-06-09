@@ -461,6 +461,31 @@
       .nq-dash-ach-check { margin-left: auto; font-size: 1.1rem; color: #34d399; flex-shrink: 0; }
 
       /* ── Mini leaderboard ─────────────────────────────────────────────── */
+      .nq-dash-lb-tabs {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+      .nq-dash-lb-tab {
+        flex: 1;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 8px;
+        padding: 7px 10px;
+        color: var(--txt-dim);
+        font-family: 'Cinzel', serif;
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+        cursor: pointer;
+        transition: background 0.15s, border-color 0.15s, color 0.15s;
+      }
+      .nq-dash-lb-tab:hover { color: #c8d8f0; border-color: rgba(255,215,0,0.25); }
+      .nq-dash-lb-tab.active {
+        background: rgba(255,215,0,0.12);
+        border-color: rgba(255,215,0,0.5);
+        color: var(--gold);
+      }
       .nq-dash-lb-head {
         display: flex;
         align-items: center;
@@ -908,7 +933,9 @@
       ? characters[state.character] : null;
     const charLv = Math.min(Math.max(state.level || 1, 1), 10);
     const lvStr = String(charLv).padStart(2, '0');
-    const avatarSrc = charData ? `assets/classes/${charData.folder}/nivel_${lvStr}.jpg` : null;
+    // guerreiro_glomerular usa .png; as demais classes usam .jpg
+    const _ext = state.character === 'glomerulus' ? 'png' : 'jpg';
+    const avatarSrc = charData ? `assets/classes/${charData.folder}/nivel_${lvStr}.${_ext}` : null;
 
     // Stats acumulados de TODAS as partidas (STATS_KEY)
     const gStats = typeof getGameStats === 'function' ? getGameStats() : {};
@@ -1324,6 +1351,10 @@
 
   function _tabRanking() {
     return `
+      <div class="nq-dash-lb-tabs">
+        <button type="button" class="nq-dash-lb-tab${_dashLbMode === 'record' ? ' active' : ''}" data-action="_dashSetLbMode" data-arg="record">🏆 Recorde</button>
+        <button type="button" class="nq-dash-lb-tab${_dashLbMode === 'global' ? ' active' : ''}" data-action="_dashSetLbMode" data-arg="global">📊 Perfil Global</button>
+      </div>
       <div class="nq-dash-lb-head">
         <input type="search" class="nq-dash-lb-search" id="nqDashLbSearch" placeholder="Buscar jogador…">
         <button type="button" class="btn sec" style="font-size:0.68rem;padding:5px 13px;white-space:nowrap;" data-action="_dashRefreshRanking">↻ Atualizar</button>
@@ -1334,8 +1365,19 @@
 
   // ── Load ranking ─────────────────────────────────────────────────────────
   let _lbFullData = [];
+  let _dashLbMode = 'record'; // 'record' (recorde por partida) | 'global' (perfil acumulado)
 
-  function _renderLbRows(wrap, data, query) {
+  function _dashSetLbMode(mode) {
+    if (mode !== 'record' && mode !== 'global') return;
+    if (mode === _dashLbMode) return;
+    _dashLbMode = mode;
+    document.querySelectorAll('.nq-dash-lb-tab').forEach(b => b.classList.toggle('active', b.dataset.arg === mode));
+    _loadRanking(false);
+  }
+  window._dashSetLbMode = _dashSetLbMode;
+
+  function _renderLbRows(wrap, data, query, mode) {
+    const isGlobal = mode === 'global';
     wrap.innerHTML = '';
     const q = (query || '').trim().toLowerCase();
     const filtered = data.filter(r =>
@@ -1371,12 +1413,12 @@
     
     const thScore = document.createElement('th');
     thScore.style.textAlign = 'right';
-    thScore.textContent = 'Score';
-    
+    thScore.textContent = isGlobal ? 'Acertos' : 'Score';
+
     const thLevel = document.createElement('th');
     thLevel.style.textAlign = 'center';
-    thLevel.style.width = '50px';
-    thLevel.textContent = 'Nível';
+    thLevel.style.width = '60px';
+    thLevel.textContent = isGlobal ? 'Nível máx' : 'Nível';
 
     trHead.appendChild(thRank);
     trHead.appendChild(thPlayer);
@@ -1388,7 +1430,9 @@
 
     const tbody = document.createElement('tbody');
     filtered.forEach((r, i) => {
-      const me = state.lastSubmittedName && r.player_name === state.lastSubmittedName;
+      const me = isGlobal
+        ? (typeof authUser !== 'undefined' && authUser && r.user_id === authUser.id)
+        : (state.lastSubmittedName && r.player_name === state.lastSubmittedName);
       const tr = document.createElement('tr');
       if (me) tr.className = 'lb-me';
 
@@ -1407,8 +1451,9 @@
         tdPlayer.style.fontWeight = '700';
       }
       tdPlayer.appendChild(document.createTextNode(r.player_name || 'Anônimo'));
-      
-      if (r.character_name) {
+
+      // No Perfil Global mostramos só o usuário (sem divisão por personagem).
+      if (!isGlobal && r.character_name) {
         const spanChar = document.createElement('span');
         spanChar.style.color = 'var(--txt-dim)';
         spanChar.style.fontSize = '0.68rem';
@@ -1423,17 +1468,17 @@
       tdClass.style.display = 'none';
       tr.appendChild(tdClass);
 
-      // score td
+      // score td (Score por partida OU Acertos acumulados)
       const tdScore = document.createElement('td');
       tdScore.className = 'nq-dash-lb-score';
-      tdScore.textContent = (r.score || 0).toLocaleString('pt-BR');
+      tdScore.textContent = (isGlobal ? (r.total_correct || 0) : (r.score || 0)).toLocaleString('pt-BR');
       tr.appendChild(tdScore);
 
-      // level td
+      // level td (Nível da partida OU Nível máximo acumulado)
       const tdLevel = document.createElement('td');
       tdLevel.style.textAlign = 'center';
       tdLevel.style.color = 'var(--txt-dim)';
-      tdLevel.textContent = r.level || 1;
+      tdLevel.textContent = isGlobal ? (r.best_level || 1) : (r.level || 1);
       tr.appendChild(tdLevel);
 
       tbody.appendChild(tr);
@@ -1452,13 +1497,15 @@
     if (!wrap) return;
     wrap.innerHTML = '<div class="nq-dash-lb-spin">Carregando ranking…</div>';
     try {
-      const data = await boardFetch(!!force);
+      const data = _dashLbMode === 'global'
+        ? (typeof window._profileGlobalFetch === 'function' ? await window._profileGlobalFetch() : [])
+        : await boardFetch(!!force);
       _lbFullData = (data || []).slice(0, 50);
       if (!_lbFullData.length) {
-        wrap.innerHTML = '<div class="nq-dash-lb-spin">Nenhuma pontuação registrada ainda.</div>';
+        wrap.innerHTML = `<div class="nq-dash-lb-spin">${_dashLbMode === 'global' ? 'Nenhum perfil no ranking ainda. Termine uma partida logado para aparecer aqui.' : 'Nenhuma pontuação registrada ainda.'}</div>`;
         return;
       }
-      _renderLbRows(wrap, _lbFullData, '');
+      _renderLbRows(wrap, _lbFullData, '', _dashLbMode);
       // Wire search
       const searchEl = document.getElementById('nqDashLbSearch');
       if (searchEl && !searchEl.dataset.wired) {
@@ -1468,7 +1515,7 @@
           clearTimeout(_t);
           _t = setTimeout(() => {
             const w = document.getElementById('nqDashLbWrap');
-            if (w) _renderLbRows(w, _lbFullData, searchEl.value);
+            if (w) _renderLbRows(w, _lbFullData, searchEl.value, _dashLbMode);
           }, 200);
         });
       }

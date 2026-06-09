@@ -199,6 +199,8 @@
         return [];
       }
     }
+    // Exposto para o dashboard reaproveitar o ranking de Perfil Global.
+    window._profileGlobalFetch = _doProfileFetch;
 
     async function syncPendingLeaderboard() {
       if (!navigator.onLine) return;
