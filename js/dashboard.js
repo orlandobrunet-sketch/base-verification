@@ -460,6 +460,45 @@
       .nq-dash-ach-desc { font-size: 0.7rem; color: var(--txt-dim); line-height: 1.35; }
       .nq-dash-ach-check { margin-left: auto; font-size: 1.1rem; color: #34d399; flex-shrink: 0; }
 
+      /* ── Biblioteca de Néfrons ────────────────────────────────────────── */
+      .nq-lib-head { margin-bottom: 18px; }
+      .nq-lib-progress-info { font-size: 0.82rem; color: #c8d8f0; margin-bottom: 8px; }
+      .nq-lib-bar { height: 8px; background: rgba(255,255,255,0.07); border-radius: 6px; overflow: hidden; }
+      .nq-lib-bar-fill { height: 100%; background: linear-gradient(90deg, #b8860b, #ffd700); border-radius: 6px; transition: width 0.5s ease; box-shadow: 0 0 8px rgba(255,215,0,0.4); }
+      .nq-lib-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(238px, 1fr)); gap: 14px; }
+      .nq-lib-card {
+        background: linear-gradient(160deg, rgba(255,255,255,0.045), rgba(255,255,255,0.012));
+        border: 1px solid rgba(255,255,255,0.08);
+        border-left: 3px solid rgba(148,163,184,0.4);
+        border-radius: 12px;
+        padding: 13px 14px;
+        cursor: pointer;
+        transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+        display: flex; flex-direction: column; gap: 5px;
+      }
+      .nq-lib-card:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(0,0,0,0.45); border-color: rgba(255,215,0,0.22); }
+      .nq-lib-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2px; }
+      .nq-lib-icon { font-size: 1.25rem; line-height: 1; }
+      .nq-lib-rar { font-size: 0.56rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 2px 8px; border-radius: 10px; font-family: 'Cinzel', serif; white-space: nowrap; }
+      .nq-lib-title { font-family: 'Cinzel', serif; font-size: 0.85rem; font-weight: 700; color: #e8d9a0; line-height: 1.28; }
+      .nq-lib-meta { font-size: 0.69rem; color: #9aabcc; }
+      .nq-lib-jornal { font-size: 0.67rem; color: var(--txt-dim); font-style: italic; }
+      .nq-lib-resumo {
+        font-size: 0.74rem; color: #b8c8e0; line-height: 1.5; margin-top: 3px;
+        display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+      }
+      .nq-lib-card.expanded .nq-lib-resumo { -webkit-line-clamp: unset; overflow: visible; }
+      .nq-lib-extra { display: none; flex-direction: column; gap: 7px; margin-top: 5px; padding-top: 9px; border-top: 1px dashed rgba(255,255,255,0.1); }
+      .nq-lib-card.expanded .nq-lib-extra { display: flex; }
+      .nq-lib-conc { font-size: 0.72rem; color: #c8d8f0; line-height: 1.45; }
+      .nq-lib-impacto { font-size: 0.7rem; color: #7dd3fc; line-height: 1.4; }
+      .nq-lib-curio { font-size: 0.7rem; color: #fcd34d; line-height: 1.45; }
+      .nq-lib-more { font-size: 0.65rem; color: var(--txt-dim); text-align: right; margin-top: 3px; }
+      .nq-lib-more::after { content: 'ver mais ▾'; }
+      .nq-lib-card.expanded .nq-lib-more::after { content: 'ver menos ▴'; }
+      .nq-lib-empty { text-align: center; color: var(--txt-dim); font-size: 0.86rem; padding: 44px 20px; line-height: 1.65; }
+      .nq-lib-locked-hint { margin-top: 18px; text-align: center; font-size: 0.76rem; color: var(--txt-dim); }
+
       /* ── Mini leaderboard ─────────────────────────────────────────────── */
       .nq-dash-lb-tabs {
         display: flex;
@@ -1349,6 +1388,66 @@
     `;
   }
 
+  // ── Biblioteca de Néfrons (DC-1/DC-2): artigos históricos desbloqueados ──
+  function _tabLibrary() {
+    const arts = (typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles)) ? nefroArticles : [];
+    let unlocked = [];
+    try { unlocked = JSON.parse(localStorage.getItem('unlockedArticles') || '[]'); } catch (e) {}
+    const total = arts.length;
+    const unlockedSet = new Set((unlocked || []).filter(i => Number.isInteger(i) && i >= 0 && i < total));
+    const count = unlockedSet.size;
+    const rc = window.rarityColors || {};
+    const ri = window.rarityScrollIcons || {};
+    const fallback = { text: '#94a3b8', bg: 'rgba(148,163,184,0.10)', border: 'rgba(148,163,184,0.35)', label: 'Comum' };
+
+    const cards = [...unlockedSet].sort((a, b) => a - b).map(idx => {
+      const a = arts[idx];
+      if (!a) return '';
+      const rar = (a.raridade || 'comum').toLowerCase();
+      const info = rc[rar] || rc.comum || fallback;
+      const icon = ri[rar] || '📜';
+      const meta = [a.autores ? escapeHtml(a.autores) : '', a.ano ? escapeHtml(String(a.ano)) : ''].filter(Boolean).join(' · ');
+      return `
+        <div class="nq-lib-card" style="border-left-color:${info.border};" data-action="_dashToggleArticle" data-pass-this="1">
+          <div class="nq-lib-card-top">
+            <span class="nq-lib-icon">${icon}</span>
+            <span class="nq-lib-rar" style="color:${info.text};background:${info.bg};border:1px solid ${info.border};">${escapeHtml(info.label || rar)}</span>
+          </div>
+          <div class="nq-lib-title">${escapeHtml(a.titulo || 'Artigo')}</div>
+          ${meta ? `<div class="nq-lib-meta">${meta}</div>` : ''}
+          ${a.jornal ? `<div class="nq-lib-jornal">${escapeHtml(a.jornal)}</div>` : ''}
+          <div class="nq-lib-resumo">${escapeHtml(a.resumo || '')}</div>
+          <div class="nq-lib-extra">
+            ${a.conclusao ? `<div class="nq-lib-conc"><strong>Conclusão:</strong> ${escapeHtml(a.conclusao)}</div>` : ''}
+            ${a.impacto ? `<div class="nq-lib-impacto">📈 ${escapeHtml(a.impacto)}</div>` : ''}
+            ${a.curiosidade ? `<div class="nq-lib-curio">💡 ${escapeHtml(a.curiosidade)}</div>` : ''}
+          </div>
+          <div class="nq-lib-more"></div>
+        </div>`;
+    }).join('');
+
+    const pct = total ? Math.round(count / total * 100) : 0;
+    const locked = total - count;
+
+    return `
+      <div class="nq-dash-stitle">Biblioteca de Néfrons</div>
+      <div class="nq-lib-head">
+        <div class="nq-lib-progress-info">Você desbloqueou <strong style="color:var(--gold);">${count}</strong> de ${total} artigos históricos da nefrologia.</div>
+        <div class="nq-lib-bar"><div class="nq-lib-bar-fill" style="width:${pct}%;"></div></div>
+      </div>
+      ${count === 0
+        ? `<div class="nq-lib-empty"><div style="font-size:2.2rem;margin-bottom:10px;">📜🔒</div><strong style="color:#c8d8f0;">Nenhum artigo desbloqueado ainda.</strong><br>Abra <strong>baús</strong> durante a jornada para revelar artigos marcantes da história da nefrologia.</div>`
+        : `<div class="nq-lib-grid">${cards}</div>
+           ${locked > 0
+             ? `<div class="nq-lib-locked-hint">🔒 ${locked} artigo${locked !== 1 ? 's' : ''} ainda trancado${locked !== 1 ? 's' : ''} — continue abrindo baús para revelá-los.</div>`
+             : `<div class="nq-lib-locked-hint" style="color:var(--gold);">✨ Coleção completa! Você desbloqueou todos os artigos.</div>`}`}
+    `;
+  }
+  window._dashToggleArticle = function (el) {
+    const card = el && el.closest ? el.closest('.nq-lib-card') : null;
+    if (card) card.classList.toggle('expanded');
+  };
+
   function _tabRanking() {
     return `
       <div class="nq-dash-lb-tabs">
@@ -1762,6 +1861,7 @@
           <button type="button" class="nq-dash-tab" data-dash-tab="skills">Skills</button>
           <button type="button" class="nq-dash-tab" data-dash-tab="history">Histórico</button>
           <button type="button" class="nq-dash-tab" data-dash-tab="achievements">Conquistas</button>
+          <button type="button" class="nq-dash-tab" data-dash-tab="library">Biblioteca</button>
           <button type="button" class="nq-dash-tab" data-dash-tab="ranking">Ranking</button>
         </div>
 
@@ -1777,6 +1877,9 @@
           </div>
           <div class="nq-dash-pane" data-dash-pane="achievements">
             ${_tabAchievements()}
+          </div>
+          <div class="nq-dash-pane" data-dash-pane="library">
+            ${_tabLibrary()}
           </div>
           <div class="nq-dash-pane" data-dash-pane="ranking">
             ${_tabRanking()}
