@@ -148,13 +148,13 @@ test.describe('Utils — Pure Functions Unit Tests', () => {
     });
   });
 
-  test('Spaced Repetition (updateSRData) cases', async ({ page }) => {
+  test('Spaced Repetition (updateSRData) cases — FSRS', async ({ page }) => {
     await page.waitForFunction(() => typeof (window as any).updateSRData === 'function');
 
     // Clear SR data first
     await page.evaluate(() => localStorage.removeItem('nefroquest-sr-data'));
 
-    // Correct answer increases interval
+    // Primeira revisão (acerto): cria card FSRS com S/D/interval/due
     const r1 = await page.evaluate(() => {
       (window as any).updateSRData('q999', true);
       const data = JSON.parse(localStorage.getItem('nefroquest-sr-data') || '{}');
@@ -163,18 +163,37 @@ test.describe('Utils — Pure Functions Unit Tests', () => {
     expect(r1).toBeDefined();
     expect(r1.reps).toBe(1);
     expect(r1.interval).toBeGreaterThanOrEqual(1);
+    expect(r1.S).toBeGreaterThan(0);            // Estabilidade
+    expect(r1.D).toBeGreaterThanOrEqual(1);     // Dificuldade 1..10
+    expect(r1.D).toBeLessThanOrEqual(10);
 
-    // Wrong answer resets reps and interval
+    // Acertos seguidos (em dias diferentes) aumentam o intervalo.
+    // Backdate de `last` simula que se passaram dias até a revisão devida —
+    // revisar no mesmo instante (t=0, R=1) corretamente NÃO aumenta o intervalo.
+    const grow = await page.evaluate(() => {
+      (window as any).updateSRData('q997', true); // 1ª revisão
+      let data = JSON.parse(localStorage.getItem('nefroquest-sr-data') || '{}');
+      const a = data['q997'].interval;
+      data['q997'].last = data['q997'].last - 3 * 86400000; // 3 dias atrás
+      localStorage.setItem('nefroquest-sr-data', JSON.stringify(data));
+      (window as any).updateSRData('q997', true); // 2ª revisão
+      data = JSON.parse(localStorage.getItem('nefroquest-sr-data') || '{}');
+      const b = data['q997'].interval;
+      return { a, b };
+    });
+    expect(grow.b).toBeGreaterThan(grow.a);
+
+    // Erro traz o card de volta logo (intervalo curto) e conta um lapse
     const r2 = await page.evaluate(() => {
-      (window as any).updateSRData('q998', true);  // first correct
-      (window as any).updateSRData('q998', false); // then wrong
+      (window as any).updateSRData('q998', true);  // acerto
+      (window as any).updateSRData('q998', false); // depois erro
       const data = JSON.parse(localStorage.getItem('nefroquest-sr-data') || '{}');
       return data['q998'];
     });
-    expect(r2.reps).toBe(0);
-    expect(r2.interval).toBe(1);
+    expect(r2.interval).toBeLessThanOrEqual(2);   // volta em ~1 dia
+    expect(r2.lapses).toBeGreaterThanOrEqual(1);
 
-    // Null qid ignored silently
+    // qid nulo é ignorado silenciosamente
     await expect(
       page.evaluate(() => (window as any).updateSRData(null, true))
     ).resolves.not.toThrow();
