@@ -375,6 +375,70 @@
       }
     }
 
+    // ── Campanha de Push (notificações aos assinantes) ──────────────────────
+    function openPushCampaign() {
+      if (!isAdminUser()) return;
+      document.querySelectorAll('.profile-popup.open').forEach(p => p.classList.remove('open'));
+      document.getElementById('pushCampaignModal')?.remove();
+      const modal = document.createElement('div');
+      modal.id = 'pushCampaignModal';
+      modal.className = 'nq-overlay';
+      modal.style.cssText = 'background:rgba(0,0,0,0.88);z-index:9998;backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;';
+      modal.innerHTML = `
+        <div class="modal-panel" style="max-width:460px;width:100%;">
+          <button class="modal-panel-x" data-action="closePushCampaign" aria-label="Fechar">&times;</button>
+          <h2>📣 Campanha (Push)</h2>
+          <p style="color:#8a9cc0;font-size:0.78rem;margin-bottom:4px;">Envia uma notificação push para <strong>todos os usuários que ativaram notificações</strong> (não é e-mail; alcança apenas quem deu permissão).</p>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:14px;">
+            <input id="pushCampTitle" type="text" maxlength="60" placeholder="Título (ex.: Nova questão no NefroQuest!)" style="background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:#fff;padding:9px 12px;font-size:0.85rem;outline:none;">
+            <textarea id="pushCampBody" maxlength="160" rows="3" placeholder="Mensagem (até 160 caracteres)" style="background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:#fff;padding:9px 12px;font-size:0.85rem;outline:none;resize:vertical;"></textarea>
+            <input id="pushCampUrl" type="text" placeholder="Link ao clicar (opcional, ex.: /)" value="/" style="background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:#fff;padding:9px 12px;font-size:0.82rem;outline:none;">
+          </div>
+          <div id="pushCampStatus" style="font-size:0.76rem;color:var(--txt-dim);margin-top:12px;min-height:18px;"></div>
+          <div class="modal-actions" style="margin-top:14px;display:flex;gap:10px;">
+            <button id="pushCampSend" class="btn gold" style="flex:1;" data-action="_sendPushCampaign">📣 Enviar campanha</button>
+            <button data-action="closePushCampaign" style="background:rgba(255,255,255,0.06);color:#c8d8f0;border:1px solid var(--blue-dark);">Fechar</button>
+          </div>
+        </div>`;
+      document.body.appendChild(modal);
+      setTimeout(() => document.getElementById('pushCampTitle')?.focus(), 60);
+    }
+    function closePushCampaign() { document.getElementById('pushCampaignModal')?.remove(); }
+
+    async function _sendPushCampaign() {
+      if (!isAdminUser()) return;
+      const title = (document.getElementById('pushCampTitle')?.value || '').trim();
+      const body  = (document.getElementById('pushCampBody')?.value || '').trim();
+      const url   = (document.getElementById('pushCampUrl')?.value || '').trim() || '/';
+      const statusEl = document.getElementById('pushCampStatus');
+      const btn = document.getElementById('pushCampSend');
+      if (!title || !body) {
+        if (statusEl) { statusEl.style.color = '#fbbf24'; statusEl.textContent = 'Preencha título e mensagem.'; }
+        return;
+      }
+      if (btn) { btn.disabled = true; btn.textContent = 'Enviando…'; }
+      if (statusEl) { statusEl.style.color = 'var(--txt-dim)'; statusEl.textContent = 'Enviando…'; }
+      try {
+        if (typeof _supaClient === 'undefined' || !_supaClient) throw new Error('Sessão indisponível.');
+        // functions.invoke já inclui o token do admin logado no Authorization.
+        const { data, error } = await _supaClient.functions.invoke('send-push', { body: { title, body, url } });
+        if (error) throw error;
+        const sent = data?.sent ?? 0, failed = data?.failed ?? 0, stale = data?.stale_removed ?? 0;
+        if (statusEl) {
+          statusEl.style.color = '#4ade80';
+          statusEl.textContent = `✅ Enviado para ${sent} dispositivo(s). Falhas: ${failed}${stale ? ` · ${stale} expirada(s) removida(s)` : ''}.`;
+        }
+        if (typeof playSound === 'function') playSound('chest');
+      } catch (e) {
+        if (statusEl) { statusEl.style.color = '#f87171'; statusEl.textContent = '❌ Erro: ' + (e?.message || e); }
+      } finally {
+        if (btn) { btn.disabled = false; btn.textContent = '📣 Enviar campanha'; }
+      }
+    }
+    window.openPushCampaign       = openPushCampaign;
+    window.closePushCampaign      = closePushCampaign;
+    window._sendPushCampaign      = _sendPushCampaign;
+
     window.adminAddWhitelist      = adminAddWhitelist;
     window.openAdminPanel         = openAdminPanel;
     window.adminJumpToBoss        = adminJumpToBoss;
