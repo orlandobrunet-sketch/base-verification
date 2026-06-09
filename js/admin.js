@@ -389,10 +389,20 @@
           <button class="modal-panel-x" data-action="closePushCampaign" aria-label="Fechar">&times;</button>
           <h2>📣 Campanha (Push)</h2>
           <p style="color:#8a9cc0;font-size:0.78rem;margin-bottom:4px;">Envia uma notificação push para <strong>todos os usuários que ativaram notificações</strong> (não é e-mail; alcança apenas quem deu permissão).</p>
-          <div style="display:flex;flex-direction:column;gap:10px;margin-top:14px;">
-            <input id="pushCampTitle" type="text" maxlength="60" placeholder="Título (ex.: Nova questão no NefroQuest!)" style="background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:#fff;padding:9px 12px;font-size:0.85rem;outline:none;">
-            <textarea id="pushCampBody" maxlength="160" rows="3" placeholder="Mensagem (até 160 caracteres)" style="background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:#fff;padding:9px 12px;font-size:0.85rem;outline:none;resize:vertical;"></textarea>
-            <input id="pushCampUrl" type="text" placeholder="Link ao clicar (opcional, ex.: /)" value="/" style="background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:#fff;padding:9px 12px;font-size:0.82rem;outline:none;">
+          <div style="display:flex;flex-direction:column;gap:12px;margin-top:14px;">
+            <label style="display:flex;flex-direction:column;gap:4px;font-size:0.72rem;color:#a0b8d0;font-weight:600;">
+              Título
+              <input id="pushCampTitle" type="text" maxlength="60" placeholder="Ex.: Nova questão no NefroQuest!" style="background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:#fff;padding:9px 12px;font-size:0.85rem;outline:none;font-weight:400;">
+            </label>
+            <label style="display:flex;flex-direction:column;gap:4px;font-size:0.72rem;color:#a0b8d0;font-weight:600;">
+              Mensagem
+              <textarea id="pushCampBody" maxlength="160" rows="3" placeholder="Texto da notificação (até 160 caracteres)" style="background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:#fff;padding:9px 12px;font-size:0.85rem;outline:none;resize:vertical;font-weight:400;"></textarea>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:4px;font-size:0.72rem;color:#a0b8d0;font-weight:600;">
+              Link ao tocar na notificação
+              <input id="pushCampUrl" type="text" placeholder="/" value="/" style="background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:#fff;padding:9px 12px;font-size:0.82rem;outline:none;font-weight:400;">
+              <span style="font-size:0.66rem;color:var(--txt-dim);font-weight:400;">Para onde o app abre ao clicar. Deixe <code>/</code> para a tela inicial.</span>
+            </label>
           </div>
           <div id="pushCampStatus" style="font-size:0.76rem;color:var(--txt-dim);margin-top:12px;min-height:18px;"></div>
           <div class="modal-actions" style="margin-top:14px;display:flex;gap:10px;">
