@@ -161,7 +161,7 @@
         totalGames   = Math.max(0, Math.min(1000000, Math.floor(gs.gamesPlayed || 0)));
         bestLevel    = Math.max(1, Math.min(999, Math.floor(gs.bestLevel || 1)));
       } catch (e) { return; }
-      const playerName = (state.lastSubmittedName || authUser?.user_metadata?.full_name || authUser?.user_metadata?.name || 'Anônimo').substring(0, 40);
+      const playerName = ((typeof _authDisplayName === 'function' && _authDisplayName()) || state.lastSubmittedName || 'Anônimo').substring(0, 40);
       const charName = state.character && characters[state.character] ? characters[state.character].name : null;
       const payload = {
         user_id: userId, player_name: playerName, character_name: charName,
@@ -256,7 +256,7 @@
       const head = document.getElementById('boardHead');
       if (!head) return;
       head.innerHTML = (_boardMode === 'global')
-        ? '<tr><th class="col-rank">#</th><th class="col-player">Jogador</th><th class="col-char">Personagem</th><th class="col-score">Acertos</th><th class="col-level">Nível máx</th><th class="col-chests">Partidas</th></tr>'
+        ? '<tr><th class="col-rank">#</th><th class="col-player">Jogador</th><th class="col-score">Acertos</th><th class="col-level">Nível máx</th><th class="col-chests">Partidas</th></tr>'
         : '<tr><th class="col-rank">#</th><th class="col-player">Jogador</th><th class="col-char">Personagem</th><th class="col-score">Pontos</th><th class="col-level">Nível</th><th class="col-chests">Baús</th><th class="col-date">Data</th></tr>';
     }
 
@@ -278,7 +278,7 @@
       if (!filtered.length) {
         const trEmpty = document.createElement('tr');
         const tdEmpty = document.createElement('td');
-        tdEmpty.colSpan = 6;
+        tdEmpty.colSpan = 5;
         tdEmpty.className = 'board-empty';
         tdEmpty.textContent = q ? 'Nenhum resultado encontrado.' : 'Ninguém montou um perfil ainda. Jogue para acumular acertos!';
         trEmpty.appendChild(tdEmpty);
@@ -318,11 +318,7 @@
         tdPlayer.appendChild(divPlayer);
         tr.appendChild(tdPlayer);
 
-        const tdChar = document.createElement('td');
-        tdChar.className = 'col-char';
-        tdChar.textContent = r.character_name || 'Desconhecido';
-        tr.appendChild(tdChar);
-
+        // Perfil Global: sem coluna de personagem — só o apelido identifica.
         const tdCorrect = document.createElement('td');
         tdCorrect.className = 'col-score score-cell';
         tdCorrect.textContent = (r.total_correct || 0).toLocaleString('pt-BR');

@@ -88,11 +88,87 @@
 
     function _authDisplayName() {
       if (!authUser) return null;
-      return authUser.user_metadata?.full_name
+      // Apelido tem prioridade — preserva a privacidade no ranking (não expõe o nome real).
+      return authUser.user_metadata?.nickname
+        || authUser.user_metadata?.full_name
         || authUser.user_metadata?.name
         || authUser.email?.split('@')[0]
         || 'Aventureiro';
     }
+
+    // ── Apelido (privacidade no ranking) ────────────────────────────────────
+    const NICK_ASKED_KEY = 'nq-nickname-asked';
+
+    // Pede o apelido na PRIMEIRA vez (usuário logado, sem apelido definido).
+    function _maybePromptNickname() {
+      if (!authUser) return;
+      if (authUser.user_metadata?.nickname) return;
+      try { if (localStorage.getItem(NICK_ASKED_KEY) === '1') return; } catch (e) {}
+      setTimeout(() => {
+        const ws = document.getElementById('welcomeScreen');
+        if (!ws || ws.classList.contains('hidden')) return;
+        if (authUser?.user_metadata?.nickname) return;
+        _showNicknameModal(true);
+      }, 900);
+    }
+    window._maybePromptNickname = _maybePromptNickname;
+
+    function _showNicknameModal(firstTime) {
+      document.getElementById('nicknameModal')?.remove();
+      const suggested = (authUser?.user_metadata?.nickname || authUser?.user_metadata?.full_name?.split(' ')[0] || '');
+      const overlay = document.createElement('div');
+      overlay.id = 'nicknameModal';
+      overlay.className = 'nq-overlay';
+      overlay.style.cssText = 'background:rgba(0,0,0,0.9);z-index:10001;backdrop-filter:blur(8px);padding:24px;';
+      overlay.innerHTML = `
+        <div style="max-width:420px;width:100%;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--gold);border-radius:14px;padding:26px 24px;text-align:center;box-shadow:0 0 40px rgba(255,215,0,0.2);">
+          <div style="font-size:1.8rem;margin-bottom:8px;">🏷️</div>
+          <h3 style="color:var(--gold);font-family:'Cinzel',serif;margin:0 0 8px;">Escolha seu apelido</h3>
+          <p style="color:#c8d8f0;font-size:0.84rem;line-height:1.6;margin:0 0 16px;">É o nome que aparece no ranking. <strong>Não precisa ser seu nome real</strong> — use o que quiser para se identificar.</p>
+          <input id="nickInput" type="text" maxlength="40" placeholder="ex.: NefroMestre, Dra. Renal..." value="${suggested.replace(/"/g,'&quot;')}" style="width:100%;background:#0d1525;border:1px solid var(--blue-dark);color:var(--txt);border-radius:8px;padding:10px 12px;font-size:1rem;text-align:center;margin-bottom:16px;">
+          <div style="display:flex;gap:10px;">
+            ${firstTime ? `<button data-action="_skipNickname" style="flex:1;background:rgba(255,255,255,0.06);border:1px solid var(--blue-dark);color:#c8d8f0;border-radius:8px;padding:10px;cursor:pointer;font-size:0.85rem;">Agora não</button>` : ''}
+            <button data-action="_saveNicknameFromModal" style="flex:2;background:linear-gradient(135deg,#daa520,#b8860b);border:none;color:#1a0e00;font-weight:700;border-radius:8px;padding:10px;cursor:pointer;font-size:0.85rem;">Salvar apelido</button>
+          </div>
+        </div>`;
+      document.body.appendChild(overlay);
+      setTimeout(() => document.getElementById('nickInput')?.focus(), 80);
+      document.getElementById('nickInput')?.addEventListener('keydown', e => { if (e.key === 'Enter') _saveNicknameFromModal(); });
+    }
+    window._showNicknameModal = _showNicknameModal;
+
+    function _skipNickname() {
+      try { localStorage.setItem(NICK_ASKED_KEY, '1'); } catch (e) {}
+      document.getElementById('nicknameModal')?.remove();
+    }
+    window._skipNickname = _skipNickname;
+
+    async function _saveNicknameFromModal() {
+      const input = document.getElementById('nickInput');
+      const nick = (input?.value || '').trim().substring(0, 40);
+      if (!nick) { if (typeof _toast === 'function') _toast('Digite um apelido.', 'warning'); return; }
+      try { localStorage.setItem(NICK_ASKED_KEY, '1'); } catch (e) {}
+      await _saveNickname(nick);
+      document.getElementById('nicknameModal')?.remove();
+      if (typeof _toast === 'function') _toast('Apelido salvo! 🏷️', 'success');
+    }
+    window._saveNicknameFromModal = _saveNicknameFromModal;
+
+    // Persiste o apelido no Supabase (user_metadata) e atualiza o estado local.
+    async function _saveNickname(nick) {
+      if (!nick) return;
+      if (authUser) {
+        authUser.user_metadata = authUser.user_metadata || {};
+        authUser.user_metadata.nickname = nick;
+      }
+      if (_supaClient && authUser) {
+        try { await _supaClient.auth.updateUser({ data: { nickname: nick } }); }
+        catch (e) { if (typeof _track === 'function') _track('error_save_nickname', { msg: String(e) }); }
+      }
+      try { if (typeof profileStatsPush === 'function') profileStatsPush(); } catch (e) {}
+      try { if (typeof refreshWelcomeSave === 'function') refreshWelcomeSave(); } catch (e) {}
+    }
+    window._saveNickname = _saveNickname;
 
     function updateWelcomeUserBadge() {
       // Itens de admin só aparecem para admin LOGADO. Recalculado sempre —
@@ -113,6 +189,7 @@
           refreshWelcomeSave();
           if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
         }
+        _maybePromptNickname();
       } else if (_guestMode) {
         document.querySelectorAll('.profile-btn').forEach(b => b.classList.add('visible'));
         document.querySelectorAll('[id$="ProfileEmail"]').forEach(el => { el.textContent = '👤 Convidado'; });
