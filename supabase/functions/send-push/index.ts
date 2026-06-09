@@ -117,10 +117,26 @@ Deno.serve(async (req) => {
     return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405, headers: { ...cors, 'Content-Type': 'application/json' } });
   }
 
-  // Only allow service-role callers (admin tasks / cron)
   const authHeader = req.headers.get('Authorization') ?? '';
   const serviceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '';
-  if (!authHeader.includes(serviceKey)) {
+
+  // Cliente com service role (server-side) para acessar o banco e validar tokens.
+  const supa = createClient(Deno.env.get('SUPABASE_URL') ?? '', serviceKey);
+
+  // Autorização: aceita a service-role key (cron/admin direto) OU um usuário
+  // autenticado cujo JWT tenha app_metadata.is_admin === true. A service key
+  // NUNCA é exigida no cliente — o painel admin chama com o token do admin.
+  let authorized = !!serviceKey && authHeader.includes(serviceKey);
+  if (!authorized) {
+    const token = authHeader.replace(/^Bearer\s+/i, '');
+    if (token) {
+      try {
+        const { data: { user } } = await supa.auth.getUser(token);
+        authorized = user?.app_metadata?.is_admin === true;
+      } catch { authorized = false; }
+    }
+  }
+  if (!authorized) {
     return new Response(JSON.stringify({ error: 'Forbidden' }), { status: 403, headers: { ...cors, 'Content-Type': 'application/json' } });
   }
 
@@ -131,11 +147,6 @@ Deno.serve(async (req) => {
   if (!vapidPublic || !vapidPrivate) {
     return new Response(JSON.stringify({ error: 'VAPID keys not configured' }), { status: 500, headers: { ...cors, 'Content-Type': 'application/json' } });
   }
-
-  const supa = createClient(
-    Deno.env.get('SUPABASE_URL') ?? '',
-    serviceKey,
-  );
 
   let body: { userId?: string; title: string; body: string; url?: string; tag?: string };
   try {
