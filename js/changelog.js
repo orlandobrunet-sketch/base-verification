@@ -14,6 +14,17 @@
 
           <div class="modal-scroll-body" style="text-align:left;">
 
+            <!-- v11.79 -->
+            <div style="background:linear-gradient(135deg,rgba(168,85,247,0.18),rgba(56,189,248,0.06));border:2px solid rgba(168,85,247,0.55);border-radius:10px;padding:16px;margin-bottom:12px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                <span style="background:rgba(168,85,247,0.9);color:#fff;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v11.79</span>
+                <span style="color:#e9d5ff;font-weight:bold;font-size:0.95rem;">Revisão Espaçada Inteligente (FSRS)</span>
+              </div>
+              <ul style="margin:0;padding-left:18px;color:#c8d8f0;font-size:0.82rem;line-height:1.8;">
+                <li><strong>🧠 Novo motor de revisão</strong> — O agendamento das revisões evoluiu do SM-2 para o <strong>FSRS</strong>, que modela estabilidade e dificuldade de cada questão para espaçar as revisões com muito mais precisão (mantém o que você acerta longe e traz de volta o que você erra). Seu histórico de revisões foi preservado.</li>
+              </ul>
+            </div>
+
             <!-- v11.77 -->
             <div style="background:linear-gradient(135deg,rgba(168,85,247,0.18),rgba(168,85,247,0.06));border:2px solid rgba(168,85,247,0.6);border-radius:10px;padding:16px;margin-bottom:12px;">
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
