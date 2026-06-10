@@ -14,6 +14,17 @@
 
           <div class="modal-scroll-body" style="text-align:left;">
 
+            <!-- v11.80 -->
+            <div style="background:linear-gradient(135deg,rgba(52,211,153,0.18),rgba(52,211,153,0.06));border:2px solid rgba(52,211,153,0.55);border-radius:10px;padding:16px;margin-bottom:12px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                <span style="background:rgba(52,211,153,0.9);color:#062d1c;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v11.80</span>
+                <span style="color:#d1fae5;font-weight:bold;font-size:0.95rem;">Limpeza de Conteúdo</span>
+              </div>
+              <ul style="margin:0;padding-left:18px;color:#c8d8f0;font-size:0.82rem;line-height:1.8;">
+                <li><strong>Menos decoreba 🧹</strong> — Removidas questões de pura memorização (qual hospital/quantas edições no xenotransplante, gene de doença ultra-rara). As questões de gene da DRPAD foram reescritas para focar no raciocínio clínico (herança e prognóstico) — a informação dos genes PKD1/PKD2 continua na explicação.</li>
+              </ul>
+            </div>
+
             <!-- v11.79 -->
             <div style="background:linear-gradient(135deg,rgba(168,85,247,0.18),rgba(56,189,248,0.06));border:2px solid rgba(168,85,247,0.55);border-radius:10px;padding:16px;margin-bottom:12px;">
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">

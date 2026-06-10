@@ -1024,7 +1024,7 @@
       } catch (e) {}
       
       const todayStart = new Date().setHours(0, 0, 0, 0);
-      const totalBank = (typeof questionBank !== 'undefined' && Array.isArray(questionBank)) ? questionBank.length : 1003;
+      const totalBank = (typeof questionBank !== 'undefined' && Array.isArray(questionBank)) ? questionBank.length : 999;
       
       let dueCount = 0;
       let learningCount = 0;
