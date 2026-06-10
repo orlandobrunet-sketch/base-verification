@@ -136,6 +136,18 @@ Toda tarefa deve ser solicitada explicitamente pelo usuário.
 
 ## Features Futuras
 
+### Eixo Pedagógico — Raciocínio Clínico (proposto jun/2026)
+
+> Conjunto de melhorias para elevar o app de "quiz gamificado" para **ferramenta de formação de raciocínio clínico**. Nenhuma altera o conteúdo das questões — apenas adiciona camadas/metadados por cima. Discutir antes de executar.
+> O item 5 da proposta original (Modo Leitura / acessibilidade) **já foi implementado** (v11.81).
+
+| # | Melhoria | Descrição | Impacto |
+|---|----------|-----------|---------|
+| PED-1 | **Raciocínio guiado no erro** | Ao errar, passo opcional "por que você escolheu essa?" mapeando cada distrator a um *erro de raciocínio* nomeado (ex.: ancoragem, confundir mecanismo compensatório). Transforma cada distrator em objeto de ensino. Momento visualmente mais calmo (menos confete, mais "respiro"), pois o erro é convite reflexivo, não punição. Usa o histórico de erros + FSRS já existentes. | Diferencial central — raciocínio, não só recall |
+| PED-2 | **Mapa de Competências** (área separada do radar por eixo) | Camada de *tags de competência* sobre as questões (interpretar gasometria, estratificar risco de progressão, ajustar dose em DRC, reconhecer emergência dialítica...). **Área própria no dashboard, distinta do gráfico de radar por eixo temático** — radar responde "onde acertei menos"; o mapa responde "o que ainda não sei fazer". Habilita certificação informal ("Você domina interpretação ácido-base"). | Plano de desenvolvimento real; valor premium |
+| PED-3 | **Onboarding com diagnóstico inicial (placement)** | 8–10 questões adaptativas na 1ª sessão que estimam o nível e já semeiam o agendamento FSRS, evitando que R3 e estudante comecem iguais no nível 1. Enquadrar como "Ritual de Iniciação na Guilda dos Néfrons" (lore, não burocracia). | Retenção desde o 1º minuto |
+| PED-4 | **Sistema de design (tokens + componentes)** | Consolidar cores/raios/sombras/espaçamentos/tipografia em design tokens + classes utilitárias; migrar componentes recorrentes (`.nq-card`, `.nq-modal`, `.nq-btn`, `.nq-badge`) dos estilos inline em `innerHTML` para CSS real. Elimina a deriva visual (tons de roxo/raios divergentes entre modais) e acelera tudo que vier depois. | Coerência visual = rigor percebido; velocidade de dev |
+
 ### Biblioteca de Referências
 
 **Conceito:** Botão na página principal que abre um modal/página com **todas as referências bibliográficas** nas quais as questões do jogo são embasadas. Demonstra o rigor científico da ferramenta e agrega valor percebido ao usuário.
