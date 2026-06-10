@@ -14,6 +14,17 @@
 
           <div class="modal-scroll-body" style="text-align:left;">
 
+            <!-- v11.83 -->
+            <div style="background:linear-gradient(135deg,rgba(168,85,247,0.18),rgba(255,215,0,0.06));border:2px solid rgba(168,85,247,0.55);border-radius:10px;padding:16px;margin-bottom:12px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                <span style="background:rgba(168,85,247,0.9);color:#fff;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v11.83</span>
+                <span style="color:#e9d5ff;font-weight:bold;font-size:0.95rem;">Ritual de Iniciação</span>
+              </div>
+              <ul style="margin:0;padding-left:18px;color:#c8d8f0;font-size:0.82rem;line-height:1.8;">
+                <li><strong>⚜️ Alinhe sua dificuldade</strong> — Novo botão na tela inicial: um teste adaptativo de 8 questões que recomenda a dificuldade da sua jornada conforme sua base atual. As questões se adaptam às suas respostas; o resultado já pré-seleciona o modo. É só diagnóstico (não conta para jornada/ranking) e pode ser refeito quando quiser.</li>
+              </ul>
+            </div>
+
             <!-- v11.82 -->
             <div style="background:linear-gradient(135deg,rgba(251,191,36,0.16),rgba(56,189,248,0.06));border:2px solid rgba(251,191,36,0.5);border-radius:10px;padding:16px;margin-bottom:12px;">
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
