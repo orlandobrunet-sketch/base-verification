@@ -116,6 +116,13 @@
               <div id="anRatingsList" style="font-size:0.78rem;color:#c8d8f0;max-height:220px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;padding-right:4px;">Carregando…</div>
             </div>
 
+            <!-- Reclassificação de Dificuldade (crowd) -->
+            <div style="background:rgba(255,255,255,0.03);border:1px solid var(--blue-dark);border-radius:10px;padding:14px;margin-bottom:18px;">
+              <div style="font-size:0.72rem;color:#8a9cc0;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">Reclassificação de Dificuldade</div>
+              <p style="font-size:0.7rem;color:#8a9cc0;margin-bottom:10px;line-height:1.45;">Questões com ≥5 votos cuja dificuldade percebida pela maioria diverge da atual. Candidatas a reclassificar no banco.</p>
+              <div id="anDifficultyList" style="font-size:0.78rem;color:#c8d8f0;max-height:240px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;padding-right:4px;">Carregando…</div>
+            </div>
+
             <!-- Link GA4 -->
             <div style="background:rgba(96,165,250,0.06);border:1px solid rgba(96,165,250,0.3);border-radius:10px;padding:14px;margin-bottom:18px;">
               <div style="font-size:0.72rem;color:#8a9cc0;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Funil de Eventos (GA4)</div>
@@ -288,6 +295,61 @@
           } catch (err) {
             console.error('[NQ] Load ratings error', err);
             ratingsEl.innerHTML = '<div style="color:#fb7185; font-size:0.74rem;">Erro ao carregar avaliações.</div>';
+          }
+        }
+
+        // Reclassificação de dificuldade — agrega votos da comunidade
+        const diffEl = document.getElementById('anDifficultyList');
+        if (diffEl) {
+          diffEl.innerHTML = '<div style="color:var(--txt-dim); font-size:0.74rem;">Carregando votos…</div>';
+          try {
+            const { data: votes, error: vErr } = await _supaClient
+              .from('question_difficulty_votes')
+              .select('question_id, vote, current_diff')
+              .limit(5000);
+            if (vErr) throw vErr;
+
+            const LABEL = { easy: 'Fácil', medium: 'Médio', hard: 'Difícil' };
+            const agg = {}; // qid -> { easy, medium, hard, current }
+            (votes || []).forEach(v => {
+              const a = agg[v.question_id] || (agg[v.question_id] = { easy: 0, medium: 0, hard: 0, current: v.current_diff });
+              if (a[v.vote] !== undefined) a[v.vote]++;
+              if (v.current_diff) a.current = v.current_diff;
+            });
+
+            // Candidatas: ≥5 votos e a maioria diverge do _d atual
+            const candidates = [];
+            Object.keys(agg).forEach(qid => {
+              const a = agg[qid];
+              const total = a.easy + a.medium + a.hard;
+              if (total < 5) return;
+              const winner = ['easy', 'medium', 'hard'].reduce((m, k) => a[k] > a[m] ? k : m, 'easy');
+              if (a.current && winner !== a.current) {
+                candidates.push({ qid, total, winner, current: a.current, a });
+              }
+            });
+            candidates.sort((x, y) => y.total - x.total);
+
+            if (candidates.length === 0) {
+              diffEl.innerHTML = '<div style="color:var(--txt-dim); font-size:0.74rem; text-align:center; padding:10px 0;">Nenhuma divergência relevante ainda (precisa de ≥5 votos por questão).</div>';
+            } else {
+              diffEl.innerHTML = candidates.map(c => `
+                <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,215,0,0.15); border-radius:8px; padding:10px; font-size:0.74rem; line-height:1.4;">
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                    <span style="font-family:monospace; color:#c8d8f0;">Q#${escapeHtml(c.qid)}</span>
+                    <span style="font-size:0.65rem; color:var(--txt-dim);">${c.total} votos</span>
+                  </div>
+                  <div style="font-size:0.74rem;">
+                    Atual: <strong style="color:#94a3b8;">${LABEL[c.current] || c.current}</strong>
+                    &nbsp;→&nbsp; Comunidade: <strong style="color:var(--gold);">${LABEL[c.winner]}</strong>
+                  </div>
+                  <div style="font-size:0.64rem; color:var(--txt-dim); margin-top:4px;">Fácil ${c.a.easy} · Médio ${c.a.medium} · Difícil ${c.a.hard}</div>
+                </div>
+              `).join('');
+            }
+          } catch (err) {
+            console.error('[NQ] Load difficulty votes error', err);
+            diffEl.innerHTML = '<div style="color:#fb7185; font-size:0.74rem;">Erro ao carregar votos de dificuldade.</div>';
           }
         }
 

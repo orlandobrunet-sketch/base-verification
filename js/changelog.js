@@ -14,6 +14,18 @@
 
           <div class="modal-scroll-body" style="text-align:left;">
 
+            <!-- v11.82 -->
+            <div style="background:linear-gradient(135deg,rgba(251,191,36,0.16),rgba(56,189,248,0.06));border:2px solid rgba(251,191,36,0.5);border-radius:10px;padding:16px;margin-bottom:12px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                <span style="background:rgba(251,191,36,0.9);color:#1a0e00;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v11.82</span>
+                <span style="color:#fef3c7;font-weight:bold;font-size:0.95rem;">Classifique a Dificuldade</span>
+              </div>
+              <ul style="margin:0;padding-left:18px;color:#c8d8f0;font-size:0.82rem;line-height:1.8;">
+                <li><strong>🎚️ Fácil / Médio / Difícil</strong> — Ao responder, você pode classificar a dificuldade da questão (abaixo de "feedback opcional"). Os votos da comunidade alimentam um painel que sinaliza questões para reclassificar no banco.</li>
+                <li><strong>🔠 Modo Leitura nas alternativas</strong> — Agora o Modo Leitura também aumenta o tamanho e o contraste das alternativas.</li>
+              </ul>
+            </div>
+
             <!-- v11.81 -->
             <div style="background:linear-gradient(135deg,rgba(96,165,250,0.18),rgba(96,165,250,0.06));border:2px solid rgba(96,165,250,0.55);border-radius:10px;padding:16px;margin-bottom:12px;">
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
