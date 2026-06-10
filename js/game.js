@@ -2505,6 +2505,11 @@
       } catch (e) {}
       const prev = rated[qid] || null;
 
+      let diffVotes = {};
+      try { diffVotes = JSON.parse(localStorage.getItem('nefroquest-difficulty-votes') || '{}'); } catch (e) {}
+      const prevDiff = diffVotes[qid] || '';
+      const curDiff = q._d || q.diff || 'medium';
+
       _pendingRating = {
         qid,
         qtext: (q.q || '').substring(0, 200),
@@ -2517,10 +2522,15 @@
       ratingDiv.id = 'qRatingContainer';
       ratingDiv.className = 'q-rating-container';
       const starsFor = () => [1,2,3,4,5].map(v => `<span class="star-rating" data-value="${v}">★</span>`).join('');
+      const diffBtn = (v, label) => `<button type="button" class="qr-diff-btn${prevDiff === v ? ' selected' : ''}" data-diff="${v}">${label}</button>`;
       ratingDiv.innerHTML = `
         <div class="qr-left">
           <div class="qr-title">Avalie esta questão</div>
           <div class="qr-sub">(feedback opcional)</div>
+          <div class="qr-diff">
+            <span class="qr-diff-label">Dificuldade:</span>
+            <div class="qr-diff-btns">${diffBtn('easy','Fácil')}${diffBtn('medium','Médio')}${diffBtn('hard','Difícil')}</div>
+          </div>
         </div>
         <div class="qr-right">
           <div class="qr-line">
@@ -2560,6 +2570,40 @@
         });
         row.addEventListener('mouseleave', () => paint(selected()));
       });
+
+      // Classificação de dificuldade pelo usuário (alimenta a reclassificação do banco)
+      const diffBtns = [...ratingDiv.querySelectorAll('.qr-diff-btn')];
+      diffBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const vote = btn.dataset.diff;
+          diffBtns.forEach(b => b.classList.toggle('selected', b === btn));
+          submitDifficultyVote(qid, vote, curDiff);
+        });
+      });
+    }
+
+    // Registra o voto de dificuldade do usuário (local + Supabase). Uma vez por
+    // questão por usuário (reenvia se mudar de opinião). Alimenta a
+    // reclassificação inteligente do banco no painel admin.
+    async function submitDifficultyVote(qid, vote, currentDiff) {
+      if (!qid || !['easy', 'medium', 'hard'].includes(vote)) return;
+      let votes = {};
+      try { votes = JSON.parse(localStorage.getItem('nefroquest-difficulty-votes') || '{}'); } catch (e) {}
+      if (votes[qid] === vote) return; // já votou isso — evita spam
+      votes[qid] = vote;
+      try { localStorage.setItem('nefroquest-difficulty-votes', JSON.stringify(votes)); } catch (e) {}
+      if (typeof playSound === 'function') playSound('click');
+      if (typeof _supaClient !== 'undefined' && _supaClient) {
+        try {
+          await _supaClient.from('question_difficulty_votes').insert([{
+            question_id: qid,
+            vote,
+            current_diff: currentDiff || null,
+            player_email: (window.authUser && window.authUser.email) || 'anonimo',
+            created_at: new Date().toISOString()
+          }]);
+        } catch (err) { console.error('[NQ] difficulty vote error', err); }
+      }
     }
 
     async function submitQuestionRating(qid, qtext, qualityVal, learningVal) {

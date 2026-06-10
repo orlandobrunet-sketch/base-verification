@@ -758,6 +758,14 @@
     body.reading-mode .option {
       font-size: 1.04rem; line-height: 1.5; color: #eaf0ff;
     }
+    /* O texto da alternativa vive em .opt-body (font-size próprio) — precisa
+       ser ampliado explicitamente, senão o boost do .option não o alcança. */
+    body.reading-mode .opt-body {
+      font-size: 1.08rem; line-height: 1.62; color: #f1f6ff;
+    }
+    body.reading-mode .opt-key { font-size: 1.02rem; }
+    body.reading-mode .option.correct .opt-body { color: #c7f9e5; }
+    body.reading-mode .option.wrong .opt-body { color: #ffd0d6; }
     body.reading-mode #feedback,
     body.reading-mode .feedback,
     body.reading-mode .fb-snip,
@@ -6980,6 +6988,24 @@
 .q-rating-container .qr-sub {
   font-size: 0.68rem; color: var(--txt-dim); font-family: 'Philosopher', sans-serif;
 }
+/* Classificação de dificuldade pelo usuário (abaixo de "feedback opcional") */
+.q-rating-container .qr-diff { margin-top: 8px; display: flex; flex-direction: column; gap: 4px; }
+.q-rating-container .qr-diff-label { font-size: 0.68rem; color: var(--txt-dim); font-family: 'Philosopher', sans-serif; }
+.q-rating-container .qr-diff-btns { display: flex; gap: 6px; }
+.qr-diff-btn {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  padding: 3px 12px;
+  font-size: 0.72rem;
+  font-family: 'Philosopher', sans-serif;
+  color: #c8d8f0;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.qr-diff-btn:hover { border-color: rgba(255,215,0,0.4); color: #fff; }
+.qr-diff-btn.selected { background: rgba(255,215,0,0.15); border-color: rgba(255,215,0,0.6); color: var(--gold); font-weight: 700; }
+body.reading-mode .qr-diff-btn { font-size: 0.82rem; padding: 5px 14px; }
 .q-rating-container .qr-right {
   display: flex; flex-direction: column; align-items: flex-end; gap: 5px;
 }
