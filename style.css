@@ -748,6 +748,32 @@
       color: #d5e2ff; padding-top: 4px;
     }
 
+    /* ── Modo Leitura ─────────────────────────────────────────────────────
+       Para sessões longas (plantão, celular): aumenta corpo do texto, espaço
+       entre linhas e contraste do CONTEÚDO (enunciado, alternativas, feedback
+       e explicação). Mantém o tema medieval — não altera ornamentos/títulos. */
+    body.reading-mode #question {
+      font-size: 1.22rem; line-height: 1.78; color: #eef4ff;
+    }
+    body.reading-mode .option {
+      font-size: 1.04rem; line-height: 1.5; color: #eaf0ff;
+    }
+    body.reading-mode #feedback,
+    body.reading-mode .feedback,
+    body.reading-mode .fb-snip,
+    body.reading-mode .fb-rest {
+      font-size: 1rem; line-height: 1.7; color: #e6eeff;
+    }
+    body.reading-mode .ref-impacto,
+    body.reading-mode .ref-card-impacto,
+    body.reading-mode .bib-card-impacto {
+      color: #cdd9f0;
+    }
+    /* feedback de "modo leitura ativo" no botão do menu */
+    .profile-popup-item[data-action="toggleReadingMode"][aria-pressed="true"] {
+      color: var(--gold);
+    }
+
     /* CRONÔMETRO */
     #timerWidget {
       position: absolute;

@@ -181,6 +181,36 @@
       return qs.filter(q => !q.qid || !data[q.qid] || data[q.qid].due <= today);
     }
 
+    // ── Modo Leitura (acessibilidade) ─────────────────────────────────────
+    const READING_MODE_KEY = 'nefroquest-reading-mode';
+    function _syncReadingModeButtons(on) {
+      document.querySelectorAll('[data-action="toggleReadingMode"]').forEach(b => {
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+    }
+    function applyReadingMode() {
+      let on = false;
+      try { on = localStorage.getItem(READING_MODE_KEY) === '1'; } catch (e) {}
+      document.body.classList.toggle('reading-mode', on);
+      _syncReadingModeButtons(on);
+    }
+    function toggleReadingMode() {
+      const on = !document.body.classList.contains('reading-mode');
+      document.body.classList.toggle('reading-mode', on);
+      try { localStorage.setItem(READING_MODE_KEY, on ? '1' : '0'); } catch (e) {}
+      _syncReadingModeButtons(on);
+      if (typeof _toast === 'function') _toast(on ? '🔠 Modo leitura ativado — texto maior e mais contraste.' : 'Modo leitura desativado.', 'info', 2500);
+      if (typeof playSound === 'function') playSound('click');
+    }
+    window.toggleReadingMode = toggleReadingMode;
+    window.applyReadingMode = applyReadingMode;
+    // Aplica a preferência salva assim que o DOM estiver pronto.
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', applyReadingMode, { once: true });
+    } else {
+      applyReadingMode();
+    }
+
     // ── Grimório de Conhecimento ──────────────────────────────────────────
     let _bibActiveFilter = 'all';
 
