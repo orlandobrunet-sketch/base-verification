@@ -14,6 +14,17 @@
 
           <div class="modal-scroll-body" style="text-align:left;">
 
+            <!-- v11.81 -->
+            <div style="background:linear-gradient(135deg,rgba(96,165,250,0.18),rgba(96,165,250,0.06));border:2px solid rgba(96,165,250,0.55);border-radius:10px;padding:16px;margin-bottom:12px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                <span style="background:rgba(96,165,250,0.9);color:#0f172a;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v11.81</span>
+                <span style="color:#eff6ff;font-weight:bold;font-size:0.95rem;">Modo Leitura</span>
+              </div>
+              <ul style="margin:0;padding-left:18px;color:#c8d8f0;font-size:0.82rem;line-height:1.8;">
+                <li><strong>🔠 Modo Leitura</strong> — Novo botão no menu de perfil que aumenta o tamanho do texto e o contraste de enunciados, alternativas e explicações — ideal para sessões longas e leitura no celular. Mantém o tema; a preferência fica salva.</li>
+              </ul>
+            </div>
+
             <!-- v11.80 -->
             <div style="background:linear-gradient(135deg,rgba(52,211,153,0.18),rgba(52,211,153,0.06));border:2px solid rgba(52,211,153,0.55);border-radius:10px;padding:16px;margin-bottom:12px;">
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
