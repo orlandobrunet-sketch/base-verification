@@ -520,7 +520,10 @@
       const overlay = document.createElement('div');
       overlay.id = 'diffSelectorOverlay';
       overlay.className = 'diff-selector-overlay';
-      let selectedDiff = state.difficulty || 'normal';
+      // Pré-seleciona a dificuldade recomendada pelo Ritual de Iniciação, se houver.
+      let _rec = '';
+      try { _rec = localStorage.getItem('nefroquest-recommended-difficulty') || ''; } catch (e) {}
+      let selectedDiff = ['easy','normal','hard','hardcore'].includes(_rec) ? _rec : (state.difficulty || 'normal');
 
       function renderDiff() {
         const defs = {
@@ -567,6 +570,141 @@
       document.body.appendChild(overlay);
       renderDiff();
     }
+
+    // ── Ritual de Iniciação (PED-3) ───────────────────────────────────────
+    // Teste adaptativo curto (8 questões) que recomenda a dificuldade da jornada
+    // conforme a base atual do usuário. ISOLADO: não afeta jornada, pontuação,
+    // streak, FSRS nem histórico — é só diagnóstico. Resultado pré-seleciona o
+    // modo no grid de dificuldade.
+    const RITUAL_LEN = 8;
+    function _ritualEsc(s) {
+      return (typeof escapeHtml === 'function') ? escapeHtml(s)
+        : String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]));
+    }
+    function _ritualPick(bandWanted, used) {
+      const bank = (typeof questionBank !== 'undefined' && Array.isArray(questionBank)) ? questionBank
+                 : (typeof topics !== 'undefined' && Array.isArray(topics) ? topics : []);
+      const get = band => bank.filter(q => (q._d || q.diff) === band && !used.has(q.qid || q.id) && (q.o || q.opts));
+      let pool = get(bandWanted);
+      if (!pool.length) pool = get('medium');
+      if (!pool.length) pool = get('easy');
+      if (!pool.length) pool = get('hard');
+      if (!pool.length) return null;
+      return pool[Math.floor(Math.random() * pool.length)];
+    }
+
+    async function openRitual() {
+      if (typeof playSound === 'function') playSound('click');
+      if (typeof window._loadTopics === 'function') { try { await window._loadTopics(); } catch (e) {} }
+      document.getElementById('ritualOverlay')?.remove();
+      const overlay = document.createElement('div');
+      overlay.id = 'ritualOverlay';
+      overlay.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.92);display:flex;align-items:center;justify-content:center;padding:16px calc(env(safe-area-inset-bottom,0px)+16px);box-sizing:border-box;overflow-y:auto;animation:fadeIn 0.4s ease;';
+      document.body.appendChild(overlay);
+
+      const used = new Set();
+      let step = 0, band = 'medium', correctCount = 0, hardCorrect = 0, hardFaced = 0, current = null;
+      const panel = inner => `<div style="max-width:560px;width:100%;background:linear-gradient(160deg,#0a0118,#120230,#0a0118);border:2px solid rgba(168,85,247,0.7);border-radius:18px;padding:24px;box-shadow:0 0 50px rgba(168,85,247,0.35);margin:auto 0;">${inner}</div>`;
+
+      function showIntro() {
+        overlay.innerHTML = panel(`
+          <div style="text-align:center;">
+            <div style="font-size:2.2rem;margin-bottom:6px;">⚜️</div>
+            <h2 style="font-family:'Cinzel',serif;color:#e9d5ff;font-size:1.2rem;letter-spacing:2px;margin:0 0 12px;">Ritual de Iniciação</h2>
+            <p style="font-family:'Philosopher',serif;color:#c4b5fd;font-size:0.9rem;line-height:1.65;margin:0 0 20px;">
+              Responda <strong style="color:#e9d5ff;">${RITUAL_LEN} questões</strong> e o Ritual vai <strong>alinhar a dificuldade da sua jornada</strong> ao seu nível atual — as questões se adaptam às suas respostas.<br><br>
+              <span style="color:var(--txt-dim);font-size:0.82rem;">Não conta para a sua jornada, pontuação ou ranking — é só um diagnóstico, e você pode refazer quando quiser.</span>
+            </p>
+            <div style="display:flex;gap:10px;flex-direction:column;">
+              <button type="button" id="ritualStart" style="font-family:'Cinzel',serif;background:linear-gradient(180deg,#7c3aed,#5b21b6);border:2px solid #a855f7;border-radius:12px;color:#f3e8ff;font-size:0.95rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;padding:13px;cursor:pointer;">Começar o Ritual</button>
+              <button type="button" data-remove-id="ritualOverlay" style="background:none;border:none;color:var(--txt-dim);font-size:0.82rem;cursor:pointer;">Agora não</button>
+            </div>
+          </div>`);
+        overlay.querySelector('#ritualStart').addEventListener('click', nextQuestion);
+      }
+
+      function nextQuestion() {
+        if (step >= RITUAL_LEN) return showResult();
+        current = _ritualPick(band, used);
+        if (!current) return showResult();
+        used.add(current.qid || current.id);
+        step++;
+        if (band === 'hard') hardFaced++;
+        const opts = current.o || current.opts || [];
+        const ans = (current.a !== undefined) ? current.a : current.ans;
+        overlay.innerHTML = panel(`
+          <div style="font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:3px;color:rgba(192,132,252,0.8);text-transform:uppercase;margin-bottom:10px;">Ritual · ${step} / ${RITUAL_LEN}</div>
+          <div style="font-family:'Philosopher',serif;color:#eef4ff;font-size:1rem;line-height:1.6;margin-bottom:16px;">${_ritualEsc(current.q || '')}</div>
+          <div id="ritualOpts" style="display:flex;flex-direction:column;gap:8px;"></div>`);
+        const optsEl = overlay.querySelector('#ritualOpts');
+        opts.forEach((opt, i) => {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.style.cssText = 'text-align:left;background:rgba(35,10,70,0.6);border:1.5px solid #6d28d9;border-radius:10px;color:#e9d5ff;padding:11px 14px;font-family:Philosopher,serif;font-size:0.9rem;line-height:1.4;cursor:pointer;';
+          b.textContent = String.fromCharCode(65 + i) + ') ' + opt;
+          b.addEventListener('click', () => answer(i === ans, b, optsEl, ans));
+          optsEl.appendChild(b);
+        });
+      }
+
+      function answer(isCorrect, btnEl, optsEl, ans) {
+        [...optsEl.children].forEach((c, i) => {
+          c.style.pointerEvents = 'none';
+          if (i === ans) c.style.borderColor = '#34d399';
+        });
+        if (!isCorrect) btnEl.style.borderColor = '#fb7185';
+        if (isCorrect) {
+          correctCount++;
+          if (band === 'hard') hardCorrect++;
+          if (typeof playSound === 'function') playSound('correct');
+          band = (band === 'easy') ? 'medium' : 'hard';
+        } else {
+          if (typeof playSound === 'function') playSound('wrong');
+          band = (band === 'hard') ? 'medium' : 'easy';
+        }
+        setTimeout(nextQuestion, 650);
+      }
+
+      function recommend() {
+        let rec;
+        if (correctCount <= 2) rec = 'easy';
+        else if (correctCount <= 5) rec = 'normal';
+        else if (correctCount <= 7) rec = 'hard';
+        else rec = 'hardcore';
+        if ((rec === 'hard' || rec === 'hardcore') && hardFaced === 0) rec = 'normal';
+        if (rec === 'hardcore' && hardCorrect < 2) rec = 'hard';
+        return rec;
+      }
+
+      function showResult() {
+        const rec = recommend();
+        try {
+          localStorage.setItem('nefroquest-recommended-difficulty', rec);
+          localStorage.setItem('nefroquest-ritual-done', String(Date.now()));
+        } catch (e) {}
+        const LABEL = { easy: 'Fácil', normal: 'Médio', hard: 'Difícil', hardcore: 'Hardcore' };
+        if (typeof playSound === 'function') playSound('levelup');
+        overlay.innerHTML = panel(`
+          <div style="text-align:center;">
+            <div style="font-size:2rem;margin-bottom:6px;">⚜️</div>
+            <h2 style="font-family:'Cinzel',serif;color:#e9d5ff;font-size:1.1rem;letter-spacing:1px;margin:0 0 10px;">Ritual Concluído</h2>
+            <p style="font-family:'Philosopher',serif;color:#c4b5fd;font-size:0.9rem;line-height:1.6;margin:0 0 8px;">Você acertou <strong style="color:#e9d5ff;">${correctCount} de ${RITUAL_LEN}</strong>.</p>
+            <p style="font-family:'Philosopher',serif;color:#c8d8f0;font-size:0.95rem;margin:0 0 6px;">Dificuldade recomendada para sua jornada:</p>
+            <div style="font-family:'Cinzel',serif;color:var(--gold);font-size:1.4rem;font-weight:900;letter-spacing:1px;margin:0 0 20px;text-shadow:0 0 16px rgba(255,215,0,0.4);">${LABEL[rec]}</div>
+            <div style="display:flex;gap:10px;flex-direction:column;">
+              <button type="button" id="ritualGo" style="font-family:'Cinzel',serif;background:linear-gradient(180deg,#7c3aed,#5b21b6);border:2px solid #a855f7;border-radius:12px;color:#f3e8ff;font-size:0.92rem;font-weight:900;letter-spacing:1px;text-transform:uppercase;padding:12px;cursor:pointer;">Iniciar jornada nesse nível</button>
+              <button type="button" data-remove-id="ritualOverlay" style="background:none;border:none;color:var(--txt-dim);font-size:0.82rem;cursor:pointer;">Fechar (a recomendação fica salva)</button>
+            </div>
+          </div>`);
+        overlay.querySelector('#ritualGo').addEventListener('click', () => {
+          overlay.remove();
+          if (typeof startNewFromWelcome === 'function') startNewFromWelcome();
+        });
+      }
+
+      showIntro();
+    }
+    window.openRitual = openRitual;
     // forgeBtn agora usa data-action="showMobileActionConfirm" data-arg="forge" no HTML
     ui.bonusBtn.addEventListener('click',buyBonusQuestion);
     if (ui.boardBtn) ui.boardBtn.addEventListener('click',()=>{ renderBoard().catch(() => {}); ui.boardModal.classList.remove('hidden'); });
