@@ -2528,7 +2528,6 @@
           <div class="qr-title">Avalie esta questão</div>
           <div class="qr-sub">(feedback opcional)</div>
           <div class="qr-diff">
-            <span class="qr-diff-label">Dificuldade:</span>
             <div class="qr-diff-btns">${diffBtn('easy','Fácil')}${diffBtn('medium','Médio')}${diffBtn('hard','Difícil')}</div>
           </div>
         </div>
