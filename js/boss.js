@@ -457,6 +457,9 @@
     }
 
     // ============ NARRATIVAS DE INÍCIO POR PERSONAGEM ============
+    // Última classe escolhida pelo jogador (fallback se state.character for
+    // sobrescrito por sync/loadGame entre a seleção e o início da jornada).
+    let _lastSelectedCharacter = null;
     const CHARACTER_INTROS = {
       nephros:   { ch: 'Dr. Nephros · Guardião dos Néfrons',   text: 'O Reino dos Néfrons está sob ameaça. O Arqui-Nefromante corrompe cada túbulo com ignorância clínica — hipercalemia subestimada, DRC diagnosticada tarde, néfrons perdidos para sempre. Você enxerga o que outros ignoram: cada questão correta é um néfron preservado. A jornada começa agora.' },
       aquaria:   { ch: 'Dra. Aquaria · Mestra das Águas',      text: 'Onde outros veem números, você vê correntes. O Arqui-Nefromante semeia desequilíbrio — hiponatremia que destrói neurônios, acidose que afoga tecidos. Seu domínio é o equilíbrio hidroeletrolítico. Cada resposta certa é uma maré controlada. O reino aguarda sua maestria.' },
@@ -465,6 +468,9 @@
 
     function selectCharacter(charId) {
       state.character = charId;
+      // Guarda a escolha fora do state: um sync de nuvem / loadGame pode sobrescrever
+      // state.character durante a leitura da intro. Usado como fallback no start.
+      _lastSelectedCharacter = charId;
       document.getElementById('charSelectModal').classList.remove('show');
       showCharacterIntroModal(charId);
     }
@@ -510,6 +516,12 @@
           _toast('Erro ao carregar questões. Recarregue a página.', 'error', 5000);
           return;
         }
+      }
+      // Blindagem: se state.character ficou inválido (save legado ou corrida com
+      // sync/loadGame), recupera a escolha real; em último caso, classe padrão.
+      // Sem isso, char.name lança TypeError e a jornada "trava" na tela de intro.
+      if (!characters[state.character]) {
+        state.character = characters[_lastSelectedCharacter] ? _lastSelectedCharacter : 'nephros';
       }
       const char = characters[state.character];
 

@@ -14,6 +14,17 @@
 
           <div class="modal-scroll-body" style="text-align:left;">
 
+            <!-- v11.85 -->
+            <div style="background:linear-gradient(135deg,rgba(52,211,153,0.14),rgba(255,215,0,0.05));border:2px solid rgba(52,211,153,0.5);border-radius:10px;padding:16px;margin-bottom:12px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                <span style="background:rgba(16,185,129,0.9);color:#fff;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v11.85</span>
+                <span style="color:#a7f3d0;font-weight:bold;font-size:0.95rem;">Correção — Início de jornada</span>
+              </div>
+              <ul style="margin:0;padding-left:18px;color:#c8d8f0;font-size:0.82rem;line-height:1.8;">
+                <li><strong>🐛 Tela travada ao iniciar nova jornada</strong> — Em alguns casos (contas antigas / sincronização), a classe escolhida era perdida no momento de começar e o jogo travava na tela de introdução do personagem. Agora a jornada sempre inicia, preservando a classe escolhida.</li>
+              </ul>
+            </div>
+
             <!-- v11.83 -->
             <div style="background:linear-gradient(135deg,rgba(168,85,247,0.18),rgba(255,215,0,0.06));border:2px solid rgba(168,85,247,0.55);border-radius:10px;padding:16px;margin-bottom:12px;">
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
