@@ -3179,36 +3179,97 @@
             75% { transform: scale(1.2) rotate(0deg); filter: drop-shadow(0 0 35px rgba(251, 191, 36, 0.95)); }
             100% { transform: scale(0); opacity: 0; }
           }
+          /* Pulso no TEXTO (o keyframe global "pulse" anima box-shadow e criava
+             uma barra retangular de sombra atravessando o card) */
+          @keyframes chestCallPulse {
+            0%, 100% { opacity: 1; text-shadow: 0 0 10px rgba(251,191,36,0.4); }
+            50% { opacity: 0.72; text-shadow: 0 0 18px rgba(251,191,36,0.8); }
+          }
+          @keyframes chestFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-9px); }
+          }
+          @keyframes chestShadowSync {
+            0%, 100% { transform: scaleX(1); opacity: 0.55; }
+            50% { transform: scaleX(0.82); opacity: 0.35; }
+          }
           .chest-img-clickable {
-            width: 130px;
-            height: auto;
+            width: 150px;
             cursor: pointer;
             display: block;
-            margin: 20px auto;
-            filter: drop-shadow(0 0 15px rgba(251, 191, 36, 0.5));
-            transition: transform 0.2s, filter 0.2s;
-            animation: bounce 2s infinite;
+            margin: 14px auto 0;
+            filter: drop-shadow(0 0 14px rgba(240, 192, 64, 0.35));
+            transition: filter 0.2s;
+            animation: chestFloat 2s ease-in-out infinite;
           }
+          .chest-img-clickable svg { display: block; width: 100%; height: auto; }
           .chest-img-clickable:hover {
-            transform: scale(1.08);
-            filter: drop-shadow(0 0 25px rgba(251, 191, 36, 0.85));
+            filter: drop-shadow(0 0 24px rgba(240, 192, 64, 0.65));
           }
           .chest-img-clickable.opening {
             animation: chestOpenAnim 0.6s ease-in-out forwards;
             pointer-events: none;
           }
+          .chest-ground-shadow {
+            width: 130px; height: 18px; margin: 2px auto 0;
+            background: radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 45%, transparent 72%);
+            border-radius: 50%;
+            animation: chestShadowSync 2s ease-in-out infinite;
+          }
         </style>
         <div class="narrative-card" style="border-color: #fbbf24; box-shadow: 0 0 40px rgba(251, 191, 36, 0.45); overflow: visible !important;">
           <div class="narr-chapter" style="color: #fbbf24;">Encontro Inesperado</div>
           <h3>✨ Baú de Relíquias Ancestrais</h3>
-          
-          <div style="padding: 10px 0 24px; overflow: visible !important; display: block;">
-            <img src="assets/chest_icon.png" alt="Baú" class="chest-img-clickable" data-action="_animateAndClaimChest" data-pass-this="1" />
+
+          <div style="padding: 6px 0 14px; overflow: visible !important; display: block;">
+            <div class="chest-img-clickable" role="button" aria-label="Abrir baú" data-action="_animateAndClaimChest" data-pass-this="1">
+              <svg viewBox="0 0 200 162" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs>
+                  <linearGradient id="nqChestWood" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#2b1a58"/><stop offset="1" stop-color="#160d33"/>
+                  </linearGradient>
+                  <linearGradient id="nqChestLid" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#3c2674"/><stop offset="1" stop-color="#211244"/>
+                  </linearGradient>
+                  <linearGradient id="nqChestGold" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#f6d36b"/><stop offset="0.5" stop-color="#d4a73c"/><stop offset="1" stop-color="#96701f"/>
+                  </linearGradient>
+                  <radialGradient id="nqChestAura" cx="0.5" cy="0.5" r="0.5">
+                    <stop offset="0" stop-color="#ffd75e" stop-opacity="0.32"/><stop offset="1" stop-color="#ffd75e" stop-opacity="0"/>
+                  </radialGradient>
+                  <filter id="nqChestBlur" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="2.6"/></filter>
+                </defs>
+                <ellipse cx="100" cy="86" rx="92" ry="62" fill="url(#nqChestAura)"/>
+                <rect x="28" y="82" width="144" height="66" rx="7" fill="url(#nqChestWood)" stroke="#0b0620" stroke-width="2.5"/>
+                <path d="M31 104h138M31 126h138" stroke="#0b0620" stroke-width="1.5" opacity="0.5"/>
+                <path d="M28 82 v-16 q0 -38 38 -38 h68 q38 0 38 38 v16 z" fill="url(#nqChestLid)" stroke="#0b0620" stroke-width="2.5"/>
+                <path d="M42 82 v-15 q0 -28 26 -30 M158 82 v-15 q0 -28 -26 -30" stroke="#0b0620" stroke-width="1.3" fill="none" opacity="0.4"/>
+                <path d="M46 38 q22 -14 54 -15" stroke="#ffffff" stroke-width="5" fill="none" opacity="0.07" stroke-linecap="round"/>
+                <path d="M85 27 q15 -11 30 0" fill="none" stroke="url(#nqChestGold)" stroke-width="7" stroke-linecap="round"/>
+                <rect x="30" y="84" width="140" height="3.4" rx="1.7" fill="#ffd75e" opacity="0.85" filter="url(#nqChestBlur)"/>
+                <rect x="24" y="142" width="152" height="13" rx="5" fill="url(#nqChestGold)" stroke="#5d4413" stroke-width="1.6"/>
+                <rect x="24" y="74" width="152" height="13" rx="5" fill="url(#nqChestGold)" stroke="#5d4413" stroke-width="1.6"/>
+                <rect x="50" y="87" width="13" height="55" rx="3" fill="url(#nqChestGold)" stroke="#5d4413" stroke-width="1.4"/>
+                <rect x="137" y="87" width="13" height="55" rx="3" fill="url(#nqChestGold)" stroke="#5d4413" stroke-width="1.4"/>
+                <circle cx="37" cy="80.5" r="2.1" fill="#7a5a18"/><circle cx="163" cy="80.5" r="2.1" fill="#7a5a18"/>
+                <circle cx="56.5" cy="80.5" r="2.1" fill="#7a5a18"/><circle cx="143.5" cy="80.5" r="2.1" fill="#7a5a18"/>
+                <circle cx="100" cy="93" r="21" fill="#1c1240" opacity="0.65" filter="url(#nqChestBlur)"/>
+                <rect x="84" y="68" width="32" height="44" rx="9" fill="url(#nqChestGold)" stroke="#5d4413" stroke-width="2"/>
+                <rect x="88.5" y="72.5" width="23" height="35" rx="6" fill="none" stroke="#7a5a18" stroke-width="1.2" opacity="0.7"/>
+                <circle cx="100" cy="86" r="5" fill="#1c1240"/>
+                <path d="M97.4 88.5 h5.2 l1.9 12.5 h-9 z" fill="#1c1240"/>
+                <circle cx="100" cy="86" r="1.7" fill="#ffd75e" opacity="0.9"/>
+                <path d="M152 34 l1.7 4.6 4.6 1.7 -4.6 1.7 -1.7 4.6 -1.7 -4.6 -4.6 -1.7 4.6 -1.7 z" fill="#ffe9a8" opacity="0.85"/>
+                <path d="M44 52 l1.3 3.4 3.4 1.3 -3.4 1.3 -1.3 3.4 -1.3 -3.4 -3.4 -1.3 3.4 -1.3 z" fill="#ffe9a8" opacity="0.6"/>
+                <path d="M165 62 l1 2.6 2.6 1 -2.6 1 -1 2.6 -1 -2.6 -2.6 -1 2.6 -1 z" fill="#ffe9a8" opacity="0.45"/>
+              </svg>
+            </div>
+            <div class="chest-ground-shadow"></div>
           </div>
-          
+
           <div class="narr-text" style="color: #fff8dc; font-style: italic; line-height: 1.6; font-size: 0.88rem; text-align: center; margin-top: 15px;">
             Enquanto purifica os néfrons das correntes urêmicas, uma pulsação dourada sob as névoas chama sua atenção. Você encontrou um baú misterioso deixado pelos antigos patronos da nefrologia.<br><br>
-            <strong style="color: #fbbf24; font-family: 'Cinzel', serif; display: block; font-size: 0.9rem; animation: pulse 1.5s infinite;">⚡ Toque no baú para abrir! ⚡</strong>
+            <strong style="color: #fbbf24; font-family: 'Cinzel', serif; display: block; font-size: 0.9rem; animation: chestCallPulse 1.5s ease-in-out infinite;">⚡ Toque no baú para abrir! ⚡</strong>
           </div>
         </div>
       `;
