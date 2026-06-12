@@ -14,6 +14,18 @@
 
           <div class="modal-scroll-body" style="text-align:left;">
 
+            <!-- v11.86 -->
+            <div style="background:linear-gradient(135deg,rgba(167,139,250,0.16),rgba(255,215,0,0.05));border:2px solid rgba(167,139,250,0.55);border-radius:10px;padding:16px;margin-bottom:12px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                <span style="background:rgba(139,92,246,0.9);color:#fff;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v11.86</span>
+                <span style="color:#ddd6fe;font-weight:bold;font-size:0.95rem;">Raciocínio Guiado no Erro</span>
+              </div>
+              <ul style="margin:0;padding-left:18px;color:#c8d8f0;font-size:0.82rem;line-height:1.8;">
+                <li><strong>🪞 Por que você escolheu essa?</strong> — Ao errar uma questão na jornada, você pode (opcionalmente) nomear o motivo do erro: ancoragem, confusão de conceitos, leitura apressada, chute... Cada escolha mostra o nome do padrão e o antídoto prático. Errar deixou de ser só perder vida — virou diagnóstico do seu raciocínio.</li>
+                <li><strong>📊 Padrões de Raciocínio no Dashboard</strong> — Nova seção na aba Skills: distribuição dos seus tipos de erro e destaque do padrão dominante. O radar mostra ONDE você erra; isso mostra COMO você erra.</li>
+              </ul>
+            </div>
+
             <!-- v11.85 -->
             <div style="background:linear-gradient(135deg,rgba(52,211,153,0.14),rgba(255,215,0,0.05));border:2px solid rgba(52,211,153,0.5);border-radius:10px;padding:16px;margin-bottom:12px;">
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">

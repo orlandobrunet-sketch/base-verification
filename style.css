@@ -7003,6 +7003,16 @@
   transition: background 0.15s, border-color 0.15s, color 0.15s;
 }
 .qr-diff-btn:hover { border-color: rgba(255,215,0,0.4); color: #fff; }
+/* PED-1 — Raciocínio guiado no erro: momento calmo e reflexivo, sem alarde */
+.err-reflect { margin-top: 12px; padding: 10px 12px; background: rgba(167,139,250,0.06); border: 1px solid rgba(167,139,250,0.25); border-radius: 10px; animation: fadeIn 0.6s ease; }
+.err-reflect-title { font-size: 0.78rem; color: #ddd6fe; font-family: 'Philosopher', sans-serif; margin-bottom: 8px; }
+.err-reflect-sub { font-size: 0.66rem; color: var(--txt-dim); font-style: italic; }
+.err-reflect-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.err-reflect-chip { background: rgba(255,255,255,0.04); border: 1px solid rgba(167,139,250,0.35); border-radius: 14px; color: #c4b5fd; font-size: 0.7rem; padding: 4px 10px; cursor: pointer; font-family: 'Philosopher', sans-serif; transition: background 0.15s, border-color 0.15s, color 0.15s; }
+.err-reflect-chip:hover { background: rgba(167,139,250,0.12); color: #ede9fe; }
+.err-reflect-lesson { font-size: 0.76rem; color: #ddd6fe; line-height: 1.55; animation: fadeIn 0.4s ease; }
+body.reading-mode .err-reflect-chip { font-size: 0.84rem; padding: 6px 12px; }
+body.reading-mode .err-reflect-title, body.reading-mode .err-reflect-lesson { font-size: 0.95rem; }
 .qr-diff-btn.selected { background: rgba(255,215,0,0.15); border-color: rgba(255,215,0,0.6); color: var(--gold); font-weight: 700; }
 body.reading-mode .qr-diff-btn { font-size: 0.82rem; padding: 5px 14px; }
 .q-rating-container .qr-right {

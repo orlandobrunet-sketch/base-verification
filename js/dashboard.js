@@ -1334,7 +1334,37 @@
           `;
         }).join('')}
       </div>
+      ${_errorPatternsHtml()}
     `;
+  }
+
+  // PED-1: distribuição dos motivos de erro auto-relatados na jornada.
+  // Complementa o radar: ele mostra ONDE você erra; isto mostra COMO você erra.
+  function _errorPatternsHtml() {
+    const DEFS = (typeof ERROR_REASONS !== 'undefined') ? ERROR_REASONS : null;
+    if (!DEFS) return '';
+    let data = null;
+    try { data = JSON.parse(localStorage.getItem('nefroquest-error-reasons') || 'null'); } catch (e) {}
+    const counts = (data && data.counts) || {};
+    const total = Object.entries(counts).filter(([k]) => DEFS[k]).reduce((a, [, n]) => a + n, 0);
+    const intro = `<div class="nq-dash-stitle" style="margin-top:24px;">🪞 Padrões de Raciocínio</div>`;
+    if (!total) {
+      return `${intro}<div style="color:var(--txt-dim);font-size:0.78rem;line-height:1.6;">Quando errar uma questão na jornada, responda ao <em>"Por que você escolheu essa?"</em> que aparece abaixo da explicação. Aqui você verá seus padrões de erro de raciocínio — o primeiro passo para corrigi-los.</div>`;
+    }
+    const sorted = Object.entries(counts).filter(([k]) => DEFS[k]).sort((a, b) => b[1] - a[1]);
+    const top = sorted[0];
+    const bars = sorted.map(([k, n]) => {
+      const pct = Math.round(n * 100 / total);
+      return `
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="flex:0 0 min(230px,46%);font-size:0.72rem;color:#cbd5e1;">${DEFS[k].chip}</span>
+          <div style="flex:1;height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden;"><div style="height:100%;width:${pct}%;background:#a78bfa;border-radius:3px;"></div></div>
+          <span style="flex:0 0 52px;text-align:right;font-size:0.7rem;color:var(--txt-dim);">${n} (${pct}%)</span>
+        </div>`;
+    }).join('');
+    return `${intro}
+      <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:12px;">${bars}</div>
+      <div style="background:rgba(167,139,250,0.07);border:1px solid rgba(167,139,250,0.3);border-radius:10px;padding:10px 12px;font-size:0.74rem;color:#ddd6fe;line-height:1.55;"><strong>Seu padrão dominante: ${DEFS[top[0]].name}.</strong> ${DEFS[top[0]].tip}</div>`;
   }
 
   function _tabAchievements() {
