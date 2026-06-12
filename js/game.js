@@ -2388,6 +2388,7 @@
           ui.feedback.innerHTML = `<strong>${escapeHtml(_prefix)}</strong><br><span class="fb-snip">${_snip2}<span style="display:none;" class="fb-rest"> ${_full2.substring(_snip2.length)}</span></span>${_hasMore2?`<button class="fb-more-btn" style="display:block;background:none;border:none;color:#93c5fd;cursor:pointer;font-size:0.8rem;padding:4px 0 0 0;margin-top:2px;" data-action="_showMoreFb" data-pass-this="1">ver mais ▾</button>`:''}` ;
           if (window.innerWidth <= 768) setTimeout(() => ui.feedback.scrollIntoView({behavior:'smooth', block:'nearest'}), 80);
         }
+        renderErrorReflection(state.current.id, i);
         log('⚠️ Você falhou nessa carta. Ajuste a estratégia e continue.');
         playSound('wrong');
         // Boss log para erro
@@ -2579,6 +2580,68 @@
           submitDifficultyVote(qid, vote, curDiff);
         });
       });
+    }
+
+    // ── PED-1: Raciocínio guiado no erro ──────────────────────────────────
+    // Ao errar na jornada, o jogador pode nomear o PRÓPRIO erro de raciocínio
+    // (metacognição). Categorias universais — não exigem metadados por questão.
+    // O registro (local + Supabase) alimenta o card "Padrões de Raciocínio" no
+    // dashboard e, agregado por questão/distrator no admin, prepara o
+    // mapeamento automático de distratores no futuro.
+    const ERROR_REASONS = {
+      knowledge:   { chip: '🧠 Não sabia o conteúdo',                name: 'Lacuna de conhecimento', tip: 'O mais honesto dos erros. Releia a explicação acima com calma agora — este é o melhor momento para fixar; a questão voltará na sua revisão.' },
+      between_two: { chip: '⚖️ Fiquei entre duas',                   name: 'Discriminação fina',     tip: 'Você sabia o tema; faltou o detalhe que separa as duas. Compare agora a alternativa que escolheu com a correta e nomeie a diferença em uma frase.' },
+      confusion:   { chip: '🔀 Confundi conceitos parecidos',        name: 'Confusão de protótipos', tip: 'Entidades parecidas dividem a mesma gaveta mental. Estude-as em contraste explícito ("X cursa com A; Y cursa com B"), nunca isoladas.' },
+      anchoring:   { chip: '⚓ Me fixei num dado e ignorei o resto', name: 'Ancoragem',              tip: 'O primeiro dado vira âncora e os demais são subvalorizados. Antídoto: antes de responder, pergunte-se "qual dado NÃO encaixa na minha hipótese?".' },
+      misread:     { chip: '📖 Li rápido / não vi o que era pedido', name: 'Erro de leitura',        tip: 'Releia o comando da questão (a última frase) antes das alternativas e marque palavras como EXCETO, INCORRETA e "mais provável".' },
+      guess:       { chip: '🎲 Chutei',                              name: 'Chute',                  tip: 'No jogo vale; no estudo é sinal de lacuna. Anote o tema e cobre-se dele depois — o chute só ensina quando vira pergunta.' }
+    };
+
+    // Momento visual calmo (sem shake/confete): o erro é convite reflexivo.
+    function renderErrorReflection(qid, chosenIdx) {
+      const wrap = document.createElement('div');
+      wrap.className = 'err-reflect';
+      wrap.dataset.qid = qid || '';
+      wrap.dataset.idx = String(chosenIdx);
+      wrap.innerHTML = `
+        <div class="err-reflect-title">🪞 Por que você escolheu essa? <span class="err-reflect-sub">(opcional — te ajuda a conhecer seus padrões)</span></div>
+        <div class="err-reflect-chips">${Object.entries(ERROR_REASONS).map(([k, r]) =>
+          `<button type="button" class="err-reflect-chip" data-action="_pickErrorReason" data-pass-this="1" data-reason="${k}">${r.chip}</button>`).join('')}</div>`;
+      ui.feedback.appendChild(wrap);
+    }
+
+    window._pickErrorReason = function(el) {
+      const def = ERROR_REASONS[el.dataset.reason];
+      const wrap = el.closest('.err-reflect');
+      if (!def || !wrap) return;
+      if (typeof playSound === 'function') playSound('click');
+      submitErrorReason(wrap.dataset.qid, parseInt(wrap.dataset.idx, 10), el.dataset.reason);
+      const lesson = document.createElement('div');
+      lesson.className = 'err-reflect-lesson';
+      lesson.innerHTML = `<strong>${def.name}.</strong> ${def.tip}`;
+      wrap.querySelector('.err-reflect-chips').replaceWith(lesson);
+    };
+
+    async function submitErrorReason(qid, chosenIdx, reason) {
+      try {
+        const data = JSON.parse(localStorage.getItem('nefroquest-error-reasons') || '{"counts":{},"log":[]}');
+        data.counts[reason] = (data.counts[reason] || 0) + 1;
+        data.log.push({ qid, idx: chosenIdx, reason, ts: Date.now() });
+        if (data.log.length > 300) data.log = data.log.slice(-300);
+        localStorage.setItem('nefroquest-error-reasons', JSON.stringify(data));
+      } catch (e) {}
+      if (typeof _track === 'function') _track('error_reflection', { reason });
+      if (typeof _supaClient !== 'undefined' && _supaClient) {
+        try {
+          await _supaClient.from('question_error_reasons').insert([{
+            question_id: qid || null,
+            chosen_idx: Number.isFinite(chosenIdx) ? chosenIdx : null,
+            reason,
+            player_email: (window.authUser && window.authUser.email) || 'anonimo',
+            created_at: new Date().toISOString()
+          }]);
+        } catch (err) { console.error('[NQ] error reason insert', err); }
+      }
     }
 
     // Registra o voto de dificuldade do usuário (local + Supabase). Uma vez por
