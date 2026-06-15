@@ -35,6 +35,14 @@ Sequência obrigatória em todo PR com mudança de asset:
 2. Bumpar `version.json` e `sw.js` no mesmo commit
 3. Abrir um único PR com tudo junto
 
+**Guard automático:** o git pre-commit hook em `.githooks/pre-commit` bloqueia commits de `style.css`/`js/*.js` sem `version.json` + `sw.js` no mesmo commit. Ative uma vez por clone:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+(Em emergência, `git commit --no-verify` pula a verificação.)
+
 ---
 
 ## Estrutura de Arquivos

@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+# pre-commit — bloqueia commits que alteram style.css/js/*.js sem o bump
+# obrigatorio de version.json + sw.js no mesmo commit (regra critica do Service
+# Worker, ver CLAUDE.md). Sem o bump, o SW continua servindo o asset antigo do
+# cache apos o merge e as mudancas nao aparecem para o usuario.
+#
+# Ativacao (uma vez por clone):  git config core.hooksPath .githooks
+set -uo pipefail
+
+staged="$(git diff --cached --name-only)"
+[ -z "$staged" ] && exit 0
+
+# So exige bump quando um asset versionado pelo SW esta no commit.
+printf '%s\n' "$staged" | grep -qE '^(style\.css|js/.*\.js)$' || exit 0
+
+miss=""
+printf '%s\n' "$staged" | grep -qxF 'version.json' || miss="version.json"
+printf '%s\n' "$staged" | grep -qxF 'sw.js'        || miss="${miss:+$miss e }sw.js"
+
+if [ -n "$miss" ]; then
+  changed="$(printf '%s\n' "$staged" | grep -E '^(style\.css|js/.*\.js)$' | sed 's/^/  - /')"
+  {
+    echo ""
+    echo "  ✖ COMMIT BLOQUEADO — regra do Service Worker (CLAUDE.md)"
+    echo ""
+    echo "  Este commit altera asset(s) servido(s) pelo SW:"
+    echo "$changed"
+    echo ""
+    echo "  Falta versionar no mesmo commit: $miss"
+    echo ""
+    echo "  Sem o bump, o SW serve o arquivo antigo do cache apos o merge."
+    echo "  Corrija assim:"
+    echo "    1. Incremente X.XX em version.json e o CACHE em sw.js (mesma versao)"
+    echo "    2. git add version.json sw.js"
+    echo "    3. refaca o commit"
+    echo ""
+    echo "  (Emergencia: 'git commit --no-verify' pula esta verificacao.)"
+    echo ""
+  } >&2
+  exit 1
+fi
+
+exit 0
