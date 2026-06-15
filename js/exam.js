@@ -290,7 +290,7 @@
           })()}
           <div style="display:flex;gap:10px;margin-top:0;">
             <button data-action="_shareExamResult" data-args='[${pct},${totalCorrect},${totalAnswered}]' style="flex:1;background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.4);color:#a5b4fc;border-radius:10px;padding:11px;font-size:0.82rem;font-weight:600;cursor:pointer;">📤 Compartilhar</button>
-            <button data-action="_finishExam" style="flex:2;background:linear-gradient(180deg,#b8860b,#7a5a00);border:2px solid var(--gold);color:#fff8dc;border-radius:10px;padding:11px;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:700;cursor:pointer;letter-spacing:1px;">VOLTAR AO MENU</button>
+            <button data-action="_finishExam" style="flex:2;background:linear-gradient(180deg,#8a6206,#5e4400);border:2px solid var(--gold);color:#fff8dc;border-radius:10px;padding:11px;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:700;cursor:pointer;letter-spacing:1px;">VOLTAR AO MENU</button>
           </div>
         </div>`;
     }
