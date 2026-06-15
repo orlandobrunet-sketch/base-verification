@@ -14,6 +14,18 @@
 
           <div class="modal-scroll-body" style="text-align:left;">
 
+            <!-- v11.87 -->
+            <div style="background:linear-gradient(135deg,rgba(251,191,36,0.12),rgba(167,139,250,0.06));border:2px solid rgba(251,191,36,0.45);border-radius:10px;padding:16px;margin-bottom:12px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                <span style="background:rgba(217,119,6,0.9);color:#fff;font-size:0.75rem;font-weight:900;padding:3px 10px;border-radius:20px;font-family:'Cinzel',serif;">v11.87</span>
+                <span style="color:#fde68a;font-weight:bold;font-size:0.95rem;">Baú de Relíquias Redesenhado</span>
+              </div>
+              <ul style="margin:0;padding-left:18px;color:#c8d8f0;font-size:0.82rem;line-height:1.8;">
+                <li><strong>✨ Novo baú</strong> — A imagem do Baú de Relíquias Ancestrais foi redesenhada em vetor na identidade visual do reino (madeira roxa, ferragens douradas, fechadura com brilho do tesouro) — sem fundo quadriculado e 648 KB mais leve.</li>
+                <li><strong>🌑 Sombras corrigidas</strong> — Sombra de chão suave sob o baú, sincronizada com a flutuação; removida a barra de sombra retangular que cortava o card sobre o "Toque no baú para abrir".</li>
+              </ul>
+            </div>
+
             <!-- v11.86 -->
             <div style="background:linear-gradient(135deg,rgba(167,139,250,0.16),rgba(255,215,0,0.05));border:2px solid rgba(167,139,250,0.55);border-radius:10px;padding:16px;margin-bottom:12px;">
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
