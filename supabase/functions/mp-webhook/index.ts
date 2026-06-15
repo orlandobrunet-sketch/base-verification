@@ -49,14 +49,22 @@ async function verifySignature(req: Request, rawBody: string): Promise<boolean> 
     return false;
   }
 
-  // Manifesto: id:<payment_id>;request-id:<x-request-id>;ts:<ts>;
+  // Manifesto: id:<data.id>;request-id:<x-request-id>;ts:<ts>;
+  // Conforme a doc oficial do MP, o `data.id` do manifesto vem do QUERY PARAM
+  // `data.id` (sufixo _url) e deve ser usado em MINÚSCULAS. Mantém fallback
+  // para o body por robustez (em pagamentos os dois coincidem).
+  // Ref: MP Developers — "Validar a origem de uma notificação".
   const requestId  = req.headers.get('x-request-id') ?? '';
-  let   paymentId  = '';
-  try {
-    const body = JSON.parse(rawBody);
-    if (body.data?.id)  paymentId = String(body.data.id);
-    else if (body.id)   paymentId = String(body.id);
-  } catch { /* será tratado depois */ }
+  let   dataId     = '';
+  try { dataId = new URL(req.url).searchParams.get('data.id') ?? ''; } catch { /* ignore */ }
+  if (!dataId) {
+    try {
+      const body = JSON.parse(rawBody);
+      if (body.data?.id)  dataId = String(body.data.id);
+      else if (body.id)   dataId = String(body.id);
+    } catch { /* será tratado depois */ }
+  }
+  const paymentId = dataId.toLowerCase();
 
   const manifest = `id:${paymentId};request-id:${requestId};ts:${ts};`;
 
