@@ -62,6 +62,19 @@
       --radius-xl:   20px;
       --radius-full: 9999px;
 
+      /* ── Shadow scale (PED-4 Fase 1) ──────────────────────────
+         Vocabulário canônico de sombras, espelhando os padrões já
+         usados no CSS. Use estes tokens em vez de novos box-shadow
+         ad-hoc. (Migração dos ~399 box-shadow hardcoded = Fase 2.) */
+      --shadow-sm:            0 2px 10px rgba(0,0,0,0.5);                         /* elevação sutil */
+      --shadow-md:            0 4px 20px rgba(0,0,0,0.6);                         /* cards */
+      --shadow-lg:            0 8px 32px rgba(0,0,0,0.6);                         /* painéis elevados */
+      --shadow-modal:         0 0 50px rgba(0,0,0,0.7);                           /* profundidade de modal */
+      --shadow-glow-gold:     0 0 60px rgba(255,215,0,0.15);                      /* glow dourado ambiente */
+      --shadow-glow-gold-strong: 0 0 6px rgba(255,215,0,0.8);                     /* foco/ativo dourado */
+      --shadow-inset-gold:    inset 0 1px 0 rgba(255,215,0,0.06);                 /* brilho superior interno */
+      --shadow-glow-teal:     0 4px 20px rgba(13,90,74,0.6);                      /* accent teal (CTA confirmar) */
+
       /* ── Z-index scale (centralizado — nunca use valores ad-hoc) ─ */
       --z-bg:           0;     /* .bg-layer, .bg-overlay, .particles */
       --z-app:          10;    /* .app principal */
