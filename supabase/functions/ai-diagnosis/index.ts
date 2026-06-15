@@ -85,50 +85,21 @@ async function checkAndIncrementQuota(
 
   const today = new Date().toISOString().slice(0, 10);
 
-  const { data, error: upsertErr } = await db
-    .from('ai_usage')
-    .upsert(
-      { user_id: user.id, feature: 'diagnosis', date: today, count: 1 },
-      { onConflict: 'user_id,feature,date', ignoreDuplicates: false },
-    )
-    .select('count')
-    .single();
+  // Incremento atômico via RPC (INSERT ... ON CONFLICT DO UPDATE count = count + 1).
+  // Substitui o upsert anterior, que sobrescrevia count para 1 e nunca aplicava
+  // a cota. Requer a função increment_ai_usage (migration 014).
+  const { data: newCount, error: rpcErr } = await db.rpc('increment_ai_usage', {
+    p_user_id: user.id, p_feature: 'diagnosis', p_date: today,
+  });
 
-  if (upsertErr) {
-    const { data: row } = await db
-      .from('ai_usage')
-      .select('count')
-      .eq('user_id', user.id)
-      .eq('feature', 'diagnosis')
-      .eq('date', today)
-      .single();
-
-    const currentCount = (row?.count ?? 0) as number;
-    if (currentCount >= DIAG_LIMIT) {
-      return { allowed: false, remaining: 0, userId: user.id };
-    }
-
-    await db
-      .from('ai_usage')
-      .update({ count: currentCount + 1 })
-      .eq('user_id', user.id)
-      .eq('feature', 'diagnosis')
-      .eq('date', today);
-
-    return { allowed: true, remaining: DIAG_LIMIT - currentCount - 1, userId: user.id };
-  }
-
-  const newCount = (data?.count ?? 1) as number;
-  if (newCount > DIAG_LIMIT) {
-    await db
-      .from('ai_usage')
-      .update({ count: DIAG_LIMIT })
-      .eq('user_id', user.id)
-      .eq('feature', 'diagnosis')
-      .eq('date', today);
+  if (rpcErr || typeof newCount !== 'number') {
+    // Fail-closed: em erro de cota, bloqueia para não expor custo de IA.
+    console.error('Quota RPC error (diagnosis):', rpcErr);
     return { allowed: false, remaining: 0, userId: user.id };
   }
-
+  if (newCount > DIAG_LIMIT) {
+    return { allowed: false, remaining: 0, userId: user.id };
+  }
   return { allowed: true, remaining: DIAG_LIMIT - newCount, userId: user.id };
 }
 
