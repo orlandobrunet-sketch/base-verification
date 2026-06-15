@@ -127,7 +127,7 @@ Sequência obrigatória em todo PR com mudança de asset:
 | `send-contact` | Formulário de contato (Web3Forms) |
 | `create-mp-preference` | Cria preferência Mercado Pago |
 | `mp-webhook` | Webhook pagamento aprovado → atualiza `profiles` |
-| `send-push` | Web Push para usuários (admin only, service-role key) |
+| `send-push` | Web Push (campanha admin) — aceita JWT de admin (`app_metadata.is_admin`) OU service-role key |
 
 ### Variáveis de ambiente
 
@@ -152,7 +152,8 @@ Sequência obrigatória em todo PR com mudança de asset:
 - **Classes:** Guerreiro Glomerular, Maga Metabólica, Clérigo Renal (10 níveis de imagem cada)
 - **Progressão:** 100 acertos = vitória. Streak x1.25 → x2.5 (começa em 3 acertos seguidos)
 - **Badges:** 5 total (20 / 40 / 60 / 80 / 100 acertos)
-- **Dificuldades:** Normal e Hardcore
+- **Dificuldades:** 4 modos — Fácil (5 vidas) · Médio (4, recomendado) · Difícil (3) · Hardcore (1). O modo (`state.difficulty` = easy/normal/hard/hardcore) controla as proporções de questões por `_d` (easy/medium/hard) no `shuffleQueue`. O **Ritual de Iniciação** (placement, PED-3) recomenda e pré-seleciona o modo.
+- **Modo Leitura:** `body.reading-mode` aumenta fonte/contraste de enunciado e alternativas; persiste em localStorage (`toggleReadingMode` em `js/utils.js`)
 - **Banco de questões:** `data/topics.js` ~1.4 MB, lazy loaded, organizado por eixo temático
 
 ---
