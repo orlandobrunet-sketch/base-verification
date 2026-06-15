@@ -14,11 +14,11 @@ Toda tarefa deve ser solicitada explicitamente pelo usuário.
 
 | # | Melhoria | Descrição | Impacto esperado |
 |---|----------|-----------|-----------------|
-| E1 | **Motor adaptativo de aprendizado (IRT leve)** | Ajustar dificuldade por eixo temático em tempo real com base no histórico individual do usuário. Algoritmo IRT (Item Response Theory) simplificado integrado ao banco de questões. | Retenção, engajamento premium |
+| E1 | **Motor adaptativo de aprendizado (IRT leve)** | Ajustar dificuldade por eixo temático em tempo real com base no histórico individual do usuário. Algoritmo IRT (Item Response Theory) simplificado integrado ao banco de questões. _Base parcial existente:_ votação de dificuldade crowd-sourced (`question_difficulty_votes`, migration 010, v11.82) para recalibrar o `_d` das questões. Falta o motor adaptativo por usuário em si. | Retenção, engajamento premium |
 | E2 | **Plano de estudo inteligente semanal** | Trilhas automáticas geradas por IA baseadas nos erros recorrentes e tempo disponível declarado. Ex.: "Esta semana: 3 sessões de 20min focadas em TFG e Proteinúria." | Recorrência de uso, diferencial competitivo |
 | E3 | **Dashboard pedagógico premium** | **Concluído (v11.47)** — Métricas por competência (acurácia por eixo, pior rendimento em destaque, etc.) com gráfico em radar e estatísticas detalhadas. | Monetização, valor percebido premium |
 | E4 | **Simulado estilo prova de residência** | **Concluído** — Modo de simulado (60 questões com tempo limite de 90min e histórico/resultados do simulado). | Conversão premium, NPS |
-| E5 | **Sistema de revisão espaçada robusto (SM-2/FSRS)** | Evoluir o SM-2 atual para FSRS (Free Spaced Repetition Scheduler) com deck de revisão diária explícito e notificações push personalizadas por questão prioritária. | Retenção de longo prazo |
+| E5 | **Sistema de revisão espaçada robusto (SM-2/FSRS)** | **Concluído (v11.79)** — Motor FSRS-4.5 em `js/utils.js` (`updateSRData`) substitui o SM-2, com migração transparente dos cards antigos (`{ef,interval,reps,due}` → estado FSRS). Deck de revisão diária + push personalizado: parcialmente coberto (forecast no dashboard + campanha de push admin). | Retenção de longo prazo |
 | E6 | **Banco de questões versionado com revisão editorial** | Workflow interno de QA: status por questão (rascunho → revisão médica → publicado), painel de auditoria, versionamento de gabaritos e revisão de questões flagadas pelos usuários. | Qualidade do conteúdo, confiança |
 | E7 | **Telemetria de funil de conversão premium** | Rastrear jornada completa: paywall_shown → plan_selected → checkout_started → payment_approved por coorte (canal, classe, nível). Otimizar gatilho do paywall por contexto comportamental. | Receita, otimização de monetização |
 | E8 | **Modo offline enriquecido** | **Concluído (v11.47)** — Estudo Livre offline servido via Service Worker (offline.html) carregando banco local e sincronização automática transparente ao reconectar. | Retenção mobile, experiência em áreas sem sinal |
@@ -86,7 +86,7 @@ Toda tarefa deve ser solicitada explicitamente pelo usuário.
 |---|--------|---------|
 | W1 | Screenshots no manifest | **Feito** — imagens e entradas no manifest já presentes |
 | W2 | iOS splash screens | **Feito** (v9.21) |
-| W3 | Push notifications server-side | **Feito** (v9.26) — migration 004 ✅, VAPID secrets ✅, `window._VAPID_PUBLIC_KEY` ✅. **Pendente**: fazer deploy da edge function `send-push` pelo Supabase Dashboard (não existe ainda — precisa ser criada/deployada manualmente via CLI ou upload) |
+| W3 | Push notifications server-side | **Concluído (v11.77)** — migration 004 ✅, VAPID secrets ✅, `window._VAPID_PUBLIC_KEY` ✅. Edge function `send-push` criada em `supabase/functions/send-push/` com autorização por JWT de admin (`app_metadata.is_admin`) + UI de campanha de push no painel admin. |
 
 ---
 
@@ -143,9 +143,9 @@ Toda tarefa deve ser solicitada explicitamente pelo usuário.
 
 | # | Melhoria | Descrição | Impacto |
 |---|----------|-----------|---------|
-| PED-1 | **Raciocínio guiado no erro** | Ao errar, passo opcional "por que você escolheu essa?" mapeando cada distrator a um *erro de raciocínio* nomeado (ex.: ancoragem, confundir mecanismo compensatório). Transforma cada distrator em objeto de ensino. Momento visualmente mais calmo (menos confete, mais "respiro"), pois o erro é convite reflexivo, não punição. Usa o histórico de erros + FSRS já existentes. | Diferencial central — raciocínio, não só recall |
+| PED-1 | **Raciocínio guiado no erro** | **Concluído (v11.86)** — Ao errar na jornada, chips "por que você escolheu essa?" mapeando o erro a um padrão de raciocínio nomeado (`knowledge`, `between_two`, `confusion`, `anchoring`, `misread`, `guess`) com antídoto pedagógico. Registro local + Supabase (`question_error_reasons`, migration 011) alimenta o card "Padrões de Raciocínio". | Diferencial central — raciocínio, não só recall |
 | PED-2 | **Mapa de Competências** (área separada do radar por eixo) | Camada de *tags de competência* sobre as questões (interpretar gasometria, estratificar risco de progressão, ajustar dose em DRC, reconhecer emergência dialítica...). **Área própria no dashboard, distinta do gráfico de radar por eixo temático** — radar responde "onde acertei menos"; o mapa responde "o que ainda não sei fazer". Habilita certificação informal ("Você domina interpretação ácido-base"). | Plano de desenvolvimento real; valor premium |
-| PED-3 | **Onboarding com diagnóstico inicial (placement)** | 8–10 questões adaptativas na 1ª sessão que estimam o nível e já semeiam o agendamento FSRS, evitando que R3 e estudante comecem iguais no nível 1. Enquadrar como "Ritual de Iniciação na Guilda dos Néfrons" (lore, não burocracia). | Retenção desde o 1º minuto |
+| PED-3 | **Onboarding com diagnóstico inicial (placement)** | **Concluído — Fase A (v11.83)** — "Ritual de Iniciação" (`js/minigame.js`, `openRitual`, 8 questões adaptativas por banda de dificuldade) estima o nível e pré-seleciona a dificuldade recomendada. _Pendente:_ semear diretamente o agendamento FSRS a partir do resultado do ritual. | Retenção desde o 1º minuto |
 | PED-4 | **Sistema de design (tokens + componentes)** | Consolidar cores/raios/sombras/espaçamentos/tipografia em design tokens + classes utilitárias; migrar componentes recorrentes (`.nq-card`, `.nq-modal`, `.nq-btn`, `.nq-badge`) dos estilos inline em `innerHTML` para CSS real. Elimina a deriva visual (tons de roxo/raios divergentes entre modais) e acelera tudo que vier depois. | Coerência visual = rigor percebido; velocidade de dev |
 
 ### Biblioteca de Referências
@@ -279,8 +279,8 @@ Toda tarefa deve ser solicitada explicitamente pelo usuário.
 
 | # | Tarefa | Detalhe | Status |
 |---|--------|---------|--------|
-| DC-1 | Cards de conhecimento no Dashboard | Seção "Biblioteca de Néfrons" no Dashboard: grid de cards mostrando artigos históricos já desbloqueados nos baús | ⏳ Ideia futura |
-| DC-2 | Estado de desbloqueio | Usar `unlockedArticles` (já salvo em localStorage) para mostrar quais artigos o jogador desbloqueou | ⏳ Ideia futura |
+| DC-1 | Cards de conhecimento no Dashboard | Seção "Biblioteca de Néfrons" no Dashboard: grid de cards mostrando artigos históricos já desbloqueados nos baús | ✅ Concluído (v11.76) |
+| DC-2 | Estado de desbloqueio | Usar `unlockedArticles` (já salvo em localStorage) para mostrar quais artigos o jogador desbloqueou | ✅ Concluído (v11.76) |
 
 ---
 
@@ -304,8 +304,8 @@ Toda tarefa deve ser solicitada explicitamente pelo usuário.
 
 | # | Tarefa | Detalhe | Status |
 |---|--------|---------|--------|
-| DC-4 | Leaderboard de perfil global | Nova tab "Perfil Global" no leaderboard: ordena por total de questões corretas acumuladas ou XP total — reflete consistência, não só um jogo perfeito | ⏳ Ideia futura |
-| DC-5 | Coluna de stats acumulados no Supabase | Adicionar colunas `total_correct`, `total_xp`, `total_games` na tabela `leaderboard` ou criar tabela `profiles_stats` para não quebrar ranking atual | ⏳ Ideia futura |
+| DC-4 | Leaderboard de perfil global | **✅ Concluído (v11.72)** — Toggle "Recorde / Perfil Global" no ranking (`js/leaderboard.js` → `profileStatsPush`/render dedicado), ordena por `total_correct` desc + `best_level`. Reaproveitado também no dashboard. | ✅ Concluído |
+| DC-5 | Coluna de stats acumulados no Supabase | **✅ Concluído** — Tabela `profiles_stats` (migration 009): `total_correct`, `total_games`, `best_level`, `character_name`, upsert por `user_id` — sem quebrar o ranking atual. | ✅ Concluído |
 
 ---
 
@@ -731,4 +731,17 @@ Abordagem: **CSS-first** (sem dependência de imagens externas) com substituiç�
 - [x] DT5: webhook Mercado Pago — comparação de assinatura em tempo constante + log estruturado de tentativas inválidas (v11.56)
 - [x] Migration 008 — tabela `question_ratings` (insert público, leitura só admin via claim `app_metadata.is_admin`)
 - [x] Versão: **11.56**
+- [x] UX/Conteúdo (v11.57–v11.71) — avaliação 5★ interativa, Oráculo no dock lateral (campanha + estudo) discutindo sempre a questão em tela, raridade nos refs/grimório, galeria de assets no admin, confronto final do boss em 2 passos, busca do Histórico corrigida, e varredura ampliada de siglas inglesas no banco (ESA→AEE, UACR→RAC, BUN→ureia, DRPAD/LECO)
+- [x] **DC-4 — Ranking de Perfil Global (v11.72)** — toggle Recorde/Perfil Global ordenando por acertos acumulados; reaproveitado no dashboard
+- [x] Apelido no ranking (v11.74) — privacidade do nome exibido no leaderboard
+- [x] **DC-1/DC-2 — Biblioteca de Néfrons (v11.76)** — galeria no dashboard dos artigos históricos desbloqueados nos baús (`unlockedArticles`)
+- [x] **W3 — Campanha de push + `send-push` (v11.77–v11.78)** — edge function autorizada por JWT de admin (`app_metadata.is_admin`) + UI de campanha de push no painel admin
+- [x] **E5 — Revisão espaçada FSRS-4.5 (v11.79)** — motor FSRS substitui o SM-2 em `js/utils.js`, com migração transparente dos cards antigos
+- [x] **PED-5 — Modo Leitura / acessibilidade (v11.81)** — texto maior + contraste nas alternativas
+- [x] Classificação de dificuldade pelo usuário (v11.82) — votos crowd-sourced (`question_difficulty_votes`, migration 010) para recalibrar o banco
+- [x] **PED-3 (Fase A) — Ritual de Iniciação (v11.83)** — placement adaptativo de 8 questões estimando o nível e pré-selecionando a dificuldade
+- [x] Fix: tela travada ao iniciar nova jornada (classe undefined) + remoção do rótulo "Dificuldade:" (v11.84–v11.85)
+- [x] **PED-1 — Raciocínio guiado no erro (v11.86)** — chips de padrão de raciocínio ao errar (`question_error_reasons`, migration 011) → card "Padrões de Raciocínio"
+- [x] Migration 009 — `profiles_stats` (DC-5); Migration 010 — `question_difficulty_votes`; Migration 011 — `question_error_reasons`
+- [x] Versão: **11.86**
 

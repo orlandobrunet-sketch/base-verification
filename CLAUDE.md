@@ -6,9 +6,9 @@ NefroQuest é um jogo RPG educacional de perguntas e respostas sobre Nefrologia,
 
 - **URL de produção:** https://nefroquest.com
 - **Repositório:** orlandobrunet-sketch/base-verification
-- **Branch principal:** `main`
-- **Branch de trabalho atual:** `feature/ux-rpg-offline-v11.47`
-- **Versão atual:** 11.48
+- **Branch principal:** `main` (deploy automático via GitHub Pages → nefroquest.com)
+- **Branch de trabalho:** uma branch por tarefa (definida no início de cada sessão)
+- **Versão atual:** 11.86
 
 
 ## Documentos de referência
@@ -45,7 +45,7 @@ Sequência obrigatória em todo PR com mudança de asset:
 ├── style.css           # Estilos globais (tema dark medieval, variáveis CSS)
 ├── sw.js               # Service Worker — cache offline e versioning
 ├── manifest.json       # PWA manifest
-├── version.json        # {"version": "9.37"} — controla invalidação de SW
+├── version.json        # {"version": "11.86"} — controla invalidação de SW
 ├── 404.html            # Página 404
 ├── offline.html        # Página offline
 ├── clear-cache.html    # Redireciona após limpar SW cache
@@ -54,13 +54,14 @@ Sequência obrigatória em todo PR com mudança de asset:
 
 ├── js/
 │   ├── game.js         # Lógica principal do jogo (RPG, badges, batalha, IA)
-│   ├── utils.js        # Utilitários: streak, analytics, toast, spaced repetition
+│   ├── utils.js        # Utilitários: streak, analytics, toast, revisão espaçada (FSRS-4.5)
 │   ├── leaderboard.js  # Ranking global (fetch/push para Supabase)
 │   ├── audio.js        # Sistema de áudio
 │   ├── study-mode.js   # Modo estudo (fora do jogo principal)
 │   ├── dashboard.js    # Dashboard do Nefrologista (admin)
 │   ├── admin.js        # Funções de admin
-│   ├── minigame.js     # Minigame integrado
+│   ├── minigame.js     # Minigame integrado + Ritual de Iniciação (placement PED-3)
+│   ├── minigame-acidbase.js # Câmara do Equilíbrio — minigame ácido-base (20 casos)
 │   ├── achievements.js # Conquistas e badges
 │   ├── changelog.js    # Modal de changelog
 │   ├── auth.js         # Autenticação
@@ -105,9 +106,16 @@ Sequência obrigatória em todo PR com mudança de asset:
 
 | Tabela | Descrição |
 |--------|-----------|
-| `profiles` | Dados do usuário: `premium_plan`, `premium_expires_at`, `mp_payment_id`, `is_premium` |
-| `leaderboard` | Ranking global: `user_id`, `player_name`, `score`, `level`. RLS habilitada |
-| `ai_usage` | Quota diária de IA: PK composta `(user_id, feature, date)` |
+| `profiles` | Dados do usuário: `premium_plan`, `premium_expires_at`, `mp_payment_id`, `is_premium` (migration 001) |
+| `leaderboard` | Ranking global: `user_id`, `player_name`, `score`, `level`. RLS habilitada (migration 002) |
+| `ai_usage` | Quota diária de IA: PK composta `(user_id, feature, date)` (migration 003) |
+| `push_subscriptions` | Inscrições Web Push por usuário (migration 004) |
+| `game_progress` | Progresso de jogo sincronizado entre dispositivos (migration 005) |
+| `processed_payments` | Idempotência do webhook Mercado Pago por `paymentId` (migration 007) |
+| `question_ratings` | Avaliação 5★ (qualidade + aprendizado) por questão; insert público, leitura só admin (migration 008) |
+| `profiles_stats` | Perfil Global acumulado: `total_correct`, `total_games`, `best_level` (DC-4/DC-5, migration 009) |
+| `question_difficulty_votes` | Votos de dificuldade crowd-sourced para recalibrar o banco (migration 010) |
+| `question_error_reasons` | PED-1: padrão de raciocínio nomeado ao errar uma questão (migration 011) |
 
 ### Edge Functions
 
