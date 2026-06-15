@@ -198,6 +198,11 @@ Deno.serve(async (req) => {
 
     if (error) {
       console.error('Supabase update error:', error);
+      // Desfaz o marcador de idempotência: a ativação NÃO ocorreu, então o
+      // retry do Mercado Pago precisa reprocessar este pagamento. Sem este
+      // rollback, o 23505 do retry pularia a ativação e o usuário ficaria
+      // "pago mas não ativado".
+      await supabase.from('processed_payments').delete().eq('payment_id', paymentId);
       return new Response('DB error', { status: 500 });
     }
 
