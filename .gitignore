@@ -16,6 +16,10 @@ dist/
 .parcel-cache/
 
 # Editores e SO
+# Config local do Claude Code (permissões, locks) — não versionar.
+# `.claude/settings.json` (hooks de projeto) É versionado.
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
 .DS_Store
 Thumbs.db
 *.swp
