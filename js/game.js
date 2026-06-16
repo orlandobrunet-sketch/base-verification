@@ -1441,6 +1441,37 @@
     // cujo nome casa com a imagem existente. Ver ROADMAP "Arte de Equipamentos".
     const _TEMP_SLOT_EMOJI = { helmet: '⛑️', glove: '🧤', boot: '🥾' };
     const _ITEMS_KEEP_ART = new Set(['Elmo do Filtrador Supremo', 'Luvas de Látex Reforçadas']);
+    // Equipamento inicial PADRÃO, ESPECÍFICO POR PERSONAGEM: os slots começam
+    // visualmente "equipados" com gear gasto temático da classe (em vez do "?"),
+    // com tooltip só do nome. Logicamente o slot continua vazio — a 1ª forja
+    // substitui sem popup ("vai trocando"). Sem efeito em stats. Imagens reais
+    // (emoji é placeholder): ver ROADMAP "Arte de Equipamentos".
+    const STARTER_SETS = {
+      glomerulus: { // Cientista Renal — guerreiro/cirurgião
+        helmet: { n: 'Touca Cirúrgica Manchada', e: '⛑️' },
+        glove:  { n: 'Luvas Ensanguentadas',     e: '🧤' },
+        armor:  { n: 'Jaleco Sujo de Sangue',    e: '🥼' },
+        weapon: { n: 'Bisturi Cego',             e: '🔪' },
+        relic:  { n: 'Crachá de Residente',      e: '📛' },
+        boot:   { n: 'Sapatos de Plantão Gastos', e: '🥾' },
+      },
+      aquaria: { // Mestra das Águas — maga metabólica (feminina)
+        helmet: { n: 'Tiara de Linho Úmida',     e: '💧' },
+        glove:  { n: 'Luvas de Seda Puídas',     e: '🧤' },
+        armor:  { n: 'Túnica Encharcada',        e: '🧥' },
+        weapon: { n: 'Pipeta Trincada',          e: '🧪' },
+        relic:  { n: 'Frasco de Essência Vazio', e: '🔮' },
+        boot:   { n: 'Sandálias Surradas',       e: '👡' },
+      },
+      nephros: { // Guardião dos Néfrons — clérigo/erudito
+        helmet: { n: 'Capuz Puído',              e: '🧢' },
+        glove:  { n: 'Luvas de Lã Furadas',      e: '🧤' },
+        armor:  { n: 'Batina Surrada',           e: '🥋' },
+        weapon: { n: 'Martelo de Reflexo Gasto', e: '🔨' },
+        relic:  { n: 'Terço de Contas',          e: '📿' },
+        boot:   { n: 'Sandálias de Couro Gastas', e: '🥾' },
+      },
+    };
 
     const statTips = {
       atk: {icon:'⚔️', name:'Ataque', desc:'Aumenta pontos ganhos por acerto. Quanto maior, mais pontos por questão correta.'},
@@ -1573,9 +1604,14 @@
         
         let slotInnerHtml = '';
         if (isEmpty) {
+          // Item inicial gasto (visual) temático da classe — tooltip só do nome.
+          const _set = STARTER_SETS[state.character?.id] || STARTER_SETS.glomerulus;
+          const _starter = _set[k] || { n: slotLabel, e: '?' };
+          const _sName = _starter.n;
+          const _sEmoji = _starter.e;
           slotInnerHtml = `
-            <div class="slot-diablo-empty">
-              <span class="slot-diablo-placeholder">?</span>
+            <div class="slot-diablo-filled slot-starter">
+              <div class="slot-diablo-icon slot-temp-emoji slot-starter-icon item-with-tooltip" data-item-name="${escapeHtml(_sName)}" data-item-desc="">${_sEmoji}</div>
               <span class="slot-diablo-tag">${slotLabel}</span>
             </div>`;
         } else {
@@ -1592,7 +1628,7 @@
         }
         
         const isDouble = (k === 'armor' || k === 'weapon') ? 'double' : 'relic';
-        return `<div class="slot-diablo ${isDouble} ${isEmpty ? 'empty' : 'filled'}" data-slot="${k}">
+        return `<div class="slot-diablo ${isDouble} ${isEmpty ? 'filled starter' : 'filled'}" data-slot="${k}">
           ${slotInnerHtml}
         </div>`;
       }).join('');
