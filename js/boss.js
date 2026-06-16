@@ -374,9 +374,12 @@
         completedGame: false, chestsOpened: 3
       });
       state.equipment = {
-        weapon: { n:'Lança Glomerular',  rar:'epic',  atk:8, def:3, kno:6, luck:4 },
-        armor:  { n:'Égide Dialítica',   rar:'epic',  atk:2, def:7, kno:3, luck:1 },
-        relic:  { n:'Orbe da Cistatina', rar:'epic',  atk:2, def:2, kno:6, luck:2 }
+        helmet: { n:'Elmo do Filtrador Supremo', rar:'legendary', atk:5, def:5, kno:10, luck:3 },
+        glove:  { n:'Luvas de Látex Reforçadas', rar:'common',    atk:1, def:2, kno:0,  luck:0 },
+        armor:  { n:'Égide Dialítica',           rar:'epic',      atk:2, def:7, kno:3,  luck:1 },
+        weapon: { n:'Lança Glomerular',          rar:'rare',      atk:4, def:1, kno:2,  luck:1 },
+        relic:  { n:'Orbe da Cistatina',         rar:'epic',      atk:2, def:2, kno:6,  luck:2 },
+        boot:   { n:'Botas da Pressão Controlada', rar:'epic',    atk:1, def:6, kno:2,  luck:2 }
       };
       state.heroName = 'Previewer';
 
@@ -537,9 +540,12 @@
       if (typeof updateBossUI === 'function') updateBossUI();
       chestCost = 100;
       state.equipment={
-        weapon:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
+        helmet:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
+        glove:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
         armor:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
-        relic:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0}
+        weapon:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
+        relic:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
+        boot:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0}
       };
       ui.journal.innerHTML='';
       const _q9p = document.getElementById('arquiQ9Popup');
