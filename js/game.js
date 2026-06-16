@@ -306,8 +306,8 @@
     const STATS_KEY = 'nefroquest-stats';
     const MASTERED_KEY = 'nefroquest-mastered';
     // Schema version — incrementar ao adicionar campos obrigatórios ao saveData
-    // Histórico: 1 = original  2 = bossIntroShown + chestsOpened  3 = legendaryAbilityUsed  4 = difficulty + maxLives
-    const SAVE_SCHEMA_VERSION = 4;
+    // Histórico: 1 = original  2 = bossIntroShown + chestsOpened  3 = legendaryAbilityUsed  4 = difficulty + maxLives  5 = relic1 + relic2 double relics  6 = 6-slot diablo grid layout
+    const SAVE_SCHEMA_VERSION = 6;
 
     // ============ FREEMIUM ============
     // Reconhece admin via JWT custom claim (app_metadata.is_admin).
@@ -506,6 +506,53 @@
         save.difficulty = save.difficulty ?? 'normal';
         save.maxLives   = save.maxLives   ?? 3;
         save.schemaVersion = 4;
+      }
+      if (v < 5) {
+        if (save.equipment) {
+          const oldRelic = save.equipment.relic || {n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0};
+          save.equipment.relic1 = oldRelic;
+          save.equipment.relic2 = {n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0};
+          delete save.equipment.relic;
+        }
+        save.schemaVersion = 5;
+      }
+      if (v < 6) {
+        if (save.equipment) {
+          const eq = save.equipment;
+          const emptyItem = {n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0};
+          
+          let helmet = {...emptyItem};
+          let glove = {...emptyItem};
+          let relic = {...emptyItem};
+          let armor = eq.armor ? {...eq.armor} : {...emptyItem};
+          let weapon = eq.weapon ? {...eq.weapon} : {...emptyItem};
+          let boot = {...emptyItem};
+
+          const r1 = eq.relic1 || {...emptyItem};
+          const r2 = eq.relic2 || {...emptyItem};
+
+          if (r1.n === 'Elmo do Filtrador Supremo') {
+            helmet = r1;
+          } else if (r1.n !== 'Vazio') {
+            relic = r1;
+          }
+
+          if (r2.n === 'Elmo do Filtrador Supremo') {
+            helmet = r2;
+          } else if (r2.n !== 'Vazio') {
+            if (relic.n === 'Vazio') {
+              relic = r2;
+            }
+          }
+
+          if (armor.n === 'Luvas de Látex Reforçadas') {
+            glove = armor;
+            armor = {...emptyItem};
+          }
+
+          save.equipment = { helmet, glove, armor, weapon, relic, boot };
+        }
+        save.schemaVersion = 6;
       }
       return save;
     }
@@ -985,6 +1032,29 @@
 
     // Data loaded from data/topics.js
     const items = {
+      helmet:[
+        {n:"Touca Plissada",rar:"common",atk:0,def:1,kno:1,luck:0},
+        {n:"Máscara Tripla",rar:"common",atk:0,def:2,kno:0,luck:1},
+        {n:"Viseira Facial",rar:"common",atk:0,def:1,kno:0,luck:1},
+        {n:"Gorro de CTI",rar:"rare",atk:0,def:3,kno:1,luck:1},
+        {n:"Máscara N95",rar:"epic",atk:0,def:5,kno:2,luck:1},
+        {n:"Elmo do Filtrador Supremo",rar:"legendary",atk:5,def:5,kno:10,luck:3}
+      ],
+      glove:[
+        {n:"Luvas de Látex Reforçadas",rar:"common",atk:1,def:2,kno:0,luck:0},
+        {n:"Luvas Nitrílicas",rar:"common",atk:0,def:1,kno:0,luck:1},
+        {n:"Luva Estéril de Cirurgia",rar:"rare",atk:2,def:2,kno:1,luck:1},
+        {n:"Manopla de Diálise",rar:"epic",atk:3,def:4,kno:2,luck:1},
+        {n:"Manoplas da Homeostase",rar:"legendary",atk:5,def:5,kno:4,luck:3}
+      ],
+      armor:[
+        {n:"Jaleco de Plantão",rar:"common",atk:0,def:2,kno:1,luck:0},
+        {n:"Avental Protetor",rar:"common",atk:0,def:1,kno:1,luck:1},
+        {n:"Manto Renocortical",rar:"rare",atk:1,def:4,kno:2,luck:1},
+        {n:"Égide Dialítica",rar:"epic",atk:2,def:7,kno:3,luck:1},
+        {n:"Armadura Primeva",rar:"legendary",atk:3,def:11,kno:4,luck:2},
+        {n:"Armadura da Homeostase Perfeita",rar:"legendary",atk:4,def:12,kno:5,luck:3}
+      ],
       weapon:[
         {n:"Bisturi de Plantão",rar:"common",atk:1,def:0,kno:1,luck:0},
         {n:"Lâmina da Alça",rar:"common",atk:2,def:0,kno:1,luck:0},
@@ -993,15 +1063,6 @@
         {n:"Espada Nefroprotetora",rar:"epic",atk:7,def:2,kno:3,luck:2},
         {n:"Excalibur do Néfron",rar:"legendary",atk:11,def:3,kno:4,luck:3},
         {n:"Cetro do Néfron Eterno",rar:"legendary",atk:12,def:2,kno:5,luck:4}
-    ],
-      armor:[
-        {n:"Jaleco de Plantão",rar:"common",atk:0,def:2,kno:1,luck:0},
-        {n:"Avental Protetor",rar:"common",atk:0,def:1,kno:1,luck:1},
-        {n:"Luvas de Látex Reforçadas",rar:"common",atk:1,def:2,kno:0,luck:0},
-        {n:"Manto Renocortical",rar:"rare",atk:1,def:4,kno:2,luck:1},
-        {n:"Égide Dialítica",rar:"epic",atk:2,def:7,kno:3,luck:1},
-        {n:"Armadura Primeva",rar:"legendary",atk:3,def:11,kno:4,luck:2},
-        {n:"Armadura da Homeostase Perfeita",rar:"legendary",atk:4,def:12,kno:5,luck:3}
       ],
       relic:[
         {n:"Anel Albuminúrico",rar:"common",atk:0,def:0,kno:2,luck:1},
@@ -1011,8 +1072,14 @@
         {n:"Sigilo KDIGO",rar:"rare",atk:1,def:1,kno:4,luck:1},
         {n:"Orbe da Cistatina",rar:"epic",atk:2,def:2,kno:6,luck:2},
         {n:"Relíquia do Título",rar:"legendary",atk:3,def:3,kno:8,luck:4},
-        {n:"Amuleto do Rim Imortal",rar:"legendary",atk:4,def:4,kno:9,luck:5},
-        {n:"Elmo do Filtrador Supremo",rar:"legendary",atk:5,def:5,kno:10,luck:3}
+        {n:"Amuleto do Rim Imortal",rar:"legendary",atk:4,def:4,kno:9,luck:5}
+      ],
+      boot:[
+        {n:"Propés Descartáveis",rar:"common",atk:0,def:1,kno:0,luck:1},
+        {n:"Galocha de CTI",rar:"common",atk:0,def:2,kno:0,luck:0},
+        {n:"Tamanco Hospitalar",rar:"rare",atk:0,def:3,kno:0,luck:2},
+        {n:"Botas da Pressão Controlada",rar:"epic",atk:1,def:6,kno:2,luck:2},
+        {n:"Botas do Caminho Saudável",rar:"legendary",atk:2,def:9,kno:3,luck:4}
       ]
     };
 
@@ -1136,9 +1203,12 @@
       chestTarget: Math.floor(Math.random() * 3) + 5,
       character: null,
       equipment:{
-        weapon:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
+        helmet:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
+        glove:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
         armor:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
-        relic:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0}
+        weapon:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
+        relic:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
+        boot:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0}
       }
     };
     const state = new Proxy(_stateData, {
@@ -1288,7 +1358,6 @@
       // Armaduras
       'Jaleco de Plantão':             'assets/items/jaleco_plantao.jpg',
       'Avental Protetor':              'assets/images/avental_protetor.png',
-      'Luvas de Látex Reforçadas':     'assets/images/luvas_latex.png',
       'Manto Renocortical':            'assets/images/manto_renocortical.png',
       'Égide Dialítica':               'assets/items/egide_dialitica.jpg',
       'Armadura Primeva':              'assets/items/armadura_primeva.jpg',
@@ -1302,7 +1371,25 @@
       'Orbe da Cistatina':             'assets/items/orbe_cistatina.jpg',
       'Relíquia do Título':            'assets/items/reliquia_titulo.jpg',
       'Amuleto do Rim Imortal':        'assets/images/amuleto_rim.png',
-      'Elmo do Filtrador Supremo':     'assets/images/elmo_filtrador.png'
+      // Capacetes (Elmos / Máscaras)
+      'Touca Plissada':                'assets/images/elmo_filtrador.png',
+      'Máscara Tripla':                'assets/images/elmo_filtrador.png',
+      'Viseira Facial':                'assets/images/elmo_filtrador.png',
+      'Gorro de CTI':                  'assets/images/elmo_filtrador.png',
+      'Máscara N95':                   'assets/images/elmo_filtrador.png',
+      'Elmo do Filtrador Supremo':     'assets/images/elmo_filtrador.png',
+      // Luvas
+      'Luvas de Látex Reforçadas':     'assets/images/luvas_latex.png',
+      'Luvas Nitrílicas':              'assets/images/luvas_latex.png',
+      'Luva Estéril de Cirurgia':      'assets/images/luvas_latex.png',
+      'Manopla de Diálise':            'assets/images/luvas_latex.png',
+      'Manoplas da Homeostase':        'assets/images/luvas_latex.png',
+      // Botas
+      'Propés Descartáveis':           'assets/items/jaleco_plantao.jpg',
+      'Galocha de CTI':                'assets/items/jaleco_plantao.jpg',
+      'Tamanco Hospitalar':            'assets/items/jaleco_plantao.jpg',
+      'Botas da Pressão Controlada':   'assets/items/jaleco_plantao.jpg',
+      'Botas do Caminho Saudável':     'assets/items/jaleco_plantao.jpg'
     };
     const itemDescriptions = {
       "Bisturi de Plantão": "O bisturi básico de todo interno. Com ele, você corta através da confusão clínica e inicia sua jornada na nefrologia.",
@@ -1320,10 +1407,34 @@
       "Anel Albuminúrico": "Detecta a presença de proteinúria no ar. Quanto maior a albuminúria, mais brilha sua gema.",
       "Sigilo KDIGO": "Selo sagrado das diretrizes KDIGO. Concede sabedoria ancestral sobre manejo de doença renal crônica.",
       "Orbe da Cistatina": "Uma esfera cristalina que mede a verdadeira filtração glomerular. Revela segredos ocultos da função renal.",
-      "Relíquia do Título": "O cálice sagrado dos nefrologistas titulados. Concede maestria absoluta sobre todos os mistérios renais."
+      "Relíquia do Título": "O cálice sagrado dos nefrologistas titulados. Concede maestria absoluta sobre todos os mistérios renais.",
+      // Novos itens
+      "Touca Plissada": "Proteção básica para os cabelos, mantendo o campo de batalha livre de contaminação.",
+      "Máscara Tripla": "Filtração bacteriana simples contra gotículas infecciosas e névoas de toxinas.",
+      "Viseira Facial": "Barreira física transparente que protege os olhos e o rosto de respingos biológicos.",
+      "Gorro de CTI": "Gorro confortável e higiênico, usado por médicos em ambientes críticos.",
+      "Máscara N95": "A barreira máxima contra aerossóis. Filtra 95% das partículas e ameaças aéreas.",
+      "Elmo do Filtrador Supremo": "Elmo glorioso que aumenta drasticamente a taxa de filtração de recursos.",
+      "Luvas de Látex Reforçadas": "Luvas flexíveis e aderentes, fornecendo excelente tato e destreza cirúrgica básica.",
+      "Luvas Nitrílicas": "Luvas azuis resistentes e livres de látex, ideais para pacientes com alergias.",
+      "Luva Estéril de Cirurgia": "Garante assepsia absoluta durante os procedimentos nefrológicos mais delicados.",
+      "Manopla de Diálise": "Canaliza os fluxos de purificação diretamente nas mãos do portador.",
+      "Manoplas da Homeostase": "Lendárias manoplas que controlam o equilíbrio de fluidos e eletrólitos com um toque.",
+      "Propés Descartáveis": "Sapatilhas que cobrem os calçados para não levar impurezas ao templo da saúde.",
+      "Galocha de CTI": "Calçado de borracha ultra resistente, impermeável a fluidos corporais e poções.",
+      "Tamanco Hospitalar": "Ergonômico e lavável, ideal para longas caminhadas nas enfermarias.",
+      "Botas da Pressão Controlada": "Equipadas com sensores que mantêm a circulação e o foco ideais sob pressão.",
+      "Botas do Caminho Saudável": "Calçado sagrado que guia o médico e o paciente rumo à reabilitação renal completa."
     };
-    const slotLabels = {weapon:'Arma', armor:'Armadura', relic:'Relíquia'};
-    const defaultIcons = {weapon:'assets/items/caneta_interno.jpg', armor:'assets/items/egide_dialitica.jpg', relic:'assets/items/insignia_plantao.jpg'};
+    const slotLabels = { helmet: 'Capacete', glove: 'Luva', armor: 'Armadura', weapon: 'Arma', relic: 'Relíquia', boot: 'Bota' };
+    const defaultIcons = {
+      helmet: 'assets/images/elmo_filtrador.png',
+      glove: 'assets/images/luvas_latex.png',
+      armor: 'assets/items/egide_dialitica.jpg',
+      weapon: 'assets/items/caneta_interno.jpg',
+      relic: 'assets/items/insignia_plantao.jpg',
+      boot: 'assets/items/jaleco_plantao.jpg'
+    };
 
     const statTips = {
       atk: {icon:'⚔️', name:'Ataque', desc:'Aumenta pontos ganhos por acerto. Quanto maior, mais pontos por questão correta.'},
@@ -1374,7 +1485,7 @@
 
       let equipHtml = '';
       let totalItems = 0;
-      for (const slot of ['weapon','armor','relic']) {
+      for (const slot of ['helmet', 'glove', 'armor', 'weapon', 'relic', 'boot']) {
         let cards = '';
         for (const it of items[slot]) {
           totalItems++;
@@ -1416,62 +1527,81 @@
     function closeAssetGallery() { document.getElementById('assetGalleryModal')?.remove(); }
     window.openAssetGallery = openAssetGallery;
     window.closeAssetGallery = closeAssetGallery;
-    const _ACTIVE_LEGS = new Set(['Excalibur do N\u00e9fron','Armadura Primeva','Amuleto do Rim Imortal','Rel\u00edquia do T\u00edtulo']);
-    const _PASSIVE_LEGS = new Set(['Cetro do N\u00e9fron Eterno','Armadura da Homeostase Perfeita','Elmo do Filtrador Supremo']);
+    const _ACTIVE_LEGS = new Set(['Excalibur do Néfron','Armadura Primeva','Amuleto do Rim Imortal','Relíquia do Título']);
+    const _PASSIVE_LEGS = new Set(['Cetro do Néfron Eterno','Armadura da Homeostase Perfeita','Elmo do Filtrador Supremo']);
     const _LEG_LABELS = {
-      'Excalibur do N\u00e9fron':'\u2694\ufe0f Anula 1 dano',
-      'Armadura Primeva':'\ud83d\udee1\ufe0f Salva \u00faltima vida',
-      'Amuleto do Rim Imortal':'\ud83d\udc9c Revive 1\u00d7',
-      'Rel\u00edquia do T\u00edtulo':'\ud83d\udcd6 Pular 1 quest\u00e3o',
-      'Cetro do N\u00e9fron Eterno':'\ud83d\udcb0 +30 ouro (streak\u22655)',
-      'Armadura da Homeostase Perfeita':'\ud83d\udee1\ufe0f DEF amplificado',
-      'Elmo do Filtrador Supremo':'\u2728 +25% ouro sempre',
+      'Excalibur do Néfron':'⚔️ Anula 1 dano',
+      'Armadura Primeva':'🛡️ Salva última vida',
+      'Amuleto do Rim Imortal':'💜 Revive 1×',
+      'Relíquia do Título':'📖 Pular 1 questão',
+      'Cetro do Néfron Eterno':'💰 +30 ouro (streak≥5)',
+      'Armadura da Homeostase Perfeita':'🛡️ DEF amplificado',
+      'Elmo do Filtrador Supremo':'✨ +25% ouro sempre',
     };
 
     function renderEquip(){
       const st=total();
-      const slotsHTML=Object.entries(state.equipment).map(([k,v])=>{
-        const isEmpty = v.n === 'Vazio';
+      const slotsHTML = ['helmet', 'glove', 'armor', 'weapon', 'relic', 'boot'].map(k => {
+        const v = state.equipment[k];
+        const isEmpty = !v || v.n === 'Vazio';
         const icon = isEmpty ? '' : (itemIcons[v.n] || defaultIcons[k]);
         const desc = isEmpty ? 'Slot vazio. Forje itens para equipar!' : (itemDescriptions[v.n] || '');
-        const isActive = _ACTIVE_LEGS.has(v.n);
-        const isPassive = _PASSIVE_LEGS.has(v.n);
-        const wasUsed = !!(state.legendaryAbilityUsed && state.legendaryAbilityUsed[v.n]);
-        // Mant\u00e9m o brilho lend\u00e1rio mesmo ap\u00f3s usar (n\u00e3o acinzenta o item).
-        const glowCls = (v.rar==='legendary') ? (isPassive ? 'legendary-passive' : (wasUsed ? 'legendary-used' : 'legendary-active')) : '';
-        // Status inline (mesma linha do t\u00edtulo, \u00e0 direita): verde "(utilizar)"
-        // antes de usar, vermelho "(usada)" depois. S\u00f3 para lend\u00e1rias ATIVAS.
+        const isActive = !isEmpty && _ACTIVE_LEGS.has(v.n);
+        const isPassive = !isEmpty && _PASSIVE_LEGS.has(v.n);
+        const wasUsed = !isEmpty && !!(state.legendaryAbilityUsed && state.legendaryAbilityUsed[v.n]);
+        // Mantém o brilho lendário mesmo após usar.
+        const glowCls = (!isEmpty && v.rar==='legendary') ? (isPassive ? 'legendary-passive' : (wasUsed ? 'legendary-used' : 'legendary-active')) : '';
+        
+        // Status inline (mesma linha do título, à direita): verde "(utilizar)"
+        // antes de usar, vermelho "(usada)" depois. Só para lendárias ATIVAS.
         const statusInline = isActive
           ? (wasUsed
               ? `<span class='slot-ability-status used'>(usada)</span>`
               : `<span class='slot-ability-status ready'>(utilizar)</span>`)
           : '';
-        // O que a habilidade faz vai para a legenda (tooltip), abaixo da descri\u00e7\u00e3o.
-        const abilityLabel = (isActive || isPassive) ? (_LEG_LABELS[v.n] || '') : '';
-        const tipDesc = abilityLabel ? (desc ? `${desc} \u2014 ${abilityLabel}` : abilityLabel) : desc;
-        const imgHtml = isEmpty
-          ? `<div class='slot-icon' style='display:flex;align-items:center;justify-content:center;background:rgba(10,15,30,0.8);border:2px dashed var(--blue-dark);color:#3a5a8a;font-size:1.5rem'>?</div>`
-          : `<img class='slot-icon ${glowCls} item-with-tooltip' loading='lazy' src='${icon}' alt="${escapeHtml(v.n)}" data-item-name="${escapeHtml(v.n)}" data-item-desc="${escapeHtml(tipDesc)}"/>`;
-        return `<div class='slot'>
-          ${imgHtml}
-          <div class='slot-info'>
-            <div class='slot-name'><span class='slot-name-text rar-${v.rar}'>${v.n}</span>${statusInline}</div>
-            <div class='slot-stats'>
-              <span class='stat-badge'>⚔️${v.atk}<span class='stat-tip'><strong>${statTips.atk.icon} ${statTips.atk.name}</strong><br>${statTips.atk.desc}</span></span>
-              <span class='stat-badge'>🛡️${v.def}<span class='stat-tip'><strong>${statTips.def.icon} ${statTips.def.name}</strong><br>${statTips.def.desc}</span></span>
-              <span class='stat-badge'>📚${v.kno}<span class='stat-tip'><strong>${statTips.kno.icon} ${statTips.kno.name}</strong><br>${statTips.kno.desc}</span></span>
-              <span class='stat-badge'>🍀${v.luck}<span class='stat-tip'><strong>${statTips.luck.icon} ${statTips.luck.name}</strong><br>${statTips.luck.desc}</span></span>
-            </div>
-          </div>
+        // O que a habilidade faz vai para a legenda (tooltip), abaixo da descrição.
+        const abilityLabel = (!isEmpty && (isActive || isPassive)) ? (_LEG_LABELS[v.n] || '') : '';
+        const tipDesc = abilityLabel ? (desc ? `${desc} — ${abilityLabel}` : abilityLabel) : desc;
+        
+        const slotLabel = slotLabels[k] || k;
+        
+        let slotInnerHtml = '';
+        if (isEmpty) {
+          slotInnerHtml = `
+            <div class="slot-diablo-empty">
+              <span class="slot-diablo-placeholder">?</span>
+              <span class="slot-diablo-tag">${slotLabel}</span>
+            </div>`;
+        } else {
+          const rarityClass = `rar-border-${v.rar}`;
+          slotInnerHtml = `
+            <div class="slot-diablo-filled rar-border-${v.rar} ${glowCls}">
+              <img class="slot-diablo-icon item-with-tooltip" loading="lazy" src="${icon}" alt="${escapeHtml(v.n)}" 
+                data-item-name="${escapeHtml(v.n)}" 
+                data-item-desc="${escapeHtml(tipDesc)}"
+                data-item-atk="${v.atk}"
+                data-item-def="${v.def}"
+                data-item-kno="${v.kno}"
+                data-item-luck="${v.luck}"
+                data-item-rarity="${v.rar}" />
+              <span class="slot-diablo-tag">${slotLabel}</span>
+            </div>`;
+        }
+        
+        const isDouble = (k === 'armor' || k === 'weapon') ? 'double' : 'relic';
+        return `<div class="slot-diablo ${isDouble} ${isEmpty ? 'empty' : 'filled'}" data-slot="${k}">
+          ${slotInnerHtml}
         </div>`;
       }).join('');
+
       const totalHTML = `<strong style='color:var(--gold)'>Atributos Totais:</strong>
         <span class='stat-badge'>⚔️${st.atk}<span class='stat-tip'><strong>${statTips.atk.icon} ${statTips.atk.name}</strong><br>${statTips.atk.desc}</span></span>
         <span class='stat-badge'>🛡️${st.def}<span class='stat-tip'><strong>${statTips.def.icon} ${statTips.def.name}</strong><br>${statTips.def.desc}</span></span>
         <span class='stat-badge'>📚${st.kno}<span class='stat-tip'><strong>${statTips.kno.icon} ${statTips.kno.name}</strong><br>${statTips.kno.desc}</span></span>
         <span class='stat-badge'>🍀${st.luck}<span class='stat-tip'><strong>${statTips.luck.icon} ${statTips.luck.name}</strong><br>${statTips.luck.desc}</span></span>`;
-      // Synergy banner when all 3 slots are legendary
-      const _synergyActive = legendaryCount()===3;
+
+      // Synergy banner when all 6 slots are legendary
+      const _synergyActive = legendaryCount()===6;
       const synergyBanner = _synergyActive
         ? `<div style='text-align:center;margin-top:6px;padding:5px 10px;background:linear-gradient(135deg,rgba(255,215,0,0.15),rgba(255,140,0,0.1));border-radius:8px;border:1px solid rgba(255,215,0,0.5);font-size:0.7rem;color:#ffd700;animation:legendaryPassiveGlow 3s ease-in-out infinite'>✨ Sinergia Lendária — +20% XP</div>`
         : '';
@@ -1480,9 +1610,15 @@
         ? `<div class="equip-stun-overlay">⚡ Equipamentos paralisados pelo veneno urêmico!<br><span style="font-size:0.72rem;opacity:0.8;">Recuperação na questão 98</span></div>`
         : '';
 
-      // Desktop: no final da lista de equipamentos — um único innerHTML= para evitar reflow duplo
-      ui.equipList.innerHTML = stunBanner + slotsHTML + `<div style='text-align:center;margin-top:8px;padding:6px 10px;background:rgba(42,74,122,0.2);border-radius:8px;border:1px solid rgba(42,74,122,0.4);font-size:0.75rem;color:#b0c4e8'>${totalHTML}</div>${synergyBanner}`;
-
+      ui.equipList.innerHTML = stunBanner + `
+        <div class="equip-grid-row">
+          ${slotsHTML}
+        </div>
+        <div class="equip-total-attributes">
+          ${totalHTML}
+        </div>
+        ${synergyBanner}
+      `;
     }
 
     function renderHUD(){
@@ -1945,8 +2081,9 @@
     }
 
     function allItemsMaxed(){
-      // Verifica se todos os 3 slots têm qualquer item legendary equipado
-      return Object.keys(items).every(slot => state.equipment[slot]?.rar === 'legendary');
+      // Verifica se todos os 6 slots têm qualquer item legendary equipado
+      const slots = ['helmet', 'glove', 'armor', 'weapon', 'relic', 'boot'];
+      return slots.every(slot => state.equipment[slot]?.rar === 'legendary');
     }
 
      function _markObtained(name){
@@ -2089,19 +2226,17 @@
     }
 
     function equipOrSell(slot, item, onDone) {
-      // Items always go into their designated slot type
       const currentItem = state.equipment[slot];
       if (!currentItem || currentItem.n === 'Vazio') {
-        // Slot empty — equip directly
         state.equipment[slot] = item;
-        const msg = `⬆️ Equipou **${item.n}** (${item.rar}) no slot ${slotLabels[slot]||slot}.`;
-        if (onDone) onDone(msg); else return msg;
+        const msg = `⬆️ Equipou **${item.n}** (${_rarLabel[item.rar] || item.rar}) no slot ${slotLabels[slot]||slot}.`;
+        if (onDone) onDone(msg);
+        renderHUD(); updateBadges(); saveGame();
         return;
       }
-      // Slot occupied — show comparison popup
+      
       showEquipComparePopup(slot, currentItem, item,
         () => {
-          // Replace: sell old
           const val = _itemSellVal(currentItem);
           state.gold += val;
           state.equipment[slot] = item;
@@ -2110,10 +2245,9 @@
           renderHUD(); updateBadges(); saveGame();
         },
         () => {
-          // Keep old: sell new
           const val = _itemSellVal(item);
           state.gold += val;
-          const msg = `💰 ${item.n} (${item.rar}) vendido por ${val}💰 — ${slotLabels[slot]} atual mantida.`;
+          const msg = `💰 ${item.n} (${_rarLabel[item.rar] || item.rar}) vendido por ${val}💰 — ${slotLabels[slot]} atual mantida.`;
           if (onDone) onDone(msg);
           renderHUD(); updateBadges(); saveGame();
         }
@@ -2214,11 +2348,11 @@
         const baseG=8+state.current.d*3+Math.floor(st.luck/3);
         let g=Math.floor(baseG * sm.mult);
         // Legendary passive: Elmo do Filtrador Supremo +25% gold
-        if(state.equipment?.relic?.n==='Elmo do Filtrador Supremo') g=Math.floor(g*1.25);
+        if(state.equipment?.helmet?.n==='Elmo do Filtrador Supremo') g=Math.floor(g*1.25);
         // Legendary passive: Cetro do Néfron Eterno - streak bonus gold
         if(state.equipment?.weapon?.n==='Cetro do Néfron Eterno' && state.streak>=5) g+=30;
-        // Legendary synergy: all 3 slots legendary = +20% XP
-        const _synergy = legendaryCount()===3;
+        // Legendary synergy: all 6 slots legendary = +20% XP
+        const _synergy = legendaryCount()===6;
         if(_synergy) xp=Math.floor(xp*1.2);
         const baseScore=80+state.current.d*15+state.streak*5+st.atk;
         state.score+=Math.floor(baseScore * sm.mult);
@@ -2439,7 +2573,8 @@
       updateBadges();
       if(state.lives<=0) {
         // Legendary active: Amuleto do Rim Imortal - revive once
-        if(state.equipment?.relic?.n==='Amuleto do Rim Imortal' && !state.legendaryAbilityUsed?.['Amuleto do Rim Imortal']) {
+        const hasAmulet = state.equipment?.relic?.n === 'Amuleto do Rim Imortal';
+        if(hasAmulet && !state.legendaryAbilityUsed?.['Amuleto do Rim Imortal']) {
           state.legendaryAbilityUsed['Amuleto do Rim Imortal'] = true;
           state.lives = 1;
           renderEquip();
@@ -2983,9 +3118,9 @@
       const obtained = Array.isArray(state.obtainedItems) ? state.obtainedItems : [];
       const seen = new Set([...equipped, ...obtained]);
       // Slots que ainda têm algum lendário inédito
-      const freshSlots = Object.keys(state.equipment).filter(slot =>
+      const freshSlots = ['weapon', 'armor', 'relic'].filter(slot =>
         items[slot].some(i => i.rar === 'legendary' && !seen.has(i.n)));
-      const keys = freshSlots.length>0 ? freshSlots : Object.keys(state.equipment);
+      const keys = freshSlots.length>0 ? freshSlots : ['weapon', 'armor', 'relic'];
       const slot=keys[Math.floor(Math.random()*keys.length)];
       let legendaryItems = items[slot].filter(i => i.rar === 'legendary' && !seen.has(i.n));
       if(legendaryItems.length === 0) legendaryItems = items[slot].filter(i => i.rar === 'legendary' && !equipped.includes(i.n));
@@ -3024,7 +3159,7 @@
       localStorage.setItem('unlockedArticles', JSON.stringify(unlockedArticles));
       state.chestsOpened++;
       const knoGain = state.chestsOpened;
-      if(state.equipment.relic) { const r={...state.equipment.relic}; r.kno=(r.kno||0)+knoGain; state.equipment.relic=r; }
+      if(state.equipment.relic && state.equipment.relic.n !== 'Vazio') { const r={...state.equipment.relic}; r.kno=(r.kno||0)+knoGain; state.equipment.relic=r; }
       const chestPoints = 30 + state.chestsOpened * 10;
       state.score += chestPoints;
       showChestModal(randomArticle, knoGain, chestPoints);
@@ -3145,7 +3280,7 @@
       // Conhecimento progressivo: baú N dá +N conhecimento
       state.chestsOpened++;
       const knoGain = state.chestsOpened;
-      if(state.equipment.relic) { const r={...state.equipment.relic}; r.kno=(r.kno||0)+knoGain; state.equipment.relic=r; }
+      if(state.equipment.relic && state.equipment.relic.n !== 'Vazio') { const r={...state.equipment.relic}; r.kno=(r.kno||0)+knoGain; state.equipment.relic=r; }
       
       // Pontos por abrir baú (sem XP para não bagunçar progressão)
       const chestPoints = 30 + state.chestsOpened * 10;
@@ -3311,10 +3446,12 @@
         
         state.chestsOpened++;
         const knoGain = state.chestsOpened;
-        if(state.equipment && state.equipment.relic) { 
-          const r = {...state.equipment.relic}; 
-          r.kno = (r.kno || 0) + knoGain; 
-          state.equipment.relic = r; 
+        if(state.equipment) {
+          if (state.equipment.relic && state.equipment.relic.n !== 'Vazio') {
+            const r = {...state.equipment.relic};
+            r.kno = (r.kno || 0) + knoGain;
+            state.equipment.relic = r;
+          }
         }
         
         const chestPoints = 30 + state.chestsOpened * 10;

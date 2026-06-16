@@ -12882,4 +12882,298 @@ body.arqui-nefromante-final #oraculoBtn:not(.hidden) {
   }
 }
 
+/* ===================================================================
+   DIABLO INVENTORY GRID & SLOTS (FLEX/GRID)
+   =================================================================== */
+.equip-grid-row {
+  display: grid !important;
+  grid-template-columns: repeat(4, 66px) !important;
+  grid-template-rows: 66px 66px !important;
+  gap: 8px !important;
+  margin: 14px auto !important;
+  justify-content: center !important;
+  align-content: start !important;
+  width: 100% !important;
+  max-width: 290px !important;
+}
 
+.slot-diablo {
+  width: 66px !important;
+  position: relative !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+  transition: border-color 0.25s, box-shadow 0.25s !important;
+}
+
+.slot-diablo.filled {
+  background: rgba(8, 12, 24, 0.85) !important;
+  border: 1px solid rgba(42, 74, 122, 0.45) !important;
+}
+
+.slot-diablo.empty {
+  background: radial-gradient(ellipse at center, rgba(18, 28, 52, 0.85) 0%, rgba(10, 14, 26, 0.9) 100%) !important;
+  border: 1px dashed rgba(42, 74, 122, 0.55) !important;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(42, 74, 122, 0.08) !important;
+}
+
+.slot-diablo[data-slot="helmet"] {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  height: 66px !important;
+}
+
+.slot-diablo[data-slot="glove"] {
+  grid-column: 1 !important;
+  grid-row: 2 !important;
+  height: 66px !important;
+}
+
+.slot-diablo[data-slot="armor"] {
+  grid-column: 2 !important;
+  grid-row: 1 / span 2 !important;
+  height: 140px !important; /* 66 * 2 + 8 = 140px */
+}
+
+.slot-diablo[data-slot="weapon"] {
+  grid-column: 3 !important;
+  grid-row: 1 / span 2 !important;
+  height: 140px !important; /* 66 * 2 + 8 = 140px */
+}
+
+.slot-diablo[data-slot="relic"] {
+  grid-column: 4 !important;
+  grid-row: 1 !important;
+  height: 66px !important;
+}
+
+.slot-diablo[data-slot="boot"] {
+  grid-column: 4 !important;
+  grid-row: 2 !important;
+  height: 66px !important;
+}
+
+.slot-diablo.filled:hover {
+  border-color: rgba(240, 192, 64, 0.65) !important;
+  box-shadow: 0 0 10px rgba(240, 192, 64, 0.2) !important;
+}
+
+.slot-diablo.empty:hover {
+  border-color: rgba(96, 165, 250, 0.5) !important;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5), 0 0 8px rgba(96, 165, 250, 0.15) !important;
+}
+
+/* Empty Slot State */
+.slot-diablo-empty {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 100% !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+}
+
+.slot-diablo-placeholder {
+  font-family: 'Cinzel', serif !important;
+  font-size: 1.4rem !important;
+  font-weight: 500 !important;
+  color: rgba(96, 165, 250, 0.25) !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+  margin-bottom: 2px !important;
+  user-select: none !important;
+}
+
+.slot-diablo-tag {
+  font-size: 0.48rem !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 600 !important;
+  color: rgba(138, 156, 192, 0.45) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  text-align: center !important;
+  position: absolute !important;
+  bottom: 6px !important;
+  left: 0 !important;
+  right: 0 !important;
+  user-select: none !important;
+  pointer-events: none !important;
+}
+
+/* Filled Slot State */
+.slot-diablo-filled {
+  height: 100% !important;
+  width: 100% !important;
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.slot-diablo-icon {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  border-radius: 7px !important;
+  filter: saturate(1.25) contrast(1.05) !important;
+}
+
+/* Rarity Borders */
+.slot-diablo-filled.rar-border-common {
+  border: 2px solid rgba(148, 163, 184, 0.5) !important;
+}
+.slot-diablo-filled.rar-border-rare {
+  border: 2px solid var(--blue) !important;
+  box-shadow: inset 0 0 12px rgba(56, 189, 248, 0.25) !important;
+}
+.slot-diablo-filled.rar-border-epic {
+  border: 2px solid var(--purple) !important;
+  box-shadow: inset 0 0 12px rgba(192, 132, 252, 0.25) !important;
+}
+.slot-diablo-filled.rar-border-legendary {
+  border: 2px solid var(--gold) !important;
+  box-shadow: inset 0 0 15px rgba(255, 215, 0, 0.35) !important;
+  animation: slotLegendaryGlow 2.5s infinite alternate !important;
+}
+
+@keyframes slotLegendaryGlow {
+  0% { box-shadow: inset 0 0 8px rgba(255, 215, 0, 0.2), 0 0 4px rgba(255, 215, 0, 0.1); }
+  100% { box-shadow: inset 0 0 18px rgba(255, 215, 0, 0.45), 0 0 8px rgba(255, 215, 0, 0.25); }
+}
+
+/* Total attributes styling */
+.equip-total-attributes {
+  text-align: center !important;
+  margin-top: 8px !important;
+  padding: 6px 10px !important;
+  background: rgba(42, 74, 122, 0.18) !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(42, 74, 122, 0.35) !important;
+  font-size: 0.75rem !important;
+  color: #b0c4e8 !important;
+}
+
+/* Stun and Paralysis overlay for Diablo slots */
+body.boss-stun-active #equipList .slot-diablo {
+  opacity: 0.35 !important;
+  filter: grayscale(80%) brightness(0.5) !important;
+  pointer-events: none !important;
+}
+
+/* ===================================================================
+   RICH TOOLTIP STYLING
+   =================================================================== */
+.item-tooltip.rich-active {
+  background: linear-gradient(135deg, #0a0f1d, #140d24) !important;
+  border: 2px solid var(--gold) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.95), 0 0 15px rgba(255, 215, 0, 0.15) !important;
+  max-width: 310px !important;
+  padding: 14px 16px !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+}
+
+.rt-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 12px !important;
+  gap: 10px !important;
+}
+
+.rt-name {
+  font-family: 'Cinzel', serif !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+}
+
+.rt-rarity-badge {
+  font-size: 0.62rem !important;
+  font-weight: bold !important;
+  letter-spacing: 0.05em !important;
+  padding: 2px 8px !important;
+  border-radius: 10px !important;
+  text-transform: uppercase !important;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Rarity Badge Backgrounds */
+.rar-bg-common { background: rgba(148, 163, 184, 0.25) !important; color: #cbd5e1 !important; border: 1px solid rgba(148, 163, 184, 0.4) !important; }
+.rar-bg-rare { background: rgba(56, 189, 248, 0.25) !important; color: #38bdf8 !important; border: 1px solid rgba(56, 189, 248, 0.4) !important; }
+.rar-bg-epic { background: rgba(192, 132, 252, 0.25) !important; color: #c084fc !important; border: 1px solid rgba(192, 132, 252, 0.4) !important; }
+.rar-bg-legendary { background: rgba(255, 215, 0, 0.2) !important; color: #ffd700 !important; border: 1px solid rgba(255, 215, 0, 0.45) !important; box-shadow: 0 0 5px rgba(255, 215, 0, 0.2) !important; }
+
+.rt-stats-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 6px 12px !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  padding: 8px 10px !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(255, 255, 255, 0.04) !important;
+  margin-bottom: 10px !important;
+}
+
+.rt-stat-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 2px 0 !important;
+}
+
+.rt-stat-label {
+  color: #8a9cc0 !important;
+  font-size: 0.72rem !important;
+  font-weight: 500 !important;
+}
+
+.rt-stat-value {
+  color: #e2e8f0 !important;
+  font-weight: 700 !important;
+  font-size: 0.76rem !important;
+}
+
+.rt-divider {
+  height: 1px !important;
+  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.35), transparent) !important;
+  margin: 10px 0 !important;
+}
+
+.rt-desc {
+  color: #cbd5e1 !important;
+  font-size: 0.75rem !important;
+  line-height: 1.45 !important;
+  font-style: italic !important;
+  text-align: left !important;
+}
+
+@media (max-width: 768px) {
+  .equip-grid-row {
+    grid-template-columns: repeat(4, 58px) !important;
+    grid-template-rows: 58px 58px !important;
+    gap: 6px !important;
+  }
+  .slot-diablo {
+    width: 58px !important;
+  }
+  .slot-diablo[data-slot="helmet"],
+  .slot-diablo[data-slot="glove"],
+  .slot-diablo[data-slot="relic"],
+  .slot-diablo[data-slot="boot"] {
+    height: 58px !important;
+  }
+  .slot-diablo[data-slot="armor"],
+  .slot-diablo[data-slot="weapon"] {
+    height: 122px !important; /* 58 * 2 + 6 = 122px */
+  }
+  .slot-diablo-placeholder {
+    font-size: 1.3rem !important;
+  }
+  .slot-diablo-tag {
+    font-size: 0.46rem !important;
+    bottom: 2px !important;
+  }
+}

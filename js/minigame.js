@@ -490,9 +490,12 @@
       Object.assign(state,{level:1,xp:0,xpToNext:200,score:0,lives:3,maxLives:3,streak:0,gold:0,difficulty:"normal",legendaryAbilityUsed:{},current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,gameOver:false,gameStarted:false,extraLifeGiven:false,gameCompleted:false,completedGame:false,chestsOpened:0});
       state.character=null;
       state.equipment={
-        weapon:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
+        helmet:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
+        glove:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
         armor:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
-        relic:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0}
+        weapon:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
+        relic:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
+        boot:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0}
       };
       ui.journal.innerHTML='';
       log('📖 Clique em NOVO JOGO para iniciar sua jornada!');

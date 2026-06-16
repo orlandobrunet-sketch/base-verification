@@ -473,10 +473,60 @@
         }
         const name = item.getAttribute('data-item-name');
         const desc = item.getAttribute('data-item-desc');
-        itemTooltip.innerHTML = `<strong>${escapeHtml(name)}</strong>${escapeHtml(desc)}`;
+        const atk = item.getAttribute('data-item-atk');
+        const def = item.getAttribute('data-item-def');
+        const kno = item.getAttribute('data-item-kno');
+        const luck = item.getAttribute('data-item-luck');
+        const rarity = item.getAttribute('data-item-rarity');
+        
+        if (atk !== null && def !== null && kno !== null && luck !== null && rarity !== null) {
+          // Tooltip de Item RPG Rico
+          itemTooltip.className = 'item-tooltip rich-active';
+          const rarityLabels = {
+            common: 'Comum',
+            rare: 'Raro',
+            epic: 'Épico',
+            legendary: 'Lendário'
+          };
+          const label = rarityLabels[rarity] || rarity.toUpperCase();
+          itemTooltip.innerHTML = `
+            <div class="rt-header">
+              <span class="rt-name rar-${rarity}">${escapeHtml(name)}</span>
+              <span class="rt-rarity-badge rar-bg-${rarity}">${escapeHtml(label)}</span>
+            </div>
+            <div class="rt-stats-grid">
+              <div class="rt-stat-row">
+                <span class="rt-stat-label">⚔️ ATK</span>
+                <span class="rt-stat-value">${atk}</span>
+              </div>
+              <div class="rt-stat-row">
+                <span class="rt-stat-label">🛡️ DEF</span>
+                <span class="rt-stat-value">${def}</span>
+              </div>
+              <div class="rt-stat-row">
+                <span class="rt-stat-label">📚 CONH</span>
+                <span class="rt-stat-value">${kno}</span>
+              </div>
+              <div class="rt-stat-row">
+                <span class="rt-stat-label">🍀 SORTE</span>
+                <span class="rt-stat-value">${luck}</span>
+              </div>
+            </div>
+            <div class="rt-divider"></div>
+            <div class="rt-desc">${escapeHtml(desc)}</div>
+          `;
+        } else {
+          // Fallback para outros tooltips sem stats completos
+          itemTooltip.className = 'item-tooltip';
+          itemTooltip.innerHTML = `<strong>${escapeHtml(name)}</strong>${escapeHtml(desc)}`;
+        }
+        
         itemTooltip.style.display = 'block';
-        const x = Math.min(e.clientX + 15, window.innerWidth - 290);
-        const y = Math.max(10, e.clientY - 60);
+        const x = Math.min(e.clientX + 15, window.innerWidth - 330);
+        let y = e.clientY - (itemTooltip.offsetHeight || 155) - 10;
+        if (y < 10) {
+          y = e.clientY + 20;
+        }
         itemTooltip.style.left = x + 'px';
         itemTooltip.style.top = y + 'px';
       } else if(itemTooltip){
