@@ -486,7 +486,8 @@
             common: 'Comum',
             rare: 'Raro',
             epic: 'Épico',
-            legendary: 'Lendário'
+            legendary: 'Lendário',
+            mythic: 'Mítico'
           };
           const label = rarityLabels[rarity] || rarity.toUpperCase();
           itemTooltip.innerHTML = `

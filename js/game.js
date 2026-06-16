@@ -1072,7 +1072,8 @@
         {n:"Sigilo KDIGO",rar:"rare",atk:1,def:1,kno:4,luck:1},
         {n:"Orbe da Cistatina",rar:"epic",atk:2,def:2,kno:6,luck:2},
         {n:"Relíquia do Título",rar:"legendary",atk:3,def:3,kno:8,luck:4},
-        {n:"Amuleto do Rim Imortal",rar:"legendary",atk:4,def:4,kno:9,luck:5}
+        {n:"Amuleto do Rim Imortal",rar:"legendary",atk:4,def:4,kno:9,luck:5},
+        {n:"Ressurreição Plena",rar:"mythic",atk:3,def:3,kno:7,luck:4}
       ],
       boot:[
         {n:"Propés Descartáveis",rar:"common",atk:0,def:1,kno:0,luck:1},
@@ -1564,7 +1565,7 @@
     function closeAssetGallery() { document.getElementById('assetGalleryModal')?.remove(); }
     window.openAssetGallery = openAssetGallery;
     window.closeAssetGallery = closeAssetGallery;
-    const _ACTIVE_LEGS = new Set(['Excalibur do Néfron','Armadura Primeva','Amuleto do Rim Imortal','Relíquia do Título']);
+    const _ACTIVE_LEGS = new Set(['Excalibur do Néfron','Armadura Primeva','Amuleto do Rim Imortal','Relíquia do Título','Máscara N95','Ressurreição Plena']);
     const _PASSIVE_LEGS = new Set(['Cetro do Néfron Eterno','Armadura da Homeostase Perfeita','Elmo do Filtrador Supremo']);
     const _LEG_LABELS = {
       'Excalibur do Néfron':'⚔️ Anula 1 dano',
@@ -1574,6 +1575,8 @@
       'Cetro do Néfron Eterno':'💰 +30 ouro (streak≥5)',
       'Armadura da Homeostase Perfeita':'🛡️ DEF amplificado',
       'Elmo do Filtrador Supremo':'✨ +25% ouro sempre',
+      'Máscara N95':'🧪 1º erro não tira vida',
+      'Ressurreição Plena':'👑 Revive com vida cheia',
     };
 
     function renderEquip(){
@@ -2176,7 +2179,7 @@
     }
 
     const _rarSellVal = {common:20,uncommon:40,rare:80,epic:150,legendary:300};
-    const _rarLabel = {common:'Comum',uncommon:'Incomum',rare:'Raro',epic:'Épico',legendary:'Lendário'};
+    const _rarLabel = {common:'Comum',uncommon:'Incomum',rare:'Raro',epic:'Épico',legendary:'Lendário',mythic:'Mítico'};
     function _itemSellVal(it){ return _rarSellVal[it.rar]||20; }
 
     function showEquipComparePopup(slot, oldItem, newItem, onReplace, onKeep) {
@@ -2530,6 +2533,13 @@
           legendaryBlockMsg = '🛡️ Armadura Primeva salvou sua última vida! (1× por jogo)';
           renderEquip();
         }
+        // Epic active: Máscara N95 (Segunda Chance — 1º erro não tira vida)
+        if(!blocked && state.equipment?.helmet?.n==='Máscara N95' && !state.legendaryAbilityUsed?.['Máscara N95']) {
+          state.legendaryAbilityUsed['Máscara N95'] = true;
+          blocked = true;
+          legendaryBlockMsg = '🧪 Máscara N95: Segunda Chance — seu 1º erro não tirou vida! (1× por jogo)';
+          renderEquip();
+        }
         if(!blocked) state.lives--;
         state.score=Math.max(0,state.score-(28-Math.min(20,st.def)));
 
@@ -2611,6 +2621,19 @@
       renderHUD();
       updateBadges();
       if(state.lives<=0) {
+        // Mythic active: Ressurreição Plena - revive com VIDA CHEIA (prioridade sobre o Amuleto)
+        const hasMythicRevive = state.equipment?.relic?.n === 'Ressurreição Plena';
+        if(hasMythicRevive && !state.legendaryAbilityUsed?.['Ressurreição Plena']) {
+          state.legendaryAbilityUsed['Ressurreição Plena'] = true;
+          state.lives = state.maxLives || 3;
+          renderEquip();
+          const mrev = document.createElement('div');
+          mrev.style.cssText='position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9990;background:linear-gradient(135deg,#1a1a2a,#3a3050);border:2px solid #fff;border-radius:16px;padding:24px 28px;text-align:center;animation:scaleIn 0.4s;box-shadow:0 0 60px rgba(255,255,255,0.4);';
+          mrev.innerHTML='<div style="font-size:2rem;margin-bottom:8px">👑</div><div style="color:#fff;font-family:Cinzel,serif;font-size:1rem;margin-bottom:6px">Ressurreição Plena</div><div style="color:#e8e8f0;font-size:0.82rem">Você renasceu com VIDA CHEIA!<br><span style="color:#94a3b8;font-size:0.72rem">(1× por jogo)</span></div>';
+          document.body.appendChild(mrev);
+          setTimeout(()=>mrev.remove(), 3000);
+          renderHUD(); saveGame(); return;
+        }
         // Legendary active: Amuleto do Rim Imortal - revive once
         const hasAmulet = state.equipment?.relic?.n === 'Amuleto do Rim Imortal';
         if(hasAmulet && !state.legendaryAbilityUsed?.['Amuleto do Rim Imortal']) {
