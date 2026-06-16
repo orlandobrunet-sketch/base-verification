@@ -1435,6 +1435,12 @@
       relic: 'assets/items/insignia_plantao.jpg',
       boot: 'assets/items/jaleco_plantao.jpg'
     };
+    // Ícones TEMPORÁRIOS (emoji) para capacete/luva/bota sem arte própria —
+    // evita imagem repetida/inadequada (ex.: bota usando a imagem do jaleco)
+    // enquanto as imagens reais não são criadas. Mantém a arte só nos itens
+    // cujo nome casa com a imagem existente. Ver ROADMAP "Arte de Equipamentos".
+    const _TEMP_SLOT_EMOJI = { helmet: '⛑️', glove: '🧤', boot: '🥾' };
+    const _ITEMS_KEEP_ART = new Set(['Elmo do Filtrador Supremo', 'Luvas de Látex Reforçadas']);
 
     const statTips = {
       atk: {icon:'⚔️', name:'Ataque', desc:'Aumenta pontos ganhos por acerto. Quanto maior, mais pontos por questão correta.'},
@@ -1573,17 +1579,14 @@
               <span class="slot-diablo-tag">${slotLabel}</span>
             </div>`;
         } else {
-          const rarityClass = `rar-border-${v.rar}`;
+          const _iconData = `data-item-name="${escapeHtml(v.n)}" data-item-desc="${escapeHtml(tipDesc)}" data-item-atk="${v.atk}" data-item-def="${v.def}" data-item-kno="${v.kno}" data-item-luck="${v.luck}" data-item-rarity="${v.rar}"`;
+          const _useTemp = _TEMP_SLOT_EMOJI[k] && !_ITEMS_KEEP_ART.has(v.n);
+          const _iconEl = _useTemp
+            ? `<div class="slot-diablo-icon slot-temp-emoji item-with-tooltip" ${_iconData}>${_TEMP_SLOT_EMOJI[k]}</div>`
+            : `<img class="slot-diablo-icon item-with-tooltip" loading="lazy" src="${icon}" alt="${escapeHtml(v.n)}" ${_iconData} />`;
           slotInnerHtml = `
             <div class="slot-diablo-filled rar-border-${v.rar} ${glowCls}">
-              <img class="slot-diablo-icon item-with-tooltip" loading="lazy" src="${icon}" alt="${escapeHtml(v.n)}" 
-                data-item-name="${escapeHtml(v.n)}" 
-                data-item-desc="${escapeHtml(tipDesc)}"
-                data-item-atk="${v.atk}"
-                data-item-def="${v.def}"
-                data-item-kno="${v.kno}"
-                data-item-luck="${v.luck}"
-                data-item-rarity="${v.rar}" />
+              ${_iconEl}
               <span class="slot-diablo-tag">${slotLabel}</span>
             </div>`;
         }
