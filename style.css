@@ -889,6 +889,13 @@
       box-shadow: 0 0 15px rgba(251,113,133,0.3);
     }
     .option.wrong::before { background: var(--bad); }
+    /* 🎯 Filtro Glomerular (50/50) — alternativa eliminada automaticamente */
+    .option.opt-eliminated {
+      opacity: 0.32 !important;
+      pointer-events: none !important;
+      filter: grayscale(0.6) !important;
+    }
+    .option.opt-eliminated .opt-body { text-decoration: line-through; }
 
     /* FEEDBACK */
     .feedback {
