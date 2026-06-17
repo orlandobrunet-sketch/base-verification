@@ -149,7 +149,7 @@
     // ============ SISTEMA DE VIDA EXTRA ============
     function checkExtraLife() {
       // Ganha vida extra a cada 5 níveis (5, 10, 15, 20...)
-      if (state.level % 5 === 0 && state.lives < (state.maxLives || 3) && !state.extraLifeGiven) {
+      if (state.level % 5 === 0 && state.lives < effectiveMaxLives() && !state.extraLifeGiven) {
         state.lives++;
         state.extraLifeGiven = true;
         showExtraLifeModal();
@@ -1566,7 +1566,18 @@
     window.openAssetGallery = openAssetGallery;
     window.closeAssetGallery = closeAssetGallery;
     const _ACTIVE_LEGS = new Set(['Excalibur do Néfron','Armadura Primeva','Amuleto do Rim Imortal','Relíquia do Título','Máscara N95','Ressurreição Plena','Espada Nefroprotetora','Orbe da Cistatina']);
-    const _PASSIVE_LEGS = new Set(['Cetro do Néfron Eterno','Armadura da Homeostase Perfeita','Elmo do Filtrador Supremo']);
+    const _PASSIVE_LEGS = new Set(['Cetro do Néfron Eterno','Armadura da Homeostase Perfeita','Elmo do Filtrador Supremo','Égide Dialítica']);
+    // PR C — itens com bônus passivo de +1 vida máxima. effectiveMaxLives() =
+    // base (state.maxLives) + bônus do equipamento; usado só na exibição/limite
+    // (NÃO no save/load, que guardam a base).
+    const _LIFE_BONUS_ITEMS = new Set(['Égide Dialítica']);
+    function _equipLifeBonus() {
+      const eq = state.equipment || {};
+      let bonus = 0;
+      for (const slot in eq) { if (eq[slot] && _LIFE_BONUS_ITEMS.has(eq[slot].n)) bonus++; }
+      return bonus;
+    }
+    function effectiveMaxLives() { return (state.maxLives || 3) + _equipLifeBonus(); }
     const _LEG_LABELS = {
       'Excalibur do Néfron':'⚔️ Anula 1 dano',
       'Armadura Primeva':'🛡️ Salva última vida',
@@ -1579,6 +1590,7 @@
       'Ressurreição Plena':'👑 Revive com vida cheia',
       'Espada Nefroprotetora':'🎯 50/50 em 1 difícil',
       'Orbe da Cistatina':'🔮 Dica do Oráculo (1 difícil)',
+      'Égide Dialítica':'❤️ +1 vida máxima',
     };
 
     function renderEquip(){
@@ -1688,7 +1700,7 @@
       ui.storyTitle.textContent=chapter.title;
       ui.storyGoal.textContent=`Objetivo: ${chapter.goal}`;
       ui.level.textContent=state.level; ui.score.textContent=state.score;
-      const _ml=state.maxLives||3;
+      const _ml=effectiveMaxLives();
       const _livesHtml='<span style="color:#ef4444">❤</span>'.repeat(Math.max(0,state.lives))+'<span style="color:#555">♡</span>'.repeat(Math.max(0,_ml-Math.max(0,state.lives)));
       if(ui.lives.innerHTML!==_livesHtml) ui.lives.innerHTML=_livesHtml;
       ui.record.textContent=best(); ui.gold.textContent=state.gold;
@@ -1730,7 +1742,7 @@
       if(msbStreakEl) msbStreakEl.textContent = state.streak;
       if(msbLivesEl) {
         const lives = Math.max(0, state.lives);
-        const maxLives = state.maxLives || 3;
+        const maxLives = effectiveMaxLives();
         const msbHtml = '<span style="color:#ef4444">❤</span>'.repeat(Math.min(lives, maxLives)) +
           '<span style="color:#555">♡</span>'.repeat(Math.max(0, maxLives - lives));
         if(msbLivesEl.innerHTML !== msbHtml) msbLivesEl.innerHTML = msbHtml;
@@ -2662,7 +2674,7 @@
         const hasMythicRevive = state.equipment?.relic?.n === 'Ressurreição Plena';
         if(hasMythicRevive && !state.legendaryAbilityUsed?.['Ressurreição Plena']) {
           state.legendaryAbilityUsed['Ressurreição Plena'] = true;
-          state.lives = state.maxLives || 3;
+          state.lives = effectiveMaxLives();
           renderEquip();
           const mrev = document.createElement('div');
           mrev.style.cssText='position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9990;background:linear-gradient(135deg,#1a1a2a,#3a3050);border:2px solid #fff;border-radius:16px;padding:24px 28px;text-align:center;animation:scaleIn 0.4s;box-shadow:0 0 60px rgba(255,255,255,0.4);';
