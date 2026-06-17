@@ -1565,7 +1565,7 @@
     function closeAssetGallery() { document.getElementById('assetGalleryModal')?.remove(); }
     window.openAssetGallery = openAssetGallery;
     window.closeAssetGallery = closeAssetGallery;
-    const _ACTIVE_LEGS = new Set(['Excalibur do Néfron','Armadura Primeva','Amuleto do Rim Imortal','Relíquia do Título','Máscara N95','Ressurreição Plena']);
+    const _ACTIVE_LEGS = new Set(['Excalibur do Néfron','Armadura Primeva','Amuleto do Rim Imortal','Relíquia do Título','Máscara N95','Ressurreição Plena','Espada Nefroprotetora','Orbe da Cistatina']);
     const _PASSIVE_LEGS = new Set(['Cetro do Néfron Eterno','Armadura da Homeostase Perfeita','Elmo do Filtrador Supremo']);
     const _LEG_LABELS = {
       'Excalibur do Néfron':'⚔️ Anula 1 dano',
@@ -1577,6 +1577,8 @@
       'Elmo do Filtrador Supremo':'✨ +25% ouro sempre',
       'Máscara N95':'🧪 1º erro não tira vida',
       'Ressurreição Plena':'👑 Revive com vida cheia',
+      'Espada Nefroprotetora':'🎯 50/50 em 1 difícil',
+      'Orbe da Cistatina':'🔮 Dica do Oráculo (1 difícil)',
     };
 
     function renderEquip(){
@@ -1900,6 +1902,40 @@
       });
     }
 
+    // Lifelines de itens ÉPICOS (uso único/jogo), disparados automaticamente
+    // na 1ª questão DIFÍCIL em que o item estiver equipado. Sem botão extra —
+    // o efeito acontece sozinho e o jogo flui.
+    function _applyEpicLifelines(q) {
+      if (!q || q._d !== 'hard') return;
+      // 🎯 Filtro Glomerular (50/50) — Espada Nefroprotetora (épica): elimina 2 erradas
+      if (state.equipment?.weapon?.n === 'Espada Nefroprotetora' && !state.legendaryAbilityUsed?.['Espada Nefroprotetora']) {
+        const wrong = [];
+        (q.o || []).forEach((_, i) => { if (i !== q.a) wrong.push(i); });
+        let removed = 0;
+        while (removed < 2 && wrong.length) {
+          const idx = wrong.splice(Math.floor(Math.random() * wrong.length), 1)[0];
+          const btn = ui.options.querySelector(`.option[data-idx="${idx}"]`);
+          if (btn) { btn.disabled = true; btn.classList.add('opt-eliminated'); removed++; }
+        }
+        if (removed > 0) {
+          state.legendaryAbilityUsed['Espada Nefroprotetora'] = true;
+          renderEquip();
+          if (typeof _toast === 'function') _toast('🎯 Filtro Glomerular: 2 alternativas erradas eliminadas! (1× por jogo)', 'success', 4000);
+        }
+      }
+      // 🔮 Visão do Oráculo — Orbe da Cistatina (épica): revela uma pista antes de responder
+      if (state.equipment?.relic?.n === 'Orbe da Cistatina' && !state.legendaryAbilityUsed?.['Orbe da Cistatina']) {
+        const hint = (typeof _firstSentence === 'function') ? _firstSentence(q.e || '', 160) : (q.e || '').slice(0, 160);
+        if (hint) {
+          ui.feedback.className = 'feedback';
+          ui.feedback.innerHTML = `<strong style="color:#c084fc;">🔮 Visão do Oráculo:</strong> ${escapeHtml(hint)}`;
+          state.legendaryAbilityUsed['Orbe da Cistatina'] = true;
+          renderEquip();
+          if (typeof _toast === 'function') _toast('🔮 Visão do Oráculo revelou uma pista! (1× por jogo)', 'success', 4000);
+        }
+      }
+    }
+
     function _updateSkipButton() {
       const existing = document.getElementById('skipQuestionBtn');
       const hasRelic = state.equipment?.relic?.n === 'Relíquia do Título';
@@ -1951,6 +1987,7 @@
       ui.bonusBtn.classList.add('hidden');
       if (ui.oraculoBtn) ui.oraculoBtn.classList.add('hidden');
       _renderOptions(q);
+      _applyEpicLifelines(q);
       _updateSkipButton();
       updateBossUI();
       applyBossOptionBadges();
