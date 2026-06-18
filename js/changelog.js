@@ -478,6 +478,7 @@
         const kno = item.getAttribute('data-item-kno');
         const luck = item.getAttribute('data-item-luck');
         const rarity = item.getAttribute('data-item-rarity');
+        const slotLabel = item.getAttribute('data-slot-label');
         
         if (atk !== null && def !== null && kno !== null && luck !== null && rarity !== null) {
           // Tooltip de Item RPG Rico
@@ -491,6 +492,7 @@
           };
           const label = rarityLabels[rarity] || rarity.toUpperCase();
           itemTooltip.innerHTML = `
+            ${slotLabel ? `<div class="rt-slot-label">${escapeHtml(slotLabel)}</div>` : ''}
             <div class="rt-header">
               <span class="rt-name rar-${rarity}">${escapeHtml(name)}</span>
               <span class="rt-rarity-badge rar-bg-${rarity}">${escapeHtml(label)}</span>
@@ -519,7 +521,10 @@
         } else {
           // Fallback para outros tooltips sem stats completos
           itemTooltip.className = 'item-tooltip';
-          itemTooltip.innerHTML = `<strong>${escapeHtml(name)}</strong>${escapeHtml(desc)}`;
+          itemTooltip.innerHTML = `
+            ${slotLabel ? `<div class="rt-slot-label">${escapeHtml(slotLabel)}</div>` : ''}
+            <strong>${escapeHtml(name)}</strong>${escapeHtml(desc)}
+          `;
         }
         
         itemTooltip.style.display = 'block';

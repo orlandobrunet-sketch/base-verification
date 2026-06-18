@@ -265,7 +265,7 @@
       Object.entries(heroData).forEach(([key, info]) => {
         const isSelected = (key === selChar);
         const lvToUse = isSelected ? lv : Math.min(lv, 5);
-        const src = `assets/classes/${info.folder}/nivel_${String(lvToUse).padStart(2, '0')}.${info.ext}`;
+        const src = `assets/classes/${info.folder}/nivel_${String(lvToUse).padStart(2, '0')}.${info.ext}?v=11.98`;
 
         const partyEl  = document.getElementById(info.party);
         const battleEl = document.getElementById(info.battle);
