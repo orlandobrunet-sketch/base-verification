@@ -944,7 +944,7 @@
         if (charData) {
           const ext = save.character === 'glomerulus' ? 'png' : 'jpg';
           const lvNum = Math.min(10, Math.max(1, save.level || 1));
-          document.getElementById('wsSavedAvatar').src = `assets/classes/${charData.folder}/nivel_${String(lvNum).padStart(2,'0')}.${ext}`;
+          document.getElementById('wsSavedAvatar').src = `assets/classes/${charData.folder}/nivel_${String(lvNum).padStart(2,'0')}.${ext}?v=11.98`;
           document.getElementById('wsSavedAvatar').alt = charName;
         }
         if (savedInfoEl) {
@@ -1294,7 +1294,7 @@
       const char = characters[charId];
       const evolutionLevel = Math.min(10, Math.max(1, state.level));
       const ext = charId === 'glomerulus' ? 'png' : 'jpg';
-      const charImg = `assets/classes/${char.folder}/nivel_${evolutionLevel.toString().padStart(2,'0')}.${ext}`;
+      const charImg = `assets/classes/${char.folder}/nivel_${evolutionLevel.toString().padStart(2,'0')}.${ext}?v=11.98`;
       
       // Subtítulo ÚNICO por nível (índice = nível; índice 0 não usado).
       // O rank (data[0]) continua por faixa; o subtítulo muda a cada nível.
@@ -1445,32 +1445,32 @@
     // Equipamento inicial PADRÃO, ESPECÍFICO POR PERSONAGEM: os slots começam
     // visualmente "equipados" com gear gasto temático da classe (em vez do "?"),
     // com tooltip só do nome. Logicamente o slot continua vazio — a 1ª forja
-    // substitui sem popup ("vai trocando"). Sem efeito em stats. Imagens reais
-    // (emoji é placeholder): ver ROADMAP "Arte de Equipamentos".
+    // substitui sem popup ("vai trocando"). Sem efeito em stats.
+    // Propriedade 'img': caminho para arte real; 'e': emoji fallback.
     const STARTER_SETS = {
       glomerulus: { // Cientista Renal — guerreiro/cirurgião
-        helmet: { n: 'Touca Cirúrgica Manchada', e: '⛑️' },
-        glove:  { n: 'Luvas Ensanguentadas',     e: '🧤' },
-        armor:  { n: 'Jaleco Sujo de Sangue',    e: '🥼' },
-        weapon: { n: 'Bisturi Cego',             e: '🔪' },
-        relic:  { n: 'Crachá de Residente',      e: '📛' },
-        boot:   { n: 'Sapatos de Plantão Gastos', e: '🥾' },
+        helmet: { n: 'Óculos de Proteção Simples', e: '👓', img: 'assets/items/starter/glom_helmet.png' },
+        glove:  { n: 'Luvas de Látex Estéreis',    e: '🧤', img: 'assets/items/starter/glom_glove.png' },
+        armor:  { n: 'Jaleco de Estudante',        e: '🥼', img: 'assets/items/starter/glom_armor.png' },
+        weapon: { n: 'Bisturi de Luz Descalibrado', e: '🔪', img: 'assets/items/starter/glom_weapon.png' },
+        relic:  { n: 'Crachá de Estudante',        e: '📛', img: 'assets/items/starter/glom_relic.png' },
+        boot:   { n: 'Tênis de Plantão Confortável', e: '👟', img: 'assets/items/starter/glom_boot.png' },
       },
       aquaria: { // Mestra das Águas — maga metabólica (feminina)
-        helmet: { n: 'Tiara de Linho Úmida',     e: '💧' },
-        glove:  { n: 'Luvas de Seda Puídas',     e: '🧤' },
-        armor:  { n: 'Túnica Encharcada',        e: '🧥' },
-        weapon: { n: 'Pipeta Trincada',          e: '🧪' },
-        relic:  { n: 'Frasco de Essência Vazio', e: '🔮' },
-        boot:   { n: 'Sandálias Surradas',       e: '👡' },
+        helmet: { n: 'Tiara de Linho Úmida',     e: '💧', img: 'assets/items/starter/aqua_helmet.png' },
+        glove:  { n: 'Luvas de Seda Puídas',     e: '🧤', img: 'assets/items/starter/aqua_glove.png' },
+        armor:  { n: 'Túnica Encharcada',        e: '🧥', img: 'assets/items/starter/aqua_armor.png' },
+        weapon: { n: 'Cetro de Fluxo Simples',   e: '🪄', img: 'assets/items/starter/aqua_weapon.png' },
+        relic:  { n: 'Frasco de Essência Vazio', e: '🔮', img: 'assets/items/starter/aqua_relic.png' },
+        boot:   { n: 'Sandálias Surradas',       e: '👡', img: 'assets/items/starter/aqua_boot.png' },
       },
       nephros: { // Guardião dos Néfrons — clérigo/erudito
-        helmet: { n: 'Capuz Puído',              e: '🧢' },
-        glove:  { n: 'Luvas de Lã Furadas',      e: '🧤' },
-        armor:  { n: 'Batina Surrada',           e: '🥋' },
-        weapon: { n: 'Martelo de Reflexo Gasto', e: '🔨' },
-        relic:  { n: 'Terço de Contas',          e: '📿' },
-        boot:   { n: 'Sandálias de Couro Gastas', e: '🥾' },
+        helmet: { n: 'Capuz Puído',              e: '🧢', img: 'assets/items/starter/neph_helmet.png' },
+        glove:  { n: 'Luvas de Lã Furadas',      e: '🧤', img: 'assets/items/starter/neph_glove.png' },
+        armor:  { n: 'Manto de Noviço',          e: '🥋', img: 'assets/items/starter/neph_armor.png' },
+        weapon: { n: 'Martelo de Reflexo Gasto', e: '🔨', img: 'assets/items/starter/neph_weapon.png' },
+        relic:  { n: 'Manuscrito de Noviço',     e: '📜', img: 'assets/items/starter/neph_relic.png' },
+        boot:   { n: 'Sandálias de Couro Gastas', e: '🥾', img: 'assets/items/starter/neph_boot.png' },
       },
     };
 
@@ -1622,17 +1622,22 @@
         let slotInnerHtml = '';
         if (isEmpty) {
           // Item inicial gasto (visual) temático da classe — tooltip só do nome.
-          const _set = STARTER_SETS[state.character?.id] || STARTER_SETS.glomerulus;
+          const _charId = state.character || (state.selectedCharacter) || 'glomerulus';
+          const _set = STARTER_SETS[_charId] || STARTER_SETS.glomerulus;
           const _starter = _set[k] || { n: slotLabel, e: '?' };
           const _sName = _starter.n;
           const _sEmoji = _starter.e;
+          const _sImg = _starter.img;
+          // Usa imagem real se disponível, senão emoji fallback
+          const _starterIcon = _sImg
+            ? `<img class="slot-diablo-icon slot-starter-icon item-with-tooltip" loading="lazy" src="${_sImg}?v=11.98" alt="${escapeHtml(_sName)}" data-item-name="${escapeHtml(_sName)}" data-item-desc="" data-slot-label="${escapeHtml(slotLabel)}" onerror="this.outerHTML='<div class=\'slot-diablo-icon slot-temp-emoji slot-starter-icon item-with-tooltip\' data-item-name=\''+this.alt+'\' data-item-desc=\'\' data-slot-label=\'${escapeHtml(slotLabel)}\'>${_sEmoji}</div>'" />`
+            : `<div class="slot-diablo-icon slot-temp-emoji slot-starter-icon item-with-tooltip" data-item-name="${escapeHtml(_sName)}" data-item-desc="" data-slot-label="${escapeHtml(slotLabel)}">${_sEmoji}</div>`;
           slotInnerHtml = `
             <div class="slot-diablo-filled slot-starter">
-              <div class="slot-diablo-icon slot-temp-emoji slot-starter-icon item-with-tooltip" data-item-name="${escapeHtml(_sName)}" data-item-desc="">${_sEmoji}</div>
-              <span class="slot-diablo-tag">${slotLabel}</span>
+              ${_starterIcon}
             </div>`;
         } else {
-          const _iconData = `data-item-name="${escapeHtml(v.n)}" data-item-desc="${escapeHtml(tipDesc)}" data-item-atk="${v.atk}" data-item-def="${v.def}" data-item-kno="${v.kno}" data-item-luck="${v.luck}" data-item-rarity="${v.rar}"`;
+          const _iconData = `data-item-name="${escapeHtml(v.n)}" data-item-desc="${escapeHtml(tipDesc)}" data-item-atk="${v.atk}" data-item-def="${v.def}" data-item-kno="${v.kno}" data-item-luck="${v.luck}" data-item-rarity="${v.rar}" data-slot-label="${escapeHtml(slotLabel)}"`;
           const _useTemp = _TEMP_SLOT_EMOJI[k] && !_ITEMS_KEEP_ART.has(v.n);
           const _iconEl = _useTemp
             ? `<div class="slot-diablo-icon slot-temp-emoji item-with-tooltip" ${_iconData}>${_TEMP_SLOT_EMOJI[k]}</div>`
@@ -1640,7 +1645,6 @@
           slotInnerHtml = `
             <div class="slot-diablo-filled rar-border-${v.rar} ${glowCls}">
               ${_iconEl}
-              <span class="slot-diablo-tag">${slotLabel}</span>
             </div>`;
         }
         
