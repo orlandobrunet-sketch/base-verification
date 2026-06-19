@@ -1349,20 +1349,20 @@
 
     const itemIcons = {
       // Armas
-      'Bisturi de Plantão':            'assets/images/bisturi_plantao.png',
-      'Lâmina da Alça':                'assets/items/lamina_alca.jpg',
-      'Estilete Tubular':              'assets/images/estilete_tubular.png',
-      'Lança Glomerular':              'assets/items/lanca_glomerular.jpg',
-      'Espada Nefroprotetora':         'assets/images/espada_nefroprotetora.png',
-      'Excalibur do Néfron':           'assets/items/excalibur_nefron.jpg',
-      'Cetro do Néfron Eterno':        'assets/images/cetro_nefron.png',
+      'Bisturi de Plantão':            'assets/items/bisturi_plantao.png',
+      'Lâmina da Alça':                'assets/items/lamina_alca.png',
+      'Estilete Tubular':              'assets/items/estilete_tubular.png',
+      'Lança Glomerular':              'assets/items/lanca_glomerular.png',
+      'Espada Nefroprotetora':         'assets/items/espada_nefroprotetora.png',
+      'Excalibur do Néfron':           'assets/items/excalibur_nefron.png',
+      'Cetro do Néfron Eterno':        'assets/items/cetro_nefron.png',
       // Armaduras
-      'Jaleco de Plantão':             'assets/items/jaleco_plantao.jpg',
-      'Avental Protetor':              'assets/images/avental_protetor.png',
-      'Manto Renocortical':            'assets/images/manto_renocortical.png',
-      'Égide Dialítica':               'assets/items/egide_dialitica.jpg',
-      'Armadura Primeva':              'assets/items/armadura_primeva.jpg',
-      'Armadura da Homeostase Perfeita':'assets/items/armadura_homeostase_perfeita.jpg',
+      'Jaleco de Plantão':             'assets/items/jaleco_plantao.png',
+      'Avental Protetor':              'assets/items/avental_protetor.png',
+      'Manto Renocortical':            'assets/items/manto_renocortical.png',
+      'Égide Dialítica':               'assets/items/egide_dialitica.png',
+      'Armadura Primeva':              'assets/items/armadura_primeva.png',
+      'Armadura da Homeostase Perfeita':'assets/items/armadura_homeostase_perfeita.png',
       // Relíquias
       'Anel Albuminúrico':             'assets/items/anel_albuminurico.jpg',
       'Estetoscópio Básico':           'assets/images/estetoscopio_basico.png',
@@ -1436,6 +1436,19 @@
       relic: 'assets/items/insignia_plantao.jpg',
       boot: 'assets/items/jaleco_plantao.jpg'
     };
+
+    function getItemIcon(itemName, slotName) {
+      if (!itemName || itemName === 'Vazio') return '';
+      let icon = itemIcons[itemName] || defaultIcons[slotName] || '';
+      if (slotName === 'armor' && icon) {
+        const _charId = state.character || (state.selectedCharacter) || 'glomerulus';
+        if (_charId === 'aquaria') {
+          // Resolve a versão feminina da armadura substituindo a extensão
+          icon = icon.replace(/\.(png|jpg|jpeg)$/, '_female.$1');
+        }
+      }
+      return icon;
+    }
     // Ícones TEMPORÁRIOS (emoji) para capacete/luva/bota sem arte própria —
     // evita imagem repetida/inadequada (ex.: bota usando a imagem do jaleco)
     // enquanto as imagens reais não são criadas. Mantém a arte só nos itens
@@ -1527,7 +1540,7 @@
         let cards = '';
         for (const it of items[slot]) {
           totalItems++;
-          const path = itemIcons[it.n] || defaultIcons[slot];
+          const path = getItemIcon(it.n, slot);
           const r = rarMap[it.rar] || rarMap.common;
           const desc = itemDescriptions[it.n] || '<span class="ag-nodesc">(sem descrição)</span>';
           const hasIcon = !!itemIcons[it.n];
@@ -1598,7 +1611,7 @@
       const slotsHTML = ['helmet', 'glove', 'armor', 'weapon', 'relic', 'boot'].map(k => {
         const v = state.equipment[k];
         const isEmpty = !v || v.n === 'Vazio';
-        const icon = isEmpty ? '' : (itemIcons[v.n] || defaultIcons[k]);
+        const icon = isEmpty ? '' : getItemIcon(v.n, k);
         const desc = isEmpty ? 'Slot vazio. Forje itens para equipar!' : (itemDescriptions[v.n] || '');
         const isActive = !isEmpty && _ACTIVE_LEGS.has(v.n);
         const isPassive = !isEmpty && _PASSIVE_LEGS.has(v.n);
@@ -2246,7 +2259,7 @@
           </div>
           <div class="ecp-slot-body">
             <div class="ecp-img-wrapper">
-              <img src="${itemIcons[el.n]||def}" onerror="this.src='${def}'" alt="${el.n}">
+              <img src="${getItemIcon(el.n, slot)}" onerror="this.src='${def}'" alt="${el.n}">
             </div>
             <div class="ecp-stats">
               <div class="ecp-stat-row">
@@ -2277,7 +2290,7 @@
           </div>
           <div class="ecp-slot-body">
             <div class="ecp-img-wrapper">
-              <img src="${itemIcons[el.n]||def}" onerror="this.src='${def}'" alt="${el.n}">
+              <img src="${getItemIcon(el.n, slot)}" onerror="this.src='${def}'" alt="${el.n}">
             </div>
             <div class="ecp-stats">
               ${['atk','def','kno','luck'].map(s => {
@@ -3288,7 +3301,7 @@
     }
 
     function showForgePopup(item, slot, gains, title = '🔨 Forja Concluída!'){
-      const icon = itemIcons[item.n] || defaultIcons[slot];
+      const icon = getItemIcon(item.n, slot);
       const desc = itemDescriptions[item.n] || '';
       const rarLabels = {common:'Comum', uncommon:'Incomum', rare:'Raro', epic:'Épico', legendary:'Lendário'};
       const popup = document.createElement('div');
