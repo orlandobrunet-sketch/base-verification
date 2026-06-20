@@ -1364,33 +1364,33 @@
       'Armadura Primeva':              'assets/items/armadura_primeva.png',
       'Armadura da Homeostase Perfeita':'assets/items/armadura_homeostase_perfeita.png',
       // Relíquias
-      'Anel Albuminúrico':             'assets/items/anel_albuminurico.jpg',
-      'Estetoscópio Básico':           'assets/images/estetoscopio_basico.png',
-      'Prancheta Clínica':             'assets/images/prancheta_clinica.png',
-      'Termômetro Digital':            'assets/images/termometro_digital.png',
-      'Sigilo KDIGO':                  'assets/items/sigilo_kdigo.jpg',
-      'Orbe da Cistatina':             'assets/items/orbe_cistatina.jpg',
-      'Relíquia do Título':            'assets/items/reliquia_titulo.jpg',
-      'Amuleto do Rim Imortal':        'assets/images/amuleto_rim.png',
+      'Anel Albuminúrico':             'assets/items/anel_albuminurico.png',
+      'Estetoscópio Básico':           'assets/items/estetoscopio_basico.png',
+      'Prancheta Clínica':             'assets/items/prancheta_clinica.png',
+      'Termômetro Digital':            'assets/items/termometro_digital.png',
+      'Sigilo KDIGO':                  'assets/items/sigilo_kdigo.png',
+      'Orbe da Cistatina':             'assets/items/orbe_cistatina.png',
+      'Relíquia do Título':            'assets/items/reliquia_titulo.png',
+      'Amuleto do Rim Imortal':        'assets/items/amuleto_rim.png',
       // Capacetes (Elmos / Máscaras)
-      'Touca Plissada':                'assets/images/elmo_filtrador.png',
-      'Máscara Tripla':                'assets/images/elmo_filtrador.png',
-      'Viseira Facial':                'assets/images/elmo_filtrador.png',
-      'Gorro de CTI':                  'assets/images/elmo_filtrador.png',
-      'Máscara N95':                   'assets/images/elmo_filtrador.png',
-      'Elmo do Filtrador Supremo':     'assets/images/elmo_filtrador.png',
+      'Touca Plissada':                'assets/items/touca_plissada.png',
+      'Máscara Tripla':                'assets/items/mascara_tripla.png',
+      'Viseira Facial':                'assets/items/viseira_facial.png',
+      'Gorro de CTI':                  'assets/items/gorro_cti.png',
+      'Máscara N95':                   'assets/items/mascara_n95.png',
+      'Elmo do Filtrador Supremo':     'assets/items/elmo_filtrador_supremo.png',
       // Luvas
-      'Luvas de Látex Reforçadas':     'assets/images/luvas_latex.png',
-      'Luvas Nitrílicas':              'assets/images/luvas_latex.png',
-      'Luva Estéril de Cirurgia':      'assets/images/luvas_latex.png',
-      'Manopla de Diálise':            'assets/images/luvas_latex.png',
-      'Manoplas da Homeostase':        'assets/images/luvas_latex.png',
+      'Luvas de Látex Reforçadas':     'assets/items/luvas_latex_reforcadas.png',
+      'Luvas Nitrílicas':              'assets/items/luvas_nitrilicas.png',
+      'Luva Estéril de Cirurgia':      'assets/items/luva_esteril_cirurgia.png',
+      'Manopla de Diálise':            'assets/items/manopla_dialise.png',
+      'Manoplas da Homeostase':        'assets/items/manopla_homeostase.png',
       // Botas
-      'Propés Descartáveis':           'assets/items/jaleco_plantao.jpg',
-      'Galocha de CTI':                'assets/items/jaleco_plantao.jpg',
-      'Tamanco Hospitalar':            'assets/items/jaleco_plantao.jpg',
-      'Botas da Pressão Controlada':   'assets/items/jaleco_plantao.jpg',
-      'Botas do Caminho Saudável':     'assets/items/jaleco_plantao.jpg'
+      'Propés Descartáveis':           'assets/items/propes_descartaveis.png',
+      'Galocha de CTI':                'assets/items/galocha_cti.png',
+      'Tamanco Hospitalar':            'assets/items/tamanco_hospitalar.png',
+      'Botas da Pressão Controlada':   'assets/items/botas_pressao_controlada.png',
+      'Botas do Caminho Saudável':     'assets/items/botas_caminho_saudavel.png'
     };
     const itemDescriptions = {
       "Bisturi de Plantão": "O bisturi básico de todo interno. Com ele, você corta através da confusão clínica e inicia sua jornada na nefrologia.",
@@ -1540,17 +1540,42 @@
         let cards = '';
         for (const it of items[slot]) {
           totalItems++;
-          const path = getItemIcon(it.n, slot);
+          const path = itemIcons[it.n] || defaultIcons[slot] || '';
           const r = rarMap[it.rar] || rarMap.common;
           const desc = itemDescriptions[it.n] || '<span class="ag-nodesc">(sem descrição)</span>';
           const hasIcon = !!itemIcons[it.n];
-          cards += `<div class="ag-card" style="border-color:${r.border};">${_imgTag(path, it.n)}
+
+          let imgHtml = '';
+          let pathHtml = '';
+          if (slot === 'armor' && path) {
+            const femalePath = path.replace(/\.(png|jpg|jpeg)$/, '_female.$1');
+            imgHtml = `
+              <div class="ag-armor-imgs-container" style="display:flex; border-bottom:1px solid rgba(255,255,255,0.06);">
+                <div style="flex:1; position:relative; border-right:1px solid rgba(255,255,255,0.06);">
+                  ${_imgTag(path, it.n)}
+                  <span style="position:absolute; bottom:2px; left:4px; font-size:9px; background:rgba(0,0,0,0.6); padding:1px 3px; border-radius:2px; color:#94a3b8;">Masc</span>
+                </div>
+                <div style="flex:1; position:relative;">
+                  ${_imgTag(femalePath, it.n + ' (Feminina)')}
+                  <span style="position:absolute; bottom:2px; left:4px; font-size:9px; background:rgba(0,0,0,0.6); padding:1px 3px; border-radius:2px; color:#c084fc;">Fem</span>
+                </div>
+              </div>`;
+            pathHtml = `
+              <div class="ag-path">Masc: ${path}${hasIcon ? '' : ' <span class="ag-nodesc">(padrão)</span>'}</div>
+              <div class="ag-path" style="margin-top:2px; border-top:none; padding-top:0;">Fem: ${femalePath}${hasIcon ? '' : ' <span class="ag-nodesc">(padrão)</span>'}</div>`;
+          } else {
+            const displayPath = getItemIcon(it.n, slot);
+            imgHtml = _imgTag(displayPath, it.n);
+            pathHtml = `<div class="ag-path">${displayPath}${hasIcon ? '' : ' <span class="ag-nodesc">(ícone padrão)</span>'}</div>`;
+          }
+
+          cards += `<div class="ag-card" style="border-color:${r.border};">${imgHtml}
             <div class="ag-card-body">
               <div class="ag-card-title">${it.n}</div>
               <span class="ag-rar" style="color:${r.color};background:${r.bg};border-color:${r.border};">${r.label}</span>
               <div class="ag-stats">⚔️ ${it.atk} · 🛡️ ${it.def} · 📚 ${it.kno} · 🍀 ${it.luck}</div>
               <div class="ag-desc">${desc}</div>
-              <div class="ag-path">${path}${hasIcon ? '' : ' <span class="ag-nodesc">(ícone padrão)</span>'}</div>
+              ${pathHtml}
             </div></div>`;
         }
         equipHtml += `<div class="ag-section">
