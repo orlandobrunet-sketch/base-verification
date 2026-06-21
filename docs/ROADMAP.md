@@ -737,85 +737,9 @@ Abordagem: **CSS-first** (sem dependência de imagens externas) com substituiç�
 
 ---
 
-## Arte de Equipamentos — criar 1 imagem por item (Gemini / Antigravity)
+## Arte de Equipamentos — ✅ CONCLUÍDO (Antigravity/Gemini, jun/2026)
 
-> Plano para o usuário gerar as imagens dos itens, uma a uma, no Gemini. Enquanto não existem, capacete/luva/bota usam **ícone emoji temporário** (⛑️ 🧤 🥾) no jogo. Arma/Armadura/Relíquia **já têm arte**.
-
-**Especificação técnica:**
-- **Quadrado 1:1** (exportar 256×256) → Capacete, Luva, Relíquia, Bota
-- **Retrato 1:2** (exportar 256×512) → Armadura, Arma (slots altos no grid Diablo)
-- Estilo: **ícone de OBJETO** (item solto, sem corpo), fundo escuro, paleta dourada medieval, brilho/ornamento crescente por raridade (comum→cinza, raro→azul, épico→roxo, lendário→dourado, mítico→branco-iridescente)
-- `object-fit: cover` → centralizar o objeto, deixar margem
-- **Gênero:** armaduras ganham **variante feminina** (Maga Metabólica); demais itens unissex, menos masculinizados
-
-### Capacete (prioridade — sem arte)
-| Item | Raridade | Descrição p/ geração |
-|---|---|---|
-| Touca Plissada | comum | Touca cirúrgica plissada azul-clara, simples |
-| Máscara Tripla | comum | Máscara cirúrgica de tripla camada, alças, verde-água |
-| Viseira Facial | comum | Face shield transparente com armação, reflexo sutil |
-| Gorro de CTI | raro | Gorro hospitalar estampado, borda azul brilhante |
-| Máscara N95 | épico | Respirador N95 robusto, contornos marcados, brilho roxo |
-| Elmo do Filtrador Supremo | lendário | Elmo dourado ornamentado (capacete medieval + filtro renal), runas, aura dourada *(já tem arte — refazer no padrão se quiser)* |
-
-### Luva (prioridade — sem arte)
-| Item | Raridade | Descrição |
-|---|---|---|
-| Luvas de Látex Reforçadas | comum | Par de luvas de látex azuis reforçadas *(já tem arte)* |
-| Luvas Nitrílicas | comum | Luvas nitrílicas roxas, punho largo |
-| Luva Estéril de Cirurgia | raro | Luva estéril branca, embalagem aberta, borda azul |
-| Manopla de Diálise | épico | Manopla robusta com tubos de diálise integrados, brilho roxo |
-| Manoplas da Homeostase | lendário | Manoplas douradas com cristais de equilíbrio, aura lendária |
-
-### Bota (prioridade — sem arte; hoje usa imagem ERRADA de jaleco)
-| Item | Raridade | Descrição |
-|---|---|---|
-| Propés Descartáveis | comum | Par de propés/sapatilhas descartáveis azuis |
-| Galocha de CTI | comum | Galochas hospitalares brancas simples |
-| Tamanco Hospitalar | raro | Tamancos clínicos (clogs) brancos, detalhe azul |
-| Botas da Pressão Controlada | épico | Botas técnicas com manômetro/medidor de pressão, brilho roxo |
-| Botas do Caminho Saudável | lendário | Botas douradas radiantes com trilha de luz, aura lendária |
-
-### Mítico (novo — item mais raro do jogo)
-| Item | Raridade | Descrição |
-|---|---|---|
-| Ressurreição Plena (relíquia) | **mítico** | Coração/rim cristalino pulsante envolto em luz branca-dourada celestial; aura mítica única (branco-iridescente); efeito: revive com vida cheia |
-
-### Equipamento inicial (starter — ESPECÍFICO POR PERSONAGEM; exibido "equipado" desde o início; hoje emoji)
-> Cada classe começa com um set gasto temático (tooltip só do nome). A 1ª forja substitui sem popup. Imagem estilo "desgastado/básico" (quadrado p/ capacete/luva/relíquia/bota; retrato p/ armadura/arma).
-
-**Dr. Glomerulus — Cientista Renal (guerreiro/cirurgião)**
-| Item | Slot | Descrição p/ geração |
-|---|---|---|
-| Touca Cirúrgica Manchada | capacete | Touca cirúrgica com respingos, desgastada |
-| Luvas Ensanguentadas | luva | Luvas cirúrgicas com manchas de sangue secas |
-| Jaleco Sujo de Sangue | armadura | Jaleco surrado com manchas de sangue, rasgos |
-| Bisturi Cego | arma | Bisturi velho, lâmina sem fio, cabo gasto |
-| Crachá de Residente | relíquia | Crachá hospitalar amassado, foto desbotada |
-| Sapatos de Plantão Gastos | bota | Sapatos clínicos surrados, sola gasta |
-
-**Dra. Aquaria — Mestra das Águas (maga metabólica, feminina)**
-| Item | Slot | Descrição p/ geração |
-|---|---|---|
-| Tiara de Linho Úmida | capacete | Tiara/faixa de linho úmida, tons aquáticos |
-| Luvas de Seda Puídas | luva | Luvas de seda finas, gastas nas pontas |
-| Túnica Encharcada | armadura | Túnica/manto feminino encharcado, azul-esverdeado |
-| Pipeta Trincada | arma | Pipeta/cajado alquímico trincado, gotas |
-| Frasco de Essência Vazio | relíquia | Frasco de vidro vazio com resíduo brilhante |
-| Sandálias Surradas | bota | Sandálias femininas surradas |
-
-**Dr. Nephros — Guardião dos Néfrons (clérigo/erudito)**
-| Item | Slot | Descrição p/ geração |
-|---|---|---|
-| Capuz Puído | capacete | Capuz de tecido puído, sóbrio |
-| Luvas de Lã Furadas | luva | Luvas de lã com furos, simples |
-| Batina Surrada | armadura | Batina/manto clerical surrado |
-| Martelo de Reflexo Gasto | arma | Martelo de reflexo (neuro) gasto, usado como báculo |
-| Terço de Contas | relíquia | Terço de contas de oração desgastado |
-| Sandálias de Couro Gastas | bota | Sandálias de couro gastas |
-
-### Já com arte (revisar consistência só se quiser)
-Armaduras (Jaleco, Avental Protetor, Manto Renocortical, Égide Dialítica, Armadura Primeva, Armadura da Homeostase Perfeita); Armas (Bisturi, Lâmina da Alça, Estilete Tubular, Lança Glomerular, Espada Nefroprotetora, Excalibur do Néfron, Cetro do Néfron Eterno); Relíquias (Anel Albuminúrico, Estetoscópio Básico, Prancheta Clínica, Termômetro Digital, Sigilo KDIGO, Orbe da Cistatina, Relíquia do Título, Amuleto do Rim Imortal).
+> Toda a arte de equipamentos foi gerada e integrada (v11.98–v12.01): 18 itens iniciais específicos por personagem, todos os itens adquiríveis (6 slots × raridades), variantes femininas de armadura para a Aquaria, e os 30 portraits de nível redesenhados. Fundo #0a0e1a removido via flood-fill (scratch/clean_image.py). Slots altos (armadura/arma) exibem com object-fit: contain para imagens quadradas (v12.01).
 
 ---
 
