@@ -13030,6 +13030,14 @@ body.arqui-nefromante-final #oraculoBtn:not(.hidden) {
   filter: saturate(1.25) contrast(1.05) !important;
 }
 
+/* Armadura e Arma ocupam slots ALTOS (66×140), mas as imagens são quadradas
+   (1024×1024). Com 'cover' as laterais seriam cortadas — 'contain' mostra a
+   peça inteira; como o PNG é transparente, a sobra do slot funde com o fundo. */
+.slot-diablo[data-slot="armor"] .slot-diablo-icon,
+.slot-diablo[data-slot="weapon"] .slot-diablo-icon {
+  object-fit: contain !important;
+}
+
 /* Ícone emoji TEMPORÁRIO (itens sem arte própria — ver ROADMAP) */
 .slot-diablo-icon.slot-temp-emoji {
   display: flex !important;
