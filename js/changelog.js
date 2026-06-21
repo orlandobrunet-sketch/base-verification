@@ -404,7 +404,7 @@
 
     resetGame();
     initWelcomeScreen();
-    setTimeout(_checkStudyReminder, 3000);
+    setTimeout(() => window._checkStudyReminder?.(), 3000);
 
     // Botão de preview só visível para desenvolvimento (?dev=1)
     const _urlParams = new URLSearchParams(window.location.search);
