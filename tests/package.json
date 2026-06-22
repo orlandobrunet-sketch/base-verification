@@ -7,9 +7,15 @@
     "test:headed": "playwright test --headed",
     "test:ui": "playwright test --ui",
     "test:report": "playwright show-report",
+    "test:a11y": "playwright test specs/11-accessibility.spec.ts",
+    "test:lighthouse": "cross-env LIGHTHOUSE=1 playwright test --project=chromium specs/12-performance.spec.ts",
     "setup:e2e": "playwright install --with-deps chromium"
   },
   "devDependencies": {
-    "@playwright/test": "^1.43.0"
+    "@axe-core/playwright": "^4.11.3",
+    "@playwright/test": "^1.43.0",
+    "cross-env": "^10.1.0",
+    "lighthouse": "^13.4.0",
+    "playwright-lighthouse": "^4.0.0"
   }
 }

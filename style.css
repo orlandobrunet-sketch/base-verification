@@ -2886,13 +2886,18 @@
       padding: 8px 0 4px;
       font-size: 0.72rem;
       color: var(--txt-dim);
-      opacity: 0.7;
+      /* sem opacity: 0.7 — misturava o texto com o fundo e derrubava o
+         contraste para ~3.9:1 (WCAG AA exige 4.5:1 p/ texto pequeno).
+         --txt-dim/--gold cheios passam folgado (~7:1 / ~12:1). */
     }
     .game-footer a {
-      color: var(--gold); text-decoration: none; opacity: 0.7;
+      /* underline (não só cor) — satisfaz axe link-in-text-block: o link
+         dourado vs o texto cinza ao redor tem só 1.97:1, abaixo do 3:1 exigido
+         quando a distinção é apenas cromática. */
+      color: var(--gold); text-decoration: underline;
       transition: opacity 0.2s;
     }
-    .game-footer a:hover { opacity: 1; }
+    .game-footer a:hover { opacity: 0.8; }
 
     /* SCROLLBAR */
     ::-webkit-scrollbar { width: 6px; }
