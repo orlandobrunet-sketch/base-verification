@@ -1,10 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { injectGameState, waitForGame, answerAndAdvance , isLiveEnv } from '../helpers/game';
+import { injectGameState, waitForGame, enterGame, answerAndAdvance } from '../helpers/game';
 
 test.describe('Progressão e salvamento', () => {
-  test.beforeEach(async () => {
-    if (!isLiveEnv) test.skip();
-  });
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
     await injectGameState(page, { score: 1000, level: 3 });
@@ -23,7 +20,7 @@ test.describe('Progressão e salvamento', () => {
     });
 
     expect(save).not.toBeNull();
-    expect(save.schemaVersion).toBe(2);
+    expect(save.schemaVersion).toBeGreaterThanOrEqual(2);
     expect(save.character).toBeTruthy();
     expect(typeof save.score).toBe('number');
     expect(typeof save.level).toBe('number');
@@ -47,7 +44,7 @@ test.describe('Progressão e salvamento', () => {
     );
 
     await page.reload();
-    await waitForGame(page);
+    await enterGame(page);
 
     const scoreAfter = await page.evaluate(() =>
       JSON.parse(localStorage.getItem('nefroquest-save') || '{}').score

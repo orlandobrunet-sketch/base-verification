@@ -70,8 +70,6 @@ test.describe('Dashboard, Core Skills & Layout Reset E2E Tests', () => {
   });
 
   test('clicking Treinar Ponto Fraco starts study mode with worst skill categories', async ({ page }) => {
-    if (!isLiveEnv) test.skip();
-
     // Inject game state to bypass landing screen and load game screen
     await injectGameState(page);
     await waitForGame(page);

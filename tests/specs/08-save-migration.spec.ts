@@ -1,10 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { isLiveEnv } from '../helpers/game';
+import { enterGame } from '../helpers/game';
 
 test.describe('Save schema — migração e resiliência', () => {
-  test.beforeEach(async () => {
-    if (!isLiveEnv) test.skip();
-  });
   test('save v1 (sem schemaVersion) é migrado para v2 sem perder dados', async ({ page }) => {
     await page.goto('/');
 
@@ -21,7 +18,7 @@ test.describe('Save schema — migração e resiliência', () => {
         bonusUses: 1,
         correctTotal: 35,
         narrativeShown: 10,
-        character: 'mago',
+        character: 'glomerulus',
         equipment: [null, null, null],
         idx: 0,
         queueIds: [],
@@ -35,9 +32,10 @@ test.describe('Save schema — migração e resiliência', () => {
 
     await page.reload();
     await page.waitForLoadState('domcontentloaded');
-
-    // O app deve ter chamado _migrateSave e salvo novamente
-    await page.waitForTimeout(1000);
+    // Entra no jogo: continueGame → restoreGame dispara o auto-save (Proxy),
+    // persistindo o save migrado (schemaVersion atual) no localStorage.
+    await enterGame(page);
+    await page.waitForTimeout(700); // flush do debounce de save (500ms)
 
     const save = await page.evaluate(() =>
       JSON.parse(localStorage.getItem('nefroquest-save') || 'null')
@@ -46,7 +44,7 @@ test.describe('Save schema — migração e resiliência', () => {
     // Dados originais preservados
     expect(save.level).toBe(7);
     expect(save.score).toBe(8000);
-    expect(save.character).toBe('mago');
+    expect(save.character).toBe('glomerulus');
 
     // Campos novos adicionados pela migração
     expect(save.bossIntroShown).toBeDefined();

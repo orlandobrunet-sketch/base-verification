@@ -2,9 +2,6 @@ import { test, expect } from '@playwright/test';
 import { injectGameState, waitForGame, pickFirstOption, answerAndAdvance , isLiveEnv } from '../helpers/game';
 
 test.describe('Gameplay básico', () => {
-  test.beforeEach(async () => {
-    if (!isLiveEnv) test.skip();
-  });
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
     await injectGameState(page);
@@ -19,13 +16,10 @@ test.describe('Gameplay básico', () => {
     await expect(options).toHaveCount(4);
   });
 
-  test('alternativas têm prefixo A) B) C) D) em texto', async ({ page }) => {
-    const options = page.locator('#options .option');
-    const texts = await options.allTextContents();
-    expect(texts[0]).toMatch(/^A\)/);
-    expect(texts[1]).toMatch(/^B\)/);
-    expect(texts[2]).toMatch(/^C\)/);
-    expect(texts[3]).toMatch(/^D\)/);
+  test('alternativas têm marcador A B C D no badge .opt-key', async ({ page }) => {
+    // UI atual: cada opção é <button.option><span.opt-key>A</span><span.opt-body>…</span></button>
+    const keys = page.locator('#options .option .opt-key');
+    await expect(keys).toHaveText(['A', 'B', 'C', 'D']);
   });
 
   test('selecionar alternativa habilita botão de avançar', async ({ page }) => {
