@@ -220,6 +220,7 @@
         if (!authUser) { openAuthModal(); switchAuthTab('cadastrar'); }
         return;
       }
+      _track('plan_selected', { plan: tier, logged_in: !!authUser });
       // Plano pago: requer login
       if (!authUser) {
         _pendingPaymentPlan = tier;
@@ -266,6 +267,7 @@
         }
 
         loadingEl?.remove();
+        _track('checkout_started', { plan });
         // Redirecionar para Mercado Pago
         window.location.href = data.checkout_url;
 
