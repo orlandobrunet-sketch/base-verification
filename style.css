@@ -685,7 +685,10 @@
     @keyframes fadeIn { from{opacity:0} to{opacity:1} }
     /* Popup de narrativa */
     .narrative-popup { position:fixed; top:0; right:0; bottom:0; left:0; z-index: var(--z-critical); display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.8); animation:fadeIn 0.4s; padding:32px 16px; }
-    .narrative-card { background:linear-gradient(135deg,#0e1830 0%,#1a1040 40%,#2a1050 100%); border:2px solid var(--gold); border-radius:16px; padding:28px 24px; text-align:center; max-width:420px; width:100%; max-height:calc(100vh - 64px); overflow-y:auto; box-shadow:0 0 60px rgba(255,215,0,0.15), inset 0 0 40px rgba(255,215,0,0.03); animation:scaleIn 0.5s; }
+    .narrative-card { position:relative; background:linear-gradient(135deg,#0e1830 0%,#1a1040 40%,#2a1050 100%); border:2px solid var(--gold); border-radius:16px; padding:28px 24px; text-align:center; max-width:420px; width:100%; max-height:calc(100vh - 64px); overflow-y:auto; box-shadow:0 0 60px rgba(255,215,0,0.15), inset 0 0 40px rgba(255,215,0,0.03); animation:scaleIn 0.5s; }
+    /* X reutilizável p/ popups dinâmicos (canto sup. direito) — fecho único, sem clicar-fora */
+    .popup-x { position:absolute; top:8px; right:10px; width:30px; height:30px; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:50%; color:#a0b8d0; font-size:1.15rem; line-height:1; cursor:pointer; z-index:3; padding:0; }
+    .popup-x:hover { background:rgba(255,80,80,0.2); color:#fff; border-color:rgba(255,80,80,0.4); }
     .narrative-card .narr-chapter { color:var(--gold); font-family:'Cinzel',serif; font-size:0.75rem; letter-spacing:3px; text-transform:uppercase; margin-bottom:8px; opacity:0.8; }
     .narrative-card h3 { color:var(--gold); font-family:'Cinzel',serif; font-size:1.2rem; margin-bottom:14px; text-shadow:0 0 12px rgba(255,215,0,0.3); }
     .narrative-card .narr-text { color:var(--txt-mid); font-size:0.88rem; line-height:1.65; margin-bottom:16px; font-family:'Philosopher',serif; font-style:italic; }
