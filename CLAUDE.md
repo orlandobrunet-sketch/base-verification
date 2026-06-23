@@ -8,7 +8,7 @@ NefroQuest é um jogo RPG educacional de perguntas e respostas sobre Nefrologia,
 - **Repositório:** orlandobrunet-sketch/base-verification
 - **Branch principal:** `main` (deploy automático via GitHub Pages → nefroquest.com)
 - **Branch de trabalho:** uma branch por tarefa (definida no início de cada sessão)
-- **Versão atual:** 11.86
+- **Versão atual:** 12.06
 
 
 ## Documentos de referência
