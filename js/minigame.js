@@ -577,9 +577,10 @@
 
     // ── Ritual de Iniciação (PED-3) ───────────────────────────────────────
     // Teste adaptativo curto (8 questões) que recomenda a dificuldade da jornada
-    // conforme a base atual do usuário. ISOLADO: não afeta jornada, pontuação,
-    // streak, FSRS nem histórico — é só diagnóstico. Resultado pré-seleciona o
-    // modo no grid de dificuldade.
+    // conforme a base atual do usuário. ISOLADO: não afeta jornada, pontuação ou
+    // streak. Ao concluir, semeia o FSRS com o resultado de cada questão (PED-3B)
+    // para que a revisão espaçada parta de um estado calibrado. Resultado também
+    // pré-seleciona o modo no grid de dificuldade.
     const RITUAL_LEN = 8;
     function _ritualEsc(s) {
       return (typeof escapeHtml === 'function') ? escapeHtml(s)
@@ -607,6 +608,7 @@
       document.body.appendChild(overlay);
 
       const used = new Set();
+      const ritualResults = [];
       let step = 0, band = 'medium', correctCount = 0, hardCorrect = 0, hardFaced = 0, current = null;
       const panel = inner => `<div style="max-width:560px;width:100%;background:linear-gradient(160deg,#0a0118,#120230,#0a0118);border:2px solid rgba(168,85,247,0.7);border-radius:18px;padding:24px;box-shadow:0 0 50px rgba(168,85,247,0.35);margin:auto 0;">${inner}</div>`;
 
@@ -657,6 +659,7 @@
           if (i === ans) c.style.borderColor = '#34d399';
         });
         if (!isCorrect) btnEl.style.borderColor = '#fb7185';
+        ritualResults.push({ qid: current.qid || current.id, isCorrect });
         if (isCorrect) {
           correctCount++;
           if (band === 'hard') hardCorrect++;
@@ -686,6 +689,10 @@
           localStorage.setItem('nefroquest-recommended-difficulty', rec);
           localStorage.setItem('nefroquest-ritual-done', String(Date.now()));
         } catch (e) {}
+        // PED-3B: semear FSRS com o resultado de cada questão do Ritual
+        if (typeof updateSRData === 'function') {
+          ritualResults.forEach(r => { if (r.qid) updateSRData(r.qid, r.isCorrect); });
+        }
         const LABEL = { easy: 'Fácil', normal: 'Médio', hard: 'Difícil', hardcore: 'Hardcore' };
         if (typeof playSound === 'function') playSound('levelup');
         overlay.innerHTML = panel(`
