@@ -87,6 +87,9 @@
     }
   </script>
 
+  <!-- Cloudflare Turnstile (CAPTCHA no signup/login — anti account-farming, E9) -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
   <!-- Critical CSS: esconde controles de som / botões mobile durante o FOUC
        (antes do style.css carregar). O CSS externo é mais específico
        (#landingScreen .lnd-sound-controls) e sobrescreve depois. -->
@@ -1281,6 +1284,9 @@
         Continuar com Google
       </button>
       <div class="auth-divider">ou</div>
+      <!-- Turnstile compartilhado pelos formulários (login/cadastro/reset) -->
+      <div id="cfTurnstile" class="cf-turnstile" data-sitekey="0x4AAAAAADpZmFAT9FWkVhgt"
+           data-theme="dark" data-size="flexible" style="margin:0 0 12px;"></div>
       <div id="authFormEntrar">
         <div class="auth-field">
           <label for="authEmail">Email</label>
