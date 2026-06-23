@@ -1979,7 +1979,7 @@
     // Definir eixos selecionados no modo de estudo
     if (typeof window._studySelectedAxes !== 'undefined') {
       window._studySelectedAxes.clear();
-      worstSkill.categories.forEach(cat => {
+      (worstSkill.categories || []).forEach(cat => {
         window._studySelectedAxes.add(cat);
       });
     }
