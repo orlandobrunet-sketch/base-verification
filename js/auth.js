@@ -233,20 +233,35 @@
       document.getElementById('authFormForgot').style.display = 'block';
       _setAuthMsg('', '');
     }
+    // ── Cloudflare Turnstile (CAPTCHA) ─────────────────────────────────────
+    // Token de uso único lido do widget compartilhado no modal de auth. Vai
+    // como captchaToken nos fluxos de login/cadastro/reset/resend quando o
+    // CAPTCHA está ativo no Supabase Auth. Quando inativo, o token é ignorado
+    // pelo Supabase (no-op). Resetar após cada uso (token é single-use).
+    function _cfCaptchaToken() {
+      try { return (window.turnstile && window.turnstile.getResponse()) || undefined; }
+      catch { return undefined; }
+    }
+    function _cfCaptchaReset() {
+      try { if (window.turnstile) window.turnstile.reset(); } catch { /* widget ausente */ }
+    }
+
     async function authForgotPassword() {
       if (!_supaClient) return;
       const email = document.getElementById('authForgotEmail').value.trim();
       if (!email) { _setAuthMsg('Digite seu email.', 'error'); return; }
       const btn = document.getElementById('authForgotBtn');
       btn.disabled = true; btn.textContent = 'Enviando...';
+      const captchaToken = _cfCaptchaToken();
       try {
         const { error } = await _supaClient.auth.resetPasswordForEmail(email, {
-          redirectTo: 'https://nefroquest.com'
+          redirectTo: 'https://nefroquest.com',
+          ...(captchaToken ? { captchaToken } : {})
         });
         if (error) { _setAuthMsg(error.message, 'error'); }
         else { _setAuthMsg('Link enviado! Verifique seu email.', 'success'); }
       } catch { _setAuthMsg('Erro de conexão. Tente novamente.', 'error'); }
-      finally { btn.disabled = false; btn.textContent = 'Enviar Link de Redefinição'; }
+      finally { btn.disabled = false; btn.textContent = 'Enviar Link de Redefinição'; _cfCaptchaReset(); }
     }
     function authKeyPress(e) {
       if (e.key !== 'Enter') return;
@@ -277,8 +292,12 @@
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { _setAuthMsg('Digite um email válido.', 'error'); return; }
       const btn = document.getElementById('authLoginBtn');
       btn.disabled = true; btn.textContent = 'Entrando...';
+      const captchaToken = _cfCaptchaToken();
       try {
-        const { error } = await _supaClient.auth.signInWithPassword({ email, password });
+        const { error } = await _supaClient.auth.signInWithPassword({
+          email, password,
+          ...(captchaToken ? { options: { captchaToken } } : {})
+        });
         if (error) {
           const msg = error.message === 'Invalid login credentials'
             ? 'Email ou senha incorretos.'
@@ -288,7 +307,7 @@
           _setAuthMsg(msg, 'error');
         } else { closeAuthModal(); }
       } catch { _setAuthMsg('Erro de conexão. Tente novamente.', 'error'); }
-      finally { btn.disabled = false; btn.textContent = 'Entrar na Jornada'; }
+      finally { btn.disabled = false; btn.textContent = 'Entrar na Jornada'; _cfCaptchaReset(); }
     }
     async function authEmailRegister() {
       if (!_supaClient) return;
@@ -303,12 +322,14 @@
       if (password !== passwordConfirm) { _setAuthMsg('As senhas não coincidem.', 'error'); return; }
       const btn = document.getElementById('authRegBtn');
       btn.disabled = true; btn.textContent = 'Criando conta...';
+      const captchaToken = _cfCaptchaToken();
       try {
         const { error } = await _supaClient.auth.signUp({
           email, password,
           options: {
             data: { full_name: name, specialty },
-            emailRedirectTo: window.location.origin + window.location.pathname
+            emailRedirectTo: window.location.origin + window.location.pathname,
+            ...(captchaToken ? { captchaToken } : {})
           }
         });
         if (error) { _setAuthMsg(error.message, 'error'); }
@@ -318,7 +339,7 @@
           if (resendEl) { resendEl.style.display = 'block'; resendEl.dataset.email = email; }
         }
       } catch { _setAuthMsg('Erro de conexão. Tente novamente.', 'error'); }
-      finally { btn.disabled = false; btn.textContent = 'Criar Conta'; }
+      finally { btn.disabled = false; btn.textContent = 'Criar Conta'; _cfCaptchaReset(); }
     }
     async function authResendConfirmation() {
       if (!_supaClient) return;
@@ -327,11 +348,15 @@
       if (!email) return;
       const btn = document.getElementById('authResendBtn');
       btn.disabled = true; btn.textContent = 'Reenviando...';
+      const captchaToken = _cfCaptchaToken();
       try {
-        const { error } = await _supaClient.auth.resend({ type: 'signup', email });
+        const { error } = await _supaClient.auth.resend({
+          type: 'signup', email,
+          ...(captchaToken ? { options: { captchaToken } } : {})
+        });
         _setAuthMsg(error ? error.message : 'Email reenviado! Verifique sua caixa de entrada e o spam.', error ? 'error' : 'success');
       } catch { _setAuthMsg('Erro de conexão. Tente novamente.', 'error'); }
-      finally { btn.disabled = false; btn.textContent = 'Reenviar email'; }
+      finally { btn.disabled = false; btn.textContent = 'Reenviar email'; _cfCaptchaReset(); }
     }
     async function authLogout() {
       if (!_supaClient) return;
