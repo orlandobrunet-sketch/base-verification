@@ -214,9 +214,8 @@
     }
     let _windowJustFocused = false;
     window.addEventListener('focus', () => { _windowJustFocused = true; setTimeout(() => { _windowJustFocused = false; }, 300); });
-    function closeAuthOutside(e) {
-      if (_windowJustFocused) return; // ignora clique de reativação da janela
-      if (e.target.id === 'authModal') closeAuthModal();
+    function closeAuthOutside() {
+      // Desativado: o modal fecha só pelo X (clicar fora fechava por acidente).
     }
     function switchAuthTab(tab) {
       const isEntrar = tab === 'entrar';

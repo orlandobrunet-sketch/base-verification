@@ -387,6 +387,7 @@
 
       popup.innerHTML = `
         <div style="max-width:540px;width:100%;background:linear-gradient(160deg,#0a0118 0%,#120230 50%,#0a0118 100%);border:2px solid rgba(168,85,247,0.7);border-radius:18px;padding:28px 24px 24px;text-align:center;box-shadow:0 0 60px rgba(168,85,247,0.4),0 0 120px rgba(88,28,135,0.2),inset 0 0 60px rgba(0,0,0,0.6);position:relative;">
+          <button class="popup-x" data-remove-id="bossIntroPopup" aria-label="Fechar">✕</button>
           <div style="font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:4px;color:rgba(192,132,252,0.7);text-transform:uppercase;margin-bottom:6px;">Capítulo Final</div>
           <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.1rem,4vw,1.6rem);font-weight:900;letter-spacing:3px;color:#e9d5ff;text-shadow:0 0 20px rgba(216,180,254,0.9),0 0 40px rgba(168,85,247,0.6);margin:0 0 16px;">&#9760; O Confronto Derradeiro &#9760;</h2>
           <div style="margin:0 0 16px;border-radius:12px;overflow:hidden;border:2px solid rgba(168,85,247,0.6);box-shadow:0 0 30px rgba(168,85,247,0.5),0 0 60px rgba(88,28,135,0.3);">
@@ -406,8 +407,7 @@
           if (typeof playSound === 'function') playSound('click');
         });
       }
-      // Fechar ao clicar fora
-      popup.addEventListener('click', (e) => { if (e.target === popup) popup.remove(); });
+      // (fechar-ao-clicar-fora removido — usa o X)
       log('💀 O Arqui-Nefromante aguarda no Trono da Uremia. A batalha final começa!');
     }
 
@@ -453,6 +453,7 @@
 
       popup.innerHTML=`
         <div class='narrative-card' style="${cardStyle}">
+          <button class="popup-x" data-close-closest=".narrative-popup" aria-label="Fechar">✕</button>
           <div class='narr-chapter' style="${chStyle}">${stage.ch}</div>
           <h3>${headEmoji}${stage.title}</h3>
           ${bossImgHtml}
@@ -464,7 +465,7 @@
         </div>
       `;
       document.body.appendChild(popup);
-      popup.addEventListener('click',(e)=>{if(e.target===popup) popup.remove();});
+      // (fechar-ao-clicar-fora removido — usa o X)
 
       // Stun: acionar mecânica após popup aparecer
       if (isStun) {

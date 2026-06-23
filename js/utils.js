@@ -578,8 +578,8 @@
       }
     }
 
-    function closeBibliotecaModalOutside(e) {
-      if (e.target === document.getElementById('bibliotecaModal')) closeBibliotecaModal();
+    function closeBibliotecaModalOutside() {
+      // Desativado: o modal fecha só pelo X (clicar fora fechava por acidente).
     }
 
     async function _bibSubmitSuggest(e) {

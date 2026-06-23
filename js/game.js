@@ -1598,7 +1598,7 @@
           <div class="modal-actions" style="margin-top:18px;"><button data-action="closeAssetGallery" style="background:rgba(255,255,255,0.06);color:#c8d8f0;border:1px solid var(--blue-dark);">Fechar</button></div>
         </div>`;
       document.body.appendChild(modal);
-      modal.addEventListener('click', (e) => { if (e.target === modal) closeAssetGallery(); });
+      // (fechar-ao-clicar-fora removido — usa o X do painel)
     }
     function closeAssetGallery() { document.getElementById('assetGalleryModal')?.remove(); }
     window.openAssetGallery = openAssetGallery;
@@ -3994,7 +3994,8 @@
       popup.id = 'oracleAnswerFirstPopup';
       popup.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;animation:fadeIn 0.3s ease;';
       popup.innerHTML = `
-        <div style="max-width:420px;width:100%;background:linear-gradient(160deg,#101a33 0%,#0b1428 100%);border:2px solid rgba(168,85,247,0.6);border-radius:16px;padding:26px 22px;text-align:center;box-shadow:0 0 40px rgba(168,85,247,0.3);">
+        <div style="position:relative;max-width:420px;width:100%;background:linear-gradient(160deg,#101a33 0%,#0b1428 100%);border:2px solid rgba(168,85,247,0.6);border-radius:16px;padding:26px 22px;text-align:center;box-shadow:0 0 40px rgba(168,85,247,0.3);">
+          <button class="popup-x" data-remove-id="oracleAnswerFirstPopup" aria-label="Fechar">✕</button>
           <div style="font-size:2rem;margin-bottom:10px;">🔮</div>
           <h3 style="font-family:'Cinzel',serif;color:#d8b4fe;font-size:1.02rem;letter-spacing:0.5px;margin:0 0 12px;">O Oráculo Aguarda</h3>
           <p style="font-family:'Philosopher',serif;color:#c8d8f0;font-size:0.9rem;line-height:1.6;margin:0 0 20px;">
@@ -4003,7 +4004,7 @@
           <button data-remove-id="oracleAnswerFirstPopup" style="font-family:'Cinzel',serif;background:linear-gradient(180deg,#7c3aed 0%,#5b21b6 100%);border:2px solid #a855f7;border-radius:10px;color:#f3e8ff;font-size:0.85rem;font-weight:700;letter-spacing:1px;padding:11px 26px;cursor:pointer;box-shadow:0 0 16px rgba(168,85,247,0.4);">Vou responder</button>
         </div>`;
       document.body.appendChild(popup);
-      popup.addEventListener('click', (e) => { if (e.target === popup) popup.remove(); });
+      // (fechar-ao-clicar-fora removido — usa o X)
       if (typeof playSound === 'function') playSound('click');
     }
 
@@ -4013,7 +4014,8 @@
       popup.id = 'oracleBlockedPopup';
       popup.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;animation:fadeIn 0.4s ease;';
       popup.innerHTML = `
-        <div style="max-width:440px;width:100%;background:linear-gradient(160deg,#0a0118 0%,#120230 50%,#0a0118 100%);border:2px solid rgba(168,85,247,0.7);border-radius:16px;padding:26px 22px;text-align:center;box-shadow:0 0 50px rgba(168,85,247,0.4),inset 0 0 50px rgba(0,0,0,0.6);">
+        <div style="position:relative;max-width:440px;width:100%;background:linear-gradient(160deg,#0a0118 0%,#120230 50%,#0a0118 100%);border:2px solid rgba(168,85,247,0.7);border-radius:16px;padding:26px 22px;text-align:center;box-shadow:0 0 50px rgba(168,85,247,0.4),inset 0 0 50px rgba(0,0,0,0.6);">
+          <button class="popup-x" data-remove-id="oracleBlockedPopup" aria-label="Fechar">✕</button>
           <div style="font-size:2rem;margin-bottom:10px;">🔮💀</div>
           <h3 style="font-family:'Cinzel',serif;color:#d8b4fe;font-size:1.05rem;letter-spacing:1px;margin:0 0 12px;text-shadow:0 0 18px rgba(168,85,247,0.7);">O Oráculo Silenciou</h3>
           <p style="font-family:'Philosopher',serif;color:#c4b5fd;font-size:0.88rem;line-height:1.65;font-style:italic;margin:0 0 20px;">
@@ -4022,7 +4024,7 @@
           <button data-remove-id="oracleBlockedPopup" style="font-family:'Cinzel',serif;background:linear-gradient(180deg,#7c3aed 0%,#5b21b6 100%);border:2px solid #a855f7;border-radius:10px;color:#f3e8ff;font-size:0.85rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:11px 26px;cursor:pointer;box-shadow:0 0 18px rgba(168,85,247,0.5);">Enfrentar sozinho</button>
         </div>`;
       document.body.appendChild(popup);
-      popup.addEventListener('click', (e) => { if (e.target === popup) popup.remove(); });
+      // (fechar-ao-clicar-fora removido — usa o X)
       if (typeof playSound === 'function') playSound('boss');
     }
 
