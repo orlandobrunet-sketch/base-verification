@@ -28,8 +28,8 @@
       const _pwIcon  = _identity === 'study'  ? '📖' : '🏰';
       const _pwTitle = _identity === 'study'  ? 'Banco de Questões Completo' : 'Jornada Gratuita Concluída';
       const _pwBody  = _identity === 'study'
-        ? `Você esgotou as <strong style="color:#ffd700">${FREE_QUESTIONS_LIMIT} questões gratuitas</strong>.<br>Desbloqueie o banco completo e todas as trilhas temáticas!`
-        : `Você respondeu <strong style="color:#ffd700">${FREE_QUESTIONS_LIMIT} questões gratuitas</strong>.<br>Desbloqueie o acesso completo para continuar sua jornada nefrológica!`;
+        ? `Você esgotou as <strong class="nq-text-gold">${FREE_QUESTIONS_LIMIT} questões gratuitas</strong>.<br>Desbloqueie o banco completo e todas as trilhas temáticas!`
+        : `Você respondeu <strong class="nq-text-gold">${FREE_QUESTIONS_LIMIT} questões gratuitas</strong>.<br>Desbloqueie o acesso completo para continuar sua jornada nefrológica!`;
       const _pwDesc  = _identity === 'study'
         ? 'Acesso vitalício · +1000 questões · Todas as trilhas · Futuras atualizações'
         : 'Acesso vitalício · Todas as questões · Futuras atualizações';
@@ -199,7 +199,7 @@
           <div class="promo-banner-body">
             <div class="promo-banner-title">Você está dominando a Nefrologia!</div>
             <div class="promo-banner-text">
-              Restam <strong style="color:#ffd700">${remaining} questões</strong> gratuitas.
+              Restam <strong class="nq-text-gold">${remaining} questões</strong> gratuitas.
               Desbloqueie <strong style="color:#c8d8f0">${questionBank?.length ?? '+'} questões</strong>, modo de estudo por tema
               e atualizações constantes — por menos de um café por mês.
             </div>
@@ -331,7 +331,7 @@
           <h2 style="font-family:'Cinzel Decorative',serif;color:#ffd700;font-size:1.6rem;margin-bottom:8px;">Pagamento Confirmado!</h2>
           <p style="color:#a0c8e0;font-size:0.9rem;line-height:1.6;margin-bottom:24px;">
             Bem-vindo ao Plano ${label}!<br>
-            Seu acesso a <strong style="color:#ffd700">${questionBank?.length ?? '+'} questões</strong> foi ativado.<br>
+            Seu acesso a <strong class="nq-text-gold">${questionBank?.length ?? '+'} questões</strong> foi ativado.<br>
             Aguarde alguns instantes enquanto sincronizamos seu acesso.
           </p>
           <button data-remove-id="paymentSuccessOverlay" data-action="_pollPremiumActivation"
