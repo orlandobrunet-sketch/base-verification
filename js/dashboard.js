@@ -1367,6 +1367,75 @@
       <div style="background:rgba(167,139,250,0.07);border:1px solid rgba(167,139,250,0.3);border-radius:10px;padding:10px 12px;font-size:0.74rem;color:#ddd6fe;line-height:1.55;"><strong>Seu padrão dominante: ${DEFS[top[0]].name}.</strong> ${DEFS[top[0]].tip}</div>`;
   }
 
+  // ── Mapa de Competências (PED-2) ────────────────────────────────────────────
+  function _tabMapa() {
+    if (typeof NQ_COMPETENCIES === 'undefined' || typeof nqGetCompStats === 'undefined') {
+      return '<div style="padding:20px;color:var(--txt-dim);text-align:center;">Mapa de Competências carregando…</div>';
+    }
+    const stats  = nqGetCompStats();
+    const all    = NQ_COMPETENCIES;
+    const order  = typeof NQ_CAT_ORDER !== 'undefined' ? NQ_CAT_ORDER : [...new Set(all.map(c => c.cat))];
+    const labels = typeof NQ_CAT_LABELS !== 'undefined' ? NQ_CAT_LABELS : {};
+
+    let mastered = 0, inprog = 0, unexplored = 0;
+    all.forEach(c => {
+      const lvl = nqDomainLevel(stats[c.id]);
+      if (lvl === 'mastered') mastered++;
+      else if (lvl === 'progress') inprog++;
+      else unexplored++;
+    });
+    const total = all.length;
+
+    const _bar = (stat) => {
+      const lvl = nqDomainLevel(stat);
+      if (!stat || stat.t === 0) return '<span style="color:var(--txt-dim);font-size:0.72rem;">Não explorada</span>';
+      const pct = Math.round((stat.c / stat.t) * 100);
+      const col = lvl === 'mastered' ? '#4ade80' : pct >= 50 ? '#fbbf24' : '#f87171';
+      const badge = lvl === 'mastered' ? ' ✅' : '';
+      return `<div style="display:flex;align-items:center;gap:6px;min-width:0;">
+        <div style="flex:1;height:6px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden;">
+          <div style="height:100%;width:${pct}%;background:${col};border-radius:3px;"></div>
+        </div>
+        <span style="font-size:0.7rem;color:${col};white-space:nowrap;">${pct}% (${stat.t})${badge}</span>
+      </div>`;
+    };
+
+    const sections = order.map(cat => {
+      const comps = all.filter(c => c.cat === cat);
+      if (!comps.length) return '';
+      const rows = comps.map(c => {
+        const stat = stats[c.id];
+        return `<div style="display:grid;grid-template-columns:1fr auto;gap:8px 12px;align-items:center;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+          <span style="font-size:0.78rem;color:var(--txt);">${c.icon || '📌'} ${c.label}</span>
+          <div style="min-width:140px;">${_bar(stat)}</div>
+        </div>`;
+      }).join('');
+      return `<div style="margin-bottom:18px;">
+        <div style="font-size:0.7rem;font-weight:700;letter-spacing:1.2px;color:var(--txt-dim);text-transform:uppercase;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,0.08);margin-bottom:4px;">${labels[cat] || cat}</div>
+        ${rows}
+      </div>`;
+    }).join('');
+
+    return `
+      <div class="nq-dash-stitle">Mapa de Competências</div>
+      <div style="display:flex;gap:12px;margin-bottom:18px;flex-wrap:wrap;">
+        <div style="flex:1;min-width:80px;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.25);border-radius:10px;padding:10px 14px;text-align:center;">
+          <div style="font-size:1.4rem;font-weight:700;color:#4ade80;">${mastered}</div>
+          <div style="font-size:0.68rem;color:var(--txt-dim);">Dominadas</div>
+        </div>
+        <div style="flex:1;min-width:80px;background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.25);border-radius:10px;padding:10px 14px;text-align:center;">
+          <div style="font-size:1.4rem;font-weight:700;color:#fbbf24;">${inprog}</div>
+          <div style="font-size:0.68rem;color:var(--txt-dim);">Em progresso</div>
+        </div>
+        <div style="flex:1;min-width:80px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:10px 14px;text-align:center;">
+          <div style="font-size:1.4rem;font-weight:700;color:var(--txt-dim);">${unexplored}</div>
+          <div style="font-size:0.68rem;color:var(--txt-dim);">Não exploradas</div>
+        </div>
+      </div>
+      <div style="font-size:0.72rem;color:var(--txt-dim);margin-bottom:16px;">Domínio = ≥ 70% de acertos em ≥ 5 tentativas. Persiste entre jogos.</div>
+      ${sections}`;
+  }
+
   function _tabAchievements() {
     const unlocked = getUnlockedAchievements();
     const unlockedBadges = BADGES.filter(b => (state.correctTotal || 0) >= b.required).length;
@@ -1889,6 +1958,7 @@
         <div class="nq-dash-tabs">
           <button type="button" class="nq-dash-tab active" data-dash-tab="overview">Visão Geral</button>
           <button type="button" class="nq-dash-tab" data-dash-tab="skills">Skills</button>
+          <button type="button" class="nq-dash-tab" data-dash-tab="mapa">Mapa</button>
           <button type="button" class="nq-dash-tab" data-dash-tab="history">Histórico</button>
           <button type="button" class="nq-dash-tab" data-dash-tab="achievements">Conquistas</button>
           <button type="button" class="nq-dash-tab" data-dash-tab="library">Biblioteca</button>
@@ -1901,6 +1971,9 @@
           </div>
           <div class="nq-dash-pane" data-dash-pane="skills">
             ${_tabSkills(axisStats)}
+          </div>
+          <div class="nq-dash-pane" data-dash-pane="mapa">
+            ${_tabMapa()}
           </div>
           <div class="nq-dash-pane" data-dash-pane="history">
             ${_tabHistory()}

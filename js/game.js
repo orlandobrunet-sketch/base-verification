@@ -1120,6 +1120,7 @@
           questionBank = buildDeck();
           HISTORY_SIZE = Math.max(30, Math.floor(questionBank.length * 0.20));
           syncMasteredToDetailedStats();
+          if (typeof nqBuildCompIndex === 'function') nqBuildCompIndex();
           resolve();
         };
         s.onerror = () => reject(new Error('Falha ao carregar questões'));
@@ -2033,6 +2034,11 @@
       if (!q) return;
       state.current = q;
       ui.question.textContent = q.q;
+      const _adminBadge = document.getElementById('adminQidBadge');
+      if (_adminBadge) {
+        if (isAdminUser()) { _adminBadge.textContent = '#' + q.id; _adminBadge.style.display = 'inline-block'; }
+        else { _adminBadge.style.display = 'none'; }
+      }
       ui.feedback.className = 'feedback';
       ui.feedback.textContent = 'Escolha a melhor alternativa clínica.';
       renderRefs(q.r);
@@ -2469,6 +2475,7 @@
       if(i===c){
         state.streak++;
         state.correctTotal++;
+        if (typeof nqRecordAnswer === 'function') nqRecordAnswer(state.current.id, true, state.current.c, state.current.q);
         state.chestCorrectCount = (state.chestCorrectCount || 0) + 1;
         if (state.chestCorrectCount >= state.chestTarget) {
           state.chestCorrectCount = 0;
@@ -2591,6 +2598,7 @@
         checkGameCompletion();
       } else {
         state.streak=0;
+        if (typeof nqRecordAnswer === 'function') nqRecordAnswer(state.current.id, false, state.current.c, state.current.q);
         btn.classList.add('wrong');
         // Tremor de tela e vibrar erro (apenas se for boss)
         if (typeof isBossBattle === 'function' && isBossBattle()) {
