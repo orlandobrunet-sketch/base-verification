@@ -1677,7 +1677,7 @@
             </div>`;
         } else {
           const _iconData = `data-item-name="${escapeHtml(v.n)}" data-item-desc="${escapeHtml(tipDesc)}" data-item-atk="${v.atk}" data-item-def="${v.def}" data-item-kno="${v.kno}" data-item-luck="${v.luck}" data-item-rarity="${v.rar}" data-slot-label="${escapeHtml(slotLabel)}" data-item-img="${escapeHtml(icon)}"`;
-          const _useTemp = _TEMP_SLOT_EMOJI[k] && !_ITEMS_KEEP_ART.has(v.n);
+          const _useTemp = _TEMP_SLOT_EMOJI[k] && !icon && !_ITEMS_KEEP_ART.has(v.n);
           const _iconEl = _useTemp
             ? `<div class="slot-diablo-icon slot-temp-emoji item-with-tooltip" ${_iconData}>${_TEMP_SLOT_EMOJI[k]}</div>`
             : `<img class="slot-diablo-icon item-with-tooltip" loading="lazy" src="${icon}" alt="${escapeHtml(v.n)}" ${_iconData} />`;
