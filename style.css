@@ -206,11 +206,11 @@
     }
     .hero-wrap { display: flex; gap: 12px; align-items: center; }
     .portrait-frame {
-      position: relative; width: 88px; height: 88px; flex-shrink: 0;
+      position: relative; width: 88px; height: 88px; flex-shrink: 0; overflow: hidden;
     }
     .portrait {
       width: 88px; height: 88px; border-radius: 12px;
-      object-fit: cover; object-position: center 25%;
+      object-fit: cover; object-position: center center;
       border: 3px solid var(--gold-dark);
       background: #070d1d; transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
       box-shadow: 0 0 15px rgba(255,215,0,0.2);
@@ -12967,7 +12967,7 @@ body.arqui-nefromante-final #oraculoBtn:not(.hidden) {
 .slot-diablo {
   width: 66px !important;
   position: relative !important;
-  border-radius: 8px !important;
+  border-radius: 0 !important;
   overflow: hidden !important;
   box-sizing: border-box !important;
   transition: border-color 0.25s, box-shadow 0.25s !important;
@@ -13083,7 +13083,7 @@ body.arqui-nefromante-final #oraculoBtn:not(.hidden) {
   height: 100% !important;
   object-fit: cover !important;
   display: block !important;
-  border-radius: 7px !important;
+  border-radius: 0 !important;
   filter: saturate(1.25) contrast(1.05) !important;
 }
 
