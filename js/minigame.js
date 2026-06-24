@@ -151,6 +151,7 @@
 
         if (isCorrect) {
           correctCount++;
+          if (typeof nqRecordAnswer === 'function') nqRecordAnswer(q.qid, true, q.cat, q.q);
           if (typeof window.showFloatingFeedback === 'function') {
             window.showFloatingFeedback('✓ Correto!', true, x, y);
           }
@@ -158,6 +159,7 @@
             window.triggerHapticFeedback('correct');
           }
         } else {
+          if (typeof nqRecordAnswer === 'function') nqRecordAnswer(q.qid, false, q.cat, q.q);
           if (typeof window.showFloatingFeedback === 'function') {
             window.showFloatingFeedback(userAns === null ? '⏱️ Esgotado' : '✗ Incorreto', false, x, y);
           }

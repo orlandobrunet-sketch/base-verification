@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v12.26
-const CACHE = 'nefroquest-v12.26';
+// NefroQuest Service Worker — v12.27
+const CACHE = 'nefroquest-v12.27';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -22,6 +22,7 @@ const STATIC_ASSETS = [
   '/data/articles.js',
   '/data/topics.js',
   '/data/rapid-quiz.js',
+  '/data/competencies.js',
   '/style.css',
   '/js/utils.js',
   '/js/audio.js',
