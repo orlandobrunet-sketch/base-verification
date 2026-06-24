@@ -9875,11 +9875,16 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 .ach-continue-btn { width: 100%; margin-top: 4px; }
 
 /* Grimório: botão Resumo Rápido nos cards */
+.bib-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
 .bib-resumo-btn {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  margin-top: 6px;
   padding: 3px 10px;
   border-radius: 5px;
   border: 1px solid rgba(100,140,220,0.28);
@@ -9895,6 +9900,32 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   background: rgba(100,140,220,0.14);
   border-color: rgba(100,140,220,0.55);
   color: rgba(180,210,255,0.95);
+}
+.bib-fav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 5px;
+  border: 1px solid rgba(255,215,0,0.18);
+  background: rgba(255,215,0,0.04);
+  color: rgba(255,215,0,0.3);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.18s, border-color 0.18s, color 0.18s, transform 0.15s;
+  flex-shrink: 0;
+}
+.bib-fav-btn:hover {
+  background: rgba(255,215,0,0.1);
+  border-color: rgba(255,215,0,0.45);
+  color: rgba(255,215,0,0.75);
+  transform: scale(1.15);
+}
+.bib-fav-btn.active {
+  background: rgba(255,215,0,0.12);
+  border-color: rgba(255,215,0,0.6);
+  color: #ffd700;
 }
 
 /* Grimório: modal de resumo rápido */
