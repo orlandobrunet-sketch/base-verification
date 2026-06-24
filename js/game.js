@@ -3338,10 +3338,9 @@
           <p class='rar-${item.rar}' style='font-size:1.1rem;font-weight:700'>${item.n}</p>
           <p style='font-size:0.72rem;color:var(--txt-dim);margin-bottom:2px'>${slotLabels[slot]} &nbsp;·&nbsp; <span class='rar-${item.rar}'>${rarLabels[item.rar]||item.rar}</span></p>
           ${desc ? `<p style='font-size:0.78rem;color:#a0b4cc;font-style:italic;margin:8px 0 10px;padding:8px 10px;background:rgba(255,255,255,0.05);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;line-height:1.5'>${desc}</p>` : ''}
-          <div class='forge-stats'>
+          <div class='forge-stats' style='white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>
             ${gains.length>0 ? gains.join(' &nbsp;·&nbsp; ') : '🔄 Nenhum atributo melhorou desta vez...'}
           </div>
-          <p style='font-size:0.75rem;color:var(--txt-dim);margin-top:6px'>⚔️${item.atk} · 🛡️${item.def} · 📚${item.kno} · 🍀${item.luck}</p>
           <button class='btn gold' data-close-closest=".forge-popup">Continuar</button>
         </div>
       `;
