@@ -214,6 +214,19 @@
     // ── Grimório de Conhecimento ──────────────────────────────────────────
     let _bibActiveFilter = 'all';
 
+    const BIB_FAV_KEY = 'nq-bib-favorites';
+    function _getBibFavorites() {
+      try { return new Set(JSON.parse(localStorage.getItem(BIB_FAV_KEY) || '[]')); } catch { return new Set(); }
+    }
+    function _toggleBibFav(key) {
+      const favs = _getBibFavorites();
+      if (favs.has(key)) { favs.delete(key); } else { favs.add(key); }
+      try { localStorage.setItem(BIB_FAV_KEY, JSON.stringify([...favs])); } catch(e) {}
+      const searchEl = document.getElementById('bibSearch');
+      _bibRenderList(searchEl ? searchEl.value : '');
+    }
+    window._toggleBibFav = _toggleBibFav;
+
     function _setBibFilter(filterName, btn) {
       _bibActiveFilter = filterName;
       const filterWrap = document.getElementById('bibFilters');
@@ -421,12 +434,18 @@
         visibleItems = visibleItems.filter(it => it.raridade === 'rare' || it.raridade === 'raro' || it.raridade === 'uncommon' || it.raridade === 'incomum');
       } else if (_bibActiveFilter === 'guideline') {
         visibleItems = visibleItems.filter(it => it.tipo === 'GUIDELINE' || (it.label && it.label.toLowerCase().includes('kdigo')) || (it.jornal && it.jornal.toLowerCase().includes('kdigo')));
+      } else if (_bibActiveFilter === 'favorites') {
+        const favs = _getBibFavorites();
+        visibleItems = visibleItems.filter(it => favs.has(it._bibKey));
       }
 
       _bibVisibleItems = visibleItems;
 
       if (!visibleItems.length && !hintCard) {
-        list.innerHTML = infoBanner + '<div class="bib-empty">Nenhuma referência encontrada.</div>';
+        const emptyMsg = _bibActiveFilter === 'favorites'
+          ? '<div class="bib-empty">Nenhum favorito ainda. Clique na ⭐ em qualquer artigo para salvar aqui.</div>'
+          : '<div class="bib-empty">Nenhuma referência encontrada.</div>';
+        list.innerHTML = infoBanner + emptyMsg;
         return;
       }
 
@@ -449,6 +468,7 @@
           it.ano    ? escapeHtml(String(it.ano)) : '',
         ].filter(Boolean);
         const itemIdx = visibleItems.indexOf(it);
+        const isFav = _getBibFavorites().has(it._bibKey);
         let cardStyle = '';
         let rarityLabel = '';
         if (it._lockType === 'article') {
@@ -466,7 +486,10 @@
   ${it.autores ? `<div class="bib-card-authors">${escapeHtml(it.autores)}</div>` : ''}
   ${metaParts.length ? `<div class="bib-card-meta">${metaParts.map(p => `<span>${p}</span>`).join('')}</div>` : ''}
   ${it.impacto ? `<div class="bib-card-impacto">${escapeHtml(it.impacto)}</div>` : ''}
-  <button class="bib-resumo-btn" data-action="openBibResumo" data-pass-this="1" data-item-idx="${itemIdx}">📝 Resumo rápido</button>
+  <div class="bib-card-actions">
+    <button class="bib-resumo-btn" data-action="openBibResumo" data-pass-this="1" data-item-idx="${itemIdx}">📝 Resumo rápido</button>
+    <button class="bib-fav-btn${isFav ? ' active' : ''}" data-action="_toggleBibFav" data-arg="${it._bibKey}" title="${isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}" aria-label="${isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}">★</button>
+  </div>
 </div>`;
       }).join('') + hintCard;
     }

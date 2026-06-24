@@ -65,7 +65,7 @@
     if (typeof Sentry !== 'undefined') {
       Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@12.18',
+          release: 'nefroquest@12.19',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -1423,6 +1423,7 @@
           <button type="button" class="bib-filter-btn" data-action="_setBibFilter" data-arg="epic">🔮 Épicos</button>
           <button type="button" class="bib-filter-btn" data-action="_setBibFilter" data-arg="rare">💎 Raros</button>
           <button type="button" class="bib-filter-btn" data-action="_setBibFilter" data-arg="guideline">📋 Diretrizes</button>
+          <button type="button" class="bib-filter-btn" data-action="_setBibFilter" data-arg="favorites">⭐ Favoritos</button>
         </div>
       </div>
       <div class="bib-list" id="bibList"></div>
