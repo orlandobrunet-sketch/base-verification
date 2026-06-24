@@ -191,8 +191,11 @@
     /* Painel esquerdo: fundo transparente — gaps entre cards mostram o world bg.
        Os cards internos (.hero, .story, .equip, .log, .tile) mantêm seus próprios fundos.
        Mobile sobrescreve com !important no media query (drawer sólido sobre conteúdo). */
-    .panel.left { background: transparent; box-shadow: none; }
+    /* box-shadow como borda: não é clippado por overflow:hidden nem coberto pelo painel adjacente */
+    .panel.left { background: transparent; border: none; overflow: visible;
+                  box-shadow: 0 0 0 1px #3a5a8a; }
     .panel.left::before { display: none; }
+    .panel.left::after  { display: none; }
 
     /* HERO SECTION */
     .hero {
@@ -269,8 +272,8 @@
 
     /* EQUIPMENT */
     .equip {
-      background: linear-gradient(135deg, rgba(4,3,10,0.96), rgba(4,6,14,0.96));
-      border: 1px solid rgba(42,74,122,0.35); border-radius: 10px;
+      background: rgba(3,3,8,0.98);
+      border: 1px solid #3a5a8a; border-radius: 10px;
       padding: 10px; margin-bottom: 10px;
     }
     .equip h3 {
