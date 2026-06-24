@@ -253,7 +253,7 @@
           </div>
           <!-- Por categoria -->
           <div style="text-align:left;margin-bottom:20px;">
-            <h3 style="color:var(--gold);font-family:'Cinzel',serif;font-size:0.9rem;letter-spacing:1px;margin-bottom:10px;">DESEMPENHO POR CATEGORIA</h3>
+            <h3 class="nq-section-heading">DESEMPENHO POR CATEGORIA</h3>
             <div style="display:flex;flex-direction:column;gap:6px;">${catRows}</div>
           </div>
           <!-- Revisão de erros -->

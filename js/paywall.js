@@ -285,7 +285,7 @@
       const label = plan === 'lifetime' ? 'Plano Vitalício' : 'Plano Mensal';
       el.innerHTML = `
         <div style="width:48px;height:48px;border:3px solid rgba(255,215,0,0.2);border-top-color:#ffd700;border-radius:50%;animation:spin 0.8s linear infinite;"></div>
-        <div style="font-family:'Cinzel',serif;color:#ffd700;font-size:0.9rem;letter-spacing:1px;">Preparando ${label}…</div>
+        <div class="nq-section-heading">Preparando ${label}…</div>
         <div style="color:#6080a0;font-size:0.78rem;">Você será redirecionado para o Mercado Pago</div>`;
       document.body.appendChild(el);
       return el;
