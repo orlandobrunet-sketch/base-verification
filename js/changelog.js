@@ -479,7 +479,8 @@
         const luck = item.getAttribute('data-item-luck');
         const rarity = item.getAttribute('data-item-rarity');
         const slotLabel = item.getAttribute('data-slot-label');
-        
+        const itemImg = item.getAttribute('data-item-img');
+
         if (atk !== null && def !== null && kno !== null && luck !== null && rarity !== null) {
           // Tooltip de Item RPG Rico
           itemTooltip.className = 'item-tooltip rich-active';
@@ -497,6 +498,7 @@
               <span class="rt-name rar-${rarity}">${escapeHtml(name)}</span>
               <span class="rt-rarity-badge rar-bg-${rarity}">${escapeHtml(label)}</span>
             </div>
+            ${itemImg ? `<img src="${escapeHtml(itemImg)}" alt="${escapeHtml(name)}" class="rt-img" onerror="this.style.display='none'" />` : ''}
             <div class="rt-stats-grid">
               <div class="rt-stat-row">
                 <span class="rt-stat-label">⚔️ ATK</span>
