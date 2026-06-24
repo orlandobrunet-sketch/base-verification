@@ -311,7 +311,7 @@
           <div style="font-weight:bold;color:var(--gold);margin-bottom:4px;font-family:'Cinzel',serif;">${skill.label}</div>
           <div style="font-size:0.68rem;color:var(--txt-dim);margin-bottom:8px;line-height:1.35;">${skill.desc}</div>
           <div style="font-size:0.72rem;color:#fff;margin-bottom:6px;border-bottom:1px solid rgba(255,255,255,0.08);padding-bottom:6px;line-height:1.4;">
-            Domínio: <strong style="color:var(--gold);">${skill.mastery.toFixed(0)}%</strong> (${skill.correct}/${skill.totalBank} q.)<br>
+            Domínio: <strong class="nq-text-gold">${skill.mastery.toFixed(0)}%</strong> (${skill.correct}/${skill.totalBank} q.)<br>
             Acurácia: <strong style="color:${_colorFor(skill.accuracy)};">${skill.totalAnswered > 0 ? skill.accuracy.toFixed(0) + '%' : '—'}</strong> (${skill.correct}/${skill.totalAnswered} resp.)
           </div>
           <div style="display:flex;flex-direction:column;gap:4px;min-width:200px;">
@@ -484,12 +484,12 @@
 
           <!-- Radar Chart -->
           <div style="text-align:center;margin-bottom:20px;display:flex;flex-direction:column;align-items:center;">
-            <h3 style="color:var(--gold);margin-bottom:10px;font-size:0.9rem;font-family:'Cinzel',serif;letter-spacing:1px;">RADAR DE DESEMPENHO</h3>
+            <h3 class="nq-section-heading">RADAR DE DESEMPENHO</h3>
             <div id="nqRadarChartContainer"></div>
           </div>
           <!-- Desempenho por Eixo -->
           <div style="text-align:left;margin-bottom:16px;">
-            <h3 style="color:var(--gold);margin-bottom:10px;font-size:0.9rem;font-family:'Cinzel',serif;letter-spacing:1px;">DESEMPENHO POR EIXO</h3>
+            <h3 class="nq-section-heading">DESEMPENHO POR EIXO</h3>
             ${axisStats.length > 0 ? `
             <div style="display:flex;flex-direction:column;gap:8px;">
               ${axisStats.map(a => {
@@ -522,7 +522,7 @@
           <!-- Tópicos com pior desempenho -->
           ${allTopicData.length > 0 ? `
           <div style="text-align:left;margin-bottom:16px;">
-            <h3 style="color:var(--gold);margin-bottom:10px;font-size:0.9rem;font-family:'Cinzel',serif;letter-spacing:1px;">TÓPICOS A REFORÇAR</h3>
+            <h3 class="nq-section-heading">TÓPICOS A REFORÇAR</h3>
             <div style="display:flex;flex-direction:column;gap:6px;max-height:160px;overflow-y:auto;">
               ${allTopicData.slice(0, 6).map(t => {
                 const pct = t.accuracy !== null ? t.accuracy.toFixed(0) : 0;
@@ -563,7 +563,7 @@
             const dots = pts.map((p,i) => `<circle cx="${(i*w).toFixed(1)}" cy="${(h2 - p.pct/max*h2).toFixed(1)}" r="5" fill="${p.pct>=70?'#34d399':p.pct>=50?'#fbbf24':'#fb7185'}" />`).join('');
             const labels = pts.map((p,i) => `<text x="${(i*w).toFixed(1)}" y="${h2+16}" text-anchor="middle" fill="#64748b" font-size="11">${p.d.slice(5)}</text><text x="${(i*w).toFixed(1)}" y="${(h2 - p.pct/max*h2 - 8).toFixed(1)}" text-anchor="middle" fill="${p.pct>=70?'#34d399':p.pct>=50?'#fbbf24':'#fb7185'}" font-size="11" font-weight="bold">${p.pct}%</text>`).join('');
             return '<div style="text-align:left;margin-bottom:16px;">'
-              + '<h3 style="color:var(--gold);margin-bottom:8px;font-size:0.9rem;font-family:\'Cinzel\',serif;letter-spacing:1px;">EVOLUÇÃO (ÚLTIMOS 7 DIAS)</h3>'
+              + '<h3 class="nq-section-heading">EVOLUÇÃO (ÚLTIMOS 7 DIAS)</h3>'
               + '<div style="background:rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px 12px;">'
               + '<svg viewBox="-8 -14 416 90" style="width:100%;display:block;">'
               + '<polyline points="' + polyline + '" fill="none" stroke="#6366f1" stroke-width="3" stroke-linejoin="round"/>'
