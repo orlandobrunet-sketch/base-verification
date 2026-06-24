@@ -207,9 +207,10 @@
     .hero-wrap { display: flex; gap: 12px; align-items: center; }
     .portrait-frame {
       position: relative; width: 88px; height: 88px; flex-shrink: 0; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
     }
     .portrait {
-      width: 88px; height: 88px; border-radius: 12px;
+      flex-shrink: 0; width: 88px; height: 88px; border-radius: 12px;
       object-fit: cover; object-position: center center;
       border: 3px solid var(--gold-dark);
       background: #070d1d; transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
@@ -12974,7 +12975,7 @@ body.arqui-nefromante-final #oraculoBtn:not(.hidden) {
 }
 
 .slot-diablo.filled {
-  background: rgba(8, 12, 24, 0.85) !important;
+  background: #070812 !important;
   border: 1px solid rgba(42, 74, 122, 0.45) !important;
 }
 
