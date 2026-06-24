@@ -191,7 +191,7 @@
     /* Painel esquerdo: fundo transparente — gaps entre cards mostram o world bg.
        Os cards internos (.hero, .story, .equip, .log, .tile) mantêm seus próprios fundos.
        Mobile sobrescreve com !important no media query (drawer sólido sobre conteúdo). */
-    .panel.left { background: transparent; box-shadow: none; border-color: transparent; }
+    .panel.left { background: transparent; box-shadow: none; border: 1px solid #3a5a8a; }
     .panel.left::before { display: none; }
 
     /* HERO SECTION */
