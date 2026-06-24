@@ -366,7 +366,7 @@
         <div style="${_loreStyle}">
           <strong style="color:#fbbf24;">Dez questões</strong> separam a vitória da derrota eterna. Cada resposta correta é um golpe que enfraquece o Arqui-Nefromante. Cada erro, uma abertura para sua magia sombria.
           <br><br>
-          <strong style="color:#ffd700;">O destino dos rins do reino está em suas mãos.</strong>
+          <strong class="nq-text-gold">O destino dos rins do reino está em suas mãos.</strong>
         </div>
         <div style="display:flex;gap:10px;justify-content:center;margin-bottom:20px;flex-wrap:wrap;">
           <div style="background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.3);border-radius:8px;padding:8px 14px;">

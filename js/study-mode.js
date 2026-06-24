@@ -1389,7 +1389,7 @@
 
       if (!_canRunDiagnosis()) {
         card.innerHTML = `<div class="ai-diagnosis-header">🤖 Diagnóstico da Sessão</div>
-          <div style="color:var(--txt-dim);font-size:0.82rem;padding:8px 0;">Limite diário de diagnósticos atingido (${DIAG_DAILY_LIMIT}/dia). Volte amanhã ou <strong style="color:var(--gold);">faça upgrade para Premium</strong> para uso ilimitado.</div>`;
+          <div style="color:var(--txt-dim);font-size:0.82rem;padding:8px 0;">Limite diário de diagnósticos atingido (${DIAG_DAILY_LIMIT}/dia). Volte amanhã ou <strong class="nq-text-gold">faça upgrade para Premium</strong> para uso ilimitado.</div>`;
         card.classList.remove('ai-diagnosis-loading');
         return;
       }

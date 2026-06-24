@@ -1159,22 +1159,22 @@
       <div class="nq-dash-kpis" style="margin-bottom:14px; grid-template-columns: repeat(4, 1fr);">
         <div class="nq-dash-kpi" style="border-color:rgba(255,215,0,0.15);">
           <div class="nq-dash-kpi-icon">🎮</div>
-          <div class="nq-dash-kpi-val" style="color:var(--gold);">${gamesPlayed}</div>
+          <div class="nq-dash-kpi-val nq-text-gold">${gamesPlayed}</div>
           <div class="nq-dash-kpi-lbl">Partidas jogadas</div>
         </div>
         <div class="nq-dash-kpi" style="border-color:rgba(255,215,0,0.15);">
           <div class="nq-dash-kpi-icon">🏆</div>
-          <div class="nq-dash-kpi-val" style="color:var(--gold);">${bestScore.toLocaleString('pt-BR')}</div>
+          <div class="nq-dash-kpi-val nq-text-gold">${bestScore.toLocaleString('pt-BR')}</div>
           <div class="nq-dash-kpi-lbl">Recorde de score</div>
         </div>
         <div class="nq-dash-kpi" style="border-color:rgba(255,215,0,0.15);">
           <div class="nq-dash-kpi-icon">⬆️</div>
-          <div class="nq-dash-kpi-val" style="color:var(--gold);">${bestLevel}</div>
+          <div class="nq-dash-kpi-val nq-text-gold">${bestLevel}</div>
           <div class="nq-dash-kpi-lbl">Maior nível</div>
         </div>
         <div class="nq-dash-kpi" style="border-color:rgba(255,215,0,0.15);">
           <div class="nq-dash-kpi-icon">📚</div>
-          <div class="nq-dash-kpi-val" style="color:var(--gold);">${totalAccumulatedKnowledge.toLocaleString('pt-BR')}</div>
+          <div class="nq-dash-kpi-val nq-text-gold">${totalAccumulatedKnowledge.toLocaleString('pt-BR')}</div>
           <div class="nq-dash-kpi-lbl">Conhecimento Total</div>
         </div>
       </div>
@@ -1219,7 +1219,7 @@
         </div>
         <div class="nq-dash-kpi" style="border-color:rgba(96,165,250,0.15);">
           <div class="nq-dash-kpi-icon">📐</div>
-          <div class="nq-dash-kpi-val" style="color:var(--blue);">${axisStats.length}</div>
+          <div class="nq-dash-kpi-val nq-text-blue">${axisStats.length}</div>
           <div class="nq-dash-kpi-lbl">Eixos praticados</div>
         </div>
         <div class="nq-dash-kpi" style="border-color:rgba(124,58,237,0.15);">
@@ -1462,7 +1462,7 @@
     return `
       <div class="nq-dash-stitle">Biblioteca de Néfrons</div>
       <div class="nq-lib-head">
-        <div class="nq-lib-progress-info">Você desbloqueou <strong style="color:var(--gold);">${count}</strong> de ${total} artigos históricos da nefrologia.</div>
+        <div class="nq-lib-progress-info">Você desbloqueou <strong class="nq-text-gold">${count}</strong> de ${total} artigos históricos da nefrologia.</div>
         <div class="nq-lib-bar"><div class="nq-lib-bar-fill" style="width:${pct}%;"></div></div>
       </div>
       ${count === 0
@@ -1470,7 +1470,7 @@
         : `<div class="nq-lib-grid">${cards}</div>
            ${locked > 0
              ? `<div class="nq-lib-locked-hint">🔒 ${locked} artigo${locked !== 1 ? 's' : ''} ainda trancado${locked !== 1 ? 's' : ''} — continue abrindo baús para revelá-los.</div>`
-             : `<div class="nq-lib-locked-hint" style="color:var(--gold);">✨ Coleção completa! Você desbloqueou todos os artigos.</div>`}`}
+             : `<div class="nq-lib-locked-hint nq-text-gold">✨ Coleção completa! Você desbloqueou todos os artigos.</div>`}`}
     `;
   }
   window._dashToggleArticle = function (el) {

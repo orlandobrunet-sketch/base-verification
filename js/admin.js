@@ -341,7 +341,7 @@
                   </div>
                   <div style="font-size:0.74rem;">
                     Atual: <strong style="color:#94a3b8;">${LABEL[c.current] || c.current}</strong>
-                    &nbsp;→&nbsp; Comunidade: <strong style="color:var(--gold);">${LABEL[c.winner]}</strong>
+                    &nbsp;→&nbsp; Comunidade: <strong class="nq-text-gold">${LABEL[c.winner]}</strong>
                   </div>
                   <div style="font-size:0.64rem; color:var(--txt-dim); margin-top:4px;">Fácil ${c.a.easy} · Médio ${c.a.medium} · Difícil ${c.a.hard}</div>
                 </div>

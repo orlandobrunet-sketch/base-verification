@@ -1692,7 +1692,7 @@
         </div>`;
       }).join('');
 
-      const totalHTML = `<strong style='color:var(--gold)'>Atributos Totais:</strong>
+      const totalHTML = `<strong class='nq-text-gold'>Atributos Totais:</strong>
         <span class='stat-badge'>⚔️${st.atk}<span class='stat-tip'><strong>${statTips.atk.icon} ${statTips.atk.name}</strong><br>${statTips.atk.desc}</span></span>
         <span class='stat-badge'>🛡️${st.def}<span class='stat-tip'><strong>${statTips.def.icon} ${statTips.def.name}</strong><br>${statTips.def.desc}</span></span>
         <span class='stat-badge'>📚${st.kno}<span class='stat-tip'><strong>${statTips.kno.icon} ${statTips.kno.name}</strong><br>${statTips.kno.desc}</span></span>
@@ -4754,7 +4754,7 @@
 
             <div>
               <div class="nq-section-label">1. Quem somos</div>
-              <p style="margin:0;">O NefroQuest é uma plataforma educacional de nefrologia desenvolvida para médicos, residentes e estudantes de medicina. Contato: <span style="color:var(--blue);">contato@nefroquest.com</span></p>
+              <p style="margin:0;">O NefroQuest é uma plataforma educacional de nefrologia desenvolvida para médicos, residentes e estudantes de medicina. Contato: <span class="nq-text-blue">contato@nefroquest.com</span></p>
             </div>
 
             <div>
