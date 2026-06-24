@@ -212,15 +212,15 @@ kdigo_ckd:{
   },
 
   flow_study:{
-    label:"FLOW Trial (Semaglutida)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2311324",
-    journal:"New England Journal of Medicine",
+    label:"FLOW Trial — Semaglutida (NEJM 2024)",
+    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2403945",
+    journal:"N Engl J Med 2024;391(18):1718-1730",
     ano:2024,
-    tipo:"Ensaio Clínico Fase III",
+    tipo:"Ensaio Clínico RCT Fase III",
     badge:"RCT",
     badgeColor:"#10b981",
-    impacto:"↓24% desfecho renal composto · 1º RCT de GLP-1 com desfecho renal primário",
-    icon:"💊",
+    impacto:"↓24% desfecho renal composto · 1º RCT de GLP-1 com desfecho renal primário comprovado",
+    icon:"🔬",
     resumo:"ECR fase III, n=3.533, semaglutida 1 mg semanal vs placebo em DM2 + DRC. Critérios: TFGe 50–75 com UACR >300–<5000 ou TFGe 25–<50 com UACR >100–<5000. Desfecho primário: falência renal, queda ≥50% da TFGe ou morte renal/CV. Semaglutida reduziu o desfecho primário: 18,7% vs 23,2%; HR 0,76, IC 95% 0,66–0,88, P=0,0003. Também reduziu MACE: HR 0,82, IC 95% 0,68–0,98; e mortalidade geral: HR 0,80, IC 95% 0,67–0,95.",
     conclusao:"FLOW estabeleceu benefício renal primário da semaglutida em DM2 com DRC, posicionando GLP-1 RA como terapia complementar aos iSGLT2/SRAA/finerenona.",
     curiosidade:"O benefício renal provavelmente resulta de combinação de efeitos metabólicos, pressóricos, ponderais, anti-inflamatórios e hemodinâmicos; não reduzir a explicação a 'bloqueio do SRAA'."
@@ -585,16 +585,6 @@ canvas_program:{
     resumo:"ECR multicêntrico, n=6.609, avaliou empagliflozina 10 mg/dia em DRC ampla: TFGe 20–<45 independente de albuminúria ou TFGe 45–<90 com ACR ≥200 mg/g. Reduziu progressão renal ou morte cardiovascular: 13,1% vs 16,9%; HR 0,72, IC 95% 0,64–0,82, P<0,001. Benefício consistente em diabéticos e não diabéticos e nas faixas de TFGe estudadas.",
     conclusao:"EMPA-KIDNEY consolidou os iSGLT2 como nefroproteção central em DRC ampla, inclusive não diabética, com TFGe ≥20 dentro dos critérios do estudo.",
     curiosidade:"Foi o grande trial de iSGLT2 com maior heterogeneidade etiológica e incluiu proporção expressiva de pacientes sem diabetes."
-  },
-  flow_trial:{
-    label:"FLOW Trial Investigators — Semaglutida (NEJM 2024)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2403945",
-    journal:"N Engl J Med 2024;391(18):1718-1730",
-    ano:2024,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Semaglutida ↓24% desfecho renal composto em DM2 com DRC — primeiro GLP-1 com benefício renal primário comprovado",icon:"🔬",
-    resumo:"ECR fase III, n=3.533, semaglutida 1 mg semanal vs placebo em DM2 + DRC. Critérios: TFGe 50–75 com UACR >300–<5000 ou TFGe 25–<50 com UACR >100–<5000. Desfecho primário: falência renal, queda ≥50% da TFGe ou morte renal/CV. Semaglutida reduziu o desfecho primário: 18,7% vs 23,2%; HR 0,76, IC 95% 0,66–0,88, P=0,0003. Também reduziu MACE: HR 0,82, IC 95% 0,68–0,98; e mortalidade geral: HR 0,80, IC 95% 0,67–0,95.",
-    conclusao:"FLOW estabeleceu benefício renal primário da semaglutida em DM2 com DRC, posicionando GLP-1 RA como terapia complementar aos iSGLT2/SRAA/finerenona.",
-    curiosidade:"O benefício renal provavelmente resulta de combinação de efeitos metabólicos, pressóricos, ponderais, anti-inflamatórios e hemodinâmicos; não reduzir a explicação a 'bloqueio do SRAA'."
   },
   // --- Hipertensão ---
   sprint_trial:{
