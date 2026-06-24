@@ -229,7 +229,7 @@
       if (!overlay) return;
       overlay.innerHTML = `
         <div style="max-width:600px;width:100%;margin:0 auto;padding:24px 16px 40px;box-sizing:border-box;">
-          <h2 style="color:var(--gold);font-family:'Cinzel',serif;text-align:center;margin-bottom:20px;">📋 Resultado da Prova</h2>
+          <h2 class="nq-modal-heading" style="text-align:center;margin-bottom:20px;">📋 Resultado da Prova</h2>
           <!-- Placar geral -->
           <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;">
             <div style="background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.35);border-radius:10px;padding:14px;text-align:center;">

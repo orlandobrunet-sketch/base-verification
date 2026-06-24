@@ -395,7 +395,7 @@
       overlay.innerHTML = `
         <div style="background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid rgba(255,215,0,0.5);border-radius:16px;padding:28px 24px;max-width:400px;width:100%;text-align:center;box-shadow:0 0 60px rgba(255,215,0,0.15);">
           <div style="font-size:2rem;margin-bottom:8px;">🏆</div>
-          <h2 style="color:var(--gold);font-family:'Cinzel',serif;margin-bottom:6px;font-size:1.2rem;">Nível 2 desbloqueado!</h2>
+          <h2 class="nq-modal-heading" style="font-size:1.2rem;margin-bottom:6px;">Nível 2 desbloqueado!</h2>
           <p style="color:var(--txt-dim);font-size:0.85rem;margin-bottom:20px;line-height:1.6;">Crie uma conta gratuita para salvar seu XP, equipamentos e sequência — e aparecer no ranking.</p>
           <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;text-align:left;">
             <div style="color:#c8d8f0;font-size:0.82rem;">✅ Progresso salvo em qualquer dispositivo</div>
