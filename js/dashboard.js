@@ -616,10 +616,10 @@
       }
       .nq-dash-heatmap-grid {
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         gap: 5px;
-        justify-content: start;
         padding: 6px 4px 10px;
+        overflow-x: auto;
       }
       .nq-dash-heatmap-day {
         width: 10px;
