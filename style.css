@@ -697,7 +697,7 @@
     .forge-card img { width:80px; height:80px; border-radius:10px; border:2px solid var(--gold); margin-bottom:12px; object-fit:cover; background:#0a0e1a; filter:saturate(1.25) contrast(1.05); }
     .forge-card h3 { color:var(--gold); font-family:'Cinzel',serif; margin-bottom:6px; }
     .forge-card p { color:var(--txt-soft); font-size:0.85rem; margin-bottom:4px; }
-    .forge-card .forge-stats { color:var(--txt-dim); font-size:0.8rem; margin:8px 0; }
+    .forge-card .forge-stats { color:var(--txt-dim); font-size:0.8rem; margin:8px 0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .forge-card button { margin-top:12px; }
     @keyframes scaleIn { from{transform:scale(0.5);opacity:0} to{transform:scale(1);opacity:1} }
     @keyframes fadeIn { from{opacity:0} to{opacity:1} }
@@ -13274,4 +13274,202 @@ body.boss-stun-active #equipList .slot-diablo {
     font-size: 0.46rem !important;
     bottom: 2px !important;
   }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   NQ COMPONENT LIBRARY — PED-4 L2
+   Adição pura: zero sobreposição com regras existentes.
+   Todas as classes usam os tokens de :root.
+   Prefix: nq-  (evita colisão com .bib-*, .forge-*, etc.)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── nq-card ──────────────────────────────────────────────────────────────
+   Superfície escura padrão. Use .nq-card--gold ou --legendary para variantes.  */
+.nq-card {
+  background: linear-gradient(135deg, var(--bg-surface), var(--bg-deep));
+  border: 1px solid var(--blue-dark);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+}
+.nq-card--gold {
+  border-color: var(--gold-dark);
+  box-shadow: 0 0 20px rgba(240,192,64,0.10);
+}
+.nq-card--legendary {
+  border-color: var(--gold);
+  box-shadow: var(--shadow-glow-gold);
+}
+
+/* ── nq-modal-card ────────────────────────────────────────────────────────
+   Card flutuante dentro de overlay/popup (substitui o padrão de inline
+   styles que aparece em ~12 modais distintos no JS).                        */
+.nq-modal-card {
+  position: relative;
+  background: linear-gradient(162deg, #0e1628 0%, #080d1a 100%);
+  border: 1px solid rgba(255,215,0,0.22);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-modal), var(--shadow-glow-gold);
+  width: 100%;
+}
+.nq-modal-card--narrow  { max-width: 420px; }
+.nq-modal-card--medium  { max-width: 560px; }
+.nq-modal-card--wide    { max-width: 760px; }
+
+/* ── nq-btn ───────────────────────────────────────────────────────────────
+   Botão base + variantes. Convive com .btn existente sem conflito.          */
+.nq-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  font-family: 'Cinzel', serif;
+  font-size: var(--text-sm);
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.12s;
+  text-transform: uppercase;
+  user-select: none;
+}
+.nq-btn:active { transform: translateY(1px); }
+
+.nq-btn--gold {
+  background: linear-gradient(180deg, var(--gold) 0%, var(--gold-dark) 100%);
+  border-color: var(--gold);
+  color: #1a1000;
+  box-shadow: 0 2px 10px rgba(240,192,64,0.3);
+}
+.nq-btn--gold:hover {
+  background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 100%);
+  box-shadow: 0 4px 18px rgba(240,192,64,0.45);
+}
+
+.nq-btn--ghost {
+  background: transparent;
+  border-color: var(--blue-dark);
+  color: var(--txt-dim);
+}
+.nq-btn--ghost:hover {
+  border-color: var(--blue);
+  color: var(--txt);
+  background: rgba(74,158,255,0.06);
+}
+
+.nq-btn--purple {
+  background: linear-gradient(180deg, var(--purple-dark) 0%, #5b21b6 100%);
+  border-color: var(--purple);
+  color: var(--purple-light);
+}
+.nq-btn--purple:hover {
+  background: linear-gradient(180deg, #8b3cf7 0%, var(--purple-dark) 100%);
+  box-shadow: 0 4px 18px rgba(124,58,237,0.35);
+}
+
+.nq-btn--danger {
+  background: linear-gradient(180deg, #991b1b 0%, #7f1d1d 100%);
+  border-color: var(--bad);
+  color: #fca5a5;
+}
+.nq-btn--danger:hover {
+  background: linear-gradient(180deg, #b91c1c 0%, #991b1b 100%);
+}
+
+.nq-btn--sm {
+  padding: 3px 10px;
+  font-size: var(--text-xs);
+  border-radius: 5px;
+}
+.nq-btn--lg {
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--text-md);
+  border-radius: var(--radius-md);
+}
+
+/* ── nq-badge ─────────────────────────────────────────────────────────────
+   Pill de tipo/raridade. Use modificador de cor.                            */
+.nq-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-2xs);
+  font-weight: bold;
+  font-family: 'Cinzel', serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+.nq-badge--gold   { background: rgba(240,192,64,0.10); color: var(--gold);       border-color: rgba(240,192,64,0.40); }
+.nq-badge--blue   { background: rgba(74,158,255,0.10);  color: var(--blue);       border-color: rgba(74,158,255,0.40); }
+.nq-badge--purple { background: rgba(192,132,252,0.10); color: var(--purple);     border-color: rgba(192,132,252,0.40); }
+.nq-badge--green  { background: rgba(52,211,153,0.10);  color: var(--ok);         border-color: rgba(52,211,153,0.40); }
+.nq-badge--red    { background: rgba(251,113,133,0.10); color: var(--bad);        border-color: rgba(251,113,133,0.40); }
+.nq-badge--gray   { background: rgba(112,144,176,0.10); color: var(--txt-dim);    border-color: rgba(112,144,176,0.30); }
+
+/* ── nq-text-* ────────────────────────────────────────────────────────────
+   Atalhos de cor de texto para uso em JS (substitui style='color:...')      */
+.nq-text-gold   { color: var(--gold); }
+.nq-text-blue   { color: var(--blue); }
+.nq-text-purple { color: var(--purple); }
+.nq-text-green  { color: var(--ok); }
+.nq-text-red    { color: var(--bad); }
+.nq-text-dim    { color: var(--txt-dim); }
+.nq-text-soft   { color: var(--txt-soft); }
+.nq-text-muted  { color: var(--txt-mid); }
+
+/* ── nq-section-label ─────────────────────────────────────────────────────
+   Título de seção em azul + negrito (ex: itens da Política de Privacidade)  */
+.nq-section-label {
+  color: var(--blue);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+/* ── nq-divider ───────────────────────────────────────────────────────────*/
+.nq-divider {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  margin: var(--space-4) 0;
+}
+.nq-divider--gold { border-color: rgba(240,192,64,0.20); }
+
+/* ── nq-quote ─────────────────────────────────────────────────────────────
+   Bloco de citação / descrição em itálico (usado no forge popup e modais)   */
+.nq-quote {
+  font-size: var(--text-xs);
+  color: #a0b4cc;
+  font-style: italic;
+  margin: var(--space-2) 0 var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  background: rgba(255,255,255,0.05);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  line-height: 1.5;
+}
+
+/* ── nq-stat-row ──────────────────────────────────────────────────────────
+   Linha de atributo (ícone + label + valor) usada em popups de equipamento  */
+.nq-stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: 3px 0;
+  font-size: var(--text-xs);
+  color: var(--txt-soft);
+}
+.nq-stat-row__label { color: var(--txt-dim); }
+.nq-stat-row__value { color: var(--txt); font-weight: bold; }
+.nq-stat-row__diff-pos { color: var(--ok); font-size: var(--text-2xs); }
+.nq-stat-row__diff-neg { color: var(--bad); font-size: var(--text-2xs); }
+
+/* ── Responsive helpers ───────────────────────────────────────────────────*/
+@media (max-width: 480px) {
+  .nq-modal-card { padding: var(--space-4); border-radius: var(--radius-lg); }
+  .nq-btn--lg    { padding: var(--space-2) var(--space-4); font-size: var(--text-sm); }
 }

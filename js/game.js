@@ -3337,8 +3337,8 @@
           <img src='${icon}' alt='${item.n}'/>
           <p class='rar-${item.rar}' style='font-size:1.1rem;font-weight:700'>${item.n}</p>
           <p style='font-size:0.72rem;color:var(--txt-dim);margin-bottom:2px'>${slotLabels[slot]} &nbsp;·&nbsp; <span class='rar-${item.rar}'>${rarLabels[item.rar]||item.rar}</span></p>
-          ${desc ? `<p style='font-size:0.78rem;color:#a0b4cc;font-style:italic;margin:8px 0 10px;padding:8px 10px;background:rgba(255,255,255,0.05);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;line-height:1.5'>${desc}</p>` : ''}
-          <div class='forge-stats' style='white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>
+          ${desc ? `<p class='nq-quote'>${desc}</p>` : ''}
+          <div class='forge-stats'>
             ${gains.length>0 ? gains.join(' &nbsp;·&nbsp; ') : '🔄 Nenhum atributo melhorou desta vez...'}
           </div>
           <button class='btn gold' data-close-closest=".forge-popup">Continuar</button>
@@ -4753,12 +4753,12 @@
           <div class="modal-scroll-body" style="color:#c8d8f0;font-size:0.83rem;line-height:1.75;display:flex;flex-direction:column;gap:16px;">
 
             <div>
-              <div style="color:var(--blue);font-weight:700;margin-bottom:4px;">1. Quem somos</div>
+              <div class="nq-section-label">1. Quem somos</div>
               <p style="margin:0;">O NefroQuest é uma plataforma educacional de nefrologia desenvolvida para médicos, residentes e estudantes de medicina. Contato: <span style="color:var(--blue);">contato@nefroquest.com</span></p>
             </div>
 
             <div>
-              <div style="color:var(--blue);font-weight:700;margin-bottom:4px;">2. Dados coletados</div>
+              <div class="nq-section-label">2. Dados coletados</div>
               <ul style="margin:0;padding-left:18px;">
                 <li><strong>Conta:</strong> endereço de e-mail para autenticação.</li>
                 <li><strong>Progresso:</strong> nível, XP, questões respondidas, estatísticas de desempenho e revisão espaçada — armazenados localmente e/ou no servidor para sincronização entre dispositivos.</li>
@@ -4767,32 +4767,32 @@
             </div>
 
             <div>
-              <div style="color:var(--blue);font-weight:700;margin-bottom:4px;">3. Uso de Inteligência Artificial</div>
+              <div class="nq-section-label">3. Uso de Inteligência Artificial</div>
               <p style="margin:0;">O NefroQuest utiliza <strong style="color:#e9d5ff;">Claude (Anthropic)</strong> para as funcionalidades de <em>Mentor IA</em> (dúvidas sobre questões) e <em>Diagnóstico de Sessão</em>. Ao usar esses recursos, o texto da questão e sua dúvida são enviados à Anthropic para geração da resposta. Não enviamos dados pessoais identificáveis à Anthropic. A Anthropic não usa dados de produção para treinar modelos sem consentimento explícito.</p>
             </div>
 
             <div>
-              <div style="color:var(--blue);font-weight:700;margin-bottom:4px;">4. Compartilhamento de dados</div>
+              <div class="nq-section-label">4. Compartilhamento de dados</div>
               <p style="margin:0;">Não vendemos seus dados. Compartilhamos apenas com prestadores de serviços necessários para o funcionamento da plataforma: <strong>Supabase</strong> (autenticação e banco de dados), <strong>Anthropic</strong> (IA, somente conteúdo educacional), <strong>Sentry</strong> (monitoramento de erros) e <strong>Mercado Pago</strong> (processamento de pagamentos, quando aplicável).</p>
             </div>
 
             <div>
-              <div style="color:var(--blue);font-weight:700;margin-bottom:4px;">5. Seus direitos</div>
+              <div class="nq-section-label">5. Seus direitos</div>
               <p style="margin:0;">Você pode solicitar a exclusão da sua conta e de todos os dados associados a qualquer momento entrando em contato pelo e-mail acima. O acesso ao app sem conta (modo visitante) não armazena dados no servidor.</p>
             </div>
 
             <div>
-              <div style="color:var(--blue);font-weight:700;margin-bottom:4px;">6. Cookies e armazenamento local</div>
+              <div class="nq-section-label">6. Cookies e armazenamento local</div>
               <p style="margin:0;">Utilizamos <code style="background:rgba(255,255,255,0.08);padding:1px 4px;border-radius:3px;">localStorage</code> para salvar seu progresso de jogo localmente. Não utilizamos cookies de rastreamento ou publicidade.</p>
             </div>
 
             <div>
-              <div style="color:var(--blue);font-weight:700;margin-bottom:4px;">7. Menores de idade</div>
+              <div class="nq-section-label">7. Menores de idade</div>
               <p style="margin:0;">O NefroQuest é destinado a adultos (estudantes de medicina, residentes e médicos). Não coletamos dados de menores de 18 anos intencionalmente.</p>
             </div>
 
             <div>
-              <div style="color:var(--blue);font-weight:700;margin-bottom:4px;">8. Alterações nesta política</div>
+              <div class="nq-section-label">8. Alterações nesta política</div>
               <p style="margin:0;">Podemos atualizar esta política periodicamente. A data de atualização será revisada no topo do documento. O uso continuado após alterações implica aceite das novas condições.</p>
             </div>
 
