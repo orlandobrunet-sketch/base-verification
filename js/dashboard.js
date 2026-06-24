@@ -1787,11 +1787,11 @@
         return `
           <div class="nq-hist-item" data-qid="${q.qid}">
             <div class="nq-hist-item-header">
-              <div>
-                <span style="font-size:0.6rem; text-transform:uppercase; letter-spacing:0.5px; background:rgba(255,215,0,0.08); color:var(--gold); border:1px solid rgba(255,215,0,0.15); padding:2px 6px; border-radius:4px; margin-right:8px;">${escapeHtml(q.cat || 'Geral')}</span>
-                <span class="nq-hist-item-title">${escapeHtml(q.t || 'Sem título')}</span>
+              <div style="flex:1; min-width:0; overflow:hidden;">
+                <span style="font-size:0.6rem; text-transform:uppercase; letter-spacing:0.5px; background:rgba(255,215,0,0.08); color:#f0c040; border:1px solid rgba(255,215,0,0.15); padding:2px 6px; border-radius:4px; margin-right:8px;">${escapeHtml(q.cat || 'Geral')}</span>
+                <span style="font-family:'Cinzel',serif; font-size:0.8rem; font-weight:bold; color:#fff;">${escapeHtml(q.t || 'Sem título')}</span>
               </div>
-              <span class="nq-hist-item-badge ${badgeClass}">${badgeText}</span>
+              <span class="nq-hist-item-badge ${badgeClass}" style="flex-shrink:0; margin-left:8px;">${badgeText}</span>
             </div>
             <div class="nq-hist-item-details" style="display:none;">
               <div class="nq-hist-item-qtext">${escapeHtml(q.q)}</div>
