@@ -123,7 +123,7 @@
       overlay.innerHTML = `
         <div style="max-width:420px;width:100%;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--gold);border-radius:14px;padding:26px 24px;text-align:center;box-shadow:0 0 40px rgba(255,215,0,0.2);">
           <div style="font-size:1.8rem;margin-bottom:8px;">🏷️</div>
-          <h3 style="color:var(--gold);font-family:'Cinzel',serif;margin:0 0 8px;">Escolha seu apelido</h3>
+          <h3 class="nq-modal-heading">Escolha seu apelido</h3>
           <p style="color:#c8d8f0;font-size:0.84rem;line-height:1.6;margin:0 0 16px;">É o nome que aparece no ranking. <strong>Não precisa ser seu nome real</strong> — use o que quiser para se identificar.</p>
           <input id="nickInput" type="text" maxlength="40" placeholder="ex.: NefroMestre, Dra. Renal..." value="${suggested.replace(/"/g,'&quot;')}" style="width:100%;background:#0d1525;border:1px solid var(--blue-dark);color:var(--txt);border-radius:8px;padding:10px 12px;font-size:1rem;text-align:center;margin-bottom:16px;">
           <div style="display:flex;gap:10px;">
