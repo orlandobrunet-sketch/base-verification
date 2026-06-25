@@ -785,6 +785,16 @@ canvas_program:{
     conclusao:"EMPA-REG OUTCOME foi o trial que iniciou a revolução cardiorrenal dos iSGLT2, demonstrando benefício CV e renal além do controle glicêmico em DM2 de alto risco.",
     curiosidade:"A redução de morte CV e hospitalização por IC foi mais rápida do que seria esperado por efeito aterosclerótico — sugerindo mecanismo hemodinâmico direto (natriurese, redução de pré e pós-carga) independente do controle glicêmico."
   },
+  sustain6:{
+    label:"Marso SP et al. — SUSTAIN-6 (NEJM 2016)",
+    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1603827",
+    journal:"N Engl J Med 2016;375(19):1834-1844",
+    ano:2016,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
+    impacto:"Semaglutida ↓26% MACE em DM2 de alto risco CV; ↓36% nefropatia nova/piora; risco aumentado de retinopatia diabética",icon:"🔬",
+    resumo:"ECR cardiovascular de não-inferioridade (SUSTAIN-6, n=3.297), em DM2 com alto risco cardiovascular, comparando semaglutida subcutânea (0,5 mg ou 1 mg semanal) vs placebo. Desfecho primário MACE: HR 0,74 (IC 95% 0,58–0,95; P<0,001 para não-inferioridade, P=0,02 para superioridade). Desfecho renal composto (nefropatia nova ou piora): HR 0,64 (IC 95% 0,46–0,88; P=0,005), principalmente por redução da progressão para macroalbuminúria. Evento adverso relevante: progressão de retinopatia diabética, HR 1,76 (IC 95% 1,29–2,40; P=0,0004), possivelmente relacionado à queda rápida da HbA1c.",
+    conclusao:"SUSTAIN-6 estabeleceu semaglutida como GLP-1 RA com benefício cardiovascular e renal (albuminúrico) em DM2, mas sinalizou risco aumentado de complicações de retinopatia — dado importante na prática clínica nefro-oftalmológica.",
+    curiosidade:"O achado de retinopatia no SUSTAIN-6 gerou debate sobre causalidade: hipótese predominante é a 'paradoxo da retinopatia' — queda rápida da HbA1c pode deteriorar transitoriamente a retinopatia antes de melhorá-la, fenômeno descrito previamente com insulina. Trials posteriores (SUSTAIN 7, PIONEER) não replicaram o sinal de forma consistente."
+  },
   leader_trial:{
     label:"Marso SP et al. — LEADER (NEJM 2016)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1603827",
