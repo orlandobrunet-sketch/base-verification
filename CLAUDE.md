@@ -53,7 +53,7 @@ git config core.hooksPath .githooks
 ├── style.css           # Estilos globais (tema dark medieval, variáveis CSS)
 ├── sw.js               # Service Worker — cache offline e versioning
 ├── manifest.json       # PWA manifest
-├── version.json        # {"version": "11.86"} — controla invalidação de SW
+├── version.json        # {"version": "12.30"} — controla invalidação de SW
 ├── 404.html            # Página 404
 ├── offline.html        # Página offline
 ├── clear-cache.html    # Redireciona após limpar SW cache
@@ -82,6 +82,7 @@ git config core.hooksPath .githooks
 ├── data/
 │   ├── topics.js       # ~1.4 MB — banco de questões de nefrologia (lazy loaded)
 │   ├── articles.js     # Artigos de referência
+│   ├── competencies.js # PED-2 — Mapa de Competências (classificação por keywords)
 │   ├── rapid-quiz.js   # Questões do modo quiz rápido
 │   └── refs.js         # Referências bibliográficas
 
@@ -100,7 +101,7 @@ git config core.hooksPath .githooks
 ├── docs/
 │   └── ROADMAP.md      # Roadmap e backlog do produto
 
-└── tests/              # Playwright E2E (9 suites)
+└── tests/              # Playwright E2E (13 suites)
 ```
 
 ---
@@ -217,7 +218,7 @@ git config core.hooksPath .githooks
 
 ## Regra obrigatória para questões médicas
 
-Sempre que a tarefa envolver avaliar, revisar, corrigir, reescrever, criar, excluir, classificar ou implementar uma questão médica do NefroQuest, carregue e siga integralmente a skill `revisar-nefroquest` antes de analisar ou modificar a questão.
+Sempre que a tarefa envolver avaliar, revisar, corrigir, reescrever, criar, excluir, classificar ou implementar uma questão médica do NefroQuest, carregue e siga integralmente a skill apropriada antes de analisar ou modificar a questão: `revisar-nefroquest` para revisar/corrigir questões existentes, e `criar-nefroquest` para criar questões novas.
 
 Isso inclui solicitações sobre:
 
