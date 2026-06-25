@@ -1328,6 +1328,16 @@ canvas_program:{
     conclusao:"VISIONARY validou o bloqueio de APRIL como abordagem upstream na IgAN, atuando sobre o estímulo à produção do autoanticorpo patogênico — base para o trial de fase 3 em andamento.",
     curiosidade:"O anti-APRIL difere do anti-BAFF (belimumabe no lúpus) por ser mais seletivo: APRIL tem papel crítico na switch de IgA nas mucosas — a seletividade pode traduzir-se em menor imunossupressão sistêmica que o bloqueio mais amplo do eixo BAFF."
   },
+  envision_sibeprenlimab_2024:{
+    label:"ENVISION (Sibeprenlimabe Fase 2)",
+    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2305635",
+    journal:"N Engl J Med 2024;390(1):20-31",
+    ano:2024,tipo:"Ensaio Clínico Fase II",badge:"RCT",badgeColor:"#10b981",
+    impacto:"Sibeprenlimabe (anti-APRIL) reduz proteinúria na nefropatia por IgA",icon:"🔬",
+    resumo:"ENVISION (NCT04287985): ECR de fase 2 em adultos com nefropatia por IgA e proteinúria persistente apesar de bloqueio otimizado do SRAA, comparando sibeprenlimabe (anticorpo monoclonal anti-APRIL) com placebo. O APRIL (A Proliferation-Inducing Ligand) estimula a produção de IgA1 galactose-deficiente via receptor TACI em células B; seu bloqueio reduziu a proteinúria aos 12 meses (desfecho substituto), com perfil de segurança aceitável.",
+    conclusao:"Validou o bloqueio do APRIL como abordagem upstream na nefropatia por IgA; embasou o ensaio de fase 3 VISIONARY (NCT05248646), que sustentou a aprovação acelerada da FDA do sibeprenlimabe (Voyxact) em 2025 por redução de proteinúria — efeito de longo prazo sobre a TFGe ainda em confirmação.",
+    curiosidade:"O anti-APRIL distingue-se do anti-BAFF por maior seletividade: o APRIL é crítico na troca de classe para IgA nas mucosas, o que pode implicar menor imunossupressão sistêmica que o bloqueio amplo do eixo BAFF."
+  },
   pisces_study:{
     label:"PISCES Trial (Ômega-3 em HD)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2407495",
