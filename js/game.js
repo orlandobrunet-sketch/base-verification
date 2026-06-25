@@ -2202,9 +2202,14 @@
     // Cadência: 1 nível a cada 10 acertos (L1 em 0, L2 em 10, … L10 em 90).
     // O XP continua preenchendo a barra dentro de cada nível, mas não permite
     // ultrapassar o teto do progresso — evita "subir nível fácil demais".
-    function levelCapForProgress() {
-      return Math.min(MAX_LEVEL, 1 + Math.floor((state.correctTotal || 0) / 10));
+    function levelCapForCorrect(correctTotal) {
+      return Math.min(MAX_LEVEL, 1 + Math.floor((correctTotal || 0) / 10));
     }
+    function levelCapForProgress() {
+      return levelCapForCorrect(state.correctTotal || 0);
+    }
+    window.xpForLevel = xpForLevel;
+    window.levelCapForCorrect = levelCapForCorrect;
     function gainXP(x){
       state.xp+=x; let up=0;
       const cap = levelCapForProgress();
