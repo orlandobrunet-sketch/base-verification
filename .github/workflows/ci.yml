@@ -97,6 +97,7 @@ jobs:
       # overloads de crypto.subtle.importKey em send-push). Mantido como sinal
       # até esses tipos serem corrigidos; aí pode voltar a ser bloqueante.
       - name: Setup Deno
+        continue-on-error: true   # não bloquear o merge se deno.com estiver indisponível (setup-deno busca versions.json)
         uses: denoland/setup-deno@v2
         with:
           deno-version: v2.x
