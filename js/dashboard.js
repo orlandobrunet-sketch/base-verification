@@ -4,7 +4,7 @@
 (function () {
   // ── Estilos injetados uma única vez ───────────────────────────────────────
   function _injectStyles() {
-    if (document.getElementById('nq-dash-styles')) return;
+    document.getElementById('nq-dash-styles')?.remove();
     const s = document.createElement('style');
     s.id = 'nq-dash-styles';
     s.textContent = `
