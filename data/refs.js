@@ -1319,14 +1319,14 @@ canvas_program:{
     curiosidade:"O belimumabe é um anticorpo monoclonal humano recombinante que se liga e inibe de forma seletiva a proteína ativadora de células B solúvel (BLyS ou BAFF), impedindo a sobrevivência e diferenciação de linfócitos B autorreativos causadores do Lúpus."
   },
   visionary_trial:{
-    label:"VISIONARY Trial (Sibeprenlimabe)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2305361",
-    journal:"N Engl J Med 2023;389(1):22-32",
-    ano:2023,tipo:"Ensaio Clínico Fase II",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Sibeprenlimabe (anti-APRIL) ↓ proteinúria 47% em Nefropatia por IgA",icon:"💊",
-    resumo:"ECR fase II (n=155), sibeprenlimabe (anticorpo monoclonal anti-APRIL) vs placebo em IgAN com proteinúria ≥1 g/dia apesar de SRAA otimizado. APRIL (A Proliferation-Inducing Ligand) é um membro da família TNF que estimula a produção de IgA1 galactose-deficiente via receptor TACI em células B. Reduziu proteinúria em 47% vs aumento de 5% no placebo aos 12 meses.",
-    conclusao:"VISIONARY validou o bloqueio de APRIL como abordagem upstream na IgAN, atuando sobre o estímulo à produção do autoanticorpo patogênico — base para o trial de fase 3 em andamento.",
-    curiosidade:"O anti-APRIL difere do anti-BAFF (belimumabe no lúpus) por ser mais seletivo: APRIL tem papel crítico na switch de IgA nas mucosas — a seletividade pode traduzir-se em menor imunossupressão sistêmica que o bloqueio mais amplo do eixo BAFF."
+    label:"VISIONARY (Sibeprenlimabe Fase 3)",
+    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2512133",
+    journal:"N Engl J Med 2025 (DOI 10.1056/NEJMoa2512133)",
+    ano:2025,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
+    impacto:"Sibeprenlimabe (anti-APRIL) ↓ proteinúria ~51% aos 9 meses na NIgA (fase 3)",icon:"🔬",
+    resumo:"VISIONARY (NCT05248646): ECR de fase 3, duplo-cego, controlado por placebo, n=510 em 31 países, randomização 1:1 para sibeprenlimabe 400 mg por via subcutânea vs placebo a cada 4 semanas. APRIL (A Proliferation-Inducing Ligand) estimula a produção de IgA1 galactose-deficiente via receptor TACI em células B. Desfecho primário: variação relativa da relação proteína/creatinina urinária (24 h) aos 9 meses — redução ajustada de 51,2% vs placebo (IC 96,5% 42,9–58,2; P<0,001). Desfecho secundário-chave: slope anualizado da TFGe em 24 meses, a ser reportado na conclusão do estudo.",
+    conclusao:"A análise interina (proteinúria aos 9 meses) sustentou a aprovação acelerada da FDA do sibeprenlimabe (Voyxact) em nov/2025; a preservação de longo prazo da função renal (slope da TFGe) é desfecho substituto ainda em confirmação, não desfecho renal duro.",
+    curiosidade:"Maior coorte de NIgA randomizada até o momento (510 pacientes, ~240 centros). O anti-APRIL atua a montante, reduzindo a produção de IgA1 galactose-deficiente — distinto do bloqueio hemodinâmico (SRAA, antagonistas de endotelina) e da inibição do complemento."
   },
   envision_sibeprenlimab_2024:{
     label:"ENVISION (Sibeprenlimabe Fase 2)",
