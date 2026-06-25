@@ -215,6 +215,31 @@ git config core.hooksPath .githooks
 
 ---
 
+## Regra obrigatória para questões médicas
+
+Sempre que a tarefa envolver avaliar, revisar, corrigir, reescrever, criar, excluir, classificar ou implementar uma questão médica do NefroQuest, carregue e siga integralmente a skill `revisar-nefroquest` antes de analisar ou modificar a questão.
+
+Isso inclui solicitações sobre:
+
+* enunciado;
+* alternativas;
+* gabarito;
+* explicação;
+* referências;
+* cards científicos;
+* dificuldade;
+* ambiguidade;
+* qualidade pedagógica;
+* atualização científica;
+* implementação de questões no código;
+* revisão em lote do banco de questões.
+
+Não faça revisão médica apenas com conhecimento geral quando essa skill estiver disponível.
+
+Caso o usuário peça apenas uma alteração visual, estrutural ou técnica que não envolva o conteúdo médico da questão, a skill não precisa ser carregada.
+
+---
+
 ## Workflow padrão
 
 1. Ler este arquivo e identificar apenas os arquivos necessários
