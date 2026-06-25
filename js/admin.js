@@ -19,6 +19,13 @@
         document.getElementById('mainApp')?.classList.remove('hidden');
         document.getElementById('actionDock')?.classList.remove('hidden');
       }
+      // Reseta o estado de "jogo concluído". Sem isto, quem já derrotou o
+      // Arqui-Nefromante carrega gameCompleted=true (game.js:809, flag sticky
+      // em localStorage 'nefroquest-arqui-defeated') e isBossBattle() retorna
+      // false — o layout do boss nunca ativa. Espelha o reset do restart.
+      state.gameCompleted = false;
+      state.completedGame = false;
+      state.gameOver = false;
       state.correctTotal = BOSS_START_CORRECT;
       state.narrativeShown = BOSS_START_CORRECT;
       state.bossIntroShown = true;
