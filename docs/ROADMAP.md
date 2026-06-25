@@ -40,6 +40,18 @@ Toda tarefa deve ser solicitada explicitamente pelo usuário.
 | DT5 | **Webhook Mercado Pago — hardening** | Baixa | **Concluído (v11.56)** — Idempotência por `paymentId` via tabela `processed_payments` (migration 007); assinatura HMAC SHA-256 já validada; **adicionados** comparação em tempo constante (`timingSafeEqual`, anti-timing-attack) e log estruturado de tentativas inválidas (`mp_webhook_rejected`). |
 | DT6 | **Observabilidade de erros silenciosos** | Média | **Concluído (v11.55)** — Roteador unificado de exceções com contexto enviado a Sentry/GA4. |
 
+### Auditoria técnica — junho/2026 (skill `improve`)
+
+> Achados da auditoria sênior de junho/2026. Planos de execução autocontidos em `plans/` (executáveis por outro agente). Recomendação: executar DT7 primeiro (maior alavancagem, menor risco), depois DT8.
+
+| # | Item | Severidade | Plano | Status |
+|---|------|-----------|-------|--------|
+| DT7 | **Baseline de verificação no CI** — o CI atual só faz _grep_ de strings; nenhum passo **parseia** o JS. Sem build step, um erro de sintaxe em qualquer `js/*.js` chega à produção sem ser detectado (o job E2E completo é `continue-on-error`). Adiciona `node --check` em todo `js/*.js`/`data/*.js`, `deno check` nas 7 Edge Functions, e corrige o passo de _secret-leak_ (variável morta `KNOWN_KEY`, só varre `index.html`). Avança o E9 ("CI obrigatório antes de merge"). | Alta | [`plans/001-ci-verification-baseline.md`](../plans/001-ci-verification-baseline.md) | **Concluído** — merge na main via PR #523 (`11ca1af`) |
+| DT8 | **Testes de caracterização da pontuação** — `js/game.js` (~4987 linhas) não tem rede de regressão rápida para a matemática de XP/nível. Fixa via Playwright a curva `xpForLevel` e a invariante documentada de que o nível 10 é atingido **exatamente** aos 90 acertos (= início do boss, `BOSS_START_CORRECT`). Estende o padrão de `tests/specs/09-unit-pure-functions.spec.ts`. | Média | [`plans/002-game-scoring-characterization-tests.md`](../plans/002-game-scoring-characterization-tests.md) | **Concluído** — merge na main via PR #525 (`47d4c1a`, v12.31); 18 testes Playwright ✓ |
+| DT9 | **Tipos do `deno check` em send-push** — o gate `deno check` (DT7) achou 2 erros `TS2769` pré-existentes em `supabase/functions/send-push/index.ts` (overloads de `crypto.subtle.importKey` no fallback VAPID; atrito TS 5.7+/Deno com `Uint8Array<ArrayBufferLike>`). O passo foi tornado **informativo** (PR #524) para não travar o CI. Corrigir os tipos (sem mudar runtime) permite o gate voltar a ser **bloqueante**. | Baixa | [`plans/003-fix-send-push-deno-types.md`](../plans/003-fix-send-push-deno-types.md) | **Planejado** (requer Deno local p/ verificar) |
+
+> **Considerados e rejeitados na auditoria:** (a) `JSON.parse(localStorage…)` sem guarda — falso positivo: todos os ~22 usos já estão em `try/catch`; (b) minificar `style.css`/`topics.js` — _by-design_ ("SPA puro — sem build step"; CDN faz gzip + SW cacheia); (c) XSS via `innerHTML` — conteúdo de usuário usa `textContent`, hint da IA é escapado, e há _guard_ de XSS no CI; (d) segurança das Edge Functions — revisadas, sem achados (HMAC + idempotência + cota server-side). Detalhes em `plans/README.md`.
+
 ---
 
 ## Grimório — Conteúdo Pendente
