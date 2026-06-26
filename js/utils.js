@@ -675,12 +675,19 @@
         ? window.questionBank
         : (typeof questionBank !== 'undefined' && Array.isArray(questionBank) ? questionBank : null);
       if (Array.isArray(history) && history.length > 0 && bank) {
+        // Índice id→questão construído uma vez: evita O(histórico × banco) por
+        // draw (o banco tem ~1000 questões; isto roda a cada drawQuestion).
+        const bankById = new Map();
+        for (const item of bank) {
+          const key = item.id || item.qid;
+          if (key != null && !bankById.has(key)) bankById.set(key, item);
+        }
         const relevant = [];
         for (let i = history.length - 1; i >= 0; i--) {
           const h = history[i];
           if (!h || !h.qid) continue;
           // Localizar questão no banco para extrair categoria e dificuldade nominal
-          const q = bank.find(item => (item.id || item.qid) === h.qid);
+          const q = bankById.get(h.qid);
           if (q && (q.c === cat || q.cat === cat)) {
             const diffStr = q._d || q.diff || 'medium';
             const b = diffStr === 'easy' ? 1.0 : diffStr === 'hard' ? 3.0 : 2.0;
