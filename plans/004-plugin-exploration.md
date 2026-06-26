@@ -166,9 +166,9 @@ Owkin/Synapse/Wiley (gated), computer-use. Sem mapeamento para necessidade atual
 
 | # | Plugin | Tier | Status | Veredito | Follow-up |
 |---|--------|------|--------|----------|-----------|
-| 1 | Sentry | 1 | TODO | — | — |
-| 2 | Browser verify | 1 | TODO | — | — |
-| 3 | Supabase | 1 | TODO | — | — |
+| 1 | Sentry | 1 | DONE (2026-06-26) | **ÚTIL** | Pós-deploy v12.31–12.36 limpo (24h = 1 evento Turnstile externo); IRT/boss/window.state sem exceção. ReferenceErrors (ui/state/PREMIUM_KEY) são todos do release **9.71** (cache antigo), não bug atual. Opcional: estender `ignoreErrors` p/ ruído 9.71 e `localStorage em data:` |
+| 2 | Browser verify (Playwright MCP) | 1 | DONE (2026-06-26) | **ÚTIL** | Prod serve v12.36; IRT presente (`calculateUserTheta`/`getAdaptiveTargetDifficulty`); 0 erros do nosso código (3 erros = Turnstile externo). **Provou o fix #532**: após `_loadTopics()`, `window.questionBank`=array(994) → SGD agora vivo. Não verificável sem login: boss/Fase Final (admin-gated) e render de questão específica |
+| 3 | Supabase | 1 | PARCIAL (2026-06-26) | **SITUACIONAL** | MCP plugin **caído** (server desconectado) → advisors/RLS deep-audit bloqueado. CLI (linkado, logado) deu: projeto ACTIVE_HEALTHY, Postgres 17.6.1; **drift de tracking**: migrations 003–015 locais não registradas no histórico remoto (esperado — aplicadas manualmente no SQL Editor, CLAUDE.md). Follow-up: reconectar MCP p/ advisors; opcional `migration repair --status applied` p/ reconciliar tracking (escrita, exige OK). |
 | 4 | context7 | 1 | TODO | — | — |
 | 5 | Evidência médica (Consensus/ChEMBL/bioRxiv/OpenTargets) | 1 | TODO | — | — |
 | 6 | Playwright MCP | 2 | TODO | — | — |
