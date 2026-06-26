@@ -12,7 +12,7 @@ Stamp commit for all plans: `2b02f61`.
 |------|-------|----------|--------|------------|--------|
 | 001  | Harden CI verification baseline (parse JS, typecheck functions, fix secret-grep) | P1 | S | — | MERGED to main 2026-06-25 via PR #523 (squash `11ca1af`) |
 | 002  | Characterization tests for game.js XP/level scoring invariants | P2 | M | — | MERGED to main 2026-06-25 via PR #525 (squash `47d4c1a`); v12.31, 18 Playwright tests pass incl. boss@90 |
-| 003  | Fix `deno check` type errors in send-push so the CI typecheck gate can become blocking | P3 | S | — | TODO (discovered when 001's deno gate ran on CI; gate currently informational via PR #524) |
+| 003  | Fix `deno check` type errors in send-push so the CI typecheck gate can become blocking | P3 | S | — | DONE (staged/committed in feat/adaptive-learning-irt branch) |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (one-line reason) | REJECTED (one-line rationale)
 
