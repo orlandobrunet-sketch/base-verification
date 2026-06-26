@@ -53,6 +53,12 @@ types)** também (deno check voltou a ser bloqueante).
 
 ---
 
+## Follow-ups descobertos na exploração (viram plano/ação própria)
+
+- **[SEGURANÇA] Deletar Edge Functions órfãs `swift-function` + `clever-worker`** (achado do item 3). São versões antigas (mar/2026) de `create-mp-preference`/`mp-webhook`, **ativas e públicas** (`verify_jwt:false`), **não** chamadas pelo frontend (que usa `create-mp-preference`, paywall.js:254). `clever-worker` concede premium via service-role **sem HMAC e sem idempotência** (o hardening DT5 que o `mp-webhook` real tem). Ação: deletar ambas (irreversível, infra de pagamento → exige OK explícito). Conferir antes se o painel da conta MP não aponta webhook para `clever-worker`.
+- **[SEGURANÇA] Habilitar leaked password protection** no Auth (toggle dashboard) — achado do item 3.
+- **[RESOLVIDO] `is_admin()`** SECURITY DEFINER chamável por `authenticated` — **seguro** (tem `search_path` setado; só retorna o status do próprio chamador via `auth.jwt()`/`auth.email()`, sem args). Advisor WARN = non-issue. **Porém:** contém email admin **hardcoded** (`orlandobrunet@gmail.com`) como fallback "durante transição" → remover se o caminho `app_metadata.is_admin` já está consolidado.
+
 ## Tier 1 — Alto encaixe (executar nesta ordem)
 
 ### 1. Sentry — saúde pós-deploy (COMEÇAR AQUI)
@@ -168,10 +174,10 @@ Owkin/Synapse/Wiley (gated), computer-use. Sem mapeamento para necessidade atual
 |---|--------|------|--------|----------|-----------|
 | 1 | Sentry | 1 | DONE (2026-06-26) | **ÚTIL** | Pós-deploy v12.31–12.36 limpo (24h = 1 evento Turnstile externo); IRT/boss/window.state sem exceção. ReferenceErrors (ui/state/PREMIUM_KEY) são todos do release **9.71** (cache antigo), não bug atual. Opcional: estender `ignoreErrors` p/ ruído 9.71 e `localStorage em data:` |
 | 2 | Browser verify (Playwright MCP) | 1 | DONE (2026-06-26) | **ÚTIL** | Prod serve v12.36; IRT presente (`calculateUserTheta`/`getAdaptiveTargetDifficulty`); 0 erros do nosso código (3 erros = Turnstile externo). **Provou o fix #532**: após `_loadTopics()`, `window.questionBank`=array(994) → SGD agora vivo. Não verificável sem login: boss/Fase Final (admin-gated) e render de questão específica |
-| 3 | Supabase | 1 | PARCIAL (2026-06-26) | **SITUACIONAL** | MCP plugin **caído** (server desconectado) → advisors/RLS deep-audit bloqueado. CLI (linkado, logado) deu: projeto ACTIVE_HEALTHY, Postgres 17.6.1; **drift de tracking**: migrations 003–015 locais não registradas no histórico remoto (esperado — aplicadas manualmente no SQL Editor, CLAUDE.md). Follow-up: reconectar MCP p/ advisors; opcional `migration repair --status applied` p/ reconciliar tracking (escrita, exige OK). |
-| 4 | context7 | 1 | TODO | — | — |
-| 5 | Evidência médica (Consensus/ChEMBL/bioRxiv/OpenTargets) | 1 | TODO | — | — |
-| 6 | Playwright MCP | 2 | TODO | — | — |
+| 3 | Supabase | 1 | DONE (2026-06-26) | **ÚTIL** | MCP reconectado → advisors rodados. **Achados acionáveis:** (a) 2 Edge Functions não-documentadas e públicas (`swift-function` v15, `clever-worker` v14, `verify_jwt:false`) fora das 7 do CLAUDE.md → investigar/remover; (b) Auth "leaked password protection" DESABILITADA → habilitar (toggle); (c) `is_admin()` SECURITY DEFINER chamável por `authenticated` → revisar. **Intencionais (não-bug):** 3× `rls_policy_always_true` (votes/ratings/error_reasons insert público, by-design), `processed_payments` RLS deny-all. **Baixa prio:** 6 índices não usados, políticas permissivas múltiplas em `access_whitelist`. **Drift:** remoto rastreia só migrations 001-002; 003-015 aplicadas manualmente (schema presente). Projeto ACTIVE_HEALTHY, PG 17.6.1. |
+| 4 | context7 | 1 | DONE (2026-06-26) | **ÚTIL** | Docs Supabase vigentes/autoritativas na hora; resolveu a dúvida do `is_admin()` (padrão SECURITY DEFINER + `search_path`). Confirmado por SQL: `is_admin()` seguro (search_path setado, só status do próprio user); achado lateral = email admin hardcoded a remover. |
+| 5 | Evidência médica (Consensus/ChEMBL) | 1 | DONE (2026-06-26) | **ÚTIL** | Piloto: questão `3d8fc3fe` (finerenona/FIDELIO-DKD). ChEMBL confirmou classe (CHEMBL2181927, USAN `-renone`=aldosterone antagonist, aprovada 2021); Consensus deu frase idêntica ao gabarito ("nonsteroidal selective MRA") + desfechos renal/CV (FIDELIO/FIDELITY). Questão correta e sustentada. Combo valioso p/ `revisar-nefroquest`. |
+| 6 | Playwright MCP | 2 | DONE (via item 2) | **ÚTIL** | Já exercitado no item 2 (navegação + console + evaluate em produção). Serve tanto p/ verificação de prod quanto p/ depurar a suíte E2E local. |
 | 7 | Mercado Pago | 2 | EM ESPERA | — | aguardando usuário |
 | 8 | scheduled-tasks | 2 | TODO | — | — |
 | 9 | Vercel | 2 | TODO | — | — |
