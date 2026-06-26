@@ -648,3 +648,63 @@
         if (btn) { btn.disabled = false; btn.textContent = 'Enviar sugestão'; }
       }
     }
+
+    // ── Motor Adaptativo de Aprendizado (E1 — IRT leve) ──────────────────
+    function calculateUserTheta(cat) {
+      let stats = {};
+      try {
+        const raw = localStorage.getItem('nefroquest-detailed-stats');
+        if (raw) stats = JSON.parse(raw) || {};
+      } catch (e) {}
+
+      const catStats = stats.byCategory && stats.byCategory[cat];
+      
+      // 1. Linha de base acumulada
+      let theta = 2.0; // Início neutro (médio)
+      if (catStats && typeof catStats.total === 'number' && catStats.total > 0) {
+        const correct = catStats.correct || 0;
+        const total = catStats.total;
+        const p = Math.max(0.05, Math.min(0.95, correct / total));
+        const logit = Math.log(p / (1 - p));
+        theta = 2.0 + logit * 0.5; // p=0.5 -> 2.0, p=0.95 -> 2.94, p=0.05 -> 1.05
+      }
+
+      // 2. Refinamento sequencial via SGD no histórico recente (últimas 100 questões)
+      const history = stats.questionHistory;
+      const bank = (typeof window !== 'undefined' && Array.isArray(window.questionBank))
+        ? window.questionBank
+        : (typeof questionBank !== 'undefined' && Array.isArray(questionBank) ? questionBank : null);
+      if (Array.isArray(history) && history.length > 0 && bank) {
+        const relevant = [];
+        for (let i = history.length - 1; i >= 0; i--) {
+          const h = history[i];
+          if (!h || !h.qid) continue;
+          // Localizar questão no banco para extrair categoria e dificuldade nominal
+          const q = bank.find(item => (item.id || item.qid) === h.qid);
+          if (q && (q.c === cat || q.cat === cat)) {
+            const diffStr = q._d || q.diff || 'medium';
+            const b = diffStr === 'easy' ? 1.0 : diffStr === 'hard' ? 3.0 : 2.0;
+            relevant.push({ isCorrect: !!h.correct, b });
+          }
+        }
+
+        const alpha = 0.3; // taxa de aprendizado
+        for (const step of relevant) {
+          const pCorrect = 1 / (1 + Math.exp(-(theta - step.b)));
+          const actual = step.isCorrect ? 1.0 : 0.0;
+          theta = theta + alpha * (actual - pCorrect);
+        }
+      }
+
+      // Clampar para faixa de segurança
+      return Math.min(3.5, Math.max(0.5, theta));
+    }
+    window.calculateUserTheta = calculateUserTheta;
+
+    function getAdaptiveTargetDifficulty(theta) {
+      if (theta < 1.3) return 'easy';
+      if (theta > 2.3) return 'hard';
+      return 'medium';
+    }
+    window.getAdaptiveTargetDifficulty = getAdaptiveTargetDifficulty;
+

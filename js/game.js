@@ -1222,6 +1222,7 @@
         return true;
       }
     });
+    window.state = state;
 
     const $=id=>document.getElementById(id);
     // Escapa caracteres HTML para evitar XSS em innerHTML com dados dinâmicos
@@ -1862,6 +1863,69 @@
 
     function drawQuestion() {
       if (state.idx >= state.queue.length) { finishDeck(); return null; }
+
+      // E1: Adaptação de dificuldade por IRT leve (somente jornada principal, fora do hardcore e boss)
+      const isAdaptiveActive = state.gameStarted && 
+                               state.difficulty !== 'hardcore' && 
+                               !(typeof isBossBattle === 'function' && isBossBattle()) &&
+                               !(typeof studyModeActive !== 'undefined' && studyModeActive);
+
+      if (isAdaptiveActive) {
+        const nextQ = state.queue[state.idx];
+        if (nextQ) {
+          const targetCat = nextQ.c || nextQ.cat || 'geral';
+          const theta = typeof calculateUserTheta === 'function' ? calculateUserTheta(targetCat) : 2.0;
+          const targetDiff = typeof getAdaptiveTargetDifficulty === 'function' ? getAdaptiveTargetDifficulty(theta) : 'medium';
+          const curDiff = nextQ._d || nextQ.diff || 'medium';
+
+          if (curDiff !== targetDiff) {
+            // Tenta achar uma questão da mesma categoria com a dificuldade alvo na janela lookahead (30 questões)
+            const windowSize = 30;
+            const endIdx = Math.min(state.queue.length, state.idx + windowSize);
+            let swapIdx = -1;
+
+            // Busca 1: Mesma categoria, dificuldade ideal
+            for (let i = state.idx + 1; i < endIdx; i++) {
+              const qCand = state.queue[i];
+              if (qCand && (qCand.c === targetCat || qCand.cat === targetCat)) {
+                const candDiff = qCand._d || qCand.diff || 'medium';
+                if (candDiff === targetDiff) {
+                  swapIdx = i;
+                  break;
+                }
+              }
+            }
+
+            // Busca 2: Mesma categoria, dificuldade alternativa mais próxima (se não achou a ideal)
+            if (swapIdx === -1) {
+              const diffOrder = ['easy', 'medium', 'hard'];
+              const targetRank = diffOrder.indexOf(targetDiff);
+              
+              let closestDist = 99;
+              for (let i = state.idx + 1; i < endIdx; i++) {
+                const qCand = state.queue[i];
+                if (qCand && (qCand.c === targetCat || qCand.cat === targetCat)) {
+                  const candDiff = qCand._d || qCand.diff || 'medium';
+                  const candRank = diffOrder.indexOf(candDiff);
+                  const dist = Math.abs(candRank - targetRank);
+                  if (dist < closestDist) {
+                    closestDist = dist;
+                    swapIdx = i;
+                  }
+                }
+              }
+            }
+
+            // Se encontrou um candidato elegível, faz o swap!
+            if (swapIdx !== -1) {
+              const temp = state.queue[state.idx];
+              state.queue[state.idx] = state.queue[swapIdx];
+              state.queue[swapIdx] = temp;
+            }
+          }
+        }
+      }
+
       const q = state.queue[state.idx++];
       // Registrar no histórico recente
       _recentIds.push(q.id);
