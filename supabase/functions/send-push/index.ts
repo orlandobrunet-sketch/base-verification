@@ -65,11 +65,11 @@ async function buildVapidToken(
   const signingInput = `${header}.${payload}`;
   const rawKey = base64UrlToUint8Array(privateKeyB64);
   const cryptoKey = await crypto.subtle.importKey(
-    'raw', rawKey, { name: 'ECDSA', namedCurve: 'P-256' }, false, ['sign']
+    'raw', rawKey as BufferSource, { name: 'ECDSA', namedCurve: 'P-256' }, false, ['sign']
   ).catch(async () => {
     // Try PKCS8 format if raw fails (some VAPID key generators use PKCS8)
     const pkcs8Key = base64UrlToUint8Array(privateKeyB64);
-    return crypto.subtle.importKey('pkcs8', pkcs8Key, { name: 'ECDSA', namedCurve: 'P-256' }, false, ['sign']);
+    return crypto.subtle.importKey('pkcs8', pkcs8Key as BufferSource, { name: 'ECDSA', namedCurve: 'P-256' }, false, ['sign']);
   });
   const sig = await crypto.subtle.sign(
     { name: 'ECDSA', hash: 'SHA-256' },
