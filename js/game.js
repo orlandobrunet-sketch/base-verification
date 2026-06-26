@@ -1118,6 +1118,10 @@
         s.src = 'data/topics.js';
         s.onload  = () => {
           questionBank = buildDeck();
+          // E1/IRT: expõe o banco para o calculateUserTheta (utils.js está fora
+          // desta IIFE e só alcança o banco via window). Sem isto, o refinamento
+          // SGD do motor adaptativo nunca executa em produção.
+          window.questionBank = questionBank;
           HISTORY_SIZE = Math.max(30, Math.floor(questionBank.length * 0.20));
           syncMasteredToDetailedStats();
           if (typeof nqBuildCompIndex === 'function') nqBuildCompIndex();

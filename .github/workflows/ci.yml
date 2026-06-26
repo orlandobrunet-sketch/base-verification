@@ -100,6 +100,13 @@ jobs:
           deno-version: v2.x
       - name: Edge Functions typecheck (deno check)
         run: |
+          # Se o Setup Deno falhou (indisponibilidade de deno.com), não bloquear o
+          # merge por falha de infra — só pular. Quando o deno ESTÁ presente, o
+          # typecheck permanece bloqueante e pega erros de tipo reais.
+          if ! command -v deno >/dev/null 2>&1; then
+            echo "⚠️ Deno indisponível (Setup Deno falhou). Pulando typecheck — não bloqueia por falha de infra."
+            exit 0
+          fi
           ERRORS=0
           for f in supabase/functions/*/index.ts; do
             if deno check "$f"; then
