@@ -8,7 +8,7 @@ NefroQuest é um jogo RPG educacional de perguntas e respostas sobre Nefrologia,
 - **Repositório:** orlandobrunet-sketch/base-verification
 - **Branch principal:** `main` (deploy automático via GitHub Pages → nefroquest.com)
 - **Branch de trabalho:** uma branch por tarefa (definida no início de cada sessão)
-- **Versão atual:** 12.30
+- **Versão atual:** 12.37
 
 
 ## Documentos de referência
@@ -53,7 +53,7 @@ git config core.hooksPath .githooks
 ├── style.css           # Estilos globais (tema dark medieval, variáveis CSS)
 ├── sw.js               # Service Worker — cache offline e versioning
 ├── manifest.json       # PWA manifest
-├── version.json        # {"version": "12.30"} — controla invalidação de SW
+├── version.json        # {"version": "12.37"} — controla invalidação de SW
 ├── 404.html            # Página 404
 ├── offline.html        # Página offline
 ├── clear-cache.html    # Redireciona após limpar SW cache
@@ -162,6 +162,7 @@ git config core.hooksPath .githooks
 - **Progressão:** 100 acertos = vitória. Streak x1.25 → x2.5 (começa em 3 acertos seguidos)
 - **Badges:** 5 total (20 / 40 / 60 / 80 / 100 acertos)
 - **Dificuldades:** 4 modos — Fácil (5 vidas) · Médio (4, recomendado) · Difícil (3) · Hardcore (1). O modo (`state.difficulty` = easy/normal/hard/hardcore) controla as proporções de questões por `_d` (easy/medium/hard) no `shuffleQueue`. O **Ritual de Iniciação** (placement, PED-3) recomenda e pré-seleciona o modo.
+- **Motor adaptativo (E1, IRT leve):** fora de hardcore/boss/estudo, o `drawQuestion` (em `js/game.js`) ajusta a dificuldade da próxima questão por categoria via IRT 1PL leve — `calculateUserTheta` + `getAdaptiveTargetDifficulty` em `js/utils.js` (theta por logit de acerto + refinamento SGD no histórico; `window.questionBank` precisa estar exposto p/ o SGD rodar).
 - **Modo Leitura:** `body.reading-mode` aumenta fonte/contraste de enunciado e alternativas; persiste em localStorage (`toggleReadingMode` em `js/utils.js`)
 - **Banco de questões:** `data/topics.js` ~1.4 MB, lazy loaded, organizado por eixo temático
 
