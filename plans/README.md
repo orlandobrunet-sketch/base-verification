@@ -13,7 +13,8 @@ Stamp commit for all plans: `2b02f61`.
 | 001  | Harden CI verification baseline (parse JS, typecheck functions, fix secret-grep) | P1 | S | — | MERGED to main 2026-06-25 via PR #523 (squash `11ca1af`) |
 | 002  | Characterization tests for game.js XP/level scoring invariants | P2 | M | — | MERGED to main 2026-06-25 via PR #525 (squash `47d4c1a`); v12.31, 18 Playwright tests pass incl. boss@90 |
 | 003  | Fix send-push deno-check types (make typecheck blocking) | P3 | S | 001 | DONE via Antigravity (#530, commit `c86c3a6`); deno check voltou a bloquear |
-| 004  | Explorar os ~80% de plugins/MCP ociosos (1 por 1, uso concreto) | P2 | M | — | TODO — aguardando revisão do plano; começa por Sentry |
+| 004  | Explorar os ~80% de plugins/MCP ociosos (1 por 1, uso concreto) | P2 | M | — | EM ANDAMENTO — itens 1-6 feitos (Sentry, browser, Supabase, context7, evidência médica, Playwright); 8/9 pendentes |
+| 005  | Avaliação de TODOS os ~28 plugins + roadmap de melhoria do app | P2 | M | — | TODO — plano escrito; aguardando escolha da frente de ataque |
 | 003  | Fix `deno check` type errors in send-push so the CI typecheck gate can become blocking | P3 | S | — | DONE (staged/committed in feat/adaptive-learning-irt branch) |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (one-line reason) | REJECTED (one-line rationale)
