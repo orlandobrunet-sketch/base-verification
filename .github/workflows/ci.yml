@@ -24,7 +24,15 @@ jobs:
             echo "❌ Version mismatch: sw.js='$SW_VERSION' vs version.json='$JSON_VERSION'"
             exit 1
           fi
-          echo "✅ Versions in sync ($JSON_VERSION)"
+          # Sentry release deve acompanhar a versão (senão o release tracking fica
+          # stale — aconteceu: ficou preso em 12.27 por 9 versões).
+          SENTRY_VERSION=$(grep -oP "release:\s*'nefroquest@\K[0-9.]+" index.html | head -1)
+          echo "Sentry release: $SENTRY_VERSION"
+          if [ "$SENTRY_VERSION" != "$JSON_VERSION" ]; then
+            echo "❌ Sentry release mismatch: index.html='$SENTRY_VERSION' vs version.json='$JSON_VERSION'"
+            exit 1
+          fi
+          echo "✅ Versions in sync ($JSON_VERSION) — SW + Sentry release"
 
       # ── 2. Tamanho do bundle (budget: 2.5MB) ───────────────────────────────
       - name: Bundle size check
