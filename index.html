@@ -65,7 +65,7 @@
     if (typeof Sentry !== 'undefined') {
       Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@12.38',
+          release: 'nefroquest@12.39',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -537,7 +537,7 @@
       <span class="lnd-footer-sep">·</span>
       <span id="landingVersionLabel" class="version-label-dynamic" style="cursor:pointer;" data-action="showChangelog">v11.45</span>
       <span class="lnd-footer-sep">·</span>
-      <span style="cursor:pointer;text-decoration:underline;" class="lnd-footer-link" data-action="showPrivacyPolicy">Política de Privacidade</span>
+      <span style="cursor:pointer;text-decoration:underline;" class="lnd-footer-link" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span>
     </div>
   </div>
 
@@ -684,7 +684,7 @@
         <button type="button" class="btn sec btn-biblioteca" data-action="openBibliotecaModal">📜 Grimório</button>
         <button type="button" id="bossPreviewBtn" class="btn-boss-preview" data-action="startBossPreview" title="Preview do Confronto Final" style="display:none;">⚔️ Preview: Confronto Final</button>
       </div>
-      <div class="welcome-credit"><a href="https://nefroquest.com">nefroquest.com</a> &nbsp;·&nbsp; <span id="welcomeVersionLabel" class="version-label-dynamic" style="font-size:0.9em;cursor:pointer;" data-action="showChangelog">v11.45</span> &nbsp;·&nbsp; <span style="font-size:0.8em;cursor:pointer;text-decoration:underline;" data-action="showPrivacyPolicy">Política de Privacidade</span></div>
+      <div class="welcome-credit"><a href="https://nefroquest.com">nefroquest.com</a> &nbsp;·&nbsp; <span id="welcomeVersionLabel" class="version-label-dynamic" style="font-size:0.9em;cursor:pointer;" role="button" tabindex="0" aria-label="Ver novidades da versão" data-action="showChangelog">v11.45</span> &nbsp;·&nbsp; <span style="font-size:0.8em;cursor:pointer;text-decoration:underline;" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span></div>
     </div>
   </div>
 
@@ -1081,7 +1081,7 @@
         &nbsp;•&nbsp;
         <span class="version-label-dynamic" style="color:var(--gold);cursor:pointer;" data-action="showChangelog">v11.45</span>
         &nbsp;•&nbsp;
-        <span style="cursor:pointer;text-decoration:underline;" data-action="showPrivacyPolicy">Política de Privacidade</span>
+        <span style="cursor:pointer;text-decoration:underline;" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span>
       </p>
     </div>
   </main>
