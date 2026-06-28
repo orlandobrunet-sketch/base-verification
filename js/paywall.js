@@ -141,7 +141,7 @@
               <div class="pricing-icon">👑</div>
               <h3>${isPt ? 'Vitalício' : 'Lifetime'}</h3>
               <div class="pricing-amount">${PRICE_LIFETIME}</div>
-              <div class="pricing-period">${isPt ? 'pagamento único · acesso forever' : 'one-time payment · access forever'}</div>
+              <div class="pricing-period">${isPt ? 'pagamento único · acesso vitalício' : 'one-time payment · access forever'}</div>
               <hr class="pricing-divider">
               <ul class="pricing-features">
                 <li>Tudo do plano Mensal</li>
