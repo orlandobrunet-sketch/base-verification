@@ -683,7 +683,10 @@
           if (key != null && !bankById.has(key)) bankById.set(key, item);
         }
         const relevant = [];
-        for (let i = history.length - 1; i >= 0; i--) {
+        // Cap defensivo nas últimas 100 (alinha o comentário; o histórico já é
+        // capado em 100 na escrita — game.js). Achado Greptile, PR #530.
+        const startIdx = Math.max(0, history.length - 100);
+        for (let i = history.length - 1; i >= startIdx; i--) {
           const h = history[i];
           if (!h || !h.qid) continue;
           // Localizar questão no banco para extrair categoria e dificuldade nominal

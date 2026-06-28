@@ -1226,7 +1226,12 @@
         return true;
       }
     });
-    window.state = state;
+    // Exposto SÓ fora de produção (testes E2E rodam em localhost). Em produção,
+    // expor o Proxy permitiria trapaça via DevTools (ex.: state.lives = 999,
+    // state.correctTotal = 100) com persistência via saveGame. (Achado Greptile, PR #530.)
+    if (location.hostname !== 'nefroquest.com' && location.hostname !== 'www.nefroquest.com') {
+      window.state = state;
+    }
 
     const $=id=>document.getElementById(id);
     // Escapa caracteres HTML para evitar XSS em innerHTML com dados dinâmicos
