@@ -65,7 +65,7 @@
     if (typeof Sentry !== 'undefined') {
       Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@12.39',
+          release: 'nefroquest@12.40',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -503,7 +503,7 @@
               <span class="lnd-rcard-icon">🔮</span>
             </div>
             <div class="lnd-rcard-body">
-              <span class="lnd-rcard-name">Tutor IA Clínico</span>
+              <span class="lnd-rcard-name" role="heading" aria-level="3">Tutor IA Clínico</span>
               <p class="lnd-rcard-desc">Entende seu erro, expõe a falha de raciocínio e ensina como um preceptor de referência faria.</p>
               <span class="lnd-rcard-badge">Powered by Claude · Feedback instantâneo</span>
             </div>
@@ -513,7 +513,7 @@
               <span class="lnd-rcard-icon">⚔️</span>
             </div>
             <div class="lnd-rcard-body">
-              <span class="lnd-rcard-name">RPG · Progressão Real</span>
+              <span class="lnd-rcard-name" role="heading" aria-level="3">RPG · Progressão Real</span>
               <p class="lnd-rcard-desc">Suba de nível, acumule XP e enfrente o Arqui-Nefromante — a motivação que faltava pra estudar todo dia.</p>
               <span class="lnd-rcard-badge">Classes · Equipamentos · Mini-games</span>
             </div>
@@ -523,7 +523,7 @@
               <span class="lnd-rcard-icon">🧬</span>
             </div>
             <div class="lnd-rcard-body">
-              <span class="lnd-rcard-name">Baseado em Evidências</span>
+              <span class="lnd-rcard-name" role="heading" aria-level="3">Baseado em Evidências</span>
               <p class="lnd-rcard-desc">Grandes trials presentes em cada questão — estude no nível da sua prova e da sua prática.</p>
               <span class="lnd-rcard-badge">Centenas de artigos resumidos</span>
             </div>
@@ -532,13 +532,13 @@
       </div>
     </div>
     <!-- Footer abaixo do card (desktop) -->
-    <div class="lnd-footer">
+    <footer class="lnd-footer">
       <span>nefroquest.com</span>
       <span class="lnd-footer-sep">·</span>
-      <span id="landingVersionLabel" class="version-label-dynamic" style="cursor:pointer;" data-action="showChangelog">v11.45</span>
+      <span id="landingVersionLabel" class="version-label-dynamic" style="cursor:pointer;" role="button" tabindex="0" aria-label="Ver novidades da versão" data-action="showChangelog">v11.45</span>
       <span class="lnd-footer-sep">·</span>
       <span style="cursor:pointer;text-decoration:underline;" class="lnd-footer-link" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span>
-    </div>
+    </footer>
   </div>
 
   <!-- Landing carousel widget — NefroQuest v10.25 -->
