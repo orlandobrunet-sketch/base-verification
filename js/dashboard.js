@@ -675,95 +675,6 @@
         .nq-dash-title { font-size: 0.78rem; letter-spacing: 1.5px; }
       }
 
-      /* ── History Explorer ── */
-      .nq-hist-item {
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        border-radius: 12px;
-        overflow: hidden;
-        transition: all 0.2s ease;
-        margin-bottom: 10px;
-      }
-      .nq-hist-item:hover {
-        border-color: rgba(255, 215, 0, 0.2);
-        background: rgba(255, 255, 255, 0.035);
-      }
-      .nq-hist-item-header {
-        padding: 12px 16px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        cursor: pointer;
-        user-select: none;
-      }
-      .nq-hist-item-title {
-        font-family: 'Cinzel', serif;
-        font-size: 0.8rem;
-        font-weight: bold;
-        color: #fff;
-      }
-      .nq-hist-item-badge {
-        font-size: 0.65rem;
-        font-weight: bold;
-        padding: 3px 8px;
-        border-radius: 10px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
-      .nq-hist-item-badge.correct {
-        background: rgba(52, 211, 153, 0.15);
-        color: #34d399;
-        border: 1px solid rgba(52, 211, 153, 0.3);
-      }
-      .nq-hist-item-badge.wrong {
-        background: rgba(251, 113, 133, 0.15);
-        color: #fb7185;
-        border: 1px solid rgba(251, 113, 133, 0.3);
-      }
-      .nq-hist-item-details {
-        padding: 16px;
-        border-top: 1px solid rgba(255, 255, 255, 0.04);
-        background: rgba(0, 0, 0, 0.15);
-        font-size: 0.8rem;
-        line-height: 1.55;
-        color: #cbd5e1;
-      }
-      .nq-hist-item-qtext {
-        font-weight: 600;
-        color: #fff;
-        margin-bottom: 12px;
-      }
-      .nq-hist-item-opts {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-        margin-bottom: 14px;
-      }
-      .nq-hist-item-opt {
-        padding: 8px 12px;
-        border-radius: 6px;
-        font-size: 0.75rem;
-      }
-      .nq-hist-item-opt.correct {
-        background: rgba(52, 211, 153, 0.08);
-        border: 1px solid rgba(52, 211, 153, 0.25);
-        color: #34d399;
-      }
-      .nq-hist-item-opt.normal {
-        background: rgba(255, 255, 255, 0.015);
-        border: 1px solid rgba(255, 255, 255, 0.04);
-        color: #94a3b8;
-      }
-      .nq-hist-item-exp {
-        background: rgba(255, 215, 0, 0.02);
-        border-left: 3px solid var(--gold);
-        padding: 10px 12px;
-        border-radius: 0 8px 8px 0;
-        margin-top: 12px;
-        font-size: 0.74rem;
-        color: #e2e8f0;
-      }
-
       /* Estilo do tooltip "i" na Jornada Ativa */
       .nq-dash-hero-info-tooltip {
         position: absolute;
@@ -1722,191 +1633,6 @@
     }
   }
 
-  function _tabHistory() {
-    return `
-      <div class="nq-dash-stitle">Histórico & Explorador de Questões</div>
-      <div class="nq-dash-history-container" style="display:flex; flex-direction:column; gap:16px; height:100%;">
-        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; background:rgba(255,255,255,0.02); padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,0.05); margin-bottom:12px; width:100%;">
-          <!-- Campo de Busca -->
-          <div style="position:relative; flex:1; min-width:200px;">
-            <span style="position:absolute; left:12px; top:50%; transform:translateY(-50%); color:var(--txt-dim); font-size:0.9rem;">🔍</span>
-            <input type="text" id="nqHistorySearch" placeholder="Pesquisar por termo (ex: IgA, Lupus, iSGLT2)..." style="width:100%; padding:8px 12px 8px 36px; background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff; font-size:0.85rem; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
-          </div>
-          <!-- Botão Buscar -->
-          <button type="button" id="nqHistorySearchBtn" style="flex-shrink:0; padding:8px 18px; background:linear-gradient(180deg,#7c3aed,#5b21b6); border:1px solid #a855f7; border-radius:8px; color:#f3e8ff; font-size:0.82rem; font-weight:700; font-family:'Cinzel',serif; letter-spacing:0.5px; cursor:pointer;">🔍 Buscar</button>
-          <!-- Filtro Apenas Erros Recentes -->
-          <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:0.8rem; color:var(--txt-dim); user-select:none;">
-            <input type="checkbox" id="nqHistoryErrorsOnly" style="cursor:pointer; width:16px; height:16px; accent-color:var(--gold);">
-            Apenas Erros Recentes
-          </label>
-        </div>
-
-        <!-- Lista de Questões -->
-        <div id="nqHistoryList" style="flex:1; overflow-y:auto; max-height:420px; display:flex; flex-direction:column; gap:10px; padding-right:4px;">
-          <div style="color:var(--txt-dim); font-size:0.85rem; text-align:center; padding:24px;">Carregando histórico...</div>
-        </div>
-      </div>
-    `;
-  }
-
-  async function _initHistorySearchListeners(overlay) {
-    const searchInput = overlay.querySelector('#nqHistorySearch');
-    const errorsCheckbox = overlay.querySelector('#nqHistoryErrorsOnly');
-    const searchBtn = overlay.querySelector('#nqHistorySearchBtn');
-    const listContainer = overlay.querySelector('#nqHistoryList');
-    if (!listContainer) return;
-
-    // Garante o banco de questões carregado — necessário para casar os qids do
-    // histórico com as questões reais (e exibir título/opções/explicação).
-    if (typeof topics === 'undefined' && typeof window._loadTopics === 'function') {
-      listContainer.innerHTML = `<div style="color:var(--txt-dim); font-size:0.85rem; text-align:center; padding:24px;">Carregando banco de questões…</div>`;
-      try { await window._loadTopics(); } catch (e) {}
-    }
-
-    // Obter dados de histórico
-    const stats = getDetailedStats();
-    
-    // Obter IDs respondidos
-    let allAnsweredQids = [];
-    try {
-      allAnsweredQids = JSON.parse(localStorage.getItem('nefroquest-all-answered-qids') || '[]');
-    } catch (e) {}
-
-    // Fallbacks para compatibilidade retroativa
-    const seenSet = new Set(allAnsweredQids);
-    if (stats.questionHistory && Array.isArray(stats.questionHistory)) {
-      stats.questionHistory.forEach(h => { if (h.qid) seenSet.add(h.qid); });
-    }
-    
-    let srData = {};
-    try {
-      srData = JSON.parse(localStorage.getItem('nefroquest-sr-data') || '{}');
-    } catch (e) {}
-    Object.keys(srData).forEach(qid => seenSet.add(qid));
-
-    let mastered = [];
-    try {
-      mastered = JSON.parse(localStorage.getItem('nefroquest-mastered-ids') || '[]');
-    } catch (e) {}
-    mastered.forEach(qid => seenSet.add(qid));
-
-    // Pegar questões reais. Usa SEMPRE `topics` (schema completo: qid, t, opts,
-    // ans, cat, exp). O `questionBank` (deck do jogo) usa schema abreviado
-    // (id/o/a/e/c, sem `qid`) e quebraria o casamento por qid + a exibição.
-    const bank = (typeof topics !== 'undefined' && Array.isArray(topics)) ? topics : [];
-    const answeredQuestions = bank.filter(q => seenSet.has(q.qid));
-
-    // Mapear último resultado de acerto/erro
-    const lastResultMap = {}; // qid -> boolean (correct)
-    if (stats.questionHistory && Array.isArray(stats.questionHistory)) {
-      for (let i = stats.questionHistory.length - 1; i >= 0; i--) {
-        const h = stats.questionHistory[i];
-        if (h.qid) {
-          lastResultMap[h.qid] = h.correct;
-        }
-      }
-    }
-    // Mapear também se está no mastered (então o último resultado correto é true)
-    mastered.forEach(qid => {
-      if (lastResultMap[qid] === undefined) {
-        lastResultMap[qid] = true;
-      }
-    });
-
-    function renderList() {
-      const query = (searchInput ? searchInput.value : '').trim().toLowerCase();
-      const errorsOnly = errorsCheckbox ? errorsCheckbox.checked : false;
-
-      const filtered = answeredQuestions.filter(q => {
-        // Filtro de erro
-        const isCorrect = lastResultMap[q.qid] !== false; // Considera correto se não houver erro registrado
-        if (errorsOnly && isCorrect) return false;
-
-        // Filtro de busca textual
-        if (query) {
-          const matchQ = (q.q || '').toLowerCase().includes(query);
-          const matchT = (q.t || '').toLowerCase().includes(query);
-          const matchExp = (q.exp || q.e || '').toLowerCase().includes(query);
-          if (!matchQ && !matchT && !matchExp) return false;
-        }
-        return true;
-      });
-
-      if (filtered.length === 0) {
-        // Diferencia "histórico vazio" (usuário novo) de "filtro sem resultado".
-        if (answeredQuestions.length === 0) {
-          listContainer.innerHTML = `<div style="color:var(--txt-dim); font-size:0.82rem; text-align:center; padding:36px 20px; line-height:1.6;">
-            <div style="font-size:1.8rem; margin-bottom:8px;">📖</div>
-            <strong style="color:#c8d8f0;">Seu histórico está vazio.</strong><br>
-            Responda questões na <strong>Jornada</strong> ou no <strong>Modo Estudo</strong> para começar a montar seu histórico — depois volte aqui para revisá-las e buscar por tema.
-          </div>`;
-        } else if (query || errorsOnly) {
-          listContainer.innerHTML = `<div style="color:var(--txt-dim); font-size:0.8rem; text-align:center; padding:32px;">Nenhuma questão corresponde ${query ? `à busca "<strong>${escapeHtml(query)}</strong>"` : 'ao filtro selecionado'}. Tente outro termo${errorsOnly ? ' ou desmarque "Apenas Erros Recentes"' : ''}.</div>`;
-        } else {
-          listContainer.innerHTML = `<div style="color:var(--txt-dim); font-size:0.8rem; text-align:center; padding:32px;">Nenhuma questão encontrada no histórico.</div>`;
-        }
-        return;
-      }
-
-      listContainer.innerHTML = filtered.map(q => {
-        const isCorrect = lastResultMap[q.qid] !== false;
-        const badgeClass = isCorrect ? 'correct' : 'wrong';
-        const badgeText = isCorrect ? 'Acerto' : 'Erro';
-        
-        return `
-          <div class="nq-hist-item" data-qid="${q.qid}">
-            <div class="nq-hist-item-header">
-              <div style="flex:1; min-width:0; overflow:hidden;">
-                <span style="font-size:0.6rem; text-transform:uppercase; letter-spacing:0.5px; background:rgba(255,215,0,0.08); color:#f0c040; border:1px solid rgba(255,215,0,0.15); padding:2px 6px; border-radius:4px; margin-right:8px;">${escapeHtml(q.cat || 'Geral')}</span>
-                <span style="font-family:'Cinzel',serif; font-size:0.8rem; font-weight:bold; color:#fff;">${escapeHtml(q.t || 'Sem título')}</span>
-              </div>
-              <span class="nq-hist-item-badge ${badgeClass}" style="flex-shrink:0; margin-left:8px;">${badgeText}</span>
-            </div>
-            <div class="nq-hist-item-details" style="display:none;">
-              <div class="nq-hist-item-qtext">${escapeHtml(q.q)}</div>
-              <div class="nq-hist-item-opts">
-                ${q.opts.map((opt, oIdx) => {
-                  const isOptCorrect = oIdx === q.ans;
-                  const optClass = isOptCorrect ? 'correct' : 'normal';
-                  const prefix = String.fromCharCode(65 + oIdx) + ') ';
-                  return `<div class="nq-hist-item-opt ${optClass}">${prefix}${escapeHtml(opt)}</div>`;
-                }).join('')}
-              </div>
-              <div class="nq-hist-item-exp">
-                <div style="margin-bottom:4px; font-weight:bold; color:var(--gold);">Explicação:</div>
-                <div>${escapeHtml(q.exp || q.e || 'Sem explicação.')}</div>
-              </div>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    // Toggle expansion on item click
-    listContainer.addEventListener('click', e => {
-      const header = e.target.closest('.nq-hist-item-header');
-      if (header) {
-        const item = header.parentElement;
-        const details = item.querySelector('.nq-hist-item-details');
-        if (details) {
-          const isExpanded = item.classList.contains('expanded');
-          item.classList.toggle('expanded');
-          details.style.display = isExpanded ? 'none' : 'block';
-        }
-      }
-    });
-
-    if (searchInput) {
-      searchInput.addEventListener('input', renderList);
-      searchInput.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); renderList(); } });
-    }
-    if (searchBtn) searchBtn.addEventListener('click', renderList);
-    if (errorsCheckbox) errorsCheckbox.addEventListener('change', renderList);
-
-    // Initial render
-    renderList();
-  }
-
   // ── Main open ────────────────────────────────────────────────────────────
   async function openDashboard() {
     _injectStyles();
@@ -1959,7 +1685,6 @@
           <button type="button" class="nq-dash-tab active" data-dash-tab="overview">Visão Geral</button>
           <button type="button" class="nq-dash-tab" data-dash-tab="skills">Skills</button>
           <button type="button" class="nq-dash-tab" data-dash-tab="mapa">Mapa</button>
-          <button type="button" class="nq-dash-tab" data-dash-tab="history">Histórico</button>
           <button type="button" class="nq-dash-tab" data-dash-tab="achievements">Conquistas</button>
           <button type="button" class="nq-dash-tab" data-dash-tab="library">Biblioteca</button>
           <button type="button" class="nq-dash-tab" data-dash-tab="ranking">Ranking</button>
@@ -1974,9 +1699,6 @@
           </div>
           <div class="nq-dash-pane" data-dash-pane="mapa">
             ${_tabMapa()}
-          </div>
-          <div class="nq-dash-pane" data-dash-pane="history">
-            ${_tabHistory()}
           </div>
           <div class="nq-dash-pane" data-dash-pane="achievements">
             ${_tabAchievements()}
@@ -1999,7 +1721,6 @@
         overlay.querySelectorAll('[data-dash-pane]').forEach(p => p.classList.toggle('active', p.dataset.dashPane === tab));
         if (tab === 'skills') setTimeout(() => _drawRadar(axisStats), 50);
         if (tab === 'ranking') _loadRanking(false);
-        if (tab === 'history') _initHistorySearchListeners(overlay);
       });
     });
 
