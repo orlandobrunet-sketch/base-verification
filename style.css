@@ -13503,3 +13503,37 @@ body.boss-stun-active #equipList .slot-diablo {
   .nq-modal-card { padding: var(--space-4); border-radius: var(--radius-lg); }
   .nq-btn--lg    { padding: var(--space-2) var(--space-4); font-size: var(--text-sm); }
 }
+
+/* ═══ Item 9 · Harmonização de avatares de classe (moldura única + véu tonal) ═══
+   As 3 classes têm estilos de arte divergentes (pintura quente / anime frio /
+   sci-fi frio). Este bloco — propositalmente no fim do arquivo p/ vencer os
+   blocos .portrait-frame/.char-card duplicados — unifica o TOM (filter) em todos
+   os contextos de avatar e dá uma MOLDURA dourada + véu tonal ao portrait do herói.
+   Não altera os arquivos de imagem (reversível). Ver docs/VISUAL_STYLEGUIDE.md. */
+
+/* Tom unificado em todos os contextos onde o avatar de classe aparece */
+.portrait,
+.char-card img,
+.boss-party-hero img,
+.battle-hero-mini,
+#charSelectModal .char-card img {
+  filter: saturate(0.85) contrast(1.04) brightness(0.98);
+}
+/* hover do herói mantém a normalização e só clareia */
+.portrait-frame:hover .portrait { filter: saturate(0.85) contrast(1.04) brightness(1.06); }
+
+/* Portrait do herói: moldura dourada única + vinheta + véu tonal */
+.portrait-frame { position: relative; }
+.portrait-frame::after {   /* véu tonal — assenta a arte numa temperatura comum */
+  content: ""; position: absolute; inset: 0; border-radius: 12px;
+  pointer-events: none; z-index: 1;
+  background: linear-gradient(180deg, rgba(11,17,40,0.22) 0%, rgba(9,13,30,0.10) 42%, rgba(9,13,30,0.40) 100%);
+}
+.portrait-frame::before {  /* moldura: filete dourado + vinheta interna */
+  content: ""; position: absolute; inset: 0; border-radius: 12px;
+  pointer-events: none; z-index: 2;
+  box-shadow: inset 0 0 0 1px rgba(240,192,64,0.45), inset 0 0 18px rgba(4,7,18,0.55);
+}
+
+/* Frame dourado consistente nos cards de seleção de classe (em repouso) */
+.char-card img { border-color: var(--gold-dark); }
