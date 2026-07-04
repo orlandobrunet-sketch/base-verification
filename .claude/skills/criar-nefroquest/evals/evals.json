@@ -1,0 +1,36 @@
+[
+  {
+    "name": "single-clinical-question",
+    "prompt": "Crie uma questão intermediária sobre uma complicação da hemodiálise para o NefroQuest.",
+    "assertions": [
+      "Declara OP explícito com competência primária, nível Bloom/Miller e dificuldade intrínseca mapeada ao enum easy/medium/hard",
+      "Entrega exatamente quatro alternativas A-D",
+      "Define uma única resposta correta",
+      "Explica a correta e os distratores úteis",
+      "Não inventa referências ou números",
+      "Aplica o teste leve de Advogado do Recurso antes de entregar o item como pronto",
+      "Inclui observação de implementação"
+    ]
+  },
+  {
+    "name": "study-based-question",
+    "prompt": "Transforme um RCT fornecido pelo usuário em uma questão no padrão NefroQuest.",
+    "assertions": [
+      "Confirma PICO e desfecho primário",
+      "Não extrapola a população",
+      "Diferencia desfecho substituto e clínico",
+      "Gera card apenas com dados verificados"
+    ]
+  },
+  {
+    "name": "repository-implementation",
+    "prompt": "Adicione uma nova questão de transplante ao repositório.",
+    "assertions": [
+      "Inspeciona schema e questões vizinhas antes de editar",
+      "Verifica IDs e referências duplicadas",
+      "Confirma convenção do índice do gabarito",
+      "Executa validadores existentes e revisa o diff",
+      "Não altera versão ou cache sem verificar a convenção"
+    ]
+  }
+]
