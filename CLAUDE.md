@@ -8,12 +8,20 @@ NefroQuest é um jogo RPG educacional de perguntas e respostas sobre Nefrologia,
 - **Repositório:** orlandobrunet-sketch/base-verification
 - **Branch principal:** `main` (deploy automático via GitHub Pages → nefroquest.com)
 - **Branch de trabalho:** uma branch por tarefa (definida no início de cada sessão)
-- **Versão atual:** 12.37
+- **Versão atual:** ver `version.json` — fonte de verdade; não hardcodar o número aqui
 
 
 ## Documentos de referência
 
 - `docs/ROADMAP.md` — roadmap, backlog e histórico de tarefas do produto
+
+### Documentos editoriais canônicos
+
+- [`docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md`](docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md) — define os **conceitos**: ontologia, entidades, objetivo pedagógico, validade, dificuldade.
+- [`docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md`](docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md) — define as **regras editoriais e suas consequências**: criação, avaliação, Advogado do Recurso, critérios eliminatórios, NQ Editorial Score, árvore de decisão, três eixos (§18.4).
+- [`docs/editorial/annex-c-nefrologia.md`](docs/editorial/annex-c-nefrologia.md) — contém as **especificidades de nefrologia**: rubricas-âncora de Bloom/dificuldade, catálogo de erros clínicos, checklist de segurança, atribuição de referências.
+
+Este `CLAUDE.md` **não substitui** esses documentos nem tem precedência sobre eles — apenas aponta para onde a regra editorial completa vive. Em caso de conflito, prevalece sempre o documento canônico.
 
 ## ⚠️ REGRA CRÍTICA — Service Worker Cache
 
@@ -53,7 +61,7 @@ git config core.hooksPath .githooks
 ├── style.css           # Estilos globais (tema dark medieval, variáveis CSS)
 ├── sw.js               # Service Worker — cache offline e versioning
 ├── manifest.json       # PWA manifest
-├── version.json        # {"version": "12.37"} — controla invalidação de SW
+├── version.json        # fonte de verdade da versão do app — controla invalidação de SW
 ├── 404.html            # Página 404
 ├── offline.html        # Página offline
 ├── clear-cache.html    # Redireciona após limpar SW cache
@@ -99,7 +107,13 @@ git config core.hooksPath .githooks
 │   └── functions/      # Edge Functions (Deno/TypeScript)
 
 ├── docs/
-│   └── ROADMAP.md      # Roadmap e backlog do produto
+│   ├── ROADMAP.md      # Roadmap e backlog do produto
+│   └── editorial/      # Documentos editoriais canônicos (Knowledge Model, Handbook, Anexo C)
+
+├── .claude/
+│   └── skills/
+│       ├── criar-nefroquest/    # Criação de questões médicas novas
+│       └── revisar-nefroquest/  # Revisão, veredito editorial e autorização de publicação
 
 └── tests/              # Playwright E2E (13 suites)
 ```
@@ -210,16 +224,36 @@ git config core.hooksPath .githooks
 ## Regras absolutas
 
 - Não altere código funcional sem pedido explícito
-- Não altere conteúdo médico (`data/topics.js`) sem autorização
 - Não refatore além do escopo pedido
 - Não execute itens do roadmap automaticamente — veja `docs/ROADMAP.md`
 - **Todo PR com mudança de asset inclui bump de versão no mesmo commit**
 
+### Conteúdo médico (`data/topics.js`) — gate cumulativo
+
+Editar ou implementar conteúdo médico em `data/topics.js` exige, **cumulativamente**:
+
+a. autorização explícita do usuário para aplicar a alteração;
+b. revisão formal pela skill `revisar-nefroquest` (`.claude/skills/revisar-nefroquest/`);
+c. veredito editorial de aprovação (emitido apenas por `revisar-nefroquest` — ver seção "Regras editoriais" abaixo);
+d. `Autorização de publicação: LIBERADA`;
+e. ausência de pendência decisiva ou de combinação inválida entre Evidência e Pendência (Handbook §18.4).
+
+Nenhuma dessas condições substitui as demais:
+
+- autorização genérica do usuário **não** substitui o gate editorial (b–e);
+- publicação LIBERADA **não** substitui a autorização explícita do usuário (a).
+
+**Item com Autorização de publicação BLOQUEADA não pode ser escrito em `data/topics.js`, em nenhuma circunstância.**
+
+#### Mudança material invalida liberação anterior
+
+Qualquer mudança material em enunciado, alternativas, gabarito, explicação ou referências **invalida** a liberação anterior até reavaliação formal pela `revisar-nefroquest` (Handbook §18.4). Correções estritamente técnicas ou ortográficas devem se manter dentro do escopo autorizado e não podem ser usadas para introduzir mudança clínica sem nova revisão.
+
 ---
 
-## Regra obrigatória para questões médicas
+## Regras editoriais
 
-Sempre que a tarefa envolver avaliar, revisar, corrigir, reescrever, criar, excluir, classificar ou implementar uma questão médica do NefroQuest, carregue e siga integralmente a skill apropriada antes de analisar ou modificar a questão: `revisar-nefroquest` para revisar/corrigir questões existentes, e `criar-nefroquest` para criar questões novas.
+Sempre que a tarefa envolver avaliar, revisar, corrigir, reescrever, criar, excluir, classificar ou implementar uma questão médica do NefroQuest, carregue e siga integralmente a skill apropriada antes de analisar ou modificar a questão.
 
 Isso inclui solicitações sobre:
 
@@ -240,12 +274,42 @@ Não faça revisão médica apenas com conhecimento geral quando essa skill esti
 
 Caso o usuário peça apenas uma alteração visual, estrutural ou técnica que não envolva o conteúdo médico da questão, a skill não precisa ser carregada.
 
+### Roteamento obrigatório pelas skills
+
+**Criação** — use `.claude/skills/criar-nefroquest/`:
+
+- não emite veredito editorial;
+- todo item recém-criado nasce com `Autorização de publicação: BLOQUEADA`;
+- entrega o pacote da questão e encaminha para revisão formal — nunca escreve diretamente em `data/topics.js` nesse estado.
+
+**Revisão** — use `.claude/skills/revisar-nefroquest/`:
+
+- é a única skill que emite um dos 7 vereditos editoriais do Handbook;
+- é a única skill que pode derivar `Autorização de publicação: LIBERADA`.
+
+### Os três eixos
+
+Toda questão médica é classificada em três eixos independentes (Handbook §18.4):
+
+- **Evidência:** VERIFICADA · PARCIALMENTE VERIFICADA · NÃO VERIFICADA
+- **Pendência:** NENHUMA · NÃO DECISIVA · DECISIVA
+- **Publicação:** LIBERADA · BLOQUEADA — sempre **derivada** dos dois eixos acima e do veredito editorial, nunca atribuída livremente
+
+O veredito editorial (um dos 7, emitido apenas por `revisar-nefroquest`) é distinto desses três eixos. A fórmula completa de derivação está no Handbook §18.4 e não é duplicada aqui.
+
 ---
 
 ## Workflow padrão
 
 1. Ler este arquivo e identificar apenas os arquivos necessários
-2. Fazer a menor mudança possível que resolve o problema
-3. Se mudou `style.css` / `js/*.js` / qualquer asset: bumpar `version.json` e `sw.js` no mesmo commit
-4. Abrir um único PR com fixes + version bump juntos
-5. Listar arquivos alterados e explicar como testar
+2. Se a tarefa envolver conteúdo médico (`data/topics.js` ou qualquer questão):
+   a. identificar se é criação ou revisão;
+   b. carregar a skill correspondente (`criar-nefroquest` ou `revisar-nefroquest`);
+   c. trabalhar primeiro em modo relatório, salvo instrução explícita em contrário;
+   d. confirmar autorização explícita do usuário para a alteração;
+   e. confirmar o gate editorial (veredito de aprovação + `Autorização de publicação: LIBERADA` + ausência de pendência decisiva/combinação inválida);
+   f. só então editar `data/topics.js`
+3. Fazer a menor mudança possível que resolve o problema
+4. Se mudou `style.css` / `js/*.js` / qualquer asset: bumpar `version.json` e `sw.js` no mesmo commit
+5. Abrir um único PR com fixes + version bump juntos
+6. Listar arquivos alterados e explicar como testar
