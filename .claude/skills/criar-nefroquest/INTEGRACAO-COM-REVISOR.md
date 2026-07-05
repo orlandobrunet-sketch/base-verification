@@ -13,6 +13,13 @@ As duas skills devem ter fronteiras claras:
 
 `criar-nefroquest` não produz veredito de avaliação — seu produto é o item pronto, não um julgamento sobre item existente. A única sobreposição de vocabulário é conceitual: o **teste leve de Advogado do Recurso** (ver `SKILL.md` e [references/output-contract.md](references/output-contract.md)) que `criar-nefroquest` aplica antes de entregar um item como pronto é o mesmo princípio do Advogado do Recurso completo (Handbook §16) que `revisar-nefroquest` aplica como etapa obrigatória de revisão — só que em versão leve, feita pelo próprio autor no momento da criação, não substituindo a revisão formal.
 
+## Fronteira de autorização de publicação (Handbook §18.4)
+
+- `criar-nefroquest` **nunca** emite campo de Veredito editorial e **nunca** retorna Autorização de publicação LIBERADA, por mais completo que o item pareça. Todo item que ela produz sai com **Autorização de publicação: BLOQUEADA — motivo: aguardando revisão editorial formal pela revisar-nefroquest**, independentemente do status de evidência (mesmo VERIFICADA) ou da natureza da pendência (mesmo NENHUMA).
+- `revisar-nefroquest` é a **única** skill responsável por emitir um dos 7 vereditos editoriais e a **única** capaz de derivar Autorização de publicação LIBERADA — e só quando as condições canônicas do Handbook §18.4 forem satisfeitas (evidência adequada + veredito de aprovação).
+- O teste leve de Advogado do Recurso de `criar-nefroquest` (Etapa 10 do `SKILL.md`) é autoauditoria do autor no momento da criação — **não substitui** o Advogado do Recurso completo (Handbook §16) nem qualquer parte da revisão formal.
+- **Consequência para implementação no repositório:** `criar-nefroquest` **NÃO PODE** escrever em `data/topics.js` um item que ela mesma acabou de criar, porque ele nasce BLOQUEADO. Implementação direta só é permitida quando houver comprovação, no contexto atual, de que o item já passou por `revisar-nefroquest`, recebeu veredito de aprovação e está com Autorização = LIBERADA (Handbook §18.4). Sem essa comprovação, `criar-nefroquest` entrega só o pacote da questão (BLOQUEADA) e encaminha para revisão formal — nunca edita o banco por conta própria.
+
 ## Regra recomendada para CLAUDE.md
 
 ```markdown

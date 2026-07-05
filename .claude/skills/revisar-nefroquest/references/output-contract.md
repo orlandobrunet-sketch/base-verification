@@ -16,6 +16,10 @@ Use exatamente esta ordem:
 
 **Evidência:** VERIFICADA | PARCIALMENTE VERIFICADA | NÃO VERIFICADA
 
+**Pendência:** NENHUMA | NÃO DECISIVA | DECISIVA — `NENHUMA` só é válida com Evidência VERIFICADA; PARCIALMENTE VERIFICADA e NÃO VERIFICADA exigem NÃO DECISIVA ou DECISIVA. Combinação inválida entre os dois campos mantém a autorização abaixo BLOQUEADA até correção (Handbook §18.4).
+
+**Autorização de publicação:** LIBERADA | BLOQUEADA — campo **derivado**, nunca livre. Fórmula completa: Handbook §18.4 (Regra 7). `revisar-nefroquest` é a única skill autorizada a retornar LIBERADA, e somente quando Evidência/Pendência forem compatíveis **e** o veredito acima for de aprovação (aprovada ou aprovada com pequenos ajustes).
+
 # OP declarado e classificação
 
 Descreva, em prosa, o Objetivo Pedagógico que a questão mede (sem pressupor `loid` físico). Informe competência primária, nível Bloom/Miller e dificuldade intrínseca.
@@ -158,12 +162,15 @@ Nunca afirme que teste passou se não foi executado.
 
 Comece com a tabela-resumo (a coluna **Legado** é auxiliar, não o veredito principal):
 
-| Questão | OP | Veredito | Score | Eliminatório | Legado | Ação |
-|---|---|---|---|---|---|---|
+| Questão | OP | Evidência | Pendência | Veredito | Score | Eliminatório | Autorização | Legado | Ação |
+|---|---|---|---|---|---|---|---|---|---|
 
+- **Evidência** — VERIFICADA / PARCIALMENTE VERIFICADA / NÃO VERIFICADA.
+- **Pendência** — NENHUMA / NÃO DECISIVA / DECISIVA (Handbook §18.4; NENHUMA só com VERIFICADA).
 - **Veredito** — um dos 7 (Handbook §19).
 - **Score** — total 0–20 ou “anulado”.
 - **Eliminatório** — sim/não (Handbook §17).
+- **Autorização** — LIBERADA / BLOQUEADA, derivada (Handbook §18.4) — nunca preenchida livremente.
 - **Legado** — MANTER/REESCREVER/DELETAR (compatibilidade com o fluxo antigo; opcional).
 
 Depois forneça bloco completo apenas para vereditos que exijam mudança (pequenos ajustes / revisão maior / reprovada / fundir / redirecionar / aposentar), salvo pedido de revisão integral. Questões **aprovadas** podem receber justificativa abreviada.

@@ -102,7 +102,9 @@ Antes de redigir, monte uma matriz de cobertura com tema, objetivo, nível, form
 
 ### 4. Implementação direta
 
-Inspecione o repositório, gere o item no schema existente, adicione ou reutilize referências válidas, valide sintaxe e integridade e revise o diff.
+**Gate obrigatório antes de tocar `data/topics.js` (Handbook §18.4):** um item **recém-criado por esta skill** nasce com Autorização de publicação BLOQUEADA e **NÃO PODE** ser escrito em `data/topics.js` nesse estado. Implementação direta só é permitida quando houver, no contexto atual, comprovação de que o item **já passou pela `revisar-nefroquest`** e recebeu: (1) um dos vereditos de aprovação (aprovada ou aprovada com pequenos ajustes já corrigidos); (2) `Autorização de publicação: LIBERADA`; (3) nenhuma pendência decisiva nem combinação inválida entre Evidência e Pendência. Sem essa comprovação, **entregue apenas o pacote da questão** (contrato completo, com Autorização BLOQUEADA) e **encaminhe para revisão formal** — não edite o banco.
+
+Quando o gate acima estiver satisfeito: inspecione o repositório, gere o item no schema existente, adicione ou reutilize referências válidas, valide sintaxe e integridade e revise o diff.
 
 ### 5. Banco ou prova
 
@@ -159,6 +161,8 @@ Registre internamente:
 - data e versão.
 
 Aplique o protocolo de [references/verification-protocol.md](references/verification-protocol.md) (registro de afirmações verificáveis). Se a fonte decisiva não puder ser confirmada, não produza questão como pronta para publicação: marque o status de evidência como **NÃO VERIFICADA** (ou **PARCIALMENTE VERIFICADA**, se o gabarito já está sustentado mas um detalhe secundário falta) e, quando possível, crie versão sem o detalhe não verificado, desde que isso mantenha validade e valor pedagógico.
+
+Classifique também a **natureza da pendência** (NENHUMA — só se VERIFICADA — | NÃO DECISIVA | DECISIVA) conforme Handbook §18.4 e [references/verification-protocol.md](references/verification-protocol.md) §4.1. Esta skill **registra** Evidência e Pendência, mas **não emite Veredito editorial** e **nunca retorna Autorização de publicação LIBERADA** — todo item criado sai com **Autorização de publicação: BLOQUEADA — motivo: aguardando revisão editorial formal pela revisar-nefroquest**, independentemente do quão bem verificado esteja (ver [INTEGRACAO-COM-REVISOR.md](INTEGRACAO-COM-REVISOR.md)).
 
 ### Etapa 4 — Escolher o formato adequado
 
@@ -305,7 +309,9 @@ Antes de entregar ou editar o repositório, confirme:
 - OP, competência primária, Bloom/Miller e dificuldade intrínseca (mapeada ao enum `easy`/`medium`/`hard`) estão coerentes entre si e com a complexidade real do item;
 - teste leve de Advogado do Recurso (Etapa 10) sem argumento plausível pendente;
 - item não duplica questão existente quando o repositório está acessível;
-- schema, IDs e convenções do projeto foram preservados.
+- schema, IDs e convenções do projeto foram preservados;
+- Pendência classificada corretamente (NENHUMA só se VERIFICADA; NÃO DECISIVA ou DECISIVA nos demais casos; nunca "não aplicável" — Handbook §18.4);
+- Autorização de publicação presente e igual a BLOQUEADA, com o motivo padrão; nenhum campo de Veredito editorial incluído.
 
 ## Classificação: OP, Bloom/Miller e dificuldade intrínseca
 
@@ -345,6 +351,7 @@ Não usar resposta parcialmente correta como distrator sem tornar o motivo da in
 
 Quando o usuário pedir para adicionar ao app:
 
+0. **Gate de autorização (Handbook §18.4; ver Modo 4 acima).** Confirme, no contexto atual, que o item já foi formalmente revisado por `revisar-nefroquest` e está com `Autorização de publicação: LIBERADA` (veredito de aprovação, sem pendência decisiva, sem combinação inválida). **Se não houver essa comprovação, pare aqui**: gere somente o pacote da questão com Autorização BLOQUEADA e informe que ela precisa passar por `revisar-nefroquest` antes de qualquer edição em `data/topics.js`. Nunca escreva no banco um item ainda BLOQUEADO só porque parece pronto.
 1. Localize o banco de questões, schema, registro de referências, gerador de IDs, categoria e dificuldade.
 2. Leia itens vizinhos para compreender estilo e serialização.
 3. Pesquise duplicidade semântica, não apenas texto idêntico.

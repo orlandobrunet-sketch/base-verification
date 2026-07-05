@@ -99,6 +99,8 @@ Declare **em prosa o Objetivo Pedagógico (OP) que a questão mede** (Model §3.
 
 Liste toda afirmação que exige fonte: diagnóstico/critério; dose, via, intervalo, ajuste renal; ponto de corte; indicação/contraindicação; recomendação de diretriz; efeito de intervenção; número de estudo; risco/incidência/prognóstico; autor/ano/periódico/identificador. Verifique cada afirmação decisiva. Onde a fonte decisiva não abrir, aplique o **protocolo VERIFICAÇÃO NECESSÁRIA** ([references/verification-protocol.md](references/verification-protocol.md)).
 
+Confirme ou corrija também a **natureza da pendência** (NENHUMA — só se VERIFICADA — | NÃO DECISIVA | DECISIVA), conforme Handbook §18.4 e [references/verification-protocol.md](references/verification-protocol.md) §2.1. Evidência e Pendência **DEVEM** ser reavaliadas sempre que enunciado, alternativas, gabarito, explicação ou referências mudarem materialmente durante a revisão.
+
 ### Passo 4 — Avaliar
 
 - **Validade** — conteúdo/construto/resposta/consequencial + **regra de alinhamento** + **regra de deriva de objetivo** (Model §8 / Handbook §10). Pergunte: o gabarito é correto para esta população/estágio/gravidade/momento? Há mais de uma alternativa defensável? Falta dado que mudaria a conduta? A questão confunde recomendação, opção e obrigação? A conduta é adequada no Brasil e no contexto?
@@ -122,7 +124,7 @@ Gate eliminatório + 10 dimensões (0–2), total 0–20 (Handbook §18). O **es
 
 ### Passo 8 — Árvore de decisão
 
-Produza **um dos 7 vereditos** + status de ciclo de vida (Handbook §19).
+Aplique a árvore do Handbook §19 **a partir do passo 0** (teto por status de evidência/pendência — Handbook §18.4), antes dos eliminatórios (Cap. 17). Produza **um dos 7 vereditos** + status de ciclo de vida, e **derive** a Autorização de publicação (LIBERADA/BLOQUEADA) pela fórmula do Handbook §18.4 — nunca atribuída livremente. `revisar-nefroquest` é a **única** skill autorizada a retornar LIBERADA, e somente quando evidência/pendência forem compatíveis **e** o veredito for de aprovação.
 
 ### Passo 9 — Saída
 
@@ -182,7 +184,7 @@ Não use tom promocional, elogios vazios ou justificativas prolixas.
 
 Siga exatamente [references/output-contract.md](references/output-contract.md). A chamada de implementação chama-se **“Patch editorial sugerido”**.
 
-Para uma questão isolada, entregue sempre: veredito v2 (+ equivalente legado auxiliar); confiança e status de evidência; OP declarado + classificação; achados de avaliação priorizados; resultado do **Advogado do Recurso**; **eliminatórios** disparados; **NQ Editorial Score**; decisão da árvore; **Patch editorial sugerido**; referências verificadas em cards; observação de implementação; pendências de verificação (se existirem).
+Para uma questão isolada, entregue sempre: veredito v2 (+ equivalente legado auxiliar); confiança, status de evidência e **natureza da pendência**; OP declarado + classificação; achados de avaliação priorizados; resultado do **Advogado do Recurso**; **eliminatórios** disparados; **NQ Editorial Score**; decisão da árvore (a partir do passo 0, Handbook §18.4); **Autorização de publicação** (LIBERADA/BLOQUEADA, sempre derivada — Handbook §18.4); **Patch editorial sugerido**; referências verificadas em cards; observação de implementação; pendências de verificação (se existirem).
 
 Em revisão em lote, não repita explicações genéricas: produza a tabela-resumo e depois um bloco completo por questão que exija mudança. Questões **aprovadas** podem receber justificativa abreviada, salvo solicitação contrária.
 
