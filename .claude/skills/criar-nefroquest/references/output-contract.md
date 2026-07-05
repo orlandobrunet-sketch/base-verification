@@ -107,11 +107,15 @@ Depois entregar cada questão completa, cada uma com seu próprio bloco "Base ci
 
 ## 4. Implementação direta
 
-Quando a edição foi realizada, usar:
+**Gate obrigatório (Handbook §18.4):** um item recém-criado por esta skill nasce BLOQUEADO e **NÃO PODE** ser escrito em `data/topics.js` nesse estado. Só edite o banco quando houver, no contexto atual, comprovação de que o item já passou por `revisar-nefroquest`, recebeu veredito de aprovação, está com `Autorização de publicação: LIBERADA` e não tem pendência decisiva nem combinação inválida.
+
+**Se o gate não estiver satisfeito**, não edite `data/topics.js` — entregue apenas o pacote da questão (seção 1 deste contrato, com Autorização BLOQUEADA) e recomende o encaminhamento para revisão formal.
+
+**Se o gate estiver satisfeito e a edição foi realizada**, usar:
 
 # Questão criada
 
-Título, OP, categoria, dificuldade (`easy`/`medium`/`hard`) e Autorização de publicação (sempre BLOQUEADA — aguardando revisão editorial formal).
+Título, OP, categoria, dificuldade (`easy`/`medium`/`hard`) e confirmação de que a Autorização já constava LIBERADA antes da edição.
 
 # Arquivos alterados
 
