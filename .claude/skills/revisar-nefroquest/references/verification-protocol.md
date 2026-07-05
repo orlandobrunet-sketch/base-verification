@@ -29,6 +29,15 @@ Não finalize como fato verificável aquilo que não foi confirmado.
 
 O status escolhido entra no **campo de status de evidência do contrato de saída**.
 
+## 2.1 Natureza da pendência e autorização de publicação
+
+Regra editorial canônica completa, com a tabela de compatibilidade e a fórmula de derivação: **Handbook §18.4**. Resumo operacional para esta skill:
+
+- Sempre que o status não for VERIFICADA, classifique a pendência como **NÃO DECISIVA** ou **DECISIVA** — nunca como **NENHUMA** (que só é válida com VERIFICADA) e nunca como "não aplicável" (não é um valor do eixo).
+- Reavalie **Evidência** e **Pendência** a cada mudança material no enunciado, alternativas, gabarito, explicação ou referências — o status de uma versão anterior não é herdado silenciosamente.
+- Uma combinação inválida entre Evidência e Pendência (ex.: PARCIALMENTE VERIFICADA + NENHUMA) mantém a Autorização de publicação **BLOQUEADA** até correção dos campos.
+- A **Autorização de publicação** (LIBERADA/BLOQUEADA) é sempre **derivada** do status de evidência, da natureza da pendência e do veredito editorial pela fórmula do Handbook §18.4 — nunca atribuída livremente em prosa nesta skill.
+
 ## 3. Situações que bloqueiam publicação
 
 Bloqueie quando houver: dose/unidade não confirmada; mais de uma resposta correta; guideline citado que não contém a recomendação; URL não confirmado; número de estudo divergente; extrapolação para população excluída; recomendação potencialmente perigosa; conflito protocolo local × diretriz sem explicitação; referência inexistente ou não localizada.

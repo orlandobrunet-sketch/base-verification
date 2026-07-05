@@ -18,7 +18,11 @@ Usar exatamente esta ordem:
 
 **Evidência:** VERIFICADA | PARCIALMENTE VERIFICADA | NÃO VERIFICADA
 
+**Pendência:** NENHUMA | NÃO DECISIVA | DECISIVA — `NENHUMA` só é válida com Evidência VERIFICADA; PARCIALMENTE VERIFICADA e NÃO VERIFICADA exigem NÃO DECISIVA ou DECISIVA (nunca NENHUMA, nunca "não aplicável"). Regra completa: Handbook §18.4.
+
 Fonte principal e afirmação que sustenta o gabarito, em poucas linhas.
+
+**Autorização de publicação:** **BLOQUEADA — motivo: aguardando revisão editorial formal pela revisar-nefroquest.** Este valor é fixo em todo item produzido por esta skill — `criar-nefroquest` não emite veredito editorial e nunca deriva LIBERADA (Handbook §18.4; [../INTEGRACAO-COM-REVISOR.md](../INTEGRACAO-COM-REVISOR.md)).
 
 # Racional pedagógico
 
@@ -99,7 +103,7 @@ Começar com:
 | # | Tema | OP | Bloom/Miller | Dificuldade (`easy`/`medium`/`hard`) | Formato | Fonte principal | Gabarito |
 |---|---|---|---|---|---|---|---|
 
-Depois entregar cada questão completa. Evitar repetir letra correta em padrão previsível.
+Depois entregar cada questão completa, cada uma com seu próprio bloco "Base científica" (Evidência + Pendência + Autorização fixa BLOQUEADA). Evitar repetir letra correta em padrão previsível.
 
 ## 4. Implementação direta
 
@@ -107,7 +111,7 @@ Quando a edição foi realizada, usar:
 
 # Questão criada
 
-Título, OP, categoria e dificuldade (`easy`/`medium`/`hard`).
+Título, OP, categoria, dificuldade (`easy`/`medium`/`hard`) e Autorização de publicação (sempre BLOQUEADA — aguardando revisão editorial formal).
 
 # Arquivos alterados
 

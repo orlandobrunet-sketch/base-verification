@@ -12,7 +12,11 @@
 
 **Evidência:** [VERIFICADA | PARCIALMENTE VERIFICADA | NÃO VERIFICADA]
 
+**Pendência:** [NENHUMA — só se VERIFICADA | NÃO DECISIVA | DECISIVA]
+
 [Fonte e afirmação decisiva]
+
+**Autorização de publicação:** BLOQUEADA — motivo: aguardando revisão editorial formal pela revisar-nefroquest.
 
 # Racional pedagógico
 

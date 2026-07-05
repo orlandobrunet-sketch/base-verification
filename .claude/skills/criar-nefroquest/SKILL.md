@@ -160,6 +160,8 @@ Registre internamente:
 
 Aplique o protocolo de [references/verification-protocol.md](references/verification-protocol.md) (registro de afirmações verificáveis). Se a fonte decisiva não puder ser confirmada, não produza questão como pronta para publicação: marque o status de evidência como **NÃO VERIFICADA** (ou **PARCIALMENTE VERIFICADA**, se o gabarito já está sustentado mas um detalhe secundário falta) e, quando possível, crie versão sem o detalhe não verificado, desde que isso mantenha validade e valor pedagógico.
 
+Classifique também a **natureza da pendência** (NENHUMA — só se VERIFICADA — | NÃO DECISIVA | DECISIVA) conforme Handbook §18.4 e [references/verification-protocol.md](references/verification-protocol.md) §4.1. Esta skill **registra** Evidência e Pendência, mas **não emite Veredito editorial** e **nunca retorna Autorização de publicação LIBERADA** — todo item criado sai com **Autorização de publicação: BLOQUEADA — motivo: aguardando revisão editorial formal pela revisar-nefroquest**, independentemente do quão bem verificado esteja (ver [INTEGRACAO-COM-REVISOR.md](INTEGRACAO-COM-REVISOR.md)).
+
 ### Etapa 4 — Escolher o formato adequado
 
 Prefira formatos clinicamente úteis:
@@ -305,7 +307,9 @@ Antes de entregar ou editar o repositório, confirme:
 - OP, competência primária, Bloom/Miller e dificuldade intrínseca (mapeada ao enum `easy`/`medium`/`hard`) estão coerentes entre si e com a complexidade real do item;
 - teste leve de Advogado do Recurso (Etapa 10) sem argumento plausível pendente;
 - item não duplica questão existente quando o repositório está acessível;
-- schema, IDs e convenções do projeto foram preservados.
+- schema, IDs e convenções do projeto foram preservados;
+- Pendência classificada corretamente (NENHUMA só se VERIFICADA; NÃO DECISIVA ou DECISIVA nos demais casos; nunca "não aplicável" — Handbook §18.4);
+- Autorização de publicação presente e igual a BLOQUEADA, com o motivo padrão; nenhum campo de Veredito editorial incluído.
 
 ## Classificação: OP, Bloom/Miller e dificuldade intrínseca
 

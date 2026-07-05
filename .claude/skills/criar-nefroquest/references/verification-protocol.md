@@ -50,6 +50,18 @@ Metanálise de estudos frágeis não se torna evidência forte apenas por agrega
 
 O status escolhido entra no campo "Base científica" do contrato de saída ([output-contract.md](output-contract.md)).
 
+## 4.1 Classificação obrigatória da pendência
+
+Regra editorial canônica completa: Handbook §18.4. Resumo operacional para esta skill:
+
+- Sempre que o status não for VERIFICADA, classifique a pendência como **NÃO DECISIVA** (detalhe secundário, não muda gabarito nem segurança) ou **DECISIVA** (pode mudar qual alternativa é a correta, a segurança ou a validade do item).
+- **NENHUMA** só é valor válido quando o status for VERIFICADA. **NÃO DEVE** ser usado com PARCIALMENTE VERIFICADA nem com NÃO VERIFICADA — nesses dois casos, existe por definição algo pendente, e a classificação real (NÃO DECISIVA ou DECISIVA) é obrigatória.
+- Não escreva "não aplicável" no campo de pendência — não é um valor do eixo (Handbook §18.4).
+
+## 4.2 Autorização de publicação desta skill
+
+Esta skill **NÃO** emite veredito editorial e **NUNCA** deriva autorização LIBERADA — essa competência é exclusiva de `revisar-nefroquest` (ver [../INTEGRACAO-COM-REVISOR.md](../INTEGRACAO-COM-REVISOR.md)). Todo item criado aqui sai com **Autorização de publicação: BLOQUEADA — motivo: aguardando revisão editorial formal pela revisar-nefroquest**, independentemente do status de evidência ou da natureza da pendência.
+
 ## 5. Regra de bloqueio de publicação
 
 Bloquear a entrega como "pronta para copiar/implementar" quando houver:
