@@ -1,6 +1,6 @@
 # NQ Editorial Handbook v1
 
-> **Versão:** 1.0 — rascunho para revisão humana
+> **Versão:** 1.1 — rascunho para revisão humana
 > **Status:** manual editorial operacional (não é código nem especificação de implementação)
 > **Data:** 2026-06-30
 > **Documento-base:** `docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md` (referido como **“o Model”**).
@@ -312,11 +312,56 @@ Dez dimensões, cada uma de **0 a 2** (0 = falha; 1 = parcial; 2 = pleno). Total
 - **Deriva de objetivo** (Cap. 10) → **Redirecionar** (ou Reescrever).
 - **Desatualização** (Cap. 17 §10) → **Aposentar** ou **Revisão maior**.
 
+## 18.4 Status de evidência, pendência e autorização de publicação
+
+Esta seção define **três eixos separados**, cada um obrigatório e cada um com valor único por versão exata do item. Nenhum eixo substitui os outros; nenhum campo mistura valores de eixos diferentes.
+
+**Eixo 1 — Status da evidência** (Model §3.6, *status de verificação da evidência*): **VERIFICADA** · **PARCIALMENTE VERIFICADA** · **NÃO VERIFICADA**. Definições no Model §3.6 e no protocolo operacional de verificação de cada skill.
+
+**Eixo 2 — Natureza da pendência** (aplicável apenas quando o Eixo 1 for PARCIALMENTE VERIFICADA): **NENHUMA** · **NÃO DECISIVA** · **DECISIVA**.
+- **Decisiva** — se resolvida no sentido oposto ao assumido, pode mudar qual alternativa é a correta, comprometer a segurança da conduta ensinada, ou invalidar o item.
+- **Não decisiva** — afeta apenas detalhe secundário (rótulo, precisão terminológica, vínculo exato de versão de uma fonte) sem capacidade de mudar o gabarito ou a segurança.
+
+**Eixo 3 — Autorização de publicação**: **LIBERADA** · **BLOQUEADA**. Campo **derivado** (Regra 9 abaixo) — **NÃO PODE** ser atribuído livremente em prosa nem ser confundido com o veredito editorial ou com o status de evidência.
+
+**Regras obrigatórias:**
+
+1. **Um único status de evidência por versão exata do item (DEVE).** Não podem coexistir dois valores do Eixo 1 para a mesma versão de um item.
+2. **Reavaliação obrigatória por mudança material (DEVE).** Qualquer mudança material em enunciado, alternativas, gabarito, explicação ou referências **DEVE** disparar reavaliação do status de evidência — o status da versão anterior **NÃO DEVE** ser herdado silenciosamente pela versão nova.
+3. **Pendência decisiva (definição, ver Eixo 2).**
+4. **Pendência não decisiva (definição, ver Eixo 2).**
+5. **Teto do veredito por evidência (DEVE — override adicional sobre §18.3):**
+   - Status **NÃO VERIFICADA** → o veredito **NÃO PODE** ser "aprovada" nem "aprovada com pequenos ajustes", independentemente do NQ Editorial Score.
+   - Status **PARCIALMENTE VERIFICADA** com pendência **DECISIVA** → mesma restrição do item acima.
+   - Em ambos os casos, o teto do veredito é **revisão maior** (ou banda inferior, se eliminatório ou Advogado do Recurso também se aplicarem).
+6. **Autorização de publicação (DEVE — derivada, nunca livre):**
+   - **BLOQUEADA** quando: (a) evidência NÃO VERIFICADA; **ou** (b) evidência PARCIALMENTE VERIFICADA com pendência DECISIVA; **ou** (c) o veredito editorial não é de aprovação (aprovada ou aprovada com pequenos ajustes).
+   - **LIBERADA** somente quando: (a) evidência VERIFICADA **e** veredito de aprovação; **ou** (b) evidência PARCIALMENTE VERIFICADA com pendência NÃO DECISIVA **e** veredito de aprovação.
+7. **Campo de autorização contém somente LIBERADA ou BLOQUEADA (DEVE).** Não misturar, no mesmo campo, valores do Eixo 1 (status de evidência) ou do Eixo 2 (natureza da pendência).
+8. **Proibição de sinônimos informais (NÃO DEVE).** Expressões como "estruturalmente pronta", "pronta para copiar" ou equivalentes **NÃO SÃO** sinônimos de veredito de aprovação nem de autorização de publicação liberada — descrevem completude de forma, não completude de evidência nem decisão editorial.
+9. **Autorização de publicação é sempre derivada (DEVE).** Nunca é atribuída livremente; é sempre calculada a partir dos Eixos 1 e 2 e do veredito editorial, pela Regra 6.
+10. **Transição de ciclo de vida (DEVE).** A transição do `status` de ciclo de vida (Model §3.6) para `publicado` **NÃO DEVE** ocorrer enquanto a autorização de publicação estiver BLOQUEADA.
+
 ## 19. Árvore de decisão editorial
 
 Aplicar **em ordem**; a primeira condição verdadeira determina o veredito e o `status` do ciclo de vida (Model §3.6).
 
 ```
+0. Status de evidência permite avaliar normalmente? (§18.4)
+   ├── NÃO VERIFICADA, ou PARCIALMENTE VERIFICADA com
+   │   pendência DECISIVA .......................... → teto: no máximo
+   │                                                    REVISÃO MAIOR;
+   │                                                    autorização de
+   │                                                    publicação = BLOQUEADA
+   │                                                    (§18.4 Regra 6);
+   │                                                    segue avaliando os
+   │                                                    achados normalmente,
+   │                                                    mas o veredito final
+   │                                                    não pode ultrapassar
+   │                                                    esse teto
+   └── (VERIFICADA, ou PARCIALMENTE VERIFICADA com
+        pendência NÃO DECISIVA ou NENHUMA) ............ continua ↓
+
 1. Existe eliminatório (Cap.17)?
    ├── Mede outro OP ............................. → REDIRECIONAR (→ em_revisão no OP correto)
    ├── Desatualização relevante ................. → APOSENTAR (se insubstituível) ou REVISÃO MAIOR
@@ -347,6 +392,8 @@ Aplicar **em ordem**; a primeira condição verdadeira determina o veredito e o 
 - **Fundir** → consolidar em uma questão do mesmo OP; a outra → `aposentado`.
 - **Redirecionar** → vincular a questão ao OP que ela de fato mede → `em_revisão`.
 - **Aposentar** → retirar por desatualização/irrelevância → `aposentado`.
+
+**Autorização de publicação:** derivada do status de evidência e da natureza da pendência (§18.4, Regra 6) — **LIBERADA** ou **BLOQUEADA**, nunca atribuída livremente. A transição para `status: publicado` acima **NÃO DEVE** ocorrer enquanto a autorização estiver BLOQUEADA (§18.4 Regra 10).
 
 ---
 
@@ -435,4 +482,4 @@ Concentra o conteúdo específico de nefrologia (mantendo o corpo universal limp
 
 ---
 
-*Fim do rascunho v1.0 — para revisão humana. O Handbook traduz o NQ Knowledge Model v1 em regras operacionais e adiciona três mecanismos de portão: o **Advogado do Recurso** (Cap. 16), os **Critérios de reprovação automática** (Cap. 17) e o **NQ Editorial Score** (Cap. 18), integrados pela **árvore de decisão** (Cap. 19). Pendências abertas: vocabulários controlados (Anexo D), preenchimento dos Anexos B/C/E, e as decisões herdadas do Model (EPA vs CanMEDS; granularidade fina do OP).*
+*Fim do rascunho v1.1 — para revisão humana. Mudanças desde a v1.0: novo §18.4 (Status de evidência, pendência e autorização de publicação) formaliza os três eixos — status de evidência (Model §3.6), natureza da pendência e autorização de publicação (derivada) — como regra canônica única, substituindo julgamento caso a caso; Cap. 19 ganhou o passo 0 (teto por evidência/pendência) e a linha de autorização de publicação nas definições de veredito. O Handbook traduz o NQ Knowledge Model v1 em regras operacionais e adiciona quatro mecanismos de portão: o **Advogado do Recurso** (Cap. 16), os **Critérios de reprovação automática** (Cap. 17), o **NQ Editorial Score** (Cap. 18) e o **status de evidência/autorização de publicação** (§18.4), integrados pela **árvore de decisão** (Cap. 19). Pendências abertas: vocabulários controlados (Anexo D), preenchimento dos Anexos B/C/E, e as decisões herdadas do Model (EPA vs CanMEDS; granularidade fina do OP).*
