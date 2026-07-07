@@ -1824,4 +1824,32 @@ finerenone_2025:{
     conclusao:"A associação entre glúten, doença celíaca e NIgA não deve ser convertida em recomendação terapêutica universal.",
     curiosidade:"O estudo é útil pedagogicamente porque separa plausibilidade imunológica de evidência clínica acionável."
   },
+  meropenem_anvisa:{
+    label:"Meropeném — Bula Profissional (ANVISA, Fresenius Kabi Brasil)",
+    url:"https://www.fresenius-kabi.com/content/dam/fresenius-kabi/br/documents/bulas/medicamentos/Meropen%C3%A9m%20-%20Bula%20Profissional%20da%20Sa%C3%BAde%20(511%20KB).pdf.coredownload.inline.pdf",
+    journal:"ANVISA — Bula Profissional (Fresenius Kabi Brasil Ltda., Reg. MS 1.0041.0207)",
+    ano:2024,
+    tipo:"Bula profissional aprovada pela ANVISA",
+    badge:"BULA",
+    badgeColor:"#64748b",
+    impacto:"Meropeném em CrCl 26–50 mL/min: manutenção da unidade de dose com extensão do intervalo para 12 horas",
+    icon:"📋",
+    resumo:"Bula profissional do meropeném aprovada pela ANVISA (Fresenius Kabi Brasil, Reg. MS 1.0041.0207; Bula Padrão de 02/02/2024). Na insuficiência renal, o ajuste é indexado por clearance de creatinina (necessário abaixo de 51 mL/min) e varia por faixa: 26–50 mL/min → 1 unidade de dose a cada 12 horas; 10–25 mL/min → meia unidade de dose a cada 12 horas; abaixo de 10 mL/min → meia unidade de dose a cada 24 horas. A unidade de dose (500 mg a 2 g a cada 8 h) é definida pela indicação. Administração por infusão intravenosa de 15 a 30 minutos.",
+    conclusao:"Para clearance de 26–50 mL/min, mantém-se a unidade de dose definida para a indicação e estende-se o intervalo para 12 horas. Se a unidade de dose estabelecida for 1 g a cada 8 horas, o ajuste resulta em 1 g a cada 12 horas.",
+    curiosidade:""
+  },
+  levofloxacino_500_anvisa:{
+    label:"Levofloxacino (Levaquin) 500 mg — Bula Profissional (ANVISA, Janssen-Cilag)",
+    url:"https://assets.jnjlabels.com/innovativemedicine/latam/brasil/levaquin-bula-profissional.pdf",
+    journal:"ANVISA — Bula Profissional (Janssen-Cilag Farmacêutica Ltda., Reg. 1.1236.3316)",
+    ano:2025,
+    tipo:"Bula profissional aprovada pela ANVISA",
+    badge:"BULA",
+    badgeColor:"#64748b",
+    impacto:"Levofloxacino 500 mg — indicação de bronquite e necessidade de ajuste renal",
+    icon:"📋",
+    resumo:"Bula profissional do Levaquin (levofloxacino) 500 mg aprovada pela ANVISA (Janssen-Cilag Farmacêutica Ltda., Reg. 1.1236.3316; Bula Padrão aprovada em 23/10/2025). Comprimidos revestidos de 500 mg; indicado nas exacerbações bacterianas agudas de bronquite crônica. O levofloxacino é excretado principalmente pelos rins e, na insuficiência renal, exige ajuste das doses para evitar o acúmulo.",
+    conclusao:"No regime de 500 mg para exacerbação de bronquite crônica, a insuficiência renal exige ajuste da posologia para evitar o acúmulo do levofloxacino.",
+    curiosidade:""
+  },
 };
