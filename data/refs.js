@@ -1852,4 +1852,18 @@ finerenone_2025:{
     conclusao:"No regime de 500 mg para exacerbação de bronquite crônica, a insuficiência renal exige ajuste da posologia para evitar o acúmulo do levofloxacino.",
     curiosidade:""
   },
+  gentamicina_anvisa:{
+    label:"Gentamicin (sulfato de gentamicina) — Bula Profissional (ANVISA, Fresenius Kabi Brasil)",
+    url:"https://www.fresenius-kabi.com/content/dam/fresenius-kabi/br/documents/bulas/medicamentos/Gentamicin%20(sulfato%20de%20gentamicina)%20-%20Bula%20Profissional%20de%20Sa%C3%BAde%20(332%20KB).pdf.coredownload.inline.pdf",
+    journal:"ANVISA — Bula Profissional (Fresenius Kabi Brasil Ltda., Reg. MS 1.0041.0210)",
+    ano:2015,
+    tipo:"Bula profissional aprovada pela ANVISA",
+    badge:"BULA",
+    badgeColor:"#64748b",
+    impacto:"Gentamicina — nefro e ototoxicidade na disfunção renal; monitorização de função renal, oitavo par craniano e níveis séricos",
+    icon:"📋",
+    resumo:"Bula profissional da Gentamicin (sulfato de gentamicina) aprovada pela ANVISA (Fresenius Kabi Brasil, Reg. MS 1.0041.0210; Bula Padrão de 10/11/2015). Aminoglicosídeo bactericida; o risco de nefrotoxicidade é maior em pacientes com função renal comprometida, dose alta ou tratamento prolongado, podendo haver ototoxicidade vestibular e auditiva. Recomenda vigilância da função renal e do oitavo par craniano, determinação periódica de ureia/creatinina/depuração de creatinina, audiogramas seriados e monitorização dos níveis séricos; sinais de oto ou nefrotoxicidade exigem modificação da dose ou suspensão. Admite esquema de dose única diária.",
+    conclusao:"Na disfunção renal, a gentamicina exige monitorização da função renal, do oitavo par craniano e dos níveis séricos, com ajuste ou suspensão diante de sinais de toxicidade.",
+    curiosidade:""
+  },
 };
