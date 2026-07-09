@@ -355,6 +355,18 @@ Qualquer outra combinação (ex.: PARCIALMENTE VERIFICADA + NENHUMA) é **invál
 10. **Autorização de publicação é sempre derivada (DEVE).** Nunca é atribuída livremente; é sempre calculada a partir dos Eixos 1 e 2 e do veredito editorial, pela Regra 7.
 11. **Transição de ciclo de vida (DEVE).** A transição do `status` de ciclo de vida (Model §3.6) para `publicado` **NÃO DEVE** ocorrer enquanto a autorização de publicação estiver BLOQUEADA.
 
+## 18.5 Identidade do `qid` e estado de repetição espaçada (FSRS)
+
+O `qid` identifica a **identidade pedagógica estável** do item — objetivo pedagógico, competência e conceito correto correspondente ao gabarito — e **não** os bytes da redação. Mudança material de texto **não exige, por si só**, um novo `qid`.
+
+**Preservar o `qid`** quando permanecerem: objetivo pedagógico; competência; conceito correto; e identidade reconhecível do item. Podem mudar **sem** novo `qid`: redação do enunciado; distratores; referências; explicação; atualização científica; e a posição da alternativa correta.
+
+**Criar novo `qid`** quando mudar: o objetivo pedagógico; a competência avaliada; o raciocínio central exigido; o conceito correto; ou a identidade do item (deixa de ser reconhecível como a mesma questão).
+
+**Reset de FSRS (repetição espaçada)** é **excepcional e deliberado**, nunca automático para toda reconstrução editorial. Reservado a casos em que: a versão anterior ensinava conceito clinicamente incorreto; preservar a maestria anterior causaria aprendizagem inválida; ou há decisão editorial explícita de tratar o conteúdo como novo.
+
+**Nota técnica.** O agendamento de repetição espaçada (FSRS-4.5) e o progresso salvo são indexados por `qid` (`data[qid]` em `js/utils.js`). Reusar o `qid` após corrigir/atualizar o mesmo item preserva, por construção, o agendamento e a maestria — comportamento **intencional** quando a identidade pedagógica é mantida. Ferramentas de revisão automática podem sinalizar o reuso de `qid`; a resposta canônica é esta seção, e a decisão é editorial/de produto, não um defeito.
+
 ## 19. Árvore de decisão editorial
 
 Aplicar **em ordem**; a primeira condição verdadeira determina o veredito e o `status` do ciclo de vida (Model §3.6).
