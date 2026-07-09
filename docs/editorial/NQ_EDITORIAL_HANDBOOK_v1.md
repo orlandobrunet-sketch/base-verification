@@ -363,6 +363,8 @@ O `qid` identifica a **identidade pedagógica estável** do item — objetivo pe
 
 **Criar novo `qid`** quando mudar: o objetivo pedagógico; a competência avaliada; o raciocínio central exigido; o conceito correto; ou a identidade do item (deixa de ser reconhecível como a mesma questão).
 
+**Preservar o `qid` NÃO isenta o item da reavaliação obrigatória do §18.4 (DEVE).** Qualquer mudança material — inclusive em referências, explicação ou conteúdo científico — **DEVE** disparar nova avaliação dos eixos de evidência e pendência (§18.4, Regra 2) e **NÃO PODE** herdar silenciosamente a autorização de publicação da versão anterior. A preservação do `qid` diz respeito somente à identidade pedagógica e ao estado FSRS; a autorização de publicação (LIBERADA/BLOQUEADA) é sempre **derivada** da nova avaliação (§18.4, Regra 7).
+
 **Reset de FSRS (repetição espaçada)** é **excepcional e deliberado**, nunca automático para toda reconstrução editorial. Reservado a casos em que: a versão anterior ensinava conceito clinicamente incorreto; preservar a maestria anterior causaria aprendizagem inválida; ou há decisão editorial explícita de tratar o conteúdo como novo.
 
 **Nota técnica.** O agendamento de repetição espaçada (FSRS-4.5) e o progresso salvo são indexados por `qid` (`data[qid]` em `js/utils.js`). Reusar o `qid` após corrigir/atualizar o mesmo item preserva, por construção, o agendamento e a maestria — comportamento **intencional** quando a identidade pedagógica é mantida. Ferramentas de revisão automática podem sinalizar o reuso de `qid`; a resposta canônica é esta seção, e a decisão é editorial/de produto, não um defeito.
