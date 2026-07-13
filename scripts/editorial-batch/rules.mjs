@@ -32,7 +32,7 @@ export function validateBatch(input) {
   const errors = [];
   const {
     manifest, manifestPath, changedPaths, beforeQuestions, afterQuestions,
-    beforeReferenceIds, afterReferenceIds, afterConsumers,
+    beforeReferenceIds, afterReferenceIds, beforeConsumers, afterConsumers,
     beforeRefsText, afterRefsText, beforeVersions, afterVersions,
   } = input;
 
@@ -69,7 +69,9 @@ export function validateBatch(input) {
     for (const ref of question.refs) if (!afterReferenceIds.has(ref)) errors.push(diagnostic('MISSING_REFERENCE', `${qid} consumes missing reference ${ref}`));
   }
   for (const ref of afterReferenceIds) {
-    if (!afterConsumers.has(ref) || afterConsumers.get(ref).size === 0) errors.push(diagnostic('ORPHAN_REFERENCE', `Reference ${ref} has no consumers`));
+    const hadConsumers = beforeConsumers?.has(ref) && beforeConsumers.get(ref).size > 0;
+    const hasConsumers = afterConsumers.has(ref) && afterConsumers.get(ref).size > 0;
+    if (!hasConsumers && (!beforeReferenceIds.has(ref) || hadConsumers)) errors.push(diagnostic('ORPHAN_REFERENCE', `Reference ${ref} has no consumers`));
   }
 
   if (manifest.refs_policy === 'unchanged' && beforeRefsText !== afterRefsText) errors.push(diagnostic('REFS_POLICY', 'data/refs.js changed despite refs_policy unchanged'));

@@ -1,0 +1,40 @@
+{
+  "batch": "FARM-4A",
+  "change_type": "medical_editorial",
+  "expected_version": "12.65",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-4A.json",
+    "index.html",
+    "scripts/editorial-batch/git-diff.mjs",
+    "scripts/editorial-batch/questions.mjs",
+    "scripts/editorial-batch/references.mjs",
+    "scripts/editorial-batch/rules.mjs",
+    "sw.js",
+    "tests/editorial-batch/git-diff.test.mjs",
+    "tests/editorial-batch/questions.test.mjs",
+    "tests/editorial-batch/rules.test.mjs",
+    "version.json"
+  ],
+  "questions": {
+    "5bfb77d2": {
+      "action": "rebuild",
+      "preserve_fsrs": true
+    },
+    "23211e6a": {
+      "action": "retire",
+      "preserve_fsrs": false
+    }
+  },
+  "expected_question_delta": -1,
+  "refs_policy": "declared",
+  "references": {
+    "roy_pain_ckd_2020": "add",
+    "tramadol_fda_label_2019": "add"
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex — revisar-nefroquest"
+  }
+}

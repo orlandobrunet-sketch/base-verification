@@ -15,7 +15,7 @@ function canonical(value) {
 export function parseQuestions(source, pathLabel = 'data/topics.js') {
   const questions = new Map();
 
-  for (const [index, rawLine] of source.split(/\r?\n/).entries()) {
+  for (const [index, rawLine] of source.split(/\r\n|\r|\n/).entries()) {
     const line = rawLine.trim();
     if (!line.startsWith('{')) continue;
     if (!(line.endsWith('},') || line.endsWith('}'))) {

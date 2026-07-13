@@ -1235,6 +1235,30 @@ canvas_program:{
     conclusao:"A Síndrome de Alport exige diagnóstico genético precoce e início preventivo e imediato de IECA, mesmo na ausência de proteinúria ou hipertensão, para preservar a integridade estrutural da barreira de filtração no Reino.",
     curiosidade:"Na microscopia eletrônica de biópsia renal, a Síndrome de Alport é caracterizada pelo aspecto clássico em 'cesta de vime' (basket-weave pattern) da membrana basal glomerular, evidenciando áreas de afilamento extremo alternadas com espessamento e lamelamento irregular da lâmina densa, decorrente do estresse mecânico na ausência do colágeno estável."
   },
+  roy_pain_ckd_2020:{
+    label:"Roy et al. — Manejo da Dor na DRC e DRT (2020)",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC7753951/",
+    journal:"Current Opinion in Nephrology and Hypertension",
+    ano:2020,tipo:"Revisão",badge:"REVIEW",badgeColor:"#8b5cf6",
+    impacto:"Orienta analgesia e uso criterioso de opioides na doença renal",icon:"🔬",
+    resumo:"Revisão clínica de Roy e colaboradores sobre manejo da dor na doença renal crônica (DRC) e doença renal terminal. Recomenda priorizar intervenções não farmacológicas e analgésicos não opioides; quando opioides forem necessários, devem ser usados com indicação criteriosa, ajuste à função renal e monitorização. Discute o risco de interações, síndrome serotoninérgica e convulsões com tramadol e identifica opções com perfil farmacocinético mais favorável na doença renal.",
+    conclusao:"Na DRC avançada, a exposição a opioides exige seleção e monitorização individualizadas; tramadol requer cautela pelo risco de acúmulo, interações e neurotoxicidade, e a troca por outro opioide não deve ser automática.",
+    curiosidade:"Artigo de acesso aberto: Curr Opin Nephrol Hypertens. 2020;29(6):671–680. DOI: 10.1097/MNH.0000000000000646."
+  },
+  tramadol_fda_label_2019:{
+    label:"ULTRAM (tramadol) — Prescribing Information FDA (2019)",
+    url:"https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/020281s041lbl.pdf",
+    journal:"FDA — Prescribing Information (Janssen Pharmaceuticals)",
+    ano:2019,
+    tipo:"Bula profissional aprovada pela FDA",
+    badge:"BULA",
+    badgeColor:"#64748b",
+    impacto:"Tramadol em CrCl <30: intervalo de 12 h; risco de convulsão mesmo em doses recomendadas",
+    icon:"📋",
+    resumo:"Informação de prescrição do ULTRAM (tramadol) revisada em abril de 2019. Em depuração de creatinina inferior a 30 mL/min, recomenda aumentar o intervalo de dose para 12 horas e limitar a dose diária máxima a 200 mg. A farmacocinética descreve redução da excreção de tramadol e do metabólito ativo M1 na disfunção renal. A bula também registra convulsões com tramadol dentro da faixa posológica recomendada, com maior risco quando a exposição aumenta ou quando há fatores que reduzem o limiar convulsivo.",
+    conclusao:"No paciente com DRC avançada e crise convulsiva em uso de tramadol, a exposição deve ser considerada insegura: suspender o fármaco e reavaliar a analgesia, em vez de manter apenas com ajuste de dose.",
+    curiosidade:"A bula ressalta que opioides devem ser reservados para dor suficientemente intensa quando alternativas não opioides forem inadequadas ou não toleradas."
+  },
   dose_adjustment_ckd_aronoff:{
     label:"Aronoff GR et al. — Drug Prescribing in Renal Failure (5ª ed.)",
     url:"https://www.acponline.org/clinical-information/publications-and-products/acp-press/drug-prescribing-in-renal-failure",

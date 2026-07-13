@@ -57,6 +57,16 @@ test('rejects missing and orphaned references', () => {
   assert.ok(codes(input).includes('MISSING_REFERENCE'));
   assert.ok(codes(input).includes('ORPHAN_REFERENCE'));
 });
+test('allows pre-existing orphaned references but rejects newly orphaned ones', () => {
+  const input = validInput();
+  input.beforeReferenceIds.add('legacy_orphan');
+  input.afterReferenceIds.add('legacy_orphan');
+  assert.ok(!codes(input).includes('ORPHAN_REFERENCE'));
+
+  input.afterQuestions.get('11111111').refs = ['ref_a'];
+  input.afterConsumers = referenceConsumers(input.afterQuestions);
+  assert.ok(codes(input).includes('ORPHAN_REFERENCE'));
+});
 test('rejects invalid question structure', () => {
   const input = validInput();
   input.afterQuestions.get('11111111').opts = ['A'];
