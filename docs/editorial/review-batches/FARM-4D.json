@@ -1,0 +1,35 @@
+{
+  "batch": "FARM-4D",
+  "change_type": "medical_editorial",
+  "expected_version": "12.68",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-4D.json",
+    "index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "4afc0858": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    }
+  },
+  "expected_question_delta": 0,
+  "refs_policy": "declared",
+  "references": {
+    "fabhalta_iptacopan_label_2025": "add"
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex — revisar-nefroquest"
+  }
+}

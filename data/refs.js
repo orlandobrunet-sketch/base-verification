@@ -1007,6 +1007,20 @@ canvas_program:{
     conclusao:"NefIgArd validou a hipótese do eixo intestino-rim na IgAN: reduzir a produção de IgA1 galactose-deficiente nos Patches de Peyer com budesonida tópica preserva a TFGe sem a toxicidade sistêmica dos corticoides.",
     curiosidade:"A IgA1 galactose-deficiente produzida no tecido linfoide intestinal (MALT-gut) é o gatilho imunológico central da IgAN — razão pela qual a budesonida entérica, que atua localmente no íleo distal, tem efeito sobre uma doença glomerular."
   },
+  fabhalta_iptacopan_label_2025:{
+    label:"FABHALTA (iptacopan) — Prescribing Information FDA/DailyMed (2025)",
+    url:"https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a76b5845-6e21-4d3b-ad07-cd8df1b60bee",
+    journal:"DailyMed / U.S. FDA Prescribing Information",
+    ano:2025,
+    tipo:"Bula profissional aprovada pela FDA",
+    badge:"BULA",
+    badgeColor:"#64748b",
+    impacto:"Iptacopano é inibidor oral do fator B da via alternativa; indicação inclui C3G em adultos para reduzir proteinúria",
+    icon:"📋",
+    resumo:"Bula profissional do FABHALTA (iptacopan) atualizada em 2025. O medicamento é descrito como inibidor do fator B do complemento, com indicações que incluem hemoglobinúria paroxística noturna, nefropatia por IgA primária em adultos com risco de progressão rápida para redução de proteinúria por aprovação acelerada, e glomerulopatia C3 em adultos para redução de proteinúria. Na seção de mecanismo de ação, o iptacopano liga-se ao fator B da via alternativa, regulando a clivagem de C3, a geração de efetores a jusante e a amplificação da via terminal.",
+    conclusao:"Para questões de mecanismo, o alvo do iptacopano é fator B da via alternativa do complemento; a indicação renal aprovada em C3G/IgAN é baseada em redução de proteinúria, não em comprovação definitiva de desfecho renal duro.",
+    curiosidade:"Por atuar na alça de amplificação da via alternativa, o iptacopano fica conceitualmente entre terapias anti-C3 e anti-C5: reduz a ativação a montante da via terminal sem bloquear diretamente C3 ou C5."
+  },
   c3g_consensus:{
     label:"Pickering MC et al. — C3 Glomerulopathy Consensus (Kidney Int 2013)",
     url:"https://www.kidney-international.org/article/S0085-2538(15)30396-7/fulltext",
