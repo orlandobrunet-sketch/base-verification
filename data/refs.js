@@ -1629,15 +1629,25 @@ finerenone_2025:{
     conclusao:"O CONFIDENCE provou que a iniciação simultânea da terapia dupla (iSGLT2 + nsMRA) confere nefroproteção sinérgica e superior, além de mitigar hemodinamicamente o risco de hipercalemia no Reino.",
     curiosidade:"Fisiologicamente, a empagliflozina induz natriurese e glicosúria no túbulo proximal, aumentando a oferta de sódio ao néfron distal, o que estimula a excreção urinária de potássio pelas células principais do ducto coletor. Esse efeito caliurético compensa e anula perfeitamente a retenção de potássio induzida pela finerenona, gerando excelente sinergia de tolerabilidade eletrólitica."
   },
-  bestow_trial_2025:{
-    label:"BESTOW Trial (Tegoprubart em Transplante Renal)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2404733",
-    journal:"N Engl J Med 2024;391(26):2493-2504",
-    ano:2024,tipo:"Ensaio Clínico Fase II",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Tegoprubart (anti-CD40L) não-inferior ao tacrolimus em rejeição aguda; menor DGF e preservação de TFGe em transplante renal",icon:"💊",
-    resumo:"ECR fase II (BESTOW, n=~100) comparando tegoprubart (anticorpo anti-CD40L/CD154) vs tacrolimus como imunossupressor base em transplante renal. Tegoprubart foi não inferior ao tacrolimus em rejeição aguda e associou-se a menor incidência de atraso na função do enxerto (DGF) e melhor preservação de TFGe. Publicado no NEJM em 2024. Abre perspectiva de imunossupressão sem inibidor de calcineurina.",
-    conclusao:"BESTOW representa a evidência mais recente de que o bloqueio da co-estimulação CD40L pode substituir o tacrolimus no transplante renal — potencialmente evitando a nefrotoxicidade e a neurotoxicidade crônica dos inibidores de calcineurina.",
-    curiosidade:"O eixo CD40-CD40L é central na ativação de células T e B durante a rejeição — bloqueá-lo com anti-CD40L não apenas reduz a resposta imune imediata mas também pode prevenir a rejeição mediada por anticorpos a longo prazo, problema ainda não resolvido com tacrolimus."
+  at1501_allograft_nhp_2023:{
+    label:"Anwar et al. — AT-1501 em aloenxertos de primatas não humanos (Sci Transl Med 2023)",
+    url:"https://www.science.org/doi/10.1126/scitranslmed.adf6376",
+    journal:"Science Translational Medicine 2023;15(710):eadf6376",
+    ano:2023,tipo:"Estudo translacional pré-clínico",badge:"STUDY",badgeColor:"#0ea5e9",
+    impacto:"AT-1501/tegoprubart bloqueia CD40L e prolonga sobrevida de aloenxertos renais em primatas não humanos",icon:"🔬",
+    resumo:"Estudo translacional em primatas não humanos avaliando AT-1501, anticorpo monoclonal anti-CD40L, em modelos de transplante de ilhotas e rim. O bloqueio de CD40L prolongou a sobrevida e a função de aloenxertos em esquemas poupadores de inibidor de calcineurina, fornecendo base mecanística e pré-clínica para estudos em transplante humano. PMID 37647390; DOI 10.1126/scitranslmed.adf6376.",
+    conclusao:"A evidência sustentada por publicação revisada por pares confirma o mecanismo do tegoprubart/AT-1501 como bloqueio de CD40L; não deve ser usada isoladamente para afirmar superioridade clínica em humanos.",
+    curiosidade:"O interesse em bloquear CD40L no transplante vem do papel da via CD40-CD40L como ponte entre ativação de linfócitos T, ajuda a células B e resposta aloimune."
+  },
+  bestow_clinicaltrials_nct05983770:{
+    label:"BESTOW — Tegoprubart em Transplante Renal (ClinicalTrials.gov NCT05983770)",
+    url:"https://clinicaltrials.gov/study/NCT05983770",
+    journal:"ClinicalTrials.gov",
+    ano:2025,tipo:"Registro de ensaio clínico",badge:"TRIAL",badgeColor:"#64748b",
+    impacto:"BESTOW é estudo fase 2 randomizado, aberto, de tegoprubart versus tacrolimus em transplante renal",icon:"📋",
+    resumo:"Registro NCT05983770: estudo fase 2, multicêntrico, randomizado, aberto, com 127 participantes, comparando AT-1501/tegoprubart por infusão intravenosa a tacrolimus em pacientes submetidos a transplante renal. O desfecho primário registrado é TFGe aos 12 meses; desfechos secundários incluem diabetes de novo após transplante, sobrevida de paciente/enxerto e rejeição aguda comprovada por biópsia. O registro confirma desenho, população e intervenções, mas não substitui publicação revisada por pares para números de eficácia.",
+    conclusao:"O registro sustenta que BESTOW avalia tegoprubart no transplante renal, mas números de resultado devem ser tratados como não publicados/pendentes até fonte primária revisada por pares ou resultado regulatório verificável.",
+    curiosidade:"O comparador do BESTOW é tacrolimus, refletindo a busca por imunossupressão poupadora de inibidor de calcineurina."
   },
   fine_one_2025:{
     label:"FINE-ONE Trial (Finerenona em IgAN)",

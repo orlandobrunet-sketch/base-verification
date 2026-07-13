@@ -1,0 +1,125 @@
+{
+  "batch": "FARM-4F",
+  "change_type": "medical_editorial",
+  "expected_version": "12.70",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-4F.json",
+    "index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "09a62e77": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "9d29aa59": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "NÃO VERIFICADA",
+        "pending": "DECISIVA",
+        "score": "anulado",
+        "verdict": "aposentar",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "b30fa48e": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "NÃO VERIFICADA",
+        "pending": "DECISIVA",
+        "score": "anulado",
+        "verdict": "aposentar",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "141d0d6c": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "NÃO VERIFICADA",
+        "pending": "DECISIVA",
+        "score": "anulado",
+        "verdict": "aposentar",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "b711fa6b": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "NÃO VERIFICADA",
+        "pending": "DECISIVA",
+        "score": "anulado",
+        "verdict": "aposentar",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "71b9934f": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "15/20",
+        "verdict": "aposentar",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "c3d76f83": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "NÃO VERIFICADA",
+        "pending": "DECISIVA",
+        "score": "anulado",
+        "verdict": "aposentar",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "13da611a": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "a92c6ba5": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "NÃO VERIFICADA",
+        "pending": "DECISIVA",
+        "score": "anulado",
+        "verdict": "aposentar",
+        "publication": "BLOQUEADA"
+      }
+    }
+  },
+  "expected_question_delta": -8,
+  "refs_policy": "declared",
+  "references": {
+    "at1501_allograft_nhp_2023": "add",
+    "bestow_clinicaltrials_nct05983770": "add",
+    "bestow_trial_2025": "remove"
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex — revisar-nefroquest"
+  }
+}
