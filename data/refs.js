@@ -1213,15 +1213,19 @@ canvas_program:{
     conclusao:"O tempo de permanência em diálise peritoneal longa (> 8 anos) e múltiplos episódios de infecção peritoneal aumentam o risco de EPS, exigindo monitoramento e transição planejada para hemodiálise.",
     curiosidade:"O gatilho fisiopatológico da EPS envolve uma transição epitélio-mesenquimal (TEM) das células mesoteliais do peritônio, estimulada pelo fator de crescimento transformador beta (TGF-beta), que convertem essas células de barreira em miofibroblastos produtores de colágeno denso."
   },
-  atheroembolic_scolari:{
-    label:"Scolari F et al. — Atheroembolic Renal Disease (Kidney Int 2007)",
-    url:"https://www.kidney-international.org/article/S0085-2538(15)52558-0/fulltext",
-    journal:"Kidney Int 2007;72(11):1298-1303",
-    ano:2007,tipo:"Estudo Observacional",badge:"COORTE",badgeColor:"#0ea5e9",
-    impacto:"Ateroembolismo renal: precipitado por cateterismo/anticoagulação; livedo reticularis, eosinofilia, complemento baixo; prognóstico reservado",icon:"📖",
-    resumo:"Estudo observacional de coorte prospectivo de longo prazo (Scolari F et al., Kidney Int 2007, n = 232 pacientes com diagnóstico clínico ou histológico confirmado de Doença Renal Ateroembólica [DRAE] por cristais de colesterol). Analisou fatores desencadeantes, evolução clínica e sobrevida. DRAE é tipicamente precipitada por cateterismo arterial, angiografia, cirurgia vascular ou início de anticoagulação/trombolítico em idosos com aterosclerose difusa. Caracteriza-se por perda rápida da função renal, livedo reticularis cutâneo doloroso, livedo na extremidade digital ('síndrome dos dedos azuis'), eosinofilia sistêmica periférica transitória e hipocomplementemia sérica. A sobrevida do paciente e do enxerto renal a longo prazo foi reservada, com alto risco de DRC terminal.",
-    conclusao:"A DRAE é uma complicação ateroembólica microvascular devastadora em idosos cardiopatas, exigindo a prevenção rigorosa de intervenções invasivas desnecessárias e manejo clínico de suporte e suspensão de anticoagulantes no Reino.",
-    curiosidade:"Na histologia da biópsia renal, a oclusão por cristais de colesterol de pequenas artérias arqueadas e interlobulares renais deixa lacunas alongadas em forma de agulha vazias no interior do lúmen vascular (biconvex clefts ou cholesterol clefts), devido à dissolução química do colesterol na fixação histológica rotineira, gerando reação gigantocelular inflamatória secundária crônica."
+  lcat_deficiency_vitali_2022:{
+    label:"Vitali et al. — Natural history of primary LCAT deficiency (JLR 2022)",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC8953693/",
+    journal:"Journal of Lipid Research",
+    ano:2022,
+    tipo:"Revisão sistemática",
+    badge:"REVIEW",
+    badgeColor:"#8b5cf6",
+    impacto:"Define fenótipo de deficiência familiar de LCAT: córnea, HDL baixo e nefropatia.",
+    icon:"🔬",
+    resumo:"Revisão sistemática da história natural e biomarcadores da deficiência primária de lecitina-colesterol aciltransferase (LCAT). Incluiu estudos observacionais de deficiência familiar de LCAT (FLD), doença do olho de peixe (FED) e heterozigotos, identificando 146 pacientes com FLD e 53 com FED em 219 publicações. Ambas as síndromes cursaram com opacidade corneana precoce e HDL-colesterol muito baixo; na FLD, proteinúria/hematúria foram os primeiros sinais renais, seguidos por declínio rápido da função renal.",
+    conclusao:"Na deficiência familiar completa de LCAT com nefropatia, a associação de opacidades corneanas, HDL muito baixo, anemia hemolítica/hemácias em alvo e proteinúria/hematúria sustenta o diagnóstico; doença do olho de peixe é forma parcial predominantemente ocular.",
+    curiosidade:"A revisão sugere que restaurar a atividade da LCAT para níveis subnormais pode ser suficiente para prevenir progressão renal, hipótese que orienta terapias em desenvolvimento."
   },
   idsa_uti_guideline:{
     label:"IDSA — Guia UTI 2011",
@@ -1323,15 +1327,19 @@ canvas_program:{
     conclusao:"A SHU deve ser reconhecida como uma emergência vascular renal mediada por lesão endotelial e trombose microvascular glomerular, em que a distinção etiológica rápida determina o uso de eculizabe ou cuidados de suporte.",
     curiosidade:"A Shiga-toxina se liga ao receptor celular globotriaosilceramida (Gb3) presente em alta densidade nas células endoteliais glomerulares renais humanas, justificando o tropismo extraordinário e a agressão destrutiva e seletiva desta toxina pelo rim."
   },
-  alport_syndrome_review:{
-    label:"Kashtan CE et al. — Alport Syndrome (CJASN 2013)",
-    url:"https://cjasn.asnjournals.org/content/8/3/461",
-    journal:"Clin J Am Soc Nephrol 2013;8(3):461-470",
-    ano:2013,tipo:"Revisão Clínica",badge:"REVIEW",badgeColor:"#0ea5e9",
-    impacto:"Revisão da síndrome de Alport: herança ligada ao X, colágeno tipo IV, prognóstico e tratamento com IECA",icon:"📖",
-    resumo:"Revisão clínica e patogenética detalhada (Kashtan CE et al., CJASN 2013) abordando a Síndrome de Alport, uma nefropatia hereditária progressiva caracterizada por hematúria glomerular, perda auditiva neurossensorial e anormalidades oculares. Detalha a base molecular da doença decorrente de mutações nos genes COL4A3, COL4A4 ou COL4A5, que codificam as cadeias alfa-3, alfa-4 e alfa-5 do colágeno tipo IV, o componente estrutural crítico da membrana basal glomerular (MBG). Aborda o padrão de herança ligado ao X (responsável por ~85% dos casos, mutações no COL4A5) e as formas autossômicas recessiva e dominante. Enfatiza que o início precoce do bloqueio do SRAA (IECA) atrasa de forma marcante a progressão para DRCT e aumenta a sobrevida global.",
-    conclusao:"A Síndrome de Alport exige diagnóstico genético precoce e início preventivo e imediato de IECA, mesmo na ausência de proteinúria ou hipertensão, para preservar a integridade estrutural da barreira de filtração no Reino.",
-    curiosidade:"Na microscopia eletrônica de biópsia renal, a Síndrome de Alport é caracterizada pelo aspecto clássico em 'cesta de vime' (basket-weave pattern) da membrana basal glomerular, evidenciando áreas de afilamento extremo alternadas com espessamento e lamelamento irregular da lâmina densa, decorrente do estresse mecânico na ausência do colágeno estável."
+  alport_genereviews_2025:{
+    label:"GeneReviews — Alport Syndrome",
+    url:"https://www.ncbi.nlm.nih.gov/books/NBK1207/",
+    journal:"NCBI Bookshelf / GeneReviews",
+    ano:2025,
+    tipo:"Revisão",
+    badge:"REVIEW",
+    badgeColor:"#8b5cf6",
+    impacto:"Fonte clínica atual para COL4A3/4/5, herança, rim, audição e olhos em Alport.",
+    icon:"🔬",
+    resumo:"GeneReviews sobre síndrome de Alport, nefropatia hereditária por variantes patogênicas em COL4A3, COL4A4 ou COL4A5, com manifestações renais, perda auditiva neurossensorial e achados oculares. O diagnóstico molecular é estabelecido por variante patogênica nos genes relacionados; a forma ligada ao X por COL4A5 responde por cerca de 80%-85% dos casos atribuídos a variantes identificadas. A microscopia eletrônica pode mostrar afinamento, espessamento, lamelação e aspecto em cesta de vime da membrana basal glomerular.",
+    conclusao:"Sustenta questões sobre cadeias alfa-3/4/5 do colágeno IV, padrão ligado ao X como forma mais comum, perda auditiva/alterações oculares e achados de imunomarcação/ultraestrutura; também ressalta que imunomarcação normal não exclui todos os casos.",
+    curiosidade:"A própria GeneReviews destaca que mulheres com Alport ligado ao X e indivíduos com formas autossômicas dominantes podem ter doença renal mais tardia e manifestações auditivas/oculares menos frequentes, evitando a simplificação de que todo caso é grave e precoce."
   },
   roy_pain_ckd_2020:{
     label:"Roy et al. — Manejo da Dor na DRC e DRT (2020)",
