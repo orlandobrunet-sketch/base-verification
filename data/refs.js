@@ -13,6 +13,20 @@ const refsDB = {
     conclusao:"Para cálculo coraliforme completo ou cálculo renal > 2 cm, a estratégia inicial preferencial é NLPC, reservando LECO ou ureteroscopia flexível para casos selecionados ou complementares.",
     curiosidade:"A diretriz também destaca que a eficácia da LECO cai conforme aumentam o tamanho do cálculo e fatores anatômicos desfavoráveis."
   },
+  eau_urolithiasis_medical_2025:{
+    label:"EAU Guidelines on Urolithiasis 2025 — diagnostic and medical management",
+    url:"https://uroweb.org/guidelines/urolithiasis",
+    journal:"European Association of Urology",
+    ano:2025,
+    tipo:"Diretriz internacional",
+    badge:"GUIDELINE",
+    badgeColor:"#6366f1",
+    impacto:"Base atual para diagnóstico por imagem, prevenção e manejo clínico de cálculos urinários.",
+    icon:"📋",
+    resumo:"Diretriz da European Association of Urology sobre urolitíase. Sustenta que a TC sem contraste é o exame de maior acurácia para confirmar cálculo em adulto não gestante com dor aguda no flanco, embora a ultrassonografia seja frequentemente usada como exame inicial por segurança e disponibilidade. Também orienta prevenção por alta ingestão hídrica/maior volume urinário, reconhecimento de fatores metabólicos como hiperoxalúria entérica e manejo de cálculos de ácido úrico por alcalinização urinária monitorada.",
+    conclusao:"Para ensino clínico, a mensagem central é evitar respostas absolutas: TC sem contraste confirma com maior acurácia no adulto não gestante; ultrassom é preferível em gestantes e pode ser exame inicial; prevenção recorrente começa por volume urinário adequado; e cálculo de ácido úrico depende criticamente de pH urinário.",
+    curiosidade:"A composição do cálculo muda a estratégia: cálculos de ácido úrico podem ser dissolvidos por alcalinização, enquanto cálculos de cálcio exigem prevenção metabólica e não se dissolvem apenas com aumento do pH."
+  },
   aua_endourology_stones_2016:{
     label:"AUA/Endourology Society Guideline: Surgical Management of Stones",
     url:"https://www.auanet.org/guidelines-and-quality/guidelines/surgical-management-of-kidney-and-ureteral-stones",
@@ -59,7 +73,7 @@ const refsDB = {
     label:"Harrison's Principles of Internal Medicine",
     url:"https://accessmedicine.mhmedical.com/book.aspx?bookid=3095",
     journal:"McGraw-Hill (Textbook)",
-    ano:2022,
+    ano:2023,
     tipo:"Livro-texto de referência",
     badge:"TEXTBOOK",
     badgeColor:"#64748b",
@@ -278,8 +292,8 @@ kdigo_ckd:{
     badgeColor:"#10b981",
     impacto:"Hidroclorotiazida não reduziu recorrência de nefrolitíase vs placebo",
     icon:"🔬",
-    resumo:"ECR multicêntrico duplo-cego fase III (NOSTONE, n = 416 pacientes com nefrolitíase recorrente de oxalato de cálcio, definida por ≥2 episódios nos últimos 10 anos, e hipercalciúria). Comparou três dosagens de hidroclorotiazida oral (12,5 mg, 25 mg ou 50 mg uma vez ao dia) versus placebo, associadas a aconselhamento dietético padrão. Desfecho primário composto: recorrência clínica ou radiológica de cálculos em até 3 anos. Resultados: Não houve diferença estatisticamente significativa na taxa de recorrência entre os grupos de hidroclorotiazida e o placebo (HR 0,92; IC 95% 0,63–1,36 para 12,5 mg; HR 0,84; IC 95% 0,57–1,25 para 25 mg; HR 0,82; IC 95% 0,55–1,20 para 50 mg). Em contrapartida, houve um aumento marcante e dose-dependente de efeitos adversos graves, como hipocalemia, hiponatremia, hiperuricemia, hipercalcemia e novo diagnóstico de diabetes no grupo da tiazida.",
-    conclusao:"O NOSTONE desafiou o dogma secular da nefrologia de que os diuréticos tiazídicos previnem de forma robusta a recorrência de cálculos de cálcio, mostrando que seu uso rotineiro pode não justificar os riscos metabólicos significativos no Reino.",
+    resumo:"ECR multicêntrico duplo-cego (NOSTONE, n = 416 pacientes com cálculos renais recorrentes contendo cálcio). Comparou hidroclorotiazida oral 12,5 mg, 25 mg ou 50 mg uma vez ao dia versus placebo, com mediana de seguimento de 2,9 anos. O desfecho primário composto foi recorrência sintomática ou radiológica. Não houve relação dose-resposta para o desfecho primário (P = 0,66), e a incidência de recorrência não diferiu substancialmente entre hidroclorotiazida e placebo. Hipocalemia, gota, diabetes mellitus de início recente, alergia cutânea e elevação de creatinina foram mais comuns com hidroclorotiazida.",
+    conclusao:"O NOSTONE enfraquece a ideia de que hidroclorotiazida deve ser usada rotineiramente para prevenir recorrência de cálculos contendo cálcio; a decisão deve ponderar benefício incerto e risco metabólico.",
     curiosidade:"Fisiologicamente, os tiazídicos bloqueiam o cotransportador de cloreto de sódio (NCC) no túbulo contorcido distal. A consequente depleção leve de volume de sódio estimula a reabsorção passiva de cálcio no túbulo proximal, reduzindo a excreção urinária de cálcio (hipercalciúria). Contudo, o NOSTONE sugere que essa alteração bioquímica urinária isolada não se traduz necessariamente em redução de eventos clínicos macroscópicos de cristalização."
   },
   rituxvas_study:{
