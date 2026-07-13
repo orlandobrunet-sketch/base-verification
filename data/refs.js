@@ -491,6 +491,34 @@ rave_study:{
     conclusao:"Consolida a estratificação de risco imunológico e a imunossupressão tríplice com tacrolimo e micofenolato como a espinha dorsal para preservação e sobrevida do enxerto no Reino.",
     curiosidade:"A ATG (Globulina Antitimócito) induz depleção profunda e prolongada de células T circulantes por apoptose e lise mediada por complemento, 'desarmando' os exércitos celulares do receptor para prevenir a rejeição aguda celular no enxerto recém-implantado."
   },
+  cni_nephrotoxicity_naesens:{
+    label:"Naesens et al. — Calcineurin Inhibitor Nephrotoxicity (CJASN 2009)",
+    url:"https://doi.org/10.2215/CJN.04800908",
+    journal:"Clinical Journal of the American Society of Nephrology",
+    ano:2009,
+    tipo:"Revisão",
+    badge:"REVIEW",
+    badgeColor:"#8b5cf6",
+    impacto:"Caracterização clínica, hemodinâmica e histopatológica da nefrotoxicidade por ciclosporina/tacrolimo",
+    icon:"📖",
+    resumo:"Revisão de referência sobre nefrotoxicidade por inibidores de calcineurina, abordando lesão funcional hemodinâmica, alterações crônicas do enxerto, arteriolopatia hialina, fibrose intersticial em faixas, atrofia tubular e mecanismos pró-fibróticos. Enfatiza que a interpretação deve integrar biópsia, exposição ao fármaco e exclusão de outras causas de lesão crônica do enxerto.",
+    conclusao:"A toxicidade crônica por CNI é hipótese clinicopatológica, não simples sinônimo de FI/TA isolada; manejo envolve revisão de exposição e minimização/conversão apenas quando clinicamente apropriado.",
+    curiosidade:"A expressão 'striped fibrosis' descreve a fibrose intersticial em faixas, padrão historicamente associado à toxicidade crônica por CNI, mas insuficiente quando interpretado fora do contexto clínico e patológico completo."
+  },
+  banff_2019_kidney_meeting:{
+    label:"Banff 2019 Kidney Meeting Report — Rejeição TCMR/ABMR",
+    url:"https://doi.org/10.1111/ajt.15898",
+    journal:"American Journal of Transplantation",
+    ano:2020,
+    tipo:"Consenso de Patologia",
+    badge:"CONSENSUS",
+    badgeColor:"#6366f1",
+    impacto:"Atualização e clarificação dos critérios Banff para rejeição mediada por células T e por anticorpos no enxerto renal",
+    icon:"🔬",
+    resumo:"Relatório Banff 2019 com atualizações e clarificações dos critérios diagnósticos de rejeição celular e mediada por anticorpos em biópsias de enxerto renal. Serve como referência para separar lesões crônicas inespecíficas, como FI/TA, de diagnósticos etiológicos formais que exigem achados adicionais e correlação clinicopatológica.",
+    conclusao:"FI/TA deve ser interpretada no contexto do conjunto histológico e clínico; não deve ser usada isoladamente para atribuir etiologia específica, como toxicidade por CNI ou rejeição crônica.",
+    curiosidade:"A classificação Banff evolui por reuniões internacionais periódicas, refinando critérios diagnósticos conforme novas evidências morfológicas, imunológicas e moleculares entram na prática do transplante."
+  },
   // ===== ARTIGOS FUNDAMENTAIS ADICIONADOS v5.0 =====
   // --- DRPAD ---
 tempo_34_trial:{
