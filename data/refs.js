@@ -1508,6 +1508,34 @@ canvas_program:{
     conclusao:"A imlifidase surge como uma terapia revolucionária de dessensibilização rápida, permitindo transpor barreiras imunológicas anteriormente intransponíveis e viabilizando o transplante em receptores altamente sensibilizados.",
     curiosidade:"A imlifidase é, na verdade, uma arma biológica do Streptococcus pyogenes para inativar as defesas de anticorpos do hospedeiro humano. Na medicina de precisão, essa mesma enzima bacteriana foi domesticada para induzir uma janela terapêutica de imunossupressão humoral temporária de 48-72 horas, tempo suficiente para a realização do implante cirúrgico."
   },
+  porcine_kidney_xeno_nejm_2025:{
+    label:"Kawai et al. — Porcine Kidney Xenotransplantation (NEJM 2025)",
+    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2412747",
+    journal:"N Engl J Med 2025;392(19):1933-1940",
+    ano:2025,
+    tipo:"Relato/Estudo Clínico",
+    badge:"STUDY",
+    badgeColor:"#0ea5e9",
+    impacto:"Xenotransplante renal suíno geneticamente editado em receptor humano com DRC terminal; viabilidade inicial, mas evidência ainda precoce",
+    icon:"🔬",
+    resumo:"Relato clínico do uso de rim suíno geneticamente editado em paciente com doença renal terminal, publicado no NEJM em 2025. O estudo documenta a transição do xenotransplante renal de modelos pré-clínicos e experiências excepcionais para avaliação clínica humana inicial, com monitoramento rigoroso de função do enxerto, rejeição, segurança infecciosa e imunossupressão.",
+    conclusao:"O xenotransplante renal já entrou em avaliação clínica humana, mas ainda não é terapia padrão: persistem incertezas sobre rejeição, compatibilidade endotelial/coagulatória, durabilidade do enxerto e biossegurança.",
+    curiosidade:"O DOI NEJMoa2412747 marca uma das primeiras publicações clínicas contemporâneas de rim suíno geneticamente editado em humano vivo, etapa que muda o campo de promessa pré-clínica para medicina translacional de alto risco."
+  },
+  pig_kidney_trial_ap_2025:{
+    label:"AP News — Primeiro ensaio clínico de transplante de rim suíno (2025)",
+    url:"https://apnews.com/article/addc5a8b6a09d73e021efc9c8eafabc9",
+    journal:"Associated Press",
+    ano:2025,
+    tipo:"Notícia científica/regulatória",
+    badge:"NEWS",
+    badgeColor:"#64748b",
+    impacto:"Início de ensaio clínico em humanos com rins suínos geneticamente editados após autorização regulatória nos EUA",
+    icon:"📰",
+    resumo:"Reportagem da Associated Press sobre o início do primeiro ensaio clínico de transplantes de rins suínos geneticamente editados em humanos, com participação da NYU Langone Health e produto da United Therapeutics. A notícia contextualiza o ensaio como etapa regulatória distinta de usos compassivos e estudos em receptores em morte encefálica, com expansão planejada conforme avaliação de segurança.",
+    conclusao:"O marco de 2025 não equivale a aprovação como terapia padrão; significa autorização para estudo clínico controlado em humanos, desenhado para avaliar segurança e viabilidade.",
+    curiosidade:"O ensaio representa uma das primeiras tentativas reguladas de transformar xenotransplante renal em programa clínico prospectivo, ainda sob vigilância intensa por rejeição e biossegurança."
+  },
   ext1ext2_sethi:{
     label:"Sethi S et al. — EXT1/EXT2 Membranous Nephropathy (JASN 2019)",
     url:"https://jasn.asnjournals.org/content/30/6/1123",
