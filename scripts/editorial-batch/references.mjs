@@ -1,4 +1,4 @@
-const CARD_DECLARATION = /^  ([a-z0-9_]+)\s*:\s*\{/gm;
+const CARD_DECLARATION = /^\s*["']?([A-Za-z0-9_]+)["']?\s*:\s*\{/gm;
 
 export function parseReferenceIds(source, pathLabel = 'data/refs.js') {
   const ids = new Set();

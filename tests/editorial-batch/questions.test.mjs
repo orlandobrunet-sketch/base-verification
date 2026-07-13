@@ -18,6 +18,11 @@ test('parses complete one-line question objects without executing JavaScript', (
   assert.equal(parsed.get('abc12345').opts.length, 4);
 });
 
+test('parses legacy CR-only line endings in topics.js', () => {
+  const parsed = parseQuestions(`const topics = [\r${question('abc12345')}\r${question('def67890')}\r];`, 'topics.js');
+  assert.deepEqual([...parsed.keys()], ['abc12345', 'def67890']);
+});
+
 test('rejects duplicate qids', () => {
   assert.throws(
     () => parseQuestions(`${question('abc12345')}\n${question('abc12345')}`, 'topics.js'),
@@ -33,8 +38,8 @@ test('reports exactly the changed qids', () => {
 });
 
 test('extracts top-level reference ids and consumers', () => {
-  const ids = parseReferenceIds(`const REFS = {\n  ref_a:{ label: 'A' },\n  ref_b: { label: 'B' }\n};`, 'refs.js');
-  assert.deepEqual([...ids], ['ref_a', 'ref_b']);
+  const ids = parseReferenceIds(`const REFS = {\nref_a:{ label: 'A' },\n  ref_b: { label: 'B' },\n  "ref_c": { label: 'C' }\n};`, 'refs.js');
+  assert.deepEqual([...ids], ['ref_a', 'ref_b', 'ref_c']);
   const consumers = referenceConsumers(parseQuestions(question('abc12345', ['ref_b']), 'topics.js'));
   assert.deepEqual([...consumers.get('ref_b')], ['abc12345']);
 });
