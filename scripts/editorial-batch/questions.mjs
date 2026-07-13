@@ -62,4 +62,3 @@ export function equalExceptRefs(before, after) {
   delete afterCopy.refs;
   return canonical(beforeCopy) === canonical(afterCopy);
 }
-
