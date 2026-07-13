@@ -13,6 +13,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+        with:
+          fetch-depth: 0
+
+      - name: Editorial batch scope gate
+        run: >-
+          node scripts/editorial-batch-validator.mjs
+          --base "${{ github.event.pull_request.base.sha }}"
+          --head "${{ github.event.pull_request.head.sha }}"
+
       # ── 1. Versão: SW deve estar em sincronia com version.json ──────────────
       - name: Check version sync (SW ↔ version.json)
         run: |

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, mkdir, writeFile } from 'node:fs/promises';
+import { mkdtemp, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -64,4 +64,15 @@ test('CLI rejects an undeclared qid', async () => {
   const result = run(process.execPath, [cliPath, '--base', base, '--head', head, '--cwd', repo], repo);
   assert.notEqual(result.status, 0);
   assert.match(result.stdout + result.stderr, /QID_SCOPE/);
+});
+
+test('CI and PR template expose the editorial gate', async () => {
+  const workflow = await readFile(new URL('../../.github/workflows/ci.yml', import.meta.url), 'utf8');
+  const template = await readFile(new URL('../../.github/PULL_REQUEST_TEMPLATE.md', import.meta.url), 'utf8');
+  assert.match(workflow, /editorial-batch-validator\.mjs/);
+  assert.match(workflow, /pull_request\.base\.sha/);
+  assert.match(workflow, /pull_request\.head\.sha/);
+  assert.match(template, /Autorização explícita/);
+  assert.match(template, /Greptile indisponível/);
+  assert.match(template, /zero threads não comprova/i);
 });
