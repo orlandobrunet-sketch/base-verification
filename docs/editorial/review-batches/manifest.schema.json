@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nefroquest.com/schemas/editorial-batch-manifest-v1.json",
+  "title": "NefroQuest editorial batch manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["batch", "change_type", "expected_version", "allowed_files", "questions", "expected_question_delta", "refs_policy", "external_review"],
+  "properties": {
+    "batch": { "type": "string", "minLength": 1 },
+    "change_type": { "enum": ["medical_editorial", "technical_only"] },
+    "expected_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+$" },
+    "allowed_files": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "questions": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "pattern": "^[a-f0-9]{8}$" },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["action", "preserve_fsrs"],
+        "properties": {
+          "action": { "enum": ["rebuild", "refs_only", "retire", "add", "technical_only"] },
+          "preserve_fsrs": { "type": "boolean" }
+        }
+      }
+    },
+    "expected_question_delta": { "type": "integer" },
+    "refs_policy": { "enum": ["unchanged", "declared"] },
+    "references": {
+      "type": "object",
+      "propertyNames": { "pattern": "^[a-z0-9_]+$" },
+      "additionalProperties": { "enum": ["add", "modify", "remove"] }
+    },
+    "external_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["greptile", "fallback_reviewer"],
+      "properties": {
+        "greptile": { "enum": ["required", "unavailable"] },
+        "fallback_reviewer": { "type": ["string", "null"] }
+      }
+    }
+  },
+  "allOf": [
+    { "if": { "properties": { "refs_policy": { "const": "declared" } } }, "then": { "required": ["references"] } },
+    { "if": { "properties": { "external_review": { "properties": { "greptile": { "const": "unavailable" } } } } }, "then": { "properties": { "external_review": { "properties": { "fallback_reviewer": { "type": "string", "minLength": 1 } } } } } }
+  ]
+}
