@@ -69,6 +69,34 @@ const refsDB = {
     conclusao:"Referência fundamental da nefrologia — base para compreensão fisiopatológica antes de interpretar qualquer diretriz clínica.",
     curiosidade:"Barry Brenner formulou a hipótese do néfron único: a redução da massa nefrônica induz hiperfiltração compensatória nos néfrons remanescentes, acelerando a progressão da DRC — conceito que fundamenta o uso de IECA e BRA na nefroproteção."
   },
+  fabry_genereviews_2024:{
+    label:"GeneReviews — Fabry Disease",
+    url:"https://www.ncbi.nlm.nih.gov/books/NBK1292/",
+    journal:"NCBI Bookshelf / GeneReviews",
+    ano:2024,
+    tipo:"Revisão",
+    badge:"REVIEW",
+    badgeColor:"#8b5cf6",
+    impacto:"Fonte clínica para herança, suspeita e achados renais da doença de Fabry.",
+    icon:"🔬",
+    resumo:"GeneReviews sobre doença de Fabry, distúrbio lisossomal ligado ao X causado por variantes patogênicas em GLA e deficiência de alfa-galactosidase A, com acúmulo de globotriaosilceramida. Resume manifestações renais, cardíacas, neurológicas e cutâneas; destaca que homens hemizigotos tendem a fenótipo mais grave e que mulheres heterozigotas podem manifestar doença por inativação do X. Inclui achados renais e suspeita diagnóstica em doença renal crônica/proteinúria de etiologia não esclarecida.",
+    conclusao:"Sustenta triagem em fenótipo renal/cardíaco sugestivo sem causa alternativa, herança ligada ao X e achado ultraestrutural de inclusões lamelares/corpos de zebra no rim; não exige angioqueratoma para suspeitar do diagnóstico.",
+    curiosidade:"Mulheres heterozigotas não devem ser tratadas como 'portadoras assintomáticas' por definição: podem ter acometimento renal, cardíaco ou neurológico clinicamente relevante."
+  },
+  nephropathic_cystinosis_genereviews_2025:{
+    label:"GeneReviews — Nephropathic Cystinosis",
+    url:"https://www.ncbi.nlm.nih.gov/books/NBK1400/",
+    journal:"NCBI Bookshelf / GeneReviews",
+    ano:2025,
+    tipo:"Revisão",
+    badge:"REVIEW",
+    badgeColor:"#8b5cf6",
+    impacto:"Fonte clínica para CTNS, acúmulo lisossomal de cistina e cisteamina.",
+    icon:"🔬",
+    resumo:"GeneReviews sobre cistinose nefropática, doença autossômica recessiva causada por variantes em CTNS, com defeito da cistinosina e acúmulo lisossomal de cistina. Descreve a forma infantil clássica com síndrome de Fanconi, cristais corneanos e progressão renal se não tratada. A cisteamina é apresentada como terapia de depleção de cistina, capaz de reduzir o conteúdo intracelular de cistina e retardar complicações quando iniciada precocemente.",
+    conclusao:"Sustenta que a cisteamina não corrige o transportador CTNS nem inibe a produção de cistina; seu papel é reduzir a cistina acumulada no lisossomo, preservando tecido e retardando progressão.",
+    curiosidade:"O acompanhamento da cistinose usa cistina em leucócitos como marcador de controle terapêutico, reforçando que o alvo do tratamento é a carga intracelular de cistina."
+  },
   harrisons_principles:{
     label:"Harrison's Principles of Internal Medicine",
     url:"https://accessmedicine.mhmedical.com/book.aspx?bookid=3095",
