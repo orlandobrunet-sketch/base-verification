@@ -350,7 +350,7 @@ rave_study:{
   },
   preserve_study:{
     label:"PRESERVE Trial",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1710695",
+    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1710933",
     journal:"New England Journal of Medicine",
     ano:2018,
     tipo:"Ensaio Clínico Fase III",
@@ -358,9 +358,23 @@ rave_study:{
     badgeColor:"#f59e0b",
     impacto:"Bicarbonato IV e acetilcisteína não preveniram LRA por contraste vs placebo",
     icon:"🔬",
-    resumo:"ECR duplo-cego internacional de larga escala (PRESERVE, n = 5.177), comparando a eficácia da hidratação com bicarbonato de sódio IV a 1,26% versus cloreto de sódio IV a 0,9%, e o uso de acetilcisteína oral (1.200 mg 2x/dia por 5 dias) versus placebo, na prevenção de LRA associada ao contraste (LRA-AC) em pacientes de alto risco (DRC com TFGe 15–45 ou 45–60 com diabetes) submetidos a angiografia coronária ou periférica eletiva. Desfecho primário: morte, necessidade de diálise ou declínio sustentado ≥ 50% na TFGe aos 90 dias. Resultados: Não houve diferença significativa entre bicarbonato e NaCl (4,4% vs 4,7%; OR 0,93; P = 0,62) nem entre acetilcisteína e placebo (4,6% vs 4,5%; OR 1,02; P = 0,83).",
+    resumo:"ECR duplo-cego internacional de larga escala (PRESERVE, n = 5.177 randomizados; 4.993 na análise por intenção de tratar modificada), comparando hidratação com bicarbonato de sódio IV a 1,26% versus cloreto de sódio IV a 0,9%, e acetilcisteína oral (1.200 mg 2x/dia por 5 dias) versus placebo, na prevenção de LRA associada ao contraste em pacientes de alto risco submetidos a angiografia coronária ou periférica. Desfecho primário: morte, necessidade de diálise ou aumento persistente ≥ 50% da creatinina sérica aos 90 dias. Resultados: sem diferença entre bicarbonato e NaCl (4,4% vs 4,7%; OR 0,93; IC95% 0,72–1,22; P = 0,62) nem entre acetilcisteína e placebo (4,6% vs 4,5%; OR 1,02; IC95% 0,78–1,33; P = 0,88). Também não houve diferença significativa em LRA associada ao contraste.",
     conclusao:"O PRESERVE sepultou o uso rotineiro de bicarbonato de sódio IV e acetilcisteína oral na prevenção da nefropatia por contraste, mantendo a hidratação salina convencional isolada como o único padrão de cuidado aceito.",
     curiosidade:"A LRA associada ao contraste (LRA-AC) deve-se a uma combinação de toxicidade tubular direta das moléculas iodadas hiperosmolares e vasoconstrição medular induzida pela liberação intrarrenal de adenosina e endotelina, gerando isquemia tecidual focal."
+  },
+  drug_induced_ain_perazella_2010:{
+    label:"Perazella & Markowitz — NIA medicamentosa (Nat Rev Nephrol 2010)",
+    url:"https://doi.org/10.1038/nrneph.2010.71",
+    journal:"Nature Reviews Nephrology",
+    ano:2010,
+    tipo:"Revisão",
+    badge:"REVIEW",
+    badgeColor:"#8b5cf6",
+    impacto:"Revisão de referência sobre diagnóstico e manejo da nefrite intersticial aguda induzida por fármacos",
+    icon:"📖",
+    resumo:"Revisão clínica sobre nefrite intersticial aguda (NIA), destacando que a forma induzida por fármacos é a etiologia mais comum, estimada em 60–70% dos casos. Múltiplas classes podem causar NIA, incluindo antibióticos, AINEs e inibidores de bomba de prótons. A apresentação clínica e laboratorial é variável; eosinofilúria tem utilidade diagnóstica limitada, e o diagnóstico definitivo é por biópsia renal quando necessário.",
+    conclusao:"O manejo central da NIA medicamentosa é reconhecer precocemente o quadro e suspender o agente causal; corticosteroides podem beneficiar alguns pacientes, sobretudo quando iniciados cedo ou quando não há recuperação após retirada do fármaco.",
+    curiosidade:"A tríade febre, rash e eosinofilia é clássica, mas ausente em muitos pacientes — por isso a correlação temporal com o fármaco e a evolução da função renal são cruciais."
   },
   aurora_study:{
     label:"AURORA Trial (Rosuvastatin)",
