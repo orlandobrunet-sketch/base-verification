@@ -1063,6 +1063,20 @@ canvas_program:{
     conclusao:"Para questões de mecanismo, o alvo do iptacopano é fator B da via alternativa do complemento; a indicação renal aprovada em C3G/IgAN é baseada em redução de proteinúria, não em comprovação definitiva de desfecho renal duro.",
     curiosidade:"Por atuar na alça de amplificação da via alternativa, o iptacopano fica conceitualmente entre terapias anti-C3 e anti-C5: reduz a ativação a montante da via terminal sem bloquear diretamente C3 ou C5."
   },
+  empaveli_pegcetacoplan_label_2025:{
+    label:"EMPAVELI (pegcetacoplan) — Prescribing Information FDA/DailyMed (2025)",
+    url:"https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c23d89e9-b00b-4520-e053-2995a90a95af",
+    journal:"DailyMed / U.S. FDA Prescribing Information",
+    ano:2025,
+    tipo:"Bula profissional aprovada pela FDA",
+    badge:"BULA",
+    badgeColor:"#64748b",
+    impacto:"Pegcetacoplano inibe C3/C3b; C3G/IC-MPGN para reduzir proteinúria.",
+    icon:"📋",
+    resumo:"Bula profissional do EMPAVELI (pegcetacoplan) revisada em julho de 2025. Indica o fármaco para adultos e pediátricos ≥12 anos com glomerulopatia C3 (C3G) ou glomerulonefrite membranoproliferativa primária mediada por imunocomplexos (IC-MPGN), para reduzir proteinúria. O pegcetacoplano liga-se ao C3 e ao C3b, inibindo ativação de C3, deposição glomerular de fragmentos de C3 e atividade da C5 convertase. No estudo APL2-C3G-310/VALIANT (n=124), reduziu UPCR em 68% vs placebo na semana 26 (P<0,0001), com diferença LS média de TFGe de 6,31 mL/min/1,73m² vs placebo.",
+    conclusao:"Sustenta mecanismo, indicação, posologia adulta de 1.080 mg SC duas vezes por semana, vacinação contra bactérias encapsuladas e resultados de 26 semanas do VALIANT; não autoriza afirmar benefício de mortalidade ou desfecho renal duro definitivo.",
+    curiosidade:"A bula registra vacinação prévia contra Streptococcus pneumoniae, Neisseria meningitidis ACWY/B e Haemophilus influenzae tipo b nos participantes do estudo renal."
+  },
   c3g_consensus:{
     label:"Pickering MC et al. — C3 Glomerulopathy Consensus (Kidney Int 2013)",
     url:"https://www.kidney-international.org/article/S0085-2538(15)30396-7/fulltext",
