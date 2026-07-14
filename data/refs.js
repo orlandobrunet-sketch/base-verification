@@ -1227,6 +1227,20 @@ canvas_program:{
     conclusao:"Na deficiência familiar completa de LCAT com nefropatia, a associação de opacidades corneanas, HDL muito baixo, anemia hemolítica/hemácias em alvo e proteinúria/hematúria sustenta o diagnóstico; doença do olho de peixe é forma parcial predominantemente ocular.",
     curiosidade:"A revisão sugere que restaurar a atividade da LCAT para níveis subnormais pode ser suficiente para prevenir progressão renal, hipótese que orienta terapias em desenvolvimento."
   },
+  aa_amyloidosis_lachmann_2007:{
+    label:"Lachmann et al. — Systemic AA amyloidosis (NEJM 2007)",
+    url:"https://pubmed.ncbi.nlm.nih.gov/17554117/",
+    journal:"N Engl J Med",
+    ano:2007,
+    tipo:"Coorte",
+    badge:"COHORT",
+    badgeColor:"#f59e0b",
+    impacto:"Define SAA persistente como eixo prognóstico e renal da amiloidose AA.",
+    icon:"🔬",
+    resumo:"Coorte longitudinal de 374 pacientes com amiloidose AA sistêmica acompanhados por mediana de 86 meses. A amiloidose AA decorre de fibrilas derivadas da proteína sérica amiloide A (SAA), reagente de fase aguda produzido em inflamação crônica. Disfunção renal foi a manifestação predominante; mortalidade, carga amiloide e prognóstico renal se correlacionaram com a concentração de SAA durante o seguimento.",
+    conclusao:"Sustenta que amiloidose AA é consequência de inflamação crônica sustentada, como artrite reumatoide e infecções/inflamações crônicas, e que o rim costuma dominar o curso clínico.",
+    curiosidade:"No estudo, depósitos amiloides regrediram em parte dos pacientes quando a SAA permaneceu baixa, reforçando que controlar a inflamação de base muda a história natural."
+  },
   idsa_uti_guideline:{
     label:"IDSA — Guia UTI 2011",
     url:"https://academic.oup.com/cid/article/52/5/e103/388285",
