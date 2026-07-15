@@ -571,8 +571,8 @@ rave_study:{
     badgeColor:"#6366f1",
     impacto:"Atualização e clarificação dos critérios Banff para rejeição mediada por células T e por anticorpos no enxerto renal",
     icon:"🔬",
-    resumo:"Relatório Banff 2019 com atualizações e clarificações dos critérios diagnósticos de rejeição celular e mediada por anticorpos em biópsias de enxerto renal. Serve como referência para separar lesões crônicas inespecíficas, como FI/TA, de diagnósticos etiológicos formais que exigem achados adicionais e correlação clinicopatológica.",
-    conclusao:"FI/TA deve ser interpretada no contexto do conjunto histológico e clínico; não deve ser usada isoladamente para atribuir etiologia específica, como toxicidade por CNI ou rejeição crônica.",
+    resumo:"Relatório Banff 2019 com atualizações e clarificações dos critérios diagnósticos de rejeição mediada por células T (TCMR) e rejeição mediada por anticorpos (ABMR) em biópsias de enxerto renal. A TCMR é ancorada por inflamação intersticial/tubulite e, quando vascular, arterite intimal. A ABMR requer integração de lesão tecidual, evidência de interação anticorpo-endotélio (como C4d em capilares peritubulares, inflamação microvascular ou marcadores moleculares validados) e evidência sorológica de anticorpo doador-específico quando disponível. Também orienta a interpretação de lesões crônicas, como glomerulopatia do transplante e FI/TA, dentro do contexto clinicopatológico completo.",
+    conclusao:"Banff evita diagnósticos por marcador isolado: C4d, tubulite, glomerulite ou FI/TA precisam ser interpretados no conjunto histológico, imunológico e clínico para distinguir TCMR, ABMR ativa/crônica ativa e lesões crônicas inespecíficas.",
     curiosidade:"A classificação Banff evolui por reuniões internacionais periódicas, refinando critérios diagnósticos conforme novas evidências morfológicas, imunológicas e moleculares entram na prática do transplante."
   },
   // ===== ARTIGOS FUNDAMENTAIS ADICIONADOS v5.0 =====
