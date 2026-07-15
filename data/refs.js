@@ -395,14 +395,14 @@ rave_study:{
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1710933",
     journal:"New England Journal of Medicine",
     ano:2018,
-    tipo:"Ensaio Clínico Fase III",
+    tipo:"Ensaio clínico randomizado",
     badge:"RCT",
-    badgeColor:"#f59e0b",
-    impacto:"Bicarbonato IV e acetilcisteína não preveniram LRA por contraste vs placebo",
+    badgeColor:"#10b981",
+    impacto:"PRESERVE: bicarbonato não superou salina; acetilcisteína não superou placebo",
     icon:"🔬",
     resumo:"ECR duplo-cego internacional de larga escala (PRESERVE, n = 5.177 randomizados; 4.993 na análise por intenção de tratar modificada), comparando hidratação com bicarbonato de sódio IV a 1,26% versus cloreto de sódio IV a 0,9%, e acetilcisteína oral (1.200 mg 2x/dia por 5 dias) versus placebo, na prevenção de LRA associada ao contraste em pacientes de alto risco submetidos a angiografia coronária ou periférica. Desfecho primário: morte, necessidade de diálise ou aumento persistente ≥ 50% da creatinina sérica aos 90 dias. Resultados: sem diferença entre bicarbonato e NaCl (4,4% vs 4,7%; OR 0,93; IC95% 0,72–1,22; P = 0,62) nem entre acetilcisteína e placebo (4,6% vs 4,5%; OR 1,02; IC95% 0,78–1,33; P = 0,88). Também não houve diferença significativa em LRA associada ao contraste.",
-    conclusao:"O PRESERVE sepultou o uso rotineiro de bicarbonato de sódio IV e acetilcisteína oral na prevenção da nefropatia por contraste, mantendo a hidratação salina convencional isolada como o único padrão de cuidado aceito.",
-    curiosidade:"A LRA associada ao contraste (LRA-AC) deve-se a uma combinação de toxicidade tubular direta das moléculas iodadas hiperosmolares e vasoconstrição medular induzida pela liberação intrarrenal de adenosina e endotelina, gerando isquemia tecidual focal."
+    conclusao:"O PRESERVE não sustenta bicarbonato intravenoso como superior à salina isotônica nem N-acetilcisteína oral como profilaxia rotineira. Em pacientes de risco, a prevenção deve priorizar estratificação de risco, hidratação isotônica quando indicada, menor volume possível de contraste adequado e redução de nefrotóxicos evitáveis.",
+    curiosidade:"O estudo foi encerrado precocemente por futilidade após análise interina planejada, reforçando a ausência de sinal clínico relevante para as estratégias testadas."
   },
   drug_induced_ain_perazella_2010:{
     label:"Perazella & Markowitz — NIA medicamentosa (Nat Rev Nephrol 2010)",

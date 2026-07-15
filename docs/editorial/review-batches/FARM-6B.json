@@ -1,0 +1,36 @@
+{
+  "batch": "FARM-6B",
+  "change_type": "medical_editorial",
+  "expected_version": "12.78",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-6B.json",
+    "index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "aa8d2a04": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      },
+      "merge_target_qid": "61da38f5"
+    }
+  },
+  "expected_question_delta": -1,
+  "refs_policy": "declared",
+  "references": {
+    "preserve_study": "modify"
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex — revisar-nefroquest"
+  }
+}
