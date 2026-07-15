@@ -1,0 +1,77 @@
+{
+  "batch": "FARM-6D",
+  "change_type": "medical_editorial",
+  "expected_version": "12.80",
+  "allowed_files": [
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-6D.json",
+    "index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "26c87114": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada com pequenos ajustes",
+        "publication": "LIBERADA"
+      }
+    },
+    "5cb04528": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NÃO DECISIVA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      },
+      "merge_target_qid": "86b6b9c9"
+    },
+    "86b6b9c9": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada com pequenos ajustes",
+        "publication": "LIBERADA"
+      }
+    },
+    "6d6d8d57": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada com pequenos ajustes",
+        "publication": "LIBERADA"
+      }
+    },
+    "2c86b3a0": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada com pequenos ajustes",
+        "publication": "LIBERADA"
+      }
+    }
+  },
+  "expected_question_delta": -1,
+  "refs_policy": "declared",
+  "references": {},
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex — revisar-nefroquest"
+  }
+}
