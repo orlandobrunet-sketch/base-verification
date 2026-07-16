@@ -1540,7 +1540,7 @@ canvas_program:{
     label:"ILLUMINATE-A Trial (Lumasiran)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2022978",
     journal:"N Engl J Med 2021;385(19):1737-1746",
-    ano:2021,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
+    ano:2021,tipo:"Ensaio clínico randomizado",badge:"RCT",badgeColor:"#10b981",
     impacto:"Lumasiran (RNAi) ↓ 65% oxalato urinário em Hiperoxalúria Primária Tipo 1",icon:"💊",
     resumo:"ECR duplo-cego placebo-controlado de fase III (ILLUMINATE-A, n = 39 pacientes, adultos e crianças com diagnóstico confirmado de Hiperoxalúria Primária Tipo 1 [HP1]). Avaliou a eficácia e segurança do lumasiran, um RNA de interferência (siRNA) de ação prolongada direcionado à enzima glicolato oxidase (GO) hepática. Randomizou os pacientes 2:1 para injeções subcutâneas mensais ou trimestrais de lumasiran vs placebo. Desfecho primário: redução percentual na excreção urinária de oxalato em 24h na semana 6. Resultados: O tratamento com lumasiran induziu uma redução extraordinária e sustentada de 65,4% na excreção urinária de oxalato em relação ao basal (P < 0,001), com 84% dos pacientes alcançando níveis urinários normais ou próximos do normal, associado a marcante redução de crises de nefrolitíase e nefrocalcinose progressiva.",
     conclusao:"O lumasiran estabeleceu-se como a primeira terapia genética modificadora de doença altamente eficaz para HP1, revertendo de forma brilhante a hiperprodução sistêmica de oxalato no Reino.",
@@ -1560,7 +1560,7 @@ canvas_program:{
     label:"SOLOIST-WHF Trial (Sotagliflozina na IC)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2030422",
     journal:"N Engl J Med 2021;384(2):117-128",
-    ano:2021,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
+    ano:2021,tipo:"Ensaio clínico randomizado",badge:"RCT",badgeColor:"#10b981",
     impacto:"Sotagliflozina (dual SGLT1/2) ↓ mortalidade CV e hospitalizações em IC",icon:"💊",
     resumo:"ECR multicêntrico duplo-cego fase III (SOLOIST-WHF, n = 1.222  pacientes com diabetes tipo 2 recentemente hospitalizados por insuficiência cardíaca aguda descompensada agravada). Randomizou os participantes para sotagliflozina (um inibidor duplo de SGLT1 e SGLT2, 200-400 mg/dia) ou placebo, iniciados antes da alta ou nas primeiras 3 semanas pós-alta. Desfecho primário: total de mortes CV, hospitalizações por IC e visitas urgentes por IC. Resultados: A sotagliflozina reduziu de forma robusta o desfecho primário em 33% (HR 0,67; IC 95% 0,52-0,85; P < 0,001) em um seguimento médio de 9 meses, com benefício visível logo nas primeiras semanas de tratamento e excelente perfil de tolerabilidade hemodinâmica renal.",
     conclusao:"O SOLOIST-WHF provou de forma marcante que o início precoce da sotagliflozina imediatamente pós-alta reduz eventos cardiovasculares agudos e oferece nefroproteção estável e segura no Reino.",
@@ -1676,6 +1676,26 @@ finerenone_2025:{
     resumo:"ECR fase III, duplo-cego, placebo-controlado (FIDELIO-DKD, n=5.734), em DM2 com DRC albuminúrica, potássio controlado e uso de IECA ou BRA em dose máxima tolerada. Finerenona 10–20 mg/dia reduziu o desfecho renal primário composto — queda sustentada de TFGe ≥40%, DRCT ou morte renal — com HR 0,82 (IC 95% 0,73–0,93; P=0,001). O desfecho cardiovascular secundário também foi reduzido: HR 0,86 (IC 95% 0,75–0,99; P=0,03). Descontinuação por hipercalemia foi mais frequente com finerenona: 2,3% vs 0,9%.",
     conclusao:"FIDELIO-DKD estabeleceu a finerenona como terapia nefroprotetora e cardioprotetora adicional ao bloqueio do SRAA em DRC diabética albuminúrica, com necessidade de seleção por potássio e monitorização laboratorial.",
     curiosidade:"A finerenona é um antagonista não esteroidal do receptor mineralocorticoide. Diferencia-se dos MRAs esteroidais por estrutura, distribuição tecidual e ausência de atividade androgênica/progestagênica relevante, mas não elimina o principal cuidado clínico da classe: hipercalemia."
+  },
+  andromeda_kastritis_2021:{
+    label:"ANDROMEDA — Daratumumabe na amiloidose AL (Kastritis et al.)",
+    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2028631",
+    journal:"N Engl J Med 2021;385(1):46-58",
+    ano:2021,tipo:"Ensaio clínico randomizado",badge:"RCT",badgeColor:"#10b981",
+    impacto:"Daratumumabe + VCd elevou a resposta hematológica completa (53,3% vs 18,1%) — base da 1ª linha atual na amiloidose AL",icon:"💊",
+    resumo:"ECR fase III (ANDROMEDA, n=388) em amiloidose de cadeias leves (AL) recém-diagnosticada, comparando bortezomibe, ciclofosfamida e dexametasona (VCd) isolado versus VCd acrescido de daratumumabe subcutâneo. O desfecho primário — resposta hematológica completa — foi significativamente maior com daratumumabe (53,3% vs 18,1%; razão de risco relativo 2,9). Pacientes com comprometimento cardíaco avançado (estágio Mayo IIIb / NYHA III-IV) foram excluídos do ensaio.",
+    conclusao:"O acréscimo de daratumumabe ao VCd estabeleceu o esquema dara-VCd como terapia de primeira linha na amiloidose AL elegível a tratamento sistêmico padrão; a doença cardíaca avançada (estágio Mayo IIIb), não representada no ensaio, exige esquemas com ajuste de dose e manejo especializado.",
+    curiosidade:"O daratumumabe é um anticorpo anti-CD38 que depleta os plasmócitos clonais produtores das cadeias leves amiloidogênicas, reduzindo rapidamente a carga de cadeias leves livres circulantes."
+  },
+  cni_macrolide_ddi_jeong_2019:{
+    label:"Macrolídeos e inibidores de calcineurina no transplante renal (Jeong et al.)",
+    url:"https://journals.sagepub.com/doi/10.1177/2054358119830706",
+    journal:"Can J Kidney Health Dis 2019;6:2054358119830706",
+    ano:2019,tipo:"Coorte",badge:"COHORT",badgeColor:"#f59e0b",
+    impacto:"Claritromicina/eritromicina inibem o metabolismo dos inibidores de calcineurina e elevam o risco de nefrotoxicidade; a azitromicina não",icon:"💊",
+    resumo:"Coorte retrospectiva (n=293 receptores de transplante renal em inibidor de calcineurina — ICN — coprescritos com macrolídeo, Alberta, 2008-2015). Claritromicina e eritromicina inibem o CYP3A4 e reduzem o metabolismo do tacrolimo/ciclosporina, elevando os níveis e o risco de lesão renal aguda; a azitromicina não tem esse efeito. Usuários de claritromicina/eritromicina tiveram maior queda média de TFGe (-5,4 vs -1,9 mL/min/1,73m²) e mais hospitalização por qualquer causa (10% vs 3%) que usuários de azitromicina.",
+    conclusao:"Em receptores de transplante em ICN que necessitam de macrolídeo, a azitromicina é a opção preferencial; quando um inibidor potente do CYP3A4 é inevitável, exige-se redução empírica da dose do ICN e monitorização do nível sérico (TDM).",
+    curiosidade:"O tacrolimo é metabolizado quase exclusivamente pelo CYP3A4 hepático e intestinal e é substrato da glicoproteína-P; por isso inibidores potentes dessa via elevam desproporcionalmente os seus níveis."
   },
   finerenone_t1d_2025:{
     label:"FIGARO-DKD Trial (Finerenona)",
