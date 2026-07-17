@@ -1433,6 +1433,46 @@ canvas_program:{
     conclusao:"Permanece como o tratado didático definitivo de referência mundial, unificando a fisiologia de Henderson-Hasselbalch com a abordagem clínica prática na beira do leito do paciente no Reino.",
     curiosidade:"Nicolaos Madias e Horacio Adrogué são gigantes da nefrologia e equilíbrio ácido-base. Eles desenvolveram as famosas fórmulas de Adrogué-Madias para estimar o efeito de 1 litro de qualquer infusão sobre o sódio sérico do paciente, ferramenta indispensável nas hipo e hipernatremias."
   },
+  extrip_methanol:{
+    label:"EXTRIP — Methanol Poisoning Recommendations",
+    url:"https://www.extrip-workgroup.org/methanol",
+    journal:"EXTRIP Workgroup / Crit Care Med 2015",
+    ano:2015,tipo:"Revisão sistemática e consenso",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Indicações de hemodiálise na intoxicação grave por metanol",icon:"📋",
+    resumo:"Recomendação do EXTRIP Workgroup baseada em revisão sistemática e consenso para tratamento extracorpóreo na intoxicação por metanol. Recomenda tratamento extracorpóreo em casos graves, incluindo coma, convulsões, déficit visual novo, pH ≤7,15, acidose metabólica persistente apesar de suporte/antídoto, ânion gap >24 mmol/L, concentrações séricas elevadas de metanol conforme uso de fomepizol/etanol ou ausência de bloqueador da álcool desidrogenase, ou função renal comprometida.",
+    conclusao:"Em intoxicação suspeita por metanol com acidose grave ou AG >24, fomepizol/etanol não substitui a hemodiálise: o tratamento extracorpóreo é recomendado para remover metanol/metabólitos e corrigir acidemia.",
+    curiosidade:"O EXTRIP padroniza recomendações de terapia extracorpórea em intoxicações; para metanol, a hemodiálise intermitente é a modalidade de escolha quando disponível."
+  },
+  extrip_ethylene_glycol:{
+    label:"EXTRIP — Ethylene Glycol Poisoning Recommendations",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC9921105/",
+    journal:"Crit Care 2023;27:56",
+    ano:2023,tipo:"Revisão sistemática e consenso",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Define quando usar hemodiálise na intoxicação por etilenoglicol",icon:"📋",
+    resumo:"Revisão sistemática e recomendações do EXTRIP Workgroup sobre tratamento extracorpóreo na intoxicação por etilenoglicol. O grupo recomenda ou sugere ECTR conforme concentração de etilenoglicol/glicolato, gap osmolar, ânion gap, acidemia e gravidade clínica. Recomenda ECTR em características graves como coma, convulsões ou LRA, e recomenda hemodiálise intermitente como modalidade preferencial quando disponível.",
+    conclusao:"Na intoxicação por etilenoglicol, acidose metabólica grave, anion gap muito elevado, LRA ou manifestações neurológicas justificam hemodiálise além de suporte e bloqueio da álcool desidrogenase.",
+    curiosidade:"Com maior disponibilidade de fomepizol, o EXTRIP refinou os limiares de diálise para evitar tanto atraso terapêutico em casos graves quanto diálise desnecessária em intoxicações menos graves."
+  },
+  urinary_diversion_metabolic_changes:{
+    label:"Van der Aa et al. — Metabolic Changes after Urinary Diversion",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC3113422/",
+    journal:"Adv Urol 2011;2011:764325",
+    ano:2011,tipo:"Revisão Clínica",badge:"REVIEW",badgeColor:"#0ea5e9",
+    impacto:"Explica acidose hiperclorêmica após derivação urinária intestinal",icon:"📖",
+    resumo:"Revisão clínica sobre alterações metabólicas após derivações urinárias com segmentos intestinais. Descreve que segmentos ileais ou colônicos expostos à urina podem secretar bicarbonato em troca de cloreto e reabsorver amônia, amônio, hidrogênio e cloreto, produzindo carga ácida crônica. O risco e a gravidade dependem do segmento, tempo de contato, comorbidades e reserva renal.",
+    conclusao:"Derivações urinárias com intestino podem causar acidose metabólica hiperclorêmica de ânion gap normal por troca iônica e reabsorção de NH4+/Cl−, especialmente em pacientes com menor reserva renal.",
+    curiosidade:"Reservatórios intestinais tendem a gerar mais alterações metabólicas que condutos curtos, porque aumentam a área e o tempo de contato entre urina e mucosa intestinal."
+  },
+  endocrine_society_primary_aldosteronism_2025:{
+    label:"Endocrine Society — Primary Aldosteronism Guideline 2025",
+    url:"https://www.endocrine.org/clinical-practice-guidelines/primary-aldosteronism-2",
+    journal:"J Clin Endocrinol Metab 2025",
+    ano:2025,tipo:"Diretriz",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Atualiza triagem e tratamento do hiperaldosteronismo primário",icon:"📋",
+    resumo:"Diretriz clínica da Endocrine Society de 2025 para hiperaldosteronismo primário. Define a condição como produção de aldosterona ao menos parcialmente autônoma em relação ao sistema renina-angiotensina, com renina suprimida, retenção de sódio, expansão volêmica, hipertensão e, em formas mais graves, hipocalemia. Recomenda triagem com aldosterona, renina e relação aldosterona/renina, interpretadas no contexto clínico e laboratorial.",
+    conclusao:"Hipertensão resistente com aldosterona elevada, renina suprimida e hipocalemia sustenta fortemente hiperaldosteronismo primário; a alcalose decorre do efeito mineralocorticoide distal com secreção de K+ e H+.",
+    curiosidade:"A diretriz de 2025 enfatiza que hipocalemia não é obrigatória: muitos pacientes com hiperaldosteronismo primário são normocalêmicos, o que reforça a importância da triagem por renina e aldosterona."
+  },
   dka_management_kitabchi:{
     label:"Kitabchi AE et al. — DKA & HHS (Diabetes Care 2009)",
     url:"https://diabetesjournals.org/care/article/32/7/1335/28555",
