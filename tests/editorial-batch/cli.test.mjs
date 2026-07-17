@@ -55,6 +55,28 @@ test('CLI accepts a valid declared editorial batch', async () => {
   assert.match(result.stdout, /Editorial batch validation passed/);
 });
 
+test('CLI accepts a manifest-only reviewed_unchanged batch', async () => {
+  const { repo, base } = await createRepository();
+  git(['checkout', base], repo);
+  const manifestPath = 'docs/editorial/review-batches/FARM-4B.json';
+  await mkdir(path.join(repo, 'docs', 'editorial', 'review-batches'), { recursive: true });
+  await writeFile(path.join(repo, ...manifestPath.split('/')), JSON.stringify({
+    batch: 'FARM-4B', change_type: 'medical_editorial', expected_version: '12.64',
+    allowed_files: [manifestPath],
+    questions: {
+      '11111111': { action: 'reviewed_unchanged', preserve_fsrs: true },
+      '22222222': { action: 'reviewed_unchanged', preserve_fsrs: true },
+    },
+    expected_question_delta: 0, refs_policy: 'unchanged',
+    external_review: { greptile: 'unavailable', fallback_reviewer: 'Codex — revisar-nefroquest' },
+  }, null, 2));
+  git(['add', manifestPath], repo); git(['commit', '-m', 'manifest only review'], repo);
+  const head = git(['rev-parse', 'HEAD'], repo);
+  const result = run(process.execPath, [cliPath, '--base', base, '--head', head, '--cwd', repo], repo);
+  assert.equal(result.status, 0, result.stderr || result.stdout);
+  assert.match(result.stdout, /Editorial batch validation passed/);
+});
+
 test('CLI rejects an undeclared qid', async () => {
   const { repo, base } = await createRepository();
   const topicsPath = path.join(repo, 'data', 'topics.js');

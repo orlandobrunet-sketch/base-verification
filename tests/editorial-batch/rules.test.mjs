@@ -34,6 +34,21 @@ function validInput() {
 const codes = (input) => validateBatch(input).map((error) => error.code);
 
 test('accepts a declared rebuild and retirement', () => assert.deepEqual(validateBatch(validInput()), []));
+test('accepts a manifest-only reviewed_unchanged batch', () => {
+  const input = validInput();
+  input.manifest.questions = {
+    '11111111': { action: 'reviewed_unchanged', preserve_fsrs: true },
+    '22222222': { action: 'reviewed_unchanged', preserve_fsrs: true },
+  };
+  input.manifest.expected_question_delta = 0;
+  input.manifest.expected_version = '12.64';
+  input.manifest.allowed_files = ['docs/editorial/review-batches/FARM-4A.json'];
+  input.changedPaths = ['docs/editorial/review-batches/FARM-4A.json'];
+  input.afterQuestions = input.beforeQuestions;
+  input.afterConsumers = input.beforeConsumers;
+  input.afterVersions = input.beforeVersions;
+  assert.deepEqual(validateBatch(input), []);
+});
 test('rejects undeclared files and forbidden artifacts', () => {
   const input = validInput();
   input.changedPaths.push('notes.zip');

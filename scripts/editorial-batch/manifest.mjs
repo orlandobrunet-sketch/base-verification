@@ -1,5 +1,5 @@
 const MANIFEST_PATTERN = /^docs\/editorial\/review-batches\/[^/]+\.json$/;
-const ACTIONS = new Set(['rebuild', 'refs_only', 'retire', 'add', 'technical_only']);
+const ACTIONS = new Set(['rebuild', 'refs_only', 'retire', 'add', 'technical_only', 'reviewed_unchanged']);
 const CHANGE_TYPES = new Set(['medical_editorial', 'technical_only']);
 const REF_POLICIES = new Set(['unchanged', 'declared']);
 const REVIEW_STATES = new Set(['required', 'unavailable']);
@@ -44,6 +44,9 @@ export function validateManifest(value, manifestPath) {
       if (typeof declaration?.preserve_fsrs !== 'boolean') errors.push(`${manifestPath}: preserve_fsrs must be boolean for ${qid}`);
       if (['retire', 'add'].includes(declaration?.action) && declaration.preserve_fsrs !== false) {
         errors.push(`${manifestPath}: ${declaration.action} requires preserve_fsrs false for ${qid}`);
+      }
+      if (declaration?.action === 'reviewed_unchanged' && declaration.preserve_fsrs !== true) {
+        errors.push(`${manifestPath}: reviewed_unchanged requires preserve_fsrs true for ${qid}`);
       }
     }
   }
