@@ -31,7 +31,9 @@ function loadVersions(revision, cwd) {
 function main() {
   const { base, head, cwd } = parseArgs(process.argv.slice(2));
   const paths = changedPaths(base, head, cwd);
-  if (!paths.includes('data/topics.js') && !paths.includes('data/refs.js')) {
+  const hasMedicalDataChanges = paths.includes('data/topics.js') || paths.includes('data/refs.js');
+  const hasEditorialManifest = paths.some((path) => /^docs\/editorial\/review-batches\/[^/]+\.json$/.test(path));
+  if (!hasMedicalDataChanges && !hasEditorialManifest) {
     console.log('Editorial batch gate not activated: medical data files unchanged.');
     return;
   }

@@ -47,7 +47,14 @@ export function validateBatch(input) {
 
   const changedQids = new Set(changedQuestionIds(beforeQuestions, afterQuestions));
   const declaredQids = new Set(Object.keys(manifest.questions));
-  if (!sameSet(changedQids, declaredQids)) {
+  const manifestOnlyReview = !changedPaths.includes('data/topics.js') && !changedPaths.includes('data/refs.js');
+  if (manifestOnlyReview) {
+    const invalidActions = Object.entries(manifest.questions)
+      .filter(([, declaration]) => declaration.action !== 'reviewed_unchanged')
+      .map(([qid]) => qid);
+    if (invalidActions.length) errors.push(diagnostic('ACTION_MISMATCH', `Manifest-only review requires reviewed_unchanged action for qids [${invalidActions}]`));
+    if (changedQids.size) errors.push(diagnostic('QID_SCOPE', `Manifest-only review cannot change qids [${[...changedQids]}]`));
+  } else if (!sameSet(changedQids, declaredQids)) {
     errors.push(diagnostic('QID_SCOPE', `Changed qids [${[...changedQids]}] do not equal declared qids [${[...declaredQids]}]`));
   }
 
@@ -57,6 +64,10 @@ export function validateBatch(input) {
     if (declaration.action === 'add' && (before || !after)) errors.push(diagnostic('ACTION_MISMATCH', `${qid}: add does not match existence`));
     if (declaration.action === 'retire' && (!before || after)) errors.push(diagnostic('ACTION_MISMATCH', `${qid}: retire does not match existence`));
     if (['rebuild', 'refs_only', 'technical_only'].includes(declaration.action) && (!before || !after)) errors.push(diagnostic('ACTION_MISMATCH', `${qid}: ${declaration.action} requires before and after`));
+    if (declaration.action === 'reviewed_unchanged') {
+      if (!before || !after) errors.push(diagnostic('ACTION_MISMATCH', `${qid}: reviewed_unchanged requires an existing active qid`));
+      else if (JSON.stringify(before) !== JSON.stringify(after)) errors.push(diagnostic('ACTION_MISMATCH', `${qid}: reviewed_unchanged cannot modify question content`));
+    }
     if (declaration.action === 'refs_only' && !equalExceptRefs(before, after)) errors.push(diagnostic('REFS_ONLY_SCOPE', `${qid}: refs_only changed fields outside refs`));
   }
 
@@ -82,7 +93,12 @@ export function validateBatch(input) {
   }
 
   const values = Object.values(afterVersions);
-  if (!values.every((value) => value === manifest.expected_version) || beforeVersions.json === afterVersions.json) {
+  if (manifestOnlyReview) {
+    const beforeValues = Object.values(beforeVersions);
+    if (!values.every((value) => value === manifest.expected_version) || !beforeValues.every((value) => value === manifest.expected_version)) {
+      errors.push(diagnostic('VERSION_MISMATCH', `Manifest-only review must keep canonical versions unchanged at ${manifest.expected_version}`));
+    }
+  } else if (!values.every((value) => value === manifest.expected_version) || beforeVersions.json === afterVersions.json) {
     errors.push(diagnostic('VERSION_MISMATCH', `Canonical versions must equal ${manifest.expected_version} and differ from base`));
   }
   return errors;

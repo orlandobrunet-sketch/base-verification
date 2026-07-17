@@ -36,3 +36,11 @@ test('requires preserve_fsrs false for retired qids', () => {
   input.questions['23211e6a'].preserve_fsrs = true;
   assert.match(validateManifest(input, 'FARM-4A.json').errors.join('\n'), /retire.*preserve_fsrs/i);
 });
+
+test('accepts reviewed_unchanged with preserved FSRS', () => {
+  const input = structuredClone(valid);
+  input.questions = { '5bfb77d2': { action: 'reviewed_unchanged', preserve_fsrs: true } };
+  input.expected_question_delta = 0;
+  input.allowed_files = ['docs/editorial/review-batches/FARM-4A.json'];
+  assert.deepEqual(validateManifest(input, 'docs/editorial/review-batches/FARM-4A.json').errors, []);
+});
