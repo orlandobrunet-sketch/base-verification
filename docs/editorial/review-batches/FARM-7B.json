@@ -1,0 +1,84 @@
+{
+  "batch": "FARM-7B",
+  "change_type": "medical_editorial",
+  "expected_version": "12.83",
+  "allowed_files": [
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-7B.json",
+    "index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "cc3248a3": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada com pequenos ajustes",
+        "publication": "LIBERADA"
+      }
+    },
+    "85e1d082": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada com pequenos ajustes",
+        "publication": "LIBERADA"
+      }
+    },
+    "54eac6b8": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "50166346": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada com pequenos ajustes",
+        "publication": "LIBERADA"
+      }
+    },
+    "21a89255": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    }
+  },
+  "expected_question_delta": 0,
+  "refs_policy": "unchanged",
+  "references": {
+    "atr_rodriguez_soriano": "reuse",
+    "brenner_rector": "reuse"
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex — revisar-nefroquest"
+  },
+  "notes": [
+    "Lote coeso de Acidose Tubular Renal: ATR distal tipo 1, ATR proximal tipo 2/Fanconi e ATR tipo 4.",
+    "Nenhuma referência nova foi introduzida; o card atr_rodriguez_soriano já consta no Grimório com resumo estruturado.",
+    "Itens correlatos 841225db, 176dfb50 e a9867a6a permanecem fora deste lote para auditoria de duplicidade em lote ácido-base posterior."
+  ]
+}
