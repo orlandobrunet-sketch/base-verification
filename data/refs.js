@@ -1,4 +1,18 @@
 const refsDB = {
+  ukka_hyperkalemia_2023:{
+    label:"UKKA Hyperkalaemia Guideline 2023",
+    url:"https://www.ukkidney.org/health-professionals/guidelines/treatment-acute-hyperkalaemia-adults-0",
+    journal:"UK Kidney Association",
+    ano:2023,
+    tipo:"Diretriz Internacional",
+    badge:"GUIDELINE",
+    badgeColor:"#6366f1",
+    impacto:"Diretriz específica para detecção, tratamento hospitalar agudo e prevenção de hipercalemia em adultos",
+    icon:"⚡",
+    resumo:"Diretriz da UK Kidney Association dedicada ao manejo da hipercalemia em adultos, com foco especial na atualização de 2023 para tratamento hospitalar agudo. Organiza a resposta em etapas práticas: proteger o coração quando há sinais eletrocardiográficos de toxicidade com cálcio intravenoso; deslocar potássio para o compartimento intracelular com insulina-glicose e, como adjuvante, salbutamol; remover potássio do organismo conforme gravidade, função renal e resposta; e monitorar potássio e glicemia para detectar rebote e hipoglicemia. Destaca que o cálcio intravenoso estabiliza rapidamente o miocárdio, mas não reduz o potássio sérico e tem efeito transitório, exigindo terapias complementares.",
+    conclusao:"Na hipercalemia aguda, a conduta segura é sequencial e simultaneamente orientada por risco: ECG tóxico exige proteção cardíaca imediata com cálcio, seguida de terapias de deslocamento e remoção de potássio com monitorização estreita.",
+    curiosidade:"A atualização de 2023 enfatizou segurança medicamentosa: reforçou diferenças práticas entre sais de cálcio, prevenção de hipoglicemia após insulina-glicose e uso do salbutamol como adjuvante, não como monoterapia em hipercalemia grave."
+  },
   eau_urolithiasis_2025:{
     label:"EAU Guidelines on Urolithiasis 2025",
     url:"https://uroweb.org/guidelines/urolithiasis",
