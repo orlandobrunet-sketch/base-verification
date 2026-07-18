@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NefroQuest — Domine a nefrologia. Evolua a cada decisão.</title>
+  <meta name="description" content="Questões comentadas, revisão adaptativa e um tutor educacional de IA dentro de uma jornada RPG feita para estudantes de medicina e residentes.">
+  <meta name="theme-color" content="#070a13">
+  <meta name="robots" content="index,follow">
+
+  <link rel="canonical" href="https://nefroquest-web.vercel.app/">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="apple-touch-icon" href="assets/favicon-192x192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,600;0,700;1,500;1,600&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <meta property="og:title" content="NefroQuest — Domine a nefrologia. Evolua a cada decisão.">
+  <meta property="og:description" content="Questões, revisão adaptativa, tutor educacional de IA e progressão RPG para estudantes de medicina e residentes.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:url" content="https://nefroquest-web.vercel.app/">
+  <meta property="og:image" content="https://nefroquest-web.vercel.app/assets/battle_final.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NefroQuest — Nefrologia em modo conquista">
+  <meta name="twitter:description" content="Entenda o erro, revise com método e evolua dentro de uma jornada RPG.">
+  <meta name="twitter:image" content="https://nefroquest-web.vercel.app/assets/battle_final.webp">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "NefroQuest",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Web",
+    "url": "https://nefroquest.com",
+    "description": "Plataforma educacional de nefrologia com questões, revisão adaptativa, tutor educacional de IA e progressão RPG.",
+    "inLanguage": "pt-BR"
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <div class="ambient" aria-hidden="true">
+    <div class="ambient-grid"></div>
+    <div class="ambient-glow ambient-glow--cyan"></div>
+    <div class="ambient-glow ambient-glow--gold"></div>
+    <div class="ambient-grain"></div>
+  </div>
+
+  <header class="nav" id="nav">
+    <a class="nav-brand" href="#top" aria-label="NefroQuest — início">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 36 36" width="30" height="30">
+          <path d="M18 3.5c5.7 3.4 9.2 3.5 12.5 2.2-1 10-4.7 18.2-12.5 27.1C10.2 23.9 6.5 15.7 5.5 5.7 8.8 7 12.3 6.9 18 3.5Z" fill="none" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M18 10.2c2.7 1.8 4 4.2 4 7.1 0 3.8-1.8 6.7-4 9.6-2.2-2.9-4-5.8-4-9.6 0-2.9 1.3-5.3 4-7.1Z" fill="currentColor" opacity=".88"/>
+        </svg>
+      </span>
+      <span class="nav-word">NefroQuest</span>
+      <span class="nav-edition">Atlas vivo</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Navegação principal">
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#oraculo">Oráculo</a>
+      <a href="#metodo">Método</a>
+      <a href="#classes">O jogo</a>
+    </nav>
+
+    <a class="nav-cta" href="https://nefroquest.com" data-cta="nav">Começar grátis</a>
+    <span class="nav-progress" aria-hidden="true"></span>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-atlas" aria-hidden="true">
+        <svg class="nephron-map" viewBox="0 0 520 660" role="presentation">
+          <defs>
+            <linearGradient id="nephron-gradient" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#d6a94a"/>
+              <stop offset=".48" stop-color="#57bfc8"/>
+              <stop offset="1" stop-color="#d6a94a"/>
+            </linearGradient>
+            <filter id="nephron-glow" x="-60%" y="-60%" width="220%" height="220%">
+              <feGaussianBlur stdDeviation="5" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <circle class="nephron-capsule" cx="156" cy="145" r="102"/>
+          <circle class="nephron-capsule nephron-capsule--inner" cx="156" cy="145" r="79"/>
+          <path class="nephron-shadow" d="M74 145C58 80 105 46 158 67c45 18-38 80 17 102 55 22 86-44 42-78-48-37-130-3-118 64 10 57 116 42 143 91 31 58-13 99 8 165 17 54 78 79 105 20 29-63-17-99-39-52-21 47 16 126 72 141 50 14 50-45 51-81v151"/>
+          <path class="nephron-path" d="M74 145C58 80 105 46 158 67c45 18-38 80 17 102 55 22 86-44 42-78-48-37-130-3-118 64 10 57 116 42 143 91 31 58-13 99 8 165 17 54 78 79 105 20 29-63-17-99-39-52-21 47 16 126 72 141 50 14 50-45 51-81v151"/>
+          <g class="nephron-node nephron-node--one">
+            <circle cx="91" cy="120" r="7"/><text x="108" y="125">FILTRA</text>
+          </g>
+          <g class="nephron-node nephron-node--two">
+            <circle cx="238" cy="238" r="7"/><text x="258" y="243">INTERPRETA</text>
+          </g>
+          <g class="nephron-node nephron-node--three">
+            <circle cx="322" cy="438" r="7"/><text x="250" y="469">RETÉM</text>
+          </g>
+          <g class="nephron-node nephron-node--four">
+            <circle cx="439" cy="527" r="7"/><text x="327" y="559">CONQUISTA</text>
+          </g>
+        </svg>
+        <span class="atlas-caption">Traçado esquemático · ciclo de aprendizagem</span>
+      </div>
+
+      <div class="hero-shell">
+        <div class="hero-copy">
+          <p class="eyebrow reveal">Para estudantes de medicina e residentes</p>
+          <h1 class="hero-title" id="hero-title">
+            <span class="reveal" style="--i:1">Domine a nefrologia.</span>
+            <em class="reveal" style="--i:2">Evolua a cada decisão.</em>
+          </h1>
+          <p class="hero-sub reveal" style="--i:3">
+            Treine com questões comentadas, revisão adaptativa e um tutor educacional de IA que ajuda você a entender cada erro — dentro de uma jornada RPG feita para manter o estudo em movimento.
+          </p>
+          <div class="hero-actions reveal" style="--i:4">
+            <a class="btn btn-primary" href="https://nefroquest.com" data-cta="hero-primary">
+              <span>Começar grátis</span>
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="btn btn-text" href="#como-funciona">Ver como funciona <span aria-hidden="true">↓</span></a>
+          </div>
+          <ul class="hero-trust reveal" style="--i:5" aria-label="Condições para começar">
+            <li><span class="status-dot" aria-hidden="true"></span> Sem cartão</li>
+            <li><span class="status-dot" aria-hidden="true"></span> Modo visitante</li>
+            <li><span class="status-dot" aria-hidden="true"></span> Feito para estudo</li>
+          </ul>
+        </div>
+
+        <aside class="hero-console reveal" style="--i:4" aria-label="Exemplo do ciclo de estudo no NefroQuest">
+          <div class="console-head">
+            <div>
+              <span class="console-status"><i aria-hidden="true"></i> Sessão em andamento</span>
+              <strong>Atlas da evolução</strong>
+            </div>
+            <span class="console-code">NQ·04</span>
+          </div>
+          <div class="console-meter" aria-hidden="true"><span></span></div>
+          <ol class="console-steps">
+            <li class="is-complete">
+              <span class="console-index">01</span>
+              <span><b>Filtra</b><small>Responda uma questão</small></span>
+              <span class="console-check" aria-hidden="true">✓</span>
+            </li>
+            <li class="is-current">
+              <span class="console-index">02</span>
+              <span><b>Interpreta</b><small>Localize o ponto decisivo</small></span>
+              <span class="console-pulse" aria-hidden="true"></span>
+            </li>
+            <li>
+              <span class="console-index">03</span>
+              <span><b>Retém</b><small>Revise no momento certo</small></span>
+              <span class="console-mark" aria-hidden="true">↻</span>
+            </li>
+            <li>
+              <span class="console-index">04</span>
+              <span><b>Conquista</b><small>Veja seu domínio evoluir</small></span>
+              <span class="console-mark" aria-hidden="true">✦</span>
+            </li>
+          </ol>
+          <div class="console-foot"><span>Próximo marco</span><strong>Revisão adaptativa</strong></div>
+        </aside>
+      </div>
+
+      <a class="hero-scroll" href="#prova" aria-label="Ver números da plataforma">
+        <span>Explorar o atlas</span><i aria-hidden="true"></i>
+      </a>
+    </section>
+
+    <section class="proof" id="prova" aria-label="Números e acesso do NefroQuest">
+      <dl class="proof-ledger">
+        <div class="proof-item reveal-up">
+          <dt><span data-count="1000" data-suffix="+">1.000+</span></dt>
+          <dd>Questões e desafios</dd>
+        </div>
+        <div class="proof-item reveal-up" style="--i:1">
+          <dt><span data-count="16">16</span></dt>
+          <dd>Categorias clínicas</dd>
+        </div>
+        <div class="proof-item reveal-up" style="--i:2">
+          <dt><span data-count="4">4</span></dt>
+          <dd>Modos de dificuldade</dd>
+        </div>
+        <div class="proof-item proof-item--access reveal-up" style="--i:3">
+          <dt>Sem cadastro</dt>
+          <dd>Experimente como visitante</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="journey atlas-section" id="como-funciona" aria-labelledby="journey-title">
+      <div class="section-intro">
+        <p class="section-label reveal-up"><span>I</span> Anatomia da evolução</p>
+        <div class="section-copy reveal-up" style="--i:1">
+          <h2 id="journey-title">Um ciclo de estudo desenhado <em>como um néfron.</em></h2>
+          <p>Você não precisa de mais uma lista infinita de questões. Precisa de um ciclo que transforme resposta em compreensão, compreensão em memória e memória em domínio.</p>
+        </div>
+      </div>
+
+      <div class="route reveal-up" style="--i:2">
+        <svg class="route-line" viewBox="0 0 1100 190" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M40 98C175 28 212 166 340 98S505 28 620 98s176 70 282 0 128-38 158 0"/>
+        </svg>
+        <article class="route-step">
+          <span class="route-number">01</span>
+          <span class="route-dot" aria-hidden="true"></span>
+          <p class="route-verb">Filtra</p>
+          <h3>Responda com intenção</h3>
+          <p>Entre por tema ou deixe o motor ajustar a dificuldade com base no seu desempenho.</p>
+        </article>
+        <article class="route-step">
+          <span class="route-number">02</span>
+          <span class="route-dot" aria-hidden="true"></span>
+          <p class="route-verb">Interpreta</p>
+          <h3>Entenda o ponto decisivo</h3>
+          <p>Compare sua escolha com a explicação e use o Oráculo para explorar onde o raciocínio desviou.</p>
+        </article>
+        <article class="route-step">
+          <span class="route-number">03</span>
+          <span class="route-dot" aria-hidden="true"></span>
+          <p class="route-verb">Retém</p>
+          <h3>Revise com propósito</h3>
+          <p>O histórico alimenta revisões espaçadas para trazer de volta o que ainda merece atenção.</p>
+        </article>
+        <article class="route-step">
+          <span class="route-number">04</span>
+          <span class="route-dot" aria-hidden="true"></span>
+          <p class="route-verb">Conquista</p>
+          <h3>Veja a evolução acontecer</h3>
+          <p>XP, classes, equipamentos e domínio por tema transformam consistência em progresso visível.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="oracle atlas-section" id="oraculo" aria-labelledby="oracle-title">
+      <div class="oracle-copy">
+        <p class="section-label reveal-up"><span>II</span> Oráculo dos Néfrons</p>
+        <h2 class="reveal-up" id="oracle-title" style="--i:1">Entenda o raciocínio, <em>não apenas o gabarito.</em></h2>
+        <p class="oracle-lede reveal-up" style="--i:2">Depois de responder, use o tutor educacional de IA para investigar a armadilha, organizar o raciocínio e consolidar o ponto que merece ser lembrado.</p>
+
+        <div class="oracle-seal reveal-up" style="--i:3">
+          <img src="assets/oraculo-nefrons.webp" alt="Representação do Oráculo dos Néfrons" loading="lazy" width="180" height="180">
+          <div>
+            <span class="mono-label">Recurso educacional</span>
+            <strong>Uma conversa no fluxo do estudo.</strong>
+            <p>Sem abrir outra aba e sem perder o contexto da questão.</p>
+          </div>
+        </div>
+
+        <ul class="oracle-benefits reveal-up" style="--i:4">
+          <li><span aria-hidden="true">01</span> Ajuda a nomear a lacuna</li>
+          <li><span aria-hidden="true">02</span> Explica no contexto da questão</li>
+          <li><span aria-hidden="true">03</span> Mantém referências por perto</li>
+        </ul>
+      </div>
+
+      <div class="chat reveal-up" style="--i:2" aria-describedby="oracle-note">
+        <div class="chat-chrome">
+          <span><i aria-hidden="true"></i> Exemplo de interação</span>
+          <span class="chat-id">NQ / SÓDIO</span>
+        </div>
+        <div class="chat-question">
+          <span class="chat-tag">Questão · Distúrbios do sódio</span>
+          <p>Paciente com hiponatremia hipovolêmica. Você respondeu: <strong>restrição hídrica</strong>.</p>
+        </div>
+        <div class="chat-bubble" data-line="1">
+          <span class="chat-who"><span class="chat-avatar" aria-hidden="true">✦</span> Oráculo dos Néfrons</span>
+          <p>Cuidado — aqui está a armadilha. Você tratou como se fosse <strong>SIADH</strong>, mas o paciente está <em>hipovolêmico</em>. O corpo dele retém sódio e água por depleção de volume.</p>
+        </div>
+        <div class="chat-bubble" data-line="2">
+          <p>Restringir água aqui piora a perfusão. A conduta é <strong>salina isotônica</strong> para corrigir o volume — e o sódio sobe junto. Regra de ouro: <em>sempre avalie a volemia antes de escolher o tratamento da hiponatremia.</em></p>
+          <span class="chat-cite">↳ Fundamentado em UpToDate &amp; Diretriz SBN de distúrbios hidroeletrolíticos</span>
+        </div>
+        <div class="chat-typing" data-typing aria-hidden="true"><span></span><span></span><span></span></div>
+        <p class="chat-disclaimer" id="oracle-note">Ferramenta educacional. Não substitui diretrizes, supervisão ou decisão clínica.</p>
+      </div>
+    </section>
+
+    <section class="method atlas-section" id="metodo" aria-labelledby="method-title">
+      <div class="section-intro">
+        <p class="section-label reveal-up"><span>III</span> Sob a aventura</p>
+        <div class="section-copy reveal-up" style="--i:1">
+          <h2 id="method-title">Fantasia para voltar. <em>Método para aprender.</em></h2>
+          <p>O RPG cuida da motivação. Por baixo dele, mecanismos de adaptação, memória e referência organizam uma rotina de estudo mais consistente.</p>
+        </div>
+      </div>
+
+      <div class="method-ledger">
+        <article class="method-row reveal-up">
+          <div class="method-index"><span>MTR·01</span><b>Adaptação</b></div>
+          <div class="method-content">
+            <p class="mono-label">IRT leve</p>
+            <h3>A dificuldade acompanha o seu momento</h3>
+            <p>O desempenho por categoria ajuda a escolher a próxima questão e evita uma sequência sempre fácil ou sempre frustrante.</p>
+          </div>
+          <div class="method-visual method-visual--irt" aria-hidden="true">
+            <span style="--h:28%"></span><span style="--h:46%"></span><span class="is-you" style="--h:72%"></span><span style="--h:56%"></span><span style="--h:84%"></span>
+            <i>seu momento</i>
+          </div>
+        </article>
+
+        <article class="method-row reveal-up" style="--i:1">
+          <div class="method-index"><span>MTR·02</span><b>Retenção</b></div>
+          <div class="method-content">
+            <p class="mono-label">Revisão espaçada · FSRS</p>
+            <h3>O que importa volta antes de sumir</h3>
+            <p>Seu histórico organiza revisões para reduzir repetição aleatória e dar mais espaço ao que ainda precisa ser consolidado.</p>
+          </div>
+          <div class="method-visual method-visual--orbit" aria-hidden="true">
+            <span class="orbit orbit--a"><i></i></span>
+            <span class="orbit orbit--b"><i></i></span>
+            <b>MEMÓRIA</b>
+          </div>
+        </article>
+
+        <article class="method-row reveal-up" style="--i:2">
+          <div class="method-index"><span>MTR·03</span><b>Contexto</b></div>
+          <div class="method-content">
+            <p class="mono-label">Referências no fluxo</p>
+            <h3>A aventura termina onde começa a evidência</h3>
+            <p>Explicações e referências acompanham as questões para aproximar o treino da linguagem de provas, diretrizes e estudos.</p>
+          </div>
+          <div class="method-visual method-visual--refs" aria-hidden="true">
+            <span>GUIDELINE</span><span>TRIAL</span><span>REVIEW</span><i></i>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="classes atlas-section" id="classes" aria-labelledby="classes-title">
+      <div class="section-intro">
+        <p class="section-label reveal-up"><span>IV</span> Escolha seu caminho</p>
+        <div class="section-copy reveal-up" style="--i:1">
+          <h2 id="classes-title">A motivação ganha <em>rosto, classe e história.</em></h2>
+          <p>Três arquétipos transformam seu avanço em identidade. Você escolhe o começo; cada acerto conduz a evolução.</p>
+        </div>
+      </div>
+
+      <div class="class-gallery">
+        <article class="class-profile reveal-up" style="--class-color:87,168,233">
+          <div class="class-medallion">
+            <img src="assets/guerreiro.png" alt="Guerreiro Glomerular" loading="lazy" width="230" height="230">
+            <span aria-hidden="true">G</span>
+          </div>
+          <p class="class-path">Via glomerular</p>
+          <h3>Guerreiro Glomerular</h3>
+          <p>Glomerulonefrites, síndromes nefrótica e nefrítica, biópsia e imunossupressão. Para quem encara os casos que assustam a enfermaria.</p>
+          <ul><li>Síndrome nefrótica</li><li>GNRP</li><li>Nefrite lúpica</li></ul>
+        </article>
+
+        <article class="class-profile reveal-up" style="--class-color:176,111,222;--i:1">
+          <div class="class-medallion">
+            <img src="assets/maga.jpg" alt="Maga Metabólica" loading="lazy" width="230" height="230">
+            <span aria-hidden="true">M</span>
+          </div>
+          <p class="class-path">Via metabólica</p>
+          <h3>Maga Metabólica</h3>
+          <p>Distúrbios hidroeletrolíticos, ácido-base e metabolismo ósseo-mineral. A precisão que transforma uma gasometria em diagnóstico.</p>
+          <ul><li>Sódio &amp; potássio</li><li>Ácido-base</li><li>Cálcio-fósforo</li></ul>
+        </article>
+
+        <article class="class-profile reveal-up" style="--class-color:214,169,74;--i:2">
+          <div class="class-medallion">
+            <img src="assets/clerigo.jpg" alt="Clérigo Renal" loading="lazy" width="230" height="230">
+            <span aria-hidden="true">C</span>
+          </div>
+          <p class="class-path">Via longitudinal</p>
+          <h3>Clérigo Renal</h3>
+          <p>DRC, terapia renal substitutiva e transplante. O cuidado longitudinal do paciente — da prevenção ao pós-transplante.</p>
+          <ul><li>DRC &amp; TRS</li><li>Hemodiálise</li><li>Transplante</li></ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="boss" id="confronto" aria-labelledby="boss-title">
+      <div class="boss-scene" aria-hidden="true"></div>
+      <div class="boss-corruption" aria-hidden="true"></div>
+      <img class="boss-character" src="assets/nefromancer.png" alt="" loading="lazy" width="640" height="640" aria-hidden="true">
+      <div class="boss-copy">
+        <p class="boss-label reveal-up"><span>V</span> O confronto final</p>
+        <h2 class="reveal-up" id="boss-title" style="--i:1">O Arqui-Nefromante espera por quem <em>realmente domina.</em></h2>
+        <p class="reveal-up" style="--i:2">Cada acerto aproxima você do confronto que prova sua maestria. XP, classes, equipamentos e ranking dão forma à consistência que faltava para estudar todos os dias.</p>
+        <a class="btn btn-primary reveal-up" href="https://nefroquest.com" data-cta="boss" style="--i:3">
+          <span>Começar grátis</span>
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <section class="faq atlas-section" id="duvidas" aria-labelledby="faq-title">
+      <div class="faq-intro reveal-up">
+        <p class="section-label"><span>VI</span> Antes da missão</p>
+        <h2 id="faq-title">Perguntas honestas. <em>Respostas diretas.</em></h2>
+        <p>O NefroQuest é uma plataforma educacional. A fantasia mantém o ritmo; o objetivo é estudar nefrologia com mais clareza e consistência.</p>
+      </div>
+
+      <div class="faq-list">
+        <details class="reveal-up">
+          <summary>Para quem é o NefroQuest?<span aria-hidden="true"></span></summary>
+          <p>Para estudantes de medicina, residentes e médicos que querem treinar nefrologia por questões, revisar conceitos e manter uma rotina de estudo ativa.</p>
+        </details>
+        <details class="reveal-up" style="--i:1">
+          <summary>Posso testar sem criar uma conta?<span aria-hidden="true"></span></summary>
+          <p>Sim. O modo visitante permite experimentar 15 questões antes de você decidir criar uma conta para salvar seu progresso.</p>
+        </details>
+        <details class="reveal-up" style="--i:2">
+          <summary>O que está disponível gratuitamente?<span aria-hidden="true"></span></summary>
+          <p>A conta gratuita inclui 50 questões, além dos recursos e limites exibidos dentro do aplicativo. Você pode começar sem cadastrar cartão.</p>
+        </details>
+        <details class="reveal-up" style="--i:3">
+          <summary>Qual é o papel do Oráculo dos Néfrons?<span aria-hidden="true"></span></summary>
+          <p>Ele é um tutor educacional de IA para explorar explicações no contexto da questão. Não substitui diretrizes, supervisão profissional nem decisão clínica.</p>
+        </details>
+        <details class="reveal-up" style="--i:4">
+          <summary>Como meus dados são tratados?<span aria-hidden="true"></span></summary>
+          <p>O uso de conta, analytics e serviços de IA segue a política da plataforma. Consulte a <a href="https://nefroquest.com/privacy-policy.html">Política de Privacidade</a> para ver os detalhes.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="finale" aria-labelledby="finale-title">
+      <div class="finale-path" aria-hidden="true">
+        <svg viewBox="0 0 500 180"><path d="M10 92c88-70 144 70 230 0s144-70 250 0"/></svg>
+      </div>
+      <div class="finale-copy reveal-up">
+        <p class="eyebrow">Sua primeira missão começa aqui</p>
+        <h2 id="finale-title">Abra o NefroQuest.<br><em>O próximo acerto é seu.</em></h2>
+        <p>Na tela inicial, você escolhe entre criar uma conta ou explorar como visitante.</p>
+        <a class="btn btn-primary btn-large" href="https://nefroquest.com" data-cta="finale">
+          <span>Abrir o NefroQuest</span>
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <span class="finale-note">Sem cartão para começar · Modo visitante disponível</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 36 36" width="28" height="28"><path d="M18 3.5c5.7 3.4 9.2 3.5 12.5 2.2-1 10-4.7 18.2-12.5 27.1C10.2 23.9 6.5 15.7 5.5 5.7 8.8 7 12.3 6.9 18 3.5Z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M18 10.2c2.7 1.8 4 4.2 4 7.1 0 3.8-1.8 6.7-4 9.6-2.2-2.9-4-5.8-4-9.6 0-2.9 1.3-5.3 4-7.1Z" fill="currentColor" opacity=".88"/></svg>
+      </span>
+      <div><strong>NefroQuest</strong><span>Nefrologia em modo conquista.</span></div>
+    </div>
+    <div class="footer-links">
+      <a href="https://nefroquest.com">Aplicativo</a>
+      <a href="https://nefroquest.com/privacy-policy.html">Privacidade</a>
+      <a href="mailto:contato@nefroquest.com">Contato</a>
+    </div>
+    <p>© 2026 NefroQuest · Conteúdo para fins educacionais.</p>
+  </footer>
+
+  <a class="mobile-cta" href="https://nefroquest.com" data-cta="mobile">Começar grátis <span aria-hidden="true">→</span></a>
+
+  <script src="script.js"></script>
+</body>
+</html>
