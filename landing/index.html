@@ -346,47 +346,99 @@
 
     <section class="classes atlas-section" id="classes" aria-labelledby="classes-title">
       <div class="section-intro">
-        <p class="section-label reveal-up"><span>IV</span> Escolha seu caminho</p>
+        <p class="section-label reveal-up"><span>IV</span> Desenvolva seu personagem</p>
         <div class="section-copy reveal-up" style="--i:1">
-          <h2 id="classes-title">A motivação ganha <em>rosto, classe e história.</em></h2>
-          <p>Três arquétipos transformam seu avanço em identidade. Você escolhe o começo; cada acerto conduz a evolução.</p>
+          <h2 id="classes-title">Seu conhecimento evolui. <em>Seu personagem também.</em></h2>
+          <p>Escolha uma classe e acompanhe 10 estágios de evolução visual. Conforme seu domínio cresce, equipamentos, presença e poder tornam o progresso impossível de ignorar.</p>
         </div>
       </div>
 
+      <div class="class-evolution-summary reveal-up" style="--i:2" aria-label="Sistema de evolução dos personagens">
+        <span><b>10</b><small>estágios por classe</small></span>
+        <i aria-hidden="true"></i>
+        <span><b>30</b><small>formas de evolução</small></span>
+        <i aria-hidden="true"></i>
+        <span><b>1</b><small>jornada de domínio</small></span>
+      </div>
+
       <div class="class-gallery">
-        <article class="class-profile reveal-up" style="--class-color:87,168,233">
-          <div class="class-medallion">
-            <img src="assets/guerreiro.png" alt="Guerreiro Glomerular" loading="lazy" width="230" height="230">
-            <span aria-hidden="true">G</span>
+        <article class="class-profile reveal-up" style="--class-color:87,168,233" tabindex="0" aria-label="Evolução do Guerreiro Glomerular, do nível 1 ao nível 10">
+          <div class="class-evolution">
+            <figure class="evolution-stage evolution-stage--one">
+              <img src="assets/guerreiro-n1.png" alt="Guerreiro Glomerular no nível 1, iniciando como estudante no laboratório" loading="lazy" width="230" height="230">
+              <figcaption><b>01</b><span>Despertar</span></figcaption>
+            </figure>
+            <figure class="evolution-stage evolution-stage--five">
+              <img src="assets/guerreiro-n5.png" alt="Guerreiro Glomerular no nível 5, em domínio clínico crescente" loading="lazy" width="230" height="230">
+              <figcaption><b>05</b><span>Ascensão</span></figcaption>
+            </figure>
+            <figure class="evolution-stage evolution-stage--ten">
+              <img src="assets/guerreiro.png" alt="Guerreiro Glomerular no nível 10, em sua forma de maestria" loading="lazy" width="230" height="230">
+              <figcaption><b>10</b><span>Maestria</span></figcaption>
+            </figure>
+            <span class="evolution-flow" aria-hidden="true"><i></i></span>
           </div>
-          <p class="class-path">Via glomerular</p>
-          <h3>Guerreiro Glomerular</h3>
-          <p>Glomerulonefrites, síndromes nefrótica e nefrítica, biópsia e imunossupressão. Para quem encara os casos que assustam a enfermaria.</p>
-          <ul><li>Síndrome nefrótica</li><li>GNRP</li><li>Nefrite lúpica</li></ul>
+          <div class="class-profile__body">
+            <p class="class-path">Via glomerular</p>
+            <h3>Guerreiro Glomerular</h3>
+            <p class="class-mantra">Defenda a barreira. Domine a complexidade glomerular.</p>
+            <p class="class-detail">Glomerulonefrites, síndromes nefrótica e nefrítica, biópsia e imunossupressão.</p>
+            <ul><li>Síndrome nefrótica</li><li>GNRP</li><li>Nefrite lúpica</li></ul>
+          </div>
         </article>
 
-        <article class="class-profile reveal-up" style="--class-color:176,111,222;--i:1">
-          <div class="class-medallion">
-            <img src="assets/maga.jpg" alt="Maga Metabólica" loading="lazy" width="230" height="230">
-            <span aria-hidden="true">M</span>
+        <article class="class-profile reveal-up" style="--class-color:176,111,222;--i:1" tabindex="0" aria-label="Evolução da Maga Metabólica, do nível 1 ao nível 10">
+          <div class="class-evolution">
+            <figure class="evolution-stage evolution-stage--one">
+              <img src="assets/maga-n1.jpg" alt="Maga Metabólica no nível 1, estudando o equilíbrio dos fluidos" loading="lazy" width="230" height="230">
+              <figcaption><b>01</b><span>Despertar</span></figcaption>
+            </figure>
+            <figure class="evolution-stage evolution-stage--five">
+              <img src="assets/maga-n5.jpg" alt="Maga Metabólica no nível 5, controlando o equilíbrio metabólico" loading="lazy" width="230" height="230">
+              <figcaption><b>05</b><span>Ascensão</span></figcaption>
+            </figure>
+            <figure class="evolution-stage evolution-stage--ten">
+              <img src="assets/maga.jpg" alt="Maga Metabólica no nível 10, em sua forma de maestria" loading="lazy" width="230" height="230">
+              <figcaption><b>10</b><span>Maestria</span></figcaption>
+            </figure>
+            <span class="evolution-flow" aria-hidden="true"><i></i></span>
           </div>
-          <p class="class-path">Via metabólica</p>
-          <h3>Maga Metabólica</h3>
-          <p>Distúrbios hidroeletrolíticos, ácido-base e metabolismo ósseo-mineral. A precisão que transforma uma gasometria em diagnóstico.</p>
-          <ul><li>Sódio &amp; potássio</li><li>Ácido-base</li><li>Cálcio-fósforo</li></ul>
+          <div class="class-profile__body">
+            <p class="class-path">Via metabólica</p>
+            <h3>Maga Metabólica</h3>
+            <p class="class-mantra">Leia o equilíbrio invisível. Transforme números em decisão clínica.</p>
+            <p class="class-detail">Distúrbios hidroeletrolíticos, ácido-base e metabolismo ósseo-mineral.</p>
+            <ul><li>Sódio &amp; potássio</li><li>Ácido-base</li><li>Cálcio-fósforo</li></ul>
+          </div>
         </article>
 
-        <article class="class-profile reveal-up" style="--class-color:214,169,74;--i:2">
-          <div class="class-medallion">
-            <img src="assets/clerigo.jpg" alt="Clérigo Renal" loading="lazy" width="230" height="230">
-            <span aria-hidden="true">C</span>
+        <article class="class-profile reveal-up" style="--class-color:214,169,74;--i:2" tabindex="0" aria-label="Evolução do Clérigo Renal, do nível 1 ao nível 10">
+          <div class="class-evolution">
+            <figure class="evolution-stage evolution-stage--one">
+              <img src="assets/clerigo-n1.jpg" alt="Clérigo Renal no nível 1, iniciando a jornada de cuidado longitudinal" loading="lazy" width="230" height="230">
+              <figcaption><b>01</b><span>Despertar</span></figcaption>
+            </figure>
+            <figure class="evolution-stage evolution-stage--five">
+              <img src="assets/clerigo-n5.jpg" alt="Clérigo Renal no nível 5, ampliando seu domínio de proteção renal" loading="lazy" width="230" height="230">
+              <figcaption><b>05</b><span>Ascensão</span></figcaption>
+            </figure>
+            <figure class="evolution-stage evolution-stage--ten">
+              <img src="assets/clerigo.jpg" alt="Clérigo Renal no nível 10, em sua forma de maestria" loading="lazy" width="230" height="230">
+              <figcaption><b>10</b><span>Maestria</span></figcaption>
+            </figure>
+            <span class="evolution-flow" aria-hidden="true"><i></i></span>
           </div>
-          <p class="class-path">Via longitudinal</p>
-          <h3>Clérigo Renal</h3>
-          <p>DRC, terapia renal substitutiva e transplante. O cuidado longitudinal do paciente — da prevenção ao pós-transplante.</p>
-          <ul><li>DRC &amp; TRS</li><li>Hemodiálise</li><li>Transplante</li></ul>
+          <div class="class-profile__body">
+            <p class="class-path">Via longitudinal</p>
+            <h3>Clérigo Renal</h3>
+            <p class="class-mantra">Faça da constância uma forma de proteção.</p>
+            <p class="class-detail">DRC, terapia renal substitutiva, diálise e transplante.</p>
+            <ul><li>DRC &amp; TRS</li><li>Hemodiálise</li><li>Transplante</li></ul>
+          </div>
         </article>
       </div>
+
+      <p class="class-journey-note reveal-up"><span aria-hidden="true">✦</span> Sua classe dá identidade à jornada sem limitar o conteúdo: você continua explorando toda a nefrologia.</p>
     </section>
 
     <section class="boss" id="confronto" aria-labelledby="boss-title" data-flow-scene>
