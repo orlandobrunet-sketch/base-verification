@@ -1,5 +1,7 @@
 # NefroQuest — Visual Style Guide
 
+> **Evolução da identidade:** novas superfícies da landing e o futuro redesenho das telas internas seguem o [Sistema Visual Lúmen Vivo v1](design/NQ_LUMEN_VISUAL_SYSTEM_V1.md). Este guia continua como referência do universo RPG médico existente; o Lúmen Vivo passa a orientar composição, movimento, estados e a nova tipografia de produto.
+
 ## Identidade
 
 **RPG medieval médico premium.** Sério, gamificado, não infantil. O visual comunica competência clínica e imersão épica ao mesmo tempo. Referência de tom: um livro de magia de medicina do século XV, não um app de quiz SaaS.

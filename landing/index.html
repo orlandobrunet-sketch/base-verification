@@ -21,11 +21,11 @@
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:url" content="https://nefroquest-web.vercel.app/">
-  <meta property="og:image" content="https://nefroquest-web.vercel.app/assets/battle_final.webp">
+  <meta property="og:image" content="https://nefroquest-web.vercel.app/assets/nefromancer-lumen-v2.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="NefroQuest — Nefrologia em modo conquista">
   <meta name="twitter:description" content="Para estudantes, residentes e nefrologistas: entenda o erro, revise com método e acompanhe a evidência.">
-  <meta name="twitter:image" content="https://nefroquest-web.vercel.app/assets/battle_final.webp">
+  <meta name="twitter:image" content="https://nefroquest-web.vercel.app/assets/nefromancer-lumen-v2.jpg">
 
   <script type="application/ld+json">
   {
@@ -53,12 +53,11 @@
   <header class="nav" id="nav">
     <a class="nav-brand" href="#top" aria-label="NefroQuest — início">
       <span class="brand-mark" aria-hidden="true">
-        <svg class="nq-sigil" viewBox="0 0 82 64" width="60" height="48">
-          <path class="nq-sigil__capsule" d="M48.5 44.5C43.8 51.7 36.5 55.8 28.3 55.8 15 55.8 6.5 46.4 6.5 32 6.5 17.8 15.7 7.8 29.7 7.8 43.4 7.8 52.5 17 52.5 30.1 52.5 35.5 51.1 40.2 48.5 44.5"/>
-          <path class="nq-sigil__initial" d="M17.5 43V22.5C17.5 17.8 23.2 16.3 25.7 20.2L39.5 42V19.5"/>
-          <path class="nq-sigil__loop" d="M45.5 42.5C52.8 43.3 56.9 47.7 55.6 53.6 54.4 59.1 47.4 61.3 43 57.7 38.4 53.9 40 47.5 45.4 45.6 51.8 43.3 56.5 48.6 62.6 47.7 69 46.8 73.3 41.8 79 41.6"/>
-          <path class="nq-sigil__pulse" pathLength="1" d="M45.5 42.5C52.8 43.3 56.9 47.7 55.6 53.6 54.4 59.1 47.4 61.3 43 57.7 38.4 53.9 40 47.5 45.4 45.6 51.8 43.3 56.5 48.6 62.6 47.7 69 46.8 73.3 41.8 79 41.6"/>
-          <circle class="nq-sigil__seed" cx="17.5" cy="22.5" r="2.4"/>
+        <svg class="lumen-mark" viewBox="0 0 76 56" width="58" height="43">
+          <path class="lumen-mark__capsule" d="M43.5 12.5C37 5.8 25.2 4.3 16.8 9.4C7.8 14.8 5.1 26.8 10.4 35.7C15.5 44.1 26.4 47.4 35.4 43.2"/>
+          <path class="lumen-mark__flow" pathLength="1" d="M16 28.5C13.6 21 20.2 14.7 27.4 16.2C35.5 17.9 36.5 27.6 29.9 31C23.6 34.3 18.2 29.1 21.3 23.8C24.1 18.9 32.7 22.4 33.2 29.2C38 33 39 39 36.5 43.5C33.1 50 37.2 54 42.1 52.5C47.6 50.9 44.1 43.7 48.6 41.2C53.2 38.6 59.6 42.3 68 38.8"/>
+          <path class="lumen-mark__current" pathLength="1" d="M16 28.5C13.6 21 20.2 14.7 27.4 16.2C35.5 17.9 36.5 27.6 29.9 31C23.6 34.3 18.2 29.1 21.3 23.8C24.1 18.9 32.7 22.4 33.2 29.2C38 33 39 39 36.5 43.5C33.1 50 37.2 54 42.1 52.5C47.6 50.9 44.1 43.7 48.6 41.2C53.2 38.6 59.6 42.3 68 38.8"/>
+          <circle class="lumen-mark__particle" cx="16" cy="28.5" r="3"/>
         </svg>
       </span>
       <span class="nav-word"><b>Nefro</b><em>Quest</em></span>
@@ -102,8 +101,8 @@
           </ul>
         </div>
 
-        <div class="hero-lab reveal" style="--i:3" data-nephron-lab>
-          <div class="lab-readout" aria-hidden="true"><span>NQ / FLUXO VIVO</span><i>mova o cursor para explorar</i></div>
+        <div class="hero-lab reveal" style="--i:3" data-nephron-lab data-flow-stage="0">
+          <div class="lab-readout" aria-hidden="true"><span>Atlas de Maestria</span><i>conduza o Lúmen pelo ciclo</i></div>
           <div class="hero-atlas" data-nephron-atlas>
             <svg class="nephron-map" data-nephron viewBox="0 0 560 680" aria-hidden="true" focusable="false">
               <defs>
@@ -135,7 +134,12 @@
               <circle class="nephron-capsule nephron-capsule--inner" cx="165" cy="147" r="80"/>
               <path class="nephron-shadow" d="M78 148C61 80 110 45 165 67c47 19-39 82 18 105 57 22 89-46 43-81-50-38-135-3-123 66 11 59 121 43 149 94 32 60-14 103 8 171 18 56 81 82 109 21 30-65-18-102-41-53-22 49 17 131 75 146 52 14 52-47 53-84v158"/>
               <path class="nephron-path" data-nephron-path d="M78 148C61 80 110 45 165 67c47 19-39 82 18 105 57 22 89-46 43-81-50-38-135-3-123 66 11 59 121 43 149 94 32 60-14 103 8 171 18 56 81 82 109 21 30-65-18-102-41-53-22 49 17 131 75 146 52 14 52-47 53-84v158"/>
+              <path class="nephron-progress" data-nephron-progress pathLength="1" d="M78 148C61 80 110 45 165 67c47 19-39 82 18 105 57 22 89-46 43-81-50-38-135-3-123 66 11 59 121 43 149 94 32 60-14 103 8 171 18 56 81 82 109 21 30-65-18-102-41-53-22 49 17 131 75 146 52 14 52-47 53-84v158"/>
               <path class="nephron-flow" d="M78 148C61 80 110 45 165 67c47 19-39 82 18 105 57 22 89-46 43-81-50-38-135-3-123 66 11 59 121 43 149 94 32 60-14 103 8 171 18 56 81 82 109 21 30-65-18-102-41-53-22 49 17 131 75 146 52 14 52-47 53-84v158"/>
+              <g class="flow-event flow-event--filter" data-flow-event="0" transform="translate(96 117)"><circle r="19"/><circle r="30"/><path d="M-9 0h18M0-9v18"/></g>
+              <g class="flow-event flow-event--interpret" data-flow-event="1" transform="translate(248 246)"><path d="M-25 16C-10 8-7-7 0-18M25 16C10 8 7-7 0-18"/><circle cy="-18" r="6"/></g>
+              <g class="flow-event flow-event--retain" data-flow-event="2" transform="translate(332 450)"><path d="M-25 0a25 25 0 1 0 8-18M-17-18l-2 12 12-2"/><circle r="5"/></g>
+              <g class="flow-event flow-event--mastery" data-flow-event="3" transform="translate(456 540)"><path d="M0-28 10-10 28 0 10 10 0 28-10 10-28 0-10-10Z"/><circle r="7"/></g>
               <g class="nephron-node nephron-node--one is-active" data-nephron-node="0"><circle cx="96" cy="117" r="7"/></g>
               <g class="nephron-node nephron-node--two" data-nephron-node="1"><circle cx="248" cy="246" r="7"/></g>
               <g class="nephron-node nephron-node--three" data-nephron-node="2"><circle cx="332" cy="450" r="7"/></g>
@@ -152,17 +156,21 @@
               <span class="ion ion--ca">Ca²⁺</span>
               <span class="ion ion--mg">Mg²⁺</span>
             </div>
-            <div class="flow-node-controls" role="group" aria-label="Etapas do Fluxo Vivo">
-              <button type="button" class="flow-node-control is-current" data-flow-stage="0" data-node-x="96" data-node-y="117" aria-pressed="true" aria-label="Filtra, etapa 1 de 4: uma questão revela o que você já domina"><span>1</span></button>
-              <button type="button" class="flow-node-control" data-flow-stage="1" data-node-x="248" data-node-y="246" aria-pressed="false" aria-label="Interpreta, etapa 2 de 4: o comentário encontra o ponto que muda a decisão" tabindex="-1"><span>2</span></button>
-              <button type="button" class="flow-node-control" data-flow-stage="2" data-node-x="332" data-node-y="450" aria-pressed="false" aria-label="Retém, etapa 3 de 4: o conteúdo volta antes que a memória apague" tabindex="-1"><span>3</span></button>
-              <button type="button" class="flow-node-control" data-flow-stage="3" data-node-x="456" data-node-y="540" aria-pressed="false" aria-label="Conquista, etapa 4 de 4: seu domínio e seu personagem avançam juntos" tabindex="-1"><span>4</span></button>
-            </div>
-            <div class="flow-insight" data-flow-insight aria-live="off">
-              <span data-flow-kicker>01 · Filtra</span>
-              <strong data-flow-title>Questão comentada</strong>
-              <small data-flow-copy>Uma questão revela o que você já domina.</small>
-            </div>
+          </div>
+          <div class="flow-deck" id="flow-deck" data-flow-insight aria-live="off">
+            <div class="flow-deck__index"><span data-flow-kicker>01 · Filtra</span><i data-flow-count>1 / 4</i></div>
+            <div class="mastery-runes" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            <div class="flow-deck__glyph" aria-hidden="true"><i></i><i></i><b></b></div>
+            <strong data-flow-title>O desafio encontra o seu momento.</strong>
+            <small data-flow-copy>O motor lê seu desempenho por tema e calibra a próxima questão.</small>
+            <div class="flow-deck__proof"><span data-flow-mechanism>IRT · calibração por categoria</span><b data-flow-reward>Runa da decisão</b></div>
+            <div class="flow-deck__meter" aria-hidden="true"><i></i></div>
+          </div>
+          <div class="flow-node-controls" role="group" aria-label="Etapas do Atlas de Maestria">
+            <button type="button" class="flow-node-control is-current" data-flow-stage="0" data-node-x="96" data-node-y="117" aria-pressed="true" aria-controls="flow-deck" aria-label="Filtra, etapa 1 de 4: o desafio encontra o seu momento"><span>01</span><i aria-hidden="true"></i><b>Filtra</b></button>
+            <button type="button" class="flow-node-control" data-flow-stage="1" data-node-x="248" data-node-y="246" aria-pressed="false" aria-controls="flow-deck" aria-label="Interpreta, etapa 2 de 4: o erro revela onde decidir" tabindex="-1"><span>02</span><i aria-hidden="true"></i><b>Interpreta</b></button>
+            <button type="button" class="flow-node-control" data-flow-stage="2" data-node-x="332" data-node-y="450" aria-pressed="false" aria-controls="flow-deck" aria-label="Retém, etapa 3 de 4: o conhecimento volta antes de apagar" tabindex="-1"><span>03</span><i aria-hidden="true"></i><b>Retém</b></button>
+            <button type="button" class="flow-node-control" data-flow-stage="3" data-node-x="456" data-node-y="540" aria-pressed="false" aria-controls="flow-deck" aria-label="Conquista, etapa 4 de 4: seu domínio clínico ganha forma" tabindex="-1"><span>04</span><i aria-hidden="true"></i><b>Conquista</b></button>
           </div>
         </div>
       </div>
@@ -204,7 +212,9 @@
 
       <div class="route reveal-up" style="--i:2">
         <svg class="route-line" viewBox="0 0 1100 190" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M40 98C175 28 212 166 340 98S505 28 620 98s176 70 282 0 128-38 158 0"/>
+          <path class="route-bed" d="M40 98C175 28 212 166 340 98S505 28 620 98s176 70 282 0 128-38 158 0"/>
+          <path class="route-current" pathLength="1" d="M40 98C175 28 212 166 340 98S505 28 620 98s176 70 282 0 128-38 158 0"/>
+          <circle class="route-runner" r="5"><animateMotion dur="8s" repeatCount="indefinite" path="M40 98C175 28 212 166 340 98S505 28 620 98s176 70 282 0 128-38 158 0"/></circle>
         </svg>
         <article class="route-step">
           <span class="route-number">01</span>
@@ -255,7 +265,7 @@
               <circle class="oracle-core__particle oracle-core__particle--b" cx="126" cy="80" r="2.5"/>
               <path class="oracle-core__axis" d="M90 8v18M90 154v18M8 90h18M154 90h18"/>
             </svg>
-            <span class="oracle-core__monogram">NQ</span>
+            <span class="oracle-core__lumen"><i></i></span>
           </div>
           <div>
             <span class="mono-label">Recurso educacional</span>
@@ -274,14 +284,14 @@
       <div class="chat reveal-up" style="--i:2" aria-describedby="oracle-note">
         <div class="chat-chrome">
           <span><i aria-hidden="true"></i> Exemplo de interação</span>
-          <span class="chat-id">NQ / SÓDIO</span>
+          <span class="chat-id">CASO / SÓDIO</span>
         </div>
         <div class="chat-question">
           <span class="chat-tag">Questão · Distúrbios do sódio</span>
           <p>Paciente com hiponatremia hipovolêmica. Você respondeu: <strong>restrição hídrica</strong>.</p>
         </div>
         <div class="chat-bubble" data-line="1">
-          <span class="chat-who"><span class="chat-avatar" aria-hidden="true">NQ</span> Oráculo dos Néfrons</span>
+          <span class="chat-who"><span class="chat-avatar" aria-hidden="true"><i></i></span> Oráculo dos Néfrons</span>
           <p>Cuidado — aqui está a armadilha. Você tratou como se fosse <strong>SIADH</strong>, mas o paciente está <em>hipovolêmico</em>. O corpo dele retém sódio e água por depleção de volume.</p>
         </div>
         <div class="chat-bubble" data-line="2">
@@ -349,10 +359,10 @@
             <p>Explicações e referências acompanham as questões para aproximar o treino da linguagem de provas, diretrizes e estudos.</p>
           </div>
           <div class="method-visual method-visual--refs" aria-hidden="true">
-            <span><small>GUIDELINE</small><b>38 diretrizes</b></span>
-            <span><small>REFERENCE</small><b>198 comentadas</b></span>
-            <span><small>ARTICLE</small><b>191 resumos</b></span>
-            <i></i>
+            <span class="evidence-item"><i></i><b>38</b><span><small>Diretrizes</small><em>acompanhadas</em></span></span>
+            <span class="evidence-item"><i></i><b>198</b><span><small>Referências</small><em>comentadas</em></span></span>
+            <span class="evidence-item"><i></i><b>191</b><span><small>Artigos</small><em>resumidos</em></span></span>
+            <span class="evidence-current"><i></i></span>
           </div>
         </article>
       </div>
@@ -456,6 +466,12 @@
     </section>
 
     <section class="boss" id="confronto" aria-labelledby="boss-title" data-flow-scene>
+      <img class="boss-backdrop" src="assets/nefromancer-lumen-v2.jpg" alt="" loading="lazy" width="1672" height="941">
+      <svg class="boss-current" viewBox="0 0 1440 760" preserveAspectRatio="none" aria-hidden="true">
+        <defs><linearGradient id="boss-flow-gradient" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#57bfc8" stop-opacity="0"/><stop offset=".42" stop-color="#57bfc8"/><stop offset=".68" stop-color="#8050a6"/><stop offset="1" stop-color="#b678db" stop-opacity="0"/></linearGradient></defs>
+        <path class="boss-current__bed" d="M-80 570C180 470 286 620 480 530s294-248 474-190 220 254 570 92"/>
+        <path class="boss-current__flow" d="M-80 570C180 470 286 620 480 530s294-248 474-190 220 254 570 92"/>
+      </svg>
       <div class="boss-shell">
         <div class="boss-copy">
           <p class="boss-label reveal-up"><span>V</span> O confronto final</p>
@@ -467,15 +483,8 @@
           </a>
         </div>
         <div class="boss-stage" aria-hidden="true">
-          <div class="boss-portal boss-portal--outer"></div>
-          <div class="boss-portal boss-portal--middle"></div>
-          <div class="boss-portal boss-portal--inner"></div>
-          <svg class="boss-current" viewBox="0 0 520 620" role="presentation">
-            <path d="M22 302C106 180 166 432 265 294S396 144 501 305"/>
-            <path d="M48 354C130 239 180 472 288 342S412 208 486 350"/>
-          </svg>
-          <img class="boss-character" src="assets/nefromancer.png" alt="" loading="lazy" width="640" height="640">
-          <span class="boss-stage__label">ARQUI-NEFROMANTE · NÍVEL FINAL</span>
+          <div class="boss-mastery-band"><span>Desafio de Maestria</span><b>100 acertos</b><i><em></em></i></div>
+          <span class="boss-stage__label">FLUXO CORROMPIDO · CONFRONTO FINAL</span>
         </div>
       </div>
     </section>
@@ -524,7 +533,7 @@
         <span class="flow-particle flow-particle--b">K⁺</span>
         <span class="flow-particle flow-particle--c">H₂O</span>
         <span class="flow-particle flow-particle--d">HCO₃⁻</span>
-        <div class="finale-core"><i></i><b>NQ</b></div>
+        <div class="finale-core"><i></i><span class="finale-lumen"><b></b></span></div>
       </div>
       <div class="finale-copy reveal-up">
         <p class="eyebrow">Portal do próximo acerto</p>
@@ -542,7 +551,7 @@
   <footer class="footer">
     <div class="footer-brand">
       <span class="brand-mark" aria-hidden="true">
-        <svg class="nq-sigil" viewBox="0 0 82 64" width="54" height="42"><path class="nq-sigil__capsule" d="M48.5 44.5C43.8 51.7 36.5 55.8 28.3 55.8 15 55.8 6.5 46.4 6.5 32 6.5 17.8 15.7 7.8 29.7 7.8 43.4 7.8 52.5 17 52.5 30.1 52.5 35.5 51.1 40.2 48.5 44.5"/><path class="nq-sigil__initial" d="M17.5 43V22.5C17.5 17.8 23.2 16.3 25.7 20.2L39.5 42V19.5"/><path class="nq-sigil__loop" d="M45.5 42.5C52.8 43.3 56.9 47.7 55.6 53.6 54.4 59.1 47.4 61.3 43 57.7 38.4 53.9 40 47.5 45.4 45.6 51.8 43.3 56.5 48.6 62.6 47.7 69 46.8 73.3 41.8 79 41.6"/><path class="nq-sigil__pulse" pathLength="1" d="M45.5 42.5C52.8 43.3 56.9 47.7 55.6 53.6 54.4 59.1 47.4 61.3 43 57.7 38.4 53.9 40 47.5 45.4 45.6 51.8 43.3 56.5 48.6 62.6 47.7 69 46.8 73.3 41.8 79 41.6"/><circle class="nq-sigil__seed" cx="17.5" cy="22.5" r="2.4"/></svg>
+        <svg class="lumen-mark" viewBox="0 0 76 56" width="48" height="36"><path class="lumen-mark__capsule" d="M43.5 12.5C37 5.8 25.2 4.3 16.8 9.4C7.8 14.8 5.1 26.8 10.4 35.7C15.5 44.1 26.4 47.4 35.4 43.2"/><path class="lumen-mark__flow" pathLength="1" d="M16 28.5C13.6 21 20.2 14.7 27.4 16.2C35.5 17.9 36.5 27.6 29.9 31C23.6 34.3 18.2 29.1 21.3 23.8C24.1 18.9 32.7 22.4 33.2 29.2C38 33 39 39 36.5 43.5C33.1 50 37.2 54 42.1 52.5C47.6 50.9 44.1 43.7 48.6 41.2C53.2 38.6 59.6 42.3 68 38.8"/><path class="lumen-mark__current" pathLength="1" d="M16 28.5C13.6 21 20.2 14.7 27.4 16.2C35.5 17.9 36.5 27.6 29.9 31C23.6 34.3 18.2 29.1 21.3 23.8C24.1 18.9 32.7 22.4 33.2 29.2C38 33 39 39 36.5 43.5C33.1 50 37.2 54 42.1 52.5C47.6 50.9 44.1 43.7 48.6 41.2C53.2 38.6 59.6 42.3 68 38.8"/><circle class="lumen-mark__particle" cx="16" cy="28.5" r="3"/></svg>
       </span>
       <div><strong>NefroQuest</strong><span>Nefrologia em modo conquista.</span></div>
     </div>

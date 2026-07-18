@@ -5,9 +5,11 @@
   var root = document.documentElement;
   var nav = document.getElementById('nav');
   var mobileCta = document.querySelector('.mobile-cta');
+  var hero = document.querySelector('.hero');
   var boss = document.querySelector('.boss');
   var finale = document.querySelector('.finale');
   var reduceQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var mobileViewport = window.matchMedia('(max-width: 640px)');
   var reduced = reduceQuery.matches;
   var bossVisible = false;
   var finaleVisible = false;
@@ -40,19 +42,24 @@
     var nephronAtlas = heroLab.querySelector('[data-nephron-atlas]');
     var nephron = heroLab.querySelector('[data-nephron]');
     var nephronPath = heroLab.querySelector('[data-nephron-path]');
+    var nephronProgress = heroLab.querySelector('[data-nephron-progress]');
     var nephronProbe = heroLab.querySelector('[data-nephron-probe]');
     var nephronProbeHalo = heroLab.querySelector('[data-nephron-probe-halo]');
     var nephronNodes = Array.prototype.slice.call(heroLab.querySelectorAll('[data-nephron-node]'));
+    var flowEvents = Array.prototype.slice.call(heroLab.querySelectorAll('[data-flow-event]'));
     var flowControls = Array.prototype.slice.call(heroLab.querySelectorAll('[data-flow-stage]'));
     var flowInsight = heroLab.querySelector('[data-flow-insight]');
     var flowKicker = heroLab.querySelector('[data-flow-kicker]');
     var flowTitle = heroLab.querySelector('[data-flow-title]');
     var flowCopy = heroLab.querySelector('[data-flow-copy]');
+    var flowCount = heroLab.querySelector('[data-flow-count]');
+    var flowMechanism = heroLab.querySelector('[data-flow-mechanism]');
+    var flowReward = heroLab.querySelector('[data-flow-reward]');
     var flowStages = [
-      { kicker: '01 · Filtra', title: 'Questão comentada', copy: 'Uma questão revela o que você já domina.' },
-      { kicker: '02 · Interpreta', title: 'Ponto decisivo', copy: 'O comentário encontra o ponto que muda a decisão.' },
-      { kicker: '03 · Retém', title: 'Revisão adaptativa', copy: 'O conteúdo volta antes que a memória apague.' },
-      { kicker: '04 · Conquista', title: 'Evolução visível', copy: 'Seu domínio e seu personagem avançam juntos.' }
+      { kicker: '01 · Filtra', title: 'O desafio encontra o seu momento.', copy: 'O motor lê seu desempenho por tema e calibra a próxima questão.', mechanism: 'IRT · calibração por categoria', reward: 'Runa da decisão' },
+      { kicker: '02 · Interpreta', title: 'O erro revela onde decidir.', copy: 'O comentário compara sua escolha ao ponto que muda o raciocínio.', mechanism: 'Comentário · Oráculo no contexto', reward: 'Runa do discernimento' },
+      { kicker: '03 · Retém', title: 'O conhecimento volta antes de apagar.', copy: 'A revisão reaparece no intervalo certo, priorizando suas lacunas.', mechanism: 'FSRS · revisão espaçada', reward: 'Runa da memória' },
+      { kicker: '04 · Conquista', title: 'Seu domínio clínico ganha forma.', copy: 'XP, classe e equipamentos revelam o que você domina — e o que ainda falta.', mechanism: 'Mapa de domínio · progressão RPG', reward: 'Brasão de maestria' }
     ];
     var stageProgress = [.07, .34, .64, .92];
     var pathLength = nephronPath && typeof nephronPath.getTotalLength === 'function' ? nephronPath.getTotalLength() : 0;
@@ -64,7 +71,6 @@
     var heroFlowFrame = 0;
     var heroVisible = true;
     var userHasInteracted = false;
-    var introTimers = [];
 
     function buildPathSamples() {
       if (!pathLength) return;
@@ -92,18 +98,6 @@
       });
     }
 
-    function svgPointToAtlas(x, y, matrix, atlasRect) {
-      if (!nephron || !nephronAtlas || typeof nephron.createSVGPoint !== 'function') return null;
-      matrix = matrix || nephron.getScreenCTM();
-      if (!matrix) return null;
-      var svgPoint = nephron.createSVGPoint();
-      svgPoint.x = x;
-      svgPoint.y = y;
-      var screenPoint = svgPoint.matrixTransform(matrix);
-      atlasRect = atlasRect || nephronAtlas.getBoundingClientRect();
-      return { x: screenPoint.x - atlasRect.left, y: screenPoint.y - atlasRect.top, width: atlasRect.width, height: atlasRect.height };
-    }
-
     function clientPointToSvg(clientX, clientY) {
       if (!nephron || typeof nephron.createSVGPoint !== 'function') return null;
       var matrix = nephron.getScreenCTM();
@@ -123,25 +117,7 @@
         element.setAttribute('cx', point.x.toFixed(2));
         element.setAttribute('cy', point.y.toFixed(2));
       });
-    }
-
-    function positionFlowUi() {
-      if (!nephronAtlas || !nephron || selectedStage < 0) return;
-      var matrix = nephron.getScreenCTM();
-      if (!matrix) return;
-      var atlasRect = nephronAtlas.getBoundingClientRect();
-      flowControls.forEach(function (control) {
-        var point = svgPointToAtlas(Number(control.dataset.nodeX), Number(control.dataset.nodeY), matrix, atlasRect);
-        if (!point) return;
-        control.style.left = point.x.toFixed(1) + 'px';
-        control.style.top = point.y.toFixed(1) + 'px';
-      });
-      var anchorPoint = nephronPath.getPointAtLength(pathLength * stageProgress[selectedStage]);
-      var anchor = svgPointToAtlas(anchorPoint.x, anchorPoint.y, matrix, atlasRect);
-      if (!anchor || !flowInsight) return;
-      flowInsight.style.setProperty('--insight-x', anchor.x.toFixed(1) + 'px');
-      flowInsight.style.setProperty('--insight-y', Math.max(48, Math.min(anchor.height - 48, anchor.y)).toFixed(1) + 'px');
-      flowInsight.classList.toggle('is-left', anchor.x > anchor.width * .62);
+      if (nephronProgress) nephronProgress.style.strokeDasharray = bounded.toFixed(3) + ' 1';
     }
 
     function nearestStageFor(progress) {
@@ -163,6 +139,9 @@
       if (flowKicker) flowKicker.textContent = stage.kicker;
       if (flowTitle) flowTitle.textContent = stage.title;
       if (flowCopy) flowCopy.textContent = stage.copy;
+      if (flowCount) flowCount.textContent = (index + 1) + ' / ' + flowStages.length;
+      if (flowMechanism) flowMechanism.textContent = stage.mechanism;
+      if (flowReward) flowReward.textContent = stage.reward;
       flowInsight.classList.remove('is-changing');
       void flowInsight.offsetWidth;
       flowInsight.classList.add('is-changing');
@@ -176,6 +155,9 @@
       nephronNodes.forEach(function (node, nodeIndex) {
         node.classList.toggle('is-active', nodeIndex === selected);
       });
+      flowEvents.forEach(function (eventNode, eventIndex) {
+        eventNode.classList.toggle('is-active', eventIndex === selected);
+      });
       flowControls.forEach(function (control, controlIndex) {
         var isCurrent = controlIndex === selected;
         control.classList.toggle('is-current', isCurrent);
@@ -185,7 +167,6 @@
       if (!preserveTarget) targetProgress = stageProgress[selected];
       if (changed) {
         updateInsight(selected);
-        positionFlowUi();
       }
       requestFlowFrame();
     }
@@ -193,8 +174,6 @@
     function cancelIntro() {
       if (userHasInteracted) return;
       userHasInteracted = true;
-      introTimers.forEach(window.clearTimeout);
-      introTimers = [];
     }
 
     function findClosestProgress(clientX, clientY) {
@@ -211,16 +190,22 @@
           closest = sample;
         }
       });
-      return closest.progress;
+      return shortest <= 7200 ? closest.progress : null;
     }
 
     function runFlowFrame() {
       heroFlowFrame = 0;
       if (!heroVisible || document.hidden) return;
       if (pendingPointer) {
-        targetProgress = findClosestProgress(pendingPointer.x, pendingPointer.y);
+        var closestProgress = findClosestProgress(pendingPointer.x, pendingPointer.y);
         pendingPointer = null;
-        selectStage(nearestStageFor(targetProgress), true);
+        if (closestProgress !== null) {
+          nephronAtlas.classList.add('is-tracing');
+          targetProgress = closestProgress;
+          selectStage(nearestStageFor(targetProgress), true);
+        } else {
+          nephronAtlas.classList.remove('is-tracing');
+        }
       }
       var distance = targetProgress - currentProgress;
       currentProgress = reduced ? targetProgress : currentProgress + distance * .16;
@@ -237,7 +222,6 @@
       nephronAtlas.addEventListener('pointermove', function (event) {
         if (reduced || event.pointerType === 'touch') return;
         cancelIntro();
-        nephronAtlas.classList.add('is-tracing');
         pendingPointer = { x: event.clientX, y: event.clientY };
         requestFlowFrame();
       });
@@ -270,12 +254,6 @@
 
     buildPathSamples();
     selectStage(0, false);
-    window.requestAnimationFrame(positionFlowUi);
-    if ('ResizeObserver' in window && nephronAtlas) {
-      new ResizeObserver(positionFlowUi).observe(nephronAtlas);
-    } else {
-      window.addEventListener('resize', positionFlowUi, { passive: true });
-    }
 
     if ('IntersectionObserver' in window) {
       var heroLabObserver = new IntersectionObserver(function (entries) {
@@ -290,13 +268,6 @@
       if (!document.hidden && heroVisible) requestFlowFrame();
     });
 
-    if (!reduced) {
-      [1, 2, 3].forEach(function (stage, index) {
-        introTimers.push(window.setTimeout(function () {
-          if (!userHasInteracted && heroVisible) selectStage(stage, false);
-        }, 1350 + index * 1250));
-      });
-    }
   }
 
   /* Simulação do motor adaptativo: um controle real, não uma precisão fingida. */
@@ -333,10 +304,21 @@
   }
 
   /* Sticky navigation, reading progress and mobile action. */
+  function isInViewport(section) {
+    if (!section) return false;
+    var bounds = section.getBoundingClientRect();
+    return bounds.bottom > 0 && bounds.top < window.innerHeight;
+  }
+
   function updateScrollState() {
     var y = window.scrollY || window.pageYOffset;
     var max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
     var progress = Math.min(1, Math.max(0, y / max));
+    var immersiveSceneVisible = false;
+
+    if (mobileCta && mobileViewport.matches) {
+      immersiveSceneVisible = [hero, boss, finale].some(isInViewport);
+    }
 
     if (nav) {
       nav.classList.toggle('is-stuck', y > 36);
@@ -344,7 +326,7 @@
     }
 
     if (mobileCta) {
-      mobileCta.classList.toggle('is-visible', y > window.innerHeight * 0.72 && !bossVisible && !finaleVisible);
+      mobileCta.classList.toggle('is-visible', y > window.innerHeight * 0.72 && !immersiveSceneVisible && !bossVisible && !finaleVisible);
     }
 
     scrollTicking = false;
@@ -508,7 +490,7 @@
     });
   }
 
-  bindFlowScene(boss, boss && boss.querySelector('.boss-stage'), 22);
+  bindFlowScene(boss, boss && boss.querySelector('.boss-backdrop'), 7);
   bindFlowScene(finale, finale && finale.querySelector('.finale-portal'), 14);
 
   /* Hooks into analytics when the host page provides gtag/dataLayer. */
