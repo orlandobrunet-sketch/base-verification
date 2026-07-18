@@ -1,0 +1,163 @@
+{
+  "batch": "FARM-8E",
+  "change_type": "medical_editorial",
+  "expected_version": "12.88",
+  "allowed_files": [
+    "data/topics.js",
+    "data/refs.js",
+    "docs/editorial/review-batches/FARM-8E.json",
+    "index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "2d9f251a": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NÃO DECISIVA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      },
+      "merge_target_qid": "6a19aece"
+    },
+    "8b80b0a9": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada com pequenos ajustes",
+        "publication": "LIBERADA"
+      }
+    },
+    "985d735c": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada com pequenos ajustes",
+        "publication": "LIBERADA"
+      }
+    },
+    "1f962c0e": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada com pequenos ajustes",
+        "publication": "LIBERADA"
+      }
+    },
+    "17dc6d7e": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada com pequenos ajustes",
+        "publication": "LIBERADA"
+      }
+    },
+    "805733f8": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada com pequenos ajustes",
+        "publication": "LIBERADA"
+      }
+    },
+    "47774628": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NÃO DECISIVA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      },
+      "merge_target_qid": "805733f8"
+    },
+    "446193df": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NÃO DECISIVA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      },
+      "merge_target_qid": "b35be598"
+    },
+    "b35be598": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada com pequenos ajustes",
+        "publication": "LIBERADA"
+      }
+    },
+    "6a19aece": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada com pequenos ajustes",
+        "publication": "LIBERADA"
+      }
+    },
+    "db25ef93": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada com pequenos ajustes",
+        "publication": "LIBERADA"
+      }
+    },
+    "d0e61e5e": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NÃO DECISIVA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      },
+      "merge_target_qid": "6a19aece"
+    }
+  },
+  "expected_question_delta": -4,
+  "refs_policy": "declared",
+  "references": {
+    "ukka_hyperkalemia_2023": {
+      "action": "add",
+      "evidence_role": "specific guideline for acute hyperkalaemia treatment sequence, IV calcium, insulin-glucose, salbutamol and monitoring"
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  }
+}
