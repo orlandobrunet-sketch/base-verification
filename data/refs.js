@@ -1070,10 +1070,10 @@ canvas_program:{
     url:"https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2780319",
     journal:"JAMA Intern Med 2021;181(1):81-92",
     ano:2021,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Bolus de solução hipertônica: risco MAIOR de hipercorreção que infusão contínua — orienta protocolo de correção da hiponatremia",icon:"🔬",
-    resumo:"ECR (n=178) comparando bolus de NaCl 3% (150 mL em 20 min, repetível até 3 vezes) vs infusão contínua de NaCl 3% em hiponatremia grave (<125 mEq/L ou sintomática ≤130). Hipercorreção (elevação >12 mEq/L em 24h ou >18 mEq/L em 48h) ocorreu em 23,6% no grupo bolus vs 10,7% na infusão contínua. Ambos foram eficazes na correção inicial, mas a infusão contínua permitiu controle mais fino.",
-    conclusao:"O SALSA questiona o uso irrestrito de bolus como protocolo-padrão: embora indicado na emergência sintomática aguda, o bolus repetido sem monitorização rigorosa aumenta o risco de hipercorreção e síndrome de desmielinização osmótica.",
-    curiosidade:"O bolus de NaCl 3% havia sido adotado amplamente com base em facilidade e eficácia sintomática rápida — o SALSA foi o primeiro RCT a mostrar que conveniência pode ter custo em segurança, retomando a discussão de protocolos individualizados."
+    impacto:"Bolus intermitente de NaCl 3% vs infusão contínua: eficácia e segurança semelhantes, sem maior risco de hipercorreção no SALSA",icon:"🔬",
+    resumo:"ECR multicêntrico (n=178) comparou bolus intermitente rápido de NaCl 3% com infusão contínua lenta em hiponatremia sintomática. Hipercorreção ocorreu em 17,2% no grupo bolus e 24,2% no grupo infusão contínua, sem diferença estatisticamente significativa. Não houve casos de síndrome de desmielinização osmótica. O bolus teve menor necessidade de terapia de rebaixamento e maior chance de atingir correção inicial de 5 mmol/L em 1 hora na análise por intenção de tratar.",
+    conclusao:"O SALSA apoia que bolus intermitente e infusão contínua de NaCl 3% podem ser seguros sob protocolo e monitorização rigorosos; o ponto crítico não é a forma isolada de administração, mas evitar hipercorreção e intervir rapidamente se o sódio subir demais.",
+    curiosidade:"O ensaio ajuda a reconciliar diretrizes que favorecem bolus na hiponatremia sintomática: a conveniência do bolus não eliminou a necessidade de medir sódio seriado e estar pronto para rebaixar a natremia com água livre/desmopressina."
   },
   protect_trial:{
     label:"Rovin BH et al. — PROTECT (Lancet 2023)",
