@@ -4,12 +4,9 @@
 
   var root = document.documentElement;
   var nav = document.getElementById('nav');
-  var mobileCta = document.querySelector('.mobile-cta');
-  var hero = document.querySelector('.hero');
   var boss = document.querySelector('.boss');
   var finale = document.querySelector('.finale');
   var reduceQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-  var mobileViewport = window.matchMedia('(max-width: 640px)');
   var reduced = reduceQuery.matches;
   var bossVisible = false;
   var finaleVisible = false;
@@ -125,29 +122,6 @@
       if (nephronProgress) nephronProgress.style.strokeDasharray = bounded.toFixed(3) + ' 1';
     }
 
-    function focusCamera(progress) {
-      if (!nephronAtlas || !nephron || !nephronPath || !pathLength || reduced) return;
-      var atlasBounds = nephronAtlas.getBoundingClientRect();
-      var viewBox = nephron.viewBox && nephron.viewBox.baseVal;
-      if (!atlasBounds.width || !atlasBounds.height || !viewBox || !viewBox.width || !viewBox.height) return;
-      var point = nephronPath.getPointAtLength(pathLength * Math.max(0, Math.min(1, progress)));
-      var scale = Math.min(atlasBounds.width / viewBox.width, atlasBounds.height / viewBox.height);
-      var renderedWidth = viewBox.width * scale;
-      var renderedHeight = viewBox.height * scale;
-      var focusX = (atlasBounds.width - renderedWidth) / 2 + (point.x - viewBox.x) * scale;
-      var focusY = (atlasBounds.height - renderedHeight) / 2 + (point.y - viewBox.y) * scale;
-      nephronAtlas.style.setProperty('--camera-x', focusX.toFixed(1) + 'px');
-      nephronAtlas.style.setProperty('--camera-y', focusY.toFixed(1) + 'px');
-      nephronAtlas.style.setProperty('--camera-zoom', mobileViewport.matches ? '1.09' : '1.14');
-      nephronAtlas.classList.add('is-camera-focused');
-    }
-
-    function resetCamera() {
-      if (!nephronAtlas) return;
-      nephronAtlas.style.setProperty('--camera-zoom', '1');
-      nephronAtlas.classList.remove('is-camera-focused');
-    }
-
     function pauseLumen() {
       window.clearTimeout(lumenPulseTimer);
       lumenPulseTimer = 0;
@@ -259,15 +233,11 @@
           if (nextStage === selectedStage || nextStage < 0) {
             candidateStage = -1;
             candidateSince = 0;
-            if (nextStage >= 0) focusCamera(stageProgress[nextStage]);
-            else resetCamera();
           } else if (nextStage !== candidateStage) {
             candidateStage = nextStage;
             candidateSince = performance.now();
-            resetCamera();
           } else if (performance.now() - candidateSince >= 110) {
             selectStage(candidateStage, true);
-            focusCamera(stageProgress[candidateStage]);
             candidateStage = -1;
             candidateSince = 0;
           }
@@ -277,12 +247,10 @@
           targetProgress = stageProgress[selectedStage];
           candidateStage = -1;
           candidateSince = 0;
-          resetCamera();
         }
       }
       if (candidateStage >= 0 && performance.now() - candidateSince >= 110) {
         selectStage(candidateStage, true);
-        focusCamera(stageProgress[candidateStage]);
         candidateStage = -1;
         candidateSince = 0;
       }
@@ -310,7 +278,6 @@
         candidateStage = -1;
         candidateSince = 0;
         targetProgress = stageProgress[selectedStage];
-        resetCamera();
         requestFlowFrame();
       });
     }
@@ -319,7 +286,6 @@
       function activate(event) {
         cancelIntro();
         selectStage(index, false);
-        focusCamera(stageProgress[index]);
         pulseLumen(true);
         if (event && event.type === 'click') control.focus({ preventScroll: true });
       }
@@ -335,12 +301,6 @@
         else return;
         event.preventDefault();
         flowControls[next].focus();
-      });
-    });
-
-    heroLab.addEventListener('focusout', function () {
-      window.requestAnimationFrame(function () {
-        if (!heroLab.contains(document.activeElement)) resetCamera();
       });
     });
 
@@ -534,30 +494,14 @@
     reveals.forEach(reveal);
   }
 
-  /* Sticky navigation, reading progress and mobile action. */
-  function isInViewport(section) {
-    if (!section) return false;
-    var bounds = section.getBoundingClientRect();
-    return bounds.bottom > 0 && bounds.top < window.innerHeight;
-  }
-
+  /* Sticky navigation and reading progress. */
   function updateScrollState() {
     var y = window.scrollY || window.pageYOffset;
     var max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
     var progress = Math.min(1, Math.max(0, y / max));
-    var immersiveSceneVisible = false;
-
-    if (mobileCta && mobileViewport.matches) {
-      immersiveSceneVisible = [hero, boss, finale].some(isInViewport);
-    }
-
     if (nav) {
       nav.classList.toggle('is-stuck', y > 36);
       nav.style.setProperty('--scroll-progress', progress.toFixed(4));
-    }
-
-    if (mobileCta) {
-      mobileCta.classList.toggle('is-visible', y > window.innerHeight * 0.72 && !immersiveSceneVisible && !bossVisible && !finaleVisible);
     }
 
     scrollTicking = false;

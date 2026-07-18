@@ -22,13 +22,13 @@ O traço não é ornamento. Sempre deve comunicar estado, percurso ou consequên
 
 ### Wordmark Cauda Lúmen
 
-A assinatura principal não usa um emblema adjacente. O gesto de marca nasce do próprio `Q` itálico de `Quest`: uma única cauda controlada percorre a base da palavra e termina em um nó de maestria.
+A assinatura principal não usa um emblema adjacente. O gesto de marca nasce do próprio `Q` itálico de `Quest`: uma cauda capilar fina percorre a base da palavra sem tocar as letras e se organiza, depois do `t`, em um pequeno tufo glomerular.
 
 1. `Nefro` permanece em parchment;
 2. `Quest` e a cauda permanecem em dourado;
-3. o nó terminal recebe ciano como sinal de fluxo vivo.
+3. uma corrente ciano atravessa brevemente o capilar no hover ou foco, como sinal de fluxo vivo.
 
-A cauda deve ter uma única alça, permanecer contida na largura de `Quest` e funcionar em uma cor. No hover ou foco, apenas uma corrente curta percorre o gesto e é absorvida pelo nó. Não há movimento contínuo na marca. Quando necessário, a versão compacta deriva da própria cauda, sem criar um segundo símbolo. As letras NQ não devem ser usadas como monograma decorativo.
+A cauda deve permanecer abaixo da linha de base, preservar o espaço interno das letras e concentrar sua complexidade no tufo terminal. Ela precisa funcionar em uma cor e não usa ponto, círculo ou emblema destacado. No hover ou foco, apenas uma corrente curta percorre o gesto. Não há movimento contínuo na marca. Quando necessário, a versão compacta deriva da própria cauda, sem criar um segundo símbolo. As letras NQ não devem ser usadas como monograma decorativo.
 
 ## Semântica visual
 
@@ -90,9 +90,9 @@ Ambiente narrativo para chefes e provas de domínio. Personagem, chão, corrente
 O movimento deve ser prazeroso, legível e orientado pela intenção.
 
 - O cursor influencia o fluxo por proximidade, sem arrastar a interface inteira.
-- Ao alcançar uma câmara, uma lente de nefroscopia aproxima somente a anatomia local; o texto e os controles permanecem imóveis.
+- O Atlas permanece fixo durante a exploração; o cursor conduz apenas a sonda, a corrente e o estado das câmaras, preservando orientação espacial.
 - Conteúdo textual troca em pontos discretos e previsíveis.
-- Partículas percorrem o próprio lúmen e eletrólitos aparecem em uma legenda laboratorial fixa; nenhum elemento é ejetado do trajeto.
+- Partículas percorrem o próprio lúmen e eletrólitos aparecem como anotações laboratoriais estáveis junto ao túbulo; nenhum elemento é ejetado do trajeto.
 - Câmaras mudam cor e estado localmente, sem explodir, girar ou crescer para fora da anatomia.
 - Animações de ambiente pausam fora da tela.
 - Não iniciar tours automáticos que disputem atenção com leitura.

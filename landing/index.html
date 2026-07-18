@@ -52,7 +52,7 @@
 
   <header class="nav" id="nav">
     <a class="nav-brand" href="#top" aria-label="NefroQuest — início">
-      <span class="nav-word" aria-hidden="true"><b>Nefro</b><em><span class="wordmark-q">Q<svg class="wordmark-lumen" viewBox="0 0 104 26"><path class="wordmark-lumen__base" d="M3 3C9 4 10 18 20 19 30 20 34 8 25 8 17 8 19 16 30 18 47 21 65 16 94 11"/><path class="wordmark-lumen__current" pathLength="1" d="M3 3C9 4 10 18 20 19 30 20 34 8 25 8 17 8 19 16 30 18 47 21 65 16 94 11"/><circle class="wordmark-lumen__node" cx="94" cy="11" r="2.7"/></svg></span>uest</em></span>
+      <span class="nav-word" aria-hidden="true"><b>Nefro</b><em><span class="wordmark-q">Q<svg class="wordmark-lumen" viewBox="0 0 148 28" preserveAspectRatio="xMinYMin meet"><path class="wordmark-lumen__base" d="M3 2C7 6 8 14 16 18 35 24 65 22 91 20 100 19 103 15 108 12 117 7 129 10 131 18 133 25 124 28 117 26 109 23 108 15 115 12 123 8 133 13 136 20 138 25 143 25 147 22"/><path class="wordmark-lumen__current" pathLength="1" d="M3 2C7 6 8 14 16 18 35 24 65 22 91 20 100 19 103 15 108 12 117 7 129 10 131 18 133 25 124 28 117 26 109 23 108 15 115 12 123 8 133 13 136 20 138 25 143 25 147 22"/></svg></span>uest</em></span>
       <span class="nav-edition">Fluxo vivo</span>
     </a>
 
@@ -96,7 +96,7 @@
         <div class="hero-lab reveal" style="--i:3" data-nephron-lab data-flow-stage="0">
           <div class="lab-readout" aria-hidden="true"><span>Atlas de Maestria</span><i>conduza o Lúmen pelo ciclo</i></div>
           <div class="hero-atlas" data-nephron-atlas>
-            <svg class="nephron-map" data-nephron viewBox="0 0 560 680" aria-hidden="true" focusable="false">
+            <svg class="nephron-map" data-nephron viewBox="20 0 500 680" aria-hidden="true" focusable="false">
               <defs>
                 <linearGradient id="nephron-gradient" x1="0" y1="0" x2="1" y2="1">
                   <stop offset="0" stop-color="#e7c56a"/>
@@ -133,6 +133,15 @@
                 <circle class="lumen-carrier lumen-carrier--gold" r="2.5"><animateMotion dur="8.4s" begin="-3.9s" repeatCount="indefinite"><mpath href="#nephron-lumen-path"/></animateMotion></circle>
                 <circle class="lumen-carrier lumen-carrier--cyan" r="2"><animateMotion dur="8.4s" begin="-6.6s" repeatCount="indefinite"><mpath href="#nephron-lumen-path"/></animateMotion></circle>
               </g>
+              <g class="solute-field" aria-hidden="true">
+                <text class="solute-field__label" x="340" y="42">ELETRÓLITOS EM OBSERVAÇÃO</text>
+                <g class="solute-tag" transform="translate(44 268)"><circle r="2"/><text x="8" y="4">Na⁺</text></g>
+                <g class="solute-tag" transform="translate(82 380)"><circle r="2"/><text x="8" y="4">K⁺</text></g>
+                <g class="solute-tag" transform="translate(142 530)"><circle r="2"/><text x="8" y="4">HCO₃⁻</text></g>
+                <g class="solute-tag" transform="translate(274 620)"><circle r="2"/><text x="8" y="4">H⁺</text></g>
+                <g class="solute-tag" transform="translate(445 280)"><circle r="2"/><text x="8" y="4">Ca²⁺</text></g>
+                <g class="solute-tag" transform="translate(486 425)"><circle r="2"/><text x="-8" y="4" text-anchor="end">Mg²⁺</text></g>
+              </g>
               <g class="lumen-chamber lumen-chamber--filter is-active" data-flow-event="0" data-nephron-node="0" transform="translate(96 117)"><circle class="lumen-chamber__ring" r="18"/><circle class="lumen-chamber__core" r="4"/><path class="lumen-chamber__sign" d="M-10-5h7M3-5h7M-7 5H7"/></g>
               <g class="lumen-chamber lumen-chamber--interpret" data-flow-event="1" data-nephron-node="1" transform="translate(248 246)"><circle class="lumen-chamber__ring" r="18"/><circle class="lumen-chamber__core" r="4"/><path class="lumen-chamber__sign" d="M-9 8 0-8 9 8M0-8V8"/></g>
               <g class="lumen-chamber lumen-chamber--retain" data-flow-event="2" data-nephron-node="2" transform="translate(332 450)"><circle class="lumen-chamber__ring" r="18"/><circle class="lumen-chamber__core" r="4"/><path class="lumen-chamber__sign" d="M-7-3a8 8 0 1 0 5-7M-2-10h-6v6"/></g>
@@ -141,7 +150,6 @@
               <circle class="nephron-probe" data-nephron-probe cx="78" cy="148" r="5"/>
             </svg>
             <span class="atlas-caption">Traçado vivo · ciclo de aprendizagem</span>
-            <div class="solute-legend" aria-hidden="true"><span class="solute--na">Na⁺</span><span class="solute--k">K⁺</span><span class="solute--bicarb">HCO₃⁻</span><span class="solute--h">H⁺</span><span class="solute--ca">Ca²⁺</span><span class="solute--mg">Mg²⁺</span></div>
           </div>
           <div class="flow-deck" id="flow-deck" data-flow-insight aria-live="off">
             <div class="flow-deck__index"><span data-flow-kicker>01 · Filtra</span><i data-flow-count>1 / 4</i></div>
@@ -304,7 +312,6 @@
               <circle class="oracle-core__scope" cx="90" cy="90" r="72"/>
               <circle class="oracle-core__ring oracle-core__ring--a" cx="90" cy="90" r="58"/>
               <circle class="oracle-core__ring oracle-core__ring--b" cx="90" cy="90" r="43"/>
-              <path class="oracle-core__tuft" d="M49 89c2-29 36-45 55-24 15 17-24 27-6 44 21 19 53-9 36-31-18-24-61-20-72 5-10 27 22 48 50 40 22-7 34-25 31-45"/>
               <path class="oracle-core__flow" d="M49 89c7-29 55-38 77-9 17 22 1 42-21 45-17 3-25 14-25 30"/>
               <circle class="oracle-core__particle oracle-core__particle--a" cx="49" cy="89" r="3"/>
               <circle class="oracle-core__particle oracle-core__particle--b" cx="126" cy="80" r="2.5"/>
@@ -514,8 +521,8 @@
       <img class="boss-backdrop" src="assets/nefromancer-lumen-v2.jpg" alt="" loading="lazy" width="1672" height="941">
       <svg class="boss-current" viewBox="0 0 1440 760" preserveAspectRatio="none" aria-hidden="true">
         <defs><linearGradient id="boss-flow-gradient" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#57bfc8" stop-opacity="0"/><stop offset=".42" stop-color="#57bfc8"/><stop offset=".68" stop-color="#8050a6"/><stop offset="1" stop-color="#b678db" stop-opacity="0"/></linearGradient></defs>
-        <path class="boss-current__bed" d="M-80 570C180 470 286 620 480 530s294-248 474-190 220 254 570 92"/>
-        <path class="boss-current__flow" d="M-80 570C180 470 286 620 480 530s294-248 474-190 220 254 570 92"/>
+        <path class="boss-current__bed" d="M-80 360C180 260 286 430 480 340s294-190 474-155 220 178 570 70"/>
+        <path class="boss-current__flow" d="M-80 360C180 260 286 430 480 340s294-190 474-155 220 178 570 70"/>
       </svg>
       <div class="boss-shell">
         <div class="boss-copy">
@@ -595,7 +602,7 @@
 
   <footer class="footer">
     <div class="footer-brand">
-      <span class="nav-word footer-wordmark" role="img" aria-label="NefroQuest"><b aria-hidden="true">Nefro</b><em aria-hidden="true"><span class="wordmark-q">Q<svg class="wordmark-lumen" viewBox="0 0 104 26"><path class="wordmark-lumen__base" d="M3 3C9 4 10 18 20 19 30 20 34 8 25 8 17 8 19 16 30 18 47 21 65 16 94 11"/><circle class="wordmark-lumen__node" cx="94" cy="11" r="2.7"/></svg></span>uest</em></span>
+      <span class="nav-word footer-wordmark" role="img" aria-label="NefroQuest"><b aria-hidden="true">Nefro</b><em aria-hidden="true"><span class="wordmark-q">Q<svg class="wordmark-lumen" viewBox="0 0 148 28" preserveAspectRatio="xMinYMin meet"><path class="wordmark-lumen__base" d="M3 2C7 6 8 14 16 18 35 24 65 22 91 20 100 19 103 15 108 12 117 7 129 10 131 18 133 25 124 28 117 26 109 23 108 15 115 12 123 8 133 13 136 20 138 25 143 25 147 22"/></svg></span>uest</em></span>
       <span class="footer-tagline">Nefrologia em modo conquista.</span>
     </div>
     <div class="footer-links">
@@ -605,8 +612,6 @@
     </div>
     <p>© 2026 NefroQuest · Conteúdo para fins educacionais.</p>
   </footer>
-
-  <a class="mobile-cta" href="https://nefroquest.com" data-cta="mobile">Começar grátis <span aria-hidden="true">→</span></a>
 
   <script src="script.js"></script>
 </body>
