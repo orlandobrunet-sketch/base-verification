@@ -52,15 +52,7 @@
 
   <header class="nav" id="nav">
     <a class="nav-brand" href="#top" aria-label="NefroQuest — início">
-      <span class="brand-mark" aria-hidden="true">
-        <svg class="lumen-mark" viewBox="0 0 76 56" width="58" height="43">
-          <path class="lumen-mark__capsule" d="M43.5 12.5C37 5.8 25.2 4.3 16.8 9.4C7.8 14.8 5.1 26.8 10.4 35.7C15.5 44.1 26.4 47.4 35.4 43.2"/>
-          <path class="lumen-mark__flow" pathLength="1" d="M16 28.5C13.6 21 20.2 14.7 27.4 16.2C35.5 17.9 36.5 27.6 29.9 31C23.6 34.3 18.2 29.1 21.3 23.8C24.1 18.9 32.7 22.4 33.2 29.2C38 33 39 39 36.5 43.5C33.1 50 37.2 54 42.1 52.5C47.6 50.9 44.1 43.7 48.6 41.2C53.2 38.6 59.6 42.3 68 38.8"/>
-          <path class="lumen-mark__current" pathLength="1" d="M16 28.5C13.6 21 20.2 14.7 27.4 16.2C35.5 17.9 36.5 27.6 29.9 31C23.6 34.3 18.2 29.1 21.3 23.8C24.1 18.9 32.7 22.4 33.2 29.2C38 33 39 39 36.5 43.5C33.1 50 37.2 54 42.1 52.5C47.6 50.9 44.1 43.7 48.6 41.2C53.2 38.6 59.6 42.3 68 38.8"/>
-          <circle class="lumen-mark__particle" cx="16" cy="28.5" r="3"/>
-        </svg>
-      </span>
-      <span class="nav-word"><b>Nefro</b><em>Quest</em></span>
+      <span class="nav-word" aria-hidden="true"><b>Nefro</b><em><span class="wordmark-q">Q<svg class="wordmark-lumen" viewBox="0 0 104 26"><path class="wordmark-lumen__base" d="M3 3C9 4 10 18 20 19 30 20 34 8 25 8 17 8 19 16 30 18 47 21 65 16 94 11"/><path class="wordmark-lumen__current" pathLength="1" d="M3 3C9 4 10 18 20 19 30 20 34 8 25 8 17 8 19 16 30 18 47 21 65 16 94 11"/><circle class="wordmark-lumen__node" cx="94" cy="11" r="2.7"/></svg></span>uest</em></span>
       <span class="nav-edition">Fluxo vivo</span>
     </a>
 
@@ -133,34 +125,27 @@
               <circle class="nephron-capsule" cx="165" cy="147" r="104"/>
               <circle class="nephron-capsule nephron-capsule--inner" cx="165" cy="147" r="80"/>
               <path class="nephron-shadow" d="M78 148C61 80 110 45 165 67c47 19-39 82 18 105 57 22 89-46 43-81-50-38-135-3-123 66 11 59 121 43 149 94 32 60-14 103 8 171 18 56 81 82 109 21 30-65-18-102-41-53-22 49 17 131 75 146 52 14 52-47 53-84v158"/>
-              <path class="nephron-path" data-nephron-path d="M78 148C61 80 110 45 165 67c47 19-39 82 18 105 57 22 89-46 43-81-50-38-135-3-123 66 11 59 121 43 149 94 32 60-14 103 8 171 18 56 81 82 109 21 30-65-18-102-41-53-22 49 17 131 75 146 52 14 52-47 53-84v158"/>
+              <path class="nephron-path" id="nephron-lumen-path" data-nephron-path d="M78 148C61 80 110 45 165 67c47 19-39 82 18 105 57 22 89-46 43-81-50-38-135-3-123 66 11 59 121 43 149 94 32 60-14 103 8 171 18 56 81 82 109 21 30-65-18-102-41-53-22 49 17 131 75 146 52 14 52-47 53-84v158"/>
               <path class="nephron-progress" data-nephron-progress pathLength="1" d="M78 148C61 80 110 45 165 67c47 19-39 82 18 105 57 22 89-46 43-81-50-38-135-3-123 66 11 59 121 43 149 94 32 60-14 103 8 171 18 56 81 82 109 21 30-65-18-102-41-53-22 49 17 131 75 146 52 14 52-47 53-84v158"/>
               <path class="nephron-flow" d="M78 148C61 80 110 45 165 67c47 19-39 82 18 105 57 22 89-46 43-81-50-38-135-3-123 66 11 59 121 43 149 94 32 60-14 103 8 171 18 56 81 82 109 21 30-65-18-102-41-53-22 49 17 131 75 146 52 14 52-47 53-84v158"/>
-              <g class="flow-event flow-event--filter" data-flow-event="0" transform="translate(96 117)"><circle r="19"/><circle r="30"/><path d="M-9 0h18M0-9v18"/></g>
-              <g class="flow-event flow-event--interpret" data-flow-event="1" transform="translate(248 246)"><path d="M-25 16C-10 8-7-7 0-18M25 16C10 8 7-7 0-18"/><circle cy="-18" r="6"/></g>
-              <g class="flow-event flow-event--retain" data-flow-event="2" transform="translate(332 450)"><path d="M-25 0a25 25 0 1 0 8-18M-17-18l-2 12 12-2"/><circle r="5"/></g>
-              <g class="flow-event flow-event--mastery" data-flow-event="3" transform="translate(456 540)"><path d="M0-28 10-10 28 0 10 10 0 28-10 10-28 0-10-10Z"/><circle r="7"/></g>
-              <g class="nephron-node nephron-node--one is-active" data-nephron-node="0"><circle cx="96" cy="117" r="7"/></g>
-              <g class="nephron-node nephron-node--two" data-nephron-node="1"><circle cx="248" cy="246" r="7"/></g>
-              <g class="nephron-node nephron-node--three" data-nephron-node="2"><circle cx="332" cy="450" r="7"/></g>
-              <g class="nephron-node nephron-node--four" data-nephron-node="3"><circle cx="456" cy="540" r="7"/></g>
-              <circle class="nephron-probe-halo" data-nephron-probe-halo cx="78" cy="148" r="46"/>
+              <g class="lumen-carriers" aria-hidden="true">
+                <circle class="lumen-carrier lumen-carrier--cyan" r="3"><animateMotion dur="8.4s" begin="-1.2s" repeatCount="indefinite"><mpath href="#nephron-lumen-path"/></animateMotion></circle>
+                <circle class="lumen-carrier lumen-carrier--gold" r="2.5"><animateMotion dur="8.4s" begin="-3.9s" repeatCount="indefinite"><mpath href="#nephron-lumen-path"/></animateMotion></circle>
+                <circle class="lumen-carrier lumen-carrier--cyan" r="2"><animateMotion dur="8.4s" begin="-6.6s" repeatCount="indefinite"><mpath href="#nephron-lumen-path"/></animateMotion></circle>
+              </g>
+              <g class="lumen-chamber lumen-chamber--filter is-active" data-flow-event="0" data-nephron-node="0" transform="translate(96 117)"><circle class="lumen-chamber__ring" r="18"/><circle class="lumen-chamber__core" r="4"/><path class="lumen-chamber__sign" d="M-10-5h7M3-5h7M-7 5H7"/></g>
+              <g class="lumen-chamber lumen-chamber--interpret" data-flow-event="1" data-nephron-node="1" transform="translate(248 246)"><circle class="lumen-chamber__ring" r="18"/><circle class="lumen-chamber__core" r="4"/><path class="lumen-chamber__sign" d="M-9 8 0-8 9 8M0-8V8"/></g>
+              <g class="lumen-chamber lumen-chamber--retain" data-flow-event="2" data-nephron-node="2" transform="translate(332 450)"><circle class="lumen-chamber__ring" r="18"/><circle class="lumen-chamber__core" r="4"/><path class="lumen-chamber__sign" d="M-7-3a8 8 0 1 0 5-7M-2-10h-6v6"/></g>
+              <g class="lumen-chamber lumen-chamber--mastery" data-flow-event="3" data-nephron-node="3" transform="translate(456 540)"><circle class="lumen-chamber__ring" r="18"/><circle class="lumen-chamber__core" r="4"/><path class="lumen-chamber__sign" d="M0-14v5M14 0H9M0 14V9M-14 0h5"/></g>
+              <circle class="nephron-probe-halo" data-nephron-probe-halo cx="78" cy="148" r="18"/>
               <circle class="nephron-probe" data-nephron-probe cx="78" cy="148" r="5"/>
             </svg>
             <span class="atlas-caption">Traçado vivo · ciclo de aprendizagem</span>
-            <div class="electrolyte-field" aria-hidden="true">
-              <span class="ion ion--na">Na⁺</span>
-              <span class="ion ion--k">K⁺</span>
-              <span class="ion ion--bicarb">HCO₃⁻</span>
-              <span class="ion ion--h">H⁺</span>
-              <span class="ion ion--ca">Ca²⁺</span>
-              <span class="ion ion--mg">Mg²⁺</span>
-            </div>
+            <div class="solute-legend" aria-hidden="true"><span class="solute--na">Na⁺</span><span class="solute--k">K⁺</span><span class="solute--bicarb">HCO₃⁻</span><span class="solute--h">H⁺</span><span class="solute--ca">Ca²⁺</span><span class="solute--mg">Mg²⁺</span></div>
           </div>
           <div class="flow-deck" id="flow-deck" data-flow-insight aria-live="off">
             <div class="flow-deck__index"><span data-flow-kicker>01 · Filtra</span><i data-flow-count>1 / 4</i></div>
             <div class="mastery-runes" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-            <div class="flow-deck__glyph" aria-hidden="true"><i></i><i></i><b></b></div>
             <strong data-flow-title>O desafio encontra o seu momento.</strong>
             <small data-flow-copy>O motor lê seu desempenho por tema e calibra a próxima questão.</small>
             <div class="flow-deck__proof"><span data-flow-mechanism>IRT · calibração por categoria</span><b data-flow-reward>Runa da decisão</b></div>
@@ -175,9 +160,6 @@
         </div>
       </div>
 
-      <a class="hero-scroll" href="#prova" aria-label="Ver números da plataforma">
-        <span>Explorar o atlas</span><i aria-hidden="true"></i>
-      </a>
     </section>
 
     <section class="proof" id="prova" aria-label="Números e acesso do NefroQuest">
@@ -199,6 +181,69 @@
           <dd>Referências comentadas</dd>
         </div>
       </dl>
+    </section>
+
+    <section class="guideline-archive" id="diretrizes" aria-labelledby="guideline-archive-title">
+      <div class="guideline-archive__intro">
+        <p class="mono-label reveal-up">Arquivo clínico · 38 diretrizes acompanhadas</p>
+        <h2 class="reveal-up" id="guideline-archive-title" style="--i:1">A aventura começa em uma <em>biblioteca viva.</em></h2>
+        <p class="reveal-up" style="--i:2">Uma seleção do acervo internacional e nacional que alimenta explicações, revisões e atualizações do NefroQuest.</p>
+      </div>
+
+      <div class="guideline-flow reveal-up" data-guideline-flow style="--i:3" role="region" aria-label="Seleção de diretrizes do acervo. Mova horizontalmente ou use as setas do teclado para explorar.">
+        <div class="guideline-flow__rail" aria-hidden="true"><i></i></div>
+        <div class="guideline-track" data-guideline-track role="list">
+          <article class="guideline-cover" data-guideline-cover data-short-title="KDIGO CKD 2024" tabindex="0" role="listitem" style="--cover-accent:#8edce1; --cover-seq:01">
+            <span class="guideline-cover__meta"><b>KDIGO</b><i>2024</i></span><span class="guideline-cover__figure" aria-hidden="true"><i></i><i></i><i></i></span><strong>Chronic Kidney Disease</strong><small>Clinical Practice Guideline</small><span class="guideline-cover__foot">DRC · risco cardiorrenal</span>
+          </article>
+          <article class="guideline-cover" data-guideline-cover data-short-title="KDIGO AKI 2012" tabindex="0" role="listitem" style="--cover-accent:#e1bc62; --cover-seq:02">
+            <span class="guideline-cover__meta"><b>KDIGO</b><i>2012</i></span><span class="guideline-cover__figure" aria-hidden="true"><i></i><i></i><i></i></span><strong>Acute Kidney Injury</strong><small>Clinical Practice Guideline</small><span class="guideline-cover__foot">LRA · classificação</span>
+          </article>
+          <article class="guideline-cover" data-guideline-cover data-short-title="KDIGO AKI/AKD 2026" tabindex="0" role="listitem" style="--cover-accent:#a979cf; --cover-seq:03">
+            <span class="guideline-cover__meta"><b>KDIGO</b><i>2026</i></span><span class="guideline-cover__figure" aria-hidden="true"><i></i><i></i><i></i></span><strong>AKI &amp; AKD</strong><small>Public Review Draft</small><span class="guideline-cover__foot">LRA · doença renal aguda</span>
+          </article>
+          <article class="guideline-cover" data-guideline-cover data-short-title="KDIGO Glomerular 2021" tabindex="0" role="listitem" style="--cover-accent:#80c9bd; --cover-seq:04">
+            <span class="guideline-cover__meta"><b>KDIGO</b><i>2021</i></span><span class="guideline-cover__figure" aria-hidden="true"><i></i><i></i><i></i></span><strong>Glomerular Diseases</strong><small>Clinical Practice Guideline</small><span class="guideline-cover__foot">Glomerulopatias</span>
+          </article>
+          <article class="guideline-cover" data-guideline-cover data-short-title="KDIGO Diabetes in CKD 2022" tabindex="0" role="listitem" style="--cover-accent:#d59a5a; --cover-seq:05">
+            <span class="guideline-cover__meta"><b>KDIGO</b><i>2022</i></span><span class="guideline-cover__figure" aria-hidden="true"><i></i><i></i><i></i></span><strong>Diabetes in CKD</strong><small>Clinical Practice Guideline</small><span class="guideline-cover__foot">Diabetes · DRC</span>
+          </article>
+          <article class="guideline-cover" data-guideline-cover data-short-title="KDIGO CKD–MBD 2017" tabindex="0" role="listitem" style="--cover-accent:#9b86d6; --cover-seq:06">
+            <span class="guideline-cover__meta"><b>KDIGO</b><i>2017</i></span><span class="guideline-cover__figure" aria-hidden="true"><i></i><i></i><i></i></span><strong>CKD–MBD Update</strong><small>Clinical Practice Guideline</small><span class="guideline-cover__foot">Metabolismo mineral</span>
+          </article>
+          <article class="guideline-cover" data-guideline-cover data-short-title="KDIGO Transplant Care 2009" tabindex="0" role="listitem" style="--cover-accent:#79a9d0; --cover-seq:07">
+            <span class="guideline-cover__meta"><b>KDIGO</b><i>2009</i></span><span class="guideline-cover__figure" aria-hidden="true"><i></i><i></i><i></i></span><strong>Transplant Recipient Care</strong><small>Clinical Practice Guideline</small><span class="guideline-cover__foot">Transplante renal</span>
+          </article>
+          <article class="guideline-cover" data-guideline-cover data-short-title="KDOQI HD Adequacy 2015" tabindex="0" role="listitem" style="--cover-accent:#d9bd73; --cover-seq:08">
+            <span class="guideline-cover__meta"><b>KDOQI</b><i>2015</i></span><span class="guideline-cover__figure" aria-hidden="true"><i></i><i></i><i></i></span><strong>Hemodialysis Adequacy</strong><small>Clinical Practice Guideline</small><span class="guideline-cover__foot">Hemodiálise</span>
+          </article>
+          <article class="guideline-cover" data-guideline-cover data-short-title="KDOQI Vascular Access 2020" tabindex="0" role="listitem" style="--cover-accent:#71c4ce; --cover-seq:09">
+            <span class="guideline-cover__meta"><b>KDOQI</b><i>2020</i></span><span class="guideline-cover__figure" aria-hidden="true"><i></i><i></i><i></i></span><strong>Vascular Access</strong><small>Clinical Practice Guideline</small><span class="guideline-cover__foot">Acesso vascular</span>
+          </article>
+          <article class="guideline-cover" data-guideline-cover data-short-title="ESE/ERA Hyponatraemia 2014" tabindex="0" role="listitem" style="--cover-accent:#6fa7d5; --cover-seq:10">
+            <span class="guideline-cover__meta"><b>ESE / ERA</b><i>2014</i></span><span class="guideline-cover__figure" aria-hidden="true"><i></i><i></i><i></i></span><strong>Hyponatraemia</strong><small>European Clinical Practice Guideline</small><span class="guideline-cover__foot">Distúrbios do sódio</span>
+          </article>
+          <article class="guideline-cover" data-guideline-cover data-short-title="ISPD Peritonitis 2022" tabindex="0" role="listitem" style="--cover-accent:#bc78a8; --cover-seq:11">
+            <span class="guideline-cover__meta"><b>ISPD</b><i>2022</i></span><span class="guideline-cover__figure" aria-hidden="true"><i></i><i></i><i></i></span><strong>Peritonitis</strong><small>Practice Recommendations</small><span class="guideline-cover__foot">Diálise peritoneal</span>
+          </article>
+          <article class="guideline-cover" data-guideline-cover data-short-title="SBN Peritonite na DP 2019" tabindex="0" role="listitem" style="--cover-accent:#75b7a8; --cover-seq:12">
+            <span class="guideline-cover__meta"><b>SBN</b><i>2019</i></span><span class="guideline-cover__figure" aria-hidden="true"><i></i><i></i><i></i></span><strong>Peritonite na DP</strong><small>Consenso Nacional</small><span class="guideline-cover__foot">Nefrologia brasileira</span>
+          </article>
+          <article class="guideline-cover" data-guideline-cover data-short-title="EAU Urolithiasis 2025" tabindex="0" role="listitem" style="--cover-accent:#c7a25d; --cover-seq:13">
+            <span class="guideline-cover__meta"><b>EAU</b><i>2025</i></span><span class="guideline-cover__figure" aria-hidden="true"><i></i><i></i><i></i></span><strong>Urolithiasis</strong><small>Clinical Guideline</small><span class="guideline-cover__foot">Litíase urinária</span>
+          </article>
+          <article class="guideline-cover" data-guideline-cover data-short-title="KDIGO IgAN/IgAV 2025" tabindex="0" role="listitem" style="--cover-accent:#b887d5; --cover-seq:14">
+            <span class="guideline-cover__meta"><b>KDIGO</b><i>2025</i></span><span class="guideline-cover__figure" aria-hidden="true"><i></i><i></i><i></i></span><strong>IgAN &amp; IgAV</strong><small>Clinical Practice Guideline</small><span class="guideline-cover__foot">Nefropatia por IgA</span>
+          </article>
+          <article class="guideline-cover" data-guideline-cover data-short-title="ACR Contrast Media 2026" tabindex="0" role="listitem" style="--cover-accent:#8da3cf; --cover-seq:15">
+            <span class="guideline-cover__meta"><b>ACR</b><i>2026</i></span><span class="guideline-cover__figure" aria-hidden="true"><i></i><i></i><i></i></span><strong>Contrast Media</strong><small>Clinical Manual</small><span class="guideline-cover__foot">Contraste · segurança renal</span>
+          </article>
+          <article class="guideline-cover guideline-cover--more" data-guideline-cover data-short-title="+23 diretrizes no acervo" tabindex="0" role="listitem" style="--cover-accent:#f1cf7a; --cover-seq:38">
+            <span class="guideline-cover__meta"><b>NQ / ARQUIVO</b><i>VIVO</i></span><strong><span>+23</span> diretrizes</strong><small>completam a coleção acompanhada</small><span class="guideline-cover__foot">38 no sistema</span>
+          </article>
+        </div>
+        <div class="guideline-flow__status"><span>Em foco</span><b data-guideline-active>KDIGO CKD 2024</b><i>cursor ou toque para percorrer</i></div>
+      </div>
     </section>
 
     <section class="journey atlas-section" id="como-funciona" aria-labelledby="journey-title">
@@ -550,10 +595,8 @@
 
   <footer class="footer">
     <div class="footer-brand">
-      <span class="brand-mark" aria-hidden="true">
-        <svg class="lumen-mark" viewBox="0 0 76 56" width="48" height="36"><path class="lumen-mark__capsule" d="M43.5 12.5C37 5.8 25.2 4.3 16.8 9.4C7.8 14.8 5.1 26.8 10.4 35.7C15.5 44.1 26.4 47.4 35.4 43.2"/><path class="lumen-mark__flow" pathLength="1" d="M16 28.5C13.6 21 20.2 14.7 27.4 16.2C35.5 17.9 36.5 27.6 29.9 31C23.6 34.3 18.2 29.1 21.3 23.8C24.1 18.9 32.7 22.4 33.2 29.2C38 33 39 39 36.5 43.5C33.1 50 37.2 54 42.1 52.5C47.6 50.9 44.1 43.7 48.6 41.2C53.2 38.6 59.6 42.3 68 38.8"/><path class="lumen-mark__current" pathLength="1" d="M16 28.5C13.6 21 20.2 14.7 27.4 16.2C35.5 17.9 36.5 27.6 29.9 31C23.6 34.3 18.2 29.1 21.3 23.8C24.1 18.9 32.7 22.4 33.2 29.2C38 33 39 39 36.5 43.5C33.1 50 37.2 54 42.1 52.5C47.6 50.9 44.1 43.7 48.6 41.2C53.2 38.6 59.6 42.3 68 38.8"/><circle class="lumen-mark__particle" cx="16" cy="28.5" r="3"/></svg>
-      </span>
-      <div><strong>NefroQuest</strong><span>Nefrologia em modo conquista.</span></div>
+      <span class="nav-word footer-wordmark" role="img" aria-label="NefroQuest"><b aria-hidden="true">Nefro</b><em aria-hidden="true"><span class="wordmark-q">Q<svg class="wordmark-lumen" viewBox="0 0 104 26"><path class="wordmark-lumen__base" d="M3 3C9 4 10 18 20 19 30 20 34 8 25 8 17 8 19 16 30 18 47 21 65 16 94 11"/><circle class="wordmark-lumen__node" cx="94" cy="11" r="2.7"/></svg></span>uest</em></span>
+      <span class="footer-tagline">Nefrologia em modo conquista.</span>
     </div>
     <div class="footer-links">
       <a href="https://nefroquest.com">Aplicativo</a>

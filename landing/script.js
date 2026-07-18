@@ -71,6 +71,11 @@
     var heroFlowFrame = 0;
     var heroVisible = true;
     var userHasInteracted = false;
+    var candidateStage = -1;
+    var candidateSince = 0;
+    var lumenPulseTimer = 0;
+    var lumenPulseLast = 0;
+    var lumenCarriersRunning = false;
 
     function buildPathSamples() {
       if (!pathLength) return;
@@ -120,7 +125,55 @@
       if (nephronProgress) nephronProgress.style.strokeDasharray = bounded.toFixed(3) + ' 1';
     }
 
-    function nearestStageFor(progress) {
+    function focusCamera(progress) {
+      if (!nephronAtlas || !nephron || !nephronPath || !pathLength || reduced) return;
+      var atlasBounds = nephronAtlas.getBoundingClientRect();
+      var viewBox = nephron.viewBox && nephron.viewBox.baseVal;
+      if (!atlasBounds.width || !atlasBounds.height || !viewBox || !viewBox.width || !viewBox.height) return;
+      var point = nephronPath.getPointAtLength(pathLength * Math.max(0, Math.min(1, progress)));
+      var scale = Math.min(atlasBounds.width / viewBox.width, atlasBounds.height / viewBox.height);
+      var renderedWidth = viewBox.width * scale;
+      var renderedHeight = viewBox.height * scale;
+      var focusX = (atlasBounds.width - renderedWidth) / 2 + (point.x - viewBox.x) * scale;
+      var focusY = (atlasBounds.height - renderedHeight) / 2 + (point.y - viewBox.y) * scale;
+      nephronAtlas.style.setProperty('--camera-x', focusX.toFixed(1) + 'px');
+      nephronAtlas.style.setProperty('--camera-y', focusY.toFixed(1) + 'px');
+      nephronAtlas.style.setProperty('--camera-zoom', mobileViewport.matches ? '1.09' : '1.14');
+      nephronAtlas.classList.add('is-camera-focused');
+    }
+
+    function resetCamera() {
+      if (!nephronAtlas) return;
+      nephronAtlas.style.setProperty('--camera-zoom', '1');
+      nephronAtlas.classList.remove('is-camera-focused');
+    }
+
+    function pauseLumen() {
+      window.clearTimeout(lumenPulseTimer);
+      lumenPulseTimer = 0;
+      if (nephronAtlas) nephronAtlas.classList.remove('is-lumen-pulse');
+      if (nephron && typeof nephron.pauseAnimations === 'function') nephron.pauseAnimations();
+      lumenCarriersRunning = false;
+    }
+
+    function pulseLumen(force) {
+      if (reduced || document.hidden || !heroVisible || !nephronAtlas) return;
+      var now = performance.now();
+      if (!lumenCarriersRunning && nephron && typeof nephron.unpauseAnimations === 'function') {
+        nephron.unpauseAnimations();
+        lumenCarriersRunning = true;
+      }
+      if (force || now - lumenPulseLast >= 900) {
+        nephronAtlas.classList.remove('is-lumen-pulse');
+        void nephronAtlas.offsetWidth;
+        nephronAtlas.classList.add('is-lumen-pulse');
+        lumenPulseLast = now;
+      }
+      window.clearTimeout(lumenPulseTimer);
+      lumenPulseTimer = window.setTimeout(pauseLumen, 1300);
+    }
+
+    function stageForProgress(progress) {
       var nearest = 0;
       var distance = Infinity;
       stageProgress.forEach(function (stagePoint, index) {
@@ -130,7 +183,7 @@
           distance = currentDistance;
         }
       });
-      return nearest;
+      return distance <= .032 ? nearest : -1;
     }
 
     function updateInsight(index) {
@@ -178,7 +231,7 @@
 
     function findClosestProgress(clientX, clientY) {
       var local = clientPointToSvg(clientX, clientY);
-      if (!local || !pathSamples.length) return targetProgress;
+      if (!local || !pathSamples.length) return null;
       var closest = pathSamples[0];
       var shortest = Infinity;
       pathSamples.forEach(function (sample) {
@@ -190,7 +243,7 @@
           closest = sample;
         }
       });
-      return shortest <= 7200 ? closest.progress : null;
+      return shortest <= 1600 ? closest.progress : null;
     }
 
     function runFlowFrame() {
@@ -202,16 +255,42 @@
         if (closestProgress !== null) {
           nephronAtlas.classList.add('is-tracing');
           targetProgress = closestProgress;
-          selectStage(nearestStageFor(targetProgress), true);
+          var nextStage = stageForProgress(targetProgress);
+          if (nextStage === selectedStage || nextStage < 0) {
+            candidateStage = -1;
+            candidateSince = 0;
+            if (nextStage >= 0) focusCamera(stageProgress[nextStage]);
+            else resetCamera();
+          } else if (nextStage !== candidateStage) {
+            candidateStage = nextStage;
+            candidateSince = performance.now();
+            resetCamera();
+          } else if (performance.now() - candidateSince >= 110) {
+            selectStage(candidateStage, true);
+            focusCamera(stageProgress[candidateStage]);
+            candidateStage = -1;
+            candidateSince = 0;
+          }
+          pulseLumen(false);
         } else {
           nephronAtlas.classList.remove('is-tracing');
+          targetProgress = stageProgress[selectedStage];
+          candidateStage = -1;
+          candidateSince = 0;
+          resetCamera();
         }
       }
+      if (candidateStage >= 0 && performance.now() - candidateSince >= 110) {
+        selectStage(candidateStage, true);
+        focusCamera(stageProgress[candidateStage]);
+        candidateStage = -1;
+        candidateSince = 0;
+      }
       var distance = targetProgress - currentProgress;
-      currentProgress = reduced ? targetProgress : currentProgress + distance * .16;
+      currentProgress = reduced ? targetProgress : currentProgress + distance * .12;
       if (Math.abs(distance) < .0008) currentProgress = targetProgress;
       positionProbe(currentProgress);
-      if (pendingPointer || Math.abs(targetProgress - currentProgress) >= .0008) requestFlowFrame();
+      if (pendingPointer || candidateStage >= 0 || Math.abs(targetProgress - currentProgress) >= .0008) requestFlowFrame();
     }
 
     function requestFlowFrame() {
@@ -228,6 +307,11 @@
       nephronAtlas.addEventListener('pointerleave', function () {
         nephronAtlas.classList.remove('is-tracing');
         pendingPointer = null;
+        candidateStage = -1;
+        candidateSince = 0;
+        targetProgress = stageProgress[selectedStage];
+        resetCamera();
+        requestFlowFrame();
       });
     }
 
@@ -235,6 +319,8 @@
       function activate(event) {
         cancelIntro();
         selectStage(index, false);
+        focusCamera(stageProgress[index]);
+        pulseLumen(true);
         if (event && event.type === 'click') control.focus({ preventScroll: true });
       }
       control.addEventListener('pointerenter', activate);
@@ -252,22 +338,167 @@
       });
     });
 
+    heroLab.addEventListener('focusout', function () {
+      window.requestAnimationFrame(function () {
+        if (!heroLab.contains(document.activeElement)) resetCamera();
+      });
+    });
+
     buildPathSamples();
     selectStage(0, false);
+    pauseLumen();
 
     if ('IntersectionObserver' in window) {
       var heroLabObserver = new IntersectionObserver(function (entries) {
         heroVisible = entries.some(function (entry) { return entry.isIntersecting; });
         if (nephronAtlas) nephronAtlas.classList.toggle('is-paused', !heroVisible);
+        if (!heroVisible) pauseLumen();
         if (heroVisible) requestFlowFrame();
       }, { threshold: .08 });
       heroLabObserver.observe(heroLab);
     }
     document.addEventListener('visibilitychange', function () {
       if (nephronAtlas) nephronAtlas.classList.toggle('is-paused', document.hidden || !heroVisible);
+      if (document.hidden || !heroVisible) pauseLumen();
       if (!document.hidden && heroVisible) requestFlowFrame();
     });
 
+  }
+
+  /* Biblioteca Cinética: o acervo responde à posição do leitor, sem autoplay. */
+  var guidelineFlow = document.querySelector('[data-guideline-flow]');
+  if (guidelineFlow) {
+    var guidelineTrack = guidelineFlow.querySelector('[data-guideline-track]');
+    var guidelineCovers = Array.prototype.slice.call(guidelineFlow.querySelectorAll('[data-guideline-cover]'));
+    var guidelineActive = guidelineFlow.querySelector('[data-guideline-active]');
+    var finePointer = window.matchMedia('(pointer: fine)');
+    var nativeArchive = window.matchMedia('(max-width: 760px), (pointer: coarse)');
+    var archiveCurrent = 0;
+    var archiveTarget = 0;
+    var archiveStart = 0;
+    var archiveEnd = 0;
+    var archiveFrame = 0;
+    var archiveMeasured = false;
+    var activeCoverIndex = -1;
+
+    function usesNativeArchive() {
+      return reduced || !finePointer.matches || nativeArchive.matches;
+    }
+
+    function clampArchive(value) {
+      return Math.max(Math.min(value, archiveStart), archiveEnd);
+    }
+
+    function setActiveCover(index) {
+      if (index === activeCoverIndex || !guidelineCovers[index]) return;
+      activeCoverIndex = index;
+      guidelineCovers.forEach(function (cover, coverIndex) {
+        cover.classList.toggle('is-center', coverIndex === index);
+      });
+      if (guidelineActive) guidelineActive.textContent = guidelineCovers[index].getAttribute('data-short-title') || '';
+    }
+
+    function updateNativeArchiveFocus() {
+      var flowBounds = guidelineFlow.getBoundingClientRect();
+      var middle = flowBounds.left + flowBounds.width / 2;
+      var nearest = 0;
+      var nearestDistance = Infinity;
+      guidelineCovers.forEach(function (cover, index) {
+        var bounds = cover.getBoundingClientRect();
+        var distance = Math.abs(bounds.left + bounds.width / 2 - middle);
+        if (distance < nearestDistance) {
+          nearest = index;
+          nearestDistance = distance;
+        }
+      });
+      setActiveCover(nearest);
+    }
+
+    function renderArchive() {
+      archiveFrame = 0;
+      if (usesNativeArchive() || !archiveMeasured) {
+        updateNativeArchiveFocus();
+        return;
+      }
+      archiveCurrent += (archiveTarget - archiveCurrent) * .16;
+      if (Math.abs(archiveTarget - archiveCurrent) < .08) archiveCurrent = archiveTarget;
+      guidelineFlow.style.setProperty('--archive-offset', archiveCurrent.toFixed(2) + 'px');
+
+      var middle = guidelineFlow.clientWidth / 2;
+      var nearest = 0;
+      var nearestDistance = Infinity;
+      guidelineCovers.forEach(function (cover, index) {
+        var center = cover.offsetLeft + cover.offsetWidth / 2 + archiveCurrent;
+        var distance = Math.max(-1, Math.min(1, (center - middle) / Math.max(1, middle * .82)));
+        var magnitude = Math.abs(distance);
+        cover.style.setProperty('--cover-rotate', (-distance * 19).toFixed(2) + 'deg');
+        cover.style.setProperty('--cover-scale', (1 - magnitude * .13).toFixed(3));
+        cover.style.setProperty('--cover-y', (magnitude * 20).toFixed(1) + 'px');
+        if (Math.abs(center - middle) < nearestDistance) {
+          nearest = index;
+          nearestDistance = Math.abs(center - middle);
+        }
+      });
+      setActiveCover(nearest);
+      if (Math.abs(archiveTarget - archiveCurrent) >= .08) requestArchiveFrame();
+    }
+
+    function requestArchiveFrame() {
+      if (!archiveFrame) archiveFrame = window.requestAnimationFrame(renderArchive);
+    }
+
+    function measureArchive() {
+      if (!guidelineTrack || !guidelineCovers.length) return;
+      var first = guidelineCovers[0];
+      var last = guidelineCovers[guidelineCovers.length - 1];
+      archiveStart = guidelineFlow.clientWidth / 2 - (first.offsetLeft + first.offsetWidth / 2);
+      archiveEnd = guidelineFlow.clientWidth / 2 - (last.offsetLeft + last.offsetWidth / 2);
+      archiveTarget = clampArchive(archiveTarget);
+      archiveCurrent = clampArchive(archiveCurrent);
+      archiveMeasured = true;
+      requestArchiveFrame();
+    }
+
+    guidelineFlow.addEventListener('pointermove', function (event) {
+      if (usesNativeArchive() || event.pointerType === 'touch') return;
+      var bounds = guidelineFlow.getBoundingClientRect();
+      var position = Math.max(0, Math.min(1, (event.clientX - bounds.left) / Math.max(1, bounds.width)));
+      archiveTarget = archiveStart + (archiveEnd - archiveStart) * position;
+      requestArchiveFrame();
+    });
+
+    guidelineFlow.addEventListener('scroll', function () {
+      if (usesNativeArchive()) window.requestAnimationFrame(updateNativeArchiveFocus);
+    }, { passive: true });
+
+    guidelineCovers.forEach(function (cover, index) {
+      cover.addEventListener('focus', function () {
+        setActiveCover(index);
+        if (!usesNativeArchive()) {
+          guidelineFlow.scrollLeft = 0;
+          archiveTarget = clampArchive(guidelineFlow.clientWidth / 2 - (cover.offsetLeft + cover.offsetWidth / 2));
+          requestArchiveFrame();
+        } else {
+          cover.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', inline: 'center', block: 'nearest' });
+        }
+      });
+      cover.addEventListener('keydown', function (event) {
+        var next = index;
+        if (event.key === 'ArrowRight') next = Math.min(guidelineCovers.length - 1, index + 1);
+        else if (event.key === 'ArrowLeft') next = Math.max(0, index - 1);
+        else if (event.key === 'Home') next = 0;
+        else if (event.key === 'End') next = guidelineCovers.length - 1;
+        else return;
+        event.preventDefault();
+        if (usesNativeArchive()) guidelineCovers[next].focus();
+        else guidelineCovers[next].focus({ preventScroll: true });
+      });
+    });
+
+    window.addEventListener('resize', measureArchive, { passive: true });
+    if (typeof finePointer.addEventListener === 'function') finePointer.addEventListener('change', measureArchive);
+    if (typeof nativeArchive.addEventListener === 'function') nativeArchive.addEventListener('change', measureArchive);
+    window.requestAnimationFrame(measureArchive);
   }
 
   /* Simulação do motor adaptativo: um controle real, não uma precisão fingida. */

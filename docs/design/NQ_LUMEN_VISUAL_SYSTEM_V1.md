@@ -20,15 +20,15 @@ O traço não é ornamento. Sempre deve comunicar estado, percurso ou consequên
 
 ## Assinatura
 
-### Símbolo Corpúsculo-Lúmen
+### Wordmark Cauda Lúmen
 
-A marca combina três gestos sem usar letras dentro do emblema:
+A assinatura principal não usa um emblema adjacente. O gesto de marca nasce do próprio `Q` itálico de `Quest`: uma única cauda controlada percorre a base da palavra e termina em um nó de maestria.
 
-1. cápsula/glomérulo: origem clínica e filtro;
-2. alça descendente: continuidade do aprendizado;
-3. partícula de maestria: conhecimento transformado em domínio.
+1. `Nefro` permanece em parchment;
+2. `Quest` e a cauda permanecem em dourado;
+3. o nó terminal recebe ciano como sinal de fluxo vivo.
 
-O símbolo deve permanecer legível em 32 px, funcionar em uma cor e poder ser animado com um único pulso de entrada. As letras NQ não devem ser usadas como substituto decorativo da marca.
+A cauda deve ter uma única alça, permanecer contida na largura de `Quest` e funcionar em uma cor. No hover ou foco, apenas uma corrente curta percorre o gesto e é absorvida pelo nó. Não há movimento contínuo na marca. Quando necessário, a versão compacta deriva da própria cauda, sem criar um segundo símbolo. As letras NQ não devem ser usadas como monograma decorativo.
 
 ## Semântica visual
 
@@ -57,6 +57,10 @@ A hierarquia combina uma voz editorial humana com uma camada instrumental precis
 
 Campo que contém uma experiência de percurso. Pode receber anatomia, mapa de competências, trilha da questão ou confronto.
 
+### `lumen-conduit`
+
+Traçado anatômico em camadas: parede tubular, leito luminal, progresso e corrente interna compartilham a mesma geometria. Partículas nunca abandonam esse envelope; informações externas pertencem a uma legenda fixa ou a um `flow-deck`.
+
 ### `flow-node`
 
 Ponto selecionável do percurso. Possui estados passivo, disponível, ativo, concluído e corrompido.
@@ -73,6 +77,10 @@ Trilho de progresso que converte acertos e retenção em avanço perceptível. D
 
 Espinha de evidência para diretrizes, referências e artigos. Usa linhas alinhadas, números tabulares e benefício explícito, sem cards de alturas diferentes.
 
+### `evidence-library`
+
+Arquivo cinético que comunica a escala das fontes antes de explicar o método. Capas editoriais autorais representam diretrizes reais do acervo sem reproduzir capas oficiais. A posição horizontal do cursor conduz a coleção, sem autoplay; toque usa rolagem nativa e teclado centraliza cada volume em sequência.
+
 ### `challenge-field`
 
 Ambiente narrativo para chefes e provas de domínio. Personagem, chão, corrente e interface pertencem à mesma perspectiva; evitar retratos soltos dentro de um retângulo.
@@ -82,8 +90,10 @@ Ambiente narrativo para chefes e provas de domínio. Personagem, chão, corrente
 O movimento deve ser prazeroso, legível e orientado pela intenção.
 
 - O cursor influencia o fluxo por proximidade, sem arrastar a interface inteira.
+- Ao alcançar uma câmara, uma lente de nefroscopia aproxima somente a anatomia local; o texto e os controles permanecem imóveis.
 - Conteúdo textual troca em pontos discretos e previsíveis.
-- Partículas e eletrólitos respondem à fase ativa com baixa amplitude.
+- Partículas percorrem o próprio lúmen e eletrólitos aparecem em uma legenda laboratorial fixa; nenhum elemento é ejetado do trajeto.
+- Câmaras mudam cor e estado localmente, sem explodir, girar ou crescer para fora da anatomia.
 - Animações de ambiente pausam fora da tela.
 - Não iniciar tours automáticos que disputem atenção com leitura.
 - `prefers-reduced-motion` preserva todo o significado sem deslocamento contínuo.
