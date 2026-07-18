@@ -12,6 +12,7 @@
   var bossVisible = false;
   var finaleVisible = false;
   var scrollTicking = false;
+  var heroLab = document.querySelector('[data-nephron-lab]');
 
   function reveal(element) {
     element.classList.add('in');
@@ -33,6 +34,101 @@
   window.requestAnimationFrame(function () {
     heroReveals.forEach(reveal);
   });
+
+  /* Fluxo Vivo: pointer, teclado e tour automático controlam o mesmo néfron. */
+  if (heroLab) {
+    var nephron = heroLab.querySelector('[data-nephron]');
+    var nephronPath = heroLab.querySelector('[data-nephron-path]');
+    var nephronProbe = heroLab.querySelector('[data-nephron-probe]');
+    var atlasLens = heroLab.querySelector('[data-atlas-lens]');
+    var nephronNodes = Array.prototype.slice.call(heroLab.querySelectorAll('[data-nephron-node]'));
+    var stageItems = Array.prototype.slice.call(heroLab.querySelectorAll('[data-stage]'));
+    var stageLabel = heroLab.querySelector('[data-stage-label]');
+    var stageNames = ['Filtração', 'Interpretação', 'Retenção', 'Conquista'];
+    var stageProgress = [.07, .34, .64, .92];
+    var pathLength = nephronPath && typeof nephronPath.getTotalLength === 'function' ? nephronPath.getTotalLength() : 0;
+    var heroPointerFrame = 0;
+    var heroPointerActive = false;
+    var heroVisible = true;
+    var autoStage = 0;
+
+    function positionProbe(progress) {
+      if (!nephronPath || !nephronProbe || !pathLength) return;
+      var point = nephronPath.getPointAtLength(pathLength * Math.max(0, Math.min(1, progress)));
+      nephronProbe.setAttribute('cx', point.x.toFixed(2));
+      nephronProbe.setAttribute('cy', point.y.toFixed(2));
+    }
+
+    function selectStage(index, progress) {
+      var selected = Math.max(0, Math.min(3, index));
+      autoStage = selected;
+      nephronNodes.forEach(function (node, nodeIndex) {
+        node.classList.toggle('is-active', nodeIndex === selected);
+      });
+      stageItems.forEach(function (item, itemIndex) {
+        item.classList.toggle('is-current', itemIndex === selected);
+        item.classList.toggle('is-complete', itemIndex < selected);
+      });
+      if (stageLabel) stageLabel.textContent = stageNames[selected];
+      heroLab.style.setProperty('--stage-progress', ((selected + 1) * 25) + '%');
+      positionProbe(typeof progress === 'number' ? progress : stageProgress[selected]);
+    }
+
+    function moveLens(clientX, clientY, radius) {
+      if (!nephron || !atlasLens || typeof nephron.createSVGPoint !== 'function') return;
+      var matrix = nephron.getScreenCTM();
+      if (!matrix) return;
+      var point = nephron.createSVGPoint();
+      point.x = clientX;
+      point.y = clientY;
+      var local = point.matrixTransform(matrix.inverse());
+      atlasLens.setAttribute('cx', local.x.toFixed(1));
+      atlasLens.setAttribute('cy', local.y.toFixed(1));
+      atlasLens.setAttribute('r', radius || 96);
+    }
+
+    heroLab.addEventListener('pointermove', function (event) {
+      if (reduced || event.pointerType === 'touch') return;
+      heroPointerActive = true;
+      if (heroPointerFrame) return;
+      heroPointerFrame = window.requestAnimationFrame(function () {
+        var rect = heroLab.getBoundingClientRect();
+        var x = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
+        var y = Math.max(0, Math.min(1, (event.clientY - rect.top) / rect.height));
+        heroLab.style.setProperty('--flow-x', ((x - .5) * 18).toFixed(1) + 'px');
+        heroLab.style.setProperty('--flow-y', ((y - .5) * 14).toFixed(1) + 'px');
+        selectStage(Math.min(3, Math.floor(x * 4)), x);
+        moveLens(event.clientX, event.clientY, 98);
+        heroPointerFrame = 0;
+      });
+    });
+
+    heroLab.addEventListener('pointerleave', function () {
+      heroPointerActive = false;
+      heroLab.style.setProperty('--flow-x', '0px');
+      heroLab.style.setProperty('--flow-y', '0px');
+      if (atlasLens) atlasLens.setAttribute('r', 0);
+    });
+
+    stageItems.forEach(function (item, index) {
+      function activate() { selectStage(index); }
+      item.addEventListener('pointerenter', activate);
+      item.addEventListener('focus', activate);
+    });
+
+    if ('IntersectionObserver' in window) {
+      var heroLabObserver = new IntersectionObserver(function (entries) {
+        heroVisible = entries.some(function (entry) { return entry.isIntersecting; });
+      }, { threshold: .08 });
+      heroLabObserver.observe(heroLab);
+    }
+
+    selectStage(0);
+    window.setInterval(function () {
+      if (reduced || heroPointerActive || !heroVisible) return;
+      selectStage((autoStage + 1) % 4);
+    }, 2400);
+  }
 
   /* Remaining content reveals only as it becomes relevant. */
   var reveals = document.querySelectorAll('.reveal-up, .finale .reveal');
@@ -80,6 +176,7 @@
   if (finale && 'IntersectionObserver' in window) {
     var finaleObserver = new IntersectionObserver(function (entries) {
       finaleVisible = entries.some(function (entry) { return entry.isIntersecting; });
+      finale.classList.toggle('is-active', finaleVisible && !reduced);
       requestScrollUpdate();
     }, { threshold: 0.12 });
     finaleObserver.observe(finale);
@@ -88,6 +185,7 @@
   if (boss && 'IntersectionObserver' in window) {
     var bossObserver = new IntersectionObserver(function (entries) {
       bossVisible = entries.some(function (entry) { return entry.isIntersecting; });
+      boss.classList.toggle('is-active', bossVisible && !reduced);
       requestScrollUpdate();
     }, { threshold: 0.12 });
     bossObserver.observe(boss);
@@ -157,6 +255,7 @@
   if (chat) {
     var bubbles = chat.querySelectorAll('.chat-bubble');
     var typing = chat.querySelector('[data-typing]');
+    var oracleCore = document.querySelector('.oracle-core');
     var chatPlayed = false;
 
     function playChat() {
@@ -166,12 +265,19 @@
       if (reduced) {
         bubbles.forEach(function (bubble) { bubble.classList.add('show'); });
         if (typing) typing.classList.add('hide');
+        if (oracleCore) oracleCore.classList.add('is-answering');
         return;
       }
+
+      if (oracleCore) oracleCore.classList.add('is-thinking');
 
       window.setTimeout(function () {
         if (typing) typing.classList.add('hide');
         if (bubbles[0]) bubbles[0].classList.add('show');
+        if (oracleCore) {
+          oracleCore.classList.remove('is-thinking');
+          oracleCore.classList.add('is-answering');
+        }
       }, 420);
 
       window.setTimeout(function () {
@@ -191,6 +297,32 @@
       playChat();
     }
   }
+
+  /* Parallax sutil nas cenas grandes; o conteúdo não depende do ponteiro. */
+  function bindFlowScene(scene, target, strength) {
+    if (!scene || !target) return;
+    var frame = 0;
+
+    scene.addEventListener('pointermove', function (event) {
+      if (reduced || event.pointerType === 'touch' || frame) return;
+      frame = window.requestAnimationFrame(function () {
+        var rect = scene.getBoundingClientRect();
+        var x = ((event.clientX - rect.left) / rect.width) - .5;
+        var y = ((event.clientY - rect.top) / rect.height) - .5;
+        target.style.setProperty('--flow-x', (x * strength).toFixed(1) + 'px');
+        target.style.setProperty('--flow-y', (y * strength * .7).toFixed(1) + 'px');
+        frame = 0;
+      });
+    });
+
+    scene.addEventListener('pointerleave', function () {
+      target.style.setProperty('--flow-x', '0px');
+      target.style.setProperty('--flow-y', '0px');
+    });
+  }
+
+  bindFlowScene(boss, boss && boss.querySelector('.boss-stage'), 22);
+  bindFlowScene(finale, finale && finale.querySelector('.finale-portal'), 14);
 
   /* Hooks into analytics when the host page provides gtag/dataLayer. */
   document.querySelectorAll('[data-cta]').forEach(function (link) {
