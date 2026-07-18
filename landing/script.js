@@ -35,99 +35,286 @@
     heroReveals.forEach(reveal);
   });
 
-  /* Fluxo Vivo: pointer, teclado e tour automático controlam o mesmo néfron. */
+  /* Percorra o Fluxo: o cursor é magnetizado ao traçado real do néfron. */
   if (heroLab) {
+    var nephronAtlas = heroLab.querySelector('[data-nephron-atlas]');
     var nephron = heroLab.querySelector('[data-nephron]');
     var nephronPath = heroLab.querySelector('[data-nephron-path]');
     var nephronProbe = heroLab.querySelector('[data-nephron-probe]');
-    var atlasLens = heroLab.querySelector('[data-atlas-lens]');
+    var nephronProbeHalo = heroLab.querySelector('[data-nephron-probe-halo]');
     var nephronNodes = Array.prototype.slice.call(heroLab.querySelectorAll('[data-nephron-node]'));
-    var stageItems = Array.prototype.slice.call(heroLab.querySelectorAll('[data-stage]'));
-    var stageLabel = heroLab.querySelector('[data-stage-label]');
-    var stageNames = ['Filtração', 'Interpretação', 'Retenção', 'Conquista'];
+    var flowControls = Array.prototype.slice.call(heroLab.querySelectorAll('[data-flow-stage]'));
+    var flowInsight = heroLab.querySelector('[data-flow-insight]');
+    var flowKicker = heroLab.querySelector('[data-flow-kicker]');
+    var flowTitle = heroLab.querySelector('[data-flow-title]');
+    var flowCopy = heroLab.querySelector('[data-flow-copy]');
+    var flowStages = [
+      { kicker: '01 · Filtra', title: 'Questão comentada', copy: 'Uma questão revela o que você já domina.' },
+      { kicker: '02 · Interpreta', title: 'Ponto decisivo', copy: 'O comentário encontra o ponto que muda a decisão.' },
+      { kicker: '03 · Retém', title: 'Revisão adaptativa', copy: 'O conteúdo volta antes que a memória apague.' },
+      { kicker: '04 · Conquista', title: 'Evolução visível', copy: 'Seu domínio e seu personagem avançam juntos.' }
+    ];
     var stageProgress = [.07, .34, .64, .92];
     var pathLength = nephronPath && typeof nephronPath.getTotalLength === 'function' ? nephronPath.getTotalLength() : 0;
-    var heroPointerFrame = 0;
-    var heroPointerActive = false;
+    var pathSamples = [];
+    var currentProgress = stageProgress[0];
+    var targetProgress = stageProgress[0];
+    var selectedStage = -1;
+    var pendingPointer = null;
+    var heroFlowFrame = 0;
     var heroVisible = true;
-    var autoStage = 0;
+    var userHasInteracted = false;
+    var introTimers = [];
 
-    function positionProbe(progress) {
-      if (!nephronPath || !nephronProbe || !pathLength) return;
-      var point = nephronPath.getPointAtLength(pathLength * Math.max(0, Math.min(1, progress)));
-      nephronProbe.setAttribute('cx', point.x.toFixed(2));
-      nephronProbe.setAttribute('cy', point.y.toFixed(2));
+    function buildPathSamples() {
+      if (!pathLength) return;
+      pathSamples = [];
+      for (var sampleIndex = 0; sampleIndex < 128; sampleIndex += 1) {
+        var progress = sampleIndex / 127;
+        var point = nephronPath.getPointAtLength(pathLength * progress);
+        pathSamples.push({ x: point.x, y: point.y, progress: progress });
+      }
+      flowControls.forEach(function (control, controlIndex) {
+        var nodeX = Number(control.dataset.nodeX);
+        var nodeY = Number(control.dataset.nodeY);
+        var closest = pathSamples[0];
+        var shortest = Infinity;
+        pathSamples.forEach(function (sample) {
+          var dx = sample.x - nodeX;
+          var dy = sample.y - nodeY;
+          var distance = dx * dx + dy * dy;
+          if (distance < shortest) {
+            shortest = distance;
+            closest = sample;
+          }
+        });
+        stageProgress[controlIndex] = closest.progress;
+      });
     }
 
-    function selectStage(index, progress) {
-      var selected = Math.max(0, Math.min(3, index));
-      autoStage = selected;
-      nephronNodes.forEach(function (node, nodeIndex) {
-        node.classList.toggle('is-active', nodeIndex === selected);
-      });
-      stageItems.forEach(function (item, itemIndex) {
-        item.classList.toggle('is-current', itemIndex === selected);
-        item.classList.toggle('is-complete', itemIndex < selected);
-      });
-      if (stageLabel) stageLabel.textContent = stageNames[selected];
-      heroLab.style.setProperty('--stage-progress', ((selected + 1) * 25) + '%');
-      positionProbe(typeof progress === 'number' ? progress : stageProgress[selected]);
+    function svgPointToAtlas(x, y, matrix, atlasRect) {
+      if (!nephron || !nephronAtlas || typeof nephron.createSVGPoint !== 'function') return null;
+      matrix = matrix || nephron.getScreenCTM();
+      if (!matrix) return null;
+      var svgPoint = nephron.createSVGPoint();
+      svgPoint.x = x;
+      svgPoint.y = y;
+      var screenPoint = svgPoint.matrixTransform(matrix);
+      atlasRect = atlasRect || nephronAtlas.getBoundingClientRect();
+      return { x: screenPoint.x - atlasRect.left, y: screenPoint.y - atlasRect.top, width: atlasRect.width, height: atlasRect.height };
     }
 
-    function moveLens(clientX, clientY, radius) {
-      if (!nephron || !atlasLens || typeof nephron.createSVGPoint !== 'function') return;
+    function clientPointToSvg(clientX, clientY) {
+      if (!nephron || typeof nephron.createSVGPoint !== 'function') return null;
       var matrix = nephron.getScreenCTM();
-      if (!matrix) return;
+      if (!matrix) return null;
       var point = nephron.createSVGPoint();
       point.x = clientX;
       point.y = clientY;
-      var local = point.matrixTransform(matrix.inverse());
-      atlasLens.setAttribute('cx', local.x.toFixed(1));
-      atlasLens.setAttribute('cy', local.y.toFixed(1));
-      atlasLens.setAttribute('r', radius || 96);
+      return point.matrixTransform(matrix.inverse());
     }
 
-    heroLab.addEventListener('pointermove', function (event) {
-      if (reduced || event.pointerType === 'touch') return;
-      heroPointerActive = true;
-      if (heroPointerFrame) return;
-      heroPointerFrame = window.requestAnimationFrame(function () {
-        var rect = heroLab.getBoundingClientRect();
-        var x = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
-        var y = Math.max(0, Math.min(1, (event.clientY - rect.top) / rect.height));
-        heroLab.style.setProperty('--flow-x', ((x - .5) * 18).toFixed(1) + 'px');
-        heroLab.style.setProperty('--flow-y', ((y - .5) * 14).toFixed(1) + 'px');
-        selectStage(Math.min(3, Math.floor(x * 4)), x);
-        moveLens(event.clientX, event.clientY, 98);
-        heroPointerFrame = 0;
+    function positionProbe(progress) {
+      if (!nephronPath || !pathLength) return;
+      var bounded = Math.max(0, Math.min(1, progress));
+      var point = nephronPath.getPointAtLength(pathLength * bounded);
+      [nephronProbe, nephronProbeHalo].forEach(function (element) {
+        if (!element) return;
+        element.setAttribute('cx', point.x.toFixed(2));
+        element.setAttribute('cy', point.y.toFixed(2));
+      });
+    }
+
+    function positionFlowUi() {
+      if (!nephronAtlas || !nephron || selectedStage < 0) return;
+      var matrix = nephron.getScreenCTM();
+      if (!matrix) return;
+      var atlasRect = nephronAtlas.getBoundingClientRect();
+      flowControls.forEach(function (control) {
+        var point = svgPointToAtlas(Number(control.dataset.nodeX), Number(control.dataset.nodeY), matrix, atlasRect);
+        if (!point) return;
+        control.style.left = point.x.toFixed(1) + 'px';
+        control.style.top = point.y.toFixed(1) + 'px';
+      });
+      var anchorPoint = nephronPath.getPointAtLength(pathLength * stageProgress[selectedStage]);
+      var anchor = svgPointToAtlas(anchorPoint.x, anchorPoint.y, matrix, atlasRect);
+      if (!anchor || !flowInsight) return;
+      flowInsight.style.setProperty('--insight-x', anchor.x.toFixed(1) + 'px');
+      flowInsight.style.setProperty('--insight-y', Math.max(48, Math.min(anchor.height - 48, anchor.y)).toFixed(1) + 'px');
+      flowInsight.classList.toggle('is-left', anchor.x > anchor.width * .62);
+    }
+
+    function nearestStageFor(progress) {
+      var nearest = 0;
+      var distance = Infinity;
+      stageProgress.forEach(function (stagePoint, index) {
+        var currentDistance = Math.abs(stagePoint - progress);
+        if (currentDistance < distance) {
+          nearest = index;
+          distance = currentDistance;
+        }
+      });
+      return nearest;
+    }
+
+    function updateInsight(index) {
+      if (!flowInsight || !flowStages[index]) return;
+      var stage = flowStages[index];
+      if (flowKicker) flowKicker.textContent = stage.kicker;
+      if (flowTitle) flowTitle.textContent = stage.title;
+      if (flowCopy) flowCopy.textContent = stage.copy;
+      flowInsight.classList.remove('is-changing');
+      void flowInsight.offsetWidth;
+      flowInsight.classList.add('is-changing');
+    }
+
+    function selectStage(index, preserveTarget) {
+      var selected = Math.max(0, Math.min(flowStages.length - 1, index));
+      var changed = selected !== selectedStage;
+      selectedStage = selected;
+      heroLab.setAttribute('data-flow-stage', String(selected));
+      nephronNodes.forEach(function (node, nodeIndex) {
+        node.classList.toggle('is-active', nodeIndex === selected);
+      });
+      flowControls.forEach(function (control, controlIndex) {
+        var isCurrent = controlIndex === selected;
+        control.classList.toggle('is-current', isCurrent);
+        control.setAttribute('aria-pressed', String(isCurrent));
+        control.tabIndex = isCurrent ? 0 : -1;
+      });
+      if (!preserveTarget) targetProgress = stageProgress[selected];
+      if (changed) {
+        updateInsight(selected);
+        positionFlowUi();
+      }
+      requestFlowFrame();
+    }
+
+    function cancelIntro() {
+      if (userHasInteracted) return;
+      userHasInteracted = true;
+      introTimers.forEach(window.clearTimeout);
+      introTimers = [];
+    }
+
+    function findClosestProgress(clientX, clientY) {
+      var local = clientPointToSvg(clientX, clientY);
+      if (!local || !pathSamples.length) return targetProgress;
+      var closest = pathSamples[0];
+      var shortest = Infinity;
+      pathSamples.forEach(function (sample) {
+        var dx = sample.x - local.x;
+        var dy = sample.y - local.y;
+        var distance = dx * dx + dy * dy;
+        if (distance < shortest) {
+          shortest = distance;
+          closest = sample;
+        }
+      });
+      return closest.progress;
+    }
+
+    function runFlowFrame() {
+      heroFlowFrame = 0;
+      if (!heroVisible || document.hidden) return;
+      if (pendingPointer) {
+        targetProgress = findClosestProgress(pendingPointer.x, pendingPointer.y);
+        pendingPointer = null;
+        selectStage(nearestStageFor(targetProgress), true);
+      }
+      var distance = targetProgress - currentProgress;
+      currentProgress = reduced ? targetProgress : currentProgress + distance * .16;
+      if (Math.abs(distance) < .0008) currentProgress = targetProgress;
+      positionProbe(currentProgress);
+      if (pendingPointer || Math.abs(targetProgress - currentProgress) >= .0008) requestFlowFrame();
+    }
+
+    function requestFlowFrame() {
+      if (!heroFlowFrame) heroFlowFrame = window.requestAnimationFrame(runFlowFrame);
+    }
+
+    if (nephronAtlas) {
+      nephronAtlas.addEventListener('pointermove', function (event) {
+        if (reduced || event.pointerType === 'touch') return;
+        cancelIntro();
+        nephronAtlas.classList.add('is-tracing');
+        pendingPointer = { x: event.clientX, y: event.clientY };
+        requestFlowFrame();
+      });
+      nephronAtlas.addEventListener('pointerleave', function () {
+        nephronAtlas.classList.remove('is-tracing');
+        pendingPointer = null;
+      });
+    }
+
+    flowControls.forEach(function (control, index) {
+      function activate(event) {
+        cancelIntro();
+        selectStage(index, false);
+        if (event && event.type === 'click') control.focus({ preventScroll: true });
+      }
+      control.addEventListener('pointerenter', activate);
+      control.addEventListener('click', activate);
+      control.addEventListener('focus', activate);
+      control.addEventListener('keydown', function (event) {
+        var next = index;
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') next = (index + 1) % flowControls.length;
+        else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') next = (index - 1 + flowControls.length) % flowControls.length;
+        else if (event.key === 'Home') next = 0;
+        else if (event.key === 'End') next = flowControls.length - 1;
+        else return;
+        event.preventDefault();
+        flowControls[next].focus();
       });
     });
 
-    heroLab.addEventListener('pointerleave', function () {
-      heroPointerActive = false;
-      heroLab.style.setProperty('--flow-x', '0px');
-      heroLab.style.setProperty('--flow-y', '0px');
-      if (atlasLens) atlasLens.setAttribute('r', 0);
-    });
-
-    stageItems.forEach(function (item, index) {
-      function activate() { selectStage(index); }
-      item.addEventListener('pointerenter', activate);
-      item.addEventListener('focus', activate);
-    });
+    buildPathSamples();
+    selectStage(0, false);
+    window.requestAnimationFrame(positionFlowUi);
+    if ('ResizeObserver' in window && nephronAtlas) {
+      new ResizeObserver(positionFlowUi).observe(nephronAtlas);
+    } else {
+      window.addEventListener('resize', positionFlowUi, { passive: true });
+    }
 
     if ('IntersectionObserver' in window) {
       var heroLabObserver = new IntersectionObserver(function (entries) {
         heroVisible = entries.some(function (entry) { return entry.isIntersecting; });
+        if (nephronAtlas) nephronAtlas.classList.toggle('is-paused', !heroVisible);
+        if (heroVisible) requestFlowFrame();
       }, { threshold: .08 });
       heroLabObserver.observe(heroLab);
     }
+    document.addEventListener('visibilitychange', function () {
+      if (nephronAtlas) nephronAtlas.classList.toggle('is-paused', document.hidden || !heroVisible);
+      if (!document.hidden && heroVisible) requestFlowFrame();
+    });
 
-    selectStage(0);
-    window.setInterval(function () {
-      if (reduced || heroPointerActive || !heroVisible) return;
-      selectStage((autoStage + 1) % 4);
-    }, 2400);
+    if (!reduced) {
+      [1, 2, 3].forEach(function (stage, index) {
+        introTimers.push(window.setTimeout(function () {
+          if (!userHasInteracted && heroVisible) selectStage(stage, false);
+        }, 1350 + index * 1250));
+      });
+    }
+  }
+
+  /* Simulação do motor adaptativo: um controle real, não uma precisão fingida. */
+  var irtDemo = document.querySelector('[data-irt-demo]');
+  if (irtDemo) {
+    var irtSlider = irtDemo.querySelector('input[type="range"]');
+    var irtState = irtDemo.querySelector('[data-irt-state]');
+    function updateIrtDemo() {
+      var value = Number(irtSlider.value);
+      var next = Math.min(94, value + 8);
+      var state = value < 32 ? 'Reforço inteligente' : value > 74 ? 'Desafio de expansão' : 'Sua zona ideal';
+      irtDemo.style.setProperty('--irt-user', value + '%');
+      irtDemo.style.setProperty('--irt-next', next + '%');
+      if (irtState) irtState.textContent = state;
+      irtSlider.setAttribute('aria-valuetext', value + ' de 100 — ' + state);
+    }
+    irtSlider.addEventListener('input', updateIrtDemo);
+    updateIrtDemo();
   }
 
   /* Remaining content reveals only as it becomes relevant. */
@@ -349,6 +536,8 @@
     if (reduced) {
       root.classList.remove('motion-ready');
       revealAll();
+    } else {
+      root.classList.add('motion-ready');
     }
   }
 
