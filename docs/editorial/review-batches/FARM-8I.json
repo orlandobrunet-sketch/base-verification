@@ -1,0 +1,156 @@
+{
+  "batch": "FARM-8I",
+  "change_type": "medical_editorial",
+  "expected_version": "12.92",
+  "allowed_files": [
+    "data/topics.js",
+    "data/refs.js",
+    "docs/editorial/review-batches/FARM-8I.json",
+    "index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "23812bce": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "fused_into": "1e2668d6",
+      "reason": "Duplicata conceitual de Gitelman; o conceito hipomagnesemia/hipocalciúria ficou coberto por 1e2668d6 e 940b2835.",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NÃO DECISIVA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "71a9210e": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada com pequenos ajustes",
+        "publication": "LIBERADA"
+      }
+    },
+    "81740f2d": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada com pequenos ajustes",
+        "publication": "LIBERADA"
+      }
+    },
+    "adcbaae7": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada com pequenos ajustes",
+        "publication": "LIBERADA"
+      }
+    },
+    "de735857": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "fused_into": "8f6bbf81",
+      "reason": "Duplicata simples do OP hipocalemia refratária por hipomagnesemia; mantida versão clínica mais completa.",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NÃO DECISIVA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "8f6bbf81": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada com pequenos ajustes",
+        "publication": "LIBERADA"
+      }
+    },
+    "99e6abdd": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada com pequenos ajustes",
+        "publication": "LIBERADA"
+      }
+    },
+    "1e2668d6": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada com pequenos ajustes",
+        "publication": "LIBERADA"
+      }
+    },
+    "2446f20f": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "fused_into": "8f6bbf81",
+      "reason": "Duplicata quase completa de 8f6bbf81 sobre hipomagnesemia grave e hipocalemia refratária.",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NÃO DECISIVA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "940b2835": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada com pequenos ajustes",
+        "publication": "LIBERADA"
+      }
+    }
+  },
+  "expected_question_delta": -3,
+  "refs_policy": "declared",
+  "references": {
+    "gitelman_kdigo_2017": {
+      "action": "add",
+      "evidence_role": "Suporta diagnóstico, fisiopatologia e manejo básico da síndrome de Gitelman."
+    },
+    "liddle_syndrome_review_2019": {
+      "action": "add",
+      "evidence_role": "Suporta mecanismo ENaC, perfil renina/aldosterona e tratamento conceitual da síndrome de Liddle."
+    },
+    "hypomagnesemia_review_2019": {
+      "action": "add",
+      "evidence_role": "Suporta hipomagnesemia como causa de hipocalemia refratária por ROMK e hipocalcemia funcional."
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Lote de tubulopatias e potássio/magnésio dentro de eletrólitos.",
+    "Referências genéricas ou fora de tema foram substituídas por cards específicos.",
+    "Três qids redundantes foram fundidos para reduzir ruído pedagógico sem perder cobertura."
+  ]
+}
