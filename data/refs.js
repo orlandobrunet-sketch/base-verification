@@ -41,6 +41,48 @@ const refsDB = {
     conclusao:"No diabetes insipidus nefrogênico por lítio, a amilorida é uma estratégia fisiologicamente dirigida porque reduz a entrada de lítio no ducto coletor; deve ser acompanhada de monitorização clínica, renal e dos níveis de lítio.",
     curiosidade:"O mesmo canal epitelial de sódio que permite ao néfron ajustar a reabsorção fina de sódio também é a porta de entrada do lítio na célula principal — uma bela tragédia tubular em miniatura."
   },
+  gitelman_kdigo_2017:{
+    label:"Blanchard A et al. — Gitelman Syndrome: KDIGO Controversies Conference (2017)",
+    url:"https://discovery.ucl.ac.uk/id/eprint/1534450/",
+    journal:"Kidney Int 2017;91(1):24-33",
+    ano:2017,
+    tipo:"Consenso KDIGO",
+    badge:"GUIDELINE",
+    badgeColor:"#6366f1",
+    impacto:"Diagnóstico e manejo da síndrome de Gitelman: hipocalemia, alcalose metabólica, hipomagnesemia, hipocalciúria e SLC12A3/NCC",
+    icon:"📋",
+    resumo:"Consenso de conferência KDIGO sobre síndrome de Gitelman, uma tubulopatia perdedora de sal causada por mutações inativantes em SLC12A3, gene do cotransportador NaCl sensível a tiazídicos (NCC) no túbulo contornado distal. Caracteriza o fenótipo clássico por alcalose metabólica hipocalêmica, hipomagnesemia e hipocalciúria, geralmente com apresentação mais tardia que Bartter. O manejo é individualizado e costuma combinar liberalização de sal, suplementação de potássio e magnésio e seguimento para sintomas, qualidade de vida, arritmias e complicações.",
+    conclusao:"Gitelman deve ser reconhecida pelo padrão de hipocalemia + alcalose metabólica + hipomagnesemia + hipocalciúria, distinguindo-se de Bartter pela localização distal/NCC e pelo perfil cálcio-magnésio.",
+    curiosidade:"O fenótipo de Gitelman imita um 'tiazídico genético': o defeito fica no mesmo cotransportador que a hidroclorotiazida bloqueia, mas com consequências crônicas sobre magnésio e cálcio urinário."
+  },
+  liddle_syndrome_review_2019:{
+    label:"Tetti M et al. — Liddle's Syndrome: Mechanisms, Diagnosis and Management (2019)",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC6731958/",
+    journal:"Integr Blood Press Control 2019;12:13-22",
+    ano:2019,
+    tipo:"Revisão Clínica",
+    badge:"REVIEW",
+    badgeColor:"#0ea5e9",
+    impacto:"Mecanismo da síndrome de Liddle: ganho de função do ENaC com hipertensão, hipocalemia, alcalose metabólica, renina e aldosterona baixas",
+    icon:"📖",
+    resumo:"Revisão sobre síndrome de Liddle, causa monogênica rara de hipertensão de início precoce por ganho de função do canal epitelial de sódio (ENaC), geralmente por variantes em SCNN1B ou SCNN1G que reduzem a degradação do canal. A maior reabsorção distal de sódio expande volume, suprime renina e aldosterona e aumenta a secreção distal de potássio e H+, produzindo hipocalemia e alcalose metabólica. O tratamento fisiologicamente dirigido bloqueia ENaC com amilorida ou triantereno; antagonistas de aldosterona são menos úteis quando a aldosterona está suprimida.",
+    conclusao:"Hipertensão jovem com hipocalemia, alcalose metabólica e renina/aldosterona baixas aponta para pseudohiperaldosteronismo por ENaC; o alvo terapêutico é ENaC, não o receptor mineralocorticoide.",
+    curiosidade:"A doença parece hiperaldosteronismo, mas é quase o espelho laboratorial dele: o rim age como se houvesse aldosterona demais, enquanto a própria aldosterona está baixa."
+  },
+  hypomagnesemia_review_2019:{
+    label:"Ahmed F, Mohammed A — Magnesium: The Forgotten Electrolyte (2019)",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC6524065/",
+    journal:"Med Sci (Basel) 2019;7(4):56",
+    ano:2019,
+    tipo:"Revisão Clínica",
+    badge:"REVIEW",
+    badgeColor:"#0ea5e9",
+    impacto:"Hipomagnesemia como causa de hipocalemia refratária e hipocalcemia funcional por alteração de ROMK, Na/K-ATPase e PTH",
+    icon:"📖",
+    resumo:"Revisão clínica sobre magnésio e hipomagnesemia. Destaca que a hipocalemia associada à deficiência de magnésio pode ser refratária à reposição isolada de potássio, pois o magnésio intracelular normalmente bloqueia o canal ROMK no néfron distal; quando o magnésio está baixo, aumenta a perda urinária de K+. Também descreve hipocalcemia em deficiência moderada a grave por redução da secreção e/ou ação do PTH. O tratamento depende de gravidade, sintomas e tolerância oral, com reposição intravenosa em casos graves ou sintomáticos.",
+    conclusao:"Na hipocalemia refratária, dosar e corrigir magnésio não é detalhe: sem repor Mg, o rim pode continuar desperdiçando potássio via ROMK.",
+    curiosidade:"A hipomagnesemia é um pequeno sabotador bioquímico: pode fazer o potássio 'vazar' pela urina e ainda simular hipoparatireoidismo funcional ao atrapalhar o PTH."
+  },
   ukka_hyperkalemia_2023:{
     label:"UKKA Hyperkalaemia Guideline 2023",
     url:"https://www.ukkidney.org/health-professionals/guidelines/treatment-acute-hyperkalaemia-adults-0",
