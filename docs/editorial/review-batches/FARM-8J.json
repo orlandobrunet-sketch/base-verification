@@ -1,0 +1,43 @@
+{
+  "batch": "FARM-8J",
+  "change_type": "medical_editorial",
+  "expected_version": "12.93",
+  "allowed_files": [
+    "data/topics.js",
+    "data/refs.js",
+    "docs/editorial/review-batches/FARM-8J.json",
+    "index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "efba1640": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada com pequenos ajustes","publication":"LIBERADA"}},
+    "67035e0e": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada com pequenos ajustes","publication":"LIBERADA"}},
+    "38c82254": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada com pequenos ajustes","publication":"LIBERADA"}},
+    "1366b930": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada com pequenos ajustes","publication":"LIBERADA"}},
+    "89f90028": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada com pequenos ajustes","publication":"LIBERADA"}},
+    "9f364367": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada com pequenos ajustes","publication":"LIBERADA"}},
+    "d54bff9c": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada com pequenos ajustes","publication":"LIBERADA"}},
+    "1bafd0bc": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada com pequenos ajustes","publication":"LIBERADA"}},
+    "459c4d9a": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada com pequenos ajustes","publication":"LIBERADA"}},
+    "2f2dc008": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada com pequenos ajustes","publication":"LIBERADA"}}
+  },
+  "expected_question_delta": 0,
+  "refs_policy": "declared",
+  "references": {
+    "hypophosphatemia_icu_geerse_2010": {"action":"add","evidence_role":"Suporta hipofosfatemia grave/sintomática em UTI e reposição intravenosa monitorizada."},
+    "tumor_lysis_howard_nejm_2011": {"action":"add","evidence_role":"Suporta critérios de Cairo-Bishop para lise tumoral laboratorial e clínica."},
+    "hypoparathyroidism_ese_2025": {"action":"add","evidence_role":"Suporta diagnóstico de hipoparatireoidismo e tratamento com cálcio/vitamina D ativa com monitorização renal."},
+    "hypercalcemia_malignancy_endo_2022": {"action":"add","evidence_role":"Suporta tratamento da hipercalcemia da malignidade com hidratação e anti-reabsortivo."},
+    "myeloma_renal_imwg_2023": {"action":"add","evidence_role":"Suporta manejo da disfunção renal do mieloma e papel de esquemas baseados em bortezomibe."}
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Lote de metabolismo mineral, fósforo, cálcio, hipofosfatemia, lise tumoral, hipoparatireoidismo, hipercalcemia maligna e rim do mieloma.",
+    "Referências genéricas ou fora de tema foram substituídas por diretrizes/revisões específicas.",
+    "Delta 0: todos os 10 qids mantêm cobertura pedagógica distinta."
+  ]
+}
