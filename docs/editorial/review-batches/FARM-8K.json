@@ -1,0 +1,53 @@
+{
+  "batch": "FARM-8K",
+  "change_type": "medical_editorial",
+  "expected_version": "12.94",
+  "allowed_files": [
+    "data/topics.js",
+    "data/refs.js",
+    "docs/editorial/review-batches/FARM-8K.json",
+    "index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "86949ab7": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada com pequenos ajustes","publication":"LIBERADA"}},
+    "a73f61f6": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada com pequenos ajustes","publication":"LIBERADA"}},
+    "b2c513e8": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada com pequenos ajustes","publication":"LIBERADA"}},
+    "a493996a": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada com pequenos ajustes","publication":"LIBERADA"}},
+    "95c5568b": {"action":"retire","preserve_fsrs":false,"replacement_qid":"21a89255","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"eliminatório","verdict":"fundir","publication":"BLOQUEADA"}},
+    "3ce4dbf4": {"action":"retire","preserve_fsrs":false,"replacement_qid":"cc3248a3","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"eliminatório","verdict":"fundir","publication":"BLOQUEADA"}},
+    "e8ca8ba5": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada com pequenos ajustes","publication":"LIBERADA"}},
+    "ece4696c": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada com pequenos ajustes","publication":"LIBERADA"}},
+    "4f6ab588": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada com pequenos ajustes","publication":"LIBERADA"}},
+    "209580b5": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada com pequenos ajustes","publication":"LIBERADA"}},
+    "fb5a347d": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada com pequenos ajustes","publication":"LIBERADA"}},
+    "5705f74c": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada com pequenos ajustes","publication":"LIBERADA"}},
+    "11c26939": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada com pequenos ajustes","publication":"LIBERADA"}},
+    "760901ee": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada com pequenos ajustes","publication":"LIBERADA"}},
+    "2a3a6f56": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada com pequenos ajustes","publication":"LIBERADA"}},
+    "c58fc63b": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada com pequenos ajustes","publication":"LIBERADA"}},
+    "3ea72484": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada com pequenos ajustes","publication":"LIBERADA"}},
+    "705cb60b": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada com pequenos ajustes","publication":"LIBERADA"}}
+  },
+  "expected_question_delta": -2,
+  "refs_policy": "declared",
+  "references": {
+    "bproad": {"action":"update","evidence_role":"Corrige DOI/ano e sustenta hipercalemia mais frequente no braço intensivo."},
+    "ckd_pregnancy_guideline_2019": {"action":"add","evidence_role":"Suporta anti-hipertensivos seguros e bloqueio do SRAA na gestação com DRC."},
+    "magnesium_sulfate_toxicity_ahrq": {"action":"add","evidence_role":"Suporta sinais de toxicidade por sulfato de magnésio e gluconato de cálcio."},
+    "metformin_mala_minireview_2024": {"action":"add","evidence_role":"Suporta mecanismo da acidose lática associada à metformina."},
+    "statin_cyp3a4_rhabdo_review": {"action":"add","evidence_role":"Suporta interação estatina-CYP3A4 e rabdomiólise com hipercalemia/LRA."},
+    "ckd_metabolic_acidosis_core_2019": {"action":"add","evidence_role":"Suporta efeitos ósseos e musculares da acidose metabólica crônica na DRC."}
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Fecha os 18 qids ativos restantes originalmente em eletrólitos.",
+    "Dois qids foram aposentados/fundidos por duplicidade de ATR já revista: 95c5568b -> 21a89255; 3ce4dbf4 -> cc3248a3.",
+    "Reclassifica itens que estavam em eletrólitos mas pertenciam a hipertensão, farmacologia ou ácido-base.",
+    "Todas as novas referências adicionadas incluem resumo, conclusão e curiosidade no padrão do Grimório."
+  ]
+}
