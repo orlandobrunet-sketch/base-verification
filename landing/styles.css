@@ -167,15 +167,6 @@ main, .nav, .footer { position: relative; z-index: 1; }
   font-weight: 700;
   letter-spacing: .13em;
 }
-.nav-edition {
-  padding-left: .7rem;
-  border-left: 1px solid rgba(var(--gold-rgb), .26);
-  color: var(--haze);
-  font-family: var(--mono);
-  font-size: .62rem;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
 .nav-links { display: flex; align-items: center; gap: 1.5rem; }
 .nav-links a {
   position: relative;
@@ -1095,7 +1086,6 @@ main, .nav, .footer { position: relative; z-index: 1; }
 /* Responsive */
 @media (max-width: 1100px) {
   :root { --chapter-space-top: 2.25rem; --chapter-space-bottom: 3.5rem; }
-  .nav-edition { display: none; }
   .hero-shell { grid-template-columns: minmax(0, 1fr) 340px; }
   .hero-atlas { right: -8vw; opacity: .8; }
   .oracle { gap: 3rem; }
@@ -1210,85 +1200,25 @@ main, .nav, .footer { position: relative; z-index: 1; }
   .hero-console { margin-top: 4rem; transform: scale(.9); transform-origin: right center; }
 }
 
-/* Fluxo Vivo — assinatura anatômica, interação e clímax cinético */
-.nav-brand { min-height: 44px; gap: .72rem; }
+/* Assinatura tipográfica — a marca vive apenas no contraste Nefro / Quest. */
+.nav-brand { min-height: 44px; gap: 0; }
 .nav-word {
   display: inline-flex;
   align-items: baseline;
   overflow: visible;
   font-variant-caps: normal;
-  font-size: 1.34rem;
+  font-size: 1.5rem;
   letter-spacing: .012em;
   padding-inline-end: 0;
 }
 .nav-word b { font-weight: 700; }
 .nav-word .wordmark-quest {
-  position: relative;
-  display: inline-flex;
-  margin-left: .02em;
+  display: inline;
+  margin-left: .015em;
   color: var(--gold-bright);
-  font-size: 1.04em;
+  font-size: 1.02em;
   font-style: italic;
   font-weight: 600;
-}
-.wordmark-q {
-  position: relative;
-  display: inline-block;
-  z-index: 1;
-  isolation: isolate;
-}
-.wordmark-glomerulus {
-  position: absolute;
-  z-index: 2;
-  top: .12em;
-  left: .16em;
-  width: .66em;
-  height: .76em;
-  overflow: visible;
-  pointer-events: none;
-}
-.wordmark-glomerulus path {
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  vector-effect: non-scaling-stroke;
-}
-.wordmark-glomerulus__tuft {
-  stroke: var(--night);
-  stroke-width: 1.25;
-}
-.wordmark-glomerulus__flow {
-  stroke: var(--cyan-bright);
-  stroke-width: 1.35;
-  stroke-dasharray: .14 .86;
-  stroke-dashoffset: .16;
-  opacity: 0;
-}
-.motion-ready .nav-brand .wordmark-glomerulus__flow {
-  animation: wordmark-filtration-intro .8s var(--ease-out) .55s both;
-}
-.nav-brand:focus-visible .wordmark-glomerulus__flow {
-  animation: wordmark-filtration-focus .72s var(--ease-out) both;
-}
-@media (hover: hover) {
-  .nav-brand:hover .wordmark-glomerulus__flow {
-    animation: wordmark-filtration-hover .72s var(--ease-out) both;
-  }
-}
-@keyframes wordmark-filtration-intro {
-  0% { opacity: 0; stroke-dashoffset: .16; }
-  20% { opacity: .95; }
-  100% { opacity: 0; stroke-dashoffset: -.84; }
-}
-@keyframes wordmark-filtration-hover {
-  0% { opacity: 0; stroke-dashoffset: .16; }
-  20% { opacity: .95; }
-  100% { opacity: 0; stroke-dashoffset: -.84; }
-}
-@keyframes wordmark-filtration-focus {
-  0% { opacity: 0; stroke-dashoffset: .16; }
-  20% { opacity: .95; }
-  100% { opacity: 0; stroke-dashoffset: -.84; }
 }
 
 /* O conteúdo permanece legível mesmo quando uma captura não dispara o observer. */
@@ -2334,8 +2264,6 @@ main, .nav, .footer { position: relative; z-index: 1; }
 
 @media (max-width: 640px) {
   .nav .nav-word { padding-inline-end: 0; font-size: 1.08rem; }
-  .wordmark-glomerulus { top: .1em; left: .14em; width: .7em; height: .8em; }
-  .wordmark-glomerulus__tuft--secondary { display: none; }
   .hero-lab { min-height: 0; margin-top: .8rem; }
   .hero-atlas { left: auto; width: 100%; height: 430px; }
   .boss > .boss-current { height: 430px; }
@@ -2375,7 +2303,6 @@ main, .nav, .footer { position: relative; z-index: 1; }
   .guideline-track { padding-inline: max(18px, calc((100vw - var(--archive-card-width)) / 2)); transform: none !important; will-change: auto; }
   .guideline-cover { scroll-snap-align: center; transform: none !important; }
   .ambient-glow { display: none; }
-  .wordmark-glomerulus__flow { display: none; }
 }
 
 @media (forced-colors: active) {
@@ -2388,5 +2315,4 @@ main, .nav, .footer { position: relative; z-index: 1; }
   .flow-insight,
   .flow-insight.is-left,
   .flow-deck { position: static; width: 100%; padding: 1rem; border: 1px solid CanvasText; transform: none; }
-  .wordmark-glomerulus { display: none; }
 }
