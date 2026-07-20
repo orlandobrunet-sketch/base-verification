@@ -2385,6 +2385,48 @@ finerenone_2025:{
     conclusao:"Na DRC, acidose metabólica crônica não é apenas número do bicarbonato: ela participa de perda óssea e proteólise muscular, justificando reconhecimento e manejo individualizado.",
     curiosidade:"O osso funciona como um 'tampão' biológico de longo prazo; útil para sobreviver à acidose, caro para o esqueleto."
   },
+  tsc_renal_erknet_2024:{
+    label:"ERKNet/ERA — Kidney Involvement in Tuberous Sclerosis Complex (2024)",
+    url:"https://www.nature.com/articles/s41581-024-00818-0",
+    journal:"Nat Rev Nephrol. 2024",
+    ano:2024,
+    tipo:"Clinical practice recommendations",
+    badge:"GUIDELINE",
+    badgeColor:"#16a34a",
+    impacto:"Manejo renal do complexo da esclerose tuberosa, incluindo angiomiolipomas",
+    icon:"🧬",
+    resumo:"Recomendações clínicas europeias para envolvimento renal no complexo da esclerose tuberosa. O documento enfatiza rastreamento renal, risco hemorrágico dos angiomiolipomas e preservação de néfrons ao longo da vida. Para angiomiolipomas associados à TSC, inibidores de mTORC1 são tratamento central quando a lesão não exige intervenção imediata; embolização ou abordagem radiológica ficam para sangramento, instabilidade, contraindicação ou falha do tratamento sistêmico.",
+    conclusao:"Angiomiolipoma renal múltiplo/bilateral sugere TSC, e o manejo moderno separa lesão estável — frequentemente mTORC1 — de emergência hemorrágica, em que a intervenção radiológica é prioritária.",
+    curiosidade:"A mesma via mTOR que ajuda a explicar hamartomas neurológicos e cutâneos também organiza boa parte do raciocínio terapêutico renal na esclerose tuberosa."
+  },
+  eau_rcc_guideline_2026:{
+    label:"EAU — Renal Cell Carcinoma Guideline 2026",
+    url:"https://uroweb.org/guidelines/renal-cell-carcinoma",
+    journal:"European Association of Urology Guidelines",
+    ano:2026,
+    tipo:"Guideline",
+    badge:"GUIDELINE",
+    badgeColor:"#2563eb",
+    impacto:"Diagnóstico e estadiamento do carcinoma de células renais",
+    icon:"🧭",
+    resumo:"Diretriz europeia sobre carcinoma de células renais. Reforça que muitos tumores renais são achados incidentais, que a avaliação por imagem caracteriza tumor local e extensão da doença, e que o estadiamento segue o sistema TNM, integrando tumor primário, linfonodos e metástases. A tríade clássica de hematúria, dor lombar e massa palpável permanece importante como sinal de alerta, mas costuma apontar doença mais avançada, não a forma comum de apresentação atual.",
+    conclusao:"No CCR, a tríade clássica é conceito de prova e sinal de doença avançada; a tomada de decisão real depende de imagem e TNM completo.",
+    curiosidade:"A tríade clássica sobrevive nos livros porque é memorável; na prática moderna, o ultrassom e a tomografia descobriram muitos CCR antes dela aparecer."
+  },
+  aua_sufu_microhematuria_2020:{
+    label:"AUA/SUFU — Microhematuria Guideline (2020)",
+    url:"https://www.auajournals.org/doi/full/10.1097/JU.0000000000001297",
+    journal:"J Urol. 2020;204(4):778-786",
+    ano:2020,
+    tipo:"Guideline",
+    badge:"GUIDELINE",
+    badgeColor:"#2563eb",
+    impacto:"Estratificação de risco e investigação urológica de hematúria",
+    icon:"🔎",
+    resumo:"Diretriz AUA/SUFU para investigação de hematúria, organizada por risco de neoplasia urológica. Idade, tabagismo, padrão de hematúria e outros fatores deslocam o paciente para investigação urológica mais completa. Em pacientes de alto risco, a combinação de cistoscopia e imagem do trato urinário superior — tipicamente urotomografia quando apropriada — é a estratégia central para excluir câncer vesical e neoplasia do trato alto.",
+    conclusao:"Hematúria em paciente idoso e tabagista não deve ser tratada como glomerular por reflexo; primeiro é preciso excluir neoplasia urológica com cistoscopia e imagem adequada.",
+    curiosidade:"A urina pode parecer o território natural do nefrologista, mas a hematúria do tabagista muitas vezes fala primeiro a língua da urologia."
+  },
   levofloxacino_500_anvisa:{
     label:"Levofloxacino (Levaquin) 500 mg — Bula Profissional (ANVISA, Janssen-Cilag)",
     url:"https://assets.jnjlabels.com/innovativemedicine/latam/brasil/levaquin-bula-profissional.pdf",
