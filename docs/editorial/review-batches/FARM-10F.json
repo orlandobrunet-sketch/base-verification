@@ -1,0 +1,29 @@
+{
+  "batch": "FARM-10F",
+  "change_type": "medical_editorial",
+  "expected_version": "13.03",
+  "allowed_files": [
+    "docs/editorial/review-batches/FARM-10F.json"
+  ],
+  "questions": {
+    "f44b5edc": {"action": "reviewed_unchanged", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "43834a55": {"action": "reviewed_unchanged", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "28bdfaec": {"action": "reviewed_unchanged", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}}
+  },
+  "expected_question_delta": 0,
+  "refs_policy": "unchanged",
+  "references": {
+    "kdigo_anemia_2026": "existing_verified",
+    "vadadustat_trial": "existing_verified"
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "f44b5edc: KDIGO 2026 sustenta que AEE e HIF-PHI não devem ser usados em combinação; não houve argumento plausível de anulação.",
+    "43834a55: KDIGO 2026 sustenta uso de HIF-PHI na menor dose necessária para melhorar sintomas e evitar transfusão, sem exceder dose máxima recomendada; não houve argumento plausível de anulação.",
+    "28bdfaec: PRO2TECT sustenta que o vadadustat foi não inferior para hemoglobina, mas não atingiu não inferioridade para MACE em DRC não dialítica; card vadadustat_trial já foi reparado no FARM-10E.",
+    "Lote manifest-only: nenhum arquivo médico alterado, nenhum bump de versão necessário."
+  ]
+}
