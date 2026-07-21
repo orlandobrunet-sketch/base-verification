@@ -327,7 +327,7 @@
           email, password,
           options: {
             data: { full_name: name, specialty },
-            emailRedirectTo: window.location.origin + window.location.pathname,
+            emailRedirectTo: AUTH_REDIRECT_URL,
             ...(captchaToken ? { captchaToken } : {})
           }
         });

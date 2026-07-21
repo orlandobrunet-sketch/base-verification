@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Adaptive Learning Engine (IRT leve) Unit Tests', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/jogar/');
   });
 
   test('getAdaptiveTargetDifficulty maps theta to easy/medium/hard correctly', async ({ page }) => {

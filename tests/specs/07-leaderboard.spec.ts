@@ -3,7 +3,7 @@ import { injectGameState, waitForGame , isLiveEnv } from '../helpers/game';
 
 test.describe('Leaderboard — rate limiting e validação', () => {
   test('boardPush respeita rate limit de 1 push por sessão', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/jogar/');
     await injectGameState(page);
     await waitForGame(page);
 
@@ -29,7 +29,7 @@ test.describe('Leaderboard — rate limiting e validação', () => {
   });
 
   test('rate limit é resetado ao iniciar novo jogo', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/jogar/');
     await page.evaluate(() => localStorage.setItem('nefroquest-premium', '1'));
     await page.reload();
     await page.waitForLoadState('domcontentloaded');
@@ -48,7 +48,7 @@ test.describe('Leaderboard — rate limiting e validação', () => {
   });
 
   test('score fora do range não gera request ao leaderboard', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/jogar/');
     await injectGameState(page);
     await waitForGame(page);
 

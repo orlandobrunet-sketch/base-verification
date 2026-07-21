@@ -155,7 +155,7 @@ Deno.serve(async (req) => {
     return new Response(JSON.stringify({ error: 'Invalid JSON' }), { status: 400, headers: { ...cors, 'Content-Type': 'application/json' } });
   }
 
-  const { userId, title, body: msgBody, url = '/', tag = 'nq-push' } = body;
+  const { userId, title, body: msgBody, url = '/jogar/', tag = 'nq-push' } = body;
   if (!title || !msgBody) {
     return new Response(JSON.stringify({ error: 'title and body are required' }), { status: 400, headers: { ...cors, 'Content-Type': 'application/json' } });
   }

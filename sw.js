@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v13.00
-const CACHE = 'nefroquest-v13.00';
+// NefroQuest Service Worker — v13.01
+const CACHE = 'nefroquest-v13.01';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -123,7 +123,7 @@ self.addEventListener('fetch', e => {
 
 // ── Web Push notifications ────────────────────────────────────────────────
 self.addEventListener('push', e => {
-  let data = { title: 'NefroQuest', body: 'Você tem uma novidade!', url: '/', tag: 'nq-push',
+  let data = { title: 'NefroQuest', body: 'Você tem uma novidade!', url: '/jogar/', tag: 'nq-push',
                 icon: '/assets/images/favicon-192x192.png', badge: '/assets/images/favicon-32x32.png' };
   try { if (e.data) Object.assign(data, e.data.json()); } catch {}
   e.waitUntil(
@@ -144,7 +144,7 @@ self.addEventListener('periodicsync', e => {
         badge: '/assets/images/favicon-32x32.png',
         tag: 'nq-study-reminder',
         renotify: false,
-        data: { url: '/' }
+        data: { url: '/jogar/' }
       })
     );
   }
@@ -152,5 +152,5 @@ self.addEventListener('periodicsync', e => {
 
 self.addEventListener('notificationclick', e => {
   e.notification.close();
-  e.waitUntil(clients.openWindow(e.notification.data?.url || '/'));
+  e.waitUntil(clients.openWindow(e.notification.data?.url || '/jogar/'));
 });

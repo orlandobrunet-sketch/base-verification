@@ -3,7 +3,7 @@ import { enterGame } from '../helpers/game';
 
 test.describe('Save schema — migração e resiliência', () => {
   test('save v1 (sem schemaVersion) é migrado para v2 sem perder dados', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/jogar/');
 
     // Inject save v1 — sem schemaVersion, sem bossIntroShown, sem chestsOpened
     await page.evaluate(() => {
@@ -55,7 +55,7 @@ test.describe('Save schema — migração e resiliência', () => {
     const errors: string[] = [];
     page.on('pageerror', e => errors.push(e.message));
 
-    await page.goto('/');
+    await page.goto('/jogar/');
     await page.evaluate(() => {
       localStorage.setItem('nefroquest-save', '{ "corrupted: invalid json }}}');
       localStorage.setItem('nefroquest-premium', '1');
@@ -74,7 +74,7 @@ test.describe('Save schema — migração e resiliência', () => {
   });
 
   test('novo jogo reseta _boardPushedThisSession', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/jogar/');
     await page.evaluate(() => localStorage.setItem('nefroquest-premium', '1'));
     await page.reload();
     await page.waitForLoadState('domcontentloaded');

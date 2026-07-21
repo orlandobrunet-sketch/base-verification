@@ -23,7 +23,7 @@ test.describe('Segurança — vercel.json e Service Worker', () => {
   });
 
   test('service worker está registrado', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/jogar/');
     await page.waitForLoadState('domcontentloaded');
     const swRegistered = await page.evaluate(async () => {
       if (!('serviceWorker' in navigator)) return false;
@@ -61,7 +61,7 @@ test.describe('Segurança — vercel.json e Service Worker', () => {
   });
 
   test('bypass do premium via console/localStorage é evitado sem assinatura', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/jogar/');
     await page.waitForLoadState('domcontentloaded');
     
     const premiumStatus = await page.evaluate(() => {
@@ -79,7 +79,7 @@ test.describe('Segurança — vercel.json e Service Worker', () => {
   });
 
   test('bypass do premium via console/localStorage concede acesso quando assinatura é válida', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/jogar/');
     await page.waitForLoadState('domcontentloaded');
     
     const premiumStatus = await page.evaluate(() => {

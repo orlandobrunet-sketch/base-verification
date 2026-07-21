@@ -25,7 +25,7 @@ Descreva a mudança e o resultado esperado.
 - [ ] Apenas os arquivos declarados no manifesto foram alterados.
 - [ ] Apenas os qids declarados no manifesto foram alterados.
 - [ ] `data/refs.js` respeita `refs_policy` e não há referências inexistentes ou órfãs.
-- [ ] `version.json`, cache do `sw.js` e release Sentry no `index.html` estão sincronizados.
+- [ ] `version.json`, cache do `sw.js` e releases Sentry em `index.html` + `jogar/index.html` estão sincronizados.
 - [ ] ZIPs, arquivos scratch e artefatos de testes não fazem parte do PR.
 
 ### Revisão externa e merge
