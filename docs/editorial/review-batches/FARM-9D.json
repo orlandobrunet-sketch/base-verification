@@ -1,0 +1,56 @@
+{
+  "batch": "FARM-9D",
+  "change_type": "medical_editorial",
+  "expected_version": "12.99",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-9D.json",
+    "index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "f148140d": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "f8f1ff63": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "19/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "6ff54fb3": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "69e7d3e2": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "52bd708f": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "31138710": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "11932cea": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "0ffc255a": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "26aa09ec": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "c6c8ab22": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "19/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "5b660e8c": {"action": "retire", "preserve_fsrs": false, "merge_into": "c6c8ab22", "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "anulado", "verdict": "fundir", "publication": "BLOQUEADA"}},
+    "b8195f7b": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "50792387": {"action": "retire", "preserve_fsrs": false, "merge_into": "f8d7fb49", "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "anulado", "verdict": "fundir", "publication": "BLOQUEADA"}},
+    "1f9ac1f1": {"action": "retire", "preserve_fsrs": false, "merge_into": "b8195f7b", "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "anulado", "verdict": "fundir", "publication": "BLOQUEADA"}},
+    "f7e72c5e": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "1346751e": {"action": "retire", "preserve_fsrs": false, "merge_into": "f7e72c5e", "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "anulado", "verdict": "fundir", "publication": "BLOQUEADA"}},
+    "4792eca5": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "2e1caadc": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "94f97b61": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "19/20", "verdict": "aprovada", "publication": "LIBERADA"}}
+  },
+  "expected_question_delta": -4,
+  "refs_policy": "declared",
+  "references": {
+    "idsa_asb_2019": {"action": "add", "consumers": ["f8f1ff63"]},
+    "idsa_amr_2024": {"action": "add", "consumers": ["52bd708f", "f7e72c5e"]},
+    "ispd_catheter_infection_2023": {"action": "add", "consumers": ["31138710"]},
+    "aasld_ascites_sbp_2021": {"action": "add", "consumers": ["11932cea", "0ffc255a", "26aa09ec"]},
+    "ast_crypto_sot_2019": {"action": "add", "consumers": ["c6c8ab22"]},
+    "kdigo_hcv_ckd_2022": {"action": "add", "consumers": ["2e1caadc"]},
+    "xgp_review_2021": {"action": "add", "consumers": ["f148140d"]}
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Fecha a categoria infeccao ativa: 19 qids pendentes revisados.",
+    "Aposenta 4 duplicatas reais: criptococo, farmacocinetica de aminoglicosideo/LRA, timing de TRS ja coberto em FARM-9B, e ESBL bacteremico.",
+    "Corrige ambiguidade nitrofurantoina/fosfomicina na cistite nao complicada.",
+    "Atualiza infeccao de ostio de cateter de DP para ISPD 2023, removendo duracao fixa de 21 dias para MSSA simples.",
+    "Adiciona 7 cards ao Grimorio, todos com resumo, conclusao e curiosidade."
+  ]
+}

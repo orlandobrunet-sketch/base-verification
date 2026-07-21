@@ -1,0 +1,39 @@
+{
+  "batch": "FARM-9C",
+  "change_type": "medical_editorial",
+  "expected_version": "12.98",
+  "allowed_files": [
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-9C.json",
+    "index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "657966b7": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "3a199ab0": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "472a51a4": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "e0bbd189": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "dc0f89b1": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "6586c771": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "3e9e6915": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "58befdc8": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "3f1e5362": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "ed4ee573": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "6cfc0870": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "125cf9bf": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}}
+  },
+  "expected_question_delta": 0,
+  "refs_policy": "declared",
+  "references": {},
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Fecha os 12 qids ativos restantes de UTI.",
+    "Converte perguntas negativas ou centradas em número/estudo para microaulas clínicas aplicáveis.",
+    "Remove overclaim de benefício renal da vasopressina, dose fixa de ARNI em hipercalemia e falsa equivalência de cristaloide após paracentese de grande volume.",
+    "Não adiciona refs novas; usa cards existentes e já resumidos no Grimório."
+  ]
+}
