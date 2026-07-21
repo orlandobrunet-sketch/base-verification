@@ -1443,6 +1443,76 @@ canvas_program:{
     conclusao:"Consolida a abordagem simplificada e focada em sintomas para cistites típicas, desmistificando o uso excessivo de exames subsidiários e focando no manejo sintomático racional no Reino.",
     curiosidade:"A uretra feminina curta (~4 cm) e sua proximidade anatômica com o ânus e vagina facilitam a migração mecânica ascendente de bactérias do Reino entérico para a bexiga. Isso explica por que o coito é o principal fator desencadeador de cistite em mulheres jovens, promovendo a inoculação mecânica bacteriana retrógrada uretra acima."
   },
+  idsa_asb_2019:{
+    label:"IDSA — Bacteriúria Assintomática (2019)",
+    url:"https://www.idsociety.org/practice-guideline/asymptomatic-bacteriuria/",
+    journal:"Clin Infect Dis 2019;68(10):e83-e110",
+    ano:2019,tipo:"Diretriz",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Define quando não tratar bacteriúria assintomática e evita antibiótico desnecessário",icon:"📋",
+    resumo:"Atualização 2019 da Infectious Diseases Society of America (IDSA) para bacteriúria assintomática. Define bacteriúria assintomática como bacteriúria quantitativa na ausência de sinais ou sintomas atribuíveis à infecção urinária. Recomenda rastrear e tratar apenas em gestantes e antes de procedimentos urológicos endoscópicos associados a trauma de mucosa; recomenda não rastrear nem tratar a maioria dos demais grupos, incluindo idosos, homens mais velhos, diabéticos, pacientes com cateter e cirurgia não urológica eletiva.",
+    conclusao:"Em homem idoso sem sintomas urinários ou sistêmicos e sem procedimento urológico traumático planejado, bacteriúria assintomática não deve receber antibiótico nem culturas seriadas de controle.",
+    curiosidade:"A diretriz enfatiza stewardship: tratar bacteriúria sem sintomas costuma trazer mais dano por resistência, eventos adversos e infecção por Clostridioides difficile do que benefício clínico."
+  },
+  idsa_amr_2024:{
+    label:"IDSA — AMR Gram-negativos (2024)",
+    url:"https://www.idsociety.org/practice-guideline/amr-guidance?n=%40",
+    journal:"IDSA Guidance 2024",
+    ano:2024,tipo:"Diretriz",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Escolha antimicrobiana para Enterobacterales ESBL e outros gram-negativos resistentes",icon:"📋",
+    resumo:"Guia IDSA 2024 para tratamento de infecções por gram-negativos resistentes. Para pielonefrite ou ITU complicada por Enterobacterales produtoras de ESBL, trimetoprima-sulfametoxazol ou fluoroquinolonas são opções preferidas se houver suscetibilidade; carbapenêmicos são preferidos quando resistência/toxicidade impede essas opções ou no início de casos críticos. Para infecções fora do trato urinário, bacteremia ou paciente criticamente enfermo, carbapenêmicos são preferidos, e meropeném ou imipeném-cilastatina são preferidos sobre ertapeném em doença crítica ou hipoalbuminemia.",
+    conclusao:"Em pielonefrite complicada por ESBL com bacteremia ou gravidade, a terapia inicial deve privilegiar carbapenêmico com ajuste renal; piperacilina-tazobactam não é equivalente como escolha preferencial.",
+    curiosidade:"O documento separa cistite não complicada de pielonefrite/ITU complicada: nitrofurantoína e fosfomicina podem servir para bexiga, mas não atingem concentrações adequadas para parênquima renal ou bacteremia."
+  },
+  ispd_catheter_infection_2023:{
+    label:"ISPD — Catheter-related Infection (2023)",
+    url:"https://journals.sagepub.com/doi/10.1177/08968608231172740",
+    journal:"Peritoneal Dialysis International 2023;43(3):201-219",
+    ano:2023,tipo:"Diretriz",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Atualiza diagnóstico e tratamento de infecção de óstio/túnel do cateter de DP",icon:"📋",
+    resumo:"Recomendações 2023 da International Society for Peritoneal Dialysis (ISPD) para infecções relacionadas ao cateter de diálise peritoneal. Define infecção definitiva de óstio pela presença de secreção purulenta, com ou sem eritema, e infecção de túnel por inflamação ao longo do trajeto, com ou sem coleção ao ultrassom. Recomenda antibiótico oral empírico cobrindo Staphylococcus aureus, como cefalosporina de primeira geração ou penicilina antiestafilocócica, salvo risco de MRSA ou Pseudomonas. A duração deve considerar resposta clínica, cultura e sensibilidade; curso fixo de 2 semanas pode ser encurtado para 7–10 dias se houver resolução precoce, enquanto Pseudomonas e infecção de túnel exigem pelo menos 3 semanas.",
+    conclusao:"Infecção simples de óstio por MSSA sem túnel/peritonite não exige remoção imediata do cateter nem curso fixo de 21 dias; o tratamento oral antiestafilocócico deve ser monitorado e ajustado pela resposta.",
+    curiosidade:"A ISPD passou a explicitar que eritema isolado ao redor do cateter não basta para diagnóstico definitivo de infecção de óstio, pois trauma e reação ao curativo podem imitar infecção."
+  },
+  aasld_ascites_sbp_2021:{
+    label:"AASLD — Ascite, PBE e SHR (2021)",
+    url:"https://onlinelibrary.wiley.com/doi/10.1002/hep.31884",
+    journal:"Hepatology 2021;74(2):1014-1048",
+    ano:2021,tipo:"Diretriz",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Diagnóstico, tratamento e profilaxia de PBE com foco renal em cirrose",icon:"📋",
+    resumo:"Practice Guidance 2021 da American Association for the Study of Liver Diseases (AASLD) para ascite, peritonite bacteriana espontânea (PBE) e síndrome hepatorrenal. Recomenda paracentese diagnóstica em ascite nova ou descompensação, com contagem de neutrófilos no líquido ascítico, cultura e proteína quando profilaxia primária é considerada. PBE é definida por neutrófilos no líquido ascítico ≥250/mm³; antibiótico deve ser iniciado sem aguardar cultura. Albumina intravenosa reduz progressão para lesão renal aguda e morte, especialmente em pacientes com disfunção renal ou descompensação hepática importante. Profilaxia primária é reservada a alto risco, como proteína ascítica baixa associada a disfunção renal ou hepática avançada.",
+    conclusao:"Sustenta iniciar tratamento imediato da PBE por PMN ≥250/mm³ e reservar profilaxia primária para combinação de baixo teor proteico no líquido com alto risco clínico, não para proteína baixa isolada.",
+    curiosidade:"A orientação de albumina na PBE nasceu de ensaio em que o benefício foi maior em pacientes já com ureia/creatinina elevadas ou bilirrubina alta — ponte direta entre hepatologia e proteção renal."
+  },
+  ast_crypto_sot_2019:{
+    label:"AST IDCOP — Cryptococcus em Transplante (2019)",
+    url:"https://onlinelibrary.wiley.com/doi/10.1111/ctr.13543",
+    journal:"Clin Transplant 2019;33(9):e13543",
+    ano:2019,tipo:"Diretriz",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Manejo de criptococose em receptores de transplante de órgão sólido",icon:"📋",
+    resumo:"Diretriz da American Society of Transplantation Infectious Diseases Community of Practice para criptococose em transplante de órgão sólido. Recomenda punção lombar e avaliação da pressão de abertura em doença do sistema nervoso central; para meningite criptocócica, doença disseminada ou pulmonar moderada/grave, a indução deve combinar formulação lipídica de anfotericina B com flucitosina, seguida de consolidação e manutenção com fluconazol. A redução da imunossupressão deve ser cautelosa para evitar rejeição e síndrome inflamatória de reconstituição imune.",
+    conclusao:"Em transplantado renal com meningite criptocócica, a opção inicial correta é anfotericina B lipossomal ou outra formulação lipídica associada à flucitosina, não fluconazol isolado nem equinocandina.",
+    curiosidade:"A pressão de abertura elevada é parte central do manejo da meningite criptocócica: punções terapêuticas seriadas podem ser tão importantes quanto o antifúngico para reduzir morbidade neurológica."
+  },
+  kdigo_hcv_ckd_2022:{
+    label:"KDIGO — Hepatite C na DRC (2022)",
+    url:"https://kdigo.org/guidelines/hepatitis-c-in-ckd/",
+    journal:"Kidney International 2022",
+    ano:2022,tipo:"Diretriz",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Tratamento do HCV em DRC G1-G5, G5D e transplante renal",icon:"📋",
+    resumo:"Diretriz KDIGO 2022 para prevenção, diagnóstico, avaliação e tratamento da hepatite C em doença renal crônica. Atualiza a diretriz de 2018 com dados sobre antivirais de ação direta em pacientes com HCV e DRC G1-G5 ou G5D, incluindo receptores de transplante renal. O escopo inclui tratamento antiviral em DRC avançada, prevenção de transmissão em hemodiálise, manejo antes/depois do transplante e doenças glomerulares associadas ao HCV.",
+    conclusao:"DRC G5 não dialítica não é motivo para adiar automaticamente o tratamento do HCV; antivirais de ação direta apropriados podem ser usados sem interferon e, em geral, sem ribavirina.",
+    curiosidade:"A atualização de 2022 incorporou a experiência acumulada com transplante de rins de doadores HCV positivos para receptores HCV negativos, estratégia que mudou a logística de alocação em vários centros."
+  },
+  xgp_review_2021:{
+    label:"XGP — Revisão narrativa (2021)",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC8434833/",
+    journal:"Diagnostics 2021;11(9):1590",
+    ano:2021,tipo:"Revisão",badge:"REVIEW",badgeColor:"#8b5cf6",
+    impacto:"Diagnóstico por imagem e manejo cirúrgico da pielonefrite xantogranulomatosa",icon:"🔬",
+    resumo:"Revisão narrativa sobre pielonefrite xantogranulomatosa (PXG), incluindo achados de imagem e manejo. A PXG é infecção renal crônica destrutiva, frequentemente associada a obstrução por cálculo, massa renal inflamatória e patógenos urinários como Proteus mirabilis e Escherichia coli. O tratamento clínico isolado é incomum fora de situações selecionadas; antibióticos e drenagem ajudam a controlar infecção/coleções, enquanto nefrectomia total é o tratamento principal nas formas difusas, e nefrectomia parcial pode ser considerada em doença focal.",
+    conclusao:"Na PXG com febre, massa, cálculo e coleções, o manejo inicial deve controlar sepse/abscesso com antibiótico e drenagem quando indicada, planejando nefrectomia nas formas difusas ou destrutivas.",
+    curiosidade:"A PXG pode mimetizar carcinoma renal na tomografia e no intraoperatório; por isso, diagnóstico definitivo e estratégia cirúrgica frequentemente dependem de correlação radiológica, microbiológica e histológica."
+  },
   sbn_pbe_guideline:{
     label:"SBN — Consenso Peritonite na DP",
     url:"https://www.bjnephrology.org/article/peritoneal-dialysis-related-peritonitis-treatment-recommendations/",
