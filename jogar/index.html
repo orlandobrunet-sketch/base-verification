@@ -66,7 +66,7 @@
     if (typeof Sentry !== 'undefined') {
       Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@13.01',
+          release: 'nefroquest@13.02',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -116,6 +116,9 @@
     // Version beacon — detecta nova versão e força limpeza de cache
     (function() {
       var _stored = localStorage.getItem('nq-sw-version');
+      // Capture a intenção antes do fetch: outros scripts podem limpar a query
+      // enquanto a checagem de versão ainda está em andamento.
+      var _returnPath = location.pathname + location.search + location.hash;
       fetch('/version.json', { cache: 'no-store' })
         .then(function(r) { return r.json(); })
         .then(function(d) {
@@ -133,6 +136,11 @@
           }
           if (_stored !== null && _stored !== _v) {
             localStorage.setItem('nq-sw-version', _v);
+            try {
+              if (/^\/jogar\/(?:[?#]|$)/.test(_returnPath)) {
+                sessionStorage.setItem('nq-post-cache-url', _returnPath);
+              }
+            } catch (e) {}
             window.location.replace('/clear-cache.html');
           } else {
             localStorage.setItem('nq-sw-version', _v);
@@ -1474,7 +1482,7 @@
   <script defer src="js/game.js?v=11.90"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
-  <script defer src="js/auth.js?v=11.90"></script>
+  <script defer src="js/auth.js?v=13.02"></script>
   <script defer src="js/paywall.js?v=11.90"></script>
   <script defer src="js/account.js?v=11.90"></script>
   <script defer src="js/boss.js?v=11.90"></script>

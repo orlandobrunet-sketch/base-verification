@@ -7,7 +7,7 @@
     (function () {
       var params = new URLSearchParams(window.location.search);
       var appKeys = [
-        'app', 'mode', 'boss', 'dev', 'plan',
+        'app', 'mode', 'boss', 'dev', 'plan', 'auth',
         'code', 'error', 'error_code', 'error_description', 'token_hash', 'type',
         'payment', 'payment_id', 'preference_id', 'collection_id',
         'collection_status', 'status', 'external_reference', 'merchant_order_id'
@@ -38,7 +38,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,600;0,700;1,500;1,600&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/landing/styles.css?v=13.01">
+  <link rel="stylesheet" href="/landing/styles.css?v=13.02">
 
   <meta property="og:title" content="NefroQuest — Domine a nefrologia. Evolua a cada decisão.">
   <meta property="og:description" content="Da formação à atualização na especialidade: questões, revisão adaptativa, tutor educacional de IA e evidências organizadas.">
@@ -71,7 +71,7 @@
     if (typeof Sentry !== 'undefined') {
       Sentry.onLoad(function () {
         Sentry.init({
-          release: 'nefroquest@13.01',
+          release: 'nefroquest@13.02',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.05
         });
@@ -110,7 +110,10 @@
       <a href="#classes">O jogo</a>
     </nav>
 
-    <a class="nav-cta" href="https://nefroquest.com/jogar/" data-cta="nav">Começar grátis</a>
+    <div class="nav-actions">
+      <a class="nav-login" href="https://nefroquest.com/jogar/?auth=login" data-cta="nav-login" aria-label="Entrar em uma conta existente">Entrar</a>
+      <a class="nav-cta" href="https://nefroquest.com/jogar/" data-cta="nav">Começar grátis</a>
+    </div>
     <span class="nav-progress" aria-hidden="true"></span>
   </header>
 
@@ -660,6 +663,6 @@
     <p>© 2026 NefroQuest · Conteúdo para fins educacionais.</p>
   </footer>
 
-  <script src="/landing/script.js?v=13.01"></script>
+  <script src="/landing/script.js?v=13.02"></script>
 </body>
 </html>

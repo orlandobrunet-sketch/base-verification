@@ -41,7 +41,11 @@
 
     (function initSupaAuth() {
       if (localStorage.getItem('nq_guest_mode') === '1') _guestMode = true;
-      if (typeof supabase === 'undefined') { _track('error_supabase_missing'); return; }
+      if (typeof supabase === 'undefined') {
+        _track('error_supabase_missing');
+        _consumeLoginIntent();
+        return;
+      }
       _supaClient = supabase.createClient(SUPA_URL, SUPA_KEY);
 
       _supaClient.auth.onAuthStateChange(async (event, session) => {
@@ -83,7 +87,11 @@
           _invalidatePremiumCache();
         }
         updateWelcomeUserBadge();
-      }).catch(() => { updateWelcomeUserBadge(); });
+        _consumeLoginIntent();
+      }).catch(() => {
+        updateWelcomeUserBadge();
+        _consumeLoginIntent();
+      });
     })();
 
     function _authDisplayName() {
@@ -225,6 +233,19 @@
       document.getElementById('authFormCadastrar').style.display = isEntrar ? 'none' : 'block';
       document.getElementById('authFormForgot').style.display = 'none';
       _setAuthMsg('', '');
+    }
+    function _consumeLoginIntent() {
+      const params = new URLSearchParams(location.search);
+      if (params.get('auth') !== 'login') return;
+
+      params.delete('auth');
+      const query = params.toString();
+      const cleanUrl = location.pathname + (query ? '?' + query : '') + location.hash;
+      try { history.replaceState(history.state, '', cleanUrl); } catch (e) {}
+
+      if (authUser) return;
+      openAuthModal();
+      switchAuthTab('entrar');
     }
     function showForgotPassword() {
       document.getElementById('authFormEntrar').style.display = 'none';
