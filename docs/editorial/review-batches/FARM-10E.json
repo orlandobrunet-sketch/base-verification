@@ -1,0 +1,34 @@
+{
+  "batch": "FARM-10E",
+  "change_type": "medical_editorial",
+  "expected_version": "13.03",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-10E.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "12121893": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "74186985": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}}
+  },
+  "expected_question_delta": 0,
+  "refs_policy": "declared",
+  "references": {
+    "kdigo_anemia_2026": "existing_verified",
+    "vadadustat_trial": "existing_repaired"
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "12121893 e 74186985 foram reescritos para refletir a KDIGO 2026: decisão transfusional em DRC deve ser guiada por sintomas/sinais e contexto, com limiares restritivos como guias razoáveis, não regras isoladas.",
+    "O card vadadustat_trial foi reparado para DOI/URL corretos do PRO2TECT e resumo compatível com o resultado primário de segurança cardiovascular; qids consumidores serão catalogados em lote manifest-only subsequente.",
+    "Os qids alterados preservam identidade pedagógica e FSRS.",
+    "Bump canonico 13.02 -> 13.03 por mudança em data/topics.js/data/refs.js."
+  ]
+}

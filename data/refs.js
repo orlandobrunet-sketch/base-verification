@@ -1859,14 +1859,14 @@ canvas_program:{
     curiosidade:"A inibição dupla do SGLT1 (no intestino e túbulo proximal) e do SGLT2 (no rim) retarda a absorção gastrointestinal de glicose, atenuando a hiperglicemia pós-prandial inicial de forma independente de insulina, além de atuar no néfron proximal para aumentar a excreção urinária de glicose e sódio."
   },
   vadadustat_trial:{
-    label:"PRO2TECT Trial (Vadadustat em DRC não-dialítica)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2101791",
+    label:"PRO2TECT Trial (Vadadustat em DRC não dialítica)",
+    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2035938",
     journal:"N Engl J Med 2021;384(17):1589-1600",
-    ano:2021,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Vadadustat não inferior à darbepoetina em Hb, mas não atingiu critério CV em não-dialíticos",icon:"🔬",
-    resumo:"Dois ensaios clínicos globais de fase III unificados (PRO2TECT, n = 3.476 pacientes com anemia associada a DRC não dialítica estágios 3-5). Comparou a eficácia e segurança cardiovascular do vadadustat (um inibidor oral da prolil hidroxilase do fator induzido por hipóxia - HIF-PHI) versus darbepoetina alfa endovenosa/subcutânea. Desfecho primário de eficácia: variação média nos níveis de hemoglobina. Desfecho primário de segurança: eventos cardiovasculares maiores adversos (MACE). Resultados: O vadadustat foi não inferior à darbepoetina alfa na correção e manutenção dos níveis de hemoglobina (variação de 1,4 g/dL). No entanto, o vadadustat não alcançou a não-inferioridade em termos de segurança cardiovascular para MACE (HR 1,17; IC 95% 1,01-1,36), impulsionado por maiores taxas de infarto e tromboembolismo venoso na coorte não dialítica.",
-    conclusao:"O vadadustat é altamente eficaz via oral para a correção da anemia renal, mas a restrição de segurança cardiovascular limita sua aprovação generalizada em populações não dialíticas no Reino.",
-    curiosidade:"Os inibidores de HIF-PHI como o vadadustat inibem temporariamente a prolil hidroxilase, estabilizando os fatores de transcrição HIF-1alfa e HIF-2alfa. Isso simula uma altitude elevada, estimulando de forma coordenada a secreção de eritropoietina endógena e otimizando a absorção e transporte de ferro pelo bloqueio da hepcidina."
+    ano:2021,tipo:"Ensaio clínico randomizado",badge:"RCT",badgeColor:"#10b981",
+    impacto:"Eficácia hematológica preservada, mas falha em não inferioridade cardiovascular",icon:"🔬",
+    resumo:"PRO2TECT: dois ensaios fase 3, randomizados, abertos e controlados por darbepoetina alfa, reunindo 3.476 pacientes com anemia e DRC não dialítica. O vadadustat foi não inferior para mudança de hemoglobina, mas no desfecho primário de segurança cardiovascular (MACE: morte por qualquer causa, infarto não fatal ou AVC não fatal) o HR foi 1,17 (IC95% 1,01–1,36), não atingindo a margem pré-especificada de não inferioridade.",
+    conclusao:"Em DRC não dialítica, o vadadustat corrige anemia, mas a segurança cardiovascular impediu tratar a classe como equivalente aos AEE nessa população.",
+    curiosidade:"O programa PRO2TECT contrastou com os estudos INNO2VATE em pacientes dialíticos, nos quais o vadadustat atingiu não inferioridade cardiovascular versus darbepoetina alfa."
   },
   imlifidase_study:{
     label:"Imlifidase em Transplante Hiperimune (Jordan et al.)",
