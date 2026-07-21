@@ -1799,14 +1799,14 @@ canvas_program:{
     curiosidade:"Pacientes em hemodiálise têm risco de morte súbita cardíaca ~50 vezes maior que a população geral — contribuem as alterações eletrolíticas peri-diálise (hipocalemia, hipomagnesia), uremia, calcificação vascular e disfunção autonômica associadas à DRC-5D."
   },
   roxadustat_trial:{
-    label:"Roxadustat ANDES/PYRENEES Trials",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1901713",
-    journal:"N Engl J Med 2019;381(11):1011-1022",
-    ano:2019,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Roxadustat eficaz para anemia da DRC, oral, sem monitorização de nível sérico",icon:"💊",
-    resumo:"Dois ensaios clínicos integrados de fase III (ANDES em pacientes com DRC não dialítica e PYRENEES em dialíticos, unificados em mais de 4.000 pacientes com anemia crônica e DRC). Avaliou a eficácia e segurança do roxadustat (um inibidor da prolil hidroxilase do fator induzido por hipóxia - HIF-PHI de administração puramente oral, 3 vezes por semana) versus placebo (em não dialíticos) ou darbepoetina alfa (em dialíticos). Desfecho primário: variação média nos níveis de hemoglobina sérica. Resultados: O roxadustat foi altamente eficaz, elevando e estabilizando os níveis de hemoglobina média em +1,8 g/dL de forma significativamente superior ao placebo e equivalente/não inferior à darbepoetina alfa, de forma independente de inflamação e sem necessidade de monitorização sérica, com baixos índices de MACE em coortes selecionadas.",
-    conclusao:"Os estudos ANDES/PYRENEES consolidaram o roxadustat como uma opção oral altamente potente e eficaz que simula a fisiologia adaptativa à hipóxia para correção da anemia na DRC no Reino.",
-    curiosidade:"Diferente da eritropoietina recombinante clássica que eleva os níveis séricos do hormônio a patamares suprafisiológicos perigosos, o roxadustat estabiliza o HIF gerando uma liberação controlada e fisiológica de EPO endógena e melhorando a biodisponibilidade de ferro de forma coordenada."
+    label:"Roxadustat em DRC não dialítica (NEJM 2019)",
+    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1813599",
+    journal:"N Engl J Med 2019;381:1001-1010",
+    ano:2019,tipo:"Ensaio clínico randomizado",badge:"RCT",badgeColor:"#10b981",
+    impacto:"HIF-PHI oral elevou Hb e reduziu hepcidina em DRC não dialítica",icon:"🔬",
+    resumo:"Ensaio fase 3, duplo-cego, realizado na China, randomizou 154 pacientes com DRC não dialítica e Hb 7,0–10,0 g/dL para roxadustat ou placebo por 8 semanas, seguido de fase aberta. O desfecho primário foi a mudança média de hemoglobina nas semanas 7–9. O roxadustat aumentou a Hb em 1,9±1,2 g/dL versus queda de 0,4±0,8 g/dL com placebo (P<0,001) e reduziu hepcidina, compatível com maior disponibilidade de ferro.",
+    conclusao:"Roxadustat demonstrou mecanismo e eficácia hematológica em DRC não dialítica, mas não elimina a necessidade de seleção clínica cuidadosa e vigilância de segurança da classe HIF-PHI.",
+    curiosidade:"Durante a fase randomizada, ferro parenteral foi retido; mesmo assim, o grupo roxadustat manteve ferro sérico relativamente estável enquanto elevava hemoglobina."
   },
   empact_mi_trial:{
     label:"EMPACT-MI Trial (Empagliflozina pós-IAM)",
