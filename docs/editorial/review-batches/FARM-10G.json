@@ -1,0 +1,38 @@
+{
+  "batch": "FARM-10G",
+  "change_type": "medical_editorial",
+  "expected_version": "13.04",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-10G.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "32661acb": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "29338dc5": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "67c8a823": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "anulado", "verdict": "fundir", "publication": "LIBERADA"}},
+    "8239518c": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "anulado", "verdict": "fundir", "publication": "LIBERADA"}}
+  },
+  "expected_question_delta": -2,
+  "refs_policy": "declared",
+  "references": {
+    "roxadustat_trial": "existing_repaired",
+    "kdigo_anemia_2026": "existing_verified"
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "32661acb foi reconstruído para medir mecanismo de HIF-PHI sem overclaim terapêutico e com refs roxadustat_trial + kdigo_anemia_2026.",
+    "29338dc5 foi reconstruído como item canônico de mecanismo central da anemia na DRC avançada, incorporando deficiência relativa de EPO e ferro-restrição inflamatória.",
+    "67c8a823 foi fundido/aposentado por duplicidade de OP com 29338dc5, mantendo o item mais contextualizado.",
+    "8239518c foi fundido/aposentado por duplicidade de OP com 32661acb e por referência incorreta a hiponatremia.",
+    "roxadustat_trial foi reparado com identidade bibliográfica correta do NEJM 2019 em DRC não dialítica e resumo dentro do padrão do Grimório.",
+    "Bump canonico 13.03 -> 13.04 por mudança em data/topics.js/data/refs.js."
+  ]
+}
