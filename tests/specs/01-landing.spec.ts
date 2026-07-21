@@ -49,7 +49,7 @@ test.describe('Landing comercial', () => {
     await page.addInitScript(() => {
       if (sessionStorage.getItem('nq-version-test-seeded')) return;
       sessionStorage.setItem('nq-version-test-seeded', '1');
-      localStorage.setItem('nq-sw-version', '13.01');
+      localStorage.setItem('nq-sw-version', '13.03');
     });
     await page.goto('/jogar/?auth=login');
     await expect(page.locator('#authModal')).toHaveClass(/show/, { timeout: 15_000 });

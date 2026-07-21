@@ -66,7 +66,7 @@
     if (typeof Sentry !== 'undefined') {
       Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@13.02',
+          release: 'nefroquest@13.04',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -1482,7 +1482,7 @@
   <script defer src="js/game.js?v=11.90"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
-  <script defer src="js/auth.js?v=13.02"></script>
+  <script defer src="js/auth.js?v=13.04"></script>
   <script defer src="js/paywall.js?v=11.90"></script>
   <script defer src="js/account.js?v=11.90"></script>
   <script defer src="js/boss.js?v=11.90"></script>
