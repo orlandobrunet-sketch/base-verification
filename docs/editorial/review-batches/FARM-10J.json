@@ -1,0 +1,40 @@
+{
+  "batch": "FARM-10J",
+  "change_type": "medical_editorial",
+  "expected_version": "13.07",
+  "allowed_files": [
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-10J.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "22189222": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "8ba55c24": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "ffee06f0": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "33cfa8de": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "13/20", "verdict": "aposentar/fundir", "publication": "LIBERADA"}},
+    "0afcd7d8": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "PARCIALMENTE VERIFICADA", "pending": "NÃO DECISIVA", "score": "12/20", "verdict": "aposentar/fundir", "publication": "LIBERADA"}},
+    "f3f6125a": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "13/20", "verdict": "aposentar/fundir", "publication": "LIBERADA"}},
+    "5cad99e9": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "13/20", "verdict": "aposentar/fundir", "publication": "LIBERADA"}}
+  },
+  "expected_question_delta": -4,
+  "refs_policy": "unchanged",
+  "references": {
+    "kdigo_ckd_mbd_2017": "existing_verified",
+    "phosphate_binders_ckd": "existing_verified"
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "22189222 foi reconstruída como âncora cronológica única: retenção de fosfato por menor massa nefrônica, elevação precoce de FGF23, queda de calcitriol e elevação progressiva do PTH.",
+    "8ba55c24 foi reconstruída para testar o efeito tubular proximal do FGF23 sobre NaPi-IIa/IIc e fosfatúria.",
+    "ffee06f0 foi reconstruída para testar a inibição da 1-alfa-hidroxilase renal pelo FGF23 como mecanismo de queda do calcitriol.",
+    "33cfa8de, f3f6125a e 5cad99e9 foram aposentadas como duplicatas simples do eixo fosfato/FGF23.",
+    "0afcd7d8 foi aposentada por ambiguidade ao perguntar efeito renal direto do FGF23 sem separar fosfatúria e inibição da 1-alfa-hidroxilase.",
+    "Bump canônico 13.06 -> 13.07 por mudança em data/topics.js."
+  ]
+}
