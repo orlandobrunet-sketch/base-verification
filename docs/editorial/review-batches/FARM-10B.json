@@ -1,0 +1,32 @@
+{
+  "batch": "FARM-10B",
+  "change_type": "medical_editorial",
+  "expected_version": "13.01",
+  "allowed_files": [
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-10B.json",
+    "index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "63034956": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "53090d19": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "0319aa8b": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "81e1082b": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "c2b81b33": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "anulado", "verdict": "fundir", "publication": "LIBERADA"}}
+  },
+  "expected_question_delta": -1,
+  "refs_policy": "unchanged",
+  "references": {},
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Repara 4 itens basicos de DRC para alinhar enunciado, distratores, explicacao e referencias.",
+    "Aposenta c2b81b33 por duplicidade material com 5fb482d4, preservando a melhor versao ativa.",
+    "Nenhum card novo; refs existentes sustentam os gabaritos.",
+    "Bump canonico 13.00 -> 13.01 por mudanca em data/topics.js."
+  ]
+}
