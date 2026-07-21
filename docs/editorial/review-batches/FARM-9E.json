@@ -1,0 +1,36 @@
+{
+  "batch": "FARM-9E",
+  "change_type": "medical_editorial",
+  "expected_version": "13.00",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-9E.json",
+    "index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "ebac9c20": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "a82aae37": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "471c0013": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "7d2284a4": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "65fcdeae": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}}
+  },
+  "expected_question_delta": 0,
+  "refs_policy": "declared",
+  "references": {
+    "renal_phospholipidosis_zebra_2017": {"action": "add", "consumers": ["ebac9c20"]},
+    "finerenone_label_dailymed": {"action": "add", "consumers": ["65fcdeae"]}
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Fecha 5 itens farmacologicos ativos com maior risco editorial.",
+    "Reconstrói corpos zebra/fosfolipidose, metformina e TFGe <30, nefropatia por litio, SHARP/estatinas e finerenona em contexto de tacrolimo.",
+    "Adiciona 2 cards ao Grimorio, ambos com resumo, conclusao e curiosidade.",
+    "Os demais itens farmacologicos byte-identicos serão registrados em lote manifest-only separado se o validador aceitar esse formato contra o main."
+  ]
+}
