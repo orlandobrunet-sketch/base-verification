@@ -32,7 +32,13 @@
           s.textContent = 'Caches limpos ✓';
         }
         s.textContent = '✅ Pronto! Redirecionando...';
-        setTimeout(() => { window.location.replace('/jogar/'); }, 1500);
+        let nextUrl = '/jogar/';
+        try {
+          const storedUrl = sessionStorage.getItem('nq-post-cache-url');
+          sessionStorage.removeItem('nq-post-cache-url');
+          if (storedUrl && /^\/jogar\/(?:[?#]|$)/.test(storedUrl)) nextUrl = storedUrl;
+        } catch (e) {}
+        setTimeout(() => { window.location.replace(nextUrl); }, 1500);
       } catch(e) {
         s.textContent = 'Erro: ' + e.message + ' — tente recarregar manualmente.';
       }

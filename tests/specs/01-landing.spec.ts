@@ -25,6 +25,38 @@ test.describe('Landing comercial', () => {
     await expect(page.locator('#welcomeScreen')).toHaveCount(0);
   });
 
+  test('oferece entrada direta para quem já possui conta', async ({ page }) => {
+    const login = page.getByRole('link', { name: 'Entrar em uma conta existente' });
+    await expect(login).toBeVisible();
+    await expect(login).toHaveAttribute('href', 'https://nefroquest.com/jogar/?auth=login');
+
+    await page.setViewportSize({ width: 320, height: 700 });
+    const actions = await page.locator('.nav-actions').boundingBox();
+    expect(actions).not.toBeNull();
+    expect(actions!.x).toBeGreaterThanOrEqual(0);
+    expect(actions!.x + actions!.width).toBeLessThanOrEqual(320);
+  });
+
+  test('deep link abre o login existente e consome o parâmetro', async ({ page }) => {
+    await page.goto('/jogar/?auth=login');
+    await expect(page.locator('#authModal')).toHaveClass(/show/, { timeout: 8_000 });
+    await expect(page.locator('#tabEntrar')).toHaveClass(/active/);
+    await expect(page.locator('#authFormEntrar')).toBeVisible();
+    await expect(page).toHaveURL(/\/jogar\/$/);
+  });
+
+  test('preserva a intenção de login durante atualização de cache', async ({ page }) => {
+    await page.addInitScript(() => {
+      if (sessionStorage.getItem('nq-version-test-seeded')) return;
+      sessionStorage.setItem('nq-version-test-seeded', '1');
+      localStorage.setItem('nq-sw-version', '13.03');
+    });
+    await page.goto('/jogar/?auth=login');
+    await expect(page.locator('#authModal')).toHaveClass(/show/, { timeout: 15_000 });
+    await expect(page.locator('#tabEntrar')).toHaveClass(/active/);
+    await expect(page).toHaveURL(/\/jogar\/$/);
+  });
+
   test('título NefroQuest está presente na página', async ({ page }) => {
     await expect(page).toHaveTitle(/NefroQuest/i);
   });
