@@ -1,0 +1,33 @@
+{
+  "batch": "FARM-10I",
+  "change_type": "medical_editorial",
+  "expected_version": "13.06",
+  "allowed_files": [
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-10I.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "2beb178a": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "3dfa2ab5": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "9c43ab07": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}}
+  },
+  "expected_question_delta": 0,
+  "refs_policy": "unchanged",
+  "references": {
+    "kdigo_ckd_mbd_2017": "existing_verified"
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "2beb178a foi reescrito para evitar alegar redução direta de mortalidade/calcificação e focar a recomendação KDIGO: reduzir fósforo elevado e restringir carga de cálcio quando há calcificação vascular.",
+    "3dfa2ab5 foi reescrito como hiperparatireoidismo secundário grave refratário em diálise, evitando ambiguidade com hiperparatireoidismo terciário.",
+    "9c43ab07 foi reescrito para incluir a alternativa correta ausente: corrigir fatores modificáveis e reservar calcitriol/análogos para hiperparatireoidismo grave e progressivo em DRC G4-G5 não dialítica.",
+    "Bump canonico 13.05 -> 13.06 por mudança em data/topics.js."
+  ]
+}
