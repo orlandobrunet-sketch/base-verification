@@ -71,7 +71,7 @@
     if (typeof Sentry !== 'undefined') {
       Sentry.onLoad(function () {
         Sentry.init({
-          release: 'nefroquest@13.01',
+          release: 'nefroquest@13.02',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.05
         });
