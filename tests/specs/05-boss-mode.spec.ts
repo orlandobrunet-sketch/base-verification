@@ -3,7 +3,7 @@ import { injectBossState, waitForGame, enterGame } from '../helpers/game';
 
 test.describe('Boss mode (Fase Final)', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/jogar/');
     await injectBossState(page);
     await waitForGame(page);
   });

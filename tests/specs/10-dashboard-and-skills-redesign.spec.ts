@@ -3,7 +3,7 @@ import { injectGameState, waitForGame, isLiveEnv } from '../helpers/game';
 
 test.describe('Dashboard, Core Skills & Layout Reset E2E Tests', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/jogar/');
   });
 
   test('getUserTitle returns correct lore titles', async ({ page }) => {

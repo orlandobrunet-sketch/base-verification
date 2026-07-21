@@ -8,7 +8,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Game scoring — XP & level invariants', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/jogar/');
   });
 
   test('xpForLevel follows 200 * 1.15^(lv-1), floored', async ({ page }) => {

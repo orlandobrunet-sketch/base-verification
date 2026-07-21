@@ -13,6 +13,7 @@ Guia operacional para configurar/manter o login com Google e preparar a troca fu
 - `AUTH_REDIRECT_URL`:
   - localhost / 127.0.0.1 → `location.origin` (dev)
   - qualquer outro hostname → `https://nefroquest.com` (produção)
+- A raiz comercial reconhece parâmetros/hash de OAuth, confirmação e recuperação e os encaminha para `/jogar/`, preservando o callback completo. Isso mantém a allowlist existente do Supabase.
 - Demais módulos consomem `SUPA_URL` do escopo global ou de `window.NQ_CONFIG` como fallback.
 
 **Supabase Dashboard — Auth Settings:**

@@ -57,7 +57,13 @@ git config core.hooksPath .githooks
 
 ```
 /
-├── index.html          # App principal — toda a UI do jogo está aqui (SPA)
+├── index.html          # Landing comercial canônica — https://nefroquest.com/
+├── jogar/
+│   └── index.html      # App principal — toda a UI do jogo está aqui (SPA)
+├── landing/
+│   ├── styles.css      # Identidade e layout da landing
+│   ├── script.js       # Interações progressivas da landing
+│   └── assets/         # Imagens e ícones da landing
 ├── style.css           # Estilos globais (tema dark medieval, variáveis CSS)
 ├── sw.js               # Service Worker — cache offline e versioning
 ├── manifest.json       # PWA manifest
@@ -193,7 +199,7 @@ git config core.hooksPath .githooks
 
 ## Analytics
 
-- **Sentry:** DSN inline no `index.html`
+- **Sentry:** DSN inline em `index.html` e `jogar/index.html`
 - **GA4:** `gtag()` — eventos: `game_started`, `question_answered`, `boss_entered`, `game_completed`, `paywall_shown`, `premium_converted`
 
 ---

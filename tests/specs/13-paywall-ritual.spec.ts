@@ -12,7 +12,7 @@ import { injectGameState, waitForGame } from '../helpers/game';
 
 test.describe('Paywall premium', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/jogar/');
     await injectGameState(page);
     await waitForGame(page);
   });
@@ -39,7 +39,7 @@ test.describe('Paywall premium', () => {
 
 test.describe('Ritual de Iniciação (placement)', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/jogar/');
     await injectGameState(page);
     await waitForGame(page);
   });

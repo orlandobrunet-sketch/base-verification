@@ -469,8 +469,8 @@
             </label>
             <label style="display:flex;flex-direction:column;gap:4px;font-size:0.72rem;color:#a0b8d0;font-weight:600;">
               Link ao tocar na notificação
-              <input id="pushCampUrl" type="text" placeholder="/" value="/" style="background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:#fff;padding:9px 12px;font-size:0.82rem;outline:none;font-weight:400;">
-              <span style="font-size:0.66rem;color:var(--txt-dim);font-weight:400;">Para onde o app abre ao clicar. Deixe <code>/</code> para a tela inicial.</span>
+              <input id="pushCampUrl" type="text" placeholder="/jogar/" value="/jogar/" style="background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:#fff;padding:9px 12px;font-size:0.82rem;outline:none;font-weight:400;">
+              <span style="font-size:0.66rem;color:var(--txt-dim);font-weight:400;">Para onde o app abre ao clicar. Deixe <code>/jogar/</code> para a tela inicial do jogo.</span>
             </label>
           </div>
           <div id="pushCampStatus" style="font-size:0.76rem;color:var(--txt-dim);margin-top:12px;min-height:18px;"></div>
@@ -488,7 +488,7 @@
       if (!isAdminUser()) return;
       const title = (document.getElementById('pushCampTitle')?.value || '').trim();
       const body  = (document.getElementById('pushCampBody')?.value || '').trim();
-      const url   = (document.getElementById('pushCampUrl')?.value || '').trim() || '/';
+      const url   = (document.getElementById('pushCampUrl')?.value || '').trim() || '/jogar/';
       const statusEl = document.getElementById('pushCampStatus');
       const btn = document.getElementById('pushCampSend');
       if (!title || !body) {

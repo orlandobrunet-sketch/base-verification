@@ -27,7 +27,7 @@
   --mono: "IBM Plex Mono", ui-monospace, monospace;
   --ease: cubic-bezier(.22, .61, .36, 1);
   --ease-out: cubic-bezier(.16, 1, .3, 1);
-  --chapter-space-top: 2.25rem;
+  --chapter-space-top: 1.25rem;
   --chapter-space-bottom: 4rem;
 }
 
@@ -614,12 +614,18 @@ main, .nav, .footer { position: relative; z-index: 1; }
 .guideline-cover strong { align-self: end; min-height: 2.5em; font-family: var(--display); font-size: 1rem; font-weight: 600; line-height: 1.02; text-wrap: balance; }
 .guideline-cover small { min-height: 2.7em; margin-top: .32rem; color: var(--mist); font-size: .58rem; line-height: 1.25; }
 .guideline-cover__foot { margin-top: .55rem; padding-top: .45rem; border-top: 1px solid rgba(var(--cyan-rgb), .11); color: var(--haze); font-family: var(--mono); font-size: .5rem; letter-spacing: .06em; text-transform: uppercase; }
-.guideline-cover--more { align-content: center; background: radial-gradient(circle at 50% 38%, rgba(var(--gold-rgb), .12), transparent 42%), #070a13; text-align: center; }
-.guideline-cover--more .guideline-cover__meta { position: absolute; top: .9rem; right: .85rem; left: .85rem; }
-.guideline-cover--more strong { align-self: end; min-height: 0; color: var(--gold-bright); font-size: 1.35rem; }
-.guideline-cover--more strong span { display: block; font-size: 2.5rem; line-height: .88; }
-.guideline-cover--more small { min-height: 0; margin: .6rem auto 0; }
-.guideline-cover--more .guideline-cover__foot { margin-top: 1rem; }
+.guideline-cover--more {
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  row-gap: .5rem;
+  align-content: stretch;
+  background: radial-gradient(circle at 50% 38%, rgba(var(--gold-rgb), .12), transparent 42%), #070a13;
+  text-align: center;
+}
+.guideline-cover--more .guideline-cover__meta { position: static; grid-row: 1; align-self: start; }
+.guideline-cover--more strong { grid-row: 2; align-self: start; min-height: 0; margin-top: 1.75rem; color: var(--gold-bright); font-size: 1.35rem; line-height: 1.05; }
+.guideline-cover--more strong span { display: block; margin-bottom: .14rem; font-size: 2.5rem; line-height: .9; }
+.guideline-cover--more small { grid-row: 3; align-self: start; min-height: 0; margin: .7rem auto 0; }
+.guideline-cover--more .guideline-cover__foot { grid-row: 4; margin-top: .75rem; }
 .guideline-flow__status {
   position: absolute;
   z-index: 7;
@@ -703,13 +709,13 @@ main, .nav, .footer { position: relative; z-index: 1; }
   display: grid;
   grid-template-columns: minmax(0, .82fr) minmax(430px, 1.18fr);
   gap: clamp(3rem, 8vw, 7rem);
-  align-items: center;
+  align-items: start;
 }
 .oracle::before {
   content: "";
   position: absolute;
-  top: 1rem;
-  bottom: 2rem;
+  top: 0;
+  bottom: 1.5rem;
   left: calc((100% - 100vw) / 2);
   width: 100vw;
   z-index: -1;
@@ -717,7 +723,8 @@ main, .nav, .footer { position: relative; z-index: 1; }
   border-bottom: 1px solid rgba(var(--cyan-rgb), .09);
   background: linear-gradient(90deg, transparent, rgba(var(--cyan-rgb), .035), transparent);
 }
-.oracle-copy .section-label { margin-bottom: 1.25rem; }
+.oracle-copy .section-label { margin-bottom: 1rem; }
+.oracle > .chat { margin-top: 3rem; }
 .oracle h2 { font-size: clamp(2.7rem, 4.8vw, 4.8rem); }
 .oracle-seal {
   display: grid;
@@ -1085,11 +1092,11 @@ main, .nav, .footer { position: relative; z-index: 1; }
 
 /* Responsive */
 @media (max-width: 1100px) {
-  :root { --chapter-space-top: 2.25rem; --chapter-space-bottom: 3.5rem; }
+  :root { --chapter-space-top: 1.125rem; --chapter-space-bottom: 3.5rem; }
   .hero-shell { grid-template-columns: minmax(0, 1fr) 340px; }
   .hero-atlas { right: -8vw; opacity: .8; }
   .oracle { gap: 3rem; }
-  .oracle::before { top: .75rem; bottom: 1.5rem; }
+  .oracle::before { top: 0; bottom: 1.25rem; }
   .method-row { grid-template-columns: 110px minmax(0, 1fr) 210px; }
   .method-visual { width: 205px; }
 }
@@ -1114,6 +1121,7 @@ main, .nav, .footer { position: relative; z-index: 1; }
   .route-step:nth-of-type(even) .route-dot,
   .route-dot { margin: 1rem 0 1.3rem; }
   .oracle { grid-template-columns: 1fr; }
+  .oracle > .chat { margin-top: 0; }
   .oracle-copy { max-width: 680px; }
   .chat { width: 100%; }
   .method-row { grid-template-columns: 90px 1fr; }
@@ -1133,7 +1141,7 @@ main, .nav, .footer { position: relative; z-index: 1; }
   :root {
     --shell: calc(100% - 28px);
     --narrow: calc(100% - 28px);
-    --chapter-space-top: 2rem;
+    --chapter-space-top: 1rem;
     --chapter-space-bottom: 3rem;
   }
   body { font-size: 16px; }
@@ -1158,9 +1166,9 @@ main, .nav, .footer { position: relative; z-index: 1; }
   .proof-item dt { font-size: 2.35rem; }
   .proof-item--access dt { font-size: .7rem; }
   .proof-item--access dd { font-size: 1.05rem; }
-  .oracle::before { top: .5rem; bottom: 1rem; }
+  .oracle::before { top: 0; bottom: .75rem; }
   .oracle-copy .section-label,
-  .faq-intro .section-label { margin-bottom: 1rem; }
+  .faq-intro .section-label { margin-bottom: .75rem; }
   .section-copy h2, .oracle h2, .faq h2, .boss h2, .finale h2 { font-size: clamp(2.65rem, 13vw, 4.1rem); }
   .route { grid-template-columns: 1fr; gap: 1rem; }
   .route-step { padding: 1.2rem 1.1rem; }
@@ -1223,6 +1231,7 @@ main, .nav, .footer { position: relative; z-index: 1; }
 
 /* O conteúdo permanece legível mesmo quando uma captura não dispara o observer. */
 .motion-ready .reveal-up:not(.in) { opacity: .94; transform: translateY(16px); }
+.motion-ready .section-label.reveal-up:not(.in) { transform: none; }
 
 .hero {
   min-height: max(860px, 100svh);

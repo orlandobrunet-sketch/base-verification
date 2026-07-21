@@ -1,1518 +1,665 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
- <meta charset="UTF-8">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://nefroquest.com">
-  <title>NefroQuest: Ascension</title>
-  <!-- Favicons -->
-  <link rel="icon" type="image/x-icon" href="favicon.ico?v=9.28">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png?v=9.28">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png?v=9.28">
-  <link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicon-192x192.png?v=9.28">
-  <link rel="icon" type="image/png" sizes="512x512" href="assets/images/favicon-512x512.png?v=9.28">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#0a0e1a">
-  <!-- iOS PWA -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="NefroQuest">
-  <!-- iOS Splash Screens -->
-  <link rel="apple-touch-startup-image" href="assets/images/splash-1290x2796.png" media="(device-width:430px) and (device-height:932px) and (-webkit-device-pixel-ratio:3)">
-  <link rel="apple-touch-startup-image" href="assets/images/splash-1179x2556.png" media="(device-width:393px) and (device-height:852px) and (-webkit-device-pixel-ratio:3)">
-  <link rel="apple-touch-startup-image" href="assets/images/splash-1284x2778.png" media="(device-width:428px) and (device-height:926px) and (-webkit-device-pixel-ratio:3)">
-  <link rel="apple-touch-startup-image" href="assets/images/splash-1170x2532.png" media="(device-width:390px) and (device-height:844px) and (-webkit-device-pixel-ratio:3)">
-  <link rel="apple-touch-startup-image" href="assets/images/splash-1125x2436.png" media="(device-width:375px) and (device-height:812px) and (-webkit-device-pixel-ratio:3)">
-  <link rel="apple-touch-startup-image" href="assets/images/splash-828x1792.png"  media="(device-width:414px) and (device-height:896px) and (-webkit-device-pixel-ratio:2)">
-  <link rel="apple-touch-startup-image" href="assets/images/splash-750x1334.png"  media="(device-width:375px) and (device-height:667px) and (-webkit-device-pixel-ratio:2)">
-  <link rel="apple-touch-startup-image" href="assets/images/splash-2048x2732.png" media="(device-width:1024px) and (device-height:1366px) and (-webkit-device-pixel-ratio:2)">
-  <link rel="apple-touch-startup-image" href="assets/images/splash-1668x2388.png" media="(device-width:834px) and (device-height:1194px) and (-webkit-device-pixel-ratio:2)">
-  <!-- SEO & Open Graph -->
-  <meta name="description" content="Domine a Nefrologia através de um RPG épico de perguntas. Suba de nível, colete equipamentos e derrote o Arqui-Nefromante!">
-  <meta name="keywords" content="nefrologia, questões, medicina, RPG, educação médica, rim, diálise, nefrologia quiz">
-  <meta name="author" content="NefroQuest">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://nefroquest.com">
-  <meta property="og:title" content="NefroQuest: Ascension — Domine a Nefrologia">
-  <meta property="og:description" content="Aprenda nefrologia jogando um RPG épico. +1000 questões, personagens únicos e ranking global.">
-  <meta property="og:image" content="https://nefroquest.com/assets/images/favicon-512x512.png">
-  <meta property="og:image:width" content="512">
-  <meta property="og:image:height" content="512">
-  <meta property="og:locale" content="pt_BR">
-  <meta property="og:site_name" content="NefroQuest">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="NefroQuest: Ascension">
-  <meta name="twitter:description" content="Aprenda nefrologia jogando um RPG épico. +1000 questões.">
-  <meta name="twitter:image" content="https://nefroquest.com/assets/images/favicon-512x512.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var appKeys = [
+        'app', 'mode', 'boss', 'dev', 'plan',
+        'code', 'error', 'error_code', 'error_description', 'token_hash', 'type',
+        'payment', 'payment_id', 'preference_id', 'collection_id',
+        'collection_status', 'status', 'external_reference', 'merchant_order_id'
+      ];
+      var hasAppContext = appKeys.some(function (key) { return params.has(key); });
+      var hasAuthHash = /(?:^|[&#])(access_token|refresh_token|token_hash|type|error|error_code|error_description)=/i.test(window.location.hash);
+      var isStandalone = window.matchMedia('(display-mode: standalone)').matches
+        || window.navigator.standalone === true
+        || document.referrer.indexOf('android-app://') === 0;
+
+      if (hasAppContext || hasAuthHash || isStandalone) {
+        var isLocal = /^(localhost|127\.0\.0\.1)$/.test(window.location.hostname);
+        var appUrl = isLocal ? window.location.origin + '/jogar/' : 'https://nefroquest.com/jogar/';
+        window.location.replace(appUrl + window.location.search + window.location.hash);
+      }
+    })();
+  </script>
+  <title>NefroQuest — Nefrologia para aprender, praticar e se manter atualizado</title>
+  <meta name="description" content="Questões comentadas, revisão adaptativa, 38 diretrizes e 191 artigos resumidos para estudantes de medicina, residentes e nefrologistas.">
+  <meta name="theme-color" content="#070a13">
+  <meta name="robots" content="index,follow">
+
+  <link rel="canonical" href="https://nefroquest.com/">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/svg+xml" href="/landing/assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/landing/assets/favicon-32x32.png">
+  <link rel="apple-touch-icon" href="/landing/assets/favicon-192x192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=Philosopher:wght@400;700&family=MedievalSharp&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=Philosopher:wght@400;700&family=MedievalSharp&display=swap" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=Philosopher:wght@400;700&family=MedievalSharp&display=swap"></noscript>
-  <link rel="prefetch" href="assets/audio/welcome-theme.mp3">
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,600;0,700;1,500;1,600&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/landing/styles.css?v=13.01">
 
-  <!-- ══ Sentry error monitoring ══════════════════════════════════════════ -->
-  <script
-    src="https://js-de.sentry-cdn.com/11e6a03af273d89034995606be7570be.min.js"
-    crossorigin="anonymous"
-  ></script>
+  <meta property="og:title" content="NefroQuest — Domine a nefrologia. Evolua a cada decisão.">
+  <meta property="og:description" content="Da formação à atualização na especialidade: questões, revisão adaptativa, tutor educacional de IA e evidências organizadas.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:url" content="https://nefroquest.com/">
+  <meta property="og:image" content="https://nefroquest.com/landing/assets/nefromancer-lumen-v2.jpg">
+  <meta property="og:image:width" content="1672">
+  <meta property="og:image:height" content="941">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NefroQuest — Nefrologia em modo conquista">
+  <meta name="twitter:description" content="Para estudantes, residentes e nefrologistas: entenda o erro, revise com método e acompanhe a evidência.">
+  <meta name="twitter:image" content="https://nefroquest.com/landing/assets/nefromancer-lumen-v2.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "NefroQuest",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Web",
+    "url": "https://nefroquest.com",
+    "description": "Plataforma educacional de nefrologia para estudantes, residentes e nefrologistas, com questões, revisão adaptativa, artigos resumidos, tutor educacional de IA e progressão RPG.",
+    "inLanguage": "pt-BR"
+  }
+  </script>
+
+  <script src="https://js-de.sentry-cdn.com/11e6a03af273d89034995606be7570be.min.js" crossorigin="anonymous"></script>
   <script>
     if (typeof Sentry !== 'undefined') {
-      Sentry.onLoad(function() {
+      Sentry.onLoad(function () {
         Sentry.init({
-          release: 'nefroquest@12.97',
+          release: 'nefroquest@13.01',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
-          tracesSampleRate: 0.1,
-          // Ruído de extensão de navegador / proxy / cache stale servindo HTML
-          // como JS — SyntaxError "Unexpected token '<'" em <unknown module>
-          // (~574 eventos/30d na triagem de jun/2026). Não é código nosso:
-          // JS minificado válido nunca produz esses tokens. Ver memory/sentry-triage.
-          // Adicionados (jun/2026): SecurityError de localStorage em contextos
-          // sandbox (data: URLs) e erros do Cloudflare Turnstile (externos).
-          ignoreErrors: [
-            /Unexpected token '<'/,
-            /Unexpected token '<</,
-            /Unexpected token 'function'/,
-            /Unexpected identifier 'document'/,
-            /Storage is disabled inside 'data:' URLs/,
-            /TurnstileError/,
-          ],
-          beforeSend(event) {
-            if (event.user) delete event.user.ip_address;
-            return event;
-          }
+          tracesSampleRate: 0.05
         });
       });
     }
   </script>
-
-  <!-- Cloudflare Turnstile (CAPTCHA no signup/login — anti account-farming, E9) -->
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
-  <!-- Critical CSS: esconde controles de som / botões mobile durante o FOUC
-       (antes do style.css carregar). O CSS externo é mais específico
-       (#landingScreen .lnd-sound-controls) e sobrescreve depois. -->
-  <style>
-    .lnd-sound-controls,
-    .welcome-sound-controls,
-    .mobile-sound-controls,
-    .mobile-hero-btn,
-    .mobile-status-bar,
-    .mobile-bottom-dock,
-    .lnd-particles,
-    .particles { display: none; }
-    /* Evita o flash do conteúdo do app (vidas/ouro/streak no canto) antes do
-       style.css aplicar .hidden. O CSS externo re-exibe quando o JS remove .hidden. */
-    .hidden { display: none !important; }
-  </style>
-  <link rel="stylesheet" href="style.css?v=11.90">
-  <script>
-    // Version beacon — detecta nova versão e força limpeza de cache
-    (function() {
-      var _stored = localStorage.getItem('nq-sw-version');
-      fetch('/version.json', { cache: 'no-store' })
-        .then(function(r) { return r.json(); })
-        .then(function(d) {
-          var _v = String(d.version || '');
-          function updateLabels() {
-            var labels = document.querySelectorAll('.version-label-dynamic');
-            for (var i = 0; i < labels.length; i++) {
-              labels[i].textContent = _v ? ('v' + _v) : 'v11.45';
-            }
-          }
-          if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', updateLabels);
-          } else {
-            updateLabels();
-          }
-          if (_stored !== null && _stored !== _v) {
-            localStorage.setItem('nq-sw-version', _v);
-            window.location.replace('/clear-cache.html');
-          } else {
-            localStorage.setItem('nq-sw-version', _v);
-          }
-        })
-        .catch(function() {});
-    })();
-  </script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' })
-          .then(reg => {
-            // Ativar SW em espera imediatamente
-            if (reg.waiting) reg.waiting.postMessage({ type: 'SKIP_WAITING' });
-
-            reg.addEventListener('updatefound', () => {
-              const newSW = reg.installing;
-              if (!newSW) return;
-              newSW.addEventListener('statechange', () => {
-                if (newSW.state === 'installed') {
-                  newSW.postMessage({ type: 'SKIP_WAITING' });
-                }
-              });
-            });
-
-            // Verificar atualizações a cada 2 minutos (clearável; evita múltiplos por aba)
-            if (!window._swUpdateInterval) {
-              window._swUpdateInterval = setInterval(() => reg.update().catch(() => {}), 2 * 60 * 1000);
-            }
-
-            // Verificar quando aba volta ao foco (uma única vez)
-            if (!window._swVisibilityBound) {
-              window._swVisibilityBound = true;
-              document.addEventListener('visibilitychange', () => {
-                if (document.visibilityState === 'visible') reg.update().catch(() => {});
-              });
-            }
-            // Registrar periodic sync para lembretes diários (Chrome/Android)
-            if ('periodicSync' in reg && Notification.permission === 'granted') {
-              reg.periodicSync.register('nq-study-reminder', {
-                minInterval: 20 * 60 * 60 * 1000  // 20h
-              }).catch(() => {});
-            }
-          }).catch(() => {});
-
-        // Quando novo SW assume controle, NÃO recarregar automaticamente
-        // O beacon de versão (/version.json) já cuida de forçar atualização
-        // quando necessário — recarregar aqui causava flash de conteúdo antigo
-      });
-    }
-  </script>
-  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-0TS171XV3K"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-0TS171XV3K', {
-      debug_mode: ['localhost', '127.0.0.1'].includes(location.hostname),
+      debug_mode: ['localhost', '127.0.0.1'].includes(location.hostname)
     });
   </script>
 </head>
 <body>
-  <!-- Offline badge -->
-  <div id="offlineBadge" style="display:none;position:fixed;top:8px;left:50%;transform:translateX(-50%);background:rgba(251,191,36,0.92);color:#1a1200;font-size:0.78rem;font-weight:700;padding:5px 16px;border-radius:20px;z-index:10000;backdrop-filter:blur(4px);box-shadow:0 2px 12px rgba(0,0,0,0.4);pointer-events:none;">
-    📵 Offline — usando cache local
-  </div>
-  <!-- PWA install banner (desativado) -->
-  <!-- Background layers -->
-  <div class="bg-layer"></div>
-  <div class="bg-overlay"></div>
-  <div class="particles" id="particles"></div>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-  <!-- Botões de som fixos no topo direito (MOBILE ONLY) -->
-  <!-- Botão herói no canto superior esquerdo (mobile) -->
-  <button type="button" class="mobile-hero-btn" id="mobileHeroBtn" data-action="openMobileDrawer" style="display:none;">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
-      <circle cx="12" cy="8" r="4"/>
-      <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
-    </svg>
-    <span class="hero-btn-label">Herói</span>
-  </button>
-  <div class="mobile-sound-controls" id="mobileSoundControls">
-    <div class="volume-slider-container">
-      <div class="sound-toggle" role="button" tabindex="0" aria-label="Ativar/desativar música" data-action="toggleMusic">
-        <span id="mobileSoundMusicIcon" aria-hidden="true">🎵</span>
-      </div>
-      <input type="range" class="volume-slider music-vol" min="0" max="1" step="0.05" aria-label="Volume da Música">
-    </div>
-    <div class="volume-slider-container">
-      <div class="sound-toggle" role="button" tabindex="0" aria-label="Ativar/desativar efeitos sonoros" data-action="toggleSound">
-        <span id="mobileSoundSfxIcon" aria-hidden="true">🔊</span>
-      </div>
-      <input type="range" class="volume-slider sfx-vol" min="0" max="1" step="0.05" aria-label="Volume dos Efeitos">
-    </div>
+  <div class="ambient" aria-hidden="true">
+    <div class="ambient-grid"></div>
+    <div class="ambient-glow ambient-glow--cyan"></div>
+    <div class="ambient-glow ambient-glow--gold"></div>
+    <div class="ambient-grain"></div>
   </div>
 
-  <!-- LANDING / LOGIN SCREEN -->
-  <div id="landingScreen">
-    <div class="landing-bg"></div>
-    <div class="lnd-vignette" aria-hidden="true"></div>
-    <div class="lnd-particles" aria-hidden="true">
-      <span class="lnd-particle" style="--x:8%;--dur:7s;--delay:0s;--size:2px;--drift:12px"></span>
-      <span class="lnd-particle" style="--x:22%;--dur:9.5s;--delay:1.8s;--size:3px;--drift:-8px"></span>
-      <span class="lnd-particle" style="--x:38%;--dur:6.5s;--delay:3.2s;--size:2px;--drift:18px"></span>
-      <span class="lnd-particle" style="--x:55%;--dur:8s;--delay:0.6s;--size:3px;--drift:-14px"></span>
-      <span class="lnd-particle" style="--x:70%;--dur:10s;--delay:2.5s;--size:2px;--drift:10px"></span>
-      <span class="lnd-particle" style="--x:82%;--dur:7.5s;--delay:4.2s;--size:4px;--drift:-6px"></span>
-      <span class="lnd-particle" style="--x:15%;--dur:11s;--delay:5.5s;--size:2px;--drift:20px"></span>
-      <span class="lnd-particle" style="--x:62%;--dur:8.5s;--delay:7s;--size:3px;--drift:-12px"></span>
-    </div>
-    <!-- Profile button (top-right, shown when already logged in) -->
-    <div class="profile-btn" id="landingProfileBtn" role="button" tabindex="0" aria-label="Menu da conta" data-action="toggleProfilePopup" data-arg="landing" style="position:absolute;top:14px;right:14px;z-index:10;">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
-      <div class="profile-popup" id="landingProfilePopup">
-        <div class="profile-popup-email"><strong>Conta</strong><span id="landingProfileEmail"></span></div>
+  <header class="nav" id="nav">
+    <a class="nav-brand" href="#top" aria-label="NefroQuest — início">
+      <span class="nav-word" aria-hidden="true"><b>Nefro</b><em class="wordmark-quest">Quest</em></span>
+    </a>
 
-      </div>
-    </div>
-    <!-- Botões de som — canto superior direito da página (desktop only) -->
-    <div class="lnd-sound-controls" id="lndSoundControls">
-      <button class="lnd-sound-btn" type="button" data-action="toggleMusic" title="Música" aria-label="Ativar/desativar música">
-        <span id="lndMusicIcon">🎵</span>
-      </button>
-      <button class="lnd-sound-btn" type="button" data-action="toggleSound" title="Efeitos sonoros" aria-label="Ativar/desativar efeitos">
-        <span id="lndSfxIcon">🔊</span>
-      </button>
-    </div>
-    <div class="landing-content">
-      <!-- ══ LEFT COLUMN: brand + login buttons + QR card ══ -->
-      <div class="lnd-left">
-        <div class="lnd-brand">
-          <div class="lnd-ornament">✦ Reino dos Néfrons ✦</div>
-          <h1 class="landing-title">NefroQuest</h1>
-          <div class="lnd-sub">— Ascension —</div>
-          <p class="lnd-subtext">Domine a Nefrologia através de uma jornada épica.<br>Questões comentadas · IA clínica · Progressão RPG</p>
-        </div>
+    <nav class="nav-links" aria-label="Navegação principal">
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#oraculo">Oráculo</a>
+      <a href="#metodo">Método</a>
+      <a href="#classes">O jogo</a>
+    </nav>
 
-        <!-- Bloco de autenticação (desktop: coluna esquerda / mobile: order 2) -->
-        <div class="lnd-auth-block">
-          <div id="landingMsg" class="landing-msg"></div>
-          <button type="button" class="landing-btn-google" data-action="landingLoginGoogle">
-            <svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.1 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.6-13.47-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-            Entrar com Google
-          </button>
-          <div class="lnd-btn-sep"><span>◆</span></div>
-          <button type="button" class="landing-btn-email" data-action="landingLoginEmail">✉ Entrar com Email</button>
-          <div class="lnd-btn-sep"><span>◆</span></div>
-          <button type="button" class="landing-btn-guest" data-action="playAsGuest">🗺️ Entrar como visitante</button>
-        </div>
+    <a class="nav-cta" href="https://nefroquest.com/jogar/" data-cta="nav">Começar grátis</a>
+    <span class="nav-progress" aria-hidden="true"></span>
+  </header>
 
-        <!-- QR Code card — coluna esquerda (desktop only), abaixo dos botões -->
-        <div class="lnd-qr-card">
-          <div class="lnd-qr-frame">
-            <img class="lnd-qr-img"
-                 src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://nefroquest.com&bgcolor=080d1e&color=eec752&qzone=1"
-                 alt="QR Code NefroQuest" width="120" height="120" loading="lazy">
+  <main id="conteudo">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-shell">
+        <div class="hero-copy">
+          <p class="eyebrow reveal">Estudantes de medicina <i>•</i> Residentes <i>•</i> Nefrologistas</p>
+          <h1 class="hero-title" id="hero-title">
+            <span class="reveal" style="--i:1">Domine a nefrologia.</span>
+            <em class="reveal" style="--i:2">Evolua a cada decisão.</em>
+          </h1>
+          <p class="hero-sub reveal" style="--i:3">
+            Da graduação à atualização na especialidade: questões comentadas, revisão adaptativa, evidências organizadas e IA para entender cada erro — em uma jornada para aprender e se manter atualizado.
+          </p>
+          <div class="hero-actions reveal" style="--i:4">
+            <a class="btn btn-primary" href="https://nefroquest.com/jogar/" data-cta="hero-primary">
+              <span>Começar grátis</span>
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="btn btn-text" href="#como-funciona">Ver como funciona <span aria-hidden="true">↓</span></a>
           </div>
-          <div class="lnd-qr-body">
-            <span class="lnd-qr-kicker">📱 Versão Mobile</span>
-            <span class="lnd-qr-title">Estude em qualquer lugar</span>
-            <span class="lnd-qr-sub">Aponte a câmera e acesse</span>
-            <span class="lnd-qr-url">nefroquest.com</span>
-          </div>
+          <ul class="hero-trust reveal" style="--i:5" aria-label="Condições para começar">
+            <li><span class="status-dot" aria-hidden="true"></span> Sem cartão</li>
+            <li><span class="status-dot" aria-hidden="true"></span> Modo visitante</li>
+            <li><span class="status-dot" aria-hidden="true"></span> Da formação à especialidade</li>
+          </ul>
         </div>
 
-        <div class="lnd-trust">
-          <span class="lnd-trust-lock">🔒</span>
-          <span class="lnd-trust-text">Login seguro. Seus dados não são compartilhados.</span>
-        </div>
-
-        <!-- ══ SHOWCASE — carousel mobile / feat-grid desktop (ambos ocultados no desktop agora) ══ -->
-        <div class="lnd-showcase">
-          <div class="lnd-feat-grid">
-
-            <article class="lnd-fcard" style="--cc:124,58,237">
-              <div class="lnd-fcard-vis">
-                <span class="lnd-fcard-orb"></span>
-                <span class="lnd-fcard-emoji">⚔️</span>
-              </div>
-              <div class="lnd-fcard-info">
-                <span class="lnd-fcard-tag">Banco de Questões</span>
-                <h4 class="lnd-fcard-name">1.000+ questões comentadas</h4>
-                <p class="lnd-fcard-desc">Treine DRC, LRA, glomerulopatias, eletrólitos, diálise e transplante com comentário clínico em cada resposta.</p>
-              </div>
-            </article>
-
-            <article class="lnd-fcard" style="--cc:74,158,255">
-              <div class="lnd-fcard-vis">
-                <span class="lnd-fcard-orb"></span>
-                <span class="lnd-fcard-emoji">🔮</span>
-              </div>
-              <div class="lnd-fcard-info">
-                <span class="lnd-fcard-tag">Inteligência Artificial</span>
-                <h4 class="lnd-fcard-name">Oráculo Claude Haiku</h4>
-                <p class="lnd-fcard-desc">A IA comenta seus erros, explica o raciocínio clínico e aponta lacunas de aprendizado com precisão de nefrologista.</p>
-              </div>
-            </article>
-
-            <article class="lnd-fcard" style="--cc:220,38,38">
-              <div class="lnd-fcard-vis">
-                <span class="lnd-fcard-orb"></span>
-                <span class="lnd-fcard-emoji">🛡️</span>
-              </div>
-              <div class="lnd-fcard-info">
-                <span class="lnd-fcard-tag">RPG Médico</span>
-                <h4 class="lnd-fcard-name">Progressão imersiva</h4>
-                <p class="lnd-fcard-desc">Ganhe XP, ouro e badges. Evolua heróis renais e enfrente o Arqui-Nefromante no confronto final pela cura do reino.</p>
-              </div>
-            </article>
-
-            <article class="lnd-fcard" style="--cc:22,163,74">
-              <div class="lnd-fcard-vis">
-                <span class="lnd-fcard-orb"></span>
-                <span class="lnd-fcard-emoji">🎮</span>
-              </div>
-              <div class="lnd-fcard-info">
-                <span class="lnd-fcard-tag">Revisão Ativa</span>
-                <h4 class="lnd-fcard-name">Minigames de fixação</h4>
-                <p class="lnd-fcard-desc">Transforme repetição em treino ativo com desafios rápidos e feedback imediato. Memória passiva não salva vidas.</p>
-              </div>
-            </article>
-
-            <article class="lnd-fcard" style="--cc:245,158,11">
-              <div class="lnd-fcard-vis">
-                <span class="lnd-fcard-orb"></span>
-                <span class="lnd-fcard-emoji">📚</span>
-              </div>
-              <div class="lnd-fcard-info">
-                <span class="lnd-fcard-tag">Biblioteca do Nefromante</span>
-                <h4 class="lnd-fcard-name">Grimório clínico</h4>
-                <p class="lnd-fcard-desc">Artigos, diretrizes e referências em uma biblioteca de campanha curada por nefrologistas e sempre atualizada.</p>
-              </div>
-            </article>
-
-            <article class="lnd-fcard" style="--cc:8,145,178">
-              <div class="lnd-fcard-vis">
-                <span class="lnd-fcard-orb"></span>
-                <span class="lnd-fcard-emoji">🏆</span>
-              </div>
-              <div class="lnd-fcard-info">
-                <span class="lnd-fcard-tag">Competição e Constância</span>
-                <h4 class="lnd-fcard-name">Ranking e progressão</h4>
-                <p class="lnd-fcard-desc">Compare seu desempenho e mantenha a constância. Cada questão respondida é um passo real no domínio clínico.</p>
-              </div>
-            </article>
-
-          </div><!-- /.lnd-feat-grid -->
-
-          <!-- ══ CAROUSEL — mobile only ══ -->
-          <div class="lnd-carousel" role="region" aria-label="Funcionalidades do NefroQuest" aria-roledescription="carrossel">
-
-            <div class="lnd-carousel-track">
-
-              <article class="lnd-carousel-card is-active" style="--ci:124,58,237" aria-hidden="false">
-                <div class="lnd-carousel-icon">⚔️</div>
-                <span class="lnd-carousel-kicker">Banco de Questões</span>
-                <h3 class="lnd-carousel-title">1.000+ questões comentadas</h3>
-                <p class="lnd-carousel-text">Treine DRC, LRA, glomerulopatias, eletrólitos, diálise, transplante e hipertensão em questões com comentário clínico.</p>
-              </article>
-
-              <article class="lnd-carousel-card" style="--ci:74,158,255" aria-hidden="true">
-                <div class="lnd-carousel-icon">🔮</div>
-                <span class="lnd-carousel-kicker">Inteligência Artificial</span>
-                <h3 class="lnd-carousel-title">Oráculo Claude Haiku</h3>
-                <p class="lnd-carousel-text">A IA comenta erros, explica raciocínio clínico e aponta lacunas de aprendizado com precisão de nefrologista.</p>
-              </article>
-
-              <article class="lnd-carousel-card" style="--ci:220,38,38" aria-hidden="true">
-                <div class="lnd-carousel-icon">🛡️</div>
-                <span class="lnd-carousel-kicker">RPG Médico</span>
-                <h3 class="lnd-carousel-title">RPG médico imersivo</h3>
-                <p class="lnd-carousel-text">Ganhe XP, ouro e badges. Evolua heróis renais e enfrente o Arqui-Nefromante no confronto final pela cura do reino.</p>
-              </article>
-
-              <article class="lnd-carousel-card" style="--ci:22,163,74" aria-hidden="true">
-                <div class="lnd-carousel-icon">🎮</div>
-                <span class="lnd-carousel-kicker">Revisão Ativa</span>
-                <h3 class="lnd-carousel-title">Minigames de revisão</h3>
-                <p class="lnd-carousel-text">Transforme repetição em treino ativo com desafios rápidos e feedback imediato. Memória passiva não salva vidas.</p>
-              </article>
-
-              <article class="lnd-carousel-card" style="--ci:180,83,9" aria-hidden="true">
-                <div class="lnd-carousel-icon">📚</div>
-                <span class="lnd-carousel-kicker">Biblioteca do Nefromante</span>
-                <h3 class="lnd-carousel-title">Grimório</h3>
-                <p class="lnd-carousel-text">Consulte conteúdos, artigos e referências em uma biblioteca de campanha curada e sempre atualizada.</p>
-              </article>
-
-              <article class="lnd-carousel-card" style="--ci:8,145,178" aria-hidden="true">
-                <div class="lnd-carousel-icon">✨</div>
-                <span class="lnd-carousel-kicker">Evidências Clínicas</span>
-                <h3 class="lnd-carousel-title">Referências atualizadas</h3>
-                <p class="lnd-carousel-text">Estude com base em diretrizes, trials e materiais modernos da nefrologia. Ciência de ponta nas suas mãos.</p>
-              </article>
-
-              <article class="lnd-carousel-card" style="--ci:217,119,6" aria-hidden="true">
-                <div class="lnd-carousel-icon">🏆</div>
-                <span class="lnd-carousel-kicker">Competição e Constância</span>
-                <h3 class="lnd-carousel-title">Ranking e progressão</h3>
-                <p class="lnd-carousel-text">Acompanhe evolução, compare desempenho e mantenha constância. Cada questão é um passo no domínio clínico.</p>
-              </article>
-
-              <article class="lnd-carousel-card" style="--ci:99,102,241" aria-hidden="true">
-                <div class="lnd-carousel-icon">📱</div>
-                <span class="lnd-carousel-kicker">PWA Multiplataforma</span>
-                <h3 class="lnd-carousel-title">Em qualquer dispositivo</h3>
-                <p class="lnd-carousel-text">Use no celular ou computador com experiência responsiva e instalável. Estude onde e quando quiser.</p>
-              </article>
-
-            </div><!-- /.lnd-carousel-track -->
-
-            <div class="lnd-carousel-progress" aria-hidden="true">
-              <div class="lnd-carousel-prog-bar"></div>
-            </div>
-
-            <div class="lnd-carousel-controls">
-              <button class="lnd-carousel-arrow lnd-carousel-arrow--prev" type="button" aria-label="Card anterior">&#8249;</button>
-              <div class="lnd-carousel-dots" role="tablist" aria-label="Navegação do carrossel">
-                <button class="lnd-carousel-dot is-active" type="button" role="tab" aria-label="Ver card 1" aria-selected="true"  data-idx="0"></button>
-                <button class="lnd-carousel-dot"           type="button" role="tab" aria-label="Ver card 2" aria-selected="false" data-idx="1"></button>
-                <button class="lnd-carousel-dot"           type="button" role="tab" aria-label="Ver card 3" aria-selected="false" data-idx="2"></button>
-                <button class="lnd-carousel-dot"           type="button" role="tab" aria-label="Ver card 4" aria-selected="false" data-idx="3"></button>
-                <button class="lnd-carousel-dot"           type="button" role="tab" aria-label="Ver card 5" aria-selected="false" data-idx="4"></button>
-                <button class="lnd-carousel-dot"           type="button" role="tab" aria-label="Ver card 6" aria-selected="false" data-idx="5"></button>
-                <button class="lnd-carousel-dot"           type="button" role="tab" aria-label="Ver card 7" aria-selected="false" data-idx="6"></button>
-                <button class="lnd-carousel-dot"           type="button" role="tab" aria-label="Ver card 8" aria-selected="false" data-idx="7"></button>
-              </div>
-              <button class="lnd-carousel-arrow lnd-carousel-arrow--next" type="button" aria-label="Próximo card">&#8250;</button>
-            </div>
-          </div><!-- /.lnd-carousel -->
-        </div><!-- /.lnd-showcase -->
-      </div>
-      <!-- ══ VERTICAL SEPARATOR with gems ══ -->
-      <div class="lnd-vsep">
-        <span class="lnd-vsep-gem">◆</span>
-        <span class="lnd-vsep-gem">◆</span>
-        <span class="lnd-vsep-gem">◆</span>
-      </div>
-      <!-- ══ RIGHT COLUMN: 1.000+ card + 3 feature cards (desktop only) ══ -->
-      <div class="lnd-right">
-        <!-- Card 1.000+ questões — topo da coluna direita -->
-        <div class="lnd-mini-feat">
-          <div class="lnd-mini-feat-inner">
-            <div class="lnd-mini-feat-headline">
-              <span class="lnd-mini-feat-num">1.000<span class="lnd-mini-feat-plus">+</span></span>
-              <span class="lnd-mini-feat-label">Questões Comentadas</span>
-            </div>
-            <div class="lnd-mini-feat-pills">
-              <span class="lnd-mfp">DRC</span>
-              <span class="lnd-mfp">IRA</span>
-              <span class="lnd-mfp">Glomerulopatias</span>
-              <span class="lnd-mfp">Eletrólitos</span>
-              <span class="lnd-mfp">Diálise Peritoneal</span>
-              <span class="lnd-mfp">Hemodiálise</span>
-              <span class="lnd-mfp">Transplante</span>
-              <span class="lnd-mfp">Hipertensão</span>
-              <span class="lnd-mfp">Litíase Renal</span>
-              <span class="lnd-mfp">Nefropatia Diabética</span>
-              <span class="lnd-mfp">Ácido-Base</span>
-            </div>
-          </div>
-        </div>
-        <!-- 3 feature cards -->
-        <div class="lnd-right-cards">
-          <article class="lnd-rcard" style="--rc:74,158,255">
-            <div class="lnd-rcard-icon-wrap">
-              <span class="lnd-rcard-icon">🔮</span>
-            </div>
-            <div class="lnd-rcard-body">
-              <span class="lnd-rcard-name" role="heading" aria-level="3">Tutor IA Clínico</span>
-              <p class="lnd-rcard-desc">Entende seu erro, expõe a falha de raciocínio e ensina como um preceptor de referência faria.</p>
-              <span class="lnd-rcard-badge">Powered by Claude · Feedback instantâneo</span>
-            </div>
-          </article>
-          <article class="lnd-rcard" style="--rc:167,92,255">
-            <div class="lnd-rcard-icon-wrap">
-              <span class="lnd-rcard-icon">⚔️</span>
-            </div>
-            <div class="lnd-rcard-body">
-              <span class="lnd-rcard-name" role="heading" aria-level="3">RPG · Progressão Real</span>
-              <p class="lnd-rcard-desc">Suba de nível, acumule XP e enfrente o Arqui-Nefromante — a motivação que faltava pra estudar todo dia.</p>
-              <span class="lnd-rcard-badge">Classes · Equipamentos · Mini-games</span>
-            </div>
-          </article>
-          <article class="lnd-rcard" style="--rc:34,197,94">
-            <div class="lnd-rcard-icon-wrap">
-              <span class="lnd-rcard-icon">🧬</span>
-            </div>
-            <div class="lnd-rcard-body">
-              <span class="lnd-rcard-name" role="heading" aria-level="3">Baseado em Evidências</span>
-              <p class="lnd-rcard-desc">Grandes trials presentes em cada questão — estude no nível da sua prova e da sua prática.</p>
-              <span class="lnd-rcard-badge">Centenas de artigos resumidos</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </div>
-    <!-- Footer abaixo do card (desktop) -->
-    <footer class="lnd-footer">
-      <span>nefroquest.com</span>
-      <span class="lnd-footer-sep">·</span>
-      <span id="landingVersionLabel" class="version-label-dynamic" style="cursor:pointer;" role="button" tabindex="0" aria-label="Ver novidades da versão" data-action="showChangelog">v11.45</span>
-      <span class="lnd-footer-sep">·</span>
-      <span style="cursor:pointer;text-decoration:underline;" class="lnd-footer-link" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span>
-    </footer>
-  </div>
-
-  <!-- Landing carousel widget — NefroQuest v10.25 -->
-  <script>
-  (function(){
-    'use strict';
-    var el = document.querySelector('#landingScreen .lnd-carousel');
-    if (!el) return;
-    var cards   = el.querySelectorAll('.lnd-carousel-card');
-    var dots    = el.querySelectorAll('.lnd-carousel-dot');
-    var prevBtn = el.querySelector('.lnd-carousel-arrow--prev');
-    var nextBtn = el.querySelector('.lnd-carousel-arrow--next');
-    var progBar = el.querySelector('.lnd-carousel-prog-bar');
-    var N = cards.length, cur = 0, timer = null;
-    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var DELAY = 3000;
-
-    function activate(n) {
-      cards[cur].classList.remove('is-active');
-      cards[cur].setAttribute('aria-hidden', 'true');
-      dots[cur].classList.remove('is-active');
-      dots[cur].setAttribute('aria-selected', 'false');
-      cur = ((n % N) + N) % N;
-      cards[cur].classList.add('is-active');
-      cards[cur].setAttribute('aria-hidden', 'false');
-      dots[cur].classList.add('is-active');
-      dots[cur].setAttribute('aria-selected', 'true');
-      if (progBar && !reduced) {
-        progBar.classList.remove('lnd-prog-run');
-        void progBar.offsetWidth; /* force reflow to restart animation */
-        progBar.classList.add('lnd-prog-run');
-      }
-    }
-
-    function startTimer() {
-      if (reduced) return;
-      clearInterval(timer);
-      timer = setInterval(function() { activate(cur + 1); }, DELAY);
-    }
-    function stopTimer() { clearInterval(timer); timer = null; }
-
-    if (prevBtn) prevBtn.addEventListener('click', function() { stopTimer(); activate(cur - 1); startTimer(); });
-    if (nextBtn) nextBtn.addEventListener('click', function() { stopTimer(); activate(cur + 1); startTimer(); });
-
-    dots.forEach(function(d) {
-      d.addEventListener('click', function() {
-        var idx = parseInt(d.getAttribute('data-idx'), 10);
-        if (!isNaN(idx)) { stopTimer(); activate(idx); startTimer(); }
-      });
-    });
-
-    el.addEventListener('mouseenter', stopTimer);
-    el.addEventListener('focusin',    stopTimer);
-    el.addEventListener('mouseleave', startTimer);
-    el.addEventListener('focusout',   function(e) {
-      if (!el.contains(e.relatedTarget)) startTimer();
-    });
-    el.addEventListener('keydown', function(e) {
-      if (e.key === 'ArrowLeft')  { stopTimer(); activate(cur - 1); startTimer(); }
-      if (e.key === 'ArrowRight') { stopTimer(); activate(cur + 1); startTimer(); }
-    });
-
-    /* Init */
-    if (!reduced && progBar) progBar.classList.add('lnd-prog-run');
-    startTimer();
-  })();
-  </script>
-
-  <!-- WELCOME SCREEN -->
-  <div id="welcomeScreen" class="welcome-screen hidden">
-    <div class="welcome-bg"></div>
-    <div class="welcome-glow"></div>
-    <div class="welcome-particles" id="welcomeParticles"></div>
-    <!-- Botões de som na welcome screen (PC only) -->
-    <div class="welcome-sound-controls" id="welcomeSoundControls">
-      <div class="volume-slider-container">
-        <div class="sound-toggle" role="button" tabindex="0" aria-label="Ativar/desativar música" data-action="toggleMusic">
-          <span id="welcomeMusicIcon" aria-hidden="true">🎵</span>
-        </div>
-        <input type="range" class="volume-slider music-vol" min="0" max="1" step="0.05" aria-label="Volume da Música">
-      </div>
-      <div class="volume-slider-container">
-        <div class="sound-toggle" role="button" tabindex="0" aria-label="Ativar/desativar efeitos sonoros" data-action="toggleSound">
-          <span id="welcomeSoundIcon" aria-hidden="true">🔊</span>
-        </div>
-        <input type="range" class="volume-slider sfx-vol" min="0" max="1" step="0.05" aria-label="Volume dos Efeitos">
-      </div>
-      <div class="profile-btn" id="welcomeProfileBtn" role="button" tabindex="0" aria-label="Menu da conta" data-action="toggleProfilePopup" data-arg="welcome">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
-        <div class="profile-popup" id="welcomeProfilePopup">
-          <div class="profile-popup-email"><strong>Conta</strong><span id="welcomeProfileEmail"></span></div>
-
-        </div>
-      </div>
-    </div>
-    <div class="welcome-content">
-      <!-- Ornamento superior -->
-      <div class="welcome-ornament"><span>&#10022; Reino dos Néfrons &#10022;</span></div>
-      <h1>NefroQuest</h1>
-      <div class="welcome-sub">Ascension</div>
-
-      <div id="welcomeStats" class="welcome-stats">
-        <div class="welcome-stat"><span class="ws-val" id="wsBestScore">0</span><span class="ws-lbl">Recorde</span></div>
-        <div class="welcome-stat"><span class="ws-val" id="wsGamesPlayed">0</span><span class="ws-lbl">Partidas</span></div>
-        <div class="welcome-stat"><span class="ws-val" id="wsBestLevel">0</span><span class="ws-lbl">Maior Nível</span></div>
-      </div>
-      <div id="welcomeSavedInfo" class="welcome-saved-info" style="display:none;">
-        <div class="wsaved-top">
-          <span class="wsaved-label">⚔ Jornada em Andamento</span>
-          <span class="wsaved-time-lbl" id="wsSavedTime"></span>
-        </div>
-        <div class="wsaved-bottom">
-          <img id="wsSavedAvatar" alt="" loading="lazy">
-          <div class="wsaved-info">
-            <div class="wsaved-charname" id="wsSavedChar">-</div>
-            <div class="wsaved-stats">
-              <div class="wsaved-stat">
-                <span class="ws-v" style="color:var(--blue)" id="wsSavedLevel">-</span>
-                <span class="ws-l">Nível</span>
-              </div>
-              <div class="wsaved-stat">
-                <span class="ws-v" style="color:#fb7185" id="wsSavedLives">-</span>
-                <span class="ws-l">Vidas</span>
-              </div>
-              <div class="wsaved-stat">
-                <span class="ws-v" style="color:#34d399" id="wsSavedScore">-</span>
-                <span class="ws-l">Pts</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Botões primários: Nova Jornada + Continuar Jornada -->
-      <div class="welcome-primary-btns">
-        <button type="button" id="welcomeContinueBtn" class="btn continue-btn" style="display:none;" data-action="continueGame">Continuar Jornada</button>
-        <button type="button" class="btn gold" data-action="startNewFromWelcome">Nova Jornada</button>
-      </div>
-      <div class="welcome-buttons">
-        <button type="button" class="btn sec btn-game-modes" data-action="openGameModesPopup">🎮 Modos de Jogo</button>
-        <button type="button" class="btn sec" data-action="openDashboard">📊 Dashboard</button>
-        <button type="button" class="btn sec" id="welcomeRitualBtn" data-action="openRitual">⚜️ Ritual de Iniciação</button>
-        <button type="button" class="btn sec" data-action="showLeaderboardFromWelcome">Leaderboard</button>
-        <button type="button" class="btn sec btn-biblioteca" data-action="openBibliotecaModal">📜 Grimório</button>
-        <button type="button" id="bossPreviewBtn" class="btn-boss-preview" data-action="startBossPreview" title="Preview do Confronto Final" style="display:none;">⚔️ Preview: Confronto Final</button>
-      </div>
-      <div class="welcome-credit"><a href="https://nefroquest.com">nefroquest.com</a> &nbsp;·&nbsp; <span id="welcomeVersionLabel" class="version-label-dynamic" style="font-size:0.9em;cursor:pointer;" role="button" tabindex="0" aria-label="Ver novidades da versão" data-action="showChangelog">v11.45</span> &nbsp;·&nbsp; <span style="font-size:0.8em;cursor:pointer;text-decoration:underline;" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span></div>
-    </div>
-  </div>
-
-  <main class="app hidden" id="mainApp">
-    <!-- Title -->
-    <div class="game-title">
-      <!-- Boss battle title (shown when correctTotal >= 90) -->
-      <div id="bossTitleBar">&#9760; Confronto Final: Arqui-Nefromante &#9760;</div>
-      <h1>NefroQuest</h1>
-      <div class="subtitle">— Ascension —</div>
-      <!-- Medidor de estrelas do boss — aparece no topo em boss mode -->
-      <div id="finalMeterStarsTop" style="display:none;justify-content:center;gap:6px;align-items:center;padding:4px 0 2px;"></div>
-      <!-- Sound controls estáticos dentro do título (PC only) -->
-      <div class="sound-controls" id="soundControlsBar">
-        <div class="volume-slider-container">
-          <div id="musicToggle" class="sound-toggle" role="button" tabindex="0" aria-label="Ativar/desativar música" data-action="toggleMusic">
-            <span id="musicIcon" aria-hidden="true">🎵</span>
-          </div>
-          <input type="range" class="volume-slider music-vol" min="0" max="1" step="0.05" aria-label="Volume da Música">
-        </div>
-        <div class="volume-slider-container">
-          <div id="soundToggle" class="sound-toggle" role="button" tabindex="0" aria-label="Ativar/desativar efeitos sonoros" data-action="toggleSound">
-            <span id="soundIcon" aria-hidden="true">🔊</span>
-          </div>
-          <input type="range" class="volume-slider sfx-vol" min="0" max="1" step="0.05" aria-label="Volume dos Efeitos">
-        </div>
-        <div class="profile-btn" id="gameProfileBtn" role="button" tabindex="0" aria-label="Menu da conta" data-action="toggleProfilePopup" data-arg="game">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
-          <div class="profile-popup" id="gameProfilePopup">
-            <div class="profile-popup-email"><strong>Conta</strong><span id="gameProfileEmail"></span></div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- LEFT PANEL -->
-    <section class="panel left">
-
-      <!-- BOSS PARTY PANEL (visível só no boss mode) -->
-      <div id="bossPartyPanel" style="display:none;">
-        <div class="boss-party-banner">⚔ Batalhão da Resistência ⚔</div>
-        <div class="boss-party-heroes">
-          <div class="boss-party-hero">
-            <img id="partyHero1Img" src="assets/classes/clerigo_renal/nivel_01.jpg" width="48" height="50" alt="Dr. Nephros" loading="lazy">
-            <span class="boss-party-hero-name">Dr. Nephros</span>
-          </div>
-          <div class="boss-party-hero">
-            <img id="partyHero2Img" src="assets/classes/maga_metabolica/nivel_01.jpg" width="48" height="50" alt="Dra. Aquaria" loading="lazy">
-            <span class="boss-party-hero-name">Dra. Aquaria</span>
-          </div>
-          <div class="boss-party-hero">
-            <img id="partyHero3Img" src="assets/classes/guerreiro_glomerular/nivel_01.png" width="48" height="45" alt="Dr. Glomerulus" loading="lazy">
-            <span class="boss-party-hero-name">Dr. Glomerulus</span>
-          </div>
-        </div>
-        <div class="boss-party-motto">A vitória é nossa!</div>
-      </div>
-
-      <div class="hero">
-        <div class="hero-wrap">
-          <div class="portrait-frame" data-action="showHeroLore" style="cursor:pointer;" title="Ver história do personagem">
-            <img id="heroImg" class="portrait" src="assets/classes/clerigo_renal/nivel_01.jpg" width="233" height="243" alt="Herói" loading="lazy" />
-          </div>
-          <div class="hero-info">
-            <div id="heroClass" class="class">Noviço da Filtração</div>
-            <div id="heroTitle" class="hero-title">O Iniciante das Águas</div>
-            <div id="heroName" class="hero-name"></div>
-            <div class="xp-bar"><div id="xpFill"></div></div>
-            <small id="xpTxt" class="xp-text">XP 0 / 120</small>
-            <small id="questionCounterTxt" class="xp-text" style="opacity:0.65;font-size:0.68rem;">0/1032</small>
-          </div>
-        </div>
-      </div>
-
-
-
-      <div class="hud">
-        <div class="tile"><span>Nível</span><strong id="level">1</strong></div>
-        <div class="tile"><span>Pontos</span><strong id="score">0</strong></div>
-        <div class="tile"><span>Vidas</span><strong id="lives">❤❤❤</strong></div>
-        <div class="tile"><span>Recorde</span><strong id="record">0</strong></div>
-        <div class="tile"><span>Ouro</span><strong id="gold">0</strong></div>
-        <div class="tile"><span>Streak</span><strong id="streak">0</strong></div>
-      </div>
-
-      <div class="story">
-        <h3>Capítulo da Narrativa</h3>
-        <p id="storyTitle">Prólogo — O Chamado das Águas</p>
-        <p id="storyGoal">Objetivo: domine os fundamentos da nefrologia e sobreviva às primeiras cartas da jornada.</p>
-      </div>
-
-      <!-- BOSS MODE: narrative box — aparece entre HUD e equipamento -->
-      <div id="bossNarrativeBox" style="display:none;"></div>
-
-      <div class="equip">
-        <h3>Equipamentos</h3>
-        <div id="equipList"></div>
-      </div>
-
-      <div class="log"><h3>Jornada</h3><div id="journal"></div></div>
-
-      <!-- BOSS MODE: battle log (substitui Jornada) -->
-      <div id="bossLogSection" style="display:none;">
-        <h3 style="font-family:'Cinzel',serif;font-size:.82rem;color:var(--purple);margin-bottom:8px;">⚔ Log de Batalha</h3>
-        <div id="bossLogEntries"></div>
-      </div>
-    </section>
-
-    <!-- RIGHT PANEL -->
-    <section class="panel right">
-
-      <!-- RUNIC COLUMNS (boss mode decoration) -->
-      <div id="runeColLeft" aria-hidden="true">
-        <div class="rune-track">
-          <span class="rune-glyph bright">ᚠ</span><span class="rune-glyph">ᚢ</span><span class="rune-glyph">ᚦ</span>
-          <span class="rune-glyph bright">ᚨ</span><span class="rune-glyph">ᚱ</span><span class="rune-glyph">ᚲ</span>
-          <span class="rune-glyph">ᚷ</span><span class="rune-glyph bright">ᚹ</span><span class="rune-glyph">ᚾ</span>
-          <span class="rune-glyph">ᛁ</span><span class="rune-glyph bright">ᛃ</span><span class="rune-glyph">ᛈ</span>
-          <span class="rune-glyph">ᛉ</span><span class="rune-glyph bright">ᛊ</span><span class="rune-glyph">ᛏ</span>
-          <span class="rune-glyph">ᛒ</span><span class="rune-glyph bright">ᛖ</span><span class="rune-glyph">ᛗ</span>
-          <span class="rune-glyph">ᛚ</span><span class="rune-glyph bright">ᛟ</span>
-          <!-- repeat for seamless scroll -->
-          <span class="rune-glyph bright">ᚠ</span><span class="rune-glyph">ᚢ</span><span class="rune-glyph">ᚦ</span>
-          <span class="rune-glyph bright">ᚨ</span><span class="rune-glyph">ᚱ</span><span class="rune-glyph">ᚲ</span>
-          <span class="rune-glyph">ᚷ</span><span class="rune-glyph bright">ᚹ</span><span class="rune-glyph">ᚾ</span>
-          <span class="rune-glyph">ᛁ</span><span class="rune-glyph bright">ᛃ</span><span class="rune-glyph">ᛈ</span>
-          <span class="rune-glyph">ᛉ</span><span class="rune-glyph bright">ᛊ</span><span class="rune-glyph">ᛏ</span>
-          <span class="rune-glyph">ᛒ</span><span class="rune-glyph bright">ᛖ</span><span class="rune-glyph">ᛗ</span>
-          <span class="rune-glyph">ᛚ</span><span class="rune-glyph bright">ᛟ</span>
-        </div>
-      </div>
-      <div id="runeColRight" aria-hidden="true">
-        <div class="rune-track">
-          <span class="rune-glyph">ᛟ</span><span class="rune-glyph bright">ᛚ</span><span class="rune-glyph">ᛗ</span>
-          <span class="rune-glyph">ᛖ</span><span class="rune-glyph bright">ᛒ</span><span class="rune-glyph">ᛏ</span>
-          <span class="rune-glyph bright">ᛊ</span><span class="rune-glyph">ᛉ</span><span class="rune-glyph">ᛈ</span>
-          <span class="rune-glyph bright">ᛃ</span><span class="rune-glyph">ᛁ</span><span class="rune-glyph">ᚾ</span>
-          <span class="rune-glyph bright">ᚹ</span><span class="rune-glyph">ᚷ</span><span class="rune-glyph">ᚲ</span>
-          <span class="rune-glyph">ᚱ</span><span class="rune-glyph bright">ᚨ</span><span class="rune-glyph">ᚦ</span>
-          <span class="rune-glyph">ᚢ</span><span class="rune-glyph bright">ᚠ</span>
-          <!-- repeat -->
-          <span class="rune-glyph">ᛟ</span><span class="rune-glyph bright">ᛚ</span><span class="rune-glyph">ᛗ</span>
-          <span class="rune-glyph">ᛖ</span><span class="rune-glyph bright">ᛒ</span><span class="rune-glyph">ᛏ</span>
-          <span class="rune-glyph bright">ᛊ</span><span class="rune-glyph">ᛉ</span><span class="rune-glyph">ᛈ</span>
-          <span class="rune-glyph bright">ᛃ</span><span class="rune-glyph">ᛁ</span><span class="rune-glyph">ᚾ</span>
-          <span class="rune-glyph bright">ᚹ</span><span class="rune-glyph">ᚷ</span><span class="rune-glyph">ᚲ</span>
-          <span class="rune-glyph">ᚱ</span><span class="rune-glyph bright">ᚨ</span><span class="rune-glyph">ᚦ</span>
-          <span class="rune-glyph">ᚢ</span><span class="rune-glyph bright">ᚠ</span>
-        </div>
-      </div>
-
-      <!-- FAIXA DE HERÓIS MOBILE (arqui-nefromante-final) -->
-      <div id="arquiHeroStrip">
-        <div class="arqui-hero-strip-item">
-          <img id="arquiStripHero1" src="assets/classes/clerigo_renal/nivel_01.jpg" alt="Dr. Nephros" loading="lazy">
-          <span class="arqui-hero-strip-name">Dr. Nephros</span>
-        </div>
-        <div class="arqui-hero-strip-item">
-          <img id="arquiStripHero2" src="assets/classes/maga_metabolica/nivel_01.jpg" alt="Dra. Aquaria" loading="lazy">
-          <span class="arqui-hero-strip-name">Dra. Aquaria</span>
-        </div>
-        <div class="arqui-hero-strip-item">
-          <img id="arquiStripHero3" src="assets/classes/guerreiro_glomerular/nivel_01.png" alt="Dr. Glomerulus" loading="lazy">
-          <span class="arqui-hero-strip-name">Dr. Glomerulus</span>
-        </div>
-        <div class="arqui-strip-vs">VS</div>
-        <div class="arqui-strip-boss">
-          <div class="arqui-strip-boss-thumb">
-            <img src="assets/nefromancer_mobile.png" alt="Arqui-Nefromante" width="246" height="248" loading="lazy">
-          </div>
-          <!-- nome removido: já aparece no título acima da HP bar -->
-        </div>
-      </div>
-
-      <!-- TÍTULO MOBILE DO BOSS (acima da HP bar, visível só no mobile arqui-nefromante-final) -->
-      <div id="arquiBossTitleMobile" style="display:none;">&#9760; Confronto Final &#9760;<br><span style="font-size:0.82em;letter-spacing:2px;opacity:0.88;">A Hora do Julgamento</span></div>
-
-      <!-- TÍTULO DESKTOP DO BOSS (acima da HP bar, visível só no desktop arqui-nefromante-final) -->
-      <div id="arquiBossTitleDesktop">Confronto Final: Arqui-Nefromante</div>
-
-      <!-- BOSS HP BAR (hidden until boss mode activates) -->
-      <div id="bossHpContainer" style="display:none;">
-        <div id="bossHpLabel"><span id="bossHpName" style="font-family:'Cinzel',serif;font-size:.75rem;color:var(--purple);letter-spacing:1px;">☠ ARQUI-NEFROMANTE</span><span id="bossHpPct" style="font-size:.72rem;color:#7a90b8;">HP 100%</span></div>
-        <div id="bossHpTrack">
-          <div id="bossHpFill" style="width:100%;"></div>
-          <!-- ESTRELAS HP DESKTOP: ficam dentro da barra, acendem conforme progressão -->
-          <div id="arquiHpStarsDesktop"></div>
-        </div>
-      </div>
-
-      <!-- ESTRELAS MOBILE (abaixo da HP bar, visível só no mobile arqui-nefromante-final) -->
-      <div id="arquiStarsMobile" style="display:none;justify-content:center;gap:4px;align-items:center;padding:4px 0 2px;"></div>
-
-      <!-- ESTRELAS DESKTOP (abaixo da HP bar, visível só no desktop arqui-nefromante-final) -->
-      <div id="arquiStarsDesktop"></div>
-
-      <!-- IMAGEM BOSS RETANGULAR DESKTOP (acima da questão, visível só no desktop arqui-nefromante-final) -->
-      <div id="arquiBossImageDesktop">
-        <!-- Orbes nos 4 cantos -->
-        <div class="boss-corner-orb" style="top:-4px;left:-4px;"></div>
-        <div class="boss-corner-orb" style="top:-4px;right:-4px;animation-delay:0.6s;"></div>
-        <div class="boss-corner-orb" style="bottom:-4px;left:-4px;animation-delay:1.2s;"></div>
-        <div class="boss-corner-orb" style="bottom:-4px;right:-4px;animation-delay:1.8s;"></div>
-        <!-- Raios nos cantos superiores -->
-        <div class="boss-corner-ray" style="top:-36px;left:18px;height:30px;animation-delay:0s;"></div>
-        <div class="boss-corner-ray" style="top:-30px;left:40px;height:24px;animation-delay:0.4s;"></div>
-        <div class="boss-corner-ray" style="top:-36px;right:18px;height:30px;animation-delay:0.8s;"></div>
-        <div class="boss-corner-ray" style="top:-28px;right:42px;height:22px;animation-delay:1.2s;"></div>
-        <!-- Sparkles flutuantes -->
-        <span class="boss-sparkle" style="left:8%;bottom:10px;animation-duration:2.8s;animation-delay:0s;">✦</span>
-        <span class="boss-sparkle" style="left:22%;bottom:5px;animation-duration:3.2s;animation-delay:0.5s;font-size:0.7rem;">✧</span>
-        <span class="boss-sparkle" style="left:38%;bottom:8px;animation-duration:2.5s;animation-delay:1s;">✦</span>
-        <span class="boss-sparkle" style="left:55%;bottom:12px;animation-duration:3.5s;animation-delay:0.3s;font-size:0.75rem;">✧</span>
-        <span class="boss-sparkle" style="left:70%;bottom:6px;animation-duration:2.9s;animation-delay:0.9s;">✦</span>
-        <span class="boss-sparkle" style="left:85%;bottom:10px;animation-duration:3.1s;animation-delay:0.2s;font-size:0.65rem;">✧</span>
-        <span class="boss-sparkle" style="left:15%;bottom:20px;animation-duration:4s;animation-delay:1.5s;font-size:0.6rem;color:#fbbf24;">★</span>
-        <span class="boss-sparkle" style="left:60%;bottom:18px;animation-duration:3.8s;animation-delay:0.7s;font-size:0.55rem;color:#fbbf24;">★</span>
-        <!-- Wrapper da imagem com efeitos de overlay -->
-        <div class="boss-img-wrap">
-          <img id="arquiBossImgEl" src="assets/nefromancer.png" alt="Arqui-Nefromante" loading="lazy">
-        </div>
-        <!-- Texto GOLPE FINAL (exibido apenas na questão 10/10) -->
-        <div id="bossGolpeFinalText" style="display:none;position:absolute;inset:0;align-items:center;justify-content:center;background:linear-gradient(160deg,#0a0118,#1a0030);z-index:2;">
-          <span style="font-family:'Cinzel Decorative','Cinzel',serif;font-size:clamp(1.6rem,5vw,2.8rem);font-weight:900;letter-spacing:6px;color:#e9d5ff;text-shadow:0 0 30px rgba(168,85,247,1),0 0 60px rgba(168,85,247,0.6),0 0 100px rgba(88,28,135,0.4);text-transform:uppercase;">GOLPE FINAL</span>
-        </div>
-      </div>
-
-      <!-- BOSS QUESTION COUNTER (abaixo da imagem, acima da questão) -->
-      <div id="bossQuestionNum" style="display:none;">FASE FINAL 1/10</div>
-
-      <!-- POPUP NARRATIVO QUESTÃO 9 (mobile: popup fullscreen; PC: troca imagem) -->
-      <div id="arquiQ9Popup" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.92);flex-direction:column;align-items:center;justify-content:center;padding:20px;">
-<div id="arquiQ9PopupInner" style="max-width:520px;width:100%;text-align:center;">
-          <p id="arquiQ9PopupTitle" style="font-family:'Cinzel',serif;color:#e9d5ff;font-size:1.3rem;font-weight:900;letter-spacing:4px;text-transform:uppercase;margin-bottom:16px;">⚔ Golpe Final<br><span style="font-size:.85em;letter-spacing:3px;color:var(--purple);">Última Pergunta</span></p>
-          <img id="arquiQ9PopupImg" src="assets/battle_final.webp" alt="Golpe Final" loading="lazy" style="width:100%;border-radius:12px;border:2px solid rgba(168,85,247,0.7);box-shadow:0 0 40px rgba(124,58,237,0.7);margin-bottom:20px;clip-path:inset(0 0 9% 0 round 12px);">
-          <button type="button" id="arquiQ9CloseBtn" data-action="_closeArquiQ9Popup" style="font-family:'Cinzel',serif;background:linear-gradient(180deg,#7c3aed,#4c1d95);border:2px solid #a855f7;color:#f3e8ff;padding:14px 40px;border-radius:10px;font-size:1rem;font-weight:900;letter-spacing:3px;cursor:pointer;text-transform:uppercase;box-shadow:0 0 25px rgba(168,85,247,0.6);">⚔ Partir para o Ataque!</button>
-        </div>
-      </div>
-
-      <!-- CENA DE BATALHA ÉPICA (mostrada no boss mode, fora do qbox) -->
-      <div id="bossBattleScene" style="display:none;">
-        <!-- Cristais decorativos (visíveis no modo arqui-nefromante-final) -->
-        <span class="crystal-corner left" aria-hidden="true">🔮</span>
-        <span class="crystal-corner right" aria-hidden="true">🔮</span>
-        <!-- Heróis (esquerda) -->
-        <div class="battle-heroes-side">
-          <img id="battleHero1" class="battle-hero-mini" src="assets/classes/clerigo_renal/nivel_01.jpg" alt="Dr. Nephros" loading="lazy">
-          <img id="battleHero2" class="battle-hero-mini" src="assets/classes/maga_metabolica/nivel_01.jpg" alt="Dra. Aquaria" loading="lazy">
-          <img id="battleHero3" class="battle-hero-mini" src="assets/classes/guerreiro_glomerular/nivel_01.png" alt="Dr. Glomerulus" loading="lazy">
-        </div>
-        <!-- Centro de colisão -->
-        <div class="battle-clash-center">
-          <div class="battle-clash-orb"></div>
-        </div>
-        <!-- Boss (direita) -->
-        <div class="battle-boss-side">
-          <img src="assets/nefromancer.png" alt="Arqui-Nefromante — O confronto final" width="800" height="545" loading="lazy">
-        </div>
-      </div>
-
-      <div class="qbox">
-        <!-- CRONÔMETRO -->
-        <div id="timerWidget">
-          <button type="button" id="timerPlayPause" title="Play/Pause cronômetro" data-action="timerToggle">
-            <svg id="timerIcon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <!-- ícone play -->
-              <polygon points="5,3 19,12 5,21" />
+        <div class="hero-lab reveal" style="--i:3" data-nephron-lab data-flow-stage="0">
+          <div class="lab-readout" aria-hidden="true"><span>Atlas de Maestria</span><i>conduza o Lúmen pelo ciclo</i></div>
+          <div class="hero-atlas" data-nephron-atlas>
+            <svg class="nephron-map" data-nephron viewBox="20 0 500 680" aria-hidden="true" focusable="false">
+              <defs>
+                <linearGradient id="nephron-gradient" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#e7c56a"/>
+                  <stop offset=".5" stop-color="#65d0d6"/>
+                  <stop offset="1" stop-color="#e7c56a"/>
+                </linearGradient>
+                <radialGradient id="capsule-glow">
+                  <stop offset="0" stop-color="#65d0d6" stop-opacity=".16"/>
+                  <stop offset="1" stop-color="#65d0d6" stop-opacity="0"/>
+                </radialGradient>
+                <filter id="nephron-glow" x="-60%" y="-60%" width="220%" height="220%">
+                  <feGaussianBlur stdDeviation="4" result="blur"/>
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+                <radialGradient id="probe-halo">
+                  <stop offset="0" stop-color="#f1cf7a" stop-opacity=".34"/>
+                  <stop offset=".48" stop-color="#65d0d6" stop-opacity=".12"/>
+                  <stop offset="1" stop-color="#65d0d6" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+              <g class="atlas-grid">
+                <path d="M0 90H560M0 180H560M0 270H560M0 360H560M0 450H560M0 540H560M0 630H560"/>
+                <path d="M70 0V680M140 0V680M210 0V680M280 0V680M350 0V680M420 0V680M490 0V680"/>
+              </g>
+              <circle class="nephron-halo" cx="165" cy="147" r="138"/>
+              <circle class="nephron-capsule" cx="165" cy="147" r="104"/>
+              <circle class="nephron-capsule nephron-capsule--inner" cx="165" cy="147" r="80"/>
+              <path class="nephron-shadow" d="M78 148C61 80 110 45 165 67c47 19-39 82 18 105 57 22 89-46 43-81-50-38-135-3-123 66 11 59 121 43 149 94 32 60-14 103 8 171 18 56 81 82 109 21 30-65-18-102-41-53-22 49 17 131 75 146 52 14 52-47 53-84v158"/>
+              <path class="nephron-path" id="nephron-lumen-path" data-nephron-path d="M78 148C61 80 110 45 165 67c47 19-39 82 18 105 57 22 89-46 43-81-50-38-135-3-123 66 11 59 121 43 149 94 32 60-14 103 8 171 18 56 81 82 109 21 30-65-18-102-41-53-22 49 17 131 75 146 52 14 52-47 53-84v158"/>
+              <path class="nephron-progress" data-nephron-progress pathLength="1" d="M78 148C61 80 110 45 165 67c47 19-39 82 18 105 57 22 89-46 43-81-50-38-135-3-123 66 11 59 121 43 149 94 32 60-14 103 8 171 18 56 81 82 109 21 30-65-18-102-41-53-22 49 17 131 75 146 52 14 52-47 53-84v158"/>
+              <path class="nephron-flow" d="M78 148C61 80 110 45 165 67c47 19-39 82 18 105 57 22 89-46 43-81-50-38-135-3-123 66 11 59 121 43 149 94 32 60-14 103 8 171 18 56 81 82 109 21 30-65-18-102-41-53-22 49 17 131 75 146 52 14 52-47 53-84v158"/>
+              <g class="lumen-carriers" aria-hidden="true">
+                <circle class="lumen-carrier lumen-carrier--cyan" r="3"><animateMotion dur="8.4s" begin="-1.2s" repeatCount="indefinite"><mpath href="#nephron-lumen-path"/></animateMotion></circle>
+                <circle class="lumen-carrier lumen-carrier--gold" r="2.5"><animateMotion dur="8.4s" begin="-3.9s" repeatCount="indefinite"><mpath href="#nephron-lumen-path"/></animateMotion></circle>
+                <circle class="lumen-carrier lumen-carrier--cyan" r="2"><animateMotion dur="8.4s" begin="-6.6s" repeatCount="indefinite"><mpath href="#nephron-lumen-path"/></animateMotion></circle>
+              </g>
+              <g class="solute-field" aria-hidden="true">
+                <text class="solute-field__label" x="340" y="42">ELETRÓLITOS EM OBSERVAÇÃO</text>
+                <g class="solute-tag" transform="translate(44 268)"><circle r="2"/><text x="8" y="4">Na⁺</text></g>
+                <g class="solute-tag" transform="translate(82 380)"><circle r="2"/><text x="8" y="4">K⁺</text></g>
+                <g class="solute-tag" transform="translate(142 530)"><circle r="2"/><text x="8" y="4">HCO₃⁻</text></g>
+                <g class="solute-tag" transform="translate(274 620)"><circle r="2"/><text x="8" y="4">H⁺</text></g>
+                <g class="solute-tag" transform="translate(445 280)"><circle r="2"/><text x="8" y="4">Ca²⁺</text></g>
+                <g class="solute-tag" transform="translate(486 425)"><circle r="2"/><text x="-8" y="4" text-anchor="end">Mg²⁺</text></g>
+              </g>
+              <g class="lumen-chamber lumen-chamber--filter is-active" data-flow-event="0" data-nephron-node="0" transform="translate(96 117)"><circle class="lumen-chamber__ring" r="18"/><circle class="lumen-chamber__core" r="4"/><path class="lumen-chamber__sign" d="M-10-5h7M3-5h7M-7 5H7"/></g>
+              <g class="lumen-chamber lumen-chamber--interpret" data-flow-event="1" data-nephron-node="1" transform="translate(248 246)"><circle class="lumen-chamber__ring" r="18"/><circle class="lumen-chamber__core" r="4"/><path class="lumen-chamber__sign" d="M-9 8 0-8 9 8M0-8V8"/></g>
+              <g class="lumen-chamber lumen-chamber--retain" data-flow-event="2" data-nephron-node="2" transform="translate(332 450)"><circle class="lumen-chamber__ring" r="18"/><circle class="lumen-chamber__core" r="4"/><path class="lumen-chamber__sign" d="M-7-3a8 8 0 1 0 5-7M-2-10h-6v6"/></g>
+              <g class="lumen-chamber lumen-chamber--mastery" data-flow-event="3" data-nephron-node="3" transform="translate(456 540)"><circle class="lumen-chamber__ring" r="18"/><circle class="lumen-chamber__core" r="4"/><path class="lumen-chamber__sign" d="M0-14v5M14 0H9M0 14V9M-14 0h5"/></g>
+              <circle class="nephron-probe-halo" data-nephron-probe-halo cx="78" cy="148" r="18"/>
+              <circle class="nephron-probe" data-nephron-probe cx="78" cy="148" r="5"/>
             </svg>
-          </button>
-          <span id="timerDisplay">00:00</span>
-        </div>
-        <span id="adminQidBadge" style="display:none;font-family:monospace;font-size:0.68rem;color:#6366f1;background:rgba(99,102,241,0.12);border:1px solid rgba(99,102,241,0.3);border-radius:4px;padding:1px 6px;margin-bottom:4px;display:none;user-select:all;"></span>
-        <p id="question"></p>
-        <div id="cycleProgressBar" style="margin-top:6px;height:3px;background:transparent;border-radius:2px;overflow:hidden;">
-          <div id="cycleProgressFill" style="height:100%;background:linear-gradient(90deg,#6366f1,#8b5cf6);width:0%;transition:width 0.4s;"></div>
-        </div>
-      </div>
-      <div id="options" class="options"></div>
-      <div id="feedback" class="feedback" aria-live="polite" aria-atomic="true">Escolha a melhor resposta.</div>
-      <div id="refs" class="refs"></div>
-      <div class="ctrl">
-        <button type="button" id="nextBtn" class="btn hidden">Próxima Carta</button>
-        <div id="golpeFinalHint" style="display:none;">Ativado após selecionar a resposta correta</div>
-        <button type="button" id="newBtn" class="btn sec">Novo Jogo</button>
-        <button type="button" id="bonusBtn" class="btn gold hidden">Pergunta Bônus</button>
-      </div>
-
-      <!-- MEDIDOR DE FINALIZAÇÃO — boss mode (fundo do painel) -->
-      <div id="finalMeterContainer" style="display:none;">
-        <div id="finalMeterLabel">Medidor de Finalização</div>
-        <div id="finalMeterStars"></div>
-        <div id="finalMeterFooter">
-          <span id="finalMeterHint">Ativado após a resposta correta</span>
-          <span id="finalMeterResult"></span>
+            <span class="atlas-caption">Traçado vivo · ciclo de aprendizagem</span>
+          </div>
+          <div class="flow-deck" id="flow-deck" data-flow-insight aria-live="off">
+            <div class="flow-deck__index"><span data-flow-kicker>01 · Filtra</span><i data-flow-count>1 / 4</i></div>
+            <div class="mastery-runes" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            <strong data-flow-title>O desafio encontra o seu momento.</strong>
+            <small data-flow-copy>O motor lê seu desempenho por tema e calibra a próxima questão.</small>
+            <div class="flow-deck__proof"><span data-flow-mechanism>IRT · calibração por categoria</span><b data-flow-reward>Runa da decisão</b></div>
+            <div class="flow-deck__meter" aria-hidden="true"><i></i></div>
+          </div>
+          <div class="flow-node-controls" role="group" aria-label="Etapas do Atlas de Maestria">
+            <button type="button" class="flow-node-control is-current" data-flow-stage="0" data-node-x="96" data-node-y="117" aria-pressed="true" aria-controls="flow-deck" aria-label="Filtra, etapa 1 de 4: o desafio encontra o seu momento"><span>01</span><i aria-hidden="true"></i><b>Filtra</b></button>
+            <button type="button" class="flow-node-control" data-flow-stage="1" data-node-x="248" data-node-y="246" aria-pressed="false" aria-controls="flow-deck" aria-label="Interpreta, etapa 2 de 4: o erro revela onde decidir" tabindex="-1"><span>02</span><i aria-hidden="true"></i><b>Interpreta</b></button>
+            <button type="button" class="flow-node-control" data-flow-stage="2" data-node-x="332" data-node-y="450" aria-pressed="false" aria-controls="flow-deck" aria-label="Retém, etapa 3 de 4: o conhecimento volta antes de apagar" tabindex="-1"><span>03</span><i aria-hidden="true"></i><b>Retém</b></button>
+            <button type="button" class="flow-node-control" data-flow-stage="3" data-node-x="456" data-node-y="540" aria-pressed="false" aria-controls="flow-deck" aria-label="Conquista, etapa 4 de 4: seu domínio clínico ganha forma" tabindex="-1"><span>04</span><i aria-hidden="true"></i><b>Conquista</b></button>
+          </div>
         </div>
       </div>
 
     </section>
 
-    <!-- ACTION DOCK — Coluna fixa no grid -->
-    <div id="actionDock" class="action-dock hidden">
+    <section class="proof" id="prova" aria-label="Números e acesso do NefroQuest">
+      <dl class="proof-ledger">
+        <div class="proof-item reveal-up">
+          <dt><span data-count="1313">1.313</span></dt>
+          <dd>Questões e desafios</dd>
+        </div>
+        <div class="proof-item reveal-up" style="--i:1">
+          <dt><span data-count="38">38</span></dt>
+          <dd>Diretrizes acompanhadas</dd>
+        </div>
+        <div class="proof-item reveal-up" style="--i:2">
+          <dt><span data-count="191">191</span></dt>
+          <dd>Artigos resumidos <small>conclusão, contexto e impacto</small></dd>
+        </div>
+        <div class="proof-item reveal-up" style="--i:3">
+          <dt><span data-count="198">198</span></dt>
+          <dd>Referências comentadas</dd>
+        </div>
+      </dl>
+    </section>
 
-    <!-- Próxima Pergunta — sempre visível; disabled até responder -->
-    <button type="button" id="dockNextBtn"
-      class="dock-btn next-question-dock disabled"
-      data-action="renderQuestion"
-      data-tip="Próxima Pergunta">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="10"/>
-        <polyline points="12 8 16 12 12 16"/>
-        <line x1="8" y1="12" x2="16" y2="12"/>
+    <section class="guideline-archive" id="diretrizes" aria-labelledby="guideline-archive-title">
+      <div class="guideline-archive__intro">
+        <p class="mono-label reveal-up">Arquivo clínico · 38 diretrizes acompanhadas</p>
+        <h2 class="reveal-up" id="guideline-archive-title" style="--i:1">A aventura começa em uma <em>biblioteca viva.</em></h2>
+        <p class="reveal-up" style="--i:2">Uma seleção do acervo internacional e nacional que alimenta explicações, revisões e atualizações do NefroQuest.</p>
+      </div>
+
+      <div class="guideline-flow reveal-up" data-guideline-flow style="--i:3" role="region" aria-label="Seleção de diretrizes do acervo. Mova horizontalmente ou use as setas do teclado para explorar.">
+        <div class="guideline-flow__rail" aria-hidden="true"><i></i></div>
+        <div class="guideline-track" data-guideline-track role="list">
+          <article class="guideline-cover" data-guideline-cover data-short-title="KDIGO CKD 2024" tabindex="0" role="listitem" style="--cover-accent:#8edce1; --cover-seq:01">
+            <span class="guideline-cover__meta"><b>KDIGO</b><i>2024</i></span><span class="guideline-cover__figure" aria-hidden="true"><i></i><i></i><i></i></span><strong>Chronic Kidney Disease</strong><small>Clinical Practice Guideline</small><span class="guideline-cover__foot">DRC · risco cardiorrenal</span>
+          </article>
+          <article class="guideline-cover" data-guideline-cover data-short-title="KDIGO AKI 2012" tabindex="0" role="listitem" style="--cover-accent:#e1bc62; --cover-seq:02">
+            <span class="guideline-cover__meta"><b>KDIGO</b><i>2012</i></span><span class="guideline-cover__figure" aria-hidden="true"><i></i><i></i><i></i></span><strong>Acute Kidney Injury</strong><small>Clinical Practice Guideline</small><span class="guideline-cover__foot">LRA · classificação</span>
+          </article>
+          <article class="guideline-cover" data-guideline-cover data-short-title="KDIGO AKI/AKD 2026" tabindex="0" role="listitem" style="--cover-accent:#a979cf; --cover-seq:03">
+            <span class="guideline-cover__meta"><b>KDIGO</b><i>2026</i></span><span class="guideline-cover__figure" aria-hidden="true"><i></i><i></i><i></i></span><strong>AKI &amp; AKD</strong><small>Public Review Draft</small><span class="guideline-cover__foot">LRA · doença renal aguda</span>
+          </article>
+          <article class="guideline-cover" data-guideline-cover data-short-title="KDIGO Glomerular 2021" tabindex="0" role="listitem" style="--cover-accent:#80c9bd; --cover-seq:04">
+            <span class="guideline-cover__meta"><b>KDIGO</b><i>2021</i></span><span class="guideline-cover__figure" aria-hidden="true"><i></i><i></i><i></i></span><strong>Glomerular Diseases</strong><small>Clinical Practice Guideline</small><span class="guideline-cover__foot">Glomerulopatias</span>
+          </article>
+          <article class="guideline-cover" data-guideline-cover data-short-title="KDIGO Diabetes in CKD 2022" tabindex="0" role="listitem" style="--cover-accent:#d59a5a; --cover-seq:05">
+            <span class="guideline-cover__meta"><b>KDIGO</b><i>2022</i></span><span class="guideline-cover__figure" aria-hidden="true"><i></i><i></i><i></i></span><strong>Diabetes in CKD</strong><small>Clinical Practice Guideline</small><span class="guideline-cover__foot">Diabetes · DRC</span>
+          </article>
+          <article class="guideline-cover" data-guideline-cover data-short-title="KDIGO CKD–MBD 2017" tabindex="0" role="listitem" style="--cover-accent:#9b86d6; --cover-seq:06">
+            <span class="guideline-cover__meta"><b>KDIGO</b><i>2017</i></span><span class="guideline-cover__figure" aria-hidden="true"><i></i><i></i><i></i></span><strong>CKD–MBD Update</strong><small>Clinical Practice Guideline</small><span class="guideline-cover__foot">Metabolismo mineral</span>
+          </article>
+          <article class="guideline-cover" data-guideline-cover data-short-title="KDIGO Transplant Care 2009" tabindex="0" role="listitem" style="--cover-accent:#79a9d0; --cover-seq:07">
+            <span class="guideline-cover__meta"><b>KDIGO</b><i>2009</i></span><span class="guideline-cover__figure" aria-hidden="true"><i></i><i></i><i></i></span><strong>Transplant Recipient Care</strong><small>Clinical Practice Guideline</small><span class="guideline-cover__foot">Transplante renal</span>
+          </article>
+          <article class="guideline-cover" data-guideline-cover data-short-title="KDOQI HD Adequacy 2015" tabindex="0" role="listitem" style="--cover-accent:#d9bd73; --cover-seq:08">
+            <span class="guideline-cover__meta"><b>KDOQI</b><i>2015</i></span><span class="guideline-cover__figure" aria-hidden="true"><i></i><i></i><i></i></span><strong>Hemodialysis Adequacy</strong><small>Clinical Practice Guideline</small><span class="guideline-cover__foot">Hemodiálise</span>
+          </article>
+          <article class="guideline-cover" data-guideline-cover data-short-title="KDOQI Vascular Access 2020" tabindex="0" role="listitem" style="--cover-accent:#71c4ce; --cover-seq:09">
+            <span class="guideline-cover__meta"><b>KDOQI</b><i>2020</i></span><span class="guideline-cover__figure" aria-hidden="true"><i></i><i></i><i></i></span><strong>Vascular Access</strong><small>Clinical Practice Guideline</small><span class="guideline-cover__foot">Acesso vascular</span>
+          </article>
+          <article class="guideline-cover" data-guideline-cover data-short-title="ESE/ERA Hyponatraemia 2014" tabindex="0" role="listitem" style="--cover-accent:#6fa7d5; --cover-seq:10">
+            <span class="guideline-cover__meta"><b>ESE / ERA</b><i>2014</i></span><span class="guideline-cover__figure" aria-hidden="true"><i></i><i></i><i></i></span><strong>Hyponatraemia</strong><small>European Clinical Practice Guideline</small><span class="guideline-cover__foot">Distúrbios do sódio</span>
+          </article>
+          <article class="guideline-cover" data-guideline-cover data-short-title="ISPD Peritonitis 2022" tabindex="0" role="listitem" style="--cover-accent:#bc78a8; --cover-seq:11">
+            <span class="guideline-cover__meta"><b>ISPD</b><i>2022</i></span><span class="guideline-cover__figure" aria-hidden="true"><i></i><i></i><i></i></span><strong>Peritonitis</strong><small>Practice Recommendations</small><span class="guideline-cover__foot">Diálise peritoneal</span>
+          </article>
+          <article class="guideline-cover" data-guideline-cover data-short-title="SBN Peritonite na DP 2019" tabindex="0" role="listitem" style="--cover-accent:#75b7a8; --cover-seq:12">
+            <span class="guideline-cover__meta"><b>SBN</b><i>2019</i></span><span class="guideline-cover__figure" aria-hidden="true"><i></i><i></i><i></i></span><strong>Peritonite na DP</strong><small>Consenso Nacional</small><span class="guideline-cover__foot">Nefrologia brasileira</span>
+          </article>
+          <article class="guideline-cover" data-guideline-cover data-short-title="EAU Urolithiasis 2025" tabindex="0" role="listitem" style="--cover-accent:#c7a25d; --cover-seq:13">
+            <span class="guideline-cover__meta"><b>EAU</b><i>2025</i></span><span class="guideline-cover__figure" aria-hidden="true"><i></i><i></i><i></i></span><strong>Urolithiasis</strong><small>Clinical Guideline</small><span class="guideline-cover__foot">Litíase urinária</span>
+          </article>
+          <article class="guideline-cover" data-guideline-cover data-short-title="KDIGO IgAN/IgAV 2025" tabindex="0" role="listitem" style="--cover-accent:#b887d5; --cover-seq:14">
+            <span class="guideline-cover__meta"><b>KDIGO</b><i>2025</i></span><span class="guideline-cover__figure" aria-hidden="true"><i></i><i></i><i></i></span><strong>IgAN &amp; IgAV</strong><small>Clinical Practice Guideline</small><span class="guideline-cover__foot">Nefropatia por IgA</span>
+          </article>
+          <article class="guideline-cover" data-guideline-cover data-short-title="ACR Contrast Media 2026" tabindex="0" role="listitem" style="--cover-accent:#8da3cf; --cover-seq:15">
+            <span class="guideline-cover__meta"><b>ACR</b><i>2026</i></span><span class="guideline-cover__figure" aria-hidden="true"><i></i><i></i><i></i></span><strong>Contrast Media</strong><small>Clinical Manual</small><span class="guideline-cover__foot">Contraste · segurança renal</span>
+          </article>
+          <article class="guideline-cover guideline-cover--more" data-guideline-cover data-short-title="+23 diretrizes no acervo" tabindex="0" role="listitem" style="--cover-accent:#f1cf7a; --cover-seq:38">
+            <span class="guideline-cover__meta"><b>NQ / ARQUIVO</b><i>VIVO</i></span><strong><span>+23</span> diretrizes</strong><small>completam a coleção acompanhada</small><span class="guideline-cover__foot">38 no sistema</span>
+          </article>
+        </div>
+        <div class="guideline-flow__status"><span>Em foco</span><b data-guideline-active>KDIGO CKD 2024</b><i>cursor ou toque para percorrer</i></div>
+      </div>
+    </section>
+
+    <section class="journey atlas-section" id="como-funciona" aria-labelledby="journey-title">
+      <div class="section-intro">
+        <p class="section-label reveal-up"><span>I</span> Anatomia da evolução</p>
+        <div class="section-copy reveal-up" style="--i:1">
+          <h2 id="journey-title">Um ciclo de estudo desenhado <em>como um néfron.</em></h2>
+          <p>Você não precisa de mais uma lista infinita de questões. Precisa de um ciclo que transforme resposta em compreensão, compreensão em memória e memória em domínio.</p>
+        </div>
+      </div>
+
+      <div class="route reveal-up" style="--i:2">
+        <svg class="route-line" viewBox="0 0 1100 190" preserveAspectRatio="none" aria-hidden="true">
+          <path class="route-bed" d="M40 98C175 28 212 166 340 98S505 28 620 98s176 70 282 0 128-38 158 0"/>
+          <path class="route-current" pathLength="1" d="M40 98C175 28 212 166 340 98S505 28 620 98s176 70 282 0 128-38 158 0"/>
+          <circle class="route-runner" r="5"><animateMotion dur="8s" repeatCount="indefinite" path="M40 98C175 28 212 166 340 98S505 28 620 98s176 70 282 0 128-38 158 0"/></circle>
+        </svg>
+        <article class="route-step">
+          <span class="route-number">01</span>
+          <span class="route-dot" aria-hidden="true"></span>
+          <p class="route-verb">Filtra</p>
+          <h3>Responda com intenção</h3>
+          <p>Entre por tema ou deixe o motor ajustar a dificuldade com base no seu desempenho.</p>
+        </article>
+        <article class="route-step">
+          <span class="route-number">02</span>
+          <span class="route-dot" aria-hidden="true"></span>
+          <p class="route-verb">Interpreta</p>
+          <h3>Entenda o ponto decisivo</h3>
+          <p>Compare sua escolha com a explicação e use o Oráculo para explorar onde o raciocínio desviou.</p>
+        </article>
+        <article class="route-step">
+          <span class="route-number">03</span>
+          <span class="route-dot" aria-hidden="true"></span>
+          <p class="route-verb">Retém</p>
+          <h3>Revise com propósito</h3>
+          <p>O histórico alimenta revisões espaçadas para trazer de volta o que ainda merece atenção.</p>
+        </article>
+        <article class="route-step">
+          <span class="route-number">04</span>
+          <span class="route-dot" aria-hidden="true"></span>
+          <p class="route-verb">Conquista</p>
+          <h3>Veja a evolução acontecer</h3>
+          <p>XP, classes, equipamentos e domínio por tema transformam consistência em progresso visível.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="oracle atlas-section" id="oraculo" aria-labelledby="oracle-title">
+      <div class="oracle-copy">
+        <p class="section-label reveal-up"><span>II</span> Oráculo dos Néfrons</p>
+        <h2 class="reveal-up" id="oracle-title" style="--i:1">Entenda o raciocínio, <em>não apenas o gabarito.</em></h2>
+        <p class="oracle-lede reveal-up" style="--i:2">Depois de responder, use o tutor educacional de IA para investigar a armadilha, organizar o raciocínio e consolidar o ponto que merece ser lembrado.</p>
+
+        <div class="oracle-seal reveal-up" style="--i:3">
+          <div class="oracle-core" aria-hidden="true">
+            <svg viewBox="0 0 180 180" role="presentation">
+              <circle class="oracle-core__scope" cx="90" cy="90" r="72"/>
+              <circle class="oracle-core__ring oracle-core__ring--a" cx="90" cy="90" r="58"/>
+              <circle class="oracle-core__ring oracle-core__ring--b" cx="90" cy="90" r="43"/>
+              <path class="oracle-core__flow" d="M49 89c7-29 55-38 77-9 17 22 1 42-21 45-17 3-25 14-25 30"/>
+              <circle class="oracle-core__particle oracle-core__particle--a" cx="49" cy="89" r="3"/>
+              <circle class="oracle-core__particle oracle-core__particle--b" cx="126" cy="80" r="2.5"/>
+              <path class="oracle-core__axis" d="M90 8v18M90 154v18M8 90h18M154 90h18"/>
+            </svg>
+            <span class="oracle-core__lumen"><i></i></span>
+          </div>
+          <div>
+            <span class="mono-label">Recurso educacional</span>
+            <strong>Lúmen Oracular: uma conversa no fluxo do estudo.</strong>
+            <p>Sem abrir outra aba e sem perder o contexto da questão.</p>
+          </div>
+        </div>
+
+        <ul class="oracle-benefits reveal-up" style="--i:4">
+          <li><span aria-hidden="true">01</span> Ajuda a nomear a lacuna</li>
+          <li><span aria-hidden="true">02</span> Explica no contexto da questão</li>
+          <li><span aria-hidden="true">03</span> Mantém referências por perto</li>
+        </ul>
+      </div>
+
+      <div class="chat reveal-up" style="--i:2" aria-describedby="oracle-note">
+        <div class="chat-chrome">
+          <span><i aria-hidden="true"></i> Exemplo de interação</span>
+          <span class="chat-id">CASO / SÓDIO</span>
+        </div>
+        <div class="chat-question">
+          <span class="chat-tag">Questão · Distúrbios do sódio</span>
+          <p>Paciente com hiponatremia hipovolêmica. Você respondeu: <strong>restrição hídrica</strong>.</p>
+        </div>
+        <div class="chat-bubble" data-line="1">
+          <span class="chat-who"><span class="chat-avatar" aria-hidden="true"><i></i></span> Oráculo dos Néfrons</span>
+          <p>Cuidado — aqui está a armadilha. Você tratou como se fosse <strong>SIADH</strong>, mas o paciente está <em>hipovolêmico</em>. O corpo dele retém sódio e água por depleção de volume.</p>
+        </div>
+        <div class="chat-bubble" data-line="2">
+          <p>Restringir água aqui piora a perfusão. A conduta é <strong>salina isotônica</strong> para corrigir o volume — e o sódio sobe junto. Regra de ouro: <em>sempre avalie a volemia antes de escolher o tratamento da hiponatremia.</em></p>
+          <span class="chat-cite">↳ Fundamentado em UpToDate &amp; Diretriz SBN de distúrbios hidroeletrolíticos</span>
+        </div>
+        <div class="chat-typing" data-typing aria-hidden="true"><span></span><span></span><span></span></div>
+        <p class="chat-disclaimer" id="oracle-note">Ferramenta educacional. Não substitui diretrizes, supervisão ou decisão clínica.</p>
+      </div>
+    </section>
+
+    <section class="method atlas-section" id="metodo" aria-labelledby="method-title">
+      <div class="section-intro">
+        <p class="section-label reveal-up"><span>III</span> Sob a aventura</p>
+        <div class="section-copy reveal-up" style="--i:1">
+          <h2 id="method-title">Fantasia para voltar. <em>Método para aprender.</em></h2>
+          <p>O RPG cuida da motivação. Por baixo dele, mecanismos de adaptação, memória e referência organizam uma rotina de estudo mais consistente.</p>
+        </div>
+      </div>
+
+      <div class="method-ledger">
+        <article class="method-row method-row--adaptive reveal-up">
+          <div class="method-index"><span>MTR·01</span><b>Adaptação</b></div>
+          <div class="method-content">
+            <p class="mono-label">IRT leve</p>
+            <h3>A dificuldade acompanha o seu momento</h3>
+            <p>O desempenho por categoria ajuda a escolher a próxima questão e evita uma sequência sempre fácil ou sempre frustrante.</p>
+          </div>
+          <div class="method-visual method-visual--irt" data-irt-demo>
+            <div class="irt-readout">
+              <span>Simulação do motor adaptativo</span>
+              <strong data-irt-state>Sua zona ideal</strong>
+            </div>
+            <div class="irt-scale">
+              <span class="irt-zone" aria-hidden="true"></span>
+              <span class="irt-next" aria-hidden="true"><i></i><small>Próxima questão</small></span>
+              <input id="irt-level" type="range" min="0" max="100" value="62" aria-label="Simular nível de proficiência" aria-valuetext="Sua zona ideal">
+              <output class="irt-you" for="irt-level"><span>Você</span><i></i></output>
+              <i class="irt-tick irt-tick--a" aria-hidden="true"></i>
+              <i class="irt-tick irt-tick--b" aria-hidden="true"></i>
+            </div>
+            <div class="irt-labels" aria-hidden="true"><span>Fácil</span><b>Sua zona ideal</b><span>Difícil</span></div>
+          </div>
+        </article>
+
+        <article class="method-row reveal-up" style="--i:1">
+          <div class="method-index"><span>MTR·02</span><b>Retenção</b></div>
+          <div class="method-content">
+            <p class="mono-label">Revisão espaçada · FSRS</p>
+            <h3>O que importa volta antes de sumir</h3>
+            <p>Seu histórico organiza revisões para reduzir repetição aleatória e dar mais espaço ao que ainda precisa ser consolidado.</p>
+          </div>
+          <div class="method-visual method-visual--orbit" aria-hidden="true">
+            <span class="orbit orbit--a"><i></i></span>
+            <span class="orbit orbit--b"><i></i></span>
+            <b>MEMÓRIA</b>
+          </div>
+        </article>
+
+        <article class="method-row reveal-up" style="--i:2">
+          <div class="method-index"><span>MTR·03</span><b>Contexto</b></div>
+          <div class="method-content">
+            <p class="mono-label">Referências no fluxo</p>
+            <h3>A aventura termina onde começa a evidência</h3>
+            <p>Explicações e referências acompanham as questões para aproximar o treino da linguagem de provas, diretrizes e estudos.</p>
+          </div>
+          <div class="method-visual method-visual--refs" aria-hidden="true">
+            <span class="evidence-item"><i></i><b>38</b><span><small>Diretrizes</small><em>acompanhadas</em></span></span>
+            <span class="evidence-item"><i></i><b>198</b><span><small>Referências</small><em>comentadas</em></span></span>
+            <span class="evidence-item"><i></i><b>191</b><span><small>Artigos</small><em>resumidos</em></span></span>
+            <span class="evidence-current"><i></i></span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="classes atlas-section" id="classes" aria-labelledby="classes-title">
+      <div class="section-intro">
+        <p class="section-label reveal-up"><span>IV</span> Desenvolva seu personagem</p>
+        <div class="section-copy reveal-up" style="--i:1">
+          <h2 id="classes-title">Seu conhecimento evolui. <em>Seu personagem também.</em></h2>
+          <p>Escolha uma classe e acompanhe 10 estágios de evolução visual. Conforme seu domínio cresce, equipamentos, presença e poder tornam o progresso impossível de ignorar.</p>
+        </div>
+      </div>
+
+      <div class="class-evolution-summary reveal-up" style="--i:2" aria-label="Sistema de evolução dos personagens">
+        <span><b>10</b><small>estágios por classe</small></span>
+        <i aria-hidden="true"></i>
+        <span><b>30</b><small>formas de evolução</small></span>
+        <i aria-hidden="true"></i>
+        <span><b>1</b><small>jornada de domínio</small></span>
+      </div>
+
+      <div class="class-gallery">
+        <article class="class-profile reveal-up" style="--class-color:87,168,233" tabindex="0" aria-label="Evolução do Guerreiro Glomerular, do nível 1 ao nível 10">
+          <div class="class-evolution">
+            <figure class="evolution-stage evolution-stage--one">
+              <img src="/landing/assets/guerreiro-n1.png" alt="Guerreiro Glomerular no nível 1, iniciando como estudante no laboratório" loading="lazy" width="230" height="230">
+              <figcaption><b>01</b><span>Despertar</span></figcaption>
+            </figure>
+            <figure class="evolution-stage evolution-stage--five">
+              <img src="/landing/assets/guerreiro-n5.png" alt="Guerreiro Glomerular no nível 5, em domínio clínico crescente" loading="lazy" width="230" height="230">
+              <figcaption><b>05</b><span>Ascensão</span></figcaption>
+            </figure>
+            <figure class="evolution-stage evolution-stage--ten">
+              <img src="/landing/assets/guerreiro.png" alt="Guerreiro Glomerular no nível 10, em sua forma de maestria" loading="lazy" width="230" height="230">
+              <figcaption><b>10</b><span>Maestria</span></figcaption>
+            </figure>
+            <span class="evolution-flow" aria-hidden="true"><i></i></span>
+          </div>
+          <div class="class-profile__body">
+            <p class="class-path">Via glomerular</p>
+            <h3>Guerreiro Glomerular</h3>
+            <p class="class-mantra">Defenda a barreira. Domine a complexidade glomerular.</p>
+            <p class="class-detail">Glomerulonefrites, síndromes nefrótica e nefrítica, biópsia e imunossupressão.</p>
+            <ul><li>Síndrome nefrótica</li><li>GNRP</li><li>Nefrite lúpica</li></ul>
+          </div>
+        </article>
+
+        <article class="class-profile reveal-up" style="--class-color:176,111,222;--i:1" tabindex="0" aria-label="Evolução da Maga Metabólica, do nível 1 ao nível 10">
+          <div class="class-evolution">
+            <figure class="evolution-stage evolution-stage--one">
+              <img src="/landing/assets/maga-n1.jpg" alt="Maga Metabólica no nível 1, estudando o equilíbrio dos fluidos" loading="lazy" width="230" height="230">
+              <figcaption><b>01</b><span>Despertar</span></figcaption>
+            </figure>
+            <figure class="evolution-stage evolution-stage--five">
+              <img src="/landing/assets/maga-n5.jpg" alt="Maga Metabólica no nível 5, controlando o equilíbrio metabólico" loading="lazy" width="230" height="230">
+              <figcaption><b>05</b><span>Ascensão</span></figcaption>
+            </figure>
+            <figure class="evolution-stage evolution-stage--ten">
+              <img src="/landing/assets/maga.jpg" alt="Maga Metabólica no nível 10, em sua forma de maestria" loading="lazy" width="230" height="230">
+              <figcaption><b>10</b><span>Maestria</span></figcaption>
+            </figure>
+            <span class="evolution-flow" aria-hidden="true"><i></i></span>
+          </div>
+          <div class="class-profile__body">
+            <p class="class-path">Via metabólica</p>
+            <h3>Maga Metabólica</h3>
+            <p class="class-mantra">Leia o equilíbrio invisível. Transforme números em decisão clínica.</p>
+            <p class="class-detail">Distúrbios hidroeletrolíticos, ácido-base e metabolismo ósseo-mineral.</p>
+            <ul><li>Sódio &amp; potássio</li><li>Ácido-base</li><li>Cálcio-fósforo</li></ul>
+          </div>
+        </article>
+
+        <article class="class-profile reveal-up" style="--class-color:214,169,74;--i:2" tabindex="0" aria-label="Evolução do Clérigo Renal, do nível 1 ao nível 10">
+          <div class="class-evolution">
+            <figure class="evolution-stage evolution-stage--one">
+              <img src="/landing/assets/clerigo-n1.jpg" alt="Clérigo Renal no nível 1, iniciando a jornada de cuidado longitudinal" loading="lazy" width="230" height="230">
+              <figcaption><b>01</b><span>Despertar</span></figcaption>
+            </figure>
+            <figure class="evolution-stage evolution-stage--five">
+              <img src="/landing/assets/clerigo-n5.jpg" alt="Clérigo Renal no nível 5, ampliando seu domínio de proteção renal" loading="lazy" width="230" height="230">
+              <figcaption><b>05</b><span>Ascensão</span></figcaption>
+            </figure>
+            <figure class="evolution-stage evolution-stage--ten">
+              <img src="/landing/assets/clerigo.jpg" alt="Clérigo Renal no nível 10, em sua forma de maestria" loading="lazy" width="230" height="230">
+              <figcaption><b>10</b><span>Maestria</span></figcaption>
+            </figure>
+            <span class="evolution-flow" aria-hidden="true"><i></i></span>
+          </div>
+          <div class="class-profile__body">
+            <p class="class-path">Via longitudinal</p>
+            <h3>Clérigo Renal</h3>
+            <p class="class-mantra">Faça da constância uma forma de proteção.</p>
+            <p class="class-detail">DRC, terapia renal substitutiva, diálise e transplante.</p>
+            <ul><li>DRC &amp; TRS</li><li>Hemodiálise</li><li>Transplante</li></ul>
+          </div>
+        </article>
+      </div>
+
+      <p class="class-journey-note reveal-up"><span aria-hidden="true">✦</span> Sua classe dá identidade à jornada sem limitar o conteúdo: você continua explorando toda a nefrologia.</p>
+    </section>
+
+    <section class="boss" id="confronto" aria-labelledby="boss-title" data-flow-scene>
+      <img class="boss-backdrop" src="/landing/assets/nefromancer-lumen-v2.jpg" alt="" loading="lazy" width="1672" height="941">
+      <svg class="boss-current" viewBox="0 0 1440 760" preserveAspectRatio="none" aria-hidden="true">
+        <defs><linearGradient id="boss-flow-gradient" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#57bfc8" stop-opacity="0"/><stop offset=".42" stop-color="#57bfc8"/><stop offset=".68" stop-color="#8050a6"/><stop offset="1" stop-color="#b678db" stop-opacity="0"/></linearGradient></defs>
+        <path class="boss-current__bed" d="M-80 360C180 260 286 430 480 340s294-190 474-155 220 178 570 70"/>
+        <path class="boss-current__flow" d="M-80 360C180 260 286 430 480 340s294-190 474-155 220 178 570 70"/>
       </svg>
-      <span class="dock-label">Próxima</span>
-    </button>
+      <div class="boss-shell">
+        <div class="boss-copy">
+          <p class="boss-label reveal-up"><span>V</span> O confronto final</p>
+          <h2 class="reveal-up" id="boss-title" style="--i:1">O Arqui-Nefromante espera por quem <em>realmente domina.</em></h2>
+          <p class="reveal-up" style="--i:2">Cada acerto aproxima você do confronto que prova sua maestria. XP, classes, equipamentos e ranking dão forma à consistência que faltava para estudar todos os dias.</p>
+          <a class="btn btn-primary reveal-up" href="https://nefroquest.com/jogar/" data-cta="boss" style="--i:3">
+            <span>Começar grátis</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="boss-stage" aria-hidden="true">
+          <div class="boss-mastery-band"><span>Desafio de Maestria</span><b>100 acertos</b><i><em></em></i></div>
+          <span class="boss-stage__label">FLUXO CORROMPIDO · CONFRONTO FINAL</span>
+        </div>
+      </div>
+    </section>
 
-    <!-- Forja (item comum + lendário em popup) -->
-    <button type="button" id="forgeBtn"
-      class="dock-btn forge-btn"
-      data-action="showForjaModal"
-      data-tip="Forja">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M14.5 2.5c0 1.5-1.5 3-1.5 3s-1.5-1.5-1.5-3a1.5 1.5 0 0 1 3 0z"/>
-        <path d="M12 5.5V9"/>
-        <path d="M9 9h6l1.5 9H7.5L9 9z"/>
-        <path d="M7.5 18h9"/>
-        <path d="M3 21h18"/>
-        <line x1="7" y1="21" x2="7" y2="18"/>
-        <line x1="17" y1="21" x2="17" y2="18"/>
-      </svg>
-      <span class="dock-label">Forja</span>
-    </button>
+    <section class="faq atlas-section" id="duvidas" aria-labelledby="faq-title">
+      <div class="faq-intro reveal-up">
+        <p class="section-label"><span>VI</span> Antes da missão</p>
+        <h2 id="faq-title">Perguntas honestas. <em>Respostas diretas.</em></h2>
+        <p>O NefroQuest é uma plataforma educacional. A fantasia mantém o ritmo; o objetivo é estudar nefrologia com mais clareza e consistência.</p>
+      </div>
 
-    <!-- Oráculo (sempre visível) -->
-    <button type="button" id="oraculoDockBtn"
-      class="dock-btn oraculo-dock"
-      data-action="openOraculoFromJourney"
-      data-tip="Oráculo">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="10" r="7"/>
-        <path d="M9.4 8a3 3 0 0 1 3-1.6"/>
-        <path d="M8 21h8"/>
-        <path d="M10 17l-1 4"/>
-        <path d="M14 17l1 4"/>
-      </svg>
-      <span class="dock-label">Oráculo</span>
-    </button>
+      <div class="faq-list">
+        <details class="reveal-up">
+          <summary>Para quem é o NefroQuest?<span aria-hidden="true"></span></summary>
+          <p>Para estudantes de medicina, residentes e médicos nefrologistas — tanto para formar o raciocínio clínico quanto para revisar conceitos, acompanhar evidências e se manter atualizado na especialidade.</p>
+        </details>
+        <details class="reveal-up" style="--i:1">
+          <summary>Posso testar sem criar uma conta?<span aria-hidden="true"></span></summary>
+          <p>Sim. O modo visitante permite experimentar 15 questões antes de você decidir criar uma conta para salvar seu progresso.</p>
+        </details>
+        <details class="reveal-up" style="--i:2">
+          <summary>O que está disponível gratuitamente?<span aria-hidden="true"></span></summary>
+          <p>A conta gratuita inclui 50 questões, além dos recursos e limites exibidos dentro do aplicativo. Você pode começar sem cadastrar cartão.</p>
+        </details>
+        <details class="reveal-up" style="--i:3">
+          <summary>Qual é o papel do Oráculo dos Néfrons?<span aria-hidden="true"></span></summary>
+          <p>Ele é um tutor educacional de IA para explorar explicações no contexto da questão. Não substitui diretrizes, supervisão profissional nem decisão clínica.</p>
+        </details>
+        <details class="reveal-up" style="--i:4">
+          <summary>Como meus dados são tratados?<span aria-hidden="true"></span></summary>
+          <p>O uso de conta, analytics e serviços de IA segue a política da plataforma. Consulte a <a href="https://nefroquest.com/privacy-policy.html">Política de Privacidade</a> para ver os detalhes.</p>
+        </details>
+      </div>
+    </section>
 
-    <div class="dock-divider"></div>
-
-
-
-    <!-- Dashboard (desktop) -->
-    <button type="button"
-      class="dock-btn dashboard-btn"
-      data-action="openDashboard"
-      data-tip="Dashboard">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-      </svg>
-      <span class="dock-label">Dashboard</span>
-    </button>
-
-    <!-- Biblioteca (desktop) -->
-    <button type="button"
-      class="dock-btn"
-      data-action="openBibliotecaModal"
-      data-tip="Grimório">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-      </svg>
-      <span class="dock-label">Grimório</span>
-    </button>
-
-    <!-- Início (voltar à tela de boas-vindas) -->
-    <button type="button"
-      class="dock-btn inicio-btn"
-      data-action="goToWelcomeFromGame"
-      data-tip="Início">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-        <polyline points="9 22 9 12 15 12 15 22"/>
-      </svg>
-      <span class="dock-label">Início</span>
-    </button>
-
-    </div><!-- /action-dock -->
-
-    <div class="game-footer">
-      <p>
-        <a href="https://nefroquest.com">nefroquest.com</a>
-        &nbsp;•&nbsp;
-        <span class="version-label-dynamic" style="color:var(--gold);cursor:pointer;" data-action="showChangelog">v11.45</span>
-        &nbsp;•&nbsp;
-        <span style="cursor:pointer;text-decoration:underline;" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span>
-      </p>
-    </div>
+    <section class="finale" aria-labelledby="finale-title" data-flow-scene>
+      <div class="finale-portal" aria-hidden="true">
+        <div class="finale-ring finale-ring--one"></div>
+        <div class="finale-ring finale-ring--two"></div>
+        <div class="finale-ring finale-ring--three"></div>
+        <svg class="finale-path" viewBox="0 0 1000 420" preserveAspectRatio="none" role="presentation">
+          <path class="finale-path__shadow" d="M-20 218c168-188 285 172 450-2s281-172 590 0"/>
+          <path class="finale-path__flow" d="M-20 218c168-188 285 172 450-2s281-172 590 0"/>
+        </svg>
+        <span class="flow-particle flow-particle--a">Na⁺</span>
+        <span class="flow-particle flow-particle--b">K⁺</span>
+        <span class="flow-particle flow-particle--c">H₂O</span>
+        <span class="flow-particle flow-particle--d">HCO₃⁻</span>
+        <div class="finale-core"><i></i><span class="finale-lumen"><b></b></span></div>
+      </div>
+      <div class="finale-copy reveal-up">
+        <p class="eyebrow">Portal do próximo acerto</p>
+        <h2 id="finale-title">Você não termina uma jornada.<br><em>Entra na próxima decisão.</em></h2>
+        <p>Da primeira questão à atualização na especialidade, o próximo movimento é seu.</p>
+        <a class="btn btn-primary btn-large" href="https://nefroquest.com/jogar/" data-cta="finale">
+          <span>Abrir o NefroQuest</span>
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <span class="finale-note">Sem cartão para começar · Modo visitante disponível</span>
+      </div>
+    </section>
   </main>
 
-  <!-- MOBILE: Overlay escuro quando drawer aberto -->
-  <div class="mobile-overlay" id="mobileOverlay"></div>
-
-  <!-- MOBILE: Barra de status (ouro/streak/vidas) acima do dock -->
-  <div class="mobile-status-bar" id="mobileStatusBar">
-    <div class="msb-item msb-gold">
-      <span class="msb-icon">💰</span>
-      <span class="msb-value" id="msbGold">0</span>
+  <footer class="footer">
+    <div class="footer-brand">
+      <span class="nav-word footer-wordmark" role="img" aria-label="NefroQuest"><b aria-hidden="true">Nefro</b><em class="wordmark-quest" aria-hidden="true">Quest</em></span>
+      <span class="footer-tagline">Nefrologia em modo conquista.</span>
     </div>
-    <div class="msb-item msb-streak">
-      <span class="msb-icon">🔥</span>
-      <span class="msb-value" id="msbStreak">0</span>
+    <div class="footer-links">
+      <a href="https://nefroquest.com/jogar/">Aplicativo</a>
+      <a href="https://nefroquest.com/privacy-policy.html">Privacidade</a>
+      <a href="mailto:contato@nefroquest.com">Contato</a>
     </div>
-    <div class="msb-item msb-lives">
-      <span class="msb-icon" id="msbLivesIcons">❤❤❤</span>
-    </div>
-  </div>
+    <p>© 2026 NefroQuest · Conteúdo para fins educacionais.</p>
+  </footer>
 
-  <!-- MOBILE: Bottom dock (visível apenas em mobile) -->
-  <div class="mobile-bottom-dock" id="mobileBottomDock" style="display:none;">
-
-    <!-- Herói -->
-    <button type="button" class="mdock-btn personagem" data-action="openMobileDrawer" title="Herói">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
-        <circle cx="12" cy="8" r="4"/>
-        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
-      </svg>
-      <span class="mdock-label">Herói</span>
-    </button>
-
-    <!-- Forja (item comum + lendário via modal igual web) -->
-    <button type="button" class="mdock-btn forge-item" data-action="showForjaModal" title="Forja">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
-        <path d="M14.5 2.5c0 1.5-1.5 3-1.5 3s-1.5-1.5-1.5-3a1.5 1.5 0 0 1 3 0z"/>
-        <path d="M12 5.5V9"/>
-        <path d="M9 9h6l1.5 9H7.5L9 9z"/>
-        <path d="M7.5 18h9"/>
-      </svg>
-      <span class="mdock-label">Forja</span>
-    </button>
-
-    <!-- Oráculo -->
-    <button type="button" class="mdock-btn oraculo" data-action="openOraculoFromJourney" title="Oráculo">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
-        <circle cx="12" cy="10" r="8"/>
-        <path d="M5 18a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2H5z"/>
-      </svg>
-      <span class="mdock-label">Oráculo</span>
-    </button>
-
-    <!-- Grimório -->
-    <button type="button" class="mdock-btn grimorio" data-action="openBibliotecaModal" title="Grimório">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
-        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-      </svg>
-      <span class="mdock-label">Grimório</span>
-    </button>
-
-    <!-- Dashboard (mobile) -->
-    <button type="button" class="mdock-btn dashboard" data-action="openDashboard" title="Dashboard">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
-        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-      </svg>
-      <span class="mdock-label">Dashboard</span>
-    </button>
-
-    <!-- Menu (conta / configurações) -->
-    <button type="button" class="mdock-btn menu" id="mobileMenuBtn" data-action="toggleProfilePopup" data-arg="mobile" title="Menu">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
-        <line x1="3" y1="6" x2="21" y2="6"/>
-        <line x1="3" y1="12" x2="21" y2="12"/>
-        <line x1="3" y1="18" x2="21" y2="18"/>
-      </svg>
-      <span class="mdock-label">Menu</span>
-    </button>
-
-  </div><!-- /mobile-bottom-dock -->
-
-  <!-- Popup do menu mobile — fora do dock para evitar overflow:hidden e garantir cliques -->
-  <div class="profile-popup mobile-dock-popup" id="mobileProfilePopup">
-    <div class="profile-popup-email"><strong>Conta</strong><span id="mobileProfileEmail"></span></div>
-
-  </div>
-
-  <!-- LEADERBOARD MODAL -->
-  <div id="boardModal" class="modalWrap hidden">
-    <div class="modal board-modal" style="position:relative;">
-      <button type="button" class="auth-close-btn" style="z-index:10;" data-action="closeBoardModal" aria-label="Fechar">✕</button>
-      <div class="board-header">
-        <div class="board-title-wrap">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#f0c040" stroke="#f0c040" stroke-width="1"/></svg>
-          <h3 class="board-title">Ranking Global</h3>
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#f0c040" stroke="#f0c040" stroke-width="1"/></svg>
-        </div>
-        <p class="board-subtitle">Os maiores nefrologistas do reino</p>
-      </div>
-      <div class="board-tabs">
-        <button type="button" class="board-tab-btn active" data-action="_setBoardMode" data-arg="record">🏆 Recorde</button>
-        <button type="button" class="board-tab-btn" data-action="_setBoardMode" data-arg="global">📊 Perfil Global</button>
-      </div>
-      <div id="boardLoading" class="board-loading hidden">
-        <div class="board-spinner"></div>
-        <span>Consultando os pergaminhos do reino...</span>
-      </div>
-      <div class="board-filters">
-        <input id="boardSearch" type="text" placeholder="Buscar jogador ou personagem..." aria-label="Buscar jogador ou personagem no ranking" class="board-search-input" autocomplete="off">
-        <button type="button" id="boardMyPos" class="btn ghost" title="Ir para minha posição">Minha posição</button>
-      </div>
-      <div class="board-table-wrap">
-        <table class="board-table">
-          <thead id="boardHead">
-            <tr>
-              <th class="col-rank">#</th>
-              <th class="col-player">Jogador</th>
-              <th class="col-char">Personagem</th>
-              <th class="col-score">Pontos</th>
-              <th class="col-level">Nível</th>
-              <th class="col-chests">Baús</th>
-              <th class="col-date">Data</th>
-            </tr>
-          </thead>
-          <tbody id="boardBody"></tbody>
-        </table>
-      </div>
-      <div class="board-footer">
-        <span id="boardLastUpdate" class="board-update-time"></span>
-        <button type="button" id="boardRefresh" class="btn-board-refresh" title="Atualizar ranking">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
-          Atualizar
-        </button>
-        <button type="button" id="closeBoard" class="btn">Fechar</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- CHARACTER SELECT MODAL -->
-  <div id="charSelectModal" class="chest-modal">
-    <div class="chest-content" style="position:relative; max-width:680px;">
-      <button type="button" class="auth-close-btn" style="z-index:10;" data-action="closeCharSelectModal" aria-label="Fechar">✕</button>
-      <h2>Escolha seu Personagem</h2>
-      <div class="char-grid">
-        <div class="char-card" data-action="selectCharacter" data-arg="nephros">
-          <img src="assets/classes/clerigo_renal/nivel_01.jpg" alt="Dr. Nephros" loading="lazy">
-          <h3>Dr. Nephros</h3>
-          <p class="char-subtitle">Guardião dos Néfrons</p>
-          <p class="char-desc">Equilíbrio e sabedoria. Bônus: +2 Conhecimento</p>
-        </div>
-        <div class="char-card" data-action="selectCharacter" data-arg="aquaria">
-          <img src="assets/classes/maga_metabolica/nivel_01.jpg" alt="Dra. Aquaria" loading="lazy">
-          <h3>Dra. Aquaria</h3>
-          <p class="char-subtitle">Mestra das Águas</p>
-          <p class="char-desc">Cura e regeneração. Bônus: +2 Defesa</p>
-        </div>
-        <div class="char-card" data-action="selectCharacter" data-arg="glomerulus">
-          <img src="assets/classes/guerreiro_glomerular/nivel_01.png" alt="Dr. Glomerulus" loading="lazy">
-          <h3>Dr. Glomerulus</h3>
-          <p class="char-subtitle">Cientista Renal</p>
-          <p class="char-desc">Força e precisão. Bônus: +2 Ataque, +1 Conhecimento</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- NAME MODAL -->
-  <div id="nameModal" class="chest-modal">
-    <div class="chest-content" style="position:relative; max-width:480px;">
-      <button type="button" class="auth-close-btn" style="z-index:10;" data-action="closeNameModal" aria-label="Fechar">✕</button>
-      <h2>Registrar Pontuação</h2>
-      <p style="color:var(--txt-dim);margin-bottom:16px;font-size:0.9rem;">Digite seu nome para o leaderboard!</p>
-      <div class="name-input-box">
-        <label for="playerName">Seu Nome:</label>
-        <input type="text" id="playerName" maxlength="20" placeholder="Ex: Dr. Silva" />
-      </div>
-      <div class="btn-group">
-        <button type="button" class="close-chest" data-action="saveScore">Salvar</button>
-        <button type="button" class="close-chest" style="background:linear-gradient(180deg,#374151,#1f2937);color:#9ca3af;border-color:#4b5563;" data-action="skipSaveScore">Pular</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- AUTH MODAL -->
-  <div id="authModal" class="auth-modal-overlay" data-action="closeAuthOutside" data-pass-event="1">
-    <div class="auth-box" id="authBox">
-      <button type="button" class="auth-close-btn" data-action="closeAuthModal">✕</button>
-      <div class="auth-title">⚔ NefroQuest</div>
-      <div class="auth-subtitle">Salve seu progresso e apareça no leaderboard</div>
-      <div class="auth-tabs">
-        <button type="button" class="auth-tab active" id="tabEntrar" data-action="switchAuthTab" data-arg="entrar">Entrar</button>
-        <button type="button" class="auth-tab" id="tabCadastrar" data-action="switchAuthTab" data-arg="cadastrar">Criar conta</button>
-      </div>
-      <div id="authMsg" class="auth-msg" aria-live="polite" aria-atomic="true"></div>
-      <button type="button" class="auth-google-btn" data-action="loginWithGoogle">
-        <svg width="20" height="20" viewBox="0 0 48 48">
-          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-          <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
-        </svg>
-        Continuar com Google
-      </button>
-      <div class="auth-divider">ou</div>
-      <!-- Turnstile compartilhado pelos formulários (login/cadastro/reset) -->
-      <div id="cfTurnstile" class="cf-turnstile" data-sitekey="0x4AAAAAADpZmFAT9FWkVhgt"
-           data-theme="dark" data-size="flexible" style="margin:0 0 12px;"></div>
-      <div id="authFormEntrar">
-        <div class="auth-field">
-          <label for="authEmail">Email</label>
-          <input type="email" id="authEmail" placeholder="seu@email.com" autocomplete="email" />
-        </div>
-        <div class="auth-field">
-          <label for="authPassword">Senha</label>
-          <input type="password" id="authPassword" placeholder="••••••••" autocomplete="current-password" />
-        </div>
-        <div style="text-align:right;margin:-4px 0 10px;">
-          <button type="button" data-action="showForgotPassword" style="background:none;border:none;color:#708090;font-size:0.78rem;cursor:pointer;text-decoration:underline;padding:0;">Esqueci minha senha</button>
-        </div>
-        <button type="button" class="auth-submit-btn" id="authLoginBtn" data-action="authEmailLogin">Entrar na Jornada</button>
-      </div>
-      <div id="authFormForgot" style="display:none;">
-        <p style="color:#a0b8d0;font-size:0.85rem;margin-bottom:14px;line-height:1.6;">Digite seu email e enviaremos um link para redefinir sua senha.</p>
-        <div class="auth-field">
-          <label for="authForgotEmail">Email</label>
-          <input type="email" id="authForgotEmail" placeholder="seu@email.com" autocomplete="email" />
-        </div>
-        <button type="button" class="auth-submit-btn" id="authForgotBtn" data-action="authForgotPassword">Enviar Link de Redefinição</button>
-        <div style="text-align:center;margin-top:10px;">
-          <button type="button" data-action="switchAuthTab" data-arg="entrar" style="background:none;border:none;color:#708090;font-size:0.8rem;cursor:pointer;">← Voltar ao login</button>
-        </div>
-      </div>
-      <div id="authFormCadastrar" style="display:none;">
-        <div class="auth-field">
-          <label for="authDisplayName">Nome de Aventureiro</label>
-          <input type="text" id="authDisplayName" placeholder="Dr. Nephros" maxlength="30" autocomplete="name" />
-        </div>
-        <div class="auth-field">
-          <label for="authSpecialty">Especialidade</label>
-          <select id="authSpecialty" style="width:100%;background:#0f1a2e;border:1px solid var(--blue-dark);border-radius:8px;padding:10px 12px;color:#e0f0ff;font-size:1rem;outline:none;cursor:pointer;">
-            <option value="" style="background:#0f1a2e;color:#6080a0;">Selecione sua área...</option>
-            <option value="Nefrologia" style="background:#0f1a2e;color:#e0f0ff;">Nefrologia</option>
-            <option value="Clínica Médica" style="background:#0f1a2e;color:#e0f0ff;">Clínica Médica</option>
-            <option value="Medicina Interna" style="background:#0f1a2e;color:#e0f0ff;">Medicina Interna</option>
-            <option value="Estudante de Medicina" style="background:#0f1a2e;color:#e0f0ff;">Estudante de Medicina</option>
-            <option value="Outro" style="background:#0f1a2e;color:#e0f0ff;">Outro</option>
-          </select>
-        </div>
-        <div class="auth-field">
-          <label for="authEmailReg">Email</label>
-          <input type="email" id="authEmailReg" placeholder="seu@email.com" autocomplete="email" />
-        </div>
-        <div class="auth-field">
-          <label for="authPasswordReg">Senha</label>
-          <input type="password" id="authPasswordReg" placeholder="mín. 6 caracteres" autocomplete="new-password" />
-        </div>
-        <div class="auth-field">
-          <label for="authPasswordConfirm">Confirmar Senha</label>
-          <input type="password" id="authPasswordConfirm" placeholder="repita a senha" autocomplete="new-password" />
-        </div>
-        <button type="button" class="auth-submit-btn" id="authRegBtn" data-action="authEmailRegister">Criar Conta</button>
-        <div id="authResendWrap" style="display:none;text-align:center;margin-top:10px;" data-email="">
-          <span style="color:var(--txt-dim);font-size:0.8rem;">Não recebeu? Verifique o spam ou </span>
-          <button type="button" id="authResendBtn" class="auth-guest-link" style="background:none;border:none;padding:0;cursor:pointer;" data-action="authResendConfirmation">reenviar email</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CHEST MODAL -->
-  <!-- Popup MODOS DE JOGO (mobile only) -->
-  <div id="gameModesOverlay" class="game-modes-overlay" data-action="closeGameModesPopupOutside" data-pass-event="1">
-    <div class="game-modes-box">
-      <button type="button" class="game-modes-close" data-action="closeGameModesPopup" aria-label="Fechar">✕</button>
-      <h3>⚔️ Modos de Jogo</h3>
-      <button type="button" class="gm-btn" data-action-seq="closeGameModesPopup,showTopicSelector">
-        <span class="gm-icon">📖</span>
-        <span class="gm-label">
-          <span class="gm-title">Modo de Estudo</span>
-          <span class="gm-desc">Escolha um tema e estude no seu ritmo</span>
-        </span>
-      </button>
-      <button type="button" class="gm-btn weak-btn" data-action-seq="closeGameModesPopup,startWeakPointStudy">
-        <span class="gm-icon">📍</span>
-        <span class="gm-label">
-          <span class="gm-title">Ponto Fraco</span>
-          <span class="gm-desc">Foque nos temas com menor acerto</span>
-        </span>
-      </button>
-      <button type="button" class="gm-btn" data-action-seq="closeGameModesPopup,startExamMode">
-        <span class="gm-icon">📝</span>
-        <span class="gm-label">
-          <span class="gm-title">Prova Simulada</span>
-          <span class="gm-desc">60 questões em 90 minutos</span>
-        </span>
-      </button>
-      <button type="button" class="gm-btn" data-action-seq="closeGameModesPopup,showStandaloneMinigame">
-        <span class="gm-icon">⚡</span>
-        <span class="gm-label">
-          <span class="gm-title">Julgamento Rápido</span>
-          <span class="gm-desc">Sequência veloz de V ou F — bata seu recorde</span>
-        </span>
-      </button>
-      <button type="button" class="gm-btn" data-action-seq="closeGameModesPopup,showAcidBaseMinigame">
-        <span class="gm-icon">⚗️</span>
-        <span class="gm-label">
-          <span class="gm-title">Câmara do Equilíbrio</span>
-          <span class="gm-desc">Domine ácido-base em 5 casos clínicos · sem cronômetro</span>
-        </span>
-      </button>
-    </div>
-  </div>
-
-  <div id="chestModal" class="chest-modal">
-    <div class="chest-content" style="position:relative;">
-      <button type="button" class="auth-close-btn" style="z-index:10;" data-action="closeChestModal" aria-label="Fechar">✕</button>
-      <h2 id="chestTitle">Baú Desbloqueado!</h2>
-      <div id="chestArticle"></div>
-      <button type="button" class="close-chest" data-action="closeChestModal">Fechar</button>
-    </div>
-  </div>
-
-  <!-- BIBLIOTECA DE REFERÊNCIAS MODAL -->
-  <div id="bibliotecaModal" class="modalWrap hidden" data-action="closeBibliotecaModalOutside" data-pass-event="1">
-    <div class="modal bib-modal">
-      <div class="bib-header">
-        <div class="bib-header-title">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-          <h3>Grimório de Conhecimento</h3>
-        </div>
-        <button type="button" class="bib-close" data-action="closeBibliotecaModal">✕</button>
-      </div>
-      <div class="bib-search-wrap" style="flex-direction:column;align-items:stretch;gap:10px;">
-        <div style="display:flex;align-items:center;position:relative;width:100%;">
-          <input type="text" id="bibSearch" class="bib-search" placeholder="Buscar por título, autor, tema ou tipo…" aria-label="Buscar artigo na bibliografia" autocomplete="off" style="width:100%;padding-right:85px;box-sizing:border-box;">
-          <span class="bib-count" id="bibCount" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:0.75rem;pointer-events:none;"></span>
-        </div>
-        <div class="bib-filters" id="bibFilters">
-          <button type="button" class="bib-filter-btn active" data-action="_setBibFilter" data-arg="all">Todos</button>
-          <button type="button" class="bib-filter-btn" data-action="_setBibFilter" data-arg="legendary">👑 Lendários</button>
-          <button type="button" class="bib-filter-btn" data-action="_setBibFilter" data-arg="epic">🔮 Épicos</button>
-          <button type="button" class="bib-filter-btn" data-action="_setBibFilter" data-arg="rare">💎 Raros</button>
-          <button type="button" class="bib-filter-btn" data-action="_setBibFilter" data-arg="guideline">📋 Diretrizes</button>
-          <button type="button" class="bib-filter-btn" data-action="_setBibFilter" data-arg="favorites">⭐ Favoritos</button>
-        </div>
-      </div>
-      <div class="bib-list" id="bibList"></div>
-      <div class="bib-suggest-section">
-        <button type="button" class="bib-suggest-toggle" data-action="toggleBibSuggestForm">
-          💡 Sugerir artigo <em class="bib-suggest-chevron">▾</em>
-        </button>
-        <div id="bibSuggestFields" class="bib-suggest-fields">
-          <p class="bib-suggest-desc">Encontrou um artigo relevante para o NefroQuest? Envie a sugestão.</p>
-          <form id="bibSuggestForm" class="bib-suggest-form" novalidate>
-            <input type="text" id="bibSuggestUrl" class="bib-input" placeholder="Link, DOI ou referência completa" autocomplete="off">
-            <textarea id="bibSuggestReason" class="bib-textarea" placeholder="Por que este artigo é relevante?" rows="3"></textarea>
-            <button type="submit" class="btn gold bib-submit-btn">Enviar sugestão</button>
-          </form>
-          <p id="bibSuggestMsg" class="bib-suggest-msg" style="display:none;"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- defer: scripts baixam em paralelo durante o parse do HTML e executam em ordem
-       após DOMContentLoaded. Reduz bloqueio sequencial. O inline _VAPID_PUBLIC_KEY
-       executa imediatamente (sem defer) e fica disponível antes do notifications.js
-       deferido executar. -->
-  <!-- Supabase pinado em 2.106.2 + SRI sha384 — para atualizar:
-       1. mudar versão na URL
-       2. rodar:  curl -sL "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@VERSAO/dist/umd/supabase.js" | openssl dgst -sha384 -binary | openssl base64 -A
-       3. substituir o integrity= com o novo hash
-       NOTA: não usar .min.js (minificado dinamicamente por jsdelivr — SRI quebra). -->
-  <script defer crossorigin="anonymous"
-          src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.106.2/dist/umd/supabase.js"
-          integrity="sha384-m/8UHFJHeU6nrCKP2hBnAseuvAKUmLF+8e5bWos5CJL023vuxX7kiVL5t8yjsJhV"></script>
-  <script defer src="data/refs.js"></script>
-  <script defer src="data/articles.js"></script>
-  <script defer src="data/rapid-quiz.js"></script>
-  <script defer src="data/competencies.js"></script>
-
-  <script defer src="js/utils.js?v=11.90"></script>
-  <script defer src="js/audio.js?v=11.90"></script>
-  <script defer src="js/leaderboard.js?v=11.90"></script>
-  <script defer src="js/study-mode.js?v=11.90"></script>
-  <script defer src="js/game.js?v=11.90"></script>
-  <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
-  <script defer src="js/notifications.js?v=11.90"></script>
-  <script defer src="js/auth.js?v=11.90"></script>
-  <script defer src="js/paywall.js?v=11.90"></script>
-  <script defer src="js/account.js?v=11.90"></script>
-  <script defer src="js/boss.js?v=11.90"></script>
-  <script defer src="js/exam.js?v=11.90"></script>
-  <script defer src="js/admin.js?v=11.90"></script>
-  <script defer src="js/minigame.js?v=11.90"></script>
-  <script defer src="js/minigame-acidbase.js?v=11.90"></script>
-  <script defer src="js/achievements.js?v=11.90"></script>
-  <script defer src="js/changelog.js?v=11.90"></script>
-  <script defer src="js/dashboard.js?v=11.90"></script>
-
-  <!-- Single source of truth for profile popup menu items -->
-  <template id="profilePopupItems">
-    <button type="button" class="profile-popup-item" data-action="openAccountModal" data-stop-propagation="1">👤 Minha Conta</button>
-    <button type="button" class="profile-popup-item" data-action="openPlanModal" data-stop-propagation="1">⭐ Seu Plano</button>
-    <button type="button" class="profile-popup-item admin-item" data-action="openDashboard" data-stop-propagation="1">📊 Dashboard (Beta)</button>
-    <button type="button" class="profile-popup-item admin-item" data-action="openAdminPanel" data-stop-propagation="1">🛡 Administração</button>
-    <button type="button" class="profile-popup-item admin-item" data-action="openAssetGallery" data-stop-propagation="1">🖼 Galeria de Assets</button>
-    <button type="button" class="profile-popup-item admin-item" data-action="adminJumpToBoss" data-stop-propagation="1">⚔ Fase Final</button>
-    <button type="button" class="profile-popup-item admin-item" data-action="openAnalyticsPanel" data-stop-propagation="1">📊 Analytics</button>
-    <button type="button" class="profile-popup-item admin-item" data-action="openPushCampaign" data-stop-propagation="1">📣 Campanha (Push)</button>
-    <hr class="profile-popup-divider">
-    <button type="button" class="profile-popup-item" data-action="toggleStudyReminders" data-stop-propagation="1">🔔 Lembretes</button>
-    <button type="button" class="profile-popup-item" data-action="toggleReadingMode" data-stop-propagation="1" aria-pressed="false">🔠 Modo Leitura</button>
-    <button type="button" class="profile-popup-logout" data-action="authLogout" data-stop-propagation="1">Sair</button>
-  </template>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var tpl = document.getElementById('profilePopupItems');
-      if (!tpl) return;
-      ['landingProfilePopup','welcomeProfilePopup','gameProfilePopup','mobileProfilePopup'].forEach(function(id) {
-        var popup = document.getElementById(id);
-        if (!popup) return;
-        var emailDiv = popup.querySelector('.profile-popup-email');
-        // Remove all children after the email div
-        while (popup.lastChild !== emailDiv) popup.removeChild(popup.lastChild);
-        popup.appendChild(tpl.content.cloneNode(true));
-      });
-    });
-  </script>
+  <script src="/landing/script.js?v=13.01"></script>
 </body>
 </html>

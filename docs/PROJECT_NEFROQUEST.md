@@ -15,9 +15,13 @@
 
 ## Arquitetura
 
-### SPA — `index.html`
+### Entrada comercial + SPA
 
-Toda a UI do jogo está em um único `index.html`. Não há roteamento de páginas. As telas são `<div>` com classe `.hidden` alternadas por JS. Fluxo:
+`index.html` é a landing comercial canônica de `https://nefroquest.com/`. Seus estilos, interações e imagens ficam em `landing/`.
+
+O jogo vive em `jogar/index.html`, acessível em `https://nefroquest.com/jogar/`. A landing encaminha callbacks antigos de autenticação, pagamento e PWA para essa rota sem trocar o origin.
+
+Toda a UI do jogo está em um único `jogar/index.html`. Dentro do app não há roteamento de páginas. As telas são `<div>` com classe `.hidden` alternadas por JS. Fluxo:
 
 ```
 #landingScreen (login)
@@ -227,11 +231,11 @@ Cada classe tem 10 níveis de imagem em `assets/classes/<folder>/nivel_01.jpg` �
 ## Analytics
 
 ### Sentry
-- DSN configurado inline no `index.html`
+- DSN configurado inline em `index.html` e `jogar/index.html`
 - Captura exceções JS não tratadas em produção
 
 ### GA4
-- `gtag()` via script inline no `index.html`
+- `gtag()` via script inline na landing e no app
 - Measurement ID: `G-0TS171XV3K`
 - Eventos rastreados:
 

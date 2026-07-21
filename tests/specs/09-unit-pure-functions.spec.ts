@@ -7,7 +7,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Utils — Pure Functions Unit Tests', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/jogar/');
   });
 
   test('Streak Multiplier cases', async ({ page }) => {

@@ -3,7 +3,7 @@ import { injectGameState, waitForGame, pickFirstOption, answerAndAdvance , isLiv
 
 test.describe('Gameplay básico', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/jogar/');
     await injectGameState(page);
     await waitForGame(page);
   });

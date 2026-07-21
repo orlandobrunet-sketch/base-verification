@@ -35,10 +35,12 @@ jobs:
           fi
           # Sentry release deve acompanhar a versão (senão o release tracking fica
           # stale — aconteceu: ficou preso em 12.27 por 9 versões).
-          SENTRY_VERSION=$(grep -oP "release:\s*'nefroquest@\K[0-9.]+" index.html | head -1)
-          echo "Sentry release: $SENTRY_VERSION"
-          if [ "$SENTRY_VERSION" != "$JSON_VERSION" ]; then
-            echo "❌ Sentry release mismatch: index.html='$SENTRY_VERSION' vs version.json='$JSON_VERSION'"
+          LANDING_SENTRY_VERSION=$(grep -oP "release:\s*'nefroquest@\K[0-9.]+" index.html | head -1)
+          APP_SENTRY_VERSION=$(grep -oP "release:\s*'nefroquest@\K[0-9.]+" jogar/index.html | head -1)
+          echo "Landing Sentry release: $LANDING_SENTRY_VERSION"
+          echo "App Sentry release: $APP_SENTRY_VERSION"
+          if [ "$LANDING_SENTRY_VERSION" != "$JSON_VERSION" ] || [ "$APP_SENTRY_VERSION" != "$JSON_VERSION" ]; then
+            echo "❌ Sentry release mismatch: landing='$LANDING_SENTRY_VERSION', app='$APP_SENTRY_VERSION', version.json='$JSON_VERSION'"
             exit 1
           fi
           echo "✅ Versions in sync ($JSON_VERSION) — SW + Sentry release"
@@ -46,42 +48,48 @@ jobs:
       # ── 2. Tamanho do bundle (budget: 2.5MB) ───────────────────────────────
       - name: Bundle size check
         run: |
-          SIZE=$(stat -c%s index.html)
           LIMIT=2621440  # 2.5 MB
-          SIZE_KB=$((SIZE / 1024))
-          echo "index.html size: ${SIZE_KB}KB"
-          if [ $SIZE -gt $LIMIT ]; then
-            echo "❌ Bundle too large: ${SIZE_KB}KB > 2560KB limit"
-            exit 1
-          fi
-          echo "✅ Bundle size OK (${SIZE_KB}KB)"
+          for FILE in index.html jogar/index.html; do
+            SIZE=$(stat -c%s "$FILE")
+            SIZE_KB=$((SIZE / 1024))
+            echo "$FILE size: ${SIZE_KB}KB"
+            if [ $SIZE -gt $LIMIT ]; then
+              echo "❌ Bundle too large: $FILE ${SIZE_KB}KB > 2560KB limit"
+              exit 1
+            fi
+            echo "✅ Bundle size OK: $FILE (${SIZE_KB}KB)"
+          done
 
       # ── 3. HTML estrutural: tag críticas obrigatórias ─────────────────────
       - name: HTML structure check
         run: |
           ERRORS=0
           check_html() {
-            if ! grep -q "$2" index.html; then
-              echo "❌ Missing: $1"
+            if ! grep -q "$3" "$1"; then
+              echo "❌ Missing in $1: $2"
               ERRORS=$((ERRORS+1))
             else
-              echo "✅ Found: $1"
+              echo "✅ Found in $1: $2"
             fi
           }
           check_src() {
-            if ! grep -rq "$2" index.html js/ data/ 2>/dev/null; then
+            if ! grep -rq "$2" jogar/index.html js/ data/ 2>/dev/null; then
               echo "❌ Missing: $1"
               ERRORS=$((ERRORS+1))
             else
               echo "✅ Found: $1"
             fi
           }
-          check_html "charset meta"            'charset="UTF-8"'
-          check_html "viewport meta"           'name="viewport"'
-          check_html "title"                   '<title>'
-          check_html "manifest link"           'manifest.json'
-          check_html "Supabase SDK"            'supabase'
-          check_html "Service Worker register" 'serviceWorker.register'
+          check_html index.html       "landing charset meta"    'charset="UTF-8"'
+          check_html index.html       "landing viewport meta"   'name="viewport"'
+          check_html index.html       "landing title"           '<title>'
+          check_html index.html       "landing canonical"       'https://nefroquest.com/'
+          check_html jogar/index.html "app charset meta"        'charset="UTF-8"'
+          check_html jogar/index.html "app viewport meta"       'name="viewport"'
+          check_html jogar/index.html "app title"               '<title>'
+          check_html jogar/index.html "manifest link"           'manifest.json'
+          check_html jogar/index.html "Supabase SDK"            'supabase'
+          check_html jogar/index.html "Service Worker register" 'serviceWorker.register'
           check_src  "question bank (data)"    'questionBank'
           check_src  "boss start constant"     'BOSS_START_CORRECT'
           if [ $ERRORS -gt 0 ]; then
@@ -144,8 +152,8 @@ jobs:
         run: |
           ERRORS=0
           # Detectar padrões de service_role ou JWT secret (nunca devem estar no front)
-          if grep -rqE 'service_role|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\.[a-zA-Z0-9_-]{40,}' index.html js/; then
-            echo "❌ Possible service_role key or privileged JWT found in index.html"
+          if grep -rqE 'service_role|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\.[a-zA-Z0-9_-]{40,}' index.html jogar/index.html js/; then
+            echo "❌ Possible service_role key or privileged JWT found in frontend files"
             ERRORS=$((ERRORS+1))
           else
             echo "✅ No privileged Supabase keys detected"

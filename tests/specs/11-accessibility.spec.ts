@@ -34,15 +34,15 @@ async function audit(page: import('@playwright/test').Page, include?: string) {
 }
 
 test.describe('Acessibilidade — axe-core / WCAG 2.1 AA', () => {
-  test('landing screen sem violações sérias/críticas', async ({ page }) => {
+  test('landing comercial sem violações sérias/críticas', async ({ page }) => {
     await page.goto('/');
-    await page.waitForSelector('#landingScreen', { state: 'visible', timeout: 10_000 });
-    const blocking = await audit(page, '#landingScreen');
+    await page.waitForSelector('#conteudo', { state: 'visible', timeout: 10_000 });
+    const blocking = await audit(page, '#conteudo');
     expect(blocking, `Violações sérias/críticas: ${summarize(blocking)}`).toEqual([]);
   });
 
   test('tela de jogo sem violações sérias/críticas', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/jogar/');
     await injectGameState(page);
     await waitForGame(page);
     const blocking = await audit(page, '#mainApp');
@@ -54,7 +54,7 @@ test.describe('Acessibilidade — axe-core / WCAG 2.1 AA', () => {
     // questões: startExamMode() popula _examState + cria #examOverlay, então
     // showExamResults() desenha o layout de resultado (0 respostas, mas o
     // contraste/estrutura que o axe audita são estáticos).
-    await page.goto('/');
+    await page.goto('/jogar/');
     await injectGameState(page);
     await waitForGame(page);
     await page.evaluate(async () => {
