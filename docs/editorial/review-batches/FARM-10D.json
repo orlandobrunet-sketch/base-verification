@@ -1,0 +1,30 @@
+{
+  "batch": "FARM-10D",
+  "change_type": "medical_editorial",
+  "expected_version": "13.02",
+  "allowed_files": [
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-10D.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "5b9730b8": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "37feb58d": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "anulado", "verdict": "fundir", "publication": "LIBERADA"}}
+  },
+  "expected_question_delta": -1,
+  "refs_policy": "unchanged",
+  "references": {},
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Corrige typo e linguagem de 5b9730b8 mantendo o OP KDIGO 2026: AEE preferido a HIF-PHI como primeira linha após causas corrigíveis.",
+    "Aposenta 37feb58d por duplicidade material com 5cf5b826, que já foi registrado no FARM-10C.",
+    "Nenhum card novo; kdigo_anemia_2026 sustenta ambos os gates.",
+    "Bump canonico 13.01 -> 13.02 por mudanca em data/topics.js."
+  ]
+}
