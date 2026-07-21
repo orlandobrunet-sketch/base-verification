@@ -1,0 +1,38 @@
+{
+  "batch": "FARM-10H",
+  "change_type": "medical_editorial",
+  "expected_version": "13.05",
+  "allowed_files": [
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-10H.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "061c9bcb": {"action": "refs_only", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "c7e8cc9a": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "3c54eaa0": {"action": "refs_only", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "dd376edc": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "anulado", "verdict": "fundir", "publication": "LIBERADA"}},
+    "78823c61": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "911fdbb4": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}}
+  },
+  "expected_question_delta": -1,
+  "refs_policy": "unchanged",
+  "references": {
+    "kdigo_anemia_2026": "existing_verified",
+    "roxadustat_trial": "existing_verified"
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "c7e8cc9a foi reconstruído para remover ambiguidade entre deficiência sistêmica/absoluta e ferro-restrição funcional em DRC não dialítica.",
+    "78823c61 e 911fdbb4 foram atualizados para os limiares KDIGO 2026 de início de ferro em DRC não dialítica.",
+    "061c9bcb e 3c54eaa0 tiveram apenas referências atualizadas para fontes específicas e vigentes.",
+    "dd376edc foi fundido/aposentado por duplicidade material com c7e8cc9a após reconstrução.",
+    "Bump canonico 13.04 -> 13.05 por mudança em data/topics.js."
+  ]
+}
