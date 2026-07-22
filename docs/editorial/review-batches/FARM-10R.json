@@ -1,0 +1,37 @@
+{
+  "batch": "FARM-10R",
+  "change_type": "medical_editorial",
+  "expected_version": "13.15",
+  "allowed_files": [
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-10R.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "8a565e5e": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "90b203d0": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "13/20", "verdict": "fundir", "publication": "LIBERADA"}},
+    "d21710a5": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "12/20", "verdict": "aposentar", "publication": "LIBERADA"}},
+    "5f5cca8b": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "PARCIALMENTE VERIFICADA", "pending": "NÃO DECISIVA", "score": "10/20", "verdict": "aposentar", "publication": "LIBERADA"}},
+    "71aa5511": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "PARCIALMENTE VERIFICADA", "pending": "NÃO DECISIVA", "score": "10/20", "verdict": "aposentar", "publication": "LIBERADA"}},
+    "a23c7d84": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "PARCIALMENTE VERIFICADA", "pending": "NÃO DECISIVA", "score": "10/20", "verdict": "aposentar", "publication": "LIBERADA"}},
+    "462c8d3d": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "11/20", "verdict": "aposentar", "publication": "LIBERADA"}},
+    "c0778fb6": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "PARCIALMENTE VERIFICADA", "pending": "NÃO DECISIVA", "score": "11/20", "verdict": "aposentar", "publication": "LIBERADA"}}
+  },
+  "expected_question_delta": -7,
+  "refs_policy": "unchanged",
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Lote de limpeza de nefropatia diabética: consolida segurança infecciosa de iSGLT2 e remove subanálises/trivia de baixa utilidade clínica.",
+    "8a565e5e passa a ensinar a diferença prática entre ITU e infecção genital micótica; 90b203d0 foi fundido por medir mecanismo isolado sem ganho incremental.",
+    "d21710a5, 71aa5511, 462c8d3d e c0778fb6 foram aposentados por granularidade excessiva de EMPA-KIDNEY/DAPA-CKD e por não acrescentarem ao OP central de nefroproteção.",
+    "5f5cca8b e a23c7d84 foram aposentados por extrapolarem BPROAD para subestudos/desfechos cognitivos ou ecocardiográficos que não são o OP principal do card.",
+    "Nenhum card novo entrou; refs.js permanece byte-idêntico neste lote.",
+    "Bump canônico 13.14 -> 13.15 por mudança em data/topics.js."
+  ]
+}
