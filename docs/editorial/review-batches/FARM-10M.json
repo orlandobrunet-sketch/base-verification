@@ -1,0 +1,46 @@
+{
+  "batch": "FARM-10M",
+  "change_type": "medical_editorial",
+  "expected_version": "13.10",
+  "allowed_files": [
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-10M.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "a6886e4e": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "5f9a6fe1": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "709ad94a": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "37ba2b01": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "13/20", "verdict": "fundir", "publication": "LIBERADA"}},
+    "fccba568": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "13/20", "verdict": "fundir", "publication": "LIBERADA"}},
+    "42113bd0": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "PARCIALMENTE VERIFICADA", "pending": "NÃO DECISIVA", "score": "12/20", "verdict": "aposentar", "publication": "LIBERADA"}},
+    "0672ee9a": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "PARCIALMENTE VERIFICADA", "pending": "NÃO DECISIVA", "score": "12/20", "verdict": "aposentar", "publication": "LIBERADA"}},
+    "5120569c": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "13/20", "verdict": "fundir", "publication": "LIBERADA"}},
+    "637b22fb": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "PARCIALMENTE VERIFICADA", "pending": "NÃO DECISIVA", "score": "11/20", "verdict": "aposentar", "publication": "LIBERADA"}},
+    "e67ffb3c": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "PARCIALMENTE VERIFICADA", "pending": "NÃO DECISIVA", "score": "11/20", "verdict": "aposentar", "publication": "LIBERADA"}},
+    "f1738f35": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "PARCIALMENTE VERIFICADA", "pending": "NÃO DECISIVA", "score": "12/20", "verdict": "aposentar", "publication": "LIBERADA"}},
+    "7a813216": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "PARCIALMENTE VERIFICADA", "pending": "NÃO DECISIVA", "score": "12/20", "verdict": "aposentar", "publication": "LIBERADA"}},
+    "ca23bf91": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "PARCIALMENTE VERIFICADA", "pending": "NÃO DECISIVA", "score": "11/20", "verdict": "aposentar", "publication": "LIBERADA"}},
+    "87b124f9": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "PARCIALMENTE VERIFICADA", "pending": "NÃO DECISIVA", "score": "11/20", "verdict": "aposentar", "publication": "LIBERADA"}},
+    "f0f3c24c": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "PARCIALMENTE VERIFICADA", "pending": "NÃO DECISIVA", "score": "10/20", "verdict": "aposentar", "publication": "LIBERADA"}}
+  },
+  "expected_question_delta": -12,
+  "refs_policy": "unchanged",
+  "references": {
+    "bproad": "existing_verified"
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "BPROAD foi consolidado em três âncoras de maior valor pedagógico: população/alvo, desfecho primário e segurança.",
+    "Foram aposentadas duplicatas de magnitude/AVC/população e itens de subdesfecho, método ou segurança com baixo valor pedagógico ou atribuição frágil.",
+    "O item f0f3c24c foi aposentado por perguntar SPRINT usando referência BPROAD, configurando desalinhamento de fonte e OP.",
+    "Fonte verificada: Bi et al., NEJM 2025;392:1155-1167, DOI 10.1056/NEJMoa2412006, corroborada por resumo ACC e Standards of Care ADA 2026.",
+    "Bump canônico 13.09 -> 13.10 por mudança em data/topics.js."
+  ]
+}
