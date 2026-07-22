@@ -1,0 +1,40 @@
+{
+  "batch": "FARM-10P",
+  "change_type": "medical_editorial",
+  "expected_version": "13.13",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-10P.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "70129a64": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "a693d757": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "64296bc1": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "7573d4ad": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "13/20", "verdict": "fundir", "publication": "LIBERADA"}},
+    "3276c3aa": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "13/20", "verdict": "fundir", "publication": "LIBERADA"}},
+    "97d6d3d0": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "12/20", "verdict": "fundir", "publication": "LIBERADA"}},
+    "f8d30071": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "10/20", "verdict": "aposentar", "publication": "LIBERADA"}}
+  },
+  "expected_question_delta": -4,
+  "refs_policy": "declared",
+  "references": {
+    "flow_study": "existing_corrected_verified",
+    "smart_semaglutide_nondiabetic_ckd": "new_verified"
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Consolidação do bloco FLOW/GLP-1: uma âncora principal do FLOW, uma âncora de critério de inclusão e uma âncora SMART para DRC sem diabetes.",
+    "7573d4ad, 3276c3aa e 97d6d3d0 foram fundidos por duplicar o mesmo OP do desfecho primário de 24%; f8d30071 foi aposentado por formulação sim/não malformada e baixo valor incremental.",
+    "flow_study corrigido para DOI/páginas corretos e números centrais do NEJM 2024.",
+    "smart_semaglutide_nondiabetic_ckd adicionado com resumo, conclusão e curiosidade no padrão do Grimório; 64296bc1 deixa de citar FLOW indevidamente.",
+    "Bump canônico 13.12 -> 13.13 por mudança em data/topics.js e data/refs.js."
+  ]
+}

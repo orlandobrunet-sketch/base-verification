@@ -396,17 +396,31 @@ kdigo_ckd:{
 
   flow_study:{
     label:"FLOW Trial — Semaglutida (NEJM 2024)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2403945",
-    journal:"N Engl J Med 2024;391(18):1718-1730",
+    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2403347",
+    journal:"N Engl J Med 2024;391(2):109-121",
     ano:2024,
     tipo:"Ensaio Clínico RCT Fase III",
     badge:"RCT",
     badgeColor:"#10b981",
     impacto:"↓24% desfecho renal composto · 1º RCT de GLP-1 com desfecho renal primário comprovado",
     icon:"🔬",
-    resumo:"ECR fase III, n=3.533, semaglutida 1 mg semanal vs placebo em DM2 + DRC. Critérios: TFGe 50–75 com UACR >300–<5000 ou TFGe 25–<50 com UACR >100–<5000. Desfecho primário: falência renal, queda ≥50% da TFGe ou morte renal/CV. Semaglutida reduziu o desfecho primário: 18,7% vs 23,2%; HR 0,76, IC 95% 0,66–0,88, P=0,0003. Também reduziu MACE: HR 0,82, IC 95% 0,68–0,98; e mortalidade geral: HR 0,80, IC 95% 0,67–0,95.",
+    resumo:"ECR fase III, n=3.533, semaglutida 1 mg semanal vs placebo em DM2 + DRC. Critérios: TFGe 50–75 com UACR >300–<5000 ou TFGe 25–<50 com UACR >100–<5000. Desfecho primário: falência renal, queda ≥50% da TFGe ou morte renal/CV. Semaglutida reduziu o desfecho primário: 331 vs 410 primeiros eventos; HR 0,76, IC 95% 0,66–0,88, P=0,0003. Também reduziu MACE: HR 0,82, IC 95% 0,68–0,98; mortalidade geral: HR 0,80, IC 95% 0,67–0,95; e desacelerou o declínio anual da TFGe em 1,16 mL/min/1,73m².",
     conclusao:"FLOW estabeleceu benefício renal primário da semaglutida em DM2 com DRC, posicionando GLP-1 RA como terapia complementar aos iSGLT2/SRAA/finerenona.",
     curiosidade:"O benefício renal provavelmente resulta de combinação de efeitos metabólicos, pressóricos, ponderais, anti-inflamatórios e hemodinâmicos; não reduzir a explicação a 'bloqueio do SRAA'."
+  },
+  smart_semaglutide_nondiabetic_ckd:{
+    label:"SMART — Semaglutida em DRC sem Diabetes",
+    url:"https://www.nature.com/articles/s41591-024-03327-6",
+    journal:"Nature Medicine 2025;31(1):278-285",
+    ano:2025,
+    tipo:"Ensaio clínico randomizado",
+    badge:"RCT",
+    badgeColor:"#10b981",
+    impacto:"Semaglutida 2,4 mg reduziu UACR em DRC albuminúrica sem diabetes",
+    icon:"🔬",
+    resumo:"ECR duplo-cego, n=101 randomizados, em adultos com DRC albuminúrica sem diabetes, IMC ≥27 kg/m², TFGe ≥25 mL/min/1,73m² e UACR ≥30 a <3500 mg/g. Comparou semaglutida 2,4 mg semanal versus placebo por 24 semanas. Desfecho primário: mudança percentual da UACR. Semaglutida reduziu a UACR em −52,1% versus placebo (IC95% −65,5 a −33,4; P<0,0001); eventos gastrointestinais foram mais frequentes no grupo ativo.",
+    conclusao:"Em DRC não diabética com sobrepeso/obesidade, semaglutida reduziu albuminúria em 24 semanas, mas o estudo não prova redução de falência renal, morte cardiovascular ou benefício duro de longo prazo.",
+    curiosidade:"O acrônimo SMART vem de SeMaglutide and Albuminuria Reduction Trial; ele deve ser distinguido do FLOW, que testou semaglutida 1 mg em DM2 com DRC e desfechos clínicos renais."
   },
   convince_study:{
     label:"CONVINCE Trial",
