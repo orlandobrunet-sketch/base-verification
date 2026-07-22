@@ -1,0 +1,43 @@
+{
+  "batch": "FARM-10Q",
+  "change_type": "medical_editorial",
+  "expected_version": "13.14",
+  "allowed_files": [
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-10Q.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "69fdfbcc": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "91b741b4": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "d79cefd9": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "b2292dd3": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "12/20", "verdict": "aposentar", "publication": "LIBERADA"}},
+    "0e877268": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "12/20", "verdict": "aposentar", "publication": "LIBERADA"}},
+    "7af5e9c5": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "9/20", "verdict": "aposentar", "publication": "LIBERADA"}},
+    "3af7c99d": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "11/20", "verdict": "aposentar", "publication": "LIBERADA"}},
+    "e096784a": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "PARCIALMENTE VERIFICADA", "pending": "NÃO DECISIVA", "score": "10/20", "verdict": "aposentar", "publication": "LIBERADA"}},
+    "9a9def45": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "10/20", "verdict": "aposentar", "publication": "LIBERADA"}},
+    "ff05f2d1": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "PARCIALMENTE VERIFICADA", "pending": "NÃO DECISIVA", "score": "10/20", "verdict": "aposentar", "publication": "LIBERADA"}},
+    "c47dc5fa": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "12/20", "verdict": "fundir", "publication": "LIBERADA"}},
+    "9e74b7dd": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "11/20", "verdict": "aposentar", "publication": "LIBERADA"}},
+    "64667407": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "PARCIALMENTE VERIFICADA", "pending": "NÃO DECISIVA", "score": "11/20", "verdict": "aposentar", "publication": "LIBERADA"}},
+    "9906a4b0": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "12/20", "verdict": "aposentar", "publication": "LIBERADA"}}
+  },
+  "expected_question_delta": -11,
+  "refs_policy": "unchanged",
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Lote de poda FLOW/GLP-1: mantém três OPs úteis — composição do endpoint primário, slope anual de TFGe e MACE — e remove itens de subgrupo, segurança granular, mecanismo especulativo e pergunta malformada.",
+    "69fdfbcc, 91b741b4 e d79cefd9 foram reescritos com linguagem de desfecho clínico e números alinhados ao card flow_study corrigido no FARM-10P.",
+    "b2292dd3, 0e877268, 3af7c99d, e096784a, 9a9def45, ff05f2d1, 9e74b7dd, 64667407 e 9906a4b0 foram aposentados por baixo valor incremental/trivia de subgrupo ou extrapolação mecanística.",
+    "7af5e9c5 foi aposentado por formulação sim/não malformada e categoria dialise inadequada para um item FLOW; c47dc5fa foi fundido conceitualmente com a âncora de critério de TFGe do FARM-10P.",
+    "Nenhum card novo entrou; refs.js permanece byte-idêntico neste lote.",
+    "Bump canônico 13.13 -> 13.14 por mudança em data/topics.js."
+  ]
+}
