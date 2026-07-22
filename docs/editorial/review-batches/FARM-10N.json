@@ -1,0 +1,44 @@
+{
+  "batch": "FARM-10N",
+  "change_type": "medical_editorial",
+  "expected_version": "13.11",
+  "allowed_files": [
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-10N.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "96c0c85d": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "113bb49e": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "df2517a7": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "ca8066c6": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "03cdd0ce": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "43e7c2a4": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "13/20", "verdict": "fundir", "publication": "LIBERADA"}},
+    "960b61a3": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "13/20", "verdict": "fundir", "publication": "LIBERADA"}},
+    "28f7a828": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "PARCIALMENTE VERIFICADA", "pending": "NÃO DECISIVA", "score": "11/20", "verdict": "aposentar", "publication": "LIBERADA"}},
+    "7fd4c336": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "13/20", "verdict": "fundir", "publication": "LIBERADA"}},
+    "da0fa458": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "13/20", "verdict": "fundir", "publication": "LIBERADA"}},
+    "671bee79": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "PARCIALMENTE VERIFICADA", "pending": "NÃO DECISIVA", "score": "11/20", "verdict": "aposentar", "publication": "LIBERADA"}}
+  },
+  "expected_question_delta": -6,
+  "refs_policy": "unchanged",
+  "references": {
+    "kdigo_ckd": "existing_verified",
+    "kdigo_diabetes_in_ckd_guideline": "existing_verified",
+    "dapa": "existing_verified",
+    "empa_kidney": "existing_verified"
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "O lote consolidou iSGLT2 em cinco âncoras: mecanismo tubular, dip inicial, conduta no dip, indicação em DRC sem diabetes e lacuna em diálise.",
+    "Foram aposentadas duplicatas de mecanismo/benefício e itens sustentados por referência inadequada para a alegação de DRC ampla ou meta-análise CJASN 2025.",
+    "Fonte externa verificada: KDIGO 2024 CKD guideline page; confirmação secundária aberta em AJHP 2025/ADA 2024 sobre TFGe ≥20 e RAC ≥200 mg/g.",
+    "Bump canônico 13.10 -> 13.11 por mudança em data/topics.js."
+  ]
+}
