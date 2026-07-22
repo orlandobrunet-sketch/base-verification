@@ -1,0 +1,39 @@
+{
+  "batch": "FARM-10T",
+  "change_type": "medical_editorial",
+  "expected_version": "13.17",
+  "allowed_files": [
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-10T.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "a5c73397": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "516ec2a6": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "e2181457": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "1a93346d": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "ee219394": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "17/20", "verdict": "aprovada com pequenos ajustes", "publication": "LIBERADA"}},
+    "252a2e88": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "da24855e": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}}
+  },
+  "expected_question_delta": 0,
+  "refs_policy": "unchanged",
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Lote de nefroproteção em DRC diabética: iSGLT2, DAPA-CKD, EMPA-KIDNEY e SUSTAIN-6.",
+    "a5c73397 corrige a fisiologia do dip inicial: maior entrega de sódio à mácula densa, feedback túbulo-glomerular e menor pressão intraglomerular, sem tratar queda discreta como nefrotoxicidade automática.",
+    "516ec2a6 delimita o sinal renal do SUSTAIN-6 como nefropatia nova/agravada impulsionada por macroalbuminúria, não como trial renal primário de TFGe dura.",
+    "1a93346d corrige o item de retinopatia: SUSTAIN-6 usou semaglutida subcutânea e o sinal ocular exige cautela em retinopatia prévia/queda rápida de HbA1c, não contraindicação universal.",
+    "e2181457 e ee219394 mantêm mensagens centrais do DAPA-CKD: redução do desfecho primário cardiorrenal e de mortalidade global, sempre vinculadas à população estudada.",
+    "252a2e88 remove extrapolação indevida para doença policística e troca 'todas as etiologias' por população ampla de DRC diabética e não diabética em risco de progressão.",
+    "da24855e consolida a conduta: iSGLT2 reduz progressão renal/eventos cardiorrenais, não substitui SRAA quando tolerado e não é rotina em diálise crônica.",
+    "Nenhum card novo entrou; refs.js permanece byte-idêntico neste lote. Saneamento de refs redundantes de trials cardiovasculares será melhor tratado em lote próprio para evitar órfãos artificiais.",
+    "Bump canônico 13.16 -> 13.17 por mudança em data/topics.js."
+  ]
+}
