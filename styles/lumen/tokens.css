@@ -1,0 +1,130 @@
+/*
+ * NefroQuest — Fundação 0 / Lúmen Vivo
+ * Tokens provisórios. Só se tornam estáveis após validação em duas telas reais.
+ */
+
+[data-nq-ui="lumen"] {
+  color-scheme: dark;
+
+  /* Core */
+  --nql-abyss: #070a13;
+  --nql-abyss-rgb: 7, 10, 19;
+  --nql-cortex: #111a2e;
+  --nql-cortex-rgb: 17, 26, 46;
+  --nql-raised: #192843;
+  --nql-raised-rgb: 25, 40, 67;
+  --nql-parchment: #efe6d2;
+  --nql-parchment-rgb: 239, 230, 210;
+  --nql-paper-dim: #d4cbb8;
+  --nql-mist: #aab7c9;
+  --nql-haze: #7f8fa8;
+
+  /* State */
+  --nql-lumen: #91dfe3;
+  --nql-lumen-rgb: 145, 223, 227;
+  --nql-lumen-deep: #57bfc8;
+  --nql-mastery: #f1cf7a;
+  --nql-mastery-rgb: 241, 207, 122;
+  --nql-corruption: #8050a6;
+  --nql-corruption-rgb: 128, 80, 166;
+  --nql-corruption-strong: #bd91da;
+  --nql-corruption-strong-rgb: 189, 145, 218;
+  --nql-danger: #ef8491;
+  --nql-danger-rgb: 239, 132, 145;
+  --nql-success: #6bd4a7;
+  --nql-success-rgb: 107, 212, 167;
+
+  /* Semantic surfaces */
+  --nql-page: var(--nql-abyss);
+  --nql-surface: rgba(var(--nql-cortex-rgb), .82);
+  --nql-surface-solid: var(--nql-cortex);
+  --nql-surface-raised: rgba(var(--nql-raised-rgb), .72);
+  --nql-overlay: rgba(3, 5, 12, .82);
+  --nql-line: rgba(var(--nql-lumen-rgb), .14);
+  --nql-line-strong: rgba(var(--nql-lumen-rgb), .34);
+  --nql-control-border: rgba(var(--nql-lumen-rgb), .52);
+  --nql-line-gold: rgba(var(--nql-mastery-rgb), .32);
+  --nql-text: var(--nql-parchment);
+  --nql-text-soft: var(--nql-mist);
+  --nql-text-muted: var(--nql-haze);
+  --nql-focus: var(--nql-lumen);
+  --nql-current: var(--nql-lumen);
+  --nql-current-rgb: var(--nql-lumen-rgb);
+
+  /* Typography */
+  --nql-font-display: "Alegreya", Georgia, serif;
+  --nql-font-body: "Source Sans 3", "Segoe UI", sans-serif;
+  --nql-font-instrument: "IBM Plex Mono", Consolas, monospace;
+  --nql-type-hero: clamp(3.35rem, 7.2vw, 6.6rem);
+  --nql-type-page: clamp(2.55rem, 5vw, 4.5rem);
+  --nql-type-section: clamp(1.85rem, 3.2vw, 2.75rem);
+  --nql-type-title: clamp(1.35rem, 2.1vw, 1.85rem);
+  --nql-type-reading: clamp(1.0625rem, 1.35vw, 1.2rem);
+  --nql-type-ui: 1rem;
+  --nql-type-meta: .72rem;
+  --nql-leading-tight: .94;
+  --nql-leading-title: 1.08;
+  --nql-leading-reading: 1.58;
+  --nql-measure-clinical: 66ch;
+  --nql-measure-explanation: 72ch;
+
+  /* Space */
+  --nql-space-1: .25rem;
+  --nql-space-2: .5rem;
+  --nql-space-3: .75rem;
+  --nql-space-4: 1rem;
+  --nql-space-5: 1.25rem;
+  --nql-space-6: 1.5rem;
+  --nql-space-8: 2rem;
+  --nql-space-10: 2.5rem;
+  --nql-space-12: 3rem;
+  --nql-space-16: 4rem;
+  --nql-space-20: 5rem;
+  --nql-gutter: clamp(1rem, 4vw, 5rem);
+  --nql-content: 80rem;
+
+  /* Shape and elevation */
+  --nql-radius-control: .375rem;
+  --nql-radius-panel: .75rem;
+  --nql-radius-dialog: 1rem;
+  --nql-shadow-dialog: 0 2rem 7rem rgba(var(--nql-abyss-rgb), .72);
+  --nql-shadow-focus: 0 0 0 .22rem rgba(var(--nql-lumen-rgb), .16);
+  --nql-shadow-lumen: 0 0 2rem rgba(var(--nql-lumen-rgb), .16);
+  --nql-shadow-mastery: 0 0 2rem rgba(var(--nql-mastery-rgb), .14);
+
+  /* Motion */
+  --nql-duration-instant: 80ms;
+  --nql-duration-fast: 140ms;
+  --nql-duration-state: 220ms;
+  --nql-duration-panel: 240ms;
+  --nql-duration-route: 480ms;
+  --nql-duration-reward: 720ms;
+  --nql-ease-enter: cubic-bezier(.16, 1, .3, 1);
+  --nql-ease-state: cubic-bezier(.22, .61, .36, 1);
+
+  /* Layers */
+  --nql-z-base: 0;
+  --nql-z-sticky: 20;
+  --nql-z-dialog: 100;
+  --nql-z-live: 120;
+}
+
+[data-nq-ui="lumen"][data-lumen-state="unexplored"] {
+  --nql-current: var(--nql-haze);
+  --nql-current-rgb: 127, 143, 168;
+}
+
+[data-nq-ui="lumen"][data-lumen-state="reasoning"] {
+  --nql-current: var(--nql-lumen);
+  --nql-current-rgb: var(--nql-lumen-rgb);
+}
+
+[data-nq-ui="lumen"][data-lumen-state="mastery"] {
+  --nql-current: var(--nql-mastery);
+  --nql-current-rgb: var(--nql-mastery-rgb);
+}
+
+[data-nq-ui="lumen"][data-lumen-state="corruption"] {
+  --nql-current: var(--nql-corruption-strong);
+  --nql-current-rgb: var(--nql-corruption-strong-rgb);
+}
