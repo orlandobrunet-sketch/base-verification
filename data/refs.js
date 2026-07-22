@@ -2012,7 +2012,7 @@ finerenone_2025:{
     url:"https://academic.oup.com/eurheartj/article/43/6/474/6433230",
     journal:"Eur Heart J 2022;43(6):474-484",
     ano:2022,tipo:"Análise Pooled RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Finerenona ↓20% desfecho renal e ↓14% MACE em DRC diabética — análise combinada FIDELITY (>13.000 pacientes)",icon:"💊",
+    impacto:"Finerenona ↓23% desfecho renal e ↓14% eventos cardiovasculares maiores em DRC diabética — análise combinada FIDELITY (>13.000 pacientes)",icon:"💊",
     resumo:"Análise combinada pré-especificada em larga escala (FIDELITY, n = 13.026 pacientes com DRC albuminúrica e diabetes mellitus tipo 2), unificando as coortes individuais dos ensaios clínicos pivotais de fase III FIDELIO-DKD e FIGARO-DKD. Avaliou a eficácia e segurança da finerenona (10 mg ou 20 mg uma vez ao dia) versus placebo, adicionados à terapia máxima tolerada com IECA ou BRA. O desfecho renal primário composto incluiu queda sustentada de TFGe ≥57% ou DRCT, e o desfecho cardiovascular foi um composto de morte CV, IAM não fatal, AVC não fatal ou hospitalização por IC. Resultados: A finerenona reduziu significativamente o risco do composto renal em 23% (HR 0,77; IC 95% 0,67–0,88; P < 0,001) e o risco de eventos cardiovasculares maiores (MACE) em 14% (HR 0,86; IC 95% 0,78–0,95; P = 0,0018). O risco de interrupção do tratamento por hipercalemia permaneceu muito baixo (1,7% no grupo ativo vs 0,6% no placebo).",
     conclusao:"A análise combinada do FIDELITY consolida a finerenona como pilar inequívoco de proteção dupla — renal e cardiovascular — em pacientes com nefropatia diabética proteinúrica ao longo de um amplo espectro de gravidade no Reino.",
     curiosidade:"O desfecho renal principal mediu a queda de TFGe ≥57% por equivaler matematicamente ao dobro do nível de creatinina sérica basal, um marcador de declínio funcional renal crônico aceito por órgãos reguladores globais como preditor confiável de falência renal estabelecida."
@@ -2061,14 +2061,14 @@ finerenone_2025:{
     conclusao:"Em receptores de transplante em ICN que necessitam de macrolídeo, a azitromicina é a opção preferencial; quando um inibidor potente do CYP3A4 é inevitável, exige-se redução empírica da dose do ICN e monitorização do nível sérico (TDM).",
     curiosidade:"O tacrolimo é metabolizado quase exclusivamente pelo CYP3A4 hepático e intestinal e é substrato da glicoproteína-P; por isso inibidores potentes dessa via elevam desproporcionalmente os seus níveis."
   },
-  finerenone_t1d_2025:{
+  figaro_dkd:{
     label:"FIGARO-DKD Trial (Finerenona)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2110956",
     journal:"N Engl J Med 2021;385(24):2252-2263",
     ano:2021,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Finerenona ↓13% MACE e ↓23% novo início de DRC em DM2 com DRC moderada-grave",icon:"💊",
+    impacto:"Finerenona ↓13% desfecho cardiovascular primário em DM2 com DRC; benefício impulsionado por menor hospitalização por insuficiência cardíaca",icon:"💊",
     resumo:"ECR multicêntrico duplo-cego fase III (FIGARO-DKD, n = 7.437 pacientes com DM2 e DRC de gravidade moderada, caracterizada por albuminúria persistente de alto grau e TFGe preservada, ou albuminúria moderada com TFGe reduzida). Comparou a finerenona (10-20 mg/dia) versus placebo, associados à dose máxima tolerada de bloqueadores do SRAA. Desfecho primário: morte CV, IAM não fatal, AVC não fatal ou internação por IC. Resultados: A finerenona reduziu significativamente o desfecho primário em 13% (HR 0,87; IC 95% 0,76–0,98; P = 0,03) após um seguimento médio de 3,4 anos. O benefício foi impulsionado principalmente por uma redução de 29% nas hospitalizações por IC (HR 0,71; IC 95% 0,56–0,90). O desfecho renal composto secundário (queda de TFGe ≥40% ou morte renal) também favoreceu o grupo ativo com HR 0,87.",
-    conclusao:"O FIGARO-DKD expandiu as indicações da finerenona para pacientes diabéticos com DRC nos estágios iniciais de disfunção funcional, demonstrando forte redução de hospitalização por insuficiência cardíaca e nefroproteção secundária no Reino.",
+    conclusao:"O FIGARO-DKD complementa o FIDELIO-DKD: em população com DRC diabética menos avançada ou albuminúria moderada, a finerenona reduziu eventos cardiovasculares, sobretudo hospitalização por insuficiência cardíaca, mantendo necessidade de monitorização de potássio.",
     curiosidade:"Ao passo que o FIDELIO-DKD focou em pacientes com doença renal avançada (onde o risco de falência renal é primário), o FIGARO-DKD incluiu uma população com função renal mais preservada, em que o risco de morte cardiovascular precoce superava o risco de diálise."
   },
   finerenone_transplant_2025:{
@@ -2083,13 +2083,13 @@ finerenone_2025:{
   },
   confidence_trial_2025:{
     label:"CONFIDENCE Trial (Finerenona + Empagliflozina)",
-    url:"https://www.thelancet.com/journals/landia/article/PIIS2213-8587(24)00243-8/fulltext",
-    journal:"Lancet Diabetes Endocrinol 2025",
+    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2410659",
+    journal:"N Engl J Med 2025;393:533-543",
     ano:2025,tipo:"Ensaio Clínico Fase II",badge:"RCT",badgeColor:"#10b981",
     impacto:"Iniciação simultânea finerenona + empagliflozina bem tolerada; maior redução de albuminúria que monoterapia isolada em DRC diabética",icon:"💊",
-    resumo:"ECR fase II duplo-cego multicêntrico (CONFIDENCE, n = ~1.000 pacientes com DRC e diabetes tipo 2). Avaliou a eficácia e segurança da iniciação combinada simultânea de empagliflozina (10 mg/dia) e finerenona (20 mg/dia) versus a monoterapia com empagliflozina ou monoterapia com finerenona isoladas, associadas ao bloqueio máximo do SRAA. Desfecho primário: alteração na relação albuminúria/creatinúria (RAC) urinária em 6 meses. Resultados: A terapia de iniciação combinada simultânea levou a uma redução estatisticamente superior e sinérgica na proteinúria (-53% em relação ao basal), significativamente maior que os grupos de monoterapia isolados. Além disso, a incidência de hipercalemia de relevância clínica e interrupção do tratamento foi marcadamente menor no grupo de iniciação simultânea em comparação com a monoterapia de finerenona.",
-    conclusao:"O CONFIDENCE provou que a iniciação simultânea da terapia dupla (iSGLT2 + nsMRA) confere nefroproteção sinérgica e superior, além de mitigar hemodinamicamente o risco de hipercalemia no Reino.",
-    curiosidade:"Fisiologicamente, a empagliflozina induz natriurese e glicosúria no túbulo proximal, aumentando a oferta de sódio ao néfron distal, o que estimula a excreção urinária de potássio pelas células principais do ducto coletor. Esse efeito caliurético compensa e anula perfeitamente a retenção de potássio induzida pela finerenona, gerando excelente sinergia de tolerabilidade eletrólitica."
+    resumo:"ECR duplo-cego, double-dummy, fase 2 (CONFIDENCE, n = 818), em adultos com DRC e diabetes tipo 2, TFGe 30–90 mL/min/1,73m² e RAC urinária 100–5.000 mg/g, em dose estável de IECA ou BRA. Comparou iniciação simultânea de finerenona + empagliflozina versus finerenona isolada ou empagliflozina isolada. Desfecho primário: mudança da RAC urinária até o dia 180. A combinação reduziu a RAC 29% mais que finerenona isolada e 32% mais que empagliflozina isolada. Não houve eventos adversos inesperados; hipotensão sintomática, LRA e hipercalemia levando à descontinuação foram incomuns.",
+    conclusao:"O CONFIDENCE sustenta efeito antiproteinúrico aditivo de curto prazo com iniciação simultânea de finerenona e empagliflozina em DRC diabética albuminúrica, mas não substitui trials de desfechos duros nem prova superioridade sobre escalonamento sequencial de longo prazo.",
+    curiosidade:"O estudo é didático porque testou combinação inicial contra cada monoterapia em desenho duplo-cego; sua força está no sinal de albuminúria em 180 dias, enquanto sua principal limitação pedagógica é não ter mortalidade, diálise ou queda sustentada de TFGe como desfecho primário."
   },
   at1501_allograft_nhp_2023:{
     label:"Anwar et al. — AT-1501 em aloenxertos de primatas não humanos (Sci Transl Med 2023)",

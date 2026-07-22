@@ -1,0 +1,45 @@
+{
+  "batch": "FARM-10U",
+  "change_type": "medical_editorial",
+  "expected_version": "13.18",
+  "allowed_files": [
+    "data/topics.js",
+    "data/refs.js",
+    "docs/editorial/review-batches/FARM-10U.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "3d8fc3fe": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "d01633ca": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "PARCIALMENTE VERIFICADA", "pending": "NÃO DECISIVA", "score": "10/20", "verdict": "fundir", "publication": "LIBERADA"}},
+    "96db30b8": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "PARCIALMENTE VERIFICADA", "pending": "NÃO DECISIVA", "score": "9/20", "verdict": "aposentar", "publication": "LIBERADA"}},
+    "b86f4e37": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "13e53210": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "b81a3c8a": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "c0c08f5a": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "12/20", "verdict": "fundir", "publication": "LIBERADA"}},
+    "a562aca2": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "PARCIALMENTE VERIFICADA", "pending": "NÃO DECISIVA", "score": "10/20", "verdict": "aposentar", "publication": "LIBERADA"}}
+  },
+  "expected_question_delta": -4,
+  "refs_policy": "declared",
+  "references": {
+    "figaro_dkd": {"action": "add_or_rename_target", "source": "renamed from finerenone_t1d_2025; existing FIGARO-DKD card corrected"},
+    "finerenone_t1d_2025": {"action": "remove_or_rename_source", "source": "renamed to figaro_dkd because the old id was semantically misleading"}
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Lote final de nefropatia diabética: consolida cluster finerenona/FIDELIO/FIGARO/CONFIDENCE e encerra pendências ativas da categoria.",
+    "3d8fc3fe passa a ensinar classe e indicação da finerenona com seleção por potássio e monitorização, sem sugerir ausência de hipercalemia.",
+    "d01633ca e 96db30b8 foram aposentados/fundidos por comparação indevida com espironolactona e afirmação insegura de menor hipercalemia/morte; FIDELIO/FIGARO são contra placebo, não ensaios diretos contra espironolactona.",
+    "b86f4e37 foi reescrito para limitar o CONFIDENCE ao que ele realmente demonstrou: redução de RAC em 180 dias superior às monoterapias, sem extrapolar para mortalidade, diálise ou superioridade sobre escalonamento sequencial.",
+    "c0c08f5a foi fundido em b86f4e37 porque repetia o mesmo OP e transformava desenho de iniciação simultânea em recomendação sequencial comparativa não testada.",
+    "b81a3c8a foi reescrito e passou a usar o card renomeado figaro_dkd; o antigo id finerenone_t1d_2025 era semanticamente enganoso.",
+    "a562aca2 foi aposentado por duplicar FIDELIO com formulação vaga de 'estabilização da TFGe' e referência incorreta a FINE-ONE/IgAN.",
+    "data/refs.js foi atualizado apenas em cards existentes: FIDELITY, FIGARO-DKD e CONFIDENCE. Nenhum card novo foi criado; todos mantêm resumo, conclusão e curiosidade.",
+    "Bump canônico 13.17 -> 13.18 por mudanças em data/topics.js e data/refs.js."
+  ]
+}
