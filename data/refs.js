@@ -223,6 +223,35 @@ const refsDB = {
     conclusao:"Harrison's é útil como ponto de entrada clínico e diagnóstico antes das diretrizes específicas; ajuda a construir raciocínio diferencial, mas não substitui guidelines nefrológicas com recomendações graduadas.",
     curiosidade:"Os capítulos do Harrison's refletem síntese narrativa de especialistas, não recomendações formais com classe e nível de evidência. Por isso, funcionam melhor como mapa clínico geral do que como fonte final para decisão terapêutica específica."
   },
+  clinical_methods_proteinuria:{
+    label:"Clinical Methods — Proteinuria",
+    url:"https://www.ncbi.nlm.nih.gov/books/NBK705/",
+    journal:"NCBI Bookshelf / Clinical Methods",
+    ano:1990,
+    tipo:"Livro-texto",
+    badge:"TEXTBOOK",
+    badgeColor:"#64748b",
+    impacto:"Diferencia dipstick, ácido sulfossalicílico e cadeias leves urinárias",
+    icon:"📚",
+    resumo:"Capítulo de Clinical Methods sobre proteinúria. Descreve a fita urinária como método semiquantitativo voltado sobretudo à albumina e o teste com ácido sulfossalicílico como capaz de detectar outras proteínas. Para cadeias leves kappa/lambda, destaca que a combinação de ácido sulfossalicílico positivo com dipstick negativo sugere proteinúria de Bence-Jones, devendo ser confirmada por métodos específicos como eletroforese/imunoeletroforese.",
+    conclusao:"Uma fita urinária negativa não exclui proteinúria por cadeias leves; em suspeita de mieloma, é necessário procurar proteína não albumina com métodos adequados.",
+    curiosidade:"O capítulo ainda descreve o teste térmico clássico da proteína de Bence-Jones, que precipita em torno de 56°C e pode redissolver com fervura, mas esse detalhe é mais histórico do que central para a prática moderna."
+  },
+  clinical_methods_bun_creatinine:{
+    label:"Clinical Methods — BUN and Creatinine",
+    url:"https://www.ncbi.nlm.nih.gov/books/NBK305/",
+    journal:"NCBI Bookshelf / Clinical Methods",
+    ano:1990,
+    tipo:"Livro-texto",
+    badge:"TEXTBOOK",
+    badgeColor:"#64748b",
+    impacto:"Explica fatores extrarrenais que alteram creatinina sérica",
+    icon:"📚",
+    resumo:"Capítulo de Clinical Methods sobre ureia e creatinina. Resume a produção da creatinina a partir da creatina muscular, sua relação com massa magra e filtração glomerular, e limitações pré-analíticas/biológicas da interpretação. Destaca que a ingestão de carne cozida pode elevar a creatinina sérica porque o cozimento converte creatina da carne em creatinina, sem necessariamente indicar queda verdadeira da TFG.",
+    conclusao:"Creatinina isolada deve ser interpretada no contexto clínico e alimentar; refeição recente com carne cozida pode gerar elevação transitória sem LRA.",
+    curiosidade:"A mesma fonte lembra que trimetoprim e cimetidina podem alterar a creatinina ao interferir na secreção tubular, mecanismo diferente do efeito alimentar da carne cozida."
+  },
+
 kdigo_ckd:{
     label:"KDIGO CKD 2024",
     url:"https://kdigo.org/guidelines/ckd-evaluation-and-management/",
@@ -406,6 +435,21 @@ kdigo_ckd:{
     resumo:"ECR multicêntrico duplo-cego de grande escala (SHARP, n = 9.270 pacientes com DRC moderada a avançada, sendo 3.023 em diálise e 6.247 não dialíticos, sem história prévia de infarto). Comparou a combinação de sinvastatina 20 mg mais ezetimiba 10 mg diariamente versus placebo. Desfecho primário: primeiro evento aterosclerótico maior (infarto não fatal, morte coronariana, AVC isquêmico ou revascularização). Resultados: A terapia combinada reduziu significativamente o risco de eventos ateroscleróticos maiores em 17% (HR 0,83; IC 95% 0,74-0,94; P = 0,0021) após um seguimento médio de 4,9 anos. A redução foi consistente em dialíticos e não dialíticos, sem aumento de miopatia ou hepatotoxicidade.",
     conclusao:"O SHARP provou que a redução agressiva de LDL-C com sinvastatina e ezetimiba previne eventos cardiovasculares isquêmicos na DRC avançada, excetuando o início de estatinas em pacientes já estabelecidos em diálise no Reino.",
     curiosidade:"Pacientes em diálise apresentam patologia cardiovascular atípica: a maioria das mortes é súbita ou por arritmia devido a calcificação e fibrose miocárdica (uremia e hiperparatireoidismo), e não por oclusão aterosatolérica clássica. Isso justifica por que as estatinas previnem eventos isquêmicos, mas não reduzem a mortalidade global em diálise."
+  },
+
+  kdigo_lipids_ckd_2013:{
+    label:"KDIGO Lipids in CKD 2013",
+    url:"https://kdigo.org/guidelines/lipids-in-ckd/",
+    journal:"KDIGO / Kidney International Supplements",
+    ano:2013,
+    tipo:"Diretriz",
+    badge:"GUIDELINE",
+    badgeColor:"#6366f1",
+    impacto:"Guia tratamento lipídico por risco cardiovascular na DRC",
+    icon:"📋",
+    resumo:"Diretriz KDIGO 2013 para manejo de lípides na DRC, cobrindo adultos e crianças com DRC não dialítica, dialítica e transplantados. A estratégia abandona metas rígidas de LDL em favor de tratamento por risco cardiovascular: estatina ou estatina/ezetimiba em adultos com DRC não dialítica de maior risco, não iniciar rotineiramente estatina/estatina-ezetimiba em adultos já dependentes de diálise, e continuar terapia se já estava em uso ao iniciar diálise.",
+    conclusao:"Na DRC, estatina é ferramenta de prevenção cardiovascular aterosclerótica; em diálise crônica não deve ser iniciada de rotina apenas pela condição dialítica, e não deve ser ensinada como nefroproteção primária.",
+    curiosidade:"A página oficial da KDIGO informa que a orientação de lípides foi incorporada à diretriz CKD 2024, mas mantém a suíte de documentos de 2013 como referência específica para tratamento lipídico."
   },
 
   testing_study:{
