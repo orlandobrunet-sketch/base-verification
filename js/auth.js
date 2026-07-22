@@ -40,7 +40,8 @@
     const GUEST_FREE_LIMIT = 15;
 
     (function initSupaAuth() {
-      if (localStorage.getItem('nq_guest_mode') === '1') _guestMode = true;
+      try { _guestMode = localStorage.getItem('nq_guest_mode') === '1'; }
+      catch { _guestMode = false; }
       if (typeof supabase === 'undefined') {
         _track('error_supabase_missing');
         _consumeLoginIntent();
@@ -258,19 +259,77 @@
     // como captchaToken nos fluxos de login/cadastro/reset/resend quando o
     // CAPTCHA está ativo no Supabase Auth. Quando inativo, o token é ignorado
     // pelo Supabase (no-op). Resetar após cada uso (token é single-use).
+    let _turnstileLoadTimer = null;
+    function _scheduleTurnstileTimeout() {
+      clearTimeout(_turnstileLoadTimer);
+      _turnstileLoadTimer = setTimeout(() => {
+        const widget = document.getElementById('cfTurnstile');
+        if (!widget || widget.dataset.state === 'ready') return;
+        nqTurnstileError();
+      }, 9000);
+    }
     function _cfCaptchaToken() {
       try { return (window.turnstile && window.turnstile.getResponse()) || undefined; }
       catch { return undefined; }
     }
-    function _cfCaptchaReset() {
-      try { if (window.turnstile) window.turnstile.reset(); } catch { /* widget ausente */ }
+    function _setTurnstileState(message, state) {
+      const status = document.getElementById('cfTurnstileStatus');
+      const widget = document.getElementById('cfTurnstile');
+      const retry = document.getElementById('cfTurnstileRetry');
+      if (status) status.textContent = message;
+      if (widget) widget.dataset.state = state;
+      if (retry) retry.hidden = !['error', 'expired'].includes(state);
     }
+    function nqTurnstileReady() {
+      clearTimeout(_turnstileLoadTimer);
+      _setTurnstileState('Verificação de segurança concluída.', 'ready');
+    }
+    function nqTurnstileExpired() {
+      clearTimeout(_turnstileLoadTimer);
+      _setTurnstileState('A verificação expirou. Confirme novamente para continuar.', 'expired');
+    }
+    function nqTurnstileError() {
+      clearTimeout(_turnstileLoadTimer);
+      _setTurnstileState('Não foi possível carregar a verificação. Recarregue e tente novamente.', 'error');
+    }
+    function retryTurnstile() {
+      _setTurnstileState('Recarregando a verificação de segurança…', 'pending');
+      if (window.turnstile) {
+        try {
+          window.turnstile.reset();
+          _scheduleTurnstileTimeout();
+          return;
+        } catch { /* recarregar a página como fallback */ }
+      }
+      location.reload();
+    }
+    function _cfCaptchaReset() {
+      try {
+        if (window.turnstile) {
+          window.turnstile.reset();
+          _setTurnstileState('Confirme novamente a verificação de segurança.', 'pending');
+          _scheduleTurnstileTimeout();
+        }
+      } catch { /* widget ausente */ }
+    }
+    _scheduleTurnstileTimeout();
 
     async function authForgotPassword() {
-      if (!_supaClient) return;
-      const email = document.getElementById('authForgotEmail').value.trim();
-      if (!email) { _setAuthMsg('Digite seu email.', 'error'); return; }
+      if (!_ensureSupaClient('email')) return;
       const btn = document.getElementById('authForgotBtn');
+      if (btn?.disabled) return;
+      const email = document.getElementById('authForgotEmail').value.trim();
+      _clearAuthInvalid(['authForgotEmail']);
+      if (!email) {
+        _setAuthMsg('Digite seu email.', 'error');
+        _markAuthInvalid(['authForgotEmail']);
+        return;
+      }
+      if (!AUTH_EMAIL_PATTERN.test(email)) {
+        _setAuthMsg('Digite um email válido.', 'error');
+        _markAuthInvalid(['authForgotEmail']);
+        return;
+      }
       btn.disabled = true; btn.textContent = 'Enviando...';
       const captchaToken = _cfCaptchaToken();
       try {
@@ -278,8 +337,8 @@
           redirectTo: 'https://nefroquest.com',
           ...(captchaToken ? { captchaToken } : {})
         });
-        if (error) { _setAuthMsg(error.message, 'error'); }
-        else { _setAuthMsg('Link enviado! Verifique seu email.', 'success'); }
+        if (error) { _setAuthMsg('Não foi possível enviar o link agora. Tente novamente em instantes.', 'error'); }
+        else { _setAuthMsg('Se existir uma conta para este email, o link chegará em instantes.', 'success'); }
       } catch { _setAuthMsg('Erro de conexão. Tente novamente.', 'error'); }
       finally { btn.disabled = false; btn.textContent = 'Enviar Link de Redefinição'; _cfCaptchaReset(); }
     }
@@ -294,23 +353,83 @@
       el.className = 'auth-msg' + (type ? ' ' + type : '');
       el.style.display = msg ? 'block' : 'none';
     }
+    function _ensureSupaClient(entry) {
+      if (_supaClient) return true;
+      const message = 'O acesso está temporariamente indisponível. Recarregue a página e tente novamente.';
+      const routeStatus = document.getElementById('portalRouteStatus');
+      const modal = document.getElementById('authModal');
+      if (modal && !modal.classList.contains('show')) openAuthModal();
+      if (routeStatus) routeStatus.textContent = entry === 'google'
+        ? 'Google indisponível agora · recarregue e tente novamente'
+        : 'Serviço de acesso indisponível · tente novamente';
+      _setAuthMsg(message, 'error');
+      return false;
+    }
+    const AUTH_EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    function _clearAuthInvalid(ids) {
+      ids.forEach(id => {
+        const field = document.getElementById(id);
+        if (!field) return;
+        field.removeAttribute('aria-invalid');
+        const describedBy = (field.getAttribute('aria-describedby') || '')
+          .split(/\s+/)
+          .filter(token => token && token !== 'authMsg');
+        if (describedBy.length) field.setAttribute('aria-describedby', describedBy.join(' '));
+        else field.removeAttribute('aria-describedby');
+      });
+    }
+    function _markAuthInvalid(ids) {
+      ids.forEach(id => {
+        const field = document.getElementById(id);
+        if (!field) return;
+        field.setAttribute('aria-invalid', 'true');
+        const describedBy = new Set((field.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean));
+        describedBy.add('authMsg');
+        field.setAttribute('aria-describedby', Array.from(describedBy).join(' '));
+      });
+    }
     async function loginWithGoogle() {
-      if (!_supaClient) return;
+      if (!_ensureSupaClient('google')) return;
+      const buttons = Array.from(document.querySelectorAll('[data-action="loginWithGoogle"], [data-action="landingLoginGoogle"]'));
+      if (buttons.some(button => button.disabled)) return;
+      const routeStatus = document.getElementById('portalRouteStatus');
+      buttons.forEach(button => { button.disabled = true; button.setAttribute('aria-busy', 'true'); });
+      if (routeStatus) routeStatus.textContent = 'Abrindo acesso seguro com Google…';
       try {
         const { error } = await _supaClient.auth.signInWithOAuth({
           provider: 'google',
           options: { redirectTo: AUTH_REDIRECT_URL }
         });
-        if (error) _setAuthMsg(error.message, 'error');
-      } catch { _setAuthMsg('Erro de conexão. Tente novamente.', 'error'); }
+        if (error) {
+          openAuthModal();
+          _setAuthMsg('Não foi possível abrir o Google agora. Tente novamente.', 'error');
+          if (routeStatus) routeStatus.textContent = 'Google indisponível agora · tente novamente';
+        }
+      } catch {
+        openAuthModal();
+        _setAuthMsg('Não foi possível abrir o Google agora. Verifique sua conexão e tente novamente.', 'error');
+        if (routeStatus) routeStatus.textContent = 'Falha de conexão · tente novamente';
+      } finally {
+        buttons.forEach(button => { button.disabled = false; button.setAttribute('aria-busy', 'false'); });
+      }
     }
     async function authEmailLogin() {
-      if (!_supaClient) return;
+      if (!_ensureSupaClient('email')) return;
+      const btn = document.getElementById('authLoginBtn');
+      if (btn?.disabled) return;
       const email = document.getElementById('authEmail').value.trim();
       const password = document.getElementById('authPassword').value;
-      if (!email || !password) { _setAuthMsg('Preencha email e senha.', 'error'); return; }
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { _setAuthMsg('Digite um email válido.', 'error'); return; }
-      const btn = document.getElementById('authLoginBtn');
+      _clearAuthInvalid(['authEmail', 'authPassword']);
+      if (!email || !password) {
+        _setAuthMsg('Preencha email e senha.', 'error');
+        _markAuthInvalid([!email ? 'authEmail' : '', !password ? 'authPassword' : ''].filter(Boolean));
+        return;
+      }
+      if (!AUTH_EMAIL_PATTERN.test(email)) {
+        _setAuthMsg('Digite um email válido.', 'error');
+        _markAuthInvalid(['authEmail']);
+        return;
+      }
       btn.disabled = true; btn.textContent = 'Entrando...';
       const captchaToken = _cfCaptchaToken();
       try {
@@ -323,24 +442,48 @@
             ? 'Email ou senha incorretos.'
             : error.message === 'Email not confirmed'
               ? 'Email não confirmado. Verifique sua caixa de entrada e clique no link de ativação.'
-              : error.message;
+              : 'Não foi possível entrar agora. Tente novamente.';
           _setAuthMsg(msg, 'error');
+          _markAuthInvalid(['authEmail', 'authPassword']);
         } else { closeAuthModal(); }
       } catch { _setAuthMsg('Erro de conexão. Tente novamente.', 'error'); }
-      finally { btn.disabled = false; btn.textContent = 'Entrar na Jornada'; _cfCaptchaReset(); }
+      finally { btn.disabled = false; btn.textContent = 'Entrar no NefroQuest'; _cfCaptchaReset(); }
     }
     async function authEmailRegister() {
-      if (!_supaClient) return;
+      if (!_ensureSupaClient('email')) return;
+      const btn = document.getElementById('authRegBtn');
+      if (btn?.disabled) return;
       const name = document.getElementById('authDisplayName').value.trim();
       const specialty = document.getElementById('authSpecialty').value;
       const email = document.getElementById('authEmailReg').value.trim();
       const password = document.getElementById('authPasswordReg').value;
       const passwordConfirm = document.getElementById('authPasswordConfirm').value;
-      if (!name || !email || !password || !passwordConfirm) { _setAuthMsg('Preencha todos os campos.', 'error'); return; }
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { _setAuthMsg('Digite um email válido.', 'error'); return; }
-      if (password.length < 6) { _setAuthMsg('Senha deve ter pelo menos 6 caracteres.', 'error'); return; }
-      if (password !== passwordConfirm) { _setAuthMsg('As senhas não coincidem.', 'error'); return; }
-      const btn = document.getElementById('authRegBtn');
+      _clearAuthInvalid(['authDisplayName', 'authEmailReg', 'authPasswordReg', 'authPasswordConfirm']);
+      if (!name || !email || !password || !passwordConfirm) {
+        _setAuthMsg('Preencha todos os campos.', 'error');
+        _markAuthInvalid([
+          !name ? 'authDisplayName' : '',
+          !email ? 'authEmailReg' : '',
+          !password ? 'authPasswordReg' : '',
+          !passwordConfirm ? 'authPasswordConfirm' : ''
+        ].filter(Boolean));
+        return;
+      }
+      if (!AUTH_EMAIL_PATTERN.test(email)) {
+        _setAuthMsg('Digite um email válido.', 'error');
+        _markAuthInvalid(['authEmailReg']);
+        return;
+      }
+      if (password.length < 6) {
+        _setAuthMsg('Senha deve ter pelo menos 6 caracteres.', 'error');
+        _markAuthInvalid(['authPasswordReg']);
+        return;
+      }
+      if (password !== passwordConfirm) {
+        _setAuthMsg('As senhas não coincidem.', 'error');
+        _markAuthInvalid(['authPasswordReg', 'authPasswordConfirm']);
+        return;
+      }
       btn.disabled = true; btn.textContent = 'Criando conta...';
       const captchaToken = _cfCaptchaToken();
       try {
@@ -352,21 +495,28 @@
             ...(captchaToken ? { captchaToken } : {})
           }
         });
-        if (error) { _setAuthMsg(error.message, 'error'); }
+        if (error) {
+          const message = /already registered|already been registered/i.test(error.message || '')
+            ? 'Este email já possui cadastro. Entre ou redefina sua senha.'
+            : 'Não foi possível criar a conta agora. Tente novamente.';
+          _setAuthMsg(message, 'error');
+          _markAuthInvalid(['authEmailReg']);
+        }
         else {
           _setAuthMsg('Conta criada! Verifique seu email para confirmar.', 'success');
           const resendEl = document.getElementById('authResendWrap');
           if (resendEl) { resendEl.style.display = 'block'; resendEl.dataset.email = email; }
         }
       } catch { _setAuthMsg('Erro de conexão. Tente novamente.', 'error'); }
-      finally { btn.disabled = false; btn.textContent = 'Criar Conta'; _cfCaptchaReset(); }
+      finally { btn.disabled = false; btn.textContent = 'Criar conta gratuita'; _cfCaptchaReset(); }
     }
     async function authResendConfirmation() {
-      if (!_supaClient) return;
+      if (!_ensureSupaClient('email')) return;
       const el = document.getElementById('authResendWrap');
       const email = el ? el.dataset.email : '';
       if (!email) return;
       const btn = document.getElementById('authResendBtn');
+      if (btn?.disabled) return;
       btn.disabled = true; btn.textContent = 'Reenviando...';
       const captchaToken = _cfCaptchaToken();
       try {
@@ -374,7 +524,7 @@
           type: 'signup', email,
           ...(captchaToken ? { options: { captchaToken } } : {})
         });
-        _setAuthMsg(error ? error.message : 'Email reenviado! Verifique sua caixa de entrada e o spam.', error ? 'error' : 'success');
+        _setAuthMsg(error ? 'Não foi possível reenviar agora. Tente novamente em instantes.' : 'Email reenviado! Verifique sua caixa de entrada e o spam.', error ? 'error' : 'success');
       } catch { _setAuthMsg('Erro de conexão. Tente novamente.', 'error'); }
       finally { btn.disabled = false; btn.textContent = 'Reenviar email'; _cfCaptchaReset(); }
     }
@@ -399,7 +549,11 @@
 
     function playAsGuest() {
       _guestMode = true;
-      localStorage.setItem('nq_guest_mode', '1');
+      try { localStorage.setItem('nq_guest_mode', '1'); }
+      catch {
+        const routeStatus = document.getElementById('portalRouteStatus');
+        if (routeStatus) routeStatus.textContent = 'Sessão visitante ativa apenas nesta aba';
+      }
       const landing = document.getElementById('landingScreen');
       const welcome = document.getElementById('welcomeScreen');
       if (landing) landing.classList.add('hidden');
@@ -436,54 +590,131 @@
     }
 
     // ===== REDEFINIÇÃO DE SENHA =====
+    let _updatePasswordReturnFocus = null;
+
+    function _setPasswordBackgroundInert(value) {
+      ['landingScreen', 'welcomeScreen', 'mainApp'].forEach(id => {
+        const region = document.getElementById(id);
+        if (region) region.inert = value;
+      });
+    }
+
+    function closeUpdatePasswordModal() {
+      const modal = document.getElementById('updatePasswordModal');
+      if (!modal) return;
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+      modal.inert = true;
+      document.body.classList.remove('nql-auth-open');
+      _setPasswordBackgroundInert(false);
+      if (_updatePasswordReturnFocus && _updatePasswordReturnFocus.isConnected) {
+        _updatePasswordReturnFocus.focus({ preventScroll: true });
+      }
+      _updatePasswordReturnFocus = null;
+    }
+
     function showUpdatePasswordModal() {
       let modal = document.getElementById('updatePasswordModal');
       if (!modal) {
         modal = document.createElement('div');
         modal.id = 'updatePasswordModal';
-        modal.className = 'nq-overlay nq-overlay--top';
-        modal.style.cssText = 'background:rgba(0,0,0,0.92);z-index:10000;backdrop-filter:blur(10px);';
+        modal.className = 'nq-overlay nq-overlay--top nql-password-reset';
+        modal.dataset.nqUi = 'lumen';
+        modal.setAttribute('role', 'dialog');
+        modal.setAttribute('aria-modal', 'true');
+        modal.setAttribute('aria-labelledby', 'updatePasswordTitle');
+        modal.setAttribute('aria-describedby', 'updatePasswordDescription');
         modal.innerHTML = `
-          <div class="modal-panel" style="max-width:400px;margin:auto 0;">
-            <h2>🔑 Nova Senha</h2>
-            <p style="color:#a0b8d0;font-size:0.85rem;margin-bottom:16px;text-align:center;line-height:1.6">Digite sua nova senha para retomar a jornada.</p>
-            <div class="form-group">
-              <label>Nova Senha</label>
-              <input id="newPassword" type="password" placeholder="mín. 6 caracteres">
+          <div class="modal-panel nql-password-reset__panel">
+            <button type="button" class="auth-close-btn" data-action="closeUpdatePasswordModal" aria-label="Fechar redefinição de senha">✕</button>
+            <p class="nql-password-reset__eyebrow">Recuperação segura · Atlas NQ</p>
+            <h2 id="updatePasswordTitle">Defina sua nova senha.</h2>
+            <p id="updatePasswordDescription" class="nql-password-reset__description">Crie uma senha com pelo menos 6 caracteres para retomar sua jornada.</p>
+            <div class="auth-field">
+              <label for="newPassword">Nova senha</label>
+              <input id="newPassword" type="password" placeholder="mín. 6 caracteres" autocomplete="new-password" minlength="6" required aria-required="true">
             </div>
-            <div class="form-group">
-              <label>Confirmar Senha</label>
-              <input id="newPasswordConfirm" type="password" placeholder="repita a senha">
+            <div class="auth-field">
+              <label for="newPasswordConfirm">Confirmar senha</label>
+              <input id="newPasswordConfirm" type="password" placeholder="repita a senha" autocomplete="new-password" minlength="6" required aria-required="true">
             </div>
-            <div id="updatePwMsg" style="display:none;margin-bottom:12px;font-size:0.83rem;border-radius:6px;padding:8px 12px;"></div>
-            <div class="modal-actions">
-              <button data-action="saveNewPassword" style="background:linear-gradient(135deg,#c8960b,#ffd700);color:#1a0e00;border:none;font-weight:700;font-family:'Cinzel',serif;">Salvar Nova Senha</button>
-            </div>
+            <div id="updatePwMsg" class="nql-password-reset__message" role="status" aria-live="assertive" aria-atomic="true" tabindex="-1"></div>
+            <button type="button" id="updatePasswordSaveBtn" class="auth-submit-btn" data-action="saveNewPassword">Salvar nova senha</button>
           </div>
         `;
         document.body.appendChild(modal);
-      } else { modal.style.display = 'flex'; }
+
+        modal.addEventListener('keydown', event => {
+          if (event.key === 'Escape') {
+            event.preventDefault();
+            closeUpdatePasswordModal();
+            return;
+          }
+          if (event.key !== 'Tab') return;
+          const focusable = Array.from(modal.querySelectorAll('button:not([disabled]), input:not([disabled])'))
+            .filter(element => element.getClientRects().length && getComputedStyle(element).visibility !== 'hidden');
+          if (!focusable.length) return;
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+          }
+        });
+        ['newPassword', 'newPasswordConfirm'].forEach(id => {
+          document.getElementById(id)?.addEventListener('keydown', event => {
+            if (event.key === 'Enter') {
+              event.preventDefault();
+              saveNewPassword();
+            }
+          });
+        });
+      }
+
+      _updatePasswordReturnFocus = document.activeElement;
+      modal.style.display = 'grid';
+      modal.setAttribute('aria-hidden', 'false');
+      modal.inert = false;
+      document.body.classList.add('nql-auth-open');
+      _setPasswordBackgroundInert(true);
+      requestAnimationFrame(() => document.getElementById('newPassword')?.focus({ preventScroll: true }));
     }
+
     async function saveNewPassword() {
       const pwd = document.getElementById('newPassword').value;
       const confirm = document.getElementById('newPasswordConfirm').value;
       const msg = document.getElementById('updatePwMsg');
+      const btn = document.getElementById('updatePasswordSaveBtn');
+      if (btn?.disabled) return;
       const showMsg = (text, ok) => {
         msg.style.display = 'block';
-        msg.style.background = ok ? 'rgba(74,222,128,0.15)' : 'rgba(251,113,133,0.15)';
-        msg.style.color = ok ? '#4ade80' : '#fb7185';
+        msg.className = 'nql-password-reset__message ' + (ok ? 'success' : 'error');
+        msg.setAttribute('role', ok ? 'status' : 'alert');
         msg.textContent = text;
+        msg.focus({ preventScroll: true });
+        msg.scrollIntoView({ block: 'nearest', behavior: 'auto' });
       };
       if (pwd.length < 6) { showMsg('Senha deve ter pelo menos 6 caracteres.', false); return; }
       if (pwd !== confirm) { showMsg('As senhas não coincidem.', false); return; }
+      btn.disabled = true;
+      btn.setAttribute('aria-busy', 'true');
+      btn.textContent = 'Salvando...';
       try {
         const { error } = await _supaClient.auth.updateUser({ password: pwd });
-        if (error) { showMsg(error.message, false); }
+        if (error) { showMsg('Não foi possível atualizar a senha. Solicite um novo link e tente novamente.', false); }
         else {
           showMsg('Senha atualizada com sucesso!', true);
-          setTimeout(() => { document.getElementById('updatePasswordModal').style.display = 'none'; }, 1500);
+          setTimeout(closeUpdatePasswordModal, 1500);
         }
       } catch { showMsg('Erro de conexão. Tente novamente.', false); }
+      finally {
+        btn.disabled = false;
+        btn.setAttribute('aria-busy', 'false');
+        btn.textContent = 'Salvar nova senha';
+      }
     }
 
     // ===== ONBOARDING =====
@@ -524,6 +755,7 @@
     });
 
     window.saveNewPassword        = saveNewPassword;
+    window.closeUpdatePasswordModal = closeUpdatePasswordModal;
     window.openAuthModal          = openAuthModal;
     window.closeAuthModal         = closeAuthModal;
     window.switchAuthTab          = switchAuthTab;
@@ -535,6 +767,10 @@
     window.authKeyPress           = authKeyPress;  // mantido por compat — não mais usado pelo HTML
     window.loginWithGoogle        = loginWithGoogle;
     window.playAsGuest            = playAsGuest;
+    window.nqTurnstileReady       = nqTurnstileReady;
+    window.nqTurnstileExpired     = nqTurnstileExpired;
+    window.nqTurnstileError       = nqTurnstileError;
+    window.retryTurnstile         = retryTurnstile;
     window.showUpdatePasswordModal = showUpdatePasswordModal;
     window.toggleProfilePopup     = toggleProfilePopup;
     window.landingLoginGoogle     = landingLoginGoogle;
