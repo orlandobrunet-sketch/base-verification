@@ -1,0 +1,42 @@
+{
+  "batch": "FARM-10O",
+  "change_type": "medical_editorial",
+  "expected_version": "13.12",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-10O.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "d0ee3f9d": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "b5bfaf2c": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "e560d3c3": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "7215c49d": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "45ad0112": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "13/20", "verdict": "fundir", "publication": "LIBERADA"}},
+    "c9253ff5": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "12/20", "verdict": "aposentar", "publication": "LIBERADA"}}
+  },
+  "expected_question_delta": -2,
+  "refs_policy": "declared",
+  "references": {
+    "brenner_rector": "existing_verified",
+    "clinical_methods_bun_creatinine": "new_verified",
+    "clinical_methods_proteinuria": "new_verified",
+    "kdigo_lipids_ckd_2013": "new_verified",
+    "sharp_study": "existing_verified"
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Lote DRC residual focado em interpretação laboratorial e lípides: Bence-Jones/dipstick, creatinina após carne cozida e estatinas na DRC.",
+    "b5bfaf2c preservado como âncora clínica de Bence-Jones; 45ad0112 fundido por duplicidade direta; c9253ff5 aposentado por baixo valor pedagógico contemporâneo do teste térmico.",
+    "d0ee3f9d separa a recomendação de não iniciar estatina de rotina em diálise crônica; 7215c49d separa benefício cardiovascular de nefroproteção.",
+    "Novos cards adicionados com resumo, conclusão e curiosidade no padrão do Grimório.",
+    "Bump canônico 13.11 -> 13.12 por mudança em data/topics.js e data/refs.js."
+  ]
+}
