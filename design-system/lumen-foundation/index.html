@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#070a13">
+  <title>Fundação 0 — Kit Lúmen Vivo | NefroQuest</title>
+  <link rel="icon" href="/landing/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,600;0,700;1,500;1,600&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/lumen/tokens.css?v=13.13">
+  <link rel="stylesheet" href="/styles/lumen/components.css?v=13.13">
+  <link rel="stylesheet" href="/styles/lumen/motion.css?v=13.13">
+  <script defer src="/design-system/lumen-foundation/lab.js?v=13.13"></script>
+</head>
+<body data-nq-ui="lumen" data-lumen-state="reasoning" data-motion="running">
+  <a class="nql-skip-link" href="#foundationMain">Ir para o conteúdo</a>
+
+  <div class="nql-page">
+    <header class="nql-topbar" aria-label="Cabeçalho do laboratório Lúmen">
+      <div class="nql-wrap nql-topbar__inner">
+        <a class="nql-brand" href="/" aria-label="Voltar para NefroQuest">Nefro<em>Quest</em></a>
+        <p class="nql-build-mark">Fundação 0 · <strong>Atlas Operativo</strong></p>
+        <button class="nql-button nql-button--secondary nql-motion-control" id="motionToggle" type="button" aria-pressed="false">
+          <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+            <path d="M4.5 3.25v11.5M13.5 3.25v11.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/>
+          </svg>
+          <span class="nql-button__label-long">Pausar fluxo</span>
+          <span class="nql-sr-only nql-button__label-short">Movimento</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="foundationMain">
+      <section class="nql-wrap nql-hero" aria-labelledby="foundationTitle">
+        <div class="nql-hero__copy">
+          <p class="nql-eyebrow">Sistema interno · precisão clínica em movimento</p>
+          <h1 id="foundationTitle">Toda decisão deixa um <em>traço.</em></h1>
+          <p class="nql-hero__intro">
+            A Fundação 0 transforma raciocínio, evidência e domínio em uma linguagem única para o jogo. Esta prancha é um instrumento de calibração — ainda não é uma tela final.
+          </p>
+          <ul class="nql-hero__facts" aria-label="Critérios da Fundação 0">
+            <li>WCAG 2.2 AA</li>
+            <li>Desktop e mobile</li>
+            <li>Movimento reduzido</li>
+          </ul>
+        </div>
+
+        <section class="nql-calibrator nql-hilar nql-hilar--active" aria-labelledby="calibratorTitle" data-nql-calibrator>
+          <span class="nql-hilar-port" aria-hidden="true">
+            <svg viewBox="0 0 160 52" focusable="false">
+              <path class="nql-hilar-port__bed" d="M0 26h43c11 0 16-4 22-14 5-8 13-8 18 0l14 22c6 10 15 10 21 0l5-8h37"/>
+              <path class="nql-hilar-port__branch" d="M97 34c1-14 10-24 28-29"/>
+              <path class="nql-hilar-port__current" d="M0 26h43c11 0 16-4 22-14 5-8 13-8 18 0l14 22"/>
+              <path class="nql-hilar-port__pulse" d="M0 26h43c11 0 16-4 22-14 5-8 13-8 18 0l14 22"/>
+              <path class="nql-hilar-port__exit" d="M97 34c6 10 15 10 21 0l5-8h37"/>
+              <circle class="nql-hilar-port__node" cx="97" cy="34" r="3"/>
+            </svg>
+          </span>
+          <div class="nql-calibrator__head">
+            <span class="nql-calibrator__state" id="calibratorState">Raciocínio em curso</span>
+            <span class="nql-calibrator__hint">Mova o cursor ou selecione um estado</span>
+          </div>
+
+          <div class="nql-conduit" role="group" aria-label="Semântica do fluxo Lúmen">
+            <button class="nql-state-node" type="button" data-nql-state="unexplored" aria-pressed="false">
+              <span>Inexplorado</span>
+            </button>
+            <button class="nql-state-node" type="button" data-nql-state="reasoning" aria-pressed="true">
+              <span>Raciocínio</span>
+            </button>
+            <button class="nql-state-node" type="button" data-nql-state="mastery" aria-pressed="false">
+              <span>Maestria</span>
+            </button>
+            <button class="nql-state-node" type="button" data-nql-state="corruption" aria-pressed="false">
+              <span>Risco</span>
+            </button>
+          </div>
+
+          <div class="nql-calibrator__copy">
+            <h2 id="calibratorTitle">O sistema acompanha a decisão.</h2>
+            <p id="calibratorDescription">A corrente ciano sinaliza que o raciocínio está ativo sem competir com a leitura clínica.</p>
+          </div>
+        </section>
+      </section>
+
+      <section class="nql-slice" aria-labelledby="languageTitle" data-observe>
+        <div class="nql-wrap">
+          <div class="nql-slice__head">
+            <p class="nql-instrument-label">Voz e matéria</p>
+            <div>
+              <h2 id="languageTitle">Editorial para pensar. Instrumental para confiar.</h2>
+              <p>A serifada conduz decisões e recompensas; a leitura clínica permanece limpa; o mono identifica estado, fonte e mecanismo.</p>
+            </div>
+          </div>
+
+          <div class="nql-grid-12">
+            <article class="nql-type-specimen nql-span-7" aria-label="Amostra tipográfica">
+              <div>
+                <p class="nql-type-specimen__display">Clareza antes da <em>certeza.</em></p>
+                <p class="nql-type-specimen__reading">Uma interface de aprendizagem precisa deixar o enunciado respirar, tornar a escolha inequívoca e revelar onde o raciocínio desviou.</p>
+              </div>
+              <div class="nql-type-specimen__meta">
+                <span>Alegreya · decisão</span>
+                <span>Source Sans 3 · leitura</span>
+                <span>IBM Plex Mono · evidência</span>
+              </div>
+            </article>
+
+            <dl class="nql-palette nql-span-5" aria-label="Paleta semântica Lúmen">
+              <div class="nql-tone" data-tone="abyss">
+                <dt>Abismo</dt>
+                <dd>#070A13 · profundidade</dd>
+              </div>
+              <div class="nql-tone" data-tone="cortex">
+                <dt>Córtex</dt>
+                <dd>#111A2E · superfície</dd>
+              </div>
+              <div class="nql-tone" data-tone="parchment">
+                <dt>Pergaminho</dt>
+                <dd>#EFE6D2 · leitura</dd>
+              </div>
+              <div class="nql-tone" data-tone="lumen">
+                <dt>Lúmen</dt>
+                <dd>#91DFE3 · ação atual</dd>
+              </div>
+              <div class="nql-tone" data-tone="mastery">
+                <dt>Maestria</dt>
+                <dd>#F1CF7A · domínio</dd>
+              </div>
+              <div class="nql-tone" data-tone="corruption">
+                <dt>Corrupção</dt>
+                <dd>#8050A6 · risco excepcional</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="nql-slice" aria-labelledby="controlsTitle" data-observe>
+        <div class="nql-wrap">
+          <div class="nql-slice__head">
+            <p class="nql-instrument-label">Ação e resposta</p>
+            <div>
+              <h2 id="controlsTitle">Cada controle diz exatamente o que acontece.</h2>
+              <p>Dourado avança a jornada, ciano trabalha o estado atual e ações textuais permanecem discretas. Erro nunca depende apenas de cor.</p>
+            </div>
+          </div>
+
+          <div class="nql-grid-12">
+            <article class="nql-control-stack nql-span-5" aria-labelledby="actionsTitle">
+              <div>
+                <p class="nql-instrument-label">Ações</p>
+                <h3 id="actionsTitle">Hierarquia operacional</h3>
+              </div>
+              <div class="nql-control-row">
+                <button class="nql-button nql-button--primary" id="openFoundationDialog" type="button">Testar diálogo</button>
+                <button class="nql-button nql-button--secondary" id="loadingDemo" type="button" aria-busy="false">
+                  <span class="nql-button__spinner" aria-hidden="true"></span>
+                  <span>Calibrar sessão</span>
+                </button>
+              </div>
+              <div class="nql-control-row">
+                <a class="nql-button nql-button--quiet" href="#appShellTitle">Ver app shell</a>
+                <button class="nql-button nql-button--secondary" type="button" disabled>Indisponível</button>
+              </div>
+              <div class="nql-control-row" aria-label="Estados de interface">
+                <span class="nql-status-mark">Em raciocínio</span>
+                <span class="nql-status-mark" data-status="success">Pronto</span>
+                <span class="nql-status-mark" data-status="mastery">Consolidado</span>
+                <span class="nql-status-mark" data-status="danger">Requer atenção</span>
+              </div>
+            </article>
+
+            <form class="nql-field-stack nql-span-7" id="foundationForm" novalidate aria-labelledby="fieldTitle">
+              <div>
+                <p class="nql-instrument-label">Campo e validação</p>
+                <h3 id="fieldTitle">Direção clara para corrigir</h3>
+              </div>
+              <div class="nql-field">
+                <label for="priorityTopic">Tema prioritário</label>
+                <input class="nql-field__control" id="priorityTopic" name="priorityTopic" type="text" autocomplete="off" aria-describedby="priorityTopicHelp priorityTopicError" placeholder="Ex.: distúrbios hidroeletrolíticos">
+                <p class="nql-field__help" id="priorityTopicHelp">Escolha o primeiro domínio que deseja calibrar.</p>
+                <p class="nql-field__error" id="priorityTopicError" hidden>Informe um tema antes de calibrar a interface.</p>
+              </div>
+              <div class="nql-control-row">
+                <button class="nql-button nql-button--primary" type="submit">Salvar prioridade</button>
+                <button class="nql-button nql-button--quiet" id="clearPriority" type="button">Limpar campo</button>
+              </div>
+              <p class="nql-form-status" id="foundationFormStatus" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="nql-slice" aria-labelledby="flowTitle" data-observe>
+        <div class="nql-wrap">
+          <div class="nql-slice__head">
+            <p class="nql-instrument-label">Estrutura do raciocínio</p>
+            <div>
+              <h2 id="flowTitle">Texto estável. Fluxo responsivo.</h2>
+              <p>A Junção Hilar abre a superfície para a corrente sem colocar parágrafos sobre anatomia. O painel mantém a leitura no lugar enquanto o estado muda.</p>
+            </div>
+          </div>
+
+          <div class="nql-grid-12">
+            <article class="nql-panel nql-hilar nql-hilar--active nql-span-7" aria-labelledby="deckTitle">
+              <span class="nql-hilar-port" aria-hidden="true">
+                <svg viewBox="0 0 160 52" focusable="false">
+                  <path class="nql-hilar-port__bed" d="M0 26h43c11 0 16-4 22-14 5-8 13-8 18 0l14 22c6 10 15 10 21 0l5-8h37"/>
+                  <path class="nql-hilar-port__branch" d="M97 34c1-14 10-24 28-29"/>
+                  <path class="nql-hilar-port__current" d="M0 26h43c11 0 16-4 22-14 5-8 13-8 18 0l14 22"/>
+                  <path class="nql-hilar-port__pulse" d="M0 26h43c11 0 16-4 22-14 5-8 13-8 18 0l14 22"/>
+                  <path class="nql-hilar-port__exit" d="M97 34c6 10 15 10 21 0l5-8h37"/>
+                  <circle class="nql-hilar-port__node" cx="97" cy="34" r="3"/>
+                </svg>
+              </span>
+              <div class="nql-panel__head">
+                <div>
+                  <p class="nql-instrument-label">Trilho de decisão</p>
+                  <h3 id="deckTitle">Uma decisão, três momentos</h3>
+                </div>
+                <span class="nql-status-mark">Ativo</span>
+              </div>
+
+              <div class="nql-tabs" data-nql-tabs>
+                <div class="nql-tablist" role="tablist" aria-label="Momentos do aprendizado">
+                  <button class="nql-tab" id="tabDecision" type="button" role="tab" aria-selected="true" aria-controls="panelDecision" tabindex="0">Decisão</button>
+                  <button class="nql-tab" id="tabLearning" type="button" role="tab" aria-selected="false" aria-controls="panelLearning" tabindex="-1">Aprendizado</button>
+                  <button class="nql-tab" id="tabEvidence" type="button" role="tab" aria-selected="false" aria-controls="panelEvidence" tabindex="-1">Evidência</button>
+                </div>
+
+                <div class="nql-tabpanel" id="panelDecision" role="tabpanel" aria-labelledby="tabDecision" tabindex="0">
+                  <h4>Qual caminho preserva o raciocínio clínico?</h4>
+                  <p>As alternativas se comportam como ramos do mesmo fluxo. Selecionar não confirma; apenas torna a intenção visível.</p>
+                  <div class="nql-branches" aria-label="Exemplo de alternativas">
+                    <button class="nql-branch" type="button" aria-pressed="true">
+                      <span class="nql-branch__key">A</span>
+                      <span>Interpretar o contexto antes da conduta</span>
+                      <span class="nql-branch__state" data-idle-label="Disponível">Selecionada</span>
+                    </button>
+                    <button class="nql-branch" type="button" aria-pressed="false">
+                      <span class="nql-branch__key">B</span>
+                      <span>Responder pela primeira associação disponível</span>
+                      <span class="nql-branch__state" data-idle-label="Disponível">Disponível</span>
+                    </button>
+                    <button class="nql-branch" type="button" aria-pressed="false" data-result="mastery">
+                      <span class="nql-branch__key">C</span>
+                      <span>Revisar o ponto decisivo com a evidência</span>
+                      <span class="nql-branch__state" data-idle-label="Consolida">Consolida</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="nql-tabpanel" id="panelLearning" role="tabpanel" aria-labelledby="tabLearning" tabindex="0" hidden>
+                  <h4>O erro revela o ponto de desvio.</h4>
+                  <p>O feedback nomeia a armadilha, reorganiza o raciocínio e oferece um próximo passo. Não há tremor, explosão ou punição visual.</p>
+                  <div class="nql-control-row">
+                    <span class="nql-status-mark" data-status="danger">Ponto de desvio</span>
+                    <span class="nql-status-mark" data-status="success">Conduta reorganizada</span>
+                  </div>
+                </div>
+
+                <div class="nql-tabpanel" id="panelEvidence" role="tabpanel" aria-labelledby="tabEvidence" tabindex="0" hidden>
+                  <h4>A evidência fecha o circuito.</h4>
+                  <p>Diretriz, comentário e resumo aparecem na mesma espinha visual, com origem e utilidade claras para quem estuda ou se atualiza.</p>
+                  <div class="nql-control-row">
+                    <span class="nql-status-mark" data-status="mastery">38 diretrizes</span>
+                    <span class="nql-status-mark">198 comentadas</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <aside class="nql-panel nql-panel--lined nql-span-5" aria-labelledby="evidenceTitle">
+              <div class="nql-panel__head">
+                <div>
+                  <p class="nql-instrument-label">Espinha de evidências</p>
+                  <h3 id="evidenceTitle">Fontes que sustentam a decisão</h3>
+                </div>
+                <span class="nql-status-mark" data-status="mastery">Verificada</span>
+              </div>
+              <ol class="nql-evidence">
+                <li>
+                  <span class="nql-evidence__index">01</span>
+                  <div><strong>Diretrizes clínicas</strong><p>Recomendação e contexto de aplicação.</p></div>
+                  <span class="nql-evidence__type">38 no sistema</span>
+                </li>
+                <li>
+                  <span class="nql-evidence__index">02</span>
+                  <div><strong>Referências comentadas</strong><p>O que muda no raciocínio e na conduta.</p></div>
+                  <span class="nql-evidence__type">198 leituras</span>
+                </li>
+                <li>
+                  <span class="nql-evidence__index">03</span>
+                  <div><strong>Resumos de artigos</strong><p>Atualização objetiva para a especialidade.</p></div>
+                  <span class="nql-evidence__type">191 resumos</span>
+                </li>
+              </ol>
+            </aside>
+
+            <div class="nql-mastery nql-span-12" aria-labelledby="masteryTitle">
+              <div class="nql-mastery__head">
+                <strong id="masteryTitle">Trilho de maestria</strong>
+                <span class="nql-mastery__value">68% · estágio interpretativo</span>
+              </div>
+              <div class="nql-mastery__track">
+                <progress max="100" value="68" aria-label="Domínio renal: 68%. Etapa atual: interpretar. Próximo marco: aplicar.">68%</progress>
+                <span class="nql-mastery__marks" aria-hidden="true">
+                  <i class="is-reached"></i>
+                  <i class="is-current"></i>
+                  <i></i>
+                </span>
+              </div>
+              <div class="nql-mastery__labels" aria-hidden="true">
+                <span>Origem · reconhecer</span>
+                <span>Agora · interpretar</span>
+                <span>Próximo marco · aplicar</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="nql-slice" aria-labelledby="appShellTitle" data-observe>
+        <div class="nql-wrap">
+          <div class="nql-slice__head">
+            <p class="nql-instrument-label">Anatomia da tela</p>
+            <div>
+              <h2 id="appShellTitle">Contexto, decisão e ação ocupam lugares diferentes.</h2>
+              <p>O app shell 3/6/3 mantém a pergunta no centro, situa a jornada à esquerda e deixa ações persistentes no dock. No celular, essa ordem vira contexto → decisão → ação.</p>
+            </div>
+          </div>
+
+          <div class="nql-app-shell" aria-label="Prévia estrutural do app shell Lúmen">
+            <aside class="nql-app-shell__context" aria-labelledby="appContextTitle">
+              <p class="nql-instrument-label">Contexto</p>
+              <h3 id="appContextTitle">Jornada atual</h3>
+              <ul class="nql-context-list">
+                <li><small>Tema</small>Distúrbios eletrolíticos</li>
+                <li><small>Etapa</small>Interpretar o ponto decisivo</li>
+                <li><small>Ritmo</small>Revisão adaptativa</li>
+              </ul>
+            </aside>
+
+            <article class="nql-app-shell__stage">
+              <p class="nql-instrument-label">Palco de decisão</p>
+              <h3 class="nql-stage-question">O enunciado tem prioridade absoluta de leitura.</h3>
+              <p>Interface, personagem e progresso apoiam a escolha sem cercar o texto de ruído.</p>
+              <div class="nql-stage-route" aria-hidden="true"><span></span><span></span><span></span></div>
+            </article>
+
+            <aside class="nql-app-shell__dock" aria-labelledby="appDockTitle">
+              <p class="nql-instrument-label">Dock</p>
+              <h3 id="appDockTitle">Próximas ações</h3>
+              <ul class="nql-dock-list">
+                <li><small>Oráculo</small>Investigar raciocínio</li>
+                <li><small>Evidência</small>Abrir referências</li>
+                <li><small>Maestria</small>Ver impacto</li>
+              </ul>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="nql-wrap nql-footer">
+      <span>NefroQuest · Fundação 0 · candidata à aprovação</span>
+      <span>Camada isolada · nenhuma tela do jogo foi migrada</span>
+    </footer>
+  </div>
+
+  <dialog class="nql-dialog" id="foundationDialog" aria-labelledby="foundationDialogTitle" aria-describedby="foundationDialogDescription">
+    <div class="nql-dialog__surface nql-hilar nql-hilar--active">
+      <span class="nql-hilar-port" aria-hidden="true">
+        <svg viewBox="0 0 160 52" focusable="false">
+          <path class="nql-hilar-port__bed" d="M0 26h43c11 0 16-4 22-14 5-8 13-8 18 0l14 22c6 10 15 10 21 0l5-8h37"/>
+          <path class="nql-hilar-port__branch" d="M97 34c1-14 10-24 28-29"/>
+          <path class="nql-hilar-port__current" d="M0 26h43c11 0 16-4 22-14 5-8 13-8 18 0l14 22"/>
+          <path class="nql-hilar-port__pulse" d="M0 26h43c11 0 16-4 22-14 5-8 13-8 18 0l14 22"/>
+          <path class="nql-hilar-port__exit" d="M97 34c6 10 15 10 21 0l5-8h37"/>
+          <circle class="nql-hilar-port__node" cx="97" cy="34" r="3"/>
+        </svg>
+      </span>
+      <div class="nql-dialog__head">
+        <div>
+          <p class="nql-instrument-label">Contrato de diálogo</p>
+          <h2 id="foundationDialogTitle" tabindex="-1">Confirmar trilho de estudo</h2>
+        </div>
+        <button class="nql-button nql-button--icon" type="button" data-nql-dialog-close aria-label="Fechar diálogo">
+          <svg viewBox="0 0 18 18" aria-hidden="true"><path d="M4 4l10 10M14 4L4 14"/></svg>
+        </button>
+      </div>
+      <p class="nql-dialog__description" id="foundationDialogDescription">O diálogo contém o foco, fecha com Escape e devolve o foco ao controle que o abriu.</p>
+      <div class="nql-dialog__body">
+        <div class="nql-field">
+          <label for="dialogStage">Etapa inicial</label>
+          <select class="nql-field__control" id="dialogStage" name="dialogStage">
+            <option>Interpretar o ponto decisivo</option>
+            <option>Revisar a evidência</option>
+            <option>Consolidar a maestria</option>
+          </select>
+          <p class="nql-field__help">Você poderá alterar essa escolha durante a sessão.</p>
+        </div>
+      </div>
+      <div class="nql-dialog__actions">
+        <button class="nql-button nql-button--secondary" type="button" data-nql-dialog-close>Voltar</button>
+        <button class="nql-button nql-button--primary" type="button" data-nql-dialog-confirm>Confirmar trilho</button>
+      </div>
+    </div>
+  </dialog>
+
+  <p class="nql-sr-only" id="foundationLive" role="status" aria-live="polite"></p>
+</body>
+</html>

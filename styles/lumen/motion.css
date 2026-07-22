@@ -1,0 +1,117 @@
+/* NefroQuest — Fundação 0 / movimento com significado */
+
+@keyframes nql-enter {
+  from { opacity: 0; transform: translateY(.65rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes nql-current {
+  0%, 100% { background-position: 0 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes nql-port-current {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: -168; }
+}
+
+@keyframes nql-spin {
+  to { transform: rotate(1turn); }
+}
+
+@keyframes nql-dialog-enter {
+  from { opacity: 0; transform: translateY(.75rem) scale(.99); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes nql-backdrop-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+[data-nq-ui="lumen"] .nql-hero__copy,
+[data-nq-ui="lumen"] .nql-calibrator {
+  animation: nql-enter var(--nql-duration-reward) var(--nql-ease-enter) both;
+}
+
+[data-nq-ui="lumen"] .nql-calibrator {
+  animation-delay: 100ms;
+}
+
+[data-nq-ui="lumen"] .nql-calibrator.is-port-live .nql-conduit::before {
+  background-size: 220% 100%;
+  animation: nql-current 3.6s ease-in-out infinite;
+}
+
+[data-nq-ui="lumen"] .nql-hilar--active.is-port-live .nql-hilar-port__pulse {
+  stroke-dasharray: 18 150;
+  animation: nql-port-current 1.8s linear infinite;
+}
+
+[data-nq-ui="lumen"] .nql-button__spinner {
+  animation: nql-spin .75s linear infinite;
+}
+
+[data-nq-ui="lumen"] .nql-dialog[open] .nql-dialog__surface {
+  animation: nql-dialog-enter var(--nql-duration-panel) var(--nql-ease-enter) both;
+}
+
+[data-nq-ui="lumen"] .nql-dialog[open]::backdrop {
+  animation: nql-backdrop-enter var(--nql-duration-panel) ease both;
+}
+
+[data-nq-ui="lumen"] .nql-slice[data-observe] {
+  transform: translateY(.5rem);
+  transition: transform var(--nql-duration-panel) var(--nql-ease-enter);
+}
+
+[data-nq-ui="lumen"] .nql-slice[data-observe].is-in-view {
+  transform: translateY(0);
+}
+
+[data-nq-ui="lumen"][data-motion="paused"] *,
+[data-nq-ui="lumen"][data-motion="paused"] *::before,
+[data-nq-ui="lumen"][data-motion="paused"] *::after {
+  animation-play-state: paused;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  [data-nq-ui="lumen"] .nql-state-node:hover::before {
+    border-color: var(--nql-current);
+    transform: scale(1.02);
+  }
+
+  [data-nq-ui="lumen"] .nql-branch:hover {
+    border-color: var(--nql-line-strong);
+    background: rgba(var(--nql-lumen-rgb), .045);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-nq-ui="lumen"] *,
+  [data-nq-ui="lumen"] *::before,
+  [data-nq-ui="lumen"] *::after {
+    scroll-behavior: auto;
+    animation-duration: .01ms;
+    animation-iteration-count: 1;
+    transition-duration: .01ms;
+    transition-delay: 0ms;
+  }
+
+  [data-nq-ui="lumen"] .nql-hero__copy,
+  [data-nq-ui="lumen"] .nql-calibrator,
+  [data-nq-ui="lumen"] .nql-slice[data-observe] {
+    opacity: 1;
+    transform: none;
+  }
+
+  [data-nq-ui="lumen"] .nql-calibrator.is-port-live .nql-conduit::before {
+    animation: none;
+    background-position: 50% 50%;
+  }
+
+  [data-nq-ui="lumen"] .nql-hilar-port__pulse,
+  [data-nq-ui="lumen"] .nql-button__spinner {
+    animation: none;
+  }
+}
