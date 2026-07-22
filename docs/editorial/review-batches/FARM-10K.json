@@ -1,0 +1,40 @@
+{
+  "batch": "FARM-10K",
+  "change_type": "medical_editorial",
+  "expected_version": "13.08",
+  "allowed_files": [
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-10K.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "9482bda7": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "21e9cefb": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "c9da6fdf": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "87fa083f": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "PARCIALMENTE VERIFICADA", "pending": "NÃO DECISIVA", "score": "12/20", "verdict": "aposentar/fundir", "publication": "LIBERADA"}},
+    "a2111fde": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "13/20", "verdict": "aposentar/fundir", "publication": "LIBERADA"}},
+    "b3f1c7b4": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "13/20", "verdict": "aposentar/fundir", "publication": "LIBERADA"}},
+    "3659f114": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "PARCIALMENTE VERIFICADA", "pending": "NÃO DECISIVA", "score": "11/20", "verdict": "aposentar/fundir", "publication": "LIBERADA"}}
+  },
+  "expected_question_delta": -4,
+  "refs_policy": "unchanged",
+  "references": {
+    "kdigo_ckd_mbd_2017": "existing_verified"
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "9482bda7 foi reconstruída como âncora integrada de hiperparatireoidismo secundário na DRC: retenção de fosfato, menor calcitriol e tendência à hipocalcemia.",
+    "21e9cefb foi reconstruída para explicar hipocalcemia na DRC sem reduzir o mecanismo apenas a complexos cálcio-fosfato.",
+    "c9da6fdf foi reconstruída com referência KDIGO CKD-MBD 2017 e linguagem de transdiferenciação osteogênica vascular.",
+    "87fa083f foi aposentada por supercentralizar deficiência de Klotho/resistência ao FGF23 como gatilho principal em pergunta básica de DMO-DRC.",
+    "a2111fde e b3f1c7b4 foram aposentadas como duplicatas downstream já cobertas por 9482bda7, 21e9cefb e FARM-10J.",
+    "3659f114 foi aposentada por misturar DRC G4 não dialítica, nódulo paratireoidiano e calcimimético como conduta/implicação de forma excessivamente específica e potencialmente insegura.",
+    "Bump canônico 13.07 -> 13.08 por mudança em data/topics.js."
+  ]
+}
