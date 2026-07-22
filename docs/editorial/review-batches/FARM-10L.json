@@ -1,0 +1,44 @@
+{
+  "batch": "FARM-10L",
+  "change_type": "medical_editorial",
+  "expected_version": "13.09",
+  "allowed_files": [
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-10L.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "6cd39dfb": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "8d943d85": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "f781f397": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "61cff858": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "a843e7d0": {"action": "rebuild", "preserve_fsrs": true, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NENHUMA", "score": "18/20", "verdict": "aprovada", "publication": "LIBERADA"}},
+    "4d93de04": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "13/20", "verdict": "aposentar/fundir", "publication": "LIBERADA"}},
+    "d0137175": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "PARCIALMENTE VERIFICADA", "pending": "NÃO DECISIVA", "score": "12/20", "verdict": "aposentar/fundir", "publication": "LIBERADA"}},
+    "8c0e2119": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "13/20", "verdict": "aposentar/fundir", "publication": "LIBERADA"}},
+    "afb5064c": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "13/20", "verdict": "aposentar/fundir", "publication": "LIBERADA"}},
+    "36f25d5c": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "13/20", "verdict": "aposentar/fundir", "publication": "LIBERADA"}},
+    "0a91548b": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "13/20", "verdict": "aposentar/fundir", "publication": "LIBERADA"}},
+    "dae66cc3": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "PARCIALMENTE VERIFICADA", "pending": "NÃO DECISIVA", "score": "12/20", "verdict": "aposentar/fundir", "publication": "LIBERADA"}},
+    "cd3315d5": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "PARCIALMENTE VERIFICADA", "pending": "NÃO DECISIVA", "score": "12/20", "verdict": "aposentar/fundir", "publication": "LIBERADA"}},
+    "a2f49bec": {"action": "retire", "preserve_fsrs": false, "editorial_gate": {"evidence": "VERIFICADA", "pending": "NÃO DECISIVA", "score": "13/20", "verdict": "aposentar/fundir", "publication": "LIBERADA"}}
+  },
+  "expected_question_delta": -9,
+  "refs_policy": "unchanged",
+  "references": {
+    "dapa": "existing_verified",
+    "empa_kidney": "existing_verified"
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "O lote consolidou DAPA-CKD e EMPA-KIDNEY em cinco âncoras: critérios DAPA, benefício sem diabetes, população ampliada EMPA, desfecho primário EMPA e dip inicial da TFGe.",
+    "Foram aposentadas duplicatas de TFGe baixa/albuminúria/subgrupos e itens de trivia de protocolo ou componentes isolados com baixo valor pedagógico.",
+    "Bump canônico 13.08 -> 13.09 por mudança em data/topics.js."
+  ]
+}
