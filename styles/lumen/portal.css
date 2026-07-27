@@ -339,14 +339,9 @@ body:has(#landingScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   content: "";
 }
 
-.nql-hilar-port--bridge {
-  top: -1.65rem;
-  left: -5.8rem;
-  width: 10rem;
-  height: 3.25rem;
-}
-
 .nql-portal__entry-head {
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: start;
   justify-content: space-between;
@@ -354,6 +349,21 @@ body:has(#landingScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   gap: 1rem;
   padding-bottom: 1.25rem;
   border-bottom: 1px solid var(--nql-line);
+}
+
+.nql-portal__entry-head::after {
+  position: absolute;
+  right: auto;
+  bottom: 0;
+  left: 0;
+  width: 28%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--nql-lumen) 42%, var(--nql-mastery) 62%, transparent);
+  content: "";
+  opacity: 0;
+  transform: translateX(-105%);
+  animation: nql-portal-entry-current 3.8s var(--nql-ease-state) infinite;
+  pointer-events: none;
 }
 
 .nql-portal__entry-head h2 {
@@ -1226,6 +1236,18 @@ body.nql-auth-open {
   to { transform: translateX(0); }
 }
 
+@keyframes nql-portal-entry-current {
+  0% {
+    opacity: 0;
+    transform: translateX(-105%);
+  }
+  16% { opacity: .72; }
+  68% { opacity: 1; }
+  100% {
+    opacity: 0;
+    transform: translateX(365%);
+  }
+}
 @media (max-width: 64rem) {
   .nql-portal__main {
     grid-template-columns: minmax(0, 1fr) minmax(26rem, 31rem);
@@ -1233,7 +1255,6 @@ body.nql-auth-open {
   }
 
   .nql-portal__story h1 { font-size: clamp(3.5rem, 7vw, 5.1rem); }
-  .nql-hilar-port--bridge { left: -4.2rem; width: 8.4rem; }
 }
 
 @media (max-width: 52rem) {
@@ -1268,12 +1289,6 @@ body.nql-auth-open {
 
   .nql-portal__journey {
     margin-top: 2.8rem;
-  }
-
-  .nql-hilar-port--bridge {
-    top: -1.75rem;
-    left: 1.4rem;
-    width: 9.4rem;
   }
 
   #authModal[data-nq-ui="lumen"] .nql-portal-auth {
@@ -1402,8 +1417,11 @@ body.nql-auth-open {
     transform: none;
   }
 
-  #landingScreen[data-nq-ui="lumen"] .nql-hilar--active.is-port-live .nql-hilar-port__pulse {
+  .nql-portal__entry-head::after {
+    width: 4.5rem;
     animation: none;
+    opacity: .72;
+    transform: none;
   }
 
   .nql-portal__back svg,

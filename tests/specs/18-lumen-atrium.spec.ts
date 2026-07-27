@@ -27,8 +27,8 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
     const stylesheets = await page.locator('link[rel="stylesheet"]').evaluateAll((links) =>
       links.map((link) => new URL((link as HTMLLinkElement).href).pathname + new URL((link as HTMLLinkElement).href).search)
     );
-    expect(stylesheets).toContain('/styles/lumen/atrium.css?v=13.22');
-    await expect(page.locator('script[src="js/atrium.js?v=13.22"]')).toHaveCount(1);
+    expect(stylesheets).toContain('/styles/lumen/atrium.css?v=13.23');
+    await expect(page.locator('script[src="js/atrium.js?v=13.23"]')).toHaveCount(1);
 
     const actions = await page.locator('#welcomeScreen [data-action]').evaluateAll((elements) =>
       elements.map((element) => ({
