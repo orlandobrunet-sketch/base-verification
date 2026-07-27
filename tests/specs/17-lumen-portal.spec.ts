@@ -64,6 +64,27 @@ test.describe('Página 1 — Portal de Acesso Lúmen', () => {
     }
   });
 
+  test('mantém o conduto como uma linha única alinhada à borda', async ({ page }) => {
+    const bridge = page.locator('.nql-hilar-port--bridge');
+    await expect(bridge.locator('.nql-hilar-port__branch')).toHaveCount(0);
+    await expect(bridge.locator('.nql-hilar-port__bed')).toHaveAttribute('d', 'M0 26H160');
+    await expect(bridge.locator('.nql-hilar-port__current')).toHaveAttribute('d', 'M0 26H96');
+    await expect(bridge.locator('.nql-hilar-port__exit')).toHaveAttribute('d', 'M96 26H160');
+
+    const geometry = await bridge.evaluate((svg) => {
+      const entry = svg.closest('.nql-portal__entry') as HTMLElement;
+      const node = svg.querySelector('.nql-hilar-port__node') as SVGCircleElement;
+      const svgRect = svg.getBoundingClientRect();
+      const entryRect = entry.getBoundingClientRect();
+      const viewBoxHeight = (svg as SVGSVGElement).viewBox.baseVal.height;
+      const nodeCenter = svgRect.top + (node.cy.baseVal.value / viewBoxHeight) * svgRect.height;
+      const pathHeights = Array.from(svg.querySelectorAll('path')).map((path) => path.getBBox().height);
+      return { nodeOffset: Math.abs(nodeCenter - entryRect.top), maxPathHeight: Math.max(...pathHeights) };
+    });
+
+    expect(geometry.nodeOffset).toBeLessThan(1);
+    expect(geometry.maxPathHeight).toBeLessThan(0.01);
+  });
   test('abre login por email e preserva o deep link', async ({ page }) => {
     const emailRoute = page.locator('[data-portal-route="email"]');
     await emailRoute.click();
