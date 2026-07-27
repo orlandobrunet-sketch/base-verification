@@ -759,6 +759,48 @@ rave_study:{
     conclusao:"Tacrolimo com micofenolato e corticosteroide permanece a espinha dorsal inicial para a maioria dos receptores; estratégias com mTOR ou minimização devem ser guiadas por risco imunológico, toxicidade, função do enxerto, proteinúria e momento pós-operatório.",
     curiosidade:"A diretriz chama os inibidores da calcineurina de fármacos de dose crítica: pequenas mudanças de exposição, inclusive por interação medicamentosa, podem deslocar o paciente entre rejeição por subexposição e toxicidade por superexposição."
   },
+  ippoliti_ratg_mechanism_2015:{
+    label:"Ippoliti G et al. — Imunomodulação pela rATG (2015)",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC4689936/",
+    journal:"World Journal of Transplantation 2015;5(4):261-266",
+    ano:2015,
+    tipo:"Revisão",
+    badge:"REVIEW",
+    badgeColor:"#8b5cf6",
+    impacto:"Mecanismos de depleção e imunomodulação da globulina antitimócito de coelho",
+    icon:"🔬",
+    resumo:"Revisão mecanística da globulina antitimócito de coelho em transplante de órgãos sólidos. A natureza policlonal permite atingir múltiplas moléculas de superfície; a depleção de linfócitos T no sangue e em tecidos linfoides ocorre por lise dependente do complemento, opsonização e vias apoptóticas. O efeito imunomodulador persiste além da depleção inicial e inclui modulação de receptores envolvidos em reconhecimento antigênico, tráfego leucocitário e adesão ao endotélio.",
+    conclusao:"A queda profunda dos linfócitos após rATG decorre de mecanismos depletores múltiplos, e não de simples bloqueio seletivo do receptor de interleucina 2.",
+    curiosidade:"Por ser policlonal, a rATG não age sobre um único alvo; essa amplitude ajuda a explicar simultaneamente sua eficácia e o risco de citopenias e infecções."
+  },
+  sharif_ptdm_consensus_2024:{
+    label:"Sharif A et al. — Consenso Internacional de PTDM (2024)",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC11024828/",
+    journal:"Nephrology Dialysis Transplantation 2024;39(3):531-549",
+    ano:2024,
+    tipo:"Revisão",
+    badge:"REVIEW",
+    badgeColor:"#8b5cf6",
+    impacto:"Diagnóstico, mecanismos e manejo do diabetes mellitus pós-transplante",
+    icon:"🔬",
+    resumo:"Terceiro consenso internacional sobre diabetes mellitus pós-transplante, centrado no receptor de enxerto renal. O documento integra diagnóstico, fatores metabólicos e imunossupressão: tacrolimo pode agravar disfunção de células beta em indivíduos sob estresse metabólico. Apesar dessa associação, os autores orientam que esquemas de imunossupressão não sejam modificados rotineiramente apenas para prevenir ou tratar PTDM; ajustes devem ser individualizados conforme risco imunológico, efeitos metabólicos e sobrevida do enxerto.",
+    conclusao:"PTDM exige tratamento metabólico e revisão de exposições diabetogênicas, mas a proteção do enxerto permanece prioritária e impede conversões automáticas da imunossupressão.",
+    curiosidade:"Os participantes não emitiram recomendações GRADE por reconhecerem a escassez de evidência de alta qualidade; as decisões são apresentadas como opiniões de consenso."
+  },
+  taber_tacrolimus_variability_2021:{
+    label:"Taber DJ et al. — Variabilidade do Tacrolimo (2021)",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC8119313/",
+    journal:"Therapeutic Drug Monitoring 2021;43(3):401-407",
+    ano:2021,
+    tipo:"Coorte",
+    badge:"COHORT",
+    badgeColor:"#f59e0b",
+    impacto:"Relaciona variabilidade por não adesão a rejeição tardia e perda do enxerto",
+    icon:"🔬",
+    resumo:"Coorte longitudinal de 537 receptores adultos de transplante renal; 145 apresentaram alta variabilidade intrapaciente do tacrolimo. Entre as causas documentadas de níveis fora da faixa estavam não adesão, infecção, toxicidade, interação medicamentosa e problemas gastrointestinais. Na análise multivariável, alta variabilidade atribuída à não adesão associou-se a risco 3,5 vezes maior de rejeição aguda tardia e 2,2 vezes maior de perda tardia do enxerto. O desenho observacional limita inferência causal.",
+    conclusao:"Omissão de doses é fator modificável relevante para desfechos tardios, mas variabilidade do tacrolimo é um sinal inespecífico e deve levar à investigação da causa antes de rotular não adesão.",
+    curiosidade:"Uma coleta feita depois da dose pode produzir nível falsamente alto; confirmar horário da dose e da coleta é parte essencial da monitorização."
+  },
   banff_2019_kidney_meeting:{
     label:"Banff 2019 Kidney Meeting Report — Rejeição TCMR/ABMR",
     url:"https://doi.org/10.1111/ajt.15898",
