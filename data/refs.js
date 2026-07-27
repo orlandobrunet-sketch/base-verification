@@ -861,16 +861,6 @@ canvas_program:{
     conclusao:"PATHWAY-2 fundamentou espironolactona como quarta droga preferencial na hipertensão resistente, sugerindo que retenção de sódio/atividade mineralocorticoide é mecanismo dominante em muitos pacientes.",
     curiosidade:"A resposta à espironolactona foi maior nos pacientes com renina basal mais baixa, perfil compatível com expansão volêmica ou aldosteronismo relativo. Em nefrologia, a aplicação exige checar TFGe e potássio, pois DRC avançada e hipercalemia limitam o uso seguro."
   },
-  aask_trial:{
-    label:"Wright JT et al. — AASK (JAMA 2002)",
-    url:"https://jamanetwork.com/journals/jama/fullarticle/195133",
-    journal:"JAMA 2002;288(19):2421-2431",
-    ano:2002,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Ramipril superior à anlodipina e metoprolol em retardar progressão da nefropatia hipertensiva em afro-americanos",icon:"🔬",
-    resumo:"ECR multicêntrico (AASK, n=1.094), em afro-americanos com DRC atribuída à nefroesclerose hipertensiva, comparando 3 estratégias iniciais de anti-hipertensivo — ramipril, metoprolol ou amlodipino — e 2 metas pressóricas. O desfecho primário foi declínio da TFG; o composto clínico secundário incluiu queda importante da TFG, DRCT ou morte. Ramipril foi superior ao amlodipino na proteção renal, sobretudo em pacientes com proteinúria. A meta pressórica mais baixa não reduziu progressão renal na coorte global.",
-    conclusao:"AASK mostrou que, na DRC hipertensiva com proteinúria, o IECA oferece proteção renal superior ao bloqueador de canal de cálcio diidropiridínico, e que intensificar PA sem considerar proteinúria não garante nefroproteção adicional.",
-    curiosidade:"O achado mais didático do AASK é a interação com proteinúria: quanto maior a proteinúria basal, mais relevante o bloqueio do SRAA. A escolha anti-hipertensiva em DRC deve considerar albuminúria/proteinúria, não apenas o valor da PA."
-  },
   // --- Progressão DRC ---
   mdrd_study:{
     label:"Klahr S et al. — MDRD Study (NEJM 1994)",
@@ -2623,10 +2613,10 @@ finerenone_2025:{
     tipo:"Diretriz",
     badge:"GUIDELINE",
     badgeColor:"#6366f1",
-    impacto:"Hipertensão resistente, apneia obstrutiva do sono e estenose renal: avaliação e tratamento",
+    impacto:"Hipertensão resistente, apneia obstrutiva do sono, emergência hipertensiva e estenose renal: avaliação e tratamento",
     icon:"📋",
-    resumo:"Diretriz multissocietária AHA/ACC de 2025. Na hipertensão aparentemente resistente, exige excluir medida inadequada, efeito do avental branco, baixa adesão e fármacos interferentes antes de confirmar resistência. Reconhece a apneia obstrutiva do sono como causa secundária associada a hipertensão noturna e resistente; o CPAP pode reduzir modestamente a pressão, em média 2 a 5 mmHg em ensaios curtos, com efeito dependente de adesão e perfil clínico, e deve complementar controle de peso e farmacoterapia. Se a pressão continuar não controlada com IECA ou BRA, bloqueador de canal de cálcio e diurético tiazídico de longa ação, recomenda antagonista do receptor mineralocorticoide quando a TFGe é pelo menos 45 mL/min/1,73m² e o potássio permite. Na estenose aterosclerótica da artéria renal, recomenda tratamento clínico; diante de hipertensão resistente, piora renal e/ou insuficiência cardíaca aguda apesar desse tratamento, considera razoável encaminhar para revascularização.",
-    conclusao:"Confirme resistência verdadeira e causas secundárias. CPAP trata a apneia e pode reduzir modestamente a pressão, mas não substitui terapia anti-hipertensiva; em função renal e potássio adequados, antagonista mineralocorticoide é a quarta droga preferida. Revascularização renal aterosclerótica permanece seletiva.",
+    resumo:"Diretriz multissocietária AHA/ACC de 2025. Na hipertensão aparentemente resistente, exige excluir medida inadequada, efeito do avental branco, baixa adesão e fármacos interferentes antes de confirmar resistência. Reconhece a apneia obstrutiva do sono como causa secundária associada a hipertensão noturna e resistente; o CPAP pode reduzir modestamente a pressão, em média 2 a 5 mmHg em ensaios curtos, com efeito dependente de adesão e perfil clínico, e deve complementar controle de peso e farmacoterapia. Em emergência hipertensiva, recomenda ambiente intensivo e agente intravenoso de ação curta e titulável; sem condição com meta específica, a redução inicial deve ser conservadora, em torno de 25% na primeira hora, seguida de queda gradual. Se a pressão continuar não controlada com IECA ou BRA, bloqueador de canal de cálcio e diurético tiazídico de longa ação, recomenda antagonista do receptor mineralocorticoide quando a TFGe é pelo menos 45 mL/min/1,73m² e o potássio permite. Na estenose aterosclerótica da artéria renal, recomenda tratamento clínico; diante de hipertensão resistente, piora renal e/ou insuficiência cardíaca aguda apesar desse tratamento, considera razoável encaminhar para revascularização.",
+    conclusao:"Confirme resistência verdadeira e causas secundárias. CPAP trata a apneia e pode reduzir modestamente a pressão, mas não substitui terapia anti-hipertensiva. Na emergência, use infusão intravenosa titulável e evite normalização abrupta. Em função renal e potássio adequados, antagonista mineralocorticoide é a quarta droga preferida; revascularização renal aterosclerótica permanece seletiva.",
     curiosidade:"Ensaios de CPAP mostram efeito pressórico maior com boa adesão, sem demonstração suficiente de prevenção cardiovascular isolada. Em paralelo, trials de stent sustentam terapia clínica na maioria das estenoses renais e o PATHWAY-2 sustenta espironolactona na resistência verdadeira: todos exigem selecionar o fenótipo, não aplicar uma intervenção por reflexo."
   },
   esc_peripheral_aortic_2024:{
@@ -2670,5 +2660,19 @@ finerenone_2025:{
     resumo:"Diretriz clínica da Endocrine Society para feocromocitoma e paraganglioma. Em tumores hormonalmente funcionais, recomenda bloqueio pré-operatório para reduzir complicações cardiovasculares, com bloqueador alfa como primeira escolha. O preparo por 7 a 14 dias permite ajustar pressão e frequência cardíaca e deve incluir ingestão de sal e líquidos para corrigir a contração volêmica induzida por catecolaminas. Betabloqueador pode ser acrescentado para taquicardia somente após bloqueio alfa adequado.",
     conclusao:"Antes da ressecção de feocromocitoma funcional, faça bloqueio alfa e reposição volêmica; nunca inicie beta-bloqueio isolado, pois a estimulação alfa sem oposição pode precipitar crise hipertensiva.",
     curiosidade:"Mesmo com preparo adequado, nenhuma combinação elimina totalmente a instabilidade intraoperatória; por isso a diretriz recomenda equipe multidisciplinar experiente e monitorização perioperatória."
+  },
+  afferent_arteriolopathy_2024:{
+    label:"Kohagura et al. — Heterogeneous Afferent Arteriolopathy 2024",
+    url:"https://pubmed.ncbi.nlm.nih.gov/39379463/",
+    journal:"Hypertens Res. 2024;47(12):3383-3396",
+    ano:2024,
+    tipo:"Revisão",
+    badge:"REVIEW",
+    badgeColor:"#0ea5e9",
+    impacto:"Mecanismos vasculares e limites histológicos da nefroesclerose",
+    icon:"📖",
+    resumo:"Revisão contemporânea sobre arteriolopatia aferente heterogênea e dano renal dependente da pressão. Hialinose e espessamento medial da arteríola aferente, associados a espessamento íntimal de pequenas artérias, podem romper a autorregulação. Néfrons com remodelamento mais dilatado ficam expostos à hipertensão glomerular, enquanto os com lúmen estreitado sofrem isquemia; ambos os padrões podem coexistir e contribuir para glomeruloesclerose e fibrose tubulointersticial.",
+    conclusao:"A progressão renal associada à pressão combina transmissão de hiperpressão e isquemia em néfrons diferentes; achados de arterionefroesclerose apoiam o diagnóstico, mas não são patognomônicos nem exclusivos da hipertensão.",
+    curiosidade:"O mesmo rim pode conter arteríolas aferentes dilatadas e estreitadas, explicando por que uma descrição única de hiperfiltração ou isquemia não captura toda a fisiopatologia da nefroesclerose."
   },
 };
