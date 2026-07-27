@@ -18,7 +18,7 @@ test.describe('Página 1 — Portal de Acesso Lúmen', () => {
     const stylesheets = await page.locator('link[rel="stylesheet"]').evaluateAll((links) =>
       links.map((link) => new URL((link as HTMLLinkElement).href).pathname + new URL((link as HTMLLinkElement).href).search)
     );
-    expect(stylesheets).toContain('/styles/lumen/portal.css?v=13.20');
+    expect(stylesheets).toContain('/styles/lumen/portal.css?v=13.22');
     await expect(page.locator('script[src="js/portal.js?v=13.20"]')).toHaveCount(1);
 
     const skipLink = page.getByRole('link', { name: 'Ir para o acesso' });
@@ -64,27 +64,27 @@ test.describe('Página 1 — Portal de Acesso Lúmen', () => {
     }
   });
 
-  test('mantém o conduto como uma linha única alinhada à borda', async ({ page }) => {
-    const bridge = page.locator('.nql-hilar-port--bridge');
-    await expect(bridge.locator('.nql-hilar-port__branch')).toHaveCount(0);
-    await expect(bridge.locator('.nql-hilar-port__bed')).toHaveAttribute('d', 'M0 26H160');
-    await expect(bridge.locator('.nql-hilar-port__current')).toHaveAttribute('d', 'M0 26H96');
-    await expect(bridge.locator('.nql-hilar-port__exit')).toHaveAttribute('d', 'M96 26H160');
+  test('remove o conduto externo e anima apenas o divisor interno', async ({ page }) => {
+    await expect(page.locator('.nql-hilar-port--bridge')).toHaveCount(0);
 
-    const geometry = await bridge.evaluate((svg) => {
-      const entry = svg.closest('.nql-portal__entry') as HTMLElement;
-      const node = svg.querySelector('.nql-hilar-port__node') as SVGCircleElement;
-      const svgRect = svg.getBoundingClientRect();
-      const entryRect = entry.getBoundingClientRect();
-      const viewBoxHeight = (svg as SVGSVGElement).viewBox.baseVal.height;
-      const nodeCenter = svgRect.top + (node.cy.baseVal.value / viewBoxHeight) * svgRect.height;
-      const pathHeights = Array.from(svg.querySelectorAll('path')).map((path) => path.getBBox().height);
-      return { nodeOffset: Math.abs(nodeCenter - entryRect.top), maxPathHeight: Math.max(...pathHeights) };
+    const divider = await page.locator('.nql-portal__entry-head').evaluate((element) => {
+      const style = getComputedStyle(element, '::after');
+      return {
+        animationName: style.animationName,
+        content: style.content,
+        height: style.height,
+        bottom: style.bottom,
+        overflow: getComputedStyle(element).overflow,
+      };
     });
 
-    expect(geometry.nodeOffset).toBeLessThan(1);
-    expect(geometry.maxPathHeight).toBeLessThan(0.01);
+    expect(divider.content).not.toBe('none');
+    expect(divider.animationName).toBe('nql-portal-entry-current');
+    expect(divider.height).toBe('1px');
+    expect(divider.bottom).toBe('0px');
+    expect(divider.overflow).toBe('hidden');
   });
+
   test('abre login por email e preserva o deep link', async ({ page }) => {
     const emailRoute = page.locator('[data-portal-route="email"]');
     await emailRoute.click();
@@ -255,11 +255,11 @@ test.describe('Página 1 — Portal de Acesso Lúmen', () => {
     const journeyAnimation = await page.locator('.nql-portal__journey-line span').evaluate((element) =>
       getComputedStyle(element).animationName
     );
-    const pulseAnimation = await page.locator('.nql-portal__entry .nql-hilar-port__pulse').evaluate((element) =>
-      getComputedStyle(element).animationName
+    const dividerAnimation = await page.locator('.nql-portal__entry-head').evaluate((element) =>
+      getComputedStyle(element, '::after').animationName
     );
     expect(journeyAnimation).toBe('none');
-    expect(pulseAnimation).toBe('none');
+    expect(dividerAnimation).toBe('none');
     await expect(page.getByRole('heading', { name: 'Retome sua jornada' })).toBeVisible();
   });
 
