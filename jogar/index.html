@@ -116,9 +116,9 @@
   <link rel="stylesheet" href="styles/lumen/tokens.css?v=13.20">
   <link rel="stylesheet" href="styles/lumen/components.css?v=13.20">
   <link rel="stylesheet" href="styles/lumen/motion.css?v=13.20">
-  <link rel="stylesheet" href="styles/lumen/portal.css?v=13.22">
+  <link rel="stylesheet" href="styles/lumen/portal.css?v=13.24">
   <script>
-    // Version beacon — detecta nova versão e força limpeza de cache
+    // Version beacon — detecta nova versão sem interromper a navegação
     (function() {
       var _stored = localStorage.getItem('nq-sw-version');
       function compareVersions(left, right) {
@@ -133,9 +133,6 @@
         }
         return 0;
       }
-      // Capture a intenção antes do fetch: outros scripts podem limpar a query
-      // enquanto a checagem de versão ainda está em andamento.
-      var _returnPath = location.pathname + location.search + location.hash;
       fetch('/version.json', { cache: 'no-store' })
         .then(function(r) { return r.json(); })
         .then(function(d) {
@@ -156,16 +153,15 @@
           } else {
             updateLabels();
           }
-          if (_stored !== null && _stored !== _v && (_comparison === null || _comparison > 0)) {
+          if (_stored === null || _comparison === null || _comparison >= 0) {
             localStorage.setItem('nq-sw-version', _v);
-            try {
-              if (/^\/jogar\/(?:[?#]|$)/.test(_returnPath)) {
-                sessionStorage.setItem('nq-post-cache-url', _returnPath);
-              }
-            } catch (e) {}
-            window.location.replace('/clear-cache.html');
-          } else if (_stored === null || _comparison === 0) {
-            localStorage.setItem('nq-sw-version', _v);
+          }
+          if (_comparison > 0 && 'serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistration('/')
+              .then(function(registration) {
+                if (registration) registration.update().catch(function() {});
+              })
+              .catch(function() {});
           }
         })
         .catch(function() {});
@@ -281,7 +277,7 @@
       <div class="nql-portal__main" id="portalMain" role="main" tabindex="-1">
         <section class="nql-portal__story" aria-labelledby="portalTitle">
           <p class="nql-portal__eyebrow">Portal de acesso · fluxo clínico</p>
-          <h1 id="portalTitle">Entre no seu <em>atlas clínico.</em></h1>
+          <h1 id="portalTitle"><span>Entre no seu</span><em>atlas clínico.</em></h1>
           <p class="nql-portal__lede">Continue sua jornada, sincronize revisões e acompanhe o domínio que você constrói em cada tema.</p>
 
           <div class="nql-portal__audience" aria-label="Público do NefroQuest">
@@ -364,7 +360,7 @@
         <span>Para aprender, revisar e se manter atualizado em nefrologia.</span>
         <span class="nql-portal__footer-meta">
           <button type="button" data-action="showPrivacyPolicy">Privacidade</button>
-          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v13.23</button>
+          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v13.24</button>
         </span>
       </footer>
     </section>
