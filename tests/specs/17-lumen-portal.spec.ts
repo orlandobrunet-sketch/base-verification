@@ -299,6 +299,36 @@ test.describe('Página 1 — Portal de Acesso Lúmen', () => {
     await expect(page.locator('#cfTurnstileStatus')).toContainText('Não foi possível carregar');
   });
 
+  test('reconcilia sucesso do Turnstile recebido antes do auth.js', async ({ page }) => {
+    await page.evaluate(async () => {
+      const registrations = await navigator.serviceWorker.getRegistrations();
+      await Promise.all(registrations.map((registration) => registration.unregister()));
+    });
+
+    const racePage = await page.context().newPage();
+    let releaseAuth = () => {};
+    const authGate = new Promise<void>((resolve) => { releaseAuth = resolve; });
+    await racePage.route('https://challenges.cloudflare.com/**', (route) => route.abort());
+    await racePage.route('**/js/auth.js*', async (route) => {
+      const response = await route.fetch();
+      await authGate;
+      await route.fulfill({ response });
+    });
+
+    const navigation = racePage.goto(portalPath, { waitUntil: 'domcontentloaded' });
+    await racePage.locator('#cfTurnstile').waitFor({ state: 'attached' });
+    await racePage.evaluate(() => (window as typeof window & { nqTurnstileReady: () => void }).nqTurnstileReady());
+    const queued = await racePage.evaluate(() => (window as typeof window & { __nqTurnstileEvents: string[] }).__nqTurnstileEvents);
+    expect(queued).toContain('ready');
+
+    releaseAuth();
+    await navigation;
+    await expect(racePage.locator('#cfTurnstile')).toHaveAttribute('data-state', 'ready');
+    await expect(racePage.locator('#cfTurnstileStatus')).toHaveText('Verificação de segurança concluída.');
+    await expect(racePage.locator('#cfTurnstileRetry')).toBeHidden();
+    await racePage.close();
+  });
+
   test('respeita movimento reduzido sem remover o significado', async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.reload({ waitUntil: 'domcontentloaded' });

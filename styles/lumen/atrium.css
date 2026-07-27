@@ -33,6 +33,8 @@
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium {
+  --nql-atrium-rail: clamp(1rem, 4vw, 5rem);
+  --nql-atrium-content-gutter: clamp(3rem, 6vw, 7rem);
   position: relative;
   z-index: 1;
   display: grid;
@@ -47,7 +49,7 @@
   z-index: -1;
   top: 0;
   bottom: 0;
-  left: clamp(1rem, 4vw, 5rem);
+  left: var(--nql-atrium-rail);
   width: 1px;
   background: linear-gradient(to bottom, transparent, var(--nql-line-strong) 18%, var(--nql-line) 82%, transparent);
   content: "";
@@ -130,7 +132,8 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 
 #welcomeScreen[data-nq-ui="lumen"] .volume-slider {
   position: absolute;
-  top: calc(100% + .5rem);
+  z-index: 20;
+  top: calc(100% - 1px);
   right: 0;
   width: 7rem;
   margin: 0;
@@ -145,7 +148,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .volume-slider-container:hover .volume-slider,
-#welcomeScreen[data-nq-ui="lumen"] .volume-slider:focus {
+#welcomeScreen[data-nq-ui="lumen"] .volume-slider-container:focus-within .volume-slider {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
@@ -161,7 +164,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__main {
   display: grid;
   width: 100%;
-  padding: clamp(2.5rem, 6vw, 6rem) clamp(1rem, 4vw, 5rem) clamp(3rem, 6vw, 5rem);
+  padding: clamp(2.5rem, 6vw, 6rem) var(--nql-atrium-rail) clamp(3rem, 6vw, 5rem) var(--nql-atrium-content-gutter);
   grid-template-columns: minmax(0, 1.16fr) minmax(21rem, .84fr);
   align-items: start;
   gap: clamp(3rem, 7vw, 7rem);
@@ -184,7 +187,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 }
 
 #welcomeScreen[data-nq-ui="lumen"] #atriumTitle {
-  max-width: 9ch;
+  max-width: none;
   margin: 0;
   color: var(--nql-text);
   font-family: var(--nql-font-display);
@@ -194,10 +197,16 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   line-height: .9;
 }
 
+#welcomeScreen[data-nq-ui="lumen"] #atriumTitle > span {
+  display: block;
+  white-space: nowrap;
+}
+
 #welcomeScreen[data-nq-ui="lumen"] #atriumTitle em {
   display: block;
   color: var(--nql-mastery);
   font-weight: 500;
+  white-space: nowrap;
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__lede {
@@ -335,15 +344,46 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .welcome-saved-info.nql-atrium__saved {
+  position: relative;
   width: 100% !important;
   max-width: 40rem !important;
-  margin: 2rem 0 0 !important;
-  padding: 1rem 0 1rem 1.25rem !important;
-  border: 0 !important;
-  border-left: 2px solid var(--nql-mastery) !important;
-  border-radius: 0 !important;
-  background: linear-gradient(90deg, rgba(var(--nql-mastery-rgb), .07), transparent 72%) !important;
-  box-shadow: none !important;
+  margin: 2.25rem 0 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(var(--nql-mastery-rgb), .42) !important;
+  border-radius: .7rem !important;
+  background:
+    radial-gradient(circle at 8% 72%, rgba(var(--nql-lumen-rgb), .13), transparent 8rem),
+    linear-gradient(135deg, rgba(var(--nql-mastery-rgb), .12), rgba(var(--nql-cortex-rgb), .92) 45%, rgba(var(--nql-lumen-rgb), .045)) !important;
+  box-shadow: 0 1.2rem 3rem rgba(0, 0, 0, .24), inset 0 1px rgba(255, 255, 255, .035) !important;
+  isolation: isolate;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .welcome-saved-info.nql-atrium__saved::before {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: -34%;
+  width: 34%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--nql-lumen), var(--nql-mastery), transparent);
+  content: "";
+  animation: nql-atrium-saved-current 4.8s var(--nql-ease-state) infinite;
+  pointer-events: none;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .welcome-saved-info.nql-atrium__saved::after {
+  position: absolute;
+  z-index: -1;
+  bottom: -6.5rem;
+  left: -4.5rem;
+  width: 11rem;
+  height: 11rem;
+  border: 1px solid rgba(var(--nql-lumen-rgb), .12);
+  border-radius: 50%;
+  box-shadow: 0 0 3rem rgba(var(--nql-lumen-rgb), .08);
+  content: "";
+  pointer-events: none;
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .wsaved-top,
@@ -353,6 +393,11 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .wsaved-top {
+  position: relative;
+  z-index: 1;
+  padding: .75rem 1.25rem !important;
+  border-bottom: 1px solid rgba(var(--nql-mastery-rgb), .18) !important;
+  background: linear-gradient(90deg, rgba(var(--nql-mastery-rgb), .14), rgba(var(--nql-lumen-rgb), .035)) !important;
   justify-content: space-between;
   gap: 1rem;
 }
@@ -373,6 +418,8 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   height: .35rem;
   border-radius: 50%;
   background: var(--nql-mastery);
+  box-shadow: 0 0 0 0 rgba(var(--nql-mastery-rgb), .32);
+  animation: nql-atrium-saved-pulse 2.6s ease-out infinite;
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .wsaved-time-lbl {
@@ -382,35 +429,63 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .wsaved-bottom {
-  margin-top: .85rem;
-  gap: .9rem;
+  position: relative;
+  z-index: 1;
+  margin: 0 !important;
+  padding: 1.2rem 1.25rem 1.35rem !important;
+  gap: 1.1rem !important;
+  background: transparent !important;
 }
 
 #welcomeScreen[data-nq-ui="lumen"] #wsSavedAvatar {
-  width: 3rem !important;
-  height: 3rem !important;
-  border: 1px solid var(--nql-line-gold) !important;
-  border-radius: .25rem !important;
+  width: 3.5rem !important;
+  height: 3.5rem !important;
+  border: 1px solid var(--nql-mastery) !important;
+  border-radius: .4rem !important;
+  box-shadow: 0 0 0 .25rem rgba(var(--nql-mastery-rgb), .07), 0 .65rem 1.4rem rgba(0, 0, 0, .3) !important;
   object-fit: cover;
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .wsaved-info { min-width: 0; flex: 1; }
 #welcomeScreen[data-nq-ui="lumen"] .wsaved-charname {
-  margin-bottom: .35rem;
+  margin-bottom: .55rem;
   color: var(--nql-text) !important;
   font-family: var(--nql-font-display) !important;
-  font-size: 1.05rem !important;
+  font-size: 1.12rem !important;
   font-weight: 600;
 }
 
-#welcomeScreen[data-nq-ui="lumen"] .wsaved-stats { display: flex; gap: 1.25rem; }
-#welcomeScreen[data-nq-ui="lumen"] .wsaved-stat { display: flex; align-items: baseline; gap: .3rem; }
+#welcomeScreen[data-nq-ui="lumen"] .wsaved-stats {
+  display: grid !important;
+  width: 100% !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 !important;
+}
+#welcomeScreen[data-nq-ui="lumen"] .wsaved-stat {
+  display: flex !important;
+  min-width: 0;
+  padding: .1rem .9rem !important;
+  border-left: 1px solid var(--nql-line) !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: .1rem !important;
+  text-align: left !important;
+}
+#welcomeScreen[data-nq-ui="lumen"] .wsaved-stat:first-child {
+  padding-left: 0 !important;
+  border-left: 0 !important;
+}
 #welcomeScreen[data-nq-ui="lumen"] .wsaved-stat .ws-v {
   color: var(--nql-mastery) !important;
   font-family: var(--nql-font-instrument);
-  font-size: .82rem !important;
+  font-size: .95rem !important;
 }
-#welcomeScreen[data-nq-ui="lumen"] .wsaved-stat .ws-l { color: var(--nql-text-muted) !important; font-size: .7rem !important; }
+#welcomeScreen[data-nq-ui="lumen"] .wsaved-stat .ws-l {
+  color: var(--nql-text-muted) !important;
+  font-size: .62rem !important;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary-actions {
   display: flex !important;
@@ -430,17 +505,23 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary {
+  position: relative;
   width: auto !important;
   min-width: min(100%, 19rem);
   padding: .65rem 1rem .65rem 1.15rem !important;
   border: 1px solid var(--nql-mastery) !important;
-  background: var(--nql-mastery) !important;
+  overflow: hidden;
+  background: linear-gradient(110deg, #f5dc98, var(--nql-mastery) 62%, #dcb958) !important;
   color: var(--nql-abyss) !important;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
   text-align: left;
+}
+
+#welcomeScreen[data-nq-ui="lumen"][data-journey-state="saved"] .nql-atrium__primary {
+  box-shadow: 0 .85rem 2rem rgba(var(--nql-mastery-rgb), .14) !important;
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary > span { display: flex; flex-direction: column; }
@@ -479,7 +560,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__routes-head h2 {
-  max-width: 13ch;
+  max-width: none;
   margin: 0;
   color: var(--nql-text);
   font-family: var(--nql-font-display);
@@ -487,6 +568,11 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   font-weight: 600;
   letter-spacing: -.02em;
   line-height: 1.03;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__routes-head h2 > span {
+  display: block;
+  white-space: nowrap;
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route-status {
@@ -590,6 +676,18 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 }
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__footer button:hover { color: var(--nql-lumen); }
 
+@keyframes nql-atrium-saved-current {
+  0% { opacity: 0; transform: translateX(0); }
+  14% { opacity: .9; }
+  74% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(395%); }
+}
+
+@keyframes nql-atrium-saved-pulse {
+  0%, 56% { box-shadow: 0 0 0 0 rgba(var(--nql-mastery-rgb), .28); }
+  100% { box-shadow: 0 0 0 .5rem rgba(var(--nql-mastery-rgb), 0); }
+}
+
 @media (max-width: 68rem) {
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__main {
     grid-template-columns: minmax(0, 1fr) minmax(19rem, .8fr);
@@ -614,9 +712,10 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 }
 
 @media (max-width: 40rem) {
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium::before { display: none; }
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__topbar { min-height: 4.25rem; }
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__edition { display: none; }
-  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__main { padding-top: 2.5rem; gap: 3rem; }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__main { padding-top: 2.5rem; padding-inline: 1rem; gap: 3rem; }
   #welcomeScreen[data-nq-ui="lumen"] #atriumTitle { font-size: clamp(3rem, 17vw, 4.7rem); }
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__lede { font-size: 1rem; }
   #welcomeScreen[data-nq-ui="lumen"] .welcome-stats.nql-mastery-rail { margin-top: 2.5rem !important; }

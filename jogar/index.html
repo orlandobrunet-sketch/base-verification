@@ -67,7 +67,7 @@
     if (typeof Sentry !== 'undefined') {
       Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@13.28',
+          release: 'nefroquest@13.29',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -93,6 +93,15 @@
     }
   </script>
 
+  <!-- Registra callbacks antes do script assíncrono para não perder o primeiro resultado. -->
+  <script>
+    window.__nqTurnstileEvents = [];
+    ['Ready', 'Expired', 'Error'].forEach(function(type) {
+      window['nqTurnstile' + type] = function() {
+        window.__nqTurnstileEvents.push(type.toLowerCase());
+      };
+    });
+  </script>
   <!-- Cloudflare Turnstile (CAPTCHA no signup/login — anti account-farming, E9) -->
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
@@ -117,7 +126,7 @@
   <link rel="stylesheet" href="styles/lumen/components.css?v=13.20">
   <link rel="stylesheet" href="styles/lumen/motion.css?v=13.20">
   <link rel="stylesheet" href="styles/lumen/portal.css?v=13.24">
-  <link rel="stylesheet" href="styles/lumen/atrium.css?v=13.23">
+  <link rel="stylesheet" href="styles/lumen/atrium.css?v=13.29">
   <script>
     // Version beacon — detecta nova versão sem interromper a navegação
     (function() {
@@ -361,7 +370,7 @@
         <span>Para aprender, revisar e se manter atualizado em nefrologia.</span>
         <span class="nql-portal__footer-meta">
           <button type="button" data-action="showPrivacyPolicy">Privacidade</button>
-          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v13.28</button>
+          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v13.29</button>
         </span>
       </footer>
     </section>
@@ -769,7 +778,7 @@
       <div class="nql-atrium__main" id="atriumMain" role="main" tabindex="-1">
         <section class="nql-atrium__journey" aria-labelledby="atriumTitle">
           <p class="nql-atrium__eyebrow">Átrio da jornada · seu ponto de retorno</p>
-          <h1 id="atriumTitle">Seu domínio <em>deixa rastros.</em></h1>
+          <h1 id="atriumTitle"><span>Seu domínio</span> <em>deixa rastros.</em></h1>
           <p class="nql-atrium__lede">Cada decisão clínica alimenta um percurso contínuo de prática, revisão e domínio.</p>
 
           <div id="welcomeStats" class="welcome-stats nql-mastery-rail" aria-label="Resumo de domínio">
@@ -807,7 +816,7 @@
         </section>
 
         <aside class="nql-atrium__routes" aria-labelledby="atriumRoutesTitle">
-          <div class="nql-atrium__routes-head"><p>Rotas disponíveis</p><h2 id="atriumRoutesTitle">Escolha seu próximo movimento</h2></div>
+          <div class="nql-atrium__routes-head"><p>Rotas disponíveis</p><h2 id="atriumRoutesTitle"><span>Escolha seu</span> <span>próximo movimento</span></h2></div>
           <div class="nql-atrium__route-status" aria-live="polite"><span aria-hidden="true"></span><p id="atriumRouteStatus">Explore uma rota sem perder o fio da sua jornada.</p></div>
           <div class="nql-atrium__route-list">
             <button type="button" class="nql-atrium__route" data-atrium-route="modes" data-action="openGameModesPopup"><span class="nql-atrium__route-index">01</span><span><strong>Modos de jogo</strong><small>Treinos, provas e desafios</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
@@ -822,7 +831,7 @@
 
       <footer class="nql-atrium__footer">
         <span>Prática que se transforma em domínio clínico.</span>
-        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v13.28</button></span>
+        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v13.29</button></span>
       </footer>
     </section>
     <div class="welcome-bg" aria-hidden="true"></div>
@@ -1638,7 +1647,7 @@
   <script defer src="js/game.js?v=11.90"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
-  <script defer src="js/auth.js?v=13.20"></script>
+  <script defer src="js/auth.js?v=13.29"></script>
   <script defer src="js/portal.js?v=13.20"></script>
   <script defer src="js/atrium.js?v=13.23"></script>
   <script defer src="js/paywall.js?v=11.90"></script>
