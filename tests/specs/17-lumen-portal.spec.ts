@@ -12,13 +12,24 @@ test.describe('Página 1 — Portal de Acesso Lúmen', () => {
   test('carrega a página real sem expor a landing legada', async ({ page }) => {
     await expect(page.getByRole('heading', { name: 'Entre no seu atlas clínico.' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Retome sua jornada' })).toBeVisible();
+    const titleLines = await page.locator('#portalTitle').evaluate((title) =>
+      Array.from(title.children).map((line) => ({
+        top: line.getBoundingClientRect().top,
+        rects: line.getClientRects().length,
+        whiteSpace: getComputedStyle(line).whiteSpace,
+      }))
+    );
+    expect(titleLines).toHaveLength(2);
+    expect(titleLines.map((line) => line.rects)).toEqual([1, 1]);
+    expect(titleLines[1].top).toBeGreaterThan(titleLines[0].top);
+    expect(titleLines[0].whiteSpace).toBe('nowrap');
     await expect(page.locator('#landingScreen > .landing-content')).toBeHidden();
     await expect(page.locator('.mobile-sound-controls')).toBeHidden();
 
     const stylesheets = await page.locator('link[rel="stylesheet"]').evaluateAll((links) =>
       links.map((link) => new URL((link as HTMLLinkElement).href).pathname + new URL((link as HTMLLinkElement).href).search)
     );
-    expect(stylesheets).toContain('/styles/lumen/portal.css?v=13.22');
+    expect(stylesheets).toContain('/styles/lumen/portal.css?v=13.24');
     await expect(page.locator('script[src="js/portal.js?v=13.20"]')).toHaveCount(1);
 
     const skipLink = page.getByRole('link', { name: 'Ir para o acesso' });
@@ -95,6 +106,26 @@ test.describe('Página 1 — Portal de Acesso Lúmen', () => {
       status: 200,
       contentType: 'application/json',
       body: JSON.stringify({ version: '13.23' }),
+    }));
+
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.waitForTimeout(800);
+
+    expect(clearCacheRequests).toEqual([]);
+    await expect(page).toHaveURL(/\/jogar\/$/);
+    expect(await page.evaluate(() => localStorage.getItem('nq-sw-version'))).toBe('13.24');
+  });
+
+  test('atualiza em segundo plano sem abrir a página de limpeza', async ({ page }) => {
+    await page.evaluate(() => localStorage.setItem('nq-sw-version', '13.23'));
+    const clearCacheRequests: string[] = [];
+    page.on('request', (request) => {
+      if (new URL(request.url()).pathname === '/clear-cache.html') clearCacheRequests.push(request.url());
+    });
+    await page.route('**/version.json', (route) => route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({ version: '13.24' }),
     }));
 
     await page.reload({ waitUntil: 'domcontentloaded' });

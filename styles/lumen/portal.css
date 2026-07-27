@@ -198,7 +198,7 @@ body:has(#landingScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 }
 
 .nql-portal__story h1 {
-  max-width: 8.7ch;
+  max-width: none;
   margin: 0;
   color: var(--nql-text);
   font-family: var(--nql-font-display);
@@ -206,6 +206,11 @@ body:has(#landingScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   font-weight: 600;
   letter-spacing: -.035em;
   line-height: .94;
+}
+
+.nql-portal__story h1 > span {
+  display: block;
+  white-space: nowrap;
 }
 
 .nql-portal__story h1 em {
@@ -1283,7 +1288,7 @@ body.nql-auth-open {
   }
 
   .nql-portal__story h1 {
-    max-width: 10ch;
+    max-width: none;
     font-size: clamp(3.1rem, 11vw, 4.8rem);
   }
 
