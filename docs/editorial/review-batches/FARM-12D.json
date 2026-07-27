@@ -1,0 +1,97 @@
+{
+    "batch":  "FARM-12D",
+    "change_type":  "medical_editorial",
+    "expected_version":  "13.24",
+    "allowed_files":  [
+                          "data/refs.js",
+                          "data/topics.js",
+                          "docs/editorial/review-batches/FARM-12D.json",
+                          "index.html",
+                          "jogar/index.html",
+                          "sw.js",
+                          "version.json"
+                      ],
+    "questions":  {
+                      "bcc592b1":  {
+                                       "action":  "rebuild",
+                                       "preserve_fsrs":  true,
+                                       "editorial_gate":  {
+                                                              "evidence":  "VERIFICADA",
+                                                              "pending":  "NENHUMA",
+                                                              "score":  "18/20",
+                                                              "verdict":  "aprovada",
+                                                              "publication":  "LIBERADA"
+                                                          }
+                                   },
+                      "09748d98":  {
+                                       "action":  "rebuild",
+                                       "preserve_fsrs":  true,
+                                       "editorial_gate":  {
+                                                              "evidence":  "VERIFICADA",
+                                                              "pending":  "NENHUMA",
+                                                              "score":  "18/20",
+                                                              "verdict":  "aprovada",
+                                                              "publication":  "LIBERADA"
+                                                          }
+                                   },
+                      "ac2cf48b":  {
+                                       "action":  "retire",
+                                       "preserve_fsrs":  false,
+                                       "merge_into":  "09748d98",
+                                       "editorial_gate":  {
+                                                              "evidence":  "VERIFICADA",
+                                                              "pending":  "NENHUMA",
+                                                              "score":  "anulado",
+                                                              "verdict":  "fundir",
+                                                              "publication":  "BLOQUEADA"
+                                                          }
+                                   },
+                      "d2016f23":  {
+                                       "action":  "rebuild",
+                                       "preserve_fsrs":  true,
+                                       "editorial_gate":  {
+                                                              "evidence":  "VERIFICADA",
+                                                              "pending":  "NENHUMA",
+                                                              "score":  "18/20",
+                                                              "verdict":  "aprovada",
+                                                              "publication":  "LIBERADA"
+                                                          }
+                                   },
+                      "2a07de55":  {
+                                       "action":  "rebuild",
+                                       "preserve_fsrs":  true,
+                                       "editorial_gate":  {
+                                                              "evidence":  "VERIFICADA",
+                                                              "pending":  "NENHUMA",
+                                                              "score":  "18/20",
+                                                              "verdict":  "aprovada",
+                                                              "publication":  "LIBERADA"
+                                                          }
+                                   }
+                  },
+    "expected_question_delta":  -1,
+    "refs_policy":  "declared",
+    "references":  {
+                       "aha_acc_hypertension_2025":  {
+                                                         "action":  "update_existing",
+                                                         "source":  "expanded to cover titratable IV treatment and controlled initial BP reduction in hypertensive emergency"
+                                                     },
+                       "afferent_arteriolopathy_2024":  {
+                                                            "action":  "add_new",
+                                                            "source":  "2024 review of heterogeneous afferent arteriolopathy and BP-dependent renal damage"
+                                                        },
+                       "aask_trial":  {
+                                          "action":  "remove_orphan",
+                                          "source":  "removed after its last consumer was rebuilt with the current arteriolopathy review"
+                                      }
+                   },
+    "external_review":  {
+                            "greptile":  "unavailable",
+                            "fallback_reviewer":  "Codex revisar-nefroquest + official editorial-batch validator"
+                        },
+    "notes":  [
+                  "Revisa cinco qids de arterionefroesclerose, lesão renal aguda e encefalopatia em emergência hipertensiva.",
+                  "Funde o qid ac2cf48b no qid 09748d98 porque ambos testavam o mesmo quadro de hipertensão grave com edema de papila e lesão renal.",
+                  "Corrige a superafirmação de especificidade histológica e substitui a busca por um único fármaco de escolha por estratégia intravenosa titulável com redução controlada."
+              ]
+}
