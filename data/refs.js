@@ -731,6 +731,34 @@ rave_study:{
     conclusao:"A toxicidade crônica por CNI é hipótese clinicopatológica, não simples sinônimo de FI/TA isolada; manejo envolve revisão de exposição e minimização/conversão apenas quando clinicamente apropriado.",
     curiosidade:"A expressão 'striped fibrosis' descreve a fibrose intersticial em faixas, padrão historicamente associado à toxicidade crônica por CNI, mas insuficiente quando interpretado fora do contexto clínico e patológico completo."
   },
+  cni_hyperkalemia_duan_2024:{
+    label:"Duan XP et al. — Calcineurin e Excreção Renal de Potássio (2024)",
+    url:"https://pubmed.ncbi.nlm.nih.gov/38860527/",
+    journal:"Acta Physiologica 2024;240(8):e14189",
+    ano:2024,
+    tipo:"Revisão Fisiológica",
+    badge:"REVIEW",
+    badgeColor:"#8b5cf6",
+    impacto:"Integra WNK-SPAK/NCC, NKCC2, ROMK e aldosterona na hipercalemia causada por inibidores da calcineurina",
+    icon:"📖",
+    resumo:"Revisão mecanística da participação da calcineurina no transporte renal de sódio e potássio. Descreve como sua inibição por tacrolimo ou ciclosporina altera a regulação de NKCC2, do cotransportador NCC via WNK-SPAK, dos canais ROMK e da síntese de aldosterona, reduzindo a capacidade de excreção de potássio e contribuindo para hipertensão e hipercalemia.",
+    conclusao:"A hipercalemia por inibidor de calcineurina resulta de alterações coordenadas no néfron distal e no eixo da aldosterona, não de um único canal isolado; o raciocínio clínico deve incluir acidose tipo 4, exposição ao CNI e fármacos concomitantes.",
+    curiosidade:"A ativação do NCC pelos inibidores da calcineurina reproduz parte da fisiologia da síndrome de Gordon: hipertensão e hipercalemia podem coexistir porque mais sódio é reabsorvido antes do ducto coletor, reduzindo a força eletroquímica para secreção distal de potássio."
+  },
+  eau_renal_transplant_2026:{
+    label:"EAU Guidelines — Renal Transplantation (2026)",
+    url:"https://uroweb.org/guidelines/renal-transplantation/chapter/the-guideline",
+    journal:"EAU Guidelines Office",
+    ano:2026,
+    tipo:"Diretriz Internacional",
+    badge:"GUIDELINE",
+    badgeColor:"#6366f1",
+    impacto:"Imunossupressão inicial e de manutenção, monitorização de CNI e uso individualizado de inibidores de mTOR no transplante renal",
+    icon:"📋",
+    resumo:"Diretriz europeia vigente para transplante renal. Define como regime inicial padrão a combinação de tacrolimo, micofenolato e corticosteroide, associada a indução conforme risco imunológico. Recomenda monitorar níveis de tacrolimo e ciclosporina por sua janela terapêutica estreita e interações. Para sirolimo e everolimo, descreve toxicidades como dislipidemia, edema, proteinúria, mielotoxicidade, linfocele e problemas de cicatrização, com seleção individualizada e redução substancial do CNI quando usados em combinação.",
+    conclusao:"Tacrolimo com micofenolato e corticosteroide permanece a espinha dorsal inicial para a maioria dos receptores; estratégias com mTOR ou minimização devem ser guiadas por risco imunológico, toxicidade, função do enxerto, proteinúria e momento pós-operatório.",
+    curiosidade:"A diretriz chama os inibidores da calcineurina de fármacos de dose crítica: pequenas mudanças de exposição, inclusive por interação medicamentosa, podem deslocar o paciente entre rejeição por subexposição e toxicidade por superexposição."
+  },
   banff_2019_kidney_meeting:{
     label:"Banff 2019 Kidney Meeting Report — Rejeição TCMR/ABMR",
     url:"https://doi.org/10.1111/ajt.15898",
