@@ -67,7 +67,7 @@
     if (typeof Sentry !== 'undefined') {
       Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@13.30',
+          release: 'nefroquest@13.31',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -361,7 +361,7 @@
         <span>Para aprender, revisar e se manter atualizado em nefrologia.</span>
         <span class="nql-portal__footer-meta">
           <button type="button" data-action="showPrivacyPolicy">Privacidade</button>
-          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v13.30</button>
+          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v13.31</button>
         </span>
       </footer>
     </section>
@@ -822,7 +822,7 @@
 
       <footer class="nql-atrium__footer">
         <span>Prática que se transforma em domínio clínico.</span>
-        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v13.30</button></span>
+        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v13.31</button></span>
       </footer>
     </section>
     <div class="welcome-bg" aria-hidden="true"></div>

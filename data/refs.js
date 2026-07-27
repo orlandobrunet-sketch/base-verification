@@ -801,6 +801,48 @@ rave_study:{
     conclusao:"Omissão de doses é fator modificável relevante para desfechos tardios, mas variabilidade do tacrolimo é um sinal inespecífico e deve levar à investigação da causa antes de rotular não adesão.",
     curiosidade:"Uma coleta feita depois da dose pode produzir nível falsamente alto; confirmar horário da dose e da coleta é parte essencial da monitorização."
   },
+  guacheta_lymphocele_2023:{
+    label:"Guachetá-Bomba PL et al. — Linfocele Pós-Transplante (2023)",
+    url:"https://doi.org/10.6002/ect.2023.0037",
+    journal:"Experimental and Clinical Transplantation 2023;21(11):855-859",
+    ano:2023,
+    tipo:"Revisão",
+    badge:"REVIEW",
+    badgeColor:"#8b5cf6",
+    impacto:"Diagnóstico diferencial e manejo escalonado da linfocele após transplante renal",
+    icon:"🔬",
+    resumo:"Revisão das linfoceles após transplante renal. A apresentação costuma ocorrer de duas semanas a seis meses, com pico em torno de seis semanas. A ultrassonografia identifica coleções anecoicas ou hipoecoicas, mas não as distingue de todo urinoma ou seroma; a aspiração com creatinina, celularidade e Gram ajuda a estabelecer a origem e excluir infecção. Coleções expansivas podem comprimir ureter, vasos ou o enxerto e causar disfunção, edema ou sintomas urinários.",
+    conclusao:"O diagnóstico combina tempo pós-operatório, imagem e análise do líquido; coleções pequenas e assintomáticas podem ser observadas, enquanto linfoceles sintomáticas ou compressivas requerem abordagem percutânea e, se recorrentes ou refratárias, fenestração cirúrgica.",
+    curiosidade:"A imagem de uma coleção simples não encerra o diagnóstico: linfocele e urinoma podem parecer iguais ao ultrassom, e a creatinina do líquido em relação ao soro é uma pista decisiva."
+  },
+  transplantation_society_amr_2019:{
+    label:"Schinstock CA et al. — Consenso da Transplantation Society sobre RMA (2019)",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC7176344/",
+    journal:"Transplantation 2020;104(5):911-922",
+    ano:2020,
+    tipo:"Consenso de Especialistas",
+    badge:"CONSENSUS",
+    badgeColor:"#6366f1",
+    impacto:"Tratamento da rejeição mediada por anticorpos e limites da evidência nas formas crônicas",
+    icon:"📋",
+    resumo:"Consenso de especialistas da Transplantation Society sobre rejeição mediada por anticorpos no transplante renal. O documento destaca a baixa qualidade da evidência terapêutica e a ausência de tratamentos aprovados especificamente para RMA. Na forma crônica ativa, plasmaférese, IVIG e rituximabe não demonstraram melhora consistente de desfechos; o foco deve incluir otimização da imunossupressão, investigação de adesão e controle de pressão arterial, glicemia e lipídios.",
+    conclusao:"Lesão crônica, proteinúria e disfunção do enxerto conferem prognóstico desfavorável, mas não justificam automaticamente terapias anti-humorais de benefício não comprovado; a decisão deve equilibrar atividade, cronicidade, infecção e toxicidade.",
+    curiosidade:"O consenso separa o padrão histológico da promessa terapêutica: reconhecer RMA crônica ativa não significa que os esquemas usados na RMA aguda revertam cicatriz ou glomerulopatia já estabelecidas."
+  },
+  atallah_yunes_ptld_2023:{
+    label:"Atallah-Yunes SA et al. — Atualização Terapêutica em PTLD (2023)",
+    url:"https://doi.org/10.1111/bjh.18763",
+    journal:"British Journal of Haematology 2023;201(3):383-395",
+    ano:2023,
+    tipo:"Revisão",
+    badge:"REVIEW",
+    badgeColor:"#8b5cf6",
+    impacto:"Estratégia contemporânea, sequencial e adaptada ao risco para doença linfoproliferativa pós-transplante",
+    icon:"🔬",
+    resumo:"Revisão da doença linfoproliferativa pós-transplante em órgãos sólidos e transplante de células hematopoéticas. Para PTLD B CD20-positiva, a redução coordenada da imunossupressão permanece componente inicial, mas a resposta é heterogênea. Estudos de fase 2 sustentam tratamento sequencial e adaptado à resposta com rituximabe, acrescentando quimioterapia nos pacientes de maior risco, refratários ou com resposta insuficiente.",
+    conclusao:"PTLD monomórfica exige estadiamento e manejo conjunto entre transplante e hematologia; reduzir imunossupressão e usar terapia baseada em rituximabe é mais seguro do que depender de antivirais, observação isolada ou suspensão indiscriminada de todos os imunossupressores.",
+    curiosidade:"A associação com EBV é biologicamente importante, mas o vírus não transforma a PTLD estabelecida em uma infecção tratável apenas com antiviral: o alvo clínico é o clone linfoproliferativo."
+  },
   banff_2019_kidney_meeting:{
     label:"Banff 2019 Kidney Meeting Report — Rejeição TCMR/ABMR",
     url:"https://doi.org/10.1111/ajt.15898",

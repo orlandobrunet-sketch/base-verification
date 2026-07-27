@@ -1,0 +1,90 @@
+{
+  "batch": "FARM-13E",
+  "change_type": "medical_editorial",
+  "expected_version": "13.31",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-13E.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "4b0822ae": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "f5a307ff": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "431ae4eb": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "26494b96": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    }
+  },
+  "expected_question_delta": 0,
+  "refs_policy": "declared",
+  "references": {
+    "guacheta_lymphocele_2023": {
+      "action": "add_new",
+      "source": "open-access 2023 review of post-transplant lymphocele diagnosis and management"
+    },
+    "banff_2019_kidney_meeting": {
+      "action": "reuse_existing",
+      "source": "Banff criteria for chronic active and chronic inactive antibody-mediated rejection"
+    },
+    "transplantation_society_amr_2019": {
+      "action": "add_new",
+      "source": "open-access Transplantation Society expert consensus on antibody-mediated rejection treatment"
+    },
+    "atallah_yunes_ptld_2023": {
+      "action": "add_new",
+      "source": "open-access 2023 review of PTLD treatment and novel therapies"
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "As quatro questões foram reconstruídas com preservação de qid e FSRS porque mantêm o objetivo pedagógico e o conceito nuclear.",
+    "f5a307ff testa a classificação diagnóstica da RMA crônica ativa; 26494b96 testa prognóstico e manejo de glomerulopatia do transplante sem atividade atual, portanto não constituem duplicata editorial.",
+    "O Advogado do Recurso removeu diagnóstico de RMA crônica ativa sem lesão crônica, meia-resposta de diagnóstico e conduta em PTLD, estimativa fixa de sobrevida do enxerto e benefício automático de plasmaférese, IVIG ou rituximabe na lesão crônica."
+  ]
+}
