@@ -2473,10 +2473,10 @@ finerenone_2025:{
     tipo:"Diretriz Clínica",
     badge:"GUIDELINE",
     badgeColor:"#6366f1",
-    impacto:"Manejo de DRC na gestação, incluindo anti-hipertensivos seguros e bloqueio do SRAA",
+    impacto:"Meta pressórica, risco obstétrico e anti-hipertensivos seguros na gestação com DRC",
     icon:"📋",
-    resumo:"Diretriz multidisciplinar para mulheres com doença renal crônica antes, durante e após a gestação. Recomenda labetalol, nifedipina e metildopa como opções para tratar hipertensão na gestação e orienta evitar IECA, BRA e diuréticos como tratamento anti-hipertensivo durante a gravidez. Também diferencia planejamento pré-concepcional: IECA pode ser suspenso conforme força da indicação e rapidez de confirmação da gestação, enquanto BRA deve ser descontinuado antes da gravidez.",
-    conclusao:"Em gestante com DRC e hipertensão, o bloqueio do SRAA não é opção terapêutica; labetalol, nifedipina e metildopa são alternativas usuais e mais seguras.",
+    resumo:"Diretriz multidisciplinar para mulheres com doença renal crônica antes, durante e após a gestação. Recomenda alvo de pressão de 135/85 mmHg ou menos e labetalol, nifedipina ou metildopa para tratamento. IECA, BRA e diuréticos não devem ser usados como anti-hipertensivos durante a gravidez. A DRC aumenta risco de pré-eclâmpsia, parto prematuro, restrição de crescimento fetal e perda de função renal materna, especialmente com menor TFGe, hipertensão e proteinúria; recomenda acompanhamento obstétrico-nefrológico e profilaxia de pré-eclâmpsia conforme indicação.",
+    conclusao:"Na gestante com DRC, documente alvo de 135/85 mmHg ou menos, use agentes compatíveis com gestação e monitore ativamente pré-eclâmpsia e crescimento fetal; bloqueio do SRAA não é opção durante a gravidez.",
     curiosidade:"A diretriz é particularmente útil porque trata a gestação em DRC como cenário próprio, não como simples extensão das recomendações de hipertensão essencial."
   },
   magnesium_sulfate_toxicity_ahrq:{
@@ -2613,10 +2613,10 @@ finerenone_2025:{
     tipo:"Diretriz",
     badge:"GUIDELINE",
     badgeColor:"#6366f1",
-    impacto:"Hipertensão resistente, apneia obstrutiva do sono, emergência hipertensiva e estenose renal: avaliação e tratamento",
+    impacto:"Hipertensão resistente, denervação renal, apneia obstrutiva do sono, emergência hipertensiva e estenose renal: avaliação e tratamento",
     icon:"📋",
-    resumo:"Diretriz multissocietária AHA/ACC de 2025. Na hipertensão aparentemente resistente, exige excluir medida inadequada, efeito do avental branco, baixa adesão e fármacos interferentes antes de confirmar resistência. Reconhece a apneia obstrutiva do sono como causa secundária associada a hipertensão noturna e resistente; o CPAP pode reduzir modestamente a pressão, em média 2 a 5 mmHg em ensaios curtos, com efeito dependente de adesão e perfil clínico, e deve complementar controle de peso e farmacoterapia. Em emergência hipertensiva, recomenda ambiente intensivo e agente intravenoso de ação curta e titulável; sem condição com meta específica, a redução inicial deve ser conservadora, em torno de 25% na primeira hora, seguida de queda gradual. Se a pressão continuar não controlada com IECA ou BRA, bloqueador de canal de cálcio e diurético tiazídico de longa ação, recomenda antagonista do receptor mineralocorticoide quando a TFGe é pelo menos 45 mL/min/1,73m² e o potássio permite. Na estenose aterosclerótica da artéria renal, recomenda tratamento clínico; diante de hipertensão resistente, piora renal e/ou insuficiência cardíaca aguda apesar desse tratamento, considera razoável encaminhar para revascularização.",
-    conclusao:"Confirme resistência verdadeira e causas secundárias. CPAP trata a apneia e pode reduzir modestamente a pressão, mas não substitui terapia anti-hipertensiva. Na emergência, use infusão intravenosa titulável e evite normalização abrupta. Em função renal e potássio adequados, antagonista mineralocorticoide é a quarta droga preferida; revascularização renal aterosclerótica permanece seletiva.",
+    resumo:"Diretriz multissocietária AHA/ACC de 2025. Na hipertensão aparentemente resistente, exige excluir medida inadequada, efeito do avental branco, baixa adesão e fármacos interferentes antes de confirmar resistência. Na denervação renal, recomenda avaliação multidisciplinar, exclusão de causas secundárias e contraindicações anatômicas e decisão compartilhada; os efeitos pressóricos são modestos e variáveis, a maioria dos trials exigiu TFGe de pelo menos 40 mL/min/1,73m² e não há ensaios de desfecho cardiovascular. Reconhece a apneia obstrutiva do sono como causa secundária; o CPAP pode reduzir modestamente a pressão e deve complementar controle de peso e farmacoterapia. Em emergência hipertensiva, recomenda ambiente intensivo e agente intravenoso de ação curta e titulável, com redução inicial conservadora em torno de 25% na primeira hora quando não há meta específica. Na resistência persistente sob IECA ou BRA, bloqueador de canal de cálcio e diurético tiazídico de longa ação, recomenda antagonista mineralocorticoide quando TFGe e potássio permitem. Na estenose renal aterosclerótica, prioriza tratamento clínico e reserva revascularização para cenários selecionados de alto risco.",
+    conclusao:"Confirme resistência verdadeira e causas secundárias antes de quarta droga ou procedimento. Denervação renal é opção seletiva, de benefício pressórico modesto e decisão compartilhada; não substitui terapia otimizada. CPAP é adjuvante, emergências exigem infusão titulável sem normalização abrupta e revascularização renal permanece seletiva.",
     curiosidade:"Ensaios de CPAP mostram efeito pressórico maior com boa adesão, sem demonstração suficiente de prevenção cardiovascular isolada. Em paralelo, trials de stent sustentam terapia clínica na maioria das estenoses renais e o PATHWAY-2 sustenta espironolactona na resistência verdadeira: todos exigem selecionar o fenótipo, não aplicar uma intervenção por reflexo."
   },
   esc_peripheral_aortic_2024:{
@@ -2674,5 +2674,25 @@ finerenone_2025:{
     resumo:"Revisão contemporânea sobre arteriolopatia aferente heterogênea e dano renal dependente da pressão. Hialinose e espessamento medial da arteríola aferente, associados a espessamento íntimal de pequenas artérias, podem romper a autorregulação. Néfrons com remodelamento mais dilatado ficam expostos à hipertensão glomerular, enquanto os com lúmen estreitado sofrem isquemia; ambos os padrões podem coexistir e contribuir para glomeruloesclerose e fibrose tubulointersticial.",
     conclusao:"A progressão renal associada à pressão combina transmissão de hiperpressão e isquemia em néfrons diferentes; achados de arterionefroesclerose apoiam o diagnóstico, mas não são patognomônicos nem exclusivos da hipertensão.",
     curiosidade:"O mesmo rim pode conter arteríolas aferentes dilatadas e estreitadas, explicando por que uma descrição única de hiperfiltração ou isquemia não captura toda a fisiopatologia da nefroesclerose."
+  },
+  aldosterone_intercalated_cells_2011:{
+    label:"Winter et al. — Aldosterone and H+-ATPase in Intercalated Cells",
+    url:"https://pubmed.ncbi.nlm.nih.gov/21832245/",
+    journal:"J Am Soc Nephrol. 2011;22(12):2296-2306",
+    ano:2011,tipo:"Estudo Experimental",badge:"STUDY",badgeColor:"#10b981",
+    impacto:"Mecanismo celular da secreção distal de H+ estimulada por aldosterona",icon:"🔬",
+    resumo:"Estudo em células intercaladas secretoras de ácido do ducto coletor medular externo mostrando que a aldosterona aumenta a atividade da H+-ATPase vacuolar. O efeito ocorreu rapidamente e foi mediado principalmente por via dependente de proteína quinase C, oferecendo base mecanística para maior secreção distal de H+ no excesso mineralocorticoide.",
+    conclusao:"Nas células intercaladas tipo A, a aldosterona estimula a H+-ATPase apical e aumenta a secreção de ácido, contribuindo para a tendência à alcalose no excesso mineralocorticoide.",
+    curiosidade:"Além da conhecida ação sobre ENaC nas células principais, a aldosterona regula diretamente a maquinaria de acidificação das células intercaladas."
+  },
+  kdigo_ckd_2024:{
+    label:"KDIGO — Clinical Practice Guideline for CKD 2024",
+    url:"https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+    journal:"Kidney Int. 2024;105(Suppl 4S):S117-S314",
+    ano:2024,tipo:"Diretriz",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Manejo sistemático da hipercalemia e preservação de terapias cardiorrenais na DRC",icon:"📋",
+    resumo:"Diretriz KDIGO 2024 para avaliação e manejo da DRC. Na hipercalemia não emergente, propõe revisar fármacos e fontes de potássio biodisponível, corrigir acidose e distúrbios de volume e considerar diuréticos ou agentes de troca de potássio. Quelantes modernos podem facilitar o uso essencial de IECA, BRA ou antagonistas mineralocorticoides, mas a segurança imediata e a indicação individual de cada fármaco devem ser reavaliadas.",
+    conclusao:"Hipercalemia sob bloqueio do SRAA exige abordagem escalonada e correção de fatores reversíveis; preserve terapia cardiorrenal indicada quando for seguro, sem manter automaticamente um antagonista mineralocorticoide em potássio perigosamente alto.",
+    curiosidade:"A diretriz distingue potássio total de biodisponibilidade: alimentos processados com aditivos de potássio podem ser alvos mais relevantes que restrições indiscriminadas de vegetais."
   },
 };

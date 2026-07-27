@@ -1,0 +1,100 @@
+{
+    "batch":  "FARM-12E",
+    "change_type":  "medical_editorial",
+    "expected_version":  "13.25",
+    "allowed_files":  [
+                          "data/refs.js",
+                          "data/topics.js",
+                          "docs/editorial/review-batches/FARM-12E.json",
+                          "index.html",
+                          "jogar/index.html",
+                          "sw.js",
+                          "version.json"
+                      ],
+    "questions":  {
+                      "abb58955":  {
+                                       "action":  "rebuild",
+                                       "preserve_fsrs":  true,
+                                       "editorial_gate":  {
+                                                              "evidence":  "VERIFICADA",
+                                                              "pending":  "NENHUMA",
+                                                              "score":  "18/20",
+                                                              "verdict":  "aprovada",
+                                                              "publication":  "LIBERADA"
+                                                          }
+                                   },
+                      "c572522f":  {
+                                       "action":  "rebuild",
+                                       "preserve_fsrs":  true,
+                                       "editorial_gate":  {
+                                                              "evidence":  "VERIFICADA",
+                                                              "pending":  "NENHUMA",
+                                                              "score":  "18/20",
+                                                              "verdict":  "aprovada",
+                                                              "publication":  "LIBERADA"
+                                                          }
+                                   },
+                      "78be79e7":  {
+                                       "action":  "rebuild",
+                                       "preserve_fsrs":  true,
+                                       "editorial_gate":  {
+                                                              "evidence":  "VERIFICADA",
+                                                              "pending":  "NENHUMA",
+                                                              "score":  "18/20",
+                                                              "verdict":  "aprovada",
+                                                              "publication":  "LIBERADA"
+                                                          }
+                                   },
+                      "f847386a":  {
+                                       "action":  "rebuild",
+                                       "preserve_fsrs":  true,
+                                       "editorial_gate":  {
+                                                              "evidence":  "VERIFICADA",
+                                                              "pending":  "NENHUMA",
+                                                              "score":  "18/20",
+                                                              "verdict":  "aprovada",
+                                                              "publication":  "LIBERADA"
+                                                          }
+                                   },
+                      "38eaee8c":  {
+                                       "action":  "rebuild",
+                                       "preserve_fsrs":  true,
+                                       "editorial_gate":  {
+                                                              "evidence":  "VERIFICADA",
+                                                              "pending":  "NENHUMA",
+                                                              "score":  "18/20",
+                                                              "verdict":  "aprovada",
+                                                              "publication":  "LIBERADA"
+                                                          }
+                                   }
+                  },
+    "expected_question_delta":  0,
+    "refs_policy":  "declared",
+    "references":  {
+                       "aha_acc_hypertension_2025":  {
+                                                         "action":  "update_existing",
+                                                         "source":  "expanded with 2025 renal denervation patient selection and shared decision-making"
+                                                     },
+                       "ckd_pregnancy_guideline_2019":  {
+                                                            "action":  "update_existing",
+                                                            "source":  "expanded with CKD pregnancy BP target and maternal-fetal risk"
+                                                        },
+                       "aldosterone_intercalated_cells_2011":  {
+                                                                   "action":  "add_new",
+                                                                   "source":  "experimental evidence for aldosterone-stimulated H+-ATPase in acid-secretory intercalated cells"
+                                                               },
+                       "kdigo_ckd_2024":  {
+                                              "action":  "add_new",
+                                              "source":  "KDIGO 2024 guidance for nonemergent hyperkalemia and preserving essential RAS inhibition"
+                                          }
+                   },
+    "external_review":  {
+                            "greptile":  "unavailable",
+                            "fallback_reviewer":  "Codex revisar-nefroquest + official editorial-batch validator"
+                        },
+    "notes":  [
+                  "Fecha as cinco questões restantes da categoria hipertensão.",
+                  "Corrige o manejo inseguro de hipercalemia em DRC G4, torna a denervação renal uma opção seletiva e atualiza o alvo de pressão na gestação com DRC.",
+                  "Preserva todos os qids e a continuidade FSRS; não há retirada de questão neste lote."
+              ]
+}
