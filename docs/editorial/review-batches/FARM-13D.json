@@ -1,0 +1,122 @@
+{
+  "batch": "FARM-13D",
+  "change_type": "medical_editorial",
+  "expected_version": "13.30",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-13D.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "4de9345c": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "10b98f41": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "577d45a6": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "47687d3f": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "bb39d1f0": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "021176a9": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "a9b10932": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "12/20",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    }
+  },
+  "expected_question_delta": -1,
+  "refs_policy": "declared",
+  "references": {
+    "eau_renal_transplant_2026": {
+      "action": "reuse_existing",
+      "source": "current EAU guidance for induction, CNI monitoring and individualized mTOR use"
+    },
+    "ippoliti_ratg_mechanism_2015": {
+      "action": "add_new",
+      "source": "open-access mechanistic review of rabbit anti-thymocyte globulin"
+    },
+    "sharif_ptdm_consensus_2024": {
+      "action": "add_new",
+      "source": "open-access third international consensus on post-transplantation diabetes mellitus"
+    },
+    "taber_tacrolimus_variability_2021": {
+      "action": "add_new",
+      "source": "open-access longitudinal cohort of tacrolimus variability and nonadherence"
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Funde a9b10932 em 10b98f41 porque ambos testavam a mesma decisão, estrutura genérica, perfil e idioma sobre não adesão como fator modificável de rejeição tardia.",
+    "O Advogado do Recurso removeu dose universal de ATG, alvo numérico universal de tacrolimo, conversão automática para mTOR e troca automática da imunossupressão diante de PTDM."
+  ]
+}
