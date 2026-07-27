@@ -2441,12 +2441,16 @@ finerenone_2025:{
   kdigo_adpkd_2025:{
     label:"KDIGO ADPKD 2025 (Rim Policístico Autossômico Dominante)",
     url:"https://kdigo.org/guidelines/adpkd/",
-    journal:"Kidney International",
-    ano:2025,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
-    impacto:"Primeira diretriz KDIGO para DRPAD: tolvaptana, SGLT2i, controle de PA, dieta e abordagem de progressão renal",icon:"📋",
-    resumo:"Primeira diretriz KDIGO dedicada ao rim policístico autossômico dominante. Recomenda tolvaptana (antagonista do receptor V2 da vasopressina) para pacientes com progressão rápida identificada pela classificação de Mayo (classes 1C, 1D, 1E) ou PROPKD score, com TFGe >25 ml/min/1,73m² e após avaliação hepática. Alvo de PA: <110/75 mmHg em adultos jovens com TFGe preservada (baseado no HALT-PKD). Inclui recomendações sobre hidratação, dieta, SGLT2i como terapia emergente e rastreamento de complicações.",
-    conclusao:"A diretriz ADPKD 2025 uniformiza o uso de tolvaptana com critérios de progressão rápida (Mayo 1C–1E), evitando tratar pacientes de baixo risco que não se beneficiam e têm risco de hepatotoxicidade.",
-    curiosidade:"A vasopressina é o principal driver do crescimento cístico na DRPAD: estimula a adenilato ciclase via receptor V2, elevando o AMPc intracelular nas células epiteliais dos cistos e promovendo proliferação e secreção de fluido. O tolvaptana bloqueia esse mecanismo diretamente."
+    journal:"Kidney International 2025;107(Suppl 2S):S1-S239",
+    ano:2025,
+    tipo:"Diretriz Internacional",
+    badge:"GUIDELINE",
+    badgeColor:"#6366f1",
+    impacto:"Diagnóstico, prognóstico, tolvaptana e complicações renais e extrarrenais da DRPAD",
+    icon:"📋",
+    resumo:"Primeira diretriz KDIGO dedicada à DRPAD. Organiza diagnóstico por imagem e genética, aplica a Classificação de Imagem de Mayo ao fenótipo típico e recomenda oferecer tolvaptana a adultos com TFGe ≥25 mL/min/1,73 m² e risco de progressão rápida por Mayo 1C–1E ou declínio histórico da TFGe ≥3 mL/min/1,73 m² ao ano. Classe 1C tem sobreposição e pode exigir dados adicionais, como PROPKD, história familiar e trajetória funcional. A diretriz também recomenda rastreamento de aneurisma intracraniano em alto risco e decisão informada em outros contextos.",
+    conclusao:"O manejo da DRPAD depende de integrar idade, morfologia, volume renal ajustado à altura, trajetória da TFGe e contexto familiar; nenhum marcador isolado deve transformar diagnóstico, prognóstico ou tolvaptana em decisão automática.",
+    curiosidade:"A angiorressonância por tempo de voo sem gadolínio é o exame preferido quando se decide rastrear aneurisma intracraniano, evitando simultaneamente radiação e contraste."
   },
   kdigo_anemia_2026:{
     label:"KDIGO Anemia in CKD 2026",

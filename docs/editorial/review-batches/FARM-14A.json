@@ -1,0 +1,145 @@
+{
+  "batch": "FARM-14A",
+  "change_type": "medical_editorial",
+  "expected_version": "13.33",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-14A.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "2af04ec7": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "b7a28d0b": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "61d4ad11": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "eba4f29e": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "26c191b0": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NÃO DECISIVA",
+        "score": "11/20",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "ef5b94e4": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "72c98d51": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "7c695b30": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NÃO DECISIVA",
+        "score": "10/20",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "1bd9b438": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "d7c0052b": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    }
+  },
+  "expected_question_delta": -2,
+  "refs_policy": "declared",
+  "references": {
+    "kdigo_adpkd_2025": {
+      "action": "update_existing",
+      "source": "KDIGO 2025 Clinical Practice Guideline for the Evaluation, Management, and Treatment of Autosomal Dominant Polycystic Kidney Disease"
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Oito questões foram reconstruídas com preservação de qid e FSRS porque mantêm seus objetivos pedagógicos e conceitos nucleares.",
+    "26c191b0 foi fundida em 2af04ec7, que agora reúne os critérios ultrassonográficos unificados por faixa etária.",
+    "7c695b30 foi fundida em 1bd9b438, que preserva herança autossômica dominante e acrescenta transmissão de 50% e prognóstico não determinístico.",
+    "O Advogado do Recurso removeu aplicação do nomograma de Mayo ao fenótipo atípico, indicação automática pela classe 1C, inferência de progressão por coleta isolada e proibição absoluta de discutir rastreamento de aneurisma fora da história familiar clássica."
+  ]
+}
