@@ -2611,4 +2611,46 @@ finerenone_2025:{
     conclusao:"Na disfunção renal, a gentamicina exige monitorização da função renal, do oitavo par craniano e dos níveis séricos, com ajuste ou suspensão diante de sinais de toxicidade.",
     curiosidade:""
   },
+  aha_acc_hypertension_2025:{
+    label:"AHA/ACC — High Blood Pressure Guideline 2025",
+    url:"https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000001356",
+    journal:"Circulation. 2025",
+    ano:2025,
+    tipo:"Diretriz",
+    badge:"GUIDELINE",
+    badgeColor:"#6366f1",
+    impacto:"Tratamento clínico e revascularização seletiva na estenose de artéria renal",
+    icon:"📋",
+    resumo:"Diretriz multissocietária AHA/ACC de 2025 para hipertensão arterial. Na estenose aterosclerótica da artéria renal, recomenda tratamento clínico para reduzir morbidade renal e cardiovascular (classe 1, nível A). Quando o tratamento falha, com hipertensão resistente, piora da função renal e/ou insuficiência cardíaca aguda, considera razoável encaminhar para angioplastia renal com ou sem stent (classe 2a, opinião de especialistas). Na estenose não aterosclerótica, incluindo displasia fibromuscular, o encaminhamento para angioplastia percutânea pode ser razoável (classe 2b, dados limitados).",
+    conclusao:"Revascularização renal não é rotina na doença aterosclerótica; ela é uma estratégia seletiva para estenose relevante com falha clínica de alto risco.",
+    curiosidade:"Os ensaios negativos para stent sustentam a terapia clínica na maioria dos pacientes, mas não eliminam a intervenção nos fenótipos de edema pulmonar súbito, deterioração renal ou hipertensão resistente."
+  },
+  esc_peripheral_aortic_2024:{
+    label:"ESC — Peripheral Arterial and Aortic Diseases Guideline 2024",
+    url:"https://academic.oup.com/eurheartj/article/45/36/3538/7738955",
+    journal:"Eur Heart J. 2024;45(36):3538-3700",
+    ano:2024,
+    tipo:"Diretriz",
+    badge:"GUIDELINE",
+    badgeColor:"#6366f1",
+    impacto:"Diagnóstico por duplex e seleção de alto risco na doença arterial renal",
+    icon:"📋",
+    resumo:"Diretriz ESC 2024 para doenças arteriais periféricas e da aorta. Na avaliação da artéria renal, recomenda começar por função renal, pressão dentro e fora do consultório e duplex. Velocidade de pico sistólico renal acima de 200 cm/s identifica estenose superior a 50%, e relação entre velocidades renal e aórtica acima de 3,5 tem alta especificidade para estenose de pelo menos 60%. Cintilografia renal e testes de renina antes/depois de inibidor da enzima conversora não são considerados para avaliar estenose. Hipertensão rapidamente progressiva ou resistente, perda rápida de função renal, edema pulmonar súbito e rim único são apresentações de alto risco.",
+    conclusao:"O duplex combina critérios de velocidade e relação renal-aórtica; testes funcionais com captopril foram substituídos por avaliação hemodinâmica e imagem anatômica.",
+    curiosidade:"Uma estenose anatômica moderada pode não limitar o fluxo renal; por isso gravidade visual e relevância clínica não são sinônimos."
+  },
+  fmd_consensus_2019:{
+    label:"International Consensus — Fibromuscular Dysplasia 2019",
+    url:"https://pubmed.ncbi.nlm.nih.gov/30648921/",
+    journal:"Vasc Med. 2019;24(2):164-189",
+    ano:2019,
+    tipo:"Diretriz",
+    badge:"GUIDELINE",
+    badgeColor:"#6366f1",
+    impacto:"Diagnóstico por imagem e angioplastia da displasia fibromuscular renal",
+    icon:"📋",
+    resumo:"Primeiro consenso internacional harmonizado da European Society of Hypertension e Society for Vascular Medicine sobre displasia fibromuscular. Para suspeita renal, recomenda angiotomografia como exame inicial e angiorressonância com contraste quando a tomografia é contraindicada; duplex como primeira etapa apenas em centros experientes. Angiografia por cateter é o padrão anatômico de referência quando o resultado mudará a conduta. Na revascularização renal, recomenda avaliar o gradiente translesional e realizar angioplastia com balão; stent não é rotineiro e fica principalmente para resgate de complicações.",
+    conclusao:"Suspeita por perfil clínico ou duplex exige confirmação anatômica; quando a lesão renal é hemodinamicamente significativa e há indicação de intervenção, prefere-se balão sem stent rotineiro.",
+    curiosidade:"Na forma multifocal, o aspecto de 'contas de rosário' pode ser exuberante sem definir sozinho a repercussão hemodinâmica; o gradiente através da lesão ajuda a decidir a intervenção."
+  },
 };
