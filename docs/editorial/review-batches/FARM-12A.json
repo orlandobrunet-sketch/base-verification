@@ -1,0 +1,49 @@
+{
+  "batch": "FARM-12A",
+  "change_type": "medical_editorial",
+  "expected_version": "13.21",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-12A.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "23abaa1e": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "a9d85046": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "d9110c20": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "6a1d131e": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "d633d2f4": {"action":"retire","preserve_fsrs":false,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"aposentar","publication":"BLOQUEADA"}},
+    "932bd4e0": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "f726d75a": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "45542637": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada","publication":"LIBERADA"}}
+  },
+  "expected_question_delta": -1,
+  "refs_policy": "declared",
+  "references": {
+    "aha_acc_hypertension_2025": {
+      "action": "add",
+      "source": "AHA/ACC 2025 hypertension guideline card with resumo, conclusao and curiosidade"
+    },
+    "esc_peripheral_aortic_2024": {
+      "action": "add",
+      "source": "ESC 2024 peripheral arterial and aortic diseases guideline card with resumo, conclusao and curiosidade"
+    },
+    "fmd_consensus_2019": {
+      "action": "add",
+      "source": "international FMD consensus card with resumo, conclusao and curiosidade"
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Revisa oito qids do núcleo renovascular da categoria hipertensão.",
+    "Aposenta a cintilografia com captopril como objetivo isolado, pois diretrizes atuais não a consideram na avaliação de estenose da artéria renal.",
+    "Corrige a seleção para revascularização aterosclerótica e exige confirmação anatômica antes de intervir na suspeita de displasia fibromuscular."
+  ]
+}
