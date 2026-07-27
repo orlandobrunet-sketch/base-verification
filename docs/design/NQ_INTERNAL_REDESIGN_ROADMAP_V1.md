@@ -1,6 +1,6 @@
 # NefroQuest — Roadmap de Redesign Interno v1
 
-**Status:** proposta para aprovação  
+**Status:** aprovado para execução em 21/07/2026
 **Sistema visual de referência:** `docs/design/NQ_LUMEN_VISUAL_SYSTEM_V1.md`
 
 ## Objetivo
@@ -125,6 +125,8 @@ Uma página é candidata à aprovação com **90 pontos ou mais** e nenhuma falh
 ### Fundação 0 — Kit Lúmen Vivo
 
 Tokens, tipografia, app shell, botões, painéis, campos, foco, estados, iconografia e regras de movimento. Esta fundação recebe uma aprovação própria antes de qualquer tela interna.
+
+**Execução:** laboratório candidato em `design-system/lumen-foundation/`; aguarda aprovação visual e funcional antes da Página 1.
 
 ### Página 1 — Portal de acesso
 

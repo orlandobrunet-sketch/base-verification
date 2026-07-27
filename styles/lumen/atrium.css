@@ -1,0 +1,657 @@
+/* NefroQuest — Lúmen Vivo / Página 2: Átrio da Jornada */
+
+
+#welcomeScreen[data-nq-ui="lumen"] {
+  position: fixed;
+  z-index: 3000;
+  inset: 0;
+  display: block !important;
+  min-width: 20rem;
+  min-height: 100svh;
+  padding: 0 !important;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background:
+    radial-gradient(circle at 73% 18%, rgba(var(--nql-lumen-rgb), .065), transparent 25rem),
+    linear-gradient(112deg, rgba(var(--nql-mastery-rgb), .025), transparent 38%),
+    var(--nql-abyss) !important;
+  color: var(--nql-text);
+  font-family: var(--nql-font-body);
+  opacity: 1;
+  transition: none !important;
+  isolation: isolate;
+}
+
+#welcomeScreen[data-nq-ui="lumen"].hidden {
+  display: none !important;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] > .welcome-bg,
+#welcomeScreen[data-nq-ui="lumen"] > .welcome-glow,
+#welcomeScreen[data-nq-ui="lumen"] > .welcome-particles {
+  display: none !important;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: min(100%, 96rem);
+  min-height: 100svh;
+  margin-inline: auto;
+  grid-template-rows: auto 1fr auto;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium::before {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: clamp(1rem, 4vw, 5rem);
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--nql-line-strong) 18%, var(--nql-line) 82%, transparent);
+  content: "";
+  pointer-events: none;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__topbar {
+  display: grid;
+  min-height: 4.75rem;
+  padding: .75rem clamp(1rem, 4vw, 5rem);
+  border-bottom: 1px solid var(--nql-line);
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(var(--nql-abyss-rgb), .94);
+}
+
+body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-sound-controls,
+body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
+  display: none !important;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__sound {
+  display: flex !important;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__top-actions,
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__sound {
+  display: flex;
+  align-items: center;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__top-actions { gap: 1rem; }
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__edition {
+  color: var(--nql-text-muted);
+  font-family: var(--nql-font-instrument);
+  font-size: .68rem;
+  letter-spacing: .14em;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .welcome-sound-controls {
+  position: static !important;
+  width: auto !important;
+  margin: 0 !important;
+  gap: .25rem;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .volume-slider-container {
+  position: relative;
+  display: flex;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .sound-toggle,
+#welcomeScreen[data-nq-ui="lumen"] .profile-btn {
+  display: grid !important;
+  width: 2.75rem !important;
+  height: 2.75rem !important;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0 !important;
+  border: 1px solid transparent !important;
+  border-radius: var(--nql-radius-control) !important;
+  place-items: center;
+  background: transparent !important;
+  color: var(--nql-text-soft) !important;
+  transition: border-color var(--nql-duration-fast), color var(--nql-duration-fast), background var(--nql-duration-fast);
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .sound-toggle:hover,
+#welcomeScreen[data-nq-ui="lumen"] .profile-btn:hover {
+  border-color: var(--nql-line-strong) !important;
+  background: rgba(var(--nql-lumen-rgb), .05) !important;
+  color: var(--nql-lumen) !important;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .volume-slider {
+  position: absolute;
+  top: calc(100% + .5rem);
+  right: 0;
+  width: 7rem;
+  margin: 0;
+  padding: .75rem;
+  border: 1px solid var(--nql-line-strong);
+  border-radius: var(--nql-radius-control);
+  background: var(--nql-cortex);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-.25rem);
+  transition: opacity var(--nql-duration-fast), transform var(--nql-duration-fast);
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .volume-slider-container:hover .volume-slider,
+#welcomeScreen[data-nq-ui="lumen"] .volume-slider:focus {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .profile-popup {
+  top: calc(100% + .5rem) !important;
+  right: 0 !important;
+  left: auto !important;
+  min-width: 14rem;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__main {
+  display: grid;
+  width: 100%;
+  padding: clamp(2.5rem, 6vw, 6rem) clamp(1rem, 4vw, 5rem) clamp(3rem, 6vw, 5rem);
+  grid-template-columns: minmax(0, 1.16fr) minmax(21rem, .84fr);
+  align-items: start;
+  gap: clamp(3rem, 7vw, 7rem);
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__journey {
+  min-width: 0;
+  max-width: 48rem;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__eyebrow,
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__routes-head p {
+  margin: 0 0 1rem;
+  color: var(--nql-lumen);
+  font-family: var(--nql-font-instrument);
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] #atriumTitle {
+  max-width: 9ch;
+  margin: 0;
+  color: var(--nql-text);
+  font-family: var(--nql-font-display);
+  font-size: clamp(3.15rem, 6.7vw, 6.2rem);
+  font-weight: 600;
+  letter-spacing: -.045em;
+  line-height: .9;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] #atriumTitle em {
+  display: block;
+  color: var(--nql-mastery);
+  font-weight: 500;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__lede {
+  max-width: 34rem;
+  margin: 1.5rem 0 0;
+  color: var(--nql-text-soft);
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  line-height: 1.55;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .welcome-stats.nql-mastery-rail {
+  position: relative;
+  display: grid !important;
+  width: 100% !important;
+  max-width: 40rem;
+  margin: clamp(2.25rem, 5vw, 4rem) 0 0 !important;
+  padding: 1.25rem 0 1.15rem !important;
+  border: 0 !important;
+  border-top: 1px solid var(--nql-line-gold) !important;
+  border-bottom: 1px solid var(--nql-line) !important;
+  border-radius: 0 !important;
+  grid-template-columns: repeat(3, 1fr);
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .welcome-stats.nql-mastery-rail::before {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 24%;
+  height: 3px;
+  background: var(--nql-mastery);
+  content: "";
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .welcome-stat {
+  display: flex;
+  min-width: 0;
+  padding: 0 1.25rem;
+  border: 0 !important;
+  border-right: 1px solid var(--nql-line) !important;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .15rem;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .welcome-stat:first-child { padding-left: 0; }
+#welcomeScreen[data-nq-ui="lumen"] .welcome-stat:last-child { border-right: 0 !important; }
+
+#welcomeScreen[data-nq-ui="lumen"] .welcome-stat .ws-val {
+  color: var(--nql-mastery) !important;
+  font-family: var(--nql-font-instrument) !important;
+  font-size: clamp(1.25rem, 2vw, 1.6rem) !important;
+  font-weight: 500 !important;
+  line-height: 1.2;
+  background: none !important;
+  -webkit-text-fill-color: var(--nql-mastery) !important;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .welcome-stat .ws-lbl {
+  color: var(--nql-text-muted) !important;
+  font-family: var(--nql-font-body) !important;
+  font-size: .73rem !important;
+  letter-spacing: .05em !important;
+  text-transform: uppercase;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__continuum {
+  position: relative;
+  display: grid;
+  max-width: 40rem;
+  margin-top: 2rem;
+  padding-top: .75rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .75rem;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__continuum-line {
+  position: absolute;
+  top: .95rem;
+  right: 12%;
+  left: .25rem;
+  height: 1px;
+  overflow: hidden;
+  background: var(--nql-line-strong);
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__continuum-line i {
+  display: block;
+  width: 36%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--nql-lumen), var(--nql-mastery));
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__continuum-step {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  padding-top: 1.3rem;
+  flex-direction: column;
+  gap: .1rem;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__continuum-step > span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: .45rem;
+  height: .45rem;
+  border: 1px solid var(--nql-line-strong);
+  border-radius: 50%;
+  background: var(--nql-abyss);
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__continuum-step.is-current > span {
+  border-color: var(--nql-lumen);
+  background: var(--nql-lumen);
+  box-shadow: 0 0 0 .25rem rgba(var(--nql-lumen-rgb), .1);
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__continuum-step strong {
+  color: var(--nql-text);
+  font-family: var(--nql-font-display);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__continuum-step small {
+  color: var(--nql-text-muted);
+  font-size: .75rem;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .welcome-saved-info.nql-atrium__saved {
+  width: 100% !important;
+  max-width: 40rem !important;
+  margin: 2rem 0 0 !important;
+  padding: 1rem 0 1rem 1.25rem !important;
+  border: 0 !important;
+  border-left: 2px solid var(--nql-mastery) !important;
+  border-radius: 0 !important;
+  background: linear-gradient(90deg, rgba(var(--nql-mastery-rgb), .07), transparent 72%) !important;
+  box-shadow: none !important;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .wsaved-top,
+#welcomeScreen[data-nq-ui="lumen"] .wsaved-bottom {
+  display: flex;
+  align-items: center;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .wsaved-top {
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .wsaved-label {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  color: var(--nql-mastery) !important;
+  font-family: var(--nql-font-instrument);
+  font-size: .68rem !important;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .wsaved-label i {
+  width: .35rem;
+  height: .35rem;
+  border-radius: 50%;
+  background: var(--nql-mastery);
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .wsaved-time-lbl {
+  color: var(--nql-text-muted) !important;
+  font-family: var(--nql-font-instrument);
+  font-size: .66rem !important;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .wsaved-bottom {
+  margin-top: .85rem;
+  gap: .9rem;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] #wsSavedAvatar {
+  width: 3rem !important;
+  height: 3rem !important;
+  border: 1px solid var(--nql-line-gold) !important;
+  border-radius: .25rem !important;
+  object-fit: cover;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .wsaved-info { min-width: 0; flex: 1; }
+#welcomeScreen[data-nq-ui="lumen"] .wsaved-charname {
+  margin-bottom: .35rem;
+  color: var(--nql-text) !important;
+  font-family: var(--nql-font-display) !important;
+  font-size: 1.05rem !important;
+  font-weight: 600;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .wsaved-stats { display: flex; gap: 1.25rem; }
+#welcomeScreen[data-nq-ui="lumen"] .wsaved-stat { display: flex; align-items: baseline; gap: .3rem; }
+#welcomeScreen[data-nq-ui="lumen"] .wsaved-stat .ws-v {
+  color: var(--nql-mastery) !important;
+  font-family: var(--nql-font-instrument);
+  font-size: .82rem !important;
+}
+#welcomeScreen[data-nq-ui="lumen"] .wsaved-stat .ws-l { color: var(--nql-text-muted) !important; font-size: .7rem !important; }
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary-actions {
+  display: flex !important;
+  width: 100% !important;
+  max-width: 40rem;
+  margin: 2rem 0 0 !important;
+  align-items: stretch;
+  gap: .75rem;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary,
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__secondary {
+  min-height: 3.75rem !important;
+  margin: 0 !important;
+  border-radius: var(--nql-radius-control) !important;
+  text-transform: none !important;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary {
+  width: auto !important;
+  min-width: min(100%, 19rem);
+  padding: .65rem 1rem .65rem 1.15rem !important;
+  border: 1px solid var(--nql-mastery) !important;
+  background: var(--nql-mastery) !important;
+  color: var(--nql-abyss) !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  text-align: left;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary > span { display: flex; flex-direction: column; }
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary strong { font-weight: 700; }
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary small { color: rgba(var(--nql-abyss-rgb), .68); font-size: .72rem; }
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary svg,
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route svg { width: 1.2rem; fill: none; stroke: currentColor; stroke-width: 1.6; }
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__secondary {
+  width: auto !important;
+  min-width: 14rem;
+  padding: .75rem 1.1rem !important;
+  border: 1px solid var(--nql-line-strong) !important;
+  background: transparent !important;
+  color: var(--nql-text) !important;
+  box-shadow: none !important;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary:hover { background: #f6da93 !important; transform: translateY(-1px); }
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__secondary:hover { border-color: var(--nql-lumen) !important; color: var(--nql-lumen) !important; transform: translateY(-1px); }
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__routes {
+  position: relative;
+  min-width: 0;
+  padding-top: .25rem;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__routes::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -2rem;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--nql-line-strong), transparent 95%);
+  content: "";
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__routes-head h2 {
+  max-width: 13ch;
+  margin: 0;
+  color: var(--nql-text);
+  font-family: var(--nql-font-display);
+  font-size: clamp(1.75rem, 3vw, 2.55rem);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  line-height: 1.03;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route-status {
+  display: flex;
+  min-height: 3.5rem;
+  margin-top: 1.4rem;
+  padding: .85rem 0;
+  border-top: 1px solid var(--nql-line);
+  border-bottom: 1px solid var(--nql-line);
+  align-items: flex-start;
+  gap: .65rem;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route-status > span {
+  width: .4rem;
+  height: .4rem;
+  margin-top: .38rem;
+  border-radius: 50%;
+  flex: 0 0 auto;
+  background: var(--nql-lumen);
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route-status p {
+  margin: 0;
+  color: var(--nql-text-muted);
+  font-size: .8rem;
+  line-height: 1.45;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route-list {
+  display: grid !important;
+  width: 100% !important;
+  margin: .25rem 0 0 !important;
+  gap: 0 !important;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route {
+  display: grid !important;
+  width: 100% !important;
+  min-height: 4.6rem !important;
+  margin: 0 !important;
+  padding: .75rem .35rem !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--nql-line) !important;
+  border-radius: 0 !important;
+  grid-template-columns: 2.25rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .8rem;
+  background: transparent !important;
+  color: var(--nql-text) !important;
+  box-shadow: none !important;
+  text-align: left !important;
+  text-transform: none !important;
+  transition: padding var(--nql-duration-state), color var(--nql-duration-state), border-color var(--nql-duration-state), background var(--nql-duration-state) !important;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route:hover,
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route:focus-visible,
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route.is-current {
+  padding-inline: .75rem !important;
+  border-color: var(--nql-line-strong) !important;
+  background: linear-gradient(90deg, rgba(var(--nql-lumen-rgb), .075), transparent) !important;
+  color: var(--nql-lumen) !important;
+  transform: none !important;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route-index {
+  color: var(--nql-text-muted) !important;
+  font-family: var(--nql-font-instrument);
+  font-size: .67rem;
+  letter-spacing: .08em;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route > span:nth-child(2) { display: flex; min-width: 0; flex-direction: column; gap: .08rem; }
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route strong { color: currentColor; font-family: var(--nql-font-display); font-size: 1.05rem; font-weight: 600; }
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route small { color: var(--nql-text-muted); font-size: .75rem; }
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__footer {
+  display: flex;
+  min-height: 4rem;
+  padding: 1rem clamp(1rem, 4vw, 5rem);
+  border-top: 1px solid var(--nql-line);
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--nql-text-muted);
+  font-size: .75rem;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__footer-meta { display: flex; align-items: center; gap: 1rem; }
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__footer button {
+  min-height: 2.75rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--nql-text-muted);
+  font-family: var(--nql-font-instrument);
+  font-size: .68rem;
+  text-decoration: underline;
+  text-underline-offset: .18rem;
+}
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__footer button:hover { color: var(--nql-lumen); }
+
+@media (max-width: 68rem) {
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__main {
+    grid-template-columns: minmax(0, 1fr) minmax(19rem, .8fr);
+    gap: 3.5rem;
+  }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__routes::before { left: -1.75rem; }
+}
+
+@media (max-width: 55rem) {
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__main {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4rem;
+  }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__journey,
+  #welcomeScreen[data-nq-ui="lumen"] .nql-mastery-rail,
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__continuum,
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__saved,
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary-actions { max-width: none !important; }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__routes { padding-top: 2rem; border-top: 1px solid var(--nql-line-strong); }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__routes::before { display: none; }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__routes-head h2 { max-width: none; }
+}
+
+@media (max-width: 40rem) {
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__topbar { min-height: 4.25rem; }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__edition { display: none; }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__main { padding-top: 2.5rem; gap: 3rem; }
+  #welcomeScreen[data-nq-ui="lumen"] #atriumTitle { font-size: clamp(3rem, 17vw, 4.7rem); }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__lede { font-size: 1rem; }
+  #welcomeScreen[data-nq-ui="lumen"] .welcome-stats.nql-mastery-rail { margin-top: 2.5rem !important; }
+  #welcomeScreen[data-nq-ui="lumen"] .welcome-stat { padding-inline: .75rem; }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__continuum-step small { font-size: .68rem; }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary-actions { flex-direction: column; }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary,
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__secondary { width: 100% !important; }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__footer { align-items: flex-start; flex-direction: column; }
+}
+
+@media (max-width: 23rem) {
+  #welcomeScreen[data-nq-ui="lumen"] .nql-brand { font-size: 1.35rem; }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__topbar,
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__main,
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__footer { padding-inline: .75rem; }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__sound { gap: 0; }
+  #welcomeScreen[data-nq-ui="lumen"] .sound-toggle,
+  #welcomeScreen[data-nq-ui="lumen"] .profile-btn { width: 2.5rem !important; min-width: 2.5rem; }
+  #welcomeScreen[data-nq-ui="lumen"] .welcome-stat { padding-inline: .45rem; }
+  #welcomeScreen[data-nq-ui="lumen"] .welcome-stat .ws-lbl { font-size: .62rem !important; }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__continuum { gap: .35rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route,
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary,
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__secondary {
+    transition: none !important;
+  }
+  #welcomeScreen[data-nq-ui="lumen"] *,
+  #welcomeScreen[data-nq-ui="lumen"] *::before,
+  #welcomeScreen[data-nq-ui="lumen"] *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation: none !important;
+  }
+}

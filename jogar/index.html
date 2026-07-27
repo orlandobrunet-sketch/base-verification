@@ -55,6 +55,7 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=Philosopher:wght@400;700&family=MedievalSharp&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=Philosopher:wght@400;700&family=MedievalSharp&display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=Philosopher:wght@400;700&family=MedievalSharp&display=swap"></noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,600;0,700;1,500;1,600&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap">
   <link rel="prefetch" href="assets/audio/welcome-theme.mp3">
 
   <!-- ══ Sentry error monitoring ══════════════════════════════════════════ -->
@@ -66,7 +67,7 @@
     if (typeof Sentry !== 'undefined') {
       Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@13.27',
+          release: 'nefroquest@13.28',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -112,21 +113,40 @@
     .hidden { display: none !important; }
   </style>
   <link rel="stylesheet" href="style.css?v=11.90">
+  <link rel="stylesheet" href="styles/lumen/tokens.css?v=13.20">
+  <link rel="stylesheet" href="styles/lumen/components.css?v=13.20">
+  <link rel="stylesheet" href="styles/lumen/motion.css?v=13.20">
+  <link rel="stylesheet" href="styles/lumen/portal.css?v=13.24">
+  <link rel="stylesheet" href="styles/lumen/atrium.css?v=13.23">
   <script>
-    // Version beacon — detecta nova versão e força limpeza de cache
+    // Version beacon — detecta nova versão sem interromper a navegação
     (function() {
       var _stored = localStorage.getItem('nq-sw-version');
-      // Capture a intenção antes do fetch: outros scripts podem limpar a query
-      // enquanto a checagem de versão ainda está em andamento.
-      var _returnPath = location.pathname + location.search + location.hash;
+      function compareVersions(left, right) {
+        var a = String(left).split('.');
+        var b = String(right).split('.');
+        if (!a.every(function(part) { return /^\d+$/.test(part); })
+          || !b.every(function(part) { return /^\d+$/.test(part); })) return null;
+        var length = Math.max(a.length, b.length);
+        for (var i = 0; i < length; i++) {
+          var difference = Number(a[i] || 0) - Number(b[i] || 0);
+          if (difference !== 0) return difference > 0 ? 1 : -1;
+        }
+        return 0;
+      }
       fetch('/version.json', { cache: 'no-store' })
         .then(function(r) { return r.json(); })
         .then(function(d) {
           var _v = String(d.version || '');
+          if (!_v) return;
+          var _comparison = _stored === null ? null : compareVersions(_v, _stored);
+          // Uma resposta atrasada da CDN nunca deve rebaixar o marcador local:
+          // isso faria duas versões alternadas chamarem clear-cache indefinidamente.
+          var _displayVersion = _comparison === -1 ? _stored : _v;
           function updateLabels() {
             var labels = document.querySelectorAll('.version-label-dynamic');
             for (var i = 0; i < labels.length; i++) {
-              labels[i].textContent = _v ? ('v' + _v) : 'v11.45';
+              labels[i].textContent = 'v' + _displayVersion;
             }
           }
           if (document.readyState === 'loading') {
@@ -134,16 +154,15 @@
           } else {
             updateLabels();
           }
-          if (_stored !== null && _stored !== _v) {
+          if (_stored === null || _comparison === null || _comparison >= 0) {
             localStorage.setItem('nq-sw-version', _v);
-            try {
-              if (/^\/jogar\/(?:[?#]|$)/.test(_returnPath)) {
-                sessionStorage.setItem('nq-post-cache-url', _returnPath);
-              }
-            } catch (e) {}
-            window.location.replace('/clear-cache.html');
-          } else {
-            localStorage.setItem('nq-sw-version', _v);
+          }
+          if (_comparison > 0 && 'serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistration('/')
+              .then(function(registration) {
+                if (registration) registration.update().catch(function() {});
+              })
+              .catch(function() {});
           }
         })
         .catch(function() {});
@@ -240,7 +259,112 @@
   </div>
 
   <!-- LANDING / LOGIN SCREEN -->
-  <div id="landingScreen">
+  <div id="landingScreen" data-nq-ui="lumen" data-lumen-state="reasoning">
+    <section class="nql-portal" aria-labelledby="portalTitle">
+      <a class="nql-skip-link" href="/jogar/#portalMain">Ir para o acesso</a>
+
+      <header class="nql-portal__topbar">
+        <a class="nql-brand" href="/" aria-label="NefroQuest — voltar à página inicial">Nefro<em>Quest</em></a>
+        <div class="nql-portal__top-actions">
+          <span class="nql-portal__edition" aria-hidden="true">ATLAS NQ · ACESSO</span>
+          <a class="nql-portal__back" href="/">
+            <span class="nql-portal__back-long">Conhecer o projeto</span>
+            <span class="nql-portal__back-short">Site</span>
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 15 15 5M7 5h8v8"/></svg>
+          </a>
+        </div>
+      </header>
+
+      <div class="nql-portal__main" id="portalMain" role="main" tabindex="-1">
+        <section class="nql-portal__story" aria-labelledby="portalTitle">
+          <p class="nql-portal__eyebrow">Portal de acesso · fluxo clínico</p>
+          <h1 id="portalTitle"><span>Entre no seu</span><em>atlas clínico.</em></h1>
+          <p class="nql-portal__lede">Continue sua jornada, sincronize revisões e acompanhe o domínio que você constrói em cada tema.</p>
+
+          <div class="nql-portal__audience" aria-label="Público do NefroQuest">
+            <span>Estudantes</span>
+            <span>Residentes</span>
+            <span>Nefrologistas</span>
+          </div>
+
+          <div class="nql-portal__journey" aria-label="Ciclo de aprendizagem: questão, revisão e domínio">
+            <div class="nql-portal__journey-line" aria-hidden="true"><span></span></div>
+            <div class="nql-portal__milestone is-current">
+              <span class="nql-portal__milestone-node" aria-hidden="true"></span>
+              <strong>Questão</strong>
+              <small>decisão clínica</small>
+            </div>
+            <div class="nql-portal__milestone">
+              <span class="nql-portal__milestone-node" aria-hidden="true"></span>
+              <strong>Revisão</strong>
+              <small>memória ativa</small>
+            </div>
+            <div class="nql-portal__milestone">
+              <span class="nql-portal__milestone-node" aria-hidden="true"></span>
+              <strong>Domínio</strong>
+              <small>evolução visível</small>
+            </div>
+          </div>
+        </section>
+
+        <section class="nql-portal__entry" aria-labelledby="portalEntryTitle" data-route="email">
+          <div class="nql-portal__entry-head">
+            <div>
+              <p>Rota de entrada</p>
+              <h2 id="portalEntryTitle">Retome sua jornada</h2>
+            </div>
+            <span>NQ / ACESSO</span>
+          </div>
+
+          <div class="nql-portal__route-status" aria-live="polite">
+            <span class="nql-portal__status-dot" aria-hidden="true"></span>
+            <span id="portalRouteStatus">Conta, progresso e revisões sincronizados</span>
+          </div>
+
+          <div class="nql-portal__routes">
+            <button type="button" class="nql-portal__route" data-portal-route="google" data-action="landingLoginGoogle">
+              <span class="nql-portal__route-index">G</span>
+              <span class="nql-portal__route-copy">
+                <strong>Continuar com Google</strong>
+                <small>Acesso direto e seguro</small>
+              </span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg>
+            </button>
+
+            <button type="button" class="nql-portal__route nql-portal__route--primary" data-portal-route="email" data-action="landingLoginEmail">
+              <span class="nql-portal__route-index">@</span>
+              <span class="nql-portal__route-copy">
+                <strong>Entrar com email</strong>
+                <small>Login, cadastro ou recuperação</small>
+              </span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg>
+            </button>
+
+            <button type="button" class="nql-portal__route" data-portal-route="guest" data-action="playAsGuest">
+              <span class="nql-portal__route-index">15</span>
+              <span class="nql-portal__route-copy">
+                <strong>Experimentar 15 questões</strong>
+                <small>Sem conta ou sincronização</small>
+              </span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg>
+            </button>
+          </div>
+
+          <p class="nql-portal__security">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5.5 8V6a4.5 4.5 0 0 1 9 0v2M4 8h12v9H4z"/></svg>
+            Login seguro · seus dados não são compartilhados
+          </p>
+        </section>
+      </div>
+
+      <footer class="nql-portal__footer">
+        <span>Para aprender, revisar e se manter atualizado em nefrologia.</span>
+        <span class="nql-portal__footer-meta">
+          <button type="button" data-action="showPrivacyPolicy">Privacidade</button>
+          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v13.28</button>
+        </span>
+      </footer>
+    </section>
     <div class="landing-bg"></div>
     <div class="lnd-vignette" aria-hidden="true"></div>
     <div class="lnd-particles" aria-hidden="true">
@@ -554,7 +678,7 @@
   <script>
   (function(){
     'use strict';
-    var el = document.querySelector('#landingScreen .lnd-carousel');
+    var el = document.querySelector('#landingScreen .nql-portal .lnd-carousel');
     if (!el) return;
     var cards   = el.querySelectorAll('.lnd-carousel-card');
     var dots    = el.querySelectorAll('.lnd-carousel-dot');
@@ -616,85 +740,94 @@
   })();
   </script>
 
-  <!-- WELCOME SCREEN -->
-  <div id="welcomeScreen" class="welcome-screen hidden">
-    <div class="welcome-bg"></div>
-    <div class="welcome-glow"></div>
-    <div class="welcome-particles" id="welcomeParticles"></div>
-    <!-- Botões de som na welcome screen (PC only) -->
-    <div class="welcome-sound-controls" id="welcomeSoundControls">
-      <div class="volume-slider-container">
-        <div class="sound-toggle" role="button" tabindex="0" aria-label="Ativar/desativar música" data-action="toggleMusic">
-          <span id="welcomeMusicIcon" aria-hidden="true">🎵</span>
-        </div>
-        <input type="range" class="volume-slider music-vol" min="0" max="1" step="0.05" aria-label="Volume da Música">
-      </div>
-      <div class="volume-slider-container">
-        <div class="sound-toggle" role="button" tabindex="0" aria-label="Ativar/desativar efeitos sonoros" data-action="toggleSound">
-          <span id="welcomeSoundIcon" aria-hidden="true">🔊</span>
-        </div>
-        <input type="range" class="volume-slider sfx-vol" min="0" max="1" step="0.05" aria-label="Volume dos Efeitos">
-      </div>
-      <div class="profile-btn" id="welcomeProfileBtn" role="button" tabindex="0" aria-label="Menu da conta" data-action="toggleProfilePopup" data-arg="welcome">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
-        <div class="profile-popup" id="welcomeProfilePopup">
-          <div class="profile-popup-email"><strong>Conta</strong><span id="welcomeProfileEmail"></span></div>
+  <!-- WELCOME SCREEN — Lumen Page 2 -->
+  <div id="welcomeScreen" class="welcome-screen hidden" data-nq-ui="lumen" data-lumen-state="mastery" data-journey-state="fresh" aria-hidden="true">
+    <section class="nql-atrium" aria-labelledby="atriumTitle">
+      <a class="nql-skip-link" href="/jogar/#atriumMain">Ir para sua jornada</a>
 
-        </div>
-      </div>
-    </div>
-    <div class="welcome-content">
-      <!-- Ornamento superior -->
-      <div class="welcome-ornament"><span>&#10022; Reino dos Néfrons &#10022;</span></div>
-      <h1>NefroQuest</h1>
-      <div class="welcome-sub">Ascension</div>
-
-      <div id="welcomeStats" class="welcome-stats">
-        <div class="welcome-stat"><span class="ws-val" id="wsBestScore">0</span><span class="ws-lbl">Recorde</span></div>
-        <div class="welcome-stat"><span class="ws-val" id="wsGamesPlayed">0</span><span class="ws-lbl">Partidas</span></div>
-        <div class="welcome-stat"><span class="ws-val" id="wsBestLevel">0</span><span class="ws-lbl">Maior Nível</span></div>
-      </div>
-      <div id="welcomeSavedInfo" class="welcome-saved-info" style="display:none;">
-        <div class="wsaved-top">
-          <span class="wsaved-label">⚔ Jornada em Andamento</span>
-          <span class="wsaved-time-lbl" id="wsSavedTime"></span>
-        </div>
-        <div class="wsaved-bottom">
-          <img id="wsSavedAvatar" alt="" loading="lazy">
-          <div class="wsaved-info">
-            <div class="wsaved-charname" id="wsSavedChar">-</div>
-            <div class="wsaved-stats">
-              <div class="wsaved-stat">
-                <span class="ws-v" style="color:var(--blue)" id="wsSavedLevel">-</span>
-                <span class="ws-l">Nível</span>
-              </div>
-              <div class="wsaved-stat">
-                <span class="ws-v" style="color:#fb7185" id="wsSavedLives">-</span>
-                <span class="ws-l">Vidas</span>
-              </div>
-              <div class="wsaved-stat">
-                <span class="ws-v" style="color:#34d399" id="wsSavedScore">-</span>
-                <span class="ws-l">Pts</span>
-              </div>
+      <header class="nql-atrium__topbar">
+        <a class="nql-brand" href="/" aria-label="NefroQuest — voltar à página inicial">Nefro<em>Quest</em></a>
+        <div class="nql-atrium__top-actions">
+          <span class="nql-atrium__edition" aria-hidden="true">ATLAS NQ · JORNADA</span>
+          <div class="welcome-sound-controls nql-atrium__sound" id="welcomeSoundControls" aria-label="Controles de áudio">
+            <div class="volume-slider-container">
+              <div class="sound-toggle" role="button" tabindex="0" aria-label="Ativar ou desativar música" data-action="toggleMusic"><span id="welcomeMusicIcon" aria-hidden="true">♪</span></div>
+              <input type="range" class="volume-slider music-vol" min="0" max="1" step="0.05" aria-label="Volume da música">
+            </div>
+            <div class="volume-slider-container">
+              <div class="sound-toggle" role="button" tabindex="0" aria-label="Ativar ou desativar efeitos sonoros" data-action="toggleSound"><span id="welcomeSoundIcon" aria-hidden="true">◖</span></div>
+              <input type="range" class="volume-slider sfx-vol" min="0" max="1" step="0.05" aria-label="Volume dos efeitos">
+            </div>
+            <div class="profile-btn" id="welcomeProfileBtn" role="button" tabindex="0" aria-label="Menu da conta" data-action="toggleProfilePopup" data-arg="welcome">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="18" height="18" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+              <div class="profile-popup" id="welcomeProfilePopup"><div class="profile-popup-email"><strong>Conta</strong><span id="welcomeProfileEmail"></span></div></div>
             </div>
           </div>
         </div>
+      </header>
+
+      <div class="nql-atrium__main" id="atriumMain" role="main" tabindex="-1">
+        <section class="nql-atrium__journey" aria-labelledby="atriumTitle">
+          <p class="nql-atrium__eyebrow">Átrio da jornada · seu ponto de retorno</p>
+          <h1 id="atriumTitle">Seu domínio <em>deixa rastros.</em></h1>
+          <p class="nql-atrium__lede">Cada decisão clínica alimenta um percurso contínuo de prática, revisão e domínio.</p>
+
+          <div id="welcomeStats" class="welcome-stats nql-mastery-rail" aria-label="Resumo de domínio">
+            <div class="welcome-stat"><span class="ws-val" id="wsBestScore">0</span><span class="ws-lbl">Recorde</span></div>
+            <div class="welcome-stat"><span class="ws-val" id="wsGamesPlayed">0</span><span class="ws-lbl">Jornadas</span></div>
+            <div class="welcome-stat"><span class="ws-val" id="wsBestLevel">0</span><span class="ws-lbl">Maior nível</span></div>
+          </div>
+
+          <div class="nql-atrium__continuum" aria-label="Ciclo da jornada: decidir, reter e dominar">
+            <span class="nql-atrium__continuum-line" aria-hidden="true"><i></i></span>
+            <div class="nql-atrium__continuum-step is-current"><span aria-hidden="true"></span><strong>Decidir</strong><small>prática ativa</small></div>
+            <div class="nql-atrium__continuum-step"><span aria-hidden="true"></span><strong>Reter</strong><small>revisão espaçada</small></div>
+            <div class="nql-atrium__continuum-step"><span aria-hidden="true"></span><strong>Dominar</strong><small>evolução visível</small></div>
+          </div>
+
+          <div id="welcomeSavedInfo" class="welcome-saved-info nql-atrium__saved" style="display:none;">
+            <div class="wsaved-top"><span class="wsaved-label"><i aria-hidden="true"></i> Jornada em andamento</span><span class="wsaved-time-lbl" id="wsSavedTime"></span></div>
+            <div class="wsaved-bottom">
+              <img id="wsSavedAvatar" alt="" loading="lazy">
+              <div class="wsaved-info">
+                <div class="wsaved-charname" id="wsSavedChar">-</div>
+                <div class="wsaved-stats">
+                  <div class="wsaved-stat"><span class="ws-v" id="wsSavedLevel">-</span><span class="ws-l">Nível</span></div>
+                  <div class="wsaved-stat"><span class="ws-v" id="wsSavedLives">-</span><span class="ws-l">Vidas</span></div>
+                  <div class="wsaved-stat"><span class="ws-v" id="wsSavedScore">-</span><span class="ws-l">Pontos</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="nql-atrium__primary-actions">
+            <button type="button" id="welcomeContinueBtn" class="nql-atrium__primary" style="display:none;" data-action="continueGame"><span><strong>Continuar jornada</strong><small>Retomar de onde você parou</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
+            <button type="button" class="nql-atrium__secondary" data-action="startNewFromWelcome">Iniciar nova jornada</button>
+          </div>
+        </section>
+
+        <aside class="nql-atrium__routes" aria-labelledby="atriumRoutesTitle">
+          <div class="nql-atrium__routes-head"><p>Rotas disponíveis</p><h2 id="atriumRoutesTitle">Escolha seu próximo movimento</h2></div>
+          <div class="nql-atrium__route-status" aria-live="polite"><span aria-hidden="true"></span><p id="atriumRouteStatus">Explore uma rota sem perder o fio da sua jornada.</p></div>
+          <div class="nql-atrium__route-list">
+            <button type="button" class="nql-atrium__route" data-atrium-route="modes" data-action="openGameModesPopup"><span class="nql-atrium__route-index">01</span><span><strong>Modos de jogo</strong><small>Treinos, provas e desafios</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
+            <button type="button" class="nql-atrium__route" data-atrium-route="dashboard" data-action="openDashboard"><span class="nql-atrium__route-index">02</span><span><strong>Mapa de domínio</strong><small>Desempenho por competência</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
+            <button type="button" class="nql-atrium__route" id="welcomeRitualBtn" data-atrium-route="ritual" data-action="openRitual"><span class="nql-atrium__route-index">03</span><span><strong>Ritual de iniciação</strong><small>Descubra seu nível recomendado</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
+            <button type="button" class="nql-atrium__route" data-atrium-route="ranking" data-action="showLeaderboardFromWelcome"><span class="nql-atrium__route-index">04</span><span><strong>Classificação</strong><small>Compare sua evolução</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
+            <button type="button" class="nql-atrium__route" data-atrium-route="library" data-action="openBibliotecaModal"><span class="nql-atrium__route-index">05</span><span><strong>Biblioteca clínica</strong><small>Referências para aprofundar</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
+            <button type="button" id="bossPreviewBtn" class="btn-boss-preview" data-action="startBossPreview" title="Preview do Confronto Final" style="display:none;">Preview: Confronto Final</button>
+          </div>
+        </aside>
       </div>
-      <!-- Botões primários: Nova Jornada + Continuar Jornada -->
-      <div class="welcome-primary-btns">
-        <button type="button" id="welcomeContinueBtn" class="btn continue-btn" style="display:none;" data-action="continueGame">Continuar Jornada</button>
-        <button type="button" class="btn gold" data-action="startNewFromWelcome">Nova Jornada</button>
-      </div>
-      <div class="welcome-buttons">
-        <button type="button" class="btn sec btn-game-modes" data-action="openGameModesPopup">🎮 Modos de Jogo</button>
-        <button type="button" class="btn sec" data-action="openDashboard">📊 Dashboard</button>
-        <button type="button" class="btn sec" id="welcomeRitualBtn" data-action="openRitual">⚜️ Ritual de Iniciação</button>
-        <button type="button" class="btn sec" data-action="showLeaderboardFromWelcome">Leaderboard</button>
-        <button type="button" class="btn sec btn-biblioteca" data-action="openBibliotecaModal">📜 Grimório</button>
-        <button type="button" id="bossPreviewBtn" class="btn-boss-preview" data-action="startBossPreview" title="Preview do Confronto Final" style="display:none;">⚔️ Preview: Confronto Final</button>
-      </div>
-      <div class="welcome-credit"><a href="https://nefroquest.com">nefroquest.com</a> &nbsp;·&nbsp; <span id="welcomeVersionLabel" class="version-label-dynamic" style="font-size:0.9em;cursor:pointer;" role="button" tabindex="0" aria-label="Ver novidades da versão" data-action="showChangelog">v11.45</span> &nbsp;·&nbsp; <span style="font-size:0.8em;cursor:pointer;text-decoration:underline;" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span></div>
-    </div>
+
+      <footer class="nql-atrium__footer">
+        <span>Prática que se transforma em domínio clínico.</span>
+        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v13.28</button></span>
+      </footer>
+    </section>
+    <div class="welcome-bg" aria-hidden="true"></div>
+    <div class="welcome-glow" aria-hidden="true"></div>
+    <div class="welcome-particles" id="welcomeParticles" aria-hidden="true"></div>
   </div>
 
   <main class="app hidden" id="mainApp">
@@ -1278,16 +1411,32 @@
   </div>
 
   <!-- AUTH MODAL -->
-  <div id="authModal" class="auth-modal-overlay" data-action="closeAuthOutside" data-pass-event="1">
-    <div class="auth-box" id="authBox">
-      <button type="button" class="auth-close-btn" data-action="closeAuthModal">✕</button>
-      <div class="auth-title">⚔ NefroQuest</div>
-      <div class="auth-subtitle">Salve seu progresso e apareça no leaderboard</div>
-      <div class="auth-tabs">
-        <button type="button" class="auth-tab active" id="tabEntrar" data-action="switchAuthTab" data-arg="entrar">Entrar</button>
-        <button type="button" class="auth-tab" id="tabCadastrar" data-action="switchAuthTab" data-arg="cadastrar">Criar conta</button>
+  <div id="authModal" class="auth-modal-overlay" data-nq-ui="lumen" data-action="closeAuthOutside" data-pass-event="1"
+       role="dialog" aria-modal="true" aria-labelledby="authDialogTitle" aria-describedby="authDialogDescription" aria-hidden="true">
+    <div class="auth-box nql-portal-auth" id="authBox">
+      <button type="button" class="auth-close-btn" data-action="closeAuthModal" aria-label="Fechar portal de acesso">✕</button>
+
+      <aside class="nql-portal-auth__context" aria-label="Jornada de aprendizagem">
+        <a class="nql-brand" href="/" aria-label="NefroQuest — página inicial">Nefro<em>Quest</em></a>
+        <div class="nql-portal-auth__context-copy">
+          <p>Junção de acesso</p>
+          <h2>Seu progresso continua daqui.</h2>
+          <span>Entre para retomar revisões, XP e domínio por tema.</span>
+        </div>
+        <div class="nql-portal-auth__track" aria-hidden="true">
+          <span class="is-active"></span><span></span><span></span>
+        </div>
+        <p class="nql-portal-auth__context-meta">QUESTÃO · REVISÃO · DOMÍNIO</p>
+      </aside>
+
+      <div class="nql-portal-auth__workspace">
+      <div class="auth-title" id="authDialogTitle">Portal de acesso</div>
+      <div class="auth-subtitle" id="authDialogDescription">Acesse seu atlas ou crie uma conta gratuita.</div>
+      <div class="auth-tabs" role="tablist" aria-label="Forma de acesso">
+        <button type="button" class="auth-tab active" id="tabEntrar" role="tab" aria-selected="true" aria-controls="authFormEntrar" data-action="switchAuthTab" data-arg="entrar">Entrar</button>
+        <button type="button" class="auth-tab" id="tabCadastrar" role="tab" aria-selected="false" aria-controls="authFormCadastrar" data-action="switchAuthTab" data-arg="cadastrar">Criar conta</button>
       </div>
-      <div id="authMsg" class="auth-msg" aria-live="polite" aria-atomic="true"></div>
+      <div id="authMsg" class="auth-msg" role="status" aria-live="polite" aria-atomic="true" tabindex="-1"></div>
       <button type="button" class="auth-google-btn" data-action="loginWithGoogle">
         <svg width="20" height="20" viewBox="0 0 48 48">
           <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
@@ -1300,65 +1449,72 @@
       <div class="auth-divider">ou</div>
       <!-- Turnstile compartilhado pelos formulários (login/cadastro/reset) -->
       <div id="cfTurnstile" class="cf-turnstile" data-sitekey="0x4AAAAAADpZmFAT9FWkVhgt"
-           data-theme="dark" data-size="flexible" style="margin:0 0 12px;"></div>
-      <div id="authFormEntrar">
+           data-theme="dark" data-size="flexible" data-callback="nqTurnstileReady"
+           data-expired-callback="nqTurnstileExpired" data-error-callback="nqTurnstileError"
+           style="margin:0 0 8px;"></div>
+      <p id="cfTurnstileStatus" class="nql-turnstile-status" role="status" aria-live="polite">Verificação de segurança carregando…</p>
+      <button type="button" id="cfTurnstileRetry" class="nql-turnstile-retry" data-action="retryTurnstile" hidden>Recarregar verificação</button>
+      <div id="authFormEntrar" role="tabpanel" aria-labelledby="tabEntrar">
         <div class="auth-field">
           <label for="authEmail">Email</label>
-          <input type="email" id="authEmail" placeholder="seu@email.com" autocomplete="email" />
+          <input type="email" id="authEmail" placeholder="seu@email.com" autocomplete="email" required aria-required="true" />
         </div>
         <div class="auth-field">
           <label for="authPassword">Senha</label>
-          <input type="password" id="authPassword" placeholder="••••••••" autocomplete="current-password" />
+          <input type="password" id="authPassword" placeholder="••••••••" autocomplete="current-password" required aria-required="true" />
         </div>
         <div style="text-align:right;margin:-4px 0 10px;">
           <button type="button" data-action="showForgotPassword" style="background:none;border:none;color:#708090;font-size:0.78rem;cursor:pointer;text-decoration:underline;padding:0;">Esqueci minha senha</button>
         </div>
-        <button type="button" class="auth-submit-btn" id="authLoginBtn" data-action="authEmailLogin">Entrar na Jornada</button>
+        <button type="button" class="auth-submit-btn" id="authLoginBtn" data-action="authEmailLogin">Entrar no NefroQuest</button>
       </div>
-      <div id="authFormForgot" style="display:none;">
-        <p style="color:#a0b8d0;font-size:0.85rem;margin-bottom:14px;line-height:1.6;">Digite seu email e enviaremos um link para redefinir sua senha.</p>
+      <div id="authFormForgot" role="region" style="display:none;" aria-labelledby="authForgotTitle">
+        <h3 id="authForgotTitle" class="nql-portal-auth__form-title">Redefinir senha</h3>
+        <p class="nql-portal-auth__form-intro">Enviaremos um link seguro para este email.</p>
         <div class="auth-field">
           <label for="authForgotEmail">Email</label>
-          <input type="email" id="authForgotEmail" placeholder="seu@email.com" autocomplete="email" />
+          <input type="email" id="authForgotEmail" placeholder="seu@email.com" autocomplete="email" required aria-required="true" />
         </div>
         <button type="button" class="auth-submit-btn" id="authForgotBtn" data-action="authForgotPassword">Enviar Link de Redefinição</button>
         <div style="text-align:center;margin-top:10px;">
           <button type="button" data-action="switchAuthTab" data-arg="entrar" style="background:none;border:none;color:#708090;font-size:0.8rem;cursor:pointer;">← Voltar ao login</button>
         </div>
       </div>
-      <div id="authFormCadastrar" style="display:none;">
+      <div id="authFormCadastrar" role="tabpanel" aria-labelledby="tabCadastrar" style="display:none;">
         <div class="auth-field">
-          <label for="authDisplayName">Nome de Aventureiro</label>
-          <input type="text" id="authDisplayName" placeholder="Dr. Nephros" maxlength="30" autocomplete="name" />
+          <label for="authDisplayName">Nome de exibição</label>
+          <input type="text" id="authDisplayName" placeholder="Como podemos chamar você?" maxlength="30" autocomplete="name" aria-describedby="authDisplayNameHint" required aria-required="true" />
+          <small id="authDisplayNameHint" class="nql-portal-auth__hint">É assim que você aparecerá no ranking; não precisa ser seu nome real.</small>
         </div>
         <div class="auth-field">
-          <label for="authSpecialty">Especialidade</label>
-          <select id="authSpecialty" style="width:100%;background:#0f1a2e;border:1px solid var(--blue-dark);border-radius:8px;padding:10px 12px;color:#e0f0ff;font-size:1rem;outline:none;cursor:pointer;">
-            <option value="" style="background:#0f1a2e;color:#6080a0;">Selecione sua área...</option>
-            <option value="Nefrologia" style="background:#0f1a2e;color:#e0f0ff;">Nefrologia</option>
-            <option value="Clínica Médica" style="background:#0f1a2e;color:#e0f0ff;">Clínica Médica</option>
-            <option value="Medicina Interna" style="background:#0f1a2e;color:#e0f0ff;">Medicina Interna</option>
-            <option value="Estudante de Medicina" style="background:#0f1a2e;color:#e0f0ff;">Estudante de Medicina</option>
-            <option value="Outro" style="background:#0f1a2e;color:#e0f0ff;">Outro</option>
+          <label for="authSpecialty">Momento profissional <span>(opcional)</span></label>
+          <select id="authSpecialty">
+            <option value="">Selecione seu momento...</option>
+            <option value="Estudante de Medicina">Estudante de Medicina</option>
+            <option value="Residente de Clínica Médica">Residente de Clínica Médica</option>
+            <option value="Residente de Nefrologia">Residente de Nefrologia</option>
+            <option value="Nefrologia">Nefrologista</option>
+            <option value="Outro">Outra área</option>
           </select>
         </div>
         <div class="auth-field">
           <label for="authEmailReg">Email</label>
-          <input type="email" id="authEmailReg" placeholder="seu@email.com" autocomplete="email" />
+          <input type="email" id="authEmailReg" placeholder="seu@email.com" autocomplete="email" required aria-required="true" />
         </div>
         <div class="auth-field">
           <label for="authPasswordReg">Senha</label>
-          <input type="password" id="authPasswordReg" placeholder="mín. 6 caracteres" autocomplete="new-password" />
+          <input type="password" id="authPasswordReg" placeholder="mín. 6 caracteres" autocomplete="new-password" minlength="6" required aria-required="true" />
         </div>
         <div class="auth-field">
           <label for="authPasswordConfirm">Confirmar Senha</label>
-          <input type="password" id="authPasswordConfirm" placeholder="repita a senha" autocomplete="new-password" />
+          <input type="password" id="authPasswordConfirm" placeholder="repita a senha" autocomplete="new-password" minlength="6" required aria-required="true" />
         </div>
-        <button type="button" class="auth-submit-btn" id="authRegBtn" data-action="authEmailRegister">Criar Conta</button>
+        <button type="button" class="auth-submit-btn" id="authRegBtn" data-action="authEmailRegister">Criar conta gratuita</button>
         <div id="authResendWrap" style="display:none;text-align:center;margin-top:10px;" data-email="">
           <span style="color:var(--txt-dim);font-size:0.8rem;">Não recebeu? Verifique o spam ou </span>
           <button type="button" id="authResendBtn" class="auth-guest-link" style="background:none;border:none;padding:0;cursor:pointer;" data-action="authResendConfirmation">reenviar email</button>
         </div>
+      </div>
       </div>
     </div>
   </div>
@@ -1482,7 +1638,9 @@
   <script defer src="js/game.js?v=11.90"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
-  <script defer src="js/auth.js?v=13.04"></script>
+  <script defer src="js/auth.js?v=13.20"></script>
+  <script defer src="js/portal.js?v=13.20"></script>
+  <script defer src="js/atrium.js?v=13.23"></script>
   <script defer src="js/paywall.js?v=11.90"></script>
   <script defer src="js/account.js?v=11.90"></script>
   <script defer src="js/boss.js?v=11.90"></script>

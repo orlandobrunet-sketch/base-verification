@@ -1,0 +1,1469 @@
+/*
+ * NefroQuest — Página 1 / Limiar do Atlas
+ * O Portal usa a Fundação Lúmen sem herdar a geometria da landing legada.
+ */
+
+#landingScreen[data-nq-ui="lumen"] {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: block !important;
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0 !important;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: var(--nql-page);
+  color: var(--nql-text);
+  font-family: var(--nql-font-body);
+  isolation: isolate;
+}
+
+#landingScreen[data-nq-ui="lumen"].hidden {
+  display: none !important;
+}
+
+#landingScreen[data-nq-ui="lumen"] > :not(.nql-portal) {
+  display: none !important;
+}
+
+#landingScreen[data-nq-ui="lumen"] *,
+#authModal[data-nq-ui="lumen"] * {
+  box-sizing: border-box;
+}
+
+#landingScreen[data-nq-ui="lumen"] button,
+#landingScreen[data-nq-ui="lumen"] a,
+#authModal[data-nq-ui="lumen"] button,
+#authModal[data-nq-ui="lumen"] input,
+#authModal[data-nq-ui="lumen"] select,
+#authModal[data-nq-ui="lumen"] a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nql-portal {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100svh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 78% 42%, rgba(var(--nql-lumen-rgb), .09), transparent 28rem),
+    radial-gradient(circle at 12% 88%, rgba(var(--nql-mastery-rgb), .055), transparent 25rem),
+    linear-gradient(115deg, #070a13 0%, #080d18 54%, #0b1421 100%);
+}
+
+.nql-portal::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(var(--nql-lumen-rgb), .024) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--nql-lumen-rgb), .018) 1px, transparent 1px);
+  background-size: 5rem 5rem;
+  mask-image: linear-gradient(90deg, transparent 0, #000 55%, #000 100%);
+  content: "";
+}
+
+.nql-portal::after {
+  position: absolute;
+  top: 12%;
+  right: -12rem;
+  z-index: -1;
+  width: 37rem;
+  aspect-ratio: 1;
+  border: 1px solid rgba(var(--nql-lumen-rgb), .07);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 5rem rgba(var(--nql-lumen-rgb), .018),
+    0 0 0 11rem rgba(var(--nql-lumen-rgb), .012);
+  content: "";
+}
+
+.nql-portal__topbar {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 4.5rem;
+  padding-inline: clamp(1.25rem, 4.5vw, 5rem);
+  border-bottom: 1px solid var(--nql-line);
+  background: rgba(var(--nql-abyss-rgb), .76);
+  backdrop-filter: blur(1rem);
+}
+
+.nql-portal__topbar .nql-brand {
+  flex: 0 0 auto;
+  font-size: clamp(1.55rem, 2.2vw, 1.9rem);
+}
+
+.nql-portal__top-actions {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.4vw, 2rem);
+}
+
+.nql-portal__edition,
+.nql-portal__entry-head p,
+.nql-portal__entry-head > span,
+.nql-portal__eyebrow,
+.nql-portal-auth__context-copy > p,
+.nql-portal-auth__context-meta {
+  margin: 0;
+  color: var(--nql-lumen);
+  font-family: var(--nql-font-instrument);
+  font-size: .69rem;
+  font-weight: 500;
+  letter-spacing: .14em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.nql-portal__back {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  gap: .55rem;
+  color: var(--nql-text-soft);
+  font-size: .9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--nql-duration-fast) ease;
+}
+
+.nql-portal__back-short {
+  display: none;
+}
+
+.nql-portal__back svg {
+  width: 1.1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+  transition: transform var(--nql-duration-fast) ease;
+}
+
+.nql-portal__back:hover,
+.nql-portal__back:focus-visible {
+  color: var(--nql-lumen);
+}
+
+.nql-portal__back:hover svg,
+.nql-portal__back:focus-visible svg {
+  transform: translate(.12rem, -.12rem);
+}
+
+.nql-portal__main {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(29rem, 34rem);
+  align-items: start;
+  width: min(100%, 86rem);
+  margin-inline: auto;
+  padding: clamp(2rem, 4.5vh, 4rem) clamp(1.25rem, 5.2vw, 5.5rem) clamp(2rem, 4vh, 3.5rem);
+  gap: clamp(4rem, 8vw, 8.5rem);
+}
+
+.nql-portal__main:focus {
+  outline: none;
+}
+
+body:has(#landingScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-sound-controls,
+body:has(#landingScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
+  display: none !important;
+}
+
+.nql-portal__story {
+  position: relative;
+  max-width: 39rem;
+}
+
+.nql-portal__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin-bottom: 1.5rem;
+}
+
+.nql-portal__eyebrow::before {
+  width: 2.25rem;
+  height: 1px;
+  flex: 0 0 auto;
+  background: var(--nql-lumen);
+  content: "";
+}
+
+.nql-portal__story h1 {
+  max-width: none;
+  margin: 0;
+  color: var(--nql-text);
+  font-family: var(--nql-font-display);
+  font-size: clamp(3.5rem, 6vw, 6rem);
+  font-weight: 600;
+  letter-spacing: -.035em;
+  line-height: .94;
+}
+
+.nql-portal__story h1 > span {
+  display: block;
+  white-space: nowrap;
+}
+
+.nql-portal__story h1 em {
+  display: block;
+  color: var(--nql-mastery);
+  font-weight: 500;
+}
+
+.nql-portal__lede {
+  max-width: 34rem;
+  margin: 1.7rem 0 0;
+  color: var(--nql-text-soft);
+  font-size: clamp(1.05rem, 1.5vw, 1.22rem);
+  line-height: 1.6;
+}
+
+.nql-portal__audience {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .65rem 1.35rem;
+  margin-top: 1.6rem;
+  color: var(--nql-paper-dim);
+  font-size: .83rem;
+  font-weight: 600;
+}
+
+.nql-portal__audience span {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+}
+
+.nql-portal__audience span::before {
+  width: .35rem;
+  height: .35rem;
+  border-radius: 50%;
+  background: var(--nql-success);
+  box-shadow: 0 0 .65rem rgba(var(--nql-success-rgb), .5);
+  content: "";
+}
+
+.nql-portal__journey {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: clamp(3rem, 6vh, 5rem);
+  padding-top: 1.15rem;
+}
+
+.nql-portal__journey-line {
+  position: absolute;
+  top: .28rem;
+  right: 12%;
+  left: .35rem;
+  height: 1px;
+  overflow: hidden;
+  background: rgba(var(--nql-lumen-rgb), .18);
+}
+
+.nql-portal__journey-line span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--nql-lumen), rgba(var(--nql-lumen-rgb), .42), transparent);
+  transform: translateX(-100%);
+  animation: nql-portal-route-once 1.4s var(--nql-ease-enter) .25s forwards;
+}
+
+.nql-portal__milestone {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: .2rem;
+  padding-right: .75rem;
+}
+
+.nql-portal__milestone-node {
+  position: absolute;
+  top: -1.05rem;
+  left: 0;
+  width: .6rem;
+  height: .6rem;
+  border: 1px solid rgba(var(--nql-lumen-rgb), .38);
+  border-radius: 50%;
+  background: var(--nql-page);
+}
+
+.nql-portal__milestone.is-current .nql-portal__milestone-node {
+  border-color: var(--nql-lumen);
+  background: var(--nql-lumen);
+  box-shadow: 0 0 .8rem rgba(var(--nql-lumen-rgb), .58);
+}
+
+.nql-portal__milestone strong {
+  color: var(--nql-paper-dim);
+  font-family: var(--nql-font-instrument);
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.nql-portal__milestone small {
+  color: var(--nql-text-muted);
+  font-size: .77rem;
+}
+
+.nql-portal__entry {
+  position: relative;
+  min-width: 0;
+  padding: clamp(1.5rem, 3vw, 2.3rem);
+  border: 1px solid var(--nql-line-strong);
+  border-radius: .85rem;
+  background:
+    linear-gradient(155deg, rgba(var(--nql-raised-rgb), .28), transparent 42%),
+    rgba(var(--nql-cortex-rgb), .82);
+  box-shadow: 0 1.6rem 5rem rgba(var(--nql-abyss-rgb), .48), inset 0 1px rgba(255,255,255,.025);
+  backdrop-filter: blur(1.2rem);
+}
+
+.nql-portal__entry::after {
+  position: absolute;
+  right: -1px;
+  bottom: 2.25rem;
+  width: 1px;
+  height: 5rem;
+  background: linear-gradient(transparent, var(--nql-mastery), transparent);
+  opacity: .6;
+  content: "";
+}
+
+.nql-portal__entry-head {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  min-height: 4.4rem;
+  gap: 1rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--nql-line);
+}
+
+.nql-portal__entry-head::after {
+  position: absolute;
+  right: auto;
+  bottom: 0;
+  left: 0;
+  width: 28%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--nql-lumen) 42%, var(--nql-mastery) 62%, transparent);
+  content: "";
+  opacity: 0;
+  transform: translateX(-105%);
+  animation: nql-portal-entry-current 3.8s var(--nql-ease-state) infinite;
+  pointer-events: none;
+}
+
+.nql-portal__entry-head h2 {
+  margin: .4rem 0 0;
+  color: var(--nql-text);
+  font-family: var(--nql-font-display);
+  font-size: clamp(1.75rem, 2.5vw, 2.2rem);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  line-height: 1.05;
+}
+
+.nql-portal__entry-head > span {
+  color: var(--nql-text-muted);
+  white-space: nowrap;
+}
+
+.nql-portal__route-status {
+  display: flex;
+  align-items: center;
+  min-height: 3.4rem;
+  gap: .65rem;
+  color: var(--nql-text-soft);
+  font-family: var(--nql-font-instrument);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.nql-portal__status-dot {
+  width: .45rem;
+  height: .45rem;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--nql-lumen);
+  box-shadow: 0 0 .75rem rgba(var(--nql-lumen-rgb), .65);
+}
+
+.nql-portal__routes {
+  position: relative;
+  display: grid;
+  gap: .55rem;
+}
+
+.nql-portal__routes::before {
+  content: none;
+}
+
+.nql-portal__route {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3.25rem minmax(0, 1fr) 1.5rem;
+  align-items: center;
+  width: 100%;
+  min-height: 5.25rem;
+  padding: .8rem 1rem .8rem .95rem;
+  gap: .8rem;
+  border: 1px solid rgba(var(--nql-lumen-rgb), .13);
+  border-radius: .45rem;
+  background: rgba(var(--nql-abyss-rgb), .34);
+  color: var(--nql-text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color var(--nql-duration-state) ease,
+    background var(--nql-duration-state) ease,
+    box-shadow var(--nql-duration-state) ease,
+    transform var(--nql-duration-state) var(--nql-ease-state);
+}
+
+.nql-portal__route[aria-busy="true"],
+.nql-portal__route:disabled {
+  cursor: wait;
+  opacity: .72;
+}
+
+.nql-portal__route:hover,
+.nql-portal__route:focus-visible,
+.nql-portal__entry[data-route="google"] [data-portal-route="google"],
+.nql-portal__entry[data-route="email"] [data-portal-route="email"],
+.nql-portal__entry[data-route="guest"] [data-portal-route="guest"] {
+  border-color: rgba(var(--nql-lumen-rgb), .48);
+  background: rgba(var(--nql-raised-rgb), .36);
+  box-shadow: inset .16rem 0 var(--nql-lumen), 0 0 1.8rem rgba(var(--nql-lumen-rgb), .07);
+}
+
+.nql-portal__route:hover,
+.nql-portal__route:focus-visible {
+  transform: translateX(.2rem);
+}
+
+.nql-portal__route--primary,
+.nql-portal__entry[data-route="email"] [data-portal-route="email"] {
+  border-color: rgba(var(--nql-mastery-rgb), .38);
+  background: linear-gradient(90deg, rgba(var(--nql-mastery-rgb), .095), rgba(var(--nql-raised-rgb), .3));
+  box-shadow: inset .16rem 0 var(--nql-mastery);
+}
+
+.nql-portal__route-index {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  place-items: center;
+  border: 1px solid rgba(var(--nql-lumen-rgb), .28);
+  border-radius: 50%;
+  background: var(--nql-cortex);
+  color: var(--nql-text-muted);
+  font-family: var(--nql-font-instrument);
+  font-size: .65rem;
+}
+
+.nql-portal__entry[data-route="google"] [data-portal-route="google"] .nql-portal__route-index,
+.nql-portal__entry[data-route="email"] [data-portal-route="email"] .nql-portal__route-index,
+.nql-portal__entry[data-route="guest"] [data-portal-route="guest"] .nql-portal__route-index {
+  border-color: var(--nql-lumen);
+  color: var(--nql-lumen);
+  box-shadow: 0 0 1rem rgba(var(--nql-lumen-rgb), .2);
+}
+
+.nql-portal__entry[data-route="email"] [data-portal-route="email"] .nql-portal__route-index {
+  border-color: var(--nql-mastery);
+  color: var(--nql-mastery);
+}
+
+.nql-portal__route-copy {
+  display: grid;
+  min-width: 0;
+  gap: .15rem;
+}
+
+.nql-portal__route-copy strong {
+  font-size: 1rem;
+  font-weight: 650;
+  letter-spacing: .005em;
+}
+
+.nql-portal__route-copy small {
+  color: var(--nql-text-muted);
+  font-size: .79rem;
+  line-height: 1.35;
+}
+
+.nql-portal__route > svg {
+  width: 1.25rem;
+  fill: none;
+  stroke: var(--nql-text-muted);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.4;
+  transition: color var(--nql-duration-fast) ease, transform var(--nql-duration-fast) ease;
+}
+
+.nql-portal__route:hover > svg,
+.nql-portal__route:focus-visible > svg {
+  color: var(--nql-lumen);
+  transform: translateX(.15rem);
+}
+
+.nql-portal__security {
+  display: flex;
+  align-items: center;
+  min-height: 2.75rem;
+  gap: .55rem;
+  margin: 1rem 0 -.5rem;
+  color: var(--nql-text-muted);
+  font-size: .76rem;
+}
+
+.nql-portal__security svg {
+  width: 1rem;
+  fill: none;
+  stroke: var(--nql-success);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.3;
+}
+
+.nql-portal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 3.5rem;
+  padding-inline: clamp(1.25rem, 4.5vw, 5rem);
+  gap: 1rem;
+  border-top: 1px solid rgba(var(--nql-lumen-rgb), .08);
+  color: var(--nql-text-muted);
+  font-size: .76rem;
+}
+
+.nql-portal__footer-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nql-portal__footer button {
+  min-height: 2.75rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.nql-portal__footer button:hover,
+.nql-portal__footer button:focus-visible {
+  color: var(--nql-lumen);
+}
+
+/* Portal de autenticação — o mesmo núcleo funcional, agora em uma superfície Lúmen. */
+body.nql-auth-open {
+  overflow: hidden;
+}
+
+#authModal[data-nq-ui="lumen"] {
+  position: fixed;
+  inset: 0;
+  z-index: 10020;
+  display: grid !important;
+  visibility: hidden;
+  place-items: center;
+  padding: clamp(1rem, 3vw, 2rem);
+  overflow: hidden;
+  background: rgba(var(--nql-abyss-rgb), .78);
+  opacity: 0;
+  pointer-events: none;
+  backdrop-filter: blur(1rem);
+  transition: opacity var(--nql-duration-panel) ease, visibility 0s linear var(--nql-duration-panel);
+}
+
+#authModal[data-nq-ui="lumen"].show {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transition-delay: 0s;
+}
+
+#authModal[data-nq-ui="lumen"] .nql-portal-auth {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(15rem, 18rem) minmax(24rem, 30rem);
+  width: min(100%, 50rem);
+  max-width: 50rem;
+  height: min(43rem, calc(100svh - 3rem));
+  max-height: calc(100svh - 3rem);
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--nql-line-strong) !important;
+  border-radius: var(--nql-radius-dialog) !important;
+  background: var(--nql-surface-solid) !important;
+  box-shadow: var(--nql-shadow-dialog), 0 0 5rem rgba(var(--nql-lumen-rgb), .08) !important;
+  text-align: left;
+  transform: translateY(.8rem) scale(.985);
+  transition: transform var(--nql-duration-panel) var(--nql-ease-enter);
+}
+
+#authModal[data-nq-ui="lumen"][data-auth-entry="email"] .auth-google-btn,
+#authModal[data-nq-ui="lumen"][data-auth-entry="email"] .auth-divider {
+  display: none;
+}
+
+#authModal[data-nq-ui="lumen"] .nql-portal-auth::before {
+  border-color: rgba(var(--nql-lumen-rgb), .38) !important;
+}
+
+#authModal[data-nq-ui="lumen"] .nql-portal-auth::after {
+  border-color: rgba(var(--nql-mastery-rgb), .4) !important;
+}
+
+#authModal[data-nq-ui="lumen"].show .nql-portal-auth {
+  transform: none;
+}
+
+#authModal[data-nq-ui="lumen"] .auth-close-btn {
+  position: absolute;
+  top: .8rem;
+  right: .8rem;
+  z-index: 5;
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  padding: 0;
+  border: 1px solid rgba(var(--nql-lumen-rgb), .2);
+  border-radius: 50%;
+  background: rgba(var(--nql-abyss-rgb), .42);
+  color: var(--nql-text-soft);
+  font: 1rem/1 var(--nql-font-body);
+  cursor: pointer;
+  transition: border-color var(--nql-duration-fast) ease, color var(--nql-duration-fast) ease, background var(--nql-duration-fast) ease;
+}
+
+#authModal[data-nq-ui="lumen"] .auth-close-btn:hover,
+#authModal[data-nq-ui="lumen"] .auth-close-btn:focus-visible {
+  border-color: var(--nql-lumen);
+  background: rgba(var(--nql-lumen-rgb), .09);
+  color: var(--nql-lumen);
+}
+
+.nql-portal-auth__context {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 2.2rem 2rem;
+  overflow: hidden;
+  border-right: 1px solid var(--nql-line);
+  background:
+    radial-gradient(circle at 0 48%, rgba(var(--nql-lumen-rgb), .16), transparent 13rem),
+    linear-gradient(160deg, rgba(var(--nql-raised-rgb), .52), rgba(var(--nql-abyss-rgb), .58));
+}
+
+.nql-portal-auth__context::before,
+.nql-portal-auth__context::after {
+  position: absolute;
+  width: 21rem;
+  aspect-ratio: 1;
+  border: 1px solid rgba(var(--nql-lumen-rgb), .1);
+  border-radius: 50%;
+  content: "";
+}
+
+.nql-portal-auth__context::before {
+  top: 22%;
+  left: -15rem;
+}
+
+.nql-portal-auth__context::after {
+  top: 30%;
+  left: -11rem;
+  border-color: rgba(var(--nql-mastery-rgb), .09);
+}
+
+.nql-portal-auth__context .nql-brand {
+  position: relative;
+  z-index: 1;
+  align-self: start;
+  font-size: 1.55rem;
+}
+
+.nql-portal-auth__context-copy {
+  position: relative;
+  z-index: 1;
+  margin-block: auto;
+}
+
+.nql-portal-auth__context-copy h2 {
+  margin: 1rem 0;
+  color: var(--nql-text);
+  font-family: var(--nql-font-display);
+  font-size: clamp(2rem, 3vw, 2.65rem);
+  font-weight: 600;
+  letter-spacing: -.03em;
+  line-height: 1.02;
+}
+
+.nql-portal-auth__context-copy > span {
+  display: block;
+  color: var(--nql-text-soft);
+  font-size: .95rem;
+  line-height: 1.55;
+}
+
+.nql-portal-auth__track {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  margin: 0 0 1rem;
+}
+
+.nql-portal-auth__track::before {
+  position: absolute;
+  right: .3rem;
+  left: .3rem;
+  height: 1px;
+  background: rgba(var(--nql-lumen-rgb), .22);
+  content: "";
+}
+
+.nql-portal-auth__track span {
+  position: relative;
+  z-index: 1;
+  width: .65rem;
+  height: .65rem;
+  justify-self: center;
+  border: 1px solid rgba(var(--nql-lumen-rgb), .42);
+  border-radius: 50%;
+  background: var(--nql-cortex);
+}
+
+.nql-portal-auth__track span:first-child { justify-self: start; }
+.nql-portal-auth__track span:last-child { justify-self: end; }
+
+.nql-portal-auth__track span.is-active {
+  border-color: var(--nql-lumen);
+  background: var(--nql-lumen);
+  box-shadow: 0 0 .9rem rgba(var(--nql-lumen-rgb), .58);
+}
+
+.nql-portal-auth__context-meta {
+  position: relative;
+  z-index: 1;
+  color: var(--nql-text-muted);
+  font-size: .6rem;
+  white-space: nowrap;
+}
+
+.nql-portal-auth__workspace {
+  min-width: 0;
+  padding: 2.5rem clamp(1.5rem, 3vw, 2.4rem) 2rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-color: rgba(var(--nql-lumen-rgb), .28) transparent;
+}
+
+#authModal[data-nq-ui="lumen"] .auth-title {
+  margin: 0;
+  color: var(--nql-text) !important;
+  font-family: var(--nql-font-display) !important;
+  font-size: 2rem !important;
+  font-weight: 600;
+  letter-spacing: -.025em !important;
+  line-height: 1.05;
+  text-align: left;
+  text-shadow: none !important;
+  filter: none !important;
+}
+
+#authModal[data-nq-ui="lumen"] .auth-subtitle {
+  margin: .55rem 0 1.45rem;
+  color: var(--nql-text-soft) !important;
+  font-family: var(--nql-font-body);
+  font-size: .92rem;
+  line-height: 1.45;
+  text-align: left;
+}
+
+#authModal[data-nq-ui="lumen"] .auth-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 3rem;
+  margin: 0 0 1rem;
+  border-bottom: 1px solid var(--nql-line);
+}
+
+#authModal[data-nq-ui="lumen"] .auth-tabs.nql-auth-tabs--hidden {
+  display: none;
+}
+
+#authModal[data-nq-ui="lumen"] .auth-tab {
+  position: relative;
+  min-height: 3rem;
+  padding: 0 .75rem;
+  border: 0;
+  background: transparent;
+  color: var(--nql-text-muted);
+  font: 600 .86rem var(--nql-font-body);
+  cursor: pointer;
+}
+
+#authModal[data-nq-ui="lumen"] .auth-tab::after {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  background: var(--nql-lumen);
+  opacity: 0;
+  transform: scaleX(.45);
+  content: "";
+  transition: opacity var(--nql-duration-fast) ease, transform var(--nql-duration-fast) ease;
+}
+
+#authModal[data-nq-ui="lumen"] .auth-tab.active {
+  color: var(--nql-text);
+}
+
+#authModal[data-nq-ui="lumen"] .auth-tab.active::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+#authModal[data-nq-ui="lumen"] .auth-msg {
+  min-height: 0;
+  margin: 0 0 .85rem;
+  padding: .7rem .85rem;
+  border: 1px solid transparent;
+  border-radius: var(--nql-radius-control);
+  background: rgba(var(--nql-raised-rgb), .32);
+  color: var(--nql-text-soft);
+  font: .84rem/1.4 var(--nql-font-body);
+  text-align: left;
+}
+
+#authModal[data-nq-ui="lumen"] .auth-msg.error {
+  border-color: rgba(var(--nql-danger-rgb), .35);
+  background: rgba(var(--nql-danger-rgb), .09);
+  color: #f4a9b1;
+}
+
+#authModal[data-nq-ui="lumen"] .auth-msg.success {
+  border-color: rgba(var(--nql-success-rgb), .32);
+  background: rgba(var(--nql-success-rgb), .09);
+  color: var(--nql-success);
+}
+
+#authModal[data-nq-ui="lumen"] .auth-google-btn,
+#authModal[data-nq-ui="lumen"] .auth-submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 3rem;
+  gap: .7rem;
+  padding: .65rem 1rem;
+  border: 1px solid rgba(var(--nql-lumen-rgb), .25);
+  border-radius: var(--nql-radius-control);
+  background: rgba(var(--nql-abyss-rgb), .38);
+  color: var(--nql-text);
+  font: 650 .9rem var(--nql-font-body);
+  cursor: pointer;
+  transition: border-color var(--nql-duration-fast) ease, background var(--nql-duration-fast) ease, box-shadow var(--nql-duration-fast) ease;
+}
+
+#authModal[data-nq-ui="lumen"] .auth-google-btn:hover,
+#authModal[data-nq-ui="lumen"] .auth-google-btn:focus-visible {
+  border-color: var(--nql-lumen);
+  background: rgba(var(--nql-lumen-rgb), .08);
+}
+
+#authModal[data-nq-ui="lumen"] .auth-submit-btn {
+  border-color: rgba(var(--nql-mastery-rgb), .72);
+  background: linear-gradient(120deg, #e5c46f, var(--nql-mastery));
+  color: #17130a;
+  box-shadow: 0 .65rem 1.7rem rgba(var(--nql-mastery-rgb), .12);
+}
+
+#authModal[data-nq-ui="lumen"] .auth-submit-btn:hover,
+#authModal[data-nq-ui="lumen"] .auth-submit-btn:focus-visible {
+  border-color: #f7dfa0;
+  background: linear-gradient(120deg, #efd383, #f5d98e);
+  box-shadow: 0 .75rem 2rem rgba(var(--nql-mastery-rgb), .2);
+}
+
+#authModal[data-nq-ui="lumen"] .auth-google-btn:disabled,
+#authModal[data-nq-ui="lumen"] .auth-submit-btn:disabled {
+  opacity: .62;
+  cursor: progress;
+}
+
+#authModal[data-nq-ui="lumen"] .auth-divider {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin: .85rem 0;
+  color: var(--nql-text-muted);
+  font-family: var(--nql-font-instrument);
+  font-size: .64rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+#authModal[data-nq-ui="lumen"] .auth-divider::before,
+#authModal[data-nq-ui="lumen"] .auth-divider::after {
+  height: 1px;
+  flex: 1;
+  background: var(--nql-line);
+  content: "";
+}
+
+#authModal[data-nq-ui="lumen"] #cfTurnstile {
+  min-height: 0;
+}
+
+#authModal[data-nq-ui="lumen"] .nql-turnstile-status {
+  min-height: 1.2em;
+  margin: 0 0 10px;
+  color: var(--nql-text-muted);
+  font: 500 .68rem/1.4 var(--nql-font-instrument);
+  letter-spacing: .035em;
+}
+
+#authModal[data-nq-ui="lumen"] #cfTurnstile[data-state="ready"] + .nql-turnstile-status {
+  color: var(--nql-lumen);
+}
+
+#authModal[data-nq-ui="lumen"] #cfTurnstile[data-state="error"] + .nql-turnstile-status,
+#authModal[data-nq-ui="lumen"] #cfTurnstile[data-state="expired"] + .nql-turnstile-status {
+  color: var(--nql-danger);
+}
+
+#authModal[data-nq-ui="lumen"] .nql-turnstile-retry {
+  min-height: 2.75rem;
+  margin: 0 0 10px;
+  padding: .45rem .8rem;
+  border: 1px solid rgba(var(--nql-danger-rgb), .42);
+  border-radius: var(--nql-radius-control);
+  background: rgba(var(--nql-danger-rgb), .08);
+  color: var(--nql-text-soft);
+  font: 600 .76rem var(--nql-font-body);
+  cursor: pointer;
+}
+
+#authModal[data-nq-ui="lumen"] .nql-turnstile-retry:hover,
+#authModal[data-nq-ui="lumen"] .nql-turnstile-retry:focus-visible {
+  border-color: var(--nql-danger);
+  color: var(--nql-text);
+}
+
+#authModal[data-nq-ui="lumen"] .auth-field {
+  display: grid;
+  gap: .4rem;
+  margin-bottom: .85rem;
+}
+
+#authModal[data-nq-ui="lumen"] .auth-field label {
+  color: var(--nql-paper-dim);
+  font: 600 .78rem var(--nql-font-body);
+  letter-spacing: .02em;
+  text-align: left;
+}
+
+#authModal[data-nq-ui="lumen"] .auth-field label span {
+  color: var(--nql-text-muted);
+  font-weight: 400;
+}
+
+#authModal[data-nq-ui="lumen"] .auth-field input,
+#authModal[data-nq-ui="lumen"] .auth-field select {
+  width: 100%;
+  min-height: 3rem;
+  padding: .7rem .85rem;
+  border: 1px solid var(--nql-control-border);
+  border-radius: var(--nql-radius-control);
+  outline: 0;
+  background: rgba(var(--nql-abyss-rgb), .55);
+  color: var(--nql-text);
+  font: 1rem var(--nql-font-body);
+  cursor: text;
+  transition: border-color var(--nql-duration-fast) ease, box-shadow var(--nql-duration-fast) ease, background var(--nql-duration-fast) ease;
+}
+
+#authModal[data-nq-ui="lumen"] .auth-field select {
+  color-scheme: dark;
+  cursor: pointer;
+}
+
+#authModal[data-nq-ui="lumen"] .auth-field input::placeholder {
+  color: #72829a;
+  opacity: 1;
+}
+
+#authModal[data-nq-ui="lumen"] .auth-field input:hover,
+#authModal[data-nq-ui="lumen"] .auth-field select:hover {
+  border-color: rgba(var(--nql-lumen-rgb), .72);
+}
+
+#authModal[data-nq-ui="lumen"] .auth-field input:focus-visible,
+#authModal[data-nq-ui="lumen"] .auth-field select:focus-visible {
+  border-color: var(--nql-focus);
+  background: rgba(var(--nql-raised-rgb), .22);
+  box-shadow: var(--nql-shadow-focus);
+}
+
+.nql-portal-auth__hint {
+  display: block;
+  color: var(--nql-text-muted);
+  font-size: .72rem;
+  line-height: 1.35;
+}
+
+.nql-portal-auth__form-title {
+  margin: .15rem 0 .45rem;
+  color: var(--nql-text);
+  font-family: var(--nql-font-display);
+  font-size: 1.45rem;
+  font-weight: 600;
+}
+
+.nql-portal-auth__form-intro {
+  margin: 0 0 1rem;
+  color: var(--nql-text-soft);
+  font-size: .88rem;
+  line-height: 1.5;
+}
+
+#authModal[data-nq-ui="lumen"] [data-action="showForgotPassword"],
+#authModal[data-nq-ui="lumen"] [data-action="switchAuthTab"][data-arg="entrar"],
+#authModal[data-nq-ui="lumen"] .auth-guest-link {
+  min-height: 2.75rem;
+  color: var(--nql-text-muted) !important;
+  font-family: var(--nql-font-body) !important;
+  font-size: .78rem !important;
+  text-underline-offset: .2em;
+}
+
+#authModal[data-nq-ui="lumen"] [data-action="showForgotPassword"]:hover,
+#authModal[data-nq-ui="lumen"] [data-action="showForgotPassword"]:focus-visible,
+#authModal[data-nq-ui="lumen"] [data-action="switchAuthTab"][data-arg="entrar"]:hover,
+#authModal[data-nq-ui="lumen"] [data-action="switchAuthTab"][data-arg="entrar"]:focus-visible,
+#authModal[data-nq-ui="lumen"] .auth-guest-link:hover,
+#authModal[data-nq-ui="lumen"] .auth-guest-link:focus-visible {
+  color: var(--nql-lumen) !important;
+}
+
+/* Etapa final do fluxo de recuperação de senha. */
+#updatePasswordModal[data-nq-ui="lumen"] {
+  position: fixed;
+  inset: 0;
+  z-index: 10030;
+  display: none;
+  place-items: center;
+  padding: 1rem;
+  overflow: auto;
+  background: rgba(var(--nql-abyss-rgb), .86) !important;
+  color: var(--nql-text);
+  font-family: var(--nql-font-body);
+  backdrop-filter: blur(1rem);
+}
+
+#updatePasswordModal[data-nq-ui="lumen"] .nql-password-reset__panel {
+  position: relative !important;
+  width: min(100%, 29rem);
+  max-width: 29rem !important;
+  max-height: calc(100svh - 2rem);
+  margin: 0 !important;
+  padding: clamp(1.5rem, 4vw, 2.4rem) !important;
+  overflow-y: auto;
+  border: 1px solid var(--nql-line-strong) !important;
+  border-radius: var(--nql-radius-dialog) !important;
+  background:
+    radial-gradient(circle at 100% 0, rgba(var(--nql-lumen-rgb), .1), transparent 15rem),
+    var(--nql-surface-solid) !important;
+  box-shadow: var(--nql-shadow-dialog), 0 0 4rem rgba(var(--nql-lumen-rgb), .08) !important;
+  text-align: left;
+}
+
+#updatePasswordModal[data-nq-ui="lumen"] .auth-close-btn {
+  position: absolute;
+  top: .75rem;
+  right: .75rem;
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  padding: 0;
+  border: 1px solid rgba(var(--nql-lumen-rgb), .24);
+  border-radius: 50%;
+  background: rgba(var(--nql-abyss-rgb), .38);
+  color: var(--nql-text-soft);
+  font: 1rem/1 var(--nql-font-body);
+  cursor: pointer;
+}
+
+.nql-password-reset__eyebrow {
+  max-width: calc(100% - 3rem);
+  margin: 0 0 1.15rem;
+  color: var(--nql-lumen);
+  font: 500 .68rem/1.4 var(--nql-font-instrument);
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+#updatePasswordModal[data-nq-ui="lumen"] h2 {
+  max-width: 10ch;
+  margin: 0;
+  color: var(--nql-text);
+  font-family: var(--nql-font-display);
+  font-size: clamp(2rem, 7vw, 2.65rem);
+  font-weight: 600;
+  letter-spacing: -.03em;
+  line-height: 1;
+}
+
+.nql-password-reset__description {
+  margin: .9rem 0 1.4rem;
+  color: var(--nql-text-soft);
+  font-size: .92rem;
+  line-height: 1.5;
+}
+
+#updatePasswordModal[data-nq-ui="lumen"] .auth-field {
+  display: grid;
+  gap: .4rem;
+  margin-bottom: .9rem;
+}
+
+#updatePasswordModal[data-nq-ui="lumen"] .auth-field label {
+  color: var(--nql-paper-dim);
+  font-size: .78rem;
+  font-weight: 600;
+}
+
+#updatePasswordModal[data-nq-ui="lumen"] .auth-field input {
+  width: 100%;
+  min-height: 3rem;
+  padding: .7rem .85rem;
+  border: 1px solid var(--nql-control-border);
+  border-radius: var(--nql-radius-control);
+  outline: 0;
+  background: rgba(var(--nql-abyss-rgb), .58);
+  color: var(--nql-text);
+  font: 1rem var(--nql-font-body);
+}
+
+#updatePasswordModal[data-nq-ui="lumen"] .auth-field input:focus-visible {
+  border-color: var(--nql-focus);
+  box-shadow: var(--nql-shadow-focus);
+}
+
+.nql-password-reset__message {
+  display: none;
+  margin: .2rem 0 .9rem;
+  padding: .7rem .85rem;
+  border: 1px solid transparent;
+  border-radius: var(--nql-radius-control);
+  font-size: .84rem;
+  line-height: 1.4;
+}
+
+.nql-password-reset__message.error {
+  border-color: rgba(var(--nql-danger-rgb), .36);
+  background: rgba(var(--nql-danger-rgb), .1);
+  color: #f4a9b1;
+}
+
+.nql-password-reset__message.success {
+  border-color: rgba(var(--nql-success-rgb), .34);
+  background: rgba(var(--nql-success-rgb), .1);
+  color: var(--nql-success);
+}
+
+#updatePasswordModal[data-nq-ui="lumen"] .auth-submit-btn {
+  width: 100%;
+  min-height: 3rem;
+  padding: .7rem 1rem;
+  border: 1px solid rgba(var(--nql-mastery-rgb), .72);
+  border-radius: var(--nql-radius-control);
+  background: linear-gradient(120deg, #e5c46f, var(--nql-mastery));
+  color: #17130a;
+  font: 700 .92rem var(--nql-font-body);
+  cursor: pointer;
+}
+
+#updatePasswordModal[data-nq-ui="lumen"] .auth-submit-btn:disabled {
+  opacity: .62;
+  cursor: progress;
+}
+
+#updatePasswordModal[data-nq-ui="lumen"] :focus-visible {
+  outline: 2px solid var(--nql-focus);
+  outline-offset: 3px;
+}
+
+#landingScreen[data-nq-ui="lumen"] :focus-visible,
+#authModal[data-nq-ui="lumen"] :focus-visible {
+  outline: 2px solid var(--nql-focus);
+  outline-offset: 3px;
+}
+
+@keyframes nql-portal-route-once {
+  to { transform: translateX(0); }
+}
+
+@keyframes nql-portal-entry-current {
+  0% {
+    opacity: 0;
+    transform: translateX(-105%);
+  }
+  16% { opacity: .72; }
+  68% { opacity: 1; }
+  100% {
+    opacity: 0;
+    transform: translateX(365%);
+  }
+}
+@media (max-width: 64rem) {
+  .nql-portal__main {
+    grid-template-columns: minmax(0, 1fr) minmax(26rem, 31rem);
+    gap: 4rem;
+  }
+
+  .nql-portal__story h1 { font-size: clamp(3.5rem, 7vw, 5.1rem); }
+}
+
+@media (max-width: 52rem) {
+  .nql-portal {
+    overflow: visible;
+  }
+
+  .nql-portal__topbar {
+    min-height: 4rem;
+  }
+
+  .nql-portal__edition {
+    display: none;
+  }
+
+  .nql-portal__main {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    width: min(100%, 39rem);
+    padding-top: 1.6rem;
+    gap: 2.8rem;
+  }
+
+  .nql-portal__story {
+    max-width: none;
+  }
+
+  .nql-portal__story h1 {
+    max-width: none;
+    font-size: clamp(3.1rem, 11vw, 4.8rem);
+  }
+
+  .nql-portal__journey {
+    margin-top: 2.8rem;
+  }
+
+  #authModal[data-nq-ui="lumen"] .nql-portal-auth {
+    grid-template-columns: minmax(0, 1fr);
+    width: min(100%, 32rem);
+  }
+
+  .nql-portal-auth__context {
+    display: none;
+  }
+}
+
+@media (max-width: 34rem) {
+  .nql-portal__topbar {
+    padding-inline: 1rem;
+  }
+
+  .nql-portal__topbar .nql-brand {
+    font-size: 1.42rem;
+  }
+
+  .nql-portal__back {
+    justify-content: center;
+    font-size: .78rem;
+  }
+
+  .nql-portal__back-long {
+    display: none;
+  }
+
+  .nql-portal__back-short {
+    display: inline;
+  }
+
+  .nql-portal__main {
+    padding: 1.25rem 1rem 2rem;
+    gap: 2.25rem;
+  }
+
+  .nql-portal__eyebrow {
+    margin-bottom: 1rem;
+    font-size: .61rem;
+  }
+
+  .nql-portal__story h1 {
+    font-size: clamp(2.75rem, 13vw, 3.75rem);
+  }
+
+  .nql-portal__lede {
+    margin-top: 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .nql-portal__audience {
+    margin-top: 1rem;
+    gap: .45rem .85rem;
+    font-size: .75rem;
+  }
+
+  .nql-portal__journey {
+    display: none;
+  }
+
+  .nql-portal__entry {
+    padding: 1.35rem 1rem 1.15rem;
+  }
+
+  .nql-portal__entry-head {
+    min-height: 4rem;
+  }
+
+  .nql-portal__entry-head > span {
+    display: none;
+  }
+
+  .nql-portal__route {
+    grid-template-columns: 2.7rem minmax(0, 1fr) 1.25rem;
+    min-height: 4.9rem;
+    padding-inline: .7rem;
+    gap: .55rem;
+  }
+
+  .nql-portal__route-index {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .nql-portal__routes::before {
+    left: 2rem;
+  }
+
+  .nql-portal__route-copy strong { font-size: .93rem; }
+  .nql-portal__route-copy small { font-size: .73rem; }
+
+  .nql-portal__footer {
+    align-items: flex-start;
+    flex-direction: column;
+    padding-block: .85rem;
+    gap: .2rem;
+  }
+
+  #authModal[data-nq-ui="lumen"] {
+    align-items: end;
+    padding: 0;
+  }
+
+  #authModal[data-nq-ui="lumen"] .nql-portal-auth {
+    width: 100%;
+    height: 94svh;
+    max-height: 94svh;
+    border-right: 0;
+    border-bottom: 0;
+    border-left: 0;
+    border-radius: 1rem 1rem 0 0;
+  }
+
+  .nql-portal-auth__workspace {
+    padding: 2.35rem 1.15rem 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nql-portal__journey-line span {
+    animation: none;
+    transform: none;
+  }
+
+  .nql-portal__entry-head::after {
+    width: 4.5rem;
+    animation: none;
+    opacity: .72;
+    transform: none;
+  }
+
+  .nql-portal__back svg,
+  .nql-portal__route,
+  .nql-portal__route > svg,
+  #authModal[data-nq-ui="lumen"],
+  #authModal[data-nq-ui="lumen"] .nql-portal-auth,
+  #authModal[data-nq-ui="lumen"] .auth-tab::after {
+    transition: none;
+  }
+
+  .nql-portal__route:hover,
+  .nql-portal__route:focus-visible,
+  #authModal[data-nq-ui="lumen"] .nql-portal-auth {
+    transform: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .nql-portal,
+  .nql-portal__entry,
+  #authModal[data-nq-ui="lumen"],
+  #authModal[data-nq-ui="lumen"] .nql-portal-auth,
+  .nql-portal-auth__context {
+    background: Canvas;
+  }
+
+  .nql-portal__route,
+  #authModal[data-nq-ui="lumen"] .auth-google-btn,
+  #authModal[data-nq-ui="lumen"] .auth-submit-btn,
+  #authModal[data-nq-ui="lumen"] .auth-field input,
+  #authModal[data-nq-ui="lumen"] .auth-field select {
+    border: 1px solid ButtonText;
+  }
+
+  .nql-portal__route:focus-visible,
+  #authModal[data-nq-ui="lumen"] :focus-visible {
+    outline: 3px solid Highlight;
+  }
+}
