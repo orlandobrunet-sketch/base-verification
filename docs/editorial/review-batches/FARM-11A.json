@@ -1,0 +1,103 @@
+{
+  "batch": "FARM-11A",
+  "change_type": "medical_editorial",
+  "expected_version": "13.19",
+  "allowed_files": [
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-11A.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "89bab6a0": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "11df44bf": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "d86f36d3": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "ed7238ed": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NÃO DECISIVA",
+        "score": "12/20",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "14af2b14": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "fcf76497": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "17/20",
+        "verdict": "aprovada com pequenos ajustes",
+        "publication": "LIBERADA"
+      }
+    },
+    "9eafbe49": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    }
+  },
+  "expected_question_delta": -1,
+  "refs_policy": "unchanged",
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Lote de nefrolitíase clínica básica: prevenção recorrente, cálculo radiolucente, TC sem contraste, ácido úrico, hipercalciúria e hiperoxalúria entérica.",
+    "ed7238ed foi fundida por duplicidade material com 11df44bf: mesmo OP de composição/radiolucência, sem ganho pedagógico independente.",
+    "Nenhum card novo foi criado; referências existentes do Grimório já continham resumo, conclusão e curiosidade."
+  ]
+}
