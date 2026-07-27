@@ -1,0 +1,111 @@
+{
+  "batch": "FARM-13A",
+  "change_type": "medical_editorial",
+  "expected_version": "13.26",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-13A.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "356790c7": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NÃO DECISIVA",
+        "score": "12/20",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "7c0daeca": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "d7724fd6": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "98cde40e": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "20/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "c365fc69": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "e5e34c4f": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NÃO DECISIVA",
+        "score": "12/20",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    }
+  },
+  "expected_question_delta": -2,
+  "refs_policy": "declared",
+  "references": {
+    "cni_hyperkalemia_duan_2024": {
+      "action": "add_new",
+      "source": "mechanistic review of calcineurin-dependent renal potassium handling"
+    },
+    "eau_renal_transplant_2026": {
+      "action": "add_new",
+      "source": "current EAU guidance for maintenance immunosuppression, CNI monitoring and mTOR toxicity"
+    },
+    "cni_nephrotoxicity_naesens": {
+      "action": "reuse_existing",
+      "source": "acute and chronic clinicopathological framework for CNI nephrotoxicity"
+    },
+    "kdigo_tx": {
+      "action": "reuse_existing",
+      "source": "baseline kidney transplant recipient care guideline"
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Revisa o núcleo de imunossupressão de manutenção, nefrotoxicidade aguda, hipercalemia e toxicidade perioperatória de mTOR.",
+    "Funde duas duplicatas exatas: 356790c7 em 98cde40e e e5e34c4f em d7724fd6.",
+    "O Advogado do Recurso não encontrou alternativa defensável após as reconstruções; quatro qids preservam continuidade FSRS e dois itens fundidos permanecem bloqueados para publicação."
+  ]
+}
