@@ -773,6 +773,20 @@ rave_study:{
     conclusao:"Banff evita diagnósticos por marcador isolado: C4d, tubulite, glomerulite ou FI/TA precisam ser interpretados no conjunto histológico, imunológico e clínico para distinguir TCMR, ABMR ativa/crônica ativa e lesões crônicas inespecíficas.",
     curiosidade:"A classificação Banff evolui por reuniões internacionais periódicas, refinando critérios diagnósticos conforme novas evidências morfológicas, imunológicas e moleculares entram na prática do transplante."
   },
+  banff_2022_kidney_meeting:{
+    label:"Banff 2022 Kidney Meeting Report — Microinflamação e Diagnóstico Molecular",
+    url:"https://pubmed.ncbi.nlm.nih.gov/38032300/",
+    journal:"American Journal of Transplantation 2024;24(3):338-349",
+    ano:2024,
+    tipo:"Consenso de Patologia",
+    badge:"CONSENSUS",
+    badgeColor:"#6366f1",
+    impacto:"Atualiza fenótipos de rejeição mediada por anticorpos, microinflamação DSA-negativa/C4d-negativa e o papel da transcriptômica em biópsias do enxerto",
+    icon:"🔬",
+    resumo:"Relatório da reunião Banff 2022 para patologia do aloenxerto renal. Mantém o diagnóstico de rejeição como integração entre lesão histológica, evidência de interação anticorpo-endotélio e sorologia, e introduz categorias descritivas para casos abaixo do limiar de AMR definitiva. Entre elas estão AMR provável em pacientes DSA-positivos com achados histológicos incompletos e microinflamação vascular DSA-negativa/C4d-negativa, fenótipo de causa ainda não estabelecida. O documento também discute o uso complementar, e não isolado, de diagnósticos transcriptômicos validados.",
+    conclusao:"Microinflamação vascular não deve ser convertida automaticamente em AMR definitiva: C4d, DSA, histologia e, quando validada, informação molecular precisam ser interpretados em conjunto e dentro do fenótipo clínico.",
+    curiosidade:"Ao criar uma categoria própria para microinflamação DSA-negativa e C4d-negativa, o Banff 2022 tornou explícito um limite do conhecimento: dar nome ao padrão não significa conhecer sua causa nem autoriza tratá-lo como rejeição humoral comprovada."
+  },
   // ===== ARTIGOS FUNDAMENTAIS ADICIONADOS v5.0 =====
   // --- DRPAD ---
 tempo_34_trial:{

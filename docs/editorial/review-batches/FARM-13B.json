@@ -1,0 +1,107 @@
+{
+  "batch": "FARM-13B",
+  "change_type": "medical_editorial",
+  "expected_version": "13.27",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-13B.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "e4a6d31d": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "f651005e": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "d0b2419e": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "2bcf896c": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NÃO DECISIVA",
+        "score": "11/20",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "62e57510": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "ead24165": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    }
+  },
+  "expected_question_delta": -1,
+  "refs_policy": "declared",
+  "references": {
+    "banff_2022_kidney_meeting": {
+      "action": "add_new",
+      "source": "current Banff consensus on AMR phenotypes, microvascular inflammation and molecular diagnostics"
+    },
+    "banff_2019_kidney_meeting": {
+      "action": "reuse_existing",
+      "source": "baseline Banff integration of TCMR and ABMR criteria"
+    },
+    "eau_renal_transplant_2026": {
+      "action": "reuse_existing",
+      "source": "current guidance for crossmatch, hyperacute rejection, biopsy, late rejection and chronic allograft dysfunction"
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Revisa prevenção e conduta na rejeição hiperaguda, interpretação de IF/TA, TCMR tardia e AMR ativa segundo Banff.",
+    "Funde 2bcf896c em d0b2419e porque IF/TA isolada não sustenta a antiga entidade etiológica 'nefropatia crônica do enxerto'.",
+    "O Advogado do Recurso eliminou diagnóstico de AMR por marcador isolado, causalidade punitiva de não adesão e confusão entre trombose técnica e rejeição hiperaguda."
+  ]
+}
