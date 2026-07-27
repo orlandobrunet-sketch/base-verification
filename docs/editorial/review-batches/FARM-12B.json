@@ -1,0 +1,43 @@
+{
+  "batch": "FARM-12B",
+  "change_type": "medical_editorial",
+  "expected_version": "13.22",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-12B.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "e56795a6": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "bc95bd5f": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "8c4e67b7": {"action":"retire","preserve_fsrs":false,"merge_into":"e56795a6","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "1e0e571c": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "b20162c7": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "e8a59de8": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"18/20","verdict":"aprovada","publication":"LIBERADA"}}
+  },
+  "expected_question_delta": -1,
+  "refs_policy": "declared",
+  "references": {
+    "aha_acc_hypertension_2025": {
+      "action": "update_existing",
+      "source": "expanded to cover pseudoresistance and mineralocorticoid receptor antagonist selection"
+    },
+    "kdigo_bp_ckd_2021": {
+      "action": "update_existing",
+      "source": "corrected BP-target wording and added albuminuria-specific RAS blockade recommendations"
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Revisa seis qids de alvo pressórico, DRC albuminúrica e hipertensão resistente.",
+    "Funde a questão de memorizar a PAS média do BPROAD em um item de interpretação clínica do ensaio.",
+    "Corrige o card KDIGO para não atribuir nefroproteção direta não demonstrada ao alvo sistólico inferior a 120 mmHg."
+  ]
+}
