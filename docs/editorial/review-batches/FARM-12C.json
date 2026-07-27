@@ -1,0 +1,93 @@
+{
+    "batch":  "FARM-12C",
+    "change_type":  "medical_editorial",
+    "expected_version":  "13.23",
+    "allowed_files":  [
+                          "data/refs.js",
+                          "data/topics.js",
+                          "docs/editorial/review-batches/FARM-12C.json",
+                          "index.html",
+                          "jogar/index.html",
+                          "sw.js",
+                          "version.json"
+                      ],
+    "questions":  {
+                      "9d1943bf":  {
+                                       "action":  "rebuild",
+                                       "preserve_fsrs":  true,
+                                       "editorial_gate":  {
+                                                              "evidence":  "VERIFICADA",
+                                                              "pending":  "NENHUMA",
+                                                              "score":  "18/20",
+                                                              "verdict":  "aprovada",
+                                                              "publication":  "LIBERADA"
+                                                          }
+                                   },
+                      "4003867b":  {
+                                       "action":  "rebuild",
+                                       "preserve_fsrs":  true,
+                                       "editorial_gate":  {
+                                                              "evidence":  "VERIFICADA",
+                                                              "pending":  "NENHUMA",
+                                                              "score":  "18/20",
+                                                              "verdict":  "aprovada",
+                                                              "publication":  "LIBERADA"
+                                                          }
+                                   },
+                      "7fc7e409":  {
+                                       "action":  "retire",
+                                       "preserve_fsrs":  false,
+                                       "merge_into":  "45542637",
+                                       "editorial_gate":  {
+                                                              "evidence":  "VERIFICADA",
+                                                              "pending":  "NENHUMA",
+                                                              "score":  "anulado",
+                                                              "verdict":  "fundir",
+                                                              "publication":  "BLOQUEADA"
+                                                          }
+                                   },
+                      "0b54d5b8":  {
+                                       "action":  "rebuild",
+                                       "preserve_fsrs":  true,
+                                       "editorial_gate":  {
+                                                              "evidence":  "VERIFICADA",
+                                                              "pending":  "NENHUMA",
+                                                              "score":  "18/20",
+                                                              "verdict":  "aprovada",
+                                                              "publication":  "LIBERADA"
+                                                          }
+                                   },
+                      "98c85d7f":  {
+                                       "action":  "rebuild",
+                                       "preserve_fsrs":  true,
+                                       "editorial_gate":  {
+                                                              "evidence":  "VERIFICADA",
+                                                              "pending":  "NENHUMA",
+                                                              "score":  "18/20",
+                                                              "verdict":  "aprovada",
+                                                              "publication":  "LIBERADA"
+                                                          }
+                                   }
+                  },
+    "expected_question_delta":  -1,
+    "refs_policy":  "declared",
+    "references":  {
+                       "aha_acc_hypertension_2025":  {
+                                                         "action":  "update_existing",
+                                                         "source":  "expanded to cover obstructive sleep apnea and the adjunctive BP effect of CPAP"
+                                                     },
+                       "endocrine_society_ppgl_2014":  {
+                                                           "action":  "add_new",
+                                                           "source":  "Endocrine Society guideline for preoperative management of functional pheochromocytoma/paraganglioma"
+                                                       }
+                   },
+    "external_review":  {
+                            "greptile":  "unavailable",
+                            "fallback_reviewer":  "Codex revisar-nefroquest + official editorial-batch validator"
+                        },
+    "notes":  [
+                  "Revisa cinco qids de hipertensão secundária: hiperaldosteronismo, feocromocitoma, apneia obstrutiva do sono e doença renovascular.",
+                  "Funde a questão antiga de displasia fibromuscular no qid 45542637, já aprovado no FARM-12A, porque o item pendente repetia a mesma apresentação clínica e tinha alternativas incompatíveis com a pergunta composta.",
+                  "Corrige o item de SAOS para apresentar uma alternativa de intervenção e enquadra o CPAP como terapia adjuvante com efeito pressórico médio modesto."
+              ]
+}

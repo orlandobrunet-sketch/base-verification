@@ -2623,11 +2623,11 @@ finerenone_2025:{
     tipo:"Diretriz",
     badge:"GUIDELINE",
     badgeColor:"#6366f1",
-    impacto:"Hipertensão resistente e estenose renal: seleção de terapia e intervenção",
+    impacto:"Hipertensão resistente, apneia obstrutiva do sono e estenose renal: avaliação e tratamento",
     icon:"📋",
-    resumo:"Diretriz multissocietária AHA/ACC de 2025. Na hipertensão aparentemente resistente, exige excluir medida inadequada, efeito do avental branco, baixa adesão e fármacos interferentes antes de confirmar resistência. Se a pressão continuar não controlada com IECA ou BRA, bloqueador de canal de cálcio e diurético tiazídico de longa ação, recomenda antagonista do receptor mineralocorticoide quando a TFGe é pelo menos 45 mL/min/1,73m² e o potássio permite. Na estenose aterosclerótica da artéria renal, recomenda tratamento clínico; diante de hipertensão resistente, piora renal e/ou insuficiência cardíaca aguda apesar desse tratamento, considera razoável encaminhar para revascularização.",
-    conclusao:"Confirme resistência verdadeira antes da quarta droga; em função renal e potássio adequados, prefira antagonista mineralocorticoide. Revascularização renal aterosclerótica permanece seletiva.",
-    curiosidade:"Ensaios de stent sustentam terapia clínica na maioria das estenoses renais, enquanto o PATHWAY-2 sustenta espironolactona na resistência verdadeira; os dois cenários exigem selecionar o fenótipo, não aplicar um procedimento ou fármaco por reflexo."
+    resumo:"Diretriz multissocietária AHA/ACC de 2025. Na hipertensão aparentemente resistente, exige excluir medida inadequada, efeito do avental branco, baixa adesão e fármacos interferentes antes de confirmar resistência. Reconhece a apneia obstrutiva do sono como causa secundária associada a hipertensão noturna e resistente; o CPAP pode reduzir modestamente a pressão, em média 2 a 5 mmHg em ensaios curtos, com efeito dependente de adesão e perfil clínico, e deve complementar controle de peso e farmacoterapia. Se a pressão continuar não controlada com IECA ou BRA, bloqueador de canal de cálcio e diurético tiazídico de longa ação, recomenda antagonista do receptor mineralocorticoide quando a TFGe é pelo menos 45 mL/min/1,73m² e o potássio permite. Na estenose aterosclerótica da artéria renal, recomenda tratamento clínico; diante de hipertensão resistente, piora renal e/ou insuficiência cardíaca aguda apesar desse tratamento, considera razoável encaminhar para revascularização.",
+    conclusao:"Confirme resistência verdadeira e causas secundárias. CPAP trata a apneia e pode reduzir modestamente a pressão, mas não substitui terapia anti-hipertensiva; em função renal e potássio adequados, antagonista mineralocorticoide é a quarta droga preferida. Revascularização renal aterosclerótica permanece seletiva.",
+    curiosidade:"Ensaios de CPAP mostram efeito pressórico maior com boa adesão, sem demonstração suficiente de prevenção cardiovascular isolada. Em paralelo, trials de stent sustentam terapia clínica na maioria das estenoses renais e o PATHWAY-2 sustenta espironolactona na resistência verdadeira: todos exigem selecionar o fenótipo, não aplicar uma intervenção por reflexo."
   },
   esc_peripheral_aortic_2024:{
     label:"ESC — Peripheral Arterial and Aortic Diseases Guideline 2024",
@@ -2656,5 +2656,19 @@ finerenone_2025:{
     resumo:"Primeiro consenso internacional harmonizado da European Society of Hypertension e Society for Vascular Medicine sobre displasia fibromuscular. Para suspeita renal, recomenda angiotomografia como exame inicial e angiorressonância com contraste quando a tomografia é contraindicada; duplex como primeira etapa apenas em centros experientes. Angiografia por cateter é o padrão anatômico de referência quando o resultado mudará a conduta. Na revascularização renal, recomenda avaliar o gradiente translesional e realizar angioplastia com balão; stent não é rotineiro e fica principalmente para resgate de complicações.",
     conclusao:"Suspeita por perfil clínico ou duplex exige confirmação anatômica; quando a lesão renal é hemodinamicamente significativa e há indicação de intervenção, prefere-se balão sem stent rotineiro.",
     curiosidade:"Na forma multifocal, o aspecto de 'contas de rosário' pode ser exuberante sem definir sozinho a repercussão hemodinâmica; o gradiente através da lesão ajuda a decidir a intervenção."
+  },
+  endocrine_society_ppgl_2014:{
+    label:"Endocrine Society — Pheochromocytoma and Paraganglioma Guideline 2014",
+    url:"https://academic.oup.com/jcem/article/99/6/1915/2537399",
+    journal:"J Clin Endocrinol Metab. 2014;99(6):1915-1942",
+    ano:2014,
+    tipo:"Diretriz",
+    badge:"GUIDELINE",
+    badgeColor:"#6366f1",
+    impacto:"Preparo perioperatório seguro do feocromocitoma e paraganglioma funcionais",
+    icon:"📋",
+    resumo:"Diretriz clínica da Endocrine Society para feocromocitoma e paraganglioma. Em tumores hormonalmente funcionais, recomenda bloqueio pré-operatório para reduzir complicações cardiovasculares, com bloqueador alfa como primeira escolha. O preparo por 7 a 14 dias permite ajustar pressão e frequência cardíaca e deve incluir ingestão de sal e líquidos para corrigir a contração volêmica induzida por catecolaminas. Betabloqueador pode ser acrescentado para taquicardia somente após bloqueio alfa adequado.",
+    conclusao:"Antes da ressecção de feocromocitoma funcional, faça bloqueio alfa e reposição volêmica; nunca inicie beta-bloqueio isolado, pois a estimulação alfa sem oposição pode precipitar crise hipertensiva.",
+    curiosidade:"Mesmo com preparo adequado, nenhuma combinação elimina totalmente a instabilidade intraoperatória; por isso a diretriz recomenda equipe multidisciplinar experiente e monitorização perioperatória."
   },
 };
