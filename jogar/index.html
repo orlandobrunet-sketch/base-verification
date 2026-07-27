@@ -122,6 +122,18 @@
     // Version beacon — detecta nova versão e força limpeza de cache
     (function() {
       var _stored = localStorage.getItem('nq-sw-version');
+      function compareVersions(left, right) {
+        var a = String(left).split('.');
+        var b = String(right).split('.');
+        if (!a.every(function(part) { return /^\d+$/.test(part); })
+          || !b.every(function(part) { return /^\d+$/.test(part); })) return null;
+        var length = Math.max(a.length, b.length);
+        for (var i = 0; i < length; i++) {
+          var difference = Number(a[i] || 0) - Number(b[i] || 0);
+          if (difference !== 0) return difference > 0 ? 1 : -1;
+        }
+        return 0;
+      }
       // Capture a intenção antes do fetch: outros scripts podem limpar a query
       // enquanto a checagem de versão ainda está em andamento.
       var _returnPath = location.pathname + location.search + location.hash;
@@ -129,10 +141,15 @@
         .then(function(r) { return r.json(); })
         .then(function(d) {
           var _v = String(d.version || '');
+          if (!_v) return;
+          var _comparison = _stored === null ? null : compareVersions(_v, _stored);
+          // Uma resposta atrasada da CDN nunca deve rebaixar o marcador local:
+          // isso faria duas versões alternadas chamarem clear-cache indefinidamente.
+          var _displayVersion = _comparison === -1 ? _stored : _v;
           function updateLabels() {
             var labels = document.querySelectorAll('.version-label-dynamic');
             for (var i = 0; i < labels.length; i++) {
-              labels[i].textContent = _v ? ('v' + _v) : 'v11.45';
+              labels[i].textContent = 'v' + _displayVersion;
             }
           }
           if (document.readyState === 'loading') {
@@ -140,7 +157,7 @@
           } else {
             updateLabels();
           }
-          if (_stored !== null && _stored !== _v) {
+          if (_stored !== null && _stored !== _v && (_comparison === null || _comparison > 0)) {
             localStorage.setItem('nq-sw-version', _v);
             try {
               if (/^\/jogar\/(?:[?#]|$)/.test(_returnPath)) {
@@ -148,7 +165,7 @@
               }
             } catch (e) {}
             window.location.replace('/clear-cache.html');
-          } else {
+          } else if (_stored === null || _comparison === 0) {
             localStorage.setItem('nq-sw-version', _v);
           }
         })
@@ -348,7 +365,7 @@
         <span>Para aprender, revisar e se manter atualizado em nefrologia.</span>
         <span class="nql-portal__footer-meta">
           <button type="button" data-action="showPrivacyPolicy">Privacidade</button>
-          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v13.23</button>
+          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v13.24</button>
         </span>
       </footer>
     </section>
@@ -809,7 +826,7 @@
 
       <footer class="nql-atrium__footer">
         <span>Prática que se transforma em domínio clínico.</span>
-        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v13.23</button></span>
+        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v13.24</button></span>
       </footer>
     </section>
     <div class="welcome-bg" aria-hidden="true"></div>

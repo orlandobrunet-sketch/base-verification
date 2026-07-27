@@ -85,6 +85,26 @@ test.describe('Página 1 — Portal de Acesso Lúmen', () => {
     expect(divider.overflow).toBe('hidden');
   });
 
+  test('ignora uma versão atrasada sem repetir a limpeza de cache', async ({ page }) => {
+    await page.evaluate(() => localStorage.setItem('nq-sw-version', '13.24'));
+    const clearCacheRequests: string[] = [];
+    page.on('request', (request) => {
+      if (new URL(request.url()).pathname === '/clear-cache.html') clearCacheRequests.push(request.url());
+    });
+    await page.route('**/version.json', (route) => route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({ version: '13.23' }),
+    }));
+
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.waitForTimeout(800);
+
+    expect(clearCacheRequests).toEqual([]);
+    await expect(page).toHaveURL(/\/jogar\/$/);
+    expect(await page.evaluate(() => localStorage.getItem('nq-sw-version'))).toBe('13.24');
+  });
+
   test('abre login por email e preserva o deep link', async ({ page }) => {
     const emailRoute = page.locator('[data-portal-route="email"]');
     await emailRoute.click();
