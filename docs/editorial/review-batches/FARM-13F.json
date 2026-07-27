@@ -1,0 +1,132 @@
+{
+  "batch": "FARM-13F",
+  "change_type": "medical_editorial",
+  "expected_version": "13.32",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-13F.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "4bb568af": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "c5e437ce": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "94c1ae3d": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "73030d16": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "81216c60": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "3fbc1a5a": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "d575c18d": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    }
+  },
+  "expected_question_delta": 0,
+  "refs_policy": "declared",
+  "references": {
+    "dumbill_nmp_2025": {
+      "action": "add_new",
+      "source": "open-access phase 1 study of prolonged normothermic kidney perfusion"
+    },
+    "pfefferkorn_tcmr_2026": {
+      "action": "add_new",
+      "source": "open-access translational study of epithelial injury states after TCMR"
+    },
+    "finerenone_transplant_2025": {
+      "action": "update_existing",
+      "source": "replace placeholder card with the actual open-access 2025 retrospective cohort"
+    },
+    "ema_imlifidase_2020": {
+      "action": "add_new",
+      "source": "official EMA product assessment and mechanism"
+    },
+    "imlifidase_study": {
+      "action": "remove_superseded",
+      "source": "superseded card used an incorrect NEJM citation and overclaimed outcomes"
+    },
+    "durand_hope_2024": {
+      "action": "add_new",
+      "source": "multicenter NEJM observational noninferiority study under HOPE"
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "As sete questões foram reconstruídas com preservação de qid e FSRS porque mantêm seus objetivos pedagógicos e conceitos nucleares.",
+    "4bb568af testa leitura crítica do NKP1; c5e437ce testa o valor translacional da perfusão normotérmica. 94c1ae3d testa integração metodológica; 81216c60 testa interpretação prognóstica. Os pares não são duplicatas editoriais.",
+    "O Advogado do Recurso removeu superioridade não demonstrada da perfusão normotérmica, substituição automática de Banff por transcriptômica, eficácia estabelecida da finerenona, dessensibilização duradoura pela imlifidase e generalização do HOPE a receptores sem controle virológico.",
+    "Este lote encerra as sete pendências ativas restantes da categoria transplante."
+  ]
+}
