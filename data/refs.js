@@ -135,23 +135,23 @@ const refsDB = {
     badgeColor:"#6366f1",
     impacto:"Base atual para diagnóstico por imagem, prevenção e manejo clínico de cálculos urinários.",
     icon:"📋",
-    resumo:"Diretriz da European Association of Urology sobre urolitíase. Sustenta que a TC sem contraste é o exame de maior acurácia para confirmar cálculo em adulto não gestante com dor aguda no flanco, embora a ultrassonografia seja frequentemente usada como exame inicial por segurança e disponibilidade. Também orienta prevenção por alta ingestão hídrica/maior volume urinário, reconhecimento de fatores metabólicos como hiperoxalúria entérica e manejo de cálculos de ácido úrico por alcalinização urinária monitorada.",
-    conclusao:"Para ensino clínico, a mensagem central é evitar respostas absolutas: TC sem contraste confirma com maior acurácia no adulto não gestante; ultrassom é preferível em gestantes e pode ser exame inicial; prevenção recorrente começa por volume urinário adequado; e cálculo de ácido úrico depende criticamente de pH urinário.",
-    curiosidade:"A composição do cálculo muda a estratégia: cálculos de ácido úrico podem ser dissolvidos por alcalinização, enquanto cálculos de cálcio exigem prevenção metabólica e não se dissolvem apenas com aumento do pH."
+    resumo:"Diretriz da European Association of Urology sobre urolitíase. Sustenta que a TC sem contraste é o exame de maior acurácia para confirmar cálculo em adulto não gestante com dor aguda no flanco, embora a ultrassonografia seja frequentemente usada como exame inicial por segurança e disponibilidade. Também orienta prevenção por maior volume urinário, avaliação metabólica dos recorrentes, reconhecimento de hiperoxalúria entérica, manejo de cálculo de ácido úrico por alcalinização monitorada, tratamento de cistinúria com diurese elevada/alcalinização e tiopronina quando medidas iniciais são insuficientes, além de piridoxina e lumasiran em hiperoxalúria primária tipo 1 selecionada.",
+    conclusao:"Para ensino clínico, a mensagem central é fenotipar a litíase: TC sem contraste confirma com maior acurácia no adulto não gestante; ultrassom pode ser exame inicial; prevenção recorrente começa por volume urinário adequado; ácido úrico depende de pH urinário; cistinúria exige diluição/alcalinização intensas; e hiperoxalúria primária tipo 1 deve ser reconhecida como doença hepática genética tratável.",
+    curiosidade:"A composição do cálculo muda a estratégia: cálculos de ácido úrico podem ser dissolvidos por alcalinização, cistina pede pH ainda mais alto e tiol quando refratária, e cálculos de cálcio exigem prevenção metabólica, não simples aumento universal do pH."
   },
-  aua_endourology_stones_2016:{
-    label:"AUA/Endourology Society Guideline: Surgical Management of Stones",
+  aua_surgical_stones_2026:{
+    label:"AUA Surgical Management of Kidney and Ureteral Stones Guideline 2026",
     url:"https://www.auanet.org/guidelines-and-quality/guidelines/surgical-management-of-kidney-and-ureteral-stones",
-    journal:"American Urological Association / Endourology Society",
-    ano:2016,
+    journal:"American Urological Association",
+    ano:2026,
     tipo:"Diretriz clínica",
     badge:"GUIDELINE",
     badgeColor:"#6366f1",
-    impacto:"Base clássica para manejo cirúrgico de cálculos renais.",
+    impacto:"Atualização AUA para decisão compartilhada no manejo cirúrgico de cálculos renais e ureterais.",
     icon:"📋",
-    resumo:"Diretriz da American Urological Association em parceria com a Endourology Society para manejo cirúrgico de cálculos renais e ureterais. Recomenda abordagem baseada em tamanho, localização, composição provável, anatomia e fatores do paciente. Para cálculos renais de grande carga, a nefrolitotomia percutânea (NLPC) é a abordagem preferencial em relação à LECO, pela maior efetividade na remoção da carga litiásica. Não fornece uma resposta única para todos os casos; exige individualização.",
-    conclusao:"Em cálculos renais grandes ou complexos, a NLPC é o eixo terapêutico, enquanto a LECO tem papel limitado e geralmente não deve ser escolhida como monoterapia em cálculo coraliforme completo.",
-    curiosidade:"A diretriz reforça que a escolha do procedimento deve considerar também anatomia renal, risco infeccioso e necessidade provável de retratamento."
+    resumo:"Diretriz AUA de 2026 para manejo cirúrgico de cálculos renais e ureterais. Organiza a decisão por cenário clínico, tamanho e localização do cálculo, anatomia, preferência do paciente, recursos disponíveis e expertise local. Reforça que cálculos ureterais não complicados e pequenos podem ser observados por período definido quando dor, infecção e função renal permitem; cálculos maiores, obstrução complicada, infecção, dor refratária, rim único/obstrução bilateral ou falha de eliminação exigem tratamento ativo. Para cálculos renais grandes ou complexos, a nefrolitotomia percutânea continua central.",
+    conclusao:"AUA 2026 sustenta ensino de decisão compartilhada e limiar prático: observação é aceitável para cálculo ureteral não complicado selecionado, mas carga litiásica grande/complexa ou complicações deslocam para intervenção.",
+    curiosidade:"A atualização troca a pergunta simplista 'qual técnica é melhor?' por uma matriz de decisão: o mesmo cálculo pode ter estratégia diferente conforme anatomia, sintomas, risco infeccioso e objetivos do paciente."
   },
   torricelli_staghorn_2020:{
     label:"Staghorn renal stones: what the urologist needs to know",
@@ -731,6 +731,34 @@ rave_study:{
     conclusao:"A toxicidade crônica por CNI é hipótese clinicopatológica, não simples sinônimo de FI/TA isolada; manejo envolve revisão de exposição e minimização/conversão apenas quando clinicamente apropriado.",
     curiosidade:"A expressão 'striped fibrosis' descreve a fibrose intersticial em faixas, padrão historicamente associado à toxicidade crônica por CNI, mas insuficiente quando interpretado fora do contexto clínico e patológico completo."
   },
+  cni_hyperkalemia_duan_2024:{
+    label:"Duan XP et al. — Calcineurin e Excreção Renal de Potássio (2024)",
+    url:"https://pubmed.ncbi.nlm.nih.gov/38860527/",
+    journal:"Acta Physiologica 2024;240(8):e14189",
+    ano:2024,
+    tipo:"Revisão Fisiológica",
+    badge:"REVIEW",
+    badgeColor:"#8b5cf6",
+    impacto:"Integra WNK-SPAK/NCC, NKCC2, ROMK e aldosterona na hipercalemia causada por inibidores da calcineurina",
+    icon:"📖",
+    resumo:"Revisão mecanística da participação da calcineurina no transporte renal de sódio e potássio. Descreve como sua inibição por tacrolimo ou ciclosporina altera a regulação de NKCC2, do cotransportador NCC via WNK-SPAK, dos canais ROMK e da síntese de aldosterona, reduzindo a capacidade de excreção de potássio e contribuindo para hipertensão e hipercalemia.",
+    conclusao:"A hipercalemia por inibidor de calcineurina resulta de alterações coordenadas no néfron distal e no eixo da aldosterona, não de um único canal isolado; o raciocínio clínico deve incluir acidose tipo 4, exposição ao CNI e fármacos concomitantes.",
+    curiosidade:"A ativação do NCC pelos inibidores da calcineurina reproduz parte da fisiologia da síndrome de Gordon: hipertensão e hipercalemia podem coexistir porque mais sódio é reabsorvido antes do ducto coletor, reduzindo a força eletroquímica para secreção distal de potássio."
+  },
+  eau_renal_transplant_2026:{
+    label:"EAU Guidelines — Renal Transplantation (2026)",
+    url:"https://uroweb.org/guidelines/renal-transplantation/chapter/the-guideline",
+    journal:"EAU Guidelines Office",
+    ano:2026,
+    tipo:"Diretriz Internacional",
+    badge:"GUIDELINE",
+    badgeColor:"#6366f1",
+    impacto:"Imunossupressão inicial e de manutenção, monitorização de CNI e uso individualizado de inibidores de mTOR no transplante renal",
+    icon:"📋",
+    resumo:"Diretriz europeia vigente para transplante renal. Define como regime inicial padrão a combinação de tacrolimo, micofenolato e corticosteroide, associada a indução conforme risco imunológico. Recomenda monitorar níveis de tacrolimo e ciclosporina por sua janela terapêutica estreita e interações. Para sirolimo e everolimo, descreve toxicidades como dislipidemia, edema, proteinúria, mielotoxicidade, linfocele e problemas de cicatrização, com seleção individualizada e redução substancial do CNI quando usados em combinação.",
+    conclusao:"Tacrolimo com micofenolato e corticosteroide permanece a espinha dorsal inicial para a maioria dos receptores; estratégias com mTOR ou minimização devem ser guiadas por risco imunológico, toxicidade, função do enxerto, proteinúria e momento pós-operatório.",
+    curiosidade:"A diretriz chama os inibidores da calcineurina de fármacos de dose crítica: pequenas mudanças de exposição, inclusive por interação medicamentosa, podem deslocar o paciente entre rejeição por subexposição e toxicidade por superexposição."
+  },
   banff_2019_kidney_meeting:{
     label:"Banff 2019 Kidney Meeting Report — Rejeição TCMR/ABMR",
     url:"https://doi.org/10.1111/ajt.15898",
@@ -744,6 +772,20 @@ rave_study:{
     resumo:"Relatório Banff 2019 com atualizações e clarificações dos critérios diagnósticos de rejeição mediada por células T (TCMR) e rejeição mediada por anticorpos (ABMR) em biópsias de enxerto renal. A TCMR é ancorada por inflamação intersticial/tubulite e, quando vascular, arterite intimal. A ABMR requer integração de lesão tecidual, evidência de interação anticorpo-endotélio (como C4d em capilares peritubulares, inflamação microvascular ou marcadores moleculares validados) e evidência sorológica de anticorpo doador-específico quando disponível. Também orienta a interpretação de lesões crônicas, como glomerulopatia do transplante e FI/TA, dentro do contexto clinicopatológico completo.",
     conclusao:"Banff evita diagnósticos por marcador isolado: C4d, tubulite, glomerulite ou FI/TA precisam ser interpretados no conjunto histológico, imunológico e clínico para distinguir TCMR, ABMR ativa/crônica ativa e lesões crônicas inespecíficas.",
     curiosidade:"A classificação Banff evolui por reuniões internacionais periódicas, refinando critérios diagnósticos conforme novas evidências morfológicas, imunológicas e moleculares entram na prática do transplante."
+  },
+  banff_2022_kidney_meeting:{
+    label:"Banff 2022 Kidney Meeting Report — Microinflamação e Diagnóstico Molecular",
+    url:"https://pubmed.ncbi.nlm.nih.gov/38032300/",
+    journal:"American Journal of Transplantation 2024;24(3):338-349",
+    ano:2024,
+    tipo:"Consenso de Patologia",
+    badge:"CONSENSUS",
+    badgeColor:"#6366f1",
+    impacto:"Atualiza fenótipos de rejeição mediada por anticorpos, microinflamação DSA-negativa/C4d-negativa e o papel da transcriptômica em biópsias do enxerto",
+    icon:"🔬",
+    resumo:"Relatório da reunião Banff 2022 para patologia do aloenxerto renal. Mantém o diagnóstico de rejeição como integração entre lesão histológica, evidência de interação anticorpo-endotélio e sorologia, e introduz categorias descritivas para casos abaixo do limiar de AMR definitiva. Entre elas estão AMR provável em pacientes DSA-positivos com achados histológicos incompletos e microinflamação vascular DSA-negativa/C4d-negativa, fenótipo de causa ainda não estabelecida. O documento também discute o uso complementar, e não isolado, de diagnósticos transcriptômicos validados.",
+    conclusao:"Microinflamação vascular não deve ser convertida automaticamente em AMR definitiva: C4d, DSA, histologia e, quando validada, informação molecular precisam ser interpretados em conjunto e dentro do fenótipo clínico.",
+    curiosidade:"Ao criar uma categoria própria para microinflamação DSA-negativa e C4d-negativa, o Banff 2022 tornou explícito um limite do conhecimento: dar nome ao padrão não significa conhecer sua causa nem autoriza tratá-lo como rejeição humoral comprovada."
   },
   // ===== ARTIGOS FUNDAMENTAIS ADICIONADOS v5.0 =====
   // --- DRPAD ---
@@ -860,16 +902,6 @@ canvas_program:{
     resumo:"ECR duplo-cego, cruzado, controlado por placebo (PATHWAY-2, n=314 analisados), em hipertensão resistente apesar de 3 anti-hipertensivos incluindo diurético. Comparou espironolactona 25–50 mg, bisoprolol 5–10 mg, doxazosina 4–8 mg e placebo em sequência crossover. A espironolactona reduziu a PAS domiciliar 8,7 mmHg a mais que placebo, 4,0 mmHg a mais que doxazosina e 4,5 mmHg a mais que bisoprolol, sendo a intervenção mais eficaz.",
     conclusao:"PATHWAY-2 fundamentou espironolactona como quarta droga preferencial na hipertensão resistente, sugerindo que retenção de sódio/atividade mineralocorticoide é mecanismo dominante em muitos pacientes.",
     curiosidade:"A resposta à espironolactona foi maior nos pacientes com renina basal mais baixa, perfil compatível com expansão volêmica ou aldosteronismo relativo. Em nefrologia, a aplicação exige checar TFGe e potássio, pois DRC avançada e hipercalemia limitam o uso seguro."
-  },
-  aask_trial:{
-    label:"Wright JT et al. — AASK (JAMA 2002)",
-    url:"https://jamanetwork.com/journals/jama/fullarticle/195133",
-    journal:"JAMA 2002;288(19):2421-2431",
-    ano:2002,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Ramipril superior à anlodipina e metoprolol em retardar progressão da nefropatia hipertensiva em afro-americanos",icon:"🔬",
-    resumo:"ECR multicêntrico (AASK, n=1.094), em afro-americanos com DRC atribuída à nefroesclerose hipertensiva, comparando 3 estratégias iniciais de anti-hipertensivo — ramipril, metoprolol ou amlodipino — e 2 metas pressóricas. O desfecho primário foi declínio da TFG; o composto clínico secundário incluiu queda importante da TFG, DRCT ou morte. Ramipril foi superior ao amlodipino na proteção renal, sobretudo em pacientes com proteinúria. A meta pressórica mais baixa não reduziu progressão renal na coorte global.",
-    conclusao:"AASK mostrou que, na DRC hipertensiva com proteinúria, o IECA oferece proteção renal superior ao bloqueador de canal de cálcio diidropiridínico, e que intensificar PA sem considerar proteinúria não garante nefroproteção adicional.",
-    curiosidade:"O achado mais didático do AASK é a interação com proteinúria: quanto maior a proteinúria basal, mais relevante o bloqueio do SRAA. A escolha anti-hipertensiva em DRC deve considerar albuminúria/proteinúria, não apenas o valor da PA."
   },
   // --- Progressão DRC ---
   mdrd_study:{
@@ -2131,12 +2163,16 @@ finerenone_2025:{
   kdigo_bp_ckd_2021:{
     label:"KDIGO Blood Pressure in CKD 2021",
     url:"https://kdigo.org/guidelines/blood-pressure-in-ckd/",
-    journal:"Kidney International",
-    ano:2021,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
-    impacto:"Alvo PA < 120 mmHg sistólica em DRC — reduz progressão renal e eventos cardiovasculares; base das metas tensionais atuais",icon:"📋",
-    resumo:"Diretriz KDIGO para PA em DRC não dialítica. Sugere alvo de PAS <120 mmHg quando tolerado, desde que a medida seja padronizada. Esse alvo não deve ser aplicado automaticamente à medida casual de consultório, porque a técnica padronizada tende a produzir valores menores.",
-    conclusao:"O alvo <120 mmHg é alvo de medida padronizada; na prática clínica, individualizar por idade, fragilidade, sintomas, proteinúria, risco cardiovascular, ortostatismo e DRC avançada.",
-    curiosidade:"Ignorar a diferença entre medida padronizada e casual pode levar a intensificação excessiva do anti-hipertensivo."
+    journal:"Kidney International. 2021;99(3 Suppl):S1-S87",
+    ano:2021,
+    tipo:"Diretriz",
+    badge:"GUIDELINE",
+    badgeColor:"#6366f1",
+    impacto:"PAS <120 mmHg padronizada quando tolerada; bloqueio do SRAA na DRC albuminúrica",
+    icon:"📋",
+    resumo:"Diretriz KDIGO para pressão arterial na DRC não dialítica. Sugere alvo de pressão arterial sistólica inferior a 120 mmHg quando tolerado, exclusivamente com medida padronizada de consultório (recomendação 2B). Recomenda iniciar IECA ou BRA em pessoas com hipertensão, DRC G1–G4 e albuminúria A3 sem diabetes (1B), e também sustenta bloqueio do sistema renina-angiotensina em albuminúria relevante com diabetes. O alvo deve ser individualizado e não traduzido diretamente para medida casual.",
+    conclusao:"O alvo <120 mmHg depende de técnica padronizada e tolerabilidade; na DRC hipertensiva com albuminúria importante, IECA ou BRA integra a estratégia de proteção renal.",
+    curiosidade:"A maior armadilha é tratar <120 mmHg como um número universal: medida automatizada após repouso não equivale à pressão casual obtida durante uma consulta apressada."
   },
   nef4d_trial:{
     label:"4D Trial — Atorvastatina em Hemodiálise Diabética",
@@ -2479,10 +2515,10 @@ finerenone_2025:{
     tipo:"Diretriz Clínica",
     badge:"GUIDELINE",
     badgeColor:"#6366f1",
-    impacto:"Manejo de DRC na gestação, incluindo anti-hipertensivos seguros e bloqueio do SRAA",
+    impacto:"Meta pressórica, risco obstétrico e anti-hipertensivos seguros na gestação com DRC",
     icon:"📋",
-    resumo:"Diretriz multidisciplinar para mulheres com doença renal crônica antes, durante e após a gestação. Recomenda labetalol, nifedipina e metildopa como opções para tratar hipertensão na gestação e orienta evitar IECA, BRA e diuréticos como tratamento anti-hipertensivo durante a gravidez. Também diferencia planejamento pré-concepcional: IECA pode ser suspenso conforme força da indicação e rapidez de confirmação da gestação, enquanto BRA deve ser descontinuado antes da gravidez.",
-    conclusao:"Em gestante com DRC e hipertensão, o bloqueio do SRAA não é opção terapêutica; labetalol, nifedipina e metildopa são alternativas usuais e mais seguras.",
+    resumo:"Diretriz multidisciplinar para mulheres com doença renal crônica antes, durante e após a gestação. Recomenda alvo de pressão de 135/85 mmHg ou menos e labetalol, nifedipina ou metildopa para tratamento. IECA, BRA e diuréticos não devem ser usados como anti-hipertensivos durante a gravidez. A DRC aumenta risco de pré-eclâmpsia, parto prematuro, restrição de crescimento fetal e perda de função renal materna, especialmente com menor TFGe, hipertensão e proteinúria; recomenda acompanhamento obstétrico-nefrológico e profilaxia de pré-eclâmpsia conforme indicação.",
+    conclusao:"Na gestante com DRC, documente alvo de 135/85 mmHg ou menos, use agentes compatíveis com gestação e monitore ativamente pré-eclâmpsia e crescimento fetal; bloqueio do SRAA não é opção durante a gravidez.",
     curiosidade:"A diretriz é particularmente útil porque trata a gestação em DRC como cenário próprio, não como simples extensão das recomendações de hipertensão essencial."
   },
   magnesium_sulfate_toxicity_ahrq:{
@@ -2610,5 +2646,95 @@ finerenone_2025:{
     resumo:"Bula profissional da Gentamicin (sulfato de gentamicina) aprovada pela ANVISA (Fresenius Kabi Brasil, Reg. MS 1.0041.0210; Bula Padrão de 10/11/2015). Aminoglicosídeo bactericida; o risco de nefrotoxicidade é maior em pacientes com função renal comprometida, dose alta ou tratamento prolongado, podendo haver ototoxicidade vestibular e auditiva. Recomenda vigilância da função renal e do oitavo par craniano, determinação periódica de ureia/creatinina/depuração de creatinina, audiogramas seriados e monitorização dos níveis séricos; sinais de oto ou nefrotoxicidade exigem modificação da dose ou suspensão. Admite esquema de dose única diária.",
     conclusao:"Na disfunção renal, a gentamicina exige monitorização da função renal, do oitavo par craniano e dos níveis séricos, com ajuste ou suspensão diante de sinais de toxicidade.",
     curiosidade:""
+  },
+  aha_acc_hypertension_2025:{
+    label:"AHA/ACC — High Blood Pressure Guideline 2025",
+    url:"https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000001356",
+    journal:"Circulation. 2025",
+    ano:2025,
+    tipo:"Diretriz",
+    badge:"GUIDELINE",
+    badgeColor:"#6366f1",
+    impacto:"Hipertensão resistente, denervação renal, apneia obstrutiva do sono, emergência hipertensiva e estenose renal: avaliação e tratamento",
+    icon:"📋",
+    resumo:"Diretriz multissocietária AHA/ACC de 2025. Na hipertensão aparentemente resistente, exige excluir medida inadequada, efeito do avental branco, baixa adesão e fármacos interferentes antes de confirmar resistência. Na denervação renal, recomenda avaliação multidisciplinar, exclusão de causas secundárias e contraindicações anatômicas e decisão compartilhada; os efeitos pressóricos são modestos e variáveis, a maioria dos trials exigiu TFGe de pelo menos 40 mL/min/1,73m² e não há ensaios de desfecho cardiovascular. Reconhece a apneia obstrutiva do sono como causa secundária; o CPAP pode reduzir modestamente a pressão e deve complementar controle de peso e farmacoterapia. Em emergência hipertensiva, recomenda ambiente intensivo e agente intravenoso de ação curta e titulável, com redução inicial conservadora em torno de 25% na primeira hora quando não há meta específica. Na resistência persistente sob IECA ou BRA, bloqueador de canal de cálcio e diurético tiazídico de longa ação, recomenda antagonista mineralocorticoide quando TFGe e potássio permitem. Na estenose renal aterosclerótica, prioriza tratamento clínico e reserva revascularização para cenários selecionados de alto risco.",
+    conclusao:"Confirme resistência verdadeira e causas secundárias antes de quarta droga ou procedimento. Denervação renal é opção seletiva, de benefício pressórico modesto e decisão compartilhada; não substitui terapia otimizada. CPAP é adjuvante, emergências exigem infusão titulável sem normalização abrupta e revascularização renal permanece seletiva.",
+    curiosidade:"Ensaios de CPAP mostram efeito pressórico maior com boa adesão, sem demonstração suficiente de prevenção cardiovascular isolada. Em paralelo, trials de stent sustentam terapia clínica na maioria das estenoses renais e o PATHWAY-2 sustenta espironolactona na resistência verdadeira: todos exigem selecionar o fenótipo, não aplicar uma intervenção por reflexo."
+  },
+  esc_peripheral_aortic_2024:{
+    label:"ESC — Peripheral Arterial and Aortic Diseases Guideline 2024",
+    url:"https://academic.oup.com/eurheartj/article/45/36/3538/7738955",
+    journal:"Eur Heart J. 2024;45(36):3538-3700",
+    ano:2024,
+    tipo:"Diretriz",
+    badge:"GUIDELINE",
+    badgeColor:"#6366f1",
+    impacto:"Diagnóstico por duplex e seleção de alto risco na doença arterial renal",
+    icon:"📋",
+    resumo:"Diretriz ESC 2024 para doenças arteriais periféricas e da aorta. Na avaliação da artéria renal, recomenda começar por função renal, pressão dentro e fora do consultório e duplex. Velocidade de pico sistólico renal acima de 200 cm/s identifica estenose superior a 50%, e relação entre velocidades renal e aórtica acima de 3,5 tem alta especificidade para estenose de pelo menos 60%. Cintilografia renal e testes de renina antes/depois de inibidor da enzima conversora não são considerados para avaliar estenose. Hipertensão rapidamente progressiva ou resistente, perda rápida de função renal, edema pulmonar súbito e rim único são apresentações de alto risco.",
+    conclusao:"O duplex combina critérios de velocidade e relação renal-aórtica; testes funcionais com captopril foram substituídos por avaliação hemodinâmica e imagem anatômica.",
+    curiosidade:"Uma estenose anatômica moderada pode não limitar o fluxo renal; por isso gravidade visual e relevância clínica não são sinônimos."
+  },
+  fmd_consensus_2019:{
+    label:"International Consensus — Fibromuscular Dysplasia 2019",
+    url:"https://pubmed.ncbi.nlm.nih.gov/30648921/",
+    journal:"Vasc Med. 2019;24(2):164-189",
+    ano:2019,
+    tipo:"Diretriz",
+    badge:"GUIDELINE",
+    badgeColor:"#6366f1",
+    impacto:"Diagnóstico por imagem e angioplastia da displasia fibromuscular renal",
+    icon:"📋",
+    resumo:"Primeiro consenso internacional harmonizado da European Society of Hypertension e Society for Vascular Medicine sobre displasia fibromuscular. Para suspeita renal, recomenda angiotomografia como exame inicial e angiorressonância com contraste quando a tomografia é contraindicada; duplex como primeira etapa apenas em centros experientes. Angiografia por cateter é o padrão anatômico de referência quando o resultado mudará a conduta. Na revascularização renal, recomenda avaliar o gradiente translesional e realizar angioplastia com balão; stent não é rotineiro e fica principalmente para resgate de complicações.",
+    conclusao:"Suspeita por perfil clínico ou duplex exige confirmação anatômica; quando a lesão renal é hemodinamicamente significativa e há indicação de intervenção, prefere-se balão sem stent rotineiro.",
+    curiosidade:"Na forma multifocal, o aspecto de 'contas de rosário' pode ser exuberante sem definir sozinho a repercussão hemodinâmica; o gradiente através da lesão ajuda a decidir a intervenção."
+  },
+  endocrine_society_ppgl_2014:{
+    label:"Endocrine Society — Pheochromocytoma and Paraganglioma Guideline 2014",
+    url:"https://academic.oup.com/jcem/article/99/6/1915/2537399",
+    journal:"J Clin Endocrinol Metab. 2014;99(6):1915-1942",
+    ano:2014,
+    tipo:"Diretriz",
+    badge:"GUIDELINE",
+    badgeColor:"#6366f1",
+    impacto:"Preparo perioperatório seguro do feocromocitoma e paraganglioma funcionais",
+    icon:"📋",
+    resumo:"Diretriz clínica da Endocrine Society para feocromocitoma e paraganglioma. Em tumores hormonalmente funcionais, recomenda bloqueio pré-operatório para reduzir complicações cardiovasculares, com bloqueador alfa como primeira escolha. O preparo por 7 a 14 dias permite ajustar pressão e frequência cardíaca e deve incluir ingestão de sal e líquidos para corrigir a contração volêmica induzida por catecolaminas. Betabloqueador pode ser acrescentado para taquicardia somente após bloqueio alfa adequado.",
+    conclusao:"Antes da ressecção de feocromocitoma funcional, faça bloqueio alfa e reposição volêmica; nunca inicie beta-bloqueio isolado, pois a estimulação alfa sem oposição pode precipitar crise hipertensiva.",
+    curiosidade:"Mesmo com preparo adequado, nenhuma combinação elimina totalmente a instabilidade intraoperatória; por isso a diretriz recomenda equipe multidisciplinar experiente e monitorização perioperatória."
+  },
+  afferent_arteriolopathy_2024:{
+    label:"Kohagura et al. — Heterogeneous Afferent Arteriolopathy 2024",
+    url:"https://pubmed.ncbi.nlm.nih.gov/39379463/",
+    journal:"Hypertens Res. 2024;47(12):3383-3396",
+    ano:2024,
+    tipo:"Revisão",
+    badge:"REVIEW",
+    badgeColor:"#0ea5e9",
+    impacto:"Mecanismos vasculares e limites histológicos da nefroesclerose",
+    icon:"📖",
+    resumo:"Revisão contemporânea sobre arteriolopatia aferente heterogênea e dano renal dependente da pressão. Hialinose e espessamento medial da arteríola aferente, associados a espessamento íntimal de pequenas artérias, podem romper a autorregulação. Néfrons com remodelamento mais dilatado ficam expostos à hipertensão glomerular, enquanto os com lúmen estreitado sofrem isquemia; ambos os padrões podem coexistir e contribuir para glomeruloesclerose e fibrose tubulointersticial.",
+    conclusao:"A progressão renal associada à pressão combina transmissão de hiperpressão e isquemia em néfrons diferentes; achados de arterionefroesclerose apoiam o diagnóstico, mas não são patognomônicos nem exclusivos da hipertensão.",
+    curiosidade:"O mesmo rim pode conter arteríolas aferentes dilatadas e estreitadas, explicando por que uma descrição única de hiperfiltração ou isquemia não captura toda a fisiopatologia da nefroesclerose."
+  },
+  aldosterone_intercalated_cells_2011:{
+    label:"Winter et al. — Aldosterone and H+-ATPase in Intercalated Cells",
+    url:"https://pubmed.ncbi.nlm.nih.gov/21832245/",
+    journal:"J Am Soc Nephrol. 2011;22(12):2296-2306",
+    ano:2011,tipo:"Estudo Experimental",badge:"STUDY",badgeColor:"#10b981",
+    impacto:"Mecanismo celular da secreção distal de H+ estimulada por aldosterona",icon:"🔬",
+    resumo:"Estudo em células intercaladas secretoras de ácido do ducto coletor medular externo mostrando que a aldosterona aumenta a atividade da H+-ATPase vacuolar. O efeito ocorreu rapidamente e foi mediado principalmente por via dependente de proteína quinase C, oferecendo base mecanística para maior secreção distal de H+ no excesso mineralocorticoide.",
+    conclusao:"Nas células intercaladas tipo A, a aldosterona estimula a H+-ATPase apical e aumenta a secreção de ácido, contribuindo para a tendência à alcalose no excesso mineralocorticoide.",
+    curiosidade:"Além da conhecida ação sobre ENaC nas células principais, a aldosterona regula diretamente a maquinaria de acidificação das células intercaladas."
+  },
+  kdigo_ckd_2024:{
+    label:"KDIGO — Clinical Practice Guideline for CKD 2024",
+    url:"https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+    journal:"Kidney Int. 2024;105(Suppl 4S):S117-S314",
+    ano:2024,tipo:"Diretriz",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Manejo sistemático da hipercalemia e preservação de terapias cardiorrenais na DRC",icon:"📋",
+    resumo:"Diretriz KDIGO 2024 para avaliação e manejo da DRC. Na hipercalemia não emergente, propõe revisar fármacos e fontes de potássio biodisponível, corrigir acidose e distúrbios de volume e considerar diuréticos ou agentes de troca de potássio. Quelantes modernos podem facilitar o uso essencial de IECA, BRA ou antagonistas mineralocorticoides, mas a segurança imediata e a indicação individual de cada fármaco devem ser reavaliadas.",
+    conclusao:"Hipercalemia sob bloqueio do SRAA exige abordagem escalonada e correção de fatores reversíveis; preserve terapia cardiorrenal indicada quando for seguro, sem manter automaticamente um antagonista mineralocorticoide em potássio perigosamente alto.",
+    curiosidade:"A diretriz distingue potássio total de biodisponibilidade: alimentos processados com aditivos de potássio podem ser alvos mais relevantes que restrições indiscriminadas de vegetais."
   },
 };
