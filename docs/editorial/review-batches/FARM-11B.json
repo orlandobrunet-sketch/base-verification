@@ -1,0 +1,195 @@
+{
+  "batch": "FARM-11B",
+  "change_type": "medical_editorial",
+  "expected_version": "13.20",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-11B.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "4ecfd6aa": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "010b6339": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "c914d8ca": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NÃO DECISIVA",
+        "score": "12/20",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "8071ef90": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "8d443cc2": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "17/20",
+        "verdict": "aprovada com pequenos ajustes",
+        "publication": "LIBERADA"
+      }
+    },
+    "0dce2344": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "340ecf87": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NÃO DECISIVA",
+        "score": "12/20",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "0aa9eaa4": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "ae31e58e": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "ea7fe551": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "321a25ae": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "fe3a8b5b": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NÃO DECISIVA",
+        "score": "12/20",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "6d3d64c7": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NÃO DECISIVA",
+        "score": "12/20",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "ca596f32": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    }
+  },
+  "expected_question_delta": -4,
+  "refs_policy": "declared",
+  "references": {
+    "eau_urolithiasis_medical_2025": {
+      "action": "update_existing",
+      "source": "expanded Grimório summary/conclusion/curiosity to cover cystinuria and primary hyperoxaluria type 1 claims used in this batch"
+    },
+    "aua_surgical_stones_2026": {
+      "action": "add",
+      "source": "new AUA surgical management guideline card with resumo, conclusao and curiosidade"
+    },
+    "aua_endourology_stones_2016": {
+      "action": "remove",
+      "source": "superseded by aua_surgical_stones_2026 and left with zero consumers after this batch"
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Fecha os 14 qids pendentes de litíase.",
+    "Adiciona card AUA 2026 no Grimório com resumo, conclusão e curiosidade; amplia o card EAU medical 2025 para cobrir cistinúria e hiperoxalúria primária tipo 1.",
+    "Funde duplicatas de ácido úrico, cistinúria e observação AUA, preservando os qids com melhor identidade pedagógica."
+  ]
+}

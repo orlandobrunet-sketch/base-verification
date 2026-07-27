@@ -135,23 +135,23 @@ const refsDB = {
     badgeColor:"#6366f1",
     impacto:"Base atual para diagnóstico por imagem, prevenção e manejo clínico de cálculos urinários.",
     icon:"📋",
-    resumo:"Diretriz da European Association of Urology sobre urolitíase. Sustenta que a TC sem contraste é o exame de maior acurácia para confirmar cálculo em adulto não gestante com dor aguda no flanco, embora a ultrassonografia seja frequentemente usada como exame inicial por segurança e disponibilidade. Também orienta prevenção por alta ingestão hídrica/maior volume urinário, reconhecimento de fatores metabólicos como hiperoxalúria entérica e manejo de cálculos de ácido úrico por alcalinização urinária monitorada.",
-    conclusao:"Para ensino clínico, a mensagem central é evitar respostas absolutas: TC sem contraste confirma com maior acurácia no adulto não gestante; ultrassom é preferível em gestantes e pode ser exame inicial; prevenção recorrente começa por volume urinário adequado; e cálculo de ácido úrico depende criticamente de pH urinário.",
-    curiosidade:"A composição do cálculo muda a estratégia: cálculos de ácido úrico podem ser dissolvidos por alcalinização, enquanto cálculos de cálcio exigem prevenção metabólica e não se dissolvem apenas com aumento do pH."
+    resumo:"Diretriz da European Association of Urology sobre urolitíase. Sustenta que a TC sem contraste é o exame de maior acurácia para confirmar cálculo em adulto não gestante com dor aguda no flanco, embora a ultrassonografia seja frequentemente usada como exame inicial por segurança e disponibilidade. Também orienta prevenção por maior volume urinário, avaliação metabólica dos recorrentes, reconhecimento de hiperoxalúria entérica, manejo de cálculo de ácido úrico por alcalinização monitorada, tratamento de cistinúria com diurese elevada/alcalinização e tiopronina quando medidas iniciais são insuficientes, além de piridoxina e lumasiran em hiperoxalúria primária tipo 1 selecionada.",
+    conclusao:"Para ensino clínico, a mensagem central é fenotipar a litíase: TC sem contraste confirma com maior acurácia no adulto não gestante; ultrassom pode ser exame inicial; prevenção recorrente começa por volume urinário adequado; ácido úrico depende de pH urinário; cistinúria exige diluição/alcalinização intensas; e hiperoxalúria primária tipo 1 deve ser reconhecida como doença hepática genética tratável.",
+    curiosidade:"A composição do cálculo muda a estratégia: cálculos de ácido úrico podem ser dissolvidos por alcalinização, cistina pede pH ainda mais alto e tiol quando refratária, e cálculos de cálcio exigem prevenção metabólica, não simples aumento universal do pH."
   },
-  aua_endourology_stones_2016:{
-    label:"AUA/Endourology Society Guideline: Surgical Management of Stones",
+  aua_surgical_stones_2026:{
+    label:"AUA Surgical Management of Kidney and Ureteral Stones Guideline 2026",
     url:"https://www.auanet.org/guidelines-and-quality/guidelines/surgical-management-of-kidney-and-ureteral-stones",
-    journal:"American Urological Association / Endourology Society",
-    ano:2016,
+    journal:"American Urological Association",
+    ano:2026,
     tipo:"Diretriz clínica",
     badge:"GUIDELINE",
     badgeColor:"#6366f1",
-    impacto:"Base clássica para manejo cirúrgico de cálculos renais.",
+    impacto:"Atualização AUA para decisão compartilhada no manejo cirúrgico de cálculos renais e ureterais.",
     icon:"📋",
-    resumo:"Diretriz da American Urological Association em parceria com a Endourology Society para manejo cirúrgico de cálculos renais e ureterais. Recomenda abordagem baseada em tamanho, localização, composição provável, anatomia e fatores do paciente. Para cálculos renais de grande carga, a nefrolitotomia percutânea (NLPC) é a abordagem preferencial em relação à LECO, pela maior efetividade na remoção da carga litiásica. Não fornece uma resposta única para todos os casos; exige individualização.",
-    conclusao:"Em cálculos renais grandes ou complexos, a NLPC é o eixo terapêutico, enquanto a LECO tem papel limitado e geralmente não deve ser escolhida como monoterapia em cálculo coraliforme completo.",
-    curiosidade:"A diretriz reforça que a escolha do procedimento deve considerar também anatomia renal, risco infeccioso e necessidade provável de retratamento."
+    resumo:"Diretriz AUA de 2026 para manejo cirúrgico de cálculos renais e ureterais. Organiza a decisão por cenário clínico, tamanho e localização do cálculo, anatomia, preferência do paciente, recursos disponíveis e expertise local. Reforça que cálculos ureterais não complicados e pequenos podem ser observados por período definido quando dor, infecção e função renal permitem; cálculos maiores, obstrução complicada, infecção, dor refratária, rim único/obstrução bilateral ou falha de eliminação exigem tratamento ativo. Para cálculos renais grandes ou complexos, a nefrolitotomia percutânea continua central.",
+    conclusao:"AUA 2026 sustenta ensino de decisão compartilhada e limiar prático: observação é aceitável para cálculo ureteral não complicado selecionado, mas carga litiásica grande/complexa ou complicações deslocam para intervenção.",
+    curiosidade:"A atualização troca a pergunta simplista 'qual técnica é melhor?' por uma matriz de decisão: o mesmo cálculo pode ter estratégia diferente conforme anatomia, sintomas, risco infeccioso e objetivos do paciente."
   },
   torricelli_staghorn_2020:{
     label:"Staghorn renal stones: what the urologist needs to know",
