@@ -1,0 +1,74 @@
+{
+  "batch": "FARM-13C",
+  "change_type": "medical_editorial",
+  "expected_version": "13.29",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-13C.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "50c7c33e": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "f17c7eed": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "1dac242f": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    }
+  },
+  "expected_question_delta": 0,
+  "refs_policy": "declared",
+  "references": {
+    "bk_virus_review": {
+      "action": "update_existing",
+      "source": "Second International Consensus Guidelines on BK polyomavirus management, 2024"
+    },
+    "cohen_bucay_bk_complications_2020": {
+      "action": "add_new",
+      "source": "open-access review of uncommon BK ureteritis and ureteral stenosis"
+    },
+    "jc_pml_elbaz_2025": {
+      "action": "add_new",
+      "source": "open-access narrative review of JC polyomavirus and PML diagnosis"
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Corrige a corrupção estrutural de 1dac242f, cujo título BK continha corpo sobre diabetes pós-transplante, preservando o objetivo pedagógico identificado pelo título.",
+    "O Advogado do Recurso eliminou causalidade automática entre BK e estenose ureteral, diagnóstico de LMP por associação vaga e uso rotineiro de antivirais sem evidência."
+  ]
+}

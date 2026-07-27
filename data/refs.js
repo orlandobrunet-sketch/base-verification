@@ -1648,14 +1648,34 @@ canvas_program:{
     curiosidade:"O CMV não apenas causa sintomas sistêmicos e invasivos diretos, mas possui um potente efeito imunomodulador indireto ('sombra da infecção'), que aumenta o risco de outras infecções oportunistas, rejeição aguda do enxerto e desenvolvimento de vasculopatia crônica do transplante."
   },
   bk_virus_review:{
-    label:"Hirsch HH et al. — BK Polyomavirus (NEJM 2016)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMra1507440",
-    journal:"N Engl J Med 2016;374(19):1851-1862",
-    ano:2016,tipo:"Revisão Clínica",badge:"REVIEW",badgeColor:"#0ea5e9",
-    impacto:"Fisiopatologia, diagnóstico (virúria/viremia) e manejo da nefropatia por vírus BK",icon:"📖",
-    resumo:"Revisão seminal (Hirsch et al., NEJM 2016) sobre a reativação do Poliomavírus BK (BKPyV) e o desenvolvimento de nefropatia associada ao vírus BK (BKVAN), complicação que acomete 1% a 10% dos transplantados renais. O vírus latente no trato urinário reativa sob forte imunossupressão, causando lise de células epiteliais tubulares. Recomenda triagem por PCR quantitativo no plasma mensal nos primeiros 6 meses e a cada 3 meses até 2 anos. Diante de viremia sustentada (>10.000 cópias/mL), a intervenção primária e mais eficaz é a redução escalonada da imunossupressão (tipicamente reduzindo micofenolato em 50% e/ou alvo de tacrolimo), já que terapias adjuvantes (leflunomida, cidofovir, imunoglobulina) carecem de evidência robusta de eficácia.",
-    conclusao:"A triagem ativa e a redução precoce e controlada da imunossupressão são as únicas estratégias validadas no Reino para combater o vírus BK e evitar a fibrose intersticial irreversível do enxerto.",
-    curiosidade:"O vírus BK recebeu esse nome a partir das iniciais do primeiro paciente de quem foi isolado em 1971. Na urina, células infectadas que sofreram descamação e apresentam grandes inclusões intranucleares basofílicas homogêneas ('aspecto em vidro fosco') são chamadas de 'decoy cells' (células isca), pois mimetizam células uroteliais neoplásicas."
+    label:"Kotton CN et al. — 2º Consenso Internacional BKPyV (2024)",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC11335089/",
+    journal:"Transplantation 2024;108(9):1834-1866",
+    ano:2024,tipo:"Diretriz",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Rastreamento e redução escalonada da imunossupressão na DNAemia por BK",icon:"📋",
+    resumo:"Segundo consenso internacional sobre BK poliomavírus em transplante renal, publicado em 2024. Recomenda rastreamento mensal da DNAemia plasmática até o 9º mês e, depois, a cada 3 meses até 2 anos. DNAemia persistente acima de 1.000 cópias/mL ou uma medida acima de 10.000 cópias/mL deve levar à redução predefinida e escalonada do antimetabólito, do inibidor de calcineurina ou de ambos, com monitorização da DNAemia a cada 2 a 4 semanas. A interpretação deve considerar variabilidade entre ensaios e risco imunológico.",
+    conclusao:"A redução monitorada da imunossupressão é a intervenção principal na DNAemia relevante por BK; cidofovir, leflunomida e fluoroquinolonas não são recomendados como rotina.",
+    curiosidade:"A sequência típica é virúria de alto nível, seguida semanas depois por DNAemia; virúria isolada não equivale a nefropatia do enxerto."
+  },
+  cohen_bucay_bk_complications_2020:{
+    label:"Cohen-Bucay A et al. — Complicações do BK (2020)",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC7729234/",
+    journal:"Kidney Medicine 2020;2(6):771-786",
+    ano:2020,tipo:"Revisão",badge:"REVIEW",badgeColor:"#8b5cf6",
+    impacto:"Reconhece ureterite e estenose ureteral tardia como complicações incomuns do BK",icon:"🔬",
+    resumo:"Revisão narrativa sobre complicações do BK poliomavírus em transplantes. Descreve a estenose ureteral tardia, geralmente após o primeiro mês, como manifestação infrequente associada à replicação viral no urotélio, com inflamação, ulceração e dano da musculatura ureteral. Hidronefrose e queda da filtração podem ser manifestações; a investigação deve integrar imagem, virologia e, quando disponível, demonstração viral no tecido.",
+    conclusao:"BK poliomavírus deve integrar o diagnóstico diferencial da estenose ureteral tardia do enxerto, sem substituir a avaliação de causas técnicas, isquêmicas ou extrínsecas.",
+    curiosidade:"O BK poliomavírus foi isolado originalmente da urina de um receptor de transplante renal que apresentava estenose ureteral."
+  },
+  jc_pml_elbaz_2025:{
+    label:"Elbaz M et al. — JC Poliomavírus e LMP (2025)",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC12425872/",
+    journal:"Infectious Diseases and Therapy 2025;14(9):2007-2028",
+    ano:2025,tipo:"Revisão",badge:"REVIEW",badgeColor:"#8b5cf6",
+    impacto:"Integra quadro clínico, ressonância e PCR do líquor no diagnóstico de LMP",icon:"🔬",
+    resumo:"Revisão narrativa de 2025 sobre síndromes neurológicas por JC poliomavírus. A leucoencefalopatia multifocal progressiva ocorre em imunidade celular comprometida, inclusive após transplante de órgão sólido. Manifestações neurológicas e de imagem compatíveis, associadas à detecção do vírus por PCR no líquido cefalorraquidiano, são consideradas diagnósticas; sensibilidade limitada exige repetir teste ultrassensível ou considerar biópsia quando a suspeita permanece alta apesar de PCR negativa.",
+    conclusao:"Em imunossuprimido com déficit neurológico subagudo, lesões multifocais de substância branca e PCR positiva para JC no líquor, o diagnóstico é leucoencefalopatia multifocal progressiva.",
+    curiosidade:"Não há antiviral com eficácia comprovada para LMP; a recuperação da função imune é o eixo terapêutico, equilibrado contra risco de rejeição no transplantado."
   },
   sepsis3_jama:{
     label:"Singer M et al. — Sepsis-3 (JAMA 2016)",
