@@ -1,0 +1,136 @@
+{
+  "batch": "FARM-14C",
+  "change_type": "medical_editorial",
+  "expected_version": "13.35",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-14C.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "9b77534d": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "9602dcbc": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "56e146ac": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "918962ea": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "4f399a3c": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "d78560b2": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "f4034105": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    }
+  },
+  "expected_question_delta": 0,
+  "refs_policy": "declared",
+  "references": {
+    "genereviews_ph1_2025": {
+      "action": "add_new",
+      "source": "GeneReviews Primary Hyperoxaluria Type 1, revised 2025"
+    },
+    "niddk_apol1_2017": {
+      "action": "add_new",
+      "source": "NIDDK institutional review of APOL1 kidney risk variants"
+    },
+    "genereviews_ahus_2021": {
+      "action": "add_new",
+      "source": "GeneReviews Genetic Atypical Hemolytic-Uremic Syndrome"
+    },
+    "ema_soliris_2026": {
+      "action": "add_new",
+      "source": "current European Medicines Agency Soliris product page"
+    },
+    "genereviews_adtkd_umod_2021": {
+      "action": "add_new",
+      "source": "GeneReviews Autosomal Dominant Tubulointerstitial Kidney Disease — UMOD"
+    },
+    "genereviews_adtkd_muc1_2021": {
+      "action": "add_new",
+      "source": "GeneReviews Autosomal Dominant Tubulointerstitial Kidney Disease — MUC1"
+    },
+    "hivan_fogo_nejm2022": {
+      "action": "reuse_existing",
+      "source": "NEJM clinical review of HIV-associated kidney disease"
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "As sete questões foram reconstruídas com preservação de qid e FSRS porque mantêm seus conceitos nucleares e objetivos pedagógicos.",
+    "56e146ac e 4f399a3c são complementares: a primeira avalia interpretação do painel genético negativo; a segunda, decisão terapêutica e segurança da inibição de C5.",
+    "9602dcbc e d78560b2 não são duplicatas: a primeira avalia penetrância e interpretação de APOL1; a segunda, reconhecimento histológico e conduta prioritária na HIVAN.",
+    "O Advogado do Recurso removeu determinismo genético de APOL1, exigência de variante identificável para SHUa, espera pelo painel antes do tratamento, e necessidade de cistos medulares para ADTKD."
+  ]
+}
