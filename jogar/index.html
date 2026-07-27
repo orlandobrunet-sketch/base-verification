@@ -117,6 +117,7 @@
   <link rel="stylesheet" href="styles/lumen/components.css?v=13.20">
   <link rel="stylesheet" href="styles/lumen/motion.css?v=13.20">
   <link rel="stylesheet" href="styles/lumen/portal.css?v=13.20">
+  <link rel="stylesheet" href="styles/lumen/atrium.css?v=13.21">
   <script>
     // Version beacon — detecta nova versão e força limpeza de cache
     (function() {
@@ -735,85 +736,94 @@
   })();
   </script>
 
-  <!-- WELCOME SCREEN -->
-  <div id="welcomeScreen" class="welcome-screen hidden">
-    <div class="welcome-bg"></div>
-    <div class="welcome-glow"></div>
-    <div class="welcome-particles" id="welcomeParticles"></div>
-    <!-- Botões de som na welcome screen (PC only) -->
-    <div class="welcome-sound-controls" id="welcomeSoundControls">
-      <div class="volume-slider-container">
-        <div class="sound-toggle" role="button" tabindex="0" aria-label="Ativar/desativar música" data-action="toggleMusic">
-          <span id="welcomeMusicIcon" aria-hidden="true">🎵</span>
-        </div>
-        <input type="range" class="volume-slider music-vol" min="0" max="1" step="0.05" aria-label="Volume da Música">
-      </div>
-      <div class="volume-slider-container">
-        <div class="sound-toggle" role="button" tabindex="0" aria-label="Ativar/desativar efeitos sonoros" data-action="toggleSound">
-          <span id="welcomeSoundIcon" aria-hidden="true">🔊</span>
-        </div>
-        <input type="range" class="volume-slider sfx-vol" min="0" max="1" step="0.05" aria-label="Volume dos Efeitos">
-      </div>
-      <div class="profile-btn" id="welcomeProfileBtn" role="button" tabindex="0" aria-label="Menu da conta" data-action="toggleProfilePopup" data-arg="welcome">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
-        <div class="profile-popup" id="welcomeProfilePopup">
-          <div class="profile-popup-email"><strong>Conta</strong><span id="welcomeProfileEmail"></span></div>
+  <!-- WELCOME SCREEN — Lumen Page 2 -->
+  <div id="welcomeScreen" class="welcome-screen hidden" data-nq-ui="lumen" data-lumen-state="mastery" data-journey-state="fresh" aria-hidden="true">
+    <section class="nql-atrium" aria-labelledby="atriumTitle">
+      <a class="nql-skip-link" href="/jogar/#atriumMain">Ir para sua jornada</a>
 
-        </div>
-      </div>
-    </div>
-    <div class="welcome-content">
-      <!-- Ornamento superior -->
-      <div class="welcome-ornament"><span>&#10022; Reino dos Néfrons &#10022;</span></div>
-      <h1>NefroQuest</h1>
-      <div class="welcome-sub">Ascension</div>
-
-      <div id="welcomeStats" class="welcome-stats">
-        <div class="welcome-stat"><span class="ws-val" id="wsBestScore">0</span><span class="ws-lbl">Recorde</span></div>
-        <div class="welcome-stat"><span class="ws-val" id="wsGamesPlayed">0</span><span class="ws-lbl">Partidas</span></div>
-        <div class="welcome-stat"><span class="ws-val" id="wsBestLevel">0</span><span class="ws-lbl">Maior Nível</span></div>
-      </div>
-      <div id="welcomeSavedInfo" class="welcome-saved-info" style="display:none;">
-        <div class="wsaved-top">
-          <span class="wsaved-label">⚔ Jornada em Andamento</span>
-          <span class="wsaved-time-lbl" id="wsSavedTime"></span>
-        </div>
-        <div class="wsaved-bottom">
-          <img id="wsSavedAvatar" alt="" loading="lazy">
-          <div class="wsaved-info">
-            <div class="wsaved-charname" id="wsSavedChar">-</div>
-            <div class="wsaved-stats">
-              <div class="wsaved-stat">
-                <span class="ws-v" style="color:var(--blue)" id="wsSavedLevel">-</span>
-                <span class="ws-l">Nível</span>
-              </div>
-              <div class="wsaved-stat">
-                <span class="ws-v" style="color:#fb7185" id="wsSavedLives">-</span>
-                <span class="ws-l">Vidas</span>
-              </div>
-              <div class="wsaved-stat">
-                <span class="ws-v" style="color:#34d399" id="wsSavedScore">-</span>
-                <span class="ws-l">Pts</span>
-              </div>
+      <header class="nql-atrium__topbar">
+        <a class="nql-brand" href="/" aria-label="NefroQuest — voltar à página inicial">Nefro<em>Quest</em></a>
+        <div class="nql-atrium__top-actions">
+          <span class="nql-atrium__edition" aria-hidden="true">ATLAS NQ · JORNADA</span>
+          <div class="welcome-sound-controls nql-atrium__sound" id="welcomeSoundControls" aria-label="Controles de áudio">
+            <div class="volume-slider-container">
+              <div class="sound-toggle" role="button" tabindex="0" aria-label="Ativar ou desativar música" data-action="toggleMusic"><span id="welcomeMusicIcon" aria-hidden="true">♪</span></div>
+              <input type="range" class="volume-slider music-vol" min="0" max="1" step="0.05" aria-label="Volume da música">
+            </div>
+            <div class="volume-slider-container">
+              <div class="sound-toggle" role="button" tabindex="0" aria-label="Ativar ou desativar efeitos sonoros" data-action="toggleSound"><span id="welcomeSoundIcon" aria-hidden="true">◖</span></div>
+              <input type="range" class="volume-slider sfx-vol" min="0" max="1" step="0.05" aria-label="Volume dos efeitos">
+            </div>
+            <div class="profile-btn" id="welcomeProfileBtn" role="button" tabindex="0" aria-label="Menu da conta" data-action="toggleProfilePopup" data-arg="welcome">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="18" height="18" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+              <div class="profile-popup" id="welcomeProfilePopup"><div class="profile-popup-email"><strong>Conta</strong><span id="welcomeProfileEmail"></span></div></div>
             </div>
           </div>
         </div>
+      </header>
+
+      <div class="nql-atrium__main" id="atriumMain" role="main" tabindex="-1">
+        <section class="nql-atrium__journey" aria-labelledby="atriumTitle">
+          <p class="nql-atrium__eyebrow">Átrio da jornada · seu ponto de retorno</p>
+          <h1 id="atriumTitle">Seu domínio <em>deixa rastros.</em></h1>
+          <p class="nql-atrium__lede">Cada decisão clínica alimenta um percurso contínuo de prática, revisão e domínio.</p>
+
+          <div id="welcomeStats" class="welcome-stats nql-mastery-rail" aria-label="Resumo de domínio">
+            <div class="welcome-stat"><span class="ws-val" id="wsBestScore">0</span><span class="ws-lbl">Recorde</span></div>
+            <div class="welcome-stat"><span class="ws-val" id="wsGamesPlayed">0</span><span class="ws-lbl">Jornadas</span></div>
+            <div class="welcome-stat"><span class="ws-val" id="wsBestLevel">0</span><span class="ws-lbl">Maior nível</span></div>
+          </div>
+
+          <div class="nql-atrium__continuum" aria-label="Ciclo da jornada: decidir, reter e dominar">
+            <span class="nql-atrium__continuum-line" aria-hidden="true"><i></i></span>
+            <div class="nql-atrium__continuum-step is-current"><span aria-hidden="true"></span><strong>Decidir</strong><small>prática ativa</small></div>
+            <div class="nql-atrium__continuum-step"><span aria-hidden="true"></span><strong>Reter</strong><small>revisão espaçada</small></div>
+            <div class="nql-atrium__continuum-step"><span aria-hidden="true"></span><strong>Dominar</strong><small>evolução visível</small></div>
+          </div>
+
+          <div id="welcomeSavedInfo" class="welcome-saved-info nql-atrium__saved" style="display:none;">
+            <div class="wsaved-top"><span class="wsaved-label"><i aria-hidden="true"></i> Jornada em andamento</span><span class="wsaved-time-lbl" id="wsSavedTime"></span></div>
+            <div class="wsaved-bottom">
+              <img id="wsSavedAvatar" alt="" loading="lazy">
+              <div class="wsaved-info">
+                <div class="wsaved-charname" id="wsSavedChar">-</div>
+                <div class="wsaved-stats">
+                  <div class="wsaved-stat"><span class="ws-v" id="wsSavedLevel">-</span><span class="ws-l">Nível</span></div>
+                  <div class="wsaved-stat"><span class="ws-v" id="wsSavedLives">-</span><span class="ws-l">Vidas</span></div>
+                  <div class="wsaved-stat"><span class="ws-v" id="wsSavedScore">-</span><span class="ws-l">Pontos</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="nql-atrium__primary-actions">
+            <button type="button" id="welcomeContinueBtn" class="nql-atrium__primary" style="display:none;" data-action="continueGame"><span><strong>Continuar jornada</strong><small>Retomar de onde você parou</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
+            <button type="button" class="nql-atrium__secondary" data-action="startNewFromWelcome">Iniciar nova jornada</button>
+          </div>
+        </section>
+
+        <aside class="nql-atrium__routes" aria-labelledby="atriumRoutesTitle">
+          <div class="nql-atrium__routes-head"><p>Rotas disponíveis</p><h2 id="atriumRoutesTitle">Escolha seu próximo movimento</h2></div>
+          <div class="nql-atrium__route-status" aria-live="polite"><span aria-hidden="true"></span><p id="atriumRouteStatus">Explore uma rota sem perder o fio da sua jornada.</p></div>
+          <div class="nql-atrium__route-list">
+            <button type="button" class="nql-atrium__route" data-atrium-route="modes" data-action="openGameModesPopup"><span class="nql-atrium__route-index">01</span><span><strong>Modos de jogo</strong><small>Treinos, provas e desafios</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
+            <button type="button" class="nql-atrium__route" data-atrium-route="dashboard" data-action="openDashboard"><span class="nql-atrium__route-index">02</span><span><strong>Mapa de domínio</strong><small>Desempenho por competência</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
+            <button type="button" class="nql-atrium__route" id="welcomeRitualBtn" data-atrium-route="ritual" data-action="openRitual"><span class="nql-atrium__route-index">03</span><span><strong>Ritual de iniciação</strong><small>Descubra seu nível recomendado</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
+            <button type="button" class="nql-atrium__route" data-atrium-route="ranking" data-action="showLeaderboardFromWelcome"><span class="nql-atrium__route-index">04</span><span><strong>Classificação</strong><small>Compare sua evolução</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
+            <button type="button" class="nql-atrium__route" data-atrium-route="library" data-action="openBibliotecaModal"><span class="nql-atrium__route-index">05</span><span><strong>Biblioteca clínica</strong><small>Referências para aprofundar</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
+            <button type="button" id="bossPreviewBtn" class="btn-boss-preview" data-action="startBossPreview" title="Preview do Confronto Final" style="display:none;">Preview: Confronto Final</button>
+          </div>
+        </aside>
       </div>
-      <!-- Botões primários: Nova Jornada + Continuar Jornada -->
-      <div class="welcome-primary-btns">
-        <button type="button" id="welcomeContinueBtn" class="btn continue-btn" style="display:none;" data-action="continueGame">Continuar Jornada</button>
-        <button type="button" class="btn gold" data-action="startNewFromWelcome">Nova Jornada</button>
-      </div>
-      <div class="welcome-buttons">
-        <button type="button" class="btn sec btn-game-modes" data-action="openGameModesPopup">🎮 Modos de Jogo</button>
-        <button type="button" class="btn sec" data-action="openDashboard">📊 Dashboard</button>
-        <button type="button" class="btn sec" id="welcomeRitualBtn" data-action="openRitual">⚜️ Ritual de Iniciação</button>
-        <button type="button" class="btn sec" data-action="showLeaderboardFromWelcome">Leaderboard</button>
-        <button type="button" class="btn sec btn-biblioteca" data-action="openBibliotecaModal">📜 Grimório</button>
-        <button type="button" id="bossPreviewBtn" class="btn-boss-preview" data-action="startBossPreview" title="Preview do Confronto Final" style="display:none;">⚔️ Preview: Confronto Final</button>
-      </div>
-      <div class="welcome-credit"><a href="https://nefroquest.com">nefroquest.com</a> &nbsp;·&nbsp; <span id="welcomeVersionLabel" class="version-label-dynamic" style="font-size:0.9em;cursor:pointer;" role="button" tabindex="0" aria-label="Ver novidades da versão" data-action="showChangelog">v11.45</span> &nbsp;·&nbsp; <span style="font-size:0.8em;cursor:pointer;text-decoration:underline;" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span></div>
-    </div>
+
+      <footer class="nql-atrium__footer">
+        <span>Prática que se transforma em domínio clínico.</span>
+        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v13.21</button></span>
+      </footer>
+    </section>
+    <div class="welcome-bg" aria-hidden="true"></div>
+    <div class="welcome-glow" aria-hidden="true"></div>
+    <div class="welcome-particles" id="welcomeParticles" aria-hidden="true"></div>
   </div>
 
   <main class="app hidden" id="mainApp">
@@ -1626,6 +1636,7 @@
   <script defer src="js/notifications.js?v=11.90"></script>
   <script defer src="js/auth.js?v=13.20"></script>
   <script defer src="js/portal.js?v=13.20"></script>
+  <script defer src="js/atrium.js?v=13.21"></script>
   <script defer src="js/paywall.js?v=11.90"></script>
   <script defer src="js/account.js?v=11.90"></script>
   <script defer src="js/boss.js?v=11.90"></script>
