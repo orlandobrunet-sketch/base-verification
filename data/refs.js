@@ -2131,12 +2131,16 @@ finerenone_2025:{
   kdigo_bp_ckd_2021:{
     label:"KDIGO Blood Pressure in CKD 2021",
     url:"https://kdigo.org/guidelines/blood-pressure-in-ckd/",
-    journal:"Kidney International",
-    ano:2021,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
-    impacto:"Alvo PA < 120 mmHg sistólica em DRC — reduz progressão renal e eventos cardiovasculares; base das metas tensionais atuais",icon:"📋",
-    resumo:"Diretriz KDIGO para PA em DRC não dialítica. Sugere alvo de PAS <120 mmHg quando tolerado, desde que a medida seja padronizada. Esse alvo não deve ser aplicado automaticamente à medida casual de consultório, porque a técnica padronizada tende a produzir valores menores.",
-    conclusao:"O alvo <120 mmHg é alvo de medida padronizada; na prática clínica, individualizar por idade, fragilidade, sintomas, proteinúria, risco cardiovascular, ortostatismo e DRC avançada.",
-    curiosidade:"Ignorar a diferença entre medida padronizada e casual pode levar a intensificação excessiva do anti-hipertensivo."
+    journal:"Kidney International. 2021;99(3 Suppl):S1-S87",
+    ano:2021,
+    tipo:"Diretriz",
+    badge:"GUIDELINE",
+    badgeColor:"#6366f1",
+    impacto:"PAS <120 mmHg padronizada quando tolerada; bloqueio do SRAA na DRC albuminúrica",
+    icon:"📋",
+    resumo:"Diretriz KDIGO para pressão arterial na DRC não dialítica. Sugere alvo de pressão arterial sistólica inferior a 120 mmHg quando tolerado, exclusivamente com medida padronizada de consultório (recomendação 2B). Recomenda iniciar IECA ou BRA em pessoas com hipertensão, DRC G1–G4 e albuminúria A3 sem diabetes (1B), e também sustenta bloqueio do sistema renina-angiotensina em albuminúria relevante com diabetes. O alvo deve ser individualizado e não traduzido diretamente para medida casual.",
+    conclusao:"O alvo <120 mmHg depende de técnica padronizada e tolerabilidade; na DRC hipertensiva com albuminúria importante, IECA ou BRA integra a estratégia de proteção renal.",
+    curiosidade:"A maior armadilha é tratar <120 mmHg como um número universal: medida automatizada após repouso não equivale à pressão casual obtida durante uma consulta apressada."
   },
   nef4d_trial:{
     label:"4D Trial — Atorvastatina em Hemodiálise Diabética",
@@ -2619,11 +2623,11 @@ finerenone_2025:{
     tipo:"Diretriz",
     badge:"GUIDELINE",
     badgeColor:"#6366f1",
-    impacto:"Tratamento clínico e revascularização seletiva na estenose de artéria renal",
+    impacto:"Hipertensão resistente e estenose renal: seleção de terapia e intervenção",
     icon:"📋",
-    resumo:"Diretriz multissocietária AHA/ACC de 2025 para hipertensão arterial. Na estenose aterosclerótica da artéria renal, recomenda tratamento clínico para reduzir morbidade renal e cardiovascular (classe 1, nível A). Quando o tratamento falha, com hipertensão resistente, piora da função renal e/ou insuficiência cardíaca aguda, considera razoável encaminhar para angioplastia renal com ou sem stent (classe 2a, opinião de especialistas). Na estenose não aterosclerótica, incluindo displasia fibromuscular, o encaminhamento para angioplastia percutânea pode ser razoável (classe 2b, dados limitados).",
-    conclusao:"Revascularização renal não é rotina na doença aterosclerótica; ela é uma estratégia seletiva para estenose relevante com falha clínica de alto risco.",
-    curiosidade:"Os ensaios negativos para stent sustentam a terapia clínica na maioria dos pacientes, mas não eliminam a intervenção nos fenótipos de edema pulmonar súbito, deterioração renal ou hipertensão resistente."
+    resumo:"Diretriz multissocietária AHA/ACC de 2025. Na hipertensão aparentemente resistente, exige excluir medida inadequada, efeito do avental branco, baixa adesão e fármacos interferentes antes de confirmar resistência. Se a pressão continuar não controlada com IECA ou BRA, bloqueador de canal de cálcio e diurético tiazídico de longa ação, recomenda antagonista do receptor mineralocorticoide quando a TFGe é pelo menos 45 mL/min/1,73m² e o potássio permite. Na estenose aterosclerótica da artéria renal, recomenda tratamento clínico; diante de hipertensão resistente, piora renal e/ou insuficiência cardíaca aguda apesar desse tratamento, considera razoável encaminhar para revascularização.",
+    conclusao:"Confirme resistência verdadeira antes da quarta droga; em função renal e potássio adequados, prefira antagonista mineralocorticoide. Revascularização renal aterosclerótica permanece seletiva.",
+    curiosidade:"Ensaios de stent sustentam terapia clínica na maioria das estenoses renais, enquanto o PATHWAY-2 sustenta espironolactona na resistência verdadeira; os dois cenários exigem selecionar o fenótipo, não aplicar um procedimento ou fármaco por reflexo."
   },
   esc_peripheral_aortic_2024:{
     label:"ESC — Peripheral Arterial and Aortic Diseases Guideline 2024",
