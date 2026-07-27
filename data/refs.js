@@ -2062,15 +2062,19 @@ canvas_program:{
     conclusao:"Em DRC não dialítica, o vadadustat corrige anemia, mas a segurança cardiovascular impediu tratar a classe como equivalente aos AEE nessa população.",
     curiosidade:"O programa PRO2TECT contrastou com os estudos INNO2VATE em pacientes dialíticos, nos quais o vadadustat atingiu não inferioridade cardiovascular versus darbepoetina alfa."
   },
-  imlifidase_study:{
-    label:"Imlifidase em Transplante Hiperimune (Jordan et al.)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2114694",
-    journal:"N Engl J Med 2022;386(26):2544-2555",
-    ano:2022,tipo:"Estudo Clínico",badge:"STUDY",badgeColor:"#0ea5e9",
-    impacto:"Imlifidase cliva IgG e permite transplante renal em pacientes hiperimunes com prova cruzada positiva",icon:"🔬",
-    resumo:"Estudo clínico inovador avaliando o uso de imlifidase (IdeS) — uma endopeptidase recombinante derivada de Streptococcus pyogenes que cliva especificamente todas as subclasses de IgG humana em fragmentos F(ab')2 e Fc. Em pacientes altamente sensibilizados (candidatos hiperimunes com painel reativo de anticorpos - PRA elevado) e prova cruzada positiva com doadores falecidos, a infusão de uma dose única de imlifidase converteu a prova cruzada em negativa em 24 horas, clivando todos os anticorpos específicos contra o doador (DSAs). Isso permitiu a realização bem-sucedida do transplante renal incompatível em 100% dos pacientes da coorte. Embora ocorra rebote de anticorpos nas semanas seguintes com episódios de rejeição humoral aguda em parte dos pacientes, a sobrevida do enxerto permaneceu excelente.",
-    conclusao:"A imlifidase surge como uma terapia revolucionária de dessensibilização rápida, permitindo transpor barreiras imunológicas anteriormente intransponíveis e viabilizando o transplante em receptores altamente sensibilizados.",
-    curiosidade:"A imlifidase é, na verdade, uma arma biológica do Streptococcus pyogenes para inativar as defesas de anticorpos do hospedeiro humano. Na medicina de precisão, essa mesma enzima bacteriana foi domesticada para induzir uma janela terapêutica de imunossupressão humoral temporária de 48-72 horas, tempo suficiente para a realização do implante cirúrgico."
+  ema_imlifidase_2020:{
+    label:"EMA — Idefirix (Imlifidase) EPAR",
+    url:"https://www.ema.europa.eu/en/medicines/human/EPAR/idefirix",
+    journal:"European Medicines Agency",
+    ano:2020,
+    tipo:"Avaliação Regulatória",
+    badge:"REGULATORY",
+    badgeColor:"#64748b",
+    impacto:"Mecanismo, seleção de pacientes e limites da dessensibilização com imlifidase",
+    icon:"📋",
+    resumo:"Avaliação regulatória da imlifidase para adultos altamente sensibilizados com crossmatch positivo contra um doador falecido disponível e baixa probabilidade de transplante pelos programas de alocação. A enzima derivada de Streptococcus pyogenes cliva as IgG, incluindo anticorpos doador-específicos, e pode converter rapidamente o crossmatch. A autorização é condicional, baseada em dados limitados, e o paciente continua necessitando imunossupressão padrão.",
+    conclusao:"A imlifidase cria uma janela rápida e transitória ao remover IgG circulante; não elimina sua fonte celular, exige confirmação de crossmatch negativo antes do implante e não dispensa prevenção e vigilância de rejeição.",
+    curiosidade:"A mesma especificidade bacteriana que ajuda Streptococcus pyogenes a escapar da imunidade foi transformada em ferramenta terapêutica para clivar todas as subclasses de IgG humana."
   },
   porcine_kidney_xeno_nejm_2025:{
     label:"Kawai et al. — Porcine Kidney Xenotransplantation (NEJM 2025)",
@@ -2208,14 +2212,60 @@ finerenone_2025:{
     curiosidade:"Ao passo que o FIDELIO-DKD focou em pacientes com doença renal avançada (onde o risco de falência renal é primário), o FIGARO-DKD incluiu uma população com função renal mais preservada, em que o risco de morte cardiovascular precoce superava o risco de diálise."
   },
   finerenone_transplant_2025:{
-    label:"Finerenona em Transplante Renal — Evidência Emergente",
-    url:"https://www.kidney-international.org/",
-    journal:"Kidney International 2024",
-    ano:2024,tipo:"Revisão/Estudo Piloto",badge:"REVIEW",badgeColor:"#0ea5e9",
-    impacto:"Dados preliminares de segurança e eficácia de ARM não-esteroidais em receptores de transplante renal (evidência em desenvolvimento)",icon:"📖",
-    resumo:"Estudos observacionais e dados piloto iniciais (Kidney International, 2024) avaliando a segurança, tolerabilidade e eficácia antiproteinúrica da finerenona em receptores de transplante renal com proteinúria persistente sob imunossupressão padrão. O uso de antagonistas não esteroidais do receptor mineralocorticoide (nsMRA) em transplantados visa atenuar a inflamação e a fibrose intersticial, que levam à disfunção crônica do enxerto. Nos dados analisados, a finerenona (10 a 20 mg/dia) associou-se a uma redução significativa na relação proteinúria/creatinúria sem afetar de forma clinicamente relevante os níveis sanguíneos de tacrolimo ou ciclosporina. O principal evento adverso foi hipercalemia leve a moderada, manejável com orientação dietética ou quelantes, especialmente dada a predisposição hemodinâmica induzida pelos inibidores de calcineurina.",
-    conclusao:"A finerenona mostra-se promissora como terapia adjuvante segura e eficaz para redução de proteinúria e progressão fibrótica pós-transplante, aguardando validação definitiva por grandes ensaios clínicos.",
-    curiosidade:"Os inibidores de calcineurina aumentam a expressão e atividade do cotransportador cloreto de sódio sensível a tiazídicos (NCC) no túbulo distal e reduzem a secreção distal de potássio, o que explica por que a hipercalemia é o principal desafio ao combinar esses fármacos com a finerenona no pós-transplante."
+    label:"Kahvecioglu S et al. — Finerenona em Receptores de Transplante Renal (2025)",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC12693042/",
+    journal:"Journal of Clinical Medicine 2025;14(23):8296",
+    ano:2025,
+    tipo:"Coorte Retrospectiva",
+    badge:"COHORT",
+    badgeColor:"#f59e0b",
+    impacto:"Primeiro sinal clínico antiproteinúrico e alerta de hipercalemia com finerenona após transplante renal",
+    icon:"🔬",
+    resumo:"Coorte retrospectiva de centro único: entre 1.750 receptores rastreados, 39 receberam prescrição de finerenona; 15 que a toleraram por pelo menos seis meses foram comparados a 15 controles pareados. A proteinúria caiu 40% em seis meses dentro do grupo tratado, mas não houve diferença significativa versus o controle, nem mudança relevante de TFGe ou creatinina. Quatro dos 39 pacientes inicialmente prescritos apresentaram hipercalemia grave e dois interromperam por outros efeitos adversos.",
+    conclusao:"O estudo gera um sinal exploratório antiproteinúrico, mas a seleção de toleradores, a amostra mínima e o desenho retrospectivo impedem inferir preservação do enxerto ou recomendar uso rotineiro; potássio e função renal exigem monitorização estreita.",
+    curiosidade:"A diferença entre 39 pacientes prescritos e apenas 15 incluídos na análise de seis meses ilustra o viés do sobrevivente terapêutico: estudar somente quem tolerou o fármaco pode fazer o tratamento parecer mais seguro e eficaz."
+  },
+  dumbill_nmp_2025:{
+    label:"Dumbill R et al. — Perfusão Normotérmica Renal Prolongada (2025)",
+    url:"https://doi.org/10.1038/s41467-025-59829-5",
+    journal:"Nature Communications 2025;16:4584",
+    ano:2025,
+    tipo:"Estudo Fase 1",
+    badge:"PHASE 1",
+    badgeColor:"#0ea5e9",
+    impacto:"Segurança e viabilidade de perfusão normotérmica por até 24 horas antes do transplante",
+    icon:"🔬",
+    resumo:"NKP1, estudo fase 1 de centro único, não randomizado e com controles históricos, avaliou 36 rins de doadores falecidos submetidos a perfusão normotérmica por períodos progressivos de até 24 horas. A sobrevida do enxerto em 30 dias foi 100%, e a função em 12 meses foi comparável à dos controles apesar do maior tempo total de preservação. O estudo não tinha poder para eficácia e não mostrou redução mensurável de função tardia do enxerto.",
+    conclusao:"A perfusão normotérmica prolongada mostrou segurança e viabilidade iniciais e pode apoiar avaliação fisiológica e intervenção ex vivo, mas ainda requer ensaios maiores e biomarcadores validados antes de alegações de superioridade clínica.",
+    curiosidade:"O protocolo aumentou o limite máximo em três estágios — 6, 12 e 24 horas — com revisão independente de segurança antes de cada progressão."
+  },
+  pfefferkorn_tcmr_2026:{
+    label:"Pfefferkorn AM et al. — Estados Epiteliais após TCMR (2026)",
+    url:"https://doi.org/10.1038/s41467-026-68397-1",
+    journal:"Nature Communications 2026;17:1060",
+    ano:2026,
+    tipo:"Estudo Translacional",
+    badge:"TRANSLATIONAL",
+    badgeColor:"#8b5cf6",
+    impacto:"Integra multiômica espacial a prognóstico do enxerto após rejeição mediada por células T",
+    icon:"🔬",
+    resumo:"Estudo translacional que induziu TCMR em transplantes renais murinos e integrou RNA-seq de núcleo único, transcriptômica espacial e imunofluorescência para mapear estados epiteliais e imunes. Assinaturas humanas derivadas de estados lesados do túbulo proximal e do ramo ascendente espesso foram aplicadas a uma grande coorte transcriptômica de biópsias; escores elevados associaram-se a maior perda do enxerto em três anos após TCMR.",
+    conclusao:"Estados epiteliais lesados podem carregar informação prognóstica além do rótulo histológico, mas os achados são associativos e de pesquisa; não substituem Banff nem definem teste clínico ou tratamento validado.",
+    curiosidade:"A combinação de núcleo único e espaço resolve duas perguntas diferentes: qual programa gênico uma célula expressa e onde essa célula se encontra na arquitetura do enxerto."
+  },
+  durand_hope_2024:{
+    label:"Durand CM et al. — Segurança do Transplante Renal de Doadores com HIV (2024)",
+    url:"https://doi.org/10.1056/NEJMoa2403733",
+    journal:"New England Journal of Medicine 2024;391(15):1390-1401",
+    ano:2024,
+    tipo:"Estudo Observacional de Não Inferioridade",
+    badge:"COHORT",
+    badgeColor:"#f59e0b",
+    impacto:"Compara rins de doadores com e sem HIV em receptores com HIV sob critérios HOPE",
+    icon:"🔬",
+    resumo:"Estudo multicêntrico observacional com 198 receptores com HIV: 99 receberam rim de doador com HIV e 99, de doador sem HIV. O desfecho primário composto incluiu morte, perda do enxerto, evento adverso grave, viremia de escape, falha persistente do tratamento do HIV e infecção oportunista. Em candidatos cuidadosamente selecionados, a estratégia com doador HIV-positivo foi não inferior à comparação HIV-negativa.",
+    conclusao:"Rins de doadores com HIV podem ampliar o acesso de receptores com HIV bem controlado sem piorar o desfecho composto de segurança, mas o resultado depende de seleção, terapia antirretroviral contínua e monitorização virológica e do enxerto.",
+    curiosidade:"O estudo comparou dois tipos de doador dentro de uma população de receptores com HIV; ele não testou transplante sem controle virológico nem autoriza interromper a terapia antirretroviral."
   },
   confidence_trial_2025:{
     label:"CONFIDENCE Trial (Finerenona + Empagliflozina)",
