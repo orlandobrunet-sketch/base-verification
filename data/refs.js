@@ -444,9 +444,9 @@ kdigo_ckd:{
     badgeColor:"#6366f1",
     impacto:"Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
     icon:"📋",
-    resumo:"A diretriz KDIGO 2024 para Avaliação e Manejo da Doença Renal Crônica atualiza os padrões diagnósticos e terapêuticos globais. Mantém a classificação clássica da DRC baseada nas categorias de TFGe (G1 a G5) e albuminúria (A1 a A3). Consolida a recomendação para triagem e monitoramento com a relação albuminúria/creatinúria (RAC) e desaconselha o uso exclusivo de fita reagente urinária. Preconiza o uso sistemático e precoce de terapias modificadoras da doença com impacto na sobrevida, com destaque para inibidores do SRAA (IECA ou BRA em dose máxima tolerada), inibidores do co-transportador sódio-glicose 2 (iSGLT2) para pacientes com TFGe ≥20 mL/min/1,73m² e RAC ≥200 mg/g (com ou sem diabetes), e antagonistas não-esteroidais do receptor mineralocorticoide (finerenona) em pacientes diabéticos com proteinúria persistente. Estabelece metas pressóricas rigorosas (PAS <120 mmHg medida de forma padronizada) e controle lipídico baseado em risco.",
-    conclusao:"A diretriz de 2024 redesenha o cuidado da DRC, transformando-a de um contínuo de declínio passivo para uma jornada de intervenção farmacológica tripla ativa (SRAA + iSGLT2 + nsMRA) focada em nefroproteção e redução de mortalidade cardiovascular no Reino.",
-    curiosidade:"A diretriz incorpora a equação CKD-EPI 2021 sem o fator de correção de raça para a estimativa da TFGe, promovendo equidade diagnóstica global e eliminando vieses étnicos que mascaravam o diagnóstico precoce e o acesso ao transplante em populações negras."
+    resumo:"A KDIGO 2024 mantém a classificação da DRC por causa, categoria de TFGe (G1–G5) e albuminúria (A1–A3). Recomenda confirmar fita positiva com relação albumina/creatinina (RAC), preferencialmente em amostra matinal, e não presumir cronicidade a partir de um único resultado. Recomenda iSGLT2 para diabetes tipo 2 com DRC e TFGe ≥20 mL/min/1,73 m², e para adultos com DRC, TFGe ≥20 e RAC ≥200 mg/g ou insuficiência cardíaca. O início de diálise deve considerar sintomas, sinais, qualidade de vida, preferências, TFGe e alterações laboratoriais; não deve decorrer de um número isolado.",
+    conclusao:"Diagnóstico, estratificação e tratamento da DRC exigem confirmar albuminúria e cronicidade, aplicar terapias modificadoras de risco e separar planejamento de terapia renal substitutiva do momento clínico de iniciar diálise.",
+    curiosidade:"A diretriz propõe planejar transplante preemptivo ou acesso dialítico em adultos quando a TFGe é inferior a 15–20 mL/min/1,73 m² ou o risco de falência renal supera 40% em 2 anos, antes de surgir indicação clínica de diálise."
   },
   kdigo_aki:{
     label:"KDIGO AKI 2012",
@@ -829,18 +829,18 @@ rave_study:{
     curiosidade:"O Kt/V foi proposto por Gotch e Sargent em 1985 com base no NCDS — primeiro estudo a demonstrar que a dose de diálise influencia a morbimortalidade. O 'K' representa o clearance de ureia do dialisador, 't' o tempo de sessão e 'V' o volume de distribuição da ureia, aproximadamente 60% do peso corporal."
   },
   kdigo_cardiorenal_consensus:{
-    label:"KDIGO Cardiorenal Syndrome 2012",
-    url:"https://kdigo.org/guidelines/",
-    journal:"Kidney International Supplements",
-    ano:2012,
-    tipo:"Diretriz Internacional",
-    badge:"GUIDELINE",
-    badgeColor:"#6366f1",
-    impacto:"Classificação e manejo da síndrome cardiorrenal em 5 tipos",
-    icon:"📋",
+    label:"Consenso ADQI — Síndromes Cardiorrenais (2010)",
+    url:"https://pubmed.ncbi.nlm.nih.gov/20037146/",
+    journal:"European Heart Journal",
+    ano:2010,
+    tipo:"Consenso",
+    badge:"REVIEW",
+    badgeColor:"#8b5cf6",
+    impacto:"Definiu os cinco subtipos de síndrome cardiorrenal por direção e temporalidade",
+    icon:"🔬",
     resumo:"Classificação clínica da síndrome cardiorrenal proposta por Ronco/ADQI, organizando a interação coração-rim em 5 tipos conforme órgão inicial, temporalidade e contexto sistêmico: tipo 1, disfunção cardíaca aguda levando a LRA; tipo 2, disfunção cardíaca crônica levando a DRC; tipo 3, LRA levando a disfunção cardíaca aguda; tipo 4, DRC contribuindo para disfunção cardíaca crônica; tipo 5, doença sistêmica causando disfunção cardíaca e renal simultânea, como sepse, amiloidose ou vasculite.",
-    conclusao:"A classificação em 5 tipos oferece linguagem comum entre nefrologia, cardiologia e terapia intensiva, mas não substitui a avaliação hemodinâmica, congestiva, inflamatória e medicamentosa individual.",
-    curiosidade:"O tipo 3 é frequentemente negligenciado: LRA pode precipitar disfunção cardíaca por hipercalemia, acidose, sobrecarga volêmica, inflamação, toxinas urêmicas e alterações neuro-hormonais, mesmo sem cardiopatia estrutural prévia evidente."
+    conclusao:"A classificação do consenso ADQI organiza a direção e a temporalidade da interação coração–rim; no tipo 2, a disfunção cardíaca crônica antecede e contribui para DRC progressiva.",
+    curiosidade:"A coexistência de insuficiência cardíaca e DRC não basta para definir o subtipo: a relação temporal e o órgão que iniciou o processo precisam ser estabelecidos."
   },
 
   guyton_and_hall_physiology:{
@@ -1453,9 +1453,9 @@ canvas_program:{
     journal:"Kidney Int Suppl 2017;7(1):1-59",
     ano:2017,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
     impacto:"Metas de PTH (2-9× LSN), fósforo e cálcio em DRC; preferência por quelantes não cálcicos; calcitriol/análogos em estágios 3-5D",icon:"📋",
-    resumo:"Atualização da diretriz KDIGO sobre distúrbios do metabolismo mineral e ósseo na DRC. Em diálise, sugere manter PTH entre 2 e 9 vezes o limite superior da normalidade do ensaio utilizado — não há alvo fixo. Para fósforo, recomenda manter dentro da faixa normal, preferindo quelantes não cálcicos quando indicada quelação. Evitar hipercalcemia e limitar quelantes com cálcio. Vitamina D ativa (calcitriol ou análogos) indicada no hiperparatireoidismo grave ou progressivo nos estágios 3–5D.",
-    conclusao:"A ausência de alvos rígidos de PTH reflete a limitação das evidências: a relação entre PTH e desfechos ósseos/cardiovasculares na DRC-5D é complexa e a meta deve ser individualizada.",
-    curiosidade:"A calcificação vascular na DRC resulta de transdiferenciação ativa das células musculares lisas vasculares em células osteoblasto-like — mediada em parte pelo excesso de fósforo e FGF-23 — e não simplesmente precipitação passiva de cálcio e fósforo."
+    resumo:"Atualização KDIGO para distúrbio mineral e ósseo da DRC. Em DRC G3a–G5 não dialítica com PTH progressivamente elevado, recomenda avaliar primeiro hiperfosfatemia, alta ingestão de fósforo, hipocalcemia e deficiência de vitamina D; calcitriol ou análogos ficam reservados ao hiperparatireoidismo grave e progressivo em G4–G5. Em G5D, sugere manter PTH aproximadamente entre 2 e 9 vezes o limite superior do ensaio e escolher calcimimético, calcitriol ou análogo conforme cálcio e fósforo. Para hiperparatireoidismo grave que não responde à terapia clínica ou farmacológica, sugere paratireoidectomia.",
+    conclusao:"O manejo deve seguir tendências de PTH, cálcio e fósforo, corrigir fatores modificáveis e reservar cirurgia ao hiperparatireoidismo grave refratário, sem transformar um limiar isolado de PTH em indicação automática.",
+    curiosidade:"A diretriz não identifica uma estratégia única de primeira linha para reduzir PTH em diálise; a escolha deve considerar simultaneamente cálcio, fósforo, tratamentos concomitantes, tolerabilidade e resposta."
   },
   hypophosphatemia_icu_geerse_2010:{
     label:"Geerse DA et al. — Treatment of Hypophosphatemia in the ICU (2010)",
@@ -2570,7 +2570,7 @@ finerenone_2025:{
   },
   kdigo_igan_2021:{
     label:"KDIGO IgAN — Capítulo da Diretriz GN 2021",
-    url:"https://kdigo.org/guidelines/glomerular-diseases/",
+    url:"https://kdigo.org/guidelines/iga-nephropathy/",
     journal:"Kidney International",
     ano:2021,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
     impacto:"Manejo da nefropatia por IgA: suporte otimizado (IECA/BRA), imunossupressão selecionada e critérios de progressão renal",icon:"📋",
@@ -2603,10 +2603,10 @@ finerenone_2025:{
     url:"https://kdigo.org/guidelines/glomerular-diseases/",
     journal:"Kidney International",
     ano:2025,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
-    impacto:"Primeira diretriz KDIGO dedicada exclusivamente à IgAN: alvo proteinúria < 1 g/dia (idealmente < 0,5), sparsentana, budesonida e novas terapias",icon:"📋",
-    resumo:"Primeira diretriz KDIGO dedicada exclusivamente à nefropatia por IgA. Define tratamento escalonado: cuidado de suporte otimizado (SRAA + controle de PA + estilo de vida) como base universal; adição de sparsentan ou nefecon (budesonida) conforme proteinúria persistente ≥1 g/dia e risco de progressão; imunossupressão sistêmica com corticoide reservada para casos selecionados de alto risco com TFGe preservada. Alvo de proteinúria: <1 g/dia, idealmente <0,5 g/dia.",
-    conclusao:"A diretriz KDIGO 2025 para IgAN consolidou a transição de um paradigma imunossupressor amplo para abordagem escalonada, priorizando terapias não imunossupressoras com evidência de trials fase III.",
-    curiosidade:"A IgAN é a glomerulopatia primária mais comum no mundo, mas por décadas o tratamento baseou-se em séries de casos. O surgimento de múltiplos trials fase III em menos de 5 anos (TESTING, NefIgArd, PROTECT, ALIGN) permitiu a elaboração da primeira diretriz dedicada à doença."
+    impacto:"Diretriz dedicada à IgAN: alvo de proteinúria <0,5 g/d e terapias dirigidas ao risco",icon:"📋",
+    resumo:"Diretriz KDIGO 2025 dedicada à nefropatia por IgA. Considera proteinúria persistente ≥0,5 g/d um marcador de risco que justifica tratamento adicional. Recomenda IECA ou BRA na dose máxima tolerada para todos os pacientes sem contraindicação (1B), sugere iSGLT2 para pacientes em risco de perda progressiva da função renal (2B) e posiciona Nefecon, sparsentana e glicocorticoide sistêmico reduzido conforme mecanismo, risco, disponibilidade e toxicidade. A meta é manter proteinúria abaixo de 0,5 g/d, idealmente abaixo de 0,3 g/d.",
+    conclusao:"O manejo combina proteção contra respostas maladaptativas à perda de néfrons com terapias dirigidas à formação de imunocomplexos e à inflamação; iSGLT2 não substitui tratamento específico da IgAN quando este é indicado.",
+    curiosidade:"Nos subgrupos de IgAN de DAPA-CKD e EMPA-KIDNEY, os participantes eram em geral mais velhos e tinham DRC mais avançada que os incluídos em ensaios específicos de IgAN, o que limita a extrapolação para jovens com TFGe preservada."
   },
   kdigo_adpkd_2025:{
     label:"KDIGO ADPKD 2025 (Rim Policístico Autossômico Dominante)",
