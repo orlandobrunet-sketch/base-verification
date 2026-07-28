@@ -293,6 +293,34 @@ const refsDB = {
     conclusao:"Um painel genético negativo não exclui ADTKD-MUC1 quando o fenótipo e a herança são compatíveis; é necessário confirmar se o laboratório usa ensaio dirigido à VNTR ou método validado equivalente.",
     curiosidade:"Cistos medulares não são achado obrigatório nem bom preditor de ADTKD-MUC1, razão pela qual o nome histórico 'doença cística medular' foi abandonado."
   },
+  nci_hereditary_rcc_2025:{
+    label:"NCI PDQ — Genetics of Renal Cell Carcinoma",
+    url:"https://www.cancer.gov/types/kidney/hp/renal-cell-carcinoma-genetics",
+    journal:"National Cancer Institute PDQ",
+    ano:2025,
+    tipo:"Revisão institucional",
+    badge:"REVIEW",
+    badgeColor:"#8b5cf6",
+    impacto:"Síndromes hereditárias de carcinoma renal e correlações entre gene, fenótipo e histologia.",
+    icon:"🧬",
+    resumo:"Revisão do NCI sobre câncer renal hereditário. A doença de von Hippel-Lindau decorre de variantes germinativas no gene supressor tumoral VHL e se associa a carcinoma renal de células claras multifocal ou bilateral, hemangioblastomas de retina e sistema nervoso central, feocromocitoma e outras neoplasias. Birt-Hogg-Dubé, HLRCC e carcinoma papilar hereditário têm genes e espectros tumorais distintos.",
+    conclusao:"Carcinoma renal bilateral, multifocal ou de início precoce, especialmente com manifestações extrarrenais sindrômicas, deve motivar aconselhamento e avaliação germinativa direcionada, pois o diagnóstico altera vigilância do paciente e da família.",
+    curiosidade:"A perda de VHL estabiliza HIF e ativa programas de resposta à hipóxia e angiogênese; esse eixo molecular originou terapias direcionadas como inibidores de HIF-2α."
+  },
+  eular_aps_2019:{
+    label:"EULAR — Management of Antiphospholipid Syndrome in Adults",
+    url:"https://ard.bmj.com/content/78/10/1296",
+    journal:"Ann Rheum Dis 2019;78:1296-1304",
+    ano:2019,
+    tipo:"Recomendação internacional",
+    badge:"GUIDELINE",
+    badgeColor:"#6366f1",
+    impacto:"Estratificação do perfil aPL e anticoagulação na síndrome antifosfolipídeo.",
+    icon:"📋",
+    resumo:"Recomendações EULAR para síndrome antifosfolipídeo. Perfil de alto risco inclui anticoagulante lúpico, dupla ou tripla positividade ou títulos persistentemente altos, confirmados em pelo menos duas ocasiões separadas por 12 semanas. Após primeira trombose venosa não provocada em APS, recomenda-se anticoagulação de longo prazo com antagonista da vitamina K e INR alvo 2–3. Rivaroxabana não deve ser usada em tripla positividade.",
+    conclusao:"Nefropatia da SAF pode manifestar microangiopatia trombótica aguda ou vasculopatia crônica; o tratamento deve integrar anticoagulação da SAF trombótica, controle pressórico e avaliação de outras causas de lesão renal.",
+    curiosidade:"A tripla positividade combina anticoagulante lúpico, anticardiolipina e anti-β2-glicoproteína I e identifica um perfil particularmente associado a recorrência trombótica."
+  },
   harrisons_principles:{
     label:"Harrison's Principles of Internal Medicine",
     url:"https://accessmedicine.mhmedical.com/book.aspx?bookid=3095",
