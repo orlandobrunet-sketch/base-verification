@@ -828,6 +828,20 @@ rave_study:{
     conclusao:"Define o índice Kt/V como medida-padrão da dose de diálise — base para auditoria e controle de qualidade nos centros de hemodiálise.",
     curiosidade:"O Kt/V foi proposto por Gotch e Sargent em 1985 com base no NCDS — primeiro estudo a demonstrar que a dose de diálise influencia a morbimortalidade. O 'K' representa o clearance de ureia do dialisador, 't' o tempo de sessão e 'V' o volume de distribuição da ureia, aproximadamente 60% do peso corporal."
   },
+  kdigo_bp_volume_dialysis_2020:{
+    label:"KDIGO — Blood Pressure and Volume Management in Dialysis (2020)",
+    url:"https://kdigo.org/wp-content/uploads/2017/05/KDIGO-BP-Volume-in-Dialysis-FINAL.pdf",
+    journal:"Kidney International 2020;97(5):861-876",
+    ano:2020,
+    tipo:"Relatório de Consenso",
+    badge:"GUIDELINE",
+    badgeColor:"#6366f1",
+    impacto:"Manejo individualizado de pressão, volume e hipotensão intradialítica",
+    icon:"📋",
+    resumo:"Relatório da conferência de controvérsias KDIGO sobre pressão arterial e volume em diálise. Identifica como principais determinantes da hipotensão intradialítica o volume intravascular insuficiente para sustentar a taxa de ultrafiltração desejada e respostas cardiovasculares compensatórias inadequadas. Recomenda reavaliar peso-alvo e estado volêmico, considerar sintomas e comorbidades e reduzir a taxa de ultrafiltração por maior duração ou frequência das sessões e menor ganho de peso interdialítico. Dialisato mais frio pode melhorar a tolerância hemodinâmica.",
+    conclusao:"A prevenção da hipotensão intradialítica começa pela prescrição volêmica individualizada; nenhum limiar único de ultrafiltração é apropriado para todos os pacientes e em todas as sessões.",
+    curiosidade:"O relatório distingue peso-alvo de peso seco estimado: em doença aguda ou sintomas intensos pode ser necessário aceitar temporariamente um peso-alvo um pouco maior, equilibrando hipoperfusão imediata e sobrecarga crônica."
+  },
   kdigo_cardiorenal_consensus:{
     label:"Consenso ADQI — Síndromes Cardiorrenais (2010)",
     url:"https://pubmed.ncbi.nlm.nih.gov/20037146/",
@@ -898,6 +912,20 @@ rave_study:{
     resumo:"Diretriz internacional atualizada (KDIGO) estabelecendo o padrão ouro para o manejo do receptor de transplante renal ao longo de sua jornada. Recomenda indução imunossupressora baseada em risco imunológico: antagonista do receptor de IL-2 (basiliximabe) para baixo/moderado risco, e terapia de depleção linfocitária (Globulina Antitimócito - ATG) para alto risco. Para a manutenção, preconiza a terapia tríplice padrão com tacrolimo como inibidor de calcineurina de escolha, micofenolato (mofetil ou sódico) como antiproliferativo, e corticoide em dose baixa, com possibilidade de retirada precoce de esteroide apenas em cenários de baixo risco imunológico. Orienta monitoramento rigoroso pós-transplante com dosagem sérica de imunossupressores, triagem ativa para infecções oportunistas (CMV e BK) e controle de comorbidades metabólicas.",
     conclusao:"Consolida a estratificação de risco imunológico e a imunossupressão tríplice com tacrolimo e micofenolato como a espinha dorsal para preservação e sobrevida do enxerto no Reino.",
     curiosidade:"A ATG (Globulina Antitimócito) induz depleção profunda e prolongada de células T circulantes por apoptose e lise mediada por complemento, 'desarmando' os exércitos celulares do receptor para prevenir a rejeição aguda celular no enxerto recém-implantado."
+  },
+  kdigo_living_donor_2017:{
+    label:"KDIGO Living Kidney Donor Guideline 2017",
+    url:"https://kdigo.org/wp-content/uploads/2017/07/2017-KDIGO-LD-GL.pdf",
+    journal:"Transplantation 2017;101(8 Suppl 1):S1-S109",
+    ano:2017,
+    tipo:"Diretriz Internacional",
+    badge:"GUIDELINE",
+    badgeColor:"#6366f1",
+    impacto:"Avaliação médica, psicossocial e ética do candidato a doador renal vivo",
+    icon:"📋",
+    resumo:"Diretriz KDIGO para avaliação e cuidado do doador renal vivo. Exige avaliação psicossocial presencial por profissional qualificado, com pelo menos parte da entrevista sem familiares ou terceiros, para proteger confidencialidade e reduzir influência externa. A avaliação integra motivação, compreensão dos riscos, expectativas, saúde mental, uso de substâncias, apoio social, voluntariedade e consentimento informado, além da avaliação médica individualizada.",
+    conclusao:"Aprovar um doador vivo exige decisão autônoma e informada, sem coerção nem troca financeira indevida; compatibilidade imunológica ou vínculo afetivo não substituem a avaliação psicossocial independente.",
+    curiosidade:"A entrevista privada não é mera formalidade: ela cria um espaço seguro para o candidato recusar a doação sem precisar enfrentar diretamente familiares ou o receptor."
   },
   cni_nephrotoxicity_naesens:{
     label:"Naesens et al. — Calcineurin Inhibitor Nephrotoxicity (CJASN 2009)",
@@ -2558,16 +2586,6 @@ finerenone_2025:{
     conclusao:"A descoberta do anti-PLA2R revolucionou a nefrologia clínica, permitindo o diagnóstico sorológico ('biópsia líquida') e o monitoramento imunológico quantitativo e preditivo da NMP sem dependência exclusiva de biópsia renal em casos selecionados.",
     curiosidade:"O subtipo IgG4, que domina os anticorpos anti-PLA2R, é tradicionalmente considerado uma imunoglobulina anti-inflamatória por não ativar o complemento pela via clássica. No entanto, na NMP ele causa dano celular aos podócitos ativando a via das lectinas do sistema de complemento glomerular, induzindo a deposição do complexo de ataque à membrana (C5b-9)."
   },
-  kdigo_anemia_2024:{
-    label:"KDIGO Anemia in CKD 2024",
-    url:"https://kdigo.org/guidelines/anemia-in-ckd/",
-    journal:"Kidney International",
-    ano:2024,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
-    impacto:"Metas Hb 10-11,5 g/dL; HIF-PHI como alternativa aos ESA; uso criterioso de ferro IV em DRC",icon:"📋",
-    resumo:"Diretriz internacional atualizada (KDIGO 2024) reunindo as recomendações clínicas oficiais para o diagnóstico, avaliação e tratamento da anemia associada à Doença Renal Crônica. Consolida a indicação de triagem e investigação diagnóstica de anemia em pacientes com DRC quando Hb <12 g/dL em mulheres e <13 g/dL em homens. Padroniza o alvo terapêutico preferencial de hemoglobina entre 10 e 11,5 g/dL para pacientes em tratamento com Agentes Estimuladores da Eritropoiese (ESAs), alertando contra alvos suprafisiológicos >13 g/dL devido aos riscos demonstrados de AVC e eventos tromboembólicos. Incorpora pela primeira vez as novas moléculas inibidoras de HIF-PHI (como roxadustat, vadadustat, daprodustat) como alternativas seguras e eficazes aos ESAs convencionais em pacientes selecionados, além de estabelecer diretrizes estritas de reposição de ferro baseadas nos índices de ferritina e saturação de transferrina.",
-    conclusao:"Padroniza a abordagem multidisciplinar da anemia renal no Reino, balanceando a eficácia na correção hematológica com a segurança cardiovascular estrita na beira do leito do paciente.",
-    curiosidade:"O desvio nas recomendações de alvos de Hb para níveis estritos de 10-11,5 g/dL decorre dos ensaios clínicos históricos seminais TREAT, CHOIR e CREATE, que demonstraram que tentar normalizar a hemoglobina para >13 g/dL usando altas doses de EPO recombinante iatrogênica causava um aumento perigoso no tônus vascular, hipertensão refratária e trombose de acessos vasculares."
-  },
   kdigo_igan_2021:{
     label:"KDIGO IgAN — Capítulo da Diretriz GN 2021",
     url:"https://kdigo.org/guidelines/iga-nephropathy/",
@@ -2927,11 +2945,11 @@ finerenone_2025:{
     tipo:"Guideline",
     badge:"GUIDELINE",
     badgeColor:"#2563eb",
-    impacto:"Diagnóstico e estadiamento do carcinoma de células renais",
+    impacto:"Diagnóstico, estadiamento e cirurgia preservadora de néfrons no carcinoma de células renais",
     icon:"🧭",
-    resumo:"Diretriz europeia sobre carcinoma de células renais. Reforça que muitos tumores renais são achados incidentais, que a avaliação por imagem caracteriza tumor local e extensão da doença, e que o estadiamento segue o sistema TNM, integrando tumor primário, linfonodos e metástases. A tríade clássica de hematúria, dor lombar e massa palpável permanece importante como sinal de alerta, mas costuma apontar doença mais avançada, não a forma comum de apresentação atual.",
-    conclusao:"No CCR, a tríade clássica é conceito de prova e sinal de doença avançada; a tomada de decisão real depende de imagem e TNM completo.",
-    curiosidade:"A tríade clássica sobrevive nos livros porque é memorável; na prática moderna, o ultrassom e a tomografia descobriram muitos CCR antes dela aparecer."
+    resumo:"Diretriz europeia sobre carcinoma de células renais. Reforça que muitos tumores renais são achados incidentais, que a avaliação por imagem caracteriza tumor local e extensão da doença e que o estadiamento segue o sistema TNM. Para tumores T1 confinados ao rim, recomenda oferecer nefrectomia parcial quando tecnicamente viável; em pessoas com DRC, preservar parênquima renal tem relevância adicional, sem dispensar avaliação de complexidade anatômica e controle oncológico.",
+    conclusao:"A decisão no CCR localizado integra imagem, TNM, anatomia tumoral e função renal; em tumores T1, a nefrectomia parcial é a estratégia preferida quando pode alcançar controle oncológico adequado.",
+    curiosidade:"A tríade clássica de hematúria, dor lombar e massa palpável tornou-se incomum como apresentação inicial; a imagem moderna detecta muitos tumores antes desses sinais e permite planejar cirurgia preservadora de néfrons."
   },
   aua_sufu_microhematuria_2020:{
     label:"AUA/SUFU — Microhematuria Guideline (2020)",

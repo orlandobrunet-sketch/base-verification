@@ -1,0 +1,184 @@
+{
+  "batch": "FARM-15D",
+  "change_type": "medical_editorial",
+  "expected_version": "13.43",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-15D.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "eaf4d23b": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "fe54f9b1",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "3d0f93d0": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "8d967c90": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "f5a307ff",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "83ae1c0b": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "e1f9ccd1": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "27ccc900": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "577d45a6",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "236ed8f1": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "2c739ab2": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "74d5542a": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "236ed8f1",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "dcf7247d": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "e1f9ccd1",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "49df678d": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "e1f9ccd1",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    }
+  },
+  "expected_question_delta": -6,
+  "refs_policy": "declared",
+  "references": {
+    "eau_rcc_guideline_2026": {
+      "action": "update_existing",
+      "source": "EAU Renal Cell Carcinoma Guideline 2026"
+    },
+    "kdigo_anemia_2026": {
+      "action": "reuse_existing",
+      "source": "KDIGO 2026 Anemia in CKD guideline"
+    },
+    "kdigo_anemia_2024": {
+      "action": "remove_superseded",
+      "source": "Superseded by KDIGO 2026 Anemia in CKD guideline"
+    },
+    "ispd_peritonitis_guideline": {
+      "action": "reuse_existing",
+      "source": "ISPD Peritonitis Recommendations 2022"
+    },
+    "kdigo_bp_volume_dialysis_2020": {
+      "action": "add_new",
+      "source": "KDIGO Blood Pressure and Volume Management in Dialysis conference report"
+    },
+    "kdigo_living_donor_2017": {
+      "action": "add_new",
+      "source": "KDIGO 2017 Living Kidney Donor guideline"
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Cinco questões foram reconstruídas e publicadas com evidência verificada, pendência nenhuma e preservação de qid/FSRS.",
+    "eaf4d23b foi fundida em fe54f9b1, que já ensina a integração Banff necessária para RMA ativa sem alegar achado histológico patognomônico.",
+    "8d967c90 foi fundida em f5a307ff, que contém a lesão crônica necessária e integra glomerulopatia do transplante, atividade, C4d e DSA.",
+    "27ccc900 foi fundida em 577d45a6, que já cobre indução depletora no receptor de alto risco imunológico.",
+    "74d5542a foi fundida em 236ed8f1; dcf7247d e 49df678d foram fundidas em e1f9ccd1 por identidade de decisão clínica, estrutura e perfil.",
+    "O Advogado do Recurso removeu limiar universal de ultrafiltração, ferro intravenoso automático por dois marcadores isolados, duração antifúngica não sustentada e seleção de doador vivo apenas por função renal."
+  ]
+}
