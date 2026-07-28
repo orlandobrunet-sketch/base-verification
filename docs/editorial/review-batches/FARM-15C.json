@@ -1,0 +1,162 @@
+{
+  "batch": "FARM-15C",
+  "change_type": "medical_editorial",
+  "expected_version": "13.42",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-15C.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "02814d6c": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "88918be2": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "da24855e",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "d2143d46": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "0c05b856": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "d2143d46",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "73069894": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "cee26d6b": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "54d13e77": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "22caa649",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "6591eda7": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "e0c9a911": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    }
+  },
+  "expected_question_delta": -3,
+  "refs_policy": "declared",
+  "references": {
+    "kdigo_igan_2025": {
+      "action": "update_existing",
+      "source": "KDIGO 2025 IgAN/IgAV guideline"
+    },
+    "dapa": {
+      "action": "reuse_existing",
+      "source": "DAPA-CKD trial"
+    },
+    "empa_kidney": {
+      "action": "reuse_existing",
+      "source": "EMPA-KIDNEY trial"
+    },
+    "kdigo_gn": {
+      "action": "reuse_existing",
+      "source": "KDIGO 2021 Glomerular Diseases guideline"
+    },
+    "kdigo_ckd_mbd_2017": {
+      "action": "update_existing",
+      "source": "KDIGO 2017 CKD-MBD guideline update"
+    },
+    "kdigo_ckd": {
+      "action": "update_existing",
+      "source": "KDIGO 2024 CKD guideline"
+    },
+    "kdigo_cardiorenal_consensus": {
+      "action": "update_existing",
+      "source": "ADQI consensus report on cardiorenal syndromes"
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Seis questões foram reconstruídas e publicadas com evidência verificada, pendência nenhuma e preservação de qid/FSRS.",
+    "88918be2 foi fundida em da24855e, que já cobre a decisão clínica de iniciar iSGLT2 na DRC albuminúrica sem cobrar marca ou aprovação regulatória.",
+    "0c05b856 foi fundida em d2143d46, mantendo uma única questão sobre diagnóstico de nefropatia membranosa com anti-PLA2R positivo.",
+    "54d13e77 foi fundida em 22caa649, que já cobre paratireoidectomia no hiperparatireoidismo secundário grave refratário em diálise.",
+    "O Advogado do Recurso removeu classificação A2 por proteína total, início de diálise por TFGe isolada, indicação cirúrgica por limiar único de PTH e atribuição incorreta do consenso cardiorrenal à KDIGO."
+  ]
+}
