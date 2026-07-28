@@ -1083,26 +1083,6 @@ rave_study:{
   },
   // ===== ARTIGOS FUNDAMENTAIS ADICIONADOS v5.0 =====
   // --- DRPAD ---
-tempo_34_trial:{
-    label:"Torres VE et al. — TEMPO 3:4 (NEJM 2012)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1205511",
-    journal:"N Engl J Med 2012;367(25):2407-2418",
-    ano:2012,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Tolvaptan ↓49% crescimento de VRT e ↓61% declínio de TFG em DRPAD rapidamente progressiva",icon:"🔬",
-    resumo:"ECR multicêntrico duplo-cego fase III (TEMPO 3:4, n = 1.445 pacientes com Doença Renal Policística Autossômica Dominante [DRPAD], idade 18-50 anos, TFGe ≥60 mL/min e volume renal total [VRT] aumentado ≥750 mL). Randomizou os participantes para tolvaptana (bloqueador oral do receptor V2 de vasopressina em doses individualizadas de 45/15 a 90/30 mg/dia) versus placebo por 3 anos. Desfecho primário: taxa anual de variação no VRT. Resultados: A tolvaptana reduziu significativamente o crescimento do VRT em 49% ao ano (2,8% vs 5,5%; P < 0,001) e reduziu em 61% a taxa de declínio da TFGe, além de diminuir dor renal e episódios de hematúria, com 4,4% de elevações reversíveis em transaminases hepáticas.",
-    conclusao:"O TEMPO 3:4 estabeleceu a tolvaptana como o primeiro tratamento específico nefroprotetor e modificador de curso de doença na DRPAD de rápida progressão no Reino.",
-    curiosidade:"A vasopressina é o principal driver do crescimento cístico na DRPAD: estimula a adenilato ciclase via receptor V2, elevando o AMPc intracelular nas células epiteliais dos cistos e promovendo proliferação e secreção de fluido. O tolvaptana bloqueia esse mecanismo diretamente."
-  },
-  reprise_trial:{
-    label:"Torres VE et al. — REPRISE (NEJM 2017)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1710030",
-    journal:"N Engl J Med 2017;377(20):1930-1942",
-    ano:2017,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Tolvaptan confirmou benefício em DRPAD em estágio mais tardio (TFG 25-65) — base para aprovação ampliada",icon:"🔬",
-    resumo:"ECR fase III (REPRISE, n=1.370), tolvaptan vs placebo em DRPAD com TFGe 25–65 ml/min/1,73m². Confirmou redução do declínio de TFGe em população com doença mais avançada que o TEMPO 3:4. O desfecho primário (slope de TFGe em 12 meses) foi significativamente melhor com tolvaptan. Hepatotoxicidade reversível observada em ~5%, exigindo monitorização hepática mensal.",
-    conclusao:"REPRISE complementou o TEMPO 3:4 ao confirmar benefício do tolvaptan em pacientes com DRC mais avançada (TFGe 25–65), expandindo a janela terapêutica e embasando a aprovação regulatória em estágios intermediários da DRPAD.",
-    curiosidade:"A hepatotoxicidade do tolvaptan (observada em ambos TEMPO e REPRISE) é o principal limitante do uso — resulta de lesão hepatocelular idiossincrásica e exigiu programa de monitorização hepática mensal como condição das aprovações regulatórias na maioria dos países."
-  },
   // --- Nefropatia Diabética Clássica ---
   lewis_ieca_dn_1993:{
     label:"Lewis EJ et al. — Captopril in Diabetic Nephropathy (NEJM 1993)",
@@ -1458,6 +1438,20 @@ canvas_program:{
     resumo:"Análise renal do PARADIGM-HF (Damman et al., JACC Heart Failure 2018), em pacientes com ICFEr randomizados para sacubitril/valsartan vs enalapril. O declínio anual da TFGe foi menor com sacubitril/valsartan: −1,61 vs −2,04 ml/min/1,73m²/ano (P<0,001). Apesar disso, houve maior aumento de UACR com sacubitril/valsartan, em magnitude pequena, mostrando que preservação de TFGe e albuminúria podem se comportar de forma dissociada nessa intervenção.",
     conclusao:"A análise renal do PARADIGM-HF sugere que sacubitril/valsartan desacelera o declínio da TFGe em ICFEr quando comparado ao enalapril, mas não deve ser apresentado como terapia antiproteinúrica.",
     curiosidade:"O achado é fisiologicamente interessante porque a inibição da neprilisina aumenta peptídeos natriuréticos e sinalização por cGMP, com efeitos hemodinâmicos renais complexos. A mensagem didática é que nem toda nefroproteção se manifesta como redução de albuminúria."
+  },
+  sacubitril_valsartan_label_fda_2021:{
+    label:"Sacubitril/Valsartana — Rotulagem FDA",
+    url:"https://www.accessdata.fda.gov/drugsatfda_docs/label/2021/207620s018lbl.pdf",
+    journal:"U.S. Food and Drug Administration — Prescribing Information",
+    ano:2021,
+    tipo:"Rotulagem regulatória",
+    badge:"LABEL",
+    badgeColor:"#6366f1",
+    impacto:"Intervalo obrigatório de 36 h após IECA · dose inicial reduzida na insuficiência renal grave",
+    icon:"📋",
+    resumo:"A rotulagem de sacubitril/valsartana contraindica uso concomitante com IECA e exige intervalo mínimo de 36 horas na transição, devido ao risco de angioedema. Em insuficiência renal grave, recomenda iniciar com metade da dose inicial usual. Pressão arterial, creatinina e potássio devem ser acompanhados, com redução ou interrupção conforme hipotensão, deterioração renal clinicamente significativa ou hipercalemia.",
+    conclusao:"DRC não é contraindicação automática ao ARNI, mas muda dose e vigilância; IECA concomitante ou transição sem 36 horas é combinação proibida.",
+    curiosidade:"O componente valsartana já bloqueia o receptor AT1; por isso, o ARNI substitui IECA ou outro BRA em vez de ser acrescentado a eles."
   },
   phosphate_binders_ckd:{
     label:"Block GA et al. — Phosphate Binders in Moderate CKD (JASN 2012)",
@@ -2211,20 +2205,20 @@ canvas_program:{
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2401316",
     journal:"N Engl J Med 2024;390(16):1455-1466",
     ano:2024,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Empagliflozina após IAM ↓ mortalidade/IC e protegeu função renal",icon:"💊",
-    resumo:"ECR multicêntrico duplo-cego fase III (EMPACT-MI, n = 6.522 pacientes hospitalizados por infarto agudo do miocárdio [IAM] com novo início de disfunção ventricular esquerda sistólica ou congestão pulmonar). Randomizou os participantes para empagliflozina (10 mg uma vez ao dia) ou placebo, iniciados nas primeiras 14 semanas pós-IAM (tempo mediano de 5 dias). Desfecho primário: composto de hospitalização por IC ou morte por qualquer causa. Resultados: A empagliflozina reduziu o risco do desfecho composto em 10% (HR 0,90; IC 95% 0,76–1,06; P = 0,21), sem significância estatística na mortalidade isolada. No entanto, reduziu significativamente as hospitalizações por IC em 23% (HR 0,77; IC 95% 0,60-0,98) e atenuou o declínio agudo na filtração glomerular (nefroproteção secundária).",
-    conclusao:"Embora não tenha reduzido a mortalidade global pós-infarto, o EMPACT-MI apoia o início precoce de empagliflozina pós-IAM para reduzir hospitalizações por IC e estabilizar a função renal no Reino.",
-    curiosidade:"iSGLT2s como a empagliflozina melhoram o acoplamento excitação-contração miocárdico e diminuem a pós-carga vascular através da diurese osmótica suave, além de mudarem o metabolismo miocárdico do consumo de glicose para o de corpos cetônicos energeticamente mais eficientes, protegendo o miocárdio em sofrimento pós-isquêmico."
+    impacto:"Desfecho primário neutro · menos hospitalizações por IC · segurança renal sem benefício definitivo",icon:"💊",
+    resumo:"ECR multicêntrico duplo-cego (EMPACT-MI, n=6.522) em pacientes hospitalizados por IAM com nova fração de ejeção <45% e/ou congestão. Empagliflozina 10 mg ou placebo foi iniciada até 14 dias após a admissão. O composto primário de primeira hospitalização por insuficiência cardíaca ou morte por qualquer causa não foi significativamente reduzido (HR 0,90; IC95% 0,76–1,06; P=0,21). A primeira hospitalização por IC foi menor (HR 0,77; IC95% 0,60–0,98), sem redução de mortalidade isolada. Análise cardiovascular-renal posterior encontrou composto renal numericamente menor, mas não significativo (HR 0,73; IC95% 0,47–1,14).",
+    conclusao:"EMPACT-MI não sustenta indicação automática de empagliflozina após qualquer IAM nem prova benefício renal definitivo; o sinal favorável concentrou-se em eventos de insuficiência cardíaca e segurança.",
+    curiosidade:"A distinção entre resultado primário neutro e componente favorável é central: um componente secundário não transforma o composto pré-especificado em positivo."
   },
   advor_trial:{
     label:"ADVOR Trial (Acetazolamida + Furosemida na IC)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2203094",
     journal:"N Engl J Med 2022;387(13):1185-1195",
     ano:2022,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Acetazolamida + furosemida ↑ descongestão sem aumento de nefrotoxicidade em IC",icon:"💊",
-    resumo:"ECR multicêntrico duplo-cego fase III (ADVOR, n = 519 pacientes com insuficiência cardíaca descompensada aguda, congestão grave e níveis elevados de peptídeos natriuréticos). Randomizou os participantes para acetazolamida endovenosa (500 mg uma vez ao dia) versus placebo, adicionados à terapia com diuréticos de alça (furosemida IV em dose padronizada). Desfecho primário: descongestão completa e bem-sucedida em 3 dias, definida por ausência de sinais de sobrecarga volêmica. Resultados: O grupo acetazolamida apresentou taxa significativamente maior de descongestão completa (42,2% vs 30,5%; Risco Relativo (RR) de 1,46; IC 95% 1,17–1,82; P < 0,001), com maior débito urinário e natriurese, sem aumento na incidência de LRA, hipocalemia grave ou disfunção tubular duradoura.",
-    conclusao:"O ADVOR validou o uso de acetazolamida como um diurético adjuvante potente e seguro que potencializa a resposta à furosemida, permitindo descongestão mais rápida e eficaz na insuficiência cardíaca aguda no Reino.",
-    curiosidade:"A acetazolamida inibe a anidrase carbônica no túbulo contorcido proximal. Isso bloqueia a reabsorção concomitante de sódio e bicarbonato. Ao aumentar a carga distal de sódio e cloreto que chega à alça de Henle, a acetazolamida anula a compensação nefron-distal adaptativa e potencializa sinergicamente a ação bloqueadora da furosemida sobre o cotransportador NKCC2."
+    impacto:"Acetazolamida + diurético de alça ↑ descongestão precoce · piora renal transitória mais frequente",icon:"💊",
+    resumo:"ECR multicêntrico duplo-cego (ADVOR, n=519) em insuficiência cardíaca aguda com sobrecarga de volume. Acetazolamida IV 500 mg/dia ou placebo foi adicionada a diurético de alça padronizado. Descongestão bem-sucedida até o terceiro dia, sem escalada terapêutica, ocorreu em 42,2% versus 30,5% (RR 1,46; IC95% 1,17–1,82). Análise renal pré-especificada confirmou maior resposta descongestiva em diferentes faixas de TFGe, mas encontrou mais piora da função renal durante o tratamento; a creatinina não diferiu aos três meses e essa piora não se associou a piores desfechos.",
+    conclusao:"ADVOR apoia acetazolamida como adjuvante para descongestão precoce, sem autorizar a afirmação de ausência absoluta de alteração renal; função renal e eletrólitos precisam ser acompanhados.",
+    curiosidade:"O bloqueio proximal de sódio e bicarbonato aumenta a entrega ao segmento onde atua o diurético de alça, uma forma de bloqueio sequencial do néfron."
   },
   lumasiran_trial:{
     label:"ILLUMINATE-A Trial (Lumasiran)",
@@ -2251,10 +2245,10 @@ canvas_program:{
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2030422",
     journal:"N Engl J Med 2021;384(2):117-128",
     ano:2021,tipo:"Ensaio clínico randomizado",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Sotagliflozina (dual SGLT1/2) ↓ mortalidade CV e hospitalizações em IC",icon:"💊",
-    resumo:"ECR multicêntrico duplo-cego fase III (SOLOIST-WHF, n = 1.222  pacientes com diabetes tipo 2 recentemente hospitalizados por insuficiência cardíaca aguda descompensada agravada). Randomizou os participantes para sotagliflozina (um inibidor duplo de SGLT1 e SGLT2, 200-400 mg/dia) ou placebo, iniciados antes da alta ou nas primeiras 3 semanas pós-alta. Desfecho primário: total de mortes CV, hospitalizações por IC e visitas urgentes por IC. Resultados: A sotagliflozina reduziu de forma robusta o desfecho primário em 33% (HR 0,67; IC 95% 0,52-0,85; P < 0,001) em um seguimento médio de 9 meses, com benefício visível logo nas primeiras semanas de tratamento e excelente perfil de tolerabilidade hemodinâmica renal.",
-    conclusao:"O SOLOIST-WHF provou de forma marcante que o início precoce da sotagliflozina imediatamente pós-alta reduz eventos cardiovasculares agudos e oferece nefroproteção estável e segura no Reino.",
-    curiosidade:"A inibição dupla do SGLT1 (no intestino e túbulo proximal) e do SGLT2 (no rim) retarda a absorção gastrointestinal de glicose, atenuando a hiperglicemia pós-prandial inicial de forma independente de insulina, além de atuar no néfron proximal para aumentar a excreção urinária de glicose e sódio."
+    impacto:"Sotagliflozina ↓33% o composto recorrente de eventos de IC e morte CV no SOLOIST-WHF",icon:"💊",
+    resumo:"ECR multicêntrico duplo-cego (SOLOIST-WHF, n=1.222) em diabetes tipo 2 após episódio recente de piora da insuficiência cardíaca. Sotagliflozina ou placebo foi iniciada antes da alta ou poucos dias depois. O total de mortes cardiovasculares, hospitalizações e visitas urgentes por insuficiência cardíaca foi menor com sotagliflozina (HR 0,67; IC95% 0,52–0,85). O estudo terminou precocemente por perda de financiamento, e mortalidade cardiovascular ou por todas as causas isoladamente não apresentou redução significativa.",
+    conclusao:"SOLOIST-WHF apoia início de sotagliflozina próximo à alta para reduzir eventos de piora da insuficiência cardíaca; não deve ser descrito como prova isolada de redução de mortalidade ou de nefroproteção.",
+    curiosidade:"Sotagliflozina combina inibição de SGLT2 renal com SGLT1, predominante no intestino; o endpoint clínico, porém, não permite atribuir o benefício especificamente ao componente intestinal."
   },
   vadadustat_trial:{
     label:"PRO2TECT Trial (Vadadustat em DRC não dialítica)",
