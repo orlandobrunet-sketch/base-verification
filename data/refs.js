@@ -1198,15 +1198,19 @@ canvas_program:{
     curiosidade:"A resposta à espironolactona foi maior nos pacientes com renina basal mais baixa, perfil compatível com expansão volêmica ou aldosteronismo relativo. Em nefrologia, a aplicação exige checar TFGe e potássio, pois DRC avançada e hipercalemia limitam o uso seguro."
   },
   // --- Progressão DRC ---
-  mdrd_study:{
-    label:"Klahr S et al. — MDRD Study (NEJM 1994)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJM199403313301301",
-    journal:"N Engl J Med 1994;330(13):877-884",
-    ano:1994,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Restrição proteica (0,6g/kg/dia) e baixa meta de PA retardam progressão da DRC — base das recomendações dietéticas",icon:"🔬",
-    resumo:"ECR multicêntrico (MDRD, n=840), em DRC não dialítica, dividido em duas coortes por nível de TFG medida. Avaliou restrição proteica e diferentes metas pressóricas sobre a progressão da DRC. A restrição proteica mostrou, no máximo, tendência modesta de menor declínio de TFG, sem prova definitiva de grande benefício clínico no desfecho primário. Posteriormente, os dados do estudo serviram de base para o desenvolvimento da equação MDRD de estimativa da TFG.",
-    conclusao:"O MDRD Study teve impacto duplo: não confirmou de forma robusta que restrição proteica isolada mudasse dramaticamente a progressão da DRC, mas influenciou recomendações nutricionais e originou uma das equações de TFGe mais usadas da história.",
-    curiosidade:"A equação MDRD acabou sendo mais influente para a prática nefrológica diária do que a própria intervenção dietética testada — exemplo clássico de subproduto metodológico superando o objetivo terapêutico inicial."
+  inker_ckdepi_2021:{
+    label:"Inker LA et al. — CKD-EPI 2021 sem Raça",
+    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2102953",
+    journal:"N Engl J Med 2021;385(19):1737-1749",
+    ano:2021,
+    tipo:"Estudo de Desenvolvimento e Validação",
+    badge:"COORTE",
+    badgeColor:"#0ea5e9",
+    impacto:"Novas equações de TFGe por creatinina e cistatina C sem variável de raça",
+    icon:"📊",
+    resumo:"Estudo CKD-EPI que desenvolveu e validou novas equações de TFGe sem raça em mais de 12 mil participantes dos conjuntos de desenvolvimento e validação. A equação de creatinina 2021 usa idade e sexo, mas não raça. A combinação creatinina–cistatina C sem raça apresentou maior acurácia e diferenças menores entre grupos do que as novas equações baseadas em um único marcador.",
+    conclusao:"A TFGe não deve usar raça como substituto biológico; quando maior precisão é necessária e cistatina C está disponível, a equação combinada creatinina–cistatina C é preferível à creatinina isolada.",
+    curiosidade:"Retirar simplesmente o coeficiente racial da equação antiga não produziu o mesmo resultado que refazer a equação: o estudo precisou recalibrar os coeficientes com dados medidos de TFG."
   },
   // --- Hemodiálise ---
   pivotal_trial:{
@@ -1692,16 +1696,6 @@ canvas_program:{
     resumo:"ECR multicêntrico francês (AKIKI, n=620), em pacientes críticos com LRA estágio 3 KDIGO, em ventilação mecânica e/ou uso de vasopressor, sem indicação emergencial imediata de TRS. Comparou estratégia precoce — início imediato de TRS após randomização — vs estratégia tardia, iniciando TRS apenas diante de critérios como hipercalemia grave, acidose metabólica grave, edema pulmonar/sobrecarga volêmica, ureia elevada ou oligúria/anúria persistente. Mortalidade em 60 dias não diferiu: 48,5% vs 49,7% (P=0,79). No grupo tardio, 49% não recebeu TRS.",
     conclusao:"AKIKI demonstrou que início imediato rotineiro de TRS em LRA grave de UTI, na ausência de indicação emergencial, não reduz mortalidade e pode expor pacientes a procedimento desnecessário.",
     curiosidade:"O dado mais prático do AKIKI é que quase metade dos pacientes no braço tardio recuperou sem TRS. LRA KDIGO 3 aumenta risco, mas não equivale automaticamente a necessidade imediata de diálise."
-  },
-  ideal_icu_trial:{
-    label:"Barbar SD et al. — IDEAL-ICU (NEJM 2018)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1803213",
-    journal:"N Engl J Med 2018;379(15):1431-1442",
-    ano:2018,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"TRS precoce vs tardio em LRA+sepse: sem diferença em mortalidade — consistente com AKIKI e STARRT-AKI",icon:"🔬",
-    resumo:"ECR multicêntrico francês (IDEAL-ICU, n=488), em pacientes com choque séptico e LRA grave, comparando início precoce de TRS em até 12h após diagnóstico vs estratégia tardia, aguardando até 48h se não houvesse recuperação ou surgisse indicação emergencial. O estudo foi interrompido precocemente por futilidade. Mortalidade em 90 dias não diferiu: 58% no precoce vs 54% no tardio (P=0,38). No braço tardio, 38% dos pacientes não recebeu TRS.",
-    conclusao:"IDEAL-ICU mostrou que, em LRA grave associada a choque séptico, o início precoce rotineiro de TRS não reduz mortalidade quando comparado a uma estratégia de espera monitorizada.",
-    curiosidade:"IDEAL-ICU é importante porque testou uma população séptica, na qual muitos clínicos tendem a antecipar TRS por gravidade sistêmica. Mesmo nesse cenário, aguardar recuperação ou indicação formal poupou TRS em parcela relevante."
   },
   elain_trial:{
     label:"Zarbock A et al. — ELAIN (JAMA 2016)",
@@ -2645,10 +2639,10 @@ finerenone_2025:{
     url:"https://kdigo.org/guidelines/anemia-in-ckd/",
     journal:"Kidney International",
     ano:2026,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
-    impacto:"Atualização 2026: ESA preferido sobre HIF-PHI (1ª linha, Grau 2D); metas Hb 10-11,5 g/dL; ferro IV antes de iniciar ESA; HIF-PHI com restrições por segurança CV",icon:"📋",
-    resumo:"Atualização da diretriz KDIGO para anemia na DRC. Recomenda ferro intravenoso antes de iniciar agente estimulador de eritropoese (AEE) em pacientes com deficiência funcional ou absoluta de ferro. Para AEE, alvos de hemoglobina entre 10 e 11,5 g/dL, sem ultrapassar 11,5 g/dL de forma intencional. HIF-PHI (inibidores da prolil-hidroxilase do HIF, como roxadustat e daprodustat) reconhecidos como alternativa com restrições por preocupações de segurança cardiovascular — posicionados como segunda linha.",
-    conclusao:"A diretriz 2026 mantém AEE como primeira linha para anemia da DRC e posiciona os HIF-PHI com cautela, refletindo os dados de segurança cardiovascular inconsistentes entre as moléculas da classe.",
-    curiosidade:"Os HIF-PHI estimulam a produção endógena de eritropoetina inibindo as enzimas PHD2/PHD1 que normalmente degradam o HIF-1α em normóxia — mimando farmacologicamente a resposta fisiológica à hipoxia para tratar anemia sem hipoxia real."
+    impacto:"Avaliação de ferro, causas reversíveis, AEE, HIF-PHI e transfusão na anemia da DRC",icon:"📋",
+    resumo:"Diretriz KDIGO 2026 para anemia na DRC. Recomenda avaliar hemograma, reticulócitos, ferritina e saturação de transferrina e investigar causas reversíveis antes de iniciar ou escalar AEE. Reconhece que ferritina e saturação têm limitações e distingue deficiência sistêmica de ferro de eritropoiese restrita por ferro. Em adultos tratados com AEE, recomenda não manter hemoglobina acima de 11,5 g/dL; decisão de iniciar AEE e transfundir deve ser individualizada por sintomas, riscos, comorbidades e contexto de transplante.",
+    conclusao:"O tratamento seguro da anemia renal começa por definir a causa e a disponibilidade de ferro; AEE, ferro, HIF-PHI e transfusão não devem ser usados para perseguir um número isolado de hemoglobina.",
+    curiosidade:"A diretriz substituiu o termo “deficiência funcional de ferro” por “eritropoiese restrita por ferro”, destacando que o ferro pode estar armazenado, mas indisponível à medula por ação da hepcidina e da inflamação."
   },
   kdigo_lupus_nephritis_guideline_2024:{
     label:"KDIGO Lupus Nephritis 2024",

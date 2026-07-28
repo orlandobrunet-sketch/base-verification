@@ -1,0 +1,166 @@
+{
+  "batch": "FARM-15E",
+  "change_type": "medical_editorial",
+  "expected_version": "13.45",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-15E.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "5fb482d4": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "3fed706c": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "00c75e38": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "6b06f82b": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "4dfc38f0": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "6591eda7",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "7d8f1d58": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "63e137ec": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "9661a8dd": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "a3b199d4": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "4c4445f5": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    }
+  },
+  "expected_question_delta": -1,
+  "refs_policy": "declared",
+  "references": {
+    "kdigo_ckd": {
+      "action": "reuse_existing",
+      "source": "KDIGO 2024 CKD guideline"
+    },
+    "kdigo_anemia_2026": {
+      "action": "update_existing",
+      "source": "KDIGO 2026 Anemia in CKD guideline"
+    },
+    "inker_ckdepi_2021": {
+      "action": "add_new",
+      "source": "Inker et al. 2021 CKD-EPI equations without race"
+    },
+    "ckd_metabolic_acidosis_core_2019": {
+      "action": "reuse_existing",
+      "source": "Metabolic Acidosis in CKD Core Curriculum 2019"
+    },
+    "ideal_icu_trial": {
+      "action": "remove_orphan",
+      "source": "LRA trial was incorrectly attached to the retired chronic dialysis-initiation item"
+    },
+    "mdrd_study": {
+      "action": "remove_orphan",
+      "source": "Legacy diet trial card no longer supports the rebuilt CKD-EPI 2021 item"
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Nove questões foram reconstruídas e publicadas com evidência verificada, pendência nenhuma e preservação de qid/FSRS.",
+    "4dfc38f0 foi fundida em 6591eda7, que já cobre início de diálise por avaliação composta e não por limiar isolado de TFGe.",
+    "O Advogado do Recurso corrigiu G3bA2 para risco muito alto, separou rastreamento de tratamento, removeu variável racial da estimativa de TFGe e rejeitou alvo universal de bicarbonato ≥22 mEq/L como nefroproteção comprovada.",
+    "O card KDIGO Anemia 2026 foi atualizado para refletir avaliação de causas reversíveis e limitações de ferritina/TSAT, sem ferro intravenoso automático."
+  ]
+}
