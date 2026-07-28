@@ -67,7 +67,7 @@
     if (typeof Sentry !== 'undefined') {
       Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@13.30',
+          release: 'nefroquest@13.36',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -126,7 +126,7 @@
   <link rel="stylesheet" href="styles/lumen/components.css?v=13.20">
   <link rel="stylesheet" href="styles/lumen/motion.css?v=13.20">
   <link rel="stylesheet" href="styles/lumen/portal.css?v=13.24">
-  <link rel="stylesheet" href="styles/lumen/atrium.css?v=13.30">
+  <link rel="stylesheet" href="styles/lumen/atrium.css?v=13.36">
   <script>
     // Version beacon — detecta nova versão sem interromper a navegação
     (function() {
@@ -370,7 +370,7 @@
         <span>Para aprender, revisar e se manter atualizado em nefrologia.</span>
         <span class="nql-portal__footer-meta">
           <button type="button" data-action="showPrivacyPolicy">Privacidade</button>
-          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v13.30</button>
+          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v13.36</button>
         </span>
       </footer>
     </section>
@@ -865,7 +865,7 @@
 
       <footer class="nql-atrium__footer">
         <span>Prática que se transforma em domínio clínico.</span>
-        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v13.30</button></span>
+        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v13.36</button></span>
       </footer>
     </section>
     <div class="welcome-bg" aria-hidden="true"></div>
@@ -1678,7 +1678,7 @@
   <script defer src="js/audio.js?v=11.90"></script>
   <script defer src="js/leaderboard.js?v=11.90"></script>
   <script defer src="js/study-mode.js?v=11.90"></script>
-  <script defer src="js/game.js?v=13.30"></script>
+  <script defer src="js/game.js?v=13.36"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
   <script defer src="js/auth.js?v=13.29"></script>
