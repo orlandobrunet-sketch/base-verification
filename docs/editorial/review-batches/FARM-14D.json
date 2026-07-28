@@ -1,0 +1,133 @@
+{
+  "batch": "FARM-14D",
+  "change_type": "medical_editorial",
+  "expected_version": "13.36",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-14D.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "136bb3bf": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "37a80edc": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "9/20",
+        "verdict": "aposentar",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "d2e124c5": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "10/20",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "f554d8d6": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "10/20",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "a322c390": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "10/20",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "731a7b4b": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "891b3e02": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "476f702a": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "10/20",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    }
+  },
+  "expected_question_delta": -5,
+  "refs_policy": "declared",
+  "references": {
+    "nci_hereditary_rcc_2025": {
+      "action": "add_new",
+      "source": "National Cancer Institute PDQ Genetics of Renal Cell Carcinoma"
+    },
+    "eular_aps_2019": {
+      "action": "add_new",
+      "source": "EULAR recommendations for antiphospholipid syndrome in adults"
+    },
+    "kdigo_ckd_mbd_2017": {
+      "action": "reuse_existing",
+      "source": "KDIGO 2017 CKD-MBD Guideline Update"
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Três questões foram reconstruídas com preservação de qid e FSRS porque mantêm seus conceitos nucleares e objetivos pedagógicos.",
+    "37a80edc foi aposentada por cobrar trivia histogenética de baixo valor decisório e sem ganho clínico suficiente para reconstrução.",
+    "a322c390 foi fundida na cobertura de DRPAD dos lotes FARM-14A e FARM-14B, que separa risco, aneurisma e indicação de tolvaptana em objetivos válidos.",
+    "f554d8d6 foi fundida em 4003867b, que já cobre o mesmo objetivo sobre alfa-bloqueio, expansão volêmica e sequência correta do beta-bloqueio antes da adrenalectomia.",
+    "d2e124c5 e 476f702a foram fundidas em 459c4d9a, que já cobre a prioridade antiplasmocitária baseada em bortezomibe/dexametasona e o suporte renal na cast nephropathy.",
+    "O Advogado do Recurso eliminou determinismo histológico no carcinoma renal, anticoagulação com DOAC em tripla positividade e indicação cirúrgica baseada apenas em PTH; os itens redundantes foram bloqueados e retirados."
+  ]
+}
