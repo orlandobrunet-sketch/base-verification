@@ -164,7 +164,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__main {
   display: grid;
   width: 100%;
-  padding: clamp(2.5rem, 4vw, 4rem) var(--nql-atrium-rail) clamp(3rem, 6vw, 5rem) var(--nql-atrium-content-gutter);
+  padding: clamp(1.5rem, 2vw, 2rem) var(--nql-atrium-rail) clamp(3rem, 6vw, 5rem) var(--nql-atrium-content-gutter);
   grid-template-columns: minmax(0, 1.16fr) minmax(21rem, .84fr);
   align-items: start;
   gap: clamp(3rem, 7vw, 7rem);
@@ -210,11 +210,11 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__lede {
-  max-width: 34rem;
-  margin: 1.25rem 0 0;
+  max-width: none;
+  margin: 1rem 0 0;
   color: var(--nql-text-soft);
-  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
-  line-height: 1.55;
+  font-size: clamp(1rem, 1.15vw, 1.08rem);
+  line-height: 1.45;
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .welcome-stats.nql-mastery-rail {
@@ -353,7 +353,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 }
 
 #welcomeScreen[data-nq-ui="lumen"][data-journey-state="saved"] .nql-atrium__resume-shell {
-  margin-top: .9rem;
+  margin-top: .75rem;
   border: 1px solid transparent;
   border-radius: .8rem;
   background:
@@ -390,7 +390,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 
 #welcomeScreen[data-nq-ui="lumen"] .wsaved-top {
   display: flex;
-  padding: .78rem 1.35rem !important;
+  padding: .62rem 1.2rem !important;
   border-bottom: 1px solid rgba(var(--nql-lumen-rgb), .13) !important;
   border-radius: calc(.8rem - 1px) calc(.8rem - 1px) 0 0;
   align-items: center;
@@ -429,7 +429,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 #welcomeScreen[data-nq-ui="lumen"] .wsaved-bottom {
   display: block !important;
   margin: 0 !important;
-  padding: 1.25rem 1.35rem .7rem !important;
+  padding: .95rem 1.2rem .55rem !important;
   background: transparent !important;
 }
 
@@ -442,8 +442,8 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 
 #welcomeScreen[data-nq-ui="lumen"] .wsaved-avatar-frame {
   display: grid;
-  width: 4.6rem;
-  height: 4.6rem;
+  width: 4.15rem;
+  height: 4.15rem;
   padding: 1px;
   border-radius: .65rem;
   place-items: center;
@@ -506,7 +506,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   text-shadow: 0 0 1.4rem rgba(var(--nql-mastery-rgb), .14);
 }
 
-#welcomeScreen[data-nq-ui="lumen"] .wsaved-progress { margin-top: 1.05rem; }
+#welcomeScreen[data-nq-ui="lumen"] .wsaved-progress { margin-top: .7rem; }
 #welcomeScreen[data-nq-ui="lumen"] .wsaved-progress-meta {
   display: flex;
   align-items: baseline;
@@ -526,8 +526,8 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 
 #welcomeScreen[data-nq-ui="lumen"] .wsaved-flow {
   width: 100%;
-  height: 2.75rem;
-  margin-top: .25rem;
+  height: 2.15rem;
+  margin-top: .18rem;
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .wsaved-flow svg {
@@ -562,22 +562,17 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 #welcomeScreen[data-nq-ui="lumen"] .wsaved-flow-pulse {
   stroke: var(--nql-mastery);
   stroke-width: 2.8;
-  stroke-dasharray: 5 95;
+  stroke-dasharray: 4 96;
   stroke-dashoffset: 100;
-  opacity: 0;
+  opacity: .78;
   filter: drop-shadow(0 0 .35rem rgba(var(--nql-mastery-rgb), .55));
-  animation: nql-atrium-flow-enter .9s var(--nql-ease-enter) .2s both;
-}
-
-#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__resume-shell:hover .wsaved-flow-pulse,
-#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__resume-shell:focus-within .wsaved-flow-pulse {
-  animation: nql-atrium-flow-interact .9s var(--nql-ease-enter) both;
+  animation: nql-atrium-flow-travel 3.6s linear infinite;
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .wsaved-support {
   display: flex;
   margin-top: .12rem;
-  padding-top: .75rem;
+  padding-top: .55rem;
   border-top: 1px solid rgba(var(--nql-lumen-rgb), .1);
   align-items: center;
   justify-content: space-between;
@@ -618,12 +613,12 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 }
 
 #welcomeScreen[data-nq-ui="lumen"][data-journey-state="saved"] .nql-atrium__primary-actions {
-  padding: .35rem 1.35rem 1.25rem;
+  padding: .25rem 1.2rem .9rem;
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary,
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__secondary {
-  min-height: 3.75rem !important;
+  min-height: 3.35rem !important;
   margin: 0 !important;
   border-radius: var(--nql-radius-control) !important;
   text-transform: none !important;
@@ -842,18 +837,13 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 }
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__footer button:hover { color: var(--nql-lumen); }
 
-@keyframes nql-atrium-flow-enter {
-  0% { opacity: 0; stroke-dashoffset: 100; }
-  16% { opacity: 1; }
-  78% { opacity: .95; }
-  100% { opacity: 0; stroke-dashoffset: 0; }
+@keyframes nql-atrium-flow-travel {
+  from { stroke-dashoffset: 100; }
+  to { stroke-dashoffset: 0; }
 }
 
-@keyframes nql-atrium-flow-interact {
-  0% { opacity: 0; stroke-dashoffset: 100; }
-  18% { opacity: 1; }
-  82% { opacity: 1; }
-  100% { opacity: 0; stroke-dashoffset: 0; }
+@media (min-width: 88rem) {
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__lede { white-space: nowrap; }
 }
 
 @media (max-width: 68rem) {
@@ -884,21 +874,23 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium::before { display: none; }
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__topbar { min-height: 4.25rem; }
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__edition { display: none; }
-  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__main { padding-top: 2.5rem; padding-inline: 1rem; gap: 3rem; }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__main { padding-top: 1.5rem; padding-inline: 1rem; gap: 3rem; }
   #welcomeScreen[data-nq-ui="lumen"] #atriumTitle { font-size: clamp(3rem, 17vw, 4.7rem); }
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__lede { font-size: 1rem; }
   #welcomeScreen[data-nq-ui="lumen"] .welcome-stats.nql-mastery-rail { margin-top: 1.75rem !important; }
   #welcomeScreen[data-nq-ui="lumen"] .welcome-stat { padding-inline: .75rem; }
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__continuum-step small { font-size: .68rem; }
-  #welcomeScreen[data-nq-ui="lumen"][data-journey-state="saved"] .nql-atrium__resume-shell { margin-top: 1.2rem; }
+  #welcomeScreen[data-nq-ui="lumen"][data-journey-state="saved"] .nql-atrium__resume-shell { margin-top: .85rem; }
   #welcomeScreen[data-nq-ui="lumen"] .wsaved-top { padding-inline: 1rem !important; }
-  #welcomeScreen[data-nq-ui="lumen"] .wsaved-bottom { padding: 1rem 1rem .6rem !important; }
+  #welcomeScreen[data-nq-ui="lumen"] .wsaved-bottom { padding: .8rem 1rem .45rem !important; }
   #welcomeScreen[data-nq-ui="lumen"] .wsaved-identity { gap: .75rem; }
   #welcomeScreen[data-nq-ui="lumen"] .wsaved-avatar-frame { width: 4rem; height: 4rem; }
   #welcomeScreen[data-nq-ui="lumen"] .wsaved-level { min-width: 3.8rem; padding-left: .75rem; }
   #welcomeScreen[data-nq-ui="lumen"] .wsaved-progress-meta { align-items: flex-start; flex-direction: column; gap: .25rem; }
-  #welcomeScreen[data-nq-ui="lumen"] .wsaved-flow { height: 2.5rem; }
-  #welcomeScreen[data-nq-ui="lumen"][data-journey-state="saved"] .nql-atrium__primary-actions { padding: .35rem 1rem 1rem; }
+  #welcomeScreen[data-nq-ui="lumen"] .wsaved-progress { margin-top: .6rem; }
+  #welcomeScreen[data-nq-ui="lumen"] .wsaved-flow { height: 2rem; }
+  #welcomeScreen[data-nq-ui="lumen"][data-journey-state="saved"] .nql-atrium__primary-actions { padding: .2rem 1rem .75rem; }
+  #welcomeScreen[data-nq-ui="lumen"][data-journey-state="saved"] .nql-atrium__secondary { min-height: 2.75rem !important; }
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary-actions { flex-direction: column; }
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary,
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__secondary { width: 100% !important; }
@@ -945,5 +937,8 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
     scroll-behavior: auto !important;
     transition-duration: .01ms !important;
     animation: none !important;
+  }
+  #welcomeScreen[data-nq-ui="lumen"] .wsaved-flow-pulse {
+    opacity: 0 !important;
   }
 }

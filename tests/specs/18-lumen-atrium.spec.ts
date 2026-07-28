@@ -66,18 +66,21 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
     const stylesheets = await page.locator('link[rel="stylesheet"]').evaluateAll((links) =>
       links.map((link) => new URL((link as HTMLLinkElement).href).pathname + new URL((link as HTMLLinkElement).href).search)
     );
-    expect(stylesheets).toContain('/styles/lumen/atrium.css?v=13.40');
+    expect(stylesheets).toContain('/styles/lumen/atrium.css?v=13.44');
     await expect(page.locator('script[src="js/atrium.js?v=13.23"]')).toHaveCount(1);
-    await expect(page.locator('script[src="js/auth.js?v=13.40"]')).toHaveCount(1);
-    await expect(page.locator('script[src="js/game.js?v=13.40"]')).toHaveCount(1);
+    await expect(page.locator('script[src="js/auth.js?v=13.44"]')).toHaveCount(1);
+    await expect(page.locator('script[src="js/game.js?v=13.44"]')).toHaveCount(1);
 
-    const railSpacing = await page.locator('.nql-atrium').evaluate((atrium) => {
+    const railLayout = await page.locator('.nql-atrium').evaluate((atrium) => {
       const atriumRect = atrium.getBoundingClientRect();
       const journeyRect = atrium.querySelector('.nql-atrium__journey')!.getBoundingClientRect();
-      const railLeft = parseFloat(getComputedStyle(atrium, '::before').left);
-      return journeyRect.left - atriumRect.left - railLeft;
+      const railStyle = getComputedStyle(atrium, '::before');
+      return {
+        visible: railStyle.display !== 'none',
+        spacing: journeyRect.left - atriumRect.left - (railStyle.display === 'none' ? 0 : parseFloat(railStyle.left)),
+      };
     });
-    expect(railSpacing).toBeGreaterThanOrEqual(24);
+    expect(railLayout.spacing).toBeGreaterThanOrEqual(railLayout.visible ? 24 : 12);
 
     const actions = await page.locator('#welcomeScreen [data-action]').evaluateAll((elements) =>
       elements.map((element) => ({
@@ -168,9 +171,46 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
     expect(rewardState.background).toContain('gradient');
     expect(parseFloat(rewardState.borderRadius)).toBeGreaterThan(0);
     expect(rewardState.shadow).not.toBe('none');
-    expect(rewardState.currentAnimation).toBe('nql-atrium-flow-enter');
+    expect(rewardState.currentAnimation).toBe('nql-atrium-flow-travel');
     expect(rewardState.primaryShadow).not.toBe('none');
     expect(rewardState.progress).toBe('72');
+
+    await page.setViewportSize({ width: 1536, height: 768 });
+    const desktopRhythm = await page.evaluate(async () => {
+      await document.fonts.ready;
+      window.scrollTo(0, 0);
+      const ledeElement = document.querySelector('.nql-atrium__lede') as HTMLElement;
+      const shellElement = document.querySelector('.nql-atrium__resume-shell') as HTMLElement;
+      const routesElement = document.querySelector('.nql-atrium__routes') as HTMLElement;
+      const range = document.createRange();
+      range.selectNodeContents(ledeElement);
+      const ledeRects = Array.from(range.getClientRects());
+      const shell = shellElement.getBoundingClientRect();
+      const routes = routesElement.getBoundingClientRect();
+      return {
+        ledeLines: ledeRects.length,
+        ledeTextRight: Math.max(...ledeRects.map((rect) => rect.right)),
+        routesLeft: routes.left,
+        shellHeight: shell.height,
+        viewportGap: window.innerHeight - shell.bottom,
+      };
+    });
+    expect(desktopRhythm.ledeLines).toBe(1);
+    expect(desktopRhythm.ledeTextRight).toBeLessThanOrEqual(desktopRhythm.routesLeft - 16);
+    expect(desktopRhythm.shellHeight).toBeLessThan(330);
+    expect(desktopRhythm.viewportGap).toBeGreaterThanOrEqual(48);
+
+    const continuousPulse = await page.locator('.wsaved-flow-pulse').evaluate((element) => {
+      const style = getComputedStyle(element);
+      return {
+        iterationCount: style.animationIterationCount,
+        playState: style.animationPlayState,
+        timing: style.animationTimingFunction,
+      };
+    });
+    expect(continuousPulse.iterationCount).toBe('infinite');
+    expect(continuousPulse.playState).toBe('running');
+    expect(continuousPulse.timing).toBe('linear');
 
     await page.setViewportSize({ width: 390, height: 844 });
     const mobileMetrics = await page.evaluate(() => ({
