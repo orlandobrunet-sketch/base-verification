@@ -9,6 +9,32 @@ async function enterAsGuest(page: import('@playwright/test').Page) {
   await expect(page.locator('#welcomeScreen')).toBeVisible();
 }
 
+async function enterWithSavedJourney(
+  page: import('@playwright/test').Page,
+  overrides: Record<string, unknown> = {}
+) {
+  await page.evaluate((save) => {
+    localStorage.setItem('nefroquest-save', JSON.stringify(save));
+  }, {
+    schemaVersion: 6,
+    character: 'nephros',
+    level: 5,
+    xp: 250,
+    xpToNext: 9999,
+    score: 535,
+    lives: 3,
+    maxLives: 4,
+    timestamp: Date.now() - (2 * 24 * 60 * 60 * 1000),
+    ...overrides,
+  });
+  await page.reload({ waitUntil: 'domcontentloaded' });
+  await page.evaluate(() => {
+    (window as typeof window & { playAsGuest: () => void }).playAsGuest();
+  });
+  await expect(page.locator('#welcomeScreen')).toBeVisible();
+  await expect(page.locator('#welcomeSavedInfo')).toBeVisible();
+}
+
 test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
   test.beforeEach(async ({ page }) => {
     await enterAsGuest(page);
@@ -40,9 +66,10 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
     const stylesheets = await page.locator('link[rel="stylesheet"]').evaluateAll((links) =>
       links.map((link) => new URL((link as HTMLLinkElement).href).pathname + new URL((link as HTMLLinkElement).href).search)
     );
-    expect(stylesheets).toContain('/styles/lumen/atrium.css?v=13.29');
+    expect(stylesheets).toContain('/styles/lumen/atrium.css?v=13.30');
     await expect(page.locator('script[src="js/atrium.js?v=13.23"]')).toHaveCount(1);
     await expect(page.locator('script[src="js/auth.js?v=13.29"]')).toHaveCount(1);
+    await expect(page.locator('script[src="js/game.js?v=13.30"]')).toHaveCount(1);
 
     const railSpacing = await page.locator('.nql-atrium').evaluate((atrium) => {
       const atriumRect = atrium.getBoundingClientRect();
@@ -106,29 +133,53 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
     }
   });
 
-  test('reflete visualmente uma jornada salva sem assumir a lógica do jogo', async ({ page }) => {
+  test('transforma uma jornada salva em convite real para retomar e evoluir', async ({ page }) => {
     await expect(page.locator('#welcomeScreen')).toHaveAttribute('data-journey-state', 'fresh');
-    await page.locator('#welcomeSavedInfo').evaluate((element: HTMLElement) => { element.style.display = 'block'; });
+    await enterWithSavedJourney(page);
     await expect(page.locator('#welcomeScreen')).toHaveAttribute('data-journey-state', 'saved');
-    const rewardState = await page.locator('#welcomeSavedInfo').evaluate((element) => {
+
+    await expect(page.locator('#wsSavedChar')).toHaveText('Dr. Nephros');
+    await expect(page.locator('#wsSavedLevel')).toHaveText('05');
+    await expect(page.locator('#wsSavedLives')).toHaveText('3');
+    await expect(page.locator('#wsSavedLivesLabel')).toHaveText('vidas');
+    await expect(page.locator('#wsSavedScore')).toHaveText('535');
+    await expect(page.locator('#wsSavedTime')).toContainText('Último avanço há 2 dias');
+    await expect(page.locator('#wsSavedNextLevel')).toHaveText('Nível 6');
+    await expect(page.locator('#wsSavedXpText')).toHaveText('250 / 349 XP');
+    await expect(page.locator('#wsSavedProgress')).toHaveAttribute('aria-valuenow', '72');
+    await expect(page.locator('#wsSavedProgress')).toHaveAttribute('aria-valuetext', '72% do caminho até o nível 6');
+    await expect(page.locator('#wsSavedAvatar')).toBeVisible();
+    await expect.poll(() => page.locator('#wsSavedAvatar').evaluate((image: HTMLImageElement) => image.naturalWidth)).toBeGreaterThan(0);
+    await expect(page.getByRole('button', { name: /Retomar jornada/ })).toBeVisible();
+
+    const rewardState = await page.locator('.nql-atrium__resume-shell').evaluate((element) => {
       const style = getComputedStyle(element);
-      const current = getComputedStyle(element, '::before');
+      const pulse = getComputedStyle(element.querySelector('.wsaved-flow-pulse')!);
       const primary = getComputedStyle(document.querySelector('.nql-atrium__primary')!);
       return {
         background: style.backgroundImage,
         borderRadius: style.borderRadius,
         shadow: style.boxShadow,
-        currentAnimation: current.animationName,
+        currentAnimation: pulse.animationName,
         primaryShadow: primary.boxShadow,
+        progress: style.getPropertyValue('--nql-saved-progress').trim(),
       };
     });
     expect(rewardState.background).toContain('gradient');
     expect(parseFloat(rewardState.borderRadius)).toBeGreaterThan(0);
     expect(rewardState.shadow).not.toBe('none');
-    expect(rewardState.currentAnimation).toBe('nql-atrium-saved-current');
+    expect(rewardState.currentAnimation).toBe('nql-atrium-flow-enter');
     expect(rewardState.primaryShadow).not.toBe('none');
-    await page.locator('#welcomeSavedInfo').evaluate((element: HTMLElement) => { element.style.display = 'none'; });
-    await expect(page.locator('#welcomeScreen')).toHaveAttribute('data-journey-state', 'fresh');
+    expect(rewardState.progress).toBe('72');
+
+    await page.setViewportSize({ width: 390, height: 844 });
+    const mobileMetrics = await page.evaluate(() => ({
+      scrollWidth: document.documentElement.scrollWidth,
+      clientWidth: document.documentElement.clientWidth,
+    }));
+    expect(mobileMetrics.scrollWidth).toBeLessThanOrEqual(mobileMetrics.clientWidth + 1);
+    const primaryBox = await page.getByRole('button', { name: /Retomar jornada/ }).boundingBox();
+    expect(primaryBox?.width || 0).toBeGreaterThanOrEqual(320);
   });
 
   test('mantém o controle de volume aberto ao atravessar até o slider', async ({ page }) => {
@@ -168,10 +219,9 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
 
   test('respeita movimento reduzido e mantém o significado', async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
-    await page.reload({ waitUntil: 'domcontentloaded' });
-    await expect(page.locator('#welcomeScreen')).toBeVisible();
+    await enterWithSavedJourney(page);
 
-    const state = await page.locator('.nql-atrium__route').first().evaluate((element) => {
+    const state = await page.locator('.wsaved-flow-pulse').evaluate((element) => {
       const style = getComputedStyle(element);
       return { animation: style.animationName, transition: style.transitionDuration };
     });
