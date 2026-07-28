@@ -9,6 +9,32 @@ async function enterAsGuest(page: import('@playwright/test').Page) {
   await expect(page.locator('#welcomeScreen')).toBeVisible();
 }
 
+async function enterWithSavedJourney(
+  page: import('@playwright/test').Page,
+  overrides: Record<string, unknown> = {}
+) {
+  await page.evaluate((save) => {
+    localStorage.setItem('nefroquest-save', JSON.stringify(save));
+  }, {
+    schemaVersion: 6,
+    character: 'nephros',
+    level: 5,
+    xp: 250,
+    xpToNext: 9999,
+    score: 535,
+    lives: 3,
+    maxLives: 4,
+    timestamp: Date.now() - (2 * 24 * 60 * 60 * 1000),
+    ...overrides,
+  });
+  await page.reload({ waitUntil: 'domcontentloaded' });
+  await page.evaluate(() => {
+    (window as typeof window & { playAsGuest: () => void }).playAsGuest();
+  });
+  await expect(page.locator('#welcomeScreen')).toBeVisible();
+  await expect(page.locator('#welcomeSavedInfo')).toBeVisible();
+}
+
 test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
   test.beforeEach(async ({ page }) => {
     await enterAsGuest(page);
@@ -17,6 +43,19 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
   test('carrega a página real e preserva os contratos funcionais', async ({ page }) => {
     await expect(page.getByRole('heading', { name: 'Seu domínio deixa rastros.' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Escolha seu próximo movimento' })).toBeVisible();
+    for (const selector of ['#atriumTitle', '#atriumRoutesTitle']) {
+      const lines = await page.locator(selector).evaluate((heading) =>
+        Array.from(heading.children).map((line) => ({
+          top: line.getBoundingClientRect().top,
+          rects: line.getClientRects().length,
+          whiteSpace: getComputedStyle(line).whiteSpace,
+        }))
+      );
+      expect(lines).toHaveLength(2);
+      expect(lines.map((line) => line.rects)).toEqual([1, 1]);
+      expect(lines[1].top).toBeGreaterThan(lines[0].top);
+      expect(lines.every((line) => line.whiteSpace === 'nowrap')).toBe(true);
+    }
     await expect(page.locator('#welcomeScreen')).toHaveAttribute('data-nq-ui', 'lumen');
     await expect(page.locator('#welcomeScreen')).toHaveAttribute('aria-hidden', 'false');
     await expect(page.locator('#welcomeScreen > .welcome-bg')).toBeHidden();
@@ -27,8 +66,18 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
     const stylesheets = await page.locator('link[rel="stylesheet"]').evaluateAll((links) =>
       links.map((link) => new URL((link as HTMLLinkElement).href).pathname + new URL((link as HTMLLinkElement).href).search)
     );
-    expect(stylesheets).toContain('/styles/lumen/atrium.css?v=13.23');
+    expect(stylesheets).toContain('/styles/lumen/atrium.css?v=13.40');
     await expect(page.locator('script[src="js/atrium.js?v=13.23"]')).toHaveCount(1);
+    await expect(page.locator('script[src="js/auth.js?v=13.40"]')).toHaveCount(1);
+    await expect(page.locator('script[src="js/game.js?v=13.40"]')).toHaveCount(1);
+
+    const railSpacing = await page.locator('.nql-atrium').evaluate((atrium) => {
+      const atriumRect = atrium.getBoundingClientRect();
+      const journeyRect = atrium.querySelector('.nql-atrium__journey')!.getBoundingClientRect();
+      const railLeft = parseFloat(getComputedStyle(atrium, '::before').left);
+      return journeyRect.left - atriumRect.left - railLeft;
+    });
+    expect(railSpacing).toBeGreaterThanOrEqual(24);
 
     const actions = await page.locator('#welcomeScreen [data-action]').evaluateAll((elements) =>
       elements.map((element) => ({
@@ -84,12 +133,72 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
     }
   });
 
-  test('reflete visualmente uma jornada salva sem assumir a lógica do jogo', async ({ page }) => {
+  test('transforma uma jornada salva em convite real para retomar e evoluir', async ({ page }) => {
     await expect(page.locator('#welcomeScreen')).toHaveAttribute('data-journey-state', 'fresh');
-    await page.locator('#welcomeSavedInfo').evaluate((element: HTMLElement) => { element.style.display = 'block'; });
+    await enterWithSavedJourney(page);
     await expect(page.locator('#welcomeScreen')).toHaveAttribute('data-journey-state', 'saved');
-    await page.locator('#welcomeSavedInfo').evaluate((element: HTMLElement) => { element.style.display = 'none'; });
-    await expect(page.locator('#welcomeScreen')).toHaveAttribute('data-journey-state', 'fresh');
+
+    await expect(page.locator('#wsSavedChar')).toHaveText('Dr. Nephros');
+    await expect(page.locator('#wsSavedLevel')).toHaveText('05');
+    await expect(page.locator('#wsSavedLives')).toHaveText('3');
+    await expect(page.locator('#wsSavedLivesLabel')).toHaveText('vidas');
+    await expect(page.locator('#wsSavedScore')).toHaveText('535');
+    await expect(page.locator('#wsSavedTime')).toContainText('Último avanço há 2 dias');
+    await expect(page.locator('#wsSavedNextLevel')).toHaveText('Nível 6');
+    await expect(page.locator('#wsSavedXpText')).toHaveText('250 / 349 XP');
+    await expect(page.locator('#wsSavedProgress')).toHaveAttribute('aria-valuenow', '72');
+    await expect(page.locator('#wsSavedProgress')).toHaveAttribute('aria-valuetext', '72% do caminho até o nível 6');
+    await expect(page.locator('#wsSavedAvatar')).toBeVisible();
+    await expect.poll(() => page.locator('#wsSavedAvatar').evaluate((image: HTMLImageElement) => image.naturalWidth)).toBeGreaterThan(0);
+    await expect(page.getByRole('button', { name: /Retomar jornada/ })).toBeVisible();
+
+    const rewardState = await page.locator('.nql-atrium__resume-shell').evaluate((element) => {
+      const style = getComputedStyle(element);
+      const pulse = getComputedStyle(element.querySelector('.wsaved-flow-pulse')!);
+      const primary = getComputedStyle(document.querySelector('.nql-atrium__primary')!);
+      return {
+        background: style.backgroundImage,
+        borderRadius: style.borderRadius,
+        shadow: style.boxShadow,
+        currentAnimation: pulse.animationName,
+        primaryShadow: primary.boxShadow,
+        progress: style.getPropertyValue('--nql-saved-progress').trim(),
+      };
+    });
+    expect(rewardState.background).toContain('gradient');
+    expect(parseFloat(rewardState.borderRadius)).toBeGreaterThan(0);
+    expect(rewardState.shadow).not.toBe('none');
+    expect(rewardState.currentAnimation).toBe('nql-atrium-flow-enter');
+    expect(rewardState.primaryShadow).not.toBe('none');
+    expect(rewardState.progress).toBe('72');
+
+    await page.setViewportSize({ width: 390, height: 844 });
+    const mobileMetrics = await page.evaluate(() => ({
+      scrollWidth: document.documentElement.scrollWidth,
+      clientWidth: document.documentElement.clientWidth,
+    }));
+    expect(mobileMetrics.scrollWidth).toBeLessThanOrEqual(mobileMetrics.clientWidth + 1);
+    const primaryBox = await page.getByRole('button', { name: /Retomar jornada/ }).boundingBox();
+    expect(primaryBox?.width || 0).toBeGreaterThanOrEqual(320);
+  });
+
+  test('mantém o controle de volume aberto ao atravessar até o slider', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    const container = page.locator('#welcomeSoundControls .volume-slider-container').first();
+    const slider = container.locator('.volume-slider');
+    await container.hover();
+    await expect(slider).toHaveCSS('opacity', '1');
+
+    const containerBox = await container.boundingBox();
+    expect(containerBox).not.toBeNull();
+    await page.mouse.move((containerBox?.x || 0) + (containerBox?.width || 0) - 8, (containerBox?.y || 0) + (containerBox?.height || 0) + 4);
+    await expect(slider).toHaveCSS('opacity', '1');
+    await expect(slider).toHaveCSS('pointer-events', 'auto');
+
+    await slider.focus();
+    const before = Number(await slider.inputValue());
+    await page.keyboard.press('ArrowRight');
+    expect(Number(await slider.inputValue())).toBeGreaterThan(before);
   });
 
   test('oferece navegação por teclado e alvos mínimos', async ({ page }) => {
@@ -110,10 +219,9 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
 
   test('respeita movimento reduzido e mantém o significado', async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
-    await page.reload({ waitUntil: 'domcontentloaded' });
-    await expect(page.locator('#welcomeScreen')).toBeVisible();
+    await enterWithSavedJourney(page);
 
-    const state = await page.locator('.nql-atrium__route').first().evaluate((element) => {
+    const state = await page.locator('.wsaved-flow-pulse').evaluate((element) => {
       const style = getComputedStyle(element);
       return { animation: style.animationName, transition: style.transitionDuration };
     });

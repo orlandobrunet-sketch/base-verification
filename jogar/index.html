@@ -67,7 +67,7 @@
     if (typeof Sentry !== 'undefined') {
       Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@13.37',
+          release: 'nefroquest@13.40',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -93,6 +93,15 @@
     }
   </script>
 
+  <!-- Registra callbacks antes do script assíncrono para não perder o primeiro resultado. -->
+  <script>
+    window.__nqTurnstileEvents = [];
+    ['Ready', 'Expired', 'Error'].forEach(function(type) {
+      window['nqTurnstile' + type] = function() {
+        window.__nqTurnstileEvents.push(type.toLowerCase());
+      };
+    });
+  </script>
   <!-- Cloudflare Turnstile (CAPTCHA no signup/login — anti account-farming, E9) -->
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
@@ -117,7 +126,7 @@
   <link rel="stylesheet" href="styles/lumen/components.css?v=13.20">
   <link rel="stylesheet" href="styles/lumen/motion.css?v=13.20">
   <link rel="stylesheet" href="styles/lumen/portal.css?v=13.24">
-  <link rel="stylesheet" href="styles/lumen/atrium.css?v=13.23">
+  <link rel="stylesheet" href="styles/lumen/atrium.css?v=13.40">
   <script>
     // Version beacon — detecta nova versão sem interromper a navegação
     (function() {
@@ -361,7 +370,7 @@
         <span>Para aprender, revisar e se manter atualizado em nefrologia.</span>
         <span class="nql-portal__footer-meta">
           <button type="button" data-action="showPrivacyPolicy">Privacidade</button>
-          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v13.37</button>
+          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v13.40</button>
         </span>
       </footer>
     </section>
@@ -769,8 +778,61 @@
       <div class="nql-atrium__main" id="atriumMain" role="main" tabindex="-1">
         <section class="nql-atrium__journey" aria-labelledby="atriumTitle">
           <p class="nql-atrium__eyebrow">Átrio da jornada · seu ponto de retorno</p>
-          <h1 id="atriumTitle">Seu domínio <em>deixa rastros.</em></h1>
+          <h1 id="atriumTitle"><span>Seu domínio</span> <em>deixa rastros.</em></h1>
           <p class="nql-atrium__lede">Cada decisão clínica alimenta um percurso contínuo de prática, revisão e domínio.</p>
+
+          <div class="nql-atrium__resume-shell">
+            <article id="welcomeSavedInfo" class="welcome-saved-info nql-atrium__saved" style="display:none;" aria-labelledby="wsSavedChar">
+              <div class="wsaved-top">
+                <span class="wsaved-label"><i aria-hidden="true"></i> Jornada ativa</span>
+                <span class="wsaved-time-lbl" id="wsSavedTime"></span>
+              </div>
+              <div class="wsaved-bottom">
+                <div class="wsaved-identity">
+                  <span class="wsaved-avatar-frame"><img id="wsSavedAvatar" alt="" loading="eager" decoding="async"></span>
+                  <div class="wsaved-info">
+                    <div class="wsaved-charname" id="wsSavedChar">-</div>
+                    <p>Seu rastro continua daqui.</p>
+                  </div>
+                  <div class="wsaved-level">
+                    <span>Nível</span>
+                    <strong id="wsSavedLevel">-</strong>
+                  </div>
+                </div>
+
+                <div class="wsaved-progress">
+                  <div class="wsaved-progress-meta">
+                    <span>Próximo marco · <strong id="wsSavedNextLevel">Nível -</strong></span>
+                    <span id="wsSavedXpText">- / - XP</span>
+                  </div>
+                  <div id="wsSavedProgress" class="wsaved-flow" role="progressbar" aria-label="Progresso até o próximo nível" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                    <svg viewBox="0 0 600 42" preserveAspectRatio="none" focusable="false" aria-hidden="true">
+                      <defs>
+                        <linearGradient id="nqlSavedFlowGradient" x1="0" y1="0" x2="1" y2="0">
+                          <stop offset="0" stop-color="#91dfe3"/>
+                          <stop offset=".66" stop-color="#91dfe3"/>
+                          <stop offset="1" stop-color="#f1cf7a"/>
+                        </linearGradient>
+                      </defs>
+                      <path class="wsaved-flow-base" pathLength="100" d="M2 23 C54 23 49 7 88 7 S116 35 151 35 S180 12 216 12 S244 29 278 29 S309 8 347 8 S376 31 414 31 S443 14 476 14 S520 22 598 22"/>
+                      <path id="wsSavedXpFlow" class="wsaved-flow-value" pathLength="100" d="M2 23 C54 23 49 7 88 7 S116 35 151 35 S180 12 216 12 S244 29 278 29 S309 8 347 8 S376 31 414 31 S443 14 476 14 S520 22 598 22"/>
+                      <path class="wsaved-flow-pulse" pathLength="100" d="M2 23 C54 23 49 7 88 7 S116 35 151 35 S180 12 216 12 S244 29 278 29 S309 8 347 8 S376 31 414 31 S443 14 476 14 S520 22 598 22"/>
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="wsaved-support">
+                  <span><strong id="wsSavedScore">-</strong> pontos conquistados</span>
+                  <span><i aria-hidden="true">♥</i><strong id="wsSavedLives">-</strong> <span id="wsSavedLivesLabel">vidas</span></span>
+                </div>
+              </div>
+            </article>
+
+            <div class="nql-atrium__primary-actions">
+              <button type="button" id="welcomeContinueBtn" class="nql-atrium__primary" style="display:none;" data-action="continueGame"><span><strong>Retomar jornada</strong><small>Voltar ao ponto exato em que você parou</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
+              <button type="button" class="nql-atrium__secondary" data-action="startNewFromWelcome">Começar nova jornada</button>
+            </div>
+          </div>
 
           <div id="welcomeStats" class="welcome-stats nql-mastery-rail" aria-label="Resumo de domínio">
             <div class="welcome-stat"><span class="ws-val" id="wsBestScore">0</span><span class="ws-lbl">Recorde</span></div>
@@ -785,29 +847,10 @@
             <div class="nql-atrium__continuum-step"><span aria-hidden="true"></span><strong>Dominar</strong><small>evolução visível</small></div>
           </div>
 
-          <div id="welcomeSavedInfo" class="welcome-saved-info nql-atrium__saved" style="display:none;">
-            <div class="wsaved-top"><span class="wsaved-label"><i aria-hidden="true"></i> Jornada em andamento</span><span class="wsaved-time-lbl" id="wsSavedTime"></span></div>
-            <div class="wsaved-bottom">
-              <img id="wsSavedAvatar" alt="" loading="lazy">
-              <div class="wsaved-info">
-                <div class="wsaved-charname" id="wsSavedChar">-</div>
-                <div class="wsaved-stats">
-                  <div class="wsaved-stat"><span class="ws-v" id="wsSavedLevel">-</span><span class="ws-l">Nível</span></div>
-                  <div class="wsaved-stat"><span class="ws-v" id="wsSavedLives">-</span><span class="ws-l">Vidas</span></div>
-                  <div class="wsaved-stat"><span class="ws-v" id="wsSavedScore">-</span><span class="ws-l">Pontos</span></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="nql-atrium__primary-actions">
-            <button type="button" id="welcomeContinueBtn" class="nql-atrium__primary" style="display:none;" data-action="continueGame"><span><strong>Continuar jornada</strong><small>Retomar de onde você parou</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
-            <button type="button" class="nql-atrium__secondary" data-action="startNewFromWelcome">Iniciar nova jornada</button>
-          </div>
         </section>
 
         <aside class="nql-atrium__routes" aria-labelledby="atriumRoutesTitle">
-          <div class="nql-atrium__routes-head"><p>Rotas disponíveis</p><h2 id="atriumRoutesTitle">Escolha seu próximo movimento</h2></div>
+          <div class="nql-atrium__routes-head"><p>Rotas disponíveis</p><h2 id="atriumRoutesTitle"><span>Escolha seu</span> <span>próximo movimento</span></h2></div>
           <div class="nql-atrium__route-status" aria-live="polite"><span aria-hidden="true"></span><p id="atriumRouteStatus">Explore uma rota sem perder o fio da sua jornada.</p></div>
           <div class="nql-atrium__route-list">
             <button type="button" class="nql-atrium__route" data-atrium-route="modes" data-action="openGameModesPopup"><span class="nql-atrium__route-index">01</span><span><strong>Modos de jogo</strong><small>Treinos, provas e desafios</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
@@ -822,7 +865,7 @@
 
       <footer class="nql-atrium__footer">
         <span>Prática que se transforma em domínio clínico.</span>
-        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v13.37</button></span>
+        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v13.40</button></span>
       </footer>
     </section>
     <div class="welcome-bg" aria-hidden="true"></div>
@@ -1635,10 +1678,10 @@
   <script defer src="js/audio.js?v=11.90"></script>
   <script defer src="js/leaderboard.js?v=11.90"></script>
   <script defer src="js/study-mode.js?v=11.90"></script>
-  <script defer src="js/game.js?v=11.90"></script>
+  <script defer src="js/game.js?v=13.40"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
-  <script defer src="js/auth.js?v=13.20"></script>
+  <script defer src="js/auth.js?v=13.40"></script>
   <script defer src="js/portal.js?v=13.20"></script>
   <script defer src="js/atrium.js?v=13.23"></script>
   <script defer src="js/paywall.js?v=11.90"></script>

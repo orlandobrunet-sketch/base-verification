@@ -292,6 +292,17 @@
       clearTimeout(_turnstileLoadTimer);
       _setTurnstileState('Não foi possível carregar a verificação. Recarregue e tente novamente.', 'error');
     }
+    const _queuedTurnstileEvents = Array.isArray(window.__nqTurnstileEvents)
+      ? window.__nqTurnstileEvents.splice(0)
+      : [];
+    window.nqTurnstileReady = nqTurnstileReady;
+    window.nqTurnstileExpired = nqTurnstileExpired;
+    window.nqTurnstileError = nqTurnstileError;
+    _queuedTurnstileEvents.forEach((eventName) => {
+      if (eventName === 'ready') nqTurnstileReady();
+      else if (eventName === 'expired') nqTurnstileExpired();
+      else if (eventName === 'error') nqTurnstileError();
+    });
     function retryTurnstile() {
       _setTurnstileState('Recarregando a verificação de segurança…', 'pending');
       if (window.turnstile) {

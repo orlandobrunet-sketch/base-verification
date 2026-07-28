@@ -932,18 +932,41 @@
       const save = loadGame();
       const savedInfoEl = document.getElementById('welcomeSavedInfo');
       const continueBtn = document.getElementById('welcomeContinueBtn');
+      const resumeShell = document.querySelector('.nql-atrium__resume-shell');
       if (save && save.character && save.lives > 0) {
-        if (continueBtn) continueBtn.style.display = 'block';
+        if (continueBtn) continueBtn.style.removeProperty('display');
         const charData = characters[save.character];
         const charName = charData ? charData.name : 'Desconhecido';
+        const level = Math.min(10, Math.max(1, Math.floor(Number(save.level) || 1)));
+        const xpToNext = Math.max(1, xpForLevel(level));
+        const xp = Math.min(xpToNext, Math.max(0, Math.floor(Number(save.xp) || 0)));
+        const score = Math.max(0, Math.floor(Number(save.score) || 0));
+        const lives = Math.max(0, Math.floor(Number(save.lives) || 0));
+        const isMaxLevel = level >= 10;
+        const progress = isMaxLevel ? 100 : Math.round((xp / xpToNext) * 100);
+        const timeAgo = getTimeAgo(save.timestamp) || '';
+
         document.getElementById('wsSavedChar').textContent = charName;
-        document.getElementById('wsSavedLevel').textContent = save.level || 1;
-        document.getElementById('wsSavedLives').textContent = '❤'.repeat(save.lives || 0);
-        document.getElementById('wsSavedScore').textContent = save.score || 0;
-        document.getElementById('wsSavedTime').textContent = getTimeAgo(save.timestamp) || '';
+        document.getElementById('wsSavedLevel').textContent = String(level).padStart(2, '0');
+        document.getElementById('wsSavedLives').textContent = String(lives);
+        document.getElementById('wsSavedLivesLabel').textContent = lives === 1 ? 'vida' : 'vidas';
+        document.getElementById('wsSavedScore').textContent = score.toLocaleString('pt-BR');
+        document.getElementById('wsSavedTime').textContent = timeAgo ? `Último avanço ${timeAgo}` : '';
+        document.getElementById('wsSavedNextLevel').textContent = isMaxLevel ? 'Domínio máximo' : `Nível ${level + 1}`;
+        document.getElementById('wsSavedXpText').textContent = isMaxLevel ? 'Domínio máximo alcançado' : `${xp} / ${xpToNext} XP`;
+
+        const progressEl = document.getElementById('wsSavedProgress');
+        if (progressEl) {
+          progressEl.setAttribute('aria-valuenow', String(progress));
+          progressEl.setAttribute('aria-valuetext', isMaxLevel
+            ? 'Domínio máximo alcançado'
+            : `${progress}% do caminho até o nível ${level + 1}`);
+        }
+        if (resumeShell) resumeShell.style.setProperty('--nql-saved-progress', String(progress));
+
         if (charData) {
           const ext = save.character === 'glomerulus' ? 'png' : 'jpg';
-          const lvNum = Math.min(10, Math.max(1, save.level || 1));
+          const lvNum = level;
           document.getElementById('wsSavedAvatar').src = `assets/classes/${charData.folder}/nivel_${String(lvNum).padStart(2,'0')}.${ext}?v=11.98`;
           document.getElementById('wsSavedAvatar').alt = charName;
         }
@@ -954,6 +977,7 @@
       } else {
         if (savedInfoEl) savedInfoEl.style.display = 'none';
         if (continueBtn) continueBtn.style.display = 'none';
+        if (resumeShell) resumeShell.style.setProperty('--nql-saved-progress', '0');
       }
     }
 
