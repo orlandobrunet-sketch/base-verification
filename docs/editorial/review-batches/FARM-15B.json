@@ -1,0 +1,173 @@
+{
+  "batch": "FARM-15B",
+  "change_type": "medical_editorial",
+  "expected_version": "13.41",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-15B.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "c69f0607": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "bcb1293d": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "1867db90": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "f18b93c3": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "10/20",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "54be3494": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "834714bd": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "282c5aec": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "de62a361": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "10/20",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "053bc658": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "6a7f7a20": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    }
+  },
+  "expected_question_delta": -2,
+  "refs_policy": "declared",
+  "references": {
+    "myeloma_renal_imwg_2023": {
+      "action": "reuse_existing",
+      "source": "International Myeloma Working Group renal impairment recommendations"
+    },
+    "brenner_rector": {
+      "action": "reuse_existing",
+      "source": "Brenner and Rector's The Kidney"
+    },
+    "protect_trial": {
+      "action": "reuse_existing",
+      "source": "PROTECT trial of sparsentan in IgA nephropathy"
+    },
+    "filspari_fda_2025": {
+      "action": "add_new",
+      "source": "FDA FILSPARI prescribing information 2025"
+    },
+    "eau_rcc_guideline_2026": {
+      "action": "reuse_existing",
+      "source": "EAU Renal Cell Carcinoma Guideline 2026"
+    },
+    "hypodermoclysis_review_2020": {
+      "action": "add_new",
+      "source": "systematic review of subcutaneous hydration and medication infusions"
+    },
+    "renal_physiology_pregnancy_2014": {
+      "action": "add_new",
+      "source": "review of renal physiology in normal pregnancy"
+    },
+    "aristolochic_nephropathy_review_2017": {
+      "action": "add_new",
+      "source": "review of aristolochic acid DNA adducts and urothelial cancer"
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Oito questões foram reconstruídas com preservação de qid e FSRS porque mantêm seus conceitos e objetivos pedagógicos.",
+    "f18b93c3 foi fundida em 834714bd; o item preservado deixou de cobrar um limite volumétrico rígido e passou a avaliar seleção segura da via subcutânea.",
+    "de62a361 foi fundida em 1875cbc3 e 3f1e5362, que já cobrem o mesmo mecanismo de congestão venosa renal e redução do gradiente de filtração.",
+    "O Advogado do Recurso removeu combinação de sparsentana com IECA/BRA, cirurgia automática para todo Bosniak IV, uso de hipodermóclise em ressuscitação e ausência de hematúria como exclusão de toxicidade por ácido aristolóquico."
+  ]
+}
