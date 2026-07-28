@@ -349,6 +349,20 @@ const refsDB = {
     conclusao:"Uma fita urinária negativa não exclui proteinúria por cadeias leves; em suspeita de mieloma, é necessário procurar proteína não albumina com métodos adequados.",
     curiosidade:"O capítulo ainda descreve o teste térmico clássico da proteína de Bence-Jones, que precipita em torno de 56°C e pode redissolver com fervura, mas esse detalhe é mais histórico do que central para a prática moderna."
   },
+  kidney_biopsy_safety_2023:{
+    label:"Renal Biopsy — Indication, Technique and Safety",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC10573674/",
+    journal:"J Clin Med. 2023;12:6424",
+    ano:2023,
+    tipo:"Revisão clínica",
+    badge:"REVIEW",
+    badgeColor:"#8b5cf6",
+    impacto:"Indicações, contraindicações e alternativas técnicas para biópsia renal.",
+    icon:"🔬",
+    resumo:"Revisão contemporânea da biópsia renal diagnóstica. O exame tem maior valor quando diferencia inflamação ativa de dano crônico e pode mudar tratamento ou prognóstico. Antes da via percutânea, devem ser avaliados pressão arterial, hemograma, plaquetas e coagulação. Coagulopatia e hipertensão não controlada elevam substancialmente o risco hemorrágico; quando o risco não pode ser corrigido e a histologia é indispensável, abordagens transjugular, laparoscópica ou cirúrgica podem ser consideradas.",
+    conclusao:"Biópsia renal não é um ritual para toda alteração urinária: sua indicação depende do benefício decisório, e a via percutânea só deve ser usada após reduzir riscos corrigíveis, especialmente coagulopatia e hipertensão.",
+    curiosidade:"A combinação de agulha automatizada e ultrassom em tempo real reduziu complicações e tornou a biópsia percutânea padrão, enquanto a radiologia intervencionista oferece alternativas para pacientes selecionados com alto risco hemorrágico."
+  },
   clinical_methods_bun_creatinine:{
     label:"Clinical Methods — BUN and Creatinine",
     url:"https://www.ncbi.nlm.nih.gov/books/NBK305/",
@@ -2246,18 +2260,6 @@ canvas_program:{
     conclusao:"A diálise em pacientes idosos frágeis (≥ 75 anos) e com múltiplas comorbidades não deve ser a coduta padrão cega; o manejo conservador otimizado é uma opção legítima de cuidado no Reino.",
     curiosidade:"Idosos frágeis submetidos à hemodiálise convencional frequentemente sofrem de declínio funcional acelerado secundário ao estresse circulatório intradialítico recorrente e à perda de autonomia logística por necessitarem se deslocar 3 vezes por semana para uma clínica."
   },
-  kpmp_project:{
-    label:"KPMP — Kidney Precision Medicine Project",
-    url:"https://www.kpmp.org/",
-    journal:"CJASN 2021;16(9):1418-1428",
-    ano:2021,tipo:"Consórcio de Pesquisa",badge:"REVIEW",badgeColor:"#0ea5e9",
-    impacto:"Atlas molecular renal com single-cell RNA-seq — redefinindo doenças renais para terapias de precisão",icon:"🔬",
-    resumo:"Consórcio de pesquisa clínica multicêntrico de grande escala (Kidney Precision Medicine Project - KPMP) dedicado a coletar e analisar de forma sistemática biópsias renais de pacientes com Lesão Renal Aguda (LRA) e Doença Renal Crônica (DRC). O KPMP combina tecnologias de biologia molecular avançada de célula única (single-cell RNA-seq, transcriptômica e proteômica espacial) com análise histopatológica convencional de alta definição. O objetivo é construir um atlas molecular em 3D do rim humano saudável e doente para identificar novos biomarcadores específicos celulares, redefinir subgrupos etiológicos clínicos de doenças renais de forma puramente molecular, e descobrir novos alvos terapêuticos direcionados de medicina de precisão.",
-    conclusao:"O KPMP representa a vanguarda científica que lidera a transição nefrológica da era histopatológica descritiva clássica para a era da medicina molecular e terapia personalizada de precisão no Reino.",
-    curiosidade:"O projeto utiliza técnicas rigorosas de biópsia segura em pacientes voluntários. Ao sequenciar milhares de células renais individuais isoladas, o KPMP revelou que podócitos e células tubulares renais sofrem estados de transição celular dinâmicos altamente complexos ('células em estado de hibernação ou senescência') durante o insulto de LRA, que guiam a cicatrização adaptativa ou a fibrose irreversível."
-  },
-
-
   // ===== REFS ADICIONADOS v6.1 =====
 finerenone_2025:{
     label:"Finerenona — FIDELIO-DKD + FIGARO-DKD (FIDELITY)",
