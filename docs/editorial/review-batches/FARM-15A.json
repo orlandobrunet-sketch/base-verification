@@ -1,0 +1,165 @@
+{
+  "batch": "FARM-15A",
+  "change_type": "medical_editorial",
+  "expected_version": "13.37",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-15A.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "ca6370dc": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "44e193b4": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "5c273985": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "10/20",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "768f5f6a": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "8/20",
+        "verdict": "aposentar",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "baee3a8b": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "67bdd826": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "4998672a": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "10/20",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "52dea4d5": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "9/20",
+        "verdict": "aposentar",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "f47a3e7b": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "8209745e": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "9/20",
+        "verdict": "aposentar",
+        "publication": "BLOQUEADA"
+      }
+    }
+  },
+  "expected_question_delta": -5,
+  "refs_policy": "declared",
+  "references": {
+    "clinical_methods_proteinuria": {
+      "action": "reuse_existing",
+      "source": "NCBI Bookshelf Clinical Methods — Proteinuria"
+    },
+    "brenner_rector": {
+      "action": "reuse_existing",
+      "source": "Brenner and Rector's The Kidney"
+    },
+    "kidney_biopsy_safety_2023": {
+      "action": "add_new",
+      "source": "Renal Biopsy for Diagnosis in Kidney Disease: Indication, Technique, and Safety"
+    },
+    "guyton_and_hall_physiology": {
+      "action": "reuse_existing",
+      "source": "Guyton and Hall Textbook of Medical Physiology"
+    },
+    "kdigo_ckd": {
+      "action": "reuse_existing",
+      "source": "KDIGO 2024 Clinical Practice Guideline for CKD"
+    },
+    "kpmp_project": {
+      "action": "remove",
+      "source": "removed as orphaned scientific card after retirement of its only consumer 8209745e"
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Cinco questões foram reconstruídas com preservação de qid e FSRS porque mantêm seus objetivos sobre proteinúria ortostática, indicação e segurança da biópsia, confirmação de proteinúria e funções endócrinas renais.",
+    "5c273985 e 4998672a foram fundidas em cf15d456, que já cobre o mesmo perfil de hematúria macroscópica em tabagista com a decisão completa de cistoscopia e imagem do trato superior.",
+    "768f5f6a, 52dea4d5 e 8209745e foram aposentadas por cobrarem recordação factual de baixo valor decisório ou descrição de projeto de pesquisa sem aplicação clínica suficiente.",
+    "O Advogado do Recurso removeu biópsia automática, interpretação de fita isolada como síndrome nefrótica, rim único como proibição universal e a inferência incorreta de que TFGe abaixo de 90 define doença renal por si só."
+  ]
+}
