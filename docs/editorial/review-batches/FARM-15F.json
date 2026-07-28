@@ -1,0 +1,169 @@
+{
+  "batch": "FARM-15F",
+  "change_type": "medical_editorial",
+  "expected_version": "13.46",
+  "allowed_files": [
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-15F.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "f40c533c": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "c187c49d": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "f9976e40": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "d7ac22f6": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "5426acba": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "de2a0587": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "efcbb8d4",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "121adcc7": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "e24c60f6": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "60286409": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "6dd8e258": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    }
+  },
+  "expected_question_delta": -1,
+  "refs_policy": "declared",
+  "references": {
+    "brenner_rector": {
+      "action": "reuse_existing",
+      "source": "Brenner and Rector's The Kidney"
+    },
+    "guyton_and_hall_physiology": {
+      "action": "reuse_existing",
+      "source": "Guyton and Hall Textbook of Medical Physiology"
+    },
+    "kdigo_ckd": {
+      "action": "reuse_existing",
+      "source": "KDIGO 2024 CKD guideline"
+    },
+    "kdigo_diabetes_in_ckd_guideline": {
+      "action": "reuse_existing",
+      "source": "KDIGO 2022 Diabetes Management in CKD guideline"
+    },
+    "kdigo_aki": {
+      "action": "reuse_existing",
+      "source": "KDIGO AKI guideline"
+    },
+    "fidelio_dkd": {
+      "action": "reuse_existing",
+      "source": "FIDELIO-DKD trial"
+    },
+    "finerenone_label_dailymed": {
+      "action": "reuse_existing",
+      "source": "Finerenone United States prescribing information"
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Nove questões foram reconstruídas e publicadas com evidência verificada, pendência nenhuma e preservação de qid/FSRS.",
+    "de2a0587 foi fundida em efcbb8d4 por duplicar o mesmo mecanismo hemodinâmico de hiperfiltração diabética inicial.",
+    "O Advogado do Recurso separou as lesões aguda e proliferativa da emergência hipertensiva, removeu dependência de cor histológica e evitou inferências absolutas a partir da FENa em uso de diurético e DRC.",
+    "As questões de finerenona distinguem benefício cardiorrenal de segurança de início, incluindo potássio, TFGe e monitorização."
+  ]
+}
