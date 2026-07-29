@@ -1,0 +1,174 @@
+{
+  "batch": "FARM-15H",
+  "change_type": "medical_editorial",
+  "expected_version": "13.48",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-15H.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "f7ef303f": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "1b8baaac": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "9299c585": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "190676b8": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "279c6c8e": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "867d96b5": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "7968a07d": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "9344c1f1": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "3a0f4a34": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    }
+  },
+  "expected_question_delta": 0,
+  "refs_policy": "declared",
+  "references": {
+    "fabhalta_iptacopan_label_2025": {
+      "action": "reuse_existing",
+      "source": "FDA prescribing information for iptacopan"
+    },
+    "c3g_consensus": {
+      "action": "reuse_existing",
+      "source": "C3 glomerulopathy consensus"
+    },
+    "brenner_rector": {
+      "action": "reuse_existing",
+      "source": "Brenner and Rector's The Kidney"
+    },
+    "kdigo_aki": {
+      "action": "reuse_existing",
+      "source": "KDIGO AKI guideline"
+    },
+    "gadolinio_acr_manual_2026": {
+      "action": "update_existing",
+      "source": "ACR Manual on Contrast Media 2026"
+    },
+    "hepatorenal_review": {
+      "action": "update_existing",
+      "source": "ICA-ADQI consensus on AKI and hepatorenal syndrome in cirrhosis"
+    },
+    "ckd_pregnancy_guideline_2019": {
+      "action": "reuse_existing",
+      "source": "Clinical practice guideline on pregnancy and renal disease"
+    },
+    "kdigo_lupus_nephritis_guideline_2024": {
+      "action": "reuse_existing",
+      "source": "KDIGO 2024 Lupus Nephritis guideline"
+    },
+    "calciphylaxis_sts_meta_2023": {
+      "action": "add_new",
+      "source": "Wen et al. 2023 systematic review and meta-analysis"
+    },
+    "aha_acc_hypertension_2025": {
+      "action": "reuse_existing",
+      "source": "AHA/ACC 2025 High Blood Pressure guideline"
+    },
+    "sprint_trial": {
+      "action": "remove_orphan",
+      "source": "Card became unreferenced after rebuilding 3a0f4a34"
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "As nove pendências finais de DRC foram reconstruídas com evidência verificada, pendência nenhuma e preservação de qid/FSRS.",
+    "O Advogado do Recurso removeu a proibição automática de gadolínio, a exigência fixa de albumina por 48 horas para HRS, a escalada automática de imunossupressão na nefrite lúpica e a alegação de eficácia comprovada do tiossulfato.",
+    "As categorias foram corrigidas quando a competência pertencia primariamente a glomerulopatias, LRA ou diálise.",
+    "O novo card de tiossulfato contém resumo, conclusão e curiosidade."
+  ]
+}
