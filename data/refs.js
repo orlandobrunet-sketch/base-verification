@@ -2489,6 +2489,72 @@ finerenone_2025:{
   cisplatina_hidratacao_sikking_2024:{"label":"Sikking et al. — Hidratação na nefrotoxicidade por cisplatina (2024)","url":"https://doi.org/10.1093/oncolo/oyad297","journal":"The Oncologist","ano":2024,"tipo":"Revisão sistemática","badge":"REVIEW","badgeColor":"#8b5cf6","impacto":"Hidratação IV é a base da prevenção da nefrotoxicidade por cisplatina; magnésio e manitol como medidas adjuntas","icon":"🔬","resumo":"Revisão sistemática (Sikking et al., The Oncologist 2024; 27 estudos, heterogêneos) sobre esquemas de hidratação para prevenir a nefrotoxicidade por cisplatina. Esquemas curtos foram associados a menor ou semelhante nefrotoxicidade em comparação aos prolongados nos estudos incluídos, com heterogeneidade metodológica; o manitol foi protetor em parte dos estudos (4 de 7); a suplementação de magnésio associou-se a menor nefrotoxicidade (7 de 9); a hidratação oral não aumentou a nefrotoxicidade (3 estudos). Faltam comparações diretas (furosemida versus manitol; doses de manitol e magnésio).","conclusao":"A hidratação intravenosa com solução salina isotônica é a base da prevenção; o magnésio (associação favorável, evidência sobretudo observacional) e o manitol (uso selecionado, evidência inconsistente) são medidas adjuntas.","curiosidade":""},
   cisplatina_magnesio_meta_li_2023:{"label":"Li et al. — Magnésio na nefrotoxicidade por cisplatina (metanálise, 2023)","url":"https://doi.org/10.1007/s10157-023-02386-2","journal":"Clinical and Experimental Nephrology","ano":2023,"tipo":"Metanálise","badge":"META","badgeColor":"#0ea5e9","impacto":"Magnésio associou-se a menor nefrotoxicidade por cisplatina (OR 0,22; IC95% 0,14–0,35), evidência retrospectiva","icon":"🔬","resumo":"Revisão sistemática (33 estudos) com metanálise de 11 estudos retrospectivos (Li et al., Clinical and Experimental Nephrology 2023) sobre suplementação de magnésio durante a hidratação para prevenir a nefrotoxicidade por cisplatina. A reposição de magnésio associou-se a proteção significativa (OR 0,22; IC95% 0,14–0,35). Registro PROSPERO CRD42020212682. Evidência derivada majoritariamente de estudos retrospectivos, com risco de viés.","conclusao":"A reposição de magnésio durante a hidratação associou-se a menor risco de nefrotoxicidade por cisplatina; benefício sugerido, com evidência predominantemente observacional e não confirmada por ensaios randomizados robustos.","curiosidade":""},
   contraste_esur_pcaki_2018:{"label":"ESUR — Lesão renal aguda pós-contraste (guideline, 2018)","url":"https://doi.org/10.1007/s00330-017-5247-4","journal":"European Radiology","ano":2018,"tipo":"Diretriz","badge":"GUIDELINE","badgeColor":"#6366f1","impacto":"Em DRC, hidratação reduz o risco; salina e bicarbonato equivalentes; nenhum fármaco reduz consistentemente","icon":"📋","resumo":"Diretriz atualizada do Comitê de Segurança de Meios de Contraste da European Society of Urogenital Radiology (van der Molen et al., European Radiology 2018, em duas partes), abrangendo contraste intravenoso e intra-arterial. Termo preferido: lesão renal aguda pós-contraste. O risco de LRA por contraste intravascular foi superestimado; principais fatores de risco são doença renal crônica e desidratação. Na doença renal crônica, a hidratação reduz o risco; salina isotônica intravenosa e bicarbonato de sódio intravenoso são igualmente eficazes; nenhum fármaco reduz consistentemente o risco. Suspender metformina a partir da administração do contraste se TFGe inferior a 30 mL/min/1,73m². Os esquemas de diálise não precisam ser alterados quando se administra contraste intravascular.","conclusao":"A expansão volêmica com salina isotônica é a base da prevenção da lesão renal aguda pós-contraste em pacientes de risco; o bicarbonato não é superior à salina e nenhum fármaco (incluindo N-acetilcisteína) reduz consistentemente o risco.","curiosidade":""},
+  acr_manual_iodinated_2026:{
+    label:"ACR Manual on Contrast Media (2026) — Contraste iodado e metformina",
+    url:"https://www.acr.org/Clinical-Resources/Clinical-Tools-and-Reference/Contrast-Manual",
+    journal:"American College of Radiology",
+    ano:2026,tipo:"Diretriz",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Sem LRA e com TFGe ≥30, metformina não precisa ser suspensa para contraste iodado intravenoso",
+    icon:"📋",
+    resumo:"Manual vigente do American College of Radiology sobre meios de contraste. No capítulo de metformina, pacientes sem evidência de LRA e com TFGe igual ou superior a 30 mL/min/1,73 m² não precisam interromper metformina antes ou depois de contraste iodado intravenoso, nem repetir obrigatoriamente a função renal apenas por essa exposição. Em LRA, TFGe inferior a 30 mL/min/1,73 m² ou certos estudos arteriais por cateter com risco de êmbolos renais, recomenda suspensão temporária no momento do procedimento e reavaliação após 48 horas.",
+    conclusao:"O contraste não interage diretamente com a metformina; o risco relevante é o acúmulo do fármaco se ocorrer LRA. A conduta depende de função renal, presença de LRA e via/procedimento.",
+    curiosidade:"A recomendação do ACR é menos conservadora que algumas bulas e políticas locais para TFGe entre 30 e 59, razão pela qual o contexto institucional deve ser explicitado em vez de apresentado como verdade universal."
+  },
+  acr_nkf_iodinated_2020:{
+    label:"ACR–NKF — Contraste iodado intravenoso na doença renal (2020)",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC7525144/",
+    journal:"Radiology. 2020;294(3):660-668",
+    ano:2020,tipo:"Consenso",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Distingue LRA associada de LRA induzida por contraste e restringe profilaxia rotineira a LRA ou TFGe <30",
+    icon:"📋",
+    resumo:"Declarações de consenso conjuntas do American College of Radiology e da National Kidney Foundation. Diferenciam LRA associada ao contraste, relação temporal sem atribuição causal, de LRA induzida por contraste, na qual o agente é considerado causa. O risco do contraste intravenoso moderno foi superestimado por estudos sem controles. Profilaxia com salina isotônica é indicada, na ausência de contraindicação, em LRA ou TFGe inferior a 30 mL/min/1,73 m² fora de diálise de manutenção; pode ser considerada individualmente em alto risco com TFGe de 30–44.",
+    conclusao:"Não se deve confundir temporalidade com causalidade nem cancelar automaticamente exame necessário. Quando profilaxia é indicada, salina isotônica é a estratégia preferida e o risco de congestão deve ser ponderado.",
+    curiosidade:"Uma das principais mudanças conceituais foi linguística: trocar 'nefropatia por contraste' por termos que separam associação de causalidade reduziu a impressão de que todo aumento de creatinina pós-TC foi provocado pelo exame."
+  },
+  scai_ciaki_qi_2025:{
+    label:"SCAI — Prevenção de LRA induzida por contraste no laboratório de hemodinâmica (2025)",
+    url:"https://www.scai.org/quality-improvement-tools/qi-tips/quality-initiatives-prevention-contrast-induced-acute-kidney-0",
+    journal:"Society for Cardiovascular Angiography & Interventions",
+    ano:2025,tipo:"Recomendação de qualidade",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Em angiografia/PCI, planejar volume de contraste pelo clearance de creatinina: razão <3 e idealmente <2",
+    icon:"📋",
+    resumo:"Recomendação de melhoria de qualidade da SCAI para angiografia coronária e intervenção coronária percutânea. Identifica o volume de contraste como variável modificável e orienta manter a razão volume de contraste/clearance de creatinina calculado abaixo de 3 e, idealmente, abaixo de 2. Recomenda registrar o limite no timeout e usar técnicas de economia de contraste, além de corrigir hipovolemia e outros fatores modificáveis. Também reafirma a ausência de benefício rotineiro de N-acetilcisteína e bicarbonato após o PRESERVE.",
+    conclusao:"A razão volume/clearance é ferramenta de planejamento específica do laboratório de hemodinâmica, não limiar universal para qualquer tomografia; deve reduzir exposição sem comprometer imagens essenciais.",
+    curiosidade:"A chamada PCI de ultrabaixo contraste usa razão volume/TFGe inferior a 1 e combina imagem intracoronária e fisiologia para realizar procedimentos complexos com poucos mililitros de contraste."
+  },
+  oxalate_nephropathy_review_2022:{
+    label:"Demoulin et al. — Hiperoxalúria e nefropatia por oxalato (AJKD 2022)",
+    url:"https://pubmed.ncbi.nlm.nih.gov/34508834/",
+    journal:"Am J Kidney Dis. 2022;79(5):717-727",
+    ano:2022,tipo:"Revisão",badge:"REVIEW",badgeColor:"#8b5cf6",
+    impacto:"Integra hiperoxalúria primária, entérica e por precursores como vitamina C à lesão tubular cristalina",
+    icon:"📖",
+    resumo:"Revisão sobre fisiopatologia e manejo da hiperoxalúria e da nefropatia por oxalato. Na hiperoxalúria entérica, má absorção de gordura sequestra cálcio intestinal, deixa oxalato solúvel para absorção colônica e aumenta sua excreção urinária. Cirurgia bariátrica disabsortiva, doença ileal e insuficiência pancreática são causas relevantes. Vitamina C em alta exposição é precursor metabólico de oxalato. A deposição de cristais de oxalato de cálcio produz obstrução, lesão tubular e inflamação intersticial, podendo se manifestar como LRA ou perda renal crônica.",
+    conclusao:"Cristais tubulares birrefringentes em paciente com má absorção ou alta carga de precursor devem suscitar nefropatia por oxalato; reconhecer a fonte é essencial para interromper exposição e reduzir absorção.",
+    curiosidade:"A mesma cirurgia que melhora diabetes e obesidade pode, quando causa má absorção relevante, criar um novo eixo de risco renal por hiperoxalúria entérica."
+  },
+  zovirax_fda_label_2019:{
+    label:"FDA — Zovirax (aciclovir) intravenoso, bula",
+    url:"https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/018603s030lbl.pdf",
+    journal:"U.S. Food and Drug Administration",
+    ano:2019,tipo:"Bula regulatória",badge:"LABEL",badgeColor:"#f59e0b",
+    impacto:"Infusão por pelo menos 1 hora, hidratação e ajuste renal reduzem precipitação tubular de aciclovir",
+    icon:"💊",
+    resumo:"Rotulagem do aciclovir intravenoso. Alerta que cristais podem precipitar nos túbulos quando a solubilidade do aciclovir é excedida ou quando o fármaco é administrado em bolus, causando dano tubular e insuficiência renal aguda. A função renal depende do estado de hidratação, da velocidade de infusão, de nefrotóxicos concomitantes e da função renal basal. A administração intravenosa deve ocorrer por pelo menos uma hora, acompanhada de hidratação adequada, com ajuste de dose pelo clearance de creatinina.",
+    conclusao:"Prevenção da nefropatia por aciclovir combina hidratação, infusão lenta e dose ajustada à função renal; bolus intravenoso deve ser evitado.",
+    curiosidade:"A solubilidade máxima do aciclovir livre a 37 °C é baixa, cerca de 2,5 mg/mL, explicando por que pico intratubular, fluxo urinário e velocidade de infusão importam."
+  },
+  elitek_fda_label_2016:{
+    label:"FDA — Elitek (rasburicase), bula",
+    url:"https://www.accessdata.fda.gov/drugsatfda_docs/label/2016/103946s5097lbl.pdf",
+    journal:"U.S. Food and Drug Administration",
+    ano:2016,tipo:"Bula regulatória",badge:"LABEL",badgeColor:"#f59e0b",
+    impacto:"Rasburicase reduz rapidamente ácido úrico existente; é contraindicada na deficiência de G6PD",
+    icon:"💊",
+    resumo:"Rotulagem da rasburicase para manejo inicial da hiperuricemia em pacientes com neoplasias sob risco de lise tumoral. A urato-oxidase recombinante converte ácido úrico em alantoína mais solúvel e reduz rapidamente a concentração plasmática, diferentemente do allopurinol, que reduz a formação de novo ácido úrico. A bula contém alerta para anafilaxia, hemólise e metemoglobinemia e contraindica o fármaco na deficiência de G6PD.",
+    conclusao:"Na hiperuricemia estabelecida da lise tumoral, rasburicase pode remover rapidamente a carga de urato, mas segurança exige excluir deficiência de G6PD quando aplicável e monitorar reações graves.",
+    curiosidade:"A reação que transforma ácido úrico em alantoína gera peróxido de hidrogênio; essa é a ligação bioquímica entre a eficácia da rasburicase e o risco de hemólise em deficiência de G6PD."
+  },
   gadolinio_acr_manual_2026:{"label":"ACR Manual on Contrast Media (2026) — FSN e agentes de gadolínio","url":"https://www.acr.org/Clinical-Resources/Clinical-Tools-and-Reference/Contrast-Manual","journal":"American College of Radiology","ano":2026,"tipo":"Diretriz","badge":"GUIDELINE","badgeColor":"#6366f1","impacto":"Grupo II preferido em DRC avançada, LRA e diálise; risco de FSN muito baixo; não iniciar ou alterar a diálise pelo exame","icon":"📋","resumo":"ACR Manual on Contrast Media, edição 2026 (capítulo Fibrose Sistêmica Nefrogênica, atualização de 2025, Tabela 1). Grupo I (gadodiamida, gadopentetato, gadoversetamida — maior número de casos de FSN; contraindicados em DRC avançada, LRA e diálise). Grupo II (gadobenato, gadobutrol, gadoterato, gadoteridol, gadopiclenol* e gadoxetato dissódico — poucos ou nenhum caso não confundido). O Grupo III está vazio ('nenhum agente', desde abril de 2024): gadoxetato e gadopiclenol foram reclassificados para o Grupo II no início de 2024, com o gadopiclenol em status provisório (Grupo II*). O Grupo II é fortemente preferido em pacientes de risco, com risco de FSN muito baixo independentemente da função renal ou do status de diálise. Em doença renal terminal em hemodiálise, recomenda-se realizar o exame o mais próximo possível de uma sessão regular, mas não se deve iniciar nem alterar o esquema de diálise (nem sessões diárias ou múltiplas por dia) apenas pela administração — recomendação conjunta com a National Kidney Foundation.","conclusao":"Em DRC avançada, LRA ou diálise, prefira um agente de gadolínio do Grupo II, cujo risco de FSN é muito baixo; não se deve iniciar, intensificar nem acrescentar sessões de diálise apenas para remover o gadolínio.","curiosidade":"A classificação de risco depende do quelato específico, não apenas da palavra “gadolínio”; tratar todos os agentes como equivalentes perpetua restrições baseadas nos antigos agentes lineares do Grupo I."},
   kdigo_bp_ckd_2021:{
     label:"KDIGO Blood Pressure in CKD 2021",

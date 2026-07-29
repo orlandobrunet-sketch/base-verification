@@ -1,0 +1,174 @@
+{
+  "batch": "FARM-16A",
+  "change_type": "medical_editorial",
+  "expected_version": "13.49",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-16A.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "1fd0fd0d": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "aef8aed3": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "59a06cf0": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "54f94df4": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "6a318009": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "54f94df4",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "e0a71d46": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "3e67777e": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "e1dbdb89": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "b0ddebc9": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "0b6377a2": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    }
+  },
+  "expected_question_delta": -1,
+  "refs_policy": "declared",
+  "references": {
+    "scai_ciaki_qi_2025": {
+      "action": "add_new",
+      "source": "SCAI quality initiative for contrast-induced AKI prevention"
+    },
+    "acr_manual_iodinated_2026": {
+      "action": "add_new",
+      "source": "Current ACR Manual on Contrast Media, metformin chapter"
+    },
+    "acr_nkf_iodinated_2020": {
+      "action": "add_new",
+      "source": "ACR-NKF consensus on intravenous iodinated contrast"
+    },
+    "preserve_study": {
+      "action": "reuse_existing",
+      "source": "PRESERVE randomized trial"
+    },
+    "oxalate_nephropathy_review_2022": {
+      "action": "add_new",
+      "source": "AJKD review of hyperoxaluria and oxalate nephropathy"
+    },
+    "zovirax_fda_label_2019": {
+      "action": "add_new",
+      "source": "FDA prescribing information for intravenous acyclovir"
+    },
+    "tumor_lysis_howard_nejm_2011": {
+      "action": "reuse_existing",
+      "source": "NEJM clinical review of tumor lysis syndrome"
+    },
+    "elitek_fda_label_2016": {
+      "action": "add_new",
+      "source": "FDA prescribing information for rasburicase"
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Nove questões foram reconstruídas com evidência verificada, pendência nenhuma e preservação de qid/FSRS.",
+    "6a318009 foi fundida em 54f94df4 por duplicar a mesma decisão clínica de profilaxia com solução isotônica em exposição a contraste iodado.",
+    "O Advogado do Recurso separou LRA associada de LRA induzida por contraste, restringiu a razão volume/função renal ao laboratório de hemodinâmica e removeu a suspensão automática de metformina com TFGe 40 sem LRA.",
+    "Todos os novos cards do Grimório contêm resumo, conclusão e curiosidade."
+  ]
+}
