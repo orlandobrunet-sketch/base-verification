@@ -1722,7 +1722,7 @@
         }
         
         const isDouble = (k === 'armor' || k === 'weapon') ? 'double' : 'relic';
-        return `<div class="slot-diablo ${isDouble} ${isEmpty ? 'filled starter' : 'filled'}" data-slot="${k}">
+        return `<div class="slot-diablo ${isDouble} ${isEmpty ? 'filled starter' : 'filled'}" data-slot="${k}" role="group" tabindex="0" aria-label="${escapeHtml(slotLabel)}">
           ${slotInnerHtml}
         </div>`;
       }).join('');
@@ -1774,6 +1774,10 @@
         }
       } else if(existingChampBadge) { existingChampBadge.remove(); }
       ui.heroImg.src=img; ui.heroImg.className=`portrait ${cls}`;
+      const loadoutShell = ui.heroImg.closest('.nql-loadout-shell');
+      if(loadoutShell) {
+        loadoutShell.dataset.character = characters[state.character] ? state.character : 'nephros';
+      }
       ui.storyTitle.textContent=chapter.title;
       ui.storyGoal.textContent=`Objetivo: ${chapter.goal}`;
       ui.level.textContent=state.level; ui.score.textContent=state.score;
@@ -2023,6 +2027,23 @@
       `;
     }
 
+    function setLumenEvidenceAvailable(isAvailable) {
+      const app = document.querySelector('#mainApp[data-nq-ui="lumen"]');
+      const isBoss = isBossBattle() ||
+                     document.body.classList.contains('boss-battle-mode') ||
+                     document.body.classList.contains('arqui-nefromante-final');
+      const cards = ui.refs.querySelector('.ref-cards');
+      if (!app || !cards) return;
+      if (isBoss) {
+        cards.inert = false;
+        cards.removeAttribute('aria-hidden');
+        return;
+      }
+      cards.inert = !isAvailable;
+      if (isAvailable) cards.removeAttribute('aria-hidden');
+      else cards.setAttribute('aria-hidden', 'true');
+    }
+
     function _copyRef(btn, text) {
       navigator.clipboard.writeText(text).then(() => {
         btn.innerHTML = '✓ copiado';
@@ -2120,6 +2141,8 @@
       _loadingNextQuestion = true;
       setTimeout(() => { _loadingNextQuestion = false; }, 400);
 
+      document.getElementById('mainApp')?.setAttribute('data-lumen-state', 'reasoning');
+
       // Envia a avaliação da questão anterior antes de carregar a próxima.
       flushPendingRating();
 
@@ -2139,6 +2162,7 @@
       ui.feedback.className = 'feedback';
       ui.feedback.textContent = 'Escolha a melhor alternativa clínica.';
       renderRefs(q.r);
+      setLumenEvidenceAvailable(false);
       ui.nextBtn.classList.add('hidden');
       ui.dockNextBtn?.classList.add('disabled');
       ui.bonusBtn.classList.add('hidden');
@@ -2547,6 +2571,8 @@
 
       const timeSpent = _questionStartTime > 0 ? Math.floor((Date.now() - _questionStartTime) / 1000) : 0;
       const isCorrect = i === state.current.a;
+      document.getElementById('mainApp')?.setAttribute('data-lumen-state', isCorrect ? 'mastery' : 'corruption');
+      setLumenEvidenceAvailable(true);
       
       // Tracking de estatísticas
       trackQuestionAnswer(state.current, isCorrect, timeSpent);
@@ -2622,6 +2648,16 @@
           const rect = btn.getBoundingClientRect();
           x = rect.left + rect.width / 2;
           y = rect.top + rect.height / 2;
+        }
+        // Na Câmara de Conduta, a recompensa volta ao Arsenal Hilar:
+        // o ganho clínico alimenta visualmente o personagem sem cobrir a resposta.
+        if (!isBossBattle() && window.innerWidth > 768) {
+          const loadout = document.querySelector('#mainApp[data-nq-ui="lumen"] .nql-loadout-shell');
+          if (loadout && typeof loadout.getBoundingClientRect === 'function') {
+            const rect = loadout.getBoundingClientRect();
+            x = rect.left + rect.width * .5;
+            y = rect.top + rect.height * .79;
+          }
         }
         showFloatingFeedback(`+${xp} XP  +${g}💰`, true, x, y);
 
@@ -4183,36 +4219,57 @@
           // Marcar para restaurar ao fechar
           leftPanel._arquiDrawerOpen = true;
         }
-        // Mover o panel.left para o body para escapar do stacking context do .app (display:none)
-        if (leftPanel.parentElement !== document.body) {
-          leftPanel._originalParent = leftPanel.parentElement;
-          leftPanel._originalNextSibling = leftPanel.nextSibling;
-          document.body.appendChild(leftPanel);
+        const lumenApp = leftPanel.closest('#mainApp[data-nq-ui="lumen"]');
+        const useLumenDrawer = !!lumenApp && !isArquiFinal && !document.body.classList.contains('boss-battle-mode');
+        if (useLumenDrawer) {
+          // Mantém o painel dentro da Câmara de Conduta para preservar o circuito
+          // visual; o overlay passa ao mesmo contexto de empilhamento.
+          leftPanel._lumenDrawerOpen = true;
+          if (overlay.parentElement !== lumenApp) {
+            overlay._lumenOriginalParent = overlay.parentElement;
+            overlay._lumenOriginalNextSibling = overlay.nextSibling;
+            lumenApp.appendChild(overlay);
+          }
+          leftPanel.style.cssText = '';
+        } else {
+          // Boss e telas legadas ainda precisam escapar do stacking context do app.
+          if (leftPanel.parentElement !== document.body) {
+            leftPanel._originalParent = leftPanel.parentElement;
+            leftPanel._originalNextSibling = leftPanel.nextSibling;
+            document.body.appendChild(leftPanel);
+          }
+          leftPanel.style.cssText = [
+            'position: fixed',
+            'top: 0',
+            'left: 0',
+            'width: 100vw',
+            'height: 100vh',
+            'z-index: 9600',
+            'overflow-y: auto',
+            'border-radius: 0',
+            'padding-bottom: 160px',
+            'background: linear-gradient(180deg, #1e3a5f 0%, #162d4a 50%, #0f2035 100%)',
+            'border: 2px solid #3a6a9a',
+            'transform: translateX(0)',
+            'display: block'
+          ].join(';');
         }
-        // Aplicar estilos inline para garantir visibilidade independente do media query
-        leftPanel.style.cssText = [
-          'position: fixed',
-          'top: 0',
-          'left: 0',
-          'width: 100vw',
-          'height: 100vh',
-          'z-index: 9600',
-          'overflow-y: auto',
-          'border-radius: 0',
-          'padding-bottom: 160px',
-          'background: linear-gradient(180deg, #1e3a5f 0%, #162d4a 50%, #0f2035 100%)',
-          'border: 2px solid #3a6a9a',
-          'transform: translateX(0)',
-          'display: block'
-        ].join(';');
         leftPanel.classList.add('mobile-open');
         overlay.classList.add('active');
         document.body.style.overflow = 'hidden';
-        if (!leftPanel.querySelector('.drawer-close-btn')) {
-          const closeBtn = document.createElement('button');
+        let closeBtn = leftPanel.querySelector('.drawer-close-btn');
+        if (!closeBtn) {
+          closeBtn = document.createElement('button');
           closeBtn.className = 'drawer-close-btn';
-          closeBtn.innerHTML = '&#10005; Fechar';
           closeBtn.onclick = closeDrawer;
+        }
+        closeBtn.innerHTML = useLumenDrawer ? '&#10005;' : '&#10005; Fechar';
+        closeBtn.setAttribute('aria-label', 'Fechar painel do herói');
+        closeBtn.title = 'Fechar';
+        if (useLumenDrawer) {
+          closeBtn.style.cssText = '';
+          leftPanel.insertBefore(closeBtn, leftPanel.firstChild);
+        } else {
           closeBtn.style.cssText = 'display:inline-flex!important;width:auto!important;padding:7px 18px!important;background:rgba(255,215,0,0.10)!important;border:1px solid rgba(255,215,0,0.30)!important;border-radius:8px!important;color:#ffd700!important;font-size:0.65rem!important;font-weight:700!important;cursor:pointer!important;text-transform:uppercase!important;letter-spacing:1px!important;margin:12px 16px 20px!important;align-self:flex-start!important;';
           leftPanel.appendChild(closeBtn);
         }
@@ -4232,6 +4289,18 @@
           }
           leftPanel._originalParent = null;
           leftPanel._originalNextSibling = null;
+        }
+        if (leftPanel._lumenDrawerOpen) {
+          leftPanel._lumenDrawerOpen = false;
+          if (overlay._lumenOriginalParent) {
+            if (overlay._lumenOriginalNextSibling) {
+              overlay._lumenOriginalParent.insertBefore(overlay, overlay._lumenOriginalNextSibling);
+            } else {
+              overlay._lumenOriginalParent.appendChild(overlay);
+            }
+            overlay._lumenOriginalParent = null;
+            overlay._lumenOriginalNextSibling = null;
+          }
         }
         // Restaurar estado do boss mode: remover estilos inline e deixar CSS tomar conta
         if (leftPanel._arquiDrawerOpen) {

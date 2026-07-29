@@ -67,7 +67,7 @@
     if (typeof Sentry !== 'undefined') {
       Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@13.49',
+          release: 'nefroquest@14.00',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -127,6 +127,7 @@
   <link rel="stylesheet" href="styles/lumen/motion.css?v=13.20">
   <link rel="stylesheet" href="styles/lumen/portal.css?v=13.24">
   <link rel="stylesheet" href="styles/lumen/atrium.css?v=13.44">
+  <link rel="stylesheet" href="styles/lumen/game.css?v=14.00">
   <script>
     // Version beacon — detecta nova versão sem interromper a navegação
     (function() {
@@ -370,7 +371,7 @@
         <span>Para aprender, revisar e se manter atualizado em nefrologia.</span>
         <span class="nql-portal__footer-meta">
           <button type="button" data-action="showPrivacyPolicy">Privacidade</button>
-          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v13.49</button>
+          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v14.00</button>
         </span>
       </footer>
     </section>
@@ -677,7 +678,7 @@
     <footer class="lnd-footer">
       <span>nefroquest.com</span>
       <span class="lnd-footer-sep">·</span>
-      <span id="landingVersionLabel" class="version-label-dynamic" style="cursor:pointer;" role="button" tabindex="0" aria-label="Ver novidades da versão" data-action="showChangelog">v11.45</span>
+      <span id="landingVersionLabel" class="version-label-dynamic" style="cursor:pointer;" role="button" tabindex="0" aria-label="Ver novidades da versão" data-action="showChangelog">v14.00</span>
       <span class="lnd-footer-sep">·</span>
       <span style="cursor:pointer;text-decoration:underline;" class="lnd-footer-link" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span>
     </footer>
@@ -865,7 +866,7 @@
 
       <footer class="nql-atrium__footer">
         <span>Prática que se transforma em domínio clínico.</span>
-        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v13.49</button></span>
+        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v14.00</button></span>
       </footer>
     </section>
     <div class="welcome-bg" aria-hidden="true"></div>
@@ -873,13 +874,15 @@
     <div class="welcome-particles" id="welcomeParticles" aria-hidden="true"></div>
   </div>
 
-  <main class="app hidden" id="mainApp">
+  <main class="app hidden" id="mainApp" data-nq-ui="lumen" data-lumen-state="reasoning">
     <!-- Title -->
     <div class="game-title">
       <!-- Boss battle title (shown when correctTotal >= 90) -->
       <div id="bossTitleBar">&#9760; Confronto Final: Arqui-Nefromante &#9760;</div>
-      <h1>NefroQuest</h1>
-      <div class="subtitle">— Ascension —</div>
+      <div class="nql-game-brand" aria-label="NefroQuest">
+        <h1><span>Nefro</span><em>Quest</em></h1>
+        <div class="subtitle">Atlas NQ · Câmara de Conduta</div>
+      </div>
       <!-- Medidor de estrelas do boss — aparece no topo em boss mode -->
       <div id="finalMeterStarsTop" style="display:none;justify-content:center;gap:6px;align-items:center;padding:4px 0 2px;"></div>
       <!-- Sound controls estáticos dentro do título (PC only) -->
@@ -929,22 +932,36 @@
         <div class="boss-party-motto">A vitória é nossa!</div>
       </div>
 
-      <div class="hero">
-        <div class="hero-wrap">
-          <div class="portrait-frame" data-action="showHeroLore" style="cursor:pointer;" title="Ver história do personagem">
-            <img id="heroImg" class="portrait" src="assets/classes/clerigo_renal/nivel_01.jpg" width="233" height="243" alt="Herói" loading="lazy" />
-          </div>
-          <div class="hero-info">
-            <div id="heroClass" class="class">Noviço da Filtração</div>
-            <div id="heroTitle" class="hero-title">O Iniciante das Águas</div>
-            <div id="heroName" class="hero-name"></div>
-            <div class="xp-bar"><div id="xpFill"></div></div>
-            <small id="xpTxt" class="xp-text">XP 0 / 120</small>
-            <small id="questionCounterTxt" class="xp-text" style="opacity:0.65;font-size:0.68rem;">0/1032</small>
+      <div class="nql-loadout-shell" aria-label="Vínculos do Guardião: personagem e equipamentos">
+        <p class="nql-loadout-kicker">Vínculos do Guardião</p>
+        <svg class="nql-loadout-circuit" viewBox="0 0 320 380" preserveAspectRatio="none" aria-hidden="true">
+          <path class="nql-loadout-cortex" d="M183 31C244 20 290 61 289 121c-1 55-35 78-54 111-18 32-22 76-61 99-44 26-105 3-127-43-23-48-7-93 17-126 25-34 23-76 55-105 19-18 40-24 64-26Z"/>
+          <path class="nql-loadout-branch" d="M278 119V309C246 309 236 323 210 333C174 348 130 342 104 348H42V168C66 168 80 157 98 139C130 107 180 107 214 132C236 148 250 217 278 217V119Z"/>
+          <path class="nql-loadout-hilum" d="M278 119V309C246 309 236 323 210 333C174 348 130 342 104 348H42V168C66 168 80 157 98 139C130 107 180 107 214 132C236 148 250 217 278 217V119Z"/>
+          <path class="nql-loadout-pulse" d="M278 119V309C246 309 236 323 210 333C174 348 130 342 104 348H42V168C66 168 80 157 98 139C130 107 180 107 214 132C236 148 250 217 278 217V119Z"/>
+        </svg>
+
+        <div class="hero">
+          <div class="hero-wrap">
+            <div class="portrait-frame" data-action="showHeroLore" style="cursor:pointer;" title="Ver história do personagem">
+              <img id="heroImg" class="portrait" src="assets/classes/clerigo_renal/nivel_01.jpg" width="233" height="243" alt="Herói" loading="lazy" />
+            </div>
+            <div class="hero-info">
+              <div id="heroClass" class="class">Noviço da Filtração</div>
+              <div id="heroTitle" class="hero-title">O Iniciante das Águas</div>
+              <div id="heroName" class="hero-name"></div>
+              <div class="xp-bar"><div id="xpFill"></div></div>
+              <small id="xpTxt" class="xp-text">XP 0 / 120</small>
+              <small id="questionCounterTxt" class="xp-text" style="opacity:0.65;font-size:0.68rem;">0/1032</small>
+            </div>
           </div>
         </div>
-      </div>
 
+        <div class="equip">
+          <h3>Equipamentos</h3>
+          <div id="equipList"></div>
+        </div>
+      </div>
 
 
       <div class="hud">
@@ -965,12 +982,7 @@
       <!-- BOSS MODE: narrative box — aparece entre HUD e equipamento -->
       <div id="bossNarrativeBox" style="display:none;"></div>
 
-      <div class="equip">
-        <h3>Equipamentos</h3>
-        <div id="equipList"></div>
-      </div>
-
-      <div class="log"><h3>Jornada</h3><div id="journal"></div></div>
+      <div class="log" role="log" aria-label="Registro da jornada" tabindex="0"><h3>Jornada</h3><div id="journal"></div></div>
 
       <!-- BOSS MODE: battle log (substitui Jornada) -->
       <div id="bossLogSection" style="display:none;">
@@ -1132,6 +1144,10 @@
       </div>
 
       <div class="qbox">
+        <div class="nql-question-meta" aria-hidden="true">
+          <span>Decisão clínica</span>
+          <span>Analise · decida · consolide</span>
+        </div>
         <!-- CRONÔMETRO -->
         <div id="timerWidget">
           <button type="button" id="timerPlayPause" title="Play/Pause cronômetro" data-action="timerToggle">
@@ -1149,6 +1165,7 @@
         </div>
       </div>
       <div id="options" class="options"></div>
+      <div class="nql-feedback-kicker" aria-hidden="true">Veredito clínico</div>
       <div id="feedback" class="feedback" aria-live="polite" aria-atomic="true">Escolha a melhor resposta.</div>
       <div id="refs" class="refs"></div>
       <div class="ctrl">
@@ -1264,7 +1281,7 @@
       <p>
         <a href="https://nefroquest.com">nefroquest.com</a>
         &nbsp;•&nbsp;
-        <span class="version-label-dynamic" style="color:var(--gold);cursor:pointer;" data-action="showChangelog">v11.45</span>
+        <span class="version-label-dynamic" style="color:var(--gold);cursor:pointer;" data-action="showChangelog">v14.00</span>
         &nbsp;•&nbsp;
         <span style="cursor:pointer;text-decoration:underline;" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span>
       </p>
@@ -1678,7 +1695,7 @@
   <script defer src="js/audio.js?v=11.90"></script>
   <script defer src="js/leaderboard.js?v=11.90"></script>
   <script defer src="js/study-mode.js?v=11.90"></script>
-  <script defer src="js/game.js?v=13.44"></script>
+  <script defer src="js/game.js?v=14.00"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
   <script defer src="js/auth.js?v=13.44"></script>

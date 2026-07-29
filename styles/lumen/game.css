@@ -1,0 +1,1767 @@
+/*
+ * NefroQuest — Câmara de Conduta / Lúmen Vivo
+ *
+ * Redesign visual da jornada normal. O Confronto Final preserva a direção
+ * própria existente e fica explicitamente fora deste escopo.
+ */
+
+/* Novos nós são opt-in: no Confronto Final permanecem totalmente ausentes. */
+.nql-loadout-kicker,
+.nql-loadout-circuit,
+.nql-question-meta,
+.nql-feedback-kicker {
+  display: none;
+}
+
+body:has(#mainApp[data-nq-ui="lumen"]:not(.hidden)):not(.boss-battle-mode):not(.arqui-nefromante-final) {
+  --nql-abyss: #070a13;
+  --nql-abyss-rgb: 7, 10, 19;
+  --nql-cortex-rgb: 17, 26, 46;
+  --nql-lumen: #91dfe3;
+  --nql-lumen-rgb: 145, 223, 227;
+  --nql-line: rgba(145, 223, 227, .14);
+
+  background: #070a13;
+  color: var(--nql-text);
+  font-family: var(--nql-font-body);
+}
+
+body:has(#mainApp[data-nq-ui="lumen"]:not(.hidden)):not(.boss-battle-mode):not(.arqui-nefromante-final) .bg-layer {
+  background:
+    linear-gradient(180deg, rgba(5, 8, 18, .12), rgba(5, 8, 18, .34) 54%, rgba(5, 8, 18, .82) 100%),
+    radial-gradient(circle at 51% 17%, rgba(145, 223, 227, .08), transparent 28rem),
+    url("../../assets/nefroquest_background.jpg") center top / cover no-repeat;
+  filter: saturate(1.16) brightness(.7) contrast(1.04);
+}
+
+body:has(#mainApp[data-nq-ui="lumen"]:not(.hidden)):not(.boss-battle-mode):not(.arqui-nefromante-final) .bg-overlay {
+  background:
+    linear-gradient(90deg, rgba(3, 5, 12, .5), rgba(3, 5, 12, .12) 22%, rgba(3, 5, 12, .12) 76%, rgba(3, 5, 12, .56)),
+    radial-gradient(circle at 52% 16%, rgba(189, 145, 218, .09), transparent 26rem),
+    radial-gradient(ellipse at center, transparent 14%, rgba(3, 5, 12, .44) 100%);
+}
+
+body:has(#mainApp[data-nq-ui="lumen"]:not(.hidden)):not(.boss-battle-mode):not(.arqui-nefromante-final) .particles {
+  display: block;
+  opacity: .3;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] {
+  --nql-game-rail: clamp(19rem, 22vw, 22rem);
+  --nql-game-dock: 5.35rem;
+  --nql-clinical-black: rgba(4, 7, 14, .94);
+  --nql-choice-black: rgba(5, 8, 16, .95);
+  --nql-hud-black: rgba(3, 5, 11, .9);
+  --nql-reference-black: rgba(8, 12, 22, .94);
+
+  width: min(100%, 118rem);
+  max-width: none;
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding: 0 clamp(.85rem, 1.8vw, 2rem) 2rem;
+  grid-template-columns: var(--nql-game-rail) minmax(0, 1fr) var(--nql-game-dock);
+  gap: clamp(1rem, 1.7vw, 1.8rem);
+  align-content: start;
+  color: var(--nql-text);
+  font-family: var(--nql-font-body);
+}
+
+/* ── Cabeçalho ─────────────────────────────────────────────────── */
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .game-title {
+  grid-column: 1 / -1;
+  min-height: 4.75rem;
+  padding: .75rem 0;
+  border-bottom: 1px solid var(--nql-line);
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: left;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-game-brand {
+  display: flex;
+  min-width: 0;
+  align-items: baseline;
+  gap: 1.25rem;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .game-title h1 {
+  margin: 0;
+  color: var(--nql-parchment);
+  font-family: var(--nql-font-display);
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: -.02em;
+  line-height: 1;
+  background: none;
+  filter: none;
+  -webkit-text-fill-color: currentColor;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .game-title h1 em {
+  color: var(--nql-mastery);
+  font-weight: 700;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .game-title .subtitle {
+  color: var(--nql-lumen);
+  font-family: var(--nql-font-instrument);
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  opacity: .86;
+  text-transform: uppercase;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .sound-controls {
+  right: 0;
+  gap: .5rem;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .sound-toggle,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .profile-btn {
+  border-color: var(--nql-line);
+  border-radius: var(--nql-radius-control);
+  background: rgba(var(--nql-cortex-rgb), .5);
+  box-shadow: none;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .sound-toggle:hover,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .profile-btn:hover {
+  border-color: var(--nql-control-border);
+  background: rgba(var(--nql-lumen-rgb), .055);
+  box-shadow: var(--nql-shadow-focus);
+}
+
+/* ── Estrutura dos painéis ─────────────────────────────────────── */
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .panel {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .panel::before,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .panel::after {
+  display: none;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .panel.left {
+  position: relative;
+  padding: .35rem 1.25rem 1.5rem 0;
+  border-right: 1px solid var(--nql-line);
+  box-shadow: none;
+}
+
+/* O Lúmen deixa o Arsenal Hilar e entra no campo de decisão. */
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .panel.left::after {
+  content: "";
+  position: absolute;
+  top: 12rem;
+  right: calc(-1 * clamp(1rem, 1.7vw, 1.8rem));
+  display: block;
+  width: clamp(1rem, 1.7vw, 1.8rem);
+  height: 1px;
+  background: linear-gradient(90deg, rgba(var(--nql-lumen-rgb), .72), rgba(var(--nql-lumen-rgb), .18));
+  box-shadow: 0 0 .7rem rgba(var(--nql-lumen-rgb), .2);
+  pointer-events: none;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .panel.right {
+  padding: .35rem 0 1.5rem;
+}
+
+/* ── Assinatura: Arsenal Hilar ─────────────────────────────────── */
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-loadout-shell {
+  --nql-loadout-inset: clamp(.75rem, 4.2%, 1rem);
+  --nql-hero-primary: #69bde7;
+  --nql-hero-primary-rgb: 105, 189, 231;
+  --nql-hero-secondary: #89a9c2;
+  --nql-hero-secondary-rgb: 137, 169, 194;
+
+  position: relative;
+  isolation: isolate;
+  min-height: 30rem;
+  margin: 0 0 1rem;
+  border: 1px solid rgba(var(--nql-hero-primary-rgb), .3);
+  border-radius: var(--nql-radius-panel);
+  background:
+    radial-gradient(circle at 50% 34%, rgba(var(--nql-hero-secondary-rgb), .12), transparent 8rem),
+    radial-gradient(circle at 50% 44%, rgba(var(--nql-hero-primary-rgb), .12), transparent 11rem),
+    linear-gradient(180deg, rgba(var(--nql-cortex-rgb), .78), rgba(var(--nql-abyss-rgb), .62));
+  box-shadow:
+    inset 0 1px 0 rgba(var(--nql-parchment-rgb), .035),
+    0 0 2.8rem rgba(var(--nql-hero-secondary-rgb), .075);
+  overflow: hidden;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-loadout-shell[data-character="nephros"] {
+  --nql-hero-primary: #e2c16f;
+  --nql-hero-primary-rgb: 226, 193, 111;
+  --nql-hero-secondary: #c77742;
+  --nql-hero-secondary-rgb: 199, 119, 66;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-loadout-shell[data-character="aquaria"] {
+  --nql-hero-primary: #72d9f2;
+  --nql-hero-primary-rgb: 114, 217, 242;
+  --nql-hero-secondary: #5277d8;
+  --nql-hero-secondary-rgb: 82, 119, 216;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-loadout-shell[data-character="glomerulus"] {
+  --nql-hero-primary: #69bde7;
+  --nql-hero-primary-rgb: 105, 189, 231;
+  --nql-hero-secondary: #89a9c2;
+  --nql-hero-secondary-rgb: 137, 169, 194;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-loadout-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(var(--nql-hero-primary-rgb), .025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--nql-hero-primary-rgb), .025) 1px, transparent 1px);
+  background-size: 2rem 2rem;
+  mask-image: linear-gradient(to bottom, #000, transparent 82%);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-loadout-kicker {
+  position: absolute;
+  top: .85rem;
+  left: 50%;
+  z-index: 5;
+  display: flex;
+  margin: 0;
+  align-items: center;
+  gap: .55rem;
+  color: var(--nql-hero-primary);
+  font-family: var(--nql-font-instrument);
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-loadout-kicker::before,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-loadout-kicker::after {
+  content: "";
+  display: block;
+  width: 1.6rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--nql-hero-primary));
+  opacity: .72;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-loadout-kicker::after {
+  background: linear-gradient(90deg, var(--nql-hero-primary), transparent);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-loadout-circuit {
+  position: absolute;
+  top: 2.15rem;
+  left: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 23.75rem;
+  overflow: visible;
+  pointer-events: none;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-loadout-cortex,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-loadout-branch,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-loadout-hilum,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-loadout-pulse {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-loadout-cortex {
+  stroke: rgba(var(--nql-hero-primary-rgb), .2);
+  stroke-width: 1;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-loadout-hilum {
+  stroke: rgba(var(--nql-hero-primary-rgb), .14);
+  stroke-width: 1;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-loadout-branch {
+  stroke: rgba(var(--nql-hero-primary-rgb), .32);
+  stroke-width: 1;
+  stroke-dasharray: 4 7;
+  animation: nql-equipment-circuit 6.5s linear infinite;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-loadout-pulse {
+  stroke: var(--nql-hero-secondary);
+  stroke-width: 2;
+  stroke-dasharray: 7 72;
+  filter: drop-shadow(0 0 .35rem rgba(var(--nql-hero-secondary-rgb), .72));
+  animation: nql-game-flow 3.6s linear infinite;
+}
+
+@keyframes nql-game-flow {
+  to { stroke-dashoffset: -79; }
+}
+
+@keyframes nql-equipment-circuit {
+  to { stroke-dashoffset: -132; }
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .hero {
+  position: absolute;
+  top: 2.75rem;
+  left: 50%;
+  z-index: 2;
+  width: 11.25rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  transform: translateX(-50%);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .hero-wrap {
+  flex-direction: column;
+  gap: .7rem;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .portrait-frame {
+  width: 9.5rem;
+  height: 11.25rem;
+  border-radius: 46% 46% 1.2rem 1.2rem / 38% 38% 1.2rem 1.2rem;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(var(--nql-hero-primary-rgb), .58),
+    0 0 1.8rem rgba(var(--nql-hero-primary-rgb), .2),
+    0 0 3.5rem rgba(var(--nql-hero-secondary-rgb), .11);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .portrait-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(var(--nql-hero-primary-rgb), .42);
+  border-radius: inherit;
+  box-shadow:
+    inset 0 0 2.2rem rgba(var(--nql-abyss-rgb), .7),
+    0 0 1.8rem rgba(var(--nql-hero-primary-rgb), .1);
+  pointer-events: none;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .portrait {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: inherit;
+  box-shadow: none;
+  object-position: center 16%;
+  filter: saturate(1.08) contrast(1.07);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .hero-info {
+  order: -1;
+  width: 100%;
+  min-width: 0;
+  min-height: 4.65rem;
+  padding-inline: .15rem;
+  text-align: center;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .class {
+  color: var(--nql-parchment);
+  font-family: var(--nql-font-display);
+  font-size: .94rem;
+  font-weight: 600;
+  line-height: 1.05;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .hero-title {
+  margin-top: .25rem;
+  color: var(--nql-text-muted);
+  font-family: var(--nql-font-body);
+  font-size: .68rem;
+  font-style: normal;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .hero-name {
+  color: var(--nql-text-soft);
+  font-family: var(--nql-font-instrument);
+  font-size: .62rem;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .xp-bar {
+  height: 3px;
+  margin-top: .55rem;
+  border: 0;
+  background: rgba(var(--nql-hero-primary-rgb), .12);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .xp-bar > div {
+  background: linear-gradient(90deg, var(--nql-hero-secondary), var(--nql-hero-primary));
+  box-shadow: 0 0 .65rem rgba(var(--nql-hero-primary-rgb), .34);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .xp-text {
+  color: var(--nql-text-muted);
+  font-family: var(--nql-font-instrument);
+  font-size: .58rem;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .equip {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  pointer-events: none;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .equip h3 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #equipList {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .equip-grid-row {
+  position: absolute !important;
+  inset: 2.15rem 0 auto !important;
+  display: block !important;
+  width: 100% !important;
+  max-width: none !important;
+  height: 23.75rem !important;
+  margin: 0 !important;
+  pointer-events: none;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo {
+  position: absolute !important;
+  display: block !important;
+  width: clamp(3.25rem, 17%, 3.55rem) !important;
+  height: auto !important;
+  min-width: 3.25rem !important;
+  min-height: 0 !important;
+  aspect-ratio: 1;
+  border: 0 !important;
+  border-radius: .45rem !important;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(var(--nql-corruption-strong-rgb), .14), transparent 72%),
+    rgba(var(--nql-cortex-rgb), .94) !important;
+  box-shadow:
+    0 0 0 1px rgba(var(--nql-lumen-rgb), .32),
+    0 0 .85rem rgba(var(--nql-lumen-rgb), .075) !important;
+  overflow: visible !important;
+  pointer-events: auto;
+  cursor: help;
+  transition:
+    transform var(--nql-duration-fast) var(--nql-ease-state),
+    box-shadow var(--nql-duration-fast) var(--nql-ease-state) !important;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo:hover,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo:focus-visible {
+  z-index: 8;
+  transform: translateY(-2px);
+  outline: none;
+  box-shadow:
+    0 0 0 1px var(--nql-lumen),
+    0 0 1.25rem rgba(var(--nql-lumen-rgb), .24) !important;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo::after {
+  content: none !important;
+  display: none;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo[data-slot="helmet"] {
+  top: 5.65rem !important;
+  right: var(--nql-loadout-inset) !important;
+  left: auto !important;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo[data-slot="helmet"]::after { content: "capacete"; }
+
+/* Os dois slots axiais recebem plaquetas internas: preservam a órbita sem
+   disputar espaço com o retrato, a barra de XP ou o painel de atributos. */
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo[data-slot="helmet"]::after,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo[data-slot="boot"]::after {
+  left: .2rem;
+  width: calc(100% - .4rem);
+  padding: .14rem .05rem .11rem;
+  border: 1px solid rgba(var(--nql-lumen-rgb), .18);
+  border-radius: .18rem;
+  background: rgba(var(--nql-abyss-rgb), .88);
+  color: var(--nql-text-soft);
+  font-size: .48rem;
+  letter-spacing: .045em;
+  line-height: 1;
+  text-align: center;
+  text-shadow: 0 1px .3rem rgba(var(--nql-abyss-rgb), .95);
+  transform: none;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo[data-slot="helmet"]::after {
+  top: auto;
+  bottom: .18rem;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo[data-slot="glove"] {
+  top: 8.72rem !important;
+  left: var(--nql-loadout-inset) !important;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo[data-slot="glove"]::after { content: "luva"; }
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo[data-slot="armor"] {
+  top: 14.48rem !important;
+  left: var(--nql-loadout-inset) !important;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo[data-slot="armor"]::after { content: "armadura"; }
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo[data-slot="weapon"] {
+  top: 11.77rem !important;
+  right: var(--nql-loadout-inset) !important;
+  left: auto !important;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo[data-slot="weapon"]::after { content: "arma"; }
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo[data-slot="relic"] {
+  top: 17.53rem !important;
+  right: var(--nql-loadout-inset) !important;
+  left: auto !important;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo[data-slot="relic"]::after { content: "relíquia"; }
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo[data-slot="boot"] {
+  top: 19.98rem !important;
+  left: var(--nql-loadout-inset) !important;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo[data-slot="boot"]::after { content: "botas"; }
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo[data-slot="boot"]::after {
+  top: .18rem;
+  bottom: auto;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo-filled {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: .45rem !important;
+  overflow: hidden;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo-icon,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo[data-slot="armor"] .slot-diablo-icon,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo[data-slot="weapon"] .slot-diablo-icon {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: .4rem !important;
+  object-fit: cover !important;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo.starter .slot-diablo-icon {
+  opacity: .84 !important;
+  filter: saturate(.98) contrast(1.05) !important;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo-filled.rar-border-common {
+  border-color: rgba(170, 183, 201, .45) !important;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo-filled.rar-border-rare {
+  border-color: var(--nql-lumen) !important;
+  box-shadow: inset 0 0 .75rem rgba(var(--nql-lumen-rgb), .16) !important;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo-filled.rar-border-epic {
+  border-color: var(--nql-corruption-strong) !important;
+  box-shadow: inset 0 0 .75rem rgba(var(--nql-corruption-strong-rgb), .16) !important;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo-filled.rar-border-legendary {
+  border-color: var(--nql-mastery) !important;
+  box-shadow: inset 0 0 .9rem rgba(var(--nql-mastery-rgb), .2) !important;
+  animation: nql-game-slot-mastery 2.8s ease-in-out infinite alternate !important;
+}
+
+@keyframes nql-game-slot-mastery {
+  to { box-shadow: inset 0 0 1rem rgba(var(--nql-mastery-rgb), .28), 0 0 .75rem rgba(var(--nql-mastery-rgb), .18); }
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .equip-total-attributes {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  display: flex;
+  min-height: 2.5rem;
+  margin: 0 !important;
+  padding: .45rem .65rem !important;
+  border: 1px solid var(--nql-line) !important;
+  border-radius: var(--nql-radius-control) !important;
+  align-items: center;
+  justify-content: center;
+  gap: .35rem;
+  background: rgba(var(--nql-abyss-rgb), .66) !important;
+  color: var(--nql-text-soft) !important;
+  font-family: var(--nql-font-instrument);
+  font-size: .62rem !important;
+  pointer-events: auto;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .equip-total-attributes strong {
+  color: var(--nql-text-muted) !important;
+  font-weight: 500;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .equip-total-attributes .stat-badge {
+  min-width: 2.1rem;
+  padding: .2rem .3rem;
+  border-radius: .2rem;
+  background: rgba(var(--nql-raised-rgb), .72);
+  text-align: center;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .equip-stun-overlay {
+  inset: 3.5rem .75rem 3.8rem;
+  z-index: 12;
+  border: 1px solid rgba(var(--nql-danger-rgb), .45);
+  border-radius: var(--nql-radius-panel);
+  background: rgba(var(--nql-abyss-rgb), .9);
+  color: var(--nql-danger);
+  font-family: var(--nql-font-body);
+  pointer-events: auto;
+}
+
+/* ── HUD, narrativa e diário ───────────────────────────────────── */
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .hud {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin: 0 0 1rem;
+  border: 1px solid rgba(var(--nql-lumen-rgb), .15);
+  border-radius: var(--nql-radius-control);
+  background:
+    radial-gradient(circle at 88% 0%, rgba(var(--nql-corruption-strong-rgb), .065), transparent 9rem),
+    linear-gradient(90deg, rgba(var(--nql-lumen-rgb), .035), transparent 48%, rgba(var(--nql-mastery-rgb), .025)),
+    var(--nql-hud-black);
+  box-shadow:
+    inset 0 1px 0 rgba(var(--nql-parchment-rgb), .02),
+    0 .5rem 1.5rem rgba(0, 0, 0, .18);
+  overflow: hidden;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .tile {
+  min-height: 4.25rem;
+  padding: .8rem .25rem;
+  border: 0;
+  border-right: 1px solid var(--nql-line);
+  border-radius: 0;
+  background: transparent;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .tile:nth-child(3n) {
+  border-right: 0;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .tile span {
+  color: var(--nql-text-muted);
+  font-family: var(--nql-font-instrument);
+  font-size: .55rem;
+  letter-spacing: .12em;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .tile strong {
+  color: var(--nql-parchment);
+  font-family: var(--nql-font-display);
+  font-size: 1.18rem;
+  font-variant-numeric: tabular-nums;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .tile:nth-child(1) strong,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .tile:nth-child(4) strong {
+  color: var(--nql-lumen);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .tile:nth-child(3) strong {
+  color: var(--nql-danger);
+  text-shadow: 0 0 .75rem rgba(var(--nql-danger-rgb), .24);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .tile:nth-child(5) strong {
+  color: var(--nql-mastery);
+  text-shadow: 0 0 .75rem rgba(var(--nql-mastery-rgb), .22);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .tile:nth-child(6) strong {
+  color: var(--nql-corruption-strong);
+  text-shadow: 0 0 .75rem rgba(var(--nql-corruption-strong-rgb), .2);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .story,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .log {
+  margin: 0;
+  padding: 1rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--nql-line);
+  border-radius: 0;
+  background: transparent;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .story h3,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .log h3 {
+  margin-bottom: .55rem;
+  color: var(--nql-lumen);
+  font-family: var(--nql-font-instrument);
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .story h3 {
+  color: var(--nql-mastery);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .story p,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .log p {
+  margin: 0 0 .4rem;
+  padding: 0;
+  border: 0;
+  color: var(--nql-text-soft);
+  font-family: var(--nql-font-body);
+  font-size: .78rem;
+  line-height: 1.45;
+}
+
+/* ── Palco da decisão clínica ──────────────────────────────────── */
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .qbox {
+  min-height: 12rem;
+  margin: 0;
+  padding: 4rem clamp(1.25rem, 3vw, 3rem) 2.1rem;
+  border: 1px solid rgba(var(--nql-lumen-rgb), .27);
+  border-radius: var(--nql-radius-panel) var(--nql-radius-panel) 0 0;
+  background:
+    linear-gradient(90deg, var(--nql-lumen), var(--nql-corruption-strong) 56%, var(--nql-mastery)) top / 100% 1px no-repeat,
+    radial-gradient(circle at 78% 0%, rgba(var(--nql-corruption-strong-rgb), .09), transparent 21rem),
+    linear-gradient(105deg, rgba(var(--nql-lumen-rgb), .045), transparent 34%),
+    var(--nql-clinical-black);
+  box-shadow:
+    inset 0 1px 0 rgba(var(--nql-parchment-rgb), .025),
+    0 1rem 3rem rgba(0, 0, 0, .28),
+    0 0 2.5rem rgba(var(--nql-corruption-strong-rgb), .045);
+  backdrop-filter: blur(10px);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .qbox::before {
+  display: none;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-question-meta {
+  position: absolute;
+  top: 1.35rem;
+  right: clamp(1.25rem, 3vw, 3rem);
+  left: clamp(1.25rem, 3vw, 3rem);
+  display: flex;
+  padding-bottom: .8rem;
+  border-bottom: 1px solid var(--nql-line);
+  align-items: center;
+  justify-content: space-between;
+  color: var(--nql-lumen);
+  font-family: var(--nql-font-instrument);
+  font-size: .62rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-question-meta span:last-child {
+  color: var(--nql-text-muted);
+  letter-spacing: .08em;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #timerWidget {
+  top: 1.05rem;
+  right: clamp(1.25rem, 3vw, 3rem);
+  left: auto;
+  z-index: 4;
+  min-height: 1.8rem;
+  padding: .2rem .45rem;
+  border: 1px solid var(--nql-line);
+  border-radius: var(--nql-radius-control);
+  background: var(--nql-abyss);
+  box-shadow: none;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-question-meta span:last-child {
+  padding-right: 6.75rem;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #timerDisplay {
+  color: var(--nql-lumen);
+  font-family: var(--nql-font-instrument);
+  font-size: .7rem;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #timerPlayPause svg {
+  fill: var(--nql-lumen);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #adminQidBadge {
+  margin: 0 0 .65rem !important;
+  border-color: var(--nql-line-strong) !important;
+  background: rgba(var(--nql-lumen-rgb), .055) !important;
+  color: var(--nql-lumen) !important;
+  font-family: var(--nql-font-instrument) !important;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #question {
+  max-width: var(--nql-measure-clinical);
+  margin: 0;
+  padding: 0;
+  color: var(--nql-parchment);
+  font-family: var(--nql-font-body);
+  font-size: clamp(1.13rem, 1.4vw, 1.32rem);
+  font-weight: 500;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #cycleProgressBar {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px !important;
+  margin: 0 !important;
+  background: rgba(var(--nql-lumen-rgb), .08) !important;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #cycleProgressFill {
+  background: linear-gradient(90deg, var(--nql-lumen-deep), var(--nql-lumen), var(--nql-mastery)) !important;
+  box-shadow: 0 0 .65rem rgba(var(--nql-lumen-rgb), .3);
+}
+
+/* Alternativas como ramos do mesmo fluxo */
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .options {
+  position: relative;
+  display: grid;
+  gap: .65rem;
+  margin: 0;
+  padding: 1.2rem 0 0 1.75rem;
+  border-radius: 0;
+  background: transparent;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .options::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 2rem;
+  left: .5rem;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--nql-current), rgba(var(--nql-current-rgb), .12));
+  opacity: .55;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3.75rem minmax(0, 1fr) auto;
+  min-height: 4.1rem;
+  padding: 0;
+  border: 1px solid rgba(var(--nql-lumen-rgb), .19);
+  border-radius: var(--nql-radius-control);
+  align-items: stretch;
+  overflow: visible;
+  background:
+    linear-gradient(100deg, rgba(var(--nql-lumen-rgb), .035), transparent 27%, rgba(var(--nql-corruption-strong-rgb), .028)),
+    var(--nql-choice-black);
+  box-shadow:
+    inset 0 1px 0 rgba(var(--nql-parchment-rgb), .02),
+    0 .4rem 1.1rem rgba(0, 0, 0, .18);
+  backdrop-filter: blur(7px);
+  color: var(--nql-text);
+  font-family: var(--nql-font-body);
+  transition:
+    border-color var(--nql-duration-state) var(--nql-ease-state),
+    background var(--nql-duration-state) var(--nql-ease-state),
+    transform var(--nql-duration-fast) var(--nql-ease-state);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  left: auto;
+  display: block;
+  width: 1.75rem;
+  height: 1px;
+  border-radius: 0;
+  background: rgba(var(--nql-current-rgb), .4);
+  transform: translateY(-50%);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option:hover:not(:disabled),
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option:focus-visible {
+  border-color: rgba(var(--nql-lumen-rgb), .62);
+  background:
+    linear-gradient(100deg, rgba(var(--nql-lumen-rgb), .095), transparent 36%, rgba(var(--nql-corruption-strong-rgb), .055)),
+    rgba(7, 11, 21, .97);
+  box-shadow:
+    var(--nql-shadow-focus),
+    0 0 1.4rem rgba(var(--nql-corruption-strong-rgb), .07);
+  transform: translateX(.2rem);
+  outline: none;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .opt-key {
+  display: flex;
+  min-width: 0;
+  padding: 0;
+  border-right: 1px solid rgba(var(--nql-mastery-rgb), .2);
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(180deg, rgba(var(--nql-mastery-rgb), .065), rgba(var(--nql-lumen-rgb), .035));
+  color: var(--nql-mastery);
+  font-family: var(--nql-font-instrument);
+  font-size: .76rem;
+  font-weight: 500;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .opt-body {
+  padding: 1.05rem 1.2rem;
+  color: var(--nql-parchment);
+  font-family: var(--nql-font-body);
+  font-size: 1rem;
+  line-height: 1.48;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option::after {
+  align-self: center;
+  margin: 0 1rem 0 0;
+  border: 0;
+  background: transparent;
+  color: var(--nql-text-muted);
+  font-family: var(--nql-font-instrument);
+  font-size: .58rem;
+  opacity: .58;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option.correct {
+  border-color: rgba(var(--nql-success-rgb), .66);
+  background:
+    linear-gradient(100deg, rgba(var(--nql-success-rgb), .14), transparent 58%),
+    rgba(4, 11, 12, .96);
+  box-shadow: 0 0 1.4rem rgba(var(--nql-success-rgb), .08);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option.correct::before {
+  background: var(--nql-success);
+  box-shadow: 0 0 .7rem rgba(var(--nql-success-rgb), .48);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option.correct .opt-key {
+  border-right-color: rgba(var(--nql-success-rgb), .26);
+  background: rgba(var(--nql-success-rgb), .1);
+  color: var(--nql-success);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option.correct .opt-key::after {
+  content: "✓";
+  margin-left: .25rem;
+  font-size: .72rem;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option.correct .opt-body {
+  color: var(--nql-parchment);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option.correct::after {
+  content: "correta";
+  color: var(--nql-success);
+  opacity: 1;
+  text-transform: uppercase;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option.wrong {
+  border-color: rgba(var(--nql-danger-rgb), .62);
+  background:
+    linear-gradient(100deg, rgba(var(--nql-danger-rgb), .13), transparent 58%),
+    rgba(13, 6, 10, .96);
+  box-shadow: none;
+  animation: none;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option.wrong::before {
+  background: var(--nql-danger);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option.wrong .opt-key {
+  border-right-color: rgba(var(--nql-danger-rgb), .26);
+  background: rgba(var(--nql-danger-rgb), .1);
+  color: var(--nql-danger);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option.wrong .opt-key::after {
+  content: "×";
+  margin-left: .25rem;
+  font-size: .76rem;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option.wrong .opt-body {
+  color: var(--nql-parchment);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option.wrong::after {
+  content: "sua escolha";
+  color: var(--nql-danger);
+  opacity: 1;
+  text-transform: uppercase;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option:disabled:not(.correct):not(.wrong) {
+  opacity: 1;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option:disabled:not(.correct):not(.wrong) .opt-key,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option:disabled:not(.correct):not(.wrong) .opt-body,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option:disabled:not(.correct):not(.wrong)::after {
+  opacity: .7;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option.opt-eliminated {
+  border-style: dashed;
+  opacity: .36 !important;
+}
+
+/* ── Debrief e evidência ───────────────────────────────────────── */
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-feedback-kicker {
+  display: block;
+  margin: 1.25rem 0 .55rem;
+  color: var(--nql-text-muted);
+  font-family: var(--nql-font-instrument);
+  font-size: .62rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-feedback-kicker::before {
+  content: "";
+  display: inline-block;
+  width: 1.75rem;
+  height: 1px;
+  margin: 0 .55rem .2rem 0;
+  background: var(--nql-current);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .feedback {
+  min-height: 4.25rem;
+  margin: 0;
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--nql-line);
+  border-radius: var(--nql-radius-control);
+  background: rgba(var(--nql-cortex-rgb), .84);
+  color: var(--nql-text-soft);
+  font-family: var(--nql-font-body);
+  font-size: .95rem;
+  line-height: 1.62;
+  backdrop-filter: blur(8px);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .feedback strong {
+  color: var(--nql-parchment);
+  font-family: var(--nql-font-display);
+  font-size: 1.06rem;
+  font-weight: 600;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .feedback.good {
+  border-color: rgba(var(--nql-success-rgb), .38);
+  background:
+    linear-gradient(100deg, rgba(var(--nql-success-rgb), .11), transparent 68%),
+    rgba(var(--nql-cortex-rgb), .88);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .feedback.bad {
+  border-color: rgba(var(--nql-danger-rgb), .38);
+  background:
+    linear-gradient(100deg, rgba(var(--nql-danger-rgb), .1), transparent 68%),
+    rgba(var(--nql-cortex-rgb), .88);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-state="reasoning"] .nql-feedback-kicker,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-state="reasoning"] .feedback,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-state="reasoning"] .refs-header {
+  display: none;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .refs {
+  margin-top: 1.35rem;
+  font-family: var(--nql-font-body);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .refs-header {
+  margin-bottom: .65rem;
+  color: var(--nql-mastery);
+  font-family: var(--nql-font-instrument);
+  font-size: .62rem;
+  letter-spacing: .15em;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .refs-header::before {
+  width: 1.75rem;
+  height: 1px;
+  border-radius: 0;
+  background: var(--nql-mastery);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .refs-header::after {
+  background: linear-gradient(90deg, rgba(var(--nql-mastery-rgb), .35), transparent);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .ref-cards {
+  gap: .55rem;
+  max-height: 120rem;
+  padding-top: .2rem;
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    max-height .45s var(--nql-ease),
+    opacity .28s ease,
+    transform .45s var(--nql-ease);
+}
+
+/* A decisão vem antes da evidência: evita pistas involuntárias no enunciado. */
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-state="reasoning"] .ref-cards {
+  max-height: 0;
+  margin: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-.35rem);
+  pointer-events: none;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-state="reasoning"] .refs:not(:empty)::after {
+  content: "Evidência disponível após sua decisão.";
+  display: block;
+  padding: .7rem 0 .65rem 1rem;
+  border-left: 1px solid rgba(var(--nql-mastery-rgb), .35);
+  color: rgba(var(--nql-mastery-rgb), .72);
+  font-family: var(--nql-font-instrument);
+  font-size: .62rem;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"]:not([data-lumen-state="reasoning"]) .refs::after {
+  display: none;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .ref-card {
+  position: relative;
+  padding: .85rem 1rem .8rem;
+  border: 1px solid rgba(var(--nql-lumen-rgb), .15);
+  border-left: 2px solid var(--ref-accent, var(--nql-mastery));
+  border-radius: var(--nql-radius-control);
+  background:
+    linear-gradient(105deg, rgba(var(--nql-lumen-rgb), .025), transparent 31%, rgba(var(--nql-mastery-rgb), .018)),
+    var(--nql-reference-black);
+  box-shadow:
+    inset 0 1px 0 rgba(var(--nql-parchment-rgb), .02),
+    0 .45rem 1.1rem rgba(0, 0, 0, .18);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .ref-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  display: block;
+  height: 1px;
+  background: linear-gradient(90deg, var(--ref-accent, var(--nql-mastery)), transparent 46%);
+  opacity: .42;
+  pointer-events: none;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .ref-card:hover {
+  border-color: rgba(var(--nql-lumen-rgb), .28);
+  border-left-color: var(--ref-accent, var(--nql-mastery));
+  background:
+    linear-gradient(105deg, rgba(var(--nql-lumen-rgb), .045), transparent 34%, rgba(var(--nql-mastery-rgb), .025)),
+    rgba(10, 15, 27, .97);
+  transform: none;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .ref-title {
+  color: var(--nql-parchment);
+  font-family: var(--nql-font-display);
+  font-size: .98rem;
+  font-weight: 600;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .ref-meta,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .ref-tipo {
+  color: var(--nql-text-muted);
+  font-family: var(--nql-font-instrument);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .ref-year {
+  color: var(--ref-accent, var(--nql-lumen));
+  font-family: var(--nql-font-instrument);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .ref-badge {
+  border: 1px solid var(--ref-accent, var(--nql-lumen));
+  background: rgba(var(--nql-abyss-rgb), .92) !important;
+  box-shadow: inset .18rem 0 0 var(--ref-accent, var(--nql-lumen));
+  color: var(--nql-parchment) !important;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .ref-impacto {
+  color: var(--nql-text-soft);
+  border-top-color: var(--nql-line);
+  font-size: .78rem;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .ref-copy-btn,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .ref-resumo-btn {
+  min-height: 2rem;
+  border-color: var(--nql-line);
+  border-radius: var(--nql-radius-control);
+  color: var(--nql-text-muted);
+  font-family: var(--nql-font-instrument);
+}
+
+/* ── Ações ─────────────────────────────────────────────────────── */
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .ctrl {
+  margin-top: 1rem;
+  padding: 0;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .btn {
+  min-height: 2.75rem;
+  padding: .7rem 1rem;
+  border: 1px solid var(--nql-control-border);
+  border-radius: var(--nql-radius-control);
+  background: rgba(var(--nql-lumen-rgb), .055);
+  box-shadow: none;
+  color: var(--nql-parchment);
+  font-family: var(--nql-font-body);
+  font-size: .82rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  text-transform: none;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .btn:hover {
+  border-color: var(--nql-lumen);
+  background: rgba(var(--nql-lumen-rgb), .09);
+  box-shadow: var(--nql-shadow-focus);
+  transform: none;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .btn.sec {
+  border-color: var(--nql-line);
+  background: transparent;
+  color: var(--nql-text-soft);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .btn.gold {
+  border-color: rgba(var(--nql-mastery-rgb), .58);
+  background: var(--nql-mastery);
+  box-shadow: none;
+  color: var(--nql-abyss);
+  text-shadow: none;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .skip-question-btn {
+  min-height: 2.75rem;
+  border-color: var(--nql-line-gold);
+  border-radius: var(--nql-radius-control);
+  background: rgba(var(--nql-mastery-rgb), .045);
+  color: var(--nql-mastery);
+  font-family: var(--nql-font-body);
+}
+
+/* Dock: instrumentos silenciosos; somente a ação contextual emite luz. */
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .action-dock {
+  gap: .75rem;
+  padding-top: .35rem;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .dock-btn {
+  --nql-dock-rgb: 122, 159, 216;
+
+  width: 5.1rem;
+  height: 5.45rem;
+  padding: .82rem .35rem .52rem;
+  border: 1px solid var(--nql-line);
+  border-radius: var(--nql-radius-control);
+  gap: .42rem;
+  background: rgba(var(--nql-cortex-rgb), .42);
+  box-shadow: none;
+  color: var(--nql-text-muted);
+}
+
+/* Neutraliza as antigas variantes neon sem apagar a semântica dos instrumentos. */
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .next-question-dock {
+  --nql-dock-rgb: 99, 183, 122;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .forge-btn {
+  --nql-dock-rgb: 232, 155, 67;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .oraculo-dock {
+  --nql-dock-rgb: 152, 116, 223;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .dashboard-btn {
+  --nql-dock-rgb: 102, 185, 216;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .dock-btn[data-action="openBibliotecaModal"] {
+  --nql-dock-rgb: 215, 182, 74;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .inicio-btn {
+  --nql-dock-rgb: 122, 159, 216;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .dock-btn,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .dock-btn.dashboard-btn,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .dock-btn.oraculo-dock,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .dock-btn.forge-btn,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .dock-btn.inicio-btn,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .dock-btn.next-question-dock,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .dock-btn[data-action="openBibliotecaModal"] {
+  border-color: rgba(var(--nql-dock-rgb), .36) !important;
+  background:
+    radial-gradient(circle at 50% 22%, rgba(var(--nql-dock-rgb), .17), transparent 62%),
+    rgba(var(--nql-cortex-rgb), .72) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(var(--nql-dock-rgb), .1),
+    0 0 1.15rem rgba(var(--nql-dock-rgb), .09) !important;
+  color: rgb(var(--nql-dock-rgb)) !important;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .dock-btn svg {
+  width: 2.15rem;
+  height: 2.15rem;
+  color: currentColor !important;
+  filter: drop-shadow(0 0 .45rem rgba(var(--nql-dock-rgb), .28)) !important;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .dock-btn .dock-label {
+  position: static;
+  inset: auto;
+  width: auto;
+  min-height: 0;
+  padding: 0;
+  background: transparent !important;
+  color: currentColor !important;
+  font-family: var(--nql-font-instrument);
+  font-size: .6rem;
+  letter-spacing: .04em;
+  line-height: 1;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .dock-btn:hover {
+  border-color: rgba(var(--nql-dock-rgb), .72) !important;
+  background:
+    radial-gradient(circle at 50% 22%, rgba(var(--nql-dock-rgb), .25), transparent 68%),
+    rgba(var(--nql-cortex-rgb), .84) !important;
+  box-shadow: 0 0 1.5rem rgba(var(--nql-dock-rgb), .18) !important;
+  color: rgb(var(--nql-dock-rgb)) !important;
+  transform: translateY(-1px);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .next-question-dock.disabled {
+  opacity: .52;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .next-question-dock:not(.disabled) {
+  border-color: rgba(var(--nql-dock-rgb), .88) !important;
+  background:
+    radial-gradient(circle at 50% 22%, rgba(var(--nql-dock-rgb), .31), transparent 70%),
+    rgba(var(--nql-cortex-rgb), .88) !important;
+  box-shadow: 0 0 1.8rem rgba(var(--nql-dock-rgb), .25) !important;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .game-footer {
+  color: var(--nql-text-muted);
+  font-family: var(--nql-font-instrument);
+}
+
+/* O feedback de ganho pertence ao Arsenal, sem virar placar arcade. */
+body:has(#mainApp[data-nq-ui="lumen"]:not(.hidden)):not(.boss-battle-mode):not(.arqui-nefromante-final) .floating-text.correct {
+  padding: .22rem .4rem;
+  border: 1px solid rgba(var(--nql-mastery-rgb), .3);
+  border-radius: 999px;
+  background: rgba(var(--nql-abyss-rgb), .92) !important;
+  color: #f6d77f !important;
+  font-family: var(--nql-font-instrument);
+  font-size: .72rem;
+  letter-spacing: .04em;
+  text-shadow: 0 0 .65rem rgba(var(--nql-mastery-rgb), .35);
+  animation: nql-reward-to-arsenal 1.5s cubic-bezier(.22, 1, .36, 1) forwards;
+}
+
+@keyframes nql-reward-to-arsenal {
+  0% {
+    transform: translate(-50%, -50%) scale(.82);
+    opacity: 0;
+  }
+  18%,
+  64% {
+    transform: translate(-50%, -50%) translateY(-.3rem) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) translateY(-1.35rem) scale(.94);
+    opacity: 0;
+  }
+}
+
+@media (min-width: 769px) {
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #nextBtn {
+    padding-inline: .2rem;
+    border-color: transparent;
+    background: transparent;
+    box-shadow: none;
+    color: var(--nql-text-muted);
+    font-size: .72rem;
+    opacity: .72;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #nextBtn:hover {
+    border-color: transparent;
+    background: transparent;
+    box-shadow: none;
+    color: var(--nql-lumen);
+    opacity: 1;
+  }
+}
+
+/* Estado semântico da página. */
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-state="mastery"] .nql-loadout-pulse {
+  stroke: var(--nql-mastery);
+  filter: drop-shadow(0 0 .4rem rgba(var(--nql-mastery-rgb), .72));
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-state="corruption"] .nql-loadout-pulse {
+  stroke: var(--nql-danger);
+  filter: drop-shadow(0 0 .4rem rgba(var(--nql-danger-rgb), .62));
+}
+
+/* ── Leitura ampliada ──────────────────────────────────────────── */
+
+body.reading-mode:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #question {
+  max-width: 62ch;
+  font-size: clamp(1.28rem, 1.65vw, 1.5rem);
+  line-height: 1.68;
+}
+
+body.reading-mode:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .opt-body {
+  font-size: 1.12rem;
+  line-height: 1.62;
+}
+
+body.reading-mode:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .feedback {
+  font-size: 1.04rem;
+  line-height: 1.72;
+}
+
+/* ── Notebook ──────────────────────────────────────────────────── */
+
+@media (max-width: 78rem) and (min-width: 769px) {
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] {
+    --nql-game-rail: 18rem;
+    --nql-game-dock: 4.75rem;
+    gap: .9rem;
+    padding-inline: .75rem;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .panel.left {
+    padding-right: .8rem;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-loadout-shell {
+    min-height: 29.5rem;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .equip-total-attributes {
+    right: .65rem;
+    left: .65rem;
+    gap: .2rem;
+    font-size: .56rem !important;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .dock-btn {
+    width: 4.55rem;
+    height: 5.1rem;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .qbox {
+    padding-inline: 1.35rem;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-question-meta {
+    right: 1.35rem;
+    left: 1.35rem;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #timerWidget {
+    right: 1.35rem;
+  }
+}
+
+/* ── Mobile: pergunta primeiro; Arsenal Hilar no drawer ───────── */
+
+@media (max-width: 768px) {
+  body:has(#mainApp[data-nq-ui="lumen"]:not(.hidden)):not(.boss-battle-mode):not(.arqui-nefromante-final) {
+    padding-bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] {
+    width: 100%;
+    padding: 0 .75rem .75rem;
+    grid-template-columns: minmax(0, 1fr);
+    gap: .7rem;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .game-title {
+    min-height: 3.75rem;
+    padding: .55rem 0 .55rem 3.35rem;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .game-title h1 {
+    font-size: 1.24rem;
+    letter-spacing: -.02em;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .game-title .subtitle {
+    font-size: .52rem;
+    letter-spacing: .1em;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-game-brand {
+    display: block;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .panel.right {
+    grid-column: 1;
+    padding: 0 0 1rem;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .panel.left {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9600;
+    width: min(92vw, 23rem);
+    height: 100dvh;
+    padding: max(3.5rem, env(safe-area-inset-top, 0px)) 1rem 6rem;
+    border-right: 1px solid var(--nql-line);
+    background: var(--nql-abyss) !important;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"]:has(.panel.left.mobile-open) {
+    z-index: 9500;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] > .mobile-overlay {
+    z-index: 9550;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .panel.left .drawer-close-btn {
+    position: absolute;
+    top: .8rem;
+    right: .8rem;
+    z-index: 6;
+    display: inline-flex !important;
+    width: 2.35rem !important;
+    height: 2.35rem;
+    margin: 0 !important;
+    padding: 0 !important;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--nql-line) !important;
+    border-radius: 999px !important;
+    background: rgba(var(--nql-cortex-rgb), .86) !important;
+    box-shadow: none;
+    color: var(--nql-text-soft) !important;
+    font-family: var(--nql-font-instrument);
+    font-size: .72rem !important;
+    line-height: 1;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .panel.left .drawer-close-btn:hover {
+    border-color: var(--nql-lumen) !important;
+    background: rgba(var(--nql-lumen-rgb), .09) !important;
+    color: var(--nql-lumen) !important;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .panel.left::after {
+    display: none;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-loadout-shell {
+    flex: 0 0 auto;
+    min-height: 30rem;
+    order: 0;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .hud {
+    flex: 0 0 auto;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo::after {
+    font-size: .63rem;
+    letter-spacing: .05em;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .qbox {
+    min-height: 0;
+    padding: 3.65rem 1rem 1.5rem;
+    border-radius: var(--nql-radius-panel) var(--nql-radius-panel) 0 0;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-question-meta {
+    top: 1rem;
+    right: 1rem;
+    left: 1rem;
+    font-size: .55rem;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-question-meta span:last-child {
+    display: none;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #timerWidget {
+    top: .7rem;
+    right: 1rem;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #question {
+    font-size: 1.08rem;
+    line-height: 1.55;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .options {
+    gap: .55rem;
+    padding: .85rem 0 0 .9rem;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .options::before {
+    left: .15rem;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option {
+    grid-template-columns: 3rem minmax(0, 1fr);
+    min-height: 3.5rem;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option::before {
+    width: .9rem;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option::after {
+    display: none;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .opt-body {
+    padding: .9rem .95rem;
+    font-size: .95rem;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-feedback-kicker {
+    margin-top: 1rem;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .feedback {
+    padding: .9rem;
+    font-size: .9rem;
+    scroll-margin: 4.5rem 0 8rem;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .ctrl {
+    padding-bottom: .5rem;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .mobile-status-bar,
+  body:has(#mainApp[data-nq-ui="lumen"]:not(.hidden)):not(.boss-battle-mode):not(.arqui-nefromante-final) .mobile-status-bar {
+    border-top-color: var(--nql-line);
+    background: rgba(var(--nql-abyss-rgb), .96);
+    box-shadow: 0 -.5rem 1.5rem rgba(var(--nql-abyss-rgb), .6);
+  }
+
+  body:has(#mainApp[data-nq-ui="lumen"]:not(.hidden)):not(.boss-battle-mode):not(.arqui-nefromante-final) .mobile-bottom-dock {
+    border-top-color: var(--nql-line);
+    background: rgba(var(--nql-abyss-rgb), .97);
+    box-shadow: none;
+  }
+}
+
+@media (max-width: 370px) {
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] {
+    padding-inline: .45rem;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .game-title .subtitle {
+    display: none;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .qbox {
+    padding-inline: .8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-loadout-branch,
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-loadout-pulse,
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .ref-cards,
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo-filled.rar-border-legendary,
+  body:has(#mainApp[data-nq-ui="lumen"]:not(.hidden)):not(.boss-battle-mode):not(.arqui-nefromante-final) .floating-text.correct {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option:hover:not(:disabled),
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .slot-diablo:hover,
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .dock-btn:hover {
+    transform: none;
+  }
+}

@@ -45,6 +45,20 @@ test.describe('Boss mode (Fase Final)', () => {
     await expect(page.locator('body.arqui-nefromante-final')).toBeAttached({ timeout: 5_000 });
   });
 
+  test('elementos exclusivos da Câmara de Conduta não vazam para o confronto final', async ({ page }) => {
+    const displays = await page.locator('.nql-loadout-kicker, .nql-loadout-circuit, .nql-question-meta, .nql-feedback-kicker')
+      .evaluateAll((elements) => elements.map((element) => getComputedStyle(element).display));
+    expect(displays).toEqual(['none', 'none', 'none', 'none']);
+  });
+
+  test('evidências continuam acessíveis ao retomar diretamente no boss', async ({ page }) => {
+    const cards = page.locator('#refs .ref-cards');
+    await expect(cards).toBeVisible({ timeout: 5_000 });
+    await expect(cards).not.toHaveAttribute('aria-hidden', 'true');
+    await expect(cards).not.toHaveAttribute('inert', '');
+    expect(await cards.evaluate((element) => (element as HTMLElement).inert)).toBe(false);
+  });
+
   test('HP bar diminui após resposta correta', async ({ page }) => {
     // O índice correto não é exposto antes de responder. Sondamos clicando a
     // opção 0: a classe .correct é revelada após responder. Se acertamos,

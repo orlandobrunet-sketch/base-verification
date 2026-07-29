@@ -69,7 +69,7 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
     expect(stylesheets).toContain('/styles/lumen/atrium.css?v=13.44');
     await expect(page.locator('script[src="js/atrium.js?v=13.23"]')).toHaveCount(1);
     await expect(page.locator('script[src="js/auth.js?v=13.44"]')).toHaveCount(1);
-    await expect(page.locator('script[src="js/game.js?v=13.44"]')).toHaveCount(1);
+    await expect(page.locator('script[src="js/game.js?v=14.00"]')).toHaveCount(1);
 
     const railLayout = await page.locator('.nql-atrium').evaluate((atrium) => {
       const atriumRect = atrium.getBoundingClientRect();
