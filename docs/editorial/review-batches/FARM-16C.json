@@ -1,0 +1,213 @@
+{
+  "batch": "FARM-16C",
+  "change_type": "medical_editorial",
+  "expected_version": "14.02",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-16C.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "4d3d7a7f": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "582bc7df": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "51e8c525": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "d87a4c59": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "6dd8e258": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "028f2492": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "d17fd6bd": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "f3a883e1": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "631117ee": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "d17fd6bd",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "29c23168": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "d17fd6bd",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "3a199ab0": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "829ab8a9": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "95c81f1d": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "8da939d9": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    }
+  },
+  "expected_question_delta": -2,
+  "refs_policy": "declared",
+  "references": {
+    "kdigo_aki": {
+      "action": "update_existing",
+      "source": "KDIGO 2012 Clinical Practice Guideline for Acute Kidney Injury"
+    },
+    "brenner_rector": {
+      "action": "reuse_existing",
+      "source": "Brenner & Rector's The Kidney, 2024"
+    },
+    "fena_meta_2022": {
+      "action": "add_new",
+      "source": "2022 systematic review and diagnostic meta-analysis of FENa in AKI"
+    },
+    "feurea_meta_2024": {
+      "action": "add_new",
+      "source": "2024 systematic review and diagnostic meta-analysis of FEUrea in AKI"
+    },
+    "muddy_casts_ati_2022": {
+      "action": "add_new",
+      "source": "2022 prospective study of muddy brown granular casts, FENa and biopsy-confirmed ATI"
+    },
+    "bun_creatinine_gi_meta_2026": {
+      "action": "add_new",
+      "source": "2026 systematic review and meta-analysis of BUN/creatinine ratio in gastrointestinal bleeding"
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Doze questões foram reconstruídas com evidência verificada, pendência nenhuma e preservação de qid/FSRS.",
+    "Os qids 6dd8e258 e 3a199ab0 já tinham revisão formal anterior, mas foram reavaliados porque a atualização da evidência sobre FENa e FEureia exigiu mudança material.",
+    "Os qids 631117ee e 29c23168 foram fundidos em d17fd6bd porque repetiam o mesmo sinal decisivo de cilindros granulares castanho-lamacento sem variação discriminativa útil.",
+    "A FENa foi mantida como teste de apoio dependente do contexto; a FEureia deixou de ser apresentada como substituta confiável sob diuréticos.",
+    "O card KDIGO AKI foi restringido à diretriz final de 2012; o draft público de 2026 permanece em card separado.",
+    "Todos os novos cards do Grimório contêm resumo, conclusão e curiosidade."
+  ]
+}
