@@ -1,0 +1,168 @@
+{
+  "batch": "FARM-16B",
+  "change_type": "medical_editorial",
+  "expected_version": "14.01",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-16B.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "af627daa": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "5a0c1e69": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "1875cbc3": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "9a9c0908": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "108002ef": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "07aecc9b": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "6b0997fb": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "98df71d4": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "d0b9355b": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    }
+  },
+  "expected_question_delta": 0,
+  "refs_policy": "declared",
+  "references": {
+    "kdigo_cardiorenal_consensus": {
+      "action": "reuse_existing",
+      "source": "ADQI consensus classification of cardiorenal syndromes"
+    },
+    "aha_acc_hf_guideline_2022": {
+      "action": "add_new",
+      "source": "2022 AHA/ACC/HFSA guideline for heart failure and decongestion"
+    },
+    "dose_trial": {
+      "action": "reuse_existing",
+      "source": "DOSE randomized trial"
+    },
+    "carress_hf": {
+      "action": "update_existing",
+      "source": "CARRESS-HF randomized trial"
+    },
+    "hepatorenal_review": {
+      "action": "reuse_existing",
+      "source": "2024 ICA-ADQI consensus on AKI and HRS in cirrhosis"
+    },
+    "confirm_trial": {
+      "action": "reuse_existing",
+      "source": "CONFIRM randomized trial"
+    },
+    "terlipressin_sanyal": {
+      "action": "remove_existing",
+      "source": "Superseded terlipressin trial card left orphaned by the reviewed questions"
+    },
+    "terlivaz_fda_label_2023": {
+      "action": "add_new",
+      "source": "FDA prescribing information for terlipressin"
+    },
+    "easl_tips_guideline_2025": {
+      "action": "add_new",
+      "source": "2025 EASL clinical practice guideline on TIPS"
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Nove questões foram reconstruídas com evidência verificada, pendência nenhuma e preservação de qid/FSRS.",
+    "O Advogado do Recurso separou classificação, mecanismo, decisão de descongestão e interpretação da creatinina nas quatro questões cardiorrenais.",
+    "O critério obrigatório de albumina por 48 horas foi removido conforme o consenso ICA-ADQI 2024.",
+    "A eficácia renal do CONFIRM foi apresentada com ausência de benefício de sobrevida e risco respiratório, e o TIPS deixou de ser descrito como ponte comprovada na HRS-AKI.",
+    "O card terlipressin_sanyal foi removido após ficar órfão e ser supersedido pelo CONFIRM e pela bula regulatória.",
+    "Todos os novos cards do Grimório contêm resumo, conclusão e curiosidade."
+  ]
+}

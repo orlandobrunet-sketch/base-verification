@@ -1247,16 +1247,58 @@ canvas_program:{
     conclusao:"CONFIRM fundamentou a aprovação da terlipressina para SHR-AKI por aumentar reversão bioquímica da síndrome, mas não demonstrou benefício claro de sobrevida e revelou risco respiratório clinicamente relevante.",
     curiosidade:"A SHR-AKI é uma falência circulatória funcional sobre cirrose avançada: vasodilatação esplâncnica reduz volume arterial efetivo, ativa vasoconstritores endógenos e causa vasoconstrição renal intensa. Terlipressina corrige parte da hemodinâmica, mas não modifica a doença hepática terminal que determina o prognóstico."
   },
+  terlivaz_fda_label_2023:{
+    label:"FDA — TERLIVAZ (terlipressina): Prescribing Information",
+    url:"https://www.accessdata.fda.gov/drugsatfda_docs/label/2023/022231s001lbl.pdf",
+    journal:"U.S. Food and Drug Administration",
+    ano:2022,
+    tipo:"Bula Regulatória",
+    badge:"FDA",
+    badgeColor:"#6366f1",
+    impacto:"Alerta em caixa para insuficiência respiratória grave ou fatal e critérios de segurança para terlipressina",
+    icon:"📋",
+    resumo:"Informação de prescrição da FDA para terlipressina em adultos com síndrome hepatorrenal e rápida redução da função renal. Exige avaliação de SpO₂, grau de ACLF e estado volêmico antes do início; contraindica o uso durante hipóxia ou piora respiratória e recomenda oximetria contínua durante o tratamento. Sobrecarga volêmica e ACLF grau 3 aumentam o risco de insuficiência respiratória; a bula orienta reduzir ou interromper albumina e outros fluidos e tratar a congestão quando necessário.",
+    conclusao:"Terlipressina pode melhorar a função renal na HRS-AKI, mas só deve ser iniciada após avaliação respiratória e volêmica, com monitorização contínua e interrupção diante de hipóxia ou eventos isquêmicos.",
+    curiosidade:"No estudo clínico principal da bula, insuficiência respiratória grave ou fatal ocorreu em 14% dos tratados com terlipressina e em 5% dos que receberam placebo, razão para o alerta em caixa."
+  },
+  easl_tips_guideline_2025:{
+    label:"EASL — Clinical Practice Guidelines on TIPS (2025)",
+    url:"https://easlcampus.eu/sites/default/files/2025-04/EASL_CPG_on_TIPS.pdf",
+    journal:"Journal of Hepatology",
+    ano:2025,
+    tipo:"Diretriz",
+    badge:"GUIDELINE",
+    badgeColor:"#6366f1",
+    impacto:"Define indicações, seleção e limites de evidência do TIPS, incluindo HRS-AKI",
+    icon:"📋",
+    resumo:"Diretriz EASL dedicada ao shunt portossistêmico intra-hepático transjugular. Para HRS-AKI, identifica dados muito limitados, baseados sobretudo em séries pequenas e estudos observacionais, e destaca que muitos pacientes apresentam insuficiência hepática grave que contraindica TIPS não urgente. A recomendação formal é que o procedimento não pode ser indicado para reduzir morbidade ou mortalidade na HRS-AKI por evidência insuficiente.",
+    conclusao:"TIPS não é uma ponte de eficácia comprovada nem tratamento rotineiro da HRS-AKI; eventual indicação deve decorrer de outra complicação de hipertensão portal e de seleção multidisciplinar cuidadosa.",
+    curiosidade:"A diretriz diferencia HRS-AKI de HRS sem LRA: embora não recomende TIPS para desfechos clínicos na forma aguda, admite consideração em pacientes com ascite e HRS-NAKI, também com evidência de baixa qualidade."
+  },
   // --- Síndrome Cardiorrenal / IC ---
+  aha_acc_hf_guideline_2022:{
+    label:"AHA/ACC/HFSA — Guideline for the Management of Heart Failure (2022)",
+    url:"https://professional.heart.org/-/media/832EA0F4E73948848612F228F7FA2D35.pdf",
+    journal:"Circulation 2022;145:e895-e1032",
+    ano:2022,
+    tipo:"Diretriz",
+    badge:"GUIDELINE",
+    badgeColor:"#6366f1",
+    impacto:"Recomenda diuréticos para aliviar congestão na insuficiência cardíaca com retenção de fluidos",
+    icon:"📋",
+    resumo:"Diretriz conjunta AHA/ACC/HFSA para insuficiência cardíaca. Em pacientes com retenção de fluidos, recomenda diuréticos para aliviar congestão, melhorar sintomas e prevenir piora da insuficiência cardíaca. A associação de tiazídico ao diurético de alça deve ser reservada à resposta inadequada a doses moderadas ou altas, com atenção a distúrbios eletrolíticos. A prescrição deve ser ajustada pela congestão, resposta diurética, pressão arterial, função renal e eletrólitos.",
+    conclusao:"Congestão clínica requer descongestão guiada por resposta; uma variação isolada da creatinina não substitui a avaliação conjunta de volemia, perfusão, diurese e segurança.",
+    curiosidade:"A diretriz atribui recomendação classe 1 aos diuréticos para retenção de fluidos, mas não favorece uma única dose ou via universal: a intensidade deve acompanhar a resposta e o risco de cada paciente."
+  },
   carress_hf:{
     label:"Bart BA et al. — CARRESS-HF (NEJM 2012)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1210357",
     journal:"N Engl J Med 2012;367(24):2296-2304",
     ano:2012,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Ultrafiltração NÃO superior à farmacoterapia guiada e causou mais dano renal em IC com síndrome cardiorrenal",icon:"🔬",
-    resumo:"ECR aberto multicêntrico (CARRESS-HF, n = 188), avaliando pacientes internados com insuficiência cardíaca descompensada aguda, congestão persistente e disfunção renal secundária (síndrome cardiorrenal tipo 1). Comparou uma estratégia de ultrafiltração contínua agressiva (taxa fixa de 200 mL/h) versus farmacoterapia guiada por algoritmos de diuréticos de alça intravenosos. Desfecho primário: mudança conjunta no peso corporal e na creatinina sérica aos 96h. Resultados: A ultrafiltração não foi superior à terapia medicamentosa na perda ponderal e causou um aumento estatisticamente significativo e prejudicial da creatinina sérica aos 96h (aumento médio de 0,23 mg/dL vs queda de 0,04 mg/dL no grupo diurético; P = 0,003), com maior taxa de complicações graves.",
-    conclusao:"O CARRESS-HF provou que a ultrafiltração mecânica precoce não deve ser a conduta padrão na descompensação cardíaca congestiva, devendo-se priorizar o uso otimizado de diuréticos de alça como terapia inicial no Reino.",
-    curiosidade:"A disfunção renal observada no grupo ultrafiltração deve-se à imposição de uma taxa de remoção volêmica fixa de 200 mL/h, que excedeu a capacidade de plasma refilling intersticial dos pacientes, levando a depleção do volume circulante efetivo arterial e hipoperfusão glomerular transitória."
+    impacto:"Ultrafiltração em taxa fixa não foi superior à farmacoterapia escalonada e gerou mais eventos adversos na síndrome cardiorrenal",icon:"🔬",
+    resumo:"ECR multicêntrico (CARRESS-HF, n=188) em insuficiência cardíaca aguda descompensada com congestão persistente e piora da função renal. Comparou ultrafiltração em taxa fixa de 200 mL/h com farmacoterapia escalonada por algoritmo, predominantemente diuréticos intravenosos. Aos 96 horas, a ultrafiltração foi inferior no desfecho bivariado de creatinina e peso devido ao maior aumento da creatinina, sem maior perda ponderal, e esteve associada a mais eventos adversos graves.",
+    conclusao:"CARRESS-HF não apoia ultrafiltração em taxa fixa como substituta rotineira da descongestão farmacológica escalonada em pacientes com insuficiência cardíaca, congestão e piora renal.",
+    curiosidade:"A taxa de ultrafiltração foi mantida em 200 mL/h, enquanto o braço farmacológico permitia ajustes sucessivos; essa assimetria ajuda a explicar por que o estudo responde à estratégia testada, não a todas as formas possíveis de ultrafiltração individualizada."
   },
   dapa_hf:{
     label:"McMurray JJV et al. — DAPA-HF (NEJM 2019)",
@@ -1398,16 +1440,6 @@ canvas_program:{
     resumo:"Estudo de coorte observacional prospectivo italiano (n = 432 pacientes incidentes em diálise), avaliando o impacto do tipo de acesso vascular inicial — fístula arteriovenosa (FAV) vs cateter venoso central (CVC) — sobre a sobrevida global. A análise multivariada revelou que o uso de CVC inicial estava associado a um risco 2,2 vezes maior de mortalidade por todas as causas (HR 2,24; IC 95% 1,35–3,72; P = 0,002) e a um risco 3 vezes maior de infecções sistêmicas graves (HR 3,11; P = 0,001) em comparação ao início por fístula madura.",
     conclusao:"O início de diálise por CVC está fortemente correlacionado com pior sobrevida inicial, consolidando a FAV como o acesso preferencial nas diretrizes internacionais para todos os aventureiros.",
     curiosidade:"O risco de sepse sistêmica bacteriana por Staphylococcus aureus e outras bactérias Gram-positivas em pacientes com CVC deve-se à rápida formação de biofilme na parede interna e externa do lúmen plástico do cateter, que serve de abrigo permanente para colonização bacteriana."
-  },
-  terlipressin_sanyal:{
-    label:"Sanyal AJ et al. — Terlipressin SHR (Gastroenterology 2008)",
-    url:"https://www.gastrojournal.org/article/S0016-5085(08)00060-0/fulltext",
-    journal:"Gastroenterology 2008;134(5):1360-1368",
-    ano:2008,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Terlipressina + albumina ↑reversão da SHR-1 vs placebo (34% vs 13%) — RCT confirmatório do mecanismo vasoconstritor",icon:"🔬",
-    resumo:"ECR fase III duplo-cego (Sanyal AJ et al., Gastroenterology 2008, n = 112 pacientes com cirrose hepática descompensada e Síndrome Hepatorrenal tipo 1 [SHR-1], definida por elevação aguda e progressiva de creatinina sérica >2,5 mg/dL). Comparou a terlipressina (0,5-2 mg IV a cada 6h) versus placebo, ambos associados a infusão de albumina humana. Desfecho primário: reversão completa da SHR (creatinina sérica ≤1,5 mg/dL por pelo menos 48h). Resultados: O grupo terlipressina obteve taxa de reversão significativamente maior (34% vs 13%; P = 0,008). Embora a sobrevida global em 180 dias tenha sido numericamente superior, não alcançou significância estatística, com eventos isquêmicos intestinais e pulmonares sendo as principais toxicidades.",
-    conclusao:"O estudo de Sanyal provou o benefício da terlipressina associada à albumina para reversão da SHR-1, fundamentando o manejo vasoconstritor sistêmico clássico na hipertensão portal no Reino.",
-    curiosidade:"A terlipressina é um análogo sintético da vasopressina com alta seletividade para receptores V1 nas células musculares lisas vasculares esplâncnicas. Sua ação causa vasoconstrição esplâncnica intensa, diminuindo a dilatação vascular portal e redirecionando o fluxo sanguíneo para o compartimento sistêmico, restaurando a perfusão arterial renal comprometida."
   },
   dose_trial:{
     label:"Felker GM et al. — DOSE Trial (NEJM 2011)",
