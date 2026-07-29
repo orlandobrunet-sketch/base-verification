@@ -936,7 +936,9 @@
       if (save && save.character && save.lives > 0) {
         if (continueBtn) continueBtn.style.removeProperty('display');
         const charData = characters[save.character];
+        if (resumeShell) resumeShell.dataset.character = charData ? save.character : 'nephros';
         const charName = charData ? charData.name : 'Desconhecido';
+        const charTitle = charData ? charData.title : 'Jornada em curso';
         const level = Math.min(10, Math.max(1, Math.floor(Number(save.level) || 1)));
         const xpToNext = Math.max(1, xpForLevel(level));
         const xp = Math.min(xpToNext, Math.max(0, Math.floor(Number(save.xp) || 0)));
@@ -947,6 +949,7 @@
         const timeAgo = getTimeAgo(save.timestamp) || '';
 
         document.getElementById('wsSavedChar').textContent = charName;
+        document.getElementById('wsSavedCharacterTitle').textContent = charTitle;
         document.getElementById('wsSavedLevel').textContent = String(level).padStart(2, '0');
         document.getElementById('wsSavedLives').textContent = String(lives);
         document.getElementById('wsSavedLivesLabel').textContent = lives === 1 ? 'vida' : 'vidas';
@@ -977,7 +980,10 @@
       } else {
         if (savedInfoEl) savedInfoEl.style.display = 'none';
         if (continueBtn) continueBtn.style.display = 'none';
-        if (resumeShell) resumeShell.style.setProperty('--nql-saved-progress', '0');
+        if (resumeShell) {
+          resumeShell.style.setProperty('--nql-saved-progress', '0');
+          resumeShell.removeAttribute('data-character');
+        }
       }
     }
 

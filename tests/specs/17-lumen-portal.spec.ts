@@ -29,7 +29,7 @@ test.describe('Página 1 — Portal de Acesso Lúmen', () => {
     const stylesheets = await page.locator('link[rel="stylesheet"]').evaluateAll((links) =>
       links.map((link) => new URL((link as HTMLLinkElement).href).pathname + new URL((link as HTMLLinkElement).href).search)
     );
-    expect(stylesheets).toContain('/styles/lumen/portal.css?v=13.24');
+    expect(stylesheets).toContain('/styles/lumen/portal.css?v=14.02');
     await expect(page.locator('script[src="js/portal.js?v=13.20"]')).toHaveCount(1);
 
     const skipLink = page.getByRole('link', { name: 'Ir para o acesso' });
@@ -73,6 +73,55 @@ test.describe('Página 1 — Portal de Acesso Lúmen', () => {
       expect(Math.abs((current?.width || 0) - (initial?.width || 0)), `${route} alterou a largura`).toBeLessThan(1);
       expect(Math.abs((current?.height || 0) - (initial?.height || 0)), `${route} alterou a altura`).toBeLessThan(1);
     }
+  });
+
+  test('usa cor como orientação sem misturar as três rotas', async ({ page }) => {
+    const portalSurface = await page.evaluate(() => ({
+      page: getComputedStyle(document.querySelector('.nql-portal')!).backgroundImage,
+      entryBorder: getComputedStyle(document.querySelector('.nql-portal__entry')!).borderTopColor,
+      entryCurrent: getComputedStyle(document.querySelector('.nql-portal__entry')!, '::before').backgroundImage,
+    }));
+    expect(portalSurface.page).toContain('rgb(13, 31, 54)');
+    expect(portalSurface.entryBorder).toBe('rgba(145, 223, 227, 0.5)');
+    expect(portalSurface.entryCurrent).toContain('linear-gradient');
+
+    const signatures = await page.locator('[data-portal-route]').evaluateAll((routes) =>
+      routes.map((route) => {
+        const style = getComputedStyle(route);
+        return {
+          route: (route as HTMLElement).dataset.portalRoute,
+          accent: style.getPropertyValue('--nql-route-accent').trim(),
+          rgb: style.getPropertyValue('--nql-route-rgb').trim(),
+        };
+      })
+    );
+
+    expect(new Set(signatures.map(({ accent }) => accent)).size).toBe(3);
+    expect(signatures.find(({ route }) => route === 'google')?.accent).toBe('#91dfe3');
+    expect(signatures.find(({ route }) => route === 'email')?.accent).toBe('#f1cf7a');
+    expect(signatures.find(({ route }) => route === 'guest')?.accent).toBe('#69bde7');
+
+    await page.locator('[data-portal-route="email"]').click();
+    const authPalette = await page.evaluate(() => {
+      const placeholder = getComputedStyle(document.querySelector('#authEmail')!, '::placeholder');
+      const track = getComputedStyle(document.querySelector('.nql-portal-auth__track')!, '::before');
+      return {
+        placeholder: placeholder.color,
+        track: track.backgroundImage,
+        context: getComputedStyle(document.querySelector('.nql-portal-auth__context')!).backgroundImage,
+        contextBorder: getComputedStyle(document.querySelector('.nql-portal-auth__context')!).borderRightColor,
+        workspace: getComputedStyle(document.querySelector('.nql-portal-auth__workspace')!).backgroundImage,
+        modalBorder: getComputedStyle(document.querySelector('.nql-portal-auth')!).borderTopColor,
+        activeTab: getComputedStyle(document.querySelector('.auth-tab.active')!).backgroundImage,
+      };
+    });
+    expect(authPalette.placeholder).toBe('rgb(140, 156, 182)');
+    expect(authPalette.track).toContain('linear-gradient');
+    expect(authPalette.context).toContain('radial-gradient');
+    expect(authPalette.contextBorder).toBe('rgba(145, 223, 227, 0.24)');
+    expect(authPalette.workspace).toContain('radial-gradient');
+    expect(authPalette.modalBorder).toBe('rgba(145, 223, 227, 0.52)');
+    expect(authPalette.activeTab).toContain('linear-gradient');
   });
 
   test('remove o conduto externo e anima apenas o divisor interno', async ({ page }) => {
