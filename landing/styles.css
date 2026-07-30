@@ -2242,22 +2242,22 @@ main, .nav, .footer { position: relative; z-index: 1; }
   z-index: 1;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(7,8,17,.98) 0%, rgba(7,8,17,.88) 27%, rgba(7,8,17,.32) 51%, rgba(7,8,17,.04) 78%),
+    linear-gradient(90deg, rgba(7,8,17,.98) 0%, rgba(7,8,17,.84) 27%, rgba(7,8,17,.2) 51%, rgba(7,8,17,.02) 78%),
     linear-gradient(180deg, rgba(7,8,17,.14), rgba(7,8,17,.04) 62%, rgba(7,8,17,.58));
   pointer-events: none;
 }
 .boss-backdrop {
   position: absolute;
   z-index: 0;
-  inset: -2%;
-  width: 104%;
-  height: 104%;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   max-width: none;
   object-fit: cover;
   object-position: center;
-  opacity: .9;
-  transform: translate3d(var(--flow-x, 0), var(--flow-y, 0), 0) scale(1.015);
-  transition: transform .9s var(--ease-out);
+  opacity: 1;
+  transform: none;
+  transition: opacity .3s var(--ease-out);
 }
 .boss > .boss-current {
   position: absolute;
@@ -2325,7 +2325,7 @@ main, .nav, .footer { position: relative; z-index: 1; }
   .method-row:last-child .method-visual--refs { width: min(100%, 330px); height: 198px; }
   .boss { min-height: 950px; }
   .boss::before { background: linear-gradient(180deg, rgba(7,8,17,.08) 0%, rgba(7,8,17,.15) 40%, rgba(7,8,17,.95) 66%, #070811 100%); }
-  .boss-backdrop { inset: 0; width: 100%; height: 62%; object-position: 70% top; transform: translate3d(var(--flow-x, 0), var(--flow-y, 0), 0) scale(1.025); }
+  .boss-backdrop { inset: 0; width: 100%; height: 62%; object-position: 70% top; transform: none; }
   .boss > .boss-current {
     inset: 0 0 auto;
     height: 510px;

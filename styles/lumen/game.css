@@ -150,10 +150,21 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
 }
 
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .panel.left {
+  --nql-divider-offset: calc((var(--nql-game-gap) - .5rem) / 2);
   position: relative;
   padding: .35rem 1.25rem 1.5rem 0;
-  border-right: 1px solid var(--nql-line);
+  border-right: 1px solid transparent;
   box-shadow: none;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .panel.left::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 calc(100% + var(--nql-divider-offset));
+  display: block;
+  width: 1px;
+  background: var(--nql-line);
+  pointer-events: none;
 }
 
 /* O Lúmen deixa o Arsenal Hilar e entra no campo de decisão. */
@@ -161,9 +172,10 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   content: "";
   position: absolute;
   top: 12rem;
-  right: calc(-1 * var(--nql-game-gap));
+  right: calc(-1 * var(--nql-game-gap) - 1px);
+  left: calc(100% + var(--nql-divider-offset));
   display: block;
-  width: var(--nql-game-gap);
+  width: auto;
   height: 1px;
   background: linear-gradient(90deg, rgba(var(--nql-lumen-rgb), .72), rgba(var(--nql-lumen-rgb), .18));
   box-shadow: 0 0 .7rem rgba(var(--nql-lumen-rgb), .2);
@@ -367,6 +379,12 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   box-shadow: none;
   object-position: center 16%;
   filter: saturate(1.08) contrast(1.07);
+}
+
+/* O retrato sempre conduz o olhar para a pergunta, sem espelhar a interface. */
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #heroImg[src*="clerigo_renal/nivel_06"],
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #heroImg[src*="maga_metabolica/nivel_05"] {
+  transform: scaleX(-1);
 }
 
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .hero-info {
@@ -1642,6 +1660,7 @@ body.reading-mode:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[d
     color: var(--nql-lumen) !important;
   }
 
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .panel.left::before,
   body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .panel.left::after {
     display: none;
   }

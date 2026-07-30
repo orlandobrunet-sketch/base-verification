@@ -12,7 +12,7 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
     const stylesheets = await page.locator('link[rel="stylesheet"]').evaluateAll((links) =>
       links.map((link) => new URL((link as HTMLLinkElement).href).pathname + new URL((link as HTMLLinkElement).href).search)
     );
-    expect(stylesheets).toContain('/styles/lumen/game.css?v=14.03');
+    expect(stylesheets).toContain('/styles/lumen/game.css?v=14.10');
 
     const app = page.locator('#mainApp');
     await expect(app).toHaveAttribute('data-nq-ui', 'lumen');
@@ -91,7 +91,16 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
       const dock = document.querySelector('#actionDock') as HTMLElement;
       const questionBox = document.querySelector('.qbox') as HTMLElement;
       const rightBox = right.getBoundingClientRect();
+      const leftBox = left.getBoundingClientRect();
+      const loadoutBox = loadout.getBoundingClientRect();
+      const questionBoxRect = questionBox.getBoundingClientRect();
       const questionBoxStyle = getComputedStyle(questionBox);
+      const dividerStyle = getComputedStyle(left, '::before');
+      const dividerVisible = dividerStyle.display !== 'none';
+      const dividerCenter = dividerVisible
+        ? leftBox.left + parseFloat(dividerStyle.left) + (parseFloat(dividerStyle.width) / 2)
+        : null;
+      const gapCenter = (loadoutBox.right + questionBoxRect.left) / 2;
       return {
         overflow: document.documentElement.scrollWidth - window.innerWidth,
         questionSize: parseFloat(getComputedStyle(question).fontSize),
@@ -103,10 +112,15 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
         questionMaxWidth: getComputedStyle(question).maxWidth,
         optionSize: parseFloat(getComputedStyle(option.querySelector('.opt-body') as HTMLElement).fontSize),
         rightWidth: rightBox.width,
-        leftWidth: left.getBoundingClientRect().width,
-        leftToQuestion: rightBox.left - loadout.getBoundingClientRect().right,
-        dividerToQuestion: rightBox.left - left.getBoundingClientRect().right,
+        leftWidth: leftBox.width,
+        leftToQuestion: rightBox.left - loadoutBox.right,
+        dividerToQuestion: rightBox.left - leftBox.right,
         questionToDock: dock.getBoundingClientRect().left - rightBox.right,
+        dividerDisplay: dividerStyle.display,
+        dividerCenter,
+        gapCenter,
+        dividerLeftGap: dividerCenter === null ? null : dividerCenter - loadoutBox.right,
+        dividerRightGap: dividerCenter === null ? null : questionBoxRect.left - dividerCenter,
       };
     });
 
@@ -122,9 +136,13 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
       expect(metrics.dividerToQuestion).toBeGreaterThanOrEqual(12);
       expect(metrics.dividerToQuestion).toBeLessThanOrEqual(17);
       expect(Math.abs(metrics.dividerToQuestion - metrics.questionToDock)).toBeLessThanOrEqual(1);
+      expect(metrics.dividerDisplay).toBe('block');
+      expect(Math.abs((metrics.dividerCenter || 0) - metrics.gapCenter)).toBeLessThanOrEqual(.5);
+      expect(Math.abs((metrics.dividerLeftGap || 0) - (metrics.dividerRightGap || 0))).toBeLessThanOrEqual(1);
     }
 
     if (testInfo.project.name === 'mobile') {
+      expect(metrics.dividerDisplay).toBe('none');
       const mobileLayout = await page.evaluate(() => ({
         questionTop: document.querySelector('.qbox')!.getBoundingClientRect().top,
         drawerPosition: getComputedStyle(document.querySelector('.panel.left')!).position,
@@ -234,5 +252,29 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
     }
 
     expect(new Set(signatures.values()).size).toBe(3);
+  });
+
+  test('mantém cada personagem olhando para o campo da pergunta', async ({ page }) => {
+    const mirroredPortraits = [
+      { character: 'nephros', level: 6, source: 'clerigo_renal/nivel_06' },
+      { character: 'aquaria', level: 5, source: 'maga_metabolica/nivel_05' },
+    ];
+
+    for (const portrait of mirroredPortraits) {
+      await page.evaluate(({ character, level }) => {
+        (window as any).state.character = character;
+        (window as any).state.level = level;
+        (window as any).renderHUD();
+      }, portrait);
+      await expect(page.locator('#heroImg')).toHaveAttribute('src', new RegExp(portrait.source));
+      await expect(page.locator('#heroImg')).toHaveCSS('transform', 'matrix(-1, 0, 0, 1, 0, 0)');
+    }
+
+    await page.evaluate(() => {
+      (window as any).state.character = 'glomerulus';
+      (window as any).state.level = 1;
+      (window as any).renderHUD();
+    });
+    await expect(page.locator('#heroImg')).toHaveCSS('transform', 'none');
   });
 });

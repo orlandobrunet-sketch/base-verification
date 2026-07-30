@@ -66,7 +66,7 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
     const stylesheets = await page.locator('link[rel="stylesheet"]').evaluateAll((links) =>
       links.map((link) => new URL((link as HTMLLinkElement).href).pathname + new URL((link as HTMLLinkElement).href).search)
     );
-    expect(stylesheets).toContain('/styles/lumen/atrium.css?v=14.06');
+    expect(stylesheets).toContain('/styles/lumen/atrium.css?v=14.10');
     await expect(page.locator('script[src="js/atrium.js?v=13.23"]')).toHaveCount(1);
     await expect(page.locator('script[src="js/auth.js?v=13.44"]')).toHaveCount(1);
     await expect(page.locator('script[src="js/game.js?v=14.02"]')).toHaveCount(1);
@@ -231,17 +231,31 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
       const ledeRects = Array.from(range.getClientRects());
       const shell = shellElement.getBoundingClientRect();
       const routes = routesElement.getBoundingClientRect();
+      const flow = document.querySelector('.wsaved-flow')!.getBoundingClientRect();
+      const paths = Array.from(document.querySelectorAll('.wsaved-flow path'))
+        .map((path) => path.getAttribute('d'));
       return {
         ledeLines: ledeRects.length,
         ledeTextRight: Math.max(...ledeRects.map((rect) => rect.right)),
         routesLeft: routes.left,
+        shellWidth: shell.width,
         shellHeight: shell.height,
+        shellRight: shell.right,
+        flowHeight: flow.height,
+        pathVariants: new Set(paths).size,
         viewportGap: window.innerHeight - shell.bottom,
       };
     });
     expect(desktopRhythm.ledeLines).toBe(1);
     expect(desktopRhythm.ledeTextRight).toBeLessThanOrEqual(desktopRhythm.routesLeft - 16);
-    expect(desktopRhythm.shellHeight).toBeLessThan(330);
+    expect(desktopRhythm.shellWidth).toBeGreaterThanOrEqual(680);
+    expect(desktopRhythm.shellWidth).toBeLessThanOrEqual(705);
+    expect(desktopRhythm.shellHeight).toBeGreaterThanOrEqual(260);
+    expect(desktopRhythm.shellHeight).toBeLessThanOrEqual(295);
+    expect(desktopRhythm.shellWidth / desktopRhythm.shellHeight).toBeGreaterThanOrEqual(2.4);
+    expect(desktopRhythm.shellRight).toBeLessThanOrEqual(desktopRhythm.routesLeft - 48);
+    expect(desktopRhythm.flowHeight).toBeLessThanOrEqual(30);
+    expect(desktopRhythm.pathVariants).toBe(1);
     expect(desktopRhythm.viewportGap).toBeGreaterThanOrEqual(48);
 
     const continuousPulse = await page.locator('.wsaved-flow-pulse').evaluate((element) => {

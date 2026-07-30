@@ -356,7 +356,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   --nql-journey-secondary-rgb: 199, 119, 66;
   position: relative;
   width: 100%;
-  max-width: 40rem;
+  max-width: 44rem;
   margin: 2rem 0 0;
   isolation: isolate;
 }
@@ -381,16 +381,16 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   border: 1px solid transparent;
   border-radius: .8rem;
   background:
-    radial-gradient(circle at 8% 28%, rgba(var(--nql-journey-primary-rgb), .34), transparent 12rem) padding-box,
-    radial-gradient(circle at 92% 86%, rgba(var(--nql-journey-secondary-rgb), .24), transparent 13rem) padding-box,
+    radial-gradient(circle at 8% 28%, rgba(var(--nql-journey-primary-rgb), .24), transparent 10rem) padding-box,
+    radial-gradient(circle at 92% 86%, rgba(var(--nql-mastery-rgb), .1), transparent 12rem) padding-box,
     linear-gradient(135deg, rgba(16, 35, 57, .99), rgba(var(--nql-abyss-rgb), .99)) padding-box,
     linear-gradient(115deg,
-      rgba(var(--nql-journey-primary-rgb), .95),
-      rgba(var(--nql-journey-secondary-rgb), .48) 48%,
-      rgba(var(--nql-mastery-rgb), .9)) border-box;
+      rgba(var(--nql-journey-primary-rgb), .58),
+      rgba(var(--nql-journey-secondary-rgb), .28) 48%,
+      rgba(var(--nql-mastery-rgb), .52)) border-box;
   box-shadow:
     0 1.5rem 3.75rem rgba(0, 0, 0, .34),
-    0 0 3rem rgba(var(--nql-journey-primary-rgb), .18),
+    0 0 2.4rem rgba(var(--nql-journey-primary-rgb), .12),
     inset 0 1px rgba(255, 255, 255, .055);
   transition: border-color var(--nql-duration-state), box-shadow var(--nql-duration-state), transform var(--nql-duration-state);
 }
@@ -401,31 +401,18 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   right: 1rem;
   left: 1rem;
   z-index: 3;
-  height: 3px;
+  height: 1px;
   border-radius: 0 0 999px 999px;
   background: linear-gradient(90deg,
-    var(--nql-journey-primary),
-    var(--nql-journey-secondary) 58%,
-    var(--nql-mastery));
-  box-shadow: 0 0 1.2rem rgba(var(--nql-journey-primary-rgb), .5);
+    rgba(var(--nql-journey-primary-rgb), .62),
+    rgba(var(--nql-journey-secondary-rgb), .34) 58%,
+    rgba(var(--nql-mastery-rgb), .54));
   content: "";
   pointer-events: none;
 }
 
 #welcomeScreen[data-nq-ui="lumen"][data-journey-state="saved"] .nql-atrium__resume-shell::after {
-  position: absolute;
-  top: 2.7rem;
-  right: -3.2rem;
-  z-index: 0;
-  width: 12rem;
-  aspect-ratio: 1;
-  border: 1px solid rgba(var(--nql-journey-primary-rgb), .22);
-  border-radius: 50%;
-  box-shadow:
-    0 0 0 2.5rem rgba(var(--nql-journey-primary-rgb), .045),
-    0 0 0 5.5rem rgba(var(--nql-journey-secondary-rgb), .025);
-  content: "";
-  pointer-events: none;
+  display: none;
 }
 
 #welcomeScreen[data-nq-ui="lumen"][data-journey-state="saved"] .nql-atrium__resume-shell:focus-within {
@@ -453,7 +440,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   position: relative;
   z-index: 1;
   display: flex;
-  padding: .58rem 1.2rem !important;
+  padding: .48rem 1.2rem !important;
   border-bottom: 1px solid rgba(var(--nql-journey-primary-rgb), .18) !important;
   border-radius: calc(.8rem - 1px) calc(.8rem - 1px) 0 0;
   align-items: center;
@@ -497,7 +484,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   z-index: 1;
   display: block !important;
   margin: 0 !important;
-  padding: .78rem 1.2rem .45rem !important;
+  padding: .62rem 1.2rem .3rem !important;
   background: transparent !important;
 }
 
@@ -510,8 +497,8 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 
 #welcomeScreen[data-nq-ui="lumen"] .wsaved-avatar-frame {
   display: grid;
-  width: 5.1rem;
-  height: 5.1rem;
+  width: 4.5rem;
+  height: 4.5rem;
   padding: 1px;
   border-radius: .65rem;
   place-items: center;
@@ -582,7 +569,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   text-shadow: 0 0 1.4rem rgba(var(--nql-mastery-rgb), .14);
 }
 
-#welcomeScreen[data-nq-ui="lumen"] .wsaved-progress { margin-top: .62rem; }
+#welcomeScreen[data-nq-ui="lumen"] .wsaved-progress { margin-top: .38rem; }
 #welcomeScreen[data-nq-ui="lumen"] .wsaved-progress-meta {
   display: flex;
   align-items: baseline;
@@ -602,8 +589,8 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 
 #welcomeScreen[data-nq-ui="lumen"] .wsaved-flow {
   width: 100%;
-  height: 2.5rem;
-  margin-top: .18rem;
+  height: 1.8rem;
+  margin-top: .1rem;
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .wsaved-flow svg {
@@ -643,24 +630,24 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   stroke: url("#nqlSavedFlowGradient");
   stroke-width: 3;
   stroke-dasharray: var(--nql-saved-progress, 0) 100;
-  filter: drop-shadow(0 0 .3rem rgba(var(--nql-journey-primary-rgb), .38));
+  filter: drop-shadow(0 0 .28rem rgba(var(--nql-journey-primary-rgb), .28));
   transition: stroke-dasharray var(--nql-duration-reward) var(--nql-ease-enter);
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .wsaved-flow-pulse {
   stroke: var(--nql-mastery);
   stroke-width: 3.5;
-  stroke-dasharray: 4 96;
+  stroke-dasharray: 2.5 97.5;
   stroke-dashoffset: 100;
-  opacity: .78;
-  filter: drop-shadow(0 0 .35rem rgba(var(--nql-mastery-rgb), .55));
+  opacity: .7;
+  filter: drop-shadow(0 0 .3rem rgba(var(--nql-mastery-rgb), .44));
   animation: nql-atrium-flow-travel 3.6s linear infinite;
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .wsaved-support {
   display: flex;
-  margin-top: .12rem;
-  padding-top: .55rem;
+  margin-top: .05rem;
+  padding-top: .42rem;
   border-top: 1px solid rgba(var(--nql-journey-primary-rgb), .13);
   align-items: center;
   justify-content: space-between;
@@ -703,7 +690,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 }
 
 #welcomeScreen[data-nq-ui="lumen"][data-journey-state="saved"] .nql-atrium__primary-actions {
-  padding: .2rem 1.2rem .78rem;
+  padding: .12rem 1.2rem .62rem;
 }
 
 #welcomeScreen[data-nq-ui="lumen"][data-journey-state="saved"] .nql-atrium__primary {
@@ -726,7 +713,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary,
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__secondary {
-  min-height: 3.35rem !important;
+  min-height: 3rem !important;
   margin: 0 !important;
   border-radius: var(--nql-radius-control) !important;
   text-transform: none !important;
@@ -736,7 +723,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   position: relative;
   display: flex;
   min-width: 0;
-  padding: .68rem 1rem .68rem 1.15rem !important;
+  padding: .5rem 1rem .5rem 1.15rem !important;
   border: 1px solid var(--nql-mastery) !important;
   overflow: hidden;
   flex: 1 1 68%;
