@@ -2392,6 +2392,25 @@ main, .nav, .footer { position: relative; z-index: 1; }
   .nav .nav-word { font-size: 1.04rem; }
 }
 
+/* Desktop com pouca altura útil: mantém o ciclo inteiro acima da dobra do navegador. */
+@media (max-height: 820px) and (min-width: 1081px) {
+  .hero,
+  .hero-shell { min-height: 100svh; }
+
+  .hero-shell {
+    padding-top: clamp(5rem, 11.5svh, 5.5rem);
+    padding-bottom: 1.25rem;
+  }
+
+  .hero-lab {
+    min-height: clamp(550px, calc(100svh - 114px), 650px);
+  }
+
+  .hero-atlas {
+    height: clamp(410px, calc(100svh - 254px), 510px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }

@@ -48,7 +48,7 @@ test.describe('Landing comercial', () => {
     const stylesheets = await page.locator('link[rel="stylesheet"]').evaluateAll((links) =>
       links.map((link) => new URL((link as HTMLLinkElement).href).pathname + new URL((link as HTMLLinkElement).href).search)
     );
-    expect(stylesheets).toContain('/landing/styles.css?v=14.10');
+    expect(stylesheets).toContain('/landing/styles.css?v=14.13');
 
     const palette = await page.evaluate(() => {
       const root = getComputedStyle(document.documentElement);
@@ -110,6 +110,31 @@ test.describe('Landing comercial', () => {
       expect(geometry.gap, `${viewport.width}px sem respiro mínimo`).toBeGreaterThanOrEqual(viewport.minGap);
       expect(geometry.gap, `${viewport.width}px deixou espaço morto`).toBeLessThanOrEqual(viewport.maxGap);
     }
+  });
+
+  test('mantém a régua do atlas visível em desktop com pouca altura útil', async ({ page }) => {
+    await page.setViewportSize({ width: 1536, height: 764 });
+    await page.goto('/');
+    await page.addStyleTag({
+      content: '.hero-lab { transform: none !important; transition: none !important; }',
+    });
+
+    const geometry = await page.evaluate(() => {
+      const nav = document.querySelector('#nav')!.getBoundingClientRect();
+      const lab = document.querySelector('.hero-lab')!.getBoundingClientRect();
+      const controls = document.querySelector('.flow-node-controls')!.getBoundingClientRect();
+      return {
+        topGap: lab.top - nav.bottom,
+        labHeight: lab.height,
+        controlsBottom: controls.bottom,
+        viewportHeight: window.innerHeight,
+      };
+    });
+
+    expect(geometry.topGap).toBeGreaterThanOrEqual(8);
+    expect(geometry.topGap).toBeLessThanOrEqual(16);
+    expect(geometry.labHeight).toBeLessThanOrEqual(650);
+    expect(geometry.controlsBottom).toBeLessThanOrEqual(geometry.viewportHeight - 8);
   });
 
   test('oferece entrada direta para quem já possui conta', async ({ page }) => {
