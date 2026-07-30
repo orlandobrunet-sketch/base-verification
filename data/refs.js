@@ -2193,13 +2193,13 @@ canvas_program:{
   },
   vancomycin_monitoring_ashp:{
     label:"Rybak MJ et al. — Vancomycin TDM (ASHP/IDSA/SIDP 2020)",
-    url:"https://academic.oup.com/ajhp/article/77/11/835/5810200",
+    url:"https://pubmed.ncbi.nlm.nih.gov/32658968/",
     journal:"Am J Health-Syst Pharm 2020;77(11):835-864",
     ano:2020,tipo:"Consenso Clínico",badge:"CONSENSO",badgeColor:"#f59e0b",
-    impacto:"Monitoramento de vancomicina por AUC/MIC em vez de vale sérico — reduz nefrotoxicidade sem perda de eficácia",icon:"⚠️",
-    resumo:"Consenso clínico internacional e diretrizes de monitoramento terapêutico de vancomicina (ASHP/IDSA/SIDP 2020) para o tratamento de infecções graves por MRSA. Recomenda a transição do monitoramento clássico baseado no vale sérico (trough) para o monitoramento farmacocinético individualizado baseado na Área Sob a Curva de concentração plasmática pelo tempo dividida pela Concentração Inibitória Mínima (relação AUC/MIC24h de 400 a 600, assumindo MIC de 1 mg/L). Mostra de forma inequívoca que a estratégia de manutenção baseada na AUC/MIC reduz significativamente a incidência de Lesão Renal Agudo induzida por vancomicina (LRA-V) sem comprometer a eficácia clínica antibacteriana.",
-    conclusao:"O consenso padronizou o monitoramento baseado na AUC/MIC como o novo padrão ouro de segurança e precisão para guiar a prescrição de vancomicina na beira do leito do paciente no Reino.",
-    curiosidade:"A vancomicina acumula-se preferencialmente nas células do túbulo contorcido proximal renal, onde gera espécies reativas de oxigênio (estresse oxidativo celular podocitário e tubular), levando a necrose tubular aguda (NTA) isquêmica e obstrutiva por cilindros celulares intraluminares se as concentrações máximas forem excessivas e prejudiciais."
+    impacto:"Consenso que substituiu o vale isolado pela exposição AUC/MIC como alvo preferencial em infecções graves por MRSA",icon:"⚠️",
+    resumo:"Consenso conjunto ASHP/IDSA/PIDS/SIDP para monitorização de vancomicina em infecções graves por MRSA. Recomenda atingir AUC24/MIC de 400 a 600, assumindo MIC de 1 mg/L por microdiluição, preferencialmente com métodos farmacocinéticos ou bayesianos. O documento alerta que usar vale de 15–20 mg/L como substituto universal da AUC pode elevar a exposição e a nefrotoxicidade; sua população-alvo principal é a de infecções invasivas por MRSA, não toda indicação possível de vancomicina.",
+    conclusao:"Em infecção grave por MRSA, a dose deve ser guiada para AUC24/MIC de 400–600 quando aplicável, equilibrando alcance precoce do alvo e risco de toxicidade sem depender de vale isolado.",
+    curiosidade:"A mesma concentração de vale pode corresponder a AUCs muito diferentes entre pacientes, razão pela qual o consenso migrou de um número pontual para uma medida de exposição ao longo de 24 horas."
   },
   acid_base_adroguenejm:{
     label:"Adrogue HJ, Madias NE — Acid-Base Disorders (NEJM 1998)",
@@ -3368,5 +3368,61 @@ finerenone_2025:{
     resumo:"Painel de especialistas em malignidades hematológicas pediátricas e adultas que definiu prevenção e manejo da síndrome de lise tumoral conforme risco. Para pacientes de alto risco, recomenda hidratação e rasburicase profilática com monitorização estreita; para risco intermediário, hidratação associada a alopurinol ou rasburicase conforme o caso. A alcalinização urinária rotineira não é recomendada.",
     conclusao:"Na síndrome de lise tumoral de alto risco, prevenção combina hidratação intravenosa, rasburicase e monitorização frequente; alcalinização não faz parte da rotina.",
     curiosidade:"Rasburicase converte ácido úrico em alantoína, mas gera peróxido de hidrogênio; por isso deficiência de G6PD transforma uma prevenção útil em risco de hemólise e metemoglobinemia."
+  },
+  siaarti_sin_citrate_2023:{
+    label:"SIAARTI-SIN — Anticoagulação Regional por Citrato na TRS",
+    url:"https://pubmed.ncbi.nlm.nih.gov/37386664/",
+    journal:"J Anesth Analg Crit Care. 2023;3(1):7",
+    ano:2023,
+    tipo:"Opinião de especialistas",
+    badge:"CONSENSUS",
+    badgeColor:"#6366f1",
+    impacto:"Monitorização e manejo seguro da anticoagulação regional por citrato em terapias renais contínuas e prolongadas",
+    icon:"📋",
+    resumo:"Documento conjunto das sociedades italianas de anestesia e nefrologia sobre anticoagulação regional por citrato. Recomenda monitorar cálcio ionizado do circuito e do paciente, cálcio total e equilíbrio ácido-base. Acúmulo deve ser suspeitado quando a relação cálcio total/ionizado sobe em direção a 2,5 ou mais, sobretudo junto de hipocalcemia sistêmica, necessidade crescente de reposição de cálcio e piora da acidose. Fígado, músculo esquelético e córtex renal participam do metabolismo; choque e disfunção hepática grave exigem vigilância ampliada, não uma regra fixa universal de dose.",
+    conclusao:"Na CRRT com citrato, tendência da relação cálcio total/ionizado, cálcio sistêmico, necessidade de reposição e estado ácido-base devem ser interpretados em conjunto; acúmulo requer reduzir a carga, favorecer remoção ou mudar a anticoagulação conforme protocolo e gravidade.",
+    curiosidade:"Cálcio ionizado pós-filtro baixo informa que o circuito está anticoagulado; ele não diagnostica sozinho acúmulo sistêmico de citrato no paciente."
+  },
+  vancomycin_crrt_pk_review_2026:{
+    label:"Sürmelioğlu et al. — Vancomicina na CRRT",
+    url:"https://pubmed.ncbi.nlm.nih.gov/41900808/",
+    journal:"Pharmaceutics. 2026;18(3):322",
+    ano:2026,
+    tipo:"Revisão sistemática farmacocinética",
+    badge:"META",
+    badgeColor:"#0ea5e9",
+    impacto:"Síntese de modelos farmacocinéticos populacionais para individualizar vancomicina em adultos críticos sob CRRT",
+    icon:"🔬",
+    resumo:"Revisão sistemática de 12 estudos farmacocinéticos populacionais em adultos críticos sob CRRT. Encontrou grande heterogeneidade entre modalidades e estimativas de depuração; a taxa de efluente foi o determinante mais consistente, com contribuição de diurese residual, albumina e vasopressores. Esquemas fixos tiveram desempenho inadequado, enquanto dose de ataque apropriada, manutenção ajustada ao efluente e monitorização terapêutica precoce e repetida melhoraram a probabilidade de atingir a exposição desejada.",
+    conclusao:"Vancomicina na CRRT não admite esquema universal: carga adequada deve ser seguida de manutenção individualizada pela intensidade do efluente, função renal residual e TDM seriado.",
+    curiosidade:"Nos estudos reunidos, a depuração estimada de vancomicina variou aproximadamente de 0,7 a 3,0 L/h, amplitude que explica por que a mesma dose fixa pode causar subexposição ou acúmulo."
+  },
+  hemodiafe_2006:{
+    label:"HEMODIAFE — CVVHDF versus Hemodiálise Intermitente",
+    url:"https://pubmed.ncbi.nlm.nih.gov/16876666/",
+    journal:"Lancet. 2006;368(9533):379-385",
+    ano:2006,
+    tipo:"Ensaio clínico randomizado",
+    badge:"RCT",
+    badgeColor:"#10b981",
+    impacto:"Ensaio multicêntrico francês sobre modalidade dialítica na LRA com disfunção de múltiplos órgãos",
+    icon:"🔬",
+    resumo:"Ensaio multicêntrico randomizado em 360 pacientes críticos com LRA e síndrome de disfunção de múltiplos órgãos. Comparou hemodiálise intermitente protocolada com hemodiafiltração venovenosa contínua; não estudou SLED. A sobrevida em 60 dias foi 32% com hemodiálise intermitente e 33% com terapia contínua, sem diferença em sobrevida nos demais momentos ou recuperação renal.",
+    conclusao:"Quando ambas são aplicadas com protocolos de tolerância e controle metabólico, CVVHDF e hemodiálise intermitente não demonstraram diferença de sobrevida no HEMODIAFE.",
+    curiosidade:"O estudo padronizou medidas de tolerância na hemodiálise intermitente, como dialisato mais frio e conexão isovolêmica, detalhe importante para interpretar a comparação."
+  },
+  sled_crrt_meta_2015:{
+    label:"Zhang et al. — Diálise Estendida versus CRRT na LRA",
+    url:"https://pubmed.ncbi.nlm.nih.gov/25843704/",
+    journal:"Am J Kidney Dis. 2015;66(2):322-330",
+    ano:2015,
+    tipo:"Revisão sistemática e meta-análise",
+    badge:"META",
+    badgeColor:"#0ea5e9",
+    impacto:"Comparação de diálise estendida/SLED com CRRT em pacientes com lesão renal aguda",
+    icon:"📊",
+    resumo:"Meta-análise de 17 estudos, incluindo sete ensaios randomizados e dez estudos observacionais, que comparou diálise diária estendida — categoria que inclui SLED — com CRRT na LRA. Nos ensaios randomizados, não houve diferença de mortalidade (RR 0,90; IC95% 0,74–1,11). Recuperação renal, remoção de fluidos, permanência na UTI e eficácia bioquímica também foram semelhantes; o sinal favorável observado em estudos não randomizados permaneceu sujeito a viés de seleção.",
+    conclusao:"Ensaios randomizados não sustentam superioridade de mortalidade da diálise estendida/SLED ou da CRRT; a escolha deve considerar fisiologia, recursos e experiência local.",
+    curiosidade:"A definição da revisão exigiu sessões com mais de seis e menos de 24 horas em máquina convencional, separando a terapia estendida tanto da hemodiálise clássica curta quanto da modalidade contínua."
   },
 };
