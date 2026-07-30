@@ -1,0 +1,215 @@
+{
+  "batch": "FARM-16D",
+  "change_type": "medical_editorial",
+  "expected_version": "14.03",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-16D.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "2777c29d": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "df6821b6": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "8d14de2e": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "9fcbca9f": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "865b0695": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "9fcbca9f",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "bfb2f2dc": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "2524c083": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "fc174760": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "212f3a7d": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "f75b87ef": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "09f929d8": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "e6ac4417": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    }
+  },
+  "expected_question_delta": -1,
+  "refs_policy": "declared",
+  "references": {
+    "sglt2i_aki_meta_2020": {
+      "action": "update_existing",
+      "source": "2020 systematic review and meta-analysis of SGLT2 inhibitors and AKI"
+    },
+    "rhabdo_review_2023": {
+      "action": "update_existing",
+      "source": "EAST practice management guideline for rhabdomyolysis"
+    },
+    "bproad": {
+      "action": "update_existing",
+      "source": "BPROAD randomized trial"
+    },
+    "nih_tdf_guideline_2025": {
+      "action": "add_new",
+      "source": "NIH ClinicalInfo monograph on tenofovir disoproxil fumarate"
+    },
+    "hiv_kidney_cohen": {
+      "action": "reuse_existing",
+      "source": "Review of kidney disease and antiretroviral nephrotoxicity in HIV"
+    },
+    "htn_tma_review_2015": {
+      "action": "add_new",
+      "source": "Review distinguishing malignant hypertension-associated TMA from TTP"
+    },
+    "wsacs_acs_guideline_2013": {
+      "action": "add_new",
+      "source": "WSACS consensus definitions and clinical practice guideline"
+    },
+    "adqi_sepsis_aki_2023": {
+      "action": "add_new",
+      "source": "ADQI 28 consensus report on sepsis-associated AKI"
+    },
+    "brenner_rector": {
+      "action": "reuse_existing",
+      "source": "Brenner & Rector's The Kidney, 2024"
+    },
+    "penkid_study": {
+      "action": "update_existing",
+      "source": "Kid-SSS prospective observational study of penKid in septic AKI"
+    },
+    "kdigo_aki": {
+      "action": "reuse_existing",
+      "source": "KDIGO 2012 Clinical Practice Guideline for Acute Kidney Injury"
+    },
+    "furosemide_stress_test": {
+      "action": "update_existing",
+      "source": "2013 prospective standardization study of the Furosemide Stress Test"
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Onze questões foram reconstruídas com evidência verificada, pendência nenhuma e preservação de qid/FSRS.",
+    "O qid 865b0695 foi fundido em 9fcbca9f porque repetia reconhecimento simples de TDF e síndrome de Fanconi sem acrescentar decisão clínica.",
+    "A alcalinização urinária rotineira foi removida da questão de rabdomiólise conforme a diretriz EAST.",
+    "A alegação de aumento de LRA no BPROAD foi corrigida: insuficiência renal aguda foi rara e semelhante entre os grupos.",
+    "As questões de penKid e Furosemide Stress Test passaram a explicitar que são ferramentas de estratificação e não substituem critérios KDIGO ou indicação clínica de diálise.",
+    "A questão de cilindros leucocitários recebeu contexto clínico suficiente para separar pielonefrite de nefrite intersticial.",
+    "Todos os novos cards do Grimório contêm resumo, conclusão e curiosidade."
+  ]
+}
