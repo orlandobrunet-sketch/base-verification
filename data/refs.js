@@ -518,6 +518,62 @@ kdigo_ckd:{
     conclusao:"Relação BUN/creatinina elevada favorece fonte digestiva alta, sobretudo em valores mais altos, mas a acurácia é apenas moderada e o resultado não localiza o sangramento de forma confirmatória.",
     curiosidade:"Elevar o corte de 22 para mais de 30 aumenta a especificidade, mas perde grande parte da sensibilidade — uma ilustração clínica do custo de exigir um teste mais convincente."
   },
+  nih_tdf_guideline_2025:{
+    label:"NIH — Tenofovir Disoproxil Fumarato: Toxicidade Renal",
+    url:"https://clinicalinfo.hiv.gov/en/guidelines/pediatric-arv/tenofovir-df",
+    journal:"NIH ClinicalInfo HIV.gov",
+    ano:2025,
+    tipo:"Informação clínica oficial",
+    badge:"GUIDELINE",
+    badgeColor:"#6366f1",
+    impacto:"Fonte oficial sobre toxicidade tubular, síndrome de Fanconi e monitorização durante uso de TDF",
+    icon:"📋",
+    resumo:"A monografia clínica do NIH descreve toxicidade renal associada ao tenofovir disoproxil fumarato, incluindo tubulopatia proximal, proteinúria, hipofosfatemia, glicosúria normoglicêmica e, nas formas mais graves, síndrome de Fanconi. Destaca que proteínas de baixo peso molecular podem revelar dano proximal que a fita urinária centrada em albumina não detecta bem.",
+    conclusao:"Em pacientes sob TDF, alterações compatíveis com perda tubular proximal exigem avaliação de função renal, fósforo, glicose urinária e proteinúria, além de revisão individualizada do esquema antiviral.",
+    curiosidade:"O tenofovir alafenamida produz menor exposição plasmática ao tenofovir que o TDF e se associa a menor risco de toxicidade renal e óssea, embora a escolha dependa do contexto terapêutico."
+  },
+  htn_tma_review_2015:{
+    label:"Hipertensão Maligna com MAT versus PTT — Revisão 2015",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC4480518/",
+    journal:"Therapeutic Advances in Hematology",
+    ano:2015,
+    tipo:"Revisão de casos",
+    badge:"REVIEW",
+    badgeColor:"#8b5cf6",
+    impacto:"Sintetiza características que ajudam a distinguir MAT hipertensiva de PTT e orientar o tratamento inicial",
+    icon:"🔬",
+    resumo:"Revisão de casos de hipertensão maligna com microangiopatia trombótica. Em comparação com PTT, a MAT hipertensiva tende a apresentar pressão muito elevada, retinopatia ou cardiopatia hipertensiva, lesão renal mais acentuada, trombocitopenia menos profunda e atividade de ADAMTS13 preservada ou apenas discretamente reduzida.",
+    conclusao:"Quando o conjunto clínico e a ADAMTS13 afastam PTT, o tratamento etiológico é controle pressórico imediato e cuidadoso; plasmaférese não é terapia rotineira da MAT hipertensiva.",
+    curiosidade:"Deficiência grave de ADAMTS13 abaixo de 10% favorece PTT, enquanto valores preservados ajudam a evitar exposição desnecessária à plasmaférese quando a hipertensão explica a microangiopatia."
+  },
+  wsacs_acs_guideline_2013:{
+    label:"WSACS — Diretriz de Hipertensão Intra-abdominal e Síndrome Compartimental",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC3680657/",
+    journal:"Intensive Care Medicine",
+    ano:2013,
+    tipo:"Diretriz de consenso baseada em revisão sistemática",
+    badge:"GUIDELINE",
+    badgeColor:"#6366f1",
+    impacto:"Define síndrome compartimental abdominal e organiza medidas clínicas, drenagem percutânea e descompressão cirúrgica",
+    icon:"📋",
+    resumo:"A WSACS define síndrome compartimental abdominal como pressão intra-abdominal sustentada acima de 20 mmHg, com ou sem pressão de perfusão abdominal abaixo de 60 mmHg, associada a nova disfunção orgânica. Recomenda monitorização protocolada, medidas para reduzir a pressão, drenagem percutânea quando houver líquido acessível e laparotomia descompressiva na síndrome manifesta.",
+    conclusao:"LRA com pressão intra-abdominal elevada exige tratar o mecanismo compressivo. Na síndrome compartimental persistente apesar das medidas menos invasivas, a descompressão cirúrgica é o tratamento recomendado.",
+    curiosidade:"A diretriz não encontrou evidência suficiente para recomendar diuréticos ou terapia renal substitutiva como tratamento específico da pressão intra-abdominal elevada."
+  },
+  adqi_sepsis_aki_2023:{
+    label:"ADQI 28 — LRA Associada à Sepse",
+    url:"https://www.nature.com/articles/s41581-023-00683-3",
+    journal:"Nature Reviews Nephrology",
+    ano:2023,
+    tipo:"Consenso internacional",
+    badge:"CONSENSUS",
+    badgeColor:"#6366f1",
+    impacto:"Consenso sobre definição, fisiopatologia, biomarcadores e manejo de LRA associada à sepse",
+    icon:"📋",
+    resumo:"O consenso ADQI caracteriza LRA associada à sepse quando critérios Sepsis-3 e KDIGO coexistem e a LRA ocorre em até sete dias do diagnóstico de sepse. A fisiopatologia proposta inclui disfunção microcirculatória, inflamação desregulada, reprogramação metabólica e lesão mitocondrial, sem exigir queda uniforme do fluxo renal global.",
+    conclusao:"A LRA séptica é uma síndrome heterogênea e multifatorial; reconhecimento precoce e prevenção de novos insultos são centrais, enquanto biomarcadores e terapias direcionadas ainda exigem validação.",
+    curiosidade:"O consenso inclui LRA clínica e subclínica no mesmo marco conceitual, destacando que creatinina e diurese podem não capturar toda a biologia da injúria."
+  },
   kdigo_aki_2026:{
     label:"KDIGO 2026 AKI/AKD — Public Review Draft",
     url:"https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
@@ -540,11 +596,11 @@ kdigo_ckd:{
     tipo:"Meta-análise",
     badge:"META",
     badgeColor:"#0ea5e9",
-    impacto:"120 ECRs (n=96.722) + 4 estudos observacionais (n=83.934): iSGLT2 reduziu IRA em 36% nos ECRs (OR 0,64; IC 95% 0,53–0,78) e 60% nos estudos observacionais (OR 0,40; IC 95% 0,33–0,48)",
+    impacto:"120 ECRs (n=96.722) e 4 estudos observacionais (n=83.934); quantifica a associação dos iSGLT2 com menor ocorrência de LRA",
     icon:"🔬",
-    resumo:"Meta-análise sistemática abrangente (120 ECRs, n = 96.722; e 4 estudos de coorte observacionais, n = 83.934) avaliando o impacto dos inibidores de SGLT2 (iSGLT2) sobre o risco de LRA em pacientes com DM2. Nos ECRs, o uso de iSGLT2 reduziu significativamente o risco de desenvolver LRA em 36% (Odds Ratio de 0,64; IC 95% 0,53–0,78; P < 0,001). Nos estudos de coorte do 'mundo real', a redução do risco foi ainda mais acentuada, atingindo 60% (OR 0,40; IC 95% 0,33–0,48; P < 0,001), demonstrando um efeito protetor robusto e consistente em diferentes populações.",
-    conclusao:"Esta meta-análise de grande escala encerrou a preocupação inicial de que os iSGLT2 pudessem causar LRA devido à diurese osmótica, comprovando de forma definitiva o seu papel nefroprotetor agudo e preventivo de disfunção renal.",
-    curiosidade:"Embora causem uma queda hemodinâmica inicial ('dip' fisiológico) na TFGe nas primeiras semanas devido ao bloqueio de feedback tubuloglomerular e vasoconstrição da arteríola aferente, os iSGLT2 protegem o rim a longo prazo reduzindo o estresse de hiperfiltração e diminuindo a demanda de oxigênio no córtex e medula renais."
+    resumo:"Meta-análise de 120 ensaios randomizados, com 96.722 participantes, e quatro coortes observacionais, com 83.934 participantes. Nos ensaios, os iSGLT2 se associaram a menor ocorrência de LRA (OR 0,64; IC 95% 0,53–0,78). Nas coortes, a associação também favoreceu a classe (OR 0,40; IC 95% 0,33–0,48), embora dados observacionais estejam mais sujeitos a confundimento.",
+    conclusao:"No conjunto dos ensaios, os iSGLT2 não aumentaram LRA e se associaram a redução de eventos. O resultado populacional não elimina avaliação individual de hipovolemia, doença aguda e outros fatores de risco.",
+    curiosidade:"A queda inicial e reversível da TFGe após iniciar um iSGLT2 é um efeito hemodinâmico distinto de LRA clínica e não deve ser interpretada automaticamente como toxicidade tubular."
   },
   permissive_azotemia_2022:{
     label:"Azotemia Permissiva na IRA (Critical Care 2022)",
@@ -625,11 +681,11 @@ kdigo_ckd:{
     tipo:"Ensaio Clínico Fase III",
     badge:"RCT",
     badgeColor:"#10b981",
-    impacto:"↓21% eventos CV em DM2 com meta PA sistólica <120 mmHg",
+    impacto:"12.821 participantes: meta de PAS <120 mmHg reduziu o composto cardiovascular, com segurança renal grave semelhante entre os grupos",
     icon:"💊",
-    resumo:"ECR multicêntrico chinês, n=12.821, DM2 + HAS + alto risco cardiovascular, comparando PAS alvo <120 mmHg vs <140 mmHg. Desfecho primário: AVC não fatal, IAM não fatal, tratamento/internação por IC ou morte cardiovascular. Reduziu o desfecho primário: 393 vs 492 eventos; HR 0,79, IC 95% 0,69–0,90, P<0,001. Benefício principalmente por redução de AVC fatal/não fatal: HR 0,79, IC 95% 0,67–0,92. Eventos adversos graves foram semelhantes, mas hipotensão sintomática e hipercalemia foram mais frequentes no grupo intensivo.",
-    conclusao:"BPROAD fortalece alvo intensivo de PAS em DM2 de alto risco cardiovascular, mas exige medida padronizada, vigilância de hipotensão/hipercalemia e cautela em idosos frágeis, ortostatismo e DRC avançada.",
-    curiosidade:"Diferente do SPRINT, que excluiu diabetes, BPROAD testou diretamente o alvo <120 mmHg em DM2."
+    resumo:"ECR multicêntrico chinês com 12.821 adultos com diabetes tipo 2, hipertensão e alto risco cardiovascular, comparando PAS alvo <120 mmHg versus <140 mmHg. O composto de AVC não fatal, IAM não fatal, tratamento ou internação por insuficiência cardíaca e morte cardiovascular ocorreu em 393 versus 492 participantes (HR 0,79; IC 95% 0,69–0,90). Eventos adversos graves foram semelhantes; insuficiência renal aguda ocorreu em 4 versus 5 participantes. Hipotensão sintomática e hipercalemia foram mais frequentes no grupo intensivo.",
+    conclusao:"O BPROAD sustenta benefício cardiovascular do alvo intensivo na população estudada, com monitorização de hipotensão e potássio. Não demonstrou aumento de insuficiência renal aguda.",
+    curiosidade:"Ao contrário do SPRINT, o BPROAD incluiu apenas pessoas com diabetes tipo 2 e testou diretamente a meta de PAS abaixo de 120 mmHg."
   },
 
   flow_study:{
@@ -1284,13 +1340,13 @@ canvas_program:{
   // --- IRA ---
   furosemide_stress_test:{
     label:"Chawla LS et al. — Furosemide Stress Test (CJASN 2013)",
-    url:"https://cjasn.asnjournals.org/content/8/11/1935",
+    url:"https://pubmed.ncbi.nlm.nih.gov/24053972/",
     journal:"Clin J Am Soc Nephrol 2013;8(11):1935-1943",
     ano:2013,tipo:"Estudo Clínico",badge:"COORTE",badgeColor:"#0ea5e9",
-    impacto:"FST (1mg/kg furosemida IV): débito urinário < 200mL/2h prediz progressão para LRA estágio 3 com alta sensibilidade",icon:"📖",
-    resumo:"Estudo prospectivo de coorte (Chawla et al., CJASN 2013; n=77), em pacientes críticos com LRA inicial após ressuscitação volêmica adequada. Administrou furosemida IV 1 mg/kg em pacientes sem exposição prévia a diurético de alça ou 1,5 mg/kg em usuários prévios, e mediu o débito urinário nas 2h seguintes. Débito urinário ≤200 mL em 2h previu progressão para LRA estágio 3 com AUC 0,87, sensibilidade de 87,1% e especificidade de 84,1%.",
-    conclusao:"O Furosemide Stress Test é uma ferramenta funcional de reserva tubular para estratificar risco de progressão da LRA e preparar vigilância/planejamento de TRS; não deve ser usado isoladamente para indicar diálise.",
-    curiosidade:"A lógica do FST é testar se o túbulo ainda consegue secretar e responder à furosemida. Uma resposta diurética ruim sugere baixa reserva tubular, mas isso não significa que furosemida trate a injúria renal — ela apenas revela a capacidade funcional residual."
+    impacto:"Estudo de padronização do FST: a diurese em duas horas discriminou progressão para LRA estágio 3",icon:"📖",
+    resumo:"Estudo prospectivo que padronizou o Furosemide Stress Test em pacientes com LRA inicial clinicamente euvolêmicos. Utilizou 1 mg/kg de furosemida IV em pacientes sem exposição prévia a diurético de alça e 1,5 mg/kg em expostos, medindo a diurese por duas horas. O melhor ponto de corte foi 200 mL em duas horas, com AUC de 0,87 para progressão a LRA estágio 3.",
+    conclusao:"O FST estratifica risco de progressão da LRA após correção volêmica e exclusão de obstrução; não define etiologia e não constitui indicação isolada de terapia renal substitutiva.",
+    curiosidade:"O teste avalia simultaneamente entrega, secreção tubular e resposta à furosemida; por isso uma resposta ruim informa reserva tubular, não eficácia terapêutica do diurético sobre a injúria."
   },
   // --- Síndrome Hepatorrenal ---
   confirm_trial:{
@@ -2391,14 +2447,14 @@ canvas_program:{
     curiosidade:"As exostosinas 1 e 2 são glicosiltransferases codificadas por genes supressores de tumor localizados no retículo endoplasmático podocitário, que atuam na síntese de sulfato de heparana. Na biópsia, a coloração imuno-histoquímica positiva para EXT1/EXT2 indica agressão glomerular lúpica mesmo se o paciente ainda não apresentar diagnóstico sistêmico formal de LES."
   },
   penkid_study:{
-    label:"Hollinger A et al. — penKid em LRA (Critical Care 2018)",
-    url:"https://ccforum.biomedcentral.com/articles/10.1186/s13054-018-2007-9",
-    journal:"Critical Care 2018;22(1):189",
+    label:"Hollinger A et al. — penKid na LRA Séptica (Kidney Int Rep 2018)",
+    url:"https://pubmed.ncbi.nlm.nih.gov/30450469/",
+    journal:"Kidney International Reports 2018;3(6):1424-1433",
     ano:2018,tipo:"Estudo Observacional",badge:"STUDY",badgeColor:"#0ea5e9",
-    impacto:"Proenkephalin A (penKid) como biomarcador precoce de LRA em choque séptico — independente de massa muscular",icon:"🔬",
-    resumo:"Estudo observacional clínico prospectivo multicêntrico (n = 583 pacientes em choque séptico internados em UTI), avaliando o papel diagnóstico e prognóstico da proenquefalina A (penKid) sérica como um biomarcador funcional inovador de LRA. penKid é um peptídeo biologicamente estável gerado em estequiometria 1:1 com a enquefalina. O estudo demonstrou que os níveis séricos de penKid estão fortemente associados com a TFGe real e são capazes de prever o desenvolvimento agudo de LRA KDIGO nas próximas 48 horas de forma significativamente mais precoce que a creatinina sérica (P < 0,001), sendo totalmente independente de inflamação e massa muscular.",
-    conclusao:"O biomarcador funcional penKid é superior à creatinina para detecção precoce de LRA em pacientes graves com choque séptico, refletindo de forma fidedigna a taxa de filtração glomerular real no leito do paciente.",
-    curiosidade:"Diferente de biomarcadores estruturais de dano renal (como NGAL e TIMP-2/IGFBP7, que refletem lesão celular tubular direta), a penKid é filtrada livremente pelo glomérulo e atua como um marcador puramente funcional de filtração glomerular em tempo real, sem sofrer variações por sarcopenia, idade ou inflamação sistêmica."
+    impacto:"Coorte prospectiva multicêntrica que avaliou penKid como biomarcador funcional e preditor de LRA em sepse e choque séptico",icon:"🔬",
+    resumo:"Estudo Kid-SSS em pacientes com sepse ou choque séptico avaliou proenkephalin A 119–159 plasmática. Concentrações de penKid se associaram à função renal presente e ao desenvolvimento de LRA nas 48 horas seguintes, mesmo após ajustes clínicos. Trata-se de associação observacional em população crítica, não de ensaio de impacto clínico.",
+    conclusao:"penKid é biomarcador funcional emergente com potencial para estratificação precoce de risco na sepse, mas não substitui os critérios KDIGO nem define sozinho etiologia ou início de terapia renal substitutiva.",
+    curiosidade:"Ao contrário de NGAL e KIM-1, estudados principalmente como marcadores de dano tubular, penKid é investigada como sinal funcional relacionado à filtração."
   },
   evaluate_trial:{
     label:"EVALUATE Trial (Diálise vs Conservador em Idosos)",
@@ -2679,14 +2735,14 @@ finerenone_2025:{
     curiosidade:"O sparsentan atua de forma inovadora bloqueando simultaneamente a via da angiotensina II (receptor AT1) e a via da endotelina-1 (receptor ETA). A endotelina-1 é um vasoconstritor glomerular potente que induz esclerose mesangial e dano aos podócitos — o sparsentan bloqueia essa agressão de forma direta."
   },
   rhabdo_review_2023:{
-    label:"Rabdomiólise e LRA — Revisão Clin J Am Soc Nephrol",
-    url:"https://cjasn.asnjournals.org/",
-    journal:"Clinical Journal of the American Society of Nephrology",
-    ano:2023,tipo:"Revisão",badge:"REVISÃO",badgeColor:"#8b5cf6",
-    impacto:"Patogênese e manejo da LRA por rabdomiólise: hidratação agressiva, monitoramento de CPK e complicações eletrolíticas",icon:"📖",
-    resumo:"Artigo de revisão clínica e fisiopatológica sistemática sobre a Lesão Renal Aguda associada a Rabdomiólise (LRA-R) publicada no CJASN (2023). Detalha a patogênese da lesão que ocorre quando níveis séricos de creatina fosfoquinase (CPK) ultrapassam 5.000 U/L. O mecanismo central envolve a liberação maciça de mioglobina circulante das células musculares lisas lesadas, que causa toxicidade por 3 vias: obstrução física intratubular por cilindros de mioglobina precipitados, toxicidade celular direta induzida por estresse oxidativo do ferro livre, e vasoconstrição intrarrenal acentuada. O tratamento baseia-se na hidratação salina agressiva precoce (alvo de débito urinário de 200–300 mL/h) e alcalinização urinária dirigida em casos selecionados (alvo pH > 6,5) para impedir a precipitação do complexo mioglobina-proteína de Tamm-Horsfall.",
-    conclusao:"O manejo ideal da LRA por rabdomiólise exige ressuscitação volêmica salina precoce e vigorosa para restaurar o fluxo tubular e evitar a precipitação de cilindros de mioglobina, vigiando rigorosamente as alterações de potássio sérico.",
-    curiosidade:"A mioglobina precipita-se seletivamente nos túbulos renais na presença de urina ácida (pH < 5,6) devido à sua dissociação em globina e ferrihemato (ferro livre reativo), que catalisa reações de Haber-Weiss gerando radicais livres que oxidam a membrana lipídica das células tubulares."
+    label:"EAST — Diretriz de Manejo da Rabdomiólise",
+    url:"https://pubmed.ncbi.nlm.nih.gov/34836603/",
+    journal:"American Journal of Surgery",
+    ano:2022,tipo:"Diretriz baseada em revisão sistemática",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Revisão sistemática e diretriz sobre fluidos, bicarbonato e manitol para prevenir LRA e diálise na rabdomiólise",icon:"📖",
+    resumo:"Diretriz da Eastern Association for the Surgery of Trauma baseada em revisão sistemática. A administração de fluidos intravenosos em maior volume se associou a menor incidência de insuficiência renal aguda e menor necessidade de diálise. Bicarbonato e manitol não demonstraram melhora desses desfechos.",
+    conclusao:"Recomenda-se hidratação intravenosa precoce e guiada pela resposta; bicarbonato e manitol não devem ser usados rotineiramente para prevenir LRA na rabdomiólise.",
+    curiosidade:"A plausibilidade de alcalinizar a urina é antiga, mas a diretriz separa mecanismo teórico de benefício clínico demonstrado — e o segundo não foi confirmado."
   },
   calciphylaxis_sts_meta_2023:{
     label:"Wen et al. — Tiossulfato na Calcifilaxia (JAMA Network Open 2023)",
