@@ -25,11 +25,30 @@ test.describe('Landing comercial', () => {
     await expect(page.locator('#welcomeScreen')).toHaveCount(0);
   });
 
+  test('usa a arte nítida do Nefromante sem reamostragem por escala', async ({ page }) => {
+    const artwork = page.locator('.boss-backdrop');
+    await artwork.scrollIntoViewIfNeeded();
+    await expect(artwork).toHaveAttribute('src', '/landing/assets/nefromancer-lumen-v3.png');
+    await expect.poll(() => artwork.evaluate((image: HTMLImageElement) => image.naturalWidth)).toBeGreaterThanOrEqual(1600);
+
+    const presentation = await artwork.evaluate((image) => {
+      const style = getComputedStyle(image);
+      return {
+        opacity: style.opacity,
+        transform: style.transform,
+        objectFit: style.objectFit,
+      };
+    });
+    expect(presentation.opacity).toBe('1');
+    expect(presentation.transform).toBe('none');
+    expect(presentation.objectFit).toBe('cover');
+  });
+
   test('mantém a gramática cromática clínica da experiência Lúmen', async ({ page }) => {
     const stylesheets = await page.locator('link[rel="stylesheet"]').evaluateAll((links) =>
       links.map((link) => new URL((link as HTMLLinkElement).href).pathname + new URL((link as HTMLLinkElement).href).search)
     );
-    expect(stylesheets).toContain('/landing/styles.css?v=14.06');
+    expect(stylesheets).toContain('/landing/styles.css?v=14.10');
 
     const palette = await page.evaluate(() => {
       const root = getComputedStyle(document.documentElement);
