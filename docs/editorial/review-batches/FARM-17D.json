@@ -1,0 +1,147 @@
+{
+  "batch": "FARM-17D",
+  "change_type": "medical_editorial",
+  "expected_version": "14.09",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-17D.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "8fee305a": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "3e0788ac": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "cfa20f08": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "1b4ebca6": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "fe70507d": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "5d9f1a59": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "3c1b02d7": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "3e0788ac",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "5d6677ab": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    }
+  },
+  "expected_question_delta": -1,
+  "refs_policy": "declared",
+  "references": {
+    "eps_dp": {
+      "action": "update_existing",
+      "source": "ISPD position paper on length of time on peritoneal dialysis and encapsulating peritoneal sclerosis, 2017 update"
+    },
+    "ispd_membrane_dysfunction_2021": {
+      "action": "add",
+      "source": "ISPD recommendations for evaluation of peritoneal membrane dysfunction in adults, 2021"
+    },
+    "ispd_goal_directed_pd_2020": {
+      "action": "add",
+      "source": "ISPD practice recommendations for prescribing high-quality goal-directed peritoneal dialysis, 2020"
+    },
+    "ispd_assisted_pd_2024": {
+      "action": "add",
+      "source": "ISPD position paper on assisted peritoneal dialysis, 2024"
+    },
+    "canusa_study": {
+      "action": "remove",
+      "source": "Removed because the modernized adequacy question no longer consumes this historical card"
+    },
+    "ademex_study": {
+      "action": "remove",
+      "source": "Removed because the modernized adequacy question no longer consumes this historical card"
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Sete questões foram reconstruídas com evidência verificada, pendência nenhuma e preservação de qid/FSRS.",
+    "Uma duplicata sobre o risco de encapsulamento peritoneal esclerosante foi fundida no objetivo sobrevivente.",
+    "O lote substitui a taxonomia antiga e binária de falha de ultrafiltração pela classificação fisiopatológica da ISPD 2021.",
+    "Os qids 1b4ebca6 e fe70507d tinham títulos incompatíveis com o conteúdo e foram reconstruídos para DP assistida e diagnóstico de EPS, respectivamente.",
+    "As questões de adequação e duração da DP evitam alvos ou prazos universais e priorizam avaliação multidimensional e decisão compartilhada.",
+    "Todos os cards novos do Grimório contêm resumo, conclusão e curiosidade.",
+    "Os cards históricos CANUSA e ADEMEX foram removidos após ficarem sem consumidores; seus princípios atuais permanecem incorporados na recomendação ISPD de prescrição orientada por objetivos."
+  ]
+}

@@ -1906,14 +1906,44 @@ canvas_program:{
     curiosidade:"A hipercoagulabilidade resulta de perda urinária de anticoagulantes naturais, aumento de fatores pró-coagulantes, ativação plaquetária e hemoconcentração."
   },
   eps_dp:{
-    label:"Brown MC et al. — Encapsulating Peritoneal Sclerosis (Kidney Int 2009)",
-    url:"https://www.kidney-international.org/article/S0085-2538(15)53449-9/fulltext",
-    journal:"Kidney Int 2009;76(11):1206-1212",
-    ano:2009,tipo:"Artigo de Posição",badge:"CONSENSO",badgeColor:"#f59e0b",
-    impacto:"EPS: complicação rara mas grave da DP longa (>8 anos), precipitada por peritonites repetidas; apresentação: obstrução intestinal encapsulante",icon:"⚠️",
-    resumo:"Artigo de revisão epidemiológica retrospectiva e posicionamento clínico (n = 111 casos confirmados) sobre a Esclerose Peritoneal Encapsulante (EPS), uma complicação devastadora da diálise peritoneal (DP). O risco de desenvolver EPS aumenta exponencialmente com o tempo de permanência em DP: é < 1% antes de 5 anos, mas ultrapassa 8% a 10% em pacientes que excedem 8 anos de diálise. Outros fatores de risco incluem peritonites bacterianas de repetição e o uso de soluções hipertônicas de glicose. A EPS se caracteriza por fibrose peritoneal maciça que 'plastifica' e encapsula as alças intestinais, levando a obstrução mecânica e alta mortalidade.",
-    conclusao:"O tempo de permanência em diálise peritoneal longa (> 8 anos) e múltiplos episódios de infecção peritoneal aumentam o risco de EPS, exigindo monitoramento e transição planejada para hemodiálise.",
-    curiosidade:"O gatilho fisiopatológico da EPS envolve uma transição epitélio-mesenquimal (TEM) das células mesoteliais do peritônio, estimulada pelo fator de crescimento transformador beta (TGF-beta), que convertem essas células de barreira em miofibroblastos produtores de colágeno denso."
+    label:"ISPD — Length of Time on PD and EPS Position Paper 2017",
+    url:"https://pubmed.ncbi.nlm.nih.gov/28676507/",
+    journal:"Peritoneal Dialysis International 2017;37(4):362-374",
+    ano:2017,tipo:"Posicionamento ISPD",badge:"POSITION",badgeColor:"#f59e0b",
+    impacto:"Posicionamento sobre duração da DP, risco, reconhecimento e decisões compartilhadas no encapsulamento peritoneal esclerosante",icon:"⚠️",
+    resumo:"A atualização da ISPD reconhece a duração crescente da diálise peritoneal como o fator de risco mais consistente para encapsulamento peritoneal esclerosante (EPS), sem estabelecer um prazo universal para interromper a técnica. Peritonite frequente, grave ou prolongada, maior exposição à glicose, transporte rápido e perda de ultrafiltração também podem elevar a preocupação. O diagnóstico combina manifestações funcionais de obstrução intestinal com achados estruturais, especialmente na tomografia.",
+    conclusao:"Não se deve transferir todo paciente para hemodiálise em um número fixo de anos nem rastrear assintomáticos por imagem como garantia; continuidade, investigação e transição exigem avaliação individual e decisão compartilhada.",
+    curiosidade:"A EPS pode surgir ou tornar-se clinicamente evidente depois da interrupção da DP, inclusive após transplante, o que ajuda a explicar por que a simples troca eletiva em uma data fixa não elimina o risco."
+  },
+  ispd_membrane_dysfunction_2021:{
+    label:"ISPD — Evaluation of Peritoneal Membrane Dysfunction 2021",
+    url:"https://pubmed.ncbi.nlm.nih.gov/33563110/",
+    journal:"Peritoneal Dialysis International 2021;41(4):352-372",
+    ano:2021,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Taxonomia, mensuração e interpretação contemporâneas do PET e da ultrafiltração insuficiente na DP",icon:"🧪",
+    resumo:"A ISPD recomenda medir a taxa de transferência de pequenos solutos por PET de 4 horas, inicialmente entre 6 e 12 semanas e depois quando indicado. Transporte rápido pode ser mitigado com permanências curtas, DP automatizada e icodextrina no período longo. Ultrafiltração líquida abaixo de 400 mL com glicose a 3,86%/dextrose a 4,25%, ou abaixo de 100 mL com 2,27%/2,5%, funciona como rastreio de capacidade insuficiente. Queda do sódio do dialisato de 5 mmol/L ou menos em 1 hora sugere redução do transporte de água livre e baixa condutância osmótica.",
+    conclusao:"Baixa ultrafiltração não é um diagnóstico mecanístico isolado: medidas devem ser confirmadas e integradas a transporte de solutos e água, estado volêmico, função renal residual, problemas mecânicos, vazamentos e objetivos do paciente.",
+    curiosidade:"A diretriz substitui a ideia binária de 'falência de ultrafiltração' por uma classificação fisiopatológica contínua, porque a necessidade de remoção de água varia com diurese, ingestão e condição clínica."
+  },
+  ispd_goal_directed_pd_2020:{
+    label:"ISPD — High-Quality Goal-Directed PD 2020",
+    url:"https://pubmed.ncbi.nlm.nih.gov/32063219/",
+    journal:"Peritoneal Dialysis International 2020;40(3):244-253",
+    ano:2020,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Marco da prescrição de DP centrada na pessoa, além de um alvo isolado de depuração de ureia",icon:"🎯",
+    resumo:"A recomendação orienta prescrição compartilhada e individualizada segundo sintomas, estado volêmico, função renal residual, parâmetros bioquímicos e nutricionais, qualidade de vida, objetivos e carga terapêutica. Kt/V não deve ser usado como certificação isolada de adequação. Em pacientes sintomáticos apesar de Kt/V semanal acima de 1,7, devem-se procurar causas dialíticas e não dialíticas; um teste de aumento da dose pode ser considerado.",
+    conclusao:"Não há vantagem de sobrevida demonstrada em perseguir rotineiramente Kt/V semanal acima de 1,7–1,8; a qualidade da DP é uma avaliação clínica multidimensional e orientada por objetivos.",
+    curiosidade:"A diretriz recomenda trabalhar com uma faixa aceitável de Kt/V, reconhecendo a incerteza na estimativa do volume de distribuição da ureia, em vez de transformar um único ponto de corte em resposta binária."
+  },
+  ispd_assisted_pd_2024:{
+    label:"ISPD — Assisted Peritoneal Dialysis Position Paper 2024",
+    url:"https://pubmed.ncbi.nlm.nih.gov/38712887/",
+    journal:"Peritoneal Dialysis International 2024;44(3):160-170",
+    ano:2024,tipo:"Posicionamento ISPD",badge:"POSITION",badgeColor:"#f59e0b",
+    impacto:"Referência internacional para ampliar acesso seguro à DP domiciliar quando existem barreiras ao autocuidado",icon:"🤝",
+    resumo:"A posição da ISPD descreve a DP assistida por familiares, cuidadores ou profissionais como estratégia para superar barreiras físicas, cognitivas e sociais ao autocuidado. Baixa acuidade visual, destreza reduzida, fraqueza, fragilidade, mobilidade limitada e declínio cognitivo são exemplos. O programa deve avaliar necessidades, treinar assistentes, manter comunicação robusta e monitorar infecções, complicações do cateter e transferência para hemodiálise.",
+    conclusao:"Limitação visual ou motora não é contraindicação automática à DP; assistência e modalidade devem ser individualizadas conforme segurança, preferências, suporte disponível, recursos e impacto do regime na vida da pessoa.",
+    curiosidade:"A assistência pode sustentar tanto DP manual quanto automatizada: a cicladora reduz algumas tarefas, mas não elimina conexões, programação, higiene e resposta a alarmes."
   },
   lcat_deficiency_vitali_2022:{
     label:"Vitali et al. — Natural history of primary LCAT deficiency (JLR 2022)",
@@ -2863,26 +2893,6 @@ finerenone_2025:{
     curiosidade:"A nefrite lúpica classe V (membranosa) pura tem abordagem distinta: é proteinúrica e não proliferativa, tratada preferencialmente com inibidores de calcineurina ou MMF, diferindo da urgência inflamatória celular e formação de crescentes das classes proliferativas III/IV."
   },
 
-  canusa_study:{
-    label:"CANUSA Study Group — Adequacy of Dialysis in PD (JASN 1996)",
-    url:"https://jasn.asnjournals.org/content/7/2/198",
-    journal:"J Am Soc Nephrol 1996;7(2):198-207",
-    ano:1995,tipo:"Estudo de Coorte",badge:"COORTE",badgeColor:"#0ea5e9",
-    impacto:"Relação entre adequação da diálise, nutrição e sobrevida em diálise peritoneal",icon:"📊",
-    resumo:"Estudo prospectivo multicêntrico central avaliando a relação entre a dose de diálise medida pelo Kt/V semanal e o clearance de creatinina residual com o desfecho de sobrevida em diálise peritoneal.",
-    conclusao:"A sobrevida do paciente em diálise peritoneal depende fundamentalmente da preservação da função renal residual, e não apenas do clearance peritoneal artificial obtido.",
-    curiosidade:"O estudo foi o grande defensor do conceito de que a função renal nativa remanescente (clearance de solutos endógeno) vale mais do que o clearance da diálise peritoneal!"
-  },
-  ademex_study:{
-    label:"Paniagua R et al. — ADEMEX Study Group (JASN 2002)",
-    url:"https://jasn.asnjournals.org/content/13/5/1307",
-    journal:"J Am Soc Nephrol 2002;13(5):1307-1320",
-    ano:2002,tipo:"Ensaio Clínico",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Impacto do aumento da depuração de pequenos solutos na sobrevida em diálise peritoneal",icon:"📊",
-    resumo:"Estudo ADEMEX (Adequacy of Peritoneal Dialysis in Mexico): ensaio clínico randomizado avaliando se o aumento do clearance peritoneal de solutos pequenos melhora a sobrevida em diálise peritoneal.",
-    conclusao:"Aumentar o Kt/V peritoneal de pequenos solutos acima da meta mínima de 1,70 não oferece benefício adicional de sobrevida a longo prazo em pacientes em DP.",
-    curiosidade:"ADEMEX confirmou a nível de RCT o que o estudo observacional CANUSA havia sugerido: o Kt/V puramente peritoneal tem limite de impacto clínico se a função residual zerar."
-  },
   neumann_2018:{
     label:"Neumann et al. Kidney Int. 2018",
     url:"https://pubmed.ncbi.nlm.nih.gov/29054707/",
