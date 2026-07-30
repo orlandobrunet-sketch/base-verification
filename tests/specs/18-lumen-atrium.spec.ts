@@ -66,10 +66,16 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
     const stylesheets = await page.locator('link[rel="stylesheet"]').evaluateAll((links) =>
       links.map((link) => new URL((link as HTMLLinkElement).href).pathname + new URL((link as HTMLLinkElement).href).search)
     );
-    expect(stylesheets).toContain('/styles/lumen/atrium.css?v=13.44');
+    expect(stylesheets).toContain('/styles/lumen/atrium.css?v=14.02');
     await expect(page.locator('script[src="js/atrium.js?v=13.23"]')).toHaveCount(1);
     await expect(page.locator('script[src="js/auth.js?v=13.44"]')).toHaveCount(1);
-    await expect(page.locator('script[src="js/game.js?v=14.00"]')).toHaveCount(1);
+    await expect(page.locator('script[src="js/game.js?v=14.02"]')).toHaveCount(1);
+    const atriumBackground = await page.locator('#welcomeScreen').evaluate((screen) =>
+      getComputedStyle(screen).backgroundImage
+    );
+    expect(atriumBackground).toContain('radial-gradient');
+    expect(atriumBackground).toContain('linear-gradient');
+    expect(atriumBackground).toContain('rgb(13, 33, 56)');
 
     const railLayout = await page.locator('.nql-atrium').evaluate((atrium) => {
       const atriumRect = atrium.getBoundingClientRect();
@@ -220,6 +226,59 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
     expect(mobileMetrics.scrollWidth).toBeLessThanOrEqual(mobileMetrics.clientWidth + 1);
     const primaryBox = await page.getByRole('button', { name: /Retomar jornada/ }).boundingBox();
     expect(primaryBox?.width || 0).toBeGreaterThanOrEqual(320);
+  });
+
+  test('assina a jornada salva com a paleta do personagem', async ({ page }, testInfo) => {
+    const signatures = new Set<string>();
+    const expectedTitles: Record<string, string> = {
+      nephros: 'Guardião dos Néfrons',
+      aquaria: 'Mestra das Águas',
+      glomerulus: 'Cientista Renal',
+    };
+    for (const character of ['nephros', 'aquaria', 'glomerulus']) {
+      await enterWithSavedJourney(page, { character });
+      const shell = page.locator('.nql-atrium__resume-shell');
+      await expect(shell).toHaveAttribute('data-character', character);
+      const theme = await shell.evaluate((element) => {
+        const style = getComputedStyle(element);
+        const primaryStop = getComputedStyle(element.querySelector('.wsaved-flow-stop--primary')!);
+        const secondaryStop = getComputedStyle(element.querySelector('.wsaved-flow-stop--secondary')!);
+        const avatar = element.querySelector('.wsaved-avatar-frame')!.getBoundingClientRect();
+        const progress = getComputedStyle(element.querySelector('.wsaved-flow-value')!);
+        const primaryAction = getComputedStyle(element.querySelector('.nql-atrium__primary')!);
+        return {
+          primary: style.getPropertyValue('--nql-journey-primary').trim(),
+          secondary: style.getPropertyValue('--nql-journey-secondary').trim(),
+          primaryStop: primaryStop.stopColor,
+          secondaryStop: secondaryStop.stopColor,
+          avatarWidth: avatar.width,
+          title: element.querySelector('#wsSavedCharacterTitle')?.textContent?.trim(),
+          shellBackground: style.backgroundImage,
+          shellShadow: style.boxShadow,
+          progressStroke: progress.strokeWidth,
+          primaryActionBackground: primaryAction.backgroundImage,
+          primaryActionBorder: primaryAction.borderTopColor,
+        };
+      });
+      expect(theme.primaryStop).not.toBe(theme.secondaryStop);
+      expect(theme.title).toBe(expectedTitles[character]);
+      expect(theme.shellBackground).toContain('radial-gradient');
+      expect(theme.shellShadow).not.toBe('none');
+      expect(parseFloat(theme.progressStroke)).toBeGreaterThanOrEqual(3);
+      expect(theme.primaryActionBackground).toContain('linear-gradient');
+      expect(theme.primaryActionBorder).toBe(theme.primaryStop);
+      const minimumAvatarWidth = testInfo.project.name === 'mobile' ? 64 : 72;
+      expect(theme.avatarWidth).toBeGreaterThanOrEqual(minimumAvatarWidth);
+      signatures.add(`${theme.primary}|${theme.secondary}`);
+    }
+    expect(signatures.size).toBe(3);
+
+    await page.evaluate(() => localStorage.removeItem('nefroquest-save'));
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.evaluate(() => {
+      (window as typeof window & { playAsGuest: () => void }).playAsGuest();
+    });
+    await expect(page.locator('.nql-atrium__resume-shell')).not.toHaveAttribute('data-character', /.+/);
   });
 
   test('mantém o controle de volume aberto ao atravessar até o slider', async ({ page }) => {

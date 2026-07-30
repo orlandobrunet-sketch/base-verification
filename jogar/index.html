@@ -125,9 +125,9 @@
   <link rel="stylesheet" href="styles/lumen/tokens.css?v=13.20">
   <link rel="stylesheet" href="styles/lumen/components.css?v=13.20">
   <link rel="stylesheet" href="styles/lumen/motion.css?v=13.20">
-  <link rel="stylesheet" href="styles/lumen/portal.css?v=13.24">
-  <link rel="stylesheet" href="styles/lumen/atrium.css?v=13.44">
-  <link rel="stylesheet" href="styles/lumen/game.css?v=14.00">
+  <link rel="stylesheet" href="styles/lumen/portal.css?v=14.02">
+  <link rel="stylesheet" href="styles/lumen/atrium.css?v=14.02">
+  <link rel="stylesheet" href="styles/lumen/game.css?v=14.02">
   <script>
     // Version beacon — detecta nova versão sem interromper a navegação
     (function() {
@@ -678,7 +678,7 @@
     <footer class="lnd-footer">
       <span>nefroquest.com</span>
       <span class="lnd-footer-sep">·</span>
-      <span id="landingVersionLabel" class="version-label-dynamic" style="cursor:pointer;" role="button" tabindex="0" aria-label="Ver novidades da versão" data-action="showChangelog">v14.00</span>
+      <span id="landingVersionLabel" class="version-label-dynamic" style="cursor:pointer;" role="button" tabindex="0" aria-label="Ver novidades da versão" data-action="showChangelog">v14.02</span>
       <span class="lnd-footer-sep">·</span>
       <span style="cursor:pointer;text-decoration:underline;" class="lnd-footer-link" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span>
     </footer>
@@ -793,7 +793,7 @@
                   <span class="wsaved-avatar-frame"><img id="wsSavedAvatar" alt="" loading="eager" decoding="async"></span>
                   <div class="wsaved-info">
                     <div class="wsaved-charname" id="wsSavedChar">-</div>
-                    <p>Seu rastro continua daqui.</p>
+                    <p id="wsSavedCharacterTitle">Jornada em curso</p>
                   </div>
                   <div class="wsaved-level">
                     <span>Nível</span>
@@ -810,9 +810,9 @@
                     <svg viewBox="0 0 600 42" preserveAspectRatio="none" focusable="false" aria-hidden="true">
                       <defs>
                         <linearGradient id="nqlSavedFlowGradient" x1="0" y1="0" x2="1" y2="0">
-                          <stop offset="0" stop-color="#91dfe3"/>
-                          <stop offset=".66" stop-color="#91dfe3"/>
-                          <stop offset="1" stop-color="#f1cf7a"/>
+                          <stop class="wsaved-flow-stop--primary" offset="0"/>
+                          <stop class="wsaved-flow-stop--secondary" offset=".66"/>
+                          <stop class="wsaved-flow-stop--mastery" offset="1"/>
                         </linearGradient>
                       </defs>
                       <path class="wsaved-flow-base" pathLength="100" d="M2 23 C54 23 49 7 88 7 S116 35 151 35 S180 12 216 12 S244 29 278 29 S309 8 347 8 S376 31 414 31 S443 14 476 14 S520 22 598 22"/>
@@ -1281,7 +1281,7 @@
       <p>
         <a href="https://nefroquest.com">nefroquest.com</a>
         &nbsp;•&nbsp;
-        <span class="version-label-dynamic" style="color:var(--gold);cursor:pointer;" data-action="showChangelog">v14.00</span>
+        <span class="version-label-dynamic" style="color:var(--gold);cursor:pointer;" data-action="showChangelog">v14.02</span>
         &nbsp;•&nbsp;
         <span style="cursor:pointer;text-decoration:underline;" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span>
       </p>
@@ -1695,7 +1695,7 @@
   <script defer src="js/audio.js?v=11.90"></script>
   <script defer src="js/leaderboard.js?v=11.90"></script>
   <script defer src="js/study-mode.js?v=11.90"></script>
-  <script defer src="js/game.js?v=14.00"></script>
+  <script defer src="js/game.js?v=14.02"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
   <script defer src="js/auth.js?v=13.44"></script>

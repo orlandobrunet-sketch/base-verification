@@ -42,6 +42,13 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+.nql-portal,
+#authModal[data-nq-ui="lumen"] {
+  --nql-clinical: #69bde7;
+  --nql-clinical-rgb: 105, 189, 231;
+  --nql-readable: #8c9cb6;
+}
+
 .nql-portal {
   position: relative;
   display: grid;
@@ -49,9 +56,10 @@
   min-height: 100svh;
   overflow: hidden;
   background:
-    radial-gradient(circle at 78% 42%, rgba(var(--nql-lumen-rgb), .09), transparent 28rem),
-    radial-gradient(circle at 12% 88%, rgba(var(--nql-mastery-rgb), .055), transparent 25rem),
-    linear-gradient(115deg, #070a13 0%, #080d18 54%, #0b1421 100%);
+    radial-gradient(circle at 78% 42%, rgba(var(--nql-lumen-rgb), .22), transparent 28rem),
+    radial-gradient(circle at 16% 34%, rgba(var(--nql-clinical-rgb), .12), transparent 24rem),
+    radial-gradient(circle at 12% 88%, rgba(var(--nql-mastery-rgb), .085), transparent 25rem),
+    linear-gradient(112deg, #060913 0%, #080d18 48%, #0d1f36 48%, #091522 100%);
 }
 
 .nql-portal::before {
@@ -269,14 +277,21 @@ body:has(#landingScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   left: .35rem;
   height: 1px;
   overflow: hidden;
-  background: rgba(var(--nql-lumen-rgb), .18);
+  background: linear-gradient(90deg,
+    rgba(var(--nql-lumen-rgb), .2),
+    rgba(var(--nql-clinical-rgb), .2) 58%,
+    rgba(var(--nql-mastery-rgb), .13));
 }
 
 .nql-portal__journey-line span {
   display: block;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, var(--nql-lumen), rgba(var(--nql-lumen-rgb), .42), transparent);
+  background: linear-gradient(90deg,
+    var(--nql-lumen),
+    var(--nql-clinical) 54%,
+    rgba(var(--nql-mastery-rgb), .78) 78%,
+    transparent);
   transform: translateX(-100%);
   animation: nql-portal-route-once 1.4s var(--nql-ease-enter) .25s forwards;
 }
@@ -324,13 +339,30 @@ body:has(#landingScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   position: relative;
   min-width: 0;
   padding: clamp(1.5rem, 3vw, 2.3rem);
-  border: 1px solid var(--nql-line-strong);
+  border: 1px solid rgba(var(--nql-lumen-rgb), .5);
   border-radius: .85rem;
   background:
-    linear-gradient(155deg, rgba(var(--nql-raised-rgb), .28), transparent 42%),
-    rgba(var(--nql-cortex-rgb), .82);
-  box-shadow: 0 1.6rem 5rem rgba(var(--nql-abyss-rgb), .48), inset 0 1px rgba(255,255,255,.025);
+    radial-gradient(circle at 96% 0, rgba(var(--nql-clinical-rgb), .24), transparent 17rem),
+    radial-gradient(circle at 8% 100%, rgba(var(--nql-mastery-rgb), .09), transparent 15rem),
+    linear-gradient(155deg, rgba(var(--nql-raised-rgb), .48), transparent 42%),
+    rgba(var(--nql-cortex-rgb), .94);
+  box-shadow:
+    0 1.6rem 5rem rgba(var(--nql-abyss-rgb), .52),
+    0 0 3rem rgba(var(--nql-clinical-rgb), .1),
+    inset 0 1px rgba(255,255,255,.04);
   backdrop-filter: blur(1.2rem);
+}
+
+.nql-portal__entry::before {
+  position: absolute;
+  top: -1px;
+  right: 1.1rem;
+  left: 1.1rem;
+  height: 3px;
+  border-radius: 0 0 999px 999px;
+  background: linear-gradient(90deg, var(--nql-lumen), var(--nql-clinical) 52%, var(--nql-mastery));
+  box-shadow: 0 0 1.25rem rgba(var(--nql-lumen-rgb), .44);
+  content: "";
 }
 
 .nql-portal__entry::after {
@@ -363,11 +395,16 @@ body:has(#landingScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   left: 0;
   width: 28%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--nql-lumen) 42%, var(--nql-mastery) 62%, transparent);
+  background: linear-gradient(90deg,
+    transparent,
+    var(--nql-lumen) 30%,
+    var(--nql-clinical) 52%,
+    var(--nql-mastery) 72%,
+    transparent);
   content: "";
   opacity: 0;
   transform: translateX(-105%);
-  animation: nql-portal-entry-current 3.8s var(--nql-ease-state) infinite;
+  animation: nql-portal-entry-current 4.4s var(--nql-ease-state) infinite;
   pointer-events: none;
 }
 
@@ -419,6 +456,8 @@ body:has(#landingScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 }
 
 .nql-portal__route {
+  --nql-route-accent: var(--nql-lumen);
+  --nql-route-rgb: var(--nql-lumen-rgb);
   position: relative;
   display: grid;
   grid-template-columns: 3.25rem minmax(0, 1fr) 1.5rem;
@@ -427,9 +466,11 @@ body:has(#landingScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   min-height: 5.25rem;
   padding: .8rem 1rem .8rem .95rem;
   gap: .8rem;
-  border: 1px solid rgba(var(--nql-lumen-rgb), .13);
+  border: 1px solid rgba(var(--nql-route-rgb), .3);
   border-radius: .45rem;
-  background: rgba(var(--nql-abyss-rgb), .34);
+  background:
+    linear-gradient(90deg, rgba(var(--nql-route-rgb), .08), transparent 56%),
+    rgba(var(--nql-abyss-rgb), .5);
   color: var(--nql-text);
   font: inherit;
   text-align: left;
@@ -439,6 +480,21 @@ body:has(#landingScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
     background var(--nql-duration-state) ease,
     box-shadow var(--nql-duration-state) ease,
     transform var(--nql-duration-state) var(--nql-ease-state);
+}
+
+.nql-portal [data-portal-route="google"] {
+  --nql-route-accent: var(--nql-lumen);
+  --nql-route-rgb: var(--nql-lumen-rgb);
+}
+
+.nql-portal [data-portal-route="email"] {
+  --nql-route-accent: var(--nql-mastery);
+  --nql-route-rgb: var(--nql-mastery-rgb);
+}
+
+.nql-portal [data-portal-route="guest"] {
+  --nql-route-accent: var(--nql-clinical);
+  --nql-route-rgb: var(--nql-clinical-rgb);
 }
 
 .nql-portal__route[aria-busy="true"],
@@ -452,9 +508,11 @@ body:has(#landingScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 .nql-portal__entry[data-route="google"] [data-portal-route="google"],
 .nql-portal__entry[data-route="email"] [data-portal-route="email"],
 .nql-portal__entry[data-route="guest"] [data-portal-route="guest"] {
-  border-color: rgba(var(--nql-lumen-rgb), .48);
-  background: rgba(var(--nql-raised-rgb), .36);
-  box-shadow: inset .16rem 0 var(--nql-lumen), 0 0 1.8rem rgba(var(--nql-lumen-rgb), .07);
+  border-color: rgba(var(--nql-route-rgb), .78);
+  background:
+    linear-gradient(90deg, rgba(var(--nql-route-rgb), .2), transparent 62%),
+    rgba(var(--nql-raised-rgb), .5);
+  box-shadow: inset .25rem 0 var(--nql-route-accent), 0 0 1.8rem rgba(var(--nql-route-rgb), .14);
 }
 
 .nql-portal__route:hover,
@@ -464,9 +522,9 @@ body:has(#landingScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 
 .nql-portal__route--primary,
 .nql-portal__entry[data-route="email"] [data-portal-route="email"] {
-  border-color: rgba(var(--nql-mastery-rgb), .38);
-  background: linear-gradient(90deg, rgba(var(--nql-mastery-rgb), .095), rgba(var(--nql-raised-rgb), .3));
-  box-shadow: inset .16rem 0 var(--nql-mastery);
+  border-color: rgba(var(--nql-mastery-rgb), .62);
+  background: linear-gradient(90deg, rgba(var(--nql-mastery-rgb), .17), rgba(var(--nql-raised-rgb), .42));
+  box-shadow: inset .25rem 0 var(--nql-mastery);
 }
 
 .nql-portal__route-index {
@@ -476,9 +534,11 @@ body:has(#landingScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   width: 2.25rem;
   height: 2.25rem;
   place-items: center;
-  border: 1px solid rgba(var(--nql-lumen-rgb), .28);
+  border: 1px solid rgba(var(--nql-route-rgb), .3);
   border-radius: 50%;
-  background: var(--nql-cortex);
+  background:
+    radial-gradient(circle, rgba(var(--nql-route-rgb), .14), transparent 68%),
+    var(--nql-cortex);
   color: var(--nql-text-muted);
   font-family: var(--nql-font-instrument);
   font-size: .65rem;
@@ -487,14 +547,9 @@ body:has(#landingScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 .nql-portal__entry[data-route="google"] [data-portal-route="google"] .nql-portal__route-index,
 .nql-portal__entry[data-route="email"] [data-portal-route="email"] .nql-portal__route-index,
 .nql-portal__entry[data-route="guest"] [data-portal-route="guest"] .nql-portal__route-index {
-  border-color: var(--nql-lumen);
-  color: var(--nql-lumen);
-  box-shadow: 0 0 1rem rgba(var(--nql-lumen-rgb), .2);
-}
-
-.nql-portal__entry[data-route="email"] [data-portal-route="email"] .nql-portal__route-index {
-  border-color: var(--nql-mastery);
-  color: var(--nql-mastery);
+  border-color: var(--nql-route-accent);
+  color: var(--nql-route-accent);
+  box-shadow: 0 0 1rem rgba(var(--nql-route-rgb), .22);
 }
 
 .nql-portal__route-copy {
@@ -518,7 +573,8 @@ body:has(#landingScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 .nql-portal__route > svg {
   width: 1.25rem;
   fill: none;
-  stroke: var(--nql-text-muted);
+  color: var(--nql-text-muted);
+  stroke: currentColor;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 1.4;
@@ -527,7 +583,7 @@ body:has(#landingScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 
 .nql-portal__route:hover > svg,
 .nql-portal__route:focus-visible > svg {
-  color: var(--nql-lumen);
+  color: var(--nql-route-accent);
   transform: translateX(.15rem);
 }
 
@@ -597,7 +653,7 @@ body.nql-auth-open {
   place-items: center;
   padding: clamp(1rem, 3vw, 2rem);
   overflow: hidden;
-  background: rgba(var(--nql-abyss-rgb), .78);
+  background: rgba(var(--nql-abyss-rgb), .88);
   opacity: 0;
   pointer-events: none;
   backdrop-filter: blur(1rem);
@@ -614,18 +670,23 @@ body.nql-auth-open {
 #authModal[data-nq-ui="lumen"] .nql-portal-auth {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(15rem, 18rem) minmax(24rem, 30rem);
-  width: min(100%, 50rem);
-  max-width: 50rem;
+  grid-template-columns: minmax(16rem, 20rem) minmax(25rem, 34rem);
+  width: min(100%, 54rem);
+  max-width: 54rem;
   height: min(43rem, calc(100svh - 3rem));
   max-height: calc(100svh - 3rem);
   margin: 0;
   padding: 0;
   overflow: hidden;
-  border: 1px solid var(--nql-line-strong) !important;
+  border: 1px solid rgba(var(--nql-lumen-rgb), .52) !important;
   border-radius: var(--nql-radius-dialog) !important;
-  background: var(--nql-surface-solid) !important;
-  box-shadow: var(--nql-shadow-dialog), 0 0 5rem rgba(var(--nql-lumen-rgb), .08) !important;
+  background:
+    linear-gradient(120deg, rgba(var(--nql-clinical-rgb), .14), transparent 42%),
+    var(--nql-surface-solid) !important;
+  box-shadow:
+    var(--nql-shadow-dialog),
+    0 0 5rem rgba(var(--nql-clinical-rgb), .18),
+    0 0 2.5rem rgba(var(--nql-mastery-rgb), .07) !important;
   text-align: left;
   transform: translateY(.8rem) scale(.985);
   transition: transform var(--nql-duration-panel) var(--nql-ease-enter);
@@ -681,10 +742,12 @@ body.nql-auth-open {
   min-width: 0;
   padding: 2.2rem 2rem;
   overflow: hidden;
-  border-right: 1px solid var(--nql-line);
+  border-right: 2px solid rgba(var(--nql-lumen-rgb), .24);
   background:
-    radial-gradient(circle at 0 48%, rgba(var(--nql-lumen-rgb), .16), transparent 13rem),
-    linear-gradient(160deg, rgba(var(--nql-raised-rgb), .52), rgba(var(--nql-abyss-rgb), .58));
+    radial-gradient(circle at 0 48%, rgba(var(--nql-lumen-rgb), .32), transparent 13rem),
+    radial-gradient(circle at 96% 8%, rgba(var(--nql-clinical-rgb), .24), transparent 14rem),
+    radial-gradient(circle at 92% 92%, rgba(var(--nql-mastery-rgb), .1), transparent 13rem),
+    linear-gradient(155deg, rgba(25, 52, 81, .98), rgba(9, 23, 41, .98));
 }
 
 .nql-portal-auth__context::before,
@@ -752,7 +815,10 @@ body.nql-auth-open {
   right: .3rem;
   left: .3rem;
   height: 1px;
-  background: rgba(var(--nql-lumen-rgb), .22);
+  background: linear-gradient(90deg,
+    rgba(var(--nql-lumen-rgb), .48),
+    rgba(var(--nql-clinical-rgb), .42) 58%,
+    rgba(var(--nql-mastery-rgb), .36));
   content: "";
 }
 
@@ -789,6 +855,9 @@ body.nql-auth-open {
   padding: 2.5rem clamp(1.5rem, 3vw, 2.4rem) 2rem;
   overflow-x: hidden;
   overflow-y: auto;
+  background:
+    radial-gradient(circle at 100% 0, rgba(var(--nql-clinical-rgb), .11), transparent 16rem),
+    #090f1c;
   scrollbar-color: rgba(var(--nql-lumen-rgb), .28) transparent;
 }
 
@@ -819,7 +888,11 @@ body.nql-auth-open {
   grid-template-columns: 1fr 1fr;
   min-height: 3rem;
   margin: 0 0 1rem;
-  border-bottom: 1px solid var(--nql-line);
+  padding: .25rem;
+  border: 1px solid var(--nql-line-strong);
+  border-radius: .4rem;
+  gap: .25rem;
+  background: rgba(var(--nql-abyss-rgb), .42);
 }
 
 #authModal[data-nq-ui="lumen"] .auth-tabs.nql-auth-tabs--hidden {
@@ -831,6 +904,7 @@ body.nql-auth-open {
   min-height: 3rem;
   padding: 0 .75rem;
   border: 0;
+  border-radius: .28rem;
   background: transparent;
   color: var(--nql-text-muted);
   font: 600 .86rem var(--nql-font-body);
@@ -851,11 +925,13 @@ body.nql-auth-open {
 }
 
 #authModal[data-nq-ui="lumen"] .auth-tab.active {
-  color: var(--nql-text);
+  background: linear-gradient(120deg, rgba(var(--nql-lumen-rgb), .94), rgba(var(--nql-clinical-rgb), .9));
+  box-shadow: 0 .45rem 1.25rem rgba(var(--nql-lumen-rgb), .16);
+  color: var(--nql-abyss);
 }
 
 #authModal[data-nq-ui="lumen"] .auth-tab.active::after {
-  opacity: 1;
+  opacity: 0;
   transform: scaleX(1);
 }
 
@@ -1025,7 +1101,7 @@ body.nql-auth-open {
 }
 
 #authModal[data-nq-ui="lumen"] .auth-field input::placeholder {
-  color: #72829a;
+  color: var(--nql-readable);
   opacity: 1;
 }
 

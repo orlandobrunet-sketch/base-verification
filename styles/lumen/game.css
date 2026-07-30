@@ -49,6 +49,7 @@ body:has(#mainApp[data-nq-ui="lumen"]:not(.hidden)):not(.boss-battle-mode):not(.
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] {
   --nql-game-rail: clamp(19rem, 22vw, 22rem);
   --nql-game-dock: 5.35rem;
+  --nql-game-gap: clamp(.75rem, 1vw, 1rem);
   --nql-clinical-black: rgba(4, 7, 14, .94);
   --nql-choice-black: rgba(5, 8, 16, .95);
   --nql-hud-black: rgba(3, 5, 11, .9);
@@ -60,7 +61,7 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   margin: 0 auto;
   padding: 0 clamp(.85rem, 1.8vw, 2rem) 2rem;
   grid-template-columns: var(--nql-game-rail) minmax(0, 1fr) var(--nql-game-dock);
-  gap: clamp(1rem, 1.7vw, 1.8rem);
+  gap: var(--nql-game-gap);
   align-content: start;
   color: var(--nql-text);
   font-family: var(--nql-font-body);
@@ -160,9 +161,9 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   content: "";
   position: absolute;
   top: 12rem;
-  right: calc(-1 * clamp(1rem, 1.7vw, 1.8rem));
+  right: calc(-1 * var(--nql-game-gap));
   display: block;
-  width: clamp(1rem, 1.7vw, 1.8rem);
+  width: var(--nql-game-gap);
   height: 1px;
   background: linear-gradient(90deg, rgba(var(--nql-lumen-rgb), .72), rgba(var(--nql-lumen-rgb), .18));
   box-shadow: 0 0 .7rem rgba(var(--nql-lumen-rgb), .2);
@@ -1510,7 +1511,7 @@ body.reading-mode:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[d
   body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] {
     --nql-game-rail: 18rem;
     --nql-game-dock: 4.75rem;
-    gap: .9rem;
+    --nql-game-gap: .9rem;
     padding-inline: .75rem;
   }
 
@@ -1549,6 +1550,13 @@ body.reading-mode:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[d
 }
 
 /* ── Mobile: pergunta primeiro; Arsenal Hilar no drawer ───────── */
+
+/* Aproxima o Arsenal Hilar da decisão sem alterar o respiro do dock. */
+@media (min-width: 769px) {
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .panel.left {
+    padding-right: .5rem;
+  }
+}
 
 @media (max-width: 768px) {
   body:has(#mainApp[data-nq-ui="lumen"]:not(.hidden)):not(.boss-battle-mode):not(.arqui-nefromante-final) {

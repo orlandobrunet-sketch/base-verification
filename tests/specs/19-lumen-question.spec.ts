@@ -12,7 +12,7 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
     const stylesheets = await page.locator('link[rel="stylesheet"]').evaluateAll((links) =>
       links.map((link) => new URL((link as HTMLLinkElement).href).pathname + new URL((link as HTMLLinkElement).href).search)
     );
-    expect(stylesheets).toContain('/styles/lumen/game.css?v=14.00');
+    expect(stylesheets).toContain('/styles/lumen/game.css?v=14.02');
 
     const app = page.locator('#mainApp');
     await expect(app).toHaveAttribute('data-nq-ui', 'lumen');
@@ -87,12 +87,18 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
       const option = document.querySelector('#options .option') as HTMLElement;
       const right = document.querySelector('.panel.right') as HTMLElement;
       const left = document.querySelector('.panel.left') as HTMLElement;
+      const loadout = document.querySelector('.nql-loadout-shell') as HTMLElement;
+      const dock = document.querySelector('#actionDock') as HTMLElement;
+      const rightBox = right.getBoundingClientRect();
       return {
         overflow: document.documentElement.scrollWidth - window.innerWidth,
         questionSize: parseFloat(getComputedStyle(question).fontSize),
         optionSize: parseFloat(getComputedStyle(option.querySelector('.opt-body') as HTMLElement).fontSize),
-        rightWidth: right.getBoundingClientRect().width,
+        rightWidth: rightBox.width,
         leftWidth: left.getBoundingClientRect().width,
+        leftToQuestion: rightBox.left - loadout.getBoundingClientRect().right,
+        dividerToQuestion: rightBox.left - left.getBoundingClientRect().right,
+        questionToDock: dock.getBoundingClientRect().left - rightBox.right,
       };
     });
 
@@ -101,6 +107,11 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
     expect(metrics.optionSize).toBeGreaterThanOrEqual(15);
     if (testInfo.project.name !== 'mobile') {
       expect(metrics.rightWidth).toBeGreaterThan(metrics.leftWidth);
+      expect(metrics.leftToQuestion).toBeGreaterThanOrEqual(metrics.questionToDock + 4);
+      expect(metrics.leftToQuestion).toBeLessThanOrEqual(metrics.questionToDock + 10);
+      expect(metrics.dividerToQuestion).toBeGreaterThanOrEqual(12);
+      expect(metrics.dividerToQuestion).toBeLessThanOrEqual(17);
+      expect(Math.abs(metrics.dividerToQuestion - metrics.questionToDock)).toBeLessThanOrEqual(1);
     }
 
     if (testInfo.project.name === 'mobile') {
