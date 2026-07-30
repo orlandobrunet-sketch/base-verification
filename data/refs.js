@@ -2045,13 +2045,13 @@ canvas_program:{
   },
   ispd_peritonitis_guideline:{
     label:"ISPD — Peritonitis Guideline 2022",
-    url:"https://journals.sagepub.com/doi/10.1177/08968608221096963",
+    url:"https://pubmed.ncbi.nlm.nih.gov/35264029/",
     journal:"Peritoneal Dialysis International 2022;42(2):110-153",
     ano:2022,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
-    impacto:"Padrão ouro para diagnóstico e tratamento de peritonite na diálise peritoneal",icon:"📋",
-    resumo:"Define peritonite em DP pelo critério de pelo menos 2 de 3: dor abdominal ou efluente turvo; leucócitos no efluente >100/µL após dwell ≥2h com >50% PMN; ou cultura positiva. Tratamento empírico cobre gram-positivos (vancomicina ou cefalosporina de 1ª geração) e gram-negativos (aminoglicosídeo ou cefalosporina de 3ª geração), ajustado pelo antibiograma em 48–72h. Metas de qualidade: cultura negativa <15% dos episódios; taxa global ≤0,40 episódio/paciente-ano; >80% dos pacientes livres de peritonite ao ano.",
-    conclusao:"A peritonite é a principal causa de falência de técnica na DP — diagnóstico precoce e antibioticoterapia intraperitoneal adequada são determinantes para preservar o acesso peritoneal.",
-    curiosidade:"A DP usa o próprio peritônio como membrana dialítica. O PET (Peritoneal Equilibration Test) classifica os pacientes em altos ou baixos transportadores e orienta a escolha entre regimes curtos e frequentes (altos transportadores) ou prolongados (baixos transportadores)."
+    impacto:"Referência internacional para prevenção, diagnóstico, terapia empírica e manejo por organismo da peritonite associada à DP",icon:"📋",
+    resumo:"A ISPD 2022 define peritonite em DP pela presença de pelo menos dois entre três critérios: quadro clínico compatível, como dor abdominal ou efluente turvo; leucócitos no efluente acima de 100/µL após permanência de pelo menos 2 horas, com mais de 50% de polimorfonucleares; ou cultura positiva. Após coleta microbiológica, recomenda antibiótico empírico imediato e específico do centro cobrindo gram-positivos e gram-negativos, preferencialmente por via intraperitoneal quando possível e na ausência de sepse. Para peritonite fúngica, recomenda retirada imediata do cateter e antifúngico por pelo menos 2 semanas após a remoção.",
+    conclusao:"Suspeita de peritonite em DP exige coleta adequada e tratamento empírico sem aguardar cultura; agente, resposta clínica e presença de foco no cateter determinam ajuste, duração e necessidade de retirada.",
+    curiosidade:"A diretriz propõe como metas anuais taxa global não superior a 0,40 episódio por paciente-ano e mais de 80% dos pacientes livres de peritonite."
   },
   cmv_kdigo_tx:{
     label:"KDIGO CMV in Transplant 2022",

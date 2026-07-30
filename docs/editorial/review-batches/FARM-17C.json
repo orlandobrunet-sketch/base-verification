@@ -1,0 +1,117 @@
+{
+  "batch": "FARM-17C",
+  "change_type": "medical_editorial",
+  "expected_version": "14.08",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-17C.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "68b630ba": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "28b53ff8": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "547a3dc2": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "a221d304": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "af926833": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "a221d304",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "e8040054": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "e33de909": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "68b630ba",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    }
+  },
+  "expected_question_delta": -2,
+  "refs_policy": "declared",
+  "references": {
+    "ispd_peritonitis_guideline": {
+      "action": "update_existing",
+      "source": "ISPD peritonitis guideline recommendations: 2022 update on prevention and treatment"
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Cinco questões foram reconstruídas com evidência verificada, pendência nenhuma e preservação de qid/FSRS.",
+    "Duas duplicatas foram fundidas nos objetivos sobreviventes de diagnóstico e sequência inicial de manejo.",
+    "O qid 68b630ba ensina os dois de três critérios diagnósticos e não exige cultura positiva quando clínica e citologia são compatíveis.",
+    "O qid a221d304 separa coleta microbiológica imediata de espera indevida pelo resultado, e o qid 547a3dc2 cobre a composição do esquema empírico e a preferência pela via intraperitoneal.",
+    "O qid 28b53ff8 integra peritonite por S. aureus à avaliação de infecção de óstio/túnel, duração de três semanas e consideração de retirada do cateter.",
+    "O qid e8040054 foi reconstruído integralmente: seu título antigo indicava peritonite fúngica, mas o conteúdo tratava incorretamente de PET e Kt/V.",
+    "O card ispd_peritonitis_guideline recebeu PMID e DOI corretos, escopo atualizado e mantém resumo, conclusão e curiosidade."
+  ]
+}
