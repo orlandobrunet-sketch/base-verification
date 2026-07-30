@@ -29,7 +29,7 @@ test.describe('Landing comercial', () => {
     const stylesheets = await page.locator('link[rel="stylesheet"]').evaluateAll((links) =>
       links.map((link) => new URL((link as HTMLLinkElement).href).pathname + new URL((link as HTMLLinkElement).href).search)
     );
-    expect(stylesheets).toContain('/landing/styles.css?v=14.02');
+    expect(stylesheets).toContain('/landing/styles.css?v=14.06');
 
     const palette = await page.evaluate(() => {
       const root = getComputedStyle(document.documentElement);
@@ -37,9 +37,7 @@ test.describe('Landing comercial', () => {
         clinical: root.getPropertyValue('--clinical').trim(),
         readable: root.getPropertyValue('--readable').trim(),
         hero: getComputedStyle(document.querySelector('.hero')!).backgroundImage,
-        heroField: getComputedStyle(document.querySelector('.hero')!, '::after').backgroundImage,
-        heroFieldLeft: parseFloat(getComputedStyle(document.querySelector('.hero')!, '::after').left),
-        viewportWidth: window.innerWidth,
+        heroFieldContent: getComputedStyle(document.querySelector('.hero')!, '::after').content,
         atlasBorder: getComputedStyle(document.querySelector('.hero-atlas')!).borderTopColor,
         console: getComputedStyle(document.querySelector('.flow-deck')!).backgroundImage,
         consoleBorder: getComputedStyle(document.querySelector('.flow-deck')!).borderTopColor,
@@ -50,12 +48,10 @@ test.describe('Landing comercial', () => {
     expect(palette.clinical).toBe('#69bde7');
     expect(palette.readable).toBe('#8c9cb6');
     expect(palette.hero).toContain('radial-gradient');
-    expect(palette.hero).toContain('rgb(11, 25, 41)');
-    expect(palette.heroField).toContain('radial-gradient');
-    if (palette.viewportWidth > 900) {
-      expect(palette.heroFieldLeft / palette.viewportWidth).toBeGreaterThanOrEqual(.42);
-      expect(palette.heroFieldLeft / palette.viewportWidth).toBeLessThanOrEqual(.45);
-    }
+    expect(palette.hero).toContain('linear-gradient(112deg');
+    expect(palette.hero).toContain('rgb(8, 13, 24) 48%');
+    expect(palette.hero).toContain('rgb(13, 31, 54) 48%');
+    expect(palette.heroFieldContent).toBe('none');
     expect(palette.atlasBorder).toBe('rgba(87, 191, 200, 0.28)');
     expect(palette.console).toContain('radial-gradient');
     expect([
@@ -64,6 +60,37 @@ test.describe('Landing comercial', () => {
     ]).toContain(palette.consoleBorder);
     expect(palette.currentStage).toContain('rgba(214, 169, 74, 0.2)');
     expect(palette.proof).toContain('linear-gradient');
+  });
+
+  test('alinha o início do atlas ao conteúdo e preserva o respiro do portal', async ({ page }) => {
+    for (const viewport of [
+      { width: 1440, height: 900, minGap: 36, maxGap: 48 },
+      { width: 1024, height: 900, minGap: 32, maxGap: 48 },
+      { width: 760, height: 900, minGap: 18, maxGap: 34 },
+      { width: 390, height: 844, minGap: 14, maxGap: 28 },
+    ]) {
+      await page.setViewportSize(viewport);
+      await page.goto('/');
+      await page.addStyleTag({
+        content: '.hero-lab { transform: none !important; transition: none !important; }',
+      });
+
+      const geometry = await page.evaluate(() => {
+        const nav = document.querySelector('#nav')!.getBoundingClientRect();
+        const copy = document.querySelector('.hero-copy')!.getBoundingClientRect();
+        const lab = document.querySelector('.hero-lab')!.getBoundingClientRect();
+        return {
+          itemDelta: Math.abs(copy.top - lab.top),
+          gap: Math.min(copy.top, lab.top) - nav.bottom,
+        };
+      });
+
+      if (viewport.width > 1080) {
+        expect(geometry.itemDelta, `${viewport.width}px desalinhou texto e atlas`).toBeLessThanOrEqual(1);
+      }
+      expect(geometry.gap, `${viewport.width}px sem respiro mínimo`).toBeGreaterThanOrEqual(viewport.minGap);
+      expect(geometry.gap, `${viewport.width}px deixou espaço morto`).toBeLessThanOrEqual(viewport.maxGap);
+    }
   });
 
   test('oferece entrada direta para quem já possui conta', async ({ page }) => {

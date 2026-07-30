@@ -12,13 +12,14 @@
   overflow-x: hidden;
   overflow-y: auto;
   background:
-    radial-gradient(60% 88% at 78% 40%, rgba(105, 189, 231, .2), transparent 68%),
+    radial-gradient(circle at 78% 42%, rgba(var(--nql-lumen-rgb), .22), transparent 28rem),
+    radial-gradient(circle at 16% 34%, rgba(105, 189, 231, .12), transparent 24rem),
+    radial-gradient(circle at 12% 88%, rgba(var(--nql-mastery-rgb), .085), transparent 25rem),
     linear-gradient(103deg,
-      #070a13 0%,
-      #070a13 42%,
-      rgba(var(--nql-lumen-rgb), .2) 42.12%,
-      #0d2138 42.24%,
-      #08111f 100%) !important;
+      #060913 0%,
+      #080d18 51%,
+      #0d1f36 51%,
+      #091522 100%) !important;
   color: var(--nql-text);
   font-family: var(--nql-font-body);
   opacity: 1;
@@ -964,13 +965,13 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 @media (max-width: 55rem) {
   #welcomeScreen[data-nq-ui="lumen"] {
     background:
-      radial-gradient(72% 54% at 72% 62%, rgba(105, 189, 231, .18), transparent 72%),
+      radial-gradient(circle at 74% 58%, rgba(var(--nql-lumen-rgb), .16), transparent 28rem),
+      radial-gradient(circle at 12% 82%, rgba(var(--nql-mastery-rgb), .06), transparent 22rem),
       linear-gradient(166deg,
-        #070a13 0%,
-        #070a13 42%,
-        rgba(var(--nql-lumen-rgb), .18) 42.12%,
-        #0d2138 42.24%,
-        #08111f 100%) !important;
+        #060913 0%,
+        #080d18 44%,
+        #0d1f36 74%,
+        #091522 100%) !important;
   }
 
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__main {
