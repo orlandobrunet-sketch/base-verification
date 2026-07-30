@@ -1,0 +1,133 @@
+{
+  "batch": "FARM-17B",
+  "change_type": "medical_editorial",
+  "expected_version": "14.07",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-17B.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "c48b76a6": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "d7862e5b",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "345321d6": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "e5f38c55": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "985c319a": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "345321d6",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "e4ef7329": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "3d81f74d": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "9d50950e": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "3d81f74d",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    }
+  },
+  "expected_question_delta": -3,
+  "refs_policy": "declared",
+  "references": {
+    "siaarti_sin_citrate_2023": {
+      "action": "add",
+      "source": "SIAARTI-SIN joint expert opinion on regional citrate anticoagulation"
+    },
+    "vancomycin_monitoring_ashp": {
+      "action": "update_existing",
+      "source": "ASHP/IDSA/PIDS/SIDP revised consensus guideline for vancomycin monitoring"
+    },
+    "vancomycin_crrt_pk_review_2026": {
+      "action": "add",
+      "source": "Systematic review of population pharmacokinetic studies of vancomycin during CRRT"
+    },
+    "hemodiafe_2006": {
+      "action": "add",
+      "source": "HEMODIAFE multicentre randomized trial"
+    },
+    "sled_crrt_meta_2015": {
+      "action": "add",
+      "source": "Systematic review and meta-analysis of extended daily dialysis versus CRRT"
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Quatro questões foram reconstruídas com evidência verificada, pendência nenhuma e preservação de qid/FSRS.",
+    "Três itens redundantes foram fundidos em objetivos pedagógicos já cobertos: escolha de CRRT no choque, manejo do acúmulo de citrato e comparação entre SLED e CRRT.",
+    "Os qids 345321d6 e e5f38c55 diferenciam risco, reconhecimento e manejo do acúmulo de citrato sem criar contraindicação absoluta por hepatopatia nem regra fixa de meia dose.",
+    "O qid e4ef7329 remove o esquema universal de vancomicina e exige dose de ataque adequada, manutenção por intensidade do efluente e função residual, além de TDM precoce e repetido.",
+    "O qid 3d81f74d corrige o HEMODIAFE como comparação de hemodiálise intermitente versus CVVHDF e usa evidência separada para SLED/diálise estendida.",
+    "Todos os cards novos incluem resumo, conclusão e curiosidade; o card vancomycin_monitoring_ashp foi corrigido para o escopo e as conclusões do consenso."
+  ]
+}
