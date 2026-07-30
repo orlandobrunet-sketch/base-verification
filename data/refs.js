@@ -1945,6 +1945,36 @@ canvas_program:{
     conclusao:"Limitação visual ou motora não é contraindicação automática à DP; assistência e modalidade devem ser individualizadas conforme segurança, preferências, suporte disponível, recursos e impacto do regime na vida da pessoa.",
     curiosidade:"A assistência pode sustentar tanto DP manual quanto automatizada: a cicladora reduz algumas tarefas, mas não elimina conexões, programação, higiene e resposta a alarmes."
   },
+  ispd_pd_access_2019:{
+    label:"ISPD — Optimal Peritoneal Dialysis Access 2019",
+    url:"https://pubmed.ncbi.nlm.nih.gov/31028108/",
+    journal:"Peritoneal Dialysis International 2019;39(5):414-436",
+    ano:2019,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Referência para criação, manutenção e manejo de complicações mecânicas do acesso de diálise peritoneal",icon:"🩺",
+    resumo:"A atualização da ISPD aborda seleção, implantação e manutenção do cateter de DP, período de break-in e complicações mecânicas. Hérnias da parede abdominal devem ser identificadas e encaminhadas para reparo quando indicado. O manejo perioperatório é individualizado; em muitos pacientes é possível evitar hemodiálise temporária e manter ou reiniciar DP com trocas de baixo volume em decúbito, frequentemente automatizadas e sem permanência diurna, para reduzir a pressão sobre o reparo.",
+    conclusao:"Hérnia não determina abandono definitivo da DP: urgência cirúrgica, função renal residual, necessidade dialítica e risco de pressão intraperitoneal orientam reparo, pausa e estratégia de reinício.",
+    curiosidade:"A posição corporal modifica a pressão intraperitoneal; por isso uma troca de menor volume em decúbito pode ser tolerada no pós-operatório quando o mesmo volume em ortostatismo seria inadequado."
+  },
+  ispd_cardio_metabolic_2015:{
+    label:"ISPD — Cardiovascular and Metabolic Guideline Part I 2015",
+    url:"https://pubmed.ncbi.nlm.nih.gov/26228782/",
+    journal:"Peritoneal Dialysis International 2015;35(4):379-387",
+    ano:2015,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Recomendações para volume, função renal residual, glicemia e outros fatores metabólicos em adultos em DP",icon:"🫀",
+    resumo:"A glicose das soluções de DP é parcialmente absorvida e pode contribuir para hiperglicemia, hiperinsulinemia, dislipidemia e ganho de peso. A diretriz recomenda monitorar controle glicêmico em pessoas com diabetes e considerar icodextrina uma vez ao dia na permanência longa para melhor controle glicêmico, além de seu papel no manejo de ultrafiltração insuficiente. A prescrição deve equilibrar euvolemia, função renal residual e exposição a glicose.",
+    conclusao:"Alterações metabólicas durante DP exigem avaliação e tratamento, revisão da necessidade de soluções hipertônicas e estratégias poupadoras de glicose quando clinicamente apropriadas.",
+    curiosidade:"Metabólitos da icodextrina podem produzir leitura falsamente elevada em alguns glicosímetros baseados em glucose-desidrogenase; métodos compatíveis devem ser usados para evitar insulina excessiva e hipoglicemia."
+  },
+  eosinophilic_peritonitis_review_2023:{
+    label:"Zhang et al. — Eosinophilic Peritonitis in PD 2023",
+    url:"https://pubmed.ncbi.nlm.nih.gov/36635670/",
+    journal:"BMC Nephrology 2023;24(1):10",
+    ano:2023,tipo:"Revisão Clínica",badge:"REVIEW",badgeColor:"#0ea5e9",
+    impacto:"Síntese clínica para reconhecimento do efluente eosinofílico e diferenciação de peritonite infecciosa",icon:"🔬",
+    resumo:"A revisão define peritonite eosinofílica por mais de 100 eosinófilos/µL no efluente ou eosinófilos acima de 10% das células não eritrocitárias. O quadro costuma surgir nas primeiras semanas da DP, pode causar efluente turvo com poucos sintomas e culturas negativas e é associado a hipersensibilidade a materiais do cateter, soluções, fármacos ou ar intraperitoneal. Muitos casos são autolimitados, embora anti-histamínicos ou corticosteroides tenham sido usados em casos persistentes.",
+    conclusao:"Predomínio eosinofílico em início recente de DP deve suscitar causa não infecciosa, mas somente após coleta adequada e exclusão cuidadosa de infecção, que permanece a causa mais comum de efluente turvo.",
+    curiosidade:"Eosinofilia do efluente pode coexistir com eosinofilia periférica, mas a ausência desta última não exclui o diagnóstico peritoneal."
+  },
   lcat_deficiency_vitali_2022:{
     label:"Vitali et al. — Natural history of primary LCAT deficiency (JLR 2022)",
     url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC8953693/",

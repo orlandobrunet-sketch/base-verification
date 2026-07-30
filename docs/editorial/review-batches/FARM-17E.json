@@ -1,0 +1,147 @@
+{
+  "batch": "FARM-17E",
+  "change_type": "medical_editorial",
+  "expected_version": "14.11",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-17E.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "2a51b3a3": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "a221d304",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "9bb30fdd": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "8fee305a",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "23635484": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "4c7566cf": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "57aacceb": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "5eb00a6e": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "11279207": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "ca84f5aa": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "5d6677ab",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "faac594e": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    }
+  },
+  "expected_question_delta": -3,
+  "refs_policy": "declared",
+  "references": {
+    "ispd_pd_access_2019": {
+      "action": "add",
+      "source": "ISPD guideline on creating and maintaining optimal peritoneal dialysis access, 2019 update"
+    },
+    "ispd_cardio_metabolic_2015": {
+      "action": "add",
+      "source": "ISPD cardiovascular and metabolic guideline in adult peritoneal dialysis patients, part I, 2015"
+    },
+    "eosinophilic_peritonitis_review_2023": {
+      "action": "add",
+      "source": "Clinical review of peritoneal dialysis-related eosinophilic peritonitis, 2023"
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Seis questões foram reconstruídas com evidência verificada, pendência nenhuma e preservação de qid/FSRS.",
+    "Três duplicatas foram fundidas em objetivos já revisados sobre sequência inicial da peritonite, transporte rápido e adequação orientada por objetivos.",
+    "A questão de hérnia abandona o intervalo rígido de quatro a seis semanas e ensina manejo perioperatório individualizado com baixo volume em decúbito quando apropriado.",
+    "A questão metabólica separa absorção de glicose do dialisato de uma prescrição automática e integra avaliação clínica e estratégia poupadora de glicose.",
+    "A questão de cultura negativa segue a ISPD 2022: resposta rápida permite manter terapia inicial por duas semanas; ausência de resposta exige nova avaliação e culturas especiais.",
+    "Todos os cards novos do Grimório contêm resumo, conclusão e curiosidade."
+  ]
+}
