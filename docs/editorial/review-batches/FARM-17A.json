@@ -1,0 +1,142 @@
+{
+  "batch": "FARM-17A",
+  "change_type": "medical_editorial",
+  "expected_version": "14.05",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-17A.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "ff4c8b9e": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "4ea80768": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "6ffa0ff0": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "2e03ecfc": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "ff4c8b9e",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "10693f65": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "ff4c8b9e",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "7100ac38": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "4ea80768",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "f5e0666b": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "18/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "dbdebae8": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "4ea80768",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "faab924e": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "ff4c8b9e",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    }
+  },
+  "expected_question_delta": -5,
+  "refs_policy": "declared",
+  "references": {
+    "pisces_study": {
+      "action": "update_existing",
+      "source": "PISCES randomized trial published in the New England Journal of Medicine"
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Quatro questões foram reconstruídas com evidência verificada, pendência nenhuma e preservação de qid/FSRS.",
+    "Cinco itens de trivia, desfecho secundário isolado ou comparação excessiva foram fundidos nos quatro objetivos pedagógicos sobreviventes.",
+    "O qid ff4c8b9e preserva o desfecho cardiovascular principal e incorpora a necessidade de não extrapolar a qualquer suplemento.",
+    "O qid 4ea80768 corrige a intervenção para 4 g/dia de ácidos graxos n-3, com 1,6 g de EPA e 0,8 g de DHA, e incorpora o desenho randomizado duplo-cego.",
+    "O qid 6ffa0ff0 relata as taxas observadas de sangramento grave sem transformar ausência de sinal de excesso em garantia universal de segurança.",
+    "O qid f5e0666b separa efeito clínico randomizado de mecanismos apenas plausíveis.",
+    "O card pisces_study recebeu DOI, ano, desenho, desfecho e formulação corretos e mantém resumo, conclusão e curiosidade."
+  ]
+}

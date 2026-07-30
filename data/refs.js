@@ -2315,14 +2315,14 @@ canvas_program:{
     curiosidade:"O anti-APRIL distingue-se do anti-BAFF por maior seletividade: o APRIL é crítico na troca de classe para IgA nas mucosas, o que pode implicar menor imunossupressão sistêmica que o bloqueio amplo do eixo BAFF."
   },
   pisces_study:{
-    label:"PISCES Trial (Ômega-3 em HD)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2407495",
-    journal:"N Engl J Med 2025",
-    ano:2025,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Ômega-3 purificado ↓ arritmias ventriculares e morte súbita em hemodiálise",icon:"💊",
-    resumo:"ECR fase III avaliando ácidos graxos ômega-3 purificados (EPA/DHA) em pacientes em hemodiálise, população com altíssima incidência de morte súbita cardíaca e arritmias ventriculares. Demonstrou redução de arritmias ventriculares e morte súbita. Publicado no NEJM em 2025.",
-    conclusao:"PISCES fornece base para considerar ômega-3 como estratégia de redução de risco arrítmico em hemodiálise — população de altíssimo risco cardiovascular para a qual as opções farmacológicas são limitadas pela DRC avançada.",
-    curiosidade:"Pacientes em hemodiálise têm risco de morte súbita cardíaca ~50 vezes maior que a população geral — contribuem as alterações eletrolíticas peri-diálise (hipocalemia, hipomagnesia), uremia, calcificação vascular e disfunção autonômica associadas à DRC-5D."
+    label:"Lok et al. — PISCES",
+    url:"https://pubmed.ncbi.nlm.nih.gov/41201837/",
+    journal:"N Engl J Med. 2026;394(2):128-137",
+    ano:2026,tipo:"Ensaio clínico randomizado",badge:"RCT",badgeColor:"#10b981",
+    impacto:"1.228 participantes em hemodiálise; óleo de peixe reduziu a taxa total de eventos cardiovasculares graves (HR 0,57)",icon:"🔬",
+    resumo:"Ensaio randomizado, duplo-cego e controlado por placebo realizado em 26 centros do Canadá e da Austrália. Foram incluídos 1.228 adultos em hemodiálise de manutenção, que receberam diariamente óleo de peixe com 4 g de ácidos graxos n−3 — 1,6 g de EPA e 0,8 g de DHA — ou placebo de óleo de milho. Em 3,5 anos, a taxa total de eventos cardiovasculares graves foi 0,31 versus 0,61 por 1.000 pacientes-dia (HR 0,57; IC 95% 0,47–0,70). O composto incluiu morte cardíaca, infarto fatal ou não fatal, AVC fatal ou não fatal e doença vascular periférica com amputação. Sangramento grave ocorreu em 4,8% versus 7,6%, sem sinal de excesso no grupo intervenção.",
+    conclusao:"Na população e formulação estudadas, o PISCES demonstrou menor carga de eventos cardiovasculares graves com óleo de peixe; o resultado não deve ser extrapolado automaticamente a qualquer suplemento, dose ou população.",
+    curiosidade:"O artigo foi publicado on-line em novembro de 2025 e na edição impressa de janeiro de 2026. O desfecho principal contou eventos recorrentes, capturando a carga cardiovascular total em vez de apenas o primeiro evento."
   },
   roxadustat_trial:{
     label:"Roxadustat em DRC não dialítica (NEJM 2019)",
