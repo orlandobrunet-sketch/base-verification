@@ -66,16 +66,42 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
     const stylesheets = await page.locator('link[rel="stylesheet"]').evaluateAll((links) =>
       links.map((link) => new URL((link as HTMLLinkElement).href).pathname + new URL((link as HTMLLinkElement).href).search)
     );
-    expect(stylesheets).toContain('/styles/lumen/atrium.css?v=14.02');
+    expect(stylesheets).toContain('/styles/lumen/atrium.css?v=14.06');
     await expect(page.locator('script[src="js/atrium.js?v=13.23"]')).toHaveCount(1);
     await expect(page.locator('script[src="js/auth.js?v=13.44"]')).toHaveCount(1);
     await expect(page.locator('script[src="js/game.js?v=14.02"]')).toHaveCount(1);
-    const atriumBackground = await page.locator('#welcomeScreen').evaluate((screen) =>
-      getComputedStyle(screen).backgroundImage
-    );
-    expect(atriumBackground).toContain('radial-gradient');
-    expect(atriumBackground).toContain('linear-gradient');
-    expect(atriumBackground).toContain('rgb(13, 33, 56)');
+    const atriumVisual = await page.locator('#welcomeScreen').evaluate((screen) => {
+      const screenStyle = getComputedStyle(screen);
+      const statsStyle = getComputedStyle(screen.querySelector('.nql-mastery-rail')!);
+      const bestLevelStyle = getComputedStyle(screen.querySelector('#wsBestLevel')!);
+      return {
+        viewportWidth: window.innerWidth,
+        background: screenStyle.backgroundImage,
+        screenFilter: screenStyle.filter,
+        screenBackdrop: screenStyle.backdropFilter,
+        statsFilter: statsStyle.filter,
+        statsBackdrop: statsStyle.backdropFilter,
+        bestLevelFilter: bestLevelStyle.filter,
+      };
+    });
+    expect(atriumVisual.background).toContain('radial-gradient');
+    if (atriumVisual.viewportWidth > 880) {
+      expect(atriumVisual.background).toContain('linear-gradient(103deg');
+      expect(atriumVisual.background).toContain('rgb(8, 13, 24) 51%');
+      expect(atriumVisual.background).toContain('rgb(13, 31, 54) 51%');
+    } else {
+      expect(atriumVisual.background).toContain('linear-gradient(166deg');
+      expect(atriumVisual.background).toContain('rgb(8, 13, 24) 44%');
+      expect(atriumVisual.background).toContain('rgb(13, 31, 54) 74%');
+    }
+    expect(atriumVisual.background).not.toContain('42.12%');
+    expect([
+      atriumVisual.screenFilter,
+      atriumVisual.screenBackdrop,
+      atriumVisual.statsFilter,
+      atriumVisual.statsBackdrop,
+      atriumVisual.bestLevelFilter,
+    ]).toEqual(['none', 'none', 'none', 'none', 'none']);
 
     const railLayout = await page.locator('.nql-atrium').evaluate((atrium) => {
       const atriumRect = atrium.getBoundingClientRect();
@@ -123,6 +149,18 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
       const routeBox = await library.boundingBox();
       expect(routeBox?.width || 0).toBeGreaterThanOrEqual(Math.min(288, viewport.width - 48));
     }
+  });
+
+  test('troca a aresta rígida por profundidade contínua quando as colunas empilham', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    const background = await page.locator('#welcomeScreen').evaluate((screen) =>
+      getComputedStyle(screen).backgroundImage
+    );
+
+    expect(background).toContain('linear-gradient(166deg');
+    expect(background).toContain('rgb(8, 13, 24) 44%');
+    expect(background).toContain('rgb(13, 31, 54) 74%');
+    expect(background).not.toContain('42.12%');
   });
 
   test('oferece feedback de rota sem deslocar a lista', async ({ page }) => {
