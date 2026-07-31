@@ -1,0 +1,110 @@
+{
+  "batch": "FARM-17F",
+  "change_type": "medical_editorial",
+  "expected_version": "14.12",
+  "allowed_files": [
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-17F.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "b5f6baf9": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "07bb983f": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "e5c78a9f",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "c661ac86": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "e5c78a9f",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "22caa649": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "3dfa2ab5",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "e77d2078": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "2f2cdd55": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "666e748d": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    }
+  },
+  "expected_question_delta": -3,
+  "refs_policy": "declared",
+  "references": {},
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Quatro questões foram reconstruídas com evidência verificada, pendência nenhuma e preservação de qid/FSRS.",
+    "Três duplicatas foram fundidas em objetivos já revisados sobre osteíte fibrosa de alto turnover e paratireoidectomia no hiperparatireoidismo grave refratário.",
+    "A interpretação de PTH e fosfatase alcalina óssea passou a explicitar que biomarcadores sugerem turnover, mas não substituem histomorfometria quando a classificação individual muda a conduta.",
+    "A questão de osteomalácia separa defeito de mineralização de baixo turnover e não atribui alumínio sem contexto de exposição e investigação específica.",
+    "A questão de calcimimético ensina seleção guiada por cálcio e fósforo e preserva o resultado primário neutro do EVOLVE para desfechos cardiovasculares."
+  ]
+}
