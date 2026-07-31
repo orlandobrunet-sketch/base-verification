@@ -717,18 +717,18 @@ kdigo_ckd:{
     curiosidade:"O acrônimo SMART vem de SeMaglutide and Albuminuria Reduction Trial; ele deve ser distinguido do FLOW, que testou semaglutida 1 mg em DM2 com DRC e desfechos clínicos renais."
   },
   convince_study:{
-    label:"CONVINCE Trial",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2308946",
-    journal:"New England Journal of Medicine",
+    label:"Blankestijn PJ et al. — CONVINCE (NEJM 2023)",
+    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2304820",
+    journal:"N Engl J Med 2023;389(8):700-709",
     ano:2023,
-    tipo:"Ensaio Clínico Fase III",
+    tipo:"Ensaio Clínico Randomizado",
     badge:"RCT",
     badgeColor:"#10b981",
-    impacto:"HDF de alta dose (≥23L/sessão) ↓23% mortalidade por todas as causas vs HD de alto fluxo",
+    impacto:"HDF de alta dose reduziu morte por qualquer causa versus HD de alto fluxo em candidatos capazes de atingir alto volume convectivo",
     icon:"🔬",
-    resumo:"ECR multicêntrico internacional (n = 1.360), comparando hemodiafiltração (HDF) de alta dose (alvo de volume de convecção ≥ 23 L por sessão) versus hemodiálise (HD) convencional de alto fluxo em pacientes com DRC estágio 5 em diálise por ≥ 3 meses. Desfecho primário: morte por qualquer causa. Resultados: Em 30 meses de seguimento médio, HDF de alta dose reduziu significativamente a mortalidade por todas as causas (17,3% no grupo HDF vs 21,9% no grupo HD; Hazard Ratio de 0,77; IC 95% 0,65–0,93; P = 0,005; NNT de 22). O benefício foi impulsionado principalmente pela redução da mortalidade cardiovascular e infecciosa, sem diferença significativa em hospitalizações.",
-    conclusao:"O CONVINCE provou que a HDF de alta dose com volume de convecção elevado (≥ 23 L por sessão) é superior à HD de alto fluxo clássica para prolongar a sobrevida dos aventureiros em TRS.",
-    curiosidade:"A convecção em HDF imita a filtração glomerular ao arrastar solutos de médio peso molecular (toxinas urêmicas como a beta-2 microglobulina) por 'solvent drag' através de membranas de alta permeabilidade, o que a difusão pura da HD convencional falha em remover de forma eficiente."
+    resumo:"Ensaio pragmático multinacional com 1.360 pacientes em hemodiálise de alto fluxo, todos considerados candidatos a atingir volume convectivo de pelo menos 23 L por sessão. A intervenção foi HDF pós-dilucional de alta dose; o volume convectivo médio atingido foi 25,3 L. Em mediana de 30 meses, ocorreram 118 mortes (17,3%) na HDF e 148 (21,9%) na HD, com HR 0,77 (IC95% 0,65–0,93) para morte por qualquer causa. A seleção de participantes aptos a alto volume e a completar desfechos relatados pelo paciente limita a generalização irrestrita.",
+    conclusao:"O CONVINCE sustenta menor risco de morte com HDF de alta dose frente à HD de alto fluxo na população estudada, sem provar que a modalidade seja superior quando não se consegue entregar alto volume convectivo.",
+    curiosidade:"No protocolo, volume convectivo não era sinônimo de volume de substituição: correspondia à soma do fluido de substituição com a ultrafiltração líquida necessária para atingir o peso-alvo."
   },
   sharp_study:{
     label:"SHARP Trial",
@@ -1532,16 +1532,6 @@ canvas_program:{
     resumo:"Artigo científico metodológico fundamental onde John Daugirdas revisou e desenvolveu a equação matemática logarítmica de segunda geração para estimar o spKt/V (single-pool Kt/V) a partir de um modelo cinético de ureia de compartimento único. A equação: `Kt/V = -ln(R - 0,008 * t) + (4 - 3,5 * R) * (UF / W)`. Ela corrige o spKt/V para o efeito da geração de ureia intradialítica e a ultrafiltração em relação ao peso corporal. Tornou-se a fórmula matemática padrão global adotada pelas diretrizes internacionais (KDOQI e europeias).",
     conclusao:"A fórmula de Daugirdas é o padrão dourado matemático de adequação em diálise, integrando clearance de ureia (K), tempo de sessão (t), ultrafiltração (UF) e peso seco (W) pós-diálise.",
     curiosidade:"A equação corrige o spKt/V da subestimação que ocorria nas equações lineares de primeira geração ao contabilizar a perda volumétrica por ultrafiltração (que concentra a ureia restante) e a contínua geração de ureia decorrente do catabolismo proteico durante a sessão."
-  },
-  ncds_study:{
-    label:"Gotch FA, Sargent JA — NCDS Analysis (Kidney Int 1985)",
-    url:"https://www.kidney-international.org/article/S0085-2538(15)33291-4/fulltext",
-    journal:"Kidney Int 1985;28(3):526-534",
-    ano:1985,tipo:"Análise de RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Análise mecanicista do NCDS: desenvolveu o conceito de Kt/V como medida de adequação — base do target Kt/V ≥1.2",icon:"🔬",
-    resumo:"Análise retrospectiva e mecanicista do clássico National Cooperative Dialysis Study (NCDS), conduzida por Frank Gotch e John Sargent. Eles quantificaram a dose de diálise de forma matemática pela primeira vez, estabelecendo o conceito adimensional de `Kt/V` como um índice unificado de depuração de pequenas moléculas (ureia) em relação ao volume de distribuição (V). Demonstraram uma correlação direta entre o Kt/V de ureia e a taxa de falha de tratamento (morbimortalidade): valores de Kt/V < 0,8 estavam associados a taxas catastróficas de falha (57%), enquanto valores > 1,0 resultavam em remissão urêmica excelente.",
-    conclusao:"Este marco histórico formalizou a dose de diálise Kt/V e estabeleceu a base científica para a prescrição baseada em metas de adequação de pequenas moléculas.",
-    curiosidade:"Antes do NCDS, a eficácia da diálise era avaliada empiricamente apenas por sintomas ou níveis pré-diálise de creatinina e ureia, que variam amplamente conforme a massa muscular e o catabolismo, sem qualquer padrão matemático de segurança."
   },
   avf_epidemiology:{
     label:"Ravani P et al. — AVF Use and Outcomes (JASN 2004)",

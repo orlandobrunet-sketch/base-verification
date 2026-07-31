@@ -1,0 +1,120 @@
+{
+  "batch": "FARM-17G",
+  "change_type": "medical_editorial",
+  "expected_version": "14.14",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-17G.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "66b811c3": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "cb6c4aae": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "8361f398": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "f77abde0",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    },
+    "b1b484d1": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "f77abde0": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "0c1d09c3": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "cb4d63b9": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "merge_into": "66b811c3",
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "anulado",
+        "verdict": "fundir",
+        "publication": "BLOQUEADA"
+      }
+    }
+  },
+  "expected_question_delta": -2,
+  "refs_policy": "declared",
+  "references": {
+    "convince_study": {
+      "action": "update",
+      "source": "Blankestijn PJ et al. Effect of Hemodiafiltration or Hemodialysis on Mortality in Kidney Failure. N Engl J Med. 2023;389:700-709."
+    },
+    "ncds_study": {
+      "action": "remove",
+      "source": "Card superseded and orphaned after fusion of the only remaining consumer into the KDOQI-based adequacy objective."
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Cinco questões foram reconstruídas com evidência verificada, pendência nenhuma e preservação de qid/FSRS.",
+    "Duas duplicatas foram fundidas nos objetivos centrais sobre resultado do CONVINCE e investigação de dose de hemodiálise entregue abaixo da meta.",
+    "O card CONVINCE recebeu DOI, citação, desfechos e limitações de generalização corrigidos, mantendo resumo, conclusão e curiosidade.",
+    "O lote distingue volume convectivo total de volume de substituição e não transforma o alvo do ensaio em limiar universal.",
+    "A adequação em HD preserva os alvos KDOQI, mas exige investigar medida, entrega e acesso antes de mudar a frequência.",
+    "A adequação em DP passa a integrar Kt/V, função residual, sintomas, volume, nutrição, bioquímica, preferências e carga terapêutica."
+  ]
+}
