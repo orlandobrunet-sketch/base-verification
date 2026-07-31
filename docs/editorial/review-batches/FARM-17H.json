@@ -1,0 +1,121 @@
+{
+  "batch": "FARM-17H",
+  "change_type": "medical_editorial",
+  "expected_version": "14.15",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-17H.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "d314fb0a": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "ee80e444": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "9fadb7da": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "68091841": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "69177b72": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    },
+    "c5340427": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "score": "19/20",
+        "verdict": "aprovada",
+        "publication": "LIBERADA"
+      }
+    }
+  },
+  "expected_question_delta": 0,
+  "refs_policy": "declared",
+  "references": {
+    "lok_kdoqi_2020": {
+      "action": "update",
+      "source": "Lok CE et al. KDOQI Clinical Practice Guideline for Vascular Access: 2019 Update. Am J Kidney Dis. 2020;75(4 Suppl 2):S1-S164."
+    },
+    "idsa_crbsi_2009": {
+      "action": "add",
+      "source": "Mermel LA et al. Clinical Practice Guidelines for the Diagnosis and Management of Intravascular Catheter-Related Infection: 2009 Update by the IDSA. Clin Infect Dis. 2009;49(1):1-45."
+    },
+    "esc_endocarditis_2023": {
+      "action": "add",
+      "source": "Delgado V et al. 2023 ESC Guidelines for the management of endocarditis. Eur Heart J. 2023;44(39):3948-4042."
+    },
+    "lee_jasn_2017": {
+      "action": "remove",
+      "source": "Card observacional superseded e órfão após a reconstrução do único consumidor segundo o ESKD Life-Plan."
+    },
+    "almasri_ajkd_2016": {
+      "action": "remove",
+      "source": "Card de revisão superseded e órfão após a reconstrução do único consumidor segundo o ESKD Life-Plan."
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Seis questões foram reconstruídas com evidência verificada, pendência nenhuma e preservação de qid/FSRS.",
+    "A disfunção de cateter segue a sequência KDOQI de manobras conservadoras, trombolítico intraluminal e investigação mecânica se houver falha.",
+    "A isquemia da mão relacionada ao acesso passou a exigir avaliação urgente e tratamento individualizado pelo mecanismo, sem equiparar DRIL e banding.",
+    "A bacteremia por Staphylococcus aureus não recebe duração curta automática apenas por ecocardiograma negativo; controle do foco e hemoculturas de seguimento são obrigatórios.",
+    "A endocardite por MSSA exige curso intravenoso prolongado, controle do foco e decisão cirúrgica multidisciplinar, sem usar o tamanho da vegetação isoladamente.",
+    "O citrato a 4% foi limitado ao mecanismo anticoagulante local e não foi apresentado como trombolítico ou esterilizante de biofilme.",
+    "A escolha do acesso vascular foi alinhada ao ESKD Life-Plan, sem regra universal de fístula primeiro.",
+    "Os cards lee_jasn_2017 e almasri_ajkd_2016 foram removidos por ficarem órfãos e por terem sido superseded pelo objetivo KDOQI individualizado."
+  ]
+}

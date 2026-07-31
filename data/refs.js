@@ -2945,33 +2945,33 @@ finerenone_2025:{
   },
   lok_kdoqi_2020:{
     label:"Lok CE et al. — KDOQI Clinical Practice Guideline for Vascular Access (AJKD 2020)",
-    url:"https://pubmed.ncbi.nlm.nih.gov/32172944/",
+    url:"https://pubmed.ncbi.nlm.nih.gov/32778223/",
     journal:"American Journal of Kidney Diseases",
     ano:2020,tipo:"Diretriz Clínica",badge:"GUIDELINE",badgeColor:"#6366f1",
     impacto:"Atualização das diretrizes de acesso vascular com foco no ESKD Life-Plan individualizado",icon:"📋",
-    resumo:"KDOQI 2020 (Vascular Access Guidelines): diretriz moderna de acesso vascular enfatizando individualized ESKD Life-Plan, abandonando conceito simplista de “FAV-first”; FAV permanece acesso preferencial para maioria dos pacientes devido menor infecção, trombose e intervenções.",
-    conclusao:"KDOQI 2020 (Vascular Access): introduziu conceito “right access, right patient, right time”; FAV continua preferencial para maioria devido menor infecção, trombose e necessidade de intervenções.",
-    curiosidade:"A diretriz introduziu o conceito de plano de vida para doença renal crônica terminal (ESKD Life-Plan), que projeta múltiplos acessos ao longo da vida do paciente."
+    resumo:"Diretriz KDOQI de acesso vascular baseada no ESKD Life-Plan individualizado. Abrange escolha e sequência de acessos, preservação vascular, monitoramento, infecção, disfunção de cateter e isquemia da mão relacionada ao acesso. Para cateter disfuncional por provável trombose, recomenda manobras conservadoras antes de trombolítico intraluminal; alteplase 2 mg por lúmen é sugerida em preferência a 1 mg. Na isquemia da mão, a gravidade, o fluxo, a anatomia e as condições do paciente orientam a intervenção.",
+    conclusao:"Acesso vascular não deve ser escolhido por uma hierarquia universal: a estratégia é “o acesso certo, para o paciente certo, no momento certo”. Fístula, prótese e cateter têm papéis dependentes da trajetória clínica, anatomia, urgência, expectativa de vida, probabilidade de maturação e preferências.",
+    curiosidade:"Os materiais de implementação da KDOQI transformam a diretriz em algoritmos separados para ESKD Life-Plan, isquemia da mão, infecção e disfunção de cateter, reforçando que mecanismos diferentes exigem respostas diferentes."
   },
-  lee_jasn_2017:{
-    label:"Lee T et al. — Vascular Access Type and Clinical Outcomes (JASN 2017)",
-    url:"https://pubmed.ncbi.nlm.nih.gov/28838997/",
-    journal:"Journal of the American Society of Nephrology",
-    ano:2017,tipo:"Estudo de Coorte",badge:"ESTUDO",badgeColor:"#0ea5e9",
-    impacto:"Demonstração de menor mortalidade, hospitalização e infecção com FAV em incidentes de HD",icon:"📊",
-    resumo:"Lee et al. JASN: grandes coortes observacionais demonstram menor mortalidade, menor hospitalização e menor infecção associadas à FAV quando comparada a cateteres.",
-    conclusao:"A Fístula Arteriovenosa (FAV) está associada a melhores desfechos clínicos e menor infecção mesmo na população idosa, apesar de maior tempo de dependência inicial de cateter.",
-    curiosidade:"O estudo analisou especificamente pacientes idosos (idade >= 67 anos), mostrando benefício sustentado da FAV sobre enxertos e cateteres."
+  idsa_crbsi_2009:{
+    label:"Mermel LA et al. — IDSA Guideline for Intravascular Catheter-Related Infection (CID 2009)",
+    url:"https://doi.org/10.1086/599376",
+    journal:"Clinical Infectious Diseases 2009;49(1):1-45",
+    ano:2009,tipo:"Diretriz Clínica",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Conduta etiológica e controle de foco nas infecções relacionadas a cateter intravascular",icon:"📋",
+    resumo:"Diretriz IDSA para diagnóstico e manejo de infecção relacionada a cateter. Em hemodiálise, bacteremia por Staphylococcus aureus requer remoção do cateter infectado, hemoculturas de controle e antibiótico sistêmico; um novo cateter de longa permanência pode ser inserido quando as culturas estiverem negativas. Persistência de bacteremia após remoção, endocardite, tromboflebite supurativa ou foco metastático exige curso prolongado.",
+    conclusao:"Ecocardiograma negativo isoladamente não autoriza curso curto na bacteremia por S. aureus. Controle do foco, depuração documentada das culturas e exclusão de complicações determinam a duração; em MSSA, betalactâmico antiestafilocócico é preferível à vancomicina quando possível.",
+    curiosidade:"A diretriz permanece uma referência etiológica detalhada para CRBSI, embora esteja formalmente arquivada pela IDSA e em processo de atualização; por isso, suas recomendações devem ser integradas a diretrizes vasculares e de endocardite mais recentes."
   },
-  almasri_ajkd_2016:{
-    label:"Almasri et al. — Outcomes of Vascular Access (Systematic Review, AJKD/JVS 2016)",
-    url:"https://pubmed.ncbi.nlm.nih.gov/27264853/",
-    journal:"American Journal of Kidney Diseases / Journal of Vascular Surgery",
-    ano:2016,tipo:"Revisão Sistemática & Metanálise",badge:"META",badgeColor:"#0ea5e9",
-    impacto:"Meta-análise comprovando superioridade da FAV frente a enxertos e cateteres",icon:"🔬",
-    resumo:"Almasri et al. (Systematic Review, AJKD): meta-análise mostrando menor bacteremia, menor infecção and melhores desfechos de longo prazo com FAV vs cateteres.",
-    conclusao:"Fistulas nativas apresentam melhores desfechos de patência primária, menor mortalidade em 2 anos e menor taxa de infecção/bacteremia comparadas a cateteres e próteses.",
-    curiosidade:"A análise incluiu dados de mais de 800.000 acessos vasculares, consolidando a FAV como a escolha de primeira linha com o maior volume de dados globais."
+  esc_endocarditis_2023:{
+    label:"Delgado V et al. — 2023 ESC Guidelines for the Management of Endocarditis",
+    url:"https://doi.org/10.1093/eurheartj/ehad193",
+    journal:"European Heart Journal 2023;44(39):3948-4042",
+    ano:2023,tipo:"Diretriz Clínica",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Diagnóstico, terapia antimicrobiana e decisão multidisciplinar na endocardite infecciosa",icon:"📋",
+    resumo:"Diretriz ESC 2023 para endocardite infecciosa. Endocardite esquerda por Staphylococcus aureus exige terapia bactericida prolongada, hemoculturas seriadas, busca e controle do foco, avaliação de complicações e cuidado por equipe de endocardite. Persistência da infecção, insuficiência cardíaca e prevenção de embolia estruturam as indicações cirúrgicas.",
+    conclusao:"Na endocardite esquerda por MSSA, o tratamento deve empregar betalactâmico antiestafilocócico intravenoso por curso prolongado, em geral 4 a 6 semanas conforme válvula, complicações e esquema, associado a controle do foco e avaliação cirúrgica individualizada.",
+    curiosidade:"O tamanho da vegetação participa da estimativa de risco embólico, mas não deve ser usado isoladamente para tornar cirurgia automática; microrganismo, embolias, anatomia valvar, persistência da infecção e risco operatório também importam."
   },
   kdigo_igan_igav_2025:{
     label:"KDIGO 2025 IgAN/IgAV Guideline",
