@@ -1,0 +1,83 @@
+{
+  "batch": "FARM-17J",
+  "change_type": "medical_editorial",
+  "expected_version": "14.17",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-17J.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "646b9077": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "6ded255a": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "bd45bf21": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "e3246f2c": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "994ee93c": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "fe3a5b91": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    }
+  },
+  "expected_question_delta": 0,
+  "refs_policy": "declared",
+  "references": {
+    "phase_angle_hd_2014": {
+      "action": "add",
+      "source": "Beberashvili I et al. Bioimpedance phase angle predicts muscle function, quality of life and clinical outcome in maintenance hemodialysis patients. Eur J Clin Nutr. 2014;68(6):683-689."
+    },
+    "dialize_outcomes_2025": {
+      "action": "add",
+      "source": "Fishbane S et al. The randomized DIALIZE-Outcomes trial evaluated sodium zirconium cyclosilicate in hemodialysis. Kidney Int. 2025;108(4):686-694."
+    },
+    "mpo_high_flux_2009": {
+      "action": "add",
+      "source": "Locatelli F et al. Effect of membrane permeability on survival of hemodialysis patients. J Am Soc Nephrol. 2009;20(3):645-654."
+    },
+    "fhn_daily_2010": {
+      "action": "add",
+      "source": "FHN Trial Group. In-Center Hemodialysis Six Times per Week versus Three Times per Week. N Engl J Med. 2010;363(24):2287-2300."
+    },
+    "dialysate_flow_meta_2024": {
+      "action": "add",
+      "source": "Iman Y et al. The impact of dialysate flow rate on haemodialysis adequacy: a systematic review and meta-analysis. Clin Kidney J. 2024;17(7):sfae163."
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Seis questões de prescrição e avaliação da hemodiálise foram reconstruídas com evidência verificada, pendência nenhuma e preservação de qid/FSRS.",
+    "O ângulo de fase foi enquadrado como marcador observacional complementar, sem ponto de corte universal ou causalidade presumida.",
+    "O DIALIZE-Outcomes distingue controle bioquímico do potássio de benefício cardiovascular não demonstrado e explicita o encerramento precoce.",
+    "As questões de high-flux e FHN separam efeitos técnicos e desfechos intermediários de alegações indevidas de mortalidade.",
+    "Sódio e fluxo do dialisato passaram a exigir individualização, tolerância, dose entregue e custo hídrico, sem números universais.",
+    "A auditoria das quatro dimensões não encontrou duplicatas exatas; os itens próximos medem manejo crônico geral da hipercalemia, investigação de dose baixa ou hipotensão, e não os alvos deste lote."
+  ]
+}

@@ -974,6 +974,56 @@ rave_study:{
     conclusao:"Sintomas neurológicos no início da diálise e colapso respiratório após alarme de ar exigem respostas distintas, rápidas e protocolizadas, além de investigação de outras causas e análise da origem do evento.",
     curiosidade:"Com detectores modernos, embolia gasosa sintomática tornou-se muito rara; episódios descritos costumam envolver falha de conexão, priming inadequado ou ausência de clampeamento."
   },
+  phase_angle_hd_2014:{
+    label:"Beberashvili et al. — Phase Angle in Maintenance Hemodialysis (2014)",
+    url:"https://doi.org/10.1038/ejcn.2014.67",
+    journal:"European Journal of Clinical Nutrition 2014;68(6):683-689",
+    ano:2014,tipo:"Coorte prospectiva",badge:"COHORT",badgeColor:"#0ea5e9",
+    impacto:"Associação do ângulo de fase com função muscular, qualidade de vida, hospitalização e mortalidade em hemodiálise",icon:"🔬",
+    resumo:"Coorte prospectiva de 250 adultos em hemodiálise de manutenção acompanhados por dois anos. Ângulo de fase mais alto associou-se a maior força de preensão e melhor qualidade de vida, além de menor risco bruto e ajustado de hospitalização e eventos cardiovasculares. A associação com mortalidade perdeu significância quando o escore de desnutrição-inflamação entrou no modelo, indicando importante sobreposição prognóstica.",
+    conclusao:"O ângulo de fase é um marcador complementar de estado nutricional, muscular e prognóstico; por ser evidência observacional e influenciada por desnutrição e inflamação, não deve ser tratado como diagnóstico isolado nem como alvo terapêutico autônomo.",
+    curiosidade:"Cada aumento de 1 grau no ângulo de fase associou-se a menor risco de primeira hospitalização, mas o estudo não estabeleceu um ponto de corte universal aplicável a todos os equipamentos e populações."
+  },
+  dialize_outcomes_2025:{
+    label:"DIALIZE-Outcomes — Sodium Zirconium Cyclosilicate in Hemodialysis (2025)",
+    url:"https://doi.org/10.1016/j.kint.2025.06.016",
+    journal:"Kidney International 2025;108(4):686-694",
+    ano:2025,tipo:"Ensaio clínico randomizado",badge:"RCT",badgeColor:"#16a34a",
+    impacto:"Controle de potássio e desfechos cardiovasculares relacionados a arritmia em hemodiálise",icon:"🔬",
+    resumo:"Ensaio randomizado com 2.690 adultos em hemodiálise e hipercalemia pré-diálise, comparando ciclosilicato de zircônio sódico nos dias sem diálise com placebo. O estudo foi encerrado precocemente por baixa taxa de eventos e alta descontinuação. Não houve diferença no composto de morte súbita, AVC ou atendimento relacionado a arritmia, embora a manutenção de normocalemia em 12 meses tenha sido mais frequente com o fármaco.",
+    conclusao:"O ciclosilicato melhora o controle bioquímico do potássio, mas o DIALIZE-Outcomes não demonstrou redução de eventos cardiovasculares relacionados a arritmia; encerramento precoce e descontinuação limitam a certeza sobre desfechos clínicos.",
+    curiosidade:"Normocalemia em 12 meses ocorreu em 74% com ciclosilicato e 47% com placebo, enquanto o desfecho cardiovascular primário foi praticamente idêntico entre os grupos."
+  },
+  mpo_high_flux_2009:{
+    label:"MPO Study — High-Flux versus Low-Flux Hemodialysis (2009)",
+    url:"https://doi.org/10.1681/ASN.2008060590",
+    journal:"Journal of the American Society of Nephrology 2009;20(3):645-654",
+    ano:2009,tipo:"Ensaio clínico randomizado",badge:"RCT",badgeColor:"#16a34a",
+    impacto:"Permeabilidade da membrana e sobrevida em pacientes incidentes em hemodiálise",icon:"🔬",
+    resumo:"Ensaio multicêntrico com 738 pacientes incidentes randomizados para membranas high-flux ou low-flux e estratificados por albumina. Na população total, high-flux não reduziu significativamente a mortalidade. O estrato pré-especificado com albumina de até 4 g/dL apresentou sinal de benefício, enquanto análises em diabetes foram secundárias e não autorizam promessa universal de sobrevida.",
+    conclusao:"Membranas high-flux ampliam a depuração de moléculas médias, mas o MPO não comprovou superioridade de mortalidade na população global; resultados de subgrupos devem ser apresentados com a devida cautela.",
+    curiosidade:"O risco relativo ajustado de morte no conjunto foi 24% menor com high-flux, porém o intervalo de confiança cruzou a nulidade; no estrato de albumina baixa, a redução relativa foi 37%."
+  },
+  fhn_daily_2010:{
+    label:"FHN Daily Trial — Hemodialysis Six versus Three Times Weekly (2010)",
+    url:"https://doi.org/10.1056/NEJMoa1001593",
+    journal:"New England Journal of Medicine 2010;363(24):2287-2300",
+    ano:2010,tipo:"Ensaio clínico randomizado",badge:"RCT",badgeColor:"#16a34a",
+    impacto:"Efeitos da hemodiálise frequente sobre massa ventricular esquerda, saúde física e acesso vascular",icon:"🔬",
+    resumo:"Ensaio randomizado multicêntrico com 245 pacientes comparando hemodiálise em centro seis vezes por semana com o esquema convencional três vezes por semana durante 12 meses. A estratégia frequente melhorou os dois desfechos coprimários compostos, que combinavam morte com mudança da massa ventricular esquerda ou com mudança do componente físico de qualidade de vida, e melhorou pressão e controle de fósforo.",
+    conclusao:"A hemodiálise frequente produziu benefícios intermediários e nos compostos coprimários em 12 meses, mas aumentou intervenções relacionadas ao acesso e não estabeleceu redução isolada de mortalidade.",
+    curiosidade:"O benefício cardíaco foi mais evidente na massa ventricular esquerda; a frequência maior também expôs o acesso vascular a mais canulações e intervenções."
+  },
+  dialysate_flow_meta_2024:{
+    label:"Iman et al. — Dialysate Flow and Hemodialysis Adequacy (2024)",
+    url:"https://doi.org/10.1093/ckj/sfae163",
+    journal:"Clinical Kidney Journal 2024;17(7):sfae163",
+    ano:2024,tipo:"Revisão sistemática e metanálise",badge:"META",badgeColor:"#7c3aed",
+    impacto:"Efeito do fluxo de dialisato sobre métricas ureicas de adequação e uso de recursos",icon:"🔬",
+    resumo:"Revisão sistemática de nove estudos, com quatro incluídos na metanálise, comparando fluxos de dialisato. Elevar Qd de 500 para 800 mL/min aumentou modestamente o spKt/V em 0,08 e a URR em 3,38 pontos, mas os estudos tinham risco de viés e quase não avaliaram sintomas, função, qualidade de vida, mortalidade ou impacto ambiental.",
+    conclusao:"Qd mais alto pode melhorar discretamente métricas ureicas, porém não existe base para prescrever 800 mL/min universalmente; dose entregue, tempo, fluxo sanguíneo, acesso, metas clínicas e custo hídrico devem orientar a individualização.",
+    curiosidade:"Em uma sessão de quatro horas, passar de 500 para 800 mL/min consome cerca de 72 litros adicionais de dialisato, mais de 10 mil litros por paciente ao ano em esquema três vezes semanal."
+  },
   kdigo_cardiorenal_consensus:{
     label:"Consenso ADQI — Síndromes Cardiorrenais (2010)",
     url:"https://pubmed.ncbi.nlm.nih.gov/20037146/",
