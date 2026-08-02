@@ -523,13 +523,24 @@
 
     function showNewGameConfirm(fromWelcome) {
       document.getElementById('diffSelectorOverlay')?.remove();
+      const returnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
       const overlay = document.createElement('div');
       overlay.id = 'diffSelectorOverlay';
       overlay.className = 'diff-selector-overlay';
+      overlay.setAttribute('role', 'presentation');
       // Pré-seleciona a dificuldade recomendada pelo Ritual de Iniciação, se houver.
       let _rec = '';
       try { _rec = localStorage.getItem('nefroquest-recommended-difficulty') || ''; } catch (e) {}
       let selectedDiff = ['easy','normal','hard','hardcore'].includes(_rec) ? _rec : (state.difficulty || 'normal');
+
+      const closeDifficultySelector = (restoreFocus = true) => {
+        if (!overlay.isConnected) return;
+        overlay.remove();
+        if (restoreFocus && returnFocus?.isConnected) {
+          window.requestAnimationFrame(() => returnFocus.focus({ preventScroll: true }));
+        }
+      };
+      window._closeDifficultySelector = closeDifficultySelector;
 
       function renderDiff() {
         const defs = {
@@ -539,42 +550,87 @@
           hardcore: { icon:'☠', name:'Hardcore', chip:'badge exclusivo', role:'lenda da guilda',       lives:'♥',         desc:'1 vida · somente questões difíceis · falhou uma vez, tudo recomeça' }
         };
         overlay.innerHTML = `
-          <div class="difficulty-modal">
+          <div class="difficulty-modal" role="dialog" aria-modal="true" aria-labelledby="diffSelectorTitle" aria-describedby="diffSelectorDesc" tabindex="-1">
             <span class="difficulty-corner tl"></span><span class="difficulty-corner tr"></span>
             <span class="difficulty-corner bl"></span><span class="difficulty-corner br"></span>
             <div class="difficulty-header">
-              <div class="difficulty-medallion">⚔</div>
-              <div class="difficulty-title">ESCOLHA SEU DESTINO</div>
-              <div class="difficulty-subtitle">Cada caminho tem seu preço</div>
+              <div class="difficulty-medallion" aria-hidden="true">⚔</div>
+              <div class="difficulty-title" id="diffSelectorTitle">ESCOLHA SEU DESTINO</div>
+              <div class="difficulty-subtitle" id="diffSelectorDesc">Cada caminho tem seu preço</div>
             </div>
             <div class="difficulty-divider"></div>
             ${!fromWelcome ? '<div class="difficulty-warning">Todo o progresso atual será perdido.</div>' : ''}
-            <div class="difficulty-grid">
+            <div class="difficulty-grid" role="radiogroup" aria-label="Dificuldade da jornada">
               ${Object.entries(defs).map(([k,d]) => `
-                <div class="difficulty-card ${k}${selectedDiff===k?' selected':''}" data-action="_selectDiffCard" data-pass-this="1" data-diff-key="${k}">
+                <button type="button" role="radio" aria-checked="${selectedDiff===k?'true':'false'}" tabindex="${selectedDiff===k?'0':'-1'}" class="difficulty-card ${k}${selectedDiff===k?' selected':''}" data-action="_selectDiffCard" data-pass-this="1" data-diff-key="${k}">
                   <span class="card-corner tl"></span><span class="card-corner tr"></span>
                   <span class="card-corner bl"></span><span class="card-corner br"></span>
-                  <div class="difficulty-card-header">
-                    <span class="difficulty-icon">${d.icon}</span>
+                  <span class="difficulty-card-header">
+                    <span class="difficulty-icon" aria-hidden="true">${d.icon}</span>
                     <span class="difficulty-chip">${d.chip}</span>
-                  </div>
-                  <div class="difficulty-card-body">
-                    <div class="difficulty-name">${d.name}</div>
-                    <div class="difficulty-role">${d.role}</div>
-                    <div class="difficulty-lives">${d.lives}</div>
-                    <div class="difficulty-description">${d.desc}</div>
-                  </div>
-                </div>`).join('')}
+                  </span>
+                  <span class="difficulty-card-body">
+                    <span class="difficulty-name">${d.name}</span>
+                    <span class="difficulty-role">${d.role}</span>
+                    <span class="difficulty-lives" aria-hidden="true">${d.lives}</span>
+                    <span class="difficulty-description">${d.desc}</span>
+                  </span>
+                </button>`).join('')}
             </div>
-            <button class="difficulty-confirm" id="diffConfirmBtn" data-action="_confirmDiff" data-arg="${fromWelcome ? 'true' : 'false'}" data-arg-type="boolean">CONFIRMAR DIFICULDADE</button>
-            <button class="difficulty-cancel" data-remove-id="diffSelectorOverlay">cancelar</button>
+            <button type="button" class="difficulty-confirm" id="diffConfirmBtn" data-action="_confirmDiff" data-arg="${fromWelcome ? 'true' : 'false'}" data-arg-type="boolean">CONFIRMAR DIFICULDADE</button>
+            <button type="button" class="difficulty-cancel" data-action="_closeDifficultySelector">cancelar</button>
           </div>`;
         window._pendingDiff = selectedDiff;
       }
 
-      // overlay.addEventListener('click', e => { if(e.target===overlay) overlay.remove(); }); // disabled to prevent accidental closing
       document.body.appendChild(overlay);
       renderDiff();
+
+      overlay.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          event.stopPropagation();
+          closeDifficultySelector(true);
+          return;
+        }
+
+        const currentCard = event.target.closest('.difficulty-card[role="radio"]');
+        const cards = Array.from(overlay.querySelectorAll('.difficulty-card[role="radio"]'));
+        if (currentCard && ['ArrowRight', 'ArrowDown', 'ArrowLeft', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
+          event.preventDefault();
+          event.stopPropagation();
+          const currentIndex = cards.indexOf(currentCard);
+          let nextIndex = currentIndex;
+          if (event.key === 'Home') nextIndex = 0;
+          else if (event.key === 'End') nextIndex = cards.length - 1;
+          else if (event.key === 'ArrowRight' || event.key === 'ArrowDown') nextIndex = (currentIndex + 1) % cards.length;
+          else nextIndex = (currentIndex - 1 + cards.length) % cards.length;
+          const nextCard = cards[nextIndex];
+          window._selectDiffCard(nextCard);
+          nextCard.focus();
+          return;
+        }
+
+        if (event.key === 'Tab') {
+          const modal = overlay.querySelector('.difficulty-modal');
+          const focusable = Array.from(modal.querySelectorAll('button:not([disabled])'))
+            .filter(element => element.tabIndex >= 0);
+          if (!focusable.length) return;
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+          }
+        }
+      });
+
+      window.requestAnimationFrame(() => {
+        overlay.querySelector('.difficulty-card[aria-checked="true"]')?.focus({ preventScroll: true });
+      });
     }
 
     // ── Ritual de Iniciação (PED-3) ───────────────────────────────────────

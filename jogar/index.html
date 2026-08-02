@@ -67,7 +67,7 @@
     if (typeof Sentry !== 'undefined') {
       Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@14.17',
+          release: 'nefroquest@14.18',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -121,12 +121,12 @@
        style.css aplicar .hidden. O CSS externo re-exibe quando o JS remove .hidden. */
     .hidden { display: none !important; }
   </style>
-  <link rel="stylesheet" href="style.css?v=11.90">
+  <link rel="stylesheet" href="style.css?v=14.18">
   <link rel="stylesheet" href="styles/lumen/tokens.css?v=13.20">
   <link rel="stylesheet" href="styles/lumen/components.css?v=13.20">
   <link rel="stylesheet" href="styles/lumen/motion.css?v=13.20">
   <link rel="stylesheet" href="styles/lumen/portal.css?v=14.02">
-  <link rel="stylesheet" href="styles/lumen/atrium.css?v=14.13">
+  <link rel="stylesheet" href="styles/lumen/atrium.css?v=14.18">
   <link rel="stylesheet" href="styles/lumen/game.css?v=14.13">
   <script>
     // Version beacon — detecta nova versão sem interromper a navegação
@@ -371,7 +371,7 @@
         <span>Para aprender, revisar e se manter atualizado em nefrologia.</span>
         <span class="nql-portal__footer-meta">
           <button type="button" data-action="showPrivacyPolicy">Privacidade</button>
-          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v14.17</button>
+          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v14.18</button>
         </span>
       </footer>
     </section>
@@ -678,7 +678,7 @@
     <footer class="lnd-footer">
       <span>nefroquest.com</span>
       <span class="lnd-footer-sep">·</span>
-      <span id="landingVersionLabel" class="version-label-dynamic" style="cursor:pointer;" role="button" tabindex="0" aria-label="Ver novidades da versão" data-action="showChangelog">v14.17</span>
+      <span id="landingVersionLabel" class="version-label-dynamic" style="cursor:pointer;" role="button" tabindex="0" aria-label="Ver novidades da versão" data-action="showChangelog">v14.18</span>
       <span class="lnd-footer-sep">·</span>
       <span style="cursor:pointer;text-decoration:underline;" class="lnd-footer-link" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span>
     </footer>
@@ -794,10 +794,7 @@
                   <div class="wsaved-info">
                     <div class="wsaved-charname" id="wsSavedChar">-</div>
                     <p id="wsSavedCharacterTitle">Jornada em curso</p>
-                  </div>
-                  <div class="wsaved-level">
-                    <span>Nível</span>
-                    <strong id="wsSavedLevel">-</strong>
+                    <p class="wsaved-context">Dificuldade <strong id="wsSavedDifficulty">-</strong></p>
                   </div>
                 </div>
 
@@ -817,20 +814,25 @@
                       </defs>
                       <path class="wsaved-flow-base" pathLength="100" d="M2 16 C112 16 130 7 202 8 C277 9 300 25 374 24 C453 23 482 14 598 14"/>
                       <path id="wsSavedXpFlow" class="wsaved-flow-value" pathLength="100" d="M2 16 C112 16 130 7 202 8 C277 9 300 25 374 24 C453 23 482 14 598 14"/>
-                      <path class="wsaved-flow-pulse" pathLength="100" d="M2 16 C112 16 130 7 202 8 C277 9 300 25 374 24 C453 23 482 14 598 14"/>
+                      <path class="wsaved-flow-pulse" pathLength="100" stroke-dashoffset="100" d="M2 16 C112 16 130 7 202 8 C277 9 300 25 374 24 C453 23 482 14 598 14"/>
                     </svg>
                   </div>
+                  <p class="wsaved-milestone" id="wsSavedMilestone">-</p>
                 </div>
 
-                <div class="wsaved-support">
-                  <span><strong id="wsSavedScore">-</strong> pontos conquistados</span>
-                  <span><i aria-hidden="true">♥</i><strong id="wsSavedLives">-</strong> <span id="wsSavedLivesLabel">vidas</span></span>
+                <div class="wsaved-level">
+                  <span>Nível</span>
+                  <strong id="wsSavedLevel">-</strong>
+                  <div class="wsaved-support">
+                    <span><strong id="wsSavedScore">-</strong> pontos</span>
+                    <span><i aria-hidden="true">♥</i><strong id="wsSavedLives">-</strong> <span id="wsSavedLivesLabel">vidas</span></span>
+                  </div>
                 </div>
               </div>
             </article>
 
             <div class="nql-atrium__primary-actions">
-              <button type="button" id="welcomeContinueBtn" class="nql-atrium__primary" style="display:none;" data-action="continueGame"><span><strong>Retomar jornada</strong><small>Voltar ao ponto exato em que você parou</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
+              <button type="button" id="welcomeContinueBtn" class="nql-atrium__primary" style="display:none;" data-action="continueGame"><span><strong>Retomar jornada</strong><small>Continuar sua jornada salva</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
               <button type="button" class="nql-atrium__secondary" data-action="startNewFromWelcome">Começar nova jornada</button>
             </div>
           </div>
@@ -866,7 +868,7 @@
 
       <footer class="nql-atrium__footer">
         <span>Prática que se transforma em domínio clínico.</span>
-        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v14.17</button></span>
+        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v14.18</button></span>
       </footer>
     </section>
     <div class="welcome-bg" aria-hidden="true"></div>
@@ -874,7 +876,7 @@
     <div class="welcome-particles" id="welcomeParticles" aria-hidden="true"></div>
   </div>
 
-  <main class="app hidden" id="mainApp" data-nq-ui="lumen" data-lumen-state="reasoning">
+  <main class="app hidden" id="mainApp" tabindex="-1" data-nq-ui="lumen" data-lumen-state="reasoning">
     <!-- Title -->
     <div class="game-title">
       <!-- Boss battle title (shown when correctTotal >= 90) -->
@@ -1281,7 +1283,7 @@
       <p>
         <a href="https://nefroquest.com">nefroquest.com</a>
         &nbsp;•&nbsp;
-        <span class="version-label-dynamic" style="color:var(--gold);cursor:pointer;" data-action="showChangelog">v14.17</span>
+        <span class="version-label-dynamic" style="color:var(--gold);cursor:pointer;" data-action="showChangelog">v14.18</span>
         &nbsp;•&nbsp;
         <span style="cursor:pointer;text-decoration:underline;" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span>
       </p>
@@ -1695,7 +1697,7 @@
   <script defer src="js/audio.js?v=11.90"></script>
   <script defer src="js/leaderboard.js?v=11.90"></script>
   <script defer src="js/study-mode.js?v=11.90"></script>
-  <script defer src="js/game.js?v=14.02"></script>
+  <script defer src="js/game.js?v=14.18"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
   <script defer src="js/auth.js?v=13.44"></script>
@@ -1706,7 +1708,7 @@
   <script defer src="js/boss.js?v=11.90"></script>
   <script defer src="js/exam.js?v=11.90"></script>
   <script defer src="js/admin.js?v=11.90"></script>
-  <script defer src="js/minigame.js?v=11.90"></script>
+  <script defer src="js/minigame.js?v=14.18"></script>
   <script defer src="js/minigame-acidbase.js?v=11.90"></script>
   <script defer src="js/achievements.js?v=11.90"></script>
   <script defer src="js/changelog.js?v=11.90"></script>
