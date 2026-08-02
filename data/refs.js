@@ -3665,4 +3665,34 @@ finerenone_2025:{
     conclusao:"Em agosto de 2026, trata-se de proposta de retirada, não de conclusão automática de que toda autorização já cessou; ainda assim, a eficácia pivotal não pode ser apresentada como estabelecida.",
     curiosidade:"A agência afirmou que o dossiê continha declarações materiais inexatas sobre fechamento, descegamento e análises do banco, informação que não estava disponível na aprovação de 2021."
   },
+  eular_aav_2022:{
+    label:"EULAR — Vasculites Associadas ao ANCA (Atualização 2022)",
+    url:"https://doi.org/10.1136/ard-2022-223764",
+    journal:"Ann Rheum Dis. 2024;83(1):30-47",
+    ano:2024,tipo:"Recomendação internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Diagnóstico por PR3/MPO, fenótipo e tratamento de GPA, PAM e EGPA",icon:"📋",
+    resumo:"A EULAR recomenda testar PR3-ANCA e MPO-ANCA por imunoensaio de alta qualidade quando há suspeita clínica. MPO predomina na poliangeíte microscópica e PR3 na granulomatose com poliangeíte, mas existe sobreposição e o diagnóstico não deve ser feito pela sorologia isolada.",
+    conclusao:"O serótipo ANCA contribui para classificação e prognóstico, porém fenótipo, imagem, órgãos envolvidos, histologia e diagnósticos alternativos continuam essenciais.",
+    curiosidade:"A recomendação prioriza ensaios específicos para PR3 e MPO sobre o padrão perinuclear ou citoplasmático da imunofluorescência indireta como teste primário."
+  },
+  egpa_guideline_2023:{
+    label:"Emmi et al. — Diretriz de EGPA (2023)",
+    url:"https://doi.org/10.1038/s41584-023-00958-w",
+    journal:"Nat Rev Rheumatol. 2023;19:378-393",
+    ano:2023,tipo:"Diretriz baseada em evidência",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Diagnóstico multidisciplinar, fenótipos e manejo da granulomatose eosinofílica com poliangeíte",icon:"📋",
+    resumo:"ANCA é detectável em cerca de 30% a 40% das pessoas com EGPA e, quando presente, é predominantemente MPO-ANCA. Positividade associa-se mais a neuropatia, púrpura e envolvimento renal; doença ANCA-negativa pode ter manifestações eosinofílicas e cardíacas importantes.",
+    conclusao:"MPO-ANCA apoia, mas sua ausência não exclui EGPA; o diagnóstico exige asma, eosinofilia e fenótipo compatível, com exclusão de outras doenças eosinofílicas e vasculíticas.",
+    curiosidade:"PR3-ANCA em EGPA é raro e pode acompanhar um fenótipo menos típico, reforçando que nenhum marcador isolado substitui a avaliação clínica."
+  },
+  mcadoo_antigbm_2017:{
+    label:"McAdoo & Pusey — Doença Anti-MBG (2017)",
+    url:"https://doi.org/10.2215/CJN.01380217",
+    journal:"Clin J Am Soc Nephrol. 2017;12(7):1162-1172",
+    ano:2017,tipo:"Revisão clínica e translacional",badge:"REVIEW",badgeColor:"#8b5cf6",
+    impacto:"Autoantígeno, apresentação, prognóstico e tratamento da doença anti-membrana basal glomerular",icon:"🔬",
+    resumo:"A doença clássica é mediada por autoanticorpos contra epítopos do domínio NC1 da cadeia alfa-3 do colágeno IV, expresso nas membranas basais glomerular e alveolar. O tratamento combina remoção de anticorpos por troca plasmática com supressão de inflamação e nova produção por glicocorticoide e ciclofosfamida.",
+    conclusao:"Suspeita de doença anti-MBG com ameaça renal ou pulmonar requer ação imediata, mas a chance de recuperação renal é muito baixa quando já há dependência de diálise e destruição crescêntica quase total sem hemorragia pulmonar.",
+    curiosidade:"Os epítopos EA e EB ficam normalmente ocultos na rede alfa-3/alfa-4/alfa-5 do colágeno IV; alterações conformacionais podem expô-los ao sistema imune."
+  },
 };
