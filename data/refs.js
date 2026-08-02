@@ -2382,18 +2382,6 @@ canvas_program:{
     curiosidade:"O nefrologista espanhol Juan Rodriguez Soriano foi o pioneiro que descreveu e isolou a ATR tipo 2 na infância nos anos 1960. O Anion Gap urinário ajuda a diagnosticar ATRs distais: em acidose metabólica normal, o rim deve secretar NH4+ (acompanhado por Cl-), tornando o Anion Gap urinário (Na + K - Cl) negativo; se for positivo, indica incapacidade de acidificação urinária distal."
   },
 
-  rituximab_gesf_review:{
-    label:"Basu B et al. — Rituximab in FSGS (Pediatr Nephrol 2015)",
-    url:"https://link.springer.com/article/10.1007/s00467-014-2892-1",
-    journal:"Pediatr Nephrol 2015;30(11):1831-1840",
-    ano:2015,tipo:"Revisão Clínica",badge:"REVIEW",badgeColor:"#0ea5e9",
-    impacto:"Uso de rituximabe em GEFS pediátrica refratária — mechanisms e resultados clínicos",icon:"📖",
-    resumo:"Revisão clínica analítica retrospectiva que avaliou a eficácia e segurança do uso do rituximabe (anticorpo monoclonal anti-CD20) em pacientes pediátricos (n = 37) com glomeruloesclerose segmentar e focal (GESF) e síndrome nefrótica corticoide-dependente ou refratária a inibidores de calcineurina. O tratamento induziu remissão completa ou parcial em aproximadamente 65% dos pacientes pediátricos, permitindo a suspensão completa ou desmame de corticoides orais na maioria das crianças, com perfil tolerável de segurança.",
-    conclusao:"O rituximabe serve como terapia de resgate valiosa na GESF pediátrica recorrente ou dependente de imunossupressores orais, atuando na preservação da barreira celular dos podócitos e na supressão de células B.",
-    curiosidade:"O efeito do rituximabe na GESF parece exceder a mera depleção de células B e anticorpos: estudos demonstram que ele se liga diretamente à proteína SMPDL-3b nos podócitos glomerulares, impedindo a apoptose e estabilizando a arquitetura do citoesqueleto podocitário."
-  },
-
-
   bliss_ln:{
     label:"BLISS-LN Trial (Belimumabe)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2029238",
@@ -3634,5 +3622,25 @@ finerenone_2025:{
     resumo:"Atualização do grupo CKD-MBD da ERA sobre calcifilaxia, condição rara e letal marcada por dor intensa, lesões retiformes e necrose. Recomenda abordagem multidisciplinar com cuidado de feridas, analgesia, controle de infecção e metabolismo mineral, além de revisão de fatores como warfarina. Tratamentos específicos apoiam-se sobretudo em registros e estudos não controlados.",
     conclusao:"Reconhecer cedo e remover fatores modificáveis é essencial, mas nenhuma intervenção isolada — inclusive tiossulfato de sódio — tem eficácia curativa comprovada; decisões devem ser individualizadas.",
     curiosidade:"A warfarina reduz a ativação da proteína Gla da matriz, inibidor dependente de vitamina K da calcificação vascular, fornecendo plausibilidade biológica ao risco observado."
+  },
+  de_vriese_fsgs_2018:{
+    label:"De Vriese et al. — Diferenciação Clinicopatológica da GESF (2018)",
+    url:"https://doi.org/10.1681/ASN.2017090958",
+    journal:"J Am Soc Nephrol. 2018;29(3):759-774",
+    ano:2018,tipo:"Revisão clinicopatológica",badge:"REVIEW",badgeColor:"#8b5cf6",
+    impacto:"Integra síndrome nefrótica, etiologia, microscopia eletrônica e padrão histológico na classificação da GESF",icon:"🔬",
+    resumo:"A revisão propõe distinguir GESF primária, genética e secundária por avaliação clinicopatológica integrada. Síndrome nefrótica abrupta e apagamento difuso de pedicelos favorecem a forma primária; formas maladaptativas costumam ter glomerulomegalia, lesões perihilares e apagamento segmentar, mas nenhum achado isolado é patognomônico.",
+    conclusao:"GESF é um padrão de lesão, não uma etiologia: história, fenótipo clínico, causas secundárias, genética quando indicada e extensão do apagamento de pedicelos devem orientar a classificação e evitar imunossupressão inadequada.",
+    curiosidade:"Como a lesão é focal, ela pode não aparecer na biópsia inicial; em alguns pacientes, a primeira amostra é interpretada como doença de lesões mínimas e uma biópsia posterior demonstra GESF."
+  },
+  dagati_fsgs_variants_2013:{
+    label:"D'Agati et al. — Variantes Histológicas da GESF (2013)",
+    url:"https://doi.org/10.2215/CJN.06100612",
+    journal:"Clin J Am Soc Nephrol. 2013;8(3):399-406",
+    ano:2013,tipo:"Coorte prospectiva de ensaio clínico",badge:"COHORT",badgeColor:"#0ea5e9",
+    impacto:"Associação das variantes de Columbia com apresentação e desfechos em participantes jovens com GESF primária corticorresistente",icon:"📊",
+    resumo:"Análise central de 138 biópsias do FSGS Clinical Trial encontrou 68% NOS, 12% colapsante, 10% tip, 7% perihilar e 3% celular. Em três anos, falência renal ocorreu em 47% da variante colapsante, 20% da NOS e 7% da tip, com diferenças também na lesão basal e na proteinúria.",
+    conclusao:"Na população estudada, a variante tip associou-se a melhor sobrevida renal e a colapsante ao pior curso; essas associações prognósticas não transformam a morfologia em causa nem substituem resposta à terapia, cronicidade e contexto clínico.",
+    curiosidade:"O estudo incluiu participantes de 2 a 38 anos com GESF primária corticorresistente; por isso, percentuais absolutos não devem ser extrapolados diretamente a toda GESF adulta ou secundária."
   },
 };

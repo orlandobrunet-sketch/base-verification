@@ -1,0 +1,69 @@
+{
+  "batch": "FARM-18A",
+  "change_type": "medical_editorial",
+  "expected_version": "14.22",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-18A.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "cd455e49": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "f9d81f9d": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "2493e0dc": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "1366eca9": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "1ed238d9": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "replacement_qid": "1366eca9",
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}
+    }
+  },
+  "expected_question_delta": -1,
+  "refs_policy": "declared",
+  "references": {
+    "de_vriese_fsgs_2018": {
+      "action": "add",
+      "source": "De Vriese AS et al. Differentiating Primary, Genetic, and Secondary FSGS in Adults: A Clinicopathologic Approach. J Am Soc Nephrol. 2018."
+    },
+    "dagati_fsgs_variants_2013": {
+      "action": "add",
+      "source": "D'Agati VD et al. Association of histologic variants in FSGS clinical trial with presenting features and outcomes. Clin J Am Soc Nephrol. 2013."
+    },
+    "rituximab_gesf_review": {
+      "action": "remove",
+      "source": "Card legado removido após a fusão de seu único consumidor, 1ed238d9, em 1366eca9."
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Quatro questões de GESF foram reconstruídas com a KDIGO 2021, revisão clinicopatológica e coorte prospectiva de ensaio clínico.",
+    "A questão 1ed238d9 foi fundida em 1366eca9 por repetir o diagnóstico diferencial entre GESF primária e secundária com uma heurística isolada de HIV insuficiente.",
+    "Os itens distinguem padrão morfológico de etiologia, preservam a incerteza da microscopia eletrônica e limitam a extrapolação prognóstica das variantes de Columbia.",
+    "A auditoria das quatro dimensões não encontrou outra duplicata exata entre os itens ativos de GESF."
+  ]
+}
