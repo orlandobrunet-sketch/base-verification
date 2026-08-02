@@ -1,0 +1,85 @@
+{
+  "batch": "FARM-17K",
+  "change_type": "medical_editorial",
+  "expected_version": "14.19",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-17K.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "c7abfaf3": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "4decf9f9": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "31926895": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "37b7874a": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "editorial_gate": {"evidence":"NÃO VERIFICADA","pending":"DECISIVA","score":"6/20","verdict":"retirada","publication":"BLOQUEADA"}
+    },
+    "4a72b9b7": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    }
+  },
+  "expected_question_delta": -1,
+  "refs_policy": "declared",
+  "references": {
+    "nephrodite_holly_2025": {
+      "action": "add",
+      "source": "Nephrodite. Holly Breakthrough Device Designation sponsor announcement. December 15, 2025."
+    },
+    "fda_breakthrough_devices_2026": {
+      "action": "add",
+      "source": "U.S. Food and Drug Administration. Breakthrough Devices Program. Updated 2026."
+    },
+    "cric_pace_proteomics_2025": {
+      "action": "add",
+      "source": "Risk factors for mortality in patients with kidney failure on hemodialysis identified by proteomic analysis of CRIC and PACE studies. Nat Commun. 2025."
+    },
+    "wak_gura_2016": {
+      "action": "add",
+      "source": "Gura V et al. A wearable artificial kidney for patients with end-stage renal disease. JCI Insight. 2016;1(8):e86397."
+    },
+    "neumann_2018": {
+      "action": "update",
+      "source": "Neumann D et al. Peritoneal dialysis is associated with better cognitive function than hemodialysis over a one-year course. Kidney Int. 2018;93(2):430-438."
+    },
+    "malik_meta_2025": {
+      "action": "update",
+      "source": "Malik A et al. Dialysis modality and cognitive outcomes in chronic kidney disease: a systematic review and meta-analysis. Clin Exp Nephrol. 2026;30(3):408-423."
+    },
+    "evaluate_trial": {
+      "action": "remove",
+      "source": "Card retirado: ensaio EVALUATE e DOI declarados não correspondem a publicação verificável."
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Quatro questões de evidência emergente foram reconstruídas com limitações explícitas e preservação de qid/FSRS.",
+    "A questão 37b7874a e o card evaluate_trial foram retirados porque o ensaio EVALUATE e o DOI atribuídos não são verificáveis; a revisão Cochrane até setembro de 2025 não encontrou ensaios randomizados comparando manejo conservador e diálise em idosos.",
+    "Holly foi enquadrado como dispositivo investigacional com Breakthrough Device Designation, que não equivale a autorização de mercado.",
+    "Cognição por modalidade permaneceu associação observacional; proteômica CRIC/PACE permaneceu descoberta prognóstica; WAK permaneceu prova de conceito interrompida por limitações técnicas.",
+    "A auditoria das quatro dimensões não encontrou duplicatas exatas com os demais itens ativos."
+  ]
+}
