@@ -1,0 +1,96 @@
+{
+  "batch": "FARM-18B",
+  "change_type": "medical_editorial",
+  "expected_version": "14.23",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-18B.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "1fd6a5cf": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "91355bed": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "4efef2a5": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "60efeb87": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "e5b44fbe": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "ae0f4fef": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "ae8c57ab": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "replacement_qid": "60efeb87",
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}
+    }
+  },
+  "expected_question_delta": -1,
+  "refs_policy": "declared",
+  "references": {
+    "rituxvas_study": {
+      "action": "update",
+      "source": "Jones RB et al. Rituximab versus cyclophosphamide in ANCA-associated renal vasculitis. N Engl J Med. 2010."
+    },
+    "advocate_study": {
+      "action": "update",
+      "source": "Jayne DRW et al. Avacopan for the Treatment of ANCA-Associated Vasculitis. N Engl J Med. 2021; retratado em 2026."
+    },
+    "pexivas_trial": {
+      "action": "update",
+      "source": "Walsh M et al. Plasma Exchange and Glucocorticoids in Severe ANCA-Associated Vasculitis. N Engl J Med. 2020."
+    },
+    "mainritsan_trial": {
+      "action": "update",
+      "source": "Guillevin L et al. Rituximab versus Azathioprine for Maintenance in ANCA-Associated Vasculitis. N Engl J Med. 2014."
+    },
+    "kdigo_anca_2024": {
+      "action": "add",
+      "source": "KDIGO 2024 Clinical Practice Guideline for the Management of ANCA-Associated Vasculitis."
+    },
+    "advocate_retraction_2026": {
+      "action": "add",
+      "source": "Rubin EJ. Retraction: Jayne DRW et al. Avacopan for the Treatment of ANCA-Associated Vasculitis. N Engl J Med. 2026."
+    },
+    "fda_tavneos_nooh_2026": {
+      "action": "add",
+      "source": "U.S. FDA. Notice of Opportunity for Hearing: proposal to withdraw approval of Tavneos (avacopan), FDA-2026-N-1321."
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Seis questões de terapia da vasculite ANCA foram reconstruídas com ensaios primários, KDIGO 2024 e documentos regulatórios de 2026.",
+    "A questão ae8c57ab foi fundida em 60efeb87 por repetir diretamente o resultado do MAINRITSAN.",
+    "O artigo ADVOCATE foi formalmente retratado em 29 de junho de 2026; os resultados de eficácia deixaram de ser tratados como evidência confiável.",
+    "A proposta da FDA de retirar a aprovação do avacopan ainda é descrita como processo regulatório em curso, sem confundi-la com decisão final.",
+    "A auditoria das quatro dimensões não encontrou outra duplicata exata entre os itens ativos do lote."
+  ]
+}

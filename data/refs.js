@@ -789,18 +789,14 @@ kdigo_ckd:{
     curiosidade:"Fisiologicamente, os tiazídicos bloqueiam o cotransportador de cloreto de sódio (NCC) no túbulo contorcido distal. A consequente depleção leve de volume de sódio estimula a reabsorção passiva de cálcio no túbulo proximal, reduzindo a excreção urinária de cálcio (hipercalciúria). Contudo, o NOSTONE sugere que essa alteração bioquímica urinária isolada não se traduz necessariamente em redução de eventos clínicos macroscópicos de cristalização."
   },
   rituxvas_study:{
-    label:"RITUXVAS Trial",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa0909159",
-    journal:"New England Journal of Medicine",
-    ano:2010,
-    tipo:"Ensaio Clínico Fase III",
-    badge:"RCT",
-    badgeColor:"#10b981",
-    impacto:"Rituximabe não inferior a ciclofosfamida na vasculite ANCA com LRA",
-    icon:"💊",
-    resumo:"ECR (RITUXVAS, n=44) em vasculite ANCA recém-diagnosticada com envolvimento renal (TFGe reduzida), comparando rituximabe (2 pulsos IV) + 2 pulsos de ciclofosfamida vs 15 pulsos de ciclofosfamida IV. Remissão sustentada aos 12 meses: 76% vs 82% (não inferior). Publicado como trial-irmão do RAVE no mesmo número do NEJM de 2010.",
-    conclusao:"RITUXVAS e RAVE juntos estabeleceram rituximabe como alternativa à ciclofosfamida na indução da vasculite ANCA, com eficácia equivalente e sem necessidade de curso prolongado de ciclofosfamida.",
-    curiosidade:"A publicação simultânea de RITUXVAS e RAVE no mesmo número do NEJM cobriu os dois cenários clínicos principais — doença recidivante (RAVE) e doença nova com comprometimento renal (RITUXVAS) — tornando a evidência para rituximabe difícil de contestar."
+    label:"Jones et al. — RITUXVAS (NEJM 2010)",
+    url:"https://doi.org/10.1056/NEJMoa0909169",
+    journal:"N Engl J Med. 2010;363(3):211-220",
+    ano:2010,tipo:"Ensaio clínico randomizado",badge:"RCT",badgeColor:"#10b981",
+    impacto:"Regime baseado em rituximabe na vasculite ANCA recém-diagnosticada com envolvimento renal grave",icon:"💊",
+    resumo:"Ensaio aberto com 44 pacientes, randomizados 3:1 para rituximabe 375 mg/m² semanal por quatro semanas mais dois pulsos intravenosos de ciclofosfamida, ou ciclofosfamida intravenosa por três a seis meses seguida de azatioprina; ambos receberam glicocorticoide. Remissão sustentada em 12 meses ocorreu em 76% versus 82%, sem superioridade do regime baseado em rituximabe.",
+    conclusao:"RITUXVAS sustentou rituximabe como componente de indução em doença renal grave, mas não testou rituximabe isolado nem demonstrou menos eventos adversos precoces que o comparador.",
+    curiosidade:"Ao contrário do RAVE, o RITUXVAS incluiu doença renal muito avançada, porém o braço rituximabe recebeu duas doses de ciclofosfamida; atribuir todo o efeito exclusivamente ao anti-CD20 excede o desenho."
   },
 rave_study:{
     label:"Jones RB et al. — RAVE Trial (NEJM 2010)",
@@ -813,18 +809,14 @@ rave_study:{
     curiosidade:"O rituximabe foi inicialmente aprovado para linfoma de células B em 1997. Seu uso na vasculite ANCA baseia-se na depeleção de células B produtoras de autoanticorpos (PR3 e MPO), bloqueando a cascata inflamatória."
   },
   advocate_study:{
-    label:"ADVOCATE Trial (Avacopan)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2029249",
-    journal:"New England Journal of Medicine",
-    ano:2021,
-    tipo:"Ensaio Clínico Fase III",
-    badge:"RCT",
-    badgeColor:"#10b981",
-    impacto:"Avacopan não inferior a prednisona na vasculite ANCA, com menos efeitos corticoides",
-    icon:"💊",
-    resumo:"ECR multicêntrico internacional duplo-cego fase III (ADVOCATE, n = 331), comparando o inibidor oral do receptor de C5a avacopan (30 mg 2x/dia) versus prednisona oral em regime de desmame, combinados com rituximabe ou ciclofosfamida, em vasculite ANCA ativa. Desfecho de remissão sustentada em 52 semanas: avacopan foi superior à prednisona (65,7% vs 54,9%; HR 1,25; P = 0,007). Houve menos efeitos colaterais relacionados aos corticoides, menor incidência de infecções graves e melhora acentuada na TFGe em pacientes com disfunção renal inicial.",
-    conclusao:"O avacopan revolucionou a indução da vasculite ANCA ao atuar como um poupador de corticoide altamente eficaz, reduzindo a morbidade do tratamento imunossupressor clássico.",
-    curiosidade:"O sistema do complemento, especificamente a anafilatoxina C5a e seu receptor C5aR1, atua como amplificador crítico da vasculite ANCA ao ativar neutrófilos, induzindo a liberação de citocinas inflamatórias e armadilhas extracelulares de neutrófilos (NETs)."
+    label:"ADVOCATE — Artigo Retratado (2021/2026)",
+    url:"https://doi.org/10.1056/NEJMoa2023386",
+    journal:"N Engl J Med. 2021;384:599-609 — RETRATADO",
+    ano:2021,tipo:"Ensaio clínico retratado",badge:"RETRACTED",badgeColor:"#dc2626",
+    impacto:"Resultados pivotais de avacopan não devem ser tratados como evidência confiável após a retratação",icon:"⚠️",
+    resumo:"O artigo relatou não inferioridade de avacopan na semana 26 e superioridade em remissão sustentada na semana 52, sobre terapia de fundo. Em 29 de junho de 2026, o NEJM o retratou após a descoberta de que desfechos primários de nove participantes foram readjudicados depois do fechamento do banco e do descegamento, sem divulgação no artigo.",
+    conclusao:"Os resultados publicados do ADVOCATE não podem sustentar afirmações editoriais de eficácia como evidência verificada; mecanismo farmacológico e situação regulatória devem ser separados da confiabilidade do ensaio.",
+    curiosidade:"A retratação foi solicitada pelos dois autores acadêmicos, que declararam não ter conhecimento das readjudicações pós-descegamento realizadas no banco do patrocinador."
   },
   nobility_study:{
     label:"NOBILITY Trial (Obinutuzumabe)",
@@ -1392,10 +1384,10 @@ canvas_program:{
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1803537",
     journal:"N Engl J Med 2020;382(7):622-631",
     ano:2020,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Plasmaférese NÃO reduziu morte ou DRCT em vasculite ANCA grave — mudou prática clínica abandonando plasmaférese de rotina",icon:"🔬",
+    impacto:"Troca plasmática e redução de glicocorticoide na vasculite ANCA grave",icon:"🔬",
     resumo:"ECR com delineamento 2×2 fatorial (n=704) em vasculite ANCA grave (GPA ou PAM com TFGe <50 ou hemorragia alveolar). Comparou plasmaférese (7 sessões) vs nenhuma e glicocorticoide padrão vs reduzido. Desfecho primário (morte ou DRCT, mediana 2,9 anos): plasmaférese não reduziu o risco (HR 0,86, IC 95% 0,65–1,13). Glicocorticoide reduzido foi não inferior ao padrão e associado a menos infecções graves.",
-    conclusao:"PEXIVAS encerrou o uso rotineiro de plasmaférese em vasculite ANCA grave e sustentou protocolos de redução de corticoide — ambos os paradigmas vigoravam sem suporte de trials de alta qualidade.",
-    curiosidade:"A hipótese da plasmaférese era remover ANCA circulante para reduzir ativação de neutrófilos. O PEXIVAS mostrou que, em desfechos clinicamente relevantes (morte e DRCT), esse mecanismo não se traduz em benefício — questionando o papel dos ANCA circulantes como driver autônomo do dano glomerular."
+    conclusao:"PEXIVAS não sustenta troca plasmática rotineira para toda vasculite ANCA grave e apoia regime reduzido de glicocorticoide. Diretrizes posteriores ainda permitem considerar troca em risco renal extremo ou hemorragia alveolar com hipoxemia, ponderando possível benefício renal contra infecção.",
+    curiosidade:"A ausência de benefício significativo no composto global não prova efeito zero em todo subgrupo; a decisão em pacientes sob diálise ou com hemorragia alveolar crítica permanece uma escolha individual sob incerteza."
   },
   // --- IRA ---
   furosemide_stress_test:{
@@ -2468,9 +2460,9 @@ canvas_program:{
     journal:"N Engl J Med 2014;371(19):1771-1780",
     ano:2014,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
     impacto:"Rituximabe superior à azatioprina na manutenção de remissão em vasculite ANCA",icon:"💊",
-    resumo:"ECR multicêntrico fase III (MAINRITSAN, n = 115), comparando rituximabe (500 mg IV nos meses 0, 1, 6, 12 e 18) versus azatioprina (AZA, 2 mg/kg/dia por 22 meses) para manutenção de remissão em pacientes com vasculite ANCA recém-diagnosticada ou recidivante após indução bem-sucedida. Desfecho primário: recidiva clínica grave aos 28 meses. Resultados: O grupo rituximabe apresentou taxas significativamente menores de recidiva grave em comparação à azatioprina (5% vs 29%; Hazard Ratio de 0,18; IC 95% 0,06–0,52; P < 0,001). As taxas de infecções graves e eventos adversos gerais foram semelhantes entre os grupos.",
-    conclusao:"O MAINRITSAN demonstrou a superioridade marcante e inequívoca do rituximabe em pulsos repetidos na prevenção de recidivas graves em vasculite ANCA em relação à azatioprina oral clássica.",
-    curiosidade:"O estudo provou que a manutenção orientada à depleção intermitente de células B impede o rebote rápido dos autoanticorpos anti-MPO e anti-PR3 nos neutrófilos, bloqueando de forma preventiva os gatilhos das recidivas sistêmicas."
+    resumo:"ECR multicêntrico com 115 pacientes em remissão após ciclofosfamida e glicocorticoide. Comparou rituximabe 500 mg nos dias 0 e 14 e meses 6, 12 e 18 com azatioprina diária até o mês 22. No mês 28, recidiva maior ocorreu em 3 de 57 pacientes (5%) com rituximabe e 17 de 58 (29%) com azatioprina; eventos adversos graves foram frequentes nos dois grupos.",
+    conclusao:"O esquema fixo de rituximabe reduziu recidivas maiores em comparação à azatioprina nessa população, mas ambas continuam opções de manutenção na KDIGO 2024 e exigem decisão por risco de recidiva, segurança, acesso e preferência.",
+    curiosidade:"As doses iniciais foram nos dias 0 e 14, não simplesmente uma infusão semestral; o ensaio avaliou manutenção após indução com ciclofosfamida, o que limita extrapolações para qualquer sequência terapêutica."
   },
   sotagliflozin_trial:{
     label:"SOLOIST-WHF Trial (Sotagliflozina na IC)",
@@ -3642,5 +3634,35 @@ finerenone_2025:{
     resumo:"Análise central de 138 biópsias do FSGS Clinical Trial encontrou 68% NOS, 12% colapsante, 10% tip, 7% perihilar e 3% celular. Em três anos, falência renal ocorreu em 47% da variante colapsante, 20% da NOS e 7% da tip, com diferenças também na lesão basal e na proteinúria.",
     conclusao:"Na população estudada, a variante tip associou-se a melhor sobrevida renal e a colapsante ao pior curso; essas associações prognósticas não transformam a morfologia em causa nem substituem resposta à terapia, cronicidade e contexto clínico.",
     curiosidade:"O estudo incluiu participantes de 2 a 38 anos com GESF primária corticorresistente; por isso, percentuais absolutos não devem ser extrapolados diretamente a toda GESF adulta ou secundária."
+  },
+  kdigo_anca_2024:{
+    label:"KDIGO — Vasculite Associada ao ANCA (2024)",
+    url:"https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2024-ANCA-Vasculitis-Guideline-Update.pdf",
+    journal:"Kidney Int. 2024;105(Suppl 3S):S71-S116",
+    ano:2024,tipo:"Diretriz internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Indução, troca plasmática, manutenção e redução de toxicidade na vasculite ANCA",icon:"📋",
+    resumo:"Atualização focada recomenda glicocorticoide associado a rituximabe ou ciclofosfamida para indução de doença nova, favorece regime reduzido de glicocorticoide e recomenda rituximabe ou azatioprina com baixa dose de glicocorticoide para manutenção. A troca plasmática pode ser considerada em risco renal extremo, hemorragia alveolar com hipoxemia ou sobreposição anti-MBG.",
+    conclusao:"A terapia deve separar indução de manutenção e individualizar rituximabe, ciclofosfamida, glicocorticoide e troca plasmática pelo fenótipo e risco. A diretriz antecede a retratação do ADVOCATE em 2026 e não resolve a situação regulatória atual do avacopan.",
+    curiosidade:"A própria KDIGO trata a troca plasmática como decisão de preferência sensível ao balanço entre possível redução de falência renal em alto risco e aumento de infecções graves."
+  },
+  advocate_retraction_2026:{
+    label:"NEJM — Retratação do ADVOCATE (2026)",
+    url:"https://doi.org/10.1056/NEJMe2608684",
+    journal:"N Engl J Med. Publicado em 29 jun 2026",
+    ano:2026,tipo:"Nota formal de retratação",badge:"RETRACTION",badgeColor:"#dc2626",
+    impacto:"Invalida o artigo pivotal do ADVOCATE como evidência confiável de eficácia",icon:"⚠️",
+    resumo:"O NEJM retratou o artigo de 2021 a pedido dos dois autores acadêmicos depois que investigação da FDA identificou readjudicação dos desfechos primários de nove participantes após fechamento do banco e descegamento, sem divulgação no manuscrito.",
+    conclusao:"Os números de remissão publicados não devem ser ensinados como prova válida de superioridade ou não inferioridade; qualquer decisão clínica deve considerar a revisão regulatória e outras evidências independentes.",
+    curiosidade:"Os autores acadêmicos informaram não ter conhecimento das readjudicações pós-descegamento; a quebra ocorreu no processamento dos dados do patrocinador."
+  },
+  fda_tavneos_nooh_2026:{
+    label:"FDA — Proposta de Retirada do Tavneos (2026)",
+    url:"https://www.fda.gov/media/192160/download",
+    journal:"U.S. Food and Drug Administration, FDA-2026-N-1321",
+    ano:2026,tipo:"Notificação regulatória",badge:"REG",badgeColor:"#2563eb",
+    impacto:"Questiona eficácia, integridade do dossiê e segurança do avacopan",icon:"🏛️",
+    resumo:"A FDA propôs retirar a aprovação do avacopan após concluir que readjudicações pós-descegamento tornaram os dados primários do ADVOCATE não confiáveis para demonstrar eficácia. A notificação também descreve preocupação pós-comercialização com lesão hepática e mantém o devido processo administrativo antes de decisão final.",
+    conclusao:"Em agosto de 2026, trata-se de proposta de retirada, não de conclusão automática de que toda autorização já cessou; ainda assim, a eficácia pivotal não pode ser apresentada como estabelecida.",
+    curiosidade:"A agência afirmou que o dossiê continha declarações materiais inexatas sobre fechamento, descegamento e análises do banco, informação que não estava disponível na aprovação de 2021."
   },
 };
