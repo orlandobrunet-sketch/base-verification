@@ -1,0 +1,63 @@
+{
+  "batch": "FARM-18E",
+  "change_type": "medical_editorial",
+  "expected_version": "14.26",
+  "allowed_files": [
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-18E.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "d2a32c19": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "ff741767": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "cf42455e": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "d14954d1": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "e96386a2": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "replacement_qid": "d14954d1",
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}
+    },
+    "e8497654": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "replacement_qid": "4afc0858",
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}
+    }
+  },
+  "expected_question_delta": -2,
+  "refs_policy": "unchanged",
+  "references": {},
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Quatro questões de classificação e diagnóstico de MPGN/C3G foram reconstruídas com KDIGO, consenso internacional e revisão clinicopatológica já presentes no Grimório.",
+    "O item e96386a2 foi fundido em d14954d1 por repetir a desregulação da via alternativa sem acrescentar decisão ou mecanismo distinto.",
+    "O item e8497654 foi fundido em 4afc0858 por repetir exatamente a inibição do fator B pelo iptacopano.",
+    "O padrão MPGN é tratado como padrão de lesão, não etiologia, e C3 dominante como descritor morfológico que exige microscopia eletrônica e exclusão de mimetizadores.",
+    "A distinção entre doença de depósitos densos e C3GN foi ancorada na ultraestrutura, sem usar C3 sérico baixo como requisito diagnóstico.",
+    "Nenhum card novo foi necessário; as referências canônicas existentes sustentam todos os gates."
+  ]
+}
