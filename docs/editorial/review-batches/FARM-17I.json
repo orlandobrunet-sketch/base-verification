@@ -1,0 +1,71 @@
+{
+  "batch": "FARM-17I",
+  "change_type": "medical_editorial",
+  "expected_version": "14.16",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-17I.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "53814952": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "6a4259d8": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "f7fd9e8a": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "f3ab76f3": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "cbfdb00a": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "4b27ea54": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    }
+  },
+  "expected_question_delta": 0,
+  "refs_policy": "declared",
+  "references": {
+    "extrip_lithium_2015": {
+      "action": "add",
+      "source": "Decker BS et al. Extracorporeal Treatment for Lithium Poisoning: Systematic Review and Recommendations from the EXTRIP Workgroup. Clin J Am Soc Nephrol. 2015;10(5):875-887."
+    },
+    "saha_hd_emergencies_2017": {
+      "action": "add",
+      "source": "Saha M, Allon M. Diagnosis, Treatment, and Prevention of Hemodialysis Emergencies. Clin J Am Soc Nephrol. 2017;12(2):357-369."
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Seis questões foram reconstruídas com evidência verificada, pendência nenhuma e preservação de qid/FSRS.",
+    "A intoxicação por lítio passou a usar critérios clínicos e cinéticos da EXTRIP, sem esperar um limiar sérico diante de toxicidade neurológica grave.",
+    "A síndrome de desequilíbrio foi tratada como diagnóstico de exclusão ligado à depuração osmótica rápida e à necessidade de prevenção por início menos eficiente.",
+    "As três questões de hipotensão intradialítica medem objetivos distintos: mecanismo volêmico, reserva cardíaca e resfriamento individualizado do dialisato.",
+    "A embolia gasosa foi atualizada para interromper o circuito sem retorno do sangue, posição supina, oxigênio e suporte, removendo a posição de Durant como obrigação universal.",
+    "A auditoria das quatro dimensões não encontrou duplicata com a questão 236ed8f1, que mede ajuste preventivo da prescrição após estabilização."
+  ]
+}

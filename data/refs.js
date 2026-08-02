@@ -954,6 +954,26 @@ rave_study:{
     conclusao:"A prevenção da hipotensão intradialítica começa pela prescrição volêmica individualizada; nenhum limiar único de ultrafiltração é apropriado para todos os pacientes e em todas as sessões.",
     curiosidade:"O relatório distingue peso-alvo de peso seco estimado: em doença aguda ou sintomas intensos pode ser necessário aceitar temporariamente um peso-alvo um pouco maior, equilibrando hipoperfusão imediata e sobrecarga crônica."
   },
+  extrip_lithium_2015:{
+    label:"EXTRIP — Extracorporeal Treatment for Lithium Poisoning (CJASN 2015)",
+    url:"https://doi.org/10.2215/CJN.10021014",
+    journal:"Clinical Journal of the American Society of Nephrology 2015;10(5):875-887",
+    ano:2015,tipo:"Revisão sistemática e consenso",badge:"REVIEW",badgeColor:"#8b5cf6",
+    impacto:"Critérios clínicos e cinéticos para tratamento extracorpóreo na intoxicação por lítio",icon:"🔬",
+    resumo:"Revisão sistemática e recomendações do grupo EXTRIP baseadas em 166 publicações, majoritariamente relatos de caso, com 418 pacientes. Recomenda tratamento extracorpóreo em toxicidade grave por lítio e, independentemente da litemia, diante de rebaixamento de consciência, convulsões ou arritmias ameaçadoras à vida. Também incorpora função renal, concentração de lítio, padrão de exposição e tempo esperado para depuração; a certeza das recomendações clínicas é muito baixa.",
+    conclusao:"Hemodiálise intermitente é a modalidade preferida quando há toxicidade grave por lítio; limiares séricos não devem atrasar a remoção extracorpórea diante de manifestações neurológicas ou cardíacas graves.",
+    curiosidade:"Como o lítio redistribui do compartimento intracelular após a hemodiálise, a EXTRIP recomenda dosagens seriadas por 12 horas após interromper o tratamento para avaliar rebote e necessidade de nova sessão."
+  },
+  saha_hd_emergencies_2017:{
+    label:"Saha M, Allon M — Hemodialysis Emergencies (CJASN 2017)",
+    url:"https://pubmed.ncbi.nlm.nih.gov/27831511/",
+    journal:"Clinical Journal of the American Society of Nephrology 2017;12(2):357-369",
+    ano:2017,tipo:"Revisão",badge:"REVIEW",badgeColor:"#8b5cf6",
+    impacto:"Reconhecimento, tratamento e prevenção das emergências relacionadas à hemodiálise",icon:"🔬",
+    resumo:"Revisão clínica das principais emergências da hemodiálise, incluindo síndrome de desequilíbrio e embolia gasosa. O desequilíbrio decorre de gradiente osmótico com edema cerebral após depuração rápida em pacientes de alto risco e deve ser prevenido com início menos eficiente. Na embolia gasosa, a prioridade é interromper a entrada de ar, não devolver o sangue do circuito, administrar oxigênio e sustentar a hemodinâmica; posição supina é favorecida para suporte, reservando decúbito lateral esquerdo quando se tenta aspirar ar por cateter já existente.",
+    conclusao:"Sintomas neurológicos no início da diálise e colapso respiratório após alarme de ar exigem respostas distintas, rápidas e protocolizadas, além de investigação de outras causas e análise da origem do evento.",
+    curiosidade:"Com detectores modernos, embolia gasosa sintomática tornou-se muito rara; episódios descritos costumam envolver falha de conexão, priming inadequado ou ausência de clampeamento."
+  },
   kdigo_cardiorenal_consensus:{
     label:"Consenso ADQI — Síndromes Cardiorrenais (2010)",
     url:"https://pubmed.ncbi.nlm.nih.gov/20037146/",
