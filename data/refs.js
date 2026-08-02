@@ -363,6 +363,20 @@ const refsDB = {
     conclusao:"Biópsia renal não é um ritual para toda alteração urinária: sua indicação depende do benefício decisório, e a via percutânea só deve ser usada após reduzir riscos corrigíveis, especialmente coagulopatia e hipertensão.",
     curiosidade:"A combinação de agulha automatizada e ultrassom em tempo real reduziu complicações e tornou a biópsia percutânea padrão, enquanto a radiologia intervencionista oferece alternativas para pacientes selecionados com alto risco hemorrágico."
   },
+  glomerular_hematuria_stark_2025:{
+    label:"Stark et al. — Hematúria Glomerular e Diagnóstico de GN",
+    url:"https://doi.org/10.1159/000545051",
+    journal:"Glomerular Dis. 2025;5(1):206-218",
+    ano:2025,
+    tipo:"Estudo diagnóstico retrospectivo",
+    badge:"STUDY",
+    badgeColor:"#3b82f6",
+    impacto:"Desempenho de acantócitos e cilindros hemáticos frente à biópsia renal",
+    icon:"🔬",
+    resumo:"Coorte de 276 pacientes com microscopia manual do sedimento e biópsia renal realizada em até duas semanas. Para glomerulonefrite confirmada por histologia, acantócitos tiveram sensibilidade de 68% e especificidade de 86%; cilindros hemáticos, sensibilidade de 32% e especificidade de 98%. A presença de qualquer um dos dois elevou a sensibilidade para 75%, mantendo especificidade de 86%.",
+    conclusao:"Acantócitos e cilindros hemáticos sustentam fortemente origem glomerular e priorizam investigação de glomerulonefrite, mas a sensibilidade incompleta impede usar sua ausência como teste de exclusão.",
+    curiosidade:"A detecção de cilindros hemáticos aumentou de forma marcante nos anos finais do estudo com maior tempo, experiência e técnica microscópica, mostrando que o desempenho do sedimento também depende do operador."
+  },
   filspari_fda_2025:{
     label:"FDA — FILSPARI (sparsentan) Prescribing Information",
     url:"https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/216403s005lbl.pdf",

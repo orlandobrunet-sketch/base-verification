@@ -1,0 +1,71 @@
+{
+  "batch": "FARM-18D",
+  "change_type": "medical_editorial",
+  "expected_version": "14.25",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-18D.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "cf84c115": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "af381f54": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "d2953359": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "replacement_qid": "cc9dc9d0",
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}
+    },
+    "71eda4d3": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "replacement_qid": "af381f54",
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}
+    },
+    "93e811c1": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "replacement_qid": "af381f54",
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}
+    },
+    "caf02477": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "replacement_qid": "f47a3e7b",
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}
+    }
+  },
+  "expected_question_delta": -4,
+  "refs_policy": "declared",
+  "references": {
+    "glomerular_hematuria_stark_2025": {
+      "action": "add",
+      "source": "Stark A et al. Glomerular Hematuria for the Diagnosis of Glomerulonephritis. Glomerular Dis. 2025;5(1):206-218."
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Duas questões diagnósticas foram reconstruídas com evidência verificada e autorização de publicação liberada.",
+    "Os itens 71eda4d3 e 93e811c1 foram fundidos em af381f54 por repetirem o mesmo objetivo sobre acantócitos na hematúria glomerular.",
+    "O item d2953359 foi fundido em cc9dc9d0 por repetir a distinção fenotípica e sorológica entre GPA e PAM já revisada no FARM-18C.",
+    "O item caf02477 foi fundido em f47a3e7b por repetir a decisão de não realizar biópsia renal percutânea antes de corrigir risco hemorrágico relevante.",
+    "A questão de sedimento evita transformar um limiar isolado em teste de exclusão e explicita a sensibilidade incompleta de acantócitos e cilindros hemáticos.",
+    "A questão de biópsia diferencia número usual de glomérulos de adequação dependente do padrão focal suspeito."
+  ]
+}
