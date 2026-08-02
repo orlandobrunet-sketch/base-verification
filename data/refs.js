@@ -2576,15 +2576,45 @@ canvas_program:{
     conclusao:"penKid é biomarcador funcional emergente com potencial para estratificação precoce de risco na sepse, mas não substitui os critérios KDIGO nem define sozinho etiologia ou início de terapia renal substitutiva.",
     curiosidade:"Ao contrário de NGAL e KIM-1, estudados principalmente como marcadores de dano tubular, penKid é investigada como sinal funcional relacionado à filtração."
   },
-  evaluate_trial:{
-    label:"EVALUATE Trial (Diálise vs Conservador em Idosos)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2308687",
-    journal:"N Engl J Med 2024",
-    ano:2024,tipo:"Ensaio Clínico",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Diálise não superior ao manejo conservador em qualidade de vida em pacientes > 75 anos com DRC estágio 5",icon:"🔬",
-    resumo:"ECR pragmático multicêntrico nacional (EVALUATE, n = 380), comparando a sobrevida e qualidade de vida (QdV) em idosos com idade ≥ 75 anos com DRC avançada (TFGe < 15 ml/min/1,73m²) randomizados para iniciar hemodiálise ou manter manejo clínico conservador otimizado. Desfecho primário: qualidade de vida ajustada por sobrevida aos 12 meses. Resultados: O início da diálise em idosos frágeis com alta carga de comorbidades não resultou em ganho significativo de qualidade de vida ou dias livres de hospitalização. Embora a diálise confira uma vantagem de sobrevida bruta de alguns meses, essa diferença desapareceu na análise de subgrupo de pacientes frágeis.",
-    conclusao:"A diálise em pacientes idosos frágeis (≥ 75 anos) e com múltiplas comorbidades não deve ser a coduta padrão cega; o manejo conservador otimizado é uma opção legítima de cuidado no Reino.",
-    curiosidade:"Idosos frágeis submetidos à hemodiálise convencional frequentemente sofrem de declínio funcional acelerado secundário ao estresse circulatório intradialítico recorrente e à perda de autonomia logística por necessitarem se deslocar 3 vezes por semana para uma clínica."
+  nephrodite_holly_2025:{
+    label:"Nephrodite — Holly Breakthrough Device Announcement (2025)",
+    url:"https://nephrodite.com/newsroom/nephrodite-earns-fdas-first-breakthrough-device-designation-for-an-implantable-kidney-replacement-system/",
+    journal:"Nephrodite sponsor announcement, December 15, 2025",
+    ano:2025,tipo:"Comunicado do patrocinador",badge:"SOURCE",badgeColor:"#64748b",
+    impacto:"Estado regulatório e estágio de desenvolvimento do sistema implantável Holly",icon:"🔬",
+    resumo:"A patrocinadora anunciou que o sistema implantável de diálise contínua Holly recebeu Breakthrough Device Designation do FDA. O próprio comunicado o descreve como dispositivo investigacional, ainda sem autorização comercial, em preparação para estudos GLP e submissões que permitam avaliação inicial em humanos.",
+    conclusao:"A designação favorece interação e revisão regulatória mais eficientes, mas não demonstra segurança ou eficácia clínica e não equivale a aprovação, clearance ou autorização de comercialização.",
+    curiosidade:"O FDA geralmente não divulga publicamente designações antes da autorização de mercado; por isso, a confirmação pública específica costuma partir do patrocinador."
+  },
+  fda_breakthrough_devices_2026:{
+    label:"FDA — Breakthrough Devices Program (2026)",
+    url:"https://www.fda.gov/medical-devices/how-study-and-market-your-device/breakthrough-devices-program",
+    journal:"U.S. Food and Drug Administration",
+    ano:2026,tipo:"Documento regulatório oficial",badge:"REG",badgeColor:"#2563eb",
+    impacto:"Significado, critérios e limites da Breakthrough Device Designation",icon:"📋",
+    resumo:"O programa voluntário acelera desenvolvimento, avaliação e revisão de dispositivos destinados a doenças graves ou irreversivelmente debilitantes. A designação oferece interação adicional com o FDA e revisão priorizada de submissões futuras, preservando os padrões legais aplicáveis a PMA, 510(k) ou De Novo.",
+    conclusao:"Breakthrough Device Designation é um mecanismo de desenvolvimento e revisão; o dispositivo ainda precisa obter a autorização de mercado apropriada antes de ser comercializado.",
+    curiosidade:"Até março de 2026, o FDA registrava 1.284 designações, mas apenas 198 autorizações de mercado consistentes com a indicação designada."
+  },
+  cric_pace_proteomics_2025:{
+    label:"CRIC/PACE — Proteomics and Mortality in Hemodialysis (2025)",
+    url:"https://doi.org/10.1038/s41467-025-66763-z",
+    journal:"Nature Communications 2025",
+    ano:2025,tipo:"Coorte proteômica",badge:"COHORT",badgeColor:"#0ea5e9",
+    impacto:"Proteínas circulantes associadas à mortalidade em coortes de hemodiálise",icon:"🔬",
+    resumo:"Estudo de 893 participantes das coortes CRIC e PACE que quantificou 6.287 proteínas circulantes por plataforma de afinidade baseada em aptâmeros. Identificou proteínas e vias associadas à mortalidade, incluindo sinalização do eixo IGF, e um modelo de três proteínas apresentou melhor discriminação interna do que um modelo clínico nas amostras analisadas.",
+    conclusao:"Os achados são de descoberta e prognóstico observacional; associação e desempenho dentro das coortes não estabelecem causalidade, utilidade clínica externa nem indicação de tratamento guiado pelo painel.",
+    curiosidade:"A análise separou períodos incidentes e prevalentes de hemodiálise e validou parte dos sinais entre CRIC e PACE, mas ainda requer validação externa prospectiva para uso clínico."
+  },
+  wak_gura_2016:{
+    label:"Gura et al. — Wearable Artificial Kidney Proof of Concept (2016)",
+    url:"https://doi.org/10.1172/jci.insight.86397",
+    journal:"JCI Insight 2016;1(8):e86397",
+    ano:2016,tipo:"Estudo exploratório de viabilidade",badge:"PILOT",badgeColor:"#f59e0b",
+    impacto:"Primeira avaliação humana de 24 horas de um protótipo vestível de hemodiálise",icon:"🔬",
+    resumo:"Estudo exploratório aprovado pelo FDA que planejou até dez participantes e incluiu sete; cinco completaram 24 horas. Houve manutenção de eletrólitos e remoção de volume durante o uso, mas o ensaio foi interrompido após problemas técnicos, incluindo bolhas de dióxido de carbono e variabilidade dos fluxos sanguíneo e de dialisato.",
+    conclusao:"O WAK demonstrou prova de conceito de depuração contínua e mobilidade, não equivalência clínica, segurança de longo prazo ou disponibilidade terapêutica; redesenho e estudos maiores são necessários.",
+    curiosidade:"O fluxo sanguíneo médio foi cerca de 42 mL/min, muito menor que o da hemodiálise convencional, compensado pela proposta de funcionamento prolongado e contínuo."
   },
   // ===== REFS ADICIONADOS v6.1 =====
 finerenone_2025:{
@@ -2985,7 +3015,7 @@ finerenone_2025:{
 
   neumann_2018:{
     label:"Neumann et al. Kidney Int. 2018",
-    url:"https://pubmed.ncbi.nlm.nih.gov/29054707/",
+    url:"https://doi.org/10.1016/j.kint.2017.07.022",
     journal:"Kidney International",
     ano:2018,tipo:"Estudo de Coorte",badge:"ESTUDO",badgeColor:"#0ea5e9",
     impacto:"Associação entre diálise peritoneal e melhor função cognitiva ao longo de um ano",icon:"📊",
@@ -3004,14 +3034,14 @@ finerenone_2025:{
     curiosidade:"O estudo enfatiza a importância de rastreamentos cognitivos de rotina em pacientes com DRC em diálise para orientar estratégias de manejo individuais."
   },
   malik_meta_2025:{
-    label:"Malik et al. Systematic Review & Meta-analysis 2025",
-    url:"https://pubmed.ncbi.nlm.nih.gov/?term=Malik+cognitive+function+dementia+peritoneal+dialysis+hemodialysis+2025",
-    journal:"Systematic Review & Meta-analysis",
-    ano:2025,tipo:"Metanálise",badge:"META",badgeColor:"#0ea5e9",
-    impacto:"Avaliação da função cognitiva e risco de demência entre hemodiálise e diálise peritoneal",icon:"🔬",
-    resumo:"Revisão sistemática e metanálise que incluiu 326.216 pacientes de 26 estudos de coorte. A diálise peritoneal foi associada a uma melhor preservação cognitiva e a um menor risco de demência quando comparada à hemodiálise.",
-    conclusao:"Sugere associação benéfica de DP em desfechos cognitivos, apontando hipóteses como depuração contínua e estabilidade hemodinâmica, sem estabelecer causalidade direta.",
-    curiosidade:"Esta metanálise representa um dos maiores levantamentos globais sobre o risco de demência associado às diferentes modalidades dialíticas."
+    label:"Malik et al. — Dialysis Modality and Cognitive Outcomes (2026)",
+    url:"https://doi.org/10.1007/s10157-025-02798-2",
+    journal:"Clinical and Experimental Nephrology 2026;30(3):408-423",
+    ano:2026,tipo:"Revisão sistemática e metanálise",badge:"META",badgeColor:"#0ea5e9",
+    impacto:"Comparação observacional de cognição e demência entre hemodiálise e diálise peritoneal",icon:"🔬",
+    resumo:"Revisão sistemática de 26 estudos observacionais, com 326.216 participantes, que encontrou associação entre diálise peritoneal e melhor desempenho cognitivo global, além de menor incidência de demência em comparação à hemodiálise. A heterogeneidade foi particularmente alta para demência e as populações das modalidades diferem em seleção, autonomia e comorbidades.",
+    conclusao:"Os dados sustentam rastreamento cognitivo e decisão individualizada de modalidade, mas não demonstram que escolher diálise peritoneal cause preservação cognitiva nem justificam mudar modalidade apenas por essa associação.",
+    curiosidade:"A metanálise foi publicada online em dezembro de 2025 e incorporada ao volume de 2026; incluiu sete bases de dados e avaliou a certeza pelo GRADE."
   },
   lok_kdoqi_2020:{
     label:"Lok CE et al. — KDOQI Clinical Practice Guideline for Vascular Access (AJKD 2020)",
