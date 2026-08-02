@@ -1,0 +1,81 @@
+{
+  "batch": "FARM-18C",
+  "change_type": "medical_editorial",
+  "expected_version": "14.24",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-18C.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "04cb2429": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "ddfb3df6": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "cc9dc9d0": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "cd49b7a6": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "df6caaed": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "ee461787": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "replacement_qid": "e5b44fbe",
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}
+    },
+    "d05f1a31": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "replacement_qid": "cd49b7a6",
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}
+    }
+  },
+  "expected_question_delta": -2,
+  "refs_policy": "declared",
+  "references": {
+    "eular_aav_2022": {
+      "action": "add",
+      "source": "Hellmich B et al. EULAR recommendations for the management of ANCA-associated vasculitis: 2022 update. Ann Rheum Dis. 2024."
+    },
+    "egpa_guideline_2023": {
+      "action": "add",
+      "source": "Emmi G et al. Evidence-Based Guideline for the diagnosis and management of eosinophilic granulomatosis with polyangiitis. Nat Rev Rheumatol. 2023."
+    },
+    "mcadoo_antigbm_2017": {
+      "action": "add",
+      "source": "McAdoo SP, Pusey CD. Anti-Glomerular Basement Membrane Disease. Clin J Am Soc Nephrol. 2017."
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Cinco questões de diagnóstico ANCA e doença anti-MBG foram reconstruídas com diretrizes e revisão clínica de referência.",
+    "A questão ee461787 foi fundida em e5b44fbe por repetir a estrutura de indução de vasculite ANCA grave.",
+    "A questão d05f1a31 foi fundida em cd49b7a6 por repetir o alvo alfa-3(IV)NC1 da doença anti-MBG.",
+    "Os itens distinguem sorologia de diagnóstico, padrão pauci-imune de intensidade inflamatória e urgência terapêutica de prognóstico renal irreversível.",
+    "A auditoria das quatro dimensões não encontrou outra duplicata exata entre os itens ativos do lote."
+  ]
+}
