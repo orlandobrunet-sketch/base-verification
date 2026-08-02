@@ -1846,10 +1846,10 @@
       }).join('');
 
       const totalHTML = `<strong class='nq-text-gold'>Atributos Totais:</strong>
-        <span class='stat-badge'>⚔️${st.atk}<span class='stat-tip'><strong>${statTips.atk.icon} ${statTips.atk.name}</strong><br>${statTips.atk.desc}</span></span>
-        <span class='stat-badge'>🛡️${st.def}<span class='stat-tip'><strong>${statTips.def.icon} ${statTips.def.name}</strong><br>${statTips.def.desc}</span></span>
-        <span class='stat-badge'>📚${st.kno}<span class='stat-tip'><strong>${statTips.kno.icon} ${statTips.kno.name}</strong><br>${statTips.kno.desc}</span></span>
-        <span class='stat-badge'>🍀${st.luck}<span class='stat-tip'><strong>${statTips.luck.icon} ${statTips.luck.name}</strong><br>${statTips.luck.desc}</span></span>`;
+        <span class='stat-badge' tabindex='0' aria-label='${statTips.atk.name}: ${st.atk}' aria-describedby='nqStatTipAtk'>⚔️${st.atk}<span id='nqStatTipAtk' class='stat-tip' role='tooltip'><strong>${statTips.atk.icon} ${statTips.atk.name}</strong><br>${statTips.atk.desc}</span></span>
+        <span class='stat-badge' tabindex='0' aria-label='${statTips.def.name}: ${st.def}' aria-describedby='nqStatTipDef'>🛡️${st.def}<span id='nqStatTipDef' class='stat-tip' role='tooltip'><strong>${statTips.def.icon} ${statTips.def.name}</strong><br>${statTips.def.desc}</span></span>
+        <span class='stat-badge' tabindex='0' aria-label='${statTips.kno.name}: ${st.kno}' aria-describedby='nqStatTipKno'>📚${st.kno}<span id='nqStatTipKno' class='stat-tip' role='tooltip'><strong>${statTips.kno.icon} ${statTips.kno.name}</strong><br>${statTips.kno.desc}</span></span>
+        <span class='stat-badge' tabindex='0' aria-label='${statTips.luck.name}: ${st.luck}' aria-describedby='nqStatTipLuck'>🍀${st.luck}<span id='nqStatTipLuck' class='stat-tip' role='tooltip'><strong>${statTips.luck.icon} ${statTips.luck.name}</strong><br>${statTips.luck.desc}</span></span>`;
 
       // Synergy banner when all 6 slots are legendary
       const _synergyActive = legendaryCount()===6;

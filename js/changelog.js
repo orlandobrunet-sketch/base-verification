@@ -443,20 +443,109 @@
     // Throttle para mousemove/mouseover — evita jank em 60fps
     let _mmLast = 0;
     const _MM_THROTTLE = 40; // ms
-    // Posicionar tooltips via JS para evitar corte
-    document.addEventListener('mouseover', function(e){
-      const badge = e.target.closest('.stat-badge');
-      if(!badge) return;
-      const tip = badge.querySelector('.stat-tip');
-      if(!tip) return;
-      const rect = badge.getBoundingClientRect();
-      tip.style.left = Math.max(10, Math.min(rect.left, window.innerWidth - 310)) + 'px';
-      tip.style.top = Math.max(10, rect.top - tip.offsetHeight - 8) + 'px';
-      // Se não cabe acima, coloca abaixo
-      if(rect.top - tip.offsetHeight - 8 < 10){
-        tip.style.top = (rect.bottom + 8) + 'px';
+    // Tooltips de atributos vivem no body para escapar do recorte/stacking do card.
+    let statTooltip = null;
+    let statTooltipOwner = null;
+
+    function ensureStatTooltip(){
+      if(statTooltip) return statTooltip;
+      statTooltip = document.createElement('div');
+      statTooltip.className = 'stat-tip stat-tip-floating';
+      statTooltip.setAttribute('role', 'tooltip');
+      statTooltip.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(statTooltip);
+      return statTooltip;
+    }
+
+    function positionStatTooltip(badge){
+      if(!statTooltip || !badge) return;
+      if(!badge.isConnected){
+        hideStatTooltip();
+        return;
       }
+      const rect = badge.getBoundingClientRect();
+      const margin = 10;
+      const gap = 8;
+      const width = statTooltip.offsetWidth;
+      const height = statTooltip.offsetHeight;
+      const maxLeft = Math.max(margin, window.innerWidth - width - margin);
+      let left = rect.left + (rect.width - width) / 2;
+      let top = rect.top - height - gap;
+
+      const loadout = badge.closest('.nql-loadout-shell');
+      if(window.innerWidth > 768 && loadout){
+        const loadoutRect = loadout.getBoundingClientRect();
+        left = Math.min(left, loadoutRect.right - width - 12);
+      }
+
+      left = Math.max(margin, Math.min(left, maxLeft));
+      if(top < margin) top = rect.bottom + gap;
+      if(top + height > window.innerHeight - margin){
+        top = Math.max(margin, window.innerHeight - height - margin);
+      }
+
+      statTooltip.style.left = left + 'px';
+      statTooltip.style.top = top + 'px';
+    }
+
+    function showStatTooltip(badge){
+      const source = badge && badge.querySelector('.stat-tip');
+      if(!source) return;
+      const floatingTip = ensureStatTooltip();
+      floatingTip.innerHTML = source.innerHTML;
+      floatingTip.style.display = 'block';
+      statTooltipOwner = badge;
+      positionStatTooltip(badge);
+    }
+
+    function hideStatTooltip(){
+      if(statTooltip) statTooltip.style.display = 'none';
+      statTooltipOwner = null;
+    }
+
+    document.addEventListener('pointerover', function(e){
+      const badge = e.target instanceof Element ? e.target.closest('.stat-badge') : null;
+      if(badge) showStatTooltip(badge);
     });
+
+    document.addEventListener('pointerout', function(e){
+      const badge = e.target instanceof Element ? e.target.closest('.stat-badge') : null;
+      if(!badge || badge.contains(e.relatedTarget) || document.activeElement === badge) return;
+      hideStatTooltip();
+    });
+
+    document.addEventListener('focusin', function(e){
+      const badge = e.target instanceof Element ? e.target.closest('.stat-badge') : null;
+      if(badge) showStatTooltip(badge);
+    });
+
+    document.addEventListener('focusout', function(e){
+      const badge = e.target instanceof Element ? e.target.closest('.stat-badge') : null;
+      if(!badge || badge.contains(e.relatedTarget)) return;
+      hideStatTooltip();
+    });
+
+    document.addEventListener('pointerdown', function(e){
+      const badge = e.target instanceof Element ? e.target.closest('.stat-badge') : null;
+      if(badge) showStatTooltip(badge);
+      else hideStatTooltip();
+    });
+
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && statTooltipOwner) hideStatTooltip();
+    });
+
+    document.addEventListener('scroll', hideStatTooltip, true);
+    window.addEventListener('resize', function(){
+      if(statTooltipOwner) positionStatTooltip(statTooltipOwner);
+    });
+
+    const statTooltipScope = document.getElementById('equipList');
+    if(statTooltipScope && typeof MutationObserver !== 'undefined'){
+      new MutationObserver(function(){
+        if(statTooltipOwner && !statTooltipOwner.isConnected) hideStatTooltip();
+      }).observe(statTooltipScope, { childList: true, subtree: true });
+    }
 
     // Tooltip de item ao passar mouse
     let itemTooltip = null;
