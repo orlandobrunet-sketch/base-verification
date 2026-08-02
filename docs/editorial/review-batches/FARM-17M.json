@@ -1,0 +1,86 @@
+{
+  "batch": "FARM-17M",
+  "change_type": "medical_editorial",
+  "expected_version": "14.21",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-17M.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "ef4e119e": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "a5165833": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "f4de7965": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "db4ddc30": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "985e2d99": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "e2dc7986": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "replacement_qid": "32f342fc",
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}
+    }
+  },
+  "expected_question_delta": -1,
+  "refs_policy": "declared",
+  "references": {
+    "anvisa_rdc11_dialysis_water_2014": {
+      "action": "add",
+      "source": "ANVISA. Resolução RDC nº 11, de 13 de março de 2014. Requisitos de Boas Práticas de Funcionamento para os Serviços de Diálise."
+    },
+    "fda_hdf_water_k210575": {
+      "action": "add",
+      "source": "U.S. FDA. 510(k) Premarket Notification K210575. 2021."
+    },
+    "de_mutsert_albumin_2009": {
+      "action": "add",
+      "source": "de Mutsert R et al. Association Between Serum Albumin and Mortality in Dialysis Patients Is Partly Explained by Inflammation, and Not by Malnutrition. J Ren Nutr. 2009."
+    },
+    "ispd_aki_pd_2020": {
+      "action": "add",
+      "source": "Cullis B et al. ISPD guidelines for peritoneal dialysis in acute kidney injury: 2020 update. Perit Dial Int. 2021."
+    },
+    "era_calciphylaxis_2025": {
+      "action": "add",
+      "source": "ERA CKD-MBD Working Group. Calciphylaxis diagnosis, management and future directions. Clin Kidney J. 2025."
+    },
+    "dopps_study": {
+      "action": "remove",
+      "source": "Card legado removido após a fusão de seu único consumidor, e2dc7986, em 32f342fc."
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Cinco questões foram reconstruídas com fontes regulatórias, diretriz, consenso ou estudo primário, mantendo limitações explícitas.",
+    "A questão e2dc7986 foi fundida em 32f342fc por repetir a indicação de terapia renal substitutiva na hipercalemia refratária.",
+    "A questão de água separa a matriz regulada pela RDC do fluido ultrapuro; albumina é tratada como marcador composto; DP na LRA não foi apresentada como universalmente superior; calcifilaxia preserva a incerteza do tiossulfato; disfunção peritoneal exige avaliação funcional.",
+    "A auditoria das quatro dimensões não encontrou outra duplicata exata entre os itens ativos."
+  ]
+}
