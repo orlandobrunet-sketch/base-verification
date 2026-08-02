@@ -1368,9 +1368,9 @@ canvas_program:{
   pivotal_trial:{
     label:"Macdougall IC et al. — PIVOTAL (NEJM 2019)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1810742",
-    journal:"N Engl J Med 2019;381(15):1411-1420",
+    journal:"N Engl J Med. 2019;380(5):447-458",
     ano:2019,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Ferro IV proativo (1g/mês) vs reativo ↓20% eventos CV em hemodiálise — estratégia de reposição de ferro em diálise",icon:"🔬",
+    impacto:"Ferro IV proativo (400 mg/mês com limites de segurança) versus estratégia reativa em hemodiálise",icon:"🔬",
     resumo:"ECR multicêntrico (PIVOTAL, n=2.141), em pacientes incidentes em hemodiálise de manutenção, comparando ferro IV proativo em alta dose — sacarato de ferro 400 mg/mês, enquanto ferritina ≤700 µg/L e TSAT <40% — vs estratégia reativa em baixa dose, administrada apenas se ferritina <200 µg/L ou TSAT <20%. O desfecho primário composto — morte, IM não fatal, AVC não fatal ou hospitalização por insuficiência cardíaca — foi menor com estratégia proativa: HR 0,85 (IC 95% 0,73–1,00; P=0,04). Também houve menor necessidade de AEE e transfusões.",
     conclusao:"PIVOTAL mostrou que, em hemodiálise, reposição proativa de ferro IV dentro de limites de segurança definidos é eficaz e não aumenta eventos adversos maiores, reduzindo dose de AEE e transfusões.",
     curiosidade:"O estudo não autoriza ferro irrestrito: o protocolo suspendia ferro quando ferritina ultrapassava 700 µg/L ou TSAT chegava a 40%. A mensagem correta é reposição proativa monitorizada, não liberalidade sem limite."
@@ -3554,5 +3554,45 @@ finerenone_2025:{
     resumo:"Meta-análise de 17 estudos, incluindo sete ensaios randomizados e dez estudos observacionais, que comparou diálise diária estendida — categoria que inclui SLED — com CRRT na LRA. Nos ensaios randomizados, não houve diferença de mortalidade (RR 0,90; IC95% 0,74–1,11). Recuperação renal, remoção de fluidos, permanência na UTI e eficácia bioquímica também foram semelhantes; o sinal favorável observado em estudos não randomizados permaneceu sujeito a viés de seleção.",
     conclusao:"Ensaios randomizados não sustentam superioridade de mortalidade da diálise estendida/SLED ou da CRRT; a escolha deve considerar fisiologia, recursos e experiência local.",
     curiosidade:"A definição da revisão exigiu sessões com mais de seis e menos de 24 horas em máquina convencional, separando a terapia estendida tanto da hemodiálise clássica curta quanto da modalidade contínua."
+  },
+  ats_idsa_cap_2019:{
+    label:"ATS/IDSA — Pneumonia Adquirida na Comunidade (2019)",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC6812437/",
+    journal:"Am J Respir Crit Care Med. 2019;200(7):e45-e67",
+    ano:2019,tipo:"Diretriz clínica oficial",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Seleção e descalonamento de cobertura empírica para MRSA e Pseudomonas na pneumonia adquirida na comunidade",icon:"📋",
+    resumo:"Diretriz oficial ATS/IDSA para pneumonia adquirida na comunidade em adultos. Recomenda cobertura empírica para MRSA ou Pseudomonas aeruginosa apenas quando há fatores de risco localmente validados. Isolamento respiratório prévio do patógeno é o fator mais forte; hospitalização com antibiótico parenteral nos 90 dias anteriores exige integração com epidemiologia local e gravidade. Culturas e testes microbiológicos devem apoiar descalonamento precoce.",
+    conclusao:"Hemodiálise crônica, isoladamente, não justifica cobertura universal para MRSA e Pseudomonas; o esquema deve responder ao patógeno previamente isolado, à exposição antimicrobiana recente, à gravidade e aos dados locais.",
+    curiosidade:"A diretriz abandonou a antiga categoria de pneumonia associada a cuidados de saúde porque ela previa mal resistência e promovia antibióticos de amplo espectro em excesso."
+  },
+  clark_plasma_exchange_2005:{
+    label:"Clark et al. — Plasmaférese no Rim do Mieloma (2005)",
+    url:"https://doi.org/10.7326/0003-4819-143-11-200512060-00005",
+    journal:"Ann Intern Med. 2005;143(11):777-784",
+    ano:2005,tipo:"Ensaio clínico randomizado",badge:"RCT",badgeColor:"#10b981",
+    impacto:"Plasmaférese adjuvante na insuficiência renal aguda de apresentação do mieloma múltiplo",icon:"🔬",
+    resumo:"Ensaio aberto randomizado com 104 participantes comparando cinco a sete sessões de plasmaférese mais terapia convencional versus terapia convencional. O composto de morte, dependência de diálise ou função renal gravemente reduzida em seis meses ocorreu em 57,9% versus 69,2%; a diferença de 11,3 pontos percentuais teve intervalo de confiança amplo, de −8,3 a 29,1, e não demonstrou benefício robusto.",
+    conclusao:"A plasmaférese pode remover cadeias leves circulantes, mas o maior ensaio randomizado não estabeleceu melhora renal ou de sobrevida suficiente para uso rotineiro; a redução rápida da produção clonal continua prioritária.",
+    curiosidade:"O estudo não exigiu biópsia renal para confirmar nefropatia por cilindros, uma limitação importante porque a insuficiência renal no mieloma tem causas distintas."
+  },
+  park_dialysate_bicarbonate_2020:{
+    label:"Park et al. — Bicarbonato do Dialisato e Alcalemia (2020)",
+    url:"https://doi.org/10.1152/ajprenal.00036.2020",
+    journal:"Am J Physiol Renal Physiol. 2020;318(6):F1418-F1429",
+    ano:2020,tipo:"Estudo fisiológico comparativo",badge:"STUDY",badgeColor:"#0ea5e9",
+    impacto:"Efeito de prescrições altas e baixas de bicarbonato do dialisato sobre o equilíbrio ácido-base intradialítico",icon:"🔬",
+    resumo:"Dois estudos fisiológicos pequenos compararam prescrições de bicarbonato. Com 37 mEq/L, dez participantes passaram de pH médio 7,39 e bicarbonato 23,1 mEq/L para pH 7,51 e bicarbonato 29,5 ao final da sessão; com 27 mEq/L houve perda líquida de bicarbonato. Em sete participantes estudados em estado estável, 35 mEq/L também produziu maior alcalinização do que 30 mEq/L.",
+    conclusao:"Uma concentração alta e um gradiente amplo de bicarbonato podem produzir alcalemia pós-diálise, mas reduzir demais o banho pode agravar acidose pré-diálise; a prescrição deve ser individualizada com medidas confiáveis e causas não dialíticas.",
+    curiosidade:"O estudo testou se a alcalinização aumentava a produção de ácidos orgânicos; as perdas e a geração desses ânions não explicaram o efeito do bicarbonato alto."
+  },
+  block_etelcalcetide_cinacalcet_2017:{
+    label:"Block et al. — Etelcalcetida versus Cinacalcete (2017)",
+    url:"https://doi.org/10.1001/jama.2016.19468",
+    journal:"JAMA. 2017;317(2):156-164",
+    ano:2017,tipo:"Ensaio clínico randomizado",badge:"RCT",badgeColor:"#10b981",
+    impacto:"Comparação direta de dois calcimiméticos no hiperparatireoidismo secundário da hemodiálise",icon:"🔬",
+    resumo:"Ensaio duplo-cego e double-dummy com 683 adultos em hemodiálise e PTH acima de 500 pg/mL. Etelcalcetida intravenosa três vezes por semana foi não inferior ao cinacalcete oral diário para redução superior a 30% do PTH e atingiu o critério secundário de superioridade: 68,2% versus 57,7%. Redução do cálcio foi mais frequente com etelcalcetida.",
+    conclusao:"Etelcalcetida oferece administração observada durante a hemodiálise e maior redução bioquímica do PTH no ensaio, mas não demonstrou superioridade em mortalidade, fraturas ou eventos cardiovasculares.",
+    curiosidade:"Náusea e vômito autorreferidos não diferiram significativamente entre os grupos, contrariando a expectativa de que a via intravenosa eliminaria automaticamente os efeitos gastrointestinais."
   },
 };

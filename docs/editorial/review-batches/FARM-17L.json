@@ -1,0 +1,82 @@
+{
+  "batch": "FARM-17L",
+  "change_type": "medical_editorial",
+  "expected_version": "14.20",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-17L.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "1e5e88e9": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "7780350a": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "ed78156f": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "e5e8ca2d": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "replacement_qid": "6f1598c5",
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}
+    },
+    "a97509f5": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "c44f053b": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    }
+  },
+  "expected_question_delta": -1,
+  "refs_policy": "declared",
+  "references": {
+    "ats_idsa_cap_2019": {
+      "action": "add",
+      "source": "Metlay JP et al. Diagnosis and Treatment of Adults with Community-acquired Pneumonia. Am J Respir Crit Care Med. 2019."
+    },
+    "clark_plasma_exchange_2005": {
+      "action": "add",
+      "source": "Clark WF et al. Plasma exchange when myeloma presents as acute renal failure: a randomized, controlled trial. Ann Intern Med. 2005."
+    },
+    "park_dialysate_bicarbonate_2020": {
+      "action": "add",
+      "source": "Park S et al. Intradialytic acid-base changes during high versus low bicarbonate hemodialysis. Am J Physiol Renal Physiol. 2020."
+    },
+    "block_etelcalcetide_cinacalcet_2017": {
+      "action": "add",
+      "source": "Block GA et al. Effect of Etelcalcetide vs Cinacalcet on Serum PTH in Hemodialysis. JAMA. 2017."
+    },
+    "pivotal_trial": {
+      "action": "update",
+      "source": "Macdougall IC et al. Intravenous Iron in Patients Undergoing Maintenance Hemodialysis. N Engl J Med. 2019."
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Cinco questões foram reconstruídas com fontes primárias ou diretrizes oficiais e limitações explícitas.",
+    "A questão e5e8ca2d foi fundida em 6f1598c5 por duplicar diretamente a meta de hemoglobina com AEE segundo KDIGO 2026.",
+    "A questão de pneumonia abandonou a suposição de cobertura universal por hemodiálise; a de mieloma separou controle clonal de remoção mecânica; PIVOTAL preservou seus limites de segurança; etelcalcetida permaneceu desfecho bioquímico.",
+    "A auditoria das quatro dimensões não encontrou outra duplicata exata entre os itens ativos."
+  ]
+}
