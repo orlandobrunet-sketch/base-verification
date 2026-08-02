@@ -1375,16 +1375,6 @@ canvas_program:{
     conclusao:"PIVOTAL mostrou que, em hemodiálise, reposição proativa de ferro IV dentro de limites de segurança definidos é eficaz e não aumenta eventos adversos maiores, reduzindo dose de AEE e transfusões.",
     curiosidade:"O estudo não autoriza ferro irrestrito: o protocolo suspendia ferro quando ferritina ultrapassava 700 µg/L ou TSAT chegava a 40%. A mensagem correta é reposição proativa monitorizada, não liberalidade sem limite."
   },
-  dopps_study:{
-    label:"DOPPS Study — Longer Dialysis Time & Ultrafiltration",
-    url:"https://www.kidney-international.org/article/S0085-2538(15)00337-5/fulltext",
-    journal:"Kidney International 2015",
-    ano:2015,tipo:"Estudo Observacional Internacional",badge:"COORTE",badgeColor:"#0ea5e9",
-    impacto:"Ultrafiltração > 13 mL/kg/h associada a maior mortalidade; sessões mais longas melhoram sobrevida em hemodiálise",icon:"📖",
-    resumo:"Estudo de coorte observacional prospectivo internacional (DOPPS, n = 10.660 pacientes em 3 ondas de dados) que analisou a relação entre a taxa de ultrafiltração (TUF), o tempo de diálise e a mortalidade. Demonstrou que uma taxa de ultrafiltração > 13 mL/kg/h está independentemente associada a um risco significativamente maior de mortalidade por todas as causas (HR 1,76; P = 0,005) e mortalidade cardiovascular. Sessões com maior tempo de duração (ex: > 4 horas) mostraram-se protetoras, mesmo com taxas de ultrafiltração menores, mitigando o risco cardiovascular.",
-    conclusao:"Para evitar o colapso hemodinâmico do enxerto e a atração de uremia, a taxa de remoção de fluidos (ultrafiltração) deve ser estritamente limitada a < 13 mL/kg/h, aumentando-se o tempo da sessão se necessário.",
-    curiosidade:"Taxas de ultrafiltração elevadas superam a velocidade de 'plasma refilling' (retorno de líquido do interstício para os vasos sanguíneos), causando hipotensão intradialítica e atordoamento miocárdico recorrente (myocardial stunning), que leva a fibrose miocárdica e arritmias fatais."
-  },
   // --- Distúrbio Mineral ---
   dcor_trial:{
     label:"Chertow GM et al. — DCOR Trial (Kidney Int 2006)",
@@ -3594,5 +3584,55 @@ finerenone_2025:{
     resumo:"Ensaio duplo-cego e double-dummy com 683 adultos em hemodiálise e PTH acima de 500 pg/mL. Etelcalcetida intravenosa três vezes por semana foi não inferior ao cinacalcete oral diário para redução superior a 30% do PTH e atingiu o critério secundário de superioridade: 68,2% versus 57,7%. Redução do cálcio foi mais frequente com etelcalcetida.",
     conclusao:"Etelcalcetida oferece administração observada durante a hemodiálise e maior redução bioquímica do PTH no ensaio, mas não demonstrou superioridade em mortalidade, fraturas ou eventos cardiovasculares.",
     curiosidade:"Náusea e vômito autorreferidos não diferiram significativamente entre os grupos, contrariando a expectativa de que a via intravenosa eliminaria automaticamente os efeitos gastrointestinais."
+  },
+  anvisa_rdc11_dialysis_water_2014:{
+    label:"ANVISA — RDC 11/2014: Água para Hemodiálise",
+    url:"https://bvs.saude.gov.br/bvs/saudelegis/anvisa/2014/rdc0011_13_03_2014.pdf",
+    journal:"Agência Nacional de Vigilância Sanitária",
+    ano:2014,tipo:"Regulamento sanitário brasileiro",badge:"REG",badgeColor:"#2563eb",
+    impacto:"Requisitos de funcionamento e qualidade da água tratada usada em serviços de diálise no Brasil",icon:"📋",
+    resumo:"A RDC 11/2014 estabelece para a água tratada do sistema de distribuição de hemodiálise ausência de coliformes em 100 mL, contagem máxima de 100 UFC/mL de bactérias heterotróficas e endotoxinas de até 0,25 EU/mL, além de limites químicos e frequências de monitorização.",
+    conclusao:"Os limites brasileiros para água de diálise não devem ser confundidos com a categoria mais estrita de fluido de diálise ultrapuro produzido depois da mistura e ultrafiltração na máquina.",
+    curiosidade:"A norma exige coleta em pontos definidos do circuito e manutenção do sistema; qualidade no reservatório não garante ausência de biofilme no anel de distribuição."
+  },
+  fda_hdf_water_k210575:{
+    label:"FDA K210575 — Água e Fluido Ultrapuro para HDF",
+    url:"https://www.accessdata.fda.gov/cdrh_docs/pdf21/K210575.pdf",
+    journal:"U.S. Food and Drug Administration 510(k)",
+    ano:2021,tipo:"Documento regulatório",badge:"REG",badgeColor:"#2563eb",
+    impacto:"Distinção operacional entre água de entrada, dialisato ultrapuro e fluido de substituição online",icon:"📋",
+    resumo:"O documento exige água de entrada com menos de 100 UFC/mL e menos de 0,25 EU/mL e descreve filtros que produzem fluido de diálise ultrapuro com menos de 0,1 UFC/mL e menos de 0,03 EU/mL, em conformidade com ISO 23500. O fluido de substituição online depende de barreiras redundantes adicionais.",
+    conclusao:"Água tratada e dialisato ultrapuro são matrizes diferentes, com pontos de amostragem e limites diferentes; usar o termo correto evita aplicar um padrão ao componente errado.",
+    curiosidade:"O nível de ação indicado para a água é metade do máximo — 50 UFC/mL e 0,125 EU/mL — permitindo intervir antes de ultrapassar o limite."
+  },
+  de_mutsert_albumin_2009:{
+    label:"de Mutsert et al. — Albumina, Inflamação e Mortalidade (2009)",
+    url:"https://doi.org/10.1053/j.jrn.2008.08.003",
+    journal:"J Ren Nutr. 2009;19(2):127-135",
+    ano:2009,tipo:"Coorte prospectiva multicêntrica",badge:"COHORT",badgeColor:"#0ea5e9",
+    impacto:"Interpretação da hipoalbuminemia como marcador prognóstico composto em pacientes em diálise",icon:"📊",
+    resumo:"Coorte de 700 pacientes incidentes em hemodiálise ou diálise peritoneal avaliou albumina, inflamação, avaliação subjetiva global e ingestão proteica. Albumina mais baixa associou-se a maior mortalidade, mas o ajuste por inflamação atenuou substancialmente a associação; medidas de desnutrição explicaram menos o efeito.",
+    conclusao:"Albumina baixa é marcador de risco e deve motivar investigação de inflamação, doença, perdas e ingestão, mas não é medida nutricional pura nem prova de que elevar o número isoladamente melhore sobrevida.",
+    curiosidade:"Na hemodiálise, o risco por queda de 1 g/dL perdeu significância após ajuste conjunto por inflamação, idade, sexo e comorbidades."
+  },
+  ispd_aki_pd_2020:{
+    label:"ISPD — Diálise Peritoneal na LRA (Atualização 2020)",
+    url:"https://doi.org/10.1177/0896860820970834",
+    journal:"Perit Dial Int. 2021;41(1):15-31",
+    ano:2021,tipo:"Diretriz internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Seleção, acesso, prescrição e monitorização da diálise peritoneal em adultos com LRA",icon:"📋",
+    resumo:"A ISPD considera a diálise peritoneal modalidade adequada para LRA em diferentes cenários. Cita evidência de baixa certeza de sobrevida equivalente entre DP automatizada tidal de 25 L/dia e hemodiafiltração venovenosa contínua de 23 mL/kg/h e orienta ajustar ciclos e glicose à urgência metabólica e ao balanço volêmico.",
+    conclusao:"DP pode oferecer tratamento efetivo da LRA quando paciente, acesso, prescrição e monitorização são adequados; isso não estabelece superioridade universal sobre CRRT nem elimina contraindicações abdominais ou limitações de depuração rápida.",
+    curiosidade:"A diretriz reduziu o alvo semanal de Kt/V para 2,2 porque doses maiores não mostraram vantagem e aumentam consumo de solução e carga de glicose."
+  },
+  era_calciphylaxis_2025:{
+    label:"ERA CKD-MBD — Calcifilaxia (2025)",
+    url:"https://doi.org/10.1093/ckj/sfaf338",
+    journal:"Clin Kidney J. 2025;18(12):sfaf338",
+    ano:2025,tipo:"Atualização de grupo de trabalho",badge:"CONSENSUS",badgeColor:"#6366f1",
+    impacto:"Diagnóstico clínico, fatores de risco e manejo multimodal da calcifilaxia",icon:"📋",
+    resumo:"Atualização do grupo CKD-MBD da ERA sobre calcifilaxia, condição rara e letal marcada por dor intensa, lesões retiformes e necrose. Recomenda abordagem multidisciplinar com cuidado de feridas, analgesia, controle de infecção e metabolismo mineral, além de revisão de fatores como warfarina. Tratamentos específicos apoiam-se sobretudo em registros e estudos não controlados.",
+    conclusao:"Reconhecer cedo e remover fatores modificáveis é essencial, mas nenhuma intervenção isolada — inclusive tiossulfato de sódio — tem eficácia curativa comprovada; decisões devem ser individualizadas.",
+    curiosidade:"A warfarina reduz a ativação da proteína Gla da matriz, inibidor dependente de vitamina K da calcificação vascular, fornecendo plausibilidade biológica ao risco observado."
   },
 };
