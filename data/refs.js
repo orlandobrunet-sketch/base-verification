@@ -2134,10 +2134,20 @@ canvas_program:{
     url:"https://kdigo.org/guidelines/hepatitis-c-in-ckd/",
     journal:"Kidney International 2022",
     ano:2022,tipo:"Diretriz",badge:"GUIDELINE",badgeColor:"#6366f1",
-    impacto:"Tratamento do HCV em DRC G1-G5, G5D e transplante renal",icon:"📋",
-    resumo:"Diretriz KDIGO 2022 para prevenção, diagnóstico, avaliação e tratamento da hepatite C em doença renal crônica. Atualiza a diretriz de 2018 com dados sobre antivirais de ação direta em pacientes com HCV e DRC G1-G5 ou G5D, incluindo receptores de transplante renal. O escopo inclui tratamento antiviral em DRC avançada, prevenção de transmissão em hemodiálise, manejo antes/depois do transplante e doenças glomerulares associadas ao HCV.",
-    conclusao:"DRC G5 não dialítica não é motivo para adiar automaticamente o tratamento do HCV; antivirais de ação direta apropriados podem ser usados sem interferon e, em geral, sem ribavirina.",
-    curiosidade:"A atualização de 2022 incorporou a experiência acumulada com transplante de rins de doadores HCV positivos para receptores HCV negativos, estratégia que mudou a logística de alocação em vários centros."
+    impacto:"Tratamento do HCV na DRC e estratificação da glomerulonefrite associada",icon:"📋",
+    resumo:"Diretriz KDIGO 2022 para prevenção, diagnóstico e tratamento do HCV na DRC. Recomenda antiviral de ação direta para toda glomerulonefrite associada ao HCV. Com função renal estável e sem síndrome nefrótica, orienta DAA antes de outros tratamentos; flare crioglobulinêmico ou glomerulonefrite rapidamente progressiva requer DAA mais imunossupressão, com ou sem troca plasmática. Na síndrome nefrótica, a imunossupressão é individualizada, e doença histologicamente ativa sem resposta ao antiviral pode receber imunossupressão, com rituximabe como primeira opção.",
+    conclusao:"O DAA é o tratamento inicial da HCV-GN estável e não nefrótica; apresentações graves exigem terapia combinada, sem transformar imunossupressão ou troca plasmática em regra universal.",
+    curiosidade:"Em apresentação típica de glomerulonefrite por imunocomplexos associada ao HCV, a diretriz admite iniciar DAA sem biópsia; curso atípico ou piora renal reabre a necessidade de confirmação histológica."
+  },
+  cryoglobulinemia_renal_menter_2021:{
+    label:"Menter & Hopfer — Doença Renal na Crioglobulinemia",
+    url:"https://doi.org/10.1159/000516103",
+    journal:"Glomerular Dis. 2021;1(2):92-104",
+    ano:2021,tipo:"Revisão clinicopatológica",badge:"REVIEW",badgeColor:"#8b5cf6",
+    impacto:"Classificação, armadilhas pré-analíticas e padrões renais da crioglobulinemia",icon:"🔬",
+    resumo:"Revisão clinicopatológica dos tipos I, II e III de crioglobulinemia e de suas manifestações renais. Discute a associação da forma tipo I monoclonal com clones plasmocitários ou B, a ligação das formas mistas ao HCV e os padrões de lesão, incluindo glomerulonefrite membranoproliferativa, trombos ou pseudotrombos e depósitos organizados. Também destaca que a detecção laboratorial depende do manejo térmico correto da amostra.",
+    conclusao:"A crioglobulinemia renal exige integrar composição da crioglobulina, causa subjacente, complemento e biópsia; a forma tipo I não é exclusivamente vascular, e a morfologia isolada não prova crioglobulinemia.",
+    curiosidade:"A amostra deve permanecer a 37 °C até a separação do soro; falha nessa etapa pré-analítica é causa importante de resultado falso-negativo."
   },
   xgp_review_2021:{
     label:"XGP — Revisão narrativa (2021)",

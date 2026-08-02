@@ -1,0 +1,73 @@
+{
+  "batch": "FARM-18F",
+  "change_type": "medical_editorial",
+  "expected_version": "14.27",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-18F.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "cc5a8b32": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "033aed49": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "d43cbfb2": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "e209cd49": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "replacement_qid": "cc5a8b32",
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}
+    },
+    "5d6466eb": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "replacement_qid": "cc5a8b32",
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}
+    },
+    "c7c23458": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "replacement_qid": "033aed49",
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}
+    }
+  },
+  "expected_question_delta": -3,
+  "refs_policy": "declared",
+  "references": {
+    "cryoglobulinemia_renal_menter_2021": {
+      "action": "add",
+      "required_fields": ["resumo", "conclusao", "curiosidade"]
+    },
+    "kdigo_hcv_ckd_2022": {
+      "action": "update",
+      "required_fields": ["resumo", "conclusao", "curiosidade"]
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes, reiterada após a revisão clínica deste lote.",
+    "Três questões foram reconstruídas para cobrir o fenótipo renal da crioglobulinemia mista pelo HCV, a doença renal por crioglobulina monoclonal tipo I e o tratamento estratificado da HCV-GN.",
+    "Os itens e209cd49 e 5d6466eb foram fundidos em cc5a8b32 porque repetiam a associação HCV-tipo II e o padrão de complemento sem acrescentar decisão clínica independente.",
+    "O item c7c23458 foi fundido em 033aed49 porque ensinava uma dicotomia vascular exclusiva da crioglobulinemia tipo I; o substituto preserva o mecanismo oclusivo e inclui lesões glomerulares e investigação do clone nefrotóxico.",
+    "A estratégia terapêutica foi ancorada na KDIGO 2022: DAA inicialmente na doença estável não nefrótica; DAA combinado a imunossupressão, com ou sem troca plasmática, nas apresentações graves.",
+    "O novo card de Menter e Hopfer contém resumo, conclusão e curiosidade e explicita a armadilha pré-analítica da manutenção da amostra aquecida."
+  ]
+}
