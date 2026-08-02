@@ -928,6 +928,43 @@
       }
     };
 
+    function _syncWelcomeProgress(resumeShell, progress) {
+      if (!resumeShell) return;
+
+      const previousRaw = resumeShell.dataset.savedProgress;
+      const previous = previousRaw === undefined ? null : Number(previousRaw);
+      const shouldReward = previous === null || (Number.isFinite(previous) && progress > previous);
+      const initialProgress = previous === null || !Number.isFinite(previous) ? 0 : previous;
+
+      resumeShell.dataset.savedProgress = String(progress);
+      resumeShell.classList.remove('is-rewarding');
+      const pulse = resumeShell.querySelector('.wsaved-flow-pulse');
+      pulse?.setAttribute('stroke-dashoffset', String(100 - progress));
+
+      const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+      if (!shouldReward || reduceMotion) {
+        resumeShell.style.setProperty('--nql-saved-progress', String(progress));
+        return;
+      }
+
+      resumeShell.style.setProperty('--nql-saved-progress', String(initialProgress));
+      const rewardToken = `${progress}-${Date.now()}`;
+      resumeShell.dataset.rewardToken = rewardToken;
+      const startReward = () => {
+        if (resumeShell.dataset.rewardToken !== rewardToken) return;
+        resumeShell.classList.add('is-rewarding');
+        resumeShell.style.setProperty('--nql-saved-progress', String(progress));
+        const clearReward = () => {
+          if (resumeShell.dataset.rewardToken !== rewardToken) return;
+          resumeShell.classList.remove('is-rewarding');
+          delete resumeShell.dataset.rewardToken;
+        };
+        pulse?.addEventListener('animationend', clearReward, { once: true });
+        window.setTimeout(clearReward, 1200);
+      };
+      (window.requestAnimationFrame || window.setTimeout)(startReward);
+    }
+
     function refreshWelcomeSave() {
       const save = loadGame();
       const savedInfoEl = document.getElementById('welcomeSavedInfo');
@@ -944,19 +981,26 @@
         const xp = Math.min(xpToNext, Math.max(0, Math.floor(Number(save.xp) || 0)));
         const score = Math.max(0, Math.floor(Number(save.score) || 0));
         const lives = Math.max(0, Math.floor(Number(save.lives) || 0));
+        const correctTotal = Math.max(0, Math.floor(Number(save.correctTotal) || 0));
         const isMaxLevel = level >= 10;
         const progress = isMaxLevel ? 100 : Math.round((xp / xpToNext) * 100);
         const timeAgo = getTimeAgo(save.timestamp) || '';
+        const difficultyLabels = { easy: 'Fácil', normal: 'Médio', hard: 'Difícil', hardcore: 'Hardcore' };
+        const difficulty = difficultyLabels[save.difficulty] || difficultyLabels.normal;
 
         document.getElementById('wsSavedChar').textContent = charName;
         document.getElementById('wsSavedCharacterTitle').textContent = charTitle;
+        document.getElementById('wsSavedDifficulty').textContent = difficulty;
         document.getElementById('wsSavedLevel').textContent = String(level).padStart(2, '0');
         document.getElementById('wsSavedLives').textContent = String(lives);
         document.getElementById('wsSavedLivesLabel').textContent = lives === 1 ? 'vida' : 'vidas';
         document.getElementById('wsSavedScore').textContent = score.toLocaleString('pt-BR');
-        document.getElementById('wsSavedTime').textContent = timeAgo ? `Último avanço ${timeAgo}` : '';
+        document.getElementById('wsSavedTime').textContent = timeAgo ? `Última atualização ${timeAgo}` : '';
         document.getElementById('wsSavedNextLevel').textContent = isMaxLevel ? 'Domínio máximo' : `Nível ${level + 1}`;
         document.getElementById('wsSavedXpText').textContent = isMaxLevel ? 'Domínio máximo alcançado' : `${xp} / ${xpToNext} XP`;
+        document.getElementById('wsSavedMilestone').textContent = isMaxLevel
+          ? 'Domínio máximo alcançado'
+          : `${correctTotal % 10} de 10 acertos para o próximo marco`;
 
         const progressEl = document.getElementById('wsSavedProgress');
         if (progressEl) {
@@ -965,7 +1009,7 @@
             ? 'Domínio máximo alcançado'
             : `${progress}% do caminho até o nível ${level + 1}`);
         }
-        if (resumeShell) resumeShell.style.setProperty('--nql-saved-progress', String(progress));
+        _syncWelcomeProgress(resumeShell, progress);
 
         if (charData) {
           const ext = save.character === 'glomerulus' ? 'png' : 'jpg';
@@ -982,7 +1026,10 @@
         if (continueBtn) continueBtn.style.display = 'none';
         if (resumeShell) {
           resumeShell.style.setProperty('--nql-saved-progress', '0');
+          resumeShell.classList.remove('is-rewarding');
           resumeShell.removeAttribute('data-character');
+          delete resumeShell.dataset.savedProgress;
+          delete resumeShell.dataset.rewardToken;
         }
       }
     }
@@ -1005,28 +1052,70 @@
       if (musicEnabled && !musicStarted) startBgMusic();
     }
     
+    let _continueGamePending = false;
     async function continueGame() {
-      // Revalida premium do servidor a cada sessão — impede bypass via localStorage
-      _loadPremiumFromDB().catch(() => {});
+      if (_continueGamePending) return false;
 
-      const save = loadGame();
-      if (!save) { startNewFromWelcome(); return; }
+      const continueBtn = document.getElementById('welcomeContinueBtn');
+      const titleEl = continueBtn?.querySelector('strong');
+      const detailEl = continueBtn?.querySelector('small');
+      const originalTitle = titleEl?.textContent || 'Retomar jornada';
+      const originalDetail = detailEl?.textContent || 'Continuar sua jornada salva';
+      let didResume = false;
+      let restoreButtonFocus = false;
+      _continueGamePending = true;
+      if (continueBtn) {
+        continueBtn.disabled = true;
+        continueBtn.setAttribute('aria-busy', 'true');
+        continueBtn.classList.add('is-busy');
+      }
+      if (titleEl) titleEl.textContent = 'Carregando jornada…';
+      if (detailEl) detailEl.textContent = 'Preparando questões e progresso';
 
-      if (!questionBank) {
-        _toast('Carregando questões…', 'info', 30000);
-        try {
-          await _loadTopics();
-          document.querySelector('.nq-toast')?.remove();
-        } catch {
-          _toast('Erro ao carregar questões. Recarregue a página.', 'error', 5000);
+      const announceError = message => {
+        restoreButtonFocus = true;
+        _toast(message, 'error', 5000);
+        const toast = document.querySelector('.nq-toast');
+        if (toast) {
+          toast.setAttribute('role', 'alert');
+          toast.setAttribute('aria-live', 'assertive');
+          toast.setAttribute('aria-atomic', 'true');
+        }
+        const atriumStatus = document.getElementById('atriumRouteStatus');
+        if (atriumStatus) atriumStatus.textContent = message;
+      };
+
+      try {
+        // Revalida premium do servidor a cada sessão — impede bypass via localStorage
+        _loadPremiumFromDB().catch(() => {});
+
+        const save = loadGame();
+        if (!save) {
+          startNewFromWelcome();
           return;
         }
-      }
 
-      if (restoreGame(save)) {
+        if (!questionBank) {
+          _toast('Carregando questões…', 'info', 30000);
+          try {
+            await _loadTopics();
+            document.querySelector('.nq-toast')?.remove();
+          } catch (error) {
+            console.error('continueGame: falha ao carregar questões', error);
+            announceError('Não foi possível carregar as questões. Tente novamente.');
+            return;
+          }
+        }
+
+        if (!restoreGame(save)) {
+          announceError('Não foi possível restaurar esta jornada. Comece uma nova jornada.');
+          return;
+        }
+
         dismissWelcome();
+        didResume = true;
         ui.journal.innerHTML = '';
-        log(`🔄 Jornada restaurada! ${characters[state.character].name}, Nível ${state.level}.`);
+        log(`🔄 Jornada restaurada! ${characters[state.character]?.name || 'Personagem'}, Nível ${state.level}.`);
         renderHUD();
         updateBadges();
         renderQuestion();
@@ -1034,8 +1123,31 @@
         updateBossUI();
         applyBossOptionBadges();
         playSound('click');
-      } else {
-        startNewFromWelcome();
+        window.setTimeout(() => {
+          const mainApp = document.getElementById('mainApp');
+          if (mainApp && !mainApp.classList.contains('hidden')) {
+            mainApp.focus({ preventScroll: true });
+          }
+        }, 520);
+      } catch (error) {
+        console.error('continueGame: falha inesperada', error);
+        announceError('Não foi possível retomar a jornada. Tente novamente.');
+      } finally {
+        const clearPendingState = () => {
+          _continueGamePending = false;
+          if (continueBtn) {
+            continueBtn.disabled = false;
+            continueBtn.removeAttribute('aria-busy');
+            continueBtn.classList.remove('is-busy');
+          }
+          if (titleEl) titleEl.textContent = originalTitle;
+          if (detailEl) detailEl.textContent = originalDetail;
+          if (restoreButtonFocus && continueBtn?.isConnected) {
+            window.requestAnimationFrame(() => continueBtn.focus({ preventScroll: true }));
+          }
+        };
+        if (didResume) window.setTimeout(clearPendingState, 520);
+        else clearPendingState();
       }
     }
     
@@ -4877,7 +4989,13 @@
       btn.textContent = btn.textContent.includes('▼') ? '▲ Ocultar erros' : '▼ Ver erros';
     };
     window._selectDiffCard = function(card) {
-      document.querySelectorAll('.difficulty-card').forEach(c => c.classList.remove('selected'));
+      const group = card.closest('[role="radiogroup"]') || document;
+      group.querySelectorAll('.difficulty-card').forEach(c => {
+        const selected = c === card;
+        c.classList.toggle('selected', selected);
+        c.setAttribute('aria-checked', selected ? 'true' : 'false');
+        c.tabIndex = selected ? 0 : -1;
+      });
       card.classList.add('selected');
       const btn = document.getElementById('diffConfirmBtn');
       if (btn) btn.disabled = false;
@@ -4887,7 +5005,8 @@
       const diff = window._pendingDiff;
       if (!diff) return;
       document.body.classList.remove('rd-game-over', 'boss-battle-mode', 'arqui-nefromante-final', 'boss-hp-critical');
-      document.getElementById('diffSelectorOverlay')?.remove();
+      if (typeof window._closeDifficultySelector === 'function') window._closeDifficultySelector(false);
+      else document.getElementById('diffSelectorOverlay')?.remove();
       state.difficulty = diff;
       deleteSave();
       if (typeof _syncProgressToCloud === 'function') {
