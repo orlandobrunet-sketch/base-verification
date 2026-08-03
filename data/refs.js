@@ -2626,13 +2626,13 @@ canvas_program:{
   },
   ext1ext2_sethi:{
     label:"Sethi S et al. — EXT1/EXT2 Membranous Nephropathy (JASN 2019)",
-    url:"https://jasn.asnjournals.org/content/30/6/1123",
+    url:"https://pubmed.ncbi.nlm.nih.gov/31061139/",
     journal:"JASN 2019;30(6):1123-1136",
-    ano:2019,tipo:"Estudo Observacional",badge:"STUDY",badgeColor:"#0ea5e9",
-    impacto:"EXT1/EXT2 identificados como antígenos da NM lupus-like; associação com autoimunidade e melhor prognóstico renal",icon:"🔬",
-    resumo:"Estudo de coorte observacional patológica e proteômica glomerular (Sethi et al., n = 100 espécimes de biópsia), utilizando espectrometria de massas para identificar novos biomarcadores teciduais na nefropatia membranosa (NM). Identificou as exostosinas 1 e 2 (EXT1/EXT2) como antígenos glomerulares podocitários específicos presentes em 10% a 15% dos casos de NM. Clinicamente, a NM com coloração positiva para EXT1/EXT2 está fortemente associada a NM secundária a Lúpus Eritematoso Sistêmico (Nefrite Lúpica classe V 'lupus-like') ou outras doenças autoimunes, e prediz melhor prognóstico renal com menor evolução para falência renal.",
-    conclusao:"A identificação de EXT1/EXT2 via espectrometria de massas permitiu separar a NM lúpica e secundária de outras formas primárias, auxiliando no refinamento diagnóstico e prognóstico das glomerulopatias no Reino.",
-    curiosidade:"As exostosinas 1 e 2 são glicosiltransferases codificadas por genes supressores de tumor localizados no retículo endoplasmático podocitário, que atuam na síntese de sulfato de heparana. Na biópsia, a coloração imuno-histoquímica positiva para EXT1/EXT2 indica agressão glomerular lúpica mesmo se o paciente ainda não apresentar diagnóstico sistêmico formal de LES."
+    ano:2019,tipo:"Coorte",badge:"COHORT",badgeColor:"#f59e0b",
+    impacto:"EXT1/EXT2 na biópsia sinalizam um fenótipo membranoso fortemente ligado à autoimunidade.",icon:"🔬",
+    resumo:"Estudo patológico e proteômico de nefropatia membranosa PLA2R-negativa. EXT1 e EXT2 foram detectadas por espectrometria de massas em 21 casos e confirmadas por imuno-histoquímica; ao todo, 26 casos associados a EXT1/EXT2 foram caracterizados. Achados clínicos ou histológicos de doença autoimune, incluindo lúpus, estavam presentes em 80,7%. Na validação, a marcação ocorreu em 8 de 18 biópsias de nefrite lúpica classe V pura e em 3 de 16 casos presumidamente primários com sinais de autoimunidade. Não foram detectados anticorpos anti-exostosina circulantes nos sete pacientes testados.",
+    conclusao:"A positividade glomerular para EXT1/EXT2 apoia investigação de lúpus ou outra autoimunidade; não deve ser ensinada como prova isolada de doença primária nem como autoanticorpo sérico estabelecido.",
+    curiosidade:"O estudo definiu EXT1/EXT2 como proteínas associadas ao padrão membranoso; a ausência de anticorpos circulantes no pequeno grupo testado impede equipará-las automaticamente ao modelo sorológico do anti-PLA2R."
   },
   penkid_study:{
     label:"Hollinger A et al. — penKid na LRA Séptica (Kidney Int Rep 2018)",
@@ -2998,13 +2998,41 @@ finerenone_2025:{
   },
   membranous_pla2r:{
     label:"Beck LH et al. — Anti-PLA2R e Nefropatia Membranosa (NEJM 2009)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa0803684",
+    url:"https://pubmed.ncbi.nlm.nih.gov/19571279/",
     journal:"New England Journal of Medicine",
-    ano:2009,tipo:"Artigo Original",badge:"ESTUDO",badgeColor:"#f59e0b",
-    impacto:"PLA2R como antígeno-alvo da nefropatia membranosa primária: anti-PLA2R positivo em ~70% — primeiro biomarcador sérico específico",icon:"🔬",
-    resumo:"Estudo translacional patológico e proteômica glomerular seminal (Beck LH et al., 2009), utilizando técnica de western blotting de extratos de glomérulos humanos normais com soro de pacientes com nefropatia membranosa primária (NMP). Identificou uma glicoproteína transmembrana de 185-kD, o receptor de fosfolipase A2 do tipo M (PLA2R), presente nos podócitos glomerulares normais, como o antígeno-alvo específico para autoanticorpos circulantes do subtipo IgG4 em 70% a 80% dos pacientes com NMP. A reatividade do anticorpo correlacionou-se fortemente com a atividade da doença e o nível de proteinúria.",
-    conclusao:"A descoberta do anti-PLA2R revolucionou a nefrologia clínica, permitindo o diagnóstico sorológico ('biópsia líquida') e o monitoramento imunológico quantitativo e preditivo da NMP sem dependência exclusiva de biópsia renal em casos selecionados.",
-    curiosidade:"O subtipo IgG4, que domina os anticorpos anti-PLA2R, é tradicionalmente considerado uma imunoglobulina anti-inflamatória por não ativar o complemento pela via clássica. No entanto, na NMP ele causa dano celular aos podócitos ativando a via das lectinas do sistema de complemento glomerular, induzindo a deposição do complexo de ataque à membrana (C5b-9)."
+    ano:2009,tipo:"Coorte",badge:"COHORT",badgeColor:"#f59e0b",
+    impacto:"Identificou PLA2R como principal antígeno-alvo da nefropatia membranosa primária.",icon:"🔬",
+    resumo:"Estudo translacional seminal de Beck et al. (NEJM 2009; DOI 10.1056/NEJMoa0810457). Amostras séricas de 26 de 37 pacientes (70%) com nefropatia membranosa idiopática reconheceram uma glicoproteína glomerular de 185 kDa, identificada por espectrometria de massas como o receptor de fosfolipase A2 do tipo M (PLA2R). Os autoanticorpos eram predominantemente IgG4, e PLA2R colocalizou-se com IgG4 nos depósitos glomerulares; amostras de formas secundárias e outros controles não apresentaram o mesmo padrão no estudo.",
+    conclusao:"PLA2R é o principal antígeno-alvo da nefropatia membranosa primária, mas a interpretação clínica do título, da resposta imunológica e da necessidade de biópsia deve seguir a diretriz e o contexto do paciente.",
+    curiosidade:"O DOI correto do artigo é 10.1056/NEJMoa0810457; o estudo original estabeleceu o alvo antigênico, enquanto protocolos posteriores definiram o uso seriado do anticorpo."
+  },
+  nell1_malignancy_mn_2021:{
+    label:"Caza et al. — NELL1 e neoplasia na nefropatia membranosa (KI 2021)",
+    url:"https://pubmed.ncbi.nlm.nih.gov/32828756/",
+    journal:"Kidney International 2021;99(4):967-976",
+    ano:2021,
+    tipo:"Coorte",
+    badge:"COHORT",
+    badgeColor:"#f59e0b",
+    impacto:"NELL1 marcou um subgrupo membranoso com maior frequência de neoplasia concomitante.",
+    icon:"🔬",
+    resumo:"Estudo patológico com descoberta antigênica por espectrometria de massas e validação por imunofluorescência. Em uma série consecutiva, 3,8% dos casos negativos para PLA2R e THSD7A foram NELL1-positivos. Entre os casos NELL1-positivos caracterizados, a idade média foi 66,8 anos, 93,4% mostraram marcação segmentar ou incompleta das alças, 95,5% tinham IgG1 dominante ou codominante e 33% apresentavam neoplasia concomitante.",
+    conclusao:"NELL1 aumenta a suspeita de associação com neoplasia e deve orientar correlação clínica e rastreamento apropriado, mas não comprova causalidade nem câncer em cada paciente positivo.",
+    curiosidade:"O padrão segmentar/incompleto e a predominância de IgG1 diferiram do fenótipo clássico PLA2R-IgG4, ajudando a reconhecer o subgrupo na biópsia."
+  },
+  thsd7a_malignancy_hoxha_2017:{
+    label:"Hoxha et al. — THSD7A e neoplasia na nefropatia membranosa (JASN 2017)",
+    url:"https://pubmed.ncbi.nlm.nih.gov/27436855/",
+    journal:"Journal of the American Society of Nephrology 2017;28(2):520-531",
+    ano:2017,
+    tipo:"Coorte",
+    badge:"COHORT",
+    badgeColor:"#f59e0b",
+    impacto:"THSD7A definiu subgrupo raro de nefropatia membranosa com maior atenção oncológica.",
+    icon:"🔬",
+    resumo:"Estudo de detecção e caracterização de anticorpos anti-THSD7A. Em coorte prospectiva de 345 pacientes com nefropatia membranosa, a prevalência de doença associada a THSD7A foi 2,6%. Nos conjuntos analisados, 40 pacientes eram THSD7A-positivos e oito desenvolveram neoplasia em mediana de três meses do diagnóstico renal; em um caso, o tumor endometrial metastático expressava THSD7A.",
+    conclusao:"A associação justifica rastreamento oncológico mais atento e guiado pelo contexto em THSD7A-positivos, sem transformar o anticorpo em diagnóstico de câncer ou exigir exame único universal.",
+    curiosidade:"Positividade simultânea para THSD7A e PLA2R é rara, mas já foi descrita; portanto, tratá-los como absolutamente mutuamente exclusivos cria uma regra falsa."
   },
   kdigo_igan_2021:{
     label:"KDIGO IgAN — Capítulo da Diretriz GN 2021",

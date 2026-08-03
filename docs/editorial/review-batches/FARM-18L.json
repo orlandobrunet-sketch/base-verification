@@ -1,0 +1,49 @@
+{
+  "batch": "FARM-18L",
+  "change_type": "medical_editorial",
+  "expected_version": "14.33",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-18L.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "68cbe570": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "750c9baf": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "5dcf36ae": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "0e31dedb": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "37977163": {"action":"retire","preserve_fsrs":false,"replacement_qid":"750c9baf","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "bf411842": {"action":"retire","preserve_fsrs":false,"replacement_qid":"68cbe570","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "1171b1a1": {"action":"retire","preserve_fsrs":false,"replacement_qid":"5dcf36ae","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "5aa2238a": {"action":"retire","preserve_fsrs":false,"replacement_qid":"d2143d46","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "483dc737": {"action":"retire","preserve_fsrs":false,"replacement_qid":"750c9baf","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "863369d5": {"action":"retire","preserve_fsrs":false,"replacement_qid":"68cbe570","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "fbda3616": {"action":"retire","preserve_fsrs":false,"replacement_qid":"68cbe570","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}}
+  },
+  "expected_question_delta": -7,
+  "refs_policy": "declared",
+  "references": {
+    "membranous_pla2r": {"action":"update","required_fields":["resumo","conclusao","curiosidade"]},
+    "ext1ext2_sethi": {"action":"update","required_fields":["resumo","conclusao","curiosidade"]},
+    "nell1_malignancy_mn_2021": {"action":"add","required_fields":["resumo","conclusao","curiosidade"]},
+    "thsd7a_malignancy_hoxha_2017": {"action":"add","required_fields":["resumo","conclusao","curiosidade"]}
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Quatro questões foram reconstruídas para ensinar resposta imunológica versus clínica, mecanismo da proteinúria, investigação de neoplasia guiada pelo contexto e associação de EXT1/EXT2 com autoimunidade.",
+    "Sete itens de prevalência isolada, estadiamento histológico, alvo antigênico ou intervalo rígido de monitorização foram fundidos em questões clinicamente aplicáveis.",
+    "O card membranous_pla2r teve o DOI corrigido para 10.1056/NEJMoa0810457 e foi limitado aos achados demonstrados no artigo seminal de Beck et al.",
+    "O card ext1ext2_sethi foi corrigido para não chamar EXT1/EXT2 de autoanticorpos séricos estabelecidos nem atribuir prognóstico não demonstrado pelo estudo inicial.",
+    "A positividade para NELL1 ou THSD7A aumenta a atenção para neoplasia, mas não diagnostica câncer nem define exame universal isolado.",
+    "A KDIGO orienta investigar condições associadas em todos os pacientes com nefropatia membranosa, independentemente do padrão antigênico.",
+    "Os novos cards nell1_malignancy_mn_2021 e thsd7a_malignancy_hoxha_2017 contêm resumo, conclusão e curiosidade."
+  ]
+}
