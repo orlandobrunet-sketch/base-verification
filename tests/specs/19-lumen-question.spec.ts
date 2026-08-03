@@ -8,6 +8,29 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
     await waitForGame(page);
   });
 
+  test('retorna ao início ao clicar na marca do cabeçalho', async ({ page }) => {
+    const brand = page.getByRole('button', { name: 'Voltar ao início do NefroQuest' });
+
+    await expect(brand).toBeVisible();
+    await expect(brand).toHaveAttribute('data-action', 'goToWelcomeFromGame');
+    await brand.click();
+
+    await expect(page.locator('#mainApp')).toBeHidden();
+    await expect(page.locator('#welcomeScreen')).toBeVisible();
+  });
+
+  test('permite retornar ao início pela marca usando teclado', async ({ page }) => {
+    const brand = page.getByRole('button', { name: 'Voltar ao início do NefroQuest' });
+
+    await brand.focus();
+    await expect(brand).toBeFocused();
+    await expect(brand).not.toHaveCSS('outline-style', 'none');
+    await brand.press('Enter');
+
+    await expect(page.locator('#mainApp')).toBeHidden();
+    await expect(page.locator('#welcomeScreen')).toBeVisible();
+  });
+
   test('preserva os contratos da jornada e integra os seis equipamentos ao personagem', async ({ page }, testInfo) => {
     const stylesheets = await page.locator('link[rel="stylesheet"]').evaluateAll((links) =>
       links.map((link) => new URL((link as HTMLLinkElement).href).pathname + new URL((link as HTMLLinkElement).href).search)
