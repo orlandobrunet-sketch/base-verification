@@ -1,0 +1,51 @@
+{
+  "batch": "FARM-18N",
+  "change_type": "medical_editorial",
+  "expected_version": "14.35",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-18N.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "d80edb37": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "775d7a36": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "5fe1981d": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "d0e09e53": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "abaf3de3": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "5d7e81a6": {"action":"retire","preserve_fsrs":false,"replacement_qid":"d0e09e53","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "64e01d63": {"action":"retire","preserve_fsrs":false,"replacement_qid":"5fe1981d","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}}
+  },
+  "expected_question_delta": -2,
+  "refs_policy": "declared",
+  "references": {
+    "nobility_study": {"action":"update","required_fields":["resumo","conclusao","curiosidade"]},
+    "regency_obinutuzumab_2025": {"action":"add","required_fields":["resumo","conclusao","curiosidade"]},
+    "gazyva_lupus_nephritis_fda_2025": {"action":"add","required_fields":["resumo","conclusao","curiosidade"]},
+    "aurora_voclosporina": {"action":"update","required_fields":["resumo","conclusao","curiosidade"]},
+    "bliss_ln": {"action":"update","required_fields":["resumo","conclusao","curiosidade"]},
+    "alms_maintenance_2011": {"action":"add","required_fields":["resumo","conclusao","curiosidade"]},
+    "tulip_ln_phase2_2022": {"action":"add","required_fields":["resumo","conclusao","curiosidade"]},
+    "mpa_anca_hiemstra": {"action":"remove"}
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Cinco questões foram reconstruídas para ensinar REGENCY/NOBILITY, AURORA 1, BLISS-LN, ALMS manutenção e TULIP-LN.",
+    "Duas questões de simples identificação de voclosporina e belimumabe foram fundidas nos itens que interpretam os resultados dos ensaios.",
+    "O Advogado do Recurso separou terapia adicional de monoterapia, resposta composta de cura, sinal fase II de confirmação fase III e eficácia clínica de indicação regulatória.",
+    "O card nobility_study foi corrigido para fase II, periódico e resultado da semana 52 sob alfa pré-especificado de 0,2.",
+    "O novo card regency_obinutuzumab_2025 registra resposta renal completa de 46,4% versus 33,1% na semana 76 e o risco infeccioso observado.",
+    "O card regulatório gazyva_lupus_nephritis_fda_2025 registra a indicação adicionada pela FDA em outubro de 2025 e os alertas de segurança.",
+    "Os cards aurora_voclosporina e bliss_ln tiveram desfechos, denominadores e definições corrigidos conforme as publicações primárias.",
+    "Os novos cards alms_maintenance_2011 e tulip_ln_phase2_2022 substituem referências fora de tema ou ausentes; o card mpa_anca_hiemstra foi removido após perder seu único consumidor.",
+    "Todos os cards novos ou atualizados contêm resumo, conclusão e curiosidade."
+  ]
+}
