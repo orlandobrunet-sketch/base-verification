@@ -857,18 +857,38 @@ rave_study:{
     curiosidade:"A retratação foi solicitada pelos dois autores acadêmicos, que declararam não ter conhecimento das readjudicações pós-descegamento realizadas no banco do patrocinador."
   },
   nobility_study:{
-    label:"NOBILITY Trial (Obinutuzumabe)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2100494",
-    journal:"New England Journal of Medicine",
+    label:"Furie et al. — NOBILITY (Annals of the Rheumatic Diseases 2022)",
+    url:"https://pubmed.ncbi.nlm.nih.gov/34615636/",
+    journal:"Annals of the Rheumatic Diseases 2022;81(1):100-107",
     ano:2022,
-    tipo:"Ensaio Clínico Fase III",
+    tipo:"Ensaio Clínico Fase II",
     badge:"RCT",
     badgeColor:"#10b981",
-    impacto:"Obinutuzumabe + MMF superior a MMF isolado em nefrite lúpica",
+    impacto:"Gerou o sinal randomizado inicial de resposta renal com obinutuzumabe adicional na nefrite lúpica proliferativa.",
     icon:"💊",
-    resumo:"ECR multicêntrico duplo-cego fase II/III (NOBILITY, n = 125), comparando o anticorpo monoclonal anti-CD20 tipo II obinutuzumabe versus placebo, adicionados ao micofenolato de mofetila (MMF) e corticoide, em nefrite lúpica proliferativa ativa (classe III ou IV). Desfecho primário: resposta renal completa (RRC) na semana 52. Resultados: O grupo obinutuzumabe apresentou taxas significativamente maiores de RRC em 52 semanas (35% vs 23%; P = 0,11) e na semana 104 (41% vs 23%; P = 0,026), com redução acentuada de anticorpos anti-DNAds e consumo de complemento, sem aumento de infecções graves.",
-    conclusao:"O NOBILITY validou o obinutuzumabe como uma terapia de depleção de células B de segunda geração mais profunda e eficaz que o rituximabe tradicional para indução na nefrite lúpica.",
-    curiosidade:"O obinutuzumabe é um anticorpo monoclonal tipo II glicoengenheirado que induz morte celular direta não dependente de complemento e possui maior citotoxicidade celular dependente de anticorpos (ADCC) do que anticorpos tipo I como o rituximabe."
+    resumo:"Ensaio duplo-cego fase II com 125 pacientes com nefrite lúpica proliferativa, comparando obinutuzumabe e placebo adicionados a micofenolato e glicocorticoide. Resposta renal completa ocorreu em 35% versus 23% na semana 52, diferença de 12 pontos percentuais (IC95% -3,4 a 28; P=0,115) sob alfa pré-especificado de 0,2, e em 41% versus 23% na semana 104 (P=0,026). Reações infusionais não graves foram mais frequentes, sem aumento observado de eventos adversos graves, infecções graves ou mortes.",
+    conclusao:"O NOBILITY forneceu sinal fase II favorável e justificou confirmação em fase III; isoladamente, não provou superioridade sobre rituximabe nem autorizava generalização universal.",
+    curiosidade:"Obinutuzumabe é um anticorpo anti-CD20 tipo II glicoengenheirado, concebido para depleção mais profunda de células B do que anticorpos tipo I."
+  },
+  regency_obinutuzumab_2025:{
+    label:"Rovin et al. — REGENCY (NEJM 2025)",
+    url:"https://pubmed.ncbi.nlm.nih.gov/39927615/",
+    journal:"New England Journal of Medicine 2025",
+    ano:2025,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
+    impacto:"Confirmou maior resposta renal completa com obinutuzumabe adicionado à terapia padrão na nefrite lúpica ativa.",icon:"🔬",
+    resumo:"Ensaio fase III randomizado com 271 adultos com nefrite lúpica ativa comprovada por biópsia. Obinutuzumabe ou placebo foram adicionados a micofenolato e prednisona em desmame. Na semana 76, resposta renal completa ocorreu em 46,4% com obinutuzumabe e 33,1% com placebo, diferença ajustada de 13,4 pontos percentuais (IC95% 2,0–24,8; P=0,02). Eventos adversos graves, sobretudo infecções e COVID-19, foram mais frequentes com obinutuzumabe.",
+    conclusao:"REGENCY demonstrou eficácia adicional de obinutuzumabe sobre terapia padrão, sem justificar monoterapia nem minimizar o risco infeccioso.",
+    curiosidade:"O desfecho exigia relação proteína/creatinina urinária abaixo de 0,5, TFGe de pelo menos 85% do basal e ausência de evento intercorrente."
+  },
+  gazyva_lupus_nephritis_fda_2025:{
+    label:"FDA — Gazyva (obinutuzumabe), bula para nefrite lúpica (2025)",
+    url:"https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/125486s037s038lbl.pdf",
+    journal:"U.S. Food and Drug Administration",
+    ano:2025,tipo:"Informação Regulatória",badge:"LABEL",badgeColor:"#6366f1",
+    impacto:"Incluiu nefrite lúpica ativa em adultos que recebem terapia padrão entre as indicações regulatórias do obinutuzumabe.",icon:"📋",
+    resumo:"Bula aprovada pela FDA em outubro de 2025 para obinutuzumabe no tratamento de adultos com nefrite lúpica ativa que recebem terapia padrão. Mantém alertas em caixa para reativação do vírus da hepatite B e leucoencefalopatia multifocal progressiva, além de precauções para reações infusionais e infecções.",
+    conclusao:"A indicação é de terapia adicional em adultos com nefrite lúpica ativa, com triagem e monitorização de segurança; não é autorização para monoterapia indiscriminada.",
+    curiosidade:"A mesma molécula já tinha indicações hematológicas; a nefrite lúpica foi acrescentada como mudança regulatória em outubro de 2025."
   },
   valor_cdk_study:{
     label:"VALOR-CKD Trial (Veverimer)",
@@ -927,18 +947,18 @@ rave_study:{
     curiosidade:"A uremia induz profundas disfunções estruturais nas lipoproteínas de alta densidade (HDL), tornando-as pró-inflamatórias e disfuncionais. Além disso, a patogênese da doença cardiovascular em diálise envolve mais hipertrofia ventricular esquerda e calcificação da mídia (uremia-driven) do que dislipidemia isolada."
   },
   aurora_voclosporina:{
-    label:"AURORA Trial (Voclosporina — Nefrite Lúpica)",
-    url:"https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(21)00578-X/fulltext",
-    journal:"The Lancet",
+    label:"Rovin et al. — AURORA 1 (Lancet 2021)",
+    url:"https://pubmed.ncbi.nlm.nih.gov/33971155/",
+    journal:"Lancet 2021;397(10289):2070-2080",
     ano:2021,
     tipo:"Ensaio Clínico Fase III",
     badge:"RCT",
     badgeColor:"#10b981",
-    impacto:"Voclosporina + MMF + corticoide → remissão renal completa em 41% vs 23% (placebo); p<0,001 em 52 semanas",
+    impacto:"Voclosporina adicionada a micofenolato e glicocorticoide aumentou a resposta renal completa em 52 semanas.",
     icon:"🔬",
-    resumo:"ECR internacional fase III duplo-cego (AURORA, n = 357 pacientes com nefrite lúpica ativa classe III, IV ou V confirmada por biópsia). Randomizou os participantes para receber voclosporina (um inibidor de calcineurina de segunda geração glicoengenheirado, 23,7 mg duas vezes ao dia) versus placebo, adicionados à terapia de manutenção com micofenolato de mofetila (MMF) e corticoide em dose baixa em desmame rápido. Desfecho primário: resposta renal completa (RRC) na semana 52. Resultados: O grupo voclosporina apresentou taxa de RRC significativamente maior em 52 semanas em comparação ao placebo (41% vs 23%; Odds Ratio de 2,65; P < 0,001), com redução mais rápida de proteinúria, sem aumento relevante de efeitos colaterais típicos de CNIs.",
-    conclusao:"O AURORA consolidou a voclosporina na terapia de indução multitarget na nefrite lúpica ativa, permitindo remissão precoce com exposição minimizada a corticoide sistêmico no Reino.",
-    curiosidade:"A voclosporina possui uma modificação química em sua cadeia lateral de carbono que altera sua ligação com a calcineurina. Essa estrutura confere maior potência imunossupressora in vitro, melhor estabilidade farmacocinética e menor propensão a causar intolerância à glicose e distúrbios lipídicos em relação à ciclosporina convencional."
+    resumo:"Ensaio internacional duplo-cego com 357 pacientes com nefrite lúpica ativa classes III, IV ou V. Voclosporina 23,7 mg duas vezes ao dia ou placebo foram adicionados a micofenolato de mofetila e glicocorticoide em desmame rápido. Resposta renal completa na semana 52 ocorreu em 73 de 179 pacientes (41%) versus 40 de 178 (23%); OR 2,65 (IC95% 1,64–4,27; P<0,0001). Eventos adversos graves ocorreram em 21% de cada grupo.",
+    conclusao:"AURORA 1 sustenta voclosporina como terapia adicional ao micofenolato e ao glicocorticoide; não avaliou monoterapia nem demonstrou desfecho renal duro de longo prazo.",
+    curiosidade:"A resposta completa exigia proteinúria baixa, função renal estável, ausência de resgate e exposição limitada a prednisona nas semanas finais."
   },
 
   credence:{
@@ -1919,16 +1939,6 @@ canvas_program:{
     conclusao:"A reclassificação de Sethi & Fervenza foi o marco conceitual que permitiu distinguir C3G de GNMP mediada por imunocomplexos — transformando diagnóstico e abordagem terapêutica de um padrão histológico genérico em doenças com patogêneses específicas.",
     curiosidade:"Antes dessa reclassificação, 'GNMP' era tratada como diagnóstico único com esquemas imunossupressores empíricos. A distinção etiológica revelou que tratar C3G com imunossupressão convencional (dirigida a Ig) é equivocado — o alvo correto é o complemento."
   },
-  mpa_anca_hiemstra:{
-    label:"Hiemstra TF et al. — MMF vs AZA ANCA (JAMA 2010)",
-    url:"https://jamanetwork.com/journals/jama/fullarticle/186390",
-    journal:"JAMA 2010;304(21):2381-2388",
-    ano:2010,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"MMF NÃO superior à azatioprina na manutenção da vasculite ANCA — mais recidivas com MMF; azatioprina permanece preferida",icon:"🔬",
-    resumo:"ECR aberto multicêntrico (n = 156), comparando micofenolato de mofetila (MMF, 2g/dia) versus azatioprina (AZA, 2mg/kg/dia) na manutenção da remissão de vasculite associada ao ANCA após indução inicial bem-sucedida. Desfecho primário: sobrevida livre de recidiva grave. Resultados: MMF associou-se a uma taxa significativamente maior de recidivas clínicas graves em comparação à azatioprina (Hazard Ratio de 1,69; IC 95% 1,02–2,80; P = 0,03). A incidência de eventos adversos, incluindo infecções e toxicidades hematológicas, foi semelhante entre os dois grupos.",
-    conclusao:"O MMF não se mostrou superior e, na verdade, foi associado a maior taxa de recidiva que a azatioprina, consolidando a AZA como a primeira escolha padrão para terapia de manutenção de longo prazo.",
-    curiosidade:"O MMF inibe a enzima inosina monofosfato desidrogenase (IMPDH) de forma seletiva, bloqueando a síntese de purinas de novo em linfócitos B e T, enquanto a azatioprina atua de forma não seletiva por incorporação de falsos nucleotídeos na replicação de DNA celular."
-  },
   akiki_trial:{
     label:"Gaudry S et al. — AKIKI (NEJM 2016)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1603017",
@@ -2457,14 +2467,34 @@ canvas_program:{
   },
 
   bliss_ln:{
-    label:"BLISS-LN Trial (Belimumabe)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2029238",
+    label:"Furie et al. — BLISS-LN (NEJM 2020)",
+    url:"https://pubmed.ncbi.nlm.nih.gov/32937045/",
     journal:"N Engl J Med 2020;383(12):1117-1128",
     ano:2020,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Belimumabe + terapia padrão ↑ remissão renal primária e ↓ flares em Nefrite Lúpica",icon:"💊",
-    resumo:"ECR duplo-cego multicêntrico internacional fase III (BLISS-LN, n = 448), comparando a adição de belimumabe IV (10 mg/kg a cada 28 dias) versus placebo à terapia padrão (MMF ou ciclofosfamida + corticoide) em pacientes com nefrite lúpica ativa classe III, IV ou V. Desfecho primário: resposta renal primária de eficácia (PERR) em 104 semanas (TFGe ≥ 60 e ACR ≤ 0,5 g/g). Resultados: Adição de belimumabe aumentou significativamente a PERR (43,0% vs 32,4%; OR 1,55; IC 95% 1,04–2,32; P = 0,03) e reduziu significativamente o risco de eventos renais adversos graves e flares renais no Reino em 49% (P = 0,001).",
-    conclusao:"O BLISS-LN foi o primeiro grande trial de biológicos de fase III a demonstrar superioridade e segurança robustas na nefrite lúpica ativa, estabelecendo a terapia tripla como novo paradigma terapêutico.",
-    curiosidade:"O belimumabe é um anticorpo monoclonal humano recombinante que se liga e inibe de forma seletiva a proteína ativadora de células B solúvel (BLyS ou BAFF), impedindo a sobrevivência e diferenciação de linfócitos B autorreativos causadores do Lúpus."
+    impacto:"Belimumabe adicionado à terapia padrão aumentou a resposta renal de eficácia em 104 semanas.",icon:"💊",
+    resumo:"Ensaio duplo-cego fase III com 448 pacientes com nefrite lúpica ativa. Belimumabe intravenoso ou placebo foram adicionados a micofenolato ou ciclofosfamida-azatioprina e glicocorticoide. Na semana 104, resposta renal de eficácia primária ocorreu em 43% versus 32% (OR 1,6; IC95% 1,0–2,3; P=0,03), e resposta renal completa em 30% versus 20% (OR 1,7; IC95% 1,1–2,7; P=0,02). A resposta primária exigia relação proteína/creatinina urinária de até 0,7, função renal dentro do critério do protocolo e ausência de resgate.",
+    conclusao:"BLISS-LN sustenta belimumabe como terapia adicional ao padrão de cuidado, sem substituir a indução de base nem equivaler resposta composta a cura.",
+    curiosidade:"Belimumabe bloqueia BAFF/BLyS, um fator de sobrevivência de células B, por mecanismo diferente da depleção anti-CD20."
+  },
+  alms_maintenance_2011:{
+    label:"Dooley et al. — ALMS Manutenção (NEJM 2011)",
+    url:"https://pubmed.ncbi.nlm.nih.gov/22087680/",
+    journal:"New England Journal of Medicine 2011;365(20):1886-1895",
+    ano:2011,tipo:"Ensaio Clínico Randomizado",badge:"RCT",badgeColor:"#10b981",
+    impacto:"Micofenolato reduziu falha terapêutica em comparação com azatioprina na manutenção da nefrite lúpica.",icon:"🔬",
+    resumo:"Após resposta à indução, 227 pacientes foram randomizados para manutenção com micofenolato de mofetila ou azatioprina. Falha terapêutica ocorreu em 19 de 116 (16,4%) com micofenolato e em 36 de 111 (32,4%) com azatioprina; HR 0,44 (IC95% 0,25–0,77; P=0,003). O composto incluía morte, doença renal terminal, duplicação da creatinina, flare renal ou terapia de resgate.",
+    conclusao:"No ALMS, micofenolato foi superior à azatioprina para manutenção da resposta; escolhas individuais ainda consideram gravidez, tolerabilidade, acesso e preferências.",
+    curiosidade:"O estudo randomizou novamente pacientes que haviam respondido à fase de indução, separando a pergunta de manutenção da pergunta de indução."
+  },
+  tulip_ln_phase2_2022:{
+    label:"Jayne et al. — TULIP-LN Fase II (Annals of the Rheumatic Diseases 2022)",
+    url:"https://pubmed.ncbi.nlm.nih.gov/35144924/",
+    journal:"Annals of the Rheumatic Diseases 2022;81(4):496-506",
+    ano:2022,tipo:"Ensaio Clínico Fase II",badge:"RCT",badgeColor:"#10b981",
+    impacto:"O desfecho primário combinado não foi atingido, mas o regime intensificado de anifrolumabe gerou sinal para investigação adicional.",icon:"🔬",
+    resumo:"Ensaio fase II duplo-cego com 147 pacientes com nefrite lúpica ativa, randomizados para anifrolumabe em regime básico, regime intensificado ou placebo, sobre micofenolato e glicocorticoide. O desfecho primário de mudança da relação proteína/creatinina urinária em 24 horas na semana 52, analisando os grupos anifrolumabe combinados versus placebo, não foi atingido. Exposição ao esquema básico foi menor que o previsto devido ao aumento da depuração do fármaco na proteinúria; o regime intensificado apresentou sinais exploratórios mais favoráveis.",
+    conclusao:"TULIP-LN não estabeleceu eficácia renal definitiva; resultados exploratórios do regime intensificado justificaram estudos maiores, não recomendação universal.",
+    curiosidade:"O ensaio ilustrou como proteinúria intensa pode alterar a farmacocinética de um anticorpo monoclonal e comprometer a exposição planejada."
   },
   visionary_trial:{
     label:"VISIONARY — Sibeprenlimabe, Análise Interina de Fase 3",
