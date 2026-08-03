@@ -172,6 +172,131 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
     }
   });
 
+  test('mantém o tooltip de atributos global, visível e estável por hover e foco', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'chromium', 'hover fino é validado no desktop');
+    await page.setViewportSize({ width: 1536, height: 900 });
+    await page.evaluate(async () => {
+      await document.fonts.ready;
+      const portrait = document.querySelector('#heroImg') as HTMLImageElement | null;
+      if (portrait && !portrait.complete) await portrait.decode();
+      await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+      await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+    });
+
+    const badge = page.locator('.equip-total-attributes .stat-badge').last();
+    await expect(badge).toBeVisible();
+    const expectedText = (await badge.locator('.stat-tip').textContent() || '').replace(/\s+/g, '');
+
+    const stableGeometry = async () => page.evaluate(() => {
+      const measure = (selector: string) => {
+        const rect = document.querySelector(selector)!.getBoundingClientRect();
+        return {
+          x: Number(rect.x.toFixed(2)),
+          y: Number(rect.y.toFixed(2)),
+          width: Number(rect.width.toFixed(2)),
+          height: Number(rect.height.toFixed(2)),
+        };
+      };
+      return {
+        loadout: measure('.nql-loadout-shell'),
+        question: measure('.qbox'),
+        options: measure('#options'),
+        dock: measure('#actionDock'),
+      };
+    });
+
+    await page.evaluate(() => {
+      const values: number[] = [];
+      (window as typeof window & { __nqStatTipLayoutShifts?: number[] }).__nqStatTipLayoutShifts = values;
+      new PerformanceObserver((entries) => {
+        for (const entry of entries.getEntries()) {
+          values.push((entry as PerformanceEntry & { value: number }).value);
+        }
+      }).observe({ type: 'layout-shift', buffered: false });
+    });
+
+    const baseline = await stableGeometry();
+    const floating = page.locator('body > .stat-tip-floating');
+
+    const expectFloatingTooltip = async () => {
+      await expect(floating).toBeVisible();
+      const tooltipText = (await floating.textContent() || '').replace(/\s+/g, '');
+      expect(tooltipText).toContain(expectedText);
+
+      const geometry = await floating.evaluate((element) => {
+        const tooltip = element as HTMLElement;
+        const rect = tooltip.getBoundingClientRect();
+        const badgeRect = document.querySelector('.equip-total-attributes .stat-badge:last-child')!
+          .getBoundingClientRect();
+        const layerValue = (selector: string) => {
+          const value = getComputedStyle(document.querySelector(selector)!).zIndex;
+          return value === 'auto' ? 0 : Number(value) || 0;
+        };
+        return {
+          parentIsBody: tooltip.parentElement === document.body,
+          position: getComputedStyle(tooltip).position,
+          pointerEvents: getComputedStyle(tooltip).pointerEvents,
+          top: rect.top,
+          right: rect.right,
+          bottom: rect.bottom,
+          left: rect.left,
+          badgeTop: badgeRect.top,
+          viewportWidth: window.innerWidth,
+          viewportHeight: window.innerHeight,
+          zIndex: Number(getComputedStyle(tooltip).zIndex) || 0,
+          decisionZIndex: Math.max(layerValue('#mainApp'), layerValue('.qbox'), layerValue('#options .option')),
+        };
+      });
+
+      expect(geometry.parentIsBody).toBe(true);
+      expect(geometry.position).toBe('fixed');
+      expect(geometry.pointerEvents).toBe('none');
+      expect(geometry.top).toBeGreaterThanOrEqual(8);
+      expect(geometry.left).toBeGreaterThanOrEqual(8);
+      expect(geometry.right).toBeLessThanOrEqual(geometry.viewportWidth - 8);
+      expect(geometry.bottom).toBeLessThanOrEqual(geometry.viewportHeight - 8);
+      expect(geometry.top).toBeLessThan(geometry.badgeTop);
+      expect(geometry.zIndex).toBeGreaterThan(geometry.decisionZIndex);
+      expect(await stableGeometry()).toEqual(baseline);
+    };
+
+    await badge.hover();
+    await expectFloatingTooltip();
+    await page.mouse.move(2, 2);
+    await expect(floating).toBeHidden();
+    expect(await stableGeometry()).toEqual(baseline);
+
+    await badge.focus();
+    await expect(badge).toBeFocused();
+    await expectFloatingTooltip();
+    await page.keyboard.press('Escape');
+    await expect(floating).toBeHidden();
+
+    await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
+    await badge.focus();
+    await expectFloatingTooltip();
+    await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
+    await expect(floating).toBeHidden();
+    expect(await stableGeometry()).toEqual(baseline);
+
+    await badge.dispatchEvent('pointerdown', { pointerType: 'touch', isPrimary: true });
+    await expectFloatingTooltip();
+    await page.locator('.qbox').dispatchEvent('pointerdown', { pointerType: 'touch', isPrimary: true });
+    await expect(floating).toBeHidden();
+    expect(await stableGeometry()).toEqual(baseline);
+
+    const shiftTotal = await page.evaluate(() =>
+      ((window as typeof window & { __nqStatTipLayoutShifts?: number[] }).__nqStatTipLayoutShifts || [])
+        .reduce((sum, value) => sum + value, 0)
+    );
+    expect(shiftTotal).toBe(0);
+
+    await badge.dispatchEvent('pointerdown', { pointerType: 'mouse', isPrimary: true });
+    await expectFloatingTooltip();
+    await badge.evaluate((element) => element.remove());
+    await expect(floating).toBeHidden();
+  });
+
   test('protege o raciocínio antes da resposta e revela a evidência depois da decisão', async ({ page }) => {
     const cards = page.locator('#refs .ref-cards');
     await expect(cards).toBeAttached();
