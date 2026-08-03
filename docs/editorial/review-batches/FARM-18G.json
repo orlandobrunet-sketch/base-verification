@@ -1,0 +1,95 @@
+{
+  "batch": "FARM-18G",
+  "change_type": "medical_editorial",
+  "expected_version": "14.28",
+  "allowed_files": [
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-18G.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "5e5b8558": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "b7a93d7a": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "ce79d609": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "795d4589": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "c1089f2e": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "18784ef8": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "9961a406": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "ddb4938a": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "5530b59c": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "50efe4fe": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "replacement_qid": "ce79d609",
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}
+    },
+    "ac3f67b7": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "replacement_qid": "ce79d609",
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}
+    },
+    "67b57e55": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "replacement_qid": "b7a93d7a",
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}
+    }
+  },
+  "expected_question_delta": -3,
+  "refs_policy": "unchanged",
+  "references": {},
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Nove questões de apresentação, prognóstico e tratamento de suporte da IgAN foram reconstruídas com a diretriz KDIGO 2025 e referências já presentes no Grimório.",
+    "Os itens 50efe4fe e ac3f67b7 foram fundidos em ce79d609 para substituir memorização isolada de letras por interpretação integrada do MEST-C e seu limite terapêutico.",
+    "O item 67b57e55 foi fundido em b7a93d7a porque ensinava sequência rígida de primeira linha; a KDIGO 2025 organiza manejo simultâneo das respostas à perda de néfrons e dos mecanismos específicos da IgAN.",
+    "O alvo de proteinúria foi corrigido para menos de 0,5 g/d, idealmente menos de 0,3 g/d.",
+    "A limitação do iSGLT2 foi corrigida: DAPA-CKD e EMPA-KIDNEY sustentam benefício em DRC mais avançada, mas deixam maior incerteza nos jovens com IgAN e TFGe acima de 60 mL/min/1,73 m².",
+    "O International IgAN Prediction Tool foi delimitado como ferramenta prognóstica para decisão compartilhada, não como teste diagnóstico ou preditor de resposta terapêutica.",
+    "Tonsilectomia foi restringida ao contexto populacional japonês, óleo de peixe foi classificado como evidência inconsistente e dieta sem glúten foi reservada para doença celíaca ou outra indicação específica."
+  ]
+}
