@@ -79,6 +79,35 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   text-align: left;
 }
 
+#mainApp[data-nq-ui="lumen"] .nql-game-brand {
+  position: relative;
+}
+
+#mainApp[data-nq-ui="lumen"] .nql-game-brand__home {
+  position: absolute;
+  z-index: 1;
+  inset: -.25rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--nql-radius-control);
+  appearance: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+#mainApp[data-nq-ui="lumen"] .nql-game-brand__home:hover ~ .subtitle {
+  opacity: 1;
+}
+
+#mainApp[data-nq-ui="lumen"] .nql-game-brand__home:focus-visible {
+  outline: 2px solid var(--nql-lumen);
+  outline-offset: .35rem;
+}
+
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-game-brand {
   display: flex;
   min-width: 0;
