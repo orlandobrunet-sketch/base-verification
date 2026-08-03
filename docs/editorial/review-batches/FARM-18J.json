@@ -1,0 +1,56 @@
+{
+  "batch": "FARM-18J",
+  "change_type": "medical_editorial",
+  "expected_version": "14.31",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-18J.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "aa732568": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "9fea5862": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "03397c91": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "9dd26bf4": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "c31f5d6e": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "41287635": {"action":"retire","preserve_fsrs":false,"replacement_qid":"03397c91","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "9b638ce6": {"action":"retire","preserve_fsrs":false,"replacement_qid":"aa732568","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "a501e622": {"action":"retire","preserve_fsrs":false,"replacement_qid":"9dd26bf4","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "a5b66138": {"action":"retire","preserve_fsrs":false,"replacement_qid":"b7a93d7a","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "f856bf0a": {"action":"retire","preserve_fsrs":false,"replacement_qid":"9fea5862","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "9f3106b1": {"action":"retire","preserve_fsrs":false,"replacement_qid":"03397c91","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "effd5ee0": {"action":"retire","preserve_fsrs":false,"replacement_qid":"9fea5862","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "ca6388f1": {"action":"retire","preserve_fsrs":false,"replacement_qid":"9dd26bf4","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "b6316609": {"action":"retire","preserve_fsrs":false,"replacement_qid":"9dd26bf4","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "21040cdf": {"action":"retire","preserve_fsrs":false,"replacement_qid":"9fea5862","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "f3efc181": {"action":"retire","preserve_fsrs":false,"replacement_qid":"aa732568","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}}
+  },
+  "expected_question_delta": -11,
+  "refs_policy": "declared",
+  "references": {
+    "visionary_trial": {"action":"update","required_fields":["resumo","conclusao","curiosidade"]},
+    "voyxact_fda_2025": {"action":"add","required_fields":["resumo","conclusao","curiosidade"]},
+    "visionary_egfr_otsuka_2026": {"action":"add","required_fields":["resumo","conclusao","curiosidade"]},
+    "teligan_telitacicept_2026": {"action":"add","required_fields":["resumo","conclusao","curiosidade"]},
+    "envision_sibeprenlimab_2024": {"action":"remove","source":"superseded by the VISIONARY phase 3 card and left with zero consumers after this batch"}
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Cinco questões foram reconstruídas para ensinar hierarquia de evidência, indicação e regime do Voyxact, mecanismo anti-APRIL, segurança infecciosa e interpretação do TELIGAN.",
+    "Onze itens de memorização de alvo, dose, desenho, duração, tamanho amostral ou desfecho foram fundidos em questões que exigem decisão ou interpretação clínica.",
+    "A publicação interina do VISIONARY foi separada da bula de aprovação acelerada e do anúncio topline de 24 meses divulgado pelo patrocinador em julho de 2026.",
+    "O anúncio de TFGe em 24 meses foi rotulado como não revisado por pares e não foi tratado como atualização automática da bula ou aprovação tradicional.",
+    "A bula do Voyxact sustenta dose de 400 mg subcutânea a cada quatro semanas, indicação em adultos com IgAN primária em risco de progressão e precauções para infecção e vacinas vivas.",
+    "A análise interina do TELIGAN foi descrita com 318 participantes, diferença relativa de 55% no uPCR em 39 semanas e limitação para inferir benefício renal durável ou superioridade sobre bloqueio seletivo de APRIL.",
+    "Os novos cards voyxact_fda_2025, visionary_egfr_otsuka_2026 e teligan_telitacicept_2026 contêm resumo, conclusão e curiosidade.",
+    "O card envision_sibeprenlimab_2024 foi removido após ficar órfão e ser supersedido pela referência de fase 3."
+  ]
+}
