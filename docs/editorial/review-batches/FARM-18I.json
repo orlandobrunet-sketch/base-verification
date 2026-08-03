@@ -1,0 +1,73 @@
+{
+  "batch": "FARM-18I",
+  "change_type": "medical_editorial",
+  "expected_version": "14.30",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-18I.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "9fd2cfdb": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "0e1a838d": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "3a01ea4b": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "e2c2ac73": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "replacement_qid": "9fd2cfdb",
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}
+    },
+    "0f4fd53c": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "replacement_qid": "9fd2cfdb",
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}
+    },
+    "11949cc9": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "replacement_qid": "3a01ea4b",
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}
+    }
+  },
+  "expected_question_delta": -3,
+  "refs_policy": "declared",
+  "references": {
+    "dapa_ckd_igan_2021": {
+      "action": "add",
+      "required_fields": ["resumo", "conclusao", "curiosidade"]
+    },
+    "empa_kidney_primary_disease_2024": {
+      "action": "add",
+      "required_fields": ["resumo", "conclusao", "curiosidade"]
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Três questões foram reconstruídas para ensinar a evidência clínica, o mecanismo hemodinâmico e os limites de extrapolação dos iSGLT2 na IgAN.",
+    "Os itens e2c2ac73, 0f4fd53c e 11949cc9 foram fundidos por tratarem de um desfecho de hematúria não estudado ou apenas cobrarem contagens de participantes sem decisão clínica.",
+    "A análise DAPA-CKD foi delimitada a 270 participantes, 26 eventos e uma população com DRC estabelecida; o resultado não foi apresentado como efeito imunológico específico nem automaticamente extrapolável a jovens com TFGe preservada.",
+    "A análise etiológica do EMPA-KIDNEY foi apresentada como secundária e amplamente consistente entre causas de DRC, sem convertê-la em ensaio independente exclusivo para IgAN.",
+    "Os novos cards dapa_ckd_igan_2021 e empa_kidney_primary_disease_2024 contêm resumo, conclusão e curiosidade e registram desenho, população, resultados e limitações relevantes."
+  ]
+}
