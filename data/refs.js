@@ -391,6 +391,20 @@ const refsDB = {
     conclusao:"Edema após sparsentana não deve ser banalizado: é necessário avaliar congestão e função renal, tratar o volume e considerar ajuste ou interrupção conforme gravidade, preservando a segurança do bloqueio dual.",
     curiosidade:"A sparsentana reúne em uma molécula dois alvos que antes exigiriam classes distintas; justamente por já bloquear AT1, associá-la a IECA ou BRA aumenta risco sem representar a estratégia estudada."
   },
+  filspari_ema_2025:{
+    label:"EMA — Filspari (sparsentana) EPAR",
+    url:"https://www.ema.europa.eu/en/medicines/human/EPAR/filspari",
+    journal:"European Medicines Agency",
+    ano:2025,
+    tipo:"Bula regulatória",
+    badge:"LABEL",
+    badgeColor:"#64748b",
+    impacto:"Define a indicação europeia da sparsentana por limiar de proteinúria na IgAN.",
+    icon:"💊",
+    resumo:"A informação regulatória europeia indica Filspari para adultos com nefropatia por IgA primária e excreção urinária de proteína >1,0 g/dia ou relação proteína/creatinina urinária >0,75 g/g. A autorização condicional é válida na União Europeia desde 19 de abril de 2024; a sparsentana é administrada por via oral uma vez ao dia e antagoniza os receptores de endotelina A e de angiotensina II tipo 1.",
+    conclusao:"O limiar europeu é específico da indicação regulatória e não deve ser confundido com o limiar geral de risco da KDIGO. Como a sparsentana já bloqueia AT1, ela substitui o bloqueador do SRAA em vez de ser somada a IECA ou BRA.",
+    curiosidade:"A página pública da EMA usa linguagem resumida de pelo menos 1 g/dia ou 0,75 g/g, enquanto o texto formal da indicação registra >1,0 g/dia ou >0,75 g/g; questões devem explicitar que cobram a indicação europeia."
+  },
   hypodermoclysis_review_2020:{
     label:"Systematic Review — Subcutaneous Hydration and Infusions",
     url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC7446806/",
@@ -1834,18 +1848,32 @@ canvas_program:{
     curiosidade:"Após a suspensão do curso de 9 meses houve aumento de proteinúria e declínio de TFGe; a segurança e eficácia de ciclos adicionais ou manutenção ainda não estavam estabelecidas na KDIGO 2025."
   },
   fabhalta_iptacopan_label_2025:{
-    label:"FABHALTA (iptacopan) — Prescribing Information FDA/DailyMed (2025)",
+    label:"FABHALTA (iptacopan) — Prescribing Information FDA/DailyMed (2026)",
     url:"https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a76b5845-6e21-4d3b-ad07-cd8df1b60bee",
     journal:"DailyMed / U.S. FDA Prescribing Information",
-    ano:2025,
+    ano:2026,
     tipo:"Bula profissional aprovada pela FDA",
     badge:"BULA",
     badgeColor:"#64748b",
-    impacto:"Iptacopano é inibidor oral do fator B da via alternativa; indicação inclui C3G em adultos para reduzir proteinúria",
+    impacto:"Iptacopano: fator B, 200 mg duas vezes ao dia e prevenção de infecção encapsulada.",
     icon:"📋",
-    resumo:"Bula profissional do FABHALTA (iptacopan) atualizada em 2025. O medicamento é descrito como inibidor do fator B do complemento, com indicações que incluem hemoglobinúria paroxística noturna, nefropatia por IgA primária em adultos com risco de progressão rápida para redução de proteinúria por aprovação acelerada, e glomerulopatia C3 em adultos para redução de proteinúria. Na seção de mecanismo de ação, o iptacopano liga-se ao fator B da via alternativa, regulando a clivagem de C3, a geração de efetores a jusante e a amplificação da via terminal.",
-    conclusao:"Para questões de mecanismo, o alvo do iptacopano é fator B da via alternativa do complemento; a indicação renal aprovada em C3G/IgAN é baseada em redução de proteinúria, não em comprovação definitiva de desfecho renal duro.",
-    curiosidade:"Por atuar na alça de amplificação da via alternativa, o iptacopano fica conceitualmente entre terapias anti-C3 e anti-C5: reduz a ativação a montante da via terminal sem bloquear diretamente C3 ou C5."
+    resumo:"Bula profissional do FABHALTA revisada em julho de 2026. O iptacopano é um inibidor do fator B do complemento indicado para desacelerar o declínio da função renal em adultos com nefropatia por IgA primária sob risco de progressão; a dose é 200 mg por via oral duas vezes ao dia. A bula traz alerta máximo para infecções graves por bactérias encapsuladas, exige vacinação contra pneumococo e meningococo pelo menos duas semanas antes quando possível, prevê profilaxia antibacteriana no início urgente sem vacinação atualizada e restringe a dispensação pelo programa REMS.",
+    conclusao:"O benefício funcional renal não elimina o risco infeccioso: vacinação e REMS são obrigatórios no contexto regulatório dos EUA, e a vacinação não zera o risco de infecção por bactérias encapsuladas.",
+    curiosidade:"A atualização de 2026 substituiu a indicação acelerada baseada em proteinúria por indicação para desacelerar a perda de função renal após a análise final do APPLAUSE-IgAN."
+  },
+  applause_igan_24m_2026:{
+    label:"Barratt et al. — APPLAUSE-IgAN final (NEJM 2026)",
+    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2600743",
+    journal:"New England Journal of Medicine",
+    ano:2026,
+    tipo:"Ensaio clínico randomizado",
+    badge:"RCT",
+    badgeColor:"#10b981",
+    impacto:"Iptacopano reduziu a velocidade de queda da TFGe e eventos renais em 24 meses.",
+    icon:"🔬",
+    resumo:"APPLAUSE-IgAN, análise final de 24 meses: 477 adultos com nefropatia por IgA primária confirmada por biópsia, relação proteína/creatinina urinária ≥1 g/g e tratamento de suporte foram randomizados para iptacopano 200 mg duas vezes ao dia (n=238) ou placebo (n=239). O slope total anualizado da TFGe foi −3,10 versus −6,12 mL/min/1,73 m²/ano; diferença 3,02 (IC95% 2,02–4,01; P ajustado <0,001). O composto de queda sustentada da TFGe ≥30%, TFGe <15, diálise, transplante ou morte renal ocorreu em 21,4% versus 33,5%; HR 0,57 (IC95% 0,40–0,81; P ajustado=0,003).",
+    conclusao:"Na população de alto risco estudada, o iptacopano desacelerou a queda da TFGe e reduziu o composto renal em 24 meses; esses resultados não dispensam seleção clínica nem as medidas de segurança próprias da inibição do complemento.",
+    curiosidade:"A bula norte-americana usa um estimando regulatório que produz números de slope ligeiramente diferentes; a questão usa os valores da publicação primária e separa eficácia do ensaio de requisitos de segurança da bula."
   },
   empaveli_pegcetacoplan_label_2025:{
     label:"EMPAVELI (pegcetacoplan) — Prescribing Information FDA/DailyMed (2025)",
