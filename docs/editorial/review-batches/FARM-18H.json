@@ -1,0 +1,110 @@
+{
+  "batch": "FARM-18H",
+  "change_type": "medical_editorial",
+  "expected_version": "14.29",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-18H.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "d81defbb": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "2a595b23": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "f7107bc3": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "ff676013": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "c18e6af7": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "856f45a6": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "2793701a": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}
+    },
+    "20861302": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "replacement_qid": "d81defbb",
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}
+    },
+    "2b080670": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "replacement_qid": "f7107bc3",
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}
+    },
+    "0e11f65c": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "replacement_qid": "c18e6af7",
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}
+    },
+    "79144eee": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "replacement_qid": "2793701a",
+      "editorial_gate": {"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}
+    }
+  },
+  "expected_question_delta": -4,
+  "refs_policy": "declared",
+  "references": {
+    "testing_study": {
+      "action": "update",
+      "required_fields": ["resumo", "conclusao", "curiosidade"]
+    },
+    "atrasentan_igan": {
+      "action": "update",
+      "required_fields": ["resumo", "conclusao", "curiosidade"]
+    },
+    "vanrafia_fda_2025": {
+      "action": "add",
+      "required_fields": ["resumo", "conclusao", "curiosidade"]
+    },
+    "nefigard_trial": {
+      "action": "update",
+      "required_fields": ["resumo", "conclusao", "curiosidade"]
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Sete questões sobre corticosteroide sistêmico, IgAN rapidamente progressiva, Nefecon, sparsentana e atrasentana foram reconstruídas com KDIGO 2025, ensaios primários e bula regulatória.",
+    "Os itens 20861302, 2b080670, 0e11f65c e 79144eee foram fundidos em itens mais completos por repetirem indicação de corticoide, duração do Nefecon, classe da sparsentana e mecanismo da atrasentana.",
+    "O item de IgAN rapidamente progressiva foi corrigido para exigir queda de pelo menos 50% da TFGe em até três meses após exclusão de causas reversíveis e mimetizadores; crescentes isolados não bastam.",
+    "TESTING foi apresentado com benefício renal e aumento de eventos adversos graves, distinguindo dose plena de esquema reduzido com profilaxia.",
+    "Nefecon foi delimitado como curso estudado de nove meses com exposição sistêmica residual, possível piora após suspensão e ausência de dados robustos para ciclos adicionais ou manutenção.",
+    "PROTECT foi descrito com superioridade antiproteinúrica e melhora do slope crônico, sem converter o slope total não significativo em benefício funcional definitivo.",
+    "O card atrasentan_igan foi corrigido: ALIGN foi análise interina de 270 participantes com redução do UPCR, não ensaio interrompido por benefício em desfecho renal duro.",
+    "O novo card vanrafia_fda_2025 contém resumo, conclusão e curiosidade e explicita que a aprovação acelerada se baseia em proteinúria, sem benefício funcional renal estabelecido."
+  ]
+}

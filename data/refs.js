@@ -776,17 +776,17 @@ kdigo_ckd:{
 
   testing_study:{
     label:"TESTING Trial",
-    url:"https://jamanetwork.com/journals/jama/fullarticle/2790263",
+    url:"https://jamanetwork.com/journals/jama/fullarticle/2792252",
     journal:"JAMA",
     ano:2022,
     tipo:"Ensaio Clínico Fase III",
     badge:"RCT",
     badgeColor:"#10b981",
-    impacto:"Metilprednisolona oral ↓27% desfecho renal em IgAN de alto risco",
+    impacto:"Metilprednisolona reduziu desfecho renal na IgAN de alto risco, com aumento de eventos adversos graves",
     icon:"💊",
     resumo:"ECR internacional multicêntrico (n = 503), avaliando metilprednisolona oral (dose plena de 0,6-0,8 mg/kg/dia ou dose reduzida de 0,4 mg/kg/dia) versus placebo em pacientes com nefropatia por IgA (IgAN) de alto risco (proteinúria ≥ 1 g/dia e TFGe de 20-120 mL/min/1,73m² após otimização do SRAA). Desfecho primário: declínio sustentado de 40% na TFGe, DRCT ou morte renal. Resultados: Metilprednisolona reduziu o desfecho renal em 47% (HR 0,53; IC 95% 0,39–0,72; P < 0,001) em 4,2 anos de seguimento. O grupo de dose reduzida manteve a eficácia com menor taxa de eventos adversos graves, principalmente infecções graves (que haviam interrompido o trial na fase de dose plena).",
-    conclusao:"O TESTING Trial forneceu a base empírica para o uso de corticoide oral em IgAN progressiva, com forte recomendação para o protocolo de dose reduzida com profilaxia infecciosa para mitigar toxicidade.",
-    curiosidade:"A IgAN é caracterizada pelo acúmulo de depósitos mesangiais de imunocomplexos contendo a imunoglobulina A1 deficiente em galactose (Gd-IgA1) e anticorpos IgG anti-Gd-IgA1 específicos, um mecanismo autoimune em quatro etapas (multi-hit hypothesis)."
+    conclusao:"O TESTING demonstrou benefício renal da metilprednisolona em IgAN proteinúrica de alto risco, mas não autoriza uso automático: eventos adversos graves aumentaram, sobretudo com dose plena, e o esquema reduzido exige seleção cuidadosa e profilaxia infecciosa.",
+    curiosidade:"Após o excesso de infecções graves, o protocolo reduziu a dose inicial de 0,6–0,8 para 0,4 mg/kg/dia, limitou-a a 32 mg/dia e acrescentou profilaxia para Pneumocystis."
   },
   nostone_study:{
     label:"NOSTONE Trial",
@@ -1784,14 +1784,24 @@ canvas_program:{
     curiosidade:"O sparsentan recebeu aprovação acelerada pelo FDA em 2023 e aprovação plena em 2024 para retardar declínio de função renal em adultos com IgAN primária sob risco de progressão."
   },
   atrasentan_igan:{
-    label:"Barratt J et al. — Atrasentan IgAN (NEJM 2023)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2305124",
-    journal:"N Engl J Med 2023;389(22):2024-2034",
-    ano:2023,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Atrasentan (antagonista seletivo ETₐR) ↓38% risco de duplicar creatinina em IgAN com proteinúria persistente",icon:"🔬",
-    resumo:"ECR fase III (ALIGN, n=343), atrasentan (antagonista seletivo do receptor de endotelina tipo A) vs placebo em IgAN com proteinúria persistente ≥1 g/dia apesar de SRAA otimizado. Incluiu fase de rodagem obrigatória para excluir retenção de fluidos. Desfecho primário composto (falência renal, queda ≥40% da TFGe sustentada ou morte renal/CV): HR 0,62 (~38% de redução de risco). Interrompido precocemente pelo comitê de monitoramento por eficácia.",
-    conclusao:"ALIGN consolidou o bloqueio seletivo do ETₐR como estratégia eficaz para retardar a progressão renal na IgAN proteinúrica, complementar ao SRAA e às terapias não imunossupressoras.",
-    curiosidade:"A fase de rodagem do ALIGN foi desenhada especificamente para detectar retenção de fluidos precoce — problema que havia comprometido ensaios anteriores com antagonistas de endotelina em doença renal — tornando o protocolo de segurança parte central do desenho do trial."
+    label:"Lafayette et al. — Atrasentana na IgAN (ALIGN)",
+    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2409415",
+    journal:"N Engl J Med. 2025;392:544-554",
+    ano:2025,tipo:"Ensaio Clínico Fase III — análise interina",badge:"RCT",badgeColor:"#10b981",
+    impacto:"Atrasentana reduziu proteinúria no ALIGN; desfecho renal confirmatório ainda não estabelecido na análise interina",icon:"🔬",
+    resumo:"Análise interina pré-especificada do ALIGN, ensaio fase III, duplo-cego e controlado por placebo em adultos com IgAN confirmada por biópsia, proteinúria de pelo menos 1 g/d e TFGe de pelo menos 30 mL/min/1,73 m². Entre os primeiros 270 participantes do estrato principal que completaram 36 semanas, a mudança geométrica do UPCR foi −38,1% com atrasentana e −3,1% com placebo; a diferença entre grupos foi −36,1 pontos percentuais. Retenção de fluido ocorreu em 11,2% versus 8,2%, sem insuficiência cardíaca aparente ou edema grave.",
+    conclusao:"O ALIGN demonstrou redução clinicamente relevante de proteinúria com antagonismo seletivo de ETA, mas a análise interina não provou redução de falência renal ou declínio sustentado da TFGe.",
+    curiosidade:"O ensaio incluiu um estrato separado de participantes que já usavam iSGLT2; esse grupo não integrou a análise primária que sustentou o efeito antiproteinúrico."
+  },
+  vanrafia_fda_2025:{
+    label:"VANRAFIA (atrasentana) — Prescribing Information FDA",
+    url:"https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/219208s000lbl.pdf",
+    journal:"U.S. FDA Prescribing Information",
+    ano:2025,tipo:"Bula regulatória",badge:"LABEL",badgeColor:"#0ea5e9",
+    impacto:"Aprovação acelerada para reduzir proteinúria em adultos com IgAN sob risco de progressão rápida",icon:"📋",
+    resumo:"Bula norte-americana da atrasentana, antagonista do receptor de endotelina A, aprovada de forma acelerada para reduzir proteinúria em adultos com IgAN primária sob risco de progressão rápida, em geral com UPCR de pelo menos 1,5 g/g. A aprovação se baseou na redução de proteinúria no ALIGN e inclui alerta em caixa para toxicidade embriofetal, além de precauções relacionadas a retenção hídrica e hepatotoxicidade.",
+    conclusao:"A indicação regulatória é antiproteinúrica e condicionada a confirmação de benefício clínico; ainda não está estabelecido pela bula que a atrasentana reduza o declínio da função renal na IgAN.",
+    curiosidade:"A FDA aprovou a atrasentana em 2 de abril de 2025 pelo programa de aprovação acelerada, usando mudança do UPCR na semana 36 como desfecho substituto."
   },
   nefigard_trial:{
     label:"Lafayette RA et al. — NefIgArd (Lancet 2023)",
@@ -1800,8 +1810,8 @@ canvas_program:{
     ano:2023,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
     impacto:"Budesonida de liberação alvo (atua nos Peyer's patches) ↓proteinúria e preserva TFG em IgAN com proteinúria ≥1g/dia",icon:"🔬",
     resumo:"ECR fase III (NefIgArd, n=364), nefecon (budesonida de liberação alvo nos Patches de Peyer do íleo distal) vs placebo por 9 meses em IgAN com TFGe ≥35 e proteinúria ≥1 g/dia. Reduziu proteinúria de forma sustentada vs placebo ao final do tratamento. Resultados aos 2 anos mostraram preservação da TFGe: diferença estimada de +3,8 ml/min/1,73m² vs placebo. Aprovado pelo FDA (Tarpeyo) e EMA (Kinpeygo) para IgAN primária com risco de progressão.",
-    conclusao:"NefIgArd validou a hipótese do eixo intestino-rim na IgAN: reduzir a produção de IgA1 galactose-deficiente nos Patches de Peyer com budesonida tópica preserva a TFGe sem a toxicidade sistêmica dos corticoides.",
-    curiosidade:"A IgA1 galactose-deficiente produzida no tecido linfoide intestinal (MALT-gut) é o gatilho imunológico central da IgAN — razão pela qual a budesonida entérica, que atua localmente no íleo distal, tem efeito sobre uma doença glomerular."
+    conclusao:"NefIgArd sustentou o eixo intestino-rim e mostrou benefício antiproteinúrico e funcional com um curso de 9 meses; a liberação dirigida reduz, mas não elimina, exposição sistêmica e efeitos de glicocorticoide.",
+    curiosidade:"Após a suspensão do curso de 9 meses houve aumento de proteinúria e declínio de TFGe; a segurança e eficácia de ciclos adicionais ou manutenção ainda não estavam estabelecidas na KDIGO 2025."
   },
   fabhalta_iptacopan_label_2025:{
     label:"FABHALTA (iptacopan) — Prescribing Information FDA/DailyMed (2025)",
