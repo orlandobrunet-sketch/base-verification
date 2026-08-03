@@ -522,20 +522,84 @@
     });
 
     function showNewGameConfirm(fromWelcome) {
-      document.getElementById('diffSelectorOverlay')?.remove();
+      if (document.getElementById('diffSelectorOverlay')) {
+        if (typeof window._closeDifficultySelector === 'function') window._closeDifficultySelector(false);
+        else document.getElementById('diffSelectorOverlay')?.remove();
+      }
       const returnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
       const overlay = document.createElement('div');
       overlay.id = 'diffSelectorOverlay';
       overlay.className = 'diff-selector-overlay';
       overlay.setAttribute('role', 'presentation');
+      overlay.setAttribute('data-nq-ui', 'lumen');
+      overlay.setAttribute('data-lumen-state', 'reasoning');
+
       // Pré-seleciona a dificuldade recomendada pelo Ritual de Iniciação, se houver.
       let _rec = '';
       try { _rec = localStorage.getItem('nefroquest-recommended-difficulty') || ''; } catch (e) {}
-      let selectedDiff = ['easy','normal','hard','hardcore'].includes(_rec) ? _rec : (state.difficulty || 'normal');
+      const difficultyKeys = ['easy','normal','hard','hardcore'];
+      const ritualRecommendation = difficultyKeys.includes(_rec) ? _rec : '';
+      const currentDifficulty = difficultyKeys.includes(state.difficulty) ? state.difficulty : 'normal';
+      let selectedDiff = ritualRecommendation || currentDifficulty;
+      let hasSavedJourney = !fromWelcome || Boolean(state.gameStarted);
+      try { hasSavedJourney = hasSavedJourney || Boolean(localStorage.getItem('nefroquest-save')); } catch (e) {}
 
+      const defs = {
+        easy: {
+          index: '01', name: 'Fácil', role: 'Ritmo de aquecimento', lives: 5,
+          mix: [['Fáceis', 40], ['Médias', 40], ['Difíceis', 20]],
+          mixShort: '40 · 40 · 20', adaptation: 'Ativa',
+          desc: 'Mais margem para testar hipóteses enquanto o motor adaptativo acompanha seu desempenho.'
+        },
+        normal: {
+          index: '02', name: 'Médio', role: 'Equilíbrio clínico', lives: 4,
+          mix: [['Fáceis', 20], ['Médias', 40], ['Difíceis', 40]],
+          mixShort: '20 · 40 · 40', adaptation: 'Ativa',
+          desc: 'Distribuição equilibrada para manter ritmo, revisão e pressão clínica na mesma jornada.'
+        },
+        hard: {
+          index: '03', name: 'Difícil', role: 'Pressão elevada', lives: 3,
+          mix: [['Fáceis', 0], ['Médias', 25], ['Difíceis', 75]],
+          mixShort: '0 · 25 · 75', adaptation: 'Ativa',
+          desc: 'Prioriza decisões difíceis e reduz a margem para erro sem desligar a adaptação clínica.'
+        },
+        hardcore: {
+          index: '04', name: 'Hardcore', role: 'Risco máximo', lives: 1,
+          mix: [['Fáceis', 0], ['Médias', 0], ['Difíceis', 100]],
+          mixShort: '0 · 0 · 100', adaptation: 'Desativada',
+          desc: 'Somente questões difíceis. Um erro encerra a jornada e o motor adaptativo fica desativado.'
+        }
+      };
+
+      const isolatedBackground = [];
+      const isolateBackground = () => {
+        Array.from(document.body.children).forEach(element => {
+          if (element === overlay || ['SCRIPT', 'STYLE', 'LINK'].includes(element.tagName)) return;
+          isolatedBackground.push({
+            element,
+            inert: Boolean(element.inert),
+            ariaHidden: element.getAttribute('aria-hidden')
+          });
+          element.inert = true;
+          element.setAttribute('aria-hidden', 'true');
+        });
+      };
+      const restoreBackground = () => {
+        isolatedBackground.splice(0).forEach(({ element, inert, ariaHidden }) => {
+          element.inert = inert;
+          if (ariaHidden === null) element.removeAttribute('aria-hidden');
+          else element.setAttribute('aria-hidden', ariaHidden);
+        });
+      };
+
+      let selectorClosed = false;
       const closeDifficultySelector = (restoreFocus = true) => {
-        if (!overlay.isConnected) return;
-        overlay.remove();
+        if (selectorClosed) return;
+        selectorClosed = true;
+        if (overlay.isConnected) overlay.remove();
+        restoreBackground();
+        if (window._closeDifficultySelector === closeDifficultySelector) delete window._closeDifficultySelector;
+        window._pendingDiff = '';
         if (restoreFocus && returnFocus?.isConnected) {
           window.requestAnimationFrame(() => returnFocus.focus({ preventScroll: true }));
         }
@@ -543,48 +607,117 @@
       window._closeDifficultySelector = closeDifficultySelector;
 
       function renderDiff() {
-        const defs = {
-          easy:     { icon:'☽', name:'Fácil',    chip:'entrada segura',  role:'aprendiz do templo',   lives:'♥ ♥ ♥ ♥ ♥', desc:'5 vidas · questões equilibradas · ideal para aquecer raciocínio clínico' },
-          normal:   { icon:'⚕', name:'Médio',    chip:'recomendado',     role:'residência médica',     lives:'♥ ♥ ♥ ♥',   desc:'4 vidas · distribuição mista · o caminho da maioria dos residentes' },
-          hard:     { icon:'⚔', name:'Difícil',  chip:'alta tensão',     role:'prova de título',       lives:'♥ ♥ ♥',     desc:'3 vidas · questões difíceis priorizadas · para quem domina a nefrologia' },
-          hardcore: { icon:'☠', name:'Hardcore', chip:'badge exclusivo', role:'lenda da guilda',       lives:'♥',         desc:'1 vida · somente questões difíceis · falhou uma vez, tudo recomeça' }
-        };
+        const describedBy = hasSavedJourney ? 'diffSelectorDesc diffSelectorWarning' : 'diffSelectorDesc';
         overlay.innerHTML = `
-          <div class="difficulty-modal" role="dialog" aria-modal="true" aria-labelledby="diffSelectorTitle" aria-describedby="diffSelectorDesc" tabindex="-1">
-            <span class="difficulty-corner tl"></span><span class="difficulty-corner tr"></span>
-            <span class="difficulty-corner bl"></span><span class="difficulty-corner br"></span>
-            <div class="difficulty-header">
-              <div class="difficulty-medallion" aria-hidden="true">⚔</div>
-              <div class="difficulty-title" id="diffSelectorTitle">ESCOLHA SEU DESTINO</div>
-              <div class="difficulty-subtitle" id="diffSelectorDesc">Cada caminho tem seu preço</div>
+          <div class="difficulty-modal nql-difficulty" role="dialog" aria-modal="true" aria-labelledby="diffSelectorTitle" aria-describedby="${describedBy}" tabindex="-1">
+            <header class="difficulty-header nql-difficulty__header">
+              <div class="nql-difficulty__route" aria-hidden="true"><span>CALIBRAÇÃO</span><span>RITMO CLÍNICO</span></div>
+              <h2 class="difficulty-title" id="diffSelectorTitle">Calibre o ritmo da jornada.</h2>
+              <p class="difficulty-subtitle" id="diffSelectorDesc">A dificuldade regula suas vidas e a mistura inicial de questões.</p>
+              ${hasSavedJourney ? '<p class="difficulty-warning" id="diffSelectorWarning"><strong>Jornada ativa:</strong> ao continuar, o progresso atual será substituído.</p>' : ''}
+            </header>
+
+            <div class="nql-difficulty__body">
+              <section class="nql-difficulty__selector" aria-labelledby="diffConduitTitle">
+                <div class="nql-difficulty__section-head">
+                  <p id="diffConduitTitle">Conduíte de exigência</p>
+                  <span>Escolha 1 de 4</span>
+                </div>
+                <div class="difficulty-grid" role="radiogroup" aria-label="Dificuldade da jornada">
+                  <span class="nql-difficulty__corruption" aria-hidden="true"></span>
+                  ${Object.entries(defs).map(([k,d]) => {
+                    const isRitualRecommendation = ritualRecommendation === k;
+                    const isBaseline = !ritualRecommendation && k === 'normal';
+                    const marker = isRitualRecommendation ? 'Indicado pelo Ritual' : (isBaseline ? 'Ponto de partida' : '');
+                    return `
+                    <button type="button" role="radio" aria-checked="${selectedDiff===k?'true':'false'}" tabindex="${selectedDiff===k?'0':'-1'}" class="difficulty-card nql-difficulty__option ${k}${selectedDiff===k?' selected':''}" data-action="_selectDiffCard" data-pass-this="1" data-diff-key="${k}" data-diff-name="${d.name}"${isRitualRecommendation ? ' data-recommended="true"' : ''}>
+                      <span class="nql-difficulty__node" aria-hidden="true"><span></span></span>
+                      <span class="nql-difficulty__option-copy">
+                        <span class="nql-difficulty__option-line">
+                          <span class="nql-difficulty__index">${d.index}</span>
+                          <span class="difficulty-name">${d.name}</span>
+                          ${marker ? `<span class="difficulty-chip${isRitualRecommendation ? ' is-ritual' : ''}">${marker}</span>` : ''}
+                        </span>
+                        <span class="difficulty-role">${d.role}</span>
+                        <span class="difficulty-description">Proporção inicial ${d.mixShort}</span>
+                      </span>
+                      <span class="nql-difficulty__lives"><strong>${String(d.lives).padStart(2, '0')}</strong><span>${d.lives === 1 ? 'vida' : 'vidas'}</span></span>
+                    </button>`;
+                  }).join('')}
+                </div>
+              </section>
+
+              <aside class="nql-difficulty__impact" aria-labelledby="diffImpactTitle">
+                <div class="nql-difficulty__section-head">
+                  <p id="diffImpactTitle">O que muda nesta jornada</p>
+                  <span>Dados do modo</span>
+                </div>
+                <div class="nql-difficulty__impact-stack">
+                  ${Object.entries(defs).map(([k,d]) => `
+                    <section class="nql-difficulty__impact-panel ${k}" data-diff-key="${k}" aria-hidden="${selectedDiff===k?'false':'true'}">
+                      <div class="nql-difficulty__impact-title">
+                        <div><span>${d.role}</span><strong>${d.name}</strong></div>
+                        <div><span>Margem de erro</span><strong>${String(d.lives).padStart(2, '0')} ${d.lives === 1 ? 'vida' : 'vidas'}</strong></div>
+                      </div>
+                      <div class="nql-difficulty__mix" aria-label="Proporção inicial de questões">
+                        ${d.mix.map(([label,value]) => `
+                          <div class="nql-difficulty__mix-row">
+                            <span>${label}</span>
+                            <span class="nql-difficulty__bar nql-difficulty__bar--${value}" aria-hidden="true"><i></i></span>
+                            <strong>${value}%</strong>
+                          </div>`).join('')}
+                      </div>
+                      <div class="nql-difficulty__adaptation">
+                        <span>Motor adaptativo</span>
+                        <strong>${d.adaptation}</strong>
+                      </div>
+                      <p>${d.desc}</p>
+                    </section>`).join('')}
+                </div>
+              </aside>
             </div>
-            <div class="difficulty-divider"></div>
-            ${!fromWelcome ? '<div class="difficulty-warning">Todo o progresso atual será perdido.</div>' : ''}
-            <div class="difficulty-grid" role="radiogroup" aria-label="Dificuldade da jornada">
-              ${Object.entries(defs).map(([k,d]) => `
-                <button type="button" role="radio" aria-checked="${selectedDiff===k?'true':'false'}" tabindex="${selectedDiff===k?'0':'-1'}" class="difficulty-card ${k}${selectedDiff===k?' selected':''}" data-action="_selectDiffCard" data-pass-this="1" data-diff-key="${k}">
-                  <span class="card-corner tl"></span><span class="card-corner tr"></span>
-                  <span class="card-corner bl"></span><span class="card-corner br"></span>
-                  <span class="difficulty-card-header">
-                    <span class="difficulty-icon" aria-hidden="true">${d.icon}</span>
-                    <span class="difficulty-chip">${d.chip}</span>
-                  </span>
-                  <span class="difficulty-card-body">
-                    <span class="difficulty-name">${d.name}</span>
-                    <span class="difficulty-role">${d.role}</span>
-                    <span class="difficulty-lives" aria-hidden="true">${d.lives}</span>
-                    <span class="difficulty-description">${d.desc}</span>
-                  </span>
-                </button>`).join('')}
-            </div>
-            <button type="button" class="difficulty-confirm" id="diffConfirmBtn" data-action="_confirmDiff" data-arg="${fromWelcome ? 'true' : 'false'}" data-arg-type="boolean">CONFIRMAR DIFICULDADE</button>
-            <button type="button" class="difficulty-cancel" data-action="_closeDifficultySelector">cancelar</button>
+
+            <footer class="nql-difficulty__footer">
+              <p>A escolha pode ser refeita ao iniciar uma nova jornada.</p>
+              <div class="nql-difficulty__actions">
+                <button type="button" class="difficulty-cancel" data-action="_closeDifficultySelector">Cancelar</button>
+                <button type="button" class="difficulty-confirm" id="diffConfirmBtn" data-action="_confirmDiff" data-arg="${fromWelcome ? 'true' : 'false'}" data-arg-type="boolean">
+                  <span>Continuar com</span><strong data-diff-confirm-name></strong><span aria-hidden="true">→</span>
+                </button>
+              </div>
+            </footer>
+            <span class="nql-visually-hidden" id="diffSelectionStatus" role="status" aria-live="polite"></span>
           </div>`;
         window._pendingDiff = selectedDiff;
       }
 
-      document.body.appendChild(overlay);
+      function updateDifficultyPreview(key, announce = false) {
+        const diff = defs[key] ? key : 'normal';
+        const definition = defs[diff];
+        selectedDiff = diff;
+        overlay.dataset.selectedDifficulty = diff;
+        overlay.querySelectorAll('.nql-difficulty__impact-panel').forEach(panel => {
+          panel.setAttribute('aria-hidden', panel.dataset.diffKey === diff ? 'false' : 'true');
+        });
+        const confirm = overlay.querySelector('#diffConfirmBtn');
+        const confirmName = confirm?.querySelector('[data-diff-confirm-name]');
+        if (confirmName) confirmName.textContent = definition.name;
+        if (confirm) confirm.setAttribute('aria-label', `Continuar com dificuldade ${definition.name}`);
+        if (announce) {
+          const status = overlay.querySelector('#diffSelectionStatus');
+          if (status) status.textContent = `${definition.name} selecionado: ${definition.lives} ${definition.lives === 1 ? 'vida' : 'vidas'}.`;
+        }
+      }
+
       renderDiff();
+      document.body.appendChild(overlay);
+      updateDifficultyPreview(selectedDiff);
+      overlay.querySelector('.difficulty-card[aria-checked="true"]')?.focus({ preventScroll: true });
+      isolateBackground();
+
+      overlay.addEventListener('nq:difficulty-change', event => {
+        updateDifficultyPreview(event.detail?.difficulty, true);
+      });
 
       overlay.addEventListener('keydown', event => {
         if (event.key === 'Escape') {
@@ -628,9 +761,6 @@
         }
       });
 
-      window.requestAnimationFrame(() => {
-        overlay.querySelector('.difficulty-card[aria-checked="true"]')?.focus({ preventScroll: true });
-      });
     }
 
     // ── Ritual de Iniciação (PED-3) ───────────────────────────────────────

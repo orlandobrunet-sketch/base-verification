@@ -4999,7 +4999,16 @@
       card.classList.add('selected');
       const btn = document.getElementById('diffConfirmBtn');
       if (btn) btn.disabled = false;
-      window._pendingDiff = card.dataset.diffKey || '';
+      const difficulty = card.dataset.diffKey || '';
+      window._pendingDiff = difficulty;
+      const overlay = card.closest('#diffSelectorOverlay');
+      if (overlay) {
+        overlay.dataset.selectedDifficulty = difficulty;
+        overlay.dispatchEvent(new CustomEvent('nq:difficulty-change', {
+          bubbles: false,
+          detail: { difficulty }
+        }));
+      }
     };
     window._confirmDiff = function(fromWelcome) {
       const diff = window._pendingDiff;
