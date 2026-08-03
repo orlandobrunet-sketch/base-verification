@@ -2439,24 +2439,40 @@ canvas_program:{
     curiosidade:"O belimumabe é um anticorpo monoclonal humano recombinante que se liga e inibe de forma seletiva a proteína ativadora de células B solúvel (BLyS ou BAFF), impedindo a sobrevivência e diferenciação de linfócitos B autorreativos causadores do Lúpus."
   },
   visionary_trial:{
-    label:"VISIONARY (Sibeprenlimabe Fase 3)",
+    label:"VISIONARY — Sibeprenlimabe, Análise Interina de Fase 3",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2512133",
-    journal:"N Engl J Med 2025 (DOI 10.1056/NEJMoa2512133)",
-    ano:2025,tipo:"Ensaio Clínico Fase III",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Sibeprenlimabe (anti-APRIL) ↓ proteinúria ~51% aos 9 meses na NIgA (fase 3)",icon:"🔬",
-    resumo:"VISIONARY (NCT05248646): ECR de fase 3, duplo-cego, controlado por placebo, n=510 em 31 países, randomização 1:1 para sibeprenlimabe 400 mg por via subcutânea vs placebo a cada 4 semanas. APRIL (A Proliferation-Inducing Ligand) estimula a produção de IgA1 galactose-deficiente via receptor TACI em células B. Desfecho primário: variação relativa da relação proteína/creatinina urinária (24 h) aos 9 meses — redução ajustada de 51,2% vs placebo (IC 96,5% 42,9–58,2; P<0,001). Desfecho secundário-chave: slope anualizado da TFGe em 24 meses, a ser reportado na conclusão do estudo.",
-    conclusao:"A análise interina (proteinúria aos 9 meses) sustentou a aprovação acelerada da FDA do sibeprenlimabe (Voyxact) em nov/2025; a preservação de longo prazo da função renal (slope da TFGe) é desfecho substituto ainda em confirmação, não desfecho renal duro.",
-    curiosidade:"Maior coorte de NIgA randomizada até o momento (510 pacientes, ~240 centros). O anti-APRIL atua a montante, reduzindo a produção de IgA1 galactose-deficiente — distinto do bloqueio hemodinâmico (SRAA, antagonistas de endotelina) e da inibição do complemento."
+    journal:"N Engl J Med. 2026;394(7):635-646",ano:2026,tipo:"Análise interina de ensaio clínico fase 3",badge:"RCT",badgeColor:"#10b981",
+    impacto:"Sibeprenlimabe reduziu a proteinúria em 51% versus placebo aos nove meses na análise interina do VISIONARY",icon:"🔬",
+    resumo:"VISIONARY (NCT05248646) é um ensaio global, randomizado, duplo-cego e controlado por placebo que incluiu 510 adultos com IgAN confirmada por biópsia, TFGe ≥30 mL/min/1,73 m² e proteinúria persistente apesar de IECA/BRA estável e maximamente tolerado, com ou sem iSGLT2. A análise interina de eficácia avaliou os primeiros 320 participantes com oportunidade de chegar ao mês 9: sibeprenlimabe 400 mg por via subcutânea a cada quatro semanas reduziu o uPCR em 51% versus placebo (IC 96,5% 43–58; P<0,0001).",
+    conclusao:"A publicação revisada por pares demonstrou efeito antiproteinúrico e sustentou a aprovação acelerada, mas não continha o resultado completo do slope de TFGe em 24 meses; dados posteriores desse desfecho devem ser identificados pelo nível de divulgação e pelo estado regulatório.",
+    curiosidade:"No conjunto da análise interina, 59% dos participantes eram asiáticos, a TFGe média era 63 mL/min/1,73 m², 98% usavam IECA/BRA e 40% também recebiam iSGLT2."
   },
-  envision_sibeprenlimab_2024:{
-    label:"ENVISION (Sibeprenlimabe Fase 2)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2305635",
-    journal:"N Engl J Med 2024;390(1):20-31",
-    ano:2024,tipo:"Ensaio Clínico Fase II",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Sibeprenlimabe (anti-APRIL) reduz proteinúria na nefropatia por IgA",icon:"🔬",
-    resumo:"ENVISION (NCT04287985): ECR de fase 2 em adultos com nefropatia por IgA e proteinúria persistente apesar de bloqueio otimizado do SRAA, comparando sibeprenlimabe (anticorpo monoclonal anti-APRIL) com placebo. O APRIL (A Proliferation-Inducing Ligand) estimula a produção de IgA1 galactose-deficiente via receptor TACI em células B; seu bloqueio reduziu a proteinúria aos 12 meses (desfecho substituto), com perfil de segurança aceitável.",
-    conclusao:"Validou o bloqueio do APRIL como abordagem upstream na nefropatia por IgA; embasou o ensaio de fase 3 VISIONARY (NCT05248646), que sustentou a aprovação acelerada da FDA do sibeprenlimabe (Voyxact) em 2025 por redução de proteinúria — efeito de longo prazo sobre a TFGe ainda em confirmação.",
-    curiosidade:"O anti-APRIL distingue-se do anti-BAFF por maior seletividade: o APRIL é crítico na troca de classe para IgA nas mucosas, o que pode implicar menor imunossupressão sistêmica que o bloqueio amplo do eixo BAFF."
+  voyxact_fda_2025:{
+    label:"FDA — Bula do Voyxact (Sibeprenlimabe-szsi)",
+    url:"https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/761434s000lbl.pdf",
+    journal:"U.S. Prescribing Information",ano:2025,tipo:"Bula regulatória",badge:"FDA",badgeColor:"#2563eb",
+    impacto:"Aprovação acelerada para reduzir proteinúria em adultos com IgAN primária em risco de progressão",icon:"📋",
+    resumo:"A bula indica Voyxact para reduzir proteinúria em adultos com IgAN primária em risco de progressão, na dose de 400 mg por via subcutânea a cada quatro semanas. A aprovação acelerada baseou-se na redução de proteinúria; a própria bula declara que ainda não estava estabelecido se o fármaco reduz o declínio da função renal em longo prazo. No VISIONARY, infecções ocorreram em 49% versus 45% com placebo e reações no local de injeção em 24% versus 23%.",
+    conclusao:"Antes de iniciar, deve-se avaliar infecção ativa; durante o tratamento, monitorar infecções e considerar interrupção diante de infecção grave. Vacinas vivas não são recomendadas nos 30 dias anteriores nem durante o tratamento. A aprovação acelerada não equivale a benefício renal funcional já confirmado na bula.",
+    curiosidade:"A bula relata queda média em 48 semanas de 67% na Gd-IgA1, 69% na IgA, 35% na IgG e 75% na IgM, coerente com bloqueio de APRIL e também com a necessidade de vigilância infecciosa."
+  },
+  visionary_egfr_otsuka_2026:{
+    label:"VISIONARY 24 Meses — Divulgação do Patrocinador",
+    url:"https://otsuka-us.com/news/otsuka-reports-positive-phase-3-visionary-two-year-egfr-results-demonstrating-voyxactr",
+    journal:"Otsuka press release",ano:2026,tipo:"Resultado topline não revisado por pares",badge:"TOPLINE",badgeColor:"#f59e0b",
+    impacto:"Patrocinador anunciou resultado positivo do slope de TFGe em 24 meses, ainda pendente de publicação completa e avaliação regulatória",icon:"📰",
+    resumo:"Em 1º de julho de 2026, a Otsuka anunciou que o VISIONARY completo atingiu o desfecho secundário-chave de slope anualizado da TFGe em 24 meses, com estabilização estatisticamente significativa versus placebo. A comunicação não apresentou a análise completa revisada por pares e informou que os dados seriam submetidos a congresso e usados em pedido suplementar de aprovação tradicional à FDA.",
+    conclusao:"O anúncio atualiza o estado do estudo, mas deve ser rotulado como dado topline do patrocinador: não substitui a publicação integral nem altera sozinho a bula vigente, que continua descrevendo aprovação acelerada baseada em proteinúria e benefício funcional de longo prazo ainda não estabelecido.",
+    curiosidade:"A divulgação do resultado de 24 meses ocorreu oito meses após a aprovação acelerada e iniciou a etapa de submissão para possível conversão em aprovação tradicional."
+  },
+  teligan_telitacicept_2026:{
+    label:"TELIGAN — Telitacicept na IgAN, Análise Interina de Fase 3",
+    url:"https://pubmed.ncbi.nlm.nih.gov/42127391/",
+    journal:"N Engl J Med. 2026",ano:2026,tipo:"Análise interina de ensaio clínico fase 3",badge:"RCT",badgeColor:"#10b981",
+    impacto:"Telitacicept reduziu proteinúria em 39 semanas na IgAN de alto risco apesar de tratamento de suporte",icon:"🔬",
+    resumo:"No TELIGAN (NCT05799287), 318 adultos com IgAN confirmada por biópsia e proteinúria ≥1,0 g/d apesar de suporte apropriado foram randomizados para telitacicept 240 mg subcutâneo semanal ou placebo. Em 39 semanas, o uPCR de 24 horas mudou -58,9% com telitacicept e -8,8% com placebo, diferença relativa de -55,0% (IC 95% -61,3 a -47,6; P<0,001). A variação percentual da TFGe foi -1,0% versus -7,7%.",
+    conclusao:"A análise demonstra forte sinal antiproteinúrico de curto prazo e diferença exploratória favorável de TFGe, mas 39 semanas e uma análise interina não estabelecem sozinhas benefício renal durável nem equivalência ou superioridade sobre bloqueio seletivo de APRIL.",
+    curiosidade:"Eventos adversos foram mais frequentes com telitacicept (89,3% versus 78,6%), enquanto eventos graves foram numericamente menos frequentes (2,5% versus 8,2%); o estudo não identificou sinal inesperado de segurança."
   },
   pisces_study:{
     label:"Lok et al. — PISCES",
