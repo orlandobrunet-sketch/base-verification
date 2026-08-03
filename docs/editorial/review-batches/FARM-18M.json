@@ -1,0 +1,47 @@
+{
+  "batch": "FARM-18M",
+  "change_type": "medical_editorial",
+  "expected_version": "14.34",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-18M.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "35027c0d": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "f4cf4003": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "68cb9c42": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "6fb809f3": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "2198d3ba": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "e977aaba": {"action":"retire","preserve_fsrs":false,"replacement_qid":"2198d3ba","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "1485fc18": {"action":"retire","preserve_fsrs":false,"replacement_qid":"68cb9c42","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "b9a651e7": {"action":"retire","preserve_fsrs":false,"replacement_qid":"6fb809f3","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}}
+  },
+  "expected_question_delta": -3,
+  "refs_policy": "declared",
+  "references": {
+    "mentor_trial": {"action":"update","required_fields":["resumo","conclusao","curiosidade"]},
+    "starmen_trial_2021": {"action":"add","required_fields":["resumo","conclusao","curiosidade"]},
+    "anticoag_mn": {"action":"update","required_fields":["resumo","conclusao","curiosidade"]},
+    "vte_nephrotic_lim": {"action":"update","required_fields":["resumo","conclusao","curiosidade"]}
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Cinco questões foram reconstruídas para ensinar MENTOR, STARMEN, tratamento guiado pelo risco, decisão individualizada de profilaxia e suspeita clínica de trombose de veia renal.",
+    "Três itens de indicação universal de rituximabe, fisiopatologia isolada e associação por recordação foram fundidos em objetivos clínicos mais completos.",
+    "O Advogado do Recurso excluiu a leitura de que rituximabe é universalmente preferencial, de que toda síndrome nefrótica exige anticoagulação ou de que perda de antitrombina explica sozinha a hipercoagulabilidade.",
+    "O card mentor_trial teve o DOI corrigido para 10.1056/NEJMoa1814427 e passou a separar não inferioridade em 12 meses de superioridade em 24 meses.",
+    "O novo card starmen_trial_2021 registra 83,7% versus 58,1% de remissão completa ou parcial e limita a inferência ao regime sequencial testado.",
+    "O card anticoag_mn foi corrigido de uma coorte inexistente para o comentário de Hofstra e Wetzels realmente adaptado pela KDIGO.",
+    "O card vte_nephrotic_lim foi substituído pela coorte de Lionaki et al., que sustenta a associação graduada entre hipoalbuminemia e tromboembolismo venoso.",
+    "Todos os cards novos ou atualizados contêm resumo, conclusão e curiosidade."
+  ]
+}

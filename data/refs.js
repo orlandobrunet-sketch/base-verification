@@ -2000,24 +2000,24 @@ canvas_program:{
     curiosidade:"A toxicidade do TDF ocorre por acúmulo mitocondrial do fármaco nas células do túbulo contorcido proximal (TCP), inibindo a DNA polimerase gama e causando depleção de ATP celular tubular proximal, o que prejudica a reabsorção de glicose, aminoácidos, bicarbonato e fosfato (síndrome de Fanconi)."
   },
   anticoag_mn:{
-    label:"Hofstra JM et al. — Anticoagulation in MN (Kidney Int 2016)",
-    url:"https://www.kidney-international.org/article/S0085-2538(16)00013-4/fulltext",
-    journal:"Kidney Int 2016;90(3):678-684",
-    ano:2016,tipo:"Análise de Coorte",badge:"COORTE",badgeColor:"#0ea5e9",
-    impacto:"Anticoagulação em NM com síndrome nefrótica: albumina <2,5g/dL e proteinúria >8g/dia como limiares para profilaxia de TEV",icon:"📖",
-    resumo:"Análise de coorte avaliando risco de TEV em nefropatia membranosa com síndrome nefrótica. Albumina sérica <2,5 g/dL e proteinúria >8 g/dia identificados como limiares de risco elevado para tromboembolismo venoso — em especial trombose de veia renal. Nesses pacientes, o benefício da anticoagulação profilática supera o risco hemorrágico na maioria dos cenários clínicos.",
-    conclusao:"Na nefropatia membranosa com síndrome nefrótica grave (albumina <2,5 g/dL e/ou proteinúria >8 g/dia), anticoagulação profilática deve ser considerada — a membranosa é a glomerulopatia com maior risco de trombose de veia renal.",
-    curiosidade:"A trombose de veia renal em NM frequentemente é assintomática e detectada incidentalmente — o que significa que o risco trombótico real é maior que o clinicamente aparente. A hipoalbuminemia reduz os níveis de antitrombina III na proporção da perda urinária, explicando o limiar de albumina <2,5 g/dL como preditor de risco."
+    label:"Hofstra & Wetzels — Prevenção Primária de Trombose na Nefropatia Membranosa (KI 2016)",
+    url:"https://pubmed.ncbi.nlm.nih.gov/27083274/",
+    journal:"Kidney International 2016;89(5):981-983",
+    ano:2016,tipo:"Comentário Clínico",badge:"COMMENTARY",badgeColor:"#0ea5e9",
+    impacto:"Estruturou a discussão sobre prevenção antitrombótica na nefropatia membranosa a partir do risco venoso, arterial e hemorrágico.",icon:"📖",
+    resumo:"Comentário de Hofstra e Wetzels sobre prevenção primária de eventos trombóticos na nefropatia membranosa. O texto destaca o alto risco de trombose venosa na síndrome nefrótica por membranosa, reconhece também eventos arteriais e discute como a intensidade da hipoalbuminemia modifica o risco. Não é ensaio clínico nem coorte e não demonstra que um único limiar torne a profilaxia obrigatória.",
+    conclusao:"A decisão de profilaxia deve integrar risco trombótico e hemorrágico; hipoalbuminemia é marcador importante, mas não substitui a avaliação clínica individual.",
+    curiosidade:"Esse comentário foi adaptado pela KDIGO 2021 na figura que organiza a avaliação de anticoagulação e antiagregação na nefropatia membranosa."
   },
   vte_nephrotic_lim:{
-    label:"Lim W et al. — VTE in Nephrotic Syndrome (Thromb Res 2022)",
-    url:"https://www.thrombosisresearch.com/article/S0049-3848(21)00497-3/fulltext",
-    journal:"Thromb Res 2022;210:73-81",
-    ano:2022,tipo:"Revisão Sistemática",badge:"META",badgeColor:"#ec4899",
-    impacto:"TEV no SN: incidência 8-10%; NM tem maior risco de trombose de veia renal; albumina <2,5g/dL é principal preditor",icon:"📊",
-    resumo:"Revisão sistemática sobre tromboembolismo venoso no síndrome nefrótica. Risco maior em nefropatia membranosa, especialmente com albumina sérica muito baixa, proteinúria intensa e fatores adicionais de trombose. Albumina <2,5 g/dL é marcador clínico importante, mas a decisão de anticoagulação profilática deve integrar histologia, albumina, sangramento, idade e fatores trombóticos.",
-    conclusao:"Em síndrome nefrótica, membranosa + albumina muito baixa é o cenário clássico de maior risco trombótico.",
-    curiosidade:"A hipercoagulabilidade resulta de perda urinária de anticoagulantes naturais, aumento de fatores pró-coagulantes, ativação plaquetária e hemoconcentração."
+    label:"Lionaki et al. — Tromboembolismo Venoso na Nefropatia Membranosa (CJASN 2012)",
+    url:"https://pubmed.ncbi.nlm.nih.gov/22076873/",
+    journal:"Clinical Journal of the American Society of Nephrology 2012;7(1):43-51",
+    ano:2012,tipo:"Coorte",badge:"COORTE",badgeColor:"#0ea5e9",
+    impacto:"Quantificou tromboembolismo venoso clinicamente aparente e identificou hipoalbuminemia como principal preditor independente na membranosa.",icon:"📊",
+    resumo:"Coorte de pacientes com nefropatia membranosa primária que avaliou frequência e fatores associados a tromboembolismo venoso. Eventos clinicamente aparentes ocorreram em cerca de 7% e concentraram-se nos primeiros meses após o diagnóstico. Cada redução de 1 g/dL na albumina associou-se a aumento de 2,13 vezes no risco; albumina abaixo de 2,8 g/dL marcou a faixa de maior risco no conjunto estudado.",
+    conclusao:"A hipoalbuminemia é um marcador independente e graduado de risco trombótico na nefropatia membranosa, mas o estudo observacional não define sozinho quem deve receber profilaxia.",
+    curiosidade:"O estudo encontrou trombose de veia renal e embolia pulmonar entre as manifestações, lembrando que a complicação pode ser renal ou sistêmica."
   },
   eps_dp:{
     label:"ISPD — Length of Time on PD and EPS Position Paper 2017",
@@ -3054,15 +3054,25 @@ finerenone_2025:{
     conclusao:"A uromodulina consolidou-se como uma molécula endógena multifuncional protetora da integridade tubular e urotelial renal, cuja dosagem sérica/urinária surge como marcador de reserva funcional renal no Reino.",
     curiosidade:"A uromodulina possui resíduos de manose altamente específicos em sua estrutura molecular. Esses resíduos atuam como iscas perfeitas que se ligam competitivamente às fímbrias do tipo 1 de Escherichia coli presentes na luz urinária. Dessa forma, as bactérias ficam fisicamente retidas nos polímeros de uromodulina e são lavadas e eliminadas na micção, impedindo sua ascensão e infecção do parênquima."
   },
+  starmen_trial_2021:{
+    label:"Fernández-Juárez et al. — STARMEN (Kidney International 2021)",
+    url:"https://pubmed.ncbi.nlm.nih.gov/33166580/",
+    journal:"Kidney International 2021;99(4):986-998",
+    ano:2021,tipo:"Ensaio Clínico Randomizado",badge:"RCT",badgeColor:"#10b981",
+    impacto:"Comparou corticosteroide-ciclofosfamida cíclicos com tacrolimo seguido de rituximabe em nefropatia membranosa primária de risco elevado.",icon:"🔬",
+    resumo:"Ensaio aberto e randomizado com 86 pacientes que mantinham síndrome nefrótica após seis meses de observação. Em 24 meses, remissão completa ou parcial ocorreu em 36 de 43 pacientes (83,7%) com corticosteroide-ciclofosfamida cíclicos e em 25 de 43 (58,1%) com tacrolimo seguido de uma dose de rituximabe de 1 g no sexto mês; risco relativo 1,44 (IC95% 1,08–1,92). Remissão completa ocorreu em 60% versus 26%.",
+    conclusao:"O esquema cíclico com corticosteroide-ciclofosfamida induziu mais remissões que o regime sequencial específico tacrolimo-rituximabe; o resultado não deve ser generalizado para todo esquema de rituximabe.",
+    curiosidade:"A hipótese original era de superioridade da sequência tacrolimo-rituximabe, mas o ensaio favoreceu o comparador clássico no desfecho primário."
+  },
   mentor_trial:{
     label:"Fervenza FC et al. — MENTOR Trial (NEJM 2019)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1900100",
+    url:"https://pubmed.ncbi.nlm.nih.gov/31269364/",
     journal:"N Engl J Med 2019;381(1):36-46",
     ano:2019,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Rituximabe superior à ciclosporina em remissão sustentada da nefropatia membranosa — nova primeira linha terapêutica",icon:"🔬",
-    resumo:"ECR multicêntrico (n=130) comparando rituximabe vs. ciclosporina no tratamento da nefropatia membranosa primária por 24 meses. O endpoint primário — remissão completa ou parcial sustentada aos 24 meses — foi alcançado em 60% dos pacientes com rituximabe vs. 20% com ciclosporina (p<0,001). Eventos adversos graves ocorreram em 17% vs. 31%, respectivamente. Após suspensão da ciclosporina, a maioria dos pacientes recaiu; as remissões com rituximabe se mantiveram com maior durabilidade.",
-    conclusao:"O MENTOR demonstrou não inferioridade em 12 meses e superioridade do rituximabe em manter remissão proteica até 24 meses, reduzindo o problema clássico de recaída após suspensão do inibidor de calcineurina.",
-    curiosidade:"O rituximabe foi inicialmente aprovado para linfoma de células B em 1997. Seu uso na nefropatia membranosa explora o fato de que a maioria dos casos é mediada por anticorpos IgG4 anti-PLA2R produzidos por células B — depletar células B suprime o autoanticorpo e permite a remissão glomerular."
+    impacto:"Demonstrou remissão mais duradoura com rituximabe do que com ciclosporina na nefropatia membranosa primária.",icon:"🔬",
+    resumo:"Ensaio multicêntrico randomizado com 130 pacientes, comparando rituximabe e ciclosporina. Em 12 meses, remissão completa ou parcial ocorreu em 60% versus 52%, preenchendo o critério de não inferioridade. Em 24 meses, 60% no grupo rituximabe e 20% no grupo ciclosporina mantinham remissão, com superioridade do rituximabe. Eventos adversos graves ocorreram em 17% versus 31%; a diferença não alcançou significância estatística (P=0,06). DOI: 10.1056/NEJMoa1814427.",
+    conclusao:"O MENTOR demonstrou não inferioridade em 12 meses e superioridade do rituximabe em manter remissão até 24 meses, sem provar que ele seja a melhor escolha para toda categoria de risco.",
+    curiosidade:"Entre os participantes anti-PLA2R positivos que entraram em remissão, a queda dos autoanticorpos foi mais rápida, intensa e duradoura com rituximabe."
   },
   kdigo_igan_2025:{
     label:"KDIGO IgAN 2025 (Guideline Dedicada)",
