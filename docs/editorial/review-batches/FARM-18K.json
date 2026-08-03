@@ -1,0 +1,47 @@
+{
+  "batch": "FARM-18K",
+  "change_type": "medical_editorial",
+  "expected_version": "14.32",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-18K.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "17c980fc": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "bafcbcd4": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "e1a87837": {"action":"retire","preserve_fsrs":false,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"aposentar","publication":"BLOQUEADA"}},
+    "6a3390c7": {"action":"retire","preserve_fsrs":false,"replacement_qid":"9fea5862","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "d5218a38": {"action":"retire","preserve_fsrs":false,"replacement_qid":"b7a93d7a","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "17f8a0ec": {"action":"retire","preserve_fsrs":false,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"aposentar","publication":"BLOQUEADA"}},
+    "635e811c": {"action":"retire","preserve_fsrs":false,"replacement_qid":"9fea5862","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "40d8ca26": {"action":"retire","preserve_fsrs":false,"replacement_qid":"5e5b8558","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "c1db7c06": {"action":"retire","preserve_fsrs":false,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"aposentar","publication":"BLOQUEADA"}}
+  },
+  "expected_question_delta": -7,
+  "refs_policy": "declared",
+  "references": {
+    "fabhalta_iptacopan_label_2025": {"action":"update","required_fields":["resumo","conclusao","curiosidade"]},
+    "applause_igan_24m_2026": {"action":"add","required_fields":["resumo","conclusao","curiosidade"]},
+    "filspari_ema_2025": {"action":"add","required_fields":["resumo","conclusao","curiosidade"]}
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Duas questões foram reconstruídas para ensinar interpretação integrada de eficácia, segurança e indicação regulatória, em vez de memorização isolada de alvo ou ponto de corte.",
+    "O APPLAUSE-IgAN final incluiu 477 pacientes e demonstrou slope total anualizado da TFGe de −3,10 versus −6,12 mL/min/1,73 m²/ano e composto renal de 21,4% versus 33,5% em 24 meses.",
+    "A bula norte-americana do FABHALTA foi atualizada para a revisão de julho de 2026, mantendo separados o estimando regulatório e os números da publicação primária.",
+    "A segurança do iptacopano inclui vacinação contra bactérias encapsuladas, profilaxia antibacteriana quando o início urgente antecede vacinação adequada, REMS e risco infeccioso residual mesmo após vacinação.",
+    "A indicação europeia do Filspari foi delimitada a adultos com IgAN primária e proteinúria >1,0 g/dia ou relação proteína/creatinina urinária >0,75 g/g; a sparsentana substitui, e não se soma, ao bloqueio do SRAA.",
+    "Os itens 6a3390c7 e 635e811c foram fundidos em 9fea5862; d5218a38 foi fundido em b7a93d7a; 40d8ca26 foi fundido em 5e5b8558.",
+    "Os itens e1a87837, 17f8a0ec e c1db7c06 foram aposentados por cobrarem associação observacional ou mecanismo genérico sem decisão clínica validada e sem substituto editorial direto.",
+    "Os novos cards applause_igan_24m_2026 e filspari_ema_2025 contêm resumo, conclusão e curiosidade."
+  ]
+}
