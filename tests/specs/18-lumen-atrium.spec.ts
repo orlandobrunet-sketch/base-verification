@@ -106,7 +106,8 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
     expect(stylesheets).toContain('/styles/lumen/atrium.css?v=14.18');
     await expect(page.locator('script[src="js/atrium.js?v=13.23"]')).toHaveCount(1);
     await expect(page.locator('script[src="js/auth.js?v=13.44"]')).toHaveCount(1);
-    await expect(page.locator('script[src="js/game.js?v=14.18"]')).toHaveCount(1);
+    await expect(page.locator('script[src="js/game.js?v=14.34"]')).toHaveCount(1);
+    await expect(page.locator('link[href="styles/lumen/difficulty.css?v=14.34"]')).toHaveCount(1);
     const atriumVisual = await page.locator('#welcomeScreen').evaluate((screen) => {
       const screenStyle = getComputedStyle(screen);
       const statsStyle = getComputedStyle(screen.querySelector('.nql-mastery-rail')!);
@@ -463,7 +464,7 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
     await launcher.focus();
     await launcher.press('Space');
 
-    const dialog = page.getByRole('dialog', { name: 'ESCOLHA SEU DESTINO' });
+    const dialog = page.getByRole('dialog', { name: 'Calibre o ritmo da jornada.' });
     await expect(dialog).toBeVisible();
     await expect(dialog).toHaveAttribute('aria-modal', 'true');
     await expect(dialog).toHaveAttribute('aria-labelledby', 'diffSelectorTitle');
@@ -521,7 +522,7 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
     }
 
     await secondary.tap();
-    await expect(page.getByRole('dialog', { name: 'ESCOLHA SEU DESTINO' })).toBeVisible();
+    await expect(page.getByRole('dialog', { name: 'Calibre o ritmo da jornada.' })).toBeVisible();
     expect(await secondary.evaluate(() => matchMedia('(hover: hover) and (pointer: fine)').matches)).toBe(false);
     await expect(secondary).toHaveCSS('transform', 'none');
 

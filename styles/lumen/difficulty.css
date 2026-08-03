@@ -1,0 +1,854 @@
+/*
+ * NefroQuest — Lúmen Vivo / Página 3A: Calibração da Jornada
+ *
+ * Um único conduíte torna visíveis as consequências reais de cada modo.
+ * O seletor preserva o contrato funcional legado por meio das classes
+ * .difficulty-* e restringe toda a nova direção visual ao overlay Lúmen.
+ */
+
+@keyframes nql-difficulty-backdrop-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes nql-difficulty-surface-enter {
+  from { opacity: 0; transform: translateY(.6rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] {
+  --nql-difficulty-flow: 25%;
+  box-sizing: border-box;
+  display: grid;
+  min-width: 20rem;
+  min-height: 100dvh;
+  padding: clamp(.75rem, 2vw, 1.5rem);
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: max-content;
+  align-content: start;
+  justify-items: center;
+  overflow: auto;
+  overscroll-behavior: contain;
+  background:
+    radial-gradient(circle at 24% 15%, rgba(var(--nql-lumen-rgb), .08), transparent 28rem),
+    linear-gradient(135deg, rgba(3, 5, 12, .985), rgba(7, 12, 24, .985));
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  animation: nql-difficulty-backdrop-enter var(--nql-duration-panel) ease both;
+  z-index: 10020;
+}
+
+#diffSelectorOverlay[data-selected-difficulty="easy"] { --nql-difficulty-flow: 0%; }
+#diffSelectorOverlay[data-selected-difficulty="normal"] { --nql-difficulty-flow: 25%; }
+#diffSelectorOverlay[data-selected-difficulty="hard"] { --nql-difficulty-flow: 50%; }
+#diffSelectorOverlay[data-selected-difficulty="hardcore"] { --nql-difficulty-flow: 75%; }
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty {
+  position: relative;
+  box-sizing: border-box;
+  display: grid;
+  width: min(70rem, 100%);
+  max-height: calc(100dvh - clamp(1.5rem, 4vw, 3rem));
+  padding: 0;
+  border: 1px solid var(--nql-line-strong);
+  border-radius: var(--nql-radius-dialog);
+  gap: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  background:
+    linear-gradient(115deg, rgba(var(--nql-lumen-rgb), .035), transparent 35%),
+    var(--nql-abyss);
+  box-shadow: var(--nql-shadow-dialog);
+  color: var(--nql-text);
+  font-family: var(--nql-font-body);
+  isolation: isolate;
+  animation: nql-difficulty-surface-enter var(--nql-duration-panel) var(--nql-ease-enter) both;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__header {
+  display: block;
+  padding: clamp(1.2rem, 2.2vw, 1.75rem) clamp(1.25rem, 3.5vw, 2.75rem) clamp(1.1rem, 1.8vw, 1.4rem);
+  border-bottom: 1px solid var(--nql-line);
+  text-align: left;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__route,
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__section-head,
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__option-line,
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact-title,
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__adaptation,
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__footer,
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__actions {
+  display: flex;
+  align-items: center;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__route {
+  margin: 0 0 .75rem;
+  gap: .75rem;
+  color: var(--nql-lumen);
+  font-family: var(--nql-font-instrument);
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__route span + span {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  color: var(--nql-text-muted);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__route span + span::before {
+  width: 2.75rem;
+  height: 1px;
+  background: var(--nql-line-strong);
+  content: "";
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] #diffSelectorTitle {
+  max-width: none;
+  margin: 0;
+  background: none;
+  color: var(--nql-text);
+  font-family: var(--nql-font-display);
+  font-size: clamp(2.4rem, 3.6vw, 3.45rem);
+  font-weight: 600;
+  letter-spacing: -.035em;
+  line-height: .98;
+  text-transform: none;
+  -webkit-text-fill-color: currentColor;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] #diffSelectorDesc {
+  max-width: 43rem;
+  margin: .75rem 0 0;
+  color: var(--nql-text-soft);
+  font-family: var(--nql-font-body);
+  font-size: var(--nql-type-reading);
+  font-style: normal;
+  line-height: 1.45;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-warning {
+  display: inline-flex;
+  width: auto;
+  max-width: 43rem;
+  margin: .9rem 0 0;
+  padding: .5rem .7rem;
+  border: 1px solid rgba(var(--nql-danger-rgb), .35);
+  border-radius: var(--nql-radius-control);
+  background: rgba(var(--nql-danger-rgb), .07);
+  color: var(--nql-text-soft);
+  font-family: var(--nql-font-body);
+  font-size: .875rem;
+  line-height: 1.35;
+  text-align: left;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-warning strong {
+  margin-right: .28rem;
+  color: var(--nql-danger);
+  font-weight: 600;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(20rem, .88fr);
+  align-items: stretch;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__selector,
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact {
+  min-width: 0;
+  padding: clamp(.8rem, 1.2vw, 1rem) clamp(1.1rem, 3vw, 2.5rem);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact {
+  border-left: 1px solid var(--nql-line);
+  background: rgba(var(--nql-cortex-rgb), .34);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__section-head {
+  min-height: 1.5rem;
+  margin: 0 0 .7rem;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__section-head p,
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__section-head span {
+  margin: 0;
+  font-family: var(--nql-font-instrument);
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__section-head p { color: var(--nql-lumen); }
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__section-head span { color: var(--nql-text-muted); }
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: repeat(4, minmax(4.3rem, 1fr));
+  gap: 0;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-grid::before,
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-grid::after,
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__corruption {
+  position: absolute;
+  z-index: 0;
+  left: 1.48rem;
+  width: 1px;
+  content: "";
+  pointer-events: none;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-grid::before {
+  top: 12.5%;
+  bottom: 12.5%;
+  background: repeating-linear-gradient(to bottom, var(--nql-line-strong) 0 4px, transparent 4px 9px);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-grid::after {
+  top: 12.5%;
+  height: var(--nql-difficulty-flow);
+  background: var(--nql-lumen);
+  box-shadow: 0 0 .8rem rgba(var(--nql-lumen-rgb), .4);
+  transition: height var(--nql-duration-state) var(--nql-ease-state);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__corruption {
+  bottom: 12.5%;
+  height: 25%;
+  background: repeating-linear-gradient(to bottom, var(--nql-corruption-strong) 0 3px, transparent 3px 7px);
+  box-shadow: 0 0 .7rem rgba(var(--nql-corruption-strong-rgb), .3);
+  transform: skewX(-13deg);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  display: grid;
+  width: 100%;
+  min-height: 4.3rem;
+  margin: 0;
+  padding: .45rem .75rem .45rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--nql-line);
+  border-radius: 0;
+  grid-template-columns: 3rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .65rem;
+  overflow: visible;
+  background: transparent;
+  box-shadow: none;
+  color: var(--nql-text-soft);
+  font-family: var(--nql-font-body);
+  text-align: left;
+  transform: none;
+  transition: background-color var(--nql-duration-fast), border-color var(--nql-duration-fast), color var(--nql-duration-fast);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card::before {
+  position: absolute;
+  inset: .3rem 0;
+  border-left: 2px solid transparent;
+  background: transparent;
+  content: "";
+  pointer-events: none;
+  transition: border-color var(--nql-duration-fast), background-color var(--nql-duration-fast);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card:last-of-type { border-bottom-color: transparent; }
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card[aria-checked="true"] {
+  border-color: var(--nql-line-strong);
+  background: rgba(var(--nql-lumen-rgb), .055);
+  box-shadow: none;
+  color: var(--nql-text);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card[aria-checked="true"]::before {
+  border-left-color: var(--nql-lumen);
+  background: linear-gradient(90deg, rgba(var(--nql-lumen-rgb), .055), transparent 58%);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card:focus-visible {
+  border-radius: var(--nql-radius-control);
+  outline: 2px solid var(--nql-focus);
+  outline-offset: 2px;
+  box-shadow: var(--nql-shadow-focus);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__node {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-inline: auto;
+  border: 1px solid var(--nql-line-strong);
+  border-radius: 50%;
+  place-items: center;
+  background: var(--nql-abyss);
+  transition: border-color var(--nql-duration-fast), box-shadow var(--nql-duration-fast);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__node > span {
+  width: .38rem;
+  height: .38rem;
+  border-radius: 50%;
+  background: var(--nql-text-muted);
+  transition: background-color var(--nql-duration-fast), transform var(--nql-duration-fast);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card[aria-checked="true"] .nql-difficulty__node {
+  border-color: var(--nql-lumen);
+  box-shadow: 0 0 0 .25rem rgba(var(--nql-lumen-rgb), .1), 0 0 1rem rgba(var(--nql-lumen-rgb), .26);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card[aria-checked="true"] .nql-difficulty__node > span {
+  background: var(--nql-lumen);
+  transform: scale(1.18);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card[data-recommended="true"] .nql-difficulty__node::after {
+  position: absolute;
+  left: calc(100% + .2rem);
+  width: .85rem;
+  height: 1px;
+  background: var(--nql-mastery);
+  box-shadow: 0 0 .55rem rgba(var(--nql-mastery-rgb), .45);
+  content: "";
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card.hardcore .nql-difficulty__node {
+  border-color: rgba(var(--nql-corruption-strong-rgb), .7);
+  border-style: dashed;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card.hardcore[aria-checked="true"] .nql-difficulty__node {
+  border-color: var(--nql-lumen);
+  border-style: solid;
+  box-shadow: 0 0 0 .25rem rgba(var(--nql-lumen-rgb), .1), 0 0 1rem rgba(var(--nql-corruption-strong-rgb), .35);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__option-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: .16rem;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__option-line {
+  min-width: 0;
+  gap: .55rem;
+  flex-wrap: wrap;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__index {
+  color: var(--nql-text-muted);
+  font-family: var(--nql-font-instrument);
+  font-size: .68rem;
+  letter-spacing: .08em;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-name {
+  color: var(--nql-text);
+  font-family: var(--nql-font-display);
+  font-size: 1.28rem;
+  font-weight: 600;
+  letter-spacing: -.015em;
+  line-height: 1;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-chip {
+  padding: .18rem .42rem;
+  border: 1px solid var(--nql-line-strong);
+  border-radius: 999px;
+  color: var(--nql-text-soft);
+  font-family: var(--nql-font-instrument);
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: .09em;
+  line-height: 1.2;
+  opacity: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-chip.is-ritual {
+  border-color: rgba(var(--nql-mastery-rgb), .52);
+  color: var(--nql-mastery);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-role,
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-description {
+  margin: 0;
+  color: var(--nql-text-soft);
+  font-family: var(--nql-font-body);
+  font-style: normal;
+  line-height: 1.3;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-role { font-size: .82rem; }
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-description {
+  color: var(--nql-text-muted);
+  font-family: var(--nql-font-instrument);
+  font-size: .68rem;
+  letter-spacing: .03em;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__lives {
+  display: flex;
+  min-width: 3.8rem;
+  flex-direction: column;
+  align-items: flex-end;
+  color: var(--nql-text-muted);
+  font-family: var(--nql-font-instrument);
+  font-size: .6rem;
+  letter-spacing: .1em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__lives strong {
+  color: var(--nql-text);
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: -.04em;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card[aria-checked="true"] .nql-difficulty__lives strong {
+  color: var(--nql-lumen);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card.hardcore .nql-difficulty__lives strong {
+  color: var(--nql-corruption-strong);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card.hardcore[aria-checked="true"] .nql-difficulty__lives strong {
+  color: var(--nql-lumen);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact-stack {
+  display: grid;
+  min-height: 17.5rem;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact-panel {
+  display: flex;
+  min-width: 0;
+  grid-area: 1 / 1;
+  flex-direction: column;
+  gap: 1.1rem;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--nql-duration-fast);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact-panel[aria-hidden="true"] {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact-title {
+  padding: .95rem 0 1rem;
+  border-top: 1px solid var(--nql-line-strong);
+  border-bottom: 1px solid var(--nql-line);
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact-title > div {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: .15rem;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact-title > div:last-child { align-items: flex-end; }
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact-title span,
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__adaptation span {
+  color: var(--nql-text-muted);
+  font-family: var(--nql-font-instrument);
+  font-size: .66rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact-title strong {
+  color: var(--nql-text);
+  font-family: var(--nql-font-display);
+  font-size: clamp(1.35rem, 2.2vw, 1.8rem);
+  font-weight: 600;
+  line-height: 1.05;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact-title > div:last-child strong {
+  color: var(--nql-lumen);
+  font-family: var(--nql-font-instrument);
+  font-size: .82rem;
+  letter-spacing: .04em;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__mix {
+  display: grid;
+  gap: .65rem;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__mix-row {
+  display: grid;
+  grid-template-columns: 4rem minmax(0, 1fr) 2.7rem;
+  align-items: center;
+  gap: .75rem;
+  color: var(--nql-text-soft);
+  font-size: .78rem;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__mix-row strong {
+  color: var(--nql-text);
+  font-family: var(--nql-font-instrument);
+  font-size: .7rem;
+  font-weight: 500;
+  text-align: right;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__bar {
+  position: relative;
+  height: 2px;
+  overflow: hidden;
+  background: var(--nql-line);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__bar i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  display: block;
+  width: 0;
+  background: var(--nql-lumen);
+  box-shadow: 0 0 .6rem rgba(var(--nql-lumen-rgb), .35);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__bar--20 i { width: 20%; }
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__bar--25 i { width: 25%; }
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__bar--40 i { width: 40%; }
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__bar--75 i { width: 75%; }
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__bar--100 i { width: 100%; }
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact-panel.hardcore .nql-difficulty__bar i {
+  background: var(--nql-corruption-strong);
+  box-shadow: 0 0 .6rem rgba(var(--nql-corruption-strong-rgb), .35);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__adaptation {
+  min-height: 2.75rem;
+  padding: .6rem .75rem;
+  border: 1px solid var(--nql-line);
+  border-radius: var(--nql-radius-control);
+  justify-content: space-between;
+  gap: 1rem;
+  background: rgba(var(--nql-lumen-rgb), .035);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__adaptation strong {
+  color: var(--nql-lumen);
+  font-family: var(--nql-font-instrument);
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact-panel.hardcore .nql-difficulty__adaptation {
+  border-color: rgba(var(--nql-corruption-strong-rgb), .3);
+  background: rgba(var(--nql-corruption-strong-rgb), .055);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact-panel.hardcore .nql-difficulty__adaptation strong {
+  color: var(--nql-corruption-strong);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact-panel > p {
+  max-width: 38ch;
+  margin: 0;
+  color: var(--nql-text-soft);
+  font-size: .92rem;
+  line-height: 1.48;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__footer {
+  position: relative;
+  z-index: 5;
+  min-height: 4.8rem;
+  padding: .65rem clamp(1.1rem, 3.5vw, 2.75rem);
+  border-top: 1px solid var(--nql-line-strong);
+  justify-content: space-between;
+  gap: 1.25rem;
+  background: rgba(var(--nql-abyss-rgb), .985);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__footer > p {
+  max-width: 28rem;
+  margin: 0;
+  color: var(--nql-text-muted);
+  font-size: .78rem;
+  line-height: 1.35;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__actions {
+  display: grid;
+  grid-template-columns: 7rem minmax(13rem, 15rem);
+  gap: .65rem;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-cancel,
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-confirm {
+  box-sizing: border-box;
+  min-width: 2.75rem;
+  min-height: 3rem;
+  margin: 0;
+  padding: .7rem .9rem;
+  border-radius: var(--nql-radius-control);
+  font-family: var(--nql-font-body);
+  font-size: .85rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.2;
+  text-transform: none;
+  transform: none;
+  transition: border-color var(--nql-duration-fast), background-color var(--nql-duration-fast), color var(--nql-duration-fast), box-shadow var(--nql-duration-fast);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-cancel {
+  border: 1px solid var(--nql-line);
+  background: transparent;
+  color: var(--nql-text-soft);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-confirm {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: center;
+  gap: .3rem;
+  border: 1px solid rgba(var(--nql-mastery-rgb), .62);
+  background: rgba(var(--nql-mastery-rgb), .12);
+  box-shadow: none;
+  color: var(--nql-text);
+  text-align: left;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-confirm strong { color: var(--nql-mastery); }
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-confirm > span:last-child {
+  justify-self: end;
+  color: var(--nql-mastery);
+  font-family: var(--nql-font-instrument);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-cancel:focus-visible,
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-confirm:focus-visible {
+  outline: 2px solid var(--nql-focus);
+  outline-offset: 2px;
+  box-shadow: var(--nql-shadow-focus);
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card:hover {
+    border-color: var(--nql-line-strong);
+    background: rgba(var(--nql-lumen-rgb), .035);
+    transform: none;
+  }
+
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card[aria-checked="true"]:hover {
+    border-color: var(--nql-line-strong);
+    background: rgba(var(--nql-lumen-rgb), .075);
+  }
+
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card:hover .nql-difficulty__node {
+    border-color: var(--nql-lumen);
+  }
+
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-cancel:hover {
+    border-color: var(--nql-line-strong);
+    background: rgba(var(--nql-lumen-rgb), .045);
+    color: var(--nql-text);
+  }
+
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-confirm:hover {
+    border-color: var(--nql-mastery);
+    background: rgba(var(--nql-mastery-rgb), .18);
+    box-shadow: var(--nql-shadow-mastery);
+    filter: none;
+  }
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card:active,
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-cancel:active,
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-confirm:active {
+  filter: brightness(1.12);
+  transform: none;
+}
+
+@media (max-width: 47.99rem) {
+  #diffSelectorOverlay[data-nq-ui="lumen"] {
+    padding: 0;
+  }
+
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty {
+    width: 100%;
+    max-height: 100dvh;
+    min-height: 100dvh;
+    border: 0;
+    border-radius: 0;
+    scrollbar-gutter: auto;
+  }
+
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__header {
+    padding: 1.2rem 1rem 1rem;
+  }
+
+  #diffSelectorOverlay[data-nq-ui="lumen"] #diffSelectorTitle {
+    max-width: 12ch;
+    font-size: clamp(2.1rem, 10vw, 3rem);
+  }
+
+  #diffSelectorOverlay[data-nq-ui="lumen"] #diffSelectorDesc {
+    margin-top: .55rem;
+    font-size: 1rem;
+  }
+
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-warning {
+    margin-top: .7rem;
+    font-size: .8rem;
+  }
+
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__selector,
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact {
+    padding: 1rem;
+  }
+
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact {
+    border-top: 1px solid var(--nql-line);
+    border-left: 0;
+  }
+
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-grid {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: repeat(4, minmax(4.5rem, auto));
+  }
+
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card {
+    min-height: 4.5rem;
+    padding-block: .55rem;
+    grid-template-columns: 2.75rem minmax(0, 1fr) auto;
+    gap: .45rem;
+  }
+
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-grid::before,
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-grid::after,
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__corruption {
+    left: 1.35rem;
+  }
+
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-name { font-size: 1.18rem; }
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-description { display: none; }
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact-stack { min-height: 17.5rem; }
+
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__footer {
+    position: sticky;
+    bottom: 0;
+    min-height: 4.5rem;
+    padding: .65rem .75rem max(.65rem, env(safe-area-inset-bottom));
+  }
+
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__footer > p { display: none; }
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__actions {
+    width: 100%;
+    grid-template-columns: 6.2rem minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 22.5rem) {
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__route { font-size: .6rem; }
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__route span + span::before { width: 1.4rem; }
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__section-head > span { display: none; }
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-chip { font-size: .51rem; }
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__lives { min-width: 3.15rem; }
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__lives strong { font-size: 1.2rem; }
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact-title { align-items: flex-start; }
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact-title > div:last-child { align-items: flex-end; }
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__mix-row {
+    grid-template-columns: 3.6rem minmax(0, 1fr) 2.4rem;
+    gap: .5rem;
+  }
+}
+
+@media (max-height: 40rem) and (min-width: 48rem) {
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__header {
+    padding-block: 1.1rem;
+  }
+
+  #diffSelectorOverlay[data-nq-ui="lumen"] #diffSelectorTitle { font-size: 2.5rem; }
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__selector,
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact { padding-block: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #diffSelectorOverlay[data-nq-ui="lumen"],
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty,
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-grid::after,
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card,
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card::before,
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__node,
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__node > span,
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact-panel,
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-cancel,
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-confirm {
+    animation: none;
+    transition: none;
+    transform: none;
+  }
+}
+
+@media (forced-colors: active) {
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card[aria-checked="true"],
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card:focus-visible,
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-cancel:focus-visible,
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-confirm:focus-visible {
+    outline: 2px solid Highlight;
+    outline-offset: 2px;
+  }
+
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card[aria-checked="true"] .nql-difficulty__node > span {
+    background: Highlight;
+  }
+}
