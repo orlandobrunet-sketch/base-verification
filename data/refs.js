@@ -812,6 +812,16 @@ kdigo_ckd:{
     conclusao:"RITUXVAS sustentou rituximabe como componente de indução em doença renal grave, mas não testou rituximabe isolado nem demonstrou menos eventos adversos precoces que o comparador.",
     curiosidade:"Ao contrário do RAVE, o RITUXVAS incluiu doença renal muito avançada, porém o braço rituximabe recebeu duas doses de ciclofosfamida; atribuir todo o efeito exclusivamente ao anti-CD20 excede o desenho."
   },
+  dapa_ckd_igan_2021:{
+    label:"Wheeler et al. — DAPA-CKD na Nefropatia por IgA",
+    url:"https://pubmed.ncbi.nlm.nih.gov/33878338/",
+    journal:"Kidney Int. 2021;100(1):215-224",
+    ano:2021,tipo:"Análise pré-especificada de ensaio clínico",badge:"RCT",badgeColor:"#10b981",
+    impacto:"Dapagliflozina reduziu eventos renais no subgrupo IgAN, com número pequeno de eventos e população de DRC estabelecida",icon:"🔬",
+    resumo:"Análise pré-especificada de 270 participantes com IgAN no DAPA-CKD, 94% com confirmação histológica, TFGe média de 43,8 mL/min/1,73 m² e UACR mediana de 900 mg/g. O desfecho composto ocorreu em 6 de 137 participantes com dapagliflozina e 20 de 133 com placebo, HR 0,29 (IC 95% 0,12–0,73), em mediana de 2,1 anos. A UACR caiu 26% em relação ao placebo.",
+    conclusao:"A análise sustenta dapagliflozina como nefroproteção na IgAN proteinúrica com DRC estabelecida, mas o efeito grande deriva de apenas 26 eventos e não deve ser extrapolado como terapia imunológica específica ou benefício idêntico em jovens com TFGe preservada.",
+    curiosidade:"Dos 270 participantes classificados como IgAN, 254 tinham confirmação por biópsia; a idade média foi 51 anos, mais alta que a de muitas coortes de ensaios específicos de IgAN."
+  },
 rave_study:{
     label:"Jones RB et al. — RAVE Trial (NEJM 2010)",
     url:"https://www.nejm.org/doi/full/10.1056/NEJMoa0909905",
@@ -1343,6 +1353,16 @@ canvas_program:{
     resumo:"ECR multicêntrico, n=6.609, avaliou empagliflozina 10 mg/dia em DRC ampla: TFGe 20–<45 independente de albuminúria ou TFGe 45–<90 com ACR ≥200 mg/g. Reduziu progressão renal ou morte cardiovascular: 13,1% vs 16,9%; HR 0,72, IC 95% 0,64–0,82, P<0,001. Benefício consistente em diabéticos e não diabéticos e nas faixas de TFGe estudadas.",
     conclusao:"EMPA-KIDNEY consolidou os iSGLT2 como nefroproteção central em DRC ampla, inclusive não diabética, com TFGe ≥20 dentro dos critérios do estudo.",
     curiosidade:"Foi o grande trial de iSGLT2 com maior heterogeneidade etiológica e incluiu proporção expressiva de pacientes sem diabetes."
+  },
+  empa_kidney_primary_disease_2024:{
+    label:"EMPA-KIDNEY — Efeito por Doença Renal Primária",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC7618536/",
+    journal:"Lancet Diabetes Endocrinol. 2024;12(1):51-60",
+    ano:2024,tipo:"Análise secundária pré-especificada",badge:"RCT",badgeColor:"#10b981",
+    impacto:"Efeito da empagliflozina foi amplamente consistente entre etiologias da DRC, incluindo glomerulopatias",icon:"🔬",
+    resumo:"Análise secundária do EMPA-KIDNEY por doença renal primária. Entre 6.609 participantes, 1.669 tinham doença glomerular e 817 foram classificados como IgAN. A empagliflozina reduziu em 29% o risco de progressão da doença renal na coorte analisada, HR 0,71 (IC 95% 0,62–0,81), e não houve heterogeneidade importante do efeito relativo entre as categorias etiológicas ou subtipos de glomerulopatia; análises de slope aumentaram a precisão.",
+    conclusao:"O EMPA-KIDNEY apoia nefroproteção por iSGLT2 em ampla variedade de doenças renais, mas a análise etiológica não transforma a contagem de 817 casos de IgAN em ensaio independente desenhado para provar um efeito específico nessa doença.",
+    curiosidade:"IgAN representou quase metade dos 1.669 participantes com doença glomerular, formando um dos maiores conjuntos randomizados dessa etiologia."
   },
   // --- Hipertensão ---
   pathway2_trial:{
