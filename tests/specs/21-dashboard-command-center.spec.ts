@@ -315,9 +315,16 @@ test.describe('Central de Comando do aprendizado', () => {
   });
 
   test('não introduz violações sérias ou críticas de acessibilidade', async ({ page }) => {
+    test.setTimeout(90_000);
     await openCommandCenter(page);
-    const results = await new AxeBuilder({ page }).include('#nqDashboard').analyze();
-    const blocking = results.violations.filter(violation => violation.impact === 'serious' || violation.impact === 'critical');
-    expect(blocking, blocking.map(violation => `${violation.id}: ${violation.help}`).join('\n')).toEqual([]);
+    for (const tabName of ['Visão geral', 'Skills', 'Mapa', 'Conquistas', 'Biblioteca', 'Ranking']) {
+      const tab = page.getByRole('tab', { name: tabName, exact: true });
+      await tab.click();
+      await expect(tab).toHaveAttribute('aria-selected', 'true');
+
+      const results = await new AxeBuilder({ page }).include('#nqDashboard').analyze();
+      const blocking = results.violations.filter(violation => violation.impact === 'serious' || violation.impact === 'critical');
+      expect(blocking, `${tabName}: ${blocking.map(violation => `${violation.id}: ${violation.help}`).join('\n')}`).toEqual([]);
+    }
   });
 });
