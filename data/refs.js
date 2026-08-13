@@ -1357,16 +1357,6 @@ rave_study:{
     conclusao:"DCCT provou de forma definitiva que hiperglicemia crônica causa complicações microvasculares no DM1 e que controle glicêmico intensivo reduz nefropatia, retinopatia e neuropatia.",
     curiosidade:"O seguimento EDIC revelou o conceito de memória metabólica: benefícios microvasculares e cardiovasculares persistiram por anos mesmo após a convergência parcial da HbA1c entre os grupos."
   },
-  edic_followup:{
-    label:"Nathan DM et al. — EDIC Follow-up (NEJM 2005)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa052187",
-    journal:"N Engl J Med 2005;353(25):2643-2653",
-    ano:2005,tipo:"Estudo de Coorte (seguimento RCT)",badge:"COORTE",badgeColor:"#0ea5e9",
-    impacto:"Memória metabólica confirmada: benefício do controle intensivo do DCCT persistiu 11 anos após o estudo — ↓57% doença CV",icon:"📖",
-    resumo:"Seguimento observacional do DCCT (estudo de insulinoterapia intensiva vs convencional em DM1, 1983–1993). No EDIC, 11 anos após a convergência do controle glicêmico entre os grupos, o grupo de controle intensivo do DCCT ainda apresentava 57% menos doença cardiovascular e progressão mais lenta de complicações microvasculares — conceito de memória metabólica.",
-    conclusao:"O EDIC demonstrou que o controle glicêmico precoce e intensivo em DM1 gera benefício CV e microvascular duradouro muito além do período de intervenção — reforçando a importância de iniciar controle rigoroso cedo no curso da doença.",
-    curiosidade:"A memória metabólica parece mediada por modificações epigenéticas (metilação de DNA, modificações de histonas) induzidas pela hiperglicemia crônica — alterações que persistem mesmo após a normalização glicêmica e continuam a dirigir o comportamento das células vasculares e renais."
-  },
   // --- SGLT2 ---
 canvas_program:{
     label:"Neal B et al. — CANVAS Program (NEJM 2017)",

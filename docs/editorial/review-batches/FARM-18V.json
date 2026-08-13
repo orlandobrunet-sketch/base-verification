@@ -1,0 +1,27 @@
+{
+  "batch": "FARM-18V",
+  "change_type": "medical_editorial",
+  "expected_version": "14.43",
+  "allowed_files": ["data/refs.js","data/topics.js","docs/editorial/review-batches/FARM-18V.json","index.html","jogar/index.html","sw.js","version.json"],
+  "questions": {
+    "81182ae0": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "61edc2d9": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "68f04699": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "80fb7281": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "78c43d96": {"action":"retire","preserve_fsrs":false,"replacement_qid":"68f04699","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}}
+  },
+  "expected_question_delta": -1,
+  "refs_policy": "declared",
+  "references": {
+    "edic_followup": {"action":"remove","source":"card fora de tema removido do único consumidor e deixado sem consumidores pelo lote"}
+  },
+  "external_review": {"greptile":"unavailable","fallback_reviewer":"Codex revisar-nefroquest + official editorial-batch validator"},
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Quatro questões foram reconstruídas sobre aparelho justaglomerular, feedback tubuloglomerular, coeficiente de ultrafiltração e retenção hidrossalina na síndrome nefrítica.",
+    "A duplicata 78c43d96 foi fundida no qid 68f04699, que preserva o OP de retenção de sódio, edema e hipertensão.",
+    "O Advogado do Recurso separou anatomia, autorregulação, Kf e balanço de sódio, evitando sobreposição de OPs e causalidade excessivamente simplificada.",
+    "A referência EDIC fora de tema foi removida do item do aparelho justaglomerular; nenhuma referência nova foi introduzida.",
+    "Todos os itens publicados foram reavaliados após a mudança material: Evidência VERIFICADA, Pendência NENHUMA, veredito aprovada e publicação LIBERADA."
+  ]
+}
