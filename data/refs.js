@@ -3881,4 +3881,54 @@ finerenone_2025:{
     conclusao:"Suspeita de doença anti-MBG com ameaça renal ou pulmonar requer ação imediata, mas a chance de recuperação renal é muito baixa quando já há dependência de diálise e destruição crescêntica quase total sem hemorragia pulmonar.",
     curiosidade:"Os epítopos EA e EB ficam normalmente ocultos na rede alfa-3/alfa-4/alfa-5 do colágeno IV; alterações conformacionais podem expô-los ao sistema imune."
   },
+  renal_amyloidosis_diagnosis_2022:{
+    label:"Said et al. — Diagnóstico Completo da Amiloidose Renal (2022)",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC9529046/",
+    journal:"Clinical Kidney Journal 2022;15(10):1817-1826",
+    ano:2022,tipo:"Revisão clinicopatológica",badge:"REVIEW",badgeColor:"#8b5cf6",
+    impacto:"Confirmação por vermelho Congo e tipagem obrigatória da proteína amiloide",icon:"🔬",
+    resumo:"Revisão clinicopatológica do diagnóstico renal de amiloidose. Vermelho Congo com birrefringência verde-maçã confirma material amiloide, mas não identifica seu precursor. A tipagem usa imunofluorescência ou imuno-histoquímica e, diante de resultado negativo, ambíguo ou discordante, microdissecção a laser com espectrometria de massa.",
+    conclusao:"Diagnosticar amiloide e definir seu tipo são etapas diferentes; tratamento seguro exige identificar a proteína precursora em vez de inferi-la apenas pela presença de uma gamopatia.",
+    curiosidade:"Na série discutida, imunofluorescência deixou de identificar a proteína amiloide em parte dos casos, ilustrando por que a proteômica é decisiva nos espécimes indeterminados."
+  },
+  dnajb9_fgn_marker_2018:{
+    label:"Nasr et al. — DNAJB9 na Glomerulonefrite Fibrilar (2018)",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC5762944/",
+    journal:"Kidney International Reports 2018;3(1):56-64",
+    ano:2018,tipo:"Estudo diagnóstico",badge:"DIAG",badgeColor:"#0ea5e9",
+    impacto:"Validou DNAJB9 como marcador tecidual altamente específico da glomerulonefrite fibrilar",icon:"🧬",
+    resumo:"Estudo de imuno-histoquímica em 214 amostras renais, incluindo 84 casos de glomerulonefrite fibrilar, 21 de amiloidose e 98 de outras doenças glomerulares. Marcação forte e difusa para DNAJB9 ocorreu em 82 de 84 casos de fibrilar e foi ausente nos controles, salvo foco mínimo em um caso, resultando em sensibilidade de 98% e especificidade superior a 99%.",
+    conclusao:"DNAJB9 integra o diagnóstico da glomerulonefrite fibrilar e ajuda a separá-la de amiloidose, glomerulopatia imunotactoide e outros depósitos organizados; morfologia e contexto continuam necessários nos casos atípicos.",
+    curiosidade:"A imunomicroscopia eletrônica localizou DNAJB9 nas fibrilas da doença, mas não nas fibrilas amiloides nem nos microtúbulos da glomerulopatia imunotactoide."
+  },
+  immunotactoid_glomerulopathy_cohort_2021:{
+    label:"Nasr et al. — Coorte de Glomerulopatia Imunotactoide (2021)",
+    url:"https://pubmed.ncbi.nlm.nih.gov/32818517/",
+    journal:"Kidney International 2021;99(2):410-420",
+    ano:2021,tipo:"Coorte clinicopatológica",badge:"COHORT",badgeColor:"#0891b2",
+    impacto:"Caracterizou variantes monoclonais e policlonais em 73 pacientes",icon:"🔬",
+    resumo:"Coorte multicêntrica de 73 pessoas com glomerulopatia imunotactoide, definida por depósitos glomerulares microtubulares organizados. Os pacientes geralmente apresentavam proteinúria, hematúria e insuficiência renal; variantes monoclonais e associação com gamopatia ou doença linfoproliferativa foram frequentes, embora também existissem casos policlonais.",
+    conclusao:"Microtúbulos com centro oco e organização paralela sustentam imunotactoide, mas o laudo deve ser integrado à imunofluorescência e a uma busca sistemática por imunoglobulina monoclonal e clone hematológico.",
+    curiosidade:"A série ampliou muito a base anterior, que dependia de relatos e grupos pequenos, e demonstrou que imunotactoide não é sinônimo absoluto de monoclonalidade."
+  },
+  ikmg_mgrs_consensus_2019:{
+    label:"Leung et al. — Consenso IKMG sobre MGRS (2019)",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC7136169/",
+    journal:"Nature Reviews Nephrology 2019;15(1):45-59",
+    ano:2019,tipo:"Consenso internacional",badge:"CONSENSUS",badgeColor:"#6366f1",
+    impacto:"Definição, classificação e investigação da gamopatia monoclonal de significado renal",icon:"📋",
+    resumo:"Consenso do International Kidney and Monoclonal Gammopathy Research Group que define MGRS como distúrbio clonal produtor de imunoglobulina monoclonal nefrotóxica sem critérios hematológicos para tratar uma malignidade específica. Recomenda biópsia renal, imunofluorescência, eletroforese e imunofixação sérica e urinária, cadeias leves livres e avaliação de medula para identificar lesão e clone.",
+    conclusao:"Um clone pequeno pode causar dano renal grave; a relação causal não deve ser inferida pelo pico monoclonal isolado nem descartada por ausência de critérios de mieloma ou linfoma.",
+    curiosidade:"No MIDD, o consenso descreve depósitos lineares e pontilhados nas membranas basais glomerular e tubular, com material finamente granular e não organizado à microscopia eletrônica."
+  },
+  collagenofibrotic_glomerulopathy_series_2015:{
+    label:"Kurien et al. — Glomerulopatia Colagenofibrótica (2015)",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC4581380/",
+    journal:"Clinical Kidney Journal 2015;8(5):543-547",
+    ano:2015,tipo:"Série clinicopatológica",badge:"SERIES",badgeColor:"#0f766e",
+    impacto:"Descreveu oito casos com depósito glomerular de colágeno tipo III",icon:"🔬",
+    resumo:"Série prospectiva de oito biópsias com glomerulopatia colagenofibrótica. Todos os pacientes tinham síndrome nefrótica. O diagnóstico reuniu expansão mesangial e subendotelial, imuno-histoquímica para colágeno tipo III e microscopia eletrônica com fibrilas colágenas curvas, franjadas e com periodicidade transversal.",
+    conclusao:"A doença não deve ser diagnosticada apenas por Congo negativo ou fibrose inespecífica; demonstração de colágeno III no depósito e ultraestrutura característica são os elementos confirmatórios.",
+    curiosidade:"O colágeno tipo III normalmente pertence ao interstício renal, não ao glomérulo; sua acumulação glomerular maciça explica o caráter singular da entidade."
+  },
 };
