@@ -3921,4 +3921,14 @@ finerenone_2025:{
     conclusao:"A doença não deve ser diagnosticada apenas por Congo negativo ou fibrose inespecífica; demonstração de colágeno III no depósito e ultraestrutura característica são os elementos confirmatórios.",
     curiosidade:"O colágeno tipo III normalmente pertence ao interstício renal, não ao glomérulo; sua acumulação glomerular maciça explica o caráter singular da entidade."
   },
+  rituximab_relapsing_ns_2025:{
+    label:"Isaka et al. — Rituximabe na Síndrome Nefrótica Recidivante do Adulto (JAMA 2025)",
+    url:"https://jamanetwork.com/journals/jama/fullarticle/2841034",
+    journal:"JAMA 2025;334(22):2011-2019",
+    ano:2025,tipo:"Ensaio clínico randomizado",badge:"RCT",badgeColor:"#10b981",
+    impacto:"Primeiro ensaio duplo-cego controlado por placebo a demonstrar prevenção de recidiva com rituximabe em adultos com síndrome nefrótica frequentemente recidivante ou corticodependente.",icon:"🔬",
+    resumo:"Ensaio multicêntrico japonês com 72 adultos randomizados e 66 que receberam rituximabe ou placebo em remissão de síndrome nefrótica frequentemente recidivante ou corticodependente. Doença de lesões mínimas representou 57 dos 66 participantes analisados. Rituximabe 375 mg/m² nas semanas 1, 2 e 25 elevou a taxa livre de recidiva na semana 49 para 87,4%, versus 38,0% com placebo; o HR de recidiva foi 0,16 (IC95% 0,05–0,46).",
+    conclusao:"Rituximabe reduz recidivas no curto prazo e é opção poupadora de corticosteroide em adultos selecionados com doença frequentemente recidivante ou corticodependente, sem estabelecer cura, superioridade sobre todos os demais imunossupressores ou aplicação automática a qualquer recidiva.",
+    curiosidade:"Apesar de o estudo abranger síndrome nefrótica primária, 86% da amostra analisada tinha doença de lesões mínimas; reações infusionais ocorreram em 40,6% com rituximabe e 2,9% com placebo."
+  },
 };
