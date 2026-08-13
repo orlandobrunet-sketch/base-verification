@@ -1,0 +1,25 @@
+{
+  "batch": "FARM-18X",
+  "change_type": "medical_editorial",
+  "expected_version": "14.45",
+  "allowed_files": ["data/refs.js","data/topics.js","docs/editorial/review-batches/FARM-18X.json","index.html","jogar/index.html","sw.js","version.json"],
+  "questions": {
+    "8e6474eb": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "05fd9be9": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}}
+  },
+  "expected_question_delta": 0,
+  "refs_policy": "declared",
+  "references": {
+    "rituximab_relapsing_ns_2025": {"action":"add","source":"JAMA 2025;334(22):2011-2019; doi:10.1001/jama.2025.19316"}
+  },
+  "external_review": {"greptile":"unavailable","fallback_reviewer":"Codex revisar-nefroquest + official editorial-batch validator"},
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Duas questões foram reconstruídas para separar recidiva isolada de doença frequentemente recidivante ou corticodependente.",
+    "O item 8e6474eb mantém nova indução com glicocorticoide como estratégia usual da recidiva isolada previamente responsiva.",
+    "O item 05fd9be9 deixou de declarar rituximabe primeira linha universal e agora cobra o resultado do ensaio randomizado de 2025.",
+    "A referência MENTOR, que estuda nefropatia membranosa, foi removida do item de doença de lesões mínimas.",
+    "O novo card rituximab_relapsing_ns_2025 contém resumo, conclusão e curiosidade e é consumido pelo lote.",
+    "Todos os itens foram reavaliados após a mudança material: Evidência VERIFICADA, Pendência NENHUMA, veredito aprovada e publicação LIBERADA."
+  ]
+}
