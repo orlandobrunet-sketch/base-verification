@@ -1,1734 +1,1478 @@
-// NefroQuest — Dashboard (Perfil do Nefrologista)
-// Acessível via menu admin enquanto o redesign está em progresso.
+// NefroQuest — Central de Comando do aprendizado
+// Página interna, orientada por dados locais reais e pelos contratos existentes do jogo.
 
 (function () {
-  // ── Estilos injetados uma única vez ───────────────────────────────────────
+  'use strict';
+
+  const DASH_TABS = [
+    { id: 'overview', label: 'Visão geral', eyebrow: 'Sala de Conduta' },
+    { id: 'skills', label: 'Skills', eyebrow: 'Prontuário de Domínio' },
+    { id: 'mapa', label: 'Mapa', eyebrow: 'Atlas de Domínio' },
+    { id: 'achievements', label: 'Conquistas', eyebrow: 'Gabinete de Selos' },
+    { id: 'library', label: 'Biblioteca', eyebrow: 'Arquivo de Evidências' },
+    { id: 'ranking', label: 'Ranking', eyebrow: 'Registro da Ordem' },
+  ];
+
+  const CHARACTER_META = {
+    nephros: {
+      name: 'Dr. Nephros',
+      title: 'Guardião dos Néfrons',
+      folder: 'clerigo_renal',
+      ext: 'jpg',
+    },
+    aquaria: {
+      name: 'Dra. Aquaria',
+      title: 'Mestra das Águas',
+      folder: 'maga_metabolica',
+      ext: 'jpg',
+    },
+    glomerulus: {
+      name: 'Dr. Glomerulus',
+      title: 'Cientista Renal',
+      folder: 'guerreiro_glomerular',
+      ext: 'png',
+    },
+  };
+
+  const BADGE_MILESTONES = [
+    { name: 'Vórtice do Néfron', required: 20 },
+    { name: 'Sábio do Microscópio', required: 40 },
+    { name: 'Guardião das Águas', required: 60 },
+    { name: 'Árbitro dos Rins', required: 80 },
+    { name: 'Ascendido do NefroQuest', required: 100 },
+  ];
+
+  const ERROR_REASON_LABELS = {
+    knowledge: 'Lacuna de conhecimento',
+    between_two: 'Discriminação fina',
+    confusion: 'Confusão de conceitos',
+    anchoring: 'Ancoragem',
+    misread: 'Erro de leitura',
+    guess: 'Chute',
+  };
+
+  let _lastFocusedElement = null;
+  let _previousBodyOverflow = '';
+  let _inertedElements = [];
+  let _activeTab = 'overview';
+  let _dashboardData = null;
+  let _dashLbMode = 'record';
+  let _lbFullData = [];
+  let _rankingLoaded = false;
+  let _rankingRequestId = 0;
+  let _rankingSearchTimer = null;
+
+  const ACID_BASE_CASE_IDS = new Set([
+    'aldric', 'mara', 'theron', 'vance', 'kael', 'vorgath', 'selene', 'edrin', 'liora', 'borius',
+    'isolde', 'corvin', 'ophelia', 'helena', 'brann', 'nara', 'galen', 'maelis', 'ivar', 'mireth',
+  ]);
+
   function _injectStyles() {
-    document.getElementById('nq-dash-styles')?.remove();
-    const s = document.createElement('style');
-    s.id = 'nq-dash-styles';
-    s.textContent = `
-      /* ── Overlay ────────────────────────────────────────────────────────── */
-      .nq-dash-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(4, 8, 20, 0.92);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        z-index: 11000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 16px;
-        box-sizing: border-box;
-        overflow-y: auto;
-      }
-
-      /* ── Painel principal ───────────────────────────────────────────────── */
-      .nq-dash-panel {
-        position: relative;
-        width: 100%;
-        max-width: 880px;
-        max-height: 92vh;
-        background: linear-gradient(162deg, #0e1628 0%, #080d1a 100%);
-        border: 1px solid rgba(255, 215, 0, 0.22);
-        border-radius: 20px;
-        box-shadow:
-          0 0 0 1px rgba(255,255,255,0.04) inset,
-          0 40px 80px rgba(0,0,0,0.6),
-          0 0 60px rgba(255,215,0,0.08),
-          0 0 120px rgba(124,58,237,0.06);
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-      }
-
-      /* Ornamento de canto (pseudo-element) */
-      .nq-dash-panel::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; right: 0;
-        height: 2px;
-        background: linear-gradient(90deg, transparent, rgba(255,215,0,0.5) 30%, rgba(192,132,252,0.4) 70%, transparent);
-        border-radius: 20px 20px 0 0;
-        pointer-events: none;
-      }
-
-      /* ── Header ──────────────────────────────────────────────────────────── */
-      .nq-dash-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 20px 26px 16px;
-        border-bottom: 1px solid rgba(255,255,255,0.06);
-        background: linear-gradient(90deg, rgba(255,215,0,0.04) 0%, rgba(124,58,237,0.03) 50%, transparent 100%);
-        flex-shrink: 0;
-      }
-      .nq-dash-title {
-        font-family: 'Cinzel Decorative', 'Cinzel', serif;
-        font-size: 0.92rem;
-        color: var(--gold);
-        letter-spacing: 2.5px;
-        text-transform: uppercase;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        text-shadow: 0 0 20px rgba(255,215,0,0.4);
-      }
-      .nq-dash-title-icon {
-        font-size: 1.2rem;
-        filter: drop-shadow(0 0 8px rgba(255,215,0,0.7));
-      }
-      .nq-dash-close {
-        background: rgba(255,255,255,0.05);
-        border: 1px solid rgba(255,255,255,0.1);
-        color: var(--txt-dim);
-        width: 34px;
-        height: 34px;
-        border-radius: 50%;
-        font-size: 1.25rem;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.2s;
-        flex-shrink: 0;
-        line-height: 1;
-      }
-      .nq-dash-close:hover {
-        background: rgba(251,113,133,0.15);
-        border-color: rgba(251,113,133,0.4);
-        color: #fb7185;
-        transform: rotate(90deg);
-      }
-
-      /* ── Abas ──────────────────────────────────────────────────────────── */
-      .nq-dash-tabs {
-        display: flex;
-        gap: 2px;
-        padding: 12px 26px 0;
-        border-bottom: 1px solid rgba(255,255,255,0.06);
-        flex-shrink: 0;
-        overflow-x: auto;
-        scrollbar-width: none;
-      }
-      .nq-dash-tabs::-webkit-scrollbar { display: none; }
-      .nq-dash-tab {
-        background: none;
-        border: none;
-        border-bottom: 2px solid transparent;
-        color: var(--txt-dim);
-        font-family: 'Cinzel', serif;
-        font-size: 0.68rem;
-        letter-spacing: 1.2px;
-        text-transform: uppercase;
-        padding: 8px 18px 11px;
-        cursor: pointer;
-        transition: all 0.2s;
-        white-space: nowrap;
-        flex-shrink: 0;
-      }
-      .nq-dash-tab:hover { color: var(--txt); }
-      .nq-dash-tab.active {
-        color: var(--gold);
-        border-bottom-color: var(--gold);
-        text-shadow: 0 0 12px rgba(255,215,0,0.3);
-      }
-
-      /* ── Corpo com scroll ────────────────────────────────────────────────── */
-      .nq-dash-body {
-        flex: 1;
-        overflow-y: auto;
-        padding: 22px 26px 28px;
-        scrollbar-width: thin;
-        scrollbar-color: rgba(255,215,0,0.18) transparent;
-      }
-      .nq-dash-body::-webkit-scrollbar { width: 4px; }
-      .nq-dash-body::-webkit-scrollbar-track { background: transparent; }
-      .nq-dash-body::-webkit-scrollbar-thumb {
-        background: rgba(255,215,0,0.18);
-        border-radius: 2px;
-      }
-      .nq-dash-pane { display: none; }
-      .nq-dash-pane.active { display: block; }
-
-      /* ── Hero card ─────────────────────────────────────────────────────── */
-      .nq-dash-hero {
-        display: grid;
-        grid-template-columns: 88px 1fr;
-        gap: 18px;
-        align-items: center;
-        background: linear-gradient(135deg, rgba(124,58,237,0.1) 0%, rgba(255,215,0,0.04) 100%);
-        border: 1px solid rgba(255,215,0,0.18);
-        border-radius: 16px;
-        padding: 18px;
-        margin-bottom: 22px;
-        position: relative;
-        overflow: hidden;
-      }
-      .nq-dash-hero::after {
-        content: '⚕';
-        position: absolute;
-        right: 16px;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 4rem;
-        opacity: 0.04;
-        pointer-events: none;
-      }
-      .nq-dash-avatar {
-        width: 88px;
-        height: 88px;
-        border-radius: 50%;
-        border: 2px solid var(--gold);
-        object-fit: cover;
-        box-shadow: 0 0 24px rgba(255,215,0,0.25), 0 0 48px rgba(255,215,0,0.08);
-        flex-shrink: 0;
-      }
-      .nq-dash-avatar-ph {
-        width: 88px;
-        height: 88px;
-        border-radius: 50%;
-        border: 2px solid rgba(255,215,0,0.3);
-        background: linear-gradient(135deg, #1a2744, #0d1426);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2.2rem;
-        flex-shrink: 0;
-      }
-      .nq-dash-char-name {
-        font-family: 'Cinzel', serif;
-        font-size: 1.05rem;
-        color: var(--gold);
-        font-weight: 700;
-        margin-bottom: 3px;
-      }
-      .nq-dash-char-title {
-        font-size: 0.76rem;
-        color: var(--txt-dim);
-        margin-bottom: 10px;
-        letter-spacing: 0.3px;
-      }
-      .nq-dash-char-stats {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px 14px;
-      }
-      .nq-dash-cs {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        font-size: 0.76rem;
-        color: var(--txt);
-        background: rgba(255,255,255,0.05);
-        border-radius: 20px;
-        padding: 3px 9px;
-      }
-      .nq-dash-cs em { color: var(--txt-dim); font-style: normal; margin-right: 2px; }
-
-      /* ── KPI grid ─────────────────────────────────────────────────────── */
-      .nq-dash-kpis {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-        margin-bottom: 22px;
-      }
-      .nq-dash-kpi {
-        background: rgba(255,255,255,0.025);
-        border: 1px solid rgba(255,255,255,0.07);
-        border-radius: 14px;
-        padding: 16px 12px 13px;
-        text-align: center;
-        transition: border-color 0.2s, transform 0.15s;
-        cursor: default;
-      }
-      .nq-dash-kpi:hover { transform: translateY(-1px); }
-      .nq-dash-kpi-icon { font-size: 1.4rem; margin-bottom: 7px; line-height: 1; }
-      .nq-dash-kpi-val {
-        font-size: 1.4rem;
-        font-weight: 700;
-        font-family: 'Cinzel', serif;
-        margin-bottom: 5px;
-        line-height: 1;
-      }
-      .nq-dash-kpi-lbl {
-        font-size: 0.62rem;
-        color: var(--txt-dim);
-        text-transform: uppercase;
-        letter-spacing: 1px;
-      }
-
-      /* ── Section title ─────────────────────────────────────────────────── */
-      .nq-dash-stitle {
-        font-family: 'Cinzel', serif;
-        font-size: 0.68rem;
-        color: rgba(255,215,0,0.75);
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-        margin-bottom: 12px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-      .nq-dash-stitle::after {
-        content: '';
-        flex: 1;
-        height: 1px;
-        background: linear-gradient(90deg, rgba(255,215,0,0.2), transparent);
-      }
-
-      /* ── Activity chart ────────────────────────────────────────────────── */
-      .nq-dash-activity {
-        background: rgba(0,0,0,0.22);
-        border: 1px solid rgba(255,255,255,0.06);
-        border-radius: 12px;
-        padding: 12px 16px 8px;
-        margin-bottom: 22px;
-      }
-
-      /* ── Badges strip ─────────────────────────────────────────────────── */
-      .nq-dash-badges-grid {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 10px;
-        margin-bottom: 22px;
-        max-width: 420px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      /* Each cell: shield on top, label below */
-      .nq-dash-badge-wrap {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 5px;
-      }
-      /* The .badge-slot inside uses the global shield CSS from style.css */
-      .nq-dash-badge-wrap .badge-slot {
-        width: 100%;
-      }
-      .nq-dash-badge-lbl {
-        font-size: 0.48rem;
-        color: var(--txt-dim);
-        text-align: center;
-        line-height: 1.2;
-        font-family: 'Cinzel', serif;
-      }
-      .nq-dash-badge-wrap.on .nq-dash-badge-lbl { color: var(--gold-light); }
-
-      /* Progress row */
-      .nq-dash-prow {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 14px;
-      }
-      .nq-dash-pbar {
-        flex: 1;
-        height: 6px;
-        background: rgba(255,255,255,0.07);
-        border-radius: 3px;
-        overflow: hidden;
-      }
-      .nq-dash-pfill {
-        height: 100%;
-        border-radius: 3px;
-        transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-      }
-      .nq-dash-plbl {
-        font-size: 0.72rem;
-        color: var(--gold);
-        font-family: 'Cinzel', serif;
-        white-space: nowrap;
-        min-width: 28px;
-        text-align: right;
-      }
-
-      /* ── Skills: radar ────────────────────────────────────────────────── */
-      .nq-dash-radar-wrap {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 20px;
-        padding: 8px;
-        background: rgba(0,0,0,0.18);
-        border: 1px solid rgba(124,58,237,0.15);
-        border-radius: 16px;
-      }
-      .nq-dash-radar-wrap canvas { max-width: 320px; width: 100%; }
-
-      /* Skills: axis rows */
-      .nq-dash-axis {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 9px 12px;
-        border-radius: 9px;
-        margin-bottom: 5px;
-        background: rgba(255,255,255,0.025);
-        border: 1px solid rgba(255,255,255,0.045);
-        transition: background 0.15s;
-      }
-      .nq-dash-axis:hover { background: rgba(255,255,255,0.04); }
-      .nq-dash-axis.na { opacity: 0.3; }
-      .nq-dash-axis-ico { font-size: 1.05rem; width: 22px; text-align: center; flex-shrink: 0; }
-      .nq-dash-axis-lbl { flex: 1; font-size: 0.79rem; color: var(--txt); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-      .nq-dash-axis-bar { width: 72px; height: 5px; background: rgba(255,255,255,0.07); border-radius: 3px; overflow: hidden; flex-shrink: 0; }
-      .nq-dash-axis-fill { height: 100%; border-radius: 3px; transition: width 0.6s ease; }
-      .nq-dash-axis-pct { font-size: 0.76rem; font-weight: 700; min-width: 34px; text-align: right; }
-      .nq-dash-axis-cnt { font-size: 0.66rem; color: var(--txt-dim); min-width: 40px; text-align: right; }
-
-      /* Weakness pill */
-      .nq-dash-weakness {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        background: rgba(251,113,133,0.1);
-        border: 1px solid rgba(251,113,133,0.3);
-        border-radius: 20px;
-        padding: 5px 14px;
-        font-size: 0.7rem;
-        color: #fb7185;
-        margin-bottom: 16px;
-        cursor: pointer;
-        transition: background 0.2s;
-      }
-      .nq-dash-weakness:hover { background: rgba(251,113,133,0.18); }
-
-      /* ── Conquistas ───────────────────────────────────────────────────── */
-      .nq-dash-ach-counter {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        padding: 16px 18px;
-        background: linear-gradient(135deg, rgba(255,215,0,0.06), rgba(255,215,0,0.02));
-        border: 1px solid rgba(255,215,0,0.18);
-        border-radius: 14px;
-        margin-bottom: 20px;
-      }
-      .nq-dash-ach-ring {
-        width: 62px;
-        height: 62px;
-        border-radius: 50%;
-        background: rgba(255,215,0,0.08);
-        border: 2px solid rgba(255,215,0,0.28);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-      }
-      .nq-dash-ach-ringval {
-        font-family: 'Cinzel', serif;
-        font-size: 1.05rem;
-        color: var(--gold);
-        font-weight: 700;
-        line-height: 1;
-      }
-      .nq-dash-ach-ringval small { font-size: 0.6rem; color: var(--txt-dim); }
-      .nq-dash-ach-lbl {
-        font-family: 'Cinzel', serif;
-        font-size: 0.8rem;
-        color: var(--gold);
-        margin-bottom: 6px;
-      }
-      .nq-dash-ach-grid { display: grid; gap: 7px; }
-      .nq-dash-ach-card {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        padding: 11px 14px;
-        border-radius: 10px;
-        border: 1px solid;
-        transition: transform 0.15s;
-      }
-      .nq-dash-ach-card:hover { transform: translateX(2px); }
-      .nq-dash-ach-card.on {
-        background: linear-gradient(135deg, rgba(52,211,153,0.09), rgba(16,185,129,0.04));
-        border-color: rgba(52,211,153,0.28);
-        box-shadow: 0 0 14px rgba(52,211,153,0.08);
-      }
-      .nq-dash-ach-card.off {
-        background: rgba(0,0,0,0.18);
-        border-color: rgba(255,255,255,0.05);
-        opacity: 0.5;
-      }
-      .nq-dash-ach-ico { font-size: 2rem; flex-shrink: 0; width: 44px; text-align: center; }
-      .nq-dash-ach-ico img { width: 44px; height: 44px; object-fit: contain; }
-      .nq-dash-ach-name { font-size: 0.84rem; font-weight: 700; margin-bottom: 3px; }
-      .nq-dash-ach-card.on  .nq-dash-ach-name { color: #34d399; }
-      .nq-dash-ach-card.off .nq-dash-ach-name { color: var(--txt); }
-      .nq-dash-ach-desc { font-size: 0.7rem; color: var(--txt-dim); line-height: 1.35; }
-      .nq-dash-ach-check { margin-left: auto; font-size: 1.1rem; color: #34d399; flex-shrink: 0; }
-
-      /* ── Biblioteca de Néfrons ────────────────────────────────────────── */
-      .nq-lib-head { margin-bottom: 18px; }
-      .nq-lib-progress-info { font-size: 0.82rem; color: #c8d8f0; margin-bottom: 8px; }
-      .nq-lib-bar { height: 8px; background: rgba(255,255,255,0.07); border-radius: 6px; overflow: hidden; }
-      .nq-lib-bar-fill { height: 100%; background: linear-gradient(90deg, #b8860b, #ffd700); border-radius: 6px; transition: width 0.5s ease; box-shadow: 0 0 8px rgba(255,215,0,0.4); }
-      .nq-lib-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(238px, 1fr)); gap: 14px; }
-      .nq-lib-card {
-        background: linear-gradient(160deg, rgba(255,255,255,0.045), rgba(255,255,255,0.012));
-        border: 1px solid rgba(255,255,255,0.08);
-        border-left: 3px solid rgba(148,163,184,0.4);
-        border-radius: 12px;
-        padding: 13px 14px;
-        cursor: pointer;
-        transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
-        display: flex; flex-direction: column; gap: 5px;
-      }
-      .nq-lib-card:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(0,0,0,0.45); border-color: rgba(255,215,0,0.22); }
-      .nq-lib-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2px; }
-      .nq-lib-icon { font-size: 1.25rem; line-height: 1; }
-      .nq-lib-rar { font-size: 0.56rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 2px 8px; border-radius: 10px; font-family: 'Cinzel', serif; white-space: nowrap; }
-      .nq-lib-title { font-family: 'Cinzel', serif; font-size: 0.85rem; font-weight: 700; color: #e8d9a0; line-height: 1.28; }
-      .nq-lib-meta { font-size: 0.69rem; color: #9aabcc; }
-      .nq-lib-jornal { font-size: 0.67rem; color: var(--txt-dim); font-style: italic; }
-      .nq-lib-resumo {
-        font-size: 0.74rem; color: #b8c8e0; line-height: 1.5; margin-top: 3px;
-        display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
-      }
-      .nq-lib-card.expanded .nq-lib-resumo { -webkit-line-clamp: unset; overflow: visible; }
-      .nq-lib-extra { display: none; flex-direction: column; gap: 7px; margin-top: 5px; padding-top: 9px; border-top: 1px dashed rgba(255,255,255,0.1); }
-      .nq-lib-card.expanded .nq-lib-extra { display: flex; }
-      .nq-lib-conc { font-size: 0.72rem; color: #c8d8f0; line-height: 1.45; }
-      .nq-lib-impacto { font-size: 0.7rem; color: #7dd3fc; line-height: 1.4; }
-      .nq-lib-curio { font-size: 0.7rem; color: #fcd34d; line-height: 1.45; }
-      .nq-lib-more { font-size: 0.65rem; color: var(--txt-dim); text-align: right; margin-top: 3px; }
-      .nq-lib-more::after { content: 'ver mais ▾'; }
-      .nq-lib-card.expanded .nq-lib-more::after { content: 'ver menos ▴'; }
-      .nq-lib-empty { text-align: center; color: var(--txt-dim); font-size: 0.86rem; padding: 44px 20px; line-height: 1.65; }
-      .nq-lib-locked-hint { margin-top: 18px; text-align: center; font-size: 0.76rem; color: var(--txt-dim); }
-
-      /* ── Mini leaderboard ─────────────────────────────────────────────── */
-      .nq-dash-lb-tabs {
-        display: flex;
-        gap: 8px;
-        margin-bottom: 12px;
-      }
-      .nq-dash-lb-tab {
-        flex: 1;
-        background: rgba(255,255,255,0.04);
-        border: 1px solid rgba(255,255,255,0.1);
-        border-radius: 8px;
-        padding: 7px 10px;
-        color: var(--txt-dim);
-        font-family: 'Cinzel', serif;
-        font-size: 0.74rem;
-        font-weight: 700;
-        letter-spacing: 0.3px;
-        cursor: pointer;
-        transition: background 0.15s, border-color 0.15s, color 0.15s;
-      }
-      .nq-dash-lb-tab:hover { color: #c8d8f0; border-color: rgba(255,215,0,0.25); }
-      .nq-dash-lb-tab.active {
-        background: rgba(255,215,0,0.12);
-        border-color: rgba(255,215,0,0.5);
-        color: var(--gold);
-      }
-      .nq-dash-lb-head {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 14px;
-      }
-      .nq-dash-lb-search {
-        flex: 1;
-        background: rgba(255,255,255,0.05);
-        border: 1px solid rgba(255,255,255,0.1);
-        border-radius: 8px;
-        padding: 6px 12px;
-        font-size: 0.78rem;
-        color: var(--txt);
-        outline: none;
-        transition: border-color 0.2s;
-      }
-      .nq-dash-lb-search:focus { border-color: rgba(255,215,0,0.3); }
-      .nq-dash-lb-search::placeholder { color: var(--txt-dim); }
-      .nq-dash-lb-table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 0.8rem;
-      }
-      .nq-dash-lb-table th {
-        color: var(--txt-dim);
-        text-transform: uppercase;
-        font-size: 0.6rem;
-        letter-spacing: 1px;
-        font-family: 'Cinzel', serif;
-        padding: 8px 10px;
-        text-align: left;
-        border-bottom: 1px solid rgba(255,255,255,0.06);
-      }
-      .nq-dash-lb-table td {
-        padding: 9px 10px;
-        border-bottom: 1px solid rgba(255,255,255,0.04);
-        color: var(--txt);
-        vertical-align: middle;
-      }
-      .nq-dash-lb-table tr:last-child td { border-bottom: none; }
-      .nq-dash-lb-table tr:hover td { background: rgba(255,255,255,0.02); }
-      .nq-dash-lb-table tr.lb-me td { background: rgba(255,215,0,0.05); }
-      .nq-dash-rank { font-weight: 700; font-size: 0.9rem; }
-      .nq-dash-rank.r1 { color: #ffd700; }
-      .nq-dash-rank.r2 { color: #c0c0c0; }
-      .nq-dash-rank.r3 { color: #cd7f32; }
-      .nq-dash-lb-score {
-        color: var(--gold);
-        font-weight: 700;
-        font-family: 'Cinzel', serif;
-        text-align: right;
-      }
-      .nq-dash-lb-spin {
-        text-align: center;
-        padding: 40px 20px;
-        color: var(--txt-dim);
-        font-size: 0.85rem;
-      }
-      .nq-dash-lb-ts {
-        font-size: 0.62rem;
-        color: var(--txt-dim);
-        text-align: right;
-        margin-top: 10px;
-      }
-
-      /* ── Engagement Grid (Heatmap) ────────────────────────────────────────── */
-      .nq-dash-heatmap-wrap {
-        background: rgba(255, 255, 255, 0.015);
-        border: 1px solid rgba(255, 255, 255, 0.04);
-        border-radius: 16px;
-        padding: 18px 20px;
-        margin-bottom: 22px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-      }
-      .nq-dash-heatmap-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 14px;
-      }
-      .nq-dash-heatmap-title {
-        font-family: 'Cinzel Decorative', 'Cinzel', serif;
-        font-size: 0.76rem;
-        font-weight: bold;
-        color: var(--gold);
-        letter-spacing: 1px;
-        text-shadow: 0 0 10px rgba(255,215,0,0.25);
-      }
-      .nq-dash-heatmap-grid {
-        display: flex;
-        flex-wrap: nowrap;
-        gap: 5px;
-        padding: 6px 4px 10px;
-        overflow-x: auto;
-      }
-      .nq-dash-heatmap-day {
-        width: 10px;
-        height: 10px;
-        border-radius: 2.5px;
-        cursor: help;
-        transition: transform 0.12s ease, box-shadow 0.12s ease;
-      }
-      .nq-dash-heatmap-day:hover {
-        transform: scale(1.35);
-        z-index: 5;
-        box-shadow: 0 0 6px rgba(255,255,255,0.3);
-      }
-      .nq-dash-heatmap-labels {
-        display: flex;
-        justify-content: space-between;
-        padding: 4px 6px 0;
-        margin-top: 4px;
-        font-size: 0.65rem;
-        color: var(--txt-dim);
-        font-family: 'Philosopher', sans-serif;
-      }
-      .nq-dash-heatmap-legend {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 5px;
-        margin-top: 12px;
-        font-size: 0.65rem;
-        color: var(--txt-dim);
-        font-family: 'Philosopher', sans-serif;
-      }
-      .nq-dash-heatmap-legend-box {
-        width: 10px;
-        height: 10px;
-        border-radius: 2.5px;
-        cursor: help;
-      }
-
-      /* ── Responsive ────────────────────────────────────────────────────── */
-      @media (max-width: 600px) {
-        .nq-dash-overlay { padding: 0; align-items: flex-end; }
-        .nq-dash-panel { max-height: 96svh; border-radius: 18px 18px 0 0; }
-        .nq-dash-kpis { grid-template-columns: repeat(2, 1fr); }
-        .nq-dash-hero { grid-template-columns: 68px 1fr; gap: 12px; }
-        .nq-dash-avatar,
-        .nq-dash-avatar-ph { width: 68px; height: 68px; }
-        .nq-dash-header { padding: 16px 18px 12px; }
-        .nq-dash-tabs { padding: 10px 18px 0; }
-        .nq-dash-body { padding: 18px 18px calc(80px + env(safe-area-inset-bottom, 0px)); }
-        .nq-dash-axis-bar { width: 48px; }
-        .nq-dash-axis-cnt { display: none; }
-        .nq-dash-title { font-size: 0.78rem; letter-spacing: 1.5px; }
-      }
-
-      /* Estilo do tooltip "i" na Jornada Ativa */
-      .nq-dash-hero-info-tooltip {
-        position: absolute;
-        bottom: 10px;
-        right: 10px;
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        color: var(--txt-dim);
-        font-size: 0.68rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: help;
-        transition: all 0.2s ease;
-        user-select: none;
-        z-index: 5;
-      }
-      .nq-dash-hero-info-tooltip:hover {
-        background: rgba(255, 215, 0, 0.15);
-        border-color: var(--gold);
-        color: var(--gold);
-        box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
-      }
-      .nq-dash-hero-info-tooltip::after {
-        content: "O progresso e nível acima pertencem apenas à corrida atual e serão resetados ao iniciar um novo jogo. Os acertos acumulados, conquistas e ranking abaixo pertencem ao seu perfil definitivo.";
-        position: absolute;
-        bottom: 24px;
-        right: 0;
-        width: 220px;
-        background: #0f111a;
-        border: 1px solid rgba(255, 215, 0, 0.3);
-        border-radius: 8px;
-        padding: 8px 10px;
-        color: #e2e8f0;
-        font-size: 0.65rem;
-        line-height: 1.4;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.2s ease, transform 0.2s ease;
-        transform: translateY(4px);
-        box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        z-index: 10;
-        text-align: left;
-        font-family: 'Philosopher', sans-serif;
-      }
-      .nq-dash-hero-info-tooltip:hover::after {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    `;
-    document.head.appendChild(s);
+    // O sistema visual vive em styles/lumen/dashboard.css. Mantido por
+    // compatibilidade com integrações que chamavam este inicializador.
   }
 
-  // ── Helpers ─────────────────────────────────────────────────────────────
-  function _colorFor(pct) {
-    if (pct == null) return 'var(--txt-dim)';
-    return pct >= 70 ? '#34d399' : pct >= 50 ? '#fbbf24' : '#fb7185';
+  function _escape(value) {
+    return String(value == null ? '' : value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
   }
 
-  const _BADGE_RUNES = { 1: 'ᚠ', 2: 'ᚨ', 3: 'ᛊ', 4: 'ᛟ', 5: 'ᛏ' };
-
-  function _badgeHtml(badge) {
-    const on = (state.correctTotal || 0) >= badge.required;
-    const rune = _BADGE_RUNES[badge.id] || '✦';
-    return `
-      <div class="nq-dash-badge-wrap ${on ? 'on' : ''}" title="${escapeHtml(badge.name)} — ${badge.required} acertos">
-        <div class="badge-slot ${on ? 'unlocked' : ''}" data-badge="${badge.id}">
-          <div class="badge-shield"><span class="badge-rune">${rune}</span></div>
-          ${on ? '' : '<span class="badge-lock">🔒</span>'}
-        </div>
-        <div class="nq-dash-badge-lbl">${escapeHtml(badge.name)}</div>
-      </div>`;
+  function _readJson(key, fallback) {
+    try {
+      const raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : fallback;
+    } catch (error) {
+      return fallback;
+    }
   }
 
-  function _buildEngagementHeatmap(stats) {
-    const daysData = stats.dailyActivity || {};
+  function _number(value, fallback) {
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? parsed : fallback;
+  }
 
-    const today = new Date();
-    const currentDayOfWeek = today.getDay(); // 0: Sun, 1: Mon, ..., 6: Sat
-    
-    // Sunday of 52 weeks ago
-    const startDate = new Date(today);
-    startDate.setDate(today.getDate() - currentDayOfWeek - 364);
-    startDate.setHours(0, 0, 0, 0);
+  function _formatNumber(value) {
+    return _number(value, 0).toLocaleString('pt-BR');
+  }
 
-    const totalDays = 371; // 53 weeks to show a full year + current week
-    const gridDays = [];
+  function _meterMarkup(value, max, label, gold) {
+    const safeMax = Math.max(1, _number(max, 1));
+    const safeValue = Math.max(0, Math.min(_number(value, 0), safeMax));
+    const progress = Math.round((safeValue / safeMax) * 10000) / 100;
+    return `<div class="nqd-meter${gold ? ' nqd-meter--gold' : ''}" role="progressbar" aria-label="${_escape(label)}" aria-valuemin="0" aria-valuemax="${safeMax}" aria-valuenow="${safeValue}"><span style="--progress:${progress}%"></span></div>`;
+  }
 
-    for (let i = 0; i < totalDays; i++) {
-      const current = new Date(startDate);
-      current.setDate(startDate.getDate() + i);
-      const yyyy = current.getFullYear();
-      const mm = String(current.getMonth() + 1).padStart(2, '0');
-      const dd = String(current.getDate()).padStart(2, '0');
-      const dateKey = `${yyyy}-${mm}-${dd}`;
+  function _formatDate(dateString) {
+    const date = new Date(`${dateString}T12:00:00`);
+    return Number.isNaN(date.getTime())
+      ? dateString
+      : date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' });
+  }
 
-      const dayStats = daysData[dateKey] || { count: 0, time: 0, correct: 0 };
-      gridDays.push({
-        date: current,
-        dateKey,
-        dayOfWeek: current.getDay(),
-        ...dayStats
+  function _localDateKey(date) {
+    const d = date || new Date();
+    const offset = d.getTimezoneOffset() * 60 * 1000;
+    return new Date(d.getTime() - offset).toISOString().slice(0, 10);
+  }
+
+  function _startOfToday() {
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+  }
+
+  function _svg(name) {
+    const common = 'viewBox="0 0 24 24" aria-hidden="true" focusable="false"';
+    const paths = {
+      overview: '<path d="M4 5h16v14H4zM8 9h8M8 13h5"/>',
+      skills: '<path d="M4 18V9m5 9V5m5 13v-7m5 7V3"/>',
+      mapa: '<path d="M4 6l5-2 6 2 5-2v14l-5 2-6-2-5 2zM9 4v14m6-12v14"/>',
+      achievements: '<path d="M8 4h8v5a4 4 0 01-8 0zM6 6H4v2a3 3 0 003 3m11-5h2v2a3 3 0 01-3 3M12 13v5m-4 2h8"/>',
+      library: '<path d="M5 4h11a3 3 0 013 3v13H8a3 3 0 01-3-3zM8 4v16"/>',
+      ranking: '<path d="M5 20V10h4v10zm5 0V4h4v16zm5 0v-7h4v7"/>',
+      back: '<path d="M19 12H5m6-6l-6 6 6 6"/>',
+      arrow: '<path d="M5 12h14m-5-5l5 5-5 5"/>',
+      check: '<path d="M5 12l4 4L19 6"/>',
+      search: '<circle cx="11" cy="11" r="6"/><path d="M16 16l4 4"/>',
+      refresh: '<path d="M20 7v5h-5M4 17v-5h5M18 11a7 7 0 00-12-3M6 13a7 7 0 0012 3"/>',
+    };
+    return `<svg ${common}>${paths[name] || paths.overview}</svg>`;
+  }
+
+  function _readSave() {
+    const save = _readJson('nefroquest-save', null);
+    if (!save || typeof save !== 'object' || save.gameOver === true) return null;
+    if (!_number(save.level, 0) || !(save.character || save.selectedCharacter)) return null;
+    if (save.lives != null && _number(save.lives, 0) <= 0) return null;
+    return save;
+  }
+
+  function _emptyStats() {
+    return {
+      totalQuestions: 0,
+      totalCorrect: 0,
+      totalWrong: 0,
+      byTopic: {},
+      byCategory: {},
+      questionHistory: [],
+      dailyActivity: {},
+      timeStats: { totalTime: 0, questionCount: 0 },
+      mostMissed: {},
+    };
+  }
+
+  function _readDetailedStats() {
+    try {
+      if (typeof getDetailedStats === 'function') return getDetailedStats() || _emptyStats();
+    } catch (error) {
+      // O fallback abaixo mantém o estado vazio explícito.
+    }
+    return _readJson('nefroquest-detailed-stats', _emptyStats()) || _emptyStats();
+  }
+
+  function _readCoreSkills(stats) {
+    try {
+      if (typeof window.getCoreSkillsStats === 'function') {
+        return window.getCoreSkillsStats(stats) || [];
+      }
+    } catch (error) {
+      return [];
+    }
+    return [];
+  }
+
+  function _readAxisStats(stats) {
+    const axes = typeof NEFRO_AXES !== 'undefined' && Array.isArray(NEFRO_AXES) ? NEFRO_AXES : [];
+    return axes.map(axis => {
+      const entry = (stats.byCategory || {})[axis.cat] || {};
+      const correct = _number(entry.correct, 0);
+      const wrong = _number(entry.wrong, 0);
+      const total = _number(entry.total, correct + wrong) || (correct + wrong);
+      return {
+        id: axis.id,
+        cat: axis.cat,
+        label: axis.label,
+        correct,
+        wrong,
+        total,
+        accuracy: total ? (correct / total) * 100 : null,
+      };
+    });
+  }
+
+  function _readStudyState() {
+    const study = _readJson('nefroquest-study-state', null);
+    if (!study || !Array.isArray(study.questions) || !study.questions.length) return null;
+    const savedAt = _number(study.savedAt, 0);
+    if (!savedAt || Date.now() - savedAt > 24 * 60 * 60 * 1000) return null;
+    const index = Math.max(0, Math.min(_number(study.index, 0), study.questions.length));
+    return { ...study, index, remaining: Math.max(0, study.questions.length - index) };
+  }
+
+  function _countOverdueReviews() {
+    const cards = _readJson('nefroquest-sr-data', {});
+    const boundary = _startOfToday();
+    const bank = Array.isArray(window.questionBank) ? window.questionBank : [];
+    const validIds = new Set(bank.map(question => String(question.id || question.qid || '')).filter(Boolean));
+    if (!validIds.size) return 0;
+    return Object.entries(cards || {}).filter(([qid, card]) => {
+      if (!validIds.has(String(qid))) return false;
+      if (!card || typeof card !== 'object') return false;
+      const due = _number(card.due, NaN);
+      return Number.isFinite(due) && due <= boundary;
+    }).length;
+  }
+
+  function _eligibleWeakness(coreSkills) {
+    return (coreSkills || [])
+      .filter(skill => _number(skill.totalAnswered, 0) >= 5 && skill.accuracy != null)
+      .sort((left, right) => {
+        const accuracyDelta = left.accuracy - right.accuracy;
+        if (accuracyDelta) return accuracyDelta;
+        return right.totalAnswered - left.totalAnswered;
+      })[0] || null;
+  }
+
+  function _eligibleStrength(coreSkills) {
+    return (coreSkills || [])
+      .filter(skill => _number(skill.totalAnswered, 0) >= 5 && skill.accuracy != null)
+      .sort((left, right) => {
+        const accuracyDelta = right.accuracy - left.accuracy;
+        if (accuracyDelta) return accuracyDelta;
+        return right.totalAnswered - left.totalAnswered;
+      })[0] || null;
+  }
+
+  function _readDailyActivity(stats) {
+    const activity = stats.dailyActivity || {};
+    const dates = Object.keys(activity).sort().reverse();
+    const todayKey = _localDateKey();
+    const today = activity[todayKey] || null;
+    const lastKey = dates[0] || null;
+    return {
+      today,
+      last: lastKey ? { date: lastKey, ...activity[lastKey] } : null,
+    };
+  }
+
+  function _buildPlan(data) {
+    const plan = [];
+
+    if (data.save) {
+      plan.push({
+        kind: 'resume',
+        kicker: 'Jornada ativa',
+        title: 'Retomar o ponto em que você parou',
+        detail: `Nível ${data.level} · ${_formatNumber(data.save.correctTotal || 0)} acertos na jornada`,
+        action: '_dashResumeJourney',
+        actionLabel: 'Retomar jornada',
+      });
+    } else {
+      plan.push({
+        kind: 'journey',
+        kicker: 'Jornada',
+        title: 'Iniciar uma nova jornada clínica',
+        detail: 'Escolha o modo e o personagem para começar.',
       });
     }
 
-    function getLevel(count, time) {
-      if (count === 0) return 0;
-      if (count >= 25 || time >= 600) return 4;
-      if (count >= 12 || time >= 240) return 3;
-      if (count >= 5 || time >= 60) return 2;
-      return 1;
+    if (data.studyState && data.studyState.remaining > 0) {
+      plan.push({
+        kind: 'study',
+        kicker: 'Sessão em andamento',
+        title: `Retomar ${data.studyState.remaining} ${data.studyState.remaining === 1 ? 'questão restante' : 'questões restantes'}`,
+        detail: 'Sessão salva nas últimas 24 horas.',
+        action: '_dashContinueStudy',
+        actionLabel: 'Retomar estudo',
+      });
     }
 
-    const weeks = [];
-    for (let i = 0; i < gridDays.length; i += 7) {
-      weeks.push(gridDays.slice(i, i + 7));
+    if (data.overdueReviews > 0) {
+      plan.push({
+        kind: 'review',
+        kicker: 'Memória ativa',
+        title: `${data.overdueReviews} ${data.overdueReviews === 1 ? 'revisão agendada vencida' : 'revisões agendadas vencidas'}`,
+        detail: 'Cards já programados pelo seu histórico.',
+        action: '_dashStartSRStudy',
+        actionLabel: 'Revisar agora',
+      });
     }
 
-    const weekSquares = weeks.map(week => {
-      const daySquares = week.map(day => {
-        const lvl = getLevel(day.count, day.time);
-        const dayName = day.date.toLocaleDateString('pt-BR', { weekday: 'short' });
-        const formattedDate = day.date.toLocaleDateString('pt-BR');
-        let tooltip = `${formattedDate} (${dayName}): `;
-        if (day.count === 0) {
-          tooltip += 'Sem atividade';
-        } else {
-          const accuracy = Math.round(day.correct / day.count * 100);
-          const min = Math.floor(day.time / 60);
-          const sec = Math.round(day.time % 60);
-          const timeStr = min > 0 ? `${min}m ${sec}s` : `${sec}s`;
-          tooltip += `${day.count} qts (${day.correct} acertos, ${accuracy}%) • ${timeStr} foco`;
-        }
+    if (data.weakness) {
+      plan.push({
+        kind: 'gap',
+        kicker: 'Ponto de atenção',
+        title: data.weakness.label,
+        detail: `${Math.round(data.weakness.accuracy)}% em ${data.weakness.totalAnswered} respostas`,
+        action: '_dashGoWeakness',
+        actionLabel: 'Treinar este eixo',
+      });
+    }
 
-        let bgStyle = 'rgba(255, 255, 255, 0.03)';
-        let shadow = 'none';
-        if (lvl === 1) bgStyle = 'rgba(139, 92, 246, 0.25)';
-        else if (lvl === 2) bgStyle = 'rgba(139, 92, 246, 0.55)';
-        else if (lvl === 3) bgStyle = 'rgba(139, 92, 246, 0.85)';
-        else if (lvl === 4) {
-          bgStyle = 'var(--gold)';
-          shadow = '0 0 6px rgba(255, 215, 0, 0.45)';
-        }
+    if (plan.length < 3 && !data.studyState && data.totalQuestions > 0) {
+      plan.push({
+        kind: 'practice',
+        kicker: 'Amostra clínica',
+        title: 'Ampliar seu prontuário de domínio',
+        detail: 'Mais respostas tornam o perfil de aprendizagem mais útil.',
+        action: '_dashExploreSkills',
+        actionLabel: 'Estudo livre',
+      });
+    }
 
-        return `<div class="nq-dash-heatmap-day" style="background:${bgStyle}; box-shadow:${shadow};" title="${escapeHtml(tooltip)}"></div>`;
-      }).join('');
+    return plan.slice(0, 3);
+  }
 
-      return `<div class="nq-dash-heatmap-week" style="display: flex; flex-direction: column; gap: 5px; width: 10px;">${daySquares}</div>`;
-    }).join('');
+  function _collectData(topicsLoadError) {
+    const save = _readSave();
+    const stats = _readDetailedStats();
+    const coreSkills = _readCoreSkills(stats);
+    const axisStats = _readAxisStats(stats);
+    const weakness = _eligibleWeakness(coreSkills);
+    const strength = _eligibleStrength(coreSkills);
+    const level = save ? Math.max(1, _number(save.level, 1)) : 1;
+    const xp = save ? Math.max(0, _number(save.xp, 0)) : 0;
+    const xpToNext = save
+      ? Math.max(1, _number(save.xpToNext, typeof window.xpForLevel === 'function' ? window.xpForLevel(level) : 200))
+      : Math.max(1, typeof window.xpForLevel === 'function' ? window.xpForLevel(1) : 200);
+    const totalQuestions = Math.max(0, _number(stats.totalQuestions, 0));
+    const totalCorrect = Math.max(0, _number(stats.totalCorrect, 0));
+    const characterId = save && CHARACTER_META[save.character || save.selectedCharacter]
+      ? (save.character || save.selectedCharacter)
+      : 'nephros';
+    const character = CHARACTER_META[characterId];
+    const evolutionLevel = Math.min(10, Math.max(1, level));
+    const avatar = `assets/classes/${character.folder}/nivel_${String(evolutionLevel).padStart(2, '0')}.${character.ext}`;
+    const nextBadge = BADGE_MILESTONES.find(badge => _number(save && save.correctTotal, 0) < badge.required) || null;
 
-    const startStr = startDate.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: '2-digit' });
-    const endStr = today.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: '2-digit' });
+    const data = {
+      save,
+      stats,
+      coreSkills,
+      axisStats,
+      weakness,
+      strength,
+      level,
+      xp,
+      xpToNext,
+      totalQuestions,
+      totalCorrect,
+      accuracy: totalQuestions ? Math.round((totalCorrect / totalQuestions) * 100) : null,
+      characterId,
+      character,
+      avatar,
+      nextBadge,
+      studyState: _readStudyState(),
+      overdueReviews: _countOverdueReviews(),
+      activity: _readDailyActivity(stats),
+      topicsLoadError: !!topicsLoadError,
+    };
+    data.plan = _buildPlan(data);
+    return data;
+  }
 
+  function _plainUserTitle(totalCorrect) {
+    if (totalCorrect >= 1500) return 'Grão-Mestre da Uremia';
+    if (totalCorrect >= 800) return 'Conselheiro Renal';
+    if (totalCorrect >= 400) return 'Patrono dos Glomérulos';
+    if (totalCorrect >= 150) return 'Erudito do Equilíbrio';
+    if (totalCorrect >= 50) return 'Escriba dos Rins';
+    if (totalCorrect >= 15) return 'Nefro-Iniciado';
+    return 'Aspirante da Guilda';
+  }
+
+  function _playerName() {
+    const user = window.authUser;
+    const metadata = user && user.user_metadata;
+    return (metadata && (metadata.full_name || metadata.name || metadata.nickname)) || 'Jogador local';
+  }
+
+  function _navMarkup() {
+    return DASH_TABS.map((tab, index) => `
+      <button type="button"
+        class="nqd-nav-item nq-dash-tab${index === 0 ? ' is-active active' : ''}"
+        id="nqdTab-${tab.id}"
+        role="tab"
+        aria-selected="${index === 0 ? 'true' : 'false'}"
+        aria-controls="nqdPane-${tab.id}"
+        tabindex="${index === 0 ? '0' : '-1'}"
+        data-dash-tab="${tab.id}">
+        <span class="nqd-nav-icon">${_svg(tab.id)}</span>
+        <span class="nqd-nav-label">${tab.label}</span>
+      </button>
+    `).join('');
+  }
+
+  function _shellMarkup(bodyMarkup, state) {
     return `
-      <div class="nq-dash-heatmap-wrap">
-        <div class="nq-dash-heatmap-header">
-          <div class="nq-dash-heatmap-title">Foco & Engajamento (Últimas 52 Semanas)</div>
-        </div>
-        <div class="nq-dash-heatmap-grid">
-          ${weekSquares}
-        </div>
-        <div class="nq-dash-heatmap-labels">
-          <span>${startStr}</span>
-          <span style="color:var(--gold); font-weight:bold; letter-spacing: 0.5px;">Intensidade de Foco</span>
-          <span>${endStr}</span>
-        </div>
-        <div class="nq-dash-heatmap-legend">
-          <span style="margin-right:2px;">Atividade:</span>
-          <div class="nq-dash-heatmap-legend-box" style="background:rgba(255,255,255,0.03);" title="Sem atividade"></div>
-          <div class="nq-dash-heatmap-legend-box" style="background:rgba(139,92,246,0.25);" title="1-4 questões"></div>
-          <div class="nq-dash-heatmap-legend-box" style="background:rgba(139,92,246,0.55);" title="5-11 questões"></div>
-          <div class="nq-dash-heatmap-legend-box" style="background:rgba(139,92,246,0.85);" title="12-24 questões"></div>
-          <div class="nq-dash-heatmap-legend-box" style="background:var(--gold); box-shadow:0 0 4px rgba(255,215,0,0.3);" title="25+ questões ou 10+ min de foco!"></div>
-        </div>
+      <div class="nqd-shell">
+        <aside class="nqd-rail">
+          <div class="nqd-rail-header">
+            <div class="nqd-brand-row">
+              <span class="nqd-brand" aria-label="NefroQuest">Nefro<em>Quest</em></span>
+            </div>
+          </div>
+          <span class="nqd-rail-kicker">Central de Comando</span>
+          ${state === 'ready' ? `
+            <div class="nqd-profile">
+              <span class="nqd-profile-avatar"><img src="${_escape(_dashboardData.avatar)}" alt="${_escape(_dashboardData.character.name)}"></span>
+              <span class="nqd-profile-copy"><strong class="nqd-profile-name">${_escape(_playerName())}</strong><small class="nqd-profile-level">${_escape(_plainUserTitle(_dashboardData.totalCorrect))}</small></span>
+            </div>
+            <nav class="nqd-nav" aria-label="Áreas da Central de Comando" role="navigation">
+              <div role="tablist" aria-orientation="vertical">${_navMarkup()}</div>
+            </nav>
+          ` : ''}
+          <div class="nqd-rail-footer"><button type="button" class="nqd-back" data-action="closeDashboard">${_svg('back')}<span>Voltar ao jogo</span></button></div>
+        </aside>
+        <main class="nqd-main">
+          <header class="nqd-topbar">
+            <div class="nqd-topbar-copy">
+              <span class="nqd-meta">Atlas NQ · Inteligência de aprendizagem</span>
+              <strong class="nqd-page-title">Central de Comando</strong>
+            </div>
+            <button type="button" class="nqd-close" data-action="closeDashboard" aria-label="Fechar Central de Comando">
+              ${_svg('back')}<span class="nqd-sr-only">Voltar</span>
+            </button>
+          </header>
+          <div class="nqd-content">${bodyMarkup}</div>
+        </main>
       </div>
     `;
   }
 
-
-  function _drawRadar() {
-    // drawRadarChart(container, coreStats) recebe o CONTÊINER (limpa e desenha
-    // o SVG dentro) — não um <canvas>. Usa o mesmo provedor do modo estudo
-    // (getCoreSkillsStats) para o radar de 5 eixos.
-    const container = document.getElementById('nqDashRadarContainer');
-    if (!container) return;
-    if (typeof drawRadarChart !== 'function'
-        || typeof getCoreSkillsStats !== 'function'
-        || typeof getDetailedStats !== 'function') {
-      container.innerHTML = '<div style="color:var(--txt-dim);font-size:0.8rem;">Radar indisponível.</div>';
-      return;
-    }
-    try {
-      drawRadarChart(container, getCoreSkillsStats(getDetailedStats()));
-    } catch (e) {
-      container.innerHTML = '<div style="color:var(--txt-dim);font-size:0.8rem;">Não foi possível carregar o radar.</div>';
-      if (typeof _track === 'function') _track('error_dash_radar', { msg: String(e) });
-    }
+  function _loadingMarkup() {
+    return _shellMarkup(`
+      <div class="nqd-loading" role="status" aria-live="polite">
+        <span class="nqd-loading-line" aria-hidden="true"></span>
+        <h2>Organizando seu prontuário de aprendizagem…</h2>
+        <small>Progresso, competências e evidências locais.</small>
+      </div>
+    `, 'loading');
   }
 
-  // ── Render tabs ─────────────────────────────────────────────────────────
-  function _tabOverview(stats, axisStats) {
-    const charData = state.character && typeof characters !== 'undefined' && characters[state.character]
-      ? characters[state.character] : null;
-    const charLv = Math.min(Math.max(state.level || 1, 1), 10);
-    const lvStr = String(charLv).padStart(2, '0');
-    // guerreiro_glomerular usa .png; as demais classes usam .jpg
-    const _ext = state.character === 'glomerulus' ? 'png' : 'jpg';
-    const avatarSrc = charData ? `assets/classes/${charData.folder}/nivel_${lvStr}.${_ext}` : null;
+  function _planMarkup(plan) {
+    return plan.map((item, index) => `
+      <article class="nqd-plan-item" data-plan-kind="${_escape(item.kind)}">
+        <div class="nqd-plan-item-copy">
+          <small>${_escape(item.kicker)}</small>
+          <strong>${_escape(item.title)}</strong>
+          <p>${_escape(item.detail)}</p>
+        </div>
+        ${item.action ? `<button type="button" class="nqd-text-action" data-action="${item.action}"><span>${_escape(item.actionLabel)}</span>${_svg('arrow')}</button>` : ''}
+      </article>
+    `).join('');
+  }
 
-    // Stats acumulados de TODAS as partidas (STATS_KEY)
-    const gStats = typeof getGameStats === 'function' ? getGameStats() : {};
-    const gamesPlayed  = gStats.gamesPlayed  || 0;
-    const bestScore    = gStats.bestScore     || 0;
-    const bestLevel    = gStats.bestLevel     || 0;
-    const totalAccumulatedKnowledge = parseInt(localStorage.getItem('nefroquest_total_accumulated_knowledge') || '0', 10);
-
-    // Stats detalhados (STATS_STORAGE_KEY) — histórico de questões
-    const accuracy = stats.totalQuestions > 0
-      ? Math.round((stats.totalCorrect / stats.totalQuestions) * 100) : 0;
-    const avgTime = (stats.timeStats?.questionCount || 0) > 0
-      ? Math.round(stats.timeStats.totalTime / stats.timeStats.questionCount) : 0;
-
-    // Maior streak já atingido no histórico (últimas 100)
-    let maxStreak = 0, curS = 0;
-    [...(stats.questionHistory || [])].reverse().forEach(q => {
-      if (q.correct) { curS++; maxStreak = Math.max(maxStreak, curS); }
-      else curS = 0;
-    });
-
-    const daysSet = new Set((stats.questionHistory || []).map(h => (h.date || '').slice(0, 10)).filter(Boolean));
-    const daysActive = daysSet.size;
-
-    const unlockedBadges = BADGES.filter(b => (state.correctTotal || 0) >= b.required).length;
-    const badgePct = Math.round((unlockedBadges / BADGES.length) * 100);
-    const actChart = _buildEngagementHeatmap(stats);
-    const acColor = _colorFor(accuracy);
-
-    let userDisplayName = 'Aventureiro';
-    if (window.authUser) {
-      userDisplayName = window.authUser.user_metadata?.full_name 
-        || window.authUser.user_metadata?.name 
-        || window.authUser.email?.split('@')[0] 
-        || 'Nefrologista';
-    } else if (window._guestMode) {
-      userDisplayName = 'Convidado';
-    }
-    
-    const userTitle = getUserTitle(stats.totalCorrect || 0);
-
-    // Calcular dados do SRS (Spaced Repetition System)
-    const srsStats = (() => {
-      let srData = {};
-      try {
-        srData = JSON.parse(localStorage.getItem('nefroquest-sr-data') || '{}');
-      } catch (e) {}
-      
-      const todayStart = new Date().setHours(0, 0, 0, 0);
-      const totalBank = (typeof questionBank !== 'undefined' && Array.isArray(questionBank)) ? questionBank.length : 999;
-      
-      let dueCount = 0;
-      let learningCount = 0;
-      let masteredCount = 0;
-      
-      Object.values(srData).forEach(card => {
-        if (card.due <= todayStart) {
-          dueCount++;
-        }
-        if (card.interval >= 15) {
-          masteredCount++;
-        } else {
-          learningCount++;
-        }
-      });
-      
-      const newCount = Math.max(0, totalBank - Object.keys(srData).length);
-      
-      return {
-        new: newCount,
-        learning: learningCount,
-        due: dueCount,
-        mastered: masteredCount
-      };
-    })();
-
-    // Calcular previsão de revisões para os próximos 7 dias
-    const forecastHtml = (() => {
-      const weekdays = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
-      const todayStart = new Date().setHours(0, 0, 0, 0);
-      const oneDayMs = 24 * 60 * 60 * 1000;
-      
-      let srData = {};
-      try {
-        srData = JSON.parse(localStorage.getItem('nefroquest-sr-data') || '{}');
-      } catch (e) {}
-
-      let maxForecastCount = 1;
-      const forecastDays = [];
-
-      for (let i = 0; i < 7; i++) {
-        const targetTime = todayStart + i * oneDayMs;
-        const targetDate = new Date(targetTime);
-        let count = 0;
-        
-        Object.values(srData).forEach(card => {
-          if (i === 0) {
-            if (card.due <= todayStart) {
-              count++;
-            }
-          } else {
-            const cardDueStart = new Date(card.due).setHours(0, 0, 0, 0);
-            if (cardDueStart === targetTime) {
-              count++;
-            }
-          }
-        });
-        
-        if (count > maxForecastCount) {
-          maxForecastCount = count;
-        }
-        
-        forecastDays.push({
-          count: count,
-          dayLabel: i === 0 ? 'Hoje' : weekdays[targetDate.getDay()],
-          isToday: i === 0,
-          label: i === 0 ? 'Hoje' : `${targetDate.getDate().toString().padStart(2, '0')}/${(targetDate.getMonth()+1).toString().padStart(2, '0')}`
-        });
-      }
-
+  function _activityMarkup(data) {
+    if (!data.activity.last) {
       return `
-        <div style="background:rgba(255,255,255,0.015); border:1px solid rgba(255,255,255,0.04); border-radius:16px; padding:16px 20px; margin-bottom:22px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
-          <div style="font-size:0.7rem; text-transform:uppercase; letter-spacing:1px; color:var(--txt-dim); margin-bottom:12px; font-weight:700; text-align:center;">🔮 Previsão de Revisões (Próximos 7 dias)</div>
-          <div style="display:flex; justify-content:space-between; gap:6px; align-items:flex-end; height:70px; padding-top:10px;">
-            ${forecastDays.map(f => {
-              const pct = Math.max(8, Math.min(100, (f.count / maxForecastCount) * 100));
-              const barBg = f.isToday ? 'linear-gradient(180deg,#ef4444,#b91c1c)' : 'linear-gradient(180deg,#fbbf24,#d97706)';
-              const barShadow = f.isToday ? '0 0 8px rgba(239,68,68,0.3)' : '0 0 8px rgba(251,191,36,0.2)';
-              return `
-                <div style="flex:1; display:flex; flex-direction:column; align-items:center;">
-                  <div style="font-size:0.7rem; font-weight:700; color:${f.count > 0 ? (f.isToday ? '#f87171' : '#fbbf24') : 'var(--txt-dim)'}; margin-bottom:4px;">${f.count}</div>
-                  <div style="width:100%; max-width:24px; height:${Math.round(pct * 0.45)}px; background:${barBg}; border-radius:3px 3px 0 0; box-shadow:${barShadow};" title="${f.label}: ${f.count} revisões"></div>
-                  <div style="font-size:0.6rem; color:var(--txt-dim); margin-top:6px; font-weight:500;">${f.dayLabel}</div>
-                </div>
-              `;
-            }).join('')}
-          </div>
+        <div class="nqd-empty-inline">
+          <strong>Sem atividade registrada ainda.</strong>
+          <span>Suas respostas passarão a formar este resumo clínico.</span>
         </div>
       `;
-    })();
-
-    return `
-      <!-- Card do Usuário (Perfil Definitivo) -->
-      <div class="nq-dash-user-card" style="background:linear-gradient(135deg, rgba(255,215,0,0.08), rgba(124,58,237,0.08)); border:1px solid rgba(255,215,0,0.25); border-radius:14px; padding:16px; margin-bottom:20px; display:flex; align-items:center; gap:16px; box-shadow:0 4px 15px rgba(0,0,0,0.15);">
-        <div style="font-size:2rem; background:rgba(255,215,0,0.1); border:2px solid var(--gold); border-radius:50%; width:56px; height:56px; display:flex; align-items:center; justify-content:center; flex-shrink:0; text-shadow:0 0 8px rgba(255,215,0,0.4);">
-          🎓
-        </div>
-        <div style="flex:1;">
-          <div style="font-family:'Cinzel',serif; font-size:1.05rem; color:var(--gold); font-weight:bold; line-height:1.2;">
-            ${escapeHtml(userDisplayName)}
-          </div>
-          <div style="font-family:'Cinzel',serif; font-size:0.75rem; color:#cbd5e1; text-transform:uppercase; letter-spacing:1px; margin-top:4px;">
-            Título: <strong style="color:var(--gold); font-weight:800;">${userTitle}</strong>
-          </div>
-          <div style="font-size:0.68rem; color:var(--txt-dim); margin-top:5px; line-height:1.3;">
-            Status definitivo do usuário (acumulado de todas as suas partidas no NefroQuest)
-          </div>
-        </div>
-      </div>
-
-      <!-- Jornada Ativa (Personagem) -->
-      <div class="nq-dash-stitle">Jornada Ativa (Personagem)</div>
-      <div class="nq-dash-hero" style="margin-bottom:20px;">
-        ${avatarSrc
-          ? `<img class="nq-dash-avatar" src="${avatarSrc}" alt="${escapeHtml(charData.name)}" loading="lazy">`
-          : `<div class="nq-dash-avatar-ph">⚕️</div>`}
-        <div>
-          <div class="nq-dash-char-name">${charData ? escapeHtml(charData.name) : 'Sem Personagem'}</div>
-          <div class="nq-dash-char-title">${charData ? escapeHtml(charData.title) : 'Nenhum jogo ativo'}</div>
-          <div class="nq-dash-char-stats">
-            <div class="nq-dash-cs"><em>Nível</em>${state.level || 1}</div>
-            <div class="nq-dash-cs"><em>Recorde</em>${bestScore.toLocaleString('pt-BR')}</div>
-            <div class="nq-dash-cs"><em>💰</em>${state.gold || 0} ouro</div>
-            <div class="nq-dash-cs"><em>✅</em>${state.correctTotal || 0}/100</div>
-          </div>
-        </div>
-        <div class="nq-dash-hero-info-tooltip">i</div>
-      </div>
-
-      <!-- KPIs: linha 1 — dados de TODAS as partidas -->
-      <div class="nq-dash-stitle">Histórico geral — todas as partidas</div>
-      <div class="nq-dash-kpis" style="margin-bottom:14px; grid-template-columns: repeat(4, 1fr);">
-        <div class="nq-dash-kpi" style="border-color:rgba(255,215,0,0.15);">
-          <div class="nq-dash-kpi-icon">🎮</div>
-          <div class="nq-dash-kpi-val nq-text-gold">${gamesPlayed}</div>
-          <div class="nq-dash-kpi-lbl">Partidas jogadas</div>
-        </div>
-        <div class="nq-dash-kpi" style="border-color:rgba(255,215,0,0.15);">
-          <div class="nq-dash-kpi-icon">🏆</div>
-          <div class="nq-dash-kpi-val nq-text-gold">${bestScore.toLocaleString('pt-BR')}</div>
-          <div class="nq-dash-kpi-lbl">Recorde de score</div>
-        </div>
-        <div class="nq-dash-kpi" style="border-color:rgba(255,215,0,0.15);">
-          <div class="nq-dash-kpi-icon">⬆️</div>
-          <div class="nq-dash-kpi-val nq-text-gold">${bestLevel}</div>
-          <div class="nq-dash-kpi-lbl">Maior nível</div>
-        </div>
-        <div class="nq-dash-kpi" style="border-color:rgba(255,215,0,0.15);">
-          <div class="nq-dash-kpi-icon">📚</div>
-          <div class="nq-dash-kpi-val nq-text-gold">${totalAccumulatedKnowledge.toLocaleString('pt-BR')}</div>
-          <div class="nq-dash-kpi-lbl">Conhecimento Total</div>
-        </div>
-      </div>
-
-      <!-- KPIs: linha 2 — stats de questões (acumulado) -->
-      <div class="nq-dash-stitle">Desempenho em questões — acumulado</div>
-      <div class="nq-dash-kpis">
-        <div class="nq-dash-kpi" style="border-color:rgba(52,211,153,0.15);">
-          <div class="nq-dash-kpi-icon">📝</div>
-          <div class="nq-dash-kpi-val" style="color:#34d399;">${stats.totalQuestions}</div>
-          <div class="nq-dash-kpi-lbl">Questões respondidas</div>
-        </div>
-        <div class="nq-dash-kpi" style="border-color:rgba(${accuracy >= 70 ? '52,211,153' : accuracy >= 50 ? '251,191,36' : '251,113,133'},0.15);">
-          <div class="nq-dash-kpi-icon">${accuracy >= 70 ? '🎯' : accuracy >= 50 ? '📈' : '📊'}</div>
-          <div class="nq-dash-kpi-val" style="color:${acColor};">${accuracy}%</div>
-          <div class="nq-dash-kpi-lbl">Taxa de acerto</div>
-        </div>
-        <div class="nq-dash-kpi" style="border-color:rgba(52,211,153,0.15);">
-          <div class="nq-dash-kpi-icon">✅</div>
-          <div class="nq-dash-kpi-val" style="color:#34d399;">${stats.totalCorrect}</div>
-          <div class="nq-dash-kpi-lbl">Acertos totais</div>
-        </div>
-        <div class="nq-dash-kpi" style="border-color:rgba(251,113,133,0.15);">
-          <div class="nq-dash-kpi-icon">❌</div>
-          <div class="nq-dash-kpi-val" style="color:#fb7185;">${stats.totalWrong}</div>
-          <div class="nq-dash-kpi-lbl">Erros totais</div>
-        </div>
-        <div class="nq-dash-kpi" style="border-color:rgba(99,102,241,0.15);">
-          <div class="nq-dash-kpi-icon">⚡</div>
-          <div class="nq-dash-kpi-val" style="color:#818cf8;">${maxStreak}</div>
-          <div class="nq-dash-kpi-lbl">Maior streak</div>
-        </div>
-        <div class="nq-dash-kpi" style="border-color:rgba(251,191,36,0.15);">
-          <div class="nq-dash-kpi-icon">⏱</div>
-          <div class="nq-dash-kpi-val" style="color:#fbbf24;">${avgTime > 0 ? avgTime + 's' : '—'}</div>
-          <div class="nq-dash-kpi-lbl">Tempo médio/questão</div>
-        </div>
-        <div class="nq-dash-kpi" style="border-color:rgba(192,132,252,0.15);">
-          <div class="nq-dash-kpi-icon">📅</div>
-          <div class="nq-dash-kpi-val" style="color:var(--purple);">${daysActive}</div>
-          <div class="nq-dash-kpi-lbl">Dias de estudo</div>
-        </div>
-        <div class="nq-dash-kpi" style="border-color:rgba(96,165,250,0.15);">
-          <div class="nq-dash-kpi-icon">📐</div>
-          <div class="nq-dash-kpi-val nq-text-blue">${axisStats.length}</div>
-          <div class="nq-dash-kpi-lbl">Eixos praticados</div>
-        </div>
-        <div class="nq-dash-kpi" style="border-color:rgba(124,58,237,0.15);">
-          <div class="nq-dash-kpi-icon">🔬</div>
-          <div class="nq-dash-kpi-val" style="color:var(--purple-light);">${Object.keys(stats.byTopic || {}).length}</div>
-          <div class="nq-dash-kpi-lbl">Tópicos vistos</div>
-        </div>
-      </div>
-
-      ${actChart}
-
-      <!-- Widget de Repetição Espaçada (SRS) -->
-      <div class="nq-dash-stitle">Repetição Espaçada (Foco em Memorização)</div>
-      <div class="nq-dash-srs-widget" style="background:rgba(255,255,255,0.015); border:1px solid rgba(255,255,255,0.04); border-radius:16px; padding:16px 20px; margin-bottom:22px; display:grid; grid-template-columns: repeat(4, 1fr); gap:12px; text-align:center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
-        <div style="border-right:1px solid rgba(255,255,255,0.06); padding:4px;">
-          <div style="font-size:1.3rem; margin-bottom:4px;" title="Questões do banco que você ainda não viu">🆕</div>
-          <div style="font-size:1.15rem; font-weight:700; color:#3b82f6; font-family:'Cinzel',serif;">${srsStats.new}</div>
-          <div style="font-size:0.6rem; color:var(--txt-dim); text-transform:uppercase; letter-spacing:0.5px; margin-top:2px;">Novas</div>
-        </div>
-        <div style="border-right:1px solid rgba(255,255,255,0.06); padding:4px;">
-          <div style="font-size:1.3rem; margin-bottom:4px;" title="Questões vistas recentemente e em processo de fixação">🌱</div>
-          <div style="font-size:1.15rem; font-weight:700; color:#fbbf24; font-family:'Cinzel',serif;">${srsStats.learning}</div>
-          <div style="font-size:0.6rem; color:var(--txt-dim); text-transform:uppercase; letter-spacing:0.5px; margin-top:2px;">Fixação</div>
-        </div>
-        <div style="border-right:1px solid rgba(255,255,255,0.06); padding:4px; cursor:pointer;" data-action="_dashStartSRStudy" title="Clique para revisar suas ${srsStats.due} questões agendadas hoje">
-          <div style="font-size:1.3rem; margin-bottom:4px;">⏰</div>
-          <div style="font-size:1.15rem; font-weight:700; color:#ef4444; font-family:'Cinzel',serif;">${srsStats.due}</div>
-          <div style="font-size:0.6rem; color:var(--txt-dim); text-transform:uppercase; letter-spacing:0.5px; margin-top:2px; text-decoration:underline;">Revisar Hoje</div>
-        </div>
-        <div style="padding:4px;">
-          <div style="font-size:1.3rem; margin-bottom:4px;" title="Questões retidas com alto intervalo de memorização">👑</div>
-          <div style="font-size:1.15rem; font-weight:700; color:var(--gold); font-family:'Cinzel',serif;">${srsStats.mastered}</div>
-          <div style="font-size:0.6rem; color:var(--txt-dim); text-transform:uppercase; letter-spacing:0.5px; margin-top:2px;">Retidas</div>
-        </div>
-      </div>
-
-      ${forecastHtml}
-
-      <div class="nq-dash-stitle">Badges de progressão</div>
-      <div class="nq-dash-prow">
-        <div class="nq-dash-pbar">
-          <div class="nq-dash-pfill" style="width:${badgePct}%;background:linear-gradient(90deg,var(--gold-dark),var(--gold));"></div>
-        </div>
-        <div class="nq-dash-plbl">${unlockedBadges}/${BADGES.length}</div>
-      </div>
-      <div class="nq-dash-badges-grid">${BADGES.map(_badgeHtml).join('')}</div>
-    `;
-  }
-
-  function _tabSkills(axisStats) {
-    const stats = getDetailedStats();
-    const coreStats = getCoreSkillsStats(stats);
-    
-    const worstSkill = coreStats
-      .filter(s => s.totalAnswered > 0)
-      .sort((a, b) => (a.accuracy ?? 100) - (b.accuracy ?? 100))[0] || null;
-
-    return `
-      <div class="nq-dash-stitle">Radar de competências</div>
-      <div id="nqDashRadarContainer" style="margin-bottom:20px; min-height:340px; display:flex; justify-content:center; align-items:center;">
-        <div style="color:var(--txt-dim); font-size:0.8rem;">Carregando radar...</div>
-      </div>
-
-      ${worstSkill ? `
-        <button type="button" class="nq-dash-weakness" data-action="_dashGoWeakness">
-          ⚠ Ponto fraco: ${escapeHtml(worstSkill.label)}
-          — Acurácia: ${worstSkill.accuracy != null ? worstSkill.accuracy.toFixed(0) : 0}%
-          &nbsp;→ Treinar agora
-        </button>
-      ` : ''}
-
-      <div class="nq-dash-stitle">Desempenho por Competência</div>
-      <div style="display:flex; flex-direction:column; gap:10px;">
-        ${coreStats.map(skill => {
-          const hasData = skill.totalAnswered > 0;
-          const masteryPct = skill.mastery.toFixed(0);
-          const accuracyPct = hasData ? skill.accuracy.toFixed(0) : '0';
-          const c = hasData ? _colorFor(skill.accuracy) : '#374151';
-          const isWorst = worstSkill && worstSkill.label === skill.label;
-          return `
-            <div class="nq-dash-skill-card" style="background:${isWorst ? 'rgba(239,68,68,0.03)' : 'rgba(255,255,255,0.025)'}; border:${isWorst ? '1px solid rgba(239,68,68,0.35)' : '1px solid rgba(255,255,255,0.05)'}; border-radius:12px; padding:12px 14px; display:flex; flex-direction:column; gap:8px; box-shadow:${isWorst ? '0 0 12px rgba(239,68,68,0.15)' : 'none'}; position:relative;">
-              ${isWorst ? `<span style="position:absolute; top:-10px; right:14px; background:linear-gradient(135deg, #ef4444, #b91c1c); color:#fff; font-size:0.58rem; font-weight:900; letter-spacing:1px; text-transform:uppercase; padding:2px 8px; border-radius:10px; border:1px solid rgba(239,68,68,0.5); box-shadow:0 2px 4px rgba(0,0,0,0.3);">⚠️ Ponto Fraco</span>` : ''}
-              <div style="display:flex; justify-content:space-between; align-items:center;">
-                <span style="font-family:'Cinzel',serif; font-size:0.8rem; font-weight:bold; color:var(--gold);">${escapeHtml(skill.label)}</span>
-                <span style="font-size:0.78rem; font-weight:bold; color:#cbd5e1;">
-                  ${masteryPct}% Dominado 
-                  <small style="color:var(--txt-dim); font-weight:normal; font-size:0.68rem;">
-                    (${skill.correct}/${skill.totalBank} q. • acurácia: <span style="color:${hasData ? c : 'var(--txt-dim)'}; font-weight:bold;">${hasData ? accuracyPct + '%' : '—'}</span>)
-                  </small>
-                </span>
-              </div>
-              <div style="width:100%; height:5px; background:rgba(255,255,255,0.06); border-radius:2.5px; overflow:hidden;">
-                <div style="height:100%; width:${masteryPct}%; background:var(--gold); box-shadow: 0 0 4px var(--gold); border-radius:2.5px; transition:width 0.6s ease;"></div>
-              </div>
-              <div style="font-size:0.68rem; color:var(--txt-dim); line-height:1.35;">
-                ${escapeHtml(skill.desc)}
-              </div>
-              <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:2px;">
-                ${skill.subcategories.map(sub => {
-                  const subHasData = sub.totalAnswered > 0;
-                  const subMasteryPct = sub.mastery.toFixed(0);
-                  const subAccuracyPct = subHasData ? `${sub.accuracy.toFixed(0)}%` : '—';
-                  const subColor = subHasData ? _colorFor(sub.accuracy) : 'var(--txt-dim)';
-                  return `
-                    <span style="font-size:0.62rem; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06); border-radius:4px; padding:2px 5px; color:#cbd5e1;">
-                      ${escapeHtml(sub.label)}: <strong>${subMasteryPct}% Dom.</strong> <small style="color:var(--txt-dim);">(${sub.correct}/${sub.totalBank} • acurácia: <strong style="color:${subColor};">${subAccuracyPct}</strong>)</small>
-                    </span>
-                  `;
-                }).join('')}
-              </div>
-            </div>
-          `;
-        }).join('')}
-      </div>
-      ${_errorPatternsHtml()}
-    `;
-  }
-
-  // PED-1: distribuição dos motivos de erro auto-relatados na jornada.
-  // Complementa o radar: ele mostra ONDE você erra; isto mostra COMO você erra.
-  function _errorPatternsHtml() {
-    const DEFS = (typeof ERROR_REASONS !== 'undefined') ? ERROR_REASONS : null;
-    if (!DEFS) return '';
-    let data = null;
-    try { data = JSON.parse(localStorage.getItem('nefroquest-error-reasons') || 'null'); } catch (e) {}
-    const counts = (data && data.counts) || {};
-    const total = Object.entries(counts).filter(([k]) => DEFS[k]).reduce((a, [, n]) => a + n, 0);
-    const intro = `<div class="nq-dash-stitle" style="margin-top:24px;">🪞 Padrões de Raciocínio</div>`;
-    if (!total) {
-      return `${intro}<div style="color:var(--txt-dim);font-size:0.78rem;line-height:1.6;">Quando errar uma questão na jornada, responda ao <em>"Por que você escolheu essa?"</em> que aparece abaixo da explicação. Aqui você verá seus padrões de erro de raciocínio — o primeiro passo para corrigi-los.</div>`;
     }
-    const sorted = Object.entries(counts).filter(([k]) => DEFS[k]).sort((a, b) => b[1] - a[1]);
-    const top = sorted[0];
-    const bars = sorted.map(([k, n]) => {
-      const pct = Math.round(n * 100 / total);
-      return `
-        <div style="display:flex;align-items:center;gap:8px;">
-          <span style="flex:0 0 min(230px,46%);font-size:0.72rem;color:#cbd5e1;">${DEFS[k].chip}</span>
-          <div style="flex:1;height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden;"><div style="height:100%;width:${pct}%;background:#a78bfa;border-radius:3px;"></div></div>
-          <span style="flex:0 0 52px;text-align:right;font-size:0.7rem;color:var(--txt-dim);">${n} (${pct}%)</span>
-        </div>`;
-    }).join('');
-    return `${intro}
-      <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:12px;">${bars}</div>
-      <div style="background:rgba(167,139,250,0.07);border:1px solid rgba(167,139,250,0.3);border-radius:10px;padding:10px 12px;font-size:0.74rem;color:#ddd6fe;line-height:1.55;"><strong>Seu padrão dominante: ${DEFS[top[0]].name}.</strong> ${DEFS[top[0]].tip}</div>`;
+
+    const entry = data.activity.today
+      ? { date: _localDateKey(), ...data.activity.today }
+      : data.activity.last;
+    const count = _number(entry.count, 0);
+    const correct = _number(entry.correct, 0);
+    const accuracy = count ? Math.round((correct / count) * 100) : 0;
+    return `
+      <div class="nqd-activity-strip" style="--columns:3">
+        <span class="nqd-metric"><small class="nqd-metric-label">${data.activity.today ? 'Hoje' : `Último · ${_formatDate(entry.date)}`}</small><strong class="nqd-metric-value">${count} ${count === 1 ? 'resposta' : 'respostas'}</strong></span>
+        <span class="nqd-metric"><small class="nqd-metric-label">Acertos</small><strong class="nqd-metric-value">${correct}</strong></span>
+        <span class="nqd-metric"><small class="nqd-metric-label">Precisão</small><strong class="nqd-metric-value">${accuracy}%</strong></span>
+      </div>
+    `;
   }
 
-  // ── Mapa de Competências (PED-2) ────────────────────────────────────────────
+  function _attentionMarkup(data) {
+    if (!data.weakness) {
+      return `
+        <div class="nqd-attention is-forming">
+          <span class="nqd-state">Amostra insuficiente</span>
+          <p><strong>Seu perfil clínico ainda está em formação.</strong></p>
+          <p>Responda ao menos 5 questões em uma competência central para receber uma indicação de atenção.</p>
+        </div>
+      `;
+    }
+
+    return `
+      <div class="nqd-attention">
+        <span class="nqd-state">Ponto de atenção</span>
+        <p><strong>${_escape(data.weakness.label)}</strong></p>
+        <p>${Math.round(data.weakness.accuracy)}% de acerto em ${data.weakness.totalAnswered} respostas. Esta é a menor precisão entre as competências com amostra válida.</p>
+        <button type="button" class="nqd-action" data-action="_dashGoWeakness">Treinar este eixo${_svg('arrow')}</button>
+      </div>
+    `;
+  }
+
+  function _milestoneMarkup(data) {
+    if (data.level >= 10) {
+      return `
+        <div class="nqd-milestone is-complete">
+          <div class="nqd-milestone-line"><span><small>Marco atual</small><strong>Nível máximo</strong></span><span>Nível 10 alcançado</span></div>
+          <p class="nqd-milestone-complete">A evolução continua pelos acertos, competências e selos da jornada.</p>
+          ${data.nextBadge ? `<div class="nqd-brief-block"><span>${_svg('achievements')}</span><p><strong>${_escape(data.nextBadge.name)}</strong><small>${_number(data.save && data.save.correctTotal, 0)} de ${data.nextBadge.required} acertos na jornada</small></p></div>` : ''}
+        </div>`;
+    }
+    const xpRemaining = Math.max(0, data.xpToNext - data.xp);
+    const badgeProgress = _number(data.save && data.save.correctTotal, 0);
+    return `
+      <div class="nqd-milestone">
+        <div class="nqd-milestone-line">
+          <span><small>Próximo marco</small><strong>Nível ${data.level + 1}</strong></span>
+          <span>${_formatNumber(xpRemaining)} XP restantes</span>
+        </div>
+        ${_meterMarkup(Math.min(data.xp, data.xpToNext), data.xpToNext, 'Progresso para o próximo nível', true)}
+        ${data.nextBadge ? `
+          <div class="nqd-brief-block">
+            <span>${_svg('achievements')}</span>
+            <p><strong>${_escape(data.nextBadge.name)}</strong><small>${badgeProgress} de ${data.nextBadge.required} acertos na jornada</small></p>
+          </div>
+        ` : '<p class="nqd-milestone-complete">Todos os selos de acertos da jornada foram alcançados.</p>'}
+      </div>
+    `;
+  }
+
+  function _tabOverview(data) {
+    const primaryAction = data.save ? '_dashResumeJourney' : '_dashStartJourney';
+    const primaryLabel = data.save ? 'Retomar jornada' : 'Começar jornada';
+    const totalCorrect = data.totalCorrect;
+    const totalWrong = Math.max(0, _number(data.stats.totalWrong, data.totalQuestions - totalCorrect));
+    return `
+      <section class="nqd-pane nq-dash-pane active" id="nqdPane-overview" role="tabpanel" aria-labelledby="nqdTab-overview" data-dash-pane="overview">
+        <div class="nqd-section-header">
+          <div><span class="nqd-eyebrow">Átrio da jornada · seu ponto de retorno</span>
+          <h1 class="nqd-title-lg">Sala de Conduta</h1>
+          <p class="nqd-section-copy">Leia o que importa agora, escolha uma conduta e continue aprendendo.</p></div>
+        </div>
+        ${data.topicsLoadError ? '<div class="nqd-notice" role="status">O banco de questões não pôde ser atualizado. A Central está mostrando apenas os dados disponíveis neste dispositivo.</div>' : ''}
+        <div class="nqd-command-grid">
+          <article class="nqd-journey">
+            <div class="nqd-journey-layout"><div class="nqd-journey-portrait">
+              <img src="${_escape(data.avatar)}" alt="${_escape(data.character.name)}">
+            </div>
+            <div class="nqd-journey-body">
+              <span class="nqd-state">${data.save ? 'Jornada ativa' : 'Nova jornada'}</span>
+              <h2 class="nqd-journey-title">${_escape(data.character.name)}</h2>
+              <p class="nqd-journey-subtitle">${_escape(data.character.title)}</p>
+              <div class="nqd-level-line">
+                <span><small>Nível</small><strong>${data.level}</strong></span>
+                <span><small>XP</small><strong>${_formatNumber(data.xp)} / ${_formatNumber(data.xpToNext)}</strong></span>
+              </div>
+              ${_meterMarkup(Math.min(data.xp, data.xpToNext), data.xpToNext, 'Experiência do personagem', true)}
+              <div class="nqd-journey-actions"><button type="button" class="nqd-primary-action" data-action="${primaryAction}" data-nqd-primary="true">${primaryLabel}${_svg('arrow')}</button></div>
+            </div></div>
+          </article>
+
+          <section class="nqd-plan" aria-labelledby="nqdPlanTitle">
+            <header class="nqd-plan-header"><span class="nqd-eyebrow">Conduta recomendada</span><h2 class="nqd-plan-title" id="nqdPlanTitle">Plano de hoje</h2></header>
+            <div class="nqd-plan-list">${_planMarkup(data.plan)}</div>
+          </section>
+        </div>
+
+        <div class="nqd-conduct-spine" aria-label="Ciclo de aprendizagem"><span class="nqd-conduct-step is-complete"><strong>Decidir</strong><small>conduta ativa</small></span><span class="nqd-conduct-step is-current"><strong>Reter</strong><small>memória</small></span><span class="nqd-conduct-step"><strong>Consolidar</strong><small>revisão</small></span><span class="nqd-conduct-step"><strong>Dominar</strong><small>evolução</small></span></div>
+
+        <div class="nqd-overview-details">
+          <section class="nqd-section">
+            <header class="nqd-section-header"><div><span class="nqd-eyebrow">Leitura acionável</span><h2 class="nqd-section-title">Progresso clínico</h2></div></header>
+            <div class="nqd-summary-strip" style="--columns:4">
+              <div class="nqd-metric"><small class="nqd-metric-label">Respondidas</small><strong class="nqd-metric-value">${_formatNumber(data.totalQuestions)}</strong></div>
+              <div class="nqd-metric"><small class="nqd-metric-label">Acertos</small><strong class="nqd-metric-value">${_formatNumber(totalCorrect)}</strong></div>
+              <div class="nqd-metric"><small class="nqd-metric-label">Erros registrados</small><strong class="nqd-metric-value">${_formatNumber(totalWrong)}</strong></div>
+              <div class="nqd-metric"><small class="nqd-metric-label">Precisão</small><strong class="nqd-metric-value">${data.accuracy == null ? '—' : `${data.accuracy}%`}</strong></div>
+            </div>
+            ${_attentionMarkup(data)}
+            ${data.strength ? `<p class="nqd-strength"><span>Força observada</span><strong>${_escape(data.strength.label)}</strong> · ${Math.round(data.strength.accuracy)}% em ${data.strength.totalAnswered} respostas</p>` : ''}
+          </section>
+          <section class="nqd-section">
+            <header class="nqd-section-header"><div><span class="nqd-eyebrow">Continuidade real</span><h2 class="nqd-section-title">Marco e atividade</h2></div></header>
+            ${_milestoneMarkup(data)}
+            <div class="nqd-activity"><h3>Atividade registrada</h3>${_activityMarkup(data)}</div>
+          </section>
+        </div>
+      </section>
+    `;
+  }
+
+  function _errorPatternsMarkup() {
+    const data = _readJson('nefroquest-error-reasons', { counts: {} });
+    const rows = Object.entries((data && data.counts) || {})
+      .filter(([, count]) => _number(count, 0) > 0)
+      .sort((left, right) => right[1] - left[1]);
+
+    if (!rows.length) {
+      return '<div class="nqd-empty-inline"><strong>Nenhum padrão nomeado ainda.</strong><span>Ao errar, você pode registrar o motivo da decisão para formar este retrato metacognitivo.</span></div>';
+    }
+
+    return `<div class="nqd-error-ledger">${rows.map(([reason, count]) => `
+      <div><span>${_escape(ERROR_REASON_LABELS[reason] || reason)}</span><strong>${_formatNumber(count)}</strong></div>
+    `).join('')}</div>`;
+  }
+
+  function _tabSkills(data) {
+    const rows = data.coreSkills.length ? data.coreSkills.map(skill => {
+      const answered = _number(skill.totalAnswered, 0);
+      const accuracy = skill.accuracy == null ? null : Math.round(skill.accuracy);
+      const sample = answered < 5 ? 'Amostra inicial' : 'Amostra válida';
+      return `
+        <article class="nqd-skill-row" data-state="${answered < 5 ? 'insufficient' : 'measured'}">
+          <div>
+            <span class="nqd-state${answered < 5 ? ' is-muted' : ''}">${sample}</span>
+            <h3 class="nqd-skill-name">${_escape(skill.label)}</h3>
+            <p class="nqd-skill-sample">${answered} respostas</p>
+          </div>
+          <div class="nqd-skill-measure">
+            <div class="nqd-skill-values"><span>${_formatNumber(skill.correct)} acertos</span><strong>${accuracy == null ? '—' : `${accuracy}%`}</strong></div>
+            ${_meterMarkup(accuracy == null ? 0 : accuracy, 100, `Precisão em ${skill.label}`)}
+          </div>
+          <p class="nqd-skill-note">${skill.categories && skill.categories.length ? skill.categories.map(cat => _escape((data.axisStats.find(axis => axis.cat === cat) || {}).label || cat)).join(' · ') : _escape(skill.desc || '')}</p>
+        </article>
+      `;
+    }).join('') : '<div class="nqd-empty"><strong>Prontuário ainda sem amostra.</strong><p>As competências aparecerão aqui após suas primeiras respostas.</p></div>';
+
+    return `
+      <section class="nqd-pane nq-dash-pane" id="nqdPane-skills" role="tabpanel" aria-labelledby="nqdTab-skills" data-dash-pane="skills" hidden>
+        <div class="nqd-section-header"><div><span class="nqd-eyebrow">Leitura pedagógica · sem notas simuladas</span><h1 class="nqd-title-lg">Prontuário de Domínio</h1><p class="nqd-section-copy">Cinco competências centrais, com amostra e precisão calculadas a partir das suas respostas.</p></div></div>
+        <div class="nqd-skills-layout">
+          <section class="nqd-radar-panel">
+            <header class="nqd-section-heading"><div><span class="nqd-eyebrow">Visão complementar</span><h2 class="nqd-section-title">Precisão observada</h2></div></header>
+            <div id="nqDashRadarContainer" class="nqd-radar" aria-label="Gráfico de precisão por competência"></div>
+            <p>O gráfico compara a precisão nas respostas registradas. A amostra ao lado indica quando essa leitura ainda é inicial.</p>
+            ${data.weakness ? `<button type="button" class="nqd-action nq-dash-weakness" data-action="_dashGoWeakness">Treinar ${_escape(data.weakness.label)}${_svg('arrow')}</button>` : '<span class="nqd-state is-muted">Responda ao menos 5 questões em uma competência para identificar atenção</span>'}
+          </section>
+          <section class="nqd-section"><header class="nqd-section-heading"><div><span class="nqd-eyebrow">Evidência por eixo</span><h2 class="nqd-section-title">Leitura das competências</h2></div></header><div class="nqd-skill-list">${rows}</div></section>
+        </div>
+        <section class="nqd-section nqd-error-patterns"><header class="nqd-section-header"><div><span class="nqd-eyebrow">Metacognição</span><h2 class="nqd-section-title">Padrões de raciocínio nomeados</h2></div></header>${_errorPatternsMarkup()}</section>
+      </section>
+    `;
+  }
+
+  function _mapStatus(stat) {
+    const total = _number(stat && stat.t, 0);
+    const correct = _number(stat && stat.c, 0);
+    if (!total) return { key: 'none', label: 'Não explorada' };
+    if (total < 3) return { key: 'sample', label: 'Amostra inicial' };
+    if (total >= 5 && correct / total >= 0.7) return { key: 'mastered', label: 'Domínio' };
+    return { key: 'progress', label: 'Em progresso' };
+  }
+
   function _tabMapa() {
-    if (typeof NQ_COMPETENCIES === 'undefined' || typeof nqGetCompStats === 'undefined') {
-      return '<div style="padding:20px;color:var(--txt-dim);text-align:center;">Mapa de Competências carregando…</div>';
-    }
-    const stats  = nqGetCompStats();
-    const all    = NQ_COMPETENCIES;
-    const order  = typeof NQ_CAT_ORDER !== 'undefined' ? NQ_CAT_ORDER : [...new Set(all.map(c => c.cat))];
-    const labels = typeof NQ_CAT_LABELS !== 'undefined' ? NQ_CAT_LABELS : {};
-
-    let mastered = 0, inprog = 0, unexplored = 0;
-    all.forEach(c => {
-      const lvl = nqDomainLevel(stats[c.id]);
-      if (lvl === 'mastered') mastered++;
-      else if (lvl === 'progress') inprog++;
-      else unexplored++;
+    const competencies = typeof NQ_COMPETENCIES !== 'undefined' && Array.isArray(NQ_COMPETENCIES) ? NQ_COMPETENCIES : [];
+    const stats = typeof nqGetCompStats === 'function' ? nqGetCompStats() : _readJson('nefroquest-comp-stats', {});
+    const groups = new Map();
+    competencies.forEach(comp => {
+      if (!groups.has(comp.cat)) groups.set(comp.cat, []);
+      groups.get(comp.cat).push(comp);
     });
-    const total = all.length;
+    const axisLabels = new Map((_dashboardData.axisStats || []).map(axis => [axis.cat, axis.label]));
+    const allAxes = typeof NEFRO_AXES !== 'undefined' && Array.isArray(NEFRO_AXES) ? NEFRO_AXES : [];
+    allAxes.forEach(axis => axisLabels.set(axis.cat, axis.label));
 
-    const _bar = (stat) => {
-      const lvl = nqDomainLevel(stat);
-      if (!stat || stat.t === 0) return '<span style="color:var(--txt-dim);font-size:0.72rem;">Não explorada</span>';
-      const pct = Math.round((stat.c / stat.t) * 100);
-      const col = lvl === 'mastered' ? '#4ade80' : pct >= 50 ? '#fbbf24' : '#f87171';
-      const badge = lvl === 'mastered' ? ' ✅' : '';
-      return `<div style="display:flex;align-items:center;gap:6px;min-width:0;">
-        <div style="flex:1;height:6px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden;">
-          <div style="height:100%;width:${pct}%;background:${col};border-radius:3px;"></div>
-        </div>
-        <span style="font-size:0.7rem;color:${col};white-space:nowrap;">${pct}% (${stat.t})${badge}</span>
-      </div>`;
+    const content = groups.size ? [...groups.entries()].map(([cat, comps]) => `
+      <section class="nqd-map-group">
+        <header class="nqd-map-group-title">
+          <div><span>Domínio clínico</span><h2>${_escape(axisLabels.get(cat) || cat)}</h2></div>
+          <button type="button" class="nqd-action" data-action="_dashTrainCategories" data-arg="${_escape(cat)}">Estudar domínio${_svg('arrow')}</button>
+        </header>
+        <div class="nqd-map-nodes">${comps.map(comp => {
+          const stat = stats[comp.id] || { c: 0, t: 0 };
+          const status = _mapStatus(stat);
+          const total = _number(stat.t, 0);
+          const correct = _number(stat.c, 0);
+          const accuracy = total ? Math.round((correct / total) * 100) : null;
+          return `
+            <article class="nqd-map-node is-${status.key}" data-state="${status.key === 'sample' ? 'none' : status.key}">
+              <span class="nqd-state">${status.label}</span>
+              <h3>${_escape(comp.label)}</h3>
+              <p>${total ? `${correct} acertos em ${total} respostas${accuracy == null ? '' : ` · ${accuracy}%`}` : 'Nenhuma resposta classificada nesta competência.'}</p>
+            </article>
+          `;
+        }).join('')}</div>
+      </section>
+    `).join('') : '<div class="nqd-empty"><strong>Atlas indisponível.</strong><p>As competências não puderam ser carregadas neste dispositivo.</p></div>';
+
+    return `
+      <section class="nqd-pane nq-dash-pane" id="nqdPane-mapa" role="tabpanel" aria-labelledby="nqdTab-mapa" data-dash-pane="mapa" hidden>
+        <div class="nqd-section-header"><div><span class="nqd-eyebrow">Competências observadas · sem trilhas artificiais</span><h1 class="nqd-title-lg">Atlas de Domínio</h1><p class="nqd-section-copy">Cada território reflete apenas respostas já classificadas pelo motor de competências.</p></div></div>
+        <div class="nqd-map-legend"><span class="is-none">Não explorada</span><span class="is-sample">Amostra inicial</span><span class="is-progress">Em progresso</span><span class="is-mastered">Domínio</span></div>
+        <div class="nqd-map-groups">${content}</div>
+      </section>
+    `;
+  }
+
+  function _achievementProgress(id, stats) {
+    const history = Array.isArray(stats.questionHistory) ? stats.questionHistory : [];
+    const byTopic = stats.byTopic || {};
+    const topicCorrect = matcher => Object.entries(byTopic).reduce((sum, [topic, entry]) => matcher(topic.toLowerCase()) ? sum + _number(entry.correct, 0) : sum, 0);
+    const countFast = history.filter(item => _number(item.time, 0) > 0 && _number(item.time, 0) < 30).length;
+    const countNight = history.filter(item => {
+      const date = new Date(item.date);
+      if (Number.isNaN(date.getTime())) return false;
+      return date.getHours() >= 22 || date.getHours() < 6;
+    }).length;
+    const today = stats.dailyActivity && stats.dailyActivity[_localDateKey()];
+    const maps = {
+      hd_master: { value: topicCorrect(topic => topic.includes('hemodiálise') || topic.includes('hd')), target: 50 },
+      speed_demon: { value: countFast, target: 10 },
+      transplant_expert: { value: topicCorrect(topic => topic.includes('transplante')), target: 30 },
+      glomerulo_sage: { value: topicCorrect(topic => topic.includes('glomerul') || topic.includes('nefrite')), target: 40 },
+      century_club: { value: _number(stats.totalQuestions, 0), target: 100 },
+      night_scholar: { value: countNight, target: 20 },
+      marathon_runner: { value: _number(today && today.count, 0), target: 50 },
+      laurel_wreath_knowledge: { value: _number(localStorage.getItem('nefroquest_total_accumulated_knowledge'), 0), target: 1000 },
     };
-
-    const sections = order.map(cat => {
-      const comps = all.filter(c => c.cat === cat);
-      if (!comps.length) return '';
-      const rows = comps.map(c => {
-        const stat = stats[c.id];
-        return `<div style="display:grid;grid-template-columns:1fr auto;gap:8px 12px;align-items:center;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
-          <span style="font-size:0.78rem;color:var(--txt);">${c.icon || '📌'} ${c.label}</span>
-          <div style="min-width:140px;">${_bar(stat)}</div>
-        </div>`;
-      }).join('');
-      return `<div style="margin-bottom:18px;">
-        <div style="font-size:0.7rem;font-weight:700;letter-spacing:1.2px;color:var(--txt-dim);text-transform:uppercase;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,0.08);margin-bottom:4px;">${labels[cat] || cat}</div>
-        ${rows}
-      </div>`;
-    }).join('');
-
-    return `
-      <div class="nq-dash-stitle">Mapa de Competências</div>
-      <div style="display:flex;gap:12px;margin-bottom:18px;flex-wrap:wrap;">
-        <div style="flex:1;min-width:80px;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.25);border-radius:10px;padding:10px 14px;text-align:center;">
-          <div style="font-size:1.4rem;font-weight:700;color:#4ade80;">${mastered}</div>
-          <div style="font-size:0.68rem;color:var(--txt-dim);">Dominadas</div>
-        </div>
-        <div style="flex:1;min-width:80px;background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.25);border-radius:10px;padding:10px 14px;text-align:center;">
-          <div style="font-size:1.4rem;font-weight:700;color:#fbbf24;">${inprog}</div>
-          <div style="font-size:0.68rem;color:var(--txt-dim);">Em progresso</div>
-        </div>
-        <div style="flex:1;min-width:80px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:10px 14px;text-align:center;">
-          <div style="font-size:1.4rem;font-weight:700;color:var(--txt-dim);">${unexplored}</div>
-          <div style="font-size:0.68rem;color:var(--txt-dim);">Não exploradas</div>
-        </div>
-      </div>
-      <div style="font-size:0.72rem;color:var(--txt-dim);margin-bottom:16px;">Domínio = ≥ 70% de acertos em ≥ 5 tentativas. Persiste entre jogos.</div>
-      ${sections}`;
+    if (id === 'nephron_guardian') {
+      let current = 0;
+      let best = _number(stats.bestStreak, 0);
+      history.forEach(item => {
+        current = item.correct ? current + 1 : 0;
+        best = Math.max(best, current);
+      });
+      return { value: best, target: 100 };
+    }
+    if (id === 'acid_base_master') {
+      const acid = _readJson('nq-acidbase-progress', {});
+      const completed = new Set((Array.isArray(acid.completed) ? acid.completed : []).filter(caseId => ACID_BASE_CASE_IDS.has(caseId)));
+      return { value: completed.size, target: ACID_BASE_CASE_IDS.size };
+    }
+    if (id === 'grimoire_master') {
+      const library = _libraryItems();
+      return {
+        value: library.unlockedRefs.size + library.unlockedArticles.size,
+        target: library.totalRefs + library.totalArticles,
+      };
+    }
+    return maps[id] || null;
   }
 
-  function _tabAchievements() {
-    const unlocked = getUnlockedAchievements();
-    const unlockedBadges = BADGES.filter(b => (state.correctTotal || 0) >= b.required).length;
-    const achPct = Math.round((unlocked.length / ACHIEVEMENTS_LIST.length) * 100);
+  function _achievementCategory(id) {
+    if (['hd_master', 'perfectionist_drc', 'transplant_expert', 'glomerulo_sage', 'accuracy_master'].includes(id)) return 'Domínio clínico';
+    if (['nephron_guardian', 'speed_demon', 'night_scholar', 'marathon_runner', 'century_club'].includes(id)) return 'Consistência';
+    if (['grimoire_master', 'laurel_wreath_knowledge', 'acid_base_master'].includes(id)) return 'Conhecimento';
+    return 'Jornada';
+  }
+
+  function _tabAchievements(data) {
+    const achievements = typeof ACHIEVEMENTS_LIST !== 'undefined' && Array.isArray(ACHIEVEMENTS_LIST) ? ACHIEVEMENTS_LIST : [];
+    const achievementIds = new Set(achievements.map(achievement => achievement.id));
+    const storedUnlocked = typeof getUnlockedAchievements === 'function' ? getUnlockedAchievements() : _readJson('nefroquest-achievements', []);
+    const unlocked = new Set([...storedUnlocked].filter(id => achievementIds.has(id)));
+    const categories = new Map();
+    achievements.forEach(achievement => {
+      const category = _achievementCategory(achievement.id);
+      if (!categories.has(category)) categories.set(category, []);
+      categories.get(category).push(achievement);
+    });
+
+    const groups = categories.size ? [...categories.entries()].map(([category, items]) => `
+      <section class="nqd-achievement-group">
+        <header><span>Registro</span><h2>${_escape(category)}</h2></header>
+        <div class="nqd-achievement-grid">${items.map(achievement => {
+          const isUnlocked = unlocked.has(achievement.id);
+          const progress = _achievementProgress(achievement.id, data.stats);
+          const value = progress ? Math.min(progress.value, progress.target) : 0;
+          return `
+            <article class="nqd-achievement${isUnlocked ? ' is-unlocked' : ' is-locked'}" data-state="${isUnlocked ? 'unlocked' : 'locked'}">
+              <span class="nqd-achievement-mark">${isUnlocked ? _svg('check') : _svg('achievements')}</span>
+              <div><span class="nqd-state">${isUnlocked ? 'Desbloqueada' : 'Não conquistada'}</span><h3 class="nqd-achievement-title">${_escape(achievement.name)}</h3><p class="nqd-achievement-copy">${_escape(achievement.description)}</p>
+              ${progress && progress.target > 0 ? `<div class="nqd-achievement-progress"><span>${_formatNumber(value)} / ${_formatNumber(progress.target)}</span>${_meterMarkup(value, progress.target, `Progresso de ${achievement.name}`, true)}</div>` : ''}
+              </div>
+            </article>
+          `;
+        }).join('')}</div>
+      </section>
+    `).join('') : '<div class="nqd-empty"><strong>Selos indisponíveis.</strong><p>O catálogo de conquistas não pôde ser carregado.</p></div>';
 
     return `
-      <div class="nq-dash-ach-counter">
-        <div class="nq-dash-ach-ring">
-          <div class="nq-dash-ach-ringval">${unlocked.length}<small>/${ACHIEVEMENTS_LIST.length}</small></div>
-        </div>
-        <div style="flex:1;">
-          <div class="nq-dash-ach-lbl">Conquistas desbloqueadas</div>
-          <div class="nq-dash-prow" style="margin-bottom:0;">
-            <div class="nq-dash-pbar" style="height:7px;">
-              <div class="nq-dash-pfill" style="width:${achPct}%;background:linear-gradient(90deg,#34d399,#10b981);"></div>
-            </div>
-            <div class="nq-dash-plbl" style="color:#34d399;">${achPct}%</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="nq-dash-stitle">Badges de progressão</div>
-      <div class="nq-dash-prow">
-        <div class="nq-dash-pbar">
-          <div class="nq-dash-pfill" style="width:${Math.round((unlockedBadges / BADGES.length) * 100)}%;background:linear-gradient(90deg,var(--gold-dark),var(--gold));"></div>
-        </div>
-        <div class="nq-dash-plbl">${unlockedBadges}/${BADGES.length}</div>
-      </div>
-      <div class="nq-dash-badges-grid" style="margin-bottom:22px;">${BADGES.map(_badgeHtml).join('')}</div>
-
-      <div class="nq-dash-stitle">Conquistas de gameplay</div>
-      <div class="nq-dash-ach-grid">
-        ${ACHIEVEMENTS_LIST.map(ach => {
-          const on = unlocked.includes(ach.id);
-          const icoHtml = ach.imgIcon
-            ? `<div class="nq-dash-ach-ico"><img src="${ach.imgIcon}" alt="${escapeHtml(ach.name)}"
-                style="${on ? 'filter:drop-shadow(0 0 8px rgba(255,215,0,0.5));' : 'filter:grayscale(1) brightness(0.35);'}"></div>`
-            : `<div class="nq-dash-ach-ico" style="${on ? '' : 'filter:grayscale(1) brightness(0.4);'}">${ach.icon}</div>`;
-          return `<div class="nq-dash-ach-card ${on ? 'on' : 'off'}">
-            ${icoHtml}
-            <div style="flex:1;min-width:0;">
-              <div class="nq-dash-ach-name">${escapeHtml(ach.name)}</div>
-              <div class="nq-dash-ach-desc">${escapeHtml(ach.description)}</div>
-            </div>
-            ${on ? '<div class="nq-dash-ach-check">✓</div>' : ''}
-          </div>`;
-        }).join('')}
-      </div>
+      <section class="nqd-pane nq-dash-pane" id="nqdPane-achievements" role="tabpanel" aria-labelledby="nqdTab-achievements" data-dash-pane="achievements" hidden>
+        <div class="nqd-section-header"><div><span class="nqd-eyebrow">Marcos reais · sem ordem cronológica inventada</span><h1 class="nqd-title-lg">Gabinete de Selos</h1><p class="nqd-section-copy">Conquistas desbloqueadas, requisitos e progresso apenas quando o dado é mensurável.</p></div></div>
+        <div class="nqd-achievement-summary"><strong>${unlocked.size}</strong><span>de ${achievements.length} conquistas desbloqueadas</span></div>
+        <div class="nqd-achievement-groups">${groups}</div>
+      </section>
     `;
   }
 
-  // ── Biblioteca de Néfrons (DC-1/DC-2): artigos históricos desbloqueados ──
-  function _tabLibrary() {
-    const arts = (typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles)) ? nefroArticles : [];
-    let unlocked = [];
-    try { unlocked = JSON.parse(localStorage.getItem('unlockedArticles') || '[]'); } catch (e) {}
-    const total = arts.length;
-    const unlockedSet = new Set((unlocked || []).filter(i => Number.isInteger(i) && i >= 0 && i < total));
-    const count = unlockedSet.size;
-    const rc = window.rarityColors || {};
-    const ri = window.rarityScrollIcons || {};
-    const fallback = { text: '#94a3b8', bg: 'rgba(148,163,184,0.10)', border: 'rgba(148,163,184,0.35)', label: 'Comum' };
+  function _libraryItems() {
+    const storedRefs = new Set(_readJson('nq-unlocked-refs', []));
+    const storedArticles = new Set(_readJson('unlockedArticles', []));
+    const favorites = new Set(_readJson('nq-bib-favorites', []));
+    const items = [];
+    const reachableRefKeys = new Set(Array.isArray(window.questionBank)
+      ? window.questionBank.flatMap(question => Array.isArray(question.r) ? question.r : []).filter(Boolean)
+      : []);
+    const totalRefs = typeof refsDB === 'object' && refsDB
+      ? (reachableRefKeys.size ? [...reachableRefKeys].filter(key => Object.prototype.hasOwnProperty.call(refsDB, key)).length : Object.keys(refsDB).length)
+      : 0;
+    const totalArticles = typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles) ? nefroArticles.length : 0;
+    const unlockedRefs = new Set(typeof refsDB === 'object' && refsDB
+      ? [...storedRefs].filter(key => Object.prototype.hasOwnProperty.call(refsDB, key) && (!reachableRefKeys.size || reachableRefKeys.has(key)))
+      : []);
+    const unlockedArticles = new Set(typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles)
+      ? [...storedArticles].filter(index => Number.isInteger(index) && index >= 0 && index < nefroArticles.length)
+      : []);
 
-    const cards = [...unlockedSet].sort((a, b) => a - b).map(idx => {
-      const a = arts[idx];
-      if (!a) return '';
-      const rar = (a.raridade || 'comum').toLowerCase();
-      const info = rc[rar] || rc.comum || fallback;
-      const icon = ri[rar] || '📜';
-      const meta = [a.autores ? escapeHtml(a.autores) : '', a.ano ? escapeHtml(String(a.ano)) : ''].filter(Boolean).join(' · ');
+    if (typeof refsDB === 'object' && refsDB) {
+      Object.entries(refsDB).forEach(([key, ref]) => {
+        if (!unlockedRefs.has(key)) return;
+        items.push({
+          key,
+          type: 'Referência',
+          title: ref.label || key,
+          source: ref.journal || '',
+          year: ref.ano || '',
+          summary: ref.resumo || '',
+          conclusion: ref.conclusao || '',
+          url: ref.url || '',
+          favorite: favorites.has(key),
+        });
+      });
+    }
+
+    if (typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles)) {
+      [...unlockedArticles].filter(Number.isInteger).sort((a, b) => a - b).forEach(index => {
+        const article = nefroArticles[index];
+        if (!article) return;
+        const key = `__art_${index}`;
+        items.push({
+          key,
+          type: 'Artigo',
+          title: article.titulo || 'Artigo',
+          source: article.jornal || article.autores || '',
+          year: article.ano || '',
+          summary: article.resumo || '',
+          conclusion: article.conclusao || '',
+          url: '',
+          favorite: favorites.has(key),
+        });
+      });
+    }
+
+    return { items, favorites, unlockedRefs, unlockedArticles, totalRefs, totalArticles };
+  }
+
+  function _libraryCards(items) {
+    if (!items.length) return '<div class="nqd-empty" data-library-empty><strong>Nenhuma evidência desbloqueada ainda.</strong><p>Referências são liberadas ao responder questões; artigos aparecem nos baús da jornada.</p></div>';
+    return items.map((item, index) => {
+      const detailId = `nqdLibraryDetail-${index}`;
       return `
-        <div class="nq-lib-card" style="border-left-color:${info.border};" data-action="_dashToggleArticle" data-pass-this="1">
-          <div class="nq-lib-card-top">
-            <span class="nq-lib-icon">${icon}</span>
-            <span class="nq-lib-rar" style="color:${info.text};background:${info.bg};border:1px solid ${info.border};">${escapeHtml(info.label || rar)}</span>
-          </div>
-          <div class="nq-lib-title">${escapeHtml(a.titulo || 'Artigo')}</div>
-          ${meta ? `<div class="nq-lib-meta">${meta}</div>` : ''}
-          ${a.jornal ? `<div class="nq-lib-jornal">${escapeHtml(a.jornal)}</div>` : ''}
-          <div class="nq-lib-resumo">${escapeHtml(a.resumo || '')}</div>
-          <div class="nq-lib-extra">
-            ${a.conclusao ? `<div class="nq-lib-conc"><strong>Conclusão:</strong> ${escapeHtml(a.conclusao)}</div>` : ''}
-            ${a.impacto ? `<div class="nq-lib-impacto">📈 ${escapeHtml(a.impacto)}</div>` : ''}
-            ${a.curiosidade ? `<div class="nq-lib-curio">💡 ${escapeHtml(a.curiosidade)}</div>` : ''}
-          </div>
-          <div class="nq-lib-more"></div>
-        </div>`;
+      <article class="nqd-library-item" data-library-item data-search="${_escape(`${item.title} ${item.source} ${item.year}`.toLowerCase())}">
+        <div>
+          <span class="nqd-state">${_escape(item.type)}</span>
+          <h3 class="nqd-library-title">${_escape(item.title)}</h3>
+          <p class="nqd-library-copy">${_escape([item.source, item.year].filter(Boolean).join(' · '))}</p>
+        </div>
+        <div class="nqd-library-actions">
+          <button type="button" class="nqd-favorite${item.favorite ? ' is-active' : ''}" data-action="_dashToggleFavorite" data-pass-this="1" data-library-key="${_escape(item.key)}" aria-label="${item.favorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}"><span>${item.favorite ? 'Salva' : 'Salvar'}</span></button>
+          <button type="button" class="nqd-action" data-action="_dashToggleArticle" data-pass-this="1" aria-expanded="false" aria-controls="${detailId}"><span>Ler resumo</span>${_svg('arrow')}</button>
+        </div>
+        <div class="nqd-library-detail nqd-library-copy" id="${detailId}" hidden>
+          ${item.summary ? `<p>${_escape(item.summary)}</p>` : '<p>Esta entrada não possui resumo cadastrado.</p>'}
+          ${item.conclusion ? `<p><strong>Conclusão:</strong> ${_escape(item.conclusion)}</p>` : ''}
+          ${item.url ? `<a href="${_escape(item.url)}" target="_blank" rel="noopener noreferrer">Abrir fonte</a>` : ''}
+        </div>
+      </article>
+    `;
     }).join('');
+  }
 
-    const pct = total ? Math.round(count / total * 100) : 0;
-    const locked = total - count;
-
+  function _tabLibrary() {
+    const library = _libraryItems();
+    const totalUnlocked = library.items.length;
+    const totalAvailable = library.totalRefs + library.totalArticles;
     return `
-      <div class="nq-dash-stitle">Biblioteca de Néfrons</div>
-      <div class="nq-lib-head">
-        <div class="nq-lib-progress-info">Você desbloqueou <strong class="nq-text-gold">${count}</strong> de ${total} artigos históricos da nefrologia.</div>
-        <div class="nq-lib-bar"><div class="nq-lib-bar-fill" style="width:${pct}%;"></div></div>
-      </div>
-      ${count === 0
-        ? `<div class="nq-lib-empty"><div style="font-size:2.2rem;margin-bottom:10px;">📜🔒</div><strong style="color:#c8d8f0;">Nenhum artigo desbloqueado ainda.</strong><br>Abra <strong>baús</strong> durante a jornada para revelar artigos marcantes da história da nefrologia.</div>`
-        : `<div class="nq-lib-grid">${cards}</div>
-           ${locked > 0
-             ? `<div class="nq-lib-locked-hint">🔒 ${locked} artigo${locked !== 1 ? 's' : ''} ainda trancado${locked !== 1 ? 's' : ''} — continue abrindo baús para revelá-los.</div>`
-             : `<div class="nq-lib-locked-hint nq-text-gold">✨ Coleção completa! Você desbloqueou todos os artigos.</div>`}`}
+      <section class="nqd-pane nq-dash-pane" id="nqdPane-library" role="tabpanel" aria-labelledby="nqdTab-library" data-dash-pane="library" hidden>
+        <div class="nqd-section-header"><div><span class="nqd-eyebrow">Conteúdo já conquistado · fontes reais</span><h1 class="nqd-title-lg">Arquivo de Evidências</h1><p class="nqd-section-copy">Referências e artigos desbloqueados na sua jornada, sem itens demonstrativos.</p></div></div>
+        <div class="nqd-library-summary">
+          <span><small>Desbloqueados</small><strong>${totalUnlocked}</strong></span>
+          <span><small>Referências</small><strong>${library.unlockedRefs.size} / ${library.totalRefs}</strong></span>
+          <span><small>Artigos</small><strong>${library.unlockedArticles.size} / ${library.totalArticles}</strong></span>
+          <span><small>Favoritos</small><strong>${library.items.filter(item => item.favorite).length}</strong></span>
+        </div>
+        ${totalAvailable ? `
+          <label class="nqd-search">${_svg('search')}<span class="nqd-sr-only">Buscar no arquivo</span><input id="nqDashLibrarySearch" type="search" placeholder="Buscar por título, fonte ou ano" autocomplete="off"></label>
+        ` : ''}
+        <div class="nqd-library-list" id="nqDashLibraryList">${_libraryCards(library.items)}</div>
+        <div class="nqd-empty nqd-library-no-results" id="nqDashLibraryNoResults" hidden><strong>Nenhum resultado nesta busca.</strong><p>Tente outro título, fonte ou ano.</p></div>
+      </section>
     `;
   }
-  window._dashToggleArticle = function (el) {
-    const card = el && el.closest ? el.closest('.nq-lib-card') : null;
-    if (card) card.classList.toggle('expanded');
-  };
 
   function _tabRanking() {
     return `
-      <div class="nq-dash-lb-tabs">
-        <button type="button" class="nq-dash-lb-tab${_dashLbMode === 'record' ? ' active' : ''}" data-action="_dashSetLbMode" data-arg="record">🏆 Recorde</button>
-        <button type="button" class="nq-dash-lb-tab${_dashLbMode === 'global' ? ' active' : ''}" data-action="_dashSetLbMode" data-arg="global">📊 Perfil Global</button>
-      </div>
-      <div class="nq-dash-lb-head">
-        <input type="search" class="nq-dash-lb-search" id="nqDashLbSearch" placeholder="Buscar jogador…">
-        <button type="button" class="btn sec" style="font-size:0.68rem;padding:5px 13px;white-space:nowrap;" data-action="_dashRefreshRanking">↻ Atualizar</button>
-      </div>
-      <div id="nqDashLbWrap"><div class="nq-dash-lb-spin">Carregando ranking…</div></div>
+      <section class="nqd-pane nq-dash-pane" id="nqdPane-ranking" role="tabpanel" aria-labelledby="nqdTab-ranking" data-dash-pane="ranking" hidden>
+        <div class="nqd-section-header"><div><span class="nqd-eyebrow">Comparação contextual · dados sincronizados</span><h1 class="nqd-title-lg">Registro da Ordem</h1><p class="nqd-section-copy">Veja sua posição sem transformar o aprendizado em uma corrida cega.</p></div></div>
+        <div class="nqd-ranking-controls">
+          <div class="nqd-segmented" aria-label="Modo do ranking">
+            <button type="button" class="nq-dash-lb-tab${_dashLbMode === 'record' ? ' is-active active' : ''}" data-action="_dashSetLbMode" data-arg="record" aria-pressed="${_dashLbMode === 'record'}">Recordes</button>
+            <button type="button" class="nq-dash-lb-tab${_dashLbMode === 'global' ? ' is-active active' : ''}" data-action="_dashSetLbMode" data-arg="global" aria-pressed="${_dashLbMode === 'global'}">Perfil global</button>
+          </div>
+          <label class="nqd-search">${_svg('search')}<span class="nqd-sr-only">Buscar jogador</span><input id="nqDashLbSearch" type="search" placeholder="Buscar jogador" autocomplete="off"></label>
+          <button type="button" class="nqd-action" data-action="_dashRefreshRanking">${_svg('refresh')}Atualizar</button>
+        </div>
+        <div class="nqd-ranking-wrap nqd-ranking-table-wrap" id="nqDashLbWrap" aria-live="polite"><div class="nqd-ranking-state">Selecione esta área para carregar o ranking.</div></div>
+      </section>
     `;
   }
 
-  // ── Load ranking ─────────────────────────────────────────────────────────
-  let _lbFullData = [];
-  let _dashLbMode = 'record'; // 'record' (recorde por partida) | 'global' (perfil acumulado)
-
-  function _dashSetLbMode(mode) {
-    if (mode !== 'record' && mode !== 'global') return;
-    if (mode === _dashLbMode) return;
-    _dashLbMode = mode;
-    document.querySelectorAll('.nq-dash-lb-tab').forEach(b => b.classList.toggle('active', b.dataset.arg === mode));
-    _loadRanking(false);
+  function _readyMarkup(data) {
+    const panes = [
+      _tabOverview(data),
+      _tabSkills(data),
+      _tabMapa(),
+      _tabAchievements(data),
+      _tabLibrary(),
+      _tabRanking(),
+    ].join('');
+    return _shellMarkup(panes, 'ready');
   }
-  window._dashSetLbMode = _dashSetLbMode;
+
+  function _errorMarkup() {
+    return _shellMarkup(`
+      <div class="nqd-error" role="alert">
+        <span>Central indisponível</span>
+        <h1>Não foi possível organizar os dados deste dispositivo.</h1>
+        <p>Seu progresso não foi alterado. Feche esta área e tente novamente.</p>
+        <button type="button" class="nqd-primary-action" data-action="closeDashboard" data-nqd-primary="true">Voltar ao jogo${_svg('back')}</button>
+      </div>
+    `, 'error');
+  }
+
+  function _lockBackground(root) {
+    _previousBodyOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    _inertedElements = [];
+    [...document.body.children].forEach(element => {
+      if (element === root || element.tagName === 'SCRIPT' || element.tagName === 'STYLE') return;
+      _inertedElements.push({
+        element,
+        inert: !!element.inert,
+        ariaHidden: element.getAttribute('aria-hidden'),
+      });
+      element.inert = true;
+      element.setAttribute('aria-hidden', 'true');
+    });
+  }
+
+  function _unlockBackground() {
+    _inertedElements.forEach(record => {
+      record.element.inert = record.inert;
+      if (record.ariaHidden == null) record.element.removeAttribute('aria-hidden');
+      else record.element.setAttribute('aria-hidden', record.ariaHidden);
+    });
+    _inertedElements = [];
+    document.body.style.overflow = _previousBodyOverflow;
+  }
+
+  function _switchTab(tabId, moveFocus) {
+    const root = document.getElementById('nqDashboard');
+    if (!root || !DASH_TABS.some(tab => tab.id === tabId)) return;
+    _activeTab = tabId;
+    const tabButtons = [...root.querySelectorAll('[role="tab"]')];
+    tabButtons.forEach(button => {
+      const active = button.dataset.dashTab === tabId;
+      button.classList.toggle('is-active', active);
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-selected', String(active));
+      button.tabIndex = active ? 0 : -1;
+    });
+    root.querySelectorAll('[data-dash-pane]').forEach(pane => {
+      const active = pane.dataset.dashPane === tabId;
+      pane.hidden = !active;
+      pane.classList.toggle('active', active);
+    });
+
+    const activeButton = tabButtons.find(button => button.dataset.dashTab === tabId && button.offsetParent !== null)
+      || tabButtons.find(button => button.dataset.dashTab === tabId);
+    if (moveFocus && activeButton) activeButton.focus({ preventScroll: true });
+    if (activeButton && window.matchMedia('(max-width: 61.25rem)').matches) {
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      activeButton.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'nearest', inline: 'center' });
+    }
+
+    if (tabId === 'skills') window.setTimeout(() => _drawRadar(), 0);
+    if (tabId === 'ranking' && !_rankingLoaded) _loadRanking(false);
+  }
+
+  function _handleDashboardKeydown(event) {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeDashboard();
+      return;
+    }
+
+    if (event.key === 'Tab') {
+      const root = document.getElementById('nqDashboard');
+      if (!root) return;
+      const focusable = [...root.querySelectorAll('button:not(:disabled), a[href], input:not(:disabled), select:not(:disabled), textarea:not(:disabled), [tabindex]:not([tabindex="-1"])')]
+        .filter(element => element.tabIndex >= 0 && element.offsetParent !== null && !element.closest('[hidden]'));
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus({ preventScroll: true });
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus({ preventScroll: true });
+      }
+      return;
+    }
+
+    const current = event.target.closest && event.target.closest('[role="tab"]');
+    if (!current) return;
+    const visibleTabs = [...document.querySelectorAll('#nqDashboard [role="tab"]')].filter(tab => tab.offsetParent !== null);
+    const index = visibleTabs.indexOf(current);
+    if (index < 0) return;
+    let nextIndex = null;
+    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') nextIndex = (index + 1) % visibleTabs.length;
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') nextIndex = (index - 1 + visibleTabs.length) % visibleTabs.length;
+    if (event.key === 'Home') nextIndex = 0;
+    if (event.key === 'End') nextIndex = visibleTabs.length - 1;
+    if (nextIndex == null) return;
+    event.preventDefault();
+    _switchTab(visibleTabs[nextIndex].dataset.dashTab, true);
+  }
+
+  function _wireDashboard(root) {
+    root.querySelectorAll('[data-dash-tab]').forEach(button => {
+      button.addEventListener('click', () => _switchTab(button.dataset.dashTab, false));
+    });
+
+    const librarySearch = root.querySelector('#nqDashLibrarySearch');
+    if (librarySearch) {
+      librarySearch.addEventListener('input', () => {
+        const query = librarySearch.value.trim().toLocaleLowerCase('pt-BR');
+        let visible = 0;
+        root.querySelectorAll('[data-library-item]').forEach(item => {
+          const matches = !query || (item.dataset.search || '').includes(query);
+          item.hidden = !matches;
+          if (matches) visible += 1;
+        });
+        const noResults = root.querySelector('#nqDashLibraryNoResults');
+        if (noResults) noResults.hidden = visible > 0 || !query;
+      });
+    }
+  }
+
+  function _drawDashboardRadar(container, skills) {
+    const size = 340;
+    const ratio = Math.min(window.devicePixelRatio || 1, 2);
+    const canvas = document.createElement('canvas');
+    canvas.width = Math.round(size * ratio);
+    canvas.height = Math.round(size * ratio);
+    canvas.style.width = `${size}px`;
+    canvas.style.maxWidth = '100%';
+    canvas.style.aspectRatio = '1';
+    canvas.setAttribute('aria-hidden', 'true');
+    container.replaceChildren(canvas);
+
+    const context = canvas.getContext('2d');
+    if (!context || !skills.length) return;
+    context.scale(ratio, ratio);
+
+    const center = size / 2;
+    const radius = 108;
+    const labelRadius = 139;
+    const angleFor = index => -Math.PI / 2 + (Math.PI * 2 * index) / skills.length;
+    const pointFor = (index, factor) => ({
+      x: center + Math.cos(angleFor(index)) * radius * factor,
+      y: center + Math.sin(angleFor(index)) * radius * factor,
+    });
+
+    context.lineJoin = 'round';
+    context.lineCap = 'round';
+    [0.25, 0.5, 0.75, 1].forEach((level, levelIndex) => {
+      context.beginPath();
+      skills.forEach((_, index) => {
+        const point = pointFor(index, level);
+        if (!index) context.moveTo(point.x, point.y);
+        else context.lineTo(point.x, point.y);
+      });
+      context.closePath();
+      context.strokeStyle = levelIndex === 3 ? 'rgba(157, 215, 226, 0.32)' : 'rgba(157, 215, 226, 0.14)';
+      context.lineWidth = 1;
+      context.stroke();
+    });
+
+    skills.forEach((_, index) => {
+      const edge = pointFor(index, 1);
+      context.beginPath();
+      context.moveTo(center, center);
+      context.lineTo(edge.x, edge.y);
+      context.strokeStyle = 'rgba(157, 215, 226, 0.14)';
+      context.stroke();
+    });
+
+    context.beginPath();
+    skills.forEach((skill, index) => {
+      const accuracy = skill.accuracy == null ? 0 : Math.max(0, Math.min(100, _number(skill.accuracy, 0)));
+      const point = pointFor(index, accuracy / 100);
+      if (!index) context.moveTo(point.x, point.y);
+      else context.lineTo(point.x, point.y);
+    });
+    context.closePath();
+    context.fillStyle = 'rgba(119, 211, 222, 0.16)';
+    context.strokeStyle = '#9fdbe4';
+    context.lineWidth = 2;
+    context.fill();
+    context.stroke();
+
+    skills.forEach((skill, index) => {
+      const accuracy = skill.accuracy == null ? 0 : Math.max(0, Math.min(100, _number(skill.accuracy, 0)));
+      const valuePoint = pointFor(index, accuracy / 100);
+      context.beginPath();
+      context.arc(valuePoint.x, valuePoint.y, 3.5, 0, Math.PI * 2);
+      context.fillStyle = '#e3c970';
+      context.fill();
+
+      const angle = angleFor(index);
+      const x = center + Math.cos(angle) * labelRadius;
+      const y = center + Math.sin(angle) * labelRadius;
+      context.fillStyle = '#b8c6d8';
+      context.font = '600 11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+      context.textAlign = Math.cos(angle) > 0.25 ? 'left' : Math.cos(angle) < -0.25 ? 'right' : 'center';
+      context.textBaseline = Math.sin(angle) > 0.5 ? 'top' : Math.sin(angle) < -0.5 ? 'bottom' : 'middle';
+      context.fillText(`${String(index + 1).padStart(2, '0')} · ${accuracy || 0}%`, x, y);
+    });
+  }
+
+  function _drawRadar() {
+    const container = document.getElementById('nqDashRadarContainer');
+    if (!container || container.dataset.rendered === 'true') return;
+    if (!_dashboardData) return;
+    container.dataset.rendered = 'true';
+    const summary = _dashboardData.coreSkills.map(skill => {
+      const value = skill.accuracy == null ? 'sem amostra' : `${Math.round(skill.accuracy)}% em ${_number(skill.totalAnswered, 0)} respostas`;
+      return `${skill.label}: ${value}`;
+    }).join('; ');
+    container.setAttribute('aria-label', `Precisão observada por competência. ${summary}`);
+    _drawDashboardRadar(container, _dashboardData.coreSkills);
+  }
+
+  async function openDashboard() {
+    _injectStyles();
+    if (typeof window.playSound === 'function') window.playSound('click');
+    const previous = document.getElementById('nqDashboard');
+    if (previous) closeDashboard();
+    document.querySelectorAll('.profile-popup.open').forEach(popup => popup.classList.remove('open'));
+    _lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    _activeTab = 'overview';
+    _rankingLoaded = false;
+    window.clearTimeout(_rankingSearchTimer);
+    _rankingSearchTimer = null;
+
+    const root = document.createElement('section');
+    root.id = 'nqDashboard';
+    root.className = 'nq-command-center';
+    root.dataset.nqUi = 'lumen';
+    root.dataset.dashboardState = 'loading';
+    root.setAttribute('aria-label', 'Central de Comando do aprendizado');
+    root.innerHTML = _loadingMarkup();
+    document.body.appendChild(root);
+    root.addEventListener('keydown', _handleDashboardKeydown);
+    _lockBackground(root);
+    root.querySelector('[data-action="closeDashboard"]')?.focus({ preventScroll: true });
+
+    let topicsLoadError = false;
+    try {
+      if (typeof window._loadTopics === 'function') {
+        try {
+          await window._loadTopics();
+        } catch (error) {
+          topicsLoadError = true;
+          console.error('[NQ] Falha ao atualizar questões para a Central de Comando', error);
+        }
+      }
+      if (!root.isConnected) return;
+      _dashboardData = _collectData(topicsLoadError);
+      root.innerHTML = _readyMarkup(_dashboardData);
+      root.dataset.dashboardState = 'ready';
+      _wireDashboard(root);
+      window.requestAnimationFrame(() => {
+        const firstTab = root.querySelector('[role="tab"][aria-selected="true"]');
+        if (firstTab) firstTab.focus({ preventScroll: true });
+      });
+    } catch (error) {
+      console.error('[NQ] Falha ao montar a Central de Comando', error);
+      if (!root.isConnected) return;
+      root.innerHTML = _errorMarkup();
+      root.dataset.dashboardState = 'error';
+      root.querySelector('[data-action="closeDashboard"]')?.focus({ preventScroll: true });
+    }
+  }
+
+  function closeDashboard() {
+    const root = document.getElementById('nqDashboard');
+    if (!root) return;
+    root.removeEventListener('keydown', _handleDashboardKeydown);
+    window.clearTimeout(_rankingSearchTimer);
+    _rankingSearchTimer = null;
+    _rankingRequestId += 1;
+    root.remove();
+    document.getElementById('nqRadarTooltip')?.remove();
+    _unlockBackground();
+    const focusTarget = _lastFocusedElement;
+    _lastFocusedElement = null;
+    if (focusTarget && focusTarget.isConnected) {
+      window.requestAnimationFrame(() => focusTarget.focus({ preventScroll: true }));
+    }
+  }
+
+  function _clickAfterClose(selector) {
+    const target = document.querySelector(selector);
+    closeDashboard();
+    window.requestAnimationFrame(() => {
+      if (target && target.isConnected) target.click();
+      else if (typeof _toast === 'function') _toast('Esta ação não está disponível agora.', 'info');
+    });
+  }
+
+  function _dashResumeJourney() {
+    const mainApp = document.getElementById('mainApp');
+    const welcome = document.getElementById('welcomeScreen');
+    const gameAlreadyVisible = mainApp
+      && !mainApp.classList.contains('hidden')
+      && (!welcome || welcome.classList.contains('hidden'));
+    if (gameAlreadyVisible) {
+      closeDashboard();
+      return;
+    }
+    _clickAfterClose('#welcomeContinueBtn');
+  }
+
+  function _dashStartJourney() {
+    _clickAfterClose('[data-action="startNewFromWelcome"]');
+  }
+
+  function _selectStudyCategories(categories) {
+    const selected = window._studySelectedAxes;
+    const axes = typeof NEFRO_AXES !== 'undefined' && Array.isArray(NEFRO_AXES) ? NEFRO_AXES : [];
+    if (!(selected instanceof Set)) return false;
+    selected.clear();
+    const categorySet = new Set(categories || []);
+    axes.forEach(axis => {
+      if (!categorySet.size || categorySet.has(axis.cat)) selected.add(axis.id);
+    });
+    return selected.size > 0;
+  }
+
+  async function _ensureTopics() {
+    if (typeof topics !== 'undefined' && Array.isArray(topics) && topics.length) return true;
+    if (typeof window._loadTopics !== 'function') return false;
+    try {
+      await window._loadTopics();
+      return typeof topics !== 'undefined' && Array.isArray(topics) && topics.length > 0;
+    } catch (error) {
+      if (typeof _toast === 'function') _toast('Não foi possível carregar as questões.', 'error');
+      return false;
+    }
+  }
+
+  async function _dashGoWeakness() {
+    const stats = _readDetailedStats();
+    const weakness = _eligibleWeakness(_readCoreSkills(stats));
+    if (!weakness) {
+      if (typeof _toast === 'function') _toast('Ainda não há amostra suficiente para indicar um ponto de atenção.', 'info');
+      return;
+    }
+    if (!(await _ensureTopics())) return;
+    _selectStudyCategories(weakness.categories || []);
+    closeDashboard();
+    if (typeof window.startStudyMode === 'function') window.startStudyMode();
+    else if (typeof _toast === 'function') _toast('O modo de estudo não está disponível.', 'error');
+  }
+
+  async function _dashTrainCategories(category) {
+    if (!(await _ensureTopics())) return;
+    _selectStudyCategories([category]);
+    closeDashboard();
+    if (typeof window.startStudyMode === 'function') window.startStudyMode();
+  }
+
+  async function _dashExploreSkills() {
+    if (!(await _ensureTopics())) return;
+    _selectStudyCategories([]);
+    closeDashboard();
+    if (typeof window.startStudyMode === 'function') window.startStudyMode();
+  }
+
+  async function _dashContinueStudy() {
+    if (!(await _ensureTopics())) return;
+    closeDashboard();
+    if (typeof window.resumeSavedStudyMode === 'function' && window.resumeSavedStudyMode()) return;
+    if (typeof _toast === 'function') _toast('A sessão salva não pôde ser restaurada.', 'error');
+  }
+
+  function _dashStartSRStudy() {
+    closeDashboard();
+    if (typeof window.startScheduledSRStudyMode === 'function') window.startScheduledSRStudyMode();
+    else if (typeof _toast === 'function') _toast('A revisão espaçada não está disponível.', 'error');
+  }
+
+  function _dashToggleArticle(element) {
+    const article = element && element.closest ? element.closest('.nqd-library-item') : null;
+    if (!article) return;
+    article.classList.toggle('is-expanded');
+    const expanded = article.classList.contains('is-expanded');
+    element.setAttribute('aria-expanded', String(expanded));
+    const label = element.querySelector('span');
+    if (label) label.textContent = expanded ? 'Ocultar resumo' : 'Ler resumo';
+    const detail = article.querySelector('.nqd-library-detail');
+    if (detail) detail.hidden = !expanded;
+  }
+
+  function _dashToggleFavorite(element) {
+    const key = element && element.dataset ? element.dataset.libraryKey : '';
+    if (!key) return;
+    const favorites = new Set(_readJson('nq-bib-favorites', []));
+    if (favorites.has(key)) favorites.delete(key);
+    else favorites.add(key);
+    try { localStorage.setItem('nq-bib-favorites', JSON.stringify([...favorites])); } catch (error) { return; }
+    element.classList.toggle('is-active', favorites.has(key));
+    element.setAttribute('aria-label', favorites.has(key) ? 'Remover dos favoritos' : 'Adicionar aos favoritos');
+    const label = element.querySelector('span');
+    if (label) label.textContent = favorites.has(key) ? 'Salva' : 'Salvar';
+    const count = document.querySelectorAll('#nqdPane-library .nqd-favorite.is-active').length;
+    const metric = document.querySelector('#nqdPane-library .nqd-library-summary span:last-child strong');
+    if (metric) metric.textContent = String(count);
+  }
 
   function _renderLbRows(wrap, data, query, mode) {
     const isGlobal = mode === 'global';
-    wrap.innerHTML = '';
-    const q = (query || '').trim().toLowerCase();
-    const filtered = data.filter(r =>
-      !q || (r.player_name || '').toLowerCase().includes(q) || (r.character_name || '').toLowerCase().includes(q)
-    );
+    const normalized = (query || '').trim().toLocaleLowerCase('pt-BR');
+    const ranked = (data || []).map((row, rankIndex) => ({ row, rank: rankIndex + 1 }));
+    const filtered = ranked.filter(({ row }) => {
+      const haystack = `${row.player_name || ''} ${row.character_name || ''}`.toLocaleLowerCase('pt-BR');
+      return !normalized || haystack.includes(normalized);
+    });
+    wrap.replaceChildren();
+
     if (!filtered.length) {
-      const emptyDiv = document.createElement('div');
-      emptyDiv.className = 'nq-dash-lb-spin';
-      emptyDiv.style.padding = '24px';
-      emptyDiv.textContent = 'Nenhum resultado encontrado.';
-      wrap.appendChild(emptyDiv);
+      const empty = document.createElement('div');
+      empty.className = 'nqd-ranking-state';
+      empty.textContent = normalized ? 'Nenhum jogador corresponde a esta busca.' : 'Ainda não há registros neste ranking.';
+      wrap.appendChild(empty);
       return;
     }
-    const rl = ['🥇', '🥈', '🥉'];
-    const rc = ['r1', 'r2', 'r3'];
 
     const table = document.createElement('table');
-    table.className = 'nq-dash-lb-table';
-
+    table.className = 'nqd-ranking-table';
+    const caption = document.createElement('caption');
+    caption.textContent = isGlobal ? 'Ranking por acertos acumulados' : 'Ranking por recorde de partida';
+    table.appendChild(caption);
     const thead = document.createElement('thead');
-    const trHead = document.createElement('tr');
-    
-    const thRank = document.createElement('th');
-    thRank.style.width = '36px';
-    thRank.textContent = '#';
-    
-    const thPlayer = document.createElement('th');
-    thPlayer.textContent = 'Jogador';
-    
-    const thClass = document.createElement('th');
-    thClass.style.display = 'none';
-    thClass.textContent = 'Classe';
-    
-    const thScore = document.createElement('th');
-    thScore.style.textAlign = 'right';
-    thScore.textContent = isGlobal ? 'Acertos' : 'Score';
-
-    const thLevel = document.createElement('th');
-    thLevel.style.textAlign = 'center';
-    thLevel.style.width = '60px';
-    thLevel.textContent = isGlobal ? 'Nível máx' : 'Nível';
-
-    trHead.appendChild(thRank);
-    trHead.appendChild(thPlayer);
-    trHead.appendChild(thClass);
-    trHead.appendChild(thScore);
-    trHead.appendChild(thLevel);
-    thead.appendChild(trHead);
+    const headRow = document.createElement('tr');
+    ['Posição', 'Jogador', isGlobal ? 'Acertos' : 'Score', isGlobal ? 'Nível máximo' : 'Nível'].forEach(label => {
+      const th = document.createElement('th');
+      th.scope = 'col';
+      th.textContent = label;
+      headRow.appendChild(th);
+    });
+    thead.appendChild(headRow);
     table.appendChild(thead);
-
     const tbody = document.createElement('tbody');
-    filtered.forEach((r, i) => {
-      const me = isGlobal
-        ? (typeof authUser !== 'undefined' && authUser && r.user_id === authUser.id)
-        : (state.lastSubmittedName && r.player_name === state.lastSubmittedName);
+    const authId = window.authUser && window.authUser.id;
+    filtered.forEach(({ row, rank: originalRank }) => {
       const tr = document.createElement('tr');
-      if (me) tr.className = 'lb-me';
-
-      // rank td
-      const tdRank = document.createElement('td');
-      const spanRank = document.createElement('span');
-      spanRank.className = `nq-dash-rank ${i < 3 ? rc[i] : ''}`;
-      spanRank.textContent = i < 3 ? rl[i] : String(i + 1);
-      tdRank.appendChild(spanRank);
-      tr.appendChild(tdRank);
-
-      // player td
-      const tdPlayer = document.createElement('td');
-      if (me) {
-        tdPlayer.style.color = 'var(--gold)';
-        tdPlayer.style.fontWeight = '700';
+      const isCurrentUser = !!(authId && row.user_id === authId);
+      if (isCurrentUser) {
+        tr.className = 'is-user';
+        tr.setAttribute('aria-current', 'true');
       }
-      tdPlayer.appendChild(document.createTextNode(r.player_name || 'Anônimo'));
-
-      // No Perfil Global mostramos só o usuário (sem divisão por personagem).
-      if (!isGlobal && r.character_name) {
-        const spanChar = document.createElement('span');
-        spanChar.style.color = 'var(--txt-dim)';
-        spanChar.style.fontSize = '0.68rem';
-        spanChar.style.marginLeft = '4px';
-        spanChar.textContent = r.character_name;
-        tdPlayer.appendChild(spanChar);
+      const rank = document.createElement('td');
+      rank.textContent = String(originalRank);
+      const player = document.createElement('td');
+      const playerName = document.createElement('strong');
+      playerName.textContent = row.player_name || 'Anônimo';
+      player.appendChild(playerName);
+      if (!isGlobal && row.character_name) {
+        const character = document.createElement('small');
+        character.textContent = row.character_name;
+        player.appendChild(character);
       }
-      tr.appendChild(tdPlayer);
-
-      // class td (hidden)
-      const tdClass = document.createElement('td');
-      tdClass.style.display = 'none';
-      tr.appendChild(tdClass);
-
-      // score td (Score por partida OU Acertos acumulados)
-      const tdScore = document.createElement('td');
-      tdScore.className = 'nq-dash-lb-score';
-      tdScore.textContent = (isGlobal ? (r.total_correct || 0) : (r.score || 0)).toLocaleString('pt-BR');
-      tr.appendChild(tdScore);
-
-      // level td (Nível da partida OU Nível máximo acumulado)
-      const tdLevel = document.createElement('td');
-      tdLevel.style.textAlign = 'center';
-      tdLevel.style.color = 'var(--txt-dim)';
-      tdLevel.textContent = isGlobal ? (r.best_level || 1) : (r.level || 1);
-      tr.appendChild(tdLevel);
-
+      const score = document.createElement('td');
+      score.textContent = _formatNumber(isGlobal ? row.total_correct : row.score);
+      const level = document.createElement('td');
+      level.textContent = String(_number(isGlobal ? row.best_level : row.level, 1));
+      [rank, player, score, level].forEach(cell => tr.appendChild(cell));
       tbody.appendChild(tr);
     });
     table.appendChild(tbody);
     wrap.appendChild(table);
+    const updated = document.createElement('p');
+    updated.className = 'nqd-ranking-updated';
+    updated.textContent = `Atualizado às ${new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}`;
+    wrap.appendChild(updated);
+  }
 
-    const tsDiv = document.createElement('div');
-    tsDiv.className = 'nq-dash-lb-ts';
-    tsDiv.textContent = `Atualizado: ${new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}`;
-    wrap.appendChild(tsDiv);
+  function _wireRankingSearch() {
+    const search = document.getElementById('nqDashLbSearch');
+    if (!search || search.dataset.wired) return;
+    search.dataset.wired = 'true';
+    search.addEventListener('input', () => {
+      window.clearTimeout(_rankingSearchTimer);
+      const requestedMode = _dashLbMode;
+      _rankingSearchTimer = window.setTimeout(() => {
+        if (requestedMode !== _dashLbMode) return;
+        const wrap = document.getElementById('nqDashLbWrap');
+        if (wrap) _renderLbRows(wrap, _lbFullData, search.value, requestedMode);
+      }, 160);
+    });
   }
 
   async function _loadRanking(force) {
     const wrap = document.getElementById('nqDashLbWrap');
     if (!wrap) return;
-    wrap.innerHTML = '<div class="nq-dash-lb-spin">Carregando ranking…</div>';
+    const requestedMode = _dashLbMode;
+    const requestId = ++_rankingRequestId;
+    wrap.innerHTML = '<div class="nqd-ranking-state" role="status">Carregando registros…</div>';
     try {
-      const data = _dashLbMode === 'global'
-        ? (typeof window._profileGlobalFetch === 'function' ? await window._profileGlobalFetch() : [])
-        : await boardFetch(!!force);
-      _lbFullData = (data || []).slice(0, 50);
+      let rows;
+      if (requestedMode === 'global') {
+        if (typeof window._profileGlobalFetch !== 'function') throw new Error('Perfil global indisponível');
+        rows = await window._profileGlobalFetch();
+      } else {
+        if (typeof boardFetch !== 'function') throw new Error('Ranking indisponível');
+        rows = await boardFetch(!!force);
+      }
+      if (requestId !== _rankingRequestId || requestedMode !== _dashLbMode || !wrap.isConnected) return;
+      _lbFullData = Array.isArray(rows) ? rows.slice(0, 50) : [];
+      _rankingLoaded = true;
       if (!_lbFullData.length) {
-        wrap.innerHTML = `<div class="nq-dash-lb-spin">${_dashLbMode === 'global' ? 'Nenhum perfil no ranking ainda. Termine uma partida logado para aparecer aqui.' : 'Nenhuma pontuação registrada ainda.'}</div>`;
-        return;
+        wrap.innerHTML = `<div class="nqd-ranking-state"><strong>Nenhum registro disponível.</strong><span>${requestedMode === 'global' ? 'Termine uma partida autenticado para construir seu perfil global.' : 'A primeira partida concluída inicia este registro.'}</span></div>`;
+      } else {
+        const search = document.getElementById('nqDashLbSearch');
+        _renderLbRows(wrap, _lbFullData, search ? search.value : '', requestedMode);
       }
-      _renderLbRows(wrap, _lbFullData, '', _dashLbMode);
-      // Wire search
-      const searchEl = document.getElementById('nqDashLbSearch');
-      if (searchEl && !searchEl.dataset.wired) {
-        searchEl.dataset.wired = '1';
-        let _t;
-        searchEl.addEventListener('input', () => {
-          clearTimeout(_t);
-          _t = setTimeout(() => {
-            const w = document.getElementById('nqDashLbWrap');
-            if (w) _renderLbRows(w, _lbFullData, searchEl.value, _dashLbMode);
-          }, 200);
-        });
-      }
-    } catch (e) {
-      if (wrap) wrap.innerHTML = '<div class="nq-dash-lb-spin">Erro ao carregar ranking.</div>';
+      _wireRankingSearch();
+    } catch (error) {
+      if (requestId !== _rankingRequestId || requestedMode !== _dashLbMode || !wrap.isConnected) return;
+      _rankingLoaded = false;
+      wrap.innerHTML = '<div class="nqd-ranking-state is-error"><strong>Não foi possível carregar o ranking.</strong><span>Verifique sua conexão e tente atualizar.</span></div>';
     }
   }
 
-  // ── Main open ────────────────────────────────────────────────────────────
-  async function openDashboard() {
-    _injectStyles();
-    document.getElementById('nqDashboard')?.remove();
-    document.querySelectorAll('.profile-popup.open').forEach(p => p.classList.remove('open'));
-
-    // Criar o contêiner com estado de carregamento inicial
-    const overlay = document.createElement('div');
-    overlay.id = 'nqDashboard';
-    overlay.className = 'nq-dash-overlay';
-    overlay.innerHTML = `
-      <div class="nq-dash-panel" style="display:flex; justify-content:center; align-items:center; min-height:400px;">
-        <div style="text-align:center; color:var(--gold);">
-          <div class="nq-dash-lb-spin" style="margin:0 auto 12px auto; width:30px; height:30px; border:3px solid rgba(255,215,0,0.15); border-top-color:var(--gold); border-radius:50%; animation:nq-dash-spin 0.8s linear infinite;"></div>
-          <div style="font-family:'Cinzel',serif; font-size:0.9rem; font-weight:bold;">Carregando Perfil...</div>
-        </div>
-      </div>
-    `;
-    document.body.appendChild(overlay);
-
-    // Permitir fechar no backdrop mesmo enquanto carrega (desabilitado para evitar fechar por engano)
-    // overlay.addEventListener('click', e => { if (e.target === overlay) closeDashboard(); });
-
-    // Forçar carregamento das questões e sincronização
-    if (typeof window._loadTopics === 'function') {
-      try {
-        await window._loadTopics();
-      } catch (e) {
-        console.error('[NQ] Failed to load topics for dashboard', e);
-      }
-    }
-    if (typeof window.syncMasteredToDetailedStats === 'function') {
-      window.syncMasteredToDetailedStats();
-    }
-
-    const stats = getDetailedStats();
-    const axisStats = getAxisStats(stats);
-
-    overlay.innerHTML = `
-      <div class="nq-dash-panel">
-        <div class="nq-dash-header">
-          <div class="nq-dash-title">
-            <span class="nq-dash-title-icon">⚔</span>
-            Perfil do Nefrologista
-          </div>
-          <button type="button" class="nq-dash-close" data-action="closeDashboard" aria-label="Fechar">×</button>
-        </div>
-
-        <div class="nq-dash-tabs">
-          <button type="button" class="nq-dash-tab active" data-dash-tab="overview">Visão Geral</button>
-          <button type="button" class="nq-dash-tab" data-dash-tab="skills">Skills</button>
-          <button type="button" class="nq-dash-tab" data-dash-tab="mapa">Mapa</button>
-          <button type="button" class="nq-dash-tab" data-dash-tab="achievements">Conquistas</button>
-          <button type="button" class="nq-dash-tab" data-dash-tab="library">Biblioteca</button>
-          <button type="button" class="nq-dash-tab" data-dash-tab="ranking">Ranking</button>
-        </div>
-
-        <div class="nq-dash-body">
-          <div class="nq-dash-pane active" data-dash-pane="overview">
-            ${_tabOverview(stats, axisStats)}
-          </div>
-          <div class="nq-dash-pane" data-dash-pane="skills">
-            ${_tabSkills(axisStats)}
-          </div>
-          <div class="nq-dash-pane" data-dash-pane="mapa">
-            ${_tabMapa()}
-          </div>
-          <div class="nq-dash-pane" data-dash-pane="achievements">
-            ${_tabAchievements()}
-          </div>
-          <div class="nq-dash-pane" data-dash-pane="library">
-            ${_tabLibrary()}
-          </div>
-          <div class="nq-dash-pane" data-dash-pane="ranking">
-            ${_tabRanking()}
-          </div>
-        </div>
-      </div>
-    `;
-
-    // Recriar listeners da aba
-    overlay.querySelectorAll('[data-dash-tab]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const tab = btn.dataset.dashTab;
-        overlay.querySelectorAll('[data-dash-tab]').forEach(b => b.classList.toggle('active', b.dataset.dashTab === tab));
-        overlay.querySelectorAll('[data-dash-pane]').forEach(p => p.classList.toggle('active', p.dataset.dashPane === tab));
-        if (tab === 'skills') setTimeout(() => _drawRadar(axisStats), 50);
-        if (tab === 'ranking') _loadRanking(false);
-      });
+  function _dashSetLbMode(mode) {
+    if (!['record', 'global'].includes(mode)) return;
+    _dashLbMode = mode;
+    window.clearTimeout(_rankingSearchTimer);
+    _rankingSearchTimer = null;
+    document.querySelectorAll('#nqdPane-ranking .nq-dash-lb-tab').forEach(button => {
+      const active = button.dataset.arg === mode;
+      button.classList.toggle('is-active', active);
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-pressed', String(active));
     });
-
-    if (typeof playSound === 'function') playSound('click');
-  }
-
-  function closeDashboard() {
-    document.getElementById('nqDashboard')?.remove();
+    const search = document.getElementById('nqDashLbSearch');
+    if (search) search.value = '';
+    _loadRanking(false);
   }
 
   function _dashRefreshRanking() {
@@ -1737,67 +1481,26 @@
 
   function getUserTitle(totalCorrect) {
     if (totalCorrect >= 1500) return 'Grão-Mestre da Uremia 👑';
-    if (totalCorrect >= 800)  return 'Conselheiro Renal 🫁';
-    if (totalCorrect >= 400)  return 'Patrono dos Glomérulos 🧪';
-    if (totalCorrect >= 150)  return 'Erudito do Equilíbrio 📚';
-    if (totalCorrect >= 50)   return 'Escriba dos Rins ✍️';
-    if (totalCorrect >= 15)   return 'Nefro-Iniciado 🛡️';
+    if (totalCorrect >= 800) return 'Conselheiro Renal 🫁';
+    if (totalCorrect >= 400) return 'Patrono dos Glomérulos 🧪';
+    if (totalCorrect >= 150) return 'Erudito do Equilíbrio 📚';
+    if (totalCorrect >= 50) return 'Escriba dos Rins ✍️';
+    if (totalCorrect >= 15) return 'Nefro-Iniciado 🛡️';
     return 'Aspirante da Guilda 🧭';
   }
 
-  async function _dashGoWeakness() {
-    closeDashboard();
-
-    if (typeof topics === 'undefined') {
-      if (typeof _toast === 'function') _toast('Carregando questões…', 'info', 30000);
-      try {
-        await window._loadTopics();
-        document.querySelector('.nq-toast')?.remove();
-      } catch (e) {
-        if (typeof _toast === 'function') _toast('Erro ao carregar questões. Recarregue a página.', 'error', 5000);
-        return;
-      }
-    }
-
-    const stats = getDetailedStats();
-    const coreStats = getCoreSkillsStats(stats);
-    const worstSkill = coreStats
-      .filter(s => s.totalAnswered > 0)
-      .sort((a, b) => (a.accuracy ?? 100) - (b.accuracy ?? 100))[0] || null;
-
-    if (!worstSkill) {
-      if (typeof _toast === 'function') _toast('Não há histórico suficiente para identificar um ponto fraco.', 'info');
-      return;
-    }
-
-    // Definir eixos selecionados no modo de estudo
-    if (typeof window._studySelectedAxes !== 'undefined') {
-      window._studySelectedAxes.clear();
-      (worstSkill.categories || []).forEach(cat => {
-        window._studySelectedAxes.add(cat);
-      });
-    }
-
-    if (typeof window.startStudyMode === 'function') {
-      window.startStudyMode();
-    } else {
-      if (typeof _toast === 'function') _toast('Erro ao iniciar o Modo de Estudo.', 'error');
-    }
-  }
-
-  function _dashStartSRStudy() {
-    closeDashboard();
-    if (typeof window.startSRStudyAllMode === 'function') {
-      window.startSRStudyAllMode();
-    } else {
-      if (typeof _toast === 'function') _toast('Erro ao iniciar a Revisão Espaçada.', 'error');
-    }
-  }
-
-  window.openDashboard       = openDashboard;
-  window.closeDashboard      = closeDashboard;
+  window.openDashboard = openDashboard;
+  window.closeDashboard = closeDashboard;
   window._dashRefreshRanking = _dashRefreshRanking;
-  window._dashGoWeakness     = _dashGoWeakness;
-  window._dashStartSRStudy   = _dashStartSRStudy;
-  window.getUserTitle        = getUserTitle;
+  window._dashGoWeakness = _dashGoWeakness;
+  window._dashStartSRStudy = _dashStartSRStudy;
+  window._dashToggleArticle = _dashToggleArticle;
+  window._dashSetLbMode = _dashSetLbMode;
+  window._dashResumeJourney = _dashResumeJourney;
+  window._dashStartJourney = _dashStartJourney;
+  window._dashTrainCategories = _dashTrainCategories;
+  window._dashExploreSkills = _dashExploreSkills;
+  window._dashContinueStudy = _dashContinueStudy;
+  window._dashToggleFavorite = _dashToggleFavorite;
+  window.getUserTitle = getUserTitle;
 })();

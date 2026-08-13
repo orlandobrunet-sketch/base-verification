@@ -67,7 +67,7 @@
     if (typeof Sentry !== 'undefined') {
       Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@14.39',
+          release: 'nefroquest@14.40',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -129,6 +129,7 @@
   <link rel="stylesheet" href="styles/lumen/atrium.css?v=14.18">
   <link rel="stylesheet" href="styles/lumen/game.css?v=14.13">
   <link rel="stylesheet" href="styles/lumen/difficulty.css?v=14.34">
+  <link rel="stylesheet" href="styles/lumen/dashboard.css?v=14.40">
   <script>
     // Version beacon — detecta nova versão sem interromper a navegação
     (function() {
@@ -372,7 +373,7 @@
         <span>Para aprender, revisar e se manter atualizado em nefrologia.</span>
         <span class="nql-portal__footer-meta">
           <button type="button" data-action="showPrivacyPolicy">Privacidade</button>
-          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v14.39</button>
+          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v14.40</button>
         </span>
       </footer>
     </section>
@@ -679,7 +680,7 @@
     <footer class="lnd-footer">
       <span>nefroquest.com</span>
       <span class="lnd-footer-sep">·</span>
-      <span id="landingVersionLabel" class="version-label-dynamic" style="cursor:pointer;" role="button" tabindex="0" aria-label="Ver novidades da versão" data-action="showChangelog">v14.39</span>
+      <span id="landingVersionLabel" class="version-label-dynamic" style="cursor:pointer;" role="button" tabindex="0" aria-label="Ver novidades da versão" data-action="showChangelog">v14.40</span>
       <span class="lnd-footer-sep">·</span>
       <span style="cursor:pointer;text-decoration:underline;" class="lnd-footer-link" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span>
     </footer>
@@ -858,7 +859,7 @@
           <div class="nql-atrium__route-status" aria-live="polite"><span aria-hidden="true"></span><p id="atriumRouteStatus">Explore uma rota sem perder o fio da sua jornada.</p></div>
           <div class="nql-atrium__route-list">
             <button type="button" class="nql-atrium__route" data-atrium-route="modes" data-action="openGameModesPopup"><span class="nql-atrium__route-index">01</span><span><strong>Modos de jogo</strong><small>Treinos, provas e desafios</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
-            <button type="button" class="nql-atrium__route" data-atrium-route="dashboard" data-action="openDashboard"><span class="nql-atrium__route-index">02</span><span><strong>Mapa de domínio</strong><small>Desempenho por competência</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
+            <button type="button" class="nql-atrium__route" data-atrium-route="dashboard" data-action="openDashboard"><span class="nql-atrium__route-index">02</span><span><strong>Central de Comando</strong><small>Sua conduta de aprendizado</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
             <button type="button" class="nql-atrium__route" id="welcomeRitualBtn" data-atrium-route="ritual" data-action="openRitual"><span class="nql-atrium__route-index">03</span><span><strong>Ritual de iniciação</strong><small>Descubra seu nível recomendado</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
             <button type="button" class="nql-atrium__route" data-atrium-route="ranking" data-action="showLeaderboardFromWelcome"><span class="nql-atrium__route-index">04</span><span><strong>Classificação</strong><small>Compare sua evolução</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
             <button type="button" class="nql-atrium__route" data-atrium-route="library" data-action="openBibliotecaModal"><span class="nql-atrium__route-index">05</span><span><strong>Biblioteca clínica</strong><small>Referências para aprofundar</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
@@ -869,7 +870,7 @@
 
       <footer class="nql-atrium__footer">
         <span>Prática que se transforma em domínio clínico.</span>
-        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v14.39</button></span>
+        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v14.40</button></span>
       </footer>
     </section>
     <div class="welcome-bg" aria-hidden="true"></div>
@@ -1289,7 +1290,7 @@
       <p>
         <a href="https://nefroquest.com">nefroquest.com</a>
         &nbsp;•&nbsp;
-        <span class="version-label-dynamic" style="color:var(--gold);cursor:pointer;" data-action="showChangelog">v14.39</span>
+        <span class="version-label-dynamic" style="color:var(--gold);cursor:pointer;" data-action="showChangelog">v14.40</span>
         &nbsp;•&nbsp;
         <span style="cursor:pointer;text-decoration:underline;" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span>
       </p>
@@ -1702,7 +1703,7 @@
   <script defer src="js/utils.js?v=11.90"></script>
   <script defer src="js/audio.js?v=11.90"></script>
   <script defer src="js/leaderboard.js?v=11.90"></script>
-  <script defer src="js/study-mode.js?v=11.90"></script>
+  <script defer src="js/study-mode.js?v=14.40"></script>
   <script defer src="js/game.js?v=14.34"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
@@ -1716,15 +1717,15 @@
   <script defer src="js/admin.js?v=11.90"></script>
   <script defer src="js/minigame.js?v=14.34"></script>
   <script defer src="js/minigame-acidbase.js?v=11.90"></script>
-  <script defer src="js/achievements.js?v=11.90"></script>
+  <script defer src="js/achievements.js?v=14.40"></script>
   <script defer src="js/changelog.js?v=11.90"></script>
-  <script defer src="js/dashboard.js?v=11.90"></script>
+  <script defer src="js/dashboard.js?v=14.40"></script>
 
   <!-- Single source of truth for profile popup menu items -->
   <template id="profilePopupItems">
     <button type="button" class="profile-popup-item" data-action="openAccountModal" data-stop-propagation="1">👤 Minha Conta</button>
     <button type="button" class="profile-popup-item" data-action="openPlanModal" data-stop-propagation="1">⭐ Seu Plano</button>
-    <button type="button" class="profile-popup-item admin-item" data-action="openDashboard" data-stop-propagation="1">📊 Dashboard (Beta)</button>
+    <button type="button" class="profile-popup-item admin-item" data-action="openDashboard" data-stop-propagation="1">Central de Comando</button>
     <button type="button" class="profile-popup-item admin-item" data-action="openAdminPanel" data-stop-propagation="1">🛡 Administração</button>
     <button type="button" class="profile-popup-item admin-item" data-action="openAssetGallery" data-stop-propagation="1">🖼 Galeria de Assets</button>
     <button type="button" class="profile-popup-item admin-item" data-action="adminJumpToBoss" data-stop-propagation="1">⚔ Fase Final</button>

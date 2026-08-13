@@ -627,7 +627,8 @@
         catch { _toast('Erro ao carregar questões. Recarregue a página.', 'error', 5000); return; }
       }
       document.querySelectorAll('.study-mode-popup').forEach(el => el.remove());
-      _studySelectedAxes = new Set(NEFRO_AXES.map(a => a.id));
+      _studySelectedAxes.clear();
+      NEFRO_AXES.forEach(a => _studySelectedAxes.add(a.id));
 
       const isMobile = window.innerWidth <= 768;
       const modal = document.createElement('div');
@@ -686,7 +687,8 @@
 
     function showAxesSelector() {
       document.querySelectorAll('.study-mode-popup').forEach(el => el.remove());
-      _studySelectedAxes = new Set(NEFRO_AXES.map(a => a.id));
+      _studySelectedAxes.clear();
+      NEFRO_AXES.forEach(a => _studySelectedAxes.add(a.id));
 
       const isMobile = window.innerWidth <= 768;
       const modal = document.createElement('div');
@@ -878,6 +880,7 @@
           index: studyModeIndex,
           correct: studyModeCorrect,
           wrong: studyModeWrong,
+          axisStats: _studyAxisStats,
           savedAt: Date.now()
         }));
       } catch(e) { console.error('[NQ] _saveStudyState failed', e); }
@@ -896,6 +899,25 @@
 
     function _clearStudyState() {
       try { localStorage.removeItem(STUDY_SAVE_KEY); } catch(e) {}
+    }
+
+    function resumeSavedStudyMode() {
+      const saved = _loadStudyState();
+      if (!saved) return false;
+      if (saved.index >= saved.questions.length) { _clearStudyState(); return false; }
+      const byId = new Map(topics.map(question => [question.qid || question.id || question.q.substring(0, 40), question]));
+      const restored = saved.questions.map(id => byId.get(id)).filter(Boolean);
+      if (!restored.length) return false;
+      studyModeQuestions = restored;
+      const currentId = saved.questions[Math.min(saved.index, saved.questions.length - 1)];
+      const currentIndex = restored.findIndex(question => (question.qid || question.id || question.q.substring(0, 40)) === currentId);
+      studyModeIndex = currentIndex >= 0 ? currentIndex : Math.min(saved.index, restored.length - 1);
+      studyModeCorrect = saved.correct || 0;
+      studyModeWrong = saved.wrong || 0;
+      _studyAxisStats = saved.axisStats && typeof saved.axisStats === 'object' ? saved.axisStats : {};
+      studyModeActive = true;
+      showStudyModePage();
+      return true;
     }
 
     let studyModeActive = false;
@@ -920,7 +942,8 @@
         catch { _toast('Erro ao carregar questões. Recarregue a página.', 'error', 5000); return; }
       }
       // Estudo Livre: 20 questões aleatórias de TODOS os temas, sem precisar selecionar eixos
-      _studySelectedAxes = new Set(NEFRO_AXES.map(a => a.id));
+      _studySelectedAxes.clear();
+      NEFRO_AXES.forEach(a => _studySelectedAxes.add(a.id));
       document.querySelectorAll('.study-mode-popup').forEach(el => el.remove());
       studyModeQuestions = shuffle([...topics]).slice(0, 20);
       studyModeIndex = 0; studyModeCorrect = 0; studyModeWrong = 0; studyModeActive = true;
@@ -935,7 +958,8 @@
         catch { _toast('Erro ao carregar questões. Recarregue a página.', 'error', 5000); return; }
       }
       // Revisão Espaçada com todos os temas
-      _studySelectedAxes = new Set(NEFRO_AXES.map(a => a.id));
+      _studySelectedAxes.clear();
+      NEFRO_AXES.forEach(a => _studySelectedAxes.add(a.id));
       const due = getSRDueQuestions(topics);
       if (due.length === 0) {
         _toast('Nenhuma revisão pendente hoje. Volte amanhã ou use o Estudo Livre.', 'info', 4000);
@@ -946,6 +970,32 @@
       studyModeIndex = 0; studyModeCorrect = 0; studyModeWrong = 0; studyModeActive = true;
       _studyAxisStats = {};
       showStudyModePage('revisão espaçada');
+    }
+
+    async function startScheduledSRStudyMode() {
+      if (typeof topics === 'undefined') {
+        _toast('Carregando questões…', 'info', 30000);
+        try { await window._loadTopics(); document.querySelector('.nq-toast')?.remove(); }
+        catch { _toast('Erro ao carregar questões. Recarregue a página.', 'error', 5000); return; }
+      }
+      let cards = {};
+      try { cards = JSON.parse(localStorage.getItem('nefroquest-sr-data') || '{}'); } catch {}
+      const today = new Date().setHours(0, 0, 0, 0);
+      const dueIds = new Set(Object.entries(cards)
+        .filter(([, card]) => card && typeof card === 'object' && Number.isFinite(Number(card.due)) && Number(card.due) <= today)
+        .map(([qid]) => qid));
+      const due = topics.filter(question => dueIds.has(String(question.qid || question.id || '')));
+      if (!due.length) {
+        _toast('Nenhuma revisão agendada está vencida.', 'info', 4000);
+        return;
+      }
+      _studySelectedAxes.clear();
+      NEFRO_AXES.forEach(axis => _studySelectedAxes.add(axis.id));
+      document.querySelectorAll('.study-mode-popup').forEach(element => element.remove());
+      studyModeQuestions = shuffle(due);
+      studyModeIndex = 0; studyModeCorrect = 0; studyModeWrong = 0; studyModeActive = true;
+      _studyAxisStats = {};
+      showStudyModePage('revisão agendada');
     }
 
     function _getMentorQuota() {
@@ -1062,17 +1112,8 @@
       // Verificar sessão salva
       const saved = _loadStudyState();
       if (saved) {
-        // Reconstituir questions a partir dos qids salvos
-        const savedIds = new Set(saved.questions);
-        const restored = topics.filter(q => savedIds.has(q.qid || q.id || q.q.substring(0, 40)));
-        if (restored.length > 0 && confirm(`Você tem uma sessão de estudo em andamento (${saved.index}/${saved.questions.length} questões). Continuar?`)) {
-          studyModeQuestions = restored;
-          studyModeIndex = Math.min(saved.index, restored.length - 1);
-          studyModeCorrect = saved.correct || 0;
-          studyModeWrong = saved.wrong || 0;
-          studyModeActive = true;
-          showStudyModePage();
-          return;
+        if (confirm(`Você tem uma sessão de estudo em andamento (${saved.index}/${saved.questions.length} questões). Continuar?`)) {
+          if (resumeSavedStudyMode()) return;
         } else {
           _clearStudyState();
         }
@@ -1491,7 +1532,9 @@
     window.showAxesSelector      = showAxesSelector;
     window.startFreeStudyMode    = startFreeStudyMode;
     window.startSRStudyAllMode   = startSRStudyAllMode;
+    window.startScheduledSRStudyMode = startScheduledSRStudyMode;
     window.startStudyMode        = startStudyMode;
+    window.resumeSavedStudyMode  = resumeSavedStudyMode;
     window._studySelectedAxes    = _studySelectedAxes;
     
     function restartStudyMode() {
