@@ -6,11 +6,11 @@
 
   const DASH_TABS = [
     { id: 'overview', label: 'Visão geral', eyebrow: 'Sala de Conduta' },
-    { id: 'skills', label: 'Skills', eyebrow: 'Prontuário de Domínio' },
-    { id: 'mapa', label: 'Mapa', eyebrow: 'Atlas de Domínio' },
-    { id: 'achievements', label: 'Conquistas', eyebrow: 'Gabinete de Selos' },
-    { id: 'library', label: 'Biblioteca', eyebrow: 'Arquivo de Evidências' },
-    { id: 'ranking', label: 'Ranking', eyebrow: 'Registro da Ordem' },
+    { id: 'skills', label: 'Competências', eyebrow: 'Competências' },
+    { id: 'mapa', label: 'Mapa', eyebrow: 'Mapa de Domínio' },
+    { id: 'achievements', label: 'Conquistas', eyebrow: 'Conquistas' },
+    { id: 'library', label: 'Grimório', eyebrow: 'Grimório de Conhecimento' },
+    { id: 'ranking', label: 'Ranking', eyebrow: 'Ranking da Ordem' },
   ];
 
   const CHARACTER_META = {
@@ -35,11 +35,11 @@
   };
 
   const BADGE_MILESTONES = [
-    { name: 'Vórtice do Néfron', required: 20 },
-    { name: 'Sábio do Microscópio', required: 40 },
-    { name: 'Guardião das Águas', required: 60 },
-    { name: 'Árbitro dos Rins', required: 80 },
-    { name: 'Ascendido do NefroQuest', required: 100 },
+    { id: 1, name: 'Vórtice do Néfron', required: 20, image: 'assets/badges/badge1.png' },
+    { id: 2, name: 'Sábio do Microscópio', required: 40, image: 'assets/badges/badge2.png' },
+    { id: 3, name: 'Guardião das Águas', required: 60, image: 'assets/badges/badge3.png' },
+    { id: 4, name: 'Árbitro dos Rins', required: 80, image: 'assets/badges/badge4.png' },
+    { id: 5, name: 'Ascendido do NefroQuest', required: 100, image: 'assets/badges/badge5.png' },
   ];
 
   const ERROR_REASON_LABELS = {
@@ -261,24 +261,6 @@
   function _buildPlan(data) {
     const plan = [];
 
-    if (data.save) {
-      plan.push({
-        kind: 'resume',
-        kicker: 'Jornada ativa',
-        title: 'Retomar o ponto em que você parou',
-        detail: `Nível ${data.level} · ${_formatNumber(data.save.correctTotal || 0)} acertos na jornada`,
-        action: '_dashResumeJourney',
-        actionLabel: 'Retomar jornada',
-      });
-    } else {
-      plan.push({
-        kind: 'journey',
-        kicker: 'Jornada',
-        title: 'Iniciar uma nova jornada clínica',
-        detail: 'Escolha o modo e o personagem para começar.',
-      });
-    }
-
     if (data.studyState && data.studyState.remaining > 0) {
       plan.push({
         kind: 'study',
@@ -364,7 +346,11 @@
       characterId,
       character,
       avatar,
+      nextAvatar: level < 10
+        ? `assets/classes/${character.folder}/nivel_${String(evolutionLevel + 1).padStart(2, '0')}.${character.ext}`
+        : null,
       nextBadge,
+      journeyCorrect: Math.max(0, _number(save && save.correctTotal, 0)),
       studyState: _readStudyState(),
       overdueReviews: _countOverdueReviews(),
       activity: _readDailyActivity(stats),
@@ -430,7 +416,6 @@
         <main class="nqd-main">
           <header class="nqd-topbar">
             <div class="nqd-topbar-copy">
-              <span class="nqd-meta">Atlas NQ · Inteligência de aprendizagem</span>
               <strong class="nqd-page-title">Central de Comando</strong>
             </div>
             <button type="button" class="nqd-close" data-action="closeDashboard" aria-label="Fechar Central de Comando">
@@ -447,8 +432,7 @@
     return _shellMarkup(`
       <div class="nqd-loading" role="status" aria-live="polite">
         <span class="nqd-loading-line" aria-hidden="true"></span>
-        <h2>Organizando seu prontuário de aprendizagem…</h2>
-        <small>Progresso, competências e evidências locais.</small>
+        <h2>Preparando sua Central…</h2>
       </div>
     `, 'loading');
   }
@@ -495,47 +479,36 @@
     if (!data.weakness) {
       return `
         <div class="nqd-attention is-forming">
-          <span class="nqd-state">Amostra insuficiente</span>
-          <p><strong>Seu perfil clínico ainda está em formação.</strong></p>
-          <p>Responda ao menos 5 questões em uma competência central para receber uma indicação de atenção.</p>
+          <p><strong>Seu foco de treino aparecerá com 5 respostas em uma competência.</strong></p>
         </div>
       `;
     }
 
     return `
       <div class="nqd-attention">
-        <span class="nqd-state">Ponto de atenção</span>
-        <p><strong>${_escape(data.weakness.label)}</strong></p>
-        <p>${Math.round(data.weakness.accuracy)}% de acerto em ${data.weakness.totalAnswered} respostas. Esta é a menor precisão entre as competências com amostra válida.</p>
+        <p><span>Foco agora</span><strong>${_escape(data.weakness.label)}</strong><small>${Math.round(data.weakness.accuracy)}% · ${data.weakness.totalAnswered} respostas</small></p>
         <button type="button" class="nqd-action" data-action="_dashGoWeakness">Treinar este eixo${_svg('arrow')}</button>
       </div>
     `;
   }
 
   function _milestoneMarkup(data) {
-    if (data.level >= 10) {
-      return `
-        <div class="nqd-milestone is-complete">
-          <div class="nqd-milestone-line"><span><small>Marco atual</small><strong>Nível máximo</strong></span><span>Nível 10 alcançado</span></div>
-          <p class="nqd-milestone-complete">A evolução continua pelos acertos, competências e selos da jornada.</p>
-          ${data.nextBadge ? `<div class="nqd-brief-block"><span>${_svg('achievements')}</span><p><strong>${_escape(data.nextBadge.name)}</strong><small>${_number(data.save && data.save.correctTotal, 0)} de ${data.nextBadge.required} acertos na jornada</small></p></div>` : ''}
-        </div>`;
-    }
-    const xpRemaining = Math.max(0, data.xpToNext - data.xp);
-    const badgeProgress = _number(data.save && data.save.correctTotal, 0);
+    const badge = data.nextBadge || BADGE_MILESTONES[BADGE_MILESTONES.length - 1];
+    const isComplete = !data.nextBadge;
+    const progress = Math.min(data.journeyCorrect, badge.required);
+    const remaining = Math.max(0, badge.required - data.journeyCorrect);
     return `
-      <div class="nqd-milestone">
-        <div class="nqd-milestone-line">
-          <span><small>Próximo marco</small><strong>Nível ${data.level + 1}</strong></span>
-          <span>${_formatNumber(xpRemaining)} XP restantes</span>
+      <div class="nqd-milestone${isComplete ? ' is-complete' : ''}">
+        <div class="nqd-reward-portrait">
+          <img src="${_escape(badge.image)}" alt="${_escape(badge.name)}">
         </div>
-        ${_meterMarkup(Math.min(data.xp, data.xpToNext), data.xpToNext, 'Progresso para o próximo nível', true)}
-        ${data.nextBadge ? `
-          <div class="nqd-brief-block">
-            <span>${_svg('achievements')}</span>
-            <p><strong>${_escape(data.nextBadge.name)}</strong><small>${badgeProgress} de ${data.nextBadge.required} acertos na jornada</small></p>
-          </div>
-        ` : '<p class="nqd-milestone-complete">Todos os selos de acertos da jornada foram alcançados.</p>'}
+        <div class="nqd-reward-copy">
+          <small>${isComplete ? 'Caminho concluído' : 'Próxima insígnia'}</small>
+          <h3>${_escape(badge.name)}</h3>
+          <p>${isComplete ? 'Os cinco selos da jornada são seus.' : `Faltam ${remaining} ${remaining === 1 ? 'acerto' : 'acertos'} para conquistar.`}</p>
+          ${_meterMarkup(progress, badge.required, `Progresso para ${badge.name}`, true)}
+          <span>${progress} / ${badge.required} acertos na jornada</span>
+        </div>
       </div>
     `;
   }
@@ -543,16 +516,13 @@
   function _tabOverview(data) {
     const primaryAction = data.save ? '_dashResumeJourney' : '_dashStartJourney';
     const primaryLabel = data.save ? 'Retomar jornada' : 'Começar jornada';
-    const totalCorrect = data.totalCorrect;
-    const totalWrong = Math.max(0, _number(data.stats.totalWrong, data.totalQuestions - totalCorrect));
     return `
       <section class="nqd-pane nq-dash-pane active" id="nqdPane-overview" role="tabpanel" aria-labelledby="nqdTab-overview" data-dash-pane="overview">
         <div class="nqd-section-header">
-          <div><span class="nqd-eyebrow">Átrio da jornada · seu ponto de retorno</span>
-          <h1 class="nqd-title-lg">Sala de Conduta</h1>
-          <p class="nqd-section-copy">Leia o que importa agora, escolha uma conduta e continue aprendendo.</p></div>
+          <div><h1 class="nqd-title-lg">Sala de Conduta</h1>
+          <p class="nqd-section-copy">Seu próximo passo e o marco que está ao alcance.</p></div>
         </div>
-        ${data.topicsLoadError ? '<div class="nqd-notice" role="status">O banco de questões não pôde ser atualizado. A Central está mostrando apenas os dados disponíveis neste dispositivo.</div>' : ''}
+        ${data.topicsLoadError ? '<div class="nqd-notice" role="status">Alguns dados não carregaram. Exibindo seu progresso salvo.</div>' : ''}
         <div class="nqd-command-grid">
           <article class="nqd-journey">
             <div class="nqd-journey-layout"><div class="nqd-journey-portrait">
@@ -567,34 +537,30 @@
                 <span><small>XP</small><strong>${_formatNumber(data.xp)} / ${_formatNumber(data.xpToNext)}</strong></span>
               </div>
               ${_meterMarkup(Math.min(data.xp, data.xpToNext), data.xpToNext, 'Experiência do personagem', true)}
+              ${data.nextAvatar ? `<div class="nqd-next-form"><img src="${_escape(data.nextAvatar)}" alt=""><span><small>Próxima forma</small><strong>Nível ${data.level + 1}</strong></span></div>` : '<div class="nqd-next-form is-complete"><span><small>Forma máxima</small><strong>Nível 10</strong></span></div>'}
               <div class="nqd-journey-actions"><button type="button" class="nqd-primary-action" data-action="${primaryAction}" data-nqd-primary="true">${primaryLabel}${_svg('arrow')}</button></div>
             </div></div>
           </article>
 
-          <section class="nqd-plan" aria-labelledby="nqdPlanTitle">
-            <header class="nqd-plan-header"><span class="nqd-eyebrow">Conduta recomendada</span><h2 class="nqd-plan-title" id="nqdPlanTitle">Plano de hoje</h2></header>
+          ${data.plan.length ? `<section class="nqd-plan" aria-labelledby="nqdPlanTitle">
+            <header class="nqd-plan-header"><span class="nqd-eyebrow">Próximos passos</span><h2 class="nqd-plan-title" id="nqdPlanTitle">Agora</h2></header>
             <div class="nqd-plan-list">${_planMarkup(data.plan)}</div>
-          </section>
+          </section>` : ''}
         </div>
-
-        <div class="nqd-conduct-spine" aria-label="Ciclo de aprendizagem"><span class="nqd-conduct-step is-complete"><strong>Decidir</strong><small>conduta ativa</small></span><span class="nqd-conduct-step is-current"><strong>Reter</strong><small>memória</small></span><span class="nqd-conduct-step"><strong>Consolidar</strong><small>revisão</small></span><span class="nqd-conduct-step"><strong>Dominar</strong><small>evolução</small></span></div>
 
         <div class="nqd-overview-details">
           <section class="nqd-section">
-            <header class="nqd-section-header"><div><span class="nqd-eyebrow">Leitura acionável</span><h2 class="nqd-section-title">Progresso clínico</h2></div></header>
-            <div class="nqd-summary-strip" style="--columns:4">
-              <div class="nqd-metric"><small class="nqd-metric-label">Respondidas</small><strong class="nqd-metric-value">${_formatNumber(data.totalQuestions)}</strong></div>
-              <div class="nqd-metric"><small class="nqd-metric-label">Acertos</small><strong class="nqd-metric-value">${_formatNumber(totalCorrect)}</strong></div>
-              <div class="nqd-metric"><small class="nqd-metric-label">Erros registrados</small><strong class="nqd-metric-value">${_formatNumber(totalWrong)}</strong></div>
-              <div class="nqd-metric"><small class="nqd-metric-label">Precisão</small><strong class="nqd-metric-value">${data.accuracy == null ? '—' : `${data.accuracy}%`}</strong></div>
+            <header class="nqd-section-header"><div><h2 class="nqd-section-title">Seu desempenho</h2></div></header>
+            <div class="nqd-summary-strip" style="--columns:2">
+              <div class="nqd-metric"><strong class="nqd-metric-value">${_formatNumber(data.totalQuestions)}</strong><small class="nqd-metric-label">decisões registradas</small></div>
+              <div class="nqd-metric"><strong class="nqd-metric-value">${data.accuracy == null ? '—' : `${data.accuracy}%`}</strong><small class="nqd-metric-label">precisão observada</small></div>
             </div>
             ${_attentionMarkup(data)}
-            ${data.strength ? `<p class="nqd-strength"><span>Força observada</span><strong>${_escape(data.strength.label)}</strong> · ${Math.round(data.strength.accuracy)}% em ${data.strength.totalAnswered} respostas</p>` : ''}
+            ${data.strength ? `<p class="nqd-strength"><span>Melhor domínio</span><strong>${_escape(data.strength.label)}</strong><small>${Math.round(data.strength.accuracy)}% · ${data.strength.totalAnswered} respostas</small></p>` : ''}
           </section>
           <section class="nqd-section">
-            <header class="nqd-section-header"><div><span class="nqd-eyebrow">Continuidade real</span><h2 class="nqd-section-title">Marco e atividade</h2></div></header>
+            <header class="nqd-section-header"><div><h2 class="nqd-section-title">Próxima conquista</h2></div></header>
             ${_milestoneMarkup(data)}
-            <div class="nqd-activity"><h3>Atividade registrada</h3>${_activityMarkup(data)}</div>
           </section>
         </div>
       </section>
@@ -617,39 +583,47 @@
   }
 
   function _tabSkills(data) {
-    const rows = data.coreSkills.length ? data.coreSkills.map(skill => {
+    const skillOrder = { attention: 0, progress: 1, insufficient: 2, mastered: 3 };
+    const orderedSkills = [...data.coreSkills].sort((left, right) => {
+      const stateFor = skill => {
+        const answered = _number(skill.totalAnswered, 0);
+        if (answered < 5 || skill.accuracy == null) return 'insufficient';
+        if (skill.accuracy < 50) return 'attention';
+        if (skill.accuracy < 70) return 'progress';
+        return 'mastered';
+      };
+      return skillOrder[stateFor(left)] - skillOrder[stateFor(right)];
+    });
+    const rows = orderedSkills.length ? orderedSkills.map(skill => {
       const answered = _number(skill.totalAnswered, 0);
       const accuracy = skill.accuracy == null ? null : Math.round(skill.accuracy);
-      const sample = answered < 5 ? 'Amostra inicial' : 'Amostra válida';
+      const skillState = answered < 5 || accuracy == null ? 'insufficient' : accuracy < 50 ? 'attention' : accuracy < 70 ? 'progress' : 'mastered';
       return `
-        <article class="nqd-skill-row" data-state="${answered < 5 ? 'insufficient' : 'measured'}">
-          <div>
-            <span class="nqd-state${answered < 5 ? ' is-muted' : ''}">${sample}</span>
+        <article class="nqd-skill-row" data-state="${skillState}">
+          <div class="nqd-skill-identity">
             <h3 class="nqd-skill-name">${_escape(skill.label)}</h3>
-            <p class="nqd-skill-sample">${answered} respostas</p>
+            ${skillState === 'insufficient' ? `<span class="nqd-state is-muted">Poucos dados · ${answered} ${answered === 1 ? 'resposta' : 'respostas'}</span>` : ''}
           </div>
           <div class="nqd-skill-measure">
-            <div class="nqd-skill-values"><span>${_formatNumber(skill.correct)} acertos</span><strong>${accuracy == null ? '—' : `${accuracy}%`}</strong></div>
+            <div class="nqd-skill-values"><strong>${accuracy == null ? '—' : `${accuracy}%`}</strong><span>${answered} ${answered === 1 ? 'resposta' : 'respostas'}</span></div>
             ${_meterMarkup(accuracy == null ? 0 : accuracy, 100, `Precisão em ${skill.label}`)}
           </div>
-          <p class="nqd-skill-note">${skill.categories && skill.categories.length ? skill.categories.map(cat => _escape((data.axisStats.find(axis => axis.cat === cat) || {}).label || cat)).join(' · ') : _escape(skill.desc || '')}</p>
         </article>
       `;
-    }).join('') : '<div class="nqd-empty"><strong>Prontuário ainda sem amostra.</strong><p>As competências aparecerão aqui após suas primeiras respostas.</p></div>';
+    }).join('') : '<div class="nqd-empty"><strong>Competências ainda sem amostra.</strong><p>Elas aparecerão aqui após suas primeiras respostas.</p></div>';
 
     return `
       <section class="nqd-pane nq-dash-pane" id="nqdPane-skills" role="tabpanel" aria-labelledby="nqdTab-skills" data-dash-pane="skills" hidden>
-        <div class="nqd-section-header"><div><span class="nqd-eyebrow">Leitura pedagógica · sem notas simuladas</span><h1 class="nqd-title-lg">Prontuário de Domínio</h1><p class="nqd-section-copy">Cinco competências centrais, com amostra e precisão calculadas a partir das suas respostas.</p></div></div>
+        <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Competências</h1><p class="nqd-section-copy">Veja seus pontos fortes e o próximo foco de treino.</p></div></div>
         <div class="nqd-skills-layout">
           <section class="nqd-radar-panel">
-            <header class="nqd-section-heading"><div><span class="nqd-eyebrow">Visão complementar</span><h2 class="nqd-section-title">Precisão observada</h2></div></header>
+            <header class="nqd-section-heading"><div><h2 class="nqd-section-title">Seu perfil</h2></div></header>
             <div id="nqDashRadarContainer" class="nqd-radar" role="img" aria-label="Gráfico de precisão por competência"></div>
-            <p>O gráfico compara a precisão nas respostas registradas. A amostra ao lado indica quando essa leitura ainda é inicial.</p>
-            ${data.weakness ? `<button type="button" class="nqd-action nq-dash-weakness" data-action="_dashGoWeakness">Treinar ${_escape(data.weakness.label)}${_svg('arrow')}</button>` : '<span class="nqd-state is-muted">Responda ao menos 5 questões em uma competência para identificar atenção</span>'}
+            ${data.weakness ? `<button type="button" class="nqd-action nq-dash-weakness" data-action="_dashGoWeakness">Treinar ${_escape(data.weakness.label)}${_svg('arrow')}</button>` : '<span class="nqd-state is-muted">Responda 5 questões em uma competência para revelar seu foco</span>'}
           </section>
-          <section class="nqd-section"><header class="nqd-section-heading"><div><span class="nqd-eyebrow">Evidência por eixo</span><h2 class="nqd-section-title">Leitura das competências</h2></div></header><div class="nqd-skill-list">${rows}</div></section>
+          <section class="nqd-section" aria-label="Desempenho por competência"><div class="nqd-skill-list">${rows}</div></section>
         </div>
-        <section class="nqd-section nqd-error-patterns"><header class="nqd-section-header"><div><span class="nqd-eyebrow">Metacognição</span><h2 class="nqd-section-title">Padrões de raciocínio nomeados</h2></div></header>${_errorPatternsMarkup()}</section>
+        <section class="nqd-section nqd-error-patterns"><header class="nqd-section-header"><div><h2 class="nqd-section-title">Como você erra</h2></div></header>${_errorPatternsMarkup()}</section>
       </section>
     `;
   }
@@ -675,13 +649,16 @@
     const allAxes = typeof NEFRO_AXES !== 'undefined' && Array.isArray(NEFRO_AXES) ? NEFRO_AXES : [];
     allAxes.forEach(axis => axisLabels.set(axis.cat, axis.label));
 
-    const content = groups.size ? [...groups.entries()].map(([cat, comps]) => `
-      <section class="nqd-map-group">
+    const content = groups.size ? [...groups.entries()].map(([cat, comps]) => {
+      const ranks = { progress: 0, sample: 1, none: 2, mastered: 3 };
+      const ordered = [...comps].sort((left, right) => ranks[_mapStatus(stats[left.id]).key] - ranks[_mapStatus(stats[right.id]).key]);
+      const explored = ordered.filter(comp => _number((stats[comp.id] || {}).t, 0) > 0).length;
+      return `<section class="nqd-map-group">
         <header class="nqd-map-group-title">
-          <div><span>Domínio clínico</span><h2>${_escape(axisLabels.get(cat) || cat)}</h2></div>
+          <div><h2>${_escape(axisLabels.get(cat) || cat)}</h2><span>${explored} de ${ordered.length} exploradas</span></div>
           <button type="button" class="nqd-action" data-action="_dashTrainCategories" data-arg="${_escape(cat)}">Estudar domínio${_svg('arrow')}</button>
         </header>
-        <div class="nqd-map-nodes">${comps.map(comp => {
+        <div class="nqd-map-nodes">${ordered.map(comp => {
           const stat = stats[comp.id] || { c: 0, t: 0 };
           const status = _mapStatus(stat);
           const total = _number(stat.t, 0);
@@ -691,17 +668,16 @@
             <article class="nqd-map-node is-${status.key}" data-state="${status.key === 'sample' ? 'none' : status.key}">
               <span class="nqd-state">${status.label}</span>
               <h3>${_escape(comp.label)}</h3>
-              <p>${total ? `${correct} acertos em ${total} respostas${accuracy == null ? '' : ` · ${accuracy}%`}` : 'Nenhuma resposta classificada nesta competência.'}</p>
+              ${total ? `<p>${accuracy}% · ${total} ${total === 1 ? 'resposta' : 'respostas'}</p>` : ''}
             </article>
           `;
         }).join('')}</div>
-      </section>
-    `).join('') : '<div class="nqd-empty"><strong>Atlas indisponível.</strong><p>As competências não puderam ser carregadas neste dispositivo.</p></div>';
+      </section>`;
+    }).join('') : '<div class="nqd-empty"><strong>Mapa indisponível.</strong><p>As competências não puderam ser carregadas neste dispositivo.</p></div>';
 
     return `
       <section class="nqd-pane nq-dash-pane" id="nqdPane-mapa" role="tabpanel" aria-labelledby="nqdTab-mapa" data-dash-pane="mapa" hidden>
-        <div class="nqd-section-header"><div><span class="nqd-eyebrow">Competências observadas · sem trilhas artificiais</span><h1 class="nqd-title-lg">Atlas de Domínio</h1><p class="nqd-section-copy">Cada território reflete apenas respostas já classificadas pelo motor de competências.</p></div></div>
-        <div class="nqd-map-legend"><span class="is-none">Não explorada</span><span class="is-sample">Amostra inicial</span><span class="is-progress">Em progresso</span><span class="is-mastered">Domínio</span></div>
+        <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Mapa de Domínio</h1><p class="nqd-section-copy">Veja o que já explorou e onde avançar.</p></div></div>
         <div class="nqd-map-groups">${content}</div>
       </section>
     `;
@@ -759,42 +735,92 @@
     return 'Jornada';
   }
 
+  function _achievementIconMarkup(achievement, isUnlocked) {
+    const name = _escape(achievement && achievement.name);
+    if (achievement && achievement.imgIcon) {
+      return `<img src="${_escape(achievement.imgIcon)}" alt="" loading="lazy" decoding="async">`;
+    }
+    return `<span aria-hidden="true">${_escape(achievement && achievement.icon ? achievement.icon : '✦')}</span><span class="nqd-sr-only">Símbolo de ${name}${isUnlocked ? ', conquistada' : ''}</span>`;
+  }
+
+  function _badgePathMarkup(correctTotal) {
+    const nextBadge = BADGE_MILESTONES.find(badge => correctTotal < badge.required) || null;
+    return `
+      <ol class="nqd-badge-path" aria-label="Caminho de cinco selos da jornada">
+        ${BADGE_MILESTONES.map(badge => {
+          const isUnlocked = correctTotal >= badge.required;
+          const isCurrent = nextBadge && badge.id === nextBadge.id;
+          const state = isUnlocked ? 'unlocked' : isCurrent ? 'current' : 'locked';
+          return `
+            <li class="nqd-badge-node is-${state}" data-state="${state}"${isCurrent ? ' aria-current="step"' : ''}>
+              <span class="nqd-badge-art"><img src="${badge.image}" alt="" loading="lazy" decoding="async"></span>
+              <span class="nqd-badge-node-copy"><strong>${_escape(badge.name)}</strong><small>${badge.required} acertos</small></span>
+              <span class="nqd-sr-only">${isUnlocked ? 'Conquistado' : isCurrent ? 'Próximo selo' : 'Bloqueado'}</span>
+            </li>
+          `;
+        }).join('')}
+      </ol>
+    `;
+  }
+
   function _tabAchievements(data) {
     const achievements = typeof ACHIEVEMENTS_LIST !== 'undefined' && Array.isArray(ACHIEVEMENTS_LIST) ? ACHIEVEMENTS_LIST : [];
     const achievementIds = new Set(achievements.map(achievement => achievement.id));
     const storedUnlocked = typeof getUnlockedAchievements === 'function' ? getUnlockedAchievements() : _readJson('nefroquest-achievements', []);
     const unlocked = new Set([...storedUnlocked].filter(id => achievementIds.has(id)));
-    const categories = new Map();
-    achievements.forEach(achievement => {
-      const category = _achievementCategory(achievement.id);
-      if (!categories.has(category)) categories.set(category, []);
-      categories.get(category).push(achievement);
-    });
+    const correctTotal = Math.max(0, _number(data.save && data.save.correctTotal, 0));
+    const nextBadge = BADGE_MILESTONES.find(badge => correctTotal < badge.required) || null;
+    const featuredBadge = nextBadge || BADGE_MILESTONES[BADGE_MILESTONES.length - 1];
+    const featuredValue = Math.min(correctTotal, featuredBadge.required);
+    const remaining = Math.max(0, featuredBadge.required - correctTotal);
 
-    const groups = categories.size ? [...categories.entries()].map(([category, items]) => `
-      <section class="nqd-achievement-group">
-        <header><span>Registro</span><h2>${_escape(category)}</h2></header>
-        <div class="nqd-achievement-grid">${items.map(achievement => {
-          const isUnlocked = unlocked.has(achievement.id);
-          const progress = _achievementProgress(achievement.id, data.stats);
-          const value = progress ? Math.min(progress.value, progress.target) : 0;
-          return `
-            <article class="nqd-achievement${isUnlocked ? ' is-unlocked' : ' is-locked'}" data-state="${isUnlocked ? 'unlocked' : 'locked'}">
-              <span class="nqd-achievement-mark">${isUnlocked ? _svg('check') : _svg('achievements')}</span>
-              <div><span class="nqd-state">${isUnlocked ? 'Desbloqueada' : 'Não conquistada'}</span><h3 class="nqd-achievement-title">${_escape(achievement.name)}</h3><p class="nqd-achievement-copy">${_escape(achievement.description)}</p>
-              ${progress && progress.target > 0 ? `<div class="nqd-achievement-progress"><span>${_formatNumber(value)} / ${_formatNumber(progress.target)}</span>${_meterMarkup(value, progress.target, `Progresso de ${achievement.name}`, true)}</div>` : ''}
-              </div>
-            </article>
-          `;
-        }).join('')}</div>
-      </section>
-    `).join('') : '<div class="nqd-empty"><strong>Selos indisponíveis.</strong><p>O catálogo de conquistas não pôde ser carregado.</p></div>';
+    const cards = achievements.length ? achievements.map(achievement => {
+      const isUnlocked = unlocked.has(achievement.id);
+      const progress = _achievementProgress(achievement.id, data.stats);
+      const value = progress ? Math.max(0, Math.min(progress.value, progress.target)) : 0;
+      const state = isUnlocked ? 'unlocked' : 'progress';
+      return `
+        <article class="nqd-achievement${isUnlocked ? ' is-unlocked' : ' is-locked'}" data-state="${isUnlocked ? 'unlocked' : 'locked'}" data-achievement-status="${state}">
+          <span class="nqd-achievement-mark">${_achievementIconMarkup(achievement, isUnlocked)}</span>
+          <div class="nqd-achievement-body">
+            <span class="nqd-state">${isUnlocked ? 'Conquistada' : _escape(_achievementCategory(achievement.id))}</span>
+            <h3 class="nqd-achievement-title">${_escape(achievement.name)}</h3>
+            <p class="nqd-achievement-copy">${_escape(achievement.description)}</p>
+            ${progress && progress.target > 0 && !isUnlocked ? `<div class="nqd-achievement-progress"><span>${_formatNumber(value)} / ${_formatNumber(progress.target)}</span>${_meterMarkup(value, progress.target, `Progresso de ${achievement.name}`, true)}</div>` : ''}
+          </div>
+        </article>
+      `;
+    }).join('') : '<div class="nqd-empty"><strong>Selos indisponíveis.</strong><p>O catálogo de conquistas não pôde ser carregado.</p></div>';
 
     return `
       <section class="nqd-pane nq-dash-pane" id="nqdPane-achievements" role="tabpanel" aria-labelledby="nqdTab-achievements" data-dash-pane="achievements" hidden>
-        <div class="nqd-section-header"><div><span class="nqd-eyebrow">Marcos reais · sem ordem cronológica inventada</span><h1 class="nqd-title-lg">Gabinete de Selos</h1><p class="nqd-section-copy">Conquistas desbloqueadas, requisitos e progresso apenas quando o dado é mensurável.</p></div></div>
-        <div class="nqd-achievement-summary"><strong>${unlocked.size}</strong><span>de ${achievements.length} conquistas desbloqueadas</span></div>
-        <div class="nqd-achievement-groups">${groups}</div>
+        <div class="nqd-section-header"><div><span class="nqd-eyebrow">Seu legado em construção</span><h1 class="nqd-title-lg">Conquistas</h1><p class="nqd-section-copy">Veja o próximo marco e escolha qual conquista perseguir.</p></div></div>
+
+        <section class="nqd-achievement-spotlight${nextBadge ? '' : ' is-complete'}" aria-labelledby="nqdAchievementSpotlightTitle">
+          <div class="nqd-achievement-spotlight-art"><img src="${featuredBadge.image}" alt="${_escape(featuredBadge.name)}" decoding="async"></div>
+          <div class="nqd-achievement-spotlight-copy">
+            <span class="nqd-eyebrow">${nextBadge ? 'Próximo selo da jornada' : 'Trilha de selos completa'}</span>
+            <h2 id="nqdAchievementSpotlightTitle">${_escape(featuredBadge.name)}</h2>
+            <p>${nextBadge ? `Faltam <strong>${_formatNumber(remaining)} acertos</strong> nesta jornada para revelar este selo.` : 'Os cinco selos da jornada foram conquistados.'}</p>
+            ${_meterMarkup(featuredValue, featuredBadge.required, `Progresso para ${featuredBadge.name}`, true)}
+            <small>${_formatNumber(featuredValue)} de ${featuredBadge.required} acertos</small>
+          </div>
+        </section>
+
+        ${_badgePathMarkup(correctTotal)}
+
+        <div class="nqd-achievement-catalog-header">
+          <div><span class="nqd-eyebrow">Desafios do perfil</span><h2>Conquistas especiais</h2></div>
+          <div class="nqd-achievement-summary" aria-label="${unlocked.size} de ${achievements.length} conquistas especiais conquistadas"><strong>${unlocked.size}</strong><span>de ${achievements.length}</span></div>
+        </div>
+        <div class="nqd-achievement-filters" role="group" aria-label="Filtrar conquistas especiais">
+          <button type="button" class="nqd-achievement-filter is-active" data-achievement-filter="progress" aria-pressed="true">Em andamento</button>
+          <button type="button" class="nqd-achievement-filter" data-achievement-filter="unlocked" aria-pressed="false">Conquistadas</button>
+          <button type="button" class="nqd-achievement-filter" data-achievement-filter="all" aria-pressed="false">Todas</button>
+        </div>
+        <p class="nqd-sr-only" id="nqdAchievementFilterStatus" role="status" aria-live="polite"></p>
+        <div class="nqd-achievement-grid">${cards}</div>
+        <div class="nqd-empty" id="nqdAchievementFilterEmpty" hidden><strong>Nenhuma conquista nesta seleção.</strong><p>Escolha outro filtro para ver seus desafios.</p></div>
       </section>
     `;
   }
@@ -804,9 +830,42 @@
     const storedArticles = new Set(_readJson('unlockedArticles', []));
     const favorites = new Set(_readJson('nq-bib-favorites', []));
     const items = [];
-    const reachableRefKeys = new Set(Array.isArray(window.questionBank)
-      ? window.questionBank.flatMap(question => Array.isArray(question.r) ? question.r : []).filter(Boolean)
-      : []);
+    const bank = Array.isArray(window.questionBank) ? window.questionBank : [];
+    const axisLabels = new Map((_dashboardData && Array.isArray(_dashboardData.axisStats) ? _dashboardData.axisStats : [])
+      .map(axis => [axis.cat, axis.label]));
+    const themeFallbacks = {
+      acido_base: 'Ácido-Base',
+      dialise: 'Diálise & DP',
+      diagnostico: 'Diagnóstico',
+      drc: 'DRC',
+      eletrólitos: 'Distúrbios Eletrolíticos',
+      farmacologia: 'Farmacologia',
+      genetica: 'Genética Renal',
+      glomerular: 'Glomerulopatias',
+      hipertensao: 'Hipertensão',
+      infeccao: 'Infecção Renal',
+      litíase: 'Litíase Renal',
+      lra: 'LRA & Nefrotoxicidade',
+      nefrologia_geral: 'Nefrologia Geral',
+      nefropatia_diabetica: 'Nefropatia Diabética',
+      oncologia_renal: 'Oncologia Renal',
+      transplante: 'Transplante Renal',
+      uti: 'UTI / Crítico',
+    };
+    const linkedThemes = new Map();
+    const reachableRefKeys = new Set();
+    bank.forEach(question => {
+      const keys = Array.isArray(question.r)
+        ? question.r
+        : (Array.isArray(question.refs) ? question.refs : []);
+      const category = question.c || question.cat || '';
+      keys.filter(Boolean).forEach(key => {
+        reachableRefKeys.add(key);
+        if (!category) return;
+        if (!linkedThemes.has(key)) linkedThemes.set(key, new Set());
+        linkedThemes.get(key).add(axisLabels.get(category) || themeFallbacks[category] || category);
+      });
+    });
     const totalRefs = typeof refsDB === 'object' && refsDB
       ? (reachableRefKeys.size ? [...reachableRefKeys].filter(key => Object.prototype.hasOwnProperty.call(refsDB, key)).length : Object.keys(refsDB).length)
       : 0;
@@ -815,20 +874,33 @@
       ? [...storedRefs].filter(key => Object.prototype.hasOwnProperty.call(refsDB, key) && (!reachableRefKeys.size || reachableRefKeys.has(key)))
       : []);
     const unlockedArticles = new Set(typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles)
-      ? [...storedArticles].filter(index => Number.isInteger(index) && index >= 0 && index < nefroArticles.length)
+      ? [...storedArticles].map(Number).filter(index => Number.isInteger(index) && index >= 0 && index < nefroArticles.length)
       : []);
 
     if (typeof refsDB === 'object' && refsDB) {
       Object.entries(refsDB).forEach(([key, ref]) => {
         if (!unlockedRefs.has(key)) return;
+        const rawType = String(ref.tipo || '').trim();
+        const type = /^refer[eê]ncia$/i.test(rawType) || !rawType ? 'Fonte clínica' : rawType;
+        const themes = linkedThemes.has(key) ? [...linkedThemes.get(key)] : [];
         items.push({
           key,
-          type: 'Referência',
+          kind: 'source',
+          kindLabel: 'Fonte clínica',
+          type,
           title: ref.label || key,
           source: ref.journal || '',
+          authors: '',
           year: ref.ano || '',
+          rarity: '',
+          badge: ref.badge || '',
+          badgeColor: ref.badgeColor || '',
+          icon: ref.icon || '📖',
+          themes,
           summary: ref.resumo || '',
           conclusion: ref.conclusao || '',
+          impact: ref.impacto || '',
+          curiosity: ref.curiosidade || '',
           url: ref.url || '',
           favorite: favorites.has(key),
         });
@@ -840,14 +912,25 @@
         const article = nefroArticles[index];
         if (!article) return;
         const key = `__art_${index}`;
+        const rarity = String(article.raridade || '').trim().toLocaleLowerCase('pt-BR');
         items.push({
           key,
+          kind: 'scroll',
+          kindLabel: 'Pergaminho',
           type: 'Artigo',
           title: article.titulo || 'Artigo',
           source: article.jornal || article.autores || '',
+          authors: article.autores || '',
           year: article.ano || '',
+          rarity,
+          badge: '',
+          badgeColor: '',
+          icon: (window.rarityScrollIcons && window.rarityScrollIcons[rarity]) || '📜',
+          themes: [],
           summary: article.resumo || '',
           conclusion: article.conclusao || '',
+          impact: article.impacto || '',
+          curiosity: article.curiosidade || '',
           url: '',
           favorite: favorites.has(key),
         });
@@ -857,25 +940,82 @@
     return { items, favorites, unlockedRefs, unlockedArticles, totalRefs, totalArticles };
   }
 
+  function _libraryRarityLabel(value) {
+    if (!value) return '';
+    const normalized = String(value).toLocaleLowerCase('pt-BR');
+    return normalized.charAt(0).toLocaleUpperCase('pt-BR') + normalized.slice(1);
+  }
+
+  function _sortLibraryItems(items, mode) {
+    const list = [...items];
+    const byTitle = (a, b) => a.title.localeCompare(b.title, 'pt-BR', { sensitivity: 'base' });
+    const year = item => {
+      const parsed = Number.parseInt(item.year, 10);
+      return Number.isFinite(parsed) ? parsed : null;
+    };
+    list.sort((a, b) => {
+      if (mode === 'oldest' || mode === 'recent') {
+        const yearA = year(a);
+        const yearB = year(b);
+        if (yearA == null && yearB != null) return 1;
+        if (yearA != null && yearB == null) return -1;
+        if (yearA !== yearB) return mode === 'oldest' ? yearA - yearB : yearB - yearA;
+      }
+      if (mode === 'type') {
+        const typeOrder = a.type.localeCompare(b.type, 'pt-BR', { sensitivity: 'base' });
+        if (typeOrder) return typeOrder;
+      }
+      return byTitle(a, b);
+    });
+    return list;
+  }
+
   function _libraryCards(items) {
-    if (!items.length) return '<div class="nqd-empty" data-library-empty><strong>Nenhuma evidência desbloqueada ainda.</strong><p>Referências são liberadas ao responder questões; artigos aparecem nos baús da jornada.</p></div>';
+    if (!items.length) return '<div class="nqd-empty" data-library-empty><strong>Seu Grimório aguarda a primeira descoberta.</strong><p>Acerte questões e abra baús para reunir conhecimento clínico.</p></div>';
     return items.map((item, index) => {
       const detailId = `nqdLibraryDetail-${index}`;
+      const titleId = `nqdLibraryTitle-${index}`;
+      const rarityLabel = _libraryRarityLabel(item.rarity);
+      const themes = Array.isArray(item.themes) ? item.themes : [];
+      const theme = themes.join(' · ');
+      const stateLabel = rarityLabel || item.type || item.kindLabel;
+      const meta = [
+        item.year ? String(item.year) : '',
+        theme,
+      ].filter(Boolean);
+      const accentStyle = item.badgeColor ? ` style="--library-accent:${_escape(item.badgeColor)}"` : '';
+      const searchable = [
+        item.title,
+        item.source,
+        item.authors,
+        item.year,
+        item.type,
+        rarityLabel,
+        theme,
+        item.impact,
+      ].filter(Boolean).join(' ').toLocaleLowerCase('pt-BR');
       return `
-      <article class="nqd-library-item" data-library-item data-search="${_escape(`${item.title} ${item.source} ${item.year}`.toLowerCase())}">
-        <div>
-          <span class="nqd-state">${_escape(item.type)}</span>
-          <h3 class="nqd-library-title">${_escape(item.title)}</h3>
-          <p class="nqd-library-copy">${_escape([item.source, item.year].filter(Boolean).join(' · '))}</p>
+      <article class="nqd-library-item" data-library-item data-library-kind="${_escape(item.kind)}" data-library-year="${_escape(item.year)}" data-library-type="${_escape(item.type)}" data-library-rarity="${_escape(item.rarity)}" data-library-theme="${_escape(theme)}" data-library-favorite="${item.favorite ? 'true' : 'false'}" data-library-title="${_escape(item.title)}" data-search="${_escape(searchable)}"${accentStyle}>
+        <div class="nqd-library-main">
+          <div class="nqd-library-insignia" aria-hidden="true">${_escape(item.icon)}</div>
+          <div>
+            <span class="nqd-state">${_escape(stateLabel)}</span>
+            <h3 class="nqd-library-title" id="${titleId}">${_escape(item.title)}</h3>
+            ${meta.length ? `<p class="nqd-library-copy">${_escape(meta.join(' · '))}</p>` : ''}
+            ${item.impact ? `<p class="nqd-library-impact">${_escape(item.impact)}</p>` : ''}
+          </div>
         </div>
         <div class="nqd-library-actions">
-          <button type="button" class="nqd-favorite${item.favorite ? ' is-active' : ''}" data-action="_dashToggleFavorite" data-pass-this="1" data-library-key="${_escape(item.key)}" aria-label="${item.favorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}"><span>${item.favorite ? 'Salva' : 'Salvar'}</span></button>
+          <button type="button" class="nqd-favorite${item.favorite ? ' is-active' : ''}" data-action="_dashToggleFavorite" data-pass-this="1" data-library-key="${_escape(item.key)}" aria-pressed="${item.favorite ? 'true' : 'false'}" aria-label="${item.favorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}"><span>${item.favorite ? '★ Salvo' : '☆ Salvar'}</span></button>
           <button type="button" class="nqd-action" data-action="_dashToggleArticle" data-pass-this="1" aria-expanded="false" aria-controls="${detailId}"><span>Ler resumo</span>${_svg('arrow')}</button>
         </div>
-        <div class="nqd-library-detail nqd-library-copy" id="${detailId}" hidden>
+        <div class="nqd-library-detail nqd-library-copy" id="${detailId}" role="region" aria-labelledby="${titleId}" hidden>
+          ${item.authors ? `<p><strong>Autores</strong> ${_escape(item.authors)}</p>` : ''}
+          ${item.source ? `<p><strong>Publicação</strong> ${_escape(item.source)}</p>` : ''}
           ${item.summary ? `<p>${_escape(item.summary)}</p>` : '<p>Esta entrada não possui resumo cadastrado.</p>'}
           ${item.conclusion ? `<p><strong>Conclusão:</strong> ${_escape(item.conclusion)}</p>` : ''}
-          ${item.url ? `<a href="${_escape(item.url)}" target="_blank" rel="noopener noreferrer">Abrir fonte</a>` : ''}
+          ${item.curiosity ? `<p class="nqd-library-curiosity"><strong>Curiosidade</strong> ${_escape(item.curiosity)}</p>` : ''}
+          ${item.url ? `<a href="${_escape(item.url)}" target="_blank" rel="noopener noreferrer">Abrir publicação</a>` : ''}
         </div>
       </article>
     `;
@@ -886,20 +1026,39 @@
     const library = _libraryItems();
     const totalUnlocked = library.items.length;
     const totalAvailable = library.totalRefs + library.totalArticles;
+    const scrollCount = library.items.filter(item => item.kind === 'scroll').length;
+    const sourceCount = library.items.filter(item => item.kind === 'source').length;
+    const favoriteCount = library.items.filter(item => item.favorite).length;
+    const sortedItems = _sortLibraryItems(library.items, 'recent');
     return `
       <section class="nqd-pane nq-dash-pane" id="nqdPane-library" role="tabpanel" aria-labelledby="nqdTab-library" data-dash-pane="library" hidden>
-        <div class="nqd-section-header"><div><span class="nqd-eyebrow">Conteúdo já conquistado · fontes reais</span><h1 class="nqd-title-lg">Arquivo de Evidências</h1><p class="nqd-section-copy">Referências e artigos desbloqueados na sua jornada, sem itens demonstrativos.</p></div></div>
+        <div class="nqd-section-header"><div><span class="nqd-eyebrow">Conhecimento conquistado em jogo</span><h1 class="nqd-title-lg">Grimório de Conhecimento</h1><p class="nqd-section-copy">Cada descoberta amplia um acervo clínico que é realmente seu.</p></div></div>
         <div class="nqd-library-summary">
-          <span><small>Desbloqueados</small><strong>${totalUnlocked}</strong></span>
-          <span><small>Referências</small><strong>${library.unlockedRefs.size} / ${library.totalRefs}</strong></span>
-          <span><small>Artigos</small><strong>${library.unlockedArticles.size} / ${library.totalArticles}</strong></span>
-          <span><small>Favoritos</small><strong>${library.items.filter(item => item.favorite).length}</strong></span>
+          <span><small>Acervo descoberto</small><strong>${totalUnlocked} / ${totalAvailable}</strong></span>
+          <span><small>Favoritos</small><strong id="nqDashLibraryFavoriteCount">${favoriteCount}</strong></span>
         </div>
-        ${totalAvailable ? `
-          <label class="nqd-search">${_svg('search')}<span class="nqd-sr-only">Buscar no arquivo</span><input id="nqDashLibrarySearch" type="search" placeholder="Buscar por título, fonte ou ano" autocomplete="off"></label>
+        ${totalAvailable ? _meterMarkup(totalUnlocked, totalAvailable, 'Conhecimento reunido no Grimório', true) : ''}
+        ${library.items.length ? `
+          <div class="nqd-library-tabs" role="tablist" aria-label="Coleções do Grimório">
+            <button type="button" role="tab" id="nqDashLibraryTab-scrolls" aria-selected="true" aria-controls="nqDashLibraryCollection" tabindex="0" data-library-collection="scrolls"><span>Pergaminhos</span><strong data-library-count>${scrollCount}</strong></button>
+            <button type="button" role="tab" id="nqDashLibraryTab-sources" aria-selected="false" aria-controls="nqDashLibraryCollection" tabindex="-1" data-library-collection="sources"><span>Fontes clínicas</span><strong data-library-count>${sourceCount}</strong></button>
+            <button type="button" role="tab" id="nqDashLibraryTab-favorites" aria-selected="false" aria-controls="nqDashLibraryCollection" tabindex="-1" data-library-collection="favorites"><span>Favoritos</span><strong data-library-count>${favoriteCount}</strong></button>
+          </div>
+          <div class="nqd-library-tools">
+            <label class="nqd-search">${_svg('search')}<span class="nqd-sr-only">Buscar no Grimório</span><input id="nqDashLibrarySearch" type="search" placeholder="Buscar título, tema ou ano" autocomplete="off"></label>
+            <label class="nqd-library-sort"><span>Ordenar</span><select id="nqDashLibrarySort">
+              <option value="recent" selected>Mais recentes</option>
+              <option value="oldest">Mais antigos</option>
+              <option value="title">Título A–Z</option>
+              <option value="type">Tipo</option>
+            </select></label>
+          </div>
         ` : ''}
-        <div class="nqd-library-list" id="nqDashLibraryList">${_libraryCards(library.items)}</div>
-        <div class="nqd-empty nqd-library-no-results" id="nqDashLibraryNoResults" hidden><strong>Nenhum resultado nesta busca.</strong><p>Tente outro título, fonte ou ano.</p></div>
+        <div class="nqd-library-collection" id="nqDashLibraryCollection" role="tabpanel" aria-labelledby="nqDashLibraryTab-scrolls">
+          <p class="nqd-library-collection-status" id="nqDashLibraryCollectionCount" aria-live="polite"></p>
+          <div class="nqd-library-list" id="nqDashLibraryList">${_libraryCards(sortedItems)}</div>
+          <div class="nqd-empty nqd-library-no-results" id="nqDashLibraryNoResults" hidden><strong>Nada encontrado nesta coleção.</strong><p>Tente outro termo ou escolha uma coleção diferente.</p></div>
+        </div>
       </section>
     `;
   }
@@ -907,14 +1066,13 @@
   function _tabRanking() {
     return `
       <section class="nqd-pane nq-dash-pane" id="nqdPane-ranking" role="tabpanel" aria-labelledby="nqdTab-ranking" data-dash-pane="ranking" hidden>
-        <div class="nqd-section-header"><div><span class="nqd-eyebrow">Comparação contextual · dados sincronizados</span><h1 class="nqd-title-lg">Registro da Ordem</h1><p class="nqd-section-copy">Veja sua posição sem transformar o aprendizado em uma corrida cega.</p></div></div>
+        <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Ranking da Ordem</h1><p class="nqd-section-copy">Veja sua posição e quem está logo à frente.</p></div></div>
         <div class="nqd-ranking-controls">
           <div class="nqd-segmented" aria-label="Modo do ranking">
-            <button type="button" class="nq-dash-lb-tab${_dashLbMode === 'record' ? ' is-active active' : ''}" data-action="_dashSetLbMode" data-arg="record" aria-pressed="${_dashLbMode === 'record'}">Recordes</button>
-            <button type="button" class="nq-dash-lb-tab${_dashLbMode === 'global' ? ' is-active active' : ''}" data-action="_dashSetLbMode" data-arg="global" aria-pressed="${_dashLbMode === 'global'}">Perfil global</button>
+            <button type="button" class="nq-dash-lb-tab${_dashLbMode === 'record' ? ' is-active active' : ''}" data-action="_dashSetLbMode" data-arg="record" aria-pressed="${_dashLbMode === 'record'}">Melhor partida</button>
+            <button type="button" class="nq-dash-lb-tab${_dashLbMode === 'global' ? ' is-active active' : ''}" data-action="_dashSetLbMode" data-arg="global" aria-pressed="${_dashLbMode === 'global'}">Total de acertos</button>
           </div>
           <label class="nqd-search">${_svg('search')}<span class="nqd-sr-only">Buscar jogador</span><input id="nqDashLbSearch" type="search" placeholder="Buscar jogador" autocomplete="off"></label>
-          <button type="button" class="nqd-action" data-action="_dashRefreshRanking">${_svg('refresh')}Atualizar</button>
         </div>
         <div class="nqd-ranking-wrap nqd-ranking-table-wrap" id="nqDashLbWrap" aria-live="polite"><div class="nqd-ranking-state">Selecione esta área para carregar o ranking.</div></div>
       </section>
@@ -974,7 +1132,7 @@
     const root = document.getElementById('nqDashboard');
     if (!root || !DASH_TABS.some(tab => tab.id === tabId)) return;
     _activeTab = tabId;
-    const tabButtons = [...root.querySelectorAll('[role="tab"]')];
+    const tabButtons = [...root.querySelectorAll('[data-dash-tab]')];
     tabButtons.forEach(button => {
       const active = button.dataset.dashTab === tabId;
       button.classList.toggle('is-active', active);
@@ -1025,9 +1183,9 @@
       return;
     }
 
-    const current = event.target.closest && event.target.closest('[role="tab"]');
+    const current = event.target.closest && event.target.closest('[data-dash-tab]');
     if (!current) return;
-    const visibleTabs = [...document.querySelectorAll('#nqDashboard [role="tab"]')].filter(tab => tab.offsetParent !== null);
+    const visibleTabs = [...document.querySelectorAll('#nqDashboard [data-dash-tab]')].filter(tab => tab.offsetParent !== null);
     const index = visibleTabs.indexOf(current);
     if (index < 0) return;
     let nextIndex = null;
@@ -1040,25 +1198,126 @@
     _switchTab(visibleTabs[nextIndex].dataset.dashTab, true);
   }
 
+  function _setAchievementFilter(root, filter, announce) {
+    const allowed = new Set(['progress', 'unlocked', 'all']);
+    const selected = allowed.has(filter) ? filter : 'progress';
+    let visible = 0;
+    root.querySelectorAll('.nqd-achievement-filter').forEach(button => {
+      const active = button.dataset.achievementFilter === selected;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
+    root.querySelectorAll('[data-achievement-status]').forEach(card => {
+      const matches = selected === 'all' || card.dataset.achievementStatus === selected;
+      card.hidden = !matches;
+      if (matches) visible += 1;
+    });
+    const empty = root.querySelector('#nqdAchievementFilterEmpty');
+    if (empty) empty.hidden = visible > 0;
+    const status = root.querySelector('#nqdAchievementFilterStatus');
+    if (status && announce) status.textContent = `${visible} ${visible === 1 ? 'conquista exibida' : 'conquistas exibidas'}.`;
+  }
+
   function _wireDashboard(root) {
     root.querySelectorAll('[data-dash-tab]').forEach(button => {
       button.addEventListener('click', () => _switchTab(button.dataset.dashTab, false));
     });
 
+    root.querySelectorAll('.nqd-achievement-filter').forEach(button => {
+      button.addEventListener('click', () => _setAchievementFilter(root, button.dataset.achievementFilter, true));
+    });
+    _setAchievementFilter(root, 'progress', false);
+
     const librarySearch = root.querySelector('#nqDashLibrarySearch');
     if (librarySearch) {
-      librarySearch.addEventListener('input', () => {
-        const query = librarySearch.value.trim().toLocaleLowerCase('pt-BR');
-        let visible = 0;
-        root.querySelectorAll('[data-library-item]').forEach(item => {
-          const matches = !query || (item.dataset.search || '').includes(query);
-          item.hidden = !matches;
-          if (matches) visible += 1;
-        });
-        const noResults = root.querySelector('#nqDashLibraryNoResults');
-        if (noResults) noResults.hidden = visible > 0 || !query;
-      });
+      librarySearch.addEventListener('input', () => _applyLibraryView(root));
     }
+
+    const librarySort = root.querySelector('#nqDashLibrarySort');
+    if (librarySort) {
+      librarySort.addEventListener('change', () => _applyLibraryView(root));
+    }
+
+    const libraryTabs = [...root.querySelectorAll('[data-library-collection]')];
+    libraryTabs.forEach((button, index) => {
+      button.addEventListener('click', () => _setLibraryCollection(root, button));
+      button.addEventListener('keydown', event => {
+        let nextIndex = null;
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') nextIndex = (index + 1) % libraryTabs.length;
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') nextIndex = (index - 1 + libraryTabs.length) % libraryTabs.length;
+        if (event.key === 'Home') nextIndex = 0;
+        if (event.key === 'End') nextIndex = libraryTabs.length - 1;
+        if (nextIndex == null) return;
+        event.preventDefault();
+        event.stopPropagation();
+        _setLibraryCollection(root, libraryTabs[nextIndex]);
+        libraryTabs[nextIndex].focus();
+      });
+    });
+
+    if (libraryTabs.length) _applyLibraryView(root);
+  }
+
+  function _setLibraryCollection(root, selected) {
+    if (!root || !selected) return;
+    root.querySelectorAll('[data-library-collection]').forEach(button => {
+      const active = button === selected;
+      button.setAttribute('aria-selected', String(active));
+      button.tabIndex = active ? 0 : -1;
+    });
+    const collection = root.querySelector('#nqDashLibraryCollection');
+    if (collection) collection.setAttribute('aria-labelledby', selected.id);
+    _applyLibraryView(root);
+  }
+
+  function _applyLibraryView(root) {
+    if (!root) return;
+    const list = root.querySelector('#nqDashLibraryList');
+    if (!list) return;
+    const activeTab = root.querySelector('[data-library-collection][aria-selected="true"]');
+    const collection = activeTab ? activeTab.dataset.libraryCollection : 'scrolls';
+    const query = (root.querySelector('#nqDashLibrarySearch')?.value || '').trim().toLocaleLowerCase('pt-BR');
+    const sort = root.querySelector('#nqDashLibrarySort')?.value || 'recent';
+    const items = [...list.querySelectorAll('[data-library-item]')];
+    const title = item => item.dataset.libraryTitle || '';
+    const year = item => {
+      const parsed = Number.parseInt(item.dataset.libraryYear, 10);
+      return Number.isFinite(parsed) ? parsed : null;
+    };
+    const compare = (a, b) => {
+      if (sort === 'recent' || sort === 'oldest') {
+        const aYear = year(a);
+        const bYear = year(b);
+        if (aYear == null && bYear != null) return 1;
+        if (aYear != null && bYear == null) return -1;
+        if (aYear !== bYear) return sort === 'oldest' ? aYear - bYear : bYear - aYear;
+      }
+      if (sort === 'type') {
+        const byType = (a.dataset.libraryType || '').localeCompare(b.dataset.libraryType || '', 'pt-BR', { sensitivity: 'base' });
+        if (byType) return byType;
+      }
+      return title(a).localeCompare(title(b), 'pt-BR', { sensitivity: 'base' });
+    };
+    items.sort(compare).forEach(item => list.appendChild(item));
+
+    let visible = 0;
+    items.forEach(item => {
+      const inCollection = collection === 'favorites'
+        ? item.dataset.libraryFavorite === 'true'
+        : item.dataset.libraryKind === (collection === 'sources' ? 'source' : 'scroll');
+      const matches = !query || (item.dataset.search || '').includes(query);
+      item.hidden = !(inCollection && matches);
+      if (!item.hidden) visible += 1;
+    });
+
+    const labels = { scrolls: 'pergaminho', sources: 'fonte clínica', favorites: 'favorito' };
+    const status = root.querySelector('#nqDashLibraryCollectionCount');
+    if (status) {
+      const label = labels[collection] || 'item';
+      status.textContent = `${visible} ${label}${visible === 1 ? '' : 's'}${query ? ' encontrado' + (visible === 1 ? '' : 's') : ''}`;
+    }
+    const noResults = root.querySelector('#nqDashLibraryNoResults');
+    if (noResults) noResults.hidden = visible > 0;
   }
 
   function _drawDashboardRadar(container, skills) {
@@ -1335,13 +1594,21 @@
     if (favorites.has(key)) favorites.delete(key);
     else favorites.add(key);
     try { localStorage.setItem('nq-bib-favorites', JSON.stringify([...favorites])); } catch (error) { return; }
-    element.classList.toggle('is-active', favorites.has(key));
-    element.setAttribute('aria-label', favorites.has(key) ? 'Remover dos favoritos' : 'Adicionar aos favoritos');
+    const isFavorite = favorites.has(key);
+    element.classList.toggle('is-active', isFavorite);
+    element.setAttribute('aria-pressed', String(isFavorite));
+    element.setAttribute('aria-label', isFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos');
     const label = element.querySelector('span');
-    if (label) label.textContent = favorites.has(key) ? 'Salva' : 'Salvar';
-    const count = document.querySelectorAll('#nqdPane-library .nqd-favorite.is-active').length;
-    const metric = document.querySelector('#nqdPane-library .nqd-library-summary span:last-child strong');
+    if (label) label.textContent = isFavorite ? '★ Salvo' : '☆ Salvar';
+    const article = element.closest('.nqd-library-item');
+    if (article) article.dataset.libraryFavorite = String(isFavorite);
+    const pane = document.querySelector('#nqdPane-library');
+    const count = pane ? pane.querySelectorAll('[data-library-item][data-library-favorite="true"]').length : favorites.size;
+    const metric = document.querySelector('#nqDashLibraryFavoriteCount');
     if (metric) metric.textContent = String(count);
+    const favoriteTabCount = document.querySelector('[data-library-collection="favorites"] [data-library-count]');
+    if (favoriteTabCount) favoriteTabCount.textContent = String(count);
+    if (pane) _applyLibraryView(pane);
   }
 
   function _renderLbRows(wrap, data, query, mode) {
