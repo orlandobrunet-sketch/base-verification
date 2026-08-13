@@ -1,0 +1,24 @@
+{
+  "batch": "FARM-18U",
+  "change_type": "medical_editorial",
+  "expected_version": "14.42",
+  "allowed_files": ["data/topics.js","docs/editorial/review-batches/FARM-18U.json","index.html","jogar/index.html","sw.js","version.json"],
+  "questions": {
+    "89af997c": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "dcd233e6": {"action":"retire","preserve_fsrs":false,"replacement_qid":"89af997c","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "ebd066db": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "91cfbe6c": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}}
+  },
+  "expected_question_delta": -1,
+  "refs_policy": "unchanged",
+  "references": {},
+  "external_review": {"greptile":"unavailable","fallback_reviewer":"Codex revisar-nefroquest + official editorial-batch validator"},
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Três questões foram reconstruídas sobre indução na vasculite ANCA com função renal muito reduzida, papel e momento da biópsia e prevenção de infecções oportunistas.",
+    "A duplicata dcd233e6 foi fundida no qid 89af997c, que preserva o OP de indução e explicita a cautela da KDIGO 2024 quando a creatinina ultrapassa 4 mg/dL.",
+    "O Advogado do Recurso impediu que rituximabe isolado fosse apresentado como esquema comprovado na disfunção renal extrema e que a biópsia atrasasse tratamento urgente.",
+    "As referências utilizadas já constavam no Grimório; nenhuma referência nova foi introduzida.",
+    "Todos os itens publicados foram reavaliados após a mudança material: Evidência VERIFICADA, Pendência NENHUMA, veredito aprovada e publicação LIBERADA."
+  ]
+}
