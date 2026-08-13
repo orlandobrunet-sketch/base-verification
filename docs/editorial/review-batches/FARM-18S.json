@@ -1,0 +1,45 @@
+{
+  "batch": "FARM-18S",
+  "change_type": "medical_editorial",
+  "expected_version": "14.40",
+  "allowed_files": [
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-18S.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "aca17286": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "44f1204f": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "ede008ca": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "69660c11": {"action":"retire","preserve_fsrs":false,"replacement_qid":"44f1204f","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "b9f66cbc": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "0eb0386d": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "06d66b51": {"action":"retire","preserve_fsrs":false,"replacement_qid":"ede008ca","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "022e7562": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "bbf5f5d3": {"action":"retire","preserve_fsrs":false,"replacement_qid":"4adc13fd","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "7cb1d5db": {"action":"retire","preserve_fsrs":false,"replacement_qid":"44f1204f","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "e0b825bb": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "00c98fdd": {"action":"retire","preserve_fsrs":false,"replacement_qid":"4adc13fd","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "bdcaa30c": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "f4530f2b": {"action":"retire","preserve_fsrs":false,"replacement_qid":"b9f66cbc","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "4adc13fd": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}}
+  },
+  "expected_question_delta": -6,
+  "refs_policy": "unchanged",
+  "references": {},
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Nove questões foram reconstruídas para reconhecer a síndrome nefrótica e ensinar dislipidemia, edema underfill e overfill, hipercoagulabilidade, farmacocinética, lipidúria, hiponatremia e risco infeccioso.",
+    "Seis questões fragmentadas ou duplicadas foram fundidas nos objetos pedagógicos mais completos sobre lipídios, ENaC, pressão oncótica e trombose.",
+    "O Advogado do Recurso removeu causalidade única para edema e trombose, ajuste automático de dose pela albumina e o mecanismo incorreto de hiponatremia por redução da reabsorção proximal de sódio.",
+    "As referências utilizadas já constavam no Grimório; nenhuma referência nova foi introduzida.",
+    "Todos os itens publicados foram reavaliados após a mudança material: Evidência VERIFICADA, Pendência NENHUMA, veredito aprovada e publicação LIBERADA."
+  ]
+}
