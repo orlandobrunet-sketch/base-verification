@@ -643,7 +643,7 @@
         <div class="nqd-skills-layout">
           <section class="nqd-radar-panel">
             <header class="nqd-section-heading"><div><span class="nqd-eyebrow">Visão complementar</span><h2 class="nqd-section-title">Precisão observada</h2></div></header>
-            <div id="nqDashRadarContainer" class="nqd-radar" aria-label="Gráfico de precisão por competência"></div>
+            <div id="nqDashRadarContainer" class="nqd-radar" role="img" aria-label="Gráfico de precisão por competência"></div>
             <p>O gráfico compara a precisão nas respostas registradas. A amostra ao lado indica quando essa leitura ainda é inicial.</p>
             ${data.weakness ? `<button type="button" class="nqd-action nq-dash-weakness" data-action="_dashGoWeakness">Treinar ${_escape(data.weakness.label)}${_svg('arrow')}</button>` : '<span class="nqd-state is-muted">Responda ao menos 5 questões em uma competência para identificar atenção</span>'}
           </section>
