@@ -86,12 +86,12 @@ test.describe('Central de Comando do aprendizado', () => {
     await expect(dashboard).not.toHaveAttribute('aria-modal', 'true');
     await expect(page.getByRole('navigation', { name: 'Áreas da Central de Comando' })).toBeVisible();
 
-    const tabs = dashboard.getByRole('tab');
+    const tabs = dashboard.locator('[data-dash-tab]');
     await expect(tabs).toHaveCount(6);
     await expect(tabs.nth(0)).toHaveAttribute('aria-selected', 'true');
     await expect(dashboard.locator('[data-nqd-primary="true"]')).toHaveCount(1);
     await expect(dashboard.locator('[data-nqd-primary="true"]')).toContainText('Retomar jornada');
-    await expect(dashboard.locator('[data-action="_dashResumeJourney"]')).toHaveCount(2);
+    await expect(dashboard.locator('[data-action="_dashResumeJourney"]')).toHaveCount(1);
     await expect(dashboard.locator('.nqd-plan-item')).toHaveCount(3);
     await expect(dashboard.locator('.nqd-attention')).toContainText('10 respostas');
 
@@ -105,7 +105,7 @@ test.describe('Central de Comando do aprendizado', () => {
     await openCommandCenter(page, { sparse: true });
 
     const dashboard = page.locator('#nqDashboard');
-    await expect(dashboard.locator('.nqd-attention')).toContainText('perfil clínico ainda está em formação');
+    await expect(dashboard.locator('.nqd-attention')).toContainText('foco de treino aparecerá');
     await expect(dashboard.locator('.nqd-attention')).not.toContainText('Diagnóstico & Investigação');
     await expect(dashboard.locator('[data-plan-kind="review"]')).toContainText('1 revisão agendada vencida');
     await expect(dashboard).not.toContainText('Tendência');
@@ -122,7 +122,7 @@ test.describe('Central de Comando do aprendizado', () => {
     }, SAVE);
     const dashboard = page.locator('#nqDashboard[data-dashboard-state="ready"]');
     await expect(dashboard).toBeVisible({ timeout: 15_000 });
-    await expect(dashboard.locator('.nqd-milestone')).toContainText('Nível máximo');
+    await expect(dashboard.locator('.nqd-next-form')).toContainText('Forma máxima');
     await expect(dashboard.locator('.nqd-milestone')).not.toContainText('Nível 11');
   });
 
@@ -189,10 +189,10 @@ test.describe('Central de Comando do aprendizado', () => {
     const overviewTab = page.getByRole('tab', { name: 'Visão geral' });
     await overviewTab.focus();
     await page.keyboard.press('ArrowRight');
-    const skillsTab = page.getByRole('tab', { name: 'Skills' });
+    const skillsTab = page.getByRole('tab', { name: 'Competências' });
     await expect(skillsTab).toBeFocused();
     await expect(skillsTab).toHaveAttribute('aria-selected', 'true');
-    await expect(page.getByRole('tabpanel', { name: 'Skills' })).toBeVisible();
+    await expect(page.getByRole('tabpanel', { name: 'Competências' })).toBeVisible();
     await expect(page.locator('#nqDashRadarContainer')).toBeVisible();
 
     const focusBounds = await page.evaluate(() => {
@@ -221,11 +221,11 @@ test.describe('Central de Comando do aprendizado', () => {
 
     const expected = [
       ['Visão geral', 'Sala de Conduta'],
-      ['Skills', 'Prontuário de Domínio'],
-      ['Mapa', 'Atlas de Domínio'],
-      ['Conquistas', 'Gabinete de Selos'],
-      ['Biblioteca', 'Arquivo de Evidências'],
-      ['Ranking', 'Registro da Ordem'],
+      ['Competências', 'Competências'],
+      ['Mapa', 'Mapa de Domínio'],
+      ['Conquistas', 'Conquistas'],
+      ['Grimório', 'Grimório de Conhecimento'],
+      ['Ranking', 'Ranking da Ordem'],
     ];
 
     for (const [tabName, heading] of expected) {
@@ -238,13 +238,53 @@ test.describe('Central de Comando do aprendizado', () => {
     await expect(page.getByRole('tabpanel', { name: 'Mapa' })).toContainText('Não explorada');
   });
 
+  test('devolve desejo às conquistas com os cinco badges reais e sem progresso decorativo', async ({ page }) => {
+    await openCommandCenter(page);
+    const dashboard = page.locator('#nqDashboard');
+    await expect(dashboard.locator('.nqd-conduct-spine')).toHaveCount(0);
+
+    await page.getByRole('tab', { name: 'Conquistas', exact: true }).click();
+    const achievements = page.getByRole('tabpanel', { name: 'Conquistas' });
+    await expect(achievements.locator('.nqd-badge-path img')).toHaveCount(5);
+    for (let index = 1; index <= 5; index += 1) {
+      await expect(achievements.locator(`.nqd-badge-path img[src="assets/badges/badge${index}.png"]`)).toBeVisible();
+    }
+    await expect(achievements.locator('.nqd-achievement-spotlight')).toContainText('Faltam 8 acertos');
+    await expect(achievements.locator('.nqd-achievement-mark img[src="assets/titulodecampeao.png"]')).toHaveCount(1);
+    await expect(achievements.locator('.nqd-achievement-filter[aria-pressed="true"]')).toHaveText('Em andamento');
+    const visibleProgress = await achievements.locator('[data-achievement-status="progress"]:visible').count();
+    await achievements.getByRole('button', { name: 'Conquistadas' }).click();
+    await expect(achievements.locator('.nqd-achievement-filter[aria-pressed="true"]')).toHaveText('Conquistadas');
+    await expect(achievements.locator('[data-achievement-status="progress"]:visible')).toHaveCount(0);
+    expect(visibleProgress).toBeGreaterThan(0);
+  });
+
+  test('organiza o Grimório em coleções com ordenação real e sem repetir Referência', async ({ page }) => {
+    await page.goto('/jogar/');
+    await page.waitForFunction(() => typeof (window as any).openDashboard === 'function');
+    await page.evaluate(() => (window as any)._loadTopics());
+    await page.evaluate(() => {
+      const refKeys = [...new Set(((window as any).questionBank || []).flatMap((question: any) => Array.isArray(question.r) ? question.r : []))].slice(0, 3);
+      localStorage.setItem('nq-unlocked-refs', JSON.stringify(refKeys));
+      localStorage.setItem('unlockedArticles', JSON.stringify([0, 1, 2]));
+      (window as any).openDashboard();
+    });
+    await expect(page.locator('#nqDashboard[data-dashboard-state="ready"]')).toBeVisible({ timeout: 15_000 });
+    await page.getByRole('tab', { name: 'Grimório', exact: true }).click();
+    const library = page.getByRole('tabpanel', { name: 'Grimório' });
+    await expect(library.getByRole('tab', { name: 'Pergaminhos' })).toBeVisible();
+    await expect(library.getByRole('option', { name: 'Mais recentes' })).toBeAttached();
+    await expect(library.locator('.nqd-library-item .nqd-state', { hasText: /^Referência$/ })).toHaveCount(0);
+    await expect(library.locator('.nqd-library-item').first()).toHaveAttribute('data-library-year', /\d{4}/);
+  });
+
   test('em 360×800 não cria overflow, mantém a ação principal na primeira dobra e alvos de toque adequados', async ({ page }) => {
     await page.setViewportSize({ width: 360, height: 800 });
     await openCommandCenter(page);
 
     const metrics = await page.evaluate(() => {
       const primary = document.querySelector<HTMLElement>('[data-nqd-primary="true"]');
-      const navTargets = [...document.querySelectorAll<HTMLElement>('#nqDashboard [role="tab"]')];
+      const navTargets = [...document.querySelectorAll<HTMLElement>('#nqDashboard [data-dash-tab]')];
       return {
         scrollWidth: document.documentElement.scrollWidth,
         viewportWidth: window.innerWidth,
@@ -292,12 +332,12 @@ test.describe('Central de Comando do aprendizado', () => {
   test('toque troca de área sem duplicar a navegação', async ({ page }, testInfo) => {
     await page.setViewportSize({ width: 360, height: 800 });
     await openCommandCenter(page);
-    const skillsTab = page.getByRole('tab', { name: 'Skills', exact: true });
+    const skillsTab = page.getByRole('tab', { name: 'Competências', exact: true });
     if (testInfo.project.name === 'mobile') await skillsTab.tap();
     else await skillsTab.click();
     await expect(skillsTab).toHaveAttribute('aria-selected', 'true');
-    await expect(page.getByRole('tabpanel', { name: 'Skills' })).toBeVisible();
-    await expect(page.locator('#nqDashboard [role="tablist"]')).toHaveCount(1);
+    await expect(page.getByRole('tabpanel', { name: 'Competências' })).toBeVisible();
+    await expect(page.locator('#nqDashboard .nqd-nav [role="tablist"]')).toHaveCount(1);
   });
 
   test('prefers-reduced-motion remove movimento e nenhuma animação visível é infinita', async ({ page }) => {
@@ -317,7 +357,7 @@ test.describe('Central de Comando do aprendizado', () => {
   test('não introduz violações sérias ou críticas de acessibilidade', async ({ page }) => {
     test.setTimeout(90_000);
     await openCommandCenter(page);
-    for (const tabName of ['Visão geral', 'Skills', 'Mapa', 'Conquistas', 'Biblioteca', 'Ranking']) {
+    for (const tabName of ['Visão geral', 'Competências', 'Mapa', 'Conquistas', 'Grimório', 'Ranking']) {
       const tab = page.getByRole('tab', { name: tabName, exact: true });
       await tab.click();
       await expect(tab).toHaveAttribute('aria-selected', 'true');
