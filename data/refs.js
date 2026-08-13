@@ -3139,14 +3139,34 @@ finerenone_2025:{
     curiosidade:"A diretriz substituiu o termo “deficiência funcional de ferro” por “eritropoiese restrita por ferro”, destacando que o ferro pode estar armazenado, mas indisponível à medula por ação da hepcidina e da inflamação."
   },
   kdigo_lupus_nephritis_guideline_2024:{
-    label:"KDIGO Lupus Nephritis 2024",
-    url:"https://kdigo.org/guidelines/glomerular-diseases/",
-    journal:"Kidney International",
-    ano:2024,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
-    impacto:"Atualização do manejo da nefrite lúpica: MMF como 1ª linha, voclosporina e belimumabe como opções adjuvantes, biópsia para estadiamento",icon:"📋",
-    resumo:"Atualização focada do guideline KDIGO de Nefrite Lúpica (NL), publicada em 2024. Recomenda a realização de biópsia renal em todo paciente com suspeita clínica de NL ativa. Para classes III ou IV (proliferativa), orienta indução de primeira linha com micofenolato de mofetila (MMF) ou ciclofosfamida em dose baixa (esquema Euro-Lupus), combinados com pulsos de corticoide. Consolida as novas terapias triplas como opções adjuvantes superiores: associação de belimumabe (anti-BAFF) à terapia padrão para proteção a longo prazo contra flares renais, ou voclosporina (CNI) em curto prazo para controle rápido de proteinúria maciça.",
-    conclusao:"A atualização de 2024 reestruturou a indução da NL incorporando formalmente as terapias biológicas direcionadas (belimumabe e voclosporina), permitindo esquemas de corticoide muito mais baixos e seguros no Reino.",
-    curiosidade:"A nefrite lúpica classe V (membranosa) pura tem abordagem distinta: é proteinúrica e não proliferativa, tratada preferencialmente com inibidores de calcineurina ou MMF, diferindo da urgência inflamatória celular e formação de crescentes das classes proliferativas III/IV."
+    label:"KDIGO 2024 — Nefrite Lúpica",
+    url:"https://kdigo.org/wp-content/uploads/2024/01/KDIGO-2024-Lupus-Nephritis-Guideline.pdf",
+    journal:"Kidney International 2024;105(1S):S1-S69",
+    ano:2024,tipo:"Diretriz",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Atualização focada do diagnóstico, tratamento e monitorização da nefrite lúpica.",icon:"📋",
+    resumo:"Diretriz KDIGO 2024, atualização focada do capítulo de nefrite lúpica de 2021. Para classe III/IV ativa, recomenda glicocorticoide combinado a análogo do ácido micofenólico, ciclofosfamida intravenosa em baixa dose, belimumabe com uma dessas terapias ou análogo do ácido micofenólico com inibidor de calcineurina quando a função renal não está gravemente reduzida (1B). Apresenta definições clínicas de resposta e orienta considerar nova biópsia diante de dúvida entre atividade e cronicidade, diagnóstico alternativo ou antes de decisões terapêuticas maiores.",
+    conclusao:"A classe e os índices histológicos, a trajetória clínica, a função renal e a segurança devem ser integrados; biomarcador ou proteinúria isolados não substituem essa avaliação.",
+    curiosidade:"A diretriz ressalta que resposta clínica e atividade histológica podem ser discordantes, inclusive após normalização da proteinúria e da função renal."
+  },
+  isn_rps_lupus_revision_2018:{
+    label:"Bajema et al. — Revisão ISN/RPS da Nefrite Lúpica (2018)",
+    url:"https://pubmed.ncbi.nlm.nih.gov/29459092/",
+    journal:"Kidney International 2018;93(4):789-796",
+    ano:2018,tipo:"Revisão",badge:"REVIEW",badgeColor:"#8b5cf6",
+    impacto:"Clarificou classes e padronizou índices modificados de atividade e cronicidade.",icon:"📋",
+    resumo:"Relatório de consenso do grupo internacional de nefropatologia que revisou definições da classificação ISN/RPS. Manteve a distinção entre classe III focal, envolvendo menos de 50% dos glomérulos, e classe IV difusa, envolvendo 50% ou mais; eliminou as subdivisões IV-S/IV-G e os sufixos A/C. Propôs índices modificados de atividade e cronicidade para todas as classes e definiu crescentes celulares, fibrocelulares e fibrosos.",
+    conclusao:"Classe histológica, atividade e cronicidade são dimensões relacionadas, mas não intercambiáveis, e devem ser descritas separadamente.",
+    curiosidade:"Necrose fibrinoide passou a constar como descritor específico no índice modificado de atividade."
+  },
+  anti_c1q_lupus_nephritis_meta_2014:{
+    label:"Eggleton et al. — Anti-C1q na Nefrite Lúpica (2014)",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC4062947/",
+    journal:"Journal of Clinical & Cellular Immunology 2014;5(2):210",
+    ano:2014,tipo:"Metanálise",badge:"META",badgeColor:"#0ea5e9",
+    impacto:"Quantificou a acurácia moderada do anti-C1q e rejeitou seu uso isolado.",icon:"🔬",
+    resumo:"Revisão sistemática com 31 estudos transversais. Vinte e oito estudos incluíram 2.769 pessoas com lúpus para distinguir história de nefrite, e nove incluíram 517 pessoas para distinguir nefrite ativa de inativa. Para atividade renal, a especificidade mediana foi 80% e a sensibilidade estimada pelo modelo hierárquico foi 75,7%; a heterogeneidade de ensaios e limiares foi relevante.",
+    conclusao:"Anti-C1q pode integrar um painel de monitorização, mas as probabilidades pós-teste não permitem confirmar nem excluir atividade da nefrite lúpica como biomarcador isolado.",
+    curiosidade:"Diferenças de método laboratorial e população contribuíram para ampla variação de sensibilidade e especificidade entre estudos."
   },
 
   neumann_2018:{

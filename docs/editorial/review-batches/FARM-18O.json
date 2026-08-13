@@ -1,0 +1,45 @@
+{
+  "batch": "FARM-18O",
+  "change_type": "medical_editorial",
+  "expected_version": "14.36",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-18O.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "b1f746f3": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "d7e4b755": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "9fae2cae": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "4642ba40": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "e37b11cb": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "3e1b0fe8": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "d4bdf47d": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "ed87d805": {"action":"retire","preserve_fsrs":false,"replacement_qid":"9fae2cae","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "1d9042bd": {"action":"retire","preserve_fsrs":false,"replacement_qid":"b1f746f3","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}}
+  },
+  "expected_question_delta": -2,
+  "refs_policy": "declared",
+  "references": {
+    "kdigo_lupus_nephritis_guideline_2024": {"action":"update","required_fields":["resumo","conclusao","curiosidade"]},
+    "isn_rps_lupus_revision_2018": {"action":"add","required_fields":["resumo","conclusao","curiosidade"]},
+    "anti_c1q_lupus_nephritis_meta_2014": {"action":"add","required_fields":["resumo","conclusao","curiosidade"]}
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Sete questões foram reconstruídas para ensinar classificação ISN/RPS, atividade versus cronicidade, limites do anti-C1q, resposta clínica e papel da biópsia repetida.",
+    "Duas questões de recordação sobre classe V e crescentes celulares foram fundidas nos itens de maior valor clínico.",
+    "O Advogado do Recurso eliminou a inferência de que anti-C1q isolado confirma flare, que resposta clínica equivale a remissão histológica e que um crescente celular prescreve sozinho um esquema terapêutico.",
+    "O card KDIGO 2024 foi corrigido para a URL oficial e para recomendações sem linguagem promocional.",
+    "Os novos cards ISN/RPS 2018 e anti-C1q 2014 registram população, método, resultados, limitações e campos completos do Grimório.",
+    "Todos os itens publicados foram reavaliados após a mudança material: Evidência VERIFICADA, Pendência NENHUMA, veredito aprovada e publicação LIBERADA."
+  ]
+}
