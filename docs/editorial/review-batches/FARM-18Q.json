@@ -1,0 +1,45 @@
+{
+  "batch": "FARM-18Q",
+  "change_type": "medical_editorial",
+  "expected_version": "14.38",
+  "allowed_files": [
+    "data/refs.js",
+    "data/topics.js",
+    "docs/editorial/review-batches/FARM-18Q.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "version.json"
+  ],
+  "questions": {
+    "2be4ea1f": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "9bd998c9": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "39f2a766": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "24750b32": {"action":"retire","preserve_fsrs":false,"replacement_qid":"39f2a766","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}},
+    "14009a8f": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "bfe72457": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "644cb809": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "048435a5": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}}
+  },
+  "expected_question_delta": -1,
+  "refs_policy": "declared",
+  "references": {
+    "renal_amyloidosis_diagnosis_2022": {"action":"add","required_fields":["resumo","conclusao","curiosidade"]},
+    "dnajb9_fgn_marker_2018": {"action":"add","required_fields":["resumo","conclusao","curiosidade"]},
+    "immunotactoid_glomerulopathy_cohort_2021": {"action":"add","required_fields":["resumo","conclusao","curiosidade"]},
+    "ikmg_mgrs_consensus_2019": {"action":"add","required_fields":["resumo","conclusao","curiosidade"]},
+    "collagenofibrotic_glomerulopathy_series_2015": {"action":"add","required_fields":["resumo","conclusao","curiosidade"]}
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "Codex revisar-nefroquest + official editorial-batch validator"
+  },
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "Sete questões foram reconstruídas para ensinar confirmação e tipagem de amiloide, DNAJB9, arquitetura imunotactoide, colágeno tipo III, diagnóstico diferencial nodular, definição de MGRS e padrão de MIDD.",
+    "A duplicata 24750b32 foi fundida em 39f2a766, que preserva o mesmo objeto pedagógico com maior integração entre microscopia eletrônica, DNAJB9 e investigação clonal.",
+    "O Advogado do Recurso eliminou a inferência de AL pelo vermelho Congo, o corte rígido de diâmetro como único discriminador e o diagnóstico de MGRS pelo pico monoclonal sem correlação histológica.",
+    "Cinco cards específicos foram adicionados ao Grimório com população ou método, resultados, limitações e os campos resumo, conclusão e curiosidade.",
+    "Todos os itens publicados foram reavaliados após a mudança material: Evidência VERIFICADA, Pendência NENHUMA, veredito aprovada e publicação LIBERADA."
+  ]
+}
