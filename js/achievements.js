@@ -167,8 +167,13 @@
         condition: () => {
           try {
             const unlockedRefs = new Set(JSON.parse(localStorage.getItem('nq-unlocked-refs') || '[]'));
-            const totalRefs = typeof refsDB === 'object' && refsDB !== null ? Object.keys(refsDB).length : 0;
-            if (totalRefs === 0 || unlockedRefs.size < totalRefs) return false;
+            const reachableRefs = new Set(Array.isArray(window.questionBank)
+              ? window.questionBank.flatMap(question => Array.isArray(question.r) ? question.r : []).filter(Boolean)
+              : []);
+            const validRefs = typeof refsDB === 'object' && refsDB !== null
+              ? [...reachableRefs].filter(key => Object.prototype.hasOwnProperty.call(refsDB, key))
+              : [];
+            if (validRefs.length === 0 || !validRefs.every(key => unlockedRefs.has(key))) return false;
             const unlockedArts = JSON.parse(localStorage.getItem('unlockedArticles') || '[]');
             const totalArts = typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles) ? nefroArticles.length : 0;
             if (totalArts === 0 || unlockedArts.length < totalArts) return false;
