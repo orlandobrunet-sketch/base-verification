@@ -1,0 +1,27 @@
+{
+  "batch": "FARM-18Z",
+  "change_type": "medical_editorial",
+  "expected_version": "14.47",
+  "allowed_files": ["data/refs.js","data/topics.js","docs/editorial/review-batches/FARM-18Z.json","index.html","jogar/index.html","sw.js","version.json"],
+  "questions": {
+    "d4765adb": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "9f887485": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "6b981816": {"action":"retire","preserve_fsrs":false,"replacement_qid":"d78560b2","editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"anulado","verdict":"fundir","publication":"BLOQUEADA"}}
+  },
+  "expected_question_delta": -1,
+  "refs_policy": "declared",
+  "references": {
+    "gbadegesin_apol1_west_africa_2025": {"action":"add","source":"N Engl J Med. 2025;392(3):228-238; doi:10.1056/NEJMoa2404211","required_fields":["resumo","conclusao","curiosidade"]},
+    "koirala_collapsing_glomerulopathy_2024": {"action":"add","source":"Adv Kidney Dis Health. 2024;31(4):290-298; doi:10.1053/j.akdh.2024.03.008","required_fields":["resumo","conclusao","curiosidade"]}
+  },
+  "external_review": {"greptile":"unavailable","fallback_reviewer":"Codex revisar-nefroquest + official editorial-batch validator"},
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "O item d4765adb foi reconstruído para ensinar que glomerulopatia colapsante é padrão histológico e exige busca etiológica, com interferon como exposição reconhecida.",
+    "O item 9f887485 foi atualizado após o H3Africa: uma variante APOL1 associou-se modestamente a DRC e GESF em Gana e Nigéria, sem provar progressão individual ou determinismo.",
+    "O item 6b981816 foi fundido no qid d78560b2, que já cobre o mesmo OP, perfil clínico, diagnóstico de HIVAN e prioridade da terapia antirretroviral.",
+    "O Advogado do Recurso impediu que morfologia colapsante fosse tratada como etiologia, que APOL1 fosse interpretado deterministicamente e que associação transversal fosse chamada de progressão.",
+    "Os dois novos cards do Grimório contêm resumo, conclusão e curiosidade e são consumidos pelos itens publicados deste lote.",
+    "Todos os itens publicados foram reavaliados após a mudança material: Evidência VERIFICADA, Pendência NENHUMA, veredito aprovada e publicação LIBERADA."
+  ]
+}

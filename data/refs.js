@@ -237,6 +237,20 @@ const refsDB = {
     conclusao:"APOL1 modifica risco, não determina destino clínico: duas variantes definem o genótipo de alto risco, mas fenótipo, contexto e possíveis gatilhos continuam necessários para interpretar um resultado.",
     curiosidade:"As variantes G1 e G2 aumentaram de frequência por protegerem contra tripanossomíase africana, ilustrando um benefício infeccioso populacional que traz custo renal em determinados contextos."
   },
+  gbadegesin_apol1_west_africa_2025:{
+    label:"Gbadegesin et al. — APOL1 na África Ocidental (NEJM 2025)",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC11735277/",
+    journal:"N Engl J Med. 2025;392(3):228-238",
+    ano:2025,
+    tipo:"Estudo caso-controle",
+    badge:"COHORT",
+    badgeColor:"#0ea5e9",
+    impacto:"Grande estudo H3Africa que quantificou associações monoalélicas e bialélicas de APOL1 com DRC e GESF em participantes de Gana e Nigéria.",
+    icon:"🧬",
+    resumo:"Estudo caso-controle com 8.355 participantes de Gana e Nigéria: 4.712 com DRC estágios 2–5, 866 com glomerulopatia comprovada por biópsia e 2.777 controles. Em comparação com G0/G0, uma variante renal de risco (G0/G1 ou G0/G2) associou-se a maior chance de DRC (OR ajustada 1,18; IC95% 1,04–1,33) e GESF (OR ajustada 1,61; IC95% 1,04–2,48). Duas variantes também se associaram a DRC e GESF, com maior magnitude para GESF.",
+    conclusao:"Na população estudada, a condição monoalélica teve associação renal modesta e não deve ser descrita como risco invariavelmente nulo; o desenho transversal, porém, não demonstra progressão individual nem permite extrapolação automática para outras populações.",
+    curiosidade:"Uma variante estava presente em 43,0% e duas variantes em 29,7% dos participantes, distribuição que ajuda a explicar por que estimativas obtidas em afro-americanos não podem ser transferidas sem ressalvas para toda a África Ocidental."
+  },
   genereviews_ahus_2021:{
     label:"GeneReviews — Genetic Atypical Hemolytic-Uremic Syndrome",
     url:"https://www.ncbi.nlm.nih.gov/books/NBK1367/",
@@ -3790,6 +3804,20 @@ finerenone_2025:{
     resumo:"Atualização do grupo CKD-MBD da ERA sobre calcifilaxia, condição rara e letal marcada por dor intensa, lesões retiformes e necrose. Recomenda abordagem multidisciplinar com cuidado de feridas, analgesia, controle de infecção e metabolismo mineral, além de revisão de fatores como warfarina. Tratamentos específicos apoiam-se sobretudo em registros e estudos não controlados.",
     conclusao:"Reconhecer cedo e remover fatores modificáveis é essencial, mas nenhuma intervenção isolada — inclusive tiossulfato de sódio — tem eficácia curativa comprovada; decisões devem ser individualizadas.",
     curiosidade:"A warfarina reduz a ativação da proteína Gla da matriz, inibidor dependente de vitamina K da calcificação vascular, fornecendo plausibilidade biológica ao risco observado."
+  },
+  koirala_collapsing_glomerulopathy_2024:{
+    label:"Koirala et al. — Collapsing Glomerulopathy (2024)",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC11296495/",
+    journal:"Adv Kidney Dis Health. 2024;31(4):290-298",
+    ano:2024,
+    tipo:"Revisão clinicopatológica",
+    badge:"REVIEW",
+    badgeColor:"#8b5cf6",
+    impacto:"Síntese contemporânea das causas infecciosas, inflamatórias, isquêmicas, genéticas e medicamentosas da glomerulopatia colapsante.",
+    icon:"🔬",
+    resumo:"Revisão que define glomerulopatia colapsante como padrão histológico de colapso segmentar ou global do tufo com hiperplasia epitelial sobrejacente. O padrão pode ser idiopático ou secundário a HIV e outras infecções, estados de interferon, autoimunidade, isquemia, genótipo APOL1 de alto risco e exposições como interferon, bisfosfonatos, anabolizantes e inibidores de calcineurina.",
+    conclusao:"A biópsia identifica o padrão colapsante, mas não sua causa; a conduta deve procurar e tratar o fator subjacente, associar suporte antiproteinúrico e reservar imunossupressão para cenários selecionados, sem presumir GESF primária pela morfologia isolada.",
+    curiosidade:"Interferon endógeno ou terapêutico pode aumentar a expressão renal de APOL1, funcionando como um possível segundo evento em pessoas suscetíveis; já a forma relacionada à isquemia costuma ter fenótipo menos inflamatório."
   },
   de_vriese_fsgs_2018:{
     label:"De Vriese et al. — Diferenciação Clinicopatológica da GESF (2018)",
