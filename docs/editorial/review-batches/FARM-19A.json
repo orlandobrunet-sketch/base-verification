@@ -1,0 +1,26 @@
+{
+  "batch": "FARM-19A",
+  "change_type": "medical_editorial",
+  "expected_version": "14.48",
+  "allowed_files": ["data/refs.js","data/topics.js","docs/editorial/review-batches/FARM-19A.json","index.html","jogar/index.html","sw.js","version.json"],
+  "questions": {
+    "43b59849": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "96b5d68c": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}}
+  },
+  "expected_question_delta": 0,
+  "refs_policy": "declared",
+  "references": {
+    "prognosis_sflt_plgf_2016": {"action":"add","source":"N Engl J Med. 2016;374(1):13-22; doi:10.1056/NEJMoa1414838","required_fields":["resumo","conclusao","curiosidade"]},
+    "urra_pregnancy_tma_2024": {"action":"add","source":"Kidney Int Rep. 2024;9(8):2353-2371; doi:10.1016/j.ekir.2024.05.016","required_fields":["resumo","conclusao","curiosidade"]}
+  },
+  "external_review": {"greptile":"unavailable","fallback_reviewer":"Codex revisar-nefroquest + official editorial-batch validator"},
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "O item 43b59849 foi reconstruído para separar desequilíbrio angiogênico, valor preditivo em curto prazo e limitação do sFlt-1/PlGF como teste adjunto.",
+    "O item 96b5d68c agora usa a evolução após o parto, a gravidade renal e a atividade de ADAMTS13 para distinguir HELLP, PTT e MAT mediada por complemento.",
+    "O Advogado do Recurso impediu que relação sFlt-1/PlGF elevada fosse tratada como diagnóstico ou indicação isolada de parto e que hipertensão/proteinúria fossem usadas para excluir PTT ou MAT mediada por complemento.",
+    "C3 normal ou genética negativa não foram usados para excluir MAT mediada por complemento; suspeita alta não deve aguardar indefinidamente a genética.",
+    "Os dois novos cards do Grimório contêm resumo, conclusão e curiosidade e são consumidos pelos itens publicados deste lote.",
+    "Todos os itens foram reavaliados após a mudança material: Evidência VERIFICADA, Pendência NENHUMA, veredito aprovada e publicação LIBERADA."
+  ]
+}

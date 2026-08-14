@@ -3603,6 +3603,34 @@ finerenone_2025:{
     conclusao:"NGAL pode complementar a identificação precoce de risco ou dano renal, mas não confirma sozinho etiologia, necrose tubular nem substitui creatinina, diurese e avaliação clínica.",
     curiosidade:"O melhor marcador não foi uniforme: NGAL urinário se destacou em pacientes clínicos, enquanto a razão NGAL/creatinina teve desempenho mais favorável no subgrupo cirúrgico."
   },
+  prognosis_sflt_plgf_2016:{
+    label:"PROGNOSIS — Relação sFlt-1/PlGF na Suspeita de Pré-eclâmpsia",
+    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1414838",
+    journal:"N Engl J Med. 2016;374(1):13-22",
+    ano:2016,
+    tipo:"Estudo prospectivo multicêntrico",
+    badge:"COHORT",
+    badgeColor:"#0ea5e9",
+    impacto:"Validou o uso da relação sFlt-1/PlGF para estimar ausência ou ocorrência de pré-eclâmpsia em curto prazo entre gestantes com suspeita clínica.",
+    icon:"🤰",
+    resumo:"Estudo prospectivo com 1.050 gestantes de feto único, entre 24 semanas e 36 semanas e 6 dias, avaliadas por suspeita de pré-eclâmpsia. Na coorte de validação, relação sFlt-1/PlGF de 38 ou menos teve valor preditivo negativo de 99,3% para ausência de pré-eclâmpsia na semana seguinte. Acima de 38, o valor preditivo positivo para diagnóstico em quatro semanas foi 36,7%, mostrando desempenho assimétrico entre exclusão e confirmação.",
+    conclusao:"A relação sFlt-1/PlGF é especialmente útil para reduzir a probabilidade de pré-eclâmpsia no horizonte curto quando baixa; um valor elevado aumenta o risco, mas não confirma sozinho o diagnóstico nem substitui a avaliação materno-fetal.",
+    curiosidade:"O mesmo ponto de corte teve desempenho muito melhor para excluir doença em uma semana do que para confirmá-la em quatro, um exemplo clínico de por que valor preditivo depende do uso pretendido e da população testada."
+  },
+  urra_pregnancy_tma_2024:{
+    label:"Urra et al. — Microangiopatia Trombótica na Gestação (2024)",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC11328568/",
+    journal:"Kidney Int Rep. 2024;9(8):2353-2371",
+    ano:2024,
+    tipo:"Revisão clínica",
+    badge:"REVIEW",
+    badgeColor:"#8b5cf6",
+    impacto:"Integra o diagnóstico e o manejo de HELLP, PTT, MAT mediada por complemento e síndrome antifosfolípide durante a gestação e o pós-parto.",
+    icon:"🩸",
+    resumo:"Revisão contemporânea das microangiopatias trombóticas associadas à gestação. HELLP e pré-eclâmpsia devem começar a melhorar após o parto; persistência de trombocitopenia grave ou LRA além de 72 horas exige considerar PTT e MAT mediada por complemento. Deficiência grave de ADAMTS13 orienta PTT, enquanto LRA intensa no pós-parto com ADAMTS13 preservada favorece MAT mediada por complemento. O texto também ressalta que sFlt-1/PlGF é ferramenta complementar, não substituto dos critérios clínicos.",
+    conclusao:"Na MAT obstétrica, temporalidade e órgão predominante redirecionam a emergência: ausência de melhora após o parto não deve ser atribuída indefinidamente a HELLP; colha ADAMTS13 cedo e trate rapidamente PTT ou MAT mediada por complemento quando a probabilidade clínica for alta.",
+    curiosidade:"A retirada da placenta funciona como um teste temporal imperfeito: melhora em 48–72 horas favorece HELLP, enquanto piora renal persistente no pós-parto revela com frequência uma MAT desencadeada pela gestação, mas não resolvida pelo parto."
+  },
   acog_preeclampsia_2020:{
     label:"ACOG Practice Bulletin 222 — Gestational Hypertension and Preeclampsia",
     url:"https://pubmed.ncbi.nlm.nih.gov/32443079/",
