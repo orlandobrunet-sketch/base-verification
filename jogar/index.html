@@ -67,7 +67,7 @@
     if (typeof Sentry !== 'undefined') {
       Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@14.55',
+          release: 'nefroquest@14.56',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -129,8 +129,8 @@
   <link rel="stylesheet" href="styles/lumen/atrium.css?v=14.18">
   <link rel="stylesheet" href="styles/lumen/game.css?v=14.13">
   <link rel="stylesheet" href="styles/lumen/difficulty.css?v=14.34">
-  <link rel="stylesheet" href="styles/lumen/dashboard.css?v=14.55">
-  <link rel="stylesheet" href="styles/lumen/charselect.css?v=14.55">
+  <link rel="stylesheet" href="styles/lumen/dashboard.css?v=14.56">
+  <link rel="stylesheet" href="styles/lumen/charselect.css?v=14.56">
   <script>
     // Version beacon — detecta nova versão sem interromper a navegação
     (function() {
@@ -374,7 +374,7 @@
         <span>Para aprender, revisar e se manter atualizado em nefrologia.</span>
         <span class="nql-portal__footer-meta">
           <button type="button" data-action="showPrivacyPolicy">Privacidade</button>
-          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v14.55</button>
+          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v14.56</button>
         </span>
       </footer>
     </section>
@@ -681,7 +681,7 @@
     <footer class="lnd-footer">
       <span>nefroquest.com</span>
       <span class="lnd-footer-sep">·</span>
-      <span id="landingVersionLabel" class="version-label-dynamic" style="cursor:pointer;" role="button" tabindex="0" aria-label="Ver novidades da versão" data-action="showChangelog">v14.55</span>
+      <span id="landingVersionLabel" class="version-label-dynamic" style="cursor:pointer;" role="button" tabindex="0" aria-label="Ver novidades da versão" data-action="showChangelog">v14.56</span>
       <span class="lnd-footer-sep">·</span>
       <span style="cursor:pointer;text-decoration:underline;" class="lnd-footer-link" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span>
     </footer>
@@ -871,7 +871,7 @@
 
       <footer class="nql-atrium__footer">
         <span>Prática que se transforma em domínio clínico.</span>
-        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v14.55</button></span>
+        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v14.56</button></span>
       </footer>
     </section>
     <div class="welcome-bg" aria-hidden="true"></div>
@@ -1291,7 +1291,7 @@
       <p>
         <a href="https://nefroquest.com">nefroquest.com</a>
         &nbsp;•&nbsp;
-        <span class="version-label-dynamic" style="color:var(--gold);cursor:pointer;" data-action="showChangelog">v14.55</span>
+        <span class="version-label-dynamic" style="color:var(--gold);cursor:pointer;" data-action="showChangelog">v14.56</span>
         &nbsp;•&nbsp;
         <span style="cursor:pointer;text-decoration:underline;" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span>
       </p>
@@ -1765,7 +1765,7 @@
   <script defer src="js/minigame-acidbase.js?v=11.90"></script>
   <script defer src="js/achievements.js?v=14.52"></script>
   <script defer src="js/changelog.js?v=11.90"></script>
-  <script defer src="js/dashboard.js?v=14.55"></script>
+  <script defer src="js/dashboard.js?v=14.56"></script>
 
   <!-- Single source of truth for profile popup menu items -->
   <template id="profilePopupItems">
