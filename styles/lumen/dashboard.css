@@ -3325,3 +3325,16 @@
 }
 
 #nqDashboard[data-nq-ui="lumen"] .nqd-level-gate.is-ready strong { color: var(--nqd-gold); }
+
+/* Selo já conquistado em jornada anterior, sendo reconquistado agora: a arte
+   volta à saturação plena e ganha anel de posse, para o jogador reconhecer o
+   que é dele sem que o desafio da jornada atual desapareça. */
+#nqDashboard[data-nq-ui="lumen"] .nqd-badge-node.has-memory .nqd-badge-art {
+  filter: none;
+  opacity: 1;
+  box-shadow: 0 0 0 .15rem var(--nqd-gold), 0 0 0 .4rem #090f1b;
+}
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-badge-node.has-memory .nqd-badge-node-copy small {
+  color: var(--nqd-gold);
+}

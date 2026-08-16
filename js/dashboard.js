@@ -1061,19 +1061,36 @@
     return `<span aria-hidden="true">${_escape(achievement && achievement.icon ? achievement.icon : '✦')}</span><span class="nqd-sr-only">Símbolo de ${name}${isUnlocked ? ', conquistada' : ''}</span>`;
   }
 
+  /**
+   * Trilha dos cinco selos.
+   *
+   * O selo continua sendo da JORNADA — chegar aos 100 acertos nesta partida é
+   * o desafio. Mas quem já o conquistou antes não pode ser rebaixado ao dia
+   * zero: `nefroquest-badge-history` (gravado em js/game.js, sobrevive ao
+   * deleteSave) diz em que jornada cada um foi ganho pela primeira vez.
+   *
+   * Antes disso, quem vencia os 100 acertos e recomeçava com outra classe
+   * reabria a Central e lia "Próximo selo: faltam 20 acertos", com os cinco
+   * travados de novo — no momento em que tinha mais motivo para continuar.
+   */
   function _badgePathMarkup(correctTotal) {
     const nextBadge = BADGE_MILESTONES.find(badge => correctTotal < badge.required) || null;
+    const bruto = _readJson('nefroquest-badge-history', {});
+    const memoria = bruto && typeof bruto === 'object' && !Array.isArray(bruto) ? bruto : {};
+
     return `
       <ol class="nqd-badge-path" tabindex="0" aria-label="Caminho de cinco selos da jornada">
         ${BADGE_MILESTONES.map(badge => {
           const isUnlocked = correctTotal >= badge.required;
           const isCurrent = nextBadge && badge.id === nextBadge.id;
           const state = isUnlocked ? 'unlocked' : isCurrent ? 'current' : 'locked';
+          const jornada = memoria[badge.id] ? _number(memoria[badge.id].jornada, 0) : 0;
+          const posse = !!memoria[badge.id] && !isUnlocked;
           return `
-            <li class="nqd-badge-node is-${state}" data-state="${state}"${isCurrent ? ' aria-current="step"' : ''}>
+            <li class="nqd-badge-node is-${state}${posse ? ' has-memory' : ''}" data-state="${state}"${posse ? ' data-memoria="true"' : ''}${isCurrent ? ' aria-current="step"' : ''}>
               <span class="nqd-badge-art"><img src="${badge.image}" alt="" decoding="async" width="384" height="384"></span>
-              <span class="nqd-badge-node-copy"><strong>${_escape(badge.name)}</strong><small>${badge.required} acertos</small></span>
-              <span class="nqd-sr-only">${isUnlocked ? 'Conquistado' : isCurrent ? 'Próximo selo' : 'Bloqueado'}</span>
+              <span class="nqd-badge-node-copy"><strong>${_escape(badge.name)}</strong><small>${posse ? `seu${jornada ? ` desde a ${jornada}ª jornada` : ''} · reconquistando` : `${badge.required} acertos`}</small></span>
+              <span class="nqd-sr-only">${isUnlocked ? 'Conquistado nesta jornada' : posse ? `Já conquistado${jornada ? ` na ${jornada}ª jornada` : ''}, sendo reconquistado agora` : isCurrent ? 'Próximo selo' : 'Bloqueado'}</span>
             </li>
           `;
         }).join('')}
