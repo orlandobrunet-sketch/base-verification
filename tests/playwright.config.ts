@@ -15,7 +15,15 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   testDir: './specs',
   fullyParallel: false,      // jogo tem estado global — evitar race conditions
-  retries: process.env.CI ? 2 : 0,
+  // Local também tem 1 retentativa, para o runner ROTULAR instabilidade em vez
+  // de alguém decidir no olho se "dessa vez não conta". Um teste que passa na
+  // segunda aparece como `flaky` no relatório — continua visível, mas separado
+  // de falha real. Um teste de fato quebrado segue vermelho nas duas tentativas.
+  //
+  // Isto NÃO conserta a instabilidade do spec 17 (Portal), que é sensível a
+  // tempo sob contenção e segue como investigação aberta. Só impede que ela
+  // continue sendo descartada por julgamento humano a cada rodada.
+  retries: process.env.CI ? 2 : 1,
   workers: 1,
   reporter: [
     ['list'],
