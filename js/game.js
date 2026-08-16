@@ -1299,7 +1299,7 @@
       glomerulus: {
         id: 'glomerulus',
         name: 'Dr. Glomerulus',
-        title: 'Cientista Renal',
+        title: 'Lâmina dos Glomérulos',
         folder: 'guerreiro_glomerular',
         bonusAtk: 2, bonusDef: 0, bonusKno: 1, bonusLuck: 0
       }
