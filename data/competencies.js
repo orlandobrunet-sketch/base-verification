@@ -126,13 +126,27 @@ const NQ_COMPETENCIES = [
     icon:'🫀',
     keywords:['sindrome hepatorenal','shr ','(shr)','hepatorenal','cirrose e lra','midodrina hepatorenal','noradrenalina hepatorenal','terlipressina','albumina cirrose lra'] },
 
-  { id:'lra_terapia', cat:'lra', label:'Terapia de substituição renal na LRA',
+  // 12 de 12 estavam mortas: 'tsr ', 'cvvh ', 'timing dialise lra' e afins não
+  // aparecem no texto, que fala em "terapia renal substitutiva" por extenso.
+  { id:'lra_terapia', cat:'lra', label:'Terapia renal substitutiva na LRA',
     icon:'🏥',
-    keywords:['terapia de substituicao renal','tsr ','tsr continua','tsrc','dialise na lra','cvvh ','cvvhdf','ultrafiltração continua','crrt ','dose de tsr','timing dialise lra','momento de dialise lra'] },
+    keywords:['terapia renal substitutiva','substituicao renal','dose entregue','hipercalemia refrataria','trs de urgencia','dialise de urgencia'] },
+
+  { id:'lra_cardiorrenal', cat:'lra', label:'Síndrome cardiorrenal e congestão',
+    icon:'💓',
+    keywords:['cardiorrenal','descongestao','congestao venosa','sindrome compartimental abdominal'] },
+
+  { id:'lra_cristais', cat:'lra', label:'Nefropatia por cristais e depósito',
+    icon:'💎',
+    keywords:['oxalato','hiperoxaluria','nefropatia cristalina','lise tumoral','hiperuricemia','aciclovir','vitamina c e nefropatia'] },
+
+  { id:'lra_tubular', cat:'lra', label:'Lesão tubular aguda: fisiopatologia e sedimento',
+    icon:'🔬',
+    keywords:['lesao tubular','feedback tubuloglomerular','hipoperfusao','fena','feureia','cilindros leucocitarios','sedimento','poliuria na recuperacao','resposta tubular'] },
 
   { id:'lra_causas', cat:'lra', label:'Causas e diagnóstico de LRA',
     icon:'🔍', fallback:true,
-    keywords:['pre-renal','pos-renal','intrinseca','nta ','necrose tubular','nefrite intersticial aguda','nia ','obstrucao urinaria','isquemia renal','sepse e lra','mioglobina','mioglobinuria','rabdomiolise','lra por'] },
+    keywords:['pre-renal','pos-renal','intrinseca','nta ','necrose tubular','nefrite intersticial aguda','nia ','obstrucao urinaria','isquemia renal','sepse e lra','mioglobina','mioglobinuria','rabdomiolise','lra por','criterio de lra','estadiamento de lra'] },
 
   // ──────────────── TRANSPLANTE (63 q) ──────────────────────────────────────
   { id:'tx_rejeicao', cat:'transplante', label:'Rejeição do enxerto',
@@ -186,9 +200,20 @@ const NQ_COMPETENCIES = [
     icon:'🚨',
     keywords:['emergencia hipertensiva','urgencia hipertensiva','hipertensao maligna','crise hipertensiva','nitroprussiato','labetalol ev','nicardipina ev','papiledem','microangiopatia trombotica hipertensiva','encefalopatia hipertensiva'] },
 
-  { id:'ha_tratamento', cat:'hipertensao', label:'Tratamento anti-hipertensivo na DRC',
+  // Keywords reescritas contra o texto real das questões. As anteriores eram
+  // compostas do tipo "conceito + sufixo de categoria" ('ieca hipertensao',
+  // 'amlodipina ha') que não ocorrem em prosa clínica: 11 de 11 estavam mortas.
+  { id:'ha_tratamento', cat:'hipertensao', label:'Tratamento anti-hipertensivo e resistência',
     icon:'💊',
-    keywords:['ieca hipertensao','bra hipertensao','antagonista aldosterona ha','espironolactona ha','finerenona ha','clortalidona','bloqueio duplo sraa','calcio antagonista ha','amlodipina ha','tiazidico ha','betabloqueador ha'] },
+    keywords:['hipertensao resistente','quarta droga','pseudorresistencia','aparente resistente','espironolactona','finerenona','clortalidona','bloqueio duplo','denervacao renal','apneia obstrutiva do sono','anti-hipertensivo','bloqueio do sraa','amlodipina','tiazidico'] },
+
+  { id:'ha_renovascular', cat:'hipertensao', label:'Hipertensão renovascular',
+    icon:'🩻',
+    keywords:['renovascular','estenose de arteria renal','arteria renal','displasia fibromuscular','revascularizacao','duplex','sopro abdominal','estenose bilateral','aterosclerotica de arteria'] },
+
+  { id:'ha_secundaria', cat:'hipertensao', label:'Hipertensão secundária endócrina',
+    icon:'🧬',
+    keywords:['hiperaldosteronismo','aldosterona','feocromocitoma','triagem de hipertensao secundaria','relacao aldosterona'] },
 
   { id:'ha_metas', cat:'hipertensao', label:'Metas de PA na DRC',
     icon:'🎯', fallback:true,
