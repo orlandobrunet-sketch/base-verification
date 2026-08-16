@@ -32,29 +32,40 @@ test.describe('Dashboard, Core Skills & Layout Reset E2E Tests', () => {
     const stats = await page.evaluate(() => {
       const mockStats = {
         byCategory: {
-          'acido_base': { correct: 3, wrong: 1 }, // 75%
-          'eletrólitos': { correct: 1, wrong: 1 }, // 50%
-          'genetica': { correct: 0, wrong: 0 },
-          // Fisiopatologia total: 4 correct, 2 wrong -> 66.6%
-          'drc': { correct: 2, wrong: 3 } // 40%
+          'acido_base': { correct: 3, wrong: 1 },   // 75%
+          'eletrólitos': { correct: 1, wrong: 1 },  // 50%
+          // Hidroeletrolítico e ácido-base: 4 certas, 2 erradas -> 66,6%
+          'drc': { correct: 2, wrong: 3 },          // 40%
+          'hipertensao': { correct: 0, wrong: 0 },
+          'glomerular': { correct: 5, wrong: 5 }    // 50%
         }
       };
       return (window as any).getCoreSkillsStats(mockStats);
     });
 
-    // Fisiopatologia e Pesquisa (acido_base, eletrólitos, genetica, nefrologia_geral)
-    const fisio = stats.find((s: any) => s.id === 'fisiopatologia_pesquisa');
-    expect(fisio).toBeDefined();
-    expect(fisio.correct).toBe(4);
-    expect(fisio.wrong).toBe(2);
-    expect(Math.round(fisio.accuracy)).toBe(67);
+    // Os eixos passaram a ser domínios clínicos (v14.53): sódio/potássio e
+    // ácido-base deixaram de ser "Fisiopatologia & Pesquisa", e glomerular
+    // deixou de ser medida dentro do eixo de transplante.
+    const hidro = stats.find((s: any) => s.id === 'hidroeletrolitico_acidobase');
+    expect(hidro).toBeDefined();
+    expect(hidro.correct).toBe(4);
+    expect(hidro.wrong).toBe(2);
+    expect(Math.round(hidro.accuracy)).toBe(67);
 
-    // Tratamento e Farmacologia (drc, hipertensao, nefropatia_diabetica, farmacologia)
-    const tratamento = stats.find((s: any) => s.id === 'tratamento_farmacologia');
-    expect(tratamento).toBeDefined();
-    expect(tratamento.correct).toBe(2);
-    expect(tratamento.wrong).toBe(3);
-    expect(Math.round(tratamento.accuracy)).toBe(40);
+    const drc = stats.find((s: any) => s.id === 'drc_nefroprotecao');
+    expect(drc).toBeDefined();
+    expect(drc.correct).toBe(2);
+    expect(drc.wrong).toBe(3);
+    expect(Math.round(drc.accuracy)).toBe(40);
+
+    // Glomerulopatia tem eixo próprio e não contamina o de transplante.
+    const glomerular = stats.find((s: any) => s.id === 'glomerulopatias');
+    expect(glomerular).toBeDefined();
+    expect(glomerular.correct).toBe(5);
+
+    const transplante = stats.find((s: any) => s.id === 'transplante');
+    expect(transplante).toBeDefined();
+    expect(transplante.correct).toBe(0);
   });
 
   test('confirming difficulty clears rd-game-over from body', async ({ page }) => {

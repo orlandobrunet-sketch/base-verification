@@ -24,11 +24,11 @@
 
     const NEFRO_AXES = [
       { id: 'drc',                  icon: '🪴', label: 'DRC',                      cat: 'drc' },
-      { id: 'lra',                  icon: '⚠️', label: 'LRA & Nefrotoxicidade',    cat: 'lra' },
+      { id: 'lra',                  icon: '⚠️', label: 'Lesão Renal Aguda',       cat: 'lra' },
       { id: 'glomerular',           icon: '🔬', label: 'Glomerulopatias',           cat: 'glomerular' },
       { id: 'eletrólitos',          icon: '⚡', label: 'Distúrbios Eletrolíticos',  cat: 'eletrólitos' },
       { id: 'acido_base',           icon: '🧪', label: 'Ácido-Base',               cat: 'acido_base' },
-      { id: 'dialise',              icon: '💉', label: 'Diálise & DP',              cat: 'dialise' },
+      { id: 'dialise',              icon: '💉', label: 'Diálise',                   cat: 'dialise' },
       { id: 'transplante',          icon: '🫀', label: 'Transplante Renal',         cat: 'transplante' },
       { id: 'hipertensao',          icon: '❤️', label: 'Hipertensão',               cat: 'hipertensao' },
       { id: 'nefropatia_diabetica', icon: '🩸', label: 'Nefropatia Diabética',      cat: 'nefropatia_diabetica' },
@@ -37,41 +37,67 @@
       { id: 'farmacologia',         icon: '💊', label: 'Farmacologia',              cat: 'farmacologia' },
       { id: 'genetica',             icon: '🧬', label: 'Genética Renal',            cat: 'genetica' },
       { id: 'uti',                  icon: '🏥', label: 'UTI / Crítico',             cat: 'uti' },
-      { id: 'diagnostico',          icon: '🔭', label: 'Diagnóstico',               cat: 'diagnostico' },
       { id: 'oncologia_renal',      icon: '🎗️', label: 'Oncologia Renal',           cat: 'oncologia_renal' },
       { id: 'nefrologia_geral',     icon: '📚', label: 'Nefrologia Geral',          cat: 'nefrologia_geral' },
     ];
 
+    // Eixos por DOMÍNIO CLÍNICO, não por agrupamento residual de categorias.
+    //
+    // O recorte anterior produzia três leituras clinicamente falsas: sódio e
+    // potássio — as decisões mais tempo-críticas da especialidade — rotulados
+    // como "Pesquisa"; LRA, que é uma doença, classificada como "terapia de
+    // suporte" ao lado da máquina; e um eixo chamado "Diagnóstico" que media
+    // litíase e oncologia, apoiado numa categoria `diagnostico` que não existe
+    // no banco (0 questões).
+    //
+    // Glomerulopatia saiu de junto de transplante: as duas compartilham
+    // imunossupressor, não competência — Banff, DSA, fase de CMV e nível de
+    // calcineurínico não têm análogo glomerular. E glomerular é a maior
+    // categoria do banco (142), não apêndice de um eixo de 44.
+    //
+    // A soma cobre as 16 categorias reais, sem sobra nem duplicata.
     const CORE_SKILLS = [
       {
-        id: 'fisiopatologia_pesquisa',
-        label: 'Fisiopatologia & Pesquisa',
-        categories: ['acido_base', 'eletrólitos', 'genetica', 'nefrologia_geral'],
-        desc: 'Compreensão de mecanismos, genética, equilíbrio ácido-base, eletrólitos e fisiologia renal básica.'
+        id: 'glomerulopatias',
+        label: 'Glomerulopatias',
+        categories: ['glomerular'],
+        desc: 'Síndromes glomerulares, classificação histológica, imunofluorescência e terapia imunossupressora dirigida.'
       },
       {
-        id: 'diagnostico_investigacao',
-        label: 'Diagnóstico & Investigação',
-        categories: ['diagnostico', 'litíase', 'oncologia_renal'],
-        desc: 'Interpretação de exames laboratoriais, biópsia, métodos de imagem e raciocínio diagnóstico.'
+        id: 'hidroeletrolitico_acidobase',
+        label: 'Hidroeletrolítico e ácido-base',
+        categories: ['eletrólitos', 'acido_base'],
+        desc: 'Distúrbios do sódio, potássio, cálcio e magnésio; acidoses, alcaloses e interpretação de gasometria.'
       },
       {
-        id: 'tratamento_farmacologia',
-        label: 'Tratamento & Farmacologia',
-        categories: ['drc', 'hipertensao', 'nefropatia_diabetica', 'farmacologia'],
-        desc: 'Manejo terapêutico, diretrizes internacionais (KDIGO, etc.), farmacologia clínica e nefrotoxicidade.'
+        id: 'drc_nefroprotecao',
+        label: 'DRC, nefroproteção e HAS',
+        categories: ['drc', 'hipertensao', 'nefropatia_diabetica'],
+        desc: 'Estadiamento e progressão da doença renal crônica, controle pressórico e terapia de nefroproteção.'
       },
       {
-        id: 'terapias_suporte',
-        label: 'Terapias de Suporte',
-        categories: ['dialise', 'lra', 'uti', 'infeccao'],
-        desc: 'Diálise, hemodiafiltração, DP, manejo crítico em UTI e infecções renais agudas.'
+        id: 'nefrologia_geral_diagnostico',
+        label: 'Nefrologia geral e diagnóstico',
+        categories: ['nefrologia_geral', 'genetica', 'litíase', 'oncologia_renal', 'farmacologia', 'infeccao'],
+        desc: 'Propedêutica e biópsia, doenças genéticas e císticas, litíase, oncologia renal, infecção e farmacologia renal.'
       },
       {
-        id: 'transplante_imunologia',
-        label: 'Transplante & Imunologia',
-        categories: ['transplante', 'glomerular'],
-        desc: 'Manejo do paciente transplantado, imunossupressão e glomerulopatias imunomediadas.'
+        id: 'lra_critico',
+        label: 'LRA e paciente crítico',
+        categories: ['lra', 'uti'],
+        desc: 'Causas e diagnóstico da lesão renal aguda, nefrotoxicidade e manejo renal no paciente crítico.'
+      },
+      {
+        id: 'dialise',
+        label: 'Diálise',
+        categories: ['dialise'],
+        desc: 'Hemodiálise, hemodiafiltração, diálise peritoneal, acesso vascular, adequação e complicações.'
+      },
+      {
+        id: 'transplante',
+        label: 'Transplante renal',
+        categories: ['transplante'],
+        desc: 'Seleção e indução, imunossupressão de manutenção, rejeição, infecções oportunistas e função do enxerto.'
       }
     ];
     window.CORE_SKILLS = CORE_SKILLS;
