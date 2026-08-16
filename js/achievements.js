@@ -33,16 +33,8 @@
           return maxStreak >= 100;
         }
       },
-      {
-        id: 'speed_demon',
-        name: 'Raio X',
-        description: 'Responda 10 questões em menos de 30 segundos cada',
-        icon: '⚡',
-        condition: (stats) => {
-          const fastAnswers = stats.questionHistory.filter(q => q.time > 0 && q.time < 30);
-          return fastAnswers.length >= 10;
-        }
-      },
+      // 'speed_demon' (10 questões em menos de 30s cada) removida: premiava
+      // velocidade sobre compreensão. Ver nota ao fim da lista.
       {
         id: 'perfectionist_drc',
         name: 'Perfeccionista da DRC',
@@ -99,32 +91,9 @@
                  (stats.totalCorrect / stats.totalQuestions) >= 0.9;
         }
       },
-      {
-        id: 'night_scholar',
-        name: 'Estudioso Noturno',
-        description: 'Responda 20 questões entre 22h e 6h',
-        icon: '🌙',
-        condition: (stats) => {
-          const nightQuestions = stats.questionHistory.filter(q => {
-            const hour = new Date(q.date).getHours();
-            return hour >= 22 || hour < 6;
-          });
-          return nightQuestions.length >= 20;
-        }
-      },
-      {
-        id: 'marathon_runner',
-        name: 'Maratonista do Conhecimento',
-        description: 'Responda 50 questões em um único dia',
-        icon: '🏃',
-        condition: (stats) => {
-          const today = new Date().toDateString();
-          const todayQuestions = stats.questionHistory.filter(q => 
-            new Date(q.date).toDateString() === today
-          );
-          return todayQuestions.length >= 50;
-        }
-      },
+      // 'night_scholar' (20 questões entre 22h e 6h) e 'marathon_runner'
+      // (50 questões num único dia) removidas: premiavam virar noite e
+      // sessão-maratona. Ver nota ao fim da lista.
       {
         id: 'arqui_nefromante_slayer',
         name: 'Campeão da Nefrologia',

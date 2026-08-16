@@ -12,11 +12,16 @@ const NQ_COMPETENCIES = [
 
   { id:'ab_atr', cat:'acido_base', label:'Acidose tubular renal (ATR)',
     icon:'🧪',
-    keywords:['acidose tubular','atr ','(atr)','tipo 1','tipo 2','tipo 4','citrato de potassio','nefrocalcinose','ph urinario','incapaz de acidificar','acidificacao urinaria'] },
+    // 'tipo 1'/'tipo 2'/'tipo 4' eram genéricas demais e capturavam Síndrome de
+    // Bartter — que cursa com alcalose hipocalêmica, o oposto da acidose
+    // hiperclorêmica da ATR. Os tipos agora exigem o contexto de ATR.
+    keywords:['acidose tubular','atr ','(atr)','atr tipo','acidose tubular tipo','citrato de potassio','nefrocalcinose','ph urinario','incapaz de acidificar','acidificacao urinaria'] },
 
   { id:'ab_alcalose', cat:'acido_base', label:'Alcalose metabólica',
     icon:'⬆️',
-    keywords:['alcalose metabolica','hipocloremia','perda de hcl','sonda nasogastrica','contracao volumetrica','geracao de alcalose','manutencao da alcalose','alcalose hipocloremical'] },
+    // Bartter e Gitelman são tubulopatias perdedoras de sal cujo distúrbio
+    // ácido-base é justamente a alcalose metabólica hipocalêmica.
+    keywords:['alcalose metabolica','hipocloremia','perda de hcl','sonda nasogastrica','contracao volumetrica','geracao de alcalose','manutencao da alcalose','alcalose hipocloremical','bartter','gitelman'] },
 
   { id:'ab_gasometria', cat:'acido_base', label:'Interpretar gasometria arterial',
     icon:'🩸', fallback:true,
@@ -29,7 +34,9 @@ const NQ_COMPETENCIES = [
 
   { id:'el_potassio', cat:'eletrólitos', label:'Distúrbios do potássio',
     icon:'⚡',
-    keywords:['hipocalemia','hipercalemia','potassio serico','quelante de potassio','patiromer','ciclosilicato','kayexalate','onda t','bloqueio de membrana com calcio','gluconato de calcio hipercalemia','redistribuicao de potassio'] },
+    // Bartter e Gitelman entram aqui pelo eixo eletrolítico: são tubulopatias
+    // perdedoras de sal que se manifestam como hipocalemia.
+    keywords:['hipocalemia','hipercalemia','potassio serico','quelante de potassio','patiromer','ciclosilicato','kayexalate','onda t','bloqueio de membrana com calcio','gluconato de calcio hipercalemia','redistribuicao de potassio','bartter','gitelman'] },
 
   { id:'el_mineral_osseo', cat:'eletrólitos', label:'Metabolismo mineral e ósseo na DRC',
     icon:'🦴',
@@ -252,9 +259,12 @@ function _nqNorm(str) {
 var _nqCompIndex = null;
 
 function _nqMatchComps(text, cat) {
-  // Testa competências específicas primeiro; fallback só se nenhuma bater
+  // `text` já chega normalizado por _nqNorm (sem acentos), então a keyword
+  // precisa passar pela mesma normalização — senão toda keyword acentuada é
+  // letra morta. Custava 12 keywords, entre elas as duas de hipotensão
+  // intradialítica e as três de rejeição do enxerto.
   var specific = NQ_COMPETENCIES.filter(function(c) {
-    return c.cat === cat && !c.fallback && c.keywords.some(function(kw) { return text.includes(kw); });
+    return c.cat === cat && !c.fallback && c.keywords.some(function(kw) { return text.includes(_nqNorm(kw)); });
   });
   if (specific.length > 0) return specific.map(function(c) { return c.id; });
   var fb = NQ_COMPETENCIES.find(function(c) { return c.cat === cat && c.fallback; });
