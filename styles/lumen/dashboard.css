@@ -3138,3 +3138,132 @@
     max-width: 17rem;
   }
 }
+
+/* ── Perfil de competências: gráfico + leitura ───────────────────────────
+   O radar sozinho ocupava o centro de um retângulo largo com números nos
+   cantos que não traduziam nada — "01", "02" sem chave de leitura em lugar
+   algum da tela. A legenda ocupa a área ociosa e transforma o número em
+   nome, valor, tamanho de amostra e estado. */
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-radar-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 22rem) minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 2.25rem);
+  align-items: center;
+}
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-radar-side {
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+  min-width: 0;
+}
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-radar-legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .18rem;
+}
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-radar-legend-row {
+  display: grid;
+  grid-template-columns: 1.85rem minmax(0, 1fr) auto;
+  grid-template-areas: 'key name value' 'key sample value';
+  align-items: center;
+  column-gap: .6rem;
+  padding: .34rem .5rem;
+  border-radius: .5rem;
+  border-left: .1875rem solid var(--nqd-skill-accent, var(--nql-line));
+  background: rgba(255, 255, 255, .022);
+}
+
+/* Mesma gramática de estado da lista abaixo — o radar não inventa cor nova */
+#nqDashboard[data-nq-ui="lumen"] .nqd-radar-legend-row[data-skill-state='attention'] { --nqd-skill-accent: var(--nqd-coral); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-radar-legend-row[data-skill-state='consolidating'] { --nqd-skill-accent: var(--nqd-cyan); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-radar-legend-row[data-skill-state='consistent'] { --nqd-skill-accent: var(--nqd-jade); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-radar-legend-row[data-skill-state='sample'] { --nqd-skill-accent: #7991a7; }
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-radar-legend-row[data-sem-amostra] { opacity: .62; }
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-radar-key {
+  grid-area: key;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .68rem;
+  color: var(--nqd-skill-accent, var(--nql-text-muted));
+}
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-radar-name {
+  grid-area: name;
+  font-size: .84rem;
+  color: var(--nql-text);
+  overflow-wrap: anywhere;
+}
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-radar-sample {
+  grid-area: sample;
+  font-size: .66rem;
+  color: var(--nql-text-muted);
+}
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-radar-value {
+  grid-area: value;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 1.05rem;
+  color: var(--nqd-skill-accent, var(--nql-text));
+}
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-radar-reading {
+  margin: 0;
+  padding: .7rem .8rem;
+  border-radius: .6rem;
+  border: 1px solid var(--nql-line);
+  font-size: .8rem;
+  line-height: 1.5;
+  color: var(--nql-text-muted);
+}
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-radar-reading strong { color: var(--nql-text); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-radar-reading b { color: var(--nqd-cyan); font-weight: 600; }
+
+@media (max-width: 58rem) {
+  #nqDashboard[data-nq-ui="lumen"] .nqd-radar-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── "Como você erra": estado vazio que ensina ───────────────────────── */
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-error-teaser-lede {
+  margin: 0 0 .7rem;
+  font-size: .84rem;
+  line-height: 1.55;
+  color: var(--nql-text-muted);
+}
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-error-teaser-lede strong { color: var(--nql-text); }
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-error-catalog {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem;
+}
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-error-catalog li {
+  padding: .3rem .6rem;
+  border-radius: 999px;
+  border: 1px solid var(--nql-line);
+  font-size: .72rem;
+  color: var(--nql-text-soft);
+}
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-error-teaser-note {
+  margin: .7rem 0 0;
+  font-size: .72rem;
+  color: var(--nql-text-muted);
+}
