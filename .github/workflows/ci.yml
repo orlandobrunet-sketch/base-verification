@@ -249,7 +249,10 @@ jobs:
     name: Full E2E Tests (Playwright)
     runs-on: ubuntu-latest
     needs: smoke-e2e
-    timeout-minutes: 20
+    # A suíte cresceu de 21 para 24 specs (charselect, auditoria, taxonomia) e
+    # passou a estourar os 20min, terminando por timeout — um job que não
+    # completa deixa de pegar regressão, mesmo sendo informativo.
+    timeout-minutes: 35
     continue-on-error: true   # informativo — não bloqueia merge em CI local
 
     steps:
