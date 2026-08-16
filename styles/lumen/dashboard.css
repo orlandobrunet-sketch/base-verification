@@ -2621,6 +2621,11 @@
     overflow-y: hidden;
     scrollbar-width: none;
     scroll-snap-type: x proximity;
+    /* Sem barra de rolagem e sem afordância, a aba cortada na borda lia como
+       bug de renderização ("...línico") em vez de "role para o lado". A
+       máscara desvanece as bordas e sinaliza que há conteúdo fora da vista. */
+    mask-image: linear-gradient(90deg, transparent 0, #000 .75rem, #000 calc(100% - 1.25rem), transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 .75rem, #000 calc(100% - 1.25rem), transparent 100%);
   }
 
   #nqDashboard[data-nq-ui="lumen"] .nqd-nav::-webkit-scrollbar {
@@ -3267,3 +3272,40 @@
   font-size: .72rem;
   color: var(--nql-text-muted);
 }
+
+/* Contexto do acumulado sob a métrica de sete dias — o número da janela é o
+   destaque, o vitalício é referência, não protagonista. */
+#nqDashboard[data-nq-ui="lumen"] .nqd-metric-context {
+  display: block;
+  margin-top: .12rem;
+  font-size: .64rem;
+  color: var(--nql-text-muted);
+}
+
+/* Mapa sem amostra: a busca e o filtro operavam sobre uma tela de zeros. O
+   usuário digitava "gasometria", recebia "1 tema em 1 área", clicava e lia
+   "Ainda sem respostas" — gastava os passos e não entendia que a lacuna era
+   do histórico, não dele. A toolbar só aparece quando há o que filtrar. */
+#nqDashboard[data-nq-ui="lumen"] .nqd-map-priming {
+  margin: 0 0 1rem;
+  padding: .9rem 1rem;
+  border-radius: .7rem;
+  border: 1px solid var(--nql-line);
+  background: rgba(var(--nql-lumen-rgb), .06);
+}
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-map-priming strong {
+  display: block;
+  margin-bottom: .3rem;
+  font-size: .95rem;
+  color: var(--nql-text);
+}
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-map-priming p {
+  margin: 0;
+  font-size: .82rem;
+  line-height: 1.55;
+  color: var(--nql-text-muted);
+}
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-map-priming b { color: var(--nqd-cyan); font-weight: 600; }

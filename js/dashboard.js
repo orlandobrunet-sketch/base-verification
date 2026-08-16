@@ -336,6 +336,42 @@
       })[0] || null;
   }
 
+  /**
+   * Resumo do Pulso.
+   *
+   * O cabeçalho promete "últimos sete dias" e os dois números exibidos eram o
+   * acumulado de toda a vida: uma sessão forte de 20 questões movia 96 para
+   * 116 e a média vitalícia mal se mexia — o painel cuja função é dizer "você
+   * avançou desde ontem" ficava congelado. `days[].correct` já era calculado
+   * em _readWeekActivity e nunca renderizado.
+   *
+   * A janela de sete dias passa ao destaque; o acumulado vira contexto.
+   */
+  function _pulseSummaryMarkup(data) {
+    const semana = (data.weekActivity || []).reduce(
+      (acc, dia) => ({
+        total: acc.total + _number(dia.count, 0),
+        certas: acc.certas + _number(dia.correct, 0),
+      }),
+      { total: 0, certas: 0 }
+    );
+    const precisaoSemana = semana.total > 0 ? Math.round((semana.certas / semana.total) * 100) : null;
+
+    return `
+      <div class="nqd-summary-strip" style="--columns:2">
+        <div class="nqd-metric">
+          <strong class="nqd-metric-value">${semana.total > 0 ? _formatNumber(semana.total) : '—'}</strong>
+          <small class="nqd-metric-label">respostas nos sete dias</small>
+          <small class="nqd-metric-context">${_formatNumber(data.totalQuestions)} desde o início</small>
+        </div>
+        <div class="nqd-metric">
+          <strong class="nqd-metric-value">${precisaoSemana == null ? '—' : `${precisaoSemana}%`}</strong>
+          <small class="nqd-metric-label">precisão nos sete dias</small>
+          <small class="nqd-metric-context">${data.accuracy == null ? 'sem acumulado ainda' : `${data.accuracy}% no acumulado`}</small>
+        </div>
+      </div>`;
+  }
+
   function _readWeekActivity(stats) {
     const activity = stats.dailyActivity && typeof stats.dailyActivity === 'object' ? stats.dailyActivity : {};
     const days = [];
@@ -620,12 +656,12 @@
   function _weekPulseMarkup(days) {
     const max = Math.max(1, ...(days || []).map(day => day.count));
     return `
-      <div class="nqd-pulse-bars" aria-label="Decisões registradas nos últimos sete dias">
+      <section class="nqd-pulse-bars" aria-label="Decisões registradas nos últimos sete dias">
         ${(days || []).map(day => {
           const height = day.count ? Math.max(12, Math.round((day.count / max) * 100)) : 4;
           return `<span class="nqd-pulse-day" style="--pulse:${height}%" title="${_escape(day.label)}: ${day.count} ${day.count === 1 ? 'decisão' : 'decisões'}"><i aria-hidden="true"></i><small>${_escape(day.label)}</small><strong>${day.count}</strong></span>`;
         }).join('')}
-      </div>
+      </section>
     `;
   }
 
@@ -670,9 +706,9 @@
         <span class="nqd-state">Primeira jornada</span>
         <h2 class="nqd-journey-title">Seu guardião ainda não foi escolhido.</h2>
         <p>Comece a jornada para definir personagem, dificuldade e ritmo de estudo.</p>
-        <div class="nqd-guardian-preview" aria-label="Guardiões disponíveis">
+        <section class="nqd-guardian-preview" aria-label="Guardiões disponíveis">
           ${Object.values(CHARACTER_META).map(character => `<img src="assets/classes/${character.folder}/nivel_01.${character.ext}" alt="${_escape(character.name)}" width="230" height="230" loading="lazy">`).join('')}
-        </div>
+        </section>
       </div>`;
     return `
       <section class="nqd-pane nq-dash-pane active" id="nqdPane-overview" role="tabpanel" aria-labelledby="nqdTab-overview" data-dash-pane="overview">
@@ -692,10 +728,7 @@
         <div class="nqd-overview-details">
           <section class="nqd-learning-pulse">
             <header class="nqd-section-header"><div><h2 class="nqd-section-title">Pulso de aprendizagem</h2><p>Últimos sete dias, sem metas artificiais.</p></div></header>
-            <div class="nqd-summary-strip" style="--columns:2">
-              <div class="nqd-metric"><strong class="nqd-metric-value">${_formatNumber(data.totalQuestions)}</strong><small class="nqd-metric-label">respostas registradas</small></div>
-              <div class="nqd-metric"><strong class="nqd-metric-value">${data.accuracy == null ? '—' : `${data.accuracy}%`}</strong><small class="nqd-metric-label">precisão observada</small></div>
-            </div>
+            ${_pulseSummaryMarkup(data)}
             ${_weekPulseMarkup(data.weekActivity)}
             ${data.strength ? `<p class="nqd-strength"><span>Melhor desempenho observado</span><strong>${_escape(data.strength.label)}</strong><small>${Math.round(data.strength.accuracy)}% · ${data.strength.totalAnswered} respostas</small></p>` : ''}
           </section>
@@ -924,13 +957,18 @@
     return `
       <section class="nqd-pane nq-dash-pane" id="nqdPane-mapa" role="tabpanel" aria-labelledby="nqdTab-mapa" data-dash-pane="mapa" hidden>
         <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Mapa de prática clínica</h1><p class="nqd-section-copy">Temas granulares, organizados pela necessidade de prática.</p></div></div>
-        ${!mappedResponses && _dashboardData && _dashboardData.totalQuestions > 0 ? '<div class="nqd-notice" role="status">O detalhamento por tema começa com suas próximas respostas. Seu histórico amplo continua em Competências.</div>' : ''}
+        ${!mappedResponses && _dashboardData && _dashboardData.totalQuestions > 0 ? `
+        <div class="nqd-map-priming" role="status">
+          <strong>Seu mapa granular começa nas próximas respostas.</strong>
+          <p>O detalhamento por tema passou a ser registrado depois do seu histórico, então ele ainda não conhece as ${_formatNumber(_dashboardData.totalQuestions)} respostas que você já deu. Seu desempenho amplo continua íntegro em <b>Competências</b>.</p>
+        </div>` : ''}
+        ${mappedResponses ? `
         <div class="nqd-map-toolbar">
           <label class="nqd-search">${_svg('search')}<span class="nqd-sr-only">Buscar tema clínico</span><input id="nqDashMapSearch" type="search" placeholder="Buscar tema clínico" autocomplete="off"></label>
           <label class="nqd-map-filter"><span>Estado</span><select id="nqDashMapFilter">
             <option value="all">Todos</option><option value="attention">Requer atenção</option><option value="consolidating">Em consolidação</option><option value="sample">Amostra inicial</option><option value="unseen">Sem amostra</option><option value="consistent">Consistente</option>
           </select></label>
-        </div>
+        </div>` : ''}
         <p class="nqd-map-result" id="nqDashMapResult" aria-live="polite"></p>
         <div class="nqd-map-route">${content}</div>
         <div class="nqd-empty" id="nqDashMapEmpty" hidden><strong>Nenhum tema encontrado.</strong><p>Limpe a busca ou altere o estado.</p></div>
@@ -1302,9 +1340,9 @@
             <small>Acervo descoberto</small><strong>${totalUnlocked > 0 ? `${totalUnlocked} ${totalUnlocked === 1 ? 'descoberta reunida' : 'descobertas reunidas'}` : 'Seu Grimório começa vazio'}</strong>
             <span>${scrollCount} ${scrollCount === 1 ? 'pergaminho' : 'pergaminhos'} · ${sourceCount} ${sourceCount === 1 ? 'fonte clínica' : 'fontes clínicas'}</span>
           </div>
-          <div class="nqd-library-shelf" aria-label="Estante com ${shelfItems.length} descobertas visíveis">
+          <section class="nqd-library-shelf" aria-label="Estante com ${shelfItems.length} descobertas visíveis">
             ${shelfItems.length ? shelfItems.map((item, index) => `<span class="nqd-library-spine is-${_escape(item.kind)}" data-rarity="${_escape(item.rarity)}" title="${_escape(item.title)}" style="--spine-index:${index};${item.badgeColor ? `--library-accent:${item.badgeColor};` : ''}"><i aria-hidden="true">${_escape(item.icon)}</i></span>`).join('') : '<span class="nqd-library-shelf-empty">Sua primeira descoberta acenderá esta estante.</span>'}
-          </div>
+          </section>
         </div>
         ${library.items.length ? `
           <div class="nqd-library-tabs" role="tablist" aria-label="Coleções do Grimório">
@@ -1354,7 +1392,7 @@
           </div>
           <label class="nqd-search">${_svg('search')}<span class="nqd-sr-only">Buscar jogador</span><input id="nqDashLbSearch" type="search" placeholder="Buscar jogador" autocomplete="off"></label>
         </div>
-        <div class="nqd-ranking-wrap nqd-ranking-table-wrap" id="nqDashLbWrap" aria-live="polite"><div class="nqd-ranking-state">O ranking será carregado ao abrir esta área.</div></div>
+        <div class="nqd-ranking-wrap nqd-ranking-table-wrap" id="nqDashLbWrap"><div class="nqd-ranking-state">O ranking será carregado ao abrir esta área.</div></div>
       </section>
     `;
   }

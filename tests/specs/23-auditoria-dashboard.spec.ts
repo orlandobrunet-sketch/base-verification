@@ -32,6 +32,9 @@ async function abrirCentral(page: Page, extra: Record<string, unknown> = {}) {
   await page.evaluate(({ save, stats, extra }) => {
     localStorage.setItem('nefroquest-save', JSON.stringify({ ...save, ...(extra as object) }));
     localStorage.setItem('nefroquest-detailed-stats', JSON.stringify(stats));
+    // A toolbar de busca do Mapa só é renderizada quando existe resposta
+    // mapeada (v14.59) — sem isso não há o que filtrar e o campo não existe.
+    localStorage.setItem('nefroquest-comp-stats', JSON.stringify({ ab_gasometria: { t: 6, c: 4 } }));
     localStorage.setItem('nefroquest-premium', '1');
   }, { save: SAVE, stats: STATS, extra });
   await page.reload();
