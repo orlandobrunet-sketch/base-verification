@@ -403,6 +403,69 @@
       </div>`;
   }
 
+  /**
+   * Evolução no tempo, derivada do que já existe.
+   *
+   * `dailyActivity` grava {count, correct} por dia e não sofre poda — retém a
+   * série inteira desde a primeira partida. Isso basta para comparar a janela
+   * de sete dias com os sete anteriores sem coletar nada novo.
+   *
+   * Regras de honestidade:
+   *  - só compara com amostra mínima nas DUAS janelas; abaixo disso a
+   *    diferença é ruído e a tela declara que não há base de comparação;
+   *  - a variação vem sempre com os dois números e o tamanho de cada amostra,
+   *    para o leitor julgar o peso;
+   *  - duas janelas não fazem curva: é comparação, não tendência extrapolada.
+   */
+  function _compareWindows(stats) {
+    const MINIMO = 10;
+    const atividade = stats && typeof stats.dailyActivity === 'object' && stats.dailyActivity ? stats.dailyActivity : {};
+
+    const janela = (inicio, fim) => {
+      let total = 0;
+      let certas = 0;
+      for (let offset = inicio; offset < fim; offset += 1) {
+        const data = new Date();
+        data.setHours(12, 0, 0, 0);
+        data.setDate(data.getDate() - offset);
+        const entrada = atividade[_localDateKey(data)];
+        if (!entrada || typeof entrada !== 'object') continue;
+        total += Math.max(0, _number(entrada.count, 0));
+        certas += Math.max(0, _number(entrada.correct, 0));
+      }
+      return { total, certas, precisao: total > 0 ? Math.round((certas / total) * 100) : null };
+    };
+
+    const agora = janela(0, 7);
+    const antes = janela(7, 14);
+    const comparavel = agora.total >= MINIMO && antes.total >= MINIMO;
+
+    return { agora, antes, comparavel, minimo: MINIMO, delta: comparavel ? agora.precisao - antes.precisao : null };
+  }
+
+  function _evolutionMarkup(stats) {
+    const c = _compareWindows(stats);
+    if (!c.comparavel) {
+      const falta = c.antes.total < c.minimo && c.agora.total >= c.minimo;
+      return `<p class="nqd-evolution is-forming">${falta
+        ? 'Ainda sem semana anterior comparável — a evolução aparece quando as duas janelas tiverem amostra.'
+        : `A comparação entre semanas exige ao menos ${c.minimo} respostas em cada uma.`}</p>`;
+    }
+
+    const sinal = c.delta > 0 ? 'sobe' : c.delta < 0 ? 'desce' : 'estavel';
+    const texto = c.delta > 0
+      ? `Subiu ${c.delta} ponto${c.delta === 1 ? '' : 's'} em relação à semana anterior`
+      : c.delta < 0
+        ? `Caiu ${Math.abs(c.delta)} ponto${Math.abs(c.delta) === 1 ? '' : 's'} em relação à semana anterior`
+        : 'Estável em relação à semana anterior';
+
+    return `
+      <p class="nqd-evolution" data-trend="${sinal}">
+        <strong>${_escape(texto)}.</strong>
+        ${c.agora.precisao}% em ${_formatNumber(c.agora.total)} respostas, contra ${c.antes.precisao}% em ${_formatNumber(c.antes.total)}.
+      </p>`;
+  }
+
   function _readWeekActivity(stats) {
     const activity = stats.dailyActivity && typeof stats.dailyActivity === 'object' ? stats.dailyActivity : {};
     const days = [];
@@ -537,6 +600,7 @@
       overdueReviews: _countOverdueReviews(),
       memory: _memoryState(),
       weekActivity: _readWeekActivity(stats),
+      evolution: _evolutionMarkup(stats),
       topicsLoadError: !!topicsLoadError,
     };
     data.actions = _buildActions(data);
@@ -761,6 +825,7 @@
           <section class="nqd-learning-pulse">
             <header class="nqd-section-header"><div><h2 class="nqd-section-title">Pulso de aprendizagem</h2><p>Últimos sete dias, sem metas artificiais.</p></div></header>
             ${_pulseSummaryMarkup(data)}
+            ${data.evolution || ''}
             ${_weekPulseMarkup(data.weekActivity)}
             ${data.strength ? `<p class="nqd-strength"><span>Melhor desempenho observado</span><strong>${_escape(data.strength.label)}</strong><small>${Math.round(data.strength.accuracy)}% · ${data.strength.totalAnswered} respostas</small></p>` : ''}
           </section>

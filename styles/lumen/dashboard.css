@@ -3338,3 +3338,22 @@
 #nqDashboard[data-nq-ui="lumen"] .nqd-badge-node.has-memory .nqd-badge-node-copy small {
   color: var(--nqd-gold);
 }
+
+/* Evolução entre janelas de sete dias. Cor com função: jade quando sobe,
+   coral quando desce, neutro quando estável ou sem base — a variação não é
+   celebrada nem dramatizada, só declarada com os dois números. */
+#nqDashboard[data-nq-ui="lumen"] .nqd-evolution {
+  margin: .6rem 0 0;
+  padding: .55rem .7rem;
+  border-radius: .5rem;
+  border-left: .1875rem solid var(--nql-line);
+  font-size: .78rem;
+  line-height: 1.5;
+  color: var(--nql-text-muted);
+}
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-evolution strong { color: var(--nql-text); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-evolution[data-trend="sobe"] { border-left-color: var(--nqd-jade); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-evolution[data-trend="sobe"] strong { color: var(--nqd-jade); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-evolution[data-trend="desce"] { border-left-color: var(--nqd-coral); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-evolution.is-forming { font-size: .74rem; }
