@@ -67,7 +67,7 @@
     if (typeof Sentry !== 'undefined') {
       Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@14.50',
+          release: 'nefroquest@14.51',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -130,6 +130,7 @@
   <link rel="stylesheet" href="styles/lumen/game.css?v=14.13">
   <link rel="stylesheet" href="styles/lumen/difficulty.css?v=14.34">
   <link rel="stylesheet" href="styles/lumen/dashboard.css?v=14.50">
+  <link rel="stylesheet" href="styles/lumen/charselect.css?v=14.51">
   <script>
     // Version beacon — detecta nova versão sem interromper a navegação
     (function() {
@@ -373,7 +374,7 @@
         <span>Para aprender, revisar e se manter atualizado em nefrologia.</span>
         <span class="nql-portal__footer-meta">
           <button type="button" data-action="showPrivacyPolicy">Privacidade</button>
-          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v14.50</button>
+          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v14.51</button>
         </span>
       </footer>
     </section>
@@ -680,7 +681,7 @@
     <footer class="lnd-footer">
       <span>nefroquest.com</span>
       <span class="lnd-footer-sep">·</span>
-      <span id="landingVersionLabel" class="version-label-dynamic" style="cursor:pointer;" role="button" tabindex="0" aria-label="Ver novidades da versão" data-action="showChangelog">v14.50</span>
+      <span id="landingVersionLabel" class="version-label-dynamic" style="cursor:pointer;" role="button" tabindex="0" aria-label="Ver novidades da versão" data-action="showChangelog">v14.51</span>
       <span class="lnd-footer-sep">·</span>
       <span style="cursor:pointer;text-decoration:underline;" class="lnd-footer-link" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span>
     </footer>
@@ -870,7 +871,7 @@
 
       <footer class="nql-atrium__footer">
         <span>Prática que se transforma em domínio clínico.</span>
-        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v14.50</button></span>
+        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v14.51</button></span>
       </footer>
     </section>
     <div class="welcome-bg" aria-hidden="true"></div>
@@ -1290,7 +1291,7 @@
       <p>
         <a href="https://nefroquest.com">nefroquest.com</a>
         &nbsp;•&nbsp;
-        <span class="version-label-dynamic" style="color:var(--gold);cursor:pointer;" data-action="showChangelog">v14.50</span>
+        <span class="version-label-dynamic" style="color:var(--gold);cursor:pointer;" data-action="showChangelog">v14.51</span>
         &nbsp;•&nbsp;
         <span style="cursor:pointer;text-decoration:underline;" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span>
       </p>
@@ -1435,30 +1436,75 @@
   </div>
 
   <!-- CHARACTER SELECT MODAL -->
-  <div id="charSelectModal" class="chest-modal">
-    <div class="chest-content" style="position:relative; max-width:680px;">
-      <button type="button" class="auth-close-btn" style="z-index:10;" data-action="closeCharSelectModal" aria-label="Fechar">✕</button>
-      <h2>Escolha seu Personagem</h2>
-      <div class="char-grid">
-        <div class="char-card" data-action="selectCharacter" data-arg="nephros">
-          <img src="assets/classes/clerigo_renal/nivel_01.jpg" alt="Dr. Nephros" loading="lazy">
-          <h3>Dr. Nephros</h3>
-          <p class="char-subtitle">Guardião dos Néfrons</p>
-          <p class="char-desc">Equilíbrio e sabedoria. Bônus: +2 Conhecimento</p>
-        </div>
-        <div class="char-card" data-action="selectCharacter" data-arg="aquaria">
-          <img src="assets/classes/maga_metabolica/nivel_01.jpg" alt="Dra. Aquaria" loading="lazy">
-          <h3>Dra. Aquaria</h3>
-          <p class="char-subtitle">Mestra das Águas</p>
-          <p class="char-desc">Cura e regeneração. Bônus: +2 Defesa</p>
-        </div>
-        <div class="char-card" data-action="selectCharacter" data-arg="glomerulus">
-          <img src="assets/classes/guerreiro_glomerular/nivel_01.png" alt="Dr. Glomerulus" loading="lazy">
-          <h3>Dr. Glomerulus</h3>
-          <p class="char-subtitle">Cientista Renal</p>
-          <p class="char-desc">Força e precisão. Bônus: +2 Ataque, +1 Conhecimento</p>
-        </div>
-      </div>
+  <div id="charSelectModal" class="nqc-screen" data-nq-ui="lumen" role="dialog" aria-modal="true" aria-labelledby="nqcTitle">
+    <div class="nqc-shell">
+      <button type="button" class="nqc-close" data-action="closeCharSelectModal" aria-label="Fechar escolha de classe">✕</button>
+
+      <header class="nqc-header">
+        <span class="nqc-eyebrow">Antes da primeira questão</span>
+        <h2 id="nqcTitle">Escolha sua classe</h2>
+        <p class="nqc-lede">Cada classe altera de verdade a sua jornada — e evolui em dez estágios de arte conforme você acerta.</p>
+      </header>
+
+      <ul class="nqc-grid">
+        <li>
+          <button type="button" class="nqc-card" data-action="selectCharacter" data-arg="nephros" data-char="nephros">
+            <span class="nqc-art">
+              <img src="assets/classes/clerigo_renal/nivel_01.jpg" alt="" width="512" height="512" decoding="async" fetchpriority="high">
+              <span class="nqc-art-glow" aria-hidden="true"></span>
+            </span>
+            <span class="nqc-name">Dr. Nephros</span>
+            <span class="nqc-title" data-char-title>Guardião dos Néfrons</span>
+            <span class="nqc-pitch">Equilíbrio e sabedoria.</span>
+            <span class="nqc-boons">
+              <span class="nqc-boon" data-boon="kno"><b>+2</b> Conhecimento<small>mais XP por acerto</small></span>
+            </span>
+            <span class="nqc-path" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </span>
+            <span class="nqc-path-label">10 estágios de arte</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="nqc-card" data-action="selectCharacter" data-arg="aquaria" data-char="aquaria">
+            <span class="nqc-art">
+              <img src="assets/classes/maga_metabolica/nivel_01.jpg" alt="" width="512" height="512" decoding="async" fetchpriority="high">
+              <span class="nqc-art-glow" aria-hidden="true"></span>
+            </span>
+            <span class="nqc-name">Dra. Aquaria</span>
+            <span class="nqc-title" data-char-title>Mestra das Águas</span>
+            <span class="nqc-pitch">Cura e regeneração.</span>
+            <span class="nqc-boons">
+              <span class="nqc-boon" data-boon="def"><b>+2</b> Defesa<small>menos dano do boss</small></span>
+            </span>
+            <span class="nqc-path" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </span>
+            <span class="nqc-path-label">10 estágios de arte</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="nqc-card" data-action="selectCharacter" data-arg="glomerulus" data-char="glomerulus">
+            <span class="nqc-art">
+              <img src="assets/classes/guerreiro_glomerular/nivel_01.png" alt="" width="512" height="512" decoding="async" fetchpriority="high">
+              <span class="nqc-art-glow" aria-hidden="true"></span>
+            </span>
+            <span class="nqc-name">Dr. Glomerulus</span>
+            <span class="nqc-title" data-char-title>Lâmina dos Glomérulos</span>
+            <span class="nqc-pitch">Força e precisão.</span>
+            <span class="nqc-boons">
+              <span class="nqc-boon" data-boon="atk"><b>+2</b> Ataque<small>mais dano ao boss</small></span>
+              <span class="nqc-boon" data-boon="kno"><b>+1</b> Conhecimento<small>mais XP por acerto</small></span>
+            </span>
+            <span class="nqc-path" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </span>
+            <span class="nqc-path-label">10 estágios de arte</span>
+          </button>
+        </li>
+      </ul>
+
+      <p class="nqc-foot">A classe acompanha a jornada inteira. Você pode trocar iniciando uma nova.</p>
     </div>
   </div>
 
@@ -1704,7 +1750,7 @@
   <script defer src="js/audio.js?v=11.90"></script>
   <script defer src="js/leaderboard.js?v=11.90"></script>
   <script defer src="js/study-mode.js?v=14.50"></script>
-  <script defer src="js/game.js?v=14.50"></script>
+  <script defer src="js/game.js?v=14.51"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
   <script defer src="js/auth.js?v=13.44"></script>

@@ -1,0 +1,341 @@
+/* ============================================================
+   NefroQuest — Escolha de Classe (Lúmen)
+   Página 6 do sistema. Substitui a moldura `chest-modal` que a
+   seleção emprestava do baú de recompensa.
+
+   Contrato preservado: js/game.js e js/boss.js abrem e fecham a
+   tela com classList add/remove de 'show' em #charSelectModal.
+
+   Cor com função, igual ao dashboard: lúmen = leitura clínica,
+   mastery = recompensa, current = avanço. Nada decorativo.
+   ============================================================ */
+
+#charSelectModal.nqc-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  overflow-y: auto;
+  padding: clamp(1rem, 4vw, 2.5rem) clamp(.75rem, 3vw, 2rem);
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(var(--nql-lumen-rgb), .10), transparent 60%),
+    var(--nql-page, #07090f);
+  -webkit-overflow-scrolling: touch;
+}
+
+#charSelectModal.nqc-screen.show {
+  display: block;
+}
+
+#charSelectModal .nqc-shell {
+  position: relative;
+  max-width: 68rem;
+  margin-inline: auto;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(1.25rem, 3vw, 2rem);
+}
+
+/* ── Fechar ─────────────────────────────────────────────── */
+
+#charSelectModal .nqc-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--nql-line, rgba(255, 255, 255, .14));
+  border-radius: 999px;
+  background: var(--nql-surface, rgba(255, 255, 255, .04));
+  color: var(--nql-text-soft, #c8d2e4);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+#charSelectModal .nqc-close:hover {
+  border-color: var(--nql-line-strong, rgba(255, 255, 255, .28));
+  color: var(--nql-text, #eef3fb);
+}
+
+/* ── Cabeçalho ──────────────────────────────────────────── */
+
+#charSelectModal .nqc-header {
+  text-align: center;
+  max-width: 44rem;
+  margin-inline: auto;
+  padding-inline: 3rem;
+}
+
+#charSelectModal .nqc-eyebrow {
+  display: block;
+  font-size: .72rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--nql-lumen, #6fd3e6);
+  margin-bottom: .5rem;
+}
+
+#charSelectModal .nqc-header h2 {
+  margin: 0 0 .5rem;
+  font-family: var(--nql-font-display, 'Cinzel', serif);
+  font-size: clamp(1.6rem, 5vw, 2.6rem);
+  line-height: 1.1;
+  color: var(--nql-text, #eef3fb);
+}
+
+#charSelectModal .nqc-lede {
+  margin: 0;
+  font-size: clamp(.88rem, 2.4vw, 1rem);
+  line-height: 1.55;
+  color: var(--nql-text-muted, #94a2ba);
+}
+
+/* ── Grade ──────────────────────────────────────────────── */
+
+#charSelectModal .nqc-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(.75rem, 2vw, 1.25rem);
+}
+
+#charSelectModal .nqc-grid > li {
+  display: flex;
+}
+
+/* ── Card ───────────────────────────────────────────────── */
+
+#charSelectModal .nqc-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  width: 100%;
+  min-height: 44px;
+  padding: clamp(.85rem, 2vw, 1.35rem);
+  border: 1px solid var(--nql-line, rgba(255, 255, 255, .14));
+  border-radius: 1.15rem;
+  background: var(--nql-surface-raised, rgba(255, 255, 255, .05));
+  color: inherit;
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+}
+
+#charSelectModal .nqc-card:hover,
+#charSelectModal .nqc-card:focus-visible {
+  border-color: rgba(var(--nql-lumen-rgb), .55);
+  background: var(--nql-surface-solid, rgba(255, 255, 255, .08));
+}
+
+#charSelectModal .nqc-card:focus-visible {
+  outline: .125rem solid var(--nql-focus, #7fd8ea);
+  outline-offset: .1875rem;
+}
+
+/* ── Retrato ────────────────────────────────────────────── */
+
+#charSelectModal .nqc-art {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: .9rem;
+  overflow: hidden;
+  background: var(--nql-cortex, #0d1420);
+}
+
+#charSelectModal .nqc-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+#charSelectModal .nqc-art-glow {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 45%;
+  background: linear-gradient(to top, rgba(var(--nql-abyss-rgb, 7, 9, 15), .85), transparent);
+  pointer-events: none;
+}
+
+/* ── Identidade ─────────────────────────────────────────── */
+
+#charSelectModal .nqc-name {
+  display: block;
+  font-family: var(--nql-font-display, 'Cinzel', serif);
+  font-size: clamp(1rem, 2.6vw, 1.2rem);
+  color: var(--nql-text, #eef3fb);
+}
+
+#charSelectModal .nqc-title {
+  display: block;
+  font-size: .8rem;
+  letter-spacing: .04em;
+  color: var(--nql-mastery, #e3b055);
+}
+
+#charSelectModal .nqc-pitch {
+  display: block;
+  font-size: .82rem;
+  color: var(--nql-text-muted, #94a2ba);
+}
+
+/* ── Bônus: dito pelo efeito, não pelo número solto ─────── */
+
+#charSelectModal .nqc-boons {
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+  width: 100%;
+  margin-top: .15rem;
+}
+
+#charSelectModal .nqc-boon {
+  display: block;
+  padding: .4rem .55rem;
+  border-radius: .55rem;
+  border: 1px solid rgba(var(--nql-lumen-rgb), .28);
+  background: rgba(var(--nql-lumen-rgb), .08);
+  font-size: .76rem;
+  color: var(--nql-text-soft, #c8d2e4);
+}
+
+#charSelectModal .nqc-boon b {
+  color: var(--nql-lumen, #6fd3e6);
+  margin-right: .25rem;
+}
+
+#charSelectModal .nqc-boon small {
+  display: block;
+  margin-top: .1rem;
+  font-size: .68rem;
+  color: var(--nql-text-muted, #94a2ba);
+}
+
+/* ── Trilha dos 10 estágios ─────────────────────────────── */
+
+#charSelectModal .nqc-path {
+  display: flex;
+  gap: .2rem;
+  width: 100%;
+  margin-top: auto;
+  padding-top: .55rem;
+}
+
+#charSelectModal .nqc-path i {
+  flex: 1;
+  height: .2rem;
+  border-radius: 999px;
+  background: var(--nql-line, rgba(255, 255, 255, .14));
+}
+
+#charSelectModal .nqc-path i:first-child {
+  background: var(--nql-current, #6fd3e6);
+}
+
+#charSelectModal .nqc-path-label {
+  display: block;
+  font-size: .66rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--nql-text-muted, #94a2ba);
+}
+
+#charSelectModal .nqc-foot {
+  margin: 0;
+  text-align: center;
+  font-size: .78rem;
+  color: var(--nql-text-muted, #94a2ba);
+}
+
+/* ── Desktop de pouca altura (1366×768 é a régua do projeto) ──
+   Com retrato 1:1 o card mede ~790px e a trilha dos dez estágios —
+   justamente o que gera desejo — cai abaixo da dobra. O retrato cede
+   altura primeiro; identidade, bônus e trilha continuam inteiros. */
+
+@media (min-width: 60.0625rem) and (max-height: 54rem) {
+  #charSelectModal.nqc-screen {
+    padding-block: 1rem;
+  }
+
+  #charSelectModal .nqc-shell {
+    gap: 1rem;
+  }
+
+  #charSelectModal .nqc-art {
+    aspect-ratio: 4 / 3;
+  }
+
+  #charSelectModal .nqc-header h2 {
+    font-size: clamp(1.4rem, 3.2vw, 1.9rem);
+  }
+
+  #charSelectModal .nqc-lede {
+    font-size: .84rem;
+  }
+
+  #charSelectModal .nqc-card {
+    padding: .8rem;
+    gap: .35rem;
+  }
+}
+
+/* ── Empilhamento ───────────────────────────────────────── */
+
+@media (max-width: 60rem) {
+  #charSelectModal .nqc-grid {
+    grid-template-columns: 1fr;
+    gap: .75rem;
+  }
+
+  #charSelectModal .nqc-header {
+    padding-inline: 3.25rem;
+  }
+
+  /* Em coluna única o retrato quadrado empurra tudo para fora da
+     dobra; vira uma faixa lateral com a identidade ao lado. */
+  #charSelectModal .nqc-card {
+    display: grid;
+    grid-template-columns: 5.5rem 1fr;
+    grid-template-areas:
+      'art  name'
+      'art  title'
+      'art  pitch'
+      'boons boons'
+      'path path'
+      'plabel plabel';
+    align-items: start;
+    column-gap: .8rem;
+    row-gap: .2rem;
+    text-align: left;
+  }
+
+  #charSelectModal .nqc-art { grid-area: art; align-self: center; }
+  #charSelectModal .nqc-name { grid-area: name; }
+  #charSelectModal .nqc-title { grid-area: title; }
+  #charSelectModal .nqc-pitch { grid-area: pitch; }
+  #charSelectModal .nqc-boons { grid-area: boons; margin-top: .5rem; }
+  #charSelectModal .nqc-path { grid-area: path; margin-top: .5rem; }
+  #charSelectModal .nqc-path-label { grid-area: plabel; }
+}
+
+/* ── Movimento reduzido ─────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  #charSelectModal.nqc-screen,
+  #charSelectModal.nqc-screen * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
