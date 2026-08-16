@@ -3977,6 +3977,36 @@ finerenone_2025:{
     conclusao:"A doença não deve ser diagnosticada apenas por Congo negativo ou fibrose inespecífica; demonstração de colágeno III no depósito e ultraestrutura característica são os elementos confirmatórios.",
     curiosidade:"O colágeno tipo III normalmente pertence ao interstício renal, não ao glomérulo; sua acumulação glomerular maciça explica o caráter singular da entidade."
   },
+  cdc_immunocompromised_travelers_2026:{
+    label:"CDC Yellow Book — Viajantes Imunocomprometidos (2026)",
+    url:"https://www.cdc.gov/yellow-book/hcp/travelers-with-additional-considerations/immunocompromised-travelers.html",
+    journal:"CDC Yellow Book 2026",
+    ano:2026,tipo:"Diretriz de Saúde Pública",badge:"GUIDELINE",badgeColor:"#6366f1",
+    impacto:"Planejamento de vacinas vivas e inativadas antes, durante e após terapias imunossupressoras",icon:"📋",
+    resumo:"Orientação da CDC para viajantes com imunocomprometimento moderado ou grave. Inclui nesse grupo pessoas em prednisona equivalente a pelo menos 20 mg/dia por duas semanas ou mais e em terapias depletoras de células B, como rituximabe. Vacinas vivas são contraindicadas durante imunossupressão relevante; quando clinicamente viável, vacinas inativadas devem ser administradas pelo menos duas semanas e vacinas vivas pelo menos quatro semanas antes de iniciar a imunossupressão. O intervalo após suspender o tratamento varia conforme o agente e a recuperação imune.",
+    conclusao:"A indicação vacinal deve ser antecipada quando possível: não se administra vacina viva durante imunossupressão potente, e o retorno à elegibilidade depois do tratamento exige avaliação individual, não um limiar de albumina ou intervalo universal.",
+    curiosidade:"Terapias depletoras de células B podem comprometer tanto a segurança das vacinas vivas quanto a resposta às vacinas inativadas, por isso o calendário pré-tratamento faz parte do planejamento da imunossupressão."
+  },
+  chen_nephrotic_sbp_1999:{
+    label:"Chen et al. — Peritonite Espontânea na Síndrome Nefrótica do Adulto (1999)",
+    url:"https://pubmed.ncbi.nlm.nih.gov/10493027/",
+    journal:"Changgeng Yi Xue Za Zhi 1999;22(2):227-233",
+    ano:1999,tipo:"Série retrospectiva",badge:"SERIES",badgeColor:"#0f766e",
+    impacto:"Caracterizou apresentação, microbiologia e gravidade da peritonite espontânea em dez adultos com síndrome nefrótica primária",icon:"🔬",
+    resumo:"Série retrospectiva de dez adultos internados entre 1986 e 1998 com síndrome nefrótica primária e peritonite bacteriana espontânea. Todos tinham nefrose ativa e apresentaram dor abdominal difusa, ascite, febre e/ou calafrios. Três isolados foram gram-positivos, seis gram-negativos e uma cultura foi estéril. Sete pacientes se recuperaram após uma a duas semanas de antibiótico e três morreram por choque séptico.",
+    conclusao:"No adulto nefrótico com ascite, febre e dor abdominal, a raridade não autoriza observação passiva: colher culturas e iniciar cobertura empírica ampla precocemente é mais seguro do que aguardar o agente, cuja distribuição é variável.",
+    curiosidade:"Ao contrário do estereótipo pediátrico centrado no pneumococo, 60% dos agentes isolados nesta série adulta eram bacilos gram-negativos."
+  },
+  maaiden_nephrotic_sbp_2026:{
+    label:"Maaiden et al. — Peritonite Espontânea na Síndrome Nefrótica do Adulto (2026)",
+    url:"https://link.springer.com/article/10.1186/s43162-026-00629-8",
+    journal:"Egypt J Intern Med 2026;38:42",
+    ano:2026,tipo:"Série de casos e revisão",badge:"SERIES",badgeColor:"#0f766e",
+    impacto:"Atualizou a experiência adulta recente com seis casos e revisão da literatura publicada",icon:"🔬",
+    resumo:"Revisão retrospectiva de seis adultos com síndrome nefrótica e peritonite espontânea internados entre 2021 e 2024. Todos eram homens jovens com GESF, dor abdominal, ascite e febre; a maioria recebia imunossupressão. Klebsiella pneumoniae foi identificada em um caso, houve culturas negativas ou não realizadas nos demais, e todos melhoraram com antibióticos empíricos; dois apresentaram recorrência. A revisão ressalta que menos de 30 casos adultos haviam sido relatados.",
+    conclusao:"Peritonite espontânea é rara, porém grave, em adultos com síndrome nefrótica; hipoalbuminemia, ascite, proteinúria intensa e imunossupressão devem reduzir o limiar para investigação e tratamento empírico precoce.",
+    curiosidade:"A escassez de casos adultos impede extrapolar uma microbiologia dominante; mesmo na série recente, o único agente identificado foi uma enterobactéria e várias culturas foram negativas ou indisponíveis."
+  },
   rituximab_relapsing_ns_2025:{
     label:"Isaka et al. — Rituximabe na Síndrome Nefrótica Recidivante do Adulto (JAMA 2025)",
     url:"https://jamanetwork.com/journals/jama/fullarticle/2841034",

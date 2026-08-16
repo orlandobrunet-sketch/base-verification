@@ -1,0 +1,26 @@
+{
+  "batch": "FARM-19B",
+  "change_type": "medical_editorial",
+  "expected_version": "14.49",
+  "allowed_files": ["data/refs.js","data/topics.js","docs/editorial/review-batches/FARM-19B.json","index.html","jogar/index.html","sw.js","version.json"],
+  "questions": {
+    "00d410e2": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}},
+    "3ee3f560": {"action":"rebuild","preserve_fsrs":true,"editorial_gate":{"evidence":"VERIFICADA","pending":"NENHUMA","score":"19/20","verdict":"aprovada","publication":"LIBERADA"}}
+  },
+  "expected_question_delta": 0,
+  "refs_policy": "declared",
+  "references": {
+    "cdc_immunocompromised_travelers_2026": {"action":"add","source":"CDC Yellow Book 2026 — Immunocompromised Travelers","required_fields":["resumo","conclusao","curiosidade"]},
+    "chen_nephrotic_sbp_1999": {"action":"add","source":"Changgeng Yi Xue Za Zhi. 1999;22(2):227-233; PMID:10493027","required_fields":["resumo","conclusao","curiosidade"]},
+    "maaiden_nephrotic_sbp_2026": {"action":"add","source":"Egypt J Intern Med. 2026;38:42; doi:10.1186/s43162-026-00629-8","required_fields":["resumo","conclusao","curiosidade"]}
+  },
+  "external_review": {"greptile":"unavailable","fallback_reviewer":"Codex revisar-nefroquest + official editorial-batch validator"},
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "O item 00d410e2 foi reconstruído para testar planejamento vacinal antes da imunossupressão, contraindicação de vacina viva durante terapia potente e reavaliação individual após o tratamento.",
+    "O item 3ee3f560 foi reconstruído para reconhecer e tratar precocemente a peritonite bacteriana rara no adulto nefrótico, sem extrapolar o predomínio pneumocócico pediátrico.",
+    "O Advogado do Recurso impediu que albumina sérica fosse usada como critério de segurança vacinal e que um agente único fosse ensinado como microbiologia dominante na peritonite adulta.",
+    "Os três novos cards do Grimório contêm resumo, conclusão e curiosidade e são consumidos pelos itens publicados neste lote.",
+    "Após as mudanças materiais, ambos os itens foram reavaliados: Evidência VERIFICADA, Pendência NENHUMA, veredito aprovada e publicação LIBERADA."
+  ]
+}
