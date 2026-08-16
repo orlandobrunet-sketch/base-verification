@@ -3117,3 +3117,24 @@
   font-size: .76rem;
   color: var(--nql-text-muted);
 }
+
+/* ── Radar de competências ───────────────────────────────────────────────
+   Removido na 14.50 por plotar 0% onde não havia amostra; volta com o
+   polígono ligando apenas os eixos medidos. A legenda numerada acompanha a
+   lista abaixo, então o rótulo no canvas fica curto e legível. */
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-radar {
+  display: flex;
+  justify-content: center;
+  padding: .5rem 0 .25rem;
+}
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-radar canvas {
+  display: block;
+}
+
+@media (max-width: 30rem) {
+  #nqDashboard[data-nq-ui="lumen"] .nqd-radar canvas {
+    max-width: 17rem;
+  }
+}

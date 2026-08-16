@@ -767,6 +767,10 @@
             <button type="button" class="nqd-primary-action" data-action="_dashExploreSkills" data-nqd-primary="true">Escolher temas${_svg('arrow')}</button>
           `}
         </section>
+        <section class="nqd-section nqd-radar-section" aria-label="Perfil de precisão por competência">
+          <header class="nqd-section-header"><div><h2 class="nqd-section-title">Perfil de competências</h2><p>Cada eixo é um domínio clínico. Eixo sem amostra aparece apagado, nunca como zero.</p></div></header>
+          <div id="nqDashRadarContainer" class="nqd-radar" role="img" aria-label="Gráfico de precisão por competência"></div>
+        </section>
         <section class="nqd-section nqd-skill-list-section" aria-label="Desempenho por competência ampla"><header><h2>Visão por competência</h2></header><div class="nqd-skill-list">${rows}</div></section>
         <section class="nqd-section nqd-error-patterns"><header class="nqd-section-header"><div><h2 class="nqd-section-title">Como você erra</h2></div></header>${_errorPatternsMarkup()}</section>
       </section>
@@ -1350,6 +1354,125 @@
     }
 
     if (tabId === 'ranking' && !_rankingLoaded) _loadRanking(false);
+    if (tabId === 'skills') _drawRadar();
+  }
+
+  /**
+   * Radar de competências.
+   *
+   * Foi removido na 14.50 por plotar 0% onde não havia amostra — a forma do
+   * polígono mentia sobre o desempenho. O defeito estava em três linhas, não
+   * no gráfico: agora o polígono liga apenas os eixos medidos, e o eixo sem
+   * amostra fica com raio apagado, sem vértice e rotulado "—".
+   */
+  function _drawRadar() {
+    const container = document.getElementById('nqDashRadarContainer');
+    if (!container || container.dataset.rendered === 'true' || !_dashboardData) return;
+    container.dataset.rendered = 'true';
+    const skills = _dashboardData.coreSkills || [];
+    const resumo = skills.map(skill => {
+      const valor = skill.accuracy == null
+        ? 'sem amostra'
+        : `${Math.round(skill.accuracy)}% em ${_number(skill.totalAnswered, 0)} respostas`;
+      return `${skill.label}: ${valor}`;
+    }).join('; ');
+    container.setAttribute('aria-label', `Precisão observada por competência. ${resumo}`);
+    _drawDashboardRadar(container, skills);
+  }
+
+  function _drawDashboardRadar(container, skills) {
+    const size = 380;
+    const ratio = Math.min(2, window.devicePixelRatio || 1);
+    const canvas = document.createElement('canvas');
+    canvas.width = size * ratio;
+    canvas.height = size * ratio;
+    canvas.style.width = '100%';
+    canvas.style.maxWidth = `${size}px`;
+    canvas.style.aspectRatio = '1';
+    canvas.setAttribute('aria-hidden', 'true');
+    container.replaceChildren(canvas);
+
+    const context = canvas.getContext('2d');
+    if (!context || !skills.length) return;
+    context.scale(ratio, ratio);
+
+    const center = size / 2;
+    const radius = 108;
+    const labelRadius = 139;
+    const angleFor = index => -Math.PI / 2 + (Math.PI * 2 * index) / skills.length;
+    const pointFor = (index, factor) => ({
+      x: center + Math.cos(angleFor(index)) * radius * factor,
+      y: center + Math.sin(angleFor(index)) * radius * factor,
+    });
+    const medido = skill => skill && skill.accuracy != null;
+    const fator = skill => Math.max(0, Math.min(100, _number(skill.accuracy, 0))) / 100;
+
+    context.lineJoin = 'round';
+    context.lineCap = 'round';
+
+    // Malha de referência
+    [0.25, 0.5, 0.75, 1].forEach((level, levelIndex) => {
+      context.beginPath();
+      skills.forEach((_, index) => {
+        const point = pointFor(index, level);
+        if (!index) context.moveTo(point.x, point.y);
+        else context.lineTo(point.x, point.y);
+      });
+      context.closePath();
+      context.strokeStyle = levelIndex === 3 ? 'rgba(157, 215, 226, 0.32)' : 'rgba(157, 215, 226, 0.14)';
+      context.lineWidth = 1;
+      context.stroke();
+    });
+
+    // Raios: apagado e tracejado onde não há amostra
+    skills.forEach((skill, index) => {
+      const edge = pointFor(index, 1);
+      context.beginPath();
+      context.setLineDash(medido(skill) ? [] : [3, 4]);
+      context.moveTo(center, center);
+      context.lineTo(edge.x, edge.y);
+      context.strokeStyle = medido(skill) ? 'rgba(157, 215, 226, 0.14)' : 'rgba(121, 145, 167, 0.22)';
+      context.stroke();
+    });
+    context.setLineDash([]);
+
+    // Polígono apenas sobre os eixos medidos
+    const medidos = skills.map((skill, index) => ({ skill, index })).filter(item => medido(item.skill));
+    if (medidos.length >= 2) {
+      context.beginPath();
+      medidos.forEach((item, ordem) => {
+        const point = pointFor(item.index, fator(item.skill));
+        if (!ordem) context.moveTo(point.x, point.y);
+        else context.lineTo(point.x, point.y);
+      });
+      context.closePath();
+      context.fillStyle = 'rgba(119, 211, 222, 0.16)';
+      context.strokeStyle = '#9fdbe4';
+      context.lineWidth = 2;
+      context.fill();
+      context.stroke();
+    }
+
+    // Vértices e rótulos
+    skills.forEach((skill, index) => {
+      if (medido(skill)) {
+        const valuePoint = pointFor(index, fator(skill));
+        context.beginPath();
+        context.arc(valuePoint.x, valuePoint.y, 3.5, 0, Math.PI * 2);
+        context.fillStyle = '#e3c970';
+        context.fill();
+      }
+
+      const angle = angleFor(index);
+      const x = center + Math.cos(angle) * labelRadius;
+      const y = center + Math.sin(angle) * labelRadius;
+      context.fillStyle = medido(skill) ? '#b8c6d8' : '#7991a7';
+      context.font = '600 11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+      context.textAlign = Math.cos(angle) > 0.25 ? 'left' : Math.cos(angle) < -0.25 ? 'right' : 'center';
+      context.textBaseline = Math.sin(angle) > 0.5 ? 'top' : Math.sin(angle) < -0.5 ? 'bottom' : 'middle';
+      const rotulo = medido(skill) ? `${Math.round(skill.accuracy)}%` : '—';
+      context.fillText(`${String(index + 1).padStart(2, '0')} · ${rotulo}`, x, y);
+    });
   }
 
   function _handleDashboardKeydown(event) {
