@@ -42,7 +42,9 @@
     { id: 5, name: 'Ascendido do NefroQuest', required: 100, image: 'assets/badges/badge5-384.jpg' },
   ];
 
-  const DEEMPHASIZED_ACHIEVEMENTS = new Set(['speed_demon', 'night_scholar', 'marathon_runner']);
+  // Conquistas de pressa, madrugada e maratona não são mais rebaixadas aqui —
+  // foram removidas de ACHIEVEMENTS_LIST (js/achievements.js). Rebaixar não
+  // bastava: elas continuavam sendo avaliadas, celebradas e contadas.
 
   const ERROR_REASON_LABELS = {
     knowledge: 'Lacuna de conhecimento',
@@ -748,21 +750,14 @@
     const history = Array.isArray(stats.questionHistory) ? stats.questionHistory.filter(item => item && typeof item === 'object') : [];
     const byTopic = stats.byTopic && typeof stats.byTopic === 'object' && !Array.isArray(stats.byTopic) ? stats.byTopic : {};
     const topicCorrect = matcher => Object.entries(byTopic).reduce((sum, [topic, entry]) => matcher(topic.toLowerCase()) ? sum + _number(entry && entry.correct, 0) : sum, 0);
-    const countFast = history.filter(item => _number(item.time, 0) > 0 && _number(item.time, 0) < 30).length;
-    const countNight = history.filter(item => {
-      const date = new Date(item.date);
-      if (Number.isNaN(date.getTime())) return false;
-      return date.getHours() >= 22 || date.getHours() < 6;
-    }).length;
-    const today = stats.dailyActivity && stats.dailyActivity[_localDateKey()];
+    // Sem medidores de velocidade, de madrugada ou de maratona: as conquistas
+    // que os consumiam foram removidas de ACHIEVEMENTS_LIST por premiarem
+    // comportamento nocivo ao aprendizado médico.
     const maps = {
       hd_master: { value: topicCorrect(topic => topic.includes('hemodiálise') || topic.includes('hd')), target: 50 },
-      speed_demon: { value: countFast, target: 10 },
       transplant_expert: { value: topicCorrect(topic => topic.includes('transplante')), target: 30 },
       glomerulo_sage: { value: topicCorrect(topic => topic.includes('glomerul') || topic.includes('nefrite')), target: 40 },
       century_club: { value: _number(stats.totalQuestions, 0), target: 100 },
-      night_scholar: { value: countNight, target: 20 },
-      marathon_runner: { value: _number(today && today.count, 0), target: 50 },
       laurel_wreath_knowledge: { value: _number(localStorage.getItem('nefroquest_total_accumulated_knowledge'), 0), target: 1000 },
     };
     if (id === 'nephron_guardian') {
@@ -791,7 +786,7 @@
 
   function _achievementCategory(id) {
     if (['hd_master', 'perfectionist_drc', 'transplant_expert', 'glomerulo_sage', 'accuracy_master'].includes(id)) return 'Prática clínica';
-    if (['nephron_guardian', 'speed_demon', 'night_scholar', 'marathon_runner', 'century_club'].includes(id)) return 'Consistência';
+    if (['nephron_guardian', 'century_club'].includes(id)) return 'Consistência';
     if (['grimoire_master', 'laurel_wreath_knowledge', 'acid_base_master'].includes(id)) return 'Conhecimento';
     return 'Jornada';
   }
@@ -840,22 +835,21 @@
       const isUnlocked = unlocked.has(achievement.id);
       const progress = _achievementProgress(achievement.id, data.stats);
       const value = progress ? Math.max(0, Math.min(progress.value, progress.target)) : 0;
-      const legacy = !isUnlocked && DEEMPHASIZED_ACHIEVEMENTS.has(achievement.id);
-      const state = isUnlocked ? 'unlocked' : legacy ? 'legacy' : progress && value > 0 ? 'progress' : progress ? 'not-started' : 'special';
+      const state = isUnlocked ? 'unlocked' : progress && value > 0 ? 'progress' : progress ? 'not-started' : 'special';
       const ratio = progress && progress.target ? value / progress.target : -1;
       return { achievement, isUnlocked, progress, value, state, ratio };
     }).sort((left, right) => {
-      const order = { progress: 0, 'not-started': 1, special: 2, unlocked: 3, legacy: 4 };
+      const order = { progress: 0, 'not-started': 1, special: 2, unlocked: 3 };
       return order[left.state] - order[right.state] || right.ratio - left.ratio;
     });
 
     const cards = cardModels.length ? cardModels.map(({ achievement, isUnlocked, progress, value, state }) => {
-      const promoted = !isUnlocked && state !== 'legacy';
+      const promoted = !isUnlocked;
       return `
         <article class="nqd-achievement${isUnlocked ? ' is-unlocked' : ' is-locked'}" data-state="${isUnlocked ? 'unlocked' : state}" data-achievement-status="${state}" data-achievement-promoted="${promoted}">
           <span class="nqd-achievement-mark">${_achievementIconMarkup(achievement, isUnlocked)}</span>
           <div class="nqd-achievement-body">
-            <span class="nqd-state">${isUnlocked ? 'Conquistada' : state === 'legacy' ? 'No arquivo' : _escape(_achievementCategory(achievement.id))}</span>
+            <span class="nqd-state">${isUnlocked ? 'Conquistada' : _escape(_achievementCategory(achievement.id))}</span>
             <h3 class="nqd-achievement-title">${_escape(achievement.name)}</h3>
             ${progress && progress.target > 0 && !isUnlocked ? `<div class="nqd-achievement-progress"><span>${_formatNumber(value)} / ${_formatNumber(progress.target)}</span>${_meterMarkup(value, progress.target, `Progresso de ${achievement.name}`, true)}</div>` : ''}
             ${!isUnlocked ? `<details class="nqd-achievement-detail"><summary>Como conquistar</summary><p>${_escape(achievement.description)}</p></details>` : `<p class="nqd-achievement-copy">${_escape(achievement.description)}</p>`}
@@ -885,7 +879,7 @@
 
         <div class="nqd-achievement-catalog-header">
           <div><span class="nqd-eyebrow">Desafios do perfil</span><h2>Conquistas especiais</h2></div>
-          <div class="nqd-achievement-summary" aria-label="${unlocked.size} de ${achievements.length} conquistas especiais conquistadas"><strong>${unlocked.size}</strong><span>de ${achievements.length}</span></div>
+          <div class="nqd-achievement-summary" aria-label="${unlocked.size} de ${achievements.length} conquistas especiais conquistadas"><strong>${unlocked.size > 0 ? unlocked.size : '—'}</strong><span>de ${achievements.length}</span></div>
         </div>
         <div class="nqd-achievement-filters" role="group" aria-label="Filtrar conquistas especiais">
           <button type="button" class="nqd-achievement-filter is-active" data-achievement-filter="active" aria-pressed="true">Objetivos</button>
@@ -1113,7 +1107,7 @@
         <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Grimório de Conhecimento</h1><p class="nqd-section-copy">O que você encontrou ao decidir casos e abrir baús.</p></div></div>
         <div class="nqd-library-overview">
           <div class="nqd-library-summary">
-            <small>Acervo descoberto</small><strong>${totalUnlocked} ${totalUnlocked === 1 ? 'descoberta reunida' : 'descobertas reunidas'}</strong>
+            <small>Acervo descoberto</small><strong>${totalUnlocked > 0 ? `${totalUnlocked} ${totalUnlocked === 1 ? 'descoberta reunida' : 'descobertas reunidas'}` : 'Seu Grimório começa vazio'}</strong>
             <span>${scrollCount} ${scrollCount === 1 ? 'pergaminho' : 'pergaminhos'} · ${sourceCount} ${sourceCount === 1 ? 'fonte clínica' : 'fontes clínicas'}</span>
           </div>
           <div class="nqd-library-shelf" aria-label="Estante com ${shelfItems.length} descobertas visíveis">
@@ -1157,8 +1151,9 @@
       <section class="nqd-pane nq-dash-pane" id="nqdPane-ranking" role="tabpanel" aria-labelledby="nqdTab-ranking" data-dash-pane="ranking" hidden>
         <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Ranking da Ordem</h1><p class="nqd-section-copy">Compare seu resultado com os 50 maiores registros disponíveis.</p></div></div>
         <div class="nqd-ranking-personal">
-          <span class="nqd-eyebrow">Seu registro local</span><strong>${_formatNumber(bestScore)}</strong><small>melhor pontuação de partida</small>
-          <span>${_formatNumber(data.totalCorrect)} acertos acumulados</span>
+          <span class="nqd-eyebrow">Seu registro local</span>${bestScore > 0
+            ? `<strong>${_formatNumber(bestScore)}</strong><small>melhor pontuação de partida</small><span>${_formatNumber(data.totalCorrect)} acertos acumulados</span>`
+            : `<strong>${_formatNumber(data.totalCorrect)}</strong><small>acertos acumulados</small><span>nenhuma partida pontuada ainda</span>`}
         </div>
         <div class="nqd-ranking-controls">
           <div class="nqd-segmented" role="group" aria-label="Modo do ranking">
@@ -1255,6 +1250,16 @@
     // que continua montada atrás desta página interna.
     event.stopPropagation();
     if (event.key === 'Escape') {
+      // Esc num campo de busca preenchido limpa o campo — comportamento nativo
+      // de input[type=search]. Fechar a Central inteira aqui custava ao usuário
+      // a aba e o filtro por um reflexo motor correto.
+      const alvo = event.target;
+      if (alvo && typeof alvo.matches === 'function' && alvo.matches('input[type="search"]') && alvo.value !== '') {
+        event.preventDefault();
+        alvo.value = '';
+        alvo.dispatchEvent(new Event('input', { bubbles: true }));
+        return;
+      }
       event.preventDefault();
       closeDashboard();
       return;
