@@ -3309,3 +3309,19 @@
 }
 
 #nqDashboard[data-nq-ui="lumen"] .nqd-map-priming b { color: var(--nqd-cyan); font-weight: 600; }
+
+/* O portão real do nível: acertos, não XP. Fica junto da barra porque é a
+   linha que explica por que ela para de andar. */
+#nqDashboard[data-nq-ui="lumen"] .nqd-level-gate {
+  margin: .45rem 0 0;
+  font-size: .74rem;
+  line-height: 1.5;
+  color: var(--nql-text-muted);
+}
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-level-gate strong {
+  color: var(--nql-text);
+  font-weight: 600;
+}
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-level-gate.is-ready strong { color: var(--nqd-gold); }

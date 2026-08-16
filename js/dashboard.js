@@ -347,6 +347,37 @@
    *
    * A janela de sete dias passa ao destaque; o acumulado vira contexto.
    */
+  /**
+   * O portão real do nível.
+   *
+   * A "próxima forma" é a recompensa visual mais forte da Visão geral — arte
+   * nova do personagem, miniatura já visível ao lado. Mas o nível não destrava
+   * por XP: `levelCapForCorrect` em js/game.js é
+   * `min(10, 1 + floor(acertos / 10))`, e o XP excedente é descartado ao teto.
+   *
+   * Sem esta linha, o jogador via a barra encher, parar em 402/402 e não se
+   * mexer mais — sem explicação. A tela de resumo do próprio jogo já dizia
+   * "N de 10 acertos para o próximo marco"; a Central era menos legível que
+   * ela sobre a única recompensa visual que promete.
+   */
+  function _levelGateMarkup(data) {
+    const NIVEL_MAXIMO = 10;
+    const nivel = Math.max(1, _number(data.level, 1));
+    if (nivel >= NIVEL_MAXIMO) return '';
+
+    const acertos = Math.max(0, _number(data.journeyCorrect, 0));
+    const exigido = nivel * 10;            // nível N+1 abre em N*10 acertos
+    const faltam = Math.max(0, exigido - acertos);
+    const xpCheio = _number(data.xp, 0) >= _number(data.xpToNext, 0);
+
+    return `
+      <p class="nqd-level-gate${faltam === 0 ? ' is-ready' : ''}">
+        ${faltam === 0
+          ? `<strong>Nível ${nivel + 1} liberado.</strong> A próxima resposta certa aplica a evolução.`
+          : `<strong>Nível ${nivel + 1} abre em ${_formatNumber(exigido)} acertos</strong> — faltam ${_formatNumber(faltam)}.${xpCheio ? ' A barra de XP já está cheia: o que destrava é acerto, não experiência.' : ''}`}
+      </p>`;
+  }
+
   function _pulseSummaryMarkup(data) {
     const semana = (data.weekActivity || []).reduce(
       (acc, dia) => ({
@@ -699,6 +730,7 @@
             <span><small>XP</small><strong>${_formatNumber(data.xp)} / ${_formatNumber(data.xpToNext)}</strong></span>
           </div>
           ${_meterMarkup(Math.min(data.xp, data.xpToNext), data.xpToNext, 'Experiência do personagem', true)}
+          ${_levelGateMarkup(data)}
           ${data.nextAvatar ? `<div class="nqd-next-form"><img src="${_escape(data.nextAvatar)}" alt="" width="230" height="230" loading="lazy"><span><small>Próxima forma</small><strong>Nível ${data.level + 1}</strong></span></div>` : '<div class="nqd-next-form is-complete"><span><small>Forma máxima</small><strong>Nível 10</strong></span></div>'}
         </div>
       </div>` : `
@@ -864,7 +896,7 @@
           </div>
         </article>
       `;
-    }).join('') : '<div class="nqd-empty"><strong>Competências ainda sem amostra.</strong><p>Elas aparecerão aqui após suas primeiras respostas.</p></div>';
+    }).join('') : `<div class="nqd-empty"><strong>Competências ainda sem amostra.</strong><p>Cada resposta alimenta um domínio clínico — o perfil se desenha a partir daí.</p><button type="button" class="nqd-text-action" data-action="${_dashboardData && _dashboardData.save ? '_dashResumeJourney' : '_dashStartJourney'}"><span>${_dashboardData && _dashboardData.save ? 'Continuar jornada' : 'Começar jornada'}</span>${_svg('arrow')}</button></div>`;
 
     return `
       <section class="nqd-pane nq-dash-pane" id="nqdPane-skills" role="tabpanel" aria-labelledby="nqdTab-skills" data-dash-pane="skills" hidden>
@@ -1271,7 +1303,7 @@
   }
 
   function _libraryCards(items) {
-    if (!items.length) return '<div class="nqd-empty" data-library-empty><strong>Seu Grimório aguarda a primeira descoberta.</strong><p>Acerte questões e abra baús para reunir conhecimento clínico.</p></div>';
+    if (!items.length) return `<div class="nqd-empty" data-library-empty><strong>Seu Grimório aguarda a primeira descoberta.</strong><p>Referências e pergaminhos são liberados por acerto e por baú aberto.</p><button type="button" class="nqd-text-action" data-action="${_dashboardData && _dashboardData.save ? '_dashResumeJourney' : '_dashStartJourney'}"><span>${_dashboardData && _dashboardData.save ? 'Continuar jornada' : 'Começar jornada'}</span>${_svg('arrow')}</button></div>`;
     return items.map((item, index) => {
       const detailId = `nqdLibraryDetail-${index}`;
       const titleId = `nqdLibraryTitle-${index}`;
