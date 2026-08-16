@@ -98,6 +98,13 @@ jobs:
           fi
           echo "✅ All structural checks passed"
 
+      # ── 3a-bis. Coerência do cache-buster ──────────────────────────────────
+      # Bumpar o buster de um arquivo intocado força todo usuário a rebaixá-lo
+      # à toa. Foi o erro mais repetido do projeto — três vezes numa sessão,
+      # inclusive depois de documentado. Agora a CI acusa.
+      - name: Cache-buster coerente com o diff
+        run: node scripts/bump-release.mjs --check --base origin/${{ github.base_ref || 'main' }}
+
       # ── 3b. Sintaxe JS: todo js/*.js e data/*.js deve parsear ──────────────
       - name: JS syntax check (node --check)
         run: |
