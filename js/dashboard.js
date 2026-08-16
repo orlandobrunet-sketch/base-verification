@@ -717,12 +717,90 @@
       .slice(0, 3);
 
     if (!rows.length) {
-      return '<div class="nqd-empty-inline"><strong>Seus padrões aparecerão aqui.</strong><span>Ao errar, registre o motivo da decisão.</span></div>';
+      // Estado vazio que ensina. O registro do motivo é um chip opcional que
+      // aparece depois de uma resposta errada; quem nunca o viu não sabe que
+      // existe. Mostrar os seis padrões torna a mecânica compreensível antes
+      // do primeiro uso, em vez de anunciar um vazio sem caminho.
+      return `
+        <div class="nqd-error-teaser">
+          <p class="nqd-error-teaser-lede">Ao errar uma questão você pode nomear <strong>por que</strong> errou. Com algumas marcações, os padrões dominantes aparecem aqui — e é sobre eles que dá para agir.</p>
+          <ul class="nqd-error-catalog">
+            ${Object.values(ERROR_REASON_LABELS).map(label => `<li>${_escape(label)}</li>`).join('')}
+          </ul>
+          <p class="nqd-error-teaser-note">Nenhum motivo registrado até agora.</p>
+        </div>`;
     }
 
     return `<div class="nqd-error-ledger">${rows.map(([reason, count]) => `
       <div><span>${_escape(ERROR_REASON_LABELS[reason] || reason)}</span><strong>${_formatNumber(count)}</strong></div>
     `).join('')}</div>`;
+  }
+
+  /**
+   * Legenda do radar — o que faltava.
+   *
+   * O gráfico rotulava os vértices só com "01", "02"… e o mapeamento para o
+   * nome do domínio não existia em lugar nenhum da tela. Número em canto de
+   * heptágono não informa; aqui ele vira chave de leitura.
+   *
+   * A síntese abaixo diz apenas o que é calculável do dado presente: maior e
+   * menor eixo MEDIDO, e quantos ainda não têm amostra. Nada de tendência —
+   * não há série histórica que a sustente.
+   */
+  function _radarLegendMarkup(skills) {
+    const lista = Array.isArray(skills) ? skills : [];
+    if (!lista.length) return '';
+
+    const estado = skill => {
+      const respondidas = _number(skill.totalAnswered, 0);
+      if (respondidas < 5 || skill.accuracy == null) return 'sample';
+      if (skill.accuracy < 50) return 'attention';
+      if (skill.accuracy < 70) return 'consolidating';
+      return 'consistent';
+    };
+
+    const medidos = lista
+      .map((skill, index) => ({ skill, index }))
+      .filter(item => item.skill.accuracy != null);
+    const semAmostra = lista.length - medidos.length;
+
+    let sintese = '';
+    if (medidos.length >= 2) {
+      const ordenado = [...medidos].sort((a, b) => b.skill.accuracy - a.skill.accuracy);
+      const alto = ordenado[0];
+      const baixo = ordenado[ordenado.length - 1];
+      const amplitude = Math.round(alto.skill.accuracy - baixo.skill.accuracy);
+      const forma = amplitude <= 15
+        ? 'Perfil equilibrado entre os domínios medidos'
+        : `Perfil irregular: ${amplitude} pontos entre o maior e o menor`;
+      sintese = `
+        <p class="nqd-radar-reading">
+          <strong>${_escape(forma)}.</strong>
+          Mais alto em <b>${_escape(alto.skill.label)}</b> (${Math.round(alto.skill.accuracy)}%),
+          mais baixo em <b>${_escape(baixo.skill.label)}</b> (${Math.round(baixo.skill.accuracy)}%).
+          ${semAmostra > 0 ? `${semAmostra} ${semAmostra === 1 ? 'domínio ainda sem amostra' : 'domínios ainda sem amostra'}.` : 'Todos os domínios já têm amostra.'}
+        </p>`;
+    } else {
+      sintese = `<p class="nqd-radar-reading"><strong>O perfil se forma com a prática.</strong> ${medidos.length === 0 ? 'Nenhum domínio' : 'Apenas um domínio'} tem amostra suficiente para desenhar a forma.</p>`;
+    }
+
+    return `
+      <div class="nqd-radar-side">
+        <ol class="nqd-radar-legend">
+          ${lista.map((skill, index) => {
+            const medido = skill.accuracy != null;
+            const respondidas = _number(skill.totalAnswered, 0);
+            return `
+            <li class="nqd-radar-legend-row" data-skill-state="${estado(skill)}"${medido ? '' : ' data-sem-amostra="true"'}>
+              <span class="nqd-radar-key">${String(index + 1).padStart(2, '0')}</span>
+              <span class="nqd-radar-name">${_escape(skill.label)}</span>
+              <span class="nqd-radar-value">${medido ? `${Math.round(skill.accuracy)}%` : '—'}</span>
+              <span class="nqd-radar-sample">${respondidas > 0 ? `${_formatNumber(respondidas)} ${respondidas === 1 ? 'resposta' : 'respostas'}` : 'sem amostra'}</span>
+            </li>`;
+          }).join('')}
+        </ol>
+        ${sintese}
+      </div>`;
   }
 
   function _tabSkills(data) {
@@ -769,7 +847,10 @@
         </section>
         <section class="nqd-section nqd-radar-section" aria-label="Perfil de precisão por competência">
           <header class="nqd-section-header"><div><h2 class="nqd-section-title">Perfil de competências</h2><p>Cada eixo é um domínio clínico. Eixo sem amostra aparece apagado, nunca como zero.</p></div></header>
-          <div id="nqDashRadarContainer" class="nqd-radar" role="img" aria-label="Gráfico de precisão por competência"></div>
+          <div class="nqd-radar-layout">
+            <div id="nqDashRadarContainer" class="nqd-radar" role="img" aria-label="Gráfico de precisão por competência"></div>
+            ${_radarLegendMarkup(data.coreSkills)}
+          </div>
         </section>
         <section class="nqd-section nqd-skill-list-section" aria-label="Desempenho por competência ampla"><header><h2>Visão por competência</h2></header><div class="nqd-skill-list">${rows}</div></section>
         <section class="nqd-section nqd-error-patterns"><header class="nqd-section-header"><div><h2 class="nqd-section-title">Como você erra</h2></div></header>${_errorPatternsMarkup()}</section>
@@ -1410,6 +1491,35 @@
     context.lineJoin = 'round';
     context.lineCap = 'round';
 
+    // O desenho inteiro é uma função do progresso (0..1) para poder ser
+    // animado: o polígono cresce do centro até o valor real. Sob
+    // prefers-reduced-motion, renderiza uma única vez em 1.
+    const desenhar = progresso => {
+      context.clearRect(0, 0, size, size);
+      _radarFrame(context, { skills, size, center, radius, labelRadius, angleFor, pointFor, medido, fator, progresso });
+    };
+
+    const semMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (semMovimento) {
+      desenhar(1);
+      return;
+    }
+
+    const inicio = performance.now();
+    const DURACAO = 620;
+    const passo = agora => {
+      const t = Math.min(1, (agora - inicio) / DURACAO);
+      // easeOutCubic: chega rápido e assenta, sem quicar
+      desenhar(1 - Math.pow(1 - t, 3));
+      if (t < 1 && container.isConnected) window.requestAnimationFrame(passo);
+    };
+    window.requestAnimationFrame(passo);
+  }
+
+  /** Um quadro do radar. Extraído para permitir a animação de entrada. */
+  function _radarFrame(context, cfg) {
+    const { skills, center, radius, labelRadius, angleFor, pointFor, medido, fator, progresso } = cfg;
+
     // Malha de referência
     [0.25, 0.5, 0.75, 1].forEach((level, levelIndex) => {
       context.beginPath();
@@ -1441,7 +1551,7 @@
     if (medidos.length >= 2) {
       context.beginPath();
       medidos.forEach((item, ordem) => {
-        const point = pointFor(item.index, fator(item.skill));
+        const point = pointFor(item.index, fator(item.skill) * progresso);
         if (!ordem) context.moveTo(point.x, point.y);
         else context.lineTo(point.x, point.y);
       });
@@ -1456,7 +1566,7 @@
     // Vértices e rótulos
     skills.forEach((skill, index) => {
       if (medido(skill)) {
-        const valuePoint = pointFor(index, fator(skill));
+        const valuePoint = pointFor(index, fator(skill) * progresso);
         context.beginPath();
         context.arc(valuePoint.x, valuePoint.y, 3.5, 0, Math.PI * 2);
         context.fillStyle = '#e3c970';

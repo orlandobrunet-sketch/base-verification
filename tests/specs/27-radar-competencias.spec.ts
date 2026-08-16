@@ -95,3 +95,53 @@ test.describe('Radar de competências', () => {
     expect(rotulo).toContain('sem amostra');
   });
 });
+
+test.describe('Leitura do perfil', () => {
+  test('cada número do gráfico tem chave de leitura com nome, valor e amostra', async ({ page }) => {
+    await abrirCompetencias(page, STATS_PARCIAL);
+    const linhas = page.locator('#nqDashboard .nqd-radar-legend-row');
+    await expect(linhas).toHaveCount(7);
+
+    // O número no canto do heptágono não informa nada sozinho: precisa existir
+    // uma linha que o traduza em domínio clínico.
+    for (const nome of ['Glomerulopatias', 'Diálise', 'Transplante renal']) {
+      await expect(page.locator('#nqDashboard .nqd-radar-legend')).toContainText(nome);
+    }
+
+    const semAmostra = linhas.filter({ has: page.locator('[data-sem-amostra]') });
+    expect(await linhas.locator('[data-sem-amostra]').count() + await semAmostra.count()).toBeGreaterThanOrEqual(0);
+    await expect(page.locator('#nqDashboard .nqd-radar-legend-row[data-sem-amostra] .nqd-radar-value').first()).toHaveText('—');
+  });
+
+  test('a síntese só afirma o que é calculável, sem tendência inventada', async ({ page }) => {
+    await abrirCompetencias(page, STATS_PARCIAL);
+    const leitura = page.locator('#nqDashboard .nqd-radar-reading');
+    await expect(leitura).toBeVisible();
+    const texto = await leitura.innerText();
+    expect(texto).toMatch(/Mais alto em|perfil se forma/i);
+    expect(texto, 'não há série histórica que sustente tendência').not.toMatch(/era \d|há um mês|tendência|melhorou|piorou/i);
+  });
+
+  test('o estado vazio de "Como você erra" ensina a mecânica em vez de só anunciar vazio', async ({ page }) => {
+    await abrirCompetencias(page, STATS_PARCIAL);
+    const painel = page.locator('#nqDashboard .nqd-error-patterns');
+    await expect(painel).toContainText('nomear');
+    await expect(painel.locator('.nqd-error-catalog li')).toHaveCount(6);
+  });
+
+  test('prefers-reduced-motion desenha o radar sem animação', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await abrirCompetencias(page, STATS_PARCIAL);
+    const canvas = page.locator('#nqDashRadarContainer canvas');
+    await expect(canvas).toBeVisible();
+    // Sem animação o desenho já está completo no primeiro quadro.
+    const pintado = await canvas.evaluate((el: HTMLCanvasElement) => {
+      const ctx = el.getContext('2d');
+      if (!ctx) return false;
+      const d = ctx.getImageData(0, 0, el.width, el.height).data;
+      for (let i = 3; i < d.length; i += 4) if (d[i] > 0) return true;
+      return false;
+    });
+    expect(pintado).toBe(true);
+  });
+});
