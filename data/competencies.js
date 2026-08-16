@@ -292,7 +292,10 @@ function nqClassifyText(text, cat) {
 var NQ_COMP_STATS_KEY = 'nefroquest-comp-stats';
 
 function nqGetCompStats() {
-  try { return JSON.parse(localStorage.getItem(NQ_COMP_STATS_KEY) || '{}'); }
+  try {
+    var parsed = JSON.parse(localStorage.getItem(NQ_COMP_STATS_KEY) || '{}');
+    return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : {};
+  }
   catch (e) { return {}; }
 }
 
@@ -307,7 +310,10 @@ function nqRecordAnswer(qid, isCorrect, cat, questionText) {
   if (!ids || ids.length === 0) return;
   var stats = nqGetCompStats();
   ids.forEach(function(id) {
-    if (!stats[id]) stats[id] = { c: 0, t: 0 };
+    if (!stats[id] || typeof stats[id] !== 'object' || Array.isArray(stats[id])) stats[id] = { c: 0, t: 0 };
+    stats[id].c = Number.isFinite(Number(stats[id].c)) ? Math.max(0, Math.trunc(Number(stats[id].c))) : 0;
+    stats[id].t = Number.isFinite(Number(stats[id].t)) ? Math.max(0, Math.trunc(Number(stats[id].t))) : 0;
+    stats[id].c = Math.min(stats[id].c, stats[id].t);
     stats[id].t++;
     if (isCorrect) stats[id].c++;
   });

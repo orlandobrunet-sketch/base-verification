@@ -1,5 +1,4 @@
 import { test, expect } from '@playwright/test';
-import { injectGameState, waitForGame, isLiveEnv } from '../helpers/game';
 
 test.describe('Dashboard, Core Skills & Layout Reset E2E Tests', () => {
   test.beforeEach(async ({ page }) => {
@@ -69,66 +68,18 @@ test.describe('Dashboard, Core Skills & Layout Reset E2E Tests', () => {
     expect(classes).not.toContain('boss-battle-mode');
   });
 
-  test('clicking Treinar Ponto Fraco starts study mode with worst skill categories', async ({ page }) => {
-    // Inject game state to bypass landing screen and load game screen
-    await injectGameState(page);
-    await waitForGame(page);
-
-    await page.waitForFunction(() => typeof (window as any).openDashboard === 'function');
-    
-    // Inject mock detailed stats to set a worst skill (Tratamento)
-    await page.evaluate(() => {
-      const mockStats = {
-        byCategory: {
-          'acido_base': { correct: 10, wrong: 0 }, // Fisiopatologia 100%
-          'drc': { correct: 1, wrong: 9 } // Tratamento 10% (Worst!)
-        }
-      };
-      localStorage.setItem('nefroquest-detailed-stats', JSON.stringify(mockStats));
-    });
-
-    // Open dashboard
-    await page.evaluate(() => {
-      (window as any).openDashboard();
-    });
-
-    // Switch to Skills tab in dashboard
-    await page.click('button[data-dash-tab="skills"]');
-
-    // Verify point fraco button is visible and click it
-    const weaknessBtn = page.locator('button.nq-dash-weakness');
-    await expect(weaknessBtn).toBeVisible();
-    await weaknessBtn.click();
-
-    // Verify that custom study page is opened and study selected axes contains worst skill categories
-    const studyPage = page.locator('#studyModePage');
-    await expect(studyPage).toBeVisible();
-    
-    const selectedAxes = await page.evaluate(() => {
-      return Array.from((window as any)._studySelectedAxes);
-    });
-
-    // Tratamento categories: ['drc', 'hipertensao', 'nefropatia_diabetica', 'farmacologia']
-    expect(selectedAxes).toContain('drc');
-    expect(selectedAxes).toContain('hipertensao');
-    expect(selectedAxes).toContain('nefropatia_diabetica');
-    expect(selectedAxes).toContain('farmacologia');
-  });
-
-  test('clicking Skills tab renders radar chart canvas', async ({ page }) => {
-    await page.waitForFunction(() => typeof (window as any).openDashboard === 'function');
-    
-    // Open the dashboard
-    await page.evaluate(() => {
-      (window as any).openDashboard();
-    });
-
-    // Click the Skills tab
-    await page.click('button[data-dash-tab="skills"]');
-
-    // Wait for the radar container to contain a canvas
-    const canvas = page.locator('#nqDashRadarContainer canvas');
-    await expect(canvas).toBeVisible({ timeout: 5000 });
-  });
+  // Dois cenários desta suíte foram substituídos pela Central de Comando (v14.50) e
+  // vivem agora em specs/21-dashboard-command-center.spec.ts, sob o contrato novo:
+  //
+  // - "clicking Treinar Ponto Fraco starts study mode with worst skill categories"
+  //   afirmava que o botão selecionava o balde inteiro de competência
+  //   (drc + hipertensao + nefropatia_diabetica + farmacologia). O redesign passou a
+  //   treinar exatamente a lacuna exibida; ver "abre a recomendação exata de menor
+  //   desempenho em vez de selecionar todos os temas", que exige _studySelectedAxes === ['drc'].
+  //
+  // - "clicking Skills tab renders radar chart canvas" afirmava #nqDashRadarContainer.
+  //   O radar foi removido por exibir 0% onde não havia amostra; ver "não converte
+  //   competência sem amostra em desempenho de zero por cento", que exige "—" e
+  //   "Sem precisão calculada" nas competências sem dado.
 });
 
