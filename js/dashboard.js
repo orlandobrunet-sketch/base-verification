@@ -236,6 +236,62 @@
     return { ...study, index, remaining: Math.max(0, study.questions.length - index) };
   }
 
+  /**
+   * Estado de memória a partir do que o FSRS-4.5 já grava por card em
+   * `nefroquest-sr-data`: S (estabilidade, em dias até a retenção cair a 90%),
+   * `due` e `reps`. Até aqui o dashboard lia apenas `due <= hoje` e descartava
+   * o resto.
+   *
+   * Duas regras de honestidade valem aqui:
+   *  - o denominador é sempre "itens já vistos", nunca o banco inteiro. Dizer
+   *    "12 de 742" transformaria descoberta em déficit;
+   *  - não há série histórica de estabilidade gravada, então nada de
+   *    "era X há um mês" — a variação no tempo não é dado que o app possua.
+   */
+  function _memoryState() {
+    const cards = _readJson('nefroquest-sr-data', {});
+    const bank = Array.isArray(window.questionBank) ? window.questionBank : [];
+    const validIds = new Set(bank.map(question => String(question.id || question.qid || '')).filter(Boolean));
+    const vazio = { seen: 0, overdue: 0, horizon: [], consolidated: 0, medianS: null };
+    if (!validIds.size) return vazio;
+
+    const hoje = _startOfToday();
+    const DIA = 86400000;
+    const validos = Object.entries(cards || {})
+      .filter(([qid, card]) => validIds.has(String(qid)) && card && typeof card === 'object')
+      .map(([, card]) => card);
+    if (!validos.length) return vazio;
+
+    const horizon = Array.from({ length: 7 }, (_, i) => ({ offset: i, count: 0 }));
+    let overdue = 0;
+    let consolidated = 0;
+    const estabilidades = [];
+
+    validos.forEach(card => {
+      const due = _number(card.due, NaN);
+      if (Number.isFinite(due)) {
+        if (due <= hoje) overdue++;
+        else {
+          const dias = Math.floor((due - hoje) / DIA);
+          if (dias >= 0 && dias < 7) horizon[dias].count++;
+        }
+      }
+      const S = _number(card.S, NaN);
+      if (Number.isFinite(S) && S > 0) {
+        estabilidades.push(S);
+        if (S >= 21) consolidated++;
+      }
+    });
+
+    estabilidades.sort((a, b) => a - b);
+    const meio = Math.floor(estabilidades.length / 2);
+    const medianS = estabilidades.length
+      ? (estabilidades.length % 2 ? estabilidades[meio] : (estabilidades[meio - 1] + estabilidades[meio]) / 2)
+      : null;
+
+    return { seen: validos.length, overdue, horizon, consolidated, medianS };
+  }
+
   function _countOverdueReviews() {
     const cards = _readJson('nefroquest-sr-data', {});
     const boundary = _startOfToday();
@@ -412,6 +468,7 @@
       journeyCorrect: Math.max(0, _number(save && save.correctTotal, 0)),
       studyState: _readStudyState(),
       overdueReviews: _countOverdueReviews(),
+      memory: _memoryState(),
       weekActivity: _readWeekActivity(stats),
       topicsLoadError: !!topicsLoadError,
     };
@@ -511,6 +568,55 @@
     `).join('');
   }
 
+  function _memoryMarkup(memory) {
+    // Sem card algum antes de existir memória a relatar — um zero aqui seria
+    // exatamente o que esta rodada removeu das outras áreas.
+    if (!memory || !memory.seen) return '';
+
+    const DIA_LABEL = ['hoje', 'amanhã', 'em 2 dias', 'em 3 dias', 'em 4 dias', 'em 5 dias', 'em 6 dias'];
+    const naSemana = memory.horizon.reduce((soma, dia) => soma + dia.count, 0);
+    const pico = Math.max(1, ...memory.horizon.map(dia => dia.count));
+
+    return `
+      <section class="nqd-section nqd-memory-section" aria-labelledby="nqdMemoryTitle">
+        <header class="nqd-section-header"><div>
+          <h2 class="nqd-section-title" id="nqdMemoryTitle">Memória</h2>
+          <p>Quanto do que você já viu segue disponível — e quando cada item volta.</p>
+        </div></header>
+
+        <div class="nqd-summary-strip" style="--columns:3">
+          <div class="nqd-metric">
+            <strong class="nqd-metric-value">${memory.overdue > 0 ? _formatNumber(memory.overdue) : '—'}</strong>
+            <small class="nqd-metric-label">${memory.overdue === 1 ? 'item vencido' : 'itens vencidos'}</small>
+          </div>
+          <div class="nqd-metric">
+            <strong class="nqd-metric-value">${_formatNumber(memory.consolidated)}</strong>
+            <small class="nqd-metric-label">de ${_formatNumber(memory.seen)} consolidados</small>
+          </div>
+          <div class="nqd-metric">
+            <strong class="nqd-metric-value">${memory.medianS == null ? '—' : `${Math.round(memory.medianS)}d`}</strong>
+            <small class="nqd-metric-label">estabilidade mediana</small>
+          </div>
+        </div>
+
+        <div class="nqd-memory-horizon" role="group" aria-label="Revisões previstas para os próximos sete dias">
+          ${memory.horizon.map((dia, i) => `
+            <span class="nqd-memory-day${dia.count ? ' has-due' : ''}" style="--h:${(0.25 + (dia.count / pico) * 1.75).toFixed(2)}rem">
+              <i aria-hidden="true"></i>
+              <small>${_escape(DIA_LABEL[i])}</small>
+              <strong>${dia.count || ''}</strong>
+              <span class="nqd-sr-only">${dia.count} ${dia.count === 1 ? 'revisão' : 'revisões'} ${_escape(DIA_LABEL[i])}</span>
+            </span>
+          `).join('')}
+        </div>
+
+        <p class="nqd-memory-note">${naSemana > 0
+          ? `${_formatNumber(naSemana)} ${naSemana === 1 ? 'revisão prevista' : 'revisões previstas'} nos próximos sete dias.`
+          : 'Nenhuma revisão prevista para os próximos sete dias.'} Consolidado = retenção estimada acima de 21 dias.</p>
+      </section>
+    `;
+  }
+
   function _weekPulseMarkup(days) {
     const max = Math.max(1, ...(days || []).map(day => day.count));
     return `
@@ -593,6 +699,7 @@
             ${_weekPulseMarkup(data.weekActivity)}
             ${data.strength ? `<p class="nqd-strength"><span>Melhor desempenho observado</span><strong>${_escape(data.strength.label)}</strong><small>${Math.round(data.strength.accuracy)}% · ${data.strength.totalAnswered} respostas</small></p>` : ''}
           </section>
+          ${_memoryMarkup(data.memory)}
           <section class="nqd-section nqd-reward-section">
             <header class="nqd-section-header"><div><h2 class="nqd-section-title">Próxima conquista</h2></div></header>
             ${_milestoneMarkup(data)}
