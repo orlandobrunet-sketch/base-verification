@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v14.49
-const CACHE = 'nefroquest-v14.49';
+// NefroQuest Service Worker — v14.50
+const CACHE = 'nefroquest-v14.50';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -16,6 +16,11 @@ const STATIC_ASSETS = [
   '/assets/sounds/victory.wav',
   '/assets/audio/welcome-theme.mp3',
   '/assets/nefromancer.png',
+  '/assets/badges/badge1-384.jpg',
+  '/assets/badges/badge2-384.jpg',
+  '/assets/badges/badge3-384.jpg',
+  '/assets/badges/badge4-384.jpg',
+  '/assets/badges/badge5-384.jpg',
   '/manifest.json',
   '/favicon.ico',
   '/data/refs.js',
@@ -53,6 +58,27 @@ const STATIC_ASSETS = [
   '/js/dashboard.js',
 ];
 
+function canonicalAssetKey(request, url) {
+  if (!url.searchParams.has('v')) return request;
+  return new Request(url.pathname, { method: 'GET', credentials: 'same-origin' });
+}
+
+async function canonicalizeVersionedAssetEntries(cache) {
+  const requests = await cache.keys();
+  await Promise.all(requests.map(async request => {
+    const url = new URL(request.url);
+    if (url.origin !== location.origin || !url.searchParams.has('v')) return;
+
+    const canonicalKey = canonicalAssetKey(request, url);
+    const existing = await cache.match(canonicalKey);
+    if (!existing) {
+      const response = await cache.match(request);
+      if (response) await cache.put(canonicalKey, response);
+    }
+    await cache.delete(request);
+  }));
+}
+
 self.addEventListener('install', e => {
   // CRÍTICO: skipWaiting() chamado IMEDIATAMENTE — não bloqueia no precache
   self.skipWaiting();
@@ -77,6 +103,8 @@ self.addEventListener('activate', e => {
       .then(keys => Promise.all(
         keys.filter(k => k !== CACHE).map(k => caches.delete(k))
       ))
+      .then(() => caches.open(CACHE))
+      .then(cache => canonicalizeVersionedAssetEntries(cache))
       .then(() => self.clients.claim())
   );
 });
@@ -117,16 +145,33 @@ self.addEventListener('fetch', e => {
   }
 
   // Assets estáticos → cache-first (sons, imagens, fontes)
+  // `?v=` apenas invalida o navegador/SW; o conteúdo é o mesmo pathname.
+  // Usar uma chave canônica evita duplicatas e permite que o precache sem query
+  // atenda a URL versionada quando o dispositivo estiver offline.
+  const assetCacheKey = canonicalAssetKey(e.request, url);
   e.respondWith(
-    caches.match(e.request).then(cached => {
+    caches.match(assetCacheKey).then(async cached => {
       if (cached) return cached;
+
+      // Compatibilidade com entradas gravadas por versões antigas do SW.
+      // Migra no primeiro acesso sem exigir rede.
+      if (assetCacheKey !== e.request) {
+        const legacy = await caches.match(e.request);
+        if (legacy) {
+          const cache = await caches.open(CACHE);
+          await cache.put(assetCacheKey, legacy.clone());
+          await cache.delete(e.request);
+          return legacy;
+        }
+      }
+
       return fetch(e.request).then(async res => {
         if (res.ok) {
           const cache = await caches.open(CACHE);
-          await cache.put(e.request, res.clone());
+          await cache.put(assetCacheKey, res.clone());
         }
         return res;
-      }).catch(() => caches.match(e.request));
+      }).catch(() => caches.match(assetCacheKey));
     })
   );
 });

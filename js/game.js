@@ -2721,7 +2721,6 @@
       if(i===c){
         state.streak++;
         state.correctTotal++;
-        if (typeof nqRecordAnswer === 'function') nqRecordAnswer(state.current.id, true, state.current.c, state.current.q);
         state.chestCorrectCount = (state.chestCorrectCount || 0) + 1;
         if (state.chestCorrectCount >= state.chestTarget) {
           state.chestCorrectCount = 0;
@@ -2854,7 +2853,6 @@
         checkGameCompletion();
       } else {
         state.streak=0;
-        if (typeof nqRecordAnswer === 'function') nqRecordAnswer(state.current.id, false, state.current.c, state.current.q);
         btn.classList.add('wrong');
         // Tremor de tela e vibrar erro (apenas se for boss)
         if (typeof isBossBattle === 'function' && isBossBattle()) {
@@ -3960,31 +3958,105 @@
         questionHistory: [],
         dailyActivity: {},
         timeStats: { totalTime: 0, questionCount: 0 },
-        mostMissed: {}
+        mostMissed: {},
+        syncedMastered: []
       };
     }
 
-    function _migrateDetailedStats(s) {
-      const v = s.schemaVersion || 0;
-      if (v < 1) {
-        s.schemaVersion = 1;
+    function _isDetailedStatsRecord(value) {
+      return !!value && typeof value === 'object' && !Array.isArray(value);
+    }
+
+    function _nonNegativeStat(value, integer = true) {
+      const parsed = Number(value);
+      if (!Number.isFinite(parsed) || parsed < 0) return 0;
+      return integer ? Math.trunc(parsed) : parsed;
+    }
+
+    function _normaliseAnswerBuckets(value) {
+      if (!_isDetailedStatsRecord(value)) return {};
+      const normalised = {};
+      Object.entries(value).forEach(([key, entry]) => {
+        if (!_isDetailedStatsRecord(entry)) return;
+        const correct = _nonNegativeStat(entry.correct);
+        const wrong = _nonNegativeStat(entry.wrong);
+        normalised[key] = {
+          ...entry,
+          correct,
+          wrong,
+          total: Math.max(_nonNegativeStat(entry.total), correct + wrong)
+        };
+      });
+      return normalised;
+    }
+
+    function _migrateDetailedStats(input) {
+      const source = _isDetailedStatsRecord(input) ? input : {};
+      const s = { ...source };
+      const hadDailyActivity = _isDetailedStatsRecord(source.dailyActivity);
+
+      s.schemaVersion = DETAILED_STATS_SCHEMA_VERSION;
+      s.totalCorrect = _nonNegativeStat(source.totalCorrect);
+      s.totalWrong = _nonNegativeStat(source.totalWrong);
+      s.totalQuestions = Math.max(
+        _nonNegativeStat(source.totalQuestions),
+        s.totalCorrect + s.totalWrong
+      );
+      s.byTopic = _normaliseAnswerBuckets(source.byTopic);
+      s.byCategory = _normaliseAnswerBuckets(source.byCategory);
+      s.questionHistory = Array.isArray(source.questionHistory)
+        ? source.questionHistory.filter(_isDetailedStatsRecord)
+        : [];
+      s.syncedMastered = Array.isArray(source.syncedMastered)
+        ? source.syncedMastered.filter(id => typeof id === 'string' || typeof id === 'number')
+        : [];
+
+      s.mostMissed = {};
+      if (_isDetailedStatsRecord(source.mostMissed)) {
+        Object.entries(source.mostMissed).forEach(([key, entry]) => {
+          if (!_isDetailedStatsRecord(entry)) return;
+          s.mostMissed[key] = {
+            ...entry,
+            count: _nonNegativeStat(entry.count)
+          };
+        });
       }
-      if (!s.dailyActivity) {
-        s.dailyActivity = {};
-        if (Array.isArray(s.questionHistory)) {
-          s.questionHistory.forEach(h => {
-            if (h.date) {
-              const dateStr = h.date.slice(0, 10);
-              if (!s.dailyActivity[dateStr]) {
-                s.dailyActivity[dateStr] = { count: 0, time: 0, correct: 0 };
-              }
-              s.dailyActivity[dateStr].count++;
-              if (h.correct) s.dailyActivity[dateStr].correct++;
-              if (h.time && h.time > 0) s.dailyActivity[dateStr].time += h.time;
-            }
-          });
-        }
+
+      const timeStats = _isDetailedStatsRecord(source.timeStats) ? source.timeStats : {};
+      s.timeStats = {
+        ...timeStats,
+        totalTime: _nonNegativeStat(timeStats.totalTime, false),
+        questionCount: _nonNegativeStat(timeStats.questionCount)
+      };
+
+      s.dailyActivity = {};
+      if (hadDailyActivity) {
+        Object.entries(source.dailyActivity).forEach(([date, entry]) => {
+          if (!_isDetailedStatsRecord(entry)) return;
+          const count = _nonNegativeStat(entry.count);
+          s.dailyActivity[date] = {
+            ...entry,
+            count,
+            time: _nonNegativeStat(entry.time, false),
+            correct: Math.min(count, _nonNegativeStat(entry.correct))
+          };
+        });
+      } else {
+        s.questionHistory.forEach(historyItem => {
+          if (typeof historyItem.date !== 'string') return;
+          const dateStr = historyItem.date.slice(0, 10);
+          if (!/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) return;
+          if (!s.dailyActivity[dateStr]) {
+            s.dailyActivity[dateStr] = { count: 0, time: 0, correct: 0 };
+          }
+          s.dailyActivity[dateStr].count++;
+          if (historyItem.correct) s.dailyActivity[dateStr].correct++;
+          if (_nonNegativeStat(historyItem.time, false) > 0) {
+            s.dailyActivity[dateStr].time += _nonNegativeStat(historyItem.time, false);
+          }
+        });
       }
+
       return s;
     }
 
@@ -4005,18 +4077,12 @@
     }
     
     function trackQuestionAnswer(question, isCorrect, timeSpent) {
-      const stats = getDetailedStats() || {};
-      if (!stats.byTopic)    stats.byTopic    = {};
-      if (!stats.byCategory) stats.byCategory = {};
-      if (!stats.mostMissed) stats.mostMissed = {};
-      if (!stats.questionHistory) stats.questionHistory = [];
-      if (!stats.dailyActivity) stats.dailyActivity = {};
-      if (!stats.timeStats)  stats.timeStats  = { totalTime: 0, questionCount: 0 };
-      if (!stats.totalQuestions) stats.totalQuestions = 0;
-      if (!stats.totalCorrect)   stats.totalCorrect   = 0;
-      if (!stats.totalWrong)     stats.totalWrong     = 0;
-      const topic = question.t || 'Geral';
-      const cat = question.c || question.cat || 'geral';
+      const stats = getDetailedStats();
+      const safeQuestion = _isDetailedStatsRecord(question) ? question : {};
+      const topic = safeQuestion.t || 'Geral';
+      const cat = safeQuestion.c || safeQuestion.cat || 'geral';
+      const questionText = String(safeQuestion.q || '');
+      const safeTimeSpent = _nonNegativeStat(timeSpent, false);
       
       // Atualizar totais
       stats.totalQuestions++;
@@ -4044,9 +4110,9 @@
       
       // Atualizar questões mais erradas
       if (!isCorrect) {
-        const qKey = question.q.substring(0, 50);
-        if (!stats.mostMissed[qKey]) {
-          stats.mostMissed[qKey] = { question: question.q, topic: topic, count: 0 };
+        const qKey = questionText.substring(0, 50) || 'Questão sem título';
+        if (!_isDetailedStatsRecord(stats.mostMissed[qKey])) {
+          stats.mostMissed[qKey] = { question: questionText, topic: topic, count: 0 };
         }
         stats.mostMissed[qKey].count++;
       }
@@ -4060,23 +4126,34 @@
       }
       stats.dailyActivity[localDateStr].count++;
       if (isCorrect) stats.dailyActivity[localDateStr].correct++;
-      if (timeSpent && timeSpent > 0) stats.dailyActivity[localDateStr].time += timeSpent;
+      if (safeTimeSpent > 0) stats.dailyActivity[localDateStr].time += safeTimeSpent;
       
       // Atualizar tempo
-      if (timeSpent > 0) {
-        stats.timeStats.totalTime += timeSpent;
+      if (safeTimeSpent > 0) {
+        stats.timeStats.totalTime += safeTimeSpent;
         stats.timeStats.questionCount++;
       }
       
       // ID da questão: no deck o qid fica em `id` (buildDeck: id = t.qid).
-      const _qid = question.qid || question.id;
+      const _qid = safeQuestion.qid || safeQuestion.id;
+
+      // Mantém o mapa granular alinhado em campanha, estudo e prova.
+      if (typeof nqRecordAnswer === 'function') {
+        try {
+          nqRecordAnswer(_qid, isCorrect, cat, questionText);
+        } catch (error) {
+          // O mapa é complementar: uma preferência local corrompida não pode
+          // interromper a resposta, a correção ou o salvamento da sessão.
+          console.warn('[NQ] Não foi possível atualizar o mapa de prática.', error);
+        }
+      }
 
       // Histórico (últimas 100)
       stats.questionHistory.unshift({
         qid: _qid,
         topic: topic,
         correct: isCorrect,
-        time: timeSpent,
+        time: safeTimeSpent,
         date: new Date().toISOString()
       });
       if (stats.questionHistory.length > 100) {
@@ -4095,7 +4172,7 @@
       }
 
       // Evitar duplo-registro na sincronização retroativa
-      const qId = question.id || question.qid;
+      const qId = safeQuestion.id || safeQuestion.qid;
       if (isCorrect && qId) {
         stats.syncedMastered = stats.syncedMastered || [];
         if (!stats.syncedMastered.includes(qId)) {
@@ -4825,9 +4902,28 @@
 
     // Atalhos de teclado para responder (1-4 ou A-D) e avançar (Enter/Space)
     document.addEventListener('keydown', function(e) {
+      if (document.getElementById('nqDashboard') || document.querySelector('.modal.show, .study-mode-popup')) return;
       const target = e.target;
-      if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)) {
+      const interactiveTarget = target instanceof Element
+        ? target.closest('button, a[href], select, summary, [role="button"]')
+        : null;
+      if (interactiveTarget || (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable))) {
         return;
+      }
+
+      // Enter/Espaço também fecha as cenas narrativas quando o foco está no palco.
+      const overlayBtn = document.querySelector('#charIntroOverlay button') ||
+                         document.querySelector('.narrative-popup button') ||
+                         document.getElementById('arquiQ9CloseBtn');
+      if (overlayBtn && (e.key === 'Enter' || e.key === ' ')) {
+        const visibleOverlay = overlayBtn.closest('.narrative-popup') ||
+                               document.getElementById('charIntroOverlay') ||
+                               document.getElementById('arquiQ9Popup');
+        if (visibleOverlay && visibleOverlay.style.display !== 'none' && !visibleOverlay.classList.contains('hidden')) {
+          e.preventDefault();
+          overlayBtn.click();
+          return;
+        }
       }
 
       // --- MINIGAME JULGAMENTO RÁPIDO ---
@@ -5205,88 +5301,4 @@
       const popup = document.getElementById('arquiQ9Popup');
       if (popup) popup.style.display = 'none';
     };
-
-    // ============ ATALHOS DE TECLADO (Acessibilidade Desktop) ============
-    document.addEventListener('keydown', function(e) {
-      const activeEl = document.activeElement;
-      if (activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA' || activeEl.isContentEditable)) {
-        return; // Ignorar quando o usuário estiver digitando
-      }
-
-      const key = e.key.toUpperCase();
-
-      // Fechar popups narrativos com Enter ou Space se algum estiver na tela
-      const overlayBtn = document.querySelector('#charIntroOverlay button') || 
-                         document.querySelector('.narrative-popup button') ||
-                         document.getElementById('arquiQ9CloseBtn');
-      
-      if (overlayBtn && (key === 'ENTER' || key === ' ')) {
-        const visibleOverlay = overlayBtn.closest('.narrative-popup') || 
-                              document.getElementById('charIntroOverlay') || 
-                              document.getElementById('arquiQ9Popup');
-        if (visibleOverlay && visibleOverlay.style.display !== 'none' && !visibleOverlay.classList.contains('hidden')) {
-          e.preventDefault();
-          overlayBtn.click();
-          return;
-        }
-      }
-
-      // 1. Caso 1: Modo Estudo (Revisão Espaçada / Reforço)
-      const studyPage = document.getElementById('studyModePage');
-      const isStudyPageActive = studyPage && !studyPage.classList.contains('hidden') && studyPage.style.display !== 'none';
-      
-      if (isStudyPageActive) {
-        const feedback = document.getElementById('studyFeedback');
-        const isAnswered = feedback && feedback.style.display === 'block';
-
-        if (isAnswered) {
-          if (key === 'ENTER' || key === ' ') {
-            e.preventDefault();
-            const nextBtn = studyPage.querySelector('[data-action="nextStudyQuestion"]');
-            if (nextBtn) nextBtn.click();
-          }
-        } else {
-          const optionKeys = ['1', '2', '3', '4', 'A', 'B', 'C', 'D'];
-          const optIdx = optionKeys.indexOf(key) % 4;
-          if (optIdx >= 0) {
-            e.preventDefault();
-            const btns = studyPage.querySelectorAll('.study-option-btn');
-            if (btns && btns[optIdx] && !btns[optIdx].disabled) {
-              btns[optIdx].click();
-            }
-          }
-        }
-        return;
-      }
-
-      // 2. Caso 2: Modo Campanha RPG (Jogo Normal)
-      const mainApp = document.getElementById('mainApp');
-      const welcome = document.getElementById('welcomeScreen');
-      const isNormalGameActive = mainApp && !mainApp.classList.contains('hidden') && (!welcome || welcome.classList.contains('hidden'));
-
-      if (isNormalGameActive) {
-        const isAnswered = state.answered;
-
-        if (isAnswered) {
-          if (key === 'ENTER' || key === ' ') {
-            e.preventDefault();
-            const nextBtn = document.getElementById('nextBtn');
-            if (nextBtn && !nextBtn.disabled && nextBtn.style.display !== 'none') {
-              nextBtn.click();
-            }
-          }
-        } else {
-          const optionKeys = ['1', '2', '3', '4', 'A', 'B', 'C', 'D'];
-          const optIdx = optionKeys.indexOf(key) % 4;
-          if (optIdx >= 0) {
-            e.preventDefault();
-            const btns = document.querySelectorAll('#options .option');
-            if (btns && btns[optIdx] && !btns[optIdx].disabled) {
-              btns[optIdx].click();
-            }
-          }
-        }
-        return;
-      }
-    });
 

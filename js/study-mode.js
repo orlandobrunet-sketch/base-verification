@@ -620,6 +620,54 @@
     // Eixos selecionados no Modo de Estudo
     let _studySelectedAxes = new Set();
 
+    function _studyPopupFocusFallback(returnFocus) {
+      if (returnFocus && returnFocus.isConnected && returnFocus.getClientRects().length && !returnFocus.closest('[hidden], [inert]')) {
+        return returnFocus;
+      }
+      return [...document.querySelectorAll('[data-action="openDashboard"], [data-action="showTopicSelector"]')]
+        .find(element => element.getClientRects().length && !element.closest('[hidden], [inert]')) || null;
+    }
+
+    function _mountStudyPopup(modal, label, returnFocus) {
+      const restoreFocus = () => {
+        const fallback = _studyPopupFocusFallback(returnFocus);
+        if (fallback) fallback.focus({ preventScroll: true });
+      };
+      modal.setAttribute('role', 'dialog');
+      modal.setAttribute('aria-modal', 'true');
+      modal.setAttribute('aria-label', label);
+      modal.addEventListener('click', event => {
+        if (!event.target.closest('[data-close-closest]')) return;
+        window.requestAnimationFrame(restoreFocus);
+      });
+      modal.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          event.stopPropagation();
+          modal.remove();
+          restoreFocus();
+          return;
+        }
+        if (event.key !== 'Tab') return;
+        const focusable = [...modal.querySelectorAll('button:not(:disabled), [role="button"][tabindex="0"], a[href], select, input, textarea')]
+          .filter(element => element.getClientRects().length && !element.closest('[hidden], [inert]'));
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      });
+      document.body.appendChild(modal);
+      window.requestAnimationFrame(() => {
+        modal.querySelector('button, [role="button"][tabindex="0"]')?.focus({ preventScroll: true });
+      });
+    }
+
     async function showTopicSelector() {
       if (typeof topics === 'undefined') {
         _toast('Carregando questões…', 'info', 30000);
@@ -681,11 +729,12 @@
           <button class="btn sec" data-close-closest=".modal" style="width:100%;margin-top:6px;">Fechar</button>
         </div>
       `;
-      document.body.appendChild(modal);
+      _mountStudyPopup(modal, 'Escolha o modo de estudo', returnFocus);
       playSound('click');
     }
 
     function showAxesSelector() {
+      const returnFocus = document.activeElement;
       document.querySelectorAll('.study-mode-popup').forEach(el => el.remove());
       _studySelectedAxes.clear();
       NEFRO_AXES.forEach(a => _studySelectedAxes.add(a.id));
@@ -693,7 +742,7 @@
       const isMobile = window.innerWidth <= 768;
       const modal = document.createElement('div');
       modal.className = 'modal show study-mode-popup';
-      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;height:100svh;height:100dvh;background:rgba(0,0,0,0.85);display:flex;align-items:' + (isMobile ? 'flex-start' : 'center') + ';justify-content:center;z-index:10000;backdrop-filter:blur(6px);overflow-y:auto;padding:' + (isMobile ? '12px 12px calc(env(safe-area-inset-bottom,0px)+80px)' : '32px 16px') + ';box-sizing:border-box;';
+      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;height:100svh;height:100dvh;background:rgba(0,0,0,0.9);display:flex;align-items:' + (isMobile ? 'flex-start' : 'center') + ';justify-content:center;z-index:10000;overflow-y:auto;padding:' + (isMobile ? '12px 12px calc(env(safe-area-inset-bottom,0px)+80px)' : '32px 16px') + ';box-sizing:border-box;';
 
       const stats = getDetailedStats();
 
@@ -706,7 +755,7 @@
           const pct = axisData ? axisData.accuracy.toFixed(0) + '%' : '—';
           const color = axisData ? (axisData.accuracy >= 70 ? '#34d399' : axisData.accuracy >= 50 ? '#fbbf24' : '#fb7185') : 'var(--txt-dim)';
           return `
-            <div data-action="_studyToggleAxis" data-arg="${axis.id}" id="axis-card-${axis.id}"
+            <div role="button" tabindex="0" aria-pressed="${sel}" data-action="_studyToggleAxis" data-arg="${axis.id}" id="axis-card-${axis.id}"
               style="cursor:pointer;padding:8px 10px;border-radius:10px;border:2px solid ${sel ? '#8b5cf6' : 'rgba(255,255,255,0.1)'};background:${sel ? 'rgba(139,92,246,0.15)' : 'rgba(255,255,255,0.03)'};transition:all 0.2s;display:flex;align-items:center;gap:10px;">
               <span style="font-size:1.4rem;">${axis.icon}</span>
               <div style="flex:1;text-align:left;">
@@ -755,7 +804,39 @@
           <button class="btn gold" data-action="startStudyMode" style="width:100%;padding:12px;">📚 Iniciar Sessão</button>
         </div>
       `;
+      modal.setAttribute('role', 'dialog');
+      modal.setAttribute('aria-modal', 'true');
+      modal.setAttribute('aria-label', 'Escolha os temas de estudo');
+      modal.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          event.stopPropagation();
+          modal.remove();
+          const fallback = returnFocus && returnFocus.isConnected && returnFocus.getClientRects().length
+            ? returnFocus
+            : [...document.querySelectorAll('[data-action="openDashboard"]')]
+              .find(element => element.getClientRects().length && !element.closest('[hidden], [inert]'));
+          if (fallback) fallback.focus({ preventScroll: true });
+          return;
+        }
+        if (event.key !== 'Tab') return;
+        const focusable = [...modal.querySelectorAll('button:not(:disabled), [role="button"][tabindex="0"], a[href], select, input, textarea')]
+          .filter(element => element.getClientRects().length && !element.closest('[hidden], [inert]'));
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      });
       document.body.appendChild(modal);
+      window.requestAnimationFrame(() => {
+        modal.querySelector('button, [role="button"][tabindex="0"]')?.focus({ preventScroll: true });
+      });
       playSound('click');
     }
 
@@ -774,7 +855,7 @@
         const pct = axisData ? axisData.accuracy.toFixed(0) + '%' : '—';
         const color = axisData ? (axisData.accuracy >= 70 ? '#34d399' : axisData.accuracy >= 50 ? '#fbbf24' : '#fb7185') : 'var(--txt-dim)';
         return `
-          <div data-action="_studyToggleAxis" data-arg="${axis.id}" id="axis-card-${axis.id}"
+          <div role="button" tabindex="0" aria-pressed="${sel}" data-action="_studyToggleAxis" data-arg="${axis.id}" id="axis-card-${axis.id}"
             style="cursor:pointer;padding:12px 14px;border-radius:10px;border:2px solid ${sel ? '#8b5cf6' : 'rgba(255,255,255,0.1)'};background:${sel ? 'rgba(139,92,246,0.15)' : 'rgba(255,255,255,0.03)'};transition:all 0.2s;display:flex;align-items:center;gap:12px;">
             <span style="font-size:1.4rem;">${axis.icon}</span>
             <div style="flex:1;text-align:left;">
@@ -791,6 +872,7 @@
           </div>
         `;
       }).join('');
+      document.getElementById(`axis-card-${id}`)?.focus({ preventScroll: true });
     }
 
     function _studySelectAll(sel) {
@@ -808,7 +890,7 @@
         const pct = axisData ? axisData.accuracy.toFixed(0) + '%' : '—';
         const color = axisData ? (axisData.accuracy >= 70 ? '#34d399' : axisData.accuracy >= 50 ? '#fbbf24' : '#fb7185') : 'var(--txt-dim)';
         return `
-          <div data-action="_studyToggleAxis" data-arg="${axis.id}" id="axis-card-${axis.id}"
+          <div role="button" tabindex="0" aria-pressed="${selected}" data-action="_studyToggleAxis" data-arg="${axis.id}" id="axis-card-${axis.id}"
             style="cursor:pointer;padding:12px 14px;border-radius:10px;border:2px solid ${selected ? '#8b5cf6' : 'rgba(255,255,255,0.1)'};background:${selected ? 'rgba(139,92,246,0.15)' : 'rgba(255,255,255,0.03)'};transition:all 0.2s;display:flex;align-items:center;gap:12px;">
             <span style="font-size:1.4rem;">${axis.icon}</span>
             <div style="flex:1;text-align:left;">
@@ -849,7 +931,7 @@
         const pct = axisData ? axisData.accuracy.toFixed(0) + '%' : '—';
         const color = axisData ? (axisData.accuracy >= 70 ? '#34d399' : axisData.accuracy >= 50 ? '#fbbf24' : '#fb7185') : 'var(--txt-dim)';
         return `
-          <div data-action="_studyToggleAxis" data-arg="${axis.id}" id="axis-card-${axis.id}"
+          <div role="button" tabindex="0" aria-pressed="${sel}" data-action="_studyToggleAxis" data-arg="${axis.id}" id="axis-card-${axis.id}"
             style="cursor:pointer;padding:12px 14px;border-radius:10px;border:2px solid ${sel ? '#8b5cf6' : 'rgba(255,255,255,0.1)'};background:${sel ? 'rgba(139,92,246,0.15)' : 'rgba(255,255,255,0.03)'};transition:all 0.2s;display:flex;align-items:center;gap:12px;">
             <span style="font-size:1.4rem;">${axis.icon}</span>
             <div style="flex:1;text-align:left;">
@@ -891,9 +973,36 @@
         const raw = localStorage.getItem(STUDY_SAVE_KEY);
         if (!raw) return null;
         const s = JSON.parse(raw);
-        if (!s?.questions?.length) return null;
-        if (Date.now() - s.savedAt > STUDY_TTL_MS) { localStorage.removeItem(STUDY_SAVE_KEY); return null; }
-        return s;
+        if (!s || typeof s !== 'object' || Array.isArray(s) || !Array.isArray(s.questions)) return null;
+        const questions = s.questions.filter(id => typeof id === 'string' || typeof id === 'number');
+        const savedAt = Number(s.savedAt);
+        if (!questions.length || !Number.isFinite(savedAt) || savedAt <= 0) return null;
+        if (Date.now() - savedAt > STUDY_TTL_MS) { localStorage.removeItem(STUDY_SAVE_KEY); return null; }
+
+        const rawIndex = Number(s.index);
+        const index = Number.isFinite(rawIndex)
+          ? Math.max(0, Math.min(Math.trunc(rawIndex), questions.length))
+          : 0;
+        const axisStats = {};
+        if (s.axisStats && typeof s.axisStats === 'object' && !Array.isArray(s.axisStats)) {
+          Object.entries(s.axisStats).forEach(([cat, entry]) => {
+            if (!entry || typeof entry !== 'object' || Array.isArray(entry)) return;
+            axisStats[cat] = {
+              correct: Math.max(0, Math.trunc(Number(entry.correct) || 0)),
+              wrong: Math.max(0, Math.trunc(Number(entry.wrong) || 0))
+            };
+          });
+        }
+
+        return {
+          ...s,
+          questions,
+          index,
+          correct: Math.max(0, Math.trunc(Number(s.correct) || 0)),
+          wrong: Math.max(0, Math.trunc(Number(s.wrong) || 0)),
+          axisStats,
+          savedAt
+        };
       } catch(e) { return null; }
     }
 
@@ -912,9 +1021,9 @@
       const currentId = saved.questions[Math.min(saved.index, saved.questions.length - 1)];
       const currentIndex = restored.findIndex(question => (question.qid || question.id || question.q.substring(0, 40)) === currentId);
       studyModeIndex = currentIndex >= 0 ? currentIndex : Math.min(saved.index, restored.length - 1);
-      studyModeCorrect = saved.correct || 0;
-      studyModeWrong = saved.wrong || 0;
-      _studyAxisStats = saved.axisStats && typeof saved.axisStats === 'object' ? saved.axisStats : {};
+      studyModeCorrect = saved.correct;
+      studyModeWrong = saved.wrong;
+      _studyAxisStats = saved.axisStats;
       studyModeActive = true;
       showStudyModePage();
       return true;

@@ -106,7 +106,7 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
     expect(stylesheets).toContain('/styles/lumen/atrium.css?v=14.18');
     await expect(page.locator('script[src="js/atrium.js?v=13.23"]')).toHaveCount(1);
     await expect(page.locator('script[src="js/auth.js?v=13.44"]')).toHaveCount(1);
-    await expect(page.locator('script[src="js/game.js?v=14.34"]')).toHaveCount(1);
+    await expect(page.locator('script[src="js/game.js?v=14.50"]')).toHaveCount(1);
     await expect(page.locator('link[href="styles/lumen/difficulty.css?v=14.34"]')).toHaveCount(1);
     const atriumVisual = await page.locator('#welcomeScreen').evaluate((screen) => {
       const screenStyle = getComputedStyle(screen);
