@@ -17,7 +17,8 @@
   --nqd-bronze: #b98955;
   --nqd-cyan: #78d9e3;
   --nqd-violet: #b17dda;
-  --nqd-magenta: #d566b2;
+  /* magenta removido: era uma sexta cor fora do sistema de cinco funções
+     (leitura, consistência, atenção, conhecimento, recompensa) */
   --nqd-jade: #67d39d;
   --nqd-coral: #e68e78;
   --nqd-amber: #df934d;
@@ -183,7 +184,7 @@
 #nqDashboard[data-nq-ui="lumen"] .nqd-eyebrow,
 #nqDashboard[data-nq-ui="lumen"] .nqd-instrument-label,
 #nqDashboard[data-nq-ui="lumen"] .nqd-meta {
-  color: var(--nql-lumen);
+  color: var(--nql-text-muted);
   font-family: var(--nql-font-instrument);
   font-size: .68rem;
   font-weight: 500;
@@ -191,6 +192,15 @@
   line-height: 1.4;
   text-transform: uppercase;
 }
+
+/* Cor com função: ouro só para recompensa, ciano só para leitura clínica.
+   O padrão do eyebrow era ciano, o que fez ciano virar "cor de qualquer
+   metadado" — havia ~10 deles competindo entre si só na Visão geral. Com o
+   padrão neutro, a cor volta a marcar significado em vez de ornamento.
+   Estes modificadores vêm DEPOIS da regra base de propósito: têm a mesma
+   especificidade, então quem vence é a ordem de origem. */
+#nqDashboard[data-nq-ui="lumen"] .nqd-eyebrow--reward { color: var(--nqd-gold); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-eyebrow--clinical { color: var(--nqd-cyan); }
 
 #nqDashboard[data-nq-ui="lumen"] .nqd-rail-kicker {
   margin: .35rem .4rem 1.2rem;
@@ -1569,12 +1579,11 @@
   box-shadow: .75rem 0 2.5rem rgba(0, 0, 0, .18);
 }
 
-#nqDashboard[data-nq-ui="lumen"] .nqd-nav-item[data-dash-tab="overview"] { --nqd-tab-accent: var(--nqd-gold); }
-#nqDashboard[data-nq-ui="lumen"] .nqd-nav-item[data-dash-tab="skills"] { --nqd-tab-accent: var(--nqd-cyan); }
-#nqDashboard[data-nq-ui="lumen"] .nqd-nav-item[data-dash-tab="mapa"] { --nqd-tab-accent: var(--nqd-jade); }
-#nqDashboard[data-nq-ui="lumen"] .nqd-nav-item[data-dash-tab="achievements"] { --nqd-tab-accent: var(--nqd-magenta); }
-#nqDashboard[data-nq-ui="lumen"] .nqd-nav-item[data-dash-tab="library"] { --nqd-tab-accent: var(--nqd-violet); }
-#nqDashboard[data-nq-ui="lumen"] .nqd-nav-item[data-dash-tab="ranking"] { --nqd-tab-accent: var(--nqd-amber); }
+/* Sem cor de identidade por aba. Ouro em "Visão geral" (que não é recompensa)
+   e jade em "Mapa" (que não é consistência) treinavam o olho a ler cor como
+   enfeite de navegação — e com isso o coral de "requer atenção" no conteúdo
+   perdia força. A barra passa a usar o fallback ciano uniforme, e a cor volta
+   a significar estado apenas onde existe dado que a sustente. */
 
 #nqDashboard[data-nq-ui="lumen"] .nqd-nav-item::before {
   background: var(--nqd-tab-accent, var(--nqd-cyan));
@@ -2135,7 +2144,7 @@
   position: absolute;
   inset: auto 0 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--nqd-magenta), var(--nqd-violet), var(--nqd-gold));
+  background: linear-gradient(90deg, var(--nqd-violet), var(--nqd-gold));
   content: "";
 }
 

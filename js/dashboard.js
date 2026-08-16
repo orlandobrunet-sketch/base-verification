@@ -653,7 +653,7 @@
         <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Competências</h1><p class="nqd-section-copy">Áreas amplas do seu raciocínio, sempre acompanhadas pelo tamanho da amostra.</p></div></div>
         <section class="nqd-skill-priority${data.axisWeakness ? '' : ' is-forming'}">
           ${data.axisWeakness ? `
-            <div><span class="nqd-eyebrow">${data.axisWeakness.accuracy < 70 ? 'Foco recomendado' : 'Manutenção sugerida'}</span><h2>${_escape(data.axisWeakness.label)}</h2><p>${Math.round(data.axisWeakness.accuracy)}% em ${data.axisWeakness.total} respostas. O treino abre somente este tema.</p></div>
+            <div><span class="nqd-eyebrow nqd-eyebrow--clinical">${data.axisWeakness.accuracy < 70 ? 'Foco recomendado' : 'Manutenção sugerida'}</span><h2>${_escape(data.axisWeakness.label)}</h2><p>${Math.round(data.axisWeakness.accuracy)}% em ${data.axisWeakness.total} respostas. O treino abre somente este tema.</p></div>
             <button type="button" class="nqd-primary-action" data-action="_dashGoAxisWeakness" data-nqd-primary="true">Treinar este tema${_svg('arrow')}</button>
           ` : `
             <div><span class="nqd-eyebrow">Calibrando seu perfil</span><h2>Complete cinco respostas em um tema para receber uma recomendação.</h2><p>Ausência de amostra não é tratada como desempenho zero.</p></div>
@@ -865,7 +865,7 @@
         <section class="nqd-achievement-spotlight${nextBadge ? '' : ' is-complete'}" aria-labelledby="nqdAchievementSpotlightTitle">
           <div class="nqd-achievement-spotlight-art"><img src="${featuredBadge.image}" alt="" decoding="async" width="384" height="384"></div>
           <div class="nqd-achievement-spotlight-copy">
-            <span class="nqd-eyebrow">${nextBadge ? 'Próximo selo da jornada' : 'Trilha de selos completa'}</span>
+            <span class="nqd-eyebrow nqd-eyebrow--reward">${nextBadge ? 'Próximo selo da jornada' : 'Trilha de selos completa'}</span>
             <h2 id="nqdAchievementSpotlightTitle">${_escape(featuredBadge.name)}</h2>
             <p>${nextBadge ? `Faltam <strong>${_formatNumber(remaining)} acertos</strong> nesta jornada para revelar este selo.` : 'Os cinco selos da jornada foram conquistados.'}</p>
             ${_meterMarkup(featuredValue, featuredBadge.required, `Progresso para ${featuredBadge.name}`, true)}
@@ -878,7 +878,7 @@
         ${_badgePathMarkup(correctTotal)}
 
         <div class="nqd-achievement-catalog-header">
-          <div><span class="nqd-eyebrow">Desafios do perfil</span><h2>Conquistas especiais</h2></div>
+          <div><span class="nqd-eyebrow nqd-eyebrow--reward">Desafios do perfil</span><h2>Conquistas especiais</h2></div>
           <div class="nqd-achievement-summary" aria-label="${unlocked.size} de ${achievements.length} conquistas especiais conquistadas"><strong>${unlocked.size > 0 ? unlocked.size : '—'}</strong><span>de ${achievements.length}</span></div>
         </div>
         <div class="nqd-achievement-filters" role="group" aria-label="Filtrar conquistas especiais">
