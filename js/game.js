@@ -62,7 +62,31 @@
         try {
           localStorage.setItem('nefroquest-announced-badges', JSON.stringify(announced));
         } catch (e) {}
+        // `announced` é apagado por deleteSave() a cada nova jornada — é lista
+        // de deduplicação de anúncio, não histórico. Sem um registro que
+        // sobreviva, quem venceu os 100 acertos e recomeça com outra classe
+        // reabre a Central e vê os cinco selos travados de novo.
+        _recordBadgeHistory(announced);
       }
+    }
+
+    /**
+     * Histórico permanente de selos. Sobrevive a deleteSave() e some apenas em
+     * clearLocalProgress() (reset total). Guarda a jornada em que cada selo foi
+     * conquistado pela primeira vez, para a Central dizer "seu desde a 1ª
+     * jornada" em vez de rebaixar quem já venceu ao dia zero.
+     */
+    function _recordBadgeHistory(ganhos) {
+      try {
+        const bruto = JSON.parse(localStorage.getItem('nefroquest-badge-history') || '{}');
+        const historico = bruto && typeof bruto === 'object' && !Array.isArray(bruto) ? bruto : {};
+        const jornada = Math.max(1, parseInt(localStorage.getItem('nefroquest-journey-count') || '1', 10) || 1);
+        let mudou = false;
+        (ganhos || []).forEach(id => {
+          if (!historico[id]) { historico[id] = { jornada: jornada }; mudou = true; }
+        });
+        if (mudou) localStorage.setItem('nefroquest-badge-history', JSON.stringify(historico));
+      } catch (e) {}
     }
     
     // ── Analytics ────────────────────────────────────────────────────────────
@@ -573,6 +597,12 @@
     function deleteSave() {
       localStorage.removeItem(SAVE_KEY);
       localStorage.removeItem('nefroquest-announced-badges');
+      // Conta a jornada que começa, para o histórico de selos poder dizer em
+      // qual delas cada um foi conquistado. Não some com deleteSave.
+      try {
+        const atual = Math.max(1, parseInt(localStorage.getItem('nefroquest-journey-count') || '1', 10) || 1);
+        localStorage.setItem('nefroquest-journey-count', String(atual + 1));
+      } catch (e) {}
       _scheduleCloudSync();
     }
 
@@ -590,7 +620,10 @@
         'nefroquest-arqui-defeated',
         'nefroquest-hardcore-completed',
         'nefroquest-minigame-best',
-        'nefroquest-announced-badges'
+        'nefroquest-announced-badges',
+        // Sobrevivem a deleteSave (nova jornada), mas não a um reset total.
+        'nefroquest-badge-history',
+        'nefroquest-journey-count'
       ];
       keys.forEach(k => localStorage.removeItem(k));
       _invalidateStatsCache();
