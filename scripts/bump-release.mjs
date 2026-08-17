@@ -53,9 +53,14 @@ try {
   process.exit(1);
 }
 
-// Assets com cache-buster próprio em jogar/index.html
+// Assets com cache-buster próprio em jogar/index.html.
+// `style.css` entra explicitamente: é o maior CSS do projeto (520 KB) e ficava
+// fora do padrão `styles/lumen/`, então a ferramenta nunca subia o buster dele
+// — quem já tinha o arquivo em cache continuava com a versão velha.
+const BUSTER = /(js\/[a-z0-9-]+\.js|styles\/lumen\/[a-z]+\.css|style\.css)\?v=([0-9.]+)/g;
+
 const html = ler('jogar/index.html');
-const comBuster = [...html.matchAll(/(js\/[a-z0-9-]+\.js|styles\/lumen\/[a-z]+\.css)\?v=([0-9.]+)/g)]
+const comBuster = [...html.matchAll(BUSTER)]
   .map(m => ({ arquivo: m[1], versao: m[2] }));
 
 const precisamBump = comBuster.filter(a => alterados.includes(a.arquivo));
@@ -75,7 +80,7 @@ let busterBase = new Map();
 try {
   const htmlBase = execFileSync('git', ['show', `${base}:jogar/index.html`], { cwd: raiz, encoding: 'utf8' });
   busterBase = new Map(
-    [...htmlBase.matchAll(/(js\/[a-z0-9-]+\.js|styles\/lumen\/[a-z]+\.css)\?v=([0-9.]+)/g)].map(m => [m[1], m[2]])
+    [...htmlBase.matchAll(new RegExp(BUSTER.source, 'g'))].map(m => [m[1], m[2]])
   );
 } catch { /* base indisponível: sem comparação possível, não acusa */ }
 
@@ -85,8 +90,61 @@ if (suspeitos.length) {
   suspeitos.forEach(a => console.log(`  ${a.arquivo}: ${busterBase.get(a.arquivo)} -> ${a.versao} — arquivo intocado seria rebaixado`));
 }
 
+// ── ASSET_VERSIONS do sw.js ───────────────────────────────────────────────
+// O install do SW precisa pedir a MESMA URL versionada que a página pede, senão
+// cada asset do precache vira uma segunda entrada no cache HTTP e é baixado de
+// novo no primeiro acesso. O mapa é derivado do HTML, nunca escrito à mão.
+const MARCA_INI = '// bump-release:asset-versions:início';
+const MARCA_FIM = '// bump-release:asset-versions:fim';
+
+// Comparação insensível a fim de linha: no Windows um editor grava o arquivo em
+// CRLF e o bloco gerado aqui sai em LF. Sem normalizar, `--check` acusaria
+// deriva onde não há — e o gate perderia credibilidade justamente por ruído.
+const normalizar = s => s.replace(/\r\n/g, '\n');
+
+function blocoEntre(texto, ini, fim) {
+  const i = texto.indexOf(ini);
+  if (i < 0) return null;
+  // Procurar o delimitador final DEPOIS do inicial: buscar do começo casaria um
+  // `];` de qualquer array declarado acima e o bloco viria vazio ou invertido.
+  const f = texto.indexOf(fim, i + ini.length);
+  if (f < 0) return null;
+  return { i: i + ini.length, f, conteudo: normalizar(texto.slice(i + ini.length, f)).trim() };
+}
+
+function mapaDesejado(htmlTexto, swTexto) {
+  const lista = blocoEntre(swTexto, 'const STATIC_ASSETS = [', '];');
+  if (!lista) throw new Error('STATIC_ASSETS não encontrado em sw.js');
+  const estaticos = [...lista.conteudo.matchAll(/'(\/[^']+)'/g)].map(m => m[1]);
+  const versoes = new Map([...htmlTexto.matchAll(new RegExp(BUSTER.source, 'g'))].map(m => [m[1], m[2]]));
+  const linhas = estaticos
+    .filter(c => versoes.has(c.replace(/^\//, '')))
+    .map(c => `  '${c}': '${versoes.get(c.replace(/^\//, ''))}',`);
+  return linhas.length ? `const ASSET_VERSIONS = {\n${linhas.join('\n')}\n};` : 'const ASSET_VERSIONS = {};';
+}
+
+const swAtual = ler('sw.js');
+const mapaAtual = blocoEntre(swAtual, MARCA_INI, MARCA_FIM);
+const mapaEsperado = mapaDesejado(html, swAtual);
+const mapaDerivou = !mapaAtual || mapaAtual.conteudo !== mapaEsperado;
+
+if (mapaDerivou) {
+  console.log(`\n⚠  ASSET_VERSIONS do sw.js está fora de sincronia com jogar/index.html`);
+  if (apenasChecar) console.log('   rode: node scripts/bump-release.mjs <versão>  (ou --sync para só regerar o mapa)');
+}
+
 if (apenasChecar) {
-  process.exit(suspeitos.length ? 1 : 0);
+  process.exit(suspeitos.length || mapaDerivou ? 1 : 0);
+}
+
+// `--sync` regera só o mapa, sem tocar em versão: serve para quem mexeu no
+// STATIC_ASSETS sem estar fazendo release.
+if (args.includes('--sync')) {
+  const b = blocoEntre(swAtual, MARCA_INI, MARCA_FIM);
+  if (!b) { console.error('marcadores de ASSET_VERSIONS não encontrados em sw.js'); process.exit(1); }
+  escrever('sw.js', swAtual.slice(0, b.i) + `\n${mapaEsperado}\n` + swAtual.slice(b.f));
+  console.log('\nASSET_VERSIONS regerado.');
+  process.exit(0);
 }
 
 if (!alvo) {
@@ -116,5 +174,16 @@ precisamBump.forEach(a => {
   jogar = jogar.replace(new RegExp(`${a.arquivo.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\?v=[0-9.]+`, 'g'), `${a.arquivo}?v=${novaVersao}`);
 });
 escrever('jogar/index.html', jogar);
+
+// 5) ASSET_VERSIONS do sw.js, derivado do HTML JÁ com os busters finais.
+//    Precisa vir depois do passo 4, senão o mapa nasce apontando para a versão
+//    anterior dos arquivos que acabaram de subir.
+{
+  const swFinal = ler('sw.js');
+  const b = blocoEntre(swFinal, MARCA_INI, MARCA_FIM);
+  if (!b) { console.error('marcadores de ASSET_VERSIONS não encontrados em sw.js'); process.exit(1); }
+  const mapa = mapaDesejado(ler('jogar/index.html'), swFinal);
+  escrever('sw.js', swFinal.slice(0, b.i) + `\n${mapa}\n` + swFinal.slice(b.f));
+}
 
 console.log(`\nrelease ${novaVersao} aplicada.`);
