@@ -1,15 +1,22 @@
 /**
  * Fixtures canônicos da Central de Comando.
  *
- * Nove specs (18, 20, 21, 23, 25, 26, 27, 29, 30) declaram o mesmo objeto de
- * save copiado à mão. Quando o schema mudar, serão nove arquivos a tocar — e
- * é fácil atualizar oito.
+ * Consolidam o objeto de save que estava copiado à mão em vários specs: quando
+ * o schema mudar, é um arquivo a tocar em vez de sete — e não dá para atualizar
+ * seis e esquecer o sétimo.
  *
- * Este módulo é o destino dessa consolidação. A migração NÃO foi feita junto
- * com a sua criação de propósito: mexer em nove specs de uma vez, no fim de
- * uma sequência longa de entregas, troca um risco concreto (quebrar cobertura
- * que hoje funciona) por uma conveniência futura. A adoção deve ser feita spec
- * a spec, com a suíte rodando entre cada uma.
+ * Adotado por: 21, 23, 25, 26, 27, 29, 30.
+ *
+ * NÃO adotado por 18 e 20, e isto é deliberado. A nota original supunha que os
+ * nove specs declaravam o mesmo objeto; medindo campo a campo, não declaram:
+ *
+ *  - 18 (Átrio) usa um save de jornada salva com `xpToNext: 9999` e sem os
+ *    campos de partida em andamento;
+ *  - 20 (Calibração) usa um save mínimo e compara a STRING JSON exata para
+ *    provar que cancelar não altera o save.
+ *
+ * Nos dois casos o recorte enxuto é o que está sob teste. Enfiá-los aqui daria
+ * consolidação no papel e divergência no uso — o oposto do objetivo.
  *
  * Ao migrar um spec, substitua a constante local por:
  *

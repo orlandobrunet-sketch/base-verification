@@ -1,4 +1,5 @@
 import { test, expect, Page } from '@playwright/test';
+import { saveBase, statsBase, diaChave } from '../helpers/fixtures';
 
 /**
  * Revisão dos achados que ficaram para trás (v14.59).
@@ -12,30 +13,24 @@ import { test, expect, Page } from '@playwright/test';
  *  3. o ranking despejava até 50 linhas de tabela dentro de aria-live.
  */
 
-const SAVE = {
-  schemaVersion: 6, level: 6, xp: 210, xpToNext: 480, score: 4820,
-  lives: 4, maxLives: 4, streak: 3, gold: 640, difficulty: 'normal',
-  correctTotal: 47, character: 'nephros', selectedCharacter: 'nephros',
-  gameStarted: true, gameOver: false, idx: 0, queueIds: [], recentIds: [],
-  chestsOpened: 5, narrativeShown: 2, bossIntroShown: false, timestamp: Date.now(),
-};
+const SAVE = saveBase();
 
-/** 96 respostas na vida, mas só 14 dentro da janela de sete dias. */
+/**
+ * 96 respostas na vida, mas só 14 dentro da janela de sete dias.
+ *
+ * A chave de dia vem de `diaChave`, que ancora no meio-dia antes de recuar —
+ * subtrair milissegundos direto poderia cair no dia anterior numa virada de
+ * horário de verão, e o cenário passaria a medir uma janela diferente da que
+ * declara.
+ */
 function statsComJanela() {
-  const dia = 86400000;
-  const chave = (offset: number) => {
-    const d = new Date(Date.now() - offset * dia);
-    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-  };
-  return {
-    totalQuestions: 96, totalCorrect: 61, totalWrong: 35,
-    byCategory: { glomerular: { correct: 18, wrong: 6 }, drc: { correct: 9, wrong: 14 } },
+  return statsBase({
     dailyActivity: {
-      [chave(0)]: { count: 6, correct: 5 },
-      [chave(2)]: { count: 5, correct: 4 },
-      [chave(5)]: { count: 3, correct: 3 },
+      [diaChave(0)]: { count: 6, correct: 5 },
+      [diaChave(2)]: { count: 5, correct: 4 },
+      [diaChave(5)]: { count: 3, correct: 3 },
     },
-  };
+  });
 }
 
 async function abrirCentral(page: Page) {
