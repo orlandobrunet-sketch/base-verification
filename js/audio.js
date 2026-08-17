@@ -299,7 +299,21 @@
     const bgA = new Audio(MUSIC_URL);
     const bgB = new Audio(MUSIC_URL);
     bgA.volume = MUSIC_VOL; bgB.volume = 0;
-    bgA.load(); bgB.load();
+    bgA.load();
+
+    // bgB é a segunda metade do double-buffer e só entra no primeiro crossfade,
+    // que acontece minutos depois. Carregá-lo junto com bgA no boot baixava os
+    // mesmos ~196 KB duas vezes: as duas requisições saíam simultâneas, então
+    // nenhuma achava a outra no cache HTTP. Adiando para o gesto do usuário, o
+    // arquivo já está em cache (max-age=600) e a segunda carga não custa rede.
+    bgB.preload = 'none';
+    let _bgBCarregado = false;
+    function garantirBgB() {
+      if (_bgBCarregado) return;
+      _bgBCarregado = true;
+      bgB.preload = 'auto';
+      bgB.load();
+    }
     // Fallback: se crossfade não disparar, 'ended' garante o loop
     // _crossfading guard evita que 'ended' e crossfadeTo() toquem simultaneamente (eco)
     bgA.addEventListener('ended', () => { if(musicEnabled && musicStarted && !_crossfading) { bgA.currentTime=0; bgA.muted=true; bgA.play().then(()=>{ bgA.muted=false; bgA.volume=MUSIC_VOL; scheduleXfade(bgA); }).catch(()=>{ bgA.muted=false; }); } });
@@ -414,6 +428,7 @@
       if (_audioUnlocked) return;
       _audioUnlocked = true;
       // Pre-unlock bgB so crossfadeTo() succeeds without user gesture
+      garantirBgB();
       bgB.muted = true;
       bgB.play().then(() => { bgB.pause(); bgB.currentTime = 0; bgB.muted = false; }).catch(() => { bgB.muted = false; });
       // Silent AudioContext buffer — unlocks Web Audio and HTMLAudioElement on iOS 13+
@@ -448,6 +463,7 @@
     function crossfadeTo(nextTrack) {
       if (_crossfading) return; // previne double-trigger (race condition ended + scheduleXfade)
       _crossfading = true;
+      if (nextTrack === bgB) garantirBgB(); // rede de segurança: _unlockAll pode não ter rodado
       const prevTrack = activeTrack;
       nextTrack.currentTime = 0;
       nextTrack.volume = 0;

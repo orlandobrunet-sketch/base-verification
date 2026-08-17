@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v14.62
-const CACHE = 'nefroquest-v14.62';
+// NefroQuest Service Worker — v14.63
+const CACHE = 'nefroquest-v14.63';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -59,6 +59,49 @@ const STATIC_ASSETS = [
   '/js/dashboard.js',
 ];
 
+// Versões dos assets — GERADO por scripts/bump-release.mjs, não editar à mão.
+// A fonte da verdade é o cache-buster de jogar/index.html; `--check` acusa
+// divergência na CI.
+//
+// Existe porque o install precisa pedir a MESMA URL que a página pede. Enquanto
+// o SW buscava '/js/game.js' e a página '/js/game.js?v=14.61', eram duas
+// entradas distintas no cache HTTP: todo asset versionado do precache era
+// baixado duas vezes no primeiro acesso. A entrada continua sendo gravada sob a
+// chave canônica (sem query), que é a que canonicalAssetKey() consulta.
+// bump-release:asset-versions:início
+const ASSET_VERSIONS = {
+  '/style.css': '14.18',
+  '/styles/lumen/tokens.css': '13.20',
+  '/styles/lumen/components.css': '13.20',
+  '/styles/lumen/motion.css': '13.20',
+  '/styles/lumen/portal.css': '14.02',
+  '/styles/lumen/atrium.css': '14.18',
+  '/styles/lumen/game.css': '14.13',
+  '/styles/lumen/difficulty.css': '14.34',
+  '/styles/lumen/dashboard.css': '14.62',
+  '/styles/lumen/charselect.css': '14.61',
+  '/js/utils.js': '11.90',
+  '/js/audio.js': '14.63',
+  '/js/leaderboard.js': '11.90',
+  '/js/study-mode.js': '14.53',
+  '/js/game.js': '14.61',
+  '/js/notifications.js': '11.90',
+  '/js/auth.js': '13.44',
+  '/js/portal.js': '13.20',
+  '/js/atrium.js': '13.23',
+  '/js/paywall.js': '11.90',
+  '/js/account.js': '11.90',
+  '/js/boss.js': '11.90',
+  '/js/exam.js': '11.90',
+  '/js/admin.js': '11.90',
+  '/js/minigame.js': '14.34',
+  '/js/minigame-acidbase.js': '11.90',
+  '/js/achievements.js': '14.52',
+  '/js/changelog.js': '11.90',
+  '/js/dashboard.js': '14.62',
+};
+// bump-release:asset-versions:fim
+
 function canonicalAssetKey(request, url) {
   if (!url.searchParams.has('v')) return request;
   return new Request(url.pathname, { method: 'GET', credentials: 'same-origin' });
@@ -84,15 +127,28 @@ self.addEventListener('install', e => {
   // CRÍTICO: skipWaiting() chamado IMEDIATAMENTE — não bloqueia no precache
   self.skipWaiting();
 
-  // Precache em background; falhas individuais são ignoradas
+  // Precache em background; falhas individuais são ignoradas.
+  //
+  // Asset COM buster: pede a mesma URL versionada que a página pediu segundos
+  // antes, sem `no-store`. O cache HTTP atende e o download não se repete. O
+  // frescor não depende disso — a URL muda a cada release do arquivo.
+  //
+  // Asset SEM buster (áudio, imagens, data/*.js): mantém `no-store`. Sem URL
+  // versionada, deixar o cache HTTP responder poderia gravar uma cópia velha no
+  // cache do SW, e ela ficaria lá pelo ciclo inteiro da release — inclusive de
+  // data/topics.js, que é conteúdo médico. Aqui frescor vale mais que banda.
   e.waitUntil(
     caches.open(CACHE).then(cache =>
       Promise.allSettled(
-        STATIC_ASSETS.map(url =>
-          fetch(url, { cache: 'no-store' })
-            .then(res => { if (res.ok) cache.put(url, res.clone()); })
-            .catch(() => {})
-        )
+        STATIC_ASSETS.map(caminho => {
+          const versao = ASSET_VERSIONS[caminho];
+          const busca = versao
+            ? fetch(`${caminho}?v=${versao}`)
+            : fetch(caminho, { cache: 'no-store' });
+          return busca
+            .then(res => { if (res.ok) cache.put(caminho, res.clone()); })
+            .catch(() => {});
+        })
       )
     )
   );
