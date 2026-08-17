@@ -66,7 +66,14 @@ const NQ_COMPETENCIES = [
   // ──────────────── GLOMERULAR (208 q) ──────────────────────────────────────
   { id:'gl_vasculite', cat:'glomerular', label:'Vasculite ANCA e anti-GBM',
     icon:'🔬',
-    keywords:['anca','vasculite','granulomatose com poliangiite','poliangiite microscopica','mpo ','pr3 ','wegener','anti-gbm','anti gbm','goodpasture','rituxvas','rave ','pexivas','rituximabe vasculite','ciclofosfamida vasculite','rins vasculite'] },
+    // 'anca' solto foi REMOVIDA: o classificador usa `includes`, então ela
+    // casava dentro de outras palavras — segur[anca], mud[anca], cri[anca].
+    // Cinco questões entravam aqui por isso, nenhuma de vasculite: Sparsentana,
+    // iSGLT2 na IgAN, APPLAUSE-IgAN, Nefecon e Síndrome Nefrótica infantil.
+    // O Mapa apontava fraqueza em vasculite ANCA a quem errou IgA ou nefrótica.
+    // As formas abaixo não ocorrem dentro de outra palavra e cobrem as três
+    // questões legítimas que dependiam dela.
+    keywords:['vasculite','vasculite anca','mpo-anca','pr3-anca','anca positivo','egpa','advocate','avacopan','granulomatose com poliangiite','poliangiite microscopica','mpo ','pr3 ','wegener','anti-gbm','anti gbm','goodpasture','rituxvas','rave ','pexivas','rituximabe vasculite','ciclofosfamida vasculite','rins vasculite'] },
 
   { id:'gl_lupus', cat:'glomerular', label:'Nefrite lúpica',
     icon:'🦋',
@@ -74,7 +81,7 @@ const NQ_COMPETENCIES = [
 
   { id:'gl_c3g', cat:'glomerular', label:'C3G, MPGN e doenças do complemento',
     icon:'🧬',
-    keywords:['c3g','glomerulopatia por c3','mpgn','via alternativa do complemento','eculizumabe','fator h','fator i','c3 nefritico','properidin','fator b','hipocomplementemia','deposito de c3'] },
+    keywords:['c3g','glomerulopatia por c3','mpgn','via alternativa do complemento','eculizumabe','pegcetacoplano','fator h','fator i','c3 nefritico','properidin','fator b','hipocomplementemia','deposito de c3'] },
 
   { id:'gl_gesf', cat:'glomerular', label:'GESF — glomeruloesclerose segmentar e focal',
     icon:'🎯',
@@ -82,7 +89,10 @@ const NQ_COMPETENCIES = [
 
   { id:'gl_igan', cat:'glomerular', label:'Nefropatia por IgA',
     icon:'💉',
-    keywords:['nefropatia por iga','(niga)','iga nefropatia','deposito de iga','testing','nefigard','protect trial','oxford score','hematuria macroscopica recorrente','daptomicina igan','budesonida igan'] },
+    // Nefecon (budesonida de liberação ileal), sibeprenlimabe/Voyxact
+    // (anti-APRIL) e telitacicepte são drogas de IgAN e caíam no balde
+    // genérico. VISIONARY e TELIGAN são os ensaios de fase 3 das duas últimas.
+    keywords:['nefropatia por iga','(niga)','iga nefropatia','deposito de iga','testing','nefigard','protect trial','oxford score','hematuria macroscopica recorrente','daptomicina igan','budesonida igan','nefecon','sibeprenlimabe','voyxact','telitacicept','visionary'] },
 
   { id:'gl_mn', cat:'glomerular', label:'Nefropatia membranosa',
     icon:'🏛️',
@@ -92,9 +102,22 @@ const NQ_COMPETENCIES = [
     icon:'💧',
     keywords:['sindrome nefrotica','doenca de lesoes minimas','dlm ','sindrome nefrotica infantil','corticoide em nefrotico','remissao nefrotica','recidiva nefrotica','ciclofosfamida nefrotico'] },
 
-  { id:'gl_imunossupressao', cat:'glomerular', label:'Imunossupressão em glomerulopatias',
-    icon:'🛡️', fallback:true,
-    keywords:['micofenolato glomerular','mmf glomerular','ciclosporina glomerular','tacrolimus glomerular','remissao completa glomerular','remissao parcial glomerular','inducao glomerular','manutencao glomerular','imunossupressao glomerular'] },
+  // Imunossupressão deixou de ser tema próprio: nas glomerulopatias ela é
+  // parte do tratamento de cada doença, e as drogas foram embutidas nos temas
+  // específicos (Nefecon e anti-APRIL em IgAN, pegcetacoplano em C3G, avacopan
+  // em vasculite).
+  //
+  // Este é o fallback da categoria, e o nome anterior mentia sobre o que ele
+  // recebe: Aparelho Justaglomerular, Feedback Tubuloglomerular, Cilindros
+  // Hemáticos, Proteinúria em fita e Pré-eclâmpsia caíam aqui e eram
+  // reportados ao médico como fraqueza em "imunossupressão". O nome agora
+  // descreve o balde: diagnóstico e abordagem geral das glomerulopatias.
+  { id:'gl_imunossupressao', cat:'glomerular', label:'Glomerulopatias — diagnóstico e abordagem geral',
+    icon:'🔎', fallback:true,
+    // Fallback não tem keyword consultada: `_nqMatchComps` filtra por
+    // `!c.fallback` antes de olhar keyword alguma. Fica vazio para não simular
+    // um critério que o classificador nunca aplica.
+    keywords:[] },
 
   // ──────────────── DRC (136 q) ─────────────────────────────────────────────
   { id:'drc_isglt2_glp1', cat:'drc', label:'iSGLT2 e GLP-1 na DRC',
@@ -161,9 +184,14 @@ const NQ_COMPETENCIES = [
     icon:'🔧',
     keywords:['linfocele','trombose vascular enxerto','estenose da arteria renal','fistula urinaria tx','hematoma peri enxerto','funcao retardada do enxerto','delayed graft function','dgf ','nodat','diabetes pos transplante','hipertensao pos transplante'] },
 
-  { id:'tx_imunossupressao', cat:'transplante', label:'Imunossupressão pós-transplante',
-    icon:'💊', fallback:true,
-    keywords:['tacrolimus tx','ciclosporina tx','micofenolato tx','prednisona tx','sirolimus tx','everolimus tx','minimizacao de imunossupressor','retirada de esteroide tx','nivel serico tx','esquema imunossupressor','imunossupressao pos-transplante'] },
+  // Fallback da categoria. O nome anterior prometia imunossupressão e recebia
+  // Xenotransplante Renal, Perfusão Normotérmica e Primeiro Ensaio de Rim
+  // Suíno — o médico levava um erro em "imunossupressão" por questão que não
+  // era de imunossupressão. Imunossupressão não é tema em si: no transplante o
+  // que resta ao balde é transplante renal, e é isso que o nome diz agora.
+  { id:'tx_imunossupressao', cat:'transplante', label:'Transplante renal',
+    icon:'🫘', fallback:true,
+    keywords:[] },
 
   // ──────────────── NEFROPATIA DIABÉTICA (46 q) ─────────────────────────────
   { id:'nd_isglt2_glp1', cat:'nefropatia_diabetica', label:'iSGLT2 e GLP-1 na nefropatia diabética',
@@ -231,10 +259,12 @@ const NQ_COMPETENCIES = [
     icon:'☠️',
     keywords:['nefrotoxicidade','nefrotoxica','aminoglicosideo','anfotericina','aines farm','ibuprofeno farm','diclofenac farm','naproxeno','cisplatina','metotrexato renal','litio renal','colistina farm','vancomicina nefrotox','contraste farm'] },
 
-  { id:'farm_imunossupressores', cat:'farmacologia', label:'Imunossupressores: uso e toxicidade',
-    icon:'🧪',
-    keywords:['tacrolimus farm','ciclosporina farm','micofenolato farm','sirolimus farm','azatioprina','toxicidade de imunossupressor','interacao medicamentosa imunossupressor','calcineurina'] },
-
+  // 'Imunossupressores: uso e toxicidade' foi REMOVIDO pelo mesmo critério dos
+  // outros dois: imunossupressão não é tema em si. Onde a droga importa, ela
+  // pertence à doença — toxicidade do tacrolimo está em transplante, as drogas
+  // de IgAN e C3G estão nos seus temas glomerulares. O tema também nunca teve
+  // conteúdo próprio: nenhuma das 37 questões de farmacologia é de
+  // imunossupressor.
   { id:'farm_ajuste_renal', cat:'farmacologia', label:'Ajuste de dose em DRC e diálise',
     icon:'⚖️', fallback:true,
     keywords:['ajuste de dose','dose em drc','dose em dialise','metformina farm','insulina na drc','anticoagulante na drc','heparina drc','antibiotico em hemodialise','dose pos-hd','monitoramento farmacocinetico','ajuste renal'] },
@@ -272,13 +302,15 @@ const NQ_COMPETENCIES = [
     keywords:['semiologia renal','historia clinica renal','exame fisico renal','fena ','feua ','cilindro urinario','acantocito','dismorfismo eritrocitario','creatinina urinaria','depuracao de creatinina','proteinuria na semiologia','microalbuminuria semiologia'] },
 
   // ──────────────── UTI (17 q) ──────────────────────────────────────────────
-  { id:'uti_eletrólitos', cat:'uti', label:'Distúrbios eletrolíticos no paciente crítico',
-    icon:'⚡',
-    keywords:['hiponatremia critico','hipercalemia grave','hipocalemia critica','hipofosfatemia uti','reposicao de fosforo uti','sindrome de realimentacao','hipomagnesemia critica','eletrólito critico'] },
-
+  // 'Distúrbios eletrolíticos no paciente crítico' foi REMOVIDO. Distúrbio
+  // hidroeletrolítico é distúrbio hidroeletrolítico: já tem categoria própria
+  // (sódio, potássio, cálcio/fósforo/magnésio, metabolismo mineral) e não
+  // precisa de um recorte separado por cenário. Além disso o tema nunca teve
+  // conteúdo: as 17 questões de UTI são todas de LRA e terapia renal
+  // substitutiva, que é o que o fallback abaixo descreve com precisão.
   { id:'uti_lra', cat:'uti', label:'LRA e TRS no paciente crítico',
     icon:'🏥', fallback:true,
-    keywords:['lra uti','lra critico','injuria renal aguda uti','tsr uti','cvvh uti','timing de dialise uti','dialise uti','furosemida uti','oliguria uti','sepse lra uti'] },
+    keywords:[] },
 
   // ──────────────── ONCOLOGIA RENAL (8 q) ───────────────────────────────────
   { id:'onco_renal', cat:'oncologia_renal', label:'Neoplasias renais e rim no mieloma',

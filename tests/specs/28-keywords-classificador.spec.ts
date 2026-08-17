@@ -50,8 +50,13 @@ async function medir(page: Page) {
       });
     });
 
-    // Competência cujas keywords, todas elas, não casam com nada da categoria
+    // Competência ESPECÍFICA cujas keywords, todas elas, não casam com nada da
+    // categoria. Fallback fica de fora: `_nqMatchComps` o escolhe por ser
+    // fallback e nunca lê suas keywords, então "morta" ali não descreve
+    // defeito nenhum — misturar os dois inflava a conta com casos que
+    // curadoria não alcança e escondia os que ela alcança.
     const totalmenteMortas = COMPS.filter((c: any) => {
+      if (c.fallback) return false;
       const pool = porCat[c.cat] || [];
       return c.keywords.every((k: string) => !pool.some(txt => txt.includes(norm(k))));
     }).map((c: any) => c.label);
@@ -76,45 +81,32 @@ test.describe('Classificador de competências', () => {
   test('nenhuma competência tem 100% das keywords mortas', async ({ page }) => {
     await carregar(page);
     const r = await medir(page);
-    // Teto do estado atual: 7, contra 9 antes desta curadoria e 11 antes da
-    // purga. As sete restantes NÃO são do mesmo tipo, e a distinção decide o
-    // que ainda é curável por keyword — nada disto era visível quando a lista
-    // foi escrita como fila única de curadoria.
+    // Zero. O teto era 9 e agora o teste finalmente afirma o que o nome diz,
+    // porque a métrica passou a contar só competência específica.
     //
-    // CINCO SÃO O FALLBACK da própria categoria. `_nqMatchComps` filtra por
-    // `!c.fallback` antes de olhar keyword alguma, então a keyword de um
-    // fallback nunca é consultada. Estar "100% morta" ali é verdade trivial:
-    // reescrevê-las não muda uma única atribuição. O que resolve é o fallback
-    // deixar de carregar nome clínico específico — decisão de produto, porque
-    // muda o que o Mapa diz ao médico:
+    // Os três temas que sobravam sem conserto por keyword saíram por decisão do
+    // dono, aplicando um princípio só: imunossupressão não é tema em si.
+    //  - em transplante e glomerulopatias os fallbacks se chamavam
+    //    "Imunossupressão ..." e recebiam xenotransplante, perfusão de órgão,
+    //    aparelho justaglomerular e proteinúria em fita. Foram renomeados para
+    //    o que de fato são;
+    //  - em farmacologia o tema foi removido: onde a droga importa, ela
+    //    pertence à doença.
     //
-    //   glomerular       · Imunossupressão em glomerulopatias
-    //   transplante      · Imunossupressão pós-transplante
-    //   genetica         · Outras doenças genéticas renais
-    //   nefrologia_geral · Semiologia renal e propedêutica
-    //   uti              · LRA e TRS no paciente crítico
-    //
-    // DUAS SÃO ESPECÍFICAS, e nelas o problema não é a keyword: é que a
-    // categoria não tem a questão. `uti` tem 17 questões, todas de LRA/TRS,
-    // nenhuma de eletrólitos; `farmacologia` não tem questão de
-    // imunossupressor — as que existem estão em glomerular e transplante.
-    // Nenhuma palavra escrita aqui alcança conteúdo que não existe:
-    //
-    //   farmacologia · Imunossupressores: uso e toxicidade
-    //   uti          · Distúrbios eletrolíticos no paciente crítico
+    // Zero é teto rígido de propósito. Competência específica que não alcança
+    // uma questão sequer é tema que o Mapa anuncia ao médico e nunca mede.
     expect(r.totalmenteMortas.length,
-      `competências sem nenhuma keyword viva: ${r.totalmenteMortas.join(', ')}`).toBeLessThanOrEqual(7);
+      `competências específicas sem nenhuma keyword viva: ${r.totalmenteMortas.join(', ')}`).toBe(0);
   });
 
   test('o número de temas inalcançáveis não volta a crescer', async ({ page }) => {
     await carregar(page);
     const r = await medir(page);
-    // Desceu de 4 para 2: "Controle de PA e SRAA na ND" e "Doenças
-    // tubulointersticiais" passaram a ser alcançados. Os 2 restantes são os
-    // dois temas cuja categoria não tem a questão — o teto só desce quando o
-    // conteúdo existir, não por keyword nova.
+    // Zero, contra 4. Dois foram alcançados por curadoria (Controle de PA e
+    // SRAA na ND, Doenças tubulointersticiais) e dois saíram por não terem
+    // conteúdo na categoria. Nenhum tema do Mapa fica sem uma única questão.
     expect(r.inalcancaveis.length,
-      `temas sem nenhuma questão: ${r.inalcancaveis.join(', ')}`).toBeLessThanOrEqual(2);
+      `temas sem nenhuma questão: ${r.inalcancaveis.join(', ')}`).toBe(0);
   });
 
   test('hipertensão deixou de concentrar quase tudo num único balde', async ({ page }) => {
