@@ -172,7 +172,14 @@ const NQ_COMPETENCIES = [
 
   { id:'nd_controle_pa', cat:'nefropatia_diabetica', label:'Controle de PA e SRAA na ND',
     icon:'❤️',
-    keywords:['meta de pa diabet','pressao arterial diabet','ieca diabet','bra diabet','renoprotetor','sraa diabet','bproad','alvo de pa diabet','reducao de albuminuria diabet','progressao da nd'] },
+    // As dez keywords anteriores seguiam o padrão "conceito + sufixo de
+    // categoria" ('ieca diabet', 'sraa diabet') e nenhuma casava com uma linha
+    // sequer das 21 questões da categoria: o tema aparecia no Mapa e nunca era
+    // alcançado. Estas foram verificadas uma a uma contra o banco real.
+    // Finerenona é antagonista não esteroidal do receptor mineralocorticoide —
+    // eixo SRAA, que é o que este tema declara medir. FIDELIO e FIGARO são os
+    // dois ensaios de desfecho renal e cardiovascular da droga.
+    keywords:['finerenona','fidelio','figaro','ieca','bra '] },
 
   { id:'nd_patofisiologia', cat:'nefropatia_diabetica', label:'Patofisiologia e diagnóstico da ND',
     icon:'🔬', fallback:true,
@@ -253,7 +260,12 @@ const NQ_COMPETENCIES = [
 
   { id:'ng_tubular', cat:'nefrologia_geral', label:'Doenças tubulointersticiais',
     icon:'🧬',
-    keywords:['nefrite intersticial','nefrite tubulointersticial','sindrome de fanconi','doenca tubular','transporte tubular','reabsorcao tubular','glucosuria','aminoaciduria','funcao tubular'] },
+    // Mesmo defeito: nenhuma das nove anteriores casava com as 24 questões da
+    // categoria. 'cilindros' foi testada e descartada — captura também
+    // "Biópsia Renal — Quando o Resultado Muda a Conduta", que é sobre
+    // indicação de biópsia, não sobre doença tubular. 'cast nephropathy'
+    // alcança a mesma questão de cilindros sem levar a outra junto.
+    keywords:['tubulointersticial','acido aristoloquico','cast nephropathy','medula renal'] },
 
   { id:'ng_semiologia', cat:'nefrologia_geral', label:'Semiologia renal e propedêutica',
     icon:'🩺', fallback:true,

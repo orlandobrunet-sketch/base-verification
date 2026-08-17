@@ -76,29 +76,45 @@ test.describe('Classificador de competências', () => {
   test('nenhuma competência tem 100% das keywords mortas', async ({ page }) => {
     await carregar(page);
     const r = await medir(page);
-    // Teto do estado atual: 9, contra 11 antes desta purga. Cada uma é um tema
-    // que o Mapa anuncia e o classificador nunca alcança pelas próprias
-    // keywords — só é povoado por fallback ou fica vazio. A lista abaixo é a
-    // fila de curadoria restante, e o teto desce conforme ela é atacada:
+    // Teto do estado atual: 7, contra 9 antes desta curadoria e 11 antes da
+    // purga. As sete restantes NÃO são do mesmo tipo, e a distinção decide o
+    // que ainda é curável por keyword — nada disto era visível quando a lista
+    // foi escrita como fila única de curadoria.
     //
-    //   glomerular  · Imunossupressão em glomerulopatias
-    //   transplante · Imunossupressão pós-transplante
-    //   nefropatia_diabetica · Controle de PA e SRAA na ND
-    //   genetica    · Outras doenças genéticas renais
-    //   farmacologia · Imunossupressores: uso e toxicidade
-    //   nefrologia_geral · Doenças tubulointersticiais
+    // CINCO SÃO O FALLBACK da própria categoria. `_nqMatchComps` filtra por
+    // `!c.fallback` antes de olhar keyword alguma, então a keyword de um
+    // fallback nunca é consultada. Estar "100% morta" ali é verdade trivial:
+    // reescrevê-las não muda uma única atribuição. O que resolve é o fallback
+    // deixar de carregar nome clínico específico — decisão de produto, porque
+    // muda o que o Mapa diz ao médico:
+    //
+    //   glomerular       · Imunossupressão em glomerulopatias
+    //   transplante      · Imunossupressão pós-transplante
+    //   genetica         · Outras doenças genéticas renais
     //   nefrologia_geral · Semiologia renal e propedêutica
-    //   uti · Distúrbios eletrolíticos no paciente crítico
-    //   uti · LRA e TRS no paciente crítico
+    //   uti              · LRA e TRS no paciente crítico
+    //
+    // DUAS SÃO ESPECÍFICAS, e nelas o problema não é a keyword: é que a
+    // categoria não tem a questão. `uti` tem 17 questões, todas de LRA/TRS,
+    // nenhuma de eletrólitos; `farmacologia` não tem questão de
+    // imunossupressor — as que existem estão em glomerular e transplante.
+    // Nenhuma palavra escrita aqui alcança conteúdo que não existe:
+    //
+    //   farmacologia · Imunossupressores: uso e toxicidade
+    //   uti          · Distúrbios eletrolíticos no paciente crítico
     expect(r.totalmenteMortas.length,
-      `competências sem nenhuma keyword viva: ${r.totalmenteMortas.join(', ')}`).toBeLessThanOrEqual(9);
+      `competências sem nenhuma keyword viva: ${r.totalmenteMortas.join(', ')}`).toBeLessThanOrEqual(7);
   });
 
   test('o número de temas inalcançáveis não volta a crescer', async ({ page }) => {
     await carregar(page);
     const r = await medir(page);
+    // Desceu de 4 para 2: "Controle de PA e SRAA na ND" e "Doenças
+    // tubulointersticiais" passaram a ser alcançados. Os 2 restantes são os
+    // dois temas cuja categoria não tem a questão — o teto só desce quando o
+    // conteúdo existir, não por keyword nova.
     expect(r.inalcancaveis.length,
-      `temas sem nenhuma questão: ${r.inalcancaveis.join(', ')}`).toBeLessThanOrEqual(4);
+      `temas sem nenhuma questão: ${r.inalcancaveis.join(', ')}`).toBeLessThanOrEqual(2);
   });
 
   test('hipertensão deixou de concentrar quase tudo num único balde', async ({ page }) => {

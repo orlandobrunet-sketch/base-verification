@@ -123,6 +123,13 @@ function mapaDesejado(htmlTexto, swTexto) {
   return linhas.length ? `const ASSET_VERSIONS = {\n${linhas.join('\n')}\n};` : 'const ASSET_VERSIONS = {};';
 }
 
+/** Caminhos do STATIC_ASSETS do sw.js, sem a barra inicial. */
+function estaticosDoSw(swTexto) {
+  const lista = blocoEntre(swTexto, 'const STATIC_ASSETS = [', '];');
+  if (!lista) throw new Error('STATIC_ASSETS não encontrado em sw.js');
+  return [...lista.conteudo.matchAll(/'(\/[^']+)'/g)].map(m => m[1].replace(/^\//, ''));
+}
+
 const swAtual = ler('sw.js');
 const mapaAtual = blocoEntre(swAtual, MARCA_INI, MARCA_FIM);
 const mapaEsperado = mapaDesejado(html, swAtual);
@@ -133,8 +140,34 @@ if (mapaDerivou) {
   if (apenasChecar) console.log('   rode: node scripts/bump-release.mjs <versão>  (ou --sync para só regerar o mapa)');
 }
 
+// ── Asset precacheado SEM buster que mudou e não teria como chegar ao usuário ──
+// Um arquivo do STATIC_ASSETS que não tem cache-buster no HTML (data/*.js,
+// áudio, imagens) só é rebaixado quando o NOME DO CACHE muda — ou seja, quando
+// a versão sobe. Alterá-lo sem subir a versão publica uma correção que o
+// usuário antigo nunca recebe: o SW continua servindo a cópia velha do cache
+// pelo resto do ciclo.
+//
+// Isto foi encontrado editando data/competencies.js: o `--check` dava verde
+// justamente porque o arquivo NÃO tem buster, que é o que o torna perigoso.
+let versaoBase = versaoAtual;
+try {
+  versaoBase = JSON.parse(
+    execFileSync('git', ['show', `${base}:version.json`], { cwd: raiz, encoding: 'utf8' })
+  ).version;
+} catch { /* base indisponível: sem comparação, não acusa */ }
+
+const semBuster = estaticosDoSw(swAtual).filter(p => !comBuster.some(a => a.arquivo === p));
+const precacheMudou = semBuster.filter(p => alterados.includes(p));
+const versaoParada = versaoBase === novaVersao;
+
+if (precacheMudou.length && versaoParada) {
+  console.log('\n⚠  asset do precache mudou sem que a versão suba:');
+  precacheMudou.forEach(p => console.log(`  ${p} — sem cache-buster, só é rebaixado quando a versão muda`));
+  console.log(`  a versão segue ${versaoAtual}: quem já tem o app continuaria com a cópia velha.`);
+}
+
 if (apenasChecar) {
-  process.exit(suspeitos.length || mapaDerivou ? 1 : 0);
+  process.exit(suspeitos.length || mapaDerivou || (precacheMudou.length && versaoParada) ? 1 : 0);
 }
 
 // `--sync` regera só o mapa, sem tocar em versão: serve para quem mexeu no
