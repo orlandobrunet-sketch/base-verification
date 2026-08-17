@@ -1,28 +1,21 @@
 import { test, expect, Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { injectGameState } from '../helpers/game';
+import { saveBase } from '../helpers/fixtures';
 
-const SAVE = {
-  schemaVersion: 6,
-  level: 3,
-  xp: 84,
-  xpToNext: 240,
-  score: 1682,
-  lives: 4,
-  maxLives: 4,
-  streak: 2,
-  gold: 271,
-  difficulty: 'normal',
-  correctTotal: 32,
-  character: 'nephros',
-  selectedCharacter: 'nephros',
-  gameStarted: true,
-  gameOver: false,
-  idx: 6,
-  queueIds: [],
-  recentIds: [],
+/**
+ * Jogador mais atrás na jornada que o save padrão — nível 3, 32 acertos. Os
+ * cenários da Central dependem desses números, então eles ficam explícitos.
+ *
+ * DETAILED_STATS abaixo NÃO usa `statsBase`: tem forma própria (byTopic,
+ * questionHistory, timeStats, mostMissed) que os outros specs não exercitam.
+ * Forçá-lo no fixture comum daria consolidação no papel e divergência no uso.
+ */
+const SAVE = saveBase({
+  level: 3, xp: 84, xpToNext: 240, score: 1682,
+  streak: 2, gold: 271, correctTotal: 32, idx: 6,
   timestamp: Date.now() - 60 * 60 * 1000,
-};
+});
 
 const DETAILED_STATS = {
   version: 1,

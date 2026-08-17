@@ -1,4 +1,5 @@
 import { test, expect, Page } from '@playwright/test';
+import { saveBase } from '../helpers/fixtures';
 
 /**
  * Memória — o FSRS na superfície (v14.55).
@@ -15,13 +16,7 @@ import { test, expect, Page } from '@playwright/test';
 
 const DIA = 86400000;
 
-const SAVE = {
-  schemaVersion: 6, level: 6, xp: 210, xpToNext: 480, score: 4820,
-  lives: 4, maxLives: 4, streak: 3, gold: 640, difficulty: 'normal',
-  correctTotal: 47, character: 'nephros', selectedCharacter: 'nephros',
-  gameStarted: true, gameOver: false, idx: 0, queueIds: [], recentIds: [],
-  chestsOpened: 5, narrativeShown: 2, bossIntroShown: false, timestamp: Date.now(),
-};
+const SAVE = saveBase();
 
 async function abrirCom(page: Page, srBuilder: (ids: string[]) => Record<string, unknown>) {
   await page.goto('/jogar/');

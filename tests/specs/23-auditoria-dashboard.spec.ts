@@ -1,4 +1,5 @@
 import { test, expect, Page } from '@playwright/test';
+import { saveBase, statsBase } from '../helpers/fixtures';
 
 /**
  * Correções da auditoria multidisciplinar (v14.52).
@@ -7,23 +8,8 @@ import { test, expect, Page } from '@playwright/test';
  * A ordem segue a severidade apurada na auditoria.
  */
 
-const SAVE = {
-  schemaVersion: 6,
-  level: 6, xp: 210, xpToNext: 480, score: 4820,
-  lives: 4, maxLives: 4, streak: 3, gold: 640,
-  difficulty: 'normal', correctTotal: 47,
-  character: 'nephros', selectedCharacter: 'nephros',
-  gameStarted: true, gameOver: false,
-  idx: 0, queueIds: [], recentIds: [],
-  chestsOpened: 5, narrativeShown: 2, bossIntroShown: false,
-  timestamp: Date.now(),
-};
-
-const STATS = {
-  totalQuestions: 96, totalCorrect: 61, totalWrong: 35,
-  byCategory: { glomerular: { correct: 18, wrong: 6 }, drc: { correct: 9, wrong: 14 } },
-  dailyActivity: {},
-};
+const SAVE = saveBase();
+const STATS = statsBase();
 
 async function abrirCentral(page: Page, extra: Record<string, unknown> = {}) {
   await page.goto('/jogar/');

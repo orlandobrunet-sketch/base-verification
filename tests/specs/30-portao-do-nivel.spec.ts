@@ -1,4 +1,5 @@
 import { test, expect, Page } from '@playwright/test';
+import { saveBase } from '../helpers/fixtures';
 
 /**
  * O portão real do nível (v14.60).
@@ -9,13 +10,7 @@ import { test, expect, Page } from '@playwright/test';
  * encher, parar, e não se mexer mais — sem explicação.
  */
 
-const BASE_SAVE = {
-  schemaVersion: 6, level: 6, xp: 210, xpToNext: 480, score: 4820,
-  lives: 4, maxLives: 4, streak: 3, gold: 640, difficulty: 'normal',
-  correctTotal: 47, character: 'nephros', selectedCharacter: 'nephros',
-  gameStarted: true, gameOver: false, idx: 0, queueIds: [], recentIds: [],
-  chestsOpened: 5, narrativeShown: 2, bossIntroShown: false, timestamp: Date.now(),
-};
+const BASE_SAVE = saveBase();
 
 async function abrir(page: Page, extra: Record<string, unknown> = {}) {
   await page.goto('/jogar/');

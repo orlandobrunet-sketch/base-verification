@@ -1,4 +1,5 @@
 import { test, expect, Page } from '@playwright/test';
+import { saveBase, statsBase } from '../helpers/fixtures';
 
 /**
  * Radar de competências (v14.56).
@@ -9,25 +10,17 @@ import { test, expect, Page } from '@playwright/test';
  * eixo sem amostra com raio apagado, sem vértice e rotulado "—".
  */
 
-const SAVE = {
-  schemaVersion: 6, level: 6, xp: 210, xpToNext: 480, score: 4820,
-  lives: 4, maxLives: 4, streak: 3, gold: 640, difficulty: 'normal',
-  correctTotal: 47, character: 'nephros', selectedCharacter: 'nephros',
-  gameStarted: true, gameOver: false, idx: 0, queueIds: [], recentIds: [],
-  chestsOpened: 5, narrativeShown: 2, bossIntroShown: false, timestamp: Date.now(),
-};
+const SAVE = saveBase();
 
 /** Amostra em quatro dos sete eixos; três ficam sem nenhuma resposta. */
-const STATS_PARCIAL = {
-  totalQuestions: 96, totalCorrect: 61, totalWrong: 35,
+const STATS_PARCIAL = statsBase({
   byCategory: {
     glomerular: { correct: 18, wrong: 6 },
     drc: { correct: 9, wrong: 14 },
     dialise: { correct: 12, wrong: 4 },
     acido_base: { correct: 11, wrong: 3 },
   },
-  dailyActivity: {},
-};
+});
 
 async function abrirCompetencias(page: Page, stats: unknown) {
   await page.goto('/jogar/');
