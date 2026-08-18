@@ -74,8 +74,10 @@ test.describe('Classificador de competências', () => {
   test('a maioria das atribuições não cai mais no balde genérico', async ({ page }) => {
     await carregar(page);
     const r = await medir(page);
-    // Teto do estado atual (49%). Era 56% antes da purga.
-    expect(r.pct, `fallback em ${(r.pct * 100).toFixed(0)}% de ${r.total} atribuições`).toBeLessThanOrEqual(0.50);
+    // Teto do estado atual (43%). Era 49% antes da curadoria da DRC e 56% antes
+    // da purga original. O teto acompanha a curadoria: cada tema alcançado tira
+    // questão do balde genérico e o número só desce.
+    expect(r.pct, `fallback em ${(r.pct * 100).toFixed(0)}% de ${r.total} atribuições`).toBeLessThanOrEqual(0.44);
   });
 
   test('nenhuma competência tem 100% das keywords mortas', async ({ page }) => {
