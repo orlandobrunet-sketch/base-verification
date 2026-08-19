@@ -126,15 +126,25 @@ const NQ_COMPETENCIES = [
 
   { id:'drc_complicacoes', cat:'drc', label:'Complicações da DRC',
     icon:'⚠️',
-    keywords:['anemia da drc','eritropoetina','agente estimulador de eritropoiese','esa ','ferro na drc','ferritina drc','saturacao de transferrina','hiperparatireoidismo secundario drc','osteodistrofia renal','fgf23 drc','mineral osseo drc'] },
+    // Oito das onze anteriores eram 'conceito + drc' e não casavam com nada;
+    // 61 das 89 questões da categoria caíam no balde genérico. As duas grandes
+    // complicações que estavam sem alcance são o distúrbio mineral-ósseo e a
+    // anemia (o bloco KDIGO 2026 inteiro, com AEE, HIF-PHI e transfusão).
+    //
+    // 'esa ' foi REMOVIDA mesmo estando morta: 'esa' casa dentro de palavra
+    // ('pesa ' bateria), e é a mesma armadilha de substring que fez 'anca'
+    // classificar nefrótica infantil como vasculite. 'aee' é a sigla usada no
+    // banco e não ocorre dentro de outra palavra.
+    keywords:['anemia da drc','anemia na drc','acidose metabolica','eritropoetina','aee','hif-phi','roxadustat','hemoglobina','transfusao','ferro','saturacao de transferrina','dmo-drc','fgf23','fgf-23','hiperparatireoidismo','calcitriol','vitamina d','quelantes de fosforo','hiperfosfatemia','fosfatase alcalina','calcificacao vascular'] },
 
   { id:'drc_cardiovascular', cat:'drc', label:'Risco cardiovascular na DRC',
     icon:'❤️',
-    keywords:['cardiovascular na drc','risco cardiovascular drc','estatina drc','sharp','ldl na drc','dislipidemia drc','calcificacao vascular drc','evento cardiovascular drc','hipolipemiante drc'] },
+    // Oito das nove eram 'conceito + drc'. Só 'sharp' vivia, e sozinha.
+    keywords:['sharp','estatina','dislipidemia','arni','sacubitril','insuficiencia cardiaca','denervacao'] },
 
   { id:'drc_farmacologia', cat:'drc', label:'Farmacologia e ajuste de dose na DRC',
     icon:'💉',
-    keywords:['ajuste de dose','nefrotoxicidade drc','ieca drc','bra drc','antagonista aldosterona drc','finerenona','sraa drc','metformina drc','aines drc','contraste drc','dose na drc','medicamento na drc'] },
+    keywords:['finerenona','dose na drc','gadolinio'] },
 
   { id:'drc_estadiamento', cat:'drc', label:'Estadiamento e progressão da DRC',
     icon:'📊', fallback:true,
