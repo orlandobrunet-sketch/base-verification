@@ -98,6 +98,24 @@ const NQ_COMPETENCIES = [
     icon:'🏛️',
     keywords:['nefropatia membranosa','membranosa','anti-pla2r','pla2r','thsd7a','rituximabe membranosa','mentor trial','ciclosporina membranosa'] },
 
+  // Sete questões que o Mapa nunca nomeava. O nome cobre as duas pontas sem
+  // afirmar o que não é: MGRS, MIDD e crioglobulinemia tipo I são monoclonais,
+  // mas a GN fibrilar é DNAJB9-positiva e majoritariamente POLICLONAL — chamar
+  // o conjunto de "gamopatia monoclonal" atribuiria ao médico um conceito
+  // errado. "Depósito organizado" é o achado ultraestrutural que une o grupo,
+  // e é o termo que o próprio banco usa no título da questão comparativa.
+  { id:'gl_deposito_organizado', cat:'glomerular', label:'Depósitos organizados e gamopatia monoclonal',
+    icon:'🔗',
+    keywords:['mgrs','midd','cadeia leve','crioglobulinemia','imunotactoide','fibrilar','monoclonal'] },
+
+  // Capítulo padrão que não existia no Mapa. 'pos-infecciosa' também alcança
+  // "Hipocomplementemia Persistente", já em C3G: a questão é exatamente o
+  // diferencial entre GN pós-infecciosa que não resolve e C3G, então pertence
+  // aos dois — o classificador é multirrótulo por desenho.
+  { id:'gl_gn_infecciosa', cat:'glomerular', label:'GN relacionada à infecção',
+    icon:'🦠',
+    keywords:['pos-infecciosa','relacionada a infeccao','hcv','estafiloc'] },
+
   { id:'gl_nefrotico', cat:'glomerular', label:'Síndrome nefrótica e DLM',
     icon:'💧',
     keywords:['sindrome nefrotica','doenca de lesoes minimas','dlm ','sindrome nefrotica infantil','corticoide em nefrotico','remissao nefrotica','recidiva nefrotica','ciclofosfamida nefrotico'] },
