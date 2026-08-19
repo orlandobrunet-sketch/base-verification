@@ -53,7 +53,7 @@ const NQ_COMPETENCIES = [
 
   { id:'di_urgencias', cat:'dialise', label:'Urgências e complicações em diálise',
     icon:'🚨',
-    keywords:['hipotensao intradíalítica','hipotensao intra','camibra','embolia gasosa','sindrome de desequilibrio','coagulacao do circuito','reacao de hipersensibilidade dialise','intradialítica'] },
+    keywords:['hipotensao intradíalítica','hipotensao intra','camibra','embolia gasosa','sindrome de desequilibrio','coagulacao do circuito','reacao de hipersensibilidade dialise','intradialítica','calcifilaxia'] },
 
   { id:'di_indicacoes', cat:'dialise', label:'Indicações e início da diálise',
     icon:'⏱️',
@@ -73,11 +73,11 @@ const NQ_COMPETENCIES = [
     // O Mapa apontava fraqueza em vasculite ANCA a quem errou IgA ou nefrótica.
     // As formas abaixo não ocorrem dentro de outra palavra e cobrem as três
     // questões legítimas que dependiam dela.
-    keywords:['vasculite','vasculite anca','mpo-anca','pr3-anca','anca positivo','egpa','advocate','avacopan','granulomatose com poliangiite','poliangiite microscopica','mpo ','pr3 ','wegener','anti-gbm','anti gbm','goodpasture','rituxvas','rave ','pexivas','rituximabe vasculite','ciclofosfamida vasculite','rins vasculite'] },
+    keywords:['vasculite','vasculite anca','mpo-anca','pr3-anca','anca positivo','egpa','advocate','avacopan','doenca anti-mbg','pauci-imune','granulomatose com poliangiite','poliangiite microscopica','mpo ','pr3 ','wegener','anti-gbm','anti gbm','goodpasture','rituxvas','rave ','pexivas','rituximabe vasculite','ciclofosfamida vasculite','rins vasculite'] },
 
   { id:'gl_lupus', cat:'glomerular', label:'Nefrite lúpica',
     icon:'🦋',
-    keywords:['nefrite lupica','lupus ','les ','belimumabe','voclosporina','obinutuzumabe','classe iii','classe iv','classe v','biopsia em lupus','anticorpos antinucleares','anti-dsdna','complemento lupus'] },
+    keywords:['nefrite lupica','lupus ','les ','belimumabe','voclosporina','obinutuzumabe','classe iii','classe iv','classe v','biopsia em lupus','anticorpos antinucleares','anti-dsdna','complemento lupus','anifrolumabe','tulip-ln'] },
 
   { id:'gl_c3g', cat:'glomerular', label:'C3G, MPGN e doenças do complemento',
     icon:'🧬',
