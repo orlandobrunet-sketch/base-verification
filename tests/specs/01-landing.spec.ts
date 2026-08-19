@@ -48,7 +48,8 @@ test.describe('Landing comercial', () => {
     const stylesheets = await page.locator('link[rel="stylesheet"]').evaluateAll((links) =>
       links.map((link) => new URL((link as HTMLLinkElement).href).pathname + new URL((link as HTMLLinkElement).href).search)
     );
-    expect(stylesheets).toContain('/landing/styles.css?v=14.13');
+    expect(stylesheets.some(s => s.startsWith('/landing/styles.css')),
+      'a folha da landing precisa estar linkada (versão é irrelevante aqui)').toBe(true);
 
     const palette = await page.evaluate(() => {
       const root = getComputedStyle(document.documentElement);

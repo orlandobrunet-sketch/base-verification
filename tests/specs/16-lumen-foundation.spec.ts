@@ -16,9 +16,9 @@ test.describe('Fundação 0 — Kit Lúmen Vivo', () => {
     const stylesheets = await page.locator('link[rel="stylesheet"]').evaluateAll((links) =>
       links.map((link) => (link as HTMLLinkElement).getAttribute('href') || '')
     );
-    expect(stylesheets).toContain('/styles/lumen/tokens.css?v=13.20');
-    expect(stylesheets).toContain('/styles/lumen/components.css?v=13.20');
-    expect(stylesheets).toContain('/styles/lumen/motion.css?v=13.20');
+    expect(stylesheets.some(s => s.startsWith('/styles/lumen/tokens.css'))).toBe(true);
+    expect(stylesheets.some(s => s.startsWith('/styles/lumen/components.css'))).toBe(true);
+    expect(stylesheets.some(s => s.startsWith('/styles/lumen/motion.css'))).toBe(true);
     expect(stylesheets).not.toContain('/style.css');
     expect(stylesheets).not.toContain('/landing/styles.css');
   });

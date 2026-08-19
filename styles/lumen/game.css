@@ -1821,3 +1821,64 @@ body.reading-mode:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[d
     transform: none;
   }
 }
+
+/* ── Gabarito não pode depender de cor, nem no Confronto Final ────────────
+   As marcações "✓ correta" e "× sua escolha" acima excluem o modo boss
+   (`:not(.boss-battle-mode):not(.arqui-nefromante-final)`). Medido na árvore
+   de acessibilidade: no boss, o nome acessível da alternativa certa é
+   idêntico ao das erradas — nada distingue além de `border-color`. Simulando
+   deuteranopia, os dois sinais (#34d399 e #fb7185) convergem para lilás e
+   amarelo com contraste de 2,46:1 entre si.
+
+   E o texto de feedback ao errar nunca nomeia a alternativa correta: diz
+   "❌ Incorreta." e emenda a explicação. Sem estas marcações, o médico
+   daltônico ou cego sai do Confronto Final sem saber qual conduta era a
+   certa — exatamente na tela de maior carga.
+
+   Estas regras devolvem SÓ o sinal textual. Cor, fundo e borda do boss
+   continuam como estão: a identidade visual do confronto não muda. */
+body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .option.correct .opt-key::after,
+body.arqui-nefromante-final #mainApp[data-nq-ui="lumen"] .option.correct .opt-key::after {
+  content: "✓";
+  margin-left: .25rem;
+  font-size: .72rem;
+}
+
+body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .option.correct::after,
+body.arqui-nefromante-final #mainApp[data-nq-ui="lumen"] .option.correct::after {
+  content: "correta";
+  color: var(--nql-success);
+  opacity: 1;
+  text-transform: uppercase;
+}
+
+body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .option.wrong .opt-key::after,
+body.arqui-nefromante-final #mainApp[data-nq-ui="lumen"] .option.wrong .opt-key::after {
+  content: "×";
+  margin-left: .25rem;
+  font-size: .76rem;
+}
+
+body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .option.wrong::after,
+body.arqui-nefromante-final #mainApp[data-nq-ui="lumen"] .option.wrong::after {
+  content: "sua escolha";
+  color: var(--nql-danger);
+  opacity: 1;
+  text-transform: uppercase;
+}
+
+/* ── Alvos de toque na tela pós-resposta ──────────────────────────────────
+   Medido em 390px: 26 de 47 alvos abaixo de 44x44. Os chips de reflexão
+   tinham 28,1px de altura com 6px de separação — e errar o toque marca a
+   categoria errada de erro, que alimenta "Padrões de Raciocínio" na Central.
+   Um toque impreciso vira dado pedagógico falso. */
+.err-reflect-chip,
+.qr-diff-btn,
+.fb-more-btn,
+.q-flag-link {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.err-reflect-chips { gap: 8px; }

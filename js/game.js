@@ -1986,6 +1986,10 @@
     // mesmo na virada de ciclo. Tamanho do histórico = 20% do banco.
     let HISTORY_SIZE = 30; // atualizado após topics.js carregar
     let _recentIds = []; // fila circular dos últimos IDs vistos
+    // Instante em que a explicação foi revelada. Ver o guarda no atalho de
+    // Enter/Espaço mais abaixo.
+    let _revelouEm = 0;
+
     let _masteredSet = (() => {
       try {
         const raw = JSON.parse(localStorage.getItem(MASTERED_KEY) || "[]");
@@ -2748,6 +2752,20 @@
       const st=total();
       const all=[...ui.options.querySelectorAll('.option')];
       all.forEach(b=>b.disabled=true);
+      // Desabilitar o botão que estava focado devolve o foco ao <body>, e nada
+      // o recoloca. Medido: depois de responder, document.activeElement é BODY
+      // por 2s. Dois efeitos, ambos ruins:
+      //  - o leitor de tela perde a posição e precisa navegar do zero até a
+      //    explicação, que é justamente o conteúdo pedagógico;
+      //  - com o foco no body, um Enter avança a questão. Quem responde com
+      //    Enter e reflexivamente aperta de novo PULA a explicação inteira.
+      // Mover o foco para o cartão de feedback resolve os dois: o leitor passa
+      // a ler a partir do veredito, e o Enter deixa de cair no atalho global.
+      _revelouEm = Date.now();
+      if (ui.feedback) {
+        ui.feedback.setAttribute('tabindex', '-1');
+        try { ui.feedback.focus({ preventScroll: true }); } catch (e) { ui.feedback.focus(); }
+      }
       const c=state.current.a;
       all[c].classList.add('correct');
 
@@ -5012,6 +5030,12 @@
           if (nextBtn && !nextBtn.classList.contains('hidden')) {
             if (e.key === 'Enter' || e.key === ' ') {
               e.preventDefault();
+              // Quem responde com Enter costuma apertar de novo por reflexo. Sem
+              // este guarda, o segundo Enter avança e a explicação — que é o
+              // conteúdo pedagógico da questão — nunca é lida. 700ms é curto
+              // demais para atrapalhar quem quer mesmo avançar, e longo o
+              // bastante para absorver o repique do reflexo.
+              if (Date.now() - _revelouEm < 700) return;
               nextBtn.click();
               return;
             }

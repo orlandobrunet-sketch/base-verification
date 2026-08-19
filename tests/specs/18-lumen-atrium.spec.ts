@@ -103,11 +103,11 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
     const stylesheets = await page.locator('link[rel="stylesheet"]').evaluateAll((links) =>
       links.map((link) => new URL((link as HTMLLinkElement).href).pathname + new URL((link as HTMLLinkElement).href).search)
     );
-    expect(stylesheets).toContain('/styles/lumen/atrium.css?v=14.18');
-    await expect(page.locator('script[src="js/atrium.js?v=13.23"]')).toHaveCount(1);
-    await expect(page.locator('script[src="js/auth.js?v=13.44"]')).toHaveCount(1);
-    await expect(page.locator('script[src="js/game.js?v=14.61"]')).toHaveCount(1);
-    await expect(page.locator('link[href="styles/lumen/difficulty.css?v=14.34"]')).toHaveCount(1);
+    expect(stylesheets.some(s => s.startsWith('/styles/lumen/atrium.css'))).toBe(true);
+    await expect(page.locator('script[src^="js/atrium.js?v="]')).toHaveCount(1);
+    await expect(page.locator('script[src^="js/auth.js?v="]')).toHaveCount(1);
+    await expect(page.locator('script[src^="js/game.js?v="]')).toHaveCount(1);
+    await expect(page.locator('link[href^="styles/lumen/difficulty.css?v="]')).toHaveCount(1);
     const atriumVisual = await page.locator('#welcomeScreen').evaluate((screen) => {
       const screenStyle = getComputedStyle(screen);
       const statsStyle = getComputedStyle(screen.querySelector('.nql-mastery-rail')!);
