@@ -1,19 +1,19 @@
-// NefroQuest Service Worker — v14.68
-const CACHE = 'nefroquest-v14.68';
+// NefroQuest Service Worker — v14.69
+const CACHE = 'nefroquest-v14.69';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
   '/offline.html',
   '/assets/sounds/bgmusic.mp3',
-  '/assets/sounds/correct.wav',
-  '/assets/sounds/wrong.wav',
-  '/assets/sounds/levelup.wav',
-  '/assets/sounds/streak.wav',
-  '/assets/sounds/forge.wav',
-  '/assets/sounds/chest.wav',
-  '/assets/sounds/click.wav',
-  '/assets/sounds/boss.wav',
-  '/assets/sounds/victory.wav',
+  '/assets/sounds/correct.mp3',
+  '/assets/sounds/wrong.mp3',
+  '/assets/sounds/levelup.mp3',
+  '/assets/sounds/streak.mp3',
+  '/assets/sounds/forge.mp3',
+  '/assets/sounds/chest.mp3',
+  '/assets/sounds/click.mp3',
+  '/assets/sounds/boss.mp3',
+  '/assets/sounds/victory.mp3',
   '/assets/audio/welcome-theme.mp3',
   '/assets/nefromancer.png',
   '/assets/badges/badge1-384.jpg',
@@ -81,7 +81,7 @@ const ASSET_VERSIONS = {
   '/styles/lumen/dashboard.css': '14.62',
   '/styles/lumen/charselect.css': '14.61',
   '/js/utils.js': '11.90',
-  '/js/audio.js': '14.63',
+  '/js/audio.js': '14.69',
   '/js/leaderboard.js': '11.90',
   '/js/study-mode.js': '14.53',
   '/js/game.js': '14.61',
