@@ -718,3 +718,41 @@
     }
     window.getAdaptiveTargetDifficulty = getAdaptiveTargetDifficulty;
 
+
+    // ── Dados do Grimório fora do caminho crítico ─────────────────────────
+    // `data/refs.js` (471 KB) e `data/articles.js` (149 KB) somam 620 KB que o
+    // parser processava ANTES da primeira interação, para servir só ao Grimório
+    // e à aba de Conquistas. Medido num celular mediano (CPU 4x), a thread
+    // principal ficava travada 1.656 ms depois de a tela já estar pintada: o
+    // médico via o app pronto e o toque não respondia.
+    //
+    // A carga não foi movida para o Grimório, e sim para o tempo ocioso logo
+    // após a primeira pintura. Mover para o Grimório mudaria comportamento: a
+    // conquista "Coroa de Louros" lê `refsDB` numa condição avaliada durante o
+    // jogo, e sem o dado ela responderia "não conquistada" — o app afirmaria ao
+    // médico que ele não ganhou algo que ganhou. Aqui nada muda de
+    // comportamento; só sai do caminho crítico.
+    let _promessaGrimorio = null;
+    function carregarDadosGrimorio() {
+      if (_promessaGrimorio) return _promessaGrimorio;
+      const um = (src) => new Promise((ok) => {
+        if (document.querySelector(`script[src="${src}"]`)) return ok();
+        const s = document.createElement('script');
+        s.src = src;
+        s.onload = () => ok();
+        s.onerror = () => { console.error('[NQ] falha ao carregar', src); ok(); };
+        document.head.appendChild(s);
+      });
+      _promessaGrimorio = Promise.all([um('data/refs.js'), um('data/articles.js')]);
+      return _promessaGrimorio;
+    }
+    window.carregarDadosGrimorio = carregarDadosGrimorio;
+
+    // Dispara em ociosidade. `requestIdleCallback` não existe no Safari antigo,
+    // por isso o recuo para setTimeout — sem ele, iOS nunca carregaria o
+    // Grimório e a aba abriria vazia.
+    (function agendarGrimorio() {
+      const disparar = () => carregarDadosGrimorio();
+      if (typeof requestIdleCallback === 'function') requestIdleCallback(disparar, { timeout: 4000 });
+      else setTimeout(disparar, 1500);
+    })();

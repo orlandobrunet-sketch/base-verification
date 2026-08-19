@@ -2010,6 +2010,11 @@
 
   async function openDashboard() {
     _injectStyles();
+    // O Grimório e a aba de Conquistas leem refsDB e nefroArticles. A carga
+    // ociosa começa logo após a primeira pintura, mas se o médico abrir a
+    // Central antes de ela terminar, esperamos aqui — abrir com aba vazia
+    // seria pior que abrir 200 ms depois.
+    if (typeof window.carregarDadosGrimorio === 'function') await window.carregarDadosGrimorio();
     if (typeof window.playSound === 'function') window.playSound('click');
     const previous = document.getElementById('nqDashboard');
     if (previous) {
