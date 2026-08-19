@@ -3,15 +3,15 @@
 
     // ============ SISTEMA DE SOM RPG/MEDIEVAL ============
     const SFX = {
-      correct: new Audio('assets/sounds/correct.wav'),
-      wrong: new Audio('assets/sounds/wrong.wav'),
-      levelup: new Audio('assets/sounds/levelup.wav'),
-      forge: new Audio('assets/sounds/forge.wav'),
-      chest: new Audio('assets/sounds/chest.wav'),
-      streak: new Audio('assets/sounds/streak.wav'),
-      click: new Audio('assets/sounds/click.wav'),
-      boss: new Audio('assets/sounds/boss.wav'),
-      victory: new Audio('assets/sounds/victory.wav')
+      correct: new Audio('assets/sounds/correct.mp3'),
+      wrong: new Audio('assets/sounds/wrong.mp3'),
+      levelup: new Audio('assets/sounds/levelup.mp3'),
+      forge: new Audio('assets/sounds/forge.mp3'),
+      chest: new Audio('assets/sounds/chest.mp3'),
+      streak: new Audio('assets/sounds/streak.mp3'),
+      click: new Audio('assets/sounds/click.mp3'),
+      boss: new Audio('assets/sounds/boss.mp3'),
+      victory: new Audio('assets/sounds/victory.mp3')
     };
     // Pre-load all SFX
     Object.values(SFX).forEach(a => { a.load(); a.volume = 0.5; });
