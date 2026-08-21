@@ -287,7 +287,7 @@
                 return `
                   <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:10px; font-size:0.74rem; line-height:1.4;">
                     <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.65rem; color:var(--txt-dim); margin-bottom:4px;">
-                      <span>Q#${r.question_id} &nbsp;·&nbsp; ${escapeHtml(r.player_email)}</span>
+                      <span>Q#${escapeHtml(r.question_id)} &nbsp;·&nbsp; ${escapeHtml(r.player_email)}</span>
                       <span>${dateStr}</span>
                     </div>
                     <div style="font-size:0.78rem; color:#fff; font-weight:600; margin-bottom:6px; overflow:hidden; text-overflow:ellipsis; display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical; max-height:2.8em; line-height:1.3;">"${escapeHtml(r.question_text)}"</div>
@@ -347,7 +347,7 @@
                     <span style="font-size:0.65rem; color:var(--txt-dim);">${c.total} votos</span>
                   </div>
                   <div style="font-size:0.74rem;">
-                    Atual: <strong style="color:#94a3b8;">${LABEL[c.current] || c.current}</strong>
+                    Atual: <strong style="color:#94a3b8;">${escapeHtml(LABEL[c.current] || c.current)}</strong>
                     &nbsp;→&nbsp; Comunidade: <strong class="nq-text-gold">${LABEL[c.winner]}</strong>
                   </div>
                   <div style="font-size:0.64rem; color:var(--txt-dim); margin-top:4px;">Fácil ${c.a.easy} · Médio ${c.a.medium} · Difícil ${c.a.hard}</div>

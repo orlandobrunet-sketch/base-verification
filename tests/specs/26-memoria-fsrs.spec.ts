@@ -19,7 +19,7 @@ const DIA = 86400000;
 const SAVE = saveBase();
 
 async function abrirCom(page: Page, srBuilder: (ids: string[]) => Record<string, unknown>) {
-  await page.goto('/jogar/');
+  await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
   await page.waitForFunction(() => typeof (window as any).openDashboard === 'function');
   await page.evaluate(() => (window as any)._loadTopics?.());
   await page.waitForFunction(() => Array.isArray((window as any).questionBank) && (window as any).questionBank.length > 0);
@@ -45,7 +45,7 @@ async function abrirCom(page: Page, srBuilder: (ids: string[]) => Record<string,
     localStorage.setItem('nefroquest-premium', '1');
   }, { save: SAVE, dia: DIA });
 
-  await page.reload();
+  await page.reload({ waitUntil: 'domcontentloaded' });
   await page.waitForFunction(() => typeof (window as any).openDashboard === 'function');
   await page.evaluate(() => (window as any)._loadTopics?.());
   await page.evaluate(() => (window as any).openDashboard());

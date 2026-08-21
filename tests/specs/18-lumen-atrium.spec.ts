@@ -360,20 +360,43 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
     await page.waitForTimeout(100);
     await expect(shell).not.toHaveClass(/is-rewarding/);
 
+    await pulse.evaluate((element) => {
+      const view = window as typeof window & {
+        __nqRewardSnapshot?: {
+          name: string;
+          duration: number;
+          iterations: string;
+          offset: number;
+        } | null;
+      };
+      view.__nqRewardSnapshot = null;
+      element.addEventListener('animationstart', () => {
+        const style = getComputedStyle(element);
+        view.__nqRewardSnapshot = {
+          name: style.animationName,
+          duration: parseFloat(style.animationDuration),
+          iterations: style.animationIterationCount,
+          offset: parseFloat(style.strokeDashoffset),
+        };
+      }, { once: true });
+    });
     await updateSavedJourney(page, { xp: 300 });
-    await expect(shell).toHaveClass(/is-rewarding/);
+    await page.waitForFunction(() => (
+      (window as typeof window & { __nqRewardSnapshot?: unknown }).__nqRewardSnapshot != null
+    ), undefined, { timeout: 2500 });
     await expect(shell).toHaveCSS('--nql-saved-progress', '86');
     await expect(page.locator('#wsSavedProgress')).toHaveAttribute('aria-valuenow', '86');
 
-    const reward = await pulse.evaluate((element) => {
-      const style = getComputedStyle(element);
-      return {
-        name: style.animationName,
-        duration: parseFloat(style.animationDuration),
-        iterations: style.animationIterationCount,
-        offset: parseFloat(style.strokeDashoffset),
-      };
-    });
+    const reward = await page.evaluate(() => (
+      window as typeof window & {
+        __nqRewardSnapshot: {
+          name: string;
+          duration: number;
+          iterations: string;
+          offset: number;
+        };
+      }
+    ).__nqRewardSnapshot);
     expect(reward.name).toBe('nql-atrium-flow-reward');
     expect(reward.duration).toBeGreaterThan(0);
     expect(reward.duration).toBeLessThanOrEqual(1.5);
@@ -438,16 +461,26 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
     const primary = page.locator('#welcomeContinueBtn');
     await primary.focus();
     await primary.press('Enter');
-    const duplicateWasRejected = await page.evaluate(() => {
+    const pendingState = await page.evaluate(async () => {
       const game = window as typeof window & { continueGame?: () => Promise<boolean> | boolean };
-      return game.continueGame?.();
+      const button = document.getElementById('welcomeContinueBtn') as HTMLButtonElement | null;
+      const duplicateResult = game.continueGame?.();
+      const snapshot = {
+        disabled: button?.disabled,
+        busy: button?.getAttribute('aria-busy'),
+        hasBusyClass: button?.classList.contains('is-busy'),
+        text: button?.textContent,
+      };
+      return { duplicateWasRejected: await duplicateResult, ...snapshot };
     });
-    expect(duplicateWasRejected).toBe(false);
-    await expect(primary).toBeDisabled();
-    await expect(primary).toHaveAttribute('aria-busy', 'true');
-    await expect(primary).toHaveClass(/is-busy/);
-    await expect(primary).toContainText('Carregando jornada…');
-    await expect(primary).toContainText('Preparando questões e progresso');
+    expect(pendingState).toMatchObject({
+      duplicateWasRejected: false,
+      disabled: true,
+      busy: 'true',
+      hasBusyClass: true,
+    });
+    expect(pendingState.text).toContain('Carregando jornada…');
+    expect(pendingState.text).toContain('Preparando questões e progresso');
 
     await page.waitForTimeout(100);
 
