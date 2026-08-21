@@ -30,8 +30,6 @@ const STATIC_ASSETS = [
   '/data/competencies.js',
   '/style.css',
   '/styles/lumen/tokens.css',
-  '/styles/lumen/components.css',
-  '/styles/lumen/motion.css',
   '/styles/lumen/portal.css',
   '/styles/lumen/atrium.css',
   '/styles/lumen/game.css',

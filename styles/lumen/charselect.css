@@ -11,6 +11,12 @@
    ============================================================ */
 
 #charSelectModal.nqc-screen {
+  /* A tela inteira herdava 'Philosopher' do body (style.css legado) e era a
+     única do app sem uma palavra em Source Sans 3: "Dr. Nephros" saía em
+     Alegreya e o subtítulo logo abaixo em Philosopher — dois serifados
+     diferentes dentro do mesmo cartão. Uma linha devolve os cinco papéis
+     por herança. */
+  font-family: var(--nql-font-body);
   position: fixed;
   inset: 0;
   z-index: 9999;
