@@ -697,6 +697,11 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
 }
 
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .equip-stun-overlay {
+  /* Sem `position`, o `inset` e o `z-index` abaixo são declarações mortas — o
+     navegador as ignora e a tarja cai no fluxo normal, por cima do nome do
+     personagem. O contêiner é #equipList, que recebe `position: relative` de
+     `body.boss-stun-active` quando o atordoamento começa. */
+  position: absolute;
   inset: 3.5rem .75rem 3.8rem;
   z-index: 12;
   border: 1px solid rgba(var(--nql-danger-rgb), .45);

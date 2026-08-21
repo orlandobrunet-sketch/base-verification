@@ -844,7 +844,17 @@
       state.gameStarted = true;
       state.answered = false;
       state.current = null;
-      
+
+      // Atordoamento do Arqui-Nefromante é estado de COMBATE, não de progresso:
+      // não é gravado no save e não pode atravessar uma restauração. Sem isto,
+      // quem foi atordoado e depois restaurou a jornada volta com a tarja de
+      // equipamentos bloqueados e o tremor de tela num nível em que o chefe nem
+      // entrou em cena. O início de partida (boss.js) já fazia essa limpeza; a
+      // restauração era o único caminho que esquecia.
+      state.bossStunActive = false;
+      document.body.classList.remove('boss-stun-active');
+      document.getElementById('mainApp')?.classList.remove('boss-stun-shake');
+
       if (save.equipment) {
         state.equipment = save.equipment;
       }
