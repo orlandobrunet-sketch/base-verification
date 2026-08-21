@@ -1383,29 +1383,24 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   color: var(--nql-text-muted);
 }
 
-/* Neutraliza as antigas variantes neon sem apagar a semântica dos instrumentos. */
+/* Cor no dock só onde ela tem função.
+
+   Cada um dos seis botões tinha a sua cor saturada — verde, laranja, violeta,
+   ciano, ouro e azul empilhados. Medido nos pixels renderizados, o dock era a
+   coluna mais colorida da tela de questão, ao lado de um enunciado clínico em
+   pergaminho neutro. É exatamente o padrão que a 14.54 removeu da barra
+   lateral da Central ("a barra lateral não dá uma cor de identidade por aba"),
+   sobrevivendo na tela onde o médico passa o tempo. O spec 25 não pegava
+   porque só afirmava #nqDashboard.
+
+   Os cinco instrumentos (Forja, Oráculo, Central, Grimório, Início) voltam ao
+   acento neutro da regra base: são navegação equivalente, como as abas.
+
+   "Próxima" mantém a sua cor DE PROPÓSITO. Não é instrumento — é a ação
+   primária da tela, e ali a cor codifica algo real. Igualar os seis seria
+   aplicar a regra contra o princípio que a originou. */
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .next-question-dock {
   --nql-dock-rgb: 99, 183, 122;
-}
-
-body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .forge-btn {
-  --nql-dock-rgb: 232, 155, 67;
-}
-
-body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .oraculo-dock {
-  --nql-dock-rgb: 152, 116, 223;
-}
-
-body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .dashboard-btn {
-  --nql-dock-rgb: 102, 185, 216;
-}
-
-body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .dock-btn[data-action="openBibliotecaModal"] {
-  --nql-dock-rgb: 215, 182, 74;
-}
-
-body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .inicio-btn {
-  --nql-dock-rgb: 122, 159, 216;
 }
 
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .dock-btn,

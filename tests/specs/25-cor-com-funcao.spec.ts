@@ -1,5 +1,6 @@
 import { test, expect, Page } from '@playwright/test';
 import { saveBase, statsBase } from '../helpers/fixtures';
+import { injectGameState } from '../helpers/game';
 
 /**
  * Cor com função (v14.54).
@@ -47,6 +48,26 @@ test.describe('Cor com função', () => {
     // Todas as abas resolvem para o mesmo acento — cor deixa de ser identidade
     // de navegação e volta a marcar estado no conteúdo.
     expect(new Set(cores).size, `abas ainda têm cores distintas: ${[...new Set(cores)].join(', ')}`).toBe(1);
+  });
+
+  test('o dock da tela de questão não dá uma cor de identidade por instrumento', async ({ page }) => {
+    // O mesmo defeito da barra lateral vivia aqui, e este spec não pegava
+    // porque só afirmava #nqDashboard. Medido nos pixels renderizados, o dock
+    // era a coluna mais colorida da tela de questão — seis instrumentos, seis
+    // cores saturadas — ao lado de um enunciado clínico em pergaminho neutro.
+    await page.goto('/jogar/');
+    await injectGameState(page);
+    await expect(page.locator('#mainApp')).toBeVisible({ timeout: 10000 });
+
+    // "Próxima" fica de fora DE PROPÓSITO: não é instrumento, é a ação
+    // primária da tela, e ali a cor codifica algo real. Os instrumentos são
+    // navegação equivalente e precisam do mesmo acento.
+    const cores = await page.locator('.dock-btn:not(.next-question-dock)').evaluateAll(els =>
+      els.map(el => getComputedStyle(el).getPropertyValue('--nql-dock-rgb').trim())
+    );
+    expect(cores.length, 'o dock precisa ter instrumentos para medir').toBeGreaterThan(1);
+    expect(new Set(cores).size,
+      `instrumentos do dock ainda têm cores distintas: ${[...new Set(cores)].join(' | ')}`).toBe(1);
   });
 
   test('o rótulo de recompensa é ouro, não ciano', async ({ page }) => {
