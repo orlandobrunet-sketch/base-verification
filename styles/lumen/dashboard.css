@@ -11,18 +11,24 @@
   --nqd-rule: rgba(120, 217, 227, .14);
   --nqd-rule-strong: rgba(120, 217, 227, .32);
   --nqd-gold-rule: rgba(234, 203, 115, .4);
-  --nqd-ink: #070d18;
+  /* Estes cinco apontavam para hex próprios quase idênticos aos tokens do
+     sistema — distâncias RGB de 6 a 28. Não quebrava nada visualmente, mas
+     garantia que qualquer ajuste futuro em tokens.css não alcançasse a
+     Central. Agora derivam da fonte única. As cores sem contraparte
+     (bronze, amber, jade, sheet) ficam como estão: promovê-las a token exige
+     decidir a função de cada uma, o que é decisão de produto. */
+  --nqd-ink: var(--nql-abyss);
   --nqd-sheet: #0d1827;
   --nqd-sheet-raised: #102235;
   --nqd-bronze: #b98955;
-  --nqd-cyan: #78d9e3;
-  --nqd-violet: #b17dda;
+  --nqd-cyan: var(--nql-lumen);
+  --nqd-violet: var(--nql-corruption-strong);
   /* magenta removido: era uma sexta cor fora do sistema de cinco funções
      (leitura, consistência, atenção, conhecimento, recompensa) */
   --nqd-jade: #67d39d;
-  --nqd-coral: #e68e78;
+  --nqd-coral: var(--nql-danger);
   --nqd-amber: #df934d;
-  --nqd-gold: #eacb73;
+  --nqd-gold: var(--nql-mastery);
   position: fixed;
   z-index: 11000;
   inset: 0;

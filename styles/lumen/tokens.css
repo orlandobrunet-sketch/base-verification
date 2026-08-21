@@ -17,7 +17,12 @@
   --nql-parchment-rgb: 239, 230, 210;
   --nql-paper-dim: #d4cbb8;
   --nql-mist: #aab7c9;
-  --nql-haze: #7f8fa8;
+  /* Clareado de #7f8fa8 para #93a2b8. O valor antigo era calibrado para o
+     fundo --nql-abyss, onde dá 6,02:1, mas sobre superfície elevada caía a
+     4,49:1 — reprovando 4,5:1 por 0,01 — e a 3,51:1 nos painéis do átrio.
+     Eram 11 falhas de contraste medidas, todas em metadado, nenhuma em texto
+     clínico. Uma linha resolve as 11 sem alterar o visual sobre o escuro. */
+  --nql-haze: #93a2b8;
 
   /* State */
   --nql-lumen: #91dfe3;
