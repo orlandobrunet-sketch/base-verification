@@ -35,7 +35,8 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
     const stylesheets = await page.locator('link[rel="stylesheet"]').evaluateAll((links) =>
       links.map((link) => new URL((link as HTMLLinkElement).href).pathname + new URL((link as HTMLLinkElement).href).search)
     );
-    expect(stylesheets).toContain('/styles/lumen/game.css?v=14.13');
+    expect(stylesheets.some(s => s.startsWith('/styles/lumen/game.css')),
+      'game.css precisa estar linkado; a versão é responsabilidade do bump-release --check').toBe(true);
 
     const app = page.locator('#mainApp');
     await expect(app).toHaveAttribute('data-nq-ui', 'lumen');

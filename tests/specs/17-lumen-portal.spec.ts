@@ -29,8 +29,8 @@ test.describe('Página 1 — Portal de Acesso Lúmen', () => {
     const stylesheets = await page.locator('link[rel="stylesheet"]').evaluateAll((links) =>
       links.map((link) => new URL((link as HTMLLinkElement).href).pathname + new URL((link as HTMLLinkElement).href).search)
     );
-    expect(stylesheets).toContain('/styles/lumen/portal.css?v=14.02');
-    await expect(page.locator('script[src="js/portal.js?v=13.20"]')).toHaveCount(1);
+    expect(stylesheets.some(s => s.startsWith('/styles/lumen/portal.css'))).toBe(true);
+    await expect(page.locator('script[src^="js/portal.js?v="]')).toHaveCount(1);
 
     const skipLink = page.getByRole('link', { name: 'Ir para o acesso' });
     await skipLink.focus();
