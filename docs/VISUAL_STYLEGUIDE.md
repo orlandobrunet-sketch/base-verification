@@ -1,6 +1,6 @@
 # NefroQuest — Visual Style Guide
 
-> **Evolução da identidade:** novas superfícies da landing e o futuro redesenho das telas internas seguem o [Sistema Visual Lúmen Vivo v1](design/NQ_LUMEN_VISUAL_SYSTEM_V1.md). Este guia continua como referência do universo RPG médico existente; o Lúmen Vivo passa a orientar composição, movimento, estados e a nova tipografia de produto.
+> **Escopo legado:** este guia preserva a identidade RPG médica das superfícies ainda não migradas. Para toda superfície nova ou Lúmen, o documento canônico é o [Sistema Visual Lúmen Vivo v1](design/NQ_LUMEN_VISUAL_SYSTEM_V1.md). Não copiar daqui paleta, tipografia, bordas ou mockups como sistema “definitivo”; eles descrevem o legado e podem contradizer o runtime atual.
 
 ## Identidade
 

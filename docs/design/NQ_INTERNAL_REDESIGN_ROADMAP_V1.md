@@ -1,6 +1,6 @@
 # NefroQuest — Roadmap de Redesign Interno v1
 
-**Status:** aprovado para execução em 21/07/2026
+**Status:** reconciliado com o produto em 21/08/2026; execução visual pausada até o fechamento dos bloqueadores do [`ROADMAP.md`](../ROADMAP.md)
 **Sistema visual de referência:** `docs/design/NQ_LUMEN_VISUAL_SYSTEM_V1.md`
 
 ## Objetivo
@@ -8,6 +8,26 @@
 Levar a identidade Lúmen Vivo da landing para o produto interno sem transformar o jogo em uma coleção de telas visualmente semelhantes, mas desconectadas. Cada página deve traduzir a mesma lógica de precisão clínica, progressão, fantasia adulta, movimento intencional e evidência.
 
 O trabalho será executado e aprovado **uma página por vez**. Nenhuma página seguinte entra em implementação antes da aprovação explícita da página ativa.
+
+## Reconciliação com o produto atual
+
+O plano original descrevia o caminho de migração, mas não registrava o que foi efetivamente publicado. Esta tabela é a fonte de status; a ordem futura é governada pelo roadmap ativo.
+
+| Superfície | Estado em 21/08/2026 | Observação |
+|---|---|---|
+| Fundação/tokens | `PUBLICADO / CONTÍNUO` | `tokens.css` está no runtime; `components.css` e `motion.css` ficaram restritos ao laboratório depois de medição de 5,6% e 0% de uso |
+| Página 1 — Portal de acesso | `PUBLICADO` | Fluxo Lúmen com estados de acesso e visitante |
+| Página 2 — Átrio/Central da jornada | `PUBLICADO` | Continuidade, jornada ativa e rotas principais |
+| Página 3A — Dificuldade | `PUBLICADO` | Calibração em fluxo próprio |
+| Página 3B — Escolha de classe | `PUBLICADO` | Página Lúmen; falta fechar o contrato modal completo de foco |
+| Página 3C — Ritual | `LEGADO FUNCIONAL` | Funciona; migração visual deve ser priorizada por uso/risco, não por numeração antiga |
+| Página 4 — Pergunta/decisão | `PUBLICADO` | Câmara de Conduta Lúmen |
+| Página 5 — Feedback/aprendizado | `PUBLICADO / CONSOLIDAR` | Gabarito, foco e toque melhoraram; deve entrar na validação ponta a ponta |
+| Páginas 8, 9 e 11 — Mapa, Grimório e Ranking | `PUBLICADO NA CENTRAL` | Não recriar como páginas separadas sem evidência de necessidade |
+| Página 10 — Progressão RPG | `PARCIAL` | Personagem, selos e conquistas avançaram; Forja/Inventário continuam como superfície legada |
+| Demais páginas | `A MIGRAR` | Ordem revista: Estudo/Revisão → Oráculo → Forja/Inventário → Simulado → Conta/Paywall |
+
+Antes da próxima página, a auditoria de 21/08 exige fechar stored XSS no admin, gate editorial cumulativo, isolamento/sync de conta, atualização PWA atômica e regressões críticas. Ver [`audits/CLAUDE_CODE_REVIEW_2026-08-21.md`](../audits/CLAUDE_CODE_REVIEW_2026-08-21.md).
 
 ## Decisões não negociáveis
 
@@ -23,20 +43,22 @@ O trabalho será executado e aprovado **uma página por vez**. Nenhuma página s
 
 ## Arquitetura de migração
 
-Camada proposta:
+Camada vigente:
 
 ```text
 styles/lumen/tokens.css
-styles/lumen/components.css
-styles/lumen/motion.css
-styles/lumen/screens/auth.css
-styles/lumen/screens/welcome.css
-styles/lumen/screens/question.css
-styles/lumen/screens/feedback.css
-...
+styles/lumen/portal.css
+styles/lumen/atrium.css
+styles/lumen/difficulty.css
+styles/lumen/game.css
+styles/lumen/dashboard.css
+styles/lumen/charselect.css
+design-system/lumen-foundation/  # laboratório; não é dependência global do app
 ```
 
 Cada página migrada recebe um escopo explícito, por exemplo `data-nq-ui="lumen"`. Componentes novos usam prefixo próprio, evitando colisões com `.btn`, `.panel`, `.hero` e outras classes globais legadas.
+
+`components.css` e `motion.css` não devem voltar ao runtime por antecipação. Um padrão compartilhado só é promovido depois de funcionar em duas superfícies reais e ter cobertura mensurável.
 
 Regras técnicas da camada nova:
 
@@ -216,18 +238,14 @@ Dashboard administrativo, analytics, push e ferramentas internas.
 6. relatório de QA e placar;
 7. decisão registrada: ajustes solicitados ou **APROVADA**.
 
-## Primeiro ciclo proposto
+## Próximo ciclo autorizado pelo roadmap
 
-O próximo trabalho será a **Fundação 0 — Kit Lúmen Vivo**. Ela deve mostrar, em uma única prancha/laboratório:
+O redesign fica pausado durante os bloqueadores de segurança, editorial, conta/sync, PWA e integridade pedagógica. Depois deles:
 
-- tipografia e escala;
-- paleta e semântica de estados;
-- botões primário, secundário e textual;
-- campos, mensagens e validação;
-- modal/overlay acessível: título, descrição, foco inicial, contenção de foco, Escape, retorno de foco e regiões `aria-live`;
-- painel Lúmen, flow-deck e mastery-rail;
-- foco, hover, loading e erro;
-- comportamento em 1440 px e 390 px;
-- movimento normal e reduzido.
+1. validar ponta a ponta as superfícies Lúmen já publicadas;
+2. inventariar cada superfície como `Lúmen`, `legado aceitável` ou `a migrar`;
+3. fechar inconsistências comprovadas sem reler visualmente páginas aprovadas;
+4. migrar **Estudo e Revisão** como a próxima página de maior valor pedagógico;
+5. seguir com Oráculo, Forja/Inventário, Simulado e Conta/Paywall, uma entrega por vez.
 
-Após a aprovação dessa fundação, iniciaremos a **Página 1 — Portal de acesso**.
+Cada ciclo continua obrigado aos seis gates e ao placar de qualidade deste documento.
