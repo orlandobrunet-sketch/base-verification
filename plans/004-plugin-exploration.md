@@ -164,10 +164,10 @@ Owkin/Synapse/Wiley (gated), computer-use. Sem mapeamento para necessidade atual
 
 ## Done criteria (do plano como um todo)
 
-- [ ] Itens 1–5 (Tier 1) executados, cada um com achado + veredito ÚTIL/SITUACIONAL/RUÍDO registrado na tabela.
-- [ ] Itens 6, 8, 9 (Tier 2) executados se o Tier 1 justificar; caso contrário, marcados N/A com motivo.
-- [ ] Item 7 (Mercado Pago) permanece EM ESPERA até liberação.
-- [ ] Cada regressão/conserto descoberto vira um plano numerado próprio (005+), não é corrigido dentro deste plano.
+- [x] Itens 1–5 (Tier 1) executados, cada um com achado + veredito ÚTIL/SITUACIONAL/RUÍDO registrado na tabela.
+- [x] Itens 6, 8, 9 (Tier 2) executados se o Tier 1 justificar; caso contrário, marcados N/A com motivo.
+- [x] Item 7 (Mercado Pago) permanece EM ESPERA até liberação.
+- [x] Achados foram encaminhados para planos/roadmap próprios; nenhum conserto foi incorporado silenciosamente a esta exploração.
 
 ## Tabela de status (atualizar a cada item)
 
@@ -180,8 +180,8 @@ Owkin/Synapse/Wiley (gated), computer-use. Sem mapeamento para necessidade atual
 | 5 | Evidência médica (Consensus/ChEMBL) | 1 | DONE (2026-06-26) | **ÚTIL** | Piloto: questão `3d8fc3fe` (finerenona/FIDELIO-DKD). ChEMBL confirmou classe (CHEMBL2181927, USAN `-renone`=aldosterone antagonist, aprovada 2021); Consensus deu frase idêntica ao gabarito ("nonsteroidal selective MRA") + desfechos renal/CV (FIDELIO/FIDELITY). Questão correta e sustentada. Combo valioso p/ `revisar-nefroquest`. |
 | 6 | Playwright MCP | 2 | DONE (via item 2) | **ÚTIL** | Já exercitado no item 2 (navegação + console + evaluate em produção). Serve tanto p/ verificação de prod quanto p/ depurar a suíte E2E local. |
 | 7 | Mercado Pago | 2 | EM ESPERA | — | aguardando usuário |
-| 8 | scheduled-tasks | 2 | TODO | — | — |
-| 9 | Vercel | 2 | TODO | — | — |
+| 8 | scheduled-tasks | 2 | N/A | **RUÍDO agora** | não criar automação recorrente sem necessidade operacional e autorização explícita |
+| 9 | Vercel | 2 | DONE (jun/2026) | **SITUACIONAL** | `vercel.json` auditado; confirmar host real antes de atribuir headers/CSP à produção |
 | — | Tier 3 (Notion/Canva/Figma/…) | 3 | N/A | RUÍDO p/ projeto | pular salvo pedido |
 
 ## STOP / reportar

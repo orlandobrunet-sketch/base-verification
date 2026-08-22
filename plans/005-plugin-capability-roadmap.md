@@ -1,5 +1,7 @@
 # Plan 005: Avaliação de capacidade de TODOS os plugins + roadmap de melhoria do NefroQuest
 
+> **Status em 21/08/2026:** concluído como exercício de descoberta e substituído pelo [`docs/ROADMAP.md`](../docs/ROADMAP.md), que prioriza resultados e riscos do produto — não ferramentas. A tabela histórica abaixo não é fila de execução.
+
 > **Natureza**: documento estratégico. Avalia os ~28 plugins instalados e mapeia cada um a
 > melhorias concretas do NefroQuest. Não altera código por si só — cada tema selecionado vira
 > execução (PR/plano próprio). Complementa o [plano 004](004-plugin-exploration.md) (que já
