@@ -1,5 +1,19 @@
+import { validarEixos } from './editorial-axes.mjs';
+
 const MANIFEST_PATTERN = /^docs\/editorial\/review-batches\/[^/]+\.json$/;
 const ACTIONS = new Set(['rebuild', 'refs_only', 'retire', 'add', 'technical_only', 'reviewed_unchanged']);
+
+// Ações que implicam mudança material ou (re)publicação e, por isso, exigem os
+// três eixos do Handbook §18.4. `technical_only` e `retire` ficam de fora: a
+// primeira é, por definição, não material (a Regra 2 lista enunciado,
+// alternativas, gabarito, explicação e referências); a segunda tira o item de
+// circulação, e não há publicação a autorizar.
+const ACOES_COM_GATE_EDITORIAL = new Set(['rebuild', 'refs_only', 'add', 'reviewed_unchanged']);
+
+// Ações que efetivamente escrevem conteúdo em data/topics.js. Item com
+// publicação BLOQUEADA não pode ser escrito ali em circunstância nenhuma
+// (CLAUDE.md; Handbook §18.4 Regra 11).
+const ACOES_QUE_ESCREVEM = new Set(['rebuild', 'refs_only', 'add']);
 const CHANGE_TYPES = new Set(['medical_editorial', 'technical_only']);
 const REF_POLICIES = new Set(['unchanged', 'declared']);
 const REVIEW_STATES = new Set(['required', 'unavailable']);
@@ -47,6 +61,16 @@ export function validateManifest(value, manifestPath) {
       }
       if (declaration?.action === 'reviewed_unchanged' && declaration.preserve_fsrs !== true) {
         errors.push(`${manifestPath}: reviewed_unchanged requires preserve_fsrs true for ${qid}`);
+      }
+
+      // Gate médico-editorial (Handbook §18.4). Só se aplica a lote declarado
+      // como medical_editorial — mudança técnica não dispara reavaliação.
+      if (value.change_type === 'medical_editorial' && ACOES_COM_GATE_EDITORIAL.has(declaration?.action)) {
+        const { errors: errosDeEixo, publicacao } = validarEixos(qid, declaration, manifestPath);
+        errors.push(...errosDeEixo);
+        if (publicacao === 'BLOQUEADA' && ACOES_QUE_ESCREVEM.has(declaration.action)) {
+          errors.push(`${manifestPath}: ${qid}: publicação BLOQUEADA não pode ser escrita em data/topics.js pela ação ${declaration.action} (Handbook §18.4, Regra 11)`);
+        }
       }
     }
   }

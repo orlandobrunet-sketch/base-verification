@@ -18,7 +18,7 @@ function validInput() {
     manifest: {
       batch: 'FARM-4A', change_type: 'medical_editorial', expected_version: '12.65',
       allowed_files: ['data/topics.js', 'version.json', 'sw.js', 'index.html', 'docs/editorial/review-batches/FARM-4A.json'],
-      questions: { '11111111': { action: 'rebuild', preserve_fsrs: true }, '22222222': { action: 'retire', preserve_fsrs: false } },
+      questions: { '11111111': { action: 'rebuild', preserve_fsrs: true, evidencia: 'VERIFICADA', pendencia: 'NENHUMA', veredito: 'aprovada', publicacao: 'LIBERADA' }, '22222222': { action: 'retire', preserve_fsrs: false } },
       expected_question_delta: -1, refs_policy: 'unchanged',
       external_review: { greptile: 'required', fallback_reviewer: null },
     },
@@ -37,8 +37,8 @@ test('accepts a declared rebuild and retirement', () => assert.deepEqual(validat
 test('accepts a manifest-only reviewed_unchanged batch', () => {
   const input = validInput();
   input.manifest.questions = {
-    '11111111': { action: 'reviewed_unchanged', preserve_fsrs: true },
-    '22222222': { action: 'reviewed_unchanged', preserve_fsrs: true },
+    '11111111': { action: 'reviewed_unchanged', preserve_fsrs: true, evidencia: 'VERIFICADA', pendencia: 'NENHUMA', veredito: 'aprovada', publicacao: 'LIBERADA' },
+    '22222222': { action: 'reviewed_unchanged', preserve_fsrs: true, evidencia: 'VERIFICADA', pendencia: 'NENHUMA', veredito: 'aprovada', publicacao: 'LIBERADA' },
   };
   input.manifest.expected_question_delta = 0;
   input.manifest.expected_version = '12.64';
