@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v14.76
-const CACHE = 'nefroquest-v14.76';
+// NefroQuest Service Worker — v14.77
+const CACHE = 'nefroquest-v14.77';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -30,6 +30,7 @@ const STATIC_ASSETS = [
   '/data/competencies.js',
   '/style.css',
   '/styles/lumen/tokens.css',
+  '/styles/lumen/shell.css',
   '/styles/lumen/portal.css',
   '/styles/lumen/atrium.css',
   '/styles/lumen/game.css',
@@ -70,6 +71,7 @@ const STATIC_ASSETS = [
 const ASSET_VERSIONS = {
   '/style.css': '14.18',
   '/styles/lumen/tokens.css': '14.75',
+  '/styles/lumen/shell.css': '14.77',
   '/styles/lumen/portal.css': '14.02',
   '/styles/lumen/atrium.css': '14.18',
   '/styles/lumen/game.css': '14.73',
