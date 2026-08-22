@@ -40,7 +40,7 @@ async function createRepository() {
   await writeFile(path.join(repo, ...manifestPath.split('/')), JSON.stringify({
     batch: 'FARM-4A', change_type: 'medical_editorial', expected_version: '12.65',
     allowed_files: ['data/topics.js', 'docs/editorial/review-batches/FARM-4A.json', 'index.html', 'sw.js', 'version.json'],
-    questions: { '11111111': { action: 'rebuild', preserve_fsrs: true }, '22222222': { action: 'retire', preserve_fsrs: false } },
+    questions: { '11111111': { action: 'rebuild', preserve_fsrs: true, evidencia: 'VERIFICADA', pendencia: 'NENHUMA', veredito: 'aprovada', publicacao: 'LIBERADA' }, '22222222': { action: 'retire', preserve_fsrs: false } },
     expected_question_delta: -1, refs_policy: 'unchanged',
     external_review: { greptile: 'required', fallback_reviewer: null },
   }, null, 2));
@@ -64,8 +64,8 @@ test('CLI accepts a manifest-only reviewed_unchanged batch', async () => {
     batch: 'FARM-4B', change_type: 'medical_editorial', expected_version: '12.64',
     allowed_files: [manifestPath],
     questions: {
-      '11111111': { action: 'reviewed_unchanged', preserve_fsrs: true },
-      '22222222': { action: 'reviewed_unchanged', preserve_fsrs: true },
+      '11111111': { action: 'reviewed_unchanged', preserve_fsrs: true, evidencia: 'VERIFICADA', pendencia: 'NENHUMA', veredito: 'aprovada', publicacao: 'LIBERADA' },
+      '22222222': { action: 'reviewed_unchanged', preserve_fsrs: true, evidencia: 'VERIFICADA', pendencia: 'NENHUMA', veredito: 'aprovada', publicacao: 'LIBERADA' },
     },
     expected_question_delta: 0, refs_policy: 'unchanged',
     external_review: { greptile: 'unavailable', fallback_reviewer: 'Codex — revisar-nefroquest' },

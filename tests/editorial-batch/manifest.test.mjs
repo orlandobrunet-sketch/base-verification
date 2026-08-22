@@ -8,7 +8,7 @@ const valid = {
   expected_version: '12.65',
   allowed_files: ['data/topics.js', 'version.json', 'sw.js', 'index.html', 'docs/editorial/review-batches/FARM-4A.json'],
   questions: {
-    '5bfb77d2': { action: 'rebuild', preserve_fsrs: true },
+    '5bfb77d2': { action: 'rebuild', preserve_fsrs: true, evidencia: 'VERIFICADA', pendencia: 'NENHUMA', veredito: 'aprovada', publicacao: 'LIBERADA' },
     '23211e6a': { action: 'retire', preserve_fsrs: false },
   },
   expected_question_delta: -1,
@@ -39,7 +39,7 @@ test('requires preserve_fsrs false for retired qids', () => {
 
 test('accepts reviewed_unchanged with preserved FSRS', () => {
   const input = structuredClone(valid);
-  input.questions = { '5bfb77d2': { action: 'reviewed_unchanged', preserve_fsrs: true } };
+  input.questions = { '5bfb77d2': { action: 'reviewed_unchanged', preserve_fsrs: true, evidencia: 'VERIFICADA', pendencia: 'NENHUMA', veredito: 'aprovada', publicacao: 'LIBERADA' } };
   input.expected_question_delta = 0;
   input.allowed_files = ['docs/editorial/review-batches/FARM-4A.json'];
   assert.deepEqual(validateManifest(input, 'docs/editorial/review-batches/FARM-4A.json').errors, []);

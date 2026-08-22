@@ -16,6 +16,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      # As regras do gate editorial só valem se alguém provar que elas reprovam.
+      # Estes testes existiam desde sempre e nunca rodaram na CI — o portão
+      # abaixo era invocado sem que nada garantisse que ele barra o que deve.
+      - name: Editorial gate rules (Handbook §18.4)
+        run: node --test tests/editorial-batch/*.test.mjs
+
       - name: Editorial batch scope gate
         run: >-
           node scripts/editorial-batch-validator.mjs
