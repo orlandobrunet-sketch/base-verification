@@ -1,0 +1,50 @@
+/* Chrome compartilhado do app — as peças que aparecem no topo de mais de uma
+ * tela Lúmen e não pertencem a nenhuma delas.
+ *
+ * Por que este arquivo existe: o PR #761 mediu a cobertura de components.css
+ * em 5,6% e o removeu do <link> de jogar/index.html. A medição estava certa
+ * para 94 das 96 classes — mas duas eram usadas, e as duas ficaram órfãs:
+ * .nql-skip-link e .nql-brand. portal.css e atrium.css só têm modificadores
+ * delas, que assumem a base existindo. Sem a base, o skip link fica
+ * permanentemente visível empurrando o cabeçalho, e a marca vira um link
+ * sublinhado do navegador.
+ *
+ * components.css continua servindo a página do design system em
+ * /design-system/lumen-foundation/ e não foi tocado.
+ */
+
+.nql-skip-link {
+  position: fixed;
+  z-index: var(--nql-z-live);
+  top: var(--nql-space-4);
+  left: var(--nql-space-4);
+  padding: var(--nql-space-3) var(--nql-space-4);
+  border: 1px solid var(--nql-lumen);
+  border-radius: var(--nql-radius-control);
+  background: var(--nql-cortex);
+  color: var(--nql-text);
+  transform: translateY(-200%);
+}
+
+.nql-skip-link:focus {
+  transform: translateY(0);
+}
+
+.nql-brand {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 2.75rem;
+  align-items: baseline;
+  justify-content: center;
+  color: var(--nql-text);
+  font-family: var(--nql-font-display);
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: -.025em;
+  text-decoration: none;
+}
+
+.nql-brand em {
+  color: var(--nql-mastery);
+  font-weight: 600;
+}
