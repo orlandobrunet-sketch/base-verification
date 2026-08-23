@@ -623,12 +623,47 @@
         'nefroquest-announced-badges',
         // Sobrevivem a deleteSave (nova jornada), mas não a um reset total.
         'nefroquest-badge-history',
-        'nefroquest-journey-count'
+        'nefroquest-journey-count',
+
+        // Dados pedagógicos e de perfil que ficavam para trás no logout: quem
+        // entrasse depois na mesma máquina herdava o histórico de quem saiu.
+        // 'nq-pending-leaderboard' era o pior deles — uma pontuação não
+        // enviada da conta anterior seria publicada no ranking pela próxima.
+        'nefroquest-all-answered-qids',
+        'nefroquest-difficulty-votes',
+        'nefroquest-error-reasons',
+        'nefroquest-rated-questions',
+        'nefroquest-recommended-difficulty',
+        'nefroquest-ritual-done',
+        'nefroquest_total_accumulated_knowledge',
+        'nefroquest-minigame-notified',
+        'nq-bib-favorites',
+        'nq-pending-leaderboard',
+        'nq-nickname-asked',
+        'nq_last_study'
       ];
       keys.forEach(k => localStorage.removeItem(k));
       _invalidateStatsCache();
     }
     window.clearLocalProgress = clearLocalProgress;
+
+    /* Preferências do APARELHO, não da conta — sobrevivem ao logout de
+     * propósito: volume e mute de música/efeitos, dispensa do convite de
+     * instalar o PWA e o interruptor de notificações. Trocar de conta não
+     * deveria devolver o som no volume máximo. A lista existe nomeada para o
+     * teste 37 poder afirmar as duas metades: o que some e o que fica. */
+    window.NQ_DEVICE_KEYS = [
+      'nefroquest-music',
+      'nefroquest-music-vol',
+      'nefroquest-sound',
+      'nefroquest-sfx-vol',
+      'nq_notif_enabled',
+      'pwa-dismissed',
+      // Qual versão do app este navegador tem em cache. Apagar no logout faria
+      // a próxima sessão achar que é uma instalação nova e disparar a rotina de
+      // limpeza de cache sem motivo.
+      'nq-sw-version'
+    ];
 
     // ============ CLOUD SYNC (progresso na nuvem para usuários logados) ============
     let _cloudSyncTimer = null;
