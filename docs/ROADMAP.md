@@ -25,26 +25,28 @@ Limites operacionais:
 
 ## Checkpoint operacional para continuidade
 
-- **Branch:** `codex/reconciliacao-docs` (a reconciliação de documentação; o conserto de segurança já está na main)
-- **Última etapa trabalhada:** NQ-00A — stored XSS do painel administrativo, **publicado**
-- **Release em produção:** `14.76`
-- **Próxima ação única:** confirmar, com sessão autenticada, que o painel admin de produção renderiza os registros como texto — é o único item de NQ-00A que depende de olho humano. Depois, iniciar NQ-00B.
+- **Última etapa:** NQ-01, isolamento de conta — publicado na v14.78
+- **Em produção:** `14.78`
+- **Próxima ação única:** escolher entre os dois eixos restantes do NQ-01 — merge determinístico entre dispositivos, ou transição atômica do Service Worker.
 
-Evidência datada de 22/08/2026:
+Entregue em 22/08/2026, tudo com verificação vermelho/verde e suíte completa limpa:
 
-- `js/admin.js` trata `question_id` e `current_diff` persistidos como texto não confiável; está assim no arquivo servido por `nefroquest.com`, conferido no ar;
-- o teste `tests/specs/35-admin-stored-xss.spec.ts` foi verificado vermelho/verde vetor a vetor: com o conserto, 0 nós injetados; revertendo só `question_id`, 1; revertendo só `LABEL[c.current]`, 1; revertendo os dois, 2. Cada escape é guardado individualmente;
-- o teste integra o job `smoke-e2e`, que bloqueia merge, e roda em Chromium e mobile;
-- suíte completa local: **486 passed, 14 skipped, 2 flaky, 0 failed**. Os dois flaky não são mais os de `page.goto`/`page.reload` — são a11y do spec 21 e o overlay `goldMilestonePopup` no spec 33 mobile, ambos alheios a NQ-00A e verdes na CI;
-- `specs/26-memoria-fsrs.spec.ts` revalidado: **18/18** com `--repeat-each=3 --retries=0`, sem flake;
-- PR [#762](https://github.com/orlandobrunet-sketch/base-verification/pull/762) mergeado como `23269e3`; CI verde nos quatro checks, incluindo Full E2E;
-- a migration `018_public_feedback_input_constraints.sql` **foi aplicada** ao Supabase de produção (`wviutasgroltjuyxpevc`), registrada como `20260822013131`;
-- as três constraints foram provadas contra o banco real: insert com markup em `question_id` (nas duas tabelas) e em `current_diff` foi **recusado**; insert legítimo foi **aceito**. A prova rodou em bloco que desfaz tudo — contagens antes e depois idênticas (12 avaliações, 10 votos), zero resíduo;
-- nenhuma linha existente contém markup em `question_id`, `question_text` ou `current_diff`. **Não há payload legado no banco** — a conferência visual no painel vai confirmar ausência, não neutralização;
-- o contrato do qid foi medido antes de aplicar a constraint: 742 questões em `data/topics.js`, todas com qid de 8 hex, zero duplicatas, `diff` só easy/medium/hard;
-- **não existe CSP em `nefroquest.com`** — nem header, nem `<meta http-equiv>`, em nenhuma das duas páginas. GitHub Pages não permite definir header de resposta, então a única via é `<meta>` no HTML;
-- `public.question_error_reasons` também recebe `question_id` por insert público e **não** é coberta pela 018. Hoje não há vetor: nenhum caminho do app lê essa tabela. Vira risco se alguém passar a renderizá-la;
-- nenhum conteúdo médico foi alterado ou reclassificado.
+| Entrega | PR | Versão |
+|---|---|---|
+| Stored XSS do painel administrativo (NQ-00A) | [#762](https://github.com/orlandobrunet-sketch/base-verification/pull/762) | 14.76 |
+| Reconciliação de documentação | [#763](https://github.com/orlandobrunet-sketch/base-verification/pull/763) | — |
+| Gate médico-editorial (NQ-00B) | [#764](https://github.com/orlandobrunet-sketch/base-verification/pull/764) | — |
+| Cabeçalho: regras órfãs do #761 | [#765](https://github.com/orlandobrunet-sketch/base-verification/pull/765) | 14.77 |
+| Isolamento de conta (NQ-01, 1º eixo) | [#766](https://github.com/orlandobrunet-sketch/base-verification/pull/766) | 14.78 |
+
+Pendências que dependem do proprietário:
+
+- conferir o painel admin de produção com sessão autenticada — o banco não tem payload legado, então é conferência de ausência;
+- confirmar o recorte de ações do gate editorial (ver NQ-00B);
+- **não existe CSP em `nefroquest.com`** — medido: 161 handlers inline e 12 blocos de script inline. Sem `unsafe-inline` o app quebra; com `unsafe-inline` a CSP não protege. Fica atrás de um refactor do modelo de eventos, e não é urgente porque o vetor real está fechado no render e no banco;
+- `public.question_error_reasons` recebe insert público de `question_id` sem allowlist. Não é vetor hoje: nenhum caminho do app lê a tabela.
+
+Nenhum conteúdo médico foi alterado ou reclassificado em nenhuma das cinco entregas.
 
 ## Norte do produto
 
@@ -103,30 +105,27 @@ Não marcar NQ-00A como encerrado apenas porque o teste local passou. Duas das q
 
 #### NQ-00B — Gate médico-editorial cumulativo
 
-**Estado:** `PRONTO PARA INICIAR` depois do fechamento operacional de NQ-00A.
+**Estado:** implementado e em vigor desde 22/08/2026 ([#764](https://github.com/orlandobrunet-sketch/base-verification/pull/764)).
 
-Escopo pendente:
+- [x] o validador exige veredito, Evidência, Pendência e Publicação por item;
+- [x] publicação bloqueada, pendência decisiva e combinações inválidas falham na CI — os cinco arquivos de teste do validador NUNCA haviam rodado na CI; agora rodam no job Quality Gates, que bloqueia merge;
+- [x] o gate técnico não afirma aprovação clínica por conta própria, e há teste garantindo que nenhum caminho devolve LIBERADA sem veredito de aprovação declarado.
 
-- fazer o validador editorial exigir veredito, Evidência, Pendência e Publicação;
-- provar que publicação bloqueada, pendência decisiva e combinações inválidas falham na CI;
-- confirmar que o gate técnico nunca afirma aprovação clínica por conta própria.
+A Regra 7 foi percorrida por inteiro: das 63 combinações dos três eixos, exatamente quatro produzem LIBERADA. Verificação vermelho/verde desligando uma regra do Handbook por vez.
 
-Pronto quando:
+Os 132 manifests históricos não declaram os eixos e não são revalidados — o portão vale para o lote que o PR altera. **O próximo PR de lote editorial falha até declarar os quatro campos.** Formato documentado em `docs/editorial/review-batches/README.md`.
 
-- payload persistido é exibido como texto, nunca executado;
-- inserts inválidos são rejeitados na fronteira correta;
-- todos os cenários negativos do Handbook travam o merge;
-- o gate técnico não afirma aprovação clínica por conta própria.
+Decisão de recorte a confirmar: os eixos são exigidos nas ações `rebuild`, `refs_only`, `add` e `reviewed_unchanged`, e não em `technical_only` nem `retire`. Fica num único `Set` no topo de `manifest.mjs`.
 
 ### NQ-01 — Isolamento de conta, sincronização e atualização atômica
 
-**Status:** `PRONTO PARA INICIAR`
+**Status:** `ATIVO` — isolamento de conta fechado na v14.78; faltam o merge entre dispositivos e a transição atômica do Service Worker
 **Resultado:** uma conta nunca herda dados de outra, dois dispositivos não apagam o melhor histórico e uma release nunca mistura HTML novo com JS/CSS antigo.
 
 Escopo:
 
-- inventariar toda chave local como global, por dispositivo ou por conta;
-- limpar no logout competências, erros, conhecimento, favoritos, histórico, votos e avaliações locais;
+- [x] inventariar toda chave local como global, por dispositivo ou por conta — 32 chaves medidas, nenhuma dinâmica, nenhuma em sessionStorage;
+- [x] limpar no logout competências, erros, conhecimento, favoritos, histórico, votos e avaliações locais — doze chaves ficavam para trás, incluindo uma pontuação pendente que seria publicada no ranking pela conta seguinte ([#766](https://github.com/orlandobrunet-sketch/base-verification/pull/766));
 - versionar o payload da Central e definir merge determinístico por resposta/evento;
 - testar duas contas e dois dispositivos com estados concorrentes;
 - tornar a transição do Service Worker version-aware/atômica, com aviso ou reload seguro;
