@@ -712,6 +712,91 @@
       } catch(e) { _track('error_cloud_sync', { msg: String(e) }); }
     }
 
+    /* Fusão de estatísticas detalhadas entre dois aparelhos.
+     *
+     * REGRA: o histórico nunca anda para trás. Toda operação aqui é monotônica
+     * — máximo para contadores, união para conjuntos — e comutativa: fundir A
+     * com B dá o mesmo que fundir B com A. Dois aparelhos convergem para o
+     * mesmo resultado, em qualquer ordem de sincronização.
+     *
+     * POR QUE MÁXIMO E NÃO SOMA nos contadores: os dois aparelhos partem de uma
+     * base comum sincronizada, então somar contaria duas vezes o que ambos já
+     * tinham. Somar inflaria o histórico — e inventar progresso é pior que
+     * perder um pouco. O máximo subestima quando há trabalho realmente
+     * disjunto, mas nunca mente para cima e nunca rebaixa o que já existia.
+     *
+     * A soma correta exige identidade por evento em TODOS os contadores, e não
+     * há: só o questionHistory carrega qid e data. Ali dá para fazer certo, e é
+     * o que se faz abaixo — união por evento, não máximo de tamanho. */
+    function _maxNumero(a, b) {
+      const na = Number(a), nb = Number(b);
+      return Math.max(Number.isFinite(na) ? na : 0, Number.isFinite(nb) ? nb : 0);
+    }
+
+    function _mergeMapaDeContadores(local, cloud) {
+      const fundido = {};
+      // Chaves em ordem canônica: sem isso o resultado depende de qual lado é o
+      // local, e a fusão deixa de ser determinística entre os dois aparelhos.
+      for (const chave of [...new Set([...Object.keys(local || {}), ...Object.keys(cloud || {})])].sort()) {
+        const a = (local || {})[chave];
+        const b = (cloud || {})[chave];
+        if (_isDetailedStatsRecord(a) || _isDetailedStatsRecord(b)) {
+          // Balde por tópico/categoria: { correct, wrong, ... } — máximo campo a campo.
+          const interno = {};
+          for (const k of [...new Set([...Object.keys(a || {}), ...Object.keys(b || {})])].sort()) {
+            interno[k] = _maxNumero((a || {})[k], (b || {})[k]);
+          }
+          fundido[chave] = interno;
+        } else {
+          fundido[chave] = _maxNumero(a, b);
+        }
+      }
+      return fundido;
+    }
+
+    function _mergeHistoricoDeQuestoes(local, cloud) {
+      // qid + data identificam a resposta. É a única parte do payload com
+      // identidade de evento, então aqui a união é exata: nada é contado duas
+      // vezes e nada de nenhum dos dois aparelhos se perde.
+      const porEvento = new Map();
+      for (const item of [...(Array.isArray(cloud) ? cloud : []), ...(Array.isArray(local) ? local : [])]) {
+        if (!_isDetailedStatsRecord(item)) continue;
+        porEvento.set(`${item.qid ?? ''}|${item.date ?? ''}`, item);
+      }
+      return [...porEvento.values()]
+        .sort((x, y) => String(y.date ?? '').localeCompare(String(x.date ?? ''))
+          || String(x.qid ?? '').localeCompare(String(y.qid ?? '')))
+        .slice(0, 100); // mesmo teto que trackQuestionAnswer aplica
+    }
+
+    function _mergeDetailedStats(local, cloud) {
+      const a = _isDetailedStatsRecord(local) ? local : {};
+      const b = _isDetailedStatsRecord(cloud) ? cloud : {};
+      if (!Object.keys(a).length) return b;
+      if (!Object.keys(b).length) return a;
+
+      return {
+        schemaVersion:  Math.max(Number(a.schemaVersion) || 0, Number(b.schemaVersion) || 0) || DETAILED_STATS_SCHEMA_VERSION,
+        totalQuestions: _maxNumero(a.totalQuestions, b.totalQuestions),
+        totalCorrect:   _maxNumero(a.totalCorrect,   b.totalCorrect),
+        totalWrong:     _maxNumero(a.totalWrong,     b.totalWrong),
+        byTopic:        _mergeMapaDeContadores(a.byTopic,       b.byTopic),
+        byCategory:     _mergeMapaDeContadores(a.byCategory,    b.byCategory),
+        dailyActivity:  _mergeMapaDeContadores(a.dailyActivity, b.dailyActivity),
+        mostMissed:     _mergeMapaDeContadores(a.mostMissed,    b.mostMissed),
+        timeStats: {
+          totalTime:     _maxNumero(a.timeStats?.totalTime,     b.timeStats?.totalTime),
+          questionCount: _maxNumero(a.timeStats?.questionCount, b.timeStats?.questionCount)
+        },
+        questionHistory: _mergeHistoricoDeQuestoes(a.questionHistory, b.questionHistory),
+        syncedMastered:  [...new Set([
+          ...(Array.isArray(a.syncedMastered) ? a.syncedMastered : []),
+          ...(Array.isArray(b.syncedMastered) ? b.syncedMastered : [])
+        ])].sort()
+      };
+    }
+    window._mergeDetailedStats = _mergeDetailedStats;
+
     function _mergeCloudProgress(cloud) {
       if (!cloud || typeof cloud !== 'object') return;
 
@@ -745,13 +830,17 @@
       if (cloud.arquiDefeated)     localStorage.setItem('nefroquest-arqui-defeated', '1');
       if (cloud.hardcoreCompleted) localStorage.setItem('nefroquest-hardcore-completed', '1');
 
-      // Stats detalhadas: local prevalece se existir, nuvem preenche o que faltar
+      // Stats detalhadas: fusão campo a campo, monotônica.
+      //
+      // Antes: "local prevalece se existir". Bastava o segundo aparelho ter uma
+      // única questão respondida para DESCARTAR inteiro o histórico da nuvem —
+      // e o sync seguinte subia a versão pobre por cima da rica. Dois aparelhos
+      // apagavam o melhor histórico, que é o defeito nomeado no NQ-01.
       if (cloud.detailedStats && typeof cloud.detailedStats === 'object') {
         let local = {};
         try { local = JSON.parse(localStorage.getItem('nefroquest-detailed-stats') || '{}'); } catch(e) {}
-        if (!Object.keys(local).length) {
-          try { localStorage.setItem('nefroquest-detailed-stats', JSON.stringify(cloud.detailedStats)); } catch(e) { console.error('[NQ] saveDetailedStats (cloud merge) failed', e); }
-        }
+        const fundido = _mergeDetailedStats(local, cloud.detailedStats);
+        try { localStorage.setItem('nefroquest-detailed-stats', JSON.stringify(fundido)); } catch(e) { console.error('[NQ] saveDetailedStats (cloud merge) failed', e); }
       }
 
       // Save em andamento: prevalece o mais recente (por timestamp)
@@ -804,6 +893,7 @@
         try { localStorage.setItem('nefroquest-sr-data', JSON.stringify(mergedSR)); } catch(e) { console.error('[NQ] saveSRData (cloud merge) failed', e); }
       }
     }
+    window._mergeCloudProgress = _mergeCloudProgress;
 
     async function _loadProgressFromCloud() {
       if (!authUser || !_supaClient) return;
