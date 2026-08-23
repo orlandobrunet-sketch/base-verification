@@ -253,7 +253,7 @@ jobs:
 
       - name: Run Playwright smoke tests
         working-directory: tests
-        run: npx playwright test specs/01-landing.spec.ts specs/09-unit-pure-functions.spec.ts specs/35-admin-stored-xss.spec.ts specs/36-shell-cabecalho.spec.ts specs/37-isolamento-de-conta.spec.ts --reporter=list --timeout=20000
+        run: npx playwright test specs/01-landing.spec.ts specs/09-unit-pure-functions.spec.ts specs/35-admin-stored-xss.spec.ts specs/36-shell-cabecalho.spec.ts specs/37-isolamento-de-conta.spec.ts specs/39-fusao-entre-aparelhos.spec.ts --reporter=list --timeout=20000
         env:
           BASE_URL: http://localhost:5500
 
