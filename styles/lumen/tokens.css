@@ -3,6 +3,28 @@
  * Tokens provisórios. Só se tornam estáveis após validação em duas telas reais.
  */
 
+/* As três famílias tipográficas vivem no :root, e não só em [data-nq-ui="lumen"].
+ *
+ * Motivo, medido: o game.css declara `font-family: var(--nql-font-body)` no
+ * próprio <body>. Mas os tokens estavam escopados em [data-nq-ui="lumen"], que
+ * casa com #mainApp e #welcomeScreen — nunca com o <body>. A variável não
+ * resolvia ali, a declaração virava inválida, e o navegador caía no seu serif
+ * padrão: Times New Roman.
+ *
+ * Quem estava DENTRO de um contêiner Lúmen não sentia nada. Quem é pendurado
+ * direto no <body> — os modais de Preços, Privacidade, Conta e Biblioteca —
+ * renderizava em Times, uma fonte que não existe no sistema visual.
+ *
+ * As variáveis de cor não tinham o problema porque o game.css as redeclara no
+ * body; as de fonte, ninguém redeclarava. Duplicar as três aqui é a correção
+ * mínima: nada que já resolvia muda de valor, e o body passa a resolver o que a
+ * própria regra dele sempre pediu. */
+:root {
+  --nql-font-display: "Alegreya", Georgia, serif;
+  --nql-font-body: "Source Sans 3", "Segoe UI", sans-serif;
+  --nql-font-instrument: "IBM Plex Mono", Consolas, monospace;
+}
+
 [data-nq-ui="lumen"] {
   color-scheme: dark;
 
