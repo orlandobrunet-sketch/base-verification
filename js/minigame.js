@@ -274,9 +274,27 @@
     window.showRapidQuizMinigame = showRapidQuizMinigame;
     window.showStandaloneMinigame = function() { showRapidQuizMinigame(true); };
 
+    /* As etapas do Confronto Final só existem se o Confronto Final existir.
+     *
+     * Elas eram escolhidas apenas pelo contador de acertos, e o contador pode
+     * estar alto sem a batalha estar acontecendo: o atalho de administrador
+     * "pular para o chefe" grava correctTotal = 90 no save e reembaralha o
+     * baralho, sem tocar em nível nem pontos. A partir daí, três acertos em
+     * QUALQUER sessão futura levavam o contador a 93 e o feitiço da Azotemia
+     * caía sobre alguém no começo da jornada — com o layout normal na tela,
+     * porque isBossBattle() já respondia "não".
+     *
+     * isBossBattle() sempre soube a resposta certa (jogo começado, contador em
+     * 90 ou mais, jornada não concluída). Faltava consultá-la. */
+    function _ehEtapaDoConfrontoFinal(stage) {
+      return stage.stun === true || stage.stunRecovery === true || stage.boss === true;
+    }
+
     function checkNarrative(){
+      const _noConfronto = typeof isBossBattle === 'function' ? isBossBattle() : true;
+
       // Popup especial de intro do boss ao atingir 90 acertos
-      if (state.correctTotal === BOSS_START_CORRECT && !state.bossIntroShown) {
+      if (state.correctTotal === BOSS_START_CORRECT && !state.bossIntroShown && _noConfronto) {
         state.bossIntroShown = true;
         state.narrativeShown = BOSS_START_CORRECT; // marca capítulo 90 como visto
         _track('boss_entered', { level: state.level, score: state.score, difficulty: state.difficulty });
@@ -287,6 +305,9 @@
       if (state.correctTotal >= 100) return;
       const stage = narrativeStages.find(s => s.at === state.correctTotal && state.narrativeShown < s.at);
       if(!stage) return;
+      // Não marca como vista: se o Confronto Final começar de verdade mais
+      // tarde, a etapa ainda tem de poder acontecer.
+      if (_ehEtapaDoConfrontoFinal(stage) && !_noConfronto) return;
       state.narrativeShown = stage.at;
       showNarrativePopup(stage);
       // Chance de minigame após narrativa em checkpoints específicos
