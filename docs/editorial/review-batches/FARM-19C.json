@@ -1,0 +1,29 @@
+{
+  "batch": "FARM-19C",
+  "change_type": "medical_editorial",
+  "expected_version": "14.82",
+  "allowed_files": ["data/refs.js","data/topics.js","docs/editorial/review-batches/FARM-19C.json","index.html","jogar/index.html","sw.js","version.json"],
+  "questions": {
+    "ccd15912": {"action":"rebuild","preserve_fsrs":true,"evidencia":"VERIFICADA","pendencia":"NENHUMA","veredito":"aprovada","publicacao":"LIBERADA"},
+    "673a9acf": {"action":"rebuild","preserve_fsrs":true,"evidencia":"VERIFICADA","pendencia":"NENHUMA","veredito":"aprovada","publicacao":"LIBERADA"},
+    "75d13f79": {"action":"rebuild","preserve_fsrs":true,"evidencia":"VERIFICADA","pendencia":"NENHUMA","veredito":"aprovada","publicacao":"LIBERADA"},
+    "b3c68540": {"action":"retire","preserve_fsrs":false}
+  },
+  "expected_question_delta": -1,
+  "refs_policy": "declared",
+  "references": {
+    "heilijgers_nutcracker_delphi_2025": {"action":"add","source":"J Vasc Surg Venous Lymphat Disord. 2025;13(1):101970; PMID:39362632; doi:10.1016/j.jvsv.2024.101970","required_fields":["resumo","conclusao","curiosidade"]},
+    "fine_one_2025": {"action":"remove","reason":"Card órfão e não verificável, antes consumido apenas pelo item FIDELIO duplicado apesar de descrever outro objeto clínico."}
+  },
+  "external_review": {"greptile":"unavailable","fallback_reviewer":"Codex revisar-nefroquest + official editorial-batch validator"},
+  "notes": [
+    "Autorização explícita do proprietário: FARM-13C e todos os lotes seguintes.",
+    "O item ccd15912 foi reconstruído para distinguir fenômeno radiológico assintomático de síndrome de Nutcracker clínica, sem transformar imagem isolada em diagnóstico ou indicação invasiva.",
+    "O item 673a9acf foi reconstruído com a conjunção prognóstica da KDIGO: diálise na apresentação, 100% de crescentes em biópsia adequada e ausência de hemorragia pulmonar.",
+    "O item 75d13f79 foi reconstruído para exigir confirmação quantitativa de fita reagente positiva, evitando inferir faixa nefrótica a partir de resultado semiquantitativo e dependente da concentração urinária.",
+    "O item b3c68540 foi fundido ao qid 13e53210 e retirado por duplicação clínica, mecanística, pedagógica e bibliográfica do FIDELIO-DKD; o card fine_one_2025, inadequado ao objeto, não verificável e tornado órfão pela retirada, também foi removido.",
+    "O Advogado do Recurso confirmou que cada alternativa correta permanece válida sob leitura literal e que os qualificadores clínicos decisivos constam do enunciado.",
+    "As três reconstruções receberam Evidência VERIFICADA, Pendência NENHUMA, veredito aprovada e Autorização de publicação LIBERADA; o item duplicado não foi republicado.",
+    "O novo card do Grimório contém resumo, conclusão e curiosidade e é consumido pelo item publicado neste lote."
+  ]
+}
