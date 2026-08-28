@@ -27,7 +27,7 @@ Limites operacionais:
 
 - **Última etapa publicada:** correção da colisão de duas releases `14.82` — versão única `14.83`, PR [#773](https://github.com/orlandobrunet-sketch/base-verification/pull/773)
 - **Em produção:** `14.83`, verificada em 26/08/2026 por `version.json` e pelo cache `nefroquest-v14.83`
-- **Em validação:** `codex/admin-boss-preview-safe` — sandbox da demonstração do chefe, candidata a `14.84`
+- **Em validação:** PR [#774](https://github.com/orlandobrunet-sketch/base-verification/pull/774) — sandbox da demonstração do chefe, candidata a `14.84`
 - **Próxima ação única:** publicar a prévia segura; em seguida retomar a transição atômica do Service Worker.
 
 Entregue em 22/08/2026, tudo com verificação vermelho/verde e suíte completa limpa:
@@ -89,7 +89,7 @@ O ciclo recente feito com Claude Code foi auditado em [`audits/CLAUDE_CODE_REVIE
 
 #### NQ-00C — Prévia administrativa contaminava o progresso real
 
-**Estado:** correção implementada e em validação na candidata `14.84`.
+**Estado:** correção implementada e em validação na candidata `14.84`, PR [#774](https://github.com/orlandobrunet-sketch/base-verification/pull/774).
 
 A causa não era apenas um `saveGame()` explícito. O atalho “Fase Final” alterava
 o mesmo `Proxy` da jornada, cujo autosave persistia os 90 acertos fictícios.
