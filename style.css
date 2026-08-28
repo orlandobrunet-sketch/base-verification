@@ -13577,3 +13577,62 @@ body.boss-stun-active #equipList .slot-diablo {
 
 /* Frame dourado consistente nos cards de seleção de classe (em repouso) */
 .char-card img { border-color: var(--gold-dark); }
+/* Demonstrações administrativas nunca se confundem com progresso real. */
+.progress-sandbox-banner {
+  position: fixed;
+  z-index: 10050;
+  top: max(10px, env(safe-area-inset-top));
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: calc(100vw - 24px);
+  padding: 9px 10px 9px 14px;
+  color: #d9edf2;
+  background: rgba(6, 16, 29, .96);
+  border: 1px solid rgba(141, 221, 231, .58);
+  border-radius: 10px;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, .42);
+  font-size: .78rem;
+  line-height: 1.25;
+}
+
+.progress-sandbox-banner strong {
+  color: #9fe7ee;
+  font-family: var(--font-ui, Cinzel, serif);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.progress-sandbox-banner button {
+  min-height: 36px;
+  padding: 7px 11px;
+  color: #06101d;
+  background: #9fe7ee;
+  border: 0;
+  border-radius: 7px;
+  font: 700 .72rem/1 var(--font-ui, Cinzel, serif);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.progress-sandbox-banner button:hover,
+.progress-sandbox-banner button:focus-visible {
+  background: #d1f7fa;
+  outline: 2px solid #f4d77a;
+  outline-offset: 2px;
+}
+
+@media (max-width: 560px) {
+  .progress-sandbox-banner {
+    right: 10px;
+    left: 10px;
+    transform: none;
+    justify-content: space-between;
+  }
+
+  .progress-sandbox-banner button {
+    min-height: 44px;
+  }
+}

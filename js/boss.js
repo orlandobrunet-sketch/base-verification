@@ -360,30 +360,57 @@
      * Inicia diretamente o Confronto Final para revisão rápida.
      * Usa o primeiro personagem, seta correctTotal=90 e salta para o jogo.
      */
-    function startBossPreview() {
-      // Escolhe Dr. Nephros como personagem padrão
-      state.character = 'nephros';
-      // Inicializa estado
-      Object.assign(state, {
-        level: 12, xp: 0, xpToNext: 500,
-        score: 24970, lives: 3, streak: 0, gold: 500,
-        current: null, answered: false, bonusUses: 0,
-        correctTotal: 90, narrativeShown: 90, bossIntroShown: true,
-        gameOver: false, gameStarted: true,
-        extraLifeGiven: false, gameCompleted: false,
-        completedGame: false, chestsOpened: 3
-      });
-      state.equipment = {
-        helmet: { n:'Elmo do Filtrador Supremo', rar:'legendary', atk:5, def:5, kno:10, luck:3 },
-        glove:  { n:'Luvas de Látex Reforçadas', rar:'common',    atk:1, def:2, kno:0,  luck:0 },
-        armor:  { n:'Égide Dialítica',           rar:'epic',      atk:2, def:7, kno:3,  luck:1 },
-        weapon: { n:'Lança Glomerular',          rar:'rare',      atk:4, def:1, kno:2,  luck:1 },
-        relic:  { n:'Orbe da Cistatina',         rar:'epic',      atk:2, def:2, kno:6,  luck:2 },
-        boot:   { n:'Botas da Pressão Controlada', rar:'epic',    atk:1, def:6, kno:2,  luck:2 }
-      };
-      state.heroName = 'Previewer';
+    async function startBossPreview(options) {
+      const opts = options || {};
+      try {
+        const loads = [];
+        if (!questionBank) loads.push(_loadTopics());
+        if (typeof carregarDadosGrimorio === 'function') loads.push(carregarDadosGrimorio());
+        await Promise.all(loads);
+      } catch {
+        _toast('Erro ao carregar a demonstração. Recarregue a página.', 'error', 5000);
+        return;
+      }
+      beginProgressSandbox('boss-preview');
 
-      // Fecha welcome
+      if (!opts.preservePlayer) {
+        // Cenário completo para o link de desenvolvimento.
+        state.character = 'nephros';
+        Object.assign(state, {
+          level: 12, xp: 0, xpToNext: 500,
+          score: 24970, lives: 3, streak: 0, gold: 500,
+          current: null, answered: false, bonusUses: 0,
+          correctTotal: 90, narrativeShown: 90, bossIntroShown: true,
+          battleFinalShown: false, gameOver: false, gameStarted: true,
+          extraLifeGiven: false, gameCompleted: false,
+          completedGame: false, chestsOpened: 3
+        });
+        state.equipment = {
+          helmet: { n:'Elmo do Filtrador Supremo', rar:'legendary', atk:5, def:5, kno:10, luck:3 },
+          glove:  { n:'Luvas de Látex Reforçadas', rar:'common',    atk:1, def:2, kno:0,  luck:0 },
+          armor:  { n:'Égide Dialítica',           rar:'epic',      atk:2, def:7, kno:3,  luck:1 },
+          weapon: { n:'Lança Glomerular',          rar:'rare',      atk:4, def:1, kno:2,  luck:1 },
+          relic:  { n:'Orbe da Cistatina',         rar:'epic',      atk:2, def:2, kno:6,  luck:2 },
+          boot:   { n:'Botas da Pressão Controlada', rar:'epic',    atk:1, def:6, kno:2, luck:2 }
+        };
+        state.heroName = 'Previewer';
+      } else {
+        // O atalho admin preserva personagem, equipamentos e números do
+        // jogador apenas na memória, alterando somente o estágio em revisão.
+        if (!state.character) state.character = 'nephros';
+        Object.assign(state, {
+          current: null, answered: false,
+          correctTotal: BOSS_START_CORRECT,
+          narrativeShown: BOSS_START_CORRECT,
+          bossIntroShown: true, battleFinalShown: false,
+          gameOver: false, gameStarted: true,
+          gameCompleted: false, completedGame: false
+        });
+      }
+
+      // Fecha Portal e Átrio. O preview antigo deixava o Portal por cima do
+      // jogo quando aberto pelo link de desenvolvimento.
+      document.getElementById('landingScreen')?.classList.add('hidden');
       document.getElementById('welcomeScreen')?.classList.add('hidden');
       document.getElementById('mainApp')?.classList.remove('hidden');
       document.getElementById('actionDock')?.classList.remove('hidden');
@@ -397,10 +424,10 @@
       renderQuestion();
       updateBossUI();
       applyBossOptionBadges();
-      saveGame();
 
       // Toca som de boss
       setTimeout(() => playSound('boss'), 400);
+      if (opts.showIntro) setTimeout(() => showBossIntroPopup(), 50);
     }
 
     // ============================================================
@@ -505,6 +532,10 @@
     }
     
     async function startGameWithCharacter() {
+      if (isProgressSandbox()) {
+        exitProgressSandbox();
+        return;
+      }
       // Convidados usam _showGuestHook (hook suave em 15 questões), não o paywall global
       if (!_guestMode && !isPremium() && getGameStats().questionsAnsweredAllTime >= FREE_QUESTIONS_LIMIT) {
         showPricingModal();

@@ -79,6 +79,17 @@ export async function pickFirstOption(page: Page) {
 /** Responde e avança */
 export async function answerAndAdvance(page: Page) {
   await pickFirstOption(page);
+  // O save-base começa com 80 de ouro. Se a alternativa sorteada for a
+  // correta, a recompensa pode cruzar o marco de 100 e abrir a explicação
+  // modal antes da próxima carta. O teste deve percorrer essa UI real em vez
+  // de tentar clicar através do overlay.
+  const goldMilestone = page.locator('#goldMilestonePopup');
+  try {
+    await goldMilestone.waitFor({ state: 'visible', timeout: 900 });
+    await goldMilestone.getByRole('button', { name: 'Entendido!' }).click();
+  } catch {
+    // Sem marco nesta resposta: segue diretamente para a próxima carta.
+  }
   const nextBtn = page.locator('#nextBtn:not(.hidden)');
   await expect(nextBtn).toBeVisible({ timeout: 5_000 });
   await nextBtn.click();

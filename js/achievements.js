@@ -170,6 +170,7 @@
     }
     
     function saveUnlockedAchievements(unlocked) {
+      if (typeof isProgressSandbox === 'function' && isProgressSandbox()) return;
       try { localStorage.setItem(ACHIEVEMENTS_KEY, JSON.stringify(unlocked)); } catch(e) {
         if (typeof _toast === 'function') _toast('Conquista desbloqueada, mas não foi possível salvar localmente — armazenamento cheio.', 'warning', 6000);
         if (typeof _track === 'function') _track('error_localstorage_achievements', {});
@@ -178,6 +179,7 @@
     }
     
     function checkAchievements() {
+      if (typeof isProgressSandbox === 'function' && isProgressSandbox()) return;
       const stats = getDetailedStats();
       const unlocked = getUnlockedAchievements();
       const newUnlocked = [];
