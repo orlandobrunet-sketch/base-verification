@@ -12,31 +12,10 @@
         catch { _toast('Erro ao carregar questões. Recarregue a página.', 'error', 5000); return; }
       }
 
-      if (!state.gameStarted) {
-        if (!state.selectedCharacter) state.selectedCharacter = 'nephros';
-        state.gameStarted = true;
-        document.getElementById('welcomeScreen')?.classList.add('hidden');
-        document.getElementById('mainApp')?.classList.remove('hidden');
-        document.getElementById('actionDock')?.classList.remove('hidden');
-      }
-      // Reseta o estado de "jogo concluído". Sem isto, quem já derrotou o
-      // Arqui-Nefromante carrega gameCompleted=true (game.js:809, flag sticky
-      // em localStorage 'nefroquest-arqui-defeated') e isBossBattle() retorna
-      // false — o layout do boss nunca ativa. Espelha o reset do restart.
-      state.gameCompleted = false;
-      state.completedGame = false;
-      state.gameOver = false;
-      state.correctTotal = BOSS_START_CORRECT;
-      state.narrativeShown = BOSS_START_CORRECT;
-      state.bossIntroShown = true;
-      state.battleFinalShown = false;
-      shuffleQueue();
-      renderHUD();
-      updateBadges();
-      renderQuestion();
-      updateBossUI();
-      applyBossOptionBadges();
-      setTimeout(() => showBossIntroPopup(), 50);
+      // Um único caminho de preview evita que o atalho administrativo volte a
+      // usar o estado persistente da jornada. Personagem e loadout são mantidos
+      // apenas para inspeção visual; ao sair, a página recarrega o save real.
+      startBossPreview({ preservePlayer: true, showIntro: true });
     }
 
     function openAdminPanel() {

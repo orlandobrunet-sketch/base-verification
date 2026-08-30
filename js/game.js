@@ -39,6 +39,9 @@
           });
         }
       });
+      // A demonstração do chefe deve mostrar os selos correspondentes aos
+      // 90 acertos fictícios, mas jamais anunciá-los nem registrá-los no perfil.
+      if (typeof isProgressSandbox === 'function' && isProgressSandbox()) return;
 
       const announced = (() => {
         try {
@@ -98,12 +101,14 @@
     function checkGameCompletion() {
       if (state.correctTotal >= 100 && !state.gameCompleted) {
         state.gameCompleted = true;
-        localStorage.setItem('nefroquest-arqui-defeated', '1');
-        if (state.difficulty === 'hardcore') {
-          localStorage.setItem('nefroquest-hardcore-completed', '1');
+        if (!isProgressSandbox()) {
+          localStorage.setItem('nefroquest-arqui-defeated', '1');
+          if (state.difficulty === 'hardcore') {
+            localStorage.setItem('nefroquest-hardcore-completed', '1');
+          }
+          _track('game_completed', { difficulty: state.difficulty, level: state.level, score: state.score });
+          checkAchievements();
         }
-        _track('game_completed', { difficulty: state.difficulty, level: state.level, score: state.score });
-        checkAchievements();
         showGameCompletionModal();
       }
     }
@@ -374,6 +379,7 @@
     }
 
     function updateGameStats() {
+      if (isProgressSandbox()) return;
       const stats = getGameStats();
       stats.gamesPlayed++;
       if (state.level > stats.bestLevel) stats.bestLevel = state.level;
@@ -458,6 +464,7 @@
     }
 
     function _incrementQuestionsAnswered() {
+      if (isProgressSandbox()) return;
       const stats = getGameStats();
       stats.questionsAnsweredAllTime = (stats.questionsAnsweredAllTime || 0) + 1;
       try { localStorage.setItem(STATS_KEY, JSON.stringify(stats)); } catch(e) { _warnStorageFull(); }
@@ -468,6 +475,7 @@
     // Debounce do saveGame para evitar escritas excessivas no localStorage
     let _saveTimer = null;
     function saveGame() {
+      if (isProgressSandbox()) return;
       if (!state.gameStarted || state.gameOver) return;
       if (_saveTimer) return; // já agendado
       _saveTimer = setTimeout(() => {
@@ -476,6 +484,7 @@
       }, 300);
     }
     function _doSaveGame() {
+      if (isProgressSandbox()) return;
       if (!state.gameStarted || state.gameOver) return;
       const saveData = {
         level: state.level,
@@ -595,6 +604,7 @@
     }
     
     function deleteSave() {
+      if (isProgressSandbox()) return;
       localStorage.removeItem(SAVE_KEY);
       localStorage.removeItem('nefroquest-announced-badges');
       // Conta a jornada que começa, para o histórico de selos poder dizer em
@@ -669,6 +679,7 @@
     let _cloudSyncTimer = null;
 
     function _scheduleCloudSync() {
+      if (isProgressSandbox()) return;
       if (!authUser || !_supaClient) return;
       if (_cloudSyncTimer) clearTimeout(_cloudSyncTimer);
       _cloudSyncTimer = setTimeout(_syncProgressToCloud, 10000);
@@ -1510,6 +1521,7 @@
     // debounces saveGame() 500 ms after the last mutation, so rapid bursts
     // (Object.assign, level-up sequences) collapse into a single write.
     let _autoSaveTimer = null;
+    let _progressSandboxMode = null;
     const _stateData = {
       level:1,xp:0,xpToNext:200,score:0,lives:3,maxLives:3,streak:0,gold:0,difficulty:"normal",legendaryAbilityUsed:{},
       current:null,answered:false,queue:[],idx:0,bonusUses:0,
@@ -1531,11 +1543,63 @@
       set(target, key, value) {
         target[key] = value;
         _invalidateStatsCache();
-        clearTimeout(_autoSaveTimer);
-        _autoSaveTimer = setTimeout(saveGame, 500);
+        if (!_progressSandboxMode) {
+          clearTimeout(_autoSaveTimer);
+          _autoSaveTimer = setTimeout(saveGame, 500);
+        }
         return true;
       }
     });
+
+    function isProgressSandbox() {
+      return _progressSandboxMode !== null;
+    }
+
+    /**
+     * Isola demonstrações administrativas do progresso real.
+     *
+     * Antes de ativar o sandbox, consolida qualquer mutação legítima ainda
+     * pendente. Depois disso o Proxy continua movendo a UI em memória, mas
+     * save, perfil pedagógico, conquistas e sincronização ficam suspensos.
+     */
+    function beginProgressSandbox(mode) {
+      if (_progressSandboxMode) return;
+
+      clearTimeout(_autoSaveTimer);
+      _autoSaveTimer = null;
+      if (_saveTimer) {
+        clearTimeout(_saveTimer);
+        _saveTimer = null;
+      }
+      if (state.gameStarted && !state.gameOver) _doSaveGame();
+
+      _progressSandboxMode = mode || 'preview';
+      document.body.dataset.progressSandbox = _progressSandboxMode;
+      document.getElementById('progressSandboxBanner')?.remove();
+
+      const banner = document.createElement('div');
+      banner.id = 'progressSandboxBanner';
+      banner.className = 'progress-sandbox-banner';
+      banner.setAttribute('role', 'status');
+      banner.setAttribute('aria-label', 'Modo de demonstração');
+      banner.innerHTML =
+        '<span><strong>Demonstração</strong> · seu progresso real está protegido</span>' +
+        '<button type="button" data-action="exitProgressSandbox">Sair da demonstração</button>';
+      document.body.appendChild(banner);
+    }
+
+    function exitProgressSandbox() {
+      if (!isProgressSandbox()) return;
+      const cleanUrl = new URL(window.location.href);
+      cleanUrl.searchParams.delete('boss');
+      cleanUrl.searchParams.delete('dev');
+      window.history.replaceState({}, '', cleanUrl.pathname + cleanUrl.search + cleanUrl.hash);
+      window.location.reload();
+    }
+
+    window.isProgressSandbox = isProgressSandbox;
+    window.beginProgressSandbox = beginProgressSandbox;
+    window.exitProgressSandbox = exitProgressSandbox;
     // Exposto SÓ fora de produção (testes E2E rodam em localhost). Em produção,
     // expor o Proxy permitiria trapaça via DevTools (ex.: state.lives = 999,
     // state.correctTotal = 100) com persistência via saveGame. (Achado Greptile, PR #530.)
@@ -2861,25 +2925,26 @@
 
       const timeSpent = _questionStartTime > 0 ? Math.floor((Date.now() - _questionStartTime) / 1000) : 0;
       const isCorrect = i === state.current.a;
+      const recordsProgress = !isProgressSandbox();
       document.getElementById('mainApp')?.setAttribute('data-lumen-state', isCorrect ? 'mastery' : 'corruption');
       setLumenEvidenceAvailable(true);
       
       // Tracking de estatísticas
-      trackQuestionAnswer(state.current, isCorrect, timeSpent);
+      if (recordsProgress) trackQuestionAnswer(state.current, isCorrect, timeSpent);
 
       // Acumular erros da sessão para revisão no fim de partida
-      if (!isCorrect && state.current && typeof _sessionWrongAnswers !== 'undefined') {
+      if (recordsProgress && !isCorrect && state.current && typeof _sessionWrongAnswers !== 'undefined') {
         _sessionWrongAnswers.push(state.current);
       }
 
       // Marcar questão como dominada após resposta correta
-      if (isCorrect && state.current && state.current.id) {
+      if (recordsProgress && isCorrect && state.current && state.current.id) {
         _masteredSet.add(state.current.id);
         try { localStorage.setItem(MASTERED_KEY, JSON.stringify([..._masteredSet])); } catch(e) { console.error('[NQ] saveMastered failed', e); }
       }
 
       // Desbloquear refs do Grimório ao acertar
-      if (isCorrect && state.current?.r?.length) {
+      if (recordsProgress && isCorrect && state.current?.r?.length) {
         if (typeof _unlockRefsFromQuestion === 'function') {
           _unlockRefsFromQuestion(state.current.r);
         }
@@ -3146,17 +3211,21 @@
         if (ui.oraculoBtn) ui.oraculoBtn.classList.remove('hidden');
       }
 
-      _incrementQuestionsAnswered();
-      _checkPromoBanner();
+      if (recordsProgress) {
+        _incrementQuestionsAnswered();
+        _checkPromoBanner();
+      }
       // ── Analytics: question answered ──
-      _track('question_answered', {
-        correct: i === state.current.a,
-        difficulty: state.current.d,
-        is_boss: isBossBattle(),
-        boss_progress: isBossBattle() ? getBossProgress() : undefined,
-        streak: state.streak,
-        level: state.level,
-      });
+      if (recordsProgress) {
+        _track('question_answered', {
+          correct: i === state.current.a,
+          difficulty: state.current.d,
+          is_boss: isBossBattle(),
+          boss_progress: isBossBattle() ? getBossProgress() : undefined,
+          streak: state.streak,
+          level: state.level,
+        });
+      }
       renderHUD();
       updateBadges();
       if(state.lives<=0) {
@@ -3208,7 +3277,7 @@
         checkAchievements();
       }
 
-      setTimeout(renderQuestionRatingUI, 50);
+      if (recordsProgress) setTimeout(renderQuestionRatingUI, 50);
     }
 
     // ── Avaliação 5★ por questão (qualidade + aprendizado) ──────────────
@@ -3221,6 +3290,10 @@
     let _pendingRating = null; // { qid, qtext, quality, learning, saved }
 
     async function flushPendingRating() {
+      if (isProgressSandbox()) {
+        _pendingRating = null;
+        return;
+      }
       const p = _pendingRating;
       _pendingRating = null;
       if (!p || p.saved) return;
@@ -3359,6 +3432,7 @@
     };
 
     async function submitErrorReason(qid, chosenIdx, reason) {
+      if (isProgressSandbox()) return;
       try {
         const data = JSON.parse(localStorage.getItem('nefroquest-error-reasons') || '{"counts":{},"log":[]}');
         data.counts[reason] = (data.counts[reason] || 0) + 1;
@@ -3384,6 +3458,7 @@
     // questão por usuário (reenvia se mudar de opinião). Alimenta a
     // reclassificação inteligente do banco no painel admin.
     async function submitDifficultyVote(qid, vote, currentDiff) {
+      if (isProgressSandbox()) return;
       if (!qid || !['easy', 'medium', 'hard'].includes(vote)) return;
       let votes = {};
       try { votes = JSON.parse(localStorage.getItem('nefroquest-difficulty-votes') || '{}'); } catch (e) {}
@@ -3457,6 +3532,13 @@
     let pendingScore = null;
     
     function finishGame(){
+      if (isProgressSandbox()) {
+        // Mantém a tela final disponível para inspeção, sem estatísticas,
+        // ranking, limpeza do save real ou sincronização.
+        pendingScore = null;
+        finishGameUI();
+        return;
+      }
       // Atualizar estatísticas e limpar save
       updateGameStats();
       deleteSave();
@@ -3805,6 +3887,7 @@
     let _goldMilestoneShown = (() => { try { return localStorage.getItem(GOLD_MILESTONE_KEY) === '1'; } catch (e) { return false; } })();
 
     function checkGoldMilestone(prevGold) {
+      if (isProgressSandbox()) return;
       if (_goldMilestoneShown) return;
       if (prevGold < GOLD_MILESTONE && state.gold >= GOLD_MILESTONE) {
         _goldMilestoneShown = true;
@@ -4258,11 +4341,13 @@
     }
 
     function saveDetailedStats(stats) {
+      if (isProgressSandbox()) return;
       if (!stats.schemaVersion) stats.schemaVersion = DETAILED_STATS_SCHEMA_VERSION;
       try { localStorage.setItem(STATS_STORAGE_KEY, JSON.stringify(stats)); } catch(e) { console.error('[NQ] saveDetailedStats failed', e); }
     }
     
     function trackQuestionAnswer(question, isCorrect, timeSpent) {
+      if (isProgressSandbox()) return;
       const stats = getDetailedStats();
       const safeQuestion = _isDetailedStatsRecord(question) ? question : {};
       const topic = safeQuestion.t || 'Geral';
@@ -4555,6 +4640,10 @@
     }
 
     function goToWelcomeFromGame() {
+      if (isProgressSandbox()) {
+        exitProgressSandbox();
+        return;
+      }
       document.body.classList.remove('rd-game-over', 'boss-battle-mode', 'arqui-nefromante-final', 'boss-hp-critical');
       document.getElementById('mainApp')?.classList.add('hidden');
       document.querySelectorAll('.exam-overlay').forEach(e => e.remove());

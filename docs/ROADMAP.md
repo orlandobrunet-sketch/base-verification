@@ -25,9 +25,10 @@ Limites operacionais:
 
 ## Checkpoint operacional para continuidade
 
-- **Última etapa:** NQ-01, isolamento de conta — publicado na v14.78
-- **Em produção:** `14.78`
-- **Próxima ação única:** escolher entre os dois eixos restantes do NQ-01 — merge determinístico entre dispositivos, ou transição atômica do Service Worker.
+- **Última etapa publicada:** correção da colisão de duas releases `14.82` — versão única `14.83`, PR [#773](https://github.com/orlandobrunet-sketch/base-verification/pull/773)
+- **Em produção:** `14.83`, verificada em 26/08/2026 por `version.json` e pelo cache `nefroquest-v14.83`
+- **Em validação:** PR [#774](https://github.com/orlandobrunet-sketch/base-verification/pull/774) — sandbox da demonstração do chefe, candidata a `14.84`
+- **Próxima ação única:** publicar a prévia segura; em seguida retomar a transição atômica do Service Worker.
 
 Entregue em 22/08/2026, tudo com verificação vermelho/verde e suíte completa limpa:
 
@@ -84,7 +85,26 @@ O ciclo recente feito com Claude Code foi auditado em [`audits/CLAUDE_CODE_REVIE
 ### NQ-00 — Bloqueadores de publicação
 
 **Status:** `ATIVO`
-**Resultado:** impedir que dados públicos executem código no painel administrativo e que uma mudança clínica chegue à main sem autorização editorial derivada.
+**Resultado:** impedir que dados públicos executem código no painel administrativo, que uma mudança clínica chegue à main sem autorização editorial derivada e que ferramentas de demonstração alterem progresso real.
+
+#### NQ-00C — Prévia administrativa contaminava o progresso real
+
+**Estado:** correção implementada e em validação na candidata `14.84`, PR [#774](https://github.com/orlandobrunet-sketch/base-verification/pull/774).
+
+A causa não era apenas um `saveGame()` explícito. O atalho “Fase Final” alterava
+o mesmo `Proxy` da jornada, cujo autosave persistia os 90 acertos fictícios.
+Responder na prévia também alimentava estatísticas detalhadas, competências,
+questões dominadas, Grimório, conquistas, reflexão de erro, analytics e nuvem.
+
+- [x] unificar o link `?boss=1` e o atalho administrativo no mesmo caminho;
+- [x] salvar qualquer mutação legítima pendente **antes** de entrar no sandbox;
+- [x] suspender save, perfil pedagógico, selos, conquistas, reflexão, avaliação, analytics e cloud sync durante a demonstração;
+- [x] manter a batalha interativa e identificá-la visualmente como demonstração;
+- [x] sair por reload limpo, removendo os parâmetros de preview e restaurando o save real;
+- [x] carregar banco e Grimório antes de renderizar, fechando a corrida de `refsDB`;
+- [x] provar entrada, acerto, erro, conclusão e saída em 5 testes E2E; regressão anterior do chefe também permanece verde (9/9 no Chromium, sem retries);
+- [ ] publicar a `14.84` e confirmar `version.json` + cache em produção;
+- [ ] reparar o save histórico já contaminado do proprietário — **não automatizar**: versões anteriores não gravaram marcador de origem, então o número legítimo de acertos não pode ser inferido com segurança.
 
 #### NQ-00A — Stored XSS do painel administrativo
 
