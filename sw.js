@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v14.84
-const CACHE = 'nefroquest-v14.84';
+// NefroQuest Service Worker — v14.85
+const CACHE = 'nefroquest-v14.85';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -204,6 +204,44 @@ self.addEventListener('fetch', e => {
   // Usar uma chave canônica evita duplicatas e permite que o precache sem query
   // atenda a URL versionada quando o dispositivo estiver offline.
   const assetCacheKey = canonicalAssetKey(e.request, url);
+
+  // Página mais nova que este Service Worker → não servir o cache dele.
+  //
+  // A chave canônica descarta a query, então `/js/game.js?v=14.79` e `?v=14.84`
+  // apontam para a MESMA entrada. Sendo cache-first, o SW antigo respondia à
+  // release nova com o conteúdo velho: HTML novo, JavaScript antigo, na mesma
+  // carga. O `activate` até apaga caches de outro nome, mas só depois — a
+  // página já montou misturada.
+  //
+  // A versão pedida na URL vem do HTML, que é network-first e portanto sempre
+  // fresco. Se ela não bate com a que ESTE SW conhece, quem está atrasado é o
+  // SW: vai à rede e não devolve o que tem guardado. Quando as duas batem, o
+  // cache-first continua valendo inteiro — inclusive offline.
+  const versaoPedida = url.searchParams.get('v');
+  const versaoConhecida = ASSET_VERSIONS[url.pathname];
+  const swDesatualizado = versaoPedida !== null
+    && versaoConhecida !== undefined
+    && versaoPedida !== versaoConhecida;
+
+  if (swDesatualizado) {
+    e.respondWith(
+      fetch(e.request, { cache: 'no-store' })
+        .then(async res => {
+          if (res.ok) {
+            // Grava sob a chave canônica para que o próximo acesso — já com o
+            // SW novo ativo — encontre o conteúdo certo.
+            const cache = await caches.open(CACHE);
+            await cache.put(assetCacheKey, res.clone());
+          }
+          return res;
+        })
+        // Sem rede, o cache velho ainda é melhor que falhar: offline, um app
+        // coerente com a release anterior vale mais que uma tela em branco.
+        .catch(() => caches.match(assetCacheKey).then(c => c || fetch(e.request)))
+    );
+    return;
+  }
+
   e.respondWith(
     caches.match(assetCacheKey).then(async cached => {
       if (cached) return cached;
