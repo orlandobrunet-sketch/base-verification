@@ -25,10 +25,10 @@ Limites operacionais:
 
 ## Checkpoint operacional para continuidade
 
-- **Última etapa publicada:** correção da colisão de duas releases `14.82` — versão única `14.83`, PR [#773](https://github.com/orlandobrunet-sketch/base-verification/pull/773)
-- **Em produção:** `14.83`, verificada em 26/08/2026 por `version.json` e pelo cache `nefroquest-v14.83`
-- **Em validação:** PR [#774](https://github.com/orlandobrunet-sketch/base-verification/pull/774) — sandbox da demonstração do chefe, candidata a `14.84`
-- **Próxima ação única:** publicar a prévia segura; em seguida retomar a transição atômica do Service Worker.
+- **Última etapa publicada:** sandbox da demonstração do chefe, versão `14.84`, PR [#774](https://github.com/orlandobrunet-sketch/base-verification/pull/774)
+- **Em produção:** `14.84`, verificada em 30/08/2026 por `version.json` e pelo cache `nefroquest-v14.84`
+- **Em validação:** nenhuma entrega pendente de publicação.
+- **Próxima ação única:** implementar e provar a transição atômica do Service Worker de vN para vN+1, online e offline.
 
 Entregue em 22/08/2026, tudo com verificação vermelho/verde e suíte completa limpa:
 
@@ -89,7 +89,7 @@ O ciclo recente feito com Claude Code foi auditado em [`audits/CLAUDE_CODE_REVIE
 
 #### NQ-00C — Prévia administrativa contaminava o progresso real
 
-**Estado:** correção implementada e em validação na candidata `14.84`, PR [#774](https://github.com/orlandobrunet-sketch/base-verification/pull/774).
+**Estado:** prevenção publicada na `14.84`, PR [#774](https://github.com/orlandobrunet-sketch/base-verification/pull/774), e confirmada em produção em 30/08/2026.
 
 A causa não era apenas um `saveGame()` explícito. O atalho “Fase Final” alterava
 o mesmo `Proxy` da jornada, cujo autosave persistia os 90 acertos fictícios.
@@ -103,7 +103,7 @@ questões dominadas, Grimório, conquistas, reflexão de erro, analytics e nuvem
 - [x] sair por reload limpo, removendo os parâmetros de preview e restaurando o save real;
 - [x] carregar banco e Grimório antes de renderizar, fechando a corrida de `refsDB`;
 - [x] provar entrada, acerto, erro, conclusão e saída em 5 testes E2E; regressão anterior do chefe também permanece verde (9/9 no Chromium, sem retries);
-- [ ] publicar a `14.84` e confirmar `version.json` + cache em produção;
+- [x] publicar a `14.84` e confirmar `version.json` + cache em produção;
 - [ ] reparar o save histórico já contaminado do proprietário — **não automatizar**: versões anteriores não gravaram marcador de origem, então o número legítimo de acertos não pode ser inferido com segurança.
 
 #### NQ-00A — Stored XSS do painel administrativo
