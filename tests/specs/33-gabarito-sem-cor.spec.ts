@@ -52,8 +52,52 @@ test.describe('Gabarito legível sem depender de cor', () => {
     expect(chave, 'a chave da correta precisa trazer o ✓ no boss').toContain('✓');
   });
 
+  /* Acertar várias vezes seguidas atinge marcos de ouro, e o pop-up de marco
+   * cobre o dock inteiro. O clique em "Próxima" então expira com trinta
+   * segundos de espera, e a falha aparece como "timeout no #nextBtn" — que não
+   * diz nada sobre a causa. Não é defeito do produto: a celebração existe de
+   * propósito e o jogador a dispensa. O teste é que precisa dispensá-la também.
+   *
+   * Foi assim que este cenário quebrava de forma intermitente, dependendo de
+   * quantas questões o teste precisava percorrer até errar uma. */
+  async function dispensarCelebracoes(page: Page) {
+    const overlays = page.locator('.nq-overlay:visible');
+    for (let i = 0; i < 4 && await overlays.count() > 0; i++) {
+      const botao = overlays.first().locator('button').first();
+      if (await botao.count() === 0) break;
+      await botao.click({ timeout: 4000 }).catch(() => { /* pode ter fechado sozinha */ });
+      await page.waitForTimeout(200);
+    }
+  }
+
+  /* Dispensar uma vez antes do clique não basta: a celebração aparece com
+   * animação e pode entrar em cena DEPOIS da dispensa e ANTES do clique. Por
+   * isso o clique insiste — dispensa, tenta, e repete se algo interceptar. */
+  async function clicarProxima(page: Page) {
+    for (let tentativa = 0; tentativa < 5; tentativa++) {
+      await dispensarCelebracoes(page);
+      try {
+        await page.locator('#nextBtn').click({ timeout: 5000 });
+        return;
+      } catch { /* provavelmente uma celebração entrou no caminho; dispensa e tenta de novo */ }
+    }
+    // Última tentativa sem rede de segurança: se falhar agora, a mensagem de
+    // erro do Playwright nomeia quem está interceptando, que é o que interessa.
+    await dispensarCelebracoes(page);
+    await page.locator('#nextBtn').click();
+  }
+
   test('no Confronto Final a escolha errada também é nomeada em texto', async ({ page }) => {
     await page.goto('/jogar/');
+    // Percorrer várias questões acumula ouro e cruza o marco de 100, cuja
+    // celebração cobre o dock inteiro e intercepta o clique em "Próxima". A
+    // falha aparecia como "timeout no #nextBtn", que não diz nada sobre a
+    // causa, e dependia de quantas questões o teste precisava até errar uma.
+    //
+    // O produto não tem defeito: a celebração existe de propósito e o jogador a
+    // dispensa. Marcá-la como já vista é o mesmo caminho que o app usa, e
+    // deixa o cenário determinístico em vez de disputar cliques com a animação.
+    await page.evaluate(() => localStorage.setItem('nefroquest-gold-milestone-shown', '1'));
     await injectBossState(page);
     await page.evaluate(() => document.body.classList.add('boss-battle-mode'));
     await responder(page);
@@ -68,7 +112,7 @@ test.describe('Gabarito legível sem depender de cor', () => {
       // DOM por um instante depois do clique. O sinal confiável de que a
       // questão trocou é o enunciado mudar.
       const enunciadoAntes = await page.locator('#question').textContent();
-      await page.locator('#nextBtn').click();
+      await clicarProxima(page);
       await expect(page.locator('#question')).not.toHaveText(enunciadoAntes || '', { timeout: 8000 });
       await expect(page.locator('#options .option').first()).toBeEnabled({ timeout: 8000 });
       await responder(page);

@@ -305,9 +305,18 @@ jobs:
             sleep 1
           done
 
+      # A suíte completa passa a REPROVAR o merge.
+      #
+      # Este passo terminava com `|| echo "informational — do not block merge"`,
+      # e o `echo` sempre devolve sucesso: nenhuma falha da suíte completa
+      # jamais barrou um merge. O custo apareceu — dois cenários mobile ficaram
+      # vermelhos na main sem ninguém notar, o do Turnstile e o do gabarito no
+      # Confronto Final, os dois consertados neste mesmo PR.
+      #
+      # Um portão que nunca reprova não é portão; é relatório que ninguém lê.
       - name: Run Playwright tests
         working-directory: tests
-        run: npx playwright test --reporter=list --timeout=20000 || echo "⚠️ E2E informational — failures above do not block merge"
+        run: npx playwright test --reporter=list --timeout=20000
         env:
           BASE_URL: http://localhost:5500
 
