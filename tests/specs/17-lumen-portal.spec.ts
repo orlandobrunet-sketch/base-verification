@@ -348,13 +348,25 @@ test.describe('Página 1 — Portal de Acesso Lúmen', () => {
     await expect(page.locator('#cfTurnstileStatus')).toContainText('Não foi possível carregar');
   });
 
-  test('reconcilia sucesso do Turnstile recebido antes do auth.js', async ({ page }) => {
-    await page.evaluate(async () => {
-      const registrations = await navigator.serviceWorker.getRegistrations();
-      await Promise.all(registrations.map((registration) => registration.unregister()));
-    });
-
-    const racePage = await page.context().newPage();
+  test('reconcilia sucesso do Turnstile recebido antes do auth.js', async ({ browser }) => {
+    /* Contexto próprio com Service Worker BLOQUEADO.
+     *
+     * Este cenário depende de segurar o auth.js na rota do Playwright para
+     * criar a corrida. Só que a interceptação de rota não alcança o que um
+     * Service Worker responde do cache — e o SW registrado por um teste
+     * anterior deste mesmo arquivo continuava controlando a página nova.
+     *
+     * Medido nas duas situações, na mesma máquina e sem contenção:
+     *
+     *   SW controlando  → auth.js já carregado, callback já trocado, fila []
+     *   SW ausente      → callback ainda enfileirando,        fila ["ready"]
+     *
+     * O produto nunca esteve errado: a fila de eventos do Turnstile funciona.
+     * Era o teste que media ora a corrida, ora um app inteiro já carregado.
+     * `serviceWorkers: 'block'` remove a variável em vez de tentar desregistrar
+     * e torcer — desregistrar não desfaz o controle da carga em andamento. */
+    const raceContext = await browser.newContext({ serviceWorkers: 'block' });
+    const racePage = await raceContext.newPage();
     let releaseAuth = () => {};
     const authGate = new Promise<void>((resolve) => { releaseAuth = resolve; });
     await racePage.route('https://challenges.cloudflare.com/**', (route) => route.abort());
@@ -376,6 +388,7 @@ test.describe('Página 1 — Portal de Acesso Lúmen', () => {
     await expect(racePage.locator('#cfTurnstileStatus')).toHaveText('Verificação de segurança concluída.');
     await expect(racePage.locator('#cfTurnstileRetry')).toBeHidden();
     await racePage.close();
+    await raceContext.close();
   });
 
   test('respeita movimento reduzido sem remover o significado', async ({ page }) => {
