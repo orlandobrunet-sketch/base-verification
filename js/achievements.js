@@ -230,7 +230,22 @@
     function showAchievementsModal() {
       closeAchievementsModal();
 
-      const unlocked = getUnlockedAchievements();
+      /* Só conta o que ainda existe.
+       *
+       * O array salvo guarda identificadores conquistados um dia, e algumas
+       * conquistas foram removidas de propósito — 'speed_demon' premiava
+       * responder rápido, 'night_scholar' e 'marathon_runner' premiavam virar
+       * noite. Elas saíram da lista, mas continuam no save de quem as ganhou.
+       *
+       * As LINHAS do modal já eram imunes, porque são geradas a partir da lista
+       * atual. O CONTADOR não era: `unlocked.length` incluía os removidos e
+       * exibia coisas como "14/12" — mais conquistas do que existem.
+       *
+       * A Central já filtrava assim; aqui o filtro faltava. Filtrar na
+       * exibição, e não no save, é deliberado: ninguém perde registro do que
+       * conquistou, e nada é apagado do histórico de quem jogou. */
+      const _idsAtuais = new Set(ACHIEVEMENTS_LIST.map(a => a.id));
+      const unlocked = getUnlockedAchievements().filter(id => _idsAtuais.has(id));
 
       const _achRunes = { 1: 'ᚠ', 2: 'ᚨ', 3: 'ᛊ', 4: 'ᛟ', 5: 'ᛏ' };
       const badgesHTML = BADGES.map(badge => {

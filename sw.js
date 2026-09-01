@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v14.85
-const CACHE = 'nefroquest-v14.85';
+// NefroQuest Service Worker — v14.86
+const CACHE = 'nefroquest-v14.86';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -82,7 +82,7 @@ const ASSET_VERSIONS = {
   '/js/audio.js': '14.69',
   '/js/leaderboard.js': '11.90',
   '/js/study-mode.js': '14.53',
-  '/js/game.js': '14.84',
+  '/js/game.js': '14.86',
   '/js/notifications.js': '11.90',
   '/js/auth.js': '13.44',
   '/js/portal.js': '13.20',
