@@ -1539,8 +1539,19 @@
         boot:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0}
       }
     };
+    /* Uma jornada só pode ser contabilizada uma vez. Ver finishGame().
+     *
+     * A trava mora aqui, e não em cada função que inicia jornada, porque são
+     * quatro caminhos hoje (restaurar, continuar, reiniciar e as duas entradas
+     * do Confronto Final) e nada impede um quinto amanhã. Toda escrita de
+     * estado atravessa este Proxy, então marcar a jornada como em andamento no
+     * próprio `gameStarted = true` cobre qualquer caminho, inclusive os que
+     * ainda não existem. */
+    let _jornadaJaContabilizada = false;
+
     const state = new Proxy(_stateData, {
       set(target, key, value) {
+        if (key === 'gameStarted' && value === true) _jornadaJaContabilizada = false;
         target[key] = value;
         _invalidateStatsCache();
         if (!_progressSandboxMode) {
@@ -3539,6 +3550,23 @@
         finishGameUI();
         return;
       }
+      /* Uma jornada, uma contagem.
+       *
+       * finishGame() tem duas entradas — a vitória, por finishGameCompletely(),
+       * e o fim por falta de vidas — e nenhuma delas travava reentrada. Um
+       * clique duplo no botão de encerrar, ou o fim por vidas disparando com o
+       * modal de vitória ainda aberto, somava DUAS partidas jogadas para a
+       * mesma jornada. Medido: o cenário do spec 45 via gamesPlayed subir 2.
+       *
+       * O contador vitalício é o que a Central usa para prescrever. Número que
+       * sobe sozinho é a pior classe de defeito aqui: ninguém percebe, e o app
+       * passa a recomendar a partir de um passado que não aconteceu.
+       *
+       * A trava protege também o boardPush abaixo — sem ela, a mesma partida
+       * era enviada duas vezes ao ranking global. */
+      if (_jornadaJaContabilizada) return;
+      _jornadaJaContabilizada = true;
+
       // Atualizar estatísticas e limpar save
       updateGameStats();
       deleteSave();
