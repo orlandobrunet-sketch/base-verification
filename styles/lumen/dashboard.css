@@ -3080,6 +3080,75 @@
    com revisão prevista, o resto é régua neutra — um dia sem vencimento não
    pode parecer um dia com pouco vencimento. */
 
+/* Ações de estudo — a seção deixou de ser só relatório.
+ *
+ * Antes a memória mostrava números e terminava ali: quem quisesse estudar
+ * precisava sair, achar o seletor de eixos e voltar. Estes dois botões são o
+ * caminho direto. O primário é a escolha de eixo; o secundário só existe quando
+ * há algo vencido, para não virar botão que não faz nada. */
+#nqDashboard[data-nq-ui="lumen"] .nqd-study-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: .7rem;
+  margin: .25rem 0 1.1rem;
+}
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-study-primary,
+#nqDashboard[data-nq-ui="lumen"] .nqd-study-secondary {
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+  padding: .95rem 1.1rem;
+  border-radius: var(--nql-radius-control);
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--nql-font-body);
+  transition: border-color .18s ease, background .18s ease;
+}
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-study-primary strong,
+#nqDashboard[data-nq-ui="lumen"] .nqd-study-secondary strong {
+  font-size: .98rem;
+  font-weight: 600;
+  letter-spacing: .01em;
+}
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-study-primary small,
+#nqDashboard[data-nq-ui="lumen"] .nqd-study-secondary small {
+  font-size: .82rem;
+  color: var(--nql-text-muted);
+  line-height: 1.4;
+}
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-study-primary {
+  border: 1px solid rgba(var(--nql-lumen-rgb), .38);
+  background: rgba(var(--nql-lumen-rgb), .08);
+  color: var(--nql-lumen);
+}
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-study-secondary {
+  border: 1px solid rgba(var(--nql-mastery-rgb), .34);
+  background: rgba(var(--nql-mastery-rgb), .07);
+  color: var(--nql-mastery);
+}
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-study-primary:hover,
+#nqDashboard[data-nq-ui="lumen"] .nqd-study-primary:focus-visible {
+  border-color: var(--nql-lumen);
+  background: rgba(var(--nql-lumen-rgb), .14);
+}
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-study-secondary:hover,
+#nqDashboard[data-nq-ui="lumen"] .nqd-study-secondary:focus-visible {
+  border-color: var(--nql-mastery);
+  background: rgba(var(--nql-mastery-rgb), .13);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #nqDashboard[data-nq-ui="lumen"] .nqd-study-primary,
+  #nqDashboard[data-nq-ui="lumen"] .nqd-study-secondary { transition: none; }
+}
+
 #nqDashboard[data-nq-ui="lumen"] .nqd-memory-horizon {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
