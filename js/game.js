@@ -2158,7 +2158,27 @@
       ui.xpFill.style.width=`${Math.min(100,(state.xp/state.xpToNext)*100)}%`;
       const _qDone = state.idx;
       const _qTotal = state.queue.length;
-      ui.xpTxt.textContent=`XP ${state.xp}/${state.xpToNext}`;
+      /* Barra cheia que não promove precisa dizer por quê.
+       *
+       * O nível tem teto por acertos — um a cada dez (levelCapForCorrect) — e o
+       * XP para de ser consumido quando o teto é atingido: gainXP trava o valor
+       * em xpToNext. A barra então fica em 100% com "XP 200/200" e o nível não
+       * sobe. Sem explicação, isso lê como defeito: a pessoa completa a barra e
+       * nada acontece.
+       *
+       * A Central já dizia "o que destrava é acerto, não experiência". A tela
+       * onde a pessoa realmente joga não dizia nada. Aqui o texto passa a
+       * nomear o que falta, em vez de deixar a barra prometer sozinha. */
+      const _tetoDeNivel = typeof levelCapForProgress === 'function' ? levelCapForProgress() : Infinity;
+      const _travadoPorAcertos = state.level >= _tetoDeNivel
+        && state.xp >= state.xpToNext
+        && state.level < MAX_LEVEL;
+      if (_travadoPorAcertos) {
+        const _faltam = Math.max(1, (state.level * 10) - (state.correctTotal || 0));
+        ui.xpTxt.textContent = `XP ${state.xp}/${state.xpToNext} · nível ${state.level + 1} em ${_faltam} ${_faltam === 1 ? 'acerto' : 'acertos'}`;
+      } else {
+        ui.xpTxt.textContent = `XP ${state.xp}/${state.xpToNext}`;
+      }
       const _qCtr = document.getElementById('questionCounterTxt');
       if (_qCtr) _qCtr.textContent = `${state.correctTotal}/${questionBank?.length ?? '+'} questões`;
       // Barra de progresso do ciclo
