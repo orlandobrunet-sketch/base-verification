@@ -25,10 +25,10 @@ Limites operacionais:
 
 ## Checkpoint operacional para continuidade
 
-- **Última etapa publicada:** sandbox da demonstração do chefe, versão `14.84`, PR [#774](https://github.com/orlandobrunet-sketch/base-verification/pull/774)
-- **Em produção:** `14.84`, verificada em 30/08/2026 por `version.json` e pelo cache `nefroquest-v14.84`
+- **Última etapa publicada:** transição atômica do Service Worker, versão `14.85`, PR [#776](https://github.com/orlandobrunet-sketch/base-verification/pull/776)
+- **Em produção:** `14.85`, verificada em 31/08/2026 por `version.json`, pelo cache `nefroquest-v14.85` e pelo smoke automatizado (7/7)
 - **Em validação:** nenhuma entrega pendente de publicação.
-- **Próxima ação única:** implementar e provar a transição atômica do Service Worker de vN para vN+1, online e offline.
+- **Próxima ação única:** NQ-02 — garantir que XP, acertos, níveis, conquistas e recomendações sempre coincidam com dados reais, e que fim de jornada, nova jornada, revisão FSRS e sincronização não contem duas vezes.
 
 Entregue em 22/08/2026, tudo com verificação vermelho/verde e suíte completa limpa:
 
@@ -40,9 +40,20 @@ Entregue em 22/08/2026, tudo com verificação vermelho/verde e suíte completa 
 | Cabeçalho: regras órfãs do #761 | [#765](https://github.com/orlandobrunet-sketch/base-verification/pull/765) | 14.77 |
 | Isolamento de conta (NQ-01, 1º eixo) | [#766](https://github.com/orlandobrunet-sketch/base-verification/pull/766) | 14.78 |
 
+Entregue em 31/08/2026:
+
+| Entrega | PR | Versão |
+|---|---|---|
+| Transição atômica do Service Worker (NQ-01, 3º eixo) | [#776](https://github.com/orlandobrunet-sketch/base-verification/pull/776) | 14.85 |
+| Suíte completa volta a reprovar merge, e os dois cenários que ela escondia | [#777](https://github.com/orlandobrunet-sketch/base-verification/pull/777) | — |
+| Smoke de produção somente-leitura | [#778](https://github.com/orlandobrunet-sketch/base-verification/pull/778) | — |
+
+**O portão da CI era falso até 31/08/2026.** O job `Full E2E Tests` terminava com `|| echo "informational — do not block merge"`, e `echo` sempre devolve sucesso: nenhuma falha da suíte completa jamais barrou um merge. Dois cenários mobile estavam vermelhos na main sem que ninguém notasse — o do Turnstile e o do gabarito no Confronto Final —, os dois consertados no #777. Em nenhum deles o defeito era do produto: eram o teste medindo a coisa errada.
+
 Pendências que dependem do proprietário:
 
 - conferir o painel admin de produção com sessão autenticada — o banco não tem payload legado, então é conferência de ausência;
+- conferir os consoles do Supabase, Sentry e GA4, e o fluxo de pagamento ponta a ponta — o smoke automatizado do #778 é somente-leitura e não alcança nada que exija sessão real;
 - confirmar o recorte de ações do gate editorial (ver NQ-00B);
 - **não existe CSP em `nefroquest.com`** — medido: 161 handlers inline e 12 blocos de script inline. Sem `unsafe-inline` o app quebra; com `unsafe-inline` a CSP não protege. Fica atrás de um refactor do modelo de eventos, e não é urgente porque o vetor real está fechado no render e no banco;
 - `public.question_error_reasons` recebe insert público de `question_id` sem allowlist. Não é vetor hoje: nenhum caminho do app lê a tabela.
@@ -139,19 +150,21 @@ Decisão de recorte a confirmar: os eixos são exigidos nas ações `rebuild`, `
 
 ### NQ-01 — Isolamento de conta, sincronização e atualização atômica
 
-**Status:** `ATIVO` — isolamento de conta fechado na v14.78; faltam o merge entre dispositivos e a transição atômica do Service Worker
+**Status:** `CONCLUÍDO` na v14.85 — os três eixos publicados e verificados.
 **Resultado:** uma conta nunca herda dados de outra, dois dispositivos não apagam o melhor histórico e uma release nunca mistura HTML novo com JS/CSS antigo.
 
 Escopo:
 
 - [x] inventariar toda chave local como global, por dispositivo ou por conta — 32 chaves medidas, nenhuma dinâmica, nenhuma em sessionStorage;
 - [x] limpar no logout competências, erros, conhecimento, favoritos, histórico, votos e avaliações locais — doze chaves ficavam para trás, incluindo uma pontuação pendente que seria publicada no ranking pela conta seguinte ([#766](https://github.com/orlandobrunet-sketch/base-verification/pull/766));
-- versionar o payload da Central e definir merge determinístico por resposta/evento;
-- testar duas contas e dois dispositivos com estados concorrentes;
-- tornar a transição do Service Worker version-aware/atômica, com aviso ou reload seguro;
-- adicionar teste real de upgrade vN → vN+1, online e offline.
+- [x] versionar o payload da Central e definir merge determinístico por resposta/evento — fusão monotônica, comutativa e idempotente; máximo nos contadores e união exata por evento no `questionHistory`, que é a única parte do payload com identidade ([#769](https://github.com/orlandobrunet-sketch/base-verification/pull/769));
+- [x] testar duas contas e dois dispositivos com estados concorrentes — specs 37 e 39, ambos no smoke bloqueante;
+- [x] tornar a transição do Service Worker version-aware/atômica — a chave canônica descartava a query, e o cache-first respondia à release nova com o conteúdo velho. Agora, quando a versão pedida no HTML não bate com a que o Service Worker conhece, ele vai à rede ([#776](https://github.com/orlandobrunet-sketch/base-verification/pull/776));
+- [x] adicionar teste real de upgrade vN → vN+1, online e offline — o spec 43 publica uma release no meio da execução: reescreve o asset, o cache-buster e o nome do cache, e recarrega.
 
-Pronto quando nenhum dado pedagógico ou de perfil cruza contas, o merge não rebaixa histórico e uma primeira abertura pós-release usa um conjunto coerente de assets.
+Registrado porque custou tempo: o helper `injectGameState` espera apenas `domcontentloaded`, que dispara **antes** de as folhas de estilo terminarem. Medir estilo ali devolve o padrão do navegador para tudo e produz um diagnóstico falso de app inteiro quebrado. Cenários que medem aparência precisam esperar `load` e `document.fonts.ready`.
+
+E o app **não** funciona offline na primeira visita — nessa carga o Service Worker ainda não controla a página, então aquele HTML não entra no cache. Não é defeito; é o ciclo de vida do Service Worker.
 
 ### NQ-02 — Integridade pedagógica e gate crítico de regressão
 
