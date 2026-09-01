@@ -264,9 +264,20 @@ jobs:
     needs: smoke-e2e
     # A suíte cresceu de 21 para 24 specs (charselect, auditoria, taxonomia) e
     # passou a estourar os 20min, terminando por timeout — um job que não
-    # completa deixa de pegar regressão, mesmo sendo informativo.
-    timeout-minutes: 35
-    continue-on-error: true   # informativo — não bloqueia merge em CI local
+    # completa deixa de pegar regressão.
+    #
+    # 35 minutos era a borda exata: as últimas rodadas levaram 32 a 33 minutos, e
+    # dois specs novos bastaram para o job ser CANCELADO no meio, com o processo
+    # do Playwright morto como órfão e nenhum relatório gerado. Enquanto o job
+    # era informativo isso passava despercebido; com ele bloqueando, vira
+    # reprovação sem defeito. A folga aqui é para a suíte crescer sem que cada
+    # spec novo vire uma investigação de infraestrutura.
+    timeout-minutes: 60
+
+    # `continue-on-error: true` era a SEGUNDA válvula de escape deste job, e ela
+    # sobreviveu à remoção do `|| echo`: mesmo com o passo reprovando, o job
+    # marcado assim não derruba o workflow. Enquanto ela existir, "a suíte
+    # completa bloqueia merge" é falso. Removida.
 
     steps:
       - name: Checkout
