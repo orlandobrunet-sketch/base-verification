@@ -57,7 +57,9 @@ test.describe('Memória (FSRS na superfície)', () => {
     await abrirCom(page, () => ({}));
     const secao = page.locator('#nqDashboard .nqd-memory-section');
     await expect(secao).toBeVisible();
-    await expect(secao).toContainText('Memória');
+    // Renomeada na v14.88 (NQ-06A): a seção deixou de ser um relatório de
+    // memória e passou a abrir com ação, então o título diz o que ela faz.
+    await expect(secao).toContainText('Estudo e revisão');
     // 4 cards com S >= 21 dias (30, 45, 22, 60); o órfão não conta.
     await expect(secao).toContainText('de 9 consolidados');
     await expect(secao.locator('.nqd-metric-value').first()).toHaveText('2');
@@ -106,7 +108,7 @@ test.describe('Memória (FSRS na superfície)', () => {
       .toBeLessThan(Math.min(...comDue));
   });
 
-  test('sem nenhum card, a seção não aparece — em vez de mostrar zeros', async ({ page }) => {
+  test('sem nenhum card, a seção convida sem mostrar zeros', async ({ page }) => {
     await page.goto('/jogar/');
     await page.waitForFunction(() => typeof (window as any).openDashboard === 'function');
     await page.evaluate(() => (window as any)._loadTopics?.());
@@ -120,6 +122,18 @@ test.describe('Memória (FSRS na superfície)', () => {
     await page.evaluate(() => (window as any)._loadTopics?.());
     await page.evaluate(() => (window as any).openDashboard());
     await expect(page.locator('#nqDashboard')).toBeVisible();
-    await expect(page.locator('#nqDashboard .nqd-memory-section')).toHaveCount(0);
+
+    /* A regra mudou na v14.88 (NQ-06A), e mudou de propósito.
+     *
+     * Antes a seção SUMIA sem cards. A regra que ela protegia — não mostrar
+     * zeros, porque zero aqui lê como dívida antes de haver o que dever —
+     * continua valendo e é afirmada abaixo. O que mudou é a conclusão: sumir
+     * fazia quem abria a Central pela primeira vez não descobrir que revisão
+     * existe. Agora a seção aparece, convida, e não mostra número nenhum. */
+    const secao = page.locator('#nqDashboard .nqd-memory-section');
+    await expect(secao, 'a seção passa a existir mesmo sem histórico').toHaveCount(1);
+    await expect(secao.locator('.nqd-study-primary'), 'e oferece a porta de entrada').toHaveCount(1);
+    await expect(secao.locator('.nqd-metric-value'), 'sem cards, nenhum número — a regra original').toHaveCount(0);
+    await expect(secao.locator('.nqd-memory-horizon'), 'nem horizonte de sete dias vazio').toHaveCount(0);
   });
 });

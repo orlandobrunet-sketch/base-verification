@@ -699,21 +699,80 @@
     `).join('');
   }
 
-  function _memoryMarkup(memory) {
-    // Sem card algum antes de existir memória a relatar — um zero aqui seria
-    // exatamente o que esta rodada removeu das outras áreas.
-    if (!memory || !memory.seen) return '';
+  /**
+   * Estimativa de duração a partir do ritmo REAL, ou nada.
+   *
+   * `timeStats` acumula tempo total e número de questões. Com amostra pequena a
+   * média é ruído, então abaixo de 10 respostas a estimativa simplesmente não
+   * aparece — é a única informação desta seção que projeta futuro, e ela precisa
+   * se calar quando não sabe. Nunca um valor padrão "≈ 8 min" que ninguém mediu.
+   */
+  function _estimativaDeMinutos(stats, quantidade) {
+    const t = stats && stats.timeStats;
+    const respondidas = _number(t && t.questionCount, 0);
+    const segundos = _number(t && t.totalTime, 0);
+    if (respondidas < 10 || segundos <= 0 || !quantidade) return null;
+    const minutos = Math.round((segundos / respondidas) * quantidade / 60);
+    return minutos >= 1 ? minutos : null;
+  }
 
+  function _memoryMarkup(memory, stats) {
     const DIA_LABEL = ['hoje', 'amanhã', 'em 2 dias', 'em 3 dias', 'em 4 dias', 'em 5 dias', 'em 6 dias'];
+
+    /* Sem histórico: a seção existe, mas sem número algum.
+     *
+     * Antes ela sumia por inteiro — e quem abria a Central pela primeira vez
+     * não descobria que revisão existe. Mostrar zeros seria pior: leria como
+     * dívida antes de haver o que dever. O meio-termo honesto é dizer o que
+     * falta para haver memória a relatar, e oferecer a porta de entrada. */
+    if (!memory || !memory.seen) {
+      return `
+      <section class="nqd-section nqd-memory-section" aria-labelledby="nqdMemoryTitle">
+        <header class="nqd-section-header"><div>
+          <h2 class="nqd-section-title" id="nqdMemoryTitle">Estudo e revisão</h2>
+          <p>A revisão começa depois das primeiras respostas — é ela que traz de volta o que você acertou, no momento em que a lembrança começa a cair.</p>
+        </div></header>
+        <div class="nqd-study-actions">
+          <button type="button" class="nqd-study-primary" data-action="showAxesSelector">
+            <strong>Escolher um eixo e estudar</strong>
+            <small>Você decide o tema; a revisão se monta a partir do que responder.</small>
+          </button>
+        </div>
+      </section>`;
+    }
+
     const naSemana = memory.horizon.reduce((soma, dia) => soma + dia.count, 0);
     const pico = Math.max(1, ...memory.horizon.map(dia => dia.count));
+    const vencidas = _number(memory.overdue, 0);
+    const minutos = _estimativaDeMinutos(stats, vencidas);
+
+    /* Ação principal: estudar por eixo. Decisão do proprietário.
+     *
+     * A revisão vencida fica ao lado, e não escondida: repetição espaçada só
+     * funciona se a revisão acontecer perto do vencimento. Ela some quando não
+     * há nada vencido, em vez de virar um botão que avisa "nada pendente" —
+     * botão que não faz nada ensina a ignorar botões. */
+    const acoes = `
+        <div class="nqd-study-actions">
+          <button type="button" class="nqd-study-primary" data-action="showAxesSelector">
+            <strong>Escolher um eixo e estudar</strong>
+            <small>Você define o tema da sessão.</small>
+          </button>
+          ${vencidas > 0 ? `
+          <button type="button" class="nqd-study-secondary" data-action="startSRReviewAll">
+            <strong>Revisar ${_formatNumber(vencidas)} ${vencidas === 1 ? 'vencida' : 'vencidas'}</strong>
+            <small>${minutos ? `cerca de ${minutos} min, no seu ritmo` : 'o que a memória pede hoje'}</small>
+          </button>` : ''}
+        </div>`;
 
     return `
       <section class="nqd-section nqd-memory-section" aria-labelledby="nqdMemoryTitle">
         <header class="nqd-section-header"><div>
-          <h2 class="nqd-section-title" id="nqdMemoryTitle">Memória</h2>
+          <h2 class="nqd-section-title" id="nqdMemoryTitle">Estudo e revisão</h2>
           <p>Quanto do que você já viu segue disponível — e quando cada item volta.</p>
         </div></header>
+
+        ${acoes}
 
         <div class="nqd-summary-strip" style="--columns:3">
           <div class="nqd-metric">
@@ -829,7 +888,7 @@
             ${_weekPulseMarkup(data.weekActivity)}
             ${data.strength ? `<p class="nqd-strength"><span>Melhor desempenho observado</span><strong>${_escape(data.strength.label)}</strong><small>${Math.round(data.strength.accuracy)}% · ${data.strength.totalAnswered} respostas</small></p>` : ''}
           </section>
-          ${_memoryMarkup(data.memory)}
+          ${_memoryMarkup(data.memory, data.stats)}
           <section class="nqd-section nqd-reward-section">
             <header class="nqd-section-header"><div><h2 class="nqd-section-title">Próxima conquista</h2></div></header>
             ${_milestoneMarkup(data)}

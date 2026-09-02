@@ -28,7 +28,9 @@ Limites operacionais:
 - **Última etapa publicada:** transição atômica do Service Worker, versão `14.85`, PR [#776](https://github.com/orlandobrunet-sketch/base-verification/pull/776)
 - **Em produção:** `14.85`, verificada em 31/08/2026 por `version.json`, pelo cache `nefroquest-v14.85` e pelo smoke automatizado (7/7)
 - **Em validação:** nenhuma entrega pendente de publicação.
-- **Próxima ação única:** NQ-02 — garantir que XP, acertos, níveis, conquistas e recomendações sempre coincidam com dados reais, e que fim de jornada, nova jornada, revisão FSRS e sincronização não contem duas vezes.
+- **Próxima ação única:** NQ-06A — desenhar e entregar a página de Estudo e Revisão, a primeira entrega em muito tempo que cria capacidade nova em vez de consertar defeito.
+
+**Reordenação de 01/09/2026.** As 22 entregas anteriores foram medidas pelo que um usuário perceberia: 14 invisíveis, e das 8 visíveis quase todas eram conserto. Capacidade nova: nenhuma. O roadmap garantia isso, porque o bloco "Agora" era só correção e o primeiro item de valor estava atrás de NQ-03 e NQ-04. A base de segurança existe agora; a ordem mudou para que o produto volte a andar à vista. Ver NQ-06A.
 
 Entregue em 22/08/2026, tudo com verificação vermelho/verde e suíte completa limpa:
 
@@ -50,11 +52,18 @@ Entregue em 31/08/2026:
 
 **O portão da CI era falso até 31/08/2026.** O job `Full E2E Tests` terminava com `|| echo "informational — do not block merge"`, e `echo` sempre devolve sucesso: nenhuma falha da suíte completa jamais barrou um merge. Dois cenários mobile estavam vermelhos na main sem que ninguém notasse — o do Turnstile e o do gabarito no Confronto Final —, os dois consertados no #777. Em nenhum deles o defeito era do produto: eram o teste medindo a coisa errada.
 
-Pendências que dependem do proprietário:
+Decisões do proprietário em 01/09/2026:
 
-- conferir o painel admin de produção com sessão autenticada — o banco não tem payload legado, então é conferência de ausência;
-- conferir os consoles do Supabase, Sentry e GA4, e o fluxo de pagamento ponta a ponta — o smoke automatizado do #778 é somente-leitura e não alcança nada que exija sessão real;
+- **painel admin conferido** — feito, ver NQ-00A. Item encerrado;
+- **pagamento vai para o fim da fila** — NQ-05 sai do bloco ativo e só volta quando o proprietário decidir; não bloqueia mais nada;
+- **correção de questões será pontual, conforme o uso** — o proprietário corrige conteúdo à medida que joga. Isso NÃO cobre a classificação por competência, que é o NQ-10 e continua aberta;
+- **prioridade escolhida:** experiência de uso antes de precisão da recomendação. Daí o NQ-06A subir e o NQ-10 esperar.
+
+Pendências que ainda dependem do proprietário:
+
+- conferir os consoles do Supabase, Sentry e GA4 — o smoke automatizado do #778 é somente-leitura e não alcança nada que exija sessão real;
 - confirmar o recorte de ações do gate editorial (ver NQ-00B);
+- autorizar a migração de competências quando o NQ-10 chegar a vez;
 - **não existe CSP em `nefroquest.com`** — medido: 161 handlers inline e 12 blocos de script inline. Sem `unsafe-inline` o app quebra; com `unsafe-inline` a CSP não protege. Fica atrás de um refactor do modelo de eventos, e não é urgente porque o vetor real está fechado no render e no banco;
 - `public.question_error_reasons` recebe insert público de `question_id` sem allowlist. Não é vetor hoje: nenhum caminho do app lê a tabela.
 
@@ -129,10 +138,10 @@ questões dominadas, Grimório, conquistas, reflexão de erro, analytics e nuvem
 - [x] revalidar `specs/26-memoria-fsrs.spec.ts` sem retries e repetir a suíte completa após a estabilização de navegação;
 - [x] revisar, abrir e integrar um único PR com frontend, teste, migration e bump 14.76 — [#762](https://github.com/orlandobrunet-sketch/base-verification/pull/762), squash `23269e3`;
 - [x] aplicar `018_public_feedback_input_constraints.sql` no Supabase com autorização do proprietário — versão `20260822013131`, com as três constraints provadas contra o banco real;
-- [ ] confirmar no painel admin de produção que os registros aparecem como texto — **depende de sessão autenticada**. O banco não tem nenhum payload legado, então a conferência é de ausência, não de neutralização;
+- [x] confirmar no painel admin de produção que os registros aparecem como texto — **feito pelo proprietário em 01/09/2026**, no menu de admin → `📊 Analytics`. As 12 avaliações exibidas batem exatamente com as 12 linhas medidas em `question_ratings`; todos os identificadores são hexadecimais de 8 caracteres, o formato que a migration 018 passou a exigir; todo texto aparece como texto. "Nenhuma divergência relevante" na reclassificação bate com os 10 votos existentes, nenhum atingindo o mínimo de 5 por questão;
 - [ ] confirmar a CSP no host que efetivamente serve `nefroquest.com` — **auditado em 22/08/2026: não existe CSP alguma**, nem header nem `<meta>`, em `/` nem em `/jogar/`. E não é um item pequeno: o GitHub Pages não define header de resposta, e a via `<meta>` esbarra em **161 handlers inline** (`onclick=` e similares; 140 só em `jogar/index.html`) e **12 blocos `<script>` inline**. Sem `unsafe-inline` o app quebra inteiro; com `unsafe-inline` a CSP deixa de proteger contra XSS, que é o motivo de existir. `<meta>` também ignora `frame-ancestors`, `report-uri` e `sandbox`. Uma CSP com valor real fica atrás de um refactor do modelo de eventos — etapa própria, com risco de regressão em toda a UI, e prioridade menor que NQ-00B enquanto o vetor real está fechado em duas camadas.
 
-Não marcar NQ-00A como encerrado apenas porque o teste local passou. Duas das quatro fronteiras — render e banco — têm evidência datada; o host e o olho humano ainda não.
+**NQ-00A encerrado em 01/09/2026.** Três das quatro fronteiras têm evidência datada: render (spec 35, vermelho/verde por vetor), banco (migration 018 provada com insert real recusado) e olho humano (painel conferido pelo proprietário). A quarta — CSP no host — está medida e reclassificada abaixo: não é um item pequeno e não bloqueia mais nada.
 
 #### NQ-00B — Gate médico-editorial cumulativo
 
@@ -168,28 +177,86 @@ E o app **não** funciona offline na primeira visita — nessa carga o Service W
 
 ### NQ-02 — Integridade pedagógica e gate crítico de regressão
 
-**Status:** `PRONTO PARA INICIAR`
+**Status:** `PARCIAL` — cinco dos nove itens publicados; os quatro restantes saem do bloco "Agora".
 **Resultado:** a Central não prescreve uma fraqueza não medida, não promete evolução impossível e os contratos críticos impedem merge quando quebram.
 
 Escopo:
 
-- corrigir substring/negação do classificador sob revisão editorial formal;
-- iniciar a migração para `competency_ids` curados e versionados por questão;
-- representar separadamente portão de acertos e XP na evolução do nível;
-- testar fim de jornada → nova jornada sem dupla contagem;
-- filtrar conquistas removidas também no popup legado;
-- implementar foco inicial, contenção e restauração na escolha de classe;
-- corrigir o flake do Enter reflexo e sua janela no runtime;
-- tornar bloqueantes os specs críticos 21, 22, 28, 30, 31, 33 e 34;
-- classificar explicitamente qualquer flake restante, sem `|| echo`.
+- [x] representar separadamente portão de acertos e XP na evolução do nível — a barra enchia a 100% e o nível não subia, em silêncio; agora nomeia o que falta ([#781](https://github.com/orlandobrunet-sketch/base-verification/pull/781), 14.87);
+- [x] testar fim de jornada → nova jornada sem dupla contagem — encerrar a mesma jornada duas vezes somava duas partidas no contador vitalício E enviava a pontuação duas vezes ao ranking ([#780](https://github.com/orlandobrunet-sketch/base-verification/pull/780), 14.86);
+- [x] filtrar conquistas removidas também no popup legado — o contador somava o array salvo inteiro e podia exibir mais conquistas do que existem ([#780](https://github.com/orlandobrunet-sketch/base-verification/pull/780));
+- [x] tornar bloqueantes os specs críticos 21, 22, 28, 30, 31, 33 e 34 — resolvido de forma mais forte que o pedido: a suíte COMPLETA passou a reprovar merge, o que inclui todos eles ([#777](https://github.com/orlandobrunet-sketch/base-verification/pull/777));
+- [x] classificar explicitamente qualquer flake restante, sem `|| echo` — o `|| echo` foi removido no #777, e o `continue-on-error: true` do job, que sobreviveu à primeira tentativa, no #780. Enquanto ele existia, "a suíte bloqueia merge" era falso.
+- [ ] corrigir substring/negação do classificador — **movido para NQ-10**, ver abaixo;
+- [ ] iniciar a migração para `competency_ids` curados por questão — **movido para NQ-10**;
+- [ ] implementar foco inicial, contenção e restauração na escolha de classe — acessibilidade, sem urgência medida;
+- [ ] corrigir o flake do Enter reflexo e sua janela no runtime — sem ocorrência recente nas últimas seis suítes completas.
 
-Pronto quando as recomendações têm fonte e confiança explícitas, a progressão observada coincide com a regra do jogo e o conjunto crítico falha a CI ao reintroduzir um defeito.
+### NQ-06A — Página de Estudo e Revisão
+
+**Status:** `PRÓXIMA ENTREGA`
+**Resultado:** o app responde "o que eu estudo agora?" com uma próxima ação clara, iniciável em um clique.
+
+**Por que esta subiu para o bloco "Agora", em 01/09/2026.**
+
+Medição das 22 entregas de #759 a #781, classificadas pelo que um usuário
+perceberia: **14 invisíveis**, e das 8 visíveis quase todas eram conserto de
+coisa quebrada — cabeçalho, tipografia, feitiço do chefe fora de hora, cores do
+dock. **Capacidade nova nesse período inteiro: nenhuma.**
+
+Isso não foi acidente. O bloco "Agora" era inteiramente correção e
+infraestrutura, e o primeiro item que criava valor para quem usa estava atrás
+de NQ-03 e NQ-04. O documento garantia mais semanas sem nada visível.
+
+A razão de fazer infraestrutura antes é não quebrar coisa ao andar rápido — e
+essa base **já existe**: a suíte completa reprova merge, os contadores pararam
+de mentir, a release não mistura versões, o dado público não executa código.
+Esse era o pré-requisito real, e está satisfeito. Continuar polindo tem retorno
+decrescente contra o custo de o proprietário não ver progresso.
+
+Escopo:
+
+- estado vazio honesto: sem histórico, dizer o que falta para haver diagnóstico — nunca inventar fraqueza;
+- fila de revisão do dia vinda do FSRS, com o denominador visível;
+- uma próxima ação, iniciável em um clique, com o motivo dela em uma linha;
+- estados de carregando, vazio, erro e offline com caminho de volta;
+- desktop e celular, teclado e toque.
+
+**Limitação declarada, não escondida:** a competência de cada questão ainda vem
+de classificação por palavra-chave (NQ-10). A página deve mostrar a fonte da
+recomendação e nunca afirmar mais confiança do que o dado sustenta.
+
+Pronto quando alguém que abre o app sem saber o que estudar sai dali estudando.
 
 ## Próximo
 
+### NQ-10 — Competência curada por questão
+
+**Status:** `PRONTO PARA INICIAR` — depende de decisão editorial do proprietário
+**Resultado:** a recomendação de estudo deixa de ser palpite por palavra.
+
+**Medido em 01/09/2026:** das **741 questões, nenhuma** tem `competency_ids`.
+Todas têm apenas uma categoria ampla. A competência é decidida por **63 listas
+de palavras-chave** que casam contra o enunciado, com dois erros conhecidos:
+pegam pedaço de palavra dentro de outra, e não entendem negação — uma questão
+que diz "não é hipocalemia" é classificada como hipocalemia.
+
+Isso importa porque é essa classificação que alimenta a recomendação de estudo.
+
+Distinção que já causou confusão e fica registrada: a revisão editorial das
+QUESTÕES (lotes FARM — evidência, veredito, referências) está feita e é outra
+coisa. Este item é anexar a cada questão **quais competências ela avalia**.
+
+Escopo:
+
+- corrigir substring e negação no classificador atual, como ganho imediato;
+- definir o vocabulário de competências e sua versão;
+- migrar por lote, sob a skill `revisar-nefroquest` e autorização do proprietário;
+- expor no produto a fonte e a confiança de cada recomendação.
+
 ### NQ-03 — Confiança de produção da release corrigida
 
-**Status:** `BLOQUEADO` por NQ-00, NQ-01 e NQ-02
+**Status:** `PARCIAL` — versão, host e Service Worker cobertos pelo smoke automatizado do [#778](https://github.com/orlandobrunet-sketch/base-verification/pull/778); o resto pendente
 **Resultado:** saber, com evidência datada, se a experiência entregue no repositório é a experiência recebida pelo usuário.
 
 Escopo:
@@ -233,7 +300,7 @@ Escopo:
 - funil `paywall_shown → plan_selected → checkout_started → payment_confirmed`;
 - `payment_confirmed` derivado de verdade do backend, não de simulação no cliente.
 
-Bloqueio: liberação do proprietário e acesso ao ambiente de teste do Mercado Pago.
+Bloqueio: **decisão do proprietário em 01/09/2026 — pagamento é a última coisa a ser feita.** Sai da fila ativa e não bloqueia nenhum outro item. Volta quando o proprietário decidir, e aí precisará também do ambiente de teste do Mercado Pago.
 
 ### Fila seguinte
 

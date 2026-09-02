@@ -6,6 +6,21 @@
       NEFRO_AXES.forEach(ax => { if (_studySelectedAxes.has(ax.id)) selectedCats.add(ax.cat); });
       return getSRDueQuestions(topics.filter(q => selectedCats.has(q.cat))).length;
     }
+    /* Revisão a partir da Central, sem passar pelo seletor de eixos.
+     *
+     * `_studySelectedAxes` nasce vazio e só é preenchido quando o seletor abre.
+     * Um botão de revisar na Central que chamasse startSRStudyMode() direto
+     * cairia no aviso "Selecione pelo menos um eixo" — pedindo uma escolha que
+     * a pessoa não fez porque nem viu a tela onde ela existe.
+     *
+     * Revisão vencida não é recorte temático: é o que a memória pede hoje,
+     * venha de onde vier. Aqui todos os eixos entram e a sessão começa. */
+    function startSRReviewAll() {
+      _studySelectedAxes.clear();
+      NEFRO_AXES.forEach(ax => _studySelectedAxes.add(ax.id));
+      startSRStudyMode();
+    }
+
     function startSRStudyMode() {
       if (_studySelectedAxes.size === 0) { _toast('Selecione pelo menos um eixo!', 'warning'); return; }
       const selectedCats = new Set();
@@ -1665,6 +1680,7 @@
 
     window.startReinforcementSession = startReinforcementSession;
     window.showAxesSelector      = showAxesSelector;
+    window.startSRReviewAll      = startSRReviewAll;
     window.startFreeStudyMode    = startFreeStudyMode;
     window.startSRStudyAllMode   = startSRStudyAllMode;
     window.startScheduledSRStudyMode = startScheduledSRStudyMode;
