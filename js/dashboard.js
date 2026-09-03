@@ -1642,7 +1642,23 @@
     if (moveFocus && activeButton) activeButton.focus({ preventScroll: true });
     if (activeButton && window.matchMedia('(max-width: 61.25rem)').matches) {
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      activeButton.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'nearest', inline: 'center' });
+      const nav = activeButton.closest('.nqd-nav');
+      const irmas = nav ? [...nav.querySelectorAll('[data-dash-tab]')] : [];
+      const primeira = irmas[0] === activeButton;
+      const ultima = irmas[irmas.length - 1] === activeButton;
+
+      /* Nas pontas, encosta de verdade em vez de centralizar.
+       *
+       * `inline: 'center'` numa aba que já é a primeira não consegue centralizar
+       * — mas para em 11px por causa do recuo lateral do contêiner. Isso deixa
+       * `scrollLeft > 0`, o esmaecimento da esquerda continua ligado, e a aba
+       * ativa aparece apagada. Medido: overview com scroll=11 e fade=ambos. */
+      if (nav && (primeira || ultima)) {
+        nav.scrollTo({ left: primeira ? 0 : nav.scrollWidth, behavior: reducedMotion ? 'auto' : 'smooth' });
+      } else {
+        activeButton.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'nearest', inline: 'center' });
+      }
+      if (nav) setTimeout(() => _sincronizarFadeDasAbas(nav), reducedMotion ? 0 : 420);
     }
 
     if (tabId === 'ranking' && !_rankingLoaded) _loadRanking(false);
@@ -1872,10 +1888,53 @@
     if (status && announce) status.textContent = `${visible} ${visible === 1 ? 'conquista exibida' : 'conquistas exibidas'}.`;
   }
 
+  /**
+   * O esmaecimento das bordas some do lado onde não há mais o que rolar.
+   *
+   * A máscara existe para sinalizar "há aba fora da vista" — sem ela, a aba
+   * cortada na borda lia como defeito de renderização. Mas ela era aplicada
+   * SEMPRE, inclusive já no fim da rolagem: medido em 390px, a aba Ranking
+   * ficava sob o esmaecimento da direita com scrollLeft no máximo, e a Visão
+   * geral sob o da esquerda. A aba ativa aparecia apagada pela metade, o que é
+   * exatamente o que a máscara deveria evitar.
+   *
+   * Afordância que não desliga vira o defeito que ela ia resolver.
+   */
+  function _sincronizarFadeDasAbas(nav) {
+    if (!nav) return;
+    /* A tolerância é o recuo lateral do próprio contêiner, não 1px.
+     *
+     * A barra usa `scroll-snap-type: x proximity`: pedir scrollLeft = 0 não
+     * gruda em zero, o encaixe puxa para o ponto da primeira aba, que fica
+     * depois do padding. Medido: 11px com padding de 12px. Comparar contra 1px
+     * fazia "primeira aba" parecer "ainda há coisa à esquerda", o esmaecimento
+     * ficava ligado e a aba ativa aparecia apagada.
+     *
+     * O que interessa não é o número ser zero — é não haver nada escondido. */
+    const estilo = getComputedStyle(nav);
+    const folga = Math.max(2, parseFloat(estilo.paddingLeft) || 0, parseFloat(estilo.paddingRight) || 0);
+    const podeEsquerda = nav.scrollLeft > folga;
+    const podeDireita = nav.scrollLeft + nav.clientWidth < nav.scrollWidth - folga;
+    nav.dataset.fade = podeEsquerda && podeDireita ? 'ambos'
+      : podeEsquerda ? 'esquerda'
+      : podeDireita ? 'direita'
+      : 'nenhum';
+  }
+
   function _wireDashboard(root) {
     root.querySelectorAll('[data-dash-tab]').forEach(button => {
       button.addEventListener('click', () => _switchTab(button.dataset.dashTab, false));
     });
+
+    const nav = root.querySelector('.nqd-nav');
+    if (nav) {
+      const sincronizar = () => _sincronizarFadeDasAbas(nav);
+      nav.addEventListener('scroll', sincronizar, { passive: true });
+      window.addEventListener('resize', sincronizar);
+      // O scrollIntoView da troca de aba é suave: sincroniza depois de assentar.
+      nav.addEventListener('scrollend', sincronizar);
+      sincronizar();
+    }
 
     root.querySelectorAll('.nqd-achievement-filter').forEach(button => {
       button.addEventListener('click', () => _setAchievementFilter(root, button.dataset.achievementFilter, true));
