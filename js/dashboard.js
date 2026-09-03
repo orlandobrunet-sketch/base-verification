@@ -1508,15 +1508,24 @@
     return `
       <section class="nqd-pane nq-dash-pane" id="nqdPane-library" role="tabpanel" aria-labelledby="nqdTab-library" data-dash-pane="library" hidden>
         <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Grimório de Conhecimento</h1><p class="nqd-section-copy">O que você encontrou ao decidir casos e abrir baús.</p></div></div>
+        ${/* Grimório vazio dizia a mesma coisa TRÊS vezes: "Seu Grimório começa
+              vazio" no resumo, "Sua primeira descoberta acenderá esta estante"
+              na estante, e "Seu Grimório aguarda a primeira descoberta" no
+              acervo — mais um "0 pergaminhos · 0 fontes clínicas" e uma estante
+              desenhada sem nada dentro, que parecia elemento quebrado.
+              Repetir a mesma ausência em três vozes não informa mais; faz a
+              tela parecer defeituosa. Vazio agora fala uma vez só, no bloco de
+              baixo, que é o único que oferece uma ação. */''}
+        ${library.items.length ? `
         <div class="nqd-library-overview">
           <div class="nqd-library-summary">
-            <small>Acervo descoberto</small><strong>${totalUnlocked > 0 ? `${totalUnlocked} ${totalUnlocked === 1 ? 'descoberta reunida' : 'descobertas reunidas'}` : 'Seu Grimório começa vazio'}</strong>
+            <small>Acervo descoberto</small><strong>${totalUnlocked} ${totalUnlocked === 1 ? 'descoberta reunida' : 'descobertas reunidas'}</strong>
             <span>${scrollCount} ${scrollCount === 1 ? 'pergaminho' : 'pergaminhos'} · ${sourceCount} ${sourceCount === 1 ? 'fonte clínica' : 'fontes clínicas'}</span>
           </div>
           <section class="nqd-library-shelf" aria-label="Estante com ${shelfItems.length} descobertas visíveis">
-            ${shelfItems.length ? shelfItems.map((item, index) => `<span class="nqd-library-spine is-${_escape(item.kind)}" data-rarity="${_escape(item.rarity)}" title="${_escape(item.title)}" style="--spine-index:${index};${item.badgeColor ? `--library-accent:${item.badgeColor};` : ''}"><i aria-hidden="true">${_escape(item.icon)}</i></span>`).join('') : '<span class="nqd-library-shelf-empty">Sua primeira descoberta acenderá esta estante.</span>'}
+            ${shelfItems.map((item, index) => `<span class="nqd-library-spine is-${_escape(item.kind)}" data-rarity="${_escape(item.rarity)}" title="${_escape(item.title)}" style="--spine-index:${index};${item.badgeColor ? `--library-accent:${item.badgeColor};` : ''}"><i aria-hidden="true">${_escape(item.icon)}</i></span>`).join('')}
           </section>
-        </div>
+        </div>` : ''}
         ${library.items.length ? `
           <div class="nqd-library-tabs" role="tablist" aria-label="Coleções do Grimório">
             <button type="button" role="tab" id="nqDashLibraryTab-scrolls" aria-selected="true" aria-controls="nqDashLibraryCollection" tabindex="0" data-library-collection="scrolls"><span>Pergaminhos</span><strong data-library-count>${scrollCount}</strong></button>
