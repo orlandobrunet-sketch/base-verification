@@ -3282,7 +3282,21 @@
 #nqDashboard[data-nq-ui="lumen"] .nqd-radar-legend-row[data-skill-state='consistent'] { --nqd-skill-accent: var(--nqd-jade); }
 #nqDashboard[data-nq-ui="lumen"] .nqd-radar-legend-row[data-skill-state='sample'] { --nqd-skill-accent: #7991a7; }
 
-#nqDashboard[data-nq-ui="lumen"] .nqd-radar-legend-row[data-sem-amostra] { opacity: .62; }
+/* Área sem amostra recua pela cor, não por apagar a linha inteira.
+ *
+ * `opacity: .62` levava junto o texto de 10,5px: composto sobre o fundo, "01"
+ * caía a 2,92:1 e "sem amostra" a 3,46:1 — abaixo do mínimo de 4,5:1. Justo o
+ * rótulo que EXPLICA o travessão era o menos legível da linha.
+ *
+ * E não havia opacidade que salvasse os dois: só a partir de .87 o texto passa,
+ * e aí o recuo já não se vê. Opacidade era o instrumento errado.
+ *
+ * O estado já se diz três vezes — acento cinza-ardósia, valor "—" e as palavras
+ * "sem amostra". Some a quarta voz, que era a única a custar leitura. */
+#nqDashboard[data-nq-ui="lumen"] .nqd-radar-legend-row[data-sem-amostra] {
+  background: none;
+  border-left-color: rgba(121, 145, 167, .45);
+}
 
 #nqDashboard[data-nq-ui="lumen"] .nqd-radar-key {
   grid-area: key;

@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v14.91
-const CACHE = 'nefroquest-v14.91';
+// NefroQuest Service Worker — v14.92
+const CACHE = 'nefroquest-v14.92';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -76,7 +76,7 @@ const ASSET_VERSIONS = {
   '/styles/lumen/atrium.css': '14.18',
   '/styles/lumen/game.css': '14.79',
   '/styles/lumen/difficulty.css': '14.34',
-  '/styles/lumen/dashboard.css': '14.91',
+  '/styles/lumen/dashboard.css': '14.92',
   '/styles/lumen/charselect.css': '14.75',
   '/js/utils.js': '14.70',
   '/js/audio.js': '14.69',
@@ -96,7 +96,7 @@ const ASSET_VERSIONS = {
   '/js/minigame-acidbase.js': '11.90',
   '/js/achievements.js': '14.84',
   '/js/changelog.js': '11.90',
-  '/js/dashboard.js': '14.91',
+  '/js/dashboard.js': '14.92',
 };
 // bump-release:asset-versions:fim
 
