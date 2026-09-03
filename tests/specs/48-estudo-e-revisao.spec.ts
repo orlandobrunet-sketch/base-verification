@@ -51,28 +51,56 @@ const semear = (vencidas: number, futuras: number) => async (page: Page) => {
 };
 
 test.describe('Estudo e revisão na Central', () => {
-  test('a ação principal é estudar por eixo', async ({ page }) => {
+  /* Clicar de verdade, e não conferir o atributo.
+   *
+   * A primeira versão destes cenários lia `data-action` e dava por bom. O
+   * atributo estava certo e os botões NÃO FUNCIONAVAM: o seletor abria em
+   * camada 10000 e a Central fica em 11000, então o modal nascia ATRÁS dela.
+   * Foi para produção assim, e quem encontrou foi o proprietário.
+   *
+   * Um teste que confere marcação não prova comportamento. Estes clicam e
+   * exigem o resultado visível na tela. */
+  const modalDeEstudo = (page: Page) => page.locator('.study-mode-popup');
+
+  async function clicarEEsperarModal(page: Page, seletor: string) {
+    await page.locator(seletor).click();
+    await expect(modalDeEstudo(page), 'o modal de estudo precisa aparecer').toHaveCount(1, { timeout: 8000 });
+  }
+
+  test('clicar em estudar por eixo abre o seletor à vista', async ({ page }) => {
     await abrirCentral(page, semear(6, 4));
 
     const principal = page.locator('.nqd-study-primary');
     await expect(principal, 'a seção precisa abrir com uma ação').toHaveCount(1);
     await expect(principal).toContainText(/eixo/i);
-    expect(
-      await principal.getAttribute('data-action'),
-      'a ação principal precisa levar à escolha de eixo',
-    ).toBe('showAxesSelector');
+
+    await clicarEEsperarModal(page, '.nqd-study-primary');
+
+    // A Central precisa sair de cena: modal atrás dela é o mesmo que nada.
+    await expect(page.locator('#nqDashboard'), 'a Central precisa fechar ao começar a estudar').toBeHidden();
+    await expect(modalDeEstudo(page)).toBeVisible();
   });
 
-  test('a revisão vencida fica visível ao lado, com a contagem certa', async ({ page }) => {
+  test('clicar em revisar abre a sessão, com a contagem certa no botão', async ({ page }) => {
     await abrirCentral(page, semear(6, 4));
 
     const revisar = page.locator('.nqd-study-secondary');
     await expect(revisar, 'com vencidas, a revisão precisa estar à vista').toHaveCount(1);
     await expect(revisar).toContainText('6');
-    expect(
-      await revisar.getAttribute('data-action'),
-      'precisa usar a entrada que seleciona todos os eixos antes de revisar',
-    ).toBe('startSRReviewAll');
+
+    await revisar.click();
+    await page.waitForTimeout(600);
+
+    // startSRReviewAll seleciona todos os eixos e entra direto na sessão —
+    // sem cair no aviso "Selecione pelo menos um eixo".
+    const entrou = await page.evaluate(() => ({
+      central: !!document.getElementById('nqDashboard') && getComputedStyle(document.getElementById('nqDashboard')!).display !== 'none',
+      avisoDeEixo: document.body.innerText.includes('Selecione pelo menos um eixo'),
+      sessao: !!document.querySelector('.study-mode-popup, .study-mode-page, #studyModePage'),
+    }));
+    expect(entrou.avisoDeEixo, 'revisar não pode pedir escolha de eixo').toBe(false);
+    expect(entrou.central, 'a Central precisa fechar ao começar a revisão').toBe(false);
+    expect(entrou.sessao, 'a sessão de revisão precisa aparecer').toBe(true);
   });
 
   test('sem nada vencido, o botão de revisar não existe', async ({ page }) => {

@@ -733,7 +733,7 @@
           <p>A revisão começa depois das primeiras respostas — é ela que traz de volta o que você acertou, no momento em que a lembrança começa a cair.</p>
         </div></header>
         <div class="nqd-study-actions">
-          <button type="button" class="nqd-study-primary" data-action="showAxesSelector">
+          <button type="button" class="nqd-study-primary" data-action-seq="closeDashboard,showAxesSelector">
             <strong>Escolher um eixo e estudar</strong>
             <small>Você decide o tema; a revisão se monta a partir do que responder.</small>
           </button>
@@ -754,12 +754,12 @@
      * botão que não faz nada ensina a ignorar botões. */
     const acoes = `
         <div class="nqd-study-actions">
-          <button type="button" class="nqd-study-primary" data-action="showAxesSelector">
+          <button type="button" class="nqd-study-primary" data-action-seq="closeDashboard,showAxesSelector">
             <strong>Escolher um eixo e estudar</strong>
             <small>Você define o tema da sessão.</small>
           </button>
           ${vencidas > 0 ? `
-          <button type="button" class="nqd-study-secondary" data-action="startSRReviewAll">
+          <button type="button" class="nqd-study-secondary" data-action-seq="closeDashboard,startSRReviewAll">
             <strong>Revisar ${_formatNumber(vencidas)} ${vencidas === 1 ? 'vencida' : 'vencidas'}</strong>
             <small>${minutos ? `cerca de ${minutos} min, no seu ritmo` : 'o que a memória pede hoje'}</small>
           </button>` : ''}
