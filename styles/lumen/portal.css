@@ -1139,8 +1139,17 @@ body.nql-auth-open {
   line-height: 1.5;
 }
 
+/* Links secundários do portal: "esqueci a senha", "← Voltar ao login" e
+ * "entrar como convidado".
+ *
+ * O :not(.auth-tab) existe porque a ABA "Entrar" carrega os mesmos atributos
+ * (data-action="switchAuthTab" data-arg="entrar") do link de voltar. Sem ele,
+ * este `color !important` pintava a aba ATIVA — que tem fundo ciano claro —
+ * com a cor de item inativo: 1,71:1, praticamente invisível. A aba "Criar
+ * conta" escapava por ter data-arg diferente, então a única ilegível da barra
+ * era justamente aquela em que o usuário estava. */
 #authModal[data-nq-ui="lumen"] [data-action="showForgotPassword"],
-#authModal[data-nq-ui="lumen"] [data-action="switchAuthTab"][data-arg="entrar"],
+#authModal[data-nq-ui="lumen"] [data-action="switchAuthTab"][data-arg="entrar"]:not(.auth-tab),
 #authModal[data-nq-ui="lumen"] .auth-guest-link {
   min-height: 2.75rem;
   color: var(--nql-text-muted) !important;

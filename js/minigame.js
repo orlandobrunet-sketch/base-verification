@@ -832,7 +832,10 @@
             </p>
             <div style="display:flex;gap:10px;flex-direction:column;">
               <button type="button" id="ritualStart" style="font-family:'Cinzel',serif;background:linear-gradient(180deg,#7c3aed,#5b21b6);border:2px solid #a855f7;border-radius:12px;color:#f3e8ff;font-size:0.95rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;padding:13px;cursor:pointer;">Começar o Ritual</button>
-              <button type="button" data-remove-id="ritualOverlay" style="background:none;border:none;color:var(--txt-dim);font-size:0.82rem;cursor:pointer;">Agora não</button>
+              <!-- Recusar tinha 15px de altura: metade do mínimo de toque. O
+                   botão de aceitar tem 13px de padding; recusar não precisa
+                   competir em peso, mas precisa caber no dedo. -->
+              <button type="button" data-remove-id="ritualOverlay" style="background:none;border:none;color:var(--txt-dim);font-size:0.82rem;cursor:pointer;padding:9px;min-height:24px;">Agora não</button>
             </div>
           </div>`);
         overlay.querySelector('#ritualStart').addEventListener('click', nextQuestion);

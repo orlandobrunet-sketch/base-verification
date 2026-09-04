@@ -710,6 +710,12 @@
     }
 
     async function showTopicSelector() {
+      // Capturado ANTES do await: quem chamou some da tela quando o popup de
+      // modos fecha, e é dele que o foco precisa voltar. A irmã
+      // showAxesSelector já fazia isso; aqui a linha faltava, e a chamada a
+      // _mountStudyPopup(..., returnFocus) lá embaixo lançava ReferenceError
+      // antes de qualquer coisa aparecer — o seletor de tema nunca abria.
+      const returnFocus = document.activeElement;
       if (typeof topics === 'undefined') {
         _toast('Carregando questões…', 'info', 30000);
         try { await window._loadTopics(); document.querySelector('.nq-toast')?.remove(); }

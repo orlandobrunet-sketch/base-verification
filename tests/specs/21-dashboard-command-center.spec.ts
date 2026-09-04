@@ -102,7 +102,11 @@ async function waitForDashboardTabTerminal(page: Page, tabId: typeof DASHBOARD_T
       return img.complete && img.naturalWidth > 0;
     }))).toBe(true);
   } else if (tabId === 'library') {
-    await expect(dashboard.locator('.nqd-library-overview')).toBeVisible();
+    // O Grimório tem DOIS desfechos legítimos: com acervo desenha o resumo e a
+    // estante; vazio desenha só o bloco de ação. Exigir o resumo sempre fazia
+    // este helper esperar um elemento que o vazio deixou de renderizar de
+    // propósito, travando a aba num estado que nunca chegaria.
+    await expect(dashboard.locator('.nqd-library-overview, [data-library-empty]').first()).toBeVisible();
   } else if (tabId === 'ranking') {
     await expect(dashboard.locator('.nqd-ranking-skeleton')).toHaveCount(0, { timeout: 20_000 });
   }

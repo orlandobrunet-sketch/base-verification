@@ -2629,9 +2629,25 @@
     scroll-snap-type: x proximity;
     /* Sem barra de rolagem e sem afordância, a aba cortada na borda lia como
        bug de renderização ("...línico") em vez de "role para o lado". A
-       máscara desvanece as bordas e sinaliza que há conteúdo fora da vista. */
-    mask-image: linear-gradient(90deg, transparent 0, #000 .75rem, #000 calc(100% - 1.25rem), transparent 100%);
-    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 .75rem, #000 calc(100% - 1.25rem), transparent 100%);
+       máscara desvanece as bordas e sinaliza que há conteúdo fora da vista.
+       O lado esmaecido depende de `data-fade`, escrito por
+       _sincronizarFadeDasAbas conforme a posição da rolagem: sem isso a aba
+       ativa aparecia apagada pela metade ao chegar na ponta, que é o defeito
+       que a máscara existia para evitar. */
+    --nqd-fade-esq: transparent 0, #000 .75rem;
+    --nqd-fade-dir: #000 calc(100% - 1.25rem), transparent 100%;
+    mask-image: linear-gradient(90deg, var(--nqd-fade-esq), var(--nqd-fade-dir));
+    -webkit-mask-image: linear-gradient(90deg, var(--nqd-fade-esq), var(--nqd-fade-dir));
+  }
+
+  #nqDashboard[data-nq-ui="lumen"] .nqd-nav[data-fade="direita"],
+  #nqDashboard[data-nq-ui="lumen"] .nqd-nav[data-fade="nenhum"] {
+    --nqd-fade-esq: #000 0, #000 0;
+  }
+
+  #nqDashboard[data-nq-ui="lumen"] .nqd-nav[data-fade="esquerda"],
+  #nqDashboard[data-nq-ui="lumen"] .nqd-nav[data-fade="nenhum"] {
+    --nqd-fade-dir: #000 100%, #000 100%;
   }
 
   #nqDashboard[data-nq-ui="lumen"] .nqd-nav::-webkit-scrollbar {
@@ -3266,7 +3282,21 @@
 #nqDashboard[data-nq-ui="lumen"] .nqd-radar-legend-row[data-skill-state='consistent'] { --nqd-skill-accent: var(--nqd-jade); }
 #nqDashboard[data-nq-ui="lumen"] .nqd-radar-legend-row[data-skill-state='sample'] { --nqd-skill-accent: #7991a7; }
 
-#nqDashboard[data-nq-ui="lumen"] .nqd-radar-legend-row[data-sem-amostra] { opacity: .62; }
+/* Área sem amostra recua pela cor, não por apagar a linha inteira.
+ *
+ * `opacity: .62` levava junto o texto de 10,5px: composto sobre o fundo, "01"
+ * caía a 2,92:1 e "sem amostra" a 3,46:1 — abaixo do mínimo de 4,5:1. Justo o
+ * rótulo que EXPLICA o travessão era o menos legível da linha.
+ *
+ * E não havia opacidade que salvasse os dois: só a partir de .87 o texto passa,
+ * e aí o recuo já não se vê. Opacidade era o instrumento errado.
+ *
+ * O estado já se diz três vezes — acento cinza-ardósia, valor "—" e as palavras
+ * "sem amostra". Some a quarta voz, que era a única a custar leitura. */
+#nqDashboard[data-nq-ui="lumen"] .nqd-radar-legend-row[data-sem-amostra] {
+  background: none;
+  border-left-color: rgba(121, 145, 167, .45);
+}
 
 #nqDashboard[data-nq-ui="lumen"] .nqd-radar-key {
   grid-area: key;

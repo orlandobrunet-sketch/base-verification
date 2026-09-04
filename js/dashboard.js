@@ -1508,15 +1508,24 @@
     return `
       <section class="nqd-pane nq-dash-pane" id="nqdPane-library" role="tabpanel" aria-labelledby="nqdTab-library" data-dash-pane="library" hidden>
         <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Grimório de Conhecimento</h1><p class="nqd-section-copy">O que você encontrou ao decidir casos e abrir baús.</p></div></div>
+        ${/* Grimório vazio dizia a mesma coisa TRÊS vezes: "Seu Grimório começa
+              vazio" no resumo, "Sua primeira descoberta acenderá esta estante"
+              na estante, e "Seu Grimório aguarda a primeira descoberta" no
+              acervo — mais um "0 pergaminhos · 0 fontes clínicas" e uma estante
+              desenhada sem nada dentro, que parecia elemento quebrado.
+              Repetir a mesma ausência em três vozes não informa mais; faz a
+              tela parecer defeituosa. Vazio agora fala uma vez só, no bloco de
+              baixo, que é o único que oferece uma ação. */''}
+        ${library.items.length ? `
         <div class="nqd-library-overview">
           <div class="nqd-library-summary">
-            <small>Acervo descoberto</small><strong>${totalUnlocked > 0 ? `${totalUnlocked} ${totalUnlocked === 1 ? 'descoberta reunida' : 'descobertas reunidas'}` : 'Seu Grimório começa vazio'}</strong>
+            <small>Acervo descoberto</small><strong>${totalUnlocked} ${totalUnlocked === 1 ? 'descoberta reunida' : 'descobertas reunidas'}</strong>
             <span>${scrollCount} ${scrollCount === 1 ? 'pergaminho' : 'pergaminhos'} · ${sourceCount} ${sourceCount === 1 ? 'fonte clínica' : 'fontes clínicas'}</span>
           </div>
           <section class="nqd-library-shelf" aria-label="Estante com ${shelfItems.length} descobertas visíveis">
-            ${shelfItems.length ? shelfItems.map((item, index) => `<span class="nqd-library-spine is-${_escape(item.kind)}" data-rarity="${_escape(item.rarity)}" title="${_escape(item.title)}" style="--spine-index:${index};${item.badgeColor ? `--library-accent:${item.badgeColor};` : ''}"><i aria-hidden="true">${_escape(item.icon)}</i></span>`).join('') : '<span class="nqd-library-shelf-empty">Sua primeira descoberta acenderá esta estante.</span>'}
+            ${shelfItems.map((item, index) => `<span class="nqd-library-spine is-${_escape(item.kind)}" data-rarity="${_escape(item.rarity)}" title="${_escape(item.title)}" style="--spine-index:${index};${item.badgeColor ? `--library-accent:${item.badgeColor};` : ''}"><i aria-hidden="true">${_escape(item.icon)}</i></span>`).join('')}
           </section>
-        </div>
+        </div>` : ''}
         ${library.items.length ? `
           <div class="nqd-library-tabs" role="tablist" aria-label="Coleções do Grimório">
             <button type="button" role="tab" id="nqDashLibraryTab-scrolls" aria-selected="true" aria-controls="nqDashLibraryCollection" tabindex="0" data-library-collection="scrolls"><span>Pergaminhos</span><strong data-library-count>${scrollCount}</strong></button>
@@ -1642,7 +1651,23 @@
     if (moveFocus && activeButton) activeButton.focus({ preventScroll: true });
     if (activeButton && window.matchMedia('(max-width: 61.25rem)').matches) {
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      activeButton.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'nearest', inline: 'center' });
+      const nav = activeButton.closest('.nqd-nav');
+      const irmas = nav ? [...nav.querySelectorAll('[data-dash-tab]')] : [];
+      const primeira = irmas[0] === activeButton;
+      const ultima = irmas[irmas.length - 1] === activeButton;
+
+      /* Nas pontas, encosta de verdade em vez de centralizar.
+       *
+       * `inline: 'center'` numa aba que já é a primeira não consegue centralizar
+       * — mas para em 11px por causa do recuo lateral do contêiner. Isso deixa
+       * `scrollLeft > 0`, o esmaecimento da esquerda continua ligado, e a aba
+       * ativa aparece apagada. Medido: overview com scroll=11 e fade=ambos. */
+      if (nav && (primeira || ultima)) {
+        nav.scrollTo({ left: primeira ? 0 : nav.scrollWidth, behavior: reducedMotion ? 'auto' : 'smooth' });
+      } else {
+        activeButton.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'nearest', inline: 'center' });
+      }
+      if (nav) setTimeout(() => _sincronizarFadeDasAbas(nav), reducedMotion ? 0 : 420);
     }
 
     if (tabId === 'ranking' && !_rankingLoaded) _loadRanking(false);
@@ -1872,10 +1897,53 @@
     if (status && announce) status.textContent = `${visible} ${visible === 1 ? 'conquista exibida' : 'conquistas exibidas'}.`;
   }
 
+  /**
+   * O esmaecimento das bordas some do lado onde não há mais o que rolar.
+   *
+   * A máscara existe para sinalizar "há aba fora da vista" — sem ela, a aba
+   * cortada na borda lia como defeito de renderização. Mas ela era aplicada
+   * SEMPRE, inclusive já no fim da rolagem: medido em 390px, a aba Ranking
+   * ficava sob o esmaecimento da direita com scrollLeft no máximo, e a Visão
+   * geral sob o da esquerda. A aba ativa aparecia apagada pela metade, o que é
+   * exatamente o que a máscara deveria evitar.
+   *
+   * Afordância que não desliga vira o defeito que ela ia resolver.
+   */
+  function _sincronizarFadeDasAbas(nav) {
+    if (!nav) return;
+    /* A tolerância é o recuo lateral do próprio contêiner, não 1px.
+     *
+     * A barra usa `scroll-snap-type: x proximity`: pedir scrollLeft = 0 não
+     * gruda em zero, o encaixe puxa para o ponto da primeira aba, que fica
+     * depois do padding. Medido: 11px com padding de 12px. Comparar contra 1px
+     * fazia "primeira aba" parecer "ainda há coisa à esquerda", o esmaecimento
+     * ficava ligado e a aba ativa aparecia apagada.
+     *
+     * O que interessa não é o número ser zero — é não haver nada escondido. */
+    const estilo = getComputedStyle(nav);
+    const folga = Math.max(2, parseFloat(estilo.paddingLeft) || 0, parseFloat(estilo.paddingRight) || 0);
+    const podeEsquerda = nav.scrollLeft > folga;
+    const podeDireita = nav.scrollLeft + nav.clientWidth < nav.scrollWidth - folga;
+    nav.dataset.fade = podeEsquerda && podeDireita ? 'ambos'
+      : podeEsquerda ? 'esquerda'
+      : podeDireita ? 'direita'
+      : 'nenhum';
+  }
+
   function _wireDashboard(root) {
     root.querySelectorAll('[data-dash-tab]').forEach(button => {
       button.addEventListener('click', () => _switchTab(button.dataset.dashTab, false));
     });
+
+    const nav = root.querySelector('.nqd-nav');
+    if (nav) {
+      const sincronizar = () => _sincronizarFadeDasAbas(nav);
+      nav.addEventListener('scroll', sincronizar, { passive: true });
+      window.addEventListener('resize', sincronizar);
+      // O scrollIntoView da troca de aba é suave: sincroniza depois de assentar.
+      nav.addEventListener('scrollend', sincronizar);
+      sincronizar();
+    }
 
     root.querySelectorAll('.nqd-achievement-filter').forEach(button => {
       button.addEventListener('click', () => _setAchievementFilter(root, button.dataset.achievementFilter, true));

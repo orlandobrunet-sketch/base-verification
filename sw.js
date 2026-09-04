@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v14.89
-const CACHE = 'nefroquest-v14.89';
+// NefroQuest Service Worker — v14.93
+const CACHE = 'nefroquest-v14.93';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -69,20 +69,20 @@ const STATIC_ASSETS = [
 // chave canônica (sem query), que é a que canonicalAssetKey() consulta.
 // bump-release:asset-versions:início
 const ASSET_VERSIONS = {
-  '/style.css': '14.84',
+  '/style.css': '14.93',
   '/styles/lumen/tokens.css': '14.81',
   '/styles/lumen/shell.css': '14.77',
-  '/styles/lumen/portal.css': '14.02',
+  '/styles/lumen/portal.css': '14.93',
   '/styles/lumen/atrium.css': '14.18',
   '/styles/lumen/game.css': '14.79',
   '/styles/lumen/difficulty.css': '14.34',
-  '/styles/lumen/dashboard.css': '14.88',
+  '/styles/lumen/dashboard.css': '14.93',
   '/styles/lumen/charselect.css': '14.75',
   '/js/utils.js': '14.70',
   '/js/audio.js': '14.69',
   '/js/leaderboard.js': '11.90',
-  '/js/study-mode.js': '14.88',
-  '/js/game.js': '14.88',
+  '/js/study-mode.js': '14.93',
+  '/js/game.js': '14.93',
   '/js/notifications.js': '11.90',
   '/js/auth.js': '13.44',
   '/js/portal.js': '13.20',
@@ -92,11 +92,11 @@ const ASSET_VERSIONS = {
   '/js/boss.js': '14.84',
   '/js/exam.js': '11.90',
   '/js/admin.js': '14.84',
-  '/js/minigame.js': '14.82',
+  '/js/minigame.js': '14.93',
   '/js/minigame-acidbase.js': '11.90',
   '/js/achievements.js': '14.84',
   '/js/changelog.js': '11.90',
-  '/js/dashboard.js': '14.89',
+  '/js/dashboard.js': '14.93',
 };
 // bump-release:asset-versions:fim
 
