@@ -67,12 +67,52 @@ export function medirContraste(seletorRaiz: string): FalhaDeContraste[] {
 
   const PAGINA = canal(getComputedStyle(document.body).backgroundColor) || [14, 20, 31];
 
-  /** Fundo opaco mais próximo, compondo as camadas translúcidas do caminho. */
-  const fundoDe = (el: Element) => {
+  /** As paradas de cor de um degradê, na ordem em que o CSS as declara. */
+  const paradasDe = (imagem: string): number[][] => {
+    const paradas: number[][] = [];
+    const re = /rgba?\(([^)]+)\)/g;
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(imagem))) {
+      const c = canal('rgb(' + m[1] + ')');
+      const a = alfa('rgba(' + m[1] + ')');
+      if (c && a > 0.5) paradas.push(c);
+    }
+    return paradas;
+  };
+
+  /**
+   * Fundos possíveis atrás do texto — plural de propósito.
+   *
+   * `backgroundColor` não enxerga `background-image`, então texto escuro sobre
+   * degradê dourado media como escuro-sobre-escuro: foi assim que "Entrar no
+   * NefroQuest" apareceu a 1,03:1 sendo perfeitamente legível. Ignorar o
+   * gradiente tampouco serve — cegava a medição dentro de quase todo modal.
+   *
+   * A saída é avaliar contra TODAS as paradas do degradê e ficar com a mais
+   * favorável ao texto. Se nem a melhor passa, a falha é certa em qualquer
+   * ponto da faixa; e nenhum texto legível é acusado por causa da pior.
+   *
+   * Devolve vazio só quando há imagem de verdade (sem paradas de cor legíveis),
+   * onde não medir é mais honesto que medir errado.
+   */
+  const fundosDe = (el: Element): number[][] => {
     const pilha: Array<[number[], number]> = [];
     let n: Element | null = el;
     while (n && n !== document.documentElement) {
-      const bg = getComputedStyle(n).backgroundColor;
+      const cs = getComputedStyle(n);
+      const imagem = cs.backgroundImage;
+      if (imagem && imagem !== 'none') {
+        const paradas = paradasDe(imagem);
+        if (paradas.length === 0) return [];
+        // O degradê cobre o que houver atrás; as camadas translúcidas já
+        // acumuladas continuam valendo por cima dele.
+        return paradas.map((parada) => {
+          let cor = parada;
+          for (let i = pilha.length - 1; i >= 0; i--) cor = sobre(pilha[i][0], cor, pilha[i][1]);
+          return cor;
+        });
+      }
+      const bg = cs.backgroundColor;
       const a = alfa(bg);
       const c = canal(bg);
       if (a > 0 && c) pilha.push([c, a]);
@@ -81,7 +121,7 @@ export function medirContraste(seletorRaiz: string): FalhaDeContraste[] {
     }
     let cor = PAGINA;
     for (let i = pilha.length - 1; i >= 0; i--) cor = sobre(pilha[i][0], cor, pilha[i][1]);
-    return cor;
+    return [cor];
   };
 
   /**
@@ -114,9 +154,14 @@ export function medirContraste(seletorRaiz: string): FalhaDeContraste[] {
       .map((n) => (n.textContent || '').trim())
       .join(' ');
     if (!texto) continue;
+    // Emoji e símbolos trazem a própria cor; `color` não os pinta. Medi-los
+    // acusava "⚜️" e "🏰" como texto preto ilegível.
+    if (!/[\p{L}\p{N}]/u.test(texto)) continue;
 
     const r = el.getBoundingClientRect();
     if (r.width < 1 || r.height < 1) continue;
+    // Fora da viewport é painel fechado / gaveta recolhida, não defeito de cor.
+    if (r.right < 0 || r.left > window.innerWidth) continue;
 
     const cs = getComputedStyle(el);
     if (cs.visibility === 'hidden') continue;
@@ -126,16 +171,28 @@ export function medirContraste(seletorRaiz: string): FalhaDeContraste[] {
     const opac = opacidadeAcumulada(el);
     if (opac < 0.05) continue;
 
+    // Texto pintado com degradê (background-clip: text) não usa `color` para
+    // nada — os glifos recebem o gradiente. Medir `color` aqui acusava o
+    // título "NefroQuest" do modal de preços, que é dourado e bem visível.
+    const recorteEmTexto = (cs as any).webkitBackgroundClip === 'text' || cs.backgroundClip === 'text';
+    const preenchimento = (cs as any).webkitTextFillColor;
+    if (recorteEmTexto && preenchimento && alfa(preenchimento) < 0.05) continue;
+
     const fg = canal(cs.color);
     if (!fg) continue;
 
-    const fundo = fundoDe(el);
-    const efetiva = sobre(sobre(fg, fundo, alfa(cs.color)), fundo, opac);
+    const fundos = fundosDe(el);
+    if (fundos.length === 0) continue;
     const px = parseFloat(cs.fontSize);
     const peso = parseInt(cs.fontWeight, 10) || 400;
     const grande = px >= 24 || (px >= 18.66 && peso >= 700);
     const exigido = grande ? 3 : 4.5;
-    const razao = razaoEntre(efetiva, fundo);
+    // A parada mais favorável ao texto: acusar só quando nem a melhor passa.
+    let razao = 0;
+    for (const fundo of fundos) {
+      const efetiva = sobre(sobre(fg, fundo, alfa(cs.color)), fundo, opac);
+      razao = Math.max(razao, razaoEntre(efetiva, fundo));
+    }
 
     if (razao + 0.005 < exigido) {
       achados.push({

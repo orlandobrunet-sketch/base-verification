@@ -3731,7 +3731,10 @@
           max-height:calc(100vh - 48px);overflow-y:auto;
           box-shadow:0 8px 48px rgba(0,0,0,0.9),0 0 0 1px rgba(255,215,0,0.08) inset;
         ">
-          <button type="button" data-remove-id="forjaModal" style="position: absolute; top: 12px; right: 16px; background: none; border: none; color: #6b7db8; font-size: 1.2rem; cursor: pointer; z-index: 10;">✕</button>
+          <!-- O ✕ media 16x26: estreito demais para o dedo (mínimo 24x24). A
+               área cresce para 44x44 e o recuo compensa o crescimento, para o
+               glifo continuar onde já estava. -->
+          <button type="button" data-remove-id="forjaModal" aria-label="Fechar a Forja" style="position: absolute; top: 1px; right: 5px; display: grid; place-items: center; width: 44px; height: 44px; background: none; border: none; color: #6b7db8; font-size: 1.2rem; cursor: pointer; z-index: 10;">✕</button>
           <h3 style="color:#fb923c;font-family:'Cinzel',serif;font-size:1.15rem;text-align:center;margin:0 0 6px;letter-spacing:1px;">🔥 FORJA</h3>
           <p style="color:#6b7db8;font-family:'Philosopher',serif;font-size:0.78rem;text-align:center;margin:0 0 20px;">Escolha o tipo de forjamento</p>
 
@@ -3741,7 +3744,7 @@
             <div style="
               background:rgba(251,146,60,0.08);border:1px solid rgba(251,146,60,${canForge?'0.4':'0.18'});
               border-radius:12px;padding:14px 16px;
-              ${!canForge?'opacity:0.5;':''}
+              
             ">
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
                 <span style="color:#fb923c;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:700;">⚒️ Item Comum</span>
@@ -3752,7 +3755,7 @@
                 ${canForge?'':'disabled'}
                 style="width:100%;padding:8px;background:${canForge?'linear-gradient(135deg,rgba(251,146,60,0.35),rgba(200,100,30,0.3))':'rgba(255,255,255,0.04)'};
                 border:1px solid rgba(251,146,60,${canForge?'0.6':'0.2'});border-radius:8px;
-                color:${canForge?'#fb923c':'#555'};font-family:'Cinzel',serif;font-size:0.7rem;
+                color:${canForge?'#fb923c':'#8a93a6'};font-family:'Cinzel',serif;font-size:0.7rem;
                 font-weight:700;letter-spacing:1px;cursor:${canForge?'pointer':'not-allowed'};">
                 FORJAR AGORA
               </button>
@@ -3762,7 +3765,7 @@
             <div style="
               background:rgba(192,132,252,0.08);border:1px solid rgba(192,132,252,${canLeg?'0.4':'0.18'});
               border-radius:12px;padding:14px 16px;
-              ${!canLeg?'opacity:0.5;':''}
+              
             ">
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
                 <span style="color:#d8b4fe;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:700;">⭐ Item Lendário</span>
@@ -3773,7 +3776,7 @@
                 ${canLeg?'':'disabled'}
                 style="width:100%;padding:8px;background:${canLeg?'linear-gradient(135deg,rgba(192,132,252,0.3),rgba(140,80,220,0.25))':'rgba(255,255,255,0.04)'};
                 border:1px solid rgba(192,132,252,${canLeg?'0.6':'0.2'});border-radius:8px;
-                color:${canLeg?'#d8b4fe':'#555'};font-family:'Cinzel',serif;font-size:0.7rem;
+                color:${canLeg?'#d8b4fe':'#8a93a6'};font-family:'Cinzel',serif;font-size:0.7rem;
                 font-weight:700;letter-spacing:1px;cursor:${canLeg?'pointer':'not-allowed'};">
                 FORJAR LENDÁRIO
               </button>
@@ -3781,7 +3784,7 @@
 
           </div>
 
-          <div style="color:#4a5878;font-family:'Philosopher',serif;font-size:0.72rem;text-align:center;margin-top:14px;">
+          <div style="color:#7d8ba0;font-family:'Philosopher',serif;font-size:0.72rem;text-align:center;margin-top:14px;">
             Ouro disponível: <strong style="color:#ffd700;">${state.gold}</strong>
           </div>
 
