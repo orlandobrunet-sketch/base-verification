@@ -102,12 +102,23 @@ export function medirContraste(seletorRaiz: string): FalhaDeContraste[] {
       const cs = getComputedStyle(n);
       const imagem = cs.backgroundImage;
       if (imagem && imagem !== 'none') {
-        const paradas = paradasDe(imagem);
-        if (paradas.length === 0) return [];
-        // O degradê cobre o que houver atrás; as camadas translúcidas já
-        // acumuladas continuam valendo por cima dele.
-        return paradas.map((parada) => {
-          let cor = parada;
+        const candidatos = paradasDe(imagem);
+        /* A cor de fundo do próprio elemento entra como mais um candidato
+         * quando é opaca. Nem todo background-image cobre a caixa: o cartão da
+         * pergunta desenha um filete de 1px no topo com
+         * `linear-gradient(...) top / 100% 1px no-repeat`, sobre um fundo
+         * quase preto. Lendo só as paradas do degradê, o enunciado — creme
+         * sobre escuro, perfeitamente legível — media 2,06:1.
+         *
+         * Como o veredito usa o candidato MAIS FAVORÁVEL, somar a cor real do
+         * cartão desfaz esse engano sem esconder defeito: só passa quando
+         * alguma camada de fato existente atrás do texto passa. */
+        const propria = canal(cs.backgroundColor);
+        if (propria && alfa(cs.backgroundColor) >= 0.85) candidatos.push(propria);
+        if (candidatos.length === 0) return [];
+        // As camadas translúcidas já acumuladas continuam valendo por cima.
+        return candidatos.map((candidato) => {
+          let cor = candidato;
           for (let i = pilha.length - 1; i >= 0; i--) cor = sobre(pilha[i][0], cor, pilha[i][1]);
           return cor;
         });
@@ -167,6 +178,10 @@ export function medirContraste(seletorRaiz: string): FalhaDeContraste[] {
     if (cs.visibility === 'hidden') continue;
     // Texto só para leitor de tela e decoração não são lidos com os olhos.
     if (el.closest('.nqd-sr-only, .sr-only, [aria-hidden="true"]')) continue;
+    // Controle desabilitado é isento de contraste mínimo (WCAG 1.4.3): o
+    // apagamento é justamente o que comunica que ele não responde agora. Sem
+    // esta linha, o botão "Próxima" antes de responder aparecia como defeito.
+    if (el.closest(':disabled, [aria-disabled="true"], .disabled')) continue;
 
     const opac = opacidadeAcumulada(el);
     if (opac < 0.05) continue;

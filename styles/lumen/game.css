@@ -1293,7 +1293,9 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
 }
 
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .ref-year {
-  color: var(--ref-accent, var(--nql-lumen));
+  /* Mesma razão do CSS legado: o acento cru vem dos dados e nem sempre serve
+     como texto. --ref-accent-texto é o mesmo matiz clareado até o mínimo. */
+  color: var(--ref-accent-texto, var(--ref-accent, var(--nql-lumen)));
   font-family: var(--nql-font-instrument);
 }
 

@@ -1396,7 +1396,9 @@ main, .nav, .footer { position: relative; z-index: 1; }
   animation: probe-breathe 1.8s ease-in-out infinite;
 }
 .nephron-probe-halo { fill: url("#probe-halo"); opacity: .72; pointer-events: none; }
-.atlas-caption { right: 1rem; bottom: .8rem; left: auto; color: rgba(255,255,255,.42); }
+/* .42 de alfa dava 4,06:1 num rótulo de 9px — o menor texto da landing era
+   também o de menor contraste. A posição discreta já basta para recuá-lo. */
+.atlas-caption { right: 1rem; bottom: .8rem; left: auto; color: rgba(255,255,255,.5); }
 
 .hero-console {
   position: absolute;

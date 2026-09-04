@@ -860,9 +860,11 @@
       background: none;
       border: none;
       cursor: pointer;
+      /* O ícone continua com 14px; cresce só a área de toque, que media 18x18
+         — abaixo do mínimo de 24x24 num botão usado durante a partida. */
       padding: 0;
-      width: 18px;
-      height: 18px;
+      width: 26px;
+      height: 26px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1014,6 +1016,11 @@
       font-size: 0.82rem;
       flex: 1;
       line-height: 1.3;
+      /* É um link que abre a fonte fora do app: media 17px de altura, abaixo
+         do mínimo de toque. Cresce a área, não o texto. */
+      min-height: 24px;
+      display: flex;
+      align-items: center;
     }
     .ref-badge {
       font-size: 0.62rem;
@@ -1052,13 +1059,20 @@
       text-overflow: ellipsis;
     }
     .ref-year {
-      color: var(--ref-accent, #6366f1);
+      /* O acento cru vem dos dados e nem sempre serve como TEXTO: o índigo
+         dava 4,16:1, o cinza-ardósia 3,9:1 num tamanho de 11px. O renderizador
+         calcula --ref-accent-texto clareando o mesmo matiz até o mínimo; a
+         borda e o filete do cartão seguem usando o acento cru. */
+      color: var(--ref-accent-texto, var(--ref-accent, #8b8df5));
       font-size: 0.72rem;
       font-weight: 700;
       flex-shrink: 0;
     }
     .ref-tipo {
-      color: #64748b;
+      /* #64748b dava 3,9:1 no confronto final. As regras Lúmen param em
+         :not(.boss-battle-mode), então lá é esta cor que vale — e é onde a
+         referência mais importa, logo depois de perder vida numa questão. */
+      color: #8b99ac;
       font-size: 0.68rem;
       flex-shrink: 0;
     }
@@ -1083,7 +1097,9 @@
       border-radius: 5px;
       color: #8b9ccc;
       font-size: 0.62rem;
-      padding: 3px 8px;
+      /* 3px de padding rendia 19px de altura; o dedo precisa de 24. */
+      padding: 6px 10px;
+      min-height: 24px;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -12936,8 +12952,22 @@ button.ab-ddx-card { cursor: pointer; }
 
 /* Item 5 — restaura a 3ª coluna (dock) no grid do boss (desktop) */
 body.arqui-nefromante-final .app {
-  grid-template-columns: 380px 1fr 80px !important;
   max-width: none !important;
+}
+
+/* As três colunas são de DESKTOP, como diz o comentário acima — mas a regra
+ * estava no nível superior e valia em qualquer largura, com !important.
+ *
+ * Em 390px isso pedia 380 + 1fr + 80 = 460px de colunas dentro de 374px úteis.
+ * O excesso empurrava o painel para -39px, e a borda esquerda da tela comia o
+ * começo de cada linha: o enunciado do confronto final aparecia como
+ * "o planejar o acesso", "oença renal", "emodiálise", "DOQI atual".
+ *
+ * A questão clínica do chefe chegava cortada ao jogador no celular. */
+@media (min-width: 1024px) {
+  body.arqui-nefromante-final .app {
+    grid-template-columns: 380px 1fr 80px !important;
+  }
 }
 /* dock lateral visível e roxo */
 body.arqui-nefromante-final #actionDock,

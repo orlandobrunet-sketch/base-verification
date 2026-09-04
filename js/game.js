@@ -2372,6 +2372,57 @@
       const hasRCT = list.some(x => x.ref.badge === 'RCT');
       const accentColor = hasRCT ? '#10b981' : '#6366f1';
 
+      /**
+       * Fundo do crachá escurecido até o branco ser legível sobre ele.
+       *
+       * O crachá é `color: #fff` fixo sobre uma cor que vem dos dados da
+       * referência. Em fundos claros isso desaba: "RCT", sobre o verde
+       * esmeralda, ficava em 2,54:1.
+       *
+       * Trocar a TINTA não resolve: em cores de luminância média — o índigo,
+       * o roxo, o vermelho — nem o branco nem o quase-preto chegam a 4,5:1.
+       * Quem tem de ceder é o FUNDO. Escurecer preserva o matiz, então o
+       * crachá continua dizendo o tipo pela cor, e vale para qualquer cor de
+       * crachá, inclusive as que ainda não existem nos dados.
+       */
+      const _fundoDeCracha = (cor) => {
+        const m = String(cor).match(/^#?([0-9a-f]{6})$/i);
+        if (!m) return cor;
+        const rgb = [0, 2, 4].map(i => parseInt(m[1].slice(i, i + 2), 16));
+        const lum = (c) => {
+          const [r, g, b] = c.map(v => { const x = v / 255; return x <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4); });
+          return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+        };
+        const contraBranco = (c) => 1.05 / (lum(c) + 0.05);
+        let atual = rgb;
+        // Passos de 6% em direção ao preto; para no primeiro que passa.
+        for (let i = 0; i < 20 && contraBranco(atual) < 4.6; i++) atual = atual.map(v => v * 0.94);
+        return '#' + atual.map(v => Math.round(v).toString(16).padStart(2, '0')).join('');
+      };
+
+      /**
+       * O mesmo acento, clareado até servir como TEXTO sobre o fundo escuro.
+       *
+       * O ano da referência é pintado com `--ref-accent` cru. Alguns tipos
+       * trazem acentos escuros — o cinza-ardósia dava 3,9:1 e o roxo 4,39:1
+       * num texto de 11px. O acento continua cru na borda e no filete, onde
+       * contraste de texto não se aplica; só o ano sobe até o mínimo.
+       */
+      const _acentoLegivel = (cor) => {
+        const m = String(cor).match(/^#?([0-9a-f]{6})$/i);
+        if (!m) return cor;
+        const FUNDO = [11, 15, 24];
+        const lumDe = (c) => {
+          const [r, g, b] = c.map(v => { const x = v / 255; return x <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4); });
+          return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+        };
+        const razao = (c) => (lumDe(c) + 0.05) / (lumDe(FUNDO) + 0.05);
+        let atual = [0, 2, 4].map(i => parseInt(m[1].slice(i, i + 2), 16));
+        // Clareia em direção ao branco, preservando o matiz.
+        for (let i = 0; i < 24 && razao(atual) < 4.6; i++) atual = atual.map(v => v + (255 - v) * 0.06);
+        return '#' + atual.map(v => Math.round(v).toString(16).padStart(2, '0')).join('');
+      };
+
       const cardsHTML = list.map(({ key, ref }, i) => {
         const accent = ref.badgeColor || '#6366f1';
         const impactoClass = (ref.impacto && (ref.impacto.includes('↓') || ref.impacto.includes('superior') || ref.impacto.includes('reduz'))) ? 'green' :
@@ -2380,12 +2431,12 @@
         const scholarUrl = `https://scholar.google.com/scholar?q=${encodeURIComponent(ref.label)}`;
         const rar = _refRarity(ref.badge);
         return `
-          <div class="ref-card" style="--ref-accent:${accent}">
+          <div class="ref-card" style="--ref-accent:${accent};--ref-accent-texto:${_acentoLegivel(accent)}">
             <div class="ref-card-top">
               <span class="ref-icon">${ref.icon || '📄'}</span>
               <a class="ref-title" href="${scholarUrl}" target="_blank" rel="noopener noreferrer" title="Buscar no Google Scholar" style="color:inherit;text-decoration:none;">${escapeHtml(ref.label)} <span style="font-size:0.7em;opacity:0.55;">↗</span></a>
               <span class="ref-rarity" style="color:${rar.color};background:${rar.bg};border:1px solid ${rar.border};">${rar.label}</span>
-              <span class="ref-badge" style="background:${accent}">${escapeHtml(ref.badge || 'REF')}</span>
+              <span class="ref-badge" style="background:${_fundoDeCracha(accent)}">${escapeHtml(ref.badge || 'REF')}</span>
             </div>
             <div class="ref-meta">
               <span class="ref-journal">${escapeHtml(ref.journal || '')}</span>
