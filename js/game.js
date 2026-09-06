@@ -3856,8 +3856,14 @@
     function closeBoardModal() {
       document.getElementById('boardModal').classList.add('hidden');
     }
-    function closeCharSelectModal() {
+    let _charSelectFocus;
+    let _charSelectFromWelcome = false;
+    function closeCharSelectModal(restoreFocus = true) {
       document.getElementById('charSelectModal').classList.remove('show');
+      _charSelectFocus?.(restoreFocus);
+      _charSelectFocus = null;
+      if (!restoreFocus && _charSelectFromWelcome) dismissWelcome();
+      _charSelectFromWelcome = false;
     }
     function closeNameModal() {
       document.getElementById('nameModal').classList.remove('show');
@@ -5502,8 +5508,16 @@
       }
       // Revalida premium do servidor — impede bypass via localStorage
       _loadPremiumFromDB().catch(() => {});
-      if (fromWelcome === true) dismissWelcome();
-      document.getElementById('charSelectModal').classList.add('show');
+      _charSelectFromWelcome = fromWelcome === true;
+      const modal = document.getElementById('charSelectModal');
+      const returnFocus = [fromWelcome === true
+        ? document.querySelector('[data-action="startNewFromWelcome"]')
+        : document.getElementById('newBtn'),
+        ...document.querySelectorAll('[data-action="toggleProfilePopup"]')]
+        .find(el => el?.getClientRects().length && !el.closest('[hidden], [inert]'));
+      modal.classList.add('show');
+      _charSelectFocus?.(false);
+      _charSelectFocus = manageDialogFocus(modal, closeCharSelectModal, returnFocus);
     };
     window._showBadgeTip = function(el) {
       const existing = el.querySelector('.badge-mobile-tip');

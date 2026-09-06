@@ -501,7 +501,7 @@
       // Guarda a escolha fora do state: um sync de nuvem / loadGame pode sobrescrever
       // state.character durante a leitura da intro. Usado como fallback no start.
       _lastSelectedCharacter = charId;
-      document.getElementById('charSelectModal').classList.remove('show');
+      closeCharSelectModal(false);
       showCharacterIntroModal(charId);
     }
 
@@ -519,6 +519,7 @@
           <button class='btn gold' data-action="closeIntroAndStart">⚔️ Iniciar Jornada</button>
         </div>`;
       document.body.appendChild(popup);
+      popup.querySelector('button')?.focus();
       playSound('click');
     }
 

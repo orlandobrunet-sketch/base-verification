@@ -13684,3 +13684,17 @@ body.boss-stun-active #equipList .slot-diablo {
     min-height: 44px;
   }
 }
+
+/* Auditoria: contexto rolável sem empurrar a entrada para fora da tela. */
+.mentor-context { min-height: 0; overflow-y: auto; flex: 0 1 auto; }
+.mentor-header, .mentor-input-row, .mentor-quota-bar { flex-shrink: 0; }
+.mentor-chat { flex: 1 1 auto; min-height: 60px; }
+.mentor-title-sub { color: #aebbd3; }
+.mentor-context-label { color: #c4a6ef; }
+.mentor-inline-action {
+  display: inline; border: 0; background: none; padding: 0;
+  color: var(--gold); font: inherit; text-decoration: underline; cursor: pointer;
+}
+.mentor-inline-action:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+.mentor-access-panel { min-height: 0; overflow-y: auto; }

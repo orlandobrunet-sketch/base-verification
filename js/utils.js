@@ -1,6 +1,32 @@
 // NefroQuest — Utilities & Spaced-Repetition core
 // Loaded before game.js; all declarations become global.
 
+// O chamador encerra o ciclo antes de ocultar a janela ou abrir a próxima.
+function manageDialogFocus(dialog, onClose, returnFocus = document.activeElement, initialFocus = null) {
+  const visible = el => el?.isConnected && el.getClientRects().length && !el.closest('[hidden], [inert]');
+  const controls = () => [...dialog.querySelectorAll('button:not(:disabled), a[href], input:not(:disabled), select:not(:disabled), textarea:not(:disabled), [tabindex="0"]')].filter(visible);
+  const keydown = event => {
+    if (event.key === 'Escape') {
+      event.preventDefault(); event.stopPropagation(); onClose();
+    } else if (event.key === 'Tab') {
+      const items = controls(), first = items[0], last = items[items.length - 1];
+      if (!first) { event.preventDefault(); return; }
+      if (event.shiftKey && (document.activeElement === first || !dialog.contains(document.activeElement))) {
+        event.preventDefault(); last.focus();
+      } else if (!event.shiftKey && (document.activeElement === last || !dialog.contains(document.activeElement))) {
+        event.preventDefault(); first.focus();
+      }
+      event.stopPropagation();
+    }
+  };
+  dialog.addEventListener('keydown', keydown);
+  (initialFocus || controls()[0])?.focus({ preventScroll: true });
+  return (restore = true) => {
+    dialog.removeEventListener('keydown', keydown);
+    if (restore && visible(returnFocus)) returnFocus.focus({ preventScroll: true });
+  };
+}
+
     // ============ SISTEMA DE STREAK MULTIPLICADOR ============
     function getStreakMultiplier(streak) {
       if (streak >= 15) return { mult: 2.5, label: 'x2.5', css: 'streak-x5', fire: '🔥🔥🔥' };

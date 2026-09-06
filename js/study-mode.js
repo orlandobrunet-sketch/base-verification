@@ -1717,11 +1717,13 @@
     }
 
     // ── Mentor Modal ────────────────────────────────────────────────────────
+    let _mentorFocus;
     function openMentorModal() {
       const q = _mentorCurrentQ;
       if (!q) return;
 
       // Remove existing overlay if any
+      _mentorFocus?.(false);
       document.getElementById('mentorOverlay')?.remove();
 
       const overlay = document.createElement('div');
@@ -1746,12 +1748,12 @@
           <div class="mentor-chat" id="mentorChat"></div>
           ${isGuest ? `
             <div class="mentor-quota-bar" style="color:var(--gold);font-weight:bold;">✨ Recurso Exclusivo</div>
-            <div style="padding:20px;text-align:center;background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.15);border-radius:10px;margin:12px;">
+            <div class="mentor-access-panel" style="padding:20px;text-align:center;background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.15);border-radius:10px;margin:12px;">
               <p style="font-family:'Philosopher',serif;font-size:0.9rem;color:var(--txt-dim);line-height:1.6;margin-bottom:12px;">
                 O Oráculo dos Néfrons requer uma conta ativa para analisar suas dúvidas. Crie sua conta grátis para salvar seu progresso, acessar o ranking global e consultar a IA!
               </p>
               <button class="btn gold" style="width:100%;margin-bottom:8px;" data-action="closeMentorModalAndRegister">Criar Conta Gratuita</button>
-              <span style="font-size:0.75rem;color:var(--txt-dim);">Já tem conta? <strong style="color:var(--gold);cursor:pointer;" data-action="closeMentorModalAndLogin">Fazer Login</strong></span>
+              <span style="font-size:0.75rem;color:var(--txt-dim);">Já tem conta? <button type="button" class="mentor-inline-action" data-action="closeMentorModalAndLogin">Fazer Login</button></span>
             </div>
           ` : `
             <div class="mentor-quota-bar" id="mentorQuotaBar">${_mentorRemainingText()}</div>
@@ -1769,7 +1771,7 @@
       requestAnimationFrame(() => overlay.classList.add('visible'));
 
       const input = document.getElementById('mentorInput');
-      input?.focus();
+      _mentorFocus = manageDialogFocus(overlay, closeMentorModal, document.activeElement, input);
 
       // Close on overlay click outside modal (disabled to prevent accidental closing)
       // overlay.addEventListener('click', e => { if (e.target === overlay) closeMentorModal(); });
@@ -1780,9 +1782,12 @@
       });
     }
 
-    function closeMentorModal() {
+    function closeMentorModal(restoreFocus = true) {
       const overlay = document.getElementById('mentorOverlay');
       if (!overlay) return;
+      _mentorFocus?.(restoreFocus);
+      _mentorFocus = null;
+      overlay.inert = true;
       overlay.classList.remove('visible');
       setTimeout(() => overlay.remove(), 280);
     }
@@ -1847,14 +1852,14 @@
         _track('error_mentor_send', { msg: String(err) });
         thinkingEl.classList.remove('mentor-thinking');
         if (String(err).includes('quota_exceeded')) {
-          thinkingEl.innerHTML = `Limite diário atingido. <span style="color:var(--gold);cursor:pointer;" data-action="showPaywallModal">Faça upgrade para Premium</span> para perguntas ilimitadas.`;
+          thinkingEl.innerHTML = `Limite diário atingido. <button type="button" class="mentor-inline-action" data-action="closeMentorModalAndUpgrade">Faça upgrade para Premium</button> para perguntas ilimitadas.`;
         } else {
           thinkingEl.textContent = 'Oráculo indisponível no momento. Tente novamente em instantes.';
         }
         thinkingEl.style.color = '#fb7185';
       } finally {
         input.disabled = false;
-        input.focus();
+        if (input.isConnected && input.closest('.mentor-overlay.visible')) input.focus();
       }
     }
 
@@ -1868,14 +1873,14 @@
     }
 
     function closeMentorModalAndRegister() {
-      closeMentorModal();
+      closeMentorModal(false);
       if (typeof window.openAuthModal === 'function') {
         window.openAuthModal();
         if (typeof window.switchAuthTab === 'function') window.switchAuthTab('cadastrar');
       }
     }
     function closeMentorModalAndLogin() {
-      closeMentorModal();
+      closeMentorModal(false);
       if (typeof window.openAuthModal === 'function') {
         window.openAuthModal();
         if (typeof window.switchAuthTab === 'function') window.switchAuthTab('entrar');
@@ -1893,6 +1898,12 @@
         if (typeof window.switchAuthTab === 'function') window.switchAuthTab('entrar');
       }
     }
+
+    function closeMentorModalAndUpgrade() {
+      closeMentorModal(false);
+      if (typeof window.showPaywallModal === 'function') window.showPaywallModal();
+    }
+    window.closeMentorModalAndUpgrade = closeMentorModalAndUpgrade;
 
     // Expose to dispatcher
     window.openMentorModal   = openMentorModal;
