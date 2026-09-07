@@ -1,5 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
 import { medirContraste } from '../helpers/contraste';
+import { auditarVisual } from '../helpers/auditoria-visual';
 
 test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
 test.beforeEach(async ({ page }) => {
@@ -67,7 +68,7 @@ for (const failure of ['profile', 'auth', 'throw']) {
 
 for (const viewport of [{ width: 320, height: 568 }, { width: 390, height: 400 }]) {
   for (const status of [200, 429, 503]) {
-    test(`Oráculo: envio alcançável e resposta ${status} em ${viewport.width}×${viewport.height}`, async ({ page }) => {
+    test(`Oráculo: envio alcançável e resposta ${status} em ${viewport.width}×${viewport.height}`, async ({ page }, testInfo) => {
       await page.setViewportSize(viewport);
       await page.route('**/functions/v1/ai-mentor', route => route.fulfill({ status, json: { reply: 'Resposta fictícia para teste de apresentação.' } }));
       await page.evaluate(() => {
@@ -91,6 +92,11 @@ for (const viewport of [{ width: 320, height: 568 }, { width: 390, height: 400 }
         await expect(page.locator(label)).toBeVisible();
         expect(await page.evaluate(medirContraste, label)).toEqual([]);
       }
+      const auditoria = await page.evaluate(auditarVisual, '#mentorOverlay');
+      await testInfo.attach('auditoria-visual', { body: JSON.stringify(auditoria, null, 2), contentType: 'application/json' });
+      expect(auditoria.medidos.geometria).toBeGreaterThan(0);
+      expect(auditoria.falhas).toEqual([]);
+      // Fundos complexos continuam explícitos no anexo, não viram aprovação.
       await contained(page, '#mentorOverlay', 4);
       await page.keyboard.press('Escape');
       await expect(page.locator('#mentorOverlay')).toHaveCount(0);
