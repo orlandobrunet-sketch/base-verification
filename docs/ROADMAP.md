@@ -1,6 +1,6 @@
 # NefroQuest — Roadmap ativo
 
-**Última reconciliação:** 21/08/2026
+**Última reconciliação:** 06/09/2026
 **Versão de referência:** consultar sempre [`version.json`](../version.json)
 **Arquivo anterior:** [`archive/ROADMAP_LEGACY_2026-08.md`](archive/ROADMAP_LEGACY_2026-08.md)
 
@@ -25,10 +25,32 @@ Limites operacionais:
 
 ## Checkpoint operacional para continuidade
 
-- **Última etapa publicada:** transição atômica do Service Worker, versão `14.85`, PR [#776](https://github.com/orlandobrunet-sketch/base-verification/pull/776)
-- **Em produção:** `14.85`, verificada em 31/08/2026 por `version.json`, pelo cache `nefroquest-v14.85` e pelo smoke automatizado (7/7)
-- **Em validação:** nenhuma entrega pendente de publicação.
-- **Próxima ação única:** NQ-06A — desenhar e entregar a página de Estudo e Revisão, a primeira entrega em muito tempo que cria capacidade nova em vez de consertar defeito.
+- **Última etapa publicada:** correções da auditoria visual, versão `14.95`, PR [#785](https://github.com/orlandobrunet-sketch/base-verification/pull/785).
+- **Em produção:** `14.95`; validação pós-publicação registrada abaixo.
+- **Em validação:** reconciliação deste roadmap; não há nova funcionalidade em execução.
+- **Próxima ação proposta:** tornar o instrumento de auditoria confiável para cortes verticais, sobreposições e fundos inconclusivos. Escopo sugerido; implementação ainda não iniciada.
+
+### Reconciliação de setembro de 2026
+
+| Entrega concluída | Evidência | Limite que permanece |
+|---|---|---|
+| Estudo e Revisão na Central | [#781](https://github.com/orlandobrunet-sketch/base-verification/pull/781), refinamentos no [#782](https://github.com/orlandobrunet-sketch/base-verification/pull/782) | Entrega inicial; não equivale a toda a página autônoma imaginada no NQ-06A |
+| Doze correções de layout e helpers de contraste/geometria | [#782](https://github.com/orlandobrunet-sketch/base-verification/pull/782), [#783](https://github.com/orlandobrunet-sketch/base-verification/pull/783), [#784](https://github.com/orlandobrunet-sketch/base-verification/pull/784); até 14.94 | Helpers apoiam regressões conhecidas, sem certificar toda a interface |
+| Conta, Oráculo e seleção de classe; legenda externa da evolução na landing | [#785](https://github.com/orlandobrunet-sketch/base-verification/pull/785), 14.95 | Sem certificação por leitor de tela real ou teclado virtual de iOS |
+
+A auditoria complementou Átrio, seleção de classe, Conta, Oráculo e Central com acervo em celular. Sete defeitos reproduzidos foram corrigidos no #785: cancelamento da exclusão, sucesso falso ao salvar, rótulos dos campos, foco na classe, ações/foco do Oráculo, entrada fora da tela e contraste de dois rótulos. A legenda externa preserva a profundidade dos retratos da landing. O contraste histórico de `atlas-caption` não foi reproduzido e continua inconclusivo.
+
+Validação pós-publicação em 06/09/2026: 15 cenários de comportamento contra os assets de produção, com APIs de escrita simuladas/bloqueadas, e 7 verificações de smoke somente-leitura passaram sem retentativas. Deploy GitHub Pages concluído; versão, SW e Sentry coerentes em 14.95. Isso não certifica salvamento remoto com sessão real nem consome consultas de IA.
+
+Validação da entrega: 42 testes locais de navegador sem retentativas, 44 testes das regras editoriais e todos os jobs da [CI do #785](https://github.com/orlandobrunet-sketch/base-verification/actions/runs/34072696315) aprovados. O Greptile informou período de avaliação encerrado e não executou revisão; o diff foi revisado diretamente pelo Codex. Não tratar ausência de comentários como aprovação desse serviço.
+
+Próximos recortes, sem execução automática:
+
+1. **Instrumento:** distinguir aprovado, falhou e inconclusivo; exigir raiz visível; adicionar controles de corte vertical, sobreposição e composição real de fundo. Captura da viewport e teste de comportamento devem acompanhar as medidas.
+2. **Grimório:** recuperar falha de carregamento de `refs.js`/`articles.js` e permitir nova tentativa.
+3. **Sugestão de artigo:** alinhar o payload do formulário ao contrato de `send-contact`, sem inventar identidade nem acrescentar coleta desnecessária.
+
+Pagamento continua no fim da fila; competências curadas seguem em NQ-10, com gate editorial próprio.
 
 **Reordenação de 01/09/2026.** As 22 entregas anteriores foram medidas pelo que um usuário perceberia: 14 invisíveis, e das 8 visíveis quase todas eram conserto. Capacidade nova: nenhuma. O roadmap garantia isso, porque o bloco "Agora" era só correção e o primeiro item de valor estava atrás de NQ-03 e NQ-04. A base de segurança existe agora; a ordem mudou para que o produto volte a andar à vista. Ver NQ-06A.
 
@@ -90,13 +112,13 @@ Não há meta numérica nova sem baseline. A primeira medição deve anteceder q
 | Jornada Lúmen principal | `PUBLICADO` | Portal, Átrio, escolha de classe, dificuldade, pergunta, feedback e Central já usam a linguagem Lúmen | Fechar inventário de estados e consistência ponta a ponta; várias superfícies internas ainda são popups legados |
 | Central de Comando | `PUBLICADO` | Dados reais, FSRS visível, radar honesto, comparação semanal, badges reais, Mapa, Grimório e Ranking | Validar densidade e hierarquia com uso real; não iniciar outro redesenho amplo sem problema medido |
 | Motores de aprendizagem | `PUBLICADO` | IRT leve, FSRS-4.5, Ritual, eixos clínicos e competências | O classificador continua heurístico; o fallback genérico permanece em até 41% das atribuições e deve ser tratado com transparência |
-| Segurança administrativa | `ATIVO` | v14.76 em produção com os dois vetores fechados no render; migration 018 aplicada e provada contra o banco real; regressão no smoke bloqueante | Confirmar o painel admin com sessão autenticada e decidir sobre CSP — auditoria de 22/08/2026 mostrou que não existe nenhuma |
-| Qualidade de engenharia | `ATIVO` | Bump/cache automatizados, sintaxe no CI, harness local, fixtures e ampla suíte Playwright; execução completa mais recente: 486 passed, 14 skipped, 2 flaky | Revalidar sem retries o `specs/26-memoria-fsrs.spec.ts` após trocar `load` por `domcontentloaded`, depois repetir a suíte completa |
+| Segurança administrativa | `PUBLICADO` | #762; migration 018 e painel conferidos, confirmação do proprietário em 01/09 | CSP permanece frente própria; não reabre o vetor XSS já fechado |
+| Qualidade de engenharia | `PUBLICADO` | Suíte completa bloqueante e CI do #785 aprovada; release/cache automatizados | Melhorar limites dos helpers visuais; não inferir ausência de flakes apenas do resultado do job |
 | Acessibilidade e movimento | `PUBLICADO` | Teclado, toque, foco, movimento reduzido e gabarito sem dependência exclusiva de cor cobertos nas superfícies recentes | Completar smoke com leitor de tela/zoom e manter a cobertura nas próximas páginas |
-| Identidade e sincronização | `PRONTO PARA INICIAR` | Save e sincronização de parte do progresso existem | Logout não limpa todas as chaves da Central; nuvem não carrega/mescla todo o perfil; atualização PWA pode misturar releases |
-| Operação de produção | `BLOQUEADO` | Release e cache têm gates locais/CI | Smoke externo deve ocorrer depois dos bloqueadores locais; serviços e telemetria exigem acesso aos consoles |
+| Identidade e sincronização | `PUBLICADO` | #766, #769 e #776: isolamento, fusão e atualização atômica | Reparação do save histórico contaminado permanece separada |
+| Operação de produção | `ATIVO` | Smoke somente-leitura disponível desde #778; release 14.95 publicada | Consoles Supabase/Sentry/GA4 e sessão autenticada permanecem dependências externas |
 | Receita | `BLOQUEADO` | Integração Mercado Pago, webhook e premium existem | Falta validar mensal e vitalício ponta a ponta e derivar a conversão de confirmação do backend |
-| Operação editorial | `PRONTO PARA INICIAR` | Knowledge Model, Handbook, Anexo C, skills e manifests de lote existem | O validador de CI ainda não exige veredito, três eixos nem `Autorização de publicação: LIBERADA` |
+| Operação editorial | `PUBLICADO` | #764: validador exige veredito e três eixos; testes negativos bloqueantes | Decidir recorte de ações; classificar competências em frente editorial própria |
 
 O ciclo recente feito com Claude Code foi auditado em [`audits/CLAUDE_CODE_REVIEW_2026-08-21.md`](audits/CLAUDE_CODE_REVIEW_2026-08-21.md).
 
@@ -128,7 +150,7 @@ questões dominadas, Grimório, conquistas, reflexão de erro, analytics e nuvem
 
 #### NQ-00A — Stored XSS do painel administrativo
 
-**Estado:** publicado na v14.76 e aplicado no banco em 22/08/2026. Resta uma confirmação visual com sessão autenticada.
+**Estado:** publicado na v14.76 e aplicado no banco em 22/08/2026. Confirmação visual feita pelo proprietário em 01/09/2026.
 
 - [x] reproduzir os dois vetores com payload persistido em teste de navegador;
 - [x] renderizar `question_id` de avaliações e `current_diff` de votos com escape robusto;
@@ -159,7 +181,7 @@ Decisão de recorte a confirmar: os eixos são exigidos nas ações `rebuild`, `
 
 ### NQ-01 — Isolamento de conta, sincronização e atualização atômica
 
-**Status:** `CONCLUÍDO` na v14.85 — os três eixos publicados e verificados.
+**Status:** `PUBLICADO` na v14.85 — os três eixos publicados e verificados.
 **Resultado:** uma conta nunca herda dados de outra, dois dispositivos não apagam o melhor histórico e uma release nunca mistura HTML novo com JS/CSS antigo.
 
 Escopo:
@@ -189,15 +211,15 @@ Escopo:
 - [x] classificar explicitamente qualquer flake restante, sem `|| echo` — o `|| echo` foi removido no #777, e o `continue-on-error: true` do job, que sobreviveu à primeira tentativa, no #780. Enquanto ele existia, "a suíte bloqueia merge" era falso.
 - [ ] corrigir substring/negação do classificador — **movido para NQ-10**, ver abaixo;
 - [ ] iniciar a migração para `competency_ids` curados por questão — **movido para NQ-10**;
-- [ ] implementar foco inicial, contenção e restauração na escolha de classe — acessibilidade, sem urgência medida;
+- [x] implementar foco inicial, contenção e restauração na escolha de classe — defeito reproduzido na auditoria e corrigido no #785, 14.95;
 - [ ] corrigir o flake do Enter reflexo e sua janela no runtime — sem ocorrência recente nas últimas seis suítes completas.
 
 ### NQ-06A — Página de Estudo e Revisão
 
-**Status:** `PRÓXIMA ENTREGA`
+**Status:** `PUBLICADO` — entrega inicial na Central (#781/#782). A expansão para página autônoma permanece em descoberta e exige novo recorte.
 **Resultado:** o app responde "o que eu estudo agora?" com uma próxima ação clara, iniciável em um clique.
 
-**Por que esta subiu para o bloco "Agora", em 01/09/2026.**
+**Contexto histórico da priorização em 01/09/2026 — não descreve o estado atual.**
 
 Medição das 22 entregas de #759 a #781, classificadas pelo que um usuário
 perceberia: **14 invisíveis**, e das 8 visíveis quase todas eram conserto de
@@ -306,7 +328,7 @@ Bloqueio: **decisão do proprietário em 01/09/2026 — pagamento é a última c
 
 | ID | Resultado | Status | Dependências | Critério essencial |
 |---|---|---|---|---|
-| NQ-06 | **Páginas internas Lúmen** — Estudo/Revisão → Oráculo → Forja/Inventário → Simulado → Conta/Paywall | `PRONTO PARA INICIAR` após NQ-04 | Inventário e aprovação da vertical atual | Uma superfície por entrega, com todos os estados e caminho de volta completos |
+| NQ-06 | **Páginas internas Lúmen** — expansão de Estudo/Revisão (entrega inicial publicada) → Oráculo → Forja/Inventário → Simulado → Conta/Paywall | `PRONTO PARA INICIAR` após NQ-04 | Inventário e aprovação da vertical atual | Uma superfície por entrega, com todos os estados e caminho de volta completos |
 | NQ-07 | **Plano semanal de aprendizagem** — prescrição determinística, explicável e iniciável em um clique | `EM DESCOBERTA` | FSRS, competências confiáveis, tempo disponível e rotas de estudo | IA pode explicar o plano; não pode inventar prioridade, progresso ou disponibilidade |
 | NQ-08 | **Proveniência editorial no produto** — histórico de alteração, evidência, veredito, autoria e publicação | `EM DESCOBERTA` | NQ-00 e decisão Git/CI versus banco/admin | Complementar os documentos canônicos sem duplicar ou enfraquecer o gate editorial |
 | NQ-09 | **Distribuição Android PT-BR** | `BLOQUEADO` | NQ-03, NQ-05, conta Play, APK e SHA-256 | Pagamento, privacidade, suporte, assets e `assetlinks.json` verificados antes da submissão |
