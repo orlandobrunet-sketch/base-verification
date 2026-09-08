@@ -66,16 +66,32 @@
   }
   </script>
 
-  <script src="https://js-de.sentry-cdn.com/11e6a03af273d89034995606be7570be.min.js" crossorigin="anonymous"></script>
   <script>
-    if (typeof Sentry !== 'undefined') {
-      Sentry.onLoad(function () {
-        Sentry.init({
-          release: 'nefroquest@14.99',
-          environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
-          tracesSampleRate: 0.05
+    // Mesma regra do app: execução local não reporta, prévia da Vercel sim.
+    // O carregador é injetado, não estático — pular só o `init` não impede o
+    // loader de se inicializar sozinho no primeiro erro. Ver o comentário
+    // longo em jogar/index.html com a medição que motivou.
+    var _hostLocal = !location.hostname
+      || location.hostname === 'localhost'
+      || location.hostname === '::1'
+      || location.hostname === '[::1]'
+      || location.hostname.indexOf('127.') === 0
+      || /\.local$/.test(location.hostname);
+    if (!_hostLocal) {
+      var _sentryTag = document.createElement('script');
+      _sentryTag.src = 'https://js-de.sentry-cdn.com/11e6a03af273d89034995606be7570be.min.js';
+      _sentryTag.crossOrigin = 'anonymous';
+      _sentryTag.onload = function () {
+        if (typeof Sentry === 'undefined') return;
+        Sentry.onLoad(function () {
+          Sentry.init({
+            release: 'nefroquest@15.00',
+            environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
+            tracesSampleRate: 0.05
+          });
         });
-      });
+      };
+      document.head.appendChild(_sentryTag);
     }
   </script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-0TS171XV3K"></script>

@@ -59,15 +59,37 @@
   <link rel="prefetch" href="assets/audio/welcome-theme.mp3">
 
   <!-- ══ Sentry error monitoring ══════════════════════════════════════════ -->
-  <script
-    src="https://js-de.sentry-cdn.com/11e6a03af273d89034995606be7570be.min.js"
-    crossorigin="anonymous"
-  ></script>
   <script>
-    if (typeof Sentry !== 'undefined') {
-      Sentry.onLoad(function() {
+    // Execução local não reporta. Medido em 90 dias: das 31 ocorrências no
+    // projeto, UMA era de nefroquest.com; as outras 30 vinham de
+    // localhost:5510 e 127.0.0.1:5505 — suítes de teste exercitando caminhos
+    // de erro de propósito. Oito das nove issues abertas nunca aconteceram
+    // com ninguém. Um painel em que o ruído do próprio time é 30 para 1 não
+    // é observabilidade: é uma lista que ninguém abre duas vezes.
+    //
+    // O CARREGADOR É QUE PRECISA NÃO ENTRAR. Pular só o `Sentry.init` não
+    // basta: o loader do Sentry se inicializa sozinho, com a configuração
+    // padrão, no primeiro erro da página. Medido — com o init pulado, ainda
+    // saía um envelope. Por isso o <script> passou a ser injetado, e não
+    // estático.
+    //
+    // A prévia da Vercel CONTINUA reportando: ali o erro é real e chega antes
+    // da publicação, que é justamente quando ele vale mais.
+    var _hostLocal = !location.hostname
+      || location.hostname === 'localhost'
+      || location.hostname === '::1'
+      || location.hostname === '[::1]'
+      || location.hostname.indexOf('127.') === 0
+      || /\.local$/.test(location.hostname);
+    if (!_hostLocal) {
+      var _sentryTag = document.createElement('script');
+      _sentryTag.src = 'https://js-de.sentry-cdn.com/11e6a03af273d89034995606be7570be.min.js';
+      _sentryTag.crossOrigin = 'anonymous';
+      _sentryTag.onload = function () {
+        if (typeof Sentry === 'undefined') return;
+        Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@14.99',
+          release: 'nefroquest@15.00',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -89,7 +111,9 @@
             return event;
           }
         });
-      });
+        });
+      };
+      document.head.appendChild(_sentryTag);
     }
   </script>
 
@@ -373,7 +397,7 @@
         <span>Para aprender, revisar e se manter atualizado em nefrologia.</span>
         <span class="nql-portal__footer-meta">
           <button type="button" data-action="showPrivacyPolicy">Privacidade</button>
-          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v14.99</button>
+          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v15.00</button>
         </span>
       </footer>
     </section>
@@ -680,7 +704,7 @@
     <footer class="lnd-footer">
       <span>nefroquest.com</span>
       <span class="lnd-footer-sep">·</span>
-      <span id="landingVersionLabel" class="version-label-dynamic" style="cursor:pointer;" role="button" tabindex="0" aria-label="Ver novidades da versão" data-action="showChangelog">v14.99</span>
+      <span id="landingVersionLabel" class="version-label-dynamic" style="cursor:pointer;" role="button" tabindex="0" aria-label="Ver novidades da versão" data-action="showChangelog">v15.00</span>
       <span class="lnd-footer-sep">·</span>
       <span style="cursor:pointer;text-decoration:underline;" class="lnd-footer-link" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span>
     </footer>
@@ -870,7 +894,7 @@
 
       <footer class="nql-atrium__footer">
         <span>Prática que se transforma em domínio clínico.</span>
-        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v14.99</button></span>
+        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v15.00</button></span>
       </footer>
     </section>
     <div class="welcome-bg" aria-hidden="true"></div>
@@ -1293,7 +1317,7 @@
       <p>
         <a href="https://nefroquest.com">nefroquest.com</a>
         &nbsp;•&nbsp;
-        <span class="version-label-dynamic" style="color:var(--gold);cursor:pointer;" data-action="showChangelog">v14.99</span>
+        <span class="version-label-dynamic" style="color:var(--gold);cursor:pointer;" data-action="showChangelog">v15.00</span>
         &nbsp;•&nbsp;
         <span style="cursor:pointer;text-decoration:underline;" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span>
       </p>
