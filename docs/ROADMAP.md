@@ -372,7 +372,8 @@ Mapa, Grimório, Conquistas e Ranking já vivem na Central; melhorias futuras de
 - premiar pressa, madrugada, maratona ou volume sem benefício pedagógico;
 - gerar plano semanal com IA antes de existir versão determinística auditável;
 - iOS/inglês antes de validar retenção, suporte e monetização em PT-BR;
-- manter catálogo de plugins como backlog do produto.
+- manter catálogo de plugins como backlog do produto;
+- **proteção contra senha vazada no Supabase Auth** — avaliada em 08/09/2026 e descartada por ora: o recurso (checagem contra HaveIBeenPwned no cadastro) existe apenas nos planos pagos, e o projeto está no gratuito. O linter de segurança do Supabase **continuará acusando** este item como `WARN` a cada execução; registrado aqui para não virar retrabalho. Volta à mesa se houver upgrade de plano.
 
 ## Gates permanentes
 
