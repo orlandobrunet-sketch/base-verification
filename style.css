@@ -1697,6 +1697,18 @@
       font-size: 1rem; font-family: inherit; outline: none;
       resize: vertical; transition: border-color 0.2s;
     }
+    /* Rótulo visível, não só placeholder: o placeholder some ao digitar, e o
+       formulário passou a ter quatro campos — sem rótulo, quem volta a ele no
+       meio do preenchimento não sabe mais o que cada caixa pedia. Mesmo padrão
+       dos formulários de conta. */
+    .bib-label {
+      display: block;
+      margin-bottom: -2px;
+      color: var(--txt-dim);
+      font-size: 0.78rem;
+      font-family: 'Philosopher', sans-serif;
+      letter-spacing: 0.2px;
+    }
     .bib-input:focus, .bib-textarea:focus { border-color: rgba(100,140,220,0.6); }
     .bib-input::placeholder, .bib-textarea::placeholder { color: rgba(100,130,180,0.45); }
     .bib-submit-btn {
