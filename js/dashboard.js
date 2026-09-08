@@ -1591,12 +1591,13 @@
     return _shellMarkup(panes, 'ready');
   }
 
-  function _errorMarkup() {
+  function _errorMarkup(falhaGrimorio = false) {
     return _shellMarkup(`
       <div class="nqd-error" role="alert">
         <span>Central indisponível</span>
-        <h1>Não foi possível organizar os dados deste dispositivo.</h1>
-        <p>Seu progresso não foi alterado. Feche esta área e tente novamente.</p>
+        <h1>${falhaGrimorio ? 'Não foi possível carregar o Grimório.' : 'Não foi possível organizar os dados deste dispositivo.'}</h1>
+        <p>Seu progresso não foi alterado. Verifique sua conexão e tente novamente.</p>
+        <button type="button" class="nqd-primary-action" data-action="_dashRetryLoad">Tentar novamente</button>
         <button type="button" class="nqd-primary-action" data-action="closeDashboard" data-nqd-primary="true">Voltar ao jogo${_svg('back')}</button>
       </div>
     `, 'error');
@@ -2137,11 +2138,6 @@
 
   async function openDashboard() {
     _injectStyles();
-    // O Grimório e a aba de Conquistas leem refsDB e nefroArticles. A carga
-    // ociosa começa logo após a primeira pintura, mas se o médico abrir a
-    // Central antes de ela terminar, esperamos aqui — abrir com aba vazia
-    // seria pior que abrir 200 ms depois.
-    if (typeof window.carregarDadosGrimorio === 'function') await window.carregarDadosGrimorio();
     if (typeof window.playSound === 'function') window.playSound('click');
     const previous = document.getElementById('nqDashboard');
     if (previous) {
@@ -2169,7 +2165,12 @@
     root.querySelector('[data-action="closeDashboard"]')?.focus({ preventScroll: true });
 
     let topicsLoadError = false;
+    let dadosGrimorioCarregados = false;
     try {
+      // Mostra a Central imediatamente, com saída disponível durante a carga.
+      if (typeof window.carregarDadosGrimorio === 'function') await window.carregarDadosGrimorio();
+      dadosGrimorioCarregados = true;
+      if (!root.isConnected) return;
       if (typeof window._loadTopics === 'function') {
         try {
           await window._loadTopics();
@@ -2190,11 +2191,20 @@
     } catch (error) {
       console.error('[NQ] Falha ao montar a Central de Comando', error);
       if (!root.isConnected) return;
-      root.innerHTML = _errorMarkup();
+      root.innerHTML = _errorMarkup(!dadosGrimorioCarregados);
       root.dataset.dashboardState = 'error';
-      root.querySelector('[data-action="closeDashboard"]')?.focus({ preventScroll: true });
+      root.querySelector('[data-action="_dashRetryLoad"]')?.focus({ preventScroll: true });
     }
   }
+
+  function _dashRetryLoad() {
+    const returnFocus = _lastFocusedElement;
+    closeDashboard({ restoreFocus: false });
+    const tentativa = openDashboard();
+    _lastFocusedElement = returnFocus;
+    return tentativa;
+  }
+  window._dashRetryLoad = _dashRetryLoad;
 
   function closeDashboard(options) {
     const root = document.getElementById('nqDashboard');
