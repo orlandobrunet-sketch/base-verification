@@ -197,6 +197,8 @@ Registrado porque custou tempo: o helper `injectGameState` espera apenas `domcon
 
 E o app **não** funciona offline na primeira visita — nessa carga o Service Worker ainda não controla a página, então aquele HTML não entra no cache. Não é defeito; é o ciclo de vida do Service Worker.
 
+**Precache atômico foi considerado e rejeitado.** Existe um rascunho de teste nunca versionado (`tests/specs/43-service-worker-upgrade-atomico.spec.ts`, na árvore de trabalho de quem o escreveu) que exige um contrato diferente: se um único asset falhar durante a instalação da release nova, o Service Worker deveria permanecer inteiramente na anterior, sem sequer criar o cache da nova. Ele reprova contra o `sw.js` atual — e reprova **por escolha de projeto, não por defeito**. O `sw.js` chama `skipWaiting()` imediatamente e faz o precache com `Promise.allSettled`, ignorando falhas individuais de propósito: bloquear a ativação no precache deixaria o usuário preso à versão velha por causa de um asset secundário. A garantia de não misturar versões vem de outro lugar — o fetch version-aware do [#776](https://github.com/orlandobrunet-sketch/base-verification/pull/776), coberto pelo spec `43-upgrade-atomico`. Registrado para que o rascunho não seja reinterpretado como cobertura perdida nem retomado como conserto.
+
 ### NQ-02 — Integridade pedagógica e gate crítico de regressão
 
 **Status:** `PARCIAL` — cinco dos nove itens publicados; os quatro restantes saem do bloco "Agora".
