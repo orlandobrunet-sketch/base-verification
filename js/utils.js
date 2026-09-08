@@ -674,8 +674,21 @@ function manageDialogFocus(dialog, onClose, returnFocus = document.activeElement
       e.preventDefault();
       const urlVal    = (document.getElementById('bibSuggestUrl')?.value || '').trim();
       const reasonVal = (document.getElementById('bibSuggestReason')?.value || '').trim();
+      const nomeVal   = (document.getElementById('bibSuggestName')?.value || '').trim();
+      const emailVal  = (document.getElementById('bibSuggestEmail')?.value || '').trim();
       const msgEl     = document.getElementById('bibSuggestMsg');
-      if (!urlVal && !reasonVal) { if (msgEl) { msgEl.textContent = 'Preencha pelo menos um campo.'; msgEl.className = 'bib-suggest-msg err'; msgEl.style.display = ''; } return; }
+      const recusar = (texto) => {
+        if (msgEl) { msgEl.textContent = texto; msgEl.className = 'bib-suggest-msg err'; msgEl.style.display = ''; }
+      };
+      if (!urlVal && !reasonVal) { recusar('Preencha pelo menos um campo.'); return; }
+      /* A função send-contact exige name, email e message não vazios, e valida
+       * o e-mail por regex. O formulário mandava apenas subject e message —
+       * então TODA sugestão voltava 400, e a tela dizia "Erro ao enviar. Tente
+       * novamente", que promete um sucesso que nunca viria.
+       *
+       * Recusar aqui, com o motivo, evita a viagem inútil e diz o que fazer. */
+      if (!nomeVal) { recusar('Informe seu nome para enviarmos a sugestão.'); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) { recusar('Informe um e-mail válido — é como respondemos sobre a sugestão.'); return; }
       const btn = e.target.querySelector('.bib-submit-btn');
       if (btn) { btn.disabled = true; btn.textContent = 'Enviando…'; }
       try {
@@ -696,9 +709,12 @@ function manageDialogFocus(dialog, onClose, returnFocus = document.activeElement
         const res = await fetch(supaUrl + '/functions/v1/send-contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', apikey: _supaKey, Authorization: `Bearer ${_authToken}` },
+          // O contrato é { name, email, message }. `subject` não existe nele e
+          // era descartado; o assunto vai no corpo, onde é lido.
           body: JSON.stringify({
-            subject: '[NefroQuest] Sugestão de artigo',
-            message: `URL/DOI: ${urlVal || '(não informado)'}\n\nJustificativa: ${reasonVal || '(não informada)'}`,
+            name: nomeVal,
+            email: emailVal,
+            message: `[Sugestão de artigo]\n\nURL/DOI: ${urlVal || '(não informado)'}\n\nJustificativa: ${reasonVal || '(não informada)'}`,
           }),
         });
         if (res.ok) {

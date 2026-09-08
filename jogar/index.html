@@ -67,7 +67,7 @@
     if (typeof Sentry !== 'undefined') {
       Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@14.98',
+          release: 'nefroquest@14.99',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -121,7 +121,7 @@
        style.css aplicar .hidden. O CSS externo re-exibe quando o JS remove .hidden. */
     .hidden { display: none !important; }
   </style>
-  <link rel="stylesheet" href="style.css?v=14.98">
+  <link rel="stylesheet" href="style.css?v=14.99">
   <link rel="stylesheet" href="styles/lumen/tokens.css?v=14.81">
   <link rel="stylesheet" href="styles/lumen/shell.css?v=14.77">
   <link rel="stylesheet" href="styles/lumen/portal.css?v=14.93">
@@ -373,7 +373,7 @@
         <span>Para aprender, revisar e se manter atualizado em nefrologia.</span>
         <span class="nql-portal__footer-meta">
           <button type="button" data-action="showPrivacyPolicy">Privacidade</button>
-          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v14.98</button>
+          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v14.99</button>
         </span>
       </footer>
     </section>
@@ -680,7 +680,7 @@
     <footer class="lnd-footer">
       <span>nefroquest.com</span>
       <span class="lnd-footer-sep">·</span>
-      <span id="landingVersionLabel" class="version-label-dynamic" style="cursor:pointer;" role="button" tabindex="0" aria-label="Ver novidades da versão" data-action="showChangelog">v14.98</span>
+      <span id="landingVersionLabel" class="version-label-dynamic" style="cursor:pointer;" role="button" tabindex="0" aria-label="Ver novidades da versão" data-action="showChangelog">v14.99</span>
       <span class="lnd-footer-sep">·</span>
       <span style="cursor:pointer;text-decoration:underline;" class="lnd-footer-link" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span>
     </footer>
@@ -870,7 +870,7 @@
 
       <footer class="nql-atrium__footer">
         <span>Prática que se transforma em domínio clínico.</span>
-        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v14.98</button></span>
+        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v14.99</button></span>
       </footer>
     </section>
     <div class="welcome-bg" aria-hidden="true"></div>
@@ -1293,7 +1293,7 @@
       <p>
         <a href="https://nefroquest.com">nefroquest.com</a>
         &nbsp;•&nbsp;
-        <span class="version-label-dynamic" style="color:var(--gold);cursor:pointer;" data-action="showChangelog">v14.98</span>
+        <span class="version-label-dynamic" style="color:var(--gold);cursor:pointer;" data-action="showChangelog">v14.99</span>
         &nbsp;•&nbsp;
         <span style="cursor:pointer;text-decoration:underline;" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span>
       </p>
@@ -1721,8 +1721,14 @@
         <div id="bibSuggestFields" class="bib-suggest-fields">
           <p class="bib-suggest-desc">Encontrou um artigo relevante para o NefroQuest? Envie a sugestão.</p>
           <form id="bibSuggestForm" class="bib-suggest-form" novalidate>
+            <label class="bib-label" for="bibSuggestUrl">Artigo</label>
             <input type="text" id="bibSuggestUrl" class="bib-input" placeholder="Link, DOI ou referência completa" autocomplete="off">
-            <textarea id="bibSuggestReason" class="bib-textarea" placeholder="Por que este artigo é relevante?" rows="3"></textarea>
+            <label class="bib-label" for="bibSuggestReason">Por que é relevante</label>
+            <textarea id="bibSuggestReason" class="bib-textarea" placeholder="O que ele acrescenta ao acervo?" rows="3"></textarea>
+            <label class="bib-label" for="bibSuggestName">Seu nome</label>
+            <input type="text" id="bibSuggestName" class="bib-input" placeholder="Como devemos te chamar" autocomplete="name" required aria-required="true">
+            <label class="bib-label" for="bibSuggestEmail">Seu e-mail</label>
+            <input type="email" id="bibSuggestEmail" class="bib-input" placeholder="seu@email.com" autocomplete="email" required aria-required="true">
             <button type="submit" class="btn gold bib-submit-btn">Enviar sugestão</button>
           </form>
           <p id="bibSuggestMsg" class="bib-suggest-msg" style="display:none;"></p>
@@ -1746,7 +1752,7 @@
   <script defer src="data/rapid-quiz.js"></script>
   <script defer src="data/competencies.js"></script>
 
-  <script defer src="js/utils.js?v=14.98"></script>
+  <script defer src="js/utils.js?v=14.99"></script>
   <script defer src="js/audio.js?v=14.69"></script>
   <script defer src="js/leaderboard.js?v=11.90"></script>
   <script defer src="js/study-mode.js?v=14.95"></script>
