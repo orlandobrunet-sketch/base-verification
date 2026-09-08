@@ -394,7 +394,26 @@ function manageDialogFocus(dialog, onClose, returnFocus = document.activeElement
       return deduped;
     }
 
+    /* O acervo vem de refs.js e articles.js, carregados sob demanda. Sem eles,
+     * esta tela dizia "0/0 artigos" e "Nenhuma referência encontrada" — que lê
+     * como Grimório vazio, não como catálogo que não chegou. Denominador zero
+     * não é um total; é a ausência de total. */
+    const _acervoDisponivel = () =>
+      (typeof refsDB === 'object' && refsDB !== null) ||
+      (typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles));
+
+    function _bibEstado(html) {
+      const list = document.getElementById('bibList');
+      const count = document.getElementById('bibCount');
+      if (count) count.textContent = '';
+      if (list) list.innerHTML = html;
+    }
+
     function _bibRenderList(query) {
+      if (!_acervoDisponivel()) {
+        _bibEstado(`<div class="bib-empty" role="status">O acervo não pôde ser carregado.<br><button type="button" class="bib-retry" data-action="_bibTentarNovamente">Tentar novamente</button></div>`);
+        return;
+      }
       const items = _buildBibItems();
       const q = (query || '').trim().toLowerCase();
 
@@ -532,7 +551,18 @@ function manageDialogFocus(dialog, onClose, returnFocus = document.activeElement
       }
       _bibItems = null; // rebuild para refletir baús recém-abertos
       modal.classList.remove('hidden');
-      _bibRenderList('');
+      /* Antes esta tela desenhava com o que houvesse na memória. Aberta durante
+       * a carga ociosa, mostrava acervo vazio sem dizer que ainda estava
+       * carregando; com a rede falhando, mostrava o mesmo vazio para sempre.
+       * Agora ela espera o acervo e oferece nova tentativa quando falha. */
+      if (!_acervoDisponivel() && typeof carregarDadosGrimorio === 'function') {
+        _bibEstado('<div class="bib-empty" role="status">Carregando o acervo…</div>');
+        carregarDadosGrimorio()
+          .then(() => { if (!modal.classList.contains('hidden')) { _bibItems = null; _bibRenderList(document.getElementById('bibSearch')?.value || ''); } })
+          .catch(() => { if (!modal.classList.contains('hidden')) _bibRenderList(''); });
+      } else {
+        _bibRenderList('');
+      }
       const searchEl = document.getElementById('bibSearch');
       if (searchEl) {
         searchEl.value = '';
@@ -542,6 +572,15 @@ function manageDialogFocus(dialog, onClose, returnFocus = document.activeElement
       const form = document.getElementById('bibSuggestForm');
       if (form) form.onsubmit = _bibSubmitSuggest;
     }
+
+    function _bibTentarNovamente() {
+      if (typeof carregarDadosGrimorio !== 'function') return;
+      _bibEstado('<div class="bib-empty" role="status">Carregando o acervo…</div>');
+      carregarDadosGrimorio()
+        .then(() => { _bibItems = null; _bibRenderList(document.getElementById('bibSearch')?.value || ''); })
+        .catch(() => _bibRenderList(''));
+    }
+    window._bibTentarNovamente = _bibTentarNovamente;
 
     function closeBibliotecaModal() {
       const modal = document.getElementById('bibliotecaModal');
