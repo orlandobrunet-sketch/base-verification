@@ -94,3 +94,58 @@ test('falha da carga ociosa não gera rejeição sem tratamento nem impede recup
   expect(await page.evaluate(() => (window as any).rejeicoes)).toEqual([]);
   expect(tentativas).toBe(2);
 });
+
+/**
+ * O estado de erro é a única tela que o usuário vê quando a rede falha —
+ * então ela precisa dizer o que fazer, e não só que algo deu errado.
+ *
+ * Dois defeitos medidos quando ele ganhou o botão de recuperação:
+ *
+ * 1. O título usava <h1>. O estilo destes blocos alcança h2/h3, então o h1
+ *    escapava para o padrão do navegador: 32px, três linhas em 390px, muito
+ *    maior que qualquer outro título da Central (22,4px).
+ *
+ * 2. Os dois botões eram idênticos — mesmo fundo, mesma cor, mesmo peso — e o
+ *    marcado como primário era o de SAIR, não o de recuperar. Duas ações com
+ *    o mesmo peso não são hierarquia: são uma escolha sem recomendação.
+ */
+test.describe('o estado de erro orienta a saída', () => {
+  test('o título usa o tamanho do sistema, não o do navegador', async ({ page }) => {
+    await preparar(page);
+    await page.route('**/data/refs.js', route => route.abort());
+    await entrar(page);
+    await page.evaluate(() => void (window as any).openDashboard());
+    const central = page.locator('#nqDashboard');
+    await expect(central).toHaveAttribute('data-dashboard-state', 'error');
+
+    await expect(central.locator('.nqd-error h1'), 'h1 escapa do estilo destes blocos').toHaveCount(0);
+    const px = await central.locator('.nqd-error h2').evaluate(el => parseFloat(getComputedStyle(el).fontSize));
+    expect(px, `título a ${px}px, fora da escala da Central`).toBeLessThan(26);
+  });
+
+  test('a recuperação é a ação recomendada, e a saída não compete com ela', async ({ page }) => {
+    await preparar(page);
+    await page.route('**/data/refs.js', route => route.abort());
+    await entrar(page);
+    await page.evaluate(() => void (window as any).openDashboard());
+    const central = page.locator('#nqDashboard');
+    await expect(central).toHaveAttribute('data-dashboard-state', 'error');
+
+    const estilo = (nome: string) => central.getByRole('button', { name: nome }).first().evaluate(el => {
+      const cs = getComputedStyle(el);
+      return { fundo: cs.backgroundColor, peso: cs.fontWeight };
+    });
+    const recuperar = await estilo('Tentar novamente');
+    const sair = await estilo('Voltar ao jogo');
+
+    // Preenchido contra transparente: a diferença precisa existir, em qualquer
+    // paleta que o projeto venha a adotar.
+    const opaco = (c: string) => !/rgba\([^)]*,\s*0\s*\)/.test(c) && c !== 'transparent';
+    expect(opaco(recuperar.fundo), 'a ação recomendada precisa ser preenchida').toBe(true);
+    expect(recuperar.fundo === sair.fundo, 'os dois botões pesam igual; não há recomendação').toBe(false);
+    await expect(
+      central.locator('[data-nqd-primary="true"]'),
+      'o destaque precisa estar na recuperação, não na saída',
+    ).toHaveAttribute('data-action', '_dashRetryLoad');
+  });
+});

@@ -1595,10 +1595,17 @@
     return _shellMarkup(`
       <div class="nqd-error" role="alert">
         <span>Central indisponível</span>
-        <h1>${falhaGrimorio ? 'Não foi possível carregar o Grimório.' : 'Não foi possível organizar os dados deste dispositivo.'}</h1>
+        <!-- h2, não h1: o estilo destes blocos alcança h2/h3, e o h1 escapava
+             para o padrão do navegador (32px). No celular a frase quebrava em
+             três linhas, destoando de todos os outros estados da Central. -->
+        <h2>${falhaGrimorio ? 'Não foi possível carregar o Grimório.' : 'Não foi possível organizar os dados deste dispositivo.'}</h2>
         <p>Seu progresso não foi alterado. Verifique sua conexão e tente novamente.</p>
-        <button type="button" class="nqd-primary-action" data-action="_dashRetryLoad">Tentar novamente</button>
-        <button type="button" class="nqd-primary-action" data-action="closeDashboard" data-nqd-primary="true">Voltar ao jogo${_svg('back')}</button>
+        <!-- A recuperação é a ação recomendada, então ela é a primária; a saída
+             usa o secundário que já existe no sistema. Os dois botões eram
+             idênticos — mesmo fundo, mesma cor, mesmo peso — e o marcado como
+             primário era o de sair, não o de recuperar. -->
+        <button type="button" class="nqd-primary-action" data-action="_dashRetryLoad" data-nqd-primary="true">Tentar novamente</button>
+        <button type="button" class="nqd-action" data-action="closeDashboard">Voltar ao jogo${_svg('back')}</button>
       </div>
     `, 'error');
   }
