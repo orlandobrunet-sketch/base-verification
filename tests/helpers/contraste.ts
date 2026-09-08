@@ -21,6 +21,8 @@ export type FalhaDeContraste = {
   texto: string;
 };
 
+/** Estimativa legada: lista vazia significa apenas ausência de alertas deste modelo.
+ * Para distinguir aprovação de composição inconclusiva, use auditarVisual. */
 export function medirContraste(seletorRaiz: string): FalhaDeContraste[] {
   const lum = (c: number[]) => {
     const [r, g, b] = c.map((v) => {
@@ -110,9 +112,9 @@ export function medirContraste(seletorRaiz: string): FalhaDeContraste[] {
          * quase preto. Lendo só as paradas do degradê, o enunciado — creme
          * sobre escuro, perfeitamente legível — media 2,06:1.
          *
-         * Como o veredito usa o candidato MAIS FAVORÁVEL, somar a cor real do
-         * cartão desfaz esse engano sem esconder defeito: só passa quando
-         * alguma camada de fato existente atrás do texto passa. */
+         * Esta heurística pode esconder defeito quando a cor está encoberta.
+         * Preservada para regressões históricas; auditarVisual classifica
+         * imagens/degradês como inconclusivos, sem conceder aprovação. */
         const propria = canal(cs.backgroundColor);
         if (propria && alfa(cs.backgroundColor) >= 0.85) candidatos.push(propria);
         if (candidatos.length === 0) return [];
@@ -156,10 +158,13 @@ export function medirContraste(seletorRaiz: string): FalhaDeContraste[] {
   };
 
   const raiz = document.querySelector(seletorRaiz);
-  if (!raiz) return [];
+  if (!raiz || !raiz.getClientRects().length || getComputedStyle(raiz).visibility !== 'visible') {
+    throw new Error(`Raiz ausente ou invisível: ${seletorRaiz}`);
+  }
+  if (opacidadeAcumulada(raiz) < 0.05) throw new Error(`Raiz invisível: ${seletorRaiz}`);
 
   const achados: FalhaDeContraste[] = [];
-  for (const el of Array.from(raiz.querySelectorAll('*'))) {
+  for (const el of [raiz, ...Array.from(raiz.querySelectorAll('*'))]) {
     const texto = Array.from(el.childNodes)
       .filter((n) => n.nodeType === 3 && (n.textContent || '').trim())
       .map((n) => (n.textContent || '').trim())

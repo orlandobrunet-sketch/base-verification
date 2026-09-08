@@ -1,6 +1,6 @@
 # NefroQuest — Roadmap ativo
 
-**Última reconciliação:** 06/09/2026
+**Última reconciliação:** 07/09/2026
 **Versão de referência:** consultar sempre [`version.json`](../version.json)
 **Arquivo anterior:** [`archive/ROADMAP_LEGACY_2026-08.md`](archive/ROADMAP_LEGACY_2026-08.md)
 
@@ -27,8 +27,8 @@ Limites operacionais:
 
 - **Última etapa publicada:** correções da auditoria visual, versão `14.95`, PR [#785](https://github.com/orlandobrunet-sketch/base-verification/pull/785).
 - **Em produção:** `14.95`; validação pós-publicação registrada abaixo.
-- **Em validação:** reconciliação deste roadmap; não há nova funcionalidade em execução.
-- **Próxima ação proposta:** tornar o instrumento de auditoria confiável para cortes verticais, sobreposições e fundos inconclusivos. Escopo sugerido; implementação ainda não iniciada.
+- **Em validação:** instrumento de auditoria visual, autorizado em 07/09; mudança restrita a testes e documentação.
+- **Ação atual:** validar a triagem conservadora do instrumento de auditoria. Próxima frente funcional proposta: recuperação de carregamento do Grimório.
 
 ### Reconciliação de setembro de 2026
 
@@ -46,7 +46,7 @@ Validação da entrega: 42 testes locais de navegador sem retentativas, 44 teste
 
 Próximos recortes, sem execução automática:
 
-1. **Instrumento:** distinguir aprovado, falhou e inconclusivo; exigir raiz visível; adicionar controles de corte vertical, sobreposição e composição real de fundo. Captura da viewport e teste de comportamento devem acompanhar as medidas.
+1. **Instrumento — ATIVO:** implementada triagem com aprovado/falhou/inconclusivo, validação de raiz e corte vertical. Sobreposição de linhas e fundos complexos ficam explicitamente inconclusivos; não há certificação por pixels. Controles sintéticos e aplicação ao Oráculo em validação. Contrato e limites em [`tests/helpers/AUDITORIA-VISUAL.md`](../tests/helpers/AUDITORIA-VISUAL.md).
 2. **Grimório:** recuperar falha de carregamento de `refs.js`/`articles.js` e permitir nova tentativa.
 3. **Sugestão de artigo:** alinhar o payload do formulário ao contrato de `send-contact`, sem inventar identidade nem acrescentar coleta desnecessária.
 

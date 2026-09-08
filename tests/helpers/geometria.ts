@@ -12,9 +12,13 @@ export type FalhaDeGeometria = {
   texto: string;
 };
 
+/** Triagem legada de horizontal/alvos. Para corte vertical e sobreposição,
+ * use auditarVisual; lista vazia aqui não certifica a tela. */
 export function medirGeometria(seletorRaiz: string): FalhaDeGeometria[] {
   const raiz = document.querySelector(seletorRaiz);
-  if (!raiz) return [];
+  if (!raiz || !raiz.getClientRects().length || getComputedStyle(raiz).visibility !== 'visible') {
+    throw new Error(`Raiz ausente ou invisível: ${seletorRaiz}`);
+  }
 
   const nomear = (el: Element) => {
     const bruto = typeof el.className === 'string' ? el.className : '';
@@ -46,9 +50,10 @@ export function medirGeometria(seletorRaiz: string): FalhaDeGeometria[] {
   };
 
   const largura = window.innerWidth;
+  if (!visivel(raiz)) throw new Error(`Raiz invisível: ${seletorRaiz}`);
   const achados: FalhaDeGeometria[] = [];
 
-  for (const el of Array.from(raiz.querySelectorAll('*'))) {
+  for (const el of [raiz, ...Array.from(raiz.querySelectorAll('*'))]) {
     const r = el.getBoundingClientRect();
     if (r.width < 1 || r.height < 1) continue;
     if (!visivel(el)) continue;
