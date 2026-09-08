@@ -759,17 +759,37 @@ function manageDialogFocus(dialog, onClose, returnFocus = document.activeElement
     // médico que ele não ganhou algo que ganhou. Aqui nada muda de
     // comportamento; só sai do caminho crítico.
     let _promessaGrimorio = null;
+    const _cargasGrimorio = new Map();
     function carregarDadosGrimorio() {
       if (_promessaGrimorio) return _promessaGrimorio;
-      const um = (src) => new Promise((ok) => {
-        if (document.querySelector(`script[src="${src}"]`)) return ok();
-        const s = document.createElement('script');
-        s.src = src;
-        s.onload = () => ok();
-        s.onerror = () => { console.error('[NQ] falha ao carregar', src); ok(); };
-        document.head.appendChild(s);
+      const um = (src, pronto) => {
+        if (pronto()) return Promise.resolve();
+        if (_cargasGrimorio.has(src)) return _cargasGrimorio.get(src);
+        const tarefa = new Promise((ok, falhou) => {
+          const script = document.createElement('script');
+          script.src = src;
+          const erro = () => {
+            script.remove();
+            falhou(new Error('Não foi possível carregar ' + src));
+          };
+          script.onload = () => pronto() ? ok() : erro();
+          script.onerror = erro;
+          document.head.appendChild(script);
+        }).catch(error => {
+          _cargasGrimorio.delete(src);
+          throw error;
+        });
+        _cargasGrimorio.set(src, tarefa);
+        return tarefa;
+      };
+      _promessaGrimorio = Promise.all([
+        um('data/refs.js', () => typeof refsDB === 'object' && refsDB !== null),
+        um('data/articles.js', () => typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles)),
+      ]).catch(error => {
+        // O arquivo que terminou continua disponível; só a falha é repetida.
+        _promessaGrimorio = null;
+        throw error;
       });
-      _promessaGrimorio = Promise.all([um('data/refs.js'), um('data/articles.js')]);
       return _promessaGrimorio;
     }
     window.carregarDadosGrimorio = carregarDadosGrimorio;
@@ -778,7 +798,9 @@ function manageDialogFocus(dialog, onClose, returnFocus = document.activeElement
     // por isso o recuo para setTimeout — sem ele, iOS nunca carregaria o
     // Grimório e a aba abriria vazia.
     (function agendarGrimorio() {
-      const disparar = () => carregarDadosGrimorio();
+      const disparar = () => carregarDadosGrimorio().catch(error => {
+        console.warn('[NQ] Carga ociosa do Grimório adiada; será repetida ao abrir a Central.', error);
+      });
       if (typeof requestIdleCallback === 'function') requestIdleCallback(disparar, { timeout: 4000 });
       else setTimeout(disparar, 1500);
     })();

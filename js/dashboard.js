@@ -1591,13 +1591,21 @@
     return _shellMarkup(panes, 'ready');
   }
 
-  function _errorMarkup() {
+  function _errorMarkup(falhaGrimorio = false) {
     return _shellMarkup(`
       <div class="nqd-error" role="alert">
         <span>Central indisponível</span>
-        <h1>Não foi possível organizar os dados deste dispositivo.</h1>
-        <p>Seu progresso não foi alterado. Feche esta área e tente novamente.</p>
-        <button type="button" class="nqd-primary-action" data-action="closeDashboard" data-nqd-primary="true">Voltar ao jogo${_svg('back')}</button>
+        <!-- h2, não h1: o estilo destes blocos alcança h2/h3, e o h1 escapava
+             para o padrão do navegador (32px). No celular a frase quebrava em
+             três linhas, destoando de todos os outros estados da Central. -->
+        <h2>${falhaGrimorio ? 'Não foi possível carregar o Grimório.' : 'Não foi possível organizar os dados deste dispositivo.'}</h2>
+        <p>Seu progresso não foi alterado. Verifique sua conexão e tente novamente.</p>
+        <!-- A recuperação é a ação recomendada, então ela é a primária; a saída
+             usa o secundário que já existe no sistema. Os dois botões eram
+             idênticos — mesmo fundo, mesma cor, mesmo peso — e o marcado como
+             primário era o de sair, não o de recuperar. -->
+        <button type="button" class="nqd-primary-action" data-action="_dashRetryLoad" data-nqd-primary="true">Tentar novamente</button>
+        <button type="button" class="nqd-action" data-action="closeDashboard">Voltar ao jogo${_svg('back')}</button>
       </div>
     `, 'error');
   }
@@ -2137,11 +2145,6 @@
 
   async function openDashboard() {
     _injectStyles();
-    // O Grimório e a aba de Conquistas leem refsDB e nefroArticles. A carga
-    // ociosa começa logo após a primeira pintura, mas se o médico abrir a
-    // Central antes de ela terminar, esperamos aqui — abrir com aba vazia
-    // seria pior que abrir 200 ms depois.
-    if (typeof window.carregarDadosGrimorio === 'function') await window.carregarDadosGrimorio();
     if (typeof window.playSound === 'function') window.playSound('click');
     const previous = document.getElementById('nqDashboard');
     if (previous) {
@@ -2169,7 +2172,12 @@
     root.querySelector('[data-action="closeDashboard"]')?.focus({ preventScroll: true });
 
     let topicsLoadError = false;
+    let dadosGrimorioCarregados = false;
     try {
+      // Mostra a Central imediatamente, com saída disponível durante a carga.
+      if (typeof window.carregarDadosGrimorio === 'function') await window.carregarDadosGrimorio();
+      dadosGrimorioCarregados = true;
+      if (!root.isConnected) return;
       if (typeof window._loadTopics === 'function') {
         try {
           await window._loadTopics();
@@ -2190,11 +2198,20 @@
     } catch (error) {
       console.error('[NQ] Falha ao montar a Central de Comando', error);
       if (!root.isConnected) return;
-      root.innerHTML = _errorMarkup();
+      root.innerHTML = _errorMarkup(!dadosGrimorioCarregados);
       root.dataset.dashboardState = 'error';
-      root.querySelector('[data-action="closeDashboard"]')?.focus({ preventScroll: true });
+      root.querySelector('[data-action="_dashRetryLoad"]')?.focus({ preventScroll: true });
     }
   }
+
+  function _dashRetryLoad() {
+    const returnFocus = _lastFocusedElement;
+    closeDashboard({ restoreFocus: false });
+    const tentativa = openDashboard();
+    _lastFocusedElement = returnFocus;
+    return tentativa;
+  }
+  window._dashRetryLoad = _dashRetryLoad;
 
   function closeDashboard(options) {
     const root = document.getElementById('nqDashboard');
