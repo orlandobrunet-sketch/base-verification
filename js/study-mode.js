@@ -1195,6 +1195,25 @@
       localStorage.setItem(MENTOR_QUOTA_KEY, JSON.stringify(q));
     }
 
+    /* O contador local não é a verdade — o servidor é.
+     *
+     * A cota vive em `ai_usage`, por usuário e por dia. Este contador é uma
+     * cópia por dispositivo, e ele só sobe quando ESTE aparelho faz a
+     * pergunta. Quem gastou as cinco no celular abre o notebook e lê
+     * "5/5 perguntas restantes hoje" — e é recusado na primeira.
+     *
+     * Medido: a barra dizia 5/5 ao lado do aviso "Limite diário atingido",
+     * na mesma tela. Quando o servidor recusa por cota, o local passa a
+     * refletir isso. */
+    function _esgotarMentorQuotaLocal() {
+      if (isPremium()) return;
+      const q = _getMentorQuota();
+      q.count = MENTOR_DAILY_LIMIT;
+      localStorage.setItem(MENTOR_QUOTA_KEY, JSON.stringify(q));
+      const barra = document.getElementById('mentorQuotaBar');
+      if (barra) barra.textContent = _mentorRemainingText();
+    }
+
     function _mentorRemainingText() {
       if (isPremium()) return '';
       const { count } = _getMentorQuota();
@@ -1852,6 +1871,9 @@
         _track('error_mentor_send', { msg: String(err) });
         thinkingEl.classList.remove('mentor-thinking');
         if (String(err).includes('quota_exceeded')) {
+          // A recusa do servidor é a fonte: alinha o contador local antes de
+          // desenhar, senão a barra segue prometendo perguntas que não há.
+          _esgotarMentorQuotaLocal();
           thinkingEl.innerHTML = `Limite diário atingido. <button type="button" class="mentor-inline-action" data-action="closeMentorModalAndUpgrade">Faça upgrade para Premium</button> para perguntas ilimitadas.`;
         } else {
           thinkingEl.textContent = 'Oráculo indisponível no momento. Tente novamente em instantes.';
