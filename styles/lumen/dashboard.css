@@ -34,7 +34,12 @@
   inset: 0;
   width: 100%;
   height: 100dvh;
-  min-width: 20rem;
+  /* px, não rem: este piso existe para proteger de VIEWPORT estreito, não
+     para acompanhar o tamanho do texto. Em rem ele crescia junto com a fonte
+     — quem aumenta a fonte do navegador para 200% fazia 20rem virar 640px
+     dentro de uma tela de 390, e o `overflow: hidden` logo abaixo cortava o
+     excesso sem deixar rolar até ele. "Sala de Condut…", "Dr. Glome…". */
+  min-width: 320px;
   overflow: hidden;
   background:
     radial-gradient(circle at 82% -12%, rgba(120, 217, 227, .08), transparent 34rem),
