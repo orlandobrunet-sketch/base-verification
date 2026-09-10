@@ -82,7 +82,18 @@
           if (typeof _reportError === 'function') _reportError(e2, { action: 'boardFetch_parseCache' });
         }
         _toast('Erro ao carregar o leaderboard. Verifique sua conexão.', 'error');
-        return [];
+        /* Antes: `return []`.
+         *
+         * Lista vazia é indistinguível de ranking realmente vazio, e quem
+         * recebia dizia a coisa errada com todas as letras — a Central,
+         * "Nenhum registro disponível. A primeira partida concluída inicia
+         * este registro"; o modal legado, "Seja o primeiro a entrar para a
+         * história!". Tudo isso com dezenas de registros no banco, apenas
+         * inalcançáveis naquele instante.
+         *
+         * Falhar é diferente de estar vazio, e só quem falhou sabe disso.
+         * Lançar deixa a distinção chegar a quem desenha a tela. */
+        throw e instanceof Error ? e : new Error(String(e));
       }
     }
 
@@ -446,7 +457,27 @@
       _setBoardHead();
       if (loading) loading.classList.remove('hidden');
       ui.boardBody.innerHTML = '';
-      const data = (_boardMode === 'global') ? await _doProfileFetch() : await boardFetch(forceRefresh);
+      /* `boardFetch` agora lança quando não conseguiu dado nenhum. Sem este
+       * bloco, a falha deixaria o spinner girando e a tabela vazia — pior que
+       * a mensagem errada que existia antes. */
+      let data;
+      try {
+        data = (_boardMode === 'global') ? await _doProfileFetch() : await boardFetch(forceRefresh);
+      } catch (erro) {
+        if (loading) loading.classList.add('hidden');
+        ui.boardBody.innerHTML = '';
+        const linha = document.createElement('tr');
+        const celula = document.createElement('td');
+        celula.colSpan = (_boardMode === 'global') ? 6 : 7;
+        celula.className = 'board-empty';
+        celula.appendChild(document.createTextNode('Não foi possível carregar o ranking.'));
+        celula.appendChild(document.createElement('br'));
+        celula.appendChild(document.createTextNode('Verifique sua conexão e tente atualizar.'));
+        linha.appendChild(celula);
+        ui.boardBody.appendChild(linha);
+        if (updateEl) updateEl.textContent = '';
+        return;
+      }
       if (loading) loading.classList.add('hidden');
       _boardFullData = data.slice(0, 50);
       if (_boardFullData.length === 0) {
