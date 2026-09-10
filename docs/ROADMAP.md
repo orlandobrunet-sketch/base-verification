@@ -1,6 +1,6 @@
 # NefroQuest — Roadmap ativo
 
-**Última reconciliação:** 07/09/2026
+**Última reconciliação:** 10/09/2026
 **Versão de referência:** consultar sempre [`version.json`](../version.json)
 **Arquivo anterior:** [`archive/ROADMAP_LEGACY_2026-08.md`](archive/ROADMAP_LEGACY_2026-08.md)
 
@@ -25,10 +25,47 @@ Limites operacionais:
 
 ## Checkpoint operacional para continuidade
 
-- **Última etapa publicada:** correções da auditoria visual, versão `14.95`, PR [#785](https://github.com/orlandobrunet-sketch/base-verification/pull/785).
-- **Em produção:** `14.95`; validação pós-publicação registrada abaixo.
-- **Em validação:** instrumento de auditoria visual, autorizado em 07/09; mudança restrita a testes e documentação.
-- **Ação atual:** validar a triagem conservadora do instrumento de auditoria. Próxima frente funcional proposta: recuperação de carregamento do Grimório.
+- **Última reconciliação:** 10/09/2026, depois dos PRs #788 a #798.
+- **Em produção:** `15.02`, com o #798 (`15.03`) em integração. Consultar sempre `version.json`.
+- **Ação atual:** o NQ-03 está quase fechado. Faltam o GA4 (acesso do proprietário) e a certificação com leitor de tela real.
+- **Os três próximos recortes da reconciliação de 07/09 foram entregues:** o instrumento (#787), a recuperação do Grimório (#788 e #790) e a sugestão de artigo (#791).
+
+### Reconciliação de 10/09/2026
+
+| Entrega | PR | Versão | O que mudou para quem usa |
+|---|---|---|---|
+| Grimório: falha de rede virava acervo vazio permanente | [#788](https://github.com/orlandobrunet-sketch/base-verification/pull/788) | 14.97 | A Central oferece "Tentar novamente"; antes a falha ficava guardada como sucesso |
+| Grimório legado: "0/0 artigos" sem acervo | [#790](https://github.com/orlandobrunet-sketch/base-verification/pull/790) | 14.98 | O modal espera o acervo, avisa que está carregando e oferece nova tentativa |
+| Sugestão de artigo nunca chegava | [#791](https://github.com/orlandobrunet-sketch/base-verification/pull/791) | 14.99 | O formulário mandava `subject`; a função exige `name`/`email`. **Autorizado pelo proprietário:** passou a pedir nome e e-mail |
+| Sentry recebia a execução local | [#792](https://github.com/orlandobrunet-sketch/base-verification/pull/792) | 15.00 | Eram 30 de 31 eventos em 90 dias. Host local não carrega mais o SDK; a prévia da Vercel continua reportando |
+| Função de trigger exposta na API pública | [#793](https://github.com/orlandobrunet-sketch/base-verification/pull/793) | — | Migration 019, **aplicada pelo proprietário** e verificada: trigger ativo, ACL sem `anon`/`authenticated` |
+| Jornada ponta a ponta | [#794](https://github.com/orlandobrunet-sketch/base-verification/pull/794) | — | Spec 60: Portal → Átrio → Dificuldade → Classe → Abertura → Questão → Central → Retomada, com teclado e movimento reduzido |
+| Save legado atravessa a migração | [#795](https://github.com/orlandobrunet-sketch/base-verification/pull/795) | — | Spec 08: uma relíquia épica de um save v1 chega intacta à v6 |
+| Oráculo: cota recusava e prometia "5/5" | [#796](https://github.com/orlandobrunet-sketch/base-verification/pull/796) | 15.01 | O contador local é zerado quando o servidor recusa por cota, e preservado quando a falha é do servidor |
+| Ranking sem rede dizia "vazio" | [#797](https://github.com/orlandobrunet-sketch/base-verification/pull/797) | 15.02 | Falha de rede passou a ser tratada como falha. O modal legado convidava a "ser o primeiro" num ranking que já existe |
+| Texto a 200% cortava a Central | [#798](https://github.com/orlandobrunet-sketch/base-verification/pull/798) | 15.03 | O `min-width: 20rem` crescia com a fonte. Passou a px: de 52 elementos transbordando para 4 |
+
+Três dessas entregas são o mesmo defeito: **a falha era guardada como sucesso.** No Grimório, a promessa ficava resolvida. Na sugestão de artigo, a mensagem dizia "tente novamente" para um 400 que nunca mudaria. No ranking, a falha virava `[]`. Antes de tratar um estado vazio, confirme que ele não é uma falha escondida.
+
+Com o acesso ao Supabase e ao Sentry, a camada de dados ficou com evidência datada. Em 24h, 323 chamadas à API responderam 200/204. Em 90 dias, houve um único erro de produção (`returnFocus`), corrigido no #783 e sem novas ocorrências. O painel do Sentry foi zerado, e cada issue resolvida recebeu um comentário com o motivo.
+
+Suspeitas medidas e descartadas, registradas para não voltarem como trabalho:
+
+- **Reporte de erro em questão:** o contrato de `send-flag` bate dos dois lados.
+- **Diagnóstico de lacunas:** o limite substitui o cartão inteiro, então o contador desatualizado nunca aparece junto da recusa.
+- **Oráculo para visitante:** nem mostra campo de pergunta, só um painel pedindo conta. O 401 não chega à tela.
+- **Recarregar no meio da jornada:** volta ao Átrio com "Retomar jornada" e mantém o save. É o comportamento esperado.
+- **Foco inicial no ✕ do modal de classe:** três dos quatro diálogos do app fazem o mesmo. É convenção, não defeito.
+- **`boss.js` "recarregue a página":** é um caminho de admin, e recarregar resolve.
+- **`is_admin()` exposta a autenticado:** só lê o JWT de quem chama.
+- **Offline:** a faixa "Offline — usando cache local" aparece, o jogo continua e a Central abre. O ranking era o único caso com defeito.
+- **Largura de 320 e 390 px com texto normal:** sem rolagem horizontal e sem corte.
+
+Em aberto, sem conserto:
+
+- **`contato@nefroquest.com` não recebe e-mail.** O domínio não tem registro MX, e o endereço aparece no rodapé da landing e no modal de privacidade. Cabe ao proprietário decidir entre configurar o MX, trocar o canal ou remover o endereço.
+- **Quatro elementos ainda transbordam com texto a 200%** (`nqd-pulse-day` e `nqd-study-primary`). Nenhum texto se perde; é acabamento.
+- **Classificador de competências:** a proposta é separar o conserto mecânico (substring e negação) da migração do NQ-10, que depende de autorização editorial. O proprietário ainda não respondeu.
 
 ### Reconciliação de setembro de 2026
 
@@ -83,7 +120,7 @@ Decisões do proprietário em 01/09/2026:
 
 Pendências que ainda dependem do proprietário:
 
-- conferir os consoles do Supabase, Sentry e GA4 — o smoke automatizado do #778 é somente-leitura e não alcança nada que exija sessão real;
+- conferir o console do **GA4** — Supabase e Sentry foram conectados em 08/09/2026 e já estão sendo lidos diretamente; o smoke automatizado do #778 é somente-leitura e não alcança nada que exija sessão real;
 - confirmar o recorte de ações do gate editorial (ver NQ-00B);
 - autorizar a migração de competências quando o NQ-10 chegar a vez;
 - **não existe CSP em `nefroquest.com`** — medido: 161 handlers inline e 12 blocos de script inline. Sem `unsafe-inline` o app quebra; com `unsafe-inline` a CSP não protege. Fica atrás de um refactor do modelo de eventos, e não é urgente porque o vetor real está fechado no render e no banco;
@@ -358,9 +395,9 @@ Mapa, Grimório, Conquistas e Ranking já vivem na Central; melhorias futuras de
 | Decisão/acesso | Desbloqueia | Evidência necessária |
 |---|---|---|
 | Ambiente de teste Mercado Pago | NQ-05 e NQ-09 | Credenciais de teste, mensal e vitalício confirmados |
-| Consoles Supabase, Sentry e GA4 | NQ-03 | Logs/eventos da release e horário da validação |
+| Console GA4 (Supabase e Sentry **já conectados** em 08/09) | NQ-03 | Eventos da release e horário da validação |
 | Conta Google Play e APK assinado | NQ-09 | SHA-256 e checklist do Console |
-| E-mail `contato@nefroquest.com` | contato e suporte de loja | Caixa ativa e entrega testada |
+| E-mail `contato@nefroquest.com` — **medido em 09/09: o domínio não tem MX**, e o endereço é anunciado no rodapé e no modal de privacidade | contato, suporte de loja e canal de privacidade | MX configurado e entrega testada, ou endereço trocado/removido |
 | Revisor médico bilíngue | tradução EN | glossário, lote-piloto e veredito editorial |
 
 ## Despriorizado agora
