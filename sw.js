@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v15.03
-const CACHE = 'nefroquest-v15.03';
+// NefroQuest Service Worker — v15.04
+const CACHE = 'nefroquest-v15.04';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -21,6 +21,23 @@ const STATIC_ASSETS = [
   '/assets/badges/badge3-384.jpg',
   '/assets/badges/badge4-384.jpg',
   '/assets/badges/badge5-384.jpg',
+  '/assets/badges/badge1.png',
+  '/assets/badges/badge2.png',
+  '/assets/badges/badge3.png',
+  '/assets/badges/badge4.png',
+  '/assets/badges/badge5.png',
+  '/assets/achievements/hemodialise.webp',
+  '/assets/achievements/guardiao.webp',
+  '/assets/achievements/cristal.webp',
+  '/assets/achievements/transplante.webp',
+  '/assets/achievements/microscopio.webp',
+  '/assets/achievements/centenario.webp',
+  '/assets/achievements/precisao.webp',
+  '/assets/achievements/hardcore.webp',
+  '/assets/achievements/alquimia.webp',
+  '/assets/achievements/grimorio.webp',
+  '/assets/achievements/louros.webp',
+  '/assets/titulodecampeao.png',
   '/manifest.json',
   '/favicon.ico',
   '/data/refs.js',
@@ -76,7 +93,7 @@ const ASSET_VERSIONS = {
   '/styles/lumen/atrium.css': '14.18',
   '/styles/lumen/game.css': '14.94',
   '/styles/lumen/difficulty.css': '14.34',
-  '/styles/lumen/dashboard.css': '15.03',
+  '/styles/lumen/dashboard.css': '15.04',
   '/styles/lumen/charselect.css': '14.75',
   '/js/utils.js': '14.99',
   '/js/audio.js': '14.69',
@@ -96,7 +113,7 @@ const ASSET_VERSIONS = {
   '/js/minigame-acidbase.js': '11.90',
   '/js/achievements.js': '14.84',
   '/js/changelog.js': '11.90',
-  '/js/dashboard.js': '14.97',
+  '/js/dashboard.js': '15.04',
 };
 // bump-release:asset-versions:fim
 
