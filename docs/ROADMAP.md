@@ -26,9 +26,28 @@ Limites operacionais:
 ## Checkpoint operacional para continuidade
 
 - **Última reconciliação:** 10/09/2026, depois dos PRs #788 a #798.
-- **Em produção:** `15.02`, com o #798 (`15.03`) em integração. Consultar sempre `version.json`.
-- **Ação atual:** o NQ-03 está quase fechado. Faltam o GA4 (acesso do proprietário) e a certificação com leitor de tela real.
+- **Base integrada:** `15.03`, com #798 e #799 confirmados em `main`. A entrega visual abaixo propõe `15.04`; consultar sempre `version.json` e distinguir branch de publicação.
+- **Ação atual:** NQ-04A e NQ-04D implementados, com revisão local concluída em 11/09: Conquistas/Objetivos e nome Dashboard. Aguardam revisão visual e publicação. O NQ-03 está quase fechado: faltam GA4 e certificação com leitor de tela real.
 - **Os três próximos recortes da reconciliação de 07/09 foram entregues:** o instrumento (#787), a recuperação do Grimório (#788 e #790) e a sugestão de artigo (#791).
+
+### Prioridade do proprietário em 10/09 — qualidade visual e continuidade
+
+O proprietário relatou perda de qualidade das imagens de Conquistas/Objetivos, apresentação inferior do Grimório no Dashboard e insatisfação com a curva do card Jornada Ativa. Pediu recuperar a apresentação rica dos artigos, voltar ao nome **Dashboard** e redesenhar os popups progressivamente, com continuidade da página. Esses relatos definem recortes concretos de NQ-04 e passam à frente da expansão NQ-06.
+
+**Primeira entrega preparada para revisão:** cinco selos originais em maior destaque, 11 novas artes de objetivos e a arte original de Campeão, apresentação adaptável ao texto ampliado e nome Dashboard nos acessos. Plano, diagnóstico, critérios, validação e inventário completo em [`design/NQ_REFINEMENT_PRIORITY_2026-09-10.md`](design/NQ_REFINEMENT_PRIORITY_2026-09-10.md). Grimório e Jornada Ativa seguem na fila.
+
+| Ordem | Recorte | Critério central |
+|---|---|---|
+| 1 | **NQ-04A — Conquistas e Objetivos** | Recuperar presença e qualidade das artes; substituir aparência provisória dos emojis; preservar progresso e histórico |
+| Junto de 1 | **NQ-04D — Nome Dashboard** | Consistência em acessos, títulos, carregamento e nomes acessíveis |
+| 2 | **NQ-04B — Grimório integrado** | Preservar cores e informação dos artigos; leitura dentro do Dashboard e retorno à questão sem popup empilhado |
+| 3 | **NQ-04C — Jornada Ativa no Átrio** | Substituir curva arbitrária por percurso legível entre personagem, progresso real e próxima evolução |
+| 4 | **NQ-04 — Continuidade e acabamento** | Baselines, texto ampliado, estados e navegação de ponta a ponta |
+| 5 | **NQ-06 — Superfícies internas** | Estudo/Revisão → Oráculo → Forja/Inventário → Simulado → Conta; receita permanece no fim da fila |
+
+O diagnóstico confirmou os cinco selos originais preservados e 11 objetivos apresentados por emojis. A existência de uma coleção anterior de 12 ilustrações não foi comprovada; nesta entrega, os 11 emojis do Dashboard foram substituídos por novas artes. O card da imagem enviada pertence ao Átrio e terá entrega própria.
+
+**Integração conferida:** #798 e #799 foram integrados em `main` durante esta sessão. A branch visual foi atualizada sobre ambos, preservando a correção de texto ampliado.
 
 ### Reconciliação de 10/09/2026
 
@@ -81,11 +100,11 @@ Validação pós-publicação em 06/09/2026: 15 cenários de comportamento contr
 
 Validação da entrega: 42 testes locais de navegador sem retentativas, 44 testes das regras editoriais e todos os jobs da [CI do #785](https://github.com/orlandobrunet-sketch/base-verification/actions/runs/34072696315) aprovados. O Greptile informou período de avaliação encerrado e não executou revisão; o diff foi revisado diretamente pelo Codex. Não tratar ausência de comentários como aprovação desse serviço.
 
-Próximos recortes, sem execução automática:
+Recortes definidos em 07/09 — histórico, todos entregues até a reconciliação de 10/09:
 
-1. **Instrumento — ATIVO:** implementada triagem com aprovado/falhou/inconclusivo, validação de raiz e corte vertical. Sobreposição de linhas e fundos complexos ficam explicitamente inconclusivos; não há certificação por pixels. Controles sintéticos e aplicação ao Oráculo em validação. Contrato e limites em [`tests/helpers/AUDITORIA-VISUAL.md`](../tests/helpers/AUDITORIA-VISUAL.md).
-2. **Grimório:** recuperar falha de carregamento de `refs.js`/`articles.js` e permitir nova tentativa.
-3. **Sugestão de artigo:** alinhar o payload do formulário ao contrato de `send-contact`, sem inventar identidade nem acrescentar coleta desnecessária.
+1. **Instrumento — PUBLICADO (#787):** triagem com aprovado/falhou/inconclusivo, validação de raiz e corte vertical. Sobreposição de linhas e fundos complexos ficam explicitamente inconclusivos; não há certificação por pixels. Contrato e limites em [`tests/helpers/AUDITORIA-VISUAL.md`](../tests/helpers/AUDITORIA-VISUAL.md).
+2. **Grimório — PUBLICADO (#788/#790):** recuperação de falha de carregamento de `refs.js`/`articles.js` e nova tentativa.
+3. **Sugestão de artigo — PUBLICADO (#791):** payload alinhado ao contrato de `send-contact`, sem inventar identidade nem acrescentar coleta desnecessária.
 
 Pagamento continua no fim da fila; competências curadas seguem em NQ-10, com gate editorial próprio.
 
@@ -345,7 +364,7 @@ Escopo:
 - resolver apenas inconsistências comprovadas de hierarquia, densidade, tipografia, cor semântica e retorno de navegação;
 - registrar baseline em 1366×768, 1440×900, 390×844 e 320×568.
 
-Não inclui uma nova releitura estética do dashboard. O sistema vigente é o [`Sistema Visual Lúmen Vivo`](design/NQ_LUMEN_VISUAL_SYSTEM_V1.md), não a antiga paleta roxo/dourado do roadmap arquivado.
+O pedido explícito de 10/09 acrescenta os recortes de refinamento NQ-04A–D, definidos no checkpoint e no [plano de prioridades](design/NQ_REFINEMENT_PRIORITY_2026-09-10.md). A preparação desses recortes pode avançar enquanto se fecha NQ-03; cada publicação mantém os gates aplicáveis. O sistema vigente é o [`Sistema Visual Lúmen Vivo`](design/NQ_LUMEN_VISUAL_SYSTEM_V1.md); preservar a riqueza das artes e as cores semânticas dos artigos faz parte deste pedido.
 
 ### NQ-05 — Receita e funil verdadeiros
 

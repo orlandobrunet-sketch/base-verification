@@ -165,7 +165,13 @@ test.describe('Central de Comando do aprendizado', () => {
         return { ok: false, hasDashboardCss: false };
       }
     }, assetPath);
-    const badgePaths = Array.from({ length: 5 }, (_, index) => `/assets/badges/badge${index + 1}-384.jpg`);
+    const badgePaths = [
+      ...Array.from({ length: 5 }, (_, index) => `/assets/badges/badge${index + 1}-384.jpg`),
+      ...Array.from({ length: 5 }, (_, index) => `/assets/badges/badge${index + 1}.png`),
+      ...['hemodialise', 'guardiao', 'cristal', 'transplante', 'microscopio', 'centenario', 'precisao', 'hardcore', 'alquimia', 'grimorio', 'louros']
+        .map(name => `/assets/achievements/${name}.webp`),
+      '/assets/titulodecampeao.png',
+    ];
     const precachedBadges = await page.evaluate(async paths => Promise.all(paths.map(async path => {
       try {
         const response = await fetch(path);
@@ -178,7 +184,7 @@ test.describe('Central de Comando do aprendizado', () => {
     await context.setOffline(false);
 
     expect(offline).toEqual({ ok: true, hasDashboardCss: true });
-    expect(precachedBadges.every(badge => badge.ok && badge.type.startsWith('image/jpeg') && badge.bytes > 1_000)).toBe(true);
+    expect(precachedBadges.filter(badge => !badge.ok || !badge.type.startsWith('image/') || badge.bytes <= 1_000)).toEqual([]);
     const cachedAssetUrls = await page.evaluate(async path => {
       const urls: string[] = [];
       for (const cacheName of await caches.keys()) {
@@ -195,10 +201,10 @@ test.describe('Central de Comando do aprendizado', () => {
     expect(new URL(cachedAssetUrls[0]).search).toBe('');
   });
 
-  test('apresenta a entrada do Átrio como Central de Comando', async ({ page }) => {
+  test('apresenta a entrada do Átrio como Dashboard', async ({ page }) => {
     await gotoGame(page);
-    await expect(page.locator('button[data-atrium-route="dashboard"]')).toContainText('Central de Comando');
-    await expect(page.locator('#welcomeProfilePopup [data-action="openDashboard"]')).toContainText('Central de Comando');
+    await expect(page.locator('button[data-atrium-route="dashboard"]')).toContainText('Dashboard');
+    await expect(page.locator('#welcomeProfilePopup [data-action="openDashboard"]')).toContainText('Dashboard');
   });
 
   test('trackQuestionAnswer registra cada competência da questão exatamente uma vez', async ({ page }) => {
@@ -279,7 +285,7 @@ test.describe('Central de Comando do aprendizado', () => {
     const dashboard = page.locator('#nqDashboard');
     await expect(dashboard).toHaveClass(/nq-command-center/);
     await expect(dashboard).not.toHaveAttribute('aria-modal', 'true');
-    await expect(page.getByRole('navigation', { name: 'Áreas da Central de Comando' })).toBeVisible();
+    await expect(page.getByRole('navigation', { name: 'Áreas do Dashboard' })).toBeVisible();
 
     const tabs = dashboard.locator('[data-dash-tab]');
     await expect(tabs).toHaveCount(6);
@@ -757,8 +763,17 @@ test.describe('Central de Comando do aprendizado', () => {
     await expect(badgeImages).toHaveCount(5);
     await expect.poll(() => badgeImages.evaluateAll(images => images.every(image => {
       const img = image as HTMLImageElement;
-      return img.complete && img.naturalWidth >= 256 && img.naturalHeight >= 256 && img.getAttribute('loading') !== 'lazy';
+      return img.complete && img.naturalWidth > 0 && img.naturalHeight > 0 && img.getAttribute('loading') !== 'lazy';
     }))).toBe(true);
+    // Com srcset/sizes, naturalWidth representa a largura corrigida pela
+    // densidade. A resolução do arquivo selecionado é conferida à parte.
+    const badgeResolutions = await badgeImages.evaluateAll(images => Promise.all(images.map(async image => {
+      const source = new Image();
+      source.src = (image as HTMLImageElement).currentSrc;
+      await source.decode();
+      return { width: source.naturalWidth, height: source.naturalHeight };
+    })));
+    expect(badgeResolutions.every(size => size.width >= 384 && size.height >= 384)).toBe(true);
 
     await page.getByRole('tab', { name: 'Conquistas', exact: true }).click();
     const achievements = page.getByRole('tabpanel', { name: 'Conquistas' });
@@ -769,11 +784,45 @@ test.describe('Central de Comando do aprendizado', () => {
     await expect(achievements.locator('.nqd-achievement-mark img[src="assets/titulodecampeao.png"]')).toHaveCount(1);
     await expect(achievements.locator('.nqd-achievement-filter[aria-pressed="true"]')).toHaveText('Objetivos');
     const visibleObjectives = await achievements.locator('[data-achievement-promoted="true"]:visible').count();
+    await achievements.getByRole('button', { name: 'Todas', exact: true }).click();
+    const artwork = achievements.locator('.nqd-achievement-mark img');
+    await expect(artwork).toHaveCount(12);
+    // Todas precisam ser de fato servidas e decodificadas, inclusive as que
+    // só aparecem após mudar o filtro. Um <img> quebrado não é uma arte.
+    for (const img of await artwork.all()) {
+      await img.scrollIntoViewIfNeeded();
+      await expect.poll(() => img.evaluate((element: HTMLImageElement) =>
+        element.complete && element.naturalWidth >= 300 && element.naturalHeight >= 300
+      )).toBe(true);
+    }
+    const artSources = await artwork.evaluateAll(images => images.map(image => image.getAttribute('src')));
+    expect(new Set(artSources).size).toBe(12);
     await achievements.getByRole('button', { name: 'Conquistadas' }).click();
     await expect(achievements.locator('.nqd-achievement-filter[aria-pressed="true"]')).toHaveText('Conquistadas');
     const visibleStatuses = await achievements.locator('[data-achievement-status]:visible').evaluateAll(cards => cards.map(card => card.getAttribute('data-achievement-status')));
     expect(visibleStatuses.every(status => status === 'unlocked')).toBe(true);
     expect(visibleObjectives).toBeGreaterThan(0);
+  });
+
+  test('conquistas continuam legíveis e operáveis com texto a 200% no celular', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await openCommandCenter(page);
+    await page.evaluate(() => { document.documentElement.style.fontSize = '32px'; });
+    await page.getByRole('tab', { name: 'Conquistas', exact: true }).click();
+    const pane = page.getByRole('tabpanel', { name: 'Conquistas' });
+    for (const name of ['Todas', 'Conquistadas', 'Objetivos']) {
+      const button = pane.getByRole('button', { name, exact: true });
+      await button.click();
+      await expect(button).toHaveAttribute('aria-pressed', 'true');
+      expect(await button.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+    }
+    const title = pane.locator('.nqd-achievement:visible .nqd-achievement-title').first();
+    const paneBox = await pane.boundingBox();
+    const titleBox = await title.boundingBox();
+    expect(titleBox!.width, 'a arte não pode comprimir a leitura em uma coluna estreita').toBeGreaterThan(paneBox!.width * .7);
+    const details = pane.locator('.nqd-achievement:visible details').first();
+    await details.locator('summary').click();
+    await expect(details).toHaveAttribute('open', '');
   });
 
   test('organiza o Grimório por descoberta sem inventar denominador de conhecimento', async ({ page }) => {
