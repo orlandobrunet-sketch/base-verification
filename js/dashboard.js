@@ -166,6 +166,7 @@
       mapa: '<path d="M4 6l5-2 6 2 5-2v14l-5 2-6-2-5 2zM9 4v14m6-12v14"/>',
       achievements: '<path d="M8 4h8v5a4 4 0 01-8 0zM6 6H4v2a3 3 0 003 3m11-5h2v2a3 3 0 01-3 3M12 13v5m-4 2h8"/>',
       library: '<path d="M5 4h11a3 3 0 013 3v13H8a3 3 0 01-3-3zM8 4v16"/>',
+      publication: '<path d="M6 3h9l4 4v14H6zM14 3v5h5M9 12h7M9 16h5"/>',
       ranking: '<path d="M5 20V10h4v10zm5 0V4h4v16zm5 0v-7h4v7"/>',
       back: '<path d="M19 12H5m6-6l-6 6 6 6"/>',
       arrow: '<path d="M5 12h14m-5-5l5 5-5 5"/>',
@@ -1471,10 +1472,10 @@
       const rarityLabel = _libraryRarityLabel(item.rarity);
       const themes = Array.isArray(item.themes) ? item.themes : [];
       const theme = themes.join(' · ');
-      const stateLabel = rarityLabel || item.type || item.kindLabel;
+      const stateLabel = item.badge || item.type || item.kindLabel;
       const meta = [
+        item.source,
         item.year ? String(item.year) : '',
-        theme,
       ].filter(Boolean);
       const accentStyle = item.badgeColor ? ` style="--library-accent:${item.badgeColor}"` : '';
       const searchable = [
@@ -1490,24 +1491,23 @@
       return `
       <article class="nqd-library-item" data-library-item data-library-kind="${_escape(item.kind)}" data-library-year="${_escape(item.year)}" data-library-type="${_escape(item.type)}" data-library-rarity="${_escape(item.rarity)}" data-library-theme="${_escape(theme)}" data-library-favorite="${item.favorite ? 'true' : 'false'}" data-library-title="${_escape(item.title)}" data-search="${_escape(searchable)}"${accentStyle}>
         <div class="nqd-library-main">
-          <div class="nqd-library-insignia" aria-hidden="true">${_escape(item.icon)}</div>
           <div>
-            <span class="nqd-state">${_escape(stateLabel)}</span>
+            <div class="nqd-library-kicker"><span class="nqd-library-insignia" aria-hidden="true">${_svg(item.kind === 'scroll' ? 'library' : 'publication')}</span><span class="nqd-state">${_escape(stateLabel)}</span>${rarityLabel ? `<span class="nqd-library-rarity">${_escape(rarityLabel)}</span>` : ''}</div>
             <h3 class="nqd-library-title" id="${titleId}">${_escape(item.title)}</h3>
-            ${meta.length ? `<p class="nqd-library-copy">${_escape(meta.join(' · '))}</p>` : ''}
-            ${item.impact ? `<p class="nqd-library-impact">${_escape(item.impact)}</p>` : ''}
+            ${item.authors ? `<p class="nqd-library-authors">${_escape(item.authors)}</p>` : ''}
+            ${meta.length ? `<p class="nqd-library-publication">${_escape(meta.join(' · '))}</p>` : ''}
+            ${theme ? `<p class="nqd-library-theme">${_escape(theme)}</p>` : ''}
           </div>
         </div>
+        ${item.impact ? `<div class="nqd-library-impact"><strong>Impacto clínico</strong><p>${_escape(item.impact)}</p></div>` : ''}
         <div class="nqd-library-actions">
           <button type="button" class="nqd-favorite${item.favorite ? ' is-active' : ''}" data-action="_dashToggleFavorite" data-pass-this="1" data-library-key="${_escape(item.key)}" aria-pressed="${item.favorite ? 'true' : 'false'}" aria-label="${item.favorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}"><span>${item.favorite ? '★ Salvo' : '☆ Salvar'}</span></button>
           <button type="button" class="nqd-action" data-action="_dashToggleArticle" data-pass-this="1" aria-expanded="false" aria-controls="${detailId}"><span>Ler resumo</span>${_svg('arrow')}</button>
         </div>
         <div class="nqd-library-detail nqd-library-copy" id="${detailId}" role="region" aria-labelledby="${titleId}" hidden>
-          ${item.authors ? `<p><strong>Autores</strong> ${_escape(item.authors)}</p>` : ''}
-          ${item.source ? `<p><strong>Publicação</strong> ${_escape(item.source)}</p>` : ''}
-          ${item.summary ? `<p>${_escape(item.summary)}</p>` : '<p>Esta entrada não possui resumo cadastrado.</p>'}
-          ${item.conclusion ? `<p><strong>Conclusão:</strong> ${_escape(item.conclusion)}</p>` : ''}
-          ${item.curiosity ? `<p class="nqd-library-curiosity"><strong>Curiosidade</strong> ${_escape(item.curiosity)}</p>` : ''}
+          <section class="nqd-library-reading-section"><h4>Resumo</h4><p>${item.summary ? _escape(item.summary) : 'Esta entrada não possui resumo cadastrado.'}</p></section>
+          ${item.conclusion ? `<section class="nqd-library-reading-section is-conclusion"><h4>Conclusão principal</h4><p>${_escape(item.conclusion)}</p></section>` : ''}
+          ${item.curiosity ? `<section class="nqd-library-reading-section is-curiosity"><h4>Curiosidade</h4><p>${_escape(item.curiosity)}</p></section>` : ''}
           ${item.url ? `<a href="${_escape(item.url)}" target="_blank" rel="noopener noreferrer">Abrir publicação</a>` : ''}
         </div>
       </article>
@@ -1524,7 +1524,6 @@
     const sortedItems = _sortLibraryItems(library.items, 'recent');
     const themes = [...new Set(library.items.flatMap(item => item.themes || []))].filter(Boolean).sort((a, b) => a.localeCompare(b, 'pt-BR'));
     const rarities = [...new Set(library.items.map(item => item.rarity).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
-    const shelfItems = sortedItems.slice(0, 24);
     return `
       <section class="nqd-pane nq-dash-pane" id="nqdPane-library" role="tabpanel" aria-labelledby="nqdTab-library" data-dash-pane="library" hidden>
         <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Grimório de Conhecimento</h1><p class="nqd-section-copy">O que você encontrou ao decidir casos e abrir baús.</p></div></div>
@@ -1542,9 +1541,7 @@
             <small>Acervo descoberto</small><strong>${totalUnlocked} ${totalUnlocked === 1 ? 'descoberta reunida' : 'descobertas reunidas'}</strong>
             <span>${scrollCount} ${scrollCount === 1 ? 'pergaminho' : 'pergaminhos'} · ${sourceCount} ${sourceCount === 1 ? 'fonte clínica' : 'fontes clínicas'}</span>
           </div>
-          <section class="nqd-library-shelf" aria-label="Estante com ${shelfItems.length} descobertas visíveis">
-            ${shelfItems.map((item, index) => `<span class="nqd-library-spine is-${_escape(item.kind)}" data-rarity="${_escape(item.rarity)}" title="${_escape(item.title)}" style="--spine-index:${index};${item.badgeColor ? `--library-accent:${item.badgeColor};` : ''}"><i aria-hidden="true">${_escape(item.icon)}</i></span>`).join('')}
-          </section>
+          <p class="nqd-library-intro">Revisite os estudos que encontrou na jornada. Salve os favoritos e abra o resumo para continuar a leitura aqui mesmo.</p>
         </div>` : ''}
         ${library.items.length ? `
           <div class="nqd-library-tabs" role="tablist" aria-label="Coleções do Grimório">

@@ -845,6 +845,32 @@ test.describe('Central de Comando do aprendizado', () => {
     await expect(library.locator('.nqd-library-summary')).toContainText('descobertas reunidas');
     await expect(library.locator('.nqd-library-summary')).not.toContainText(/\bde\s+\d+\b/i);
     await expect(library.locator('[role="progressbar"]')).toHaveCount(0);
+
+    // A apresentação conserva os dados editoriais da fonte e expõe a leitura
+    // no próprio card; filtros e favoritos não podem apagar esse conteúdo.
+    const original = await page.evaluate(() => (0, eval)('nefroArticles[2]'));
+    const card = library.locator('[data-library-item]').filter({ has: page.locator('[data-library-key="__art_2"]') });
+    await expect(card.locator('.nqd-library-authors')).toHaveText(original.autores);
+    await expect(card.locator('.nqd-library-publication')).toContainText(original.jornal);
+    await expect(card.locator('.nqd-library-rarity')).toHaveText('Épico');
+    await expect(card.locator('.nqd-library-impact p')).toHaveText(original.impacto);
+    await card.getByRole('button', { name: 'Ler resumo', exact: true }).click();
+    await expect(card.getByRole('region')).toBeVisible();
+    await expect(card.locator('.nqd-library-reading-section').first().locator('p')).toHaveText(original.resumo);
+    await expect(card.locator('.is-conclusion p')).toHaveText(original.conclusao);
+    await expect(card.locator('.is-curiosity p')).toHaveText(original.curiosidade);
+    await expect(page.locator('.bib-resumo-modal')).toHaveCount(0);
+    await card.getByRole('button', { name: 'Adicionar aos favoritos' }).click();
+    expect(await page.evaluate(() => JSON.parse(localStorage.getItem('nq-bib-favorites') || '[]'))).toContain('__art_2');
+    await library.getByRole('tab', { name: 'Favoritos' }).click();
+    await library.getByRole('searchbox', { name: 'Buscar no Grimório' }).fill(original.autores);
+    await expect(library.locator('[data-library-item]:visible')).toHaveCount(1);
+    await expect(card.getByRole('region')).toBeVisible();
+    await card.getByRole('button', { name: 'Ocultar resumo', exact: true }).click();
+    await expect(card.getByRole('region')).toBeHidden();
+    await card.getByRole('button', { name: 'Remover dos favoritos' }).click();
+    await expect(card).toBeHidden();
+    await expect(library.locator('#nqDashLibraryNoResults')).toBeVisible();
   });
 
   test('em 360×800 nenhuma área vaza horizontalmente e todos os controles visíveis têm alvo de 44px', async ({ page }) => {
