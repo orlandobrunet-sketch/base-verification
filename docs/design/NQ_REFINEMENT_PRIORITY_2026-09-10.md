@@ -1,6 +1,6 @@
 # NefroQuest — Prioridades de refinamento da experiência
 
-**Data do plano:** 10/09/2026. **Atualização:** 11/09/2026. **Estado:** primeira entrega (NQ-04A + NQ-04D) implementada; revisão local concluída, aguardando revisão visual e publicação. Release proposta: 15.04.
+**Data do plano:** 10/09/2026. **Atualização:** 11/09/2026. **Estado:** primeira entrega (NQ-04A + NQ-04D) revisada; o proprietário solicitou a troca dos cinco selos e autorizou a publicação. Release proposta: 15.05.
 
 Este plano registra o pedido do proprietário: recuperar a qualidade visual de Conquistas e Objetivos, preservar a apresentação rica dos artigos no Dashboard, voltar ao nome Dashboard, melhorar o card Jornada Ativa e redesenhar progressivamente os popups do jogo. A ordem abaixo passa à frente da expansão de funcionalidades. Uma superfície por entrega.
 
@@ -136,15 +136,17 @@ Essa conclusão é sobre o escopo dessas correções, não uma certificação es
 
 ## Primeira entrega — implementação
 
-- Os cinco selos usam os arquivos originais preservados, com seleção de resolução por tela, imagens maiores e estados de posse escritos. O destaque reconhece a reconquista de um selo já obtido.
+- Após a revisão do proprietário, os cinco selos também receberam novas artes: medalhões de ouro envelhecido sobre azul profundo. As versões de 512 e 384 pixels foram substituídas juntas, preservando IDs, requisitos e histórico. O destaque reconhece a reconquista de um selo já obtido.
 - Os 11 objetivos antes ilustrados por emojis receberam artes próprias em WebP, 512 × 512, total de 634.818 bytes. A arte original de Campeão da Nefrologia foi preservada. São novas ilustrações decorativas, sem alteração de conteúdo médico ou critérios de conquista.
 - Cartões com arte e texto em duas colunas no espaço normal; a arte passa acima do texto quando a leitura ampliada exige mais espaço. Filtros podem mudar de linha. Histórico, progresso, filtros e detalhes continuam disponíveis.
 - Átrio, menu de perfil, navegação, carregamento, falha e nomes acessíveis usam Dashboard.
-- As novas artes, os originais dos selos e a arte de Campeão entram no cache offline. Release/cache e referências dos assets foram atualizados juntos pelo script oficial.
+- As novas artes dos objetivos e dos cinco selos, além da arte de Campeão, entram no cache offline. Release/cache e referências dos assets foram atualizados juntos pelo script oficial. Prompts e arquivos dos selos estão registrados em `NQ_BADGE_ART_PROMPTS_2026-09-11.json`; foi usada a ferramenta integrada de geração de imagens.
 - Capturas locais controladas em 1440×900, 1366×768, 390×844 e 320×568 ficam em `.codex-test-output/conquistas/`; não representam dados reais do proprietário. Nenhum transbordamento horizontal do Dashboard ou imagem quebrada foi encontrado nessas capturas.
 - Verificações: sintaxe JavaScript, coerência de release/cache, artes disponíveis offline e seis suites de Dashboard, auditoria, memória dos selos, abas, legibilidade e texto ampliado. A rodada inicial registrou 97 passes, 7 skips previstos e 4 falhas: duas na medição antiga de resolução de imagens (incompatível com `srcset`) e dois timeouts de navegação. A medição passou a verificar o arquivo realmente selecionado; os quatro casos e a nova cobertura dos cartões a 200% foram verificados novamente. Os timeouts continuam registrados como instabilidade da rodada, sem mudança funcional de navegação.
-- A publicação e a avaliação visual do proprietário ainda não estão certificadas. Próximos recortes: Grimório integrado e Jornada Ativa no Átrio.
+- Publicação explicitamente autorizada pelo proprietário após substituir os cinco selos. Integração e verificação do deploy ainda devem ser confirmadas. Próximos recortes: Grimório integrado e Jornada Ativa no Átrio.
 
 **Rodada final dos oito casos selecionados:** 7 passaram de primeira; a navegação por todas as abas no projeto mobile passou na retentativa e foi rotulada `flaky` pelo runner. A instabilidade fica registrada para acompanhamento; os casos de imagens, filtros a 200% e isolamento dos atalhos passaram de primeira nessa rodada.
+
+**Substituição dos cinco selos:** nova rodada específica de imagens, cache offline e memória entre jornadas com 13 passes, 1 skip previsto e nenhuma retentativa. A primeira tentativa desta rodada foi interrompida porque o servidor local estava encerrado; a medição válida ocorreu após reiniciá-lo. A CI completa do primeiro commit do PR #800 também passou; o commit com os selos novos exige sua própria validação antes de integrar.
 
 **Pendência observada fora do catálogo:** com texto a 200%, a marca, o avatar e o botão de retorno do cabeçalho compacto ainda podem se sobrepor. Pertence ao acabamento global NQ-04; a nova validação dos cartões não certifica todo o Dashboard nesse tamanho de texto.
