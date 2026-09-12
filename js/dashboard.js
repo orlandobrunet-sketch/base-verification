@@ -1,4 +1,4 @@
-// NefroQuest — Central de Comando do aprendizado
+// NefroQuest — Dashboard do aprendizado
 // Página interna, orientada por dados locais reais e pelos contratos existentes do jogo.
 
 (function () {
@@ -41,6 +41,22 @@
     { id: 4, name: 'Árbitro dos Rins', required: 80, image: 'assets/badges/badge4-384.jpg' },
     { id: 5, name: 'Ascendido do NefroQuest', required: 100, image: 'assets/badges/badge5-384.jpg' },
   ];
+
+  // Artes da galeria. Separadas das regras e dos ícones das notificações:
+  // renovar a apresentação não altera condições, IDs ou conquistas salvas.
+  const ACHIEVEMENT_ART = {
+    hd_master: 'hemodialise',
+    nephron_guardian: 'guardiao',
+    perfectionist_drc: 'cristal',
+    transplant_expert: 'transplante',
+    glomerulo_sage: 'microscopio',
+    century_club: 'centenario',
+    accuracy_master: 'precisao',
+    hardcore_champion: 'hardcore',
+    acid_base_master: 'alquimia',
+    grimoire_master: 'grimorio',
+    laurel_wreath_knowledge: 'louros',
+  };
 
   // Conquistas de pressa, madrugada e maratona não são mais rebaixadas aqui —
   // foram removidas de ACHIEVEMENTS_LIST (js/achievements.js). Rebaixar não
@@ -661,10 +677,10 @@
               <button type="button" class="nqd-brand-close" data-action="closeDashboard" aria-label="Voltar ao jogo">${_svg('back')}</button>
             </div>
           </div>
-          <span class="nqd-rail-kicker">Central de Comando</span>
+          <span class="nqd-rail-kicker">Dashboard</span>
           ${state === 'ready' ? `
             ${profile}
-            <nav class="nqd-nav" aria-label="Áreas da Central de Comando" role="navigation">
+            <nav class="nqd-nav" aria-label="Áreas do Dashboard" role="navigation">
               <div role="tablist" aria-orientation="${mobileNav ? 'horizontal' : 'vertical'}">${_navMarkup()}</div>
             </nav>
           ` : ''}
@@ -681,7 +697,7 @@
     return _shellMarkup(`
       <div class="nqd-loading" role="status" aria-live="polite">
         <span class="nqd-loading-line" aria-hidden="true"></span>
-        <h2>Preparando sua Central…</h2>
+        <h2>Preparando seu Dashboard…</h2>
       </div>
     `, 'loading');
   }
@@ -1177,12 +1193,13 @@
     return 'Jornada';
   }
 
-  function _achievementIconMarkup(achievement, isUnlocked) {
-    const name = _escape(achievement && achievement.name);
-    if (achievement && achievement.imgIcon) {
-      return `<img src="${_escape(achievement.imgIcon)}" alt="" loading="lazy" decoding="async" width="128" height="128">`;
+  function _achievementIconMarkup(achievement) {
+    const art = achievement && ACHIEVEMENT_ART[achievement.id];
+    const source = art ? `assets/achievements/${art}.webp` : achievement && achievement.imgIcon;
+    if (source) {
+      return `<img src="${_escape(source)}" alt="" loading="lazy" decoding="async" width="512" height="512">`;
     }
-    return `<span aria-hidden="true">${_escape(achievement && achievement.icon ? achievement.icon : '✦')}</span><span class="nqd-sr-only">Símbolo de ${name}${isUnlocked ? ', conquistada' : ''}</span>`;
+    return _svg('achievements');
   }
 
   /**
@@ -1212,8 +1229,9 @@
           const posse = !!memoria[badge.id] && !isUnlocked;
           return `
             <li class="nqd-badge-node is-${state}${posse ? ' has-memory' : ''}" data-state="${state}"${posse ? ' data-memoria="true"' : ''}${isCurrent ? ' aria-current="step"' : ''}>
-              <span class="nqd-badge-art"><img src="${badge.image}" alt="" decoding="async" width="384" height="384"></span>
-              <span class="nqd-badge-node-copy"><strong>${_escape(badge.name)}</strong><small>${posse ? `seu${jornada ? ` desde a ${jornada}ª jornada` : ''} · reconquistando` : `${badge.required} acertos`}</small></span>
+              <span class="nqd-badge-art"><img src="${badge.image}" srcset="${badge.image} 384w, assets/badges/badge${badge.id}.png 512w" sizes="(max-width: 640px) 136px, 160px" alt="" decoding="async" width="512" height="512"></span>
+              <span class="nqd-badge-node-copy"><strong>${_escape(badge.name)}</strong><small>${posse ? `seu${jornada ? ` desde a ${jornada}ª jornada` : ''}` : `${badge.required} acertos`}</small></span>
+              <span class="nqd-badge-state" aria-hidden="true">${isUnlocked ? 'Conquistado' : posse ? 'Reconquistando' : isCurrent ? 'Próximo selo' : 'A conquistar'}</span>
               <span class="nqd-sr-only">${isUnlocked ? 'Conquistado nesta jornada' : posse ? `Já conquistado${jornada ? ` na ${jornada}ª jornada` : ''}, sendo reconquistado agora` : isCurrent ? 'Próximo selo' : 'Bloqueado'}</span>
             </li>
           `;
@@ -1233,6 +1251,8 @@
     const featuredBadge = nextBadge || BADGE_MILESTONES[BADGE_MILESTONES.length - 1];
     const featuredValue = Math.min(correctTotal, featuredBadge.required);
     const remaining = Math.max(0, featuredBadge.required - correctTotal);
+    const badgeHistory = _readJson('nefroquest-badge-history', {});
+    const featuredOwned = badgeHistory && typeof badgeHistory === 'object' && !Array.isArray(badgeHistory) && !!badgeHistory[featuredBadge.id];
 
     const cardModels = achievements.map(achievement => {
       const isUnlocked = unlocked.has(achievement.id);
@@ -1250,7 +1270,7 @@
       const promoted = !isUnlocked;
       return `
         <article class="nqd-achievement${isUnlocked ? ' is-unlocked' : ' is-locked'}" data-state="${isUnlocked ? 'unlocked' : state}" data-achievement-status="${state}" data-achievement-promoted="${promoted}">
-          <span class="nqd-achievement-mark">${_achievementIconMarkup(achievement, isUnlocked)}</span>
+          <span class="nqd-achievement-mark" aria-hidden="true">${_achievementIconMarkup(achievement)}</span>
           <div class="nqd-achievement-body">
             <span class="nqd-state">${isUnlocked ? 'Conquistada' : _escape(_achievementCategory(achievement.id))}</span>
             <h3 class="nqd-achievement-title">${_escape(achievement.name)}</h3>
@@ -1263,14 +1283,14 @@
 
     return `
       <section class="nqd-pane nq-dash-pane" id="nqdPane-achievements" role="tabpanel" aria-labelledby="nqdTab-achievements" data-dash-pane="achievements" hidden>
-        <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Conquistas</h1><p class="nqd-section-copy">Seu caminho deixa marcas. Escolha o próximo selo.</p></div></div>
+        <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Conquistas</h1><p class="nqd-section-copy">Selos da jornada. Conquistas que ficam com você.</p></div></div>
 
         <section class="nqd-achievement-spotlight${nextBadge ? '' : ' is-complete'}" aria-labelledby="nqdAchievementSpotlightTitle">
-          <div class="nqd-achievement-spotlight-art"><img src="${featuredBadge.image}" alt="" decoding="async" width="384" height="384"></div>
+          <div class="nqd-achievement-spotlight-art"><img src="${featuredBadge.image}" srcset="${featuredBadge.image} 384w, assets/badges/badge${featuredBadge.id}.png 512w" sizes="(max-width: 640px) 192px, 280px" alt="" decoding="async" width="512" height="512"></div>
           <div class="nqd-achievement-spotlight-copy">
             <span class="nqd-eyebrow nqd-eyebrow--reward">${nextBadge ? 'Próximo selo da jornada' : 'Trilha de selos completa'}</span>
             <h2 id="nqdAchievementSpotlightTitle">${_escape(featuredBadge.name)}</h2>
-            <p>${nextBadge ? `Faltam <strong>${_formatNumber(remaining)} acertos</strong> nesta jornada para revelar este selo.` : 'Os cinco selos da jornada foram conquistados.'}</p>
+            <p>${nextBadge ? `Faltam <strong>${_formatNumber(remaining)} acertos</strong> nesta jornada para ${featuredOwned ? 'reconquistar' : 'revelar'} este selo.` : 'Os cinco selos da jornada foram conquistados.'}</p>
             ${_meterMarkup(featuredValue, featuredBadge.required, `Progresso para ${featuredBadge.name}`, true)}
             <small>${_formatNumber(featuredValue)} de ${featuredBadge.required} acertos</small>
             <button type="button" class="nqd-primary-action" data-action="${data.save ? '_dashResumeJourney' : '_dashStartJourney'}" data-nqd-primary="true">${data.save ? 'Continuar jornada' : 'Começar jornada'}${_svg('arrow')}</button>
@@ -1594,7 +1614,7 @@
   function _errorMarkup(falhaGrimorio = false) {
     return _shellMarkup(`
       <div class="nqd-error" role="alert">
-        <span>Central indisponível</span>
+        <span>Dashboard indisponível</span>
         <!-- h2, não h1: o estilo destes blocos alcança h2/h3, e o h1 escapava
              para o padrão do navegador (32px). No celular a frase quebrava em
              três linhas, destoando de todos os outros estados da Central. -->
@@ -2164,7 +2184,7 @@
     root.className = 'nq-command-center';
     root.dataset.nqUi = 'lumen';
     root.dataset.dashboardState = 'loading';
-    root.setAttribute('aria-label', 'Central de Comando do aprendizado');
+    root.setAttribute('aria-label', 'Dashboard do aprendizado');
     root.innerHTML = _loadingMarkup();
     document.body.appendChild(root);
     root.addEventListener('keydown', _handleDashboardKeydown);
@@ -2183,7 +2203,7 @@
           await window._loadTopics();
         } catch (error) {
           topicsLoadError = true;
-          console.error('[NQ] Falha ao atualizar questões para a Central de Comando', error);
+          console.error('[NQ] Falha ao atualizar questões para o Dashboard', error);
         }
       }
       if (!root.isConnected) return;
@@ -2196,7 +2216,7 @@
         if (firstTab) firstTab.focus({ preventScroll: true });
       });
     } catch (error) {
-      console.error('[NQ] Falha ao montar a Central de Comando', error);
+      console.error('[NQ] Falha ao montar o Dashboard', error);
       if (!root.isConnected) return;
       root.innerHTML = _errorMarkup(!dadosGrimorioCarregados);
       root.dataset.dashboardState = 'error';
