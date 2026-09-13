@@ -75,6 +75,7 @@
   let _previousBodyOverflow = '';
   let _inertedElements = [];
   let _activeTab = 'overview';
+  let _librarySuggestionHome = null;
   let _dashboardData = null;
   let _dashLbMode = 'record';
   let _lbFullData = [];
@@ -1359,15 +1360,14 @@
         linkedThemes.get(key).add(axisLabels.get(category) || themeFallbacks[category] || category);
       });
     });
-    const totalRefs = typeof refsDB === 'object' && refsDB
-      ? (reachableRefKeys.size ? [...reachableRefKeys].filter(key => Object.prototype.hasOwnProperty.call(refsDB, key)).length : Object.keys(refsDB).length)
-      : 0;
+    const adminView = typeof window.isAdminUser === 'function' && window.isAdminUser();
+    const totalRefs = typeof refsDB === 'object' && refsDB ? Object.keys(refsDB).length : 0;
     const totalArticles = typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles) ? nefroArticles.length : 0;
     const unlockedRefs = new Set(typeof refsDB === 'object' && refsDB
-      ? [...storedRefs].filter(key => Object.prototype.hasOwnProperty.call(refsDB, key) && (!reachableRefKeys.size || reachableRefKeys.has(key)))
+      ? (adminView ? Object.keys(refsDB) : [...storedRefs]).filter(key => Object.prototype.hasOwnProperty.call(refsDB, key))
       : []);
     const unlockedArticles = new Set(typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles)
-      ? [...storedArticles].map(Number).filter(index => Number.isInteger(index) && index >= 0 && index < nefroArticles.length)
+      ? (adminView ? nefroArticles.map((_, index) => index) : [...storedArticles]).map(Number).filter(index => Number.isInteger(index) && index >= 0 && index < nefroArticles.length)
       : []);
 
     if (typeof refsDB === 'object' && refsDB) {
@@ -1430,7 +1430,7 @@
       });
     }
 
-    _libraryCache = { items, favorites, unlockedRefs, unlockedArticles, totalRefs, totalArticles };
+    _libraryCache = { items, favorites, unlockedRefs, unlockedArticles, totalRefs, totalArticles, adminView };
     return _libraryCache;
   }
 
@@ -1478,6 +1478,7 @@
         item.year ? String(item.year) : '',
       ].filter(Boolean);
       const accentStyle = item.badgeColor ? ` style="--library-accent:${item.badgeColor}"` : '';
+      const guideline = item.badge === 'GUIDELINE' || /kdigo/i.test(`${item.title} ${item.source}`);
       const searchable = [
         item.title,
         item.source,
@@ -1490,7 +1491,7 @@
       ].filter(Boolean).join(' ').toLocaleLowerCase('pt-BR');
       return `
       <article class="nqd-library-item" data-library-item data-library-kind="${_escape(item.kind)}" data-library-year="${_escape(item.year)}" data-library-type="${_escape(item.type)}" data-library-rarity="${_escape(item.rarity)}" data-library-theme="${_escape(theme)}" data-library-favorite="${item.favorite ? 'true' : 'false'}" data-library-title="${_escape(item.title)}" data-search="${_escape(searchable)}"${accentStyle}>
-        <div class="nqd-library-main">
+        <div class="nqd-library-main" data-library-guideline="${guideline}">
           <div>
             <div class="nqd-library-kicker"><span class="nqd-library-insignia" aria-hidden="true">${_svg(item.kind === 'scroll' ? 'library' : 'publication')}</span><span class="nqd-state">${_escape(stateLabel)}</span>${rarityLabel ? `<span class="nqd-library-rarity">${_escape(rarityLabel)}</span>` : ''}</div>
             <h3 class="nqd-library-title" id="${titleId}">${_escape(item.title)}</h3>
@@ -1538,7 +1539,7 @@
         ${library.items.length ? `
         <div class="nqd-library-overview">
           <div class="nqd-library-summary">
-            <small>Acervo descoberto</small><strong>${totalUnlocked} ${totalUnlocked === 1 ? 'descoberta reunida' : 'descobertas reunidas'}</strong>
+            <small>${library.adminView ? 'Visão administrativa' : 'Acervo descoberto'}</small><strong>${totalUnlocked} ${library.adminView ? 'entradas no acervo' : totalUnlocked === 1 ? 'descoberta reunida' : 'descobertas reunidas'}</strong>
             <span>${scrollCount} ${scrollCount === 1 ? 'pergaminho' : 'pergaminhos'} · ${sourceCount} ${sourceCount === 1 ? 'fonte clínica' : 'fontes clínicas'}</span>
           </div>
           <p class="nqd-library-intro">Revisite os estudos que encontrou na jornada. Salve os favoritos e abra o resumo para continuar a leitura aqui mesmo.</p>
@@ -1553,6 +1554,7 @@
             <label class="nqd-search">${_svg('search')}<span class="nqd-sr-only">Buscar no Grimório</span><input id="nqDashLibrarySearch" type="search" placeholder="Buscar título, autor ou ano" autocomplete="off"></label>
             <label class="nqd-library-filter"><span>Filtrar</span><select id="nqDashLibraryFilter">
               <option value="all">Todos</option>
+              <option value="guideline" data-library-filter-for="sources" hidden>Diretrizes</option>
               ${rarities.map(rarity => `<option value="rarity:${_escape(rarity)}" data-library-filter-for="scrolls">${_escape(_libraryRarityLabel(rarity))}</option>`).join('')}
               ${themes.map(theme => `<option value="theme:${_escape(theme)}" data-library-filter-for="sources" hidden>${_escape(theme)}</option>`).join('')}
             </select></label>
@@ -1569,6 +1571,8 @@
           <div class="nqd-library-list" id="nqDashLibraryList">${_libraryCards(sortedItems)}</div>
           <div class="nqd-empty nqd-library-no-results" id="nqDashLibraryNoResults" hidden><strong>Nada encontrado nesta coleção.</strong><p>Tente outro termo ou escolha uma coleção diferente.</p></div>
         </div>
+        ${!library.adminView && (library.totalRefs > sourceCount || library.totalArticles > scrollCount) ? `<aside class="nqd-library-locked" aria-label="Descobertas ainda bloqueadas">${_svg('lock')}<div>${library.totalRefs > sourceCount ? `<p><strong>${library.totalRefs - sourceCount} fontes clínicas ainda bloqueadas</strong><span>Acerte as questões que as citam para revelar essas referências.</span></p>` : ''}${library.totalArticles > scrollCount ? `<p><strong>${library.totalArticles - scrollCount} pergaminhos ainda bloqueados</strong><span>Abra baús na jornada para descobrir novos artigos.</span></p>` : ''}</div></aside>` : ''}
+        <div class="nqd-library-suggestion" data-library-suggestion></div>
       </section>
     `;
   }
@@ -1956,6 +1960,14 @@
   }
 
   function _wireDashboard(root) {
+    const suggestion = document.querySelector('#bibliotecaModal .bib-suggest-section');
+    const suggestionHost = root.querySelector('[data-library-suggestion]');
+    if (suggestion && suggestionHost) {
+      _librarySuggestionHome = suggestion.parentElement;
+      suggestionHost.appendChild(suggestion);
+      const form = suggestion.querySelector('form');
+      if (form && typeof _bibSubmitSuggest === 'function') form.onsubmit = _bibSubmitSuggest;
+    }
     root.querySelectorAll('[data-dash-tab]').forEach(button => {
       button.addEventListener('click', () => _switchTab(button.dataset.dashTab, false));
     });
@@ -2144,6 +2156,7 @@
         : item.dataset.libraryKind === (collection === 'sources' ? 'source' : 'scroll');
       const matches = !query || (item.dataset.search || '').includes(query);
       const matchesFilter = filter === 'all'
+        || (filter === 'guideline' && !!item.querySelector('[data-library-guideline="true"]'))
         || (filter.startsWith('rarity:') && item.dataset.libraryRarity === filter.slice(7))
         || (filter.startsWith('theme:') && (item.dataset.libraryTheme || '').split(' · ').includes(filter.slice(6)));
       item.hidden = !(inCollection && matches && matchesFilter);
@@ -2160,17 +2173,19 @@
     if (noResults) noResults.hidden = visible > 0;
   }
 
-  async function openDashboard() {
+  async function openDashboard(options) {
+    const requestedTab = options && DASH_TABS.some(tab => tab.id === options.tab) ? options.tab : 'overview';
     _injectStyles();
     if (typeof window.playSound === 'function') window.playSound('click');
     const previous = document.getElementById('nqDashboard');
     if (previous) {
+      if (options && options.tab) _switchTab(requestedTab, true);
       previous.querySelector('[role="tab"][aria-selected="true"], [data-action="closeDashboard"]')?.focus({ preventScroll: true });
       return;
     }
     _lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     document.querySelectorAll('.profile-popup.open').forEach(popup => popup.classList.remove('open'));
-    _activeTab = 'overview';
+    _activeTab = requestedTab;
     _rankingLoaded = false;
     _libraryCache = null;
     window.clearTimeout(_rankingSearchTimer);
@@ -2208,6 +2223,7 @@
       root.innerHTML = _readyMarkup(_dashboardData);
       root.dataset.dashboardState = 'ready';
       _wireDashboard(root);
+      _switchTab(_activeTab, false);
       window.requestAnimationFrame(() => {
         const firstTab = root.querySelector('[role="tab"][aria-selected="true"]');
         if (firstTab) firstTab.focus({ preventScroll: true });
@@ -2223,8 +2239,9 @@
 
   function _dashRetryLoad() {
     const returnFocus = _lastFocusedElement;
+    const tab = _activeTab;
     closeDashboard({ restoreFocus: false });
-    const tentativa = openDashboard();
+    const tentativa = openDashboard({ tab });
     _lastFocusedElement = returnFocus;
     return tentativa;
   }
@@ -2242,6 +2259,9 @@
       _tabMediaQuery.removeEventListener?.('change', root._nqdOrientationListener);
     }
     _tabMediaQuery = null;
+    const suggestion = root.querySelector('.bib-suggest-section');
+    if (suggestion && _librarySuggestionHome) _librarySuggestionHome.appendChild(suggestion);
+    _librarySuggestionHome = null;
     root.remove();
     _unlockBackground();
     const focusTarget = restoreFocus && _lastFocusedElement && _lastFocusedElement.isConnected

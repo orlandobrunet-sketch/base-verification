@@ -2414,6 +2414,22 @@
 #nqDashboard[data-nq-ui="lumen"] .nqd-library-detail a { min-height: 2.75rem; padding-block: .6rem; }
 #nqDashboard[data-nq-ui="lumen"] .nqd-library-intro { max-width: 42rem; align-self: center; color: var(--nql-text-muted); font-size: .86rem; line-height: 1.6; }
 
+#nqDashboard[data-nq-ui="lumen"] .nqd-library-locked { display: flex; align-items: flex-start; gap: .8rem; margin-block: 1.25rem; padding-block: 1.25rem; border-block: 1px solid var(--nqd-rule); color: var(--nql-text-muted); font-size: .85rem; line-height: 1.6; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-library-locked > svg { width: 1.2rem; height: 1.2rem; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.5; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-library-locked strong,
+#nqDashboard[data-nq-ui="lumen"] .nqd-library-locked span { display: block; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-library-locked p + p { margin-top: .75rem; }
+#nqDashboard[data-nq-ui="lumen"] .bib-suggest-section { max-width: 48rem; padding: 0 0 1.5rem; border: 0; }
+#nqDashboard[data-nq-ui="lumen"] .bib-suggest-toggle { min-height: 2.75rem; font-size: .9rem; }
+#nqDashboard[data-nq-ui="lumen"] :where(.bib-input, .bib-textarea) { width: 100%; min-height: 2.75rem; font-size: 1rem; }
+#nqDashboard[data-nq-ui="lumen"] :where(.bib-label, .bib-suggest-desc, .bib-suggest-msg) { font-size: .9rem; line-height: 1.6; color: var(--nql-text-soft); }
+
+/* O retorno continua alcançável quando a fonte cresce no cabeçalho móvel. */
+@container dashboard-rail (max-width: 19rem) {
+  #nqDashboard[data-nq-ui="lumen"] .nqd-profile { display: none; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-rail-header { flex-wrap: wrap; }
+}
+
 /* Ranking: cor concentrada no topo, sem transformar toda a tabela em prêmio. */
 #nqDashboard[data-nq-ui="lumen"] .nqd-ranking-personal {
   display: grid;
@@ -2583,6 +2599,7 @@
 }
 
 @media (max-width: 61.25rem) {
+  #nqDashboard[data-nq-ui="lumen"] .nqd-rail { container: dashboard-rail / inline-size; }
   #nqDashboard[data-nq-ui="lumen"] .nqd-shell {
     grid-template: auto minmax(0, 1fr) / minmax(0, 1fr);
   }

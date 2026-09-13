@@ -27,7 +27,7 @@ Limites operacionais:
 
 - **Última reconciliação:** 10/09/2026, depois dos PRs #788 a #798.
 - **Base publicada:** `15.05`, PR #800 integrado em 12/09. Deploy concluído e cinco imagens dos selos conferidas por SHA-256 em produção. Consultar sempre `version.json` e distinguir branch de publicação.
-- **Ação atual:** NQ-04A e NQ-04D publicados: Conquistas/Objetivos e nome Dashboard. NQ-04B em execução, começando pela apresentação dos artigos dentro do Dashboard (`15.06` em preparação). O NQ-03 está quase fechado: faltam GA4 e certificação com leitor de tela real.
+- **Ação atual:** NQ-04A e NQ-04D publicados: Conquistas/Objetivos e nome Dashboard. NQ-04B integrado no PR #801 (`15.07` em preparação): artigos, acessos pelas perguntas/Átrio, bloqueios, visão administrativa, sugestão e retorno à questão. Aguarda validação final e publicação. O NQ-03 está quase fechado: faltam GA4 e certificação com leitor de tela real.
 - **Os três próximos recortes da reconciliação de 07/09 foram entregues:** o instrumento (#787), a recuperação do Grimório (#788 e #790) e a sugestão de artigo (#791).
 
 ### Prioridade do proprietário em 10/09 — qualidade visual e continuidade
