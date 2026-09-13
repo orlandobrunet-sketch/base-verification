@@ -258,7 +258,16 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
     await expect(page.locator('#wsSavedScore')).toHaveText('535');
     await expect(page.locator('#wsSavedTime')).toContainText('Última atualização há 2 dias');
     await expect(page.locator('#wsSavedDifficulty')).toHaveText('Difícil');
-    await expect(page.locator('#wsSavedMilestone')).toHaveText('7 de 10 acertos para o próximo marco');
+    await expect(page.locator('#wsSavedMilestone')).toHaveText('99 XP para evoluir · 7 de 100 acertos');
+    await expect(page.locator('#wsSavedXpFlow')).toHaveAttribute('d', 'M8 16 H592');
+    await expect(page.locator('#wsSavedXpMarker')).toHaveAttribute('cx', String(8 + 5.84 * 72));
+    // Mede o traço pintado, não apenas o número do estado. Antes, o SVG
+    // comprimido pintava além de 85% mesmo quando o save indicava 72%.
+    const painted = await page.locator('#wsSavedXpFlow').evaluate((element: SVGPathElement) => ({
+      beforeEnd: element.isPointInStroke(new DOMPoint(8 + 584 * .70, 16)),
+      afterEnd: element.isPointInStroke(new DOMPoint(8 + 584 * .85, 16)),
+    }));
+    expect(painted).toEqual({ beforeEnd: true, afterEnd: false });
     await expect(page.locator('#wsSavedNextLevel')).toHaveText('Nível 6');
     await expect(page.locator('#wsSavedXpText')).toHaveText('250 / 349 XP');
     await expect(page.locator('#wsSavedProgress')).toHaveAttribute('aria-valuenow', '72');

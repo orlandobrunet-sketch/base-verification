@@ -619,7 +619,13 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   font-size: .62rem;
   letter-spacing: .075em;
   text-transform: uppercase;
+  flex-wrap: wrap;
 }
+
+#welcomeScreen[data-nq-ui="lumen"] #wsSavedXpText { color: var(--nql-journey-primary); font-size: .82rem; letter-spacing: 0; }
+#welcomeScreen[data-nq-ui="lumen"] .wsaved-charname { white-space: normal !important; overflow: visible !important; text-overflow: clip !important; }
+#welcomeScreen[data-nq-ui="lumen"] .wsaved-flow-ticks { stroke: rgba(var(--nql-journey-primary-rgb), .45); stroke-width: 1; }
+#welcomeScreen[data-nq-ui="lumen"] .wsaved-flow-marker { fill: var(--nql-mastery); stroke: #111923; stroke-width: 2; }
 
 #welcomeScreen[data-nq-ui="lumen"] .wsaved-progress-meta strong {
   color: var(--nql-text-soft);
@@ -643,7 +649,9 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 #welcomeScreen[data-nq-ui="lumen"] .wsaved-flow-value,
 #welcomeScreen[data-nq-ui="lumen"] .wsaved-flow-pulse {
   fill: none;
-  vector-effect: non-scaling-stroke;
+  /* O dash normalizado precisa escalar junto do caminho. non-scaling-stroke
+     alongava o preenchimento em cards estreitos, falseando o percentual. */
+  vector-effect: none;
   stroke-linecap: round;
   stroke-linejoin: round;
 }

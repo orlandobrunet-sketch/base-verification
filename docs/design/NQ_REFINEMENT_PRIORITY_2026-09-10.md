@@ -166,3 +166,14 @@ Essa conclusão é sobre o escopo dessas correções, não uma certificação es
 **Continuação da integração:** a primeira rodada teve 19 passes, 1 skip previsto e 2 falhas na expectativa antiga de texto “carregando”. O Dashboard apresenta “Preparando seu Dashboard”; o teste foi atualizado para verificar esse texto e o estado `loading`. Ambos os casos passaram na rodada corrigida, sem retentativa. A CI completa da primeira revisão (15.06) também passou; a continuação 15.07 terá validação própria.
 
 **Regressão final da integração:** 14 testes passaram sem retentativa, incluindo atalhos de resposta isolados, Enter sem avançar a campanha, navegação entre áreas, favoritos, filtro de diretrizes, catálogo administrativo, alvos de 44px e auditoria de acessibilidade. A integração está pronta para revisão e CI no PR #801; a publicação ainda não foi feita.
+
+## Terceira entrega — Jornada Ativa (15.08 em preparação)
+
+- A curva arbitrária foi substituída por uma régua linear com marcador na posição real de XP e divisões de quarto de escala.
+- O texto diferencia os sistemas: XP restante para o próximo nível e acertos acumulados rumo aos 100 da jornada. O antigo módulo de dez acertos parecia explicar o progresso de XP, embora fossem grandezas diferentes.
+- O nome do personagem pode quebrar linha em vez de aparecer truncado. Cores da classe, imagem, nível, vidas, pontuação e ações existentes foram preservados.
+- Movimento continua ligado a avanço real, uma vez por atualização, e respeita movimento reduzido. O marcador também funciona com a animação desativada.
+- Primeira validação: 8 testes passaram sem retentativa, em desktop e mobile, cobrindo jornada salva, atualização de XP, paletas e movimento reduzido. Sintaxe e coerência de release/cache verificadas. Capturas locais em .codex-test-output/jornada/.
+- Esta entrega depende da integração do PR #801 e tem branch própria, codex/jornada-ativa. Não publicada.
+
+- Defeito adicional confirmado e corrigido: non-scaling-stroke alongava o dash de progresso quando o SVG era comprimido. Medição com isPointInStroke confirmou preenchimento incorreto além do valor em 1440, 390 e 320px, e ausência desse erro após a correção. O teste de jornada salva agora mede pontos antes e depois do fim real do traço, além dos atributos acessíveis.
