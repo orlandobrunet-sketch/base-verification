@@ -20,6 +20,8 @@ test('pergunta → Grimório → mesma pergunta, com foco e rascunho preservados
   await opener.click();
   await expect(page.locator('#nqdPane-library')).toBeVisible();
   await expect(page.locator('#bibliotecaModal')).toBeHidden();
+  await expect(page.locator('.nqd-brand-close')).toHaveAccessibleName('Voltar à questão');
+  await expect(page.locator('.nqd-back')).toHaveText('Voltar à questão');
   await page.locator('.bib-suggest-toggle').click();
   await page.locator('#bibSuggestReason').fill('Rascunho local de teste');
   await page.keyboard.press('Escape');
@@ -62,6 +64,7 @@ test('retorno fica desobstruído com texto a 200% em 320px', async ({ page }) =>
   await expect(page.locator('#nqdPane-library')).toBeVisible();
   await page.evaluate(() => { document.documentElement.style.fontSize = '32px'; });
   const back = page.locator('.nqd-brand-close');
+  await expect(back).toHaveAccessibleName('Voltar ao Átrio');
   const unobstructed = await back.evaluate(el => {
     const r = el.getBoundingClientRect();
     return el.contains(document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2));
