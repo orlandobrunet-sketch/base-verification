@@ -26,15 +26,15 @@ Limites operacionais:
 ## Checkpoint operacional para continuidade
 
 - **Última reconciliação:** 10/09/2026, depois dos PRs #788 a #798.
-- **Base integrada:** `15.03`, com #798 e #799 confirmados em `main`. A entrega visual abaixo propõe `15.05`; consultar sempre `version.json` e distinguir branch de publicação.
-- **Ação atual:** NQ-04A e NQ-04D implementados, com revisão local concluída em 11/09: Conquistas/Objetivos e nome Dashboard. Aguardam revisão visual e publicação. O NQ-03 está quase fechado: faltam GA4 e certificação com leitor de tela real.
+- **Base publicada:** `15.05`, PR #800 integrado em 12/09. Deploy concluído e cinco imagens dos selos conferidas por SHA-256 em produção. Consultar sempre `version.json` e distinguir branch de publicação.
+- **Ação atual:** NQ-04A e NQ-04D publicados: Conquistas/Objetivos e nome Dashboard. NQ-04B integrado no PR #801 (`15.07` em preparação): artigos, acessos pelas perguntas/Átrio, bloqueios, visão administrativa, sugestão e retorno à questão. Aguarda validação final e publicação. O NQ-03 está quase fechado: faltam GA4 e certificação com leitor de tela real.
 - **Os três próximos recortes da reconciliação de 07/09 foram entregues:** o instrumento (#787), a recuperação do Grimório (#788 e #790) e a sugestão de artigo (#791).
 
 ### Prioridade do proprietário em 10/09 — qualidade visual e continuidade
 
 O proprietário relatou perda de qualidade das imagens de Conquistas/Objetivos, apresentação inferior do Grimório no Dashboard e insatisfação com a curva do card Jornada Ativa. Pediu recuperar a apresentação rica dos artigos, voltar ao nome **Dashboard** e redesenhar os popups progressivamente, com continuidade da página. Esses relatos definem recortes concretos de NQ-04 e passam à frente da expansão NQ-06.
 
-**Primeira entrega autorizada para publicação:** cinco novos selos em forma de medalhão, 11 novas artes de objetivos e a arte original de Campeão, apresentação adaptável ao texto ampliado e nome Dashboard nos acessos. Plano, diagnóstico, critérios, validação e inventário completo em [`design/NQ_REFINEMENT_PRIORITY_2026-09-10.md`](design/NQ_REFINEMENT_PRIORITY_2026-09-10.md). Grimório e Jornada Ativa seguem na fila.
+**Primeira entrega publicada — [#800](https://github.com/orlandobrunet-sketch/base-verification/pull/800):** cinco novos selos em forma de medalhão, 11 novas artes de objetivos e a arte original de Campeão, apresentação adaptável ao texto ampliado e nome Dashboard nos acessos. Plano, diagnóstico, critérios, validação e inventário completo em [`design/NQ_REFINEMENT_PRIORITY_2026-09-10.md`](design/NQ_REFINEMENT_PRIORITY_2026-09-10.md). Grimório em execução; Jornada Ativa vem a seguir.
 
 | Ordem | Recorte | Critério central |
 |---|---|---|

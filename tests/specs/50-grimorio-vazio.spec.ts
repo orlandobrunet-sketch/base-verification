@@ -98,12 +98,12 @@ test.describe('Grimório vazio', () => {
     await expect(painel.locator('[data-library-empty] button')).toHaveCount(1);
   });
 
-  test('com acervo, o resumo e a estante voltam', async ({ page }) => {
+  test('com acervo, o resumo e os artigos aparecem', async ({ page }) => {
     // A contrapartida: esconder o resumo no vazio não pode escondê-lo sempre.
     await abrirGrimorio(page, true);
     const painel = page.locator('#nqdPane-library');
     await expect(painel.locator('.nqd-library-summary'), 'com acervo o resumo precisa aparecer').toHaveCount(1);
-    await expect(painel.locator('.nqd-library-shelf'), 'com acervo a estante precisa aparecer').toHaveCount(1);
+    await expect(painel.locator('.nqd-library-item:visible').first(), 'com acervo os artigos precisam aparecer').toBeVisible();
     await expect(painel).not.toContainText(/começa vazio/i);
   });
 });

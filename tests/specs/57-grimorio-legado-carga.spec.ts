@@ -15,7 +15,8 @@ import { medirContraste } from '../helpers/contraste';
  * e não oferecia nenhuma saída. O mesmo valia durante a carga ociosa: abrir o
  * modal cedo demais mostrava o mesmo vazio, sem dizer que ainda carregava.
  *
- * A Central ganhou recuperação na spec 56; este é o outro consumidor.
+ * Após a integração, esses acessos usam o Dashboard (spec 56). Os cenários
+ * continuam cobrindo falha, nova tentativa, carga atrasada e retorno à aba.
  */
 
 test.use({ serviceWorkers: 'block' });
@@ -36,50 +37,53 @@ async function abrir(page: Page, modo: 'bloqueia' | 'atrasa' | 'normal') {
   await page.goto('/jogar/');
   await page.locator('[data-portal-route="guest"]').click();
   if (modo === 'normal') await page.evaluate(() => (window as any).carregarDadosGrimorio?.());
-  await page.evaluate(() => (window as any).openBibliotecaModal());
+  await page.evaluate(() => { void (window as any).openBibliotecaModal(); });
 }
 
-const contador = (page: Page) => page.locator('#bibCount');
-const lista = (page: Page) => page.locator('#bibList');
+const contador = (page: Page) => page.locator('#nqDashboard');
+const lista = (page: Page) => page.locator('#nqDashboard');
 
-test.describe('Grimório legado: acervo ausente, atrasado e recuperado', () => {
+test.describe('Acesso ao Grimório: acervo ausente, atrasado e recuperado', () => {
   test('acervo fora do ar não vira "0/0", e a saída existe', async ({ page }) => {
     await abrir(page, 'bloqueia');
-    await expect(lista(page)).toContainText('não pôde ser carregado');
+    await expect(lista(page)).toContainText('Não foi possível');
     await expect(contador(page), 'zero sobre zero afirma um total que não existe').not.toContainText('0/0');
-    await expect(page.locator('[data-action="_bibTentarNovamente"]')).toBeVisible();
+    await expect(page.locator('[data-action="_dashRetryLoad"]')).toBeVisible();
   });
 
   test('a nova tentativa recupera o acervo inteiro', async ({ page }) => {
     await abrir(page, 'bloqueia');
-    await expect(page.locator('[data-action="_bibTentarNovamente"]')).toBeVisible();
+    await expect(page.locator('[data-action="_dashRetryLoad"]')).toBeVisible();
     await page.unroute('**/data/refs.js');
     await page.unroute('**/data/articles.js');
-    await page.locator('[data-action="_bibTentarNovamente"]').click();
-    await expect(contador(page)).toContainText(/\/\d{2,}\s+artigos/);
-    await expect(page.locator('[data-action="_bibTentarNovamente"]')).toHaveCount(0);
+    await page.locator('[data-action="_dashRetryLoad"]').click();
+    await expect(page.locator('#nqdPane-library')).toBeVisible();
+    await expect(page.locator('.nqd-library-locked')).toContainText('ainda bloquead');
+    await expect(page.locator('[data-action="_dashRetryLoad"]')).toHaveCount(0);
   });
 
   test('durante a carga a tela diz que está carregando, não que está vazia', async ({ page }) => {
     await abrir(page, 'atrasa');
-    await expect(lista(page)).toContainText(/carregando/i);
+    await expect(lista(page)).toHaveAttribute('data-dashboard-state', 'loading');
+    await expect(lista(page)).toContainText(/Preparando seu Dashboard/i);
     await expect(lista(page), 'vazio e carregando são coisas diferentes').not.toContainText(/Nenhuma referência/i);
     // E o estado transitório termina sozinho quando a resposta chega.
-    await expect(contador(page)).toContainText(/\/\d{2,}\s+artigos/, { timeout: 15000 });
+    await expect(page.locator('#nqdPane-library')).toBeVisible({ timeout: 15000 });
   });
 
   test('com o acervo disponível nada muda', async ({ page }) => {
     // A contrapartida: o conserto não pode inventar estado de erro no caminho bom.
     await abrir(page, 'normal');
-    await expect(contador(page)).toContainText(/\/\d{2,}\s+artigos/);
-    await expect(page.locator('[data-action="_bibTentarNovamente"]')).toHaveCount(0);
+    await expect(page.locator('#nqdPane-library')).toBeVisible();
+    await expect(page.locator('.nqd-library-locked')).toContainText('ainda bloquead');
+    await expect(page.locator('[data-action="_dashRetryLoad"]')).toHaveCount(0);
   });
 
   test('o aviso é legível — não herda o cinza de "nada encontrado"', async ({ page }, info) => {
     test.skip(info.project.name !== 'chromium', 'A medição de cor roda uma vez.');
     await abrir(page, 'bloqueia');
-    await expect(lista(page)).toContainText('não pôde ser carregado');
-    const falhas = await page.evaluate(medirContraste, '#bibList');
+    await expect(lista(page)).toContainText('Não foi possível');
+    const falhas = await page.evaluate(medirContraste, '#nqDashboard');
     expect(falhas.map(f => `${f.sel} ${f.razao}/${f.exigido} "${f.texto}"`), 'texto do aviso ilegível').toEqual([]);
   });
 });

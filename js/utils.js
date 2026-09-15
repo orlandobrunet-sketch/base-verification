@@ -540,6 +540,9 @@ function manageDialogFocus(dialog, onClose, returnFocus = document.activeElement
     }
 
     function openBibliotecaModal() {
+      if (typeof window.openDashboard === 'function') {
+        return window.openDashboard({ tab: 'library' });
+      }
       const modal = document.getElementById('bibliotecaModal');
       if (!modal) return;
       _bibActiveFilter = 'all';
@@ -583,6 +586,9 @@ function manageDialogFocus(dialog, onClose, returnFocus = document.activeElement
     window._bibTentarNovamente = _bibTentarNovamente;
 
     function closeBibliotecaModal() {
+      if (document.getElementById('nqDashboard') && typeof window.closeDashboard === 'function') {
+        window.closeDashboard();
+      }
       const modal = document.getElementById('bibliotecaModal');
       if (modal) modal.classList.add('hidden');
       // Colapsa o formulário de sugestão ao fechar
@@ -590,6 +596,7 @@ function manageDialogFocus(dialog, onClose, returnFocus = document.activeElement
       const btn = document.querySelector('.bib-suggest-toggle');
       if (fields) fields.classList.remove('show');
       if (btn) btn.classList.remove('open');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
     }
 
     // Renderiza o popup de resumo (mesmo visual usado no Grimório) a partir de
@@ -660,6 +667,7 @@ function manageDialogFocus(dialog, onClose, returnFocus = document.activeElement
       const isOpen = fields.classList.contains('show');
       fields.classList.toggle('show', !isOpen);
       if (btn) btn.classList.toggle('open', !isOpen);
+      if (btn) btn.setAttribute('aria-expanded', String(!isOpen));
       if (!isOpen) {
         // Rola para o formulário aparecer na tela
         setTimeout(() => fields.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
