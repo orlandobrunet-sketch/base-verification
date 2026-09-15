@@ -1178,8 +1178,10 @@
         document.getElementById('wsSavedNextLevel').textContent = isMaxLevel ? 'Domínio máximo' : `Nível ${level + 1}`;
         document.getElementById('wsSavedXpText').textContent = isMaxLevel ? 'Domínio máximo alcançado' : `${xp} / ${xpToNext} XP`;
         document.getElementById('wsSavedMilestone').textContent = isMaxLevel
-          ? 'Domínio máximo alcançado'
-          : `${correctTotal % 10} de 10 acertos para o próximo marco`;
+          ? `${Math.min(100, correctTotal)} de 100 acertos na jornada`
+          : `${xpToNext - xp} XP para evoluir · ${Math.min(100, correctTotal)} de 100 acertos`;
+        const marker = document.getElementById('wsSavedXpMarker');
+        if (marker) marker.setAttribute('cx', String(8 + 5.84 * progress));
 
         const progressEl = document.getElementById('wsSavedProgress');
         if (progressEl) {
