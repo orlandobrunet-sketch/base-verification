@@ -1,6 +1,6 @@
 # NefroQuest — Prioridades de refinamento da experiência
 
-**Data do plano:** 10/09/2026. **Atualização:** 11/09/2026. **Estado:** primeira entrega (NQ-04A + NQ-04D) revisada; o proprietário solicitou a troca dos cinco selos e autorizou a publicação. Release proposta: 15.05.
+**Data do plano:** 10/09/2026. **Atualização:** 15/09/2026. **Estado:** Conquistas/Objetivos, nome Dashboard e Grimório integrado publicados (PRs #800 e #801; produção 15.07). Jornada Ativa em validação no PR #802, release 15.09.
 
 Este plano registra o pedido do proprietário: recuperar a qualidade visual de Conquistas e Objetivos, preservar a apresentação rica dos artigos no Dashboard, voltar ao nome Dashboard, melhorar o card Jornada Ativa e redesenhar progressivamente os popups do jogo. A ordem abaixo passa à frente da expansão de funcionalidades. Uma superfície por entrega.
 
@@ -167,13 +167,15 @@ Essa conclusão é sobre o escopo dessas correções, não uma certificação es
 
 **Regressão final da integração:** 14 testes passaram sem retentativa, incluindo atalhos de resposta isolados, Enter sem avançar a campanha, navegação entre áreas, favoritos, filtro de diretrizes, catálogo administrativo, alvos de 44px e auditoria de acessibilidade. A integração está pronta para revisão e CI no PR #801; a publicação foi concluída em 14/09 após aprovação da CI completa, commit 09b2a853ce13f756740f283e64cc4953ac4a5555. Produção confirmou versão 15.07 e hashes dos arquivos dashboard.js/utils.js.
 
-## Terceira entrega — Jornada Ativa (15.08, PR #802 aguardando CI)
+## Terceira entrega — Jornada Ativa (15.09, PR #802 aguardando CI)
 
 - A curva arbitrária foi substituída por uma régua linear com marcador na posição real de XP e divisões de quarto de escala.
-- O texto diferencia os sistemas: XP restante para o próximo nível e acertos acumulados rumo aos 100 da jornada. O antigo módulo de dez acertos parecia explicar o progresso de XP, embora fossem grandezas diferentes.
+- A régua representa somente XP. O texto informa os dois requisitos reais da próxima evolução: XP restante e acertos até o limite de nível. Distingue XP completo, acertos completos e ambos satisfeitos; no nível máximo, mostra os acertos rumo aos 100 da jornada. Nenhuma regra de progressão foi alterada.
 - O nome do personagem pode quebrar linha em vez de aparecer truncado. Cores da classe, imagem, nível, vidas, pontuação e ações existentes foram preservados.
 - Movimento continua ligado a avanço real, uma vez por atualização, e respeita movimento reduzido. O marcador também funciona com a animação desativada.
 - Primeira validação: 8 testes passaram sem retentativa, em desktop e mobile, cobrindo jornada salva, atualização de XP, paletas e movimento reduzido. Sintaxe e coerência de release/cache verificadas. Capturas locais em .codex-test-output/jornada/.
 - Esta entrega foi atualizada sobre o PR #801 já integrado e tem branch própria, codex/jornada-ativa. PR #802 aberto para main; ainda não publicado.
 
 - Defeito adicional confirmado e corrigido: non-scaling-stroke alongava o dash de progresso quando o SVG era comprimido. Medição com isPointInStroke confirmou preenchimento incorreto além do valor em 1440, 390 e 320px, e ausência desse erro após a correção. O teste de jornada salva agora mede pontos antes e depois do fim real do traço, além dos atributos acessíveis.
+
+**Validação de 15/09:** quatro testes passaram sem retentativa em desktop e mobile, cobrindo preenchimento real, requisitos simultâneos, XP completo com acertos pendentes, acertos completos com XP pendente e nível máximo. A primeira tentativa não alcançou o app porque o servidor local estava encerrado; a rodada válida ocorreu após reiniciá-lo. Capturas de 1440, 390 e 320px atualizadas e conferidas. A CI completa da revisão anterior (2222608) passou; a revisão 15.09 exige sua própria aprovação antes do merge.
