@@ -72,6 +72,7 @@
   };
 
   let _lastFocusedElement = null;
+  let _returnLabel = 'Voltar ao jogo';
   let _previousBodyOverflow = '';
   let _inertedElements = [];
   let _activeTab = 'overview';
@@ -676,7 +677,7 @@
           <div class="nqd-rail-header">
             <div class="nqd-brand-row">
               <span class="nqd-brand" aria-label="NefroQuest">Nefro<em>Quest</em></span>
-              <button type="button" class="nqd-brand-close" data-action="closeDashboard" aria-label="Voltar ao jogo">${_svg('back')}</button>
+              <button type="button" class="nqd-brand-close" data-action="closeDashboard" aria-label="${_returnLabel}">${_svg('back')}</button>
             </div>
           </div>
           <span class="nqd-rail-kicker">Dashboard</span>
@@ -686,7 +687,7 @@
               <div role="tablist" aria-orientation="${mobileNav ? 'horizontal' : 'vertical'}">${_navMarkup()}</div>
             </nav>
           ` : ''}
-          <div class="nqd-rail-footer"><button type="button" class="nqd-back" data-action="closeDashboard">${_svg('back')}<span>Voltar ao jogo</span></button></div>
+          <div class="nqd-rail-footer"><button type="button" class="nqd-back" data-action="closeDashboard">${_svg('back')}<span>${_returnLabel}</span></button></div>
         </aside>
         <main class="nqd-main">
           <div class="nqd-content">${bodyMarkup}</div>
@@ -1626,7 +1627,7 @@
              idênticos — mesmo fundo, mesma cor, mesmo peso — e o marcado como
              primário era o de sair, não o de recuperar. -->
         <button type="button" class="nqd-primary-action" data-action="_dashRetryLoad" data-nqd-primary="true">Tentar novamente</button>
-        <button type="button" class="nqd-action" data-action="closeDashboard">Voltar ao jogo${_svg('back')}</button>
+        <button type="button" class="nqd-action" data-action="closeDashboard">${_returnLabel}${_svg('back')}</button>
       </div>
     `, 'error');
   }
@@ -2184,6 +2185,13 @@
       return;
     }
     _lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    // Captura a origem antes de tornar a página de fundo inerte.
+    const visible = id => {
+      const element = document.getElementById(id);
+      return element && element.getClientRects().length && getComputedStyle(element).visibility !== 'hidden';
+    };
+    _returnLabel = visible('welcomeScreen') ? 'Voltar ao Átrio'
+      : visible('question') ? 'Voltar à questão' : 'Voltar ao jogo';
     document.querySelectorAll('.profile-popup.open').forEach(popup => popup.classList.remove('open'));
     _activeTab = requestedTab;
     _rankingLoaded = false;

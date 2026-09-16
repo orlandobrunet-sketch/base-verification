@@ -136,7 +136,7 @@ test.describe('o estado de erro orienta a saída', () => {
       return { fundo: cs.backgroundColor, peso: cs.fontWeight };
     });
     const recuperar = await estilo('Tentar novamente');
-    const sair = await estilo('Voltar ao jogo');
+    const sair = await estilo('Voltar ao Átrio');
 
     // Preenchido contra transparente: a diferença precisa existir, em qualquer
     // paleta que o projeto venha a adotar.
