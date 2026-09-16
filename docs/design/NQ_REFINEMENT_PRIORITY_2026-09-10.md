@@ -1,6 +1,6 @@
 # NefroQuest — Prioridades de refinamento da experiência
 
-**Data do plano:** 10/09/2026. **Atualização:** 15/09/2026. **Estado:** Conquistas/Objetivos, nome Dashboard e Grimório integrado publicados (PRs #800 e #801). Jornada Ativa publicada no PR #802, release 15.09. Retorno contextual do Dashboard em preparação (15.10).
+**Data do plano:** 10/09/2026. **Atualização:** 15/09/2026. **Estado:** Conquistas/Objetivos, nome Dashboard e Grimório integrado publicados (PRs #800 e #801). Jornada Ativa publicada no PR #802, release 15.09. Retorno contextual publicado (15.10); retomada de leitura em preparação (15.11).
 
 Este plano registra o pedido do proprietário: recuperar a qualidade visual de Conquistas e Objetivos, preservar a apresentação rica dos artigos no Dashboard, voltar ao nome Dashboard, melhorar o card Jornada Ativa e redesenhar progressivamente os popups do jogo. A ordem abaixo passa à frente da expansão de funcionalidades. Uma superfície por entrega.
 
@@ -182,7 +182,15 @@ Essa conclusão é sobre o escopo dessas correções, não uma certificação es
 
 **Publicação da Jornada Ativa:** PR #802 integrado após sucesso de Quality Gates, Smoke e Full E2E no commit 575ff9d (run 35043825623). GitHub Pages concluído para o commit 1507a0a6df14552383f0735dd37e2d14b2541472; produção confirmou 15.09 e os arquivos game.js/atrium.css correspondem byte a byte ao commit publicado.
 
-## Continuidade — retorno contextual do Dashboard (15.10, em preparação)
+## Continuidade — retorno contextual do Dashboard (15.10 publicado, PR #803)
 
 - Os botões de retorno identificam a origem: Voltar à questão ou Voltar ao Átrio, inclusive durante carregamento e erro. A navegação e a restauração de foco existentes são preservadas.
 - Validação: 20 testes passaram sem retentativa em desktop e mobile, cobrindo retorno e foco, rascunho, texto ampliado a 200%, catálogo e recuperação de carregamento. Sintaxe e release/cache conferidos.
+
+- Publicação: PR #803 integrado após CI completa aprovada no commit b72634b, run 35049603752. Produção confirmou 15.10 e dashboard.js corresponde byte a byte ao commit publicado 31a01e4c9cd65edf94963fca4a0b77f16c57b6a9.
+
+## Continuidade — retomada da leitura no Grimório (15.11, em preparação)
+
+- Busca, coleção, filtro, ordenação, resumos abertos e posição de leitura são mantidos ao fechar e reabrir o Dashboard durante a mesma sessão da página. A troca de abas também guarda a posição do Grimório.
+- Estado transitório em memória, separado por identidade e visão administrativa, sem alterar progresso, desbloqueios ou favoritos. Ao mudar de conta ou de acesso administrativo, o contexto anterior é descartado.
+- Validação: oito testes passaram sem retentativa em desktop e mobile, incluindo retomada de controles, resumo expandido, rolagem e descarte do contexto ao trocar de conta. Sintaxe e release/cache conferidos.

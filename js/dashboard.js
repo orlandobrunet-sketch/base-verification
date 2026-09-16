@@ -84,6 +84,7 @@
   let _rankingRequestId = 0;
   let _rankingSearchTimer = null;
   let _libraryCache = null;
+  let _libraryReadingContext = null;
   let _tabMediaQuery = null;
 
   const ACID_BASE_CASE_IDS = new Set([
@@ -1661,6 +1662,8 @@
   function _switchTab(tabId, moveFocus) {
     const root = document.getElementById('nqDashboard');
     if (!root || !DASH_TABS.some(tab => tab.id === tabId)) return;
+    if (_activeTab === 'library' && tabId !== 'library') _rememberLibraryReading(root);
+    const enteringLibrary = tabId === 'library' && _activeTab !== 'library';
     _activeTab = tabId;
     const tabButtons = [...root.querySelectorAll('[data-dash-tab]')];
     tabButtons.forEach(button => {
@@ -1700,6 +1703,13 @@
       if (nav) setTimeout(() => _sincronizarFadeDasAbas(nav), reducedMotion ? 0 : 420);
     }
 
+    if (tabId === 'library' && (enteringLibrary || root.dataset.libraryRestored !== 'true')) {
+      root.dataset.libraryRestored = 'true';
+      const scroll = _libraryReadingContext?.scroll || 0;
+      window.requestAnimationFrame(() => {
+        if (root.isConnected && _activeTab === 'library') root.querySelector('.nqd-main').scrollTop = scroll;
+      });
+    }
     if (tabId === 'ranking' && !_rankingLoaded) _loadRanking(false);
     if (tabId === 'skills') _drawRadar();
   }
@@ -1960,6 +1970,44 @@
       : 'nenhum';
   }
 
+  function _libraryReaderIdentity() {
+    return JSON.stringify([window.authUser?.id || null, !!(typeof window.isAdminUser === 'function' && window.isAdminUser())]);
+  }
+
+  function _rememberLibraryReading(root) {
+    if (root?.dataset.dashboardState !== 'ready') return;
+    if (root.dataset.libraryReader !== _libraryReaderIdentity()) {
+      _libraryReadingContext = null;
+      return;
+    }
+    _libraryReadingContext = {
+      owner: root.dataset.libraryReader,
+      collection: root.querySelector('[data-library-collection][aria-selected="true"]')?.dataset.libraryCollection || 'scrolls',
+      search: root.querySelector('#nqDashLibrarySearch')?.value || '',
+      filter: root.querySelector('#nqDashLibraryFilter')?.value || 'all',
+      sort: root.querySelector('#nqDashLibrarySort')?.value || 'recent',
+      expanded: [...root.querySelectorAll('[data-library-item].is-expanded [data-library-key]')].map(el => el.dataset.libraryKey),
+      scroll: _activeTab === 'library' ? root.querySelector('.nqd-main').scrollTop : (_libraryReadingContext?.scroll || 0),
+    };
+  }
+
+  function _restoreLibraryReading(root) {
+    const saved = _libraryReadingContext;
+    if (!saved || saved.owner !== root.dataset.libraryReader) return;
+    const collection = [...root.querySelectorAll('[data-library-collection]')].find(el => el.dataset.libraryCollection === saved.collection);
+    _setLibraryCollection(root, collection);
+    for (const [id, value] of [['nqDashLibrarySearch', saved.search], ['nqDashLibrarySort', saved.sort], ['nqDashLibraryFilter', saved.filter]]) {
+      const control = root.querySelector('#' + id);
+      if (!control) continue;
+      if (control.tagName !== 'SELECT' || [...control.options].some(option => option.value === value && !option.hidden)) control.value = value;
+    }
+    _applyLibraryView(root);
+    const expanded = new Set(saved.expanded);
+    root.querySelectorAll('[data-library-key]').forEach(button => {
+      if (expanded.has(button.dataset.libraryKey)) _dashToggleArticle(button.closest('[data-library-item]').querySelector('[data-action="_dashToggleArticle"]'));
+    });
+  }
+
   function _wireDashboard(root) {
     const suggestion = document.querySelector('#bibliotecaModal .bib-suggest-section');
     const suggestionHost = root.querySelector('[data-library-suggestion]');
@@ -2042,6 +2090,7 @@
     if (libraryTabs.length) {
       _syncLibraryTools(root, 'scrolls');
       _applyLibraryView(root);
+      _restoreLibraryReading(root);
     }
   }
 
@@ -2204,6 +2253,8 @@
     root.className = 'nq-command-center';
     root.dataset.nqUi = 'lumen';
     root.dataset.dashboardState = 'loading';
+    root.dataset.libraryReader = _libraryReaderIdentity();
+    if (_libraryReadingContext?.owner !== root.dataset.libraryReader) _libraryReadingContext = null;
     root.setAttribute('aria-label', 'Dashboard do aprendizado');
     root.innerHTML = _loadingMarkup();
     document.body.appendChild(root);
@@ -2258,6 +2309,7 @@
   function closeDashboard(options) {
     const root = document.getElementById('nqDashboard');
     if (!root) return;
+    _rememberLibraryReading(root);
     const restoreFocus = !(options && options.restoreFocus === false);
     root.removeEventListener('keydown', _handleDashboardKeydown);
     window.clearTimeout(_rankingSearchTimer);
