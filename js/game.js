@@ -1177,16 +1177,24 @@
         document.getElementById('wsSavedTime').textContent = timeAgo ? `Última atualização ${timeAgo}` : '';
         document.getElementById('wsSavedNextLevel').textContent = isMaxLevel ? 'Domínio máximo' : `Nível ${level + 1}`;
         document.getElementById('wsSavedXpText').textContent = isMaxLevel ? 'Domínio máximo alcançado' : `${xp} / ${xpToNext} XP`;
+        const missingXp = xpToNext - xp;
+        const missingCorrect = Math.max(0, level * 10 - correctTotal);
         document.getElementById('wsSavedMilestone').textContent = isMaxLevel
-          ? 'Domínio máximo alcançado'
-          : `${correctTotal % 10} de 10 acertos para o próximo marco`;
+          ? `${Math.min(100, correctTotal)} de 100 acertos na jornada`
+          : missingXp > 0 && missingCorrect > 0
+            ? `Faltam ${missingXp} XP e ${missingCorrect} ${missingCorrect === 1 ? 'acerto' : 'acertos'}`
+            : missingCorrect > 0
+              ? `XP completo · ${missingCorrect} ${missingCorrect === 1 ? 'acerto para evoluir' : 'acertos para evoluir'}`
+              : missingXp > 0 ? `Acertos completos · faltam ${missingXp} XP` : 'Requisitos completos · retome a jornada';
+        const marker = document.getElementById('wsSavedXpMarker');
+        if (marker) marker.setAttribute('cx', String(8 + 5.84 * progress));
 
         const progressEl = document.getElementById('wsSavedProgress');
         if (progressEl) {
           progressEl.setAttribute('aria-valuenow', String(progress));
           progressEl.setAttribute('aria-valuetext', isMaxLevel
             ? 'Domínio máximo alcançado'
-            : `${progress}% do caminho até o nível ${level + 1}`);
+            : `${progress}% do XP para o nível ${level + 1}`);
         }
         _syncWelcomeProgress(resumeShell, progress);
 

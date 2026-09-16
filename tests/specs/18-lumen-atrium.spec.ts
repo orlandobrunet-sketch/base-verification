@@ -258,11 +258,20 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
     await expect(page.locator('#wsSavedScore')).toHaveText('535');
     await expect(page.locator('#wsSavedTime')).toContainText('Última atualização há 2 dias');
     await expect(page.locator('#wsSavedDifficulty')).toHaveText('Difícil');
-    await expect(page.locator('#wsSavedMilestone')).toHaveText('7 de 10 acertos para o próximo marco');
+    await expect(page.locator('#wsSavedMilestone')).toHaveText('Faltam 99 XP e 43 acertos');
+    await expect(page.locator('#wsSavedXpFlow')).toHaveAttribute('d', 'M8 16 H592');
+    await expect(page.locator('#wsSavedXpMarker')).toHaveAttribute('cx', String(8 + 5.84 * 72));
+    // Mede o traço pintado, não apenas o número do estado. Antes, o SVG
+    // comprimido pintava além de 85% mesmo quando o save indicava 72%.
+    const painted = await page.locator('#wsSavedXpFlow').evaluate((element: SVGPathElement) => ({
+      beforeEnd: element.isPointInStroke(new DOMPoint(8 + 584 * .70, 16)),
+      afterEnd: element.isPointInStroke(new DOMPoint(8 + 584 * .85, 16)),
+    }));
+    expect(painted).toEqual({ beforeEnd: true, afterEnd: false });
     await expect(page.locator('#wsSavedNextLevel')).toHaveText('Nível 6');
     await expect(page.locator('#wsSavedXpText')).toHaveText('250 / 349 XP');
     await expect(page.locator('#wsSavedProgress')).toHaveAttribute('aria-valuenow', '72');
-    await expect(page.locator('#wsSavedProgress')).toHaveAttribute('aria-valuetext', '72% do caminho até o nível 6');
+    await expect(page.locator('#wsSavedProgress')).toHaveAttribute('aria-valuetext', '72% do XP para o nível 6');
     await expect(page.locator('#wsSavedAvatar')).toBeVisible();
     await expect.poll(() => page.locator('#wsSavedAvatar').evaluate((image: HTMLImageElement) => image.naturalWidth)).toBeGreaterThan(0);
     const resumeButton = page.getByRole('button', { name: /Retomar jornada/ });
@@ -348,6 +357,21 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
     expect(mobileMetrics.scrollWidth).toBeLessThanOrEqual(mobileMetrics.clientWidth + 1);
     const primaryBox = await page.getByRole('button', { name: /Retomar jornada/ }).boundingBox();
     expect(primaryBox?.width || 0).toBeGreaterThanOrEqual(320);
+  });
+
+  test('distingue XP completo, acertos pendentes e nível máximo no card', async ({ page }) => {
+    test.setTimeout(90000);
+    for (const scenario of [
+      { level: 1, xp: 200, correctTotal: 9, text: 'XP completo · 1 acerto para evoluir', percent: '100' },
+      { level: 1, xp: 100, correctTotal: 10, text: 'Acertos completos · faltam 100 XP', percent: '50' },
+      { level: 1, xp: 200, correctTotal: 10, text: 'Requisitos completos · retome a jornada', percent: '100' },
+      { level: 10, xp: 0, correctTotal: 90, text: '90 de 100 acertos na jornada', percent: '100' },
+    ]) {
+      await enterWithSavedJourney(page, scenario);
+      await expect(page.locator('#wsSavedMilestone')).toHaveText(scenario.text);
+      await expect(page.locator('#wsSavedProgress')).toHaveAttribute('aria-valuenow', scenario.percent);
+      await expect(page.locator('#wsSavedNextLevel')).toHaveText(scenario.level === 10 ? 'Domínio máximo' : 'Nível 2');
+    }
   });
 
   test('anima um avanço real uma única vez e nunca mantém movimento infinito', async ({ page }) => {
