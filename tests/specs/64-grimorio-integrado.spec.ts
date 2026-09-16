@@ -74,3 +74,38 @@ test('retorno fica desobstruído com texto a 200% em 320px', async ({ page }) =>
   await expect(page.locator('#nqDashboard')).toHaveCount(0);
   await expect(page.locator('#atriumMain')).toBeVisible();
 });
+
+
+test('retoma busca, filtro, resumo e leitura sem transferir contexto para outra conta', async ({ page }) => {
+  await page.locator('[data-portal-route="guest"]').click();
+  await page.evaluate(() => { (window as any).isAdminUser = () => true; });
+  const opener = page.locator('[data-atrium-route="library"]');
+  await opener.click();
+  await expect(page.locator('#nqDashboard')).toHaveAttribute('data-dashboard-state', 'ready');
+  await page.getByRole('tab', { name: 'Fontes clínicas' }).click();
+  await page.locator('#nqDashLibrarySearch').fill('kdigo');
+  await page.locator('#nqDashLibraryFilter').selectOption('guideline');
+  await page.locator('#nqDashLibrarySort').selectOption('oldest');
+  const first = page.locator('[data-library-item]:visible').first();
+  const key = await first.locator('[data-library-key]').getAttribute('data-library-key');
+  await first.locator('[data-action="_dashToggleArticle"]').click();
+  const scroll = await page.locator('.nqd-main').evaluate(el => { el.scrollTop = 240; return el.scrollTop; });
+  expect(scroll).toBeGreaterThan(0);
+  await page.keyboard.press('Escape');
+  await opener.click();
+  await expect(page.locator('#nqDashboard')).toHaveAttribute('data-dashboard-state', 'ready');
+  await expect(page.getByRole('tab', { name: 'Fontes clínicas' })).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator('#nqDashLibrarySearch')).toHaveValue('kdigo');
+  await expect(page.locator('#nqDashLibraryFilter')).toHaveValue('guideline');
+  await expect(page.locator('#nqDashLibrarySort')).toHaveValue('oldest');
+  await expect(page.locator('[data-library-item]:visible').first().locator('[data-library-key]')).toHaveAttribute('data-library-key', key!);
+  await expect(page.locator('[data-library-item]:visible').first().locator('[data-action="_dashToggleArticle"]')).toHaveAttribute('aria-expanded', 'true');
+  await expect.poll(() => page.locator('.nqd-main').evaluate(el => el.scrollTop)).toBe(scroll);
+  await page.keyboard.press('Escape');
+  await page.evaluate(() => { (window as any).authUser = { id: 'outra-conta-local' }; });
+  await opener.click();
+  await expect(page.locator('#nqDashboard')).toHaveAttribute('data-dashboard-state', 'ready');
+  await expect(page.locator('#nqDashLibrarySearch')).toHaveValue('');
+  await expect(page.locator('#nqDashLibraryFilter')).toHaveValue('all');
+  await expect(page.locator('[data-library-item].is-expanded')).toHaveCount(0);
+});
