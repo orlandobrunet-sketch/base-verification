@@ -638,10 +638,21 @@ function manageDialogFocus(dialog, onClose, returnFocus = document.activeElement
       _showResumoModal(it);
     }
 
-    // Abre o mesmo popup de resumo do Grimório a partir de uma chave da refsDB.
+    // Na questão, expande a leitura no próprio card; mantém fallback para acessos legados.
     // Usado pelas referências exibidas em cada questão do jogo.
     function openRefResumo(key) {
       if (typeof refsDB !== 'object' || !refsDB || !refsDB[key]) return;
+      const button = [...document.querySelectorAll('.ref-resumo-btn[data-action="openRefResumo"]')]
+        .find(element => element.dataset.arg === key && element.getClientRects().length);
+      const reading = button && document.getElementById(button.getAttribute('aria-controls'));
+      if (reading) {
+        const expanded = button.getAttribute('aria-expanded') !== 'true';
+        button.setAttribute('aria-expanded', String(expanded));
+        reading.hidden = !expanded;
+        button.querySelector('[data-ref-summary-label]').textContent = expanded ? 'Ocultar resumo' : 'Ver resumo';
+        try { if (expanded && typeof _track === 'function') _track('ref_resumo_opened', { key }); } catch {}
+        return;
+      }
       const r = refsDB[key];
       _showResumoModal({
         label:       r.label || '',

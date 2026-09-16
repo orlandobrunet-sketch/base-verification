@@ -2453,14 +2453,19 @@
             </div>
             ${ref.impacto ? `<div class="ref-impacto ${impactoClass}">${escapeHtml(ref.impacto)}</div>` : ''}
             <div class="ref-actions">
-              <button class="ref-resumo-btn" data-action="openRefResumo" data-arg="${escapeHtml(key)}">
+              <button class="ref-resumo-btn" data-action="openRefResumo" data-arg="${escapeHtml(key)}" aria-expanded="false" aria-controls="questionRefSummary-${i}">
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-                ver resumo
+                <span data-ref-summary-label>Ver resumo</span>
               </button>
               <button class="ref-copy-btn" data-action="_copyRefBtn" data-pass-this="1" data-copy-text="${escapeHtml(copyText)}">
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 copiar
               </button>
+            </div>
+            <div class="ref-reading" id="questionRefSummary-${i}" role="region" aria-label="Resumo de ${escapeHtml(ref.label)}" hidden>
+              <section><h4>Resumo</h4><p>${escapeHtml(ref.resumo || 'Esta entrada não possui resumo cadastrado.')}</p></section>
+              ${ref.conclusao ? `<section><h4>Conclusão principal</h4><p>${escapeHtml(ref.conclusao)}</p></section>` : ''}
+              ${ref.curiosidade ? `<section><h4>Curiosidade</h4><p>${escapeHtml(ref.curiosidade)}</p></section>` : ''}
             </div>
           </div>`;
       }).join('');
