@@ -1113,6 +1113,12 @@
     }
     .ref-resumo-btn:hover { border-color: #eec752; color: #f0d98c; }
 
+    .ref-reading:not([hidden]) { display: grid; gap: 16px; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(148,163,184,.22); }
+    .ref-reading section { min-width: 0; }
+    .ref-reading h4 { margin: 0 0 6px; color: var(--ref-accent-texto, #d9bf73); font-size: .85rem; }
+    .ref-reading p { margin: 0; color: #d4dce8; font-size: .95rem; line-height: 1.7; overflow-wrap: anywhere; }
+    body.reading-mode .ref-reading p { font-size: 1.1rem; }
+
     /* CONTROL BUTTONS */
     .ctrl {
       padding: 10px 0 10px 14px; margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;

@@ -1,6 +1,6 @@
 # NefroQuest — Prioridades de refinamento da experiência
 
-**Data do plano:** 10/09/2026. **Atualização:** 15/09/2026. **Estado:** Conquistas/Objetivos, nome Dashboard e Grimório integrado publicados (PRs #800 e #801). Jornada Ativa publicada no PR #802, release 15.09. Retorno contextual publicado (15.10); retomada de leitura em preparação (15.11).
+**Data do plano:** 10/09/2026. **Atualização:** 15/09/2026. **Estado:** Conquistas/Objetivos, nome Dashboard e Grimório integrado publicados (PRs #800 e #801). Jornada Ativa publicada no PR #802, release 15.09. Retorno contextual publicado (15.10); retomada de leitura publicada (15.11).
 
 Este plano registra o pedido do proprietário: recuperar a qualidade visual de Conquistas e Objetivos, preservar a apresentação rica dos artigos no Dashboard, voltar ao nome Dashboard, melhorar o card Jornada Ativa e redesenhar progressivamente os popups do jogo. A ordem abaixo passa à frente da expansão de funcionalidades. Uma superfície por entrega.
 
@@ -189,8 +189,17 @@ Essa conclusão é sobre o escopo dessas correções, não uma certificação es
 
 - Publicação: PR #803 integrado após CI completa aprovada no commit b72634b, run 35049603752. Produção confirmou 15.10 e dashboard.js corresponde byte a byte ao commit publicado 31a01e4c9cd65edf94963fca4a0b77f16c57b6a9.
 
-## Continuidade — retomada da leitura no Grimório (15.11, em preparação)
+## Continuidade — retomada da leitura no Grimório (15.11 publicado, PR #804)
 
 - Busca, coleção, filtro, ordenação, resumos abertos e posição de leitura são mantidos ao fechar e reabrir o Dashboard durante a mesma sessão da página. A troca de abas também guarda a posição do Grimório.
 - Estado transitório em memória, separado por identidade e visão administrativa, sem alterar progresso, desbloqueios ou favoritos. Ao mudar de conta ou de acesso administrativo, o contexto anterior é descartado.
 - Validação: oito testes passaram sem retentativa em desktop e mobile, incluindo retomada de controles, resumo expandido, rolagem e descarte do contexto ao trocar de conta. Sintaxe e release/cache conferidos.
+
+## Continuidade — referências dentro da questão (15.12, em preparação)
+
+- O botão Ver resumo expande Resumo, Conclusão principal e Curiosidade dentro do card da referência, sem overlay, com recolhimento no mesmo botão e estado acessível. Os textos são lidos dos mesmos dados e escapados; nenhum conteúdo médico foi editado.
+- O acesso legado sem card visível mantém o fallback existente. O evento analítico de abertura permanece e não dispara no recolhimento.
+- Dois testes passaram sem retentativa (desktop/mobile), conferindo texto igual à fonte, estado da questão inalterado, ausência de popup, teclado e largura do resumo a 200% em 320px.
+- PR #804 integrado após CI completa aprovada no commit bf3da56, run 35111778138. Produção confirmou 15.11 e dashboard.js corresponde byte a byte ao commit publicado 2076e95.
+
+- Captura local de 390px conferida em .codex-test-output/referencias-inline/card-390.png.
