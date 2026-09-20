@@ -208,3 +208,12 @@ Essa conclusão é sobre o escopo dessas correções, não uma certificação es
 
 O proprietário prefere leitura em lista no Grimório. A grade passa a ter uma coluna em todas as larguras, tanto para pergaminhos quanto para fontes clínicas e favoritos. Cards, cores, metadados, resumos, filtros e retomada de leitura são preservados. Não usar novamente dois estudos lado a lado.
 Conferido localmente em 1440, 1366, 390 e 320px, com abertura e recolhimento dos resumos. Sem transbordamento horizontal nas quatro larguras. PR #805 publicado como 15.12; esta correção segue em entrega própria.
+
+## Acabamento — texto ampliado (15.14, em validação)
+
+- Auditoria local a 200%, em 390 e 320px: reproduzidos transbordamentos do botão de estudo e dos dias finais do gráfico; em 320px o personagem comprimido fazia Jornada ativa quebrar letra a letra.
+- A composição do personagem passa a uma coluna conforme a largura disponível em relação ao tamanho do texto. A ação de estudo cabe no painel. Os sete dias mantêm escala e ordem em uma região com rolagem local acessível pelo teclado.
+- Abas de coleções do Grimório têm rolagem horizontal intencional; não foram classificadas como transbordamento do painel.
+- PR #806 integrado após aprovação de Quality, Smoke e Full E2E (run 35520625815); produção confirmou 15.13 e CSS idêntico ao commit publicado 6dbb258.
+
+- Validação: quatro testes passaram sem retentativa, cobrindo texto a 200%, acesso aos sete dias por teclado e ausência de transbordamento/alvos pequenos nas abas em 360px.

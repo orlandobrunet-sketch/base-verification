@@ -873,6 +873,37 @@ test.describe('Central de Comando do aprendizado', () => {
     await expect(library.locator('#nqDashLibraryNoResults')).toBeVisible();
   });
 
+  test('texto ampliado mantém personagem e ações dentro do painel e permite percorrer os sete dias', async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 844 });
+    await openCommandCenter(page);
+    await page.evaluate(() => { document.documentElement.style.fontSize = '32px'; });
+    const pane = page.locator('#nqdPane-overview');
+    const bounds = await pane.boundingBox();
+    for (const selector of ['.nqd-journey-body', '.nqd-next-form', '.nqd-study-primary', '.nqd-study-secondary', '.nqd-pulse-bars']) {
+      for (const element of await pane.locator(selector).all()) {
+        const box = await element.boundingBox();
+        if (!box) continue;
+        expect(box.x, selector).toBeGreaterThanOrEqual(bounds!.x - 1);
+        expect(box.x + box.width, selector).toBeLessThanOrEqual(bounds!.x + bounds!.width + 1);
+      }
+    }
+    const label = pane.locator('.nqd-journey-body > .nqd-state');
+    expect((await label.boundingBox())!.height).toBeLessThan(90);
+    const pulse = pane.locator('.nqd-pulse-bars');
+    await pulse.focus();
+    await expect(pulse).toBeFocused();
+    await page.keyboard.press('End');
+    await page.keyboard.press('ArrowRight');
+    await expect.poll(() => pulse.evaluate(el => el.scrollLeft)).toBeGreaterThan(0);
+    await pulse.evaluate(el => { el.scrollLeft = el.scrollWidth; });
+    const lastDayVisible = await pulse.evaluate(el => {
+      const frame = el.getBoundingClientRect();
+      const last = el.lastElementChild!.getBoundingClientRect();
+      return last.right <= frame.right + 1 && last.left >= frame.left;
+    });
+    expect(lastDayVisible).toBe(true);
+  });
+
   test('em 360×800 nenhuma área vaza horizontalmente e todos os controles visíveis têm alvo de 44px', async ({ page }) => {
     await page.setViewportSize({ width: 360, height: 800 });
     await openCommandCenter(page);

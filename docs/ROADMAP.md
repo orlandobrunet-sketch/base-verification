@@ -83,7 +83,7 @@ Suspeitas medidas e descartadas, registradas para não voltarem como trabalho:
 Em aberto, sem conserto:
 
 - **`contato@nefroquest.com` não recebe e-mail.** O domínio não tem registro MX, e o endereço aparece no rodapé da landing e no modal de privacidade. Cabe ao proprietário decidir entre configurar o MX, trocar o canal ou remover o endereço.
-- **Quatro elementos ainda transbordam com texto a 200%** (`nqd-pulse-day` e `nqd-study-primary`). Nenhum texto se perde; é acabamento.
+- **Texto a 200%:** transbordamentos de atividade/estudo e compressão do personagem reproduzidos; correção em validação (15.14). O gráfico mantém os sete dias com rolagem local e acesso pelo teclado.
 - **Classificador de competências:** a proposta é separar o conserto mecânico (substring e negação) da migração do NQ-10, que depende de autorização editorial. O proprietário ainda não respondeu.
 
 ### Reconciliação de setembro de 2026

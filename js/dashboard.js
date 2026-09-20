@@ -830,7 +830,7 @@
   function _weekPulseMarkup(days) {
     const max = Math.max(1, ...(days || []).map(day => day.count));
     return `
-      <section class="nqd-pulse-bars" aria-label="Decisões registradas nos últimos sete dias">
+      <section class="nqd-pulse-bars" tabindex="0" aria-label="Decisões registradas nos últimos sete dias">
         ${(days || []).map(day => {
           const height = day.count ? Math.max(12, Math.round((day.count / max) * 100)) : 4;
           return `<span class="nqd-pulse-day" style="--pulse:${height}%" title="${_escape(day.label)}: ${day.count} ${day.count === 1 ? 'decisão' : 'decisões'}"><i aria-hidden="true"></i><small>${_escape(day.label)}</small><strong>${day.count}</strong></span>`;

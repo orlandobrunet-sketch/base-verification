@@ -3129,7 +3129,7 @@
  * há algo vencido, para não virar botão que não faz nada. */
 #nqDashboard[data-nq-ui="lumen"] .nqd-study-actions {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
   gap: .7rem;
   margin: .25rem 0 1.1rem;
 }
@@ -3487,3 +3487,12 @@
 #nqDashboard[data-nq-ui="lumen"] .nqd-evolution[data-trend="sobe"] strong { color: var(--nqd-jade); }
 #nqDashboard[data-nq-ui="lumen"] .nqd-evolution[data-trend="desce"] { border-left-color: var(--nqd-coral); }
 #nqDashboard[data-nq-ui="lumen"] .nqd-evolution.is-forming { font-size: .74rem; }
+
+/* Mantém a leitura quando a fonte ocupa mais espaço que a composição lateral. */
+#nqDashboard[data-nq-ui="lumen"] .nqd-journey { container: journey-card / inline-size; }
+@container journey-card (max-width: 19rem) {
+  #nqDashboard[data-nq-ui="lumen"] .nqd-journey-layout { grid-template-columns: minmax(0, 1fr); }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-next-form { flex-wrap: wrap; }
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-study-actions > button { min-width: 0; overflow-wrap: anywhere; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-pulse-bars { overflow-x: auto; scrollbar-width: thin; }
