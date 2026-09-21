@@ -217,3 +217,12 @@ Conferido localmente em 1440, 1366, 390 e 320px, com abertura e recolhimento dos
 - PR #806 integrado após aprovação de Quality, Smoke e Full E2E (run 35520625815); produção confirmou 15.13 e CSS idêntico ao commit publicado 6dbb258.
 
 - Validação: quatro testes passaram sem retentativa, cobrindo texto a 200%, acesso aos sete dias por teclado e ausência de transbordamento/alvos pequenos nas abas em 360px.
+
+## Redesenho do Grimório — lista de estudos (15.15)
+
+O proprietário rejeitou os cards altos: um estudo por linha continua sendo requisito, mas cada estudo precisa permitir comparação rápida. A composição agora reúne identificação, impacto clínico e ações na mesma linha no desktop; no celular, reorganiza esses campos sem ocultar informações. O espaço de leitura surge ao expandir o resumo.
+
+Mantidos fundo azul escuro, tipografia do projeto e cores de raridade/tipo. Retirados molduras empilhadas, altura mínima e bloco de impacto com grandes preenchimentos. Cabeçalho explica a consulta de evidências, retomada e favoritos; contagens têm peso secundário.
+
+Comparação nos mesmos três estudos: desktop 330 → 142px (1440px), 329 → 142px (1366px); celular 320/295/317 → 271/248/248px (390px). Sem transbordamento do Dashboard em 1440, 1366, 390 e 320px. Oito testes de comportamento passaram sem retentativa. Capturas e medidas locais em .codex-test-output/grimorio-redesenho/. Conteúdo médico inalterado.
+A nova proteção de densidade passou em desktop; a execução mobile excedeu 30s durante capturas concorrentes e passou isolada em 25,3s, sem alteração no teste. Texto a 200% conferido em 390 e 320px sem transbordamento do Dashboard. A correção anterior de acessibilidade foi publicada e conferida em 15.14.

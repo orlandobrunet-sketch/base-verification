@@ -109,3 +109,26 @@ test('retoma busca, filtro, resumo e leitura sem transferir contexto para outra 
   await expect(page.locator('#nqDashLibraryFilter')).toHaveValue('all');
   await expect(page.locator('[data-library-item].is-expanded')).toHaveCount(0);
 });
+
+
+test('lista compacta mantém um estudo por linha e permite comparar vários estudos', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.locator('[data-portal-route="guest"]').click();
+  await page.evaluate(() => { (window as any).isAdminUser = () => true; });
+  await page.locator('[data-atrium-route="library"]').click();
+  await expect(page.locator('#nqDashboard')).toHaveAttribute('data-dashboard-state', 'ready');
+  const cards = page.locator('[data-library-item]:visible');
+  await expect(cards.first()).toBeVisible();
+  const boxes = await cards.evaluateAll(elements => elements.slice(0, 3).map(el => {
+    const r = el.getBoundingClientRect(); return { x:r.x, y:r.y, width:r.width, height:r.height };
+  }));
+  expect(boxes).toHaveLength(3);
+  for (const [i, box] of boxes.entries()) {
+    expect(box.height).toBeLessThan(220);
+    expect(box.width).toBeGreaterThan(900);
+    if (i) expect(box.y).toBeGreaterThanOrEqual(boxes[i-1].y + boxes[i-1].height - 1);
+  }
+  await cards.first().getByRole('button', {name:'Ler resumo',exact:true}).click();
+  await expect(cards.first().getByRole('region')).toBeVisible();
+  expect((await cards.first().boundingBox())!.height).toBeGreaterThan(boxes[0].height);
+});

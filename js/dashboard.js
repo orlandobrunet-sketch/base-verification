@@ -1529,7 +1529,7 @@
     const rarities = [...new Set(library.items.map(item => item.rarity).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
     return `
       <section class="nqd-pane nq-dash-pane" id="nqdPane-library" role="tabpanel" aria-labelledby="nqdTab-library" data-dash-pane="library" hidden>
-        <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Grimório de Conhecimento</h1><p class="nqd-section-copy">O que você encontrou ao decidir casos e abrir baús.</p></div></div>
+        <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Grimório</h1><p class="nqd-section-copy">Consulte a evidência por trás das questões. Compare os estudos, retome a leitura e guarde suas referências.</p></div></div>
         ${/* Grimório vazio dizia a mesma coisa TRÊS vezes: "Seu Grimório começa
               vazio" no resumo, "Sua primeira descoberta acenderá esta estante"
               na estante, e "Seu Grimório aguarda a primeira descoberta" no
@@ -1544,7 +1544,7 @@
             <small>${library.adminView ? 'Visão administrativa' : 'Acervo descoberto'}</small><strong>${totalUnlocked} ${library.adminView ? 'entradas no acervo' : totalUnlocked === 1 ? 'descoberta reunida' : 'descobertas reunidas'}</strong>
             <span>${scrollCount} ${scrollCount === 1 ? 'pergaminho' : 'pergaminhos'} · ${sourceCount} ${sourceCount === 1 ? 'fonte clínica' : 'fontes clínicas'}</span>
           </div>
-          <p class="nqd-library-intro">Revisite os estudos que encontrou na jornada. Salve os favoritos e abra o resumo para continuar a leitura aqui mesmo.</p>
+          <p class="nqd-library-intro">Abra um resumo para ler os achados, a conclusão e o contexto do estudo.</p>
         </div>` : ''}
         ${library.items.length ? `
           <div class="nqd-library-tabs" role="tablist" aria-label="Coleções do Grimório">
