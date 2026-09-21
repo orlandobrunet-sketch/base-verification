@@ -3505,3 +3505,9 @@
 #nqDashboard[data-nq-ui="lumen"] #nqdPane-library > .nqd-section-header { margin-bottom: .65rem; }
 
 #nqDashboard[data-nq-ui="lumen"] .nqd-library-summary :where(small, strong, span) { margin: 0; }
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-library-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-library-actions > :where(a, button) { min-width: 0; justify-content: center; text-align: center; overflow-wrap: anywhere; }
+@container library-list (max-width: 12rem) {
+  #nqDashboard[data-nq-ui="lumen"] .nqd-library-actions { grid-template-columns: minmax(0, 1fr); }
+}

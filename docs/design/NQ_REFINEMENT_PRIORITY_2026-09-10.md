@@ -226,3 +226,10 @@ Mantidos fundo azul escuro, tipografia do projeto e cores de raridade/tipo. Reti
 
 Comparação nos mesmos três estudos: desktop 330 → 142px (1440px), 329 → 142px (1366px); celular 320/295/317 → 271/248/248px (390px). Sem transbordamento do Dashboard em 1440, 1366, 390 e 320px. Oito testes de comportamento passaram sem retentativa. Capturas e medidas locais em .codex-test-output/grimorio-redesenho/. Conteúdo médico inalterado.
 A nova proteção de densidade passou em desktop; a execução mobile excedeu 30s durante capturas concorrentes e passou isolada em 25,3s, sem alteração no teste. Texto a 200% conferido em 390 e 320px sem transbordamento do Dashboard. A correção anterior de acessibilidade foi publicada e conferida em 15.14.
+
+## Recuperação das ações do acervo (15.16)
+
+Cada linha do Grimório volta a oferecer Copiar título e acesso à publicação, sem exigir expansão do resumo. Usa o endereço HTTPS cadastrado; quando não existe, identifica explicitamente Buscar artigo e pesquisa o título no Google Scholar. A cópia confirma sucesso somente após a resposta da área de transferência e informa eventual recusa do navegador. Nenhum conteúdo médico foi alterado.
+
+Mantida uma linha por estudo e ações em duas colunas compactas, com adaptação ao texto ampliado. O teste de navegação foi atualizado para o título atual Grimório: a execução completa anterior teve 768 testes aprovados e duas falhas nessa mesma expectativa antiga. A versão 15.16 exige nova validação completa antes da publicação.
+Validação das ações restauradas: testes de links (direto e pesquisa), cópia com sucesso e recusa passaram em desktop e celular. Densidade passou nos dois perfis. Navegação passou em celular; desktop excedeu 30s uma vez no carregamento e passou isolado em 19,6s, sem alterar a expectativa ou o limite de tempo. Ocorrência mantida no registro, não tratada como execução limpa.

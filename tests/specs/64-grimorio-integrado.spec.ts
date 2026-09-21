@@ -132,3 +132,35 @@ test('lista compacta mantém um estudo por linha e permite comparar vários estu
   await expect(cards.first().getByRole('region')).toBeVisible();
   expect((await cards.first().boundingBox())!.height).toBeGreaterThan(boxes[0].height);
 });
+
+test('ações do estudo exibem link e copiam o título sem abrir o resumo', async ({ page }) => {
+  await page.locator('[data-portal-route="guest"]').click();
+  await page.evaluate(() => {
+    (window as any).isAdminUser = () => true;
+    Object.defineProperty(navigator, 'clipboard', { configurable: true, value: {
+      writeText: async (text: string) => { (window as any).__copiedTitle = text; }
+    }});
+  });
+  await page.locator('[data-atrium-route="library"]').click();
+  await expect(page.locator('#nqDashboard')).toHaveAttribute('data-dashboard-state', 'ready');
+  const card = page.locator('[data-library-item]:visible').first();
+  const copy = card.locator('[data-action="_dashCopyTitle"]');
+  await expect(copy).toHaveAccessibleName('Copiar título');
+  const title = await copy.getAttribute('data-copy-title');
+  const search = card.getByRole('link', { name: 'Buscar artigo' });
+  await expect(search).toHaveAttribute('href', `https://scholar.google.com/scholar?q=${encodeURIComponent(title!)}`);
+  await expect(search).toHaveAttribute('target', '_blank');
+  await expect(search).toHaveAttribute('rel', 'noopener noreferrer');
+  await copy.click();
+  await expect(copy).toHaveText('Copiado');
+  expect(await page.evaluate(() => (window as any).__copiedTitle)).toBe(title);
+  await expect(card.locator('[data-action="_dashToggleArticle"]')).toHaveAttribute('aria-expanded', 'false');
+  await page.evaluate(() => { navigator.clipboard.writeText = async () => { throw new Error('permission denied'); }; });
+  await copy.click();
+  await expect(copy).toHaveText('Tentar copiar');
+  await page.getByRole('tab', { name: 'Fontes clínicas' }).click();
+  const direct = page.locator('[data-library-item]:visible .nqd-library-actions a').filter({ hasText: 'Abrir artigo' }).first();
+  await expect(direct).toBeVisible();
+  const sourceUrl = await direct.getAttribute('href');
+  expect(await page.evaluate(url => (0, eval)('Object.values(refsDB)').some((ref: any) => ref.url === url), sourceUrl)).toBe(true);
+});
