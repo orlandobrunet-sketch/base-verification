@@ -700,7 +700,7 @@ test.describe('Central de Comando do aprendizado', () => {
       ['Competências', 'Competências'],
       ['Mapa clínico', 'Mapa de prática clínica'],
       ['Conquistas', 'Conquistas'],
-      ['Grimório', 'Grimório de Conhecimento'],
+      ['Grimório', 'Grimório'],
       ['Ranking', 'Ranking da Ordem'],
     ];
 

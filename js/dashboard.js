@@ -1426,7 +1426,7 @@
           conclusion: article.conclusao || '',
           impact: article.impacto || '',
           curiosity: article.curiosidade || '',
-          url: '',
+          url: _safeHttpsUrl(article.url),
           favorite: favorites.has(key),
         });
       });
@@ -1504,6 +1504,8 @@
         </div>
         ${item.impact ? `<div class="nqd-library-impact"><strong>Impacto clínico</strong><p>${_escape(item.impact)}</p></div>` : ''}
         <div class="nqd-library-actions">
+          <button type="button" class="nqd-action" data-action="_dashCopyTitle" data-pass-this="1" data-copy-title="${_escape(item.title)}">Copiar título</button>
+          <a class="nqd-action" href="${_escape(item.url || `https://scholar.google.com/scholar?q=${encodeURIComponent(item.title)}`)}" target="_blank" rel="noopener noreferrer" title="${item.url ? 'Abrir publicação em nova aba' : 'Buscar o título no Google Scholar'}">${item.url ? 'Abrir artigo' : 'Buscar artigo'} ↗</a>
           <button type="button" class="nqd-favorite${item.favorite ? ' is-active' : ''}" data-action="_dashToggleFavorite" data-pass-this="1" data-library-key="${_escape(item.key)}" aria-pressed="${item.favorite ? 'true' : 'false'}" aria-label="${item.favorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}"><span>${item.favorite ? '★ Salvo' : '☆ Salvar'}</span></button>
           <button type="button" class="nqd-action" data-action="_dashToggleArticle" data-pass-this="1" aria-expanded="false" aria-controls="${detailId}"><span>Ler resumo</span>${_svg('arrow')}</button>
         </div>
@@ -1529,7 +1531,7 @@
     const rarities = [...new Set(library.items.map(item => item.rarity).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
     return `
       <section class="nqd-pane nq-dash-pane" id="nqdPane-library" role="tabpanel" aria-labelledby="nqdTab-library" data-dash-pane="library" hidden>
-        <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Grimório de Conhecimento</h1><p class="nqd-section-copy">O que você encontrou ao decidir casos e abrir baús.</p></div></div>
+        <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Grimório</h1><p class="nqd-section-copy">Consulte a evidência por trás das questões. Compare os estudos, retome a leitura e guarde suas referências.</p></div></div>
         ${/* Grimório vazio dizia a mesma coisa TRÊS vezes: "Seu Grimório começa
               vazio" no resumo, "Sua primeira descoberta acenderá esta estante"
               na estante, e "Seu Grimório aguarda a primeira descoberta" no
@@ -1544,7 +1546,7 @@
             <small>${library.adminView ? 'Visão administrativa' : 'Acervo descoberto'}</small><strong>${totalUnlocked} ${library.adminView ? 'entradas no acervo' : totalUnlocked === 1 ? 'descoberta reunida' : 'descobertas reunidas'}</strong>
             <span>${scrollCount} ${scrollCount === 1 ? 'pergaminho' : 'pergaminhos'} · ${sourceCount} ${sourceCount === 1 ? 'fonte clínica' : 'fontes clínicas'}</span>
           </div>
-          <p class="nqd-library-intro">Revisite os estudos que encontrou na jornada. Salve os favoritos e abra o resumo para continuar a leitura aqui mesmo.</p>
+          <p class="nqd-library-intro">Abra um resumo para ler os achados, a conclusão e o contexto do estudo.</p>
         </div>` : ''}
         ${library.items.length ? `
           <div class="nqd-library-tabs" role="tablist" aria-label="Coleções do Grimório">
@@ -2463,6 +2465,23 @@
     _focusStudyMode();
   }
 
+  async function _dashCopyTitle(button) {
+    const title = button?.dataset.copyTitle;
+    if (!title || button.disabled) return;
+    button.disabled = true;
+    try {
+      await navigator.clipboard.writeText(title);
+      button.textContent = 'Copiado';
+      if (typeof _toast === 'function') _toast('Título copiado.', 'success');
+    } catch (error) {
+      button.textContent = 'Tentar copiar';
+      if (typeof _toast === 'function') _toast('Não foi possível copiar. Selecione o título para copiá-lo.', 'error');
+    } finally {
+      button.disabled = false;
+      window.setTimeout(() => { if (button.isConnected) button.textContent = 'Copiar título'; }, 2500);
+    }
+  }
+
   function _dashToggleArticle(element) {
     const article = element && element.closest ? element.closest('.nqd-library-item') : null;
     if (!article) return;
@@ -2690,6 +2709,7 @@
   window._dashGoAxisWeakness = _dashGoAxisWeakness;
   window._dashStartSRStudy = _dashStartSRStudy;
   window._dashToggleArticle = _dashToggleArticle;
+  window._dashCopyTitle = _dashCopyTitle;
   window._dashSetLbMode = _dashSetLbMode;
   window._dashResumeJourney = _dashResumeJourney;
   window._dashStartJourney = _dashStartJourney;
