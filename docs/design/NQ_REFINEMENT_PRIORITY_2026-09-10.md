@@ -1,6 +1,6 @@
 # NefroQuest — Prioridades de refinamento da experiência
 
-**Data do plano:** 10/09/2026. **Atualização:** 15/09/2026. **Estado:** Conquistas/Objetivos, nome Dashboard e Grimório integrado publicados (PRs #800 e #801). Jornada Ativa publicada no PR #802, release 15.09. Retorno contextual publicado (15.10); retomada de leitura publicada (15.11).
+**Data do plano:** 10/09/2026. **Atualização:** 22/09/2026. **Estado:** Conquistas/Objetivos, nome Dashboard, Jornada Ativa e continuidade publicados. Grimório compacto com links e cópia de título publicado em 15.16 (PR #808). Estudo e Revisão integrado em implementação e validação local (15.17).
 
 Este plano registra o pedido do proprietário: recuperar a qualidade visual de Conquistas e Objetivos, preservar a apresentação rica dos artigos no Dashboard, voltar ao nome Dashboard, melhorar o card Jornada Ativa e redesenhar progressivamente os popups do jogo. A ordem abaixo passa à frente da expansão de funcionalidades. Uma superfície por entrega.
 
@@ -233,3 +233,13 @@ Cada linha do Grimório volta a oferecer Copiar título e acesso à publicação
 
 Mantida uma linha por estudo e ações em duas colunas compactas, com adaptação ao texto ampliado. O teste de navegação foi atualizado para o título atual Grimório: a execução completa anterior teve 768 testes aprovados e duas falhas nessa mesma expectativa antiga. A versão 15.16 exige nova validação completa antes da publicação.
 Validação das ações restauradas: testes de links (direto e pesquisa), cópia com sucesso e recusa passaram em desktop e celular. Densidade passou nos dois perfis. Navegação passou em celular; desktop excedeu 30s uma vez no carregamento e passou isolado em 19,6s, sem alterar a expectativa ou o limite de tempo. Ocorrência mantida no registro, não tratada como execução limpa.
+
+## Estudo e Revisão — direção da próxima entrega (15.17)
+
+Grimório 15.16 publicado pelo PR #808: CI completa aprovada no commit d7c281e; produção confirmou versão e bytes de dashboard.js e dashboard.css no commit ada3a69.
+
+Direção de Estudo: página contínua para escolha, temas, sessão e resultado. Base azul #0b111c, divisórias #34434e, dourado do projeto, leitura clara, acento de revisão #baa6d2 e foco #78d9e3. Cinzel nos títulos; fontes de leitura já adotadas no jogo. Alinhamento à esquerda e largura de leitura limitada. Uma opção por linha, com descrição e ação próxima, evitando cartões altos. A seleção por eixo e os cálculos de revisão existentes permanecem; nenhuma alteração no conteúdo médico.
+
+Percurso: origem → escolha de estudo → temas (opcional) → sessão → resultado. Pausar retorna à origem com sessão salva; retomar não sorteia questões novas. A etapa de seleção deixa de ser diálogo com fundo escurecido e rolagem interna. Verificações devem cobrir foco, isolamento de atalhos da campanha, revisão vencida, retomada e tela estreita.
+
+Validação de 15.17: 22 testes do fluxo novo e da seção de Estudo e Revisão passaram em desktop e celular. O teste adicional de conclusão/reinício passou nos dois perfis. Entrada pelo Dashboard, volta à mesma aba, substituição explícita de sessão salva, pausa sem resposta duplicada e texto a 200% em 320px foram exercitados. Os estados de resultado foram compactados após revisão visual local. A revisão completa da CI ainda é necessária antes da publicação.

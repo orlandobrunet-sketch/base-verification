@@ -26,8 +26,8 @@ Limites operacionais:
 ## Checkpoint operacional para continuidade
 
 - **Última reconciliação:** 10/09/2026, depois dos PRs #788 a #798.
-- **Base publicada:** `15.07`, PR #801 integrado em 14/09 após CI completa aprovada. Deploy concluído e arquivos do Grimório conferidos em produção. Selos/Objetivos e nome Dashboard foram publicados antes no #800. Consultar sempre `version.json` e distinguir branch de publicação.
-- **Ação atual:** NQ-04A e NQ-04D publicados: Conquistas/Objetivos e nome Dashboard. NQ-04B publicado no PR #801: artigos, acessos pelas perguntas/Átrio, bloqueios, visão administrativa, sugestão e retorno à questão. NQ-04C publicado no PR #802 (`15.09`): régua de XP proporcional e indicação dos dois requisitos de evolução. Continuidade NQ-04: retorno contextual publicado no PR #803 (`15.10`). Retomada da busca e da leitura integrada no PR #804 (`15.11`). Próximo recorte: resumos das referências dentro da questão, sem popup (`15.12`). O NQ-03 está quase fechado: faltam GA4 e certificação com leitor de tela real.
+- **Base publicada:** `15.16`, PR #808 integrado após CI completa aprovada. Produção confirmou versão e arquivos do Grimório em 22/09.
+- **Ação atual:** NQ-04 publicado: artes de Conquistas/Objetivos, nome Dashboard, Jornada Ativa, retorno contextual, retomada de leitura, referências na questão e Grimório compacto com links/cópia de título. Próximo recorte autorizado: NQ-06, Estudo e Revisão integrado — escolha, sessão e resultado; implementação local 15.17 em validação. NQ-03 mantém pendências de GA4 e leitor de tela real.
 - **Os três próximos recortes da reconciliação de 07/09 foram entregues:** o instrumento (#787), a recuperação do Grimório (#788 e #790) e a sugestão de artigo (#791).
 
 ### Prioridade do proprietário em 10/09 — qualidade visual e continuidade

@@ -498,7 +498,6 @@
       
       const modal = document.createElement('div');
       modal.className = 'modal show stats-popup';
-      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;height:100svh;height:100dvh;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:10000;backdrop-filter:blur(6px);overflow-y:auto;padding:32px 16px calc(env(safe-area-inset-bottom,0px)+16px);box-sizing:border-box;';
       modal.innerHTML = `
         <div class="modal-content" style="max-width:600px;max-height:88vh;overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;box-shadow:0 0 40px rgba(59,130,246,0.3);">
           <h2 style="color:var(--gold);margin-bottom:16px;font-family:'Cinzel',serif;">📊 ESTATÍSTICAS</h2>
@@ -669,52 +668,80 @@
         .find(element => element.getClientRects().length && !element.closest('[hidden], [inert]')) || null;
     }
 
-    function _mountStudyPopup(modal, label, returnFocus) {
-      const restoreFocus = () => {
-        const fallback = _studyPopupFocusFallback(returnFocus);
-        if (fallback) fallback.focus({ preventScroll: true });
-      };
-      modal.setAttribute('role', 'dialog');
-      modal.setAttribute('aria-modal', 'true');
-      modal.setAttribute('aria-label', label);
-      modal.addEventListener('click', event => {
-        if (!event.target.closest('[data-close-closest]')) return;
-        window.requestAnimationFrame(restoreFocus);
+    let _studySurfaceOrigin = null;
+    let _studyReturnDashboardTab = null;
+    function setStudyReturnDashboard(tab) { _studyReturnDashboardTab = tab || "overview"; }
+
+    function _mountStudySurface(surface, label, returnFocus) {
+      const dashboard = document.getElementById("nqDashboard");
+      if (dashboard) {
+        setStudyReturnDashboard(dashboard.querySelector('[data-dash-tab][aria-selected="true"]')?.dataset.dashTab);
+        window.closeDashboard?.({ restoreFocus: false });
+      }
+      if (!_studySurfaceOrigin) {
+        _studySurfaceOrigin = {
+          dashboardTab: _studyReturnDashboardTab,
+          focus: returnFocus || document.activeElement,
+          scroll: window.scrollY,
+          elements: [...document.querySelectorAll('#mainApp, #welcomeScreen')].map(element => ({
+            element, hidden: element.classList.contains('hidden'), inert: element.inert
+          }))
+        };
+      }
+      _studyReturnDashboardTab = null;
+      _studySurfaceOrigin.elements.forEach(({ element }) => {
+        element.classList.add('hidden');
+        element.inert = true;
       });
-      modal.addEventListener('keydown', event => {
-        if (event.key === 'Escape') {
+      surface.classList.remove('modal', 'show');
+      surface.classList.add('nq-study-surface');
+      surface.removeAttribute('style');
+      surface.setAttribute('role', 'main');
+      surface.setAttribute('aria-label', label);
+      surface.querySelector('.modal-content')?.classList.add('nq-study-content');
+      surface.querySelector('.modal-content')?.classList.remove('modal-content');
+      surface.addEventListener('keydown', event => {
+        // Study owns its keyboard context; campaign shortcuts must not run below it.
+        event.stopPropagation();
+        if ((event.key === 'Enter' || event.key === ' ') && event.target.matches('[role="button"][data-action]')) {
           event.preventDefault();
-          event.stopPropagation();
-          modal.remove();
-          restoreFocus();
-          return;
+          event.target.click();
         }
-        if (event.key !== 'Tab') return;
-        const focusable = [...modal.querySelectorAll('button:not(:disabled), [role="button"][tabindex="0"], a[href], select, input, textarea')]
-          .filter(element => element.getClientRects().length && !element.closest('[hidden], [inert]'));
-        if (!focusable.length) return;
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-        if (event.shiftKey && document.activeElement === first) {
+        if (event.key === 'Escape' && surface.classList.contains('study-mode-popup')) {
           event.preventDefault();
-          last.focus();
-        } else if (!event.shiftKey && document.activeElement === last) {
-          event.preventDefault();
-          first.focus();
+          closeStudySetup();
         }
       });
-      document.body.appendChild(modal);
-      window.requestAnimationFrame(() => {
-        modal.querySelector('button, [role="button"][tabindex="0"]')?.focus({ preventScroll: true });
+      document.body.appendChild(surface);
+      document.body.classList.add('nq-studying');
+      window.scrollTo(0, 0);
+      window.requestAnimationFrame(() => surface.querySelector('button, [tabindex="0"]')?.focus({ preventScroll: true }));
+    }
+
+    function _restoreStudyOrigin() {
+      const origin = _studySurfaceOrigin;
+      _studySurfaceOrigin = null;
+      document.body.classList.remove('nq-studying');
+      if (!origin) return;
+      origin.elements.forEach(({ element, hidden, inert }) => {
+        element.classList.toggle('hidden', hidden);
+        element.inert = inert;
       });
+      window.scrollTo(0, origin.scroll);
+      if (origin.dashboardTab && typeof window.openDashboard === "function") {
+        void window.openDashboard({ tab: origin.dashboardTab });
+      } else {
+        _studyPopupFocusFallback(origin.focus)?.focus({ preventScroll: true });
+      }
+    }
+
+    function closeStudySetup() {
+      document.querySelectorAll('.study-mode-popup').forEach(element => element.remove());
+      _restoreStudyOrigin();
     }
 
     async function showTopicSelector() {
-      // Capturado ANTES do await: quem chamou some da tela quando o popup de
-      // modos fecha, e é dele que o foco precisa voltar. A irmã
-      // showAxesSelector já fazia isso; aqui a linha faltava, e a chamada a
-      // _mountStudyPopup(..., returnFocus) lá embaixo lançava ReferenceError
-      // antes de qualquer coisa aparecer — o seletor de tema nunca abria.
+      // Capture before loading so returning can restore the original control.
       const returnFocus = document.activeElement;
       if (typeof topics === 'undefined') {
         _toast('Carregando questões…', 'info', 30000);
@@ -725,58 +752,30 @@
       _studySelectedAxes.clear();
       NEFRO_AXES.forEach(a => _studySelectedAxes.add(a.id));
 
-      const isMobile = window.innerWidth <= 768;
       const modal = document.createElement('div');
-      modal.className = 'modal show study-mode-popup';
-      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;height:100svh;height:100dvh;background:rgba(0,0,0,0.85);display:flex;align-items:' + (isMobile ? 'flex-start' : 'center') + ';justify-content:center;z-index:10000;backdrop-filter:blur(6px);overflow-y:auto;padding:' + (isMobile ? '12px 12px calc(env(safe-area-inset-bottom,0px)+80px)' : '32px 16px') + ';box-sizing:border-box;';
+      modal.className = 'study-mode-popup';
 
       // Calcular SR due com todos os temas
       const totalDue = getSRDueQuestions(topics).length;
-      const srLabel = totalDue > 0 ? `${totalDue} ${totalDue > 1 ? 'questões' : 'questão'} para revisar hoje` : 'Nenhuma revisão pendente hoje';
-      const srColor = totalDue > 0 ? '#a78bfa' : 'var(--txt-dim)';
+      const srLabel = totalDue > 0 ? `${totalDue} ${totalDue > 1 ? 'questões' : 'questão'} disponíveis para revisão` : 'Nenhuma questão disponível para revisão';
 
+      const saved = _loadStudyState();
+      const canResume = saved && saved.index < saved.questions.length;
       modal.innerHTML = `
-        <div class="modal-content" style="max-width:440px;width:100%;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:16px;padding:24px 20px;box-shadow:0 0 40px rgba(139,92,246,0.3);">
-          <h2 style="color:var(--gold);margin:0 0 4px;font-family:'Cinzel',serif;font-size:1.1rem;">📖 MODO DE ESTUDO</h2>
-          <p style="color:var(--txt-dim);font-size:0.8rem;margin:0 0 16px;">Escolha como quer estudar hoje</p>
-
-          <div class="modal-scroll-body">
-            <!-- Opção 1: Estudo Livre -->
-            <div style="border:2px solid rgba(251,191,36,0.35);border-radius:14px;padding:16px 16px 14px;margin-bottom:10px;background:rgba(251,191,36,0.04);text-align:left;">
-              <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-                <div style="font-size:1.6rem;line-height:1;flex-shrink:0;">🎲</div>
-                <div style="color:var(--gold);font-weight:700;font-size:0.97rem;">Estudo Livre</div>
-              </div>
-              <div style="color:var(--txt-dim);font-size:0.82rem;line-height:1.5;margin-bottom:12px;">20 questões aleatórias de <strong style="color:var(--txt);">todos os temas</strong>. Sem configuração. Ideal para uma revisão rápida.</div>
-              <button class="btn gold" data-action="startFreeStudyMode" style="width:100%;padding:10px;font-size:0.88rem;">Iniciar</button>
-            </div>
-
-            <!-- Opção 2: Por Tema -->
-            <div style="border:2px solid rgba(96,165,250,0.35);border-radius:14px;padding:16px 16px 14px;margin-bottom:10px;background:rgba(96,165,250,0.04);text-align:left;">
-              <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-                <div style="font-size:1.6rem;line-height:1;flex-shrink:0;">📚</div>
-                <div style="color:var(--blue);font-weight:700;font-size:0.97rem;">Por Tema</div>
-              </div>
-              <div style="color:var(--txt-dim);font-size:0.82rem;line-height:1.5;margin-bottom:12px;">Escolha os temas e pratique <strong style="color:var(--txt);">20 questões focadas</strong>. Útil quando quer reforçar um assunto específico.</div>
-              <button class="btn" data-action="showAxesSelector" style="width:100%;padding:10px;font-size:0.88rem;border-color:var(--blue);color:var(--blue);">Selecionar Temas</button>
-            </div>
-
-            <!-- Opção 3: Revisão Espaçada -->
-            <div style="border:2px solid rgba(167,139,250,0.35);border-radius:14px;padding:16px 16px 14px;margin-bottom:14px;background:rgba(167,139,250,0.04);text-align:left;">
-              <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-                <div style="font-size:1.6rem;line-height:1;flex-shrink:0;">📅</div>
-                <div style="color:#a78bfa;font-weight:700;font-size:0.97rem;">Revisão Espaçada</div>
-              </div>
-              <div style="color:var(--txt-dim);font-size:0.82rem;line-height:1.5;margin-bottom:6px;">O sistema decide o que você precisa rever. Retém mais com menos esforço.</div>
-              <div style="margin-bottom:12px;font-size:0.78rem;color:${srColor};font-weight:600;">📅 ${srLabel}</div>
-              <button class="btn" data-action="startSRStudyAllMode" style="width:100%;padding:10px;font-size:0.88rem;border-color:#8b5cf6;color:#c4b5fd;${totalDue === 0 ? 'opacity:0.5;cursor:not-allowed;' : ''}">Revisar Agora</button>
-            </div>
+        <div class="nq-study-content">
+          <header class="nq-study-heading">
+            <button class="btn sec" data-action="closeStudySetup">← Voltar</button>
+            <div><h1>Estudo e Revisão</h1><p>Pratique por tema ou retome o que precisa rever. Sua jornada permanece salva.</p></div>
+          </header>
+          ${canResume ? '<section class="nq-study-resume"><div><h2>Sessão em andamento</h2><p>Continue de onde parou.</p></div><button class="btn gold" data-action="resumeSavedStudyMode">Retomar estudo</button></section>' : ''}
+          <div class="nq-study-choices">
+            <section><div><h2>Por tema</h2><p>Escolha os eixos e pratique até 20 questões dos assuntos selecionados.</p></div><button class="btn gold" data-action="showAxesSelector">Selecionar Temas</button></section>
+            <section><div><h2>Estudo livre</h2><p>Uma sessão com 20 questões de todos os temas, sem configuração.</p></div><button class="btn sec" data-action="startFreeStudyMode">Iniciar estudo livre</button></section>
+            <section><div><h2>Revisão espaçada</h2><p>Retome as questões selecionadas pelo seu histórico de revisão.</p><strong>${srLabel}</strong></div><button class="btn sec" data-action="startSRStudyAllMode" ${totalDue === 0 ? 'disabled' : ''}>Revisar agora</button></section>
           </div>
-
-          <button class="btn sec" data-close-closest=".modal" style="width:100%;margin-top:6px;">Fechar</button>
         </div>
       `;
-      _mountStudyPopup(modal, 'Escolha o modo de estudo', returnFocus);
+      _mountStudySurface(modal, 'Escolha o modo de estudo', returnFocus);
       playSound('click');
     }
 
@@ -786,10 +785,8 @@
       _studySelectedAxes.clear();
       NEFRO_AXES.forEach(a => _studySelectedAxes.add(a.id));
 
-      const isMobile = window.innerWidth <= 768;
       const modal = document.createElement('div');
-      modal.className = 'modal show study-mode-popup';
-      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;height:100svh;height:100dvh;background:rgba(0,0,0,0.9);display:flex;align-items:' + (isMobile ? 'flex-start' : 'center') + ';justify-content:center;z-index:10000;overflow-y:auto;padding:' + (isMobile ? '12px 12px calc(env(safe-area-inset-bottom,0px)+80px)' : '32px 16px') + ';box-sizing:border-box;';
+      modal.className = 'study-mode-popup';
 
       const stats = getDetailedStats();
 
@@ -804,7 +801,7 @@
           return `
             <div role="button" tabindex="0" aria-pressed="${sel}" data-action="_studyToggleAxis" data-arg="${axis.id}" id="axis-card-${axis.id}"
               style="cursor:pointer;padding:8px 10px;border-radius:10px;border:2px solid ${sel ? '#8b5cf6' : 'rgba(255,255,255,0.1)'};background:${sel ? 'rgba(139,92,246,0.15)' : 'rgba(255,255,255,0.03)'};transition:all 0.2s;display:flex;align-items:center;gap:10px;">
-              <span style="font-size:1.4rem;">${axis.icon}</span>
+
               <div style="flex:1;text-align:left;">
                 <div style="color:var(--txt);font-weight:600;font-size:0.9rem;">${axis.label}</div>
                 <div style="color:var(--txt-dim);font-size:0.7rem;margin-top:2px;">${qCount} questões</div>
@@ -825,7 +822,7 @@
         <div class="modal-content" style="max-width:460px;width:100%;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:18px 20px;box-shadow:0 0 40px rgba(139,92,246,0.3);">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
             <button class="btn sec" data-action="showTopicSelector" style="padding:4px 10px;font-size:0.78rem;">← Voltar</button>
-            <h2 style="color:var(--blue);margin:0;font-family:'Cinzel',serif;font-size:1rem;flex:1;">📚 Escolha os Temas</h2>
+            <h2 style="color:var(--blue);margin:0;font-family:'Cinzel',serif;font-size:1rem;flex:1;">Escolha os Temas</h2>
           </div>
           <p style="color:var(--txt-dim);font-size:0.78rem;margin:0 0 12px;">20 questões serão sorteadas dos temas selecionados</p>
 
@@ -848,42 +845,10 @@
             <button class="btn sec" data-action="_studySelectAll" data-arg="false" data-arg-type="boolean" style="font-size:0.76rem;padding:6px 12px;">✗ Nenhum</button>
           </div>
 
-          <button class="btn gold" data-action="startStudyMode" style="width:100%;padding:12px;">📚 Iniciar Sessão</button>
+          <button class="btn gold" data-action="startStudyMode" style="width:100%;padding:12px;">Iniciar Sessão</button>
         </div>
       `;
-      modal.setAttribute('role', 'dialog');
-      modal.setAttribute('aria-modal', 'true');
-      modal.setAttribute('aria-label', 'Escolha os temas de estudo');
-      modal.addEventListener('keydown', event => {
-        if (event.key === 'Escape') {
-          event.preventDefault();
-          event.stopPropagation();
-          modal.remove();
-          const fallback = returnFocus && returnFocus.isConnected && returnFocus.getClientRects().length
-            ? returnFocus
-            : [...document.querySelectorAll('[data-action="openDashboard"]')]
-              .find(element => element.getClientRects().length && !element.closest('[hidden], [inert]'));
-          if (fallback) fallback.focus({ preventScroll: true });
-          return;
-        }
-        if (event.key !== 'Tab') return;
-        const focusable = [...modal.querySelectorAll('button:not(:disabled), [role="button"][tabindex="0"], a[href], select, input, textarea')]
-          .filter(element => element.getClientRects().length && !element.closest('[hidden], [inert]'));
-        if (!focusable.length) return;
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-        if (event.shiftKey && document.activeElement === first) {
-          event.preventDefault();
-          last.focus();
-        } else if (!event.shiftKey && document.activeElement === last) {
-          event.preventDefault();
-          first.focus();
-        }
-      });
-      document.body.appendChild(modal);
-      window.requestAnimationFrame(() => {
-        modal.querySelector('button, [role="button"][tabindex="0"]')?.focus({ preventScroll: true });
-      });
+      _mountStudySurface(modal, 'Escolha os temas de estudo', returnFocus);
       playSound('click');
     }
 
@@ -904,7 +869,7 @@
         return `
           <div role="button" tabindex="0" aria-pressed="${sel}" data-action="_studyToggleAxis" data-arg="${axis.id}" id="axis-card-${axis.id}"
             style="cursor:pointer;padding:12px 14px;border-radius:10px;border:2px solid ${sel ? '#8b5cf6' : 'rgba(255,255,255,0.1)'};background:${sel ? 'rgba(139,92,246,0.15)' : 'rgba(255,255,255,0.03)'};transition:all 0.2s;display:flex;align-items:center;gap:12px;">
-            <span style="font-size:1.4rem;">${axis.icon}</span>
+
             <div style="flex:1;text-align:left;">
               <div style="color:var(--txt);font-weight:600;font-size:0.9rem;">${axis.label}</div>
               <div style="color:var(--txt-dim);font-size:0.7rem;margin-top:2px;">${qCount} questões</div>
@@ -939,7 +904,7 @@
         return `
           <div role="button" tabindex="0" aria-pressed="${selected}" data-action="_studyToggleAxis" data-arg="${axis.id}" id="axis-card-${axis.id}"
             style="cursor:pointer;padding:12px 14px;border-radius:10px;border:2px solid ${selected ? '#8b5cf6' : 'rgba(255,255,255,0.1)'};background:${selected ? 'rgba(139,92,246,0.15)' : 'rgba(255,255,255,0.03)'};transition:all 0.2s;display:flex;align-items:center;gap:12px;">
-            <span style="font-size:1.4rem;">${axis.icon}</span>
+
             <div style="flex:1;text-align:left;">
               <div style="color:var(--txt);font-weight:600;font-size:0.9rem;">${axis.label}</div>
               <div style="color:var(--txt-dim);font-size:0.7rem;margin-top:2px;">${qCount} questões</div>
@@ -980,7 +945,7 @@
         return `
           <div role="button" tabindex="0" aria-pressed="${sel}" data-action="_studyToggleAxis" data-arg="${axis.id}" id="axis-card-${axis.id}"
             style="cursor:pointer;padding:12px 14px;border-radius:10px;border:2px solid ${sel ? '#8b5cf6' : 'rgba(255,255,255,0.1)'};background:${sel ? 'rgba(139,92,246,0.15)' : 'rgba(255,255,255,0.03)'};transition:all 0.2s;display:flex;align-items:center;gap:12px;">
-            <span style="font-size:1.4rem;">${axis.icon}</span>
+
             <div style="flex:1;text-align:left;">
               <div style="color:var(--txt);font-weight:600;font-size:0.9rem;">${axis.label}</div>
               <div style="color:var(--txt-dim);font-size:0.7rem;margin-top:2px;">${qCount} questões</div>
@@ -1001,12 +966,12 @@
     const STUDY_SAVE_KEY = 'nefroquest-study-state';
     const STUDY_TTL_MS   = 24 * 60 * 60 * 1000; // 24h
 
-    function _saveStudyState() {
+    function _saveStudyState(nextIndex = studyModeIndex) {
       if (!studyModeActive || !studyModeQuestions.length) return;
       try {
         localStorage.setItem(STUDY_SAVE_KEY, JSON.stringify({
           questions: studyModeQuestions.map(q => q.qid || q.id || q.q.substring(0, 40)),
-          index: studyModeIndex,
+          index: nextIndex,
           correct: studyModeCorrect,
           wrong: studyModeWrong,
           axisStats: _studyAxisStats,
@@ -1278,22 +1243,32 @@
       localStorage.setItem(DIAG_QUOTA_KEY, JSON.stringify(q));
     }
     
-    function startStudyMode() {
+    function startStudyMode(replaceSaved = false) {
       if (_studySelectedAxes.size === 0) {
         _toast('Selecione pelo menos um eixo para estudar!', 'warning');
         return;
       }
 
-      // Verificar sessão salva
       const saved = _loadStudyState();
-      if (saved) {
-        if (confirm(`Você tem uma sessão de estudo em andamento (${saved.index}/${saved.questions.length} questões). Continuar?`)) {
-          if (resumeSavedStudyMode()) return;
-        } else {
-          _clearStudyState();
+      if (saved && saved.index < saved.questions.length && replaceSaved !== true) {
+        let surface = document.querySelector('.study-mode-popup');
+        if (!surface) {
+          surface = document.createElement('div');
+          surface.className = 'study-mode-popup';
+          surface.innerHTML = '<div class="nq-study-content"><button class="btn sec" data-action="closeStudySetup">← Voltar</button><h1>Estudo e Revisão</h1></div>';
+          _mountStudySurface(surface, 'Escolha o modo de estudo', document.activeElement);
         }
+        let notice = surface.querySelector('[data-study-resume-choice]');
+        if (!notice) {
+          notice = document.createElement('section');
+          notice.className = 'nq-study-resume';
+          notice.dataset.studyResumeChoice = '';
+          notice.innerHTML = '<div><h2>Você tem um estudo em andamento</h2><p>Retome a sessão salva ou substitua por uma sessão com os temas selecionados.</p></div><div><button class="btn gold" data-action="resumeSavedStudyMode">Retomar estudo</button><button class="btn sec" data-action="startStudyMode" data-arg="true" data-arg-type="boolean">Iniciar nova sessão</button></div>';
+          surface.querySelector('.nq-study-content').prepend(notice);
+        }
+        notice.querySelector('button').focus();
+        return;
       }
-
       // Coletar categorias dos eixos selecionados
       const selectedCats = new Set();
       NEFRO_AXES.forEach(axis => {
@@ -1324,47 +1299,30 @@
     }
     
     function showStudyModePage(sessionLabel) {
-      // Esconder o jogo principal
-      document.querySelector('.app').classList.add('hidden');
-      document.querySelector('.welcome-screen')?.classList.add('hidden');
+      document.querySelectorAll('.study-mode-popup').forEach(element => element.remove());
       
       // Remover página anterior se existir
       document.getElementById('studyModePage')?.remove();
       
       const page = document.createElement('div');
       page.id = 'studyModePage';
-      page.style.cssText = 'position:fixed;inset:0;z-index:9000;background:linear-gradient(180deg,#0a1020 0%,#060d18 100%);overflow-y:auto;';
       page.innerHTML = `
         <div style="max-width:900px;margin:0 auto;padding:20px;min-height:100%;padding-bottom:100px;">
-          <!-- Header -->
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;gap:8px;flex-wrap:nowrap;">
-            <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
-              <button class="btn sec" data-action="exitStudyMode" style="font-size:0.78rem;padding:6px 12px;white-space:nowrap;">
-                ← Voltar
-              </button>
-              <!-- Contadores ao lado do botão Voltar -->
-              <div style="display:inline-flex;gap:8px;align-items:center;background:rgba(10,15,30,0.6);border:1px solid rgba(255,215,0,0.15);border-radius:16px;padding:4px 10px;white-space:nowrap;">
-                <span style="color:#34d399;font-weight:bold;font-size:0.9rem;" id="studyCorrect">${studyModeCorrect}</span><span style="color:#34d399;font-size:0.75rem;">✓</span>
-                <span style="color:rgba(255,215,0,0.2);font-size:0.85rem;">|</span>
-                <span style="color:#fb7185;font-weight:bold;font-size:0.9rem;" id="studyWrong">${studyModeWrong}</span><span style="color:#fb7185;font-size:0.75rem;">✗</span>
-              </div>
-            </div>
-            <div style="text-align:center;flex:1;">
-              <h1 style="font-family:'MedievalSharp','Cinzel',serif;color:var(--gold);font-size:1.1rem;margin:0;">${sessionLabel === 'reforço' ? '🎯 Sessão de Reforço' : '📖 Modo de Estudo'}</h1>
-            </div>
-            <div style="color:var(--txt-dim);font-size:0.85rem;flex-shrink:0;">
-              <span id="studyProgress">${studyModeIndex + 1}</span>/${studyModeQuestions.length}
-            </div>
-          </div>
-          
+          <header class="nq-study-session-header">
+            <button class="btn sec" data-action="exitStudyMode">Pausar e voltar</button>
+            <h1>${sessionLabel === 'reforço' ? 'Sessão de reforço' : 'Estudo e Revisão'}</h1>
+            <div class="nq-study-session-progress"><span id="studyProgress">${studyModeIndex + 1}</span>/${studyModeQuestions.length}</div>
+            <div class="nq-study-session-score"><span><strong id="studyCorrect">${studyModeCorrect}</strong> acertos</span><span><strong id="studyWrong">${studyModeWrong}</strong> erros</span></div>
+          </header>
+
           <!-- Question Area -->
           <div id="studyQuestionArea" style="background:linear-gradient(180deg,#1a1228,#12192e);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;box-shadow:0 0 30px rgba(30,60,120,0.3);">
             <!-- Questão será renderizada aqui -->
           </div>
         </div>
       `;
-      document.body.appendChild(page);
-      
+      _mountStudySurface(page, 'Sessão de estudo', document.activeElement);
+      _saveStudyState();
       renderStudyQuestion();
     }
     
@@ -1524,38 +1482,29 @@
       studyModeIndex++;
       _saveStudyState();
       renderStudyQuestion();
+      const area = document.getElementById('studyQuestionArea');
+      area?.setAttribute('tabindex', '-1');
+      area?.focus({ preventScroll: true });
+      area?.scrollIntoView({ block: 'start' });
     }
     
     function showStudyModeResults() {
       const total = studyModeQuestions.length;
       const accuracy = total > 0 ? Math.round((studyModeCorrect / total) * 100) : 0;
+      document.querySelector('#studyModePage [data-action="exitStudyMode"]')?.replaceChildren(document.createTextNode("Voltar"));
 
+      document.getElementById("studyProgress").textContent = total;
       const area = document.getElementById('studyQuestionArea');
       area.innerHTML = `
-        <div style="text-align:center;">
-          <h2 style="color:var(--gold);font-family:'MedievalSharp','Cinzel',serif;margin-bottom:20px;">
-            🎉 Estudo Concluído! 🎉
-          </h2>
-
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px;">
-            <div style="background:rgba(59,130,246,0.15);border:2px solid rgba(59,130,246,0.4);border-radius:10px;padding:16px;">
-              <div style="font-size:2rem;color:#3b82f6;font-weight:bold;">${total}</div>
-              <div style="font-size:0.8rem;color:var(--txt-dim);">Questões</div>
-            </div>
-            <div style="background:rgba(52,211,153,0.15);border:2px solid rgba(52,211,153,0.4);border-radius:10px;padding:16px;">
-              <div style="font-size:2rem;color:#34d399;font-weight:bold;">${studyModeCorrect}</div>
-              <div style="font-size:0.8rem;color:var(--txt-dim);">Acertos</div>
-            </div>
-            <div style="background:rgba(251,113,133,0.15);border:2px solid rgba(251,113,133,0.4);border-radius:10px;padding:16px;">
-              <div style="font-size:2rem;color:#fb7185;font-weight:bold;">${studyModeWrong}</div>
-              <div style="font-size:0.8rem;color:var(--txt-dim);">Erros</div>
-            </div>
-          </div>
-
-          <div style="background:rgba(255,215,0,0.1);border:2px solid rgba(255,215,0,0.3);border-radius:10px;padding:20px;margin-bottom:24px;">
-            <div style="font-size:2.5rem;color:var(--gold);font-weight:bold;">${accuracy}%</div>
-            <div style="color:var(--txt-dim);">Taxa de Acerto</div>
-          </div>
+        <div class="nq-study-results">
+          <h2>Estudo concluído</h2>
+          <p class="nq-study-result-intro">Confira seu resultado e os eixos praticados nesta sessão.</p>
+          <dl class="nq-study-result-metrics">
+            <div><dt>Questões</dt><dd>${total}</dd></div>
+            <div><dt>Acertos</dt><dd>${studyModeCorrect}</dd></div>
+            <div><dt>Erros</dt><dd>${studyModeWrong}</dd></div>
+            <div><dt>Aproveitamento</dt><dd>${accuracy}%</dd></div>
+          </dl>
 
           ${_buildAxisBarsHtml()}
 
@@ -1719,14 +1668,17 @@
       studyModeIndex = 0;
       studyModeCorrect = 0;
       studyModeWrong = 0;
-      renderStudyQuestion();
+      _studyAxisStats = {};
+      showStudyModePage();
     }
     
     function exitStudyMode() {
-      _clearStudyState();
+      const nextIndex = studyModeIndex + (document.querySelector('#studyModePage [data-action="nextStudyQuestion"]') ? 1 : 0);
+      if (nextIndex >= studyModeQuestions.length) _clearStudyState();
+      else _saveStudyState(nextIndex);
       studyModeActive = false;
       document.getElementById('studyModePage')?.remove();
-      document.querySelector('.app').classList.remove('hidden');
+      _restoreStudyOrigin();
       
       // Se não tinha jogo iniciado, mostrar welcome
       if (!state.gameStarted) {
