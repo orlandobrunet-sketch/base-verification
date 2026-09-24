@@ -2393,6 +2393,12 @@
     }
   }
 
+  function _closeDashboardForStudy() {
+    const tab = document.querySelector('#nqDashboard [data-dash-tab][aria-selected="true"]')?.dataset.dashTab;
+    if (document.getElementById('nqDashboard')) window.setStudyReturnDashboard?.(tab);
+    closeDashboard({ restoreFocus: false });
+  }
+
   async function _dashGoAxisWeakness() {
     const weakness = _eligibleAxisWeakness(_readAxisStats(_readDetailedStats()));
     if (!weakness) {
@@ -2408,7 +2414,7 @@
       if (typeof _toast === 'function') _toast('O modo de estudo não está disponível.', 'error');
       return;
     }
-    closeDashboard({ restoreFocus: false });
+    _closeDashboardForStudy();
     window.startStudyMode();
     _focusStudyMode();
   }
@@ -2425,7 +2431,7 @@
       if (typeof _toast === 'function') _toast('O modo de estudo não está disponível.', 'error');
       return;
     }
-    closeDashboard({ restoreFocus: false });
+    _closeDashboardForStudy();
     window.startStudyMode();
     _focusStudyMode();
   }
@@ -2436,7 +2442,7 @@
       if (typeof _toast === 'function') _toast('O seletor de temas não está disponível.', 'error');
       return;
     }
-    closeDashboard({ restoreFocus: false });
+    _closeDashboardForStudy();
     window.showAxesSelector();
     window.requestAnimationFrame(() => {
       const selector = document.querySelector('.study-mode-popup');
@@ -2448,7 +2454,7 @@
   async function _dashContinueStudy() {
     if (!(await _ensureTopics())) return;
     if (typeof window.resumeSavedStudyMode === 'function' && window.resumeSavedStudyMode()) {
-      closeDashboard({ restoreFocus: false });
+      _closeDashboardForStudy();
       _focusStudyMode();
       return;
     }
@@ -2460,7 +2466,7 @@
       if (typeof _toast === 'function') _toast('A revisão espaçada não está disponível.', 'error');
       return;
     }
-    closeDashboard({ restoreFocus: false });
+    _closeDashboardForStudy();
     window.startScheduledSRStudyMode();
     _focusStudyMode();
   }

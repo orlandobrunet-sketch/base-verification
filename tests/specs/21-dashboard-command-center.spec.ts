@@ -340,7 +340,7 @@ test.describe('Central de Comando do aprendizado', () => {
     expect(selectedAxes).toEqual(['drc']);
   });
 
-  test('Escolher temas abre um seletor modal operável sem responder a questão ao fundo', async ({ page }) => {
+  test('Escolher temas abre uma página operável sem responder a campanha', async ({ page }) => {
     test.setTimeout(60_000);
     await gotoGame(page);
     await injectGameState(page);
@@ -361,26 +361,12 @@ test.describe('Central de Comando do aprendizado', () => {
     await page.getByRole('tab', { name: 'Competências', exact: true }).click();
     await page.getByRole('button', { name: 'Escolher temas', exact: true }).click();
 
-    const dialog = page.locator('.study-mode-popup[role="dialog"]');
+    const dialog = page.locator('.study-mode-popup[role="main"]');
     await expect(dialog).toBeVisible();
-    await expect(dialog).toHaveAttribute('aria-modal', 'true');
+    await expect(dialog).not.toHaveAttribute('aria-modal', 'true');
     await expect(page.locator('#studyModePage')).toHaveCount(0);
 
-    const trap = await dialog.evaluate(element => {
-      const focusable = [...element.querySelectorAll<HTMLElement>('button:not(:disabled), [role="button"][tabindex="0"], a[href], select, input, textarea')]
-        .filter(control => control.getClientRects().length && !control.closest('[hidden], [inert]'));
-      const first = focusable[0];
-      const last = focusable.at(-1)!;
-      first.dataset.selectorTrapStart = 'true';
-      last.dataset.selectorTrapEnd = 'true';
-      last.focus();
-      return focusable.length;
-    });
-    expect(trap).toBeGreaterThan(2);
-    await page.keyboard.press('Tab');
-    await expect(dialog.locator('[data-selector-trap-start="true"]')).toBeFocused();
-    await page.keyboard.press('Shift+Tab');
-    await expect(dialog.locator('[data-selector-trap-end="true"]')).toBeFocused();
+    await expect(page.locator('#mainApp')).toBeHidden();
 
     const axis = dialog.locator('#axisCardList [role="button"][aria-pressed]').first();
     await axis.focus();
