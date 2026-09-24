@@ -43,7 +43,7 @@ async function abrirOraculo(page: Page, opcoes: { status: number; corpo: unknown
     g.setMentorQuestion?.(questao);
     g.openMentorModal?.();
   }, { logado: opcoes.logado, questao: QUESTAO });
-  await expect(page.locator('.mentor-overlay')).toBeVisible({ timeout: 15000 });
+  await expect(page.locator('#mentorPanel')).toBeVisible({ timeout: 15000 });
 }
 
 async function perguntar(page: Page) {
@@ -76,7 +76,7 @@ test.describe('Oráculo: o que a pessoa vê quando não dá certo', () => {
     });
     await perguntar(page);
 
-    const aviso = page.locator('.mentor-overlay');
+    const aviso = page.locator('#mentorPanel');
     await expect(aviso).toContainText(/limite diário atingido/i, { timeout: 15000 });
     await expect(page.locator('[data-action="closeMentorModalAndUpgrade"]'), 'a recusa precisa oferecer a saída').toBeVisible();
 
@@ -95,7 +95,7 @@ test.describe('Oráculo: o que a pessoa vê quando não dá certo', () => {
     await abrirOraculo(page, { status: 500, corpo: { error: 'API key not configured' }, logado: true });
     await perguntar(page);
 
-    await expect(page.locator('.mentor-overlay')).toContainText(/indisponível/i, { timeout: 15000 });
+    await expect(page.locator('#mentorPanel')).toContainText(/indisponível/i, { timeout: 15000 });
     await expect(page.locator('#mentorQuotaBar'), 'falha de servidor não pode gastar a cota').toContainText('5/5');
   });
 });

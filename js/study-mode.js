@@ -1687,80 +1687,105 @@
       }
     }
 
-    // ── Mentor Modal ────────────────────────────────────────────────────────
-    let _mentorFocus;
+    // ── Oráculo: painel no fluxo, não sobreposição ──────────────────────────
+    //
+    // Era uma folha `position: fixed` no rodapé, com `aria-modal` e o resto da
+    // página escurecido. Para perguntar SOBRE a questão, a pessoa perdia a
+    // questão — por isso o próprio modal precisava reimprimir o enunciado num
+    // quadro apertado, e a conversa cabia numa faixa fina entre o contexto
+    // repetido e o campo.
+    //
+    // Agora o Oráculo entra na página, logo abaixo do veredito: o enunciado
+    // continua legível acima, a conversa cresce com a rolagem natural e não há
+    // enunciado duplicado. Não é um diálogo, é uma região do documento — daí
+    // `role="region"` no lugar de `dialog`, e nenhuma armadilha de foco.
+    let _mentorOrigemFoco = null;
+
+    /** Onde o Oráculo mora em cada superfície, na ordem de preferência. */
+    function _ancoraDoMentor() {
+      const noEstudo = document.getElementById('studyFeedback');
+      if (noEstudo && noEstudo.offsetParent !== null) return { pai: noEstudo.parentNode, depois: noEstudo };
+      const refs = document.getElementById('refs');
+      if (refs) return { pai: refs.parentNode, depois: refs };
+      const feedback = document.getElementById('feedback');
+      if (feedback) return { pai: feedback.parentNode, depois: feedback };
+      return null;
+    }
+
     function openMentorModal() {
       const q = _mentorCurrentQ;
       if (!q) return;
 
-      // Remove existing overlay if any
-      _mentorFocus?.(false);
-      document.getElementById('mentorOverlay')?.remove();
+      document.getElementById('mentorPanel')?.remove();
+      _mentorOrigemFoco = document.activeElement instanceof HTMLElement ? document.activeElement : null;
 
-      const overlay = document.createElement('div');
-      overlay.id = 'mentorOverlay';
-      overlay.className = 'mentor-overlay';
-      
       const isGuest = typeof authUser === 'undefined' || authUser === null;
+      const painel = document.createElement('section');
+      painel.id = 'mentorPanel';
+      painel.className = 'mentor-panel';
+      painel.setAttribute('role', 'region');
+      painel.setAttribute('aria-label', 'Oráculo dos Néfrons');
 
-      overlay.innerHTML = `
-        <div class="mentor-modal" role="dialog" aria-modal="true" aria-label="Oráculo dos Néfrons">
-          <div class="mentor-header">
-            <div class="mentor-header-title">
-              <div class="mentor-title-main">🔮 Oráculo dos Néfrons</div>
-              <div class="mentor-title-sub">A Sabedoria dos Rins</div>
-            </div>
-            <button class="mentor-close-btn" data-action="closeMentorModal" aria-label="Fechar">✕</button>
+      painel.innerHTML = `
+        <div class="mentor-header">
+          <div class="mentor-header-title">
+            <div class="mentor-title-main">🔮 Oráculo dos Néfrons</div>
+            <div class="mentor-title-sub">Sobre a questão acima</div>
           </div>
-          <div class="mentor-context">
-            <div class="mentor-context-label">Questão em análise:</div>
-            <div class="mentor-context-text">${escapeHtml(q.q || '')}</div>
-          </div>
-          <div class="mentor-chat" id="mentorChat"></div>
-          ${isGuest ? `
-            <div class="mentor-quota-bar" style="color:var(--gold);font-weight:bold;">✨ Recurso Exclusivo</div>
-            <div class="mentor-access-panel" style="padding:20px;text-align:center;background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.15);border-radius:10px;margin:12px;">
-              <p style="font-family:'Philosopher',serif;font-size:0.9rem;color:var(--txt-dim);line-height:1.6;margin-bottom:12px;">
-                O Oráculo dos Néfrons requer uma conta ativa para analisar suas dúvidas. Crie sua conta grátis para salvar seu progresso, acessar o ranking global e consultar a IA!
-              </p>
-              <button class="btn gold" style="width:100%;margin-bottom:8px;" data-action="closeMentorModalAndRegister">Criar Conta Gratuita</button>
-              <span style="font-size:0.75rem;color:var(--txt-dim);">Já tem conta? <button type="button" class="mentor-inline-action" data-action="closeMentorModalAndLogin">Fazer Login</button></span>
-            </div>
-          ` : `
-            <div class="mentor-quota-bar" id="mentorQuotaBar">${_mentorRemainingText()}</div>
-            <div class="mentor-input-row">
-              <textarea id="mentorInput" class="mentor-textarea"
-                placeholder="O que você não entendeu? Qual foi o seu raciocínio?" rows="2"
-                maxlength="400"></textarea>
-              <button class="btn gold mentor-send-btn" data-action="_sendMentorMessage">Enviar</button>
-            </div>
-          `}
+          <button type="button" class="mentor-close-btn" data-action="closeMentorModal" aria-label="Fechar o Oráculo e voltar à questão">✕</button>
         </div>
+        <div class="mentor-chat" id="mentorChat" role="log" aria-live="polite"></div>
+        ${isGuest ? `
+          <div class="mentor-access-panel">
+            <p>O Oráculo dos Néfrons precisa de uma conta ativa para analisar suas dúvidas. Crie a sua gratuitamente para salvar o progresso, entrar no ranking e consultar a IA.</p>
+            <button type="button" class="btn gold" data-action="closeMentorModalAndRegister">Criar conta gratuita</button>
+            <span>Já tem conta? <button type="button" class="mentor-inline-action" data-action="closeMentorModalAndLogin">Fazer login</button></span>
+          </div>
+        ` : `
+          <div class="mentor-quota-bar" id="mentorQuotaBar">${_mentorRemainingText()}</div>
+          <div class="mentor-input-row">
+            <label class="nq-sr-only" for="mentorInput">Sua dúvida sobre esta questão</label>
+            <textarea id="mentorInput" class="mentor-textarea"
+              placeholder="O que você não entendeu? Qual foi o seu raciocínio?" rows="2"
+              maxlength="400"></textarea>
+            <button type="button" class="btn gold mentor-send-btn" data-action="_sendMentorMessage">Enviar</button>
+          </div>
+        `}
+        <button type="button" class="mentor-voltar" data-action="closeMentorModal">← Voltar à questão</button>
       `;
 
-      document.body.appendChild(overlay);
-      requestAnimationFrame(() => overlay.classList.add('visible'));
+      const ancora = _ancoraDoMentor();
+      if (ancora) ancora.pai.insertBefore(painel, ancora.depois.nextSibling);
+      else document.getElementById('mainApp')?.appendChild(painel);
+
+      /* Escape fecha e devolve o foco. Sem armadilha: quem quiser sair pelo
+       * Tab alcança o resto da página, que continua sendo parte do fluxo. */
+      painel.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); closeMentorModal(); }
+      });
 
       const input = document.getElementById('mentorInput');
-      _mentorFocus = manageDialogFocus(overlay, closeMentorModal, document.activeElement, input);
-
-      // Close on overlay click outside modal (disabled to prevent accidental closing)
-      // overlay.addEventListener('click', e => { if (e.target === overlay) closeMentorModal(); });
-
-      // Enter to submit (Shift+Enter for newline)
+      // Enter envia; Shift+Enter quebra linha.
       input?.addEventListener('keydown', e => {
         if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); _sendMentorMessage(); }
+      });
+
+      requestAnimationFrame(() => {
+        painel.classList.add('visible');
+        painel.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        (input || painel.querySelector('button'))?.focus({ preventScroll: true });
       });
     }
 
     function closeMentorModal(restoreFocus = true) {
-      const overlay = document.getElementById('mentorOverlay');
-      if (!overlay) return;
-      _mentorFocus?.(restoreFocus);
-      _mentorFocus = null;
-      overlay.inert = true;
-      overlay.classList.remove('visible');
-      setTimeout(() => overlay.remove(), 280);
+      const painel = document.getElementById('mentorPanel');
+      if (!painel) return;
+      const voltarPara = _mentorOrigemFoco;
+      _mentorOrigemFoco = null;
+      painel.remove();
+      if (restoreFocus && voltarPara && voltarPara.isConnected) {
+        voltarPara.focus({ preventScroll: true });
+      }
     }
 
     async function _sendMentorMessage() {
@@ -1773,7 +1798,12 @@
       if (!text) return;
 
       if (!_canAskMentor()) {
-        _appendMentorMsg(chat, 'system', 'Você atingiu o limite diário de 3 perguntas. Faça upgrade para Premium para perguntas ilimitadas.');
+        /* O número vinha escrito à mão como 3 — o limite do DIAGNÓSTICO, não o
+         * do Oráculo. O contrato real é 5, igual dos dois lados
+         * (`MENTOR_DAILY_LIMIT` aqui, `MENTOR_LIMIT` na Edge Function). A
+         * barra ao lado já dizia "5/5", então a mesma tela informava dois
+         * limites diferentes. Sai da constante para não divergir de novo. */
+        _appendMentorMsg(chat, 'system', `Você atingiu o limite diário de ${MENTOR_DAILY_LIMIT} perguntas. Faça upgrade para Premium para perguntas ilimitadas.`);
         return;
       }
 
@@ -1833,7 +1863,7 @@
         thinkingEl.style.color = '#fb7185';
       } finally {
         input.disabled = false;
-        if (input.isConnected && input.closest('.mentor-overlay.visible')) input.focus();
+        if (input.isConnected && input.closest('.mentor-panel')) input.focus();
       }
     }
 

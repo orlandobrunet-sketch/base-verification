@@ -1,6 +1,7 @@
 import { test, expect, type Page } from '@playwright/test';
 import { medirContraste } from '../helpers/contraste';
 import { auditarVisual } from '../helpers/auditoria-visual';
+import { injectGameState } from '../helpers/game';
 
 test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
 test.beforeEach(async ({ page }) => {
@@ -66,11 +67,25 @@ for (const failure of ['profile', 'auth', 'throw']) {
   });
 }
 
+/* O Oráculo é região do documento (#mentorPanel), não diálogo: não há
+ * armadilha de foco e o painel pode começar abaixo da dobra. O que continua
+ * valendo é alcançar cada controle pelo teclado, na ordem, sem sair do painel
+ * antes do fim — e nunca transbordar a largura. O painel entra abaixo do
+ * veredito, então os testes abrem o Oráculo com uma questão real na tela. */
+async function percorrePainel(page: Page, alvos: string[]) {
+  for (const alvo of alvos) {
+    await page.keyboard.press('Tab');
+    await expect(page.locator(alvo)).toBeFocused();
+    expect(await page.locator('#mentorPanel').evaluate(el => el.contains(document.activeElement))).toBe(true);
+  }
+}
+
 for (const viewport of [{ width: 320, height: 568 }, { width: 390, height: 400 }]) {
   for (const status of [200, 429, 503]) {
     test(`Oráculo: envio alcançável e resposta ${status} em ${viewport.width}×${viewport.height}`, async ({ page }, testInfo) => {
       await page.setViewportSize(viewport);
       await page.route('**/functions/v1/ai-mentor', route => route.fulfill({ status, json: { reply: 'Resposta fictícia para teste de apresentação.' } }));
+      await injectGameState(page);
       await page.evaluate(() => {
         (0, eval)(`authUser = {id:'00000000-0000-4000-8000-000000000001',user_metadata:{},app_metadata:{}}`);
         (window as any).getAuthToken = async () => null;
@@ -78,42 +93,54 @@ for (const viewport of [{ width: 320, height: 568 }, { width: 390, height: 400 }
         (window as any).openMentorModal();
       });
       await expect(page.locator('#mentorInput')).toBeFocused();
-      // A transição de entrada começa 20px abaixo da posição final.
+      // Alcançável: rolando até o campo, ele cabe inteiro na tela — nada o corta.
+      const campo = page.locator('.mentor-input-row');
+      await campo.scrollIntoViewIfNeeded();
       await expect.poll(async () => {
-        const box = await page.locator('.mentor-input-row').boundingBox();
-        return box && box.y >= 0 && box.y + box.height <= viewport.height + 1;
+        const box = await campo.boundingBox();
+        return box && box.y >= 0 && box.y + box.height <= viewport.height + 1
+          && box.x >= 0 && box.x + box.width <= viewport.width + 1;
       }).toBe(true);
+      const largura = await page.locator('#mentorPanel').evaluate(el => {
+        const r = el.getBoundingClientRect();
+        return { dentro: r.left >= -1 && r.right <= window.innerWidth + 1,
+          semRolagem: document.documentElement.scrollWidth <= window.innerWidth + 1 };
+      });
+      expect(largura, 'o painel do Oráculo transborda a largura').toEqual({ dentro: true, semRolagem: true });
       await page.locator('#mentorInput').fill('Mensagem fictícia');
       await page.getByRole('button', { name: 'Enviar', exact: true }).click();
       await expect(page.locator('#mentorChat')).toContainText(status === 200 ? 'Resposta fictícia' : status === 429 ? 'Limite diário atingido' : 'Oráculo indisponível');
       await expect(page.locator('#mentorInput')).toBeEnabled();
       if (status === 429) await expect(page.getByRole('button', { name: 'Faça upgrade para Premium' })).toBeVisible();
-      for (const label of ['.mentor-title-sub', '.mentor-context-label']) {
-        await expect(page.locator(label)).toBeVisible();
-        expect(await page.evaluate(medirContraste, label)).toEqual([]);
-      }
-      const auditoria = await page.evaluate(auditarVisual, '#mentorOverlay');
+      await expect(page.locator('.mentor-title-sub')).toBeVisible();
+      expect(await page.evaluate(medirContraste, '.mentor-title-sub')).toEqual([]);
+      const auditoria = await page.evaluate(auditarVisual, '#mentorPanel');
       await testInfo.attach('auditoria-visual', { body: JSON.stringify(auditoria, null, 2), contentType: 'application/json' });
       expect(auditoria.medidos.geometria).toBeGreaterThan(0);
       expect(auditoria.falhas).toEqual([]);
       // Fundos complexos continuam explícitos no anexo, não viram aprovação.
-      await contained(page, '#mentorOverlay', 4);
+      await page.locator('#mentorInput').focus();
+      await percorrePainel(page, ['#mentorPanel .mentor-send-btn', '#mentorPanel .mentor-voltar']);
       await page.keyboard.press('Escape');
-      await expect(page.locator('#mentorOverlay')).toHaveCount(0);
+      await expect(page.locator('#mentorPanel')).toHaveCount(0);
     });
   }
 }
 
 test('Oráculo visitante: login acessível por teclado', async ({ page }) => {
+  await injectGameState(page);
   await page.evaluate(() => {
     (window as any).setMentorQuestion({ q: 'Contexto fictício.', opts: [] });
     (window as any).openMentorModal();
   });
-  await contained(page, '#mentorOverlay', 4);
-  const login = page.getByRole('button', { name: 'Fazer Login', exact: true });
-  await login.focus();
+  await expect(page.locator('#mentorPanel .mentor-close-btn')).toBeFocused();
+  await percorrePainel(page, [
+    '#mentorPanel [data-action="closeMentorModalAndRegister"]',
+    '#mentorPanel [data-action="closeMentorModalAndLogin"]',
+  ]);
+  await expect(page.getByRole('button', { name: 'Fazer login', exact: true })).toBeFocused();
   await page.keyboard.press('Enter');
-  await expect(page.locator('#mentorOverlay')).toHaveCount(0);
+  await expect(page.locator('#mentorPanel')).toHaveCount(0);
   await expect(page.locator('#authModal')).toBeVisible();
 });
 
