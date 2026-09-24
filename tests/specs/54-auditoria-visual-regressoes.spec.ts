@@ -72,6 +72,13 @@ for (const failure of ['profile', 'auth', 'throw']) {
  * valendo é alcançar cada controle pelo teclado, na ordem, sem sair do painel
  * antes do fim — e nunca transbordar a largura. O painel entra abaixo do
  * veredito, então os testes abrem o Oráculo com uma questão real na tela. */
+// injectGameState volta em domcontentloaded; medir estilo exige folhas e fontes prontas.
+async function naQuestao(page: Page) {
+  await injectGameState(page);
+  await page.waitForLoadState('load');
+  await page.evaluate(() => document.fonts.ready);
+}
+
 async function percorrePainel(page: Page, alvos: string[]) {
   for (const alvo of alvos) {
     await page.keyboard.press('Tab');
@@ -85,7 +92,7 @@ for (const viewport of [{ width: 320, height: 568 }, { width: 390, height: 400 }
     test(`Oráculo: envio alcançável e resposta ${status} em ${viewport.width}×${viewport.height}`, async ({ page }, testInfo) => {
       await page.setViewportSize(viewport);
       await page.route('**/functions/v1/ai-mentor', route => route.fulfill({ status, json: { reply: 'Resposta fictícia para teste de apresentação.' } }));
-      await injectGameState(page);
+      await naQuestao(page);
       await page.evaluate(() => {
         (0, eval)(`authUser = {id:'00000000-0000-4000-8000-000000000001',user_metadata:{},app_metadata:{}}`);
         (window as any).getAuthToken = async () => null;
@@ -128,7 +135,7 @@ for (const viewport of [{ width: 320, height: 568 }, { width: 390, height: 400 }
 }
 
 test('Oráculo visitante: login acessível por teclado', async ({ page }) => {
-  await injectGameState(page);
+  await naQuestao(page);
   await page.evaluate(() => {
     (window as any).setMentorQuestion({ q: 'Contexto fictício.', opts: [] });
     (window as any).openMentorModal();
