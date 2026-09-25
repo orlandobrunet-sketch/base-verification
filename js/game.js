@@ -1456,7 +1456,9 @@
           if (typeof nqBuildCompIndex === 'function') nqBuildCompIndex();
           resolve();
         };
-        s.onerror = () => reject(new Error('Falha ao carregar questões'));
+        // Sem zerar a promessa, uma falha de rede ficava guardada e toda nova
+        // tentativa falhava de novo sem nem pedir o arquivo.
+        s.onerror = () => { _topicsPromise = null; s.remove(); reject(new Error('Falha ao carregar questões')); };
         document.head.appendChild(s);
       });
       return _topicsPromise;
@@ -4894,8 +4896,9 @@
         return;
       }
       document.body.classList.remove('rd-game-over', 'boss-battle-mode', 'arqui-nefromante-final', 'boss-hp-critical');
+      // A prova restaura o que escondeu; fecha antes de a jornada sair de cena.
+      if (document.getElementById('examPage')) _examFechar();
       document.getElementById('mainApp')?.classList.add('hidden');
-      document.querySelectorAll('.exam-overlay').forEach(e => e.remove());
       const ws = document.getElementById('welcomeScreen');
       if (ws) {
         ws.style.opacity = '';

@@ -51,8 +51,8 @@ test.describe('Acessibilidade — axe-core / WCAG 2.1 AA', () => {
 
   test('tela de Resultados do Simulado sem violações sérias/críticas', async ({ page }) => {
     // Renderiza a tela de Resultados (showExamResults) sem dirigir as 60
-    // questões: startExamMode() popula _examState + cria #examOverlay, então
-    // showExamResults() desenha o layout de resultado (0 respostas, mas o
+    // questões: o Simulado é uma página (#examPage); "Começar prova" popula
+    // _examState, e showExamResults() desenha o resultado (0 respostas, mas o
     // contraste/estrutura que o axe audita são estáticos).
     await page.goto('/jogar/');
     await injectGameState(page);
@@ -61,12 +61,13 @@ test.describe('Acessibilidade — axe-core / WCAG 2.1 AA', () => {
       localStorage.removeItem('nefroquest-exam-state');
       await (window as any).startExamMode();
     });
-    await page.waitForSelector('#examOverlay', { state: 'visible', timeout: 10_000 });
+    await page.getByRole('button', { name: 'Começar prova' }).click();
+    await page.waitForSelector('#examOpts', { state: 'visible', timeout: 10_000 });
     await page.evaluate(() => (window as any).showExamResults());
     await page.waitForFunction(
-      () => /Resultado da Prova/.test(document.getElementById('examOverlay')?.textContent || ''),
+      () => /Resultado da Prova/.test(document.getElementById('examPage')?.textContent || ''),
       null, { timeout: 5_000 });
-    const blocking = await audit(page, '#examOverlay');
+    const blocking = await audit(page, '#examPage');
     expect(blocking, `Violações sérias/críticas: ${summarize(blocking)}`).toEqual([]);
   });
 });
