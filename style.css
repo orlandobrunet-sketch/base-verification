@@ -13829,3 +13829,45 @@ body.nq-studying #mobileSoundControls { position: relative; top: auto; right: au
   .nq-study-session-score { grid-column: 1 / -1; }
   .nq-study-result-metrics { grid-template-columns: repeat(2,minmax(0,1fr)); }
 }
+
+/* Forja: página do personagem no lugar do modal e dos dois popups em sequência. */
+.nq-forja-cabecalho { display: grid; grid-template-columns: auto minmax(0,1fr) auto; align-items: center; gap: 12px 24px; padding-bottom: 20px; border-bottom: 1px solid #34434e; }
+.nq-forja-cabecalho h1 { font-family: 'Cinzel', Georgia, serif; font-size: 1.35rem; margin: 0; color: var(--gold); }
+.nq-forja-ouro { margin: 0; color: var(--txt-dim); }
+.nq-forja-ouro strong { color: var(--gold); font-size: 1.15rem; }
+.nq-forja-cabecalho .nq-forja-motivo { grid-column: 1 / -1; }
+.nq-forja-opcoes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: 16px 32px; padding: 24px 0; border-bottom: 1px solid #34434e; }
+.nq-forja-opcao h3 { font-family: 'Cinzel', Georgia, serif; font-size: 1.05rem; margin: 0; color: var(--txt); }
+.nq-forja-opcao p { color: var(--txt-dim); line-height: 1.6; margin: 6px 0 12px; }
+.nq-forja-opcao .nq-forja-custo { color: var(--gold); margin: 4px 0 0; }
+.nq-forja-motivo { color: #f7b2bf; margin: 8px 0 0; line-height: 1.5; }
+.nq-forja-resultado:empty { display: none; }
+.nq-forja-resultado { padding: 24px 0; border-bottom: 1px solid #34434e; }
+.nq-forja-resultado:focus { outline: none; }
+.nq-forja-resultado:focus-visible { outline: 2px solid #78d9e3; outline-offset: 4px; }
+.nq-forja-resultado > p { color: var(--txt-dim); line-height: 1.6; max-width: 65ch; }
+.nq-forja-aviso { color: #f7b2bf !important; }
+.nq-forja-comparar { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: 16px; margin: 16px 0; }
+.nq-forja-acoes { display: flex; flex-wrap: wrap; gap: 12px; }
+.nq-forja-equipamento { padding-top: 24px; }
+.nq-forja-grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr)); gap: 16px; margin-top: 16px; }
+.nq-forja-item { border-left: 3px solid #34434e; padding: 4px 0 4px 14px; min-width: 0; }
+.nq-forja-rotulo { margin: 0 0 8px; font-size: .85rem; color: #baa6d2; }
+.nq-forja-item-topo { display: flex; gap: 12px; align-items: center; }
+.nq-forja-item h3 { font-size: 1rem; margin: 0; color: var(--txt); overflow-wrap: anywhere; }
+.nq-forja-item-topo p { margin: 2px 0 0; color: var(--txt-dim); font-size: .9rem; }
+.nq-forja-arte { flex: 0 0 48px; width: 48px; height: 48px; display: grid; place-items: center; background: #152831; border-radius: 4px; overflow: hidden; }
+.nq-forja-arte img { width: 100%; height: 100%; object-fit: cover; }
+.nq-forja-emoji { font-size: 1.5rem; }
+.nq-forja-arte-vazia { background: transparent; border: 1px dashed #425563; }
+.nq-forja-vazio { margin: 12px 0 0; color: var(--txt-dim); }
+.nq-forja-atributos { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 4px 16px; margin: 12px 0 0; }
+.nq-forja-atributos div { display: flex; justify-content: space-between; gap: 8px; }
+.nq-forja-atributos dt { color: var(--txt-dim); font-size: .85rem; }
+.nq-forja-atributos dd { margin: 0; color: var(--txt); }
+.nq-forja-atributos .pos { color: #7ee2a8; }
+.nq-forja-atributos .neg { color: #f7b2bf; }
+.nq-forja .rar-common { color: #b8c1cf; }
+@media (max-width: 40rem) {
+  .nq-forja-cabecalho { grid-template-columns: minmax(0,1fr); }
+}
