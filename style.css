@@ -5678,21 +5678,34 @@
 .mentor-send-btn { flex-shrink: 0; padding: 9px 18px; font-size: 0.84rem; }
 
 /* ── AI Diagnosis Card ─────────────────────────────────────────────────────── */
+/* Parte do resultado, não um cartão flutuante: mesma linha editorial da
+   superfície de estudo (filete, título em Cinzel, texto em Philosopher). */
 .ai-diagnosis-card {
-  background: linear-gradient(135deg, rgba(168,85,247,0.08), rgba(96,165,250,0.05));
-  border: 1px solid rgba(168,85,247,0.3);
-  border-radius: 12px; padding: 18px; margin-top: 4px; text-align: left;
+  margin-top: 24px; padding: 20px 0 0; text-align: left;
+  border-top: 1px solid #34434e;
 }
-.ai-diagnosis-loading { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 24px; }
-.ai-diagnosis-header { font-weight: 700; font-size: 0.9rem; color: #c4b5fd; margin-bottom: 10px; }
-.ai-diagnosis-loading .ai-diagnosis-header { margin-bottom: 0; }
-.ai-diagnosis-body { font-size: 0.86rem; color: var(--txt); line-height: 1.65; }
+.ai-diagnosis-card:focus { outline: none; }
+.ai-diagnosis-card:focus-visible { outline: 2px solid #78d9e3; outline-offset: 4px; }
+.ai-diagnosis-header {
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+  gap: 4px 16px; margin-bottom: 12px;
+}
+.ai-diagnosis-header h3 { font-family: 'Cinzel', Georgia, serif; font-size: 1.15rem; margin: 0; color: #c4b5fd; }
+.ai-diagnosis-quota { margin: 0; font-size: .85rem; color: var(--txt-dim); }
+.ai-diagnosis-status {
+  display: flex; align-items: center; gap: 12px; margin: 0;
+  color: var(--txt-dim); line-height: 1.6; max-width: 65ch;
+}
+.ai-diagnosis-erro { color: #f7b2bf; }
+.ai-diagnosis-body { font-size: 1rem; color: var(--txt); line-height: 1.65; max-width: 70ch; overflow-wrap: anywhere; }
+.ai-diagnosis-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
 .ai-diagnosis-spinner {
-  width: 28px; height: 28px; border: 3px solid rgba(168,85,247,0.2);
+  flex: 0 0 auto; width: 20px; height: 20px; border: 3px solid rgba(168,85,247,0.25);
   border-top-color: #a855f7; border-radius: 50%;
   animation: diagSpin 0.8s linear infinite;
 }
 @keyframes diagSpin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .ai-diagnosis-spinner { animation: none; border-top-color: rgba(168,85,247,0.25); } }
 
 /* ── Reinforcement button ──────────────────────────────────────────────────── */
 .reinforcement-btn {

@@ -71,7 +71,7 @@ Com o acesso ao Supabase e ao Sentry, a camada de dados ficou com evidência dat
 Suspeitas medidas e descartadas, registradas para não voltarem como trabalho:
 
 - **Reporte de erro em questão:** o contrato de `send-flag` bate dos dois lados.
-- **Diagnóstico de lacunas:** o limite substitui o cartão inteiro, então o contador desatualizado nunca aparece junto da recusa.
+- **Diagnóstico de lacunas:** o limite substitui o cartão inteiro, então o contador desatualizado nunca aparece junto da recusa. *Revisto na 15.19:* a recusa estava certa, mas a falha de rede ou do servidor apagava o cartão e gastava cota antes da chamada. Agora a falha aparece com "Tentar novamente", a cota só sobe no sucesso, o 429 alinha o contador e redesenhar não chama a IA de novo (spec 68).
 - **Oráculo para visitante:** nem mostra campo de pergunta, só um painel pedindo conta. O 401 não chega à tela.
 - **Recarregar no meio da jornada:** volta ao Átrio com "Retomar jornada" e mantém o save. É o comportamento esperado.
 - **Foco inicial no ✕ do modal de classe:** três dos quatro diálogos do app fazem o mesmo. É convenção, não defeito.

@@ -1242,6 +1242,15 @@
       q.count = (q.count || 0) + 1;
       localStorage.setItem(DIAG_QUOTA_KEY, JSON.stringify(q));
     }
+
+    /* Mesmo contrato do Oráculo: a recusa por cota do servidor é a verdade,
+     * e o contador local passa a refleti-la. */
+    function _esgotarDiagQuotaLocal() {
+      if (isPremium()) return;
+      const q = _getDiagQuota();
+      q.count = DIAG_DAILY_LIMIT;
+      localStorage.setItem(DIAG_QUOTA_KEY, JSON.stringify(q));
+    }
     
     function startStudyMode(replaceSaved = false) {
       if (_studySelectedAxes.size === 0) {
@@ -1508,12 +1517,7 @@
 
           ${_buildAxisBarsHtml()}
 
-          <div id="aiDiagnosisCard" class="ai-diagnosis-card ai-diagnosis-loading">
-            <div class="ai-diagnosis-header">🤖 Diagnóstico da Sessão
-              ${!isPremium() ? `<span style="font-size:0.68rem;opacity:0.55;font-weight:normal;margin-left:8px;">${_diagRemainingText()}</span>` : ''}
-            </div>
-            <div class="ai-diagnosis-spinner"></div>
-          </div>
+          ${total > 0 ? `<section id="aiDiagnosisCard" class="ai-diagnosis-card" aria-labelledby="aiDiagnosisTitle" tabindex="-1"></section>` : ''}
 
           <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;">
             <button class="btn sec" data-action="exitStudyMode">← Voltar</button>
@@ -1524,48 +1528,76 @@
 
       playSound('victory');
 
-      // Buscar diagnóstico IA em background — graceful degradation se falhar
-      if (total > 0) {
-        _fetchDiagnosis(total, studyModeCorrect, studyModeWrong, accuracy);
-      } else {
-        document.getElementById('aiDiagnosisCard')?.remove();
-      }
+      if (total > 0) _fetchDiagnosis(total, studyModeCorrect, studyModeWrong, accuracy);
     }
 
-    async function _fetchDiagnosis(total, correct, wrong, accuracy) {
+    // ── Diagnóstico da sessão ───────────────────────────────────────────────
+    //
+    // Antes, uma falha de rede ou do servidor simplesmente APAGAVA o cartão
+    // (`card.remove()`): a pessoa não sabia se houve erro ou se não existia
+    // diagnóstico. E a cota local era gasta ANTES da chamada — uma falha
+    // custava um dos três diagnósticos do dia.
+    //
+    // Agora cada estado é distinguível (carregando, sem conta, sem cota,
+    // recusado pelo servidor, sessão expirada, falha, pronto), a cota local
+    // só sobe no sucesso e a recusa do servidor alinha o contador.
+    //
+    // Um pedido por sessão: o resultado fica guardado pela assinatura da
+    // sessão. Redesenhar a tela de resultado reaproveita o que já veio (ou o
+    // pedido em andamento) em vez de chamar a IA de novo. Só "Tentar
+    // novamente", depois de uma falha, faz um novo pedido.
+    const _diagPorSessao = new Map();
+    let _diagUltimoPedido = null;
+
+    function _assinaturaDaSessao(correct, wrong) {
+      return JSON.stringify([studyModeQuestions.map(q => q.qid || q.id || q.q.substring(0, 40)), correct, wrong]);
+    }
+
+    function _desenharDiagnostico(resultado) {
       const card = document.getElementById('aiDiagnosisCard');
       if (!card) return;
-
-      const isGuest = typeof authUser === 'undefined' || authUser === null;
-      if (isGuest) {
-        card.classList.remove('ai-diagnosis-loading');
-        card.innerHTML = `
-          <div class="ai-diagnosis-header">🤖 Diagnóstico da Sessão</div>
-          <div class="ai-diagnosis-body" style="text-align:center;padding:16px 0;color:var(--txt-dim);">
-            O Diagnóstico da Sessão requer uma conta ativa.<br>
-            <span style="font-size:0.8rem;">Crie uma conta gratuita para obter análise de lacunas por IA, treinar seus pontos fracos e evoluir seu personagem.</span>
-            <div style="margin-top:12px;display:flex;gap:10px;justify-content:center;">
-              <button class="btn gold" style="font-size:0.75rem;padding:6px 12px;" data-action="showRegisterFromDiagnosis">Criar Conta</button>
-              <button class="btn sec" style="font-size:0.75rem;padding:6px 12px;" data-action="showLoginFromDiagnosis">Entrar</button>
-            </div>
+      const { estado, texto } = resultado;
+      const cota = !isPremium() && estado !== 'visitante' ? _diagRemainingText() : '';
+      const upgrade = `<button type="button" class="mentor-inline-action" data-action="showPaywallModal">faça upgrade para Premium</button>`;
+      let corpo = '';
+      if (estado === 'carregando') {
+        corpo = `<p class="ai-diagnosis-status"><span class="ai-diagnosis-spinner" aria-hidden="true"></span>Analisando os eixos desta sessão…</p>`;
+      } else if (estado === 'visitante') {
+        corpo = `<p class="ai-diagnosis-status">O diagnóstico de lacunas precisa de uma conta. Crie a sua gratuitamente para receber a análise por IA e treinar seus pontos fracos.</p>
+          <div class="ai-diagnosis-actions">
+            <button type="button" class="btn gold" data-action="showRegisterFromDiagnosis">Criar conta gratuita</button>
+            <button type="button" class="btn sec" data-action="showLoginFromDiagnosis">Entrar</button>
           </div>`;
-        return;
+      } else if (estado === 'sem-cota' || estado === 'recusado') {
+        corpo = `<p class="ai-diagnosis-status">Limite diário de ${DIAG_DAILY_LIMIT} diagnósticos atingido. Volte amanhã ou ${upgrade} para uso ilimitado.</p>`;
+      } else if (estado === 'sessao') {
+        corpo = `<p class="ai-diagnosis-status">Sua sessão expirou, então o diagnóstico não pôde ser gerado. Entre de novo para recebê-lo.</p>
+          <div class="ai-diagnosis-actions"><button type="button" class="btn sec" data-action="showLoginFromDiagnosis">Entrar</button></div>`;
+      } else if (estado === 'falha') {
+        corpo = `<p class="ai-diagnosis-status ai-diagnosis-erro">O diagnóstico não pôde ser gerado agora — falha de conexão ou do serviço de IA. Nenhum diagnóstico do seu limite diário foi descontado.</p>
+          <div class="ai-diagnosis-actions"><button type="button" class="btn sec" data-action="tentarDiagnosticoNovamente">Tentar novamente</button></div>`;
+      } else if (estado === 'pronto') {
+        const weakCats = _getWeakCats();
+        corpo = `<div class="ai-diagnosis-body">${_renderMentorMarkdown(texto)}</div>
+          ${weakCats.length ? `<div class="ai-diagnosis-actions">
+            <button type="button" class="btn reinforcement-btn" data-action="startReinforcementSession">Treinar pontos fracos (${_countReinforcementQuestions(weakCats)} questões)</button>
+          </div>` : ''}`;
       }
+      card.setAttribute('aria-busy', estado === 'carregando' ? 'true' : 'false');
+      card.dataset.estado = estado;
+      card.innerHTML = `
+        <header class="ai-diagnosis-header">
+          <h3 id="aiDiagnosisTitle">Diagnóstico da sessão</h3>
+          ${cota ? `<p class="ai-diagnosis-quota">${cota}</p>` : ''}
+        </header>
+        <div role="status" aria-live="polite">${corpo}</div>`;
+    }
 
-      if (!_canRunDiagnosis()) {
-        card.innerHTML = `<div class="ai-diagnosis-header">🤖 Diagnóstico da Sessão</div>
-          <div style="color:var(--txt-dim);font-size:0.82rem;padding:8px 0;">Limite diário de diagnósticos atingido (${DIAG_DAILY_LIMIT}/dia). Volte amanhã ou <strong class="nq-text-gold">faça upgrade para Premium</strong> para uso ilimitado.</div>`;
-        card.classList.remove('ai-diagnosis-loading');
-        return;
-      }
-      _incrementDiagQuota();
-
-      // Montar array de eixos com estatísticas
+    async function _pedirDiagnostico(correct, wrong, accuracy) {
       const axes = Object.entries(_studyAxisStats).map(([cat, stats]) => {
         const axis = NEFRO_AXES.find(a => a.cat === cat);
         return { name: axis ? axis.label : cat, correct: stats.correct, wrong: stats.wrong };
       });
-
       try {
         const _diagToken = (typeof window.getAuthToken === 'function') ? (await window.getAuthToken()) : null;
         const res = await fetch(`${SUPA_URL}/functions/v1/ai-diagnosis`, {
@@ -1573,38 +1605,54 @@
           headers: { 'Content-Type': 'application/json', 'apikey': SUPA_KEY, 'Authorization': `Bearer ${_diagToken || SUPA_KEY}` },
           body: JSON.stringify({ axes, totalCorrect: correct, totalWrong: wrong, accuracy }),
         });
-
-        if (res.status === 429) {
-          card.classList.remove('ai-diagnosis-loading');
-          card.innerHTML = `<div class="ai-diagnosis-header">🤖 Diagnóstico da Sessão</div><div class="ai-diagnosis-body" style="text-align:center;padding:16px 0;color:var(--txt-dim);">Limite diário atingido.<br><span style="font-size:0.8rem;">Volte amanhã ou <strong style="color:var(--gold);cursor:pointer;" data-action="showPaywallModal">faça upgrade para Premium</strong>.</span></div>`;
-          return;
-        }
+        if (res.status === 429) { _esgotarDiagQuotaLocal(); return { estado: 'recusado' }; }
+        if (res.status === 401) return { estado: 'sessao' };
         if (!res.ok) throw new Error('HTTP ' + res.status);
         const { diagnosis } = await res.json();
         if (!diagnosis) throw new Error('empty');
-
-        // Verificar se há pontos fracos para reforço (cat com acerto < 60%)
-        const weakCats = _getWeakCats();
-        const hasWeak = weakCats.length > 0;
-
-        card.classList.remove('ai-diagnosis-loading');
-        card.innerHTML = `
-          <div class="ai-diagnosis-header">🤖 Diagnóstico da Sessão
-            ${!isPremium() ? `<span style="font-size:0.68rem;opacity:0.55;font-weight:normal;margin-left:8px;">${_diagRemainingText()}</span>` : ''}
-          </div>
-          <div class="ai-diagnosis-body">${_renderMentorMarkdown(diagnosis)}</div>
-          ${!isPremium() ? `<div style="font-size:0.7rem;color:var(--txt-dim);margin-top:10px;border-top:1px solid rgba(255,255,255,0.08);padding-top:8px;">🔮 Oráculo: ${_mentorRemainingText()} &nbsp;·&nbsp; 🤖 Diagnóstico: ${_diagRemainingText()}</div>` : ''}
-          ${hasWeak ? `
-          <div style="margin-top:14px;text-align:center;">
-            <button class="btn reinforcement-btn" data-action="startReinforcementSession">
-              🎯 Treinar pontos fracos <span style="font-size:0.72rem;opacity:0.7;">(${_countReinforcementQuestions(weakCats)} questões)</span>
-            </button>
-          </div>` : ''}
-        `;
-      } catch {
-        card.remove();
+        _incrementDiagQuota();
+        return { estado: 'pronto', texto: diagnosis };
+      } catch (err) {
+        _track('error_diagnosis', { msg: String(err) });
+        return { estado: 'falha' };
       }
     }
+
+    async function _fetchDiagnosis(total, correct, wrong, accuracy, { novaTentativa = false } = {}) {
+      if (!document.getElementById('aiDiagnosisCard')) return;
+      _diagUltimoPedido = { total, correct, wrong, accuracy };
+
+      const isGuest = typeof authUser === 'undefined' || authUser === null;
+      if (isGuest) { _desenharDiagnostico({ estado: 'visitante' }); return; }
+
+      const chave = _assinaturaDaSessao(correct, wrong);
+      const anterior = _diagPorSessao.get(chave);
+      if (anterior?.promessa) {
+        _desenharDiagnostico({ estado: 'carregando' });
+        _desenharDiagnostico(await anterior.promessa);
+        return;
+      }
+      // Só uma falha pode ser repetida, e só a pedido.
+      if (anterior && !(novaTentativa && anterior.estado === 'falha')) { _desenharDiagnostico(anterior); return; }
+
+      if (!_canRunDiagnosis()) { _desenharDiagnostico({ estado: 'sem-cota' }); return; }
+
+      _desenharDiagnostico({ estado: 'carregando' });
+      const promessa = _pedirDiagnostico(correct, wrong, accuracy);
+      _diagPorSessao.set(chave, { estado: 'carregando', promessa });
+      const resultado = await promessa;
+      _diagPorSessao.set(chave, resultado);
+      _desenharDiagnostico(resultado);
+    }
+
+    function tentarDiagnosticoNovamente() {
+      const p = _diagUltimoPedido;
+      if (!p) return;
+      _fetchDiagnosis(p.total, p.correct, p.wrong, p.accuracy, { novaTentativa: true })
+        // O botão some ao redesenhar; o foco vai para o cartão, não se perde.
+        .then(() => document.getElementById('aiDiagnosisCard')?.focus({ preventScroll: true }));
+    }
+    window.tentarDiagnosticoNovamente = tentarDiagnosticoNovamente;
 
     function _getWeakCats() {
       return Object.entries(_studyAxisStats)
