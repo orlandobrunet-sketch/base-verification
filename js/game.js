@@ -2939,7 +2939,9 @@
       overlay.querySelector('#ecpKeep').onclick   = () => { overlay.remove(); onKeep(); };
     }
 
-    function equipOrSell(slot, item, onDone) {
+    /* `decidir` mostra a escolha Substituir/Manter. Por padrão é o popup de
+     * comparação; a página da Forja passa a sua própria, no fluxo. */
+    function equipOrSell(slot, item, onDone, decidir = showEquipComparePopup) {
       const currentItem = state.equipment[slot];
       if (!currentItem || currentItem.n === 'Vazio') {
         state.equipment[slot] = item;
@@ -2949,7 +2951,7 @@
         return;
       }
       
-      showEquipComparePopup(slot, currentItem, item,
+      decidir(slot, currentItem, item,
         () => {
           const val = _itemSellVal(currentItem);
           state.gold += val;
@@ -3774,97 +3776,203 @@
     window.closeChestModal = closeChestModal;
 
     // Modal da Forja — duas opções: item comum e lendário
+    // ── Forja: página do personagem, não sobreposição ───────────────────────
+    //
+    // Era uma caixa escura sobre o jogo que abria até dois outros popups em
+    // sequência: a comparação "Substituir?" e o cartão "Forja Concluída!".
+    // O equipamento atual não aparecia em lugar nenhum, e os motivos de uma
+    // forja recusada (jornada encerrada, tudo lendário) só iam para o diário.
+    //
+    // Agora a Forja é uma página: ouro, as duas forjas com o motivo de cada
+    // bloqueio, a decisão de substituição e o resultado no próprio fluxo, e o
+    // equipamento dos seis espaços logo abaixo. Com uma decisão pendente não
+    // dá para sair nem forjar de novo — o ouro já foi gasto nesse item.
+    const FORJA_CUSTO = { comum: 300, lendario: 1000 };
+    let _forja = null; // { origem, pendente, ultimo }
+
+    const _forjaTexto = m => String(m).replace(/\*\*/g, '');
+
+    function _forjaBloqueio(tipo) {
+      if (_forja?.pendente) return 'Decida o que fazer com o item forjado antes de forjar outro.';
+      if (state.gameOver) return 'A jornada foi encerrada. Inicie uma nova para voltar a forjar.';
+      if (allItemsMaxed()) return 'Todos os seis espaços já têm equipamento lendário.';
+      const falta = FORJA_CUSTO[tipo] - state.gold;
+      if (falta > 0) return `Faltam ${falta} de ouro.`;
+      return '';
+    }
+
+    function _forjaCartaoItem(item, slot, rotulo, comparaCom) {
+      const vazio = !item || item.n === 'Vazio';
+      const icone = vazio ? '' : getItemIcon(item.n, slot);
+      const arte = vazio ? ''
+        : icone ? `<img src="${icone}" alt="" onerror="this.src='${defaultIcons[slot] || ''}'">`
+        : `<span class="nq-forja-emoji" aria-hidden="true">${_TEMP_SLOT_EMOJI[slot] || '·'}</span>`;
+      const attrs = [['atk', 'Ataque'], ['def', 'Defesa'], ['kno', 'Conhecimento'], ['luck', 'Sorte']];
+      const valor = (k) => {
+        const v = vazio ? 0 : (item[k] || 0);
+        if (!comparaCom) return `${v}`;
+        const d = v - (comparaCom[k] || 0);
+        return d ? `${v} <span class="${d > 0 ? 'pos' : 'neg'}">(${d > 0 ? '+' : ''}${d})</span>` : `${v}`;
+      };
+      return `
+        <article class="nq-forja-item">
+          ${rotulo ? `<p class="nq-forja-rotulo">${rotulo}</p>` : ''}
+          <div class="nq-forja-item-topo">
+            <div class="nq-forja-arte${vazio ? ' nq-forja-arte-vazia' : ''}">${arte}</div>
+            <div>
+              <h3>${vazio ? 'Vazio' : escapeHtml(item.n)}</h3>
+              <p>${slotLabels[slot] || slot}${vazio ? '' : ` · <span class="rar-${item.rar}">${_rarLabel[item.rar] || item.rar}</span>`}</p>
+            </div>
+          </div>
+          ${vazio && !comparaCom ? '<p class="nq-forja-vazio">Nenhum item neste espaço.</p>'
+            : `<dl class="nq-forja-atributos">${attrs.map(([k, nome]) => `<div><dt>${nome}</dt><dd>${valor(k)}</dd></div>`).join('')}</dl>`}
+        </article>`;
+    }
+
+    function _forjaResultadoHtml() {
+      const f = _forja;
+      if (f.pendente) {
+        const { slot, atual, novo } = f.pendente;
+        return `
+          <h2>Novo item para ${slotLabels[slot] || slot}</h2>
+          <p>O espaço já está ocupado. Escolha qual fica — o outro vira ouro.</p>
+          <div class="nq-forja-comparar">
+            ${_forjaCartaoItem(atual, slot, 'Equipado agora')}
+            ${_forjaCartaoItem(novo, slot, 'Recém-forjado', atual)}
+          </div>
+          <div class="nq-forja-acoes">
+            <button type="button" class="btn gold" data-action="decidirForja" data-arg="substituir">Equipar o novo e vender o atual por ${_itemSellVal(atual)} de ouro</button>
+            <button type="button" class="btn sec" data-action="decidirForja" data-arg="manter">Manter o atual e vender o novo por ${_itemSellVal(novo)} de ouro</button>
+          </div>`;
+      }
+      if (f.ultimo?.aviso) return `<p class="nq-forja-aviso">${escapeHtml(_forjaTexto(f.ultimo.aviso))}</p>`;
+      if (f.ultimo) {
+        const { item, slot, msg } = f.ultimo;
+        return `
+          <h2>Forja concluída</h2>
+          <p>${escapeHtml(_forjaTexto(msg))}</p>
+          ${_forjaCartaoItem(item, slot)}`;
+      }
+      return '';
+    }
+
+    function _renderForja() {
+      const pagina = document.getElementById('forjaPage');
+      if (!pagina || !_forja) return;
+      const opcao = (tipo, titulo, descricao) => {
+        const motivo = _forjaBloqueio(tipo);
+        const id = `forjaMotivo-${tipo}`;
+        return `
+          <div class="nq-forja-opcao">
+            <h3>${titulo}</h3>
+            <p class="nq-forja-custo">${FORJA_CUSTO[tipo]} de ouro</p>
+            <p>${descricao}</p>
+            <button type="button" class="btn gold" data-action="forjarNaPagina" data-arg="${tipo}"
+              ${motivo ? `disabled aria-describedby="${id}"` : ''}>Forjar ${tipo === 'comum' ? 'item comum' : 'item lendário'}</button>
+            ${motivo ? `<p id="${id}" class="nq-forja-motivo">${motivo}</p>` : ''}
+          </div>`;
+      };
+      const saidaBloqueada = !!_forja.pendente;
+      pagina.innerHTML = `
+        <div class="nq-study-content">
+          <header class="nq-forja-cabecalho">
+            <button type="button" class="btn sec" data-action="fecharForja" ${saidaBloqueada ? 'disabled aria-describedby="forjaMotivoSaida"' : ''}>← Voltar à jornada</button>
+            <h1 id="forjaTitulo">Forja</h1>
+            <p class="nq-forja-ouro">Ouro disponível: <strong>${state.gold}</strong></p>
+            ${saidaBloqueada ? '<p id="forjaMotivoSaida" class="nq-forja-motivo">Decida o item forjado antes de voltar: o ouro já foi gasto nele.</p>' : ''}
+          </header>
+          <section class="nq-forja-opcoes" aria-label="Tipos de forja">
+            ${opcao('comum', 'Item comum', 'Um item aleatório para qualquer espaço. A raridade depende do seu nível e da sua sorte.')}
+            ${opcao('lendario', 'Item lendário', 'Um item lendário inédito para arma, armadura ou relíquia.')}
+          </section>
+          <section id="forjaResultado" class="nq-forja-resultado" role="status" aria-live="polite" tabindex="-1">${_forjaResultadoHtml()}</section>
+          <section class="nq-forja-equipamento" aria-labelledby="forjaEquipTitulo">
+            <h2 id="forjaEquipTitulo">Equipamento atual</h2>
+            <div class="nq-forja-grade">
+              ${['weapon', 'armor', 'relic', 'helmet', 'glove', 'boot'].map(slot => _forjaCartaoItem(state.equipment[slot], slot)).join('')}
+            </div>
+          </section>
+        </div>`;
+    }
+
+    const _forjaApi = {
+      decidir(slot, atual, novo, substituir, manter) {
+        _forja.pendente = { slot, atual, novo, substituir, manter };
+      },
+      concluir(item, slot, msg) { _forja.ultimo = { item, slot, msg }; },
+      aviso(m) { _forja.ultimo = { aviso: m }; },
+    };
+
+    function _forjaFocarResultado() {
+      const alvo = _forja?.pendente
+        ? document.querySelector('#forjaResultado [data-action="decidirForja"]')
+        : document.getElementById('forjaResultado');
+      alvo?.focus({ preventScroll: true });
+      document.getElementById('forjaResultado')?.scrollIntoView({ block: 'nearest' });
+    }
+
+    function forjarNaPagina(tipo) {
+      if (!_forja || _forjaBloqueio(tipo)) return;
+      _forja.ultimo = null;
+      if (tipo === 'lendario') _forgeLegendaryDirect(_forjaApi);
+      else _forgeItemDirect(_forjaApi);
+      _renderForja();
+      _forjaFocarResultado();
+    }
+
+    function decidirForja(escolha) {
+      const p = _forja?.pendente;
+      if (!p) return;
+      _forja.pendente = null;
+      (escolha === 'substituir' ? p.substituir : p.manter)();
+      _renderForja();
+      _forjaFocarResultado();
+    }
+
     function showForjaModal() {
-      const existing = document.getElementById('forjaModal');
-      if(existing) existing.remove();
+      if (document.getElementById('forjaPage')) return;
+      _forja = {
+        origem: {
+          foco: document.activeElement,
+          scroll: window.scrollY,
+          elementos: [...document.querySelectorAll('#mainApp, #welcomeScreen')].map(el => ({ el, hidden: el.classList.contains('hidden'), inert: el.inert })),
+        },
+        pendente: null,
+        ultimo: null,
+      };
+      _forja.origem.elementos.forEach(({ el }) => { el.classList.add('hidden'); el.inert = true; });
+      const pagina = document.createElement('section');
+      pagina.id = 'forjaPage';
+      pagina.className = 'nq-study-surface nq-forja';
+      pagina.setAttribute('role', 'main');
+      pagina.setAttribute('aria-labelledby', 'forjaTitulo');
+      pagina.addEventListener('keydown', e => {
+        // A Forja tem o próprio contexto de teclado; atalhos da jornada não passam.
+        e.stopPropagation();
+        if (e.key === 'Escape' && !_forja?.pendente) { e.preventDefault(); fecharForja(); }
+      });
+      document.body.appendChild(pagina);
+      document.body.classList.add('nq-studying');
+      _renderForja();
+      window.scrollTo(0, 0);
+      requestAnimationFrame(() => pagina.querySelector('button:not([disabled])')?.focus({ preventScroll: true }));
+    }
 
-      const goldForge = 300, goldLeg = 1000;
-      const canForge = state.gold >= goldForge;
-      const canLeg   = state.gold >= goldLeg;
-
-      const modal = document.createElement('div');
-      modal.id = 'forjaModal';
-      modal.className = 'nq-overlay';
-      modal.style.cssText = 'z-index:9100;background:rgba(0,0,0,0.72);padding:24px 16px;';
-      modal.innerHTML = `
-        <div style="
-          position:relative;
-          background:linear-gradient(160deg,rgba(18,26,54,0.99),rgba(10,16,38,0.99));
-          border:1px solid rgba(255,215,0,0.35);border-radius:18px;
-          padding:28px 24px 20px;min-width:310px;max-width:380px;width:90%;
-          max-height:calc(100vh - 48px);overflow-y:auto;
-          box-shadow:0 8px 48px rgba(0,0,0,0.9),0 0 0 1px rgba(255,215,0,0.08) inset;
-        ">
-          <!-- O ✕ media 16x26: estreito demais para o dedo (mínimo 24x24). A
-               área cresce para 44x44 e o recuo compensa o crescimento, para o
-               glifo continuar onde já estava. -->
-          <button type="button" data-remove-id="forjaModal" aria-label="Fechar a Forja" style="position: absolute; top: 1px; right: 5px; display: grid; place-items: center; width: 44px; height: 44px; background: none; border: none; color: #6b7db8; font-size: 1.2rem; cursor: pointer; z-index: 10;">✕</button>
-          <h3 style="color:#fb923c;font-family:'Cinzel',serif;font-size:1.15rem;text-align:center;margin:0 0 6px;letter-spacing:1px;">🔥 FORJA</h3>
-          <p style="color:#6b7db8;font-family:'Philosopher',serif;font-size:0.78rem;text-align:center;margin:0 0 20px;">Escolha o tipo de forjamento</p>
-
-          <div style="display:flex;flex-direction:column;gap:12px;">
-
-            <!-- Forjar Item Comum -->
-            <div style="
-              background:rgba(251,146,60,0.08);border:1px solid rgba(251,146,60,${canForge?'0.4':'0.18'});
-              border-radius:12px;padding:14px 16px;
-              
-            ">
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-                <span style="color:#fb923c;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:700;">⚒️ Item Comum</span>
-                <span style="color:#ffd700;font-family:'Cinzel',serif;font-size:0.75rem;">💰 300</span>
-              </div>
-              <p style="color:#9aabcc;font-family:'Philosopher',serif;font-size:0.73rem;margin:0 0 10px;line-height:1.4;">Forja um item aleatório. A raridade depende do seu nível e sorte.</p>
-              <button data-remove-id="forjaModal" data-action="_mobileCallback" data-arg="forge"
-                ${canForge?'':'disabled'}
-                style="width:100%;padding:8px;background:${canForge?'linear-gradient(135deg,rgba(251,146,60,0.35),rgba(200,100,30,0.3))':'rgba(255,255,255,0.04)'};
-                border:1px solid rgba(251,146,60,${canForge?'0.6':'0.2'});border-radius:8px;
-                color:${canForge?'#fb923c':'#8a93a6'};font-family:'Cinzel',serif;font-size:0.7rem;
-                font-weight:700;letter-spacing:1px;cursor:${canForge?'pointer':'not-allowed'};">
-                FORJAR AGORA
-              </button>
-            </div>
-
-            <!-- Forjar Lendário -->
-            <div style="
-              background:rgba(192,132,252,0.08);border:1px solid rgba(192,132,252,${canLeg?'0.4':'0.18'});
-              border-radius:12px;padding:14px 16px;
-              
-            ">
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-                <span style="color:#d8b4fe;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:700;">⭐ Item Lendário</span>
-                <span style="color:#ffd700;font-family:'Cinzel',serif;font-size:0.75rem;">💰 1000</span>
-              </div>
-              <p style="color:#9aabcc;font-family:'Philosopher',serif;font-size:0.73rem;margin:0 0 10px;line-height:1.4;">Garante um item lendário para um slot aleatório. Poder máximo!</p>
-              <button data-remove-id="forjaModal" data-action="_mobileCallback" data-arg="legendary"
-                ${canLeg?'':'disabled'}
-                style="width:100%;padding:8px;background:${canLeg?'linear-gradient(135deg,rgba(192,132,252,0.3),rgba(140,80,220,0.25))':'rgba(255,255,255,0.04)'};
-                border:1px solid rgba(192,132,252,${canLeg?'0.6':'0.2'});border-radius:8px;
-                color:${canLeg?'#d8b4fe':'#8a93a6'};font-family:'Cinzel',serif;font-size:0.7rem;
-                font-weight:700;letter-spacing:1px;cursor:${canLeg?'pointer':'not-allowed'};">
-                FORJAR LENDÁRIO
-              </button>
-            </div>
-
-          </div>
-
-          <div style="color:#7d8ba0;font-family:'Philosopher',serif;font-size:0.72rem;text-align:center;margin-top:14px;">
-            Ouro disponível: <strong style="color:#ffd700;">${state.gold}</strong>
-          </div>
-
-          <button data-remove-id="forjaModal"
-            style="margin-top:14px;width:100%;padding:7px;background:rgba(255,255,255,0.07);
-            border:1px solid rgba(255,255,255,0.35);border-radius:8px;color:#c0cfe8;
-            font-family:'Cinzel',serif;font-size:0.68rem;cursor:pointer;letter-spacing:1px;">
-            FECHAR
-          </button>
-        </div>
-      `;
-
-      // modal.addEventListener('click', e => { if(e.target === modal) modal.remove(); });
-      document.body.appendChild(modal);
+    function fecharForja() {
+      if (!_forja || _forja.pendente) return;
+      const { origem } = _forja;
+      _forja = null;
+      document.getElementById('forjaPage')?.remove();
+      document.body.classList.remove('nq-studying');
+      origem.elementos.forEach(({ el, hidden, inert }) => { el.classList.toggle('hidden', hidden); el.inert = inert; });
+      window.scrollTo(0, origem.scroll);
+      const volta = origem.foco?.isConnected ? origem.foco : document.getElementById('forgeBtn');
+      volta?.focus({ preventScroll: true });
     }
     window.showForjaModal = showForjaModal;
+    window.fecharForja = fecharForja;
+    window.forjarNaPagina = forjarNaPagina;
+    window.decidirForja = decidirForja;
 
     function closeBoardModal() {
       document.getElementById('boardModal').classList.add('hidden');
@@ -3893,30 +4001,36 @@
     };
 
     // Funções internas diretas (sem interceptação)
-    function _forgeItemDirect(){
-      if(state.gameOver){ log('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
-      if(allItemsMaxed()){ log('🏆 Você já possui todos os equipamentos lendários!'); return; }
+    /* `pagina` (opcional) vem da página da Forja: decide a substituição no
+     * fluxo, mostra o resultado ali e recebe os avisos que antes só iam para o
+     * diário. Sem ela, o comportamento é o de sempre (popups). */
+    function _forgeItemDirect(pagina){
+      const aviso = m => { log(m); pagina?.aviso(m); };
+      if(state.gameOver){ aviso('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
+      if(allItemsMaxed()){ aviso('🏆 Você já possui todos os equipamentos lendários!'); return; }
       const cost=300;
-      if(state.gold<cost){ log('🧱 Ouro insuficiente! Precisa de 300 ouro para forjar.'); return; }
+      if(state.gold<cost){ aviso('🧱 Ouro insuficiente! Precisa de 300 ouro para forjar.'); return; }
       state.gold-=cost;
       const st=total();
       const rolled=rollItem(state.level, st.luck);
       const gains=[`⚔️ ATK ${rolled.item.atk}`, `🛡️ DEF ${rolled.item.def}`, `📚 CONH ${rolled.item.kno}`, `🍀 SORTE ${rolled.item.luck}`];
       playSound('forge');
       equipOrSell(rolled.slot, rolled.item, (msg) => {
-        showForgePopup(rolled.item, rolled.slot, gains);
+        if (pagina) pagina.concluir(rolled.item, rolled.slot, msg);
+        else showForgePopup(rolled.item, rolled.slot, gains);
         log(`🔨 Forja concluída! ${msg}`);
         renderHUD();
         updateBadges();
         saveGame();
-      });
+      }, pagina?.decidir);
     }
 
-    function _forgeLegendaryDirect(){
-      if(state.gameOver){ log('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
-      if(allItemsMaxed()){ log('🏆 Você já possui todos os equipamentos lendários!'); return; }
+    function _forgeLegendaryDirect(pagina){
+      const aviso = m => { log(m); pagina?.aviso(m); };
+      if(state.gameOver){ aviso('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
+      if(allItemsMaxed()){ aviso('🏆 Você já possui todos os equipamentos lendários!'); return; }
       const cost=1000;
-      if(state.gold<cost){ log('🧱 Ouro insuficiente! Precisa de 1000 ouro para forjar lendário.'); return; }
+      if(state.gold<cost){ aviso('🧱 Ouro insuficiente! Precisa de 1000 ouro para forjar lendário.'); return; }
       state.gold-=cost;
       const equipped = Object.values(state.equipment).map(e=>e.n);
       const obtained = Array.isArray(state.obtainedItems) ? state.obtainedItems : [];
@@ -3928,17 +4042,18 @@
       const slot=keys[Math.floor(Math.random()*keys.length)];
       let legendaryItems = items[slot].filter(i => i.rar === 'legendary' && !seen.has(i.n));
       if(legendaryItems.length === 0) legendaryItems = items[slot].filter(i => i.rar === 'legendary' && !equipped.includes(i.n));
-      if(legendaryItems.length === 0){ log('🏆 Você já forjou todos os lendários deste tipo!'); state.gold+=cost; return; }
+      if(legendaryItems.length === 0){ aviso('🏆 Você já forjou todos os lendários deste tipo! O ouro foi devolvido.'); state.gold+=cost; return; }
       const legendaryItem = legendaryItems[Math.floor(Math.random()*legendaryItems.length)];
       _markObtained(legendaryItem.n);
       const legendaryItemCopy = {...legendaryItem};
       const gains = [`⚔️ ATK ${legendaryItem.atk}`, `🛡️ DEF ${legendaryItem.def}`, `📚 CONH ${legendaryItem.kno}`, `🍀 SORTE ${legendaryItem.luck}`];
       playSound('forge');
       equipOrSell(slot, legendaryItemCopy, (msg) => {
-        showForgePopup(legendaryItemCopy, slot, gains);
+        if (pagina) pagina.concluir(legendaryItemCopy, slot, msg);
+        else showForgePopup(legendaryItemCopy, slot, gains);
         log(`🔨 Forja Lendária! ${msg}`);
         renderHUD(); updateBadges(); saveGame();
-      });
+      }, pagina?.decidir);
     }
 
     function _openChestDirect(){
