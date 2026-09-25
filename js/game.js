@@ -3801,7 +3801,7 @@
       return '';
     }
 
-    function _forjaCartaoItem(item, slot, rotulo, comparaCom) {
+    function _forjaCartaoItem(item, slot, rotulo, comparaCom, variante = '') {
       const vazio = !item || item.n === 'Vazio';
       const icone = vazio ? '' : getItemIcon(item.n, slot);
       const arte = vazio ? ''
@@ -3815,8 +3815,8 @@
         return d ? `${v} <span class="${d > 0 ? 'pos' : 'neg'}">(${d > 0 ? '+' : ''}${d})</span>` : `${v}`;
       };
       return `
-        <article class="nq-forja-item">
-          ${rotulo ? `<p class="nq-forja-rotulo">${rotulo}</p>` : ''}
+        <article class="nq-forja-item${variante ? ` nq-forja-item-${variante}` : ''}">
+          ${rotulo ? `<p class="nq-forja-rotulo">${variante === 'novo' ? '<span class="nq-forja-selo">Novo</span> ' : ''}${rotulo}</p>` : ''}
           <div class="nq-forja-item-topo">
             <div class="nq-forja-arte${vazio ? ' nq-forja-arte-vazia' : ''}">${arte}</div>
             <div>
@@ -3829,20 +3829,31 @@
         </article>`;
     }
 
+    /* Uma frase que diz o que os números dizem, sem pedir que a pessoa some. */
+    function _forjaVeredito(novo, atual) {
+      const ks = ['atk', 'def', 'kno', 'luck'];
+      const melhor = ks.filter(k => (novo[k] || 0) > (atual[k] || 0)).length;
+      const pior = ks.filter(k => (novo[k] || 0) < (atual[k] || 0)).length;
+      if (melhor === 4) return 'Ele é melhor nos quatro atributos.';
+      if (pior === 4) return 'Ele é pior nos quatro atributos.';
+      if (!melhor && !pior) return 'Ele tem os mesmos atributos do atual.';
+      return `Ele é melhor em ${melhor} e pior em ${pior} dos quatro atributos.`;
+    }
+
     function _forjaResultadoHtml() {
       const f = _forja;
       if (f.pendente) {
         const { slot, atual, novo } = f.pendente;
         return `
-          <h2>Novo item para ${slotLabels[slot] || slot}</h2>
-          <p>O espaço já está ocupado. Escolha qual fica — o outro vira ouro.</p>
+          <h2>Você forjou ${escapeHtml(novo.n)}</h2>
+          <p>${_forjaVeredito(novo, atual)} Seu espaço de ${(slotLabels[slot] || slot).toLowerCase()} já está ocupado: escolha qual fica, e o outro vira ouro.</p>
           <div class="nq-forja-comparar">
-            ${_forjaCartaoItem(atual, slot, 'Equipado agora')}
-            ${_forjaCartaoItem(novo, slot, 'Recém-forjado', atual)}
+            ${_forjaCartaoItem(novo, slot, 'Recém-forjado', atual, 'novo')}
+            ${_forjaCartaoItem(atual, slot, 'Equipado agora', null, 'atual')}
           </div>
           <div class="nq-forja-acoes">
-            <button type="button" class="btn gold" data-action="decidirForja" data-arg="substituir">Equipar o novo e vender o atual por ${_itemSellVal(atual)} de ouro</button>
-            <button type="button" class="btn sec" data-action="decidirForja" data-arg="manter">Manter o atual e vender o novo por ${_itemSellVal(novo)} de ouro</button>
+            <button type="button" class="btn gold" data-action="decidirForja" data-arg="substituir">Equipar ${escapeHtml(novo.n)}<span class="nq-forja-btn-sub">${escapeHtml(atual.n)} vira ${_itemSellVal(atual)} de ouro</span></button>
+            <button type="button" class="btn sec" data-action="decidirForja" data-arg="manter">Manter ${escapeHtml(atual.n)}<span class="nq-forja-btn-sub">${escapeHtml(novo.n)} vira ${_itemSellVal(novo)} de ouro</span></button>
           </div>`;
       }
       if (f.ultimo?.aviso) return `<p class="nq-forja-aviso">${escapeHtml(_forjaTexto(f.ultimo.aviso))}</p>`;
@@ -3955,7 +3966,9 @@
       document.body.classList.add('nq-studying');
       _renderForja();
       window.scrollTo(0, 0);
-      requestAnimationFrame(() => pagina.querySelector('button:not([disabled])')?.focus({ preventScroll: true }));
+      // Foco já na montagem: com requestAnimationFrame, um Escape imediato
+      // caía no documento e a página não fechava.
+      pagina.querySelector('button:not([disabled])')?.focus({ preventScroll: true });
     }
 
     function fecharForja() {

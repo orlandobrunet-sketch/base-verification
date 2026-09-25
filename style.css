@@ -13853,6 +13853,13 @@ body.nq-studying #mobileSoundControls { position: relative; top: auto; right: au
 .nq-forja-grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr)); gap: 16px; margin-top: 16px; }
 .nq-forja-item { border-left: 3px solid #34434e; padding: 4px 0 4px 14px; min-width: 0; }
 .nq-forja-rotulo { margin: 0 0 8px; font-size: .85rem; color: #baa6d2; }
+/* Na comparação, o recém-forjado é o protagonista: filete e fundo dourados e o
+   selo "Novo". O equipado fica recuado, como referência. */
+.nq-forja-item-novo { border-left-color: var(--gold); background: #1a1f24; padding: 14px 16px 14px 16px; border-radius: 0 6px 6px 0; }
+.nq-forja-item.nq-forja-item-novo h3 { color: var(--gold); font-size: 1.1rem; }
+.nq-forja-item-atual { opacity: .85; }
+.nq-forja-selo { display: inline-block; margin-right: 6px; padding: 1px 8px; border-radius: 99px; background: var(--gold); color: #101620; font-size: .75rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.nq-forja-btn-sub { display: block; font-size: .8rem; font-weight: 400; opacity: .85; margin-top: 2px; }
 .nq-forja-item-topo { display: flex; gap: 12px; align-items: center; }
 .nq-forja-item h3 { font-size: 1rem; margin: 0; color: var(--txt); overflow-wrap: anywhere; }
 .nq-forja-item-topo p { margin: 2px 0 0; color: var(--txt-dim); font-size: .9rem; }
