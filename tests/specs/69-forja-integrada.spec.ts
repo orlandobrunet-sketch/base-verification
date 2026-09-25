@@ -83,10 +83,17 @@ for (const escolha of ['manter', 'substituir'] as const) {
     await abrirForja(page, { ajuste: OCUPAR });
     await page.getByRole('button', { name: 'Forjar item comum' }).click();
 
-    const equipar = page.getByRole('button', { name: /Equipar o novo e vender o atual por 20 de ouro/ });
-    const manter = page.getByRole('button', { name: /Manter o atual e vender o novo por \d+ de ouro/ });
+    const equipar = page.getByRole('button', { name: /^Equipar .+ vira 20 de ouro$/ });
+    const manter = page.getByRole('button', { name: /^Manter Item de teste \w+.+ vira \d+ de ouro$/ });
     await expect(equipar).toBeFocused();
     await semPopups(page);
+
+    // O recém-forjado vem primeiro, com selo "Novo"; o equipado fica como referência.
+    const cartoes = page.locator('#forjaResultado .nq-forja-item');
+    await expect(cartoes.first()).toHaveClass(/nq-forja-item-novo/);
+    await expect(cartoes.first().locator('.nq-forja-selo')).toHaveText('Novo');
+    await expect(cartoes.nth(1)).toHaveClass(/nq-forja-item-atual/);
+    await expect(page.locator('#forjaResultado > p').first()).toContainText(/Ele (é|tem)/);
 
     // Com a decisão pendente, o ouro já foi gasto: não dá para sair nem forjar de novo.
     await expect(page.getByRole('button', { name: '← Voltar à jornada' })).toBeDisabled();
@@ -97,7 +104,7 @@ for (const escolha of ['manter', 'substituir'] as const) {
 
     const slot = await page.evaluate(() => (0, eval)('_forja.pendente.slot') as string);
     const novo = await page.evaluate(() => (0, eval)('_forja.pendente.novo.n') as string);
-    const venda = Number((await manter.textContent())!.match(/por (\d+)/)![1]);
+    const venda = Number((await manter.textContent())!.match(/vira (\d+) de ouro/)![1]);
 
     await (escolha === 'manter' ? manter : equipar).click();
     await expect(page.locator('#forjaResultado').getByRole('heading', { name: 'Forja concluída' })).toBeVisible();
@@ -154,7 +161,7 @@ for (const largura of [320, 390]) {
     await abrirForja(page, { ajuste: OCUPAR, gold: 400, largura });
     await page.evaluate(() => { document.documentElement.style.fontSize = '32px'; });
     await page.getByRole('button', { name: 'Forjar item comum' }).click();
-    await expect(page.getByRole('button', { name: /Equipar o novo/ })).toBeVisible();
+    await expect(page.getByRole('button', { name: /^Equipar / })).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth), 'rolagem horizontal').toBeLessThanOrEqual(1);
     // A superfície pode cortar em vez de rolar: cada item e botão precisa caber inteiro.
     const cortados = await page.evaluate(() => [...document.querySelectorAll('#forjaPage .nq-forja-item, #forjaPage button, #forjaPage p')]
@@ -165,7 +172,7 @@ for (const largura of [320, 390]) {
       const caixa = await botao.boundingBox();
       if (caixa) expect(caixa.height, `alvo de toque: ${await botao.textContent()}`).toBeGreaterThanOrEqual(44);
     }
-    for (const sel of ['.nq-forja-ouro', '.nq-forja-custo', '.nq-forja-motivo', '.nq-forja-rotulo', '.nq-forja-atributos', '.nq-forja-item-topo p', '#forjaResultado > p']) {
+    for (const sel of ['.nq-forja-ouro', '.nq-forja-custo', '.nq-forja-motivo', '.nq-forja-rotulo', '.nq-forja-atributos', '.nq-forja-item-topo p', '#forjaResultado > p', '.nq-forja-selo', '.nq-forja-btn-sub', '.nq-forja-item-novo h3']) {
       expect(await page.evaluate(medirContraste, `#forjaPage ${sel}`), sel).toEqual([]);
     }
   });
