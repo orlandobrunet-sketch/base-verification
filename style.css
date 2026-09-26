@@ -2877,7 +2877,7 @@
       font-family: 'Cinzel Decorative', serif;
       font-size: clamp(0.9rem, 2.4vw, 1.35rem);
       font-weight: 700; line-height: 1; user-select: none;
-      color: rgba(160,180,210,0.35);
+      color: rgba(160,180,210,0.72);
       position: relative; z-index: 2;
       transition: color 0.4s, text-shadow 0.4s;
     }
@@ -3491,7 +3491,7 @@
     }
     .mobile-action-confirm .mac-gold-avail {
       font-size: 0.72rem;
-      color: #64748b;
+      color: #94a3b8;
       text-align: center;
       margin-bottom: 14px;
     }
@@ -9962,7 +9962,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   font-weight: bold;
   color: rgba(217,191,85,0.95);
 }
-.ach-counter-label { font-size: 0.78rem; color: rgba(140,160,200,0.65); margin-top: 6px; }
+.ach-counter-label { font-size: 0.78rem; color: #a9b8d6; margin-top: 6px; }
 /* .ach-badges-label: regra removida (elemento extinto do HTML em v10.56) */
 .ach-badges-row {
   display: grid;
@@ -10011,7 +10011,7 @@ body.arqui-nefromante-final #arquiStarsDesktop {
   border-color: rgba(52,211,153,0.28);
   background: linear-gradient(135deg, rgba(52,211,153,0.09), rgba(16,185,129,0.05));
 }
-.ach-row.locked { opacity: 0.55; }
+.ach-row.locked { opacity: 1; } /* o 🔒 e a imagem apagada indicam o estado; o texto do requisito precisa ser lido */
 .ach-row-left { font-size: 1.65rem; flex-shrink: 0; width: 36px; text-align: center; line-height: 1; }
 .ach-row.locked .ach-row-left { filter: grayscale(1) brightness(0.5); }
 .ach-row-img { width: 34px; height: 34px; object-fit: contain; }
@@ -10019,14 +10019,14 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 .ach-row-img.locked { filter: grayscale(1) brightness(0.45); }
 .ach-row-name {
   font-size: 0.86rem; font-weight: bold;
-  color: rgba(155,170,200,0.75);
+  color: #b7c3da;
   display: flex; align-items: center; gap: 5px;
   line-height: 1.3;
 }
 .ach-row.unlocked .ach-row-name { color: #34d399; }
 .ach-check { color: #34d399; font-size: 0.78rem; }
-.ach-lock-icon { color: #6b7280; font-size: 0.68rem; }
-.ach-row-desc { font-size: 0.72rem; color: rgba(110,135,180,0.65); margin-top: 2px; line-height: 1.35; }
+.ach-lock-icon { color: #9aa3b2; font-size: 0.68rem; }
+.ach-row-desc { font-size: 0.72rem; color: #9fb0cc; margin-top: 2px; line-height: 1.35; }
 .ach-continue-btn { width: 100%; margin-top: 4px; }
 
 /* Grimório: botão Resumo Rápido nos cards */
@@ -13958,3 +13958,8 @@ li.nq-exam-opcao { cursor: default; }
 .nq-comparar .btn.gold { background: var(--gold); color: #101620; border-color: var(--gold); }
 .nq-comparar :focus-visible { outline: 2px solid #78d9e3; outline-offset: 4px; }
 .nq-comparar .rar-common { color: #b8c1cf; }
+
+/* Popups tratados por nqDialogo (celebrações, avisos, baús): alvo de toque
+   mínimo de 44px. Os ✕ mediam 20–30px e vários "Continuar" ficavam em 36px. */
+[data-nq-dialogo] :is(button, [role="button"]):not(.chest-img-clickable) { min-height: 44px; }
+[data-nq-dialogo] :is(.auth-close-btn, [aria-label="Fechar"], [data-remove-id]):not(.btn):not([class*="btn"]) { min-width: 44px; }

@@ -27,6 +27,38 @@ function manageDialogFocus(dialog, onClose, returnFocus = document.activeElement
   };
 }
 
+/* Popups criados na hora (celebrações, avisos, baús) viravam só uma caixa por
+ * cima: sem papel de diálogo, com o foco parado atrás e o Tab escapando para a
+ * jornada. Este envoltório reaproveita manageDialogFocus e acrescenta o que
+ * eles não tinham: papel e título do diálogo, foco no botão principal, Escape
+ * acionando o fechar (quando o popup tem um) e foco devolvido quando o popup
+ * some — seja removido do DOM, seja escondido pela classe. */
+function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {}) {
+  if (!raiz || raiz.dataset.nqDialogo) return;
+  raiz.dataset.nqDialogo = '1';
+  const caixa = painel || raiz.querySelector('.modal-content, .narrative-card, .forge-card, .chest-content, [class*="card"]') || raiz;
+  caixa.setAttribute('role', 'dialog');
+  caixa.setAttribute('aria-modal', 'true');
+  const titulo = caixa.querySelector('h1, h2, h3');
+  if (titulo) {
+    titulo.id ||= 'nqDlg' + Math.random().toString(36).slice(2, 8);
+    caixa.setAttribute('aria-labelledby', titulo.id);
+  }
+  const fechar = () => caixa.querySelector('[data-remove-id], [data-close-closest], .auth-close-btn, [aria-label^="Fechar"], [data-action^="close"]');
+  const botoes = [...caixa.querySelectorAll('button:not(:disabled), [role="button"]')];
+  const principal = botoes.find(b => !/^[✕×x]$/i.test((b.textContent || '').trim()) && b.getAttribute('aria-label') !== 'Fechar') || botoes[0];
+  const soltar = manageDialogFocus(raiz, () => fechar()?.click(), document.activeElement, principal);
+  const vigia = new MutationObserver(() => {
+    if (visivel(raiz)) return;
+    vigia.disconnect();
+    delete raiz.dataset.nqDialogo;
+    soltar(true);
+  });
+  // Só o que importa: o popup sair do contêiner ou mudar de classe/estilo.
+  if (raiz.parentNode) vigia.observe(raiz.parentNode, { childList: true });
+  vigia.observe(raiz, { attributes: true, attributeFilter: ['class', 'style'] });
+}
+
     // ============ SISTEMA DE STREAK MULTIPLICADOR ============
     function getStreakMultiplier(streak) {
       if (streak >= 15) return { mult: 2.5, label: 'x2.5', css: 'streak-x5', fire: '🔥🔥🔥' };
