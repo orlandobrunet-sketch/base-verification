@@ -1662,6 +1662,12 @@ body.reading-mode:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[d
     letter-spacing: .1em;
   }
 
+  /* Teto pela largura (8vw): com texto normal o tamanho é o mesmo; a 200%,
+   * "NefroQuest" passava da borda ao lado do botão Herói e do som. */
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .game-title h1 {
+    font-size: min(1.55rem, 8vw);
+  }
+
   body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-game-brand {
     display: block;
   }
