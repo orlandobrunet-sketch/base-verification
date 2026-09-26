@@ -20,7 +20,8 @@
   --nql-difficulty-flow: 25%;
   box-sizing: border-box;
   display: grid;
-  min-width: 20rem;
+  /* px, não rem: com texto a 200%, 20rem virava 640px e cortava a tela. */
+  min-width: 320px;
   min-height: 100dvh;
   padding: clamp(.75rem, 2vw, 1.5rem);
   grid-template-columns: minmax(0, 1fr);
@@ -47,6 +48,9 @@
   position: relative;
   box-sizing: border-box;
   display: grid;
+  /* Coluna explícita: a automática crescia até o maior conteúdo sem quebra e,
+   * com texto a 200%, empurrava o conteúdo para fora (e o overflow-x o cortava). */
+  grid-template-columns: minmax(0, 1fr);
   width: min(70rem, 100%);
   max-height: calc(100dvh - clamp(1.5rem, 4vw, 3rem));
   padding: 0;
@@ -86,6 +90,8 @@
 }
 
 #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__route {
+  /* Quebra com texto ampliado: "Ritmo clínico" saía pela direita. */
+  flex-wrap: wrap;
   margin: 0 0 .75rem;
   gap: .75rem;
   color: var(--nql-lumen);
@@ -384,7 +390,9 @@
   line-height: 1.2;
   opacity: 1;
   text-transform: uppercase;
-  white-space: nowrap;
+  /* Quebra quando precisa: com texto ampliado, "Ponto de partida" saía do cartão. */
+  white-space: normal;
+  text-align: center;
 }
 
 #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-chip.is-ritual {
@@ -640,8 +648,10 @@
 }
 
 #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-confirm {
-  display: grid;
-  grid-template-columns: auto auto 1fr;
+  /* flex com quebra: em grade de colunas automáticas, "Continuar com Médio →"
+   * estourava o botão quando o texto era ampliado. */
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: .3rem;
   border: 1px solid rgba(var(--nql-mastery-rgb), .62);
@@ -653,7 +663,7 @@
 
 #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-confirm strong { color: var(--nql-mastery); }
 #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-confirm > span:last-child {
-  justify-self: end;
+  margin-left: auto;
   color: var(--nql-mastery);
   font-family: var(--nql-font-instrument);
 }
@@ -793,8 +803,15 @@
   #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__footer > p { display: none; }
   #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__actions {
     width: 100%;
-    grid-template-columns: 6.2rem minmax(0, 1fr);
+    /* Mesma proporção de antes (Cancelar estreito, Continuar largo), mas com
+     * quebra: com texto ampliado o Continuar desce para a linha de baixo em vez
+     * de ficar com 88px e estourar. Colunas iguais faziam "Continuar com
+     * Hardcore" quebrar e o rodapé mudar de altura ao trocar de modo. */
+    display: flex;
+    flex-wrap: wrap;
   }
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-cancel { flex: 0 0 min(100%, 6.2rem); }
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-confirm { flex: 1 1 11rem; min-width: 0; }
 }
 
 @media (max-width: 22.5rem) {

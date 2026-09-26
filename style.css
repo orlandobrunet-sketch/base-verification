@@ -13870,6 +13870,13 @@ body.nq-studying #mobileSoundControls { position: relative; top: auto; right: au
 .nq-forja-arte img { width: 100%; height: 100%; object-fit: cover; }
 .nq-forja-emoji { font-size: 1.5rem; }
 .nq-forja-arte-vazia { background: transparent; border: 1px dashed #425563; }
+/* Item equipado tem moldura sólida na cor da raridade — o vazio já tinha a
+   tracejada, e o equipado ficava sem nenhuma. */
+.nq-forja-arte[class*="nq-forja-arte-"]:not(.nq-forja-arte-vazia) { border: 1px solid #5b6b7a; }
+.nq-forja-arte-uncommon { border-color: #7ee2a8 !important; }
+.nq-forja-arte-rare { border-color: var(--blue) !important; }
+.nq-forja-arte-epic { border-color: var(--purple) !important; }
+.nq-forja-arte-legendary { border-color: var(--gold) !important; box-shadow: 0 0 8px rgba(229,207,131,.25); }
 .nq-forja-vazio { margin: 12px 0 0; color: var(--txt-dim); }
 .nq-forja-atributos { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 4px 16px; margin: 12px 0 0; }
 .nq-forja-atributos div { display: flex; justify-content: space-between; gap: 8px; }
@@ -13937,3 +13944,17 @@ li.nq-exam-opcao { cursor: default; }
   .nq-exam-categorias li { grid-template-columns: minmax(0,1fr) auto; }
   .nq-exam-categorias .nq-exam-barra { grid-column: 1 / -1; grid-row: 2; }
 }
+
+/* Comparação de equipamento (baú, minigame): diálogo curto com o padrão da Forja. */
+.equip-compare-card.nq-comparar {
+  --txt: #eee9d2; --txt-dim: #a4aebe; --gold: #e5cf83;
+  background: #0b111c; border: 1px solid #425563; border-radius: 8px;
+  padding: clamp(16px, 4vw, 28px); max-width: 44rem; text-align: left;
+  color: var(--txt); font-family: 'Philosopher', system-ui, sans-serif; box-shadow: 0 20px 60px rgba(0,0,0,.7);
+}
+.nq-comparar h2 { font-family: 'Cinzel', Georgia, serif; font-size: 1.2rem; color: var(--gold); margin: 0 0 8px; overflow-wrap: anywhere; }
+.nq-comparar > p { color: var(--txt-dim); line-height: 1.6; margin: 0; }
+.nq-comparar .btn { min-height: 44px; font-family: inherit; text-transform: none; background: transparent; border: 1px solid #425563; border-radius: 6px; box-shadow: none; color: var(--txt); padding: 10px 16px; white-space: normal; overflow-wrap: anywhere; text-align: center; }
+.nq-comparar .btn.gold { background: var(--gold); color: #101620; border-color: var(--gold); }
+.nq-comparar :focus-visible { outline: 2px solid #78d9e3; outline-offset: 4px; }
+.nq-comparar .rar-common { color: #b8c1cf; }

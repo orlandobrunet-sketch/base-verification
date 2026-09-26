@@ -74,6 +74,9 @@ test('espaço vazio: forja, equipa e mostra o resultado na página', async ({ pa
   await expect(page.locator('.nq-forja-ouro')).toContainText('4700');
   // O equipamento da página reflete o item novo.
   const nome = (await resultado.locator('.nq-forja-item h3').textContent())!.trim();
+  // Item equipado tem moldura sólida (o vazio, tracejada).
+  const moldura = await resultado.locator('.nq-forja-arte').evaluate(el => getComputedStyle(el).borderTopStyle);
+  expect(moldura, 'item equipado sem moldura').toBe('solid');
   await expect(page.locator('.nq-forja-grade')).toContainText(nome);
   await semPopups(page);
 });

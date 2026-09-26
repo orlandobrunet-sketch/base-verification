@@ -91,7 +91,9 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
       expect(lines).toHaveLength(2);
       expect(lines.map((line) => line.rects)).toEqual([1, 1]);
       expect(lines[1].top).toBeGreaterThan(lines[0].top);
-      expect(lines.every((line) => line.whiteSpace === 'nowrap')).toBe(true);
+      // Contrato: cada linha do título numa linha só (rects === 1 acima). O
+      // nowrap que garantia isso cortava o título com texto a 200% (spec 74);
+      // agora a linha quebra só quando não cabe, e aqui, com texto normal, cabe.
     }
     await expect(page.locator('#welcomeScreen')).toHaveAttribute('data-nq-ui', 'lumen');
     await expect(page.locator('#welcomeScreen')).toHaveAttribute('aria-hidden', 'false');
