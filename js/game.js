@@ -142,6 +142,7 @@
         </div>
       `;
       document.body.appendChild(modal);
+      nqDialogo(modal);
       playSound('victory');
     }
 
@@ -206,6 +207,7 @@
         </div>
       `;
       document.body.appendChild(modal);
+      nqDialogo(modal);
       playSound('levelup');
     }
 
@@ -317,7 +319,7 @@
       modal.style.cssText = 'background:rgba(0,0,0,0.85);z-index:9999;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);';
       modal.innerHTML = `
         <div class="modal-content" style="max-width:500px;max-height:88vh;overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;">
-          <h2 style="color:var(--gold);margin-bottom:12px;">⚡ EVOLUÇÃO! ⚡</h2>
+          <h2 style="color:var(--gold);margin-bottom:12px;overflow-wrap:anywhere;">⚡ EVOLUÇÃO! ⚡</h2>
           <div style="margin:20px auto;width:120px;height:120px;border-radius:50%;overflow:hidden;border:3px solid var(--gold);box-shadow:0 0 20px rgba(255,215,0,0.5);">
             <img src="${newImage}" style="width:100%;height:100%;object-fit:cover;" alt="${newTitle}">
           </div>
@@ -327,6 +329,7 @@
         </div>
       `;
       document.body.appendChild(modal);
+      nqDialogo(modal);
       playSound('levelup');
     }
 
@@ -2641,7 +2644,7 @@
             <h3 style="color:#a5b4fc;font-family:'Cinzel',serif;font-size:1rem;letter-spacing:1px;">🚩 Sinalizar Erro na Questão</h3>
             <button data-remove-id="flagPopup" style="background:none;border:none;color:#64748b;font-size:1.4rem;cursor:pointer;line-height:1;">×</button>
           </div>
-          <p style="font-size:0.78rem;color:#64748b;margin-bottom:6px;">Questão #${qNum}</p>
+          <p style="font-size:0.78rem;color:#94a3b8;margin-bottom:6px;">Questão #${qNum}</p>
           <p style="font-size:0.82rem;color:#94a3b8;background:rgba(30,40,70,0.5);border-radius:8px;padding:10px;margin-bottom:14px;font-style:italic;line-height:1.5;">"${escapeHtml(qText)}"</p>
           <label style="font-size:0.82rem;color:#93b4e8;display:block;margin-bottom:6px;">Descreva o problema:</label>
           <div style="margin-bottom:10px;">
@@ -2663,6 +2666,7 @@
           </button>
         </div>`;
       document.body.appendChild(popup);
+      nqDialogo(popup);
       document.getElementById('flagCategoryChips')?.addEventListener('click', e => {
         const chip = e.target.closest('.flag-chip');
         if (!chip) return;
@@ -3734,6 +3738,8 @@
       }, 100);
 
       document.body.appendChild(popup);
+
+      nqDialogo(popup);
     }
 
     // Expor popup no escopo global para uso via onclick no HTML
@@ -4089,6 +4095,7 @@
         </div>
       `;
       document.body.appendChild(popup);
+      nqDialogo(popup);
       // popup.addEventListener('click',(e)=>{if(e.target===popup) popup.remove();});
     }
 
@@ -4142,6 +4149,7 @@
           </button>
         </div>`;
       document.body.appendChild(popup);
+      nqDialogo(popup);
       playSound('chest');
     }
 
@@ -4254,7 +4262,7 @@
           <h3>✨ Baú de Relíquias Ancestrais</h3>
 
           <div style="padding: 6px 0 14px; overflow: visible !important; display: block;">
-            <div class="chest-img-clickable" role="button" aria-label="Abrir baú" data-action="_animateAndClaimChest" data-pass-this="1">
+            <div class="chest-img-clickable" role="button" tabindex="0" aria-label="Abrir baú" data-action="_animateAndClaimChest" data-pass-this="1">
               <svg viewBox="0 0 200 162" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <defs>
                   <linearGradient id="nqChestWood" x1="0" y1="0" x2="0" y2="1">
@@ -4306,6 +4314,7 @@
         </div>
       `;
       document.body.appendChild(popup);
+      nqDialogo(popup);
       playSound('chest');
     }
     window.triggerChestRewardPopup = triggerChestRewardPopup;
@@ -4419,6 +4428,7 @@
       `;
       
       modal.classList.add('show');
+      nqDialogo(modal, { painel: modal.querySelector('.chest-content'), visivel: el => el.classList.contains('show') });
     }
     
     function closeChestModal() {

@@ -254,7 +254,7 @@
             title="${escapeHtml(badge.name)} (${badge.required} acertos)"
             data-action="_showBadgeTip" data-pass-this="1"
             data-badge-label="${escapeHtml(badge.name)} (${badge.required} acertos)">
-          <div class="badge-shield"><span class="badge-rune">${_achRunes[badge.id] || '✦'}</span></div>
+          <div class="badge-shield"><span class="badge-rune" aria-hidden="true">${_achRunes[badge.id] || '✦'}</span></div>
           ${!isUnlocked ? '<span class="badge-lock">🔒</span>' : ''}
         </div>`;
       }).join('');
@@ -297,6 +297,8 @@
       `;
 
       document.body.appendChild(modal);
+
+      nqDialogo(modal);
       playSound('click');
     }
     

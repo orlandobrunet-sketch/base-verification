@@ -22,7 +22,10 @@ body:has(#mainApp[data-nq-ui="lumen"]:not(.hidden)):not(.boss-battle-mode):not(.
   --nql-line: rgba(145, 223, 227, .14);
 
   background: #070a13;
-  color: var(--nql-text);
+  /* --nql-text só existe dentro de [data-nq-ui="lumen"], não no body: sem o
+   * valor de reserva a cor ficava inválida e o body caía no preto. Todo popup
+   * preso ao body (vida extra, pergaminho…) herdava texto preto no escuro. */
+  color: var(--nql-text, #efe6d2);
   font-family: var(--nql-font-body);
 }
 

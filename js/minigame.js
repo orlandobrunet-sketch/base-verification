@@ -48,6 +48,7 @@
           <button class='btn gold' id='acceptMinigameBtn' style="background:linear-gradient(135deg,#065f46,#059669);border-color:#4ade80;color:#ecfdf5;width:100%;">⚡ Aceitar o Desafio!</button>
         </div>`;
       document.body.appendChild(popup);
+      nqDialogo(popup);
       document.getElementById('acceptMinigameBtn')?.addEventListener('click', () => {
         popup.remove();
         showRapidQuizMinigame();
@@ -334,7 +335,7 @@
           text-align:center;
           box-shadow:0 0 60px rgba(168,85,247,0.4),0 0 120px rgba(88,28,135,0.2);
         ">
-          <div style="font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:4px;color:rgba(192,132,252,0.7);text-transform:uppercase;margin-bottom:8px;">Questão Final</div>
+          <div style="font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:4px;color:#d8b4fe;text-transform:uppercase;margin-bottom:8px;">Questão Final</div>
           <h2 style="font-family:'Cinzel',serif;font-size:clamp(1rem,4vw,1.4rem);font-weight:900;letter-spacing:3px;color:#e9d5ff;text-shadow:0 0 20px rgba(216,180,254,0.9);margin:0 0 16px;">⚔ GOLPE FINAL ⚔</h2>
           <!-- Imagem battle_final cortada (esconde texto amarelo no fundo) -->
           <div style="border-radius:12px;overflow:hidden;border:2px solid rgba(168,85,247,0.5);box-shadow:0 0 30px rgba(168,85,247,0.4);height:340px;">
@@ -355,6 +356,7 @@
         </div>
       `;
       document.body.appendChild(popup);
+      nqDialogo(popup);
     }
 
     function showBossIntroPopup() {
@@ -411,7 +413,7 @@
       popup.innerHTML = `
         <div style="max-width:540px;width:100%;background:linear-gradient(160deg,#0a0118 0%,#120230 50%,#0a0118 100%);border:2px solid rgba(168,85,247,0.7);border-radius:18px;padding:28px 24px 24px;text-align:center;box-shadow:0 0 60px rgba(168,85,247,0.4),0 0 120px rgba(88,28,135,0.2),inset 0 0 60px rgba(0,0,0,0.6);position:relative;">
           <button class="popup-x" data-remove-id="bossIntroPopup" aria-label="Fechar">✕</button>
-          <div style="font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:4px;color:rgba(192,132,252,0.7);text-transform:uppercase;margin-bottom:6px;">Capítulo Final</div>
+          <div style="font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:4px;color:#d8b4fe;text-transform:uppercase;margin-bottom:6px;">Capítulo Final</div>
           <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.1rem,4vw,1.6rem);font-weight:900;letter-spacing:3px;color:#e9d5ff;text-shadow:0 0 20px rgba(216,180,254,0.9),0 0 40px rgba(168,85,247,0.6);margin:0 0 16px;">&#9760; O Confronto Derradeiro &#9760;</h2>
           <div style="margin:0 0 16px;border-radius:12px;overflow:hidden;border:2px solid rgba(168,85,247,0.6);box-shadow:0 0 30px rgba(168,85,247,0.5),0 0 60px rgba(88,28,135,0.3);">
             <img src="assets/nefromancer.png" alt="Arqui-Nefromante" style="width:100%;display:block;object-fit:cover;max-height:180px;object-position:center 20%;">
@@ -420,6 +422,7 @@
         </div>
       `;
       document.body.appendChild(popup);
+      nqDialogo(popup);
 
       // Avançar → troca o conteúdo para a segunda metade (sem rolagem)
       const _nextBtn = popup.querySelector('#bossIntroNext');
@@ -488,6 +491,7 @@
         </div>
       `;
       document.body.appendChild(popup);
+      nqDialogo(popup);
       // (fechar-ao-clicar-fora removido — usa o X)
 
       // Stun: acionar mecânica após popup aparecer
