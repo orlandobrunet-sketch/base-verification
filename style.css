@@ -6826,7 +6826,10 @@
 .mentor-quota-bar  { color: var(--rd-txt-dim); }
 
 /* ── M1 — Baú / Chest ───────────────────────────────────────────── */
+/* O modal fica fora do contêiner que define a cor do texto: sem cor própria,
+   o resumo do artigo herdava o preto do navegador sobre o fundo escuro. */
 .chest-content {
+  color: var(--txt);
   background: linear-gradient(160deg, var(--rd-bg-surface) 0%, var(--rd-bg-panel) 100%);
   border: 1px solid rgba(240,192,64,0.28);
   border-radius: 18px;
