@@ -3820,7 +3820,7 @@
         <article class="nq-forja-item${variante ? ` nq-forja-item-${variante}` : ''}">
           ${rotulo ? `<p class="nq-forja-rotulo">${variante === 'novo' ? '<span class="nq-forja-selo">Novo</span> ' : ''}${rotulo}</p>` : ''}
           <div class="nq-forja-item-topo">
-            <div class="nq-forja-arte${vazio ? ' nq-forja-arte-vazia' : ''}">${arte}</div>
+            <div class="nq-forja-arte${vazio ? ' nq-forja-arte-vazia' : ` nq-forja-arte-${item.rar}`}">${arte}</div>
             <div>
               <h3>${vazio ? 'Vazio' : escapeHtml(item.n)}</h3>
               <p>${slotLabels[slot] || slot}${vazio ? '' : ` · <span class="rar-${item.rar}">${_rarLabel[item.rar] || item.rar}</span>`}</p>

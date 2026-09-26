@@ -31,7 +31,12 @@ body:has(#mainApp[data-nq-ui="lumen"]:not(.hidden)):not(.boss-battle-mode):not(.
     linear-gradient(180deg, rgba(5, 8, 18, .12), rgba(5, 8, 18, .34) 54%, rgba(5, 8, 18, .82) 100%),
     radial-gradient(circle at 51% 17%, rgba(145, 223, 227, .08), transparent 28rem),
     url("../../assets/nefroquest_background.jpg") center top / cover no-repeat;
-  filter: saturate(1.16) brightness(.7) contrast(1.04);
+  /* Na tela de perguntas o cenário é ambiente, não conteúdo: escuro, pouco
+   * saturado e desfocado para não disputar atenção com o enunciado
+   * (relato do proprietário: "muita informação, cansa"). A escala esconde a
+   * borda clara que o desfoque cria nas laterais. */
+  filter: saturate(.5) brightness(.34) blur(3px);
+  transform: scale(1.03);
 }
 
 body:has(#mainApp[data-nq-ui="lumen"]:not(.hidden)):not(.boss-battle-mode):not(.arqui-nefromante-final) .bg-overlay {
@@ -42,8 +47,7 @@ body:has(#mainApp[data-nq-ui="lumen"]:not(.hidden)):not(.boss-battle-mode):not(.
 }
 
 body:has(#mainApp[data-nq-ui="lumen"]:not(.hidden)):not(.boss-battle-mode):not(.arqui-nefromante-final) .particles {
-  display: block;
-  opacity: .3;
+  display: none;
 }
 
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] {

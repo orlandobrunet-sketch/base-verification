@@ -13870,6 +13870,13 @@ body.nq-studying #mobileSoundControls { position: relative; top: auto; right: au
 .nq-forja-arte img { width: 100%; height: 100%; object-fit: cover; }
 .nq-forja-emoji { font-size: 1.5rem; }
 .nq-forja-arte-vazia { background: transparent; border: 1px dashed #425563; }
+/* Item equipado tem moldura sólida na cor da raridade — o vazio já tinha a
+   tracejada, e o equipado ficava sem nenhuma. */
+.nq-forja-arte[class*="nq-forja-arte-"]:not(.nq-forja-arte-vazia) { border: 1px solid #5b6b7a; }
+.nq-forja-arte-uncommon { border-color: #7ee2a8 !important; }
+.nq-forja-arte-rare { border-color: var(--blue) !important; }
+.nq-forja-arte-epic { border-color: var(--purple) !important; }
+.nq-forja-arte-legendary { border-color: var(--gold) !important; box-shadow: 0 0 8px rgba(229,207,131,.25); }
 .nq-forja-vazio { margin: 12px 0 0; color: var(--txt-dim); }
 .nq-forja-atributos { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 4px 16px; margin: 12px 0 0; }
 .nq-forja-atributos div { display: flex; justify-content: space-between; gap: 8px; }
