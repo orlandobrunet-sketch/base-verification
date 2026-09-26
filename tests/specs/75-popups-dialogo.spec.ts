@@ -16,6 +16,8 @@ import { medirContraste } from '../helpers/contraste';
 test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
 
 const POPUPS: [string, string][] = [
+  ['Oráculo antes da resposta', '_showOracleAnswerFirst()'],
+  ['Oráculo no confronto', '_showOracleBlockedNarrative()'],
   ['conclusão da jornada', 'showGameCompletionModal()'],
   ['vida extra', 'showExtraLifeModal()'],
   ['evolução', "showEvolutionPopup(6, 'Título de teste', 'assets/classes/glomerulus_6.png')"],
@@ -111,4 +113,16 @@ for (const [nome, expr] of POPUPS) {
     });
     expect(cortes).toEqual([]);
   });
+}
+
+for (const [nome, expr] of POPUPS.filter(([nome]) => nome.startsWith('Oráculo'))) {
+  for (const fechar of ['Escape', 'ação']) {
+    test(nome + ': fechar por ' + fechar + ' devolve o foco', async ({ page }) => {
+      const dialogo = await abrir(page, expr);
+      if (fechar === 'Escape') await page.keyboard.press('Escape');
+      else await dialogo.locator('button').last().click();
+      await expect(page.locator('[data-nq-dialogo]')).toHaveCount(0);
+      await expect(page.locator('#forgeBtn:visible, .mdock-btn.forge-item:visible').first()).toBeFocused();
+    });
+  }
 }
