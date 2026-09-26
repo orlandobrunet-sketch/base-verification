@@ -2856,89 +2856,52 @@
     const _rarLabel = {common:'Comum',uncommon:'Incomum',rare:'Raro',epic:'Épico',legendary:'Lendário',mythic:'Mítico'};
     function _itemSellVal(it){ return _rarSellVal[it.rar]||20; }
 
+    /* Decisão curta no meio da jornada (baú de equipamento, minigame): continua
+     * sendo diálogo, mas com o padrão da Forja — o recém-obtido em destaque com
+     * selo "Novo", uma frase que resume os atributos e botões com os nomes.
+     * Antes, os dois cartões tinham o mesmo peso e os botões diziam só
+     * "SUBSTITUIR" / "MANTER ATUAL". Também não havia papel de diálogo, foco
+     * inicial nem foco contido: o Tab escapava para a jornada por trás. */
     function showEquipComparePopup(slot, oldItem, newItem, onReplace, onKeep) {
-      const def = defaultIcons[slot] || '';
-      const ov = el => `
-        <div class="equip-compare-slot equipped">
-          <div class="equip-compare-label">Equipado</div>
-          <div class="ecp-header">
-            <span class="ecp-name">${el.n}</span>
-            <span class="ecp-rar ${el.rar}">${_rarLabel[el.rar]||el.rar}</span>
-          </div>
-          <div class="ecp-slot-body">
-            <div class="ecp-img-wrapper">
-              <img src="${getItemIcon(el.n, slot)}" onerror="this.src='${def}'" alt="${el.n}">
-            </div>
-            <div class="ecp-stats">
-              <div class="ecp-stat-row">
-                <span class="ecp-stat-label">⚔️ ATK</span>
-                <span class="ecp-stat-value">${el.atk}</span>
-              </div>
-              <div class="ecp-stat-row">
-                <span class="ecp-stat-label">🛡️ DEF</span>
-                <span class="ecp-stat-value">${el.def}</span>
-              </div>
-              <div class="ecp-stat-row">
-                <span class="ecp-stat-label">📚 CONH</span>
-                <span class="ecp-stat-value">${el.kno}</span>
-              </div>
-              <div class="ecp-stat-row">
-                <span class="ecp-stat-label">🍀 SORTE</span>
-                <span class="ecp-stat-value">${el.luck}</span>
-              </div>
-            </div>
-          </div>
-        </div>`;
-      const nv = el => `
-        <div class="equip-compare-slot new-item">
-          <div class="equip-compare-label">Novo item</div>
-          <div class="ecp-header">
-            <span class="ecp-name">${el.n}</span>
-            <span class="ecp-rar ${el.rar}">${_rarLabel[el.rar]||el.rar}</span>
-          </div>
-          <div class="ecp-slot-body">
-            <div class="ecp-img-wrapper">
-              <img src="${getItemIcon(el.n, slot)}" onerror="this.src='${def}'" alt="${el.n}">
-            </div>
-            <div class="ecp-stats">
-              ${['atk','def','kno','luck'].map(s => {
-                const icons = {atk:'⚔️ ATK',def:'🛡️ DEF',kno:'📚 CONH',luck:'🍀 SORTE'};
-                const diff = el[s] - oldItem[s];
-                const cls = diff>0?'pos':diff<0?'neg':'';
-                const diffStr = diff>0?`+${diff}`:diff<0?`${diff}`:'';
-                return `
-                  <div class="ecp-stat-row">
-                    <span class="ecp-stat-label">${icons[s]}</span>
-                    <span class="ecp-stat-value">
-                      ${el[s]}
-                      ${diffStr ? `<span class="ecp-stat-diff ${cls}">(${diffStr})</span>` : ''}
-                    </span>
-                  </div>`;
-              }).join('')}
-            </div>
-          </div>
-        </div>`;
-      const sellVal = _itemSellVal(newItem);
       document.getElementById('equipCompareOverlay')?.remove();
+      const origem = document.activeElement;
       const overlay = document.createElement('div');
       overlay.className = 'equip-compare-overlay';
       overlay.id = 'equipCompareOverlay';
       overlay.innerHTML = `
-        <div class="equip-compare-card">
-          <div class="equip-compare-title">⚔️ Substituir ${slotLabels[slot]||slot}?</div>
-          <div class="equip-compare-body">
-            ${ov(oldItem)}
-            <div class="equip-compare-arrow">→</div>
-            ${nv(newItem)}
+        <div class="equip-compare-card nq-comparar" role="dialog" aria-modal="true" aria-labelledby="ecpTitulo" aria-describedby="ecpResumo">
+          <h2 id="ecpTitulo">Você obteve ${escapeHtml(newItem.n)}</h2>
+          <p id="ecpResumo">${_forjaVeredito(newItem, oldItem)} Seu espaço de ${(slotLabels[slot] || slot).toLowerCase()} já está ocupado: escolha qual fica, e o outro vira ouro.</p>
+          <div class="nq-forja-comparar">
+            ${_forjaCartaoItem(newItem, slot, 'Recém-obtido', oldItem, 'novo')}
+            ${_forjaCartaoItem(oldItem, slot, 'Equipado agora', null, 'atual')}
           </div>
-          <div class="equip-compare-actions">
-            <button class="equip-compare-replace" id="ecpReplace">⬆️ SUBSTITUIR</button>
-            <button class="equip-compare-keep" id="ecpKeep">💰 MANTER ATUAL (VENDER)</button>
+          <div class="nq-forja-acoes">
+            <button type="button" class="btn gold" id="ecpReplace">Equipar ${escapeHtml(newItem.n)}<span class="nq-forja-btn-sub">${escapeHtml(oldItem.n)} vira ${_itemSellVal(oldItem)} de ouro</span></button>
+            <button type="button" class="btn sec" id="ecpKeep">Manter ${escapeHtml(oldItem.n)}<span class="nq-forja-btn-sub">${escapeHtml(newItem.n)} vira ${_itemSellVal(newItem)} de ouro</span></button>
           </div>
         </div>`;
       document.body.appendChild(overlay);
-      overlay.querySelector('#ecpReplace').onclick = () => { overlay.remove(); onReplace(); };
-      overlay.querySelector('#ecpKeep').onclick   = () => { overlay.remove(); onKeep(); };
+      const dialogo = overlay.querySelector('[role="dialog"]');
+      const botoes = [...overlay.querySelectorAll('button')];
+      // A decisão é obrigatória (o item já foi obtido): sem Escape, e o Tab
+      // circula só entre as duas escolhas.
+      dialogo.addEventListener('keydown', e => {
+        e.stopPropagation();
+        if (e.key !== 'Tab') return;
+        const i = botoes.indexOf(document.activeElement);
+        const proximo = botoes[(i + (e.shiftKey ? -1 : 1) + botoes.length) % botoes.length];
+        e.preventDefault();
+        proximo.focus();
+      });
+      const decidir = acao => () => {
+        overlay.remove();
+        acao();
+        if (origem instanceof HTMLElement && origem.isConnected) origem.focus({ preventScroll: true });
+      };
+      overlay.querySelector('#ecpReplace').onclick = decidir(onReplace);
+      overlay.querySelector('#ecpKeep').onclick = decidir(onKeep);
+      botoes[0].focus({ preventScroll: true });
     }
 
     /* `decidir` mostra a escolha Substituir/Manter. Por padrão é o popup de

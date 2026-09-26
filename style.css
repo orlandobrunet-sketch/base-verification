@@ -13944,3 +13944,17 @@ li.nq-exam-opcao { cursor: default; }
   .nq-exam-categorias li { grid-template-columns: minmax(0,1fr) auto; }
   .nq-exam-categorias .nq-exam-barra { grid-column: 1 / -1; grid-row: 2; }
 }
+
+/* Comparação de equipamento (baú, minigame): diálogo curto com o padrão da Forja. */
+.equip-compare-card.nq-comparar {
+  --txt: #eee9d2; --txt-dim: #a4aebe; --gold: #e5cf83;
+  background: #0b111c; border: 1px solid #425563; border-radius: 8px;
+  padding: clamp(16px, 4vw, 28px); max-width: 44rem; text-align: left;
+  color: var(--txt); font-family: 'Philosopher', system-ui, sans-serif; box-shadow: 0 20px 60px rgba(0,0,0,.7);
+}
+.nq-comparar h2 { font-family: 'Cinzel', Georgia, serif; font-size: 1.2rem; color: var(--gold); margin: 0 0 8px; overflow-wrap: anywhere; }
+.nq-comparar > p { color: var(--txt-dim); line-height: 1.6; margin: 0; }
+.nq-comparar .btn { min-height: 44px; font-family: inherit; text-transform: none; background: transparent; border: 1px solid #425563; border-radius: 6px; box-shadow: none; color: var(--txt); padding: 10px 16px; white-space: normal; overflow-wrap: anywhere; text-align: center; }
+.nq-comparar .btn.gold { background: var(--gold); color: #101620; border-color: var(--gold); }
+.nq-comparar :focus-visible { outline: 2px solid #78d9e3; outline-offset: 4px; }
+.nq-comparar .rar-common { color: #b8c1cf; }
