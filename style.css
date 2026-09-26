@@ -13878,3 +13878,59 @@ body.nq-studying #mobileSoundControls { position: relative; top: auto; right: au
 @media (max-width: 40rem) {
   .nq-forja-cabecalho { grid-template-columns: minmax(0,1fr); }
 }
+
+/* Simulado: página própria no lugar da camada fixa sobre o jogo. */
+.nq-exam h1 { font-family: 'Cinzel', Georgia, serif; font-size: 1.35rem; color: var(--gold); margin: 0 0 12px; }
+.nq-exam h1:focus, .nq-exam #examCorrecao:focus { outline: none; }
+.nq-exam h1:focus-visible, .nq-exam #examCorrecao:focus-visible { outline: 2px solid #78d9e3; outline-offset: 4px; }
+.nq-exam h2 { margin: 24px 0 12px !important; }
+.nq-exam-intro p { color: var(--txt-dim); line-height: 1.6; max-width: 65ch; }
+.nq-exam-acoes { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+.nq-exam-erro, .nq-exam-aviso { color: #f7b2bf !important; }
+.nq-exam-cabecalho { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: 8px 16px; padding-bottom: 16px; border-bottom: 1px solid #34434e; }
+.nq-exam-titulo { margin: 0; color: var(--txt-dim); }
+.nq-exam-relogio { margin: 0; font-variant-numeric: tabular-nums; color: #7ee2a8; font-weight: 700; }
+.nq-exam-relogio.nq-exam-urgente { color: #f7b2bf; }
+.nq-exam-progresso { grid-column: 1 / -1; height: 4px; background: #1d2733; border-radius: 2px; overflow: hidden; }
+.nq-exam-progresso > div { height: 100%; background: var(--gold); }
+.nq-exam-questao { max-width: 78ch; margin: 0 auto; padding: 24px 0; }
+.nq-exam-questao h1 { font-size: 1rem; color: var(--txt-dim); font-family: inherit; }
+.nq-exam-enunciado { color: var(--txt); line-height: 1.7; font-size: 1.05rem; margin: 0 0 20px; }
+.nq-exam-opcoes { display: flex; flex-direction: column; gap: 8px; }
+.nq-exam-opcao { display: flex; gap: 12px; align-items: flex-start; text-align: left; width: 100%; min-height: 44px; padding: 12px 14px; background: transparent; color: var(--txt); border: 1px solid #34434e; border-radius: 6px; font: inherit; line-height: 1.5; cursor: pointer; }
+.nq-exam-opcao:hover:not(:disabled) { border-color: #78d9e3; }
+ol.nq-exam-opcoes { list-style: none; padding: 0; margin: 0; }
+li.nq-exam-opcao { cursor: default; }
+.nq-exam-opcao-neutra { color: var(--txt-dim); }
+.nq-exam-letra { flex: 0 0 auto; width: 1.8em; height: 1.8em; display: grid; place-items: center; border: 1px solid #425563; border-radius: 50%; font-weight: 700; }
+.nq-exam-opcao-certa { border-color: #7ee2a8 !important; color: var(--txt) !important; background: rgba(126,226,168,.08); }
+.nq-exam-opcao-errada { border-color: #f7b2bf !important; color: var(--txt) !important; background: rgba(247,178,191,.08); }
+.nq-exam-marca { display: block; margin-top: 4px; font-size: .85rem; }
+.nq-exam-opcao-certa .nq-exam-marca { color: #7ee2a8; }
+.nq-exam-opcao-errada .nq-exam-marca { color: #f7b2bf; }
+.nq-exam-correcao { margin: 20px 0 16px; padding: 14px 16px; border-left: 3px solid #34434e; background: #121a26; }
+.nq-exam-correcao p { margin: 0 0 8px; color: var(--txt-dim); line-height: 1.6; }
+.nq-exam-acertou { border-left-color: #7ee2a8; }
+.nq-exam-errou { border-left-color: #f7b2bf; }
+.nq-exam-veredito { color: var(--txt) !important; font-weight: 700; }
+.nq-exam-rodape { max-width: 78ch; margin: 0 auto; padding-top: 16px; border-top: 1px solid #34434e; }
+.nq-exam-rodape .nq-exam-acoes { margin-top: 0; }
+.nq-exam-nota { color: var(--txt-dim); font-size: .9rem; margin: 10px 0 0; }
+.nq-exam-confirmar p { color: var(--txt); margin: 0; }
+.nq-study-surface .btn.nq-exam-perigo { border-color: #f7b2bf; color: #f7b2bf; }
+.nq-exam-mensagem { color: var(--txt); line-height: 1.6; }
+.nq-exam-categorias { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.nq-exam-categorias li { display: grid; grid-template-columns: minmax(0,1fr) 5rem auto; gap: 12px; align-items: center; color: var(--txt); overflow-wrap: anywhere; }
+.nq-exam-barra { height: 6px; background: #1d2733; border-radius: 3px; overflow: hidden; }
+.nq-exam-barra > span { display: block; height: 100%; background: var(--gold); }
+.nq-exam-erros { margin-top: 24px; border-top: 1px solid #34434e; padding-top: 16px; }
+.nq-exam-erros summary { cursor: pointer; color: var(--txt); min-height: 44px; display: flex; align-items: center; font-weight: 700; }
+.nq-exam-erros article { padding: 16px 0; border-bottom: 1px solid #34434e; }
+.nq-exam-erros article > p { color: var(--txt); line-height: 1.6; }
+.nq-exam-erros ul { list-style: none; padding: 0; display: grid; gap: 6px; }
+.nq-exam-erros li { padding: 6px 10px; border: 1px solid #34434e; border-radius: 4px; color: var(--txt-dim); }
+.nq-exam-explicacao { color: var(--txt-dim) !important; }
+@media (max-width: 40rem) {
+  .nq-exam-categorias li { grid-template-columns: minmax(0,1fr) auto; }
+  .nq-exam-categorias .nq-exam-barra { grid-column: 1 / -1; grid-row: 2; }
+}

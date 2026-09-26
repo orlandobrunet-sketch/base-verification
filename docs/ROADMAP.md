@@ -396,7 +396,7 @@ Bloqueio: **decisão do proprietário em 01/09/2026 — pagamento é a última c
 1. **Estudo e revisão:** maior ligação direta entre diagnóstico, FSRS e próxima ação.
 2. **Oráculo:** contexto clínico e estados de IA, limite, erro e indisponibilidade.
 3. **Forja, inventário e progressão:** transformar domínio real em desejo de evolução do personagem. *15.20:* a Forja virou página (ouro, motivo de cada bloqueio, comparação e resultado no fluxo, seis espaços de equipamento; spec 69). Baús de equipamento e minigame ainda usam o popup de comparação.
-4. **Simulado:** início, prova, retomada e resultado como fluxo próprio.
+4. **Simulado:** início, prova, retomada e resultado como fluxo próprio. *15.22:* virou página (spec 70). Corrigidos: teclado da prova respondia a questão escondida da jornada; `confirm()` nativo; prova com tempo esgotado fora do app sumia sem resultado; correção só por cor; falha ao baixar o banco de questões ficava guardada e impedia nova tentativa.
 5. **Conta, planos e pagamento:** somente junto da validação de receita.
 
 Mapa, Grimório, Conquistas e Ranking já vivem na Central; melhorias futuras devem partir de uso medido, não de recriação automática como páginas separadas.
