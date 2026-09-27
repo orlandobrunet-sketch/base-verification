@@ -99,7 +99,7 @@
         name: 'Campeão da Nefrologia',
         description: 'Derrote o Arqui-Nefromante e vença o jogo',
         icon: '🏆',
-        imgIcon: 'assets/titulodecampeao.png',
+        imgIcon: 'assets/achievements/campeao.webp',
         condition: (stats) => {
           return !!localStorage.getItem('nefroquest-arqui-defeated');
         }

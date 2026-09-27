@@ -168,9 +168,8 @@ test.describe('Central de Comando do aprendizado', () => {
     const badgePaths = [
       ...Array.from({ length: 5 }, (_, index) => `/assets/badges/badge${index + 1}-384.jpg`),
       ...Array.from({ length: 5 }, (_, index) => `/assets/badges/badge${index + 1}.png`),
-      ...['hemodialise', 'guardiao', 'cristal', 'transplante', 'microscopio', 'centenario', 'precisao', 'hardcore', 'alquimia', 'grimorio', 'louros']
+      ...['hemodialise', 'guardiao', 'cristal', 'transplante', 'microscopio', 'centenario', 'precisao', 'hardcore', 'alquimia', 'grimorio', 'louros', 'campeao']
         .map(name => `/assets/achievements/${name}.webp`),
-      '/assets/titulodecampeao.png',
     ];
     const precachedBadges = await page.evaluate(async paths => Promise.all(paths.map(async path => {
       try {
@@ -767,7 +766,7 @@ test.describe('Central de Comando do aprendizado', () => {
       await expect(achievements.locator(`.nqd-badge-path img[src="assets/badges/badge${index}-384.jpg"]`)).toBeVisible();
     }
     await expect(achievements.locator('.nqd-achievement-spotlight')).toContainText('Faltam 8 acertos');
-    await expect(achievements.locator('.nqd-achievement-mark img[src="assets/titulodecampeao.png"]')).toHaveCount(1);
+    await expect(achievements.locator('.nqd-achievement-mark img[src="assets/achievements/campeao.webp"]')).toHaveCount(1);
     await expect(achievements.locator('.nqd-achievement-filter[aria-pressed="true"]')).toHaveText('Objetivos');
     const visibleObjectives = await achievements.locator('[data-achievement-promoted="true"]:visible').count();
     await achievements.getByRole('button', { name: 'Todas', exact: true }).click();
@@ -783,6 +782,13 @@ test.describe('Central de Comando do aprendizado', () => {
     }
     const artSources = await artwork.evaluateAll(images => images.map(image => image.getAttribute('src')));
     expect(new Set(artSources).size).toBe(12);
+    // Cor só para o que já foi ganho: bloqueada em cinza, conquistada colorida.
+    const filtros = await achievements.locator('.nqd-achievement').evaluateAll(cards => cards.map(card => ({
+      locked: card.classList.contains('is-locked'),
+      filter: getComputedStyle(card.querySelector('.nqd-achievement-mark img')!).filter,
+    })));
+    expect(filtros.some(f => f.locked), "cenário sem conquista bloqueada").toBe(true);
+    for (const f of filtros) expect(f.filter.includes('grayscale(1)'), JSON.stringify(f)).toBe(f.locked);
     await achievements.getByRole('button', { name: 'Conquistadas' }).click();
     await expect(achievements.locator('.nqd-achievement-filter[aria-pressed="true"]')).toHaveText('Conquistadas');
     const visibleStatuses = await achievements.locator('[data-achievement-status]:visible').evaluateAll(cards => cards.map(card => card.getAttribute('data-achievement-status')));
