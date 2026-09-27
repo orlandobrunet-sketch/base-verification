@@ -36,10 +36,10 @@ function manageDialogFocus(dialog, onClose, returnFocus = document.activeElement
 function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {}) {
   if (!raiz || raiz.dataset.nqDialogo) return;
   raiz.dataset.nqDialogo = '1';
-  const caixa = painel || raiz.querySelector('.modal-content, .narrative-card, .forge-card, .chest-content, [class*="card"]') || raiz;
+  const caixa = painel || raiz.querySelector('.modal-content, .narrative-card, .forge-card, .chest-content, .brm-box, [class*="card"], [class*="-box"]') || raiz;
   caixa.setAttribute('role', 'dialog');
   caixa.setAttribute('aria-modal', 'true');
-  const titulo = caixa.querySelector('h1, h2, h3');
+  const titulo = caixa.querySelector('h1, h2, h3, [class*="title"]');
   if (titulo) {
     titulo.id ||= 'nqDlg' + Math.random().toString(36).slice(2, 8);
     caixa.setAttribute('aria-labelledby', titulo.id);
@@ -57,6 +57,17 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
   // Só o que importa: o popup sair do contêiner ou mudar de classe/estilo.
   if (raiz.parentNode) vigia.observe(raiz.parentNode, { childList: true });
   vigia.observe(raiz, { attributes: true, attributeFilter: ['class', 'style'] });
+  /* Minigames e o Ritual redesenham o conteúdo a cada etapa: o botão com foco
+   * some e o foco cai no body, de onde o Tab escapa para a jornada. Quando o
+   * conteúdo muda e o foco saiu, ele volta para o primeiro controle. */
+  const reparo = new MutationObserver(() => {
+    if (!raiz.isConnected) { reparo.disconnect(); return; }
+    if (!visivel(raiz) || raiz.contains(document.activeElement)) return;
+    const alvo = [...raiz.querySelectorAll('button:not(:disabled), [role="button"], a[href], input:not(:disabled), textarea, [tabindex="0"]')]
+      .find(el => el.getClientRects().length && !/^[✕×x]$/i.test((el.textContent || '').trim()));
+    alvo?.focus({ preventScroll: true });
+  });
+  reparo.observe(raiz, { childList: true, subtree: true });
 }
 
     // ============ SISTEMA DE STREAK MULTIPLICADOR ============
@@ -661,6 +672,7 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
       `;
       // overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); }); // disabled to prevent accidental closing
       document.body.appendChild(overlay);
+      nqDialogo(overlay);
     }
 
     function openBibResumo(btn) {

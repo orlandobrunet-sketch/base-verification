@@ -1092,6 +1092,7 @@
         </div>
       `;
       document.body.appendChild(overlay);
+      nqDialogo(overlay, { painel: overlay.querySelector('.identity-modal') });
       requestAnimationFrame(() => overlay.classList.add('visible'));
     }
 
@@ -5125,6 +5126,7 @@
       //   if(e.target === modal) modal.remove();
       // });
       document.body.appendChild(modal);
+      nqDialogo(modal);
     }
     window.showHeroLore = showHeroLore;
 

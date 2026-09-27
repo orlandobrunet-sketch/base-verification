@@ -83,6 +83,7 @@
       overlay.className = 'minigame-overlay';
       overlay.id = 'rapidQuizOverlay';
       document.body.appendChild(overlay);
+      nqDialogo(overlay);
 
       window._exitMinigame = function() {
         if (timerInterval) clearInterval(timerInterval);
@@ -819,6 +820,7 @@
       overlay.id = 'ritualOverlay';
       overlay.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.92);display:flex;align-items:center;justify-content:center;padding:16px calc(env(safe-area-inset-bottom,0px)+16px);box-sizing:border-box;overflow-y:auto;animation:fadeIn 0.4s ease;';
       document.body.appendChild(overlay);
+      nqDialogo(overlay);
 
       const used = new Set();
       const ritualResults = [];
@@ -839,7 +841,7 @@
               <!-- Recusar tinha 15px de altura: metade do mínimo de toque. O
                    botão de aceitar tem 13px de padding; recusar não precisa
                    competir em peso, mas precisa caber no dedo. -->
-              <button type="button" data-remove-id="ritualOverlay" style="background:none;border:none;color:var(--txt-dim);font-size:0.82rem;cursor:pointer;padding:9px;min-height:24px;">Agora não</button>
+              <button type="button" data-remove-id="ritualOverlay" style="background:none;border:none;color:var(--txt-dim);font-size:0.82rem;cursor:pointer;padding:9px;min-height:44px;">Agora não</button>
             </div>
           </div>`);
         overlay.querySelector('#ritualStart').addEventListener('click', nextQuestion);

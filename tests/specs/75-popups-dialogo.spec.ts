@@ -32,6 +32,14 @@ const POPUPS: [string, string][] = [
   ['narrativa', 'showNarrativePopup(1)'],
   ['conquistas', 'showAchievementsModal()'],
   ['reportar erro', 'flagQuestion()'],
+  // Segunda leva (15.28): as sobreposições que ainda não eram diálogos.
+  ['identidade', '_showIdentityChooser()'],
+  ['lore do herói', 'showHeroLore()'],
+  ['julgamento rápido', 'showRapidQuizMinigame(true)'],
+  ['ritual', 'openRitual()'],
+  ['ácido-base', 'showAcidBaseMinigame()'],
+  ['intro do personagem', "showCharacterIntroModal('glomerulus')"],
+  ['resumo de referência', "_showResumoModal({label:'KDIGO 2024', autores:'Autores', jornal:'Kidney Int', ano:'2024', resumo:'Resumo de teste.', conclusao:'Conclusão.', impacto:'Impacto.', link:''})"],
 ];
 
 async function abrir(page: Page, expr: string, grande = false) {
@@ -46,6 +54,9 @@ async function abrir(page: Page, expr: string, grande = false) {
   await page.evaluate(e => (0, eval)(e), expr);
   const dialogo = page.locator('[data-nq-dialogo] [role="dialog"], [data-nq-dialogo][role="dialog"]').last();
   await expect(dialogo).toBeVisible();
+  // Animações de entrada (escala 0,9 → 1) podem ainda não ter começado no
+  // primeiro quadro: espera dois quadros e só então pelo fim delas.
+  await page.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))));
   await page.waitForFunction(() => document.getAnimations().every(a => a.playState !== 'running' || (a.effect as any)?.getTiming?.().iterations === Infinity));
   return dialogo;
 }
@@ -126,3 +137,14 @@ for (const [nome, expr] of POPUPS.filter(([nome]) => nome.startsWith('Oráculo')
     });
   }
 }
+
+test('Julgamento Rápido: depois de responder, o foco continua dentro do desafio', async ({ page }) => {
+  await abrir(page, 'showRapidQuizMinigame(true)');
+  const caixa = page.locator('[data-nq-dialogo]').last();
+  await caixa.locator('#mgTrue').click();
+  // A próxima afirmação redesenha os botões; o foco não pode cair no body.
+  await page.waitForTimeout(1600);
+  expect(await caixa.evaluate(el => el.contains(document.activeElement)), 'foco caiu fora após redesenho').toBe(true);
+  await page.keyboard.press('Tab');
+  expect(await caixa.evaluate(el => el.contains(document.activeElement)), 'Tab escapou após redesenho').toBe(true);
+});
