@@ -15,6 +15,14 @@ import { medirContraste } from '../helpers/contraste';
  */
 test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
 
+/* Cada cenário fixa a própria viewport (390px) e o próprio texto (normal ou
+ * 200%): no projeto mobile ele se repetiria idêntico. A duplicata somava
+ * minutos à Full E2E, que passou do limite de 60 min no #819. Mesmo padrão da
+ * spec 52. */
+test.beforeEach(({}, info) => {
+  test.skip(info.project.name !== 'chromium', 'A medição fixa a própria viewport.');
+});
+
 const POPUPS: [string, string][] = [
   ['Oráculo antes da resposta', '_showOracleAnswerFirst()'],
   ['Oráculo no confronto', '_showOracleBlockedNarrative()'],
