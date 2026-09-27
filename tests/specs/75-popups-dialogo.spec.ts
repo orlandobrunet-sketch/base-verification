@@ -41,11 +41,10 @@ const POPUPS: [string, string][] = [
   ['conquistas', 'showAchievementsModal()'],
   ['reportar erro', 'flagQuestion()'],
   // Segunda leva (15.28): as sobreposições que ainda não eram diálogos.
-  // O Ritual (15.29, spec 76) e o Julgamento Rápido (15.31, spec 77) saíram
-  // desta lista: viraram páginas.
+  // O Ritual (15.29, spec 76), o Julgamento Rápido (15.31, spec 77) e a
+  // Câmara ácido-base (15.32, spec 78) saíram desta lista: viraram páginas.
   ['identidade', '_showIdentityChooser()'],
   ['lore do herói', 'showHeroLore()'],
-  ['ácido-base', 'showAcidBaseMinigame()'],
   ['intro do personagem', "showCharacterIntroModal('glomerulus')"],
   ['resumo de referência', "_showResumoModal({label:'KDIGO 2024', autores:'Autores', jornal:'Kidney Int', ano:'2024', resumo:'Resumo de teste.', conclusao:'Conclusão.', impacto:'Impacto.', link:''})"],
 ];

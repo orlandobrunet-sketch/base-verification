@@ -2061,9 +2061,42 @@
     return completed.has(CASES[idx - 1].id);
   }
 
+  // ── Página ─────────────────────────────────────────────────────────────
+  //
+  // A Câmara era uma camada fixa (diálogo) sobre o jogo. O comentário de
+  // _bindOverlayEvents prometia fechar SOMENTE pelo ✕, para não perder um caso
+  // no meio do raciocínio — mas o envoltório de diálogo (15.28) ligou o Escape
+  // ao ✕, e um Escape no Ato III descartava o caso inteiro. Agora é página
+  // (nqPaginaPropria): o Escape só fecha no hub e no resumo, quando não há
+  // nada a perder; dentro de um caso, sair é sempre um botão.
+  function _abPagina(){
+    const aberta = document.getElementById(AB_OVERLAY_ID);
+    if (aberta && aberta._abFechar) return aberta;
+    const { pagina, fechar } = nqPaginaPropria(AB_OVERLAY_ID, 'Câmara do Equilíbrio', {
+      classe: 'acid-base-overlay acid-base-page',
+      aoTeclar: e => {
+        if (e.key !== 'Escape') return;
+        e.preventDefault();
+        if (pagina.dataset.abTela !== 'caso') fechar();
+      },
+    });
+    pagina._abFechar = fechar;
+    _bindOverlayEvents(pagina);
+    return pagina;
+  }
+  function _abFechar(overlay){ overlay._abFechar ? overlay._abFechar() : overlay.remove(); }
+  // Cada tela é redesenhada inteira: o foco vai para o título (ou para o
+  // campo/próximo passo), senão cai no body a cada ato.
+  function _abFocar(card, sel){
+    const alvo = card.querySelector(sel);
+    if (!alvo) return;
+    if (!alvo.matches('button, input')) alvo.setAttribute('tabindex', '-1');
+    alvo.focus({ preventScroll: true });
+    window.scrollTo(0, 0);
+  }
+
   // ── UI: Hub (lista de casos) ───────────────────────────────────────────
   function showAcidBaseMinigame(){
-    document.getElementById(AB_OVERLAY_ID)?.remove();
     const progress = _loadProgress();
     const completed = new Set(progress.completed || []);
     try { if (typeof _track === 'function') _track('minigame_acid_base_opened', {}); } catch {}
@@ -2091,32 +2124,29 @@
         </button>`;
     }).join('');
 
-    const overlay = document.createElement('div');
-    overlay.id = AB_OVERLAY_ID;
-    overlay.className = 'nq-overlay acid-base-overlay';
+    const overlay = _abPagina();
+    overlay.dataset.abTela = 'hub';
     overlay.innerHTML = `
       <div class="ab-card">
-        <button type="button" class="ab-close" data-ab-close aria-label="Fechar">✕</button>
+        <button type="button" class="ab-close" data-ab-close aria-label="Sair da Câmara">✕</button>
         <div class="ab-scroll">
           <div class="ab-hub">
             <div class="ab-ornament">✦ A Câmara do Equilíbrio ✦</div>
-            <h2 class="ab-title">Alquimista Renal</h2>
+            <h1 class="ab-title">Alquimista Renal</h1>
             <p class="ab-lead">Vinte pacientes do reino aguardam diagnóstico ácido-base. Domine a fórmula de Winter, o ânion gap (e sua correção pela albumina), a delta ratio, o cloreto e o pH urinário, os distúrbios mistos e triplos e o gap osmolar para restaurar o equilíbrio.</p>
             <div class="ab-grid">${cardsHTML}</div>
           </div>
         </div>
       </div>`;
-    document.body.appendChild(overlay);
-    nqDialogo(overlay);
-    _bindOverlayEvents(overlay);
+    _abFocar(overlay, '.ab-title');
   }
 
   function _bindOverlayEvents(overlay){
-    // Fecha SOMENTE pelo botão ✕ (sem click-outside, sem ESC) para não
+    // Dentro de um caso, fecha SOMENTE pelo botão (sem Escape) para não
     // perder progresso de um ato no meio do raciocínio por engano.
     overlay.addEventListener('click', e => {
       const t = e.target;
-      if (t.closest('[data-ab-close]')) { overlay.remove(); return; }
+      if (t.closest('[data-ab-close]')) { _abFechar(overlay); return; }
       const caseBtn = t.closest('[data-ab-case]');
       if (caseBtn){
         const id = caseBtn.getAttribute('data-ab-case');
@@ -2141,6 +2171,7 @@
     });
     try { if (typeof _track === 'function') _track('minigame_acid_base_case_started', { case: kase.id }); } catch {}
     const sess = { actIdx: 0, grimoireUses: 0, wrongAttempts: 0 };
+    overlay.dataset.abTela = 'caso';
     _renderIntro(overlay, kase, sess);
   }
 
@@ -2150,7 +2181,7 @@
     return `
       <div class="ab-context">
         <div class="ab-ornament">${kase.chapter}</div>
-        <h2 class="ab-title">${kase.title}</h2>
+        <h1 class="ab-title">${kase.title}</h1>
         <p class="ab-narrative">${kase.narrative}</p>
         <div class="ab-gas-grid">
           <div class="ab-gas"><span>pH</span><strong>${_c(g.pH)}</strong></div>
@@ -2168,7 +2199,7 @@
   function _renderIntro(overlay, kase, sess){
     const card = overlay.querySelector('.ab-card');
     card.innerHTML = `
-      <button type="button" class="ab-close" data-ab-close aria-label="Fechar">✕</button>
+      <button type="button" class="ab-close" data-ab-close aria-label="Sair da Câmara">✕</button>
       <div class="ab-scroll">
         ${_contextHeaderHTML(kase)}
         <div class="ab-body ab-body--intro">
@@ -2176,7 +2207,8 @@
         </div>
       </div>`;
     card.querySelector('[data-ab-start-acts]').onclick = () => _renderAct(overlay, kase, sess);
-    card.querySelector('[data-ab-close]').onclick = () => overlay.remove();
+    _abFocar(card, '.ab-title');
+    card.querySelector('[data-ab-close]').onclick = () => _abFechar(overlay);
   }
 
   function _renderAct(overlay, kase, sess){
@@ -2283,7 +2315,7 @@
       : '';
 
     card.innerHTML = `
-      <button type="button" class="ab-close" data-ab-close aria-label="Fechar">✕</button>
+      <button type="button" class="ab-close" data-ab-close aria-label="Sair da Câmara">✕</button>
       <div class="ab-scroll">
         ${_contextHeaderHTML(kase)}
         <div class="ab-body">
@@ -2296,7 +2328,8 @@
         </div>
       </div>`;
 
-    card.querySelector('[data-ab-close]').onclick = () => overlay.remove();
+    card.querySelector('[data-ab-close]').onclick = () => _abFechar(overlay);
+    if (!(act.kind === 'num' && !actRes)) _abFocar(card, '.ab-prompt');
     card.querySelectorAll('[data-ab-goto]').forEach(b => {
       b.onclick = () => { sess.actIdx = parseInt(b.getAttribute('data-ab-goto'), 10); _renderAct(overlay, kase, sess); };
     });
@@ -2482,6 +2515,7 @@
 
   function _renderSummary(overlay, kase, sess){
     _markCompleted(kase.id, sess.grimoireUses);
+    overlay.dataset.abTela = 'resumo';
     try { if (typeof _track === 'function') _track('minigame_acid_base_case_completed', {
       case: kase.id, grimoireUses: sess.grimoireUses, wrongAttempts: sess.wrongAttempts
     }); } catch {}
@@ -2499,7 +2533,7 @@
               </div>`).join('')}
           </div>` : '';
     card.innerHTML = `
-      <button type="button" class="ab-close" data-ab-close aria-label="Fechar">✕</button>
+      <button type="button" class="ab-close" data-ab-close aria-label="Sair da Câmara">✕</button>
       <div class="ab-scroll">
         ${_contextHeaderHTML(kase)}
         <div class="ab-body ab-summary-view">
@@ -2517,8 +2551,9 @@
           </div>
         </div>
       </div>`;
-    card.querySelector('[data-ab-close]').onclick = () => overlay.remove();
-    card.querySelector('[data-ab-back]').onclick = () => { overlay.remove(); showAcidBaseMinigame(); };
+    card.querySelector('[data-ab-close]').onclick = () => _abFechar(overlay);
+    card.querySelector('[data-ab-back]').onclick = () => showAcidBaseMinigame();
+    _abFocar(card, '.ab-summary-title');
     card.querySelector('[data-ab-replay]').onclick = () => {
       const meta = CASES.find(c => c.id === kase.id);
       if (meta) _startCase(overlay, meta);

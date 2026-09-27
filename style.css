@@ -12594,8 +12594,16 @@ body.arqui-nefromante-final #arquiStarsDesktop {
 }
 .acid-base-overlay .ab-gas span { font-size: 0.7rem; color: #8294b2; letter-spacing: 1px; }
 .acid-base-overlay .ab-gas strong { font-family: 'Cinzel', serif; font-size: 1.1rem; color: #eec752; }
-.acid-base-overlay .ab-gas em { font-size: 0.65rem; color: #6b7a96; font-style: normal; }
+.acid-base-overlay .ab-gas em { font-size: 0.65rem; color: #8a9bb8; font-style: normal; }
 @media (max-width: 560px) { .acid-base-overlay .ab-gas-grid { grid-template-columns: repeat(2, 1fr); } }
+/* Câmara como página (15.32): mantém o visual do cartão, sem camada fixa,
+   sem altura máxima e sem rolagem interna — a página rola como página. */
+.acid-base-overlay.acid-base-page { position: relative; inset: auto; z-index: var(--z-app); display: block; min-height: 100dvh; background: #0b111c; backdrop-filter: none; -webkit-backdrop-filter: none; overflow: visible; padding: clamp(12px, 4vw, 48px) clamp(8px, 3vw, 32px); animation: none; }
+.acid-base-page .ab-card { max-height: none; overflow: visible; margin: 0 auto; width: min(760px, 100%); animation: none; }
+.acid-base-page .ab-scroll { overflow: visible; }
+.acid-base-page .ab-close { width: 44px; height: 44px; top: 6px; right: 6px; }
+.acid-base-page .ab-title:focus { outline: none; }
+.acid-base-page :is(.ab-title, .ab-prompt, .ab-summary-title):focus-visible { outline: 2px solid #78d9e3; outline-offset: 4px; }
 /* Progresso */
 .acid-base-overlay .ab-progress { display: flex; gap: 6px; justify-content: center; margin-bottom: 12px; }
 .acid-base-overlay .ab-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(130,148,178,0.3); border: 1px solid rgba(130,148,178,0.5); }
@@ -13785,6 +13793,9 @@ body.boss-stun-active #equipList .slot-diablo {
 
 /* Estudo integrado: escolha, sessão e resultado usam o fluxo da página. */
 body.nq-studying { overflow: auto !important; }
+/* A reserva de 120px para a barra e o dock do celular não vale aqui: eles
+   ficam escondidos, e a sobra mostrava o fundo do jogo abaixo da página. */
+body.nq-studying { padding-bottom: env(safe-area-inset-bottom, 0px) !important; }
 .nq-study-surface { position: relative; z-index: var(--z-app); min-height: 100dvh; width: 100%; background: #0b111c; color: var(--txt); padding: clamp(16px, 4vw, 48px); box-sizing: border-box; }
 .nq-study-surface *, .nq-study-surface *::before, .nq-study-surface *::after { box-sizing: border-box; }
 .nq-study-surface .nq-study-content,
