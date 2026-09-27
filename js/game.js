@@ -4839,6 +4839,7 @@
           <button data-remove-id="oracleAnswerFirstPopup" style="font-family:'Cinzel',serif;background:linear-gradient(180deg,#7c3aed 0%,#5b21b6 100%);border:2px solid #a855f7;border-radius:10px;color:#f3e8ff;font-size:0.85rem;font-weight:700;letter-spacing:1px;padding:11px 26px;cursor:pointer;box-shadow:0 0 16px rgba(168,85,247,0.4);">Vou responder</button>
         </div>`;
       document.body.appendChild(popup);
+      nqDialogo(popup, { painel: popup.firstElementChild });
       // (fechar-ao-clicar-fora removido — usa o X)
       if (typeof playSound === 'function') playSound('click');
     }
@@ -4859,6 +4860,7 @@
           <button data-remove-id="oracleBlockedPopup" style="font-family:'Cinzel',serif;background:linear-gradient(180deg,#7c3aed 0%,#5b21b6 100%);border:2px solid #a855f7;border-radius:10px;color:#f3e8ff;font-size:0.85rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:11px 26px;cursor:pointer;box-shadow:0 0 18px rgba(168,85,247,0.5);">Enfrentar sozinho</button>
         </div>`;
       document.body.appendChild(popup);
+      nqDialogo(popup, { painel: popup.firstElementChild });
       // (fechar-ao-clicar-fora removido — usa o X)
       if (typeof playSound === 'function') playSound('boss');
     }

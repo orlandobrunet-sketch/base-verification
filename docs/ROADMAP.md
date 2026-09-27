@@ -1,6 +1,6 @@
 # NefroQuest — Roadmap ativo
 
-**Última reconciliação:** 10/09/2026
+**Última reconciliação:** 26/09/2026
 **Versão de referência:** consultar sempre [`version.json`](../version.json)
 **Arquivo anterior:** [`archive/ROADMAP_LEGACY_2026-08.md`](archive/ROADMAP_LEGACY_2026-08.md)
 
@@ -26,8 +26,8 @@ Limites operacionais:
 ## Checkpoint operacional para continuidade
 
 - **Última reconciliação:** 10/09/2026, depois dos PRs #788 a #798.
-- **Base publicada:** `15.16`, PR #808 integrado após CI completa aprovada. Produção confirmou versão e arquivos do Grimório em 22/09.
-- **Ação atual:** NQ-04 publicado: artes de Conquistas/Objetivos, nome Dashboard, Jornada Ativa, retorno contextual, retomada de leitura, referências na questão e Grimório compacto com links/cópia de título. Próximo recorte autorizado: NQ-06, Estudo e Revisão integrado — escolha, sessão e resultado; implementação local 15.17 em validação. NQ-03 mantém pendências de GA4 e leitor de tela real.
+- **Base publicada:** `15.26`, PR #817 integrado com CI completa aprovada. O endpoint de versão de produção confirmou 15.26 em 26/09; esta consulta não certifica todos os assets.
+- **Ação atual:** NQ-04 publicado: artes de Conquistas/Objetivos, nome Dashboard, Jornada Ativa, retorno contextual, retomada de leitura, referências na questão e Grimório compacto com links/cópia de título. NQ-06 avançou com Estudo e Revisão integrado (15.17), Oráculo contextual (#810), recuperação do diagnóstico (#811), Forja (#812/#813), Simulado (#814), legibilidade de pergaminhos (#815), acabamento e texto ampliado (#816) e diálogos acessíveis (#817). Recorte atual: dois avisos restantes do Oráculo (15.27 em validação). NQ-03 mantém pendências de GA4 e leitor de tela real.
 - **Os três próximos recortes da reconciliação de 07/09 foram entregues:** o instrumento (#787), a recuperação do Grimório (#788 e #790) e a sugestão de artigo (#791).
 
 ### Prioridade do proprietário em 10/09 — qualidade visual e continuidade
