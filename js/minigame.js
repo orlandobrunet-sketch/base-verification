@@ -812,71 +812,108 @@
       return pool[Math.floor(Math.random() * pool.length)];
     }
 
+    // ── Ritual de Iniciação: página própria ──────────────────────────────────
+    //
+    // Era uma camada fixa sobre o jogo, com três defeitos medidos:
+    // - depois de responder, as alternativas só bloqueavam o mouse
+    //   (pointer-events): pelo teclado dava para responder outra, e a mesma
+    //   questão contava duas vezes na recomendação;
+    // - uma falha ao baixar o banco era engolida: o Ritual mostrava "0 de 8" e
+    //   GRAVAVA "Fácil" como recomendação — falha virando resultado;
+    // - a correção era só a cor da borda.
+    // Agora é página (nqPaginaPropria), a resposta é única, a falha tem estado
+    // próprio com nova tentativa e nada é gravado, e a correção diz em texto.
     async function openRitual() {
       if (typeof playSound === 'function') playSound('click');
-      if (typeof window._loadTopics === 'function') { try { await window._loadTopics(); } catch (e) {} }
-      document.getElementById('ritualOverlay')?.remove();
-      const overlay = document.createElement('div');
-      overlay.id = 'ritualOverlay';
-      overlay.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.92);display:flex;align-items:center;justify-content:center;padding:16px calc(env(safe-area-inset-bottom,0px)+16px);box-sizing:border-box;overflow-y:auto;animation:fadeIn 0.4s ease;';
-      document.body.appendChild(overlay);
-      nqDialogo(overlay);
+      const { pagina, fechar } = nqPaginaPropria('ritualPage', 'Ritual de Iniciação', {
+        classe: 'nq-exam nq-ritual',
+        aoTeclar: e => { if (e.key === 'Escape') { e.preventDefault(); fechar(); } },
+      });
 
       const used = new Set();
       const ritualResults = [];
       let step = 0, band = 'medium', correctCount = 0, hardCorrect = 0, hardFaced = 0, current = null;
-      const panel = inner => `<div style="max-width:560px;width:100%;background:linear-gradient(160deg,#0a0118,#120230,#0a0118);border:2px solid rgba(168,85,247,0.7);border-radius:18px;padding:24px;box-shadow:0 0 50px rgba(168,85,247,0.35);margin:auto 0;">${inner}</div>`;
+      const letras = ['A', 'B', 'C', 'D', 'E'];
+      const desenhar = (html, foco) => {
+        pagina.innerHTML = `<div class="nq-study-content nq-exam-intro">${html}</div>`;
+        pagina.querySelector(foco)?.focus({ preventScroll: true });
+        window.scrollTo(0, 0);
+      };
 
-      function showIntro() {
-        overlay.innerHTML = panel(`
-          <div style="text-align:center;">
-            <div style="font-size:2.2rem;margin-bottom:6px;">⚜️</div>
-            <h2 style="font-family:'Cinzel',serif;color:#e9d5ff;font-size:1.2rem;letter-spacing:2px;margin:0 0 12px;">Ritual de Iniciação</h2>
-            <p style="font-family:'Philosopher',serif;color:#c4b5fd;font-size:0.9rem;line-height:1.65;margin:0 0 20px;">
-              Responda <strong style="color:#e9d5ff;">${RITUAL_LEN} questões</strong> e o Ritual vai <strong>alinhar a dificuldade da sua jornada</strong> ao seu nível atual — as questões se adaptam às suas respostas.<br><br>
-              <span style="color:var(--txt-dim);font-size:0.82rem;">Não conta para a sua jornada, pontuação ou ranking — é só um diagnóstico, e você pode refazer quando quiser.</span>
-            </p>
-            <div style="display:flex;gap:10px;flex-direction:column;">
-              <button type="button" id="ritualStart" style="font-family:'Cinzel',serif;background:linear-gradient(180deg,#7c3aed,#5b21b6);border:2px solid #a855f7;border-radius:12px;color:#f3e8ff;font-size:0.95rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;padding:13px;cursor:pointer;">Começar o Ritual</button>
-              <!-- Recusar tinha 15px de altura: metade do mínimo de toque. O
-                   botão de aceitar tem 13px de padding; recusar não precisa
-                   competir em peso, mas precisa caber no dedo. -->
-              <button type="button" data-remove-id="ritualOverlay" style="background:none;border:none;color:var(--txt-dim);font-size:0.82rem;cursor:pointer;padding:9px;min-height:44px;">Agora não</button>
-            </div>
-          </div>`);
-        overlay.querySelector('#ritualStart').addEventListener('click', nextQuestion);
+      function showIntro(erro = '') {
+        desenhar(`
+          <h1 id="ritualTitulo" tabindex="-1">Ritual de Iniciação</h1>
+          <p>Responda <strong>${RITUAL_LEN} questões</strong> e o Ritual alinha a dificuldade da sua jornada ao seu nível atual: as questões se adaptam às suas respostas.</p>
+          <p>Não conta para a sua jornada, pontuação ou ranking. É só um diagnóstico, e você pode refazer quando quiser.</p>
+          ${erro ? `<p class="nq-exam-erro" role="alert">${erro}</p>` : ''}
+          <div class="nq-exam-acoes">
+            <button type="button" class="btn gold" id="ritualStart">Começar o Ritual</button>
+            <button type="button" class="btn sec" id="ritualSair">Agora não</button>
+          </div>`, erro ? '#ritualStart' : '#ritualTitulo');
+        pagina.querySelector('#ritualStart').addEventListener('click', comecar);
+        pagina.querySelector('#ritualSair').addEventListener('click', fechar);
+      }
+
+      async function comecar() {
+        const botao = pagina.querySelector('#ritualStart');
+        if (botao) { botao.disabled = true; botao.textContent = 'Preparando as questões…'; }
+        try {
+          if (typeof window._loadTopics === 'function') await window._loadTopics();
+        } catch (e) {
+          showIntro('Não foi possível carregar as questões. Verifique a conexão e tente de novo. Nada foi registrado.');
+          return;
+        }
+        if (!pagina.isConnected) return;
+        nextQuestion();
       }
 
       function nextQuestion() {
         if (step >= RITUAL_LEN) return showResult();
         current = _ritualPick(band, used);
-        if (!current) return showResult();
+        if (!current) {
+          // Sem nenhuma questão respondida não há diagnóstico: um resultado
+          // aqui seria "0 de 8 → Fácil" inventado.
+          if (step === 0) return showIntro('Não há questões disponíveis para o Ritual agora. Tente de novo mais tarde. Nada foi registrado.');
+          return showResult();
+        }
         used.add(current.qid || current.id);
         step++;
         if (band === 'hard') hardFaced++;
         const opts = current.o || current.opts || [];
         const ans = (current.a !== undefined) ? current.a : current.ans;
-        overlay.innerHTML = panel(`
-          <div style="font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:3px;color:rgba(192,132,252,0.8);text-transform:uppercase;margin-bottom:10px;">Ritual · ${step} / ${RITUAL_LEN}</div>
-          <div style="font-family:'Philosopher',serif;color:#eef4ff;font-size:1rem;line-height:1.6;margin-bottom:16px;">${_ritualEsc(current.q || '')}</div>
-          <div id="ritualOpts" style="display:flex;flex-direction:column;gap:8px;"></div>`);
-        const optsEl = overlay.querySelector('#ritualOpts');
-        opts.forEach((opt, i) => {
-          const b = document.createElement('button');
-          b.type = 'button';
-          b.style.cssText = 'text-align:left;background:rgba(35,10,70,0.6);border:1.5px solid #6d28d9;border-radius:10px;color:#e9d5ff;padding:11px 14px;font-family:Philosopher,serif;font-size:0.9rem;line-height:1.4;cursor:pointer;';
-          b.textContent = String.fromCharCode(65 + i) + ') ' + opt;
-          b.addEventListener('click', () => answer(i === ans, b, optsEl, ans));
-          optsEl.appendChild(b);
-        });
+        desenhar(`
+          <p class="nq-exam-titulo">Ritual de Iniciação</p>
+          <div class="nq-exam-progresso" role="progressbar" aria-label="Progresso do Ritual" aria-valuemin="0" aria-valuemax="${RITUAL_LEN}" aria-valuenow="${step - 1}">
+            <div style="width:${((step - 1) / RITUAL_LEN * 100).toFixed(1)}%"></div>
+          </div>
+          <article class="nq-exam-questao">
+            <h1 id="ritualQuestao" tabindex="-1">Questão ${step} de ${RITUAL_LEN}</h1>
+            <p class="nq-exam-enunciado">${_ritualEsc(current.q || '')}</p>
+            <div id="ritualOpts" class="nq-exam-opcoes">
+              ${opts.map((opt, i) => `<button type="button" class="nq-exam-opcao" data-i="${i}">
+                <span class="nq-exam-letra" aria-hidden="true">${letras[i]}</span><span>${_ritualEsc(opt)}</span></button>`).join('')}
+            </div>
+            <p id="ritualVeredito" class="nq-exam-veredito" role="status" aria-live="polite"></p>
+          </article>`, '#ritualQuestao');
+        pagina.querySelectorAll('#ritualOpts button').forEach(b =>
+          b.addEventListener('click', () => answer(Number(b.dataset.i), ans), { once: true }));
       }
 
-      function answer(isCorrect, btnEl, optsEl, ans) {
-        [...optsEl.children].forEach((c, i) => {
-          c.style.pointerEvents = 'none';
-          if (i === ans) c.style.borderColor = '#34d399';
-        });
-        if (!isCorrect) btnEl.style.borderColor = '#fb7185';
+      function answer(escolha, ans) {
+        const botoes = [...pagina.querySelectorAll('#ritualOpts button')];
+        // Resposta única: desabilitar de verdade, não só para o mouse.
+        if (botoes.some(b => b.disabled)) return;
+        botoes.forEach(b => { b.disabled = true; });
+        const isCorrect = escolha === ans;
+        const marcar = (i, classe, texto) => {
+          const b = botoes[i];
+          if (!b) return;
+          b.classList.add('nq-exam-opcao-' + classe);
+          b.lastElementChild.insertAdjacentHTML('beforeend', `<strong class="nq-exam-marca">${texto}</strong>`);
+        };
+        marcar(ans, 'certa', isCorrect ? 'Sua escolha — correta' : 'Resposta correta');
+        if (!isCorrect) marcar(escolha, 'errada', 'Sua escolha');
+        pagina.querySelector('#ritualVeredito').textContent = isCorrect ? 'Correto.' : `Incorreto. A resposta certa é a ${letras[ans]}.`;
         ritualResults.push({ qid: current.qid || current.id, isCorrect });
         if (isCorrect) {
           correctCount++;
@@ -887,7 +924,7 @@
           if (typeof playSound === 'function') playSound('wrong');
           band = (band === 'hard') ? 'medium' : 'easy';
         }
-        setTimeout(nextQuestion, 650);
+        setTimeout(() => { if (pagina.isConnected) nextQuestion(); }, 900);
       }
 
       function recommend() {
@@ -913,22 +950,20 @@
         }
         const LABEL = { easy: 'Fácil', normal: 'Médio', hard: 'Difícil', hardcore: 'Hardcore' };
         if (typeof playSound === 'function') playSound('levelup');
-        overlay.innerHTML = panel(`
-          <div style="text-align:center;">
-            <div style="font-size:2rem;margin-bottom:6px;">⚜️</div>
-            <h2 style="font-family:'Cinzel',serif;color:#e9d5ff;font-size:1.1rem;letter-spacing:1px;margin:0 0 10px;">Ritual Concluído</h2>
-            <p style="font-family:'Philosopher',serif;color:#c4b5fd;font-size:0.9rem;line-height:1.6;margin:0 0 8px;">Você acertou <strong style="color:#e9d5ff;">${correctCount} de ${RITUAL_LEN}</strong>.</p>
-            <p style="font-family:'Philosopher',serif;color:#c8d8f0;font-size:0.95rem;margin:0 0 6px;">Dificuldade recomendada para sua jornada:</p>
-            <div style="font-family:'Cinzel',serif;color:var(--gold);font-size:1.4rem;font-weight:900;letter-spacing:1px;margin:0 0 20px;text-shadow:0 0 16px rgba(255,215,0,0.4);">${LABEL[rec]}</div>
-            <div style="display:flex;gap:10px;flex-direction:column;">
-              <button type="button" id="ritualGo" style="font-family:'Cinzel',serif;background:linear-gradient(180deg,#7c3aed,#5b21b6);border:2px solid #a855f7;border-radius:12px;color:#f3e8ff;font-size:0.92rem;font-weight:900;letter-spacing:1px;text-transform:uppercase;padding:12px;cursor:pointer;">Iniciar jornada nesse nível</button>
-              <button type="button" data-remove-id="ritualOverlay" style="background:none;border:none;color:var(--txt-dim);font-size:0.82rem;cursor:pointer;">Fechar (a recomendação fica salva)</button>
-            </div>
-          </div>`);
-        overlay.querySelector('#ritualGo').addEventListener('click', () => {
-          overlay.remove();
+        desenhar(`
+          <h1 id="ritualTitulo" tabindex="-1">Ritual concluído</h1>
+          <p>Você acertou <strong>${correctCount} de ${step}</strong>.</p>
+          <p>Dificuldade recomendada para sua jornada:</p>
+          <p class="nq-ritual-recomendacao">${LABEL[rec]}</p>
+          <div class="nq-exam-acoes">
+            <button type="button" class="btn gold" id="ritualGo">Iniciar jornada nesse nível</button>
+            <button type="button" class="btn sec" id="ritualSair">Voltar (a recomendação fica salva)</button>
+          </div>`, '#ritualTitulo');
+        pagina.querySelector('#ritualGo').addEventListener('click', () => {
+          fechar();
           if (typeof startNewFromWelcome === 'function') startNewFromWelcome();
         });
+        pagina.querySelector('#ritualSair').addEventListener('click', fechar);
       }
 
       showIntro();

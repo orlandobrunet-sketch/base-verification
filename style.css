@@ -13905,9 +13905,10 @@ body.nq-studying #mobileSoundControls { position: relative; top: auto; right: au
 .nq-exam-progresso > div { height: 100%; background: var(--gold); }
 .nq-exam-questao { max-width: 78ch; margin: 0 auto; padding: 24px 0; }
 .nq-exam-questao h1 { font-size: 1rem; color: var(--txt-dim); font-family: inherit; }
-.nq-exam-enunciado { color: var(--txt); line-height: 1.7; font-size: 1.05rem; margin: 0 0 20px; }
+.nq-exam-enunciado { color: var(--txt); line-height: 1.7; font-size: 1.05rem; margin: 0 0 20px; overflow-wrap: anywhere; }
 .nq-exam-opcoes { display: flex; flex-direction: column; gap: 8px; }
-.nq-exam-opcao { display: flex; gap: 12px; align-items: flex-start; text-align: left; width: 100%; min-height: 44px; padding: 12px 14px; background: transparent; color: var(--txt); border: 1px solid #34434e; border-radius: 6px; font: inherit; line-height: 1.5; cursor: pointer; }
+.nq-exam-opcao { display: flex; gap: 12px; align-items: flex-start; text-align: left; width: 100%; min-height: 44px; padding: 12px 14px; background: transparent; color: var(--txt); border: 1px solid #34434e; border-radius: 6px; font: inherit; line-height: 1.5; cursor: pointer; overflow-wrap: anywhere; }
+.nq-exam-opcao > span:last-child { min-width: 0; }
 .nq-exam-opcao:hover:not(:disabled) { border-color: #78d9e3; }
 ol.nq-exam-opcoes { list-style: none; padding: 0; margin: 0; }
 li.nq-exam-opcao { cursor: default; }
@@ -13963,3 +13964,8 @@ li.nq-exam-opcao { cursor: default; }
    mínimo de 44px. Os ✕ mediam 20–30px e vários "Continuar" ficavam em 36px. */
 [data-nq-dialogo] :is(button, [role="button"]):not(.chest-img-clickable) { min-height: 44px; }
 [data-nq-dialogo] :is(.auth-close-btn, [aria-label="Fechar"], [data-remove-id]):not(.btn):not([class*="btn"]) { min-width: 44px; }
+
+/* Ritual de Iniciação: página própria, com o visual do Simulado. */
+.nq-ritual-recomendacao { font-family: 'Cinzel', Georgia, serif; font-size: 1.6rem; color: var(--gold) !important; margin: 4px 0 8px; }
+.nq-ritual .nq-exam-opcao:disabled { cursor: default; opacity: 1; }
+.nq-ritual .nq-exam-opcao:disabled:not(.nq-exam-opcao-certa):not(.nq-exam-opcao-errada) { color: var(--txt-dim); }

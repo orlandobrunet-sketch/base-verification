@@ -41,10 +41,10 @@ const POPUPS: [string, string][] = [
   ['conquistas', 'showAchievementsModal()'],
   ['reportar erro', 'flagQuestion()'],
   // Segunda leva (15.28): as sobreposições que ainda não eram diálogos.
+  // O Ritual saiu desta lista na 15.29: virou página (spec 76).
   ['identidade', '_showIdentityChooser()'],
   ['lore do herói', 'showHeroLore()'],
   ['julgamento rápido', 'showRapidQuizMinigame(true)'],
-  ['ritual', 'openRitual()'],
   ['ácido-base', 'showAcidBaseMinigame()'],
   ['intro do personagem', "showCharacterIntroModal('glomerulus')"],
   ['resumo de referência', "_showResumoModal({label:'KDIGO 2024', autores:'Autores', jornal:'Kidney Int', ano:'2024', resumo:'Resumo de teste.', conclusao:'Conclusão.', impacto:'Impacto.', link:''})"],

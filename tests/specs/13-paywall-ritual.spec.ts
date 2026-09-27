@@ -47,7 +47,7 @@ test.describe('Ritual de Iniciação (placement)', () => {
   test('abre com intro e botão de começar', async ({ page }) => {
     await page.evaluate(() => (window as any).openRitual());
 
-    const overlay = page.locator('#ritualOverlay');
+    const overlay = page.locator('#ritualPage');
     await expect(overlay).toBeVisible({ timeout: 10_000 });
     await expect(overlay).toContainText('Ritual de Iniciação');
     await expect(overlay.locator('#ritualStart')).toBeVisible();
@@ -55,11 +55,11 @@ test.describe('Ritual de Iniciação (placement)', () => {
 
   test('começar o ritual renderiza a primeira questão', async ({ page }) => {
     await page.evaluate(() => (window as any).openRitual());
-    await page.locator('#ritualOverlay #ritualStart').click();
+    await page.locator('#ritualPage #ritualStart').click();
 
-    // Contador "Ritual · 1 / N" e opções renderizadas
-    const overlay = page.locator('#ritualOverlay');
-    await expect(overlay).toContainText(/Ritual\s*·\s*1\s*\//, { timeout: 5_000 });
+    // Contador "Questão 1 de N" e opções renderizadas (o Ritual virou página, 15.29)
+    const overlay = page.locator('#ritualPage');
+    await expect(overlay).toContainText(/Questão\s*1\s*de\s*\d+/, { timeout: 5_000 });
     await expect(overlay.locator('#ritualOpts button')).not.toHaveCount(0);
   });
 });
