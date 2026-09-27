@@ -5430,22 +5430,6 @@
         }
       }
 
-      // --- MINIGAME JULGAMENTO RÁPIDO ---
-      const mgTrue = document.getElementById('mgTrue');
-      const mgFalse = document.getElementById('mgFalse');
-      if (mgTrue && !mgTrue.disabled && mgFalse && !mgFalse.disabled) {
-        const key = e.key.toUpperCase();
-        if (key === 'V' || key === '1' || key === 'T' || key === 'C') {
-          e.preventDefault();
-          mgTrue.click();
-          return;
-        } else if (key === 'F' || key === '2' || key === 'E') {
-          e.preventDefault();
-          mgFalse.click();
-          return;
-        }
-      }
-
       // --- MODO DE ESTUDO ---
       const studyArea = document.getElementById('studyQuestionArea');
       if (studyArea && studyArea.offsetParent !== null) {

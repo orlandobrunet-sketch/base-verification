@@ -55,6 +55,17 @@
       });
     }
 
+    // Julgamento Rápido: página própria.
+    //
+    // Era uma camada fixa sobre o jogo, com defeitos medidos:
+    // - o item conquistado (8+ acertos) só era entregue pelo botão "Continuar";
+    //   fechar o resultado pelo ✕ ou pelo Escape perdia o item — nem equipado,
+    //   nem vendido — e deixava o HUD com o ouro antigo;
+    // - a explicação de cada afirmação sumia em 1 segundo, sem tempo de leitura;
+    // - a resposta certa, ao errar, era indicada só por um brilho verde.
+    // Agora é página (nqPaginaPropria); o cronômetro corre só enquanto a
+    // afirmação está sem resposta, a explicação fica até o jogador avançar, a
+    // correção diz em texto e concluir — por qualquer caminho — entrega tudo.
     function showRapidQuizMinigame(standalone) {
       standalone = !!standalone;
       const POOL_SIZE = 10;
@@ -77,19 +88,24 @@
       let correctCount = 0;
       let timerInterval = null;
       let _answered = false;
+      let concluir = null; // definido no resultado: entrega o prêmio e fecha
       const TIME_PER_Q = 12;
 
-      const overlay = document.createElement('div');
-      overlay.className = 'minigame-overlay';
-      overlay.id = 'rapidQuizOverlay';
-      document.body.appendChild(overlay);
-      nqDialogo(overlay);
-
-      window._exitMinigame = function() {
-        if (timerInterval) clearInterval(timerInterval);
-        overlay.remove();
-        delete window.mgAnswer;
-        delete window._exitMinigame;
+      const { pagina, fechar } = nqPaginaPropria('rapidQuizPage', 'Julgamento Rápido', {
+        classe: 'nq-exam nq-julgamento',
+        aoTeclar: e => {
+          if (e.key === 'Escape') { e.preventDefault(); return concluir ? concluir() : sair(); }
+          if (_answered || concluir || e.ctrlKey || e.metaKey || e.altKey) return;
+          const key = (e.key || '').toUpperCase();
+          if (['V', '1', 'T', 'C'].includes(key)) { e.preventDefault(); responder(true); }
+          else if (['F', '2', 'E'].includes(key)) { e.preventDefault(); responder(false); }
+        },
+      });
+      const sair = () => { if (timerInterval) clearInterval(timerInterval); fechar(); };
+      const desenhar = (html, foco) => {
+        pagina.innerHTML = `<div class="nq-study-content nq-exam-intro">${html}</div>`;
+        pagina.querySelector(foco)?.focus({ preventScroll: true });
+        window.scrollTo(0, 0);
       };
 
       function _renderMinigameQuestion() {
@@ -99,86 +115,95 @@
         _answered = false;
         if (timerInterval) clearInterval(timerInterval);
 
-        overlay.innerHTML = `
-          <div class="minigame-card">
-            <button class="minigame-close-btn" data-action="_exitMinigame" title="Fechar">✕</button>
-            <div class="minigame-title">⚡ Julgamento Rápido</div>
-            <div class="minigame-subtitle">Verdadeiro ou Falso? ${TIME_PER_Q}s por afirmação</div>
-            <div class="minigame-progress">${currentIdx + 1} / ${pool.length}</div>
-            <div class="minigame-timer"><div class="minigame-timer-fill" id="mgTimerFill" style="width:100%"></div></div>
-            <div class="minigame-stmt" id="mgStmt">${escapeHtml(q.q)}</div>
-            <div class="minigame-tf-btns">
-              <button class="minigame-true-btn" id="mgTrue" data-action="mgAnswer" data-arg="true" data-arg-type="boolean">✓ VERDADEIRO</button>
-              <button class="minigame-false-btn" id="mgFalse" data-action="mgAnswer" data-arg="false" data-arg-type="boolean">✗ FALSO</button>
+        desenhar(`
+          <div class="nq-exam-cabecalho">
+            <p class="nq-exam-titulo">Julgamento Rápido · Verdadeiro ou falso? ${TIME_PER_Q} s por afirmação</p>
+            <p class="nq-exam-relogio" id="mgRelogio" aria-hidden="true">${TIME_PER_Q} s</p>
+            <div class="nq-exam-progresso" aria-hidden="true"><div id="mgTimerFill" style="width:100%"></div></div>
+          </div>
+          <article class="nq-exam-questao">
+            <h1 id="mgQuestao" tabindex="-1">Afirmação ${currentIdx + 1} de ${pool.length}</h1>
+            <p class="nq-exam-enunciado" id="mgStmt">${escapeHtml(q.q)}</p>
+            <div class="nq-exam-opcoes">
+              <button type="button" class="nq-exam-opcao" id="mgTrue"><span class="nq-exam-letra" aria-hidden="true">V</span><span>Verdadeiro</span></button>
+              <button type="button" class="nq-exam-opcao" id="mgFalse"><span class="nq-exam-letra" aria-hidden="true">F</span><span>Falso</span></button>
             </div>
-            <div id="mgFeedback" style="min-height:32px;font-size:0.75rem;color:#94a3b8;text-align:center;line-height:1.4;"></div>
-          </div>`;
+            <div id="mgFeedback" class="nq-exam-correcao" role="status" aria-live="polite" hidden></div>
+            <div class="nq-exam-acoes">
+              <button type="button" class="btn sec" id="mgSair">${standalone ? 'Sair' : 'Sair do desafio (sem recompensa)'}</button>
+            </div>
+          </article>`, '#mgQuestao');
+        pagina.querySelector('#mgTrue').addEventListener('click', () => responder(true));
+        pagina.querySelector('#mgFalse').addEventListener('click', () => responder(false));
+        pagina.querySelector('#mgSair').addEventListener('click', sair);
 
         timerInterval = setInterval(() => {
           timeLeft -= 0.1;
           const fill = document.getElementById('mgTimerFill');
           if (fill) fill.style.width = Math.max(0, (timeLeft / TIME_PER_Q * 100)) + '%';
+          const relogio = document.getElementById('mgRelogio');
+          if (relogio) {
+            relogio.textContent = Math.max(0, Math.ceil(timeLeft)) + ' s';
+            relogio.classList.toggle('nq-exam-urgente', timeLeft <= 3);
+          }
           if (timeLeft <= 0) {
             clearInterval(timerInterval);
-            mgAnswer(null);
+            responder(null);
           }
         }, 100);
       }
 
-      window.mgAnswer = function(userAns) {
-        if (_answered) return; // previne double-click / double-fire por timer
+      function responder(userAns) {
+        if (_answered || !pagina.isConnected) return; // previne double-click / double-fire por timer
         _answered = true;
         if (timerInterval) clearInterval(timerInterval);
         const q = pool[currentIdx];
         const isCorrect = userAns === q.ans;
 
-        const fb = document.getElementById('mgFeedback');
         const trueBtn = document.getElementById('mgTrue');
         const falseBtn = document.getElementById('mgFalse');
-        if (trueBtn) trueBtn.disabled = true;
-        if (falseBtn) falseBtn.disabled = true;
+        [trueBtn, falseBtn].forEach(b => { if (b) b.disabled = true; });
+        const correctBtn = q.ans ? trueBtn : falseBtn;
+        const clickedBtn = userAns === null ? null : (userAns ? trueBtn : falseBtn);
+        const marcar = (b, classe, texto) => {
+          if (!b) return;
+          b.classList.add('nq-exam-opcao-' + classe);
+          b.lastElementChild.insertAdjacentHTML('beforeend', `<strong class="nq-exam-marca">${texto}</strong>`);
+        };
+        marcar(correctBtn, 'certa', isCorrect ? 'Sua escolha — correta' : 'Resposta correta');
+        if (clickedBtn && !isCorrect) marcar(clickedBtn, 'errada', 'Sua escolha');
 
         let x, y;
-        if (userAns !== null) {
-          const clickedBtn = userAns ? trueBtn : falseBtn;
-          const correctBtn = q.ans ? trueBtn : falseBtn;
-          if (clickedBtn) clickedBtn.style.opacity = isCorrect ? '1' : '0.5';
-          if (!isCorrect && correctBtn) correctBtn.style.boxShadow = '0 0 14px rgba(74,222,128,0.85)';
-          if (clickedBtn && typeof clickedBtn.getBoundingClientRect === 'function') {
-            const rect = clickedBtn.getBoundingClientRect();
-            x = rect.left + rect.width / 2;
-            y = rect.top + rect.height / 2;
-          }
+        if (clickedBtn) {
+          const rect = clickedBtn.getBoundingClientRect();
+          x = rect.left + rect.width / 2;
+          y = rect.top + rect.height / 2;
+        }
+        if (typeof nqRecordAnswer === 'function') nqRecordAnswer(q.qid, isCorrect, q.cat, q.q);
+        if (isCorrect) correctCount++;
+        if (typeof window.showFloatingFeedback === 'function') {
+          window.showFloatingFeedback(isCorrect ? '✓ Correto!' : userAns === null ? '⏱️ Esgotado' : '✗ Incorreto', isCorrect, x, y);
+        }
+        if (typeof window.triggerHapticFeedback === 'function') {
+          window.triggerHapticFeedback(isCorrect ? 'correct' : 'wrong');
         }
 
-        if (isCorrect) {
-          correctCount++;
-          if (typeof nqRecordAnswer === 'function') nqRecordAnswer(q.qid, true, q.cat, q.q);
-          if (typeof window.showFloatingFeedback === 'function') {
-            window.showFloatingFeedback('✓ Correto!', true, x, y);
-          }
-          if (typeof window.triggerHapticFeedback === 'function') {
-            window.triggerHapticFeedback('correct');
-          }
-        } else {
-          if (typeof nqRecordAnswer === 'function') nqRecordAnswer(q.qid, false, q.cat, q.q);
-          if (typeof window.showFloatingFeedback === 'function') {
-            window.showFloatingFeedback(userAns === null ? '⏱️ Esgotado' : '✗ Incorreto', false, x, y);
-          }
-          if (typeof window.triggerHapticFeedback === 'function') {
-            window.triggerHapticFeedback('wrong');
-          }
-        }
-
+        const verdade = `A afirmação é ${q.ans ? 'verdadeira' : 'falsa'}.`;
+        const veredito = userAns === null ? `Tempo esgotado. ${verdade}` : isCorrect ? `Correto. ${verdade}` : `Incorreto. ${verdade}`;
+        const fb = document.getElementById('mgFeedback');
         if (fb) {
-          fb.classList.toggle('minigame-fb--correct', isCorrect);
-          fb.classList.toggle('minigame-fb--wrong', !isCorrect);
-          fb.textContent = (userAns === null ? '⏱️ Tempo esgotado! ' : (isCorrect ? '✓ Correto! ' : '✗ Incorreto! ')) + q.exp;
+          fb.hidden = false;
+          fb.classList.add(isCorrect ? 'nq-exam-acertou' : 'nq-exam-errou');
+          fb.innerHTML = `<p class="nq-exam-veredito">${veredito}</p><p>${escapeHtml(q.exp || '')}</p>`;
         }
         currentIdx++;
-        // Resposta antecipada: avança em 1000ms quando usuário clica; timeout = 1800ms
-        setTimeout(_renderMinigameQuestion, userAns !== null ? 1000 : 1800);
-      };
+        const ultimo = currentIdx >= pool.length;
+        pagina.querySelector('#mgSair')?.insertAdjacentHTML('beforebegin',
+          `<button type="button" class="btn gold" id="mgProxima">${ultimo ? 'Ver resultado' : 'Próxima afirmação'}</button>`);
+        const proxima = pagina.querySelector('#mgProxima');
+        proxima.addEventListener('click', _renderMinigameQuestion, { once: true });
+        proxima.focus({ preventScroll: true });
+      }
 
       function _getItemReward(score) {
         if (score < 8) return null;
@@ -194,10 +219,7 @@
       }
 
       function showResults() {
-        // Limpar globals antes de renderizar resultado (evita leak se overlay for fechado por outro meio)
         if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
-        delete window.mgAnswer;
-        delete window._exitMinigame;
         const total = pool.length;
         const pct = correctCount / total;
         const baseGold = 30 + correctCount * 20;
@@ -212,59 +234,56 @@
           gainXP(xpReward);
         }
 
-        const emojis = ['😓','😓','🤔','🤔','🙂','🙂','😊','🌟','🌟','🏆','🏆'];
-        const emoji = emojis[correctCount] || '🏆';
         const msg = correctCount >= 9 ? 'Maestria absoluta! Você domina a nefrologia!' :
                     correctCount >= 7 ? 'Excelente! Conhecimento de mestre!' :
                     correctCount >= 5 ? 'Bom! Continue aprimorando.' :
                     correctCount >= 3 ? 'Pratique mais esses tópicos.' :
                     'Revise os conceitos. Você chega lá!';
 
-        const itemHtml = itemReward ? `
-          <div style="background:rgba(74,222,128,0.12);border:1px solid rgba(74,222,128,0.45);border-radius:10px;padding:10px 14px;margin:8px 0;text-align:center;">
-            <div style="font-size:0.7rem;color:#4ade80;font-weight:700;letter-spacing:1px;margin-bottom:4px;">🎁 ITEM CONQUISTADO</div>
-            <div style="font-size:0.9rem;color:#a7f3d0;font-weight:700;">${itemReward.item.n}</div>
-            <div style="font-size:0.7rem;color:#6ee7b7;text-transform:uppercase;letter-spacing:1px;">${itemReward.item.rar} · ATK ${itemReward.item.atk} · DEF ${itemReward.item.def} · KNO ${itemReward.item.kno}</div>
-          </div>` : '';
-
-        const rewardHtml = standalone
-          ? `<div class="minigame-reward" style="color:#94a3b8;">Modo Livre — sem recompensas de jogo</div>`
-          : `<div class="minigame-reward">+${goldReward} 🪙  +${xpReward} XP</div>${itemHtml}`;
-
-        let standaloneBest = '';
+        let recorde = '';
         if (standalone) {
           const bestKey = 'nefroquest-minigame-best';
-          const prev = parseInt(localStorage.getItem(bestKey) || '0', 10);
+          let prev = 0;
+          try { prev = parseInt(localStorage.getItem(bestKey) || '0', 10); } catch (e) {}
           if (correctCount > prev) {
-            localStorage.setItem(bestKey, String(correctCount));
-            standaloneBest = `<div style="font-size:0.72rem;color:#fbbf24;text-align:center;margin-bottom:10px;">⭐ Novo recorde pessoal!</div>`;
+            try { localStorage.setItem(bestKey, String(correctCount)); } catch (e) {}
+            recorde = '<p class="nq-julgamento-destaque">Novo recorde pessoal!</p>';
           } else if (prev > 0) {
-            standaloneBest = `<div style="font-size:0.72rem;color:#94a3b8;text-align:center;margin-bottom:10px;">Recorde pessoal: ${prev}/10</div>`;
+            recorde = `<p>Recorde pessoal: ${prev} de 10.</p>`;
           }
         }
 
-        const continueBtnAttrs = standalone
-          ? `data-remove-id="rapidQuizOverlay"`
-          : `data-remove-id="rapidQuizOverlay" data-action-seq="renderHUD,updateBadges,saveGame"`;
+        const premio = standalone
+          ? '<p>Modo livre: sem recompensas de jogo.</p>'
+          : `<p class="nq-julgamento-destaque">+${goldReward} de ouro · +${xpReward} XP</p>` +
+            (itemReward ? `<div class="nq-exam-correcao nq-exam-acertou">
+              <p class="nq-julgamento-destaque">Item conquistado: ${escapeHtml(itemReward.item.n)}</p>
+              <p>${escapeHtml(itemReward.item.rar)} · ATK ${itemReward.item.atk} · DEF ${itemReward.item.def} · KNO ${itemReward.item.kno}</p>
+              <p>Ele é equipado ou vendido quando você continua a jornada.</p></div>` : '');
 
-        overlay.innerHTML = `
-          <div class="minigame-card">
-            <button class="minigame-close-btn" data-remove-id="rapidQuizOverlay" title="Fechar">✕</button>
-            <div class="minigame-title">⚡ Resultado</div>
-            <div class="minigame-result">${emoji} ${correctCount}/${total} corretas</div>
-            ${rewardHtml}
-            ${standaloneBest}
-            <p style="color:#94a3b8;font-size:0.75rem;text-align:center;margin-bottom:16px">${msg}</p>
-            <button class="diff-confirm-btn" id="mgContinueBtn" ${continueBtnAttrs}>${standalone ? '✓ Fechar' : 'Continuar a Jornada'}</button>
-          </div>`;
-
-        if (itemReward) {
-          document.getElementById('mgContinueBtn')?.addEventListener('click', () => {
+        let concluido = false;
+        concluir = () => {
+          if (concluido) return;
+          concluido = true;
+          fechar();
+          if (standalone) return;
+          ['renderHUD', 'updateBadges', 'saveGame'].forEach(fn => { try { window[fn]?.(); } catch (e) {} });
+          if (itemReward) {
             setTimeout(() => {
               try { equipOrSell(itemReward.slot, itemReward.item, m => log(m)); } catch(e) { _track('error_equip_item_reward', { msg: String(e) }); }
             }, 400);
-          }, { once: true });
-        }
+          }
+        };
+
+        desenhar(`
+          <h1 id="mgResultado" tabindex="-1">Resultado do Julgamento Rápido</h1>
+          <p>Você acertou <strong>${correctCount} de ${total}</strong>. ${msg}</p>
+          ${premio}
+          ${recorde}
+          <div class="nq-exam-acoes">
+            <button type="button" class="btn gold" id="mgContinueBtn">${standalone ? 'Fechar' : 'Continuar a jornada'}</button>
+          </div>`, '#mgResultado');
+        pagina.querySelector('#mgContinueBtn').addEventListener('click', concluir);
 
         if (!standalone) {
           log('⚡ Julgamento Rápido: ' + correctCount + '/' + total + ' corretas → +' + goldReward + ' ouro +' + xpReward + ' XP' + (itemReward ? ' + ' + itemReward.item.n : ''));

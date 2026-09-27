@@ -41,10 +41,10 @@ const POPUPS: [string, string][] = [
   ['conquistas', 'showAchievementsModal()'],
   ['reportar erro', 'flagQuestion()'],
   // Segunda leva (15.28): as sobreposições que ainda não eram diálogos.
-  // O Ritual saiu desta lista na 15.29: virou página (spec 76).
+  // O Ritual (15.29, spec 76) e o Julgamento Rápido (15.31, spec 77) saíram
+  // desta lista: viraram páginas.
   ['identidade', '_showIdentityChooser()'],
   ['lore do herói', 'showHeroLore()'],
-  ['julgamento rápido', 'showRapidQuizMinigame(true)'],
   ['ácido-base', 'showAcidBaseMinigame()'],
   ['intro do personagem', "showCharacterIntroModal('glomerulus')"],
   ['resumo de referência', "_showResumoModal({label:'KDIGO 2024', autores:'Autores', jornal:'Kidney Int', ano:'2024', resumo:'Resumo de teste.', conclusao:'Conclusão.', impacto:'Impacto.', link:''})"],
@@ -146,13 +146,3 @@ for (const [nome, expr] of POPUPS.filter(([nome]) => nome.startsWith('Oráculo')
   }
 }
 
-test('Julgamento Rápido: depois de responder, o foco continua dentro do desafio', async ({ page }) => {
-  await abrir(page, 'showRapidQuizMinigame(true)');
-  const caixa = page.locator('[data-nq-dialogo]').last();
-  await caixa.locator('#mgTrue').click();
-  // A próxima afirmação redesenha os botões; o foco não pode cair no body.
-  await page.waitForTimeout(1600);
-  expect(await caixa.evaluate(el => el.contains(document.activeElement)), 'foco caiu fora após redesenho').toBe(true);
-  await page.keyboard.press('Tab');
-  expect(await caixa.evaluate(el => el.contains(document.activeElement)), 'Tab escapou após redesenho').toBe(true);
-});
