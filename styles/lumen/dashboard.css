@@ -3512,3 +3512,10 @@
 @container library-list (max-width: 12rem) {
   #nqDashboard[data-nq-ui="lumen"] .nqd-library-actions { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* Conquista ainda não conquistada: arte em cinza, como no popup de
+   conquistas e nos selos. A cor fica reservada ao que o jogador já ganhou;
+   o texto não é apagado, porque o requisito precisa ser lido. */
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement.is-locked .nqd-achievement-mark img {
+  filter: grayscale(1) brightness(.6);
+}

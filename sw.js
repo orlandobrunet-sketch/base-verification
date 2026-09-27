@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v15.29
-const CACHE = 'nefroquest-v15.29';
+// NefroQuest Service Worker — v15.30
+const CACHE = 'nefroquest-v15.30';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -37,7 +37,7 @@ const STATIC_ASSETS = [
   '/assets/achievements/alquimia.webp',
   '/assets/achievements/grimorio.webp',
   '/assets/achievements/louros.webp',
-  '/assets/titulodecampeao.png',
+  '/assets/achievements/campeao.webp',
   '/manifest.json',
   '/favicon.ico',
   '/data/refs.js',
@@ -93,7 +93,7 @@ const ASSET_VERSIONS = {
   '/styles/lumen/atrium.css': '15.25',
   '/styles/lumen/game.css': '15.26',
   '/styles/lumen/difficulty.css': '15.25',
-  '/styles/lumen/dashboard.css': '15.25',
+  '/styles/lumen/dashboard.css': '15.30',
   '/styles/lumen/charselect.css': '14.75',
   '/js/utils.js': '15.29',
   '/js/audio.js': '14.69',
@@ -111,9 +111,9 @@ const ASSET_VERSIONS = {
   '/js/admin.js': '14.84',
   '/js/minigame.js': '15.29',
   '/js/minigame-acidbase.js': '15.28',
-  '/js/achievements.js': '15.26',
+  '/js/achievements.js': '15.30',
   '/js/changelog.js': '11.90',
-  '/js/dashboard.js': '15.17',
+  '/js/dashboard.js': '15.30',
 };
 // bump-release:asset-versions:fim
 

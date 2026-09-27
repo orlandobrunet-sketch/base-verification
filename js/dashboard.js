@@ -56,6 +56,7 @@
     acid_base_master: 'alquimia',
     grimoire_master: 'grimorio',
     laurel_wreath_knowledge: 'louros',
+    arqui_nefromante_slayer: 'campeao',
   };
 
   // Conquistas de pressa, madrugada e maratona não são mais rebaixadas aqui —
