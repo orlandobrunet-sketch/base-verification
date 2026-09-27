@@ -519,6 +519,7 @@
           <button class='btn gold' data-action="closeIntroAndStart">⚔️ Iniciar Jornada</button>
         </div>`;
       document.body.appendChild(popup);
+      nqDialogo(popup);
       popup.querySelector('button')?.focus();
       playSound('click');
     }

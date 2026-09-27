@@ -2107,6 +2107,7 @@
         </div>
       </div>`;
     document.body.appendChild(overlay);
+    nqDialogo(overlay);
     _bindOverlayEvents(overlay);
   }
 
