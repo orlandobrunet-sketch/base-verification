@@ -52,41 +52,6 @@ test.describe('Gabarito legível sem depender de cor', () => {
     expect(chave, 'a chave da correta precisa trazer o ✓ no boss').toContain('✓');
   });
 
-  /* Acertar várias vezes seguidas atinge marcos de ouro, e o pop-up de marco
-   * cobre o dock inteiro. O clique em "Próxima" então expira com trinta
-   * segundos de espera, e a falha aparece como "timeout no #nextBtn" — que não
-   * diz nada sobre a causa. Não é defeito do produto: a celebração existe de
-   * propósito e o jogador a dispensa. O teste é que precisa dispensá-la também.
-   *
-   * Foi assim que este cenário quebrava de forma intermitente, dependendo de
-   * quantas questões o teste precisava percorrer até errar uma. */
-  async function dispensarCelebracoes(page: Page) {
-    const overlays = page.locator('.nq-overlay:visible');
-    for (let i = 0; i < 4 && await overlays.count() > 0; i++) {
-      const botao = overlays.first().locator('button').first();
-      if (await botao.count() === 0) break;
-      await botao.click({ timeout: 4000 }).catch(() => { /* pode ter fechado sozinha */ });
-      await page.waitForTimeout(200);
-    }
-  }
-
-  /* Dispensar uma vez antes do clique não basta: a celebração aparece com
-   * animação e pode entrar em cena DEPOIS da dispensa e ANTES do clique. Por
-   * isso o clique insiste — dispensa, tenta, e repete se algo interceptar. */
-  async function clicarProxima(page: Page) {
-    for (let tentativa = 0; tentativa < 5; tentativa++) {
-      await dispensarCelebracoes(page);
-      try {
-        await page.locator('#nextBtn').click({ timeout: 5000 });
-        return;
-      } catch { /* provavelmente uma celebração entrou no caminho; dispensa e tenta de novo */ }
-    }
-    // Última tentativa sem rede de segurança: se falhar agora, a mensagem de
-    // erro do Playwright nomeia quem está interceptando, que é o que interessa.
-    await dispensarCelebracoes(page);
-    await page.locator('#nextBtn').click();
-  }
-
   test('no Confronto Final a escolha errada também é nomeada em texto', async ({ page }) => {
     await page.goto('/jogar/');
     // Percorrer várias questões acumula ouro e cruza o marco de 100, cuja
@@ -100,25 +65,18 @@ test.describe('Gabarito legível sem depender de cor', () => {
     await page.evaluate(() => localStorage.setItem('nefroquest-gold-milestone-shown', '1'));
     await injectBossState(page);
     await page.evaluate(() => document.body.classList.add('boss-battle-mode'));
-    await responder(page);
-
-    // A primeira alternativa às vezes É a correta, e aí não existe `.wrong`.
-    // Pular tornava o teste dependente do sorteio — ele passava sem provar
-    // nada. Aqui avançamos até cair numa questão em que erramos.
-    let tentativas = 0;
-    while (await page.locator('#options .option.wrong').count() === 0 && tentativas < 6) {
-      tentativas++;
-      // Esperar o botão habilitar não basta: as alternativas antigas seguem no
-      // DOM por um instante depois do clique. O sinal confiável de que a
-      // questão trocou é o enunciado mudar.
-      const enunciadoAntes = await page.locator('#question').textContent();
-      await clicarProxima(page);
-      await expect(page.locator('#question')).not.toHaveText(enunciadoAntes || '', { timeout: 8000 });
-      await expect(page.locator('#options .option').first()).toBeEnabled({ timeout: 8000 });
-      await responder(page);
-    }
-    expect(await page.locator('#options .option.wrong').count(),
-      'não foi possível errar em 6 questões — cenário não exercitado').toBeGreaterThan(0);
+    // Errar de propósito: o gabarito da questão atual está em state.current.a.
+    // Antes o teste clicava sempre na primeira alternativa e avançava até ela
+    // sair errada — em até 6 questões, cada uma com animação e celebração no
+    // caminho. Quando o sorteio demorava, estourava os 30s (intermitente
+    // também no main, sem nenhuma mudança no produto).
+    await expect(page.locator('#options .option').first()).toBeEnabled({ timeout: 8000 });
+    const errada = await page.evaluate(() => {
+      const q = (0, eval)('state.current');
+      return (q.a + 1) % q.o.length;
+    });
+    await page.locator(`#options .option[data-idx="${errada}"]`).click();
+    await expect(page.locator('#options .option.wrong')).toHaveCount(1, { timeout: 5000 });
 
     const marca = await conteudoDepois(page, '#options .option.wrong');
     expect(marca.toLowerCase(), 'a errada precisa dizer "sua escolha" em texto no boss').toContain('sua escolha');
@@ -148,12 +106,21 @@ test.describe('Gabarito legível sem depender de cor', () => {
 
   test('Enter reflexo logo após responder não pula a explicação', async ({ page }) => {
     await page.goto('/jogar/');
+    // O save-base tem 80 de ouro: acertar cruza o marco de 100 e a celebração
+    // (um diálogo, com foco) recebe o Enter. Marcada como vista, como no app.
+    await page.evaluate(() => localStorage.setItem('nefroquest-gold-milestone-shown', '1'));
     await injectGameState(page);
     const antes = await page.locator('#question').textContent();
-    await responder(page);
+    await expect(page.locator('#options .option').first()).toBeEnabled({ timeout: 5000 });
 
-    // Repique imediato: dentro da janela de guarda, não pode avançar.
-    await page.keyboard.press('Enter');
+    // Repique imediato, no mesmo instante do clique. Esperar a marcação de
+    // "correta" antes do Enter podia passar dos 700ms da janela sob carga, e
+    // aí o avanço era o comportamento certo — o teste falhava à toa.
+    await page.evaluate(() => {
+      (document.querySelector('#options .option') as HTMLElement).click();
+      (document.activeElement as HTMLElement | null)?.blur();
+      document.body.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+    });
     await page.waitForTimeout(150);
     const durante = await page.locator('#question').textContent();
     expect(durante, 'a explicação não pode ser pulada pelo Enter de reflexo').toBe(antes);
@@ -161,6 +128,8 @@ test.describe('Gabarito legível sem depender de cor', () => {
 
   test('passada a janela de guarda, Enter continua avançando', async ({ page }) => {
     await page.goto('/jogar/');
+    // Sem a celebração do marco de ouro: ela é um diálogo e receberia o Enter.
+    await page.evaluate(() => localStorage.setItem('nefroquest-gold-milestone-shown', '1'));
     await injectGameState(page);
     const antes = await page.locator('#question').textContent();
     await responder(page);
