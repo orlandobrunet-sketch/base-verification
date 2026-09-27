@@ -27,6 +27,50 @@ function manageDialogFocus(dialog, onClose, returnFocus = document.activeElement
   };
 }
 
+/* Página própria para fluxos longos (Ritual, minigames): a jornada sai de
+ * cena de verdade — escondida e inerte —, o teclado fica com a página (também
+ * quando o foco cai no body, que antes devolvia os atalhos de resposta à
+ * jornada escondida) e fechar restaura a origem e o foco. Mesmo contrato que
+ * a Forja e o Simulado implementaram cada um por conta própria. */
+function nqPaginaPropria(id, rotulo, { classe = '', aoTeclar = null } = {}) {
+  document.getElementById(id)?.remove();
+  const origem = {
+    foco: document.activeElement,
+    scroll: window.scrollY,
+    elementos: [...document.querySelectorAll('#mainApp, #welcomeScreen')]
+      .map(el => ({ el, hidden: el.classList.contains('hidden'), inert: el.inert })),
+  };
+  origem.elementos.forEach(({ el }) => { el.classList.add('hidden'); el.inert = true; });
+  const pagina = document.createElement('section');
+  pagina.id = id;
+  pagina.className = ('nq-study-surface ' + classe).trim();
+  pagina.setAttribute('role', 'main');
+  pagina.setAttribute('aria-label', rotulo);
+  const noPagina = e => { e.stopPropagation(); aoTeclar?.(e); };
+  const foraDaPagina = e => {
+    if (!pagina.isConnected || pagina.contains(e.target)) return;
+    e.stopPropagation();
+    aoTeclar?.(e);
+  };
+  pagina.addEventListener('keydown', noPagina);
+  document.addEventListener('keydown', foraDaPagina, true);
+  document.body.appendChild(pagina);
+  document.body.classList.add('nq-studying');
+  window.scrollTo(0, 0);
+  let fechada = false;
+  const fechar = () => {
+    if (fechada) return;
+    fechada = true;
+    document.removeEventListener('keydown', foraDaPagina, true);
+    pagina.remove();
+    document.body.classList.remove('nq-studying');
+    origem.elementos.forEach(({ el, hidden, inert }) => { el.classList.toggle('hidden', hidden); el.inert = inert; });
+    window.scrollTo(0, origem.scroll);
+    if (origem.foco?.isConnected && origem.foco.getClientRects().length) origem.foco.focus({ preventScroll: true });
+  };
+  return { pagina, fechar };
+}
+
 /* Popups criados na hora (celebrações, avisos, baús) viravam só uma caixa por
  * cima: sem papel de diálogo, com o foco parado atrás e o Tab escapando para a
  * jornada. Este envoltório reaproveita manageDialogFocus e acrescenta o que
