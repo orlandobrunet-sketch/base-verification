@@ -274,6 +274,16 @@ jobs:
     # spec novo vire uma investigação de infraestrutura.
     timeout-minutes: 60
 
+    # Duas metades em paralelo (--shard). Com as specs 76–79 a suíte passou de
+    # 58 minutos numa rodada e foi CANCELADA no limite de 60 na seguinte —
+    # reprovação sem defeito. Subir o limite só adiaria o problema e deixaria
+    # cada PR esperando uma hora; dividir devolve folga e corta a espera pela
+    # metade. fail-fast desligado: uma metade reprovando não esconde a outra.
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2]
+
     # `continue-on-error: true` era a SEGUNDA válvula de escape deste job, e ela
     # sobreviveu à remoção do `|| echo`: mesmo com o passo reprovando, o job
     # marcado assim não derruba o workflow. Enquanto ela existir, "a suíte
@@ -327,7 +337,7 @@ jobs:
       # Um portão que nunca reprova não é portão; é relatório que ninguém lê.
       - name: Run Playwright tests
         working-directory: tests
-        run: npx playwright test --reporter=list --timeout=20000
+        run: npx playwright test --shard=${{ matrix.shard }}/2 --reporter=list --timeout=20000
         env:
           BASE_URL: http://localhost:5500
 
@@ -335,6 +345,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-report
+          name: playwright-report-${{ matrix.shard }}
           path: tests/report/
           retention-days: 7
