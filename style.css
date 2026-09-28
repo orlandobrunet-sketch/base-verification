@@ -2793,11 +2793,17 @@
       flex-shrink: 0; line-height: 1;
     }
     .modal-panel-x:hover { background: rgba(255,80,80,0.2); color: #fff; border-color: rgba(255,80,80,0.4); }
-    /* Conta e Plano: alvos de toque de 44px (o ✕ tinha 28px; campos e botões,
-       37–43px). Restrito a estes dois: os painéis de admin ficam para a etapa
-       de administração. */
-    :is(#accountModal, #planModal) .modal-panel-x { width: 44px; height: 44px; margin: -24px -20px 0 0; }
-    :is(#accountModal, #planModal) .modal-panel :is(input, select, button, .btn) { min-height: 44px; }
+    /* Conta, Plano e painéis de administração: alvos de toque de 44px (o ✕
+       tinha 28px; campos e botões, 35–43px). */
+    :is(#accountModal, #planModal, #adminModal, #analyticsModal, #pushCampaignModal, #assetGalleryModal) .modal-panel-x { width: 44px; height: 44px; margin: -24px -20px 0 0; }
+    :is(#accountModal, #planModal, #adminModal, #analyticsModal, #pushCampaignModal, #assetGalleryModal) .modal-panel :is(input, select, textarea, button, .btn) { min-height: 44px; }
+    /* Texto a 200% em 320px: a grade fixa de 3 colunas do Analytics jogava a
+       terceira para fora da tela, e o Fechar da Campanha era espremido ao lado
+       do Enviar. Colunas que quebram e ações que descem de linha. */
+    #analyticsStats { grid-template-columns: repeat(auto-fit, minmax(min(100%, 7rem), 1fr)) !important; }
+    #analyticsStats > * { min-width: 0; overflow-wrap: anywhere; }
+    #pushCampaignModal .modal-actions { flex-wrap: wrap; }
+    #pushCampaignModal .modal-actions > * { flex: 1 1 10rem !important; }
     .modal-panel h2 {
       color: var(--gold); font-family: 'Cinzel', serif;
       font-size: 1.05rem; letter-spacing: 1px;
@@ -2827,8 +2833,10 @@
     .plan-stat { color: #a0b8d0; font-size: 0.85rem; margin-bottom: 8px; text-align: center; }
     .plan-bar-wrap { background: rgba(255,255,255,0.08); border-radius: 6px; height: 8px; margin: 10px 0 20px; overflow: hidden; }
     .plan-bar { height: 100%; border-radius: 6px; background: linear-gradient(90deg,var(--blue),#a78bfa); transition: width 0.5s; }
-    .whitelist-input-row { display: flex; gap: 8px; margin-bottom: 14px; }
-    .whitelist-input-row input { flex: 1; }
+    /* Com texto a 200% o botão (nowrap) espremia o campo de e-mail a 26px de
+       largura: agora o botão desce para a linha de baixo. */
+    .whitelist-input-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .whitelist-input-row input { flex: 1 1 12rem; min-width: 0; }
     .whitelist-list { max-height: 200px; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; }
     .whitelist-item {
       display: flex; align-items: center; justify-content: space-between;
@@ -7263,7 +7271,7 @@ body.reading-mode .qr-diff-btn { font-size: 0.82rem; padding: 5px 14px; }
 .ag-desc { font-size: 0.66rem; color: #a8b8d8; line-height: 1.35; font-family: 'Philosopher', sans-serif; }
 .ag-nodesc { color: #708090; font-style: italic; }
 .ag-path {
-  font-size: 0.58rem; color: #6b7a99; word-break: break-all; font-family: monospace;
+  font-size: 0.58rem; color: #8290ad; word-break: break-all; font-family: monospace; /* 4,36:1 → acima de 4,5:1 */
   margin-top: 2px; border-top: 1px dashed rgba(255,255,255,0.08); padding-top: 4px;
 }
 

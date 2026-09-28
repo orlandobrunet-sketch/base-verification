@@ -2008,6 +2008,8 @@
           <div class="modal-actions" style="margin-top:18px;"><button data-action="closeAssetGallery" style="background:rgba(255,255,255,0.06);color:#c8d8f0;border:1px solid var(--blue-dark);">Fechar</button></div>
         </div>`;
       document.body.appendChild(modal);
+      // Diálogo de verdade: foco dentro, Tab preso, Escape fecha pelo ✕.
+      nqDialogo(modal, { painel: modal.querySelector('.modal-panel') });
       // (fechar-ao-clicar-fora removido — usa o X do painel)
     }
     function closeAssetGallery() { document.getElementById('assetGalleryModal')?.remove(); }
