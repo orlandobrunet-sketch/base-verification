@@ -13,9 +13,17 @@
     window._isTWA = _isTWA;
 
     // ============ PAYWALL ============
+    // Paywall e Preços eram só caixas por cima: sem papel de diálogo nem nome,
+    // o foco ficava atrás, o Tab caminhava pela jornada e o Escape não fechava
+    // Preços. Agora passam por nqDialogo. O Paywall continua sem fechar — é a
+    // barreira depois das questões gratuitas; o Escape não abre caminho.
+    const _paywallDialogo = modal => nqDialogo(modal, {
+      painel: modal.querySelector('.paywall-content'),
+      visivel: el => el.isConnected && el.classList.contains('show'),
+    });
     function showPaywallModal() {
       let modal = document.getElementById('paywallModal');
-      if (modal) { modal.classList.add('show'); _track('paywall_shown', { questions_answered: state.correctTotal, level: state.level }); return; }
+      if (modal) { modal.classList.add('show'); _paywallDialogo(modal); _track('paywall_shown', { questions_answered: state.correctTotal, level: state.level }); return; }
       _track('paywall_shown', { questions_answered: state.correctTotal, level: state.level });
       modal = document.createElement('div');
       modal.id = 'paywallModal';
@@ -49,6 +57,7 @@
         </div>
       `;
       document.body.appendChild(modal);
+      _paywallDialogo(modal);
     }
     function paywallUpgrade() {
       // Abre modal de escolha de plano para upgrade
@@ -91,7 +100,7 @@
           : 'Master Nephrology with a method that works — real clinical questions, RPG & cutting-edge science.';
         modal.innerHTML = `
         <div class="pricing-wrap" style="position:relative;">
-          <button class="pricing-close-btn" data-action="closePricingModal">✕</button>
+          <button class="pricing-close-btn" data-action="closePricingModal" aria-label="Fechar">✕</button>
           <div class="pricing-ornament">✦ Reino dos Néfrons ✦</div>
           <h2>NefroQuest</h2>
           <div class="pricing-sub-title">Ascension</div>
@@ -159,6 +168,11 @@
           <button class="pricing-login-link" data-action="_pricingToLogin">${isPt ? 'Já tenho conta — Entrar' : 'I have an account — Sign in'}</button>
         </div>`;
         document.body.appendChild(modal);
+        nqDialogo(modal, { painel: modal.querySelector('.pricing-wrap') });
+        // O título visível é só a marca; o nome do diálogo diz o que ele é.
+        const _painelPrecos = modal.querySelector('.pricing-wrap');
+        _painelPrecos.removeAttribute('aria-labelledby');
+        _painelPrecos.setAttribute('aria-label', isPt ? 'Planos e preços' : 'Plans and pricing');
       } catch (err) {
         console.error('[showPricingModal] erro ao montar modal:', err);
         if (typeof _track === 'function') {

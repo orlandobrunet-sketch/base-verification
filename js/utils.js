@@ -96,7 +96,11 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
     if (visivel(raiz)) return;
     vigia.disconnect();
     delete raiz.dataset.nqDialogo;
-    soltar(true);
+    // O vigia roda depois do fechamento: se nesse meio-tempo outro diálogo
+    // abriu e pegou o foco (Paywall → Preços), devolver à origem o roubaria.
+    // Só devolve quando o foco se perdeu: no body ou ainda aqui dentro.
+    const ativo = document.activeElement;
+    soltar(!ativo || ativo === document.body || raiz.contains(ativo));
   });
   // Só o que importa: o popup sair do contêiner ou mudar de classe/estilo.
   if (raiz.parentNode) vigia.observe(raiz.parentNode, { childList: true });
