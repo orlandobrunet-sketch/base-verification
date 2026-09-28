@@ -2793,6 +2793,11 @@
       flex-shrink: 0; line-height: 1;
     }
     .modal-panel-x:hover { background: rgba(255,80,80,0.2); color: #fff; border-color: rgba(255,80,80,0.4); }
+    /* Conta e Plano: alvos de toque de 44px (o ✕ tinha 28px; campos e botões,
+       37–43px). Restrito a estes dois: os painéis de admin ficam para a etapa
+       de administração. */
+    :is(#accountModal, #planModal) .modal-panel-x { width: 44px; height: 44px; margin: -24px -20px 0 0; }
+    :is(#accountModal, #planModal) .modal-panel :is(input, select, button, .btn) { min-height: 44px; }
     .modal-panel h2 {
       color: var(--gold); font-family: 'Cinzel', serif;
       font-size: 1.05rem; letter-spacing: 1px;
