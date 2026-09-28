@@ -18,6 +18,13 @@
       startBossPreview({ preservePlayer: true, showIntro: true });
     }
 
+    // Os painéis de administração eram só caixas por cima: sem papel de diálogo,
+    // o foco ficava atrás, o Tab caminhava pela jornada e o Escape não fechava.
+    // Agora passam por nqDialogo, como os demais popups.
+    const _adminDialogo = modal => nqDialogo(modal, {
+      painel: modal.querySelector('.modal-panel'),
+      visivel: el => el.isConnected && el.style.display !== 'none',
+    });
     function openAdminPanel() {
       if (!isAdminUser()) return;
       document.querySelectorAll('.profile-popup.open').forEach(p => p.classList.remove('open'));
@@ -45,6 +52,7 @@
         document.body.appendChild(modal);
       }
       modal.style.display = 'flex';
+      _adminDialogo(modal);
       adminLoadWhitelist();
     }
     function closeAdminPanel() {
@@ -135,6 +143,7 @@
         document.body.appendChild(modal);
       }
       modal.style.display = 'flex';
+      _adminDialogo(modal);
       loadAnalyticsData();
     }
 
@@ -459,6 +468,7 @@
           </div>
         </div>`;
       document.body.appendChild(modal);
+      _adminDialogo(modal);
       setTimeout(() => document.getElementById('pushCampTitle')?.focus(), 60);
     }
     function closePushCampaign() { document.getElementById('pushCampaignModal')?.remove(); }
