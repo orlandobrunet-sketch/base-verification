@@ -179,6 +179,10 @@
     }
 
     // ============ PLAN MODAL ============
+    // Era só uma caixa por cima: sem papel de diálogo nem nome, o foco ficava
+    // atrás (no botão que abriu), o Tab caminhava pela jornada e o Escape não
+    // fechava. Agora segue o mesmo contrato da Conta.
+    let _planFocus = null, _planReturn = null;
     function openPlanModal() {
       document.querySelectorAll('.profile-popup.open').forEach(p => p.classList.remove('open'));
       let modal = document.getElementById('planModal');
@@ -211,7 +215,7 @@
       }
       document.getElementById('planModalContent').innerHTML = `
         <button class="modal-panel-x" data-action="closePlanModal" aria-label="Fechar">&times;</button>
-        <h2>⭐ Seu Plano</h2>
+        <h2 id="planTitle">⭐ Seu Plano</h2>
         <div style="text-align:center">
           <div class="plan-badge ${badgeClass}">${badgeLabel}</div>
         </div>
@@ -220,10 +224,28 @@
           <button data-action="closePlanModal" style="background:rgba(255,255,255,0.06);color:#c8d8f0;border:1px solid var(--blue-dark);">Fechar</button>
         </div>
       `;
+      const painel = document.getElementById('planModalContent');
+      painel.setAttribute('role', 'dialog');
+      painel.setAttribute('aria-modal', 'true');
+      painel.setAttribute('aria-labelledby', 'planTitle');
+      // Aberto pelo menu do perfil (que acabou de fechar), o foco volta ao
+      // botão do perfil, como na Conta; aberto de outro lugar, volta à origem.
+      if (!_planFocus) {
+        const origem = document.activeElement;
+        _planReturn = origem && origem !== document.body && !origem.closest('.profile-popup')
+          ? origem
+          : [...document.querySelectorAll('[data-action="toggleProfilePopup"]')]
+              .find(el => el.getClientRects().length && !el.closest('[hidden], [inert]'));
+      }
+      _planFocus?.(false);
       modal.style.display = 'flex';
+      _planFocus = manageDialogFocus(modal, closePlanModal, _planReturn,
+        painel.querySelector('[data-action="openPricingFromPlan"]') || painel.querySelector('.modal-actions button'));
     }
     function closePlanModal() {
       const m = document.getElementById('planModal');
+      _planFocus?.();
+      _planFocus = null;
       if (m) m.style.display = 'none';
     }
     // Wrapper defensivo: garante que ambas funções executem mesmo se uma
