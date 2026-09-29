@@ -236,7 +236,7 @@ Cada classe tem 10 níveis de imagem em `assets/classes/<folder>/nivel_01.jpg` �
 
 ### GA4
 - `gtag()` via script inline na landing e no app
-- Measurement ID: `G-0TS171XV3K`
+- Measurement ID: `G-903Y6240FZ` (propriedade "nefroquest", fluxo NefroQuest 14327983016). Até a 15.36 o código carregava `G-0TS171XV3K`, que encaminhava para esta propriedade e gravava uma cópia em outra.
 - Eventos rastreados:
 
 | Evento | Quando |
