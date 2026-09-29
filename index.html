@@ -85,7 +85,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function () {
           Sentry.init({
-            release: 'nefroquest@15.35',
+            release: 'nefroquest@15.36',
             environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
             tracesSampleRate: 0.05
           });
@@ -677,7 +677,7 @@
     <div class="footer-links">
       <a href="https://nefroquest.com/jogar/">Aplicativo</a>
       <a href="https://nefroquest.com/privacy-policy.html">Privacidade</a>
-      <a href="mailto:contato@nefroquest.com">Contato</a>
+      <a href="/contato/">Contato</a>
     </div>
     <p>© 2026 NefroQuest · Conteúdo para fins educacionais.</p>
   </footer>

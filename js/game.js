@@ -5667,7 +5667,7 @@
 
             <div>
               <div class="nq-section-label">1. Quem somos</div>
-              <p style="margin:0;">O NefroQuest é uma plataforma educacional de nefrologia desenvolvida para médicos, residentes e estudantes de medicina. Contato: <span class="nq-text-blue">contato@nefroquest.com</span></p>
+              <p style="margin:0;">O NefroQuest é uma plataforma educacional de nefrologia desenvolvida para médicos, residentes e estudantes de medicina. Contato: pelo <a class="nq-text-blue" href="/contato/" target="_blank" rel="noopener" style="display:inline-block;min-height:24px;padding:3px 0;">formulário de contato</a>.</p>
             </div>
 
             <div>
