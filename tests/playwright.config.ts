@@ -38,6 +38,15 @@ export default defineConfig({
     trace: 'retain-on-failure',
     // Ignorar erros de HTTPS em ambiente local
     ignoreHTTPSErrors: true,
+    // Os testes não podem virar visitantes no Google Analytics. Cada teste
+    // abria o jogo e o gtag enviava page_view: uma rodada da CI aparecia no
+    // GA4 como ~800 usuários ativos, dos datacenters do GitHub nos EUA, e
+    // soterrava os usuários reais. Os domínios do GA passam a não resolver
+    // dentro do navegador de teste; o app segue igual (gtag é definido no
+    // próprio HTML e _track tolera o script ausente).
+    launchOptions: {
+      args: ['--host-resolver-rules=MAP www.googletagmanager.com ~NOTFOUND, MAP www.google-analytics.com ~NOTFOUND, MAP *.google-analytics.com ~NOTFOUND, MAP analytics.google.com ~NOTFOUND'],
+    },
   },
   projects: [
     {
