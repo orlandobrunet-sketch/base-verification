@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contato — NefroQuest</title>
+  <meta name="description" content="Fale com a equipe do NefroQuest: dúvidas, sugestões, erros em questões e privacidade.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://nefroquest.com/contato/">
+  <link rel="icon" href="/favicon.ico">
+  <!--
+    Formulário de contato no lugar de um endereço de e-mail publicado.
+    O endereço de contato do domínio não recebia nada (sem MX), e o
+    proprietário não quer expor o e-mail pessoal. A mensagem vai pela Edge
+    Function send-contact (Web3Forms); o destino é o e-mail da chave
+    WEB3FORMS_KEY, configurada no Supabase — nunca aparece nesta página.
+  -->
+  <style>
+    :root {
+      --gold: #ffd700;
+      --blue: #60a5fa;
+      --bg: #0a0e1a;
+      --surface: #12192e;
+      --border: rgba(96,165,250,0.25);
+      --txt: #c8d8f0;
+      --txt-dim: #9fb0c8;
+      --ok: #7ee2a8;
+      --err: #f7b2bf;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--txt);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    header {
+      background: linear-gradient(180deg, #0d1428, #0a0e1a);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 16px;
+      text-align: center;
+    }
+    header a { color: var(--gold); text-decoration: none; font-size: 1.2rem; font-weight: 700; letter-spacing: 1px; }
+    main { max-width: 640px; margin: 0 auto; padding: 32px 16px 64px; }
+    h1 { color: var(--gold); font-size: 1.6rem; margin-bottom: 8px; }
+    .lead { color: var(--txt-dim); margin-bottom: 24px; }
+    form { display: grid; gap: 18px; }
+    label { display: grid; gap: 6px; font-weight: 600; }
+    .dica { font-weight: 400; color: var(--txt-dim); font-size: .9rem; }
+    input, textarea {
+      width: 100%; min-height: 44px; padding: 10px 12px;
+      background: var(--surface); color: var(--txt);
+      border: 1px solid #3a4a66; border-radius: 8px;
+      font: inherit;
+    }
+    textarea { min-height: 160px; resize: vertical; }
+    input:focus-visible, textarea:focus-visible, button:focus-visible, a:focus-visible {
+      outline: 2px solid #78d9e3; outline-offset: 2px;
+    }
+    /* Armadilha para robôs: fora da tela e fora do Tab; pessoas não a veem. */
+    .isca { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+    button {
+      min-height: 44px; padding: 10px 20px; justify-self: start;
+      background: var(--gold); color: #1a1400; border: 0; border-radius: 8px;
+      font: inherit; font-weight: 700; cursor: pointer;
+    }
+    button:disabled { opacity: .6; cursor: progress; }
+    #estado { min-height: 1.6em; }
+    #estado.ok { color: var(--ok); }
+    #estado.erro { color: var(--err); }
+    .contador { color: var(--txt-dim); font-size: .85rem; justify-self: end; }
+    footer { text-align: center; color: var(--txt-dim); font-size: .9rem; padding: 24px 16px; border-top: 1px solid var(--border); }
+    footer a, main a { color: var(--blue); }
+  </style>
+</head>
+<body>
+  <header><a href="/">⚕ NefroQuest</a></header>
+  <main>
+    <h1>Fale conosco</h1>
+    <p class="lead">Dúvidas, sugestões, erros em questões ou pedidos sobre seus dados. Respondemos no e-mail que você informar.</p>
+
+    <form id="contato" novalidate>
+      <label>Nome
+        <input id="nome" name="nome" type="text" autocomplete="name" maxlength="120" required>
+      </label>
+      <label>Seu e-mail <span class="dica">para podermos responder</span>
+        <input id="email" name="email" type="email" autocomplete="email" maxlength="254" required>
+      </label>
+      <label>Mensagem
+        <textarea id="mensagem" name="mensagem" maxlength="2000" required aria-describedby="contador"></textarea>
+      </label>
+      <span id="contador" class="contador" aria-live="off">0 de 2000 caracteres</span>
+      <div class="isca" aria-hidden="true">
+        <label>Não preencha este campo <input id="site" name="site" type="text" tabindex="-1" autocomplete="off"></label>
+      </div>
+      <button type="submit" id="enviar">Enviar mensagem</button>
+      <p id="estado" role="status" aria-live="polite"></p>
+    </form>
+  </main>
+  <footer><a href="/">Início</a> · <a href="/jogar/">Jogar</a> · <a href="/privacy-policy.html">Privacidade</a></footer>
+
+  <script>
+    (function () {
+      var SUPA_URL = 'https://wviutasgroltjuyxpevc.supabase.co';
+      // Chave publicável (a mesma que o app usa no navegador): a função exige
+      // verify_jwt, e um visitante não tem sessão.
+      var SUPA_KEY = 'sb_publishable_kUxWMU36-PEaNuhEqTy3Zw_-A5ep67_';
+      var form = document.getElementById('contato');
+      var botao = document.getElementById('enviar');
+      var estado = document.getElementById('estado');
+      var mensagem = document.getElementById('mensagem');
+      var contador = document.getElementById('contador');
+
+      mensagem.addEventListener('input', function () {
+        contador.textContent = mensagem.value.length + ' de 2000 caracteres';
+      });
+
+      function avisar(texto, tipo, campo) {
+        estado.textContent = texto;
+        estado.className = tipo;
+        if (campo) { campo.setAttribute('aria-invalid', 'true'); campo.focus(); }
+      }
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        form.querySelectorAll('[aria-invalid]').forEach(function (c) { c.removeAttribute('aria-invalid'); });
+        var nome = document.getElementById('nome');
+        var email = document.getElementById('email');
+        if (!nome.value.trim()) return avisar('Informe seu nome.', 'erro', nome);
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) return avisar('Informe um e-mail válido: é por ele que respondemos.', 'erro', email);
+        if (!mensagem.value.trim()) return avisar('Escreva sua mensagem.', 'erro', mensagem);
+        // Robô preencheu a isca: finge sucesso e não envia nada.
+        if (document.getElementById('site').value) { form.reset(); return avisar('Mensagem enviada. Obrigado!', 'ok'); }
+
+        botao.disabled = true;
+        botao.textContent = 'Enviando…';
+        avisar('Enviando…', '');
+        try {
+          var res = await fetch(SUPA_URL + '/functions/v1/send-contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', apikey: SUPA_KEY, Authorization: 'Bearer ' + SUPA_KEY },
+            body: JSON.stringify({ name: nome.value.trim(), email: email.value.trim(), message: '[Contato pelo site]\n\n' + mensagem.value.trim() }),
+          });
+          if (res.ok) {
+            form.reset();
+            contador.textContent = '0 de 2000 caracteres';
+            avisar('Mensagem enviada. Obrigado! Respondemos no e-mail que você informou.', 'ok');
+          } else if (res.status === 400) {
+            avisar('Algum campo não foi aceito. Confira o e-mail e o tamanho da mensagem e tente de novo.', 'erro');
+          } else {
+            avisar('Não conseguimos enviar agora (erro ' + res.status + '). Sua mensagem continua aqui; tente de novo em alguns minutos.', 'erro');
+          }
+        } catch (err) {
+          avisar('Sem conexão com o servidor. Sua mensagem continua aqui; verifique a internet e tente de novo.', 'erro');
+        } finally {
+          botao.disabled = false;
+          botao.textContent = 'Enviar mensagem';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
