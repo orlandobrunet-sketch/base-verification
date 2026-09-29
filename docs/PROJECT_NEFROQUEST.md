@@ -236,7 +236,7 @@ Cada classe tem 10 níveis de imagem em `assets/classes/<folder>/nivel_01.jpg` �
 
 ### GA4
 - `gtag()` via script inline na landing e no app
-- Measurement ID: `G-903Y6240FZ` (propriedade "nefroquest", fluxo NefroQuest 14327983016). Até a 15.36 o código carregava `G-0TS171XV3K`, que encaminhava para esta propriedade e gravava uma cópia em outra.
+- Measurement ID: `G-0TS171XV3K` — é a **tag do Google**, e é ela que entrega os dados à propriedade "nefroquest" (fluxo `G-903Y6240FZ`). Não trocar pelo ID do fluxo: `gtag/js?id=G-903Y6240FZ` responde 404 e a coleta para (aconteceu na 15.37, revertido na 15.38).
 - Eventos rastreados:
 
 | Evento | Quando |

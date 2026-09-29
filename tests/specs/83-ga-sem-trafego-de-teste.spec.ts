@@ -23,3 +23,15 @@ test('abrir o jogo e a landing não entrega nenhuma batida ao Google Analytics',
   // no próprio HTML) e registrar um evento não lança erro.
   expect(await page.evaluate(() => { (window as any)._track?.('teste_sem_ga'); return typeof (window as any).gtag; })).toBe('function');
 });
+
+/* A 15.37 trocou o ID do gtag pelo ID do fluxo da propriedade (G-903Y6240FZ)
+ * e a coleta parou: para esse ID o Google responde 404 no gtag.js — ele é só o
+ * destino interno da tag G-0TS171XV3K. A tag carregada precisa ser a do Google. */
+test('as páginas carregam a tag do Google, não o ID do fluxo', async ({ request }) => {
+  for (const caminho of ['/', '/jogar/']) {
+    const html = await (await request.get(caminho)).text();
+    const ids = [...html.matchAll(/gtag\/js\?id=(G-[A-Z0-9]+)|gtag\('config', '(G-[A-Z0-9]+)'/g)].map(m => m[1] || m[2]);
+    expect(ids.length, caminho).toBeGreaterThan(0);
+    expect(new Set(ids), caminho).toEqual(new Set(['G-0TS171XV3K']));
+  }
+});
