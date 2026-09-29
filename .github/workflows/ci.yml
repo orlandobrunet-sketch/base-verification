@@ -207,6 +207,17 @@ jobs:
           fi
           if [ $ERRORS -gt 0 ]; then exit 1; fi
 
+      # As Edge Functions não passam por nenhum teste do Playwright (que roda
+      # contra o site estático). Este é o contrato da cota de IA: um crédito só
+      # é gasto por resposta entregue. Supabase e Anthropic são simulados.
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Edge Functions — cota de IA
+        run: deno test -A supabase/functions/_testes/cota_test.ts
+
   # ── Job separado: Playwright Smoke E2E ────────────────────────────────────
   smoke-e2e:
     name: Smoke E2E Tests (Playwright)
