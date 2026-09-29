@@ -61,7 +61,7 @@ async function checkAndIncrementQuota(
   supabaseUrl: string,
   serviceRoleKey: string,
   userToken: string,
-): Promise<{ allowed: boolean; remaining: number; userId: string | null }> {
+): Promise<{ allowed: boolean; remaining: number; userId: string | null; devolver?: () => Promise<void> }> {
   const db = createClient(supabaseUrl, serviceRoleKey);
 
   // Verify user JWT
@@ -90,7 +90,27 @@ async function checkAndIncrementQuota(
   if (newCount > MENTOR_LIMIT) {
     return { allowed: false, remaining: 0, userId: user.id };
   }
-  return { allowed: true, remaining: MENTOR_LIMIT - newCount, userId: user.id };
+  return {
+    allowed: true, remaining: MENTOR_LIMIT - newCount, userId: user.id,
+    devolver: () => devolverCota(db, user.id, 'mentor', today, newCount),
+  };
+}
+
+/**
+ * Devolve o crédito quando a IA falha: sem isso, uma falha da Anthropic
+ * consumia uma das 5 consultas grátis do dia sem entregar nada.
+ * A devolução só acontece se a contagem ainda for a que esta chamada gravou
+ * (`.eq('count', contagem)`): com chamadas simultâneas ela é pulada — nunca
+ * devolve a mais, no pior caso deixa de devolver. Sem migração de banco.
+ */
+async function devolverCota(
+  // deno-lint-ignore no-explicit-any
+  db: ReturnType<typeof createClient<any>>, userId: string, feature: string, date: string, contagem: number,
+): Promise<void> {
+  const { error } = await db.from('ai_usage')
+    .update({ count: contagem - 1 })
+    .eq('user_id', userId).eq('feature', feature).eq('date', date).eq('count', contagem);
+  if (error) console.error(`Quota refund error (${feature}):`, error);
 }
 
 Deno.serve(async (req) => {
@@ -123,29 +143,10 @@ Deno.serve(async (req) => {
   const authHeader = req.headers.get('Authorization') ?? '';
   const userToken  = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : '';
 
-  // Server-side quota check
+  // Sem token não há usuário; a cota (server-side) é conferida depois da validação.
   if (!userToken || !supabaseUrl || !serviceRoleKey) {
     return new Response(
       JSON.stringify({ error: 'unauthorized', message: 'Acesso restrito. Faça login para usar o Oráculo de IA.' }),
-      { status: 401, headers: { ...cors, 'Content-Type': 'application/json' } },
-    );
-  }
-
-  try {
-    const quota = await checkAndIncrementQuota(supabaseUrl, serviceRoleKey, userToken);
-    if (!quota.allowed) {
-      return new Response(
-        JSON.stringify({
-          error: quota.userId ? 'quota_exceeded' : 'unauthorized',
-          message: quota.userId ? 'Limite diário atingido. Faça upgrade para Premium.' : 'Acesso restrito. Faça login para usar o Oráculo de IA.'
-        }),
-        { status: quota.userId ? 429 : 401, headers: { ...cors, 'Content-Type': 'application/json' } },
-      );
-    }
-  } catch (err) {
-    console.error('Quota check error:', err);
-    return new Response(
-      JSON.stringify({ error: 'unauthorized', message: 'Erro na autenticação de cota.' }),
       { status: 401, headers: { ...cors, 'Content-Type': 'application/json' } },
     );
   }
@@ -226,6 +227,28 @@ Deno.serve(async (req) => {
   }
   // ────────────────────────────────────────────────────────────────────────
 
+  // A cota é contada só DEPOIS de o pedido ser validado: antes, um pedido
+  // inválido (400) também consumia um crédito do dia.
+  let quota: Awaited<ReturnType<typeof checkAndIncrementQuota>>;
+  try {
+    quota = await checkAndIncrementQuota(supabaseUrl, serviceRoleKey, userToken);
+    if (!quota.allowed) {
+      return new Response(
+        JSON.stringify({
+          error: quota.userId ? 'quota_exceeded' : 'unauthorized',
+          message: quota.userId ? 'Limite diário atingido. Faça upgrade para Premium.' : 'Acesso restrito. Faça login para usar o Oráculo de IA.'
+        }),
+        { status: quota.userId ? 429 : 401, headers: { ...cors, 'Content-Type': 'application/json' } },
+      );
+    }
+  } catch (err) {
+    console.error('Quota check error:', err);
+    return new Response(
+      JSON.stringify({ error: 'unauthorized', message: 'Erro na autenticação de cota.' }),
+      { status: 401, headers: { ...cors, 'Content-Type': 'application/json' } },
+    );
+  }
+
   const contextParts: string[] = [];
   if (questionText) contextParts.push(`**Questão:** ${questionText}`);
   if (options?.length) {
@@ -233,6 +256,7 @@ Deno.serve(async (req) => {
       `**Alternativas:**\n${options.map((o, i) => `${String.fromCharCode(65 + i)}) ${o}`).join('\n')}`,
     );
   }
+
   if (correctOption) contextParts.push(`**Resposta correta:** ${correctOption}`);
   if (explanation)   contextParts.push(`**Explicação oficial:** ${explanation}`);
 
@@ -274,6 +298,7 @@ Deno.serve(async (req) => {
     if (!response.ok) {
       const errText = await response.text();
       console.error('Anthropic API error:', response.status, errText);
+      await quota.devolver?.();
       return new Response(JSON.stringify({ error: 'AI service unavailable' }), {
         status: 502,
         headers: { ...cors, 'Content-Type': 'application/json' },
@@ -288,6 +313,7 @@ Deno.serve(async (req) => {
     });
   } catch (err) {
     console.error('Mentor function error:', err);
+    await quota.devolver?.();
     return new Response(JSON.stringify({ error: 'Internal error' }), {
       status: 500,
       headers: { ...cors, 'Content-Type': 'application/json' },
