@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { injectGameState, waitForGame } from '../helpers/game';
+import { enterGame, injectGameState, waitForGame } from '../helpers/game';
 
 test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
   test.beforeEach(async ({ page }) => {
@@ -54,42 +54,58 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
     await expect(slots.first()).toHaveAttribute('tabindex', '0');
     await expect(slots.first()).toHaveAttribute('role', 'group');
 
-    const circuit = await page.locator('.nql-loadout-branch').evaluate((element) => ({
-      animationName: getComputedStyle(element).animationName,
-      pathLength: (element as SVGPathElement).getTotalLength(),
-    }));
-    expect(circuit.animationName).toBe('nql-equipment-circuit');
-    expect(circuit.pathLength).toBeGreaterThan(600);
+    if (testInfo.project.name === 'mobile') {
+      await page.locator('#mobileHeroBtn').click();
+      await expect(page.locator('.panel.left')).toHaveClass(/mobile-open/);
+      await expect.poll(async () => (await page.locator('.panel.left').boundingBox())?.x ?? -1)
+        .toBeGreaterThanOrEqual(0);
+    }
+    await page.evaluate(() => document.fonts.ready);
 
-    if (testInfo.project.name !== 'mobile') {
-      const loadoutLayout = await page.evaluate(() => {
-        const rect = (selector: string) => {
-          const box = document.querySelector(selector)!.getBoundingClientRect();
-          return { top: box.top, right: box.right, bottom: box.bottom, left: box.left };
-        };
-        const portrait = rect('.nql-loadout-shell .portrait-frame');
-        const info = rect('.nql-loadout-shell .hero-info');
-        const slots = [...document.querySelectorAll('.nql-loadout-shell .slot-diablo')].map((slot) => ({
-          name: slot.getAttribute('data-slot'),
-          ...rect(`.nql-loadout-shell .slot-diablo[data-slot="${slot.getAttribute('data-slot')}"]`),
-        }));
-        const overlapArea = (a: typeof portrait, b: typeof portrait) =>
-          Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left)) *
-          Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top));
-        return {
-          infoBeforePortrait: info.bottom <= portrait.top + 1,
-          overlaps: slots.map((slot) => ({ name: slot.name, area: overlapArea(portrait, slot) })),
-        };
-      });
-      expect(loadoutLayout.infoBeforePortrait).toBe(true);
-      expect(loadoutLayout.overlaps).toEqual([
-        { name: 'helmet', area: 0 },
-        { name: 'glove', area: 0 },
-        { name: 'armor', area: 0 },
-        { name: 'weapon', area: 0 },
-        { name: 'relic', area: 0 },
-        { name: 'boot', area: 0 },
-      ]);
+    const loadoutLayout = await page.evaluate(() => {
+      const rect = (selector: string) => {
+        const box = document.querySelector(selector)!.getBoundingClientRect();
+        return { top: box.top, right: box.right, bottom: box.bottom, left: box.left, width: box.width, height: box.height };
+      };
+      const portrait = rect('.nql-loadout-shell .portrait-frame');
+      const heading = rect('.nql-loadout-shell .nql-hero-heading');
+      const slot = (name: string) => rect('.nql-loadout-shell .slot-diablo[data-slot="' + name + '"]');
+      const overlapArea = (a: typeof portrait, b: typeof portrait) =>
+        Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left)) *
+        Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top));
+      return {
+        headingBeforePortrait: heading.bottom <= portrait.top + 1,
+        portraitHasArea: portrait.width > 0 && portrait.height > 0,
+        pairs: [['glove', 'helmet'], ['armor', 'weapon'], ['boot', 'relic']].map(([leftName, rightName]) => {
+          const left = slot(leftName);
+          const right = slot(rightName);
+          return {
+            names: leftName + ' / ' + rightName,
+            left, right,
+            leftOverlap: overlapArea(portrait, left),
+            rightOverlap: overlapArea(portrait, right),
+            leftOfPortrait: left.right <= portrait.left + 1,
+            rightOfPortrait: right.left >= portrait.right - 1,
+          };
+        }),
+      };
+    });
+    expect(loadoutLayout.headingBeforePortrait).toBe(true);
+    expect(loadoutLayout.portraitHasArea).toBe(true);
+    for (const pair of loadoutLayout.pairs) {
+      expect(pair.leftOverlap, pair.names).toBe(0);
+      expect(pair.rightOverlap, pair.names).toBe(0);
+      expect(pair.leftOfPortrait, pair.names).toBe(true);
+      expect(pair.rightOfPortrait, pair.names).toBe(true);
+      expect(Math.abs(pair.left.top - pair.right.top), pair.names + ': mesma altura').toBeLessThanOrEqual(1);
+      expect(Math.abs(pair.left.width - pair.right.width), pair.names + ': mesma largura').toBeLessThanOrEqual(1);
+      expect(Math.abs(pair.left.height - pair.right.height), pair.names + ': mesma altura de moldura').toBeLessThanOrEqual(1);
+      expect(pair.left.width, pair.names + ': alvo de toque').toBeGreaterThanOrEqual(44);
+      expect(pair.left.height, pair.names + ': alvo de toque').toBeGreaterThanOrEqual(44);
+    }
+    for (let row = 1; row < loadoutLayout.pairs.length; row++) {
+      expect(loadoutLayout.pairs[row].left.top).toBeGreaterThan(loadoutLayout.pairs[row - 1].left.bottom);
+      expect(loadoutLayout.pairs[row].right.top).toBeGreaterThan(loadoutLayout.pairs[row - 1].right.bottom);
     }
 
     await expect(page.locator('#question')).not.toBeEmpty();
@@ -117,14 +133,7 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
       const rightBox = right.getBoundingClientRect();
       const leftBox = left.getBoundingClientRect();
       const loadoutBox = loadout.getBoundingClientRect();
-      const questionBoxRect = questionBox.getBoundingClientRect();
       const questionBoxStyle = getComputedStyle(questionBox);
-      const dividerStyle = getComputedStyle(left, '::before');
-      const dividerVisible = dividerStyle.display !== 'none';
-      const dividerCenter = dividerVisible
-        ? leftBox.left + parseFloat(dividerStyle.left) + (parseFloat(dividerStyle.width) / 2)
-        : null;
-      const gapCenter = (loadoutBox.right + questionBoxRect.left) / 2;
       return {
         overflow: document.documentElement.scrollWidth - window.innerWidth,
         questionSize: parseFloat(getComputedStyle(question).fontSize),
@@ -138,13 +147,7 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
         rightWidth: rightBox.width,
         leftWidth: leftBox.width,
         leftToQuestion: rightBox.left - loadoutBox.right,
-        dividerToQuestion: rightBox.left - leftBox.right,
         questionToDock: dock.getBoundingClientRect().left - rightBox.right,
-        dividerDisplay: dividerStyle.display,
-        dividerCenter,
-        gapCenter,
-        dividerLeftGap: dividerCenter === null ? null : dividerCenter - loadoutBox.right,
-        dividerRightGap: dividerCenter === null ? null : questionBoxRect.left - dividerCenter,
       };
     });
 
@@ -155,18 +158,13 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
     expect(metrics.optionSize).toBeGreaterThanOrEqual(15);
     if (testInfo.project.name !== 'mobile') {
       expect(metrics.rightWidth).toBeGreaterThan(metrics.leftWidth);
-      expect(metrics.leftToQuestion).toBeGreaterThanOrEqual(metrics.questionToDock + 4);
-      expect(metrics.leftToQuestion).toBeLessThanOrEqual(metrics.questionToDock + 10);
-      expect(metrics.dividerToQuestion).toBeGreaterThanOrEqual(12);
-      expect(metrics.dividerToQuestion).toBeLessThanOrEqual(17);
-      expect(Math.abs(metrics.dividerToQuestion - metrics.questionToDock)).toBeLessThanOrEqual(1);
-      expect(metrics.dividerDisplay).toBe('block');
-      expect(Math.abs((metrics.dividerCenter || 0) - metrics.gapCenter)).toBeLessThanOrEqual(.5);
-      expect(Math.abs((metrics.dividerLeftGap || 0) - (metrics.dividerRightGap || 0))).toBeLessThanOrEqual(1);
+      expect(metrics.leftToQuestion, 'respiro entre personagem e pergunta').toBeGreaterThanOrEqual(16);
+      expect(metrics.questionToDock, 'respiro entre pergunta e ações').toBeGreaterThanOrEqual(16);
+      expect(Math.abs(metrics.leftToQuestion - metrics.questionToDock), 'intervalos regulares entre as três colunas')
+        .toBeLessThanOrEqual(2);
     }
 
     if (testInfo.project.name === 'mobile') {
-      expect(metrics.dividerDisplay).toBe('none');
       const mobileLayout = await page.evaluate(() => ({
         questionTop: document.querySelector('.qbox')!.getBoundingClientRect().top,
         drawerPosition: getComputedStyle(document.querySelector('.panel.left')!).position,
@@ -362,23 +360,66 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
     await expect(page.locator('#nextBtn')).not.toHaveClass(/hidden/);
   });
 
-  test('preserva significado quando o usuário reduz movimento', async ({ page }) => {
-    await page.emulateMedia({ reducedMotion: 'reduce' });
-
-    const motion = await page.locator('.nql-loadout-shell').evaluate((shell) =>
-      ['.nql-loadout-branch', '.nql-loadout-pulse'].map((selector) => {
-        const style = getComputedStyle(shell.querySelector(selector)!);
-        return {
-          selector,
-          animationName: style.animationName,
-          stroke: style.stroke,
-        };
-      })
+  test('permite pausar e retomar a animação por teclado e conserva a preferência', async ({ page }, testInfo) => {
+    await page.emulateMedia({ reducedMotion: 'no-preference' });
+    const openCard = async () => {
+      if (testInfo.project.name === 'mobile') {
+        await page.locator('#mobileHeroBtn').click();
+        await expect(page.locator('.panel.left')).toHaveClass(/mobile-open/);
+      }
+    };
+    await openCard();
+    const toggle = page.locator('#guardianMotionToggle');
+    const motionStates = () => page.locator('.nql-loadout-branch, .nql-loadout-pulse').evaluateAll(elements =>
+      elements.flatMap(element => element.getAnimations().map(animation => animation.playState))
     );
-    for (const item of motion) {
-      expect(item.animationName).toBe('none');
-      expect(item.stroke).not.toBe('none');
+    await expect(toggle).toHaveAccessibleName('Pausar animação do personagem');
+    await expect.poll(motionStates).toEqual(['running', 'running']);
+
+    await toggle.focus();
+    await toggle.press('Enter');
+    await expect(toggle).toHaveAttribute('aria-pressed', 'true');
+    await expect(toggle).toHaveAccessibleName('Retomar animação do personagem');
+    await expect.poll(motionStates).toEqual(['paused', 'paused']);
+    const pausedProgress = await page.locator('.nql-loadout-pulse').evaluate(async element => {
+      const animation = element.getAnimations()[0];
+      const before = animation.currentTime;
+      await new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+      return { before, after: animation.currentTime };
+    });
+    expect(pausedProgress.after, 'o ponto de luz permanece parado').toBe(pausedProgress.before);
+
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await enterGame(page);
+    await openCard();
+    await expect(toggle).toHaveAttribute('aria-pressed', 'true');
+    await expect(toggle).toHaveAccessibleName('Retomar animação do personagem');
+    await expect.poll(motionStates).toEqual(['paused', 'paused']);
+
+    await toggle.focus();
+    await toggle.press('Space');
+    await expect(toggle).toHaveAttribute('aria-pressed', 'false');
+    await expect(toggle).toHaveAccessibleName('Pausar animação do personagem');
+    await expect.poll(motionStates).toEqual(['running', 'running']);
+    await expect(page.locator('#question')).not.toBeEmpty();
+  });
+
+  test('respeita movimento reduzido e mantém o arco estático e o personagem', async ({ page }, testInfo) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    if (testInfo.project.name === 'mobile') {
+      await page.locator('#mobileHeroBtn').click();
+      await expect(page.locator('.panel.left')).toHaveClass(/mobile-open/);
     }
+    await expect(page.locator('.nql-loadout-cortex')).toBeVisible();
+    await expect(page.locator('#heroImg')).toBeVisible();
+    await expect(page.locator('.nql-loadout-shell .slot-diablo')).toHaveCount(6);
+    for (const selector of ['.nql-loadout-branch', '.nql-loadout-pulse']) {
+      await expect(page.locator(selector)).toBeHidden();
+      await expect.poll(() => page.locator(selector).evaluate(element =>
+        element.getAnimations().filter(animation => animation.playState === 'running').length
+      )).toBe(0);
+    }
+    await expect(page.locator('#guardianMotionToggle')).toBeHidden();
   });
 
   test('aplica uma assinatura cromática própria a cada personagem', async ({ page }) => {

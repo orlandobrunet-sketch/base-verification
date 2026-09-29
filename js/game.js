@@ -1638,7 +1638,7 @@
     // ── Study-mode helpers ──────────────────── js/study-mode.js ──
 
     const ui={
-      heroImg:$("heroImg"),heroClass:$("heroClass"),heroTitle:$("heroTitle"),xpFill:$("xpFill"),xpTxt:$("xpTxt"),
+      heroImg:$("heroImg"),heroArchetype:$("heroArchetype"),heroClass:$("heroClass"),heroTitle:$("heroTitle"),xpFill:$("xpFill"),xpTxt:$("xpTxt"),
       storyTitle:$("storyTitle"),storyGoal:$("storyGoal"),
       level:$("level"),score:$("score"),lives:$("lives"),record:$("record"),gold:$("gold"),streak:$("streak"),
       equipList:$("equipList"),journal:$("journal"),question:$("question"),options:$("options"),feedback:$("feedback"),refs:$("refs"),
@@ -1647,6 +1647,35 @@
       dockForgeBtn:$("forgeBtn"),dockChestBtn:$("chestBtn"),dockLegBtn:$("legendaryForgeBtn"),dockChestCost:$("chestCostBadge"),actionDock:$("actionDock"),
       dockNextBtn:$("dockNextBtn")
     };
+
+    const GUARDIAN_MOTION_KEY = 'nq-guardian-motion-paused';
+    let _guardianMotionPaused = (() => {
+      try { return localStorage.getItem(GUARDIAN_MOTION_KEY) === '1'; }
+      catch (e) { return false; }
+    })();
+
+    function renderGuardianMotion() {
+      document.querySelectorAll('.nql-loadout-shell').forEach(shell => {
+        shell.classList.toggle('nql-motion-paused', _guardianMotionPaused);
+      });
+      const button = $('guardianMotionToggle');
+      if (!button) return;
+      const label = _guardianMotionPaused
+        ? 'Retomar animação do personagem'
+        : 'Pausar animação do personagem';
+      button.setAttribute('aria-pressed', String(_guardianMotionPaused));
+      button.setAttribute('aria-label', label);
+      button.title = label;
+    }
+
+    function toggleGuardianMotion() {
+      _guardianMotionPaused = !_guardianMotionPaused;
+      try { localStorage.setItem(GUARDIAN_MOTION_KEY, _guardianMotionPaused ? '1' : '0'); }
+      catch (e) { /* A preferência continua válida nesta sessão sem armazenamento. */ }
+      renderGuardianMotion();
+    }
+    window.toggleGuardianMotion = toggleGuardianMotion;
+    renderGuardianMotion();
 
     // === SUPABASE LEADERBOARD ===
 
@@ -2105,10 +2134,10 @@
       }).join('');
 
       const totalHTML = `<strong class='nq-text-gold'>Atributos Totais:</strong>
-        <span class='stat-badge' tabindex='0' aria-label='${statTips.atk.name}: ${st.atk}' aria-describedby='nqStatTipAtk'>⚔️${st.atk}<span id='nqStatTipAtk' class='stat-tip' role='tooltip'><strong>${statTips.atk.icon} ${statTips.atk.name}</strong><br>${statTips.atk.desc}</span></span>
-        <span class='stat-badge' tabindex='0' aria-label='${statTips.def.name}: ${st.def}' aria-describedby='nqStatTipDef'>🛡️${st.def}<span id='nqStatTipDef' class='stat-tip' role='tooltip'><strong>${statTips.def.icon} ${statTips.def.name}</strong><br>${statTips.def.desc}</span></span>
-        <span class='stat-badge' tabindex='0' aria-label='${statTips.kno.name}: ${st.kno}' aria-describedby='nqStatTipKno'>📚${st.kno}<span id='nqStatTipKno' class='stat-tip' role='tooltip'><strong>${statTips.kno.icon} ${statTips.kno.name}</strong><br>${statTips.kno.desc}</span></span>
-        <span class='stat-badge' tabindex='0' aria-label='${statTips.luck.name}: ${st.luck}' aria-describedby='nqStatTipLuck'>🍀${st.luck}<span id='nqStatTipLuck' class='stat-tip' role='tooltip'><strong>${statTips.luck.icon} ${statTips.luck.name}</strong><br>${statTips.luck.desc}</span></span>`;
+        <span class='stat-badge' data-stat='atk' tabindex='0' aria-label='${statTips.atk.name}: ${st.atk}' aria-describedby='nqStatTipAtk'><span class='nql-stat-value'>⚔️${st.atk}</span><span class='nql-stat-label' aria-hidden='true'>Ataque</span><span id='nqStatTipAtk' class='stat-tip' role='tooltip'><strong>${statTips.atk.icon} ${statTips.atk.name}</strong><br>${statTips.atk.desc}</span></span>
+        <span class='stat-badge' data-stat='def' tabindex='0' aria-label='${statTips.def.name}: ${st.def}' aria-describedby='nqStatTipDef'><span class='nql-stat-value'>🛡️${st.def}</span><span class='nql-stat-label' aria-hidden='true'>Defesa</span><span id='nqStatTipDef' class='stat-tip' role='tooltip'><strong>${statTips.def.icon} ${statTips.def.name}</strong><br>${statTips.def.desc}</span></span>
+        <span class='stat-badge' data-stat='kno' tabindex='0' aria-label='${statTips.kno.name}: ${st.kno}' aria-describedby='nqStatTipKno'><span class='nql-stat-value'>📚${st.kno}</span><span class='nql-stat-label' aria-hidden='true'>Conhec.</span><span id='nqStatTipKno' class='stat-tip' role='tooltip'><strong>${statTips.kno.icon} ${statTips.kno.name}</strong><br>${statTips.kno.desc}</span></span>
+        <span class='stat-badge' data-stat='luck' tabindex='0' aria-label='${statTips.luck.name}: ${st.luck}' aria-describedby='nqStatTipLuck'><span class='nql-stat-value'>🍀${st.luck}</span><span class='nql-stat-label' aria-hidden='true'>Sorte</span><span id='nqStatTipLuck' class='stat-tip' role='tooltip'><strong>${statTips.luck.icon} ${statTips.luck.name}</strong><br>${statTips.luck.desc}</span></span>`;
 
       // Synergy banner when all 6 slots are legendary
       const _synergyActive = legendaryCount()===6;
@@ -2134,6 +2163,7 @@
     function renderHUD(){
       const [c,img,cls,title]=heroMeta();
       const chapter=chapterMeta();
+      if(ui.heroArchetype) ui.heroArchetype.textContent = (characters[state.character] || characters.nephros).title;
       ui.heroClass.textContent=c;
       ui.heroTitle.textContent=title;
       // Badge de campeão ao lado do nome quando completou o jogo
@@ -2155,6 +2185,7 @@
       if(loadoutShell) {
         loadoutShell.dataset.character = characters[state.character] ? state.character : 'nephros';
       }
+      renderGuardianMotion();
       ui.storyTitle.textContent=chapter.title;
       ui.storyGoal.textContent=`Objetivo: ${chapter.goal}`;
       ui.level.textContent=state.level; ui.score.textContent=state.score;
