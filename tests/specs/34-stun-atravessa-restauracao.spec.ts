@@ -82,25 +82,32 @@ test.describe('Atordoamento do chefe não atravessa a restauração', () => {
     const posicao = await tarja.evaluate(el => getComputedStyle(el).position);
     expect(posicao, 'inset/z-index não têm efeito em elemento estático').not.toBe('static');
 
-    // E #equipList precisa ser um bloco contedor, senão a tarja se ancora num
-    // ancestral qualquer e reaparece longe de onde deveria. Qualquer valor
-    // posicionado serve — o tema Lúmen usa `absolute`, o CSS de stun usa
-    // `relative`; afirmar um deles em particular seria travar a implementação
-    // em vez do comportamento.
-    const contexto = await page.evaluate(() =>
-      getComputedStyle(document.getElementById('equipList')!).position);
-    expect(contexto, '#equipList precisa ser um bloco contedor posicionado').not.toBe('static');
+    // O card usa uma grade compartilhada: #equipList tem display:contents.
+    // Verificamos a área real da tarja, sem exigir um wrapper intermediário.
+    const abrirPersonagem = page.locator('.mobile-bottom-dock [data-action="openMobileDrawer"]');
+    if (await abrirPersonagem.isVisible()) await abrirPersonagem.click();
+    await expect(tarja).toBeVisible();
+    await page.evaluate(() => document.fonts.ready);
 
-    // O teste que realmente reproduz o relato: a tarja não pode cobrir o nome.
-    const sobrepoeNome = await page.evaluate(() => {
-      const banner = document.querySelector('.equip-stun-overlay');
-      const lista = document.getElementById('equipList');
-      if (!banner || !lista) return null;
-      const b = banner.getBoundingClientRect();
-      const l = lista.getBoundingClientRect();
-      // Uma folga de 1px absorve arredondamento de subpixel.
-      return b.top < l.top - 1 || b.left < l.left - 1 || b.right > l.right + 1;
-    });
-    expect(sobrepoeNome, 'a tarja vazou para fora da área de equipamentos').toBe(false);
+    for (const tamanho of [16, 32]) {
+      await page.evaluate(px => { document.documentElement.style.fontSize = px + 'px'; }, tamanho);
+      const geometria = await page.evaluate(() => {
+        const banner = document.querySelector('.equip-stun-overlay')!.getBoundingClientRect();
+        const card = document.querySelector('.nql-loadout-shell')!.getBoundingClientRect();
+        const nome = document.querySelector('.nql-hero-heading')!.getBoundingClientRect();
+        const itens = [...document.querySelectorAll('#equipList .slot-diablo')].map(el => el.getBoundingClientRect());
+        return {
+          temArea: banner.width > 0 && banner.height > 0,
+          dentroDoCard: banner.left >= card.left - 1 && banner.right <= card.right + 1 && banner.bottom <= card.bottom + 1,
+          abaixoDoNome: banner.top >= nome.bottom - 1,
+          cobreEquipamentos: itens.length === 6 && itens.every(item =>
+            banner.left <= item.left + 1 && banner.right >= item.right - 1 &&
+            banner.top <= item.top + 1 && banner.bottom >= item.bottom - 1),
+        };
+      });
+      expect(geometria, 'tarja deve cobrir apenas a área dos equipamentos, com fonte ' + tamanho).toEqual({
+        temArea: true, dentroDoCard: true, abaixoDoNome: true, cobreEquipamentos: true,
+      });
+    }
   });
 });
