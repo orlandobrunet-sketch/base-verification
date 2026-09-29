@@ -46,9 +46,17 @@ test.describe('Boss mode (Fase Final)', () => {
   });
 
   test('elementos exclusivos da Câmara de Conduta não vazam para o confronto final', async ({ page }) => {
-    const displays = await page.locator('.nql-loadout-kicker, .nql-loadout-circuit, .nql-question-meta, .nql-feedback-kicker')
-      .evaluateAll((elements) => elements.map((element) => getComputedStyle(element).display));
-    expect(displays).toEqual(['none', 'none', 'none', 'none']);
+    for (const selector of [
+      '.nql-loadout-circuit', '.nql-question-meta', '.nql-feedback-kicker',
+      '.nql-hero-archetype', '#guardianMotionToggle', '.nql-choice-instruction',
+    ]) {
+      await expect(page.locator(selector)).toBeAttached();
+      await expect(page.locator(selector)).toBeHidden();
+    }
+    await expect(page.locator('.nql-stat-label').first()).toBeAttached();
+    for (const label of await page.locator('.nql-stat-label').all()) {
+      await expect(label).toBeHidden();
+    }
   });
 
   test('evidências continuam acessíveis ao retomar diretamente no boss', async ({ page }) => {
