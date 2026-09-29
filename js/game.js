@@ -2134,10 +2134,10 @@
       }).join('');
 
       const totalHTML = `<strong class='nq-text-gold'>Atributos Totais:</strong>
-        <span class='stat-badge' data-stat='atk' tabindex='0' aria-label='${statTips.atk.name}: ${st.atk}' aria-describedby='nqStatTipAtk'><span class='nql-stat-value'>⚔️${st.atk}</span><span class='nql-stat-label' aria-hidden='true'>Ataque</span><span id='nqStatTipAtk' class='stat-tip' role='tooltip'><strong>${statTips.atk.icon} ${statTips.atk.name}</strong><br>${statTips.atk.desc}</span></span>
-        <span class='stat-badge' data-stat='def' tabindex='0' aria-label='${statTips.def.name}: ${st.def}' aria-describedby='nqStatTipDef'><span class='nql-stat-value'>🛡️${st.def}</span><span class='nql-stat-label' aria-hidden='true'>Defesa</span><span id='nqStatTipDef' class='stat-tip' role='tooltip'><strong>${statTips.def.icon} ${statTips.def.name}</strong><br>${statTips.def.desc}</span></span>
-        <span class='stat-badge' data-stat='kno' tabindex='0' aria-label='${statTips.kno.name}: ${st.kno}' aria-describedby='nqStatTipKno'><span class='nql-stat-value'>📚${st.kno}</span><span class='nql-stat-label' aria-hidden='true'>Conhec.</span><span id='nqStatTipKno' class='stat-tip' role='tooltip'><strong>${statTips.kno.icon} ${statTips.kno.name}</strong><br>${statTips.kno.desc}</span></span>
-        <span class='stat-badge' data-stat='luck' tabindex='0' aria-label='${statTips.luck.name}: ${st.luck}' aria-describedby='nqStatTipLuck'><span class='nql-stat-value'>🍀${st.luck}</span><span class='nql-stat-label' aria-hidden='true'>Sorte</span><span id='nqStatTipLuck' class='stat-tip' role='tooltip'><strong>${statTips.luck.icon} ${statTips.luck.name}</strong><br>${statTips.luck.desc}</span></span>`;
+        <span class='stat-badge' data-stat='atk' tabindex='0' aria-label='${statTips.atk.name}: ${st.atk}' aria-describedby='nqStatTipAtk'><span class='nql-stat-value'><span class='nql-stat-legacy' aria-hidden='true'>⚔️</span><svg class='nql-stat-icon' viewBox='0 0 24 24' aria-hidden='true'><path d='M4 20 18 6m-5-2h7v7M4 14l6 6m-7 1 3-3'/></svg><span class='nql-stat-number'>${st.atk}</span></span><span class='nql-stat-label' aria-hidden='true'>Ataque</span><span id='nqStatTipAtk' class='stat-tip' role='tooltip'><strong>${statTips.atk.icon} ${statTips.atk.name}</strong><br>${statTips.atk.desc}</span></span>
+        <span class='stat-badge' data-stat='def' tabindex='0' aria-label='${statTips.def.name}: ${st.def}' aria-describedby='nqStatTipDef'><span class='nql-stat-value'><span class='nql-stat-legacy' aria-hidden='true'>🛡️</span><svg class='nql-stat-icon' viewBox='0 0 24 24' aria-hidden='true'><path d='M12 3 4 6v6c0 5 8 9 8 9s8-4 8-9V6z'/></svg><span class='nql-stat-number'>${st.def}</span></span><span class='nql-stat-label' aria-hidden='true'>Defesa</span><span id='nqStatTipDef' class='stat-tip' role='tooltip'><strong>${statTips.def.icon} ${statTips.def.name}</strong><br>${statTips.def.desc}</span></span>
+        <span class='stat-badge' data-stat='kno' tabindex='0' aria-label='${statTips.kno.name}: ${st.kno}' aria-describedby='nqStatTipKno'><span class='nql-stat-value'><span class='nql-stat-legacy' aria-hidden='true'>📚</span><svg class='nql-stat-icon' viewBox='0 0 24 24' aria-hidden='true'><path d='M3 4h5c3 0 4 2 4 3v14c0-3-4-4-9-3zM21 4h-5c-3 0-4 2-4 3v14c0-3 4-4 9-3z'/></svg><span class='nql-stat-number'>${st.kno}</span></span><span class='nql-stat-label' aria-hidden='true'>Conhec.</span><span id='nqStatTipKno' class='stat-tip' role='tooltip'><strong>${statTips.kno.icon} ${statTips.kno.name}</strong><br>${statTips.kno.desc}</span></span>
+        <span class='stat-badge' data-stat='luck' tabindex='0' aria-label='${statTips.luck.name}: ${st.luck}' aria-describedby='nqStatTipLuck'><span class='nql-stat-value'><span class='nql-stat-legacy' aria-hidden='true'>🍀</span><svg class='nql-stat-icon' viewBox='0 0 24 24' aria-hidden='true'><path d='M12 12C2-3-4 16 12 12C27 2 8-4 12 12C22 27 28 8 12 12C-3 22 16 28 12 12M12 12l5 9'/></svg><span class='nql-stat-number'>${st.luck}</span></span><span class='nql-stat-label' aria-hidden='true'>Sorte</span><span id='nqStatTipLuck' class='stat-tip' role='tooltip'><strong>${statTips.luck.icon} ${statTips.luck.name}</strong><br>${statTips.luck.desc}</span></span>`;
 
       // Synergy banner when all 6 slots are legendary
       const _synergyActive = legendaryCount()===6;
@@ -2186,6 +2186,8 @@
         loadoutShell.dataset.character = characters[state.character] ? state.character : 'nephros';
       }
       renderGuardianMotion();
+      $('guardianLevelLabel').textContent = `Nível ${state.level}`;
+      $('guardianXpAmount').textContent = `${state.xp}/${state.xpToNext}`;
       ui.storyTitle.textContent=chapter.title;
       ui.storyGoal.textContent=`Objetivo: ${chapter.goal}`;
       ui.level.textContent=state.level; ui.score.textContent=state.score;
@@ -2222,9 +2224,9 @@
         && state.level < MAX_LEVEL;
       if (_travadoPorAcertos) {
         const _faltam = Math.max(1, (state.level * 10) - (state.correctTotal || 0));
-        ui.xpTxt.textContent = `XP ${state.xp}/${state.xpToNext} · nível ${state.level + 1} em ${_faltam} ${_faltam === 1 ? 'acerto' : 'acertos'}`;
+        $('guardianXpHint').textContent = `Próxima evolução em ${_faltam} ${_faltam === 1 ? 'acerto' : 'acertos'}`;
       } else {
-        ui.xpTxt.textContent = `XP ${state.xp}/${state.xpToNext}`;
+        $('guardianXpHint').textContent = '';
       }
       const _qCtr = document.getElementById('questionCounterTxt');
       if (_qCtr) _qCtr.textContent = `${state.correctTotal}/${questionBank?.length ?? '+'} questões`;
