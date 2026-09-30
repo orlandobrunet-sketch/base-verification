@@ -2,12 +2,12 @@ import { test, expect, type Page } from '@playwright/test';
 import { injectGameState } from '../helpers/game';
 
 /**
- * O valor de cada atributo (emoji + número) deve permanecer em uma linha.
+ * O valor de cada atributo (ícone + número) deve permanecer em uma linha.
  * O rótulo do atributo ocupa intencionalmente uma segunda linha no card Lumen.
  *
  * A regressão original espremia os distintivos abaixo do próprio conteúdo:
  * um min-width fixo substituía o mínimo automático do flex, permitindo quebrar
- * entre emoji e número. A largura do emoji varia conforme o sistema, então o
+ * entre ícone e número. A largura do ícone varia conforme o sistema, então o
  * segundo cenário simula um valor mais largo para guardar também no runner.
  *
  * Agora medimos a linha do valor e seu encaixe no distintivo separadamente,
@@ -55,7 +55,12 @@ const MEDIR_ATRIBUTOS = (els: Element[]) => {
     // Um Range mede as linhas reais de texto, inclusive quando o valor for
     // inline. A altura total do badge inclui o rótulo e não serve para isso.
     const range = document.createRange();
-    range.selectNodeContents(valor);
+    range.selectNodeContents(valor.querySelector('.nql-stat-number') || valor);
+    const icone = valor.querySelector('.nql-stat-icon');
+    if (icone) {
+      const rect = icone.getBoundingClientRect();
+      if (rect.top < retanguloValor.top - .5 || rect.bottom > retanguloValor.bottom + .5) quebrados.push(texto + ' (ícone desalinhado)');
+    }
     const linhas: number[] = [];
     for (const rect of Array.from(range.getClientRects())) {
       if (rect.width > 0 && rect.height > 0 && !linhas.some(top => Math.abs(top - rect.top) <= 1)) {
@@ -69,7 +74,7 @@ const MEDIR_ATRIBUTOS = (els: Element[]) => {
 
 function conferirAtributos(resultado: ReturnType<typeof MEDIR_ATRIBUTOS>) {
   expect(resultado.espremidos, 'atributos comprimidos abaixo do conteúdo').toEqual([]);
-  expect(resultado.quebrados, 'emoji e número precisam ocupar uma única linha').toEqual([]);
+  expect(resultado.quebrados, 'ícone e número precisam ocupar uma única linha').toEqual([]);
   expect(resultado.foraDoDistintivo, 'valor precisa caber na área interna do próprio distintivo').toEqual([]);
 }
 
@@ -85,10 +90,10 @@ test.describe('Atributos Totais', () => {
   test('conteúdo mais largo não espreme o valor nem o faz sair do distintivo', async ({ page }) => {
     await abrirJogo(page);
     const distintivos = page.locator('.equip-total-attributes .stat-badge');
-    const valores = distintivos.locator('.nql-stat-value');
+    const valores = distintivos.locator('.nql-stat-number');
     await expect(valores).toHaveCount(4);
     const originais = await valores.allTextContents();
-    // Emula a condição de conteúdo largo, preservando o emoji de cada atributo.
+    // Emula a condição de conteúdo largo, preservando o ícone de cada atributo.
     // Altera apenas o valor; o rótulo e o tooltip permanecem no layout real.
     try {
       await valores.evaluateAll(els => els.forEach(el => {

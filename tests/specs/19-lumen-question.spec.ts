@@ -370,55 +370,155 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
     };
     await openCard();
     const toggle = page.locator('#guardianMotionToggle');
-    const motionStates = () => page.locator('.nql-loadout-branch, .nql-loadout-pulse').evaluateAll(elements =>
+    const motionStates = () => page.locator('.nql-portrait-light').evaluateAll(elements =>
       elements.flatMap(element => element.getAnimations().map(animation => animation.playState))
     );
     await expect(toggle).toHaveAccessibleName('Pausar animação do personagem');
-    await expect.poll(motionStates).toEqual(['running', 'running']);
+    await expect.poll(motionStates).toEqual(['running']);
 
     await toggle.focus();
     await toggle.press('Enter');
     await expect(toggle).toHaveAttribute('aria-pressed', 'true');
     await expect(toggle).toHaveAccessibleName('Retomar animação do personagem');
-    await expect.poll(motionStates).toEqual(['paused', 'paused']);
-    const pausedProgress = await page.locator('.nql-loadout-pulse').evaluate(async element => {
+    await expect.poll(motionStates).toEqual(['paused']);
+    const pausedProgress = await page.locator('.nql-portrait-light').evaluate(async element => {
       const animation = element.getAnimations()[0];
       const before = animation.currentTime;
       await new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
       return { before, after: animation.currentTime };
     });
-    expect(pausedProgress.after, 'o ponto de luz permanece parado').toBe(pausedProgress.before);
+    expect(pausedProgress.after, 'a iluminação permanece pausada').toBe(pausedProgress.before);
 
     await page.reload({ waitUntil: 'domcontentloaded' });
     await enterGame(page);
     await openCard();
     await expect(toggle).toHaveAttribute('aria-pressed', 'true');
     await expect(toggle).toHaveAccessibleName('Retomar animação do personagem');
-    await expect.poll(motionStates).toEqual(['paused', 'paused']);
+    await expect.poll(motionStates).toEqual(['paused']);
 
     await toggle.focus();
     await toggle.press('Space');
     await expect(toggle).toHaveAttribute('aria-pressed', 'false');
     await expect(toggle).toHaveAccessibleName('Pausar animação do personagem');
-    await expect.poll(motionStates).toEqual(['running', 'running']);
+    await expect.poll(motionStates).toEqual(['running']);
     await expect(page.locator('#question')).not.toBeEmpty();
   });
 
-  test('respeita movimento reduzido e mantém o arco estático e o personagem', async ({ page }, testInfo) => {
+  test('restaurar e redesenhar o card não simula uma recompensa', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'chromium', 'ganhos são observados com o card visível no desktop');
+    await page.emulateMedia({ reducedMotion: 'no-preference' });
+    // Registra efeitos desde o início para também detectar destaques transitórios
+    // que já teriam terminado quando a restauração da jornada acabar.
+    await page.addInitScript(() => {
+      (window as any).__nqGuardianEffects = [];
+      const animate = Element.prototype.animate;
+      Element.prototype.animate = function (keyframes, options) {
+        const id = typeof options === 'object' && options?.id;
+        if (id && id.startsWith('nq-guardian-')) (window as any).__nqGuardianEffects.push(id);
+        return animate.call(this, keyframes, options);
+      };
+    });
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await enterGame(page);
+    await expect(page.locator('.nql-loadout-shell')).toBeVisible();
+    const effects = await page.evaluate(() => {
+      (window as any).renderHUD();
+      (window as any).renderHUD();
+      return (window as any).__nqGuardianEffects as string[];
+    });
+    expect(effects, 'retomar e renderizar novamente preservam o progresso sem anunciar ganho').toEqual([]);
+  });
+
+  test('com XP cheio, o acerto destaca o requisito reduzido sem inventar ganho na barra', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'chromium', 'ganhos são observados com o card visível no desktop');
+    await page.emulateMedia({ reducedMotion: 'no-preference' });
+    await injectGameState(page, { level: 2, xp: 229, correctTotal: 15, gold: 0 });
+    await expect(page.locator('#guardianXpHint')).toHaveText('Próxima evolução em 5 acertos');
+    expect(await page.locator('#xpFill').evaluate(element => (element as HTMLElement).style.width)).toBe('100%');
+    await page.evaluate(() => {
+      (window as any).__nqGuardianEffects = [];
+      const animate = Element.prototype.animate;
+      Element.prototype.animate = function (keyframes, options) {
+        const id = typeof options === 'object' && options?.id;
+        if (id && id.startsWith('nq-guardian-')) (window as any).__nqGuardianEffects.push(id);
+        return animate.call(this, keyframes, options);
+      };
+    });
+    const correctIndex = await page.evaluate(() => (window as any).state.current.a as number);
+    await page.locator('#options .option').nth(correctIndex).click();
+    await expect(page.locator('#guardianXpHint')).toHaveText('Próxima evolução em 4 acertos');
+    await expect.poll(() => page.evaluate(() => (window as any).__nqGuardianEffects as string[]))
+      .toContain('nq-guardian-xp-hint');
+    const effects = await page.evaluate(() => (window as any).__nqGuardianEffects as string[]);
+    expect(effects).not.toContain('nq-guardian-xp-gain');
+    expect(await page.locator('#xpFill').evaluate(element => (element as HTMLElement).style.width)).toBe('100%');
+    await expect(page.locator('.nql-xp-gain')).toHaveCount(0);
+  });
+
+  test('a Forja preserva o destaque no duplo render sem repetir a recompensa', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'chromium', 'equipamentos são observados com o card visível no desktop');
+    await page.emulateMedia({ reducedMotion: 'no-preference' });
+    const result = await page.evaluate(async () => {
+      const game = window as any;
+      const emitted: string[] = [];
+      const animate = Element.prototype.animate;
+      Element.prototype.animate = function (keyframes, options) {
+        const id = typeof options === 'object' && options?.id;
+        if (id && id.startsWith('nq-guardian-')) emitted.push(id);
+        return animate.call(this, keyframes, options);
+      };
+      const activeEffects = () => document.getAnimations().filter(animation =>
+        animation.id.startsWith('nq-guardian-equip-') || animation.id.startsWith('nq-guardian-stat-'));
+      let firstEffects: Animation[] = [];
+      try {
+        // Usa o mesmo contrato da Forja: o callback atualiza o HUD e
+        // equipOrSell o atualiza novamente antes de entregar o próximo frame.
+        game.equipOrSell('helmet', {
+          n: 'Touca Plissada', rar: 'common', atk: 0, def: 1, kno: 1, luck: 0,
+        }, () => {
+          game.renderHUD();
+          firstEffects = activeEffects();
+        });
+        await new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+        const afterForge = activeEffects();
+        const times = firstEffects.map(animation => Number(animation.currentTime));
+        game.renderHUD();
+        const afterRedraw = activeEffects();
+        return {
+          emitted,
+          idsAfterForge: afterForge.map(animation => animation.id).sort(),
+          idsAfterRedraw: afterRedraw.map(animation => animation.id).sort(),
+          sameEffects: firstEffects.every(animation => afterForge.includes(animation) && afterRedraw.includes(animation)),
+          connectedTargets: afterRedraw.every(animation => (animation.effect as KeyframeEffect).target?.isConnected),
+          progressPreserved: firstEffects.every((animation, index) => Number(animation.currentTime) >= times[index]),
+        };
+      } finally {
+        Element.prototype.animate = animate;
+      }
+    });
+    const expectedIds = ['nq-guardian-equip-helmet', 'nq-guardian-stat-def', 'nq-guardian-stat-kno'];
+    expect(result.emitted.sort(), 'cada destaque é iniciado uma única vez').toEqual(expectedIds);
+    expect(result.idsAfterForge, 'o destaque sobrevive ao duplo render da Forja').toEqual(expectedIds);
+    expect(result.idsAfterRedraw).toEqual(expectedIds);
+    expect(result.sameEffects, 'renderizar conserva os efeitos em andamento').toBe(true);
+    expect(result.connectedTargets, 'os efeitos pertencem aos equipamentos atualmente visíveis').toBe(true);
+    expect(result.progressPreserved, 'renderizar não reinicia o relógio do destaque').toBe(true);
+  });
+
+
+  test('respeita movimento reduzido e mantém o personagem e os equipamentos estáticos', async ({ page }, testInfo) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     if (testInfo.project.name === 'mobile') {
       await page.locator('#mobileHeroBtn').click();
       await expect(page.locator('.panel.left')).toHaveClass(/mobile-open/);
     }
-    await expect(page.locator('.nql-loadout-cortex')).toBeVisible();
     await expect(page.locator('#heroImg')).toBeVisible();
     await expect(page.locator('.nql-loadout-shell .slot-diablo')).toHaveCount(6);
-    for (const selector of ['.nql-loadout-branch', '.nql-loadout-pulse']) {
-      await expect(page.locator(selector)).toBeHidden();
-      await expect.poll(() => page.locator(selector).evaluate(element =>
-        element.getAnimations().filter(animation => animation.playState === 'running').length
-      )).toBe(0);
-    }
+    const light = page.locator('.nql-portrait-light');
+    await expect(light).toBeHidden();
+    await expect.poll(() => light.evaluate(element =>
+      element.getAnimations().filter(animation => animation.playState === 'running').length
+    )).toBe(0);
     await expect(page.locator('#guardianMotionToggle')).toBeHidden();
   });
 
