@@ -213,6 +213,7 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   --nql-hero-primary-rgb: 105, 189, 231;
   --nql-hero-secondary: #89a9c2;
   --nql-hero-secondary-rgb: 137, 169, 194;
+  --nql-hero-frame-line: rgba(var(--nql-hero-primary-rgb), .48);
   position: relative;
   isolation: isolate;
   container: nq-guardian / inline-size;
@@ -321,7 +322,19 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   cursor: pointer;
 }
 
-body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .portrait-frame::before,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .portrait-frame::before {
+  content: '';
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border: 1px solid var(--nql-hero-frame-line);
+  border-radius: inherit;
+  background: none;
+  box-shadow: none;
+  pointer-events: none;
+}
+
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .portrait-frame::after {
   display: none;
 }
@@ -461,7 +474,7 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   margin: 0 !important;
   padding: 0 !important;
   border: 0 !important;
-  border-radius: 11px !important;
+  border-radius: 10px !important;
   background: transparent !important;
   box-shadow: none !important;
   transform: none;
@@ -510,8 +523,8 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   width: 100% !important;
   height: 100% !important;
   padding: 2px !important;
-  border: 1px solid #394b5866 !important;
-  border-radius: 11px !important;
+  border: 1px solid var(--nql-hero-frame-line) !important;
+  border-radius: 10px !important;
   overflow: hidden;
   background: linear-gradient(145deg, #a9c7dc06, #0a0e1a38);
   box-shadow: none !important;
