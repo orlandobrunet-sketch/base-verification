@@ -954,6 +954,7 @@
     function restoreGame() {
       const save = loadGame();
       if (!save || !save.character) return false;
+      resetGuardianFeedback();
       
       state.character = save.character;
       state.level = save.level || 1;
@@ -1654,7 +1655,152 @@
       catch (e) { return false; }
     })();
 
+    // Feedback só entre dois estados da mesma jornada. Restaurar/iniciar ou
+    // trocar de personagem estabelece uma nova base, sem simular recompensas.
+    let _guardianHudSnapshot = null;
+    let _guardianEquipSnapshot = null;
+    const _guardianEffects = new Map();
+    const _guardianReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    function cancelGuardianEffects() {
+      for (const effect of [..._guardianEffects.values()]) effect.cancel();
+    }
+
+    function resetGuardianFeedback() {
+      _guardianHudSnapshot = null;
+      _guardianEquipSnapshot = null;
+      cancelGuardianEffects();
+    }
+
+    function guardianMotionVisible() {
+      if (_guardianMotionPaused || _guardianReducedMotion.matches || !state.gameStarted
+        || document.hidden || document.body.matches('.boss-battle-mode, .arqui-nefromante-final')
+        || (typeof isBossBattle === 'function' && isBossBattle())) return false;
+      const shell = ui.heroImg?.closest('#mainApp[data-nq-ui="lumen"] .nql-loadout-shell');
+      if (!shell || !shell.getClientRects().length) return false;
+      if (shell.checkVisibility && !shell.checkVisibility({ checkOpacity: true, checkVisibilityCSS: true })) return false;
+      const rect = shell.getBoundingClientRect();
+      return rect.bottom > 0 && rect.top < innerHeight && rect.right > 0 && rect.left < innerWidth;
+    }
+
+    function guardianContext() {
+      return { character: state.character, equipment: state.equipment,
+        level: state.level, correct: state.correctTotal, visible: guardianMotionVisible() };
+    }
+
+    function sameGuardianJourney(previous, current) {
+      return previous && previous.character === current.character
+        && previous.equipment === current.equipment
+        && current.level >= previous.level && current.correct >= previous.correct;
+    }
+
+    function animateGuardian(element, name, frames, duration = 850, cleanup = () => {}) {
+      const id = 'nq-guardian-' + name;
+      _guardianEffects.get(id)?.cancel();
+      if (!element?.isConnected || !element.animate || !guardianMotionVisible()) { cleanup(); return; }
+      const animation = element.animate(frames, { id, duration, easing: 'cubic-bezier(.2,.65,.3,1)' });
+      const finish = () => {
+        if (_guardianEffects.get(id)?.animation === animation) _guardianEffects.delete(id);
+        cleanup();
+      };
+      _guardianEffects.set(id, { element, animation, cancel() { animation.cancel(); finish(); } });
+      animation.finished.then(finish, finish);
+    }
+
+    function renderGuardianProgressFeedback() {
+      const current = { ...guardianContext(), xp: state.xp, limit: state.xpToNext };
+      const previous = _guardianHudSnapshot;
+      _guardianHudSnapshot = current;
+      if (!sameGuardianJourney(previous, current)) { cancelGuardianEffects(); return; }
+      if (!current.visible) { cancelGuardianEffects(); return; }
+      if (current.level !== previous.level || current.xp !== previous.xp || current.correct !== previous.correct) {
+        for (const name of ['xp-fill', 'xp-gain', 'xp-hint', 'evolution-portrait', 'evolution-title']) {
+          _guardianEffects.get('nq-guardian-' + name)?.cancel();
+        }
+      }
+      if (current.level > previous.level) {
+        animateGuardian(ui.heroImg, 'evolution-portrait', [
+          { opacity: .65, filter: 'brightness(1.18)' }, { opacity: 1, filter: 'brightness(1)' }
+        ], 1100);
+        animateGuardian(ui.heroClass, 'evolution-title', [
+          { opacity: .45, transform: 'translateY(3px)' }, { opacity: 1, transform: 'translateY(0)' }
+        ], 800);
+        return;
+      }
+      const before = Math.min(100, previous.xp / previous.limit * 100);
+      const after = Math.min(100, current.xp / current.limit * 100);
+      if (current.limit === previous.limit && after > before) {
+        animateGuardian(ui.xpFill, 'xp-fill', [{ width: before + '%' }, { width: after + '%' }], 650);
+        const gain = document.createElement('span');
+        gain.className = 'nql-xp-gain';
+        gain.setAttribute('aria-hidden', 'true');
+        gain.style.cssText = 'position:absolute;inset-block:0;pointer-events:none;transform-origin:left;background:#fff0b8;';
+        gain.style.left = before + '%';
+        gain.style.width = (after - before) + '%';
+        ui.xpFill.parentElement.appendChild(gain);
+        animateGuardian(gain, 'xp-gain', [
+          { transform: 'scaleX(0)', opacity: .9 },
+          { transform: 'scaleX(1)', opacity: .85, offset: .6 },
+          { transform: 'scaleX(1)', opacity: 0 }
+        ], 1100, () => gain.remove());
+      } else if (before >= 100 && after >= 100 && current.correct > previous.correct
+        && $('guardianXpHint')?.textContent) {
+        const hint = $('guardianXpHint');
+        animateGuardian(hint, 'xp-hint', [
+          { color: '#f2d78f' }, { color: getComputedStyle(hint).color }
+        ], 1000);
+      }
+    }
+
+    function renderGuardianEquipmentFeedback(stats) {
+      // A Forja pode renderizar duas vezes na mesma ação. Transferir o efeito
+      // ao nó novo preserva o tempo já percorrido, sem repetir a recompensa.
+      for (const effect of [..._guardianEffects.values()]) {
+        if (effect.element.isConnected) continue;
+        const id = effect.animation.id;
+        let target = null;
+        if (id.startsWith('nq-guardian-equip-')) {
+          target = ui.equipList.querySelector('[data-slot="' + id.slice('nq-guardian-equip-'.length) + '"]');
+        } else if (id.startsWith('nq-guardian-stat-')) {
+          target = ui.equipList.querySelector('[data-stat="' + id.slice('nq-guardian-stat-'.length) + '"] .nql-stat-value');
+        }
+        if (target && effect.animation.effect) {
+          effect.animation.effect.target = target;
+          effect.element = target;
+        } else {
+          effect.cancel();
+        }
+      }
+      const slots = ['helmet', 'glove', 'armor', 'weapon', 'relic', 'boot'];
+      const current = { ...guardianContext(), stats: { ...stats },
+        slots: Object.fromEntries(slots.map(slot => [slot, JSON.stringify(state.equipment[slot])])) };
+      const previous = _guardianEquipSnapshot;
+      _guardianEquipSnapshot = current;
+      if (!sameGuardianJourney(previous, current)) { cancelGuardianEffects(); return; }
+      if (!current.visible) return;
+      const changed = slots.filter(slot => current.slots[slot] !== previous.slots[slot]);
+      if (!changed.length) return;
+      for (const slot of changed) {
+        animateGuardian(ui.equipList.querySelector('[data-slot="' + slot + '"]'), 'equip-' + slot, [
+          { outline: '1px solid rgba(226,193,111,.7)', outlineOffset: '2px' },
+          { outline: '1px solid rgba(226,193,111,0)', outlineOffset: '2px' }
+        ]);
+      }
+      for (const stat of ['atk', 'def', 'kno', 'luck']) {
+        if (current.stats[stat] === previous.stats[stat]) continue;
+        const value = ui.equipList.querySelector('[data-stat="' + stat + '"] .nql-stat-value');
+        if (value) animateGuardian(value, 'stat-' + stat, [
+          { color: '#f2d78f' }, { color: getComputedStyle(value).color }
+        ], 1000);
+      }
+    }
+
+    _guardianReducedMotion.addEventListener('change', () => {
+      if (_guardianReducedMotion.matches) cancelGuardianEffects();
+    });
+
     function renderGuardianMotion() {
+      if (_guardianMotionPaused || _guardianReducedMotion.matches) cancelGuardianEffects();
       document.querySelectorAll('.nql-loadout-shell').forEach(shell => {
         shell.classList.toggle('nql-motion-paused', _guardianMotionPaused);
       });
@@ -2158,6 +2304,7 @@
         </div>
         ${synergyBanner}
       `;
+      renderGuardianEquipmentFeedback(st);
     }
 
     function renderHUD(){
@@ -2236,6 +2383,7 @@
       if (_cpf) _cpf.style.width = (_qTotal > 0 ? (_qDone/_qTotal*100).toFixed(1) : 0) + '%';
       if (_cpt) _cpt.textContent = `Questão ${_qDone} de ${_qTotal}`;
       renderEquip();
+      renderGuardianProgressFeedback();
       // Atualizar dock de ações (usando elementos cacheados no objeto ui)
       const {dockForgeBtn:forgeBtn, dockChestBtn:chestBtn, dockLegBtn:legBtn, dockChestCost:chestCostBadge} = ui;
       // Botões sempre ativos — popup de confirmação informa custo e disponibilidade
