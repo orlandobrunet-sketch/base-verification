@@ -2642,13 +2642,13 @@
             </div>
             ${ref.impacto ? `<div class="ref-impacto ${impactoClass}">${escapeHtml(ref.impacto)}</div>` : ''}
             <div class="ref-actions">
-              <button class="ref-resumo-btn" data-action="openRefResumo" data-arg="${escapeHtml(key)}" aria-expanded="false" aria-controls="questionRefSummary-${i}">
+              <button class="ref-resumo-btn" data-action="openRefResumo" data-arg="${escapeHtml(key)}" aria-expanded="false" aria-controls="questionRefSummary-${i}" data-collapsed-label="${usesLumenDebrief() ? 'Ler resumo' : 'Ver resumo'}" data-expanded-label="${usesLumenDebrief() ? 'Fechar resumo' : 'Ocultar resumo'}">
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-                <span data-ref-summary-label>Ver resumo</span>
+                <span data-ref-summary-label>${usesLumenDebrief() ? 'Ler resumo' : 'Ver resumo'}</span>
               </button>
               <button class="ref-copy-btn" data-action="_copyRefBtn" data-pass-this="1" data-copy-text="${escapeHtml(copyText)}">
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                copiar
+                ${usesLumenDebrief() ? 'Copiar referência' : 'copiar'}
               </button>
             </div>
             <div class="ref-reading" id="questionRefSummary-${i}" role="region" aria-label="Resumo de ${escapeHtml(ref.label)}" hidden>
@@ -2660,7 +2660,7 @@
       }).join('');
 
       ui.refs.innerHTML = `
-        <div class="refs-header">Evidência Científica</div>
+        <div class="refs-header">${usesLumenDebrief() ? 'Fontes desta questão' : 'Evidência Científica'}</div>
         <div class="ref-cards">${cardsHTML}</div>
       `;
     }
@@ -2774,12 +2774,78 @@
     }
 
     let _loadingNextQuestion = false;
+    function usesLumenDebrief() {
+      return !!document.querySelector('#mainApp[data-nq-ui="lumen"]') &&
+        !isBossBattle() && !document.body.classList.contains('arqui-nefromante-final') &&
+        !document.body.classList.contains('boss-battle-mode');
+    }
+
+    function renderLumenAnswerFeedback(correct, consequenceHTML = '') {
+      if (!usesLumenDebrief()) return false;
+      document.getElementById('mainApp').setAttribute('data-lumen-debrief', 'true');
+      ui.feedback.innerHTML = `
+        <h2 class="nql-answer-result"><span class="nql-answer-icon" aria-hidden="true">${correct ? '✓' : '×'}</span>${correct ? 'Resposta correta' : 'Resposta incorreta'}</h2>
+        <span class="fb-snip">${escapeHtml(state.current.e || '')}</span>
+        ${consequenceHTML ? `<p class="nql-answer-consequence">${consequenceHTML}</p>` : ''}`;
+      const instruction = document.querySelector('.nql-choice-instruction');
+      if (instruction) instruction.textContent = 'Sua resposta está marcada abaixo.';
+      return true;
+    }
+
+    function appendQuestionReviewPanel(content, kind, label, iconPath) {
+      if (!usesLumenDebrief()) {
+        ui.feedback.appendChild(content);
+        return;
+      }
+      let actions = document.getElementById('nqlQuestionReview');
+      if (!actions) {
+        actions = document.createElement('section');
+        actions.id = 'nqlQuestionReview';
+        actions.setAttribute('aria-label', 'Ações opcionais da questão');
+        actions.innerHTML = '<div class="nql-review-tools"><button type="button" class="nql-review-report" data-action="flagQuestion">Reportar problema</button></div>';
+        ui.feedback.after(actions);
+      }
+      const id = kind === 'rating' ? 'nqlQuestionRating' : 'nqlQuestionReflection';
+      const toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.id = id + 'Toggle';
+      toggle.dataset.action = 'toggleQuestionReview';
+      toggle.dataset.passThis = '1';
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-controls', id);
+      toggle.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${iconPath}</svg>${label}`;
+      const tools = actions.querySelector('.nql-review-tools');
+      tools.insertBefore(toggle, kind === 'rating' ? tools.firstChild : tools.querySelector('.nql-review-report'));
+      const panel = document.createElement('div');
+      panel.id = id;
+      panel.className = 'nql-review-panel';
+      panel.hidden = true;
+      panel.setAttribute('role', 'region');
+      panel.setAttribute('aria-labelledby', toggle.id);
+      panel.appendChild(content);
+      if (kind === 'rating') tools.after(panel);
+      else actions.appendChild(panel);
+    }
+
+    window.toggleQuestionReview = function(button) {
+      const panel = document.getElementById(button.getAttribute('aria-controls'));
+      if (!panel || !panel.closest('#nqlQuestionReview')) return;
+      const expanded = button.getAttribute('aria-expanded') !== 'true';
+      button.setAttribute('aria-expanded', String(expanded));
+      panel.hidden = !expanded;
+    };
+
     function renderQuestion(){
       if (_loadingNextQuestion) return;
       _loadingNextQuestion = true;
       setTimeout(() => { _loadingNextQuestion = false; }, 400);
 
       document.getElementById('mainApp')?.setAttribute('data-lumen-state', 'reasoning');
+      document.getElementById('mainApp')?.removeAttribute('data-lumen-debrief');
+      document.getElementById('nqlQuestionReview')?.remove();
+      const instruction = document.querySelector('.nql-choice-instruction');
+      if (instruction) instruction.textContent = 'Escolha uma alternativa.';
+      ui.nextBtn.textContent = usesLumenDebrief() ? 'Próxima pergunta' : 'Próxima Carta';
 
       // Envia a avaliação da questão anterior antes de carregar a próxima.
       flushPendingRating();
@@ -3255,7 +3321,10 @@
         const multText = sm.label ? ` (${sm.label})` : '';
         const synergyText = _synergy ? ' ✨+20% sinergia' : '';
         { const _full = escapeHtml(state.current.e || '');
-          ui.feedback.innerHTML = `<strong>✅ Correto!</strong> +${xp} XP${multText}${synergyText}, +${g} ouro.${lv?` <strong>Level up x${lv}!</strong>`:''}<br><span class="fb-snip">${_full}</span>`;
+          const consequence = `+${xp} XP${multText}${synergyText}, +${g} ouro.${lv ? ` <strong>Level up x${lv}!</strong>` : ''}`;
+          if (!renderLumenAnswerFeedback(true, consequence)) {
+            ui.feedback.innerHTML = `<strong>✅ Correto!</strong> ${consequence}<br><span class="fb-snip">${_full}</span>`;
+          }
           if (window.innerWidth <= 768) setTimeout(() => ui.feedback.scrollIntoView({behavior:'smooth', block:'nearest'}), 80);
         }
         // Feedback de dano/XP flutuante
@@ -3418,7 +3487,9 @@
         ui.feedback.className='feedback bad';
         { const _prefix = legendaryBlockMsg || (blocked ? '🛡️ Errou, mas sua defesa absorveu.' : '❌ Incorreta.');
           const _full2 = escapeHtml(state.current.e || '');
-          ui.feedback.innerHTML = `<strong>${escapeHtml(_prefix)}</strong><br><span class="fb-snip">${_full2}</span>`;
+          if (!renderLumenAnswerFeedback(false, legendaryBlockMsg || blocked ? escapeHtml(_prefix) : '')) {
+            ui.feedback.innerHTML = `<strong>${escapeHtml(_prefix)}</strong><br><span class="fb-snip">${_full2}</span>`;
+          }
           if (window.innerWidth <= 768) setTimeout(() => ui.feedback.scrollIntoView({behavior:'smooth', block:'nearest'}), 80);
         }
         renderErrorReflection(state.current.id, i);
@@ -3523,7 +3594,12 @@
         checkAchievements();
       }
 
-      if (recordsProgress) setTimeout(renderQuestionRatingUI, 50);
+      if (recordsProgress) {
+        const answeredQuestion = state.current;
+        setTimeout(() => {
+          if (state.answered && state.current === answeredQuestion) renderQuestionRatingUI();
+        }, 50);
+      }
     }
 
     // ── Avaliação 5★ por questão (qualidade + aprendizado) ──────────────
@@ -3551,7 +3627,8 @@
 
     function renderQuestionRatingUI() {
       const q = state.current;
-      if (!q) return;
+      if (!q || !state.answered || document.getElementById('qRatingContainer')) return;
+      const debrief = usesLumenDebrief();
       const qid = q.qid || q.id;
       if (!qid) return;
 
@@ -3577,29 +3654,32 @@
       const ratingDiv = document.createElement('div');
       ratingDiv.id = 'qRatingContainer';
       ratingDiv.className = 'q-rating-container';
-      const starsFor = () => [1,2,3,4,5].map(v => `<span class="star-rating" data-value="${v}">★</span>`).join('');
+      const starsFor = (label) => [1,2,3,4,5].map(v => debrief
+        ? `<button type="button" class="star-rating nql-rating-star" data-value="${v}" aria-label="${label}: ${v} de 5" aria-pressed="false">★</button>`
+        : `<span class="star-rating" data-value="${v}">★</span>`).join('');
       const diffBtn = (v, label) => `<button type="button" class="qr-diff-btn${prevDiff === v ? ' selected' : ''}" data-diff="${v}">${label}</button>`;
       ratingDiv.innerHTML = `
         <div class="qr-left">
           <div class="qr-title">Avalie esta questão</div>
           <div class="qr-sub">(feedback opcional)</div>
           <div class="qr-diff">
-            <div class="qr-diff-btns">${diffBtn('easy','Fácil')}${diffBtn('medium','Médio')}${diffBtn('hard','Difícil')}</div>
+            <div class="qr-diff-btns" role="group" aria-label="Dificuldade">${diffBtn('easy','Fácil')}${diffBtn('medium','Médio')}${diffBtn('hard','Difícil')}</div>
           </div>
         </div>
         <div class="qr-right">
           <div class="qr-line">
             <span class="qr-label">Qualidade:</span>
-            <div class="stars-row" data-rating-type="quality">${starsFor()}</div>
+            <div class="stars-row" data-rating-type="quality" role="group" aria-label="Qualidade">${starsFor('Qualidade')}</div>
           </div>
           <div class="qr-line">
             <span class="qr-label">Aprendizado:</span>
-            <div class="stars-row" data-rating-type="learning">${starsFor()}</div>
+            <div class="stars-row" data-rating-type="learning" role="group" aria-label="Aprendizado">${starsFor('Aprendizado')}</div>
           </div>
           <button type="button" class="q-flag-link" data-action="flagQuestion">sinalizar questão problemática</button>
         </div>
       `;
-      ui.feedback.appendChild(ratingDiv);
+      if (debrief) ratingDiv.querySelector('.q-flag-link').remove();
+      appendQuestionReviewPanel(ratingDiv, 'rating', 'Avaliar questão', '<path d="m12 3 2.8 5.7 6.3.9-4.5 4.4 1.1 6.3-5.7-3-5.7 3 1.1-6.3L3.2 9.6l6.3-.9Z"/>');
 
       ratingDiv.querySelectorAll('.stars-row').forEach(row => {
         const type = row.dataset.ratingType;
@@ -3608,8 +3688,9 @@
 
         const paint = (n) => stars.forEach((s, i) => {
           const on = i < n;
-          s.style.color = on ? color : RATING_DARK;
-          s.style.textShadow = on ? `0 0 6px ${color}88` : 'none';
+          s.style.color = on ? color : (debrief ? 'var(--nql-text-muted)' : RATING_DARK);
+          s.style.textShadow = !debrief && on ? `0 0 6px ${color}88` : 'none';
+          if (debrief) s.setAttribute('aria-pressed', String(i + 1 === (_pendingRating?.[type] || 0)));
         });
         const selected = () => _pendingRating ? (_pendingRating[type] || 0) : 0;
 
@@ -3624,14 +3705,19 @@
           });
         });
         row.addEventListener('mouseleave', () => paint(selected()));
+        if (debrief) row.addEventListener('focusout', () => paint(selected()));
       });
 
       // Classificação de dificuldade pelo usuário (alimenta a reclassificação do banco)
       const diffBtns = [...ratingDiv.querySelectorAll('.qr-diff-btn')];
       diffBtns.forEach(btn => {
+        if (debrief) btn.setAttribute('aria-pressed', String(btn.classList.contains('selected')));
         btn.addEventListener('click', () => {
           const vote = btn.dataset.diff;
-          diffBtns.forEach(b => b.classList.toggle('selected', b === btn));
+          diffBtns.forEach(b => {
+            b.classList.toggle('selected', b === btn);
+            if (debrief) b.setAttribute('aria-pressed', String(b === btn));
+          });
           submitDifficultyVote(qid, vote, curDiff);
         });
       });
@@ -3662,7 +3748,7 @@
         <div class="err-reflect-title">🪞 Por que você escolheu essa? <span class="err-reflect-sub">(opcional — te ajuda a conhecer seus padrões)</span></div>
         <div class="err-reflect-chips">${Object.entries(ERROR_REASONS).map(([k, r]) =>
           `<button type="button" class="err-reflect-chip" data-action="_pickErrorReason" data-pass-this="1" data-reason="${k}">${r.chip}</button>`).join('')}</div>`;
-      ui.feedback.appendChild(wrap);
+      appendQuestionReviewPanel(wrap, 'reflection', 'Refletir sobre o erro', '<path d="M9 18h6m-5 3h4M8.3 13.5a6 6 0 1 1 7.4 0c-.8.7-1.2 1.3-1.2 2.5h-5c0-1.2-.4-1.8-1.2-2.5Z"/>');
     }
 
     window._pickErrorReason = function(el) {
@@ -3675,6 +3761,10 @@
       lesson.className = 'err-reflect-lesson';
       lesson.innerHTML = `<strong>${def.name}.</strong> ${def.tip}`;
       wrap.querySelector('.err-reflect-chips').replaceWith(lesson);
+      if (wrap.closest('#nqlQuestionReview')) {
+        lesson.tabIndex = -1;
+        lesson.focus({ preventScroll: true });
+      }
     };
 
     async function submitErrorReason(qid, chosenIdx, reason) {

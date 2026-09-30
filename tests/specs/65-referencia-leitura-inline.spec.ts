@@ -5,7 +5,8 @@ test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
 test('referência expande na questão, preserva os textos e recolhe pelo teclado', async ({ page }) => {
   await page.route('**/*', route => new URL(route.request().url()).hostname === 'localhost' ? route.continue() : route.abort());
   await page.goto('/jogar/');
-  await injectGameState(page);
+  // O cenário de leitura não deve cruzar o marco de 100 de ouro.
+  await injectGameState(page, { gold: 0 });
   await page.locator('#options button').first().click();
   const source = await page.evaluate(() => {
     return (0, eval)(`(() => {
