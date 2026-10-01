@@ -1852,16 +1852,16 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   border: 0; border-radius: 8px; background: rgba(17,26,46,.35);
   box-shadow: inset 0 1px rgba(145,223,227,.12);
   color: var(--nql-answer-text); backdrop-filter: blur(8px);
-  font-size: 1.0625rem; line-height: 1.8;
+  font-size: .9375rem; line-height: 1.75;
 }
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] .nql-answer-result {
   display:flex; align-items:center; gap:.6rem; margin:0 0 .8rem;
-  color:var(--nql-parchment); font:600 1.45rem/1.25 var(--nql-font-display);
+  color:var(--nql-parchment); font:600 1.25rem/1.3 var(--nql-font-display);
 }
-body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] .nql-answer-icon { display:inline-grid; place-items:center; width:24px; height:24px; border:1px solid currentColor; border-radius:50%; font:600 14px/1 var(--nql-font-body); }
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] .nql-answer-icon { display:inline-grid; place-items:center; width:20px; height:20px; border:1px solid currentColor; border-radius:50%; font:600 12px/1 var(--nql-font-body); }
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] .feedback.good .nql-answer-icon { color:var(--nql-success); }
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] .feedback.bad .nql-answer-icon { color:var(--nql-danger); }
-body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] #feedback .fb-snip { display:block; max-width:72ch; }
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] #feedback .fb-snip { display:block; max-width:none; }
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] #feedback .nql-answer-consequence { margin: .85rem 0 0; color:var(--nql-text-muted); font-size:.86rem; }
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] .nql-review-tools { display:flex; flex-wrap:wrap; align-items:center; gap:.1rem 1.25rem; padding:.5rem 0 .65rem; border-bottom:1px solid rgba(145,223,227,.13); }
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] .nql-review-tools button { min-height:44px; display:inline-flex; align-items:center; gap:.5rem; padding:.4rem .1rem; border:0; background:none; color:var(--nql-text-soft); font:600 .9rem/1.35 var(--nql-font-body); cursor:pointer; text-align:left; }
@@ -1923,8 +1923,8 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] #feedback,
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] .ref-card { scroll-margin-top:24px; }
 @media(max-width:600px) {
- body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] #feedback { padding:1.1rem 1rem 1.25rem; margin-top:1.4rem; font-size:1.0625rem; line-height:1.8; }
- body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] .nql-answer-result { font-size:1.35rem; }
+ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] #feedback { padding:1.1rem 1rem 1.25rem; margin-top:1.4rem; font-size:.9375rem; line-height:1.75; }
+ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] .nql-answer-result { font-size:1.25rem; }
  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] .nql-review-tools { column-gap:1.1rem; }
  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] .nql-review-tools .nql-review-report { margin-left:0; flex-basis:100%; min-height:44px; }
  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] .nql-review-panel { padding:1rem; }

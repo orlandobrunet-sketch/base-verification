@@ -1504,11 +1504,11 @@
           </div>
         </div>
         ${item.impact ? `<div class="nqd-library-impact"><strong>Impacto clínico</strong><p>${_escape(item.impact)}</p></div>` : ''}
+        <button type="button" class="nqd-favorite${item.favorite ? ' is-active' : ''}" data-action="_dashToggleFavorite" data-pass-this="1" data-library-key="${_escape(item.key)}" aria-pressed="${item.favorite ? 'true' : 'false'}" aria-label="${item.favorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}"><span>${item.favorite ? '★ Salvo' : '☆ Salvar'}</span></button>
         <div class="nqd-library-actions">
+          <button type="button" class="nqd-action" data-action="_dashToggleArticle" data-pass-this="1" aria-expanded="false" aria-controls="${detailId}"><span>Ler resumo</span>${_svg('arrow')}</button>
           <button type="button" class="nqd-action" data-action="_dashCopyTitle" data-pass-this="1" data-copy-title="${_escape(item.title)}">Copiar título</button>
           <a class="nqd-action" href="${_escape(item.url || `https://scholar.google.com/scholar?q=${encodeURIComponent(item.title)}`)}" target="_blank" rel="noopener noreferrer" title="${item.url ? 'Abrir publicação em nova aba' : 'Buscar o título no Google Scholar'}">${item.url ? 'Abrir artigo' : 'Buscar artigo'} ↗</a>
-          <button type="button" class="nqd-favorite${item.favorite ? ' is-active' : ''}" data-action="_dashToggleFavorite" data-pass-this="1" data-library-key="${_escape(item.key)}" aria-pressed="${item.favorite ? 'true' : 'false'}" aria-label="${item.favorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}"><span>${item.favorite ? '★ Salvo' : '☆ Salvar'}</span></button>
-          <button type="button" class="nqd-action" data-action="_dashToggleArticle" data-pass-this="1" aria-expanded="false" aria-controls="${detailId}"><span>Ler resumo</span>${_svg('arrow')}</button>
         </div>
         <div class="nqd-library-detail nqd-library-copy" id="${detailId}" role="region" aria-labelledby="${titleId}" hidden>
           <section class="nqd-library-reading-section"><h4>Resumo</h4><p>${item.summary ? _escape(item.summary) : 'Esta entrada não possui resumo cadastrado.'}</p></section>
@@ -2496,7 +2496,7 @@
     const expanded = article.classList.contains('is-expanded');
     element.setAttribute('aria-expanded', String(expanded));
     const label = element.querySelector('span');
-    if (label) label.textContent = expanded ? 'Ocultar resumo' : 'Ler resumo';
+    if (label) label.textContent = expanded ? 'Fechar resumo' : 'Ler resumo';
     const detail = article.querySelector('.nqd-library-detail');
     if (detail) detail.hidden = !expanded;
   }

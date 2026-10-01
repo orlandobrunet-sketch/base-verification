@@ -858,7 +858,7 @@ test.describe('Central de Comando do aprendizado', () => {
     await library.getByRole('searchbox', { name: 'Buscar no Grimório' }).fill(original.autores);
     await expect(library.locator('[data-library-item]:visible')).toHaveCount(1);
     await expect(card.getByRole('region')).toBeVisible();
-    await card.getByRole('button', { name: 'Ocultar resumo', exact: true }).click();
+    await card.getByRole('button', { name: 'Fechar resumo', exact: true }).click();
     await expect(card.getByRole('region')).toBeHidden();
     await card.getByRole('button', { name: 'Remover dos favoritos' }).click();
     await expect(card).toBeHidden();
