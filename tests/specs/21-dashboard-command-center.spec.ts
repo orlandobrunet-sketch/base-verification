@@ -681,7 +681,7 @@ test.describe('Central de Comando do aprendizado', () => {
     await openCommandCenter(page);
 
     const expected = [
-      ['Visão geral', 'Sala de Conduta'],
+      ['Visão geral', 'Visão geral'],
       ['Competências', 'Competências'],
       ['Mapa clínico', 'Mapa de prática clínica'],
       ['Conquistas', 'Conquistas'],
@@ -894,6 +894,29 @@ test.describe('Central de Comando do aprendizado', () => {
       return last.right <= frame.right + 1 && last.left >= frame.left;
     });
     expect(lastDayVisible).toBe(true);
+  });
+
+  test('mostra as seis áreas sem rolagem lateral no celular', async ({ page }) => {
+    for (const [width, expectedRows] of [[390, 2], [320, 3]] as const) {
+      await page.setViewportSize({ width, height: 844 });
+      await openCommandCenter(page);
+      const layout = await page.locator('#nqDashboard .nqd-nav').evaluate(nav => {
+        const frame = nav.getBoundingClientRect();
+        const tabs = [...nav.querySelectorAll<HTMLElement>('[data-dash-tab]')];
+        const boxes = tabs.map(tab => tab.getBoundingClientRect());
+        return {
+          scrollWidth: nav.scrollWidth,
+          clientWidth: nav.clientWidth,
+          rows: new Set(boxes.map(box => Math.round(box.top))).size,
+          allVisible: boxes.every(box => box.width > 0 && box.left >= frame.left - 1 && box.right <= frame.right + 1),
+        };
+      });
+      expect(layout.scrollWidth, width + 'px: navegação não pode rolar de lado').toBeLessThanOrEqual(layout.clientWidth + 1);
+      expect(layout.rows).toBe(expectedRows);
+      expect(layout.allVisible).toBe(true);
+      await page.getByRole('tab', { name: 'Grimório' }).click();
+      await expect(page.getByRole('tab', { name: 'Grimório' })).toHaveAttribute('aria-selected', 'true');
+    }
   });
 
   test('em 360×800 nenhuma área vaza horizontalmente e todos os controles visíveis têm alvo de 44px', async ({ page }) => {
