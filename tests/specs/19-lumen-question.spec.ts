@@ -346,7 +346,8 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
     await expect.poll(async () => parseFloat(await cards.evaluate((element) => getComputedStyle(element).opacity))).toBeGreaterThan(.9);
     await expect(cards).not.toHaveAttribute('inert', '');
     await expect(cards).not.toHaveAttribute('aria-hidden', 'true');
-    await expect(page.locator('.nql-feedback-kicker')).toBeVisible();
+    await expect(page.locator('.nql-feedback-kicker')).toBeHidden();
+    await expect(page.getByRole('heading', { name: 'Resposta correta', exact: true })).toBeVisible();
     await expect(page.locator('#feedback')).toBeVisible();
   });
 

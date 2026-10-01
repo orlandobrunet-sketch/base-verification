@@ -741,7 +741,9 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
         const expanded = button.getAttribute('aria-expanded') !== 'true';
         button.setAttribute('aria-expanded', String(expanded));
         reading.hidden = !expanded;
-        button.querySelector('[data-ref-summary-label]').textContent = expanded ? 'Ocultar resumo' : 'Ver resumo';
+        button.querySelector('[data-ref-summary-label]').textContent = expanded
+          ? (button.dataset.expandedLabel || 'Ocultar resumo')
+          : (button.dataset.collapsedLabel || 'Ver resumo');
         try { if (expanded && typeof _track === 'function') _track('ref_resumo_opened', { key }); } catch {}
         return;
       }
