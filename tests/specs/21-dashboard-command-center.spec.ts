@@ -696,6 +696,17 @@ test.describe('Central de Comando do aprendizado', () => {
     await page.getByRole('tab', { name: 'Mapa clínico', exact: true }).click();
     await expect(page.getByRole('tabpanel', { name: 'Mapa clínico' })).not.toContainText('Bloqueada');
     await expect(page.getByRole('tabpanel', { name: 'Mapa clínico' })).toContainText('Sem amostra');
+    const newMap = page.getByRole('tabpanel', { name: 'Mapa clínico' });
+    await expect(newMap.locator('#nqDashMapSearch')).toBeVisible();
+    await expect(newMap.locator('#nqDashMapFilter')).toHaveCount(0);
+    await expect(newMap.locator('[data-map-group][open]')).toHaveCount(0);
+    await expect(newMap.locator('[data-map-more]')).toContainText('Ver outras 10 áreas');
+    await expect(newMap.locator('#nqDashMapResult')).toContainText('60 temas disponíveis');
+    await newMap.getByRole('button', { name: 'Explorar áreas' }).click();
+    await expect(newMap.locator('#nqDashMapSearch')).toBeFocused();
+    await newMap.locator('#nqDashMapSearch').fill('dialise');
+    await expect(newMap.locator('.nqd-map-node:visible')).not.toHaveCount(0);
+    await expect(newMap.locator('#nqDashMapResult')).toContainText(/\d+ temas clínicos em \d+ áreas/);
   });
 
   test('o mapa expande uma área por vez e filtra somente estados realmente presentes', async ({ page }) => {
@@ -711,6 +722,7 @@ test.describe('Central de Comando do aprendizado', () => {
     const groups = map.locator('details[data-map-group]');
     expect(await groups.count()).toBeGreaterThan(1);
     await expect(groups.first()).toHaveAttribute('open', '');
+    await expect(map.locator('.nqd-map-node[data-state="sample"] p').first()).not.toContainText('%');
     await groups.nth(1).locator('summary').click();
     await expect(groups.nth(1)).toHaveAttribute('open', '');
     await expect(groups.first()).not.toHaveAttribute('open', '');
@@ -736,6 +748,9 @@ test.describe('Central de Comando do aprendizado', () => {
     await map.locator('#nqDashMapSearch').fill('tema que certamente não existe');
     await expect(map.locator('#nqDashMapEmpty')).toBeVisible();
     await expect(map.locator('details[data-map-group]:visible')).toHaveCount(0);
+    await map.getByRole('button', { name: 'Limpar busca e filtro' }).click();
+    await expect(map.locator('#nqDashMapSearch')).toHaveValue('');
+    await expect(map.locator('#nqDashMapEmpty')).toBeHidden();
   });
 
   test('devolve desejo às conquistas com badges reais carregados de forma eager e sem progresso decorativo', async ({ page }) => {
@@ -915,6 +930,23 @@ test.describe('Central de Comando do aprendizado', () => {
       expect(layout.allVisible).toBe(true);
       await page.getByRole('tab', { name: 'Grimório' }).click();
       await expect(page.getByRole('tab', { name: 'Grimório' })).toHaveAttribute('aria-selected', 'true');
+    }
+  });
+
+  test('o mapa permanece operável em 390 e 320 pixels', async ({ page }) => {
+    for (const width of [390, 320]) {
+      await page.setViewportSize({ width, height: 844 });
+      await openCommandCenter(page);
+      await page.getByRole('tab', { name: 'Mapa clínico', exact: true }).click();
+      const map = page.getByRole('tabpanel', { name: 'Mapa clínico' });
+      await map.locator('details[data-map-group]').first().locator('summary').click();
+      const metrics = await map.evaluate(element => ({
+        scrollWidth: element.scrollWidth,
+        clientWidth: element.clientWidth,
+        searchHeight: element.querySelector('#nqDashMapSearch')?.getBoundingClientRect().height || 0,
+      }));
+      expect(metrics.scrollWidth, `${width}px: mapa sem rolagem lateral`).toBeLessThanOrEqual(metrics.clientWidth + 1);
+      expect(metrics.searchHeight).toBeGreaterThanOrEqual(44);
     }
   });
 
