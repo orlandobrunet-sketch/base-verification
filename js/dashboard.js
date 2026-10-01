@@ -1048,19 +1048,35 @@
       const statuses = [...new Set(ordered.map(comp => _mapStatus(stats[comp.id]).key))];
       const priority = Math.min(...ordered.map(comp => _mapStatus(stats[comp.id]).rank));
       const label = axisLabels.get(cat) || cat;
-      return { cat, label, ordered, explored, statuses, priority };
-    }).sort((left, right) => left.priority - right.priority || left.label.localeCompare(right.label, 'pt-BR'));
+      const eligible = ordered.filter(comp => _number((stats[comp.id] || {}).t, 0) >= 5);
+      const weakest = eligible.sort((left, right) => {
+        const a = stats[left.id]; const b = stats[right.id];
+        return a.c / a.t - b.c / b.t || b.t - a.t;
+      })[0];
+      return { cat, label, ordered, explored, statuses, priority, weakest };
+    }).sort((left, right) => Number(!!right.weakest) - Number(!!left.weakest) ||
+      (left.weakest ? stats[left.weakest.id].c / stats[left.weakest.id].t : Infinity) -
+      (right.weakest ? stats[right.weakest.id].c / stats[right.weakest.id].t : Infinity) ||
+      left.priority - right.priority ||
+      left.label.localeCompare(right.label, 'pt-BR'));
+
+    const recommendation = groupEntries.find(group => group.weakest);
+    const withResponses = competencies.filter(comp => _number((stats[comp.id] || {}).t, 0) > 0).length;
+    const attentionCount = competencies.filter(comp => _mapStatus(stats[comp.id]).key === 'attention').length;
+    const recommendationStat = recommendation && stats[recommendation.weakest.id];
+    const mapAction = recommendation ? `
+      <section class="nqd-map-action has-data" aria-label="Área para praticar"><div><span class="nqd-map-eyebrow">Área para praticar</span><h2>${_escape(recommendation.label)}</h2><p>Em ${_escape(recommendation.weakest.label)}, ${Math.round(recommendationStat.c / recommendationStat.t * 100)}% de acerto em ${recommendationStat.t} ${recommendationStat.t === 1 ? 'resposta' : 'respostas'}.</p></div><button type="button" class="nqd-map-primary" data-action="_dashTrainCategories" data-arg="${_escape(recommendation.cat)}">Praticar esta área ${_svg('arrow')}</button></section>` : `
+      <section class="nqd-map-action" aria-label="Próximo passo"><div><span class="nqd-map-eyebrow">Próximo passo</span><h2>Escolha uma área para começar</h2><p>Busque um tema ou abra uma das ${groupEntries.length} áreas. Seu mapa detalhado se forma com as próximas respostas.</p></div><button type="button" class="nqd-map-primary" data-action="_dashFocusMapSearch">Explorar áreas ${_svg('arrow')}</button></section>`;
 
     const content = groupEntries.length ? groupEntries.map((group, groupIndex) => {
       const searchable = [group.label, ...group.ordered.map(comp => comp.label)].join(' ').toLocaleLowerCase('pt-BR');
-      return `<details class="nqd-map-group" data-map-group data-map-status="${_escape(group.statuses.join(' '))}" data-map-label="${_escape(group.label.toLocaleLowerCase('pt-BR'))}" data-search="${_escape(searchable)}"${groupIndex === 0 ? ' open' : ''}>
+      return `<details class="nqd-map-group" data-map-group data-map-status="${_escape(group.statuses.join(' '))}" data-map-label="${_escape(group.label.toLocaleLowerCase('pt-BR'))}" data-search="${_escape(searchable)}"${recommendation && groupIndex === 0 ? ' open' : ''}>
         <summary class="nqd-map-summary">
-          <span class="nqd-map-lumen" aria-hidden="true"></span>
-          <span><strong>${_escape(group.label)}</strong><small data-map-summary-count data-default="${group.explored} de ${group.ordered.length} com amostra">${group.explored} de ${group.ordered.length} com amostra</small></span>
-          <span class="nqd-map-summary-state">${group.priority <= 1 ? 'Prioridade' : group.explored ? 'Em curso' : 'Por explorar'}</span>
+          <span><strong>${_escape(group.label)}</strong><small>${group.ordered.length} ${group.ordered.length === 1 ? 'tema' : 'temas'} nesta área</small></span>
+          <span class="nqd-map-summary-state" data-map-summary-count data-default="${group.explored ? `${group.explored} de ${group.ordered.length} com respostas` : 'Ainda sem respostas'}">${group.explored ? `${group.explored} de ${group.ordered.length} com respostas` : 'Ainda sem respostas'}</span>
         </summary>
         <div class="nqd-map-group-body">
-          <div class="nqd-map-group-action"><button type="button" class="nqd-action" data-action="_dashTrainCategories" data-arg="${_escape(group.cat)}">Praticar este tema${_svg('arrow')}</button></div>
+          <div class="nqd-map-group-action"><button type="button" class="nqd-action" data-action="_dashTrainCategories" data-arg="${_escape(group.cat)}">Praticar esta área ${_svg('arrow')}</button></div>
           <div class="nqd-map-nodes">${group.ordered.map(comp => {
           const stat = stats[comp.id] || { c: 0, t: 0 };
           const status = _mapStatus(stat);
@@ -1069,35 +1085,37 @@
           const accuracy = total ? Math.round((correct / total) * 100) : null;
           return `
             <article class="nqd-map-node is-${status.key}" data-state="${status.key}" data-search="${_escape(comp.label.toLocaleLowerCase('pt-BR'))}">
-              <span class="nqd-map-node-mark" aria-hidden="true"></span>
               <h3>${_escape(comp.label)}</h3>
               <span class="nqd-state">${status.label}</span>
-              <p>${total ? `${accuracy}% · ${total} ${total === 1 ? 'resposta' : 'respostas'}` : 'Ainda sem respostas'}</p>
+              <p>${total >= 5 ? `${accuracy}% em ${total} ${total === 1 ? 'resposta' : 'respostas'}` : total ? `${total} ${total === 1 ? 'resposta' : 'respostas'}` : 'Ainda sem respostas'}</p>
             </article>
           `;
         }).join('')}</div>
         </div>
       </details>`;
-    }).join('') : '<div class="nqd-empty"><strong>Mapa indisponível.</strong><p>As competências não puderam ser carregadas neste dispositivo.</p></div>';
+    }) : [];
+    const visibleGroups = content.slice(0, 6).join('');
+    const moreGroups = content.slice(6).join('');
 
     return `
       <section class="nqd-pane nq-dash-pane" id="nqdPane-mapa" role="tabpanel" aria-labelledby="nqdTab-mapa" data-dash-pane="mapa" hidden>
-        <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Mapa de prática clínica</h1><p class="nqd-section-copy">Temas granulares, organizados pela necessidade de prática.</p></div></div>
+        <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Mapa de prática clínica</h1><p class="nqd-section-copy">${competencies.length} temas em ${groupEntries.length} áreas. Busque um tema ou abra uma área para escolher o que praticar.</p></div></div>
+        ${mapAction}
         ${!mappedResponses && _dashboardData && _dashboardData.totalQuestions > 0 ? `
-        <div class="nqd-map-priming" role="status">
-          <strong>Seu mapa granular começa nas próximas respostas.</strong>
-          <p>O detalhamento por tema passou a ser registrado depois do seu histórico, então ele ainda não conhece as ${_formatNumber(_dashboardData.totalQuestions)} respostas que você já deu. Seu desempenho amplo continua íntegro em <b>Competências</b>.</p>
-        </div>` : ''}
-        ${mappedResponses ? `
+        <p class="nqd-map-history-note" role="status">Seu histórico anterior continua em <strong>Competências</strong>. O detalhamento por tema começa nas novas respostas.</p>` : ''}
+        <section class="nqd-map-browse" aria-label="Explorar temas">
+        <div class="nqd-map-browse-title"><h2>Explorar temas</h2><span>Escolha uma área para ver seus temas.</span></div>
         <div class="nqd-map-toolbar">
-          <label class="nqd-search">${_svg('search')}<span class="nqd-sr-only">Buscar tema clínico</span><input id="nqDashMapSearch" type="search" placeholder="Buscar tema clínico" autocomplete="off"></label>
+          <label class="nqd-map-search"><span>Buscar área ou tema</span><input id="nqDashMapSearch" type="search" placeholder="Ex.: diálise, gasometria, DRC" autocomplete="off"></label>
+          ${mappedResponses ? `
           <label class="nqd-map-filter"><span>Estado</span><select id="nqDashMapFilter">
-            <option value="all">Todos</option><option value="attention">Requer atenção</option><option value="consolidating">Em consolidação</option><option value="sample">Amostra inicial</option><option value="unseen">Sem amostra</option><option value="consistent">Consistente</option>
-          </select></label>
-        </div>` : ''}
-        <p class="nqd-map-result" id="nqDashMapResult" aria-live="polite"></p>
-        <div class="nqd-map-route">${content}</div>
-        <div class="nqd-empty" id="nqDashMapEmpty" hidden><strong>Nenhum tema encontrado.</strong><p>Limpe a busca ou altere o estado.</p></div>
+            <option value="all">Todos os estados</option><option value="attention">Requer atenção</option><option value="consolidating">Em consolidação</option><option value="sample">Amostra inicial</option><option value="unseen">Sem amostra</option><option value="consistent">Consistente</option>
+          </select></label>` : ''}
+        </div>
+        <p class="nqd-map-result" id="nqDashMapResult" aria-live="polite" data-total-themes="${competencies.length}" data-total-areas="${groupEntries.length}" data-with-responses="${withResponses}" data-attention="${attentionCount}"></p>
+        <div class="nqd-map-route">${content.length ? `${visibleGroups}${moreGroups ? `<details class="nqd-map-more" data-map-more><summary>Ver outras ${content.length - 6} áreas</summary>${moreGroups}</details>` : ''}` : '<div class="nqd-empty"><strong>Mapa indisponível.</strong><p>As competências não puderam ser carregadas neste dispositivo.</p></div>'}</div>
+        <div class="nqd-empty" id="nqDashMapEmpty" hidden><strong>Nenhum tema encontrado.</strong><p>Tente outro nome ou altere o estado.</p><button type="button" class="nqd-map-clear" data-action="_dashClearMapSearch">Limpar busca e filtro</button></div>
+        </section>
       </section>
     `;
   }
@@ -2063,16 +2081,18 @@
   function _applyMapView(root) {
     const groups = [...root.querySelectorAll('[data-map-group]')];
     if (!groups.length) return;
-    const query = (root.querySelector('#nqDashMapSearch')?.value || '').trim().toLocaleLowerCase('pt-BR');
+    const normalize = value => String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('pt-BR');
+    const query = normalize((root.querySelector('#nqDashMapSearch')?.value || '').trim());
     const filter = root.querySelector('#nqDashMapFilter')?.value || 'all';
+    const selected = !!query || filter !== 'all';
     let visibleGroups = 0;
     let visibleNodes = 0;
     groups.forEach(group => {
-      const groupLabelMatches = !!query && (group.dataset.mapLabel || '').includes(query);
+      const groupLabelMatches = !!query && normalize(group.dataset.mapLabel).includes(query);
       const nodes = [...group.querySelectorAll('.nqd-map-node')];
       let groupVisibleNodes = 0;
       nodes.forEach(node => {
-        const matchesQuery = !query || groupLabelMatches || (node.dataset.search || '').includes(query);
+        const matchesQuery = !query || groupLabelMatches || normalize(node.dataset.search).includes(query);
         const matchesFilter = filter === 'all' || node.dataset.state === filter;
         node.hidden = !(matchesQuery && matchesFilter);
         if (!node.hidden) {
@@ -2083,24 +2103,47 @@
       group.hidden = groupVisibleNodes === 0;
       if (!group.hidden) visibleGroups += 1;
       const count = group.querySelector('[data-map-summary-count]');
-      if (count) count.textContent = query || filter !== 'all' ? `${groupVisibleNodes} de ${nodes.length} nesta seleção` : count.dataset.default;
-      const states = nodes.filter(node => !node.hidden).map(node => node.dataset.state);
-      const summaryState = group.querySelector('.nqd-map-summary-state');
-      if (summaryState && states.length) {
-        summaryState.textContent = states.includes('attention') ? 'Prioridade'
-          : states.includes('consolidating') ? 'Em curso'
-            : states.includes('sample') ? 'Amostra inicial'
-              : states.includes('consistent') ? 'Consistente' : 'Por explorar';
-      }
+      if (count) count.textContent = selected ? `${groupVisibleNodes} de ${nodes.length} nesta seleção` : count.dataset.default;
     });
-    if (visibleGroups && !groups.some(group => !group.hidden && group.open)) {
+    const more = root.querySelector('[data-map-more]');
+    if (more) {
+      more.hidden = ![...more.querySelectorAll('[data-map-group]')].some(group => !group.hidden);
+      if (selected && !more.hidden) more.open = true;
+      if (!selected) more.open = false;
+    }
+    if (selected && visibleGroups && !groups.some(group => !group.hidden && group.open)) {
       const first = groups.find(group => !group.hidden);
       if (first) first.open = true;
     }
     const result = root.querySelector('#nqDashMapResult');
-    if (result) result.textContent = `${visibleNodes} ${visibleNodes === 1 ? 'tema clínico' : 'temas clínicos'} em ${visibleGroups} ${visibleGroups === 1 ? 'área' : 'áreas'}`;
+    if (result) {
+      if (selected) result.textContent = `${visibleNodes} ${visibleNodes === 1 ? 'tema clínico' : 'temas clínicos'} em ${visibleGroups} ${visibleGroups === 1 ? 'área' : 'áreas'}`;
+      else {
+        const total = Number(result.dataset.totalThemes) || 0;
+        const areas = Number(result.dataset.totalAreas) || 0;
+        const withResponses = Number(result.dataset.withResponses) || 0;
+        const attention = Number(result.dataset.attention) || 0;
+        result.innerHTML = `<strong>${withResponses ? `${withResponses} de ${total} temas com respostas` : `${total} temas disponíveis`}</strong><span>${areas} áreas clínicas</span>${attention ? `<span class="nqd-map-attention">${attention} ${attention === 1 ? 'tema pede' : 'temas pedem'} atenção</span>` : ''}`;
+      }
+    }
     const empty = root.querySelector('#nqDashMapEmpty');
     if (empty) empty.hidden = visibleNodes > 0;
+  }
+
+  function _dashFocusMapSearch() {
+    const search = document.querySelector('#nqDashMapSearch');
+    if (search) { search.scrollIntoView({ block: 'center' }); search.focus({ preventScroll: true }); }
+  }
+
+  function _dashClearMapSearch() {
+    const root = document.querySelector('#nqDashboard');
+    if (!root) return;
+    const search = root.querySelector('#nqDashMapSearch');
+    const filter = root.querySelector('#nqDashMapFilter');
+    if (search) search.value = '';
+    if (filter) filter.value = 'all';
+    _applyMapView(root);
+    if (search) search.focus();
   }
 
   function _setLibraryCollection(root, selected) {
@@ -2684,6 +2727,8 @@
   window._dashResumeJourney = _dashResumeJourney;
   window._dashStartJourney = _dashStartJourney;
   window._dashTrainCategories = _dashTrainCategories;
+  window._dashFocusMapSearch = _dashFocusMapSearch;
+  window._dashClearMapSearch = _dashClearMapSearch;
   window._dashExploreSkills = _dashExploreSkills;
   window._dashContinueStudy = _dashContinueStudy;
   window._dashToggleFavorite = _dashToggleFavorite;
