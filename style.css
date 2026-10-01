@@ -13995,3 +13995,79 @@ li.nq-exam-opcao { cursor: default; }
 .nq-ritual-recomendacao { font-family: 'Cinzel', Georgia, serif; font-size: 1.6rem; color: var(--gold) !important; margin: 4px 0 8px; }
 .nq-ritual .nq-exam-opcao:disabled { cursor: default; opacity: 1; }
 .nq-ritual .nq-exam-opcao:disabled:not(.nq-exam-opcao-certa):not(.nq-exam-opcao-errada) { color: var(--txt-dim); }
+
+/* Decisão de equipamento: conteúdo rolável e escolhas sempre acessíveis. */
+#equipCompareOverlay{padding:12px;overflow:hidden;animation:none}
+#equipCompareOverlay .nq-comparar{--txt:#f1ecdf;--txt-dim:#bdcbd6;--gold:#edce83;container-type:inline-size;container-name:nqec;display:flex;flex-direction:column;min-width:0;width:100%;max-width:720px;max-height:calc(100dvh - 24px);padding:0;overflow:hidden;background:linear-gradient(135deg,#142330f5,#0c1522fa 65%)!important;border:1px solid #708391!important;border-radius:12px!important;box-shadow:0 30px 90px #000a!important;animation:none}
+#equipCompareOverlay .nq-comparar::before,#equipCompareOverlay .nq-comparar::after{display:none!important}
+#equipCompareOverlay .nqec-scroll{padding:24px 28px 20px;overflow-y:auto;min-height:0;scrollbar-width:thin;scrollbar-color:#4d6576 transparent}
+#equipCompareOverlay .nqec-intro{color:var(--txt-dim);margin:0 0 8px;font-size:.85rem}
+#equipCompareOverlay #ecpTitulo{margin:0;color:var(--txt);font:600 1.42rem/1.25 'Cinzel',Georgia,serif;letter-spacing:-.025em}
+#equipCompareOverlay #ecpResumo{margin:8px 0 18px;color:var(--txt-dim);font-size:.94rem;line-height:1.45}
+#equipCompareOverlay .nqec-items{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch}
+#equipCompareOverlay .nqec-item{--rarity:#b8c1cf;display:flex;gap:12px;align-items:center;min-width:0;padding:14px;border:1px solid var(--rarity);border-radius:8px;background:#141e2a}
+#equipCompareOverlay .nqec-item[data-rarity="uncommon"]{--rarity:#8ad8b2}
+#equipCompareOverlay .nqec-item[data-rarity="rare"]{--rarity:#a6c8f6}
+#equipCompareOverlay .nqec-item[data-rarity="epic"]{--rarity:#c7a2ed}
+#equipCompareOverlay .nqec-item[data-rarity="legendary"]{--rarity:#edce83}
+#equipCompareOverlay .nqec-item[data-rarity="mythic"]{--rarity:#e2eafb}
+#equipCompareOverlay .nqec-new{background:linear-gradient(120deg,color-mix(in srgb,var(--rarity) 12%,#14202c),#101b27)}
+#equipCompareOverlay .nqec-item>div:last-child{min-width:0}
+#equipCompareOverlay .nqec-art{flex:none;width:68px;height:76px;padding:3px;position:relative;border:1px solid var(--rarity);border-radius:8px;box-shadow:inset 0 0 0 2px #0a1520,0 3px 10px #0005;background:#0c1722;overflow:hidden;display:grid;place-items:center}
+#equipCompareOverlay .nqec-art::before,#equipCompareOverlay .nqec-art::after{content:'';position:absolute;width:10px;height:10px;border:solid var(--rarity);pointer-events:none;z-index:1}
+#equipCompareOverlay .nqec-art::before{top:5px;left:5px;border-width:1px 0 0 1px}
+#equipCompareOverlay .nqec-art::after{bottom:5px;right:5px;border-width:0 1px 1px 0}
+#equipCompareOverlay .nqec-art img{width:100%;height:100%;object-fit:contain;border-radius:4px}
+#equipCompareOverlay .nqec-new img{animation:nqecReveal .55s ease-out both}
+#equipCompareOverlay .nqec-item small{display:block;color:var(--txt-dim);font-size:.75rem;margin-bottom:4px}
+#equipCompareOverlay .nqec-item h3{margin:0 0 5px;color:var(--txt);font:700 1.08rem/1.2 'Philosopher',sans-serif;overflow-wrap:anywhere}
+#equipCompareOverlay .nqec-rarity{display:block;font-size:.8rem;color:var(--rarity)}
+#equipCompareOverlay .nqec-comparison{width:100%;border-collapse:collapse;table-layout:fixed;margin-top:20px;font-variant-numeric:tabular-nums}
+#equipCompareOverlay .nqec-comparison caption{text-align:left;color:var(--txt);font-weight:700;font-size:.92rem;margin-bottom:8px}
+#equipCompareOverlay .nqec-comparison th,#equipCompareOverlay .nqec-comparison td{padding:9px 5px;border-bottom:1px solid #334c5d7a;text-align:right;font-size:.92rem}
+#equipCompareOverlay .nqec-comparison thead th{color:var(--txt-dim);font-weight:400;font-size:.76rem;padding-top:5px;padding-bottom:8px}
+#equipCompareOverlay .nqec-comparison th:first-child{width:43%;text-align:left;padding-left:0;font-weight:400;overflow-wrap:anywhere}
+#equipCompareOverlay .nqec-comparison td:nth-child(2){color:#a9bdcc}
+#equipCompareOverlay .nqec-comparison td:nth-child(3){color:var(--txt);font-weight:700}
+#equipCompareOverlay .nqec-comparison .nqec-gain{color:#8ad8b2;font-weight:700}
+#equipCompareOverlay .nqec-comparison .nqec-loss{color:#f3a7b1;font-weight:700}
+#equipCompareOverlay .nqec-comparison .nqec-equal{color:var(--txt-dim)}
+#equipCompareOverlay .nqec-verdict{margin:13px 0 0;color:var(--txt-dim);font-size:.88rem;line-height:1.45}
+#equipCompareOverlay .nqec-footer{flex:none;border-top:1px solid #344c5e;padding:16px 28px 18px;background:#0d1723}
+#equipCompareOverlay .nqec-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#equipCompareOverlay .nqec-actions .btn{min-height:48px;padding:10px 12px;border:1px solid #7b94a3;border-radius:6px;background:#132432;color:var(--txt);font:700 .94rem/1.25 'Philosopher',sans-serif;letter-spacing:0}
+#equipCompareOverlay .nqec-actions .btn.gold{background:var(--gold);color:#12212b;border-color:#f3d991}
+#equipCompareOverlay .nqec-actions span{display:block;margin-top:4px;font-size:.75rem;font-weight:400;color:var(--txt-dim)}
+#equipCompareOverlay .nqec-actions .gold span{color:#35424a}
+#equipCompareOverlay .nqec-note{margin:12px 0 0;color:#a9bdcc;font-size:.75rem;line-height:1.4}
+@keyframes nqecReveal{from{opacity:.2;filter:brightness(1.5);transform:scale(.96)}to{opacity:1;filter:brightness(1);transform:scale(1)}}
+@media(max-width:600px){
+ #equipCompareOverlay .nqec-scroll{padding:19px 18px 16px;scrollbar-width:none}
+ #equipCompareOverlay .nqec-scroll::-webkit-scrollbar{display:none}
+ #equipCompareOverlay #ecpTitulo{font-size:1.3rem}
+ #equipCompareOverlay .nqec-items{display:flex;flex-direction:column;gap:10px}
+ #equipCompareOverlay .nqec-new{order:-1}
+ #equipCompareOverlay .nqec-item{padding:12px}
+ #equipCompareOverlay .nqec-current{padding:9px 12px}
+ #equipCompareOverlay .nqec-current .nqec-art{width:42px;height:48px}
+ #equipCompareOverlay .nqec-current h3{font-size:.96rem;margin-bottom:2px}
+ #equipCompareOverlay .nqec-footer{padding:13px 18px 15px}
+ #equipCompareOverlay .nqec-actions{gap:9px}
+ #equipCompareOverlay .nqec-actions .btn{font-size:.9rem;padding:10px 8px}
+}
+@container nqec (max-width:22rem){
+ #equipCompareOverlay .nqec-intro,#equipCompareOverlay .nqec-note{display:none}
+ #equipCompareOverlay #ecpTitulo{font-size:1.05rem}
+ #equipCompareOverlay #ecpResumo{font-size:.8rem}
+ #equipCompareOverlay .nqec-actions{grid-template-columns:1fr}
+ #equipCompareOverlay .nqec-actions .btn{font-size:.85rem;padding:8px 10px}
+ #equipCompareOverlay .nqec-actions span{font-size:.7rem}
+ #equipCompareOverlay .nqec-comparison thead{position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden}
+ #equipCompareOverlay .nqec-comparison,#equipCompareOverlay .nqec-comparison tbody{display:block}
+ #equipCompareOverlay .nqec-comparison tr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:8px 0;border-bottom:1px solid #334c5d7a}
+ #equipCompareOverlay .nqec-comparison th:first-child{grid-column:1/-1;width:auto;padding:0 0 6px;font-weight:700;border:0}
+ #equipCompareOverlay .nqec-comparison td{border:0;padding:0;text-align:left}
+ #equipCompareOverlay .nqec-comparison td::before{content:attr(data-label);display:block;color:#a9bdcc;font-size:.65rem;font-weight:400;margin-bottom:3px}
+ #equipCompareOverlay .nqec-comparison caption{display:block}
+}
+@media(prefers-reduced-motion:reduce){#equipCompareOverlay .nqec-new img{animation:none}}
