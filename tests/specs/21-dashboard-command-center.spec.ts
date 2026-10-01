@@ -316,11 +316,10 @@ test.describe('Central de Comando do aprendizado', () => {
     await page.getByRole('tab', { name: 'Competências', exact: true }).click();
     await waitForDashboardTabTerminal(page, 'skills');
 
-    const withoutSample = page.locator('#nqDashboard .nqd-skill-row:has(.nqd-no-sample)');
+    const withoutSample = page.locator('#nqDashboard .nqd-skill-unmeasured');
     expect(await withoutSample.count()).toBeGreaterThan(0);
     for (const row of await withoutSample.all()) {
-      await expect(row.locator('.nqd-skill-values strong')).toHaveText('—');
-      await expect(row).toContainText('Sem precisão calculada');
+      await expect(row).toContainText(/Sem amostra|Amostra inicial/);
       await expect(row).not.toContainText('0%');
     }
   });

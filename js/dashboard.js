@@ -932,18 +932,7 @@
       .slice(0, 3);
 
     if (!rows.length) {
-      // Estado vazio que ensina. O registro do motivo é um chip opcional que
-      // aparece depois de uma resposta errada; quem nunca o viu não sabe que
-      // existe. Mostrar os seis padrões torna a mecânica compreensível antes
-      // do primeiro uso, em vez de anunciar um vazio sem caminho.
-      return `
-        <div class="nqd-error-teaser">
-          <p class="nqd-error-teaser-lede">Ao errar uma questão você pode nomear <strong>por que</strong> errou. Com algumas marcações, os padrões dominantes aparecem aqui — e é sobre eles que dá para agir.</p>
-          <ul class="nqd-error-catalog">
-            ${Object.values(ERROR_REASON_LABELS).map(label => `<li>${_escape(label)}</li>`).join('')}
-          </ul>
-          <p class="nqd-error-teaser-note">Nenhum motivo registrado até agora.</p>
-        </div>`;
+      return '<p class="nqd-error-empty">Você ainda não registrou motivos de erro. Ao marcar o motivo depois de uma resposta, os padrões aparecem aqui.</p>';
     }
 
     return `<div class="nqd-error-ledger">${rows.map(([reason, count]) => `
@@ -951,123 +940,78 @@
     `).join('')}</div>`;
   }
 
-  /**
-   * Legenda do radar — o que faltava.
-   *
-   * O gráfico rotulava os vértices só com "01", "02"… e o mapeamento para o
-   * nome do domínio não existia em lugar nenhum da tela. Número em canto de
-   * heptágono não informa; aqui ele vira chave de leitura.
-   *
-   * A síntese abaixo diz apenas o que é calculável do dado presente: maior e
-   * menor eixo MEDIDO, e quantos ainda não têm amostra. Nada de tendência —
-   * não há série histórica que a sustente.
-   */
-  function _radarLegendMarkup(skills) {
-    const lista = Array.isArray(skills) ? skills : [];
-    if (!lista.length) return '';
-
-    const estado = skill => {
-      const respondidas = _number(skill.totalAnswered, 0);
-      if (respondidas < 5 || skill.accuracy == null) return 'sample';
-      if (skill.accuracy < 50) return 'attention';
-      if (skill.accuracy < 70) return 'consolidating';
-      return 'consistent';
-    };
-
-    const medidos = lista
-      .map((skill, index) => ({ skill, index }))
-      .filter(item => item.skill.accuracy != null);
-    const semAmostra = lista.length - medidos.length;
-
-    let sintese = '';
-    if (medidos.length >= 2) {
-      const ordenado = [...medidos].sort((a, b) => b.skill.accuracy - a.skill.accuracy);
-      const alto = ordenado[0];
-      const baixo = ordenado[ordenado.length - 1];
-      const amplitude = Math.round(alto.skill.accuracy - baixo.skill.accuracy);
-      const forma = amplitude <= 15
-        ? 'Perfil equilibrado entre os domínios medidos'
-        : `Perfil irregular: ${amplitude} pontos entre o maior e o menor`;
-      sintese = `
-        <p class="nqd-radar-reading">
-          <strong>${_escape(forma)}.</strong>
-          Mais alto em <b>${_escape(alto.skill.label)}</b> (${Math.round(alto.skill.accuracy)}%),
-          mais baixo em <b>${_escape(baixo.skill.label)}</b> (${Math.round(baixo.skill.accuracy)}%).
-          ${semAmostra > 0 ? `${semAmostra} ${semAmostra === 1 ? 'domínio ainda sem amostra' : 'domínios ainda sem amostra'}.` : 'Todos os domínios já têm amostra.'}
-        </p>`;
-    } else {
-      sintese = `<p class="nqd-radar-reading"><strong>O perfil se forma com a prática.</strong> ${medidos.length === 0 ? 'Nenhum domínio' : 'Apenas um domínio'} tem amostra suficiente para desenhar a forma.</p>`;
-    }
-
-    return `
-      <div class="nqd-radar-side">
-        <ol class="nqd-radar-legend">
-          ${lista.map((skill, index) => {
-            const medido = skill.accuracy != null;
-            const respondidas = _number(skill.totalAnswered, 0);
-            return `
-            <li class="nqd-radar-legend-row" data-skill-state="${estado(skill)}"${medido ? '' : ' data-sem-amostra="true"'}>
-              <span class="nqd-radar-key">${String(index + 1).padStart(2, '0')}</span>
-              <span class="nqd-radar-name">${_escape(skill.label)}</span>
-              <span class="nqd-radar-value">${medido ? `${Math.round(skill.accuracy)}%` : '—'}</span>
-              <span class="nqd-radar-sample">${respondidas > 0 ? `${_formatNumber(respondidas)} ${respondidas === 1 ? 'resposta' : 'respostas'}` : 'sem amostra'}</span>
-            </li>`;
-          }).join('')}
-        </ol>
-        ${sintese}
-      </div>`;
-  }
-
   function _tabSkills(data) {
-    const skillOrder = { attention: 0, consolidating: 1, sample: 2, consistent: 3 };
-    const orderedSkills = [...data.coreSkills].sort((left, right) => {
-      const stateFor = skill => {
-        const answered = _number(skill.totalAnswered, 0);
-        if (answered < 5 || skill.accuracy == null) return 'sample';
-        if (skill.accuracy < 50) return 'attention';
-        if (skill.accuracy < 70 || answered < 10) return 'consolidating';
-        return 'consistent';
-      };
-      return skillOrder[stateFor(left)] - skillOrder[stateFor(right)];
-    });
-    const rows = orderedSkills.length ? orderedSkills.map(skill => {
+    const skills = Array.isArray(data.coreSkills) ? data.coreSkills : [];
+    const measured = skills.filter(skill => _number(skill.totalAnswered, 0) >= 5 && skill.accuracy != null);
+    const unmeasured = skills.filter(skill => _number(skill.totalAnswered, 0) < 5 || skill.accuracy == null);
+    const stateRank = { attention: 0, consolidating: 1, consistent: 2 };
+    const stateFor = skill => {
       const answered = _number(skill.totalAnswered, 0);
       const accuracy = skill.accuracy == null ? null : Math.round(skill.accuracy);
-      const skillState = answered < 5 || accuracy == null ? 'sample' : accuracy < 50 ? 'attention' : accuracy < 70 || answered < 10 ? 'consolidating' : 'consistent';
+      return accuracy < 50 ? 'attention' : accuracy < 70 || answered < 10 ? 'consolidating' : 'consistent';
+    };
+    measured.sort((left, right) => stateRank[stateFor(left)] - stateRank[stateFor(right)]);
+    const rows = measured.map(skill => {
+      const answered = _number(skill.totalAnswered, 0);
+      const accuracy = Math.round(skill.accuracy);
+      const skillState = stateFor(skill);
       return `
         <article class="nqd-skill-row" data-state="${skillState}">
-          <div class="nqd-skill-identity">
-            <h3 class="nqd-skill-name">${_escape(skill.label)}</h3>
-            <span class="nqd-state">${skillState === 'sample' ? 'Amostra inicial' : skillState === 'attention' ? 'Requer atenção' : skillState === 'consolidating' ? 'Em consolidação' : 'Consistente na amostra'}</span>
-          </div>
-          <div class="nqd-skill-measure">
-            <div class="nqd-skill-values"><strong>${accuracy == null ? '—' : `${accuracy}%`}</strong><span>${answered} ${answered === 1 ? 'resposta' : 'respostas'}</span></div>
-            ${accuracy == null ? '<span class="nqd-no-sample">Sem precisão calculada</span>' : _meterMarkup(accuracy, 100, `Precisão observada em ${skill.label}`)}
-          </div>
+          <div class="nqd-skill-identity"><h3 class="nqd-skill-name">${_escape(skill.label)}</h3><span class="nqd-skill-sample">${skillState === 'attention' ? 'Requer atenção' : skillState === 'consolidating' ? 'Em consolidação' : 'Consistente na amostra'} · ${_formatNumber(answered)} ${answered === 1 ? 'resposta' : 'respostas'}</span></div>
+          <strong class="nqd-skill-value">${accuracy}%</strong>
+          ${_meterMarkup(accuracy, 100, `Precisão observada em ${skill.label}`)}
         </article>
       `;
-    }).join('') : `<div class="nqd-empty"><strong>Competências ainda sem amostra.</strong><p>Cada resposta alimenta um domínio clínico — o perfil se desenha a partir daí.</p><button type="button" class="nqd-text-action" data-action="${_dashboardData && _dashboardData.save ? '_dashResumeJourney' : '_dashStartJourney'}"><span>${_dashboardData && _dashboardData.save ? 'Continuar jornada' : 'Começar jornada'}</span>${_svg('arrow')}</button></div>`;
+    }).join('');
+    const unmeasuredRows = unmeasured.map(skill => {
+      const answered = _number(skill.totalAnswered, 0);
+      return `<div class="nqd-skill-unmeasured"><span>${_escape(skill.label)}</span><span>${answered ? `Amostra inicial · ${_formatNumber(answered)} ${answered === 1 ? 'resposta' : 'respostas'}` : 'Sem amostra'}</span></div>`;
+    }).join('');
+    const unmeasuredDetails = unmeasured.length ? `
+      <details class="nqd-skill-unmeasured-group">
+        <summary>${measured.length ? `${unmeasured.length} ${unmeasured.length === 1 ? 'área ainda sem amostra suficiente' : 'áreas ainda sem amostra suficiente'}` : `Ver as ${unmeasured.length} áreas acompanhadas`}</summary>
+        <div>${unmeasuredRows}</div>
+      </details>` : '';
+    const radarTitle = measured.length < skills.length ? 'Perfil visual parcial' : 'Perfil visual';
+    const radarContext = measured.length < skills.length
+      ? `${measured.length} de ${skills.length} áreas têm amostra. A forma não representa o perfil completo.`
+      : 'Todas as áreas já têm amostra.';
+    const radar = measured.length >= 3 ? `
+      <aside class="nqd-skill-radar-side" aria-label="Perfil visual complementar">
+        <h3>${radarTitle}</h3>
+        <p>${radarContext}</p>
+        <div id="nqDashRadarContainer" class="nqd-radar" role="img" aria-label="${radarTitle} por competência"></div>
+        <p>Consulte a lista para nomes, estados e amostras.</p>
+      </aside>
+      <details class="nqd-skill-radar-mobile">
+        <summary>Ver ${radarTitle.toLowerCase()}</summary>
+        <div class="nqd-skill-radar-mobile-body">
+          <p>${radarContext}</p>
+          <div id="nqDashRadarMobileContainer" class="nqd-radar" role="img" aria-label="${radarTitle} por competência"></div>
+          <p>Consulte a lista para nomes, estados e amostras.</p>
+        </div>
+      </details>` : '';
 
     return `
       <section class="nqd-pane nq-dash-pane" id="nqdPane-skills" role="tabpanel" aria-labelledby="nqdTab-skills" data-dash-pane="skills" hidden>
-        <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Competências</h1><p class="nqd-section-copy">Áreas amplas do seu raciocínio, sempre acompanhadas pelo tamanho da amostra.</p></div></div>
+        <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Competências</h1><p class="nqd-section-copy">Veja os resultados observados e o tamanho da amostra em cada área.</p></div></div>
         <section class="nqd-skill-priority${data.axisWeakness ? '' : ' is-forming'}">
           ${data.axisWeakness ? `
-            <div><span class="nqd-eyebrow nqd-eyebrow--clinical">${data.axisWeakness.accuracy < 70 ? 'Foco recomendado' : 'Manutenção sugerida'}</span><h2>${_escape(data.axisWeakness.label)}</h2><p>${Math.round(data.axisWeakness.accuracy)}% em ${data.axisWeakness.total} respostas. O treino abre somente este tema.</p></div>
+            <div><span class="nqd-eyebrow nqd-eyebrow--clinical">Tema para praticar</span><h2>${_escape(data.axisWeakness.label)}</h2><p>${Math.round(data.axisWeakness.accuracy)}% de acerto em ${_formatNumber(data.axisWeakness.total)} ${data.axisWeakness.total === 1 ? 'resposta' : 'respostas'} deste tema.</p></div>
             <button type="button" class="nqd-primary-action" data-action="_dashGoAxisWeakness" data-nqd-primary="true">Treinar este tema${_svg('arrow')}</button>
           ` : `
-            <div><span class="nqd-eyebrow">Calibrando seu perfil</span><h2>Complete cinco respostas em um tema para receber uma recomendação.</h2><p>Ausência de amostra não é tratada como desempenho zero.</p></div>
+            <div><span class="nqd-eyebrow">Próximo passo</span><h2>Seu perfil começa com as respostas.</h2><p>Escolha um tema para estudar. Após cinco respostas nele, a página poderá sugerir um treino com base no seu histórico.</p></div>
             <button type="button" class="nqd-primary-action" data-action="_dashExploreSkills" data-nqd-primary="true">Escolher temas${_svg('arrow')}</button>
           `}
         </section>
-        <section class="nqd-section nqd-radar-section" aria-label="Perfil de precisão por competência">
-          <header class="nqd-section-header"><div><h2 class="nqd-section-title">Perfil de competências</h2><p>Cada eixo é um domínio clínico. Eixo sem amostra aparece apagado, nunca como zero.</p></div></header>
-          <div class="nqd-radar-layout">
-            <div id="nqDashRadarContainer" class="nqd-radar" role="img" aria-label="Gráfico de precisão por competência"></div>
-            ${_radarLegendMarkup(data.coreSkills)}
-          </div>
-        </section>
-        <section class="nqd-section nqd-skill-list-section" aria-label="Desempenho por competência ampla"><header><h2>Visão por competência</h2></header><div class="nqd-skill-list">${rows}</div></section>
+        ${measured.length ? `
+          <section class="nqd-section nqd-skill-list-section" aria-label="Desempenho por competência ampla">
+            <header class="nqd-skill-list-header"><div><h2>Desempenho por área</h2><p>Áreas amplas reúnem vários temas.</p></div><span>${measured.length} de ${skills.length} áreas com dados</span></header>
+            <div class="nqd-skill-data-layout"><div><div class="nqd-skill-list">${rows}</div>${unmeasuredDetails}${measured.length < 3 ? '<p class="nqd-skill-visual-pending">O perfil visual aparece quando três áreas tiverem dados suficientes.</p>' : ''}</div>${radar}</div>
+          </section>
+        ` : `
+          <section class="nqd-section nqd-skill-empty" aria-label="Áreas acompanhadas"><h2>Áreas acompanhadas</h2><p>O desempenho por área aparecerá quando houver respostas suficientes. Nenhuma área é tratada como desempenho zero.</p>${unmeasuredDetails}</section>
+        `}
         <section class="nqd-section nqd-error-patterns"><header class="nqd-section-header"><div><h2 class="nqd-section-title">Como você erra</h2></div></header>${_errorPatternsMarkup()}</section>
       </section>
     `;
@@ -1731,18 +1675,24 @@
    * amostra fica com raio apagado, sem vértice e rotulado "—".
    */
   function _drawRadar() {
-    const container = document.getElementById('nqDashRadarContainer');
-    if (!container || container.dataset.rendered === 'true' || !_dashboardData) return;
-    container.dataset.rendered = 'true';
+    if (!_dashboardData) return;
     const skills = _dashboardData.coreSkills || [];
     const resumo = skills.map(skill => {
-      const valor = skill.accuracy == null
+      const valor = _number(skill.totalAnswered, 0) < 5 || skill.accuracy == null
         ? 'sem amostra'
         : `${Math.round(skill.accuracy)}% em ${_number(skill.totalAnswered, 0)} respostas`;
       return `${skill.label}: ${valor}`;
     }).join('; ');
-    container.setAttribute('aria-label', `Precisão observada por competência. ${resumo}`);
-    _drawDashboardRadar(container, skills);
+    const profileName = skills.filter(skill => _number(skill.totalAnswered, 0) >= 5 && skill.accuracy != null).length < skills.length
+      ? 'Perfil visual parcial'
+      : 'Perfil visual';
+    ['nqDashRadarContainer', 'nqDashRadarMobileContainer'].forEach(id => {
+      const container = document.getElementById(id);
+      if (!container || container.dataset.rendered === 'true') return;
+      container.dataset.rendered = 'true';
+      container.setAttribute('aria-label', `${profileName}. Precisão observada por competência: ${resumo}`);
+      _drawDashboardRadar(container, skills);
+    });
   }
 
   function _drawDashboardRadar(container, skills) {
@@ -1769,7 +1719,7 @@
       x: center + Math.cos(angleFor(index)) * radius * factor,
       y: center + Math.sin(angleFor(index)) * radius * factor,
     });
-    const medido = skill => skill && skill.accuracy != null;
+    const medido = skill => skill && _number(skill.totalAnswered, 0) >= 5 && skill.accuracy != null;
     const fator = skill => Math.max(0, Math.min(100, _number(skill.accuracy, 0))) / 100;
 
     context.lineJoin = 'round';
@@ -1803,6 +1753,15 @@
   /** Um quadro do radar. Extraído para permitir a animação de entrada. */
   function _radarFrame(context, cfg) {
     const { skills, center, radius, labelRadius, angleFor, pointFor, medido, fator, progresso } = cfg;
+    const shortLabels = {
+      glomerulopatias: 'GLO',
+      hidroeletrolitico_acidobase: 'HID',
+      drc_nefroprotecao: 'DRC',
+      nefrologia_geral_diagnostico: 'GER',
+      lra_critico: 'LRA',
+      dialise: 'DIA',
+      transplante: 'TX',
+    };
 
     // Malha de referência
     [0.25, 0.5, 0.75, 1].forEach((level, levelIndex) => {
@@ -1832,19 +1791,18 @@
 
     // Polígono apenas sobre os eixos medidos
     const medidos = skills.map((skill, index) => ({ skill, index })).filter(item => medido(item.skill));
-    if (medidos.length >= 2) {
+    if (medidos.length >= 3) {
       context.beginPath();
+      context.setLineDash([5, 5]);
       medidos.forEach((item, ordem) => {
         const point = pointFor(item.index, fator(item.skill) * progresso);
         if (!ordem) context.moveTo(point.x, point.y);
         else context.lineTo(point.x, point.y);
       });
-      context.closePath();
-      context.fillStyle = 'rgba(119, 211, 222, 0.16)';
       context.strokeStyle = '#9fdbe4';
       context.lineWidth = 2;
-      context.fill();
       context.stroke();
+      context.setLineDash([]);
     }
 
     // Vértices e rótulos
@@ -1865,7 +1823,7 @@
       context.textAlign = Math.cos(angle) > 0.25 ? 'left' : Math.cos(angle) < -0.25 ? 'right' : 'center';
       context.textBaseline = Math.sin(angle) > 0.5 ? 'top' : Math.sin(angle) < -0.5 ? 'bottom' : 'middle';
       const rotulo = medido(skill) ? `${Math.round(skill.accuracy)}%` : '—';
-      context.fillText(`${String(index + 1).padStart(2, '0')} · ${rotulo}`, x, y);
+      context.fillText(`${shortLabels[skill.id] || skill.label.slice(0, 3).toUpperCase()} · ${rotulo}`, x, y);
     });
   }
 

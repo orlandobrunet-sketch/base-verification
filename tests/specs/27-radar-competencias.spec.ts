@@ -1,14 +1,8 @@
 import { test, expect, Page } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
 import { saveBase, statsBase } from '../helpers/fixtures';
 
-/**
- * Radar de competências (v14.56).
- *
- * O gráfico foi removido na 14.50 por plotar 0% onde não havia amostra — a
- * forma do polígono mentia sobre o desempenho. O defeito estava em três linhas,
- * não no gráfico. Volta com o polígono ligando apenas os eixos medidos, e o
- * eixo sem amostra com raio apagado, sem vértice e rotulado "—".
- */
+/** A leitura por área é principal; o radar é complementar e exige três eixos medidos. */
 
 const SAVE = saveBase();
 
@@ -37,12 +31,14 @@ async function abrirCompetencias(page: Page, stats: unknown) {
   await page.evaluate(() => (window as any).openDashboard());
   await expect(page.locator('#nqDashboard')).toBeVisible();
   await page.getByRole('tab', { name: 'Competências', exact: true }).click();
+  const mobileRadar = page.locator('#nqDashboard .nqd-skill-radar-mobile');
+  if (await mobileRadar.isVisible()) await mobileRadar.locator('summary').click();
 }
 
 test.describe('Radar de competências', () => {
   test('o gráfico volta a existir e é desenhado', async ({ page }) => {
     await abrirCompetencias(page, STATS_PARCIAL);
-    const canvas = page.locator('#nqDashRadarContainer canvas');
+    const canvas = page.locator('#nqDashboard .nqd-radar:visible canvas');
     await expect(canvas).toBeVisible();
 
     // Não basta existir: precisa ter pixel pintado.
@@ -58,7 +54,7 @@ test.describe('Radar de competências', () => {
 
   test('o rótulo acessível nomeia cada competência e diz quando não há amostra', async ({ page }) => {
     await abrirCompetencias(page, STATS_PARCIAL);
-    const rotulo = await page.locator('#nqDashRadarContainer').getAttribute('aria-label');
+    const rotulo = await page.locator('#nqDashboard .nqd-radar:visible').getAttribute('aria-label');
     expect(rotulo).toContain('Glomerulopatias');
     expect(rotulo).toContain('respostas');
     // Os eixos sem nenhuma resposta precisam ser declarados como tal.
@@ -67,65 +63,61 @@ test.describe('Radar de competências', () => {
 
   test('competência sem amostra nunca é descrita como zero por cento', async ({ page }) => {
     await abrirCompetencias(page, STATS_PARCIAL);
-    const rotulo = (await page.locator('#nqDashRadarContainer').getAttribute('aria-label')) || '';
+    const rotulo = (await page.locator('#nqDashboard .nqd-radar:visible').getAttribute('aria-label')) || '';
     // Nenhum eixo pode aparecer como "0%" — o que não foi medido é "sem amostra".
     expect(rotulo).not.toMatch(/:\s*0%/);
   });
 
   test('o radar acompanha os sete eixos clínicos, não o recorte antigo de cinco', async ({ page }) => {
     await abrirCompetencias(page, STATS_PARCIAL);
-    const rotulo = (await page.locator('#nqDashRadarContainer').getAttribute('aria-label')) || '';
+    const rotulo = (await page.locator('#nqDashboard .nqd-radar:visible').getAttribute('aria-label')) || '';
     for (const eixo of ['Glomerulopatias', 'Diálise', 'Transplante renal']) {
       expect(rotulo, `o eixo ${eixo} precisa estar no perfil`).toContain(eixo);
     }
     expect(rotulo, 'o agrupamento antigo não pode voltar').not.toContain('Fisiopatologia & Pesquisa');
   });
 
-  test('sem nenhuma amostra o gráfico não inventa um polígono', async ({ page }) => {
+  test('sem amostra não mostra gráfico nem sete indicadores vazios', async ({ page }) => {
     await abrirCompetencias(page, { totalQuestions: 0, totalCorrect: 0, totalWrong: 0, byCategory: {}, dailyActivity: {} });
-    const rotulo = (await page.locator('#nqDashRadarContainer').getAttribute('aria-label')) || '';
-    expect(rotulo).not.toMatch(/:\s*0%/);
-    expect(rotulo).toContain('sem amostra');
+    await expect(page.locator('#nqDashboard .nqd-radar')).toHaveCount(0);
+    await expect(page.locator('#nqDashboard .nqd-skill-row')).toHaveCount(0);
+    await expect(page.locator('#nqDashboard .nqd-skill-empty')).toContainText('Nenhuma área é tratada como desempenho zero');
+    await page.locator('#nqDashboard .nqd-skill-unmeasured-group summary').click();
+    await expect(page.locator('#nqDashboard .nqd-skill-unmeasured')).toHaveCount(7);
   });
 });
 
 test.describe('Leitura do perfil', () => {
-  test('cada número do gráfico tem chave de leitura com nome, valor e amostra', async ({ page }) => {
+  test('a lista é principal e mantém os dados e áreas sem amostra sem legenda duplicada', async ({ page }) => {
     await abrirCompetencias(page, STATS_PARCIAL);
-    const linhas = page.locator('#nqDashboard .nqd-radar-legend-row');
-    await expect(linhas).toHaveCount(7);
-
-    // O número no canto do heptágono não informa nada sozinho: precisa existir
-    // uma linha que o traduza em domínio clínico.
-    for (const nome of ['Glomerulopatias', 'Diálise', 'Transplante renal']) {
-      await expect(page.locator('#nqDashboard .nqd-radar-legend')).toContainText(nome);
-    }
-
-    const semAmostra = linhas.filter({ has: page.locator('[data-sem-amostra]') });
-    expect(await linhas.locator('[data-sem-amostra]').count() + await semAmostra.count()).toBeGreaterThanOrEqual(0);
-    await expect(page.locator('#nqDashboard .nqd-radar-legend-row[data-sem-amostra] .nqd-radar-value').first()).toHaveText('—');
+    await expect(page.locator('#nqDashboard .nqd-skill-row')).toHaveCount(4);
+    await expect(page.locator('#nqDashboard .nqd-radar-legend-row')).toHaveCount(0);
+    await page.locator('#nqDashboard .nqd-skill-unmeasured-group summary').click();
+    await expect(page.locator('#nqDashboard .nqd-skill-unmeasured')).toHaveCount(3);
+    await expect(page.locator('#nqDashboard .nqd-skill-list')).toContainText('Diálise');
+    await expect(page.locator('#nqDashboard .nqd-skill-list')).toContainText('respostas');
   });
 
-  test('a síntese só afirma o que é calculável, sem tendência inventada', async ({ page }) => {
+  test('o perfil visual parcial não anuncia tendência nem certeza completa', async ({ page }) => {
     await abrirCompetencias(page, STATS_PARCIAL);
-    const leitura = page.locator('#nqDashboard .nqd-radar-reading');
+    const leitura = page.locator('#nqDashboard .nqd-skill-radar-side:visible, #nqDashboard .nqd-skill-radar-mobile-body:visible').first();
     await expect(leitura).toBeVisible();
     const texto = await leitura.innerText();
-    expect(texto).toMatch(/Mais alto em|perfil se forma/i);
+    expect(texto).toContain('não representa o perfil completo');
     expect(texto, 'não há série histórica que sustente tendência').not.toMatch(/era \d|há um mês|tendência|melhorou|piorou/i);
   });
 
-  test('o estado vazio de "Como você erra" ensina a mecânica em vez de só anunciar vazio', async ({ page }) => {
+  test('o estado vazio de "Como você erra" explica a mecânica sem etiquetas vazias', async ({ page }) => {
     await abrirCompetencias(page, STATS_PARCIAL);
     const painel = page.locator('#nqDashboard .nqd-error-patterns');
-    await expect(painel).toContainText('nomear');
-    await expect(painel.locator('.nqd-error-catalog li')).toHaveCount(6);
+    await expect(painel).toContainText('marcar o motivo');
+    await expect(painel.locator('.nqd-error-catalog li')).toHaveCount(0);
   });
 
   test('prefers-reduced-motion desenha o radar sem animação', async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await abrirCompetencias(page, STATS_PARCIAL);
-    const canvas = page.locator('#nqDashRadarContainer canvas');
+    const canvas = page.locator('#nqDashboard .nqd-radar:visible canvas');
     await expect(canvas).toBeVisible();
     // Sem animação o desenho já está completo no primeiro quadro.
     const pintado = await canvas.evaluate((el: HTMLCanvasElement) => {
@@ -136,5 +128,12 @@ test.describe('Leitura do perfil', () => {
       return false;
     });
     expect(pintado).toBe(true);
+  });
+
+  test('o perfil com dados preserva acessibilidade no desktop e celular', async ({ page }) => {
+    await abrirCompetencias(page, STATS_PARCIAL);
+    const results = await new AxeBuilder({ page }).include('#nqDashboard').analyze();
+    const blocking = results.violations.filter(violation => violation.impact === 'serious' || violation.impact === 'critical');
+    expect(blocking, blocking.map(violation => `${violation.id}: ${violation.help}`).join('\n')).toEqual([]);
   });
 });
