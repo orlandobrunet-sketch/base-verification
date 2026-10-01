@@ -115,19 +115,20 @@ test.describe('Semântica que o axe não enxerga', () => {
   });
 });
 
-test.describe('Mapa sem amostra: não oferece filtro sobre zeros', () => {
-  test('com histórico amplo mas sem mapa granular, a toolbar some e o motivo é explicado', async ({ page }) => {
+test.describe('Mapa sem amostra: exploração sem filtro de desempenho', () => {
+  test('com histórico amplo mas sem mapa granular, permite buscar temas e explica o histórico', async ({ page }) => {
     await abrirCentral(page); // fixture não grava nefroquest-comp-stats
     await page.getByRole('tab', { name: 'Mapa clínico', exact: true }).click();
 
-    // Buscar e filtrar uma tela inteira de "sem amostra" custa passos e não
-    // devolve nada — e o usuário conclui que a lacuna é dele.
-    await expect(page.locator('#nqDashMapSearch')).toHaveCount(0);
+    await expect(page.locator('#nqDashMapSearch')).toBeVisible();
     await expect(page.locator('#nqDashMapFilter')).toHaveCount(0);
 
-    const aviso = page.locator('#nqdPane-mapa .nqd-map-priming');
+    const aviso = page.locator('#nqdPane-mapa .nqd-map-history-note');
     await expect(aviso).toBeVisible();
-    await expect(aviso).toContainText('96');
     await expect(aviso).toContainText('Competências');
+    await expect(page.locator('#nqDashMapResult')).toContainText('60 temas disponíveis');
+
+    await page.locator('#nqDashMapSearch').fill('dialise');
+    await expect(page.locator('#nqdPane-mapa .nqd-map-node:visible')).not.toHaveCount(0);
   });
 });
