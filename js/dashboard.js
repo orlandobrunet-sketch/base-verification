@@ -527,7 +527,7 @@
         kind: 'review',
         kicker: 'Memória ativa',
         title: `${data.overdueReviews} ${data.overdueReviews === 1 ? 'revisão agendada vencida' : 'revisões agendadas vencidas'}`,
-        detail: 'Cards já programados pelo seu histórico.',
+        detail: (() => { const minutes = _estimativaDeMinutos(data.stats, data.overdueReviews); return minutes ? `Cards já programados pelo seu histórico · cerca de ${minutes} min, no seu ritmo.` : 'Cards já programados pelo seu histórico.'; })(),
         action: '_dashStartSRStudy',
         actionLabel: 'Revisar agora',
       });
@@ -737,7 +737,7 @@
     return minutos >= 1 ? minutos : null;
   }
 
-  function _memoryMarkup(memory, stats) {
+  function _memoryMarkup(memory, stats, reviewPromoted = false) {
     const DIA_LABEL = ['hoje', 'amanhã', 'em 2 dias', 'em 3 dias', 'em 4 dias', 'em 5 dias', 'em 6 dias'];
 
     /* Sem histórico: a seção existe, mas sem número algum.
@@ -779,7 +779,7 @@
             <strong>Escolher um eixo e estudar</strong>
             <small>Você define o tema da sessão.</small>
           </button>
-          ${vencidas > 0 ? `
+          ${vencidas > 0 && !reviewPromoted ? `
           <button type="button" class="nqd-study-secondary" data-action-seq="closeDashboard,startSRReviewAll">
             <strong>Revisar ${_formatNumber(vencidas)} ${vencidas === 1 ? 'vencida' : 'vencidas'}</strong>
             <small>${minutos ? `cerca de ${minutos} min, no seu ritmo` : 'o que a memória pede hoje'}</small>
@@ -794,6 +794,7 @@
         </div></header>
 
         ${acoes}
+        ${reviewPromoted && vencidas > 0 ? `<p class="nqd-review-context">${_formatNumber(vencidas)} ${vencidas === 1 ? 'revisão vencida' : 'revisões vencidas'} · acesso em “Agora”</p>` : ''}
 
         <div class="nqd-summary-strip" style="--columns:3">
           <div class="nqd-metric">
@@ -886,34 +887,38 @@
           ${Object.values(CHARACTER_META).map(character => `<img src="assets/classes/${character.folder}/nivel_01.${character.ext}" alt="${_escape(character.name)}" width="230" height="230" loading="lazy">`).join('')}
         </section>
       </div>`;
+    const reviewPromoted = data.actions[0]?.kind === 'review';
     return `
       <section class="nqd-pane nq-dash-pane active" id="nqdPane-overview" role="tabpanel" aria-labelledby="nqdTab-overview" data-dash-pane="overview">
-        <div class="nqd-section-header">
-          <div><h1 class="nqd-title-lg">Sala de Conduta</h1>
-          <p class="nqd-section-copy">Uma decisão clara para continuar aprendendo.</p></div>
+        <div class="nqd-section-header nqd-overview-heading">
+          <h1 class="nqd-title-lg">Visão geral</h1>
         </div>
         ${data.topicsLoadError ? '<div class="nqd-notice" role="status">Alguns dados não carregaram. Exibindo seu progresso salvo.</div>' : ''}
         <div class="nqd-command-grid">
-          <article class="nqd-journey">${journey}</article>
           <section class="nqd-next-actions" aria-labelledby="nqdActionsTitle">
-            <header><span class="nqd-eyebrow">Prioridade</span><h2 id="nqdActionsTitle">Agora</h2></header>
+            <header><span class="nqd-eyebrow">Sua próxima ação</span><h2 id="nqdActionsTitle">Agora</h2></header>
             <div class="nqd-next-actions-list">${_actionsMarkup(data.actions)}</div>
           </section>
+          <article class="nqd-journey">${journey}</article>
         </div>
 
         <div class="nqd-overview-details">
-          <section class="nqd-learning-pulse">
-            <header class="nqd-section-header"><div><h2 class="nqd-section-title">Pulso de aprendizagem</h2><p>Últimos sete dias, sem metas artificiais.</p></div></header>
-            ${_pulseSummaryMarkup(data)}
-            ${data.evolution || ''}
-            ${_weekPulseMarkup(data.weekActivity)}
-            ${data.strength ? `<p class="nqd-strength"><span>Melhor desempenho observado</span><strong>${_escape(data.strength.label)}</strong><small>${Math.round(data.strength.accuracy)}% · ${data.strength.totalAnswered} respostas</small></p>` : ''}
-          </section>
-          ${_memoryMarkup(data.memory, data.stats)}
-          <section class="nqd-section nqd-reward-section">
-            <header class="nqd-section-header"><div><h2 class="nqd-section-title">Próxima conquista</h2></div></header>
-            ${_milestoneMarkup(data)}
-          </section>
+          <div class="nqd-progress-column">
+            <section class="nqd-learning-pulse">
+              <header class="nqd-section-header"><div><h2 class="nqd-section-title">Seu ritmo</h2><p>Respostas e acertos nos últimos sete dias.</p></div></header>
+              ${data.stats.totalQuestions > 0 ? `
+                ${_pulseSummaryMarkup(data)}
+                ${data.evolution || ''}
+                ${_weekPulseMarkup(data.weekActivity)}
+              ` : '<p class="nqd-empty-learning">Os indicadores aparecem depois das primeiras respostas. Até lá, sua próxima decisão está em “Agora”.</p>'}
+              ${data.strength ? `<p class="nqd-strength"><span>Melhor desempenho observado</span><strong>${_escape(data.strength.label)}</strong><small>${Math.round(data.strength.accuracy)}% · ${data.strength.totalAnswered} respostas</small></p>` : ''}
+            </section>
+            <section class="nqd-section nqd-reward-section">
+              <header class="nqd-section-header"><div><h2 class="nqd-section-title">Próxima conquista</h2></div></header>
+              ${_milestoneMarkup(data)}
+            </section>
+          </div>
+          ${_memoryMarkup(data.memory, data.stats, reviewPromoted)}
         </div>
       </section>
     `;
@@ -1685,7 +1690,7 @@
     const activeButton = tabButtons.find(button => button.dataset.dashTab === tabId && button.offsetParent !== null)
       || tabButtons.find(button => button.dataset.dashTab === tabId);
     if (moveFocus && activeButton) activeButton.focus({ preventScroll: true });
-    if (activeButton && window.matchMedia('(max-width: 61.25rem)').matches) {
+    if (activeButton && window.matchMedia('(min-width: 42.01rem) and (max-width: 61.25rem)').matches) {
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const nav = activeButton.closest('.nqd-nav');
       const irmas = nav ? [...nav.querySelectorAll('[data-dash-tab]')] : [];

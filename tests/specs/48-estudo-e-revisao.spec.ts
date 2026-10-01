@@ -84,11 +84,11 @@ test.describe('Estudo e revisão na Central', () => {
   test('clicar em revisar abre a sessão, com a contagem certa no botão', async ({ page }) => {
     await abrirCentral(page, semear(6, 4));
 
-    const revisar = page.locator('.nqd-study-secondary');
+    const revisar = page.locator('#nqdPane-overview .nqd-next-action[data-action-kind="review"]');
     await expect(revisar, 'com vencidas, a revisão precisa estar à vista').toHaveCount(1);
     await expect(revisar).toContainText('6');
 
-    await revisar.click();
+    await revisar.getByRole('button', { name: /Revisar agora/i }).click();
     await page.waitForTimeout(600);
 
     // startSRReviewAll seleciona todos os eixos e entra direto na sessão —
@@ -109,7 +109,7 @@ test.describe('Estudo e revisão na Central', () => {
 
     await expect(page.locator('.nqd-study-primary')).toHaveCount(1);
     await expect(
-      page.locator('.nqd-study-secondary'),
+      page.locator('#nqdPane-overview .nqd-next-action[data-action-kind="review"]'),
       'sem vencidas não pode haver botão de revisar',
     ).toHaveCount(0);
   });
@@ -130,7 +130,7 @@ test.describe('Estudo e revisão na Central', () => {
   test('a estimativa de tempo aparece com ritmo medido', async ({ page }) => {
     // 60 respostas em 2700s = 45s por questão; 6 vencidas ≈ 5 min.
     await abrirCentral(page, semear(6, 0));
-    await expect(page.locator('.nqd-study-secondary')).toContainText(/\d+ min/);
+    await expect(page.locator('#nqdPane-overview .nqd-next-action[data-action-kind="review"]')).toContainText(/\d+ min/);
   });
 
   test('sem ritmo medido, a estimativa se cala em vez de chutar', async ({ page }) => {
@@ -144,7 +144,7 @@ test.describe('Estudo e revisão na Central', () => {
       }, STATS);
     });
 
-    const revisar = page.locator('.nqd-study-secondary');
+    const revisar = page.locator('#nqdPane-overview .nqd-next-action[data-action-kind="review"]');
     await expect(revisar).toHaveCount(1);
     await expect(revisar, 'com 2 respostas não existe ritmo — a estimativa tem de sumir').not.toContainText(/min/);
   });

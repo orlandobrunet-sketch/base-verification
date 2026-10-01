@@ -58,8 +58,8 @@ test.describe('Texto ampliado não corta a Central', () => {
 
     // E o que o corte fazia sumir precisa estar legível.
     const painel = page.locator('#nqdPane-overview');
-    await expect(painel).toContainText('Sala de Conduta');
-    await expect(painel).toContainText(/continuar aprendendo/i);
+    await expect(painel).toContainText('Visão geral');
+    await expect(painel).toContainText('Agora');
   });
 
   test('a 100%, nada muda — o piso segue protegendo tela estreita', async ({ page }, info) => {
@@ -71,7 +71,7 @@ test.describe('Texto ampliado não corta a Central', () => {
     const largura = await larguraDaCentral(page);
     expect(largura, 'o piso de 320px deixou de valer').toBeGreaterThanOrEqual(320);
     expect(largura).toBeLessThanOrEqual(322);
-    await expect(page.locator('#nqdPane-overview')).toContainText('Sala de Conduta');
+    await expect(page.locator('#nqdPane-overview')).toContainText('Visão geral');
   });
 
   test('em 320px, a página não rola na horizontal', async ({ page }, info) => {
