@@ -4365,24 +4365,38 @@
       const icon = getItemIcon(item.n, slot);
       const desc = itemDescriptions[item.n] || '';
       const rarLabels = {common:'Comum', uncommon:'Incomum', rare:'Raro', epic:'Épico', legendary:'Lendário'};
+      const rarity = Object.hasOwn(rarLabels, item.rar) ? item.rar : 'common';
+      const intro = title === '🔨 Forja Concluída!' ? 'Forja concluída' : title.replace(/^[^\p{L}]+/u, '').replace(/!$/, '');
+      const symbols = {
+        atk:'<path d="m5 19 14-14m-5 0h5v5M4 15l5 5m-7 2 4-4"/>',
+        def:'<path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6z"/>',
+        kno:'<path d="M12 5v15m0-15C8 2 3 3 3 3v15s5-1 9 2c4-3 9-2 9-2V3s-5-1-9 2"/>',
+        luck:'<path d="M12 12C1 9 3 1 8 3c4 1 4 9 4 9Zm0 0C9 1 17 1 19 6c1 4-7 6-7 6Zm0 0c11-3 12 5 7 7-4 1-7-7-7-7Zm0 0c3 11-5 12-7 7-1-4 7-7 7-7Zm0 0 9 9"/>'
+      };
+      const stats = [['atk','Ataque'],['def','Defesa'],['kno','Conhecimento'],['luck','Sorte']].map(([key,label]) =>
+        `<div class="nqreward-stat"><dt>${label}</dt><dd><svg aria-hidden="true" viewBox="0 0 24 24">${symbols[key]}</svg><span>${escapeHtml(String(item[key] ?? 0))}</span></dd></div>`).join('');
       const popup = document.createElement('div');
-      popup.className='forge-popup';
+      popup.className='forge-popup nqreward-overlay';
       popup.innerHTML=`
-        <div class='forge-card'>
-          <h3>${title}</h3>
-          <img src='${icon}' alt='${item.n}'/>
-          <p class='rar-${item.rar}' style='font-size:1.1rem;font-weight:700'>${item.n}</p>
-          <p style='font-size:0.72rem;color:var(--txt-dim);margin-bottom:2px'>${slotLabels[slot]} &nbsp;·&nbsp; <span class='rar-${item.rar}'>${rarLabels[item.rar]||item.rar}</span></p>
-          ${desc ? `<p class='nq-quote'>${desc}</p>` : ''}
-          <div class='forge-stats'>
-            ${gains.length>0 ? gains.join(' &nbsp;·&nbsp; ') : '🔄 Nenhum atributo melhorou desta vez...'}
+        <div class="forge-card nqreward-card" data-rarity="${rarity}">
+          <div class="nqreward-reading" role="region" tabindex="0" aria-label="Detalhes do equipamento">
+            <p class="nqreward-intro">${escapeHtml(intro)}</p>
+            <div class="nqreward-hero">
+              <div class="nqreward-art"><img src="${escapeHtml(icon)}" alt=""></div>
+              <div class="nqreward-identity"><h3>${escapeHtml(item.n)}</h3>
+                <div class="nqreward-meta"><span>${escapeHtml(slotLabels[slot] || slot)}</span><span class="nqreward-rarity">${rarLabels[rarity]}</span></div>
+              </div>
+            </div>
+            ${desc ? `<p class="nqreward-description">${escapeHtml(desc)}</p>` : ''}
+            <h4 class="nqreward-stats-title">Bônus do equipamento</h4>
+            <dl class="nqreward-stats">${stats}</dl>
+            ${gains.length === 0 ? '<p class="nqreward-note">Nenhum atributo melhorou desta vez...</p>' : ''}
           </div>
-          <button class='btn gold' data-close-closest=".forge-popup">Continuar</button>
+          <footer class="nqreward-footer"><button class="btn gold nqreward-primary" data-close-closest=".forge-popup">Continuar</button></footer>
         </div>
       `;
       document.body.appendChild(popup);
       nqDialogo(popup);
-      // popup.addEventListener('click',(e)=>{if(e.target===popup) popup.remove();});
     }
 
 
