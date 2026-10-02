@@ -4426,34 +4426,55 @@
       const popup = document.createElement('div');
       popup.id = 'goldMilestonePopup';
       popup.className = 'nq-overlay';
-      popup.style.cssText = 'z-index:9998;background:rgba(0,0,0,0.7);';
-      popup.innerHTML = `
-        <div style="position:relative;background:linear-gradient(160deg,#1a2a0a,#0e1830,#2a1a00);border:2px solid #ffd700;border-radius:16px;padding:26px 24px;max-width:440px;width:100%;box-shadow:0 0 50px rgba(255,215,0,0.25);text-align:center;animation:scaleIn 0.35s;">
-          <button type="button" data-remove-id="goldMilestonePopup" style="position: absolute; top: 12px; right: 16px; background: none; border: none; color: #ffd700; font-size: 1.2rem; cursor: pointer; z-index: 10;">✕</button>
-          <div style="font-size:2.4rem;margin-bottom:8px;">💰</div>
-          <h3 style="color:#ffd700;font-family:'Cinzel',serif;font-size:1.05rem;letter-spacing:1px;margin-bottom:6px;">${GOLD_MILESTONE} de Ouro!</h3>
-          <p style="color:#c8d8f0;font-size:0.85rem;line-height:1.6;margin-bottom:18px;">
-            Você acumulou ouro! O ouro é um recurso precioso que pode ser utilizado de várias maneiras estratégicas na sua jornada:
-          </p>
-          <div style="display:flex;flex-direction:column;gap:10px;text-align:left;">
-            <div style="background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.25);border-radius:10px;padding:12px 14px;">
-              <span style="color:#a5b4fc;font-weight:700;">⚒️ Forja de Equipamentos</span>
-              <span style="color:#94a3b8;font-size:0.8rem;"> — 300 / 1000 ouro</span>
-              <p style="color:#cbd5e1;font-size:0.78rem;margin:4px 0 0;">Use a Forja para criar equipamentos comuns (300 ouro) ou lendários (1000 ouro) e fortalecer seus atributos.</p>
-            </div>
-            <div style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25);border-radius:10px;padding:12px 14px;">
-              <span style="color:#fca5a5;font-weight:700;">❤️ Pergunta Bônus ao Final</span>
-              <span style="color:#94a3b8;font-size:0.8rem;"> — 1500 ouro</span>
-              <p style="color:#cbd5e1;font-size:0.78rem;margin:4px 0 0;">Caso perca todas as vidas no meio da jornada, use 1500 de ouro para comprar uma pergunta bônus (renascer) e continuar pontuando.</p>
-            </div>
-          </div>
-          <button data-remove-id="goldMilestonePopup"
-            style="margin-top:20px;width:100%;background:linear-gradient(180deg,#b8860b,#7a5a00);border:2px solid #ffd700;color:#fff8dc;border-radius:8px;padding:11px;font-family:'Cinzel',serif;font-size:0.82rem;font-weight:700;letter-spacing:1px;cursor:pointer;text-transform:uppercase;">
-            Entendido!
-          </button>
-        </div>`;
+      popup.innerHTML = `<section class="nqgold-card" role="dialog" aria-modal="true" aria-labelledby="goldMilestoneTitle" aria-describedby="goldMilestoneDescription">
+        <div class="nqgold-reading" role="region" aria-label="Como usar seu ouro" tabindex="0">
+        <div class="nqgold-award">
+        <svg class="nqgold-coin" viewBox="0 0 72 72" aria-hidden="true">
+        <circle class="nqgold-surface" cx="36" cy="36" r="29"/>
+        <circle class="nqgold-edge" cx="36" cy="36" r="24"/>
+        <path class="nqgold-emblem" pathLength="200" d="M31 21c-11-1-16 10-13 20 2 7 9 12 14 9 5-3 5-9 1-12-4-2-2-5 1-7 4-3 2-8-3-10Zm10 0c11-1 16 10 13 20-2 7-9 12-14 9-5-3-5-9-1-12 4-2 2-5-1-7-4-3-2-8 3-10Z"/>
+        </svg>
+        <h2 id="goldMilestoneTitle">${GOLD_MILESTONE} de Ouro!</h2>
+        </div>
+        <p class="nqgold-description" id="goldMilestoneDescription">Você acumulou ouro! O ouro é um recurso precioso que pode ser utilizado de várias maneiras estratégicas na sua jornada:</p>
+        <div class="nqgold-uses">
+        <div class="nqgold-use nqgold-forge">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="m4 18 9-9m-2-5 3-2 6 6-2 3-7-7Zm-7 14-2 4 4-2m7-8 7 7-2 2-7-7"/>
+        </svg>
+        <div>
+        <div class="nqgold-use-head">
+        <h3>Forja de Equipamentos</h3>
+        <span class="nqgold-cost">300 / 1000 ouro</span>
+        </div>
+        <p>Use a Forja para criar equipamentos comuns (300 ouro) ou lendários (1000 ouro) e fortalecer seus atributos.</p>
+        </div>
+        </div>
+        <div class="nqgold-use nqgold-bonus">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 20 4 12a5 5 0 0 1 8-6 5 5 0 0 1 8 6Z"/>
+        </svg>
+        <div>
+        <div class="nqgold-use-head">
+        <h3>Pergunta Bônus ao Final</h3>
+        <span class="nqgold-cost">1500 ouro</span>
+        </div>
+        <p>Caso perca todas as vidas no meio da jornada, use 1500 de ouro para comprar uma pergunta bônus (renascer) e continuar pontuando.</p>
+        </div>
+        </div>
+        </div>
+        </div>
+        <footer class="nqgold-footer">
+        <button type="button" class="nqgold-primary" data-remove-id="goldMilestonePopup">Entendido!</button>
+        </footer>
+        <button type="button" class="nqgold-close" data-remove-id="goldMilestonePopup" aria-label="Fechar aviso de ouro">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="m6 6 12 12M18 6 6 18"/>
+        </svg>
+        </button>
+        </section>`;
       document.body.appendChild(popup);
-      nqDialogo(popup);
+      nqDialogo(popup, { painel: popup.querySelector('.nqgold-card') });
       playSound('chest');
     }
 
