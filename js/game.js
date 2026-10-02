@@ -115,34 +115,38 @@
     
     function showGameCompletionModal() {
       const modal = document.createElement('div');
-      // Removido 'modal show' — conflitava com .nq-overlay (regra .modal define
-      // width: 700px, fazendo o overlay virar card de meia tela).
       modal.className = 'nq-overlay victory-popup';
       modal.id = 'victoryModal';
-      modal.style.cssText = 'background:rgba(0,0,0,0.92);z-index:9999;-webkit-backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);';
       modal.innerHTML = `
-        <div class="victory-wrap">
-          <img src="assets/victory.jpg" alt="Vitória" class="victory-img">
-          <div class="victory-card">
-            <h2 class="victory-title">PARABÉNS, HERÓI!</h2>
-            <p class="victory-sub">Você purificou o Reino e venceu o NefroQuest!</p>
-            <div class="victory-stats">
-              <div class="victory-stat"><span class="victory-stat-val">${state.score.toLocaleString('pt-BR')}</span><span class="victory-stat-lbl">Pontos</span></div>
-              <div class="victory-stat"><span class="victory-stat-val">${state.level}</span><span class="victory-stat-lbl">Nível</span></div>
-              <div class="victory-stat"><span class="victory-stat-val">100</span><span class="victory-stat-lbl">Acertos</span></div>
-              <div class="victory-stat"><span class="victory-stat-val">${state.gold}</span><span class="victory-stat-lbl">Ouro</span></div>
+        <section class="nqvictory-card" aria-describedby="victoryDescription">
+          <div class="nqvictory-reading" role="region" tabindex="0" aria-label="Resultado da jornada">
+            <div class="nqvictory-hero">
+              <img class="nqvictory-art" src="assets/victory-jornada.webp" alt="Os três heróis celebram a vitória" width="1402" height="1122">
+              <div class="nqvictory-identity">
+                <p class="nqvictory-intro">NefroQuest</p>
+                <h2 id="victoryTitle">Jornada concluída</h2>
+                <p class="nqvictory-description" id="victoryDescription">Você purificou o Reino e venceu o NefroQuest!</p>
+              </div>
             </div>
-            <p class="victory-champion-msg">Você recebeu o <strong>Título de Campeão</strong>! Este badge ficará visível no Leaderboard.</p>
-            <div class="victory-btns">
-              <button class="btn sec" data-action="continueAfterCompletion">Continuar Jogando</button>
-              <button class="btn gold" data-action="finishGameCompletely">Encerrar Jornada</button>
-              <button class="btn victory-share" data-action="shareVictory" data-pass-this="1">📤 Compartilhar</button>
-            </div>
+            <dl class="nqvictory-stats">
+              <div><dt>Pontos</dt><dd>${state.score.toLocaleString('pt-BR')}</dd></div>
+              <div><dt>Nível</dt><dd>${state.level}</dd></div>
+              <div><dt>Acertos</dt><dd>100</dd></div>
+              <div><dt>Ouro</dt><dd>${state.gold}</dd></div>
+            </dl>
+            <p class="nqvictory-champion">Você recebeu o <strong>Título de Campeão</strong>! Este badge ficará visível no Leaderboard.</p>
           </div>
-        </div>
+          <footer class="nqvictory-footer">
+            <div class="nqvictory-actions">
+              <button type="button" class="btn nqvictory-continue" data-action="continueAfterCompletion">Continuar jogando</button>
+              <button type="button" class="btn nqvictory-finish" data-action="finishGameCompletely">Encerrar jornada</button>
+            </div>
+            <button type="button" class="btn nqvictory-share" data-action="shareVictory" data-pass-this="1">Compartilhar</button>
+          </footer>
+        </section>
       `;
       document.body.appendChild(modal);
-      nqDialogo(modal);
+      nqDialogo(modal, { painel: modal.querySelector('.nqvictory-card') });
       playSound('victory');
     }
 
@@ -153,7 +157,7 @@
       } else {
         navigator.clipboard.writeText(text).then(() => {
           btn.textContent = '✅ Copiado!';
-          setTimeout(() => { btn.textContent = '📤 Compartilhar'; }, 2000);
+          setTimeout(() => { btn.textContent = 'Compartilhar'; }, 2000);
         }).catch(() => {
           window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
         });
@@ -161,6 +165,7 @@
     }
     
     function finishGameCompletely() {
+      document.getElementById('victoryModal')?.remove();
       state.completedGame = true;
       saveGame();
       document.querySelector('.modal.show')?.remove();
