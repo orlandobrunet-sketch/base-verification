@@ -14071,3 +14071,56 @@ li.nq-exam-opcao { cursor: default; }
  #equipCompareOverlay .nqec-comparison caption{display:block}
 }
 @media(prefers-reduced-motion:reduce){#equipCompareOverlay .nqec-new img{animation:none}}
+
+/* Baú de Relíquias — composição e arte aprovadas pelo proprietário. */
+#autoChestPopup{padding:12px;background:#02060b9c;backdrop-filter:blur(5px);animation:none;overflow:hidden}
+#autoChestPopup .nqch-dialog{--txt:#f1ecdf;--txt-dim:#bdcbd6;--gold:#edce83;container-type:inline-size;container-name:nqch;width:100%;max-width:520px;max-height:calc(100dvh - 24px);display:flex;flex-direction:column;min-height:0;padding:0;overflow:hidden;border:1px solid #708391!important;border-radius:12px!important;background:linear-gradient(135deg,#182d3bed,#0c1723eb 70%)!important;box-shadow:0 30px 90px #0009,inset 0 1px #d8edf218!important;animation:none}
+#autoChestPopup .nqch-dialog::before,#autoChestPopup .nqch-dialog::after{display:none!important}
+#autoChestPopup .nqch-reading{padding:26px 30px 22px;min-height:0;overflow-y:auto;scrollbar-width:thin;text-align:left}
+#autoChestPopup h3{margin:0;text-align:center;font:600 1.45rem/1.35 'Cinzel',serif;letter-spacing:-.02em!important;color:var(--txt)!important;text-shadow:none;text-transform:none}
+#autoChestPopup .nqch-art{display:block;position:relative;width:220px;max-width:100%;height:194px;margin:12px auto 4px;padding:0;border:0;border-radius:14px;background:transparent;line-height:0;isolation:isolate;perspective:800px;overflow:visible;cursor:pointer}
+#autoChestPopup .nqch-art::after{content:'';position:absolute;left:20%;right:20%;bottom:5%;height:7%;z-index:-1;background:#0008;filter:blur(8px);border-radius:50%}
+#autoChestPopup .nqch-window{display:block;position:absolute;width:220px;height:220px;bottom:0;left:50%;transform:translateX(-50%);pointer-events:none}
+#autoChestPopup .nqch-state{position:absolute;inset:0;overflow:hidden;display:block}
+#autoChestPopup .nqch-state img{position:absolute;top:0;left:0;max-width:none;width:200%;height:100%;object-fit:fill;pointer-events:none;border:0;border-radius:0;box-shadow:none}
+#autoChestPopup .nqch-body{clip-path:inset(57% 0 0);transition:opacity .35s ease .35s}
+#autoChestPopup .nqch-lid{clip-path:inset(0 0 43%);transform-origin:50% 57%;transition:transform .7s cubic-bezier(.2,.7,.2,1),opacity .45s ease .1s}
+#autoChestPopup .nqch-open{opacity:0;transition:opacity .65s ease .12s}
+#autoChestPopup .nqch-open img{left:-100%}
+#autoChestPopup .opening .nqch-lid{transform:translateY(-5%) scaleY(.6);opacity:0}
+#autoChestPopup .opening .nqch-body{opacity:0}
+#autoChestPopup .opening .nqch-open{opacity:1}
+#autoChestPopup .nqch-glow{position:absolute;left:19%;right:14%;bottom:32%;height:52%;background:radial-gradient(ellipse at 50% 90%,#ffe3a54d,transparent 68%);opacity:0;transform:scaleY(.5);transform-origin:center bottom;transition:opacity .55s ease .12s,transform .8s ease;mix-blend-mode:screen;pointer-events:none}
+#autoChestPopup .opening .nqch-glow{opacity:1;transform:scaleY(1)}
+#autoChestPopup .nqch-motes{position:absolute;inset:0;pointer-events:none}
+#autoChestPopup .nqch-motes i{position:absolute;left:42%;top:48%;width:2px;height:2px;border-radius:50%;background:#f4d795;opacity:0;box-shadow:0 0 6px #f4d79580}
+#autoChestPopup .nqch-motes i:nth-child(2){left:59%;top:45%}
+#autoChestPopup .nqch-motes i:nth-child(3){left:53%;top:49%}
+#autoChestPopup .opening .nqch-motes i{animation:nqchDust .9s ease-out .18s both}
+#autoChestPopup .opening .nqch-motes i:nth-child(2){animation-delay:.28s}
+#autoChestPopup .opening .nqch-motes i:nth-child(3){animation-delay:.38s}
+@keyframes nqchDust{0%{opacity:0;transform:translateY(0)}30%{opacity:.65}100%{opacity:0;transform:translateY(-28px)}}
+#autoChestPopup .nqch-story{color:var(--txt-dim);font:400 1rem/1.65 'Philosopher',sans-serif;margin:5px 0 0;text-align:left}
+#autoChestPopup .nqch-footer{padding:17px 30px 20px;border-top:1px solid #344c5e;flex:none;background:#0a15214d}
+#autoChestPopup .nqch-footer button{display:block;width:100%;min-height:48px;margin:0;background:var(--gold);color:#12212b;border:1px solid #f3d991;border-radius:6px;padding:11px 16px;font:700 1rem/1.3 'Philosopher',sans-serif;opacity:1;cursor:pointer}
+#autoChestPopup .nqch-footer button:hover{background:#f4d995}
+#autoChestPopup .nqch-footer button:disabled{cursor:default;background:#d6bd80}
+#autoChestPopup button:focus-visible{outline:2px solid #9fe1e8;outline-offset:4px}
+@media(max-width:600px){
+ #autoChestPopup .nqch-reading{padding:20px 20px 18px;scrollbar-width:none}
+ #autoChestPopup .nqch-reading::-webkit-scrollbar{display:none}
+ #autoChestPopup h3{font-size:1.25rem}
+ #autoChestPopup .nqch-art{width:200px;height:164px;margin:6px auto 0}
+ #autoChestPopup .nqch-window{width:200px;height:200px;bottom:-8px}
+ #autoChestPopup .nqch-story{font-size:.96rem;line-height:1.6}
+ #autoChestPopup .nqch-footer{padding:15px 20px 18px}
+}
+@container nqch(max-width:22rem){
+ #autoChestPopup h3{font-size:1.08rem}
+ #autoChestPopup .nqch-story{font-size:.86rem;line-height:1.5}
+ #autoChestPopup .nqch-footer button{font-size:.85rem}
+}
+@media(prefers-reduced-motion:reduce){
+ #autoChestPopup .nqch-lid,#autoChestPopup .nqch-body,#autoChestPopup .nqch-open,#autoChestPopup .nqch-glow{transition:none}
+ #autoChestPopup .opening .nqch-motes i{animation:none}
+}
