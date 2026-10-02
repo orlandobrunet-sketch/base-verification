@@ -312,20 +312,21 @@
       const text = evolutionTexts[newLevel] || "Você evoluiu! Continue sua jornada rumo à maestria nefrológica.";
       
       const modal = document.createElement('div');
-      // Removido 'modal show' — conflitava com .nq-overlay (a regra .modal
-      // define width: 700px, fazendo o overlay virar um card de meia tela
-      // em vez de cobrir a viewport inteira).
       modal.className = 'nq-overlay evolution-popup';
-      modal.style.cssText = 'background:rgba(0,0,0,0.85);z-index:9999;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);';
+      const narrative = loreText ? loreText.replace(/<[^>]*>/g, '') : text;
       modal.innerHTML = `
-        <div class="modal-content" style="max-width:500px;max-height:88vh;overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;">
-          <h2 style="color:var(--gold);margin-bottom:12px;overflow-wrap:anywhere;">⚡ EVOLUÇÃO! ⚡</h2>
-          <div style="margin:20px auto;width:120px;height:120px;border-radius:50%;overflow:hidden;border:3px solid var(--gold);box-shadow:0 0 20px rgba(255,215,0,0.5);">
-            <img src="${newImage}" style="width:100%;height:100%;object-fit:cover;" alt="${newTitle}">
+        <div class="modal-content nqevo-card">
+          <div class="nqevo-reading" role="region" tabindex="0" aria-label="Detalhes da evolução">
+            <p class="nqevo-intro">Evolução concluída</p>
+            <div class="nqevo-hero">
+              <div class="nqevo-art"><img src="${escapeHtml(newImage)}" alt="">
+                <svg class="nqevo-light" aria-hidden="true" viewBox="0 0 180 220" preserveAspectRatio="none"><rect x="2" y="2" width="176" height="216" rx="7"/></svg>
+              </div>
+              <div class="nqevo-identity"><span class="nqevo-level">Nível ${escapeHtml(String(newLevel))} alcançado</span><h2>${escapeHtml(newTitle)}</h2></div>
+            </div>
+            <p class="nqevo-description">${escapeHtml(narrative)}</p>
           </div>
-          <h3 style="color:var(--ok);margin-bottom:8px;font-size:1.3rem;">${newTitle}</h3>
-          ${loreText ? loreText.replace('margin-top:12px', 'margin-top:12px;margin-bottom:20px') : `<em style="color:#a0aec0;font-size:0.85rem;display:block;margin:12px 20px 20px;font-style:italic;">${text}</em>`}
-          <button class="btn gold" data-close-closest=".evolution-popup">Continuar Jornada</button>
+          <footer class="nqevo-footer"><button class="btn gold" data-close-closest=".evolution-popup">Continuar</button></footer>
         </div>
       `;
       document.body.appendChild(modal);
