@@ -2837,6 +2837,8 @@
       _loadingNextQuestion = true;
       setTimeout(() => { _loadingNextQuestion = false; }, 400);
 
+      // A consulta pertence à questão respondida, nunca à próxima carta.
+      window.resetMentorQuestion?.();
       document.getElementById('mainApp')?.setAttribute('data-lumen-state', 'reasoning');
       document.getElementById('mainApp')?.removeAttribute('data-lumen-debrief');
       document.getElementById('nqlQuestionReview')?.remove();
