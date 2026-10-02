@@ -190,20 +190,16 @@
     
     function showExtraLifeModal() {
       const modal = document.createElement('div');
-      // Removido 'modal show' — conflitava com .nq-overlay.
       modal.className = 'nq-overlay extra-life-popup';
-      modal.style.cssText = 'background:rgba(0,0,0,0.85);z-index:9999;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);';
       modal.innerHTML = `
-        <div class="modal-content" style="max-width:450px;max-height:88vh;overflow-y:auto;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;">
-          <h2 style="color:var(--ok);margin-bottom:16px;">💚 VIDA EXTRA! 💚</h2>
-          <p style="font-size:1.05rem;line-height:1.6;margin-bottom:20px;">
-            Os Deuses do Néfron reconhecem sua dedicação!<br>
-            <strong>Você ganhou +1 vida!</strong>
-          </p>
-          <p style="color:var(--txt-dim);margin-bottom:24px;">
-            Continue sua jornada com renovada energia e sabedoria.
-          </p>
-          <button class="btn gold" data-close-closest=".extra-life-popup">Continuar</button>
+        <div class="modal-content nqlife-card">
+          <div class="nqlife-reading" role="region" tabindex="0" aria-label="Detalhes da vida extra">
+            <p class="nqlife-intro">Vida extra</p>
+            <div class="nqlife-reward"><svg class="nqlife-heart" aria-hidden="true" viewBox="0 0 80 80"><path class="nqlife-fill" d="M40 65 14 41C-3 23 20 7 33 21l7 8 7-8C60 7 83 23 66 41Z"/><path class="nqlife-line" d="M40 65 14 41C-3 23 20 7 33 21l7 8 7-8C60 7 83 23 66 41Z"/></svg><h2>+1 vida</h2></div>
+            <p class="nqlife-celebration">Os Deuses do Néfron reconhecem sua dedicação!</p>
+            <p class="nqlife-description">Continue sua jornada com renovada energia e sabedoria.</p>
+          </div>
+          <footer class="nqlife-footer"><button class="btn gold" data-close-closest=".extra-life-popup">Continuar</button></footer>
         </div>
       `;
       document.body.appendChild(modal);
