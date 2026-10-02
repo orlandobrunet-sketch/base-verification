@@ -3122,24 +3122,40 @@
       const overlay = document.createElement('div');
       overlay.className = 'equip-compare-overlay';
       overlay.id = 'equipCompareOverlay';
+      const atributos = [['atk', 'Ataque'], ['def', 'Defesa'], ['kno', 'Conhecimento'], ['luck', 'Sorte']];
+      const identidade = (item, novo) => {
+        const arte = getItemIcon(item.n, slot);
+        return `<article class="nqec-item ${novo ? 'nqec-new' : 'nqec-current'}" data-rarity="${escapeHtml(item.rar)}">
+          <div class="nqec-art">${arte ? `<img src="${escapeHtml(arte)}" alt="">` : `<span aria-hidden="true">${_TEMP_SLOT_EMOJI[slot] || '·'}</span>`}</div>
+          <div><small>${novo ? 'Novo equipamento' : 'Equipado agora'}</small><h3>${escapeHtml(item.n)}</h3><span class="nqec-rarity">${_rarLabel[item.rar] || escapeHtml(item.rar)}</span></div>
+        </article>`;
+      };
       overlay.innerHTML = `
         <div class="equip-compare-card nq-comparar" role="dialog" aria-modal="true" aria-labelledby="ecpTitulo" aria-describedby="ecpResumo">
-          <h2 id="ecpTitulo">Você obteve ${escapeHtml(newItem.n)}</h2>
-          <p id="ecpResumo">${_forjaVeredito(newItem, oldItem)} Seu espaço de ${(slotLabels[slot] || slot).toLowerCase()} já está ocupado: escolha qual fica, e o outro vira ouro.</p>
-          <div class="nq-forja-comparar">
-            ${_forjaCartaoItem(newItem, slot, 'Recém-obtido', oldItem, 'novo')}
-            ${_forjaCartaoItem(oldItem, slot, 'Equipado agora', null, 'atual')}
+          <div class="nqec-scroll" tabindex="0" role="region" aria-label="Comparação dos equipamentos">
+            <p class="nqec-intro">Equipamento encontrado</p>
+            <h2 id="ecpTitulo">Escolha ${slot === 'helmet' || !slotLabels[slot] ? 'seu' : 'sua'} ${escapeHtml((slotLabels[slot] || 'equipamento').toLowerCase())}</h2>
+            <p id="ecpResumo">Escolha qual fica com você. O outro será convertido em ouro.</p>
+            <div class="nqec-items">${identidade(oldItem, false)}${identidade(newItem, true)}</div>
+            <table class="nqec-comparison"><caption>O que muda ao equipar · ${escapeHtml(slotLabels[slot] || slot)}</caption>
+              <thead><tr><th scope="col">Atributo</th><th scope="col">Atual</th><th scope="col">Novo</th><th scope="col">Diferença</th></tr></thead>
+              <tbody>${atributos.map(([key, label]) => {
+                const atual = oldItem[key] || 0; const novo = newItem[key] || 0; const diferenca = novo - atual;
+                return `<tr><th scope="row">${label}</th><td data-label="Atual">${atual}</td><td data-label="Novo">${novo}</td><td data-label="Diferença" class="${diferenca > 0 ? 'nqec-gain' : diferenca < 0 ? 'nqec-loss' : 'nqec-equal'}">${diferenca > 0 ? '+' : ''}${diferenca}</td></tr>`;
+              }).join('')}</tbody>
+            </table>
+            <p class="nqec-verdict">${_forjaVeredito(newItem, oldItem)} Os valores acima são os bônus de cada equipamento.</p>
           </div>
-          <div class="nq-forja-acoes">
-            <button type="button" class="btn gold" id="ecpReplace">Equipar ${escapeHtml(newItem.n)}<span class="nq-forja-btn-sub">${escapeHtml(oldItem.n)} vira ${_itemSellVal(oldItem)} de ouro</span></button>
-            <button type="button" class="btn sec" id="ecpKeep">Manter ${escapeHtml(oldItem.n)}<span class="nq-forja-btn-sub">${escapeHtml(newItem.n)} vira ${_itemSellVal(newItem)} de ouro</span></button>
-          </div>
+          <footer class="nqec-footer"><div class="nqec-actions">
+            <button type="button" class="btn gold" id="ecpReplace" aria-label="Equipar novo: ${escapeHtml(newItem.n)}; vender ${escapeHtml(oldItem.n)} por ${_itemSellVal(oldItem)} de ouro">Equipar novo<span>Vender atual por ${_itemSellVal(oldItem)} de ouro</span></button>
+            <button type="button" class="btn sec" id="ecpKeep" aria-label="Manter atual: ${escapeHtml(oldItem.n)}; vender ${escapeHtml(newItem.n)} por ${_itemSellVal(newItem)} de ouro">Manter atual<span>Vender novo por ${_itemSellVal(newItem)} de ouro</span></button>
+          </div><p class="nqec-note">Escolha um equipamento para continuar.</p></footer>
         </div>`;
       document.body.appendChild(overlay);
       const dialogo = overlay.querySelector('[role="dialog"]');
-      const botoes = [...overlay.querySelectorAll('button')];
+      const botoes = [...overlay.querySelectorAll('.nqec-scroll, button')];
       // A decisão é obrigatória (o item já foi obtido): sem Escape, e o Tab
-      // circula só entre as duas escolhas.
+      // circula entre a comparação e as duas escolhas.
       dialogo.addEventListener('keydown', e => {
         e.stopPropagation();
         if (e.key !== 'Tab') return;
@@ -3155,7 +3171,7 @@
       };
       overlay.querySelector('#ecpReplace').onclick = decidir(onReplace);
       overlay.querySelector('#ecpKeep').onclick = decidir(onKeep);
-      botoes[0].focus({ preventScroll: true });
+      overlay.querySelector('#ecpReplace').focus({ preventScroll: true });
     }
 
     /* `decidir` mostra a escolha Substituir/Manter. Por padrão é o popup de
@@ -6064,4 +6080,3 @@
       const popup = document.getElementById('arquiQ9Popup');
       if (popup) popup.style.display = 'none';
     };
-
