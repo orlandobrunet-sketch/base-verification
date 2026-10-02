@@ -35,6 +35,7 @@ test('conclusão mostra arte e resultados reais; continuar preserva a jornada', 
   await button.click();
   await expect(page.locator('#victoryModal')).toHaveCount(0);
   await expect(page.locator('#mainApp')).toBeVisible();
+  await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('nefroquest-save')!).correctTotal)).toBe(100);
   const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('nefroquest-save')!));
   expect(await page.evaluate(() => (0, eval)('state.completedGame'))).toBe(true);
   expect(saved.correctTotal).toBe(100);
