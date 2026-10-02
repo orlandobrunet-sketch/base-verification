@@ -14147,3 +14147,27 @@ li.nq-exam-opcao { cursor: default; }
 @container nqreward (max-width:26rem){.nqreward-card .nqreward-intro{font-size:.8rem}.nqreward-card .nqreward-description{font-size:.85rem}.nqreward-card .nqreward-primary{font-size:.85rem}}
 
 .nqreward-overlay .nqreward-card{max-width:560px}
+/* Pergaminho encontrado — superfície aprovada, textos preservados. */
+#chestModal{padding:12px;background:#02060b9c;backdrop-filter:blur(5px)}
+#chestModal .nqscroll-dialog{--ink:#f1ecdf;--soft:#bdcbd6;--gold:#edce83;--rule:#344c5e;--rarity:#c4cbd3;font-family:Philosopher,sans-serif;container-type:inline-size;container-name:nqscroll;display:flex;flex-direction:column;width:min(100%,680px);max-width:680px;max-height:calc(100dvh - 24px);min-height:0;padding:0;overflow:hidden;color:var(--ink);text-align:left;border:1px solid #708391!important;border-radius:12px!important;background:linear-gradient(135deg,color-mix(in srgb,var(--rarity) 12%,#182d3b),#0c1723eb 75%)!important;box-shadow:0 30px 90px #0009,inset 0 1px #d8edf218!important;animation:none}
+#chestModal .nqscroll-dialog::before,#chestModal .nqscroll-dialog::after{display:none!important}
+#chestModal [data-rarity=legendary]{--rarity:#edce83}#chestModal [data-rarity=epic]{--rarity:#c7a2ed}#chestModal [data-rarity=rare]{--rarity:#a2c8ed}#chestModal [data-rarity=uncommon]{--rarity:#a4d5b0}
+#chestModal .nqscroll-reading{padding:24px 28px 20px;min-height:0;overflow-y:auto;scrollbar-width:thin;position:relative}
+#chestModal .nqscroll-intro{display:flex;gap:12px;align-items:center;margin-bottom:18px}
+#chestModal #chestTitle{color:var(--soft);font:400 .85rem/1.4 Philosopher,sans-serif;margin:0}
+#chestModal .nqscroll-seal{width:36px;height:36px;flex:none;fill:none;stroke:var(--rarity);stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
+#chestModal.show .nqscroll-seal path{stroke-dasharray:120;animation:nqScrollUnroll .7s ease-out both}
+@keyframes nqScrollUnroll{from{stroke-dashoffset:120;opacity:.4}to{stroke-dashoffset:0;opacity:1}}
+#chestModal .nqscroll-article{padding:0;margin:0;background:transparent;border:0;border-radius:0;box-shadow:none}
+#chestModal .nqscroll-article::before,#chestModal .nqscroll-article::after{display:none}
+#chestModal .nqscroll-rarity{margin-left:auto;color:var(--rarity);border:1px solid color-mix(in srgb,var(--rarity) 65%,transparent);background:color-mix(in srgb,var(--rarity) 15%,transparent);border-radius:4px;padding:4px 9px;font-size:.85rem}
+#chestModal .nqscroll-identity h3{font:600 1.5rem/1.3 Cinzel,serif!important;letter-spacing:-.02em!important;color:var(--ink)!important;text-transform:none;margin:0 0 12px;overflow-wrap:anywhere}
+#chestModal .nqscroll-authors{font-size:.86rem;color:var(--soft);margin:0 0 5px}#chestModal .nqscroll-journal{font-size:.78rem;line-height:1.5;color:var(--soft);margin:0;overflow-wrap:anywhere}
+#chestModal .nqscroll-reward{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:baseline;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:13px 0;margin:20px 0;color:var(--soft);font-size:.87rem}#chestModal .nqscroll-reward strong{font-size:1.05rem;color:var(--ink)}#chestModal .nqscroll-reward small{font-size:.76rem;margin-left:auto}
+#chestModal .nqscroll-sections section+section{margin-top:20px}#chestModal .nqscroll-sections h4{font:700 .9rem/1.4 Philosopher,sans-serif;color:var(--rarity);margin:0 0 6px}#chestModal .nqscroll-sections p{font-size:.96rem;line-height:1.6;margin:0;color:var(--soft);overflow-wrap:anywhere}
+#chestModal .nqscroll-footer{padding:17px 28px 20px;flex:none;background:#0a15214d}
+#chestModal .nqscroll-footer button{display:block;width:100%;min-height:48px;margin:0;background:var(--gold);color:#12212b;border:1px solid #f3d991;border-radius:6px;padding:11px 16px;font:700 1rem/1.3 Philosopher,sans-serif;box-shadow:none;letter-spacing:normal;text-transform:none}
+#chestModal .nqscroll-footer button:hover{background:#f4d995}#chestModal :focus-visible{outline:2px solid #9fe1e8;outline-offset:3px}
+@media(max-width:600px){#chestModal .nqscroll-reading{padding:20px;scrollbar-width:none}#chestModal .nqscroll-reading::-webkit-scrollbar{display:none}#chestModal .nqscroll-footer{padding:15px 20px 18px}#chestModal .nqscroll-intro{gap:8px}#chestModal .nqscroll-seal{width:28px;height:28px}#chestModal .nqscroll-rarity{padding:4px 7px}#chestModal .nqscroll-reward small{margin-left:0;width:100%}}
+@container nqscroll (max-width:26rem){#chestModal .nqscroll-identity h3{font-size:1.1rem!important}#chestModal .nqscroll-authors{font-size:.8rem}#chestModal .nqscroll-journal{font-size:.74rem}#chestModal #chestTitle{font-size:.75rem}#chestModal .nqscroll-rarity{margin-left:0;font-size:.75rem}#chestModal .nqscroll-intro{flex-wrap:wrap;margin-bottom:18px}#chestModal .nqscroll-sections h4{font-size:.8rem}#chestModal .nqscroll-sections p{font-size:.85rem;line-height:1.55}#chestModal .nqscroll-reward{font-size:.8rem;gap:8px 14px}#chestModal .nqscroll-reward strong{font-size:.95rem}#chestModal .nqscroll-footer button{font-size:.85rem}}
+@media(prefers-reduced-motion:reduce){#chestModal.show .nqscroll-seal path{animation:none}}

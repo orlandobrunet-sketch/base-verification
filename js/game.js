@@ -4612,27 +4612,28 @@
       const modal = document.getElementById('chestModal');
       const articleDiv = document.getElementById('chestArticle');
       
-      const titleEl = document.getElementById('chestTitle');
-      if (titleEl) titleEl.textContent = '📜 Pergaminho Encontrado!';
-      
+      const rarities = { 'lendário':'legendary', 'épico':'epic', 'raro':'rare', 'incomum':'uncommon', 'comum':'common' };
+      const rarity = rarities[article.raridade] || 'common';
+      modal.querySelector('.chest-content').dataset.rarity = rarity;
+      document.getElementById('chestTitle').textContent = 'Pergaminho encontrado';
+      document.getElementById('chestRarity').textContent = article.raridade ? article.raridade.charAt(0).toUpperCase() + article.raridade.slice(1) : 'Comum';
       articleDiv.innerHTML = `
-        <div style="text-align:center;margin-bottom:12px;padding:10px;background:rgba(0,255,100,0.1);border:1px solid rgba(0,255,100,0.3);border-radius:8px;">
-          <span style="font-size:1.3rem;">📚</span>
-          <span style="color:#4ade80;font-weight:bold;font-size:1.1rem;"> +${knoGain} Conhecimento!</span>
-          <span style="color:var(--blue);font-weight:bold;font-size:1.1rem;"> +${chestPoints} Pontos!</span>
-          <span style="color:var(--txt-dim);font-size:0.85rem;"> (Baús abertos: ${state.chestsOpened})</span>
-        </div>
-        <div class="article-card">
-          <h3>📜 ${escapeHtml(article.titulo)} (${escapeHtml(String(article.ano))})</h3>
-          <p style="font-size:0.78rem;color:var(--gold);margin-bottom:4px">✍️ <em>${escapeHtml(article.autores)}</em></p>
-          <p style="font-size:0.72rem;color:var(--txt-dim);margin-bottom:10px">📖 ${escapeHtml(article.jornal)}</p>
-          <p><span class="label">📚 Resumo:</span><br>${escapeHtml(article.resumo)}</p>
-          <p><span class="label">🎯 Conclusão Principal:</span><br>${escapeHtml(article.conclusao)}</p>
-          <p><span class="label">💡 Curiosidade:</span><br>${escapeHtml(article.curiosidade)}</p>
-          <p><span class="label">⭐ Impacto na Nefrologia:</span><br>${escapeHtml(article.impacto)}</p>
+        <div class="article-card nqscroll-article">
+          <header class="nqscroll-identity">
+            <h3>${escapeHtml(article.titulo)} (${escapeHtml(String(article.ano))})</h3>
+            <p class="nqscroll-authors">${escapeHtml(article.autores)}</p>
+            <p class="nqscroll-journal">${escapeHtml(article.jornal)}</p>
+          </header>
+          <div class="nqscroll-reward"><span><strong>+${escapeHtml(String(knoGain))}</strong> Conhecimento</span><span><strong>+${escapeHtml(String(chestPoints))}</strong> Pontos</span><small>${state.chestsOpened} baús abertos</small></div>
+          <div class="nqscroll-sections">
+            <section><h4>Resumo</h4><p>${escapeHtml(article.resumo)}</p></section>
+            <section><h4>Conclusão principal</h4><p>${escapeHtml(article.conclusao)}</p></section>
+            <section><h4>Curiosidade</h4><p>${escapeHtml(article.curiosidade)}</p></section>
+            <section><h4>Impacto na nefrologia</h4><p>${escapeHtml(article.impacto)}</p></section>
+          </div>
         </div>
       `;
-      
+
       modal.classList.add('show');
       nqDialogo(modal, { painel: modal.querySelector('.chest-content'), visivel: el => el.classList.contains('show') });
     }

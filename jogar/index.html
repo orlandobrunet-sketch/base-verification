@@ -89,7 +89,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@15.55',
+          release: 'nefroquest@15.56',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -145,7 +145,7 @@
        style.css aplicar .hidden. O CSS externo re-exibe quando o JS remove .hidden. */
     .hidden { display: none !important; }
   </style>
-  <link rel="stylesheet" href="style.css?v=15.55">
+  <link rel="stylesheet" href="style.css?v=15.56">
   <link rel="stylesheet" href="styles/lumen/tokens.css?v=14.81">
   <link rel="stylesheet" href="styles/lumen/shell.css?v=14.77">
   <link rel="stylesheet" href="styles/lumen/portal.css?v=14.93">
@@ -397,7 +397,7 @@
         <span>Para aprender, revisar e se manter atualizado em nefrologia.</span>
         <span class="nql-portal__footer-meta">
           <button type="button" data-action="showPrivacyPolicy">Privacidade</button>
-          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v15.55</button>
+          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v15.56</button>
         </span>
       </footer>
     </section>
@@ -704,7 +704,7 @@
     <footer class="lnd-footer">
       <span>nefroquest.com</span>
       <span class="lnd-footer-sep">·</span>
-      <span id="landingVersionLabel" class="version-label-dynamic" style="cursor:pointer;" role="button" tabindex="0" aria-label="Ver novidades da versão" data-action="showChangelog">v15.55</span>
+      <span id="landingVersionLabel" class="version-label-dynamic" style="cursor:pointer;" role="button" tabindex="0" aria-label="Ver novidades da versão" data-action="showChangelog">v15.56</span>
       <span class="lnd-footer-sep">·</span>
       <span style="cursor:pointer;text-decoration:underline;" class="lnd-footer-link" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span>
     </footer>
@@ -896,7 +896,7 @@
 
       <footer class="nql-atrium__footer">
         <span>Prática que se transforma em domínio clínico.</span>
-        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v15.55</button></span>
+        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v15.56</button></span>
       </footer>
     </section>
     <div class="welcome-bg" aria-hidden="true"></div>
@@ -1321,7 +1321,7 @@
       <p>
         <a href="https://nefroquest.com">nefroquest.com</a>
         &nbsp;•&nbsp;
-        <span class="version-label-dynamic" style="color:var(--gold);cursor:pointer;" data-action="showChangelog">v15.55</span>
+        <span class="version-label-dynamic" style="color:var(--gold);cursor:pointer;" data-action="showChangelog">v15.56</span>
         &nbsp;•&nbsp;
         <span style="cursor:pointer;text-decoration:underline;" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span>
       </p>
@@ -1709,11 +1709,12 @@
   </div>
 
   <div id="chestModal" class="chest-modal">
-    <div class="chest-content" style="position:relative;">
-      <button type="button" class="auth-close-btn" style="z-index:10;" data-action="closeChestModal" aria-label="Fechar">✕</button>
-      <h2 id="chestTitle">Baú Desbloqueado!</h2>
-      <div id="chestArticle"></div>
-      <button type="button" class="close-chest" data-action="closeChestModal">Fechar</button>
+    <div class="chest-content nqscroll-dialog">
+      <div class="nqscroll-reading" role="region" tabindex="0" aria-label="Leitura do pergaminho">
+        <div class="nqscroll-intro"><svg class="nqscroll-seal" aria-hidden="true" viewBox="0 0 40 40"><path d="M10 7h20c5 0 5 8 0 8H16m-6-8c-5 0-5 8 0 8h4m-4-8v22c0 5 6 7 9 3m-5-17v13h16c5 0 5 8 0 8H16m14-21v13M19 19h6m-6 5h6"/></svg><p id="chestTitle">Pergaminho encontrado</p><span id="chestRarity" class="nqscroll-rarity"></span></div>
+        <div id="chestArticle"></div>
+      </div>
+      <footer class="nqscroll-footer"><button type="button" class="close-chest" data-action="closeChestModal">Continuar</button></footer>
     </div>
   </div>
 
@@ -1784,7 +1785,7 @@
   <script defer src="js/audio.js?v=14.69"></script>
   <script defer src="js/leaderboard.js?v=15.02"></script>
   <script defer src="js/study-mode.js?v=15.19"></script>
-  <script defer src="js/game.js?v=15.55"></script>
+  <script defer src="js/game.js?v=15.56"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
   <script defer src="js/auth.js?v=13.44"></script>
