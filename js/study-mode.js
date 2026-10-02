@@ -1055,6 +1055,8 @@
     const DIAG_DAILY_LIMIT   = 3;
     let _mentorCurrentQ = null;
     let _mentorHistory = [];
+    let _mentorContextVersion = 0;
+    let _mentorRequestController = null;
 
     async function startFreeStudyMode() {
       if (typeof topics === 'undefined') {
@@ -1336,6 +1338,7 @@
     }
     
     function renderStudyQuestion() {
+      resetMentorQuestion();
       if (studyModeIndex >= studyModeQuestions.length) {
         showStudyModeResults();
         return;
@@ -1476,8 +1479,7 @@
       `;
 
       // Guardar questão atual para o mentor
-      _mentorCurrentQ = q;
-      _mentorHistory = [];
+      window.setMentorQuestion(q);
 
       playSound(isCorrect ? 'correct' : 'wrong');
     }
@@ -1819,6 +1821,7 @@
       });
 
       requestAnimationFrame(() => {
+        if (!painel.isConnected) return;
         painel.classList.add('visible');
         painel.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
         (input || painel.querySelector('button'))?.focus({ preventScroll: true });
@@ -1836,11 +1839,21 @@
       }
     }
 
+    function resetMentorQuestion() {
+      closeMentorModal(false);
+      _mentorRequestController?.abort();
+      _mentorRequestController = null;
+      _mentorCurrentQ = null;
+      _mentorHistory = [];
+      _mentorContextVersion++;
+    }
+
     async function _sendMentorMessage() {
+      const contextVersion = _mentorContextVersion;
       const q = _mentorCurrentQ;
       const input = document.getElementById('mentorInput');
       const chat = document.getElementById('mentorChat');
-      if (!input || !chat || !q) return;
+      if (!input || !chat || !q || input.disabled) return;
 
       const text = input.value.trim();
       if (!text) return;
@@ -1862,9 +1875,14 @@
       const thinkingEl = _appendMentorMsg(chat, 'assistant', '...');
       thinkingEl.classList.add('mentor-thinking');
 
+      const requestController = new AbortController();
+      _mentorRequestController = requestController;
       try {
         const _mentorToken = (typeof window.getAuthToken === 'function') ? (await window.getAuthToken()) : null;
+        // A autenticação pode demorar: não enviar se a questão já mudou.
+        if (contextVersion !== _mentorContextVersion || !input.isConnected) return;
         const res = await fetch(`${SUPA_URL}/functions/v1/ai-mentor`, {
+          signal: requestController.signal,
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'apikey': SUPA_KEY, 'Authorization': `Bearer ${_mentorToken || SUPA_KEY}` },
           body: JSON.stringify({
@@ -1878,6 +1896,7 @@
         });
 
         const data = await res.json();
+        if (contextVersion !== _mentorContextVersion || !chat.isConnected) return;
         if (res.status === 429) throw new Error('quota_exceeded');
         if (!res.ok || !data.reply) throw new Error(data.error || 'Erro ao contatar o mentor.');
 
@@ -1898,6 +1917,7 @@
           document.querySelector('[data-action="openMentorModal"]')?.remove();
         }
       } catch (err) {
+        if (contextVersion !== _mentorContextVersion || requestController.signal.aborted) return;
         _track('error_mentor_send', { msg: String(err) });
         thinkingEl.classList.remove('mentor-thinking');
         if (String(err).includes('quota_exceeded')) {
@@ -1910,6 +1930,7 @@
         }
         thinkingEl.style.color = '#fb7185';
       } finally {
+        if (_mentorRequestController === requestController) _mentorRequestController = null;
         input.disabled = false;
         if (input.isConnected && input.closest('.mentor-panel')) input.focus();
       }
@@ -1961,7 +1982,8 @@
     window.openMentorModal   = openMentorModal;
     window.closeMentorModal  = closeMentorModal;
     window._sendMentorMessage = _sendMentorMessage;
-    window.setMentorQuestion = function(q) { _mentorCurrentQ = q; _mentorHistory = []; };
+    window.resetMentorQuestion = resetMentorQuestion;
+    window.setMentorQuestion = function(q) { resetMentorQuestion(); _mentorCurrentQ = q; };
     window.closeMentorModalAndRegister = closeMentorModalAndRegister;
     window.closeMentorModalAndLogin = closeMentorModalAndLogin;
     window.showRegisterFromDiagnosis = showRegisterFromDiagnosis;
