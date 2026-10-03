@@ -389,79 +389,70 @@
 
     function showBossIntroPopup() {
       playSound('boss');
+      document.getElementById('bossIntroPopup')?.remove();
       const popup = document.createElement('div');
       popup.id = 'bossIntroPopup';
-      popup.style.cssText = `
-        position: fixed; inset: 0; z-index: 99999;
-        background: rgba(0,0,0,0.92);
-        display: flex; align-items: center; justify-content: center;
-        animation: fadeIn 0.6s ease;
-        padding: 16px 16px calc(env(safe-area-inset-bottom, 0px) + 24px);
-        box-sizing: border-box;
-      `;
-
-      const _loreStyle = "font-family:'Philosopher',serif;font-size:0.88rem;color:#c4b5fd;line-height:1.7;font-style:italic;margin-bottom:20px;padding:0 4px;";
-      const _btnStyle = "font-family:'Cinzel',serif;background:linear-gradient(180deg,#7c3aed 0%,#5b21b6 50%,#3b0764 100%);border:2px solid #a855f7;border-radius:12px;color:#f3e8ff;font-size:0.95rem;font-weight:900;letter-spacing:3px;text-transform:uppercase;padding:14px 32px;cursor:pointer;box-shadow:0 0 25px rgba(168,85,247,0.6),0 4px 15px rgba(0,0,0,0.5);transition:all 0.2s;width:100%;";
-
-      // Página 1 — chegada ao Trono e provocação do boss
-      const _page1 = `
-        <div style="font-family:'Cinzel',serif;font-size:1.1rem;font-weight:900;letter-spacing:4px;color:#a855f7;text-shadow:0 0 20px rgba(168,85,247,0.9),0 0 40px rgba(168,85,247,0.5);margin-bottom:14px;">ARQUI-NEFROMANTE</div>
-        <div style="${_loreStyle}">
-          Após noventa batalhas, você finalmente chega ao <strong style="color:#e9d5ff;">Trono da Uremia</strong> — o coração sombrio do reino corrompido. Diante de você ergue-se o <strong style="color:#e9d5ff;">Arqui-Nefromante</strong>, senhor da insuficiência renal eterna, cujos feitiços de azotemia e hiperfiltração maligna destruíram milhares de néfrons.
-          <br><br>
-          Ele sorri com desprezo: <em style="color:#f3e8ff;">"Você chegou longe demais para um simples médico. Mas o conhecimento que carrega não é suficiente para me derrotar."</em>
-        </div>
-        <button id="bossIntroNext" style="${_btnStyle}">Avançar &#9654;</button>
-      `;
-
-      // Página 2 — o desafio e as estatísticas do jogador
-      const _page2 = `
-        <div style="${_loreStyle}">
-          <strong style="color:#fbbf24;">Dez questões</strong> separam a vitória da derrota eterna. Cada resposta correta é um golpe que enfraquece o Arqui-Nefromante. Cada erro, uma abertura para sua magia sombria.
-          <br><br>
-          <strong class="nq-text-gold">O destino dos rins do reino está em suas mãos.</strong>
-        </div>
-        <div style="display:flex;gap:10px;justify-content:center;margin-bottom:20px;flex-wrap:wrap;">
-          <div style="background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.3);border-radius:8px;padding:8px 14px;">
-            <div style="font-size:1.2rem;font-weight:700;color:#e9d5ff;">${state.correctTotal}</div>
-            <div style="font-size:0.6rem;color:rgba(192,132,252,0.7);text-transform:uppercase;letter-spacing:1px;">Acertos</div>
+      popup.className = 'nq-overlay';
+      popup.innerHTML = `<section class="nqboss-card" role="dialog" aria-modal="true" aria-labelledby="bossIntroTitle" >
+          <div class="nqboss-reading" role="region" aria-label="O momento decisivo" tabindex="0">
+          <div class="nqboss-art">
+          <img src="assets/arqui-nefromante-chegada.webp" alt="O Arqui-Nefromante diante do Trono da Uremia">
           </div>
-          <div style="background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.3);border-radius:8px;padding:8px 14px;">
-            <div style="font-size:1.2rem;font-weight:700;color:#e9d5ff;">${state.level}</div>
-            <div style="font-size:0.6rem;color:rgba(192,132,252,0.7);text-transform:uppercase;letter-spacing:1px;">Nível</div>
+          <div class="nqboss-copy">
+          <p class="nqboss-chapter">Capítulo final</p>
+          <h2 id="bossIntroTitle">O Confronto Derradeiro</h2>
+          <div id="bossIntroArrival">
+          <p class="nqboss-boss-name">Arqui-Nefromante</p>
+          <p class="nqboss-story">Após noventa batalhas, você finalmente chega ao <strong>Trono da Uremia</strong> — o coração sombrio do reino corrompido. Diante de você ergue-se o <strong>Arqui-Nefromante</strong>, senhor da insuficiência renal eterna, cujos feitiços de azotemia e hiperfiltração maligna destruíram milhares de néfrons.</p>
+          <blockquote>
+          <p>Ele sorri com desprezo:</p>
+          <p class="nqboss-quote">“Você chegou longe demais para um simples médico. Mas o conhecimento que carrega não é suficiente para me derrotar.”</p>
+          </blockquote>
           </div>
-          <div style="background:rgba(255,215,0,0.1);border:1px solid rgba(255,215,0,0.3);border-radius:8px;padding:8px 14px;">
-            <div style="font-size:1.2rem;font-weight:700;color:#ffd700;">${state.score.toLocaleString('pt-BR')}</div>
-            <div style="font-size:0.6rem;color:rgba(255,215,0,0.6);text-transform:uppercase;letter-spacing:1px;">Pontos</div>
+          <div id="bossIntroChallenge" hidden>
+          <p class="nqboss-story">
+          <strong class="nqboss-gold">Dez questões</strong> separam a vitória da derrota eterna. Cada resposta correta é um golpe que enfraquece o Arqui-Nefromante. Cada erro, uma abertura para sua magia sombria.</p>
+          <p class="nqboss-destiny">O destino dos rins do reino está em suas mãos.</p>
+          <dl class="nqboss-stats">
+          <div>
+          <dt>Acertos</dt>
+          <dd>${state.correctTotal}</dd>
           </div>
-        </div>
-        <button data-remove-id="bossIntroPopup" style="${_btnStyle}animation:arquiGolpeGlow 2s ease-in-out infinite alternate;">&#9876; Iniciar Batalha Final</button>
-      `;
-
-      popup.innerHTML = `
-        <div style="max-width:540px;width:100%;background:linear-gradient(160deg,#0a0118 0%,#120230 50%,#0a0118 100%);border:2px solid rgba(168,85,247,0.7);border-radius:18px;padding:28px 24px 24px;text-align:center;box-shadow:0 0 60px rgba(168,85,247,0.4),0 0 120px rgba(88,28,135,0.2),inset 0 0 60px rgba(0,0,0,0.6);position:relative;">
-          <button class="popup-x" data-remove-id="bossIntroPopup" aria-label="Fechar">✕</button>
-          <div style="font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:4px;color:#d8b4fe;text-transform:uppercase;margin-bottom:6px;">Capítulo Final</div>
-          <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.1rem,4vw,1.6rem);font-weight:900;letter-spacing:3px;color:#e9d5ff;text-shadow:0 0 20px rgba(216,180,254,0.9),0 0 40px rgba(168,85,247,0.6);margin:0 0 16px;">&#9760; O Confronto Derradeiro &#9760;</h2>
-          <div style="margin:0 0 16px;border-radius:12px;overflow:hidden;border:2px solid rgba(168,85,247,0.6);box-shadow:0 0 30px rgba(168,85,247,0.5),0 0 60px rgba(88,28,135,0.3);">
-            <img src="assets/nefromancer.png" alt="Arqui-Nefromante" style="width:100%;display:block;object-fit:cover;max-height:180px;object-position:center 20%;">
+          <div>
+          <dt>Nível</dt>
+          <dd>${state.level}</dd>
           </div>
-          <div id="bossIntroBody">${_page1}</div>
-        </div>
-      `;
+          <div>
+          <dt>Pontos</dt>
+          <dd>${state.score.toLocaleString('pt-BR')}</dd>
+          </div>
+          </dl>
+          </div>
+          </div>
+          </div>
+          <footer class="nqboss-footer">
+          <span class="nqboss-step-indicator" id="bossIntroStep">1 de 2</span>
+          <button type="button" class="nqboss-primary" id="bossIntroNext">Avançar</button>
+          </footer>
+          <button type="button" class="nqboss-close" data-remove-id="bossIntroPopup" aria-label="Fechar apresentação">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m6 6 12 12M18 6 6 18"/>
+          </svg>
+          </button>
+          </section>`;
       document.body.appendChild(popup);
-      nqDialogo(popup);
-
-      // Avançar → troca o conteúdo para a segunda metade (sem rolagem)
-      const _nextBtn = popup.querySelector('#bossIntroNext');
-      if (_nextBtn) {
-        _nextBtn.addEventListener('click', () => {
-          const body = popup.querySelector('#bossIntroBody');
-          if (body) body.innerHTML = _page2;
-          if (typeof playSound === 'function') playSound('click');
-        });
-      }
-      // (fechar-ao-clicar-fora removido — usa o X)
+      nqDialogo(popup, { painel: popup.querySelector('.nqboss-card') });
+      const next = popup.querySelector('#bossIntroNext');
+      next.addEventListener('click', () => {
+        if (popup.querySelector('#bossIntroArrival').hidden) { popup.remove(); return; }
+        popup.querySelector('#bossIntroArrival').hidden = true;
+        popup.querySelector('#bossIntroChallenge').hidden = false;
+        popup.querySelector('#bossIntroStep').textContent = '2 de 2';
+        next.textContent = 'Iniciar batalha final';
+        popup.querySelector('.nqboss-reading').scrollTop = 0;
+        next.focus({ preventScroll: true });
+        if (typeof playSound === 'function') playSound('click');
+      });
       log('💀 O Arqui-Nefromante aguarda no Trono da Uremia. A batalha final começa!');
     }
 

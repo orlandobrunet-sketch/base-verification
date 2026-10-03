@@ -28,7 +28,7 @@ test.describe('Landing comercial', () => {
   test('usa a arte nítida do Nefromante sem reamostragem por escala', async ({ page }) => {
     const artwork = page.locator('.boss-backdrop');
     await artwork.scrollIntoViewIfNeeded();
-    await expect(artwork).toHaveAttribute('src', '/landing/assets/nefromancer-lumen-v3.png');
+    await expect(artwork).toHaveAttribute('src', '/landing/assets/nefromancer-cajado-renal.jpg');
     await expect.poll(() => artwork.evaluate((image: HTMLImageElement) => image.naturalWidth)).toBeGreaterThanOrEqual(1600);
 
     const presentation = await artwork.evaluate((image) => {
