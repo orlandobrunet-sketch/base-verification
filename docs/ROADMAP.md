@@ -366,6 +366,24 @@ Escopo:
 
 O pedido explícito de 10/09 acrescenta os recortes de refinamento NQ-04A–D, definidos no checkpoint e no [plano de prioridades](design/NQ_REFINEMENT_PRIORITY_2026-09-10.md). A preparação desses recortes pode avançar enquanto se fecha NQ-03; cada publicação mantém os gates aplicáveis. O sistema vigente é o [`Sistema Visual Lúmen Vivo`](design/NQ_LUMEN_VISUAL_SYSTEM_V1.md); preservar a riqueza das artes e as cores semânticas dos artigos faz parte deste pedido.
 
+### NQ-04E — Artes dos personagens no estilo cinematográfico
+
+**Status:** `EM DESCOBERTA` — fila posterior; não iniciar enquanto o refinamento atual estiver em curso.
+
+**Pedido do proprietário em 02/10/2026:** revisar as demais imagens dos personagens para alcançar o estilo aprovado do Arqui-Nefromante e do golpe final. Primeiro concluir os popups, telas e ajustes de usabilidade já em andamento; esta frente não muda a prioridade atual.
+
+Referências aprovadas: [entrada do Arqui-Nefromante](../assets/arqui-nefromante-chegada.webp), [home com cajado renal](../landing/assets/nefromancer-cajado-renal.jpg) e [golpe final](../assets/golpe-final-cinematico.webp). Direção: fantasia medieval cinematográfica, materiais e iluminação mais naturais, personagem legível, fundo menos carregado e símbolos renais com sentido.
+
+Escopo futuro:
+
+- inventariar as artes das três classes e de seus níveis antes de definir substituições;
+- preservar a identidade de cada classe e a leitura da evolução entre níveis;
+- avaliar enquadramento no avatar, seleção de classe, equipamentos e telas internas, incluindo celular;
+- apresentar um pequeno piloto por classe para aprovação antes de ampliar a produção de imagens;
+- otimizar os arquivos e validar nitidez, contraste e continuidade com as artes já aprovadas.
+
+**Ordem obrigatória:** concluir o recorte atual de refinamento → avaliar o piloto das artes → aprovar e implementar por lote. Este registro é planejamento; não autoriza gerar ou substituir as demais imagens agora.
+
 ### NQ-05 — Receita e funil verdadeiros
 
 **Status:** `BLOQUEADO`
