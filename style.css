@@ -14394,3 +14394,42 @@ to{stroke-dashoffset:0;opacity:1}
 
 #minigameIntroPopup button{font-family:Philosopher,serif;cursor:pointer}
 
+
+/* Golpe final — cena cinematográfica aprovada. */
+#battleFinalPopup{z-index:99999;padding:12px;background:#02060ba8;backdrop-filter:blur(5px)}
+#battleFinalPopup .nqfinal-card{container-type:inline-size;container-name:nqfinal;width:min(100%,920px);max-height:calc(100dvh - 24px);min-height:0;display:flex;flex-direction:column;position:relative;overflow:hidden;border:1px solid #647986!important;border-radius:14px;background:#0b1520;box-shadow:0 35px 100px #000b;padding:0!important;font-family:Philosopher,serif;text-align:center}
+.nqfinal-reading{display:block;min-height:0;overflow-y:auto;scrollbar-width:thin}
+.nqfinal-art{height:clamp(300px,52dvh,410px);min-height:0;position:relative;overflow:hidden;background:#111d2b}
+.nqfinal-art img{display:block;width:100%;height:100%;position:absolute;inset:0;object-fit:cover;object-position:center top;animation:nqfinal-scene 1s ease-out both}
+.nqfinal-art:after{content:"";position:absolute;inset:-1px;pointer-events:none;background:linear-gradient(0deg,#0b1520 0%,#0b1520e6 8%,#0b152040 28%,transparent 52%)}
+.nqfinal-copy{position:relative;z-index:1;display:block;margin-top:-91px;padding:0 38px 13px;text-align:center}
+.nqfinal-chapter{font-size:.8rem;line-height:1.4;color:#c7c3b5;margin:0 0 7px}
+#battleFinalPopup h2{font:600 3.1rem/1.15 Cinzel,serif!important;letter-spacing:-.035em!important;margin:0 0 20px!important;text-shadow:0 3px 18px #0008;color:#f1ecdf!important;background:none!important;-webkit-text-fill-color:currentColor!important;text-transform:none!important;overflow-wrap:anywhere}
+.nqfinal-message{max-width:570px;margin:0 auto 14px;font-size:1.05rem;line-height:1.55;color:#ccd8e2}
+.nqfinal-destiny{padding:0;margin:0;font-size:.93rem;line-height:1.5;color:#deca94}
+.nqfinal-footer{padding:18px 28px 26px;flex:none;background:transparent;display:flex;justify-content:center}
+#battleFinalPopup .nqfinal-primary{min-width:280px;min-height:52px;margin:0;background:linear-gradient(180deg,#ead197,#d5b66a);color:#17212a;border:1px solid #f3d991;border-radius:7px;padding:13px 25px;font:700 1rem Philosopher,serif;box-shadow:inset 0 1px #fff6,0 4px 18px #0003;cursor:pointer}
+#battleFinalPopup .nqfinal-primary:hover{background:#f2dca5}
+@keyframes nqfinal-scene{from{opacity:.4;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){
+ .nqfinal-reading{scrollbar-width:none}.nqfinal-reading::-webkit-scrollbar{display:none}
+ .nqfinal-art{height:278px}.nqfinal-art:after{background:linear-gradient(0deg,#0b1520 0%,#0b1520e6 10%,#0b152040 29%,transparent 58%)}
+ .nqfinal-copy{margin-top:-55px;padding:0 22px 8px}
+ .nqfinal-chapter{font-size:.78rem;margin-bottom:8px}
+ #battleFinalPopup h2{font-size:2.1rem!important;margin-bottom:19px!important}
+ .nqfinal-message{font-size:.98rem;line-height:1.6;margin-bottom:15px}
+ .nqfinal-destiny{font-size:.87rem;line-height:1.55}
+ .nqfinal-footer{padding:18px 22px 23px}
+ #battleFinalPopup .nqfinal-primary{min-width:0;width:100%;font-size:1rem}
+}
+@container nqfinal (max-width:26rem){
+ .nqfinal-message{font-size:.96rem}.nqfinal-destiny{font-size:.87rem}
+ #battleFinalPopup .nqfinal-primary{font-size:.95rem}
+}
+@container nqfinal (max-width:12rem){
+ .nqfinal-art{height:225px}.nqfinal-copy{margin-top:-30px;padding:0 20px 9px}
+ .nqfinal-chapter{font-size:.7rem}#battleFinalPopup h2{font-size:1.25rem!important;line-height:1.2!important}
+ .nqfinal-message{font-size:.8rem}.nqfinal-destiny{font-size:.75rem}
+ #battleFinalPopup .nqfinal-primary{font-size:.8rem}
+}
+@media(prefers-reduced-motion:reduce){.nqfinal-art img{animation:none}}

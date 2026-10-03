@@ -362,47 +362,29 @@
     }
 
     function showBattleFinalPopup() {
+      document.getElementById('battleFinalPopup')?.remove();
       const popup = document.createElement('div');
       popup.id = 'battleFinalPopup';
-      popup.style.cssText = `
-        position:fixed;inset:0;z-index:99999;
-        background:rgba(0,0,0,0.88);
-        display:flex;align-items:center;justify-content:center;
-        animation:fadeIn 0.5s ease;
-        padding:16px;
-      `;
+      popup.className = 'nq-overlay';
       popup.innerHTML = `
-        <div style="
-          max-width:560px;width:100%;
-          background:linear-gradient(160deg,#0a0118 0%,#120230 60%,#0a0118 100%);
-          border:2px solid rgba(168,85,247,0.7);
-          border-radius:18px;
-          padding:24px 20px 20px;
-          text-align:center;
-          box-shadow:0 0 60px rgba(168,85,247,0.4),0 0 120px rgba(88,28,135,0.2);
-        ">
-          <div style="font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:4px;color:#d8b4fe;text-transform:uppercase;margin-bottom:8px;">Questão Final</div>
-          <h2 style="font-family:'Cinzel',serif;font-size:clamp(1rem,4vw,1.4rem);font-weight:900;letter-spacing:3px;color:#e9d5ff;text-shadow:0 0 20px rgba(216,180,254,0.9);margin:0 0 16px;">⚔ GOLPE FINAL ⚔</h2>
-          <!-- Imagem battle_final cortada (esconde texto amarelo no fundo) -->
-          <div style="border-radius:12px;overflow:hidden;border:2px solid rgba(168,85,247,0.5);box-shadow:0 0 30px rgba(168,85,247,0.4);height:340px;">
-            <img src="assets/battle_final.webp" alt="Batalha Final" style="width:100%;height:370px;object-fit:cover;object-position:center top;display:block;">
+        <section class="nqfinal-card" role="dialog" aria-modal="true" aria-labelledby="battleFinalTitle" aria-describedby="battleFinalMessage">
+          <div class="nqfinal-reading" role="region" aria-label="O momento decisivo" tabindex="0">
+            <div class="nqfinal-art">
+              <img src="assets/golpe-final-cinematico.webp" alt="Os três guardiões enfrentam o Arqui-Nefromante">
+            </div>
+            <div class="nqfinal-copy">
+              <p class="nqfinal-chapter">Questão final</p>
+              <h2 id="battleFinalTitle">Golpe final</h2>
+              <p class="nqfinal-message" id="battleFinalMessage">Este é o momento decisivo. Uma única resposta separa a vitória da derrota eterna.</p>
+              <p class="nqfinal-destiny">O destino dos rins do reino está em suas mãos.</p>
+            </div>
           </div>
-          <p style="font-family:'Philosopher',serif;font-size:0.88rem;color:#c4b5fd;line-height:1.7;font-style:italic;margin:16px 0 20px;padding:0 4px;">
-            Este é o momento decisivo. Uma única resposta separa a vitória da derrota eterna.<br>
-            <strong style="color:#e9d5ff;">O destino dos rins do reino está em suas mãos.</strong>
-          </p>
-          <button data-remove-id="battleFinalPopup" style="
-            background:linear-gradient(135deg,#4c1d95,#7c3aed);
-            color:#e9d5ff;border:2px solid rgba(168,85,247,0.6);
-            border-radius:10px;padding:12px 32px;
-            font-family:'Cinzel',serif;font-size:0.85rem;font-weight:700;
-            letter-spacing:2px;cursor:pointer;text-transform:uppercase;
-            box-shadow:0 0 20px rgba(124,58,237,0.5);
-          ">ENFRENTAR O DESTINO</button>
-        </div>
-      `;
+          <footer class="nqfinal-footer">
+            <button type="button" class="nqfinal-primary" data-remove-id="battleFinalPopup">Enfrentar o destino</button>
+          </footer>
+        </section>`;
       document.body.appendChild(popup);
-      nqDialogo(popup);
+      nqDialogo(popup, { painel: popup.querySelector('.nqfinal-card') });
     }
 
     function showBossIntroPopup() {
