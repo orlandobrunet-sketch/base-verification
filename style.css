@@ -14433,3 +14433,234 @@ to{stroke-dashoffset:0;opacity:1}
  #battleFinalPopup .nqfinal-primary{font-size:.8rem}
 }
 @media(prefers-reduced-motion:reduce){.nqfinal-art img{animation:none}}
+
+/* Entrada do Arqui-Nefromante — duas etapas aprovadas. */
+#bossIntroPopup{z-index:99999;padding:12px;background:#02060ba8;backdrop-filter:blur(5px)}
+
+.nqboss-card{container-type:inline-size;container-name:nqboss;width:min(100%,850px);max-height:calc(100dvh - 24px);min-height:0;display:flex;flex-direction:column;position:relative;overflow:hidden;border:1px solid #708391;border-radius:12px;background:linear-gradient(135deg,#182d3bed,#0c1723eb 75%);box-shadow:0 30px 90px #0009,inset 0 1px #d8edf218}
+
+.nqboss-reading{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);min-height:0;overflow-y:auto;scrollbar-width:thin}
+
+.nqboss-art{min-height:380px;position:relative;overflow:hidden;background:#121d29}
+.nqboss-art img{display:block;width:100%;height:100%;position:absolute;inset:0;object-fit:cover;object-position:center 35%;animation:nqboss-arrive .85s ease-out both}
+.nqboss-art:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,transparent 70%,#15263560),linear-gradient(0deg,#0c172335,transparent 50%)}
+
+.nqboss-copy{padding:35px 28px;display:flex;flex-direction:column;justify-content:center}
+.nqboss-chapter{margin:0 0 10px;color:#c0b8d5;font-size:.8rem;line-height:1.4}
+.nqboss-card h2{font:600 1.8rem/1.3 Cinzel,serif;color:#f1ecdf;margin:0 0 23px;overflow-wrap:anywhere}
+.message{font-size:1rem;line-height:1.65;color:#bdcbd6;margin:0 0 20px}
+.nqboss-destiny{font-size:1rem;line-height:1.55;color:#edce83;margin:0;padding-top:20px;border-top:1px solid #344c5e}
+
+.nqboss-footer{padding:18px 28px 22px;flex:none;background:#0a15214d;display:flex;justify-content:flex-end}
+.nqboss-primary{min-width:calc((100% - 28px)/2.1);min-height:48px;margin:0;background:#edce83;color:#12212b;border:1px solid #f3d991;border-radius:6px;padding:11px 22px;font-size:1rem;font-weight:700}
+.nqboss-primary:hover{background:#f4d995}
+@keyframes nqboss-arrive{from{opacity:.4;transform:scale(1.015)}
+to{opacity:1;transform:scale(1)}
+}
+
+@media(max-width:600px){.nqboss-reading{grid-template-columns:minmax(0,1fr);scrollbar-width:none}
+.nqboss-reading::-webkit-scrollbar{display:none}
+.nqboss-art{min-height:205px}
+.nqboss-art img{object-position:center 35%}
+.nqboss-art:after{background:linear-gradient(0deg,#13243480,transparent 50%)}
+.nqboss-copy{padding:22px 20px 25px}
+.nqboss-chapter{margin-bottom:8px}
+.nqboss-card h2{font-size:1.35rem;margin-bottom:17px}
+.message,.nqboss-destiny{font-size:.93rem}
+.message{margin-bottom:17px}
+.nqboss-destiny{padding-top:17px}
+.nqboss-footer{padding:16px 20px 18px}
+.nqboss-primary{width:100%;min-width:0}
+}
+
+@container nqboss (max-width:26rem){.nqboss-card h2{font-size:1.2rem}
+.message,.nqboss-destiny{font-size:.88rem}
+.nqboss-primary{font-size:.9rem}
+.nqboss-reading{grid-template-columns:minmax(0,1fr)}
+}
+
+@container nqboss (max-width:12rem){.nqboss-art{min-height:155px}
+.nqboss-copy{padding:18px 20px 22px}
+.nqboss-card h2{font-size:1rem}
+.nqboss-chapter{font-size:.7rem}
+.message,.nqboss-destiny{font-size:.8rem}
+.nqboss-primary{font-size:.8rem}
+}
+
+@media(prefers-reduced-motion:reduce){.nqboss-art img{animation:none}
+}
+
+
+/* Nova direção: cena contínua, título integrado e ação central. */
+.nqboss-card{width:min(100%,920px);border:1px solid #647986;border-radius:14px;background:#0b1520;box-shadow:0 35px 100px #000b}
+
+.nqboss-reading{display:block}
+
+.nqboss-art{height:clamp(300px,52dvh,410px);min-height:0;background:#111d2b}
+
+.nqboss-art img{object-position:center top;animation:nqboss-scene 1s ease-out both}
+
+.nqboss-art:after{background:linear-gradient(0deg,#0b1520 0%,#0b1520e6 8%,#0b152040 28%,transparent 52%);inset:-1px}
+
+.nqboss-copy{position:relative;z-index:1;display:block;margin-top:-91px;padding:0 38px 13px;text-align:center}
+
+.nqboss-chapter{font-size:.8rem;color:#c7c3b5;margin:0 0 7px}
+
+.nqboss-card h2{font-size:3.1rem;line-height:1.15;letter-spacing:-.035em;margin:0 0 20px;text-shadow:0 3px 18px #0008}
+
+.message{max-width:570px;margin:0 auto 14px;font-size:1.05rem;line-height:1.55;color:#ccd8e2}
+
+.nqboss-destiny{border:0;padding:0;margin:0;font-size:.93rem;line-height:1.5;color:#deca94}
+
+.nqboss-footer{justify-content:center;background:transparent;padding:18px 28px 26px}
+
+.nqboss-primary{min-width:280px;min-height:52px;border-radius:7px;background:linear-gradient(180deg,#ead197,#d5b66a);color:#17212a;box-shadow:inset 0 1px #fff6,0 4px 18px #0003;padding:13px 25px}
+
+.nqboss-primary:hover{background:#f2dca5}
+
+@keyframes nqboss-scene{from{opacity:.4;transform:translateY(3px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+@media(max-width:600px){
+ .nqboss-art{height:278px;min-height:0}
+.nqboss-art img{object-position:center top}
+
+ .nqboss-art:after{background:linear-gradient(0deg,#0b1520 0%,#0b1520e6 10%,#0b152040 29%,transparent 58%)}
+
+ .nqboss-copy{margin-top:-55px;padding:0 22px 8px}
+
+ .nqboss-chapter{font-size:.78rem;margin-bottom:8px}
+
+ .nqboss-card h2{font-size:2.1rem;margin-bottom:19px}
+
+ .message{font-size:.98rem;line-height:1.6;margin-bottom:15px}
+
+ .nqboss-destiny{font-size:.87rem;line-height:1.55}
+
+ .nqboss-footer{padding:18px 22px 23px}
+.nqboss-primary{min-width:0;width:100%;font-size:1rem}
+
+}
+
+@container nqboss (max-width:26rem){
+ .message{font-size:.96rem}
+.nqboss-destiny{font-size:.87rem}
+.nqboss-primary{font-size:.95rem}
+
+}
+
+@container nqboss (max-width:12rem){
+ .nqboss-art{height:225px}
+.nqboss-copy{margin-top:-30px;padding:0 20px 9px}
+
+ .nqboss-chapter{font-size:.7rem}
+.nqboss-card h2{font-size:1.25rem;line-height:1.2}
+
+ .message{font-size:.8rem}
+.nqboss-destiny{font-size:.75rem}
+.nqboss-primary{font-size:.8rem}
+
+}
+
+@media(prefers-reduced-motion:reduce){.nqboss-art img{animation:none}
+}
+
+
+/* Chegada e desafio: uma cena, duas etapas de leitura. */
+.nqboss-card{width:min(100%,860px)}
+
+.nqboss-art{height:245px;min-height:0}
+.nqboss-art img{object-position:center top}
+
+.nqboss-copy{margin-top:-35px;padding:0 35px 13px}
+
+.nqboss-chapter{font-size:.75rem;margin-bottom:7px}
+
+.nqboss-card h2{font-size:1.95rem;line-height:1.25;letter-spacing:-.02em;margin-bottom:20px}
+
+.nqboss-boss-name{color:#c5b2dc;font-size:.88rem;line-height:1.4;margin:0 0 12px}
+
+.nqboss-story{max-width:650px;margin:0 auto;color:#ccd8e2;text-align:left;font-size:.97rem;line-height:1.65}
+.nqboss-story strong{color:#f1ecdf;font-weight:700}
+.nqboss-story .nqboss-gold{color:#edce83}
+
+.nqboss-copy blockquote{max-width:650px;margin:18px auto 0;padding:0 0 0 16px;border-left:2px solid #9e8bb75c;text-align:left}
+
+.nqboss-copy blockquote p{font-size:.84rem;line-height:1.5;color:#aebdcc;margin:0 0 6px}
+.nqboss-copy blockquote .nqboss-quote{font-size:.96rem;line-height:1.65;color:#d3c7e1;margin:0}
+
+#bossIntroChallenge .nqboss-destiny{margin-top:19px;font-size:.9rem}
+
+.nqboss-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));max-width:650px;margin:22px auto 0;padding:17px 0 0;border-top:1px solid #344c5e}
+
+.nqboss-stats div+div{border-left:1px solid #344c5e}
+.nqboss-stats dt{font-size:.77rem;color:#adbdc9;line-height:1.5;margin-bottom:5px}
+.nqboss-stats dd{font-size:1.3rem;color:#f1ecdf;line-height:1.3;margin:0;font-weight:700}
+
+.nqboss-footer{position:relative;padding:16px 28px 22px}
+.nqboss-step-indicator{position:absolute;left:28px;top:50%;transform:translateY(-50%);font-size:.75rem;color:#9aafbc}
+
+.nqboss-primary{min-width:280px}
+.nqboss-close{position:absolute;right:8px;top:8px;width:44px;height:44px;display:grid;place-items:center;z-index:2;background:#07111be6;border:1px solid #63778580;color:#e0e8ed;border-radius:6px;padding:0}
+.nqboss-close svg{stroke:currentColor;stroke-width:1.5;width:18px;height:18px}
+.nqboss-close:hover{background:#203746}
+
+@media(max-width:600px){
+ .nqboss-art{height:208px}
+.nqboss-copy{margin-top:-25px;padding:0 21px 10px}
+
+ .nqboss-card h2{font-size:1.48rem;margin-bottom:18px}
+.nqboss-chapter{font-size:.73rem}
+
+ .nqboss-boss-name{font-size:.82rem}
+.nqboss-story{font-size:.91rem;line-height:1.65}
+
+ .nqboss-copy blockquote{margin-top:18px;padding-left:13px}
+.nqboss-copy blockquote .nqboss-quote{font-size:.9rem}
+
+ .nqboss-stats{margin-top:19px}
+.nqboss-stats dd{font-size:1.1rem}
+
+ .nqboss-footer{padding:15px 21px 19px}
+.nqboss-primary{min-width:0}
+.nqboss-step-indicator{display:none}
+
+ #bossIntroChallenge .nqboss-destiny{font-size:.86rem}
+
+}
+
+@container nqboss (max-width:26rem){.nqboss-story{font-size:.9rem}
+.nqboss-copy blockquote .nqboss-quote{font-size:.87rem}
+.nqboss-primary{font-size:.95rem}
+}
+
+@container nqboss (max-width:12rem){
+ .nqboss-art{height:185px}
+.nqboss-copy{margin-top:-16px;padding:0 20px 12px}
+
+ .nqboss-card h2{font-size:1.05rem}
+.nqboss-chapter{font-size:.65rem}
+.nqboss-boss-name{font-size:.75rem}
+
+ .nqboss-story{font-size:.8rem}
+.nqboss-copy blockquote .nqboss-quote{font-size:.8rem}
+.nqboss-copy blockquote p{font-size:.72rem}
+
+ .nqboss-stats{grid-template-columns:minmax(0,1fr);gap:12px}
+.nqboss-stats div{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.nqboss-stats div+div{border:0}
+.nqboss-stats dt{font-size:.75rem}
+.nqboss-stats dd{font-size:.9rem}
+
+ #bossIntroChallenge .nqboss-destiny{font-size:.75rem}
+.nqboss-primary{font-size:.8rem}
+
+}
+
+
+#bossIntroPopup .nqboss-card{padding:0!important;text-align:center!important;font-family:Philosopher,serif;border:1px solid #647986!important}
+
+#bossIntroPopup h2{color:#f1ecdf!important;background:none!important;-webkit-text-fill-color:currentColor!important;text-transform:none!important;letter-spacing:-.02em!important;font-family:Cinzel,serif!important}
+
+#bossIntroPopup button{font-family:Philosopher,serif;cursor:pointer}
