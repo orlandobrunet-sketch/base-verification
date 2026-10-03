@@ -496,19 +496,40 @@
           ? 'background:linear-gradient(180deg,#22c55e,#15803d);border-color:#166534;color:#fff;'
           : isBoss ? 'background:linear-gradient(180deg,#a855f7,#7c3aed);border-color:#6d28d9;color:#fff;text-shadow:0 0 10px rgba(168,85,247,0.5);' : '';
 
-      popup.innerHTML=`
-        <div class='narrative-card' style="${cardStyle}">
-          <button class="popup-x" data-close-closest=".narrative-popup" aria-label="Fechar">✕</button>
-          <div class='narr-chapter' style="${chStyle}">${stage.ch}</div>
-          <h3>${headEmoji}${stage.title}</h3>
-          ${bossImgHtml}
-          <div class='narr-text' style="${textStyle}">${stage.text}</div>
-          <div class='narr-progress'>
-            <strong>${state.correctTotal}</strong> acertos · Nível <strong>${state.level}</strong> · ${state.queue.length - state.idx} cartas restantes
+      // Capítulos comuns: apresentação aprovada; eventos de batalha mantêm seu recorte próprio.
+      if (!isFinale && !isBoss && !isStun && !isStunRecovery) {
+        popup.classList.add('nqnarr-overlay');
+        popup.innerHTML=`
+          <section class="nqnarr-card" aria-describedby="nqNarrativeStory">
+            <div class="nqnarr-reading" role="region" tabindex="0" aria-label="Narrativa e progresso">
+              <p class="nqnarr-chapter">${stage.ch}</p>
+              <div class="nqnarr-heading"><svg class="nqnarr-book" viewBox="0 0 80 88" aria-hidden="true"><path class="pages" d="M40 17C29 10 14 13 8 17v51c10-5 22-4 32 2 10-6 22-7 32-2V17c-6-4-21-7-32 0Z"/><path d="M5 22H3v52c13-5 24-4 37 2 13-6 24-7 37-2V22h-2"/><path class="spine" d="M40 19v48"/><path class="water" d="M14 29c7-4 14-3 19 0m-19 9c7-4 14-3 19 0m-19 9c7-4 14-3 19 0m14-18c5-3 12-4 19 0m-19 9c5-3 12-4 19 0m-19 9c5-3 12-4 19 0"/><path d="M30 81h20" opacity=".5"/></svg><h2>${stage.title}</h2></div>
+              <div class="nqnarr-story" id="nqNarrativeStory">${stage.text}</div>
+              <div class="nqnarr-progress">
+                <div class="nqnarr-metric"><strong>${state.correctTotal}</strong><span>Acertos</span></div>
+                <div class="nqnarr-metric"><strong>${state.level}</strong><span>Nível</span></div>
+                <div class="nqnarr-metric"><strong>${state.queue.length - state.idx}</strong><span>Cartas restantes</span></div>
+              </div>
+            </div>
+            <footer class="nqnarr-footer"><button class="nqnarr-primary" data-close-closest=".narrative-popup">Continuar a Jornada</button></footer>
+            <button class="nqnarr-close" data-close-closest=".narrative-popup" aria-label="Fechar capítulo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+          </section>
+        `;
+      } else {
+        popup.innerHTML=`
+          <div class='narrative-card' style="${cardStyle}">
+            <button class="popup-x" data-close-closest=".narrative-popup" aria-label="Fechar">✕</button>
+            <div class='narr-chapter' style="${chStyle}">${stage.ch}</div>
+            <h3>${headEmoji}${stage.title}</h3>
+            ${bossImgHtml}
+            <div class='narr-text' style="${textStyle}">${stage.text}</div>
+            <div class='narr-progress'>
+              <strong>${state.correctTotal}</strong> acertos · Nível <strong>${state.level}</strong> · ${state.queue.length - state.idx} cartas restantes
+            </div>
+            <button class='btn sec' style="${btnStyle}" data-close-closest=".narrative-popup">${btnLabel}</button>
           </div>
-          <button class='btn sec' style="${btnStyle}" data-close-closest=".narrative-popup">${btnLabel}</button>
-        </div>
-      `;
+        `;
+        }
       document.body.appendChild(popup);
       nqDialogo(popup);
       // (fechar-ao-clicar-fora removido — usa o X)
