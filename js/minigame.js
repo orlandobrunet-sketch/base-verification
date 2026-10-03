@@ -29,27 +29,53 @@
     ];
 
     function showMinigameIntroPopup(atCorrectTotal, triggerIdx) {
+      document.getElementById('minigameIntroPopup')?.remove();
       const intro = _minigameIntros[triggerIdx] || _minigameIntros[0];
+      const symbols = [
+  "<path class=\"nqinvite-rune\" pathLength=\"200\" d=\"m43 10-23 31h16l-7 21 23-32H36Z\"/>",
+  "<path class=\"nqinvite-rune\" pathLength=\"200\" d=\"M36 11v44m-17 0h34M16 23h40M23 23l-9 17h18Zm26 0-9 17h18Z\"/>",
+  "<circle class=\"nqinvite-rune\" pathLength=\"200\" cx=\"36\" cy=\"29\" r=\"20\"/><path class=\"nqinvite-rune\" pathLength=\"200\" d=\"M24 52h24l5 9H19Zm5-21 5-5 5 5-5 5Zm14-16v9m-5-4h10\"/>"
+];
       const popup = document.createElement('div');
-      popup.className = 'narrative-popup';
+      popup.className = 'nq-overlay';
       popup.id = 'minigameIntroPopup';
-      popup.innerHTML = `
-        <div class='narrative-card' style="border-color:#4ade80;box-shadow:0 0 40px rgba(74,222,128,0.35);">
-          <div class='narr-chapter' style="color:#4ade80;">${intro.chapter}</div>
-          <h3 style="color:#a7f3d0;">${intro.icon} ${intro.title}</h3>
-          <div class='narr-text' style="color:#d1fae5;font-style:italic;">${intro.text}</div>
-          <div style="background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.35);border-radius:10px;padding:10px 14px;margin:14px 0;text-align:center;">
-            <div style="font-size:0.7rem;color:#4ade80;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px;">🎁 Prêmio Disponível</div>
-            <div style="font-size:0.8rem;color:#a7f3d0;">${intro.reward}</div>
+      popup.innerHTML = `<section class="nqinvite-card" role="dialog" aria-modal="true" aria-labelledby="minigameInviteTitle" aria-describedby="minigameInviteStory">
+          <div class="nqinvite-reading" role="region" aria-label="Convite e recompensa" tabindex="0">
+          <div class="nqinvite-heading">
+          <svg class="nqinvite-seal" viewBox="0 0 72 80" aria-hidden="true">
+          <path class="nqinvite-border" d="M15 2h42l13 13v50L57 78H15L2 65V15Z"/>
+          <g transform="translate(0 4)">${symbols[triggerIdx] || symbols[0]}</g>
+          </svg>
+          <div>
+          <p class="nqinvite-chapter" >${intro.chapter}</p>
+          <h2 id="minigameInviteTitle">${intro.title}</h2>
           </div>
-          <div class='narr-progress'>
-            <strong>${state.correctTotal}</strong> acertos · Nível <strong>${state.level}</strong>
           </div>
-          <button class='btn gold' id='acceptMinigameBtn' style="background:linear-gradient(135deg,#065f46,#059669);border-color:#4ade80;color:#ecfdf5;width:100%;">⚡ Aceitar o Desafio!</button>
-        </div>`;
+          <p class="nqinvite-story" id="minigameInviteStory">${intro.text}</p>
+          <div class="nqinvite-reward">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 10h16v10H4Zm-1-4h18v4H3Zm9 0v14M12 6C2 6 5-2 12 6Zm0 0c10 0 7-8 0 0Z"/>
+          </svg>
+          <div>
+          <h3>Prêmio disponível</h3>
+          <p >${intro.reward}</p>
+          </div>
+          </div>
+          <p class="nqinvite-progress">
+          <span>
+          <strong >${state.correctTotal}</strong> acertos</span>
+          <span>Nível <strong >${state.level}</strong>
+          </span>
+          </p>
+          </div>
+          <footer class="nqinvite-footer">
+          <button type="button" class="nqinvite-primary" id="acceptMinigameBtn">Aceitar o desafio!</button>
+          <button type="button" class="nqinvite-secondary" data-remove-id="minigameIntroPopup">Continuar jornada</button>
+          </footer>
+          </section>`;
       document.body.appendChild(popup);
-      nqDialogo(popup);
-      document.getElementById('acceptMinigameBtn')?.addEventListener('click', () => {
+      nqDialogo(popup, { painel: popup.querySelector('.nqinvite-card') });
+      popup.querySelector('#acceptMinigameBtn').addEventListener('click', () => {
         popup.remove();
         showRapidQuizMinigame();
       });

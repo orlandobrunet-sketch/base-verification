@@ -14323,3 +14323,74 @@ to{stroke-dashoffset:0;opacity:1}
 
 #goldMilestonePopup button{font-family:Philosopher,serif;cursor:pointer}
 
+
+/* Convite ao Julgamento Rápido — eventos da jornada. */
+#minigameIntroPopup{z-index:9998;position:fixed;inset:0;padding:12px;display:flex;align-items:center;justify-content:center;background:#02060b9c;backdrop-filter:blur(5px)}
+
+.nqinvite-card{container-type:inline-size;container-name:nqinvite;width:min(100%,590px);max-height:calc(100dvh - 24px);min-height:0;display:flex;flex-direction:column;position:relative;overflow:hidden;border:1px solid #708391;border-radius:12px;background:linear-gradient(135deg,#182d3bed,#0c1723eb 75%);box-shadow:0 30px 90px #0009,inset 0 1px #d8edf218}
+
+.nqinvite-reading{padding:30px 30px 24px;min-height:0;overflow-y:auto;scrollbar-width:thin}
+
+.nqinvite-heading{display:flex;align-items:center;gap:22px;margin-bottom:22px}
+.nqinvite-seal{width:84px;height:92px;flex:none;color:#edce83;overflow:visible}
+.nqinvite-seal .nqinvite-border{stroke:#748d99;fill:#1c35434d;stroke-width:1}
+.nqinvite-seal .nqinvite-rune{stroke:currentColor;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:200;animation:nqinvite-reveal 1s ease-out both}
+.nqinvite-chapter{margin:0 0 8px;font-size:.8rem;line-height:1.5;color:#adbdc9}
+.nqinvite-card h2{font:600 1.35rem/1.4 Cinzel,serif;color:#f1ecdf;margin:0;overflow-wrap:anywhere}
+.nqinvite-story{font-size:1rem;line-height:1.65;color:#d1dbe2;margin:0 0 24px}
+.nqinvite-reward{display:grid;grid-template-columns:22px minmax(0,1fr);gap:13px;border-top:1px solid #344c5e;border-bottom:1px solid #344c5e;padding:18px 0}
+.nqinvite-reward svg{width:22px;height:22px;stroke:#c6dca9;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.nqinvite-reward h3{font:700 1rem/1.4 Philosopher,serif;margin:0 0 6px;color:#e2ebd7}
+.nqinvite-reward p{font-size:.9rem;line-height:1.55;color:#bdcbd6;margin:0}
+.nqinvite-progress{display:flex;gap:22px;color:#adbdc9;margin:19px 0 0;font-size:.85rem;line-height:1.4}
+.nqinvite-progress strong{color:#f1ecdf;font-weight:700}
+
+.nqinvite-footer{padding:18px 30px 22px;flex:none;background:#0a15214d;display:flex;flex-direction:column;gap:10px}
+.nqinvite-primary{display:block;width:100%;min-height:48px;margin:0;background:#edce83;color:#12212b;border:1px solid #f3d991;border-radius:6px;padding:11px 16px;font-size:1rem;font-weight:700}
+.nqinvite-primary:hover{background:#f4d995}
+.nqinvite-secondary{min-height:44px;border:0;background:transparent;color:#bdcbd6;font-size:.9rem;border-radius:5px;padding:9px 12px}
+.nqinvite-secondary:hover{background:#243847}
+@keyframes nqinvite-reveal{from{stroke-dashoffset:200;opacity:.3}
+to{stroke-dashoffset:0;opacity:1}
+}
+
+@media(max-width:600px){.nqinvite-reading{padding:24px 20px 21px;scrollbar-width:none}
+.nqinvite-reading::-webkit-scrollbar{display:none}
+.nqinvite-heading{gap:15px}
+.nqinvite-seal{width:66px;height:78px}
+.nqinvite-card h2{font-size:1.15rem}
+.nqinvite-story{font-size:.94rem}
+.nqinvite-footer{padding:16px 20px 18px}
+}
+
+@container nqinvite (max-width:26rem){.nqinvite-card h2{font-size:1.05rem}
+.nqinvite-chapter{font-size:.75rem}
+.nqinvite-story{font-size:.9rem}
+.nqinvite-reward p{font-size:.85rem}
+.nqinvite-primary{font-size:.9rem}
+.nqinvite-progress{font-size:.8rem;flex-wrap:wrap;gap:8px 22px}
+}
+
+@container nqinvite (max-width:12rem){.nqinvite-heading{flex-direction:column;align-items:flex-start;gap:10px}
+.nqinvite-seal{width:52px;height:60px}
+.nqinvite-card h2{font-size:1rem}
+.nqinvite-story{font-size:.82rem}
+.nqinvite-reward{grid-template-columns:minmax(0,1fr);gap:8px}
+.nqinvite-reward p{font-size:.8rem}
+.nqinvite-primary,.nqinvite-secondary{font-size:.8rem}
+}
+
+@media(prefers-reduced-motion:reduce){.nqinvite-seal .nqinvite-rune{animation:none}
+}
+
+
+#minigameIntroPopup .nqinvite-card{padding:0!important;text-align:left!important;border:1px solid #708391!important}
+
+#minigameIntroPopup h2,#minigameIntroPopup h3{background:none!important;-webkit-text-fill-color:currentColor!important;text-transform:none!important;letter-spacing:normal!important}
+
+#minigameIntroPopup h2{color:#f1ecdf!important;margin:0!important}
+
+#minigameIntroPopup h3{color:#e2ebd7!important;font:700 1rem/1.4 Philosopher,serif!important;margin:0 0 6px!important}
+
+#minigameIntroPopup button{font-family:Philosopher,serif;cursor:pointer}
+
