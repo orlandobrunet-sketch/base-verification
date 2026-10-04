@@ -14689,3 +14689,13 @@ h1{font:600 2rem/1.25 Cinzel,serif;letter-spacing:-.025em;margin:0;overflow-wrap
 @media(max-width:600px){.nqstun-spell{width:52px;height:65px}.nqstun-effect{gap:14px}.nqstun-effect strong{font-size:.95rem}}
 @container nqNarrative (max-width:16rem){.nqstun-spell{width:44px;height:48px}.nqstun-effect{align-items:flex-start;gap:12px}.nqstun-effect strong{font-size:.82rem}.nqstun-effect p{font-size:.8rem}.nqstun-effect>svg{width:22px;height:22px}}
 @media(prefers-reduced-motion:reduce){.nqstun-spell .mist{animation:none}}
+
+/* Recuperação dos equipamentos — proposta aprovada. */
+.nqrecover-card{background:radial-gradient(ellipse at 12% 15%,#263d3850,transparent 60%),linear-gradient(135deg,#192532,#0b141d 70%);border-color:#88a79d66}
+.nqrecover-card .nqnarr-chapter{color:#abd2c1}.nqrecover-card .nqnarr-chapter::after{background:linear-gradient(90deg,#abd2c142,transparent)}
+.nqrecover-flame{width:76px;height:84px;fill:none;stroke-linecap:round;stroke-linejoin:round}.nqrecover-flame .halo{stroke:#ddc280;stroke-width:1.4;fill:#d8bd6710;stroke-dasharray:220;animation:nqRecoveryFlame 1.2s ease-out both}.nqrecover-flame .core{stroke:#a7cdbc;stroke-width:1.5;fill:#a7cdbc12}.nqrecover-flame .spark{stroke:#ddc280;stroke-width:1;opacity:.5}
+.nqrecover-effect{display:flex;align-items:center;gap:17px;border-top:1px solid #abd2c126;border-bottom:1px solid #abd2c126;padding:20px 0;margin:25px 0 0}.nqrecover-effect>svg{width:30px;height:30px;flex:none;fill:none;stroke:#abd2c1;stroke-width:1.4;stroke-linecap:round}.nqrecover-effect strong{font-size:1rem;font-weight:700;color:#eee8d9}.nqrecover-effect p{font-size:.88rem;color:#b7c2cc;line-height:1.5;margin:6px 0 0}.nqrecover-card .nqnarr-primary{background:#dbbd8c;border-color:#eed2a2}
+@keyframes nqRecoveryFlame{from{stroke-dashoffset:220;opacity:.3}to{stroke-dashoffset:0;opacity:1}}
+@media(max-width:600px){.nqrecover-flame{width:52px;height:65px}.nqrecover-effect{gap:14px}.nqrecover-effect strong{font-size:.95rem}}
+@container nqNarrative (max-width:16rem){.nqrecover-flame{width:44px;height:48px}.nqrecover-effect{align-items:flex-start;gap:12px}.nqrecover-effect strong{font-size:.82rem}.nqrecover-effect p{font-size:.8rem}.nqrecover-effect>svg{width:22px;height:22px}}
+@media(prefers-reduced-motion:reduce){.nqrecover-flame .halo{animation:none}}
