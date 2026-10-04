@@ -14699,3 +14699,53 @@ h1{font:600 2rem/1.25 Cinzel,serif;letter-spacing:-.025em;margin:0;overflow-wrap
 @media(max-width:600px){.nqrecover-flame{width:52px;height:65px}.nqrecover-effect{gap:14px}.nqrecover-effect strong{font-size:.95rem}}
 @container nqNarrative (max-width:16rem){.nqrecover-flame{width:44px;height:48px}.nqrecover-effect{align-items:flex-start;gap:12px}.nqrecover-effect strong{font-size:.82rem}.nqrecover-effect p{font-size:.8rem}.nqrecover-effect>svg{width:22px;height:22px}}
 @media(prefers-reduced-motion:reduce){.nqrecover-flame .halo{animation:none}}
+
+/* A Última Prova — capítulo de 99 acertos aprovado. */
+.nqlast-overlay{position:fixed;inset:0;background:#02060ba8;backdrop-filter:blur(5px);display:flex;align-items:center;justify-content:center;padding:12px}
+.nqlast-card{container-type:inline-size;container-name:nqlast;width:min(100%,850px);max-height:calc(100dvh - 24px);min-height:0;display:flex;flex-direction:column;position:relative;overflow:hidden;border:1px solid #708391;border-radius:12px;background:linear-gradient(135deg,#182d3bed,#0c1723eb 75%);box-shadow:0 30px 90px #0009,inset 0 1px #d8edf218}
+.nqlast-reading{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);min-height:0;overflow-y:auto;scrollbar-width:thin}
+.nqlast-art{min-height:380px;position:relative;overflow:hidden;background:#121d29}.nqlast-art img{display:block;width:100%;height:100%;position:absolute;inset:0;object-fit:cover;object-position:center 35%;animation:nqLastArrival .85s ease-out both}.nqlast-art:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,transparent 70%,#15263560),linear-gradient(0deg,#0c172335,transparent 50%)}
+.nqlast-copy{padding:35px 28px;display:flex;flex-direction:column;justify-content:center}.nqlast-chapter{margin:0 0 10px;color:#c0b8d5;font-size:.8rem;line-height:1.4}.nqlast-card h2{font:600 1.8rem/1.3 Cinzel,serif;color:#f1ecdf;margin:0 0 23px;overflow-wrap:anywhere}.nqlast-message{font-size:1rem;line-height:1.65;color:#bdcbd6;margin:0 0 20px}.nqlast-destiny{font-size:1rem;line-height:1.55;color:#edce83;margin:0;padding-top:20px;border-top:1px solid #344c5e}
+.nqlast-footer{padding:18px 28px 22px;flex:none;background:#0a15214d;display:flex;justify-content:flex-end}.nqlast-primary{min-width:calc((100% - 28px)/2.1);min-height:48px;margin:0;background:#edce83;color:#12212b;border:1px solid #f3d991;border-radius:6px;padding:11px 22px;font-size:1rem;font-weight:700}.nqlast-primary:hover{background:#f4d995}
+@keyframes nqLastArrival{from{opacity:.4;transform:scale(1.015)}to{opacity:1;transform:scale(1)}}
+@media(max-width:600px){.nqlast-reading{grid-template-columns:minmax(0,1fr);scrollbar-width:none}.nqlast-reading::-webkit-scrollbar{display:none}.nqlast-art{min-height:205px}.nqlast-art img{object-position:center 35%}.nqlast-art:after{background:linear-gradient(0deg,#13243480,transparent 50%)}.nqlast-copy{padding:22px 20px 25px}.nqlast-chapter{margin-bottom:8px}.nqlast-card h2{font-size:1.35rem;margin-bottom:17px}.nqlast-message,.nqlast-destiny{font-size:.93rem}.nqlast-message{margin-bottom:17px}.nqlast-destiny{padding-top:17px}.nqlast-footer{padding:16px 20px 18px}.nqlast-primary{width:100%;min-width:0}}
+@container nqlast (max-width:26rem){.nqlast-card h2{font-size:1.2rem}.nqlast-message,.nqlast-destiny{font-size:.88rem}.nqlast-primary{font-size:.9rem}.nqlast-reading{grid-template-columns:minmax(0,1fr)}}
+@container nqlast (max-width:12rem){.nqlast-art{min-height:155px}.nqlast-copy{padding:18px 20px 22px}.nqlast-card h2{font-size:1rem}.nqlast-chapter{font-size:.7rem}.nqlast-message,.nqlast-destiny{font-size:.8rem}.nqlast-primary{font-size:.8rem}}
+@media(prefers-reduced-motion:reduce){.nqlast-art img{animation:none}}
+
+/* Nova direção: cena contínua, título integrado e ação central. */
+.nqlast-card{width:min(100%,920px);border:1px solid #647986;border-radius:14px;background:#0b1520;box-shadow:0 35px 100px #000b}
+.nqlast-reading{display:block}
+.nqlast-art{height:clamp(300px,52dvh,410px);min-height:0;background:#111d2b}
+.nqlast-art img{object-position:center top;animation:sceneReveal 1s ease-out both}
+.nqlast-art:after{background:linear-gradient(0deg,#0b1520 0%,#0b1520e6 8%,#0b152040 28%,transparent 52%);inset:-1px}
+.nqlast-copy{position:relative;z-index:1;display:block;margin-top:-91px;padding:0 38px 13px;text-align:center}
+.nqlast-chapter{font-size:.8rem;color:#c7c3b5;margin:0 0 7px}
+.nqlast-card h2{font-size:3.1rem;line-height:1.15;letter-spacing:-.035em;margin:0 0 20px;text-shadow:0 3px 18px #0008}
+.nqlast-message{max-width:570px;margin:0 auto 14px;font-size:1.05rem;line-height:1.55;color:#ccd8e2}
+.nqlast-destiny{border:0;padding:0;margin:0;font-size:.93rem;line-height:1.5;color:#deca94}
+.nqlast-footer{justify-content:center;background:transparent;padding:18px 28px 26px}
+.nqlast-primary{min-width:280px;min-height:52px;border-radius:7px;background:linear-gradient(180deg,#ead197,#d5b66a);color:#17212a;box-shadow:inset 0 1px #fff6,0 4px 18px #0003;padding:13px 25px}
+.nqlast-primary:hover{background:#f2dca5}
+@keyframes sceneReveal{from{opacity:.4;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){
+ .nqlast-art{height:278px;min-height:0}.nqlast-art img{object-position:center top}
+ .nqlast-art:after{background:linear-gradient(0deg,#0b1520 0%,#0b1520e6 10%,#0b152040 29%,transparent 58%)}
+ .nqlast-copy{margin-top:-55px;padding:0 22px 8px}
+ .nqlast-chapter{font-size:.78rem;margin-bottom:8px}
+ .nqlast-card h2{font-size:2.1rem;margin-bottom:19px}
+ .nqlast-message{font-size:.98rem;line-height:1.6;margin-bottom:15px}
+ .nqlast-destiny{font-size:.87rem;line-height:1.55}
+ .nqlast-footer{padding:18px 22px 23px}.nqlast-primary{min-width:0;width:100%;font-size:1rem}
+}
+@container nqlast (max-width:26rem){
+ .nqlast-message{font-size:.96rem}.nqlast-destiny{font-size:.87rem}.nqlast-primary{font-size:.95rem}
+}
+@container nqlast (max-width:12rem){
+ .nqlast-art{height:225px}.nqlast-copy{margin-top:-30px;padding:0 20px 9px}
+ .nqlast-chapter{font-size:.7rem}.nqlast-card h2{font-size:1.25rem;line-height:1.2}
+ .nqlast-message{font-size:.8rem}.nqlast-destiny{font-size:.75rem}.nqlast-primary{font-size:.8rem}
+}
+@media(prefers-reduced-motion:reduce){.nqlast-art img{animation:none}}
+.nqlast-close{position:absolute;z-index:2;right:10px;top:10px;width:44px;height:44px;display:grid;place-items:center;border:1px solid #ffffff22;border-radius:6px;color:#cbd8e0;background:#09121bbd}.nqlast-close:hover{background:#203446}.nqlast-close svg{width:18px;height:18px;stroke:currentColor;stroke-width:1.5}.nqlast-copy .nqlast-message{font-size:1rem;line-height:1.8;margin-bottom:0}@media(max-width:600px){.nqlast-copy .nqlast-message{font-size:.94rem;line-height:1.75}.nqlast-art{min-height:230px}}@container nqlast (max-width:12rem){.nqlast-copy .nqlast-message{font-size:.8rem}.nqlast-primary{white-space:normal}}
+.nqlast-overlay{z-index:99999;animation:none;font-family:Philosopher,serif}.nqlast-primary{cursor:pointer;font-family:Philosopher,serif}.nqlast-close{cursor:pointer}.nqlast-card :focus-visible{outline:2px solid #9fe1e8;outline-offset:3px}

@@ -543,6 +543,18 @@
             <button class="nqnarr-close" data-close-closest=".narrative-popup" aria-label="Fechar aviso de recuperação"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
           </section>
         `;
+      } else if (isBoss && !isFinale) {
+        popup.classList.add('nqlast-overlay');
+        popup.innerHTML=`
+          <section class="nqlast-card" aria-describedby="nqLastStory">
+            <div class="nqlast-reading" role="region" tabindex="0" aria-label="O momento decisivo">
+              <div class="nqlast-art"><img src="assets/golpe-final-cinematico.webp" alt="Os três guardiões enfrentam o Arqui-Nefromante"></div>
+              <div class="nqlast-copy"><p class="nqlast-chapter">${stage.ch}</p><h2>${stage.title}</h2><p class="nqlast-message" id="nqLastStory">${stage.text}</p></div>
+            </div>
+            <footer class="nqlast-footer"><button class="nqlast-primary" data-close-closest=".narrative-popup">Enfrentar o Arqui-Nefromante!</button></footer>
+            <button class="nqlast-close" data-close-closest=".narrative-popup" aria-label="Fechar capítulo final"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+          </section>
+        `;
       } else {
         popup.innerHTML=`
           <div class='narrative-card' style="${cardStyle}">
