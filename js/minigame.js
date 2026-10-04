@@ -529,6 +529,20 @@
             <button class="nqnarr-close" data-close-closest=".narrative-popup" aria-label="Fechar aviso de atordoamento"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
           </section>
         `;
+      } else if (isStunRecovery) {
+        popup.classList.add('nqnarr-overlay');
+        popup.innerHTML=`
+          <section class="nqnarr-card nqrecover-card" aria-describedby="nqRecoveryStory">
+            <div class="nqnarr-reading" role="region" tabindex="0" aria-label="Narrativa e recuperação dos equipamentos">
+              <p class="nqnarr-chapter">${stage.ch.replace(/^⚔️\s*/, '')}</p>
+              <div class="nqnarr-heading"><svg class="nqrecover-flame" viewBox="0 0 80 88" aria-hidden="true"><path class="halo" d="M40 8C40 24 19 27 19 48c0 16 10 28 23 28 15 0 24-11 24-25 0-9-4-17-12-23 0 10-6 13-10 15 2-13 1-25-4-35Z"/><path class="core" d="M38 41c-9 0-14 7-12 16 2 6 8 10 12 7 4-3 3-7 0-9-4-2-2-4 1-6 3-2 2-6-1-8Z"/><path class="spark" d="M40 2v3m-20 8 3 4m38-5-3 4M9 42l4 1m58 0-4 1"/></svg><h2>${stage.title}</h2></div>
+              <div class="nqnarr-story" id="nqRecoveryStory">${stage.text}</div>
+              <div class="nqrecover-effect"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8-1m-4 9v2"/></svg><div><strong>Equipamentos restaurados</strong><p>Seus atributos voltam a funcionar.</p></div></div>
+            </div>
+            <footer class="nqnarr-footer"><button class="nqnarr-primary" data-close-closest=".narrative-popup">Retomar o combate!</button></footer>
+            <button class="nqnarr-close" data-close-closest=".narrative-popup" aria-label="Fechar aviso de recuperação"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+          </section>
+        `;
       } else {
         popup.innerHTML=`
           <div class='narrative-card' style="${cardStyle}">
