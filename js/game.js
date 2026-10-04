@@ -5328,34 +5328,38 @@
       const st = (typeof total === 'function') ? total() : (state.stats || {});
       const lvl = state.level || 1;
       const statsHtml = `
-        <div class="lore-stats">
-          <span class="lore-stat">Nível ${lvl}</span>
-          <span class="lore-stat">⚔️ ${st.atk || 0}</span>
-          <span class="lore-stat">🛡️ ${st.def || 0}</span>
-          <span class="lore-stat">📚 ${st.kno || 0}</span>
-          <span class="lore-stat">🍀 ${st.luck || 0}</span>
-        </div>
+        <p class="nqlore-stats-caption">Nível ${lvl} · atributos totais</p>
+        <dl class="nqlore-stats" aria-label="Atributos totais do guardião">
+          <div><dt>Ataque</dt><dd>${st.atk || 0}</dd></div>
+          <div><dt>Defesa</dt><dd>${st.def || 0}</dd></div>
+          <div><dt>Conhecimento</dt><dd>${st.kno || 0}</dd></div>
+          <div><dt>Sorte</dt><dd>${st.luck || 0}</dd></div>
+        </dl>
       `;
 
       const modal = document.createElement('div');
       modal.id = 'heroLoreModal';
-      modal.className = 'hero-lore-modal';
+      modal.className = 'nqnarr-overlay nqlore-overlay';
       modal.innerHTML = `
-        <div class="hero-lore-card">
-          <img class="lore-portrait" src="${img}" alt="${escapeHtml(char.name)}">
-          <div class="lore-name">${escapeHtml(char.name)}</div>
-          <div class="lore-title">${escapeHtml(char.title)}</div>
-          ${state.gameStarted ? statsHtml : ''}
-          <div class="lore-text">
-            <p>${lore.p1}</p>
-            <p>${lore.p2}</p>
+        <section class="nqnarr-card nqlore-card" aria-describedby="nqHeroLoreText">
+          <div class="nqnarr-reading" role="region" tabindex="0" aria-label="História e atributos do guardião">
+            <p class="nqnarr-chapter">História do Guardião</p>
+            <div class="nqinicio-heading">
+              <div class="nqinicio-portrait"><img src="${img}" alt=""></div>
+              <div class="nqinicio-identity">
+                <h2>${escapeHtml(char.name)}</h2>
+                <p class="nqinicio-subtitle">${escapeHtml(char.title)}</p>
+              </div>
+            </div>
+            ${state.gameStarted ? statsHtml : ''}
+            <div class="nqnarr-story nqlore-story" id="nqHeroLoreText">
+              <p>${lore.p1}</p>
+              <p>${lore.p2}</p>
+            </div>
           </div>
-          <button class="lore-close" data-remove-id="heroLoreModal">FECHAR</button>
-        </div>
+          <footer class="nqnarr-footer"><button class="nqnarr-primary nqinicio-primary" data-remove-id="heroLoreModal">Voltar à Jornada</button></footer>
+        </section>
       `;
-      // modal.addEventListener('click', function(e) {
-      //   if(e.target === modal) modal.remove();
-      // });
       document.body.appendChild(modal);
       nqDialogo(modal);
     }
