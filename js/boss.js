@@ -511,13 +511,19 @@
       const popup = document.createElement('div');
       popup.className = 'narrative-popup';
       popup.id = 'charIntroOverlay';
+      const [heroName, heroTitle] = intro.ch.split(' · ');
+      const character = characters[charId];
+      const extension = charId === 'glomerulus' ? 'png' : 'jpg';
+      popup.classList.add('nqnarr-overlay');
       popup.innerHTML = `
-        <div class='narrative-card'>
-          <div class='narr-chapter'>⚔️ Início da Jornada</div>
-          <h3>📖 ${intro.ch}</h3>
-          <div class='narr-text'>${intro.text}</div>
-          <button class='btn gold' data-action="closeIntroAndStart">⚔️ Iniciar Jornada</button>
-        </div>`;
+        <section class="nqnarr-card nqinicio-card" aria-describedby="nqIntroStory">
+          <div class="nqnarr-reading" role="region" tabindex="0" aria-label="Seu guardião e início da jornada">
+            <p class="nqnarr-chapter">Início da Jornada</p>
+            <div class="nqinicio-heading"><div class="nqinicio-portrait"><img src="assets/classes/${character.folder}/nivel_01.${extension}" alt=""></div><div class="nqinicio-identity"><h2>${heroName}</h2><p class="nqinicio-subtitle">${heroTitle}</p></div></div>
+            <div class="nqnarr-story nqinicio-story" id="nqIntroStory">${intro.text}</div>
+          </div>
+          <footer class="nqnarr-footer"><button class="nqnarr-primary nqinicio-primary" data-action="closeIntroAndStart">Iniciar Jornada</button></footer>
+        </section>`;
       document.body.appendChild(popup);
       nqDialogo(popup);
       popup.querySelector('button')?.focus();
