@@ -496,7 +496,7 @@
           ? 'background:linear-gradient(180deg,#22c55e,#15803d);border-color:#166534;color:#fff;'
           : isBoss ? 'background:linear-gradient(180deg,#a855f7,#7c3aed);border-color:#6d28d9;color:#fff;text-shadow:0 0 10px rgba(168,85,247,0.5);' : '';
 
-      // Capítulos comuns: apresentação aprovada; eventos de batalha mantêm seu recorte próprio.
+      // Capítulos e feitiço: recortes visuais aprovados; regras do combate preservadas.
       if (!isFinale && !isBoss && !isStun && !isStunRecovery) {
         popup.classList.add('nqnarr-overlay');
         popup.innerHTML=`
@@ -515,6 +515,20 @@
             <button class="nqnarr-close" data-close-closest=".narrative-popup" aria-label="Fechar capítulo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
           </section>
         `;
+      } else if (isStun) {
+        popup.classList.add('nqnarr-overlay');
+        popup.innerHTML=`
+          <section class="nqnarr-card nqstun-card" aria-describedby="nqStunStory">
+            <div class="nqnarr-reading" role="region" tabindex="0" aria-label="Narrativa e efeito do feitiço">
+              <p class="nqnarr-chapter">${stage.ch.replace(/^⚡\s*/, '')}</p>
+              <div class="nqnarr-heading"><svg class="nqstun-spell" viewBox="0 0 80 88" aria-hidden="true"><path class="staff" d="m35 36 11 43M34 39l8-2M37 50l7-2M40 61l7-2"/><path class="kidney" d="M34 10c-14-1-21 9-17 21 3 9 12 14 17 9 5-5 3-11-2-13-5-2-2-5 2-7 5-3 5-9 0-10Z"/><path class="mist" d="M7 46c12-7 25 6 36 2s17-9 29-2M11 58c12-7 25 6 36 2s12-7 24-2"/></svg><h2>${stage.title}</h2></div>
+              <div class="nqnarr-story" id="nqStunStory">${stage.text}</div>
+              <div class="nqstun-effect"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2"/></svg><div><strong>Equipamentos bloqueados</strong><p>Durante as questões 93 a 97.</p></div></div>
+            </div>
+            <footer class="nqnarr-footer"><button class="nqnarr-primary" data-close-closest=".narrative-popup">Suportar o impacto…</button></footer>
+            <button class="nqnarr-close" data-close-closest=".narrative-popup" aria-label="Fechar aviso de atordoamento"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+          </section>
+        `;
       } else {
         popup.innerHTML=`
           <div class='narrative-card' style="${cardStyle}">
@@ -529,7 +543,7 @@
             <button class='btn sec' style="${btnStyle}" data-close-closest=".narrative-popup">${btnLabel}</button>
           </div>
         `;
-        }
+      }
       document.body.appendChild(popup);
       nqDialogo(popup);
       // (fechar-ao-clicar-fora removido — usa o X)
