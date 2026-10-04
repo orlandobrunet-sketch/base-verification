@@ -14758,3 +14758,10 @@ h1{font:600 2rem/1.25 Cinzel,serif;letter-spacing:-.025em;margin:0;overflow-wrap
 @container nqNarrative (max-width:21rem){.nqinicio-heading{grid-template-columns:minmax(0,1fr);gap:15px}.nqinicio-portrait{width:94px;height:120px}.nqinicio-identity h2{font-size:1.25rem!important}.nqinicio-subtitle{font-size:.87rem}}
 @container nqNarrative (max-width:12rem){.nqinicio-identity h2{font-size:.9rem!important}.nqinicio-subtitle{font-size:.8rem}}
 @media(prefers-reduced-motion:reduce){.nqinicio-portrait img{animation:none}}
+
+/* História do Guardião — mesma moldura, atributos reais e narrativa legível. */
+.nqlore-overlay{z-index:99999}.nqlore-card{width:min(100%,760px)}.nqlore-card .nqnarr-chapter{margin-right:0}.nqlore-stats-caption{color:#a9b8c5;font-size:.82rem;margin:28px 0 0;padding-top:20px;border-top:1px solid #ffffff12}.nqlore-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:16px 0 0}.nqlore-stats>div{display:flex;flex-direction:column;gap:7px;min-width:0}.nqlore-stats dt{font-size:.82rem;color:#a9b8c5;order:1}.nqlore-stats dd{font-size:1.15rem;font-weight:700;color:#eee8d9;margin:0}.nqlore-story{margin-top:24px}.nqlore-story:first-letter{font:inherit;color:inherit}.nqlore-story p{margin:0}.nqlore-story p+p{margin-top:18px}
+@media(max-width:600px){.nqlore-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.nqlore-stats dt{font-size:.85rem}}
+@container nqNarrative (max-width:21rem){.nqlore-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.nqlore-stats dt{font-size:.8rem}}
+
+@container nqNarrative (max-width:12rem){.nqlore-stats{grid-template-columns:minmax(0,1fr);gap:14px}.nqlore-stats>div{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:12px}.nqlore-stats dt{order:0}}
