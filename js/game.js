@@ -3997,19 +3997,32 @@
       const canAfford = state.gold >= cfg.cost;
       const popup = document.createElement('div');
       popup.id = 'mobileActionConfirm';
-      popup.className = 'mobile-action-confirm';
+      popup.className = 'nqnarr-overlay nqcost-overlay';
+      const symbol = type === 'chest'
+        ? '<path d="M12 29v23h40V29M12 29h40v-8c0-8-40-8-40 0v8ZM12 35h40M25 31h14v12H25zM32 15v14"/>'
+        : '<path d="m17 40 20-20 7 7-20 20zM32 15l10-10 17 17-10 10zM8 53h28M11 53v-7h22v7"/>';
+      const labels = { forge: 'Forjar agora', legendary: 'Forjar lendário', chest: 'Abrir baú' };
       popup.innerHTML = `
-        <div class="mac-title">${cfg.title}</div>
-        <div class="mac-desc">${cfg.desc}</div>
-        <div class="mac-cost" style="color:${cfg.costColor}">💰 ${cfg.cost} ouro</div>
-        <div class="mac-gold-avail">Seu ouro: <strong style="color:${canAfford?'#ffd700':'#ef4444'}">${state.gold}</strong>${canAfford ? ' ✓' : ' — insuficiente'}</div>
-        <div class="mac-btns">
-          <button class="mac-btn mac-cancel" data-remove-id="mobileActionConfirm">CANCELAR</button>
-          <button class="mac-btn mac-confirm ${cfg.btnClass}" ${canAfford?'':'disabled style="opacity:0.4;pointer-events:none;"'}
-            data-remove-id="mobileActionConfirm" data-action="_mobileCallback" data-arg="${type}">
-            ${cfg.btnLabel}
-          </button>
-        </div>
+        <section class="nqnarr-card nqcost-card ${canAfford ? '' : 'nqcost-poor'} ${type === 'legendary' ? 'nqcost-legendary' : ''}" aria-describedby="nqActionDescription nqActionNotice">
+          <div class="nqnarr-reading" role="region" tabindex="0" aria-label="Detalhes e custo da ação">
+            <p class="nqnarr-chapter">Confirme sua escolha</p>
+            <div class="nqcost-heading">
+              <svg class="nqcost-symbol" viewBox="0 0 64 64" aria-hidden="true">${symbol}</svg>
+              <h2>${cfg.title.replace(/^[^A-Za-zÀ-ÿ]+/, '')}</h2>
+            </div>
+            <p class="nqnarr-story nqcost-description" id="nqActionDescription">${cfg.desc}</p>
+            <dl class="nqcost-ledger">
+              <div><dt>Custo</dt><dd>${cfg.cost} ouro</dd></div>
+              <div><dt>Seu ouro</dt><dd>${state.gold} ouro</dd></div>
+              <div class="nqcost-remaining"><dt>${canAfford ? 'Após confirmar' : 'Faltam'}</dt><dd>${canAfford ? state.gold - cfg.cost : cfg.cost - state.gold} ouro</dd></div>
+            </dl>
+            <p class="nqcost-notice" id="nqActionNotice">${canAfford ? 'O ouro será usado ao confirmar.' : 'Você ainda não tem ouro suficiente para esta ação.'}</p>
+          </div>
+          <footer class="nqnarr-footer nqcost-footer">
+            <button class="nqcost-cancel" data-remove-id="mobileActionConfirm">Cancelar</button>
+            <button class="nqnarr-primary nqcost-confirm" ${canAfford ? '' : 'disabled'} data-remove-id="mobileActionConfirm" data-action="_mobileCallback" data-arg="${type}">${labels[type]}</button>
+          </footer>
+        </section>
       `;
 
       // Fechar ao clicar fora — listener único (evita acúmulo por taps rápidos)
@@ -4018,7 +4031,7 @@
       }
       setTimeout(() => {
         showActionConfirmPopup._listener = function closeConfirm(e) {
-          if (!popup.contains(e.target)) {
+          if (!popup.querySelector('.nqcost-card').contains(e.target)) {
             popup.remove();
             document.removeEventListener('click', showActionConfirmPopup._listener);
             showActionConfirmPopup._listener = null;
