@@ -1074,28 +1074,28 @@
       if (_getIdentity()) return;
       const overlay = document.createElement('div');
       overlay.id = 'identityOverlay';
-      overlay.className = 'identity-overlay';
+      overlay.className = 'identity-overlay nqpath-overlay';
       overlay.innerHTML = `
-        <div class="identity-modal" role="dialog" aria-modal="true" aria-labelledby="identityTitle">
-          <div class="identity-ornament">&#10022; Reino dos Néfrons &#10022;</div>
-          <h2 class="identity-title" id="identityTitle">Como você chega hoje?</h2>
-          <p class="identity-sub">Sua escolha define o ponto de partida. Você pode mudar quando quiser nas configurações.</p>
-          <div class="identity-paths">
-            <button class="identity-path study" data-action="_pickIdentity" data-arg="study">
-              <span class="identity-path-icon">📖</span>
-              <span class="identity-path-name">Estudar</span>
-              <span class="identity-path-desc">Revisar tópicos, trilhas temáticas e desafios rápidos</span>
+        <section class="nqpath-card" role="dialog" aria-modal="true" aria-labelledby="identityTitle" aria-describedby="identitySubtitle" tabindex="0">
+          <p class="nqpath-chapter">Reino dos Néfrons</p>
+          <h2 id="identityTitle">Como você chega hoje?</h2>
+          <p class="nqpath-subtitle" id="identitySubtitle">Sua escolha define o ponto de partida. Você pode mudar quando quiser nas configurações.</p>
+          <div class="nqpath-paths">
+            <button class="nqpath-path study" data-action="_pickIdentity" data-arg="study">
+              <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 9c-6-4-14-3-14-3v26s8-1 14 3c6-4 14-3 14-3V6s-8-1-14 3Zm0 0v26M10 13h6m-6 6h6m8-6h6m-6 6h6"/></svg>
+              <span class="nqpath-name">Estudar<span class="nqpath-arrow" aria-hidden="true">↗</span></span>
+              <span class="nqpath-desc">Revisar tópicos, trilhas temáticas e desafios rápidos</span>
             </button>
-            <button class="identity-path combat" data-action="_pickIdentity" data-arg="combat">
-              <span class="identity-path-icon">⚔️</span>
-              <span class="identity-path-name">Combater</span>
-              <span class="identity-path-desc">Avançar na jornada, subir de nível e derrotar o Arqui-Nefromante</span>
+            <button class="nqpath-path combat" data-action="_pickIdentity" data-arg="combat">
+              <svg viewBox="0 0 40 40" aria-hidden="true"><path d="m8 32 22-22m-7-4h11v11M7 24l9 9m-8-1-4 4M24 27l7 7m-4-8 6-6M10 6l8 8m-8-8H5v5l8 8"/></svg>
+              <span class="nqpath-name">Combater<span class="nqpath-arrow" aria-hidden="true">↗</span></span>
+              <span class="nqpath-desc">Avançar na jornada, subir de nível e derrotar o Arqui-Nefromante</span>
             </button>
           </div>
-        </div>
+        </section>
       `;
       document.body.appendChild(overlay);
-      nqDialogo(overlay, { painel: overlay.querySelector('.identity-modal') });
+      nqDialogo(overlay, { painel: overlay.querySelector('.nqpath-card') });
       requestAnimationFrame(() => overlay.classList.add('visible'));
     }
 
