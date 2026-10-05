@@ -35,15 +35,15 @@ async function abrirCom(page: Page, conquistas: string[]) {
 
 async function medirModal(page: Page) {
   await page.evaluate(() => (window as any).showAchievementsModal?.());
-  await page.locator('.ach-counter-num').first().waitFor({ timeout: 10000 });
+  await page.locator('.nqach-count strong').first().waitFor({ timeout: 10000 });
   return page.evaluate(() => {
-    const texto = document.querySelector('.ach-counter-num')?.textContent || '0/0';
-    const [obtidas, total] = texto.split('/').map((n) => Number(n.trim()));
+    const texto = document.querySelector('.nqach-count strong')?.textContent || '0 de 0';
+    const [obtidas, total] = texto.split(' de ').map((n) => Number(n.trim()));
     return {
       obtidas,
       total,
-      linhasObtidas: document.querySelectorAll('.ach-row.unlocked').length,
-      linhasTotais: document.querySelectorAll('.ach-row').length,
+      linhasObtidas: document.querySelectorAll('.nqach-achievement.unlocked').length,
+      linhasTotais: document.querySelectorAll('.nqach-achievement').length,
     };
   });
 }
