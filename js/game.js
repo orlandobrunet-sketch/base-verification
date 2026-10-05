@@ -2890,52 +2890,42 @@
       const qText = (q.q || '').substring(0, 300);
       const popup = document.createElement('div');
       popup.id = 'flagPopup';
-      popup.className = 'nq-overlay';
-      popup.style.cssText = 'z-index:9999;background:rgba(0,0,0,0.75);';
+      popup.className = 'nqnarr-overlay nqflag-overlay';
+      const categories = [['resposta_incorreta','Resposta incorreta'], ['desatualizada','Desatualizada'], ['ambigua','Ambígua'], ['erro_texto','Erro de texto'], ['outra','Outra']];
       popup.innerHTML = `
-        <div style="background:linear-gradient(180deg,#1a2a4a,#0e1830);border:2px solid #6366f1;border-radius:14px;padding:24px;max-width:500px;width:100%;box-shadow:0 0 40px rgba(99,102,241,0.3);">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
-            <h3 style="color:#a5b4fc;font-family:'Cinzel',serif;font-size:1rem;letter-spacing:1px;">🚩 Sinalizar Erro na Questão</h3>
-            <button data-remove-id="flagPopup" style="background:none;border:none;color:#64748b;font-size:1.4rem;cursor:pointer;line-height:1;">×</button>
+        <section class="nqnarr-card nqflag-card" aria-labelledby="nqFlagTitle">
+          <div class="nqnarr-reading" role="region" tabindex="0" aria-label="Questão e relato de erro">
+            <p class="nqnarr-chapter">Revisão da questão</p>
+            <h2 id="nqFlagTitle">Sinalizar erro na questão</h2>
+            <div class="nqflag-question">
+              <p class="nqflag-ref">Questão #${escapeHtml(String(qNum))} · trecho do enunciado</p>
+              <blockquote>${escapeHtml(qText)}</blockquote>
+            </div>
+            <fieldset class="nqflag-fields">
+              <legend>Tipo de problema</legend>
+              <div class="nqflag-categories" id="flagCategoryChips">
+                ${categories.map(([value,label],i) => `<label class="nqflag-category"><input type="radio" name="nqFlagCategory" value="${value}" ${i === 0 ? 'checked' : ''}><span>${label}</span></label>`).join('')}
+              </div>
+            </fieldset>
+            <label class="nqflag-comment-label" for="flagComment">Descreva o problema</label>
+            <textarea id="flagComment" class="nqflag-comment" rows="3" placeholder="Ex: A alternativa B está incorreta pois... / O gabarito deveria ser..." aria-describedby="nqFlagHint"></textarea>
+            <p class="nqflag-hint" id="nqFlagHint">Para “Outra”, descreva o problema com pelo menos 10 caracteres.</p>
+            <div id="flagStatus" class="flag-status" role="status" aria-live="polite"></div>
           </div>
-          <p style="font-size:0.78rem;color:#94a3b8;margin-bottom:6px;">Questão #${qNum}</p>
-          <p style="font-size:0.82rem;color:#94a3b8;background:rgba(30,40,70,0.5);border-radius:8px;padding:10px;margin-bottom:14px;font-style:italic;line-height:1.5;">"${escapeHtml(qText)}"</p>
-          <label style="font-size:0.82rem;color:#93b4e8;display:block;margin-bottom:6px;">Descreva o problema:</label>
-          <div style="margin-bottom:10px;">
-  <div style="color:var(--txt-dim);font-size:0.75rem;margin-bottom:6px;">Tipo de problema:</div>
-  <div style="display:flex;flex-wrap:wrap;gap:6px;" id="flagCategoryChips">
-    <button type="button" class="flag-chip selected" data-cat="resposta_incorreta">❌ Resposta incorreta</button>
-    <button type="button" class="flag-chip" data-cat="desatualizada">📅 Desatualizada</button>
-    <button type="button" class="flag-chip" data-cat="ambigua">🤔 Ambígua</button>
-    <button type="button" class="flag-chip" data-cat="erro_texto">✏️ Erro de texto</button>
-    <button type="button" class="flag-chip" data-cat="outra">💬 Outra</button>
-  </div>
-</div>
-          <textarea id="flagComment" rows="3" placeholder="Ex: A alternativa B está incorreta pois... / O gabarito deveria ser..."
-            style="width:100%;background:rgba(10,20,40,0.8);border:1px solid var(--blue-dark);border-radius:8px;color:#d5e2ff;font-size:0.85rem;padding:10px;resize:vertical;font-family:'Philosopher',serif;outline:none;box-sizing:border-box;"></textarea>
-          <div id="flagStatus" class="flag-status"></div>
-          <button data-action="submitFlag" data-arg="${qNum}" id="flagSendBtn"
-            style="width:100%;margin-top:10px;background:linear-gradient(180deg,#4f46e5,#3730a3);border:2px solid #6366f1;color:#fff;border-radius:8px;padding:12px;font-family:'Cinzel',serif;font-size:0.82rem;font-weight:700;letter-spacing:1px;cursor:pointer;text-transform:uppercase;">
-            📧 Enviar
-          </button>
-        </div>`;
+          <footer class="nqnarr-footer nqflag-footer">
+            <button class="nqflag-cancel" data-remove-id="flagPopup">Cancelar</button>
+            <button class="nqnarr-primary" data-action="submitFlag" data-arg="${qNum}" id="flagSendBtn">Enviar</button>
+          </footer>
+        </section>`;
       document.body.appendChild(popup);
       nqDialogo(popup);
-      document.getElementById('flagCategoryChips')?.addEventListener('click', e => {
-        const chip = e.target.closest('.flag-chip');
-        if (!chip) return;
-        document.querySelectorAll('.flag-chip').forEach(c => {
-          c.classList.remove('selected');
-        });
-        chip.classList.add('selected');
-      });
       // popup.addEventListener('click', e => { if(e.target===popup) popup.remove(); });
       setTimeout(() => document.getElementById('flagComment')?.focus(), 100);
     }
 
     async function submitFlag(qNum) {
       const comment = (document.getElementById('flagComment')?.value || '').trim();
-      const selectedCat = document.querySelector('.flag-chip.selected')?.dataset?.cat || 'outra';
+      const selectedCat = document.querySelector('#flagCategoryChips input:checked')?.value || 'outra';
       const catLabels = { resposta_incorreta:'Resposta incorreta', desatualizada:'Desatualizada', ambigua:'Ambígua', erro_texto:'Erro de texto', outra:'Outra' };
       const catLabel = catLabels[selectedCat] || 'Outra';
       const q = state.current;
