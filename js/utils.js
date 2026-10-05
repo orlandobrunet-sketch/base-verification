@@ -696,29 +696,23 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
       if (!it) return;
       document.querySelectorAll('.bib-resumo-modal').forEach(el => el.remove());
 
-      const hasContent = it.resumo || it.conclusao || it.curiosidade || it.impacto;
-      const bodyHtml = hasContent
-        ? [
-            it.resumo     ? `<div class="brm-section"><div class="brm-label">📚 Resumo</div><div class="brm-text">${escapeHtml(it.resumo)}</div></div>` : '',
-            it.conclusao  ? `<div class="brm-section"><div class="brm-label">🎯 Conclusão Principal</div><div class="brm-text">${escapeHtml(it.conclusao)}</div></div>` : '',
-            it.curiosidade? `<div class="brm-section"><div class="brm-label">💡 Curiosidade</div><div class="brm-text">${escapeHtml(it.curiosidade)}</div></div>` : '',
-            it.impacto    ? `<div class="brm-section"><div class="brm-label">⭐ Impacto na Nefrologia</div><div class="brm-text">${escapeHtml(it.impacto)}</div></div>` : '',
-          ].join('')
-        : `<div class="brm-soon">Resumo em elaboração — disponível em breve.</div>`;
-
+      const sections = [['resumo', 'Resumo'], ['conclusao', 'Conclusão principal'], ['curiosidade', 'Curiosidade'], ['impacto', 'Impacto na nefrologia']];
+      const bodyHtml = sections.filter(([key]) => it[key]).map(([key, title]) =>
+        `<section class="nqreader-section nqreader-${key}"><h3>${title}</h3><p>${escapeHtml(it[key])}</p></section>`
+      ).join('') || '<p class="nqreader-empty">Resumo em elaboração — disponível em breve.</p>';
       const overlay = document.createElement('div');
-      overlay.className = 'bib-resumo-modal';
+      overlay.className = 'bib-resumo-modal nqnarr-overlay nqreader-overlay';
       overlay.innerHTML = `
-        <div class="brm-box">
-          <div class="brm-header">
-            <div class="brm-title">${escapeHtml(it.label)}</div>
-            <button class="brm-close" data-action="closeBibResumo" aria-label="Fechar">✕</button>
+        <section class="nqnarr-card nqreader-card">
+          <div class="nqnarr-reading" role="region" tabindex="0" aria-label="Resumo e referência do artigo">
+            <p class="nqnarr-chapter">Resumo científico${it.ano ? ' · ' + escapeHtml(String(it.ano)) : ''}</p>
+            <h2>${escapeHtml(it.label || '')}</h2>
+            ${it.autores || it.jornal ? `<p class="nqreader-reference">${it.autores ? escapeHtml(it.autores) : ''}${it.autores && it.jornal ? '<br>' : ''}${it.jornal ? '<em>' + escapeHtml(it.jornal) + '</em>' : ''}</p>` : ''}
+            <div class="nqreader-sections">${bodyHtml}</div>
           </div>
-          ${it.autores || it.jornal ? `<div class="brm-meta">${it.autores ? escapeHtml(it.autores) : ''}${it.jornal ? `${it.autores ? ' · ' : ''}<em>${escapeHtml(it.jornal)}</em>` : ''}${it.ano ? ` (${escapeHtml(String(it.ano))})` : ''}</div>` : ''}
-          <div class="brm-body">${bodyHtml}</div>
-        </div>
+          <footer class="nqnarr-footer"><button class="nqnarr-primary" data-action="closeBibResumo">Fechar</button></footer>
+        </section>
       `;
-      // overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); }); // disabled to prevent accidental closing
       document.body.appendChild(overlay);
       nqDialogo(overlay);
     }
