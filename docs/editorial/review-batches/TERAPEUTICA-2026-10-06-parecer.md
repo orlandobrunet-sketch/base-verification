@@ -297,3 +297,7 @@ Pendências científicas dos patches: nenhuma. Gate editorial cumprido. A aplica
 ## Validação da proposta
 
 Os onze objetos completos foram renderizados no leitor, sem gravá-los no banco do aplicativo, em larguras de 320, 390 e 1.100 px, com fontes a 100% e 200%. Nenhum texto ultrapassou a largura disponível. Schema, onze índices únicos, tipos dos campos e SHA-256 do patch conferidos; títulos, anos e raridades preservados. O aplicativo permanece com 191 registros, na versão 15.89, sem aplicação destes onze objetos.
+
+## Aplicação autorizada — 06/10/2026
+
+Após a pergunta explícita para aplicar e publicar estes onze objetos da proposta #882, o proprietário respondeu “siga”. Essa autorização cobre o patch exato aprovado acima, sem mudança material. Aplicados onze objetos; os outros 180 permaneceram idênticos, preservando 191 registros, títulos, anos, raridades e índices. Versão de aplicação: 15.90. Nenhuma alteração de questões ou mecânicas. A pendência operacional registrada anteriormente foi resolvida por esta autorização.

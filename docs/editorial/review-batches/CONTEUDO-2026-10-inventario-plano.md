@@ -85,3 +85,7 @@ RENAAL (40) e MDRD (43): [parecer formal](RELACIONADOS-2026-10-06-parecer.md) e 
 RENAAL (40) e MDRD (43) foram aplicados e publicados na versão 15.89, PR #881. Os arquivos publicados foram conferidos contra o commit de publicação; os cinco testes do leitor passaram. Mantidos 191 pergaminhos e 741 questões.
 
 O próximo lote reúne onze pergaminhos: captopril (6), DAPA-HF (13), FIGARO-DKD (24), SHARP (26), SPRINT (27), ONTARGET (28), FLOW (30), NOSTONE (33), NefIgArd (38), IDNT (41) e MICRO-HOPE (42). Ver [parecer e validação](TERAPEUTICA-2026-10-06-parecer.md). Os objetos propostos receberam aprovação editorial, Evidência VERIFICADA, Pendência NENHUMA e Publicação editorial LIBERADA. Foram preparados e testados, mas não aplicados. A revisão automática de autorização bloqueou a aplicação por considerar que a continuidade autorizava os dois cards anteriores, sem cobertura clara destes onze. Aguardar autorização explícita do proprietário para aplicar e publicar o patch exato; manter versão e cache juntos no mesmo commit de aplicação.
+
+## Aplicação autorizada do lote terapêutico
+
+O proprietário respondeu “siga” à pergunta explícita para aplicar e publicar os onze objetos da proposta #882. Aplicado o patch editorial aprovado, sem mudança material; versão 15.90. Os 180 outros objetos permanecem idênticos e o banco conserva 191 pergaminhos e 741 questões. A pendência de autorização do registro anterior foi resolvida.
