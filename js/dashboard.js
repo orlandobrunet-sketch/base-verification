@@ -18,19 +18,19 @@
       name: 'Dr. Nephros',
       title: 'Guardião dos Néfrons',
       folder: 'clerigo_renal',
-      ext: 'jpg',
+      ext: 'webp',
     },
     aquaria: {
       name: 'Dra. Aquaria',
       title: 'Mestra das Águas',
       folder: 'maga_metabolica',
-      ext: 'jpg',
+      ext: 'webp',
     },
     glomerulus: {
       name: 'Dr. Glomerulus',
       title: 'Cientista Renal',
       folder: 'guerreiro_glomerular',
-      ext: 'png',
+      ext: 'webp',
     },
   };
 
@@ -591,7 +591,7 @@
     const character = characterId ? CHARACTER_META[characterId] : null;
     const evolutionLevel = Math.min(10, Math.max(1, level || 1));
     const avatar = character
-      ? `assets/classes/${character.folder}/nivel_${String(evolutionLevel).padStart(2, '0')}.${character.ext}`
+      ? `assets/classes-cinema/${character.folder}/nivel_${String(evolutionLevel).padStart(2, '0')}.${character.ext}`
       : null;
     const nextBadge = BADGE_MILESTONES.find(badge => _number(save && save.correctTotal, 0) < badge.required) || null;
 
@@ -613,7 +613,7 @@
       character,
       avatar,
       nextAvatar: character && level < 10
-        ? `assets/classes/${character.folder}/nivel_${String(evolutionLevel + 1).padStart(2, '0')}.${character.ext}`
+        ? `assets/classes-cinema/${character.folder}/nivel_${String(evolutionLevel + 1).padStart(2, '0')}.${character.ext}`
         : null,
       nextBadge,
       journeyCorrect: Math.max(0, _number(save && save.correctTotal, 0)),
@@ -884,7 +884,7 @@
         <h2 class="nqd-journey-title">Seu guardião ainda não foi escolhido.</h2>
         <p>Comece a jornada para definir personagem, dificuldade e ritmo de estudo.</p>
         <section class="nqd-guardian-preview" aria-label="Guardiões disponíveis">
-          ${Object.values(CHARACTER_META).map(character => `<img src="assets/classes/${character.folder}/nivel_01.${character.ext}" alt="${_escape(character.name)}" width="230" height="230" loading="lazy">`).join('')}
+          ${Object.values(CHARACTER_META).map(character => `<img src="assets/classes-cinema/${character.folder}/nivel_01.${character.ext}" alt="${_escape(character.name)}" width="230" height="230" loading="lazy">`).join('')}
         </section>
       </div>`;
     const reviewPromoted = data.actions[0]?.kind === 'review';

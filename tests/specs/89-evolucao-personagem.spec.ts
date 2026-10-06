@@ -3,9 +3,9 @@ import { injectGameState } from '../helpers/game';
 import { medirContraste } from '../helpers/contraste';
 test.use({serviceWorkers:'block',reducedMotion:'reduce'});
 const personagens={
- nephros:{title:'Mestre das Glomerulopatias',image:'assets/classes/clerigo_renal/nivel_08.jpg',lore:'As Catacumbas das Glomerulopatias se abrem. Você decifra biopsias como um arquélogo do rim.'},
- aquaria:{title:'Mestra das Glomerulopatias',image:'assets/classes/maga_metabolica/nivel_08.jpg',lore:'As águas profundas da síndrome nefrótica revelam seus segredos. Você é a guaraniã da barreira de filtração.'},
- glomerulus:{title:'Doutor das Glomerulopatias',image:'assets/classes/guerreiro_glomerular/nivel_08.png',lore:'Seus estudos sobre podocitopatas são citados em todo o reino. A ciência renal te deve uma dívida.'}
+ nephros:{title:'Mestre das Glomerulopatias',image:'assets/classes-cinema/clerigo_renal/nivel_08.webp',lore:'As Catacumbas das Glomerulopatias se abrem. Você decifra biopsias como um arquélogo do rim.'},
+ aquaria:{title:'Mestra das Glomerulopatias',image:'assets/classes-cinema/maga_metabolica/nivel_08.webp',lore:'As águas profundas da síndrome nefrótica revelam seus segredos. Você é a guaraniã da barreira de filtração.'},
+ glomerulus:{title:'Doutor das Glomerulopatias',image:'assets/classes-cinema/guerreiro_glomerular/nivel_08.webp',lore:'Seus estudos sobre podocitopatas são citados em todo o reino. A ciência renal te deve uma dívida.'}
 };
 async function abrir(page:Page,id:keyof typeof personagens='nephros',level=8){
  await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());

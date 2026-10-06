@@ -249,9 +249,9 @@
     // Modo do quadro: 'record' (recorde por partida) | 'global' (perfil acumulado)
     let _boardMode = 'record';
     const _CHAR_AVATARS = {
-      'Dr. Nephros':    'assets/classes/clerigo_renal/nivel_01.jpg',
-      'Dra. Aquaria':   'assets/classes/maga_metabolica/nivel_01.jpg',
-      'Dr. Glomerulus': 'assets/classes/guerreiro_glomerular/nivel_01.png'
+      'Dr. Nephros':    'assets/classes-cinema/clerigo_renal/nivel_01.webp',
+      'Dra. Aquaria':   'assets/classes-cinema/maga_metabolica/nivel_01.webp',
+      'Dr. Glomerulus': 'assets/classes-cinema/guerreiro_glomerular/nivel_01.webp'
     };
 
     function _setBoardMode(mode) {
@@ -303,7 +303,7 @@
         const i = q ? filteredIdx : globalIdx;
         const rc = i < 3 ? rankClass[i] : 'rn';
         const rl = i < 3 ? rankLabel[i] : (i + 1);
-        const avatar = _CHAR_AVATARS[r.character_name] || 'assets/classes/clerigo_renal/nivel_01.jpg';
+        const avatar = _CHAR_AVATARS[r.character_name] || 'assets/classes-cinema/clerigo_renal/nivel_01.webp';
         const isMe = myId && r.user_id === myId;
 
         const tr = document.createElement('tr');
@@ -376,7 +376,7 @@
         const i = q ? filteredIdx : globalIdx; // quando busca ativa, rank é da posição filtrada
         const rc = i < 3 ? rankClass[i] : 'rn';
         const rl = i < 3 ? rankLabel[i] : (i + 1);
-        const avatar = charAvatars[r.character_name] || 'assets/classes/clerigo_renal/nivel_01.jpg';
+        const avatar = charAvatars[r.character_name] || 'assets/classes-cinema/clerigo_renal/nivel_01.webp';
         const dateStr = r.played_at ? new Date(r.played_at).toLocaleDateString('pt-BR', {day:'2-digit',month:'2-digit',year:'2-digit'}) : '-';
         const isMe = state.lastSubmittedName && r.player_name === state.lastSubmittedName;
 

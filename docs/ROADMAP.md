@@ -10,7 +10,7 @@ Este documento controla direção, prioridade e critérios de conclusão. Ele n�
 
 O proprietário autorizou concluir o plano de layout sem novas pausas para aprovação de cada tela. Conta, Plano, páginas de apoio, administração e acabamento dos modos de aprendizagem fecham a fila visual após os refinamentos da jornada, Dashboard, Grimório e popups. O inventário e os limites desta rodada estão em [Conferência do ciclo de layout](design/NQ_LAYOUT_REFINEMENT_2026-10.md). Consulte a versão e a publicação de cada entrega; as seções abaixo preservam o histórico de setembro.
 
-Após a entrega visual, a prioridade é uso real e ajustes pontuais do proprietário. A nova rodada de imagens dos personagens, mais de 1.000 questões publicáveis e revisão dos resumos genéricos permanecem etapas futuras separadas. Nenhuma autorização de layout substitui o gate editorial nem autoriza mudanças em pagamentos ou backend.
+Após a entrega visual, a prioridade é uso real e ajustes pontuais do proprietário. A continuidade autorizada em 05/10 recriou as três classes em 30 retratos cinematográficos, dez por personagem, na entrega 15.85; direção e integração em [Artes dos personagens](design/NQ_CHARACTER_ART_CINEMA_2026-10.md). Mais de 1.000 questões publicáveis e revisão dos resumos genéricos permanecem etapas futuras separadas. Nenhuma autorização de layout substitui o gate editorial nem autoriza mudanças em pagamentos ou backend.
 
 ## Como usar
 
