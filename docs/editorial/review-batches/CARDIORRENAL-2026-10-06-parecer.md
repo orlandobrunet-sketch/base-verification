@@ -121,3 +121,7 @@ Pendências científicas dos patches: nenhuma. Pendência operacional: autoriza�
 
 Os dez objetos completos foram renderizados no leitor a 320 px com texto 200%. A primeira rodada identificou transbordamento no DOI histórico do MDRD; foi corrigido somente overflow-wrap:anywhere em .nqreader-reference, preservando o texto. Nova rodada: os dez passaram sem transbordamento. Cinco testes existentes do leitor também passaram. SHA-256 do patch aprovado: 9a7a6a7249d075ac0fae0c1fd05622aacbd1c6d9854f612119c7217848d6694d. Ajuste visual preparado na release 15.87, independente da autorização de aplicar os dez textos médicos.
 
+
+## Aplicação autorizada — 06/10/2026
+
+O proprietário respondeu “bla siga” à solicitação explícita para aplicar e publicar este lote. Aplicados os dez objetos exatos do patch aprovado, SHA-256 acima, sem mudança material de redação ou referências. Os 181 artigos restantes, os índices, a raridade e o total de 191 foram preservados. Release de aplicação: 15.88. A publicação será confirmada após o deploy e a comparação dos arquivos servidos.
