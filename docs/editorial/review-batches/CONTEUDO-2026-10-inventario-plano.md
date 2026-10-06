@@ -75,3 +75,7 @@ Referências operacionais: `docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md`, `NQ_EDITOR
 - Cardiorrenal: dez objetos aprovados e aplicação/publicação explicitamente autorizadas pelo proprietário; versão de aplicação 15.88. Ver [parecer](CARDIORRENAL-2026-10-06-parecer.md) e patch exato. Mantidos 191 registros e todos os índices; nenhuma fusão ou alteração de questões.
 - Próxima revisão: conferir os consumidores relacionados de RENAAL (40) e MDRD (43), sem assumir que compartilham aprovação ou redação dos cards já revisados. Depois, selecionar o próximo lote de 10–15 pelo risco e pela qualidade das fontes. Revisão em relatório precede qualquer aplicação.
 - Expansão: permanece em planejamento; 741 questões atuais e pelo menos 260 adições líquidas aprovadas para superar 1.000. Não gerar ou publicar questões automaticamente a partir da contagem.
+
+## Cards relacionados — revisão concluída
+
+RENAAL (40) e MDRD (43): [parecer formal](RELACIONADOS-2026-10-06-parecer.md) e dois objetos completos preparados. O MDRD de 1999 é desenvolvimento/validação de equação, não o ensaio de intervenção de 1994. Os patches receberam aprovação, Evidência VERIFICADA, Pendência NENHUMA e Publicação editorial LIBERADA. Aplicação ainda depende de autorização explícita destes dois objetos; nenhuma fusão ou mudança de progresso proposta. Leitura validada em desktop/celular com texto ampliado.
