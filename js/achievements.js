@@ -276,10 +276,10 @@
         const reached = state.correctTotal >= badge.required;
         return `<li class="nqach-milestone${reached ? ' reached' : ''}">
           <button class="nqach-rune" data-action="_nqAchievementBadgeTip" data-pass-this="1"
-            aria-label="${escapeHtml(badge.name)} — ${badge.required} acertos"
+            aria-label="${escapeHtml(badge.name)} — ${badge.required} acertos — ${reached ? 'Conquistado' : 'A conquistar'}"
             title="${escapeHtml(badge.name)}" data-badge-label="${escapeHtml(badge.name)} — ${badge.required} acertos">
             ${NQ_MILESTONE_ICONS[index] || ''}
-          </button><strong>${badge.required}</strong><span>acertos</span><small>${escapeHtml(badge.name)}</small>
+          </button><strong>${badge.required}</strong><span>acertos</span><span class="nqach-milestone-state">${reached ? '✓ Conquistado' : 'A conquistar'}</span><small>${escapeHtml(badge.name)}</small>
         </li>`;
       }).join('');
       const rowsHTML = ACHIEVEMENTS_LIST.map(achievement => {

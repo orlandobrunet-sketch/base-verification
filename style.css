@@ -14838,3 +14838,9 @@ body [role="dialog"] a[href]{color:var(--nq-accent-cyan);text-decoration:underli
 #equipCompareOverlay .nqec-item[data-rarity="epic"]{--rarity:var(--nq-accent-violet);background:color-mix(in srgb,var(--rarity) 8%,#0b141d)}
 #equipCompareOverlay .nqec-item[data-rarity="legendary"]{--rarity:var(--nq-accent-gold);background:color-mix(in srgb,var(--rarity) 8%,#0b141d)}
 #equipCompareOverlay .nqec-item[data-rarity="mythic"]{--rarity:var(--nq-accent-rose);background:color-mix(in srgb,var(--rarity) 8%,#0b141d)}
+
+/* Marcos: o estado é explícito, além da cor. */
+.nqach-milestone .nqach-milestone-state{font-size:.72rem;line-height:1.5;margin-top:6px;color:#a9b8c5;max-width:100%;overflow-wrap:anywhere}.nqach-milestone.reached .nqach-milestone-state{color:var(--nq-accent-gold)}
+@media(max-width:600px){.nqach-milestones{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 10px}.nqach-milestone .nqach-milestone-state{font-size:.73rem}.nqach-milestone strong{margin-top:5px}}
+@container nqNarrative (max-width:16rem){.nqach-milestones{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@container nqNarrative (max-width:12rem){.nqach-milestones{grid-template-columns:minmax(0,1fr)}}
