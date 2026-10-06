@@ -297,3 +297,9 @@ Pendências científicas dos patches: nenhuma. Gate editorial cumprido. A aplica
 ## Validação da proposta
 
 Os onze objetos completos foram renderizados no leitor, sem gravá-los no banco do aplicativo, em larguras de 320, 390 e 1.100 px, com fontes a 100% e 200%. Nenhum texto ultrapassou a largura disponível. Schema, onze índices únicos, tipos dos campos e SHA-256 do patch conferidos; títulos, anos e raridades preservados. O aplicativo permanece com 191 registros, na versão 15.89, sem aplicação destes onze objetos.
+
+## Aplicação autorizada — 06/10/2026
+
+O proprietário autorizou explicitamente, na conversa principal, aplicar e publicar os onze textos exatos da proposta #882, incluindo atualização de versão/cache, commits, PR, merge e conferência do deploy. Resposta: “sim, autorizo tudo em relação ao andamento do projeto e o plano, quero que trabalhe até quando minha autorização ou participação seja imprescindível”. A pendência operacional anterior está superada para este lote.
+
+Aplicado no branch o patch SHA-256 7d9ea21873d3c6131dc16c55ed280e603d2781810022101c8bc83c300c97b599, sem mudança material nos textos aprovados. Mantidos 191 pergaminhos, seus índices e os 180 objetos não selecionados. Release preparada: 15.90, com version.json, cache do SW, release Sentry nos dois HTML e rótulos visíveis no mesmo commit. Busters de JS/CSS intocados foram preservados. A implementação usa o conector GitHub porque o terminal desta tarefa falha na inicialização; os testes locais anteriores dos textos exatos permanecem registrados acima. Validação adicional no CI e publicação em produção ainda devem ser confirmadas antes de registrar este lote como publicado.
