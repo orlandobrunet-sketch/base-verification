@@ -5954,6 +5954,12 @@
       //   if (e.target === modal) modal.remove();
       // });
       document.body.appendChild(modal);
+      const leitura = modal.querySelector('.modal-scroll-body');
+      leitura.setAttribute('role', 'region');
+      leitura.setAttribute('tabindex', '0');
+      leitura.setAttribute('aria-label', 'Política de privacidade');
+      nqDialogo(modal, { painel: modal });
+      leitura.focus({ preventScroll: true });
     }
     window.showPrivacyPolicy = showPrivacyPolicy;
 

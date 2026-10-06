@@ -617,6 +617,12 @@
         </div>
       `;
       document.body.appendChild(modal);
+      const leitura = modal.querySelector('.modal-content');
+      leitura.setAttribute('role', 'region');
+      leitura.setAttribute('tabindex', '0');
+      leitura.setAttribute('aria-label', 'Leitura das estatísticas');
+      nqDialogo(modal, { painel: modal });
+      leitura.focus({ preventScroll: true });
       const radarContainer = document.getElementById('nqRadarChartContainer');
       if (radarContainer) {
         drawRadarChart(radarContainer, getCoreSkillsStats(stats));

@@ -27,6 +27,7 @@ O proprietário autorizou concluir o plano visual sem novas aprovações por tel
 | Plano, preços e limite gratuito | Hierarquia da Conta, acentos por opção e valores legíveis em 320 px; condições e pagamento intactos. |
 | Contato | Marca, fontes, campos e estados alinhados; envio e erros mantidos. |
 | Privacidade, 404 e offline | Tipografia, superfícies, links e contraste alinhados; conteúdo jurídico e funcionamento preservados. |
+| Privacidade no app, estatísticas e erros da sessão | Acabamento alinhado, leitores legíveis e foco/fechamento tratados pelo contrato de diálogo. |
 | Novidades | Histórico preservado numa superfície de leitura com rodapé, foco e rolagem por teclado. |
 | Administração | Lista de Acesso, Analytics, Campanha e Galeria harmonizados; testes com administrador simulado, sem ações reais. |
 
@@ -35,8 +36,9 @@ O proprietário autorizou concluir o plano visual sem novas aprovações por tel
 - 15.79 — Minha Conta e confirmação de exclusão, PR #871.
 - 15.80 — Seu Plano, preços e limite gratuito, PR #872.
 - 15.81 — Páginas auxiliares e novidades, PR #873.
-- 15.82 — Painéis administrativos.
-- 15.83 — Acabamento da aprendizagem e Câmara; reconciliação do ciclo.
+- 15.82 — Painéis administrativos, PR #874.
+- 15.83 — Acabamento da aprendizagem e Câmara; reconciliação do ciclo, PR #875.
+- 15.84 — Popups auxiliares de privacidade, estatísticas e erros da sessão.
 
 O estado de publicação e a versão servida são conferidos após cada entrega. A suíte completa remota pode continuar após as verificações principais; execução pendente não equivale a aprovação completa. A conferência automática não substitui uso real ou avaliação com leitor de tela real.
 
