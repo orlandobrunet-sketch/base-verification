@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v15.76
-const CACHE = 'nefroquest-v15.76';
+// NefroQuest Service Worker — v15.77
+const CACHE = 'nefroquest-v15.77';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -87,14 +87,14 @@ const STATIC_ASSETS = [
 // chave canônica (sem query), que é a que canonicalAssetKey() consulta.
 // bump-release:asset-versions:início
 const ASSET_VERSIONS = {
-  '/style.css': '15.76',
-  '/styles/lumen/tokens.css': '14.81',
+  '/style.css': '15.77',
+  '/styles/lumen/tokens.css': '15.77',
   '/styles/lumen/shell.css': '14.77',
   '/styles/lumen/portal.css': '14.93',
   '/styles/lumen/atrium.css': '15.25',
-  '/styles/lumen/game.css': '15.49',
+  '/styles/lumen/game.css': '15.77',
   '/styles/lumen/difficulty.css': '15.25',
-  '/styles/lumen/dashboard.css': '15.52',
+  '/styles/lumen/dashboard.css': '15.77',
   '/styles/lumen/charselect.css': '14.75',
   '/js/utils.js': '15.75',
   '/js/audio.js': '14.69',

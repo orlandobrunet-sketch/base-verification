@@ -155,3 +155,7 @@
   --nql-current: var(--nql-corruption-strong);
   --nql-current-rgb: var(--nql-corruption-strong-rgb);
 }
+
+/* Paleta transversal aprovada — acentos legíveis sobre superfícies escuras. */
+:root{--nq-accent-gold:#f1cf7a;--nq-accent-cyan:#91dfe3;--nq-accent-violet:#c6a4ef;--nq-accent-green:#83d8ad;--nq-accent-rose:#efa7b2;--nq-accent-amber:#e9b879}
+[data-nq-ui="lumen"]{--nql-corruption-strong:var(--nq-accent-violet);--nql-corruption-strong-rgb:198,164,239;--nql-success:var(--nq-accent-green);--nql-success-rgb:131,216,173;--nql-danger:var(--nq-accent-rose);--nql-danger-rgb:239,167,178}

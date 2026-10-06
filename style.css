@@ -14794,3 +14794,47 @@ h1{font:600 2rem/1.25 Cinzel,serif;letter-spacing:-.025em;margin:0;overflow-wrap
 .nqach-card h2,.nqach-card h3{letter-spacing:normal;text-align:left}.nqach-intro h2{font:600 2rem/1.3 Cinzel,serif;color:#eee8d9;margin:0}.nqach-card .nqach-rune{cursor:pointer}.nqach-card .nqach-rune span{display:block}.nqach-card [hidden]{display:none!important}@media(max-width:600px){.achievements-popup.nqach-overlay{padding:12px}.nqach-intro h2{font-size:1.5rem}}@container nqNarrative (max-width:16rem){.nqach-intro h2{font-size:1.2rem}}
 
 .achievements-popup.nqach-overlay{background:#03080dda!important;backdrop-filter:blur(6px)!important;-webkit-backdrop-filter:blur(6px)!important}
+
+/* Acentos aprovados: cor acompanha função; tipografia, artes e geometria preservadas. */
+.nqnarr-card,.nqcost-card,.nqpath-card,.nqevo-card,.nqlife-card,.nqgold-card,.nqinvite-card,.nqreward-card,.nqscroll-dialog{--nq-popup-accent:var(--nq-accent-gold)}
+.nqstun-card,.nqevo-card{--nq-popup-accent:var(--nq-accent-violet)}.nqrecover-card{--nq-popup-accent:var(--nq-accent-green)}.nqlife-card{--nq-popup-accent:var(--nq-accent-rose)}.nqreader-card,.nqpath-card,.nqinvite-card{--nq-popup-accent:var(--nq-accent-cyan)}.nqflag-card{--nq-popup-accent:var(--nq-accent-amber)}
+.nqnarr-card,.nqpath-card{border-color:color-mix(in srgb,var(--nq-popup-accent) 33%,transparent);background:radial-gradient(ellipse at 12% 0%,color-mix(in srgb,var(--nq-popup-accent) 7%,transparent),transparent 60%),linear-gradient(135deg,#192733,#0b141d 70%)}
+.nqnarr-chapter,.nqpath-chapter,.nqinvite-chapter,.nqevo-level{color:var(--nq-popup-accent)}.nqnarr-chapter:after,.nqpath-chapter:after{background:linear-gradient(90deg,color-mix(in srgb,var(--nq-popup-accent) 33%,transparent),transparent)}
+.nqstun-card .nqnarr-chapter{color:var(--nq-accent-violet)}.nqstun-spell .kidney{stroke:var(--nq-accent-violet);fill:#8050a625}.nqstun-spell .mist{stroke:var(--nq-accent-violet)}.nqstun-effect strong{color:var(--nq-accent-rose)}
+.nqrecover-card .nqnarr-chapter,.nqrecover-effect strong{color:var(--nq-accent-green)}.nqrecover-flame .core{stroke:var(--nq-accent-green);fill:#6bd4a71a}.nqrecover-effect{border-color:#6bd4a740}
+.nqlife-celebration{color:var(--nq-accent-rose)}.nqlife-heart,.nqlife-line{stroke:var(--nq-accent-rose)}.nqlife-fill{fill:#ef849133}.nqlife-card{border-color:#efa7b255!important;background:radial-gradient(ellipse at 12% 0%,#efa7b212,transparent 60%),linear-gradient(135deg,#192733,#0b141d 70%)!important}
+.nqevo-level{color:var(--nq-accent-violet)}.nqevo-card{border-color:#c6a4ef55!important;background:radial-gradient(ellipse at 12% 0%,#c6a4ef12,transparent 60%),linear-gradient(135deg,#192733,#0b141d 70%)!important}
+#goldMilestonePopup .nqgold-card{border-color:#f1cf7a55!important;background:radial-gradient(ellipse at 12% 0%,#f1cf7a12,transparent 60%),linear-gradient(135deg,#192733,#0b141d 70%)}.nqgold-award h2,.nqgold-cost{color:var(--nq-accent-gold)}
+.nqinvite-seal{color:var(--nq-accent-cyan)}.nqlast-chapter,.nqboss-chapter,.nqfinal-chapter{color:var(--nq-accent-violet)}
+.nqreader-section h3{color:var(--nq-accent-gold)}.nqreader-conclusao{border-color:#6bd4a74d;background:#6bd4a710}.nqreader-conclusao h3{color:var(--nq-accent-green)}.nqreader-curiosidade h3{color:var(--nq-accent-violet)}.nqreader-impacto h3{color:var(--nq-accent-cyan)}
+.nqflag-category:has(input:checked){border-color:#e9b87999;background:#e9b87912}.nqflag-category input{accent-color:var(--nq-accent-amber)}.nqflag-card .flag-status{color:var(--nq-accent-green)}.nqflag-card .flag-status--error,.nqcost-poor .nqcost-remaining dd,.nqcost-poor .nqcost-notice{color:var(--nq-accent-rose)}.nqcost-ledger>div:first-child dd{color:var(--nq-accent-gold)}
+.nqpath-path:not(.combat)>svg{stroke:var(--nq-accent-cyan)}.nqpath-path.combat>svg{stroke:var(--nq-accent-gold)}
+body [role="dialog"] a[href]{color:var(--nq-accent-cyan);text-decoration:underline;text-underline-offset:3px}body [role="dialog"] a[href]:hover{color:#c5f4f6}
+.nqach-emblem .detail{stroke:currentColor;opacity:.8}.nqach-emblem .spark{stroke:currentColor;fill:currentColor}.nqach-achievement.unlocked .nqach-status{color:var(--nq-accent-green)}.nqach-count strong{color:var(--nq-accent-gold)}
+.nqach-achievement[data-achievement-id="hd_master"] .nqach-emblem,.nqach-achievement[data-achievement-id="glomerulo_sage"] .nqach-emblem,.nqach-achievement[data-achievement-id="grimoire_master"] .nqach-emblem{color:var(--nq-accent-cyan);border-color:color-mix(in srgb,var(--nq-accent-cyan) 36%,transparent);background:color-mix(in srgb,var(--nq-accent-cyan) 8%,#0b141d)}
+.nqach-achievement[data-achievement-id="nephron_guardian"] .nqach-emblem,.nqach-achievement[data-achievement-id="transplant_expert"] .nqach-emblem{color:var(--nq-accent-green);border-color:color-mix(in srgb,var(--nq-accent-green) 36%,transparent);background:color-mix(in srgb,var(--nq-accent-green) 8%,#0b141d)}
+.nqach-achievement[data-achievement-id="perfectionist_drc"] .nqach-emblem,.nqach-achievement[data-achievement-id="acid_base_master"] .nqach-emblem{color:var(--nq-accent-violet);border-color:color-mix(in srgb,var(--nq-accent-violet) 36%,transparent);background:color-mix(in srgb,var(--nq-accent-violet) 8%,#0b141d)}
+.nqach-achievement[data-achievement-id="accuracy_master"] .nqach-emblem{color:var(--nq-accent-rose);border-color:color-mix(in srgb,var(--nq-accent-rose) 36%,transparent);background:color-mix(in srgb,var(--nq-accent-rose) 8%,#0b141d)}
+.nqach-achievement[data-achievement-id="hardcore_champion"] .nqach-emblem{color:var(--nq-accent-amber);border-color:color-mix(in srgb,var(--nq-accent-amber) 36%,transparent);background:color-mix(in srgb,var(--nq-accent-amber) 8%,#0b141d)}
+.nqach-achievement[data-achievement-id="century_club"] .nqach-emblem,.nqach-achievement[data-achievement-id="arqui_nefromante_slayer"] .nqach-emblem,.nqach-achievement[data-achievement-id="laurel_wreath_knowledge"] .nqach-emblem{color:var(--nq-accent-gold);border-color:color-mix(in srgb,var(--nq-accent-gold) 36%,transparent);background:color-mix(in srgb,var(--nq-accent-gold) 8%,#0b141d)}
+.nqreward-card[data-rarity="common"],#chestModal .nqscroll-dialog[data-rarity="common"],.nqec-item[data-rarity="common"]{--rarity:#c4cbd3}
+.nqreward-card[data-rarity="uncommon"],#chestModal .nqscroll-dialog[data-rarity="uncommon"],.nqec-item[data-rarity="uncommon"]{--rarity:var(--nq-accent-green)}
+.nqreward-card[data-rarity="rare"],#chestModal .nqscroll-dialog[data-rarity="rare"],.nqec-item[data-rarity="rare"]{--rarity:var(--nq-accent-cyan)}
+.nqreward-card[data-rarity="epic"],#chestModal .nqscroll-dialog[data-rarity="epic"],.nqec-item[data-rarity="epic"]{--rarity:var(--nq-accent-violet)}
+.nqreward-card[data-rarity="legendary"],#chestModal .nqscroll-dialog[data-rarity="legendary"],.nqec-item[data-rarity="legendary"]{--rarity:var(--nq-accent-gold)}
+.nqreward-card[data-rarity="mythic"],#chestModal .nqscroll-dialog[data-rarity="mythic"],.nqec-item[data-rarity="mythic"]{--rarity:var(--nq-accent-rose)}
+.nqreward-overlay .nqreward-card,#chestModal .nqscroll-dialog{border-color:color-mix(in srgb,var(--rarity) 40%,transparent)!important;background:radial-gradient(ellipse at 12% 0%,color-mix(in srgb,var(--rarity) 12%,transparent),transparent 65%),linear-gradient(135deg,#192733,#0b141d 70%)!important}.nqreward-rarity,#chestModal .nqscroll-rarity{background:color-mix(in srgb,var(--rarity) 19%,transparent)}.nqreward-intro{color:var(--rarity)!important}.nqec-rarity{color:var(--rarity)}.nqec-item{border-color:color-mix(in srgb,var(--rarity) 40%,transparent);background:color-mix(in srgb,var(--rarity) 8%,#0b141d)}
+.nqreward-stat:nth-child(1) dd,.nqreward-stat:nth-child(1) svg,.nqlore-stats>div:nth-child(1) dd{color:var(--nq-accent-amber)}
+.nqreward-stat:nth-child(2) dd,.nqreward-stat:nth-child(2) svg,.nqlore-stats>div:nth-child(2) dd{color:var(--nq-accent-cyan)}
+.nqreward-stat:nth-child(3) dd,.nqreward-stat:nth-child(3) svg,.nqlore-stats>div:nth-child(3) dd{color:var(--nq-accent-violet)}
+.nqreward-stat:nth-child(4) dd,.nqreward-stat:nth-child(4) svg,.nqlore-stats>div:nth-child(4) dd{color:var(--nq-accent-green)}
+#chestModal .nqscroll-reward strong{color:var(--nq-accent-gold)}#chestModal .nqscroll-sections section:nth-child(2) h4{color:var(--nq-accent-green)}#chestModal .nqscroll-sections section:nth-child(3) h4{color:var(--nq-accent-violet)}#chestModal .nqscroll-sections section:nth-child(4) h4{color:var(--nq-accent-cyan)}
+
+/* Variantes com estilos legados mais específicos. */
+.nqevo-card .nqevo-level{color:var(--nq-accent-violet)}.nqlife-card .nqlife-celebration{color:var(--nq-accent-rose)}
+#equipCompareOverlay .nqec-item[data-rarity="common"]{--rarity:#c4cbd3;background:color-mix(in srgb,var(--rarity) 8%,#0b141d)}
+#equipCompareOverlay .nqec-item[data-rarity="uncommon"]{--rarity:var(--nq-accent-green);background:color-mix(in srgb,var(--rarity) 8%,#0b141d)}
+#equipCompareOverlay .nqec-item[data-rarity="rare"]{--rarity:var(--nq-accent-cyan);background:color-mix(in srgb,var(--rarity) 8%,#0b141d)}
+#equipCompareOverlay .nqec-item[data-rarity="epic"]{--rarity:var(--nq-accent-violet);background:color-mix(in srgb,var(--rarity) 8%,#0b141d)}
+#equipCompareOverlay .nqec-item[data-rarity="legendary"]{--rarity:var(--nq-accent-gold);background:color-mix(in srgb,var(--rarity) 8%,#0b141d)}
+#equipCompareOverlay .nqec-item[data-rarity="mythic"]{--rarity:var(--nq-accent-rose);background:color-mix(in srgb,var(--rarity) 8%,#0b141d)}
