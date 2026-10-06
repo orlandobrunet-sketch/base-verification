@@ -21,3 +21,5 @@ Caminhos atualizados na seleção, retomada, HUD, evolução, história, Dashboa
 As imagens originais dos níveis 1, 5 e 10 orientaram identidade e progressão. Primeiro foi gerado o retrato-base de cada personagem; ele foi utilizado como referência de identidade para os nove níveis seguintes. A arte `landing/assets/nefromancer-cajado-renal.jpg` orientou materiais, iluminação e acabamento. Os retratos foram gerados individualmente, sem cortar uma única imagem para simular níveis distintos.
 
 Conferência dos 30 retratos em galeria comparativa e nos enquadramentos da interface. A spec 111 percorre os dez níveis das três classes, verifica decodificação dos 30 arquivos e a manutenção do retrato final acima do nível 10. A validação também cobre jornada, ranking sem rede, confronto, evolução, início e história do personagem. Resultado de publicação e CI é conferido na entrega; uma suíte remota ainda em execução não é declarada aprovada.
+
+Modo: ferramenta integrada `image_gen`, sem CLI/API externa. [Conjunto exato dos 30 prompts](NQ_CHARACTER_ART_PROMPTS_2026-10.json), com referências e caminhos dos arquivos finais.
