@@ -1,10 +1,16 @@
 # NefroQuest — Roadmap ativo
 
-**Última reconciliação:** 26/09/2026
+**Última reconciliação:** 05/10/2026
 **Versão de referência:** consultar sempre [`version.json`](../version.json)
 **Arquivo anterior:** [`archive/ROADMAP_LEGACY_2026-08.md`](archive/ROADMAP_LEGACY_2026-08.md)
 
 Este documento controla direção, prioridade e critérios de conclusão. Ele não autoriza execução automática: cada frente precisa ser solicitada explicitamente pelo proprietário do produto.
+
+## Ciclo de refinamento visual — outubro de 2026
+
+O proprietário autorizou concluir o plano de layout sem novas pausas para aprovação de cada tela. Conta, Plano, páginas de apoio, administração e acabamento dos modos de aprendizagem fecham a fila visual após os refinamentos da jornada, Dashboard, Grimório e popups. O inventário e os limites desta rodada estão em [Conferência do ciclo de layout](design/NQ_LAYOUT_REFINEMENT_2026-10.md). Consulte a versão e a publicação de cada entrega; as seções abaixo preservam o histórico de setembro.
+
+Após a entrega visual, a prioridade é uso real e ajustes pontuais do proprietário. A nova rodada de imagens dos personagens, mais de 1.000 questões publicáveis e revisão dos resumos genéricos permanecem etapas futuras separadas. Nenhuma autorização de layout substitui o gate editorial nem autoriza mudanças em pagamentos ou backend.
 
 ## Como usar
 
