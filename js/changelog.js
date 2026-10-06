@@ -5,14 +5,14 @@
     function showChangelog() {
       document.querySelectorAll('.changelog-popup').forEach(el => el.remove());
       const modal = document.createElement('div');
-      modal.className = 'modal show changelog-popup';
-      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;height:100dvh;background:rgba(0,0,0,0.85);display:flex;align-items:flex-start;justify-content:center;z-index:10000;backdrop-filter:blur(6px);overflow-y:auto;padding:12px 16px calc(env(safe-area-inset-bottom,0px)+80px);box-sizing:border-box;';
+      modal.className = 'modal show changelog-popup nqnarr-overlay';
+      modal.style.cssText = 'display:grid;z-index:10000;';
       modal.innerHTML = `
-        <div class="modal-content" style="max-width:540px;width:calc(100% - 32px);max-height:none;overflow-y:visible;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;box-shadow:0 0 40px rgba(255,215,0,0.3);margin:auto 0;">
-          <h2 style="color:var(--gold);margin-bottom:4px;font-family:'MedievalSharp','Cinzel',serif;">📜 NOVIDADES 📜</h2>
+        <div class="nqnarr-card nqnews-card">
+          <h2>Novidades</h2>
           <div style="color:var(--txt-dim);font-size:0.75rem;margin-bottom:16px;">O que há de novo no NefroQuest: Ascension</div>
 
-          <div class="modal-scroll-body" style="text-align:left;">
+          <div class="modal-scroll-body nqnarr-reading" role="region" tabindex="0" aria-label="Histórico de novidades">
 
             <!-- v11.87 -->
             <div style="background:linear-gradient(135deg,rgba(251,191,36,0.12),rgba(167,139,250,0.06));border:2px solid rgba(251,191,36,0.45);border-radius:10px;padding:16px;margin-bottom:12px;">
@@ -395,10 +395,12 @@
 
           </div>
 
-          <button class="btn gold" style="margin-top:12px;" data-close-closest=".modal">Fechar</button>
+          <footer class="nqnarr-footer"><button class="nqnarr-primary" data-close-closest=".modal">Fechar</button></footer>
         </div>
       `;
+      modal.setAttribute('role', 'presentation');
       document.body.appendChild(modal);
+      nqDialogo(modal, { painel: modal.querySelector('.nqnews-card') });
       playSound('click');
     }
 
