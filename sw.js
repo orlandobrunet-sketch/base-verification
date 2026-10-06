@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v15.85
-const CACHE = 'nefroquest-v15.85';
+// NefroQuest Service Worker — v15.86
+const CACHE = 'nefroquest-v15.86';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
