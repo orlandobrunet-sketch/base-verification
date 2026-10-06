@@ -9,7 +9,7 @@ O proprietário autorizou concluir o plano visual sem novas aprovações por tel
 | Home | Composição aprovada preservada; Nefromante cinematográfico com cajado renal já publicado. |
 | Portal, login, cadastro e recuperação | Estrutura Lúmen e estados acessíveis entregues anteriormente; preservados. |
 | Átrio | Retomada e Jornada Ativa revisadas anteriormente; continuidade preservada. |
-| Personagens e dificuldade | Seleção explícita e navegação da jornada preservadas. Nova rodada de artes continua no backlog. |
+| Personagens e dificuldade | Seleção explícita e navegação da jornada preservadas. Trinta retratos cinematográficos recriados na continuidade deste ciclo, dez por classe. |
 | Pergunta e pós-resposta | Coluna central refinada, personagem e atalhos laterais preservados; explicação inteira, menor e com largura útil. |
 | Personagem, equipamentos e Forja | Molduras coerentes, atributos legíveis e animação ligada à progressão; recompensas e comparações revisadas. |
 | Visão geral, Competências e Mapa | Hierarquia e mobile refinados; indicadores, estados e acentos sem monocromia. |
@@ -38,7 +38,7 @@ O proprietário autorizou concluir o plano visual sem novas aprovações por tel
 - 15.81 — Páginas auxiliares e novidades, PR #873.
 - 15.82 — Painéis administrativos, PR #874.
 - 15.83 — Acabamento da aprendizagem e Câmara; reconciliação do ciclo, PR #875.
-- 15.84 — Popups auxiliares de privacidade, estatísticas e erros da sessão.
+- 15.84 — Popups auxiliares de privacidade, estatísticas e erros da sessão, PR #876.
 
 O estado de publicação e a versão servida são conferidos após cada entrega. A suíte completa remota pode continuar após as verificações principais; execução pendente não equivale a aprovação completa. A conferência automática não substitui uso real ou avaliação com leitor de tela real.
 
@@ -48,8 +48,9 @@ Conferência visual das superfícies alteradas com fontes reais. Testes locais d
 
 ## Etapas futuras preservadas
 
-1. Padronizar as outras imagens de personagens no estilo cinematográfico aprovado, após o ciclo de layout.
-2. Publicar mais de 1.000 questões únicas e editorialmente aprovadas (mínimo 1.001), com cobertura por tema e dificuldade.
-3. Revisar os resumos genéricos para agregar resultados quantitativos, limites e aplicabilidade; confirmar o prompt exato do padrão do proprietário antes do lote piloto.
+A continuidade autorizada em 05/10 concluiu a coleção de 30 retratos cinematográficos, dez por classe, na versão 15.85. Direção, integração e limites em [Artes dos personagens](NQ_CHARACTER_ART_CINEMA_2026-10.md).
+
+1. Publicar mais de 1.000 questões únicas e editorialmente aprovadas (mínimo 1.001), com cobertura por tema e dificuldade.
+2. Revisar os resumos genéricos para agregar resultados quantitativos, limites e aplicabilidade; confirmar o prompt exato do padrão do proprietário antes do lote piloto.
 
 Estas metas não são execução automática. Conteúdo médico exige autorização explícita e o gate editorial canônico. O ciclo visual não muda os critérios de acesso, pagamento, pontuação, recomendação ou progressão.

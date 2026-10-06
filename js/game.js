@@ -1206,9 +1206,9 @@
         _syncWelcomeProgress(resumeShell, progress);
 
         if (charData) {
-          const ext = save.character === 'glomerulus' ? 'png' : 'jpg';
+          const ext = 'webp';
           const lvNum = level;
-          document.getElementById('wsSavedAvatar').src = `assets/classes/${charData.folder}/nivel_${String(lvNum).padStart(2,'0')}.${ext}?v=11.98`;
+          document.getElementById('wsSavedAvatar').src = `assets/classes-cinema/${charData.folder}/nivel_${String(lvNum).padStart(2,'0')}.${ext}?v=15.85`;
           document.getElementById('wsSavedAvatar').alt = charName;
         }
         if (savedInfoEl) {
@@ -1880,8 +1880,8 @@
       // Calcular imagem de evolução baseada no nível (1-10)
       const char = characters[charId];
       const evolutionLevel = Math.min(10, Math.max(1, state.level));
-      const ext = charId === 'glomerulus' ? 'png' : 'jpg';
-      const charImg = `assets/classes/${char.folder}/nivel_${evolutionLevel.toString().padStart(2,'0')}.${ext}?v=11.98`;
+      const ext = 'webp';
+      const charImg = `assets/classes-cinema/${char.folder}/nivel_${evolutionLevel.toString().padStart(2,'0')}.${ext}?v=15.85`;
       
       // Subtítulo ÚNICO por nível (índice = nível; índice 0 não usado).
       // O rank (data[0]) continua por faixa; o subtítulo muda a cada nível.
@@ -2104,10 +2104,10 @@
       let charsHtml = '';
       for (const cid of Object.keys(characters)) {
         const c = characters[cid];
-        const ext = cid === 'glomerulus' ? 'png' : 'jpg';
+        const ext = 'webp';
         let cards = '';
         for (let lv = 1; lv <= 10; lv++) {
-          const path = `assets/classes/${c.folder}/nivel_${String(lv).padStart(2,'0')}.${ext}`;
+          const path = `assets/classes-cinema/${c.folder}/nivel_${String(lv).padStart(2,'0')}.${ext}`;
           cards += `<div class="ag-card">${_imgTag(path, c.name+' nível '+lv)}
             <div class="ag-card-body">
               <div class="ag-card-title">Nível ${lv}</div>

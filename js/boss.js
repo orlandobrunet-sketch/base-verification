@@ -255,9 +255,9 @@
 
       // ── Heróis na party panel, battle scene e strip mobile ──
       const heroData = {
-        nephros:    { party: 'partyHero1Img', battle: 'battleHero1', strip: 'arquiStripHero1', folder: 'clerigo_renal',        ext: 'jpg' },
-        aquaria:    { party: 'partyHero2Img', battle: 'battleHero2', strip: 'arquiStripHero2', folder: 'maga_metabolica',      ext: 'jpg' },
-        glomerulus: { party: 'partyHero3Img', battle: 'battleHero3', strip: 'arquiStripHero3', folder: 'guerreiro_glomerular', ext: 'png' }
+        nephros:    { party: 'partyHero1Img', battle: 'battleHero1', strip: 'arquiStripHero1', folder: 'clerigo_renal',        ext: 'webp' },
+        aquaria:    { party: 'partyHero2Img', battle: 'battleHero2', strip: 'arquiStripHero2', folder: 'maga_metabolica',      ext: 'webp' },
+        glomerulus: { party: 'partyHero3Img', battle: 'battleHero3', strip: 'arquiStripHero3', folder: 'guerreiro_glomerular', ext: 'webp' }
       };
       const selChar = state.character;
       const lv = Math.min(state.level, 10);
@@ -265,7 +265,7 @@
       Object.entries(heroData).forEach(([key, info]) => {
         const isSelected = (key === selChar);
         const lvToUse = isSelected ? lv : Math.min(lv, 5);
-        const src = `assets/classes/${info.folder}/nivel_${String(lvToUse).padStart(2, '0')}.${info.ext}?v=11.98`;
+        const src = `assets/classes-cinema/${info.folder}/nivel_${String(lvToUse).padStart(2, '0')}.${info.ext}?v=15.85`;
 
         const partyEl  = document.getElementById(info.party);
         const battleEl = document.getElementById(info.battle);
@@ -513,13 +513,13 @@
       popup.id = 'charIntroOverlay';
       const [heroName, heroTitle] = intro.ch.split(' · ');
       const character = characters[charId];
-      const extension = charId === 'glomerulus' ? 'png' : 'jpg';
+      const extension = 'webp';
       popup.classList.add('nqnarr-overlay');
       popup.innerHTML = `
         <section class="nqnarr-card nqinicio-card" aria-describedby="nqIntroStory">
           <div class="nqnarr-reading" role="region" tabindex="0" aria-label="Seu guardião e início da jornada">
             <p class="nqnarr-chapter">Início da Jornada</p>
-            <div class="nqinicio-heading"><div class="nqinicio-portrait"><img src="assets/classes/${character.folder}/nivel_01.${extension}" alt=""></div><div class="nqinicio-identity"><h2>${heroName}</h2><p class="nqinicio-subtitle">${heroTitle}</p></div></div>
+            <div class="nqinicio-heading"><div class="nqinicio-portrait"><img src="assets/classes-cinema/${character.folder}/nivel_01.${extension}" alt=""></div><div class="nqinicio-identity"><h2>${heroName}</h2><p class="nqinicio-subtitle">${heroTitle}</p></div></div>
             <div class="nqnarr-story nqinicio-story" id="nqIntroStory">${intro.text}</div>
           </div>
           <footer class="nqnarr-footer"><button class="nqnarr-primary nqinicio-primary" data-action="closeIntroAndStart">Iniciar Jornada</button></footer>
