@@ -1113,6 +1113,12 @@
           <button class="btn gold" data-close-closest=".modal" style="width:100%;">Fechar</button>
         </div>`;
       document.body.appendChild(modal);
+      const leitura = modal.querySelector('.modal-scroll-body');
+      leitura.setAttribute('role', 'region');
+      leitura.setAttribute('tabindex', '0');
+      leitura.setAttribute('aria-label', 'Revisão dos erros da sessão');
+      nqDialogo(modal, { painel: modal });
+      leitura.focus({ preventScroll: true });
     }
 
     function finishGameUI() {
