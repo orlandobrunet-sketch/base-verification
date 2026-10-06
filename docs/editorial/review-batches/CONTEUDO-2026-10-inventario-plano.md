@@ -67,3 +67,11 @@ Cada revisão deve cumprir Modelo de Conhecimento, Handbook e Anexo C, incluindo
 O plano não altera `data/topics.js`, `data/articles.js`, `data/refs.js`, código ou versão. Autorização genérica de continuar o layout não substitui a autorização explícita para aplicar alterações médicas exigida em AGENTS.md. Preparar primeiro os patches concretos e sua revisão; só então obter a autorização que ainda faltar. Publicação de assets exige bump de SW/version no mesmo commit.
 
 Referências operacionais: `docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md`, `NQ_EDITORIAL_HANDBOOK_v1.md`, `annex-c-nefrologia.md` e `review-batches/fabry-pergaminho-2001-2026-10-02.md`.
+
+## Avanço em 06/10/2026
+
+- Piloto: cinco pergaminhos publicados na 15.86 (PR #878), sob o padrão confirmado do plugin pessoal.
+- Leitor: quebra de DOIs longos publicada na 15.87 (PR #879), validada em 320 px com texto a 200%.
+- Cardiorrenal: dez objetos aprovados e aplicação/publicação explicitamente autorizadas pelo proprietário; versão de aplicação 15.88. Ver [parecer](CARDIORRENAL-2026-10-06-parecer.md) e patch exato. Mantidos 191 registros e todos os índices; nenhuma fusão ou alteração de questões.
+- Próxima revisão: conferir os consumidores relacionados de RENAAL (40) e MDRD (43), sem assumir que compartilham aprovação ou redação dos cards já revisados. Depois, selecionar o próximo lote de 10–15 pelo risco e pela qualidade das fontes. Revisão em relatório precede qualquer aplicação.
+- Expansão: permanece em planejamento; 741 questões atuais e pelo menos 260 adições líquidas aprovadas para superar 1.000. Não gerar ou publicar questões automaticamente a partir da contagem.
