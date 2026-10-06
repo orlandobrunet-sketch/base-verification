@@ -156,9 +156,9 @@
       if (!modal) {
         modal = document.createElement('div');
         modal.id = 'planModal';
-        modal.className = 'nq-overlay nq-overlay--hidden';
-        modal.style.cssText = 'background:rgba(0,0,0,0.88);z-index:9998;backdrop-filter:blur(8px);';
-        modal.innerHTML = `<div class="modal-panel" id="planModalContent"></div>`;
+        modal.className = 'nq-overlay nq-overlay--hidden nqnarr-overlay nqplan-overlay';
+        modal.style.cssText = 'z-index:9998;';
+        modal.innerHTML = `<div class="nqnarr-card nqplan-card" id="planModalContent"></div>`;
         document.body.appendChild(modal);
       }
       const stats = getGameStats();
@@ -176,20 +176,14 @@
         detailHtml = `
           <p class="plan-stat">${answered} de ${FREE_QUESTIONS_LIMIT} questões gratuitas respondidas.</p>
           <div class="plan-bar-wrap"><div class="plan-bar" style="width:${pct}%"></div></div>
-          <p class="plan-stat" style="font-size:0.78rem;color:#708090">${remaining} questões restantes no plano gratuito.</p>
-          <button class="btn gold" style="width:100%;margin-top:4px" data-action="openPricingFromPlan">✨ Fazer Upgrade</button>
+          <p class="plan-stat nqplan-remaining">${remaining} questões restantes no plano gratuito.</p>
+          <button class="nqnarr-primary nqplan-upgrade" data-action="openPricingFromPlan">✨ Fazer Upgrade</button>
         `;
       }
       document.getElementById('planModalContent').innerHTML = `
-        <button class="modal-panel-x" data-action="closePlanModal" aria-label="Fechar">&times;</button>
-        <h2 id="planTitle">⭐ Seu Plano</h2>
-        <div style="text-align:center">
-          <div class="plan-badge ${badgeClass}">${badgeLabel}</div>
-        </div>
-        ${detailHtml}
-        <div class="modal-actions" style="margin-top:14px">
-          <button data-action="closePlanModal" style="background:rgba(255,255,255,0.06);color:#c8d8f0;border:1px solid var(--blue-dark);">Fechar</button>
-        </div>
+        <div class="nqnarr-reading" role="region" tabindex="0" aria-label="Situação do plano">
+          <h2 id="planTitle">Seu Plano</h2><div class="plan-badge ${badgeClass}">${badgeLabel}</div>${detailHtml}
+        </div><footer class="nqnarr-footer modal-actions"><button class="nqaccount-cancel" data-action="closePlanModal">Fechar</button></footer>
       `;
       const painel = document.getElementById('planModalContent');
       painel.setAttribute('role', 'dialog');
