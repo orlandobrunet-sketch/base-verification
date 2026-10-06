@@ -11,54 +11,26 @@
       if (!modal) {
         modal = document.createElement('div');
         modal.id = 'accountModal';
-        modal.className = 'nq-overlay nq-overlay--hidden';
-        modal.style.cssText = 'background:rgba(0,0,0,0.88);z-index:9998;backdrop-filter:blur(8px);';
+        modal.className = 'nq-overlay nq-overlay--hidden nqnarr-overlay nqaccount-overlay';
+        modal.style.cssText = 'z-index:9998;';
         modal.innerHTML = `
-          <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="accountTitle">
-            <button class="modal-panel-x" data-action="closeAccountModal" aria-label="Fechar">&times;</button>
-            <h2 id="accountTitle">👤 Minha Conta</h2>
-            <div class="form-group">
-              <label for="acctNickname">Apelido <span style="color:var(--txt-dim);font-weight:400;">(aparece no ranking)</span></label>
-              <input id="acctNickname" type="text" maxlength="40" placeholder="ex.: NefroMestre — não precisa ser seu nome real">
+          <section class="nqnarr-card nqaccount-card" role="dialog" aria-modal="true" aria-labelledby="accountTitle">
+            <div class="nqnarr-reading" role="region" tabindex="0" aria-label="Dados e preferências da conta">
+              <header class="nqaccount-heading"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="15" r="7"/><path d="M10 40v-5c0-8 28-8 28 0v5M17 40h14"/></svg><h2 id="accountTitle">Minha Conta</h2></header>
+              <div class="nqaccount-fields">
+                <div class="nqaccount-field nqaccount-wide"><label for="acctNickname">Apelido <span>Aparece no ranking</span></label><input id="acctNickname" type="text" placeholder="ex.: NefroMestre — não precisa ser seu nome real" maxlength="40"></div>
+                <div class="nqaccount-field nqaccount-wide"><label for="acctEmail">Email</label><input id="acctEmail" type="email" placeholder="seu@email.com" disabled></div>
+                <div class="nqaccount-field "><label for="acctName">Nome completo <span>Privado</span></label><input id="acctName" type="text" placeholder="Seu nome" ></div>
+                <div class="nqaccount-field "><label for="acctPhone">Telefone / WhatsApp</label><input id="acctPhone" type="tel" placeholder="+55 (11) 99999-9999" ></div>
+                <div class="nqaccount-field "><label for="acctSpec">Especialidade</label><input id="acctSpec" type="text" placeholder="ex: Nefrologia, Clínica Médica..." ></div>
+                <div class="nqaccount-field "><label for="acctCity">Cidade</label><input id="acctCity" type="text" placeholder="Sua cidade" ></div>
+                <div class="nqaccount-field nqaccount-wide"><label for="acctIdentity">Modo preferido</label><select id="acctIdentity"><option value="">Não definido</option><option value="study">📖 Estudar</option><option value="combat">⚔️ Combater</option></select></div>
+              </div>
+              <p id="accountSaveStatus" class="nqaccount-status" role="status"></p>
+              <div class="nqaccount-delete"><button data-action="confirmDeleteAccount"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M9 6V3h6v3M6 6l1 15h10l1-15M10 10v7M14 10v7"/></svg><span>Excluir minha conta e todos os dados</span></button></div>
             </div>
-            <div class="form-group">
-              <label for="acctName">Nome completo <span style="color:var(--txt-dim);font-weight:400;">(privado)</span></label>
-              <input id="acctName" type="text" placeholder="Seu nome">
-            </div>
-            <div class="form-group">
-              <label for="acctEmail">Email</label>
-              <input id="acctEmail" type="email" placeholder="seu@email.com" disabled style="opacity:0.5">
-            </div>
-            <div class="form-group">
-              <label for="acctPhone">Telefone / WhatsApp</label>
-              <input id="acctPhone" type="tel" placeholder="+55 (11) 99999-9999">
-            </div>
-            <div class="form-group">
-              <label for="acctSpec">Especialidade</label>
-              <input id="acctSpec" type="text" placeholder="ex: Nefrologia, Clínica Médica...">
-            </div>
-            <div class="form-group">
-              <label for="acctCity">Cidade</label>
-              <input id="acctCity" type="text" placeholder="Sua cidade">
-            </div>
-            <div class="form-group">
-              <label for="acctIdentity">Modo preferido</label>
-              <select id="acctIdentity" style="width:100%;background:#0d1525;border:1px solid var(--blue-dark);color:var(--txt);border-radius:var(--radius-md);padding:9px 12px;font-size:1rem;font-family:inherit;">
-                <option value="">Não definido</option>
-                <option value="study">📖 Estudar</option>
-                <option value="combat">⚔️ Combater</option>
-              </select>
-            </div>
-            <p id="accountSaveStatus" role="status" style="color:#fda4af;line-height:1.5;"></p>
-            <div class="modal-actions">
-              <button data-action="closeAccountModal" style="background:rgba(255,255,255,0.06);color:#c8d8f0;border:1px solid var(--blue-dark);">Cancelar</button>
-              <button data-action="saveAccountData" style="background:linear-gradient(135deg,#1a4080,#2a5fa0);color:#e0f0ff;border:none;">Salvar</button>
-            </div>
-            <div style="margin-top:20px;border-top:1px solid rgba(251,113,133,0.25);padding-top:16px;">
-              <div style="font-size:0.72rem;color:#fb7185;font-weight:700;letter-spacing:0.06em;margin-bottom:8px;">⚠ ZONA DE RISCO</div>
-              <button data-action="confirmDeleteAccount" style="width:100%;background:rgba(251,113,133,0.08);border:1px solid rgba(251,113,133,0.4);color:#fb7185;border-radius:8px;padding:9px;font-size:0.82rem;cursor:pointer;">🗑 Excluir minha conta e todos os dados</button>
-            </div>
-          </div>
+            <footer class="nqnarr-footer nqaccount-footer"><button class="nqaccount-cancel" data-action="closeAccountModal">Cancelar</button><button class="nqnarr-primary" data-action="saveAccountData">Salvar</button></footer>
+          </section>
         `;
         document.body.appendChild(modal);
       }
@@ -88,22 +60,17 @@
     function confirmDeleteAccount() {
       closeDeleteAccountConfirm();
       const popup = document.createElement('div');
-      popup.className = 'nq-overlay delete-account-confirm';
+      popup.className = 'nq-overlay nqnarr-overlay delete-account-confirm';
       popup.setAttribute('role', 'dialog');
       popup.setAttribute('aria-modal', 'true');
       popup.setAttribute('aria-label', 'Excluir Conta');
-      popup.style.cssText = 'background:rgba(0,0,0,0.92);z-index:10001;backdrop-filter:blur(8px);padding:24px;';
+      popup.style.cssText = 'z-index:10001;';
       popup.innerHTML = `
-        <div style="max-width:380px;width:100%;background:linear-gradient(180deg,#1a0a0a,#0d0808);border:2px solid rgba(251,113,133,0.6);border-radius:14px;padding:28px 24px;text-align:center;">
-          <div style="font-size:2rem;margin-bottom:12px;">⚠️</div>
-          <h3 style="color:#fb7185;margin:0 0 8px;font-family:'Cinzel',serif;">Excluir Conta</h3>
-          <p style="color:#c8d8f0;font-size:0.84rem;line-height:1.6;margin:0 0 16px;">Esta ação irá <strong style="color:#fb7185;">apagar permanentemente</strong> todos os seus dados: progresso, estatísticas, conquistas e histórico de revisão. Esta ação <strong>não pode ser desfeita.</strong></p>
-          <p style="color:var(--txt-dim);font-size:0.75rem;margin:0 0 20px;">Para confirmar, sua sessão será encerrada e todos os dados locais e do servidor serão removidos.</p>
-          <div style="display:flex;gap:10px;">
-            <button data-action="closeDeleteAccountConfirm" style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#c8d8f0;border-radius:8px;padding:10px;cursor:pointer;font-size:0.85rem;">Cancelar</button>
-            <button data-action="executeDeleteAccount" style="flex:1;background:rgba(251,113,133,0.2);border:1px solid rgba(251,113,133,0.6);color:#fb7185;border-radius:8px;padding:10px;cursor:pointer;font-weight:700;font-size:0.85rem;">Sim, excluir tudo</button>
-          </div>
-        </div>
+        <section class="nqnarr-card nqaccount-confirm"><div class="nqnarr-reading" role="region" tabindex="0" aria-label="Consequências da exclusão">
+          <h3>Excluir Conta</h3><p>Esta ação irá <strong>apagar permanentemente</strong> todos os seus dados: progresso, estatísticas, conquistas e histórico de revisão. Esta ação <strong>não pode ser desfeita.</strong></p>
+          <p>Para confirmar, sua sessão será encerrada e todos os dados locais e do servidor serão removidos.</p></div>
+          <footer class="nqnarr-footer nqaccount-footer"><button class="nqaccount-cancel" data-action="closeDeleteAccountConfirm">Cancelar</button><button class="nqaccount-danger" data-action="executeDeleteAccount">Sim, excluir tudo</button></footer>
+        </section>
       `;
       document.body.appendChild(popup);
       _deleteAccountFocus = manageDialogFocus(popup, closeDeleteAccountConfirm);
