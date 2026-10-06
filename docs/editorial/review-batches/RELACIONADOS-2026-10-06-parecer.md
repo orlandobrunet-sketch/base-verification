@@ -76,3 +76,7 @@ Pendências científicas dos patches: nenhuma. Pendência operacional: autoriza�
 ## Validação do pacote
 
 Hash do patch e schema conferidos; título/autoria/ano/raridade preservados e resumos em parágrafo único. Ambos os textos renderizados no leitor existente em 320, 390 e 1.100 px, com texto a 100% e 200%, sem transbordamento. Nenhum arquivo do aplicativo, banco ou versão alterado. Não foram repetidos testes funcionais gerais, porque esta entrega contém somente documentação e patches propostos.
+
+## Aplicação autorizada
+
+O proprietário respondeu “siga, não pare” ao pedido explícito de aplicar e publicar os dois objetos. Aplicado o patch exato aprovado, sem mudança material. Os 189 registros não selecionados e o total de 191 foram preservados. Release de aplicação: 15.89; conferir a publicação após o deploy.
