@@ -3743,3 +3743,11 @@
   #nqDashboard[data-nq-ui="lumen"] .nqd-map-node .nqd-state{text-align:left}
   #nqDashboard[data-nq-ui="lumen"] .nqd-map-node p{grid-column:1}
 }
+
+/* Continuidade da home: acentos e raridades mais visíveis. */
+#nqDashboard[data-nq-ui="lumen"]{--nqd-gold:var(--nq-accent-gold);--nqd-cyan:var(--nq-accent-cyan);--nqd-violet:var(--nq-accent-violet);--nqd-jade:var(--nq-accent-green);--nqd-coral:var(--nq-accent-rose);--nqd-amber:var(--nq-accent-amber)}
+#nqDashboard[data-nq-ui="lumen"] .nqd-library-item[data-library-kind="scroll"]{--library-tint:16%}
+#nqDashboard[data-nq-ui="lumen"] .nqd-library-item[data-library-rarity="raro"]{--library-accent:var(--nq-accent-cyan)}#nqDashboard[data-nq-ui="lumen"] .nqd-library-item[data-library-rarity="épico"]{--library-accent:var(--nq-accent-violet)}#nqDashboard[data-nq-ui="lumen"] .nqd-library-item[data-library-rarity="lendário"]{--library-accent:var(--nq-accent-gold);--library-tint:18%}
+#nqDashboard[data-nq-ui="lumen"] .nqd-library-reading-section h4{color:var(--nq-accent-gold)}#nqDashboard[data-nq-ui="lumen"] .nqd-library-reading-section.is-conclusion h4{color:var(--nq-accent-green)}#nqDashboard[data-nq-ui="lumen"] .nqd-library-reading-section.is-curiosity h4{color:var(--nq-accent-violet)}
+#nqDashboard[data-nq-ui="lumen"] a[href]{color:var(--nq-accent-cyan);text-decoration:underline;text-underline-offset:3px}
+#nqDashboard[data-nq-ui="lumen"] .nqd-skill-row[data-state="attention"] .nqd-skill-sample{color:var(--nq-accent-rose)}#nqDashboard[data-nq-ui="lumen"] .nqd-skill-row[data-state="consistent"] .nqd-skill-sample{color:var(--nq-accent-green)}

@@ -152,3 +152,9 @@ Uma nova tela pertence ao NefroQuest quando, mesmo sem logotipo, comunica simult
 - evidência como fonte de confiança.
 
 Se um componente parecer um dashboard SaaS, um card medieval genérico ou um efeito sem função, ele ainda não pertence ao sistema Lúmen Vivo.
+
+## Acentos de cor aprovados — outubro de 2026
+
+Os layouts refinados mantêm a base escura, mas não devem reduzir toda a experiência a azul/cinza. A paleta compartilhada vive em `styles/lumen/tokens.css`: dourado #f1cf7a (progressão e lendário), ciano #91dfe3 (interação e raro), violeta #c6a4ef (magia e épico), verde #83d8ad (recuperação e sucesso), rosa #efa7b2 (vida e alerta) e âmbar #e9b879 (custo/seleção/ataque).
+
+Aplicar acentos em símbolos, links, atributos, metadados de raridade e estados, mantendo os textos longos neutros. Cards do acervo e recompensas recebem uma mistura discreta da cor de raridade no fundo. A cor complementa rótulos e ícones; não os substitui. Links de leitura permanecem sublinhados. Fundos das artes cinematográficas e animações aprovadas não são recoloridos.

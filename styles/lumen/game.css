@@ -1939,3 +1939,11 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] #feedback,
  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] .ref-card { scroll-margin-top:76px; }
 }
+
+/* Cores de interação e atributos — paleta aprovada. */
+#mainApp[data-nq-ui="lumen"] .ref-card a[href],#mainApp[data-nq-ui="lumen"] .ref-resumo-btn,#mainApp[data-nq-ui="lumen"] .ref-title a{color:var(--nq-accent-cyan);text-decoration:underline;text-underline-offset:3px}
+#mainApp[data-nq-ui="lumen"] .feedback.good .nql-answer-icon{color:var(--nq-accent-green)!important}#mainApp[data-nq-ui="lumen"] .feedback.bad .nql-answer-icon{color:var(--nq-accent-rose)!important}
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .equip-total-attributes .stat-badge:nth-child(1 of .stat-badge){color:var(--nq-accent-amber);background:color-mix(in srgb,var(--nq-accent-amber) 9%,transparent)}
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .equip-total-attributes .stat-badge:nth-child(2 of .stat-badge){color:var(--nq-accent-cyan);background:color-mix(in srgb,var(--nq-accent-cyan) 9%,transparent)}
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .equip-total-attributes .stat-badge:nth-child(3 of .stat-badge){color:var(--nq-accent-violet);background:color-mix(in srgb,var(--nq-accent-violet) 9%,transparent)}
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .equip-total-attributes .stat-badge:nth-child(4 of .stat-badge){color:var(--nq-accent-green);background:color-mix(in srgb,var(--nq-accent-green) 9%,transparent)}
