@@ -48,6 +48,7 @@ const CHAVES_DE_APARELHO: Record<string, string> = {
   'nefroquest-music-vol': '0.15',
   'nefroquest-sound': 'off',
   'nefroquest-sfx-vol': '0.3',
+  'nefroquest-audio-preferences-version': '15.91',
   'nq_notif_enabled': '1',
   'pwa-dismissed': '1',
   'nq-sw-version': '14.78',
@@ -95,6 +96,24 @@ test.describe('Isolamento de conta no mesmo aparelho', () => {
     }, CHAVES_DE_APARELHO);
 
     expect(perdidas, `estas preferências do aparelho foram apagadas indevidamente: ${perdidas.join(', ')}`).toEqual([]);
+  });
+
+  test('versão das preferências de áudio pertence ao aparelho e sobrevive à limpeza de conta', async ({ page }) => {
+    await abrirApp(page);
+    const result = await page.evaluate(() => {
+      const key = 'nefroquest-audio-preferences-version';
+      localStorage.setItem(key, '99.0');
+      localStorage.setItem('nefroquest-music', 'off');
+      localStorage.setItem('nefroquest-music-vol', '0');
+      (window as any).clearLocalProgress();
+      return {
+        classified: ((window as any).NQ_DEVICE_KEYS as string[]).includes(key),
+        marker: localStorage.getItem(key),
+        enabled: localStorage.getItem('nefroquest-music'),
+        volume: localStorage.getItem('nefroquest-music-vol'),
+      };
+    });
+    expect(result).toEqual({ classified: true, marker: '99.0', enabled: 'off', volume: '0' });
   });
 
   test('nenhuma chave do app fica fora da classificação conta/aparelho', async ({ page }) => {

@@ -341,7 +341,7 @@
     const MASTERED_KEY = 'nefroquest-mastered';
     // Schema version — incrementar ao adicionar campos obrigatórios ao saveData
     // Histórico: 1 = original  2 = bossIntroShown + chestsOpened  3 = legendaryAbilityUsed  4 = difficulty + maxLives  5 = relic1 + relic2 double relics  6 = 6-slot diablo grid layout
-    const SAVE_SCHEMA_VERSION = 6;
+    const SAVE_SCHEMA_VERSION = 7;
 
     // ============ FREEMIUM ============
     // Reconhece admin via JWT custom claim (app_metadata.is_admin).
@@ -489,8 +489,8 @@
       }, 300);
     }
     function _doSaveGame() {
-      if (isProgressSandbox()) return;
-      if (!state.gameStarted || state.gameOver) return;
+      if (isProgressSandbox()) return false;
+      if (!state.gameStarted || state.gameOver) return false;
       const saveData = {
         level: state.level,
         xp: state.xp,
@@ -512,6 +512,7 @@
         chestsOpened: state.chestsOpened,
         obtainedItems: Array.isArray(state.obtainedItems) ? state.obtainedItems.slice() : [],
         allItemsCollectedNotified: !!state.allItemsCollectedNotified,
+        forjaPending: state.forjaPending ? JSON.parse(JSON.stringify(state.forjaPending)) : null,
         difficulty: state.difficulty || 'normal',
         maxLives: state.maxLives || 3,
         legendaryAbilityUsed: {...state.legendaryAbilityUsed},
@@ -524,8 +525,10 @@
       try { localStorage.setItem(SAVE_KEY, JSON.stringify(saveData)); } catch(e) {
         _track('error_localstorage_full', { msg: String(e) });
         _toast('Aviso: progresso não salvo — armazenamento cheio. Libere espaço nas configurações do navegador.', 'warning', 6000);
+        return false;
       }
       _scheduleCloudSync();
+      return true;
     }
 
     function _migrateSave(save) {
@@ -592,6 +595,11 @@
         }
         save.schemaVersion = 6;
       }
+      if (v < 7) {
+        save.forjaPending = null;
+        save.schemaVersion = 7;
+      }
+      save.forjaPending = save.forjaPending ?? null;
       return save;
     }
 
@@ -609,6 +617,7 @@
     }
     
     function deleteSave() {
+      state.forjaPending = null;
       if (isProgressSandbox()) return;
       localStorage.removeItem(SAVE_KEY);
       localStorage.removeItem('nefroquest-announced-badges');
@@ -672,6 +681,7 @@
       'nefroquest-music-vol',
       'nefroquest-sound',
       'nefroquest-sfx-vol',
+      'nefroquest-audio-preferences-version',
       'nq_notif_enabled',
       'pwa-dismissed',
       // Qual versão do app este navegador tem em cache. Apagar no logout faria
@@ -1000,6 +1010,7 @@
       if (save.equipment) {
         state.equipment = save.equipment;
       }
+      state.forjaPending = save.forjaPending ? JSON.parse(JSON.stringify(save.forjaPending)) : null;
       
       // Restore queue order
       if (save.queueIds && save.queueIds.length > 0) {
@@ -1318,6 +1329,11 @@
         applyBossOptionBadges();
         playSound('click');
         window.setTimeout(() => {
+          if (state.forjaPending) {
+            showForjaModal();
+            _forjaFocarResultado();
+            return;
+          }
           const mainApp = document.getElementById('mainApp');
           if (mainApp && !mainApp.classList.contains('hidden')) {
             mainApp.focus({ preventScroll: true });
@@ -1530,7 +1546,8 @@
     // gameStarted        boolean       Se o jogo foi iniciado
     // chestsOpened       number        Total de baús abertos na sessão
     // character          string|null   ID do personagem selecionado
-    // equipment          object        Slots weapon/armor/relic com atributos
+    // equipment          object        Seis espaços de equipamento com atributos
+    // forjaPending       object|null   Sorteio pago, recuperável até equipar ou vender
     // selectedCharacter  string|null   Alias de character (usado em alguns fluxos)
     // hp/maxHp           number        HP do boss (usado em boss mode)
     // ─────────────────────────────────────────────────────
@@ -1543,7 +1560,7 @@
       level:1,xp:0,xpToNext:200,score:0,lives:3,maxLives:3,streak:0,gold:0,difficulty:"normal",legendaryAbilityUsed:{},
       current:null,answered:false,queue:[],idx:0,bonusUses:0,
       correctTotal:0, narrativeShown:0, bossIntroShown:false, battleFinalShown:false, gameOver:false, bossLog:[],
-      gameStarted: false, chestsOpened:0, obtainedItems:[], allItemsCollectedNotified:false,
+      gameStarted: false, chestsOpened:0, obtainedItems:[], allItemsCollectedNotified:false, forjaPending:null,
       chestCorrectCount:0,
       chestTarget: Math.floor(Math.random() * 3) + 5,
       character: null,
@@ -1830,7 +1847,21 @@
     // ── Leaderboard ──────────────────────────── js/leaderboard.js ──
     const best = () => { const s = getGameStats(); return s.bestScore || 0; };
 
-    function log(m){const p=document.createElement('p');p.textContent=m;ui.journal.prepend(p);while(ui.journal.children.length>4)ui.journal.lastChild.remove()}
+    function log(m) {
+  const p = document.createElement('p');
+  const texto = String(m ?? '');
+  let inicio = 0;
+  for (const trecho of texto.matchAll(/\*\*([^*]+)\*\*/g)) {
+    p.appendChild(document.createTextNode(texto.slice(inicio, trecho.index)));
+    const forte = document.createElement('strong');
+    forte.textContent = trecho[1];
+    p.appendChild(forte);
+    inicio = trecho.index + trecho[0].length;
+  }
+  p.appendChild(document.createTextNode(texto.slice(inicio)));
+  ui.journal.prepend(p);
+  while (ui.journal.children.length > 4) ui.journal.lastChild.remove();
+}
     function total(){
       // Durante stun do boss, equipamentos ficam paralisados — apenas bônus do personagem contam
       const base = state.bossStunActive
@@ -2282,10 +2313,10 @@
       }).join('');
 
       const totalHTML = `<strong class='nq-text-gold'>Atributos Totais:</strong>
-        <span class='stat-badge' data-stat='atk' tabindex='0' aria-label='${statTips.atk.name}: ${st.atk}' aria-describedby='nqStatTipAtk'><span class='nql-stat-value'><span class='nql-stat-legacy' aria-hidden='true'>⚔️</span><svg class='nql-stat-icon' viewBox='0 0 24 24' aria-hidden='true'><path d='M4 20 18 6m-5-2h7v7M4 14l6 6m-7 1 3-3'/></svg><span class='nql-stat-number'>${st.atk}</span></span><span class='nql-stat-label' aria-hidden='true'>Ataque</span><span id='nqStatTipAtk' class='stat-tip' role='tooltip'><strong>${statTips.atk.icon} ${statTips.atk.name}</strong><br>${statTips.atk.desc}</span></span>
-        <span class='stat-badge' data-stat='def' tabindex='0' aria-label='${statTips.def.name}: ${st.def}' aria-describedby='nqStatTipDef'><span class='nql-stat-value'><span class='nql-stat-legacy' aria-hidden='true'>🛡️</span><svg class='nql-stat-icon' viewBox='0 0 24 24' aria-hidden='true'><path d='M12 3 4 6v6c0 5 8 9 8 9s8-4 8-9V6z'/></svg><span class='nql-stat-number'>${st.def}</span></span><span class='nql-stat-label' aria-hidden='true'>Defesa</span><span id='nqStatTipDef' class='stat-tip' role='tooltip'><strong>${statTips.def.icon} ${statTips.def.name}</strong><br>${statTips.def.desc}</span></span>
-        <span class='stat-badge' data-stat='kno' tabindex='0' aria-label='${statTips.kno.name}: ${st.kno}' aria-describedby='nqStatTipKno'><span class='nql-stat-value'><span class='nql-stat-legacy' aria-hidden='true'>📚</span><svg class='nql-stat-icon' viewBox='0 0 24 24' aria-hidden='true'><path d='M3 4h5c3 0 4 2 4 3v14c0-3-4-4-9-3zM21 4h-5c-3 0-4 2-4 3v14c0-3 4-4 9-3z'/></svg><span class='nql-stat-number'>${st.kno}</span></span><span class='nql-stat-label' aria-hidden='true'>Conhec.</span><span id='nqStatTipKno' class='stat-tip' role='tooltip'><strong>${statTips.kno.icon} ${statTips.kno.name}</strong><br>${statTips.kno.desc}</span></span>
-        <span class='stat-badge' data-stat='luck' tabindex='0' aria-label='${statTips.luck.name}: ${st.luck}' aria-describedby='nqStatTipLuck'><span class='nql-stat-value'><span class='nql-stat-legacy' aria-hidden='true'>🍀</span><svg class='nql-stat-icon' viewBox='0 0 24 24' aria-hidden='true'><path d='M12 12C2-3-4 16 12 12C27 2 8-4 12 12C22 27 28 8 12 12C-3 22 16 28 12 12M12 12l5 9'/></svg><span class='nql-stat-number'>${st.luck}</span></span><span class='nql-stat-label' aria-hidden='true'>Sorte</span><span id='nqStatTipLuck' class='stat-tip' role='tooltip'><strong>${statTips.luck.icon} ${statTips.luck.name}</strong><br>${statTips.luck.desc}</span></span>`;
+        <button type='button' class='stat-badge' data-stat='atk' aria-label='${statTips.atk.name}: ${st.atk}' aria-describedby='nqStatTipAtk'><span class='nql-stat-value'><span class='nql-stat-legacy' aria-hidden='true'>⚔️</span><svg class='nql-stat-icon' viewBox='0 0 24 24' aria-hidden='true'><path d='M4 20 18 6m-5-2h7v7M4 14l6 6m-7 1 3-3'/></svg><span class='nql-stat-number'>${st.atk}</span></span><span class='nql-stat-label' aria-hidden='true'>Ataque</span><span id='nqStatTipAtk' class='stat-tip' role='tooltip'><strong>${statTips.atk.icon} ${statTips.atk.name}</strong><br>${statTips.atk.desc}</span></button>
+        <button type='button' class='stat-badge' data-stat='def' aria-label='${statTips.def.name}: ${st.def}' aria-describedby='nqStatTipDef'><span class='nql-stat-value'><span class='nql-stat-legacy' aria-hidden='true'>🛡️</span><svg class='nql-stat-icon' viewBox='0 0 24 24' aria-hidden='true'><path d='M12 3 4 6v6c0 5 8 9 8 9s8-4 8-9V6z'/></svg><span class='nql-stat-number'>${st.def}</span></span><span class='nql-stat-label' aria-hidden='true'>Defesa</span><span id='nqStatTipDef' class='stat-tip' role='tooltip'><strong>${statTips.def.icon} ${statTips.def.name}</strong><br>${statTips.def.desc}</span></button>
+        <button type='button' class='stat-badge' data-stat='kno' aria-label='${statTips.kno.name}: ${st.kno}' aria-describedby='nqStatTipKno'><span class='nql-stat-value'><span class='nql-stat-legacy' aria-hidden='true'>📚</span><svg class='nql-stat-icon' viewBox='0 0 24 24' aria-hidden='true'><path d='M3 4h5c3 0 4 2 4 3v14c0-3-4-4-9-3zM21 4h-5c-3 0-4 2-4 3v14c0-3 4-4 9-3z'/></svg><span class='nql-stat-number'>${st.kno}</span></span><span class='nql-stat-label' aria-hidden='true'>Conhec.</span><span id='nqStatTipKno' class='stat-tip' role='tooltip'><strong>${statTips.kno.icon} ${statTips.kno.name}</strong><br>${statTips.kno.desc}</span></button>
+        <button type='button' class='stat-badge' data-stat='luck' aria-label='${statTips.luck.name}: ${st.luck}' aria-describedby='nqStatTipLuck'><span class='nql-stat-value'><span class='nql-stat-legacy' aria-hidden='true'>🍀</span><svg class='nql-stat-icon' viewBox='0 0 24 24' aria-hidden='true'><path d='M12 12C2-3-4 16 12 12C27 2 8-4 12 12C22 27 28 8 12 12C-3 22 16 28 12 12M12 12l5 9'/></svg><span class='nql-stat-number'>${st.luck}</span></span><span class='nql-stat-label' aria-hidden='true'>Sorte</span><span id='nqStatTipLuck' class='stat-tip' role='tooltip'><strong>${statTips.luck.icon} ${statTips.luck.name}</strong><br>${statTips.luck.desc}</span></button>`;
 
       // Synergy banner when all 6 slots are legendary
       const _synergyActive = legendaryCount()===6;
@@ -3055,7 +3086,7 @@
       if(!state.obtainedItems.includes(name)) state.obtainedItems=[...state.obtainedItems,name];
     }
 
-     function rollItem(diff,luck){
+     function rollItem(diff,luck,registrar=true){
       // Itens já vistos (equipados ou obtidos antes) nunca devem repetir
       const equipped = Object.values(state.equipment).map(e=>e.n);
       const obtained = Array.isArray(state.obtainedItems) ? state.obtainedItems : [];
@@ -3070,8 +3101,8 @@
         const cand=items[slot].filter(i=>i.rar===rar && !seen.has(i.n));
         if(cand.length>0){
           const item=cand[Math.floor(Math.random()*cand.length)];
-          _markObtained(item.n);
-          return{slot,item};
+          if(registrar) _markObtained(item.n);
+          return{slot,item:{...item}};
         }
       }
       // Fallback: qualquer item ainda não visto, em qualquer slot/raridade
@@ -3081,12 +3112,12 @@
       });
       if(fresh.length>0){
         const pick=fresh[Math.floor(Math.random()*fresh.length)];
-        _markObtained(pick.item.n);
-        return pick;
+        if(registrar) _markObtained(pick.item.n);
+        return {slot:pick.slot,item:{...pick.item}};
       }
       // Pool de 23 itens esgotado: libera repetição (somente o que não está equipado)
       // Notifica o jogador uma única vez para que ele saiba que coletou tudo.
-      if(!state.allItemsCollectedNotified){
+      if(registrar && !state.allItemsCollectedNotified){
         state.allItemsCollectedNotified = true;
         try { log('🏆 Você coletou todos os equipamentos do reino! Forjas agora podem repetir itens.'); } catch {}
         try { if (typeof _toast === 'function') _toast('🏆 Coleção completa! Todos os 23 equipamentos já foram forjados.', 'success', 5000); } catch {}
@@ -3097,7 +3128,8 @@
         items[slot].forEach(i=>{ if(!equipped.includes(i.n)) allFree.push({slot,item:i}); });
       });
       const finalPool = allFree.length>0 ? allFree : Object.keys(items).map(slot=>({slot,item:items[slot][0]}));
-      return finalPool[Math.floor(Math.random()*finalPool.length)];
+      const finalPick=finalPool[Math.floor(Math.random()*finalPool.length)];
+      return {slot:finalPick.slot,item:{...finalPick.item},collectionComplete:true};
     }
 
     const _rarSellVal = {common:20,uncommon:40,rare:80,epic:150,legendary:300};
@@ -3171,6 +3203,8 @@
     /* `decidir` mostra a escolha Substituir/Manter. Por padrão é o popup de
      * comparação; a página da Forja passa a sua própria, no fluxo. */
     function equipOrSell(slot, item, onDone, decidir = showEquipComparePopup) {
+      item = { ...item };
+      let resolvido = false;
       const currentItem = state.equipment[slot];
       if (!currentItem || currentItem.n === 'Vazio') {
         state.equipment[slot] = item;
@@ -3182,6 +3216,8 @@
       
       decidir(slot, currentItem, item,
         () => {
+          if (resolvido) return;
+          resolvido = true;
           const val = _itemSellVal(currentItem);
           state.gold += val;
           state.equipment[slot] = item;
@@ -3190,6 +3226,8 @@
           renderHUD(); updateBadges(); saveGame();
         },
         () => {
+          if (resolvido) return;
+          resolvido = true;
           const val = _itemSellVal(item);
           state.gold += val;
           const msg = `💰 ${item.n} (${_rarLabel[item.rar] || item.rar}) vendido por ${val}💰 — ${slotLabels[slot]} atual mantida.`;
@@ -3945,6 +3983,7 @@
       renderQuestion();
     }
 
+
     // === POPUP DE CONFIRMAÇÃO MOBILE (Forjar / Lendário / Baú) ===
     function showActionConfirmPopup(type) {
       // Remove popup anterior se existir
@@ -3963,7 +4002,7 @@
         },
         legendary: {
           title: '⭐ Forjar Lendário',
-          desc: 'Garante um item lendário para um slot aleatório. Poder máximo!',
+          desc: 'Um lendário para arma, armadura ou relíquia; prioriza inéditos e depois pode repetir itens não equipados.',
           cost: 1000,
           costColor: '#d8b4fe',
           btnClass: 'legendary',
@@ -4039,53 +4078,87 @@
     window.showMobileActionConfirm = showActionConfirmPopup;
     window.closeChestModal = closeChestModal;
 
-    // Modal da Forja — duas opções: item comum e lendário
-    // ── Forja: página do personagem, não sobreposição ───────────────────────
-    //
-    // Era uma caixa escura sobre o jogo que abria até dois outros popups em
-    // sequência: a comparação "Substituir?" e o cartão "Forja Concluída!".
-    // O equipamento atual não aparecia em lugar nenhum, e os motivos de uma
-    // forja recusada (jornada encerrada, tudo lendário) só iam para o diário.
-    //
-    // Agora a Forja é uma página: ouro, as duas forjas com o motivo de cada
-    // bloqueio, a decisão de substituição e o resultado no próprio fluxo, e o
-    // equipamento dos seis espaços logo abaixo. Com uma decisão pendente não
-    // dá para sair nem forjar de novo — o ouro já foi gasto nesse item.
+    // Uma operação paga fica no save até a escolha. A página contém apenas UI.
     const FORJA_CUSTO = { comum: 300, lendario: 1000 };
-    let _forja = null; // { origem, pendente, ultimo }
+    const FORJA_SLOTS = ['weapon', 'armor', 'relic', 'helmet', 'glove', 'boot'];
+    let _forja = null;
+    let _forjaSequence = 0;
 
-    const _forjaTexto = m => String(m).replace(/\*\*/g, '');
+    const _forjaTexto = m => String(m ?? '').replace(/\*\*/g, '');
+    const _forjaCopia = value => JSON.parse(JSON.stringify(value));
 
     function _forjaBloqueio(tipo) {
-      if (_forja?.pendente) return 'Decida o que fazer com o item forjado antes de forjar outro.';
+      if (!Object.prototype.hasOwnProperty.call(FORJA_CUSTO, tipo)) return 'Escolha um tipo de forja válido.';
+      if (state.forjaPending) return 'Decida o que fazer com o item forjado antes de forjar outro.';
+      if (_forja?.busy) return 'Aguarde a conclusão da forja.';
+      if (_forja?.ultimo) return 'Selecione “Forjar outro item” para iniciar uma nova compra.';
       if (state.gameOver) return 'A jornada foi encerrada. Inicie uma nova para voltar a forjar.';
+      if (!state.gameStarted) return 'Inicie ou retome sua jornada para forjar.';
       if (allItemsMaxed()) return 'Todos os seis espaços já têm equipamento lendário.';
       const falta = FORJA_CUSTO[tipo] - state.gold;
       if (falta > 0) return `Faltam ${falta} de ouro.`;
       return '';
     }
 
+    // Não depende do debounce: desconto + item pendente, ou venda + equipamento,
+    // entram juntos no mesmo JSON. Falha de escrita restaura todo o domínio da
+    // Forja e mantém intacta a versão anterior do save.
+    function _forjaTransacao(alterar) {
+      const anterior = {
+        gold: state.gold,
+        equipment: _forjaCopia(state.equipment),
+        obtainedItems: [...state.obtainedItems],
+        allItemsCollectedNotified: state.allItemsCollectedNotified,
+        forjaPending: state.forjaPending ? _forjaCopia(state.forjaPending) : null,
+      };
+      clearTimeout(_autoSaveTimer);
+      _autoSaveTimer = null;
+      clearTimeout(_saveTimer);
+      _saveTimer = null;
+      try {
+        alterar();
+        _invalidateStatsCache();
+        if (!isProgressSandbox() && !_doSaveGame()) {
+          Object.assign(_stateData, anterior);
+          _invalidateStatsCache();
+          return false;
+        }
+        return true;
+      } catch (error) {
+        Object.assign(_stateData, anterior);
+        _invalidateStatsCache();
+        _track('error_forge_transaction', { msg: String(error) });
+        return false;
+      } finally {
+        // _markObtained usa o Proxy; a gravação acima já consolidou o estado.
+        clearTimeout(_autoSaveTimer);
+        _autoSaveTimer = null;
+        clearTimeout(_saveTimer);
+        _saveTimer = null;
+      }
+    }
+
     function _forjaCartaoItem(item, slot, rotulo, comparaCom, variante = '') {
       const vazio = !item || item.n === 'Vazio';
       const icone = vazio ? '' : getItemIcon(item.n, slot);
       const arte = vazio ? ''
-        : icone ? `<img src="${icone}" alt="" onerror="this.src='${defaultIcons[slot] || ''}'">`
+        : icone ? `<img src="${escapeHtml(icone)}" alt="">`
         : `<span class="nq-forja-emoji" aria-hidden="true">${_TEMP_SLOT_EMOJI[slot] || '·'}</span>`;
       const attrs = [['atk', 'Ataque'], ['def', 'Defesa'], ['kno', 'Conhecimento'], ['luck', 'Sorte']];
-      const valor = (k) => {
+      const valor = k => {
         const v = vazio ? 0 : (item[k] || 0);
-        if (!comparaCom) return `${v}`;
+        if (!comparaCom) return `<strong>${v}</strong>`;
         const d = v - (comparaCom[k] || 0);
-        return d ? `${v} <span class="${d > 0 ? 'pos' : 'neg'}">(${d > 0 ? '+' : ''}${d})</span>` : `${v}`;
+        return `<strong>${v}</strong> <span class="${d > 0 ? 'pos' : d < 0 ? 'neg' : 'equal'}">(${d > 0 ? '+' : ''}${d})</span>`;
       };
       return `
-        <article class="nq-forja-item${variante ? ` nq-forja-item-${variante}` : ''}">
+        <article class="nq-forja-item${variante ? ` nq-forja-item-${variante}` : ''}" data-rarity="${escapeHtml(item?.rar || 'common')}">
           ${rotulo ? `<p class="nq-forja-rotulo">${variante === 'novo' ? '<span class="nq-forja-selo">Novo</span> ' : ''}${rotulo}</p>` : ''}
           <div class="nq-forja-item-topo">
-            <div class="nq-forja-arte${vazio ? ' nq-forja-arte-vazia' : ` nq-forja-arte-${item.rar}`}">${arte}</div>
+            <div class="nq-forja-arte${vazio ? ' nq-forja-arte-vazia' : ` nq-forja-arte-${escapeHtml(item.rar)}`}">${arte}</div>
             <div>
               <h3>${vazio ? 'Vazio' : escapeHtml(item.n)}</h3>
-              <p>${slotLabels[slot] || slot}${vazio ? '' : ` · <span class="rar-${item.rar}">${_rarLabel[item.rar] || item.rar}</span>`}</p>
+              <p>${escapeHtml(slotLabels[slot] || slot)}${vazio ? '' : ` · <span class="rar-${escapeHtml(item.rar)}">${escapeHtml(_rarLabel[item.rar] || item.rar)}</span>`}</p>
             </div>
           </div>
           ${vazio && !comparaCom ? '<p class="nq-forja-vazio">Nenhum item neste espaço.</p>'
@@ -4093,7 +4166,6 @@
         </article>`;
     }
 
-    /* Uma frase que diz o que os números dizem, sem pedir que a pessoa some. */
     function _forjaVeredito(novo, atual) {
       const ks = ['atk', 'def', 'kno', 'luck'];
       const melhor = ks.filter(k => (novo[k] || 0) > (atual[k] || 0)).length;
@@ -4107,76 +4179,97 @@
     function _forjaResultadoHtml() {
       const f = _forja;
       if (f.pendente) {
-        const { slot, atual, novo } = f.pendente;
+        const { slot, atual, novo, custo } = f.pendente;
+        const vendeAtual = _itemSellVal(atual);
+        const vendeNovo = _itemSellVal(novo);
         return `
           <h2>Você forjou ${escapeHtml(novo.n)}</h2>
-          <p>${_forjaVeredito(novo, atual)} Seu espaço de ${(slotLabels[slot] || slot).toLowerCase()} já está ocupado: escolha qual fica, e o outro vira ouro.</p>
+          <p>${_forjaVeredito(novo, atual)} Escolha qual fica em ${(slotLabels[slot] || slot).toLowerCase()}. O outro será vendido.</p>
+          <p class="nq-forja-pago">${custo} de ouro já usados. Sua escolha está salva, inclusive se você recarregar.</p>
           <div class="nq-forja-comparar">
             ${_forjaCartaoItem(novo, slot, 'Recém-forjado', atual, 'novo')}
             ${_forjaCartaoItem(atual, slot, 'Equipado agora', null, 'atual')}
           </div>
           <div class="nq-forja-acoes">
-            <button type="button" class="btn gold" data-action="decidirForja" data-arg="substituir">Equipar ${escapeHtml(novo.n)}<span class="nq-forja-btn-sub">${escapeHtml(atual.n)} vira ${_itemSellVal(atual)} de ouro</span></button>
-            <button type="button" class="btn sec" data-action="decidirForja" data-arg="manter">Manter ${escapeHtml(atual.n)}<span class="nq-forja-btn-sub">${escapeHtml(novo.n)} vira ${_itemSellVal(novo)} de ouro</span></button>
+            <div>
+              <button type="button" class="btn gold" data-action="decidirForja" data-arg="substituir" aria-describedby="forjaSaldoEquipar">Equipar ${escapeHtml(novo.n)}<span class="nq-forja-btn-sub">${escapeHtml(atual.n)} vira ${vendeAtual} de ouro</span></button>
+              <p id="forjaSaldoEquipar" class="nq-forja-saldo">Saldo final: <strong>${state.gold + vendeAtual} de ouro</strong></p>
+            </div>
+            <div>
+              <button type="button" class="btn sec" data-action="decidirForja" data-arg="manter" aria-describedby="forjaSaldoManter">Manter ${escapeHtml(atual.n)}<span class="nq-forja-btn-sub">${escapeHtml(novo.n)} vira ${vendeNovo} de ouro</span></button>
+              <p id="forjaSaldoManter" class="nq-forja-saldo">Saldo final: <strong>${state.gold + vendeNovo} de ouro</strong></p>
+            </div>
           </div>`;
       }
-      if (f.ultimo?.aviso) return `<p class="nq-forja-aviso">${escapeHtml(_forjaTexto(f.ultimo.aviso))}</p>`;
       if (f.ultimo) {
-        const { item, slot, msg } = f.ultimo;
+        const { item, slot, msg, custo, venda } = f.ultimo;
         return `
           <h2>Forja concluída</h2>
           <p>${escapeHtml(_forjaTexto(msg))}</p>
-          ${_forjaCartaoItem(item, slot)}`;
+          ${_forjaCartaoItem(item, slot, 'Equipado agora', null, 'final')}
+          <dl class="nq-forja-recibo">
+            <div><dt>Custo da forja</dt><dd>${custo} ouro</dd></div>
+            <div><dt>Venda de equipamento</dt><dd>+${venda} ouro</dd></div>
+            <div><dt>Saldo final</dt><dd>${state.gold} ouro</dd></div>
+          </dl>
+          <button type="button" class="btn sec nq-forja-nova" data-action="forjarOutroItem">Forjar outro item</button>`;
       }
-      return '';
+      return `<div class="nq-forja-convite">
+        <svg class="nq-forja-bigorna" viewBox="0 0 160 112" aria-hidden="true"><path d="M24 31h71V16h28v15h24c-5 17-20 24-38 24H96v16l17 14v11H44V85l17-14V55H44C23 55 11 44 8 31z"/><path d="M53 100h68M49 105h76M74 13l9-9 21 21-9 9z"/></svg>
+        <h2>Dê forma ao próximo equipamento</h2>
+        <p>Escolha a forja abaixo. Se o espaço estiver ocupado, compare os quatro atributos antes de equipar.</p>
+      </div>`;
     }
 
     function _renderForja() {
       const pagina = document.getElementById('forjaPage');
       if (!pagina || !_forja) return;
+      _forja.pendente = state.forjaPending;
+      const detalhesAbertos = !!pagina.querySelector('.nq-forja-equipamento[open]');
       const opcao = (tipo, titulo, descricao) => {
         const motivo = _forjaBloqueio(tipo);
         const id = `forjaMotivo-${tipo}`;
         return `
-          <div class="nq-forja-opcao">
+          <article class="nq-forja-opcao">
+            <p class="nq-forja-rota">${tipo === 'comum' ? 'Sorteio livre' : 'Raridade garantida'}</p>
             <h3>${titulo}</h3>
             <p class="nq-forja-custo">${FORJA_CUSTO[tipo]} de ouro</p>
             <p>${descricao}</p>
             <button type="button" class="btn gold" data-action="forjarNaPagina" data-arg="${tipo}"
               ${motivo ? `disabled aria-describedby="${id}"` : ''}>Forjar ${tipo === 'comum' ? 'item comum' : 'item lendário'}</button>
             ${motivo ? `<p id="${id}" class="nq-forja-motivo">${motivo}</p>` : ''}
-          </div>`;
+          </article>`;
       };
       const saidaBloqueada = !!_forja.pendente;
+      const retrato = ui.heroImg?.getAttribute('src');
+      pagina.dataset.forgeState = saidaBloqueada ? 'decision' : _forja.ultimo ? 'complete' : 'ready';
       pagina.innerHTML = `
-        <div class="nq-study-content">
+        <div class="nq-study-content nq-forja-shell">
           <header class="nq-forja-cabecalho">
             <button type="button" class="btn sec" data-action="fecharForja" ${saidaBloqueada ? 'disabled aria-describedby="forjaMotivoSaida"' : ''}>← Voltar à jornada</button>
-            <h1 id="forjaTitulo">Forja</h1>
+            <div><p class="nq-forja-eyebrow">Oficina do guardião</p><h1 id="forjaTitulo">Forja</h1></div>
             <p class="nq-forja-ouro">Ouro disponível: <strong>${state.gold}</strong></p>
             ${saidaBloqueada ? '<p id="forjaMotivoSaida" class="nq-forja-motivo">Decida o item forjado antes de voltar: o ouro já foi gasto nele.</p>' : ''}
           </header>
+          <div class="nq-forja-palco">
+            ${retrato ? `<figure class="nq-forja-guardiao"><img src="${escapeHtml(retrato)}" alt=""><figcaption>${escapeHtml(characters[state.character]?.name || 'Seu guardião')}</figcaption></figure>` : ''}
+            <section id="forjaResultado" class="nq-forja-resultado" role="status" aria-live="polite" tabindex="-1">
+              ${_forja.aviso ? `<p class="nq-forja-aviso" role="alert">${escapeHtml(_forja.aviso)}</p>` : ''}
+              ${_forjaResultadoHtml()}
+            </section>
+          </div>
           <section class="nq-forja-opcoes" aria-label="Tipos de forja">
-            ${opcao('comum', 'Item comum', 'Um item aleatório para qualquer espaço. A raridade depende do seu nível e da sua sorte.')}
-            ${opcao('lendario', 'Item lendário', 'Um item lendário inédito para arma, armadura ou relíquia.')}
+            ${opcao('comum', 'Equipamento aleatório', 'Um item para qualquer um dos seis espaços. A raridade depende do seu nível e da sua sorte.')}
+            ${opcao('lendario', 'Equipamento lendário', 'Um lendário para arma, armadura ou relíquia. Prioriza inéditos; após esgotá-los, pode repetir um item que não está equipado.')}
           </section>
-          <section id="forjaResultado" class="nq-forja-resultado" role="status" aria-live="polite" tabindex="-1">${_forjaResultadoHtml()}</section>
-          <section class="nq-forja-equipamento" aria-labelledby="forjaEquipTitulo">
-            <h2 id="forjaEquipTitulo">Equipamento atual</h2>
+          <details class="nq-forja-equipamento" ${detalhesAbertos ? 'open' : ''}>
+            <summary id="forjaEquipTitulo"><span>Equipamento atual</span><span class="nq-forja-details-meta">Ver os seis espaços</span></summary>
             <div class="nq-forja-grade">
-              ${['weapon', 'armor', 'relic', 'helmet', 'glove', 'boot'].map(slot => _forjaCartaoItem(state.equipment[slot], slot)).join('')}
+              ${FORJA_SLOTS.map(slot => _forjaCartaoItem(state.equipment[slot], slot)).join('')}
             </div>
-          </section>
+          </details>
         </div>`;
     }
-
-    const _forjaApi = {
-      decidir(slot, atual, novo, substituir, manter) {
-        _forja.pendente = { slot, atual, novo, substituir, manter };
-      },
-      concluir(item, slot, msg) { _forja.ultimo = { item, slot, msg }; },
-      aviso(m) { _forja.ultimo = { aviso: m }; },
-    };
 
     function _forjaFocarResultado() {
       const alvo = _forja?.pendente
@@ -4186,57 +4279,147 @@
       document.getElementById('forjaResultado')?.scrollIntoView({ block: 'nearest' });
     }
 
+    function _forjaLendario() {
+      const equipped = Object.values(state.equipment).map(e => e.n);
+      const seen = new Set([...equipped, ...state.obtainedItems]);
+      const freshSlots = ['weapon', 'armor', 'relic'].filter(slot =>
+        items[slot].some(i => i.rar === 'legendary' && !seen.has(i.n)));
+      const keys = freshSlots.length ? freshSlots : ['weapon', 'armor', 'relic'];
+      const slot = keys[Math.floor(Math.random() * keys.length)];
+      let candidatos = items[slot].filter(i => i.rar === 'legendary' && !seen.has(i.n));
+      if (!candidatos.length) candidatos = items[slot].filter(i => i.rar === 'legendary' && !equipped.includes(i.n));
+      if (!candidatos.length) return null;
+      return { slot, item: { ...candidatos[Math.floor(Math.random() * candidatos.length)] } };
+    }
+
     function forjarNaPagina(tipo) {
       if (!_forja || _forjaBloqueio(tipo)) return;
+      _forja.busy = true;
+      _forja.aviso = '';
+      try {
+        const rolled = tipo === 'lendario' ? _forjaLendario() : rollItem(state.level, total().luck, false);
+        if (!rolled) {
+          _forja.aviso = 'Não há outro lendário disponível neste espaço. Nenhum ouro foi gasto.';
+          return;
+        }
+        const custo = FORJA_CUSTO[tipo];
+        const atual = { ...state.equipment[rolled.slot] };
+        const novo = { ...rolled.item };
+        const precisaEscolher = atual.n !== 'Vazio';
+        const id = `${Date.now().toString(36)}-${++_forjaSequence}`;
+        const notificarColecao = !!rolled.collectionComplete && !state.allItemsCollectedNotified;
+        const sucesso = _forjaTransacao(() => {
+          _stateData.gold -= custo;
+          _markObtained(novo.n);
+          if (notificarColecao) _stateData.allItemsCollectedNotified = true;
+          _stateData.forjaPending = precisaEscolher ? { id, tipo, custo, slot: rolled.slot, atual, novo } : null;
+          if (!precisaEscolher) _stateData.equipment = { ...state.equipment, [rolled.slot]: { ...novo } };
+        });
+        if (!sucesso) {
+          _forja.aviso = 'Não foi possível salvar a forja. Seu ouro e equipamento foram mantidos. Libere espaço e tente novamente.';
+          return;
+        }
+        _forja.ultimo = precisaEscolher ? null : {
+          item: novo, slot: rolled.slot, custo, venda: 0,
+          msg: `Equipou ${novo.n} em ${(slotLabels[rolled.slot] || rolled.slot).toLowerCase()}.`,
+        };
+        if (notificarColecao) {
+          log('🏆 Você coletou todos os equipamentos do reino! Forjas agora podem repetir itens.');
+          _toast('🏆 Coleção completa! Todos os equipamentos já foram forjados.', 'success', 5000);
+          _track('all_items_collected', { correctTotal: state.correctTotal });
+        }
+        playSound('forge');
+        if (!precisaEscolher) log(`🔨 Forja concluída! ${_forja.ultimo.msg}`);
+        renderHUD();
+        updateBadges();
+      } finally {
+        _forja.busy = false;
+        _renderForja();
+        _forjaFocarResultado();
+      }
+    }
+
+    function forjarOutroItem() {
+      if (!_forja || !_forja.ultimo || state.forjaPending || _forja.busy) return;
       _forja.ultimo = null;
-      if (tipo === 'lendario') _forgeLegendaryDirect(_forjaApi);
-      else _forgeItemDirect(_forjaApi);
+      _forja.aviso = '';
       _renderForja();
-      _forjaFocarResultado();
+      const alvo = document.querySelector('#forjaPage [data-action="forjarNaPagina"]:not(:disabled)')
+        || document.getElementById('forjaResultado');
+      alvo?.focus({ preventScroll: true });
+      alvo?.scrollIntoView({ block: 'nearest' });
     }
 
     function decidirForja(escolha) {
-      const p = _forja?.pendente;
+      if (!_forja || _forja.busy || !['substituir', 'manter'].includes(escolha)) return;
+      const p = state.forjaPending;
       if (!p) return;
-      _forja.pendente = null;
-      (escolha === 'substituir' ? p.substituir : p.manter)();
-      _renderForja();
-      _forjaFocarResultado();
+      _forja.busy = true;
+      _forja.aviso = '';
+      try {
+        const substituir = escolha === 'substituir';
+        const vendido = substituir ? p.atual : p.novo;
+        const mantido = substituir ? p.novo : p.atual;
+        const venda = _itemSellVal(vendido);
+        const sucesso = _forjaTransacao(() => {
+          _stateData.gold += venda;
+          _stateData.equipment = { ...state.equipment, [p.slot]: { ...mantido } };
+          _stateData.forjaPending = null;
+        });
+        if (!sucesso) {
+          _forja.aviso = 'Não foi possível salvar a escolha. O item continua aguardando sua decisão; nenhuma venda foi efetuada.';
+          return;
+        }
+        const msg = `${mantido.n} equipado. ${vendido.n} vendido por ${venda} de ouro.`;
+        _forja.ultimo = { item: { ...mantido }, slot: p.slot, custo: p.custo, venda, msg };
+        log(`🔨 Forja concluída! ${msg}`);
+        renderHUD();
+        updateBadges();
+      } finally {
+        _forja.busy = false;
+        _renderForja();
+        _forjaFocarResultado();
+      }
     }
 
     function showForjaModal() {
       if (document.getElementById('forjaPage')) return;
+      const ativo = document.activeElement;
+      const focoOrigem = ativo && ativo !== document.body && ativo !== document.documentElement
+        ? ativo
+        : [...document.querySelectorAll('#forgeBtn, .mdock-btn.forge-item')].find(el => el.getClientRects().length) || ativo;
       _forja = {
         origem: {
-          foco: document.activeElement,
+          foco: focoOrigem,
           scroll: window.scrollY,
           elementos: [...document.querySelectorAll('#mainApp, #welcomeScreen')].map(el => ({ el, hidden: el.classList.contains('hidden'), inert: el.inert })),
         },
-        pendente: null,
+        pendente: state.forjaPending,
         ultimo: null,
+        aviso: '',
+        busy: false,
       };
       _forja.origem.elementos.forEach(({ el }) => { el.classList.add('hidden'); el.inert = true; });
       const pagina = document.createElement('section');
       pagina.id = 'forjaPage';
       pagina.className = 'nq-study-surface nq-forja';
+      pagina.dataset.nqUi = 'lumen';
       pagina.setAttribute('role', 'main');
       pagina.setAttribute('aria-labelledby', 'forjaTitulo');
       pagina.addEventListener('keydown', e => {
-        // A Forja tem o próprio contexto de teclado; atalhos da jornada não passam.
         e.stopPropagation();
-        if (e.key === 'Escape' && !_forja?.pendente) { e.preventDefault(); fecharForja(); }
+        if (e.key === 'Escape' && !state.forjaPending) { e.preventDefault(); fecharForja(); }
       });
       document.body.appendChild(pagina);
       document.body.classList.add('nq-studying');
       _renderForja();
       window.scrollTo(0, 0);
-      // Foco já na montagem: com requestAnimationFrame, um Escape imediato
-      // caía no documento e a página não fechava.
-      pagina.querySelector('button:not([disabled])')?.focus({ preventScroll: true });
+      if (state.forjaPending) _forjaFocarResultado();
+      else pagina.querySelector('button:not([disabled])')?.focus({ preventScroll: true });
     }
 
     function fecharForja() {
-      if (!_forja || _forja.pendente) return;
+      if (!_forja || state.forjaPending || _forja.busy) return;
       const { origem } = _forja;
       _forja = null;
       document.getElementById('forjaPage')?.remove();
@@ -4250,6 +4433,8 @@
     window.fecharForja = fecharForja;
     window.forjarNaPagina = forjarNaPagina;
     window.decidirForja = decidirForja;
+    window.forjarOutroItem = forjarOutroItem;
+
 
     function closeBoardModal() {
       document.getElementById('boardModal').classList.add('hidden');
@@ -4277,61 +4462,9 @@
       chest: () => _openChestDirect()
     };
 
-    // Funções internas diretas (sem interceptação)
-    /* `pagina` (opcional) vem da página da Forja: decide a substituição no
-     * fluxo, mostra o resultado ali e recebe os avisos que antes só iam para o
-     * diário. Sem ela, o comportamento é o de sempre (popups). */
-    function _forgeItemDirect(pagina){
-      const aviso = m => { log(m); pagina?.aviso(m); };
-      if(state.gameOver){ aviso('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
-      if(allItemsMaxed()){ aviso('🏆 Você já possui todos os equipamentos lendários!'); return; }
-      const cost=300;
-      if(state.gold<cost){ aviso('🧱 Ouro insuficiente! Precisa de 300 ouro para forjar.'); return; }
-      state.gold-=cost;
-      const st=total();
-      const rolled=rollItem(state.level, st.luck);
-      const gains=[`⚔️ ATK ${rolled.item.atk}`, `🛡️ DEF ${rolled.item.def}`, `📚 CONH ${rolled.item.kno}`, `🍀 SORTE ${rolled.item.luck}`];
-      playSound('forge');
-      equipOrSell(rolled.slot, rolled.item, (msg) => {
-        if (pagina) pagina.concluir(rolled.item, rolled.slot, msg);
-        else showForgePopup(rolled.item, rolled.slot, gains);
-        log(`🔨 Forja concluída! ${msg}`);
-        renderHUD();
-        updateBadges();
-        saveGame();
-      }, pagina?.decidir);
-    }
-
-    function _forgeLegendaryDirect(pagina){
-      const aviso = m => { log(m); pagina?.aviso(m); };
-      if(state.gameOver){ aviso('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
-      if(allItemsMaxed()){ aviso('🏆 Você já possui todos os equipamentos lendários!'); return; }
-      const cost=1000;
-      if(state.gold<cost){ aviso('🧱 Ouro insuficiente! Precisa de 1000 ouro para forjar lendário.'); return; }
-      state.gold-=cost;
-      const equipped = Object.values(state.equipment).map(e=>e.n);
-      const obtained = Array.isArray(state.obtainedItems) ? state.obtainedItems : [];
-      const seen = new Set([...equipped, ...obtained]);
-      // Slots que ainda têm algum lendário inédito
-      const freshSlots = ['weapon', 'armor', 'relic'].filter(slot =>
-        items[slot].some(i => i.rar === 'legendary' && !seen.has(i.n)));
-      const keys = freshSlots.length>0 ? freshSlots : ['weapon', 'armor', 'relic'];
-      const slot=keys[Math.floor(Math.random()*keys.length)];
-      let legendaryItems = items[slot].filter(i => i.rar === 'legendary' && !seen.has(i.n));
-      if(legendaryItems.length === 0) legendaryItems = items[slot].filter(i => i.rar === 'legendary' && !equipped.includes(i.n));
-      if(legendaryItems.length === 0){ aviso('🏆 Você já forjou todos os lendários deste tipo! O ouro foi devolvido.'); state.gold+=cost; return; }
-      const legendaryItem = legendaryItems[Math.floor(Math.random()*legendaryItems.length)];
-      _markObtained(legendaryItem.n);
-      const legendaryItemCopy = {...legendaryItem};
-      const gains = [`⚔️ ATK ${legendaryItem.atk}`, `🛡️ DEF ${legendaryItem.def}`, `📚 CONH ${legendaryItem.kno}`, `🍀 SORTE ${legendaryItem.luck}`];
-      playSound('forge');
-      equipOrSell(slot, legendaryItemCopy, (msg) => {
-        if (pagina) pagina.concluir(legendaryItemCopy, slot, msg);
-        else showForgePopup(legendaryItemCopy, slot, gains);
-        log(`🔨 Forja Lendária! ${msg}`);
-        renderHUD(); updateBadges(); saveGame();
-      }, pagina?.decidir);
-    }
+    // Entradas antigas também passam pela operação durável da mesma Forja.
+    function _forgeItemDirect() { showForjaModal(); forjarNaPagina('comum'); }
+    function _forgeLegendaryDirect() { showForjaModal(); forjarNaPagina('lendario'); }
 
     function _openChestDirect(){
       if(state.gameOver){ log('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
@@ -5639,7 +5772,7 @@
       if (modal) { modal.remove(); return; }
       // Fecha game modes overlay
       const gm = document.getElementById('gameModesOverlay');
-      if (gm && gm.style.display !== 'none' && gm.classList.contains('open')) { closeGameModesPopup(); return; }
+      if (gm && gm.style.display !== 'none' && gm.classList.contains('show')) { closeGameModesPopup(); return; }
     });
 
     // Atalhos de teclado para responder (1-4 ou A-D) e avançar (Enter/Space)
@@ -5765,17 +5898,26 @@
     }
 
     // ============ POPUP MODOS DE JOGO (mobile) ============
+    let _gameModesFocus = null;
     function openGameModesPopup() {
       const el = document.getElementById('gameModesOverlay');
-      if (el) el.classList.add('show');
+      if (!el || el.classList.contains('show')) return;
+      const returnFocus = document.activeElement;
+      el.classList.add('show');
+      el.setAttribute('aria-hidden', 'false');
+      _gameModesFocus?.(false);
+      _gameModesFocus = manageDialogFocus(el, closeGameModesPopup, returnFocus, el.querySelector('.nqmodes-route'));
     }
     function closeGameModesPopup() {
       const el = document.getElementById('gameModesOverlay');
-      if (el) el.classList.remove('show');
+      if (!el) return;
+      el.classList.remove('show');
+      el.setAttribute('aria-hidden', 'true');
+      _gameModesFocus?.();
+      _gameModesFocus = null;
     }
     function closeGameModesPopupOutside(e) {
-      // closeGameModesPopupOutside desativado para cliques fora (evita fechar acidentalmente)
-      // if (e.target === document.getElementById('gameModesOverlay')) closeGameModesPopup();
+      // Preserva o contrato: tocar o fundo não fecha acidentalmente.
     }
 
 

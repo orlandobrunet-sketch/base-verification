@@ -11,12 +11,10 @@
   <link rel="canonical" href="https://nefroquest.com/jogar/">
   <title>NefroQuest: Ascension</title>
   <!-- Favicons -->
-  <link rel="icon" type="image/x-icon" href="favicon.ico?v=9.28">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png?v=9.28">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png?v=9.28">
-  <link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicon-192x192.png?v=9.28">
-  <link rel="icon" type="image/png" sizes="512x512" href="assets/images/favicon-512x512.png?v=9.28">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+  <link rel="icon" type="image/svg+xml" href="/landing/assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/landing/assets/favicon-32x32.png">
+  <link rel="icon" type="image/x-icon" sizes="32x32" href="/landing/assets/favicon-q.ico?v=15.91">
+  <link rel="apple-touch-icon" sizes="192x192" href="/landing/assets/favicon-192x192.png">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#0a0e1a">
   <!-- iOS PWA -->
@@ -24,15 +22,6 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="NefroQuest">
   <!-- iOS Splash Screens -->
-  <link rel="apple-touch-startup-image" href="assets/images/splash-1290x2796.png" media="(device-width:430px) and (device-height:932px) and (-webkit-device-pixel-ratio:3)">
-  <link rel="apple-touch-startup-image" href="assets/images/splash-1179x2556.png" media="(device-width:393px) and (device-height:852px) and (-webkit-device-pixel-ratio:3)">
-  <link rel="apple-touch-startup-image" href="assets/images/splash-1284x2778.png" media="(device-width:428px) and (device-height:926px) and (-webkit-device-pixel-ratio:3)">
-  <link rel="apple-touch-startup-image" href="assets/images/splash-1170x2532.png" media="(device-width:390px) and (device-height:844px) and (-webkit-device-pixel-ratio:3)">
-  <link rel="apple-touch-startup-image" href="assets/images/splash-1125x2436.png" media="(device-width:375px) and (device-height:812px) and (-webkit-device-pixel-ratio:3)">
-  <link rel="apple-touch-startup-image" href="assets/images/splash-828x1792.png"  media="(device-width:414px) and (device-height:896px) and (-webkit-device-pixel-ratio:2)">
-  <link rel="apple-touch-startup-image" href="assets/images/splash-750x1334.png"  media="(device-width:375px) and (device-height:667px) and (-webkit-device-pixel-ratio:2)">
-  <link rel="apple-touch-startup-image" href="assets/images/splash-2048x2732.png" media="(device-width:1024px) and (device-height:1366px) and (-webkit-device-pixel-ratio:2)">
-  <link rel="apple-touch-startup-image" href="assets/images/splash-1668x2388.png" media="(device-width:834px) and (device-height:1194px) and (-webkit-device-pixel-ratio:2)">
   <!-- SEO & Open Graph -->
   <meta name="description" content="Domine a Nefrologia através de um RPG épico de perguntas. Suba de nível, colete equipamentos e derrote o Arqui-Nefromante!">
   <meta name="keywords" content="nefrologia, questões, medicina, RPG, educação médica, rim, diálise, nefrologia quiz">
@@ -41,15 +30,15 @@
   <meta property="og:url" content="https://nefroquest.com">
   <meta property="og:title" content="NefroQuest: Ascension — Domine a Nefrologia">
   <meta property="og:description" content="Aprenda nefrologia jogando um RPG épico. +1000 questões, personagens únicos e ranking global.">
-  <meta property="og:image" content="https://nefroquest.com/assets/images/favicon-512x512.png">
-  <meta property="og:image:width" content="512">
-  <meta property="og:image:height" content="512">
+  <meta property="og:image" content="https://nefroquest.com/landing/assets/favicon-192x192.png">
+  <meta property="og:image:width" content="192">
+  <meta property="og:image:height" content="192">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="NefroQuest">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="NefroQuest: Ascension">
   <meta name="twitter:description" content="Aprenda nefrologia jogando um RPG épico. +1000 questões.">
-  <meta name="twitter:image" content="https://nefroquest.com/assets/images/favicon-512x512.png">
+  <meta name="twitter:image" content="https://nefroquest.com/landing/assets/favicon-192x192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=Philosopher:wght@400;700&family=MedievalSharp&display=swap">
@@ -89,7 +78,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@15.90',
+          release: 'nefroquest@15.91',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -150,10 +139,14 @@
   <link rel="stylesheet" href="styles/lumen/shell.css?v=14.77">
   <link rel="stylesheet" href="styles/lumen/portal.css?v=14.93">
   <link rel="stylesheet" href="styles/lumen/atrium.css?v=15.25">
-  <link rel="stylesheet" href="styles/lumen/game.css?v=15.77">
+  <link rel="stylesheet" href="styles/lumen/game.css?v=15.91">
   <link rel="stylesheet" href="styles/lumen/difficulty.css?v=15.25">
   <link rel="stylesheet" href="styles/lumen/dashboard.css?v=15.77">
   <link rel="stylesheet" href="styles/lumen/charselect.css?v=14.75">
+  <link rel="stylesheet" href="styles/lumen/forge.css?v=15.91">
+  <link rel="stylesheet" href="styles/lumen/header.css?v=15.91">
+  <link rel="stylesheet" href="styles/lumen/modes.css?v=15.91">
+  <link rel="stylesheet" href="styles/lumen/equipment.css?v=15.91">
   <script>
     // Version beacon — detecta nova versão sem interromper a navegação
     (function() {
@@ -397,7 +390,7 @@
         <span>Para aprender, revisar e se manter atualizado em nefrologia.</span>
         <span class="nql-portal__footer-meta">
           <button type="button" data-action="showPrivacyPolicy">Privacidade</button>
-          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v15.90</button>
+          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v15.91</button>
         </span>
       </footer>
     </section>
@@ -414,13 +407,15 @@
       <span class="lnd-particle" style="--x:62%;--dur:8.5s;--delay:7s;--size:3px;--drift:-12px"></span>
     </div>
     <!-- Profile button (top-right, shown when already logged in) -->
-    <div class="profile-btn" id="landingProfileBtn" role="button" tabindex="0" aria-label="Menu da conta" data-action="toggleProfilePopup" data-arg="landing" style="position:absolute;top:14px;right:14px;z-index:10;">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
-      <div class="profile-popup" id="landingProfilePopup">
+    <div class="nq-header-profile" style="position:absolute;top:14px;right:14px;z-index:10;">
+  <button type="button" class="profile-btn" id="landingProfileBtn" aria-label="Menu da conta" aria-controls="landingProfilePopup" aria-expanded="false" data-action="toggleProfilePopup" data-arg="landing">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+  </button>
+  <div class="profile-popup" id="landingProfilePopup" aria-hidden="true">
         <div class="profile-popup-email"><strong>Conta</strong><span id="landingProfileEmail"></span></div>
 
       </div>
-    </div>
+</div>
     <!-- Botões de som — canto superior direito da página (desktop only) -->
     <div class="lnd-sound-controls" id="lndSoundControls">
       <button class="lnd-sound-btn" type="button" data-action="toggleMusic" title="Música" aria-label="Ativar/desativar música">
@@ -704,7 +699,7 @@
     <footer class="lnd-footer">
       <span>nefroquest.com</span>
       <span class="lnd-footer-sep">·</span>
-      <span id="landingVersionLabel" class="version-label-dynamic" style="cursor:pointer;" role="button" tabindex="0" aria-label="Ver novidades da versão" data-action="showChangelog">v15.90</span>
+      <span id="landingVersionLabel" class="version-label-dynamic" style="cursor:pointer;" role="button" tabindex="0" aria-label="Ver novidades da versão" data-action="showChangelog">v15.91</span>
       <span class="lnd-footer-sep">·</span>
       <span style="cursor:pointer;text-decoration:underline;" class="lnd-footer-link" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span>
     </footer>
@@ -794,10 +789,12 @@
               <div class="sound-toggle" role="button" tabindex="0" aria-label="Ativar ou desativar efeitos sonoros" data-action="toggleSound"><span id="welcomeSoundIcon" aria-hidden="true">◖</span></div>
               <input type="range" class="volume-slider sfx-vol" min="0" max="1" step="0.05" aria-label="Volume dos efeitos">
             </div>
-            <div class="profile-btn" id="welcomeProfileBtn" role="button" tabindex="0" aria-label="Menu da conta" data-action="toggleProfilePopup" data-arg="welcome">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="18" height="18" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
-              <div class="profile-popup" id="welcomeProfilePopup"><div class="profile-popup-email"><strong>Conta</strong><span id="welcomeProfileEmail"></span></div></div>
-            </div>
+            <div class="nq-header-profile">
+  <button type="button" class="profile-btn" id="welcomeProfileBtn" aria-label="Menu da conta" aria-controls="welcomeProfilePopup" aria-expanded="false" data-action="toggleProfilePopup" data-arg="welcome">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="18" height="18" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+  </button>
+  <div class="profile-popup" id="welcomeProfilePopup" aria-hidden="true"><div class="profile-popup-email"><strong>Conta</strong><span id="welcomeProfileEmail"></span></div></div>
+</div>
           </div>
         </div>
       </header>
@@ -896,7 +893,7 @@
 
       <footer class="nql-atrium__footer">
         <span>Prática que se transforma em domínio clínico.</span>
-        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v15.90</button></span>
+        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v15.91</button></span>
       </footer>
     </section>
     <div class="welcome-bg" aria-hidden="true"></div>
@@ -933,13 +930,15 @@
           </div>
           <input type="range" class="volume-slider sfx-vol" min="0" max="1" step="0.05" aria-label="Volume dos Efeitos">
         </div>
-        <div class="profile-btn" id="gameProfileBtn" role="button" tabindex="0" aria-label="Menu da conta" data-action="toggleProfilePopup" data-arg="game">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
-          <div class="profile-popup" id="gameProfilePopup">
+        <div class="nq-header-profile">
+  <button type="button" class="profile-btn" id="gameProfileBtn" aria-label="Menu da conta" aria-controls="gameProfilePopup" aria-expanded="false" data-action="toggleProfilePopup" data-arg="game">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="16" height="16" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+  </button>
+  <div class="profile-popup" id="gameProfilePopup" aria-hidden="true">
             <div class="profile-popup-email"><strong>Conta</strong><span id="gameProfileEmail"></span></div>
 
           </div>
-        </div>
+</div>
       </div>
     </div>
 
@@ -1321,7 +1320,7 @@
       <p>
         <a href="https://nefroquest.com">nefroquest.com</a>
         &nbsp;•&nbsp;
-        <span class="version-label-dynamic" style="color:var(--gold);cursor:pointer;" data-action="showChangelog">v15.90</span>
+        <span class="version-label-dynamic" style="color:var(--gold);cursor:pointer;" data-action="showChangelog">v15.91</span>
         &nbsp;•&nbsp;
         <span style="cursor:pointer;text-decoration:underline;" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span>
       </p>
@@ -1397,7 +1396,7 @@
     </button>
 
     <!-- Menu (conta / configurações) -->
-    <button type="button" class="mdock-btn menu" id="mobileMenuBtn" data-action="toggleProfilePopup" data-arg="mobile" title="Menu">
+    <button type="button" class="mdock-btn menu" id="mobileMenuBtn" aria-label="Menu da conta" aria-controls="mobileProfilePopup" aria-expanded="false" data-action="toggleProfilePopup" data-arg="mobile" title="Menu">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
         <line x1="3" y1="6" x2="21" y2="6"/>
         <line x1="3" y1="12" x2="21" y2="12"/>
@@ -1409,7 +1408,7 @@
   </div><!-- /mobile-bottom-dock -->
 
   <!-- Popup do menu mobile — fora do dock para evitar overflow:hidden e garantir cliques -->
-  <div class="profile-popup mobile-dock-popup" id="mobileProfilePopup">
+  <div class="profile-popup mobile-dock-popup" id="mobileProfilePopup" aria-hidden="true">
     <div class="profile-popup-email"><strong>Conta</strong><span id="mobileProfileEmail"></span></div>
 
   </div>
@@ -1665,47 +1664,47 @@
   </div>
 
   <!-- CHEST MODAL -->
-  <!-- Popup MODOS DE JOGO (mobile only) -->
-  <div id="gameModesOverlay" class="game-modes-overlay" data-action="closeGameModesPopupOutside" data-pass-event="1">
-    <div class="game-modes-box">
-      <button type="button" class="game-modes-close" data-action="closeGameModesPopup" aria-label="Fechar">✕</button>
-      <h3>⚔️ Modos de Jogo</h3>
-      <button type="button" class="gm-btn" data-action-seq="closeGameModesPopup,showTopicSelector">
-        <span class="gm-icon">📖</span>
-        <span class="gm-label">
-          <span class="gm-title">Modo de Estudo</span>
-          <span class="gm-desc">Escolha um tema e estude no seu ritmo</span>
-        </span>
-      </button>
-      <button type="button" class="gm-btn weak-btn" data-action-seq="closeGameModesPopup,startWeakPointStudy">
-        <span class="gm-icon">📍</span>
-        <span class="gm-label">
-          <span class="gm-title">Ponto Fraco</span>
-          <span class="gm-desc">Foque nos temas com menor acerto</span>
-        </span>
-      </button>
-      <button type="button" class="gm-btn" data-action-seq="closeGameModesPopup,startExamMode">
-        <span class="gm-icon">📝</span>
-        <span class="gm-label">
-          <span class="gm-title">Prova Simulada</span>
-          <span class="gm-desc">60 questões em 90 minutos</span>
-        </span>
-      </button>
-      <button type="button" class="gm-btn" data-action-seq="closeGameModesPopup,showStandaloneMinigame">
-        <span class="gm-icon">⚡</span>
-        <span class="gm-label">
-          <span class="gm-title">Julgamento Rápido</span>
-          <span class="gm-desc">Sequência veloz de V ou F — bata seu recorde</span>
-        </span>
-      </button>
-      <button type="button" class="gm-btn" data-action-seq="closeGameModesPopup,showAcidBaseMinigame">
-        <span class="gm-icon">⚗️</span>
-        <span class="gm-label">
-          <span class="gm-title">Câmara do Equilíbrio</span>
-          <span class="gm-desc">Domine ácido-base em 5 casos clínicos · sem cronômetro</span>
-        </span>
-      </button>
-    </div>
+  <!-- Modos de jogo: rotas existentes, apresentação Lúmen. -->
+  <div id="gameModesOverlay" class="nqmodes-overlay" data-nq-ui="lumen" aria-hidden="true" data-action="closeGameModesPopupOutside" data-pass-event="1">
+    <section class="nqmodes-dialog" role="dialog" aria-modal="true" aria-labelledby="gameModesTitle" aria-describedby="gameModesDescription">
+      <header class="nqmodes-header">
+        <div>
+          <p class="nqmodes-eyebrow">Treinos e desafios</p>
+          <h2 id="gameModesTitle" class="nqmodes-title">Modos de jogo</h2>
+          <p id="gameModesDescription" class="nqmodes-intro">Escolha como você quer estudar agora.</p>
+        </div>
+        <button type="button" class="nqmodes-close" data-action="closeGameModesPopup" aria-label="Fechar modos de jogo">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+        </button>
+      </header>
+      <div class="nqmodes-routes">
+        <button type="button" class="nqmodes-route" data-action-seq="closeGameModesPopup,showTopicSelector">
+          <span class="nqmodes-route__index" aria-hidden="true">01</span>
+          <span class="nqmodes-route__copy"><strong>Modo de Estudo</strong><small>Escolha um tema e estude no seu ritmo</small></span>
+          <svg class="nqmodes-route__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        </button>
+        <button type="button" class="nqmodes-route" data-action-seq="closeGameModesPopup,startWeakPointStudy">
+          <span class="nqmodes-route__index" aria-hidden="true">02</span>
+          <span class="nqmodes-route__copy"><strong>Ponto Fraco</strong><small>Foque nos temas com menor acerto</small></span>
+          <svg class="nqmodes-route__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        </button>
+        <button type="button" class="nqmodes-route" data-action-seq="closeGameModesPopup,startExamMode">
+          <span class="nqmodes-route__index" aria-hidden="true">03</span>
+          <span class="nqmodes-route__copy"><strong>Prova Simulada</strong><small>60 questões em 90 minutos</small></span>
+          <svg class="nqmodes-route__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        </button>
+        <button type="button" class="nqmodes-route" data-action-seq="closeGameModesPopup,showStandaloneMinigame">
+          <span class="nqmodes-route__index" aria-hidden="true">04</span>
+          <span class="nqmodes-route__copy"><strong>Julgamento Rápido</strong><small>Sequência veloz de V ou F — bata seu recorde</small></span>
+          <svg class="nqmodes-route__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        </button>
+        <button type="button" class="nqmodes-route" data-action-seq="closeGameModesPopup,showAcidBaseMinigame">
+          <span class="nqmodes-route__index" aria-hidden="true">05</span>
+          <span class="nqmodes-route__copy"><strong>Câmara do Equilíbrio</strong><small>Domine ácido-base em 5 casos clínicos · sem cronômetro</small></span>
+          <svg class="nqmodes-route__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        </button>
+      </div>
+    </section>
   </div>
 
   <div id="chestModal" class="chest-modal">
@@ -1782,13 +1781,13 @@
   <script defer src="data/competencies.js"></script>
 
   <script defer src="js/utils.js?v=15.75"></script>
-  <script defer src="js/audio.js?v=14.69"></script>
+  <script defer src="js/audio.js?v=15.91"></script>
   <script defer src="js/leaderboard.js?v=15.85"></script>
   <script defer src="js/study-mode.js?v=15.84"></script>
-  <script defer src="js/game.js?v=15.85"></script>
+  <script defer src="js/game.js?v=15.91"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
-  <script defer src="js/auth.js?v=13.44"></script>
+  <script defer src="js/auth.js?v=15.91"></script>
   <script defer src="js/portal.js?v=13.20"></script>
   <script defer src="js/atrium.js?v=13.23"></script>
   <script defer src="js/paywall.js?v=15.34"></script>
@@ -1799,22 +1798,31 @@
   <script defer src="js/minigame.js?v=15.84"></script>
   <script defer src="js/minigame-acidbase.js?v=15.32"></script>
   <script defer src="js/achievements.js?v=15.78"></script>
-  <script defer src="js/changelog.js?v=15.81"></script>
+  <script defer src="js/changelog.js?v=15.91"></script>
+  <script defer src="js/equipment-preview.js?v=15.91"></script>
   <script defer src="js/dashboard.js?v=15.85"></script>
 
   <!-- Single source of truth for profile popup menu items -->
   <template id="profilePopupItems">
-    <button type="button" class="profile-popup-item" data-action="openAccountModal" data-stop-propagation="1">👤 Minha Conta</button>
-    <button type="button" class="profile-popup-item" data-action="openPlanModal" data-stop-propagation="1">⭐ Seu Plano</button>
-    <button type="button" class="profile-popup-item admin-item" data-action="openDashboard" data-stop-propagation="1">Dashboard</button>
-    <button type="button" class="profile-popup-item admin-item" data-action="openAdminPanel" data-stop-propagation="1">🛡 Administração</button>
-    <button type="button" class="profile-popup-item admin-item" data-action="openAssetGallery" data-stop-propagation="1">🖼 Galeria de Assets</button>
-    <button type="button" class="profile-popup-item admin-item" data-action="adminJumpToBoss" data-stop-propagation="1">⚔ Fase Final</button>
-    <button type="button" class="profile-popup-item admin-item" data-action="openAnalyticsPanel" data-stop-propagation="1">📊 Analytics</button>
-    <button type="button" class="profile-popup-item admin-item" data-action="openPushCampaign" data-stop-propagation="1">📣 Campanha (Push)</button>
-    <hr class="profile-popup-divider">
-    <button type="button" class="profile-popup-item" data-action="toggleStudyReminders" data-stop-propagation="1">🔔 Lembretes</button>
-    <button type="button" class="profile-popup-item" data-action="toggleReadingMode" data-stop-propagation="1" aria-pressed="false">🔠 Modo Leitura</button>
+    <div class="profile-popup-group" role="group" aria-label="Conta">
+      <p class="profile-popup-group-title" aria-hidden="true">Conta</p>
+      <button type="button" class="profile-popup-item" data-action="openAccountModal" data-stop-propagation="1">Minha Conta</button>
+      <button type="button" class="profile-popup-item" data-action="openPlanModal" data-stop-propagation="1">Seu Plano</button>
+    </div>
+    <div class="profile-popup-group" role="group" aria-label="Preferências">
+      <p class="profile-popup-group-title" aria-hidden="true">Preferências</p>
+      <button type="button" class="profile-popup-item" data-action="toggleStudyReminders" data-stop-propagation="1">Lembretes</button>
+      <button type="button" class="profile-popup-item" data-action="toggleReadingMode" data-stop-propagation="1" aria-pressed="false">Modo Leitura</button>
+    </div>
+    <div class="profile-popup-group profile-popup-admin-group" role="group" aria-label="Administração" hidden>
+      <p class="profile-popup-group-title" aria-hidden="true">Administração</p>
+      <button type="button" class="profile-popup-item admin-item" data-action="openDashboard" data-stop-propagation="1">Dashboard</button>
+      <button type="button" class="profile-popup-item admin-item" data-action="openAdminPanel" data-stop-propagation="1">Administração</button>
+      <button type="button" class="profile-popup-item admin-item" data-action="openAssetGallery" data-stop-propagation="1">Galeria de Assets</button>
+      <button type="button" class="profile-popup-item admin-item" data-action="adminJumpToBoss" data-stop-propagation="1">Fase Final</button>
+      <button type="button" class="profile-popup-item admin-item" data-action="openAnalyticsPanel" data-stop-propagation="1">Analytics</button>
+      <button type="button" class="profile-popup-item admin-item" data-action="openPushCampaign" data-stop-propagation="1">Campanha (Push)</button>
+    </div>
     <button type="button" class="profile-popup-logout" data-action="authLogout" data-stop-propagation="1">Sair</button>
   </template>
   <script>

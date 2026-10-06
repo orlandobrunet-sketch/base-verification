@@ -272,7 +272,7 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
 
       expect(geometry.parentIsBody).toBe(true);
       expect(geometry.position).toBe('fixed');
-      expect(geometry.pointerEvents).toBe('none');
+      expect(geometry.pointerEvents).toBe('auto');
       expect(geometry.top).toBeGreaterThanOrEqual(8);
       expect(geometry.left).toBeGreaterThanOrEqual(8);
       expect(geometry.right).toBeLessThanOrEqual(geometry.viewportWidth - 8);

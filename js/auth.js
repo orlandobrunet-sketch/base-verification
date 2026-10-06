@@ -183,8 +183,7 @@
       // Itens de admin só aparecem para admin LOGADO. Recalculado sempre —
       // senão, ao sair (ou entrar como visitante) os menus de admin ficavam
       // abertos, parecendo que a conta Google ainda estava logada.
-      const _showAdmin = !!authUser && isAdminUser();
-      document.querySelectorAll('.admin-item').forEach(el => el.classList.toggle('visible', _showAdmin));
+      _syncProfilePopupPermissions();
       if (authUser) {
         const email = authUser.email || '';
         document.querySelectorAll('.profile-btn').forEach(b => b.classList.add('visible'));
@@ -210,6 +209,7 @@
           if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
         }
       } else {
+        closeProfilePopup();
         document.querySelectorAll('.profile-btn').forEach(b => b.classList.remove('visible'));
       }
     }
@@ -748,22 +748,86 @@
     // (dead code removido em v10.90: landingPlayGuest — botão usa playAsGuest
     //  direto; showLandingMsg — erros do landing vão pelo _setAuthMsg do modal)
 
-    // ===== PROFILE POPUP =====
-    function toggleProfilePopup(ctx) {
-      const ids = { game: 'gameProfilePopup', welcome: 'welcomeProfilePopup', landing: 'landingProfilePopup', mobile: 'mobileProfilePopup', mobileTop: 'mobileTopProfilePopup' };
-      const popup = document.getElementById(ids[ctx] || 'welcomeProfilePopup');
-      if (!popup) return;
-      const isOpen = popup.classList.contains('open');
-      // Close all popups first
-      document.querySelectorAll('.profile-popup.open').forEach(p => p.classList.remove('open'));
-      if (!isOpen) popup.classList.add('open');
+    // ===== PROFILE DISCLOSURE =====
+    const _profilePopupIds = {
+      game: 'gameProfilePopup', welcome: 'welcomeProfilePopup',
+      landing: 'landingProfilePopup', mobile: 'mobileProfilePopup',
+      mobileTop: 'mobileTopProfilePopup'
+    };
+    let _profileDisclosure = null;
+    let _profilePopupObserver = null;
+    function _syncProfilePopupPermissions() {
+      const showAdmin = !!authUser && typeof isAdminUser === 'function' && isAdminUser();
+      document.querySelectorAll('.admin-item').forEach(el => el.classList.toggle('visible', showAdmin));
+      document.querySelectorAll('.profile-popup-admin-group').forEach(el => { el.hidden = !showAdmin; });
     }
-    // Close profile popup when clicking outside
-    document.addEventListener('click', function(e) {
-      if (!e.target.closest('.profile-btn') && !e.target.closest('#mobileMenuBtn') && !e.target.closest('.profile-popup')) {
-        document.querySelectorAll('.profile-popup.open').forEach(p => p.classList.remove('open'));
+    function _syncProfilePopupState() {
+      document.querySelectorAll('[data-action="toggleProfilePopup"]').forEach(trigger => {
+        const id = _profilePopupIds[trigger.dataset.arg] || 'welcomeProfilePopup';
+        const popup = document.getElementById(id);
+        trigger.setAttribute('aria-controls', id);
+        trigger.setAttribute('aria-expanded', popup?.classList.contains('open') ? 'true' : 'false');
+      });
+      document.querySelectorAll('.profile-popup').forEach(popup => {
+        popup.setAttribute('aria-hidden', popup.classList.contains('open') ? 'false' : 'true');
+      });
+      document.querySelectorAll('.profile-popup [data-action="toggleReadingMode"]').forEach(button => {
+        button.setAttribute('aria-pressed', document.body.classList.contains('reading-mode') ? 'true' : 'false');
+      });
+      if (_profileDisclosure && !_profileDisclosure.popup.classList.contains('open')) _profileDisclosure = null;
+    }
+    function closeProfilePopup(restoreFocus = false) {
+      const trigger = _profileDisclosure?.trigger;
+      document.querySelectorAll('.profile-popup.open').forEach(popup => popup.classList.remove('open'));
+      _profileDisclosure = null; _syncProfilePopupState();
+      if (restoreFocus && trigger?.isConnected && trigger.getClientRects().length &&
+          !trigger.closest('[hidden], [inert]') && getComputedStyle(trigger).visibility !== 'hidden') {
+        trigger.focus({ preventScroll: true });
       }
+    }
+    function toggleProfilePopup(ctx) {
+      const popup = document.getElementById(_profilePopupIds[ctx] || 'welcomeProfilePopup');
+      if (!popup) return;
+      const wasOpen = popup.classList.contains('open');
+      closeProfilePopup(); if (wasOpen) return;
+      _syncProfilePopupPermissions();
+      const trigger = [...document.querySelectorAll('[data-action="toggleProfilePopup"]')]
+        .find(el => (_profilePopupIds[el.dataset.arg] || 'welcomeProfilePopup') === popup.id &&
+          el.getClientRects().length && !el.closest('[hidden], [inert]')) || null;
+      document.dispatchEvent(new CustomEvent('nq:header-open', { detail: { kind: 'profile', owner: popup } }));
+      popup.classList.add('open'); _profileDisclosure = { popup, trigger }; _syncProfilePopupState();
+    }
+    document.addEventListener('click', event => {
+      const active = _profileDisclosure; if (!active) return;
+      const target = event.target instanceof Node ? event.target : null;
+      if (target && (active.popup.contains(target) || active.trigger?.contains(target))) return;
+      closeProfilePopup();
     });
+    document.addEventListener('focusin', event => {
+      const active = _profileDisclosure; if (!active) return;
+      if (active.popup.contains(event.target) || active.trigger?.contains(event.target)) return;
+      closeProfilePopup();
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key !== 'Escape' || !_profileDisclosure) return;
+      event.preventDefault(); event.stopImmediatePropagation(); closeProfilePopup(true);
+    }, true);
+    document.addEventListener('nq:header-open', event => {
+      if (event.detail?.kind === 'audio') closeProfilePopup();
+    });
+    function _initProfilePopups() {
+      _syncProfilePopupPermissions(); _syncProfilePopupState();
+      if (!_profilePopupObserver) {
+        _profilePopupObserver = new MutationObserver(() => { _syncProfilePopupPermissions(); _syncProfilePopupState(); });
+      }
+      document.querySelectorAll('.profile-popup').forEach(popup => {
+        // Account/admin/dashboard still close by removing "open" directly.
+        _profilePopupObserver.observe(popup, { attributes: true, attributeFilter: ['class'], childList: true });
+      });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', _initProfilePopups, { once: true });
+    else _initProfilePopups();
+    window.closeProfilePopup = closeProfilePopup;
 
     window.saveNewPassword        = saveNewPassword;
     window.closeUpdatePasswordModal = closeUpdatePasswordModal;
