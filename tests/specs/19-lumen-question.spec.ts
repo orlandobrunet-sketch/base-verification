@@ -435,7 +435,7 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
   test('com XP cheio, o acerto destaca o requisito reduzido sem inventar ganho na barra', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name !== 'chromium', 'ganhos são observados com o card visível no desktop');
     await page.emulateMedia({ reducedMotion: 'no-preference' });
-    await injectGameState(page, { level: 2, xp: 229, correctTotal: 15, gold: 0 });
+    await injectGameState(page, { level: 2, xp: 229, correctTotal: 15, gold: 0 }, { replaceSnapshot: true });
     await expect(page.locator('#guardianXpHint')).toHaveText('Próxima evolução em 5 acertos');
     expect(await page.locator('#xpFill').evaluate(element => (element as HTMLElement).style.width)).toBe('100%');
     await page.evaluate(() => {

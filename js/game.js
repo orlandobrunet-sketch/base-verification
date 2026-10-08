@@ -1641,16 +1641,15 @@
           return;
         }
 
-        if (!questionBank) {
-          _toast('Carregando questões…', 'info', 30000);
-          try {
-            await _loadTopics();
-            document.querySelector('.nq-toast')?.remove();
-          } catch (error) {
-            console.error('continueGame: falha ao carregar questões', error);
-            announceError('Não foi possível carregar as questões. Tente novamente.');
-            return;
-          }
+        const needsQuestions = !questionBank;
+        if (needsQuestions) _toast('Carregando questões…', 'info', 30000);
+        try {
+          await _loadTopics();
+          if (needsQuestions) document.querySelector('.nq-toast')?.remove();
+        } catch (error) {
+          console.error('continueGame: falha ao carregar questões', error);
+          announceError('Não foi possível carregar as questões. Tente novamente.');
+          return;
         }
 
         if (!restoreGame(save)) {
@@ -1808,8 +1807,7 @@
       // andamento quando a pessoa entra rapidamente na Jornada.
       const referencesReady = carregarDadosGrimorio();
       if (questionBank) return referencesReady;
-      if (_topicsPromise) return _topicsPromise;
-      const topicsReady = new Promise((resolve, reject) => {
+      if (!_topicsPromise) _topicsPromise = new Promise((resolve, reject) => {
         const s = document.createElement('script');
         s.src = 'data/topics.js';
         s.onload  = () => {
@@ -1828,11 +1826,8 @@
         s.onerror = () => { _topicsPromise = null; s.remove(); reject(new Error('Falha ao carregar questões')); };
         document.head.appendChild(s);
       });
-      _topicsPromise = Promise.all([topicsReady, referencesReady]).then(() => {}).catch(error => {
-        _topicsPromise = null;
-        throw error;
-      });
-      return _topicsPromise;
+      // Uma falha nas referências não descarta o download de questões em andamento.
+      return Promise.all([_topicsPromise, referencesReady]).then(() => {});
     }
     window._loadTopics = _loadTopics;
     // Inicia download no primeiro toque — head start antes do usuário clicar em jogar
@@ -4624,7 +4619,7 @@
         ? document.querySelector('#forjaResultado [data-action="decidirForja"]')
         : document.getElementById('forjaResultado');
       alvo?.focus({ preventScroll: true });
-      document.getElementById('forjaResultado')?.scrollIntoView({ block: 'nearest' });
+      alvo?.scrollIntoView({ block: 'nearest' });
     }
 
     function _forjaLendario() {

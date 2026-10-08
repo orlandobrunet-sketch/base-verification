@@ -334,15 +334,22 @@ async function conferirItemSemCortes(page: Page) {
   expect(falhas, 'arte ou texto saiu do cartão/viewport').toEqual([]);
   expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(1);
 }
-for (const largura of [320, 390]) {
-  test(`arte e nome cabem no cartão em ${largura}px com texto a 200%`, async ({ page }) => {
+for (const largura of [320, 390, 1100]) {
+  test(`arte, nome e decisão focada cabem em ${largura}px com texto a 200%`, async ({ page }) => {
     await page.setViewportSize({ width: largura, height: 700 });
     await abrir(page, 5000, true);
     await page.evaluate(() => { document.documentElement.style.fontSize = '32px'; });
+    await page.evaluate(async () => {
+      await document.fonts.ready;
+      await new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+    });
     await page.getByRole('button', { name: 'Forjar item comum', exact: true }).click();
+    const equipar = page.locator('[data-action="decidirForja"][data-arg="substituir"]');
+    await expect(equipar).toBeFocused();
+    await expect(equipar).toBeInViewport({ ratio: 1 });
     await expect(page.locator('#forjaResultado .nq-forja-item-novo h3')).toBeVisible();
     await conferirItemSemCortes(page);
-    await page.locator('[data-action="decidirForja"][data-arg="substituir"]').click();
+    await equipar.click();
     await expect(page.locator('#forjaResultado .nq-forja-item-final h3')).toBeVisible();
     await conferirItemSemCortes(page);
     await expect(page.getByRole('button', { name: 'Forjar outro item', exact: true })).toBeVisible();
@@ -571,7 +578,7 @@ test('query de nuvem iniciada antes da compra não substitui a Forja paga por sa
   expect(uploads[0].game_progress.achievements).toContain('remote-monotonic');
 });
 
-test('Pixel 7 compra, decide e volta por toque preservando o restante da jornada', async ({ page }, testInfo) => {
+test('Pixel 7 compra com dois toques, decide e volta preservando o restante da jornada', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'mobile', 'Contrato de toque no projeto Pixel 7.');
   await abrir(page);
   const before = await estado(page);
@@ -581,7 +588,14 @@ test('Pixel 7 compra, decide e volta por toque preservando o restante da jornada
       (window as any).__forjaPointerTypes.push((event as PointerEvent).pointerType);
     });
   });
-  await page.getByRole('button', { name: 'Forjar item comum', exact: true }).tap();
+  const comprar = page.getByRole('button', { name: 'Forjar item comum', exact: true });
+  await comprar.scrollIntoViewIfNeeded();
+  const area = await comprar.boundingBox();
+  expect(area).not.toBeNull();
+  const x = area!.x + area!.width / 2;
+  const y = area!.y + area!.height / 2;
+  await page.touchscreen.tap(x, y);
+  await page.touchscreen.tap(x, y);
   const paid = await estado(page);
   expect(paid.gold).toBe(before.gold - 300);
   expect(paid.forjaPending).not.toBeNull();
@@ -593,6 +607,6 @@ test('Pixel 7 compra, decide e volta por toque preservando o restante da jornada
   await page.locator('[data-action="fecharForja"]').tap();
   await expect(page.locator('#mainApp')).toBeVisible();
   await expect(page.locator('.mdock-btn.forge-item:visible')).toBeFocused();
-  expect(await page.evaluate(() => (window as any).__forjaPointerTypes)).toEqual(['touch','touch','touch']);
+  expect(await page.evaluate(() => (window as any).__forjaPointerTypes)).toEqual(['touch','touch','touch','touch']);
   expect((await save(page)).gold).toBe(resolved.gold);
 });
