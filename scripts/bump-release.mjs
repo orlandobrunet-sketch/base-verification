@@ -37,7 +37,8 @@ const alvo = args.find(a => /^\d+\.\d+$/.test(a));
 const ler = p => readFileSync(resolve(raiz, p), 'utf8');
 const escrever = (p, s) => writeFileSync(resolve(raiz, p), s, 'utf8');
 
-const versaoAtual = JSON.parse(ler('version.json')).version;
+const metadadosVersao = JSON.parse(ler('version.json'));
+const versaoAtual = metadadosVersao.version;
 const novaVersao = alvo || versaoAtual;
 
 // Arquivos alterados em relação à base, incluindo o que ainda não foi commitado
@@ -166,6 +167,24 @@ if (precacheMudou.length && versaoParada) {
   console.log(`  a versão segue ${versaoAtual}: quem já tem o app continuaria com a cópia velha.`);
 }
 
+// A numeração pública fica em displayVersion; o identificador técnico nunca regride.
+function compararReleaseTecnico(left, right) {
+  const partes = value => {
+    if (typeof value !== 'string' || !/^\d+\.\d+$/.test(value)) return null;
+    const numbers = value.split('.').map(Number);
+    return numbers.every(Number.isSafeInteger) ? numbers : null;
+  };
+  const a = partes(left), b = partes(right);
+  if (!a || !b) return null;
+  return a[0] === b[0] ? Math.sign(a[1] - b[1]) : Math.sign(a[0] - b[0]);
+}
+const contraAtual = compararReleaseTecnico(novaVersao, versaoAtual);
+const contraBase = compararReleaseTecnico(novaVersao, versaoBase);
+if (contraAtual === null || contraBase === null || contraAtual < 0 || contraBase < 0) {
+  console.error('Release técnico inválido ou menor que a versão atual/base. Use displayVersion para a numeração pública.');
+  process.exit(1);
+}
+
 if (apenasChecar) {
   process.exit(suspeitos.length || mapaDerivou || (precacheMudou.length && versaoParada) ? 1 : 0);
 }
@@ -186,7 +205,7 @@ if (!alvo) {
 }
 
 // 1) version.json
-escrever('version.json', `${JSON.stringify({ version: novaVersao })}\n`);
+escrever('version.json', `${JSON.stringify({ ...metadadosVersao, version: novaVersao })}\n`);
 
 // 2) sw.js — comentário do topo e nome do cache
 let sw = ler('sw.js');
@@ -197,7 +216,7 @@ escrever('sw.js', sw);
 for (const p of ['index.html', 'jogar/index.html']) {
   let s = ler(p);
   s = s.replace(/nefroquest@\d+\.\d+/g, `nefroquest@${novaVersao}`);
-  s = s.replace(/>v\d+\.\d+</g, `>v${novaVersao}<`);
+  s = s.replace(/>v\d+\.\d+</g, `>v${metadadosVersao.displayVersion || novaVersao}<`);
   escrever(p, s);
 }
 

@@ -1,4 +1,5 @@
 import { test, expect, type Page } from '@playwright/test';
+import { injectGameState } from '../helpers/game';
 
 /**
  * NQ-01, primeiro item: nenhuma conta herda dados de outra no mesmo aparelho.
@@ -53,6 +54,7 @@ const CHAVES_DE_APARELHO: Record<string, string> = {
   'nq_notif_enabled': '1',
   'pwa-dismissed': '1',
   'nq-sw-version': '14.78',
+  'nq-public-version': '2.0',
 };
 
 async function abrirApp(page: Page) {
@@ -260,6 +262,54 @@ async function abrirComSDKMock(page: Page, initialUser: any = null) {
 const USER_A = {id:'owner-A',email:'a@test.invalid',app_metadata:{},user_metadata:{nickname:'Conta A'}};
 const USER_B = {id:'owner-B',email:'b@test.invalid',app_metadata:{},user_metadata:{nickname:'Conta B'}};
 const CLOUD_B = {schemaVersion:7,saveOwner:'owner-B',saveRevision:'cloud-B',character:'aquaria',gold:876,lives:4,level:3,timestamp:Date.now()+10000};
+
+test('troca SDK encerra detalhe de conquista da conta anterior e mantém apenas o progresso de B', async ({ page }) => {
+  await abrirComSDKMock(page);
+  await injectGameState(page, { correctTotal: 32 }, { authUser: USER_A });
+  await page.evaluate(() => {
+    localStorage.setItem('nefroquest-achievements', JSON.stringify(['century_club']));
+    localStorage.setItem('nefroquest-badge-history', JSON.stringify({ 2: { jornada: 1 } }));
+    localStorage.setItem('nefroquest-journey-count', '3');
+    (window as any).openDashboard({ tab: 'achievements' });
+  });
+  await expect(page.locator('#nqDashboard[data-dashboard-state="ready"]')).toBeVisible();
+  await page.getByRole('button', { name: /^Sábio do Microscópio.*40 acertos.*ampliar arte e requisito$/ }).click();
+  const detail = page.getByRole('dialog', { name: 'Sábio do Microscópio' });
+  await expect(detail).toContainText('desde a 1ª jornada');
+  await expect(detail.locator('[role="progressbar"]')).toHaveAttribute('aria-valuenow', '32');
+
+  await page.evaluate(async ({ user, save }) => {
+    (window as any).__hiddenFocus = [];
+    document.addEventListener('focusin', event => {
+      const target = event.target as HTMLElement;
+      if (target.closest('[hidden], [inert], .hidden')) (window as any).__hiddenFocus.push(target.id || target.className);
+    });
+    (window as any).__sdkFixture.profiles[user.id] = { save, achievements: ['first_blood'] };
+    await (window as any).__sdkFixture.callback('SIGNED_IN', { user });
+  }, { user: USER_B, save: { ...CLOUD_B, correctTotal: 7 } });
+  await page.waitForFunction(() => JSON.parse(localStorage.getItem('nefroquest-save-v7') || 'null')?.saveOwner === 'owner-B');
+  await expect(detail).toHaveCount(0);
+  await expect(page.locator('#nqDashboard')).toHaveCount(0);
+  expect(await page.evaluate(() => ({
+    hiddenFocus: (window as any).__hiddenFocus,
+    modalOpen: !!document.querySelector('dialog:modal'),
+    save: JSON.parse(localStorage.getItem('nefroquest-save-v7')!),
+    achievements: JSON.parse(localStorage.getItem('nefroquest-achievements')!),
+    badgeHistory: localStorage.getItem('nefroquest-badge-history'),
+  }))).toMatchObject({
+    hiddenFocus: [], modalOpen: false,
+    save: { saveOwner: 'owner-B', correctTotal: 7 },
+    achievements: ['first_blood'], badgeHistory: null,
+  });
+  await page.evaluate(() => (window as any).openDashboard({ tab: 'achievements' }));
+  await expect(page.locator('#nqDashboard[data-dashboard-state="ready"]')).toBeVisible();
+  const badge = page.getByRole('button', { name: /^Sábio do Microscópio.*40 acertos.*ampliar arte e requisito$/ });
+  await badge.click();
+  await expect(detail).not.toContainText('desde a 1ª jornada');
+  await expect(detail.locator('[role="progressbar"]')).toHaveAttribute('aria-valuenow', '7');
+  await detail.getByRole('button', { name: 'Voltar à coleção' }).click();
+  await expect(badge).toBeFocused();
+});
 
 test('callback SDK A→B limpa o histórico de A, importa e envia somente o save de B', async ({ page }) => {
   await abrirComSDKMock(page);

@@ -10,9 +10,23 @@
       modal.innerHTML = `
         <div class="nqnarr-card nqnews-card">
           <h2>Novidades</h2>
-          <div style="color:var(--txt-dim);font-size:0.75rem;margin-bottom:16px;">O que há de novo no NefroQuest: Ascension</div>
+          <div style="color:var(--txt-dim);font-size:0.75rem;margin-bottom:16px;">O que há de novo no NefroQuest 2.0</div>
 
           <div class="modal-scroll-body nqnarr-reading" role="region" tabindex="0" aria-label="Histórico de novidades">
+
+            <article aria-labelledby="nqNews20Title" style="background:linear-gradient(135deg,rgba(145,223,227,.1),rgba(241,207,122,.055));border:1px solid rgba(145,223,227,.35);border-radius:12px;padding:18px;margin-bottom:16px;">
+              <p style="margin:0 0 8px;color:var(--nql-lumen,#91dfe3);font-size:.75rem;letter-spacing:.08em;">NefroQuest 2.0 · 08/10/2026</p>
+              <h3 id="nqNews20Title" style="margin:0 0 12px;color:var(--txt);font-size:1.3rem;">Um novo olhar para sua jornada</h3>
+              <ul style="margin:0;padding-left:18px;color:var(--txt-dim);line-height:1.7;">
+                <li><strong>Seu atlas de estudo:</strong> Dashboard e Grimório com leitura mais clara, comparação de desempenho, radar contínuo e trilha de evolução com retratos e requisitos reais.</li>
+                <li><strong>Uma coleção para conquistar:</strong> cinco novas artes policromáticas, coleção compacta, detalhes ampliados e estados de progresso mais claros.</li>
+                <li><strong>Forja e equipamentos:</strong> composição equilibrada, card rubi translúcido, miniaturas sem recortes e detalhes mais nítidos.</li>
+                <li><strong>O reino em harmonia:</strong> Átrio, Ritual, Ranking e Confronto Final com a mesma identidade visual; Demonstração preserva o progresso da jornada.</li>
+                <li><strong>Do primeiro acesso ao próximo desafio:</strong> retratos atuais na apresentação do jogo, ícone oficial do Google e cores de dificuldade que distinguem seleção, foco e exigência.</li>
+                <li><strong>Leitura em qualquer tela:</strong> ajustes para telas estreitas e texto ampliado, incluindo a explicação do Julgamento.</li>
+              </ul>
+              <p style="margin:12px 0 0;color:var(--txt-dim);font-size:.85rem;">Sua jornada, equipamentos, conquistas e memória de revisão continuam preservados. As atualizações anteriores permanecem no histórico abaixo.</p>
+            </article>
 
             <!-- v11.87 -->
             <div style="background:linear-gradient(135deg,rgba(251,191,36,0.12),rgba(167,139,250,0.06));border:2px solid rgba(251,191,36,0.45);border-radius:10px;padding:16px;margin-bottom:12px;">
@@ -646,8 +660,15 @@
         hideStatTooltip();
         return;
       }
-      e.preventDefault();
-      e.stopImmediatePropagation();
+      // Uma dica sob o ponteiro não toma Escape do controle focado na gaveta.
+      const target = e.target;
+      const tooltipOwnsEscape = !(target instanceof Element) ||
+        target === document.body || target === document.documentElement ||
+        statTooltipOwner.contains(target) || (statTooltip && statTooltip.contains(target));
+      if(tooltipOwnsEscape){
+        e.preventDefault();
+        e.stopImmediatePropagation();
+      }
       statTooltipDismissedOwner = statTooltipOwner;
       hideStatTooltip();
     }, true);

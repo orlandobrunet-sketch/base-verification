@@ -990,22 +990,24 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   display: grid !important;
   width: 100% !important;
   margin: .25rem 0 0 !important;
-  gap: 0 !important;
+  gap: .4rem !important;
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route {
+  --nql-route-accent: var(--nql-lumen);
+  --nql-route-rgb: var(--nql-lumen-rgb);
   display: grid !important;
   width: 100% !important;
   min-height: 4.6rem !important;
   margin: 0 !important;
-  padding: .75rem .35rem !important;
-  border: 0 !important;
-  border-bottom: 1px solid var(--nql-line) !important;
-  border-radius: 0 !important;
+  padding: .75rem .8rem !important;
+  border: 1px solid rgba(var(--nql-route-rgb), .19) !important;
+  border-left: 2px solid rgba(var(--nql-route-rgb), .62) !important;
+  border-radius: var(--nql-radius-control) !important;
   grid-template-columns: 2.25rem minmax(0, 1fr) auto;
   align-items: center;
   gap: .8rem;
-  background: transparent !important;
+  background: linear-gradient(100deg, rgba(var(--nql-route-rgb), .08), rgba(var(--nql-abyss-rgb), .15)) !important;
   color: var(--nql-text) !important;
   box-shadow: none !important;
   text-align: left !important;
@@ -1013,21 +1015,66 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   transition: padding var(--nql-duration-state), color var(--nql-duration-state), border-color var(--nql-duration-state), background var(--nql-duration-state) !important;
 }
 
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route[data-atrium-route="dashboard"] {
+  --nql-route-accent: var(--nql-success);
+  --nql-route-rgb: var(--nql-success-rgb);
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route[data-atrium-route="ritual"] {
+  --nql-route-accent: var(--nql-corruption-strong);
+  --nql-route-rgb: var(--nql-corruption-strong-rgb);
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route[data-atrium-route="ranking"] {
+  --nql-route-accent: var(--nql-mastery);
+  --nql-route-rgb: var(--nql-mastery-rgb);
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route[data-atrium-route="library"] {
+  --nql-route-accent: #9ebbf4;
+  --nql-route-rgb: 158, 187, 244;
+}
+
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route:hover,
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route:focus-visible,
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route.is-current {
-  padding-inline: .75rem !important;
-  border-color: var(--nql-line-strong) !important;
-  background: linear-gradient(90deg, rgba(var(--nql-lumen-rgb), .075), transparent) !important;
-  color: var(--nql-lumen) !important;
+  border-color: rgba(var(--nql-route-rgb), .5) !important;
+  background: linear-gradient(100deg, rgba(var(--nql-route-rgb), .15), rgba(var(--nql-abyss-rgb), .1)) !important;
+  color: var(--nql-route-accent) !important;
   transform: none !important;
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route-index {
-  color: var(--nql-text-muted) !important;
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid rgba(var(--nql-route-rgb), .28);
+  border-radius: .375rem;
+  place-items: center;
+  background: rgba(var(--nql-route-rgb), .065);
+  color: var(--nql-route-accent) !important;
   font-family: var(--nql-font-instrument);
   font-size: .67rem;
   letter-spacing: .08em;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route > svg { color: var(--nql-route-accent); }
+
+/* Preserve the three stages in the first desktop viewport. Text enlargement
+ * switches to the existing single column and keeps natural vertical scrolling. */
+@media (min-width: 55.001rem) and (min-height: 650px) {
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__main {
+    padding-top: 1rem;
+    padding-bottom: 2.5rem;
+  }
+  #welcomeScreen[data-nq-ui="lumen"] #atriumTitle { font-size: clamp(3.15rem, 4.5vw, 4.5rem); }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__eyebrow { margin-bottom: .75rem; }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__resume-shell { margin-top: 1.25rem; }
+  #welcomeScreen[data-nq-ui="lumen"] .welcome-stats.nql-mastery-rail {
+    margin-top: .9rem !important;
+    padding-block: .7rem .65rem !important;
+  }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__continuum { margin-top: .5rem; }
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route > span:nth-child(2) { display: flex; min-width: 0; flex-direction: column; gap: .08rem; }

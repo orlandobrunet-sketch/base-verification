@@ -240,6 +240,12 @@
   transform: skewX(-13deg);
 }
 
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card.easy { --nql-option-rgb: var(--nql-success-rgb); }
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card.normal { --nql-option-rgb: var(--nql-lumen-rgb); }
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card.hard { --nql-option-rgb: var(--nql-mastery-rgb); }
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card.hardcore,
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact-panel.hardcore { --nql-option-rgb: 235, 87, 103; }
+
 #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card {
   position: relative;
   z-index: 1;
@@ -279,21 +285,21 @@
 
 #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card[aria-checked="true"] {
   border-color: var(--nql-line-strong);
-  background: rgba(var(--nql-lumen-rgb), .055);
+  background: rgba(var(--nql-option-rgb), .13);
   box-shadow: none;
   color: var(--nql-text);
 }
 
 #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card[aria-checked="true"]::before {
-  border-left-color: var(--nql-lumen);
-  background: linear-gradient(90deg, rgba(var(--nql-lumen-rgb), .055), transparent 58%);
+  border-left-color: rgb(var(--nql-option-rgb));
+  background: linear-gradient(90deg, rgba(var(--nql-option-rgb), .085), transparent 58%);
 }
 
 #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card:focus-visible {
   border-radius: var(--nql-radius-control);
-  outline: 2px solid var(--nql-focus);
+  outline: 2px solid rgb(var(--nql-option-rgb));
   outline-offset: 2px;
-  box-shadow: var(--nql-shadow-focus);
+  box-shadow: 0 0 0 4px rgba(var(--nql-option-rgb), .22);
 }
 
 #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__node {
@@ -319,12 +325,12 @@
 }
 
 #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card[aria-checked="true"] .nql-difficulty__node {
-  border-color: var(--nql-lumen);
-  box-shadow: 0 0 0 .25rem rgba(var(--nql-lumen-rgb), .1), 0 0 1rem rgba(var(--nql-lumen-rgb), .26);
+  border-color: rgb(var(--nql-option-rgb));
+  box-shadow: 0 0 0 .25rem rgba(var(--nql-option-rgb), .1), 0 0 1rem rgba(var(--nql-option-rgb), .26);
 }
 
 #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card[aria-checked="true"] .nql-difficulty__node > span {
-  background: var(--nql-lumen);
+  background: rgb(var(--nql-option-rgb));
   transform: scale(1.18);
 }
 
@@ -339,14 +345,14 @@
 }
 
 #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card.hardcore .nql-difficulty__node {
-  border-color: rgba(var(--nql-corruption-strong-rgb), .7);
+  border-color: rgba(var(--nql-option-rgb), .7);
   border-style: dashed;
 }
 
 #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card.hardcore[aria-checked="true"] .nql-difficulty__node {
-  border-color: var(--nql-lumen);
+  border-color: rgb(var(--nql-option-rgb));
   border-style: solid;
-  box-shadow: 0 0 0 .25rem rgba(var(--nql-lumen-rgb), .1), 0 0 1rem rgba(var(--nql-corruption-strong-rgb), .35);
+  box-shadow: 0 0 0 .25rem rgba(var(--nql-option-rgb), .1), 0 0 1rem rgba(var(--nql-option-rgb), .35);
 }
 
 #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__option-copy {
@@ -442,11 +448,11 @@
 }
 
 #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card.hardcore .nql-difficulty__lives strong {
-  color: var(--nql-corruption-strong);
+  color: rgb(var(--nql-option-rgb));
 }
 
 #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card.hardcore[aria-checked="true"] .nql-difficulty__lives strong {
-  color: var(--nql-lumen);
+  color: rgb(var(--nql-option-rgb));
 }
 
 #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact-stack {
@@ -558,11 +564,12 @@
 #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__bar--100 i { width: 100%; }
 
 #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact-panel.hardcore .nql-difficulty__bar i {
-  background: var(--nql-corruption-strong);
-  box-shadow: 0 0 .6rem rgba(var(--nql-corruption-strong-rgb), .35);
+  background: rgb(var(--nql-option-rgb));
+  box-shadow: 0 0 .6rem rgba(var(--nql-option-rgb), .35);
 }
 
 #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__adaptation {
+  flex-wrap: wrap;
   min-height: 2.75rem;
   padding: .6rem .75rem;
   border: 1px solid var(--nql-line);
@@ -582,12 +589,12 @@
 }
 
 #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact-panel.hardcore .nql-difficulty__adaptation {
-  border-color: rgba(var(--nql-corruption-strong-rgb), .3);
-  background: rgba(var(--nql-corruption-strong-rgb), .055);
+  border-color: rgba(var(--nql-option-rgb), .3);
+  background: rgba(var(--nql-option-rgb), .055);
 }
 
 #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact-panel.hardcore .nql-difficulty__adaptation strong {
-  color: var(--nql-corruption-strong);
+  color: rgb(var(--nql-option-rgb));
 }
 
 #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact-panel > p {
@@ -689,18 +696,18 @@
 
 @media (hover: hover) and (pointer: fine) {
   #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card:hover {
-    border-color: var(--nql-line-strong);
-    background: rgba(var(--nql-lumen-rgb), .035);
+    border-color: rgba(var(--nql-option-rgb), .4);
+    background: rgba(var(--nql-option-rgb), .06);
     transform: none;
   }
 
   #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card[aria-checked="true"]:hover {
-    border-color: var(--nql-line-strong);
-    background: rgba(var(--nql-lumen-rgb), .075);
+    border-color: rgba(var(--nql-option-rgb), .6);
+    background: rgba(var(--nql-option-rgb), .18);
   }
 
   #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card:hover .nql-difficulty__node {
-    border-color: var(--nql-lumen);
+    border-color: rgb(var(--nql-option-rgb));
   }
 
   #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-cancel:hover {

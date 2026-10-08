@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v15.93
-const CACHE = 'nefroquest-v15.93';
+// NefroQuest Service Worker — v15.95
+const CACHE = 'nefroquest-v15.95';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -64,6 +64,22 @@ const STATIC_ASSETS = [
   '/styles/lumen/forge.css',
   '/styles/lumen/header.css',
   '/styles/lumen/equipment.css',
+  '/styles/lumen/boss.css',
+  '/styles/lumen/ritual.css',
+  '/styles/lumen/ranking.css',
+  '/styles/lumen/achievements.css',
+  '/assets/images/google-g.png',
+  '/assets/images/google-sans-medium.woff2',
+  '/assets/badges/badge1.webp',
+  '/assets/badges/badge2.webp',
+  '/assets/badges/badge3.webp',
+  '/assets/badges/badge4.webp',
+  '/assets/badges/badge5.webp',
+  '/assets/badges/badge1-384.webp',
+  '/assets/badges/badge2-384.webp',
+  '/assets/badges/badge3-384.webp',
+  '/assets/badges/badge4-384.webp',
+  '/assets/badges/badge5-384.webp',
   '/js/utils.js',
   '/js/audio.js',
   '/js/leaderboard.js',
@@ -97,39 +113,43 @@ const STATIC_ASSETS = [
 // chave canônica (sem query), que é a que canonicalAssetKey() consulta.
 // bump-release:asset-versions:início
 const ASSET_VERSIONS = {
-  '/style.css': '15.87',
+  '/style.css': '15.94',
   '/styles/lumen/tokens.css': '15.77',
   '/styles/lumen/shell.css': '14.77',
-  '/styles/lumen/portal.css': '14.93',
-  '/styles/lumen/atrium.css': '15.25',
+  '/styles/lumen/portal.css': '15.94',
+  '/styles/lumen/atrium.css': '15.94',
   '/styles/lumen/game.css': '15.92',
-  '/styles/lumen/difficulty.css': '15.25',
-  '/styles/lumen/dashboard.css': '15.77',
+  '/styles/lumen/difficulty.css': '15.94',
+  '/styles/lumen/dashboard.css': '15.94',
   '/styles/lumen/charselect.css': '14.75',
   '/styles/lumen/modes.css': '15.92',
-  '/styles/lumen/forge.css': '15.93',
+  '/styles/lumen/forge.css': '15.94',
   '/styles/lumen/header.css': '15.91',
-  '/styles/lumen/equipment.css': '15.92',
-  '/js/utils.js': '15.75',
+  '/styles/lumen/equipment.css': '15.94',
+  '/styles/lumen/boss.css': '15.95',
+  '/styles/lumen/ritual.css': '15.94',
+  '/styles/lumen/ranking.css': '15.94',
+  '/styles/lumen/achievements.css': '15.94',
+  '/js/utils.js': '15.94',
   '/js/audio.js': '15.91',
-  '/js/leaderboard.js': '15.85',
+  '/js/leaderboard.js': '15.94',
   '/js/study-mode.js': '15.92',
-  '/js/game.js': '15.93',
+  '/js/game.js': '15.95',
   '/js/notifications.js': '11.90',
   '/js/auth.js': '15.92',
   '/js/portal.js': '13.20',
   '/js/atrium.js': '13.23',
   '/js/paywall.js': '15.34',
   '/js/account.js': '15.80',
-  '/js/boss.js': '15.85',
+  '/js/boss.js': '15.94',
   '/js/exam.js': '15.22',
   '/js/admin.js': '15.35',
-  '/js/minigame.js': '15.84',
+  '/js/minigame.js': '15.94',
   '/js/minigame-acidbase.js': '15.32',
-  '/js/achievements.js': '15.78',
-  '/js/changelog.js': '15.92',
-  '/js/equipment-preview.js': '15.92',
-  '/js/dashboard.js': '15.85',
+  '/js/achievements.js': '15.94',
+  '/js/changelog.js': '15.94',
+  '/js/equipment-preview.js': '15.94',
+  '/js/dashboard.js': '15.94',
 };
 // bump-release:asset-versions:fim
 
@@ -177,7 +197,7 @@ self.addEventListener('install', e => {
             ? fetch(`${caminho}?v=${versao}`)
             : fetch(caminho, { cache: 'no-store' });
           return busca
-            .then(res => { if (res.ok) cache.put(caminho, res.clone()); })
+            .then(res => { if (res.ok) return cache.put(caminho, res.clone()); })
             .catch(() => {});
         })
       )

@@ -14,7 +14,7 @@ import { medirContraste } from '../helpers/contraste';
  */
 test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
 
-async function abrir(page: Page, { standalone = true, largura = 1280, relogio = false } = {}) {
+async function abrir(page: Page, { standalone = true, largura = 1280, relogio = false, qid = '' } = {}) {
   await page.setViewportSize({ width: largura, height: 800 });
   if (relogio) await page.clock.install();
   await page.route('**/*', r => new URL(r.request().url()).hostname === 'localhost' ? r.continue() : r.abort());
@@ -22,7 +22,21 @@ async function abrir(page: Page, { standalone = true, largura = 1280, relogio = 
   await injectGameState(page);
   await page.waitForLoadState('load');
   await page.locator('#forgeBtn:visible, .mdock-btn.forge-item:visible').first().focus();
-  await page.evaluate(s => (window as any).showRapidQuizMinigame(s), standalone);
+  const selecionada = await page.evaluate(({ standalone, qid }) => {
+    if (!qid) { (window as any).showRapidQuizMinigame(standalone); return ''; }
+    // Mantém o banco e o fluxo reais; controla somente o sorteio para que a
+    // explicação longa que falhou na CI não seja trocada no próximo retry.
+    const questoes = (0, eval)('RAPID_QUIZ_QUESTIONS') as any[];
+    const indice = questoes.findIndex(q => q.qid === qid);
+    if (indice < 0) throw new Error(`Questão ausente: ${qid}`);
+    let i = questoes.length - 1;
+    const randomOriginal = Math.random;
+    Math.random = () => i-- === indice ? 0 : 1 - Number.EPSILON;
+    try { (window as any).showRapidQuizMinigame(standalone); }
+    finally { Math.random = randomOriginal; }
+    return questoes.find(q => q.q === document.getElementById('mgStmt')!.textContent)?.qid;
+  }, { standalone, qid });
+  if (qid) expect(selecionada).toBe(qid);
   await expect(page.locator('#rapidQuizPage')).toBeVisible();
 }
 
@@ -101,10 +115,31 @@ test('sair devolve a jornada e o foco', async ({ page }) => {
 for (const largura of [320, 390]) {
   test(`cabe em ${largura}px com texto a 200%, contraste e alvos de toque`, async ({ page }, info) => {
     test.skip(info.project.name !== 'chromium', 'A medição fixa a própria viewport.');
-    await abrir(page, { largura });
+    await abrir(page, { largura, qid: '8e763ea6' });
     await page.addStyleTag({ content: 'html { font-size: 32px !important; }' });
     await page.locator('#mgTrue').click();
     await expect(page.locator('#mgProxima')).toBeVisible();
+    await page.evaluate(async () => {
+      await document.fonts.ready;
+      await new Promise(requestAnimationFrame);
+      await new Promise(requestAnimationFrame);
+    });
+    const correcao = await page.locator('#mgFeedback').evaluate(el => {
+      const fora: Array<{ texto: string; esquerda: number; direita: number; limiteEsquerdo: number; limiteDireito: number }> = [];
+      for (const p of el.querySelectorAll('p')) {
+        const limite = p.getBoundingClientRect();
+        const range = document.createRange(); range.selectNodeContents(p);
+        for (const r of range.getClientRects()) {
+          if (r.width && (r.left < limite.left - 1 || r.right > limite.right + 1)) {
+            fora.push({ texto: p.textContent || '', esquerda: r.left, direita: r.right, limiteEsquerdo: limite.left, limiteDireito: limite.right });
+          }
+        }
+      }
+      return { qid: '8e763ea6', largura: innerWidth, fonteRaiz: getComputedStyle(document.documentElement).fontSize, fontes: document.fonts.status, fora };
+    });
+    await info.attach('correcao-questao-fixa', { body: JSON.stringify(correcao, null, 2), contentType: 'application/json' });
+    await info.attach('correcao-200-porcento', { body: await page.screenshot({ fullPage: true, animations: 'disabled' }), contentType: 'image/png' });
+    expect(correcao.fora, 'a explicação ultrapassa a largura útil do próprio card').toEqual([]);
     const cortes = await page.evaluate(() => {
       const fora: string[] = [];
       const w = document.createTreeWalker(document.getElementById('rapidQuizPage')!, NodeFilter.SHOW_TEXT);

@@ -483,7 +483,7 @@
     return `
       <p class="nqd-evolution" data-trend="${sinal}">
         <strong>${_escape(texto)}.</strong>
-        ${c.agora.precisao}% em ${_formatNumber(c.agora.total)} respostas, contra ${c.antes.precisao}% em ${_formatNumber(c.antes.total)}.
+        <span class="nqd-evolution-detail">${c.agora.precisao}% em ${_formatNumber(c.agora.total)} respostas, contra ${c.antes.precisao}% em ${_formatNumber(c.antes.total)}.</span>
       </p>`;
   }
 
@@ -862,6 +862,87 @@
     `;
   }
 
+  function _formLevels(data) {
+    const current = Math.min(10, Math.max(1, Math.floor(_number(data.level, 1))));
+    return [current, current + 1, current + 2].filter(level => level <= 10);
+  }
+
+  function _formImage(data, level) {
+    return `assets/classes-cinema/${data.character.folder}/nivel_${String(level).padStart(2, '0')}.${data.character.ext}`;
+  }
+
+  function _formSilhouette(characterId) {
+    const shapes = {
+      glomerulus: '<path d="M29 9h22l5 17-5 12H29l-5-12zM24 42h32l10 9 5 39H9l5-39zM6 36h5v57H6zM1 44h15v4H1z"/>',
+      aquaria: '<path d="M39 3 20 31h37zM27 29h25v9l-8 8 14 14 12 33H10l12-33 13-14-8-8zM68 18h4v76h-4zM64 12a6 6 0 1 1 12 0 6 6 0 0 1-12 0z"/>',
+      nephros: '<path d="M39 9c-10 0-16 8-16 18 0 8 4 14 9 17C18 48 12 61 11 85l-3 9h55l-3-9C59 61 53 48 45 44c6-3 10-9 10-17C55 17 49 9 39 9zM68 9h4v85h-4zM61 17h18v4H61z"/>',
+    };
+    return `<svg class="nqd-form-silhouette" viewBox="0 0 80 100" aria-hidden="true">${shapes[characterId] || shapes.nephros}</svg>`;
+  }
+
+  function _formTrailMarkup(data) {
+    const levels = _formLevels(data);
+    return `
+      <ol class="nqd-form-trail" aria-label="Formas de ${_escape(data.character.name)}" style="--form-count:${levels.length}">
+        ${levels.map((level, index) => `
+          <li class="${index === 0 ? 'is-current' : index === 1 ? 'is-next' : 'is-future'}">
+            <button type="button" class="nqd-form-node" data-action="_dashPreviewForm" data-pass-this="1" data-form-level="${level}" aria-label="Ver ${index === 0 ? 'forma atual' : index === 1 ? 'próxima forma' : 'forma seguinte'} de ${_escape(data.character.name)}, nível ${level}">
+              <span class="nqd-form-portrait">${index === 2 ? _formSilhouette(data.characterId) : `<img src="${_escape(_formImage(data, level))}" alt="" width="230" height="230" loading="lazy" decoding="async">`}</span>
+              <span class="nqd-form-label"><small>${index === 0 ? (level === 10 ? 'Forma máxima' : 'Atual') : index === 1 ? 'Próxima' : 'Adiante'}</small><strong>Nível ${level}</strong></span>
+            </button>
+          </li>`).join('')}
+      </ol>`;
+  }
+
+  function _dashPreviewForm(opener) {
+    const root = document.getElementById('nqDashboard');
+    const data = _dashboardData;
+    const level = _number(opener && opener.dataset.formLevel, 0);
+    if (!root || !data?.save || !data.character || !_formLevels(data).includes(level) || root.querySelector('.nqd-form-dialog')) return;
+    const current = _formLevels(data)[0];
+    const requiredCorrect = (level - 1) * 10;
+    const remainingCorrect = Math.max(0, requiredCorrect - data.journeyCorrect);
+    let requiredXp = 0;
+    for (let step = current; step < level; step += 1) {
+      if (typeof window.xpForLevel !== 'function') return;
+      requiredXp += window.xpForLevel(step);
+    }
+    const remainingXp = Math.max(0, requiredXp - data.xp);
+    const requirement = level === current
+      ? (level === 1 ? 'Forma inicial, disponível ao escolher este guardião.' : 'Esta é a forma atual da sua jornada.')
+      : `O nível ${level} exige ${_formatNumber(requiredCorrect)} acertos na jornada${remainingCorrect ? ` — faltam ${_formatNumber(remainingCorrect)}` : ' — marco de acertos atingido'}.`;
+    const xpRequirement = level === current ? '' : remainingXp
+      ? `XP restante até esta forma: ${_formatNumber(remainingXp)}, considerando a barra atual. Acertos e XP precisam estar liberados para a evolução acontecer.`
+      : 'O XP necessário já está acumulado. A evolução acontece ao receber XP com o marco de acertos liberado.';
+    const dialog = document.createElement('dialog');
+    dialog.className = 'nqd-form-dialog';
+    dialog.setAttribute('aria-labelledby', 'nqdFormPreviewTitle');
+    dialog.setAttribute('aria-describedby', 'nqdFormPreviewRequirement');
+    dialog.innerHTML = `
+      <header><small>${level === current ? 'Forma atual' : 'Evolução do guardião'}</small><button type="button" class="nqd-form-close" aria-label="Fechar arte ampliada">×</button><h2 id="nqdFormPreviewTitle">${_escape(data.character.name)} · Nível ${level}</h2></header>
+      <div class="nqd-form-preview-art"><img src="${_escape(_formImage(data, level))}" alt="${_escape(data.character.name)}, forma do nível ${level}" width="230" height="230"></div>
+      <div id="nqdFormPreviewRequirement" class="nqd-form-requirement"><p>${_escape(requirement)}</p>${xpRequirement ? `<p>${_escape(xpRequirement)}</p>` : ''}</div>`;
+    dialog.addEventListener('keydown', event => {
+      event.stopPropagation();
+      if (event.key === 'Tab') {
+        event.preventDefault();
+        dialog.querySelector('.nqd-form-close').focus({ preventScroll: true });
+      }
+    });
+    dialog.querySelector('.nqd-form-close').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', event => {
+      const bounds = dialog.getBoundingClientRect();
+      if (event.target === dialog && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) dialog.close();
+    });
+    dialog.addEventListener('close', () => {
+      dialog.remove();
+      if (opener.isConnected && !opener.closest('[hidden], [inert]')) opener.focus({ preventScroll: true });
+    }, { once: true });
+    root.appendChild(dialog);
+    dialog.showModal();
+    dialog.querySelector('.nqd-form-close').focus({ preventScroll: true });
+  }
+
   function _tabOverview(data) {
     const journey = data.save ? `
       <div class="nqd-journey-layout">
@@ -876,9 +957,8 @@
           </div>
           ${_meterMarkup(Math.min(data.xp, data.xpToNext), data.xpToNext, 'Experiência do personagem', true)}
           ${_levelGateMarkup(data)}
-          ${data.nextAvatar ? `<div class="nqd-next-form"><img src="${_escape(data.nextAvatar)}" alt="" width="230" height="230" loading="lazy"><span><small>Próxima forma</small><strong>Nível ${data.level + 1}</strong></span></div>` : '<div class="nqd-next-form is-complete"><span><small>Forma máxima</small><strong>Nível 10</strong></span></div>'}
         </div>
-      </div>` : `
+      </div>${_formTrailMarkup(data)}` : `
       <div class="nqd-journey-empty">
         <span class="nqd-state">Primeira jornada</span>
         <h2 class="nqd-journey-title">Seu guardião ainda não foi escolhido.</h2>
@@ -1174,6 +1254,38 @@
     return _svg('achievements');
   }
 
+  function _dashAchievementDetail(button) {
+    if (typeof window.showAchievementArtwork !== 'function' || !button) return;
+    const correctTotal = Math.max(0, _number(_dashboardData && _dashboardData.save && _dashboardData.save.correctTotal, 0));
+    const badge = BADGE_MILESTONES.find(item => String(item.id) === button.dataset.badgePreview);
+    if (badge) {
+      const history = _readJson('nefroquest-badge-history', {});
+      const memory = history && typeof history === 'object' && !Array.isArray(history) && history[badge.id];
+      const journey = memory ? _number(memory.jornada, 0) : 0;
+      window.showAchievementArtwork({
+        name: badge.name,
+        source: `assets/badges/badge${badge.id}.webp`,
+        description: `${badge.required} acertos na mesma jornada.${memory ? ` Este selo já é seu${journey ? ` desde a ${journey}ª jornada` : ''}.` : ''}`,
+        status: correctTotal >= badge.required ? 'Conquistado nesta jornada' : memory ? 'Seu selo · reconquistando' : 'A conquistar',
+        progress: { value: correctTotal, target: badge.required },
+      });
+      return;
+    }
+    const achievement = typeof ACHIEVEMENTS_LIST !== 'undefined'
+      ? ACHIEVEMENTS_LIST.find(item => item.id === button.dataset.achievementPreview) : null;
+    if (!achievement) return;
+    const stored = typeof getUnlockedAchievements === 'function' ? getUnlockedAchievements() : [];
+    const unlocked = Array.isArray(stored) && stored.includes(achievement.id);
+    const progress = _achievementProgress(achievement.id, _dashboardData && _dashboardData.stats || {});
+    window.showAchievementArtwork({
+      name: achievement.name, description: achievement.description,
+      source: `assets/achievements/${ACHIEVEMENT_ART[achievement.id]}.webp`,
+      status: unlocked ? 'Conquistada · fica com você' : progress && progress.value > 0 ? 'Em progresso' : 'A conquistar',
+      progress: unlocked ? null : progress,
+    });
+  }
+  window._dashAchievementDetail = _dashAchievementDetail;
+
   /**
    * Trilha dos cinco selos.
    *
@@ -1201,7 +1313,7 @@
           const posse = !!memoria[badge.id] && !isUnlocked;
           return `
             <li class="nqd-badge-node is-${state}${posse ? ' has-memory' : ''}" data-state="${state}"${posse ? ' data-memoria="true"' : ''}${isCurrent ? ' aria-current="step"' : ''}>
-              <span class="nqd-badge-art"><img src="${badge.image}" srcset="${badge.image} 384w, assets/badges/badge${badge.id}.png 512w" sizes="(max-width: 640px) 136px, 160px" alt="" decoding="async" width="512" height="512"></span>
+              <button type="button" class="nqd-badge-art" data-action="_dashAchievementDetail" data-pass-this="1" data-badge-preview="${badge.id}" aria-label="${_escape(badge.name)} — ${badge.required} acertos — ampliar arte e requisito"><picture><source type="image/webp" srcset="assets/badges/badge${badge.id}-384.webp 384w, assets/badges/badge${badge.id}.webp 512w" sizes="104px"><img src="${badge.image}" srcset="${badge.image} 384w, assets/badges/badge${badge.id}.png 512w" sizes="104px" alt="" decoding="async" width="512" height="512"></picture><span class="nqd-art-expand" aria-hidden="true">${_svg('search')}</span></button>
               <span class="nqd-badge-node-copy"><strong>${_escape(badge.name)}</strong><small>${posse ? `seu${jornada ? ` desde a ${jornada}ª jornada` : ''}` : `${badge.required} acertos`}</small></span>
               <span class="nqd-badge-state" aria-hidden="true">${isUnlocked ? 'Conquistado' : posse ? 'Reconquistando' : isCurrent ? 'Próximo selo' : 'A conquistar'}</span>
               <span class="nqd-sr-only">${isUnlocked ? 'Conquistado nesta jornada' : posse ? `Já conquistado${jornada ? ` na ${jornada}ª jornada` : ''}, sendo reconquistado agora` : isCurrent ? 'Próximo selo' : 'Bloqueado'}</span>
@@ -1234,18 +1346,20 @@
       const ratio = progress && progress.target ? value / progress.target : -1;
       return { achievement, isUnlocked, progress, value, state, ratio };
     }).sort((left, right) => {
-      const order = { progress: 0, 'not-started': 1, special: 2, unlocked: 3 };
+      // A coleção começa pelo que já foi ganho; Objetivos mantém seu próprio filtro.
+      const order = { unlocked: 0, progress: 1, 'not-started': 2, special: 3 };
       return order[left.state] - order[right.state] || right.ratio - left.ratio;
     });
 
     const cards = cardModels.length ? cardModels.map(({ achievement, isUnlocked, progress, value, state }) => {
       const promoted = !isUnlocked;
       return `
-        <article class="nqd-achievement${isUnlocked ? ' is-unlocked' : ' is-locked'}" data-state="${isUnlocked ? 'unlocked' : state}" data-achievement-status="${state}" data-achievement-promoted="${promoted}">
-          <span class="nqd-achievement-mark" aria-hidden="true">${_achievementIconMarkup(achievement)}</span>
+        <article class="nqd-achievement${isUnlocked ? ' is-unlocked' : ' is-locked'}" data-state="${isUnlocked ? 'unlocked' : state}" data-achievement-id="${achievement.id}" data-achievement-status="${state}" data-achievement-promoted="${promoted}">
+          <button type="button" class="nqd-achievement-mark" data-action="_dashAchievementDetail" data-pass-this="1" data-achievement-preview="${achievement.id}" aria-label="${_escape(achievement.name)} — ampliar arte e requisito">${_achievementIconMarkup(achievement)}<span class="nqd-art-expand" aria-hidden="true">${_svg('search')}</span></button>
           <div class="nqd-achievement-body">
-            <span class="nqd-state">${isUnlocked ? 'Conquistada' : _escape(_achievementCategory(achievement.id))}</span>
+            <span class="nqd-state">${isUnlocked ? '✓ Conquistada' : state === 'progress' ? 'Em progresso' : 'A conquistar'}</span>
             <h3 class="nqd-achievement-title">${_escape(achievement.name)}</h3>
+            <small class="nqd-achievement-category">${_escape(_achievementCategory(achievement.id))}</small>
             ${progress && progress.target > 0 && !isUnlocked ? `<div class="nqd-achievement-progress"><span>${_formatNumber(value)} / ${_formatNumber(progress.target)}</span>${_meterMarkup(value, progress.target, `Progresso de ${achievement.name}`, true)}</div>` : ''}
             ${!isUnlocked ? `<details class="nqd-achievement-detail"><summary>Como conquistar</summary><p>${_escape(achievement.description)}</p></details>` : `<p class="nqd-achievement-copy">${_escape(achievement.description)}</p>`}
           </div>
@@ -1258,15 +1372,15 @@
         <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Conquistas</h1><p class="nqd-section-copy">Selos da jornada. Conquistas que ficam com você.</p></div></div>
 
         <section class="nqd-achievement-spotlight${nextBadge ? '' : ' is-complete'}" aria-labelledby="nqdAchievementSpotlightTitle">
-          <div class="nqd-achievement-spotlight-art"><img src="${featuredBadge.image}" srcset="${featuredBadge.image} 384w, assets/badges/badge${featuredBadge.id}.png 512w" sizes="(max-width: 640px) 192px, 280px" alt="" decoding="async" width="512" height="512"></div>
+          <button type="button" class="nqd-achievement-spotlight-art" data-action="_dashAchievementDetail" data-pass-this="1" data-badge-preview="${featuredBadge.id}" aria-label="${_escape(featuredBadge.name)} — ampliar próximo selo"><picture><source type="image/webp" srcset="assets/badges/badge${featuredBadge.id}-384.webp 384w, assets/badges/badge${featuredBadge.id}.webp 512w" sizes="88px"><img src="${featuredBadge.image}" srcset="${featuredBadge.image} 384w, assets/badges/badge${featuredBadge.id}.png 512w" sizes="88px" alt="" decoding="async" width="512" height="512"></picture></button>
           <div class="nqd-achievement-spotlight-copy">
             <span class="nqd-eyebrow nqd-eyebrow--reward">${nextBadge ? 'Próximo selo da jornada' : 'Trilha de selos completa'}</span>
             <h2 id="nqdAchievementSpotlightTitle">${_escape(featuredBadge.name)}</h2>
             <p>${nextBadge ? `Faltam <strong>${_formatNumber(remaining)} acertos</strong> nesta jornada para ${featuredOwned ? 'reconquistar' : 'revelar'} este selo.` : 'Os cinco selos da jornada foram conquistados.'}</p>
             ${_meterMarkup(featuredValue, featuredBadge.required, `Progresso para ${featuredBadge.name}`, true)}
             <small>${_formatNumber(featuredValue)} de ${featuredBadge.required} acertos</small>
-            <button type="button" class="nqd-primary-action" data-action="${data.save ? '_dashResumeJourney' : '_dashStartJourney'}" data-nqd-primary="true">${data.save ? 'Continuar jornada' : 'Começar jornada'}${_svg('arrow')}</button>
           </div>
+          <button type="button" class="nqd-primary-action" data-action="${data.save ? '_dashResumeJourney' : '_dashStartJourney'}" data-nqd-primary="true">${data.save ? 'Continuar jornada' : 'Começar jornada'}${_svg('arrow')}</button>
         </section>
 
         <div class="nqd-badge-path-header"><h2>Caminho dos 100 acertos</h2><span>na jornada atual</span></div>
@@ -1277,9 +1391,9 @@
           <div class="nqd-achievement-summary" aria-label="${unlocked.size} de ${achievements.length} conquistas especiais conquistadas"><strong>${unlocked.size > 0 ? unlocked.size : '—'}</strong><span>de ${achievements.length}</span></div>
         </div>
         <div class="nqd-achievement-filters" role="group" aria-label="Filtrar conquistas especiais">
-          <button type="button" class="nqd-achievement-filter is-active" data-achievement-filter="active" aria-pressed="true">Objetivos</button>
+          <button type="button" class="nqd-achievement-filter" data-achievement-filter="active" aria-pressed="false">Objetivos</button>
           <button type="button" class="nqd-achievement-filter" data-achievement-filter="unlocked" aria-pressed="false">Conquistadas</button>
-          <button type="button" class="nqd-achievement-filter" data-achievement-filter="all" aria-pressed="false">Todas</button>
+          <button type="button" class="nqd-achievement-filter is-active" data-achievement-filter="all" aria-pressed="true">Todas</button>
         </div>
         <p class="nqd-sr-only" id="nqdAchievementFilterStatus" role="status" aria-live="polite"></p>
         <div class="nqd-achievement-grid">${cards}</div>
@@ -1811,12 +1925,13 @@
     const medidos = skills.map((skill, index) => ({ skill, index })).filter(item => medido(item.skill));
     if (medidos.length >= 3) {
       context.beginPath();
-      context.setLineDash([5, 5]);
+      context.setLineDash([]);
       medidos.forEach((item, ordem) => {
         const point = pointFor(item.index, fator(item.skill) * progresso);
         if (!ordem) context.moveTo(point.x, point.y);
         else context.lineTo(point.x, point.y);
       });
+      context.closePath();
       context.strokeStyle = '#9fdbe4';
       context.lineWidth = 2;
       context.stroke();
@@ -2018,7 +2133,7 @@
     root.querySelectorAll('.nqd-achievement-filter').forEach(button => {
       button.addEventListener('click', () => _setAchievementFilter(root, button.dataset.achievementFilter, true));
     });
-    _setAchievementFilter(root, 'active', false);
+    _setAchievementFilter(root, 'all', false);
 
     _tabMediaQuery = window.matchMedia('(max-width: 61.25rem)');
     const syncOrientation = () => {
@@ -2316,6 +2431,7 @@
   window._dashRetryLoad = _dashRetryLoad;
 
   function closeDashboard(options) {
+    window.closeAchievementArtwork?.({ restoreFocus: false });
     const root = document.getElementById('nqDashboard');
     if (!root) return;
     _rememberLibraryReading(root);
@@ -2731,6 +2847,7 @@
   window._dashClearMapSearch = _dashClearMapSearch;
   window._dashExploreSkills = _dashExploreSkills;
   window._dashContinueStudy = _dashContinueStudy;
+  window._dashPreviewForm = _dashPreviewForm;
   window._dashToggleFavorite = _dashToggleFavorite;
   window.getUserTitle = getUserTitle;
 })();

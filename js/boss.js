@@ -111,6 +111,15 @@
       const hpPct   = document.getElementById('bossHpPct');
       if (hpFill) hpFill.style.width = hp + '%';
       if (hpPct)  hpPct.textContent = `HP ${hp}%`;
+      const hpTrack = document.getElementById('bossHpTrack');
+      if (hpTrack) {
+        hpTrack.setAttribute('role', 'progressbar');
+        hpTrack.setAttribute('aria-label', 'Vida do Arqui-Nefromante');
+        hpTrack.setAttribute('aria-valuemin', '0');
+        hpTrack.setAttribute('aria-valuemax', '100');
+        hpTrack.setAttribute('aria-valuenow', String(hp));
+        hpTrack.setAttribute('aria-valuetext', `HP ${hp}%, ${progress} de 10 golpes concluídos`);
+      }
 
       // Muda cor da barra conforme HP diminui
       if (hpFill) {
@@ -142,6 +151,8 @@
       // ── Medidor de estrelas (topo da página) ──
       const buildStars = (container) => {
         if (!container) return;
+        container.setAttribute('role', 'img');
+        container.setAttribute('aria-label', `${progress} de 10 golpes concluídos`);
         container.innerHTML = '';
         for (let i = 0; i < 10; i++) {
           const s = document.createElement('span');
@@ -154,6 +165,7 @@
             s.className = 'final-star';
           }
           s.textContent = '★';
+          s.setAttribute('aria-hidden', 'true');
           container.appendChild(s);
         }
       };
@@ -372,6 +384,11 @@
         return;
       }
       beginProgressSandbox('boss-preview');
+      // O aviso acompanha a altura real do texto, inclusive com fonte ampliada.
+      // Continua sendo o mesmo nó e a mesma ação de saída do sandbox.
+      const demoBanner = document.getElementById('progressSandboxBanner');
+      const demoApp = document.getElementById('mainApp');
+      if (demoBanner && demoApp) demoApp.before(demoBanner);
 
       if (!opts.preservePlayer) {
         // Cenário completo para o link de desenvolvimento.

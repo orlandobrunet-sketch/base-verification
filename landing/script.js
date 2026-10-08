@@ -13,6 +13,17 @@
   var scrollTicking = false;
   var heroLab = document.querySelector('[data-nephron-lab]');
 
+  // O menu pode ocupar duas linhas quando o visitante amplia o texto.
+  // Seu tamanho real mantém o atlas e os destinos das âncoras abaixo dele.
+  if (nav) {
+    var syncNavHeight = function () {
+      root.style.setProperty('--landing-nav-height', nav.getBoundingClientRect().height + 'px');
+    };
+    syncNavHeight();
+    if ('ResizeObserver' in window) new ResizeObserver(syncNavHeight).observe(nav);
+    else window.addEventListener('resize', syncNavHeight, { passive: true });
+  }
+
   function reveal(element) {
     element.classList.add('in');
   }

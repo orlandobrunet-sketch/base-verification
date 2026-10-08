@@ -1,5 +1,15 @@
 import { test, expect, type Page } from '@playwright/test';
 
+test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.beforeEach(async ({ page }) => {
+  // As jornadas abaixo são fixtures locais; nenhum request pode alcançar
+  // serviços de produção, mesmo se BASE_URL for configurada por engano.
+  await page.route('**/*', route => {
+    const host = new URL(route.request().url()).hostname;
+    return host === 'localhost' || host === '127.0.0.1' ? route.continue() : route.abort();
+  });
+});
+
 /**
  * O preview do chefe e o atalho administrativo usavam o mesmo estado da
  * jornada real. Como o state agenda save automaticamente, os valores fictícios
@@ -41,6 +51,7 @@ const DADOS_REAIS: Record<string, string> = {
 
 const CHAVES_PROTEGIDAS = [
   ...Object.keys(DADOS_REAIS),
+  'nefroquest-save-v7',
   'nefroquest-arqui-defeated',
   'nefroquest-hardcore-completed',
   'nefroquest-gold-milestone-shown',
@@ -175,5 +186,52 @@ test.describe('Preview isolado do Confronto Final', () => {
     expect(restaurado.sandbox).toBe(false);
     expect(restaurado.bossParam).toBe(false);
     expect(await snapshotProtegido(page)).toEqual(antes);
+  });
+
+  test('reload encerra a demonstração e conserva o snapshot real, inclusive o canônico', async ({ page }) => {
+    const antes = await abrirPreviewComProgressoReal(page);
+    await page.locator('#options .option').first().click();
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => typeof (window as any).loadGame === 'function');
+    const retomada = await page.evaluate(() => ({
+      save: (window as any).loadGame(),
+      sandbox: (window as any).isProgressSandbox(),
+    }));
+    expect(retomada.sandbox).toBe(false);
+    expect(retomada.save.correctTotal).toBe(SAVE_REAL.correctTotal);
+    expect(retomada.save.gold).toBe(SAVE_REAL.gold);
+    expect(retomada.save.score).toBe(SAVE_REAL.score);
+    await expect(page.locator('#progressSandboxBanner')).toHaveCount(0);
+    expect(await snapshotProtegido(page)).toEqual(antes);
+  });
+
+  test('duas abas separam a demonstração da jornada e preservam uma atualização real da fixture', async ({ page, context }) => {
+    await abrirPreviewComProgressoReal(page);
+    const outra = await context.newPage();
+    await outra.route('**/*', route => {
+      const host = new URL(route.request().url()).hostname;
+      return host === 'localhost' || host === '127.0.0.1' ? route.continue() : route.abort();
+    });
+    await outra.goto('/jogar/', { waitUntil: 'domcontentloaded' });
+    await outra.waitForFunction(() => typeof (window as any).loadGame === 'function');
+    expect(await outra.evaluate(() => (window as any).isProgressSandbox())).toBe(false);
+    expect(await outra.evaluate(() => (window as any).loadGame().correctTotal)).toBe(7);
+    // Simula uma gravação legítima da OUTRA jornada; a aba demonstrativa
+    // deve continuar em memória, sem sobrescrever esse avanço no storage.
+    await outra.evaluate(save => localStorage.setItem('nefroquest-save', JSON.stringify(save)), {
+      ...SAVE_REAL, correctTotal: 8, score: 800, gold: 100,
+    });
+    const atualizado = await snapshotProtegido(outra);
+    await page.locator('#options .option').first().click();
+    await page.waitForTimeout(1100);
+    expect(await snapshotProtegido(page)).toEqual(atualizado);
+    expect(await snapshotProtegido(outra)).toEqual(atualizado);
+    expect(await page.evaluate(() => (window as any).isProgressSandbox())).toBe(true);
+    expect(await outra.evaluate(() => (window as any).isProgressSandbox())).toBe(false);
+    await page.getByRole('button', { name: 'Sair da demonstração' }).click();
+    await page.waitForFunction(() => typeof (window as any).loadGame === 'function');
+    expect(await page.evaluate(() => (window as any).loadGame().correctTotal)).toBe(8);
+    expect(await snapshotProtegido(page)).toEqual(atualizado);
+    await outra.close();
   });
 });

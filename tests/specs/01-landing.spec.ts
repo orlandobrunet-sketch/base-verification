@@ -72,12 +72,19 @@ test.describe('Landing comercial', () => {
     expect(palette.hero).toContain('rgb(8, 13, 24) 48%');
     expect(palette.hero).toContain('rgb(13, 31, 54) 48%');
     expect(palette.heroFieldContent).toBe('none');
-    expect(palette.atlasBorder).toBe('rgba(87, 191, 200, 0.28)');
+    // Atlas e cartão usam superfícies quentes e translúcidas; o fluxo mantém
+    // as cores clínicas acima. Verificamos a direção, sem fixar um tom exato.
+    const atlasBorder = palette.atlasBorder.match(/[\d.]+/g)!.map(Number);
+    expect(atlasBorder).toHaveLength(4);
+    expect(atlasBorder[0]).toBeGreaterThan(atlasBorder[2]);
+    expect(atlasBorder[3]).toBeGreaterThan(0);
+    expect(atlasBorder[3]).toBeLessThan(.5);
     expect(palette.console).toContain('radial-gradient');
-    expect([
-      'rgba(105, 189, 231, 0.4)',
-      'rgba(105, 189, 231, 0.36)',
-    ]).toContain(palette.consoleBorder);
+    const consoleBorder = palette.consoleBorder.match(/[\d.]+/g)!.map(Number);
+    expect(consoleBorder).toHaveLength(4);
+    expect(consoleBorder[0]).toBeGreaterThan(consoleBorder[2]);
+    expect(consoleBorder[3]).toBeGreaterThan(0);
+    expect(consoleBorder[3]).toBeLessThan(.5);
     expect(palette.currentStage).toContain('rgba(214, 169, 74, 0.2)');
     expect(palette.proof).toContain('linear-gradient');
   });

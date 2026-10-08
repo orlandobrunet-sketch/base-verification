@@ -653,25 +653,25 @@
         easy: {
           index: '01', name: 'Fácil', role: 'Ritmo de aquecimento', lives: 5,
           mix: [['Fáceis', 40], ['Médias', 40], ['Difíceis', 20]],
-          mixShort: '40 · 40 · 20', adaptation: 'Ativa',
+          mixShort: '40 · 40 · 20', adaptation: 'Ativo',
           desc: 'Mais margem para testar hipóteses enquanto o motor adaptativo acompanha seu desempenho.'
         },
         normal: {
           index: '02', name: 'Médio', role: 'Equilíbrio clínico', lives: 4,
           mix: [['Fáceis', 20], ['Médias', 40], ['Difíceis', 40]],
-          mixShort: '20 · 40 · 40', adaptation: 'Ativa',
+          mixShort: '20 · 40 · 40', adaptation: 'Ativo',
           desc: 'Distribuição equilibrada para manter ritmo, revisão e pressão clínica na mesma jornada.'
         },
         hard: {
           index: '03', name: 'Difícil', role: 'Pressão elevada', lives: 3,
           mix: [['Fáceis', 0], ['Médias', 25], ['Difíceis', 75]],
-          mixShort: '0 · 25 · 75', adaptation: 'Ativa',
+          mixShort: '0 · 25 · 75', adaptation: 'Ativo',
           desc: 'Prioriza decisões difíceis e reduz a margem para erro sem desligar a adaptação clínica.'
         },
         hardcore: {
           index: '04', name: 'Hardcore', role: 'Risco máximo', lives: 1,
           mix: [['Fáceis', 0], ['Médias', 0], ['Difíceis', 100]],
-          mixShort: '0 · 0 · 100', adaptation: 'Desativada',
+          mixShort: '0 · 0 · 100', adaptation: 'Desativado',
           desc: 'Somente questões difíceis. Um erro encerra a jornada e o motor adaptativo fica desativado.'
         }
       };
@@ -908,6 +908,7 @@
         classe: 'nq-exam nq-ritual',
         aoTeclar: e => { if (e.key === 'Escape') { e.preventDefault(); fechar(); } },
       });
+      pagina.dataset.nqUi = 'lumen';
 
       const used = new Set();
       const ritualResults = [];
@@ -921,14 +922,19 @@
 
       function showIntro(erro = '') {
         desenhar(`
-          <h1 id="ritualTitulo" tabindex="-1">Ritual de Iniciação</h1>
-          <p>Responda <strong>${RITUAL_LEN} questões</strong> e o Ritual alinha a dificuldade da sua jornada ao seu nível atual: as questões se adaptam às suas respostas.</p>
-          <p>Não conta para a sua jornada, pontuação ou ranking. É só um diagnóstico, e você pode refazer quando quiser.</p>
+          <div class="nql-ritual-intro">
+            <header class="nql-ritual-heading">
+              <svg class="nql-ritual-emblem" viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="33"/><circle cx="40" cy="40" r="24"/><path d="M40 13v10M40 57v10M13 40h10M57 40h10M40 27l9 13-9 13-9-13z"/><circle cx="40" cy="40" r="3"/></svg>
+              <div><p class="nql-ritual-eyebrow">Seu ponto de partida</p><h1 id="ritualTitulo" tabindex="-1">Ritual de Iniciação</h1></div>
+            </header>
+            <p class="nql-ritual-lede">Responda <strong>${RITUAL_LEN} questões</strong> e o Ritual alinha a dificuldade da sua jornada ao seu nível atual: as questões se adaptam às suas respostas.</p>
+            <div class="nql-ritual-sequence" aria-hidden="true">${Array.from({ length: RITUAL_LEN }, (_, i) => `<span>${String(i + 1).padStart(2, '0')}</span>`).join('')}</div>
+            <p class="nql-ritual-note">Não conta para a sua jornada, pontuação ou ranking. É só um diagnóstico, e você pode refazer quando quiser.</p>
           ${erro ? `<p class="nq-exam-erro" role="alert">${erro}</p>` : ''}
           <div class="nq-exam-acoes">
             <button type="button" class="btn gold" id="ritualStart">Começar o Ritual</button>
             <button type="button" class="btn sec" id="ritualSair">Agora não</button>
-          </div>`, erro ? '#ritualStart' : '#ritualTitulo');
+          </div></div>`, erro ? '#ritualStart' : '#ritualTitulo');
         pagina.querySelector('#ritualStart').addEventListener('click', comecar);
         pagina.querySelector('#ritualSair').addEventListener('click', fechar);
       }
@@ -1030,6 +1036,8 @@
         const LABEL = { easy: 'Fácil', normal: 'Médio', hard: 'Difícil', hardcore: 'Hardcore' };
         if (typeof playSound === 'function') playSound('levelup');
         desenhar(`
+          <div class="nql-ritual-result">
+          <p class="nql-ritual-eyebrow">Seu ponto de partida</p>
           <h1 id="ritualTitulo" tabindex="-1">Ritual concluído</h1>
           <p>Você acertou <strong>${correctCount} de ${step}</strong>.</p>
           <p>Dificuldade recomendada para sua jornada:</p>
@@ -1037,7 +1045,7 @@
           <div class="nq-exam-acoes">
             <button type="button" class="btn gold" id="ritualGo">Iniciar jornada nesse nível</button>
             <button type="button" class="btn sec" id="ritualSair">Voltar (a recomendação fica salva)</button>
-          </div>`, '#ritualTitulo');
+          </div></div>`, '#ritualTitulo');
         pagina.querySelector('#ritualGo').addEventListener('click', () => {
           fechar();
           if (typeof startNewFromWelcome === 'function') startNewFromWelcome();

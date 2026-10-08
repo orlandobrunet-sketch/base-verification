@@ -164,6 +164,59 @@
       }
     ];
     
+    // Apresentação compartilhada; IDs e condições acima continuam sendo a regra.
+    const NQ_ACHIEVEMENT_ART = {
+      hd_master: 'hemodialise', nephron_guardian: 'guardiao',
+      perfectionist_drc: 'cristal', transplant_expert: 'transplante',
+      glomerulo_sage: 'microscopio', century_club: 'centenario',
+      accuracy_master: 'precisao', hardcore_champion: 'hardcore',
+      acid_base_master: 'alquimia', grimoire_master: 'grimorio',
+      laurel_wreath_knowledge: 'louros', arqui_nefromante_slayer: 'campeao',
+    };
+
+    function getAchievementArtwork(id) {
+      return NQ_ACHIEVEMENT_ART[id] ? `assets/achievements/${NQ_ACHIEVEMENT_ART[id]}.webp` : '';
+    }
+
+    let _nqAchievementArtworkDialog = null;
+
+    function closeAchievementArtwork(options) {
+      const dialog = _nqAchievementArtworkDialog;
+      _nqAchievementArtworkDialog = null;
+      if (!dialog) return;
+      // A limpeza de conta remove o dialog sem devolver foco à jornada encerrada.
+      if (!(options && options.restoreFocus === false)) dialog.close();
+      dialog.remove();
+    }
+
+    function showAchievementArtwork({ name, description, source, status, progress = null }) {
+      if (!source || !name) return;
+      closeAchievementArtwork();
+      const dialog = document.createElement('dialog');
+      dialog.className = 'nq-ach-detail';
+      dialog.setAttribute('aria-labelledby', 'nqAchievementArtworkTitle');
+      dialog.setAttribute('aria-describedby', 'nqAchievementArtworkRequirement');
+      const value = progress ? Math.max(0, Math.min(Number(progress.value) || 0, Number(progress.target) || 0)) : 0;
+      const target = progress ? Math.max(0, Number(progress.target) || 0) : 0;
+      dialog.innerHTML = `
+        <div class="nq-ach-detail-reading" tabindex="0" role="region" aria-label="Arte e requisito da conquista">
+          <div class="nq-ach-detail-art"><img src="${escapeHtml(source)}" alt="" decoding="async" width="512" height="512"></div>
+          <div class="nq-ach-detail-copy">
+            <p class="nq-ach-detail-state">${escapeHtml(status || 'A conquistar')}</p>
+            <h2 id="nqAchievementArtworkTitle">${escapeHtml(name)}</h2>
+            <p id="nqAchievementArtworkRequirement">${escapeHtml(description || '')}</p>
+            ${target ? `<div class="nq-ach-detail-progress"><span>${value.toLocaleString('pt-BR')} de ${target.toLocaleString('pt-BR')}</span><div role="progressbar" aria-label="${escapeHtml('Progresso de ' + name)}" aria-valuemin="0" aria-valuemax="${target}" aria-valuenow="${value}"><span style="width:${value / target * 100}%"></span></div></div>` : ''}
+          </div>
+        </div>
+        <footer><button type="button" data-action="closeAchievementArtwork">Voltar à coleção</button></footer>`;
+      dialog.addEventListener('keydown', event => event.stopPropagation());
+      dialog.addEventListener('cancel', event => { event.preventDefault(); closeAchievementArtwork(); });
+      document.body.appendChild(dialog);
+      _nqAchievementArtworkDialog = dialog;
+      // O diálogo nativo isola o fundo e restaura o foco sem alterar a jornada.
+      dialog.showModal();
+    }
+
     function getUnlockedAchievements() {
       const raw = localStorage.getItem(ACHIEVEMENTS_KEY);
       try { return raw ? JSON.parse(raw) : []; } catch(e) { return []; }
@@ -201,29 +254,39 @@
       playSound('levelup');
 
       const notification = document.createElement('div');
-      notification.className = 'ach-notification';
+      notification.className = 'ach-notification nq-ach-celebration';
+      notification.setAttribute('role', 'status');
+      notification.setAttribute('aria-live', 'polite');
 
-      const iconHtml = achievement.imgIcon
-        ? `<img src="${achievement.imgIcon}" alt="${achievement.name}" class="ach-notification-img">`
+      const artwork = getAchievementArtwork(achievement.id) || achievement.imgIcon;
+      const iconHtml = artwork
+        ? `<img src="${escapeHtml(artwork)}" alt="" class="ach-notification-img" width="512" height="512">`
         : `<div class="ach-notification-icon">${achievement.icon}</div>`;
       notification.innerHTML = `
-        <div style="text-align:center;">
+        <div class="nq-ach-celebration-inner">
           ${iconHtml}
-          <div class="ach-notification-title">🏆 Conquista Desbloqueada!</div>
-          <div class="ach-notification-name">${achievement.name}</div>
-          <div class="ach-notification-desc">${achievement.description}</div>
+          <div><div class="ach-notification-title">Nova conquista</div>
+          <div class="ach-notification-name">${escapeHtml(achievement.name)}</div>
+          <div class="ach-notification-desc">${escapeHtml(achievement.description)}</div></div>
         </div>
       `;
 
-      document.body.appendChild(notification);
+      let stack = document.getElementById('nqAchievementCelebrations');
+      if (!stack) {
+        stack = document.createElement('div');
+        stack.id = 'nqAchievementCelebrations';
+        document.body.appendChild(stack);
+      }
+      stack.appendChild(notification);
 
       setTimeout(() => {
-        notification.style.animation = 'slideOutRight 0.5s ease-in';
-        setTimeout(() => notification.remove(), 500);
+        notification.classList.add('is-leaving');
+        setTimeout(() => { notification.remove(); if (!stack.children.length) stack.remove(); }, 350);
       }, 5000);
     }
     
     function closeAchievementsModal() {
+      closeAchievementArtwork();
       document.querySelectorAll('.achievements-popup').forEach(el => el.remove());
     }
 

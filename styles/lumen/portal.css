@@ -552,6 +552,43 @@ body:has(#landingScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   box-shadow: 0 0 1rem rgba(var(--nql-route-rgb), .22);
 }
 
+@font-face {
+  font-family: 'NQ Google Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../../assets/images/google-sans-medium.woff2') format('woff2');
+}
+/* Asset oficial do Google, sem recoloração; o G mantém proporção em fundo branco. */
+.nql-portal__route[data-portal-route="google"] {
+  border-color: #8e918f;
+  background: #131314;
+}
+.nql-portal__route[data-portal-route="google"] .nql-portal__route-copy strong {
+  color: #e3e3e3;
+  font-family: 'NQ Google Sans', Arial, sans-serif;
+  font-weight: 500;
+}
+.nql-portal__route .nql-portal__route-index.nql-google-icon,
+#authModal .nql-google-icon {
+  display: grid;
+  flex: 0 0 2rem;
+  width: 2rem;
+  height: 2rem;
+  padding: 6px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: none;
+}
+.nql-google-icon img {
+  display: block;
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
 .nql-portal__route-copy {
   display: grid;
   min-width: 0;

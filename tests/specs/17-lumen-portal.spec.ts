@@ -268,6 +268,11 @@ test.describe('Página 1 — Portal de Acesso Lúmen', () => {
   });
 
   test('mantém erros de cadastro visíveis em telas curtas', async ({ page }) => {
+    // Exercita a validação local, independentemente do SDK externo. Nenhum
+    // cadastro deve chegar ao serviço enquanto os campos estiverem vazios.
+    await page.evaluate(() => {
+      (0, eval)('_supaClient = { auth: { signUp: async () => { throw new Error("Cadastro inesperado na fixture"); } } }');
+    });
     await page.setViewportSize({ width: 320, height: 568 });
     await page.locator('[data-portal-route="email"]').click();
     await page.locator('#tabCadastrar').click();
