@@ -6,8 +6,10 @@ import { injectGameState } from '../helpers/game';
  *
  * O proprietário relatou que o fundo "destoa, parece muita informação, cansa":
  * a ilustração aparecia viva e saturada atrás do enunciado, com partículas
- * flutuando. Agora ela fica escura, pouco saturada e desfocada, e as
- * partículas somem só nesta tela. Boss e Confronto Final têm fundos próprios.
+ * flutuando. O refinamento mantém a cena sutil entre os painéis: brilho
+ * limitado a 0.5, pouca saturação e desfoque, sem partículas nesta tela.
+ * A legibilidade dos painéis é validada separadamente com fontes reais.
+ * Boss e Confronto Final têm fundos próprios.
  */
 test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
 
@@ -25,7 +27,7 @@ test('o fundo da tela de perguntas fica em segundo plano', async ({ page }) => {
     return { brilho, saturacao, desfoque: /blur\(\s*[1-9]/.test(f),
       particulas: getComputedStyle(document.querySelector('.particles')!).display };
   });
-  expect(fundo.brilho, 'cenário claro demais atrás do enunciado').toBeLessThanOrEqual(0.4);
+  expect(fundo.brilho, 'cenário claro demais atrás do enunciado').toBeLessThanOrEqual(0.5);
   expect(fundo.saturacao, 'cenário saturado demais').toBeLessThanOrEqual(0.6);
   expect(fundo.desfoque, 'cenário nítido compete com o texto').toBe(true);
   expect(fundo.particulas).toBe('none');

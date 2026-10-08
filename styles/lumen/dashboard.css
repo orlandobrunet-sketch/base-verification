@@ -2409,7 +2409,6 @@
 #nqDashboard[data-nq-ui="lumen"] .nqd-library-reading-section.is-conclusion { padding: .9rem 1rem; border-left: 2px solid var(--library-accent); background: color-mix(in srgb, var(--library-accent) 6%, transparent); }
 #nqDashboard[data-nq-ui="lumen"] .nqd-library-reading-section.is-curiosity h4 { color: var(--nqd-gold); }
 #nqDashboard[data-nq-ui="lumen"] .nqd-library-detail a { min-height: 2.75rem; padding-block: .6rem; }
-#nqDashboard[data-nq-ui="lumen"] .nqd-library-intro { max-width: 42rem; align-self: center; color: var(--nql-text-muted); font-size: .86rem; line-height: 1.6; }
 
 #nqDashboard[data-nq-ui="lumen"] .nqd-library-locked { display: flex; align-items: flex-start; gap: .8rem; margin-block: 1.25rem; padding-block: 1.25rem; border-block: 1px solid var(--nqd-rule); color: var(--nql-text-muted); font-size: .85rem; line-height: 1.6; }
 #nqDashboard[data-nq-ui="lumen"] .nqd-library-locked > svg { width: 1.2rem; height: 1.2rem; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.5; }
@@ -3520,7 +3519,6 @@
 #nqDashboard[data-nq-ui="lumen"] .nqd-library-summary { display: flex; flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: .35rem .85rem; margin: 0; }
 #nqDashboard[data-nq-ui="lumen"] .nqd-library-summary strong { font-size: 1rem; line-height: 1.4; }
 #nqDashboard[data-nq-ui="lumen"] .nqd-library-summary small { font-size: .72rem; }
-#nqDashboard[data-nq-ui="lumen"] .nqd-library-intro { flex-basis: 100%; max-width: none; font-size: .85rem; margin: 0; text-align: center; }
 #nqDashboard[data-nq-ui="lumen"] :is(#nqdPane-library, #nqdPane-mapa) > .nqd-section-header > div { width: 100%; min-width: 0; }
 #nqDashboard[data-nq-ui="lumen"] :is(#nqdPane-library, #nqdPane-mapa) > .nqd-section-header .nqd-section-copy { max-width: none; }
 #nqDashboard[data-nq-ui="lumen"] #nqdPane-library > .nqd-section-header { margin-bottom: .65rem; }
@@ -3746,6 +3744,24 @@
 #nqDashboard[data-nq-ui="lumen"] .nqd-skill-row::before{display:none}
 #nqDashboard[data-nq-ui="lumen"] .nqd-skill-row>.nqd-meter,#nqDashboard[data-nq-ui="lumen"] .nqd-skill-row>:last-child{grid-column:1/-1;grid-row:auto;margin-top:.4rem}
 #nqDashboard[data-nq-ui="lumen"] .nqd-skill-name{font-size:1rem;line-height:1.3;overflow-wrap:anywhere}
+/* Cor identifica a área; barras e percentuais continuam indicando desempenho. */
+#nqDashboard[data-nq-ui="lumen"] #nqdPane-skills {
+  --nqd-axis-glomerulopatias: #c9b5ff;
+  --nqd-axis-hidroeletrolitico_acidobase: #81d3e3;
+  --nqd-axis-transplante: #f1a3c4;
+  --nqd-axis-dialise: #e4c47a;
+  --nqd-axis-lra_critico: #f1ad83;
+  --nqd-axis-drc_nefroprotecao: #98cfa8;
+  --nqd-axis-nefrologia_geral_diagnostico: #a4bbf1;
+}
+#nqDashboard[data-nq-ui="lumen"] #nqdPane-skills [data-skill-id="glomerulopatias"] { --nqd-skill-identity: var(--nqd-axis-glomerulopatias); }
+#nqDashboard[data-nq-ui="lumen"] #nqdPane-skills [data-skill-id="hidroeletrolitico_acidobase"] { --nqd-skill-identity: var(--nqd-axis-hidroeletrolitico_acidobase); }
+#nqDashboard[data-nq-ui="lumen"] #nqdPane-skills [data-skill-id="transplante"] { --nqd-skill-identity: var(--nqd-axis-transplante); }
+#nqDashboard[data-nq-ui="lumen"] #nqdPane-skills [data-skill-id="dialise"] { --nqd-skill-identity: var(--nqd-axis-dialise); }
+#nqDashboard[data-nq-ui="lumen"] #nqdPane-skills [data-skill-id="lra_critico"] { --nqd-skill-identity: var(--nqd-axis-lra_critico); }
+#nqDashboard[data-nq-ui="lumen"] #nqdPane-skills [data-skill-id="drc_nefroprotecao"] { --nqd-skill-identity: var(--nqd-axis-drc_nefroprotecao); }
+#nqDashboard[data-nq-ui="lumen"] #nqdPane-skills [data-skill-id="nefrologia_geral_diagnostico"] { --nqd-skill-identity: var(--nqd-axis-nefrologia_geral_diagnostico); }
+#nqDashboard[data-nq-ui="lumen"] #nqdPane-skills :is(.nqd-skill-name, .nqd-skill-unmeasured > span:first-child) { color: var(--nqd-skill-identity, var(--nql-text)); }
 #nqDashboard[data-nq-ui="lumen"] .nqd-skill-sample{display:block;margin-top:.25rem;color:var(--nql-text-soft);font:normal .72rem/1.45 var(--nql-font-body);overflow-wrap:anywhere}
 #nqDashboard[data-nq-ui="lumen"] .nqd-skill-value{align-self:center;color:var(--nqd-skill-accent);font:600 1.05rem/1 var(--nql-font-body);font-variant-numeric:tabular-nums}
 #nqDashboard[data-nq-ui="lumen"] .nqd-skill-row .nqd-meter{height:3px}
@@ -3762,7 +3778,6 @@
 #nqDashboard[data-nq-ui="lumen"] .nqd-skill-radar-side{min-width:0;padding:1rem;border:1px solid var(--nqd-rule);border-radius:.4rem;background:var(--nqd-sheet)}
 #nqDashboard[data-nq-ui="lumen"] .nqd-skill-radar-side h3{margin:0 0 .35rem;color:var(--nql-text);font:600 1rem/1.3 var(--nql-font-display)}
 #nqDashboard[data-nq-ui="lumen"] .nqd-skill-radar-side p,#nqDashboard[data-nq-ui="lumen"] .nqd-skill-radar-mobile-body p{margin:0;color:var(--nql-text-soft);font-size:.76rem;line-height:1.5}
-#nqDashboard[data-nq-ui="lumen"] .nqd-skill-radar-side p:last-child,#nqDashboard[data-nq-ui="lumen"] .nqd-skill-radar-mobile-body p:last-child{padding-top:.65rem;border-top:1px solid var(--nqd-rule)}
 #nqDashboard[data-nq-ui="lumen"] .nqd-skill-radar-side .nqd-radar canvas,#nqDashboard[data-nq-ui="lumen"] .nqd-skill-radar-mobile .nqd-radar canvas{max-width:min(100%,17.5rem)}
 #nqDashboard[data-nq-ui="lumen"] .nqd-skill-radar-mobile{display:none}
 #nqDashboard[data-nq-ui="lumen"] .nqd-error-empty{margin:0;color:var(--nql-text-soft);font-size:.82rem;line-height:1.55}

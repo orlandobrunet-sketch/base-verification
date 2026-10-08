@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v15.97
-const CACHE = 'nefroquest-v15.97';
+// NefroQuest Service Worker — v15.98
+const CACHE = 'nefroquest-v15.98';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -117,19 +117,19 @@ const ASSET_VERSIONS = {
   '/styles/lumen/tokens.css': '15.77',
   '/styles/lumen/shell.css': '14.77',
   '/styles/lumen/portal.css': '15.94',
-  '/styles/lumen/atrium.css': '15.94',
-  '/styles/lumen/game.css': '15.92',
+  '/styles/lumen/atrium.css': '15.98',
+  '/styles/lumen/game.css': '15.98',
   '/styles/lumen/difficulty.css': '15.94',
-  '/styles/lumen/dashboard.css': '15.94',
+  '/styles/lumen/dashboard.css': '15.98',
   '/styles/lumen/charselect.css': '14.75',
-  '/styles/lumen/modes.css': '15.92',
+  '/styles/lumen/modes.css': '15.98',
   '/styles/lumen/forge.css': '15.94',
   '/styles/lumen/header.css': '15.91',
   '/styles/lumen/equipment.css': '15.94',
   '/styles/lumen/boss.css': '15.95',
   '/styles/lumen/ritual.css': '15.94',
   '/styles/lumen/ranking.css': '15.94',
-  '/styles/lumen/achievements.css': '15.94',
+  '/styles/lumen/achievements.css': '15.98',
   '/js/utils.js': '15.94',
   '/js/audio.js': '15.91',
   '/js/leaderboard.js': '15.94',
@@ -146,10 +146,10 @@ const ASSET_VERSIONS = {
   '/js/admin.js': '15.35',
   '/js/minigame.js': '15.94',
   '/js/minigame-acidbase.js': '15.32',
-  '/js/achievements.js': '15.94',
+  '/js/achievements.js': '15.98',
   '/js/changelog.js': '15.94',
   '/js/equipment-preview.js': '15.94',
-  '/js/dashboard.js': '15.94',
+  '/js/dashboard.js': '15.98',
 };
 // bump-release:asset-versions:fim
 

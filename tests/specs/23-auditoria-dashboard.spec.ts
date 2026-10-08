@@ -62,10 +62,26 @@ test.describe('Correções da auditoria', () => {
   });
 
   // ── Honestidade tipográfica ───────────────────────────────────────────────
-  test('ausência de conquista não é exibida como zero no tipo de destaque', async ({ page }) => {
+  test('sem conquista adquirida, o contador informa zero de doze sem conceder arte ou mudar progresso', async ({ page }) => {
     await abrirCentral(page);
+    const preservedKeys = ['nefroquest-save', 'nefroquest-save-v7', 'nefroquest-detailed-stats', 'nefroquest-achievements', 'nefroquest-badge-history'];
+    const before = await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), preservedKeys);
     await page.getByRole('tab', { name: 'Conquistas', exact: true }).click();
-    await expect(page.locator('#nqdPane-achievements .nqd-achievement-summary strong')).toHaveText('—');
+    const pane = page.locator('#nqdPane-achievements');
+    const summary = pane.locator('.nqd-achievement-summary');
+    await expect(summary).toHaveAttribute('aria-label', '0 de 12 conquistas especiais conquistadas');
+    await expect(summary.locator('strong')).toHaveText('0');
+    await expect(summary.locator('span')).toHaveText('de 12');
+    await expect(pane.locator('.nqd-achievement:visible')).toHaveCount(12);
+    await expect(pane.locator('.nqd-achievement.is-unlocked')).toHaveCount(0);
+    await expect(pane.locator('.nqd-achievement.is-locked')).toHaveCount(12);
+    expect(await pane.locator('.nqd-achievement-mark img').evaluateAll(images => images.every(img => getComputedStyle(img).filter.includes('grayscale(1)')))).toBe(true);
+    await pane.getByRole('button', { name: 'Conquistadas', exact: true }).click();
+    await expect(pane.locator('.nqd-achievement:visible')).toHaveCount(0);
+    await expect(pane.locator('#nqdAchievementFilterEmpty')).toBeVisible();
+    await pane.getByRole('button', { name: 'Todas', exact: true }).click();
+    await expect(pane.locator('.nqd-achievement:visible')).toHaveCount(12);
+    expect(await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), preservedKeys)).toEqual(before);
   });
 
   test('sem partida pontuada, o ranking destaca os acertos e não um zero', async ({ page }) => {

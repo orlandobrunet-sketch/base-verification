@@ -78,7 +78,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@15.97',
+          release: 'nefroquest@15.98',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -138,19 +138,19 @@
   <link rel="stylesheet" href="styles/lumen/tokens.css?v=15.77">
   <link rel="stylesheet" href="styles/lumen/shell.css?v=14.77">
   <link rel="stylesheet" href="styles/lumen/portal.css?v=15.94">
-  <link rel="stylesheet" href="styles/lumen/atrium.css?v=15.94">
-  <link rel="stylesheet" href="styles/lumen/game.css?v=15.92">
+  <link rel="stylesheet" href="styles/lumen/atrium.css?v=15.98">
+  <link rel="stylesheet" href="styles/lumen/game.css?v=15.98">
   <link rel="stylesheet" href="styles/lumen/difficulty.css?v=15.94">
-  <link rel="stylesheet" href="styles/lumen/dashboard.css?v=15.94">
+  <link rel="stylesheet" href="styles/lumen/dashboard.css?v=15.98">
   <link rel="stylesheet" href="styles/lumen/charselect.css?v=14.75">
   <link rel="stylesheet" href="styles/lumen/forge.css?v=15.94">
   <link rel="stylesheet" href="styles/lumen/header.css?v=15.91">
-  <link rel="stylesheet" href="styles/lumen/modes.css?v=15.92">
+  <link rel="stylesheet" href="styles/lumen/modes.css?v=15.98">
   <link rel="stylesheet" href="styles/lumen/equipment.css?v=15.94">
   <link rel="stylesheet" href="styles/lumen/boss.css?v=15.95">
   <link rel="stylesheet" href="styles/lumen/ritual.css?v=15.94">
   <link rel="stylesheet" href="styles/lumen/ranking.css?v=15.94">
-  <link rel="stylesheet" href="styles/lumen/achievements.css?v=15.94">
+  <link rel="stylesheet" href="styles/lumen/achievements.css?v=15.98">
   <script>
     // Version beacon - one policy for every public label; technical release remains monotonic.
     (function() {
@@ -896,11 +896,11 @@
           <div class="nql-atrium__routes-head"><p>Rotas disponíveis</p><h2 id="atriumRoutesTitle"><span>Escolha seu</span> <span>próximo movimento</span></h2></div>
           <div class="nql-atrium__route-status" aria-live="polite"><span aria-hidden="true"></span><p id="atriumRouteStatus">Explore uma rota sem perder o fio da sua jornada.</p></div>
           <div class="nql-atrium__route-list">
-            <button type="button" class="nql-atrium__route" data-atrium-route="modes" data-action="openGameModesPopup"><span class="nql-atrium__route-index">01</span><span><strong>Modos de jogo</strong><small>Treinos, provas e desafios</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
-            <button type="button" class="nql-atrium__route" data-atrium-route="dashboard" data-action="openDashboard"><span class="nql-atrium__route-index">02</span><span><strong>Dashboard</strong><small>Sua conduta de aprendizado</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
-            <button type="button" class="nql-atrium__route" id="welcomeRitualBtn" data-atrium-route="ritual" data-action="openRitual"><span class="nql-atrium__route-index">03</span><span><strong>Ritual de iniciação</strong><small>Descubra seu nível recomendado</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
-            <button type="button" class="nql-atrium__route" data-atrium-route="ranking" data-action="showLeaderboardFromWelcome"><span class="nql-atrium__route-index">04</span><span><strong>Classificação</strong><small>Compare sua evolução</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
-            <button type="button" class="nql-atrium__route" data-atrium-route="library" data-action="openBibliotecaModal"><span class="nql-atrium__route-index">05</span><span><strong>Biblioteca clínica</strong><small>Referências para aprofundar</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
+            <button type="button" class="nql-atrium__route" data-atrium-route="modes" data-action="openGameModesPopup"><span class="nql-atrium__route-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 7h10a3 3 0 0 1 2.9 2.3l1.5 7a2.5 2.5 0 0 1-4.3 2.2L15 16H9l-2.1 2.5a2.5 2.5 0 0 1-4.3-2.2l1.5-7A3 3 0 0 1 7 7Z"/><path d="M7 10v4m-2-2h4"/><circle cx="16" cy="10.5" r=".7"/><circle cx="18" cy="13" r=".7"/></svg></span><span><strong>Modos de jogo</strong><small>Treinos, provas e desafios</small></span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
+            <button type="button" class="nql-atrium__route" data-atrium-route="dashboard" data-action="openDashboard"><span class="nql-atrium__route-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4v16h16M8 16v-5m5 5V7m5 9v-7"/></svg></span><span><strong>Dashboard</strong><small>Sua conduta de aprendizado</small></span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
+            <button type="button" class="nql-atrium__route" id="welcomeRitualBtn" data-atrium-route="ritual" data-action="openRitual"><span class="nql-atrium__route-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="m16 8-2.5 5.5L8 16l2.5-5.5L16 8Z"/></svg></span><span><strong>Ritual de iniciação</strong><small>Descubra seu nível recomendado</small></span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
+            <button type="button" class="nql-atrium__route" data-atrium-route="ranking" data-action="showLeaderboardFromWelcome"><span class="nql-atrium__route-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8v5a4 4 0 0 1-8 0V3Zm0 2H4v2a4 4 0 0 0 4 4m8-6h4v2a4 4 0 0 1-4 4M12 12v6m-4 3h8m-7-3h6v3"/></svg></span><span><strong>Classificação</strong><small>Compare sua evolução</small></span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
+            <button type="button" class="nql-atrium__route" data-atrium-route="library" data-action="openBibliotecaModal"><span class="nql-atrium__route-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></span><span><strong>Biblioteca clínica</strong><small>Referências para aprofundar</small></span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
             <button type="button" id="bossPreviewBtn" class="btn-boss-preview" data-action="startBossPreview" title="Preview do Confronto Final" style="display:none;">Preview: Confronto Final</button>
           </div>
         </aside>
@@ -1688,30 +1688,30 @@
         </button>
       </header>
       <div class="nqmodes-routes">
-        <button type="button" class="nqmodes-route" data-action-seq="closeGameModesPopup,showTopicSelector">
-          <span class="nqmodes-route__index" aria-hidden="true">01</span>
+        <button type="button" class="nqmodes-route" data-mode-route="study" data-action-seq="closeGameModesPopup,showTopicSelector">
+          <span class="nqmodes-route__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2V3Zm20 0h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7V3Z"/></svg></span>
           <span class="nqmodes-route__copy"><strong>Modo de Estudo</strong><small>Escolha um tema e estude no seu ritmo</small></span>
-          <svg class="nqmodes-route__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+          <svg class="nqmodes-route__arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
         </button>
-        <button type="button" class="nqmodes-route" data-action-seq="closeGameModesPopup,startWeakPointStudy">
-          <span class="nqmodes-route__index" aria-hidden="true">02</span>
+        <button type="button" class="nqmodes-route" data-mode-route="weak" data-action-seq="closeGameModesPopup,startWeakPointStudy">
+          <span class="nqmodes-route__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></span>
           <span class="nqmodes-route__copy"><strong>Ponto Fraco</strong><small>Foque nos temas com menor acerto</small></span>
-          <svg class="nqmodes-route__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+          <svg class="nqmodes-route__arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
         </button>
-        <button type="button" class="nqmodes-route" data-action-seq="closeGameModesPopup,startExamMode">
-          <span class="nqmodes-route__index" aria-hidden="true">03</span>
+        <button type="button" class="nqmodes-route" data-mode-route="exam" data-action-seq="closeGameModesPopup,startExamMode">
+          <span class="nqmodes-route__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="4" width="14" height="17" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1"/><path d="m8 13 3 3 5-6"/></svg></span>
           <span class="nqmodes-route__copy"><strong>Prova Simulada</strong><small>60 questões em 90 minutos</small></span>
-          <svg class="nqmodes-route__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+          <svg class="nqmodes-route__arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
         </button>
-        <button type="button" class="nqmodes-route" data-action-seq="closeGameModesPopup,showStandaloneMinigame">
-          <span class="nqmodes-route__index" aria-hidden="true">04</span>
+        <button type="button" class="nqmodes-route" data-mode-route="rapid" data-action-seq="closeGameModesPopup,showStandaloneMinigame">
+          <span class="nqmodes-route__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m13 2-9 12h7l-1 8 10-12h-7l1-8Z"/></svg></span>
           <span class="nqmodes-route__copy"><strong>Julgamento Rápido</strong><small>Sequência veloz de V ou F — bata seu recorde</small></span>
-          <svg class="nqmodes-route__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+          <svg class="nqmodes-route__arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
         </button>
-        <button type="button" class="nqmodes-route" data-action-seq="closeGameModesPopup,showAcidBaseMinigame">
-          <span class="nqmodes-route__index" aria-hidden="true">05</span>
+        <button type="button" class="nqmodes-route" data-mode-route="balance" data-action-seq="closeGameModesPopup,showAcidBaseMinigame">
+          <span class="nqmodes-route__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v18m-4 0h8M5 7h14M5 7l-3 7h6L5 7Zm14 0-3 7h6l-3-7Z"/></svg></span>
           <span class="nqmodes-route__copy"><strong>Câmara do Equilíbrio</strong><small>Domine ácido-base em 5 casos clínicos · sem cronômetro</small></span>
-          <svg class="nqmodes-route__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+          <svg class="nqmodes-route__arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
         </button>
       </div>
     </section>
@@ -1807,10 +1807,10 @@
   <script defer src="js/admin.js?v=15.35"></script>
   <script defer src="js/minigame.js?v=15.94"></script>
   <script defer src="js/minigame-acidbase.js?v=15.32"></script>
-  <script defer src="js/achievements.js?v=15.94"></script>
+  <script defer src="js/achievements.js?v=15.98"></script>
   <script defer src="js/changelog.js?v=15.94"></script>
   <script defer src="js/equipment-preview.js?v=15.94"></script>
-  <script defer src="js/dashboard.js?v=15.94"></script>
+  <script defer src="js/dashboard.js?v=15.98"></script>
 
   <!-- Single source of truth for profile popup menu items -->
   <template id="profilePopupItems">
