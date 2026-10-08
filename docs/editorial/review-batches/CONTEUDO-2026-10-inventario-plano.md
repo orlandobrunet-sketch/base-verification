@@ -103,3 +103,9 @@ Conferência remota adicional da #882: Smoke E2E passou (5 min 7 s). As duas su�
 ## Autorização persistente — 08/10/2026
 
 O proprietário autorizou aplicar os seis objetos de imunoterapia e publicar os próximos lotes de resumos após aprovação científica formal, sem nova pergunta a cada lote. Aplicado o patch exato aprovado, sem alteração material, na release técnica 15.96 (versão pública 2.0). Mantidos 191 pergaminhos, seus índices e 741 questões. Esta autorização cobre os resumos; não substitui revisão formal, evidência/pendências válidas, liberação editorial ou autorização específica de criação/aplicação de novas questões.
+
+## Publicação de imunoterapia e aplicação do lote seguinte — 08/10/2026
+
+Os seis textos da imunoterapia foram publicados na 15.96, PR #884, merge 64112e4862318167890b8992b5741783563a592a. Conferidos no domínio de produção: version.json, sw.js, data/articles.js e os dois HTML idênticos ao commit.
+
+CONVINCE (29), TEMPO 3:4 (46), ILLUMINATE-A (54), PRESERVE (56), AKIKI (57) e STARRT-AKI (58) receberam revisão formal e aprovação do patch completo, Evidência VERIFICADA, Pendência NENHUMA, Publicação editorial LIBERADA. Ver [parecer](DIALISE-HEREDITARIAS-2026-10-08-parecer.md). Aplicação exata autorizada pela confirmação persistente de 08/10: seis objetos alterados, 185 preservados e restante do arquivo idêntico. Release técnica 15.97; versão visual 2.0. Validação visual: 36 combinações de texto/viewport sem escape horizontal. Publicação deste lote ainda será confirmada após CI e deploy.
