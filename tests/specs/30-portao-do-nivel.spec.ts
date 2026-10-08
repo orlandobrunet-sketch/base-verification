@@ -57,7 +57,13 @@ test.describe('Portão do nível', () => {
   test('no nível máximo não promete um nível que não existe', async ({ page }) => {
     await abrir(page, { level: 10, correctTotal: 100 });
     await expect(page.locator('#nqdPane-overview .nqd-level-gate')).toHaveCount(0);
-    await expect(page.locator('#nqdPane-overview .nqd-next-form.is-complete')).toBeVisible();
+    const trail = page.locator('#nqdPane-overview .nqd-form-trail');
+    await expect(trail).toBeVisible();
+    await expect(trail).toContainText('Forma máxima');
+    await expect(trail.locator('.nqd-form-node')).toHaveCount(1);
+    await expect(trail.locator('.nqd-form-node[data-form-level="10"]')).toHaveCount(1);
+    await expect(trail.locator('.nqd-form-node[data-form-level="11"]')).toHaveCount(0);
+    await expect(trail).not.toContainText('Nível 11');
   });
 
   test('o número exibido é o portão real, não o XP', async ({ page }) => {

@@ -11,6 +11,8 @@ import { test, expect, type Page } from '@playwright/test';
  */
 
 async function abrirPortal(page: Page) {
+  // O CAPTCHA não participa do contrato de CSS; seu iframe pode reter o load.
+  await page.route('https://challenges.cloudflare.com/**', route => route.abort());
   await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
   await page.waitForFunction(() => document.readyState === 'complete');
 }

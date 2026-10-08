@@ -425,7 +425,13 @@ test.describe('Central de Comando do aprendizado', () => {
     }, SAVE);
     const dashboard = page.locator('#nqDashboard[data-dashboard-state="ready"]');
     await expect(dashboard).toBeVisible({ timeout: 15_000 });
-    await expect(dashboard.locator('.nqd-next-form')).toContainText('Forma máxima');
+    const trail = dashboard.locator('.nqd-form-trail');
+    await expect(trail).toBeVisible();
+    await expect(trail).toContainText('Forma máxima');
+    await expect(trail.locator('.nqd-form-node')).toHaveCount(1);
+    await expect(trail.locator('.nqd-form-node[data-form-level="10"]')).toHaveCount(1);
+    await expect(trail.locator('.nqd-form-node[data-form-level="11"]')).toHaveCount(0);
+    await expect(trail).not.toContainText('Nível 11');
     await expect(dashboard.locator('.nqd-milestone')).not.toContainText('Nível 11');
   });
 

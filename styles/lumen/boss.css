@@ -398,7 +398,7 @@ body[data-progress-sandbox="boss-preview"] #progressSandboxBanner button:focus-v
   body.boss-battle-mode .mobile-bottom-dock .mdock-btn.dashboard { --nqb-tool: 139, 195, 229; }
   body.boss-battle-mode .mobile-bottom-dock .mdock-btn :is(svg, .mdock-label) { color: currentColor !important; }
   body.boss-battle-mode .mobile-bottom-dock .mdock-label { max-width: 100%; overflow: visible; white-space: normal; overflow-wrap: anywhere; opacity: 1; font: .6rem/1.4 var(--nql-font-body); letter-spacing: .02em; }
-  body.boss-battle-mode #mobileProfilePopup.profile-popup { bottom: max(72px, calc(6rem + env(safe-area-inset-bottom, 0px))) !important; max-height: calc(100dvh - max(120px, 7.5rem)); overflow-y: auto; }
+  body.boss-battle-mode #mobileProfilePopup.profile-popup { --nqb-menu-bottom: max(72px, calc(var(--nq-mobile-dock-height, 64px) + 8px)); bottom: var(--nqb-menu-bottom) !important; max-height: calc(100dvh - var(--nqb-menu-bottom) - 24px); overflow-y: auto; }
   body[data-progress-sandbox="boss-preview"] #progressSandboxBanner { width: calc(100% - 24px); padding: 10px 12px; }
 }
 @media (prefers-reduced-motion: reduce) {

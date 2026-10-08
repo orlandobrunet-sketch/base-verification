@@ -5609,6 +5609,14 @@
       const overlay    = document.getElementById('mobileOverlay');
       const leftPanel  = document.querySelector('.panel.left');
       const bottomDock = document.getElementById('mobileBottomDock');
+      // O menu acompanha as linhas reais do dock, inclusive com texto ampliado.
+      const dockSizeObserver = new ResizeObserver(() => {
+        const height = Math.ceil(bottomDock.getBoundingClientRect().height);
+        if (height > 0) {
+          document.body.style.setProperty('--nq-mobile-dock-height', `${height}px`);
+        }
+      });
+      dockSizeObserver.observe(bottomDock, { box: 'border-box' });
       let drawerCloseTimer = null;
       function isMobile() { return window.innerWidth <= 768; }
       function openDrawer() {

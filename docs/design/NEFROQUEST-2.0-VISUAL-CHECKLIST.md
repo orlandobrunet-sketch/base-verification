@@ -1,6 +1,6 @@
 # NefroQuest 2.0 — checklist do lançamento visual
 
-Escopo solicitado em 08/10/2026. Base técnica: 15.93, commit `083ac7c26cde01aea500c3cb826ddfa4af5fe4f0`. A versão pública 2.0 usa o identificador técnico 15.94 para cache/Sentry, preservando saves e histórico.
+Escopo solicitado em 08/10/2026. Base técnica: 15.93, commit `083ac7c26cde01aea500c3cb826ddfa4af5fe4f0`. A versão pública 2.0 usa o identificador técnico 15.95 para cache/Sentry, preservando saves e histórico. Os caminhos de evidência 15.94 identificam a primeira rodada do mesmo escopo.
 
 Nenhum item clínico, regra de dificuldade, requisito de evolução, custo, permissão ou algoritmo está incluído nesta mudança visual.
 
@@ -35,7 +35,7 @@ Nenhum item clínico, regra de dificuldade, requisito de evolução, custo, perm
 | Motor adaptativo: status ATIVO | principal | Rótulo Ativo corrigido; Hardcore Desativado; algoritmo intacto |
 | Novidades: resumo fiel do entregue, versão pública 2.0 e histórico preservado | principal | Entrada 2.0 fiel ao escopo, histórico preservado; leitura/foco/fechamento conferidos |
 | Auditoria de atualização 15.93 → versão técnica seguinte, sem perda de dados | principal | 18 PASS release/portal; respostas antigas/malformadas preservam versão; downgrade normal/--check rejeitado sem escrita; upgrade com SW real, cache/assets e save/histórico confirmados |
-| Testes, cache/versionamento no mesmo commit, CI, publicação e conferência pública | principal | Pendente no head final: commit único15.94/pública 2.0, Quality/Smoke/Full, Pages e bytes públicos |
+| Testes, cache/versionamento no mesmo commit, CI, publicação e conferência pública | principal | Reparos do primeiro CI incluídos com cache15.95/pública 2.0; aguardam Quality/Smoke/Full no head final, Pages e bytes públicos |
 
 As evidências locais usam Chromium de testes isolado, sem perfil pessoal e com dados de fixture. Referências de screenshots da Library são inspecionadas pelo fluxo permitido; quando a cópia local não funciona, a interface real e os assets originais servem de referência.
 

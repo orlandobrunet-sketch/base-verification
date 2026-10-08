@@ -116,6 +116,12 @@ test('dificuldade usa quatro acentos, estado marcado e concordância do motor', 
     colors.push(selected);
     await page.keyboard.press('Tab');
     await option.focus();
+    // O nó anima a seleção; o contorno muda imediatamente. Compare o estado final.
+    await expect.poll(() => option.evaluate(element => {
+      const style = getComputedStyle(element);
+      const node = element.querySelector('.nql-difficulty__node > span')!;
+      return style.outlineColor === getComputedStyle(node).backgroundColor;
+    })).toBe(true);
     const focus = await option.evaluate(element => {
       const style = getComputedStyle(element);
       return { visible: element.matches(':focus-visible'), color: style.outlineColor,
