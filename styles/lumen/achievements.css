@@ -1,0 +1,233 @@
+/* Coleção de conquistas: artes distintas, leitura compacta e estados explícitos. */
+#nqDashboard[data-nq-ui="lumen"] #nqdPane-achievements {
+  --achievement-accent: #8bdfe1;
+  container: achievement-pane / inline-size;
+}
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement-spotlight {
+  grid-template-columns: 88px minmax(0, 1fr) auto;
+  gap: 18px;
+  padding: 18px 22px;
+  border-color: #81c8d62e;
+  background: linear-gradient(110deg, #15303960, #101c2866);
+  box-shadow: none;
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement-spotlight::after { display: none; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement-spotlight-art {
+  width: 88px;
+  height: 88px;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: #09111b;
+  box-shadow: none;
+  cursor: zoom-in;
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement-spotlight-copy h2 {
+  margin-top: .25rem;
+  font-size: 1.22rem;
+  line-height: 1.25;
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement-spotlight-copy p { margin-top: .4rem; font-size: .9rem; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement-spotlight-copy > small { font-size: .76rem; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement-spotlight .nqd-primary-action {
+  width: auto;
+  min-height: 44px;
+  margin: 0;
+  padding: .65rem .9rem;
+  font-size: .84rem;
+  white-space: normal;
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement-spotlight .nqd-meter { margin-top: .55rem; }
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-badge-path-header { margin-top: 1.4rem; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-badge-path-header h2,
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement-catalog-header h2 { font-size: 1.15rem; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-badge-path {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin: 1rem 0 2rem;
+  padding: 0;
+  overflow: visible;
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-badge-path::before { display: none; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-badge-node {
+  gap: .5rem;
+  padding: 14px 9px;
+  border: 1px solid #849fb627;
+  border-radius: 12px;
+  background: #121e2866;
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-badge-node.is-current { border-color: #8bdfe163; background: #15323c66; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-badge-node:is(.is-unlocked, .has-memory) { border-color: #82c7b344; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-badge-art {
+  position: relative;
+  width: min(100%, 104px);
+  height: auto;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 9px;
+  background: #09111b;
+  box-shadow: none;
+  cursor: zoom-in;
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-badge-node.is-current .nqd-badge-art { box-shadow: none; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-badge-art img { filter: none; opacity: 1; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-badge-node-copy strong { font-size: .8rem; line-height: 1.35; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-badge-node-copy small { font-size: .72rem; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-badge-state { font-size: .7rem; line-height: 1.5; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-badge-node.is-current .nqd-badge-state { color: #a9e7ea; }
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: 14px;
+  border: 0;
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement {
+  --achievement-accent: #8bdfe1;
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 16px;
+  align-content: start;
+  align-items: start;
+  padding: 18px;
+  border: 1px solid color-mix(in srgb, var(--achievement-accent) 24%, transparent);
+  border-radius: 13px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--achievement-accent) 6%, #101b27), #101923);
+  box-shadow: inset 0 1px #ffffff05;
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement:nth-child(2n) {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--achievement-accent) 6%, #101b27), #101923);
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement[data-achievement-id="hd_master"],
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement[data-achievement-id="century_club"],
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement[data-achievement-id="accuracy_master"] { --achievement-accent: #83d4f4; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement[data-achievement-id="transplant_expert"],
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement[data-achievement-id="nephron_guardian"],
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement[data-achievement-id="grimoire_master"] { --achievement-accent: #85d4b4; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement[data-achievement-id="hardcore_champion"],
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement[data-achievement-id="arqui_nefromante_slayer"] { --achievement-accent: #f2a3ac; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement[data-achievement-id="acid_base_master"],
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement[data-achievement-id="laurel_wreath_knowledge"] { --achievement-accent: #dfc47f; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement[data-achievement-id="glomerulo_sage"] { --achievement-accent: #bcb1ed; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement.is-unlocked {
+  border-color: color-mix(in srgb, var(--achievement-accent) 45%, transparent);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--achievement-accent) 10%, #101b27), #101923);
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement[data-state="not-started"],
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement[data-state="special"] { border-style: dashed; opacity: 1; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement-mark {
+  position: relative;
+  display: block;
+  width: 96px;
+  height: 96px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #ffffff12;
+  border-radius: 10px;
+  overflow: hidden;
+  color: var(--achievement-accent);
+  background: #09111b;
+  box-shadow: none;
+  cursor: zoom-in;
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement-mark img,
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement.is-locked .nqd-achievement-mark img { width: 100%; height: 100%; object-fit: contain; filter: none; opacity: 1; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-art-expand {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  display: grid;
+  place-items: center;
+  width: 23px;
+  height: 23px;
+  border: 1px solid #d4e4eb44;
+  border-radius: 6px;
+  background: #09111bd9;
+  color: #d4e4eb;
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-art-expand svg { width: 14px; height: 14px; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement-body { min-width: 0; padding: 0; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement .nqd-state { color: var(--achievement-accent); font-size: .7rem; line-height: 1.5; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement-title { margin-top: .3rem; font-size: 1rem; line-height: 1.3; overflow-wrap: anywhere; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement-category { display: block; margin-top: .25rem; color: #9db1c1; font-size: .68rem; line-height: 1.5; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement-copy { margin-top: .6rem; font-size: .8rem; line-height: 1.55; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement-progress { margin-top: .7rem; font-size: .75rem; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement-progress .nqd-meter > span { background: var(--achievement-accent); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement-detail { margin-top: .6rem; padding: .45rem 0 0; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement-detail summary { color: var(--achievement-accent); font-size: .8rem; min-height: 44px; display: flex; align-items: center; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement-detail summary::before { content: "+"; margin-right: .5rem; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement-detail[open] summary::before { content: "−"; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement-detail p { font-size: .8rem; line-height: 1.55; }
+#nqDashboard[data-nq-ui="lumen"] :is(.nqd-badge-art, .nqd-achievement-mark, .nqd-achievement-spotlight-art):hover { border-color: #b9e9eb7a; }
+#nqDashboard[data-nq-ui="lumen"] :is(.nqd-badge-art, .nqd-achievement-mark, .nqd-achievement-spotlight-art):focus-visible { outline: 2px solid #b9e9eb; outline-offset: 4px; }
+
+@container achievement-pane (max-width: 40rem) {
+  #nqDashboard[data-nq-ui="lumen"] .nqd-achievement-spotlight { grid-template-columns: 72px minmax(0, 1fr); padding: 16px; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-achievement-spotlight-art { width: 72px; height: 72px; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-achievement-spotlight > .nqd-primary-action { grid-column: 1 / -1; justify-self: start; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-badge-path { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@container achievement-pane (max-width: 24rem) {
+  #nqDashboard[data-nq-ui="lumen"] .nqd-achievement-spotlight { grid-template-columns: minmax(0, 1fr); }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-achievement-spotlight-art { justify-self: start; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-badge-path { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-achievement { grid-template-columns: minmax(0, 1fr); }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-achievement-mark { width: 88px; height: 88px; }
+}
+@container achievement-pane (max-width: 15rem) {
+  #nqDashboard[data-nq-ui="lumen"] .nqd-badge-path { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Arte ampliada permanece um diálogo: nenhum clique altera o perfil. */
+.nq-ach-detail {
+  width: min(860px, calc(100vw - 24px));
+  max-width: none;
+  max-height: calc(100dvh - 24px);
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  color: #e9eef2;
+  font-family: var(--nql-font-body, Philosopher, sans-serif);
+  border: 1px solid #91cdd44a;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #172b36, #0d1722 70%);
+  box-shadow: 0 24px 90px #0009;
+}
+.nq-ach-detail[open] { display: flex; flex-direction: column; }
+.nq-ach-detail::backdrop { background: #030910dd; backdrop-filter: blur(6px); }
+.nq-ach-detail-reading { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; align-items: center; min-height: 0; overflow: auto; padding: 28px; }
+.nq-ach-detail-art { width: 100%; max-width: 380px; justify-self: center; }
+.nq-ach-detail-art img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; }
+.nq-ach-detail-copy { min-width: 0; }
+.nq-ach-detail-state { margin: 0 0 .5rem; color: #a1e2d1; font-size: .8rem; line-height: 1.5; }
+.nq-ach-detail h2 { margin: 0; color: #f0ece2; text-align: left; font: 600 1.65rem/1.25 var(--nql-font-display, Cinzel, serif); letter-spacing: -.02em; overflow-wrap: anywhere; }
+.nq-ach-detail-copy > p:last-of-type { margin: .8rem 0 0; color: #bfccd6; font-size: 1rem; line-height: 1.65; overflow-wrap: anywhere; }
+.nq-ach-detail-progress { margin-top: 1rem; color: #addde2; font-size: .85rem; }
+.nq-ach-detail-progress [role="progressbar"] { height: 6px; margin-top: .5rem; border-radius: 6px; overflow: hidden; background: #c2deeb19; }
+.nq-ach-detail-progress [role="progressbar"] > span { display: block; height: 100%; background: #83d4d7; }
+.nq-ach-detail footer { flex: none; display: flex; justify-content: flex-end; padding: 16px 28px; border-top: 1px solid #ffffff12; background: #07121b66; }
+.nq-ach-detail footer button { min-height: 48px; max-width: 100%; padding: .65rem 1.1rem; border: 1px solid #91cdd459; border-radius: 7px; background: #83d4d71a; color: #d9f1f0; font-family: inherit; font-size: .95rem; font-weight: 600; line-height: 1.5; cursor: pointer; }
+.nq-ach-detail :focus-visible { outline: 2px solid #b9e9eb; outline-offset: 3px; }
+@media (max-width: 700px) {
+  .nq-ach-detail-reading { grid-template-columns: minmax(0, 1fr); padding: 22px; gap: 22px; }
+  .nq-ach-detail-art { max-width: 280px; }
+  .nq-ach-detail h2 { font-size: 1.35rem; }
+  .nq-ach-detail footer { padding: 14px 22px; }
+  .nq-ach-detail footer button { width: 100%; overflow-wrap: anywhere; }
+}
+
+/* Desbloqueios reais: celebração curta, com a arte que acabou de ser ganha. */
+#nqAchievementCelebrations { position: fixed; z-index: 10010; top: 16px; right: 16px; display: grid; gap: 10px; width: min(360px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); overflow: auto; pointer-events: none; }
+#nqAchievementCelebrations .nq-ach-celebration { position: static; min-width: 0; max-width: none; padding: 13px; border: 1px solid #85d4b45e; border-radius: 12px; background: linear-gradient(120deg, #163333, #14212c); box-shadow: 0 8px 24px #0007; animation: nqAchievementArrival .35s ease-out; }
+.nq-ach-celebration-inner { display: grid; grid-template-columns: 58px minmax(0, 1fr); align-items: center; gap: 13px; text-align: left; }
+#nqAchievementCelebrations .ach-notification-img { width: 58px; height: 58px; margin: 0; object-fit: contain; animation: none; filter: none; border-radius: 7px; }
+#nqAchievementCelebrations .ach-notification-title { margin: 0 0 4px; color: #99e1c6; font: 600 .68rem/1.5 var(--nql-font-body, Philosopher, sans-serif); text-shadow: none; }
+#nqAchievementCelebrations .ach-notification-name { margin: 0; color: #f0ece2; font: 600 .88rem/1.3 var(--nql-font-display, Cinzel, serif); overflow-wrap: anywhere; }
+#nqAchievementCelebrations .ach-notification-desc { margin-top: 5px; color: #b9cbd5; font-size: .74rem; line-height: 1.5; overflow-wrap: anywhere; }
+#nqAchievementCelebrations .nq-ach-celebration.is-leaving { animation: nqAchievementDeparture .3s ease-in forwards; }
+@keyframes nqAchievementArrival { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+@keyframes nqAchievementDeparture { to { opacity: 0; transform: translateY(-8px); } }
+@media (prefers-reduced-motion: reduce) { #nqAchievementCelebrations .nq-ach-celebration { animation: none; } #nqAchievementCelebrations .nq-ach-celebration.is-leaving { opacity: 0; animation: none; } }

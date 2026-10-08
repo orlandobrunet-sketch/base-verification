@@ -709,6 +709,21 @@
       surface.addEventListener('keydown', event => {
         // Study owns its keyboard context; campaign shortcuts must not run below it.
         event.stopPropagation();
+        const target = event.target;
+        const interactiveTarget = target instanceof Element
+          ? target.closest('button, a[href], select, summary, [role="button"]')
+          : null;
+        const studyArea = surface.querySelector('#studyQuestionArea');
+        const answerShortcut = !event.ctrlKey && !event.altKey && !event.metaKey && /^[1-4a-d]$/i.test(event.key);
+        const editableTarget = target instanceof Element && (target.matches('input, textarea') || target.isContentEditable);
+        if (studyArea && answerShortcut && !editableTarget && (!interactiveTarget || interactiveTarget.matches('.study-option-btn'))) {
+          const optionIndex = /^[1-4]$/.test(event.key) ? Number(event.key) - 1 : 'ABCD'.indexOf(event.key.toUpperCase());
+          const option = studyArea.querySelectorAll('.study-option-btn')[optionIndex];
+          if (option && !option.disabled) {
+            event.preventDefault();
+            option.click();
+          }
+        }
         if ((event.key === 'Enter' || event.key === ' ') && event.target.matches('[role="button"][data-action]')) {
           event.preventDefault();
           event.target.click();

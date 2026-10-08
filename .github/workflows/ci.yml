@@ -22,6 +22,9 @@ jobs:
       - name: Editorial gate rules (Handbook §18.4)
         run: node --test tests/editorial-batch/*.test.mjs
 
+      - name: Service worker install lifecycle
+        run: node --test tests/service-worker/*.test.mjs
+
       - name: Editorial batch scope gate
         run: >-
           node scripts/editorial-batch-validator.mjs
@@ -232,20 +235,20 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22.22.3'
           cache: 'npm'
-          cache-dependency-path: tests/package.json
+          cache-dependency-path: tests/package-lock.json
 
       - name: Install Playwright deps
         working-directory: tests
-        run: npm install
+        run: npm ci
 
       - name: Cache Playwright browsers
         uses: actions/cache@v4
         id: playwright-cache
         with:
           path: ~/.cache/ms-playwright
-          key: playwright-chromium-${{ hashFiles('tests/package.json') }}
+          key: playwright-chromium-${{ hashFiles('tests/package-lock.json') }}
 
       - name: Install Playwright browsers (if cache miss)
         working-directory: tests
@@ -264,9 +267,19 @@ jobs:
 
       - name: Run Playwright smoke tests
         working-directory: tests
-        run: npx playwright test specs/01-landing.spec.ts specs/09-unit-pure-functions.spec.ts specs/35-admin-stored-xss.spec.ts specs/36-shell-cabecalho.spec.ts specs/37-isolamento-de-conta.spec.ts specs/39-fusao-entre-aparelhos.spec.ts specs/40-tipografia-sem-fallback.spec.ts specs/41-chefe-so-no-confronto.spec.ts --reporter=list --timeout=20000
+        run: npx playwright test specs/01-landing.spec.ts specs/09-unit-pure-functions.spec.ts specs/35-admin-stored-xss.spec.ts specs/36-shell-cabecalho.spec.ts specs/37-isolamento-de-conta.spec.ts specs/39-fusao-entre-aparelhos.spec.ts specs/40-tipografia-sem-fallback.spec.ts specs/41-chefe-so-no-confronto.spec.ts --timeout=20000
         env:
           BASE_URL: http://localhost:5500
+
+      - name: Upload smoke test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-smoke-evidence
+          path: |
+            tests/report/
+            tests/test-results/
+          retention-days: 7
 
   # ── Job separado: Playwright E2E Completo (Informativo) ───────────────────
   e2e:
@@ -307,20 +320,20 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22.22.3'
           cache: 'npm'
-          cache-dependency-path: tests/package.json
+          cache-dependency-path: tests/package-lock.json
 
       - name: Install Playwright deps
         working-directory: tests
-        run: npm install
+        run: npm ci
 
       - name: Cache Playwright browsers
         uses: actions/cache@v4
         id: playwright-cache
         with:
           path: ~/.cache/ms-playwright
-          key: playwright-chromium-${{ hashFiles('tests/package.json') }}
+          key: playwright-chromium-${{ hashFiles('tests/package-lock.json') }}
 
       - name: Install Playwright browsers (if cache miss)
         working-directory: tests
@@ -348,7 +361,7 @@ jobs:
       # Um portão que nunca reprova não é portão; é relatório que ninguém lê.
       - name: Run Playwright tests
         working-directory: tests
-        run: npx playwright test --shard=${{ matrix.shard }}/2 --reporter=list --timeout=20000
+        run: npx playwright test --shard=${{ matrix.shard }}/2 --timeout=20000
         env:
           BASE_URL: http://localhost:5500
 
@@ -357,5 +370,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report-${{ matrix.shard }}
-          path: tests/report/
+          path: |
+            tests/report/
+            tests/test-results/
           retention-days: 7

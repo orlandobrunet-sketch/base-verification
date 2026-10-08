@@ -10,9 +10,23 @@
       modal.innerHTML = `
         <div class="nqnarr-card nqnews-card">
           <h2>Novidades</h2>
-          <div style="color:var(--txt-dim);font-size:0.75rem;margin-bottom:16px;">O que há de novo no NefroQuest: Ascension</div>
+          <div style="color:var(--txt-dim);font-size:0.75rem;margin-bottom:16px;">O que há de novo no NefroQuest 2.0</div>
 
           <div class="modal-scroll-body nqnarr-reading" role="region" tabindex="0" aria-label="Histórico de novidades">
+
+            <article aria-labelledby="nqNews20Title" style="background:linear-gradient(135deg,rgba(145,223,227,.1),rgba(241,207,122,.055));border:1px solid rgba(145,223,227,.35);border-radius:12px;padding:18px;margin-bottom:16px;">
+              <p style="margin:0 0 8px;color:var(--nql-lumen,#91dfe3);font-size:.75rem;letter-spacing:.08em;">NefroQuest 2.0 · 08/10/2026</p>
+              <h3 id="nqNews20Title" style="margin:0 0 12px;color:var(--txt);font-size:1.3rem;">Um novo olhar para sua jornada</h3>
+              <ul style="margin:0;padding-left:18px;color:var(--txt-dim);line-height:1.7;">
+                <li><strong>Seu atlas de estudo:</strong> Dashboard e Grimório com leitura mais clara, comparação de desempenho, radar contínuo e trilha de evolução com retratos e requisitos reais.</li>
+                <li><strong>Uma coleção para conquistar:</strong> cinco novas artes policromáticas, coleção compacta, detalhes ampliados e estados de progresso mais claros.</li>
+                <li><strong>Forja e equipamentos:</strong> composição equilibrada, card rubi translúcido, miniaturas sem recortes e detalhes mais nítidos.</li>
+                <li><strong>O reino em harmonia:</strong> Átrio, Ritual, Ranking e Confronto Final com a mesma identidade visual; Demonstração preserva o progresso da jornada.</li>
+                <li><strong>Do primeiro acesso ao próximo desafio:</strong> retratos atuais na apresentação do jogo, ícone oficial do Google e cores de dificuldade que distinguem seleção, foco e exigência.</li>
+                <li><strong>Leitura em qualquer tela:</strong> ajustes para telas estreitas e texto ampliado, incluindo a explicação do Julgamento.</li>
+              </ul>
+              <p style="margin:12px 0 0;color:var(--txt-dim);font-size:.85rem;">Sua jornada, equipamentos, conquistas e memória de revisão continuam preservados. As atualizações anteriores permanecem no histórico abaixo.</p>
+            </article>
 
             <!-- v11.87 -->
             <div style="background:linear-gradient(135deg,rgba(251,191,36,0.12),rgba(167,139,250,0.06));border:2px solid rgba(251,191,36,0.45);border-radius:10px;padding:16px;margin-bottom:12px;">
@@ -448,12 +462,52 @@
     // Tooltips de atributos vivem no body para escapar do recorte/stacking do card.
     let statTooltip = null;
     let statTooltipOwner = null;
+    let statTooltipDismissedOwner = null;
+    let statTooltipHideTimer = null;
+    const statTooltipBlockers = [
+      '[aria-modal="true"]', '.modal', '.modalWrap', '.auth-modal-overlay',
+      '.chest-modal', '.game-modes-overlay', '.study-mode-popup',
+      '.forge-popup', '.narrative-popup', '.nqnarr-overlay', '.nq-overlay',
+      '.identity-overlay', '#charIntroOverlay', '#arquiQ9Popup',
+      '.profile-popup.open', '.profile-popup[aria-hidden="false"]',
+      '.nq-audio-panel', '.equip-stun-overlay'
+    ].join(', ');
+
+    function visibleStatTooltipSurface(node){
+      if(!(node instanceof Element) || !node.isConnected ||
+        node.closest('[hidden], .hidden, [aria-hidden="true"]') ||
+        !node.getClientRects().length) return false;
+      for(let ancestor = node; ancestor; ancestor = ancestor.parentElement){
+        const style = getComputedStyle(ancestor);
+        if(style.display === 'none' || style.visibility === 'hidden' ||
+          style.visibility === 'collapse' || Number(style.opacity) === 0) return false;
+      }
+      const rect = node.getBoundingClientRect();
+      return rect.width > 0 && rect.height > 0 && rect.right > 0 &&
+        rect.left < window.innerWidth && rect.bottom > 0 && rect.top < window.innerHeight;
+    }
+
+    function canShowStatTooltip(badge){
+      if(!visibleStatTooltipSurface(badge) || badge.closest('[inert]') ||
+        document.body.classList.contains('boss-stun-active')) return false;
+      const drawer = badge.closest('.panel.left');
+      if(drawer && window.matchMedia('(max-width: 768px)').matches &&
+        !drawer.classList.contains('mobile-open')) return false;
+      return !Array.from(document.querySelectorAll(statTooltipBlockers))
+        .some(visibleStatTooltipSurface);
+    }
+
+    function clearStatTooltipHide(){
+      if(statTooltipHideTimer !== null) clearTimeout(statTooltipHideTimer);
+      statTooltipHideTimer = null;
+    }
 
     function ensureStatTooltip(){
       if(statTooltip) return statTooltip;
       statTooltip = document.createElement('div');
       statTooltip.className = 'stat-tip stat-tip-floating';
       statTooltip.setAttribute('role', 'tooltip');
+      // O nome acessível continua na fonte estável ligada por aria-describedby.
       statTooltip.setAttribute('aria-hidden', 'true');
       document.body.appendChild(statTooltip);
       return statTooltip;
@@ -461,18 +515,18 @@
 
     function positionStatTooltip(badge){
       if(!statTooltip || !badge) return;
-      if(!badge.isConnected){
+      if(!canShowStatTooltip(badge)){
         hideStatTooltip();
         return;
       }
       const rect = badge.getBoundingClientRect();
       const margin = 10;
       const gap = 8;
+      statTooltip.style.maxHeight = Math.max(0, window.innerHeight - margin * 2) + 'px';
       const width = statTooltip.offsetWidth;
-      const height = statTooltip.offsetHeight;
+      let height = statTooltip.offsetHeight;
       const maxLeft = Math.max(margin, window.innerWidth - width - margin);
       let left = rect.left + (rect.width - width) / 2;
-      let top = rect.top - height - gap;
 
       const loadout = badge.closest('.nql-loadout-shell');
       if(window.innerWidth > 768 && loadout){
@@ -481,72 +535,182 @@
       }
 
       left = Math.max(margin, Math.min(left, maxLeft));
-      if(top < margin) top = rect.bottom + gap;
-      if(top + height > window.innerHeight - margin){
-        top = Math.max(margin, window.innerHeight - height - margin);
-      }
+      const above = Math.max(0, rect.top - gap - margin);
+      const below = Math.max(0, window.innerHeight - rect.bottom - gap - margin);
+      const placeAbove = height <= above || above >= below;
+      const available = placeAbove ? above : below;
+      // Em telas baixas o conteúdo rola no tooltip, sem cobrir o atributo.
+      statTooltip.style.maxHeight = available + 'px';
+      height = statTooltip.offsetHeight;
+      const top = placeAbove ? rect.top - height - gap : rect.bottom + gap;
 
       statTooltip.style.left = left + 'px';
-      statTooltip.style.top = top + 'px';
+      statTooltip.style.top = Math.max(margin, top) + 'px';
     }
 
     function showStatTooltip(badge){
-      const source = badge && badge.querySelector('.stat-tip');
+      if(!canShowStatTooltip(badge)){
+        hideStatTooltip();
+        return;
+      }
+      const source = badge.querySelector('.stat-tip');
       if(!source) return;
+      document.dispatchEvent(new CustomEvent('nq:hud-preview-opening', {
+        detail: { kind: 'stat' }
+      }));
+      clearStatTooltipHide();
       const floatingTip = ensureStatTooltip();
-      floatingTip.innerHTML = source.innerHTML;
+      const lumen = badge.closest('#mainApp[data-nq-ui="lumen"]') &&
+        !document.body.classList.contains('boss-battle-mode') &&
+        !document.body.classList.contains('arqui-nefromante-final');
+      if(lumen) floatingTip.setAttribute('data-nq-ui', 'lumen');
+      else floatingTip.removeAttribute('data-nq-ui');
+      floatingTip.replaceChildren(...Array.from(source.childNodes, node => node.cloneNode(true)));
       floatingTip.style.display = 'block';
       statTooltipOwner = badge;
       positionStatTooltip(badge);
     }
 
     function hideStatTooltip(){
+      clearStatTooltipHide();
       if(statTooltip) statTooltip.style.display = 'none';
       statTooltipOwner = null;
     }
 
+    function scheduleStatTooltipHide(){
+      clearStatTooltipHide();
+      // Permite atravessar os 8px entre o atributo e seu tooltip.
+      statTooltipHideTimer = setTimeout(function(){
+        statTooltipHideTimer = null;
+        if(statTooltipOwner && (document.activeElement === statTooltipOwner ||
+          statTooltipOwner.matches(':hover') || statTooltip.matches(':hover'))) return;
+        hideStatTooltip();
+      }, 120);
+    }
+
     document.addEventListener('pointerover', function(e){
       const badge = e.target instanceof Element ? e.target.closest('.stat-badge') : null;
-      if(badge) showStatTooltip(badge);
+      if(badge){
+        // Escape conserva o fechamento enquanto o ponteiro permanece no atributo.
+        // Uma nova entrada real, inclusive após sair do portal, inicia outra leitura.
+        if(statTooltipDismissedOwner === badge &&
+          (!(e.relatedTarget instanceof Node) || !badge.contains(e.relatedTarget))){
+          statTooltipDismissedOwner = null;
+        }
+        if(statTooltipDismissedOwner !== badge) showStatTooltip(badge);
+      } else if(statTooltip && e.target instanceof Node && statTooltip.contains(e.target)){
+        clearStatTooltipHide();
+      }
     });
 
     document.addEventListener('pointerout', function(e){
       const badge = e.target instanceof Element ? e.target.closest('.stat-badge') : null;
-      if(!badge || badge.contains(e.relatedTarget) || document.activeElement === badge) return;
-      hideStatTooltip();
+      const fromTooltip = statTooltip && e.target instanceof Node && statTooltip.contains(e.target);
+      if(!badge && !fromTooltip) return;
+      const next = e.relatedTarget;
+      if(next instanceof Node && ((badge && badge.contains(next)) ||
+        (statTooltipOwner && statTooltipOwner.contains(next)) ||
+        (statTooltip && statTooltip.contains(next)))) return;
+      if(badge && statTooltipDismissedOwner === badge) statTooltipDismissedOwner = null;
+      if(document.activeElement === statTooltipOwner) return;
+      scheduleStatTooltipHide();
     });
 
     document.addEventListener('focusin', function(e){
       const badge = e.target instanceof Element ? e.target.closest('.stat-badge') : null;
-      if(badge) showStatTooltip(badge);
+      if(badge){
+        statTooltipDismissedOwner = null;
+        showStatTooltip(badge);
+      }
     });
 
     document.addEventListener('focusout', function(e){
       const badge = e.target instanceof Element ? e.target.closest('.stat-badge') : null;
-      if(!badge || badge.contains(e.relatedTarget)) return;
+      if(!badge || (e.relatedTarget instanceof Node && badge.contains(e.relatedTarget))) return;
+      if(statTooltipOwner === badge && badge.matches(':hover')) return;
       hideStatTooltip();
     });
 
     document.addEventListener('pointerdown', function(e){
       const badge = e.target instanceof Element ? e.target.closest('.stat-badge') : null;
-      if(badge) showStatTooltip(badge);
-      else hideStatTooltip();
+      if(badge){
+        statTooltipDismissedOwner = null;
+        showStatTooltip(badge);
+      } else if(!statTooltip || !(e.target instanceof Node) || !statTooltip.contains(e.target)){
+        statTooltipDismissedOwner = null;
+        hideStatTooltip();
+      }
+    });
+
+    document.addEventListener('mousedown', function(e){
+      // O portal visual não recebe foco: sua descrição acessível pertence ao
+      // atributo. Cancelar apenas o foco do mouse compatível conserva esse
+      // atributo focado após um toque, sem cancelar a rolagem por touch.
+      if(e.button === 0 && statTooltipOwner && statTooltip &&
+        e.target instanceof Node && statTooltip.contains(e.target)) e.preventDefault();
+    });
+
+    document.addEventListener('nq:hud-preview-opening', function(e){
+      if(e.detail && e.detail.kind === 'equipment') hideStatTooltip();
     });
 
     document.addEventListener('keydown', function(e){
-      if(e.key === 'Escape' && statTooltipOwner) hideStatTooltip();
-    });
+      if(e.key !== 'Escape' || !statTooltipOwner) return;
+      if(!canShowStatTooltip(statTooltipOwner)){
+        hideStatTooltip();
+        return;
+      }
+      // Uma dica sob o ponteiro não toma Escape do controle focado na gaveta.
+      const target = e.target;
+      const tooltipOwnsEscape = !(target instanceof Element) ||
+        target === document.body || target === document.documentElement ||
+        statTooltipOwner.contains(target) || (statTooltip && statTooltip.contains(target));
+      if(tooltipOwnsEscape){
+        e.preventDefault();
+        e.stopImmediatePropagation();
+      }
+      statTooltipDismissedOwner = statTooltipOwner;
+      hideStatTooltip();
+    }, true);
 
-    document.addEventListener('scroll', hideStatTooltip, true);
+    document.addEventListener('scroll', function(e){
+      if(e.target !== statTooltip) hideStatTooltip();
+    }, true);
     window.addEventListener('resize', function(){
       if(statTooltipOwner) positionStatTooltip(statTooltipOwner);
     });
 
-    const statTooltipScope = document.getElementById('equipList');
-    if(statTooltipScope && typeof MutationObserver !== 'undefined'){
-      new MutationObserver(function(){
-        if(statTooltipOwner && !statTooltipOwner.isConnected) hideStatTooltip();
-      }).observe(statTooltipScope, { childList: true, subtree: true });
+    if(typeof MutationObserver !== 'undefined'){
+      new MutationObserver(function(records){
+        if(statTooltipDismissedOwner && !statTooltipDismissedOwner.isConnected){
+          statTooltipDismissedOwner = null;
+        }
+        if(!statTooltipOwner) return;
+        const relevant = records.some(function(record){
+          if(statTooltip && (record.target === statTooltip || statTooltip.contains(record.target))) return false;
+          const target = record.target;
+          if(record.type === 'attributes'){
+            return target instanceof Element && (
+              target === document.body || target === document.documentElement ||
+              target === statTooltipOwner || target.contains(statTooltipOwner) ||
+              target.matches(statTooltipBlockers) || target.closest(statTooltipBlockers) ||
+              target.querySelector(statTooltipBlockers)
+            );
+          }
+          return Array.from(record.addedNodes).concat(Array.from(record.removedNodes))
+            .some(function(node){
+              if(statTooltip && (node === statTooltip || statTooltip.contains(node))) return false;
+              return node instanceof Element && (
+                node === statTooltipOwner || node.contains(statTooltipOwner) ||
+                node.matches(statTooltipBlockers) || node.querySelector(statTooltipBlockers)
+              );
+            });
+        });
+        if(relevant && !canShowStatTooltip(statTooltipOwner)) hideStatTooltip();
+      }).observe(document.body, {
+        childList: true, subtree: true, attributes: true,
+        attributeFilter: ['class', 'hidden', 'inert', 'style', 'aria-hidden', 'aria-modal']
+      });
     }
 
     // Tooltip de item ao passar mouse

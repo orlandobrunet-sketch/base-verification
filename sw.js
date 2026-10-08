@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v15.90
-const CACHE = 'nefroquest-v15.90';
+// NefroQuest Service Worker — v15.95
+const CACHE = 'nefroquest-v15.95';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -41,6 +41,11 @@ const STATIC_ASSETS = [
   '/assets/achievements/campeao.webp',
   '/manifest.json',
   '/favicon.ico',
+  '/favicon.png',
+  '/landing/assets/favicon-q.ico',
+  '/landing/assets/favicon.svg',
+  '/landing/assets/favicon-32x32.png',
+  '/landing/assets/favicon-192x192.png',
   '/data/refs.js',
   '/data/articles.js',
   '/data/topics.js',
@@ -55,6 +60,26 @@ const STATIC_ASSETS = [
   '/styles/lumen/difficulty.css',
   '/styles/lumen/dashboard.css',
   '/styles/lumen/charselect.css',
+  '/styles/lumen/modes.css',
+  '/styles/lumen/forge.css',
+  '/styles/lumen/header.css',
+  '/styles/lumen/equipment.css',
+  '/styles/lumen/boss.css',
+  '/styles/lumen/ritual.css',
+  '/styles/lumen/ranking.css',
+  '/styles/lumen/achievements.css',
+  '/assets/images/google-g.png',
+  '/assets/images/google-sans-medium.woff2',
+  '/assets/badges/badge1.webp',
+  '/assets/badges/badge2.webp',
+  '/assets/badges/badge3.webp',
+  '/assets/badges/badge4.webp',
+  '/assets/badges/badge5.webp',
+  '/assets/badges/badge1-384.webp',
+  '/assets/badges/badge2-384.webp',
+  '/assets/badges/badge3-384.webp',
+  '/assets/badges/badge4-384.webp',
+  '/assets/badges/badge5-384.webp',
   '/js/utils.js',
   '/js/audio.js',
   '/js/leaderboard.js',
@@ -73,6 +98,7 @@ const STATIC_ASSETS = [
   '/js/minigame-acidbase.js',
   '/js/achievements.js',
   '/js/changelog.js',
+  '/js/equipment-preview.js',
   '/js/dashboard.js',
 ];
 
@@ -87,34 +113,43 @@ const STATIC_ASSETS = [
 // chave canônica (sem query), que é a que canonicalAssetKey() consulta.
 // bump-release:asset-versions:início
 const ASSET_VERSIONS = {
-  '/style.css': '15.87',
+  '/style.css': '15.94',
   '/styles/lumen/tokens.css': '15.77',
   '/styles/lumen/shell.css': '14.77',
-  '/styles/lumen/portal.css': '14.93',
-  '/styles/lumen/atrium.css': '15.25',
-  '/styles/lumen/game.css': '15.77',
-  '/styles/lumen/difficulty.css': '15.25',
-  '/styles/lumen/dashboard.css': '15.77',
+  '/styles/lumen/portal.css': '15.94',
+  '/styles/lumen/atrium.css': '15.94',
+  '/styles/lumen/game.css': '15.92',
+  '/styles/lumen/difficulty.css': '15.94',
+  '/styles/lumen/dashboard.css': '15.94',
   '/styles/lumen/charselect.css': '14.75',
-  '/js/utils.js': '15.75',
-  '/js/audio.js': '14.69',
-  '/js/leaderboard.js': '15.85',
-  '/js/study-mode.js': '15.84',
-  '/js/game.js': '15.85',
+  '/styles/lumen/modes.css': '15.92',
+  '/styles/lumen/forge.css': '15.94',
+  '/styles/lumen/header.css': '15.91',
+  '/styles/lumen/equipment.css': '15.94',
+  '/styles/lumen/boss.css': '15.95',
+  '/styles/lumen/ritual.css': '15.94',
+  '/styles/lumen/ranking.css': '15.94',
+  '/styles/lumen/achievements.css': '15.94',
+  '/js/utils.js': '15.94',
+  '/js/audio.js': '15.91',
+  '/js/leaderboard.js': '15.94',
+  '/js/study-mode.js': '15.92',
+  '/js/game.js': '15.95',
   '/js/notifications.js': '11.90',
-  '/js/auth.js': '13.44',
+  '/js/auth.js': '15.92',
   '/js/portal.js': '13.20',
   '/js/atrium.js': '13.23',
   '/js/paywall.js': '15.34',
   '/js/account.js': '15.80',
-  '/js/boss.js': '15.85',
+  '/js/boss.js': '15.94',
   '/js/exam.js': '15.22',
   '/js/admin.js': '15.35',
-  '/js/minigame.js': '15.84',
+  '/js/minigame.js': '15.94',
   '/js/minigame-acidbase.js': '15.32',
-  '/js/achievements.js': '15.78',
-  '/js/changelog.js': '15.81',
-  '/js/dashboard.js': '15.85',
+  '/js/achievements.js': '15.94',
+  '/js/changelog.js': '15.94',
+  '/js/equipment-preview.js': '15.94',
+  '/js/dashboard.js': '15.94',
 };
 // bump-release:asset-versions:fim
 
@@ -162,7 +197,7 @@ self.addEventListener('install', e => {
             ? fetch(`${caminho}?v=${versao}`)
             : fetch(caminho, { cache: 'no-store' });
           return busca
-            .then(res => { if (res.ok) cache.put(caminho, res.clone()); })
+            .then(res => { if (res.ok) return cache.put(caminho, res.clone()); })
             .catch(() => {});
         })
       )
@@ -290,8 +325,12 @@ self.addEventListener('fetch', e => {
 // ── Web Push notifications ────────────────────────────────────────────────
 self.addEventListener('push', e => {
   let data = { title: 'NefroQuest', body: 'Você tem uma novidade!', url: '/jogar/', tag: 'nq-push',
-                icon: '/assets/images/favicon-192x192.png', badge: '/assets/images/favicon-32x32.png' };
+                icon: '/landing/assets/favicon-192x192.png', badge: '/landing/assets/favicon-32x32.png' };
   try { if (e.data) Object.assign(data, e.data.json()); } catch {}
+  // Campanhas antigas enviam os caminhos do N: mantém o conteúdo do push e usa a marca Q aprovada.
+  const legacyIcon = /^(?:https:\/\/nefroquest\.com)?\/?assets\/images\/(?:favicon-(?:16x16|32x32|180x180|192x192|512x512)\.png|apple-touch-icon\.png)(?:\?.*)?$/;
+  if (legacyIcon.test(data.icon)) data.icon = '/landing/assets/favicon-192x192.png';
+  if (legacyIcon.test(data.badge)) data.badge = '/landing/assets/favicon-32x32.png';
   e.waitUntil(
     self.registration.showNotification(data.title, {
       body: data.body, icon: data.icon, badge: data.badge,
@@ -306,8 +345,8 @@ self.addEventListener('periodicsync', e => {
     e.waitUntil(
       self.registration.showNotification('NefroQuest — hora de estudar! 📚', {
         body: 'Mantenha sua sequência de estudos. Uma sessão rápida faz a diferença.',
-        icon: '/assets/images/favicon-192x192.png',
-        badge: '/assets/images/favicon-32x32.png',
+        icon: '/landing/assets/favicon-192x192.png',
+        badge: '/landing/assets/favicon-32x32.png',
         tag: 'nq-study-reminder',
         renotify: false,
         data: { url: '/jogar/' }

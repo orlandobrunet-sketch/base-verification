@@ -1,0 +1,158 @@
+/* Ritual de Iniciação: the same isolated eight-question flow, in Lúmen. */
+#ritualPage[data-nq-ui="lumen"] {
+  padding: clamp(1rem, 4vw, 3rem);
+  background:
+    radial-gradient(ellipse at 80% 0, rgba(var(--nql-corruption-strong-rgb), .09), transparent 35rem),
+    radial-gradient(ellipse at 0 50%, rgba(var(--nql-lumen-rgb), .045), transparent 32rem),
+    var(--nql-abyss);
+  color: var(--nql-text);
+  font-family: var(--nql-font-body);
+}
+
+#ritualPage .nq-study-content { max-width: 64rem !important; }
+#ritualPage .nql-ritual-intro,
+#ritualPage .nql-ritual-result {
+  max-width: 51rem;
+  margin: clamp(1rem, 7vh, 4rem) auto 0;
+  padding: clamp(1rem, 4vw, 2.5rem);
+  border: 1px solid var(--nql-line-strong);
+  border-top: 2px solid rgba(var(--nql-corruption-strong-rgb), .65);
+  border-radius: var(--nql-radius-dialog);
+  background: linear-gradient(130deg, rgba(var(--nql-cortex-rgb), .86), rgba(var(--nql-cortex-rgb), .4));
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, .22);
+}
+
+#ritualPage .nql-ritual-heading {
+  display: flex;
+  align-items: center;
+  gap: clamp(.75rem, 3vw, 1.5rem);
+  margin-bottom: 1.5rem;
+}
+#ritualPage .nql-ritual-heading > div { min-width: 0; }
+#ritualPage .nql-ritual-emblem {
+  width: clamp(3rem, 9vw, 5rem);
+  flex: 0 0 auto;
+  fill: none;
+  stroke: var(--nql-corruption-strong);
+  stroke-width: 1.25;
+}
+#ritualPage .nql-ritual-emblem circle:last-child { fill: var(--nql-mastery); stroke: none; }
+#ritualPage .nql-ritual-eyebrow,
+#ritualPage .nq-exam-titulo {
+  margin: 0 0 .65rem;
+  color: var(--nql-lumen);
+  font-family: var(--nql-font-instrument);
+  font-size: .7rem;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+#ritualPage #ritualTitulo {
+  margin: 0;
+  color: var(--nql-text);
+  font-family: var(--nql-font-display);
+  font-size: clamp(1.8rem, 4.5vw, 3.25rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -.025em;
+  overflow-wrap: anywhere;
+}
+#ritualPage .nql-ritual-lede { font-size: 1.08rem; }
+#ritualPage p { color: var(--nql-text-soft); line-height: 1.6; overflow-wrap: anywhere; }
+#ritualPage p strong { color: var(--nql-text); }
+#ritualPage .nql-ritual-sequence {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: .4rem;
+  margin: 1.5rem 0;
+}
+#ritualPage .nql-ritual-sequence span {
+  padding: .55rem 0;
+  border: 1px solid rgba(var(--nql-lumen-rgb), .25);
+  border-radius: .3rem;
+  background: rgba(var(--nql-lumen-rgb), .045);
+  color: var(--nql-lumen);
+  font-family: var(--nql-font-instrument);
+  font-size: .7rem;
+  text-align: center;
+}
+#ritualPage .nql-ritual-note {
+  padding: .8rem 1rem;
+  border-left: 2px solid var(--nql-corruption-strong);
+  background: rgba(var(--nql-corruption-strong-rgb), .065);
+  color: var(--nql-text-soft);
+  font-size: .95rem;
+}
+#ritualPage .nq-exam-acoes { gap: .75rem; margin-top: 1.5rem; }
+#ritualPage .btn {
+  min-height: 2.75rem;
+  padding: .75rem 1.15rem;
+  border: 1px solid var(--nql-control-border);
+  border-radius: var(--nql-radius-control);
+  background: rgba(var(--nql-lumen-rgb), .045);
+  box-shadow: none;
+  color: var(--nql-text);
+  font-family: var(--nql-font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+}
+#ritualPage .btn.gold {
+  border-color: var(--nql-mastery);
+  background: var(--nql-mastery);
+  color: var(--nql-abyss);
+}
+#ritualPage .btn:hover:not(:disabled) { border-color: var(--nql-lumen); }
+#ritualPage .btn.gold:hover:not(:disabled) { background: #f6dda1; border-color: #f6dda1; }
+#ritualPage :focus-visible { outline: 2px solid var(--nql-focus); outline-offset: 4px; }
+#ritualPage .nq-exam-erro { padding: .75rem 1rem; border-left: 2px solid var(--nql-danger); background: rgba(var(--nql-danger-rgb), .065); }
+#ritualPage .nq-exam-progresso { height: .35rem; background: rgba(var(--nql-lumen-rgb), .14); }
+#ritualPage .nq-exam-progresso > div { background: var(--nql-lumen); }
+#ritualPage .nq-exam-questao { padding-top: 1.75rem; }
+#ritualPage #ritualQuestao {
+  color: var(--nql-mastery);
+  font-family: var(--nql-font-instrument);
+  font-size: .8rem;
+  font-weight: 500;
+  margin-bottom: 1.25rem;
+}
+#ritualPage .nq-exam-enunciado { color: var(--nql-text); font-size: 1.12rem; }
+#ritualPage .nq-exam-opcoes { gap: .65rem; }
+#ritualPage .nq-exam-opcao {
+  padding: .9rem 1rem;
+  border-color: var(--nql-control-border);
+  border-radius: var(--nql-radius-control);
+  background: rgba(var(--nql-cortex-rgb), .62);
+  color: var(--nql-text);
+}
+#ritualPage .nq-exam-letra {
+  border-color: var(--nql-control-border);
+  border-radius: .3rem;
+  color: var(--nql-lumen);
+  font-family: var(--nql-font-instrument);
+  font-size: .85em;
+}
+#ritualPage .nq-exam-opcao-certa { background: rgba(var(--nql-success-rgb), .075); }
+#ritualPage .nq-exam-opcao-errada { background: rgba(var(--nql-danger-rgb), .075); }
+#ritualPage .nq-exam-veredito { color: var(--nql-text) !important; }
+#ritualPage .nq-ritual-recomendacao {
+  display: inline-block;
+  margin: .35rem 0 .5rem;
+  padding: .5rem 1.1rem;
+  border: 1px solid var(--nql-line-gold);
+  border-radius: var(--nql-radius-control);
+  background: rgba(var(--nql-mastery-rgb), .09);
+  color: var(--nql-mastery);
+  font-family: var(--nql-font-display);
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+@media (max-width: 40rem) {
+  #ritualPage[data-nq-ui="lumen"] { padding-inline: clamp(12px, 4vw, 24px); }
+  #ritualPage .nql-ritual-intro,
+  #ritualPage .nql-ritual-result { margin-top: .5rem; padding-inline: clamp(12px, 3vw, 24px); }
+  #ritualPage .nql-ritual-heading { align-items: flex-start; }
+  #ritualPage .nql-ritual-sequence { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  #ritualPage .nq-exam-acoes > button { width: 100%; }
+  #ritualPage .nq-exam-opcao { padding: 12px 14px; gap: 10px; }
+}

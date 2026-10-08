@@ -27,6 +27,15 @@ function cortados(): string[] {
     if (cs.display === 'none' || cs.visibility === 'hidden') continue;
     // Texto decorativo (aria-hidden) entra: corte visível é defeito mesmo sem leitor de tela.
     if (el.closest('[inert], .hidden, .bg-layer, .bg-overlay, .particles, .nq-sr-only, .sr-only, script, style')) continue;
+    // Esta classe só é acessível apenas ao leitor quando o CSS realmente a
+    // reduz e recorta. O nome sozinho não pode esconder um corte visível.
+    const srOnly = el.closest('.nqd-sr-only');
+    if (srOnly) {
+      const s = getComputedStyle(srOnly);
+      if (s.width === '1px' && s.height === '1px'
+        && s.overflowX === 'hidden' && s.overflowY === 'hidden'
+        && s.clip.replace(/\s/g, '') === 'rect(0px,0px,0px,0px)') continue;
+    }
     let ignorar = false;
     for (let p: Element | null = el; p; p = p.parentElement) {
       const s = getComputedStyle(p);
@@ -69,6 +78,8 @@ test('o instrumento enxerga um corte plantado', async ({ page }) => {
   await expect(page.locator('#atriumTitle')).toBeVisible();
   await page.evaluate(() => { const h = document.getElementById('atriumTitle')!; h.style.minWidth = '40rem'; });
   expect((await page.evaluate(cortados)).length, 'o medidor ficou cego').toBeGreaterThan(0);
+  await page.evaluate(() => document.getElementById('atriumTitle')!.classList.add('nqd-sr-only'));
+  expect((await page.evaluate(cortados)).length, 'a classe sem recorte real não pode esconder o corte plantado').toBeGreaterThan(0);
 });
 
 for (const largura of [320, 390]) {

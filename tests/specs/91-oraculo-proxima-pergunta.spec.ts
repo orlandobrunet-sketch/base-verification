@@ -1,7 +1,7 @@
 import { test, expect, type Page } from '@playwright/test';
 import { injectGameState } from '../helpers/game';
 test.use({serviceWorkers:'block'});
-async function preparar(page:Page){await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());await page.goto('/jogar/',{waitUntil:'domcontentloaded'});await injectGameState(page,{gold:0});await page.waitForLoadState('load');await page.evaluate(()=>{(window as any).authUser={id:'oracle-test',app_metadata:{premium:true}};(window as any).getAuthToken=async()=>null;});}
+async function preparar(page:Page){await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());await page.goto('/jogar/',{waitUntil:'domcontentloaded'});await injectGameState(page,{gold:0},{authUser:{id:'oracle-test',app_metadata:{premium:true}}});await page.waitForLoadState('load');await page.evaluate(()=>{(window as any).getAuthToken=async()=>null;});}
 async function responder(page:Page,correct=true){const index=await page.evaluate(correct=>(0,eval)(correct?'state.current.a':'(state.current.a+1)%state.current.o.length'),correct);await page.locator('#options .option[data-idx="'+index+'"]').click();await expect(page.locator('#nextBtn')).toBeVisible();}
 async function abrir(page:Page){await page.evaluate(()=>(window as any).openOraculoFromJourney());await expect(page.locator('#mentorPanel')).toBeVisible();}
 async function proxima(page:Page){await page.locator('#nextBtn').click();await expect.poll(()=>page.evaluate(()=>(0,eval)('state.answered'))).toBe(false);await expect(page.locator('#mentorPanel')).toHaveCount(0);}

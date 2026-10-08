@@ -95,6 +95,7 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
   const vigia = new MutationObserver(() => {
     if (visivel(raiz)) return;
     vigia.disconnect();
+    reparo.disconnect();
     delete raiz.dataset.nqDialogo;
     // O vigia roda depois do fechamento: se nesse meio-tempo outro diálogo
     // abriu e pegou o foco (Paywall → Preços), devolver à origem o roubaria.

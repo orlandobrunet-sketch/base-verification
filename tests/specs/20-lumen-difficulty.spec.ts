@@ -53,7 +53,7 @@ test.describe('Página 3A — Calibração da Jornada Lúmen', () => {
     await expect(hardImpact).toContainText('0%');
     await expect(hardImpact).toContainText('25%');
     await expect(hardImpact).toContainText('75%');
-    await expect(hardImpact).toContainText('Ativa');
+    await expect(hardImpact).toContainText('Ativo');
     await expect(dialog.locator('#diffConfirmBtn')).toHaveAttribute('aria-label', 'Continuar com dificuldade Difícil');
 
     const geometryBefore = await dialog.locator('.nql-difficulty__body, .difficulty-grid, .nql-difficulty__impact, .nql-difficulty__footer')

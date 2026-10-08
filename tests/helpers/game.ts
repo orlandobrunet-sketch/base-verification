@@ -3,6 +3,11 @@ import { Page, expect } from '@playwright/test';
 /** True quando rodando contra o deploy real (não localhost) */
 export const isLiveEnv = (process.env.BASE_URL || '').includes('nefroquest.com');
 
+type GameFixtureOptions = {
+  authUser?: ({ id: string } & Record<string, unknown>) | null;
+  replaceSnapshot?: boolean;
+};
+
 /**
  * Injeta save + premium no localStorage, recarrega e entra no jogo via
  * continueGame(). O app não auto-resume a partir do save: a welcome screen
@@ -13,7 +18,7 @@ export const isLiveEnv = (process.env.BASE_URL || '').includes('nefroquest.com')
  * character DEVE ser uma chave válida atual (glomerulus/aquaria/nephros) —
  * 'guerreiro' (chave antiga) faz characters[c].name lançar em continueGame.
  */
-export async function injectGameState(page: Page, overrides: Record<string, unknown> = {}) {
+export async function injectGameState(page: Page, overrides: Record<string, unknown> = {}, options: GameFixtureOptions = {}) {
   const base = {
     schemaVersion: 2,
     level: 5, xp: 150, xpToNext: 400, score: 2500,
@@ -26,12 +31,26 @@ export async function injectGameState(page: Page, overrides: Record<string, unkn
     idx: 0, queueIds: [], recentIds: [],
     chestsOpened: 2, timestamp: Date.now(),
   };
-  await page.evaluate((s) => {
-    localStorage.setItem('nefroquest-save', JSON.stringify(s));
+  await page.evaluate(({ save, replaceSnapshot }) => {
+    // Uma nova fixture escolhida pelo teste substitui o snapshot anterior.
+    // O caminho padrão continua legado, para exercitar sua migração real.
+    if (replaceSnapshot) localStorage.removeItem('nefroquest-save-v7');
+    localStorage.setItem('nefroquest-save', JSON.stringify(save));
     localStorage.setItem('nefroquest-premium', '1');
-  }, { ...base, ...overrides });
+  }, {
+    save: {
+      ...base, ...overrides,
+      ...(options.authUser !== undefined ? { saveOwner: options.authUser?.id ?? null } : {}),
+    },
+    replaceSnapshot: options.replaceSnapshot ?? false,
+  });
   await page.reload();
   await page.waitForLoadState('domcontentloaded');
+  // A identidade da fixture precisa existir quando loadGame fixa o dono do
+  // progresso; trocá-la depois de continuar é uma mudança de conta real.
+  if (options.authUser !== undefined) {
+    await page.evaluate(user => { (window as any).authUser = user; }, options.authUser);
+  }
   await enterGame(page);
 }
 

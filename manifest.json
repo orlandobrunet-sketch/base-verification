@@ -1,5 +1,5 @@
 {
-  "name": "NefroQuest: Ascension",
+  "name": "NefroQuest 2.0",
   "short_name": "NefroQuest",
   "description": "Domine a Nefrologia através de um RPG épico de perguntas e suba de nível.",
   "id": "/",
@@ -10,12 +10,24 @@
   "theme_color": "#0a0e1a",
   "background_color": "#0a0e1a",
   "lang": "pt-BR",
-  "categories": ["education", "games", "medical"],
+  "categories": [
+    "education",
+    "games",
+    "medical"
+  ],
   "icons": [
-    { "src": "assets/images/favicon-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "assets/images/favicon-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "assets/images/favicon-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
-    { "src": "assets/images/favicon-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "/landing/assets/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/landing/assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
   ],
   "screenshots": [
     {
@@ -39,14 +51,26 @@
       "short_name": "Estudo",
       "description": "Abrir seletor de eixos do modo de estudo",
       "url": "/jogar/?mode=study",
-      "icons": [{ "src": "assets/images/favicon-192x192.png", "sizes": "192x192" }]
+      "icons": [
+        {
+          "src": "/landing/assets/favicon-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
     },
     {
       "name": "Julgamento Rápido",
       "short_name": "Julgamento",
       "description": "Iniciar o minigame de Verdadeiro ou Falso",
       "url": "/jogar/?mode=rapidquiz",
-      "icons": [{ "src": "assets/images/favicon-192x192.png", "sizes": "192x192" }]
+      "icons": [
+        {
+          "src": "/landing/assets/favicon-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
     }
   ]
 }

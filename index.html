@@ -34,11 +34,12 @@
   <link rel="manifest" href="/manifest.json">
   <link rel="icon" type="image/svg+xml" href="/landing/assets/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/landing/assets/favicon-32x32.png">
-  <link rel="apple-touch-icon" href="/landing/assets/favicon-192x192.png">
+  <link rel="icon" type="image/x-icon" sizes="32x32" href="/landing/assets/favicon-q.ico?v=15.91">
+  <link rel="apple-touch-icon" sizes="192x192" href="/landing/assets/favicon-192x192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,600;0,700;1,500;1,600&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/landing/styles.css?v=15.40">
+  <link rel="stylesheet" href="/landing/styles.css?v=15.94">
 
   <meta property="og:title" content="NefroQuest — Domine a nefrologia. Evolua a cada decisão.">
   <meta property="og:description" content="Da formação à atualização na especialidade: questões, revisão adaptativa, tutor educacional de IA e evidências organizadas.">
@@ -85,7 +86,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function () {
           Sentry.init({
-            release: 'nefroquest@15.90',
+            release: 'nefroquest@15.95',
             environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
             tracesSampleRate: 0.05
           });
@@ -507,15 +508,15 @@
         <article class="class-profile reveal-up" style="--class-color:87,168,233" tabindex="0" aria-label="Evolução do Guerreiro Glomerular, do nível 1 ao nível 10">
           <div class="class-evolution">
             <figure class="evolution-stage evolution-stage--one">
-              <img src="/landing/assets/guerreiro-n1.png" alt="Guerreiro Glomerular no nível 1, iniciando como estudante no laboratório" loading="lazy" width="230" height="230">
+              <img src="/assets/classes-cinema/guerreiro_glomerular/nivel_01.webp" alt="Guerreiro Glomerular no nível 1, iniciando como estudante no laboratório" loading="lazy" width="230" height="230">
               <figcaption><b>01</b><span>Despertar</span></figcaption>
             </figure>
             <figure class="evolution-stage evolution-stage--five">
-              <img src="/landing/assets/guerreiro-n5.png" alt="Guerreiro Glomerular no nível 5, em domínio clínico crescente" loading="lazy" width="230" height="230">
+              <img src="/assets/classes-cinema/guerreiro_glomerular/nivel_05.webp" alt="Guerreiro Glomerular no nível 5, em domínio clínico crescente" loading="lazy" width="230" height="230">
               <figcaption><b>05</b><span>Ascensão</span></figcaption>
             </figure>
             <figure class="evolution-stage evolution-stage--ten">
-              <img src="/landing/assets/guerreiro.png" alt="Guerreiro Glomerular no nível 10, em sua forma de maestria" loading="lazy" width="230" height="230">
+              <img src="/assets/classes-cinema/guerreiro_glomerular/nivel_10.webp" alt="Guerreiro Glomerular no nível 10, em sua forma de maestria" loading="lazy" width="230" height="230">
               <figcaption><b>10</b><span>Maestria</span></figcaption>
             </figure>
             <span class="evolution-flow" aria-hidden="true"><i></i></span>
@@ -533,15 +534,15 @@
         <article class="class-profile reveal-up" style="--class-color:176,111,222;--i:1" tabindex="0" aria-label="Evolução da Maga Metabólica, do nível 1 ao nível 10">
           <div class="class-evolution">
             <figure class="evolution-stage evolution-stage--one">
-              <img src="/landing/assets/maga-n1.jpg" alt="Maga Metabólica no nível 1, estudando o equilíbrio dos fluidos" loading="lazy" width="230" height="230">
+              <img src="/assets/classes-cinema/maga_metabolica/nivel_01.webp" alt="Maga Metabólica no nível 1, estudando o equilíbrio dos fluidos" loading="lazy" width="230" height="230">
               <figcaption><b>01</b><span>Despertar</span></figcaption>
             </figure>
             <figure class="evolution-stage evolution-stage--five">
-              <img src="/landing/assets/maga-n5.jpg" alt="Maga Metabólica no nível 5, controlando o equilíbrio metabólico" loading="lazy" width="230" height="230">
+              <img src="/assets/classes-cinema/maga_metabolica/nivel_05.webp" alt="Maga Metabólica no nível 5, controlando o equilíbrio metabólico" loading="lazy" width="230" height="230">
               <figcaption><b>05</b><span>Ascensão</span></figcaption>
             </figure>
             <figure class="evolution-stage evolution-stage--ten">
-              <img src="/landing/assets/maga.jpg" alt="Maga Metabólica no nível 10, em sua forma de maestria" loading="lazy" width="230" height="230">
+              <img src="/assets/classes-cinema/maga_metabolica/nivel_10.webp" alt="Maga Metabólica no nível 10, em sua forma de maestria" loading="lazy" width="230" height="230">
               <figcaption><b>10</b><span>Maestria</span></figcaption>
             </figure>
             <span class="evolution-flow" aria-hidden="true"><i></i></span>
@@ -559,15 +560,15 @@
         <article class="class-profile reveal-up" style="--class-color:214,169,74;--i:2" tabindex="0" aria-label="Evolução do Clérigo Renal, do nível 1 ao nível 10">
           <div class="class-evolution">
             <figure class="evolution-stage evolution-stage--one">
-              <img src="/landing/assets/clerigo-n1.jpg" alt="Clérigo Renal no nível 1, iniciando a jornada de cuidado longitudinal" loading="lazy" width="230" height="230">
+              <img src="/assets/classes-cinema/clerigo_renal/nivel_01.webp" alt="Clérigo Renal no nível 1, iniciando a jornada de cuidado longitudinal" loading="lazy" width="230" height="230">
               <figcaption><b>01</b><span>Despertar</span></figcaption>
             </figure>
             <figure class="evolution-stage evolution-stage--five">
-              <img src="/landing/assets/clerigo-n5.jpg" alt="Clérigo Renal no nível 5, ampliando seu domínio de proteção renal" loading="lazy" width="230" height="230">
+              <img src="/assets/classes-cinema/clerigo_renal/nivel_05.webp" alt="Clérigo Renal no nível 5, ampliando seu domínio de proteção renal" loading="lazy" width="230" height="230">
               <figcaption><b>05</b><span>Ascensão</span></figcaption>
             </figure>
             <figure class="evolution-stage evolution-stage--ten">
-              <img src="/landing/assets/clerigo.jpg" alt="Clérigo Renal no nível 10, em sua forma de maestria" loading="lazy" width="230" height="230">
+              <img src="/assets/classes-cinema/clerigo_renal/nivel_10.webp" alt="Clérigo Renal no nível 10, em sua forma de maestria" loading="lazy" width="230" height="230">
               <figcaption><b>10</b><span>Maestria</span></figcaption>
             </figure>
             <span class="evolution-flow" aria-hidden="true"><i></i></span>
@@ -682,6 +683,6 @@
     <p>© 2026 NefroQuest · Conteúdo para fins educacionais.</p>
   </footer>
 
-  <script src="/landing/script.js?v=13.04"></script>
+  <script src="/landing/script.js?v=15.94"></script>
 </body>
 </html>
