@@ -3,6 +3,7 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   cursor: zoom-in;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
+  overflow: visible !important;
 }
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #equipList .slot-diablo-filled {
   --nqe-frame: #718ca6;
@@ -10,7 +11,9 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   border: 1px solid var(--nqe-frame) !important;
   border-radius: 10px !important;
   background: #0a0e1a !important;
-  box-shadow: 0 2px 6px #02050b45, inset 0 0 0 1px #eef6ff0c !important;
+  /* A moldura faz o único recorte: a imagem não ganha outra curva/borda. */
+  overflow: hidden;
+  box-shadow: 0 2px 6px #02050b45 !important;
   animation: none !important;
   isolation: isolate;
 }
@@ -30,12 +33,13 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   margin: 0 !important;
   padding: 0 !important;
   border: 0 !important;
-  border-radius: 9px !important;
+  border-radius: 0 !important;
   object-fit: contain !important;
   object-position: center !important;
   opacity: 1 !important;
   filter: none !important;
-  transform: none !important;
+  transform: translate(var(--nqe-art-x, 0px), var(--nqe-art-y, 0px)) scale(var(--nqe-art-scale, 1)) !important;
+  transform-origin: center;
   image-rendering: auto;
 }
 /* O arco da N95 chega à borda da fonte; um respiro evita que a curva da
@@ -48,7 +52,7 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #equipList .slot-diablo:hover .slot-diablo-filled,
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #equipList .slot-diablo[aria-expanded="true"] .slot-diablo-filled {
   border-color: #c6e9ef !important;
-  box-shadow: 0 0 0 2px #8ecbd11c, 0 3px 9px #02050b55 !important;
+  box-shadow: 0 3px 9px #02050b55 !important;
 }
 .nqe-preview {
   position: fixed;
@@ -82,7 +86,7 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
 .nqe-preview-close[hidden] { display: none; }
 .nqe-preview-close:focus-visible { outline: 2px solid #9cd3da; outline-offset: 3px; }
 .nqe-preview-art { display: grid; place-items: center; width: 160px; max-width: 100%; aspect-ratio: 1; margin: 16px auto; border: 1px solid #8aa3c54a; border-radius: 14px; overflow: hidden; background: #0a0e1a; }
-.nqe-preview-art img { display: block; width: 100%; height: 100%; object-fit: contain; image-rendering: auto; }
+.nqe-preview-art img { display: block; width: 100%; height: 100%; border: 0; border-radius: 0; object-fit: contain; image-rendering: auto; transform: translate(var(--nqe-art-x, 0px), var(--nqe-art-y, 0px)) scale(var(--nqe-art-scale, 1)); transform-origin: center; }
 .nqe-preview-art img[src*="/mascara_n95.png"] { padding: 4px; }
 .nqe-preview-art[data-starter="true"] { background: #0d1425; }
 .nqe-preview-fallback { font-size: 3.625rem; line-height: 1; }

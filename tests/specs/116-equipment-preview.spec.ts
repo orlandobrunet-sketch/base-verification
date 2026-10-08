@@ -4,6 +4,22 @@ import { injectGameState } from '../helpers/game';
 test.use({ serviceWorkers: 'block', reducedMotion: 'reduce', deviceScaleFactor: 2, hasTouch: true });
 const PREVIEW = '#nqEquipmentPreview';
 const HELMET = '#equipList .slot-diablo[data-slot="helmet"]';
+// w-srcset corrige naturalWidth pela densidade selecionada. Medimos os pixels
+// reais do currentSrc e o bitmap CSS depois do enquadramento proporcional.
+async function pixelsDaArte(page: Page) {
+  return page.locator(PREVIEW + ' img').evaluate(async el => {
+    const img = el as HTMLImageElement;
+    await img.decode();
+    const selected = new Image();
+    selected.src = img.currentSrc;
+    await selected.decode();
+    const box = img.getBoundingClientRect(), style = getComputedStyle(img);
+    const scaleX = box.width / img.offsetWidth, scaleY = box.height / img.offsetHeight;
+    const width = box.width - (parseFloat(style.paddingLeft) + parseFloat(style.paddingRight)) * scaleX;
+    const height = box.height - (parseFloat(style.paddingTop) + parseFloat(style.paddingBottom)) * scaleY;
+    return { source: selected.naturalWidth, display: Math.min(width, height), ratio: devicePixelRatio };
+  });
+}
 const snapshot = (page: Page) => page.evaluate(() => (0, eval)(
   'JSON.stringify({equipment:state.equipment,gold:state.gold,idx:state.idx,current:state.current,used:state.legendaryAbilityUsed})'
 ));
@@ -46,12 +62,7 @@ test('foco e hover ampliam arte e atributos reais sem equipar ou consumir habili
   await expect(preview.locator('h3')).toHaveText('Elmo do Filtrador Supremo');
   await expect(preview.locator('.nqe-preview-rarity')).toHaveText('Lendário');
   expect(await preview.locator('dd').allTextContents()).toEqual(['2', '3', '4', '5']);
-  await expect.poll(() => preview.locator('img').evaluate(el => (el as HTMLImageElement).naturalWidth)).toBe(384);
-  const image = await preview.locator('img').evaluate(el => ({
-    source: (el as HTMLImageElement).naturalWidth,
-    display: el.getBoundingClientRect().width,
-    ratio: devicePixelRatio,
-  }));
+  const image = await pixelsDaArte(page);
   expect(image.source).toBeGreaterThanOrEqual(image.display * image.ratio);
   await expect(page.locator('.item-tooltip:visible')).toHaveCount(0);
   await dentroDaTela(page);
@@ -298,12 +309,7 @@ test.describe('arte em alta densidade', () => {
       const image = preview.locator('img');
       await expect.poll(() => image.evaluate(el => (el as HTMLImageElement).currentSrc))
         .toMatch(new RegExp(`/assets/items/detail/${file}-1024\\.png$`));
-      const pixels = await image.evaluate(async el => {
-        const selected = new Image();
-        selected.src = (el as HTMLImageElement).currentSrc;
-        await selected.decode();
-        return { source: selected.naturalWidth, display: el.getBoundingClientRect().width, ratio: devicePixelRatio };
-      });
+      const pixels = await pixelsDaArte(page);
       expect(pixels.source).toBe(1024);
       expect(pixels.source).toBeGreaterThanOrEqual(pixels.display * pixels.ratio);
       await expect(image).toHaveCSS('object-fit', 'contain');
@@ -348,6 +354,49 @@ test.describe('arte em alta densidade', () => {
     })).toBe(384);
     await expect(image).toHaveAttribute('alt', 'Sigilo KDIGO');
     await dentroDaTela(page);
+    expect(await snapshot(page)).toBe(before);
+  });
+
+  test('novos masters cobrem peças largas, armas finas e armadura feminina só na inspeção', async ({ page }) => {
+    const detailRequests: string[] = [];
+    page.on('request', request => {
+      if (new URL(request.url()).pathname.includes('/assets/items/detail/')) detailRequests.push(request.url());
+    });
+    const preview = await abrir(page);
+    await page.evaluate(() => (0, eval)(`
+      state.character='aquaria';
+      state.equipment.glove={n:'Luvas de Látex Reforçadas',rar:'common',atk:1,def:2,kno:3,luck:4};
+      state.equipment.armor={n:'Armadura da Homeostase Perfeita',rar:'legendary',atk:2,def:3,kno:4,luck:5};
+      state.equipment.weapon={n:'Cetro do Néfron Eterno',rar:'legendary',atk:3,def:4,kno:5,luck:6};
+      state.equipment.boot={n:'Botas da Pressão Controlada',rar:'rare',atk:4,def:5,kno:6,luck:7};
+      renderHUD();
+    `));
+    const before = await snapshot(page);
+    expect(detailRequests).toEqual([]);
+    for (const [slotKey, file, name, stats] of [
+      ['glove', 'luvas_latex_reforcadas', 'Luvas de Látex Reforçadas', ['1', '2', '3', '4']],
+      ['armor', 'armadura_homeostase_perfeita_female', 'Armadura da Homeostase Perfeita', ['2', '3', '4', '5']],
+      ['weapon', 'cetro_nefron', 'Cetro do Néfron Eterno', ['3', '4', '5', '6']],
+      ['boot', 'botas_pressao_controlada', 'Botas da Pressão Controlada', ['4', '5', '6', '7']],
+    ] as const) {
+      const slot = page.locator(`#equipList .slot-diablo[data-slot="${slotKey}"]`);
+      await slot.scrollIntoViewIfNeeded();
+      await expect.poll(() => slot.locator('img').evaluate(el => (el as HTMLImageElement).currentSrc))
+        .toMatch(new RegExp(`/assets/items/${file}\\.png$`));
+      await slot.tap();
+      await expect(preview.locator('h3')).toHaveText(name);
+      expect(await preview.locator('dd').allTextContents()).toEqual([...stats]);
+      await expect.poll(() => preview.locator('img').evaluate(el => (el as HTMLImageElement).currentSrc))
+        .toMatch(new RegExp(`/assets/items/detail/${file}-1024\\.png$`));
+      const pixels = await pixelsDaArte(page);
+      expect(pixels.source).toBe(1024);
+      expect(pixels.source).toBeGreaterThanOrEqual(pixels.display * pixels.ratio);
+      await dentroDaTela(page);
+      expect(await snapshot(page)).toBe(before);
+      await preview.getByRole('button', { name: 'Fechar detalhes do equipamento' }).tap();
+      await expect(slot).toBeFocused();
+    }
+    expect(new Set(detailRequests.map(url => new URL(url).pathname)).size).toBe(4);
     expect(await snapshot(page)).toBe(before);
   });
 });
