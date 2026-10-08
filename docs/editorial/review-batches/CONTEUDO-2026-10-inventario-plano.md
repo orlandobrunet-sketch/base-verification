@@ -99,3 +99,7 @@ Os onze pergaminhos terapêuticos foram publicados na 15.90, PR #882, commit de 
 Seis novos objetos completos foram preparados: RAVE (25), RITUXVAS (39), BENEFIT (45), MENTOR (48), AURORA 1 (49) e BLISS-LN (50). Ver [parecer formal](IMUNOTERAPIA-2026-10-06-parecer.md), fontes e patch vinculados. Aprovação editorial, Evidência VERIFICADA, Pendência NENHUMA e Publicação editorial LIBERADA. Leitura validada em 320, 390 e 1.100 px, a 100%/200%. Nenhum aplicado ao banco; aguardar autorização explícita de aplicação/publicação. Preservados 191 pergaminhos e 741 questões.
 
 Conferência remota adicional da #882: Smoke E2E passou (5 min 7 s). As duas suítes completas ainda estavam em execução na última consulta; não registrar sucesso delas antes da conclusão.
+
+## Autorização persistente — 08/10/2026
+
+O proprietário autorizou aplicar os seis objetos de imunoterapia e publicar os próximos lotes de resumos após aprovação científica formal, sem nova pergunta a cada lote. Aplicado o patch exato aprovado, sem alteração material, na release técnica 15.96 (versão pública 2.0). Mantidos 191 pergaminhos, seus índices e 741 questões. Esta autorização cobre os resumos; não substitui revisão formal, evidência/pendências válidas, liberação editorial ou autorização específica de criação/aplicação de novas questões.

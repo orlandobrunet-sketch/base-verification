@@ -236,3 +236,9 @@ SHA-256 aprovado: bd3b5a654d55a020953514b048c6b57478e7c54dbc1332d95e774acc3b8262
 ## Validação da proposta
 
 Os seis objetos completos foram renderizados no leitor existente, sem gravá-los no banco, em 320, 390 e 1.100 px com fonte a 100% e 200%. Nenhum trecho ultrapassou a largura da tela. Schema, identidade e SHA-256 conferidos; aplicativo idêntico a origin/main, versão 15.90.
+
+## Aplicação autorizada — 08/10/2026
+
+O proprietário respondeu “sim” à pergunta explícita para aplicar estes seis e publicar os próximos lotes após aprovação científica formal, sem pedir novamente a cada lote. Autorização operacional persistente para revisão/aplicação/publicação dos resumos aprovados; os gates científicos permanecem obrigatórios. Aplicado o patch exato acima, sem mudança material; os demais 185 objetos permanecem idênticos. Release técnico 15.96, preservando displayVersion 2.0, versão/cache no mesmo commit de aplicação.
+
+Validação após integração da main atual: cinco testes do leitor passaram (35,6 s). A primeira execução falhou por servidor desligado; após reabertura, a suíte passou. Coerência de versão/cache e git diff --check passaram.
