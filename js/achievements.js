@@ -189,11 +189,12 @@
       dialog.remove();
     }
 
-    function showAchievementArtwork({ name, description, source, status, progress = null }) {
+    function showAchievementArtwork({ name, description, source, status, acquired = false, progress = null }) {
       if (!source || !name) return;
       closeAchievementArtwork();
       const dialog = document.createElement('dialog');
-      dialog.className = 'nq-ach-detail';
+      dialog.className = `nq-ach-detail ${acquired ? 'is-unlocked' : 'is-locked'}`;
+      dialog.dataset.acquired = String(acquired);
       dialog.setAttribute('aria-labelledby', 'nqAchievementArtworkTitle');
       dialog.setAttribute('aria-describedby', 'nqAchievementArtworkRequirement');
       const value = progress ? Math.max(0, Math.min(Number(progress.value) || 0, Number(progress.target) || 0)) : 0;

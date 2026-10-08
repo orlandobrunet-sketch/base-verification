@@ -760,9 +760,11 @@ test.describe('Central de Comando do aprendizado', () => {
   });
 
   test('devolve desejo às conquistas com badges reais carregados de forma eager e sem progresso decorativo', async ({ page }) => {
-    await openCommandCenter(page);
+    await openCommandCenter(page, { rawStorage: { 'nefroquest-achievements': JSON.stringify(['arqui_nefromante_slayer']) } });
     const dashboard = page.locator('#nqDashboard');
     await expect(dashboard.locator('.nqd-conduct-spine')).toHaveCount(0);
+    const preservedKeys = ['nefroquest-save', 'nefroquest-save-v7', 'nefroquest-detailed-stats', 'nefroquest-achievements', 'nefroquest-badge-history'];
+    const before = await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), preservedKeys);
 
     const badgeImages = dashboard.locator('.nqd-badge-path img');
     await expect(badgeImages).toHaveCount(5);
@@ -786,11 +788,12 @@ test.describe('Central de Comando do aprendizado', () => {
       await expect(achievements.locator(`.nqd-badge-path img[src="assets/badges/badge${index}-384.jpg"]`)).toBeVisible();
     }
     await expect(achievements.locator('.nqd-achievement-spotlight')).toContainText('Faltam 8 acertos');
+    await expect(achievements.locator('.nqd-achievement-spotlight [role="progressbar"]')).toHaveAttribute('aria-valuenow', '32');
+    await expect(achievements.locator('.nqd-achievement-spotlight [role="progressbar"]')).toHaveAttribute('aria-valuemax', '40');
     await expect(achievements.locator('.nqd-achievement-mark img[src="assets/achievements/campeao.webp"]')).toHaveCount(1);
     await expect(achievements.locator('.nqd-achievement-filter[aria-pressed="true"]')).toHaveText('Todas');
-    await achievements.getByRole('button', { name: 'Objetivos', exact: true }).click();
-    const visibleObjectives = await achievements.locator('[data-achievement-promoted="true"]:visible').count();
-    await achievements.getByRole('button', { name: 'Todas', exact: true }).click();
+    await expect(achievements.getByRole('button', { name: 'Objetivos', exact: true })).toHaveCount(0);
+    await expect(achievements.locator('.nqd-achievement:visible')).toHaveCount(12);
     const artwork = achievements.locator('.nqd-achievement-mark img');
     await expect(artwork).toHaveCount(12);
     // Todas precisam ser de fato servidas e decodificadas, inclusive as que
@@ -803,39 +806,71 @@ test.describe('Central de Comando do aprendizado', () => {
     }
     const artSources = await artwork.evaluateAll(images => images.map(image => image.getAttribute('src')));
     expect(new Set(artSources).size).toBe(12);
-    // As artes continuam policromáticas; texto e moldura distinguem o estado.
+    // Aquisição real determina a cor; porcentagem e filtro não concedem selos.
     const filtros = await achievements.locator('.nqd-achievement').evaluateAll(cards => cards.map(card => ({
       locked: card.classList.contains('is-locked'),
       filter: getComputedStyle(card.querySelector('.nqd-achievement-mark img')!).filter,
     })));
     expect(filtros.some(f => f.locked), "cenário sem conquista bloqueada").toBe(true);
-    for (const f of filtros) expect(f.filter, JSON.stringify(f)).toBe('none');
-    await achievements.getByRole('button', { name: 'Conquistadas' }).click();
+    expect(filtros.some(f => !f.locked), "cenário sem conquista adquirida").toBe(true);
+    for (const f of filtros) {
+      if (f.locked) expect(f.filter, JSON.stringify(f)).toContain('grayscale(1)');
+      else expect(f.filter, JSON.stringify(f)).toBe('none');
+    }
+    const earnedFilter = achievements.getByRole('button', { name: 'Conquistadas', exact: true });
+    await earnedFilter.focus();
+    await page.keyboard.press('Enter');
+    await expect(earnedFilter).toBeFocused();
     await expect(achievements.locator('.nqd-achievement-filter[aria-pressed="true"]')).toHaveText('Conquistadas');
+    await expect(achievements.locator('[data-achievement-status]:visible')).toHaveCount(1);
+    await expect(achievements.locator('[data-achievement-id="arqui_nefromante_slayer"]')).toBeVisible();
     const visibleStatuses = await achievements.locator('[data-achievement-status]:visible').evaluateAll(cards => cards.map(card => card.getAttribute('data-achievement-status')));
     expect(visibleStatuses.every(status => status === 'unlocked')).toBe(true);
-    expect(visibleObjectives).toBeGreaterThan(0);
+    await expect(achievements.locator('#nqdAchievementFilterStatus')).toHaveText('1 conquista exibida.');
+    await achievements.getByRole('button', { name: 'Todas', exact: true }).click();
+    await expect(achievements.locator('.nqd-achievement:visible')).toHaveCount(12);
+    expect(await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), preservedKeys)).toEqual(before);
   });
 
   test('conquistas continuam legíveis e operáveis com texto a 200% no celular', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await openCommandCenter(page);
+    await openCommandCenter(page, { rawStorage: { 'nefroquest-achievements': JSON.stringify(['arqui_nefromante_slayer']) } });
     await page.evaluate(() => { document.documentElement.style.fontSize = '32px'; });
     await page.getByRole('tab', { name: 'Conquistas', exact: true }).click();
     const pane = page.getByRole('tabpanel', { name: 'Conquistas' });
-    for (const name of ['Todas', 'Conquistadas', 'Objetivos']) {
+    const preservedKeys = ['nefroquest-save', 'nefroquest-save-v7', 'nefroquest-detailed-stats', 'nefroquest-achievements', 'nefroquest-badge-history'];
+    const before = await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), preservedKeys);
+    await expect(pane.getByRole('button', { name: 'Objetivos', exact: true })).toHaveCount(0);
+    for (const name of ['Todas', 'Conquistadas']) {
       const button = pane.getByRole('button', { name, exact: true });
-      await button.click();
+      await button.focus();
+      await page.keyboard.press('Enter');
       await expect(button).toHaveAttribute('aria-pressed', 'true');
+      await expect(button).toBeFocused();
       expect(await button.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+      await expect(pane.locator('.nqd-achievement:visible')).toHaveCount(name === 'Todas' ? 12 : 1);
     }
-    const title = pane.locator('.nqd-achievement:visible .nqd-achievement-title').first();
+    await pane.getByRole('button', { name: 'Todas', exact: true }).click();
+    const longCard = pane.locator('[data-achievement-id="grimoire_master"]');
+    const title = longCard.locator('.nqd-achievement-title');
     const paneBox = await pane.boundingBox();
     const titleBox = await title.boundingBox();
     expect(titleBox!.width, 'a arte não pode comprimir a leitura em uma coluna estreita').toBeGreaterThan(paneBox!.width * .7);
-    const details = pane.locator('.nqd-achievement:visible details').first();
-    await details.locator('summary').click();
-    await expect(details).toHaveAttribute('open', '');
+    await expect(pane.locator('.nqd-achievement-detail, details')).toHaveCount(0);
+    const requirement = longCard.locator('.nqd-achievement-copy');
+    const originalRequirement = await page.evaluate(() => (0, eval)('ACHIEVEMENTS_LIST').find((item: any) => item.id === 'grimoire_master').description);
+    await expect(requirement).toHaveText(originalRequirement);
+    await requirement.evaluate(element => element.scrollIntoView({ block: 'end' }));
+    await expect(requirement).toBeVisible();
+    expect(await longCard.evaluate(card => !['auto', 'scroll'].includes(getComputedStyle(card).overflowY) && card.scrollHeight <= card.clientHeight + 1)).toBe(true);
+    expect(await requirement.evaluate(element => {
+      const card = element.closest('.nqd-achievement')!.getBoundingClientRect();
+      const frame = element.closest('.nqd-main')!.getBoundingClientRect();
+      const range = document.createRange();
+      range.selectNodeContents(element);
+      return [...range.getClientRects()].every(rect => rect.left >= card.left - 1 && rect.right <= card.right + 1 && rect.top >= frame.top - 1 && rect.bottom <= frame.bottom + 1);
+    })).toBe(true);
+    expect(await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), preservedKeys)).toEqual(before);
   });
 
   test('organiza o Grimório por descoberta sem inventar denominador de conhecimento', async ({ page }) => {

@@ -366,6 +366,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   max-width: 44rem;
   margin: 2rem 0 0;
   isolation: isolate;
+  container: nql-saved-journey / inline-size;
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__resume-shell[data-character="aquaria"] {
@@ -448,7 +449,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   position: relative;
   z-index: 1;
   display: flex;
-  padding: .48rem 1.2rem !important;
+  padding: .36rem 1.2rem !important;
   border-bottom: 1px solid rgba(var(--nql-journey-primary-rgb), .18) !important;
   border-radius: calc(.8rem - 1px) calc(.8rem - 1px) 0 0;
   align-items: center;
@@ -495,9 +496,9 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   grid-template-columns: minmax(13rem, .9fr) minmax(16rem, 1.25fr) minmax(5.35rem, auto);
   grid-template-rows: auto;
   margin: 0 !important;
-  padding: .72rem 1.2rem .36rem !important;
+  padding: .55rem 1.2rem .28rem !important;
   align-items: center;
-  gap: .45rem 1rem !important;
+  gap: .35rem 1rem !important;
   background: transparent !important;
 }
 
@@ -556,7 +557,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .wsaved-info p {
-  margin: .28rem 0 0;
+  margin: .22rem 0 0;
   color: var(--nql-journey-secondary);
   font-family: var(--nql-font-instrument);
   font-size: .68rem;
@@ -566,7 +567,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .wsaved-info .wsaved-context {
-  margin-top: .18rem;
+  margin-top: .14rem;
   color: var(--nql-text-muted);
   font-size: .59rem;
   letter-spacing: .045em;
@@ -734,8 +735,8 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 
 #welcomeScreen[data-nq-ui="lumen"] .wsaved-level > .wsaved-support {
   width: 100%;
-  margin-top: .35rem;
-  padding-top: .3rem;
+  margin-top: .25rem;
+  padding-top: .24rem;
   align-items: flex-end;
   flex-direction: column;
   gap: .12rem;
@@ -779,7 +780,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 }
 
 #welcomeScreen[data-nq-ui="lumen"][data-journey-state="saved"] .nql-atrium__primary-actions {
-  padding: .12rem 1.2rem .62rem;
+  padding: .1rem 1.2rem .5rem;
 }
 
 #welcomeScreen[data-nq-ui="lumen"][data-journey-state="saved"] .nql-atrium__primary {
@@ -821,10 +822,11 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary > span { display: flex; min-width: 0; flex-direction: column; }
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary strong { font-weight: 750; }
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary small {
-  overflow: hidden;
+  overflow: visible;
   color: rgba(var(--nql-abyss-rgb), .68);
   font-size: .7rem;
-  text-overflow: ellipsis;
+  text-overflow: clip;
+  overflow-wrap: anywhere;
   white-space: nowrap;
 }
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary svg,
@@ -994,20 +996,20 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route {
-  --nql-route-accent: var(--nql-lumen);
-  --nql-route-rgb: var(--nql-lumen-rgb);
+  --nql-route-accent: #84daf5;
+  --nql-route-rgb: 132, 218, 245;
   display: grid !important;
   width: 100% !important;
   min-height: 4.6rem !important;
   margin: 0 !important;
   padding: .75rem .8rem !important;
-  border: 1px solid rgba(var(--nql-route-rgb), .19) !important;
-  border-left: 2px solid rgba(var(--nql-route-rgb), .62) !important;
+  border: 1px solid rgba(var(--nql-route-rgb), .26) !important;
+  border-left: 2px solid rgba(var(--nql-route-rgb), .75) !important;
   border-radius: var(--nql-radius-control) !important;
   grid-template-columns: 2.25rem minmax(0, 1fr) auto;
   align-items: center;
   gap: .8rem;
-  background: linear-gradient(100deg, rgba(var(--nql-route-rgb), .08), rgba(var(--nql-abyss-rgb), .15)) !important;
+  background: linear-gradient(100deg, rgba(var(--nql-route-rgb), .13), rgba(var(--nql-abyss-rgb), .15)) !important;
   color: var(--nql-text) !important;
   box-shadow: none !important;
   text-align: left !important;
@@ -1016,46 +1018,56 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route[data-atrium-route="dashboard"] {
-  --nql-route-accent: var(--nql-success);
-  --nql-route-rgb: var(--nql-success-rgb);
+  --nql-route-accent: #80d5b2;
+  --nql-route-rgb: 128, 213, 178;
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route[data-atrium-route="ritual"] {
-  --nql-route-accent: var(--nql-corruption-strong);
-  --nql-route-rgb: var(--nql-corruption-strong-rgb);
+  --nql-route-accent: #ee9b86;
+  --nql-route-rgb: 238, 155, 134;
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route[data-atrium-route="ranking"] {
-  --nql-route-accent: var(--nql-mastery);
-  --nql-route-rgb: var(--nql-mastery-rgb);
+  --nql-route-accent: #e9c978;
+  --nql-route-rgb: 233, 201, 120;
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route[data-atrium-route="library"] {
-  --nql-route-accent: #9ebbf4;
-  --nql-route-rgb: 158, 187, 244;
+  --nql-route-accent: #b9b3f3;
+  --nql-route-rgb: 185, 179, 243;
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route:hover,
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route:focus-visible,
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route.is-current {
-  border-color: rgba(var(--nql-route-rgb), .5) !important;
-  background: linear-gradient(100deg, rgba(var(--nql-route-rgb), .15), rgba(var(--nql-abyss-rgb), .1)) !important;
+  border-color: rgba(var(--nql-route-rgb), .65) !important;
+  background: linear-gradient(100deg, rgba(var(--nql-route-rgb), .22), rgba(var(--nql-abyss-rgb), .1)) !important;
   color: var(--nql-route-accent) !important;
   transform: none !important;
 }
 
-#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route-index {
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route:focus-visible {
+  outline: 2px solid var(--nql-route-accent);
+  outline-offset: 2px;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route-icon {
   display: grid;
-  width: 2rem;
-  height: 2rem;
-  border: 1px solid rgba(var(--nql-route-rgb), .28);
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid rgba(var(--nql-route-rgb), .38);
   border-radius: .375rem;
   place-items: center;
-  background: rgba(var(--nql-route-rgb), .065);
+  background: rgba(var(--nql-route-rgb), .16);
   color: var(--nql-route-accent) !important;
-  font-family: var(--nql-font-instrument);
-  font-size: .67rem;
-  letter-spacing: .08em;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route-icon > svg {
+  width: 22px;
+  height: 22px;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route > svg { color: var(--nql-route-accent); }
@@ -1070,11 +1082,12 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   #welcomeScreen[data-nq-ui="lumen"] #atriumTitle { font-size: clamp(3.15rem, 4.5vw, 4.5rem); }
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__eyebrow { margin-bottom: .75rem; }
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__resume-shell { margin-top: 1.25rem; }
+  #welcomeScreen[data-nq-ui="lumen"][data-journey-state="saved"] .nql-atrium__resume-shell { margin-top: .6rem; }
   #welcomeScreen[data-nq-ui="lumen"] .welcome-stats.nql-mastery-rail {
-    margin-top: .9rem !important;
-    padding-block: .7rem .65rem !important;
+    margin-top: .65rem !important;
+    padding-block: .5rem !important;
   }
-  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__continuum { margin-top: .5rem; }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__continuum { margin-top: .4rem; }
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route > span:nth-child(2) { display: flex; min-width: 0; flex-direction: column; gap: .08rem; }
@@ -1201,15 +1214,15 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   #welcomeScreen[data-nq-ui="lumen"] #atriumTitle { font-size: clamp(min(3rem, 13vw), 17vw, 4.7rem); }
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__routes-head h2 { font-size: min(1.75rem, 9vw); }
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__lede { font-size: 1rem; }
-  #welcomeScreen[data-nq-ui="lumen"] .welcome-stats.nql-mastery-rail { margin-top: 1.75rem !important; }
+  #welcomeScreen[data-nq-ui="lumen"] .welcome-stats.nql-mastery-rail { margin-top: 1.25rem !important; }
   #welcomeScreen[data-nq-ui="lumen"] .welcome-stat { padding-inline: .75rem; }
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__continuum-step small { font-size: .68rem; }
   #welcomeScreen[data-nq-ui="lumen"][data-journey-state="saved"] .nql-atrium__resume-shell { margin-top: .85rem; }
   #welcomeScreen[data-nq-ui="lumen"] .wsaved-top { padding-inline: 1rem !important; }
   #welcomeScreen[data-nq-ui="lumen"] .wsaved-bottom {
     grid-template-columns: minmax(0, 1fr);
-    padding: .75rem 1rem .42rem !important;
-    gap: .65rem !important;
+    padding: .6rem 1rem .32rem !important;
+    gap: .5rem !important;
   }
   #welcomeScreen[data-nq-ui="lumen"] .wsaved-identity { gap: .75rem; }
   #welcomeScreen[data-nq-ui="lumen"] .wsaved-avatar-frame { width: 4rem; height: 4rem; }
@@ -1239,7 +1252,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   }
   #welcomeScreen[data-nq-ui="lumen"] .wsaved-progress-meta { align-items: flex-start; flex-direction: column; gap: .25rem; }
   #welcomeScreen[data-nq-ui="lumen"] .wsaved-flow { height: 1.9rem; }
-  #welcomeScreen[data-nq-ui="lumen"][data-journey-state="saved"] .nql-atrium__primary-actions { padding: .2rem 1rem .75rem; }
+  #welcomeScreen[data-nq-ui="lumen"][data-journey-state="saved"] .nql-atrium__primary-actions { padding: .15rem 1rem .6rem; }
   #welcomeScreen[data-nq-ui="lumen"][data-journey-state="saved"] .nql-atrium__secondary { min-height: 2.75rem !important; }
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary-actions { flex-direction: column; }
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary,
@@ -1267,6 +1280,54 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
     flex-direction: column;
     gap: .45rem;
   }
+}
+
+/* A largura disponível no card acompanha rem e a fonte ampliada. As media
+ * queries da viewport, sozinhas, mantinham três colunas cortadas a 200%. */
+@container nql-saved-journey (max-width: 40rem) {
+  #welcomeScreen[data-nq-ui="lumen"] .wsaved-bottom {
+    grid-template-columns: minmax(0, 1fr) minmax(5.35rem, auto);
+  }
+  #welcomeScreen[data-nq-ui="lumen"] .wsaved-progress {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    padding: .45rem 0 0;
+    border-top: 1px solid var(--nql-line);
+    border-left: 0;
+  }
+  #welcomeScreen[data-nq-ui="lumen"] .wsaved-level {
+    grid-column: 2;
+    grid-row: 1;
+  }
+}
+
+@container nql-saved-journey (max-width: 24rem) {
+  #welcomeScreen[data-nq-ui="lumen"] .wsaved-bottom { grid-template-columns: minmax(0, 1fr); }
+  #welcomeScreen[data-nq-ui="lumen"] .wsaved-progress,
+  #welcomeScreen[data-nq-ui="lumen"] .wsaved-level { grid-column: auto; grid-row: auto; }
+  #welcomeScreen[data-nq-ui="lumen"] .wsaved-level {
+    min-width: 0;
+    padding: .45rem 0 0;
+    border-top: 1px solid var(--nql-line);
+    border-left: 0;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: .5rem;
+  }
+  #welcomeScreen[data-nq-ui="lumen"] .wsaved-level > .wsaved-support {
+    width: auto;
+    margin: 0 0 0 auto;
+    padding: 0;
+    border-top: 0;
+    gap: .05rem;
+  }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary-actions { flex-direction: column; }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary,
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__secondary { width: 100% !important; min-width: 0; }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary { padding: .5rem .75rem !important; gap: .5rem; }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary strong { overflow-wrap: anywhere; }
 }
 
 @media (prefers-reduced-motion: reduce) {
