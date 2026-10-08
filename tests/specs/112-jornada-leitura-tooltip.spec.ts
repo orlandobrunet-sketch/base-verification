@@ -37,7 +37,7 @@ async function openGame(page: Page, width: number) {
 
 async function openCharacter(page: Page) {
   const open = page.locator('.mobile-bottom-dock [data-action="openMobileDrawer"]');
-  if (await open.isVisible()) {
+  if (await open.isVisible() && !await page.locator('.panel.left').evaluate(panel => panel.classList.contains('mobile-open'))) {
     await open.click();
     await expect(page.locator('.panel.left')).toHaveClass(/mobile-open/);
   }
@@ -290,6 +290,9 @@ test('os quatro atributos mantêm hover, leitura da própria dica e foco por Tab
   for (const percent of [100, 200]) {
     await fontScale(page, percent);
     for (const badge of await badges.all()) {
+      // A rolagem deve terminar antes do hover: rolar fora da dica fecha o portal.
+      await badge.scrollIntoViewIfNeeded();
+      await settle(page);
       await expectDescription(page, badge);
       await badge.hover();
       await expectTooltip(page, badge);
@@ -363,6 +366,28 @@ test('rolar uma dica longa a 200% mantém sua leitura; rolar a gaveta fecha a di
   await expectTooltip(page, badge);
   const floating = page.locator(TIP);
   expect(await floating.evaluate(element => element.scrollHeight > element.clientHeight)).toBe(true);
+  await floating.tap();
+  await expect(floating, 'tocar a própria dica deve conservar sua leitura').toBeVisible();
+  await expect(badge, 'o portal visual não deve retirar o foco do atributo').toBeFocused();
+  const box = (await floating.boundingBox())!;
+  const input = await page.context().newCDPSession(page);
+  const x = box.x + box.width / 2;
+  const startY = box.y + box.height * .8;
+  const endY = box.y + box.height * .2;
+  try {
+    await input.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x, y: startY }] });
+    for (let step = 1; step <= 8; step++) {
+      await input.send('Input.dispatchTouchEvent', {
+        type: 'touchMove', touchPoints: [{ x, y: startY + (endY - startY) * step / 8 }],
+      });
+    }
+    await input.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+  } finally {
+    await input.detach();
+  }
+  await expect.poll(() => floating.evaluate(element => element.scrollTop),
+    { message: 'o gesto de deslizar deve rolar o conteúdo da dica' }).toBeGreaterThan(0);
+  await expect(floating, 'o gesto dentro da dica não deve fechá-la').toBeVisible();
   await floating.evaluate(element => { element.scrollTop = element.scrollHeight; });
   await expect.poll(() => floating.evaluate(element => element.scrollTop)).toBeGreaterThan(0);
   await expect(floating, 'a própria rolagem da dica não deve fechá-la').toBeVisible();
@@ -557,5 +582,46 @@ test('a redução padrão preserva o modo de leitura e a ampliação do usuário
     const enlargedStandard = await sizes();
     expect(enlargedStandard.question).toBeCloseTo(standard.question * 2, 1);
     expect(enlargedStandard.option).toBeCloseTo(standard.option * 2, 1);
+  }
+});
+
+test('o título do personagem permanece integral com texto ampliado', async ({ page }, testInfo) => {
+  await openGame(page, 1100);
+  const title = page.locator('.nql-hero-heading .class');
+  const originalTitle = await title.textContent();
+  expect(originalTitle).toBeTruthy();
+  for (const width of WIDTHS) {
+    await page.setViewportSize({ width, height: 844 });
+    await openCharacter(page);
+    for (const percent of [100, 200]) {
+      await test.step(width + 'px, texto a ' + percent + '%', async () => {
+        await fontScale(page, percent);
+        await expect(title).toHaveText(originalTitle!);
+        const metrics = await page.locator('.nql-hero-heading').evaluate(heading => {
+          const box = heading.getBoundingClientRect();
+          const cut: string[] = [];
+          const walker = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT);
+          for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+            if (!(node.textContent || '').trim()) continue;
+            const range = document.createRange();
+            range.selectNodeContents(node);
+            if (Array.from(range.getClientRects()).some(rect => rect.width && rect.height &&
+              (rect.left < box.left - 1 || rect.right > box.right + 1 ||
+               rect.top < box.top - 1 || rect.bottom > box.bottom + 1))) {
+              cut.push(node.textContent || '');
+            }
+          }
+          return { scrollWidth: heading.scrollWidth, clientWidth: heading.clientWidth, cut };
+        });
+        expect(metrics.scrollWidth).toBeLessThanOrEqual(metrics.clientWidth + 1);
+        expect(metrics.cut, 'nome, classe e título precisam caber no card do personagem').toEqual([]);
+      });
+    }
+    if (width === 320) {
+      await title.scrollIntoViewIfNeeded();
+      await testInfo.attach('personagem-320px-200', {
+        body: await page.screenshot(), contentType: 'image/png',
+      });
+    }
   }
 });

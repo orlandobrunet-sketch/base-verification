@@ -656,8 +656,8 @@ test.describe('Central de Comando do aprendizado', () => {
     await expect(page.locator('#welcomeScreen')).toBeVisible();
     const profileOpener = page.locator('#welcomeProfilePopup [data-action="openDashboard"]');
     await page.evaluate(() => {
-      const opener = document.querySelector<HTMLElement>('#welcomeProfilePopup [data-action="openDashboard"]');
-      opener?.classList.add('visible');
+      // Fixture admin: o menu sincroniza as permissões e seu grupo ao abrir.
+      (0, eval)("authUser = { id: 'nq-profile-test-admin', app_metadata: { is_admin: true } }");
     });
     await page.locator('#welcomeProfileBtn').click();
     await expect(profileOpener).toBeVisible();

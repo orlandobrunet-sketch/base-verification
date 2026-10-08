@@ -78,7 +78,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@15.91',
+          release: 'nefroquest@15.92',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -139,14 +139,14 @@
   <link rel="stylesheet" href="styles/lumen/shell.css?v=14.77">
   <link rel="stylesheet" href="styles/lumen/portal.css?v=14.93">
   <link rel="stylesheet" href="styles/lumen/atrium.css?v=15.25">
-  <link rel="stylesheet" href="styles/lumen/game.css?v=15.91">
+  <link rel="stylesheet" href="styles/lumen/game.css?v=15.92">
   <link rel="stylesheet" href="styles/lumen/difficulty.css?v=15.25">
   <link rel="stylesheet" href="styles/lumen/dashboard.css?v=15.77">
   <link rel="stylesheet" href="styles/lumen/charselect.css?v=14.75">
   <link rel="stylesheet" href="styles/lumen/forge.css?v=15.91">
   <link rel="stylesheet" href="styles/lumen/header.css?v=15.91">
-  <link rel="stylesheet" href="styles/lumen/modes.css?v=15.91">
-  <link rel="stylesheet" href="styles/lumen/equipment.css?v=15.91">
+  <link rel="stylesheet" href="styles/lumen/modes.css?v=15.92">
+  <link rel="stylesheet" href="styles/lumen/equipment.css?v=15.92">
   <script>
     // Version beacon — detecta nova versão sem interromper a navegação
     (function() {
@@ -390,7 +390,7 @@
         <span>Para aprender, revisar e se manter atualizado em nefrologia.</span>
         <span class="nql-portal__footer-meta">
           <button type="button" data-action="showPrivacyPolicy">Privacidade</button>
-          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v15.91</button>
+          <button type="button" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v15.92</button>
         </span>
       </footer>
     </section>
@@ -699,7 +699,7 @@
     <footer class="lnd-footer">
       <span>nefroquest.com</span>
       <span class="lnd-footer-sep">·</span>
-      <span id="landingVersionLabel" class="version-label-dynamic" style="cursor:pointer;" role="button" tabindex="0" aria-label="Ver novidades da versão" data-action="showChangelog">v15.91</span>
+      <span id="landingVersionLabel" class="version-label-dynamic" style="cursor:pointer;" role="button" tabindex="0" aria-label="Ver novidades da versão" data-action="showChangelog">v15.92</span>
       <span class="lnd-footer-sep">·</span>
       <span style="cursor:pointer;text-decoration:underline;" class="lnd-footer-link" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span>
     </footer>
@@ -893,7 +893,7 @@
 
       <footer class="nql-atrium__footer">
         <span>Prática que se transforma em domínio clínico.</span>
-        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v15.91</button></span>
+        <span class="nql-atrium__footer-meta"><button type="button" data-action="showPrivacyPolicy">Privacidade</button><button type="button" id="welcomeVersionLabel" class="version-label-dynamic" data-action="showChangelog" aria-label="Ver novidades da versão">v15.92</button></span>
       </footer>
     </section>
     <div class="welcome-bg" aria-hidden="true"></div>
@@ -1320,7 +1320,7 @@
       <p>
         <a href="https://nefroquest.com">nefroquest.com</a>
         &nbsp;•&nbsp;
-        <span class="version-label-dynamic" style="color:var(--gold);cursor:pointer;" data-action="showChangelog">v15.91</span>
+        <span class="version-label-dynamic" style="color:var(--gold);cursor:pointer;" data-action="showChangelog">v15.92</span>
         &nbsp;•&nbsp;
         <span style="cursor:pointer;text-decoration:underline;" role="button" tabindex="0" data-action="showPrivacyPolicy">Política de Privacidade</span>
       </p>
@@ -1783,11 +1783,11 @@
   <script defer src="js/utils.js?v=15.75"></script>
   <script defer src="js/audio.js?v=15.91"></script>
   <script defer src="js/leaderboard.js?v=15.85"></script>
-  <script defer src="js/study-mode.js?v=15.84"></script>
-  <script defer src="js/game.js?v=15.91"></script>
+  <script defer src="js/study-mode.js?v=15.92"></script>
+  <script defer src="js/game.js?v=15.92"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
-  <script defer src="js/auth.js?v=15.91"></script>
+  <script defer src="js/auth.js?v=15.92"></script>
   <script defer src="js/portal.js?v=13.20"></script>
   <script defer src="js/atrium.js?v=13.23"></script>
   <script defer src="js/paywall.js?v=15.34"></script>
@@ -1798,8 +1798,8 @@
   <script defer src="js/minigame.js?v=15.84"></script>
   <script defer src="js/minigame-acidbase.js?v=15.32"></script>
   <script defer src="js/achievements.js?v=15.78"></script>
-  <script defer src="js/changelog.js?v=15.91"></script>
-  <script defer src="js/equipment-preview.js?v=15.91"></script>
+  <script defer src="js/changelog.js?v=15.92"></script>
+  <script defer src="js/equipment-preview.js?v=15.92"></script>
   <script defer src="js/dashboard.js?v=15.85"></script>
 
   <!-- Single source of truth for profile popup menu items -->

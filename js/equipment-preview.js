@@ -8,7 +8,7 @@
     common: ['Comum', '#b7cadc'], rare: ['Raro', '#89c8d1'],
     epic: ['Épico', '#bab2ed'], legendary: ['Lendário', '#f0dba8'], mythic: ['Mítico', '#edf2ff']
   };
-  let anchor = null, pinned = false, timer = 0, suppressFocus = null, dismissed = null, focusOwner = null;
+  let anchor = null, pinned = false, timer = 0, suppressFocus = null, dismissed = null, focusOwner = null, touchFocusSlot = null;
   const panel = document.createElement('section');
   panel.id = 'nqEquipmentPreview';
   panel.className = 'nqe-preview';
@@ -108,12 +108,26 @@
     const v = viewport(), margin = 12, gap = 12;
     panel.style.maxWidth = Math.max(80, v.width - margin * 2) + 'px';
     panel.style.maxHeight = Math.max(80, v.height - margin * 2) + 'px';
-    const a = anchor.getBoundingClientRect(), p = panel.getBoundingClientRect();
+    const a = anchor.getBoundingClientRect();
+    let p = panel.getBoundingClientRect();
+    const fitsRight = a.right + gap + p.width <= v.left + v.width - margin;
+    const fitsLeft = a.left - gap - p.width >= v.left + margin;
+    // O hover/foco deixa o slot livre para o clique que fixa os detalhes.
+    // Em telas estreitas, o conteúdo rola acima ou abaixo do equipamento.
+    let above = null;
+    if (!pinned && !fitsRight && !fitsLeft) {
+      const roomAbove = Math.max(0, a.top - v.top - margin - gap);
+      const roomBelow = Math.max(0, v.top + v.height - margin - a.bottom - gap);
+      above = roomAbove >= roomBelow;
+      panel.style.maxHeight = Math.max(80, above ? roomAbove : roomBelow) + 'px';
+      p = panel.getBoundingClientRect();
+    }
     let left = a.right + gap;
     if (left + p.width > v.left + v.width - margin) left = a.left - p.width - gap;
     if (left < v.left + margin) left = a.left + (a.width - p.width) / 2;
     left = Math.max(v.left + margin, Math.min(left, v.left + v.width - p.width - margin));
-    let top = a.top + (a.height - p.height) / 2;
+    let top = above === null ? a.top + (a.height - p.height) / 2
+      : above ? a.top - p.height - gap : a.bottom + gap;
     top = Math.max(v.top + margin, Math.min(top, v.top + v.height - p.height - margin));
     panel.style.left = left + 'px';
     panel.style.top = top + 'px';
@@ -214,7 +228,7 @@
       if (!slot.hasAttribute('aria-expanded')) slot.setAttribute('aria-expanded', 'false');
     });
     if (dismissed && !Array.from(scope.querySelectorAll(selector)).some(slot => itemKey(slot) === dismissed)) dismissed = null;
-    if (anchor && !allowed(anchor)) hide();
+    if (anchor && !allowed(anchor)) hide(false, true);
     if (focusOwner && !focusOwner.isConnected && document.activeElement === document.body) {
       const previous = focusOwner;
       const replacement = Array.from(scope.querySelectorAll(selector))
@@ -236,13 +250,16 @@
   document.addEventListener('pointerover', e => {
     if (e.pointerType === 'touch') return;
     const slot = slotFrom(e.target);
-    if (e.target instanceof Element && e.target.closest('.stat-badge') && anchor) hide();
+    const previousSlot = e.relatedTarget instanceof Element ? e.relatedTarget.closest(selector) : null;
+    if (slot && dismissed === itemKey(slot) && e.relatedTarget instanceof Node &&
+        itemKey(previousSlot) !== dismissed && !panel.contains(e.relatedTarget)) dismissed = null;
+    if (e.target instanceof Element && e.target.closest('.stat-badge') && anchor) hide(false, true);
     if (slot && (!pinned || anchor === slot)) show(slot);
     if (panel.contains(e.target)) window.clearTimeout(timer);
   });
   document.addEventListener('pointerout', e => {
     const slot = slotFrom(e.target);
-    if (slot && itemKey(slot) === dismissed && itemKey(slotFrom(e.relatedTarget)) !== dismissed) dismissed = null;
+    if (slot && slot.isConnected && itemKey(slot) === dismissed && itemKey(slotFrom(e.relatedTarget)) !== dismissed) dismissed = null;
     if (slot || panel.contains(e.target)) delayedHide();
   });
   document.addEventListener('focusin', e => {
@@ -251,18 +268,25 @@
     else if (!panel.contains(e.target)) focusOwner = null;
     if (slot === suppressFocus) { suppressFocus = null; return; }
     suppressFocus = null;
+    // O toque abre diretamente o diálogo no click compatível, sem um hover
+    // transitório aparecer entre pointerdown e click.
+    if (slot && slot === touchFocusSlot) { touchFocusSlot = null; return; }
     if (slot) show(slot);
     else if (anchor && !panel.contains(e.target)) hide();
   });
   document.addEventListener('focusout', e => {
     const slot = slotFrom(e.target);
-    if (slot && itemKey(slot) === dismissed && itemKey(slotFrom(e.relatedTarget)) !== dismissed && !panel.contains(e.relatedTarget)) dismissed = null;
+    // Ao substituir o HUD, focusout tem relatedTarget=null. O descarte por
+    // Escape pertence ao item, e continua válido no novo nó do mesmo slot.
+    if (slot && slot.isConnected && e.relatedTarget instanceof Node && itemKey(slot) === dismissed &&
+        itemKey(slotFrom(e.relatedTarget)) !== dismissed && !panel.contains(e.relatedTarget)) dismissed = null;
     if (slot && e.relatedTarget && !slot.contains(e.relatedTarget) && !panel.contains(e.relatedTarget)) focusOwner = null;
     if (slot || panel.contains(e.target)) {
       if (!pinned && !slotFrom(e.relatedTarget) && !panel.contains(e.relatedTarget)) hide();
     }
   });
   document.addEventListener('click', e => {
+    touchFocusSlot = null;
     const slot = slotFrom(e.target);
     if (!slot) return;
     e.preventDefault();
@@ -286,11 +310,13 @@
     }
   }, true);
   document.addEventListener('pointerdown', e => {
+    touchFocusSlot = e.pointerType === 'touch' ? slotFrom(e.target) : null;
     if (anchor && !panel.contains(e.target) && !slotFrom(e.target)) hide();
   }, true);
+  document.addEventListener('pointercancel', () => { touchFocusSlot = null; }, true);
   closeButton.addEventListener('click', () => hide(true, true));
   document.addEventListener('nq:hud-preview-opening', e => {
-    if (e.detail && e.detail.kind === 'stat') hide();
+    if (e.detail && e.detail.kind === 'stat') hide(false, true);
   });
   for (const event of ['touchstart', 'touchend']) {
     document.addEventListener(event, e => {
@@ -304,6 +330,11 @@
   if (window.visualViewport) {
     window.visualViewport.addEventListener('resize', () => { if (anchor) position(); });
     window.visualViewport.addEventListener('scroll', () => { if (anchor) position(); });
+  }
+  // Fontes carregadas e ampliação de texto também podem mudar a altura do
+  // portal sem resize da janela. A posição usa sempre o tamanho atual.
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(() => { if (anchor && !panel.hidden) position(); }).observe(panel);
   }
   new MutationObserver(decorate).observe(scope, { childList: true, subtree: true });
   const visibilityObserver = new MutationObserver(records => {

@@ -27,9 +27,37 @@ test('referência expande na questão, preserva os textos e recolhe pelo teclado
   await expect(detail.locator('section').nth(1).locator('p')).toHaveText(source.conclusao);
   await expect(detail.locator('section').nth(2).locator('p')).toHaveText(source.curiosidade);
   expect(await snapshot()).toBe(before);
-  await page.setViewportSize({ width: 320, height: 568 });
-  await page.evaluate(() => { document.documentElement.style.fontSize = '32px'; });
-  expect(await detail.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+  for (const width of [1100, 390, 320]) {
+    await page.setViewportSize({ width, height: width === 320 ? 568 : 844 });
+    for (const percent of [100, 200]) {
+      await test.step('referência em ' + width + 'px, texto a ' + percent + '%', async () => {
+        await page.evaluate(async percent => {
+          document.documentElement.style.fontSize = percent === 200 ? '32px' : '16px';
+          await document.fonts.ready;
+          await new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+        }, percent);
+        const metrics = await detail.evaluate(el => {
+          const box = el.getBoundingClientRect();
+          const cut: string[] = [];
+          const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+          for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+            if (!(node.textContent || '').trim()) continue;
+            const range = document.createRange();
+            range.selectNodeContents(node);
+            if (Array.from(range.getClientRects()).some(rect => rect.width && rect.height &&
+              (rect.left < box.left - 1 || rect.right > box.right + 1 ||
+               rect.top < box.top - 1 || rect.bottom > box.bottom + 1))) {
+              cut.push(node.textContent || '');
+            }
+          }
+          return { scrollWidth: el.scrollWidth, clientWidth: el.clientWidth, cut };
+        });
+        expect(metrics.scrollWidth).toBeLessThanOrEqual(metrics.clientWidth + 1);
+        expect(metrics.cut, 'os títulos e parágrafos devem permanecer dentro da referência').toEqual([]);
+        expect(await snapshot()).toBe(before);
+      });
+    }
+  }
   await button.focus();
   await page.keyboard.press('Enter');
   await expect(detail).toBeHidden();

@@ -46,6 +46,9 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
 }
 .nqe-preview {
   position: fixed;
+  /* A geometria medida no JS precisa valer no mesmo frame, inclusive quando
+     a regra global de movimento reduzido define uma duração de transição. */
+  transition: none !important;
   z-index: 10020;
   box-sizing: border-box;
   width: 340px;
@@ -64,7 +67,7 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
 }
 .nqe-preview[hidden] { display: none !important; }
 .nqe-preview *, .nqe-preview *::before, .nqe-preview *::after { box-sizing: border-box; }
-.nqe-preview-header { position: relative; padding-right: 0; }
+.nqe-preview-header { position: sticky; top: 0; z-index: 1; padding-right: 0; background: #18253a; }
 .nqe-preview[data-pinned="true"] .nqe-preview-header { padding-right: 44px; }
 .nqe-preview-slot { color: #aec1d7; font-size: .6875rem; letter-spacing: .1em; text-transform: uppercase; }
 .nqe-preview-title { margin: 4px 0 6px; font: 500 1.4375rem/1.1 Alegreya, Georgia, serif; overflow-wrap: anywhere; }

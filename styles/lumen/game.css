@@ -275,6 +275,7 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   min-width: 0;
   padding: 0 8px 4px;
   text-align: center;
+  overflow-wrap: anywhere;
 }
 
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-hero-archetype {
@@ -1284,6 +1285,7 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   --nql-dock-rgb: 122, 159, 216;
 
   width: 5.1rem;
+  max-width: 100%;
   height: 5.45rem;
   padding: .82rem .35rem .52rem;
   border: 1px solid var(--nql-line);
@@ -1855,7 +1857,8 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   font-size: .9375rem; line-height: 1.75;
 }
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] .nql-answer-result {
-  display:flex; align-items:center; gap:.6rem; margin:0 0 .8rem;
+  display:grid; grid-template-columns:20px minmax(0,1fr); align-items:center; gap:.6rem; margin:0 0 .8rem;
+  overflow-wrap:anywhere;
   color:var(--nql-parchment); font:600 1.25rem/1.3 var(--nql-font-display);
 }
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] .nql-answer-icon { display:inline-grid; place-items:center; width:20px; height:20px; border:1px solid currentColor; border-radius:50%; font:600 12px/1 var(--nql-font-body); }
@@ -2048,6 +2051,12 @@ body > .stat-tip-floating[data-nq-ui="lumen"] strong + br {
  * O modo de leitura ampliada mantém sua escala própria. */
 body:not(.reading-mode):not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #question {
   font-size: 1.21875rem;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .ref-reading {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 
 body:not(.reading-mode):not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .opt-body {

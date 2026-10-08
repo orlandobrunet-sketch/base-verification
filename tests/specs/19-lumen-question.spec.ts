@@ -52,7 +52,9 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
       ['armor', 'boot', 'glove', 'helmet', 'relic', 'weapon']
     );
     await expect(slots.first()).toHaveAttribute('tabindex', '0');
-    await expect(slots.first()).toHaveAttribute('role', 'group');
+    await expect(slots.first()).toHaveAttribute('role', 'button');
+    await expect(slots.first()).toHaveAttribute('aria-haspopup', 'dialog');
+    await expect(slots.first()).toHaveAttribute('aria-controls', 'nqEquipmentPreview');
 
     if (testInfo.project.name === 'mobile') {
       await page.locator('#mobileHeroBtn').click();

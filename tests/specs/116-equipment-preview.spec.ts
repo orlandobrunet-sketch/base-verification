@@ -22,6 +22,7 @@ async function abrir(page: Page) {
   return page.locator(PREVIEW);
 }
 async function dentroDaTela(page: Page) {
+  await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
   const box = (await page.locator(PREVIEW).boundingBox())!;
   const viewport = page.viewportSize()!;
   expect(box.x).toBeGreaterThanOrEqual(0);
@@ -29,6 +30,13 @@ async function dentroDaTela(page: Page) {
   expect(box.x + box.width).toBeLessThanOrEqual(viewport.width + 1);
   expect(box.y + box.height).toBeLessThanOrEqual(viewport.height + 1);
   expect(await page.locator(PREVIEW).evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+}
+async function slotLivre(page: Page) {
+  const slot = (await page.locator(HELMET).boundingBox())!;
+  const preview = (await page.locator(PREVIEW).boundingBox())!;
+  const overlapX = Math.min(slot.x + slot.width, preview.x + preview.width) - Math.max(slot.x, preview.x);
+  const overlapY = Math.min(slot.y + slot.height, preview.y + preview.height) - Math.max(slot.y, preview.y);
+  expect(overlapX > 0 && overlapY > 0, 'hover não cobre o equipamento que será clicado').toBe(false);
 }
 
 test('foco e hover ampliam arte e atributos reais sem equipar ou consumir habilidade', async ({ page }) => {
@@ -47,6 +55,7 @@ test('foco e hover ampliam arte e atributos reais sem equipar ou consumir habili
   expect(image.source).toBeGreaterThanOrEqual(image.display * image.ratio);
   await expect(page.locator('.item-tooltip:visible')).toHaveCount(0);
   await dentroDaTela(page);
+  await slotLivre(page);
   await page.keyboard.press('Escape');
   await expect(preview).toBeHidden();
   // Eventos de filhos dentro do mesmo slot não desfazem o descarte por Escape.
@@ -115,15 +124,22 @@ test('rerender, stun, troca de tela e drawer fechado não deixam foco num previe
   expect(await page.evaluate(() => !document.activeElement?.closest('#nqEquipmentPreview'))).toBe(true);
 });
 
-test('toque e texto a 200% em 320px mantêm leitura, enquadro e ações fora do preview', async ({ page }) => {
-  await page.setViewportSize({ width: 320, height: 700 });
+for (const width of [320, 390]) {
+test(`toque e texto a 200% em ${width}px mantêm leitura, enquadro e ações fora do preview`, async ({ page }) => {
+  await page.setViewportSize({ width, height: 700 });
   const preview = await abrir(page);
   await page.evaluate(() => { document.documentElement.style.fontSize = '32px'; });
   await page.locator(HELMET).scrollIntoViewIfNeeded();
   const before = await snapshot(page);
+  await page.locator(HELMET).focus();
+  await expect(preview).toHaveAttribute('role', 'tooltip');
+  await slotLivre(page);
   await page.locator(HELMET).tap();
   await expect(preview).toBeVisible();
+  await expect(preview).toHaveAttribute('role', 'dialog');
+  await expect(preview).toHaveAttribute('data-pinned', 'true');
   await dentroDaTela(page);
+  if (process.env.NQ_CAPTURE_DIR) await page.screenshot({ path: process.env.NQ_CAPTURE_DIR + `/equipment-${width}-${test.info().project.name}-200.png` });
   expect(await preview.locator('.nqe-preview-desc').evaluate(el => parseFloat(getComputedStyle(el).fontSize))).toBeGreaterThanOrEqual(28);
   // O preview não oferece botão de equipar ou ativar; apenas fechar.
   expect(await preview.locator('button').allTextContents()).toEqual(['×']);
@@ -136,7 +152,11 @@ test('toque e texto a 200% em 320px mantêm leitura, enquadro e ações fora do 
   await expect(page.locator('.panel.left')).toHaveClass(/mobile-open/);
   await expect(preview).toBeVisible();
   expect(await snapshot(page)).toBe(before);
-  await preview.getByRole('button', { name: 'Fechar detalhes do equipamento' }).click();
+  await preview.evaluate(el => { el.scrollTop = el.scrollHeight; });
+  const close = preview.getByRole('button', { name: 'Fechar detalhes do equipamento' });
+  await expect(close).toBeVisible();
+  expect((await close.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+  await close.tap();
   await expect(preview).toBeHidden();
   // Slot vazio usa a arte inicial e declara explicitamente os bônus ausentes.
   await page.locator('#equipList .slot-diablo.starter').first().scrollIntoViewIfNeeded();
@@ -144,6 +164,24 @@ test('toque e texto a 200% em 320px mantêm leitura, enquadro e ações fora do 
   await expect(preview.locator('.nqe-preview-rarity')).toHaveText('Inicial · sem bônus');
   expect(await preview.locator('dd').allTextContents()).toEqual(['0', '0', '0', '0']);
   await dentroDaTela(page);
+});
+}
+
+test('ampliar o texto com detalhes já abertos conserva enquadro e fechamento por toque', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 700 });
+  const preview = await abrir(page), before = await snapshot(page);
+  await page.locator(HELMET).tap();
+  await expect(preview).toHaveAttribute('role', 'dialog');
+  await page.evaluate(() => { document.documentElement.style.fontSize = '32px'; });
+  await expect.poll(async () => {
+    const box = (await preview.boundingBox())!;
+    const viewport = page.viewportSize()!;
+    return Math.max(-box.x, -box.y, box.x + box.width - viewport.width, box.y + box.height - viewport.height);
+  }).toBeLessThanOrEqual(1);
+  await dentroDaTela(page);
+  await preview.getByRole('button', { name: 'Fechar detalhes do equipamento' }).tap();
+  await expect(preview).toBeHidden();
+  expect(await snapshot(page)).toBe(before);
 });
 
 test('texto e URL de item são tratados como dados; diálogo modal tem prioridade', async ({ page }) => {
@@ -173,7 +211,7 @@ test('texto e URL de item são tratados como dados; diálogo modal tem prioridad
   await page.locator(HELMET).dispatchEvent('click');
   await expect(preview).toBeVisible();
   // Exclui coexistência com a dica independente dos atributos totais.
-  await page.locator('#equipList .stat-badge').first().dispatchEvent('mouseover');
+  await page.locator('#equipList .stat-badge').first().focus();
   await expect(preview).toBeHidden();
   await expect(page.locator('.stat-tip-floating')).toBeVisible();
 });

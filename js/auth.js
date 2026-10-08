@@ -29,6 +29,27 @@
     // ===== SUPABASE AUTH =====
     let _supaClient = null;
     let authUser = null;
+    let _authSessionEpoch = 0;
+    let _explicitLoginIntent = false;
+    let _explicitSessionOwner = null;
+    function _markExplicitLoginIntent(value) {
+      _explicitLoginIntent = value;
+      try {
+        if (value) sessionStorage.setItem('nq-auth-login-intent', '1');
+        else sessionStorage.removeItem('nq-auth-login-intent');
+      } catch (e) {}
+    }
+    function _hasExplicitLoginIntent() {
+      try { return _explicitLoginIntent || sessionStorage.getItem('nq-auth-login-intent') === '1'; }
+      catch (e) { return _explicitLoginIntent; }
+    }
+    function _acceptSessionUser(candidateUser, event = '') {
+      if (candidateUser && (event === 'PASSWORD_RECOVERY' || _hasExplicitLoginIntent())) _explicitSessionOwner = candidateUser.id;
+      if (candidateUser && typeof window._signedOutSaveNeedsLogin === 'function' &&
+          window._signedOutSaveNeedsLogin(candidateUser.id) && _explicitSessionOwner !== candidateUser.id) return false;
+      if (candidateUser) _explicitSessionOwner = candidateUser.id;
+      return true;
+    }
     Object.defineProperty(window, 'authUser', {
       get() { return authUser; },
       set(val) { authUser = val; },
@@ -51,12 +72,26 @@
 
       _supaClient.auth.onAuthStateChange(async (event, session) => {
         const candidateUser = session?.user ?? null;
+        if (!_acceptSessionUser(candidateUser, event)) {
+          authUser = null;
+          if (typeof window._stopLocalJourney === 'function') window._stopLocalJourney();
+          updateWelcomeUserBadge();
+          return;
+        }
+        const progressReady = typeof window._prepareProgressOwner !== 'function' ||
+          window._prepareProgressOwner(candidateUser?.id || null);
+        if ((authUser?.id || null) !== (candidateUser?.id || null) || event === 'SIGNED_OUT') {
+          ++_authSessionEpoch;
+          if (typeof window._stopLocalJourney === 'function') window._stopLocalJourney();
+        }
         if (event === 'PASSWORD_RECOVERY') {
           authUser = candidateUser;
           showUpdatePasswordModal();
           return;
         }
         authUser = candidateUser;
+        if (!authUser) _explicitSessionOwner = null;
+        if (authUser) _markExplicitLoginIntent(false);
         if (authUser) {
           if (_guestMode) {
             _guestMode = false;
@@ -64,7 +99,7 @@
             localStorage.removeItem('nq_guest_mode');
           }
           _loadPremiumFromDB();
-          _loadProgressFromCloud();
+          if (progressReady) _loadProgressFromCloud();
           checkFirstTimeOnboarding();
           // Se havia plano pendente (usuário clicou em pagar antes de fazer login)
           _resumePendingPayment();
@@ -78,9 +113,15 @@
         updateWelcomeUserBadge();
       });
 
+      const initialSessionEpoch = _authSessionEpoch;
       _supaClient.auth.getSession().then(({ data: { session } }) => {
-        authUser = session?.user ?? null;
-        if (authUser) { _loadPremiumFromDB(); _loadProgressFromCloud(); }
+        if (_authSessionEpoch !== initialSessionEpoch) return;
+        const candidateUser = session?.user ?? null;
+        if (!_acceptSessionUser(candidateUser)) { authUser = null; updateWelcomeUserBadge(); _consumeLoginIntent(); return; }
+        const progressReady = typeof window._prepareProgressOwner !== 'function' ||
+          window._prepareProgressOwner(candidateUser?.id || null);
+        authUser = candidateUser;
+        if (authUser) { _markExplicitLoginIntent(false); _loadPremiumFromDB(); if (progressReady) _loadProgressFromCloud(); }
         else {
           localStorage.removeItem(PREMIUM_KEY);
           localStorage.removeItem('nefroquest-premium-sig');
@@ -115,7 +156,7 @@
       try { if (localStorage.getItem(NICK_ASKED_KEY) === '1') return; } catch (e) {}
       setTimeout(() => {
         const ws = document.getElementById('welcomeScreen');
-        if (!ws || ws.classList.contains('hidden')) return;
+        if (!ws || ws.classList.contains('hidden') || ws.inert || document.getElementById('nqSaveRecovery')) return;
         if (authUser?.user_metadata?.nickname) return;
         _showNicknameModal(true);
       }, 900);
@@ -407,16 +448,19 @@
       buttons.forEach(button => { button.disabled = true; button.setAttribute('aria-busy', 'true'); });
       if (routeStatus) routeStatus.textContent = 'Abrindo acesso seguro com Google…';
       try {
+        _markExplicitLoginIntent(true);
         const { error } = await _supaClient.auth.signInWithOAuth({
           provider: 'google',
           options: { redirectTo: AUTH_REDIRECT_URL }
         });
         if (error) {
+          _markExplicitLoginIntent(false);
           openAuthModal();
           _setAuthMsg('Não foi possível abrir o Google agora. Tente novamente.', 'error');
           if (routeStatus) routeStatus.textContent = 'Google indisponível agora · tente novamente';
         }
       } catch {
+        _markExplicitLoginIntent(false);
         openAuthModal();
         _setAuthMsg('Não foi possível abrir o Google agora. Verifique sua conexão e tente novamente.', 'error');
         if (routeStatus) routeStatus.textContent = 'Falha de conexão · tente novamente';
@@ -444,11 +488,13 @@
       btn.disabled = true; btn.textContent = 'Entrando...';
       const captchaToken = _cfCaptchaToken();
       try {
+        _markExplicitLoginIntent(true);
         const { error } = await _supaClient.auth.signInWithPassword({
           email, password,
           ...(captchaToken ? { options: { captchaToken } } : {})
         });
         if (error) {
+          _markExplicitLoginIntent(false);
           const msg = error.message === 'Invalid login credentials'
             ? 'Email ou senha incorretos.'
             : error.message === 'Email not confirmed'
@@ -457,7 +503,7 @@
           _setAuthMsg(msg, 'error');
           _markAuthInvalid(['authEmail', 'authPassword']);
         } else { closeAuthModal(); }
-      } catch { _setAuthMsg('Erro de conexão. Tente novamente.', 'error'); }
+      } catch { _markExplicitLoginIntent(false); _setAuthMsg('Erro de conexão. Tente novamente.', 'error'); }
       finally { btn.disabled = false; btn.textContent = 'Entrar no NefroQuest'; _cfCaptchaReset(); }
     }
     async function authEmailRegister() {
@@ -540,8 +586,15 @@
       finally { btn.disabled = false; btn.textContent = 'Reenviar email'; _cfCaptchaReset(); }
     }
     async function authLogout() {
-      if (!_supaClient) return;
-      try { await _supaClient.auth.signOut(); } catch { /* cleanup local state regardless */ }
+      ++_authSessionEpoch;
+      _explicitSessionOwner = null;
+      _markExplicitLoginIntent(false);
+      // Stop local writes before awaiting the SDK, including visitor sessions
+      // where the SDK is unavailable or signOut cannot reach the network.
+      if (typeof window.clearLocalProgress === 'function' && window.clearLocalProgress('logout') === false) return false;
+      if (_supaClient) {
+        try { await _supaClient.auth.signOut(); } catch { /* cleanup local state regardless */ }
+      }
       authUser = null;
       _guestMode = false;
       _guestHookShown = false;
@@ -551,7 +604,6 @@
       localStorage.removeItem(WHITELIST_KEY);
       localStorage.removeItem('nefroquest-whitelist-sig');
       _invalidatePremiumCache(); _invalidateStatsCache();
-      if (typeof window.clearLocalProgress === 'function') window.clearLocalProgress();
       updateWelcomeUserBadge();
       document.getElementById('welcomeScreen')?.classList.add('hidden');
       document.getElementById('landingScreen')?.classList.remove('hidden');

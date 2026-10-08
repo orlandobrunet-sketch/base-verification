@@ -3,12 +3,9 @@ import { injectGameState } from '../helpers/game';
 import { medirContraste } from '../helpers/contraste';
 
 test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
-test.beforeEach(({}, info) => {
-  test.skip(info.project.name !== 'chromium', 'Cada cenário fixa sua própria viewport.');
-});
 
-async function abrir(page: Page, largura = 390, grande = false) {
-  await page.setViewportSize({ width: largura, height: 844 });
+async function abrir(page: Page, largura = 390, grande = false, altura = 844) {
+  await page.setViewportSize({ width: largura, height: altura });
   await page.route('**/*', r => new URL(r.request().url()).hostname === 'localhost' ? r.continue() : r.abort());
   await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
   await injectGameState(page);
@@ -19,6 +16,15 @@ async function abrir(page: Page, largura = 390, grande = false) {
   await page.evaluate(() => (window as any).openGameModesPopup());
   const dialogo = page.getByRole('dialog', { name: 'Modos de jogo', exact: true });
   await expect(dialogo).toBeVisible();
+  await expect.poll(async () => dialogo.evaluate(element => {
+    let opacity = 1;
+    let current: Element | null = element;
+    while (current && current !== document.documentElement) {
+      opacity *= Number.parseFloat(getComputedStyle(current).opacity) || 0;
+      current = current.parentElement;
+    }
+    return opacity;
+  }), { message: 'O diálogo de modos deve estar visível antes da auditoria' }).toBe(1);
   return { dialogo, origem };
 }
 
@@ -47,6 +53,19 @@ for (const largura of [320, 390, 1280]) {
     expect(geometria).toEqual([]);
   });
 }
+
+test('Modos permite alcançar a última rota em paisagem com texto a 200%', async ({ page }) => {
+  const { dialogo } = await abrir(page, 844, true, 320);
+  const fechar = dialogo.getByRole('button', { name: 'Fechar modos de jogo', exact: true });
+  await expect(fechar).toBeInViewport();
+  const ultimaRota = dialogo.locator('.nqmodes-route').last();
+  await ultimaRota.scrollIntoViewIfNeeded();
+  await expect(ultimaRota).toBeInViewport({ ratio: 0.9 });
+  await ultimaRota.focus();
+  await expect(ultimaRota).toBeFocused();
+  await page.keyboard.press('Escape');
+  await expect(dialogo).not.toBeVisible();
+});
 
 test('Tab, Escape e reabertura preservam o foco e o estado da jornada', async ({ page }) => {
   const { dialogo, origem } = await abrir(page);
@@ -90,4 +109,25 @@ test('escolher Estudo entrega o foco ao seletor existente', async ({ page }) => 
   const estudo = page.locator('.study-mode-popup');
   await expect(estudo).toBeVisible();
   expect(await estudo.evaluate(el => el.contains(document.activeElement))).toBe(true);
+});
+
+test('Pixel 7 abre e fecha modos por toque e entrega Estudo sem alterar a jornada', async ({ page, isMobile }) => {
+  test.skip(!isMobile, 'contrato de toque executado no projeto Pixel 7');
+  const { dialogo, origem } = await abrir(page, 390, true);
+  const snapshot = () => page.evaluate(() => {
+    const s = (window as any).state;
+    return JSON.stringify({ gold: s.gold, score: s.score, lives: s.lives, xp: s.xp, idx: s.idx, correctTotal: s.correctTotal });
+  });
+  const antes = await snapshot();
+  await dialogo.getByRole('button', { name: 'Fechar modos de jogo', exact: true }).tap();
+  await expect(dialogo).not.toBeVisible();
+  await expect(origem).toBeFocused();
+  await page.evaluate(() => (window as any).openGameModesPopup());
+  await expect(dialogo).toBeVisible();
+  await dialogo.getByRole('button', { name: /Modo de Estudo/ }).tap();
+  await expect(dialogo).not.toBeVisible();
+  const estudo = page.locator('.study-mode-popup');
+  await expect(estudo).toBeVisible();
+  expect(await estudo.evaluate(el => el.contains(document.activeElement))).toBe(true);
+  expect(await snapshot()).toBe(antes);
 });

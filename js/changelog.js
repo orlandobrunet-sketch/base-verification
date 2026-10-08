@@ -577,6 +577,12 @@
     document.addEventListener('pointerover', function(e){
       const badge = e.target instanceof Element ? e.target.closest('.stat-badge') : null;
       if(badge){
+        // Escape conserva o fechamento enquanto o ponteiro permanece no atributo.
+        // Uma nova entrada real, inclusive após sair do portal, inicia outra leitura.
+        if(statTooltipDismissedOwner === badge &&
+          (!(e.relatedTarget instanceof Node) || !badge.contains(e.relatedTarget))){
+          statTooltipDismissedOwner = null;
+        }
         if(statTooltipDismissedOwner !== badge) showStatTooltip(badge);
       } else if(statTooltip && e.target instanceof Node && statTooltip.contains(e.target)){
         clearStatTooltipHide();
@@ -620,6 +626,14 @@
         statTooltipDismissedOwner = null;
         hideStatTooltip();
       }
+    });
+
+    document.addEventListener('mousedown', function(e){
+      // O portal visual não recebe foco: sua descrição acessível pertence ao
+      // atributo. Cancelar apenas o foco do mouse compatível conserva esse
+      // atributo focado após um toque, sem cancelar a rolagem por touch.
+      if(e.button === 0 && statTooltipOwner && statTooltip &&
+        e.target instanceof Node && statTooltip.contains(e.target)) e.preventDefault();
     });
 
     document.addEventListener('nq:hud-preview-opening', function(e){

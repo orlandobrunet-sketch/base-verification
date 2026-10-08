@@ -42,15 +42,15 @@ async function estado(page: Page) {
     idx:state.idx,queueIds:state.queue.map(q=>q.id)
   })`)));
 }
-const save = (page: Page) => page.evaluate(() => JSON.parse(localStorage.getItem('nefroquest-save') || 'null'));
-const rawSave = (page: Page) => page.evaluate(() => localStorage.getItem('nefroquest-save'));
+const save = (page: Page) => page.evaluate(() => JSON.parse(localStorage.getItem('nefroquest-save-v7') || 'null'));
+const rawSave = (page: Page) => page.evaluate(() => localStorage.getItem('nefroquest-save-v7'));
 
 async function falharArmazenamento(page: Page) {
   await page.evaluate(() => {
     const original = Storage.prototype.setItem;
     (window as any).__nqRestoreStorage = () => { Storage.prototype.setItem = original; };
     Storage.prototype.setItem = function(key, value) {
-      if (key === 'nefroquest-save') throw new DOMException('Falha simulada no save', 'QuotaExceededError');
+      if (key === 'nefroquest-save-v7') throw new DOMException('Falha simulada no save', 'QuotaExceededError');
       return original.call(this, key, value);
     };
   });
@@ -204,6 +204,7 @@ test('ouro insuficiente e sair antes de forjar preservam o estado completo', asy
   expect(await estado(page)).toEqual(antes);
   expect(await rawSave(page)).toBe(persistido);
   await page.getByRole('button', { name: '← Voltar à jornada', exact: true }).click();
+  await expect(page.locator('#forgeBtn:visible, .mdock-btn.forge-item:visible').first()).toBeFocused();
   expect(await estado(page)).toEqual(antes);
 });
 
@@ -347,3 +348,251 @@ for (const largura of [320, 390]) {
     await expect(page.getByRole('button', { name: 'Forjar outro item', exact: true })).toBeVisible();
   });
 }
+
+// Same-context pages share storage, including writes after the modern page
+// closes. The legacy writer reproduces the v6 payload (no paid-choice field).
+async function abaLegada(page: Page) {
+  const legacy = await page.context().newPage();
+  await legacy.route('**/*', route => new URL(route.request().url()).hostname === 'localhost' ? route.continue() : route.abort());
+  await legacy.route('**/legacy-storage-test.html', route => route.fulfill({contentType:'text/html',body:'<!doctype html><title>Legacy storage writer</title>'}));
+  await legacy.goto('/legacy-storage-test.html');
+  return legacy;
+}
+
+async function sobrescreverComoV6(legacy: Page, previous: Record<string, any>) {
+  await legacy.evaluate(save => {
+    const { forjaPending, saveOwner, saveRevision, ...old } = save;
+    localStorage.setItem('nefroquest-save', JSON.stringify({ ...old, schemaVersion: 6, timestamp: Date.now() + 10000 }));
+  }, previous);
+}
+
+async function reabrirJornada(page: Page) {
+  await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
+  await page.waitForFunction(() => typeof (window as any).continueGame === 'function');
+  await page.evaluate(() => document.getElementById('landingScreen')?.classList.add('hidden'));
+}
+
+test('aba v6 não apaga o sorteio pago depois que a aba moderna fecha', async ({ page }) => {
+  await abrir(page);
+  const legacy = await abaLegada(page);
+  const old = await save(page);
+  await page.getByRole('button', { name: 'Forjar item comum', exact: true }).click();
+  const paid = await save(page);
+  const paidRaw = await rawSave(page);
+  await page.close();
+  await sobrescreverComoV6(legacy, old);
+  const reopened = await legacy.context().newPage();
+  await reopened.route('**/*', route => new URL(route.request().url()).hostname === 'localhost' ? route.continue() : route.abort());
+  await reabrirJornada(reopened);
+  await expect(reopened.locator('#nqSaveRecovery')).toBeVisible();
+  expect(await rawSave(reopened)).toBe(paidRaw);
+  expect((await estado(reopened)).gameStarted).toBe(false);
+  // No item, name or score is disclosed before a guest claims this journey.
+  await expect(reopened.locator('#nqSaveRecovery')).not.toContainText(paid.forjaPending.novo.n);
+  await reopened.getByRole('button', { name: 'Retomar jornada protegida', exact: true }).click();
+  await expect(reopened.locator('#forjaPage')).toBeVisible();
+  expect((await estado(reopened)).gold).toBe(paid.gold);
+  expect((await estado(reopened)).forjaPending).toEqual(paid.forjaPending);
+  expect((await estado(reopened)).equipment).toEqual(paid.equipment);
+  await reopened.locator('[data-action="decidirForja"][data-arg="manter"]').click();
+  const sold = await save(reopened);
+  expect(sold.gold).toBe(paid.gold + VENDA[paid.forjaPending.novo.rar]);
+  expect(sold.forjaPending).toBeNull();
+  await reopened.evaluate(() => (0, eval)("decidirForja('manter')"));
+  expect((await save(reopened)).gold).toBe(sold.gold);
+});
+
+test('logout legado de visitante exige escolha e descarte impede ressurreição tardia', async ({ page }) => {
+  await abrir(page);
+  const old = await save(page);
+  const legacy = await abaLegada(page);
+  await page.getByRole('button', { name: 'Forjar item comum', exact: true }).click();
+  const paidRaw = await rawSave(page);
+  await page.close();
+  await legacy.evaluate(() => localStorage.removeItem('nefroquest-save'));
+  const reopened = await legacy.context().newPage();
+  await reopened.route('**/*', route => new URL(route.request().url()).hostname === 'localhost' ? route.continue() : route.abort());
+  await reabrirJornada(reopened);
+  await expect(reopened.locator('#nqSaveRecovery')).toBeVisible();
+  expect(await rawSave(reopened)).toBe(paidRaw);
+  expect((await estado(reopened)).gameStarted).toBe(false);
+  await reopened.getByRole('button', { name: 'Começar uma nova jornada', exact: true }).click();
+  expect(await save(reopened)).toMatchObject({save:null,resetReason:'reset'});
+  await sobrescreverComoV6(legacy, old);
+  await reopened.reload();
+  await reopened.waitForFunction(() => typeof (window as any).continueGame === 'function');
+  expect(await reopened.evaluate(() => (0, eval)('loadGame()'))).toBeNull();
+  await expect(reopened.locator('#nqSaveRecovery')).toHaveCount(0);
+});
+
+test('reset em outra aba cancela a Forja, autosave e save atrasado da aba moderna', async ({ page }) => {
+  await abrir(page);
+  await page.getByRole('button', { name: 'Forjar item comum', exact: true }).click();
+  const other = await abaLegada(page);
+  await page.evaluate(() => (0, eval)('state.score += 1; saveGame()'));
+  await other.evaluate(() => localStorage.setItem('nefroquest-save-v7', 'null'));
+  await expect(page.locator('#forjaPage')).toHaveCount(0);
+  await page.waitForTimeout(900);
+  expect(await rawSave(page)).toBe('null');
+  expect((await estado(page)).gameStarted).toBe(false);
+  expect((await estado(page)).forjaPending).toBeNull();
+  expect(await page.evaluate(() => (0, eval)('_doSaveGame()'))).toBe(false);
+  expect(await rawSave(page)).toBe('null');
+});
+
+test('espelho legado indisponível não desfaz compra canônica nem cria segunda cobrança', async ({ page }) => {
+  await abrir(page);
+  const before = await estado(page);
+  await page.evaluate(() => {
+    const original = Storage.prototype.setItem;
+    (window as any).__nqRestoreStorage = () => { Storage.prototype.setItem = original; };
+    Storage.prototype.setItem = function(key, value) {
+      if (key === 'nefroquest-save') throw new DOMException('Espelho indisponível', 'QuotaExceededError');
+      return original.call(this, key, value);
+    };
+  });
+  try {
+    await page.getByRole('button', { name: 'Forjar item comum', exact: true }).click();
+    const paid = await estado(page);
+    expect(paid.gold).toBe(before.gold - 300);
+    expect(paid.forjaPending).not.toBeNull();
+    expect((await save(page)).forjaPending).toEqual(paid.forjaPending);
+    await page.evaluate(() => (0, eval)("forjarNaPagina('comum')"));
+    expect((await save(page)).gold).toBe(paid.gold);
+  } finally { await restaurarArmazenamento(page); }
+});
+
+test('guard síncrono impede autosave obsoleto antes de chegar o evento storage', async ({ page }) => {
+  await abrir(page);
+  await page.getByRole('button', { name: 'Forjar item comum', exact: true }).click();
+  const result = await page.evaluate(async () => {
+    // A self-write does not dispatch storage in this page, reproducing the
+    // interval before another tab's notification reaches a queued autosave.
+    localStorage.setItem('nefroquest-save-v7', 'null');
+    const saved = (0, eval)('_doSaveGame()');
+    await Promise.resolve();
+    return {saved,raw:localStorage.getItem('nefroquest-save-v7'),started:(0, eval)('state.gameStarted')};
+  });
+  expect(result).toEqual({saved:false,raw:'null',started:false});
+  await expect(page.locator('#forjaPage')).toHaveCount(0);
+});
+
+test('logout legado antes do evento storage pausa visitante sem restaurar automaticamente', async ({ page }) => {
+  await abrir(page);
+  await page.getByRole('button', { name: 'Forjar item comum', exact: true }).click();
+  const paidRaw = await rawSave(page);
+  const result = await page.evaluate(async () => {
+    localStorage.removeItem('nefroquest-save');
+    const saved = (0, eval)('_doSaveGame()');
+    await Promise.resolve();
+    return {saved,started:(0, eval)('state.gameStarted')};
+  });
+  expect(result).toEqual({saved:false,started:false});
+  expect(await rawSave(page)).toBe(paidRaw);
+  await expect(page.locator('#forjaPage')).toHaveCount(0);
+  await expect(page.locator('#nqSaveRecovery')).toBeVisible();
+});
+
+test('nuvem v6 mais recente não perde escolha paga v7 e reenvia o save protegido', async ({ page }) => {
+  await abrir(page);
+  // A local test account with a mocked profiles endpoint; no backend requests.
+  await page.evaluate(() => {
+    (0, eval)("_stopLocalJourney(); authUser = { id: 'forja-owner-A' }");
+    const local = JSON.parse(localStorage.getItem('nefroquest-save-v7')!);
+    local.saveOwner = 'forja-owner-A';
+    localStorage.setItem('nefroquest-save-v7', JSON.stringify(local));
+    localStorage.setItem('nefroquest-save', JSON.stringify(local));
+  });
+  await page.evaluate(() => (window as any).continueGame());
+  await expect(page.locator('#mainApp')).toBeVisible();
+  await page.locator('#forgeBtn:visible, .mdock-btn.forge-item:visible').first().click();
+  await page.getByRole('button', { name: 'Forjar item comum', exact: true }).click();
+  const paid = await save(page);
+  const paidRaw = await rawSave(page);
+  const uploads = await page.evaluate(async paid => {
+    const uploads: any[] = [];
+    const { forjaPending, saveOwner, saveRevision, ...legacy } = paid;
+    (window as any).__nqUploads = uploads;
+    (0, eval)(`_supaClient = { from: name => ({ update: payload => ({ eq: async (key, owner) => { window.__nqUploads.push({name, payload, key, owner}); } }) }) }`);
+    (window as any)._mergeCloudProgress({ save: { ...legacy, schemaVersion: 6, timestamp: Date.now() + 10000 } });
+    await (0, eval)('_syncProgressToCloud()');
+    return uploads;
+  }, paid);
+  expect(await rawSave(page)).toBe(paidRaw);
+  expect(uploads).toHaveLength(1);
+  expect(uploads[0].owner).toBe('forja-owner-A');
+  expect(uploads[0].payload.game_progress.save).toEqual(paid);
+  expect((await estado(page)).forjaPending).toEqual(paid.forjaPending);
+});
+
+test('query de nuvem iniciada antes da compra não substitui a Forja paga por save v7', async ({ page }) => {
+  await abrir(page);
+  await page.evaluate(() => {
+    (0, eval)("_stopLocalJourney(); authUser = {id:'forja-owner-A'}");
+    const local = JSON.parse(localStorage.getItem('nefroquest-save-v7')!);
+    local.saveOwner = 'forja-owner-A';
+    const raw = JSON.stringify(local);
+    localStorage.setItem('nefroquest-save-v7',raw);
+    localStorage.setItem('nefroquest-save',raw);
+  });
+  await page.evaluate(() => (window as any).continueGame());
+  await expect(page.locator('#mainApp')).toBeVisible();
+  await page.clock.install();
+  await page.evaluate(() => {
+    (window as any).__lateCloudUploads = [];
+    (0, eval)(`_supaClient = {from: () => ({
+      select: () => ({eq: () => ({single: () => new Promise(resolve => {window.__lateCloudResolve = resolve;})})}),
+      update: payload => ({eq: async () => {window.__lateCloudUploads.push(payload);}})
+    })}`);
+    (window as any).__lateCloudLoad = (0, eval)('_loadProgressFromCloud()');
+  });
+  await page.locator('#forgeBtn:visible, .mdock-btn.forge-item:visible').first().click();
+  await page.getByRole('button',{name:'Forjar item comum',exact:true}).click();
+  const paid = await save(page);
+  const paidRaw = await rawSave(page);
+  expect(paid.gold).toBe(4700);
+  expect(paid.forjaPending).not.toBeNull();
+  await page.evaluate(async paid => {
+    (window as any).__lateCloudResolve({data:{game_progress:{stats:{bestScore:4242},achievements:['remote-monotonic'],save:{
+      ...paid,gold:999,forjaPending:null,saveRevision:'remote-after-query',timestamp:Date.now()+100000
+    }}}});
+    await (window as any).__lateCloudLoad;
+  }, paid);
+  await page.clock.fastForward(2200);
+  expect(await rawSave(page)).toBe(paidRaw);
+  expect((await estado(page)).gold).toBe(4700);
+  expect((await estado(page)).forjaPending).toEqual(paid.forjaPending);
+  expect((await estado(page)).gameStarted).toBe(true);
+  await expect(page.locator('#forjaPage')).toBeVisible();
+  const uploads = await page.evaluate(() => (window as any).__lateCloudUploads);
+  expect(uploads).toHaveLength(1);
+  expect(uploads[0].game_progress.save).toEqual(paid);
+  expect(uploads[0].game_progress.stats.bestScore).toBe(4242);
+  expect(uploads[0].game_progress.achievements).toContain('remote-monotonic');
+});
+
+test('Pixel 7 compra, decide e volta por toque preservando o restante da jornada', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'mobile', 'Contrato de toque no projeto Pixel 7.');
+  await abrir(page);
+  const before = await estado(page);
+  await page.evaluate(() => {
+    (window as any).__forjaPointerTypes = [];
+    document.getElementById('forjaPage')!.addEventListener('pointerdown', event => {
+      (window as any).__forjaPointerTypes.push((event as PointerEvent).pointerType);
+    });
+  });
+  await page.getByRole('button', { name: 'Forjar item comum', exact: true }).tap();
+  const paid = await estado(page);
+  expect(paid.gold).toBe(before.gold - 300);
+  expect(paid.forjaPending).not.toBeNull();
+  await page.locator('[data-action="decidirForja"][data-arg="substituir"]').tap();
+  const resolved = await estado(page);
+  expect(resolved.forjaPending).toBeNull();
+  expect(resolved.equipment[paid.forjaPending.slot]).toEqual(paid.forjaPending.novo);
+  expect(progressoSemForja(resolved)).toEqual(progressoSemForja(before));
+  await page.locator('[data-action="fecharForja"]').tap();
+  await expect(page.locator('#mainApp')).toBeVisible();
+  await expect(page.locator('.mdock-btn.forge-item:visible')).toBeFocused();
+  expect(await page.evaluate(() => (window as any).__forjaPointerTypes)).toEqual(['touch','touch','touch']);
+  expect((await save(page)).gold).toBe(resolved.gold);
+});
