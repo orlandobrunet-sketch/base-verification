@@ -1,0 +1,127 @@
+/* Forja Lúmen — apresentação; custos e transações vivem em game.js. */
+#forjaPage[data-nq-ui="lumen"] {
+  --gold: var(--nql-mastery);
+  --txt: var(--nql-text);
+  --txt-dim: var(--nql-text-soft);
+  min-height: 100svh;
+  padding: clamp(1rem, 3vw, 2.5rem);
+  background: radial-gradient(ellipse at 50% 18%, #16243a 0, #0b1220 42%, #070a13 80%);
+  color: var(--nql-text);
+  font-family: var(--nql-font-body);
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+#forjaPage .nq-forja-shell { width: 100%; max-width: 68rem; margin-inline: auto; padding: 0; }
+#forjaPage *, #forjaPage *::before, #forjaPage *::after { box-sizing: border-box; }
+#forjaPage h1, #forjaPage h2, #forjaPage h3 { font-family: var(--nql-font-display); font-weight: 600; letter-spacing: -.02em; }
+#forjaPage .nq-forja-cabecalho { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; padding: 0 0 1.4rem; border-bottom: 1px solid #34475d; }
+#forjaPage .nq-forja-cabecalho > .btn { justify-self: start; }
+#forjaPage .nq-forja-cabecalho > div { text-align: center; }
+#forjaPage .nq-forja-cabecalho h1 { margin: 0; font-size: clamp(2.5rem, 5vw, 3.5rem); line-height: 1.05; color: var(--nql-text); }
+#forjaPage .nq-forja-eyebrow { margin: 0 0 .25rem; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--nql-text-soft); }
+#forjaPage .nq-forja-ouro { justify-self: end; text-align: right; color: var(--nql-text-soft); font-size: 1rem; }
+#forjaPage .nq-forja-ouro strong { display: block; color: var(--nql-mastery); font-family: var(--nql-font-instrument); font-size: 1.65rem; }
+#forjaPage .nq-forja-cabecalho .nq-forja-motivo { margin: 0; color: var(--nql-danger); }
+#forjaPage .nq-forja-palco { display: grid; grid-template-columns: minmax(0, .65fr) minmax(0, 1.35fr); align-items: center; gap: 2rem; padding: 2rem 0; }
+#forjaPage .nq-forja-guardiao { margin: 0; justify-self: center; text-align: center; min-width: 0; }
+#forjaPage .nq-forja-guardiao img { display: block; width: min(100%, 15rem); aspect-ratio: 4 / 5; object-fit: cover; border-radius: 7rem 7rem 1rem 1rem; border: 1px solid #526079; box-shadow: 0 1.5rem 4rem #0005; }
+#forjaPage .nq-forja-guardiao figcaption { max-width: 22ch; margin: .8rem auto 0; font-size: .9rem; color: var(--nql-text-soft); }
+#forjaPage .nq-forja-resultado { min-width: 0; padding: clamp(1rem, 2.5vw, 2rem); border: 1px solid #40556d; border-radius: 1rem; background: #111a2e; box-shadow: 0 1rem 3rem #0003; }
+#forjaPage .nq-forja-resultado h2 { font-size: clamp(1.7rem, 3vw, 2.3rem); line-height: 1.15; margin: 0 0 .7rem; color: var(--nql-text); }
+#forjaPage .nq-forja-resultado > p { color: var(--nql-text-soft); margin: .7rem 0; max-width: 64ch; }
+#forjaPage .nq-forja-convite { text-align: center; }
+#forjaPage .nq-forja-convite p { margin: .75rem auto 0; max-width: 43ch; color: var(--nql-text-soft); }
+#forjaPage .nq-forja-bigorna { display: block; width: min(12rem, 100%); height: auto; margin: 0 auto 1.2rem; fill: #26374e; stroke: var(--nql-mastery); stroke-width: 2; stroke-linejoin: round; }
+#forjaPage .nq-forja-opcoes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; padding: 0 0 1.8rem; border-bottom: 0; }
+#forjaPage .nq-forja-opcao { display: flex; flex-direction: column; min-width: 0; padding: 1.35rem; border: 1px solid #40556d; border-radius: .75rem; background: #0d1627; }
+#forjaPage .nq-forja-opcao h3 { margin: .1rem 0; font-size: 1.65rem; color: var(--nql-text); }
+#forjaPage .nq-forja-opcao p { margin: .65rem 0; line-height: 1.55; color: var(--nql-text-soft); }
+#forjaPage .nq-forja-opcao .nq-forja-rota { margin: 0; font-size: .8rem; color: var(--nql-lumen); }
+#forjaPage .nq-forja-opcao .nq-forja-custo { font-family: var(--nql-font-instrument); font-size: 1.15rem; color: var(--nql-mastery); }
+#forjaPage .nq-forja-opcao .btn { margin-top: auto; width: 100%; }
+#forjaPage .btn { appearance: none; min-width: 0; min-height: 48px; height: auto; padding: .8rem 1rem; border: 1px solid #7b8ea6; border-radius: .45rem; font: 600 1rem/1.4 var(--nql-font-body); letter-spacing: 0; text-transform: none; white-space: normal; overflow-wrap: anywhere; cursor: pointer; box-shadow: none; background: #192843; color: var(--nql-text); }
+#forjaPage .btn.gold { background: var(--nql-mastery); border-color: var(--nql-mastery); color: #111a2e; }
+#forjaPage .btn.sec { background: #17253c; color: var(--nql-text); }
+#forjaPage .btn:disabled { opacity: 1; background: #1b293b; color: #b3bfd0; border-color: #667990; cursor: not-allowed; }
+#forjaPage .btn:not(:disabled):hover { filter: brightness(1.08); }
+#forjaPage :is(button, summary):focus-visible, #forjaPage .nq-forja-resultado:focus-visible { outline: 2px solid var(--nql-focus); outline-offset: 4px; }
+#forjaPage .nq-forja-motivo { color: var(--nql-danger); font-size: .95rem; line-height: 1.5; }
+#forjaPage .nq-forja-opcao .nq-forja-motivo { color: var(--nql-danger); margin-bottom: 0; }
+#forjaPage .nq-forja-resultado .nq-forja-aviso { padding: .8rem 1rem; background: #2a1627; border-left: 3px solid var(--nql-danger); color: var(--nql-danger) !important; }
+#forjaPage .nq-forja-pago { font-size: .92rem; }
+#forjaPage .nq-forja-comparar { display: grid; grid-template-columns: minmax(0, 1fr); gap: .8rem; margin: 1.25rem 0; }
+#forjaPage .nq-forja-item { border: 1px solid #3b4e68; border-radius: .65rem; background: #111a2e; padding: 1rem; min-width: 0; }
+#forjaPage .nq-forja-item-topo { display: flex; flex-wrap: wrap; align-items: center; gap: .9rem; }
+#forjaPage .nq-forja-item-topo > div { min-width: 0; }
+#forjaPage .nq-forja-item-topo > div:last-child { flex: 1 1 10rem; max-width: 100%; }
+#forjaPage .nq-forja-item h3 { margin: 0; font-size: 1.35rem; color: var(--nql-text); overflow-wrap: anywhere; }
+#forjaPage .nq-forja-item-topo p { margin: .25rem 0 0; font-size: .95rem; color: var(--nql-text-soft); }
+#forjaPage .nq-forja-arte { flex: 0 0 3.5rem; width: 3.5rem; max-width: 100%; height: auto; aspect-ratio: 1; display: grid; place-items: center; border: 1px solid #627187; border-radius: .6rem; overflow: hidden; background: #192843; }
+#forjaPage .nq-forja-arte img { display: block; width: 100%; height: 100%; object-fit: cover; }
+#forjaPage .nq-forja-arte-vazia { background: transparent; border-style: dashed; }
+#forjaPage .nq-forja-emoji { font-size: 2rem; }
+#forjaPage .nq-forja-item-novo { background: #192843; border-color: #bca76b; padding: 1.25rem; }
+#forjaPage .nq-forja-item-novo .nq-forja-arte, #forjaPage .nq-forja-item-final .nq-forja-arte { flex-basis: 5.5rem; width: 5.5rem; max-width: 100%; height: auto; aspect-ratio: 1; border-radius: .75rem; }
+#forjaPage .nq-forja-item-novo h3 { font-size: 1.65rem; color: var(--nql-mastery); }
+#forjaPage .nq-forja-item-atual { opacity: 1; }
+#forjaPage .nq-forja-rotulo { margin: 0 0 .75rem; color: var(--nql-text-soft); font-size: .88rem; }
+#forjaPage .nq-forja-selo { display: inline-block; padding: .15rem .5rem; margin-right: .3rem; border-radius: .25rem; background: var(--nql-mastery); color: #111a2e; font: 700 .78rem/1.4 var(--nql-font-body); letter-spacing: .03em; }
+#forjaPage .nq-forja-atributos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .65rem; margin: 1rem 0 0; }
+#forjaPage .nq-forja-atributos div { display: block; min-width: 0; padding-top: .5rem; border-top: 1px solid #4f6177; }
+#forjaPage .nq-forja-atributos dt { font-size: .82rem; color: var(--nql-text-soft); }
+#forjaPage .nq-forja-atributos dd { margin: .2rem 0 0; font-size: 1.15rem; color: var(--nql-text); }
+#forjaPage .nq-forja-atributos dd strong { font-family: var(--nql-font-instrument); font-weight: 500; }
+#forjaPage .nq-forja-atributos dd span { font-size: .9rem; white-space: nowrap; }
+#forjaPage .nq-forja-atributos .pos { color: var(--nql-success); }
+#forjaPage .nq-forja-atributos .neg { color: var(--nql-danger); }
+#forjaPage .nq-forja-atributos .equal { color: var(--nql-text-soft); }
+#forjaPage .nq-forja-acoes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+#forjaPage .nq-forja-acoes > div { min-width: 0; }
+#forjaPage .nq-forja-acoes .btn { width: 100%; min-height: 5rem; scroll-margin-block: 8px; }
+#forjaPage .nq-forja-btn-sub { display: block; margin-top: .4rem; font-size: .9rem; font-weight: 400; opacity: 1; }
+#forjaPage .nq-forja-saldo { margin: .5rem 0 0; color: var(--nql-text-soft); font-size: .9rem; }
+#forjaPage .nq-forja-saldo strong { color: var(--nql-text); }
+#forjaPage .nq-forja-recibo { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 1.2rem 0 0; }
+#forjaPage .nq-forja-recibo div { min-width: 0; }
+#forjaPage .nq-forja-recibo dt { color: var(--nql-text-soft); font-size: .9rem; }
+#forjaPage .nq-forja-recibo dd { margin: .25rem 0 0; color: var(--nql-mastery); font-family: var(--nql-font-instrument); }
+#forjaPage .nq-forja-nova { width: 100%; margin-top: 1rem; }
+#forjaPage .nq-forja-equipamento { padding: 0; border: 1px solid #40556d; border-radius: .75rem; background: #0d1627; }
+#forjaPage .nq-forja-equipamento summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 3.5rem; padding: 1rem 1.25rem; cursor: pointer; color: var(--nql-text); }
+#forjaPage .nq-forja-equipamento summary > span:first-child { font-family: var(--nql-font-display); font-size: 1.4rem; }
+#forjaPage .nq-forja-details-meta { color: var(--nql-text-soft); font-size: .9rem; }
+#forjaPage .nq-forja-grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; padding: 0 1rem 1rem; margin: 0; }
+#forjaPage .nq-forja-grade .nq-forja-atributos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+#forjaPage .nq-forja-vazio { color: var(--nql-text-soft); margin: .8rem 0 0; }
+#forjaPage .rar-common { color: #b8c5d7; }
+#forjaPage .rar-uncommon { color: var(--nql-success); }
+#forjaPage .rar-rare { color: var(--nql-lumen); }
+#forjaPage .rar-epic { color: var(--nql-corruption-strong); }
+#forjaPage .rar-legendary { color: var(--nql-mastery); }
+@media (max-width: 760px) {
+  #forjaPage .nq-forja-cabecalho { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  #forjaPage .nq-forja-cabecalho > div { grid-column: 1 / -1; grid-row: 1; }
+  #forjaPage .nq-forja-ouro { margin: 0; align-self: center; }
+  #forjaPage .nq-forja-palco { grid-template-columns: minmax(0, 1fr); gap: 1rem; padding: 1.25rem 0; }
+  #forjaPage .nq-forja-guardiao img { width: 7rem; aspect-ratio: 1; border-radius: 50%; }
+  #forjaPage .nq-forja-guardiao figcaption { margin-top: .4rem; max-width: none; }
+  #forjaPage[data-forge-state="decision"] .nq-forja-guardiao, #forjaPage[data-forge-state="complete"] .nq-forja-guardiao { display: flex; align-items: center; gap: .75rem; justify-self: start; text-align: left; }
+  #forjaPage[data-forge-state="decision"] .nq-forja-guardiao img, #forjaPage[data-forge-state="complete"] .nq-forja-guardiao img { width: 3rem; }
+  #forjaPage .nq-forja-grade { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  #forjaPage[data-nq-ui="lumen"] { padding: min(1rem, 16px); }
+  #forjaPage .nq-forja-resultado { padding: min(1rem, 20px); }
+  #forjaPage .nq-forja-item, #forjaPage .nq-forja-item-novo { padding: min(1rem, 16px); }
+  #forjaPage .nq-forja-item-topo { flex-direction: column; align-items: stretch; gap: .6rem; }
+  #forjaPage .nq-forja-item-topo > div:last-child { flex: none; width: 100%; }
+  #forjaPage .nq-forja-item-topo .nq-forja-arte { flex: none; align-self: flex-start; width: min(5.5rem, 100%); height: auto; aspect-ratio: 1; }
+  #forjaPage .nq-forja-opcoes, #forjaPage .nq-forja-acoes, #forjaPage .nq-forja-grade { grid-template-columns: minmax(0, 1fr); }
+  #forjaPage .nq-forja-atributos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #forjaPage .nq-forja-recibo { grid-template-columns: minmax(0, 1fr); gap: .6rem; }
+  #forjaPage .nq-forja-equipamento summary { flex-wrap: wrap; gap: .25rem; }
+  #forjaPage .nq-forja-cabecalho > .btn { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #forjaPage *, #forjaPage *::before, #forjaPage *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

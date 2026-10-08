@@ -52,7 +52,9 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
       ['armor', 'boot', 'glove', 'helmet', 'relic', 'weapon']
     );
     await expect(slots.first()).toHaveAttribute('tabindex', '0');
-    await expect(slots.first()).toHaveAttribute('role', 'group');
+    await expect(slots.first()).toHaveAttribute('role', 'button');
+    await expect(slots.first()).toHaveAttribute('aria-haspopup', 'dialog');
+    await expect(slots.first()).toHaveAttribute('aria-controls', 'nqEquipmentPreview');
 
     if (testInfo.project.name === 'mobile') {
       await page.locator('#mobileHeroBtn').click();
@@ -272,7 +274,7 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
 
       expect(geometry.parentIsBody).toBe(true);
       expect(geometry.position).toBe('fixed');
-      expect(geometry.pointerEvents).toBe('none');
+      expect(geometry.pointerEvents).toBe('auto');
       expect(geometry.top).toBeGreaterThanOrEqual(8);
       expect(geometry.left).toBeGreaterThanOrEqual(8);
       expect(geometry.right).toBeLessThanOrEqual(geometry.viewportWidth - 8);
@@ -433,7 +435,7 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
   test('com XP cheio, o acerto destaca o requisito reduzido sem inventar ganho na barra', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name !== 'chromium', 'ganhos são observados com o card visível no desktop');
     await page.emulateMedia({ reducedMotion: 'no-preference' });
-    await injectGameState(page, { level: 2, xp: 229, correctTotal: 15, gold: 0 });
+    await injectGameState(page, { level: 2, xp: 229, correctTotal: 15, gold: 0 }, { replaceSnapshot: true });
     await expect(page.locator('#guardianXpHint')).toHaveText('Próxima evolução em 5 acertos');
     expect(await page.locator('#xpFill').evaluate(element => (element as HTMLElement).style.width)).toBe('100%');
     await page.evaluate(() => {

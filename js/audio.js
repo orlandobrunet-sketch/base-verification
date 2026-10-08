@@ -1,682 +1,327 @@
-// NefroQuest — Audio System
-// Loaded before game.js; all functions become global.
-
-    // ============ SISTEMA DE SOM RPG/MEDIEVAL ============
-    const SFX = {
-      correct: new Audio('assets/sounds/correct.mp3'),
-      wrong: new Audio('assets/sounds/wrong.mp3'),
-      levelup: new Audio('assets/sounds/levelup.mp3'),
-      forge: new Audio('assets/sounds/forge.mp3'),
-      chest: new Audio('assets/sounds/chest.mp3'),
-      streak: new Audio('assets/sounds/streak.mp3'),
-      click: new Audio('assets/sounds/click.mp3'),
-      boss: new Audio('assets/sounds/boss.mp3'),
-      victory: new Audio('assets/sounds/victory.mp3')
-    };
-    // Pre-load all SFX
-    Object.values(SFX).forEach(a => { a.load(); a.volume = 0.5; });
-    
-    // ============ MÚSICA DA TELA DE BOAS-VINDAS ============
-    // Loop suave: fade-in 3s no início, fade-out automático 4s antes do fim, reinicia com fade-in
-    const WELCOME_MUSIC_URL = 'assets/audio/welcome-theme.mp3';
-    let WELCOME_MUSIC_VOL = 0.24;
-    const WM_FADEIN_MS   = 3500;  // fade-in de 3.5 segundos — sobe suavemente
-    const WM_FADEOUT_MS  = 4000;  // fade-out de 4 segundos antes do fim
-    const WM_LOOP_GAP_MS = 800;   // pausa mínima entre loops após fade-out
-
-    const wmTrack = new Audio();
-    wmTrack.preload = 'auto';  // pré-carrega para evitar delay ao iniciar
-    wmTrack.loop = false;
-    wmTrack.volume = 0;        // volume 0 antes de qualquer coisa
-    wmTrack.src = WELCOME_MUSIC_URL; // src após volume=0 para garantir ordem
-    wmTrack.load();            // força início do carregamento (como bgA.load())
-
-    let welcomeMusicState = 'idle'; // 'idle' | 'starting' | 'playing' | 'paused' | 'failed' | 'stopped'
-    let bgMusicState = 'idle';      // 'idle' | 'starting' | 'playing' | 'paused' | 'failed' | 'stopped'
-
-    function transitionWelcomeMusic(newState) {
-      console.log(`[AudioFSM] Welcome Music State: ${welcomeMusicState} -> ${newState}`);
-      welcomeMusicState = newState;
+// NefroQuest — Audio preferences and playback. Loaded before game.js.
+// Saved preferences never grant permission to start music in a new page session.
+const SFX = Object.fromEntries(['correct', 'wrong', 'levelup', 'forge', 'chest', 'streak', 'click', 'boss', 'victory']
+  .map(name => [name, new Audio('assets/sounds/' + name + '.mp3')]));
+function _audioRead(key, fallback) {
+  try { return localStorage.getItem(key) ?? fallback; } catch (_) { return fallback; }
+}
+function _audioSave(key, value) {
+  try { localStorage.setItem(key, String(value)); return true; }
+  catch (_) { return false; /* Preferences remain usable in memory. */ }
+}
+function _audioVolume(value, fallback) {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? Math.max(0, Math.min(1, parsed)) : fallback;
+}
+let soundEnabled = _audioRead('nefroquest-sound', 'on') !== 'off';
+let musicEnabled = _audioRead('nefroquest-music', 'on') !== 'off';
+let sfxVolume = _audioVolume(_audioRead('nefroquest-sfx-vol', '0.5'), 0.5);
+let musicVolume = _audioVolume(_audioRead('nefroquest-music-vol', '0.14'), 0.14);
+// Before 15.91 the mute button overwrote volume with zero. Migrate that exact
+// legacy combination once; zero selected with the new controls stays zero.
+const AUDIO_PREFERENCES_VERSION_KEY = 'nefroquest-audio-preferences-version';
+const AUDIO_PREFERENCES_VERSION = '15.91';
+function _saveAudioPreferencesVersion() {
+  if (_audioRead(AUDIO_PREFERENCES_VERSION_KEY, null) !== null) return;
+  // A blocked volume write must not leave a marker that disables migration retry.
+  const musicSaved = _audioSave('nefroquest-music-vol', musicVolume);
+  const sfxSaved = _audioSave('nefroquest-sfx-vol', sfxVolume);
+  if (musicSaved && sfxSaved) _audioSave(AUDIO_PREFERENCES_VERSION_KEY, AUDIO_PREFERENCES_VERSION);
+}
+if (_audioRead(AUDIO_PREFERENCES_VERSION_KEY, null) === null) {
+  if (!musicEnabled && musicVolume === 0) {
+    musicVolume = 0.14;
+  }
+  if (!soundEnabled && sfxVolume === 0) {
+    sfxVolume = 0.5;
+  }
+  _saveAudioPreferencesVersion();
+}
+let MUSIC_VOL = musicVolume;
+let WELCOME_MUSIC_VOL = Math.min(1, musicVolume * 1.71);
+const wmTrack = new Audio('assets/audio/welcome-theme.mp3');
+const bgA = new Audio('assets/sounds/bgmusic.mp3');
+const bgB = new Audio('assets/sounds/bgmusic.mp3');
+[wmTrack, bgA, bgB].forEach(track => { track.preload = 'none'; track.volume = 0; });
+Object.values(SFX).forEach(track => { track.preload = 'none'; track.volume = sfxVolume; });
+let welcomeMusicState = 'idle', bgMusicState = 'idle';
+let _musicRequested = false;
+let _wmRun = 0, _bgRun = 0;
+let _wmTimer = null, _wmRaf = null, _bgTimer = null, _bgRaf = null;
+let activeTrack = bgA, _crossfading = false;
+// Each track has an envelope independent of the user's master volume.
+// Updating the slider applies the latest volume immediately, including while
+// play() is pending and throughout fade-in, fade-out and crossfade callbacks.
+const _musicEnvelopes = new Map([[wmTrack, 0], [bgA, 0], [bgB, 0]]);
+function _applyMusicVolume() {
+  _musicEnvelopes.forEach((gain, track) => {
+    track.volume = _audioVolume(gain * (track === wmTrack ? WELCOME_MUSIC_VOL : MUSIC_VOL), 0);
+  });
+}
+function _setMusicEnvelope(track, gain) {
+  _musicEnvelopes.set(track, _audioVolume(gain, 0));
+  _applyMusicVolume();
+}
+function transitionWelcomeMusic(value) { welcomeMusicState = value; updateAudioIcons(); }
+function transitionBgMusic(value) { bgMusicState = value; updateAudioIcons(); }
+Object.defineProperty(window, 'welcomeMusicStarted', {
+  configurable: true, get: () => ['starting', 'playing'].includes(welcomeMusicState),
+  set: value => { if (!value) stopWelcomeMusic(false); }
+});
+Object.defineProperty(window, 'musicStarted', {
+  configurable: true, get: () => ['starting', 'playing'].includes(bgMusicState),
+  set: value => { if (!value) stopBgMusic(); }
+});
+function _musicAllowed() { return musicEnabled && _musicRequested; }
+function _fadeTrack(track, duration, envelopeAt, valid, done, kind) {
+  const started = performance.now();
+  const tick = () => {
+    if (!valid()) return;
+    const progress = Math.min(1, (performance.now() - started) / duration);
+    _setMusicEnvelope(track, envelopeAt(progress));
+    if (progress === 1) {
+      if (kind === 'welcome') _wmRaf = null; else _bgRaf = null;
+      if (done) done();
     }
-
-    function transitionBgMusic(newState) {
-      console.log(`[AudioFSM] BG Music State: ${bgMusicState} -> ${newState}`);
-      bgMusicState = newState;
-    }
-
-    Object.defineProperty(window, 'welcomeMusicStarted', {
-      get: () => ['starting', 'playing'].includes(welcomeMusicState),
-      set: (val) => {
-        if (!val) {
-          transitionWelcomeMusic('stopped');
-        } else {
-          transitionWelcomeMusic('starting');
-        }
-      },
-      configurable: true
-    });
-
-    Object.defineProperty(window, 'musicStarted', {
-      get: () => ['starting', 'playing'].includes(bgMusicState),
-      set: (val) => {
-        if (!val) {
-          transitionBgMusic('stopped');
-        } else {
-          transitionBgMusic('starting');
-        }
-      },
-      configurable: true
-    });
-
-    let _wmFadeInterval = null;
-    let _wmFadeOutInterval = null;
-    let _wmLoopTimeout = null;
-    let _wmFadeOutTimeout = null;
-    let _wmStopRequested = false;
-
-    function _wmClearTimers() {
-      if (_wmFadeInterval)    { if (_wmFadeInterval.cancel) _wmFadeInterval.cancel(); else clearInterval(_wmFadeInterval); _wmFadeInterval = null; }
-      if (_wmFadeOutInterval) { if (_wmFadeOutInterval.cancel) _wmFadeOutInterval.cancel(); else clearInterval(_wmFadeOutInterval); _wmFadeOutInterval = null; }
-      if (_wmLoopTimeout)     { clearTimeout(_wmLoopTimeout);      _wmLoopTimeout = null; }
-      if (_wmFadeOutTimeout)  { clearTimeout(_wmFadeOutTimeout);   _wmFadeOutTimeout = null; }
-    }
-
-    // Fade-in suave — time-based via performance.now(), rAF para imunidade a throttling de aba
-    function _wmFadeIn(onDone) {
-      wmTrack.volume = 0.01;
-      const t0 = performance.now();
-      let rafId;
-      function _tick() {
-        if (_wmStopRequested) { _wmFadeInterval = null; return; }
-        const t = Math.min(1, (performance.now() - t0) / WM_FADEIN_MS);
-        wmTrack.volume = WELCOME_MUSIC_VOL * Math.sqrt(t); // ease-out
-        if (t >= 1) {
-          wmTrack.volume = WELCOME_MUSIC_VOL;
-          _wmFadeInterval = null;
-          if (onDone) onDone();
-        } else {
-          rafId = requestAnimationFrame(_tick);
-        }
-      }
-      rafId = requestAnimationFrame(_tick);
-      _wmFadeInterval = { cancel: () => cancelAnimationFrame(rafId) };
-    }
-
-    // Fade-out suave — time-based, rAF
-    function _wmFadeOut(onDone) {
-      const startVol = wmTrack.volume;
-      const t0 = performance.now();
-      let rafId;
-      function _tick() {
-        if (_wmStopRequested) {
-          _wmFadeOutInterval = null;
-          wmTrack.volume = 0; wmTrack.pause();
-          return;
-        }
-        const t = Math.min(1, (performance.now() - t0) / WM_FADEOUT_MS);
-        wmTrack.volume = Math.max(0, startVol * (1 - t * t)); // ease-in
-        if (t >= 1) {
-          _wmFadeOutInterval = null;
-          wmTrack.volume = 0;
-          wmTrack.pause();
-          if (onDone) onDone();
-        } else {
-          rafId = requestAnimationFrame(_tick);
-        }
-      }
-      rafId = requestAnimationFrame(_tick);
-      _wmFadeOutInterval = { cancel: () => cancelAnimationFrame(rafId) };
-    }
-
-    // Agenda o fade-out automático quando a faixa estiver tocando
-    function _wmScheduleFadeOut() {
-      if (_wmFadeOutTimeout) { clearTimeout(_wmFadeOutTimeout); _wmFadeOutTimeout = null; }
-      // Aguarda a duração ficar disponível
-      const trySchedule = () => {
-        if (_wmStopRequested || !welcomeMusicStarted) return;
-        const dur = wmTrack.duration;
-        if (!dur || !isFinite(dur)) {
-          // Tenta novamente em 200ms
-          _wmFadeOutTimeout = setTimeout(trySchedule, 200);
-          return;
-        }
-        const remaining = dur - wmTrack.currentTime;
-        const fadeStart = remaining - (WM_FADEOUT_MS / 1000);
-        if (fadeStart <= 0) {
-          // Já está na zona de fade-out
-          _wmStartFadeOutAndLoop();
-        } else {
-          _wmFadeOutTimeout = setTimeout(() => {
-            if (!_wmStopRequested && welcomeMusicStarted) _wmStartFadeOutAndLoop();
-          }, fadeStart * 1000);
-        }
-      };
-      trySchedule();
-    }
-
-    function _wmStartFadeOutAndLoop() {
-      _wmClearTimers();
-      _wmFadeOut(() => {
-        if (_wmStopRequested || !welcomeMusicStarted) return;
-        // Pequena pausa antes de reiniciar
-        _wmLoopTimeout = setTimeout(() => {
-          if (!_wmStopRequested && welcomeMusicStarted) _wmPlayOnce();
-        }, WM_LOOP_GAP_MS);
-      });
-    }
-
-    function _wmPlayOnce() {
-      if (_wmStopRequested || !welcomeMusicStarted) return;
-      wmTrack.volume = 0.01;
-      if (wmTrack.readyState >= 1) wmTrack.currentTime = 0;
-      wmTrack.muted = true; // muted-first também nos loops (garante replay sem gesto)
-      transitionWelcomeMusic('starting');
-      wmTrack.play().then(() => {
-        if (_wmStopRequested) {
-          wmTrack.pause();
-          wmTrack.muted = false;
-          transitionWelcomeMusic('stopped');
-          return;
-        }
-        wmTrack.muted = false;
-        transitionWelcomeMusic('playing');
-        _wmFadeIn(() => {
-          if (!_wmStopRequested) _wmScheduleFadeOut();
-        });
-      }).catch((err) => {
-        wmTrack.muted = false;
-        transitionWelcomeMusic('failed');
-        console.warn("[AudioFSM] _wmPlayOnce failed:", err);
-      });
-    }
-
-    // Evento 'ended' como safety net (caso o fade-out não tenha pausado a tempo)
-    wmTrack.addEventListener('ended', () => {
-      if (_wmStopRequested || welcomeMusicState !== 'playing') return;
-      _wmClearTimers();
-      _wmLoopTimeout = setTimeout(() => {
-        if (!_wmStopRequested && welcomeMusicState === 'playing') _wmPlayOnce();
-      }, WM_LOOP_GAP_MS);
-    });
-
-    function startWelcomeMusic(fromUserGesture = false) {
-      if (!musicEnabled) return;
-      if (welcomeMusicState === 'playing' || welcomeMusicState === 'starting') {
-        // Já iniciada mas pode estar pausada (gap entre loops ou pause de visibility) — retomar imediatamente
-        if (wmTrack.paused && !_wmStopRequested) {
-          _wmClearTimers();
-          wmTrack.currentTime = 0;
-          wmTrack.volume = 0.01;
-          wmTrack.muted = !fromUserGesture;
-          transitionWelcomeMusic('starting');
-          wmTrack.play().then(() => {
-            if (_wmStopRequested) {
-              wmTrack.pause();
-              wmTrack.muted = false;
-              wmTrack.volume = 0;
-              transitionWelcomeMusic('stopped');
-              return;
-            }
-            wmTrack.muted = false;
-            transitionWelcomeMusic('playing');
-            _wmFadeIn(() => { if (!_wmStopRequested) _wmScheduleFadeOut(); });
-          }).catch((err) => {
-            wmTrack.muted = false;
-            transitionWelcomeMusic('failed');
-            console.warn("[AudioFSM] startWelcomeMusic (resume) failed:", err);
-          });
-        }
-        return;
-      }
-      _wmStopRequested = false;
-      transitionWelcomeMusic('starting');
-      wmTrack.volume = 0;
-      wmTrack.muted = !fromUserGesture; // muted-first apenas se não for gesto do usuário
-      if (wmTrack.readyState >= 1) wmTrack.currentTime = 0;
-      wmTrack.play().then(() => {
-        if (_wmStopRequested) {
-          wmTrack.pause();
-          wmTrack.muted = false;
-          wmTrack.volume = 0;
-          transitionWelcomeMusic('stopped');
-          return;
-        }
-        wmTrack.muted = false;
-        wmTrack.volume = 0.01;
-        transitionWelcomeMusic('playing');
-        _wmFadeIn(() => { if (!_wmStopRequested) _wmScheduleFadeOut(); });
-      }).catch((err) => {
-        wmTrack.muted = false;
-        transitionWelcomeMusic('failed');
-        console.warn("[AudioFSM] startWelcomeMusic failed:", err);
-      });
-    }
-
-    function stopWelcomeMusic(withFade, onComplete) {
-      _wmStopRequested = true;   // cancela qualquer play() pendente antes de tudo
-      _wmClearTimers();
-      if (welcomeMusicState !== 'playing' && welcomeMusicState !== 'starting' && wmTrack.paused) {
-        transitionWelcomeMusic('stopped');
-        if (onComplete) onComplete();
-        return;
-      }
-      wmTrack.muted = false; // garantir desmutado ao parar
-      if (!withFade) {
+    else if (kind === 'welcome') _wmRaf = requestAnimationFrame(tick);
+    else _bgRaf = requestAnimationFrame(tick);
+  };
+  tick();
+}
+function _welcomeLoop(run) {
+  if (run !== _wmRun || !_musicAllowed()) return;
+  const duration = wmTrack.duration;
+  if (!Number.isFinite(duration) || duration <= 0) {
+    _wmTimer = setTimeout(() => _welcomeLoop(run), 250);
+    return;
+  }
+  const remaining = Math.max(0, (duration - wmTrack.currentTime) * 1000);
+  const fadeDuration = Math.min(4000, remaining);
+  _wmTimer = setTimeout(() => {
+    const from = _musicEnvelopes.get(wmTrack);
+    _fadeTrack(wmTrack, Math.max(1, fadeDuration), progress => from * (1 - progress),
+      () => run === _wmRun && _musicAllowed(), () => {
         wmTrack.pause();
-        wmTrack.currentTime = 0;
-        wmTrack.volume = 0;
-        transitionWelcomeMusic('stopped');
-        if (onComplete) onComplete();
-        return;
-      }
-      // Fade-out suave — time-based, rAF
-      const startVol = wmTrack.volume;
-      const t0 = performance.now();
-      let rafId;
-      function _tick() {
-        const t = Math.min(1, (performance.now() - t0) / WM_FADEOUT_MS);
-        wmTrack.volume = Math.max(0, startVol * (1 - t));
-        if (t >= 1) {
-          _wmFadeInterval = null;
-          wmTrack.pause();
-          wmTrack.currentTime = 0;
-          wmTrack.volume = 0;
-          transitionWelcomeMusic('stopped');
-          if (onComplete) onComplete();
-        } else {
-          rafId = requestAnimationFrame(_tick);
-        }
-      }
-      rafId = requestAnimationFrame(_tick);
-      _wmFadeInterval = { cancel: () => cancelAnimationFrame(rafId) };
-    }
-
-    // Background Music - Double-buffer crossfade loop
-    const MUSIC_URL = 'assets/sounds/bgmusic.mp3';
-    let MUSIC_VOL = 0.14;
-    const XFADE_TIME = 1.5; // crossfade equal-power
-    
-    const bgA = new Audio(MUSIC_URL);
-    const bgB = new Audio(MUSIC_URL);
-    bgA.volume = MUSIC_VOL; bgB.volume = 0;
-    bgA.load();
-
-    // bgB é a segunda metade do double-buffer e só entra no primeiro crossfade,
-    // que acontece minutos depois. Carregá-lo junto com bgA no boot baixava os
-    // mesmos ~196 KB duas vezes: as duas requisições saíam simultâneas, então
-    // nenhuma achava a outra no cache HTTP. Adiando para o gesto do usuário, o
-    // arquivo já está em cache (max-age=600) e a segunda carga não custa rede.
-    bgB.preload = 'none';
-    let _bgBCarregado = false;
-    function garantirBgB() {
-      if (_bgBCarregado) return;
-      _bgBCarregado = true;
-      bgB.preload = 'auto';
-      bgB.load();
-    }
-    // Fallback: se crossfade não disparar, 'ended' garante o loop
-    // _crossfading guard evita que 'ended' e crossfadeTo() toquem simultaneamente (eco)
-    bgA.addEventListener('ended', () => { if(musicEnabled && musicStarted && !_crossfading) { bgA.currentTime=0; bgA.muted=true; bgA.play().then(()=>{ bgA.muted=false; bgA.volume=MUSIC_VOL; scheduleXfade(bgA); }).catch(()=>{ bgA.muted=false; }); } });
-    bgB.addEventListener('ended', () => { if(musicEnabled && musicStarted && !_crossfading) { bgB.currentTime=0; bgB.muted=true; bgB.play().then(()=>{ bgB.muted=false; bgB.volume=MUSIC_VOL; scheduleXfade(bgB); }).catch(()=>{ bgB.muted=false; }); } });
-    
-    let soundEnabled = true, musicEnabled = true;
-    let sfxVolume = 0.5;
-    let musicVolume = 0.14;
-    let prevSfxVolume = 0.5;
-    let prevMusicVolume = 0.14;
-
-    try {
-      soundEnabled = localStorage.getItem('nefroquest-sound') !== 'off';
-      musicEnabled = localStorage.getItem('nefroquest-music') !== 'off';
-      musicVolume = parseFloat(localStorage.getItem('nefroquest-music-vol') || '0.14');
-      sfxVolume = parseFloat(localStorage.getItem('nefroquest-sfx-vol') || '0.5');
-      prevMusicVolume = musicVolume;
-      prevSfxVolume = sfxVolume;
-      MUSIC_VOL = musicVolume;
-      WELCOME_MUSIC_VOL = musicVolume * 1.71;
-      if (WELCOME_MUSIC_VOL > 1.0) WELCOME_MUSIC_VOL = 1.0;
-    } catch(e) {}
-
-    let activeTrack = bgA;
-    let xfadeInterval = null;
-    let _crossfading = false; // guard contra race condition ended + crossfade simultâneos
-
-    function setMusicVolume(val) {
-      musicVolume = val;
-      localStorage.setItem('nefroquest-music-vol', val);
-      MUSIC_VOL = val;
-      WELCOME_MUSIC_VOL = val * 1.71;
-      if (WELCOME_MUSIC_VOL > 1.0) WELCOME_MUSIC_VOL = 1.0;
-
-      if (val === 0) {
-        musicEnabled = false;
-        localStorage.setItem('nefroquest-music', 'off');
-      } else {
-        musicEnabled = true;
-        localStorage.setItem('nefroquest-music', 'on');
-      }
-
-      if (bgA) bgA.volume = MUSIC_VOL;
-      if (bgB) bgB.volume = MUSIC_VOL;
-      if (wmTrack) {
-        if (welcomeMusicStarted && !wmTrack.paused) {
-          wmTrack.volume = WELCOME_MUSIC_VOL;
-        }
-      }
-
-      document.querySelectorAll('.volume-slider.music-vol').forEach(s => s.value = val);
-      updateAudioIcons();
-    }
-    window.setMusicVolume = setMusicVolume;
-
-    // Ajustar volumes padrão dos SFX
-    Object.values(SFX).forEach(a => { a.load(); a.volume = sfxVolume; });
-
-    function setSfxVolume(val) {
-      sfxVolume = val;
-      localStorage.setItem('nefroquest-sfx-vol', val);
-
-      if (val === 0) {
-        soundEnabled = false;
-        localStorage.setItem('nefroquest-sound', 'off');
-      } else {
-        soundEnabled = true;
-        localStorage.setItem('nefroquest-sound', 'on');
-      }
-
-      Object.values(SFX).forEach(audio => {
-        audio.volume = val;
-      });
-
-      document.querySelectorAll('.volume-slider.sfx-vol').forEach(s => s.value = val);
-      updateAudioIcons();
-    }
-    window.setSfxVolume = setSfxVolume;
-
-    function updateAudioIcons() {
-      const musicIconText = musicEnabled ? (musicVolume < 0.35 ? '🎵' : '🎶') : '🔇';
-      ['musicIcon', 'mobileMusIcon', 'welcomeMusicIcon', 'mobileSoundMusicIcon', 'lndMusicIcon'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.textContent = musicIconText;
-      });
-
-      const sfxIconText = soundEnabled ? (sfxVolume < 0.35 ? '🔉' : '🔊') : '🔇';
-      ['soundIcon', 'welcomeSoundIcon', 'mobileSoundSfxIcon', 'lndSfxIcon'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.textContent = sfxIconText;
-      });
-
-      ['musicToggle', 'soundToggle', 'mobileMusToggle'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-          if ((id.includes('music') && !musicEnabled) || (id.includes('sound') && !soundEnabled)) {
-            el.classList.add('muted');
-          } else {
-            el.classList.remove('muted');
-          }
-        }
-      });
-    }
-    window.updateAudioIcons = updateAudioIcons;
-
-    // Audio unlock — iOS Safari requires each HTMLAudioElement to be play()'d during
-    // a user gesture before it can be played programmatically (e.g. from timers).
-    // We unlock bgB here (bgA is unlocked by startBgMusic which is called from gesture;
-    // wmTrack is unlocked by startWelcomeMusic which uses muted-first on gesture).
-    let _audioUnlocked = false;
-    function _unlockAll() {
-      if (_audioUnlocked) return;
-      _audioUnlocked = true;
-      // Pre-unlock bgB so crossfadeTo() succeeds without user gesture
-      garantirBgB();
-      bgB.muted = true;
-      bgB.play().then(() => { bgB.pause(); bgB.currentTime = 0; bgB.muted = false; }).catch(() => { bgB.muted = false; });
-      // Silent AudioContext buffer — unlocks Web Audio and HTMLAudioElement on iOS 13+
-      try {
-        const _ac = new (window.AudioContext || window.webkitAudioContext)();
-        const _buf = _ac.createBuffer(1, 1, 22050);
-        const _src = _ac.createBufferSource();
-        _src.buffer = _buf; _src.connect(_ac.destination); _src.start(0);
-        _ac.resume().finally(() => _ac.close().catch(() => {}));
-      } catch(e) {}
-    }
-    
-    function scheduleXfade(track) {
-      // Quando faltam XFADE_TIME segundos, iniciar crossfade para o outro track
-      if (xfadeInterval) clearInterval(xfadeInterval);
-      function _startCheck() {
-        const checkInterval = setInterval(() => {
-          if (!musicStarted || !musicEnabled) { clearInterval(checkInterval); return; }
-          if (!isFinite(track.duration)) return;
-          const remaining = track.duration - track.currentTime;
-          if (remaining <= XFADE_TIME && remaining > 0) {
-            clearInterval(checkInterval);
-            crossfadeTo(track === bgA ? bgB : bgA);
-          }
-        }, 100);
-        xfadeInterval = checkInterval;
-      }
-      if (isFinite(track.duration)) { _startCheck(); }
-      else { track.addEventListener('durationchange', function _onDur() { if(isFinite(track.duration)){ track.removeEventListener('durationchange',_onDur); _startCheck(); } }); }
-    }
-    
-    function crossfadeTo(nextTrack) {
-      if (_crossfading) return; // previne double-trigger (race condition ended + scheduleXfade)
-      _crossfading = true;
-      if (nextTrack === bgB) garantirBgB(); // rede de segurança: _unlockAll pode não ter rodado
-      const prevTrack = activeTrack;
-      nextTrack.currentTime = 0;
-      nextTrack.volume = 0;
-      // muted-first: crossfadeTo é chamado de timer, nunca de gesto do usuário
-      nextTrack.muted = true;
-      transitionBgMusic('starting');
-      nextTrack.play().then(() => {
-        nextTrack.muted = false;
-        transitionBgMusic('playing');
-      }).catch((err) => {
-        nextTrack.muted = false;
-        transitionBgMusic('failed');
-        console.warn("[AudioFSM] crossfadeTo play failed:", err);
-      });
-
-      // Time-based equal-power crossfade — rAF, imune a throttling de aba inativa
-      const XFADE_MS = XFADE_TIME * 1000;
-      const t0 = performance.now();
-      let rafId;
-      function _tick() {
-        const t = Math.min(1, (performance.now() - t0) / XFADE_MS);
-        prevTrack.volume = MUSIC_VOL * Math.cos(t * Math.PI / 2);
-        nextTrack.volume  = MUSIC_VOL * Math.sin(t * Math.PI / 2);
-        if (t >= 1) {
-          prevTrack.pause();
-          prevTrack.currentTime = 0;
-          prevTrack.volume = MUSIC_VOL;
-          nextTrack.volume = MUSIC_VOL;
-          activeTrack = nextTrack;
-          _crossfading = false;
-          scheduleXfade(nextTrack);
-        } else {
-          if (bgMusicState === 'playing') {
-            rafId = requestAnimationFrame(_tick);
-          } else {
-            // Cancel crossfade if stopped/paused
-            _crossfading = false;
-          }
-        }
-      }
-      rafId = requestAnimationFrame(_tick);
-    }
-    
-    function playSound(name) {
-      if (!soundEnabled || !SFX[name]) return;
-      const s = SFX[name];
-      s.currentTime = 0;
-      s.play().catch(() => {});
-    }
-    
-    function startBgMusic() {
-      if (!musicEnabled || bgMusicState === 'playing' || bgMusicState === 'starting') return;
-      activeTrack = bgA;
-      bgA.currentTime = 0;
-      bgA.volume = 0;
-      bgA.muted = true; // muted-first para bypass de autoplay policy
-      transitionBgMusic('starting');
-      bgA.play().then(() => {
-        bgA.muted = false;
-        bgA.volume = MUSIC_VOL;
-        transitionBgMusic('playing');
-        scheduleXfade(bgA);
-      }).catch((err) => {
-        bgA.muted = false;
-        console.warn("[AudioFSM] startBgMusic failed, scheduling retry:", err);
-        // Retry único após 800ms — cobre timing de OAuth redirect e focus tardio
-        setTimeout(() => {
-          if (!musicEnabled || bgMusicState === 'playing' || bgMusicState === 'starting') return;
-          bgA.muted = true;
-          bgA.play().then(() => {
-            bgA.muted = false;
-            bgA.volume = MUSIC_VOL;
-            transitionBgMusic('playing');
-            scheduleXfade(bgA);
-          }).catch((err2) => {
-            bgA.muted = false;
-            transitionBgMusic('failed');
-            console.error("[AudioFSM] startBgMusic retry failed:", err2);
-            if (typeof _track === 'function') _track('error_bg_music_start_fail', {});
-          });
+        _wmTimer = setTimeout(() => {
+          if (run !== _wmRun || !_musicAllowed()) return;
+          transitionWelcomeMusic('paused');
+          startWelcomeMusic();
         }, 800);
-      });
-    }
-    
-    function stopBgMusic() {
-      bgA.pause(); bgB.pause();
-      bgA.currentTime = 0; bgB.currentTime = 0;
-      if (xfadeInterval) clearInterval(xfadeInterval);
-      transitionBgMusic('stopped');
-    }
-    
-    function toggleSound() {
-      soundEnabled = !soundEnabled;
-      localStorage.setItem('nefroquest-sound', soundEnabled ? 'on' : 'off');
-      if (soundEnabled) {
-        setSfxVolume(sfxVolume > 0 ? sfxVolume : (prevSfxVolume > 0 ? prevSfxVolume : 0.5));
-        playSound('click');
-      } else {
-        prevSfxVolume = sfxVolume;
-        setSfxVolume(0);
-      }
-    }
-    
-    function toggleMusic() {
-      musicEnabled = !musicEnabled;
-      localStorage.setItem('nefroquest-music', musicEnabled ? 'on' : 'off');
-      if (musicEnabled) {
-        setMusicVolume(musicVolume > 0 ? musicVolume : (prevMusicVolume > 0 ? prevMusicVolume : 0.14));
-        const ws = document.getElementById('welcomeScreen');
-        if (ws && !ws.classList.contains('hidden')) {
-          startWelcomeMusic(true);
-        } else {
-          startBgMusic();
-        }
-      } else {
-        prevMusicVolume = musicVolume;
-        setMusicVolume(0);
-        stopWelcomeMusic(false);
-        stopBgMusic();
-      }
-    }
-    
-    // Ouvinte para os sliders de volume analógico
-    document.addEventListener('input', function(e) {
-      const target = e.target;
-      if (target && target.classList.contains('volume-slider')) {
-        const val = parseFloat(target.value);
-        if (target.classList.contains('music-vol')) {
-          setMusicVolume(val);
-        } else if (target.classList.contains('sfx-vol')) {
-          setSfxVolume(val);
-        }
+      }, 'welcome');
+  }, Math.max(0, remaining - fadeDuration));
+}
+function startWelcomeMusic(_fromUserGesture = false) {
+  if (!_musicAllowed() || welcomeMusicStarted) return;
+  stopBgMusic();
+  const run = ++_wmRun;
+  clearTimeout(_wmTimer); cancelAnimationFrame(_wmRaf);
+  wmTrack.currentTime = 0; _setMusicEnvelope(wmTrack, 0); wmTrack.muted = false;
+  transitionWelcomeMusic('starting');
+  wmTrack.play().then(() => {
+    if (run !== _wmRun || !_musicAllowed()) return;
+    _applyMusicVolume();
+    transitionWelcomeMusic('playing');
+    _fadeTrack(wmTrack, 3500, progress => Math.sqrt(progress),
+      () => run === _wmRun && _musicAllowed(), () => _welcomeLoop(run), 'welcome');
+  }).catch(() => { if (run === _wmRun) transitionWelcomeMusic('failed'); });
+}
+function stopWelcomeMusic(_withFade = false, onComplete) {
+  ++_wmRun; clearTimeout(_wmTimer); cancelAnimationFrame(_wmRaf);
+  wmTrack.pause(); _setMusicEnvelope(wmTrack, 0);
+  transitionWelcomeMusic('stopped');
+  if (typeof onComplete === 'function') onComplete();
+}
+function _scheduleBg(run) {
+  clearTimeout(_bgTimer);
+  if (run !== _bgRun || !_musicAllowed()) return;
+  const remaining = activeTrack.duration - activeTrack.currentTime;
+  if (Number.isFinite(remaining) && remaining > 0 && remaining <= 1.5) {
+    _crossfadeBg(run); return;
+  }
+  _bgTimer = setTimeout(() => _scheduleBg(run), 200);
+}
+function _crossfadeBg(run) {
+  if (_crossfading || run !== _bgRun || !_musicAllowed()) return;
+  _crossfading = true;
+  const previous = activeTrack, next = previous === bgA ? bgB : bgA;
+  next.currentTime = 0; _setMusicEnvelope(next, 0); next.muted = false;
+  next.play().then(() => {
+    if (run !== _bgRun || !_musicAllowed()) return;
+    _applyMusicVolume();
+    const started = performance.now();
+    const tick = () => {
+      if (run !== _bgRun || !_musicAllowed()) return;
+      const progress = Math.min(1, (performance.now() - started) / 1500);
+      _musicEnvelopes.set(previous, Math.cos(progress * Math.PI / 2));
+      _musicEnvelopes.set(next, Math.sin(progress * Math.PI / 2));
+      _applyMusicVolume();
+      if (progress === 1) {
+        previous.pause(); _setMusicEnvelope(previous, 0); activeTrack = next; _crossfading = false;
+        _scheduleBg(run);
+      } else _bgRaf = requestAnimationFrame(tick);
+    };
+    tick();
+  }).catch(() => {
+    if (run !== _bgRun) return;
+    _crossfading = false;
+    // Keep the current track; ended retries only within a session requested by the user.
+  });
+}
+[bgA, bgB].forEach(track => track.addEventListener('ended', () => {
+  if (!_musicAllowed() || track !== activeTrack || _crossfading) return;
+  transitionBgMusic('paused'); startBgMusic();
+}));
+wmTrack.addEventListener('ended', () => {
+  if (!_musicAllowed() || welcomeMusicState !== 'playing') return;
+  clearTimeout(_wmTimer); cancelAnimationFrame(_wmRaf);
+  transitionWelcomeMusic('paused'); startWelcomeMusic();
+});
+function startBgMusic() {
+  if (!_musicAllowed() || musicStarted) return;
+  stopWelcomeMusic(false);
+  const run = ++_bgRun;
+  clearTimeout(_bgTimer); cancelAnimationFrame(_bgRaf);
+  activeTrack = bgA; _crossfading = false;
+  bgA.currentTime = 0; _setMusicEnvelope(bgA, 1); bgA.muted = false;
+  transitionBgMusic('starting');
+  bgA.play().then(() => {
+    if (run !== _bgRun || !_musicAllowed()) return;
+    _applyMusicVolume();
+    transitionBgMusic('playing'); _scheduleBg(run);
+  }).catch(() => { if (run === _bgRun) transitionBgMusic('failed'); });
+}
+function stopBgMusic() {
+  ++_bgRun; clearTimeout(_bgTimer); cancelAnimationFrame(_bgRaf); _crossfading = false;
+  [bgA, bgB].forEach(track => { track.pause(); _musicEnvelopes.set(track, 0); });
+  _applyMusicVolume();
+  transitionBgMusic('stopped');
+}
+function playSound(name) {
+  if (!soundEnabled || !SFX[name] || sfxVolume === 0) return;
+  SFX[name].currentTime = 0; SFX[name].volume = sfxVolume;
+  SFX[name].play().catch(() => {});
+}
+function setMusicVolume(value) {
+  musicVolume = _audioVolume(value, musicVolume);
+  MUSIC_VOL = musicVolume; WELCOME_MUSIC_VOL = Math.min(1, musicVolume * 1.71);
+  _audioSave('nefroquest-music-vol', musicVolume); _saveAudioPreferencesVersion();
+  _applyMusicVolume();
+  updateAudioIcons();
+}
+function setSfxVolume(value) {
+  sfxVolume = _audioVolume(value, sfxVolume); _audioSave('nefroquest-sfx-vol', sfxVolume); _saveAudioPreferencesVersion();
+  Object.values(SFX).forEach(track => { track.volume = sfxVolume; });
+  updateAudioIcons();
+}
+function toggleSound() {
+  soundEnabled = !soundEnabled;
+  _audioSave('nefroquest-sound', soundEnabled ? 'on' : 'off'); _saveAudioPreferencesVersion();
+  if (!soundEnabled) Object.values(SFX).forEach(track => track.pause());
+  updateAudioIcons();
+}
+function toggleMusic() {
+  const failed = welcomeMusicState === 'failed' || bgMusicState === 'failed';
+  if (!_musicRequested || failed) {
+    musicEnabled = true; _musicRequested = true; _audioSave('nefroquest-music', 'on'); _saveAudioPreferencesVersion();
+    const welcome = document.getElementById('welcomeScreen');
+    const game = document.getElementById('mainApp');
+    if (game && !game.classList.contains('hidden') && welcome?.classList.contains('hidden')) startBgMusic();
+    else startWelcomeMusic(true);
+  } else {
+    musicEnabled = false; _musicRequested = false; _audioSave('nefroquest-music', 'off'); _saveAudioPreferencesVersion();
+    stopWelcomeMusic(false); stopBgMusic();
+  }
+  updateAudioIcons();
+}
+function updateAudioIcons() {
+  const active = _musicAllowed();
+  const musicFailed = welcomeMusicState === 'failed' || bgMusicState === 'failed';
+  document.querySelectorAll('[data-action="toggleMusic"]').forEach(button => {
+    button.setAttribute('aria-pressed', String(active && !musicFailed));
+    button.setAttribute('aria-label', (active && !musicFailed ? 'Pausar' : 'Reproduzir') + ' música');
+  });
+  document.querySelectorAll('[data-action="toggleSound"]').forEach(button => {
+    button.setAttribute('aria-pressed', String(soundEnabled));
+    button.setAttribute('aria-label', soundEnabled ? 'Desativar efeitos sonoros' : 'Ativar efeitos sonoros');
+  });
+  ['musicIcon', 'mobileMusIcon', 'welcomeMusicIcon', 'mobileSoundMusicIcon', 'lndMusicIcon'].forEach(id => {
+    const icon = document.getElementById(id); if (icon) icon.textContent = active && musicVolume > 0 ? '♪' : '♩';
+  });
+  ['soundIcon', 'welcomeSoundIcon', 'mobileSoundSfxIcon', 'lndSfxIcon'].forEach(id => {
+    const icon = document.getElementById(id); if (icon) icon.textContent = soundEnabled && sfxVolume > 0 ? '◖' : '◌';
+  });
+  document.querySelectorAll('.music-vol').forEach(slider => { slider.value = String(musicVolume); });
+  document.querySelectorAll('.sfx-vol').forEach(slider => { slider.value = String(sfxVolume); });
+  document.querySelectorAll('[data-audio-value="music"]').forEach(output => { output.textContent = Math.round(musicVolume * 100) + '%'; });
+  document.querySelectorAll('[data-audio-value="sfx"]').forEach(output => { output.textContent = Math.round(sfxVolume * 100) + '%'; });
+  document.querySelectorAll('[data-audio-state="music"]').forEach(output => {
+    output.textContent = musicFailed ? 'Indisponível · tente novamente' : active ? 'Ativada nesta sessão' : 'Pausada · toque para reproduzir';
+  });
+  document.querySelectorAll('[data-audio-state="sfx"]').forEach(output => { output.textContent = soundEnabled ? 'Ativados' : 'Desativados'; });
+}
+function _closeAudioControls(restoreFocus = false) {
+  document.querySelectorAll('.nq-audio-controls').forEach(wrapper => {
+    const button = wrapper.querySelector('.nq-audio-button'), panel = wrapper.querySelector('.nq-audio-panel');
+    if (!panel || panel.hidden) return;
+    panel.hidden = true; button.setAttribute('aria-expanded', 'false');
+    if (restoreFocus) button.focus({ preventScroll: true });
+  });
+}
+function _initAudioControls() {
+  const contexts = [
+    ['mobileSoundControls', 'mobileSoundMusicIcon', 'mobileSoundSfxIcon'],
+    ['welcomeSoundControls', 'welcomeMusicIcon', 'welcomeSoundIcon'],
+    ['soundControlsBar', 'musicIcon', 'soundIcon'],
+    ['lndSoundControls', 'lndMusicIcon', 'lndSfxIcon']
+  ];
+  contexts.forEach(([hostId, musicIcon, soundIcon]) => {
+    const host = document.getElementById(hostId); if (!host) return;
+    host.querySelectorAll('.volume-slider-container, .lnd-sound-btn').forEach(old => old.remove());
+    // Landing controls predate slider containers.
+    host.querySelectorAll(':scope > [data-action="toggleMusic"], :scope > [data-action="toggleSound"]').forEach(old => old.remove());
+    const wrapper = document.createElement('div'); wrapper.className = 'nq-audio-controls'; wrapper.dataset.nqUi = 'lumen';
+    const panelId = hostId + 'AudioPanel';
+    wrapper.innerHTML = '<button type="button" class="nq-audio-button" aria-label="Preferências de áudio" aria-expanded="false" aria-controls="' + panelId + '"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4 6 8H3v8h3l5 4V4Zm5 4a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></svg></button>' +
+      '<div class="nq-audio-panel" id="' + panelId + '" role="region" aria-label="Preferências de áudio" hidden>' +
+      '<div class="nq-audio-heading"><strong>Áudio</strong><button type="button" class="nq-audio-close" aria-label="Fechar preferências de áudio">×</button></div>' +
+      '<div class="nq-audio-row"><button type="button" class="nq-audio-toggle"' + (hostId === 'soundControlsBar' ? ' id="musicToggle"' : '') + ' data-action="toggleMusic"><span id="' + musicIcon + '" aria-hidden="true">♪</span><span>Música</span><span class="nq-audio-switch" aria-hidden="true"></span></button><span class="nq-audio-state" data-audio-state="music"></span>' +
+      '<label class="nq-audio-volume" for="' + panelId + 'Music">Volume da música <output data-audio-value="music"></output></label><input id="' + panelId + 'Music" type="range" class="nq-audio-range music-vol" min="0" max="1" step="0.01" aria-label="Volume da música"></div>' +
+      '<div class="nq-audio-row"><button type="button" class="nq-audio-toggle"' + (hostId === 'soundControlsBar' ? ' id="soundToggle"' : '') + ' data-action="toggleSound"><span id="' + soundIcon + '" aria-hidden="true">◖</span><span>Efeitos</span><span class="nq-audio-switch" aria-hidden="true"></span></button><span class="nq-audio-state" data-audio-state="sfx"></span>' +
+      '<label class="nq-audio-volume" for="' + panelId + 'Sfx">Volume dos efeitos <output data-audio-value="sfx"></output></label><input id="' + panelId + 'Sfx" type="range" class="nq-audio-range sfx-vol" min="0" max="1" step="0.01" aria-label="Volume dos efeitos"></div>' +
+      '<p class="nq-audio-note">Volume salvo. A música começa quando você toca em reproduzir.</p></div>';
+    host.prepend(wrapper);
+    const button = wrapper.querySelector('.nq-audio-button'), panel = wrapper.querySelector('.nq-audio-panel');
+    button.addEventListener('click', () => {
+      const opening = panel.hidden; _closeAudioControls();
+      if (opening) {
+        document.dispatchEvent(new CustomEvent('nq:header-open', { detail: { kind: 'audio', owner: wrapper } }));
+        panel.hidden = false; button.setAttribute('aria-expanded', 'true');
       }
     });
-
-    // Initialize sound/music UI
-    (function() {
-      // Sincronizar sliders no carregamento inicial
-      document.querySelectorAll('.volume-slider.music-vol').forEach(s => s.value = musicEnabled ? musicVolume : 0);
-      document.querySelectorAll('.volume-slider.sfx-vol').forEach(s => s.value = soundEnabled ? sfxVolume : 0);
-
-      updateAudioIcons();
-
-      // Iniciar música automaticamente ao carregar a página
-      if (musicEnabled) {
-        startWelcomeMusic();
-
-        // Fallback se ainda estiver carregando
-        if (wmTrack.readyState < 2) {
-          const _onPlayable = () => {
-            if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
-          };
-          wmTrack.addEventListener('canplay', _onPlayable, { once: true });
-          wmTrack.addEventListener('canplaythrough', _onPlayable, { once: true });
-        }
-        // Fallback para browsers que bloqueiam autoplay: retenta no primeiro gesto até sucesso.
-        // Remove-se automaticamente após desbloquear para não processar todos os cliques.
-        function _tryWelcomeMusic() {
-          _unlockAll();
-          if (!musicEnabled) return;
-          const ws = document.getElementById('welcomeScreen');
-          if (ws && ws.classList.contains('hidden')) {
-            // Jogo já iniciado — listeners não são mais necessários
-            document.removeEventListener('touchstart', _tryWelcomeMusic, { capture: true });
-            document.removeEventListener('click',      _tryWelcomeMusic, { capture: true });
-            return;
-          }
-          // Se a track está pausada apesar de "started", reset para permitir novo start
-          if (welcomeMusicState === 'playing' && wmTrack.paused && !_wmStopRequested) {
-            _wmClearTimers();
-            transitionWelcomeMusic('paused');
-          }
-          if (welcomeMusicState === 'playing' && !wmTrack.paused) {
-            // Música tocando com sucesso — remove listeners
-            document.removeEventListener('touchstart', _tryWelcomeMusic, { capture: true });
-            document.removeEventListener('click',      _tryWelcomeMusic, { capture: true });
-            return;
-          }
-          startWelcomeMusic(true);
-        }
-        document.addEventListener('touchstart', _tryWelcomeMusic, { capture: true, passive: true });
-        document.addEventListener('click',      _tryWelcomeMusic, { capture: true });
-      }
-
-      // Retoma música quando a aba volta ao foco (tab switch, OAuth popup, etc.)
-      document.addEventListener('visibilitychange', function() {
-        if (document.visibilityState !== 'visible') return;
-        // Welcome music
-        if (welcomeMusicState === 'playing' && wmTrack.paused && !_wmStopRequested && musicEnabled) {
-          wmTrack.muted = true;
-          transitionWelcomeMusic('starting');
-          wmTrack.play().then(function() {
-            wmTrack.muted = false;
-            transitionWelcomeMusic('playing');
-          }).catch(function(err) {
-            wmTrack.muted = false;
-            transitionWelcomeMusic('failed');
-            console.warn("[AudioFSM] welcome music visibility resume failed:", err);
-          });
-        }
-        // Background music
-        if (bgMusicState === 'playing' && musicEnabled && activeTrack && activeTrack.paused) {
-          activeTrack.muted = true;
-          transitionBgMusic('starting');
-          activeTrack.play().then(function() {
-            activeTrack.muted = false;
-            activeTrack.volume = MUSIC_VOL;
-            transitionBgMusic('playing');
-          }).catch(function(err) {
-            activeTrack.muted = false;
-            transitionBgMusic('failed');
-            console.warn("[AudioFSM] bg music visibility resume failed:", err);
-          });
-        }
-      });
-    })();
+    wrapper.querySelector('.nq-audio-close').addEventListener('click', () => _closeAudioControls(true));
+  });
+  updateAudioIcons();
+}
+document.addEventListener('input', event => {
+  const slider = event.target;
+  if (!(slider instanceof HTMLInputElement) || !slider.matches('.nq-audio-range')) return;
+  if (slider.classList.contains('music-vol')) setMusicVolume(slider.value);
+  else if (slider.classList.contains('sfx-vol')) setSfxVolume(slider.value);
+});
+document.addEventListener('pointerdown', event => {
+  if (!event.target.closest('.nq-audio-controls')) _closeAudioControls();
+});
+document.addEventListener('focusin', event => {
+  if (!event.target.closest('.nq-audio-controls')) _closeAudioControls();
+});
+document.addEventListener('keydown', event => {
+  if (event.key !== 'Escape' || !document.querySelector('.nq-audio-panel:not([hidden])')) return;
+  event.preventDefault(); event.stopImmediatePropagation(); _closeAudioControls(true);
+}, true);
+document.addEventListener('nq:header-open', event => {
+  if (event.detail?.kind !== 'audio') _closeAudioControls();
+});
+// No load/canplay/first-click/visibility handler starts music.
+_initAudioControls();
+Object.assign(window, { setMusicVolume, setSfxVolume, toggleSound, toggleMusic, updateAudioIcons, playSound,
+  startWelcomeMusic, stopWelcomeMusic, startBgMusic, stopBgMusic });

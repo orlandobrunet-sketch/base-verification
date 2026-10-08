@@ -8,7 +8,8 @@ async function preparar(page: Page) {
 }
 async function entrar(page: Page) {
   await page.goto('/jogar/');
-  await page.locator('[data-portal-route="guest"]').click();
+  // O clique dispara o prefetch por pointerdown; aqui a tentativa pertence à Central.
+  await page.evaluate(() => (window as any).playAsGuest());
 }
 
 for (const arquivo of ['refs', 'articles']) {

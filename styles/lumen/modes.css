@@ -1,0 +1,145 @@
+/* Modos de jogo — diálogo de rotas do sistema Lúmen. */
+.nqmodes-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-mentor, 9000);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: max(1rem, env(safe-area-inset-top)) 1rem max(1rem, env(safe-area-inset-bottom));
+  background: rgba(3, 5, 12, .84);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.nqmodes-overlay.show { display: flex; }
+.nqmodes-dialog {
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 38rem);
+  max-height: calc(100dvh - 2rem);
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--nql-line-strong);
+  border-radius: var(--nql-radius-dialog);
+  background: var(--nql-surface-solid);
+  box-shadow: var(--nql-shadow-dialog);
+  color: var(--nql-text);
+  font-family: var(--nql-font-body);
+  animation: nqmodes-enter 180ms var(--nql-ease-enter) both;
+}
+.nqmodes-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 1rem;
+  padding: 1.5rem 1.5rem 1.15rem;
+}
+.nqmodes-eyebrow {
+  margin: 0 0 .45rem;
+  color: var(--nql-lumen);
+  font: 500 .72rem/1.4 var(--nql-font-instrument);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.nqmodes-title {
+  margin: 0;
+  color: var(--nql-text);
+  font: 600 clamp(1.7rem, 5vw, 2.25rem)/1.08 var(--nql-font-display);
+  letter-spacing: -.02em;
+  text-shadow: none;
+}
+.nqmodes-intro {
+  margin: .65rem 0 0;
+  max-width: 40ch;
+  color: var(--nql-text-soft);
+  font: 400 1rem/1.5 var(--nql-font-body);
+}
+.nqmodes-close {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  flex: 0 0 auto;
+  border: 1px solid var(--nql-line-strong);
+  border-radius: var(--nql-radius-control);
+  background: transparent;
+  color: var(--nql-text-soft);
+  cursor: pointer;
+}
+.nqmodes-close svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; }
+.nqmodes-close:hover { color: var(--nql-lumen); border-color: var(--nql-lumen); background: rgba(var(--nql-lumen-rgb), .07); }
+.nqmodes-routes {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 1.5rem 1.5rem;
+}
+
+/* Na paisagem, o cabeçalho ampliado também precisa participar da rolagem. */
+@media (max-height: 480px) {
+  .nqmodes-dialog { overflow-y: auto; }
+  .nqmodes-header, .nqmodes-routes { flex-shrink: 0; }
+  .nqmodes-routes { overflow-y: visible; }
+}
+.nqmodes-route {
+  appearance: none;
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr) 1.25rem;
+  align-items: center;
+  gap: .85rem;
+  width: 100%;
+  min-height: 76px;
+  padding: 1rem .8rem;
+  margin: 0;
+  border: 0;
+  border-top: 1px solid var(--nql-line);
+  border-radius: 0;
+  background: transparent;
+  color: var(--nql-text);
+  text-align: left;
+  font-family: var(--nql-font-body);
+  cursor: pointer;
+  transition: background-color var(--nql-duration-fast), color var(--nql-duration-fast);
+}
+.nqmodes-route:last-child { border-bottom: 1px solid var(--nql-line); }
+.nqmodes-route:hover { background: rgba(var(--nql-lumen-rgb), .06); }
+.nqmodes-route__index {
+  color: var(--nql-lumen);
+  font: 500 .8rem/1.4 var(--nql-font-instrument);
+}
+.nqmodes-route__copy { display: grid; gap: .3rem; min-width: 0; }
+.nqmodes-route__copy strong {
+  min-width: 0;
+  color: var(--nql-text);
+  font: 600 1.08rem/1.3 var(--nql-font-body);
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.nqmodes-route__copy small {
+  color: var(--nql-text-soft);
+  font: 400 .92rem/1.45 var(--nql-font-body);
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.nqmodes-route__arrow { width: 20px; height: 20px; fill: none; stroke: var(--nql-lumen); stroke-width: 1.6; }
+.nqmodes-overlay :is(.nqmodes-close, .nqmodes-route):focus-visible {
+  outline: 2px solid var(--nql-focus);
+  outline-offset: -3px;
+  box-shadow: none;
+}
+@keyframes nqmodes-enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@media (max-width: 380px) {
+  .nqmodes-header { padding: 1.1rem 1rem 1rem; gap: .6rem; }
+  .nqmodes-routes { padding: 0 .65rem 1rem; }
+  .nqmodes-route { grid-template-columns: 1.5rem minmax(0, 1fr) 1rem; gap: .6rem; padding: .9rem .45rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nqmodes-dialog { animation: none; }
+  .nqmodes-route { transition: none; }
+}
+@media (forced-colors: active) {
+  .nqmodes-dialog, .nqmodes-close, .nqmodes-route { border-color: CanvasText; }
+  .nqmodes-overlay :focus-visible { outline-color: Highlight; }
+}

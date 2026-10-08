@@ -57,7 +57,7 @@ function visiveis(): Record<string, number> {
 
 async function entrarNoJogo(page: Page) {
   await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
-  await injectGameState(page);
+  await injectGameState(page, {}, { replaceSnapshot: true });
   await page.waitForLoadState('load');
   await page.evaluate(() => (document as any).fonts.ready);
   await expect(page.locator('#mainApp')).toBeVisible({ timeout: 15_000 });

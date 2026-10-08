@@ -275,6 +275,7 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   min-width: 0;
   padding: 0 8px 4px;
   text-align: center;
+  overflow-wrap: anywhere;
 }
 
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-hero-archetype {
@@ -1284,6 +1285,7 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   --nql-dock-rgb: 122, 159, 216;
 
   width: 5.1rem;
+  max-width: 100%;
   height: 5.45rem;
   padding: .82rem .35rem .52rem;
   border: 1px solid var(--nql-line);
@@ -1855,7 +1857,8 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   font-size: .9375rem; line-height: 1.75;
 }
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] .nql-answer-result {
-  display:flex; align-items:center; gap:.6rem; margin:0 0 .8rem;
+  display:grid; grid-template-columns:20px minmax(0,1fr); align-items:center; gap:.6rem; margin:0 0 .8rem;
+  overflow-wrap:anywhere;
   color:var(--nql-parchment); font:600 1.25rem/1.3 var(--nql-font-display);
 }
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] .nql-answer-icon { display:inline-grid; place-items:center; width:20px; height:20px; border:1px solid currentColor; border-radius:50%; font:600 12px/1 var(--nql-font-body); }
@@ -1947,3 +1950,125 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .equip-total-attributes .stat-badge:nth-child(2 of .stat-badge){color:var(--nq-accent-cyan);background:color-mix(in srgb,var(--nq-accent-cyan) 9%,transparent)}
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .equip-total-attributes .stat-badge:nth-child(3 of .stat-badge){color:var(--nq-accent-violet);background:color-mix(in srgb,var(--nq-accent-violet) 9%,transparent)}
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .equip-total-attributes .stat-badge:nth-child(4 of .stat-badge){color:var(--nq-accent-green);background:color-mix(in srgb,var(--nq-accent-green) 9%,transparent)}
+
+/* Jornada: uma superfície de leitura, sem rolagem dentro do registro. */
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .log {
+  height: auto;
+  max-height: none;
+  overflow: visible;
+  flex: 0 0 auto;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .panel.right {
+  min-width: 0;
+  padding: clamp(1rem, 2.2vw, 1.75rem);
+  border: 1px solid var(--nql-line) !important;
+  border-radius: var(--nql-radius-panel) !important;
+  background: rgba(var(--nql-cortex-rgb), .28);
+  box-shadow: inset 0 1px 0 rgba(var(--nql-parchment-rgb), .025) !important;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #question,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #feedback .fb-snip,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #feedback .fb-rest {
+  text-align: justify;
+  text-align-last: start;
+  text-justify: inter-word;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .equip-total-attributes .stat-badge {
+  appearance: none;
+  min-width: 44px;
+  min-height: 44px;
+  margin: 0;
+  border: 1px solid transparent;
+  border-radius: var(--nql-radius-control);
+  color: inherit;
+  text-align: center;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .equip-total-attributes .stat-badge:is(:hover, :focus-visible) {
+  border-color: var(--nql-line-strong);
+  background: rgba(var(--nql-lumen-rgb), .055);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .equip-total-attributes .stat-badge:focus-visible {
+  outline: 2px solid var(--nql-focus);
+  outline-offset: 2px;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .equip-total-attributes .stat-badge :is(.nql-stat-label, .stat-name) {
+  max-width: 100%;
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* O portal recebe os tokens Lúmen no próprio nó, fora do mainApp. */
+body > .stat-tip-floating[data-nq-ui="lumen"] {
+  z-index: calc(var(--z-nav, 9600) + 1);
+  width: max-content;
+  max-width: min(20rem, calc(100vw - 20px));
+  max-height: calc(100dvh - 20px);
+  overflow-y: auto;
+  border: 1px solid var(--nql-line-strong);
+  border-radius: var(--nql-radius-panel);
+  padding: .8rem 1rem;
+  background: var(--nql-surface-solid);
+  box-shadow: var(--shadow-lg);
+  color: var(--nql-text-soft);
+  font: .9375rem/1.5 var(--nql-font-body);
+  white-space: normal;
+  overflow-wrap: break-word;
+  pointer-events: auto;
+}
+
+body > .stat-tip-floating[data-nq-ui="lumen"] strong {
+  color: var(--nql-lumen);
+  font: 600 1.0625rem/1.35 var(--nql-font-display);
+}
+
+body > .stat-tip-floating[data-nq-ui="lumen"] strong + br {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .panel.right {
+    padding: 1rem .9rem 1.25rem;
+  }
+
+  /* Um único scroll externo mantém o fim da Jornada acessível na gaveta. */
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .panel.left {
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+  }
+}
+
+/* Redução sutil pedida para a leitura padrão; rem preserva a ampliação do texto.
+ * O modo de leitura ampliada mantém sua escala própria. */
+body:not(.reading-mode):not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #question {
+  font-size: 1.21875rem;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .ref-reading {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+body:not(.reading-mode):not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .opt-body {
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  body:not(.reading-mode):not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #question {
+    font-size: 1.1125rem;
+  }
+
+  body:not(.reading-mode):not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .opt-body {
+    font-size: .9375rem;
+  }
+}

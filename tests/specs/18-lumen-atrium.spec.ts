@@ -648,23 +648,23 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
     await expect(page.locator('.nql-atrium__resume-shell')).not.toHaveAttribute('data-character', /.+/);
   });
 
-  test('mantém o controle de volume aberto ao atravessar até o slider', async ({ page }) => {
-    await page.setViewportSize({ width: 1440, height: 900 });
-    const container = page.locator('#welcomeSoundControls .volume-slider-container').first();
-    const slider = container.locator('.volume-slider');
-    await container.hover();
-    await expect(slider).toHaveCSS('opacity', '1');
-
-    const containerBox = await container.boundingBox();
-    expect(containerBox).not.toBeNull();
-    await page.mouse.move((containerBox?.x || 0) + (containerBox?.width || 0) - 8, (containerBox?.y || 0) + (containerBox?.height || 0) + 4);
-    await expect(slider).toHaveCSS('opacity', '1');
-    await expect(slider).toHaveCSS('pointer-events', 'auto');
-
+  test('mantém o painel de áudio aberto ao acessar o volume e preserva teclado/toque', async ({ page, isMobile }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    const button = page.locator('#welcomeSoundControls .nq-audio-button');
+    const panel = page.locator('#welcomeSoundControlsAudioPanel');
+    if (isMobile) await button.tap(); else await button.click();
+    await expect(panel).toBeVisible();
+    await expect(button).toHaveAttribute('aria-expanded', 'true');
+    const slider = panel.locator('.music-vol');
+    await expect(slider).toBeVisible();
     await slider.focus();
     const before = Number(await slider.inputValue());
     await page.keyboard.press('ArrowRight');
     expect(Number(await slider.inputValue())).toBeGreaterThan(before);
+    await expect(panel).toBeVisible();
+    await page.keyboard.press('Escape');
+    await expect(panel).toBeHidden();
+    await expect(button).toBeFocused();
   });
 
   test('oferece navegação por teclado e alvos mínimos', async ({ page }) => {

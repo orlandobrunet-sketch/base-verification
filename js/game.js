@@ -337,11 +337,197 @@
 
     // ============ SISTEMA DE SAVE/LOAD (localStorage) ============
     const SAVE_KEY = 'nefroquest-save';
+    // Clients v6 only know SAVE_KEY. The complete transaction lives in one
+    // separate, atomic value; the legacy value is only a compatibility mirror.
+    const CANONICAL_SAVE_KEY = 'nefroquest-save-v7';
+    let _saveBaseline;
+    let _saveOwner;
+    let _progressEpoch = 0;
+    let _cloudLoadSyncTimer = null;
+    let _guestRecoveryAccepted = null;
+    let _legacySaveBaseline;
+    let _saveCleanupBlocked = false;
+
+    function _currentSaveOwner() { return authUser?.id || null; }
+    function _guestSavePair(raw) { return JSON.stringify([raw, localStorage.getItem(SAVE_KEY)]); }
+    function _canonicalSaveRecord() {
+      try { return JSON.parse(localStorage.getItem(CANONICAL_SAVE_KEY) || 'null'); } catch (e) { return null; }
+    }
+    function _isSaveTombstone(record) {
+      return record === null || (record && Object.prototype.hasOwnProperty.call(record, 'save') && record.save === null);
+    }
+    function _canSyncLocalProgress(owner) {
+      const raw = localStorage.getItem(CANONICAL_SAVE_KEY);
+      if (raw === null) return true; // stats/study may exist without a journey
+      const record = _canonicalSaveRecord();
+      return !!record && typeof record === 'object' && record.saveOwner === owner && record.resetReason !== 'logout';
+    }
+    function _writeSaveTombstone(reason, owner = _currentSaveOwner()) {
+      const raw = JSON.stringify({schemaVersion:SAVE_SCHEMA_VERSION, saveOwner:owner,
+        saveRevision:crypto.randomUUID(), save:null, resetReason:reason});
+      localStorage.setItem(CANONICAL_SAVE_KEY, raw);
+      _saveBaseline = raw; _saveOwner = owner; _guestRecoveryAccepted = null;
+      return raw;
+    }
+    function _prepareProgressOwner(owner) {
+      const record = _canonicalSaveRecord();
+      const previous = authUser?.id || (typeof record?.saveOwner === 'string' ? record.saveOwner : null);
+      // Session callbacks can switch accounts without going through our logout.
+      // Never carry A's history into the query/union/upload for B.
+      if (previous && previous !== owner) return clearLocalProgress('logout', previous);
+      return !_saveCleanupBlocked;
+    }
+    window._prepareProgressOwner = _prepareProgressOwner;
+
+    function _signedOutSaveNeedsLogin(owner) {
+      const record = _canonicalSaveRecord();
+      return record?.save === null && record.resetReason === 'logout' && record.saveOwner === owner;
+    }
+    window._signedOutSaveNeedsLogin = _signedOutSaveNeedsLogin;
+
+    function _stopLocalJourney() {
+      ++_progressEpoch;
+      clearTimeout(_autoSaveTimer);
+      clearTimeout(_saveTimer);
+      clearTimeout(_cloudSyncTimer);
+      clearTimeout(_cloudLoadSyncTimer);
+      _autoSaveTimer = _saveTimer = _cloudSyncTimer = _cloudLoadSyncTimer = null;
+      if (document.querySelector('.panel.left.mobile-open') && typeof window.toggleDrawer === 'function') window.toggleDrawer();
+      if (typeof window.closeDashboard === 'function') window.closeDashboard({restoreFocus:false});
+      // Bypass the Proxy: cleanup must not schedule a new autosave.
+      Object.assign(_stateData, {
+        gameStarted: false, gameOver: false, character: null, current: null,
+        queue: [], idx: 0, level:1, gold:0, score:0, xp:0, xpToNext:200,
+        lives:3, maxLives:3, streak:0, difficulty:'normal', bonusUses:0,
+        correctTotal:0, narrativeShown:0, bossIntroShown:false, battleFinalShown:false,
+        chestsOpened:0, legendaryAbilityUsed:{}, bossLog:[], answered:false,
+        extraLifeGiven:false, chestCorrectCount:0, chestTarget:5,
+        gameCompleted:false, completedGame:false, bossStunActive:false,
+        selectedCharacter:null, hp:0, maxHp:0,
+        forjaPending: null, obtainedItems: [], allItemsCollectedNotified: false,
+        equipment: Object.fromEntries(['helmet', 'glove', 'armor', 'weapon', 'relic', 'boot']
+          .map(slot => [slot, {n:'Vazio',rar:'common',atk:0,def:0,kno:0,luck:0}]))
+      });
+      if (_forja) {
+        _forja.origem.elementos.forEach(({ el, hidden, inert }) => {
+          el.classList.toggle('hidden', hidden); el.inert = inert;
+        });
+        _forja = null;
+      }
+      document.getElementById('forjaPage')?.remove();
+      document.getElementById('nqSaveRecovery')?.remove();
+      document.body.classList.remove('nq-studying', 'boss-battle-mode', 'arqui-nefromante-final', 'boss-stun-active', 'boss-hp-critical', 'rd-game-over');
+      document.getElementById('mainApp')?.classList.add('hidden');
+      const welcome = document.getElementById('welcomeScreen');
+      if (welcome) { welcome.inert = false; welcome.classList.remove('hidden'); }
+      _invalidateStatsCache();
+    }
+    window._stopLocalJourney = _stopLocalJourney;
+
+    function _mirrorLegacySave(raw) {
+      // A mirror failure must never undo a transaction already committed.
+      try { localStorage.setItem(SAVE_KEY, raw); } catch (e) { /* canonical save remains valid */ }
+    }
+
+    function _showGuestSaveRecovery(raw) {
+      if (document.getElementById('nqSaveRecovery')) return;
+      const claimOwner = _currentSaveOwner();
+      const dialog = document.createElement('div');
+      dialog.id = 'nqSaveRecovery';
+      dialog.className = 'nq-overlay';
+      dialog.dataset.nqUi = 'lumen';
+      dialog.style.cssText = 'position:fixed;inset:0;z-index:10001;display:flex;flex-direction:column;align-items:center;padding:16px;background:rgba(0,0,0,.9);overflow:auto';
+      dialog.setAttribute('role', 'dialog');
+      dialog.setAttribute('aria-modal', 'true');
+      dialog.setAttribute('aria-labelledby', 'nqSaveRecoveryTitle');
+      dialog.setAttribute('aria-describedby', 'nqSaveRecoveryDescription');
+      dialog.innerHTML = `<div class="modal-content" style="width:100%;max-width:440px;box-sizing:border-box;overflow-wrap:anywhere;flex-shrink:0;margin:auto 0">
+        <h2 id="nqSaveRecoveryTitle">Qual jornada deseja continuar?</h2>
+        <p id="nqSaveRecoveryDescription">${claimOwner
+          ? 'Há uma jornada de visitante protegida neste aparelho. Use-a nesta conta somente se ela for sua. Usar a jornada da conta descarta a jornada deste aparelho, inclusive qualquer escolha da Forja ainda pendente.'
+          : 'Há uma jornada protegida neste aparelho e outra aba mudou os dados antigos. Retome a jornada protegida somente se ela for sua. Começar uma nova descarta essa jornada.'}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:20px">
+          <button type="button" class="btn" style="max-width:100%;min-height:44px;white-space:normal;overflow-wrap:anywhere" data-recovery="resume">${claimOwner ? 'Usar jornada deste aparelho nesta conta' : 'Retomar jornada protegida'}</button>
+          <button type="button" class="btn sec" style="max-width:100%;min-height:44px;white-space:normal;overflow-wrap:anywhere" data-recovery="discard">${claimOwner ? 'Usar jornada da conta' : 'Começar uma nova jornada'}</button>
+        </div>
+      </div>`;
+      dialog.querySelector('[data-recovery="resume"]').onclick = () => {
+        // Reconcile again: the choice must not restore an older snapshot.
+        if (_currentSaveOwner() !== claimOwner || localStorage.getItem(CANONICAL_SAVE_KEY) !== raw) {
+          dialog.remove(); refreshWelcomeSave(); return;
+        }
+        let adoptedRaw = raw;
+        if (claimOwner) {
+          const adopted = JSON.parse(raw);
+          adopted.saveOwner = claimOwner; adopted.saveRevision = crypto.randomUUID(); adopted.timestamp = Date.now();
+          adoptedRaw = JSON.stringify(adopted);
+          try { localStorage.setItem(CANONICAL_SAVE_KEY, adoptedRaw); }
+          catch (e) { _warnStorageFull(); return; }
+          _saveOwner = claimOwner; _saveBaseline = adoptedRaw;
+        }
+        _mirrorLegacySave(adoptedRaw);
+        _guestRecoveryAccepted = _guestSavePair(adoptedRaw);
+        _legacySaveBaseline = localStorage.getItem(SAVE_KEY);
+        dialog.remove();
+        refreshWelcomeSave();
+        continueGame();
+      };
+      dialog.querySelector('[data-recovery="discard"]').onclick = () => {
+        if (_currentSaveOwner() !== claimOwner || localStorage.getItem(CANONICAL_SAVE_KEY) !== raw) {
+          dialog.remove(); refreshWelcomeSave(); return;
+        }
+        if (!clearLocalProgress(claimOwner ? 'logout' : 'reset')) return;
+        dialog.remove();
+        if (claimOwner) {
+          _loadProgressFromCloud().then(() => { if (_currentSaveOwner() === claimOwner) refreshWelcomeSave(); });
+        } else { refreshWelcomeSave(); startNewFromWelcome(); }
+      };
+      dialog.addEventListener('keydown', event => {
+        if (event.key !== 'Tab') return;
+        const buttons = [...dialog.querySelectorAll('button')];
+        const next = event.shiftKey ? buttons.at(-1) : buttons[0];
+        if ((event.shiftKey && document.activeElement === buttons[0]) ||
+            (!event.shiftKey && document.activeElement === buttons.at(-1))) {
+          event.preventDefault(); next.focus();
+        }
+      });
+      document.body.appendChild(dialog);
+      const backgrounds = [...document.body.children].filter(el => el !== dialog && el.tagName !== 'SCRIPT')
+        .map(el => ({el,inert:el.inert}));
+      backgrounds.forEach(({el}) => {el.inert = true;});
+      const cleanup = new MutationObserver(() => {
+        if (dialog.isConnected) return;
+        cleanup.disconnect();
+        backgrounds.forEach(({el,inert}) => {if (el.isConnected) el.inert = inert;});
+      });
+      cleanup.observe(document.body,{childList:true});
+      dialog.querySelector('button').focus();
+    }
+
+    window.addEventListener('storage', event => {
+      if (event.storageArea !== localStorage) return;
+      if ((event.key === CANONICAL_SAVE_KEY || event.key === null) &&
+          state.gameStarted && localStorage.getItem(CANONICAL_SAVE_KEY) !== _saveBaseline) {
+        _stopLocalJourney();
+        _toast('A jornada mudou em outra aba. Retome a versão salva para continuar.', 'info', 6000);
+        refreshWelcomeSave();
+      }
+      if (event.key === SAVE_KEY && _currentSaveOwner() === null) {
+        const raw = localStorage.getItem(CANONICAL_SAVE_KEY);
+        let save = null;
+        try { save = JSON.parse(raw || 'null'); } catch (e) {}
+        if (save?.saveOwner === null && localStorage.getItem(SAVE_KEY) !== raw) {
+          _guestRecoveryAccepted = null;
+          if (state.gameStarted) _stopLocalJourney();
+          refreshWelcomeSave();
+        }
+      }
+    });
     const STATS_KEY = 'nefroquest-stats';
     const MASTERED_KEY = 'nefroquest-mastered';
     // Schema version — incrementar ao adicionar campos obrigatórios ao saveData
     // Histórico: 1 = original  2 = bossIntroShown + chestsOpened  3 = legendaryAbilityUsed  4 = difficulty + maxLives  5 = relic1 + relic2 double relics  6 = 6-slot diablo grid layout
-    const SAVE_SCHEMA_VERSION = 6;
+    const SAVE_SCHEMA_VERSION = 7;
 
     // ============ FREEMIUM ============
     // Reconhece admin via JWT custom claim (app_metadata.is_admin).
@@ -489,8 +675,25 @@
       }, 300);
     }
     function _doSaveGame() {
-      if (isProgressSandbox()) return;
-      if (!state.gameStarted || state.gameOver) return;
+      if (isProgressSandbox()) return false;
+      if (_saveCleanupBlocked) return false;
+      if (!state.gameStarted || state.gameOver) return false;
+      const owner = _currentSaveOwner();
+      const currentRaw = localStorage.getItem(CANONICAL_SAVE_KEY);
+      if ((_saveOwner !== undefined && _saveOwner !== owner) ||
+          (_saveBaseline !== undefined && currentRaw !== _saveBaseline) ||
+          (owner === null && currentRaw && currentRaw !== 'null' &&
+           _legacySaveBaseline !== undefined && localStorage.getItem(SAVE_KEY) !== _legacySaveBaseline)) {
+        // Also check synchronously: a queued storage event may arrive after a
+        // click or an autosave. A stale tab must never resurrect a reset save.
+        queueMicrotask(() => { _stopLocalJourney(); refreshWelcomeSave(); });
+        return false;
+      }
+      if (currentRaw && !_isSaveTombstone(_canonicalSaveRecord())) {
+        try {
+          if (JSON.parse(currentRaw).saveOwner !== owner) return false;
+        } catch (e) { return false; }
+      }
       const saveData = {
         level: state.level,
         xp: state.xp,
@@ -512,6 +715,7 @@
         chestsOpened: state.chestsOpened,
         obtainedItems: Array.isArray(state.obtainedItems) ? state.obtainedItems.slice() : [],
         allItemsCollectedNotified: !!state.allItemsCollectedNotified,
+        forjaPending: state.forjaPending ? JSON.parse(JSON.stringify(state.forjaPending)) : null,
         difficulty: state.difficulty || 'normal',
         maxLives: state.maxLives || 3,
         legendaryAbilityUsed: {...state.legendaryAbilityUsed},
@@ -519,13 +723,23 @@
         chestCorrectCount: state.chestCorrectCount || 0,
         chestTarget: state.chestTarget || 5,
         timestamp: Date.now(),
-        schemaVersion: SAVE_SCHEMA_VERSION
+        schemaVersion: SAVE_SCHEMA_VERSION,
+        saveOwner: owner,
+        saveRevision: crypto.randomUUID()
       };
-      try { localStorage.setItem(SAVE_KEY, JSON.stringify(saveData)); } catch(e) {
+      const raw = JSON.stringify(saveData);
+      try { localStorage.setItem(CANONICAL_SAVE_KEY, raw); } catch(e) {
         _track('error_localstorage_full', { msg: String(e) });
         _toast('Aviso: progresso não salvo — armazenamento cheio. Libere espaço nas configurações do navegador.', 'warning', 6000);
+        return false;
       }
+      _saveBaseline = raw;
+      _saveOwner = owner;
+      _mirrorLegacySave(raw);
+      _legacySaveBaseline = localStorage.getItem(SAVE_KEY);
+      _guestRecoveryAccepted = _guestSavePair(raw);
       _scheduleCloudSync();
+      return true;
     }
 
     function _migrateSave(save) {
@@ -592,17 +806,49 @@
         }
         save.schemaVersion = 6;
       }
+      if (v < 7) {
+        save.forjaPending = null;
+        save.schemaVersion = 7;
+      }
+      save.forjaPending = save.forjaPending ?? null;
       return save;
     }
 
     function loadGame() {
-      const raw = localStorage.getItem(SAVE_KEY);
+      if (_saveCleanupBlocked) return null;
+      const canonicalRaw = localStorage.getItem(CANONICAL_SAVE_KEY);
+      // A null payload is a tombstone, not a missing key. Read it before any
+      // migration; late v6 writes must never resurrect logout/reset progress.
+      if (canonicalRaw !== null && _isSaveTombstone(_canonicalSaveRecord())) {
+        if (!state.gameStarted) { _saveBaseline = canonicalRaw; _saveOwner = _currentSaveOwner(); }
+        return null;
+      }
+      const raw = canonicalRaw ?? localStorage.getItem(SAVE_KEY);
       if (!raw) return null;
       try {
         const save = JSON.parse(raw);
+        if (!save || typeof save !== 'object' || !save.character) return null;
+        if ((canonicalRaw !== null || Object.prototype.hasOwnProperty.call(save, 'saveOwner')) &&
+            save.saveOwner !== _currentSaveOwner()) {
+          if (canonicalRaw !== null && save.saveOwner === null && _currentSaveOwner()) _showGuestSaveRecovery(canonicalRaw);
+          return null;
+        }
+        if (canonicalRaw !== null && save.saveOwner === null &&
+            localStorage.getItem(SAVE_KEY) !== canonicalRaw && _guestRecoveryAccepted !== _guestSavePair(canonicalRaw)) {
+          // An old guest logout/reset is indistinguishable from overwrite.
+          // Keep the paid transaction intact and require an explicit choice.
+          _showGuestSaveRecovery(canonicalRaw);
+          return null;
+        }
+        if (!state.gameStarted) {
+          _saveBaseline = canonicalRaw; _saveOwner = _currentSaveOwner();
+          _legacySaveBaseline = localStorage.getItem(SAVE_KEY);
+        }
         return _migrateSave(save);
       } catch(e) {
         _track('error_save_corrupt', {msg: String(e)});
+        // Keep the canonical key present even if its payload is corrupt.
+        try { localStorage.setItem(CANONICAL_SAVE_KEY, 'null'); } catch (error) {}
         localStorage.removeItem(SAVE_KEY);
         return null;
       }
@@ -610,6 +856,14 @@
     
     function deleteSave() {
       if (isProgressSandbox()) return;
+      clearTimeout(_autoSaveTimer); clearTimeout(_saveTimer); clearTimeout(_cloudSyncTimer); clearTimeout(_cloudLoadSyncTimer);
+      _autoSaveTimer = _saveTimer = _cloudSyncTimer = _cloudLoadSyncTimer = null;
+      ++_progressEpoch;
+      try { _writeSaveTombstone('journey'); } catch (e) {
+        _warnStorageFull(); return false;
+      }
+      _stateData.forjaPending = null;
+      _stateData.gameStarted = false;
       localStorage.removeItem(SAVE_KEY);
       localStorage.removeItem('nefroquest-announced-badges');
       // Conta a jornada que começa, para o histórico de selos poder dizer em
@@ -619,9 +873,20 @@
         localStorage.setItem('nefroquest-journey-count', String(atual + 1));
       } catch (e) {}
       _scheduleCloudSync();
+      return true;
     }
 
-    function clearLocalProgress() {
+    function clearLocalProgress(reason = 'reset', owner = _currentSaveOwner()) {
+      _stopLocalJourney();
+      for (const id of ['welcomeSavedInfo', 'welcomeStats', 'welcomeContinueBtn']) {
+        const element = document.getElementById(id);
+        if (element) element.style.display = 'none';
+      }
+      let markerWritten = false;
+      try { _writeSaveTombstone(reason, owner); markerWritten = true; } catch (e) {
+        // Free account history first, then retry the small marker. If writes
+        // remain unavailable, logout must stop before changing identity.
+      }
       const keys = [
         SAVE_KEY,
         STATS_KEY,
@@ -658,7 +923,24 @@
         'nq_last_study'
       ];
       keys.forEach(k => localStorage.removeItem(k));
+      unlockedArticles = [];
+      _masteredSet = new Set();
+      _recentIds = [];
+      pendingScore = null;
+      _progressSandboxMode = null;
+      delete document.body.dataset.progressSandbox;
+      document.getElementById('progressSandboxBanner')?.remove();
+      if (!markerWritten) {
+        try { _writeSaveTombstone(reason, owner); markerWritten = true; } catch (e) {}
+      }
+      _saveCleanupBlocked = !markerWritten;
+      if (markerWritten) {
+        _guestRecoveryAccepted = null;
+      } else {
+        _toast('Não foi possível limpar a jornada. Libere espaço no navegador e tente sair novamente.', 'error', 7000);
+      }
       _invalidateStatsCache();
+      return markerWritten;
     }
     window.clearLocalProgress = clearLocalProgress;
 
@@ -672,6 +954,7 @@
       'nefroquest-music-vol',
       'nefroquest-sound',
       'nefroquest-sfx-vol',
+      'nefroquest-audio-preferences-version',
       'nq_notif_enabled',
       'pwa-dismissed',
       // Qual versão do app este navegador tem em cache. Apagar no logout faria
@@ -685,7 +968,9 @@
 
     function _scheduleCloudSync() {
       if (isProgressSandbox()) return;
+      if (_saveCleanupBlocked) return;
       if (!authUser || !_supaClient) return;
+      if (!_canSyncLocalProgress(authUser.id)) return;
       if (_cloudSyncTimer) clearTimeout(_cloudSyncTimer);
       _cloudSyncTimer = setTimeout(_syncProgressToCloud, 10000);
     }
@@ -697,7 +982,13 @@
       try { mastered        = JSON.parse(localStorage.getItem(MASTERED_KEY) || '[]'); } catch(e) {}
       try { unlockedArticles= JSON.parse(localStorage.getItem('unlockedArticles') || '[]'); } catch(e) {}
       try { detailedStats   = JSON.parse(localStorage.getItem(STATS_STORAGE_KEY || 'nefroquest-detailed-stats') || '{}'); } catch(e) {}
-      try { const r = localStorage.getItem(SAVE_KEY); save = r ? JSON.parse(r) : null; } catch(e) {}
+      try {
+        const canonical = localStorage.getItem(CANONICAL_SAVE_KEY);
+        const r = canonical ?? localStorage.getItem(SAVE_KEY);
+        save = r ? JSON.parse(r) : null;
+        if (_isSaveTombstone(save)) save = null;
+        if (canonical !== null && save?.saveOwner !== _currentSaveOwner()) save = null;
+      } catch(e) {}
       try { unlockedRefs    = JSON.parse(localStorage.getItem('nq-unlocked-refs') || '[]'); } catch(e) {}
       try { acidBaseProgress= JSON.parse(localStorage.getItem('nq-acidbase-progress') || '{}'); } catch(e) {}
       try { srData          = JSON.parse(localStorage.getItem('nefroquest-sr-data') || '{}'); } catch(e) {}
@@ -718,8 +1009,10 @@
     }
 
     async function _syncProgressToCloud() {
+      clearTimeout(_cloudSyncTimer);
       _cloudSyncTimer = null;
-      if (!authUser || !_supaClient) return;
+      if (!authUser || !_supaClient || _saveCleanupBlocked) return;
+      if (!_canSyncLocalProgress(authUser.id)) return;
       try {
         await _supaClient
           .from('profiles')
@@ -814,7 +1107,9 @@
     window._mergeDetailedStats = _mergeDetailedStats;
 
     function _mergeCloudProgress(cloud) {
-      if (!cloud || typeof cloud !== 'object') return;
+      if (!cloud || typeof cloud !== 'object' || _saveCleanupBlocked) return;
+      const canonicalRecord = _canonicalSaveRecord();
+      if (canonicalRecord?.character && canonicalRecord.saveOwner !== _currentSaveOwner()) return;
 
       // Stats: máximo por campo
       if (cloud.stats && typeof cloud.stats === 'object') {
@@ -859,12 +1154,32 @@
         try { localStorage.setItem('nefroquest-detailed-stats', JSON.stringify(fundido)); } catch(e) { console.error('[NQ] saveDetailedStats (cloud merge) failed', e); }
       }
 
-      // Save em andamento: prevalece o mais recente (por timestamp)
+      // Save em andamento: um cliente antigo não pode apagar a decisão paga.
       if (cloud.save && typeof cloud.save === 'object' && cloud.save.character) {
-        let localTs = 0;
-        try { const r = localStorage.getItem(SAVE_KEY); localTs = r ? (JSON.parse(r).timestamp || 0) : 0; } catch(e) {}
-        if ((cloud.save.timestamp || 0) > localTs) {
-          try { localStorage.setItem(SAVE_KEY, JSON.stringify(cloud.save)); } catch(e) { console.error('[NQ] saveSave (cloud merge) failed', e); }
+        const owner = _currentSaveOwner();
+        const canonical = localStorage.getItem(CANONICAL_SAVE_KEY);
+        let local = null;
+        try { local = JSON.parse(canonical ?? localStorage.getItem(SAVE_KEY) ?? 'null'); } catch(e) {}
+        const tombstone = canonical !== null && _isSaveTombstone(local);
+        const restoreAfterLogout = tombstone && local?.resetReason === 'logout';
+        const restoreEmpty = tombstone && local?.resetReason === 'empty' && local.saveOwner === owner;
+        const correctOwner = canonical === null || local?.saveOwner === owner || restoreAfterLogout;
+        const remoteOwnerMatches = !Object.prototype.hasOwnProperty.call(cloud.save, 'saveOwner') || cloud.save.saveOwner === owner;
+        const wouldLosePaidChoice = !!local?.forjaPending && Number(cloud.save.schemaVersion || 1) < 7;
+        if (correctOwner && wouldLosePaidChoice) {
+          _scheduleCloudSync();
+        } else if ((!tombstone || restoreAfterLogout || restoreEmpty) && correctOwner && remoteOwnerMatches &&
+                   (cloud.save.timestamp || 0) > (local?.timestamp || 0)) {
+          const imported = _migrateSave(JSON.parse(JSON.stringify(cloud.save)));
+          imported.saveOwner = owner;
+          imported.saveRevision = crypto.randomUUID();
+          const raw = JSON.stringify(imported);
+          try {
+            localStorage.setItem(CANONICAL_SAVE_KEY, raw);
+            if (state.gameStarted) _stopLocalJourney();
+            _saveBaseline = raw; _saveOwner = owner;
+            _mirrorLegacySave(raw);
+          } catch(e) { console.error('[NQ] saveSave (cloud merge) failed', e); }
         }
       }
 
@@ -912,19 +1227,54 @@
     window._mergeCloudProgress = _mergeCloudProgress;
 
     async function _loadProgressFromCloud() {
-      if (!authUser || !_supaClient) return;
+      if (!authUser || !_supaClient || _saveCleanupBlocked) return;
+      const owner = authUser.id;
+      const epoch = _progressEpoch;
+      const canonicalAtRequest = localStorage.getItem(CANONICAL_SAVE_KEY);
+      const before = _canonicalSaveRecord();
+      if (before?.character && before.saveOwner !== owner) {
+        if (before.saveOwner === null) _showGuestSaveRecovery(localStorage.getItem(CANONICAL_SAVE_KEY));
+        return;
+      }
+      if (before?.save === null && before.resetReason === 'reset' && before.saveOwner === owner) return;
       try {
-        const { data: profile } = await _supaClient
+        const { data: profile, error } = await _supaClient
           .from('profiles')
           .select('game_progress')
-          .eq('id', authUser.id)
+          .eq('id', owner)
           .single();
-        _mergeCloudProgress(profile?.game_progress);
+        if (error || !profile || typeof profile !== 'object') return;
+        if (authUser?.id !== owner || _progressEpoch !== epoch) return;
+        let progress = profile?.game_progress;
+        if (localStorage.getItem(CANONICAL_SAVE_KEY) !== canonicalAtRequest) {
+          const current = _canonicalSaveRecord();
+          // Keep a same-owner transaction made during the query, while still
+          // merging the remote monotonic history. Reset/logout/invalid data
+          // invalidates the whole response, including its follow-up upload.
+          if (!current?.character || current.saveOwner !== owner || _isSaveTombstone(current)) return;
+          progress = {...progress};
+          delete progress.save;
+        }
+        _mergeCloudProgress(progress);
         _refreshWelcomeStats(); // atualiza DOM após dados da nuvem chegarem (evita race condition)
+        let after = _canonicalSaveRecord();
+        if (after?.save === null && after.resetReason === 'logout' && !progress?.save?.character) {
+          // A successful, owner-bound read confirmed there is no remote
+          // journey. Retire logout protection so study stats can sync without
+          // requiring a new game or a second login on the next reload.
+          try { _writeSaveTombstone('empty', owner); after = _canonicalSaveRecord(); }
+          catch (error) { _warnStorageFull(); return; }
+        }
+        // A reset/journey tombstone intentionally refused the remote save.
+        // Do not erase that remote journey with a follow-up save:null upload.
+        if (_isSaveTombstone(after) && profile?.game_progress?.save?.character) return;
         
         // Se após o merge local houver dados combinados mais recentes, agenda upload de volta
-        setTimeout(() => {
-          if (typeof _syncProgressToCloud === 'function') {
+        clearTimeout(_cloudLoadSyncTimer);
+        const mergedEpoch = _progressEpoch;
+        _cloudLoadSyncTimer = setTimeout(() => {
+          _cloudLoadSyncTimer = null;
+          if (authUser?.id === owner && _progressEpoch === mergedEpoch && typeof _syncProgressToCloud === 'function') {
             _syncProgressToCloud().catch(() => {});
           }
         }, 2000);
@@ -1000,6 +1350,7 @@
       if (save.equipment) {
         state.equipment = save.equipment;
       }
+      state.forjaPending = save.forjaPending ? JSON.parse(JSON.stringify(save.forjaPending)) : null;
       
       // Restore queue order
       if (save.queueIds && save.queueIds.length > 0) {
@@ -1285,20 +1636,20 @@
 
         const save = loadGame();
         if (!save) {
+          if (document.getElementById('nqSaveRecovery')) return;
           startNewFromWelcome();
           return;
         }
 
-        if (!questionBank) {
-          _toast('Carregando questões…', 'info', 30000);
-          try {
-            await _loadTopics();
-            document.querySelector('.nq-toast')?.remove();
-          } catch (error) {
-            console.error('continueGame: falha ao carregar questões', error);
-            announceError('Não foi possível carregar as questões. Tente novamente.');
-            return;
-          }
+        const needsQuestions = !questionBank;
+        if (needsQuestions) _toast('Carregando questões…', 'info', 30000);
+        try {
+          await _loadTopics();
+          if (needsQuestions) document.querySelector('.nq-toast')?.remove();
+        } catch (error) {
+          console.error('continueGame: falha ao carregar questões', error);
+          announceError('Não foi possível carregar as questões. Tente novamente.');
+          return;
         }
 
         if (!restoreGame(save)) {
@@ -1318,6 +1669,11 @@
         applyBossOptionBadges();
         playSound('click');
         window.setTimeout(() => {
+          if (state.forjaPending) {
+            showForjaModal();
+            _forjaFocarResultado();
+            return;
+          }
           const mainApp = document.getElementById('mainApp');
           if (mainApp && !mainApp.classList.contains('hidden')) {
             mainApp.focus({ preventScroll: true });
@@ -1447,9 +1803,11 @@
     // ── Lazy loading do topics.js (1.4 MB) ─────────────────────────────────
     let _topicsPromise = null;
     function _loadTopics() {
-      if (questionBank) return Promise.resolve();
-      if (_topicsPromise) return _topicsPromise;
-      _topicsPromise = new Promise((resolve, reject) => {
+      // A primeira carta lê refsDB: o download ocioso pode ainda estar em
+      // andamento quando a pessoa entra rapidamente na Jornada.
+      const referencesReady = carregarDadosGrimorio();
+      if (questionBank) return referencesReady;
+      if (!_topicsPromise) _topicsPromise = new Promise((resolve, reject) => {
         const s = document.createElement('script');
         s.src = 'data/topics.js';
         s.onload  = () => {
@@ -1468,7 +1826,8 @@
         s.onerror = () => { _topicsPromise = null; s.remove(); reject(new Error('Falha ao carregar questões')); };
         document.head.appendChild(s);
       });
-      return _topicsPromise;
+      // Uma falha nas referências não descarta o download de questões em andamento.
+      return Promise.all([_topicsPromise, referencesReady]).then(() => {});
     }
     window._loadTopics = _loadTopics;
     // Inicia download no primeiro toque — head start antes do usuário clicar em jogar
@@ -1530,7 +1889,8 @@
     // gameStarted        boolean       Se o jogo foi iniciado
     // chestsOpened       number        Total de baús abertos na sessão
     // character          string|null   ID do personagem selecionado
-    // equipment          object        Slots weapon/armor/relic com atributos
+    // equipment          object        Seis espaços de equipamento com atributos
+    // forjaPending       object|null   Sorteio pago, recuperável até equipar ou vender
     // selectedCharacter  string|null   Alias de character (usado em alguns fluxos)
     // hp/maxHp           number        HP do boss (usado em boss mode)
     // ─────────────────────────────────────────────────────
@@ -1543,7 +1903,7 @@
       level:1,xp:0,xpToNext:200,score:0,lives:3,maxLives:3,streak:0,gold:0,difficulty:"normal",legendaryAbilityUsed:{},
       current:null,answered:false,queue:[],idx:0,bonusUses:0,
       correctTotal:0, narrativeShown:0, bossIntroShown:false, battleFinalShown:false, gameOver:false, bossLog:[],
-      gameStarted: false, chestsOpened:0, obtainedItems:[], allItemsCollectedNotified:false,
+      gameStarted: false, chestsOpened:0, obtainedItems:[], allItemsCollectedNotified:false, forjaPending:null,
       chestCorrectCount:0,
       chestTarget: Math.floor(Math.random() * 3) + 5,
       character: null,
@@ -1830,7 +2190,21 @@
     // ── Leaderboard ──────────────────────────── js/leaderboard.js ──
     const best = () => { const s = getGameStats(); return s.bestScore || 0; };
 
-    function log(m){const p=document.createElement('p');p.textContent=m;ui.journal.prepend(p);while(ui.journal.children.length>4)ui.journal.lastChild.remove()}
+    function log(m) {
+  const p = document.createElement('p');
+  const texto = String(m ?? '');
+  let inicio = 0;
+  for (const trecho of texto.matchAll(/\*\*([^*]+)\*\*/g)) {
+    p.appendChild(document.createTextNode(texto.slice(inicio, trecho.index)));
+    const forte = document.createElement('strong');
+    forte.textContent = trecho[1];
+    p.appendChild(forte);
+    inicio = trecho.index + trecho[0].length;
+  }
+  p.appendChild(document.createTextNode(texto.slice(inicio)));
+  ui.journal.prepend(p);
+  while (ui.journal.children.length > 4) ui.journal.lastChild.remove();
+}
     function total(){
       // Durante stun do boss, equipamentos ficam paralisados — apenas bônus do personagem contam
       const base = state.bossStunActive
@@ -2282,10 +2656,10 @@
       }).join('');
 
       const totalHTML = `<strong class='nq-text-gold'>Atributos Totais:</strong>
-        <span class='stat-badge' data-stat='atk' tabindex='0' aria-label='${statTips.atk.name}: ${st.atk}' aria-describedby='nqStatTipAtk'><span class='nql-stat-value'><span class='nql-stat-legacy' aria-hidden='true'>⚔️</span><svg class='nql-stat-icon' viewBox='0 0 24 24' aria-hidden='true'><path d='M4 20 18 6m-5-2h7v7M4 14l6 6m-7 1 3-3'/></svg><span class='nql-stat-number'>${st.atk}</span></span><span class='nql-stat-label' aria-hidden='true'>Ataque</span><span id='nqStatTipAtk' class='stat-tip' role='tooltip'><strong>${statTips.atk.icon} ${statTips.atk.name}</strong><br>${statTips.atk.desc}</span></span>
-        <span class='stat-badge' data-stat='def' tabindex='0' aria-label='${statTips.def.name}: ${st.def}' aria-describedby='nqStatTipDef'><span class='nql-stat-value'><span class='nql-stat-legacy' aria-hidden='true'>🛡️</span><svg class='nql-stat-icon' viewBox='0 0 24 24' aria-hidden='true'><path d='M12 3 4 6v6c0 5 8 9 8 9s8-4 8-9V6z'/></svg><span class='nql-stat-number'>${st.def}</span></span><span class='nql-stat-label' aria-hidden='true'>Defesa</span><span id='nqStatTipDef' class='stat-tip' role='tooltip'><strong>${statTips.def.icon} ${statTips.def.name}</strong><br>${statTips.def.desc}</span></span>
-        <span class='stat-badge' data-stat='kno' tabindex='0' aria-label='${statTips.kno.name}: ${st.kno}' aria-describedby='nqStatTipKno'><span class='nql-stat-value'><span class='nql-stat-legacy' aria-hidden='true'>📚</span><svg class='nql-stat-icon' viewBox='0 0 24 24' aria-hidden='true'><path d='M3 4h5c3 0 4 2 4 3v14c0-3-4-4-9-3zM21 4h-5c-3 0-4 2-4 3v14c0-3 4-4 9-3z'/></svg><span class='nql-stat-number'>${st.kno}</span></span><span class='nql-stat-label' aria-hidden='true'>Conhec.</span><span id='nqStatTipKno' class='stat-tip' role='tooltip'><strong>${statTips.kno.icon} ${statTips.kno.name}</strong><br>${statTips.kno.desc}</span></span>
-        <span class='stat-badge' data-stat='luck' tabindex='0' aria-label='${statTips.luck.name}: ${st.luck}' aria-describedby='nqStatTipLuck'><span class='nql-stat-value'><span class='nql-stat-legacy' aria-hidden='true'>🍀</span><svg class='nql-stat-icon' viewBox='0 0 24 24' aria-hidden='true'><path d='M12 12C2-3-4 16 12 12C27 2 8-4 12 12C22 27 28 8 12 12C-3 22 16 28 12 12M12 12l5 9'/></svg><span class='nql-stat-number'>${st.luck}</span></span><span class='nql-stat-label' aria-hidden='true'>Sorte</span><span id='nqStatTipLuck' class='stat-tip' role='tooltip'><strong>${statTips.luck.icon} ${statTips.luck.name}</strong><br>${statTips.luck.desc}</span></span>`;
+        <button type='button' class='stat-badge' data-stat='atk' aria-label='${statTips.atk.name}: ${st.atk}' aria-describedby='nqStatTipAtk'><span class='nql-stat-value'><span class='nql-stat-legacy' aria-hidden='true'>⚔️</span><svg class='nql-stat-icon' viewBox='0 0 24 24' aria-hidden='true'><path d='M4 20 18 6m-5-2h7v7M4 14l6 6m-7 1 3-3'/></svg><span class='nql-stat-number'>${st.atk}</span></span><span class='nql-stat-label' aria-hidden='true'>Ataque</span><span id='nqStatTipAtk' class='stat-tip' role='tooltip'><strong>${statTips.atk.icon} ${statTips.atk.name}</strong><br>${statTips.atk.desc}</span></button>
+        <button type='button' class='stat-badge' data-stat='def' aria-label='${statTips.def.name}: ${st.def}' aria-describedby='nqStatTipDef'><span class='nql-stat-value'><span class='nql-stat-legacy' aria-hidden='true'>🛡️</span><svg class='nql-stat-icon' viewBox='0 0 24 24' aria-hidden='true'><path d='M12 3 4 6v6c0 5 8 9 8 9s8-4 8-9V6z'/></svg><span class='nql-stat-number'>${st.def}</span></span><span class='nql-stat-label' aria-hidden='true'>Defesa</span><span id='nqStatTipDef' class='stat-tip' role='tooltip'><strong>${statTips.def.icon} ${statTips.def.name}</strong><br>${statTips.def.desc}</span></button>
+        <button type='button' class='stat-badge' data-stat='kno' aria-label='${statTips.kno.name}: ${st.kno}' aria-describedby='nqStatTipKno'><span class='nql-stat-value'><span class='nql-stat-legacy' aria-hidden='true'>📚</span><svg class='nql-stat-icon' viewBox='0 0 24 24' aria-hidden='true'><path d='M3 4h5c3 0 4 2 4 3v14c0-3-4-4-9-3zM21 4h-5c-3 0-4 2-4 3v14c0-3 4-4 9-3z'/></svg><span class='nql-stat-number'>${st.kno}</span></span><span class='nql-stat-label' aria-hidden='true'>Conhec.</span><span id='nqStatTipKno' class='stat-tip' role='tooltip'><strong>${statTips.kno.icon} ${statTips.kno.name}</strong><br>${statTips.kno.desc}</span></button>
+        <button type='button' class='stat-badge' data-stat='luck' aria-label='${statTips.luck.name}: ${st.luck}' aria-describedby='nqStatTipLuck'><span class='nql-stat-value'><span class='nql-stat-legacy' aria-hidden='true'>🍀</span><svg class='nql-stat-icon' viewBox='0 0 24 24' aria-hidden='true'><path d='M12 12C2-3-4 16 12 12C27 2 8-4 12 12C22 27 28 8 12 12C-3 22 16 28 12 12M12 12l5 9'/></svg><span class='nql-stat-number'>${st.luck}</span></span><span class='nql-stat-label' aria-hidden='true'>Sorte</span><span id='nqStatTipLuck' class='stat-tip' role='tooltip'><strong>${statTips.luck.icon} ${statTips.luck.name}</strong><br>${statTips.luck.desc}</span></button>`;
 
       // Synergy banner when all 6 slots are legendary
       const _synergyActive = legendaryCount()===6;
@@ -3055,7 +3429,7 @@
       if(!state.obtainedItems.includes(name)) state.obtainedItems=[...state.obtainedItems,name];
     }
 
-     function rollItem(diff,luck){
+     function rollItem(diff,luck,registrar=true){
       // Itens já vistos (equipados ou obtidos antes) nunca devem repetir
       const equipped = Object.values(state.equipment).map(e=>e.n);
       const obtained = Array.isArray(state.obtainedItems) ? state.obtainedItems : [];
@@ -3070,8 +3444,8 @@
         const cand=items[slot].filter(i=>i.rar===rar && !seen.has(i.n));
         if(cand.length>0){
           const item=cand[Math.floor(Math.random()*cand.length)];
-          _markObtained(item.n);
-          return{slot,item};
+          if(registrar) _markObtained(item.n);
+          return{slot,item:{...item}};
         }
       }
       // Fallback: qualquer item ainda não visto, em qualquer slot/raridade
@@ -3081,12 +3455,12 @@
       });
       if(fresh.length>0){
         const pick=fresh[Math.floor(Math.random()*fresh.length)];
-        _markObtained(pick.item.n);
-        return pick;
+        if(registrar) _markObtained(pick.item.n);
+        return {slot:pick.slot,item:{...pick.item}};
       }
       // Pool de 23 itens esgotado: libera repetição (somente o que não está equipado)
       // Notifica o jogador uma única vez para que ele saiba que coletou tudo.
-      if(!state.allItemsCollectedNotified){
+      if(registrar && !state.allItemsCollectedNotified){
         state.allItemsCollectedNotified = true;
         try { log('🏆 Você coletou todos os equipamentos do reino! Forjas agora podem repetir itens.'); } catch {}
         try { if (typeof _toast === 'function') _toast('🏆 Coleção completa! Todos os 23 equipamentos já foram forjados.', 'success', 5000); } catch {}
@@ -3097,7 +3471,8 @@
         items[slot].forEach(i=>{ if(!equipped.includes(i.n)) allFree.push({slot,item:i}); });
       });
       const finalPool = allFree.length>0 ? allFree : Object.keys(items).map(slot=>({slot,item:items[slot][0]}));
-      return finalPool[Math.floor(Math.random()*finalPool.length)];
+      const finalPick=finalPool[Math.floor(Math.random()*finalPool.length)];
+      return {slot:finalPick.slot,item:{...finalPick.item},collectionComplete:true};
     }
 
     const _rarSellVal = {common:20,uncommon:40,rare:80,epic:150,legendary:300};
@@ -3171,6 +3546,8 @@
     /* `decidir` mostra a escolha Substituir/Manter. Por padrão é o popup de
      * comparação; a página da Forja passa a sua própria, no fluxo. */
     function equipOrSell(slot, item, onDone, decidir = showEquipComparePopup) {
+      item = { ...item };
+      let resolvido = false;
       const currentItem = state.equipment[slot];
       if (!currentItem || currentItem.n === 'Vazio') {
         state.equipment[slot] = item;
@@ -3182,6 +3559,8 @@
       
       decidir(slot, currentItem, item,
         () => {
+          if (resolvido) return;
+          resolvido = true;
           const val = _itemSellVal(currentItem);
           state.gold += val;
           state.equipment[slot] = item;
@@ -3190,6 +3569,8 @@
           renderHUD(); updateBadges(); saveGame();
         },
         () => {
+          if (resolvido) return;
+          resolvido = true;
           const val = _itemSellVal(item);
           state.gold += val;
           const msg = `💰 ${item.n} (${_rarLabel[item.rar] || item.rar}) vendido por ${val}💰 — ${slotLabels[slot]} atual mantida.`;
@@ -3945,6 +4326,7 @@
       renderQuestion();
     }
 
+
     // === POPUP DE CONFIRMAÇÃO MOBILE (Forjar / Lendário / Baú) ===
     function showActionConfirmPopup(type) {
       // Remove popup anterior se existir
@@ -3963,7 +4345,7 @@
         },
         legendary: {
           title: '⭐ Forjar Lendário',
-          desc: 'Garante um item lendário para um slot aleatório. Poder máximo!',
+          desc: 'Um lendário para arma, armadura ou relíquia; prioriza inéditos e depois pode repetir itens não equipados.',
           cost: 1000,
           costColor: '#d8b4fe',
           btnClass: 'legendary',
@@ -4039,53 +4421,87 @@
     window.showMobileActionConfirm = showActionConfirmPopup;
     window.closeChestModal = closeChestModal;
 
-    // Modal da Forja — duas opções: item comum e lendário
-    // ── Forja: página do personagem, não sobreposição ───────────────────────
-    //
-    // Era uma caixa escura sobre o jogo que abria até dois outros popups em
-    // sequência: a comparação "Substituir?" e o cartão "Forja Concluída!".
-    // O equipamento atual não aparecia em lugar nenhum, e os motivos de uma
-    // forja recusada (jornada encerrada, tudo lendário) só iam para o diário.
-    //
-    // Agora a Forja é uma página: ouro, as duas forjas com o motivo de cada
-    // bloqueio, a decisão de substituição e o resultado no próprio fluxo, e o
-    // equipamento dos seis espaços logo abaixo. Com uma decisão pendente não
-    // dá para sair nem forjar de novo — o ouro já foi gasto nesse item.
+    // Uma operação paga fica no save até a escolha. A página contém apenas UI.
     const FORJA_CUSTO = { comum: 300, lendario: 1000 };
-    let _forja = null; // { origem, pendente, ultimo }
+    const FORJA_SLOTS = ['weapon', 'armor', 'relic', 'helmet', 'glove', 'boot'];
+    let _forja = null;
+    let _forjaSequence = 0;
 
-    const _forjaTexto = m => String(m).replace(/\*\*/g, '');
+    const _forjaTexto = m => String(m ?? '').replace(/\*\*/g, '');
+    const _forjaCopia = value => JSON.parse(JSON.stringify(value));
 
     function _forjaBloqueio(tipo) {
-      if (_forja?.pendente) return 'Decida o que fazer com o item forjado antes de forjar outro.';
+      if (!Object.prototype.hasOwnProperty.call(FORJA_CUSTO, tipo)) return 'Escolha um tipo de forja válido.';
+      if (state.forjaPending) return 'Decida o que fazer com o item forjado antes de forjar outro.';
+      if (_forja?.busy) return 'Aguarde a conclusão da forja.';
+      if (_forja?.ultimo) return 'Selecione “Forjar outro item” para iniciar uma nova compra.';
       if (state.gameOver) return 'A jornada foi encerrada. Inicie uma nova para voltar a forjar.';
+      if (!state.gameStarted) return 'Inicie ou retome sua jornada para forjar.';
       if (allItemsMaxed()) return 'Todos os seis espaços já têm equipamento lendário.';
       const falta = FORJA_CUSTO[tipo] - state.gold;
       if (falta > 0) return `Faltam ${falta} de ouro.`;
       return '';
     }
 
+    // Não depende do debounce: desconto + item pendente, ou venda + equipamento,
+    // entram juntos no mesmo JSON. Falha de escrita restaura todo o domínio da
+    // Forja e mantém intacta a versão anterior do save.
+    function _forjaTransacao(alterar) {
+      const anterior = {
+        gold: state.gold,
+        equipment: _forjaCopia(state.equipment),
+        obtainedItems: [...state.obtainedItems],
+        allItemsCollectedNotified: state.allItemsCollectedNotified,
+        forjaPending: state.forjaPending ? _forjaCopia(state.forjaPending) : null,
+      };
+      clearTimeout(_autoSaveTimer);
+      _autoSaveTimer = null;
+      clearTimeout(_saveTimer);
+      _saveTimer = null;
+      try {
+        alterar();
+        _invalidateStatsCache();
+        if (!isProgressSandbox() && !_doSaveGame()) {
+          Object.assign(_stateData, anterior);
+          _invalidateStatsCache();
+          return false;
+        }
+        return true;
+      } catch (error) {
+        Object.assign(_stateData, anterior);
+        _invalidateStatsCache();
+        _track('error_forge_transaction', { msg: String(error) });
+        return false;
+      } finally {
+        // _markObtained usa o Proxy; a gravação acima já consolidou o estado.
+        clearTimeout(_autoSaveTimer);
+        _autoSaveTimer = null;
+        clearTimeout(_saveTimer);
+        _saveTimer = null;
+      }
+    }
+
     function _forjaCartaoItem(item, slot, rotulo, comparaCom, variante = '') {
       const vazio = !item || item.n === 'Vazio';
       const icone = vazio ? '' : getItemIcon(item.n, slot);
       const arte = vazio ? ''
-        : icone ? `<img src="${icone}" alt="" onerror="this.src='${defaultIcons[slot] || ''}'">`
+        : icone ? `<img src="${escapeHtml(icone)}" alt="">`
         : `<span class="nq-forja-emoji" aria-hidden="true">${_TEMP_SLOT_EMOJI[slot] || '·'}</span>`;
       const attrs = [['atk', 'Ataque'], ['def', 'Defesa'], ['kno', 'Conhecimento'], ['luck', 'Sorte']];
-      const valor = (k) => {
+      const valor = k => {
         const v = vazio ? 0 : (item[k] || 0);
-        if (!comparaCom) return `${v}`;
+        if (!comparaCom) return `<strong>${v}</strong>`;
         const d = v - (comparaCom[k] || 0);
-        return d ? `${v} <span class="${d > 0 ? 'pos' : 'neg'}">(${d > 0 ? '+' : ''}${d})</span>` : `${v}`;
+        return `<strong>${v}</strong> <span class="${d > 0 ? 'pos' : d < 0 ? 'neg' : 'equal'}">(${d > 0 ? '+' : ''}${d})</span>`;
       };
       return `
-        <article class="nq-forja-item${variante ? ` nq-forja-item-${variante}` : ''}">
+        <article class="nq-forja-item${variante ? ` nq-forja-item-${variante}` : ''}" data-rarity="${escapeHtml(item?.rar || 'common')}">
           ${rotulo ? `<p class="nq-forja-rotulo">${variante === 'novo' ? '<span class="nq-forja-selo">Novo</span> ' : ''}${rotulo}</p>` : ''}
           <div class="nq-forja-item-topo">
-            <div class="nq-forja-arte${vazio ? ' nq-forja-arte-vazia' : ` nq-forja-arte-${item.rar}`}">${arte}</div>
+            <div class="nq-forja-arte${vazio ? ' nq-forja-arte-vazia' : ` nq-forja-arte-${escapeHtml(item.rar)}`}">${arte}</div>
             <div>
               <h3>${vazio ? 'Vazio' : escapeHtml(item.n)}</h3>
-              <p>${slotLabels[slot] || slot}${vazio ? '' : ` · <span class="rar-${item.rar}">${_rarLabel[item.rar] || item.rar}</span>`}</p>
+              <p>${escapeHtml(slotLabels[slot] || slot)}${vazio ? '' : ` · <span class="rar-${escapeHtml(item.rar)}">${escapeHtml(_rarLabel[item.rar] || item.rar)}</span>`}</p>
             </div>
           </div>
           ${vazio && !comparaCom ? '<p class="nq-forja-vazio">Nenhum item neste espaço.</p>'
@@ -4093,7 +4509,6 @@
         </article>`;
     }
 
-    /* Uma frase que diz o que os números dizem, sem pedir que a pessoa some. */
     function _forjaVeredito(novo, atual) {
       const ks = ['atk', 'def', 'kno', 'luck'];
       const melhor = ks.filter(k => (novo[k] || 0) > (atual[k] || 0)).length;
@@ -4107,149 +4522,276 @@
     function _forjaResultadoHtml() {
       const f = _forja;
       if (f.pendente) {
-        const { slot, atual, novo } = f.pendente;
+        const { slot, atual, novo, custo } = f.pendente;
+        const vendeAtual = _itemSellVal(atual);
+        const vendeNovo = _itemSellVal(novo);
         return `
           <h2>Você forjou ${escapeHtml(novo.n)}</h2>
-          <p>${_forjaVeredito(novo, atual)} Seu espaço de ${(slotLabels[slot] || slot).toLowerCase()} já está ocupado: escolha qual fica, e o outro vira ouro.</p>
+          <p>${_forjaVeredito(novo, atual)} Escolha qual fica em ${(slotLabels[slot] || slot).toLowerCase()}. O outro será vendido.</p>
+          <p class="nq-forja-pago">${custo} de ouro já usados. Sua escolha está salva, inclusive se você recarregar.</p>
           <div class="nq-forja-comparar">
             ${_forjaCartaoItem(novo, slot, 'Recém-forjado', atual, 'novo')}
             ${_forjaCartaoItem(atual, slot, 'Equipado agora', null, 'atual')}
           </div>
           <div class="nq-forja-acoes">
-            <button type="button" class="btn gold" data-action="decidirForja" data-arg="substituir">Equipar ${escapeHtml(novo.n)}<span class="nq-forja-btn-sub">${escapeHtml(atual.n)} vira ${_itemSellVal(atual)} de ouro</span></button>
-            <button type="button" class="btn sec" data-action="decidirForja" data-arg="manter">Manter ${escapeHtml(atual.n)}<span class="nq-forja-btn-sub">${escapeHtml(novo.n)} vira ${_itemSellVal(novo)} de ouro</span></button>
+            <div>
+              <button type="button" class="btn gold" data-action="decidirForja" data-arg="substituir" aria-describedby="forjaSaldoEquipar">Equipar ${escapeHtml(novo.n)}<span class="nq-forja-btn-sub">${escapeHtml(atual.n)} vira ${vendeAtual} de ouro</span></button>
+              <p id="forjaSaldoEquipar" class="nq-forja-saldo">Saldo final: <strong>${state.gold + vendeAtual} de ouro</strong></p>
+            </div>
+            <div>
+              <button type="button" class="btn sec" data-action="decidirForja" data-arg="manter" aria-describedby="forjaSaldoManter">Manter ${escapeHtml(atual.n)}<span class="nq-forja-btn-sub">${escapeHtml(novo.n)} vira ${vendeNovo} de ouro</span></button>
+              <p id="forjaSaldoManter" class="nq-forja-saldo">Saldo final: <strong>${state.gold + vendeNovo} de ouro</strong></p>
+            </div>
           </div>`;
       }
-      if (f.ultimo?.aviso) return `<p class="nq-forja-aviso">${escapeHtml(_forjaTexto(f.ultimo.aviso))}</p>`;
       if (f.ultimo) {
-        const { item, slot, msg } = f.ultimo;
+        const { item, slot, msg, custo, venda } = f.ultimo;
         return `
           <h2>Forja concluída</h2>
           <p>${escapeHtml(_forjaTexto(msg))}</p>
-          ${_forjaCartaoItem(item, slot)}`;
+          ${_forjaCartaoItem(item, slot, 'Equipado agora', null, 'final')}
+          <dl class="nq-forja-recibo">
+            <div><dt>Custo da forja</dt><dd>${custo} ouro</dd></div>
+            <div><dt>Venda de equipamento</dt><dd>+${venda} ouro</dd></div>
+            <div><dt>Saldo final</dt><dd>${state.gold} ouro</dd></div>
+          </dl>
+          <button type="button" class="btn sec nq-forja-nova" data-action="forjarOutroItem">Forjar outro item</button>`;
       }
-      return '';
+      return `<div class="nq-forja-convite">
+        <svg class="nq-forja-bigorna" viewBox="0 0 160 112" aria-hidden="true"><path d="M24 31h71V16h28v15h24c-5 17-20 24-38 24H96v16l17 14v11H44V85l17-14V55H44C23 55 11 44 8 31z"/><path d="M53 100h68M49 105h76M74 13l9-9 21 21-9 9z"/></svg>
+        <h2>Dê forma ao próximo equipamento</h2>
+        <p>Escolha a forja abaixo. Se o espaço estiver ocupado, compare os quatro atributos antes de equipar.</p>
+      </div>`;
     }
 
     function _renderForja() {
       const pagina = document.getElementById('forjaPage');
       if (!pagina || !_forja) return;
+      _forja.pendente = state.forjaPending;
+      const detalhesAbertos = !!pagina.querySelector('.nq-forja-equipamento[open]');
       const opcao = (tipo, titulo, descricao) => {
         const motivo = _forjaBloqueio(tipo);
         const id = `forjaMotivo-${tipo}`;
         return `
-          <div class="nq-forja-opcao">
+          <article class="nq-forja-opcao">
+            <p class="nq-forja-rota">${tipo === 'comum' ? 'Sorteio livre' : 'Raridade garantida'}</p>
             <h3>${titulo}</h3>
             <p class="nq-forja-custo">${FORJA_CUSTO[tipo]} de ouro</p>
             <p>${descricao}</p>
             <button type="button" class="btn gold" data-action="forjarNaPagina" data-arg="${tipo}"
               ${motivo ? `disabled aria-describedby="${id}"` : ''}>Forjar ${tipo === 'comum' ? 'item comum' : 'item lendário'}</button>
             ${motivo ? `<p id="${id}" class="nq-forja-motivo">${motivo}</p>` : ''}
-          </div>`;
+          </article>`;
       };
       const saidaBloqueada = !!_forja.pendente;
+      const retrato = ui.heroImg?.getAttribute('src');
+      pagina.dataset.forgeState = saidaBloqueada ? 'decision' : _forja.ultimo ? 'complete' : 'ready';
       pagina.innerHTML = `
-        <div class="nq-study-content">
+        <div class="nq-study-content nq-forja-shell">
           <header class="nq-forja-cabecalho">
             <button type="button" class="btn sec" data-action="fecharForja" ${saidaBloqueada ? 'disabled aria-describedby="forjaMotivoSaida"' : ''}>← Voltar à jornada</button>
-            <h1 id="forjaTitulo">Forja</h1>
+            <div><p class="nq-forja-eyebrow">Oficina do guardião</p><h1 id="forjaTitulo">Forja</h1></div>
             <p class="nq-forja-ouro">Ouro disponível: <strong>${state.gold}</strong></p>
             ${saidaBloqueada ? '<p id="forjaMotivoSaida" class="nq-forja-motivo">Decida o item forjado antes de voltar: o ouro já foi gasto nele.</p>' : ''}
           </header>
+          <div class="nq-forja-palco">
+            ${retrato ? `<figure class="nq-forja-guardiao"><img src="${escapeHtml(retrato)}" alt=""><figcaption>${escapeHtml(characters[state.character]?.name || 'Seu guardião')}</figcaption></figure>` : ''}
+            <section id="forjaResultado" class="nq-forja-resultado" role="status" aria-live="polite" tabindex="-1">
+              ${_forja.aviso ? `<p class="nq-forja-aviso" role="alert">${escapeHtml(_forja.aviso)}</p>` : ''}
+              ${_forjaResultadoHtml()}
+            </section>
+          </div>
           <section class="nq-forja-opcoes" aria-label="Tipos de forja">
-            ${opcao('comum', 'Item comum', 'Um item aleatório para qualquer espaço. A raridade depende do seu nível e da sua sorte.')}
-            ${opcao('lendario', 'Item lendário', 'Um item lendário inédito para arma, armadura ou relíquia.')}
+            ${opcao('comum', 'Equipamento aleatório', 'Um item para qualquer um dos seis espaços. A raridade depende do seu nível e da sua sorte.')}
+            ${opcao('lendario', 'Equipamento lendário', 'Um lendário para arma, armadura ou relíquia. Prioriza inéditos; após esgotá-los, pode repetir um item que não está equipado.')}
           </section>
-          <section id="forjaResultado" class="nq-forja-resultado" role="status" aria-live="polite" tabindex="-1">${_forjaResultadoHtml()}</section>
-          <section class="nq-forja-equipamento" aria-labelledby="forjaEquipTitulo">
-            <h2 id="forjaEquipTitulo">Equipamento atual</h2>
+          <details class="nq-forja-equipamento" ${detalhesAbertos ? 'open' : ''}>
+            <summary id="forjaEquipTitulo"><span>Equipamento atual</span><span class="nq-forja-details-meta">Ver os seis espaços</span></summary>
             <div class="nq-forja-grade">
-              ${['weapon', 'armor', 'relic', 'helmet', 'glove', 'boot'].map(slot => _forjaCartaoItem(state.equipment[slot], slot)).join('')}
+              ${FORJA_SLOTS.map(slot => _forjaCartaoItem(state.equipment[slot], slot)).join('')}
             </div>
-          </section>
+          </details>
         </div>`;
     }
-
-    const _forjaApi = {
-      decidir(slot, atual, novo, substituir, manter) {
-        _forja.pendente = { slot, atual, novo, substituir, manter };
-      },
-      concluir(item, slot, msg) { _forja.ultimo = { item, slot, msg }; },
-      aviso(m) { _forja.ultimo = { aviso: m }; },
-    };
 
     function _forjaFocarResultado() {
       const alvo = _forja?.pendente
         ? document.querySelector('#forjaResultado [data-action="decidirForja"]')
         : document.getElementById('forjaResultado');
       alvo?.focus({ preventScroll: true });
-      document.getElementById('forjaResultado')?.scrollIntoView({ block: 'nearest' });
+      alvo?.scrollIntoView({ block: 'nearest' });
+    }
+
+    function _forjaLendario() {
+      const equipped = Object.values(state.equipment).map(e => e.n);
+      const seen = new Set([...equipped, ...state.obtainedItems]);
+      const freshSlots = ['weapon', 'armor', 'relic'].filter(slot =>
+        items[slot].some(i => i.rar === 'legendary' && !seen.has(i.n)));
+      const keys = freshSlots.length ? freshSlots : ['weapon', 'armor', 'relic'];
+      const slot = keys[Math.floor(Math.random() * keys.length)];
+      let candidatos = items[slot].filter(i => i.rar === 'legendary' && !seen.has(i.n));
+      if (!candidatos.length) candidatos = items[slot].filter(i => i.rar === 'legendary' && !equipped.includes(i.n));
+      if (!candidatos.length) return null;
+      return { slot, item: { ...candidatos[Math.floor(Math.random() * candidatos.length)] } };
     }
 
     function forjarNaPagina(tipo) {
       if (!_forja || _forjaBloqueio(tipo)) return;
+      _forja.busy = true;
+      _forja.aviso = '';
+      try {
+        const rolled = tipo === 'lendario' ? _forjaLendario() : rollItem(state.level, total().luck, false);
+        if (!rolled) {
+          _forja.aviso = 'Não há outro lendário disponível neste espaço. Nenhum ouro foi gasto.';
+          return;
+        }
+        const custo = FORJA_CUSTO[tipo];
+        const atual = { ...state.equipment[rolled.slot] };
+        const novo = { ...rolled.item };
+        const precisaEscolher = atual.n !== 'Vazio';
+        const id = `${Date.now().toString(36)}-${++_forjaSequence}`;
+        const notificarColecao = !!rolled.collectionComplete && !state.allItemsCollectedNotified;
+        const sucesso = _forjaTransacao(() => {
+          _stateData.gold -= custo;
+          _markObtained(novo.n);
+          if (notificarColecao) _stateData.allItemsCollectedNotified = true;
+          _stateData.forjaPending = precisaEscolher ? { id, tipo, custo, slot: rolled.slot, atual, novo } : null;
+          if (!precisaEscolher) _stateData.equipment = { ...state.equipment, [rolled.slot]: { ...novo } };
+        });
+        if (!sucesso) {
+          _forja.aviso = 'Não foi possível salvar a forja. Seu ouro e equipamento foram mantidos. Libere espaço e tente novamente.';
+          return;
+        }
+        _forja.ultimo = precisaEscolher ? null : {
+          item: novo, slot: rolled.slot, custo, venda: 0,
+          msg: `Equipou ${novo.n} em ${(slotLabels[rolled.slot] || rolled.slot).toLowerCase()}.`,
+        };
+        if (notificarColecao) {
+          log('🏆 Você coletou todos os equipamentos do reino! Forjas agora podem repetir itens.');
+          _toast('🏆 Coleção completa! Todos os equipamentos já foram forjados.', 'success', 5000);
+          _track('all_items_collected', { correctTotal: state.correctTotal });
+        }
+        playSound('forge');
+        if (!precisaEscolher) log(`🔨 Forja concluída! ${_forja.ultimo.msg}`);
+        renderHUD();
+        updateBadges();
+      } finally {
+        _forja.busy = false;
+        _renderForja();
+        _forjaFocarResultado();
+      }
+    }
+
+    function forjarOutroItem() {
+      if (!_forja || !_forja.ultimo || state.forjaPending || _forja.busy) return;
       _forja.ultimo = null;
-      if (tipo === 'lendario') _forgeLegendaryDirect(_forjaApi);
-      else _forgeItemDirect(_forjaApi);
+      _forja.aviso = '';
       _renderForja();
-      _forjaFocarResultado();
+      const alvo = document.querySelector('#forjaPage [data-action="forjarNaPagina"]:not(:disabled)')
+        || document.getElementById('forjaResultado');
+      alvo?.focus({ preventScroll: true });
+      alvo?.scrollIntoView({ block: 'nearest' });
     }
 
     function decidirForja(escolha) {
-      const p = _forja?.pendente;
+      if (!_forja || _forja.busy || !['substituir', 'manter'].includes(escolha)) return;
+      const p = state.forjaPending;
       if (!p) return;
-      _forja.pendente = null;
-      (escolha === 'substituir' ? p.substituir : p.manter)();
-      _renderForja();
-      _forjaFocarResultado();
+      _forja.busy = true;
+      _forja.aviso = '';
+      try {
+        const substituir = escolha === 'substituir';
+        const vendido = substituir ? p.atual : p.novo;
+        const mantido = substituir ? p.novo : p.atual;
+        const venda = _itemSellVal(vendido);
+        const sucesso = _forjaTransacao(() => {
+          _stateData.gold += venda;
+          _stateData.equipment = { ...state.equipment, [p.slot]: { ...mantido } };
+          _stateData.forjaPending = null;
+        });
+        if (!sucesso) {
+          _forja.aviso = 'Não foi possível salvar a escolha. O item continua aguardando sua decisão; nenhuma venda foi efetuada.';
+          return;
+        }
+        const msg = `${mantido.n} equipado. ${vendido.n} vendido por ${venda} de ouro.`;
+        _forja.ultimo = { item: { ...mantido }, slot: p.slot, custo: p.custo, venda, msg };
+        log(`🔨 Forja concluída! ${msg}`);
+        renderHUD();
+        updateBadges();
+      } finally {
+        _forja.busy = false;
+        _renderForja();
+        _forjaFocarResultado();
+      }
     }
 
     function showForjaModal() {
       if (document.getElementById('forjaPage')) return;
+      const ativo = document.activeElement;
+      const focoOrigem = ativo && ativo !== document.body && ativo !== document.documentElement
+        ? ativo
+        : [...document.querySelectorAll('#forgeBtn, .mdock-btn.forge-item')].find(el => el.getClientRects().length) || ativo;
       _forja = {
         origem: {
-          foco: document.activeElement,
+          foco: focoOrigem,
           scroll: window.scrollY,
           elementos: [...document.querySelectorAll('#mainApp, #welcomeScreen')].map(el => ({ el, hidden: el.classList.contains('hidden'), inert: el.inert })),
         },
-        pendente: null,
+        pendente: state.forjaPending,
         ultimo: null,
+        aviso: '',
+        busy: false,
       };
       _forja.origem.elementos.forEach(({ el }) => { el.classList.add('hidden'); el.inert = true; });
       const pagina = document.createElement('section');
       pagina.id = 'forjaPage';
       pagina.className = 'nq-study-surface nq-forja';
+      pagina.dataset.nqUi = 'lumen';
       pagina.setAttribute('role', 'main');
       pagina.setAttribute('aria-labelledby', 'forjaTitulo');
       pagina.addEventListener('keydown', e => {
-        // A Forja tem o próprio contexto de teclado; atalhos da jornada não passam.
         e.stopPropagation();
-        if (e.key === 'Escape' && !_forja?.pendente) { e.preventDefault(); fecharForja(); }
+        if (e.key === 'Escape' && !state.forjaPending) { e.preventDefault(); fecharForja(); }
       });
       document.body.appendChild(pagina);
       document.body.classList.add('nq-studying');
       _renderForja();
       window.scrollTo(0, 0);
-      // Foco já na montagem: com requestAnimationFrame, um Escape imediato
-      // caía no documento e a página não fechava.
-      pagina.querySelector('button:not([disabled])')?.focus({ preventScroll: true });
+      if (state.forjaPending) _forjaFocarResultado();
+      else pagina.querySelector('button:not([disabled])')?.focus({ preventScroll: true });
     }
 
     function fecharForja() {
-      if (!_forja || _forja.pendente) return;
+      if (!_forja || state.forjaPending || _forja.busy) return;
       const { origem } = _forja;
       _forja = null;
       document.getElementById('forjaPage')?.remove();
       document.body.classList.remove('nq-studying');
       origem.elementos.forEach(({ el, hidden, inert }) => { el.classList.toggle('hidden', hidden); el.inert = inert; });
       window.scrollTo(0, origem.scroll);
-      const volta = origem.foco?.isConnected ? origem.foco : document.getElementById('forgeBtn');
-      volta?.focus({ preventScroll: true });
+      const visivel = el => el?.isConnected && el.getClientRects().length &&
+        getComputedStyle(el).visibility !== 'hidden' && !el.closest('[hidden], [inert]');
+      const restaurarFoco = () => {
+        const volta = visivel(origem.foco) ? origem.foco
+          : [...document.querySelectorAll('#forgeBtn, .mdock-btn.forge-item')].find(visivel);
+        volta?.focus({ preventScroll: true });
+        return !!volta;
+      };
+      if (!restaurarFoco()) {
+        // The mobile dock is re-exposed by its class MutationObserver.
+        queueMicrotask(() => {
+          const ativo = document.activeElement;
+          if (_forja || (ativo !== document.body && ativo !== document.documentElement && visivel(ativo))) return;
+          restaurarFoco();
+        });
+      }
     }
     window.showForjaModal = showForjaModal;
     window.fecharForja = fecharForja;
     window.forjarNaPagina = forjarNaPagina;
     window.decidirForja = decidirForja;
+    window.forjarOutroItem = forjarOutroItem;
+
 
     function closeBoardModal() {
       document.getElementById('boardModal').classList.add('hidden');
@@ -4277,61 +4819,9 @@
       chest: () => _openChestDirect()
     };
 
-    // Funções internas diretas (sem interceptação)
-    /* `pagina` (opcional) vem da página da Forja: decide a substituição no
-     * fluxo, mostra o resultado ali e recebe os avisos que antes só iam para o
-     * diário. Sem ela, o comportamento é o de sempre (popups). */
-    function _forgeItemDirect(pagina){
-      const aviso = m => { log(m); pagina?.aviso(m); };
-      if(state.gameOver){ aviso('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
-      if(allItemsMaxed()){ aviso('🏆 Você já possui todos os equipamentos lendários!'); return; }
-      const cost=300;
-      if(state.gold<cost){ aviso('🧱 Ouro insuficiente! Precisa de 300 ouro para forjar.'); return; }
-      state.gold-=cost;
-      const st=total();
-      const rolled=rollItem(state.level, st.luck);
-      const gains=[`⚔️ ATK ${rolled.item.atk}`, `🛡️ DEF ${rolled.item.def}`, `📚 CONH ${rolled.item.kno}`, `🍀 SORTE ${rolled.item.luck}`];
-      playSound('forge');
-      equipOrSell(rolled.slot, rolled.item, (msg) => {
-        if (pagina) pagina.concluir(rolled.item, rolled.slot, msg);
-        else showForgePopup(rolled.item, rolled.slot, gains);
-        log(`🔨 Forja concluída! ${msg}`);
-        renderHUD();
-        updateBadges();
-        saveGame();
-      }, pagina?.decidir);
-    }
-
-    function _forgeLegendaryDirect(pagina){
-      const aviso = m => { log(m); pagina?.aviso(m); };
-      if(state.gameOver){ aviso('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
-      if(allItemsMaxed()){ aviso('🏆 Você já possui todos os equipamentos lendários!'); return; }
-      const cost=1000;
-      if(state.gold<cost){ aviso('🧱 Ouro insuficiente! Precisa de 1000 ouro para forjar lendário.'); return; }
-      state.gold-=cost;
-      const equipped = Object.values(state.equipment).map(e=>e.n);
-      const obtained = Array.isArray(state.obtainedItems) ? state.obtainedItems : [];
-      const seen = new Set([...equipped, ...obtained]);
-      // Slots que ainda têm algum lendário inédito
-      const freshSlots = ['weapon', 'armor', 'relic'].filter(slot =>
-        items[slot].some(i => i.rar === 'legendary' && !seen.has(i.n)));
-      const keys = freshSlots.length>0 ? freshSlots : ['weapon', 'armor', 'relic'];
-      const slot=keys[Math.floor(Math.random()*keys.length)];
-      let legendaryItems = items[slot].filter(i => i.rar === 'legendary' && !seen.has(i.n));
-      if(legendaryItems.length === 0) legendaryItems = items[slot].filter(i => i.rar === 'legendary' && !equipped.includes(i.n));
-      if(legendaryItems.length === 0){ aviso('🏆 Você já forjou todos os lendários deste tipo! O ouro foi devolvido.'); state.gold+=cost; return; }
-      const legendaryItem = legendaryItems[Math.floor(Math.random()*legendaryItems.length)];
-      _markObtained(legendaryItem.n);
-      const legendaryItemCopy = {...legendaryItem};
-      const gains = [`⚔️ ATK ${legendaryItem.atk}`, `🛡️ DEF ${legendaryItem.def}`, `📚 CONH ${legendaryItem.kno}`, `🍀 SORTE ${legendaryItem.luck}`];
-      playSound('forge');
-      equipOrSell(slot, legendaryItemCopy, (msg) => {
-        if (pagina) pagina.concluir(legendaryItemCopy, slot, msg);
-        else showForgePopup(legendaryItemCopy, slot, gains);
-        log(`🔨 Forja Lendária! ${msg}`);
-        renderHUD(); updateBadges(); saveGame();
-      }, pagina?.decidir);
-    }
+    // Entradas antigas também passam pela operação durável da mesma Forja.
+    function _forgeItemDirect() { showForjaModal(); forjarNaPagina('comum'); }
+    function _forgeLegendaryDirect() { showForjaModal(); forjarNaPagina('lendario'); }
 
     function _openChestDirect(){
       if(state.gameOver){ log('🚫 Jornada encerrada. Inicie um novo jogo!'); return; }
@@ -5274,7 +5764,7 @@
       overlay.addEventListener('click', closeDrawer);
       // Fechar drawer ao clicar em botão dentro do painel esquerdo
       leftPanel.addEventListener('click', function(e) {
-        if (isMobile() && e.target.closest('button') && !e.target.closest('.forge-popup') && !e.target.closest('.narrative-popup')) {
+        if (isMobile() && e.target.closest('button') && !e.target.closest('.stat-badge, .slot-diablo') && !e.target.closest('.forge-popup') && !e.target.closest('.narrative-popup')) {
           setTimeout(closeDrawer, 200);
         }
       });
@@ -5639,7 +6129,7 @@
       if (modal) { modal.remove(); return; }
       // Fecha game modes overlay
       const gm = document.getElementById('gameModesOverlay');
-      if (gm && gm.style.display !== 'none' && gm.classList.contains('open')) { closeGameModesPopup(); return; }
+      if (gm && gm.style.display !== 'none' && gm.classList.contains('show')) { closeGameModesPopup(); return; }
     });
 
     // Atalhos de teclado para responder (1-4 ou A-D) e avançar (Enter/Space)
@@ -5649,7 +6139,9 @@
       const interactiveTarget = target instanceof Element
         ? target.closest('button, a[href], select, summary, [role="button"]')
         : null;
-      if (interactiveTarget || (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable))) {
+      const answerShortcut = !e.ctrlKey && !e.altKey && !e.metaKey && /^[1-4a-d]$/i.test(e.key);
+      const focusedAnswer = interactiveTarget?.matches('#options .option, #studyQuestionArea .study-option-btn');
+      if ((interactiveTarget && !(answerShortcut && focusedAnswer)) || (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable))) {
         return;
       }
 
@@ -5765,17 +6257,26 @@
     }
 
     // ============ POPUP MODOS DE JOGO (mobile) ============
+    let _gameModesFocus = null;
     function openGameModesPopup() {
       const el = document.getElementById('gameModesOverlay');
-      if (el) el.classList.add('show');
+      if (!el || el.classList.contains('show')) return;
+      const returnFocus = document.activeElement;
+      el.classList.add('show');
+      el.setAttribute('aria-hidden', 'false');
+      _gameModesFocus?.(false);
+      _gameModesFocus = manageDialogFocus(el, closeGameModesPopup, returnFocus, el.querySelector('.nqmodes-route'));
     }
     function closeGameModesPopup() {
       const el = document.getElementById('gameModesOverlay');
-      if (el) el.classList.remove('show');
+      if (!el) return;
+      el.classList.remove('show');
+      el.setAttribute('aria-hidden', 'true');
+      _gameModesFocus?.();
+      _gameModesFocus = null;
     }
     function closeGameModesPopupOutside(e) {
-      // closeGameModesPopupOutside desativado para cliques fora (evita fechar acidentalmente)
-      // if (e.target === document.getElementById('gameModesOverlay')) closeGameModesPopup();
+      // Preserva o contrato: tocar o fundo não fecha acidentalmente.
     }
 
 
@@ -5841,11 +6342,11 @@
     window._confirmDiff = function(fromWelcome) {
       const diff = window._pendingDiff;
       if (!diff) return;
+      if (deleteSave() === false) return;
       document.body.classList.remove('rd-game-over', 'boss-battle-mode', 'arqui-nefromante-final', 'boss-hp-critical');
       if (typeof window._closeDifficultySelector === 'function') window._closeDifficultySelector(false);
       else document.getElementById('diffSelectorOverlay')?.remove();
       state.difficulty = diff;
-      deleteSave();
       if (typeof _syncProgressToCloud === 'function') {
         _syncProgressToCloud().catch(() => {});
       }

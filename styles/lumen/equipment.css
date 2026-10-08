@@ -1,0 +1,95 @@
+/* Lúmen — equipamentos: moldura vetorial e inspeção sem alterar a arte. */
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #equipList .slot-diablo {
+  cursor: zoom-in;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #equipList .slot-diablo-filled {
+  --nqe-frame: #718ca6;
+  padding: 0 !important;
+  border: 1px solid var(--nqe-frame) !important;
+  border-radius: 10px !important;
+  background: #0a0e19 !important;
+  box-shadow: 0 2px 6px #02050b45, inset 0 0 0 1px #eef6ff0c !important;
+  animation: none !important;
+  isolation: isolate;
+}
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #equipList .rar-border-rare { --nqe-frame: #89c8d1; }
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #equipList .rar-border-epic { --nqe-frame: #aaa4e3; }
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #equipList .rar-border-legendary { --nqe-frame: #dfc68b; }
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #equipList .rar-border-mythic { --nqe-frame: #edf2ff; }
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #equipList .slot-diablo .slot-diablo-icon,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #equipList .slot-diablo[data-slot="weapon"] img.slot-diablo-icon[src] {
+  position: static !important;
+  inset: auto !important;
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 9px !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  opacity: 1 !important;
+  filter: none !important;
+  transform: none !important;
+  image-rendering: auto;
+}
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #equipList .slot-diablo.starter .slot-diablo-filled { background: #0d1425 !important; }
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #equipList .slot-diablo:hover .slot-diablo-filled,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #equipList .slot-diablo[aria-expanded="true"] .slot-diablo-filled {
+  border-color: #c6e9ef !important;
+  box-shadow: 0 0 0 2px #8ecbd11c, 0 3px 9px #02050b55 !important;
+}
+.nqe-preview {
+  position: fixed;
+  /* A geometria medida no JS precisa valer no mesmo frame, inclusive quando
+     a regra global de movimento reduzido define uma duração de transição. */
+  transition: none !important;
+  z-index: 10020;
+  box-sizing: border-box;
+  width: 340px;
+  max-width: calc(100vw - 24px);
+  max-height: calc(100dvh - 24px);
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  padding: 18px;
+  border: 1px solid #738ba9;
+  border-radius: 16px;
+  background: linear-gradient(155deg, #18253a, #0d1423 70%);
+  box-shadow: 0 18px 52px #020610a6, inset 0 1px #edf5ff10;
+  color: #ecf0f7;
+  font: 400 .875rem/1.5 "Source Sans 3", sans-serif;
+}
+.nqe-preview[hidden] { display: none !important; }
+.nqe-preview *, .nqe-preview *::before, .nqe-preview *::after { box-sizing: border-box; }
+.nqe-preview-header { position: sticky; top: 0; z-index: 1; padding-right: 0; background: #18253a; }
+.nqe-preview[data-pinned="true"] .nqe-preview-header { padding-right: 44px; }
+.nqe-preview-slot { color: #aec1d7; font-size: .6875rem; letter-spacing: .1em; text-transform: uppercase; }
+.nqe-preview-title { margin: 4px 0 6px; font: 500 1.4375rem/1.1 Alegreya, Georgia, serif; overflow-wrap: anywhere; }
+.nqe-preview-rarity { display: inline-block; color: var(--nqe-rarity, #b7cadc); font-size: .75rem; }
+.nqe-preview-close { position: absolute; top: -7px; right: -7px; width: 44px; height: 44px; padding: 0; border: 1px solid #7088a04a; border-radius: 50%; background: #243448; color: #e7f1fc; font: 1.5rem/1 sans-serif; cursor: pointer; }
+.nqe-preview-close[hidden] { display: none; }
+.nqe-preview-close:focus-visible { outline: 2px solid #9cd3da; outline-offset: 3px; }
+.nqe-preview-art { display: grid; place-items: center; width: 160px; max-width: 100%; aspect-ratio: 1; margin: 16px auto; border: 1px solid #8aa3c54a; border-radius: 14px; overflow: hidden; background: #0a0e19; }
+.nqe-preview-art img { display: block; width: 100%; height: 100%; object-fit: contain; image-rendering: auto; }
+.nqe-preview-art[data-starter="true"] { background: #0d1425; }
+.nqe-preview-fallback { font-size: 3.625rem; line-height: 1; }
+.nqe-preview-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin: 0; padding: 12px 0; border-top: 1px solid #91acc52b; border-bottom: 1px solid #91acc52b; }
+.nqe-preview-stat { min-width: 0; text-align: center; }
+.nqe-preview-stat dt { color: #abc0d7; font-size: .6875rem; }
+.nqe-preview-stat dd { margin: 3px 0 0; color: #f0dba8; font: 500 1rem/1.1 "IBM Plex Mono", monospace; overflow-wrap: anywhere; }
+.nqe-preview-desc { margin: 12px 0 0; color: #c9d4e3; overflow-wrap: anywhere; }
+@media (max-width: 400px) {
+  .nqe-preview { padding: 14px; }
+  .nqe-preview-title { font-size: 1.3125rem; }
+  .nqe-preview-art { width: 144px; margin: 12px auto; }
+  .nqe-preview-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 10px; }
+}
+@media (max-height: 520px) {
+  .nqe-preview-art { width: 112px; margin: 10px auto; }
+}
