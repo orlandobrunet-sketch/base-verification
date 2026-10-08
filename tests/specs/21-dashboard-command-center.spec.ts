@@ -781,7 +781,8 @@ test.describe('Central de Comando do aprendizado', () => {
     }
     await expect(achievements.locator('.nqd-achievement-spotlight')).toContainText('Faltam 8 acertos');
     await expect(achievements.locator('.nqd-achievement-mark img[src="assets/achievements/campeao.webp"]')).toHaveCount(1);
-    await expect(achievements.locator('.nqd-achievement-filter[aria-pressed="true"]')).toHaveText('Objetivos');
+    await expect(achievements.locator('.nqd-achievement-filter[aria-pressed="true"]')).toHaveText('Todas');
+    await achievements.getByRole('button', { name: 'Objetivos', exact: true }).click();
     const visibleObjectives = await achievements.locator('[data-achievement-promoted="true"]:visible').count();
     await achievements.getByRole('button', { name: 'Todas', exact: true }).click();
     const artwork = achievements.locator('.nqd-achievement-mark img');
@@ -796,13 +797,13 @@ test.describe('Central de Comando do aprendizado', () => {
     }
     const artSources = await artwork.evaluateAll(images => images.map(image => image.getAttribute('src')));
     expect(new Set(artSources).size).toBe(12);
-    // Cor só para o que já foi ganho: bloqueada em cinza, conquistada colorida.
+    // As artes continuam policromáticas; texto e moldura distinguem o estado.
     const filtros = await achievements.locator('.nqd-achievement').evaluateAll(cards => cards.map(card => ({
       locked: card.classList.contains('is-locked'),
       filter: getComputedStyle(card.querySelector('.nqd-achievement-mark img')!).filter,
     })));
     expect(filtros.some(f => f.locked), "cenário sem conquista bloqueada").toBe(true);
-    for (const f of filtros) expect(f.filter.includes('grayscale(1)'), JSON.stringify(f)).toBe(f.locked);
+    for (const f of filtros) expect(f.filter, JSON.stringify(f)).toBe('none');
     await achievements.getByRole('button', { name: 'Conquistadas' }).click();
     await expect(achievements.locator('.nqd-achievement-filter[aria-pressed="true"]')).toHaveText('Conquistadas');
     const visibleStatuses = await achievements.locator('[data-achievement-status]:visible').evaluateAll(cards => cards.map(card => card.getAttribute('data-achievement-status')));
@@ -988,7 +989,11 @@ test.describe('Central de Comando do aprendizado', () => {
         const invalidHorizontalScrollers = [...pane.querySelectorAll<HTMLElement>('.nqd-badge-path')]
           .filter(isVisible)
           .map(element => ({ element, style: getComputedStyle(element), rect: element.getBoundingClientRect() }))
-          .filter(({ style, rect }) => !['auto', 'scroll'].includes(style.overflowX) || rect.left < -1 || rect.right > window.innerWidth + 1)
+          .filter(({ element, style, rect }) => {
+            const containedGrid = style.display === 'grid' && element.scrollWidth <= element.clientWidth + 1;
+            return (!containedGrid && !['auto', 'scroll'].includes(style.overflowX))
+              || rect.left < paneRect.left - 1 || rect.right > paneRect.right + 1;
+          })
           .map(({ element, style, rect }) => ({
             element: element.className,
             overflowX: style.overflowX,

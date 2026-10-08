@@ -960,7 +960,8 @@
       // Qual versão do app este navegador tem em cache. Apagar no logout faria
       // a próxima sessão achar que é uma instalação nova e disparar a rotina de
       // limpeza de cache sem motivo.
-      'nq-sw-version'
+      'nq-sw-version',
+      'nq-public-version'
     ];
 
     // ============ CLOUD SYNC (progresso na nuvem para usuários logados) ============
@@ -1404,17 +1405,7 @@
         document.getElementById('wsBestLevel').textContent = stats.bestLevel;
       }
 
-      // Versão dinâmica — lê version.json para manter label sempre atualizado
-      fetch('/version.json', { cache: 'no-store' })
-        .then(r => r.json())
-        .then(({ version }) => {
-          const el = document.getElementById('welcomeVersionLabel');
-          if (el) el.textContent = 'v' + version;
-          const lndEl = document.getElementById('landingVersionLabel');
-          if (lndEl) lndEl.textContent = 'v' + version;
-        })
-        .catch(() => {});
-
+      // Os rótulos de versão são atualizados pela política única do beacon.
       refreshWelcomeSave();
     }
 
@@ -5618,10 +5609,14 @@
       const overlay    = document.getElementById('mobileOverlay');
       const leftPanel  = document.querySelector('.panel.left');
       const bottomDock = document.getElementById('mobileBottomDock');
+      let drawerCloseTimer = null;
       function isMobile() { return window.innerWidth <= 768; }
       function openDrawer() {
+        clearTimeout(drawerCloseTimer);
+        leftPanel._drawerReturnFocus = document.activeElement;
         // No modo arqui-nefromante-final (mobile), mostrar o herói individual normalmente
         const isArquiFinal = document.body.classList.contains('arqui-nefromante-final');
+        const lumenApp = leftPanel.closest('#mainApp[data-nq-ui="lumen"]');
         const heroSection  = leftPanel.querySelector('.hero');
         const partyPanel   = document.getElementById('bossPartyPanel');
         const hudSection   = leftPanel.querySelector('.hud');
@@ -5629,7 +5624,7 @@
         const logSection   = leftPanel.querySelector('.log');
         const equipSection = leftPanel.querySelector('.equip');
         const badgesSection = leftPanel.querySelector('.badges-container');
-        if (isArquiFinal) {
+        if (isArquiFinal && !lumenApp) {
           // Forçar display nos elementos normais do herói (sobrescreve o !important do boss mode)
           if (heroSection)   heroSection.setAttribute('style', 'display:block!important');
           if (hudSection)    hudSection.setAttribute('style', 'display:grid!important;grid-template-columns:repeat(3,1fr)!important');
@@ -5641,8 +5636,7 @@
           // Marcar para restaurar ao fechar
           leftPanel._arquiDrawerOpen = true;
         }
-        const lumenApp = leftPanel.closest('#mainApp[data-nq-ui="lumen"]');
-        const useLumenDrawer = !!lumenApp && !isArquiFinal && !document.body.classList.contains('boss-battle-mode');
+        const useLumenDrawer = !!lumenApp;
         if (useLumenDrawer) {
           // Mantém o painel dentro da Câmara de Conduta para preservar o circuito
           // visual; o overlay passa ao mesmo contexto de empilhamento.
@@ -5654,7 +5648,7 @@
           }
           leftPanel.style.cssText = '';
         } else {
-          // Boss e telas legadas ainda precisam escapar do stacking context do app.
+          // Telas legadas ainda precisam escapar do stacking context do app.
           if (leftPanel.parentElement !== document.body) {
             leftPanel._originalParent = leftPanel.parentElement;
             leftPanel._originalNextSibling = leftPanel.nextSibling;
@@ -5695,8 +5689,12 @@
           closeBtn.style.cssText = 'display:inline-flex!important;width:auto!important;padding:7px 18px!important;background:rgba(255,215,0,0.10)!important;border:1px solid rgba(255,215,0,0.30)!important;border-radius:8px!important;color:#ffd700!important;font-size:0.65rem!important;font-weight:700!important;cursor:pointer!important;text-transform:uppercase!important;letter-spacing:1px!important;margin:12px 16px 20px!important;align-self:flex-start!important;';
           leftPanel.appendChild(closeBtn);
         }
+        closeBtn.focus({ preventScroll: true });
       }
       function closeDrawer() {
+        clearTimeout(drawerCloseTimer);
+        const wasOpen = leftPanel.classList.contains('mobile-open');
+        const activeBeforeClose = document.activeElement;
         leftPanel.classList.remove('mobile-open');
         overlay.classList.remove('active');
         document.body.style.overflow = '';
@@ -5743,6 +5741,11 @@
           if (badgesSection) badgesSection.removeAttribute('style');
           if (partyPanel)    partyPanel.removeAttribute('style');
         }
+        if (wasOpen && leftPanel._drawerReturnFocus?.isConnected
+          && (!activeBeforeClose || activeBeforeClose === document.body || leftPanel.contains(activeBeforeClose))) {
+          leftPanel._drawerReturnFocus.focus({ preventScroll: true });
+        }
+        leftPanel._drawerReturnFocus = null;
       }
       // Expor globalmente para o botão do bottom dock
       window.openMobileDrawer = openDrawer;
@@ -5762,10 +5765,30 @@
         }
       }
       overlay.addEventListener('click', closeDrawer);
+      leftPanel.addEventListener('keydown', function(e) {
+        if (!leftPanel.classList.contains('mobile-open')) return;
+        if (e.key === 'Escape') {
+          e.preventDefault();
+          e.stopPropagation();
+          closeDrawer();
+          return;
+        }
+        if (e.key !== 'Tab') return;
+        const controls = Array.from(leftPanel.querySelectorAll('button:not(:disabled), a[href], input:not(:disabled), select:not(:disabled), textarea:not(:disabled), [tabindex="0"]'))
+          .filter(element => element.getClientRects().length && !element.closest('[hidden], [inert], .hidden'));
+        const first = controls[0], last = controls[controls.length - 1];
+        if (!first) return;
+        if (e.shiftKey && (document.activeElement === first || !leftPanel.contains(document.activeElement))) {
+          e.preventDefault(); last.focus();
+        } else if (!e.shiftKey && (document.activeElement === last || !leftPanel.contains(document.activeElement))) {
+          e.preventDefault(); first.focus();
+        }
+      });
       // Fechar drawer ao clicar em botão dentro do painel esquerdo
       leftPanel.addEventListener('click', function(e) {
-        if (isMobile() && e.target.closest('button') && !e.target.closest('.stat-badge, .slot-diablo') && !e.target.closest('.forge-popup') && !e.target.closest('.narrative-popup')) {
-          setTimeout(closeDrawer, 200);
+        if (isMobile() && e.target.closest('button') && !e.target.closest('.drawer-close-btn, .stat-badge, .slot-diablo') && !e.target.closest('.forge-popup') && !e.target.closest('.narrative-popup')) {
+          clearTimeout(drawerCloseTimer);
+          drawerCloseTimer = setTimeout(closeDrawer, 200);
         }
       });
       window.addEventListener('resize', applyMobileState);
@@ -6125,8 +6148,16 @@
       const narrative = document.querySelector('.narrative-popup');
       if (narrative) { narrative.remove(); return; }
       // Fecha qualquer modal genérico
-      const modal = document.querySelector('.modal');
-      if (modal) { modal.remove(); return; }
+      const modal = Array.from(document.querySelectorAll('.modal')).reverse().find(element =>
+        element.getClientRects().length > 0 && getComputedStyle(element).visibility !== 'hidden'
+        && !element.closest('[hidden], [inert], .hidden')
+      );
+      if (modal) {
+        if (modal.closest('#boardModal')) closeBoardModal();
+        else if (modal.closest('#bibliotecaModal')) closeBibliotecaModal();
+        else modal.remove();
+        return;
+      }
       // Fecha game modes overlay
       const gm = document.getElementById('gameModesOverlay');
       if (gm && gm.style.display !== 'none' && gm.classList.contains('show')) { closeGameModesPopup(); return; }

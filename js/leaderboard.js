@@ -522,3 +522,20 @@
       }
     }
     window.renderBoard = renderBoard;
+
+// Keep the existing popup in the DOM when Escape closes it. Without this
+// lifecycle, the generic modal handler removed its static panel permanently.
+// Fetching, ranking, filters and permissions remain in the data layer above.
+(function initBoardDialog() {
+  const init = () => {
+    const root = document.getElementById('boardModal');
+    const panel = root?.querySelector('.board-modal');
+    if (!root || !panel || typeof nqDialogo !== 'function') return;
+    const visible = el => el.isConnected && !el.classList.contains('hidden');
+    const sync = () => { if (visible(root)) nqDialogo(root, { painel: panel, visivel: visible }); };
+    new MutationObserver(sync).observe(root, { attributes: true, attributeFilter: ['class'] });
+    sync();
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
+  else init();
+})();

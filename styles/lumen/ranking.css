@@ -1,0 +1,135 @@
+/* Ranking remains a popup, with its existing tabs, filters and data table. */
+#boardModal {
+  padding: clamp(.5rem, 3vh, 2rem) clamp(.5rem, 3vw, 2rem);
+  background: rgba(3, 5, 12, .82);
+  color: var(--nql-text, #efe6d2);
+  font-family: var(--nql-font-body);
+}
+#boardModal .board-modal {
+  width: min(100%, 54rem);
+  max-width: 54rem;
+  max-height: calc(100dvh - clamp(1rem, 6vh, 4rem));
+  padding: 0;
+  overflow-y: auto;
+  background: linear-gradient(155deg, #15233a, #0c1322 70%) !important;
+  border: 1px solid rgba(145, 223, 227, .32) !important;
+  border-radius: .75rem !important;
+  box-shadow: 0 1.5rem 5rem rgba(0, 0, 0, .55) !important;
+}
+#boardModal .board-header {
+  padding: 1.35rem 3.5rem 1.1rem;
+  border-bottom: 1px solid rgba(145, 223, 227, .14);
+  background: linear-gradient(110deg, rgba(241, 207, 122, .065), transparent 65%);
+}
+#boardModal .board-title-wrap { gap: .75rem; }
+#boardModal .board-title-wrap > svg { width: 1.15rem; height: 1.15rem; flex: 0 0 auto; opacity: .8; }
+#boardModal .board-title {
+  color: #efe6d2 !important;
+  font-family: var(--nql-font-display) !important;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -.015em;
+  text-shadow: none;
+  overflow-wrap: anywhere;
+}
+#boardModal .board-subtitle { color: #aab7c9 !important; font-family: var(--nql-font-body) !important; font-size: .9rem; font-style: normal !important; letter-spacing: 0; line-height: 1.4; }
+#boardModal .auth-close-btn {
+  top: .55rem;
+  right: .55rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid transparent;
+  border-radius: .375rem;
+  background: transparent;
+  color: #aab7c9;
+}
+#boardModal .auth-close-btn:hover { background: rgba(145, 223, 227, .08); color: #91dfe3; }
+#boardModal .board-tabs { gap: .4rem; padding: .9rem 1rem .35rem; flex-wrap: wrap; }
+#boardModal .board-tab-btn {
+  min-height: 2.75rem;
+  padding: .6rem 1rem;
+  border: 1px solid rgba(145, 223, 227, .3);
+  border-radius: .375rem;
+  background: rgba(145, 223, 227, .025);
+  color: #aab7c9;
+  font-family: var(--nql-font-body);
+  font-size: .95rem;
+  letter-spacing: 0;
+}
+#boardModal .board-tab-btn.active { color: #91dfe3; border-color: #91dfe3; background: rgba(145, 223, 227, .1); box-shadow: none; }
+#boardModal .board-tab-btn:hover { color: #efe6d2; border-color: #91dfe3; }
+#boardModal .board-filters { padding: .5rem 1rem 1rem; gap: .6rem; flex-wrap: wrap; }
+#boardModal .board-search-input {
+  min-width: min(100%, 14rem);
+  min-height: 2.75rem;
+  flex: 1 1 14rem;
+  border: 1px solid rgba(145, 223, 227, .45);
+  border-radius: .375rem;
+  background: rgba(7, 10, 19, .5);
+  color: #efe6d2;
+  font-family: var(--nql-font-body);
+}
+#boardModal .board-search-input::placeholder { color: #93a2b8; }
+#boardModal .btn,
+#boardModal .btn-board-refresh {
+  min-height: 2.75rem;
+  padding: .6rem .9rem;
+  border: 1px solid rgba(145, 223, 227, .45);
+  border-radius: .375rem;
+  background: rgba(145, 223, 227, .045);
+  box-shadow: none;
+  color: #efe6d2;
+  font-family: var(--nql-font-body);
+  font-size: .9rem;
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-transform: none;
+  white-space: normal;
+}
+#boardModal .btn:hover,
+#boardModal .btn-board-refresh:hover { border-color: #91dfe3; background: rgba(145, 223, 227, .1); color: #91dfe3; }
+#boardModal #closeBoard { border-color: rgba(241, 207, 122, .5); color: #f1cf7a; background: rgba(241, 207, 122, .065); }
+#boardModal :focus-visible { outline: 2px solid #91dfe3; outline-offset: 2px; }
+#boardModal .board-table-wrap { overflow: auto; max-height: min(26rem, 50dvh); padding: 0 1rem; scrollbar-color: rgba(145, 223, 227, .34) transparent; }
+#boardModal .board-table { font-size: .9rem; }
+#boardModal .board-table thead th {
+  padding: .65rem .65rem;
+  color: #aab7c9;
+  font-family: var(--nql-font-instrument);
+  font-size: .65rem;
+  font-weight: 500;
+  letter-spacing: .025em;
+  border-bottom-color: rgba(145, 223, 227, .2);
+  background: #111b2e;
+  line-height: 1.4;
+}
+#boardModal .board-table td { padding: .75rem .65rem; color: #d4dce7; border-bottom: 1px solid rgba(145, 223, 227, .085); }
+#boardModal .board-table tbody tr:hover { background: rgba(145, 223, 227, .045); }
+#boardModal .board-table tbody tr.rank-1 { background: linear-gradient(90deg, rgba(241, 207, 122, .09), transparent); }
+#boardModal .board-table tbody tr.rank-2 { background: linear-gradient(90deg, rgba(158, 187, 244, .065), transparent); }
+#boardModal .board-table tbody tr.rank-3 { background: linear-gradient(90deg, rgba(239, 155, 115, .065), transparent); }
+#boardModal .board-table tbody tr.rank-me { background: rgba(145, 223, 227, .075); outline-color: rgba(145, 223, 227, .3); }
+#boardModal .player-avatar { width: 2rem; height: 2rem; border-color: rgba(145, 223, 227, .32); }
+#boardModal .player-name-text { color: #efe6d2; overflow-wrap: anywhere; }
+#boardModal .score-cell { color: #f1cf7a !important; font-family: var(--nql-font-instrument); font-size: .9rem; }
+#boardModal .level-cell { color: #91dfe3 !important; }
+#boardModal .chests-cell { color: #bd91da !important; }
+#boardModal .date-cell { color: #93a2b8 !important; }
+#boardModal .board-empty { color: #aab7c9 !important; font-style: normal; line-height: 1.5; }
+#boardModal .board-loading { color: #aab7c9; }
+#boardModal .board-footer { gap: .65rem; padding: .9rem 1rem; border-top-color: rgba(145, 223, 227, .18); }
+#boardModal .board-update-time { color: #93a2b8; font-family: var(--nql-font-instrument); font-size: .65rem; }
+#boardModal .board-spinner { border-color: rgba(145, 223, 227, .2); border-top-color: #91dfe3; }
+@media (max-width: 40rem) {
+  #boardModal .board-header { padding: 1.1rem 3rem 1rem 1rem; }
+  #boardModal .board-title-wrap { justify-content: flex-start; }
+  #boardModal .board-title-wrap > svg:last-child { display: none; }
+  #boardModal .board-subtitle { text-align: left; }
+  #boardModal .board-filters { align-items: stretch; }
+  #boardModal .board-filters > button { flex: 1 1 auto; }
+  #boardModal .board-table-wrap { padding-inline: .5rem; }
+  #boardModal .board-table th,
+  #boardModal .board-table td { padding-inline: .45rem; }
+  #boardModal .board-update-time { flex-basis: 100%; line-height: 1.5; }
+}

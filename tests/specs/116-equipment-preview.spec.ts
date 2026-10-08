@@ -248,3 +248,106 @@ test('modal legado preexistente aberto por classe ou estilo encerra e bloqueia d
   }
   expect(await snapshot(page)).toBe(before);
 });
+
+async function equiparArtesDetalhadas(page: Page) {
+  await page.evaluate(() => (0, eval)(`
+    state.equipment.armor={n:'Égide Dialítica',rar:'epic',atk:1,def:4,kno:2,luck:0};
+    state.equipment.relic={n:'Sigilo KDIGO',rar:'legendary',atk:0,def:1,kno:5,luck:2};
+    state.equipment.helmet={n:'Máscara N95',rar:'rare',atk:0,def:3,kno:0,luck:1};
+    renderHUD();
+  `));
+}
+
+test('fonte atual suficiente conserva as miniaturas sem baixar masters no HUD ou preview', async ({ page }) => {
+  const detailRequests: string[] = [];
+  page.on('request', request => {
+    if (new URL(request.url()).pathname.includes('/assets/items/detail/')) detailRequests.push(request.url());
+  });
+  const preview = await abrir(page);
+  await equiparArtesDetalhadas(page);
+  const before = await snapshot(page);
+  const slot = page.locator('#equipList .slot-diablo[data-slot="relic"]');
+  await slot.scrollIntoViewIfNeeded();
+  await slot.tap();
+  await expect(preview.locator('img')).toBeVisible();
+  await expect.poll(() => preview.locator('img').evaluate(el => (el as HTMLImageElement).currentSrc))
+    .toMatch(/\/assets\/items\/sigilo_kdigo\.png$/);
+  expect(detailRequests).toEqual([]);
+  expect(await snapshot(page)).toBe(before);
+});
+
+test.describe('arte em alta densidade', () => {
+  test.use({ deviceScaleFactor: 3 });
+
+  test('masters só abrem na inspeção; texto a 200% e N95 conservam arte e estado', async ({ page }) => {
+    const detailRequests: string[] = [];
+    page.on('request', request => {
+      if (new URL(request.url()).pathname.includes('/assets/items/detail/')) detailRequests.push(request.url());
+    });
+    const preview = await abrir(page);
+    await equiparArtesDetalhadas(page);
+    await page.evaluate(() => { document.documentElement.style.fontSize = '32px'; });
+    const before = await snapshot(page);
+    expect(detailRequests).toEqual([]);
+    for (const [key, file] of [['armor', 'egide_dialitica'], ['relic', 'sigilo_kdigo'], ['helmet', 'mascara_n95']]) {
+      const slot = page.locator(`#equipList .slot-diablo[data-slot="${key}"]`);
+      await slot.scrollIntoViewIfNeeded();
+      const thumbnail = slot.locator('img');
+      await expect(thumbnail).toHaveCSS('object-fit', 'contain');
+      await slot.tap();
+      const image = preview.locator('img');
+      await expect.poll(() => image.evaluate(el => (el as HTMLImageElement).currentSrc))
+        .toMatch(new RegExp(`/assets/items/detail/${file}-1024\\.png$`));
+      const pixels = await image.evaluate(async el => {
+        const selected = new Image();
+        selected.src = (el as HTMLImageElement).currentSrc;
+        await selected.decode();
+        return { source: selected.naturalWidth, display: el.getBoundingClientRect().width, ratio: devicePixelRatio };
+      });
+      expect(pixels.source).toBe(1024);
+      expect(pixels.source).toBeGreaterThanOrEqual(pixels.display * pixels.ratio);
+      await expect(image).toHaveCSS('object-fit', 'contain');
+      if (key === 'helmet') {
+        await expect(thumbnail).toHaveCSS('padding-top', '2px');
+        await expect(image).toHaveCSS('padding-top', '4px');
+      }
+      await dentroDaTela(page);
+      expect(await snapshot(page)).toBe(before);
+      if (process.env.NQ_CAPTURE_DIR) await page.screenshot({
+        path: process.env.NQ_CAPTURE_DIR + `/equipment-${file}-${test.info().project.name}-dpr3-200.png`,
+      });
+      await preview.getByRole('button', { name: 'Fechar detalhes do equipamento' }).tap();
+      await expect(preview).toBeHidden();
+    }
+    expect(new Set(detailRequests.map(url => new URL(url).pathname)).size).toBe(3);
+    expect(await snapshot(page)).toBe(before);
+  });
+
+  test('falha do master recupera a fonte atual sem perder a identidade ou alterar o jogo', async ({ page }) => {
+    const preview = await abrir(page);
+    await equiparArtesDetalhadas(page);
+    const before = await snapshot(page);
+    let attempted = 0;
+    await page.route('**/assets/items/detail/*', route => { attempted++; return route.abort(); });
+    const slot = page.locator('#equipList .slot-diablo[data-slot="relic"]');
+    await slot.scrollIntoViewIfNeeded();
+    await slot.tap();
+    await expect(preview.locator('h3')).toHaveText('Sigilo KDIGO');
+    const image = preview.locator('img');
+    await expect.poll(() => attempted).toBe(1);
+    await expect.poll(() => image.evaluate(el => (el as HTMLImageElement).currentSrc))
+      .toMatch(/\/assets\/items\/sigilo_kdigo\.png$/);
+    await expect(image).not.toHaveAttribute('srcset');
+    // naturalWidth do elemento é corrigido pela densidade do candidato de
+    // srcset; o decode independente mede os pixels da fonte recuperada.
+    expect(await image.evaluate(async el => {
+      const recovered = new Image();
+      recovered.src = (el as HTMLImageElement).currentSrc;
+      await recovered.decode();
+      return recovered.naturalWidth;
+    })).toBe(384);
+    await expect(image).toHaveAttribute('alt', 'Sigilo KDIGO');
+    await dentroDaTela(page);
+    expect(await snapshot(page)).toBe(before);
+  });
+});

@@ -8,6 +8,13 @@
     common: ['Comum', '#b7cadc'], rare: ['Raro', '#89c8d1'],
     epic: ['Épico', '#bab2ed'], legendary: ['Lendário', '#f0dba8'], mythic: ['Mítico', '#edf2ff']
   };
+  // Masters originais só são solicitados ao abrir a inspeção e quando a
+  // densidade da tela exige mais pixels que a miniatura de 384px oferece.
+  const detailImages = {
+    '/assets/items/egide_dialitica.png': 'assets/items/detail/egide_dialitica-1024.png',
+    '/assets/items/mascara_n95.png': 'assets/items/detail/mascara_n95-1024.png',
+    '/assets/items/sigilo_kdigo.png': 'assets/items/detail/sigilo_kdigo-1024.png'
+  };
   let anchor = null, pinned = false, timer = 0, suppressFocus = null, dismissed = null, focusOwner = null, touchFocusSlot = null;
   const panel = document.createElement('section');
   panel.id = 'nqEquipmentPreview';
@@ -205,8 +212,20 @@
       const img = make('img');
       img.alt = title.textContent;
       img.decoding = 'async';
-      img.addEventListener('error', () => { if (art.contains(img)) fallback(); }, { once: true });
+      img.addEventListener('error', () => {
+        if (!art.contains(img)) return;
+        if (img.hasAttribute('srcset')) {
+          img.removeAttribute('srcset');
+          img.removeAttribute('sizes');
+          img.src = url;
+        } else fallback();
+      });
       img.addEventListener('load', () => { if (art.contains(img)) position(); }, { once: true });
+      const detailUrl = safeImage(detailImages[new URL(url).pathname]);
+      if (detailUrl) {
+        img.sizes = '(max-height: 520px) 112px, (max-width: 400px) 144px, 160px';
+        img.srcset = url + ' 384w, ' + detailUrl + ' 1024w';
+      }
       img.src = url;
       art.append(img);
     } else fallback();
@@ -296,8 +315,14 @@
   }, true);
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && anchor) {
-      e.preventDefault();
-      e.stopImmediatePropagation();
+      const target = e.target;
+      const previewOwnsEscape = !(target instanceof Element) ||
+        target === document.body || target === document.documentElement ||
+        anchor.contains(target) || panel.contains(target);
+      if (previewOwnsEscape) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+      }
       hide(panel.contains(document.activeElement), true);
       return;
     }
