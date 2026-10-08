@@ -91,3 +91,15 @@ O próximo lote reúne onze pergaminhos: captopril (6), DAPA-HF (13), FIGARO-DKD
 O proprietário autorizou explicitamente aplicar e publicar os onze textos exatos da #882 e continuar o plano com autonomia, preservando os gates editoriais. O patch aprovado foi aplicado no branch sem mudança material; release preparada 15.90. A autorização supera a pendência operacional registrada na seção anterior. Conferência do CI e produção ainda pendentes; não considerar publicado até sua conclusão. Os 191 pergaminhos e 741 questões foram preservados, sem fusão de registros ou expansão do banco.
 
 Conferência adicional nesta sessão: o proprietário respondeu “siga” à pergunta explícita de aplicação/publicação dos onze objetos. Aplicação local idêntica à aplicação remota nos sete arquivos do aplicativo/release, sem divergência de conteúdo. Os cinco testes do leitor passaram após a aplicação (17,9 s). Os dois registros documentais de aplicação foram conciliados, preservando a trilha remota.
+
+## Publicação 15.90 e lote de imunoterapia
+
+Os onze pergaminhos terapêuticos foram publicados na 15.90, PR #882, commit de merge 728874d266977d250fc63e03a158d3c2854f48fa. Deploy GitHub Pages concluído; version.json, sw.js, data/articles.js e os dois HTML em produção coincidem integralmente com esse commit. Quality Gates e cinco testes locais do leitor passaram.
+
+Seis novos objetos completos foram preparados: RAVE (25), RITUXVAS (39), BENEFIT (45), MENTOR (48), AURORA 1 (49) e BLISS-LN (50). Ver [parecer formal](IMUNOTERAPIA-2026-10-06-parecer.md), fontes e patch vinculados. Aprovação editorial, Evidência VERIFICADA, Pendência NENHUMA e Publicação editorial LIBERADA. Leitura validada em 320, 390 e 1.100 px, a 100%/200%. Nenhum aplicado ao banco; aguardar autorização explícita de aplicação/publicação. Preservados 191 pergaminhos e 741 questões.
+
+Conferência remota adicional da #882: Smoke E2E passou (5 min 7 s). As duas suítes completas ainda estavam em execução na última consulta; não registrar sucesso delas antes da conclusão.
+
+## Autorização persistente — 08/10/2026
+
+O proprietário autorizou aplicar os seis objetos de imunoterapia e publicar os próximos lotes de resumos após aprovação científica formal, sem nova pergunta a cada lote. Aplicado o patch exato aprovado, sem alteração material, na release técnica 15.96 (versão pública 2.0). Mantidos 191 pergaminhos, seus índices e 741 questões. Esta autorização cobre os resumos; não substitui revisão formal, evidência/pendências válidas, liberação editorial ou autorização específica de criação/aplicação de novas questões.
