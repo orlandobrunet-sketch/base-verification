@@ -558,7 +558,7 @@ test.describe('Central de Comando do aprendizado', () => {
     await expect(opener).toBeVisible();
   });
 
-  test('alcança por Tab os detalhes expansíveis do Mapa e das Conquistas', async ({ page }) => {
+  test('alcança por Tab os detalhes do Mapa e as artes das Conquistas com requisitos expostos', async ({ page }) => {
     await openCommandCenter(page);
 
     const expectTabReachable = async (target: ReturnType<Page['locator']>) => {
@@ -582,7 +582,42 @@ test.describe('Central de Comando do aprendizado', () => {
     await expectTabReachable(page.locator('#nqDashboard details[data-map-group]:visible > summary').first());
 
     await page.getByRole('tab', { name: 'Conquistas', exact: true }).click();
-    await expectTabReachable(page.locator('#nqDashboard .nqd-achievement-detail:visible > summary').first());
+    const pane = page.getByRole('tabpanel', { name: 'Conquistas', exact: true });
+    await expect(pane.locator('details, summary, .nqd-achievement-detail')).toHaveCount(0);
+    const requirements = await page.evaluate(() => (0, eval)('ACHIEVEMENTS_LIST').map((item: any) => ({ id: item.id, description: item.description })));
+    await expect(pane.locator('.nqd-achievement:visible')).toHaveCount(requirements.length);
+    for (const requirement of requirements) {
+      const copy = pane.locator(`[data-achievement-id="${requirement.id}"] .nqd-achievement-copy`);
+      await expect(copy).toHaveText(requirement.description);
+      await expect(copy).toBeVisible();
+    }
+    const preservedKeys = ['nefroquest-save', 'nefroquest-save-v7', 'nefroquest-detailed-stats', 'nefroquest-achievements', 'nefroquest-badge-history'];
+    const before = await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), preservedKeys);
+    await expect(pane.getByRole('button', { name: 'Objetivos', exact: true })).toHaveCount(0);
+    const acquired = await pane.locator('.nqd-achievement.is-unlocked').count();
+    const unlockedFilter = pane.getByRole('button', { name: 'Conquistadas', exact: true });
+    await expectTabReachable(unlockedFilter);
+    await page.keyboard.press('Enter');
+    await expect(unlockedFilter).toHaveAttribute('aria-pressed', 'true');
+    await expect(pane.locator('.nqd-achievement:visible')).toHaveCount(acquired);
+    const allFilter = pane.getByRole('button', { name: 'Todas', exact: true });
+    await expectTabReachable(allFilter);
+    await page.keyboard.press('Enter');
+    await expect(allFilter).toHaveAttribute('aria-pressed', 'true');
+    await expect(pane.locator('.nqd-achievement:visible')).toHaveCount(requirements.length);
+    const firstCard = pane.locator('.nqd-achievement').first();
+    const art = firstCard.locator('.nqd-achievement-mark');
+    const title = await firstCard.locator('.nqd-achievement-title').innerText();
+    const requirement = await firstCard.locator('.nqd-achievement-copy').innerText();
+    await expectTabReachable(art);
+    await page.keyboard.press('Enter');
+    const detail = page.getByRole('dialog', { name: title, exact: true });
+    await expect(detail).toBeVisible();
+    await expect(detail).toContainText(requirement);
+    await page.keyboard.press('Escape');
+    await expect(detail).toHaveCount(0);
+    await expect(art).toBeFocused();
+    expect(await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), preservedKeys)).toEqual(before);
   });
 
   test('isola do jogo os atalhos de resposta enquanto a Central está aberta', async ({ page }) => {

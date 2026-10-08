@@ -68,6 +68,23 @@ test('Escape da gaveta fecha o painel mesmo com uma dica de atributo sob o ponte
   const close = drawer.getByRole('button', { name: 'Fechar painel do herói' });
   await expect(close).toBeFocused();
   const badge = drawer.locator('.equip-total-attributes .stat-badge').first();
+  // O scroll automático do hover pode chegar depois da abertura e fechar a
+  // dica. Termine o scroll e confirme o alvo antes de mover o ponteiro real.
+  await badge.scrollIntoViewIfNeeded();
+  await expect.poll(() => badge.evaluate(async element => {
+    const panel = element.closest<HTMLElement>('.panel.left')!;
+    let previous = '', stable = 0;
+    for (let frame = 0; frame < 4; frame++) {
+      await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
+      const box = element.getBoundingClientRect();
+      const geometry = JSON.stringify([panel.scrollTop, box.x, box.y, box.width, box.height]);
+      const hit = document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2);
+      stable = hit && element.contains(hit) && geometry === previous ? stable + 1 : 0;
+      previous = geometry;
+      if (stable >= 2) return true;
+    }
+    return false;
+  })).toBe(true);
   // Hover não muda o foco: reproduz a dica transitória vista no trace v7.
   await badge.hover();
   await expect(page.locator('body > .stat-tip-floating')).toBeVisible();
