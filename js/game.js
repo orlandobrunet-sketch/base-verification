@@ -865,6 +865,7 @@
       _stateData.forjaPending = null;
       _stateData.gameStarted = false;
       localStorage.removeItem(SAVE_KEY);
+      _legacySaveBaseline = null;
       localStorage.removeItem('nefroquest-announced-badges');
       // Conta a jornada que começa, para o histórico de selos poder dizer em
       // qual delas cada um foi conquistado. Não some com deleteSave.
@@ -2816,7 +2817,7 @@
         // Somente questões difíceis
         interleaved.push(...hi);
       } else {
-        while (ei.length || mi.length || hi.length) {
+        while ((diff !== 'hard' && ei.length) || mi.length || hi.length) {
           if (diff === 'easy') {
             if (ei.length) interleaved.push(ei.shift());
             if (ei.length) interleaved.push(ei.shift());
