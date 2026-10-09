@@ -10,11 +10,76 @@
   };
   // Masters originais só são solicitados ao abrir a inspeção e quando a
   // densidade da tela exige mais pixels que a miniatura de 384px oferece.
-  const detailImages = {
-    '/assets/items/egide_dialitica.png': 'assets/items/detail/egide_dialitica-1024.png',
-    '/assets/items/mascara_n95.png': 'assets/items/detail/mascara_n95-1024.png',
-    '/assets/items/sigilo_kdigo.png': 'assets/items/detail/sigilo_kdigo-1024.png'
+  // As fontes são opacas. Estes limites medidos incluem a silhueta e o brilho
+  // (diferença RGB > 16 do fundo), não só o corpo da peça. O enquadro ocupa até
+  // 92% da moldura real, mantém o aspecto e limita a ampliação a 1,35x.
+  // [x, y, largura, altura, tamanho da fonte]; nomes são só metadados visuais.
+  const artBounds = {
+    'amuleto_rim.png': [64, 26, 250, 314, 384],
+    'anel_albuminurico.png': [61, 83, 262, 216, 384],
+    'armadura_homeostase_perfeita_female.png': [117, 15, 150, 359, 384],
+    'armadura_homeostase_perfeita.png': [51, 61, 282, 277, 384],
+    'armadura_primeva_female.png': [72, 22, 240, 340, 384],
+    'armadura_primeva.png': [62, 26, 260, 334, 384],
+    'avental_protetor_female.png': [123, 16, 138, 352, 384],
+    'avental_protetor.png': [115, 21, 155, 341, 384],
+    'bisturi_plantao.png': [180, 38, 24, 308, 384],
+    'botas_caminho_saudavel.png': [55, 40, 301, 287, 384],
+    'botas_pressao_controlada.png': [48, 36, 307, 319, 384],
+    'cetro_nefron.png': [140, 22, 105, 345, 384],
+    'egide_dialitica_female.png': [68, 26, 248, 331, 384],
+    'egide_dialitica.png': [28, 20, 329, 348, 384],
+    'elmo_filtrador_supremo.png': [49, 12, 286, 359, 384],
+    'espada_nefroprotetora.png': [137, 23, 109, 341, 384],
+    'estetoscopio_basico.png': [67, 32, 249, 319, 384],
+    'estilete_tubular.png': [159, 32, 66, 318, 384],
+    'excalibur_nefron.png': [145, 23, 94, 342, 384],
+    'galocha_cti.png': [29, 51, 327, 286, 384],
+    'gorro_cti.png': [48, 46, 287, 292, 384],
+    'jaleco_plantao_female.png': [71, 28, 243, 328, 384],
+    'jaleco_plantao.png': [62, 26, 260, 332, 384],
+    'lamina_alca.png': [159, 16, 68, 352, 384],
+    'lanca_glomerular.png': [152, 15, 80, 355, 384],
+    'luva_esteril_cirurgia.png': [25, 53, 335, 277, 384],
+    'luvas_latex_reforcadas.png': [38, 51, 308, 280, 384],
+    'luvas_nitrilicas.png': [61, 56, 263, 267, 384],
+    'manopla_dialise.png': [34, 29, 316, 329, 384],
+    'manopla_homeostase.png': [40, 28, 303, 332, 384],
+    'manto_renocortical_female.png': [99, 19, 186, 347, 384],
+    'manto_renocortical.png': [77, 14, 230, 354, 384],
+    'mascara_n95.png': [1, 0, 382, 383, 384],
+    'mascara_tripla.png': [22, 70, 340, 254, 384],
+    'orbe_cistatina.png': [85, 49, 213, 291, 384],
+    'prancheta_clinica.png': [72, 21, 240, 332, 384],
+    'propes_descartaveis.png': [35, 70, 314, 252, 384],
+    'reliquia_titulo.png': [37, 37, 314, 305, 384],
+    'sigilo_kdigo.png': [27, 24, 333, 333, 384],
+    'tamanco_hospitalar.png': [43, 83, 298, 226, 384],
+    'termometro_digital.png': [31, 26, 305, 333, 384],
+    'touca_plissada.png': [31, 48, 322, 284, 384],
+    'viseira_facial.png': [48, 45, 281, 290, 384],
+    'starter/aqua_armor.png': [249, 118, 525, 789, 1024],
+    'starter/aqua_boot.png': [74, 214, 878, 616, 1024],
+    'starter/aqua_glove.png': [105, 153, 827, 721, 1024],
+    'starter/aqua_helmet.png': [120, 188, 783, 569, 1024],
+    'starter/aqua_relic.png': [255, 151, 499, 717, 1024],
+    'starter/aqua_weapon.png': [421, 44, 183, 935, 1024],
+    'starter/glom_armor.png': [199, 66, 610, 893, 1024],
+    'starter/glom_boot.png': [100, 225, 824, 568, 1024],
+    'starter/glom_glove.png': [81, 113, 862, 796, 1024],
+    'starter/glom_helmet.png': [90, 294, 847, 433, 1024],
+    'starter/glom_relic.png': [163, 250, 703, 541, 1024],
+    'starter/glom_weapon.png': [471, 91, 87, 843, 1024],
+    'starter/neph_armor.png': [292, 85, 440, 854, 1024],
+    'starter/neph_boot.png': [110, 110, 805, 795, 1024],
+    'starter/neph_glove.png': [122, 191, 780, 643, 1024],
+    'starter/neph_helmet.png': [135, 105, 752, 815, 1024],
+    'starter/neph_relic.png': [191, 130, 648, 767, 1024],
+    'starter/neph_weapon.png': [359, 76, 305, 872, 1024]
   };
+  const detailImages = Object.fromEntries(Object.keys(artBounds)
+    .filter(name => !name.startsWith('starter/'))
+    .map(name => ['/assets/items/' + name, 'assets/items/detail/' + name.replace(/\.png$/, '-1024.png')]));
   let anchor = null, pinned = false, timer = 0, suppressFocus = null, dismissed = null, focusOwner = null, touchFocusSlot = null;
   const panel = document.createElement('section');
   panel.id = 'nqEquipmentPreview';
@@ -101,6 +166,47 @@
         ? url.href : '';
     } catch { return ''; }
   }
+  function frameImage(img) {
+    const url = safeImage(img.getAttribute('src'));
+    const name = url ? new URL(url).pathname.replace(/^\/assets\/items\//, '') : '';
+    const bounds = artBounds[name], frame = img.parentElement;
+    if (!bounds || !frame) return;
+    const style = getComputedStyle(frame);
+    // O preview ainda oculto tem largura CSS definida; medir antes de definir
+    // srcset evita uma primeira solicitação com o sizes padrão de 100vw.
+    const cssWidth = parseFloat(style.width) - parseFloat(style.borderLeftWidth) - parseFloat(style.borderRightWidth);
+    const width = frame.clientWidth || cssWidth;
+    const height = frame.clientHeight || width;
+    if (!(width > 0 && height > 0)) return;
+    const [x, y, w, h, sourceSize] = bounds, base = Math.min(width, height);
+    // As alças da N95 chegam à borda: ela conserva o respiro próprio em CSS.
+    const scale = name === 'mascara_n95.png' ? 1
+      : Math.min(1.35, .92 * width * sourceSize / (base * w), .92 * height * sourceSize / (base * h));
+    const offsetX = name === 'mascara_n95.png' ? 0 : (.5 - (x + w / 2) / sourceSize) * base * scale;
+    const offsetY = name === 'mascara_n95.png' ? 0 : (.5 - (y + h / 2) / sourceSize) * base * scale;
+    img.style.setProperty('--nqe-art-scale', scale.toFixed(4));
+    img.style.setProperty('--nqe-art-x', offsetX.toFixed(3) + 'px');
+    img.style.setProperty('--nqe-art-y', offsetY.toFixed(3) + 'px');
+    if (frame === art && img.hasAttribute('srcset')) {
+      // A densidade precisa cobrir o bitmap ampliado, não só o quadro de 160px.
+      img.sizes = Math.ceil(width * scale) + 'px';
+    }
+    return Math.ceil(width * scale);
+  }
+  const artFrames = new Set();
+  const artResizeObserver = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(records => {
+    for (const { target } of records) {
+      const img = target.querySelector('img');
+      if (img) frameImage(img);
+    }
+  });
+  function observeArt(frame) {
+    if (artResizeObserver && !artFrames.has(frame)) {
+      artFrames.add(frame);
+      artResizeObserver.observe(frame);
+    }
+  }
+  observeArt(art);
   function statValue(source, key, starter) {
     const value = source.getAttribute('data-item-' + key);
     return starter ? '0' : (value && /^-?\d+(?:\.\d+)?$/.test(value) ? value : '—');
@@ -222,22 +328,35 @@
       });
       img.addEventListener('load', () => { if (art.contains(img)) position(); }, { once: true });
       const detailUrl = safeImage(detailImages[new URL(url).pathname]);
-      if (detailUrl) {
-        img.sizes = '(max-height: 520px) 112px, (max-width: 400px) 144px, 160px';
-        img.srcset = url + ' 384w, ' + detailUrl + ' 1024w';
-      }
       img.src = url;
       art.append(img);
+      const bitmapWidth = frameImage(img);
+      if (detailUrl) {
+        img.sizes = bitmapWidth ? bitmapWidth + 'px' : '(max-height: 520px) 112px, (max-width: 400px) 144px, 160px';
+        img.srcset = url + ' 384w, ' + detailUrl + ' 1024w';
+      }
     } else fallback();
     document.querySelectorAll('.item-tooltip, .stat-tip-floating').forEach(el => { el.style.display = 'none'; });
     panel.hidden = false;
+    const image = art.querySelector('img');
+    if (image) frameImage(image);
     panel.scrollTop = 0;
     position();
   }
   function decorate() {
+    for (const frame of artFrames) {
+      if (!frame.isConnected) {
+        artResizeObserver.unobserve(frame);
+        artFrames.delete(frame);
+      }
+    }
     scope.querySelectorAll(selector).forEach(slot => {
       const source = sourceOf(slot);
       if (!source) return;
+      if (source instanceof HTMLImageElement) {
+        frameImage(source);
+        observeArt(source.parentElement);
+      }
       source.classList.remove('item-with-tooltip');
       slot.setAttribute('role', 'button');
       slot.setAttribute('aria-label', (source.getAttribute('data-slot-label') || 'Equipamento') + ': ' +
