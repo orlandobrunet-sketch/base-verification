@@ -36,21 +36,22 @@ body:has(#mainApp[data-nq-ui="lumen"]:not(.hidden)):not(.boss-battle-mode):not(.
 
 body:has(#mainApp[data-nq-ui="lumen"]:not(.hidden)):not(.boss-battle-mode):not(.arqui-nefromante-final) .bg-layer {
   background:
-    linear-gradient(180deg, rgba(5, 8, 18, .12), rgba(5, 8, 18, .34) 54%, rgba(5, 8, 18, .74) 100%),
-    radial-gradient(circle at 51% 17%, rgba(145, 223, 227, .08), transparent 28rem),
-    url("../../assets/nefroquest_background.jpg") center top / cover no-repeat;
-  /* O cenário fica perceptível entre os painéis, ainda pouco saturado e
-   * desfocado. As superfícies de leitura preservam seu contraste próprio.
-   * A escala esconde a borda clara criada pelo desfoque nas laterais. */
-  filter: saturate(.5) brightness(.46) blur(3px);
-  transform: scale(1.03);
+    radial-gradient(ellipse at 0% 24%, rgba(241, 207, 122, .09), transparent 35%),
+    radial-gradient(ellipse at 100% 72%, rgba(241, 207, 122, .065), transparent 32%),
+    radial-gradient(ellipse at 48% 0%, rgba(41, 79, 85, .19), transparent 65%),
+    repeating-linear-gradient(97deg, rgba(220, 208, 173, .018) 0 1px, transparent 1px 5px),
+    repeating-linear-gradient(3deg, rgba(8, 16, 20, .14) 0 1px, transparent 1px 7px),
+    linear-gradient(155deg, #0b1b22, #071219 60%, #080f15);
+  /* Pedra/papel escuro e luz de borda: cenário discreto, sem imagem anatômica
+   * ou novo download. As superfícies de leitura mantêm seus próprios fundos. */
+  filter: none;
+  transform: none;
 }
 
 body:has(#mainApp[data-nq-ui="lumen"]:not(.hidden)):not(.boss-battle-mode):not(.arqui-nefromante-final) .bg-overlay {
   background:
-    linear-gradient(90deg, rgba(3, 5, 12, .4), rgba(3, 5, 12, .6) 22%, rgba(3, 5, 12, .6) 76%, rgba(3, 5, 12, .46)),
-    radial-gradient(circle at 52% 16%, rgba(189, 145, 218, .09), transparent 26rem),
-    radial-gradient(ellipse at center, transparent 14%, rgba(3, 5, 12, .36) 100%);
+    linear-gradient(90deg, rgba(3, 9, 14, .1), rgba(3, 9, 14, .28) 24%, rgba(3, 9, 14, .28) 76%, rgba(3, 9, 14, .1)),
+    radial-gradient(ellipse at center, transparent 24%, rgba(3, 8, 12, .36) 100%);
 }
 
 body:has(#mainApp[data-nq-ui="lumen"]:not(.hidden)):not(.boss-battle-mode):not(.arqui-nefromante-final) .particles {
@@ -817,7 +818,7 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
 }
 
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #timerPlayPause {
-  min-width: 32px;
+  min-width: 44px;
   min-height: 44px;
 }
 
@@ -1961,6 +1962,7 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .panel.right {
   min-width: 0;
   padding: clamp(1rem, 2.2vw, 1.75rem);
+  padding-top: .5rem;
   border: 1px solid var(--nql-line) !important;
   border-radius: var(--nql-radius-panel) !important;
   background: rgba(var(--nql-cortex-rgb), .28);
@@ -2035,7 +2037,7 @@ body > .stat-tip-floating[data-nq-ui="lumen"] strong + br {
 
 @media (max-width: 768px) {
   body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .panel.right {
-    padding: 1rem .9rem 1.25rem;
+    padding: .5rem .9rem 1.25rem;
   }
 
   /* Um único scroll externo mantém o fim da Jornada acessível na gaveta. */
@@ -2046,10 +2048,10 @@ body > .stat-tip-floating[data-nq-ui="lumen"] strong + br {
   }
 }
 
-/* Redução sutil pedida para a leitura padrão; rem preserva a ampliação do texto.
+/* Leitura padrão mais compacta; rem preserva a ampliação do texto.
  * O modo de leitura ampliada mantém sua escala própria. */
 body:not(.reading-mode):not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #question {
-  font-size: 1.21875rem;
+  font-size: 1.0625rem;
 }
 
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .ref-reading {
@@ -2059,15 +2061,50 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
 }
 
 body:not(.reading-mode):not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .opt-body {
-  font-size: 1rem;
+  font-size: .90625rem;
 }
 
 @media (max-width: 768px) {
   body:not(.reading-mode):not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #question {
-    font-size: 1.1125rem;
+    font-size: 1.03125rem;
   }
 
   body:not(.reading-mode):not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .opt-body {
-    font-size: .9375rem;
+    font-size: .90625rem;
   }
+}
+
+/* A cor da borda continua vindo do tipo. A raridade ilumina apenas o selo;
+ * ancorar nele mantém o detalhe junto ao texto mesmo quando o topo envolve. */
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .ref-card {
+  --nql-ref-rarity: var(--nql-text-muted);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .ref-card[data-ref-rarity="rare"] {
+  --nql-ref-rarity: var(--nq-accent-cyan);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .ref-card[data-ref-rarity="epic"] {
+  --nql-ref-rarity: var(--nq-accent-violet);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .ref-card[data-ref-rarity="legendary"] {
+  --nql-ref-rarity: var(--nq-accent-gold);
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .ref-rarity {
+  position: relative;
+  isolation: isolate;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .ref-rarity::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -.8rem -1rem;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, color-mix(in srgb, var(--nql-ref-rarity) 12%, transparent), transparent 72%);
+  pointer-events: none;
+  animation: none;
+  transition: none;
 }

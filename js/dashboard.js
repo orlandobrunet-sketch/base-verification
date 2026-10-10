@@ -1119,6 +1119,11 @@
     const axisLabels = new Map((_dashboardData.axisStats || []).map(axis => [axis.cat, axis.label]));
     const allAxes = typeof NEFRO_AXES !== 'undefined' && Array.isArray(NEFRO_AXES) ? NEFRO_AXES : [];
     allAxes.forEach(axis => axisLabels.set(axis.cat, axis.label));
+    const identityByCategory = new Map();
+    const coreSkills = Array.isArray(window.CORE_SKILLS) ? window.CORE_SKILLS : [];
+    coreSkills.forEach(skill => {
+      (Array.isArray(skill.categories) ? skill.categories : []).forEach(cat => identityByCategory.set(cat, skill.id));
+    });
 
     const groupEntries = [...groups.entries()].map(([cat, comps]) => {
       const ordered = [...comps].sort((left, right) => _mapStatus(stats[left.id]).rank - _mapStatus(stats[right.id]).rank);
@@ -1131,7 +1136,7 @@
         const a = stats[left.id]; const b = stats[right.id];
         return a.c / a.t - b.c / b.t || b.t - a.t;
       })[0];
-      return { cat, label, ordered, explored, statuses, priority, weakest };
+      return { cat, label, identity: identityByCategory.get(cat) || '', ordered, explored, statuses, priority, weakest };
     }).sort((left, right) => Number(!!right.weakest) - Number(!!left.weakest) ||
       (left.weakest ? stats[left.weakest.id].c / stats[left.weakest.id].t : Infinity) -
       (right.weakest ? stats[right.weakest.id].c / stats[right.weakest.id].t : Infinity) ||
@@ -1148,7 +1153,7 @@
 
     const content = groupEntries.length ? groupEntries.map((group, groupIndex) => {
       const searchable = [group.label, ...group.ordered.map(comp => comp.label)].join(' ').toLocaleLowerCase('pt-BR');
-      return `<details class="nqd-map-group" data-map-group data-map-status="${_escape(group.statuses.join(' '))}" data-map-label="${_escape(group.label.toLocaleLowerCase('pt-BR'))}" data-search="${_escape(searchable)}"${recommendation && groupIndex === 0 ? ' open' : ''}>
+      return `<details class="nqd-map-group" data-map-group data-map-skill="${_escape(group.identity)}" data-map-status="${_escape(group.statuses.join(' '))}" data-map-label="${_escape(group.label.toLocaleLowerCase('pt-BR'))}" data-search="${_escape(searchable)}"${recommendation && groupIndex === 0 ? ' open' : ''}>
         <summary class="nqd-map-summary">
           <span><strong>${_escape(group.label)}</strong><small>${group.ordered.length} ${group.ordered.length === 1 ? 'tema' : 'temas'} nesta área</small></span>
           <span class="nqd-map-summary-state" data-map-summary-count data-default="${group.explored ? `${group.explored} de ${group.ordered.length} com respostas` : 'Ainda sem respostas'}">${group.explored ? `${group.explored} de ${group.ordered.length} com respostas` : 'Ainda sem respostas'}</span>
@@ -1227,11 +1232,7 @@
       return { value: completed.size, target: ACID_BASE_CASE_IDS.size };
     }
     if (id === 'grimoire_master') {
-      const library = _libraryItems();
-      return {
-        value: library.unlockedRefs.size + library.unlockedArticles.size,
-        target: library.totalRefs + library.totalArticles,
-      };
+      return typeof getGrimoireAchievementProgress === 'function' ? getGrimoireAchievementProgress() : null;
     }
     return maps[id] || null;
   }
@@ -1277,9 +1278,9 @@
     const unlocked = Array.isArray(stored) && stored.includes(achievement.id);
     const progress = _achievementProgress(achievement.id, _dashboardData && _dashboardData.stats || {});
     window.showAchievementArtwork({
-      name: achievement.name, description: achievement.description,
+      name: achievement.name, description: achievement.description + (!unlocked && progress && progress.note ? ` ${progress.note}` : ''),
       source: `assets/achievements/${ACHIEVEMENT_ART[achievement.id]}.webp`,
-      status: unlocked ? 'Conquistada · fica com você' : progress && progress.value > 0 ? 'Em progresso' : 'A conquistar',
+      status: unlocked ? 'Conquistada · fica com você' : progress && progress.status ? progress.status : progress && progress.value > 0 ? 'Em progresso' : 'A conquistar',
       acquired: unlocked,
       progress: unlocked ? null : progress,
     });
@@ -1356,11 +1357,11 @@
         <article class="nqd-achievement${isUnlocked ? ' is-unlocked' : ' is-locked'}" data-state="${isUnlocked ? 'unlocked' : state}" data-achievement-id="${achievement.id}" data-achievement-status="${state}">
           <button type="button" class="nqd-achievement-mark" data-action="_dashAchievementDetail" data-pass-this="1" data-achievement-preview="${achievement.id}" aria-label="${_escape(achievement.name)} — ampliar arte e requisito">${_achievementIconMarkup(achievement)}<span class="nqd-art-expand" aria-hidden="true">${_svg('search')}</span></button>
           <div class="nqd-achievement-body">
-            <span class="nqd-state">${isUnlocked ? '✓ Conquistada' : state === 'progress' ? 'Em progresso' : 'A conquistar'}</span>
+            <span class="nqd-state">${isUnlocked ? '✓ Conquistada' : progress && progress.status ? progress.status : state === 'progress' ? 'Em progresso' : 'A conquistar'}</span>
             <h3 class="nqd-achievement-title">${_escape(achievement.name)}</h3>
             <small class="nqd-achievement-category">${_escape(_achievementCategory(achievement.id))}</small>
             <p class="nqd-achievement-copy">${_escape(achievement.description)}</p>
-            ${progress && progress.target > 0 && !isUnlocked ? `<div class="nqd-achievement-progress"><span>Progresso: ${_formatNumber(value)} / ${_formatNumber(progress.target)}</span>${_meterMarkup(value, progress.target, `Progresso de ${achievement.name}`, true)}</div>` : ''}
+            ${progress && !isUnlocked && (progress.target > 0 || progress.note) ? `<div class="nqd-achievement-progress">${progress.target > 0 ? `<span>Progresso: ${_formatNumber(value)} / ${_formatNumber(progress.target)}</span>${_meterMarkup(value, progress.target, `Progresso de ${achievement.name}`, true)}` : ''}${progress.note ? `<small class="nqd-achievement-progress-note">${_escape(progress.note)}</small>` : ''}</div>` : ''}
           </div>
         </article>
       `;
@@ -1793,6 +1794,7 @@
     }
     if (tabId === 'ranking' && !_rankingLoaded) _loadRanking(false);
     if (tabId === 'skills') _drawRadar();
+    window.prepareAchievementCollectionLayout?.(tabId === 'achievements' ? root.querySelector('.nqd-achievement-grid') : null);
   }
 
   /**
@@ -2036,6 +2038,7 @@
     if (empty) empty.hidden = visible > 0;
     const status = root.querySelector('#nqdAchievementFilterStatus');
     if (status && announce) status.textContent = `${visible} ${visible === 1 ? 'conquista exibida' : 'conquistas exibidas'}.`;
+    window.prepareAchievementCollectionLayout?.(root.querySelector('.nqd-achievement-grid'));
   }
 
   /**
@@ -2434,6 +2437,7 @@
 
   function closeDashboard(options) {
     window.closeAchievementArtwork?.({ restoreFocus: false });
+    window.prepareAchievementCollectionLayout?.(null);
     const root = document.getElementById('nqDashboard');
     if (!root) return;
     _rememberLibraryReading(root);

@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="robots" content="noindex, follow">
   <link rel="canonical" href="https://nefroquest.com/jogar/">
-  <title>NefroQuest 2.0</title>
+  <title>NefroQuest: Ascension</title>
   <!-- Favicons -->
   <link rel="icon" type="image/svg+xml" href="/landing/assets/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/landing/assets/favicon-32x32.png">
@@ -78,7 +78,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@16.00',
+          release: 'nefroquest@16.01',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -134,14 +134,14 @@
        style.css aplicar .hidden. O CSS externo re-exibe quando o JS remove .hidden. */
     .hidden { display: none !important; }
   </style>
-  <link rel="stylesheet" href="style.css?v=15.94">
+  <link rel="stylesheet" href="style.css?v=16.01">
   <link rel="stylesheet" href="styles/lumen/tokens.css?v=15.77">
   <link rel="stylesheet" href="styles/lumen/shell.css?v=14.77">
   <link rel="stylesheet" href="styles/lumen/portal.css?v=15.94">
-  <link rel="stylesheet" href="styles/lumen/atrium.css?v=15.98">
-  <link rel="stylesheet" href="styles/lumen/game.css?v=15.98">
+  <link rel="stylesheet" href="styles/lumen/atrium.css?v=16.01">
+  <link rel="stylesheet" href="styles/lumen/game.css?v=16.01">
   <link rel="stylesheet" href="styles/lumen/difficulty.css?v=15.94">
-  <link rel="stylesheet" href="styles/lumen/dashboard.css?v=15.98">
+  <link rel="stylesheet" href="styles/lumen/dashboard.css?v=16.01">
   <link rel="stylesheet" href="styles/lumen/charselect.css?v=14.75">
   <link rel="stylesheet" href="styles/lumen/forge.css?v=15.94">
   <link rel="stylesheet" href="styles/lumen/header.css?v=15.91">
@@ -150,7 +150,7 @@
   <link rel="stylesheet" href="styles/lumen/boss.css?v=15.95">
   <link rel="stylesheet" href="styles/lumen/ritual.css?v=15.94">
   <link rel="stylesheet" href="styles/lumen/ranking.css?v=15.94">
-  <link rel="stylesheet" href="styles/lumen/achievements.css?v=15.98">
+  <link rel="stylesheet" href="styles/lumen/achievements.css?v=16.01">
   <script>
     // Version beacon - one policy for every public label; technical release remains monotonic.
     (function() {
@@ -1794,7 +1794,7 @@
   <script defer src="js/audio.js?v=15.91"></script>
   <script defer src="js/leaderboard.js?v=15.94"></script>
   <script defer src="js/study-mode.js?v=15.92"></script>
-  <script defer src="js/game.js?v=15.99"></script>
+  <script defer src="js/game.js?v=16.01"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
   <script defer src="js/auth.js?v=15.92"></script>
@@ -1802,15 +1802,15 @@
   <script defer src="js/atrium.js?v=13.23"></script>
   <script defer src="js/paywall.js?v=15.34"></script>
   <script defer src="js/account.js?v=15.80"></script>
-  <script defer src="js/boss.js?v=15.94"></script>
+  <script defer src="js/boss.js?v=16.01"></script>
   <script defer src="js/exam.js?v=15.22"></script>
   <script defer src="js/admin.js?v=15.35"></script>
   <script defer src="js/minigame.js?v=15.94"></script>
   <script defer src="js/minigame-acidbase.js?v=15.32"></script>
-  <script defer src="js/achievements.js?v=15.98"></script>
+  <script defer src="js/achievements.js?v=16.01"></script>
   <script defer src="js/changelog.js?v=15.94"></script>
   <script defer src="js/equipment-preview.js?v=16.00"></script>
-  <script defer src="js/dashboard.js?v=15.98"></script>
+  <script defer src="js/dashboard.js?v=16.01"></script>
 
   <!-- Single source of truth for profile popup menu items -->
   <template id="profilePopupItems">

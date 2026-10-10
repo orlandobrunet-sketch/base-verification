@@ -178,6 +178,87 @@
       return NQ_ACHIEVEMENT_ART[id] ? `assets/achievements/${NQ_ACHIEVEMENT_ART[id]}.webp` : '';
     }
 
+    // Layout somente: reserva a maior altura real de título e progresso.
+    // Os requisitos continuam inteiros e determinam a altura da grade.
+    let _nqAchievementCollectionCleanup = null;
+    function prepareAchievementCollectionLayout(grid) {
+      if (_nqAchievementCollectionCleanup) _nqAchievementCollectionCleanup();
+      _nqAchievementCollectionCleanup = null;
+      if (!grid) return;
+      let frame = 0;
+      let active = true;
+      const measure = () => {
+        frame = 0;
+        if (!grid.isConnected || !grid.getClientRects().length) return;
+        const cards = [...grid.querySelectorAll('.nqd-achievement')].filter(card => card.getClientRects().length);
+        const textHeight = node => {
+          if (!node) return 0;
+          const range = document.createRange();
+          range.selectNodeContents(node);
+          const lines = new Set([...range.getClientRects()].filter(rect => rect.width > 0).map(rect => Math.round(rect.top * 10)));
+          return lines.size * parseFloat(getComputedStyle(node).lineHeight);
+        };
+        const titleHeight = Math.ceil(Math.max(0, ...cards.map(card => textHeight(card.querySelector('.nqd-achievement-title')))));
+        const progressHeight = Math.ceil(Math.max(0, ...cards.map(card => {
+          const progress = card.querySelector('.nqd-achievement-progress');
+          if (!progress) return 0;
+          return [...progress.children].reduce((height, child) => {
+            const style = getComputedStyle(child);
+            return height + child.getBoundingClientRect().height + parseFloat(style.marginTop) + parseFloat(style.marginBottom);
+          }, 0);
+        })));
+        for (const [property, height] of [['--achievement-title-height', titleHeight], ['--achievement-progress-height', progressHeight]]) {
+          const value = `${height}px`;
+          if (grid.style.getPropertyValue(property) !== value) grid.style.setProperty(property, value);
+        }
+      };
+      const schedule = () => { if (active && !frame) frame = requestAnimationFrame(measure); };
+      const resize = new ResizeObserver(schedule);
+      resize.observe(grid);
+      document.fonts.addEventListener('loadingdone', schedule);
+      document.fonts.ready.then(schedule);
+      schedule();
+      _nqAchievementCollectionCleanup = () => {
+        active = false;
+        resize.disconnect();
+        document.fonts.removeEventListener('loadingdone', schedule);
+        if (frame) cancelAnimationFrame(frame);
+      };
+    }
+
+    // O acesso administrativo ao acervo não equivale a desbloqueios salvos.
+    // Consulta a condição vigente, sem conceder conquistas ou gravar storage.
+    function getGrimoireAchievementProgress() {
+      const readArray = key => {
+        try { const value = JSON.parse(localStorage.getItem(key) || '[]'); return Array.isArray(value) ? value : []; }
+        catch { return []; }
+      };
+      const reachableRefs = new Set(Array.isArray(window.questionBank)
+        ? window.questionBank.flatMap(question => Array.isArray(question.r) ? question.r : []).filter(Boolean) : []);
+      const validRefs = typeof refsDB === 'object' && refsDB !== null
+        ? [...reachableRefs].filter(key => Object.prototype.hasOwnProperty.call(refsDB, key)) : [];
+      const unlockedRefs = new Set(readArray('nq-unlocked-refs'));
+      const totalArticles = typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles) ? nefroArticles.length : 0;
+      // A regra vigente usa a quantidade de registros de artigos, inclusive
+      // os índices legados; a apresentação segue esse mesmo contrato.
+      const articleCount = Math.min(readArray('unlockedArticles').length, totalArticles);
+      const referenceCount = validRefs.filter(key => unlockedRefs.has(key)).length;
+      const value = referenceCount + articleCount;
+      const target = validRefs.length + totalArticles;
+      const complete = ACHIEVEMENTS_LIST.find(achievement => achievement.id === 'grimoire_master').condition();
+      if (validRefs.length === 0 || totalArticles === 0) {
+        return { value: 0, target: 0, complete, status: 'Dados indisponíveis',
+          note: 'Não foi possível carregar o acervo necessário para conferir este objetivo.' };
+      }
+      const admin = typeof window.isAdminUser === 'function' && window.isAdminUser();
+      return {
+        value, target, complete,
+        note: complete ? 'Objetivo completo; conquista ainda não registrada neste perfil.'
+          : admin ? 'O acesso administrativo exibe o acervo, mas não registra desbloqueios do perfil.' : '',
+        status: complete ? 'Objetivo completo' : value > 0 ? 'Em progresso' : 'A conquistar',
+      };
+    }
+
     let _nqAchievementArtworkDialog = null;
 
     function closeAchievementArtwork(options) {

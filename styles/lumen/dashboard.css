@@ -3745,7 +3745,7 @@
 #nqDashboard[data-nq-ui="lumen"] .nqd-skill-row>.nqd-meter,#nqDashboard[data-nq-ui="lumen"] .nqd-skill-row>:last-child{grid-column:1/-1;grid-row:auto;margin-top:.4rem}
 #nqDashboard[data-nq-ui="lumen"] .nqd-skill-name{font-size:1rem;line-height:1.3;overflow-wrap:anywhere}
 /* Cor identifica a área; barras e percentuais continuam indicando desempenho. */
-#nqDashboard[data-nq-ui="lumen"] #nqdPane-skills {
+#nqDashboard[data-nq-ui="lumen"] :is(#nqdPane-skills, #nqdPane-mapa) {
   --nqd-axis-glomerulopatias: #c9b5ff;
   --nqd-axis-hidroeletrolitico_acidobase: #81d3e3;
   --nqd-axis-transplante: #f1a3c4;
@@ -3754,13 +3754,13 @@
   --nqd-axis-drc_nefroprotecao: #98cfa8;
   --nqd-axis-nefrologia_geral_diagnostico: #a4bbf1;
 }
-#nqDashboard[data-nq-ui="lumen"] #nqdPane-skills [data-skill-id="glomerulopatias"] { --nqd-skill-identity: var(--nqd-axis-glomerulopatias); }
-#nqDashboard[data-nq-ui="lumen"] #nqdPane-skills [data-skill-id="hidroeletrolitico_acidobase"] { --nqd-skill-identity: var(--nqd-axis-hidroeletrolitico_acidobase); }
-#nqDashboard[data-nq-ui="lumen"] #nqdPane-skills [data-skill-id="transplante"] { --nqd-skill-identity: var(--nqd-axis-transplante); }
-#nqDashboard[data-nq-ui="lumen"] #nqdPane-skills [data-skill-id="dialise"] { --nqd-skill-identity: var(--nqd-axis-dialise); }
-#nqDashboard[data-nq-ui="lumen"] #nqdPane-skills [data-skill-id="lra_critico"] { --nqd-skill-identity: var(--nqd-axis-lra_critico); }
-#nqDashboard[data-nq-ui="lumen"] #nqdPane-skills [data-skill-id="drc_nefroprotecao"] { --nqd-skill-identity: var(--nqd-axis-drc_nefroprotecao); }
-#nqDashboard[data-nq-ui="lumen"] #nqdPane-skills [data-skill-id="nefrologia_geral_diagnostico"] { --nqd-skill-identity: var(--nqd-axis-nefrologia_geral_diagnostico); }
+#nqDashboard[data-nq-ui="lumen"] :is(#nqdPane-skills [data-skill-id="glomerulopatias"], #nqdPane-mapa [data-map-skill="glomerulopatias"]) { --nqd-skill-identity: var(--nqd-axis-glomerulopatias); }
+#nqDashboard[data-nq-ui="lumen"] :is(#nqdPane-skills [data-skill-id="hidroeletrolitico_acidobase"], #nqdPane-mapa [data-map-skill="hidroeletrolitico_acidobase"]) { --nqd-skill-identity: var(--nqd-axis-hidroeletrolitico_acidobase); }
+#nqDashboard[data-nq-ui="lumen"] :is(#nqdPane-skills [data-skill-id="transplante"], #nqdPane-mapa [data-map-skill="transplante"]) { --nqd-skill-identity: var(--nqd-axis-transplante); }
+#nqDashboard[data-nq-ui="lumen"] :is(#nqdPane-skills [data-skill-id="dialise"], #nqdPane-mapa [data-map-skill="dialise"]) { --nqd-skill-identity: var(--nqd-axis-dialise); }
+#nqDashboard[data-nq-ui="lumen"] :is(#nqdPane-skills [data-skill-id="lra_critico"], #nqdPane-mapa [data-map-skill="lra_critico"]) { --nqd-skill-identity: var(--nqd-axis-lra_critico); }
+#nqDashboard[data-nq-ui="lumen"] :is(#nqdPane-skills [data-skill-id="drc_nefroprotecao"], #nqdPane-mapa [data-map-skill="drc_nefroprotecao"]) { --nqd-skill-identity: var(--nqd-axis-drc_nefroprotecao); }
+#nqDashboard[data-nq-ui="lumen"] :is(#nqdPane-skills [data-skill-id="nefrologia_geral_diagnostico"], #nqdPane-mapa [data-map-skill="nefrologia_geral_diagnostico"]) { --nqd-skill-identity: var(--nqd-axis-nefrologia_geral_diagnostico); }
 #nqDashboard[data-nq-ui="lumen"] #nqdPane-skills :is(.nqd-skill-name, .nqd-skill-unmeasured > span:first-child) { color: var(--nqd-skill-identity, var(--nql-text)); }
 #nqDashboard[data-nq-ui="lumen"] .nqd-skill-sample{display:block;margin-top:.25rem;color:var(--nql-text-soft);font:normal .72rem/1.45 var(--nql-font-body);overflow-wrap:anywhere}
 #nqDashboard[data-nq-ui="lumen"] .nqd-skill-value{align-self:center;color:var(--nqd-skill-accent);font:600 1.05rem/1 var(--nql-font-body);font-variant-numeric:tabular-nums}
@@ -3829,6 +3829,8 @@
 #nqDashboard[data-nq-ui="lumen"] .nqd-map-more[open]>summary::after{transform:rotate(180deg)}
 #nqDashboard[data-nq-ui="lumen"] .nqd-map-summary{grid-template-columns:minmax(0,1fr) auto 1rem;gap:1rem;min-height:4.2rem;padding:.65rem .25rem}
 #nqDashboard[data-nq-ui="lumen"] .nqd-map-summary strong{font:700 1.04rem/1.2 var(--nql-font-body)}
+/* A identidade do domínio acompanha áreas e temas; o estado continua separado. */
+#nqDashboard[data-nq-ui="lumen"] #nqdPane-mapa :is(.nqd-map-summary strong, .nqd-map-node h3){color:var(--nqd-skill-identity,var(--nql-text))}
 #nqDashboard[data-nq-ui="lumen"] .nqd-map-summary small{margin-top:.2rem;font-size:.72rem;line-height:1.4}
 #nqDashboard[data-nq-ui="lumen"] .nqd-map-summary-state{color:var(--nql-text-soft);font:400 .76rem/1.3 var(--nql-font-body);letter-spacing:0;text-align:right;text-transform:none;white-space:nowrap}
 #nqDashboard[data-nq-ui="lumen"] .nqd-map-group-body{margin:0 0 .7rem .6rem;padding:0 .25rem .75rem 1rem;border-left:1px solid #497486}
@@ -3854,7 +3856,7 @@
 }
 @media(max-width:23.5rem){
   #nqDashboard[data-nq-ui="lumen"] .nqd-map-toolbar{display:block}
-  #nqDashboard[data-nq-ui="lumen"] .nqd-map-filter{margin-top:.7rem}
+  #nqDashboard[data-nq-ui="lumen"] .nqd-map-filter{min-width:0;margin-top:.7rem}
   #nqDashboard[data-nq-ui="lumen"] .nqd-map-node{grid-template-columns:1fr;gap:.25rem}
   #nqDashboard[data-nq-ui="lumen"] .nqd-map-node .nqd-state{text-align:left}
   #nqDashboard[data-nq-ui="lumen"] .nqd-map-node p{grid-column:1}

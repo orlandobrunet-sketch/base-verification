@@ -124,6 +124,10 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
       await page.setViewportSize({ width: 1536, height: 900 });
     }
 
+    await page.evaluate(async () => {
+      await document.fonts.load('400 17px "Source Sans 3"');
+      await document.fonts.ready;
+    });
     const metrics = await page.evaluate(() => {
       const question = document.querySelector('#question') as HTMLElement;
       const option = document.querySelector('#options .option') as HTMLElement;
@@ -139,6 +143,10 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
       return {
         overflow: document.documentElement.scrollWidth - window.innerWidth,
         questionSize: parseFloat(getComputedStyle(question).fontSize),
+        questionLineHeight: parseFloat(getComputedStyle(question).lineHeight),
+        questionFont: getComputedStyle(question).fontFamily,
+        loadedBodyFont: Array.from(document.fonts).some(face =>
+          face.family.replace(/["']/g, '') === 'Source Sans 3' && face.status === 'loaded'),
         questionWidth: question.getBoundingClientRect().width,
         questionAvailableWidth:
           questionBox.clientWidth -
@@ -146,6 +154,8 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
           parseFloat(questionBoxStyle.paddingRight),
         questionMaxWidth: getComputedStyle(question).maxWidth,
         optionSize: parseFloat(getComputedStyle(option.querySelector('.opt-body') as HTMLElement).fontSize),
+        optionLineHeight: parseFloat(getComputedStyle(option.querySelector('.opt-body') as HTMLElement).lineHeight),
+        optionFont: getComputedStyle(option.querySelector('.opt-body') as HTMLElement).fontFamily,
         rightWidth: rightBox.width,
         leftWidth: leftBox.width,
         leftToQuestion: rightBox.left - loadoutBox.right,
@@ -154,10 +164,17 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
     });
 
     expect(metrics.overflow).toBeLessThanOrEqual(1);
-    expect(metrics.questionSize).toBeGreaterThanOrEqual(testInfo.project.name === 'mobile' ? 16 : 18);
+    // Compact scale approved with Ascension; legibility also requires the real
+    // body font, line spacing, enlarged reading and text reflow below.
+    expect(metrics.questionSize).toBeCloseTo(testInfo.project.name === 'mobile' ? 16.5 : 17, 2);
+    expect(metrics.questionLineHeight / metrics.questionSize).toBeGreaterThanOrEqual(1.5);
+    expect(metrics.questionFont).toContain('Source Sans 3');
+    expect(metrics.loadedBodyFont, 'Source Sans 3 must actually be loaded').toBe(true);
     expect(metrics.questionMaxWidth).toBe('none');
     expect(Math.abs(metrics.questionWidth - metrics.questionAvailableWidth)).toBeLessThanOrEqual(1);
-    expect(metrics.optionSize).toBeGreaterThanOrEqual(15);
+    expect(metrics.optionSize).toBeCloseTo(14.5, 2);
+    expect(metrics.optionLineHeight / metrics.optionSize).toBeGreaterThanOrEqual(1.5);
+    expect(metrics.optionFont).toContain('Source Sans 3');
     if (testInfo.project.name !== 'mobile') {
       expect(metrics.rightWidth).toBeGreaterThan(metrics.leftWidth);
       expect(metrics.leftToQuestion, 'respiro entre personagem e pergunta').toBeGreaterThanOrEqual(16);
@@ -193,6 +210,80 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
       expect(drawerMetrics.drawerRight).toBeLessThanOrEqual(391);
       expect(drawerMetrics.loadoutLeft).toBeGreaterThanOrEqual(drawerMetrics.drawerLeft);
       expect(drawerMetrics.loadoutRight).toBeLessThanOrEqual(drawerMetrics.drawerRight);
+    }
+
+    // Scope is the reading/answer region: unrelated inherited header limits
+    // are not reclassified as a global accessibility approval.
+    await page.evaluate(() => {
+      document.querySelector('.panel.left')?.classList.remove('mobile-open');
+      document.documentElement.style.fontSize = '16px';
+    });
+    await page.setViewportSize({ width: 320, height: 844 });
+    const sizes = () => page.evaluate(() => ({
+      question: parseFloat(getComputedStyle(document.getElementById('question')!).fontSize),
+      option: parseFloat(getComputedStyle(document.querySelector('#options .opt-body')!).fontSize),
+    }));
+    const standard = await sizes();
+    await page.evaluate(() => document.body.classList.add('reading-mode'));
+    const reading = await sizes();
+    expect(reading.question).toBeGreaterThan(standard.question);
+    expect(reading.option).toBeGreaterThan(standard.option);
+    for (const readingMode of [false, true]) {
+      await page.evaluate(mode => {
+        document.body.classList.toggle('reading-mode', mode);
+        document.documentElement.style.fontSize = '32px';
+      }, readingMode);
+      const enlarged = await sizes();
+      const baseline = readingMode ? reading : standard;
+      expect(enlarged.question).toBeCloseTo(baseline.question * 2, 1);
+      expect(enlarged.option).toBeCloseTo(baseline.option * 2, 1);
+      const reflow = await page.evaluate(() => {
+        const texts = Array.from(document.querySelectorAll('#question, #options .opt-body'));
+        return {
+          textCount: texts.length,
+          rendered: texts.map(element => {
+            const range = document.createRange();
+            range.selectNodeContents(element);
+            const bounds = element.getBoundingClientRect();
+            let visible = bounds.width > 0 && bounds.height > 0;
+            for (let ancestor: Element | null = element; ancestor; ancestor = ancestor.parentElement) {
+              const style = getComputedStyle(ancestor);
+              visible &&= style.display !== 'none' && style.visibility === 'visible' && Number(style.opacity) > 0;
+            }
+            return {
+              text: (element.textContent || '').trim(), visible,
+              positiveRects: Array.from(range.getClientRects()).filter(rect => rect.width > 0 && rect.height > 0).length,
+            };
+          }),
+          cut: texts.flatMap(element => {
+            const bounds = element.getBoundingClientRect();
+            const range = document.createRange();
+            range.selectNodeContents(element);
+            return Array.from(range.getClientRects()).filter(rect => rect.width && rect.height &&
+              (rect.left < Math.max(0, bounds.left) - 1 ||
+               rect.right > Math.min(innerWidth, bounds.right) + 1 ||
+               rect.top < bounds.top - 1 || rect.bottom > bounds.bottom + 1)).map(() => element.id || element.className);
+          }),
+          targets: Array.from(document.querySelectorAll('#options .option')).map(element => {
+            const rect = element.getBoundingClientRect();
+            return { left: rect.left, right: rect.right, width: rect.width, height: rect.height };
+          }),
+        };
+      });
+      expect(reflow.textCount).toBe(5);
+      for (const text of reflow.rendered) {
+        expect(text.text).not.toBe('');
+        expect(text.visible, 'every reading region must actually be visible').toBe(true);
+        expect(text.positiveRects, 'every reading region must render text rectangles').toBeGreaterThan(0);
+      }
+      expect(reflow.cut, 'all question/answer text reflows at 320px and 200%').toEqual([]);
+      expect(reflow.targets).toHaveLength(4);
+      for (const target of reflow.targets) {
+        expect(target.left).toBeGreaterThanOrEqual(-1);
+        expect(target.right).toBeLessThanOrEqual(321);
+        expect(target.width).toBeGreaterThanOrEqual(44);
+        expect(target.height).toBeGreaterThanOrEqual(44);
+      }
     }
   });
 

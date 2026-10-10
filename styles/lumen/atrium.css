@@ -174,12 +174,17 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__main {
+  --nql-atrium-column-gap: clamp(3rem, 7vw, 7rem);
+  --nql-atrium-journey-share: .58;
+  --nql-atrium-routes-min: 21rem;
+  container-type: inline-size;
+  container-name: nql-atrium;
   display: grid;
   width: 100%;
   padding: clamp(1.5rem, 2vw, 2rem) var(--nql-atrium-rail) clamp(3rem, 6vw, 5rem) var(--nql-atrium-content-gutter);
   grid-template-columns: minmax(0, 1.16fr) minmax(21rem, .84fr);
   align-items: start;
-  gap: clamp(3rem, 7vw, 7rem);
+  gap: var(--nql-atrium-column-gap);
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__journey {
@@ -858,6 +863,15 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   font-size: .85rem;
 }
 
+/* Sem jornada para retomar, inclusive ao voltar após a derrota, esta é a ação principal. */
+#welcomeScreen[data-nq-ui="lumen"][data-journey-state="fresh"] [data-action="startNewFromWelcome"] {
+  border-color: var(--nql-mastery) !important;
+  background: linear-gradient(110deg, #f5dc98, var(--nql-mastery) 62%, #dcb958) !important;
+  box-shadow: 0 .9rem 2rem rgba(var(--nql-mastery-rgb), .14) !important;
+  color: var(--nql-abyss) !important;
+  font-weight: 750;
+}
+
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary:focus-visible svg {
   transform: translateX(.25rem);
 }
@@ -872,6 +886,12 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   color: var(--nql-lumen) !important;
   text-decoration: underline;
   text-underline-offset: .2rem;
+}
+
+#welcomeScreen[data-nq-ui="lumen"][data-journey-state="fresh"] [data-action="startNewFromWelcome"]:focus-visible {
+  color: var(--nql-abyss) !important;
+  outline: 2px solid var(--nql-lumen);
+  outline-offset: 3px;
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary[aria-busy="true"],
@@ -922,6 +942,12 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
     text-underline-offset: .2rem;
     transform: translateY(-1px);
   }
+
+  #welcomeScreen[data-nq-ui="lumen"][data-journey-state="fresh"] [data-action="startNewFromWelcome"]:hover {
+    background: linear-gradient(110deg, #f8e2a5, #f3d481 62%, #e4c36b) !important;
+    box-shadow: 0 1.05rem 2.3rem rgba(var(--nql-mastery-rgb), .2) !important;
+    color: var(--nql-abyss) !important;
+  }
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary:active,
@@ -936,10 +962,15 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__routes::before {
+  /* O respiro inclui a sobra do primeiro track quando o card para em 44rem.
+   * cqw mede o conteúdo da grade, sem seus gutters; as colunas não se movem. */
+  --nql-atrium-visible-gap: calc(var(--nql-atrium-column-gap) + max(0px,
+    min(calc((100cqw - var(--nql-atrium-column-gap)) * var(--nql-atrium-journey-share)),
+      calc(100cqw - var(--nql-atrium-column-gap) - var(--nql-atrium-routes-min))) - 44rem));
   position: absolute;
   top: 0;
   bottom: 0;
-  left: -2rem;
+  left: calc(var(--nql-atrium-visible-gap) / -2 - .5px);
   width: 1px;
   background: linear-gradient(to bottom, var(--nql-line-strong), transparent 95%);
   content: "";
@@ -1171,10 +1202,11 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 
 @media (max-width: 68rem) {
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__main {
+    --nql-atrium-column-gap: 3.5rem;
+    --nql-atrium-journey-share: .5555555556;
+    --nql-atrium-routes-min: 19rem;
     grid-template-columns: minmax(0, 1fr) minmax(19rem, .8fr);
-    gap: 3.5rem;
   }
-  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__routes::before { left: -1.75rem; }
 }
 
 @media (max-width: 55rem) {
@@ -1373,4 +1405,41 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   .nql-atrium__route strong, .nql-atrium__continuum-step strong, .nql-atrium__continuum-step small) {
   overflow-wrap: anywhere;
   min-width: 0;
+}
+
+/* O espaço acompanha a fonte ampliada: os rótulos e as palavras do ciclo
+ * continuam inteiros, sem diminuir o texto nem depender da media query em px. */
+@container nql-atrium (max-width: 14rem) {
+  #welcomeScreen[data-nq-ui="lumen"] .welcome-stats.nql-mastery-rail {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: .65rem !important;
+  }
+  #welcomeScreen[data-nq-ui="lumen"] .welcome-stat {
+    padding: 0 !important;
+    border-right: 0 !important;
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    align-items: baseline !important;
+    justify-content: space-between !important;
+    gap: .5rem;
+  }
+  #welcomeScreen[data-nq-ui="lumen"] .welcome-stat .ws-lbl { margin-top: 0 !important; }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__continuum {
+    grid-template-columns: minmax(0, 1fr);
+    gap: .9rem;
+  }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__continuum-line {
+    top: .35rem;
+    bottom: .75rem;
+    right: auto;
+    left: .2rem;
+    width: 1px;
+    height: auto;
+  }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__continuum-line i { width: 100%; height: 36%; }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__continuum-step { padding: 0 0 0 1.25rem; }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__continuum-step > span { top: .35rem; }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__continuum-step strong,
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__continuum-step small { overflow-wrap: normal; }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__continuum-step small { color: var(--nql-text-soft); }
 }
