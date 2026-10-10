@@ -2923,10 +2923,10 @@
     // GUIDELINE → Lendário · RCT/META → Épico · COORTE/REVIEW/REVISÃO → Raro · resto → Comum
     function _refRarity(badge) {
       const b = (badge || '').toUpperCase();
-      if (b === 'GUIDELINE') return { label:'Lendário', color:'#ffd700', bg:'rgba(255,215,0,0.10)',  border:'rgba(255,215,0,0.55)' };
-      if (b === 'RCT' || b === 'META') return { label:'Épico', color:'#c084fc', bg:'rgba(192,132,252,0.10)', border:'rgba(192,132,252,0.45)' };
-      if (b === 'COORTE' || b === 'COHORT' || b === 'REVIEW' || b === 'REVISÃO') return { label:'Raro', color:'#38bdf8', bg:'rgba(56,189,248,0.10)', border:'rgba(56,189,248,0.45)' };
-      return { label:'Comum', color:'#94a3b8', bg:'rgba(148,163,184,0.10)', border:'rgba(148,163,184,0.35)' };
+      if (b === 'GUIDELINE') return { id:'legendary', label:'Lendário', color:'#ffd700', bg:'rgba(255,215,0,0.10)',  border:'rgba(255,215,0,0.55)' };
+      if (b === 'RCT' || b === 'META') return { id:'epic', label:'Épico', color:'#c084fc', bg:'rgba(192,132,252,0.10)', border:'rgba(192,132,252,0.45)' };
+      if (b === 'COORTE' || b === 'COHORT' || b === 'REVIEW' || b === 'REVISÃO') return { id:'rare', label:'Raro', color:'#38bdf8', bg:'rgba(56,189,248,0.10)', border:'rgba(56,189,248,0.45)' };
+      return { id:'common', label:'Comum', color:'#94a3b8', bg:'rgba(148,163,184,0.10)', border:'rgba(148,163,184,0.35)' };
     }
 
     function renderRefs(keys){
@@ -2996,7 +2996,7 @@
         const scholarUrl = `https://scholar.google.com/scholar?q=${encodeURIComponent(ref.label)}`;
         const rar = _refRarity(ref.badge);
         return `
-          <div class="ref-card" style="--ref-accent:${accent};--ref-accent-texto:${_acentoLegivel(accent)}">
+          <div class="ref-card" data-ref-rarity="${rar.id}" style="--ref-accent:${accent};--ref-accent-texto:${_acentoLegivel(accent)}">
             <div class="ref-card-top">
               <span class="ref-icon">${ref.icon || '📄'}</span>
               <a class="ref-title" href="${scholarUrl}" target="_blank" rel="noopener noreferrer" title="Buscar no Google Scholar" style="color:inherit;text-decoration:none;">${escapeHtml(ref.label)} <span style="font-size:0.7em;opacity:0.55;">↗</span></a>

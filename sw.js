@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v16.00
-const CACHE = 'nefroquest-v16.00';
+// NefroQuest Service Worker — v16.01
+const CACHE = 'nefroquest-v16.01';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -113,14 +113,14 @@ const STATIC_ASSETS = [
 // chave canônica (sem query), que é a que canonicalAssetKey() consulta.
 // bump-release:asset-versions:início
 const ASSET_VERSIONS = {
-  '/style.css': '15.94',
+  '/style.css': '16.01',
   '/styles/lumen/tokens.css': '15.77',
   '/styles/lumen/shell.css': '14.77',
   '/styles/lumen/portal.css': '15.94',
-  '/styles/lumen/atrium.css': '15.98',
-  '/styles/lumen/game.css': '15.98',
+  '/styles/lumen/atrium.css': '16.01',
+  '/styles/lumen/game.css': '16.01',
   '/styles/lumen/difficulty.css': '15.94',
-  '/styles/lumen/dashboard.css': '15.98',
+  '/styles/lumen/dashboard.css': '16.01',
   '/styles/lumen/charselect.css': '14.75',
   '/styles/lumen/modes.css': '15.98',
   '/styles/lumen/forge.css': '15.94',
@@ -129,27 +129,27 @@ const ASSET_VERSIONS = {
   '/styles/lumen/boss.css': '15.95',
   '/styles/lumen/ritual.css': '15.94',
   '/styles/lumen/ranking.css': '15.94',
-  '/styles/lumen/achievements.css': '15.98',
+  '/styles/lumen/achievements.css': '16.01',
   '/js/utils.js': '15.94',
   '/js/audio.js': '15.91',
   '/js/leaderboard.js': '15.94',
   '/js/study-mode.js': '15.92',
-  '/js/game.js': '15.99',
+  '/js/game.js': '16.01',
   '/js/notifications.js': '11.90',
   '/js/auth.js': '15.92',
   '/js/portal.js': '13.20',
   '/js/atrium.js': '13.23',
   '/js/paywall.js': '15.34',
   '/js/account.js': '15.80',
-  '/js/boss.js': '15.94',
+  '/js/boss.js': '16.01',
   '/js/exam.js': '15.22',
   '/js/admin.js': '15.35',
   '/js/minigame.js': '15.94',
   '/js/minigame-acidbase.js': '15.32',
-  '/js/achievements.js': '15.98',
+  '/js/achievements.js': '16.01',
   '/js/changelog.js': '15.94',
   '/js/equipment-preview.js': '16.00',
-  '/js/dashboard.js': '15.98',
+  '/js/dashboard.js': '16.01',
 };
 // bump-release:asset-versions:fim
 

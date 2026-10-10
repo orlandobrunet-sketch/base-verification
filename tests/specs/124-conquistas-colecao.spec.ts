@@ -3,7 +3,7 @@ import { injectGameState } from '../helpers/game';
 
 test.use({ serviceWorkers: 'block' });
 
-const preservedKeys = ['nefroquest-save', 'nefroquest-save-v7', 'nefroquest-detailed-stats', 'nefroquest-achievements', 'nefroquest-badge-history'];
+const preservedKeys = ['nefroquest-save', 'nefroquest-save-v7', 'nefroquest-detailed-stats', 'nefroquest-achievements', 'nefroquest-badge-history', 'nq-unlocked-refs', 'unlockedArticles'];
 
 async function openCollection(page: Page, correctTotal = 32, earned: 'none' | 'some' | 'all' = 'some', remembered: boolean | null = true) {
   await page.route('**/*', route => ['localhost', '127.0.0.1'].includes(new URL(route.request().url()).hostname) ? route.continue() : route.abort());
@@ -51,6 +51,66 @@ test('coleção começa completa, reconhece posses e mostra progresso real sem c
   expect(await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), preservedKeys)).toEqual(before);
 });
 
+test('grade desktop mantém os cards uniformes e os requisitos alinhados sem corte', async ({ page }, info) => {
+  test.skip(info.project.name !== 'chromium', 'Em mobile os cards seguem o fluxo natural de leitura.');
+  const pane = await openCollection(page);
+  await expect.poll(async () => pane.locator('.nqd-achievement-grid').evaluate(grid => grid.style.getPropertyValue('--achievement-title-height'))).not.toBe('');
+  const cards = await pane.locator('.nqd-achievement').evaluateAll(elements => elements.map(card => {
+    const box = card.getBoundingClientRect();
+    const copy = card.querySelector('.nqd-achievement-copy')!;
+    const range = document.createRange(); range.selectNodeContents(copy);
+    return { width: box.width, height: box.height, title: card.querySelector('.nqd-achievement-title')!.getBoundingClientRect().top - box.top,
+      requirement: copy.getBoundingClientRect().top - box.top, progress: card.querySelector('.nqd-achievement-progress')?.getBoundingClientRect().top! - box.top,
+      entire: [...range.getClientRects()].every(rect => rect.left >= box.left - 1 && rect.right <= box.right + 1 && rect.bottom <= box.bottom + 1),
+      noScroll: !['auto', 'scroll'].includes(getComputedStyle(card).overflowY) && card.scrollHeight <= card.clientHeight + 1 };
+  }));
+  for (const field of ['width', 'height', 'title', 'requirement'] as const) expect(Math.max(...cards.map(card => card[field])) - Math.min(...cards.map(card => card[field]))).toBeLessThan(1);
+  const progress = cards.map(card => card.progress).filter(Number.isFinite);
+  expect(Math.max(...progress) - Math.min(...progress)).toBeLessThan(1);
+  expect(cards.every(card => card.entire && card.noScroll)).toBe(true);
+});
+
+for (const fixture of ['admin', 'complete', 'registered'] as const) test(`Grimório usa desbloqueios do perfil e aquisição registrada: ${fixture}`, async ({ page }) => {
+  await openCollection(page);
+  const expected = await page.evaluate(async fixture => {
+    (window as any).closeDashboard();
+    const refs = (0, eval)('refsDB'), articles = (0, eval)('nefroArticles');
+    const reachable = [...new Set((window as any).questionBank.flatMap((question: any) => Array.isArray(question.r) ? question.r : []).filter(Boolean))]
+      .filter(key => Object.prototype.hasOwnProperty.call(refs, key as string));
+    (window as any).isAdminUser = () => fixture === 'admin';
+    // Referências legadas que estão no acervo permanecem no save, mas o
+    // objetivo canônico conta somente as alcançáveis pelo banco vigente.
+    localStorage.setItem('nq-unlocked-refs', JSON.stringify(fixture === 'admin' ? [] : Object.keys(refs)));
+    localStorage.setItem('unlockedArticles', JSON.stringify(fixture === 'admin' ? [] : articles.map((_: any, index: number) => index)));
+    localStorage.setItem('nefroquest-achievements', JSON.stringify(fixture === 'registered' ? ['grimoire_master'] : []));
+    const condition = (0, eval)('ACHIEVEMENTS_LIST').find((achievement: any) => achievement.id === 'grimoire_master').condition();
+    await (window as any).openDashboard({ tab: 'achievements' });
+    return { condition, target: reachable.length + articles.length };
+  }, fixture);
+  const pane = page.getByRole('tabpanel', { name: 'Conquistas', exact: true });
+  const card = pane.locator('[data-achievement-id="grimoire_master"]');
+  const before = await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), preservedKeys);
+  expect(expected.condition).toBe(fixture !== 'admin');
+  await expect(card).toHaveClass(fixture === 'registered' ? /is-unlocked/ : /is-locked/);
+  if (fixture === 'registered') {
+    await expect(card.locator('.nqd-state')).toContainText('Conquistada');
+    await expect(card.locator('[role="progressbar"]')).toHaveCount(0);
+  } else {
+    await expect(card.locator('[role="progressbar"]')).toHaveAttribute('aria-valuemax', String(expected.target));
+    await expect(card.locator('[role="progressbar"]')).toHaveAttribute('aria-valuenow', String(fixture === 'admin' ? 0 : expected.target));
+    await expect(card.locator('.nqd-state')).toHaveText(fixture === 'admin' ? 'A conquistar' : 'Objetivo completo');
+    await expect(card.locator('.nqd-achievement-progress-note')).toContainText(fixture === 'admin' ? 'não registra desbloqueios do perfil' : 'conquista ainda não registrada');
+    expect(await card.locator('img').evaluate(image => getComputedStyle(image).filter)).toContain('grayscale(1)');
+  }
+  const art = card.locator('.nqd-achievement-mark');
+  await art.focus(); await page.keyboard.press('Enter');
+  const detail = page.getByRole('dialog', { name: 'Guardião do Grimório Eterno', exact: true });
+  await expect(detail).toHaveAttribute('data-acquired', String(fixture === 'registered'));
+  if (fixture !== 'registered') await expect(detail).toContainText(fixture === 'admin' ? 'não registra desbloqueios do perfil' : 'conquista ainda não registrada');
+  await page.keyboard.press('Escape'); await expect(art).toBeFocused();
+  expect(await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), preservedKeys)).toEqual(before);
+});
+
 test('arte ampliada isola a jornada, aceita teclado e retorna à mesma conquista sem mudar o save', async ({ page }) => {
   const pane = await openCollection(page);
   const art = pane.getByRole('button', { name: 'Campeão da Nefrologia — ampliar arte e requisito', exact: true });
@@ -81,6 +141,39 @@ test('arte ampliada isola a jornada, aceita teclado e retorna à mesma conquista
   expect(await badgeDetail.locator('img').evaluate(img => getComputedStyle(img).filter)).toBe('none');
   await badgeDetail.getByRole('button', { name: 'Voltar à coleção' }).click();
   await expect(badge).toBeFocused();
+});
+
+test('falha de carga do banco não apresenta o Grimório como objetivo completo', async ({ page }) => {
+  let failedTopicRequest = false;
+  await page.route('**/*', route => {
+    const url = new URL(route.request().url());
+    if (url.pathname === '/data/topics.js') { failedTopicRequest = true; return route.abort(); }
+    if (!['localhost', '127.0.0.1'].includes(url.hostname)) return route.abort();
+    return route.continue();
+  });
+  await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
+  await page.evaluate(async () => {
+    await (window as any).carregarDadosGrimorio();
+    localStorage.setItem('unlockedArticles', JSON.stringify((0, eval)('nefroArticles').map((_: any, index: number) => index)));
+    localStorage.setItem('nefroquest-achievements', '[]');
+  });
+  const before = await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), preservedKeys);
+  await page.evaluate(() => (window as any).openDashboard({ tab: 'achievements' }));
+  await expect(page.locator('#nqDashboard[data-dashboard-state="ready"]')).toBeVisible();
+  const card = page.locator('[data-achievement-id="grimoire_master"]');
+  await expect(card).toHaveClass(/is-locked/);
+  await expect(card.locator('.nqd-state')).toHaveText('Dados indisponíveis');
+  await expect(card.locator('[role="progressbar"]')).toHaveCount(0);
+  await expect(card.locator('.nqd-achievement-progress-note')).toContainText('Não foi possível carregar o acervo');
+  expect(failedTopicRequest).toBe(true);
+  expect(await page.evaluate(() => ({ bankAvailable: Array.isArray((window as any).questionBank), complete: (0, eval)('ACHIEVEMENTS_LIST').find((achievement: any) => achievement.id === 'grimoire_master').condition() }))).toEqual({ bankAvailable: false, complete: false });
+  await card.locator('.nqd-achievement-mark').focus(); await page.keyboard.press('Enter');
+  const detail = page.getByRole('dialog', { name: 'Guardião do Grimório Eterno', exact: true });
+  await expect(detail).toHaveAttribute('data-acquired', 'false');
+  await expect(detail).toContainText('Dados indisponíveis');
+  await expect(detail.locator('[role="progressbar"]')).toHaveCount(0);
+  await page.keyboard.press('Escape');
+  expect(await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), preservedKeys)).toEqual(before);
 });
 
 test('logout fecha detalhe e libera o fundo sem devolver foco à jornada encerrada', async ({ page }) => {

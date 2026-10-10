@@ -513,6 +513,13 @@
       glomerulus:{ ch: 'Dr. Glomerulus · Lâmina dos Glomérulos', text: 'A guerra acontece no nível celular. IgA se deposita, podócitos são apagados, glomérulos perdidos não se regeneram. O Arqui-Nefromante conta com a ignorância dos clínicos. Seu raciocínio é sua arma, as diretrizes são sua armadura. Cada questão correta é um glomérulo preservado.' }
     };
 
+    // Emblemas ornamentais da intro; não representam anatomia ou atributos.
+    const CHARACTER_INTRO_EMBLEMS = {
+      nephros: '<svg class="nqinicio-emblem nqinicio-emblem--nephros" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="39" opacity=".45"/><path d="M50 19 73 29v19c0 18-11 29-23 35-12-6-23-17-23-35V29Z"/><path d="M50 28 65 35v13c0 12-6 20-15 26-9-6-15-14-15-26V35Z" opacity=".5"/><path d="m50 39 11 11-11 11-11-11Z"/><circle cx="50" cy="50" r="3"/></svg>',
+      aquaria: '<svg class="nqinicio-emblem nqinicio-emblem--aquaria" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="39" opacity=".45"/><path d="M50 18C46 28 34 38 34 50a16 16 0 0 0 32 0C66 38 54 28 50 18Z"/><path d="M42 42c-5 8-4 14 3 18" opacity=".55"/><path d="M20 70q8-7 16 0t16 0t16 0t16 0M27 80q6-5 12 0t12 0t12 0t12 0"/></svg>',
+      glomerulus: '<svg class="nqinicio-emblem nqinicio-emblem--glomerulus" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="39" opacity=".45"/><ellipse cx="50" cy="50" rx="32" ry="16" transform="rotate(-35 50 50)"/><ellipse cx="50" cy="50" rx="32" ry="16" transform="rotate(35 50 50)" opacity=".45"/><path d="m26 34 19 13 24-20M45 47l27 15-38 11"/><g fill="currentColor" stroke="none"><circle cx="26" cy="34" r="2"/><circle cx="69" cy="27" r="2"/><circle cx="72" cy="62" r="2"/><circle cx="34" cy="73" r="2"/></g><path d="m45 42 5 5-5 5-5-5Z"/></svg>'
+    };
+
     function selectCharacter(charId) {
       state.character = charId;
       // Guarda a escolha fora do state: um sync de nuvem / loadGame pode sobrescrever
@@ -536,7 +543,7 @@
         <section class="nqnarr-card nqinicio-card" aria-describedby="nqIntroStory">
           <div class="nqnarr-reading" role="region" tabindex="0" aria-label="Seu guardião e início da jornada">
             <p class="nqnarr-chapter">Início da Jornada</p>
-            <div class="nqinicio-heading"><div class="nqinicio-portrait"><img src="assets/classes-cinema/${character.folder}/nivel_01.${extension}" alt=""></div><div class="nqinicio-identity"><h2>${heroName}</h2><p class="nqinicio-subtitle">${heroTitle}</p></div></div>
+            <div class="nqinicio-heading"><div class="nqinicio-portrait"><img src="assets/classes-cinema/${character.folder}/nivel_01.${extension}" alt=""></div><div class="nqinicio-identity"><div class="nqinicio-name"><h2>${heroName}</h2><p class="nqinicio-subtitle">${heroTitle}</p></div>${CHARACTER_INTRO_EMBLEMS[charId] || ''}</div></div>
             <div class="nqnarr-story nqinicio-story" id="nqIntroStory">${intro.text}</div>
           </div>
           <footer class="nqnarr-footer"><button class="nqnarr-primary nqinicio-primary" data-action="closeIntroAndStart">Iniciar Jornada</button></footer>

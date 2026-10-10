@@ -1996,6 +1996,11 @@ main, .nav, .footer { position: relative; z-index: 1; }
 }
 .lab-readout span { display: flex; align-items: center; gap: .6rem; }
 .lab-readout span::before { content: ""; width: 22px; height: 1px; background: var(--nq-lumen); box-shadow: var(--nq-glow-lumen); }
+/* Vidro do Atlas: a fase colore apenas a luz, mantendo a superfície escura. */
+[data-nephron-lab] { --atlas-phase: var(--nq-lumen); --atlas-phase-rgb: var(--cyan-rgb); }
+[data-nephron-lab][data-flow-stage="1"] { --atlas-phase: var(--nq-corruption); --atlas-phase-rgb: var(--violet-rgb); }
+[data-nephron-lab][data-flow-stage="2"] { --atlas-phase: var(--clinical); --atlas-phase-rgb: var(--clinical-rgb); }
+[data-nephron-lab][data-flow-stage="3"] { --atlas-phase: var(--nq-mastery); --atlas-phase-rgb: var(--gold-rgb); }
 .hero-atlas {
   position: relative;
   z-index: 1;
@@ -2011,13 +2016,13 @@ main, .nav, .footer { position: relative; z-index: 1; }
   border: 1px solid rgba(201, 196, 184, .24);
   border-radius: 26px 44px 34px 40px;
   background:
-    radial-gradient(circle at 72% 18%, rgba(var(--gold-rgb), .1), transparent 42%),
-    radial-gradient(ellipse at 42% 55%, rgba(var(--violet-rgb), .09), transparent 68%),
-    linear-gradient(145deg, rgba(31, 29, 36, .48), rgba(13, 17, 23, .4));
+    radial-gradient(ellipse at 12% 0, rgba(220, 236, 246, .055), transparent 46%),
+    radial-gradient(ellipse at 76% 65%, rgba(var(--cyan-rgb), .04), transparent 64%),
+    linear-gradient(145deg, #101c2b, #080f1b);
   box-shadow:
     0 1.8rem 4rem rgba(0, 0, 0, .28),
-    0 0 3rem rgba(var(--gold-rgb), .06),
-    inset 0 1px rgba(255, 255, 255, .04);
+    0 0 3rem rgba(var(--cyan-rgb), .035),
+    inset 0 1px rgba(230, 242, 250, .085);
   opacity: 1;
   transform: none;
 }
@@ -2079,14 +2084,15 @@ main, .nav, .footer { position: relative; z-index: 1; }
   align-content: center;
   gap: .72rem;
   padding: 1.35rem 1.1rem;
-  border: 1px solid rgba(var(--gold-rgb), .32);
+  border: 1px solid rgba(201, 196, 184, .24);
   border-radius: 18px;
   background:
-    radial-gradient(circle at 100% 0, rgba(var(--gold-rgb), .16), transparent 13rem),
-    linear-gradient(135deg, rgba(56, 44, 34, .5), rgba(18, 18, 23, .66) 72%);
+    radial-gradient(circle at 100% 0, rgba(var(--atlas-phase-rgb), .085), transparent 12rem),
+    radial-gradient(ellipse at 0 0, rgba(220, 236, 246, .035), transparent 56%),
+    linear-gradient(135deg, #111e29, #101620 72%);
   box-shadow:
     0 1.3rem 3rem rgba(0, 0, 0, .28),
-    inset 0 1px rgba(255, 255, 255, .035);
+    inset 0 1px rgba(230, 242, 250, .07);
 }
 .flow-deck::before {
   content: "";
@@ -2095,7 +2101,7 @@ main, .nav, .footer { position: relative; z-index: 1; }
   top: 18%;
   width: 5px;
   height: 64%;
-  background: linear-gradient(transparent, var(--nq-lumen), var(--nq-mastery), transparent);
+  background: linear-gradient(transparent, var(--atlas-phase), transparent);
   filter: blur(.3px) drop-shadow(0 0 9px rgba(var(--cyan-rgb), .38));
   opacity: .58;
 }
@@ -2364,13 +2370,10 @@ main, .nav, .footer { position: relative; z-index: 1; }
     min-height: 0;
     align-content: start;
     padding: 1.15rem 1rem 1rem;
-    border: 1px solid rgba(var(--gold-rgb), .32);
+    border: 1px solid rgba(201, 196, 184, .24);
     border-radius: 14px;
-    background:
-      radial-gradient(circle at 100% 0, rgba(var(--gold-rgb), .14), transparent 12rem),
-      linear-gradient(180deg, rgba(56, 44, 34, .5), rgba(18, 18, 23, .66));
   }
-  .flow-deck::before { top: -3px; right: 12%; left: 12%; width: auto; height: 5px; background: linear-gradient(90deg, transparent, var(--nq-lumen), var(--nq-mastery), transparent); }
+  .flow-deck::before { top: -3px; right: 12%; left: 12%; width: auto; height: 5px; background: linear-gradient(90deg, transparent, var(--atlas-phase), transparent); }
   .flow-deck > strong { max-width: none; }
   .flow-deck > small { max-width: 62ch; }
   .flow-node-controls { grid-column: 1; grid-row: 4; }
@@ -2425,6 +2428,26 @@ main, .nav, .footer { position: relative; z-index: 1; }
 
   .hero-atlas {
     height: clamp(410px, calc(100svh - 254px), 510px);
+  }
+}
+
+/* Sem suporte a blur, os fundos opacos acima garantem a mesma leitura. */
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .hero-atlas, .flow-deck { -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+  .hero-atlas {
+    background:
+      radial-gradient(ellipse at 12% 0, rgba(220, 236, 246, .055), transparent 46%),
+      radial-gradient(ellipse at 76% 65%, rgba(var(--cyan-rgb), .04), transparent 64%),
+      linear-gradient(145deg, rgba(10, 20, 33, .68), rgba(5, 12, 22, .82));
+  }
+  .flow-deck {
+    background:
+      radial-gradient(circle at 100% 0, rgba(var(--atlas-phase-rgb), .085), transparent 12rem),
+      radial-gradient(ellipse at 0 0, rgba(220, 236, 246, .035), transparent 56%),
+      linear-gradient(135deg, rgba(13, 26, 37, .82), rgba(13, 19, 29, .9) 72%);
+  }
+  @media (max-width: 760px) {
+    .hero-atlas, .flow-deck { -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
   }
 }
 
