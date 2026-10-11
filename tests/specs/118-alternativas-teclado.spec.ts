@@ -61,7 +61,15 @@ for (const mode of ['jornada', 'estudo'] as const) {
 
 test('atalhos em um atributo focado preservam a questão sem resposta', async ({ page }) => {
   await prepare(page, 'jornada');
-  if (await page.locator('#mobileHeroBtn').isVisible()) await page.locator('#mobileHeroBtn').click();
+  const dockHero = page.locator('#mobileBottomDock > .mdock-btn.personagem[data-action="openMobileDrawer"]');
+  const floatingHero = page.locator('#mobileHeroBtn');
+  if (await dockHero.isVisible()) {
+    await dockHero.click();
+    await expect(page.locator('.panel.left')).toHaveClass(/mobile-open/);
+  } else if (await floatingHero.isVisible()) {
+    await floatingHero.click();
+    await expect(page.locator('.panel.left')).toHaveClass(/mobile-open/);
+  }
   const badge = page.locator('.equip-total-attributes .stat-badge').first();
   await badge.focus();
   await page.keyboard.press('1');
