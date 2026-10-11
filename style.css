@@ -14907,3 +14907,92 @@ body [role="dialog"] a[href]{color:var(--nq-accent-cyan);text-decoration:underli
 @container nqStats (max-width:26rem){.stats-popup .nq-radar-container-wrap canvas{display:none!important}.stats-popup .nq-radar-label{padding:9px 0;border-bottom:1px solid #ffffff15}}
 
 @media(max-width:600px){.stats-popup .modal-content,#paywallModal .paywall-content{scrollbar-width:none}.stats-popup .modal-content::-webkit-scrollbar,#paywallModal .paywall-content::-webkit-scrollbar{display:none}}
+
+/* Explicit opt-in and domain controls for the local character pilot. */
+.nq-pilot-choice,
+.nq-pilot-saved,
+.nq-pilot-banner {
+  box-sizing: border-box;
+  min-width: 0;
+  border: 1px solid #88b9c8;
+  border-radius: .65rem;
+  background: #102532;
+  color: #eee8d9;
+  font: 1rem/1.5 'Philosopher', serif;
+  overflow-wrap: anywhere;
+}
+.nq-pilot-choice {
+  margin: 1rem clamp(1.1rem, 3vw, 2.5rem);
+  padding: .8rem 1rem;
+}
+.nq-pilot-choice legend,
+.nq-pilot-saved h2,
+.nq-pilot-banner strong {
+  color: #d3ecf4;
+  font-size: 1rem;
+  font-weight: 700;
+}
+.nq-pilot-choice label {
+  display: flex;
+  align-items: flex-start;
+  gap: .7rem;
+  cursor: pointer;
+}
+.nq-pilot-choice input {
+  flex: 0 0 auto;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: .1rem 0 0;
+  accent-color: #d3ecf4;
+}
+.nq-pilot-choice p,
+.nq-pilot-saved p,
+.nq-pilot-banner p {
+  margin: .65rem 0 0;
+  color: #c6d6df;
+  font-size: 1rem;
+}
+.nq-pilot-choice:has(input:disabled) label { color: #c6d6df; cursor: default; }
+.nq-pilot-saved {
+  max-width: 44rem;
+  margin-top: 1rem;
+  padding: 1rem;
+}
+.nq-pilot-saved h2 { margin: 0; }
+.nq-pilot-saved .nq-pilot-button { margin-top: .85rem; }
+.nq-pilot-banner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .85rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: .85rem 1rem;
+  margin-bottom: 1rem;
+}
+.nq-pilot-banner > div { flex: 1 1 14rem; min-width: 0; }
+.nq-pilot-banner p { margin-top: .3rem; }
+.nq-pilot-button {
+  appearance: none;
+  max-width: 100%;
+  min-height: 44px;
+  padding: .65rem .9rem;
+  border: 1px solid #88b9c8;
+  border-radius: .4rem;
+  background: #193d50;
+  color: #f2f1e9;
+  font: 700 1rem/1.4 'Philosopher', serif;
+  white-space: normal;
+  cursor: pointer;
+}
+.nq-pilot-button:focus-visible,
+.nq-pilot-choice input:focus-visible { outline: 2px solid #f0cf7a; outline-offset: 3px; }
+.nq-pilot-button:disabled { cursor: not-allowed; opacity: .7; }
+.nqinicio-actions { flex-wrap: wrap; gap: .75rem; }
+.nqinicio-actions > button { max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
+.nq-pilot-saved[hidden],
+.nq-pilot-banner[hidden] { display: none; }
+@media (max-width: 480px) {
+  .nq-pilot-choice { margin-inline: .75rem; padding-inline: .75rem; }
+  .nq-pilot-banner .nq-pilot-button { width: 100%; }
+  .nqinicio-actions > button { flex: 1 1 100%; width: 100%; }
+}

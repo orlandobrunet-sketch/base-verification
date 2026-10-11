@@ -16,6 +16,10 @@ function between(name, nextName) {
   return source.slice(start, end);
 }
 const canonical = [
+  // Keep the immutable pre-pilot baseline runnable. For the new source,
+  // extract the real domain guard while retaining every normal-save assertion.
+  ...(source.includes('function isCharacterPilot(')
+    ? [between('isCharacterPilot', '_pilotOrigin')] : []),
   between('_currentSaveOwner', '_prepareProgressOwner'),
   between('_stopLocalJourney', '_mirrorLegacySave'),
   between('_mirrorLegacySave', '_showGuestSaveRecovery'),
@@ -90,9 +94,10 @@ function environment({ kind = 'legacy', owner = null, removalFails = false, tomb
   const context = vm.createContext({
     authUser: owner === null ? null : { id: owner },
     state, _stateData: state, _recentIds: ['recent-question'],
-    _forja: null, _progressSandboxMode: null,
+    _forja: null, _progressSandboxMode: null, _pilotRestoredQuestion: null,
     _saveBaseline: undefined, _saveOwner: undefined, _legacySaveBaseline: undefined,
     _saveCleanupBlocked: false, _guestRecoveryAccepted: null, _progressEpoch: 7,
+    _continueGameCleanup: null,
     _autoSaveTimer: 'auto', _saveTimer: 'save', _cloudSyncTimer: 'cloud', _cloudLoadSyncTimer: 'cloud-load',
     SAVE_KEY: LEGACY, CANONICAL_SAVE_KEY: CANONICAL, SAVE_SCHEMA_VERSION: 7,
     crypto: { randomUUID: () => `test-revision-${++revision}` },
@@ -103,7 +108,7 @@ function environment({ kind = 'legacy', owner = null, removalFails = false, tomb
     _warnStorageFull: () => { calls.warning++; },
     _invalidateStatsCache: () => { calls.invalidation++; },
     _showGuestSaveRecovery: () => { calls.recovery++; },
-    _track() {}, _toast() {}, window: {},
+    _track() {}, _toast() {}, showActionConfirmPopup() {}, window: {},
     document: {
       querySelector: () => null,
       getElementById: id => id === 'mainApp' ? main : id === 'welcomeScreen' ? welcome : null,
@@ -121,6 +126,7 @@ function environment({ kind = 'legacy', owner = null, removalFails = false, tomb
       },
     },
   });
+  context.nqProgressStorage = () => context.localStorage;
   function run(code) {
     return vm.runInContext(code, context, { timeout: 500, filename: 'canonical journey reset/save' });
   }

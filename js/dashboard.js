@@ -87,6 +87,14 @@
   let _libraryCache = null;
   let _libraryReadingContext = null;
   let _tabMediaQuery = null;
+  let _dashboardBinding = null;
+  const _dashboardBindingCurrent = binding => !window.NQPilot || window.NQPilot.matchesBinding(binding);
+
+  function _progressStorage() {
+    if (typeof window.nqProgressStorage !== 'function' && window.NQPilot?.active) throw new Error('Armazenamento do piloto indisponível.');
+    return typeof window.nqProgressStorage === 'function'
+      ? window.nqProgressStorage(_dashboardBinding || undefined) : localStorage;
+  }
 
   const ACID_BASE_CASE_IDS = new Set([
     'aldric', 'mara', 'theron', 'vance', 'kael', 'vorgath', 'selene', 'edrin', 'liora', 'borius',
@@ -107,9 +115,9 @@
       .replace(/'/g, '&#39;');
   }
 
-  function _readJson(key, fallback) {
+  function _readJson(key, fallback, normal = false) {
     try {
-      const raw = localStorage.getItem(key);
+      const raw = (normal || key === 'nq-bib-favorites' ? localStorage : _progressStorage()).getItem(key);
       return raw ? JSON.parse(raw) : fallback;
     } catch (error) {
       return fallback;
@@ -596,6 +604,7 @@
     const nextBadge = BADGE_MILESTONES.find(badge => _number(save && save.correctTotal, 0) < badge.required) || null;
 
     const data = {
+      pilot: !!window.NQPilot?.active,
       save,
       stats,
       coreSkills,
@@ -682,7 +691,7 @@
               <button type="button" class="nqd-brand-close" data-action="closeDashboard" aria-label="${_returnLabel}">${_svg('back')}</button>
             </div>
           </div>
-          <span class="nqd-rail-kicker">Dashboard</span>
+          <span class="nqd-rail-kicker">${window.NQPilot?.active ? 'Dashboard · Piloto' : 'Dashboard'}</span>
           ${state === 'ready' ? `
             ${profile}
             <nav class="nqd-nav" aria-label="Áreas do Dashboard" role="navigation">
@@ -692,7 +701,7 @@
           <div class="nqd-rail-footer"><button type="button" class="nqd-back" data-action="closeDashboard">${_svg('back')}<span>${_returnLabel}</span></button></div>
         </aside>
         <main class="nqd-main">
-          <div class="nqd-content">${bodyMarkup}</div>
+          <div class="nqd-content">${window.NQPilot?.active ? '<p class="nqd-section-copy" role="status" data-pilot-dashboard>Estatísticas e coleção do piloto, salvas apenas neste dispositivo.</p>' : ''}${bodyMarkup}</div>
         </main>
       </div>
     `;
@@ -1215,7 +1224,7 @@
       transplant_expert: { value: topicCorrect(topic => topic.includes('transplante')), target: 30 },
       glomerulo_sage: { value: topicCorrect(topic => topic.includes('glomerul') || topic.includes('nefrite')), target: 40 },
       century_club: { value: _number(stats.totalQuestions, 0), target: 100 },
-      laurel_wreath_knowledge: { value: _number(localStorage.getItem('nefroquest_total_accumulated_knowledge'), 0), target: 1000 },
+      laurel_wreath_knowledge: { value: _number(_progressStorage().getItem('nefroquest_total_accumulated_knowledge'), 0), target: 1000 },
     };
     if (id === 'nephron_guardian') {
       let current = 0;
@@ -1662,15 +1671,19 @@
   }
 
   function _tabRanking(data) {
-    const gameStats = _readJson('nefroquest-stats', {});
+    // The public ranking always compares the normal profile, even while the
+    // other Dashboard areas show the pilot's separate local collection.
+    const gameStats = _readJson('nefroquest-stats', {}, true);
+    const normalStats = _readJson('nefroquest-detailed-stats', {}, true);
+    const normalCorrect = Math.max(0, _number(normalStats && normalStats.totalCorrect, 0));
     const bestScore = Math.max(0, _number(gameStats && gameStats.bestScore, 0));
     return `
       <section class="nqd-pane nq-dash-pane" id="nqdPane-ranking" role="tabpanel" aria-labelledby="nqdTab-ranking" data-dash-pane="ranking" hidden>
         <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Ranking da Ordem</h1><p class="nqd-section-copy">Compare seu resultado com os 50 maiores registros disponíveis.</p></div></div>
         <div class="nqd-ranking-personal">
-          <span class="nqd-eyebrow">Seu registro local</span>${bestScore > 0
-            ? `<strong>${_formatNumber(bestScore)}</strong><small>melhor pontuação de partida</small><span>${_formatNumber(data.totalCorrect)} acertos acumulados</span>`
-            : `<strong>${_formatNumber(data.totalCorrect)}</strong><small>acertos acumulados</small><span>nenhuma partida pontuada ainda</span>`}
+          <span class="nqd-eyebrow">${data.pilot ? 'Seu registro normal · piloto fora do ranking' : 'Seu registro local'}</span>${bestScore > 0
+            ? `<strong>${_formatNumber(bestScore)}</strong><small>melhor pontuação de partida</small><span>${_formatNumber(normalCorrect)} acertos acumulados</span>`
+            : `<strong>${_formatNumber(normalCorrect)}</strong><small>acertos acumulados</small><span>nenhuma partida pontuada ainda</span>`}
         </div>
         <div class="nqd-ranking-controls">
           <div class="nqd-segmented" role="group" aria-label="Modo do ranking">
@@ -2362,6 +2375,8 @@
       previous.querySelector('[role="tab"][aria-selected="true"], [data-action="closeDashboard"]')?.focus({ preventScroll: true });
       return;
     }
+    const binding = window.NQPilot?.captureBinding();
+    _dashboardBinding = binding || null;
     _lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     // Captura a origem antes de tornar a página de fundo inerte.
     const visible = id => {
@@ -2382,6 +2397,7 @@
     root.className = 'nq-command-center';
     root.dataset.nqUi = 'lumen';
     root.dataset.dashboardState = 'loading';
+    root.dataset.progressDomain = window.NQPilot?.active ? 'pilot' : 'normal';
     root.dataset.libraryReader = _libraryReaderIdentity();
     if (_libraryReadingContext?.owner !== root.dataset.libraryReader) _libraryReadingContext = null;
     root.setAttribute('aria-label', 'Dashboard do aprendizado');
@@ -2391,13 +2407,16 @@
     _lockBackground(root);
     root.querySelector('[data-action="closeDashboard"]')?.focus({ preventScroll: true });
 
+    const current = () => root.isConnected && (!window.NQPilot || window.NQPilot.matchesBinding(binding));
+    const abandonStale = () => { if (root.isConnected) closeDashboard({ restoreFocus: false }); };
+
     let topicsLoadError = false;
     let dadosGrimorioCarregados = false;
     try {
       // Mostra a Central imediatamente, com saída disponível durante a carga.
       if (typeof window.carregarDadosGrimorio === 'function') await window.carregarDadosGrimorio();
       dadosGrimorioCarregados = true;
-      if (!root.isConnected) return;
+      if (!current()) { abandonStale(); return; }
       if (typeof window._loadTopics === 'function') {
         try {
           await window._loadTopics();
@@ -2406,17 +2425,19 @@
           console.error('[NQ] Falha ao atualizar questões para o Dashboard', error);
         }
       }
-      if (!root.isConnected) return;
+      if (!current()) { abandonStale(); return; }
       _dashboardData = _collectData(topicsLoadError);
       root.innerHTML = _readyMarkup(_dashboardData);
       root.dataset.dashboardState = 'ready';
       _wireDashboard(root);
       _switchTab(_activeTab, false);
       window.requestAnimationFrame(() => {
+        if (!current()) return;
         const firstTab = root.querySelector('[role="tab"][aria-selected="true"]');
         if (firstTab) firstTab.focus({ preventScroll: true });
       });
     } catch (error) {
+      if (!current()) { abandonStale(); return; }
       console.error('[NQ] Falha ao montar o Dashboard', error);
       if (!root.isConnected) return;
       root.innerHTML = _errorMarkup(!dadosGrimorioCarregados);
@@ -2436,6 +2457,7 @@
   window._dashRetryLoad = _dashRetryLoad;
 
   function closeDashboard(options) {
+    const binding = _dashboardBinding || window.NQPilot?.captureBinding();
     window.closeAchievementArtwork?.({ restoreFocus: false });
     window.prepareAchievementCollectionLayout?.(null);
     const root = document.getElementById('nqDashboard');
@@ -2454,6 +2476,9 @@
     if (suggestion && _librarySuggestionHome) _librarySuggestionHome.appendChild(suggestion);
     _librarySuggestionHome = null;
     root.remove();
+    _dashboardBinding = null;
+    _dashboardData = null;
+    _libraryCache = null;
     _unlockBackground();
     const focusTarget = restoreFocus && _lastFocusedElement && _lastFocusedElement.isConnected
       && _lastFocusedElement.getClientRects().length
@@ -2462,14 +2487,16 @@
       : restoreFocus ? [...document.querySelectorAll('[data-action="openDashboard"]')].find(element => element.getClientRects().length && !element.closest('[hidden], [inert]')) : null;
     _lastFocusedElement = null;
     if (focusTarget) {
-      window.requestAnimationFrame(() => focusTarget.focus({ preventScroll: true }));
+      window.requestAnimationFrame(() => { if (_dashboardBindingCurrent(binding)) focusTarget.focus({ preventScroll: true }); });
     }
   }
 
   function _clickAfterClose(selector) {
+    const binding = window.NQPilot?.captureBinding();
     const target = document.querySelector(selector);
     closeDashboard({ restoreFocus: false });
     window.requestAnimationFrame(() => {
+      if (window.NQPilot && !window.NQPilot.matchesBinding(binding)) return;
       if (target && target.isConnected) target.click();
       else if (typeof _toast === 'function') _toast('Esta ação não está disponível agora.', 'info');
     });
@@ -2505,19 +2532,22 @@
   }
 
   function _focusStudyMode() {
+    const binding = window.NQPilot?.captureBinding();
     window.requestAnimationFrame(() => {
+      if (!_dashboardBindingCurrent(binding)) return;
       document.querySelector('#studyModePage [data-action="exitStudyMode"], #studyModePage button')?.focus({ preventScroll: true });
     });
   }
 
   async function _ensureTopics() {
+    const binding = _dashboardBinding || window.NQPilot?.captureBinding();
     if (typeof topics !== 'undefined' && Array.isArray(topics) && topics.length) return true;
     if (typeof window._loadTopics !== 'function') return false;
     try {
       await window._loadTopics();
-      return typeof topics !== 'undefined' && Array.isArray(topics) && topics.length > 0;
+      return _dashboardBindingCurrent(binding) && typeof topics !== 'undefined' && Array.isArray(topics) && topics.length > 0;
     } catch (error) {
-      if (typeof _toast === 'function') _toast('Não foi possível carregar as questões.', 'error');
+      if (_dashboardBindingCurrent(binding) && typeof _toast === 'function') _toast('Não foi possível carregar as questões.', 'error');
       return false;
     }
   }
@@ -2529,12 +2559,13 @@
   }
 
   async function _dashGoAxisWeakness() {
+    const binding = _dashboardBinding || window.NQPilot?.captureBinding();
     const weakness = _eligibleAxisWeakness(_readAxisStats(_readDetailedStats()));
     if (!weakness) {
       if (typeof _toast === 'function') _toast('Ainda não há amostra suficiente para indicar um tema de treino.', 'info');
       return;
     }
-    if (!(await _ensureTopics())) return;
+    if (!(await _ensureTopics()) || !_dashboardBindingCurrent(binding)) return;
     if (!_selectStudyCategories([weakness.cat])) {
       if (typeof _toast === 'function') _toast('O seletor de temas não está disponível agora.', 'error');
       return;
@@ -2551,7 +2582,8 @@
   const _dashGoWeakness = _dashGoAxisWeakness;
 
   async function _dashTrainCategories(category) {
-    if (!(await _ensureTopics())) return;
+    const binding = _dashboardBinding || window.NQPilot?.captureBinding();
+    if (!(await _ensureTopics()) || !_dashboardBindingCurrent(binding)) return;
     if (!_selectStudyCategories([category])) {
       if (typeof _toast === 'function') _toast('O seletor de temas não está disponível agora.', 'error');
       return;
@@ -2566,7 +2598,8 @@
   }
 
   async function _dashExploreSkills() {
-    if (!(await _ensureTopics())) return;
+    const binding = _dashboardBinding || window.NQPilot?.captureBinding();
+    if (!(await _ensureTopics()) || !_dashboardBindingCurrent(binding)) return;
     if (typeof window.showAxesSelector !== 'function') {
       if (typeof _toast === 'function') _toast('O seletor de temas não está disponível.', 'error');
       return;
@@ -2574,6 +2607,7 @@
     _closeDashboardForStudy();
     window.showAxesSelector();
     window.requestAnimationFrame(() => {
+      if (!_dashboardBindingCurrent(binding)) return;
       const selector = document.querySelector('.study-mode-popup');
       const firstControl = selector && selector.querySelector('button, [tabindex]:not([tabindex="-1"])');
       if (firstControl) firstControl.focus({ preventScroll: true });
@@ -2581,7 +2615,8 @@
   }
 
   async function _dashContinueStudy() {
-    if (!(await _ensureTopics())) return;
+    const binding = _dashboardBinding || window.NQPilot?.captureBinding();
+    if (!(await _ensureTopics()) || !_dashboardBindingCurrent(binding)) return;
     if (typeof window.resumeSavedStudyMode === 'function' && window.resumeSavedStudyMode()) {
       _closeDashboardForStudy();
       _focusStudyMode();
@@ -2856,4 +2891,13 @@
   window._dashPreviewForm = _dashPreviewForm;
   window._dashToggleFavorite = _dashToggleFavorite;
   window.getUserTitle = getUserTitle;
+  window.NQPilot?.onContextChange(() => {
+    closeDashboard({ restoreFocus: false });
+    _dashboardBinding = null;
+    _dashboardData = null;
+    _libraryCache = null;
+    _libraryReadingContext = null;
+    _lbFullData = [];
+    _rankingLoaded = false;
+  });
 })();

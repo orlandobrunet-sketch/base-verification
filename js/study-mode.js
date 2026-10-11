@@ -1,6 +1,17 @@
 // NefroQuest — Study Mode (topic selector, trails, spaced-repetition UI)
 // Loaded before game.js. All functions become global.
 
+    let _studyProgressBinding = null;
+    function _studyCaptureBinding() { return window.NQPilot?.captureBinding() || null; }
+    function _studyBindingCurrent(binding = _studyProgressBinding) {
+      return !window.NQPilot || window.NQPilot.matchesBinding(binding);
+    }
+    function _studyProgressStorage() {
+      if (typeof window.nqProgressStorage === 'function') return window.nqProgressStorage(_studyProgressBinding || undefined);
+      if (window.NQPilot?.active) throw new Error('Armazenamento do piloto indisponível.');
+      return localStorage;
+    }
+
     function getSRDueCount() {
       const selectedCats = new Set();
       NEFRO_AXES.forEach(ax => { if (_studySelectedAxes.has(ax.id)) selectedCats.add(ax.cat); });
@@ -459,7 +470,7 @@
     function _checkStudyReminder() {
       if (typeof Notification === 'undefined' || Notification.permission !== 'granted') return;
       if (!localStorage.getItem('nq_notif_enabled')) return;
-      const lastStudy = parseInt(localStorage.getItem('nq_last_study') || '0');
+      const lastStudy = parseInt(_studyProgressStorage().getItem('nq_last_study') || '0');
       const yesterday = Date.now() - 24 * 60 * 60 * 1000;
       if (lastStudy < yesterday) {
         const banner = document.createElement('div');
@@ -631,6 +642,11 @@
     }
 
     function confirmResetProgress() {
+      if (window.NQPilot?.active) {
+        if (!confirm('Apagar somente o progresso deste piloto? O progresso da jornada normal será preservado.')) return;
+        if (typeof window.clearLocalProgress === 'function') window.clearLocalProgress('reset');
+        return;
+      }
       if (!confirm('⚠️ Apagar todo o histórico de estatísticas, questões dominadas e save atual?\n\nEsta ação não pode ser desfeita.')) return;
       localStorage.removeItem(STATS_STORAGE_KEY);
       localStorage.removeItem(MASTERED_KEY);
@@ -679,6 +695,8 @@
     function setStudyReturnDashboard(tab) { _studyReturnDashboardTab = tab || "overview"; }
 
     function _mountStudySurface(surface, label, returnFocus) {
+      if (!_studyProgressBinding) _studyProgressBinding = _studyCaptureBinding();
+      if (!_studyBindingCurrent()) return;
       const dashboard = document.getElementById("nqDashboard");
       if (dashboard) {
         setStudyReturnDashboard(dashboard.querySelector('[data-dash-tab][aria-selected="true"]')?.dataset.dashTab);
@@ -736,12 +754,16 @@
       document.body.appendChild(surface);
       document.body.classList.add('nq-studying');
       window.scrollTo(0, 0);
-      window.requestAnimationFrame(() => surface.querySelector('button, [tabindex="0"]')?.focus({ preventScroll: true }));
+      const binding = _studyProgressBinding;
+      window.requestAnimationFrame(() => {
+        if (_studyBindingCurrent(binding) && surface.isConnected) surface.querySelector('button, [tabindex="0"]')?.focus({ preventScroll: true });
+      });
     }
 
-    function _restoreStudyOrigin() {
+    function _restoreStudyOrigin(restoreDashboard = true) {
       const origin = _studySurfaceOrigin;
       _studySurfaceOrigin = null;
+      _studyProgressBinding = null;
       document.body.classList.remove('nq-studying');
       if (!origin) return;
       origin.elements.forEach(({ element, hidden, inert }) => {
@@ -749,9 +771,9 @@
         element.inert = inert;
       });
       window.scrollTo(0, origin.scroll);
-      if (origin.dashboardTab && typeof window.openDashboard === "function") {
+      if (restoreDashboard && origin.dashboardTab && typeof window.openDashboard === "function") {
         void window.openDashboard({ tab: origin.dashboardTab });
-      } else {
+      } else if (restoreDashboard) {
         _studyPopupFocusFallback(origin.focus)?.focus({ preventScroll: true });
       }
     }
@@ -762,6 +784,7 @@
     }
 
     async function showTopicSelector() {
+      const binding = _studyCaptureBinding();
       // Capture before loading so returning can restore the original control.
       const returnFocus = document.activeElement;
       if (typeof topics === 'undefined') {
@@ -769,6 +792,7 @@
         try { await window._loadTopics(); document.querySelector('.nq-toast')?.remove(); }
         catch { _toast('Erro ao carregar questões. Recarregue a página.', 'error', 5000); return; }
       }
+      if (!_studyBindingCurrent(binding)) return;
       document.querySelectorAll('.study-mode-popup').forEach(el => el.remove());
       _studySelectedAxes.clear();
       NEFRO_AXES.forEach(a => _studySelectedAxes.add(a.id));
@@ -988,9 +1012,9 @@
     const STUDY_TTL_MS   = 24 * 60 * 60 * 1000; // 24h
 
     function _saveStudyState(nextIndex = studyModeIndex) {
-      if (!studyModeActive || !studyModeQuestions.length) return;
+      if (!studyModeActive || !studyModeQuestions.length || !_studyBindingCurrent()) return;
       try {
-        localStorage.setItem(STUDY_SAVE_KEY, JSON.stringify({
+        _studyProgressStorage().setItem(STUDY_SAVE_KEY, JSON.stringify({
           questions: studyModeQuestions.map(q => q.qid || q.id || q.q.substring(0, 40)),
           index: nextIndex,
           correct: studyModeCorrect,
@@ -1003,14 +1027,14 @@
 
     function _loadStudyState() {
       try {
-        const raw = localStorage.getItem(STUDY_SAVE_KEY);
+        const raw = _studyProgressStorage().getItem(STUDY_SAVE_KEY);
         if (!raw) return null;
         const s = JSON.parse(raw);
         if (!s || typeof s !== 'object' || Array.isArray(s) || !Array.isArray(s.questions)) return null;
         const questions = s.questions.filter(id => typeof id === 'string' || typeof id === 'number');
         const savedAt = Number(s.savedAt);
         if (!questions.length || !Number.isFinite(savedAt) || savedAt <= 0) return null;
-        if (Date.now() - savedAt > STUDY_TTL_MS) { localStorage.removeItem(STUDY_SAVE_KEY); return null; }
+        if (Date.now() - savedAt > STUDY_TTL_MS) { _studyProgressStorage().removeItem(STUDY_SAVE_KEY); return null; }
 
         const rawIndex = Number(s.index);
         const index = Number.isFinite(rawIndex)
@@ -1040,7 +1064,7 @@
     }
 
     function _clearStudyState() {
-      try { localStorage.removeItem(STUDY_SAVE_KEY); } catch(e) {}
+      try { _studyProgressStorage().removeItem(STUDY_SAVE_KEY); } catch(e) {}
     }
 
     function resumeSavedStudyMode() {
@@ -1080,11 +1104,13 @@
     let _mentorRequestController = null;
 
     async function startFreeStudyMode() {
+      const binding = _studyCaptureBinding();
       if (typeof topics === 'undefined') {
         _toast('Carregando questões…', 'info', 30000);
         try { await window._loadTopics(); document.querySelector('.nq-toast')?.remove(); }
         catch { _toast('Erro ao carregar questões. Recarregue a página.', 'error', 5000); return; }
       }
+      if (!_studyBindingCurrent(binding)) return;
       // Estudo Livre: 20 questões aleatórias de TODOS os temas, sem precisar selecionar eixos
       _studySelectedAxes.clear();
       NEFRO_AXES.forEach(a => _studySelectedAxes.add(a.id));
@@ -1096,11 +1122,13 @@
     }
 
     async function startSRStudyAllMode() {
+      const binding = _studyCaptureBinding();
       if (typeof topics === 'undefined') {
         _toast('Carregando questões…', 'info', 30000);
         try { await window._loadTopics(); document.querySelector('.nq-toast')?.remove(); }
         catch { _toast('Erro ao carregar questões. Recarregue a página.', 'error', 5000); return; }
       }
+      if (!_studyBindingCurrent(binding)) return;
       // Revisão Espaçada com todos os temas
       _studySelectedAxes.clear();
       NEFRO_AXES.forEach(a => _studySelectedAxes.add(a.id));
@@ -1117,13 +1145,15 @@
     }
 
     async function startScheduledSRStudyMode() {
+      const binding = _studyCaptureBinding();
       if (typeof topics === 'undefined') {
         _toast('Carregando questões…', 'info', 30000);
         try { await window._loadTopics(); document.querySelector('.nq-toast')?.remove(); }
         catch { _toast('Erro ao carregar questões. Recarregue a página.', 'error', 5000); return; }
       }
+      if (!_studyBindingCurrent(binding)) return;
       let cards = {};
-      try { cards = JSON.parse(localStorage.getItem('nefroquest-sr-data') || '{}'); } catch {}
+      try { cards = JSON.parse(_studyProgressStorage().getItem('nefroquest-sr-data') || '{}'); } catch {}
       const today = new Date().setHours(0, 0, 0, 0);
       const dueIds = new Set(Object.entries(cards)
         .filter(([, card]) => card && typeof card === 'object' && Number.isFinite(Number(card.due)) && Number(card.due) <= today)
@@ -1359,6 +1389,7 @@
     }
     
     function renderStudyQuestion() {
+      if (!_studyBindingCurrent() || !studyModeActive) return;
       resetMentorQuestion();
       if (studyModeIndex >= studyModeQuestions.length) {
         showStudyModeResults();
@@ -1401,7 +1432,7 @@
     }
     
     function answerStudyQuestion(selectedIdx) {
-      if (studyModeIndex >= studyModeQuestions.length) return;
+      if (!_studyBindingCurrent() || !studyModeActive || studyModeIndex >= studyModeQuestions.length || document.querySelector('#studyModePage [data-action="nextStudyQuestion"]')) return;
       const q = studyModeQuestions[studyModeIndex];
       const isCorrect = selectedIdx === q.ans;
       
@@ -1448,7 +1479,7 @@
       
       // Atualizar contadores
       updateSRData(q.qid, isCorrect);
-      localStorage.setItem('nq_last_study', Date.now().toString());
+      _studyProgressStorage().setItem('nq_last_study', Date.now().toString());
       if (typeof trackQuestionAnswer === 'function') {
         trackQuestionAnswer(q, isCorrect, 0);
       }
@@ -1507,9 +1538,10 @@
     
     let _loadingStudyNext = false;
     function nextStudyQuestion() {
-      if (_loadingStudyNext) return;
+      if (_loadingStudyNext || !_studyBindingCurrent() || !studyModeActive) return;
       _loadingStudyNext = true;
-      setTimeout(() => { _loadingStudyNext = false; }, 400);
+      const binding = _studyProgressBinding;
+      setTimeout(() => { if (_studyBindingCurrent(binding)) _loadingStudyNext = false; }, 400);
 
       studyModeIndex++;
       _saveStudyState();
@@ -1570,6 +1602,7 @@
     // pedido em andamento) em vez de chamar a IA de novo. Só "Tentar
     // novamente", depois de uma falha, faz um novo pedido.
     const _diagPorSessao = new Map();
+    const _studyDiagnosisControllers = new Set();
     let _diagUltimoPedido = null;
 
     function _assinaturaDaSessao(correct, wrong) {
@@ -1616,33 +1649,41 @@
         <div role="status" aria-live="polite">${corpo}</div>`;
     }
 
-    async function _pedirDiagnostico(correct, wrong, accuracy) {
+    async function _pedirDiagnostico(correct, wrong, accuracy, binding = _studyCaptureBinding(), controller = new AbortController()) {
       const axes = Object.entries(_studyAxisStats).map(([cat, stats]) => {
         const axis = NEFRO_AXES.find(a => a.cat === cat);
         return { name: axis ? axis.label : cat, correct: stats.correct, wrong: stats.wrong };
       });
       try {
         const _diagToken = (typeof window.getAuthToken === 'function') ? (await window.getAuthToken()) : null;
+        if (!_studyBindingCurrent(binding) || controller.signal.aborted) return { estado: 'cancelado' };
         const res = await fetch(`${SUPA_URL}/functions/v1/ai-diagnosis`, {
+          signal: controller.signal,
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'apikey': SUPA_KEY, 'Authorization': `Bearer ${_diagToken || SUPA_KEY}` },
           body: JSON.stringify({ axes, totalCorrect: correct, totalWrong: wrong, accuracy }),
         });
+        if (!_studyBindingCurrent(binding) || controller.signal.aborted) return { estado: 'cancelado' };
         if (res.status === 429) { _esgotarDiagQuotaLocal(); return { estado: 'recusado' }; }
         if (res.status === 401) return { estado: 'sessao' };
         if (!res.ok) throw new Error('HTTP ' + res.status);
         const { diagnosis } = await res.json();
+        if (!_studyBindingCurrent(binding) || controller.signal.aborted) return { estado: 'cancelado' };
         if (!diagnosis) throw new Error('empty');
         _incrementDiagQuota();
         return { estado: 'pronto', texto: diagnosis };
       } catch (err) {
+        if (!_studyBindingCurrent(binding) || controller.signal.aborted) return { estado: 'cancelado' };
         _track('error_diagnosis', { msg: String(err) });
         return { estado: 'falha' };
       }
     }
 
     async function _fetchDiagnosis(total, correct, wrong, accuracy, { novaTentativa = false } = {}) {
-      if (!document.getElementById('aiDiagnosisCard')) return;
+      const card = document.getElementById('aiDiagnosisCard');
+      const binding = _studyCaptureBinding();
+      const current = () => _studyBindingCurrent(binding) && card && card === document.getElementById('aiDiagnosisCard');
+      if (!current()) return;
       _diagUltimoPedido = { total, correct, wrong, accuracy };
 
       const isGuest = typeof authUser === 'undefined' || authUser === null;
@@ -1652,7 +1693,8 @@
       const anterior = _diagPorSessao.get(chave);
       if (anterior?.promessa) {
         _desenharDiagnostico({ estado: 'carregando' });
-        _desenharDiagnostico(await anterior.promessa);
+        const result = await anterior.promessa;
+        if (current()) _desenharDiagnostico(result);
         return;
       }
       // Só uma falha pode ser repetida, e só a pedido.
@@ -1661,19 +1703,24 @@
       if (!_canRunDiagnosis()) { _desenharDiagnostico({ estado: 'sem-cota' }); return; }
 
       _desenharDiagnostico({ estado: 'carregando' });
-      const promessa = _pedirDiagnostico(correct, wrong, accuracy);
+      const controller = new AbortController();
+      _studyDiagnosisControllers.add(controller);
+      const promessa = _pedirDiagnostico(correct, wrong, accuracy, binding, controller);
       _diagPorSessao.set(chave, { estado: 'carregando', promessa });
       const resultado = await promessa;
+      _studyDiagnosisControllers.delete(controller);
+      if (!current() || resultado.estado === 'cancelado') return;
       _diagPorSessao.set(chave, resultado);
       _desenharDiagnostico(resultado);
     }
 
     function tentarDiagnosticoNovamente() {
+      const binding = _studyCaptureBinding();
       const p = _diagUltimoPedido;
       if (!p) return;
       _fetchDiagnosis(p.total, p.correct, p.wrong, p.accuracy, { novaTentativa: true })
         // O botão some ao redesenhar; o foco vai para o cartão, não se perde.
-        .then(() => document.getElementById('aiDiagnosisCard')?.focus({ preventScroll: true }));
+        .then(() => { if (_studyBindingCurrent(binding)) document.getElementById('aiDiagnosisCard')?.focus({ preventScroll: true }); });
     }
     window.tentarDiagnosticoNovamente = tentarDiagnosticoNovamente;
 
@@ -1870,6 +1917,7 @@
     }
 
     async function _sendMentorMessage() {
+      const binding = _studyCaptureBinding();
       const contextVersion = _mentorContextVersion;
       const q = _mentorCurrentQ;
       const input = document.getElementById('mentorInput');
@@ -1901,7 +1949,7 @@
       try {
         const _mentorToken = (typeof window.getAuthToken === 'function') ? (await window.getAuthToken()) : null;
         // A autenticação pode demorar: não enviar se a questão já mudou.
-        if (contextVersion !== _mentorContextVersion || !input.isConnected) return;
+        if (!_studyBindingCurrent(binding) || contextVersion !== _mentorContextVersion || !input.isConnected) return;
         const res = await fetch(`${SUPA_URL}/functions/v1/ai-mentor`, {
           signal: requestController.signal,
           method: 'POST',
@@ -1917,7 +1965,7 @@
         });
 
         const data = await res.json();
-        if (contextVersion !== _mentorContextVersion || !chat.isConnected) return;
+        if (!_studyBindingCurrent(binding) || contextVersion !== _mentorContextVersion || !chat.isConnected) return;
         if (res.status === 429) throw new Error('quota_exceeded');
         if (!res.ok || !data.reply) throw new Error(data.error || 'Erro ao contatar o mentor.');
 
@@ -1938,7 +1986,7 @@
           document.querySelector('[data-action="openMentorModal"]')?.remove();
         }
       } catch (err) {
-        if (contextVersion !== _mentorContextVersion || requestController.signal.aborted) return;
+        if (!_studyBindingCurrent(binding) || contextVersion !== _mentorContextVersion || requestController.signal.aborted) return;
         _track('error_mentor_send', { msg: String(err) });
         thinkingEl.classList.remove('mentor-thinking');
         if (String(err).includes('quota_exceeded')) {
@@ -1953,7 +2001,7 @@
       } finally {
         if (_mentorRequestController === requestController) _mentorRequestController = null;
         input.disabled = false;
-        if (input.isConnected && input.closest('.mentor-panel')) input.focus();
+        if (_studyBindingCurrent(binding) && input.isConnected && input.closest('.mentor-panel')) input.focus();
       }
     }
 
@@ -2009,3 +2057,21 @@
     window.closeMentorModalAndLogin = closeMentorModalAndLogin;
     window.showRegisterFromDiagnosis = showRegisterFromDiagnosis;
     window.showLoginFromDiagnosis = showLoginFromDiagnosis;
+
+    window.NQPilot?.onContextChange(() => {
+      resetMentorQuestion();
+      _studyDiagnosisControllers.forEach(controller => controller.abort());
+      _studyDiagnosisControllers.clear();
+      _diagPorSessao.clear();
+      _diagUltimoPedido = null;
+      studyModeActive = false;
+      studyModeQuestions = [];
+      studyModeIndex = 0;
+      studyModeCorrect = 0;
+      studyModeWrong = 0;
+      _studyAxisStats = {};
+      _loadingStudyNext = false;
+      _studySelectedAxes.clear();
+      document.querySelectorAll('.study-mode-popup, #studyModePage, .stats-popup').forEach(element => element.remove());
+      _restoreStudyOrigin(false);
+    });

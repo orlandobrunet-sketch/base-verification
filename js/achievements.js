@@ -1,6 +1,12 @@
 // NefroQuest — Achievement System
 // Plain script — shares global scope with game.js
 
+function _nqAchievementProgressStorage() {
+  if (typeof window !== 'undefined' && typeof window.nqProgressStorage === 'function') return window.nqProgressStorage();
+  if (typeof window !== 'undefined' && window.NQPilot && window.NQPilot.active) throw new Error('Armazenamento do piloto indisponível.');
+  return localStorage;
+}
+
     // ============ SISTEMA DE CONQUISTAS/ACHIEVEMENTS ============
     const ACHIEVEMENTS_KEY = 'nefroquest-achievements';
     
@@ -101,7 +107,7 @@
         icon: '🏆',
         imgIcon: 'assets/achievements/campeao.webp',
         condition: (stats) => {
-          return !!localStorage.getItem('nefroquest-arqui-defeated');
+          return !!_nqAchievementProgressStorage().getItem('nefroquest-arqui-defeated');
         }
       },
       {
@@ -110,7 +116,7 @@
         description: 'Vença o jogo no modo Hardcore (1 vida, somente difíceis)',
         icon: '💀',
         condition: (stats) => {
-          return !!localStorage.getItem('nefroquest-hardcore-completed');
+          return !!_nqAchievementProgressStorage().getItem('nefroquest-hardcore-completed');
         }
       },
       {
@@ -120,7 +126,7 @@
         icon: '⚗️',
         condition: () => {
           try {
-            const p = JSON.parse(localStorage.getItem('nq-acidbase-progress') || '{}');
+            const p = JSON.parse(_nqAchievementProgressStorage().getItem('nq-acidbase-progress') || '{}');
             const done = new Set(p.completed || []);
             // IDs em sync com CASES em js/minigame-acidbase.js
             const allCases = ['aldric', 'mara', 'theron', 'vance', 'kael', 'vorgath', 'selene', 'edrin', 'liora', 'borius', 'isolde', 'corvin', 'ophelia', 'helena', 'brann', 'nara', 'galen', 'maelis', 'ivar', 'mireth'];
@@ -135,7 +141,7 @@
         icon: '📚',
         condition: () => {
           try {
-            const unlockedRefs = new Set(JSON.parse(localStorage.getItem('nq-unlocked-refs') || '[]'));
+            const unlockedRefs = new Set(JSON.parse(_nqAchievementProgressStorage().getItem('nq-unlocked-refs') || '[]'));
             const reachableRefs = new Set(Array.isArray(window.questionBank)
               ? window.questionBank.flatMap(question => Array.isArray(question.r) ? question.r : []).filter(Boolean)
               : []);
@@ -143,7 +149,7 @@
               ? [...reachableRefs].filter(key => Object.prototype.hasOwnProperty.call(refsDB, key))
               : [];
             if (validRefs.length === 0 || !validRefs.every(key => unlockedRefs.has(key))) return false;
-            const unlockedArts = JSON.parse(localStorage.getItem('unlockedArticles') || '[]');
+            const unlockedArts = JSON.parse(_nqAchievementProgressStorage().getItem('unlockedArticles') || '[]');
             const totalArts = typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles) ? nefroArticles.length : 0;
             if (totalArts === 0 || unlockedArts.length < totalArts) return false;
             return true;
@@ -157,7 +163,7 @@
         icon: '🌿',
         condition: () => {
           try {
-            const totalAccumulatedKnowledge = parseInt(localStorage.getItem('nefroquest_total_accumulated_knowledge') || '0', 10);
+            const totalAccumulatedKnowledge = parseInt(_nqAchievementProgressStorage().getItem('nefroquest_total_accumulated_knowledge') || '0', 10);
             return totalAccumulatedKnowledge >= 1000;
           } catch { return false; }
         }
@@ -230,7 +236,7 @@
     // Consulta a condição vigente, sem conceder conquistas ou gravar storage.
     function getGrimoireAchievementProgress() {
       const readArray = key => {
-        try { const value = JSON.parse(localStorage.getItem(key) || '[]'); return Array.isArray(value) ? value : []; }
+        try { const value = JSON.parse(_nqAchievementProgressStorage().getItem(key) || '[]'); return Array.isArray(value) ? value : []; }
         catch { return []; }
       };
       const reachableRefs = new Set(Array.isArray(window.questionBank)
@@ -300,17 +306,21 @@
     }
 
     function getUnlockedAchievements() {
-      const raw = localStorage.getItem(ACHIEVEMENTS_KEY);
-      try { return raw ? JSON.parse(raw) : []; } catch(e) { return []; }
+      try {
+        const raw = _nqAchievementProgressStorage().getItem(ACHIEVEMENTS_KEY);
+        return raw ? JSON.parse(raw) : [];
+      } catch(e) { return []; }
     }
     
     function saveUnlockedAchievements(unlocked) {
-      if (typeof isProgressSandbox === 'function' && isProgressSandbox()) return;
-      try { localStorage.setItem(ACHIEVEMENTS_KEY, JSON.stringify(unlocked)); } catch(e) {
+      if (typeof isProgressSandbox === 'function' && isProgressSandbox()) return false;
+      try { _nqAchievementProgressStorage().setItem(ACHIEVEMENTS_KEY, JSON.stringify(unlocked)); } catch(e) {
         if (typeof _toast === 'function') _toast('Conquista desbloqueada, mas não foi possível salvar localmente — armazenamento cheio.', 'warning', 6000);
         if (typeof _track === 'function') _track('error_localstorage_achievements', {});
+        return false;
       }
-      _scheduleCloudSync();
+      if (!window.NQPilot?.active) _scheduleCloudSync();
+      return true;
     }
     
     function checkAchievements() {
@@ -327,8 +337,14 @@
       });
       
       if (newUnlocked.length > 0) {
-        saveUnlockedAchievements(unlocked);
-        newUnlocked.forEach(ach => showAchievementNotification(ach));
+        if (!saveUnlockedAchievements(unlocked)) return;
+        const binding = window.NQPilot?.captureBinding();
+        const announce = () => {
+          if (window.NQPilot && !window.NQPilot.matchesBinding(binding)) return;
+          newUnlocked.forEach(ach => showAchievementNotification(ach));
+        };
+        if (window.NQPilot?.active) window.NQPilot.afterCommit(announce);
+        else announce();
       }
     }
     
@@ -367,10 +383,15 @@
       }, 5000);
     }
     
-    function closeAchievementsModal() {
-      closeAchievementArtwork();
+    function closeAchievementsModal(options) {
+      closeAchievementArtwork(options);
       document.querySelectorAll('.achievements-popup').forEach(el => el.remove());
     }
+
+    window.NQPilot?.onContextChange(() => {
+      closeAchievementsModal({ restoreFocus: false });
+      document.getElementById('nqAchievementCelebrations')?.remove();
+    });
 
 
     // Ícones vetoriais aprovados para o acervo; não altera critérios de conquista.

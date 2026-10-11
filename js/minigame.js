@@ -7,13 +7,46 @@
     let _minigameTriggerCount = 0;
     let _shownMinigameIds = new Set(); // anti-repetição na sessão
     const MINIGAME_TRIGGER_AT = [25, 50, 75]; // 3 triggers GARANTIDOS
+    const _minigameTimers = new Set();
+    const _minigameClosers = new Set();
+
+    function _minigameCaptureBinding() {
+      return {progress: window.NQPilot?.captureBinding(),
+        journey: typeof _captureJourneyBinding === 'function' ? _captureJourneyBinding() : null};
+    }
+    function _minigameBindingCurrent(binding) {
+      return !!binding && (!window.NQPilot || window.NQPilot.matchesBinding(binding.progress)) &&
+        (!binding.journey || typeof _matchesJourneyBinding !== 'function' || _matchesJourneyBinding(binding.journey));
+    }
+    function _minigameProgressStorage(binding) {
+      if (!_minigameBindingCurrent(binding)) throw new Error('A jornada deste desafio mudou.');
+      if (typeof window.nqProgressStorage === 'function') return window.nqProgressStorage(binding.progress);
+      if (window.NQPilot?.active) throw new Error('Armazenamento do piloto indisponível.');
+      return localStorage;
+    }
+    function _minigameDelay(binding, callback, delay) {
+      const timer = setTimeout(() => {
+        _minigameTimers.delete(timer);
+        if (_minigameBindingCurrent(binding)) callback();
+      }, delay);
+      _minigameTimers.add(timer);
+      return timer;
+    }
+    window.NQPilot?.onContextChange(() => {
+      _minigameTimers.forEach(timer => clearTimeout(timer));
+      _minigameTimers.clear();
+      [..._minigameClosers].forEach(close => close({restoreFocus:false, restoreOrigin:false}));
+      _minigameTriggerCount = 0;
+      _shownMinigameIds.clear();
+    });
 
     function maybeTriggerMinigame(atCorrectTotal) {
       if (!MINIGAME_TRIGGER_AT.includes(atCorrectTotal)) return;
       if (_minigameTriggerCount >= MINIGAME_TRIGGER_AT.length) return;
       const triggerIdx = MINIGAME_TRIGGER_AT.indexOf(atCorrectTotal);
       _minigameTriggerCount++;
-      setTimeout(() => showMinigameIntroPopup(atCorrectTotal, triggerIdx), 1500);
+      const binding = _minigameCaptureBinding();
+      _minigameDelay(binding, () => showMinigameIntroPopup(atCorrectTotal, triggerIdx, binding), 1500);
     }
 
     const _minigameIntros = [
@@ -28,7 +61,8 @@
         reward:"O Oráculo oferece o maior tesouro para o digno!" }
     ];
 
-    function showMinigameIntroPopup(atCorrectTotal, triggerIdx) {
+    function showMinigameIntroPopup(atCorrectTotal, triggerIdx, binding = _minigameCaptureBinding()) {
+      if (!_minigameBindingCurrent(binding)) return;
       document.getElementById('minigameIntroPopup')?.remove();
       const intro = _minigameIntros[triggerIdx] || _minigameIntros[0];
       const symbols = [
@@ -74,10 +108,13 @@
           </footer>
           </section>`;
       document.body.appendChild(popup);
+      const close = () => { _minigameClosers.delete(close); popup.remove(); };
+      _minigameClosers.add(close);
       nqDialogo(popup, { painel: popup.querySelector('.nqinvite-card') });
       popup.querySelector('#acceptMinigameBtn').addEventListener('click', () => {
-        popup.remove();
-        showRapidQuizMinigame();
+        if (!_minigameBindingCurrent(binding)) { close(); return; }
+        close();
+        showRapidQuizMinigame(false, binding);
       });
     }
 
@@ -92,7 +129,8 @@
     // Agora é página (nqPaginaPropria); o cronômetro corre só enquanto a
     // afirmação está sem resposta, a explicação fica até o jogador avançar, a
     // correção diz em texto e concluir — por qualquer caminho — entrega tudo.
-    function showRapidQuizMinigame(standalone) {
+    function showRapidQuizMinigame(standalone, binding = _minigameCaptureBinding()) {
+      if (!_minigameBindingCurrent(binding)) return;
       standalone = !!standalone;
       const POOL_SIZE = 10;
       // Selecionar 10 questões evitando repetição na sessão
@@ -114,12 +152,14 @@
       let correctCount = 0;
       let timerInterval = null;
       let _answered = false;
+      let resultsShown = false;
       let concluir = null; // definido no resultado: entrega o prêmio e fecha
       const TIME_PER_Q = 12;
 
       const { pagina, fechar } = nqPaginaPropria('rapidQuizPage', 'Julgamento Rápido', {
         classe: 'nq-exam nq-julgamento',
         aoTeclar: e => {
+          if (!_minigameBindingCurrent(binding)) return;
           if (e.key === 'Escape') { e.preventDefault(); return concluir ? concluir() : sair(); }
           if (_answered || concluir || e.ctrlKey || e.metaKey || e.altKey) return;
           const key = (e.key || '').toUpperCase();
@@ -127,14 +167,23 @@
           else if (['F', '2', 'E'].includes(key)) { e.preventDefault(); responder(false); }
         },
       });
-      const sair = () => { if (timerInterval) clearInterval(timerInterval); fechar(); };
+      const sair = (options = {}) => {
+        if (timerInterval) clearInterval(timerInterval);
+        timerInterval = null;
+        _minigameClosers.delete(sair);
+        fechar(options);
+      };
+      _minigameClosers.add(sair);
+      const current = () => pagina.isConnected && _minigameBindingCurrent(binding);
       const desenhar = (html, foco) => {
+        if (!current()) return;
         pagina.innerHTML = `<div class="nq-study-content nq-exam-intro">${html}</div>`;
         pagina.querySelector(foco)?.focus({ preventScroll: true });
         window.scrollTo(0, 0);
       };
 
       function _renderMinigameQuestion() {
+        if (!current()) return;
         if (currentIdx >= pool.length) { showResults(); return; }
         const q = pool[currentIdx];
         let timeLeft = TIME_PER_Q;
@@ -164,6 +213,7 @@
         pagina.querySelector('#mgSair').addEventListener('click', sair);
 
         timerInterval = setInterval(() => {
+          if (!current()) { sair({restoreFocus:false, restoreOrigin:false}); return; }
           timeLeft -= 0.1;
           const fill = document.getElementById('mgTimerFill');
           if (fill) fill.style.width = Math.max(0, (timeLeft / TIME_PER_Q * 100)) + '%';
@@ -180,7 +230,7 @@
       }
 
       function responder(userAns) {
-        if (_answered || !pagina.isConnected) return; // previne double-click / double-fire por timer
+        if (_answered || !current()) return; // previne double-click / double-fire por timer
         _answered = true;
         if (timerInterval) clearInterval(timerInterval);
         const q = pool[currentIdx];
@@ -245,6 +295,8 @@
       }
 
       function showResults() {
+        if (!current() || resultsShown) return;
+        resultsShown = true;
         if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
         const total = pool.length;
         const pct = correctCount / total;
@@ -270,14 +322,17 @@
         if (standalone) {
           const bestKey = 'nefroquest-minigame-best';
           let prev = 0;
-          try { prev = parseInt(localStorage.getItem(bestKey) || '0', 10); } catch (e) {}
+          try { prev = parseInt(_minigameProgressStorage(binding).getItem(bestKey) || '0', 10); } catch (e) {}
           if (correctCount > prev) {
-            try { localStorage.setItem(bestKey, String(correctCount)); } catch (e) {}
-            recorde = '<p class="nq-julgamento-destaque">Novo recorde pessoal!</p>';
+            try {
+              _minigameProgressStorage(binding).setItem(bestKey, String(correctCount));
+              recorde = '<p class="nq-julgamento-destaque">Novo recorde pessoal!</p>';
+            } catch (e) {}
           } else if (prev > 0) {
             recorde = `<p>Recorde pessoal: ${prev} de 10.</p>`;
           }
         }
+        if (!current()) return;
 
         const premio = standalone
           ? '<p>Modo livre: sem recompensas de jogo.</p>'
@@ -289,13 +344,13 @@
 
         let concluido = false;
         concluir = () => {
-          if (concluido) return;
+          if (concluido || !current()) return;
           concluido = true;
-          fechar();
+          sair();
           if (standalone) return;
           ['renderHUD', 'updateBadges', 'saveGame'].forEach(fn => { try { window[fn]?.(); } catch (e) {} });
           if (itemReward) {
-            setTimeout(() => {
+            _minigameDelay(binding, () => {
               try { equipOrSell(itemReward.slot, itemReward.item, m => log(m)); } catch(e) { _track('error_equip_item_reward', { msg: String(e) }); }
             }, 400);
           }
@@ -457,6 +512,7 @@
     }
 
     function showNarrativePopup(stage){
+      const binding = _minigameCaptureBinding();
       const popup = document.createElement('div');
       popup.className='narrative-popup';
       const isFinale = stage.at >= 100;
@@ -577,11 +633,11 @@
       // Stun: acionar mecânica após popup aparecer
       if (isStun) {
         playSound('wrong');
-        setTimeout(() => { if (typeof applyBossStun === 'function') applyBossStun(); }, 300);
+        _minigameDelay(binding, () => { if (typeof applyBossStun === 'function') applyBossStun(); }, 300);
         log('⚡ Atordoado pelo Arqui-Nefromante! Equipamentos bloqueados (93-97).');
       } else if (isStunRecovery) {
         playSound('levelup');
-        setTimeout(() => { if (typeof removeStun === 'function') removeStun(); }, 300);
+        _minigameDelay(binding, () => { if (typeof removeStun === 'function') removeStun(); }, 300);
         log('💚 Recuperado! Equipamentos voltaram a funcionar.');
       } else if (isFinale) {
         log('🏆 VITÓRIA! Você derrotou o Arqui-Nefromante e salvou os rins do reino!');
@@ -641,7 +697,7 @@
 
       // Pré-seleciona a dificuldade recomendada pelo Ritual de Iniciação, se houver.
       let _rec = '';
-      try { _rec = localStorage.getItem('nefroquest-recommended-difficulty') || ''; } catch (e) {}
+      try { _rec = _minigameProgressStorage(_minigameCaptureBinding()).getItem('nefroquest-recommended-difficulty') || ''; } catch (e) {}
       const difficultyKeys = ['easy','normal','hard','hardcore'];
       const ritualRecommendation = difficultyKeys.includes(_rec) ? _rec : '';
       const currentDifficulty = difficultyKeys.includes(state.difficulty) ? state.difficulty : 'normal';
@@ -782,6 +838,14 @@
               </aside>
             </div>
 
+            <fieldset class="nq-pilot-choice">
+              <legend>Piloto opcional de personagens</legend>
+              <label for="characterPilotOptIn"><input type="checkbox" id="characterPilotOptIn" aria-describedby="characterPilotRules characterPilotAvailability"><span>Ativar bônus nesta nova jornada</span></label>
+              <p id="characterPilotRules">Nas primeiras 20 respostas da campanha, incluindo erros: Nephros recebe +1 XP por acerto (até 20 XP); Glomerulus recebe +2 ouro por acerto (até 40 ouro); Aquaria previne uma perda de vida.</p>
+              <p>Jornada local, separada da jornada normal e sempre fora do ranking. A classe escolhida vale até o fim deste piloto.</p>
+              <p id="characterPilotAvailability" role="status">Disponível em Fácil, Médio e Difícil. Sem piloto no Hardcore.</p>
+            </fieldset>
+
             <footer class="nql-difficulty__footer">
               <p>A escolha pode ser refeita ao iniciar uma nova jornada.</p>
               <div class="nql-difficulty__actions">
@@ -808,6 +872,7 @@
         const confirmName = confirm?.querySelector('[data-diff-confirm-name]');
         if (confirmName) confirmName.textContent = definition.name;
         if (confirm) confirm.setAttribute('aria-label', `Continuar com dificuldade ${definition.name}`);
+        if (typeof window.refreshCharacterPilotChoice === 'function') window.refreshCharacterPilotChoice(diff);
         if (announce) {
           const status = overlay.querySelector('#diffSelectionStatus');
           if (status) status.textContent = `${definition.name} selecionado: ${definition.lives} ${definition.lives === 1 ? 'vida' : 'vidas'}.`;
@@ -817,6 +882,9 @@
       renderDiff();
       document.body.appendChild(overlay);
       updateDifficultyPreview(selectedDiff);
+      overlay.querySelector('#characterPilotOptIn')?.addEventListener('change', () => {
+        if (typeof window.refreshCharacterPilotChoice === 'function') window.refreshCharacterPilotChoice(selectedDiff);
+      });
       overlay.querySelector('.difficulty-card[aria-checked="true"]')?.focus({ preventScroll: true });
       isolateBackground();
 
@@ -851,7 +919,7 @@
 
         if (event.key === 'Tab') {
           const modal = overlay.querySelector('.difficulty-modal');
-          const focusable = Array.from(modal.querySelectorAll('button:not([disabled])'))
+          const focusable = Array.from(modal.querySelectorAll('button:not([disabled]), input:not([disabled]), a[href], select:not([disabled]), textarea:not([disabled]), [tabindex="0"]'))
             .filter(element => element.tabIndex >= 0);
           if (!focusable.length) return;
           const first = focusable[0];
@@ -903,24 +971,31 @@
     // Agora é página (nqPaginaPropria), a resposta é única, a falha tem estado
     // próprio com nova tentativa e nada é gravado, e a correção diz em texto.
     async function openRitual() {
+      const binding = _minigameCaptureBinding();
       if (typeof playSound === 'function') playSound('click');
       const { pagina, fechar } = nqPaginaPropria('ritualPage', 'Ritual de Iniciação', {
         classe: 'nq-exam nq-ritual',
-        aoTeclar: e => { if (e.key === 'Escape') { e.preventDefault(); fechar(); } },
+        aoTeclar: e => { if (e.key === 'Escape') { e.preventDefault(); sair(); } },
       });
       pagina.dataset.nqUi = 'lumen';
+      const currentPage = () => pagina.isConnected && _minigameBindingCurrent(binding);
+      const sair = (options = {}) => { _minigameClosers.delete(sair); fechar(options); };
+      _minigameClosers.add(sair);
 
       const used = new Set();
       const ritualResults = [];
+      let ritualFinished = false;
       let step = 0, band = 'medium', correctCount = 0, hardCorrect = 0, hardFaced = 0, current = null;
       const letras = ['A', 'B', 'C', 'D', 'E'];
       const desenhar = (html, foco) => {
+        if (!currentPage()) return;
         pagina.innerHTML = `<div class="nq-study-content nq-exam-intro">${html}</div>`;
         pagina.querySelector(foco)?.focus({ preventScroll: true });
         window.scrollTo(0, 0);
       };
 
       function showIntro(erro = '') {
+        if (!currentPage()) return;
         desenhar(`
           <div class="nql-ritual-intro">
             <header class="nql-ritual-heading">
@@ -936,10 +1011,11 @@
             <button type="button" class="btn sec" id="ritualSair">Agora não</button>
           </div></div>`, erro ? '#ritualStart' : '#ritualTitulo');
         pagina.querySelector('#ritualStart').addEventListener('click', comecar);
-        pagina.querySelector('#ritualSair').addEventListener('click', fechar);
+        pagina.querySelector('#ritualSair').addEventListener('click', sair);
       }
 
       async function comecar() {
+        if (!currentPage()) return;
         const botao = pagina.querySelector('#ritualStart');
         if (botao) { botao.disabled = true; botao.textContent = 'Preparando as questões…'; }
         try {
@@ -948,11 +1024,12 @@
           showIntro('Não foi possível carregar as questões. Verifique a conexão e tente de novo. Nada foi registrado.');
           return;
         }
-        if (!pagina.isConnected) return;
+        if (!currentPage()) return;
         nextQuestion();
       }
 
       function nextQuestion() {
+        if (!currentPage()) return;
         if (step >= RITUAL_LEN) return showResult();
         current = _ritualPick(band, used);
         if (!current) {
@@ -985,6 +1062,7 @@
       }
 
       function answer(escolha, ans) {
+        if (!currentPage() || ritualFinished) return;
         const botoes = [...pagina.querySelectorAll('#ritualOpts button')];
         // Resposta única: desabilitar de verdade, não só para o mouse.
         if (botoes.some(b => b.disabled)) return;
@@ -1009,7 +1087,7 @@
           if (typeof playSound === 'function') playSound('wrong');
           band = (band === 'hard') ? 'medium' : 'easy';
         }
-        setTimeout(() => { if (pagina.isConnected) nextQuestion(); }, 900);
+        _minigameDelay(binding, () => { if (currentPage()) nextQuestion(); }, 900);
       }
 
       function recommend() {
@@ -1024,15 +1102,19 @@
       }
 
       function showResult() {
+        if (!currentPage() || ritualFinished) return;
+        ritualFinished = true;
         const rec = recommend();
         try {
-          localStorage.setItem('nefroquest-recommended-difficulty', rec);
-          localStorage.setItem('nefroquest-ritual-done', String(Date.now()));
+          _minigameProgressStorage(binding).setItem('nefroquest-recommended-difficulty', rec);
+          _minigameProgressStorage(binding).setItem('nefroquest-ritual-done', String(Date.now()));
         } catch (e) {}
+        if (!currentPage()) return;
         // PED-3B: semear FSRS com o resultado de cada questão do Ritual
         if (typeof updateSRData === 'function') {
-          ritualResults.forEach(r => { if (r.qid) updateSRData(r.qid, r.isCorrect); });
+          ritualResults.forEach(r => { if (r.qid && currentPage()) updateSRData(r.qid, r.isCorrect); });
         }
+        if (!currentPage()) return;
         const LABEL = { easy: 'Fácil', normal: 'Médio', hard: 'Difícil', hardcore: 'Hardcore' };
         if (typeof playSound === 'function') playSound('levelup');
         desenhar(`
@@ -1047,10 +1129,11 @@
             <button type="button" class="btn sec" id="ritualSair">Voltar (a recomendação fica salva)</button>
           </div></div>`, '#ritualTitulo');
         pagina.querySelector('#ritualGo').addEventListener('click', () => {
-          fechar();
+          if (!currentPage()) return;
+          sair();
           if (typeof startNewFromWelcome === 'function') startNewFromWelcome();
         });
-        pagina.querySelector('#ritualSair').addEventListener('click', fechar);
+        pagina.querySelector('#ritualSair').addEventListener('click', sair);
       }
 
       showIntro();
@@ -1069,7 +1152,7 @@
       state.lastSubmittedName = playerName;
       
       if (pendingScore) {
-        boardPush(pendingScore.score, pendingScore.level, playerName);
+        boardPush(pendingScore.score, pendingScore.level, playerName, pendingScore.origin);
         pendingScore = null;
       }
       
@@ -1079,7 +1162,7 @@
     
     function skipSaveScore() {
       if (pendingScore) {
-        boardPush(pendingScore.score, pendingScore.level, 'Anônimo');
+        boardPush(pendingScore.score, pendingScore.level, 'Anônimo', pendingScore.origin);
         pendingScore = null;
       }
       

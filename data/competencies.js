@@ -398,16 +398,24 @@ function nqClassifyText(text, cat) {
 // ── Persistência de stats de competência (persiste entre jogos) ─────────────
 var NQ_COMP_STATS_KEY = 'nefroquest-comp-stats';
 
+// Competency records follow the explicitly selected journey domain.
+// The taxonomy and classification rules remain the authoritative data above.
+function nqCompProgressStorage() {
+  if (typeof window.nqProgressStorage === 'function') return window.nqProgressStorage();
+  if (window.NQPilot?.active) throw new Error('Pilot progress storage unavailable');
+  return localStorage;
+}
+
 function nqGetCompStats() {
   try {
-    var parsed = JSON.parse(localStorage.getItem(NQ_COMP_STATS_KEY) || '{}');
+    var parsed = JSON.parse(nqCompProgressStorage().getItem(NQ_COMP_STATS_KEY) || '{}');
     return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : {};
   }
   catch (e) { return {}; }
 }
 
 function nqSaveCompStats(stats) {
-  try { localStorage.setItem(NQ_COMP_STATS_KEY, JSON.stringify(stats)); } catch (e) {}
+  try { nqCompProgressStorage().setItem(NQ_COMP_STATS_KEY, JSON.stringify(stats)); } catch (e) {}
 }
 
 // Registra uma resposta e atualiza stats da(s) competência(s) da questão
