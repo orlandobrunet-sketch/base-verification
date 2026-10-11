@@ -1362,6 +1362,20 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary strong { overflow-wrap: anywhere; }
 }
 
+/* O container acompanha a fonte efetiva: em 1024px com texto a 200%, a
+ * largura mínima das rotas deixava apenas 167px para o card da jornada.
+ * Quando falta espaço, cada seção ocupa uma linha sem reduzir o texto.
+ * Nas duas colunas, a fórmula da divisória vertical permanece intacta. */
+@container nql-atrium (max-width: 32rem) {
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__journey,
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__routes { grid-column: 1 / -1; }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__routes {
+    padding-top: 2rem;
+    border-top: 1px solid var(--nql-line-strong);
+  }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__routes::before { display: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route,
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary,

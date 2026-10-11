@@ -106,7 +106,7 @@
   #forjaPage .nq-forja-palco { grid-template-columns: minmax(0, 1fr); gap: 1rem; padding: 1.25rem 0; }
   #forjaPage .nq-forja-guardiao img { width: 7rem; aspect-ratio: 1; border-radius: 50%; }
   #forjaPage .nq-forja-guardiao figcaption { margin-top: .4rem; max-width: none; }
-  #forjaPage[data-forge-state="decision"] .nq-forja-guardiao, #forjaPage[data-forge-state="complete"] .nq-forja-guardiao { display: flex; align-items: center; gap: .75rem; justify-self: start; text-align: left; }
+  #forjaPage[data-forge-state="decision"] .nq-forja-guardiao, #forjaPage[data-forge-state="complete"] .nq-forja-guardiao { display: flex; flex-direction: column; align-items: center; gap: .75rem; justify-self: center; text-align: center; }
   #forjaPage[data-forge-state="decision"] .nq-forja-guardiao img, #forjaPage[data-forge-state="complete"] .nq-forja-guardiao img { width: 3rem; }
   #forjaPage .nq-forja-grade { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
