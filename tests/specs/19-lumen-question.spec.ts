@@ -1,5 +1,12 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test';
 import { enterGame, injectGameState, waitForGame } from '../helpers/game';
+
+async function openVisibleHero(page: Page) {
+  const dockHero = page.locator('#mobileBottomDock > .mdock-btn.personagem[data-action="openMobileDrawer"]');
+  const trigger = await dockHero.isVisible() ? dockHero : page.locator('#mobileHeroBtn');
+  await expect(trigger).toBeVisible();
+  await trigger.click();
+}
 
 test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
   test.beforeEach(async ({ page }) => {
@@ -57,7 +64,7 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
     await expect(slots.first()).toHaveAttribute('aria-controls', 'nqEquipmentPreview');
 
     if (testInfo.project.name === 'mobile') {
-      await page.locator('#mobileHeroBtn').click();
+      await openVisibleHero(page);
       await expect(page.locator('.panel.left')).toHaveClass(/mobile-open/);
       await expect.poll(async () => (await page.locator('.panel.left').boundingBox())?.x ?? -1)
         .toBeGreaterThanOrEqual(0);
@@ -458,7 +465,7 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
     await page.emulateMedia({ reducedMotion: 'no-preference' });
     const openCard = async () => {
       if (testInfo.project.name === 'mobile') {
-        await page.locator('#mobileHeroBtn').click();
+        await openVisibleHero(page);
         await expect(page.locator('.panel.left')).toHaveClass(/mobile-open/);
       }
     };
@@ -603,7 +610,7 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
   test('respeita movimento reduzido e mantém o personagem e os equipamentos estáticos', async ({ page }, testInfo) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     if (testInfo.project.name === 'mobile') {
-      await page.locator('#mobileHeroBtn').click();
+      await openVisibleHero(page);
       await expect(page.locator('.panel.left')).toHaveClass(/mobile-open/);
     }
     await expect(page.locator('#heroImg')).toBeVisible();

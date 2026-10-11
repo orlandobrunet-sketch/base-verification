@@ -1526,6 +1526,12 @@ body.reading-mode:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[d
     padding-bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
   }
 
+  /* O dock já oferece Herói; o duplicado fixo cobre alternativas após rolar.
+   * Preservar o gatilho de reserva quando o dock ou seu botão não estiver disponível. */
+  body:has(#mainApp[data-nq-ui="lumen"]:not(.hidden)):not(.boss-battle-mode):not(.arqui-nefromante-final):has(#mobileBottomDock[style*="display: flex"]:not([hidden]):not(.hidden) > .mdock-btn.personagem[data-action="openMobileDrawer"]:not(:disabled):not([hidden]):not(.hidden)) #mobileHeroBtn {
+    display: none !important;
+  }
+
   body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] {
     width: 100%;
     padding: 0 .75rem .75rem;
