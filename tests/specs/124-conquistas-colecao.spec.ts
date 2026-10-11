@@ -51,9 +51,10 @@ test('coleção começa completa, reconhece posses e mostra progresso real sem c
   expect(await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), preservedKeys)).toEqual(before);
 });
 
-test('grade desktop mantém os cards uniformes e os requisitos alinhados sem corte', async ({ page }, info) => {
-  test.skip(info.project.name !== 'chromium', 'Em mobile os cards seguem o fluxo natural de leitura.');
+test('grade mantém os cards do mesmo tamanho e os requisitos inteiros em desktop e mobile', async ({ page }, info) => {
+  const rootFontSize = info.project.metadata.rootFontSize as number | undefined;
   const pane = await openCollection(page);
+  if (rootFontSize) await page.evaluate(size => { document.documentElement.style.fontSize = `${size}px`; }, rootFontSize);
   await expect.poll(async () => pane.locator('.nqd-achievement-grid').evaluate(grid => grid.style.getPropertyValue('--achievement-title-height'))).not.toBe('');
   const cards = await pane.locator('.nqd-achievement').evaluateAll(elements => elements.map(card => {
     const box = card.getBoundingClientRect();
@@ -64,9 +65,18 @@ test('grade desktop mantém os cards uniformes e os requisitos alinhados sem cor
       entire: [...range.getClientRects()].every(rect => rect.left >= box.left - 1 && rect.right <= box.right + 1 && rect.bottom <= box.bottom + 1),
       noScroll: !['auto', 'scroll'].includes(getComputedStyle(card).overflowY) && card.scrollHeight <= card.clientHeight + 1 };
   }));
-  for (const field of ['width', 'height', 'title', 'requirement'] as const) expect(Math.max(...cards.map(card => card[field])) - Math.min(...cards.map(card => card[field]))).toBeLessThan(1);
-  const progress = cards.map(card => card.progress).filter(Number.isFinite);
-  expect(Math.max(...progress) - Math.min(...progress)).toBeLessThan(1);
+  for (const field of ['width', 'height'] as const) expect(Math.max(...cards.map(card => card[field])) - Math.min(...cards.map(card => card[field]))).toBeLessThan(1);
+  const alignedSlotsRequired = await pane.evaluate(element => {
+    const style = getComputedStyle(element), rect = element.getBoundingClientRect();
+    const contentWidth = rect.width - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight) - parseFloat(style.borderLeftWidth) - parseFloat(style.borderRightWidth);
+    return contentWidth > 24 * parseFloat(getComputedStyle(document.documentElement).fontSize);
+  });
+  if (alignedSlotsRequired) {
+    expect(await pane.locator('.nqd-achievement-body').first().evaluate(body => getComputedStyle(body).display)).toBe('grid');
+    for (const field of ['title', 'requirement'] as const) expect(Math.max(...cards.map(card => card[field])) - Math.min(...cards.map(card => card[field]))).toBeLessThan(1);
+    const progress = cards.map(card => card.progress).filter(Number.isFinite);
+    expect(Math.max(...progress) - Math.min(...progress)).toBeLessThan(1);
+  }
   expect(cards.every(card => card.entire && card.noScroll)).toBe(true);
 });
 
