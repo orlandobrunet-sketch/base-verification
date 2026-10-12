@@ -1,0 +1,2452 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 140412,
+  "sourceReportSHA256": "91d228ba5024e9075c3a96c3c180d2adad966bfa0de6b7bcfd7b0f92b217187e",
+  "locatorPolicy": "Private local locators omitted; exact clinical objects and primary source URLs preserved",
+  "report": {
+    "schema": "NQ_EDITORIAL_INDEPENDENT_BATCH_REVIEW_V2",
+    "reviewer": "clinical_independent_resume",
+    "batch": "C006 A2",
+    "verifiedAtOfficialUTC": "2026-10-12 22:51:18 UTC",
+    "timestampQualification": "Relógio oficial da ferramenta; relógio host não usado como data de aprovação.",
+    "reviewMode": "revisão formal independente report-only de AFTER e cards exatos; nenhuma liberação herdada do peer parcial C006A1",
+    "sourceCommit": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+    "publishedTechnicalMerge": "135899077669af6dcf564717833227828ba03fe5",
+    "authorReport": {
+      "path": "docs/editorial/reviews/2026-10-12/group-c-output-006-A2.json",
+      "bytes": 155822,
+      "sha256": "0ebe0220fc5d43385ab92e2679f599e1d94ad9fd47769d169721ca3faa6b5d1d"
+    },
+    "authorManifest": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 10526,
+      "sha256": "947f82a2899e3ebacd1f935b96ed90d5bb504568a899291144da152abf444d8f"
+    },
+    "normativeSources": [
+      {
+        "path": "AGENTS.md",
+        "bytes": 15910,
+        "sha256": "123d3bf57a43e23dd21adb277295bfbaa8a0d46dccb584f12265396abe4dfe83"
+      },
+      {
+        "path": "CLAUDE.md",
+        "bytes": 16274,
+        "sha256": "7653b34456e9da0354acb150bcb3c768021a2487f8a524233c0aa0a1e9889f99"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/SKILL.md",
+        "bytes": 18523,
+        "sha256": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/output-contract.md",
+        "bytes": 10511,
+        "sha256": "69354e1d6c079388260f9d977c8367b69205910554b673dcebd8c099534c471b"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/verification-protocol.md",
+        "bytes": 4208,
+        "sha256": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc"
+      },
+      {
+        "path": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+        "bytes": 33587,
+        "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+      },
+      {
+        "path": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+        "bytes": 41098,
+        "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+      },
+      {
+        "path": "docs/editorial/annex-c-nefrologia.md",
+        "bytes": 17343,
+        "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+      }
+    ],
+    "normativePrecedence": "Documentos canônicos + skill local v2 prevalecem sobre saída genérica legada de três vereditos.",
+    "summaryTable": [
+      {
+        "qid": "c69f0607",
+        "OP": "Explicar a obstrução luminal da nefropatia por cilindros, distinguindo outros padrões de lesão por cadeias leves.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "legacyAuxiliary": "MANTER",
+        "action": "MANTER O AFTER EXATO DO PARECER AUTORAL; APLICAÇÃO AINDA PENDENTE"
+      },
+      {
+        "qid": "8d943d85",
+        "OP": "Interpretar a extensão do benefício do DAPA-CKD à DRC albuminúrica sem diabetes.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 18,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "legacyAuxiliary": "MANTER",
+        "action": "MANTER O AFTER EXATO DO PARECER AUTORAL; APLICAÇÃO AINDA PENDENTE"
+      },
+      {
+        "qid": "ca6370dc",
+        "OP": "Selecionar acompanhamento para padrão de proteinúria ortostática isolada confirmado em adolescente.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "legacyAuxiliary": "MANTER",
+        "action": "MANTER O AFTER EXATO DO PARECER AUTORAL; APLICAÇÃO AINDA PENDENTE"
+      },
+      {
+        "qid": "a9d85046",
+        "OP": "Explicar queda hemodinâmica da filtração após IECA em estenose bilateral importante.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "fundir",
+        "score": 19,
+        "eliminator": false,
+        "publicationAuthorization": "BLOQUEADA",
+        "legacyAuxiliary": null,
+        "action": "FUNDIR COM A QUESTÃO 5426acba — NÃO APLICAR ISOLADAMENTE"
+      },
+      {
+        "qid": "40b3d28b",
+        "OP": "Selecionar reposição volêmica inicial como suporte da nefropatia por cilindros com hipovolemia.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "legacyAuxiliary": "MANTER",
+        "action": "MANTER O AFTER EXATO DO PARECER AUTORAL; APLICAÇÃO AINDA PENDENTE"
+      },
+      {
+        "qid": "aef8aed3",
+        "OP": "Aplicar a recomendação ACR de metformina ao contraste intravenoso sem lesão renal aguda.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "legacyAuxiliary": "MANTER",
+        "action": "MANTER O AFTER EXATO DO PARECER AUTORAL; APLICAÇÃO AINDA PENDENTE"
+      },
+      {
+        "qid": "8d14de2e",
+        "OP": "Interpretar a incerteza dos poucos eventos de insuficiência renal aguda do BPROAD sem alegar equivalência de segurança renal.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "legacyAuxiliary": "MANTER",
+        "action": "MANTER O AFTER EXATO DO PARECER AUTORAL; APLICAÇÃO AINDA PENDENTE"
+      },
+      {
+        "qid": "1b8baaac",
+        "OP": "Reconhecer exposição histórica ao alumínio no fenótipo de microcitose e manifestações ósseas/neurológicas em diálise.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "legacyAuxiliary": "MANTER",
+        "action": "MANTER O AFTER EXATO DO PARECER AUTORAL; APLICAÇÃO AINDA PENDENTE"
+      }
+    ],
+    "questions": [
+      {
+        "qid": "c69f0607",
+        "sourceLine": 70,
+        "BEFORE": {
+          "t": "Cast Nephropathy — Formação dos Cilindros",
+          "qid": "c69f0607",
+          "q": "Paciente com mieloma múltiplo, desidratação e hipercalcemia desenvolve LRA por nefropatia por cilindros. Qual mecanismo explica diretamente a obstrução tubular?",
+          "refs": [
+            "myeloma_renal_imwg_2023",
+            "brenner_rector"
+          ],
+          "opts": [
+            "Cadeias leves monoclonais filtradas ligam-se à uromodulina no néfron distal e formam cilindros obstrutivos inflamatórios",
+            "Albumina liga-se à hemoglobina no túbulo proximal e produz depósitos amiloides",
+            "Imunocomplexos circulantes precipitam exclusivamente no mesângio sem lesão tubular",
+            "Cristais de ácido úrico formam-se obrigatoriamente pela ação direta das cadeias leves"
+          ],
+          "ans": 0,
+          "exp": "Na cast nephropathy, a carga elevada de cadeias leves livres ultrapassa a reabsorção proximal e alcança o néfron distal, onde interage com a uromodulina. Os cilindros resultantes obstruem túbulos e provocam ruptura e reação inflamatória intersticial. Desidratação, hipercalcemia e nefrotóxicos agravam baixo fluxo e concentração luminal, razão pela qual suporte renal acompanha a redução rápida da produção de cadeias leves. Amiloidose e doença de depósito monoclonal têm padrões de depósito diferentes.",
+          "diff": "medium",
+          "cat": "nefrologia_geral"
+        },
+        "beforeQuestionSHA256": "7368f280da1f4c8bc41d56c79a9a44d5ae310a550fd58b66bcbea046ba091de9",
+        "AFTER": {
+          "t": "Nefropatia por Cilindros — Mecanismo de Obstrução",
+          "qid": "c69f0607",
+          "q": "Paciente com mieloma múltiplo, desidratação e hipercalcemia desenvolve lesão renal aguda por nefropatia por cilindros. Qual mecanismo causa diretamente a obstrução tubular?",
+          "refs": [
+            "myeloma_renal_imwg_2023"
+          ],
+          "opts": [
+            "Agregação de cadeias leves com uromodulina no lúmen distal.",
+            "Deposição linear de cadeias leves nas membranas basais tubulares.",
+            "Deposição glomerular de fibrilas amiloides derivadas de cadeias leves.",
+            "Acúmulo intracelular de cristais de cadeias leves no túbulo proximal."
+          ],
+          "ans": 0,
+          "exp": "A agregação de cadeias leves com uromodulina forma cilindros no néfron distal e obstrui o fluxo. Os demais padrões representam depósitos em membranas basais, amiloidose ou tubulopatia proximal, que não explicam diretamente esses cilindros luminais. A interação molecular foi demonstrada em estudos experimentais; não é resultado de um ensaio terapêutico.",
+          "diff": "medium",
+          "cat": "nefrologia_geral"
+        },
+        "afterQuestionSHA256": "fff48e40a9fb22e7a6a88acc3692b3fd8f135b71e2c8399ce2eb25403d67f87d",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4Regra7(a)",
+        "OP": "Explicar a obstrução luminal da nefropatia por cilindros, distinguindo outros padrões de lesão por cadeias leves.",
+        "classification": {
+          "primaryCompetence": "mecanismo",
+          "Bloom": "Compreender",
+          "Miller": "Sabe",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "justification": "A obstrução luminal é distinguida de deposição em membranas basais, amiloidose e cristais intracelulares. A fonte IMWG integral recuperada nesta revisão sustenta explicitamente o mecanismo; a publicação experimental conferida separadamente sustenta a qualificação experimental, sem sugerir eficácia terapêutica.",
+        "findings": [
+          "Nenhum problema substantivo identificado. Enunciado mecanístico direto é legítimo; o caso não aumenta artificialmente Bloom."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Nenhum argumento plausível de anulação",
+          "analysis": "Testadas as quatro alternativas: apenas agregados intraluminais distais explicam diretamente os cilindros. Depósitos basais e amiloides são lesões distintas; cristais proximais não são os cilindros distais. A lacuna inicial do abstract IMWG foi resolvida por texto integral e294, sem mudar o AFTER. Nenhum argumento plausível de anulação restante."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "A referência não sustenta o gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização científica relevante": false
+          },
+          "triggered": []
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "duplicateOverride": false
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA permite avaliação normal",
+          "step1": "Sem eliminatório ou duplicata confirmada",
+          "step2": "Nenhum argumento plausível",
+          "step3": "18–20 → aprovada",
+          "result": "aprovada",
+          "lifecycle": "publicado",
+          "lifecycleQualification": "Estado editorial autorizado; integração e publicação física ainda não realizadas."
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "imwg2023-fulltext",
+            "locationsAndScope": "e294, Pathophysiology: cadeias leves excedem absorção proximal; interação distal com Tamm-Horsfall e agregados obstrutivos; outros padrões monoclonais.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          },
+          {
+            "sourceId": "cast2001",
+            "locationsAndScope": "Abstract e Introduction: ligação molecular a Tamm-Horsfall e agregação; estudo experimental, sem benefício de intervenção clínica.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "MANTER O AFTER EXATO DO PARECER AUTORAL; APLICAÇÃO AINDA PENDENTE",
+          "question": "Paciente com mieloma múltiplo, desidratação e hipercalcemia desenvolve lesão renal aguda por nefropatia por cilindros. Qual mecanismo causa diretamente a obstrução tubular?",
+          "alternatives": {
+            "A": "Agregação de cadeias leves com uromodulina no lúmen distal.",
+            "B": "Deposição linear de cadeias leves nas membranas basais tubulares.",
+            "C": "Deposição glomerular de fibrilas amiloides derivadas de cadeias leves.",
+            "D": "Acúmulo intracelular de cristais de cadeias leves no túbulo proximal."
+          },
+          "correctAnswer": {
+            "index": 0,
+            "letter": "A",
+            "text": "Agregação de cadeias leves com uromodulina no lúmen distal."
+          },
+          "explanation": "A agregação de cadeias leves com uromodulina forma cilindros no néfron distal e obstrui o fluxo. Os demais padrões representam depósitos em membranas basais, amiloidose ou tubulopatia proximal, que não explicam diretamente esses cilindros luminais. A interação molecular foi demonstrada em estudos experimentais; não é resultado de um ensaio terapêutico.",
+          "referenceCards": {
+            "myeloma_renal_imwg_2023": {
+              "label": "IMWG — Disfunção renal no mieloma (2023)",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/37414019/",
+              "journal": "Lancet Oncol. 2023;24(7):e293-e311",
+              "ano": 2023,
+              "tipo": "Diretriz",
+              "badge": "GUIDELINE",
+              "badgeColor": "#6366f1",
+              "impacto": "Suporte renal e redução rápida de cadeias leves com terapia antiplasmocitária",
+              "icon": "📋",
+              "resumo": "IMWG 2023: medir função renal, cadeias leves e proteínas urinárias. Suporte e dexametasona são necessários; bortezomibe é a base inicial. Abordagens mecânicas não demonstraram aumento da sobrevida global. Recomendações atualizadas com evidência até dezembro 2022.",
+              "conclusao": "Suporte acompanha tratamento do clone; métodos de remoção de cadeias leves não o substituem.",
+              "curiosidade": ""
+            }
+          }
+        },
+        "comparison": {
+          "lengths": [
+            59,
+            65,
+            70,
+            69
+          ],
+          "uniqueLongestCorrectAfter": false,
+          "qidPreserved": true,
+          "authoredAnswerIndexPreserved": true,
+          "noPaddingDetected": true
+        },
+        "duplicationCheck": {
+          "dimensions": [
+            "decisão",
+            "estrutura de dados",
+            "perfil-alvo",
+            "idioma"
+          ],
+          "finding": "Nenhuma duplicata exata detectada entre os candidatos relacionados inspecionados; não é garantia de triagem semântica perfeita das741questões."
+        },
+        "implementationObservation": "Somente este AFTER congelado e seus cards exatos. Preservar qid, gabarito canônico, snapshots, históricos, respostas, recursos e FSRS. A autorização editorial não substitui aprovação de compatibilidade técnica de revisões/card históricos. Nenhuma escrita no produto foi realizada.",
+        "verificationPending": []
+      },
+      {
+        "qid": "8d943d85",
+        "sourceLine": 71,
+        "BEFORE": {
+          "t": "DAPA-CKD — benefício sem diabetes",
+          "qid": "8d943d85",
+          "q": "Qual foi a principal mensagem do DAPA-CKD sobre dapagliflozina em pacientes com DRC proteinúrica sem diabetes?",
+          "refs": [
+            "dapa"
+          ],
+          "opts": [
+            "O benefício renal ficou restrito aos participantes com diabetes",
+            "A dapagliflozina reduziu eventos cardiorrenais também em pacientes sem diabetes",
+            "O estudo excluiu todos os pacientes sem diabetes",
+            "O benefício só apareceu em proteinúria nefrótica acima de 3 g/dia"
+          ],
+          "ans": 1,
+          "exp": "O DAPA-CKD incluiu pacientes com DRC proteinúrica com e sem diabetes e mostrou redução do desfecho composto renal/cardiovascular com dapagliflozina. A mensagem pedagógica é que a nefroproteção dos iSGLT2 não depende apenas do efeito hipoglicemiante. As demais alternativas restringem indevidamente a evidência ou contradizem o desenho do estudo.",
+          "diff": "medium",
+          "cat": "drc"
+        },
+        "beforeQuestionSHA256": "2c8595a4ef1205d949b3a381fb2d6b93da0b6c2c8df79f693e3dcd14b4846f45",
+        "AFTER": {
+          "t": "DAPA-CKD — benefício sem diabetes",
+          "qid": "8d943d85",
+          "q": "Qual conclusão do DAPA-CKD sustenta o benefício da dapagliflozina na doença renal crônica albuminúrica sem diabetes?",
+          "refs": [
+            "dapa"
+          ],
+          "opts": [
+            "Redução documentada apenas no subgrupo com diabetes.",
+            "Redução do composto primário também sem diabetes.",
+            "Benefício nos não diabéticos limitado à albuminúria.",
+            "Ausência de diferença no composto contra placebo."
+          ],
+          "ans": 1,
+          "exp": "O composto primário foi reduzido também nos participantes sem diabetes. Ele incluía queda sustentada da filtração, doença renal terminal ou morte renal/cardiovascular. O achado não se limita à albuminúria nem à presença de diabetes. A aplicação respeita a população e as exclusões estudadas.",
+          "diff": "medium",
+          "cat": "drc"
+        },
+        "afterQuestionSHA256": "09c6462819946763ad10f110f807cf8a6fc00032c104b4c617e4e349fcd57217",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4Regra7(a)",
+        "OP": "Interpretar a extensão do benefício do DAPA-CKD à DRC albuminúrica sem diabetes.",
+        "classification": {
+          "primaryCompetence": "interpretação de evidência",
+          "Bloom": "Compreender",
+          "Miller": "Sabe",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "justification": "O resultado é corretamente atribuído ao composto primário, incluindo eventos clínicos e declínio sustentado da filtração, também na população sem diabetes. Não troca albuminúria por desfecho duro e mantém limites de inclusão/exclusão. É interpretação conceitual do ensaio; não exige análise clínica de múltiplos dados.",
+        "findings": [
+          "MENOR — classificar Bloom como Compreender/Sabe, pois a conclusão conceitual não requer integração de 2–3 dados clínicos. Esta classificação do parecer não modifica o objeto AFTER nem atribui dificuldade empírica."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Nenhum argumento plausível de anulação",
+          "analysis": "Restrição aos diabéticos, benefício limitado à albuminúria e ausência de efeito contra placebo contradizem o ensaio. A pergunta atribui a conclusão ao DAPA-CKD; não recomenda iniciar o fármaco em toda doença renal ou em populações excluídas. Nenhum argumento plausível de anulação."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "A referência não sustenta o gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização científica relevante": false
+          },
+          "triggered": []
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 1,
+            "Alternativas": 2,
+            "Distratores": 1,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 18,
+          "band": "Excelente",
+          "duplicateOverride": false
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA permite avaliação normal",
+          "step1": "Sem eliminatório ou duplicata confirmada",
+          "step2": "Nenhum argumento plausível",
+          "step3": "18–20 → aprovada",
+          "result": "aprovada",
+          "lifecycle": "publicado",
+          "lifecycleQualification": "Estado editorial autorizado; integração e publicação física ainda não realizadas."
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "dapa2020",
+            "locationsAndScope": "1436 Abstract: n4304, TFGe25–75, RAC200–5000, 10mg/dia, HR0,61 IC0,51–0,72 P<0,001; efeitos semelhantes com/sem DM. 1437 Participants: exclusões. 1443 Figure2/1444 Discussion: participantes sem DM.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "MANTER O AFTER EXATO DO PARECER AUTORAL; APLICAÇÃO AINDA PENDENTE",
+          "question": "Qual conclusão do DAPA-CKD sustenta o benefício da dapagliflozina na doença renal crônica albuminúrica sem diabetes?",
+          "alternatives": {
+            "A": "Redução documentada apenas no subgrupo com diabetes.",
+            "B": "Redução do composto primário também sem diabetes.",
+            "C": "Benefício nos não diabéticos limitado à albuminúria.",
+            "D": "Ausência de diferença no composto contra placebo."
+          },
+          "correctAnswer": {
+            "index": 1,
+            "letter": "B",
+            "text": "Redução do composto primário também sem diabetes."
+          },
+          "explanation": "O composto primário foi reduzido também nos participantes sem diabetes. Ele incluía queda sustentada da filtração, doença renal terminal ou morte renal/cardiovascular. O achado não se limita à albuminúria nem à presença de diabetes. A aplicação respeita a população e as exclusões estudadas.",
+          "referenceCards": {
+            "dapa": {
+              "label": "DAPA-CKD (2020)",
+              "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2024816",
+              "journal": "N Engl J Med. 2020;383:1436-1446",
+              "ano": 2020,
+              "tipo": "Ensaio clínico randomizado",
+              "badge": "RCT",
+              "badgeColor": "#10b981",
+              "impacto": "Benefício no composto primário em DRC albuminúrica com e sem diabetes",
+              "icon": "🔬",
+              "resumo": "DAPA-CKD: 4.304 adultos, taxa de filtração glomerular estimada (TFGe) de 25-75 mL/min/1,73 m² e relação albumina/creatinina de 200-5.000 mg/g; dapagliflozina 10 mg/dia ou placebo. Composto de queda sustentada da TFGe ≥ 50%, doença renal terminal ou morte renal/cardiovascular: HR 0,61(IC 95%0,51-0,72; P < 0,001). Efeito semelhante com e sem diabetes. Interrompido precocemente por eficácia.",
+              "conclusao": "O benefício não exige diabetes; respeitar os critérios estudados e as exclusões do ensaio.",
+              "curiosidade": ""
+            }
+          }
+        },
+        "comparison": {
+          "lengths": [
+            52,
+            49,
+            52,
+            49
+          ],
+          "uniqueLongestCorrectAfter": false,
+          "qidPreserved": true,
+          "authoredAnswerIndexPreserved": true,
+          "noPaddingDetected": true
+        },
+        "duplicationCheck": {
+          "dimensions": [
+            "decisão",
+            "estrutura de dados",
+            "perfil-alvo",
+            "idioma"
+          ],
+          "finding": "Nenhuma duplicata exata detectada entre os candidatos relacionados inspecionados; não é garantia de triagem semântica perfeita das741questões."
+        },
+        "implementationObservation": "Somente este AFTER congelado e seus cards exatos. Preservar qid, gabarito canônico, snapshots, históricos, respostas, recursos e FSRS. A autorização editorial não substitui aprovação de compatibilidade técnica de revisões/card históricos. Nenhuma escrita no produto foi realizada.",
+        "verificationPending": []
+      },
+      {
+        "qid": "ca6370dc",
+        "sourceLine": 74,
+        "BEFORE": {
+          "t": "Proteinúria Ortostática — Confirmação e Conduta",
+          "qid": "ca6370dc",
+          "q": "Adolescente saudável tem relação proteína/creatinina elevada em amostra vespertina, mas normal na primeira urina da manhã. Pressão arterial, TFGe e sedimento urinário são normais. Qual é a conduta mais adequada?",
+          "refs": [
+            "clinical_methods_proteinuria",
+            "brenner_rector"
+          ],
+          "opts": [
+            "Reconhecer proteinúria ortostática, orientar seguimento periódico e reavaliar se surgirem hematúria, hipertensão ou queda da função renal",
+            "Indicar biópsia renal imediata apesar do padrão postural e da ausência de sinais de alarme",
+            "Iniciar IECA em dose máxima para normalizar toda proteinúria diurna",
+            "Investigar gamopatia monoclonal como causa mais provável nessa faixa etária"
+          ],
+          "ans": 0,
+          "exp": "A normalização da proteína na primeira urina da manhã, com elevação apenas após permanecer em posição ereta, define o padrão de proteinúria ortostática. Em jovem sem hematúria, hipertensão, disfunção renal ou sedimento ativo, o prognóstico costuma ser benigno e a conduta é acompanhamento, não biópsia nem tratamento antiproteinúrico automático. Persistência na amostra matinal ou aparecimento de sinais de alarme exige reavaliar doença renal verdadeira.",
+          "diff": "medium",
+          "cat": "nefrologia_geral"
+        },
+        "beforeQuestionSHA256": "f42f6cb7600e94e2c47691895a204c3e9d429e5a8426cf63233ffafbcee94af6",
+        "AFTER": {
+          "t": "Proteinúria Ortostática — Confirmação e Conduta",
+          "qid": "ca6370dc",
+          "q": "Em coletas repetidas, adolescente assintomático tem relação proteína/creatinina elevada na urina diurna e normal na primeira micção após repouso noturno. Pressão arterial, função renal e sedimento são normais. Qual conduta é adequada?",
+          "refs": [
+            "orthostatic_proteinuria_springberg_1982"
+          ],
+          "opts": [
+            "Acompanhar periodicamente a urina e a pressão arterial.",
+            "Solicitar biópsia para definir a origem da proteinúria.",
+            "Introduzir bloqueio do sistema renina-angiotensina.",
+            "Pesquisar glomerulopatia com sorologias e complemento."
+          ],
+          "ans": 0,
+          "exp": "O padrão isolado e reproduzível permite acompanhamento. A normalização após repouso noturno distingue proteinúria ortostática de proteinúria persistente. Não se justifica investigação invasiva ou antiproteinúrico automático nesse contexto. Proteinúria matinal persistente, hematúria, hipertensão ou piora da função renal exigem nova avaliação; o prognóstico favorável não é garantia individual.",
+          "diff": "medium",
+          "cat": "nefrologia_geral"
+        },
+        "afterQuestionSHA256": "7b0e6d81142b544f012fe27362b4bedbe19bde146c53700771539fae921ff0e2",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4Regra7(a)",
+        "OP": "Selecionar acompanhamento para padrão de proteinúria ortostática isolada confirmado em adolescente.",
+        "classification": {
+          "primaryCompetence": "conduta",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "justification": "A repetição das coletas, normalização após repouso noturno e ausência de hipertensão, disfunção renal ou sedimento ativo delimitam o padrão isolado. A coorte sustenta prognóstico favorável; o estudo pediátrico aberto sustenta avaliação matinal e seguimento sem investigação extensa. Não se fixa intervalo obrigatório de diretriz nem se garante prognóstico individual.",
+        "findings": [
+          "Nenhum problema substantivo identificado. A referência de coorte não é apresentada como diretriz nem extrapolada para nefropatia persistente."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Nenhum argumento plausível de anulação",
+          "analysis": "Testada a possibilidade de proteinúria persistente e glomerulopatia: coletas repetidas com urina matinal normal e demais dados normais retiram esses sinais de alarme. Biópsia, bloqueio do SRAA e painel etiológico automático são menos apropriados nesse contexto. Nenhum argumento plausível de anulação."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "A referência não sustenta o gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização científica relevante": false
+          },
+          "triggered": []
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "duplicateOverride": false
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA permite avaliação normal",
+          "step1": "Sem eliminatório ou duplicata confirmada",
+          "step2": "Nenhum argumento plausível",
+          "step3": "18–20 → aprovada",
+          "result": "aprovada",
+          "lifecycle": "publicado",
+          "lifecycleQualification": "Estado editorial autorizado; integração e publicação física ainda não realizadas."
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "orthostatic1982",
+            "locationsAndScope": "Abstract primário: seguimento20anos,43/64 com informação,36 detalhados, função renal normal; homens jovens e perdas de seguimento.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          },
+          {
+            "sourceId": "orthostatic2010",
+            "locationsAndScope": "Abstract/Discussion final: padrão de primeira urina normal, urina diurna elevada; ausência de testes extensos e monitorização de mudança da excreção proteica.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "MANTER O AFTER EXATO DO PARECER AUTORAL; APLICAÇÃO AINDA PENDENTE",
+          "question": "Em coletas repetidas, adolescente assintomático tem relação proteína/creatinina elevada na urina diurna e normal na primeira micção após repouso noturno. Pressão arterial, função renal e sedimento são normais. Qual conduta é adequada?",
+          "alternatives": {
+            "A": "Acompanhar periodicamente a urina e a pressão arterial.",
+            "B": "Solicitar biópsia para definir a origem da proteinúria.",
+            "C": "Introduzir bloqueio do sistema renina-angiotensina.",
+            "D": "Pesquisar glomerulopatia com sorologias e complemento."
+          },
+          "correctAnswer": {
+            "index": 0,
+            "letter": "A",
+            "text": "Acompanhar periodicamente a urina e a pressão arterial."
+          },
+          "explanation": "O padrão isolado e reproduzível permite acompanhamento. A normalização após repouso noturno distingue proteinúria ortostática de proteinúria persistente. Não se justifica investigação invasiva ou antiproteinúrico automático nesse contexto. Proteinúria matinal persistente, hematúria, hipertensão ou piora da função renal exigem nova avaliação; o prognóstico favorável não é garantia individual.",
+          "referenceCards": {
+            "orthostatic_proteinuria_springberg_1982": {
+              "label": "Springberg et al. — Seguimento da proteinúria ortostática (1982)",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/7125410/",
+              "journal": "Ann Intern Med. 1982;97(4):516-519",
+              "ano": 1982,
+              "tipo": "Coorte",
+              "badge": "COHORT",
+              "badgeColor": "#f59e0b",
+              "impacto": "Prognóstico favorável em jovens com padrão ortostático isolado",
+              "icon": "🔬",
+              "resumo": "Coorte histórica de homens jovens com proteinúria ortostática fixa, reavaliada após 20 anos. Informação obtida de 43 dos 64 originais, detalhada em 36; função renal normal nos reavaliados. Sem grupo randomizado e com perdas importantes de seguimento.",
+              "conclusao": "Sustenta prognóstico favorável do padrão isolado; não dispensa reavaliação se o fenótipo mudar.",
+              "curiosidade": ""
+            }
+          }
+        },
+        "comparison": {
+          "lengths": [
+            55,
+            55,
+            51,
+            54
+          ],
+          "uniqueLongestCorrectAfter": false,
+          "qidPreserved": true,
+          "authoredAnswerIndexPreserved": true,
+          "noPaddingDetected": true
+        },
+        "duplicationCheck": {
+          "dimensions": [
+            "decisão",
+            "estrutura de dados",
+            "perfil-alvo",
+            "idioma"
+          ],
+          "finding": "Nenhuma duplicata exata detectada entre os candidatos relacionados inspecionados; não é garantia de triagem semântica perfeita das741questões."
+        },
+        "implementationObservation": "Somente este AFTER congelado e seus cards exatos. Preservar qid, gabarito canônico, snapshots, históricos, respostas, recursos e FSRS. A autorização editorial não substitui aprovação de compatibilidade técnica de revisões/card históricos. Nenhuma escrita no produto foi realizada.",
+        "verificationPending": []
+      },
+      {
+        "qid": "a9d85046",
+        "sourceLine": 75,
+        "BEFORE": {
+          "t": "IECA e Estenose Bilateral de Artérias Renais",
+          "qid": "a9d85046",
+          "q": "Paciente com estenose bilateral importante das artérias renais apresenta aumento acentuado da creatinina após iniciar enalapril. Qual mecanismo explica melhor essa alteração?",
+          "refs": [
+            "aha_acc_hypertension_2025",
+            "brenner_rector"
+          ],
+          "opts": [
+            "Vasoconstrição direta da arteríola aferente, com redução primária do fluxo renal",
+            "Necrose tubular por toxicidade direta do enalapril sobre células epiteliais",
+            "Trombose das artérias renais por redução da atividade da angiotensina II",
+            "Vasodilatação da arteríola eferente, com queda da pressão intraglomerular e da filtração"
+          ],
+          "ans": 3,
+          "exp": "Na estenose bilateral importante — ou na estenose de rim único funcional — a filtração pode depender da vasoconstrição eferente mediada pela angiotensina II. O bloqueio da enzima conversora promove vasodilatação eferente e pode causar queda hemodinâmica acentuada da taxa de filtração glomerular. O mecanismo não é toxicidade tubular nem trombose. Bloqueadores do sistema renina-angiotensina fazem parte do tratamento clínico de muitos pacientes com doença renovascular, mas exigem monitorização de creatinina e potássio.",
+          "diff": "medium",
+          "cat": "hipertensao"
+        },
+        "beforeQuestionSHA256": "0f599f75b496037508a0c31cf8521a8002fd5b53b8b945c16c05264ba111b45e",
+        "AFTER": {
+          "t": "IECA e Estenose Bilateral de Artérias Renais",
+          "qid": "a9d85046",
+          "q": "Paciente com estenose bilateral importante das artérias renais apresenta aumento acentuado da creatinina após iniciar enalapril. Qual mudança hemodinâmica explica a queda da filtração?",
+          "refs": [
+            "kdigo_renovascular_conference_2022"
+          ],
+          "opts": [
+            "Constrição aferente com diminuição do fluxo para o glomérulo.",
+            "Dilatação aferente com elevação da pressão no capilar glomerular.",
+            "Constrição eferente com aumento da resistência à saída de sangue.",
+            "Dilatação eferente com queda da pressão intraglomerular."
+          ],
+          "ans": 3,
+          "exp": "O bloqueio da formação de angiotensina II reduz o tônus eferente que sustentava a filtração sob baixa perfusão. A queda pode ser importante na estenose bilateral e não implica toxicidade tubular direta. Elevação acentuada exige reavaliar perfusão, volemia, função renal e potássio; não autoriza manter o tratamento sem avaliação.",
+          "diff": "medium",
+          "cat": "hipertensao"
+        },
+        "afterQuestionSHA256": "739dbcb0db1af3c62794f705fb0e365e14c240ad943f3bf7afbcc2c9abc61d35",
+        "verdictV2": "fundir",
+        "legacyAuxiliary": null,
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook§18.4Regra7(c)",
+        "OP": "Explicar queda hemodinâmica da filtração após IECA em estenose bilateral importante.",
+        "classification": {
+          "primaryCompetence": "mecanismo",
+          "Bloom": "Compreender",
+          "Miller": "Sabe",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "justification": "A fisiologia da perda do tônus eferente dependente de angiotensina está sustentada. A comparação direta com5426acba confirma duplicidade nas quatro dimensões; diferenças de título, categoria e posição do gabarito não acrescentam outra decisão.",
+        "findings": [
+          "MAIOR — duplicata de5426acba nas quatro dimensões do Handbook§15. É necessária decisão de consolidação/aposentadoria e validação dos consumidores, preservando ambos os qids e seus históricos."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Redundância editorial substantiva",
+          "analysis": "A correta explica a queda da pressão intraglomerular; constrição eferente teria o efeito oposto, enquanto as alterações aferentes não descrevem o efeito de classe cobrado. Há argumento editorial substantivo de redundância: mesmo cenário bilateral, mesma alteração após IECA, mesmo público e idioma de5426acba. Não aprovar aplicação isolada."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "A referência não sustenta o gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização científica relevante": false
+          },
+          "triggered": []
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "duplicateOverride": true
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA permite avaliação normal",
+          "step1": "Duplicata em quatro dimensões → fundir",
+          "step2": "Recurso por redundância",
+          "step3": "Banda excelente sujeita ao override de duplicata",
+          "result": "fundir",
+          "lifecycle": "em_revisão",
+          "lifecycleQualification": "Estado editorial autorizado; integração e publicação física ainda não realizadas."
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "textor1984",
+            "locationsAndScope": "Abstract primário: insuficiência funcional bilateral e importância da constrição eferente mediada por angiotensinaII; estudo humano com captopril, extrapolação de mecanismo de classe, sem dose de enalapril.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          },
+          {
+            "sourceId": "kdigo_renovascular2022",
+            "locationsAndScope": "Medical Management/Antihypertensive Treatment: dependência de angiotensina na perfusão marginal; queda de filtração e vigilância, sem proibição universal.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "FUNDIR COM A QUESTÃO 5426acba — NÃO APLICAR ISOLADAMENTE",
+          "question": "Paciente com estenose bilateral importante das artérias renais apresenta aumento acentuado da creatinina após iniciar enalapril. Qual mudança hemodinâmica explica a queda da filtração?",
+          "alternatives": {
+            "A": "Constrição aferente com diminuição do fluxo para o glomérulo.",
+            "B": "Dilatação aferente com elevação da pressão no capilar glomerular.",
+            "C": "Constrição eferente com aumento da resistência à saída de sangue.",
+            "D": "Dilatação eferente com queda da pressão intraglomerular."
+          },
+          "correctAnswer": {
+            "index": 3,
+            "letter": "D",
+            "text": "Dilatação eferente com queda da pressão intraglomerular."
+          },
+          "explanation": "O bloqueio da formação de angiotensina II reduz o tônus eferente que sustentava a filtração sob baixa perfusão. A queda pode ser importante na estenose bilateral e não implica toxicidade tubular direta. Elevação acentuada exige reavaliar perfusão, volemia, função renal e potássio; não autoriza manter o tratamento sem avaliação.",
+          "referenceCards": {
+            "kdigo_renovascular_conference_2022": {
+              "label": "KDIGO — Conferência sobre doença renovascular (2022)",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9834909/",
+              "journal": "Am J Kidney Dis. 2022;79(2):289-301",
+              "ano": 2022,
+              "tipo": "Revisão",
+              "badge": "REVIEW",
+              "badgeColor": "#8b5cf6",
+              "impacto": "Filtração dependente de angiotensina exige vigilância ao bloquear o SRAA",
+              "icon": "🔬",
+              "resumo": "Síntese de conferência de controvérsias KDIGO sobre doença renovascular aterosclerótica. Discute tratamento clínico e seleção de revascularização. Com perfusão marginal, a filtração pode depender de angiotensina II e cair após bloqueio do sistema. Consenso, sem grau de recomendação inventado.",
+              "conclusao": "Elevação importante da creatinina exige reavaliar a situação hemodinâmica; não implica toxicidade tubular direta.",
+              "curiosidade": ""
+            }
+          }
+        },
+        "comparison": {
+          "lengths": [
+            61,
+            65,
+            65,
+            56
+          ],
+          "uniqueLongestCorrectAfter": false,
+          "qidPreserved": true,
+          "authoredAnswerIndexPreserved": true,
+          "noPaddingDetected": true
+        },
+        "duplicationCheck": {
+          "otherQid": "5426acba",
+          "otherSourceLine": 389,
+          "otherSourceQuestionSHA256": "f159b3c682e47c81385a2d90c38dbaba60205bc8525f925e9ec814169d50c524",
+          "otherBEFORE": {
+            "t": "IECA na Estenose Bilateral de Artérias Renais",
+            "qid": "5426acba",
+            "q": "Paciente com estenose bilateral significativa de artérias renais apresenta elevação importante da creatinina após iniciar IECA. Qual alteração hemodinâmica explica a queda da TFGe?",
+            "refs": [
+              "guyton_and_hall_physiology",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Vasodilatação eferente, com redução da pressão intraglomerular antes sustentada pela angiotensina II",
+              "Vasodilatação aferente, com aumento da pressão intraglomerular",
+              "Vasoconstrição eferente adicional, com aumento da fração de filtração",
+              "Elevação da pressão venosa renal por bloqueio direto do IECA"
+            ],
+            "ans": 0,
+            "exp": "Na estenose bilateral, a baixa perfusão ativa angiotensina II, cuja vasoconstrição eferente ajuda a sustentar a pressão capilar glomerular. O IECA remove esse suporte e promove vasodilatação eferente, podendo reduzir de forma acentuada a pressão intraglomerular e a TFGe. O mecanismo também explica a queda esperada, geralmente menor, ao iniciar bloqueio do SRAA em outras DRCs; elevação importante da creatinina exige investigar estenose, hipovolemia, anti-inflamatórios e outras causas.",
+            "diff": "hard",
+            "cat": "drc"
+          },
+          "fourDimensions": {
+            "decision": "Nos dois, explicar queda da filtração por perda do tônus eferente após IECA.",
+            "dataStructure": "Estenose bilateral significativa e aumento importante de creatinina logo após IECA; enalapril é instância da mesma classe, sem variação útil.",
+            "targetProfile": "Estudante avançado/residente; nenhum perfil distinto é declarado.",
+            "language": "Português brasileiro nos dois."
+          },
+          "finding": "Duplicata confirmada nas quatro dimensões; variação em título, cat, diff e posição do gabarito não cria outro OP.",
+          "recommendedRetainedQid": "a9d85046",
+          "recommendedRetiredQid": "5426acba",
+          "reason": "Preferir a versão consolidada abaixo, com alternativas de hemodinâmica paralelas e referência específica verificada; dificuldade medium acompanha o mesmo mecanismo, sem reclassificação empírica.",
+          "requiredDecision": "Aprovar formalmente a versão consolidada exata e o card; decidir aposentadoria editorial de5426acba e tratamento dos consumidores antes de aplicá-la. Não apagar nenhum qid ou histórico.",
+          "compatibility": "Preservar snapshots, respostas e FSRS históricos de ambos; não somar nem reiniciar maestria automaticamente; manter identificação/alias de item aposentado e impedir novas apresentações duplicadas após consolidação."
+        },
+        "implementationObservation": "Somente este AFTER congelado e seus cards exatos. Preservar qid, gabarito canônico, snapshots, históricos, respostas, recursos e FSRS. A autorização editorial não substitui aprovação de compatibilidade técnica de revisões/card históricos. Nenhuma escrita no produto foi realizada.",
+        "verificationPending": [],
+        "integrationPending": {
+          "otherQid": "5426acba",
+          "otherSourceLine": 389,
+          "otherSourceQuestionSHA256": "f159b3c682e47c81385a2d90c38dbaba60205bc8525f925e9ec814169d50c524",
+          "otherBEFORE": {
+            "t": "IECA na Estenose Bilateral de Artérias Renais",
+            "qid": "5426acba",
+            "q": "Paciente com estenose bilateral significativa de artérias renais apresenta elevação importante da creatinina após iniciar IECA. Qual alteração hemodinâmica explica a queda da TFGe?",
+            "refs": [
+              "guyton_and_hall_physiology",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Vasodilatação eferente, com redução da pressão intraglomerular antes sustentada pela angiotensina II",
+              "Vasodilatação aferente, com aumento da pressão intraglomerular",
+              "Vasoconstrição eferente adicional, com aumento da fração de filtração",
+              "Elevação da pressão venosa renal por bloqueio direto do IECA"
+            ],
+            "ans": 0,
+            "exp": "Na estenose bilateral, a baixa perfusão ativa angiotensina II, cuja vasoconstrição eferente ajuda a sustentar a pressão capilar glomerular. O IECA remove esse suporte e promove vasodilatação eferente, podendo reduzir de forma acentuada a pressão intraglomerular e a TFGe. O mecanismo também explica a queda esperada, geralmente menor, ao iniciar bloqueio do SRAA em outras DRCs; elevação importante da creatinina exige investigar estenose, hipovolemia, anti-inflamatórios e outras causas.",
+            "diff": "hard",
+            "cat": "drc"
+          },
+          "fourDimensions": {
+            "decision": "Nos dois, explicar queda da filtração por perda do tônus eferente após IECA.",
+            "dataStructure": "Estenose bilateral significativa e aumento importante de creatinina logo após IECA; enalapril é instância da mesma classe, sem variação útil.",
+            "targetProfile": "Estudante avançado/residente; nenhum perfil distinto é declarado.",
+            "language": "Português brasileiro nos dois."
+          },
+          "finding": "Duplicata confirmada nas quatro dimensões; variação em título, cat, diff e posição do gabarito não cria outro OP.",
+          "recommendedRetainedQid": "a9d85046",
+          "recommendedRetiredQid": "5426acba",
+          "reason": "Preferir a versão consolidada abaixo, com alternativas de hemodinâmica paralelas e referência específica verificada; dificuldade medium acompanha o mesmo mecanismo, sem reclassificação empírica.",
+          "requiredDecision": "Aprovar formalmente a versão consolidada exata e o card; decidir aposentadoria editorial de5426acba e tratamento dos consumidores antes de aplicá-la. Não apagar nenhum qid ou histórico.",
+          "compatibility": "Preservar snapshots, respostas e FSRS históricos de ambos; não somar nem reiniciar maestria automaticamente; manter identificação/alias de item aposentado e impedir novas apresentações duplicadas após consolidação."
+        }
+      },
+      {
+        "qid": "40b3d28b",
+        "sourceLine": 77,
+        "BEFORE": {
+          "t": "Manejo do Rim de Mieloma",
+          "qid": "40b3d28b",
+          "q": "Na nefropatia por cilindros do mieloma, além de iniciar rapidamente terapia antiplasmocitária, qual medida de suporte renal é mais importante quando não há contraindicação volêmica?",
+          "refs": [
+            "myeloma_renal_imwg_2023",
+            "brenner_rector"
+          ],
+          "opts": [
+            "Restrição hídrica rigorosa para evitar edema pulmonar, mesmo em paciente hipovolêmico",
+            "Hidratação com solução isotônica e manutenção de fluxo urinário adequado, com correção de hipercalcemia e retirada de nefrotóxicos",
+            "Diálise peritoneal imediata para todos os casos, independentemente de sintomas urêmicos ou distúrbios refratários",
+            "Diurético de alça em altas doses como estratégia primária, sem avaliar volume intravascular"
+          ],
+          "ans": 1,
+          "exp": "Na cast nephropathy, a lesão tubular é favorecida por alta carga de cadeias leves, baixo fluxo tubular, hipercalcemia, hipovolemia e nefrotóxicos. Por isso, o suporte renal inclui hidratação isotônica quando tolerada, correção da hipercalcemia e suspensão de fármacos que pioram a função renal, sempre junto da terapia anticlone para reduzir rapidamente as cadeias leves. Restrição hídrica indiscriminada e diurético sem avaliar volemia podem agravar a lesão. Diálise é indicada por critérios clínicos habituais de LRA, não de forma automática para todos.",
+          "diff": "medium",
+          "cat": "oncologia_renal"
+        },
+        "beforeQuestionSHA256": "e76842820ef323eb1da419ea411a2238b889746af0bec035c2c04acd36076279",
+        "AFTER": {
+          "t": "Manejo do Rim de Mieloma",
+          "qid": "40b3d28b",
+          "q": "Paciente com nefropatia por cilindros do mieloma está hipovolêmico, sem congestão ou indicação urgente de diálise. A terapia antiplasmocitária será iniciada prontamente. Qual medida de suporte renal é adequada agora?",
+          "refs": [
+            "myeloma_renal_imwg_2023",
+            "pratt_cast_nephropathy_2024"
+          ],
+          "opts": [
+            "Restrição hídrica para diminuir a carga filtrada de proteínas.",
+            "Hidratação intravenosa titulada pela volemia e pelo balanço.",
+            "Furosemida para aumentar a diurese antes de repor volume.",
+            "Hemodiálise preventiva para remover cadeias leves circulantes."
+          ],
+          "ans": 1,
+          "exp": "A hipovolemia requer reposição de fluidos com vigilância do balanço e da tolerância. Essa medida acompanha a redução rápida da produção de cadeias leves; não substitui tratamento do clone. Restrição e diurético antes de avaliar volume podem agravar hipoperfusão. Métodos extracorpóreos não devem ser usados como resposta automática para todos os casos.",
+          "diff": "medium",
+          "cat": "oncologia_renal"
+        },
+        "afterQuestionSHA256": "c1b121ec4297cf31a2cc52e1d21123a9e397fb2548d1e8651b051dc9a54e848f",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4Regra7(a)",
+        "OP": "Selecionar reposição volêmica inicial como suporte da nefropatia por cilindros com hipovolemia.",
+        "classification": {
+          "primaryCompetence": "conduta",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "justification": "Hipovolemia explícita, ausência de congestão e ausência de indicação urgente de diálise selecionam reposição intravenosa titulada. O tratamento anticlone está garantido prontamente, evitando transformar suporte em substituto da terapia etiológica. Não prescreve volume fixo para todo paciente.",
+        "findings": [
+          "Nenhum problema substantivo identificado. O item recupera uma conduta inicial de suporte, sem recomendar extracorpóreo preventivo universal."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Nenhum argumento plausível de anulação",
+          "analysis": "Hemodiálise para remoção de cadeias leves pode ser considerada em cenários específicos, mas não é melhor medida imediata de suporte de um hipovolêmico sem indicação urgente. Restrição e furosemida antes da reposição contrariam a perfusão do caso. Nenhum argumento plausível de anulação."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "A referência não sustenta o gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização científica relevante": false
+          },
+          "triggered": []
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 1,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "duplicateOverride": false
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA permite avaliação normal",
+          "step1": "Sem eliminatório ou duplicata confirmada",
+          "step2": "Nenhum argumento plausível",
+          "step3": "18–20 → aprovada",
+          "result": "aprovada",
+          "lifecycle": "publicado",
+          "lifecycleQualification": "Estado editorial autorizado; integração e publicação física ainda não realizadas."
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "imwg2023-fulltext",
+            "locationsAndScope": "e296 Supportive care: hidratação e monitorização de balanço, especialmente em insuficiência cardíaca; início imediato do anticlone.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          },
+          {
+            "sourceId": "pratt2024",
+            "locationsAndScope": "Supportive Care e Extracorporeal Removal: fluidos IV, abordagem anticlone e incerteza da remoção extracorpórea.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "MANTER O AFTER EXATO DO PARECER AUTORAL; APLICAÇÃO AINDA PENDENTE",
+          "question": "Paciente com nefropatia por cilindros do mieloma está hipovolêmico, sem congestão ou indicação urgente de diálise. A terapia antiplasmocitária será iniciada prontamente. Qual medida de suporte renal é adequada agora?",
+          "alternatives": {
+            "A": "Restrição hídrica para diminuir a carga filtrada de proteínas.",
+            "B": "Hidratação intravenosa titulada pela volemia e pelo balanço.",
+            "C": "Furosemida para aumentar a diurese antes de repor volume.",
+            "D": "Hemodiálise preventiva para remover cadeias leves circulantes."
+          },
+          "correctAnswer": {
+            "index": 1,
+            "letter": "B",
+            "text": "Hidratação intravenosa titulada pela volemia e pelo balanço."
+          },
+          "explanation": "A hipovolemia requer reposição de fluidos com vigilância do balanço e da tolerância. Essa medida acompanha a redução rápida da produção de cadeias leves; não substitui tratamento do clone. Restrição e diurético antes de avaliar volume podem agravar hipoperfusão. Métodos extracorpóreos não devem ser usados como resposta automática para todos os casos.",
+          "referenceCards": {
+            "myeloma_renal_imwg_2023": {
+              "label": "IMWG — Disfunção renal no mieloma (2023)",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/37414019/",
+              "journal": "Lancet Oncol. 2023;24(7):e293-e311",
+              "ano": 2023,
+              "tipo": "Diretriz",
+              "badge": "GUIDELINE",
+              "badgeColor": "#6366f1",
+              "impacto": "Suporte renal e redução rápida de cadeias leves com terapia antiplasmocitária",
+              "icon": "📋",
+              "resumo": "IMWG 2023: medir função renal, cadeias leves e proteínas urinárias. Suporte e dexametasona são necessários; bortezomibe é a base inicial. Abordagens mecânicas não demonstraram aumento da sobrevida global. Recomendações atualizadas com evidência até dezembro 2022.",
+              "conclusao": "Suporte acompanha tratamento do clone; métodos de remoção de cadeias leves não o substituem.",
+              "curiosidade": ""
+            },
+            "pratt_cast_nephropathy_2024": {
+              "label": "Pratt et al. — Nefropatia por cilindros (2024)",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11108236/",
+              "journal": "Clin J Am Soc Nephrol. 2024;19(5):650-652",
+              "ano": 2024,
+              "tipo": "Revisão",
+              "badge": "REVIEW",
+              "badgeColor": "#8b5cf6",
+              "impacto": "Nefropatia por cilindros exige tratamento anticlone e suporte sem demora",
+              "icon": "🔬",
+              "resumo": "Revisão clínica de especialistas com caso ilustrativo de nefropatia por cilindros. Descreve terapia antiplasmocitária imediata, fluidos intravenosos e tratamento das complicações. Discute incertezas das técnicas extracorpóreas. Foi necessária para detalhar suporte não especificado no abstract do IMWG 2023.",
+              "conclusao": "A hidratação depende da situação clínica; a revisão não define um volume seguro universal.",
+              "curiosidade": ""
+            }
+          }
+        },
+        "comparison": {
+          "lengths": [
+            62,
+            60,
+            57,
+            62
+          ],
+          "uniqueLongestCorrectAfter": false,
+          "qidPreserved": true,
+          "authoredAnswerIndexPreserved": true,
+          "noPaddingDetected": true
+        },
+        "duplicationCheck": {
+          "dimensions": [
+            "decisão",
+            "estrutura de dados",
+            "perfil-alvo",
+            "idioma"
+          ],
+          "finding": "Nenhuma duplicata exata detectada entre os candidatos relacionados inspecionados; não é garantia de triagem semântica perfeita das741questões."
+        },
+        "implementationObservation": "Somente este AFTER congelado e seus cards exatos. Preservar qid, gabarito canônico, snapshots, históricos, respostas, recursos e FSRS. A autorização editorial não substitui aprovação de compatibilidade técnica de revisões/card históricos. Nenhuma escrita no produto foi realizada.",
+        "verificationPending": []
+      },
+      {
+        "qid": "aef8aed3",
+        "sourceLine": 79,
+        "BEFORE": {
+          "t": "Metformina e Contraste Iodado Intravenoso",
+          "qid": "aef8aed3",
+          "q": "Paciente usa metformina, tem TFGe estável de 40 mL/min/1,73 m² e não apresenta LRA. Fará tomografia com contraste iodado intravenoso. Segundo o ACR, qual conduta é adequada?",
+          "refs": [
+            "acr_manual_iodinated_2026"
+          ],
+          "opts": [
+            "Manter a metformina; não há necessidade obrigatória de suspender nem de repetir creatinina em 48 horas apenas pelo contraste intravenoso",
+            "Suspender obrigatoriamente por 48 horas em toda TFGe entre 30 e 59 mL/min/1,73 m²",
+            "Trocar metformina por insulina antes de qualquer exame contrastado",
+            "Manter a metformina mesmo se houver LRA ou TFGe inferior a 30 mL/min/1,73 m²"
+          ],
+          "ans": 0,
+          "exp": "O ACR classifica pacientes sem LRA e com TFGe igual ou superior a 30 mL/min/1,73 m² na categoria em que a metformina não precisa ser interrompida para contraste iodado intravenoso e não exige controle obrigatório da função renal apenas por essa exposição. A preocupação é o acúmulo de metformina se ocorrer LRA, não uma interação direta do fármaco com o contraste. Em LRA, TFGe abaixo de 30 ou certos procedimentos arteriais com risco de êmbolos renais, deve-se suspender temporariamente e reavaliar. Protocolos institucionais ou regulatórios podem ser mais conservadores.",
+          "diff": "hard",
+          "cat": "lra"
+        },
+        "beforeQuestionSHA256": "de50347629be07beed712e8d9d4b99e87356506601d52948fa779686a73ec883",
+        "AFTER": {
+          "t": "Metformina e Contraste Iodado Intravenoso",
+          "qid": "aef8aed3",
+          "q": "Paciente em uso de metformina tem taxa de filtração glomerular estimada (TFGe) estável de 40 mL/min/1,73 m², sem lesão renal aguda. Fará tomografia com contraste iodado intravenoso. Segundo o American College of Radiology (ACR), qual conduta é adequada?",
+          "refs": [
+            "acr_manual_iodinated_2026"
+          ],
+          "opts": [
+            "Manter metformina, sem repetir creatinina só por essa exposição.",
+            "Pausar metformina e repetir a função renal em 48 horas após o exame.",
+            "Pausar metformina e aguardar normalização da TFGe antes do exame.",
+            "Trocar metformina por insulina para realizar o exame contrastado."
+          ],
+          "ans": 0,
+          "exp": "Segundo o ACR, a ausência de lesão renal aguda e a TFGe ≥ 30 mL/min/1,73 m² permitem manter metformina no contraste intravenoso, sem controle renal obrigatório apenas por essa exposição. A bula americana é mais conservadora, portanto esta resposta depende da atribuição explícita ao ACR. Em lesão renal aguda, TFGe < 30 mL/min/1,73 m² ou procedimentos arteriais com risco de êmbolos renais, a suspensão e a reavaliação seguem outro contexto.",
+          "diff": "medium",
+          "cat": "lra"
+        },
+        "afterQuestionSHA256": "797883d7fb2ecce010f1019371e3cb29f48d87df0df954d0d99f7fcb1fae35a1",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4Regra7(a)",
+        "OP": "Aplicar a recomendação ACR de metformina ao contraste intravenoso sem lesão renal aguda.",
+        "classification": {
+          "primaryCompetence": "conduta e segurança",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "justification": "O comando atribui explicitamente ao ACR, define contraste intravenoso, TFGe40 e ausência de LRA. CategoriaI sustenta manutenção sem reavaliação obrigatória apenas pela exposição. A diferença com bula americana é explícita e não se transforma em protocolo brasileiro universal.",
+        "findings": [
+          "Nenhum problema substantivo identificado. O card ACR já existente foi conferido em objeto integral e fonte, sem criação de novo card por completude."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Nenhum argumento plausível de anulação",
+          "analysis": "A pausa com revisão48h seria defensável sob bula FDA ou política local, porém não como resposta ao comando ACR neste cenário. LRA, TFGe<30 e procedimento arterial são contextos distintos. Atribuição expressa evita duas respostas sob referenciais diferentes. Nenhum argumento plausível de anulação."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "A referência não sustenta o gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização científica relevante": false
+          },
+          "triggered": []
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 1,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "duplicateOverride": false
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA permite avaliação normal",
+          "step1": "Sem eliminatório ou duplicata confirmada",
+          "step2": "Nenhum argumento plausível",
+          "step3": "18–20 → aprovada",
+          "result": "aprovada",
+          "lifecycle": "publicado",
+          "lifecycleQualification": "Estado editorial autorizado; integração e publicação física ainda não realizadas."
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "acr2026",
+            "locationsAndScope": "Capa2026 e pp48–49/PDF50–51, Metformin CategoryI/II e notaFDA: semLRA/TFGe≥30/IV, não interromper nem repetir obrigatoriamente; exceções.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          },
+          {
+            "sourceId": "metformin_label2026",
+            "locationsAndScope": "SPL seção2.4: pausa em TFGe30–60 e outros riscos, reavaliação48h, reinício se estável; sustenta contraste entre fontes.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "MANTER O AFTER EXATO DO PARECER AUTORAL; APLICAÇÃO AINDA PENDENTE",
+          "question": "Paciente em uso de metformina tem taxa de filtração glomerular estimada (TFGe) estável de 40 mL/min/1,73 m², sem lesão renal aguda. Fará tomografia com contraste iodado intravenoso. Segundo o American College of Radiology (ACR), qual conduta é adequada?",
+          "alternatives": {
+            "A": "Manter metformina, sem repetir creatinina só por essa exposição.",
+            "B": "Pausar metformina e repetir a função renal em 48 horas após o exame.",
+            "C": "Pausar metformina e aguardar normalização da TFGe antes do exame.",
+            "D": "Trocar metformina por insulina para realizar o exame contrastado."
+          },
+          "correctAnswer": {
+            "index": 0,
+            "letter": "A",
+            "text": "Manter metformina, sem repetir creatinina só por essa exposição."
+          },
+          "explanation": "Segundo o ACR, a ausência de lesão renal aguda e a TFGe ≥ 30 mL/min/1,73 m² permitem manter metformina no contraste intravenoso, sem controle renal obrigatório apenas por essa exposição. A bula americana é mais conservadora, portanto esta resposta depende da atribuição explícita ao ACR. Em lesão renal aguda, TFGe < 30 mL/min/1,73 m² ou procedimentos arteriais com risco de êmbolos renais, a suspensão e a reavaliação seguem outro contexto.",
+          "referenceCards": {
+            "acr_manual_iodinated_2026": {
+              "label": "ACR Manual on Contrast Media (2026) — Contraste iodado e metformina",
+              "url": "https://www.acr.org/Clinical-Resources/Clinical-Tools-and-Reference/Contrast-Manual",
+              "journal": "American College of Radiology",
+              "ano": 2026,
+              "tipo": "Diretriz",
+              "badge": "GUIDELINE",
+              "badgeColor": "#6366f1",
+              "impacto": "Sem LRA e com TFGe ≥30, metformina não precisa ser suspensa para contraste iodado intravenoso",
+              "icon": "📋",
+              "resumo": "Manual vigente do American College of Radiology sobre meios de contraste. No capítulo de metformina, pacientes sem evidência de LRA e com TFGe igual ou superior a 30 mL/min/1,73 m² não precisam interromper metformina antes ou depois de contraste iodado intravenoso, nem repetir obrigatoriamente a função renal apenas por essa exposição. Em LRA, TFGe inferior a 30 mL/min/1,73 m² ou certos estudos arteriais por cateter com risco de êmbolos renais, recomenda suspensão temporária no momento do procedimento e reavaliação após 48 horas.",
+              "conclusao": "O contraste não interage diretamente com a metformina; o risco relevante é o acúmulo do fármaco se ocorrer LRA. A conduta depende de função renal, presença de LRA e via/procedimento.",
+              "curiosidade": "A recomendação do ACR é menos conservadora que algumas bulas e políticas locais para TFGe entre 30 e 59, razão pela qual o contexto institucional deve ser explicitado em vez de apresentado como verdade universal."
+            }
+          }
+        },
+        "comparison": {
+          "lengths": [
+            64,
+            68,
+            65,
+            65
+          ],
+          "uniqueLongestCorrectAfter": false,
+          "qidPreserved": true,
+          "authoredAnswerIndexPreserved": true,
+          "noPaddingDetected": true
+        },
+        "duplicationCheck": {
+          "dimensions": [
+            "decisão",
+            "estrutura de dados",
+            "perfil-alvo",
+            "idioma"
+          ],
+          "finding": "Nenhuma duplicata exata detectada entre os candidatos relacionados inspecionados; não é garantia de triagem semântica perfeita das741questões."
+        },
+        "implementationObservation": "Somente este AFTER congelado e seus cards exatos. Preservar qid, gabarito canônico, snapshots, históricos, respostas, recursos e FSRS. A autorização editorial não substitui aprovação de compatibilidade técnica de revisões/card históricos. Nenhuma escrita no produto foi realizada.",
+        "verificationPending": []
+      },
+      {
+        "qid": "8d14de2e",
+        "sourceLine": 82,
+        "BEFORE": {
+          "t": "Segurança Renal no BPROAD",
+          "qid": "8d14de2e",
+          "q": "No BPROAD, pessoas com diabetes tipo 2 e alto risco cardiovascular foram randomizadas para meta de PAS abaixo de 120 ou de 140 mmHg. Qual descrição dos eventos adversos é fiel ao ensaio?",
+          "refs": [
+            "bproad"
+          ],
+          "opts": [
+            "Insuficiência renal aguda foi significativamente mais frequente no grupo intensivo",
+            "Insuficiência renal aguda foi rara e semelhante entre os grupos, enquanto hipotensão sintomática e hipercalemia foram mais frequentes no intensivo",
+            "O grupo intensivo não apresentou hipotensão, hipercalemia nem eventos renais",
+            "O benefício cardiovascular ocorreu à custa de aumento comprovado de necessidade de diálise"
+          ],
+          "ans": 1,
+          "exp": "No BPROAD, eventos graves globais foram semelhantes. Insuficiência renal aguda foi rara e não diferiu entre os grupos (4 participantes no intensivo e 5 no padrão). Hipotensão sintomática e hipercalemia, porém, ocorreram mais no tratamento intensivo. Assim, o ensaio sustenta benefício cardiovascular com monitorização de segurança, mas não sustenta afirmar aumento de LRA pelo alvo intensivo nessa população.",
+          "diff": "medium",
+          "cat": "lra"
+        },
+        "beforeQuestionSHA256": "1783e0fdd6a8f41c5860b412617f67b854596fc00b61b0b842f025fc42a5feb9",
+        "AFTER": {
+          "t": "BPROAD — Interpretação dos Eventos Renais",
+          "qid": "8d14de2e",
+          "q": "No BPROAD, que comparou metas de pressão arterial sistólica abaixo de 120 ou 140 mmHg em diabetes tipo 2, insuficiência renal aguda ocorreu em quatro participantes do grupo intensivo e cinco do padrão, sem diferença estatística. Qual interpretação é adequada?",
+          "refs": [
+            "bproad"
+          ],
+          "opts": [
+            "A ausência de significância demonstra proteção renal do alvo intensivo.",
+            "Poucos eventos não permitem afirmar equivalência de segurança renal.",
+            "O benefício cardiovascular exclui risco renal com a meta intensiva.",
+            "Os dois alvos devem ser considerados equivalentes para eventos renais."
+          ],
+          "ans": 1,
+          "exp": "A ausência de diferença estatística não demonstra equivalência renal. Houve apenas quatro versus cinco eventos, com intervalo de confiança amplo, insuficiente para excluir diferenças clinicamente relevantes. Hipotensão sintomática e hipercalemia foram mais frequentes no intensivo. O benefício cardiovascular deve ser interpretado com monitorização de segurança na população estudada, sem importar automaticamente o perfil renal de outros ensaios.",
+          "diff": "medium",
+          "cat": "lra"
+        },
+        "afterQuestionSHA256": "164e36ec012d8ea2d42edd8af2441ef781ce5d9785417f34de61a9baddb9053b",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4Regra7(a)",
+        "OP": "Interpretar a incerteza dos poucos eventos de insuficiência renal aguda do BPROAD sem alegar equivalência de segurança renal.",
+        "classification": {
+          "primaryCompetence": "interpretação de evidência",
+          "Bloom": "Analisar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "justification": "Quatro versus cinco eventos, HR0,79 com IC0,21–2,95 e P0,73 não demonstram equivalência nem proteção renal. O AFTER pede a interpretação dessa incerteza e mantém sinais de hipotensão/hipercalemia separados do benefício cardiovascular.",
+        "findings": [
+          "Nenhum problema substantivo identificado. A conclusão estatística é inferência metodológica apoiada no intervalo amplo, não resultado de ensaio de equivalência."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Nenhum argumento plausível de anulação",
+          "analysis": "Ausência de significância não estabelece proteção ou equivalência; benefício cardiovascular não exclui risco renal. A alternativa correta é a única compatível com eventos escassos e intervalo amplo. Nenhum argumento plausível de anulação."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "A referência não sustenta o gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização científica relevante": false
+          },
+          "triggered": []
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 1,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "duplicateOverride": false
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA permite avaliação normal",
+          "step1": "Sem eliminatório ou duplicata confirmada",
+          "step2": "Nenhum argumento plausível",
+          "step3": "18–20 → aprovada",
+          "result": "aprovada",
+          "lifecycle": "publicado",
+          "lifecycleQualification": "Estado editorial autorizado; integração e publicação física ainda não realizadas."
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "bproad2025",
+            "locationsAndScope": "Abstract e Table3/PDF10: LRA4vs5,HR0,79IC0,21–2,95P0,73; hipotensão8vs1 e K>5,5:177vs125; compostoCV393vs492.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          },
+          {
+            "sourceId": "bproad_registry",
+            "locationsAndScope": "NCT03808311: estudo de estratégia randomizado, phases=[NA]; TFGe<30/diálise/transplante excluídos.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "MANTER O AFTER EXATO DO PARECER AUTORAL; APLICAÇÃO AINDA PENDENTE",
+          "question": "No BPROAD, que comparou metas de pressão arterial sistólica abaixo de 120 ou 140 mmHg em diabetes tipo 2, insuficiência renal aguda ocorreu em quatro participantes do grupo intensivo e cinco do padrão, sem diferença estatística. Qual interpretação é adequada?",
+          "alternatives": {
+            "A": "A ausência de significância demonstra proteção renal do alvo intensivo.",
+            "B": "Poucos eventos não permitem afirmar equivalência de segurança renal.",
+            "C": "O benefício cardiovascular exclui risco renal com a meta intensiva.",
+            "D": "Os dois alvos devem ser considerados equivalentes para eventos renais."
+          },
+          "correctAnswer": {
+            "index": 1,
+            "letter": "B",
+            "text": "Poucos eventos não permitem afirmar equivalência de segurança renal."
+          },
+          "explanation": "A ausência de diferença estatística não demonstra equivalência renal. Houve apenas quatro versus cinco eventos, com intervalo de confiança amplo, insuficiente para excluir diferenças clinicamente relevantes. Hipotensão sintomática e hipercalemia foram mais frequentes no intensivo. O benefício cardiovascular deve ser interpretado com monitorização de segurança na população estudada, sem importar automaticamente o perfil renal de outros ensaios.",
+          "referenceCards": {
+            "bproad": {
+              "label": "BPROAD (2025)",
+              "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2412006",
+              "journal": "N Engl J Med. 2025;392(12):1155-1167",
+              "ano": 2025,
+              "tipo": "Ensaio clínico randomizado",
+              "badge": "RCT",
+              "badgeColor": "#10b981",
+              "impacto": "Alvo intensivo reduziu eventos CV; poucos eventos renais exigem leitura cuidadosa",
+              "icon": "🔬",
+              "resumo": "BPROAD: 12.821 adultos chineses com idade ≥ 50 anos, diabetes tipo 2, pressão sistólica elevada e risco cardiovascular aumentado; metas de pressão sistólica < 120 ou < 140 mmHg. Composto de AVC não fatal, infarto não fatal, tratamento/internação por insuficiência cardíaca ou morte cardiovascular:393 vs 492, HR 0,79(IC 95%0,69-0,90; P < 0,001). Não houve diferença estatística nos eventos graves globais. Insuficiência renal aguda:4 vs 5; hipotensão sintomática e hipercalemia ocorreram mais no intensivo. Ensaio de estratégia, com fase não aplicável.",
+              "conclusao": "Não se detectou diferença nos poucos eventos de LRA; isso não demonstra equivalência renal. Individualizar e monitorar.",
+              "curiosidade": ""
+            }
+          }
+        },
+        "comparison": {
+          "lengths": [
+            71,
+            68,
+            67,
+            70
+          ],
+          "uniqueLongestCorrectAfter": false,
+          "qidPreserved": true,
+          "authoredAnswerIndexPreserved": true,
+          "noPaddingDetected": true
+        },
+        "duplicationCheck": {
+          "candidates": [
+            "709ad94a",
+            "b2c513e8",
+            "e56795a6",
+            "a6886e4e",
+            "5f9a6fe1"
+          ],
+          "fourDimensions": {
+            "decision": "AFTER interpreta incerteza da comparação renal rara;709ad94a descreve sinais gerais de segurança e b2c513e8 interpreta potássio.",
+            "dataStructure": "AFTER explicita4vs5eventos; os outros não fornecem a comparação rara como dado decisivo.",
+            "targetProfile": "Mesmo perfil médico/residente.",
+            "language": "Mesmo português."
+          },
+          "finding": "Variação útil em decisão e estrutura de dados após reescrita; gabarito mantém conceito de leitura fiel da segurança renal do BPROAD."
+        },
+        "implementationObservation": "Somente este AFTER congelado e seus cards exatos. Preservar qid, gabarito canônico, snapshots, históricos, respostas, recursos e FSRS. A autorização editorial não substitui aprovação de compatibilidade técnica de revisões/card históricos. Nenhuma escrita no produto foi realizada.",
+        "verificationPending": []
+      },
+      {
+        "qid": "1b8baaac",
+        "sourceLine": 87,
+        "BEFORE": {
+          "t": "Toxicidade por Alumínio em Diálise",
+          "qid": "1b8baaac",
+          "q": "Paciente em diálise apresenta anemia microcítica persistente apesar de reposição adequada de ferro e resposta insuficiente ao agente estimulador da eritropoiese, associada a dor óssea e alterações neurológicas. Qual exposição histórica deve ser considerada?",
+          "refs": [
+            "brenner_rector"
+          ],
+          "opts": [
+            "Acúmulo de alumínio proveniente de água ou medicamentos contaminados",
+            "Excesso isolado de vitamina B12",
+            "Deficiência de eritropoietina com macrocitose obrigatória",
+            "Hemólise autoimune causada pelo dialisato ultrapuro"
+          ],
+          "ans": 0,
+          "exp": "A toxicidade por alumínio é uma causa histórica de anemia microcítica resistente ao ferro e hiporresponsiva a agentes estimuladores da eritropoiese em pessoas em diálise. Pode coexistir com osteomalácia e encefalopatia, sobretudo quando havia exposição por água do dialisato ou compostos contendo alumínio. O padrão não é explicado por excesso de vitamina B12 nem por deficiência isolada de eritropoietina, que costuma produzir anemia normocítica. Sistemas modernos de tratamento da água tornaram o quadro raro, mas o fenótipo continua clinicamente reconhecível.",
+          "diff": "medium",
+          "cat": "drc"
+        },
+        "beforeQuestionSHA256": "6b357580913fc637fc649a1cbcc3c895d0c13ab2ab620f9f7d90d5829f2ba10f",
+        "AFTER": {
+          "t": "Anemia Microcítica e Sintomas Sistêmicos em Diálise",
+          "qid": "1b8baaac",
+          "q": "Paciente em diálise apresenta anemia microcítica persistente apesar de ferro adequado, dor óssea e alterações neurológicas progressivas. Qual contaminante historicamente associado à água de diálise deve ser investigado?",
+          "refs": [
+            "kdoqi_aluminum_toxicity_2005"
+          ],
+          "opts": [
+            "Alumínio acumulado a partir de água ou dialisato contaminados.",
+            "Cloraminas presentes na água após desinfecção da rede pública.",
+            "Endotoxinas bacterianas provenientes do sistema de distribuição.",
+            "Fluoreto em concentração elevada na água utilizada para diálise."
+          ],
+          "ans": 0,
+          "exp": "O fenótipo sugere investigar alumínio, exposição historicamente ligada à água/dialisato e a compostos contendo o metal. Microcitose sem deficiência de ferro, doença óssea e encefalopatia são manifestações descritas. Os achados não confirmam intoxicação isoladamente e exigem avaliação da exposição. Não se deve atribuir toda anemia ou alteração neurológica do dialítico a esse mecanismo.",
+          "diff": "medium",
+          "cat": "drc"
+        },
+        "afterQuestionSHA256": "b6f1ca2b9318407c92e4ae1d4efef34fc45f823fdd9d84ae993b538968125434",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4Regra7(a)",
+        "OP": "Reconhecer exposição histórica ao alumínio no fenótipo de microcitose e manifestações ósseas/neurológicas em diálise.",
+        "classification": {
+          "primaryCompetence": "diagnóstico diferencial de exposição",
+          "Bloom": "Analisar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "justification": "O conjunto microcitose sem ferro baixo, manifestações ósseas e neurológicas em diálise aponta exposição histórica ao alumínio. Os distratores são contaminantes reais da água; o item pede investigação, sem diagnosticar automaticamente intoxicação ou prescrever quelação histórica.",
+        "findings": [
+          "Nenhum problema substantivo identificado. Segurança conferida no escopo de reconhecimento histórico de exposição."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Nenhum argumento plausível de anulação",
+          "analysis": "Cloraminas relacionam-se especialmente a hemólise, endotoxinas a reações inflamatórias e fluoreto a outros padrões tóxicos; nenhum explica melhor o conjunto crônico cobrado. A fonte KDOQI é histórica e assim rotulada, sem aplicar antigos limiares/doses. Nenhum argumento plausível de anulação."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "A referência não sustenta o gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização científica relevante": false
+          },
+          "triggered": []
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 1,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "duplicateOverride": false
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA permite avaliação normal",
+          "step1": "Sem eliminatório ou duplicata confirmada",
+          "step2": "Nenhum argumento plausível",
+          "step3": "18–20 → aprovada",
+          "result": "aprovada",
+          "lifecycle": "publicado",
+          "lifecycleQualification": "Estado editorial autorizado; integração e publicação física ainda não realizadas."
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "aluminum2005",
+            "locationsAndScope": "Background/Rationale: acúmulo do dialisato ou ingestão; microcitose sem deficiência de ferro, doença óssea e encefalopatia.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          },
+          {
+            "sourceId": "aluminum1987",
+            "locationsAndScope": "Abstract primário: série8dialíticos com microcitose e manifestações ósseas/neurológicas; não é ensaio randomizado nem confirma diagnóstico individual.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "MANTER O AFTER EXATO DO PARECER AUTORAL; APLICAÇÃO AINDA PENDENTE",
+          "question": "Paciente em diálise apresenta anemia microcítica persistente apesar de ferro adequado, dor óssea e alterações neurológicas progressivas. Qual contaminante historicamente associado à água de diálise deve ser investigado?",
+          "alternatives": {
+            "A": "Alumínio acumulado a partir de água ou dialisato contaminados.",
+            "B": "Cloraminas presentes na água após desinfecção da rede pública.",
+            "C": "Endotoxinas bacterianas provenientes do sistema de distribuição.",
+            "D": "Fluoreto em concentração elevada na água utilizada para diálise."
+          },
+          "correctAnswer": {
+            "index": 0,
+            "letter": "A",
+            "text": "Alumínio acumulado a partir de água ou dialisato contaminados."
+          },
+          "explanation": "O fenótipo sugere investigar alumínio, exposição historicamente ligada à água/dialisato e a compostos contendo o metal. Microcitose sem deficiência de ferro, doença óssea e encefalopatia são manifestações descritas. Os achados não confirmam intoxicação isoladamente e exigem avaliação da exposição. Não se deve atribuir toda anemia ou alteração neurológica do dialítico a esse mecanismo.",
+          "referenceCards": {
+            "kdoqi_aluminum_toxicity_2005": {
+              "label": "KDOQI — Sobrecarga e toxicidade por alumínio (2005)",
+              "url": "https://kidneyfoundation.cachefly.net/professionals/KDOQI/guidelines_pedbone/guide12.htm",
+              "journal": "National Kidney Foundation — Pediatric Bone Guideline12",
+              "ano": 2005,
+              "tipo": "Diretriz",
+              "badge": "GUIDELINE",
+              "badgeColor": "#6366f1",
+              "impacto": "Água/dialisato e compostos com alumínio explicam um fenótipo histórico reconhecível",
+              "icon": "📋",
+              "resumo": "Diretriz histórica KDOQI, módulo pediátrico, com fundamentação em dialíticos: alumínio da água/dialisato ou compostos ingeridos pode acumular na DRC. Descreve microcitose sem falta de ferro, doença óssea e encefalopatia. Não usada aqui para prescrever testes, limiares ou quelação.",
+              "conclusao": "O conjunto de achados deve levar à investigação da exposição; não confirma intoxicação sem avaliação adicional.",
+              "curiosidade": ""
+            }
+          }
+        },
+        "comparison": {
+          "lengths": [
+            62,
+            62,
+            64,
+            64
+          ],
+          "uniqueLongestCorrectAfter": false,
+          "qidPreserved": true,
+          "authoredAnswerIndexPreserved": true,
+          "noPaddingDetected": true
+        },
+        "duplicationCheck": {
+          "dimensions": [
+            "decisão",
+            "estrutura de dados",
+            "perfil-alvo",
+            "idioma"
+          ],
+          "finding": "Nenhuma duplicata exata detectada entre os candidatos relacionados inspecionados; não é garantia de triagem semântica perfeita das741questões."
+        },
+        "implementationObservation": "Somente este AFTER congelado e seus cards exatos. Preservar qid, gabarito canônico, snapshots, históricos, respostas, recursos e FSRS. A autorização editorial não substitui aprovação de compatibilidade técnica de revisões/card históricos. Nenhuma escrita no produto foi realizada.",
+        "verificationPending": []
+      }
+    ],
+    "cardReviews": [
+      {
+        "id": "myeloma_renal_imwg_2023",
+        "action": "REPLACE",
+        "BEFORE": {
+          "label": "IMWG — Management of Multiple Myeloma-related Renal Impairment (2023)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/37414019/",
+          "journal": "Lancet Oncol 2023;24(7):e293-e311",
+          "ano": 2023,
+          "tipo": "Recomendação Internacional",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Rim do mieloma: avaliar cadeias leves, evitar nefrotóxicos, suporte + dexametasona e regime baseado em bortezomibe",
+          "icon": "📋",
+          "resumo": "Recomendações atualizadas do International Myeloma Working Group para insuficiência renal relacionada ao mieloma múltiplo. Orienta medir creatinina/TFGe, cadeias leves livres séricas e proteinúria de 24 horas com eletroforese/imunofixação; biópsia renal é útil quando há albuminúria predominante ou cadeias leves envolvidas abaixo de limiar compatível com nefropatia por cilindros. Suporte clínico e dexametasona em alta dose são necessários, e esquemas baseados em bortezomibe são a pedra angular do tratamento inicial da disfunção renal relacionada ao mieloma. Abordagens mecânicas não demonstram aumento de sobrevida global.",
+          "conclusao": "Na LRA do mieloma, a prioridade é reduzir rapidamente cadeias leves com terapia antiplasmocitária efetiva, especialmente bortezomibe + dexametasona, junto de suporte renal e controle de hipercalcemia/desidratação.",
+          "curiosidade": "A proteinúria ajuda a separar pistas: muita albumina sugere glomérulo/amilóide/MIDD; muita cadeia leve com pouca albumina faz pensar em cilindros obstrutivos tubulares."
+        },
+        "AFTER": {
+          "label": "IMWG — Disfunção renal no mieloma (2023)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/37414019/",
+          "journal": "Lancet Oncol. 2023;24(7):e293-e311",
+          "ano": 2023,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Suporte renal e redução rápida de cadeias leves com terapia antiplasmocitária",
+          "icon": "📋",
+          "resumo": "IMWG 2023: medir função renal, cadeias leves e proteínas urinárias. Suporte e dexametasona são necessários; bortezomibe é a base inicial. Abordagens mecânicas não demonstraram aumento da sobrevida global. Recomendações atualizadas com evidência até dezembro 2022.",
+          "conclusao": "Suporte acompanha tratamento do clone; métodos de remoção de cadeias leves não o substituem.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": "acb5bb9a77c2f357d06be18d4955f281984c6eb2c566ead50fa58ab6f59e79fe",
+        "afterSHA256": "0b076a24bf242351d741044b558f7b20c0d9a912a770720ab9c3145cc31c1f07",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derivation": "Handbook§18.4Regra7(a)",
+        "usedByThisBatch": [
+          "c69f0607",
+          "40b3d28b"
+        ],
+        "sourcesIndependentlyRead": [
+          "https://pubmed.ncbi.nlm.nih.gov/37414019/"
+        ],
+        "qualification": "Objeto completo conferido contra fonte primária ou texto integral. Desenho, população, resultados e limitações mantidos; liberação do card não libera automaticamente questões consumidoras. Card de consenso KDIGO corretamente rotulado REVIEW; KDOQI2005 restrito ao fenótipo histórico; Springberg1982 reconhece perdas e homens jovens; BPROAD é estratégia, não faseIII.",
+        "integrationObservation": "Aplicar apenas com pacote consumidor liberado e compatibilidade histórica conferida."
+      },
+      {
+        "id": "pratt_cast_nephropathy_2024",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "Pratt et al. — Nefropatia por cilindros (2024)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11108236/",
+          "journal": "Clin J Am Soc Nephrol. 2024;19(5):650-652",
+          "ano": 2024,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Nefropatia por cilindros exige tratamento anticlone e suporte sem demora",
+          "icon": "🔬",
+          "resumo": "Revisão clínica de especialistas com caso ilustrativo de nefropatia por cilindros. Descreve terapia antiplasmocitária imediata, fluidos intravenosos e tratamento das complicações. Discute incertezas das técnicas extracorpóreas. Foi necessária para detalhar suporte não especificado no abstract do IMWG 2023.",
+          "conclusao": "A hidratação depende da situação clínica; a revisão não define um volume seguro universal.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "79364b702f38374efe7a3573c146089d98b215b2f5bb5f719462de3a90165fc5",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derivation": "Handbook§18.4Regra7(a)",
+        "usedByThisBatch": [
+          "40b3d28b"
+        ],
+        "sourcesIndependentlyRead": [
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC11108236/"
+        ],
+        "qualification": "Objeto completo conferido contra fonte primária ou texto integral. Desenho, população, resultados e limitações mantidos; liberação do card não libera automaticamente questões consumidoras. Card de consenso KDIGO corretamente rotulado REVIEW; KDOQI2005 restrito ao fenótipo histórico; Springberg1982 reconhece perdas e homens jovens; BPROAD é estratégia, não faseIII.",
+        "integrationObservation": "Aplicar apenas com pacote consumidor liberado e compatibilidade histórica conferida."
+      },
+      {
+        "id": "dapa",
+        "action": "REPLACE",
+        "BEFORE": {
+          "label": "DAPA-CKD Trial",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2024816",
+          "journal": "New England Journal of Medicine",
+          "ano": 2020,
+          "tipo": "Ensaio Clínico Fase III",
+          "badge": "RCT",
+          "badgeColor": "#10b981",
+          "impacto": "↓39% desfecho renal composto · ↓31% mortalidade · Interrompido precocemente por eficácia · Benefício independente de diabetes",
+          "icon": "💊",
+          "resumo": "ECR multicêntrico, n=4.304, dapagliflozina 10 mg/dia vs placebo em DRC com ou sem DM2; TFGe 25–75 e ACR 200–5000 mg/g. Desfecho primário: queda sustentada ≥50% da TFGe, DRCT ou morte renal/CV. Resultado: 9,2% vs 14,5%; HR 0,61, IC 95% 0,51–0,72, P<0,001; NNT 19. Também reduziu morte por qualquer causa: 4,7% vs 6,8%; HR 0,69, IC 95% 0,53–0,88.",
+          "conclusao": "DAPA-CKD foi o trial pivô que mostrou nefroproteção dos iSGLT2 independente de diabetes em DRC proteinúrica.",
+          "curiosidade": "32,5% da coorte não tinha DM2, dado que ajudou a deslocar os iSGLT2 de fármacos 'antidiabéticos' para fármacos cardiorrenais."
+        },
+        "AFTER": {
+          "label": "DAPA-CKD (2020)",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2024816",
+          "journal": "N Engl J Med. 2020;383:1436-1446",
+          "ano": 2020,
+          "tipo": "Ensaio clínico randomizado",
+          "badge": "RCT",
+          "badgeColor": "#10b981",
+          "impacto": "Benefício no composto primário em DRC albuminúrica com e sem diabetes",
+          "icon": "🔬",
+          "resumo": "DAPA-CKD: 4.304 adultos, taxa de filtração glomerular estimada (TFGe) de 25-75 mL/min/1,73 m² e relação albumina/creatinina de 200-5.000 mg/g; dapagliflozina 10 mg/dia ou placebo. Composto de queda sustentada da TFGe ≥ 50%, doença renal terminal ou morte renal/cardiovascular: HR 0,61(IC 95%0,51-0,72; P < 0,001). Efeito semelhante com e sem diabetes. Interrompido precocemente por eficácia.",
+          "conclusao": "O benefício não exige diabetes; respeitar os critérios estudados e as exclusões do ensaio.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": "dfc8b2954057e09c9b20a54be5c485d569a331b23b28e01cd10f4a5a24a776fc",
+        "afterSHA256": "79bcd911dbffe3f4b6c76bd44c5835414e2ef7564b998de592a941aa05aa1c9a",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derivation": "Handbook§18.4Regra7(a)",
+        "usedByThisBatch": [
+          "8d943d85"
+        ],
+        "sourcesIndependentlyRead": [
+          "https://www.nejm.org/doi/full/10.1056/NEJMoa2024816"
+        ],
+        "qualification": "Objeto completo conferido contra fonte primária ou texto integral. Desenho, população, resultados e limitações mantidos; liberação do card não libera automaticamente questões consumidoras. Card de consenso KDIGO corretamente rotulado REVIEW; KDOQI2005 restrito ao fenótipo histórico; Springberg1982 reconhece perdas e homens jovens; BPROAD é estratégia, não faseIII.",
+        "integrationObservation": "Aplicar apenas com pacote consumidor liberado e compatibilidade histórica conferida."
+      },
+      {
+        "id": "orthostatic_proteinuria_springberg_1982",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "Springberg et al. — Seguimento da proteinúria ortostática (1982)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/7125410/",
+          "journal": "Ann Intern Med. 1982;97(4):516-519",
+          "ano": 1982,
+          "tipo": "Coorte",
+          "badge": "COHORT",
+          "badgeColor": "#f59e0b",
+          "impacto": "Prognóstico favorável em jovens com padrão ortostático isolado",
+          "icon": "🔬",
+          "resumo": "Coorte histórica de homens jovens com proteinúria ortostática fixa, reavaliada após 20 anos. Informação obtida de 43 dos 64 originais, detalhada em 36; função renal normal nos reavaliados. Sem grupo randomizado e com perdas importantes de seguimento.",
+          "conclusao": "Sustenta prognóstico favorável do padrão isolado; não dispensa reavaliação se o fenótipo mudar.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "460c9561d16350eb2822552ae0d84c9fcab03ba5b31224e5c86684dcbe9f101f",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derivation": "Handbook§18.4Regra7(a)",
+        "usedByThisBatch": [
+          "ca6370dc"
+        ],
+        "sourcesIndependentlyRead": [
+          "https://pubmed.ncbi.nlm.nih.gov/7125410/",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC3677044/"
+        ],
+        "qualification": "Objeto completo conferido contra fonte primária ou texto integral. Desenho, população, resultados e limitações mantidos; liberação do card não libera automaticamente questões consumidoras. Card de consenso KDIGO corretamente rotulado REVIEW; KDOQI2005 restrito ao fenótipo histórico; Springberg1982 reconhece perdas e homens jovens; BPROAD é estratégia, não faseIII.",
+        "integrationObservation": "Aplicar apenas com pacote consumidor liberado e compatibilidade histórica conferida."
+      },
+      {
+        "id": "kdigo_renovascular_conference_2022",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "KDIGO — Conferência sobre doença renovascular (2022)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9834909/",
+          "journal": "Am J Kidney Dis. 2022;79(2):289-301",
+          "ano": 2022,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Filtração dependente de angiotensina exige vigilância ao bloquear o SRAA",
+          "icon": "🔬",
+          "resumo": "Síntese de conferência de controvérsias KDIGO sobre doença renovascular aterosclerótica. Discute tratamento clínico e seleção de revascularização. Com perfusão marginal, a filtração pode depender de angiotensina II e cair após bloqueio do sistema. Consenso, sem grau de recomendação inventado.",
+          "conclusao": "Elevação importante da creatinina exige reavaliar a situação hemodinâmica; não implica toxicidade tubular direta.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "23a7c0736bb412d4243c94557b91ca995a2c6771e999344dfea5d404bab0c61e",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derivation": "Handbook§18.4Regra7(a)",
+        "usedByThisBatch": [
+          "a9d85046"
+        ],
+        "sourcesIndependentlyRead": [
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC9834909/",
+          "https://pubmed.ncbi.nlm.nih.gov/6328984/"
+        ],
+        "qualification": "Objeto completo conferido contra fonte primária ou texto integral. Desenho, população, resultados e limitações mantidos; liberação do card não libera automaticamente questões consumidoras. Card de consenso KDIGO corretamente rotulado REVIEW; KDOQI2005 restrito ao fenótipo histórico; Springberg1982 reconhece perdas e homens jovens; BPROAD é estratégia, não faseIII.",
+        "integrationObservation": "Substituições compartilhadas exigem catálogo de revisões e preservação das versões históricas; não sobrescrever orientação histórica de uma resposta gravada. Card KDIGO renovascular não deve entrar sozinho enquanto a questão dependente fundir permanece bloqueada."
+      },
+      {
+        "id": "bproad",
+        "action": "REPLACE",
+        "BEFORE": {
+          "label": "BPROAD Trial",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2412006",
+          "journal": "N Engl J Med 2025;392(12):1155-1167",
+          "ano": 2025,
+          "tipo": "Ensaio Clínico Fase III",
+          "badge": "RCT",
+          "badgeColor": "#10b981",
+          "impacto": "12.821 participantes: meta de PAS <120 mmHg reduziu o composto cardiovascular, com segurança renal grave semelhante entre os grupos",
+          "icon": "💊",
+          "resumo": "ECR multicêntrico chinês com 12.821 adultos com diabetes tipo 2, hipertensão e alto risco cardiovascular, comparando PAS alvo <120 mmHg versus <140 mmHg. O composto de AVC não fatal, IAM não fatal, tratamento ou internação por insuficiência cardíaca e morte cardiovascular ocorreu em 393 versus 492 participantes (HR 0,79; IC 95% 0,69–0,90). Eventos adversos graves foram semelhantes; insuficiência renal aguda ocorreu em 4 versus 5 participantes. Hipotensão sintomática e hipercalemia foram mais frequentes no grupo intensivo.",
+          "conclusao": "O BPROAD sustenta benefício cardiovascular do alvo intensivo na população estudada, com monitorização de hipotensão e potássio. Não demonstrou aumento de insuficiência renal aguda.",
+          "curiosidade": "Ao contrário do SPRINT, o BPROAD incluiu apenas pessoas com diabetes tipo 2 e testou diretamente a meta de PAS abaixo de 120 mmHg."
+        },
+        "AFTER": {
+          "label": "BPROAD (2025)",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2412006",
+          "journal": "N Engl J Med. 2025;392(12):1155-1167",
+          "ano": 2025,
+          "tipo": "Ensaio clínico randomizado",
+          "badge": "RCT",
+          "badgeColor": "#10b981",
+          "impacto": "Alvo intensivo reduziu eventos CV; poucos eventos renais exigem leitura cuidadosa",
+          "icon": "🔬",
+          "resumo": "BPROAD: 12.821 adultos chineses com idade ≥ 50 anos, diabetes tipo 2, pressão sistólica elevada e risco cardiovascular aumentado; metas de pressão sistólica < 120 ou < 140 mmHg. Composto de AVC não fatal, infarto não fatal, tratamento/internação por insuficiência cardíaca ou morte cardiovascular:393 vs 492, HR 0,79(IC 95%0,69-0,90; P < 0,001). Não houve diferença estatística nos eventos graves globais. Insuficiência renal aguda:4 vs 5; hipotensão sintomática e hipercalemia ocorreram mais no intensivo. Ensaio de estratégia, com fase não aplicável.",
+          "conclusao": "Não se detectou diferença nos poucos eventos de LRA; isso não demonstra equivalência renal. Individualizar e monitorar.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": "50ea7b34ff3554a0f1ca3206602aceb7198aa092a5127b5a1d02785c1accccae",
+        "afterSHA256": "b8d0607e6a8f21db99613dc2734c7893b1c1ae6be27d1feb5209ed35cda8cd5e",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derivation": "Handbook§18.4Regra7(a)",
+        "usedByThisBatch": [
+          "8d14de2e"
+        ],
+        "sourcesIndependentlyRead": [
+          "https://mediacenteratypon.nejmgroup-production.org/NEJMoa2412006.pdf",
+          "https://clinicaltrials.gov/api/v2/studies/NCT03808311"
+        ],
+        "qualification": "Objeto completo conferido contra fonte primária ou texto integral. Desenho, população, resultados e limitações mantidos; liberação do card não libera automaticamente questões consumidoras. Card de consenso KDIGO corretamente rotulado REVIEW; KDOQI2005 restrito ao fenótipo histórico; Springberg1982 reconhece perdas e homens jovens; BPROAD é estratégia, não faseIII.",
+        "integrationObservation": "Aplicar apenas com pacote consumidor liberado e compatibilidade histórica conferida."
+      },
+      {
+        "id": "kdoqi_aluminum_toxicity_2005",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "KDOQI — Sobrecarga e toxicidade por alumínio (2005)",
+          "url": "https://kidneyfoundation.cachefly.net/professionals/KDOQI/guidelines_pedbone/guide12.htm",
+          "journal": "National Kidney Foundation — Pediatric Bone Guideline12",
+          "ano": 2005,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Água/dialisato e compostos com alumínio explicam um fenótipo histórico reconhecível",
+          "icon": "📋",
+          "resumo": "Diretriz histórica KDOQI, módulo pediátrico, com fundamentação em dialíticos: alumínio da água/dialisato ou compostos ingeridos pode acumular na DRC. Descreve microcitose sem falta de ferro, doença óssea e encefalopatia. Não usada aqui para prescrever testes, limiares ou quelação.",
+          "conclusao": "O conjunto de achados deve levar à investigação da exposição; não confirma intoxicação sem avaliação adicional.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "046041b0239a7d586674737744bc8a1b791d728bac2708880cd52416afd44cc5",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derivation": "Handbook§18.4Regra7(a)",
+        "usedByThisBatch": [
+          "1b8baaac"
+        ],
+        "sourcesIndependentlyRead": [
+          "https://kidneyfoundation.cachefly.net/professionals/KDOQI/guidelines_pedbone/guide12.htm",
+          "https://pubmed.ncbi.nlm.nih.gov/3826071/"
+        ],
+        "qualification": "Objeto completo conferido contra fonte primária ou texto integral. Desenho, população, resultados e limitações mantidos; liberação do card não libera automaticamente questões consumidoras. Card de consenso KDIGO corretamente rotulado REVIEW; KDOQI2005 restrito ao fenótipo histórico; Springberg1982 reconhece perdas e homens jovens; BPROAD é estratégia, não faseIII.",
+        "integrationObservation": "Aplicar apenas com pacote consumidor liberado e compatibilidade histórica conferida."
+      }
+    ],
+    "sourceRegistry": {
+      "imwg2023": {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37414019/",
+        "opened": true,
+        "version": "Dimopoulos et al. Lancet Oncol. 2023;24(7):e293-e311; DOI 10.1016/S1470-2045(23)00223-1",
+        "access": "Abstract primário completo via NCBI EFetch XML; página PubMed203 e PDF Lancet403 não são texto integral verificado.",
+        "locations": [
+          "PubmedArticle/MedlineCitation/Article/Abstract"
+        ],
+        "verifiedScope": "Avaliação renal e de cadeias leves; suporte e dexametasona; bortezomibe; ausência de benefício de sobrevida das abordagens mecânicas.",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 17843,
+          "sha256": "8c898a62180cd143c8fa233dbbbd1b15de82fb3496205ddefd0594cea8273dea"
+        },
+        "accessedAtOfficialUTC": "2026-10-12 21:22:49 UTC",
+        "fullTextOpened": false,
+        "retrievalURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=37414019&retmode=xml"
+      },
+      "cast2001": {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1891942/",
+        "opened": true,
+        "version": "Ying WZ, Sanders PW. Am J Pathol. 2001;158(5):1859-1866; DOI 10.1016/S0002-9440(10)64142-9",
+        "access": "Texto integral primário aberto",
+        "locations": [
+          "Abstract",
+          "Introduction",
+          "Discussion"
+        ],
+        "verifiedScope": "Ligação específica entre cadeias leves e proteína de Tamm-Horsfall; agregação e cilindros que obstruem fluxo tubular. Estudo molecular experimental, não ensaio de tratamento clínico.",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 184589,
+          "sha256": "e3b0370b3af28ce2947db845d92ed314fe6cc7173fadbd5b856def3d526914d4"
+        },
+        "accessedAtOfficialUTC": "2026-10-12 21:22:49 UTC"
+      },
+      "pratt2024": {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11108236/",
+        "opened": true,
+        "version": "Pratt G, Pinney J, Cockwell P. Clin J Am Soc Nephrol. 2024;19(5):650-652; DOI 10.2215/CJN.0000000000000400; online18/12/2023",
+        "access": "Texto integral primário aberto",
+        "locations": [
+          "Introduction",
+          "Antimyeloma Therapy",
+          "Supportive Care",
+          "Extracorporeal Removal of Serum-Free Light Chains"
+        ],
+        "verifiedScope": "Tratamento anticlone imediato e suporte; fluidos intravenosos no caso e evidência de hidratação; abordagens extracorpóreas não substituem terapia anticlone. Revisão clínica de especialistas, sem protocolo universal de volume.",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 114953,
+          "sha256": "e1f1f95576c6c69ff468540f01beb6383bd1d237d9d70eb3c63efdd38f86d6ca"
+        },
+        "accessedAtOfficialUTC": "2026-10-12 21:22:49 UTC"
+      },
+      "dapa2020": {
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2024816",
+        "opened": true,
+        "version": "Heerspink et al. NEJM. 2020;383:1436-1446; DOI 10.1056/NEJMoa2024816",
+        "access": "Publicação primária integral em cópia pública NATAP, capa/DOI/autores conferidos.",
+        "locations": [
+          "PDFp1/1436: Abstract",
+          "PDFp2/1437: Participants",
+          "PDFp9/1444: Discussion"
+        ],
+        "verifiedScope": "Composto primário e critérios de inclusão; benefício com e sem diabetes; números do card conferidos no texto integral.",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 641985,
+          "sha256": "0be6562a885ca55f9d03d02c610d868a28357aff11ce95a51b693e2237948cdb"
+        },
+        "accessedAtOfficialUTC": "2026-10-12 21:22:49 UTC",
+        "retrievalURL": "https://www.natap.org/2023/HIV/nejmoa2024816.pdf"
+      },
+      "orthostatic1982": {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/7125410/",
+        "opened": true,
+        "version": "Springberg PD et al. Ann Intern Med. 1982;97(4):516-519; DOI 10.7326/0003-4819-97-4-516",
+        "access": "Abstract primário completo via NCBI EFetch; página PubMed203 e texto do editor403 não certificados.",
+        "locations": [
+          "PubmedArticle/MedlineCitation/Article/Abstract"
+        ],
+        "verifiedScope": "Seguimento de vinte anos de homens jovens com proteinúria ortostática fixa; 43/64 com informação, 36 detalhados; função renal normal nos reavaliados. Coorte histórica limitada a homens e com perdas de seguimento.",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 4712,
+          "sha256": "017b63cff761b06e55e36afdb70d0a5c2778e08b877f7eca9079628a40c67ecc"
+        },
+        "accessedAtOfficialUTC": "2026-10-12 21:22:49 UTC",
+        "fullTextOpened": false,
+        "retrievalURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=7125410&retmode=xml"
+      },
+      "orthostatic2010": {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3677044/",
+        "opened": true,
+        "version": "Brandt JR et al. Pediatr Nephrol. 2010;25(6):1131-1137; DOI 10.1007/s00467-010-1451-z",
+        "access": "Texto integral primário aberto",
+        "locations": [
+          "Abstract",
+          "Methods: Study Population and Data Collection",
+          "Discussion: final paragraph before Acknowledgements"
+        ],
+        "verifiedScope": "Estudo observacional transversal com coleta prospectiva em91crianças; urina matinal normal e diurna elevada no padrão ortostático; acompanhamento de crianças sem demais sinais de doença. O seguimento anual proposto pelos autores não é diretriz formal.",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 169993,
+          "sha256": "8a6d33da8a0e19a0f89770cee9adf8152887d5f02887a22654e1bc235adc0345"
+        },
+        "accessedAtOfficialUTC": "2026-10-12 21:22:49 UTC"
+      },
+      "kdigo_renovascular2022": {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9834909/",
+        "opened": true,
+        "version": "Hicks CW et al. Am J Kidney Dis. 2022;79(2):289-301; DOI 10.1053/j.ajkd.2021.06.025",
+        "access": "Texto integral primário aberto",
+        "locations": [
+          "Abstract",
+          "Medical Management: Antihypertensive Treatment"
+        ],
+        "verifiedScope": "Consenso da conferência de controvérsias KDIGO: bloqueio do SRAA com vigilância; filtração pode depender de angiotensina sob baixa perfusão. Não equivale a diretriz com recomendação graduada.",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 315610,
+          "sha256": "3a432177c134907527c9a3f1c23d3c9a8ad5e29fd8a779c7f8887f5e7c174324"
+        },
+        "accessedAtOfficialUTC": "2026-10-12 21:22:49 UTC"
+      },
+      "textor1984": {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/6328984/",
+        "opened": true,
+        "version": "Textor SC et al. Am J Med. 1984;76(5B):29-37; DOI 10.1016/0002-9343(84)90880-5",
+        "access": "Abstract primário integral via NCBI EFetch; também aberto no PubMed.",
+        "locations": [
+          "PubmedArticle/MedlineCitation/Article/Abstract"
+        ],
+        "verifiedScope": "Estudo fisiológico humano de inibição da ECA com captopril: importância da constrição eferente mediada por angiotensina II e insuficiência funcional em estenose bilateral. Mecanismo de classe; não fornece dose de enalapril.",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 7874,
+          "sha256": "cef2c1ddb40387d05ee5607f692624aca67e6e5fd82d302f50e0d9850897bff9"
+        },
+        "accessedAtOfficialUTC": "2026-10-12 21:22:49 UTC"
+      },
+      "aluminum2005": {
+        "url": "https://kidneyfoundation.cachefly.net/professionals/KDOQI/guidelines_pedbone/guide12.htm",
+        "opened": true,
+        "version": "NKF KDOQI pediatric bone guideline2005, Guideline12: Aluminum Overload and Toxicity in CKD",
+        "access": "Texto integral primário aberto",
+        "locations": [
+          "Background",
+          "Rationale: manifestations of aluminum toxicity"
+        ],
+        "verifiedScope": "Fonte oficial histórica: alumínio da água/dialisato ou compostos ingeridos; anemia microcítica sem falta de ferro, doença óssea e encefalopatia. Uso restrito ao reconhecimento do fenótipo; nenhum limiar, teste ou tratamento antigo proposto.",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 30241,
+          "sha256": "778f2b596b9764a2dbd853896d186cc0a59a764ea1f8ec49da78e6f36d4d5f3a"
+        },
+        "accessedAtOfficialUTC": "2026-10-12 21:22:49 UTC"
+      },
+      "aluminum1987": {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/3826071/",
+        "opened": true,
+        "version": "Swartz R et al. Am J Kidney Dis. 1987;9(3):217-223; DOI10.1016/s0272-6386(87)80058-6",
+        "access": "Abstract primário completo via NCBI EFetch; também aberto pelo web, turn342view1/turn378view0.",
+        "locations": [
+          "PubmedArticle/MedlineCitation/Article/Abstract"
+        ],
+        "verifiedScope": "Série de oito dialíticos com microcitose e sinais ósseos/neurológicos de intoxicação por alumínio; não é ensaio randomizado nem prova diagnóstica individual.",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 6760,
+          "sha256": "4a1400c2ee522e57a8822f93fd927dcf6591af362c6b73880110feb44dd75ad2"
+        },
+        "accessedAtOfficialUTC": "2026-10-12 21:22:49 UTC",
+        "retrievalURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=3826071&retmode=xml",
+        "fullTextOpened": false,
+        "localGETChallengeOnly": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 5590,
+          "sha256": "f448de001b0acd2a30afb2d5068a2ac25052a54db0b6932083a31dac7497cb34"
+        }
+      },
+      "acr2026": {
+        "url": "https://edge.sitecorecloud.io/americancoldf5f-acrorgf92a-productioncb02-3650/media/ACR/Files/Clinical/Contrast-Manual/ACR-Manual-on-Contrast-Media.pdf",
+        "opened": true,
+        "version": "ACR Manual on Contrast Media2026",
+        "access": "Texto integral primário aberto",
+        "locations": [
+          "pp48-49/PDFindices50-51: Metformin, CategoryI andII; footnoteFDA"
+        ],
+        "verifiedScope": "Sem LRA/TFGe≥30 e contraste intravenoso: não suspender nem repetir função renal obrigatoriamente; exceções e reavaliação48h.",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 1765419,
+          "sha256": "24bfacd3344310d1546636f50aabba11d6458f432b3c8b1205d9c63efe751be2"
+        },
+        "accessedAtOfficialUTC": "2026-10-12 21:22:49 UTC"
+      },
+      "bproad2025": {
+        "url": "https://mediacenteratypon.nejmgroup-production.org/NEJMoa2412006.pdf",
+        "opened": true,
+        "version": "Bi et al. NEJM2025;392:1155-1167; online16/11/2024; DOI10.1056/NEJMoa2412006",
+        "access": "Texto integral primário aberto",
+        "locations": [
+          "Table3/PDFindex10, Abstract, Table2"
+        ],
+        "verifiedScope": "Desenho/n12821/alvos/compostoCV e eventos; LRA4vs5, HR0,79 IC0,21-2,95 P0,73; não demonstra equivalência renal.",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 683845,
+          "sha256": "6b5146216744147e435ffdc785af6b84e503fcd19ace3d8af2c4f5cf30b90cdb"
+        },
+        "accessedAtOfficialUTC": "2026-10-12 21:22:49 UTC"
+      },
+      "bproad_registry": {
+        "url": "https://clinicaltrials.gov/api/v2/studies/NCT03808311",
+        "opened": true,
+        "version": "Registro primário NCT03808311, lastposted23/10/2024",
+        "access": "Texto integral primário aberto",
+        "locations": [
+          "protocolSection/designModule/phases",
+          "allocation",
+          "maskingInfo"
+        ],
+        "verifiedScope": "Ensaio randomizado de estratégia; phases=[NA]; não faseIII.",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 13391,
+          "sha256": "47de0a8c5adc923c062aca12f3a37f1eab12a6641702be2ffa8b2dbf2af00d83"
+        },
+        "accessedAtOfficialUTC": "2026-10-12 21:22:49 UTC"
+      },
+      "metformin_label2026": {
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e087ce3b-8d7f-43a3-8d20-54513da7617d",
+        "opened": true,
+        "version": "DailyMed Vistapharm SPLv9, publicado30/09/2026",
+        "access": "Texto integral primário aberto",
+        "locations": [
+          "Seção2.4: iodinated contrast imaging procedures"
+        ],
+        "verifiedScope": "Bula americana atual é mais conservadora que ACR para TFGe30-60 e outros riscos; não confundir com recomendaçãoACR nem afirmar protocolo brasileiro universal.",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 229176,
+          "sha256": "6bfd8f78b4545dfde0472fe78d0195479785b32872269e2c475e67c113931d53"
+        },
+        "accessedAtOfficialUTC": "2026-10-12 21:22:49 UTC"
+      }
+    },
+    "additionalIndependentSources": [
+      {
+        "id": "imwg2023-fulltext",
+        "url": "https://www.binasss.sa.cr/bibliotecas/bhm/jul23/13.pdf",
+        "publicationURL": "https://pubmed.ncbi.nlm.nih.gov/37414019/",
+        "title": "Management of multiple myeloma-related renal impairment: recommendations from the International Myeloma Working Group",
+        "DOI": "10.1016/S1470-2045(23)00223-1",
+        "journal": "Lancet Oncol.2023;24:e293–e311",
+        "pages": 19,
+        "openedIndependently": true,
+        "identityChecked": [
+          "título",
+          "autores",
+          "Lancet Oncol.2023;24:e293–311",
+          "mesma identidade do XML PubMed37414019"
+        ],
+        "locations": [
+          "e294 Pathophysiology",
+          "e296 Supportive care"
+        ],
+        "qualification": "Cópia pública do artigo primário em BINASSS; não é ChatGPT Library e não usa materializador Library. Sem alteração do AFTER por disponibilidade da fonte. Fonte adicional independe do acesso somente ao abstract registrado pelo autor."
+      },
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/39555827/",
+        "openedIndependently": true,
+        "verifiedScope": "Bi etal.NEnglJMed2025Mar27;392(12):1155–1167;DOI10.1056/NEJMoa2412006;epub2024Nov16. Confirma metadados da publicação final, separados do PDF online2024."
+      }
+    ],
+    "localSourcePinsVerified": [
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 328915,
+        "sha256": "1e76acf9f3095fd07c82a92ab56ed339aeeaf7761798d3103b9e415a2dd8d597"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 5590,
+        "sha256": "f448de001b0acd2a30afb2d5068a2ac25052a54db0b6932083a31dac7497cb34"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 6760,
+        "sha256": "4a1400c2ee522e57a8822f93fd927dcf6591af362c6b73880110feb44dd75ad2"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 30241,
+        "sha256": "778f2b596b9764a2dbd853896d186cc0a59a764ea1f8ec49da78e6f36d4d5f3a"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 25438,
+        "sha256": "9762caea21644087d4e595c54b523446a779c87c36c6d7eb1f8c48ad8d217e25"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 46742,
+        "sha256": "a474d2b486f5a5d731a7e2f52ec7a717d938cbe63e57148cf812fb5dbe71a716"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 184589,
+        "sha256": "e3b0370b3af28ce2947db845d92ed314fe6cc7173fadbd5b856def3d526914d4"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 45256,
+        "sha256": "bf66d3710fe3eed8e33b6f66c000d5dd06ab63ba4623b9857737b5f720a47e97"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 21348,
+        "sha256": "dfd3b1bb1d39cd2f469229a9f613d7c96b9a1a66886f22e575a6598e721f71cd"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 641985,
+        "sha256": "0be6562a885ca55f9d03d02c610d868a28357aff11ce95a51b693e2237948cdb"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 41956,
+        "sha256": "3f264b0461f3eabee924244b8c8c3eb136f5bb416df0ee4ef4f5cb92549aebe4"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 5590,
+        "sha256": "ac7649bd4a8a687c27d95c67b003c01546fb853f62b272c00a46202a972734e6"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 17843,
+        "sha256": "8c898a62180cd143c8fa233dbbbd1b15de82fb3496205ddefd0594cea8273dea"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 315610,
+        "sha256": "3a432177c134907527c9a3f1c23d3c9a8ad5e29fd8a779c7f8887f5e7c174324"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 92848,
+        "sha256": "31d81f5e7e9b7579a625be590c816262ad0879661548ec3b421d6dd1d543bbd2"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 5590,
+        "sha256": "e5ee4fac43e8f6db1aaa91696e7f7b750f373b1d86ad5f3a36a73091e179a93f"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 4712,
+        "sha256": "017b63cff761b06e55e36afdb70d0a5c2778e08b877f7eca9079628a40c67ecc"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 169993,
+        "sha256": "8a6d33da8a0e19a0f89770cee9adf8152887d5f02887a22654e1bc235adc0345"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 39689,
+        "sha256": "8321448809c4707a7b8d2eb2c3aecdd966c061d28f5248b3febcbc754aa6f083"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 114953,
+        "sha256": "e1f1f95576c6c69ff468540f01beb6383bd1d237d9d70eb3c63efdd38f86d6ca"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 16293,
+        "sha256": "451c8e92c96c4ad189dac41017764612f19bf07a33208d7962fd4bf233b81791"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 1408,
+        "sha256": "194ba2f4c9a46650f99d1f7cab30ea2f447fd58e2a184a117a72a3f7bed4de75"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 3299,
+        "sha256": "e9a03efff49024ee824c3391563c42b7fef725b6590dde307ec38e2ea2ce34dc"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 1941,
+        "sha256": "4809b23fc72a75cc63bdd1719ed5c99e2543b85ea2009fe1a09e47ecb6cfe532"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 1342,
+        "sha256": "6cfa4dc543d5c80d209fb90ea9915759da8907b21fbd5b60a883dbadf28fdb34"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 621,
+        "sha256": "6a02b7abaeb00b6a6fdd8321b95f4b8b3e6049cf547d1c38c23e93dd2835eebc"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 7874,
+        "sha256": "cef2c1ddb40387d05ee5607f692624aca67e6e5fd82d302f50e0d9850897bff9"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 1765419,
+        "sha256": "24bfacd3344310d1546636f50aabba11d6458f432b3c8b1205d9c63efe751be2"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 683845,
+        "sha256": "6b5146216744147e435ffdc785af6b84e503fcd19ace3d8af2c4f5cf30b90cdb"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 13391,
+        "sha256": "47de0a8c5adc923c062aca12f3a37f1eab12a6641702be2ffa8b2dbf2af00d83"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 229176,
+        "sha256": "6bfd8f78b4545dfde0472fe78d0195479785b32872269e2c475e67c113931d53"
+      }
+    ],
+    "BPROADSharedConsumerScope": [
+      {
+        "qid": "e56795a6",
+        "line": 4,
+        "currentQuestionSHA256": "b36278a545e74ae730b12005c6aaabaa949c813cde2091d90461367637ef23f8",
+        "scopeOfSharedCard": "População, alvos e composto CV sustentados pelo BPROAD; nenhuma nova aprovação do restante do item.",
+        "wholeQuestionApprovedByAssociation": false
+      },
+      {
+        "qid": "a6886e4e",
+        "line": 30,
+        "currentQuestionSHA256": "b74faadbf3c49e622c8b18ee4af9e6cab51a6a038cb1ddfe7822086b41c3293a",
+        "scopeOfSharedCard": "População, alvos e composto CV sustentados pelo BPROAD; nenhuma nova aprovação do restante do item.",
+        "wholeQuestionApprovedByAssociation": false
+      },
+      {
+        "qid": "8d14de2e",
+        "line": 82,
+        "currentQuestionSHA256": "1783e0fdd6a8f41c5860b412617f67b854596fc00b61b0b842f025fc42a5feb9",
+        "scopeOfSharedCard": "O AFTER independente deste lote interpreta4vs5eventos sem equivalência; o BEFORE usa semelhante como descrição observada e requer substituição editorial aprovada.",
+        "wholeQuestionApprovedByAssociation": false
+      },
+      {
+        "qid": "5f9a6fe1",
+        "line": 112,
+        "currentQuestionSHA256": "d433f435c026abe3676b54b574edd7ad9d07d60f0076d3d83b7d3236f0e9c6b1",
+        "scopeOfSharedCard": "População, alvos e composto CV sustentados pelo BPROAD; nenhuma nova aprovação do restante do item.",
+        "wholeQuestionApprovedByAssociation": false
+      },
+      {
+        "qid": "709ad94a",
+        "line": 119,
+        "currentQuestionSHA256": "c6a40b6b0aeb8ee8e504f5a8e76eb5c64854f18534595bd6d7fe6b81bfce8967",
+        "scopeOfSharedCard": "Sinais de hipotensão/hipercalemia e eventos graves globais conferidos em Table3; fonte não prova equivalência nem segurança universal.",
+        "wholeQuestionApprovedByAssociation": false
+      },
+      {
+        "qid": "b2c513e8",
+        "line": 174,
+        "currentQuestionSHA256": "38dbd2929183ef088720cbe73889a91c8d9cffd1b854abd9660106d8de4c30ec",
+        "scopeOfSharedCard": "Sinais de hipotensão/hipercalemia e eventos graves globais conferidos em Table3; fonte não prova equivalência nem segurança universal.",
+        "wholeQuestionApprovedByAssociation": false
+      },
+      {
+        "qid": "13109735",
+        "line": 493,
+        "currentQuestionSHA256": "df45389376f1dd5264d4b488a03038656f3840c9c9625878da10dcc3b899e2a4",
+        "scopeOfSharedCard": "O BPROAD excluiu TFGe<30, diálise e transplante; NÃO sustenta aplicação direta à DRCG4 do enunciado. O alvo atribuído à KDIGO deve depender de seus cards próprios. A frase geral sobre evidência em diabetes é sustentada, mas não equivale a evidência em G4.",
+        "wholeQuestionApprovedByAssociation": false
+      }
+    ],
+    "initialSourceConcernResolved": {
+      "qid": "c69f0607",
+      "concern": "Abstract IMWG não contém mecanismo; fonte experimental não citada no AFTER.",
+      "resolution": "Texto integral IMWG2023 e294 aberto e conferido independentemente, com ligação distalTamm-Horsfall/agregação/obstrução. A referência exata já citada sustenta o gabarito; não há mudança material nem card novo."
+    },
+    "counts": {
+      "questionsReviewed": 8,
+      "exactAfterAccepted": 7,
+      "exactAfterBlocked": 1,
+      "cardsReviewed": 7,
+      "cardsAccepted": 7,
+      "cardsBlocked": 0,
+      "newCardsAccepted": 4,
+      "sharedReplacementsAccepted": 3,
+      "BPROADConsumersScopeChecked": 7,
+      "implemented": 0
+    },
+    "validation": {
+      "beforeMatchesCurrentBank8of8": true,
+      "sourceAfterHashesMatch8of8": true,
+      "fourOptions8of8": true,
+      "stableQids8of8": true,
+      "authoredAnswerIndicesPreserved8of8": true,
+      "uniqueLongestCorrectAfter": 0,
+      "publicationDerived": true,
+      "allLocalPinsMatch": true,
+      "noProductEdits": true,
+      "noGitMutation": true
+    },
+    "limits": [
+      "Não certifica todas as741questões nem autoriza por associação os demais consumidores dos cards.",
+      "BPROADnão fornece evidência direta paraTFGe<30/DRCG4/diálise/transplante.",
+      "Fundir a9d85046/5426acba continua bloqueado para aplicação isolada; preservar ambos os históricos e exigir decisão exata de consolidação.",
+      "Compatibilidade técnica de versões antigas, cards e gravação/CAS pertence à integração; não foi executada por este revisor.",
+      "As liberações dizem respeito somente aos objetos AFTER/cards de SHA indicados; qualquer alteração material exige nova avaliação."
+    ]
+  }
+}
