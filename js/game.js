@@ -4018,7 +4018,7 @@
         ui.nextBtn.classList.remove('hidden');
         ui.dockNextBtn?.classList.remove('disabled');
       }
-      if ((isCharacterPilot() || !!state.classBenefits || !!q._answerPresentation) &&
+      if (!isProgressSandbox() && (isCharacterPilot() || !!state.classBenefits || !!q._answerPresentation) &&
           !_normalJourneyStaging && !wasAnswered && !_doSaveGame()) {
         _stopLocalJourney(); _reloadJourneyCollections(); refreshWelcomeSave();
         _toast('Não foi possível gravar a pergunta. Retome a jornada salva.', 'warning', 6000);

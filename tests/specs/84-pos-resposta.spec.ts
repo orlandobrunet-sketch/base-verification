@@ -11,9 +11,12 @@ test.beforeEach(async ({ page }) => {
 async function respond(page: Page, correct: boolean) {
   const q = await page.evaluate(() => (0, eval)('state.current'));
   const idx = correct ? q.a : (q.a + 1) % q.o.length;
+  const originalIdx = await page.evaluate(({ question, chosen }) => (window as any).NQAnswers.originalIndex(question, chosen), { question: q, chosen: idx });
+  expect(Number.isInteger(originalIdx)).toBe(true);
+  expect((q._answerPresentation?.sourceQuestion.o || q.o)[originalIdx]).toBe(q.o[idx]);
   await page.locator('#options .option').nth(idx).click();
   await expect(page.locator('#nqlQuestionRatingToggle')).toBeVisible();
-  return { ...q, idx };
+  return { ...q, idx, originalIdx };
 }
 async function captureSubmissions(page: Page) {
   await page.evaluate(() => {
@@ -90,8 +93,8 @@ test('reflexão salva o erro escolhido e transfere o foco para a orientação', 
     writes: (window as any).__reviewWrites,
   }));
   expect(saved.data.log).toHaveLength(1);
-  expect(saved.data.log[0]).toMatchObject({ qid: q.id, idx: q.idx, reason });
-  expect(saved.writes.find((w: any) => w.table === 'question_error_reasons').rows[0]).toMatchObject({ question_id: q.id, chosen_idx: q.idx, reason });
+  expect(saved.data.log[0]).toMatchObject({ qid: q.id, idx: q.originalIdx, reason });
+  expect(saved.writes.find((w: any) => w.table === 'question_error_reasons').rows[0]).toMatchObject({ question_id: q.id, chosen_idx: q.originalIdx, reason });
 });
 test('painéis abertos são acessíveis e cabem em 320px com texto ampliado', async ({ page }) => {
   await respond(page, false);

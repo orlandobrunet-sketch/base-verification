@@ -103,15 +103,25 @@ test('journeyId ou prefixo divergente mantém ledger e recursos locais juntos', 
         .map((qid: string, index: number) => journeyId + ':' + (index + 1) + ':' + qid);
       remote.characterLastAnswer.journeyId = journeyId;
     } else {
-      const differentQid = await page.evaluate(current => {
+      const different = await page.evaluate(current => {
         const bank = (window as any).questionBank;
         const original = bank.find((question: any) => question.id === current);
-        return bank.find((question: any) => question.id !== current && question.d === original.d).id;
+        const question = bank.find((question: any) => question.id !== current && question.d === original.d);
+        const answers = (window as any).NQAnswers;
+        const presentation = answers.present(question);
+        return { questionPresentation: answers.snapshot(presentation), questionId: question.id,
+          choice: presentation.a, originalChoice: answers.originalIndex(presentation, presentation.a),
+          optionId: answers.optionId(presentation, presentation.a) };
       }, remote.currentQuestionId);
+      const { questionPresentation, ...answerIdentity } = different;
+      const differentQid = answerIdentity.questionId;
       remote.currentQuestionId = differentQid;
       remote.classBenefits.seenQids = [differentQid];
       remote.classBenefits.creditedEvents = [remote.classBenefits.journeyId + ':1:' + differentQid];
-      remote.characterLastAnswer.questionId = differentQid;
+      // A divergent history still needs one coherent presented question and answer.
+      remote.questionPresentation = questionPresentation;
+      Object.assign(remote.questionAnswer, answerIdentity);
+      Object.assign(remote.characterLastAnswer, answerIdentity);
     }
     await validateRemote(page, remote);
     await page.evaluate(save => (window as any)._mergeCloudProgress({ save }), remote);
