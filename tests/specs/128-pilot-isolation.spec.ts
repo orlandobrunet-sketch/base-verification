@@ -280,7 +280,7 @@ test('início parcial gravado pela API real não oferece retomada nem cria uma j
   await expect(page.locator('#resumePilotBtn')).toBeVisible();
   await expect(page.locator('#resumePilotBtn')).toBeDisabled();
   await expect(page.locator('#resumePilotBtn')).toHaveText('Piloto não iniciado');
-  await expect(page.locator('#characterPilotSavedDescription')).toContainText('Piloto não iniciado');
+  await expect(page.locator('#characterPilotSavedDescription')).toHaveText('Este registro antigo não concluiu o início. Comece uma nova jornada para jogar.');
   expect(await page.evaluate(() => (window as any).resumePilotGame())).toBe(false);
   expect(await page.evaluate(key => localStorage.getItem(key), PILOT_KEY)).toBe(raw);
   expect(await normalBytes(page)).toEqual(normal);
@@ -292,7 +292,7 @@ test('início parcial gravado pela API real não oferece retomada nem cria uma j
   await expect(page.locator('#resumePilotBtn')).toBeVisible();
   await expect(page.locator('#resumePilotBtn')).toBeDisabled();
   await expect(page.locator('#resumePilotBtn')).toHaveText('Piloto não iniciado');
-  await expect(page.locator('#characterPilotSavedDescription')).toContainText('Piloto não iniciado');
+  await expect(page.locator('#characterPilotSavedDescription')).toHaveText('Este registro antigo não concluiu o início. Comece uma nova jornada para jogar.');
   expect(await page.evaluate(() => (window as any).resumePilotGame())).toBe(false);
   expect(await page.evaluate(() => (window as any).NQPilot.active)).toBe(false);
   expect(await page.evaluate(key => localStorage.getItem(key), PILOT_KEY)).toBe(raw);
