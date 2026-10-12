@@ -839,13 +839,6 @@
               </aside>
             </div>
 
-            <fieldset class="nq-pilot-choice">
-              <legend>Piloto opcional de personagens</legend>
-              <label for="characterPilotOptIn"><input type="checkbox" id="characterPilotOptIn" aria-describedby="characterPilotRules characterPilotAvailability"><span>Ativar bônus nesta nova jornada</span></label>
-              <p id="characterPilotRules">Nas primeiras 20 respostas da campanha, incluindo erros: Nephros recebe +1 XP por acerto (até 20 XP); Glomerulus recebe +2 ouro por acerto (até 40 ouro); Aquaria previne uma perda de vida.</p>
-              <p>Jornada local, separada da jornada normal e sempre fora do ranking. A classe escolhida vale até o fim deste piloto.</p>
-              <p id="characterPilotAvailability" role="status">Disponível em Fácil, Médio e Difícil. Sem piloto no Hardcore.</p>
-            </fieldset>
             </div>
 
             <footer class="nql-difficulty__footer">
@@ -874,7 +867,6 @@
         const confirmName = confirm?.querySelector('[data-diff-confirm-name]');
         if (confirmName) confirmName.textContent = definition.name;
         if (confirm) confirm.setAttribute('aria-label', `Continuar com dificuldade ${definition.name}`);
-        if (typeof window.refreshCharacterPilotChoice === 'function') window.refreshCharacterPilotChoice(diff);
         if (announce) {
           const status = overlay.querySelector('#diffSelectionStatus');
           if (status) status.textContent = `${definition.name} selecionado: ${definition.lives} ${definition.lives === 1 ? 'vida' : 'vidas'}.`;
@@ -884,9 +876,6 @@
       renderDiff();
       document.body.appendChild(overlay);
       updateDifficultyPreview(selectedDiff);
-      overlay.querySelector('#characterPilotOptIn')?.addEventListener('change', () => {
-        if (typeof window.refreshCharacterPilotChoice === 'function') window.refreshCharacterPilotChoice(selectedDiff);
-      });
       overlay.querySelector('.difficulty-card[aria-checked="true"]')?.focus({ preventScroll: true });
       isolateBackground();
 
@@ -1179,39 +1168,43 @@
       const optLetters = ['A','B','C','D'];
       const modal = document.createElement('div');
       modal.className = 'modal show session-review-popup';
-      modal.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100svh;height:100dvh;background:rgba(0,0,0,0.88);display:flex;align-items:flex-start;justify-content:center;z-index:10000;backdrop-filter:blur(6px);overflow-y:auto;padding:12px 16px calc(env(safe-area-inset-bottom,0px)+80px);box-sizing:border-box;';
+      modal.setAttribute('role', 'presentation');
       modal.innerHTML = `
-        <div style="max-width:560px;width:100%;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;box-shadow:0 0 40px rgba(251,113,133,0.3);margin:auto 0;">
-          <h2 style="color:#fb7185;font-family:'Cinzel',serif;text-align:center;margin-bottom:6px;">📋 ERROS DA JORNADA</h2>
-          <p style="color:var(--txt-dim);text-align:center;font-size:0.8rem;margin-bottom:16px;">${wrongs.length} questão${wrongs.length>1?'es':''} errada${wrongs.length>1?'s':''} nesta sessão</p>
-          <div class="modal-scroll-body" style="display:flex;flex-direction:column;gap:12px;margin-bottom:12px;">
+        <section class="nqreview-card" aria-describedby="sessionReviewCount">
+          <header class="nqreview-header">
+            <h2 id="sessionReviewTitle">Erros da Jornada</h2>
+            <p id="sessionReviewCount">${wrongs.length} ${wrongs.length>1?'questões erradas':'questão errada'} nesta sessão</p>
+          </header>
+          <div class="modal-scroll-body nqreview-reading" role="region" tabindex="0" aria-label="Revisão dos erros da sessão">
             ${wrongs.map((q, qi) => {
               const opts = q.o || [];
-              return `<div style="background:rgba(251,113,133,0.08);border:1px solid rgba(251,113,133,0.25);border-radius:10px;padding:14px;">
-                <div style="color:var(--txt-dim);font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">${qi+1}/${wrongs.length}</div>
-                <p style="color:var(--txt);font-size:0.87rem;line-height:1.6;margin-bottom:10px;">${escapeHtml(q.q)}</p>
-                <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:10px;">
+              const hasChoice = Number.isInteger(q.chosen) && q.chosen >= 0 && q.chosen < opts.length;
+              return `<article class="nqreview-question-card" aria-labelledby="sessionReviewQuestion${qi}">
+                <p class="nqreview-index">Questão ${qi+1} de ${wrongs.length}</p>
+                <h3 class="nqreview-question" id="sessionReviewQuestion${qi}">${escapeHtml(q.q)}</h3>
+                <ol class="nqreview-options" aria-label="Alternativas">
                   ${opts.map((o, i) => {
                     const isCorrect = i === q.a;
-                    const bg     = isCorrect ? 'rgba(52,211,153,0.15)' : 'transparent';
-                    const border  = isCorrect ? '1px solid #34d399' : '1px solid rgba(255,255,255,0.08)';
-                    const color   = isCorrect ? '#34d399' : 'var(--txt-dim)';
-                    return `<div style="background:${bg};border:${border};border-radius:6px;padding:6px 10px;font-size:0.8rem;color:${color};">${optLetters[i]}. ${escapeHtml(o)}${isCorrect?' ✓':''}</div>`;
+                    const isChosen = hasChoice && i === q.chosen;
+                    return `<li class="nqreview-option${isCorrect?' is-correct':''}${isChosen?' is-chosen':''}" data-option-index="${i}">
+                      <span class="nqreview-letter">${optLetters[i] || String(i+1)}</span>
+                      <div class="nqreview-option-content">
+                        ${isChosen || isCorrect ? `<div class="nqreview-statuses">${isChosen?'<span class="nqreview-status nqreview-status--chosen">Sua resposta</span>':''}${isCorrect?'<span class="nqreview-status nqreview-status--correct">Resposta correta</span>':''}</div>` : ''}
+                        <p class="nqreview-option-text">${escapeHtml(o)}</p>
+                      </div>
+                    </li>`;
                   }).join('')}
-                </div>
-                ${q.e ? `<div style="font-size:0.78rem;color:#94a3b8;line-height:1.6;border-top:1px solid rgba(255,255,255,0.08);padding-top:8px;">${escapeHtml(q.e)}</div>` : ''}
-              </div>`;
+                </ol>
+                ${!hasChoice ? '<p class="nqreview-unrecorded">A alternativa escolhida não foi registrada nesta sessão.</p>' : ''}
+                ${q.e ? `<section class="nqreview-explanation" aria-labelledby="sessionReviewExplanation${qi}"><h4 id="sessionReviewExplanation${qi}">Explicação</h4><p>${escapeHtml(q.e)}</p></section>` : ''}
+              </article>`;
             }).join('')}
           </div>
-          <button class="btn gold" data-close-closest=".modal" style="width:100%;">Fechar</button>
-        </div>`;
+          <footer class="nqreview-footer"><button class="btn gold" data-close-closest=".modal">Fechar</button></footer>
+        </section>`;
       document.body.appendChild(modal);
-      const leitura = modal.querySelector('.modal-scroll-body');
-      leitura.setAttribute('role', 'region');
-      leitura.setAttribute('tabindex', '0');
-      leitura.setAttribute('aria-label', 'Revisão dos erros da sessão');
-      nqDialogo(modal, { painel: modal });
-      leitura.focus({ preventScroll: true });
+      nqDialogo(modal, { painel: modal.querySelector('.nqreview-card') });
+      modal.querySelector('.nqreview-reading').focus({ preventScroll: true });
     }
 
     function finishGameUI() {

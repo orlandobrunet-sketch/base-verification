@@ -641,16 +641,16 @@ test('successful continue refreshes pilot controls after gameplay restoration', 
   await relinquish(f);
 });
 
-test('character choice defers welcome dismissal until the pilot initialization is complete', async () => {
+test('character choice defers welcome dismissal until the new journey save is confirmed', async () => {
   const f = fixture(); let dismissed = 0;
   Object.assign(f.ctx, {document: {getElementById: () => ({classList: {remove() {}}})},
     cancelPilotGameStart() {}, dismissWelcome() { dismissed++; }});
   vm.runInContext(sourceSection('    let _charSelectFocus;', '    function closeNameModal()'), f.ctx);
   vm.runInContext('_charSelectFromWelcome = true; closeCharSelectModal(false);', f.ctx);
-  assert.equal(dismissed, 1, 'normal character selection keeps its existing dismissal');
+  assert.equal(dismissed, 0, 'normal character selection keeps welcome open until startup is committed');
   assert.equal(await f.pilot.reserve('normal', null), true);
   vm.runInContext('_charSelectFromWelcome = true; closeCharSelectModal(false);', f.ctx);
-  assert.equal(dismissed, 1, 'a reserved pilot must not schedule a stale welcome timer');
+  assert.equal(dismissed, 0, 'a reserved pilot must not schedule a stale welcome timer');
   await relinquish(f);
 });
 

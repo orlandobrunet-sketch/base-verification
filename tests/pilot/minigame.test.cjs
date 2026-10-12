@@ -305,8 +305,8 @@ test('incomplete pilot card explains that the journey did not start and prevents
   assert.equal(card.characterPilotSaved.hidden, false);
   assert.equal(card.resumePilotBtn.disabled, true);
   assert.equal(card.resumePilotBtn.textContent, 'Piloto não iniciado');
-  assert.match(card.characterPilotSavedDescription.textContent, /Piloto não iniciado/);
-  assert.match(card.characterPilotSavedDescription.textContent, /jornada normal permanece disponível/);
+  assert.match(card.characterPilotSavedDescription.textContent, /registro antigo não concluiu o início/);
+  assert.match(card.characterPilotSavedDescription.textContent, /Comece uma nova jornada para jogar/);
 });
 
 test('closed pilot card keeps its closed label and prevents resume', () => {
@@ -339,10 +339,10 @@ test('absent pilot card stays hidden and does not expose an enabled resume actio
   assert.equal(card.resumePilotBtn.disabled, true);
 });
 
-function startupFixture({pilot = false, failFirstQuestion = false, failFinalSave = false} = {}) {
+function startupFixture({pilot = false, failFirstQuestion = false, failFinalSave = false, rejectNormalStart = false} = {}) {
   let epoch = 1, generation = 1, finishLoad, failLoad;
   const transitions = [];
-  const calls = {start: [], abort: 0, render: 0, save: 0, dismiss: 0, mainOpened: 0, toast: [], toastRemoved: 0};
+  const calls = {start: [], normalStart: [], order: [], abort: 0, render: 0, save: 0, dismiss: 0, mainOpened: 0, toast: [], toastRemoved: 0};
   const context = {
     state: {character: 'aquaria', difficulty: 'normal', gameStarted: false, gold: 88},
     authUser: {id: 'fixture-owner'}, questionBank: null,
@@ -357,9 +357,19 @@ function startupFixture({pilot = false, failFirstQuestion = false, failFinalSave
     ui: {journal: {innerHTML: 'Fixture'}}, _forja: null, _forjaSequence: 0,
     _sessionWrongAnswers: [], _minigameTriggerCount: 0, _boardPushedThisSession: false, chestCost: 0,
     removeStun() {}, log() {}, shuffleQueue() {}, renderHUD() {}, updateBadges() {},
-    renderQuestion() {calls.render++; if (failFirstQuestion) stopPilot();},
+    renderQuestion() {calls.render++; calls.order.push('rendered'); if (failFirstQuestion) stopPilot();},
     saveGame() {calls.save++; if (failFinalSave) stopPilot();},
-    refreshCharacterPilotUI() {}, dismissWelcome() {calls.dismiss++; transitions.push(() => calls.mainOpened++);},
+    refreshCharacterPilotUI() {}, dismissWelcome() {calls.dismiss++; calls.order.push('dismissed'); transitions.push(() => calls.mainOpened++);},
+    // This fixture tests the caller's gates and success ordering; persistence is tested by the real save engine.
+    _startNormalCharacterJourney({character, difficulty, initialize}) {
+      calls.normalStart.push({character, difficulty});
+      if (rejectNormalStart) return false;
+      Object.assign(context.state, {character, difficulty, journeyDomain: 'normal',
+        classBenefits: {journeyId: 'normal-fixture', lockedClass: character}});
+      if (initialize() === false) return false;
+      calls.order.push('normal-confirmed');
+      return true;
+    },
     musicEnabled: false, musicStarted: false,
     cancelPilotGameStart() {calls.abort++;},
     _captureJourneyBinding: () => ({epoch, owner: context.authUser?.id || null}),
@@ -406,6 +416,7 @@ for (const transition of [
     assert.equal(JSON.stringify(f.context.state), stateBefore);
     assert.equal(f.context.NQPilot.status, statusBefore);
     assert.equal(f.calls.start.length, 0); assert.equal(f.calls.abort, 0);
+    assert.equal(f.calls.normalStart.length, 0);
     assert.equal(f.calls.render, 0); assert.equal(f.calls.save, 0); assert.equal(f.calls.dismiss, 0);
     assert.equal(f.calls.toastRemoved, 0); assert.equal(f.calls.toast.length, 1);
   });
@@ -436,13 +447,33 @@ test('failed old pilot topic load cannot cancel the new pilot reservation or rep
 for (const pilot of [false, true]) {
   test(`${pilot ? 'pilot' : 'normal'} startup still initializes after its original topic load`, async () => {
     const f = startupFixture({pilot}), pending = f.start();
-    f.resolve(); await pending;
+    assert.equal(f.calls.start.length, 0); assert.equal(f.calls.normalStart.length, 0);
+    assert.equal(f.calls.render, 0); assert.equal(f.calls.dismiss, 0);
+    f.resolve(); assert.equal(await pending, true);
     assert.equal(f.context.state.gameStarted, true);
     assert.equal(f.context.state.journeyDomain, pilot ? 'pilot' : 'normal');
     assert.equal(f.context.state.pilotJourneyAccounted, false);
     assert.equal(f.calls.start.length, pilot ? 1 : 0);
-    assert.equal(f.calls.render, 1); assert.equal(f.calls.save, 1);
-    assert.equal(f.calls.dismiss, pilot ? 1 : 0);
+    assert.equal(f.calls.render, 1); assert.equal(f.calls.save, pilot ? 1 : 0);
+    assert.equal(f.calls.dismiss, 1);
     assert.equal(f.calls.abort, 0); assert.equal(f.calls.toastRemoved, 1);
+    assert.equal(f.calls.normalStart.length, pilot ? 0 : 1);
+    if (!pilot) {
+      assert.deepEqual(f.calls.normalStart, [{character: 'aquaria', difficulty: 'normal'}]);
+      assert.deepEqual(f.calls.order, ['rendered', 'normal-confirmed', 'dismissed']);
+      assert.equal(f.context.state.classBenefits.journeyId, 'normal-fixture');
+    }
+    f.runTransitions(); assert.equal(f.calls.mainOpened, 1);
   });
 }
+
+test('normal startup rejected by its wrapper preserves the old state and keeps welcome open', async () => {
+  const f = startupFixture({rejectNormalStart: true}), before = JSON.stringify(f.context.state), pending = f.start();
+  f.resolve(); assert.equal(await pending, false); f.runTransitions();
+  assert.deepEqual(f.calls.normalStart, [{character: 'aquaria', difficulty: 'normal'}]);
+  assert.equal(JSON.stringify(f.context.state), before);
+  assert.equal(f.calls.start.length, 0); assert.equal(f.calls.abort, 0);
+  assert.equal(f.calls.render, 0); assert.equal(f.calls.save, 0);
+  assert.equal(f.calls.dismiss, 0); assert.equal(f.calls.mainOpened, 0);
+  assert.deepEqual(f.calls.order, []);
+});

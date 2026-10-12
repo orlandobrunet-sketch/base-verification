@@ -189,7 +189,7 @@
         state.extraLifeGiven = true;
         if (_pilotAnswerTransaction) {
           const binding = _captureJourneyBinding();
-          window.NQPilot.afterCommit(() => {
+          _afterCharacterCommit(() => {
             if (_matchesJourneyBinding(binding)) showExtraLifeModal();
           });
         } else showExtraLifeModal();
@@ -360,8 +360,11 @@
     }
     window.isCharacterPilot = isCharacterPilot;
     function _pilotOrigin() {
-      return { domain: isCharacterPilot() ? 'pilot' : 'normal',
-        journeyId: _stateData.classBenefits?.journeyId || window.NQPilot?.journeyId || null };
+      if (isCharacterPilot()) return {domain:'pilot',
+        journeyId:_stateData.classBenefits?.journeyId || window.NQPilot?.journeyId || null};
+      return {domain:'normal', journeyId:_stateData.classBenefits?.journeyId || null,
+        character:_stateData.character, difficulty:_stateData.difficulty, owner:_currentSaveOwner(),
+        classBenefits:_stateData.classBenefits ? JSON.parse(JSON.stringify(_stateData.classBenefits)) : null};
     }
     function _captureJourneyBinding() {
       return { epoch: _progressEpoch, owner: _currentSaveOwner(),
@@ -433,7 +436,9 @@
       const raw = localStorage.getItem(CANONICAL_SAVE_KEY);
       if (raw === null) return true; // stats/study may exist without a journey
       const record = _canonicalSaveRecord();
-      return !!record && typeof record === 'object' && record.saveOwner === owner && record.resetReason !== 'logout';
+      if (!record || typeof record !== 'object' || record.saveOwner !== owner || record.resetReason === 'logout') return false;
+      // Invalid ledgers stay local for recovery; never upload or replace them with a tombstone.
+      return !(record.schemaVersion === 9 || record.classBenefits != null) || _normalCharacterSaveValid(record, owner);
     }
     function _writeSaveTombstone(reason, owner = _currentSaveOwner()) {
       const raw = JSON.stringify({schemaVersion:SAVE_SCHEMA_VERSION, saveOwner:owner,
@@ -491,7 +496,7 @@
         gameCompleted:false, completedGame:false, bossStunActive:false,
         selectedCharacter:null, hp:0, maxHp:0,
         classBenefits:null, journeyDomain:'normal', questionOrigin:'campaign',
-        pilotLastAnswer:null, journeyAnswerOrdinal:0, pilotJourneyAccounted:false,
+        pilotLastAnswer:null, characterLastAnswer:null, journeyAnswerOrdinal:0, pilotJourneyAccounted:false,
         forjaPending: null, obtainedItems: [], allItemsCollectedNotified: false,
         equipment: Object.fromEntries(['helmet', 'glove', 'armor', 'weapon', 'relic', 'boot']
           .map(slot => [slot, {n:'Vazio',rar:'common',atk:0,def:0,kno:0,luck:0}]))
@@ -502,6 +507,9 @@
         });
         _forja = null;
       }
+      window._pendingDiff = null;
+      document.getElementById('charIntroOverlay')?.remove();
+      if (document.getElementById('charSelectModal')) window.closeCharSelectModal?.(false);
       document.getElementById('forjaPage')?.remove();
       document.getElementById('nqSaveRecovery')?.remove();
       document.getElementById('equipComparePopup')?.remove();
@@ -519,7 +527,12 @@
       document.body.classList.remove('nq-studying', 'boss-battle-mode', 'arqui-nefromante-final', 'boss-stun-active', 'boss-hp-critical', 'rd-game-over');
       document.getElementById('mainApp')?.classList.add('hidden');
       const welcome = document.getElementById('welcomeScreen');
-      if (welcome) { welcome.inert = false; welcome.classList.remove('hidden'); }
+      if (welcome) {
+        welcome.style.opacity = '';
+        welcome.style.transition = '';
+        welcome.inert = false;
+        welcome.classList.remove('hidden');
+      }
       _invalidateStatsCache();
     }
     window._stopLocalJourney = _stopLocalJourney;
@@ -682,14 +695,14 @@
       if (isCharacterPilot()) return _doSaveGame();
       const raw = localStorage.getItem(CANONICAL_SAVE_KEY);
       const record = _canonicalSaveRecord();
-      if (record?.character && record.schemaVersion === SAVE_SCHEMA_VERSION &&
+      if (record?.character && [SAVE_SCHEMA_VERSION,9].includes(record.schemaVersion) &&
           record.saveOwner === _currentSaveOwner() &&
           (_saveBaseline === undefined || _saveBaseline === raw) &&
           (record.saveOwner !== null || localStorage.getItem(SAVE_KEY) === raw)) {
         const unchanged = Object.entries(record).every(([key, value]) => {
           if (['timestamp','schemaVersion','saveOwner','saveRevision'].includes(key)) return true;
           const current = key === 'queueIds' ? state.queue.map(question => question.id)
-            : key === 'recentIds' ? _recentIds : _stateData[key];
+            : key === 'recentIds' ? _recentIds : key === 'currentQuestionId' ? state.current?.id || null : _stateData[key];
           return JSON.stringify(value) === JSON.stringify(current);
         });
         // Avoid a new timestamp/revision when the normal journey is durable.
@@ -808,6 +821,114 @@
     // Debounce do saveGame para evitar escritas excessivas no localStorage
     let _saveTimer = null;
     let _pilotAnswerTransaction = null;
+    let _normalJourneyStaging = false;
+    let _characterCloudConflict = false;
+    function _normalBenefitsValid(save = _stateData, owner = _currentSaveOwner()) {
+      return save.journeyDomain !== 'pilot' && ['easy','normal','hard'].includes(save.difficulty) &&
+        !!window.NQCharacterBenefits?.valid(save.classBenefits,
+        {character:save.character, difficulty:save.difficulty, owner});
+    }
+    function _normalCharacterSaveValid(save, owner = _currentSaveOwner()) {
+      if (!_normalBenefitsValid(save, owner) || save.schemaVersion !== 9 ||
+          typeof save.answered !== 'boolean' || !Number.isSafeInteger(save.journeyAnswerOrdinal) ||
+          save.journeyAnswerOrdinal < save.classBenefits.windowAnswers ||
+          typeof save.currentQuestionId !== 'string' || !save.currentQuestionId) return false;
+      if (!save.answered) return save.characterLastAnswer === null;
+      const result = save.characterLastAnswer;
+      return !!result && result.domain === 'normal' && result.journeyId === save.classBenefits.journeyId &&
+        result.questionId === save.currentQuestionId && Number.isSafeInteger(result.choice) && result.choice >= 0 &&
+        typeof result.correct === 'boolean' && typeof result.shield === 'boolean' &&
+        Number.isSafeInteger(result.xp) && result.xp >= 0 && result.xp <= 1 &&
+        Number.isSafeInteger(result.gold) && result.gold >= 0 && result.gold <= 2 &&
+        result.windowAnswers === save.classBenefits.windowAnswers &&
+        (result.xp === 0 || (save.character === 'nephros' && result.xp <= save.classBenefits.xpGranted)) &&
+        (result.gold === 0 || (save.character === 'glomerulus' && result.gold === 2 && result.gold <= save.classBenefits.goldGranted)) &&
+        (!result.shield || (save.character === 'aquaria' && save.classBenefits.shieldSpent)) &&
+        (!(result.xp || result.gold || result.shield) ||
+          save.classBenefits.creditedEvents.at(-1) === `${save.classBenefits.journeyId}:${save.classBenefits.windowAnswers}:${save.currentQuestionId}`) &&
+        (!(result.xp || result.gold) || result.correct) && (!result.shield || !result.correct);
+    }
+    function _afterCharacterCommit(callback) {
+      if (_pilotAnswerTransaction?.normal) _pilotAnswerTransaction.callbacks.push(callback);
+      else if (_pilotAnswerTransaction) window.NQPilot.afterCommit(callback);
+      else callback();
+    }
+    function _recordCharacterProgress(callback) {
+      if (_pilotAnswerTransaction?.normal) _pilotAnswerTransaction.callbacks.push(callback);
+      else callback(); // Legacy pilot writes remain inside its own transaction.
+    }
+    // Selection remains provisional until the whole normal save is durable.
+    window._startNormalCharacterJourney = function({character, difficulty, initialize}) {
+      if (_normalJourneyStaging || isCharacterPilot() || isProgressSandbox() ||
+          !characters[character] || !['easy','normal','hard','hardcore'].includes(difficulty) ||
+          typeof initialize !== 'function') return false;
+      const owner = _currentSaveOwner();
+      const rawBefore = localStorage.getItem(CANONICAL_SAVE_KEY);
+      const legacyBefore = localStorage.getItem(SAVE_KEY);
+      const snapshot = JSON.parse(JSON.stringify(_stateData));
+      snapshot.queue = state.queue.slice(); snapshot.current = state.current;
+      const derived = {recent:_recentIds.slice(), mastered:new Set(_masteredSet), articles:unlockedArticles.slice(),
+        errors:_sessionWrongAnswers.slice(), minigames:_minigameTriggerCount, board:_boardPushedThisSession,
+        chestCost, goldMilestone:_goldMilestoneShown, accounted:_jornadaJaContabilizada,
+        baseline:_saveBaseline, saveOwner:_saveOwner, legacyBaseline:_legacySaveBaseline,
+        recovery:_guestRecoveryAccepted, conflict:_characterCloudConflict,
+        bodyClass:document.body.className, journal:ui.journal.innerHTML};
+      const view = [ui.question, ui.options, ui.feedback, ui.refs, ui.nextBtn, ui.bonusBtn]
+        .filter(Boolean).map(el => ({el, html:el.innerHTML, className:el.className}));
+      _normalJourneyStaging = true;
+      let committed = false;
+      ++_progressEpoch;
+      const epoch = _progressEpoch;
+      clearTimeout(_autoSaveTimer); clearTimeout(_saveTimer);
+      _autoSaveTimer = _saveTimer = null;
+      _loadingNextQuestion = false; _nextQuestionOrigin = null;
+      try {
+        if (_saveBaseline === undefined) _saveBaseline = rawBefore;
+        if (_legacySaveBaseline === undefined) _legacySaveBaseline = legacyBefore;
+        if (_saveOwner === undefined) _saveOwner = owner;
+        Object.assign(_stateData, {character, difficulty, journeyDomain:'normal', characterLastAnswer:null,
+          obtainedItems:[], allItemsCollectedNotified:false, forjaPending:null, chestCorrectCount:0, chestTarget:5,
+          classBenefits:['easy','normal','hard'].includes(difficulty)
+            ? window.NQCharacterBenefits.create({character, difficulty, owner, journeyId:crypto.randomUUID()}) : null});
+        if (initialize() === false || owner !== _currentSaveOwner() || epoch !== _progressEpoch ||
+            localStorage.getItem(CANONICAL_SAVE_KEY) !== rawBefore ||
+            localStorage.getItem(SAVE_KEY) !== legacyBefore || !_doSaveGame()) throw new Error('Journey not committed');
+        _characterCloudConflict = false;
+        committed = true;
+        try {
+          nqProgressStorage().removeItem('nefroquest-announced-badges');
+          const count = Math.max(1, parseInt(nqProgressStorage().getItem('nefroquest-journey-count') || '1', 10) || 1);
+          nqProgressStorage().setItem('nefroquest-journey-count', String(count + 1));
+        } catch (_) { _warnStorageFull(); }
+        return true;
+      } catch (_) {
+        // Never restore another account's in-memory journey after a context switch.
+        if (owner !== _currentSaveOwner() || epoch !== _progressEpoch) {
+          _stopLocalJourney(); _reloadJourneyCollections(); refreshWelcomeSave();
+        } else {
+          ++_progressEpoch;
+          Object.assign(_stateData, snapshot);
+          _recentIds = derived.recent; _masteredSet = derived.mastered; unlockedArticles = derived.articles;
+          _sessionWrongAnswers = derived.errors; _minigameTriggerCount = derived.minigames;
+          _boardPushedThisSession = derived.board; chestCost = derived.chestCost;
+          _goldMilestoneShown = derived.goldMilestone; _jornadaJaContabilizada = derived.accounted;
+          _saveBaseline = derived.baseline; _saveOwner = derived.saveOwner;
+          _legacySaveBaseline = derived.legacyBaseline; _guestRecoveryAccepted = derived.recovery;
+          _characterCloudConflict = derived.conflict;
+          document.body.className = derived.bodyClass; ui.journal.innerHTML = derived.journal;
+          view.forEach(({el, html, className}) => {el.innerHTML = html; el.className = className;});
+          _loadingNextQuestion = false;
+          renderHUD(); updateBossUI(); refreshWelcomeSave();
+        }
+        _toast('Não foi possível confirmar o início. Confira a jornada salva antes de continuar.', 'warning', 6000);
+        return false;
+      } finally {
+        _normalJourneyStaging = false;
+        clearTimeout(_autoSaveTimer); clearTimeout(_saveTimer);
+        _autoSaveTimer = _saveTimer = null;
+        if (committed) _scheduleCloudSync();
+      }
+    };
     function _savePilotGame() {
       if (!window.NQPilot?.active) return false; // Never fall back to a normal save.
       const save = {
@@ -830,12 +951,15 @@
       return value;
     }
     function _beginPilotAnswer(choice) {
-      if (!isCharacterPilot() || isProgressSandbox()) return null;
-      if (!window.NQPilot?.active || !window.NQPilot.beginTransaction()) {
+      if (isProgressSandbox()) return null;
+      const normal = !isCharacterPilot() && !!state.classBenefits;
+      if (!isCharacterPilot() && !normal) return null;
+      if (normal ? !_normalBenefitsValid() : (!window.NQPilot?.active || !window.NQPilot.beginTransaction())) {
         _stopLocalJourney();
         _reloadJourneyCollections();
         refreshWelcomeSave();
-        _toast('O piloto mudou em outra aba ou perdeu o acesso aos dados. Retome a versão salva.', 'warning', 6000);
+        _toast(normal ? 'O registro desta jornada mudou ou está indisponível. Retome a versão salva.'
+          : 'O piloto mudou em outra aba ou perdeu o acesso aos dados. Retome a versão salva.', 'warning', 6000);
         return false;
       }
       const snapshot = JSON.parse(JSON.stringify(_stateData));
@@ -846,13 +970,13 @@
         guestQuestions: _guestQuestionCount,
         sessionErrors: typeof _sessionWrongAnswers !== 'undefined' ? _sessionWrongAnswers.length : 0,
         goldMilestoneShown: _goldMilestoneShown,
-        epoch: _progressEpoch, choice, xp: 0, gold: 0, shield: false, revive: null,
+        epoch: _progressEpoch, owner:_currentSaveOwner(), normal, callbacks:[], choice, xp: 0, gold: 0, shield: false, revive: null,
         eligible: !isProgressSandbox() && state.questionOrigin !== 'bonus' &&
           ['easy', 'normal', 'hard'].includes(state.difficulty) && !isBossBattle() &&
           !document.body.classList.contains('nq-studying') &&
           !(typeof studyModeActive !== 'undefined' && studyModeActive)
       };
-      const ledger = window.NQPilot.classBenefits;
+      const ledger = normal ? state.classBenefits : window.NQPilot.classBenefits;
       state.classBenefits = ledger ? JSON.parse(JSON.stringify(ledger)) : null;
       const qid = String(state.current.id ?? state.current.qid ?? '');
       transaction.inWindow = transaction.eligible && !!state.classBenefits &&
@@ -872,6 +996,7 @@
     }
     function _commitPilotAnswer(transaction, correct) {
       if (!transaction) return true;
+      if (transaction.normal) return _commitNormalCharacterAnswer(transaction, correct);
       if (transaction.epoch !== _progressEpoch) {
         window.NQPilot?.rollback();
         _pilotAnswerTransaction = null;
@@ -911,6 +1036,46 @@
       _pilotAnswerTransaction = null;
       clearTimeout(_autoSaveTimer); clearTimeout(_saveTimer);
       _autoSaveTimer = _saveTimer = null;
+      window.refreshCharacterPilotUI?.();
+      return true;
+    }
+    function _commitNormalCharacterAnswer(transaction, correct) {
+      const previous = transaction.snapshot.classBenefits;
+      const ledger = state.classBenefits;
+      const valid = transaction.epoch === _progressEpoch && transaction.owner === _currentSaveOwner() &&
+        window.NQCharacterBenefits.valid(ledger, {character:state.character, difficulty:state.difficulty,
+          owner:transaction.owner, previous}) &&
+        ledger.xpGranted - previous.xpGranted === transaction.xp &&
+        ledger.goldGranted - previous.goldGranted === transaction.gold &&
+        (!previous.shieldSpent && ledger.shieldSpent) === transaction.shield &&
+        (!(transaction.xp || transaction.gold) || correct === true) && (!transaction.shield || correct === false);
+      _stateData.characterLastAnswer = {choice:transaction.choice, correct,
+        xp:transaction.xp, gold:transaction.gold, shield:transaction.shield,
+        baseXP:transaction.baseXP || 0, baseGold:transaction.baseGold || 0,
+        blocked:!!transaction.blocked, windowAnswers:ledger?.windowAnswers || 0,
+        domain:'normal', journeyId:ledger?.journeyId, questionId:String(state.current.id)};
+      if (!valid || !_doSaveGame()) {
+        Object.assign(_stateData, transaction.snapshot);
+        _masteredSet = transaction.mastered; unlockedArticles = transaction.articles;
+        _guestQuestionCount = transaction.guestQuestions;
+        _sessionWrongAnswers.splice(transaction.sessionErrors);
+        _goldMilestoneShown = transaction.goldMilestoneShown;
+        _pilotAnswerTransaction = null;
+        _stopLocalJourney(); _reloadJourneyCollections(); refreshWelcomeSave();
+        _toast('Não foi possível confirmar a resposta. Confira a jornada salva antes de continuar.', 'warning', 6000);
+        return false;
+      }
+      _pilotAnswerTransaction = null;
+      clearTimeout(_autoSaveTimer); clearTimeout(_saveTimer);
+      _autoSaveTimer = _saveTimer = null;
+      _incrementQuestionsAnswered();
+      _checkPromoBanner();
+      for (const callback of transaction.callbacks) {
+        if (transaction.epoch !== _progressEpoch || transaction.owner !== _currentSaveOwner()) break;
+        try { callback(); } catch (_) { _warnStorageFull(); }
+      }
+      _scheduleCloudSync();
+      window.refreshCharacterPilotUI?.();
       return true;
     }
     function _pilotSavePayload() {
@@ -922,6 +1087,14 @@
     }
     function _pilotAnswerFeedback(transaction) {
       if (!transaction) return '';
+      if (transaction.normal || transaction.domain === 'normal') {
+        const credit = transaction.xp ? ` +${transaction.xp} XP do personagem.`
+          : transaction.gold ? ` +${transaction.gold} ouro do personagem.`
+          : transaction.shield ? ' Proteção de Aquaria usada: nenhuma vida perdida.' : '';
+        const ledger = state.classBenefits;
+        return credit + (ledger.windowAnswers >= 20 ? ' Bônus inicial encerrado (20/20).'
+          : ` Bônus inicial: ${ledger.windowAnswers}/20 respostas.`);
+      }
       const credit = transaction.xp ? ` +${transaction.xp} XP do piloto.`
         : transaction.gold ? ` +${transaction.gold} ouro do piloto.`
         : transaction.shield ? ' Escudo do piloto utilizado: nenhuma vida perdida.' : '';
@@ -970,6 +1143,7 @@
     window.resumePilotGame = resumePilotGame;
     function saveGame() {
       if (isProgressSandbox()) return;
+      if (_normalJourneyStaging || _pilotAnswerTransaction?.normal) return;
       if (isCharacterPilot()) {
         if (!_pilotAnswerTransaction) _doSaveGame();
         return;
@@ -984,8 +1158,9 @@
     function _doSaveGame() {
       if (isProgressSandbox()) return false;
       if (_saveCleanupBlocked) return false;
-      if (!state.gameStarted || (state.gameOver && !isCharacterPilot())) return false;
+      if (!state.gameStarted || (state.gameOver && !isCharacterPilot() && !state.classBenefits)) return false;
       if (isCharacterPilot()) return _savePilotGame();
+      if (state.classBenefits && !_normalBenefitsValid()) return false;
       const owner = _currentSaveOwner();
       const currentRaw = localStorage.getItem(CANONICAL_SAVE_KEY);
       if ((_saveOwner !== undefined && _saveOwner !== owner) ||
@@ -994,7 +1169,7 @@
            _legacySaveBaseline !== undefined && localStorage.getItem(SAVE_KEY) !== _legacySaveBaseline)) {
         // Also check synchronously: a queued storage event may arrive after a
         // click or an autosave. A stale tab must never resurrect a reset save.
-        queueMicrotask(() => { _stopLocalJourney(); refreshWelcomeSave(); });
+        if (!_normalJourneyStaging) queueMicrotask(() => { _stopLocalJourney(); refreshWelcomeSave(); });
         return false;
       }
       if (currentRaw && !_isSaveTombstone(_canonicalSaveRecord())) {
@@ -1035,10 +1210,45 @@
         saveOwner: owner,
         saveRevision: crypto.randomUUID()
       };
+      if (state.classBenefits) {
+        Object.assign(saveData, {schemaVersion:9, journeyDomain:'normal', gameStarted:true,
+          gameOver:!!state.gameOver, gameCompleted:!!state.gameCompleted, completedGame:!!state.completedGame,
+          classBenefits:JSON.parse(JSON.stringify(state.classBenefits)),
+          characterLastAnswer:state.characterLastAnswer ? JSON.parse(JSON.stringify(state.characterLastAnswer)) : null,
+          journeyAnswerOrdinal:state.journeyAnswerOrdinal || 0, questionOrigin:state.questionOrigin || 'campaign',
+          currentQuestionId:state.current?.id == null ? null : String(state.current.id), answered:!!state.answered});
+        if (!_normalCharacterSaveValid(saveData, owner)) return false;
+      }
       const raw = JSON.stringify(saveData);
-      try { localStorage.setItem(CANONICAL_SAVE_KEY, raw); } catch(e) {
+      if (state.classBenefits && currentRaw) {
+        const durable = JSON.parse(currentRaw);
+        const fields = Object.keys(saveData).filter(key => !['timestamp','saveRevision'].includes(key));
+        if (durable && Object.keys(durable).filter(key => !['timestamp','saveRevision'].includes(key)).length === fields.length &&
+            fields.every(key => JSON.stringify(durable[key]) === JSON.stringify(saveData[key]))) {
+          // The answer transaction is already durable. The trailing normal
+          // autosave must not create a second revision for identical progress.
+          _scheduleCloudSync();
+          return true;
+        }
+      }
+      let candidateWritten = false;
+      try {
+        if (owner !== _currentSaveOwner() || localStorage.getItem(CANONICAL_SAVE_KEY) !== currentRaw) return false;
+        localStorage.setItem(CANONICAL_SAVE_KEY, raw);
+        candidateWritten = true;
+        if (localStorage.getItem(CANONICAL_SAVE_KEY) !== raw) throw new Error('Save readback mismatch');
+      } catch(e) {
+        if (candidateWritten) {
+          // Compensate only our own candidate; never replace another writer.
+          try {
+            if (owner === _currentSaveOwner() && localStorage.getItem(CANONICAL_SAVE_KEY) === raw) {
+              if (currentRaw === null) localStorage.removeItem(CANONICAL_SAVE_KEY);
+              else localStorage.setItem(CANONICAL_SAVE_KEY, currentRaw);
+            }
+          } catch (_) { /* Confirmation is indeterminate; keep the warning explicit. */ }
+        }
         _track('error_localstorage_full', { msg: String(e) });
-        _toast('Aviso: progresso não salvo — armazenamento cheio. Libere espaço nas configurações do navegador.', 'warning', 6000);
+        _toast('Não foi possível confirmar o salvamento. Confira a jornada salva antes de continuar.', 'warning', 6000);
         return false;
       }
       _saveBaseline = raw;
@@ -1271,6 +1481,7 @@
       _saveCleanupBlocked = !markerWritten;
       if (markerWritten) {
         _guestRecoveryAccepted = null;
+        if (_characterCloudConflict?.owner === owner) _characterCloudConflict = false;
       } else {
         _toast('Não foi possível limpar a jornada. Libere espaço no navegador e tente sair novamente.', 'error', 7000);
       }
@@ -1304,6 +1515,7 @@
 
     function _scheduleCloudSync() {
       if (isCharacterPilot()) return;
+      if (_normalJourneyStaging || _pilotAnswerTransaction?.normal || _characterCloudConflict?.owner === _currentSaveOwner()) return;
       if (isProgressSandbox()) return;
       if (_saveCleanupBlocked) return;
       if (!authUser || !_supaClient) return;
@@ -1349,6 +1561,7 @@
       clearTimeout(_cloudSyncTimer);
       _cloudSyncTimer = null;
       if (isCharacterPilot()) return;
+      if (_normalJourneyStaging || _pilotAnswerTransaction?.normal || _characterCloudConflict?.owner === _currentSaveOwner()) return;
       if (!authUser || !_supaClient || _saveCleanupBlocked) return;
       if (!_canSyncLocalProgress(authUser.id)) return;
       try {
@@ -1505,7 +1718,25 @@
         const correctOwner = canonical === null || local?.saveOwner === owner || restoreAfterLogout;
         const remoteOwnerMatches = !Object.prototype.hasOwnProperty.call(cloud.save, 'saveOwner') || cloud.save.saveOwner === owner;
         const wouldLosePaidChoice = !!local?.forjaPending && Number(cloud.save.schemaVersion || 1) < 7;
-        if (correctOwner && wouldLosePaidChoice) {
+        const localBenefits = local?.classBenefits;
+        const remoteBenefits = cloud.save.classBenefits;
+        const remoteBenefitsValid = !remoteBenefits || _normalCharacterSaveValid(cloud.save, owner);
+        const sameHistory = !localBenefits || (!!remoteBenefits && _normalBenefitsValid(local, owner) &&
+          remoteBenefits.journeyId === localBenefits.journeyId &&
+          remoteBenefits.windowAnswers >= localBenefits.windowAnswers &&
+          remoteBenefits.xpGranted >= localBenefits.xpGranted &&
+          remoteBenefits.goldGranted >= localBenefits.goldGranted &&
+          (!localBenefits.shieldSpent || remoteBenefits.shieldSpent) &&
+          localBenefits.creditedEvents.every((event, index) => remoteBenefits.creditedEvents[index] === event));
+        const benefitConflict = cloud.save.journeyDomain === 'pilot' || !remoteBenefitsValid ||
+          (!!localBenefits && !sameHistory);
+        if (correctOwner && remoteOwnerMatches && benefitConflict) {
+          // Keep complete snapshots together. An old client or a diverging
+          // journey must not reset the bonus window or replace its resources.
+          _characterCloudConflict = {owner, journeyId:localBenefits?.journeyId || null};
+          clearTimeout(_cloudSyncTimer); _cloudSyncTimer = null;
+          _toast('Há versões diferentes da jornada neste dispositivo e na nuvem. O save local foi preservado; a sincronização da jornada foi pausada.', 'warning', 7000);
+        } else if (correctOwner && wouldLosePaidChoice) {
           _scheduleCloudSync();
         } else if ((!tombstone || restoreAfterLogout || restoreEmpty) && correctOwner && remoteOwnerMatches &&
                    (cloud.save.timestamp || 0) > (local?.timestamp || 0)) {
@@ -1649,6 +1880,19 @@
       if (!save || !save.character) return false;
       if ((window.NQPilot?.active || save.journeyDomain === 'pilot') &&
           (save.gameStarted !== true || save.gameOver || save.gameCompleted || save.completedGame || save.lives === 0)) return false;
+      if (!window.NQPilot?.active && save.classBenefits &&
+          (!_normalCharacterSaveValid(save) || save.gameOver || save.completedGame || save.lives === 0)) {
+        _toast('O registro desta jornada não pode ser retomado com segurança. O save foi preservado.', 'warning', 6000);
+        return false;
+      }
+      if (!window.NQPilot?.active && save.classBenefits) {
+        const question = questionBank.find(q => String(q.id) === save.currentQuestionId);
+        const result = save.characterLastAnswer;
+        if (!question || (save.answered && (result.choice >= question.o.length || result.correct !== (result.choice === question.a)))) {
+          _toast('A pergunta salva não corresponde ao banco atual. O save foi preservado.', 'warning', 6000);
+          return false;
+        }
+      }
       resetGuardianFeedback();
       
       state.character = save.character;
@@ -1656,7 +1900,7 @@
       state.xp = save.xp || 0;
       state.xpToNext = xpForLevel(save.level || 1); // sempre recalculado pelo nível, ignora valor salvo
       state.score = save.score || 0;
-      state.lives = window.NQPilot?.active ? (save.lives ?? 3) : (save.lives || 3);
+      state.lives = (window.NQPilot?.active || save.classBenefits) ? (save.lives ?? 3) : (save.lives || 3);
       state.streak = save.streak || 0;
       state.gold = save.gold || 0;
       state.bonusUses = save.bonusUses || 0;
@@ -1674,17 +1918,20 @@
       state.extraLifeGiven = save.extraLifeGiven || false;
       state.chestCorrectCount = save.chestCorrectCount || 0;
       state.chestTarget = save.chestTarget || (Math.floor(Math.random() * 3) + 5);
-      state.gameCompleted = window.NQPilot?.active ? !!save.gameCompleted
+      state.gameCompleted = (window.NQPilot?.active || save.classBenefits) ? !!save.gameCompleted
         : !!nqProgressStorage().getItem('nefroquest-arqui-defeated');
+      state.completedGame = (window.NQPilot?.active || save.classBenefits) ? !!save.completedGame : false;
       state.gameOver = false;
       state.gameStarted = true;
       state.answered = false;
       state.current = null;
       state.journeyDomain = window.NQPilot?.active ? 'pilot' : 'normal';
-      state.classBenefits = window.NQPilot?.active ? window.NQPilot.classBenefits : null;
+      state.classBenefits = window.NQPilot?.active ? window.NQPilot.classBenefits
+        : save.classBenefits ? JSON.parse(JSON.stringify(save.classBenefits)) : null;
       state.questionOrigin = save.questionOrigin || 'campaign';
       state.journeyAnswerOrdinal = save.journeyAnswerOrdinal || 0;
       state.pilotLastAnswer = save.pilotLastAnswer || null;
+      state.characterLastAnswer = save.characterLastAnswer || null;
       state.pilotJourneyAccounted = !!save.pilotJourneyAccounted;
 
       // Atordoamento do Arqui-Nefromante é estado de COMBATE, não de progresso:
@@ -1709,7 +1956,7 @@
         state.queue = save.queueIds.map(id => bankMap[id]).filter(Boolean);
         state.idx = save.idx || 0;
         if (save.recentIds) _recentIds = save.recentIds.slice(-HISTORY_SIZE);
-        if (window.NQPilot?.active && save.currentQuestionId && bankMap[save.currentQuestionId]) {
+        if ((window.NQPilot?.active || save.classBenefits) && save.currentQuestionId && bankMap[save.currentQuestionId]) {
           state.current = bankMap[save.currentQuestionId];
           state.answered = !!save.answered;
           _pilotRestoredQuestion = true;
@@ -2277,7 +2524,7 @@
       chestTarget: Math.floor(Math.random() * 3) + 5,
       character: null,
       journeyDomain:'normal', classBenefits:null, questionOrigin:'campaign',
-      journeyAnswerOrdinal:0, pilotLastAnswer:null, pilotJourneyAccounted:false,
+      journeyAnswerOrdinal:0, pilotLastAnswer:null, characterLastAnswer:null, pilotJourneyAccounted:false,
       equipment:{
         helmet:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
         glove:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
@@ -2302,7 +2549,7 @@
         if (key === 'gameStarted' && value === true) _jornadaJaContabilizada = false;
         target[key] = value;
         _invalidateStatsCache();
-        if (!_progressSandboxMode) {
+        if (!_progressSandboxMode && !_normalJourneyStaging && !_pilotAnswerTransaction?.normal) {
           clearTimeout(_autoSaveTimer);
           _autoSaveTimer = setTimeout(saveGame, 500);
         }
@@ -3603,7 +3850,7 @@
       _questionStartTime = Date.now();
       const _msb = document.getElementById('mobileStatusBar');
       if (_msb) _msb.classList.add('active');
-      const restoringPilot = isCharacterPilot() && _pilotRestoredQuestion;
+      const restoringPilot = (isCharacterPilot() || !!state.classBenefits) && _pilotRestoredQuestion;
       const wasAnswered = restoringPilot && state.answered;
       const q = restoringPilot ? state.current : drawQuestion();
       _pilotRestoredQuestion = false;
@@ -3614,6 +3861,7 @@
         state.questionOrigin = _nextQuestionOrigin || 'campaign';
         _nextQuestionOrigin = null;
         state.pilotLastAnswer = null;
+        state.characterLastAnswer = null;
       }
       ui.question.textContent = q.q;
       const _adminBadge = document.getElementById('adminQidBadge');
@@ -3635,7 +3883,7 @@
       updateBossUI();
       applyBossOptionBadges();
       if (wasAnswered) {
-        const result = state.pilotLastAnswer;
+        const result = isCharacterPilot() ? state.pilotLastAnswer : state.characterLastAnswer;
         [...ui.options.querySelectorAll('.option')].forEach((option, index) => {
           option.disabled = true;
           if (index === q.a) option.classList.add('correct');
@@ -3648,9 +3896,9 @@
         ui.nextBtn.classList.remove('hidden');
         ui.dockNextBtn?.classList.remove('disabled');
       }
-      if (isCharacterPilot() && !wasAnswered && !_doSaveGame()) {
+      if ((isCharacterPilot() || !!state.classBenefits) && !_normalJourneyStaging && !wasAnswered && !_doSaveGame()) {
         _stopLocalJourney(); _reloadJourneyCollections(); refreshWelcomeSave();
-        _toast('Não foi possível gravar a pergunta do piloto. Retome a jornada salva.', 'warning', 6000);
+        _toast('Não foi possível gravar a pergunta. Retome a jornada salva.', 'warning', 6000);
       }
     }
 
@@ -3813,7 +4061,7 @@
           if (_guestMode && !_guestHookShown && _guestQuestionCount >= GUEST_FREE_LIMIT) _showGuestHook();
           _track('level_up', { level, difficulty });
         };
-        if (_pilotAnswerTransaction) window.NQPilot.afterCommit(announce);
+        if (_pilotAnswerTransaction) _afterCharacterCommit(announce);
         else announce();
       }
       // No teto: trava a barra cheia (não desperdiça XP além do cap; ele será
@@ -4057,23 +4305,31 @@
       setLumenEvidenceAvailable(true);
       
       // Tracking de estatísticas
-      if (recordsProgress) trackQuestionAnswer(state.current, isCorrect, timeSpent);
+      if (recordsProgress) {
+        const answered = state.current;
+        _recordCharacterProgress(() => trackQuestionAnswer(answered, isCorrect, timeSpent));
+      }
 
       // Acumular erros da sessão para revisão no fim de partida
       if (recordsProgress && !isCorrect && state.current && typeof _sessionWrongAnswers !== 'undefined') {
-        _sessionWrongAnswers.push(state.current);
+        const wrong = {...state.current, chosen:i};
+        _recordCharacterProgress(() => _sessionWrongAnswers.push(wrong));
       }
 
       // Marcar questão como dominada após resposta correta
       if (recordsProgress && isCorrect && state.current && state.current.id) {
-        _masteredSet.add(state.current.id);
-        try { nqProgressStorage().setItem(MASTERED_KEY, JSON.stringify([..._masteredSet])); } catch(e) { console.error('[NQ] saveMastered failed', e); }
+        const qid = state.current.id;
+        _recordCharacterProgress(() => {
+          _masteredSet.add(qid);
+          try { nqProgressStorage().setItem(MASTERED_KEY, JSON.stringify([..._masteredSet])); } catch(e) { console.error('[NQ] saveMastered failed', e); }
+        });
       }
 
       // Desbloquear refs do Grimório ao acertar
       if (recordsProgress && isCorrect && state.current?.r?.length) {
         if (typeof _unlockRefsFromQuestion === 'function') {
-          _unlockRefsFromQuestion(state.current.r);
+          const refs = state.current.r;
+          _recordCharacterProgress(() => _unlockRefsFromQuestion(refs));
         }
       }
       const st=total();
@@ -4297,7 +4553,8 @@
           state.classBenefits.shieldSpent = true;
           pilotAnswer.shield = true;
           blocked = true;
-          legendaryBlockMsg = 'Escudo do piloto: perda de vida prevenida.';
+          legendaryBlockMsg = pilotAnswer.normal ? 'Proteção de Aquaria: perda de vida prevenida.'
+            : 'Escudo do piloto: perda de vida prevenida.';
         }
         if(!blocked) state.lives--;
         state.score=Math.max(0,state.score-(28-Math.min(20,st.def)));
@@ -4817,7 +5074,7 @@
       state.bonusUses++;
       state.lives=1;
       state.gameOver=false;
-      if (isCharacterPilot()) _nextQuestionOrigin = 'bonus';
+      if (isCharacterPilot() || state.classBenefits) _nextQuestionOrigin = 'bonus';
       log(`✨ Pergunta Bônus comprada por ${cost} ouro. A jornada continua.`);
       renderHUD();
       updateBadges();
@@ -5313,7 +5570,6 @@
       document.getElementById('charSelectModal').classList.remove('show');
       _charSelectFocus?.(restoreFocus);
       _charSelectFocus = null;
-      if (!restoreFocus && _charSelectFromWelcome && !window.NQPilot?.active) dismissWelcome();
       _charSelectFromWelcome = false;
     }
     function closeNameModal() {
@@ -5420,12 +5676,12 @@
       if (_goldMilestoneShown) return;
       if (prevGold < GOLD_MILESTONE && state.gold >= GOLD_MILESTONE) {
         _goldMilestoneShown = true;
-        try { nqProgressStorage().setItem(GOLD_MILESTONE_KEY, '1'); } catch (e) {}
+        _recordCharacterProgress(() => { try { nqProgressStorage().setItem(GOLD_MILESTONE_KEY, '1'); } catch (e) {} });
         const binding = _captureJourneyBinding();
         const announce = () => setTimeout(() => {
           if (_matchesJourneyBinding(binding) && state.gameStarted) showGoldMilestonePopup();
         }, 600);
-        if (_pilotAnswerTransaction) window.NQPilot.afterCommit(announce);
+        if (_pilotAnswerTransaction) _afterCharacterCommit(announce);
         else announce();
       }
     }
@@ -6897,7 +7153,6 @@
       if (btn) btn.disabled = false;
       const difficulty = card.dataset.diffKey || '';
       window._pendingDiff = difficulty;
-      window.refreshCharacterPilotChoice?.(difficulty);
       const overlay = card.closest('#diffSelectorOverlay');
       if (overlay) {
         overlay.dataset.selectedDifficulty = difficulty;
@@ -6911,37 +7166,15 @@
     window._confirmDiff = async function(fromWelcome) {
       const diff = window._pendingDiff;
       if (!diff || _confirmDiffPending) return;
-      const pilot = document.getElementById('characterPilotOptIn')?.checked === true;
       _confirmDiffPending = true;
       try {
-        if (pilot) {
-          if (!['easy', 'normal', 'hard'].includes(diff)) return;
-          if (!_saveBeforeDomainSwitch()) return;
-          if (isCharacterPilot() && !leavePilotGame()) return;
-          _stopLocalJourney();
-          const owner = _currentSaveOwner();
-          const reserveEpoch = _progressEpoch;
-          const reserved = await window.NQPilot?.reserve(diff, owner);
-          if (!reserved || owner !== _currentSaveOwner() || reserveEpoch !== _progressEpoch) {
-            if (reserved) window.NQPilot.release();
-            _toast('Não foi possível reservar o piloto neste navegador. Nenhuma jornada foi alterada.', 'warning', 6000);
-            return;
-          }
-          _stateData.journeyDomain = 'pilot';
-          _stateData.classBenefits = null;
-        } else if (isCharacterPilot() && !leavePilotGame()) return;
-        if (deleteSave() === false) {
-          if (pilot) cancelPilotGameStart();
-          return;
-        }
+        if (!['easy','normal','hard','hardcore'].includes(diff)) return;
+        if (isCharacterPilot() && !leavePilotGame()) return;
       } finally { _confirmDiffPending = false; }
-      document.body.classList.remove('rd-game-over', 'boss-battle-mode', 'arqui-nefromante-final', 'boss-hp-critical');
       if (typeof window._closeDifficultySelector === 'function') window._closeDifficultySelector(false);
       else document.getElementById('diffSelectorOverlay')?.remove();
-      state.difficulty = diff;
-      if (typeof _syncProgressToCloud === 'function') {
-        _syncProgressToCloud().catch(() => {});
-      }
+      window._pendingDiff = diff;
+      window.refreshCharacterBenefitPolicy?.();
       // Revalida premium do servidor — impede bypass via localStorage
       _loadPremiumFromDB().catch(() => {});
       _charSelectFromWelcome = fromWelcome === true;

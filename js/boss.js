@@ -504,26 +504,15 @@
     }
 
     // ============ NARRATIVAS DE INÍCIO POR PERSONAGEM ============
-    // Última classe escolhida pelo jogador (fallback se state.character for
-    // sobrescrito por sync/loadGame entre a seleção e o início da jornada).
+    // Escolha provisória: só entra no estado quando o início é confirmado.
     let _lastSelectedCharacter = null;
-    function refreshCharacterPilotChoice(difficulty) {
-      const control = document.getElementById('characterPilotOptIn');
-      if (!control) return;
-      const eligible = ['easy', 'normal', 'hard'].includes(difficulty);
-      control.disabled = !eligible;
-      if (!eligible) control.checked = false;
-      const availability = document.getElementById('characterPilotAvailability');
-      if (availability) availability.textContent = eligible
-        ? 'Piloto disponível neste modo. A adesão é opcional.'
-        : 'Hardcore não permite o piloto. A adesão foi desmarcada.';
-      const warning = document.getElementById('diffSelectorWarning');
-      if (warning) warning.textContent = control.checked
-        ? 'Jornada normal preservada: ao continuar, você inicia um piloto separado.'
-        : 'Jornada ativa: ao continuar, o progresso atual será substituído.';
+    let _characterIntroFromWelcome = false;
+    function refreshCharacterBenefitPolicy() {
+      const hardcore = (window._pendingDiff || state.difficulty) === 'hardcore';
+      const notice = document.getElementById('nqcHardcoreNotice');
+      if (notice) notice.hidden = !hardcore;
     }
-    window.refreshCharacterPilotChoice = refreshCharacterPilotChoice;
-
+    window.refreshCharacterBenefitPolicy = refreshCharacterBenefitPolicy;
     function refreshCharacterPilotUI() {
       const pilot = window.NQPilot;
       const owner = typeof authUser !== 'undefined' ? authUser?.id || null : null;
@@ -538,7 +527,7 @@
         savedDescription.textContent = !saved.valid
           ? 'Este piloto salvo não pode continuar. Sua jornada normal permanece disponível.'
           : saved.started === false && !saved.closed
-            ? 'Piloto não iniciado. Inicie uma nova jornada piloto para continuar. Sua jornada normal permanece disponível.'
+            ? 'Este registro antigo não concluiu o início. Comece uma nova jornada para jogar.'
             : `${names[saved.character] || 'Personagem'} · ${modes[saved.difficulty] || 'Piloto'}${saved.closed ? ' · encerrado' : ''}. Salvo neste navegador, sempre fora do ranking.`;
       }
       if (resume) {
@@ -579,6 +568,12 @@
       glomerulus:{ ch: 'Dr. Glomerulus · Lâmina dos Glomérulos', text: 'A guerra acontece no nível celular. IgA se deposita, podócitos são apagados, glomérulos perdidos não se regeneram. O Arqui-Nefromante conta com a ignorância dos clínicos. Seu raciocínio é sua arma, as diretrizes são sua armadura. Cada questão correta é um glomérulo preservado.' }
     };
 
+    const CHARACTER_INITIAL_BONUS_COPY = {
+      nephros: '+1 XP por acerto, até 20 XP nas primeiras 20 respostas da campanha.',
+      aquaria: 'Uma proteção contra perda de vida nas primeiras 20 respostas da campanha.',
+      glomerulus: '+2 ouro por acerto, até 40 ouro nas primeiras 20 respostas da campanha.'
+    };
+
     // Emblemas ornamentais da intro; não representam anatomia ou atributos.
     const CHARACTER_INTRO_EMBLEMS = {
       nephros: '<svg class="nqinicio-emblem nqinicio-emblem--nephros" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="39" opacity=".45"/><path d="M50 19 73 29v19c0 18-11 29-23 35-12-6-23-17-23-35V29Z"/><path d="M50 28 65 35v13c0 12-6 20-15 26-9-6-15-14-15-26V35Z" opacity=".5"/><path d="m50 39 11 11-11 11-11-11Z"/><circle cx="50" cy="50" r="3"/></svg>',
@@ -587,10 +582,9 @@
     };
 
     function selectCharacter(charId) {
-      state.character = charId;
-      // Guarda a escolha fora do state: um sync de nuvem / loadGame pode sobrescrever
-      // state.character durante a leitura da intro. Usado como fallback no start.
+      if (!characters[charId]) return false;
       _lastSelectedCharacter = charId;
+      _characterIntroFromWelcome = typeof _charSelectFromWelcome !== 'undefined' && _charSelectFromWelcome === true;
       closeCharSelectModal(false);
       showCharacterIntroModal(charId);
     }
@@ -604,13 +598,17 @@
       const [heroName, heroTitle] = intro.ch.split(' · ');
       const character = characters[charId];
       const extension = 'webp';
+      const initialBenefit = (window._pendingDiff || state.difficulty) === 'hardcore'
+        ? '<strong>No modo Hardcore, os bônus de personagem não se aplicam.</strong> Este aviso se refere aos bônus iniciais novos. Os atributos originais da classe permanecem.'
+        : `<strong>Bônus inicial de classe em novas jornadas em Fácil, Médio e Difícil:</strong> ${CHARACTER_INITIAL_BONUS_COPY[charId]} A janela conta acertos e erros.`;
       popup.classList.add('nqnarr-overlay');
       popup.innerHTML = `
-        <section class="nqnarr-card nqinicio-card" aria-describedby="nqIntroStory">
+        <section class="nqnarr-card nqinicio-card" aria-describedby="nqIntroStory nqIntroBenefit">
           <div class="nqnarr-reading" role="region" tabindex="0" aria-label="Seu guardião e início da jornada">
             <p class="nqnarr-chapter">Início da Jornada</p>
             <div class="nqinicio-heading"><div class="nqinicio-portrait"><img src="assets/classes-cinema/${character.folder}/nivel_01.${extension}" alt=""></div><div class="nqinicio-identity"><div class="nqinicio-name"><h2>${heroName}</h2><p class="nqinicio-subtitle">${heroTitle}</p></div>${CHARACTER_INTRO_EMBLEMS[charId] || ''}</div></div>
             <div class="nqnarr-story nqinicio-story" id="nqIntroStory">${intro.text}</div>
+            <p class="nqnarr-story" id="nqIntroBenefit">${initialBenefit}</p>
           </div>
           <footer class="nqnarr-footer nqinicio-actions"><button type="button" class="nq-pilot-button" data-action="cancelCharacterIntro" aria-label="Fechar introdução e cancelar início">Cancelar</button><button type="button" class="nqnarr-primary nqinicio-primary" data-action="closeIntroAndStart">Iniciar Jornada</button></footer>
         </section>`;
@@ -622,12 +620,34 @@
 
     function cancelCharacterIntro() {
       document.getElementById('charIntroOverlay')?.remove();
-      window.cancelPilotGameStart?.();
-      window._stopLocalJourney?.();
+      if (window.NQPilot?.active === true) {
+        window.cancelPilotGameStart?.();
+        window._stopLocalJourney?.();
+      } else {
+        const welcome = document.getElementById('welcomeScreen');
+        if (_characterIntroFromWelcome || !state.gameStarted) {
+          document.getElementById('mainApp')?.classList.add('hidden');
+          if (welcome) {
+            welcome.style.opacity = '';
+            welcome.style.transition = '';
+            welcome.inert = false;
+            welcome.classList.remove('hidden');
+          }
+        } else {
+          welcome?.classList.add('hidden');
+          document.getElementById('mainApp')?.classList.remove('hidden');
+        }
+      }
       _lastSelectedCharacter = null;
+      window._pendingDiff = null;
       refreshWelcomeSave();
       refreshCharacterPilotUI();
-      document.querySelector('[data-action="startNewFromWelcome"]')?.focus({preventScroll:true});
+      const origin = [_characterIntroFromWelcome
+        ? document.querySelector('[data-action="startNewFromWelcome"]')
+        : document.getElementById('newBtn'),
+        ...document.querySelectorAll('[data-action="toggleProfilePopup"]')]
+        .find(el => el?.getClientRects().length && !el.closest('[hidden], [inert], .hidden'));
+      origin?.focus({preventScroll:true});
     }
     window.cancelCharacterIntro = cancelCharacterIntro;
 
@@ -641,11 +661,17 @@
     }
     
     async function startGameWithCharacter() {
+      const selectedAtStart = _lastSelectedCharacter;
+      const pendingDifficultyAtStart = window._pendingDiff;
+      const chosenCharacter = characters[selectedAtStart] ? selectedAtStart
+        : characters[state.character] ? state.character : 'nephros';
+      const chosenDifficulty = pendingDifficultyAtStart || state.difficulty || 'normal';
       const startingPilot = window.NQPilot?.active === true;
       const startingOwner = typeof authUser !== 'undefined' ? authUser?.id || null : null;
       const journeyBinding = typeof _captureJourneyBinding === 'function' ? _captureJourneyBinding() : null;
       const pilotBinding = window.NQPilot?.captureBinding?.();
       const startupCurrent = () =>
+        selectedAtStart === _lastSelectedCharacter && pendingDifficultyAtStart === window._pendingDiff &&
         startingOwner === (typeof authUser !== 'undefined' ? authUser?.id || null : null) &&
         startingPilot === (window.NQPilot?.active === true) &&
         (!journeyBinding || (typeof _matchesJourneyBinding === 'function' && _matchesJourneyBinding(journeyBinding))) &&
@@ -686,80 +712,94 @@
         }
       }
       if (!startupCurrent()) return;
-      // Blindagem: se state.character ficou inválido (save legado ou corrida com
-      // sync/loadGame), recupera a escolha real; em último caso, classe padrão.
-      // Sem isso, char.name lança TypeError e a jornada "trava" na tela de intro.
-      if (!characters[state.character]) {
-        state.character = characters[_lastSelectedCharacter] ? _lastSelectedCharacter : 'nephros';
-      }
-      const chosenDifficulty = state.difficulty || 'normal';
-      if (startingPilot && !window.NQPilot.start(state.character, chosenDifficulty, typeof authUser !== 'undefined' ? authUser?.id || null : null)) {
-        abortPilotStart();
-        _toast('Não foi possível iniciar o piloto. Sua jornada normal foi preservada.', 'error', 5000);
-        return;
-      }
-      const startedPilotBinding = startingPilot ? window.NQPilot.captureBinding() : null;
+      let startedPilotBinding = null;
       const pilotStartupCurrent = () => !startingPilot ||
         (window.NQPilot?.active === true && window.NQPilot.writable === true &&
           state.gameStarted === true && state.journeyDomain === 'pilot' &&
           window.NQPilot.matchesBinding(startedPilotBinding));
-      state.journeyDomain = startingPilot ? 'pilot' : 'normal';
-      state.classBenefits = startingPilot ? window.NQPilot.classBenefits : null;
-      state.questionOrigin = 'campaign';
-      state.journeyAnswerOrdinal = 0;
-      state.pilotLastAnswer = null;
-      state.pilotJourneyAccounted = false;
-      window._reloadJourneyCollections?.();
-      const char = characters[state.character];
+      const initialize = () => {
+        state.questionOrigin = 'campaign';
+        state.journeyAnswerOrdinal = 0;
+        state.pilotLastAnswer = null;
+        state.pilotJourneyAccounted = false;
+        window._reloadJourneyCollections?.();
+        const char = characters[state.character];
 
-      _sessionWrongAnswers = [];
-      _minigameTriggerCount = 0;
-      _boardPushedThisSession = false; // reset rate limit a cada novo jogo
-      const _diffLives = {easy:5, normal:4, hard:3, hardcore:1};
-      const _chosenDiff = state.difficulty || 'normal';
-      const _startLives = _diffLives[_chosenDiff] || 3;
-      if (startingPilot) {
-        // Each pilot starts from its own empty inventory; no normal resources carry over.
-        if (_forja) {
-          _forja.origem.elementos.forEach(({el, hidden, inert}) => {
-            el.classList.toggle('hidden', hidden); el.inert = inert;
-          });
-          _forja = null;
+        _sessionWrongAnswers = [];
+        _minigameTriggerCount = 0;
+        _boardPushedThisSession = false; // reset rate limit a cada novo jogo
+        const _diffLives = {easy:5, normal:4, hard:3, hardcore:1};
+        const _chosenDiff = state.difficulty || 'normal';
+        const _startLives = _diffLives[_chosenDiff] || 3;
+        if (startingPilot) {
+          // Each pilot starts from its own empty inventory; no normal resources carry over.
+          if (_forja) {
+            _forja.origem.elementos.forEach(({el, hidden, inert}) => {
+              el.classList.toggle('hidden', hidden); el.inert = inert;
+            });
+            _forja = null;
+          }
+          ++_forjaSequence;
+          document.getElementById('forjaPage')?.remove();
+          document.body.classList.remove('nq-studying');
+          Object.assign(state, {obtainedItems:[], allItemsCollectedNotified:false, forjaPending:null, chestCorrectCount:0, chestTarget:5});
         }
-        ++_forjaSequence;
-        document.getElementById('forjaPage')?.remove();
-        document.body.classList.remove('nq-studying');
-        Object.assign(state, {obtainedItems:[], allItemsCollectedNotified:false, forjaPending:null, chestCorrectCount:0, chestTarget:5});
-      }
-      Object.assign(state,{level:1,xp:0,xpToNext:200,score:0,lives:_startLives,maxLives:_startLives,streak:0,gold:0,difficulty:_chosenDiff,legendaryAbilityUsed:{},current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,bossIntroShown:false,battleFinalShown:false,gameOver:false,gameStarted:true,extraLifeGiven:false,gameCompleted:false,completedGame:false,chestsOpened:0,bossLog:[],bossStunActive:false});
-      document.body.classList.remove('rd-game-over', 'boss-battle-mode', 'arqui-nefromante-final', 'boss-hp-critical');
-      removeStun(); // garante limpeza de resíduo de partida anterior
-      if (typeof updateBossUI === 'function') updateBossUI();
-      chestCost = 100;
-      state.equipment={
-        helmet:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
-        glove:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
-        armor:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
-        weapon:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
-        relic:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
-        boot:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0}
+        Object.assign(state,{level:1,xp:0,xpToNext:200,score:0,lives:_startLives,maxLives:_startLives,streak:0,gold:0,difficulty:_chosenDiff,legendaryAbilityUsed:{},current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,bossIntroShown:false,battleFinalShown:false,gameOver:false,gameStarted:true,extraLifeGiven:false,gameCompleted:false,completedGame:false,chestsOpened:0,bossLog:[],bossStunActive:false});
+        document.body.classList.remove('rd-game-over', 'boss-battle-mode', 'arqui-nefromante-final', 'boss-hp-critical');
+        removeStun(); // garante limpeza de resíduo de partida anterior
+        if (typeof updateBossUI === 'function') updateBossUI();
+        chestCost = 100;
+        state.equipment={
+          helmet:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
+          glove:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
+          armor:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
+          weapon:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
+          relic:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
+          boot:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0}
+        };
+        ui.journal.innerHTML='';
+        const _q9p = document.getElementById('arquiQ9Popup');
+        if (_q9p) { _q9p._shown = false; _q9p.style.display = 'none'; }
+        log(`🎭 ${char.name}, ${char.title}, inicia sua jornada no Reino Sombrio do Néfron!`);
+        shuffleQueue();
+        renderHUD();
+        updateBadges();
+        renderQuestion();
+        return pilotStartupCurrent();
       };
-      ui.journal.innerHTML='';
-      const _q9p = document.getElementById('arquiQ9Popup');
-      if (_q9p) { _q9p._shown = false; _q9p.style.display = 'none'; }
-      log(`🎭 ${char.name}, ${char.title}, inicia sua jornada no Reino Sombrio do Néfron!`);
-      shuffleQueue();
-      renderHUD();
-      updateBadges();
-      renderQuestion();
+      if (startingPilot) {
+        if (!window.NQPilot.start(chosenCharacter, chosenDifficulty, startingOwner)) {
+          abortPilotStart();
+          _toast('Não foi possível iniciar o piloto. Sua jornada normal foi preservada.', 'error', 5000);
+          return false;
+        }
+        startedPilotBinding = window.NQPilot.captureBinding();
+        state.character = chosenCharacter;
+        state.difficulty = chosenDifficulty;
+        state.journeyDomain = 'pilot';
+        state.classBenefits = window.NQPilot.classBenefits;
+        if (initialize() === false) {
+          refreshCharacterPilotUI();
+          return false;
+        }
+        saveGame();
+      } else {
+        if (typeof window._startNormalCharacterJourney !== 'function') {
+          _toast('Não foi possível iniciar a jornada. Seu progresso anterior foi preservado.', 'error', 5000);
+          return false;
+        }
+        if (window._startNormalCharacterJourney({character:chosenCharacter,difficulty:chosenDifficulty,initialize}) !== true) return false;
+      }
       if (!pilotStartupCurrent()) {
         refreshCharacterPilotUI();
         return false;
       }
-      saveGame();
       refreshCharacterPilotUI();
       if (!pilotStartupCurrent()) return false;
-      if (startingPilot) dismissWelcome();
+      _lastSelectedCharacter = null;
+      window._pendingDiff = null;
+      dismissWelcome();
       // Garantir que a música da jornada está tocando (fallback caso dismissWelcome não tenha iniciado)
       if (musicEnabled && !musicStarted) startBgMusic();
+      return true;
     }

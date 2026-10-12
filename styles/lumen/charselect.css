@@ -77,6 +77,23 @@
   padding-inline: 3rem;
 }
 
+#charSelectModal .nqc-notice {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--nql-lumen, #6fd3e6);
+  border-radius: .75rem;
+  background: var(--nql-surface, rgba(255, 255, 255, .04));
+  color: var(--nql-text, #eef3fb);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+#charSelectModal .nqc-notice p {
+  margin: .35rem 0 0;
+  color: var(--nql-text-soft, #c8d2e4);
+}
+#charSelectModal .nqc-notice[hidden] { display: none; }
+
 #charSelectModal .nqc-eyebrow {
   display: block;
   font-size: .72rem;
@@ -108,17 +125,20 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(.75rem, 2vw, 1.25rem);
 }
 
 #charSelectModal .nqc-grid > li {
+  min-width: 0;
   display: flex;
 }
 
 /* ── Card ───────────────────────────────────────────────── */
 
 #charSelectModal .nqc-card {
+  min-width: 0;
+  overflow-wrap: anywhere;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -134,6 +154,11 @@
   font: inherit;
   text-align: center;
   cursor: pointer;
+}
+
+#charSelectModal .nqc-card > * {
+  min-width: 0;
+  max-width: 100%;
 }
 
 #charSelectModal .nqc-card:hover,
@@ -300,7 +325,7 @@
 
 @media (max-width: 60rem) {
   #charSelectModal .nqc-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: .75rem;
   }
 
@@ -312,7 +337,7 @@
      dobra; vira uma faixa lateral com a identidade ao lado. */
   #charSelectModal .nqc-card {
     display: grid;
-    grid-template-columns: 5.5rem 1fr;
+    grid-template-columns: min(5.5rem, 40%) minmax(0, 1fr);
     grid-template-areas:
       'art  name'
       'art  title'
@@ -333,6 +358,17 @@
   #charSelectModal .nqc-boons { grid-area: boons; margin-top: .5rem; }
   #charSelectModal .nqc-path { grid-area: path; margin-top: .5rem; }
   #charSelectModal .nqc-path-label { grid-area: plabel; }
+}
+
+/* Reserva uma linha para Fechar antes do texto em telas estreitas. */
+@media (max-width: 40rem) {
+  #charSelectModal .nqc-header {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    padding-inline: 0;
+    padding-block-start: 3.25rem;
+  }
 }
 
 /* ── Movimento reduzido ─────────────────────────────────── */
