@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
+import { normalBytes, openPilotChoice, setupPilotPage } from '../helpers/pilot';
 
 test.describe('Dashboard, Core Skills & Layout Reset E2E Tests', () => {
+  test.use({ serviceWorkers: 'block' });
   test.beforeEach(async ({ page }) => {
     await page.goto('/jogar/');
   });
@@ -68,12 +70,35 @@ test.describe('Dashboard, Core Skills & Layout Reset E2E Tests', () => {
     expect(transplante.correct).toBe(0);
   });
 
-  test('confirming difficulty clears rd-game-over from body', async ({ page }) => {
+  test('committing the confirmed journey clears rd-game-over from body', async ({ page }) => {
+    await setupPilotPage(page, true);
     await page.evaluate(() => {
       document.body.classList.add('rd-game-over', 'boss-battle-mode');
-      (window as any)._pendingDiff = 'normal';
-      (window as any)._confirmDiff(false);
     });
+    const bytesBefore = await normalBytes(page);
+    await openPilotChoice(page, 'normal');
+    await page.locator('#diffConfirmBtn').click();
+    await expect(page.locator('#charSelectModal')).toBeVisible();
+
+    // Difficulty and character selection remain provisional until Iniciar succeeds.
+    const provisional = await page.evaluate(() => Array.from(document.body.classList));
+    expect(provisional).toContain('rd-game-over');
+    expect(provisional).toContain('boss-battle-mode');
+    expect(await normalBytes(page)).toEqual(bytesBefore);
+    await page.locator('#charSelectModal [data-action="selectCharacter"][data-arg="nephros"]').click();
+    await expect(page.locator('#charIntroOverlay')).toBeVisible();
+    expect(await normalBytes(page)).toEqual(bytesBefore);
+    expect(await page.evaluate(() => document.body.classList.contains('rd-game-over'))).toBe(true);
+    expect(await page.evaluate(() => document.body.classList.contains('boss-battle-mode'))).toBe(true);
+
+    await page.locator('#charIntroOverlay [data-action="closeIntroAndStart"]').click();
+    await page.waitForFunction(() => {
+      const save = JSON.parse(localStorage.getItem('nefroquest-save-v7') || 'null');
+      return save?.schemaVersion === 9 && save.character === 'nephros' &&
+        save.difficulty === 'normal' && save.gameStarted === true &&
+        typeof save.currentQuestionId === 'string' && save.currentQuestionId.length > 0;
+    });
+    await expect(page.locator('#mainApp')).toBeVisible();
     const classes = await page.evaluate(() => Array.from(document.body.classList));
     expect(classes).not.toContain('rd-game-over');
     expect(classes).not.toContain('boss-battle-mode');

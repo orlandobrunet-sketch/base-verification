@@ -83,7 +83,7 @@ function environment({ kind = 'legacy', owner = null, removalFails = false, tomb
   let revision = 0;
   const mainClasses = new Set();
   const welcomeClasses = new Set(['hidden']);
-  const element = classes => ({ inert: true, classList: {
+  const element = classes => ({ inert: true, style: {}, classList: {
     add: (...names) => names.forEach(name => classes.add(name)),
     remove: (...names) => names.forEach(name => classes.delete(name)),
   } });
@@ -97,6 +97,7 @@ function environment({ kind = 'legacy', owner = null, removalFails = false, tomb
     _forja: null, _progressSandboxMode: null, _pilotRestoredQuestion: null,
     _saveBaseline: undefined, _saveOwner: undefined, _legacySaveBaseline: undefined,
     _saveCleanupBlocked: false, _guestRecoveryAccepted: null, _progressEpoch: 7,
+    _normalJourneyStaging: false,
     _continueGameCleanup: null,
     _autoSaveTimer: 'auto', _saveTimer: 'save', _cloudSyncTimer: 'cloud', _cloudLoadSyncTimer: 'cloud-load',
     SAVE_KEY: LEGACY, CANONICAL_SAVE_KEY: CANONICAL, SAVE_SCHEMA_VERSION: 7,

@@ -2,7 +2,7 @@ import { test, expect, type Page } from '@playwright/test';
 import {
   advanceTechnical, answerTechnical, attachPilotFailureDiagnostics, changeState, installBackendRecorder,
   normalBytes, normalSave, openPilotChoice, PILOT_KEY, pilotEnvelope,
-  pilotState, resumePilot, setupPilotPage, startPilot,
+  pilotState, resumePilot, seedLegacyPilot, setupPilotPage, startPilot,
 } from '../helpers/pilot';
 
 test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
@@ -140,23 +140,24 @@ async function observePilotAutosave(page: Page) {
 test('cancelar a escolha de dificuldade conserva todos os bytes normais e não cria piloto', async ({ page }) => {
   const before = await normalBytes(page);
   await openPilotChoice(page);
-  await page.locator('#characterPilotOptIn').check();
   await page.keyboard.press('Escape');
   await expect(page.locator('#diffSelectorOverlay')).toHaveCount(0);
   expect(await normalBytes(page)).toEqual(before);
   expect(await pilotEnvelope(page)).toBeNull();
 });
 
-test('navegador sem Web Locks rejeita a adesão antes de tocar nos dados normais', async ({ page }) => {
+test('navegador sem Web Locks rejeita a retomada do legado antes de tocar nos dados normais', async ({ page }) => {
+  await seedLegacyPilot(page);
   const before = await normalBytes(page);
+  const legacyRaw = await page.evaluate(key => localStorage.getItem(key), PILOT_KEY);
   await page.evaluate(() => Object.defineProperty(navigator, 'locks', { configurable: true, value: undefined }));
-  await openPilotChoice(page);
-  await page.locator('#characterPilotOptIn').check();
-  await page.locator('#diffConfirmBtn').click();
-  await expect(page.locator('.nq-toast').last()).toContainText('Nenhuma jornada foi alterada');
+  await page.locator('#resumePilotBtn').click();
+  await expect(page.locator('.nq-toast').last()).toContainText('O piloto está indisponível ou aberto em outra aba');
   await expect(page.locator('#charSelectModal')).not.toHaveClass(/show/);
+  await expect(page.locator('#mainApp')).toBeHidden();
+  expect(await page.evaluate(() => (window as any).NQPilot.active)).toBe(false);
   expect(await normalBytes(page)).toEqual(before);
-  expect(await pilotEnvelope(page)).toBeNull();
+  expect(await page.evaluate(key => localStorage.getItem(key), PILOT_KEY)).toBe(legacyRaw);
 });
 
 test('mudança forçada para Hardcore aborta sem gravar crédito ou converter a jornada', async ({ page }) => {
@@ -171,10 +172,9 @@ test('mudança forçada para Hardcore aborta sem gravar crédito ou converter a 
 });
 
 for (const stage of ['character', 'intro']) {
-  test(`cancelar ${stage} libera a reserva sem apagar o save normal`, async ({ page }) => {
+  test(`cancelar ${stage} preserva o save normal sem criar piloto ou bônus retroativo`, async ({ page }) => {
     const before = await normalBytes(page);
     await openPilotChoice(page);
-    await page.locator('#characterPilotOptIn').check();
     await page.locator('#diffConfirmBtn').click();
     await expect(page.locator('#charSelectModal')).toHaveClass(/show/);
     if (stage === 'character') await page.keyboard.press('Escape');
@@ -209,6 +209,21 @@ test('iniciar, responder, recarregar, retomar e sair preservam as chaves normais
   await page.locator('#leavePilotBtn').click();
   expect(await normalBytes(page)).toEqual(before);
   expect(await page.evaluate(() => (window as any).NQPilot.active)).toBe(false);
+  const welcome = page.locator('#welcomeScreen');
+  await expect(welcome).toBeVisible();
+  await expect(welcome).toHaveCSS('opacity', '1');
+  const normalContinue = welcome.locator('[data-action="continueGame"]');
+  for (let tabs = 0; tabs < 24; tabs++) {
+    await page.keyboard.press('Tab');
+    if (await normalContinue.evaluate(element => document.activeElement === element)) break;
+  }
+  await expect(normalContinue).toBeFocused();
+  await expect(normalContinue).toBeVisible();
+  expect(await normalContinue.evaluate(element => {
+    const box = element.getBoundingClientRect();
+    const hit = document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2);
+    return hit === element || element.contains(hit);
+  })).toBe(true);
   await page.locator('#welcomeScreen [data-action="continueGame"]').click();
   await expect(page.locator('#mainApp')).toBeVisible();
   const normal = await pilotState(page);
@@ -265,7 +280,7 @@ test('início parcial gravado pela API real não oferece retomada nem cria uma j
   await expect(page.locator('#resumePilotBtn')).toBeVisible();
   await expect(page.locator('#resumePilotBtn')).toBeDisabled();
   await expect(page.locator('#resumePilotBtn')).toHaveText('Piloto não iniciado');
-  await expect(page.locator('#characterPilotSavedDescription')).toContainText('Piloto não iniciado');
+  await expect(page.locator('#characterPilotSavedDescription')).toHaveText('Este registro antigo não concluiu o início. Comece uma nova jornada para jogar.');
   expect(await page.evaluate(() => (window as any).resumePilotGame())).toBe(false);
   expect(await page.evaluate(key => localStorage.getItem(key), PILOT_KEY)).toBe(raw);
   expect(await normalBytes(page)).toEqual(normal);
@@ -277,7 +292,7 @@ test('início parcial gravado pela API real não oferece retomada nem cria uma j
   await expect(page.locator('#resumePilotBtn')).toBeVisible();
   await expect(page.locator('#resumePilotBtn')).toBeDisabled();
   await expect(page.locator('#resumePilotBtn')).toHaveText('Piloto não iniciado');
-  await expect(page.locator('#characterPilotSavedDescription')).toContainText('Piloto não iniciado');
+  await expect(page.locator('#characterPilotSavedDescription')).toHaveText('Este registro antigo não concluiu o início. Comece uma nova jornada para jogar.');
   expect(await page.evaluate(() => (window as any).resumePilotGame())).toBe(false);
   expect(await page.evaluate(() => (window as any).NQPilot.active)).toBe(false);
   expect(await page.evaluate(key => localStorage.getItem(key), PILOT_KEY)).toBe(raw);

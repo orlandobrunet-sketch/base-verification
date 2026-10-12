@@ -1,4 +1,5 @@
 import { test, expect, Page } from '@playwright/test';
+import { openPilotChoice, setupPilotPage } from '../helpers/pilot';
 
 /**
  * Trilha dos selos com memória (v14.61).
@@ -43,6 +44,7 @@ async function abrirConquistas(page: Page, historico: Record<string, unknown> | 
 }
 
 test.describe('Selos: memória entre jornadas', () => {
+  test.use({ serviceWorkers: 'block' });
   test('quem já venceu não é rebaixado ao dia zero na jornada seguinte', async ({ page }) => {
     // Venceu tudo na 1ª jornada; agora está com 4 acertos na 2ª.
     await abrirConquistas(page, {
@@ -94,18 +96,44 @@ test.describe('Selos: memória entre jornadas', () => {
   });
 
   test('o histórico sobrevive a deleteSave — que é o início de uma nova jornada', async ({ page }) => {
-    await page.goto('/jogar/');
-    await page.waitForFunction(() => typeof (window as any).deleteSave === 'function' || typeof (window as any)._confirmDiff === 'function');
-    const sobreviveu = await page.evaluate(() => {
+    await setupPilotPage(page, true);
+    const readStorage = () => page.evaluate(() => ({
+      historico: localStorage.getItem('nefroquest-badge-history'),
+      anunciados: localStorage.getItem('nefroquest-announced-badges'),
+      canonical: localStorage.getItem('nefroquest-save-v7'),
+      mirror: localStorage.getItem('nefroquest-save'),
+    }));
+    await page.evaluate(() => {
       localStorage.setItem('nefroquest-badge-history', JSON.stringify({ 1: { jornada: 1 } }));
       localStorage.setItem('nefroquest-announced-badges', JSON.stringify([1]));
-      (window as any)._pendingDiff = 'normal';
-      (window as any)._confirmDiff(false); // chama deleteSave internamente
-      return {
-        historico: localStorage.getItem('nefroquest-badge-history'),
-        anunciados: localStorage.getItem('nefroquest-announced-badges'),
-      };
     });
+    const before = await readStorage();
+
+    // Confirmar dificuldade apenas abre a escolha provisória; nada é limpo.
+    await openPilotChoice(page, 'normal');
+    await page.locator('#diffConfirmBtn').click();
+    await expect(page.locator('#charSelectModal')).toBeVisible();
+    expect(await readStorage()).toEqual(before);
+    await page.locator('#charSelectModal [data-action="selectCharacter"][data-arg="nephros"]').click();
+    const intro = page.locator('#charIntroOverlay');
+    await expect(intro).toBeVisible();
+    expect(await readStorage()).toEqual(before);
+
+    // Percorrer o início real: só o commit confirmado limpa anúncios da jornada.
+    await intro.getByRole('button', { name: 'Iniciar Jornada', exact: true }).click();
+    await page.waitForFunction(() => {
+      const state = (0, eval)('state');
+      const raw = localStorage.getItem('nefroquest-save-v7');
+      const saved = JSON.parse(raw || 'null');
+      return state.gameStarted && state.character === 'nephros' && !!state.current &&
+        saved?.schemaVersion === 9 && saved.character === 'nephros' &&
+        saved.journeyDomain === 'normal' &&
+        saved.classBenefits?.journeyId === state.classBenefits?.journeyId &&
+        typeof saved.classBenefits?.journeyId === 'string' &&
+        saved.currentQuestionId === String(state.current.id) &&
+        localStorage.getItem('nefroquest-save') === raw;
+    });
+    const sobreviveu = await readStorage();
     expect(sobreviveu.historico, 'o histórico não pode ser apagado ao começar nova jornada').toContain('"1"');
     expect(sobreviveu.anunciados, 'a lista de anúncio continua sendo limpa, como antes').toBeNull();
   });

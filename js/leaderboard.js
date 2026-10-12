@@ -101,11 +101,50 @@
       return origin?.domain === 'pilot' || origin?.pilot === true;
     }
 
+    function _leaderboardOwner() {
+      return typeof _currentSaveOwner === 'function' ? _currentSaveOwner() : authUser?.id || null;
+    }
+
+    function _normalScoreLedgerValid(record, owner, journeyId) {
+      try {
+        const domain = record.journeyDomain ?? record.domain;
+        if (domain !== 'normal' || !['easy', 'normal', 'hard'].includes(record.difficulty)) return false;
+        const context = {character:record.character, difficulty:record.difficulty, owner};
+        if (journeyId !== undefined) context.journeyId = journeyId;
+        return !!window.NQCharacterBenefits?.valid(record.classBenefits, context);
+      } catch (_) { return false; }
+    }
+
+    function _pilotLeaderboardBlocked(record, origin, owner) {
+      if (_pilotScoreOrigin(origin) || _pilotScoreOrigin(record) ||
+          origin?.journeyDomain === 'pilot' || record?.journeyDomain === 'pilot') return true;
+      if ((origin?.domain && origin.domain !== 'normal') ||
+          (origin?.journeyDomain && origin.journeyDomain !== 'normal') ||
+          (record?.domain && record.domain !== 'normal') ||
+          (record?.journeyDomain && record.journeyDomain !== 'normal')) return true;
+      if (origin && Object.prototype.hasOwnProperty.call(origin, 'owner') && origin.owner !== owner) return true;
+      if (record?.classBenefits != null && !_normalScoreLedgerValid(record, owner)) return true;
+      if (origin?.classBenefits != null) {
+        if (!['character', 'difficulty', 'owner', 'journeyId'].every(key =>
+            Object.prototype.hasOwnProperty.call(origin, key)) ||
+            typeof origin.journeyId !== 'string' || !origin.journeyId.trim()) return true;
+        return !_normalScoreLedgerValid(origin, owner, origin.journeyId);
+      }
+      if (origin && Object.prototype.hasOwnProperty.call(origin, 'classBenefits') &&
+          origin.classBenefits === null && origin.journeyId != null) return true;
+      if (record?.classBenefits && origin?.journeyId != null &&
+          !Object.prototype.hasOwnProperty.call(origin, 'classBenefits') &&
+          origin.journeyId !== record.classBenefits.journeyId) return true;
+      return false;
+    }
+
     async function boardPush(score, level, playerName, origin) {
-      // The journey remains noncompetitive after its first20 answers and
-      // after the player leaves it. Pending dialogs carry their own origin.
-      if (_pilotScoreOrigin(origin) || window.NQPilot?.active ||
-          state.journeyDomain === 'pilot' || state.classBenefits) return;
+      // Legacy pilots remain excluded; valid normal ledgers use the normal ranking.
+      // Pending dialogs retain the completed journey's class and owner.
+      const owner = _leaderboardOwner();
+      if (window.NQPilot?.active || _pilotLeaderboardBlocked(state, origin, owner) ||
+          window.isProgressSandbox?.() || document.body?.classList?.contains('nq-studying') ||
+          (typeof studyModeActive !== 'undefined' && studyModeActive)) return;
       // Rate limiting: 1 push por sessão de jogo
       if (boardPushState === 'in_flight' || boardPushState === 'done') return;
       // Sanity check: score e level devem ser números positivos razoáveis
@@ -113,7 +152,8 @@
       if (typeof level !== 'number' || level < 1 || level > 999) return;
 
       transitionBoardPush('in_flight');
-      const charName = state.character ? characters[state.character].name : 'Desconhecido';
+      const character = origin?.character ?? state.character;
+      const charName = characters[character]?.name || 'Desconhecido';
       const userId = authUser?.id || null;
       const payload = {
         player_name: (playerName || 'Anônimo').substring(0, 40), // limite de tamanho
@@ -129,7 +169,12 @@
       if (!navigator.onLine) {
         try {
           const pending = JSON.parse(localStorage.getItem('nq-pending-leaderboard') || '[]');
-          pending.push({...payload, _nqJourney: origin || {domain:'normal'}});
+          const capturedOrigin = origin || {domain:'normal'};
+          const queueOrigin = state.classBenefits && !Object.prototype.hasOwnProperty.call(capturedOrigin, 'classBenefits')
+            ? {...capturedOrigin, character:state.character, difficulty:state.difficulty, owner,
+              journeyId:state.classBenefits.journeyId, classBenefits:state.classBenefits}
+            : capturedOrigin;
+          pending.push({...payload, _nqJourney: JSON.parse(JSON.stringify(queueOrigin))});
           localStorage.setItem('nq-pending-leaderboard', JSON.stringify(pending));
           transitionBoardPush('idle'); // permite tentar novamente online
         } catch(e) {
@@ -233,11 +278,13 @@
         if (!pending.length) return;
         localStorage.removeItem('nq-pending-leaderboard');
         for (const queued of pending) {
-          // Legacy records have no origin and remain ordinary journeys.
-          // A tagged assisted record must never reach the backend.
-          if (_pilotScoreOrigin(queued?._nqJourney) || _pilotScoreOrigin(queued?.origin) ||
-              queued?.journeyDomain === 'pilot' || queued?.classBenefits) continue;
-          const {_nqJourney, origin, journeyDomain, classBenefits, ...payload} = queued;
+          // Validate each queued snapshot against its own payload owner, independently
+          // of the current journey. Historical ordinary records keep their eligibility.
+          const owner = queued?.user_id || null;
+          if (_pilotLeaderboardBlocked(queued, queued?._nqJourney, owner) ||
+              _pilotLeaderboardBlocked(queued, queued?.origin, owner)) continue;
+          const {_nqJourney, origin, domain, journeyDomain, classBenefits, character, difficulty, owner: snapshotOwner,
+            schemaVersion, pilot, ...payload} = queued;
           const prefer = payload.user_id ? 'resolution=merge-duplicates,return=minimal' : 'return=minimal';
           await fetch(`${SUPA_URL}/rest/v1/leaderboard`, {
             method: 'POST',

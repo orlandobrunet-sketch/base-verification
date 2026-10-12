@@ -18,6 +18,35 @@ const PASSOS = {
   jogo: '#mainApp',
 } as const;
 
+// O percurso de visitante usa a autenticação real do app com uma sessão nula
+// simulada. A suíte não depende do CDN do SDK nem consulta serviços externos.
+test.beforeEach(async ({ page }) => {
+  await page.route('**/*', route => {
+    const host = new URL(route.request().url()).hostname;
+    return ['localhost', '127.0.0.1'].includes(host) ? route.continue() : route.abort();
+  });
+  await page.addInitScript(() => {
+    const ready = () => document.readyState === 'loading'
+      ? new Promise(resolve => document.addEventListener('DOMContentLoaded', resolve, { once: true }))
+      : Promise.resolve();
+    const response = () => Promise.resolve({ data: null, error: null });
+    const chain: any = {
+      then: (yes: any, no: any) => response().then(yes, no),
+      select: () => chain, eq: () => chain, order: () => chain, limit: () => chain,
+      maybeSingle: response, single: response,
+    };
+    (window as any).supabase = {
+      createClient: () => ({
+        auth: {
+          onAuthStateChange: () => ({ data: { subscription: { unsubscribe() {} } } }),
+          getSession: async () => { await ready(); return { data: { session: null }, error: null }; },
+        },
+        from: () => chain,
+      }),
+    };
+  });
+});
+
 /* Só contam erros do NOSSO código.
  *
  * Filtrar por texto não servia: o Turnstile do Cloudflare emite uma detecção
@@ -70,16 +99,20 @@ async function percorrer(page: Page, aoChegar?: (etapa: string) => Promise<void>
   await aoChegar?.('classe');
 
   await page.locator('.nqc-card[data-char="nephros"]').click();
-  await expect(page.locator(PASSOS.jogo)).toBeVisible({ timeout: 20000 });
+  await expect(page.locator('#charIntroOverlay')).toBeVisible({ timeout: 20000 });
+  await expect(page.locator(PASSOS.jogo)).toBeHidden();
 
-  /* A narrativa de abertura fica por cima do jogo e segura a primeira
-   * questão. Ela É parte da jornada — não um estorvo do teste —, e por isso
+  /* A narrativa apresenta a escolha provisória antes de confirmar o início.
+   * Ela É parte da jornada — não um estorvo do teste —, e por isso
    * aparece aqui como etapa, com o mesmo clique que a pessoa daria. */
   const abertura = page.locator('[data-action="closeIntroAndStart"]');
   await expect(abertura).toBeVisible({ timeout: 20000 });
   await aoChegar?.('abertura');
   await abertura.click();
 
+  await expect(page.locator(PASSOS.jogo)).toBeVisible({ timeout: 20000 });
+  await page.waitForFunction(() => (0, eval)('state.gameStarted && !!state.current && !_loadingNextQuestion'),
+    null, { timeout: 25000 });
   await expect(page.locator('#question')).not.toHaveText('', { timeout: 25000 });
   await aoChegar?.('jogo');
 }
@@ -154,7 +187,13 @@ test.describe('A jornada completa, do portal à retomada', () => {
     await percorrer(page);
     await page.locator('#options .option').first().click();
     await page.waitForTimeout(1200);
-    const antes = await page.evaluate(() => (window as any).state?.correctTotal ?? null);
+    const antes = await page.evaluate(() => (0, eval)('state.correctTotal'));
+    expect(Number.isInteger(antes)).toBe(true);
+    const salvo = await page.evaluate(() => JSON.parse(localStorage.getItem('nefroquest-save-v7') || 'null'));
+    expect(salvo.schemaVersion).toBe(9);
+    expect(salvo.answered).toBe(true);
+    expect(salvo.correctTotal).toBe(antes);
+    expect(salvo.classBenefits.windowAnswers).toBe(1);
 
     await page.reload({ waitUntil: 'load' });
     await expect(page.locator(PASSOS.atrio)).toBeVisible({ timeout: 25000 });
@@ -165,8 +204,14 @@ test.describe('A jornada completa, do portal à retomada', () => {
     await retomar.click();
 
     await expect(page.locator(PASSOS.jogo)).toBeVisible({ timeout: 25000 });
-    const depois = await page.evaluate(() => (window as any).state?.correctTotal ?? null);
+    const depois = await page.evaluate(() => (0, eval)('state.correctTotal'));
     expect(depois, 'o progresso não sobreviveu ao reload').toBe(antes);
+    const retomado = await page.evaluate(() => JSON.parse((0, eval)(
+      'JSON.stringify({answered:state.answered,currentQuestionId:state.current.id,classBenefits:state.classBenefits,characterLastAnswer:state.characterLastAnswer})')));
+    expect(retomado.answered).toBe(true);
+    expect(retomado.currentQuestionId).toBe(salvo.currentQuestionId);
+    expect(retomado.classBenefits).toEqual(salvo.classBenefits);
+    expect(retomado.characterLastAnswer).toEqual(salvo.characterLastAnswer);
   });
 });
 

@@ -84,14 +84,39 @@ test.describe('Escolha de Classe', () => {
     }
   });
 
-  test('escolher uma classe registra o personagem e abre a narrativa de início', async ({ page }) => {
+  test('escolher uma classe é provisório; Iniciar Jornada confirma personagem e save', async ({ page }) => {
     await openCharSelect(page);
+    const before = await page.evaluate(() => ({
+      character: (0, eval)('state.character'),
+      canonical: localStorage.getItem('nefroquest-save-v7'),
+      mirror: localStorage.getItem('nefroquest-save'),
+    }));
     await page.locator('#charSelectModal [data-arg="aquaria"]').click();
 
     await expect(page.locator('#charSelectModal')).not.toBeVisible();
     await expect(page.locator('#charIntroOverlay')).toBeVisible();
-    expect(await page.evaluate(() => (window as any).state?.character)).toBe('aquaria');
     await expect(page.locator('#charIntroOverlay')).toContainText('Iniciar Jornada');
+    expect(await page.evaluate(() => ({
+      character: (0, eval)('state.character'),
+      canonical: localStorage.getItem('nefroquest-save-v7'),
+      mirror: localStorage.getItem('nefroquest-save'),
+    }))).toEqual(before);
+
+    await page.locator('#charIntroOverlay [data-action="closeIntroAndStart"]').click();
+    await page.waitForFunction(() => (0, eval)('state.gameStarted && !!state.current && !_loadingNextQuestion'));
+    await expect(page.locator('#mainApp')).toBeVisible();
+    const started = await page.evaluate(() => ({
+      character: (0, eval)('state.character'),
+      currentId: (0, eval)('state.current.id'),
+      classBenefits: (0, eval)('state.classBenefits'),
+      save: JSON.parse(localStorage.getItem('nefroquest-save-v7') || 'null'),
+    }));
+    expect(started.character).toBe('aquaria');
+    expect(started.save).toMatchObject({ schemaVersion: 9, character: 'aquaria',
+      difficulty: 'normal', gameStarted: true, answered: false,
+      currentQuestionId: started.currentId, characterLastAnswer: null,
+      classBenefits: { ruleset: 'normal-character-initial-v1', lockedClass: 'aquaria', windowAnswers: 0 } });
+    expect(started.save.classBenefits).toEqual(started.classBenefits);
   });
 
   test('é inteiramente operável por teclado, com foco visível', async ({ page }) => {

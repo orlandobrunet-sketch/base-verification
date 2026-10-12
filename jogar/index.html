@@ -78,7 +78,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@16.06',
+          release: 'nefroquest@16.07',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -134,7 +134,7 @@
        style.css aplicar .hidden. O CSS externo re-exibe quando o JS remove .hidden. */
     .hidden { display: none !important; }
   </style>
-  <link rel="stylesheet" href="style.css?v=16.06">
+  <link rel="stylesheet" href="style.css?v=16.07">
   <link rel="stylesheet" href="styles/lumen/tokens.css?v=15.77">
   <link rel="stylesheet" href="styles/lumen/shell.css?v=14.77">
   <link rel="stylesheet" href="styles/lumen/portal.css?v=15.94">
@@ -142,7 +142,7 @@
   <link rel="stylesheet" href="styles/lumen/game.css?v=16.03">
   <link rel="stylesheet" href="styles/lumen/difficulty.css?v=16.06">
   <link rel="stylesheet" href="styles/lumen/dashboard.css?v=16.01">
-  <link rel="stylesheet" href="styles/lumen/charselect.css?v=14.75">
+  <link rel="stylesheet" href="styles/lumen/charselect.css?v=16.07">
   <link rel="stylesheet" href="styles/lumen/forge.css?v=16.02">
   <link rel="stylesheet" href="styles/lumen/header.css?v=15.91">
   <link rel="stylesheet" href="styles/lumen/modes.css?v=15.98">
@@ -150,7 +150,7 @@
   <link rel="stylesheet" href="styles/lumen/boss.css?v=15.95">
   <link rel="stylesheet" href="styles/lumen/ritual.css?v=15.94">
   <link rel="stylesheet" href="styles/lumen/ranking.css?v=15.94">
-  <link rel="stylesheet" href="styles/lumen/achievements.css?v=16.04">
+  <link rel="stylesheet" href="styles/lumen/achievements.css?v=16.07">
   <script>
     // Version beacon - one policy for every public label; technical release remains monotonic.
     (function() {
@@ -1501,9 +1501,14 @@
         <p class="nqc-lede">Cada classe altera de verdade a sua jornada — e evolui em dez estágios de arte conforme você acerta.</p>
       </header>
 
+      <div class="nqc-notice" id="nqcHardcoreNotice" role="note" hidden>
+        <strong>No modo Hardcore, os bônus de personagem não se aplicam.</strong>
+        <p>Este aviso se refere aos bônus iniciais novos. Os atributos originais da classe permanecem.</p>
+      </div>
+
       <ul class="nqc-grid">
         <li>
-          <button type="button" class="nqc-card" data-action="selectCharacter" data-arg="nephros" data-char="nephros">
+          <button type="button" class="nqc-card" data-action="selectCharacter" data-arg="nephros" data-char="nephros" aria-describedby="nqcBenefitRules">
             <span class="nqc-art">
               <img src="assets/classes-cinema/clerigo_renal/nivel_01.webp" alt="" width="512" height="512" decoding="async" fetchpriority="high">
               <span class="nqc-art-glow" aria-hidden="true"></span>
@@ -1513,6 +1518,7 @@
             <span class="nqc-pitch">Equilíbrio e sabedoria.</span>
             <span class="nqc-boons">
               <span class="nqc-boon" data-boon="kno"><b>+2</b> Conhecimento<small>mais XP por acerto</small></span>
+              <span class="nqc-boon"><b>+1 XP</b> por acerto<small>Bônus inicial: até 20 XP nas primeiras 20 respostas</small></span>
             </span>
             <span class="nqc-path" aria-hidden="true">
               <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
@@ -1521,7 +1527,7 @@
           </button>
         </li>
         <li>
-          <button type="button" class="nqc-card" data-action="selectCharacter" data-arg="aquaria" data-char="aquaria">
+          <button type="button" class="nqc-card" data-action="selectCharacter" data-arg="aquaria" data-char="aquaria" aria-describedby="nqcBenefitRules">
             <span class="nqc-art">
               <img src="assets/classes-cinema/maga_metabolica/nivel_01.webp" alt="" width="512" height="512" decoding="async" fetchpriority="high">
               <span class="nqc-art-glow" aria-hidden="true"></span>
@@ -1531,6 +1537,7 @@
             <span class="nqc-pitch">Cura e regeneração.</span>
             <span class="nqc-boons">
               <span class="nqc-boon" data-boon="def"><b>+2</b> Defesa<small>menos dano do boss</small></span>
+              <span class="nqc-boon"><b>1 proteção</b> contra perda de vida<small>Bônus inicial nas primeiras 20 respostas</small></span>
             </span>
             <span class="nqc-path" aria-hidden="true">
               <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
@@ -1539,7 +1546,7 @@
           </button>
         </li>
         <li>
-          <button type="button" class="nqc-card" data-action="selectCharacter" data-arg="glomerulus" data-char="glomerulus">
+          <button type="button" class="nqc-card" data-action="selectCharacter" data-arg="glomerulus" data-char="glomerulus" aria-describedby="nqcBenefitRules">
             <span class="nqc-art">
               <img src="assets/classes-cinema/guerreiro_glomerular/nivel_01.webp" alt="" width="512" height="512" decoding="async" fetchpriority="high">
               <span class="nqc-art-glow" aria-hidden="true"></span>
@@ -1550,6 +1557,7 @@
             <span class="nqc-boons">
               <span class="nqc-boon" data-boon="atk"><b>+2</b> Ataque<small>mais dano ao boss</small></span>
               <span class="nqc-boon" data-boon="kno"><b>+1</b> Conhecimento<small>mais XP por acerto</small></span>
+              <span class="nqc-boon"><b>+2 ouro</b> por acerto<small>Bônus inicial: até 40 ouro nas primeiras 20 respostas</small></span>
             </span>
             <span class="nqc-path" aria-hidden="true">
               <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
@@ -1559,7 +1567,7 @@
         </li>
       </ul>
 
-      <p class="nqc-foot">A classe acompanha a jornada inteira. Você pode trocar iniciando uma nova.</p>
+      <p class="nqc-foot" id="nqcBenefitRules">A classe acompanha a jornada inteira. Você pode trocar iniciando uma nova. Os bônus iniciais são automáticos nas novas jornadas em Fácil, Médio e Difícil. Valem nas primeiras 20 respostas da campanha, incluindo erros, e não se aplicam no Hardcore. Jornadas salvas mantêm suas regras originais.</p>
     </div>
   </div>
 
@@ -1802,11 +1810,12 @@
   <script defer src="data/competencies.js"></script>
 
   <script defer src="js/pilot.js?v=16.06"></script>
+  <script defer src="js/character-benefits.js?v=16.07"></script>
   <script defer src="js/utils.js?v=16.06"></script>
   <script defer src="js/audio.js?v=15.91"></script>
-  <script defer src="js/leaderboard.js?v=16.06"></script>
+  <script defer src="js/leaderboard.js?v=16.07"></script>
   <script defer src="js/study-mode.js?v=16.06"></script>
-  <script defer src="js/game.js?v=16.06"></script>
+  <script defer src="js/game.js?v=16.07"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
   <script defer src="js/auth.js?v=15.92"></script>
@@ -1814,10 +1823,10 @@
   <script defer src="js/atrium.js?v=13.23"></script>
   <script defer src="js/paywall.js?v=15.34"></script>
   <script defer src="js/account.js?v=15.80"></script>
-  <script defer src="js/boss.js?v=16.06"></script>
+  <script defer src="js/boss.js?v=16.07"></script>
   <script defer src="js/exam.js?v=16.06"></script>
   <script defer src="js/admin.js?v=15.35"></script>
-  <script defer src="js/minigame.js?v=16.06"></script>
+  <script defer src="js/minigame.js?v=16.07"></script>
   <script defer src="js/minigame-acidbase.js?v=16.06"></script>
   <script defer src="js/achievements.js?v=16.06"></script>
   <script defer src="js/changelog.js?v=15.94"></script>

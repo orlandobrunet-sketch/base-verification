@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v16.06
-const CACHE = 'nefroquest-v16.06';
+// NefroQuest Service Worker — v16.07
+const CACHE = 'nefroquest-v16.07';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -82,6 +82,7 @@ const STATIC_ASSETS = [
   '/assets/badges/badge5-384.webp',
   '/js/utils.js',
   '/js/pilot.js',
+  '/js/character-benefits.js',
   '/js/audio.js',
   '/js/leaderboard.js',
   '/js/study-mode.js',
@@ -114,7 +115,7 @@ const STATIC_ASSETS = [
 // chave canônica (sem query), que é a que canonicalAssetKey() consulta.
 // bump-release:asset-versions:início
 const ASSET_VERSIONS = {
-  '/style.css': '16.06',
+  '/style.css': '16.07',
   '/styles/lumen/tokens.css': '15.77',
   '/styles/lumen/shell.css': '14.77',
   '/styles/lumen/portal.css': '15.94',
@@ -122,7 +123,7 @@ const ASSET_VERSIONS = {
   '/styles/lumen/game.css': '16.03',
   '/styles/lumen/difficulty.css': '16.06',
   '/styles/lumen/dashboard.css': '16.01',
-  '/styles/lumen/charselect.css': '14.75',
+  '/styles/lumen/charselect.css': '16.07',
   '/styles/lumen/modes.css': '15.98',
   '/styles/lumen/forge.css': '16.02',
   '/styles/lumen/header.css': '15.91',
@@ -130,23 +131,24 @@ const ASSET_VERSIONS = {
   '/styles/lumen/boss.css': '15.95',
   '/styles/lumen/ritual.css': '15.94',
   '/styles/lumen/ranking.css': '15.94',
-  '/styles/lumen/achievements.css': '16.04',
+  '/styles/lumen/achievements.css': '16.07',
   '/js/utils.js': '16.06',
   '/js/pilot.js': '16.06',
+  '/js/character-benefits.js': '16.07',
   '/js/audio.js': '15.91',
-  '/js/leaderboard.js': '16.06',
+  '/js/leaderboard.js': '16.07',
   '/js/study-mode.js': '16.06',
-  '/js/game.js': '16.06',
+  '/js/game.js': '16.07',
   '/js/notifications.js': '11.90',
   '/js/auth.js': '15.92',
   '/js/portal.js': '13.20',
   '/js/atrium.js': '13.23',
   '/js/paywall.js': '15.34',
   '/js/account.js': '15.80',
-  '/js/boss.js': '16.06',
+  '/js/boss.js': '16.07',
   '/js/exam.js': '16.06',
   '/js/admin.js': '15.35',
-  '/js/minigame.js': '16.06',
+  '/js/minigame.js': '16.07',
   '/js/minigame-acidbase.js': '16.06',
   '/js/achievements.js': '16.06',
   '/js/changelog.js': '15.94',

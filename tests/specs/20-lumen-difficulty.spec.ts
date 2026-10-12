@@ -170,22 +170,28 @@ test.describe('Página 3A — Calibração da Jornada Lúmen', () => {
       expect(await page.locator('#diffSelectorOverlay').evaluate((element) => element.scrollWidth <= element.clientWidth + 1)).toBe(true);
       expect(await dialog.evaluate((element) => element.scrollWidth <= element.clientWidth + 1)).toBe(true);
 
-      const pilotChoice = dialog.getByRole('checkbox', { name: 'Ativar bônus nesta nova jornada', exact: true });
-      for (let tabs = 0; tabs < 8; tabs++) {
-        await page.keyboard.press('Tab');
-        if (await pilotChoice.evaluate((element) => document.activeElement === element)) break;
-      }
-      await expect(pilotChoice).toBeFocused();
-      const pilotVisibility = await pilotChoice.evaluate((element) => {
+      await expect(dialog.getByRole('checkbox', { name: 'Ativar bônus nesta nova jornada', exact: true })).toHaveCount(0);
+      const selectedMode = dialog.locator('.difficulty-card[aria-checked="true"]');
+      await expect(selectedMode).toBeFocused();
+      await page.keyboard.press('End');
+      const lastMode = dialog.locator('.difficulty-card[data-diff-key="hardcore"]');
+      await expect(lastMode).toBeFocused();
+      await expect(lastMode).toHaveAttribute('aria-checked', 'true');
+      const lastModeVisibility = await lastMode.evaluate((element) => {
         const box = element.getBoundingClientRect();
         const footer = element.closest('[role="dialog"]')!.querySelector('.nql-difficulty__footer')!.getBoundingClientRect();
         const hit = document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2);
         return { top: box.top, bottom: box.bottom, footerTop: footer.top,
-          centerHitsCheckbox: hit === element || !!hit?.closest('label')?.contains(element) };
+          footerBottom: footer.bottom, centerHitsMode: hit === element || element.contains(hit) };
       });
-      expect(pilotVisibility.top).toBeGreaterThanOrEqual(0);
-      expect(pilotVisibility.bottom).toBeLessThanOrEqual(pilotVisibility.footerTop + 1);
-      expect(pilotVisibility.centerHitsCheckbox).toBe(true);
+      expect(lastModeVisibility.top).toBeGreaterThanOrEqual(0);
+      expect(lastModeVisibility.bottom).toBeLessThanOrEqual(lastModeVisibility.footerTop + 1);
+      expect(lastModeVisibility.footerBottom).toBeLessThanOrEqual(viewport.height + 1);
+      expect(lastModeVisibility.centerHitsMode).toBe(true);
+      await page.keyboard.press('Tab');
+      await expect(dialog.getByRole('button', { name: 'Cancelar', exact: true })).toBeFocused();
+      await page.keyboard.press('Tab');
+      await expect(dialog.locator('#diffConfirmBtn')).toBeFocused();
 
       await page.keyboard.press('Escape');
       await expect(dialog).toBeHidden();

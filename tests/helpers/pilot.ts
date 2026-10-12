@@ -166,16 +166,62 @@ export async function openPilotChoice(page: Page, difficulty: Difficulty = 'norm
   await page.locator('#welcomeScreen [data-action="startNewFromWelcome"]').click();
   await expect(page.locator('#diffSelectorOverlay')).toBeVisible();
   await page.locator(`#diffSelectorOverlay .difficulty-card[data-diff-key="${difficulty}"]`).click();
-  await expect(page.locator('#characterPilotOptIn')).not.toBeChecked();
+  await expect(page.locator('#characterPilotOptIn')).toHaveCount(0);
+}
+
+function freshTechnicalSave(character: PilotClass, difficulty: Difficulty) {
+  const lives = { easy: 5, normal: 4, hard: 3, hardcore: 1 }[difficulty];
+  return {
+    schemaVersion: 7, saveOwner: null, level: 1, xp: 0, xpToNext: 200,
+    score: 0, lives, maxLives: lives, streak: 0, gold: 0, difficulty, character,
+    gameStarted: true, gameOver: false, gameCompleted: false, completedGame: false,
+    correctTotal: 0, bonusUses: 0, narrativeShown: 0, bossIntroShown: false,
+    battleFinalShown: false, extraLifeGiven: false, chestsOpened: 0,
+    obtainedItems: [], allItemsCollectedNotified: false, forjaPending: null,
+    chestCorrectCount: 0, chestTarget: 5, legendaryAbilityUsed: {}, bossLog: [],
+    bossStunActive: false, journeyDomain: 'normal', classBenefits: null,
+    questionOrigin: 'campaign', journeyAnswerOrdinal: 0, pilotLastAnswer: null,
+    pilotJourneyAccounted: false, answered: false,
+    queueIds: TECHNICAL_TOPICS.map(question => question.qid), idx: 1,
+    currentQuestionId: TECHNICAL_TOPICS[0].qid, recentIds: [], timestamp: 1000,
+    equipment: Object.fromEntries(['helmet', 'glove', 'armor', 'weapon', 'relic', 'boot']
+      .map(slot => [slot, { n: 'Vazio', rar: 'common', atk: 0, def: 0, kno: 0, luck: 0 }])),
+  };
+}
+
+// The legacy v1 storage key contains a schema-8 envelope. Seed an already-started
+// historical journey once; all validation, locking, restoration and answers use
+// the real module and UI. Reload never reseeds this record.
+export async function seedLegacyPilot(page: Page, character: PilotClass = 'nephros', difficulty: Difficulty = 'normal'): Promise<any> {
+  if (difficulty === 'hardcore') throw new Error('The legacy pilot never supports Hardcore');
+  return page.evaluate(({ character, save }) => {
+    const pilot = (window as any).NQPilot;
+    if (pilot.active) throw new Error('Release the current journey before seeding a legacy pilot');
+    const owner = (0, eval)('typeof authUser !== "undefined" ? authUser?.id || null : null');
+    const previous = JSON.parse(localStorage.getItem(pilot.KEY) || 'null');
+    const compatible = pilot.peek(owner).valid && previous?.owner === owner;
+    const journeyId = crypto.randomUUID();
+    const ledger = { version: 1, journeyId, lockedClass: character, ruleset: 'class-boons-v1',
+      windowAnswers: 0, seenQids: [], creditedEvents: [], xpGranted: 0, goldGranted: 0, shieldSpent: false };
+    const progress = compatible ? { ...previous.progress } : {};
+    delete progress['nefroquest-announced-badges'];
+    progress['nefroquest-journey-count'] = String(Number(progress['nefroquest-journey-count'] || 0) + 1);
+    const record = { schemaVersion: 8, domain: 'pilot', ruleset: 'class-boons-v1', journeyId, owner,
+      revision: compatible ? previous.revision + 1 : 1,
+      save: { ...save, schemaVersion: 8, saveOwner: owner, journeyDomain: 'pilot', classBenefits: ledger },
+      classBenefits: ledger, progress, createdAt: Date.now(), updatedAt: Date.now() };
+    localStorage.setItem(pilot.KEY, JSON.stringify(record));
+    (window as any).refreshCharacterPilotUI();
+    if (!pilot.peek(owner).resumable) throw new Error('The legacy fixture failed real envelope validation');
+    return record;
+  }, { character, save: freshTechnicalSave(character, difficulty) });
 }
 
 export async function startPilot(page: Page, character: PilotClass = 'nephros', difficulty: Difficulty = 'normal') {
-  await openPilotChoice(page, difficulty);
-  await page.locator('#characterPilotOptIn').check();
-  await page.locator('#diffConfirmBtn').click();
-  await expect(page.locator('#charSelectModal')).toHaveClass(/show/);
-  await page.locator(`#charSelectModal [data-action="selectCharacter"][data-arg="${character}"]`).click();
-  await page.locator('#charIntroOverlay [data-action="closeIntroAndStart"]').click();
+  await seedLegacyPilot(page, character, difficulty);
+  await expect(page.locator('#resumePilotBtn')).toBeVisible();
+  await expect(page.locator('#resumePilotBtn')).toBeEnabled();
+  await page.locator('#resumePilotBtn').click();
   await expect(page.locator('#mainApp')).toBeVisible();
   await expect(page.locator('#characterPilotBanner')).toBeVisible();
   await page.waitForFunction(() => (0, eval)('state.gameStarted && !!state.current && !_loadingNextQuestion'));
@@ -183,14 +229,43 @@ export async function startPilot(page: Page, character: PilotClass = 'nephros', 
 }
 
 export async function startNormal(page: Page, character: PilotClass = 'nephros') {
-  await openPilotChoice(page);
+  // Explicit historical baseline: new eligible journeys have automatic bonuses,
+  // while a saved schema-7 journey must continue without retroactive benefits.
+  await page.evaluate(save => {
+    save.saveOwner = (0, eval)('typeof authUser !== "undefined" ? authUser?.id || null : null');
+    const raw = JSON.stringify(save);
+    localStorage.setItem('nefroquest-save-v7', raw);
+    localStorage.setItem('nefroquest-save', raw);
+    (0, eval)('refreshWelcomeSave()');
+  }, freshTechnicalSave(character, 'normal'));
+  await page.locator('#welcomeScreen [data-action="continueGame"]').click();
+  await expect(page.locator('#mainApp')).toBeVisible();
+  await page.waitForFunction(() => (0, eval)('state.gameStarted && !!state.current && !_loadingNextQuestion'));
+  expect((await pilotState(page)).classBenefits).toBeNull();
+}
+
+export async function startNormalCharacter(page: Page, character: PilotClass = 'nephros', difficulty: Difficulty = 'normal') {
+  await openPilotChoice(page, difficulty);
   await page.locator('#diffConfirmBtn').click();
   await expect(page.locator('#charSelectModal')).toHaveClass(/show/);
   await page.locator(`#charSelectModal [data-action="selectCharacter"][data-arg="${character}"]`).click();
   await page.locator('#charIntroOverlay [data-action="closeIntroAndStart"]').click();
   await expect(page.locator('#mainApp')).toBeVisible();
   await page.waitForFunction(() => (0, eval)('state.gameStarted && !!state.current && !_loadingNextQuestion'));
-  expect((await pilotState(page)).classBenefits).toBeNull();
+  expect((await pilotState(page)).classBenefits).toMatchObject({
+    ruleset: 'normal-character-initial-v1', lockedClass: character, windowAnswers: 0,
+  });
+  expect(await page.evaluate(() => (window as any).NQPilot.active)).toBe(false);
+}
+
+export async function resumeNormalCharacter(page: Page) {
+  await page.reload({ waitUntil: 'domcontentloaded' });
+  await page.waitForFunction(() => typeof (window as any).continueGame === 'function');
+  const guest = page.locator('#landingScreen [data-action="playAsGuest"]:visible').first();
+  if (await guest.isVisible()) await guest.click();
+  await page.locator('#welcomeScreen [data-action="continueGame"]').click();
+  await expect(page.locator('#mainApp')).toBeVisible();
+  await page.waitForFunction(() => (0, eval)('state.gameStarted && !!state.current && !_loadingNextQuestion'));
 }
 
 export async function pilotState(page: Page): Promise<any> {
@@ -201,7 +276,8 @@ export async function pilotState(page: Page): Promise<any> {
     gameStarted:state.gameStarted,gameOver:state.gameOver,gameCompleted:state.gameCompleted,
     completedGame:state.completedGame,pilotJourneyAccounted:state.pilotJourneyAccounted,
     questionOrigin:state.questionOrigin,
-    classBenefits:state.classBenefits,pilotLastAnswer:state.pilotLastAnswer,
+    journeyDomain:state.journeyDomain,classBenefits:state.classBenefits,
+    pilotLastAnswer:state.pilotLastAnswer,characterLastAnswer:state.characterLastAnswer,
     equipment:state.equipment,obtainedItems:state.obtainedItems,forjaPending:state.forjaPending,
     legendaryAbilityUsed:state.legendaryAbilityUsed,currentId:state.current?.id,
     currentDifficulty:state.current?._d,

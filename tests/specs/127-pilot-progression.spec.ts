@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import {
   advanceTechnical, answerTechnical, attachPilotFailureDiagnostics, changeState, openPilotChoice,
-  pilotEnvelope, pilotState, setupPilotPage, startNormal, startPilot, type PilotClass,
+  pilotEnvelope, pilotState, resumePilot, seedLegacyPilot, setupPilotPage, startNormal, startPilot, type PilotClass,
 } from '../helpers/pilot';
 
 test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
@@ -15,6 +15,14 @@ for (const character of ['nephros', 'glomerulus', 'aquaria'] as PilotClass[]) {
       await changeState(page, { score: 100, streak: 3 });
       const before = await pilotState(page);
       const after = await answerTechnical(page, correct, correct);
+      const benefitText = character === 'aquaria'
+        ? (correct ? 'Uma proteção de vida disponível.' : 'Proteção de vida usada.')
+        : character === 'glomerulus'
+          ? `${correct ? 2 : 0} de 40 ouro extra aplicado.`
+          : `${correct ? 1 : 0} de 20 XP extra aplicado.`;
+      const expectedProgress = `Janela do bônus: 1/20 respostas. ${benefitText}`;
+      // Read the DOM immediately; a retrying assertion could hide a delayed refresh.
+      expect(await page.locator('#characterPilotProgress').textContent()).toBe(expectedProgress);
       expect(after.classBenefits).toMatchObject({ lockedClass: character, windowAnswers: 1 });
       expect(after.classBenefits.creditedEvents).toHaveLength(1);
       expect(after.classBenefits.seenQids).toEqual([before.currentId]);
@@ -34,6 +42,15 @@ for (const character of ['nephros', 'glomerulus', 'aquaria'] as PilotClass[]) {
       expect(saved.save.pilotLastAnswer).toEqual(after.pilotLastAnswer);
       expect(saved.save).toMatchObject({ gold: after.gold, xp: after.xp, lives: after.lives, answered: true });
       await expect(page.locator('#feedback')).toContainText('Fora do ranking');
+      await resumePilot(page);
+      expect(await page.locator('#characterPilotProgress').textContent()).toBe(expectedProgress);
+      expect(await pilotState(page)).toMatchObject({
+        classBenefits: after.classBenefits, pilotLastAnswer: after.pilotLastAnswer,
+        level: after.level, xp: after.xp, gold: after.gold, lives: after.lives,
+        score: after.score, streak: after.streak, correctTotal: after.correctTotal,
+        currentId: after.currentId, answered: true,
+      });
+      expect((await pilotEnvelope(page)).classBenefits).toEqual(saved.classBenefits);
     });
   }
 
@@ -99,7 +116,7 @@ for (const character of ['nephros', 'glomerulus', 'aquaria'] as PilotClass[]) {
 }
 
 for (const character of ['nephros', 'glomerulus', 'aquaria'] as PilotClass[]) {
-  test(`${character}: piloto desligado conserva score, erro, streak e resultado IRT de base`, async ({ page, browser }) => {
+  test(`${character}: save normal legado sem bônus conserva score, erro, streak e resultado IRT de base`, async ({ page, browser }) => {
     const normalContext = await browser.newContext({ serviceWorkers: 'block' });
     const normalPage = await normalContext.newPage();
     try {
@@ -146,18 +163,18 @@ for (const character of ['nephros', 'glomerulus', 'aquaria'] as PilotClass[]) {
 }
 
 for (const difficulty of ['easy', 'normal', 'hard'] as const) {
-  test(`${difficulty}: adesão inicia uma jornada nova elegível`, async ({ page }) => {
+  test(`${difficulty}: retomada do piloto legado mantém seus benefícios elegíveis`, async ({ page }) => {
     await startPilot(page, 'glomerulus', difficulty);
     expect((await answerTechnical(page)).pilotLastAnswer.gold).toBe(2);
   });
 }
 
-test('Hardcore desmarca e desabilita a adesão sem criar piloto', async ({ page }) => {
+test('Hardcore não oferece opt-in nem cria uma reserva do piloto legado', async ({ page }) => {
   await openPilotChoice(page, 'normal');
-  await page.locator('#characterPilotOptIn').check();
   await page.locator('.difficulty-card[data-diff-key="hardcore"]').click();
-  await expect(page.locator('#characterPilotOptIn')).not.toBeChecked();
-  await expect(page.locator('#characterPilotOptIn')).toBeDisabled();
+  await expect(page.locator('#characterPilotOptIn')).toHaveCount(0);
+  expect(await page.evaluate(() => (window as any).NQPilot.reserve('hardcore', null))).toBe(false);
+  expect(await page.evaluate(() => (window as any).NQPilot.active)).toBe(false);
   expect(await pilotEnvelope(page)).toBeNull();
 });
 
@@ -255,17 +272,15 @@ for (const excluded of ['bonus', 'boss', 'study']) {
   });
 }
 
-test('adesão e feedback permanecem utilizáveis por teclado em 320px e texto a 200%', async ({ page }) => {
+test('retomada do piloto legado e feedback permanecem utilizáveis por teclado em 320px e texto a 200%', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 640 });
   await page.evaluate(() => { document.documentElement.style.fontSize = '32px'; });
-  await openPilotChoice(page);
-  const optIn = page.locator('#characterPilotOptIn');
-  await optIn.focus(); await page.keyboard.press('Space');
-  await expect(optIn).toBeChecked();
-  await page.locator('#diffConfirmBtn').focus(); await page.keyboard.press('Enter');
-  await page.locator('#charSelectModal [data-action="selectCharacter"][data-arg="nephros"]').focus();
-  await page.keyboard.press('Enter');
-  await page.locator('#charIntroOverlay [data-action="closeIntroAndStart"]').focus();
+  await seedLegacyPilot(page, 'nephros');
+  const resume = page.locator('#resumePilotBtn');
+  await expect(resume).toBeVisible();
+  await expect(resume).toBeEnabled();
+  await resume.focus();
+  await expect(resume).toBeFocused();
   await page.keyboard.press('Enter');
   await page.waitForFunction(() => (0, eval)('state.gameStarted && !!state.current && !_loadingNextQuestion'));
   // The engine starts before dismissWelcome finishes revealing the main UI.
