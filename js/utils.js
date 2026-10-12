@@ -1,6 +1,12 @@
 // NefroQuest — Utilities & Spaced-Repetition core
 // Loaded before game.js; all declarations become global.
 
+function _nqUtilsProgressStorage() {
+  if (typeof window !== 'undefined' && typeof window.nqProgressStorage === 'function') return window.nqProgressStorage();
+  if (typeof window !== 'undefined' && window.NQPilot && window.NQPilot.active) throw new Error('Armazenamento do piloto indisponível.');
+  return localStorage;
+}
+
 // O chamador encerra o ciclo antes de ocultar a janela ou abrir a próxima.
 function manageDialogFocus(dialog, onClose, returnFocus = document.activeElement, initialFocus = null) {
   const visible = el => el?.isConnected && el.getClientRects().length && !el.closest('[hidden], [inert]');
@@ -33,6 +39,8 @@ function manageDialogFocus(dialog, onClose, returnFocus = document.activeElement
  * jornada escondida) e fechar restaura a origem e o foco. Mesmo contrato que
  * a Forja e o Simulado implementaram cada um por conta própria. */
 function nqPaginaPropria(id, rotulo, { classe = '', aoTeclar = null } = {}) {
+  const binding = window.NQPilot?.captureBinding();
+  const current = () => !window.NQPilot || window.NQPilot.matchesBinding(binding);
   document.getElementById(id)?.remove();
   const origem = {
     foco: document.activeElement,
@@ -58,15 +66,17 @@ function nqPaginaPropria(id, rotulo, { classe = '', aoTeclar = null } = {}) {
   document.body.classList.add('nq-studying');
   window.scrollTo(0, 0);
   let fechada = false;
-  const fechar = () => {
+  const fechar = (options = {}) => {
     if (fechada) return;
     fechada = true;
     document.removeEventListener('keydown', foraDaPagina, true);
     pagina.remove();
     document.body.classList.remove('nq-studying');
-    origem.elementos.forEach(({ el, hidden, inert }) => { el.classList.toggle('hidden', hidden); el.inert = inert; });
-    window.scrollTo(0, origem.scroll);
-    if (origem.foco?.isConnected && origem.foco.getClientRects().length) origem.foco.focus({ preventScroll: true });
+    if (options.restoreOrigin !== false && current()) {
+      origem.elementos.forEach(({ el, hidden, inert }) => { el.classList.toggle('hidden', hidden); el.inert = inert; });
+      window.scrollTo(0, origem.scroll);
+      if (options.restoreFocus !== false && origem.foco?.isConnected && origem.foco.getClientRects().length) origem.foco.focus({ preventScroll: true });
+    }
   };
   return { pagina, fechar };
 }
@@ -79,6 +89,8 @@ function nqPaginaPropria(id, rotulo, { classe = '', aoTeclar = null } = {}) {
  * some — seja removido do DOM, seja escondido pela classe. */
 function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {}) {
   if (!raiz || raiz.dataset.nqDialogo) return;
+  const binding = window.NQPilot?.captureBinding();
+  const current = () => !window.NQPilot || window.NQPilot.matchesBinding(binding);
   raiz.dataset.nqDialogo = '1';
   const caixa = painel || raiz.querySelector('.modal-content, .narrative-card, .forge-card, .chest-content, .brm-box, [class*="card"], [class*="-box"]') || raiz;
   caixa.setAttribute('role', 'dialog');
@@ -101,7 +113,7 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
     // abriu e pegou o foco (Paywall → Preços), devolver à origem o roubaria.
     // Só devolve quando o foco se perdeu: no body ou ainda aqui dentro.
     const ativo = document.activeElement;
-    soltar(!ativo || ativo === document.body || raiz.contains(ativo));
+    soltar(current() && (!ativo || ativo === document.body || raiz.contains(ativo)));
   });
   // Só o que importa: o popup sair do contêiner ou mudar de classe/estilo.
   if (raiz.parentNode) vigia.observe(raiz.parentNode, { childList: true });
@@ -111,7 +123,7 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
    * conteúdo muda e o foco saiu, ele volta para o primeiro controle. */
   const reparo = new MutationObserver(() => {
     if (!raiz.isConnected) { reparo.disconnect(); return; }
-    if (!visivel(raiz) || raiz.contains(document.activeElement)) return;
+    if (!current() || !visivel(raiz) || raiz.contains(document.activeElement)) return;
     const alvo = [...raiz.querySelectorAll('button:not(:disabled), [role="button"], a[href], input:not(:disabled), textarea, [tabindex="0"]')]
       .find(el => el.getClientRects().length && !/^[✕×x]$/i.test((el.textContent || '').trim()));
     alvo?.focus({ preventScroll: true });
@@ -230,10 +242,10 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
     const _FSRS_RETENTION = 0.9;        // retenção-alvo
 
     function _loadSRData() {
-      try { return JSON.parse(localStorage.getItem(SR_KEY) || '{}'); } catch { return {}; }
+      try { return JSON.parse(_nqUtilsProgressStorage().getItem(SR_KEY) || '{}'); } catch { return {}; }
     }
     function _saveSRData(d) {
-      try { localStorage.setItem(SR_KEY, JSON.stringify(d)); } catch(e) { console.error('[NQ] _saveSRData failed', e); }
+      try { _nqUtilsProgressStorage().setItem(SR_KEY, JSON.stringify(d)); } catch(e) { console.error('[NQ] _saveSRData failed', e); }
     }
 
     const _clampD = d => Math.min(10, Math.max(1, d));
@@ -380,14 +392,28 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
 
     let _bibItems = null;
     let _bibVisibleItems = []; // rastreado para openBibResumo
+    let _bibProgressBinding = null;
+    function _bibEnsureProgressBinding() {
+      const pilot = typeof window !== 'undefined' && window.NQPilot;
+      if (pilot && typeof pilot.captureBinding === 'function' && typeof pilot.matchesBinding === 'function') {
+        if (_bibProgressBinding && pilot.matchesBinding(_bibProgressBinding)) return true;
+        _bibProgressBinding = pilot.captureBinding();
+      } else {
+        if (_bibProgressBinding === null) return true;
+        _bibProgressBinding = null;
+      }
+      _bibItems = null;
+      _bibVisibleItems = [];
+      return false;
+    }
     const UNLOCKED_REFS_KEY = 'nq-unlocked-refs';
 
     function _getUnlockedArticles() {
-      try { return JSON.parse(localStorage.getItem('unlockedArticles') || '[]'); } catch { return []; }
+      try { return JSON.parse(_nqUtilsProgressStorage().getItem('unlockedArticles') || '[]'); } catch { return []; }
     }
 
     function _getUnlockedRefs() {
-      try { return new Set(JSON.parse(localStorage.getItem(UNLOCKED_REFS_KEY) || '[]')); } catch { return new Set(); }
+      try { return new Set(JSON.parse(_nqUtilsProgressStorage().getItem(UNLOCKED_REFS_KEY) || '[]')); } catch { return new Set(); }
     }
 
     function _unlockRefsFromQuestion(keys) {
@@ -396,7 +422,7 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
       let changed = false;
       keys.forEach(k => { if (k && !set.has(k)) { set.add(k); changed = true; } });
       if (changed) {
-        try { localStorage.setItem(UNLOCKED_REFS_KEY, JSON.stringify([...set])); } catch(e) { console.error('[NQ] _unlockRefsFromQuestion failed', e); }
+        try { _nqUtilsProgressStorage().setItem(UNLOCKED_REFS_KEY, JSON.stringify([...set])); } catch(e) { console.error('[NQ] _unlockRefsFromQuestion failed', e); }
         _bibItems = null;
       }
     }
@@ -502,6 +528,7 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
     }
 
     function _bibRenderList(query) {
+      _bibEnsureProgressBinding();
       if (!_acervoDisponivel()) {
         _bibEstado(`<div class="bib-empty" role="status">O acervo não pôde ser carregado.<br><button type="button" class="bib-retry" data-action="_bibTentarNovamente">Tentar novamente</button></div>`);
         return;
@@ -632,6 +659,9 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
     }
 
     function openBibliotecaModal() {
+      _bibEnsureProgressBinding();
+      const binding = _bibProgressBinding;
+      const current = () => !window.NQPilot || window.NQPilot.matchesBinding(binding);
       if (typeof window.openDashboard === 'function') {
         return window.openDashboard({ tab: 'library' });
       }
@@ -653,8 +683,8 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
       if (!_acervoDisponivel() && typeof carregarDadosGrimorio === 'function') {
         _bibEstado('<div class="bib-empty" role="status">Carregando o acervo…</div>');
         carregarDadosGrimorio()
-          .then(() => { if (!modal.classList.contains('hidden')) { _bibItems = null; _bibRenderList(document.getElementById('bibSearch')?.value || ''); } })
-          .catch(() => { if (!modal.classList.contains('hidden')) _bibRenderList(''); });
+          .then(() => { if (current() && !modal.classList.contains('hidden')) { _bibItems = null; _bibRenderList(document.getElementById('bibSearch')?.value || ''); } })
+          .catch(() => { if (current() && !modal.classList.contains('hidden')) _bibRenderList(''); });
       } else {
         _bibRenderList('');
       }
@@ -662,24 +692,27 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
       if (searchEl) {
         searchEl.value = '';
         searchEl.oninput = () => _bibRenderList(searchEl.value);
-        setTimeout(() => searchEl.focus(), 80);
+        setTimeout(() => { if (current() && !modal.classList.contains('hidden')) searchEl.focus(); }, 80);
       }
       const form = document.getElementById('bibSuggestForm');
       if (form) form.onsubmit = _bibSubmitSuggest;
     }
 
     function _bibTentarNovamente() {
+      _bibEnsureProgressBinding();
+      const binding = _bibProgressBinding;
+      const current = () => !window.NQPilot || window.NQPilot.matchesBinding(binding);
       if (typeof carregarDadosGrimorio !== 'function') return;
       _bibEstado('<div class="bib-empty" role="status">Carregando o acervo…</div>');
       carregarDadosGrimorio()
-        .then(() => { _bibItems = null; _bibRenderList(document.getElementById('bibSearch')?.value || ''); })
-        .catch(() => _bibRenderList(''));
+        .then(() => { if (current()) { _bibItems = null; _bibRenderList(document.getElementById('bibSearch')?.value || ''); } })
+        .catch(() => { if (current()) _bibRenderList(''); });
     }
     window._bibTentarNovamente = _bibTentarNovamente;
 
-    function closeBibliotecaModal() {
+    function closeBibliotecaModal(options) {
       if (document.getElementById('nqDashboard') && typeof window.closeDashboard === 'function') {
-        window.closeDashboard();
+        window.closeDashboard(options);
       }
       const modal = document.getElementById('bibliotecaModal');
       if (modal) modal.classList.add('hidden');
@@ -690,6 +723,14 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
       if (btn) btn.classList.remove('open');
       if (btn) btn.setAttribute('aria-expanded', 'false');
     }
+
+    if (typeof window !== 'undefined') window.NQPilot?.onContextChange(() => {
+      _bibItems = null;
+      _bibVisibleItems = [];
+      _bibProgressBinding = null;
+      closeBibliotecaModal({ restoreFocus: false });
+      document.querySelectorAll('.bib-resumo-modal').forEach(element => element.remove());
+    });
 
     // Renderiza o popup de resumo (mesmo visual usado no Grimório) a partir de
     // um item com { label, autores, jornal, ano, resumo, conclusao, curiosidade, impacto }.
@@ -719,6 +760,7 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
     }
 
     function openBibResumo(btn) {
+      if (!_bibEnsureProgressBinding()) return;
       const idx = parseInt(btn?.dataset?.itemIdx ?? '-1', 10);
       const it = _bibVisibleItems[idx];
       if (!it || it.locked) return;
@@ -842,7 +884,7 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
     function calculateUserTheta(cat) {
       let stats = {};
       try {
-        const raw = localStorage.getItem('nefroquest-detailed-stats');
+        const raw = _nqUtilsProgressStorage().getItem('nefroquest-detailed-stats');
         if (raw) stats = JSON.parse(raw) || {};
       } catch (e) {}
 

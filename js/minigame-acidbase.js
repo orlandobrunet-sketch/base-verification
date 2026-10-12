@@ -5,6 +5,14 @@
 (function(){
   const AB_KEY = 'nq-acidbase-progress';
   const AB_OVERLAY_ID = 'acidBaseOverlay';
+  function _abStorage(binding) {
+    if (typeof window.nqProgressStorage === 'function') return window.nqProgressStorage(binding);
+    if (window.NQPilot?.active) throw new Error('Armazenamento do piloto indisponível.');
+    return localStorage;
+  }
+  function _abCurrent(overlay) {
+    return overlay && overlay.isConnected && (!window.NQPilot || window.NQPilot.matchesBinding(overlay._abBinding));
+  }
   // Logs de verificação só em debug (não poluir o console em produção).
   // Ative no DevTools com: window.NQ_ACIDBASE_DEBUG = true
   function _dbg(label, data){
@@ -14,28 +22,30 @@
   }
 
   // ── Persistência ────────────────────────────────────────────────────────
-  function _loadProgress(){
-    try { return JSON.parse(localStorage.getItem(AB_KEY) || '{}'); }
+  function _loadProgress(binding){
+    try { return JSON.parse(_abStorage(binding).getItem(AB_KEY) || '{}'); }
     catch { return {}; }
   }
-  function _saveProgress(p){
-    try { localStorage.setItem(AB_KEY, JSON.stringify(p)); } catch {}
+  function _saveProgress(p, binding){
+    try { _abStorage(binding).setItem(AB_KEY, JSON.stringify(p)); return true; } catch { return false; }
   }
-  function _markCompleted(caseId, grimoireUses){
-    const p = _loadProgress();
+  function _markCompleted(caseId, grimoireUses, binding){
+    if (window.NQPilot && !window.NQPilot.matchesBinding(binding)) return false;
+    const p = _loadProgress(binding);
     p.completed = Array.isArray(p.completed) ? p.completed : [];
     if (!p.completed.includes(caseId)) p.completed.push(caseId);
     p.grimoireUses = p.grimoireUses || {};
     p.grimoireUses[caseId] = (p.grimoireUses[caseId] || 0) + (grimoireUses || 0);
-    _saveProgress(p);
+    if (!_saveProgress(p, binding)) return false;
     // Aciona a conquista "Alquimista Renal" (zerar os 6 casos), se elegível.
     try { if (typeof checkAchievements === 'function') checkAchievements(); } catch {}
     // Sincroniza imediatamente o caso concluído para a nuvem
     try {
-      if (typeof _syncProgressToCloud === 'function') {
+      if (!window.NQPilot?.active && typeof _syncProgressToCloud === 'function') {
         _syncProgressToCloud().catch(() => {});
       }
     } catch(e) {}
+    return true;
   }
 
   // ── Geradores de valores randomizados (clinicamente plausíveis) ─────────
@@ -2071,7 +2081,8 @@
   // nada a perder; dentro de um caso, sair é sempre um botão.
   function _abPagina(){
     const aberta = document.getElementById(AB_OVERLAY_ID);
-    if (aberta && aberta._abFechar) return aberta;
+    if (aberta && aberta._abFechar && _abCurrent(aberta)) return aberta;
+    if (aberta) _abFechar(aberta);
     const { pagina, fechar } = nqPaginaPropria(AB_OVERLAY_ID, 'Câmara do Equilíbrio', {
       classe: 'acid-base-overlay acid-base-page',
       aoTeclar: e => {
@@ -2081,10 +2092,11 @@
       },
     });
     pagina._abFechar = fechar;
+    pagina._abBinding = window.NQPilot?.captureBinding();
     _bindOverlayEvents(pagina);
     return pagina;
   }
-  function _abFechar(overlay){ overlay._abFechar ? overlay._abFechar() : overlay.remove(); }
+  function _abFechar(overlay, options){ overlay._abFechar ? overlay._abFechar(options) : overlay.remove(); }
   // Cada tela é redesenhada inteira: o foco vai para o título (ou para o
   // campo/próximo passo), senão cai no body a cada ato.
   function _abFocar(card, sel){
@@ -2145,13 +2157,14 @@
     // Dentro de um caso, fecha SOMENTE pelo botão (sem Escape) para não
     // perder progresso de um ato no meio do raciocínio por engano.
     overlay.addEventListener('click', e => {
+      if (!_abCurrent(overlay)) return;
       const t = e.target;
       if (t.closest('[data-ab-close]')) { _abFechar(overlay); return; }
       const caseBtn = t.closest('[data-ab-case]');
       if (caseBtn){
         const id = caseBtn.getAttribute('data-ab-case');
         const c = CASES.find(x => x.id === id);
-        const completed = new Set((_loadProgress().completed) || []);
+        const completed = new Set((_loadProgress(overlay._abBinding).completed) || []);
         if (c && _isPlayable(c, completed)) _startCase(overlay, c);
       }
     });
@@ -2159,6 +2172,7 @@
 
   // ── UI: Caso (atos sequenciais — nº variável por caso) ──────────────────
   function _startCase(overlay, meta){
+    if (!_abCurrent(overlay)) return;
     if (typeof meta.build !== 'function') return;
     // Cada partida sorteia uma instância nova: gas + atos + alvos
     // (Winter, AG) recalculados, mantendo a narrativa e os tipos de acto.
@@ -2197,6 +2211,7 @@
   }
 
   function _renderIntro(overlay, kase, sess){
+    if (!_abCurrent(overlay)) return;
     const card = overlay.querySelector('.ab-card');
     card.innerHTML = `
       <button type="button" class="ab-close" data-ab-close aria-label="Sair da Câmara">✕</button>
@@ -2212,6 +2227,7 @@
   }
 
   function _renderAct(overlay, kase, sess){
+    if (!_abCurrent(overlay)) return;
     const act = kase.acts[sess.actIdx];
     const card = overlay.querySelector('.ab-card');
     // Bolinhas: passos já completados são clicáveis (volta ao ato anterior
@@ -2364,7 +2380,7 @@
         const go = () => _handleAnswerNum(overlay, kase, sess, parseFloat(input.value));
         submit.onclick = go;
         input.addEventListener('keydown', ev => { if (ev.key === 'Enter') go(); });
-        setTimeout(() => input.focus(), 30);
+        setTimeout(() => { if (_abCurrent(overlay) && input.isConnected) input.focus(); }, 30);
       }
     } else if (act.kind === 'cards') {
       const result = sess.cardResults[sess.actIdx];
@@ -2412,6 +2428,7 @@
   }
 
   function _handleAnswerMC(overlay, kase, sess, pickIdx){
+    if (!_abCurrent(overlay)) return;
     const act = kase.acts[sess.actIdx];
     sess.actResults = sess.actResults || {};
     if (!sess.actResults[sess.actIdx]) {            // conta o erro só na 1ª resposta
@@ -2423,6 +2440,7 @@
   }
 
   function _handleAnswerNum(overlay, kase, sess, value){
+    if (!_abCurrent(overlay)) return;
     if (!Number.isFinite(value)) {
       const inp = overlay.querySelector('#abNumInput');
       if (inp) inp.focus();
@@ -2440,6 +2458,7 @@
   }
 
   function _handleAnswerCards(overlay, kase, sess){
+    if (!_abCurrent(overlay)) return;
     const act = kase.acts[sess.actIdx];
     const sel = (sess.cardSel && sess.cardSel[sess.actIdx]) || new Set();
     const correctIds = act.cards.filter(c => c.correct).map(c => c.id);
@@ -2505,16 +2524,24 @@
     const isLast = sess.actIdx >= kase.acts.length - 1;
     next.textContent = isLast ? 'Concluir Caso →' : 'Próximo Ato →';
     next.onclick = () => {
+      if (!_abCurrent(overlay)) return;
       if (isLast) { _renderSummary(overlay, kase, sess); }
       else { sess.actIdx++; _renderAct(overlay, kase, sess); }
     };
     const fb = card.querySelector('#abFeedback');
     fb.insertAdjacentElement('afterend', next);
-    setTimeout(() => next.focus(), 30);
+    setTimeout(() => { if (_abCurrent(overlay) && next.isConnected) next.focus(); }, 30);
   }
 
   function _renderSummary(overlay, kase, sess){
-    _markCompleted(kase.id, sess.grimoireUses);
+    if (!_abCurrent(overlay)) return;
+    if (!sess.completionStored) {
+      if (!_markCompleted(kase.id, sess.grimoireUses, overlay._abBinding)) {
+        if (typeof _toast === 'function') _toast('Não foi possível salvar este caso. Tente concluir novamente.', 'warning');
+        return;
+      }
+      sess.completionStored = true;
+    }
     overlay.dataset.abTela = 'resumo';
     try { if (typeof _track === 'function') _track('minigame_acid_base_case_completed', {
       case: kase.id, grimoireUses: sess.grimoireUses, wrongAttempts: sess.wrongAttempts
@@ -2562,4 +2589,8 @@
 
   // ── Expor entry point ──────────────────────────────────────────────────
   window.showAcidBaseMinigame = showAcidBaseMinigame;
+  window.NQPilot?.onContextChange(() => {
+    const overlay = document.getElementById(AB_OVERLAY_ID);
+    if (overlay) _abFechar(overlay, { restoreFocus: false });
+  });
 })();

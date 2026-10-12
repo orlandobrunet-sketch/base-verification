@@ -25,6 +25,9 @@ jobs:
       - name: Service worker install lifecycle
         run: node --test tests/service-worker/*.test.mjs
 
+      - name: Optional character pilot storage and ranking isolation
+        run: node --test tests/pilot/*.test.cjs
+
       - name: Editorial batch scope gate
         run: >-
           node scripts/editorial-batch-validator.mjs

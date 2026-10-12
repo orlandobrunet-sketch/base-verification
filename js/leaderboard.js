@@ -97,7 +97,15 @@
       }
     }
 
-    async function boardPush(score, level, playerName) {
+    function _pilotScoreOrigin(origin) {
+      return origin?.domain === 'pilot' || origin?.pilot === true;
+    }
+
+    async function boardPush(score, level, playerName, origin) {
+      // The journey remains noncompetitive after its first20 answers and
+      // after the player leaves it. Pending dialogs carry their own origin.
+      if (_pilotScoreOrigin(origin) || window.NQPilot?.active ||
+          state.journeyDomain === 'pilot' || state.classBenefits) return;
       // Rate limiting: 1 push por sessão de jogo
       if (boardPushState === 'in_flight' || boardPushState === 'done') return;
       // Sanity check: score e level devem ser números positivos razoáveis
@@ -121,7 +129,7 @@
       if (!navigator.onLine) {
         try {
           const pending = JSON.parse(localStorage.getItem('nq-pending-leaderboard') || '[]');
-          pending.push(payload);
+          pending.push({...payload, _nqJourney: origin || {domain:'normal'}});
           localStorage.setItem('nq-pending-leaderboard', JSON.stringify(pending));
           transitionBoardPush('idle'); // permite tentar novamente online
         } catch(e) {
@@ -166,14 +174,19 @@
       if (!userId) return; // só autenticados têm perfil global acumulado
       let totalCorrect = 0, totalGames = 0, bestLevel = 1;
       try {
-        const ds = (typeof getDetailedStats === 'function') ? getDetailedStats() : {};
-        const gs = (typeof getGameStats === 'function') ? getGameStats() : {};
+        // Account/nickname saves can call this while a pilot is active.
+        // Only normal accumulated metrics belong in the public profile.
+        const ds = JSON.parse(localStorage.getItem('nefroquest-detailed-stats') || '{}');
+        const gs = JSON.parse(localStorage.getItem('nefroquest-stats') || '{}');
         totalCorrect = Math.max(0, Math.min(100000000, Math.floor(ds.totalCorrect || 0)));
         totalGames   = Math.max(0, Math.min(1000000, Math.floor(gs.gamesPlayed || 0)));
         bestLevel    = Math.max(1, Math.min(999, Math.floor(gs.bestLevel || 1)));
       } catch (e) { return; }
       const playerName = ((typeof _authDisplayName === 'function' && _authDisplayName()) || state.lastSubmittedName || 'Anônimo').substring(0, 40);
-      const charName = state.character && characters[state.character] ? characters[state.character].name : null;
+      const normalRecord = (() => { try { return JSON.parse(localStorage.getItem('nefroquest-save-v7') || 'null'); } catch { return null; } })();
+      const normalCharacter = window.NQPilot?.active || state.journeyDomain === 'pilot'
+        ? (normalRecord?.save || normalRecord)?.character : state.character;
+      const charName = normalCharacter && characters[normalCharacter] ? characters[normalCharacter].name : null;
       const payload = {
         user_id: userId, player_name: playerName, character_name: charName,
         total_correct: totalCorrect, total_games: totalGames, best_level: bestLevel,
@@ -219,7 +232,12 @@
         const pending = JSON.parse(localStorage.getItem('nq-pending-leaderboard') || '[]');
         if (!pending.length) return;
         localStorage.removeItem('nq-pending-leaderboard');
-        for (const payload of pending) {
+        for (const queued of pending) {
+          // Legacy records have no origin and remain ordinary journeys.
+          // A tagged assisted record must never reach the backend.
+          if (_pilotScoreOrigin(queued?._nqJourney) || _pilotScoreOrigin(queued?.origin) ||
+              queued?.journeyDomain === 'pilot' || queued?.classBenefits) continue;
+          const {_nqJourney, origin, journeyDomain, classBenefits, ...payload} = queued;
           const prefer = payload.user_id ? 'resolution=merge-duplicates,return=minimal' : 'return=minimal';
           await fetch(`${SUPA_URL}/rest/v1/leaderboard`, {
             method: 'POST',

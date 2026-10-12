@@ -53,14 +53,14 @@
   grid-template-columns: minmax(0, 1fr);
   width: min(70rem, 100%);
   max-height: calc(100dvh - clamp(1.5rem, 4vw, 3rem));
+  grid-template-rows: minmax(0, 1fr) auto;
   padding: 0;
   border: 1px solid var(--nql-line-strong);
   border-radius: var(--nql-radius-dialog);
   gap: 0;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: hidden;
   overscroll-behavior: contain;
-  scrollbar-gutter: stable;
   background:
     linear-gradient(115deg, rgba(var(--nql-lumen-rgb), .035), transparent 35%),
     var(--nql-abyss);
@@ -69,6 +69,14 @@
   font-family: var(--nql-font-body);
   isolation: isolate;
   animation: nql-difficulty-surface-enter var(--nql-duration-panel) var(--nql-ease-enter) both;
+}
+
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__content {
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
 }
 
 #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__header {
@@ -745,6 +753,10 @@
     scrollbar-gutter: auto;
   }
 
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__content {
+    scrollbar-gutter: auto;
+  }
+
   #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__header {
     padding: 1.2rem 1rem 1rem;
   }
@@ -801,8 +813,6 @@
   #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact-stack { min-height: 17.5rem; }
 
   #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__footer {
-    position: sticky;
-    bottom: 0;
     min-height: 4.5rem;
     padding: .65rem .75rem max(.65rem, env(safe-area-inset-bottom));
   }

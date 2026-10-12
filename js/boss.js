@@ -507,6 +507,72 @@
     // Última classe escolhida pelo jogador (fallback se state.character for
     // sobrescrito por sync/loadGame entre a seleção e o início da jornada).
     let _lastSelectedCharacter = null;
+    function refreshCharacterPilotChoice(difficulty) {
+      const control = document.getElementById('characterPilotOptIn');
+      if (!control) return;
+      const eligible = ['easy', 'normal', 'hard'].includes(difficulty);
+      control.disabled = !eligible;
+      if (!eligible) control.checked = false;
+      const availability = document.getElementById('characterPilotAvailability');
+      if (availability) availability.textContent = eligible
+        ? 'Piloto disponível neste modo. A adesão é opcional.'
+        : 'Hardcore não permite o piloto. A adesão foi desmarcada.';
+      const warning = document.getElementById('diffSelectorWarning');
+      if (warning) warning.textContent = control.checked
+        ? 'Jornada normal preservada: ao continuar, você inicia um piloto separado.'
+        : 'Jornada ativa: ao continuar, o progresso atual será substituído.';
+    }
+    window.refreshCharacterPilotChoice = refreshCharacterPilotChoice;
+
+    function refreshCharacterPilotUI() {
+      const pilot = window.NQPilot;
+      const owner = typeof authUser !== 'undefined' ? authUser?.id || null : null;
+      const saved = pilot?.peek(owner);
+      const savedCard = document.getElementById('characterPilotSaved');
+      const savedDescription = document.getElementById('characterPilotSavedDescription');
+      const resume = document.getElementById('resumePilotBtn');
+      if (savedCard) savedCard.hidden = !saved?.exists;
+      if (savedDescription && saved?.exists) {
+        const names = {nephros:'Dr. Nephros', aquaria:'Dra. Aquaria', glomerulus:'Dr. Glomerulus'};
+        const modes = {easy:'Fácil', normal:'Médio', hard:'Difícil'};
+        savedDescription.textContent = !saved.valid
+          ? 'Este piloto salvo não pode continuar. Sua jornada normal permanece disponível.'
+          : saved.started === false && !saved.closed
+            ? 'Piloto não iniciado. Inicie uma nova jornada piloto para continuar. Sua jornada normal permanece disponível.'
+            : `${names[saved.character] || 'Personagem'} · ${modes[saved.difficulty] || 'Piloto'}${saved.closed ? ' · encerrado' : ''}. Salvo neste navegador, sempre fora do ranking.`;
+      }
+      if (resume) {
+        resume.disabled = saved?.resumable !== true;
+        resume.textContent = saved?.closed ? 'Jornada piloto encerrada'
+          : saved?.valid && saved.started === false ? 'Piloto não iniciado' : 'Retomar jornada piloto';
+      }
+      const active = pilot?.active === true && state.gameStarted;
+      const banner = document.getElementById('characterPilotBanner');
+      if (banner) banner.hidden = !active;
+      const progress = document.getElementById('characterPilotProgress');
+      if (active && progress) {
+        const benefits = pilot.classBenefits;
+        if (!benefits || pilot.writable === false) {
+          progress.textContent = 'Piloto pausado. Volte ao início para escolher como continuar.';
+          return;
+        }
+        const used = Math.min(20, Math.max(0, Number(benefits.windowAnswers) || 0));
+        const details = benefits.lockedClass === 'aquaria'
+          ? (benefits.shieldSpent ? 'Proteção de vida usada.' : used >= 20 ? 'Proteção de vida expirada.' : 'Uma proteção de vida disponível.')
+          : benefits.lockedClass === 'glomerulus'
+            ? `${benefits.goldGranted || 0} de 40 ouro extra aplicado.`
+            : `${benefits.xpGranted || 0} de 20 XP extra aplicado.`;
+        progress.textContent = `${used < 20 ? `Janela do bônus: ${used}/20 respostas.` : 'Janela do bônus encerrada.'} ${details}`;
+      }
+    }
+    window.refreshCharacterPilotUI = refreshCharacterPilotUI;
+    window.addEventListener('pageshow', refreshCharacterPilotUI);
+    window.addEventListener('storage', event => {
+      if (event.storageArea === localStorage && (event.key === 'nefroquest-pilot-v1' || event.key === null)) refreshCharacterPilotUI();
+    });
+    window.NQPilot?.onContextChange(refreshCharacterPilotUI);
+    refreshCharacterPilotUI();
+
     const CHARACTER_INTROS = {
       nephros:   { ch: 'Dr. Nephros · Guardião dos Néfrons',   text: 'O Reino dos Néfrons está sob ameaça. O Arqui-Nefromante corrompe cada túbulo com ignorância clínica — hipercalemia subestimada, DRC diagnosticada tarde, néfrons perdidos para sempre. Você enxerga o que outros ignoram: cada questão correta é um néfron preservado. A jornada começa agora.' },
       aquaria:   { ch: 'Dra. Aquaria · Mestra das Águas',      text: 'Onde outros veem números, você vê correntes. O Arqui-Nefromante semeia desequilíbrio — hiponatremia que destrói neurônios, acidose que afoga tecidos. Seu domínio é o equilíbrio hidroeletrolítico. Cada resposta certa é uma maré controlada. O reino aguarda sua maestria.' },
@@ -546,13 +612,24 @@
             <div class="nqinicio-heading"><div class="nqinicio-portrait"><img src="assets/classes-cinema/${character.folder}/nivel_01.${extension}" alt=""></div><div class="nqinicio-identity"><div class="nqinicio-name"><h2>${heroName}</h2><p class="nqinicio-subtitle">${heroTitle}</p></div>${CHARACTER_INTRO_EMBLEMS[charId] || ''}</div></div>
             <div class="nqnarr-story nqinicio-story" id="nqIntroStory">${intro.text}</div>
           </div>
-          <footer class="nqnarr-footer"><button class="nqnarr-primary nqinicio-primary" data-action="closeIntroAndStart">Iniciar Jornada</button></footer>
+          <footer class="nqnarr-footer nqinicio-actions"><button type="button" class="nq-pilot-button" data-action="cancelCharacterIntro" aria-label="Fechar introdução e cancelar início">Cancelar</button><button type="button" class="nqnarr-primary nqinicio-primary" data-action="closeIntroAndStart">Iniciar Jornada</button></footer>
         </section>`;
       document.body.appendChild(popup);
       nqDialogo(popup);
-      popup.querySelector('button')?.focus();
+      popup.querySelector('[data-action="closeIntroAndStart"]')?.focus();
       playSound('click');
     }
+
+    function cancelCharacterIntro() {
+      document.getElementById('charIntroOverlay')?.remove();
+      window.cancelPilotGameStart?.();
+      window._stopLocalJourney?.();
+      _lastSelectedCharacter = null;
+      refreshWelcomeSave();
+      refreshCharacterPilotUI();
+      document.querySelector('[data-action="startNewFromWelcome"]')?.focus({preventScroll:true});
+    }
+    window.cancelCharacterIntro = cancelCharacterIntro;
 
     function closeIntroAndStart() {
       const overlay = document.getElementById('charIntroOverlay');
@@ -564,12 +641,34 @@
     }
     
     async function startGameWithCharacter() {
+      const startingPilot = window.NQPilot?.active === true;
+      const startingOwner = typeof authUser !== 'undefined' ? authUser?.id || null : null;
+      const journeyBinding = typeof _captureJourneyBinding === 'function' ? _captureJourneyBinding() : null;
+      const pilotBinding = window.NQPilot?.captureBinding?.();
+      const startupCurrent = () =>
+        startingOwner === (typeof authUser !== 'undefined' ? authUser?.id || null : null) &&
+        startingPilot === (window.NQPilot?.active === true) &&
+        (!journeyBinding || (typeof _matchesJourneyBinding === 'function' && _matchesJourneyBinding(journeyBinding))) &&
+        (!pilotBinding || window.NQPilot?.matchesBinding?.(pilotBinding) === true);
+      const abortPilotStart = () => {
+        if (!startingPilot || !startupCurrent()) return;
+        if (typeof window.cancelPilotGameStart === 'function') window.cancelPilotGameStart();
+        else { window.NQPilot.release(); refreshCharacterPilotUI(); }
+      };
       if (isProgressSandbox()) {
+        abortPilotStart();
         exitProgressSandbox();
         return;
       }
       // Convidados usam _showGuestHook (hook suave em 15 questões), não o paywall global
-      if (!_guestMode && !isPremium() && getGameStats().questionsAnsweredAllTime >= FREE_QUESTIONS_LIMIT) {
+      let normalQuestionsAnswered = 0;
+      try {
+        normalQuestionsAnswered = Number(JSON.parse(localStorage.getItem('nefroquest-stats') || '{}').questionsAnsweredAllTime) || 0;
+      } catch (error) { /* Same empty normal statistics fallback as getGameStats. */ }
+      const entitlementQuestionsAnswered = typeof getEntitlementQuestionsAnswered === 'function'
+        ? getEntitlementQuestionsAnswered() : normalQuestionsAnswered;
+      if (!_guestMode && !isPremium() && entitlementQuestionsAnswered >= FREE_QUESTIONS_LIMIT) {
+        abortPilotStart();
         showPricingModal();
         return;
       }
@@ -577,18 +676,40 @@
         _toast('Carregando questões…', 'info', 30000);
         try {
           await _loadTopics();
+          if (!startupCurrent()) return;
           document.querySelector('.nq-toast')?.remove();
         } catch {
+          if (!startupCurrent()) return;
+          abortPilotStart();
           _toast('Erro ao carregar questões. Recarregue a página.', 'error', 5000);
           return;
         }
       }
+      if (!startupCurrent()) return;
       // Blindagem: se state.character ficou inválido (save legado ou corrida com
       // sync/loadGame), recupera a escolha real; em último caso, classe padrão.
       // Sem isso, char.name lança TypeError e a jornada "trava" na tela de intro.
       if (!characters[state.character]) {
         state.character = characters[_lastSelectedCharacter] ? _lastSelectedCharacter : 'nephros';
       }
+      const chosenDifficulty = state.difficulty || 'normal';
+      if (startingPilot && !window.NQPilot.start(state.character, chosenDifficulty, typeof authUser !== 'undefined' ? authUser?.id || null : null)) {
+        abortPilotStart();
+        _toast('Não foi possível iniciar o piloto. Sua jornada normal foi preservada.', 'error', 5000);
+        return;
+      }
+      const startedPilotBinding = startingPilot ? window.NQPilot.captureBinding() : null;
+      const pilotStartupCurrent = () => !startingPilot ||
+        (window.NQPilot?.active === true && window.NQPilot.writable === true &&
+          state.gameStarted === true && state.journeyDomain === 'pilot' &&
+          window.NQPilot.matchesBinding(startedPilotBinding));
+      state.journeyDomain = startingPilot ? 'pilot' : 'normal';
+      state.classBenefits = startingPilot ? window.NQPilot.classBenefits : null;
+      state.questionOrigin = 'campaign';
+      state.journeyAnswerOrdinal = 0;
+      state.pilotLastAnswer = null;
+      state.pilotJourneyAccounted = false;
+      window._reloadJourneyCollections?.();
       const char = characters[state.character];
 
       _sessionWrongAnswers = [];
@@ -597,6 +718,19 @@
       const _diffLives = {easy:5, normal:4, hard:3, hardcore:1};
       const _chosenDiff = state.difficulty || 'normal';
       const _startLives = _diffLives[_chosenDiff] || 3;
+      if (startingPilot) {
+        // Each pilot starts from its own empty inventory; no normal resources carry over.
+        if (_forja) {
+          _forja.origem.elementos.forEach(({el, hidden, inert}) => {
+            el.classList.toggle('hidden', hidden); el.inert = inert;
+          });
+          _forja = null;
+        }
+        ++_forjaSequence;
+        document.getElementById('forjaPage')?.remove();
+        document.body.classList.remove('nq-studying');
+        Object.assign(state, {obtainedItems:[], allItemsCollectedNotified:false, forjaPending:null, chestCorrectCount:0, chestTarget:5});
+      }
       Object.assign(state,{level:1,xp:0,xpToNext:200,score:0,lives:_startLives,maxLives:_startLives,streak:0,gold:0,difficulty:_chosenDiff,legendaryAbilityUsed:{},current:null,answered:false,bonusUses:0,correctTotal:0,narrativeShown:0,bossIntroShown:false,battleFinalShown:false,gameOver:false,gameStarted:true,extraLifeGiven:false,gameCompleted:false,completedGame:false,chestsOpened:0,bossLog:[],bossStunActive:false});
       document.body.classList.remove('rd-game-over', 'boss-battle-mode', 'arqui-nefromante-final', 'boss-hp-critical');
       removeStun(); // garante limpeza de resíduo de partida anterior
@@ -618,7 +752,14 @@
       renderHUD();
       updateBadges();
       renderQuestion();
+      if (!pilotStartupCurrent()) {
+        refreshCharacterPilotUI();
+        return false;
+      }
       saveGame();
+      refreshCharacterPilotUI();
+      if (!pilotStartupCurrent()) return false;
+      if (startingPilot) dismissWelcome();
       // Garantir que a música da jornada está tocando (fallback caso dismissWelcome não tenha iniciado)
       if (musicEnabled && !musicStarted) startBgMusic();
     }

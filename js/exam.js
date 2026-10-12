@@ -19,12 +19,21 @@
     let _examState = null; // {questions, idx, answers, startTime, timerInterval, tempoEsgotado}
     let _examOrigem = null;
     let _examConfirmandoSaida = false;
+    let _examProgressBinding = null;
+    function _examBindingCurrent(binding = _examProgressBinding) {
+      return !window.NQPilot || window.NQPilot.matchesBinding(binding);
+    }
+    function _examProgressStorage() {
+      if (typeof window.nqProgressStorage === 'function') return window.nqProgressStorage(_examProgressBinding || undefined);
+      if (window.NQPilot?.active) throw new Error('Armazenamento do piloto indisponível.');
+      return localStorage;
+    }
 
     function _saveExamState() {
-      if (!_examState) return;
+      if (!_examState || !_examBindingCurrent()) return;
       try {
         const { questions, idx, answers, startTime } = _examState;
-        localStorage.setItem(EXAM_SAVE_KEY, JSON.stringify({ questions, idx, answers, startTime, savedAt: Date.now() }));
+        _examProgressStorage().setItem(EXAM_SAVE_KEY, JSON.stringify({ questions, idx, answers, startTime, savedAt: Date.now() }));
       } catch(e) { console.error('[NQ] _saveExamState failed', e); }
     }
 
@@ -33,18 +42,18 @@
      * resultado do que respondeu, em vez de a prova sumir sem explicação. */
     function _loadExamState() {
       try {
-        const raw = localStorage.getItem(EXAM_SAVE_KEY);
+        const raw = _examProgressStorage().getItem(EXAM_SAVE_KEY);
         if (!raw) return null;
         const s = JSON.parse(raw);
         if (!s?.startTime || !s?.questions?.length) return null;
-        if (Date.now() - s.savedAt > EXAM_TTL_MS) { localStorage.removeItem(EXAM_SAVE_KEY); return null; }
+        if (Date.now() - s.savedAt > EXAM_TTL_MS) { _examProgressStorage().removeItem(EXAM_SAVE_KEY); return null; }
         const elapsed = Math.floor((Date.now() - s.startTime) / 1000);
         return { ...s, expirada: elapsed >= EXAM_DURATION_SEC };
       } catch(e) { return null; }
     }
 
     function _clearExamState() {
-      try { localStorage.removeItem(EXAM_SAVE_KEY); } catch(e) {}
+      try { _examProgressStorage().removeItem(EXAM_SAVE_KEY); } catch(e) {}
     }
 
     const _examRestante = () => Math.max(0, EXAM_DURATION_SEC - Math.floor((Date.now() - _examState.startTime) / 1000));
@@ -52,6 +61,7 @@
 
     // ── Superfície ────────────────────────────────────────────────────────
     function _examPagina() {
+      if (!_examProgressBinding) _examProgressBinding = window.NQPilot?.captureBinding() || null;
       let pagina = document.getElementById('examPage');
       if (pagina) return pagina;
       _examOrigem = {
@@ -95,10 +105,11 @@
       _examTeclado(e);
     }
 
-    function _examFechar() {
+    function _examFechar(restoreFocus = true) {
       document.removeEventListener('keydown', _examTecladoForaDaPagina, true);
       if (_examState?.timerInterval) clearInterval(_examState.timerInterval);
       _examState = null;
+      _examProgressBinding = null;
       _examConfirmandoSaida = false;
       document.getElementById('examPage')?.remove();
       document.body.classList.remove('nq-studying');
@@ -115,7 +126,7 @@
         if (musicEnabled && !welcomeMusicStarted) startWelcomeMusic();
       }
       const volta = origem?.foco?.isConnected && origem.foco.offsetParent !== null ? origem.foco : null;
-      volta?.focus({ preventScroll: true });
+      if (restoreFocus) volta?.focus({ preventScroll: true });
     }
 
     function _examFocar(seletor) {
@@ -169,15 +180,17 @@
     }
 
     async function _examComecar() {
+      const binding = _examProgressBinding;
       const botao = document.querySelector('[data-action="_examComecar"]');
       if (botao) { botao.disabled = true; botao.textContent = 'Carregando questões…'; }
       try {
         if (!questionBank) await _loadTopics();
       } catch (e) {
+        if (!_examBindingCurrent(binding)) return;
         _examIntro('Não foi possível carregar as questões. Verifique a conexão e tente de novo.');
         return;
       }
-      if (!document.getElementById('examPage')) return;
+      if (!_examBindingCurrent(binding) || !document.getElementById('examPage')) return;
       _examState = {
         questions: shuffle([...questionBank]).slice(0, EXAM_QUESTION_COUNT),
         idx: 0,
@@ -207,7 +220,8 @@
     // ── Relógio ───────────────────────────────────────────────────────────
     function _examIniciarRelogio() {
       if (_examState.timerInterval) clearInterval(_examState.timerInterval);
-      _examState.timerInterval = setInterval(_updateExamTimer, 1000);
+      const binding = _examProgressBinding;
+      _examState.timerInterval = setInterval(() => { if (_examBindingCurrent(binding)) _updateExamTimer(); }, 1000);
     }
 
     function _examEsgotarTempo() {
@@ -225,7 +239,7 @@
     }
 
     function _updateExamTimer() {
-      if (!_examState || document.getElementById('examResultado')) return;
+      if (!_examBindingCurrent() || !_examState || document.getElementById('examResultado')) return;
       const restante = _examRestante();
       if (restante <= 0) { _examEsgotarTempo(); return; }
       const el = document.getElementById('examTimer');
@@ -305,7 +319,7 @@
     }
 
     function _examAnswer(chosen) {
-      if (!_examState || _examState.answers[_examState.idx]) return;
+      if (!_examBindingCurrent() || !_examState || _examState.answers[_examState.idx]) return;
       const { questions, idx } = _examState;
       const q = questions[idx];
       const correct = chosen === q.a;
@@ -319,6 +333,7 @@
     }
 
     function _examNext() {
+      if (!_examBindingCurrent() || !_examState) return;
       _examState.idx++;
       _saveExamState();
       if (_examState.idx >= _examState.questions.length) { showExamResults(); }
@@ -423,3 +438,12 @@
       _clearExamState();
       _examFechar();
     }
+
+    window.NQPilot?.onContextChange(() => {
+      if (document.getElementById('examPage')) _examFechar(false);
+      else {
+        if (_examState?.timerInterval) clearInterval(_examState.timerInterval);
+        _examState = null;
+        _examProgressBinding = null;
+      }
+    });
