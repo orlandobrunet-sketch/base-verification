@@ -46,7 +46,10 @@ for(const width of [320,390,1100])test('nome sem letras partidas e leitura ampli
   expect(await title.evaluate(e=>getComputedStyle(e).overflowWrap)).toBe('normal');expect(await title.evaluate(e=>e.scrollWidth<=e.clientWidth+1)).toBe(true);
   expect(await title.evaluate(e=>{const text=e.firstChild!,start=text.textContent!.indexOf('Glomerulus'),range=document.createRange();range.setStart(text,start);range.setEnd(text,start+10);return range.getClientRects().length})).toBe(1);
   const region=card.getByRole('region');await region.focus();await page.keyboard.press('End');await expect.poll(()=>region.evaluate(e=>e.scrollHeight<=e.clientHeight||e.scrollTop>0)).toBe(true);
-  const rect=(await card.getByRole('button').boundingBox())!;expect(rect.height).toBeGreaterThanOrEqual(44);expect(rect.x).toBeGreaterThanOrEqual(0);expect(rect.x+rect.width).toBeLessThanOrEqual(width+1);expect(rect.y+rect.height).toBeLessThanOrEqual(740);
+  for(const name of ['Fechar introdução e cancelar início','Iniciar Jornada']){
+   const target=card.getByRole('button',{name,exact:true});await expect(target).toBeVisible();
+   const rect=(await target.boundingBox())!;expect(rect.height).toBeGreaterThanOrEqual(44);expect(rect.x).toBeGreaterThanOrEqual(0);expect(rect.x+rect.width).toBeLessThanOrEqual(width+1);expect(rect.y+rect.height).toBeLessThanOrEqual(740);
+  }
   expect(await card.locator('img').evaluate(e=>getComputedStyle(e).animationName)).toBe('none');
  }
 });

@@ -771,6 +771,7 @@
         const describedBy = hasSavedJourney ? 'diffSelectorDesc diffSelectorWarning' : 'diffSelectorDesc';
         overlay.innerHTML = `
           <div class="difficulty-modal nql-difficulty" role="dialog" aria-modal="true" aria-labelledby="diffSelectorTitle" aria-describedby="${describedBy}" tabindex="-1">
+            <div class="nql-difficulty__content">
             <header class="difficulty-header nql-difficulty__header">
               <div class="nql-difficulty__route" aria-hidden="true"><span>CALIBRAÇÃO</span><span>RITMO CLÍNICO</span></div>
               <h2 class="difficulty-title" id="diffSelectorTitle">Calibre o ritmo da jornada.</h2>
@@ -845,6 +846,7 @@
               <p>Jornada local, separada da jornada normal e sempre fora do ranking. A classe escolhida vale até o fim deste piloto.</p>
               <p id="characterPilotAvailability" role="status">Disponível em Fácil, Médio e Difícil. Sem piloto no Hardcore.</p>
             </fieldset>
+            </div>
 
             <footer class="nql-difficulty__footer">
               <p>A escolha pode ser refeita ao iniciar uma nova jornada.</p>
